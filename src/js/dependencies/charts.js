@@ -21,9 +21,7 @@
 				self = $(elm),
 				srcTbl = self,
 				smallestHorizontalFlotDelta,
-				smallestVerticalFlotDelta,
-				oPreset; 
-
+				smallestVerticalFlotDelta; 
 
 			function colourNameToHex(colour) {
 				// colorsAccent = ['#8d201c', '#EE8310', '#2a7da6', '#5a306b', '#285228', '#154055', '#555555', '#f6d200', '#d73d38', '#418541', '#87aec9', '#23447e', '#999999'];
@@ -193,7 +191,6 @@
 				return (colours[colour.toLowerCase()] !== 'undefined' ? colours[colour.toLowerCase()] : ($.isArray(o.colors) ? o.colors[0] : o.colors));
 			}
 			
-						
 			// Function to Convert Class instance to JSON
 			function setClassOptions (sourceOptions, strClass, namespace) {
 				var separatorNS = '',
@@ -406,16 +403,16 @@
 					'graphclass-typeof': 'string',
 					'noencapsulation-autocreate': true,
 					'noencapsulation-typeof': 'boolean',
-					
+
 					// Force to have an uniform tick
 					uniformtick: true,
 					'uniformtick-typeof': 'boolean',
 					'uniformtick-autocreate': true,
-					
+
 					// Force to use which row in the thead for the label
 					'labelposition-typeof': 'number',
 					'labelposition-autocreate': true,
-					
+
 					// Legend Management
 					'legendinline-typeof': 'boolean',
 					'legendinline-autocreate': true,
@@ -423,7 +420,7 @@
 					'nolegend-autocreate': true,
 					'percentlegend-typeof': 'boolean',
 					'percentlegend-autocreate': true,
-					
+
 					// Force the Top and Bottom Value for a graph
 					'topvalue-autocreate': true,
 					'topvalue-typeof': 'number',
@@ -436,8 +433,7 @@
 					// Ticks => Number of ticks for the y-axis
 					'ticks-autocreate': true,
 					'ticks-typeof': 'number',
-					
-					
+
 					// Pie chart option
 					// set a decimal precision
 					'decimal-autocreate': true,
@@ -458,7 +454,7 @@
 					'piehighlight-typeof': 'number',
 					'piehoverable-autocreate': true, // Hoverable pie slice
 					'piehoverable-typeof': 'boolean',
-					
+
 					// General option
 					'default-option': 'type', // Default CSS Options
 					// Graph Type
@@ -486,29 +482,53 @@
 						// return 44
 						// return [44, "%"]
 						// return [5.1, "g"]
-						
+
 						// Default Cell value extraction
 						var cellRawValue = $(elem).text();
-						
+
 						//trim spaces in the string;
-						cellRawValue = cellRawValue.replace(/\s\s+/g, ' ');
-						cellRawValue = cellRawValue.replace(/^\s+|\s+$/g, '');
-						
+						cellRawValue = cellRawValue.replace(/\s/g, '');
 						return [parseFloat(cellRawValue.match(/[\+\-0-9]+[0-9,\. ]*/)), cellRawValue.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
 					},
-					preset: {}
+					preset: {
+						donnut: {
+							// Donnut setting
+							type: 'pie',
+							height: 250,
+							percentlegend: true,
+							pieinnerradius: 45,
+							pietilt: 50,
+							piehoverable: true,
+							decimal: 1,
+							piethreshold: 8,
+							legendinline: true,
+							piestartangle: 100
+						},
+						usnumber: {
+							getcellvalue: function(elem){
+								var raw = $(elem).text().replace(/\s\s+/g, ' ').replace(/^\s+|\s+$/g, '').replace(/,/g, '');
+								return [parseFloat(raw.match(/[\+\-0-9]+[0-9,\. ]*/)), raw.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
+							}
+						},
+						germannumber: {
+							getcellvalue: function(elem){
+								var raw = $(elem).text().replace(/\s\s+/g, ' ').replace(/^\s+|\s+$/g, '').replace(/\./g, '');
+								return [parseFloat(raw.match(/[\+\-0-9]+[0-9,\. ]*/)), raw.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
+							}
+						}
+					}
 				};
-				
+
 				// 2. Global "setting.js"
 				if (typeof wet_boew_charts !== 'undefined' && wet_boew_charts !== null) {
-					//	 a. if exisit copy and take care of preset separatly (Move away before extending)
+					// a. if exisit copy and take care of preset separatly (Move away before extending)
 					if (wet_boew_charts.preset) {
 						_pe.fn.chartsGraph.O = jQuery.extend(true, {}, wet_boew_charts.preset);
 						delete wet_boew_charts.preset;
 					}
-					//	 b. Overwrite the chart default setting
+					// b. Overwrite the chart default setting
 					$.extend(true, o, wet_boew_charts);
-					//	 c. Separatly extend the preset to at the current chart default seting
+					// c. Separatly extend the preset to at the current chart default seting
 					if (_pe.fn.chartsGraph.O) {
 						$.extend(true, o.preset, _pe.fn.chartsGraph.O);
 					}
@@ -516,11 +536,10 @@
 				_pe.fn.chartsGraph.O = o; // ---- Save the setting here in a case of a second graphic on the same page
 			}
 			o = _pe.fn.chartsGraph.O;
-			
+
 			// 3. [Table element] CSS Overwrite - [Keep a list of required plugin "defaultnamespace-plugin" eg. wb-charts-donnut]
 			o = setClassOptions(o, (self.attr('class') !== undefined ? self.attr('class') : ''));
-			
-			
+
 			// 4. [Table element] HTML5 Data Overwrite property
 			$.each(self.data(), function(idx, val) {
 				var propname;
@@ -532,9 +551,9 @@
 			});
 
 			// 5. Load the requested preset
-			//	 a. If the preset are a string => Use that as an url where it could find the setting
-			//	 ---- Keep the url and his content for future reference for example second chart.
-			//	 b. If the preset are an object => Overwrite the default.
+			// a. If the preset are a string => Use that as an url where it could find the setting
+			// ---- Keep the url and his content for future reference for example second chart.
+			// b. If the preset are an object => Overwrite the default.
 
 			// Add headers information to the table parsed data structure
 			// Similar sample of code as the HTML Table validator
