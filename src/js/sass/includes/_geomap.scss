@@ -97,8 +97,6 @@
 div {
 	&.olMap {	
 		z-index: 0;
-		padding: 0 !important;
-		margin: 0 !important;
 		cursor: default;
 	}
 	&.olMapViewport {
@@ -291,9 +289,9 @@ div {
 .wet-boew-geomap-map {
 	width: 100%;
 	position: relative;
-	border: 1px solid #CCC;
+	outline: 1px solid #CCC;
 	&.active {
-		border-color: #07F;
+		outline-color: #07F;
 	}
 }
 
