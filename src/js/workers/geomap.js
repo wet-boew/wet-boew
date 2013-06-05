@@ -1556,7 +1556,7 @@
 
 			// add WCAG element for the map div
 			geomap.gmap.attr({
-				'role': 'img',
+				'role': 'dialog',
 				'aria-label': _pe.dic.get('%geo-ariamap')
 			});
 		},
