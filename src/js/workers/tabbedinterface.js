@@ -200,15 +200,15 @@
 				}
 			});
 
-			// Find the default tab: precendence given to the active tab from sessionStorage
-			$default_tab = $tabs.filter('[href="' + this._get_active_panel(tabListIdx) + '"]');
-			if ($default_tab.length > 0) {
-				opts.defaultTab = '.default';
-				$nav.find('li').removeClass('default');
-				$default_tab.parent('li').addClass('default');
-			} else {
-				$default_tab = $tabs.filter('[href="*#' + _pe.urlhash + '"]');
-				if ($default_tab.length === 0) {
+			// Find the default tab: precendence given to the URL hash
+			$default_tab = $tabs.filter('[href="#' + _pe.urlhash + '"]');
+			if ($default_tab.length === 0) {
+				$default_tab = $tabs.filter('[href="' + this._get_active_panel(tabListIdx) + '"]');
+				if ($default_tab.length > 0) {
+					opts.defaultTab = '.default';
+					$nav.find('li').removeClass('default');
+					$default_tab.parent('li').addClass('default');
+				} else {
 					$default_tab = $nav.find('.default a');
 					if ($default_tab.length === 0) {
 						$default_tab = $nav.find('li:first-child a');
