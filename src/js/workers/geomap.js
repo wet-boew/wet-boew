@@ -133,6 +133,7 @@
 					mapid: elm.attr('id'),
 					map: null,
 					selectControl: null,
+					showAttribNRCan: false,
 					queryLayers: [],
 					overlays: 0,
 					overlaysLoaded: 0,
@@ -966,6 +967,7 @@
 				}
 			} else {
 				_pe.fn.geomap.setDefaultBaseMap(geomap, opts);
+				geomap.showAttribNRCan = true;
 			}
 		},
 
@@ -1430,7 +1432,9 @@
 		 */
 		loadControls: function(geomap, opts){
 			var $mapDiv = geomap.gmap,
-				map = geomap.map;
+				map = geomap.map,
+				attribHRef,
+				attribTxt;
 
 			// TODO: ensure WCAG compliance before enabling			
 			geomap.selectControl = new OpenLayers.Control.SelectFeature(
@@ -1506,6 +1510,27 @@
 					$mapDiv.before('<details id="geomap-details-' + geomap.uniqueid + '" class="wet-boew-geomap-detail" style="width:' + ($mapDiv.width() - 10) + 'px;"><summary>' + _pe.dic.get('%geo-accessibilizetitle') + '</summary><p>' + _pe.dic.get('%geo-accessibilize') + '</p></details>');
 					_pe.polyfills.enhance('detailssummary', _pe.main.find('#geomap-details-' + geomap.uniqueid));
 				}
+			}
+
+			// add attribution
+			if (geomap.showAttribNRCan || opts.attribution) {
+				map.addControl(new OpenLayers.Control.Attribution());
+				
+				if (geomap.showAttribNRCan) {
+					attribHRef = document.createElement('a');
+					attribHRef.setAttribute('href', _pe.dic.get('%geo-attributionlink'));
+					attribTxt = '\u00A9' + _pe.dic.get('%geo-attributiontitle');
+				} else if ( opts.attribution.href) {
+					attribHRef = document.createElement('a');
+					attribHRef.setAttribute('href', opts.attribution.href);
+					attribTxt = opts.attribution.text;
+				} else {
+					attribHRef = document.createElement('p');
+					attribTxt = opts.attribution.text;
+				}
+				
+				attribHRef.appendChild(document.createTextNode(attribTxt));
+				map.getControlsByClass('OpenLayers.Control.Attribution')[0].div.appendChild(attribHRef);
 			}
 
 			// zoom to the maximum extent specified

@@ -110,8 +110,8 @@ div {
 		}
 	}
 	&.olControlMousePosition {
-		bottom: 0;
-		right: 3px;
+		bottom: 5px;
+		left: 100px;
 		display: block;
 		position: absolute;
 		font-family: Arial;
@@ -172,6 +172,11 @@ div {
 	border: solid 2px black;
 	border-top: none;
 	text-align: center;
+}
+
+.olControlAttribution {
+	bottom: 5px;
+	right: 5px;
 }
 
 .olHandlerBoxZoomBox {
