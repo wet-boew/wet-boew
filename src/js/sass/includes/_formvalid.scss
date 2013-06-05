@@ -11,6 +11,9 @@
 %formvalid-margin-top-1em {
 	margin-top: 1em;
 }
+%formvalid-margin-right-0 {
+	margin-right: 0;
+}
 %formvalid-error {
 	@extend %formvalid-display-block;
 	@extend %formvalid-font-weight-700;
@@ -73,11 +76,12 @@ div {
 	&.errorContainer {
 		p {
 			margin-left: 0;
+			@extend %formvalid-margin-right-0;
 			@extend %formvalid-font-weight-700;
 		}
 		ul {
 			margin-left: 30px;
-			margin-right: 0;
+			@extend %formvalid-margin-right-0;
 			li {
 				margin-bottom: 5px;
 			}
