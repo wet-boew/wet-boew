@@ -198,6 +198,8 @@
 		'%geo-hiddenlayer': '@%geo-hiddenlayer@',
 		'%geo-basemapurl': '@%geo-basemapurl@',
 		'%geo-basemaptitle': '@%geo-basemaptitle@',
+		'%geo-attributionlink': '@%geo-attributionlink@',
+		'%geo-attributiontitle': '@%geo-attributiontitle@',
 		'%geo-select': '@%geo-select@',
 		'%geo-labelselect': '@%geo-labelselect@',
 		/* Disable/enable PE */
