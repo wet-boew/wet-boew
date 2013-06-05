@@ -163,7 +163,6 @@
 				draw: function() {
 					// initialize our internal div
 					var oButtons = this,
-						centered = new OpenLayers.Pixel(7.5, 81),
 						buttonArray = ['zoomworld', 'zoomout', 'zoomin'],
 						buttonImg = ['zoom-world-mini', 'zoom-minus-mini', 'zoom-plus-mini'],
 						len = buttonArray.length;
@@ -181,7 +180,10 @@
 			});
 			
 			geomap.map.addControl(panZoomBar);
-			
+			_pe.fn.geomap.setPanZoomBar(geomap);
+		},
+		
+		setPanZoomBar: function(geomap) {
 			/*
 			 * Add alt text to map controls and make tab-able
 			 * TODO: Fix in OpenLayers so alt text loaded there rather than overriden here (needs to be i18n)
@@ -212,7 +214,7 @@
 					img.className +=  ' olControl' + actn;
 				}
 			}
-		}, // end addPanZoomBar function
+		},
 
 		/*
 		 * Map feature select
@@ -804,8 +806,18 @@
 		 *	Set the default basemap
 		 */
 		setDefaultBaseMap: function(geomap, opts) {
-			var _zoomOffset = 0,
-				_resolutions = [38364.660062653464,
+			var mapWidth = geomap.gmap.width(),
+				offset,
+				option = {matrixSet: 'nativeTileMatrixSet',
+							tileSize: new OpenLayers.Size(256, 256),
+							format: 'image/jpg',
+							style: 'default',
+							requestEncoding: 'REST',
+							isBaseLayer: true,
+							isSingleTile: false,
+							tileOrigin: new OpenLayers.LonLat(-3.46558E7,  3.931E7),
+							zoomOffset: 0,
+							resolutions: [38364.660062653464,
 								22489.62831258996,
 								13229.193125052918,
 								7937.5158750317505,
@@ -822,9 +834,7 @@
 								22.48962831258996,
 								13.229193125052918,
 								7.9375158750317505,
-								4.6302175937685215],
-				mapWidth = geomap.gmap.width(),
-				offset;
+								4.6302175937685215]};
 						
 			if (opts.debug) {
 				_pe.document.trigger('geomap-basemapDefault');
@@ -832,39 +842,55 @@
 
 			// in function of map width size, set the proper resolution and zoom offset
 			if (mapWidth > 260 && mapWidth <= 500) {
-				_zoomOffset = 1;
+				option.zoomOffset = 1;
 			} else if (mapWidth > 500 && mapWidth <= 725) {
-				_zoomOffset = 2;
+				option.zoomOffset = 2;
 			} else if (mapWidth > 725 && mapWidth <= 1175) {
-				_zoomOffset = 3;
+				option.zoomOffset = 3;
 			} else if (mapWidth > 1175 && mapWidth <= 2300) {
-				_zoomOffset = 4;
+				option.zoomOffset = 4;
 			} else {
-				_zoomOffset = 5;
+				option.zoomOffset = 5;
 			}
  
-			offset = _zoomOffset;
+			offset = option.zoomOffset;
 			while (offset--) {
-				_resolutions.shift();
+				option.resolutions.shift();
 			}
 
-			// add the Canada Transportation Base Map (CBMT)			
-			// matrix identifiers are integers corresponding to the map zoom level. Do not have to define. We set zoomOffset to 3 to start at this scale.
+			// Add the Canada Transportation Base Map (CBMT) data and text
 			geomap.map.addLayer(new OpenLayers.Layer.WMTS({
 				name: _pe.dic.get('%geo-basemaptitle'),
 				url: _pe.dic.get('%geo-basemapurl'),
 				layer: _pe.dic.get('%geo-basemaptitle'),
 				matrixSet: 'nativeTileMatrixSet',
-				tileSize: new OpenLayers.Size(256, 256),
-				format: 'image/jpg',
-				style: 'default',
-				requestEncoding: 'REST',
-				isBaseLayer: true,
-				isSingleTile: false,
-				tileOrigin: new OpenLayers.LonLat(-3.46558E7,  3.931E7),
-				zoomOffset: _zoomOffset,
-				resolutions: _resolutions
-			}));		
+				tileSize: option.tileSize,
+				format: option.format,
+				style: option.style,
+				requestEncoding: option.requestEncoding,
+				isBaseLayer: option.isBaseLayer,
+				isSingleTile: option.isSingleTile,
+				tileOrigin: option.tileOrigin,
+				zoomOffset: option.zoomOffset,
+				resolutions: option.resolutions,
+				transitionEffect: 'resize'
+			}));	
+			
+			geomap.map.addLayer(new OpenLayers.Layer.WMTS({
+				name: _pe.dic.get('%geo-basemaptitle'),
+				url: _pe.dic.get('%geo-basemapurltxt'),
+				layer: _pe.dic.get('%geo-basemaptitle'),
+				matrixSet: 'nativeTileMatrixSet',
+				tileSize: option.tileSize,
+				format: option.format,
+				style: option.style,
+				requestEncoding: option.requestEncoding,
+				isBaseLayer: false,
+				isSingleTile: option.isSingleTile,
+				tileOrigin: option.tileOrigin,
+				zoomOffset: option.zoomOffset,
+				resolutions: option.resolutions
+			}));
 		},
 
 		/*
