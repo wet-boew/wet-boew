@@ -5,7 +5,7 @@
 /*
  * Lightbox plugin
  */
-/*global jQuery: false, pe: false, wet_boew_lightbox: false*/
+/*global jQuery: false, wet_boew_lightbox: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -39,16 +39,16 @@
 			opts = {
 				transition : 'elastic',
 				loop : true,
-				current : pe.dic.get('%lb-current'),
-				previous : pe.dic.get('%lb-prev'),
-				next : pe.dic.get('%lb-next'),
-				close : pe.dic.get('%close'),
-				xhrError : pe.dic.get('%lb-xhr-error'),
-				imgError : pe.dic.get('%lb-img-error'),
+				current : _pe.dic.get('%lb-current'),
+				previous : _pe.dic.get('%lb-prev'),
+				next : _pe.dic.get('%lb-next'),
+				close : _pe.dic.get('%close'),
+				xhrError : _pe.dic.get('%lb-xhr-error'),
+				imgError : _pe.dic.get('%lb-img-error'),
 				maxWidth : '100%',
 				maxHeight : '100%',
-				slideshowStart : pe.dic.get('%start') + ' ' + pe.dic.get('%lb-slideshow'),
-				slideshowStop : pe.dic.get('%stop') + ' ' + pe.dic.get('%lb-slideshow'),
+				slideshowStart : _pe.dic.get('%start') + ' ' + _pe.dic.get('%lb-slideshow'),
+				slideshowStop : _pe.dic.get('%stop') + ' ' + _pe.dic.get('%lb-slideshow'),
 				slideshow : false,
 				slideshowAuto : false,
 				onComplete : function () {
@@ -81,7 +81,7 @@
 							$currImg.attr('longdesc', longdesc);
 						}
 					}
-					pe.focus($lbLoadedContent);
+					_pe.focus($lbLoadedContent);
 					open = true;
 				},
 				onClosed : function () {
@@ -107,13 +107,13 @@
 				lbItem = lb[index];
 				if (lbItem.className.indexOf('lb-item') !== -1) {
 					// Build single images, inline content and AJAXed content
-					pe.fn.lightbox._init_colorbox(lbItem, opts);
+					_pe.fn.lightbox._init_colorbox(lbItem, opts);
 				} else {
 					// Build galleries
-					group = 'group' + (pe.fn.lightbox.groupindex += 1);
+					group = 'group' + (_pe.fn.lightbox.groupindex += 1);
 					lbItems = $(lbItem).find('.lb-item-gal').get();
 					for (index2 = 0, len2 = lbItems.length; index2 !== len2; index2 += 1) {
-						pe.fn.lightbox._init_colorbox(lbItems[index2], opts, group);
+						_pe.fn.lightbox._init_colorbox(lbItems[index2], opts, group);
 					}
 				}
 			}
@@ -131,10 +131,10 @@
 				if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 					if (e.keyCode === 9) {
 						if (e.shiftKey && target_id === 'cboxLoadedContent') {
-							pe.focus($lbClose);
+							_pe.focus($lbClose);
 							e.preventDefault();
 						} else if (!e.shiftKey && target_id === 'cboxClose') {
-							pe.focus($lbContent.find('#cboxLoadedContent'));
+							_pe.focus($lbContent.find('#cboxLoadedContent'));
 							e.preventDefault();
 						}
 					} else if (e.keyCode === 13 || e.keyCode === 32) {
@@ -158,9 +158,8 @@
 				isInline = $link.attr('href').substring(0, 1) === '#',
 				isGroup = (group !== undefined),
 				groupRel = (isGroup ? group : false),
-				dataTitle = document.getElementById(link.getAttribute('data-title')),
-				title = (dataTitle && dataTitle.innerHTML.length > 0) ? {dataTitle: dataTitle.innerHTML} : false;
-			$link.colorbox((isInline || isGroup || title) ? $.extend((title ? title : {}), opts, {inline: isInline, rel: groupRel}) : opts);
+				dataTitle = document.getElementById(link.getAttribute('data-title'));
+			$link.colorbox((isInline || isGroup || dataTitle) ? $.extend(((dataTitle && dataTitle.innerHTML.length > 0) ? {dataTitle: dataTitle.innerHTML} : {}), opts, {inline: isInline, rel: groupRel}) : opts);
 		}
 	};
 	window.pe = _pe;
