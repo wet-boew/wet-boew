@@ -20,14 +20,21 @@
 			// Variables
 			var opts,
 				overrides,
-				$lb,
+				lb,
+				lbItems,
+				lbItem,
 				$lbContent,
 				$lbLoadedContent,
 				$lbNext,
 				$lbPrev,
 				$lbClose,
-				open = false,
-				slideshowText = ' ' + _pe.dic.get('%lb-slideshow');
+				slideshowText = ' ' + _pe.dic.get('%lb-slideshow'),
+				group,
+				index,
+				index2,
+				len,
+				len2,
+				open = false;
 
 			// Defaults
 			opts = {
@@ -96,20 +103,21 @@
 			$.extend(opts, (typeof wet_boew_lightbox !== 'undefined' ? wet_boew_lightbox : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 
 			// Find the lightbox links and galleries
-			$lb = elm.find('.lb-item, .lb-item-gal, .lb-gallery, .lb-hidden-gallery');
-
-			// Build single images, inline content and AJAXed content
-			$lb.filter('.lb-item').attr('aria-haspopup', 'true').each(function () {
-				_pe.fn.lightbox._init_colorbox(this, opts);
-			});
-
-			// Build galleries
-			$lb.filter('.lb-gallery, .lb-hidden-gallery').each(function () {
-				var group = 'group' + (_pe.fn.lightbox.groupindex += 1);
-				$(this).find('.lb-item-gal').attr('aria-haspopup', 'true').each(function () {
-					_pe.fn.lightbox._init_colorbox(this, opts, group);
-				});
-			});
+			lb = elm.find('.lb-item, .lb-gallery, .lb-hidden-gallery').get();
+			for (index = 0, len = lb.length; index !== len; index += 1) {
+				lbItem = lb[index];
+				if (lbItem.className.indexOf('lb-item') !== -1) {
+					// Build single images, inline content and AJAXed content
+					_pe.fn.lightbox._init_colorbox(lbItem, opts);
+				} else {
+					// Build galleries
+					group = 'group' + (_pe.fn.lightbox.groupindex += 1);
+					lbItems = $(lbItem).find('.lb-item-gal').get();
+					for (index2 = 0, len2 = lbItems.length; index2 !== len2; index2 += 1) {
+						_pe.fn.lightbox._init_colorbox(lbItems[index2], opts, group);
+					}
+				}
+			}
 
 			// Add WAI-ARIA
 			$lbContent = $('#colorbox #cboxContent').attr('role', 'dialog');
@@ -160,13 +168,9 @@
 				isInline = $link.attr('href').substring(0, 1) === '#',
 				isGroup = (group !== undefined),
 				groupRel = (isGroup ? group : false),
-				title = this._get_title(link);
+				dataTitle = document.getElementById(link.getAttribute('data-title')),
+				title = (dataTitle && dataTitle.innerHTML.length > 0) ? {title : dataTitle.innerHTML} : false;
 			$link.colorbox((isInline || isGroup || title) ? $.extend((title ? title : {}), opts, {inline: isInline, rel: groupRel}) : opts);
-		},
-
-		_get_title : function(link) {
-			var	title = document.getElementById(link.getAttribute('data-title'));
-			return (title && title.innerHTML.length > 0) ? {title: title.innerHTML} : false;
 		}
 	};
 	window.pe = _pe;
