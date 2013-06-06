@@ -153,6 +153,24 @@
 	}
 }
 
+@-moz-document url-prefix() {
+	.tabs-panel {
+		> {
+			div {
+				&.active {
+					> {
+						* {
+							&:last-child {
+								padding-bottom: 0.001em;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
 .clear {
     clear: both;
     display: block;
