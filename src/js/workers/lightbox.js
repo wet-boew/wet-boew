@@ -168,9 +168,8 @@
 				isInline = $link.attr('href').substring(0, 1) === '#',
 				isGroup = (group !== undefined),
 				groupRel = (isGroup ? group : false),
-				dataTitle = document.getElementById(link.getAttribute('data-title')),
-				title = (dataTitle && dataTitle.innerHTML.length > 0) ? {title : dataTitle.innerHTML} : false;
-			$link.colorbox((isInline || isGroup || title) ? $.extend((title ? title : {}), opts, {inline: isInline, rel: groupRel}) : opts);
+				dataTitle = document.getElementById(link.getAttribute('data-title'));
+			$link.colorbox((isInline || isGroup || dataTitle) ? $.extend(((dataTitle && dataTitle.innerHTML.length > 0) ? {title: dataTitle.innerHTML} : {}), opts, {inline: isInline, rel: groupRel}) : opts);
 		}
 	};
 	window.pe = _pe;
