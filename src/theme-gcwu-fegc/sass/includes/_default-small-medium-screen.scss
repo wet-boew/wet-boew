@@ -35,6 +35,9 @@
 %gcwu-default-small-medium-screen-border-none {
 	border: none;
 }
+%gcwu-default-small-medium-screen-border-bottom-width-1 {
+	border-bottom-width: 1px;
+}
 %gcwu-default-small-medium-screen-text-shadow-none {
 	text-shadow: none;
 }
@@ -290,7 +293,7 @@ table {
 			@extend %gcwu-default-small-medium-screen-top-rounded-corners;
 		}
 		&.ui-corner-bottom {
-			border-bottom-width: 1px;
+			@extend %gcwu-default-small-medium-screen-border-bottom-width-1;
 			@extend %gcwu-default-small-medium-screen-bottom-rounded-corners;
 		}
 	}
@@ -604,8 +607,8 @@ select {
 	.ui-body-a {
 		background: #FFF;
 	}
-	.ui-collapsible-set {
-		@extend %gcwu-default-small-medium-screen-margin-0;
+		.ui-collapsible-set {
+		margin: 0;
 		a {
 			@extend %gcwu-default-small-medium-screen-white-space-normal;
 		}
@@ -613,7 +616,23 @@ select {
 			&:not(:first-child) {
 				@extend %gcwu-default-small-medium-screen-no-top-rounded-corners;
 			}
+			&:not(:last-child) {
+				@extend %gcwu-default-small-medium-screen-no-bottom-rounded-corners;
+			}
 			&:last-child {
+				> {
+					.ui-collapsible-heading {
+						a {
+							@extend %gcwu-default-small-medium-screen-no-bottom-rounded-corners;
+						}
+					}
+					.ui-collapsible-heading-collapsed {
+						a {
+							@extend %gcwu-default-small-medium-screen-bottom-rounded-corners;
+							@extend %gcwu-default-small-medium-screen-border-bottom-width-1;
+						}
+					}
+				}
 				.ui-collapsible-content {
 					> {
 						:not(:last-child) {
@@ -628,11 +647,6 @@ select {
 		.ui-btn {
 			border-left-width: 1px;
 			border-right-width: 1px;
-		}
-		&:not(.ui-collapsible-heading-collapsed) {
-			a {
-				@extend %gcwu-default-small-medium-screen-no-bottom-rounded-corners;
-			}
 		}
 	}
 	.wb-nested-menu {
@@ -697,7 +711,7 @@ select {
 			}
 		}
 		&.ui-corner-bottom {
-			border-bottom-width: 1px;
+			@extend %gcwu-default-small-medium-screen-border-bottom-width-1;
 		}
 	}
 	.top-section {

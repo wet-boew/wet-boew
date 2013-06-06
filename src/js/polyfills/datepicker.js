@@ -32,8 +32,11 @@
 				setSelectedDate,
 				toggle,
 				year = date.getFullYear(),
-				elm = $(this),
-				wrapper = elm.parent();
+				datepickerShow = pe.dic.get('%datepicker-show'),
+				datepickerHide = pe.dic.get('%datepicker-hide'),
+				interwordSpace = pe.dic.get('%interword-space'),
+				datepickerSelected = pe.dic.get('%datepicker-selected'),
+				elm = $(this);
 
 			if (elm.hasClass('picker-field')) {
 				return;
@@ -43,7 +46,7 @@
 
 			createToggleIcon = function (fieldid) {
 				var fieldLabel = $('label[for="' + fieldid + '"]').text(),
-					objToggle = $('<a id="' + fieldid + '-picker-toggle" class="picker-toggle-hidden" href="javascript:;"><img class="image-actual" src="' + pe.add.liblocation + 'images/datepicker/calendar-month.png" alt="' + pe.dic.get('%datepicker-show') + fieldLabel + '"/></a>');
+					objToggle = $('<a id="' + fieldid + '-picker-toggle" class="picker-toggle-hidden wb-invisible" href="javascript:;"><img class="image-actual" src="' + pe.add.liblocation + 'images/datepicker/calendar-month.png" alt="' + datepickerShow + interwordSpace + fieldLabel + '"/></a>');
 
 				objToggle.on('click vclick touchstart', function () {
 					toggle(fieldid);
@@ -52,6 +55,11 @@
 
 				elm.after(objToggle);
 				container.slideUp(0);
+
+				// Delay revealing of the toggle button to give time for the image to load
+				setTimeout(function() {
+					objToggle.removeClass('wb-invisible');
+				}, 10);
 			};
 
 			addLinksToCalendar = function (fieldid, year, month, days, minDate, maxDate, format) {
@@ -146,7 +154,13 @@
 						});
 
 						link.on('click vclick touchstart', {fieldid: fieldid, year: year, month : month, day: index + 1, days: days, format: format}, function (event) {
+							var $field = $('#' + event.data.fieldid),
+								prevDate = $field.val();
+
 							addSelectedDateToField(event.data.fieldid, event.data.year, event.data.month + 1, event.data.day, event.data.format);
+							if (prevDate !== $field.val()) {
+								$field.trigger('change');
+							}
 							setSelectedDate(event.data.fieldid, event.data.year, event.data.month, event.data.days, event.data.format);
 							//Hide the calendar on selection
 							toggle(event.data.fieldid);
@@ -196,7 +210,7 @@
 						cpntDate = $.parseJSON(date.replace(regex, '{"year":"$1", "month":"$2", "day":"$3"}'));
 						if (parseInt(cpntDate.year, 10) === year && parseInt(cpntDate.month, 10) === month + 1) {
 							$(days[cpntDate.day - 1]).addClass('datepicker-selected');
-							$(days[cpntDate.day - 1]).children('a').append('<span class="wb-invisible datepicker-selected-text"> [' + pe.dic.get('%datepicker-selected') + ']</span>');
+							$(days[cpntDate.day - 1]).children('a').append('<span class="wb-invisible datepicker-selected-text"> [' + datepickerSelected + ']</span>');
 						}
 					}
 				} catch (e) {
@@ -248,7 +262,7 @@
 						ieFix($(this));
 					});
 					container.attr('aria-hidden', 'false');
-					toggle.children('a').children('span').text(pe.dic.get('%datepicker-hide'));
+					toggle.children('a').children('span').text(datepickerHide);
 
 					if (targetDate !== null) {
 						targetDate.setDate(targetDate.getDate() + 1);
@@ -291,7 +305,7 @@
 				container.slideUp('fast', function () { ieFix($(this)); });
 				container.attr('aria-hidden', 'true');
 				calendar.hideGoToForm('wb-picker');
-				toggle.children('a').children('span').text(pe.dic.get('%datepicker-show') + fieldLabel);
+				toggle.children('a').children('span').text(datepickerShow + interwordSpace + fieldLabel);
 				toggle.removeClass('picker-toggle-visible');
 				toggle.addClass('picker-toggle-hidden');
 			};
@@ -364,7 +378,7 @@
 				});
 
 				// Close button
-				$('<a class="picker-close" role="button" href="javascript:;"><img src="' + pe.add.liblocation + 'images/datepicker/cross-button.png" alt="' + pe.dic.get('%datepicker-hide') + '" class="image-actual" /></a>').appendTo(container)
+				$('<a class="picker-close" role="button" href="javascript:;"><img src="' + pe.add.liblocation + 'images/datepicker/cross-button.png" alt="' + datepickerHide + '" class="image-actual" /></a>').appendTo(container)
 					.click(function () {
 						toggle(container.attr('aria-controls'));
 					});

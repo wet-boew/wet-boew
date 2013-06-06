@@ -35,6 +35,9 @@
 %wet-default-small-medium-screen-border-none {
 	border: none;
 }
+%wet-default-small-medium-screen-border-bottom-width-1 {
+	border-bottom-width: 1px;
+}
 %wet-default-small-medium-screen-text-shadow-none {
 	text-shadow: none;
 }
@@ -256,7 +259,7 @@ table {
 			@extend %wet-default-small-medium-screen-top-rounded-corners;
 		}
 		&.ui-corner-bottom {
-			border-bottom-width: 1px;
+			@extend %wet-default-small-medium-screen-border-bottom-width-1;
 			@extend %wet-default-small-medium-screen-bottom-rounded-corners;
 		}
 	}
@@ -606,7 +609,23 @@ select {
 			&:not(:first-child) {
 				@extend %wet-default-small-medium-screen-no-top-rounded-corners;
 			}
+			&:not(:last-child) {
+				@extend %wet-default-small-medium-screen-no-bottom-rounded-corners;
+			}
 			&:last-child {
+				> {
+					.ui-collapsible-heading {
+						a {
+							@extend %wet-default-small-medium-screen-no-bottom-rounded-corners;
+						}
+					}
+					.ui-collapsible-heading-collapsed {
+						a {
+							@extend %wet-default-small-medium-screen-bottom-rounded-corners;
+							@extend %wet-default-small-medium-screen-border-bottom-width-1;
+						}
+					}
+				}
 				.ui-collapsible-content {
 					> {
 						:not(:last-child) {
@@ -621,11 +640,6 @@ select {
 		.ui-btn {
 			border-left-width: 1px;
 			border-right-width: 1px;
-		}
-		&:not(.ui-collapsible-heading-collapsed) {
-			a {
-				@extend %wet-default-small-medium-screen-no-bottom-rounded-corners;
-			}
 		}
 	}
 	.wb-nested-menu {
@@ -699,7 +713,7 @@ select {
 			}
 		}
 		&.ui-corner-bottom {
-			border-bottom-width: 1px;
+			@extend %wet-default-small-medium-screen-border-bottom-width-1;
 		}
 	}
 	.top-section {

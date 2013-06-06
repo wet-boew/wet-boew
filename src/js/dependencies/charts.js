@@ -17,7 +17,7 @@
 	}; /* local reference */
 	_pe.fn.chartsGraph = {
 		generate: function (elm) {
-			var o = {},
+			var options = {},
 				self = $(elm),
 				srcTbl = self,
 				smallestHorizontalFlotDelta,
@@ -188,7 +188,7 @@
 					colour = 'accent-' + (colour + 1);
 				}
 				
-				return (colours[colour.toLowerCase()] !== 'undefined' ? colours[colour.toLowerCase()] : ($.isArray(o.colors) ? o.colors[0] : o.colors));
+				return (colours[colour.toLowerCase()] !== 'undefined' ? colours[colour.toLowerCase()] : ($.isArray(options.colors) ? options.colors[0] : options.colors));
 			}
 			
 			// Function to Convert Class instance to JSON
@@ -276,23 +276,25 @@
 						// This is a valid parameter, start the convertion to a JSON object
 						// Get all defined parameter
 						for (i = 0, _ilen = arrParameter.length; i < _ilen; i += 1) {
-							valIsNext = (i + 2 === _ilen ? true : false);
-							isVal = (i + 1 === _ilen ? true : false);
+							valIsNext = i + 2 === _ilen;
+							isVal = i + 1 === _ilen;
 							// Check if that is the default value and make a reset to the parameter name if applicable
-							if (isVal && _ilen === 1) {
+							if (isVal && _ilen) {
 								if (sourceOptions[arrParameter[i] + '-autocreate'] || (sourceOptions[arrParameter[i]] &&  sourceOptions[arrParameter[i] + '-typeof'] && sourceOptions[arrParameter[i] + '-typeof'] === "boolean")) {
 									// 1. If match an existing option and that option is boolean
 									arrParameter.push('true');
 									propName = arrParameter[i];
-									i = i + 1;
+									i += 1;
 									_ilen = arrParameter.length;
 								} else if (currObj.preset && currObj.preset[arrParameter[i]]) { 
 									// 2. It match a preset, overide the current setting
 									currObj = jQuery.extend(true, currObj, currObj.preset[arrParameter[i]]);
 									break;
-								} else { 
+								} else if (_ilen === 1) { 
 									// 3. Use the Default set
-									propName = (sourceOptions['default-option']? sourceOptions['default-option']: undefined);
+									propName = sourceOptions['default-option'] ? sourceOptions['default-option'] : undefined;
+								} else {
+									propName = undefined;
 								}
 							} else if (!isVal) {
 								propName = arrParameter[i];
@@ -306,7 +308,7 @@
 								for (j = (i + 1); j < _ilen; j += 1) {
 									arrValue.push(arrParameter[j]);
 								}
-								if ((i + 1) < _ilen) {
+								if (i < _ilen - 1) {
 									arrParameter[i] = arrValue.join(separatorNS);
 								}
 								valIsNext = false;
@@ -393,10 +395,10 @@
 				});
 				return sourceOptions;
 			}
-			
+
 			if (!_pe.fn.chartsGraph.O){
 				// 1. Charts Default Setting
-				o = {
+				options = {
 					'default-namespace': ['wb-charts', 'wb-chart', 'wb-graph'],
 					'graphclass-autocreate': true, // This add the ability to set custom css class to the figure container.
 					'graphclass-overwrite-array-mode': true,
@@ -484,9 +486,9 @@
 						// return [5.1, "g"]
 
 						// Default Cell value extraction
-						var cellRawValue = $(elem).text();
+						var cellRawValue = $(elem).text().trim();
 
-						//trim spaces in the string;
+						//remove spaces inside the string;
 						cellRawValue = cellRawValue.replace(/\s/g, '');
 						return [parseFloat(cellRawValue.match(/[\+\-0-9]+[0-9,\. ]*/)), cellRawValue.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
 					},
@@ -505,14 +507,14 @@
 							piestartangle: 100
 						},
 						usnumber: {
-							getcellvalue: function(elem){
-								var raw = $(elem).text().replace(/\s\s+/g, ' ').replace(/^\s+|\s+$/g, '').replace(/,/g, '');
+							getcellvalue: function(elem) {
+								var raw = $(elem).text().trim().replace(/,/g, '');
 								return [parseFloat(raw.match(/[\+\-0-9]+[0-9,\. ]*/)), raw.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
 							}
 						},
 						germannumber: {
-							getcellvalue: function(elem){
-								var raw = $(elem).text().replace(/\s\s+/g, ' ').replace(/^\s+|\s+$/g, '').replace(/\./g, '');
+							getcellvalue: function(elem) {
+								var raw = $(elem).text().trim().replace(/\./g, '');
 								return [parseFloat(raw.match(/[\+\-0-9]+[0-9,\. ]*/)), raw.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
 							}
 						}
@@ -520,33 +522,31 @@
 				};
 
 				// 2. Global "setting.js"
-				if (typeof wet_boew_charts !== 'undefined' && wet_boew_charts !== null) {
+				if (typeof wet_boew_charts !== 'undefined') {
 					// a. if exisit copy and take care of preset separatly (Move away before extending)
 					if (wet_boew_charts.preset) {
 						_pe.fn.chartsGraph.O = jQuery.extend(true, {}, wet_boew_charts.preset);
 						delete wet_boew_charts.preset;
 					}
 					// b. Overwrite the chart default setting
-					$.extend(true, o, wet_boew_charts);
+					$.extend(true, options, wet_boew_charts);
 					// c. Separatly extend the preset to at the current chart default seting
 					if (_pe.fn.chartsGraph.O) {
-						$.extend(true, o.preset, _pe.fn.chartsGraph.O);
+						$.extend(true, options.preset, _pe.fn.chartsGraph.O);
 					}
 				}
-				_pe.fn.chartsGraph.O = o; // ---- Save the setting here in a case of a second graphic on the same page
+				_pe.fn.chartsGraph.O = options; // ---- Save the setting here in a case of a second graphic on the same page
 			}
-			o = _pe.fn.chartsGraph.O;
+			options = _pe.fn.chartsGraph.O;
 
 			// 3. [Table element] CSS Overwrite - [Keep a list of required plugin "defaultnamespace-plugin" eg. wb-charts-donnut]
-			o = setClassOptions(o, (self.attr('class') !== undefined ? self.attr('class') : ''));
+			options = setClassOptions(options, (self.attr('class') !== undefined ? self.attr('class') : ''));
 
 			// 4. [Table element] HTML5 Data Overwrite property
 			$.each(self.data(), function(idx, val) {
-				var propname;
 				// Check if the prefix "wbcharts" is used
 				if (idx.slice(0, 8) === "wbcharts") {
-					propname = idx.slice(8);
-					o[propname] = val;
+					options[idx.slice(8)] = val;
 				}
 			});
 
@@ -915,7 +915,7 @@
 				var internalCumul = 0;
 				internalCumul = parsedDataCell.flotValue;
 				
-				var flotDelta = (!o.uniformtick ? (parsedDataCell.flotDelta / parsedDataCell.child.length): 1);
+				var flotDelta = (!options.uniformtick ? (parsedDataCell.flotDelta / parsedDataCell.child.length): 1);
 				if (!smallestHorizontalFlotDelta || flotDelta < smallestHorizontalFlotDelta){
 					smallestHorizontalFlotDelta = flotDelta;
 				}
@@ -923,7 +923,7 @@
 					parsedDataCell.child[kIndex].flotDelta = flotDelta;
 					
 					if (headerlevel === UseHeadRow) {
-						calcTick.push([(!o.uniformtick ? internalCumul : uniformCumul), $(parsedDataCell.child[kIndex].elem).text()]);
+						calcTick.push([(!options.uniformtick ? internalCumul : uniformCumul), $(parsedDataCell.child[kIndex].elem).text()]);
 					}
 					
 					if (headerlevel === theadRowStack_len || 
@@ -1004,7 +1004,7 @@
 				// From an option that would choose the appropriate row.			
 				// UseHeadRow get a number that represent the row to use to draw the label
 				
-				UseHeadRow = (!o.labelposition || (o.labelposition && o.labelposition > parsedData.theadRowStack.length) ? parsedData.theadRowStack.length : o.labelposition) - 1;
+				UseHeadRow = (!options.labelposition || (options.labelposition && options.labelposition > parsedData.theadRowStack.length) ? parsedData.theadRowStack.length : options.labelposition) - 1;
 				
 				calcTick = [];
 				
@@ -1024,7 +1024,7 @@
 					
 					if (parsedDataCell.colpos >= dataColgroupStart && (parsedDataCell.type === 1 || parsedDataCell.type === 7))  {
 
-						parsedDataCell.flotDelta = (!o.uniformtick ? (TotalRowValue / nbCells) : 1);
+						parsedDataCell.flotDelta = (!options.uniformtick ? (TotalRowValue / nbCells) : 1);
 						
 						
 						if (!smallestHorizontalFlotDelta || parsedDataCell.flotDelta < smallestHorizontalFlotDelta){
@@ -1033,7 +1033,7 @@
 						parsedDataCell.flotValue = cumulFlotValue;
 
 						if (headerlevel === UseHeadRow || ((parsedDataCell.rowpos - 1) < UseHeadRow && UseHeadRow <= ((parsedDataCell.rowpos - 1) + (parsedDataCell.height - 1)))) {
-							calcTick.push([(!o.uniformtick ? cumulFlotValue : uniformCumul), $(parsedDataCell.elem).text()]);
+							calcTick.push([(!options.uniformtick ? cumulFlotValue : uniformCumul), $(parsedDataCell.elem).text()]);
 						}
 						
 						if (headerlevel === (parsedData.theadRowStack.length - 1) || 
@@ -1172,7 +1172,7 @@
 			
 			
 			
-			if (o.parsedirection === 'y') {
+			if (options.parsedirection === 'y') {
 				self = swapTable(srcTbl);
 			}
 			
@@ -1225,7 +1225,7 @@
 			
 
 			
-			if (o.type === 'pie') {
+			if (options.type === 'pie') {
 				// Use Reverse table axes
 				// Create a chart/ place holder, by series
 				var pieLabelFormater,
@@ -1234,26 +1234,26 @@
 				
 				pieLabelFormater = function (label, series) {
 					var textlabel;
-					if (!o.decimal) {
+					if (!options.decimal) {
 						textlabel = Math.round(series.percent);
 					} else {
-						textlabel = Math.round(series.percent * Math.pow(10, o.decimal));
-						textlabel = textlabel / Math.pow(10, o.decimal);
+						textlabel = Math.round(series.percent * Math.pow(10, options.decimal));
+						textlabel = textlabel / Math.pow(10, options.decimal);
 					}
-					if (o.nolegend) {
+					if (options.nolegend) {
 						// Add the series label
 						textlabel = label + '<br/>' + textlabel;
 					}
 					return textlabel + '%';
 				};
 				mainFigureElem.addClass('wb-charts'); // Default
-				if (o.graphclass) {
-					if ($.isArray(o.graphclass)) {
-						for (i = 0, _graphclasslen = o.graphclass.length; i < _graphclasslen; i += 1) {
-							mainFigureElem.addClass(o.graphclass[i]);
+				if (options.graphclass) {
+					if ($.isArray(options.graphclass)) {
+						for (i = 0, _graphclasslen = options.graphclass.length; i < _graphclasslen; i += 1) {
+							mainFigureElem.addClass(options.graphclass[i]);
 						}
 					} else {
-						mainFigureElem.addClass(o.graphclass);
+						mainFigureElem.addClass(options.graphclass);
 					}
 				}
 				
@@ -1287,12 +1287,12 @@
 							// Get's the value
 							header = dataGroup.col[i].cell[j].row.header;
 							
-							cellValue = o.getcellvalue(dataGroup.col[i].cell[rIndex].elem);
+							cellValue = options.getcellvalue(dataGroup.col[i].cell[rIndex].elem);
 							
 							dataSeries.push(
 								[
 									valueCumul, 
-									(typeof cellValue === "object" ? cellValue[0]: cellValue)
+									typeof cellValue === "object" ? cellValue[0] : cellValue
 								]);
 							
 							valueCumul += header[header.length - 1].flotDelta;
@@ -1338,7 +1338,7 @@
 						
 					
 					// Canvas Size
-					$placeHolder.css('height', o.height).css('width', o.width);
+					$placeHolder.css('height', options.height).css('width', options.width);
 
 					
 					
@@ -1357,40 +1357,40 @@
 						}
 					};
 					// Hide the legend,
-					if (o.nolegend) {
+					if (options.nolegend) {
 						pieOptions.legend = {show: false};
 					}
 					// Add pie chart percentage label on slice
-					if (o.percentlegend) {
-						pieOptions.series.pie.radius = o.pieradius / 100;
+					if (options.percentlegend) {
+						pieOptions.series.pie.radius = options.pieradius / 100;
 						pieOptions.series.pie.label = {
 							show: true,
-							radius: o.pielblradius / 100,
+							radius: options.pielblradius / 100,
 							formatter: pieLabelFormater
 						};
 						// Hides the labels of any pie slice that is smaller than the specified percentage (ranging from 0 to 100)
-						if (o.piethreshold) {
-							pieOptions.series.pie.label.threshold = o.piethreshold / 100;
+						if (options.piethreshold) {
+							pieOptions.series.pie.label.threshold = options.piethreshold / 100;
 						}
 					}
 					// Percentage of tilt ranging from 0 and 100, where 100 has no change (fully vertical) and 0 is completely flat (fully horizontal -- in which case nothing actually gets drawn)
-					if (o.pietilt) {
-						pieOptions.series.pie.tilt = o.pietilt / 100;
+					if (options.pietilt) {
+						pieOptions.series.pie.tilt = options.pietilt / 100;
 					}
 					// Sets the radius of the donut hole. If value is between 0 and 100 (inclusive) then it will use that as a percentage of the radius, otherwise it will use the value as a direct pixel length.
-					if (o.pieinnerradius) {
-						pieOptions.series.pie.innerRadius = o.pieinnerradius / 100;
+					if (options.pieinnerradius) {
+						pieOptions.series.pie.innerRadius = options.pieinnerradius / 100;
 					}
 					// Factor of PI used for the starting angle (in radians) It can range between 0 and 200 (where 0 and 200 have the same result).
-					if (o.piestartangle) {
-						pieOptions.series.pie.startAngle = o.piestartangle / 100;
+					if (options.piestartangle) {
+						pieOptions.series.pie.startAngle = options.piestartangle / 100;
 					}
 					//	Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
-					if (o.piehighlight) {
-						pieOptions.series.pie.highlight = o.piehighlight / 100;
+					if (options.piehighlight) {
+						pieOptions.series.pie.highlight = options.piehighlight / 100;
 					}
 					// hoverable
-					if (o.piehoverable) {
+					if (options.piehoverable) {
 						pieOptions.grid = {
 							hoverable: true
 						};
@@ -1399,7 +1399,7 @@
 					// Create the graphic
 					$.plot($placeHolder, allSeries, pieOptions);
 					
-					if (!o.legendinline) {
+					if (!options.legendinline) {
 						// Move the legend under the graphic
 						$('.legend > div', $placeHolder).remove();
 						$('.legend > table', $placeHolder).removeAttr('style').addClass('font-small');
@@ -1413,7 +1413,7 @@
 
 				}
 				
-				if (!o.noencapsulation) { // eg of use:	wb-charts-noencapsulation-true
+				if (!options.noencapsulation) { // eg of use:	wb-charts-noencapsulation-true
 					// Use a details/summary to encapsulate the table
 					// Add a aria label to the table element, build from his caption prepend the word ' Table'
 					// For the details summary, use the table caption prefixed with Table.
@@ -1433,7 +1433,7 @@
 				}
 				
 				// Destroy the temp table if used
-				if (o.parsedirection === 'y') {
+				if (options.parsedirection === 'y') {
 					$(self).remove();
 				}
 				return;
@@ -1443,6 +1443,7 @@
 				barDelta,
 				rowOptions;
 			
+			
 			// Count nbBarChart, 
 			for (i=0;i<parsedData.lstrowgroup[0].row.length; i++) {
 				rowOptions = setClassOptions(RowDefaultOptions,				
@@ -1451,10 +1452,10 @@
 				 
 				 
 				 
-				if ((!rowOptions.type && (o.type === 'bar' || o.type === 'stacked')) || (rowOptions.type && (rowOptions.type === 'bar' || rowOptions.type === 'stacked'))) {
+				if ((!rowOptions.type && (options.type === 'bar' || options.type === 'stacked')) || (rowOptions.type && (rowOptions.type === 'bar' || rowOptions.type === 'stacked'))) {
 					nbBarChart += 1;
 					rowOptions.chartBarOption = nbBarChart;
-					if (!barDelta && ((rowOptions.type && rowOptions.type === 'bar') || (!rowOptions.type && o.type === 'bar'))) {
+					if (!barDelta && ((rowOptions.type && rowOptions.type === 'bar') || (!rowOptions.type && options.type === 'bar'))) {
 						barDelta = true;
 					}
 				}
@@ -1496,13 +1497,13 @@
 							
 						}
 						
-						cellValue = o.getcellvalue(parsedData.lstrowgroup[0].row[i].cell[j].elem);
+						cellValue = options.getcellvalue(parsedData.lstrowgroup[0].row[i].cell[j].elem);
 							
 						// Add the data point
 						dataSeries.push(
 							[
 								valuePoint, 
-								(typeof cellValue === "object" ? cellValue[0]: cellValue)
+								typeof cellValue === "object" ? cellValue[0] : cellValue
 							]);
 						valueCumul += header[header.length - 1].flotDelta;
 						datacolgroupfound++;
@@ -1514,7 +1515,7 @@
 				// Get the graph type
 				
 				if (!rowOptions.type) {
-					rowOptions.type = o.type;
+					rowOptions.type = options.type;
 				}
 				
 				if (rowOptions.type === 'line') {
@@ -1552,13 +1553,13 @@
 			var figureElem = $('<figure />').insertAfter(srcTbl),
 				_graphclasslen2;
 			figureElem.addClass('wb-charts'); // Default
-			if (o.graphclass) {
-				if ($.isArray(o.graphclass)) {
-					for (i = 0, _graphclasslen2 = o.graphclass.length; i < _graphclasslen2; i += 1) {
-						figureElem.addClass(o.graphclass[i]);
+			if (options.graphclass) {
+				if ($.isArray(options.graphclass)) {
+					for (i = 0, _graphclasslen2 = options.graphclass.length; i < _graphclasslen2; i += 1) {
+						figureElem.addClass(options.graphclass[i]);
 					}
 				} else {
-					figureElem.addClass(o.graphclass);
+					figureElem.addClass(options.graphclass);
 				}
 			}
 			
@@ -1574,7 +1575,7 @@
 			$(figureElem).append($placeHolder);
 			
 			// Canvas Size
-			$placeHolder.css('height', o.height).css('width', o.width);
+			$placeHolder.css('height', options.height).css('width', options.width);
 			
 			
 			$placeHolder.attr('role', 'img');
@@ -1582,7 +1583,7 @@
 			$placeHolder.attr('aria-label', $('caption', srcTbl).text() + ' ' + _pe.dic.get('%table-following')); // 'Chart. Details in table following.'
 			
 			
-			if (!o.noencapsulation) { // eg of use:	wb-charts-noencapsulation-true
+			if (!options.noencapsulation) { // eg of use:	wb-charts-noencapsulation-true
 				// Use a details/summary to encapsulate the table
 				// Add a aria label to the table element, build from his caption prepend the word ' Table'
 				// For the details summary, use the table caption prefixed with Table.
@@ -1606,47 +1607,47 @@
 			var plotParameter = {
 					xaxis: (calcTick.length > 0 ? {ticks: calcTick} : { })
 				};
-			if (o.topvalue) {
+			if (options.topvalue) {
 				if (!plotParameter.yaxis) {
 					plotParameter.yaxis = {};
 				}
-				if (o.topvaluenegative) {
-					o.topvalue *= -1;
+				if (options.topvaluenegative) {
+					options.topvalue *= -1;
 				}
-				plotParameter.yaxis.max = o.topvalue;
+				plotParameter.yaxis.max = options.topvalue;
 			}
-			if (o.bottomvalue) {
+			if (options.bottomvalue) {
 				if (!plotParameter.yaxis) {
 					plotParameter.yaxis = {};
 				}
-				if (o.bottomvaluenegative) {
-					o.bottomvalue *= -1;
+				if (options.bottomvaluenegative) {
+					options.bottomvalue *= -1;
 				}
-				plotParameter.yaxis.min = o.bottomvalue;
+				plotParameter.yaxis.min = options.bottomvalue;
 			}
-			if (o.steps) {
+			if (options.steps) {
 				if (!plotParameter.yaxis) {
 					plotParameter.yaxis = {};
 				}
-				plotParameter.yaxis.ticks = o.steps;
+				plotParameter.yaxis.ticks = options.steps;
 			} 
 			 
 			$.plot($placeHolder, allSeries, plotParameter);
 			
 			
-			if (!o.legendinline) {
+			if (!options.legendinline) {
 				// Move the legend under the graphic
 				$('.legend > div', $placeHolder).remove();
 				$('.legend > table', $placeHolder).removeAttr('style').addClass('font-small');
 				$placeHolder.css('height', 'auto');
 			}
-			if (o.nolegend) {
+			if (options.nolegend) {
 				// Remove the legend
 				$('.legend', $placeHolder).remove();
 			}
 			
 			// Destroy the temp table if used
-			if (o.parsedirection === 'y') {
+			if (options.parsedirection === 'y') {
 				$(self).remove();
 			}
 				

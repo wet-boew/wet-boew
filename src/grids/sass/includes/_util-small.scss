@@ -191,6 +191,13 @@ ul {
 	padding-bottom: 10px;
 }
 
+.module-news-article {
+	img {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+}
+
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
 	.form-inline {

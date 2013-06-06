@@ -38,9 +38,12 @@
 				index,
 				len;
 
-			// Check if there's an active tab from the user's session
-			$activeTab = $tabs.find('a[href="' + this._get_active_panel(tabListIdx) + '"]');
-			if ($activeTab.length) {
+			// Check if there's a default tab specified by the URL hash or in the user's session
+			$activeTab = $tabs.find('a[href="#' + _pe.urlhash + '"]');
+			if ($activeTab.length === 0) {
+				$activeTab = $tabs.find('a[href="' + this._get_active_panel(tabListIdx) + '"]');
+			}
+			if ($activeTab.length > 0) {
 				$tabs.removeClass('default');
 				$activeTab.parent('li').addClass('default');
 			}
@@ -75,7 +78,7 @@
 			elm.empty().append($accordion);
 
 			// Track the active panel during the user's session
-			elm.find('[data-role="collapsible"]').on('expand', function () {
+			$panelElms.on('expand', function () {
 				_pe.fn.tabbedinterface._set_active_panel($(this).data('tab'), tabListIdx);
 				setTimeout(function() {
 					_pe.window.trigger('resize');
@@ -106,6 +109,7 @@
 				getPrevTab,
 				getSlideTo,
 				isSlider,
+				mouse = {pressed: false, timeout: null},
 				positionPanels,
 				selectTab,
 				stopText = _pe.dic.get('%pause'),
@@ -196,15 +200,15 @@
 				}
 			});
 
-			// Find the default tab: precendence given to the active tab from sessionStorage
-			$default_tab = $tabs.filter('[href="' + this._get_active_panel(tabListIdx) + '"]');
-			if ($default_tab.length > 0) {
-				opts.defaultTab = '.default';
-				$nav.find('li').removeClass('default');
-				$default_tab.parent('li').addClass('default');
-			} else {
-				$default_tab = $tabs.filter('[href="*#' + _pe.urlhash + '"]');
-				if ($default_tab.length === 0) {
+			// Find the default tab: precendence given to the URL hash
+			$default_tab = $tabs.filter('[href="#' + _pe.urlhash + '"]');
+			if ($default_tab.length === 0) {
+				$default_tab = $tabs.filter('[href="' + this._get_active_panel(tabListIdx) + '"]');
+				if ($default_tab.length > 0) {
+					opts.defaultTab = '.default';
+					$nav.find('li').removeClass('default');
+					$default_tab.parent('li').addClass('default');
+				} else {
 					$default_tab = $nav.find('.default a');
 					if ($default_tab.length === 0) {
 						$default_tab = $nav.find('li:first-child a');
@@ -275,12 +279,21 @@
 				}
 			});
 
+			// Change panel on user swipe (disabled for mouse users)
 			$panels.on('swipeleft swiperight', function (e) {
-				e.preventDefault();
-				if (e.type === 'swipeleft') {
-					selectTab(getNextTab($tabs), $tabs, $panels, opts, false);
+				if (!mouse.pressed) {
+					e.preventDefault();
+					selectTab(e.type === 'swipeleft' ? getNextTab($tabs) : getPrevTab($tabs), $tabs, $panels, opts, false);
+				}
+			}).on('mousedown mouseup', function (e) {
+				if (e.type === 'mousedown') {
+					clearTimeout(mouse.timeout);
+					mouse.pressed = true;
 				} else {
-					selectTab(getPrevTab($tabs), $tabs, $panels, opts, false);
+					// Prevent the mouse press from being marked as finished before the swipe event fires
+					mouse.timeout = setTimeout(function () {
+						mouse.pressed = false;
+					}, $.event.special.swipe.durationThreshold);
 				}
 			});
 

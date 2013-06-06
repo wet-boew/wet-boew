@@ -54,6 +54,7 @@ var wet_boew_geomap = {
 			visible: true,
 			datatable: true,
 			tab: true,
+			popups: true,
 			attributes: {
 				name: 'Titre du produit',
 				description: 'Description'
@@ -98,6 +99,7 @@ var wet_boew_geomap = {
 			visible: false,
 			datatable: false,
 			tab: true,
+			popups: true,
 			root: 'products',			
 			attributes: {
 				title: 'Titre',
@@ -121,7 +123,7 @@ var wet_boew_geomap = {
 				updated_at: 'Dernière mise à jour'
 			},
 			visible: true,	
-			zoom:  true,
+			zoom:  [true, {type: 'text'}],
 			datatable: true,
 			tab: true,		
 			// default style			

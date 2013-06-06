@@ -37,13 +37,6 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <!--<![endif]-->
 
 <!-- CustomCSSStart -->
-<style>
-.gcwu-minister-in{background:#eee url(images/bg-minister-bottom.gif) no-repeat right bottom;}
-.gcwu-minister p{background:#fff url(images/bg-minister-top.gif) no-repeat right top;}
-#gcwu-video .mediaplayer{line-height:0;}
-#gcwu-video ul.mp-downloadable{position:absolute;clip:rect(1px, 1px, 1px, 1px);height:1px;width:1px;overflow:hidden;}
-#gcwu-video div.background-dark{background:#eee !important;color:#000;padding-bottom:10px;}
-</style>
 <!-- CustomCSSEnd -->
 </head>
 
@@ -98,42 +91,95 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <!-- MainContentStart -->
 <h1 id="wb-cont">Home bladsy - Tema web bruikbaarheid die regering van Kanada</h1>
 
-<div id="gcwu-content">
-<div id="gcwu-headlines" class="span-3"><section><h2>Nieuws</h2>
-<ul class="wet-boew-zebra">
-<li><section><h3><a href="#">Nuus 1</a></h3>
-<p>Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. <a href="#">Lees meer<span class="wb-invisible"> - Nuus 1</span></a></p>
-</section></li>
-<li><section><h3><a href="#">Nuus 2</a></h3>
-<p>Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. <a href="#">Lees meer<span class="wb-invisible"> - Nuus 2</span></a></p>
-</section></li>
-<li><section><h3><a href="#">Nuus 3</a></h3>
-<p>Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. Monster teks. <a href="#">Lees meer<span class="wb-invisible"> - Nuus 3</span></a></p>
-</section></li>
-</ul>
-</section></div>
+<div class="span-6">
 
-<div id="gcwu-video" class="span-3"><section><h2>Videos</h2>
-<div id="gcwu-bg-dark">
-<img class="posterimg" src="../images/video.png" alt="Voorbeeld van 'n video-speler" title="Voorbeeld van 'n video-speler" />
-<p><strong>Video title</strong></p>
-<p>Kort beskrywing van die huidige video.</p>
+<section><h2>Opskrif 2 (<code>h2</code>) - standaard voorkoms</h2>
+	<section><h3>Opskrif 3 (<code>h3</code>) - standaard voorkoms</h3>
+		<section><h4>Opskrif 4 (<code>h4</code>) - standaard voorkoms</h4>
+			<section><h5>Opskrif 5 (<code>h5</code>) - standaard voorkoms</h5>
+				<section><h6>Opskrif 6 (<code>h6</code>) - standaard voorkoms</h6>
+					<p>Paragraaf standaard voorkoms</p>
+				</section>
+			</section>
+		</section>
+	</section>
+</section>
+
+<p><a href="#">Link - standaard voorkoms</a></p>
+<p><a href="mailto:">Link (<code>mailto:</code>) - standaard voorkoms</a></p>
+<p><a href="http://www." rel="external">Link (<code>rel="external"</code>) - standaard voorkoms</a></p>
+<p><a href=".doc">Link - file downloads gebaseer op file type (<code>.doc</code>, <code>.psd</code>, <code>.zip</code>, <code>.pdf</code>, <code>.xls</code>, <code>.xlt</code>, <code>.rtf</code>en<code>.txt</code> - standaard voorkoms</a></p>
+<p>Staat - standaard voorkoms: <abbr title="Regering van Kanada">GC</abbr>.</p>
+
+<ul>
+<li>On-geordende lys (<code>ul</code>) - vlak 1 - standaard voorkoms
+	<ul>
+	<li>On-geordende lys (<code>ul</code>) - vlak 2 - standaard voorkoms
+		<ul>
+		<li>On-geordende lys (<code>ul</code>) - vlak 3 - standaard voorkoms</li>
+		</ul>
+	</li>
+	</ul>
+</li>
+</ul>
+
+<ol>
+<li>geordende lys (<code>ol</code>) - vlak 1 - standaard voorkoms</li>
+<li>geordende lys (<code>ol</code>) - vlak 1 - standaard voorkoms
+	<ol>
+	<li>geordende lys (<code>ol</code>) - vlak 2 - standaard voorkoms</li>
+	<li>geordende lys (<code>ol</code>) - vlak 2 - standaard voorkoms
+		<ol>
+		<li>geordende lys (<code>ol</code>) - vlak 3 - standaard voorkoms</li>
+		<li>geordende lys (<code>ol</code>) - vlak 3 - standaard voorkoms</li>
+		</ol>
+	</li>
+	</ol>
+</li>
+</ol>
+
+<table>
+<caption>Tabel caption - standaard voorkoms</caption>
+<thead>
+<tr>
+<th scope="col">Table header (<code>th</code>) - standaard voorkoms</th>
+<th scope="col">Table header (<code>th</code>) - standaard voorkoms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tabel data (<code>td</code>) - standaard voorkoms</td>
+<td>Tabel data (<code>td</code>) - standaard voorkoms</td>
+</tr>
+</tbody>
+</table>
+
+<form action="#" method="post">
+<div><label for="data1">Vorm (<code>input</code>) - standaard voorkoms:</label> <input name="data1" type="text" id="data1" /></div>
+<div><label for="data2">Vorm (<code>textarea</code>) - standaard voorkoms:</label> <textarea name="data2" cols="15" rows="3" id="data2"></textarea></div>
+<div><label for="data4">Vorm (<code>select</code>) - standaard voorkoms:</label>
+<select id="data4" name="data4">
+<option value="Opsie 1">Opsie 1</option>
+<option value="Opsie 2">Opsie 2</option>
+<option value="Opsie 3">Opsie 3</option>
+<option value="Opsie 4">Opsie 4</option>
+</select></div>
+<fieldset><legend>Vorm (<code>legend</code>, <code>fieldset</code>en<code>checkbox</code>) - standaard voorkoms</legend>
+<div><input name="checkbox" type="checkbox" id="data5" value="checkbox" /> <label for="data5">Opsie 1</label>  
+<input name="checkbox" type="checkbox" id="data6" value="checkbox" /> <label for="data6">Opsie 2</label>  
+<input name="checkbox" type="checkbox" id="data7" value="checkbox" /> <label for="data7">Opsie 3</label>  
+<input name="checkbox" type="checkbox" id="data8" value="checkbox" /> <label for="data8">Opsie 4</label></div>
+</fieldset>
+<div><input name="submit" type="submit" id="submit" value="Stuur - standaard voorkoms" />
+<input name="reset" type="reset" id="reset" value="Herstel - standaard voorkoms" /></div>
+</form>
+
+<blockquote>
+<p>"<code>blockquote</code> - standaard voorkoms"</p>
+</blockquote>
 </div>
-<ul>
-<li><a href="#">Multimedia hulp</a></li>
-<li><a href="#">Transkripsies en alternatiewe formate</a></li>
-</ul>
-</section></div>
-
-<div id="gcwu-connect" class="span-6"><section><h2>Bly verbind</h2>
-<ul>
-<li><a href="#"><img class="image-actual" src="../../../dist/theme-gcwu-fegc/images/sl_twitter.png" alt="Twitter" title="Twitter" /></a></li>
-<li><a href="#"><img class="image-actual" src="../../../dist/theme-gcwu-fegc/images/sl_youtube.png" alt="YouTube" title="YouTube" /></a></li>
-<li><a href="#"><img class="image-actual" src="../../../dist/theme-gcwu-fegc/images/sl_feeds.png" alt="Nuusvoer" title="Nuusvoer" /></a></li>
-</ul>
-</section></div></div>
-
-<aside role="complementary"><div id="gcwu-aside"><h2>Addisionele inhoud</h2>
+<div class="span-2">
+<aside role="complementary"><h2 class="wb-invisible">Addisionele inhoud</h2>
 <section><div id="gcwu-priorities"><h3>Prioriteite</h3><div id="gcwu-priorities-inner">
 <ul>
 <li><img src="../images/prio1.png" width="220" height="70" alt="Prioriteit 1" title="Prioriteit 1" /></li>
@@ -141,22 +187,11 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <li><img src="../images/prio3.png" width="220" height="70" alt="Prioriteit 3" title="Prioriteit 3" /></li>
 </ul>
 </div></div></section>
-
-<section><div class="gcwu-minister"><h3>Ontmoet die Minister</h3><div class="gcwu-minister-in">
-<div class="gcwu-minister-img"><img src="../images/minister.JPG" width="99" height="149" alt="Die agbare minister naam" /></div>
-<div class="gcwu-minister-info">
-<p>Die agbare<br /><strong>minister naam</strong></p>
-<ul>
-<li><a href="#">Oor die minister</a></li>
-<li><a href="#">Sy portefeulje</a></li>
-</ul>
-</div>
-</div></div></section>
-</div></aside>
+</aside></div>
 <div class="clear"></div>
 
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Datum modified:</dt><dd><span><time>2013-04-25</time></span></dd>
+<dt>Datum modified:</dt><dd><span><time>2013-05-17</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->

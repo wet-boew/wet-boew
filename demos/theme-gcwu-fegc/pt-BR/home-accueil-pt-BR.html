@@ -37,13 +37,6 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <!--<![endif]-->
 
 <!-- CustomCSSStart -->
-<style>
-.gcwu-minister-in{background:#eee url(images/bg-minister-bottom.gif) no-repeat right bottom;}
-.gcwu-minister p{background:#fff url(images/bg-minister-top.gif) no-repeat right top;}
-#gcwu-video .mediaplayer{line-height:0;}
-#gcwu-video ul.mp-downloadable{position:absolute;clip:rect(1px, 1px, 1px, 1px);height:1px;width:1px;overflow:hidden;}
-#gcwu-video div.background-dark{background:#eee !important;color:#000;padding-bottom:10px;}
-</style>
 <!-- CustomCSSEnd -->
 </head>
 
@@ -98,42 +91,95 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <!-- MainContentStart -->
 <h1 id="wb-cont">Página inicial - Tema de Usabilidade da Web do Governo do Canadá</h1>
 
-<div id="gcwu-content">
-<div id="gcwu-headlines" class="span-3"><section><h2>Manchetes</h2>
-<ul class="wet-boew-zebra">
-<li><section><h3><a href="#">Notícias 1</a></h3>
-<p>Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. <a href="#">Leia mais<span class="wb-invisible"> - Notícias 1</span></a></p>
-</section></li>
-<li><section><h3><a href="#">Notícias 2</a></h3>
-<p>Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. <a href="#">Leia mais<span class="wb-invisible"> - Notícias 2</span></a></p>
-</section></li>
-<li><section><h3><a href="#">Notícias 3</a></h3>
-<p>Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. Texto de exemplo. <a href="#">Leia mais<span class="wb-invisible"> - Notícias 3</span></a></p>
-</section></li>
-</ul>
-</section></div>
+<div class="span-6">
 
-<div id="gcwu-video" class="span-3"><section><h2>Vídeos</h2>
-<div id="gcwu-bg-dark">
-<img class="posterimg" src="../images/video.png" alt="Exemplo de programa de reprodução de vídeo" title="Exemplo de programa de reprodução de vídeo" />
-<p><strong>Título do vídeo</strong></p>
-<p>Breve descrição do vídeo atual.</p>
+<section><h2>Título 2 (<code>h2</code>) - aparência padrão</h2>
+	<section><h3>Título 3 (<code>h3</code>) - aparência padrão</h3>
+		<section><h4>Título 4 (<code>h4</code>) - aparência padrão</h4>
+			<section><h5>Título 5 (<code>h5</code>) - aparência padrão</h5>
+				<section><h6>Título 6 (<code>h6</code>) - aparência padrão</h6>
+					<p>Parágrafo aparência padrão</p>
+				</section>
+			</section>
+		</section>
+	</section>
+</section>
+
+<p><a href="#">Link - aparência padrão</a></p>
+<p><a href="mailto:">Link (<code>mailto:</code>) - aparência padrão</a></p>
+<p><a href="http://www." rel="external">Link (<code>rel="external"</code>) - aparência padrão</a></p>
+<p><a href=".doc">Link - download de arquivos com base no tipo de arquivo (<code>.doc</code>, <code>.psd</code>, <code>.zip</code>, <code>.pdf</code>, <code>.xls</code>, <code>.xlt</code>, <code>.rtf</code>e<code>.txt</code> - aparência padrão</a></p>
+<p>Abreviatura - aparência padrão: <abbr title="Governo do Canadá">GC</abbr>.</p>
+
+<ul>
+<li>lista não ordenada (<code>ul</code>) - nível 1 - aparência padrão
+	<ul>
+	<li>lista não ordenada (<code>ul</code>) - nível 2 - aparência padrão
+		<ul>
+		<li>lista não ordenada (<code>ul</code>) - nível 3 - aparência padrão</li>
+		</ul>
+	</li>
+	</ul>
+</li>
+</ul>
+
+<ol>
+<li>lista ordenada (<code>ol</code>) - nível 1 - aparência padrão</li>
+<li>lista ordenada (<code>ol</code>) - nível 1 - aparência padrão
+	<ol>
+	<li>lista ordenada (<code>ol</code>) - nível 2 - aparência padrão</li>
+	<li>lista ordenada (<code>ol</code>) - nível 2 - aparência padrão
+		<ol>
+		<li>lista ordenada (<code>ol</code>) - nível 3 - aparência padrão</li>
+		<li>lista ordenada (<code>ol</code>) - nível 3 - aparência padrão</li>
+		</ol>
+	</li>
+	</ol>
+</li>
+</ol>
+
+<table>
+<caption>Título da tabela - aparência padrão</caption>
+<thead>
+<tr>
+<th scope="col">Cabeçalho da tabela (<code>th</code>) - aparência padrão</th>
+<th scope="col">Cabeçalho da tabela (<code>th</code>) - aparência padrão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dados da tabela (<code>td</code>) - aparência padrão</td>
+<td>Dados da tabela (<code>td</code>) - aparência padrão</td>
+</tr>
+</tbody>
+</table>
+
+<form action="#" method="post">
+<div><label for="data1">Forma (<code>input</code>) - aparência padrão:</label> <input name="data1" type="text" id="data1" /></div>
+<div><label for="data2">Forma (<code>textarea</code>) - aparência padrão:</label> <textarea name="data2" cols="15" rows="3" id="data2"></textarea></div>
+<div><label for="data4">Forma (<code>select</code>) - aparência padrão:</label>
+<select id="data4" name="data4">
+<option value="Opção 1">Opção 1</option>
+<option value="Opção 2">Opção 2</option>
+<option value="Opção 3">Opção 3</option>
+<option value="Opção 4">Opção 4</option>
+</select></div>
+<fieldset><legend>Forma (<code>legend</code>, <code>fieldset</code>e<code>checkbox</code>) - aparência padrão</legend>
+<div><input name="checkbox" type="checkbox" id="data5" value="checkbox" /> <label for="data5">Opção 1</label>  
+<input name="checkbox" type="checkbox" id="data6" value="checkbox" /> <label for="data6">Opção 2</label>  
+<input name="checkbox" type="checkbox" id="data7" value="checkbox" /> <label for="data7">Opção 3</label>  
+<input name="checkbox" type="checkbox" id="data8" value="checkbox" /> <label for="data8">Opção 4</label></div>
+</fieldset>
+<div><input name="submit" type="submit" id="submit" value="Submeter - aparência padrão" />
+<input name="reset" type="reset" id="reset" value="Restabelecer - aparência padrão" /></div>
+</form>
+
+<blockquote>
+<p>"<code>blockquote</code> - aparência padrão"</p>
+</blockquote>
 </div>
-<ul>
-<li><a href="#">Ajuda multimídia</a></li>
-<li><a href="#">Transcrições e formatos alternativos</a></li>
-</ul>
-</section></div>
-
-<div id="gcwu-connect" class="span-6"><section><h2>Fique ligado</h2>
-<ul>
-<li><a href="#"><img class="image-actual" src="../../../dist/theme-gcwu-fegc/images/sl_twitter.png" alt="Twitter" title="Twitter" /></a></li>
-<li><a href="#"><img class="image-actual" src="../../../dist/theme-gcwu-fegc/images/sl_youtube.png" alt="YouTube" title="YouTube" /></a></li>
-<li><a href="#"><img class="image-actual" src="../../../dist/theme-gcwu-fegc/images/sl_feeds.png" alt="Fontes" title="Fontes" /></a></li>
-</ul>
-</section></div></div>
-
-<aside role="complementary"><div id="gcwu-aside"><h2>Conteúdo suplementar</h2>
+<div class="span-2">
+<aside role="complementary"><h2 class="wb-invisible">Conteúdo suplementar</h2>
 <section><div id="gcwu-priorities"><h3>Prioridades</h3><div id="gcwu-priorities-inner">
 <ul>
 <li><img src="../images/prio1.png" width="220" height="70" alt="Prioridade 1" title="Prioridade 1" /></li>
@@ -141,22 +187,11 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <li><img src="../images/prio3.png" width="220" height="70" alt="Prioridade 3" title="Prioridade 3" /></li>
 </ul>
 </div></div></section>
-
-<section><div class="gcwu-minister"><h3>Conheça o Ministro</h3><div class="gcwu-minister-in">
-<div class="gcwu-minister-img"><img src="../images/minister.JPG" width="99" height="149" alt="O Honorável Nome ministro" /></div>
-<div class="gcwu-minister-info">
-<p>O Honorável<br /><strong>Nome ministro</strong></p>
-<ul>
-<li><a href="#">Sobre o ministro</a></li>
-<li><a href="#">Sua pasta</a></li>
-</ul>
-</div>
-</div></div></section>
-</div></aside>
+</aside></div>
 <div class="clear"></div>
 
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Modificado em:</dt><dd><span><time>2013-04-25</time></span></dd>
+<dt>Modificado em:</dt><dd><span><time>2013-05-17</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->

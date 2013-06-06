@@ -181,6 +181,7 @@ table {
 		dl {
 			dd {
 				border: 0;
+				width: 100%;
 				@include inline-block;
 				p {
 					&.footnote-return {

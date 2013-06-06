@@ -37,13 +37,6 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <!--<![endif]-->
 
 <!-- CustomCSSStart -->
-<style>
-.gcwu-minister-in{background:#eee url(images/bg-minister-bottom.gif) no-repeat right bottom;}
-.gcwu-minister p{background:#fff url(images/bg-minister-top.gif) no-repeat right top;}
-#gcwu-video .mediaplayer{line-height:0;}
-#gcwu-video ul.mp-downloadable{position:absolute;clip:rect(1px, 1px, 1px, 1px);height:1px;width:1px;overflow:hidden;}
-#gcwu-video div.background-dark{background:#eee !important;color:#000;padding-bottom:10px;}
-</style>
 <!-- CustomCSSEnd -->
 </head>
 
@@ -98,42 +91,95 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <!-- MainContentStart -->
 <h1 id="wb-cont">首頁-加拿大政府網路可用性主題</h1>
 
-<div id="gcwu-content">
-<div id="gcwu-headlines" class="span-3"><section><h2>頭條新聞</h2>
-<ul class="wet-boew-zebra">
-<li><section><h3><a href="#">新聞1</a></h3>
-<p>範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。<a href="#">閱讀更多<span class="wb-invisible">-新聞1</span></a></p>
-</section></li>
-<li><section><h3><a href="#">新聞2</a></h3>
-<p>範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。<a href="#">閱讀更多<span class="wb-invisible">-新聞2</span></a></p>
-</section></li>
-<li><section><h3><a href="#">新聞3</a></h3>
-<p>範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。範例。<a href="#">閱讀更多<span class="wb-invisible">-新聞3</span></a></p>
-</section></li>
-</ul>
-</section></div>
+<div class="span-6">
 
-<div id="gcwu-video" class="span-3"><section><h2>影片</h2>
-<div id="gcwu-bg-dark">
-<img class="posterimg" src="../images/video.png" alt="影片播放器樣本" title="影片播放器樣本" />
-<p><strong>影片標題</strong></p>
-<p>當前影片的簡短說明。</p>
+<section><h2>標題2(<code>h2</code>)-原始外觀</h2>
+	<section><h3>標題3(<code>h3</code>)-原始外觀</h3>
+		<section><h4>標題4(<code>h4</code>)-原始外觀</h4>
+			<section><h5>標題5(<code>h5</code>)-原始外觀</h5>
+				<section><h6>標題6(<code>h6</code>)-原始外觀</h6>
+					<p>段原始外觀</p>
+				</section>
+			</section>
+		</section>
+	</section>
+</section>
+
+<p><a href="#">連結-原始外觀</a></p>
+<p><a href="mailto:">連結(<code>mailto:</code>)-原始外觀</a></p>
+<p><a href="http://www." rel="external">連結(<code>rel="external"</code>)-原始外觀</a></p>
+<p><a href=".doc">連結-根據文件類型的文件下載(<code>.doc</code>，<code>.psd</code>，<code>.zip</code>，<code>.pdf</code>，<code>.xls</code>，<code>.xlt</code>，<code>.rtf</code>和<code>.txt</code>-原始外觀</a></p>
+<p>縮寫-原始外觀：<abbr title="加拿大政府">GC</abbr>.</p>
+
+<ul>
+<li>無順序表(<code>ul</code>)-層次1-原始外觀
+	<ul>
+	<li>無順序表(<code>ul</code>)-層次2-原始外觀
+		<ul>
+		<li>無順序表(<code>ul</code>)-層次3-原始外觀</li>
+		</ul>
+	</li>
+	</ul>
+</li>
+</ul>
+
+<ol>
+<li>有順序表(<code>ol</code>)-層次1-原始外觀</li>
+<li>有順序表(<code>ol</code>)-層次1-原始外觀
+	<ol>
+	<li>有順序表(<code>ol</code>)-層次2-原始外觀</li>
+	<li>有順序表(<code>ol</code>)-層次2-原始外觀
+		<ol>
+		<li>有順序表(<code>ol</code>)-層次3-原始外觀</li>
+		<li>有順序表(<code>ol</code>)-層次3-原始外觀</li>
+		</ol>
+	</li>
+	</ol>
+</li>
+</ol>
+
+<table>
+<caption>表格標題-原始外觀</caption>
+<thead>
+<tr>
+<th scope="col">表格標頭(<code>th</code>)-原始外觀</th>
+<th scope="col">表格標頭(<code>th</code>)-原始外觀</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表格數據(<code>td</code>)-原始外觀</td>
+<td>表格數據(<code>td</code>)-原始外觀</td>
+</tr>
+</tbody>
+</table>
+
+<form action="#" method="post">
+<div><label for="data1">形式(<code>input</code>)-原始外觀：</label> <input name="data1" type="text" id="data1" /></div>
+<div><label for="data2">形式(<code>textarea</code>)-原始外觀：</label> <textarea name="data2" cols="15" rows="3" id="data2"></textarea></div>
+<div><label for="data4">形式(<code>select</code>)-原始外觀：</label>
+<select id="data4" name="data4">
+<option value="選項1">選項1</option>
+<option value="選項2">選項2</option>
+<option value="選項3">選項3</option>
+<option value="選項4">選項4</option>
+</select></div>
+<fieldset><legend>形式(<code>legend</code>，<code>fieldset</code>和<code>checkbox</code>)-原始外觀</legend>
+<div><input name="checkbox" type="checkbox" id="data5" value="checkbox" /> <label for="data5">選項1</label>  
+<input name="checkbox" type="checkbox" id="data6" value="checkbox" /> <label for="data6">選項2</label>  
+<input name="checkbox" type="checkbox" id="data7" value="checkbox" /> <label for="data7">選項3</label>  
+<input name="checkbox" type="checkbox" id="data8" value="checkbox" /> <label for="data8">選項4</label></div>
+</fieldset>
+<div><input name="submit" type="submit" id="submit" value="送出-原始外觀" />
+<input name="reset" type="reset" id="reset" value="重新輸入-原始外觀" /></div>
+</form>
+
+<blockquote>
+<p>"<code>blockquote</code>-原始外觀"</p>
+</blockquote>
 </div>
-<ul>
-<li><a href="#">多媒體求助</a></li>
-<li><a href="#">文件和其他格式</a></li>
-</ul>
-</section></div>
-
-<div id="gcwu-connect" class="span-6"><section><h2>保持聯繫</h2>
-<ul>
-<li><a href="#"><img class="image-actual" src="../../../dist/theme-gcwu-fegc/images/sl_twitter.png" alt="Twitter" title="Twitter" /></a></li>
-<li><a href="#"><img class="image-actual" src="../../../dist/theme-gcwu-fegc/images/sl_youtube.png" alt="YouTube" title="YouTube" /></a></li>
-<li><a href="#"><img class="image-actual" src="../../../dist/theme-gcwu-fegc/images/sl_feeds.png" alt="消息來源" title="消息來源" /></a></li>
-</ul>
-</section></div></div>
-
-<aside role="complementary"><div id="gcwu-aside"><h2>補充內容</h2>
+<div class="span-2">
+<aside role="complementary"><h2 class="wb-invisible">補充內容</h2>
 <section><div id="gcwu-priorities"><h3>優先秩序</h3><div id="gcwu-priorities-inner">
 <ul>
 <li><img src="../images/prio1.png" width="220" height="70" alt="優先1" title="優先1" /></li>
@@ -141,22 +187,11 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <li><img src="../images/prio3.png" width="220" height="70" alt="優先3" title="優先3" /></li>
 </ul>
 </div></div></section>
-
-<section><div class="gcwu-minister"><h3>會見部長</h3><div class="gcwu-minister-in">
-<div class="gcwu-minister-img"><img src="../images/minister.JPG" width="99" height="149" alt="議員部長名字" /></div>
-<div class="gcwu-minister-info">
-<p>議員<br /><strong>部長名字</strong></p>
-<ul>
-<li><a href="#">關於部長</a></li>
-<li><a href="#">他的職務</a></li>
-</ul>
-</div>
-</div></div></section>
-</div></aside>
+</aside></div>
 <div class="clear"></div>
 
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>修改日期：</dt><dd><span><time>2013-04-25</time></span></dd>
+<dt>修改日期：</dt><dd><span><time>2013-05-17</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->

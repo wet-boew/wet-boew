@@ -7,5 +7,12 @@
 
 	<target name="default" depends="clean,build" description="Performs a clean and build when calling ant without any target"></target>
 
-	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images"/>
+	<target name="copy-all" extensionOf="prepare-files" depends="-copy-css,-copy-images,fix-sprite-image-path"/>
+
+	<target name="fix-sprite-image-path" description="Fixes the absolute path used by Compass spriting">
+		<replace dir="${dist.dir}/css" encoding="UTF-8">
+			<include name="util-ie.css"/>
+			<replacefilter token="url('/images/wb-icon-" value="url('../images/wb-icon-"/>
+		</replace>
+	</target>
 </project>

@@ -88,7 +88,6 @@
 			text-decoration: underline;
 		}
 		&.twitter-timeline {
-			width: 100%;
 			display: block;
 			text-indent: -9999px;
 			@extend %webwidget-twitter-timeline-ul;

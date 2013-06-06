@@ -24,6 +24,13 @@
 			}
 		}
 	}
+	pre {
+		&.prettyprint {
+			&.linenums {
+				box-shadow: none;
+			}
+		}
+	}
 	.wet-boew-webwidget {
 		.twitter-timeline {
 			text-indent: 0;

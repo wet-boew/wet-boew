@@ -27,7 +27,6 @@
 				toggle,
 				toggleLink,
 				slideoutClose,
-				ttlHeight = 0,
 				wrapper,
 				container,
 				innerWrapper,
@@ -63,7 +62,10 @@
 			wrapper.detach();
 
 			// Add WAI-ARIA
-			elm.attr({'role': 'menu', 'id': 'slideout-body'}).find('ul, li').attr('role', 'presentation');
+			elm.attr({
+				role: 'menu',
+				id: 'slideout-body'
+			}).find('ul, li').attr('role', 'presentation');
 
 			// Find all the TOC links
 			tocLinks = elm.find('a').attr('role', 'menuitem');
@@ -85,6 +87,9 @@
 			};
 
 			toggle = function (e) {
+				var position = wrapper.offset(),
+					tabWidth;
+
 				toggleLink.off('click vclick touchstart', toggle);
 				tocLinks.off('click vclick touchstart', toggle);
 				slideoutClose.off('click vclick touchstart', toggle);
@@ -93,11 +98,13 @@
 				_pe.document.off('click vclick touchstart', documentToggle);
 
 				if (!opened) {
-					var position = wrapper.offset();
 					if (_pe.ie <= 0 || document.documentMode !== undefined) { // IE8 compat. and up
 						wrapper.removeClass('slideoutWrapper')
 							.addClass('slideoutWrapperRel')
-							.css({'top': position.top - $wbcorein.offset().top, 'right': borderWidth - 10});
+							.css({
+								top: position.top - $wbcorein.offset().top,
+								right: borderWidth - 10
+							});
 					}
 					// Give the tab time to move out of view to prevent overlap
 					setTimeout(function () {
@@ -107,8 +114,7 @@
 				}
 
 				opened = !opened;
-				
-				var tabWidth;
+
 				if (_pe.ie <= 0 || _pe.ie > 8) { // IE 9 and other browsers
 					tabWidth = tab.width();
 				} else {
@@ -294,8 +300,6 @@
 
 			// Apply the CSS
 			elm.addClass('tabbedSlideout');
-			// Since we're hiding div#slideout, its height will be zero so we cache it now
-			ttlHeight = elm.outerHeight();
 
 			// Hide widget content so we don't tab through the links when the slideout is closed
 			elm.hide().attr('aria-hidden', 'true');
@@ -313,9 +317,12 @@
 				reposition();
 			} else {
 				wrapper.addClass('so-ie7');
-				wrapper.addClass('slideoutWrapperRel').css({'right': borderWidth - 10, 'top': '0'});
+				wrapper.addClass('slideoutWrapperRel').css({
+					right: borderWidth - 10,
+					top: 0
+				});
 			}
-			
+
 			// Toggle slideout
 			toggleLink.on('click vclick touchstart', toggle);
 			slideoutClose.on('click vclick touchstart', toggle);
@@ -326,20 +333,20 @@
 
 			if (_pe.ie <= 0 || _pe.ie > 8) { // IE 9 and other browsers
 				tab.css({
-					'height': toggleLink.outerWidth() + 'px',
-					'width': toggleLink.outerHeight() + 'px'
+					height: toggleLink.outerWidth() + 'px',
+					width: toggleLink.outerHeight() + 'px'
 				});
 			} else {
 				tab.css({
-					'height': toggleLink.outerHeight() + 'px',
-					'width': toggleLink.outerWidth() + 'px'
+					height: toggleLink.outerHeight() + 'px',
+					width: toggleLink.outerWidth() + 'px'
 				});
 			}
 
-			if (_pe.ie > 7 && _pe.ie < 9) {  // IE 8
+			if (_pe.ie === '8.0') {
 				$('#slideoutToggle').css({
-					'left': -($('#slideoutToggle').width()) + 'px',
-					'top': $('#slideoutToggle').width() + 'px'
+					left: '-' + $('#slideoutToggle').outerWidth() + 'px',
+					top: $('#slideoutToggle').outerWidth() + 'px'
 				});
 				wrapper.width(focusOutlineAllowance);
 			} else {

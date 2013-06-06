@@ -71,25 +71,20 @@
 
 div {
 	&.errorContainer {
-		h2 {
-			color: #8a1f11;
+		p {
+			margin-left: 0;
+			@extend %formvalid-font-weight-700;
 		}
-		div {
-			&.errorContainer {
-				p {
-					@extend %formvalid-font-weight-700;
-				}
+		ul {
+			margin-left: 30px;
+			margin-right: 0;
+			li {
+				margin-bottom: 5px;
 			}
 		}
 	}
 }
-.errorContainer {
-	ul {
-		li {
-			margin-bottom: 5px;
-		}
-	}
-}
+
 .no-js {
 	.wet-boew-formvalid {
 		display: none;

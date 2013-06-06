@@ -19,66 +19,31 @@
  *   Openlayer pan zoom bar button
  */
 .olButton {
-	height: 18px;
-	width: 18px;
+	height: 25px;
+	width: 25px;
 	img {
 		left: 0;
 		top: 0;
+		height: 25px;
+		width: 25px; 
 		float: left;
 		margin: 0;
 	}
 }
 
-.olControlpanup {
-	left: 15px;
-	top: 4px;
-}
-
-.olControlpanleft {
-	left: 1px;
-	top: 22px;
-}
-
-.olControlpandown {
-	left: 15px;
-	top: 40px;
-}
-
-.olControlpanright {
-	left: 29px;
-	top: 22px;
-}
-
 .olControlzoomin {
 	left: 15px;
-	top: 63px;
+	top: 10px;
 }
 
 .olControlzoomout {
 	left: 15px;
-	top: 213px;
+	top: 38px;
 }
 
 .olControlzoomworld {
 	left: 15px;
-	top: 234px;
-}
-
-.olControlSlider {
-	height: 9px;
-	width: 18px;
-	img {
-		height: 9px;
-		width: 18px;
-	}
-}
-
-.olControlBar {
-	background-image: url("../images/geomap/zoombar.png") !important;
-	height: 18px;
-	width: 132px;
-	left: 15px !important;
-	top: 81px !important;
+	top: 72px;
 }
 
 /*
@@ -94,8 +59,6 @@
 div {
 	&.olMap {	
 		z-index: 0;
-		padding: 0 !important;
-		margin: 0 !important;
 		cursor: default;
 	}
 	&.olMapViewport {
@@ -109,8 +72,8 @@ div {
 		}
 	}
 	&.olControlMousePosition {
-		bottom: 0;
-		right: 3px;
+		bottom: 5px;
+		left: 100px;
 		display: block;
 		position: absolute;
 		font-family: Arial;
@@ -173,6 +136,11 @@ div {
 	text-align: center;
 }
 
+.olControlAttribution {
+	bottom: 5px;
+	right: 5px;
+}
+
 .olHandlerBoxZoomBox {
 	border: 2px solid red;
 	@extend %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1;
@@ -183,11 +151,6 @@ div {
 	@extend %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1;
 }
 
-.olPopupContent {
-  padding: 5px;
-  overflow: auto;
-}
-
 .olPopupCloseBox {
 	cursor: pointer;
 }
@@ -196,6 +159,41 @@ div {
 	padding: 5px;
 	overflow: auto;
 }
+
+%olPopupMargin {
+	margin: 5px;
+}
+
+.olPopup {
+	h1 {
+		@extend %olPopupMargin;
+	}
+	h2 {
+		@extend %olPopupMargin;
+	}
+	h3 {
+		@extend %olPopupMargin;
+	}
+	h4 {
+		@extend %olPopupMargin;
+	}
+	h5 {
+		@extend %olPopupMargin;
+	}
+	h6 {
+		@extend %olPopupMargin;
+	}
+	p {
+		@extend %olPopupMargin;
+	}
+	ol {
+		@extend %olPopupMargin;
+	}
+	ul {
+		@extend %olPopupMargin;
+	}
+}
+
 
 .olControlNoSelect {
 	-moz-user-select: none;
@@ -255,16 +253,34 @@ div {
 /**
  * GeoMap
  */
-.wet-boew-geomap {
+.wet-boew-geomap-map {
 	width: 100%;
 	position: relative;
-	border: 1px solid #CCC;
+	outline: 1px solid #CCC;
 	&.active {
-		border-color: #07F;
+		outline-color: #07F;
 	}
 }
 
 .wet-boew-geomap-detail {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+
+
+@media print {
+	%geomap-print-visibility-hidden {
+		visibility: hidden;
+	}
+
+	.wet-boew-geomap-detail {
+		@extend %geomap-print-visibility-hidden;
+	}
+	.olControlMousePosition {
+		@extend %geomap-print-visibility-hidden;
+	}
+	.olControlPanZoomBar {
+		@extend %geomap-print-visibility-hidden;
+	}
 }

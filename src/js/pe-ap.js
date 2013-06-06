@@ -1125,15 +1125,15 @@
 					headingClose = '</' + heading + '>',
 					m = (typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc)),
 					mDOM = m[0].parentNode,
-					mItems = m.find('> div, > ul, ' + heading),
+					mItems = m.find('> div, > ul, > ' + heading + ', > section > ' + heading),
 					mItemsDOM = mItems.get(),
 					mItems_i,
 					mItems_len,
 					mItem,
 					mItemDOM,
 					mItemTag,
-					next,
 					nextDOM,
+					prevDOM,
 					hlink,
 					hlinkDOM,
 					navCurrent,
@@ -1145,7 +1145,6 @@
 					hnestTag,
 					hnestLinkDOM,
 					hnestLinkDOM2,
-					hasHeading,
 					menubar = (mbar !== undefined ? mbar : false),
 					mainText = pe.dic.get('%main-page'),
 					toplevel = (top !== undefined ? top : true),
@@ -1174,11 +1173,8 @@
 				collapseTopOnly = (collapseTopOnly !== undefined ? collapseTopOnly : true);
 				collapsible = (collapsible !== undefined ? collapsible : false);
 				returnString = (returnString !== undefined ? returnString : false);
-				if (mItemsDOM[0].tagName.toLowerCase() === 'ul') {
-					menu = listView + mItems[0].innerHTML + '</ul>';
-				} else {
-					hasHeading = mDOM.getElementsByTagName(heading).length !== 0;
-					if (menubar && !hasHeading) { // Menu bar without a mega menu
+				if (mItemsDOM.length !== 0) {
+					if (menubar && mDOM.getElementsByTagName(heading).length === 0) { // Menu bar without a mega menu
 						menu = sectionOpen1 + '"><ul data-role="listview" data-theme="' + theme1 + '">';
 						mItemsDOM = mDOM.getElementsByTagName('a');
 						for (mItems_i = 0, mItems_len = mItemsDOM.length; mItems_i < mItems_len; mItems_i += 1) {
@@ -1200,9 +1196,6 @@
 								if (hlink.length !== 0) {
 									hlinkDOM = hlink[0];
 									url = hlinkDOM.getAttribute('href');
-									if (url === '#' || url === 'javascript:;') {
-										url = disableLink;
-									}
 									navCurrent = (hlinkDOM.className.indexOf('nav-current') !== -1);
 									navCurrentNoCSS = (hlinkDOM.className.indexOf('nav-current-nocss') !== -1);
 									menu += (navCurrent && !navCurrentNoCSS ? ' nav-current' : '');
@@ -1220,10 +1213,9 @@
 								} else {
 									menu += sectionLinkOpen1 + url + '">' + mItem.text() + sectionLinkClose;
 								}
-								next = mItem.next();
-								nextDOM = next[0];
+								nextDOM = mItem.next()[0];
 								// Don't try to build mobile menu for headings with no sub-items
-								if (typeof nextDOM !== 'undefined'){
+								if (typeof nextDOM !== 'undefined') {
 									if (nextDOM.tagName.toLowerCase() === 'ul') {
 										menu += listView;
 										nested = nextDOM.querySelector('li ul');
@@ -1266,18 +1258,21 @@
 									menu += link + hlinkDOM.href + '">' + hlinkDOM.innerHTML + ' - ' + mainText + '</a>';
 								}
 								menu += '</div>';
+							} else if (mItemTag === 'ul') { // If the menu item is a ul
+								// Don't try to build mobile menu for ul with a preceding heading or that is directly nested within an li
+								prevDOM = mItem.prev()[0];
+								if ((typeof prevDOM === 'undefined' || prevDOM.tagName.toLowerCase() !== heading) && mItemDOM.parentNode.tagName.toLowerCase() !== 'li') {
+									menu += listView + mItemDOM.innerHTML + '</ul>';
+								}
 							} else if (mItemTag === 'div') { // If the menu item is a div
-								next = mItem.children('a, ul, div');
-								if (next.length > 0) {
-									nextDOM = next[0];
-									mItemTag = nextDOM.tagName.toLowerCase();
-									if (mItemTag === 'a') {
-										menu += link + nextDOM.href + '" data-theme="' + (toplevel ? theme1 : theme2) + '">' + nextDOM.innerHTML + '</a>';
-									} else if (mItemTag === 'ul') {
-										menu += listView + nextDOM.innerHTML + '</ul>';
-									} else {
-										menu += pe.menu.buildmobile(nextDOM, hlevel, theme1, false, collapseTopOnly, theme2, false, true, secnav2Top);
+								hnestDOM = mItem.children('a').get();
+								if (hnestDOM.length !== 0) {
+									for (i = 0, len = hnestDOM.length; i !== len; i += 1) {
+										hnestLinkDOM = hnestDOM[i];
+										menu += link + hnestLinkDOM.href + '" data-theme="' + (toplevel ? theme1 : theme2) + '">' + hnestLinkDOM.innerHTML + '</a>';
 									}
+								} else if (mItemDOM.children.length !== 0) {
+									menu += pe.menu.buildmobile(mItemDOM, hlevel, theme1, false, collapseTopOnly, theme2, false, true, secnav2Top);
 								}
 							}
 						}
@@ -1286,9 +1281,9 @@
 							menu = '<div data-role="collapsible-set" data-inset="false" data-theme="' + theme1 + '"' + (toplevel ? ' class="ui-corner-all"' : '') + '>' + menu + '</div>';
 						}
 					}
-				}
-				if (toplevel) {
-					menu = '<div data-role="controlgroup" data-theme="' + theme1 + '">' + menu + '</div>';
+					if (toplevel) {
+						menu = '<div data-role="controlgroup" data-theme="' + theme1 + '">' + menu + '</div>';
+					}
 				}
 				return returnString ? menu : $(menu);
 			}
@@ -2008,7 +2003,7 @@
 							mediumcheck;
 						if (pe.mobile !== mobilecheck) {
 							pe.mobile = mobilecheck;
-							window.location.href = decodeURI(pe.url(window.location.href).removehash());
+							window.location.reload();
 						} else {
 							mediumcheck = pe.mediumcheck();
 							if (pe.medium !== mediumcheck) {
