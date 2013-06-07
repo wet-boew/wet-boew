@@ -120,7 +120,7 @@
 			}
 
 			// Add WAI-ARIA
-			$lbContent = $('#colorbox #cboxContent').attr('role', 'dialog');
+			$lbContent = $('#colorbox #cboxContent');
 			$lbContent.find('#cboxNext, #cboxPrevious, #cboxClose').attr({'tabindex': '0', 'role': 'button', 'aria-controls': 'cboxLoadedContent'});
 			$lbNext = $lbContent.find('#cboxNext');
 			$lbPrev = $lbContent.find('#cboxPrevious');
