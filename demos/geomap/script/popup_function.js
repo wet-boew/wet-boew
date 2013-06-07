@@ -9,7 +9,7 @@ _pe.document.on('geomap-ready', function() {
 	
 	// zoom to location on location_map
 	mapLocation = _pe.fn.geomap.getMap('location_map');
-	mapLocation.zoomToExtent(mapLocation.layers[1].features[0].geometry.bounds); 
+	mapLocation.zoomToExtent(mapLocation.layers[2].features[0].geometry.bounds); 
 });
 
 function zoomFeature() {
