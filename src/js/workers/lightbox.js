@@ -20,6 +20,7 @@
 			// Variables
 			var opts,
 				overrides,
+				$colorbox,
 				lb,
 				lbItems,
 				lbItem,
@@ -60,13 +61,10 @@
 						describedBy,
 						longdesc,
 						alt_text = $lbTitle.text() + (currentText.length !== 0 ? ' - ' + currentText : '');
-					
-					$lbLoadedContent = $lbContent.find('#cboxLoadedContent').attr('tabindex', '0');
+					$lbLoadedContent = $lbContent.find('#cboxLoadedContent').attr({'tabindex': '0', 'role': 'document'});
 					$currImg = $lbLoadedContent.children('.cboxPhoto');
-					$lbLoadedContent.attr('aria-label', alt_text);
-					if ($currImg.length === 0) {
-						$lbLoadedContent.attr('role', 'document');
-					} else {
+					$colorbox.attr('aria-label', alt_text);
+					if ($currImg.length !== 0) {
 						$currImg.attr('alt', alt_text);
 						$origImg = $.colorbox.element().find('img');
 
@@ -74,14 +72,13 @@
 						describedBy = $origImg.attr('aria-describedby');
 						longdesc = $origImg.attr('longdesc');
 						if (typeof describedBy !== 'undefined') {
-							$lbLoadedContent.attr('aria-describedby', describedBy);
 							$currImg.attr('aria-describedby', describedBy);
 						}
 						if (typeof longdesc !== 'undefined') {
 							$currImg.attr('longdesc', longdesc);
 						}
 					}
-					_pe.focus($lbLoadedContent);
+					_pe.focus($colorbox);
 					open = true;
 				},
 				onClosed : function () {
@@ -119,7 +116,8 @@
 			}
 
 			// Add WAI-ARIA
-			$lbContent = $('#colorbox #cboxContent');
+			$colorbox = $('#colorbox');
+			$lbContent = $('#cboxContent');
 			$lbContent.find('#cboxNext, #cboxPrevious, #cboxClose').attr({'tabindex': '0', 'role': 'button', 'aria-controls': 'cboxLoadedContent'});
 			$lbNext = $lbContent.find('#cboxNext');
 			$lbPrev = $lbContent.find('#cboxPrevious');
