@@ -15,10 +15,6 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 	git config --global user.email "laurent.goderre@gmail.com"
 	git config --global user.name "Travis"
 
-	#Set remotes
-	git remote add upstream https://${GH_TOKEN}@github.com/wet-boew/wet-boew.git 2> /dev/null > /dev/null
-	git remote add experimental https://${GH_TOKEN}@github.com/LaurentGoderre/wet-boew.git 2> /dev/null > /dev/null
-
 	#Copy result of build and demo in a temporary location
 	mkdir $HOME/temp_wet-boew
 	cp -R dist $HOME/temp_wet-boew/dist
@@ -27,33 +23,9 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 	cp *.htm* $HOME/temp_wet-boew
 	cp *.md $HOME/temp_wet-boew
 	cp *.txt $HOME/temp_wet-boew
-	
-	#Update working example
-	if [ "$TRAVIS_BRANCH" == "master" ]; then
-		echo -e "Updating working examples...\n"
 
-		git checkout -B gh-pages
-		git add -f dist/.
-		git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
-		git push -fq upstream gh-pages 2> /dev/null || error_exit "Error updating working examples"
-
-		echo -e "Finished updating the working examples\n"
-	fi
-
-	#Update the experimental working example
-	if [[ "$TRAVIS_BRANCH" == experimental* ]]; then
-		echo -e "Updating experimental working examples...\n"
-
-		git checkout -B gh-pages
-		git add -f dist/.
-		git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
-		git push -fq experimental gh-pages 2> /dev/null || error_exit "Error updating experimental working examples"
-
-		echo -e "Finished updating the experimental working examples\n"
-	fi
-
-	#Add the latest tags
 	case "${supported_branches[@]}" in  *"$TRAVIS_BRANCH"*)
+		#Add the latest build result
 		echo -e "Uploading the build artifact for branch $TRAVIS_BRANCH\n"
 
 		build_branch="$TRAVIS_BRANCH-dist"
@@ -73,7 +45,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		git add -f demos
 		git add -f test
 		git add -f *.*
-		git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
+		git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER"
 		git push -fq origin $build_branch 2> /dev/null || error_exit "Error uploading the build artifacts"
 
 		#Create the dist without the GC themes
@@ -86,11 +58,31 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 			cp -Rf $HOME/temp_wet-boew/demos/theme-base ./demos/theme-base
 			cp -Rf $HOME/temp_wet-boew/demos/theme-wet-boew ./demos/theme-wet-boew
 			git add -f .
-			git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER pushed to $TRAVIS_BRANCH"
+			git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER"
 			git push -fq origin master-base-dist 2> /dev/null || error_exit "Error uploading the base build artifacts"
 		fi
 
 		echo -e "Done uploading the build artifact for branch $TRAVIS_BRANCH\n"
+
+		#Update the working examples
+		echo -e "Updating working examples...\n"
+
+		cd ..
+		git clone -q -b $build_branch https://${GH_TOKEN}@github.com/wet-boew/wet-boew.github.io.git 2> /dev/null  || error_exit "Error cloning the working examples repository";
+		cd wet-boew.github.io
+
+		if [ "$TRAVIS_BRANCH" == "master" ]; then
+			cd wet-boew
+		else
+			cd "$TRAVIS_BRANCH-ci"
+		fi
+		git pull origin $build_branch
+		cd ..
+		git add .
+		git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER"
+		git push -fq origin master 2> /dev/null || error_exit "Error uploading the working examples"
+
+		echo -e "Finished updating the working examples\n"
 	;; esac
 fi
 
