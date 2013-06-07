@@ -193,6 +193,7 @@
 		'%geo-hiddenlayer': '@%geo-hiddenlayer@',
 		'%geo-basemapurl': '@%geo-basemapurl@',
 		'%geo-basemaptitle': '@%geo-basemaptitle@',
+		'%geo-basemapurltxt': '@%geo-basemapurltxt@',
 		'%geo-attributionlink': '@%geo-attributionlink@',
 		'%geo-attributiontitle': '@%geo-attributiontitle@',
 		'%geo-select': '@%geo-select@',
