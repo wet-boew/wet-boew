@@ -64,9 +64,7 @@
 					$lbLoadedContent = $lbContent.find('#cboxLoadedContent').attr({'tabindex': '0', 'role': 'document'});
 					$currImg = $lbLoadedContent.children('.cboxPhoto');
 					$colorbox.attr('aria-label', alt_text);
-					if ($currImg.length === 0) {
-						$lbLoadedContent.attr('aria-label', alt_text);
-					} else {
+					if ($currImg.length !== 0) {
 						$currImg.attr('alt', alt_text);
 						$origImg = $.colorbox.element().find('img');
 
@@ -118,7 +116,7 @@
 			}
 
 			// Add WAI-ARIA
-			$colorbox = $('#colorbox');
+			$colorbox = $('#colorbox').attr('tabindex', '0');
 			$lbContent = $('#cboxContent');
 			$lbTitle = $lbContent.find('#cboxTitle');
 			$lbCurrent = $lbContent.find('#cboxCurrent');
@@ -132,15 +130,15 @@
 				var target_id = e.target.id;
 				if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 					if (e.keyCode === 9) {
-						if (e.shiftKey && target_id === 'cboxLoadedContent') {
+						if (e.shiftKey && target_id === 'colorbox') {
 							_pe.focus($lbClose);
 							e.preventDefault();
-						} else if (!e.shiftKey && target_id === 'cboxClose') {
-							_pe.focus($lbContent.find('#cboxLoadedContent'));
+						} else if ((!e.shiftKey && target_id === 'cboxClose') || (e.shiftKey && target_id === 'cboxLoadedContent')) {
+							_pe.focus($colorbox);
 							e.preventDefault();
 						}
 					} else if (e.keyCode === 13 || e.keyCode === 32) {
-						if (target_id === 'cboxLoadedContent' || target_id === 'cboxNext') {
+						if (target_id === 'cboxLoadedContent' || target_id === 'colorbox' || target_id === 'cboxNext') {
 							$.colorbox.next();
 							e.preventDefault();
 						} else if (target_id === 'cboxPrevious') {
