@@ -20,10 +20,13 @@
 			// Variables
 			var opts,
 				overrides,
+				$colorbox,
 				lb,
 				lbItems,
 				lbItem,
 				$lbContent,
+				$lbTitle,
+				$lbCurrent,
 				$lbLoadedContent,
 				$lbNext,
 				$lbPrev,
@@ -53,21 +56,16 @@
 				slideshow : false,
 				slideshowAuto : false,
 				onComplete : function () {
-					var $lbTitle = $lbContent.find('#cboxTitle'),
-						$lbCurrent = $lbContent.find('#cboxCurrent'),
-						currentText = $lbCurrent.text(),
+					var currentText = $lbCurrent.text(),
 						$origImg,
 						$currImg,
 						describedBy,
 						longdesc,
 						alt_text = $lbTitle.text() + (currentText.length !== 0 ? ' - ' + currentText : '');
-					
-					$lbLoadedContent = $lbContent.find('#cboxLoadedContent').attr('tabindex', '0');
+					$lbLoadedContent = $lbContent.find('#cboxLoadedContent').attr({'tabindex': '0', 'role': 'document'});
 					$currImg = $lbLoadedContent.children('.cboxPhoto');
-					$lbLoadedContent.attr('aria-label', alt_text);
-					if ($currImg.length === 0) {
-						$lbLoadedContent.attr('role', 'document');
-					} else {
+					$colorbox.attr('aria-label', alt_text);
+					if ($currImg.length !== 0) {
 						$currImg.attr('alt', alt_text);
 						$origImg = $.colorbox.element().find('img');
 
@@ -75,14 +73,13 @@
 						describedBy = $origImg.attr('aria-describedby');
 						longdesc = $origImg.attr('longdesc');
 						if (typeof describedBy !== 'undefined') {
-							$lbLoadedContent.attr('aria-describedby', describedBy);
 							$currImg.attr('aria-describedby', describedBy);
 						}
 						if (typeof longdesc !== 'undefined') {
 							$currImg.attr('longdesc', longdesc);
 						}
 					}
-					_pe.focus($lbLoadedContent);
+					_pe.focus($colorbox);
 					open = true;
 				},
 				onClosed : function () {
@@ -120,11 +117,14 @@
 			}
 
 			// Add WAI-ARIA
-			$lbContent = $('#colorbox #cboxContent');
-			$lbContent.find('#cboxNext, #cboxPrevious, #cboxClose').attr({'tabindex': '0', 'role': 'button', 'aria-controls': 'cboxLoadedContent'});
+			$colorbox = $('#colorbox').attr('tabindex', '0');
+			$lbContent = $('#cboxContent');
+			$lbTitle = $lbContent.find('#cboxTitle');
+			$lbCurrent = $lbContent.find('#cboxCurrent');
 			$lbNext = $lbContent.find('#cboxNext');
 			$lbPrev = $lbContent.find('#cboxPrevious');
 			$lbClose = $lbContent.find('#cboxClose');
+			$lbNext.add($lbPrev).add($lbClose).attr({'tabindex': '0', 'role': 'button', 'aria-controls': 'cboxLoadedContent'});
 
 			// Add swipe and extra keyboard support (handling for tab, enter and space)
 			$lbContent.on('keydown swipeleft swiperight', function (e) {
@@ -133,15 +133,15 @@
 				if (type === 'keydown') {
 					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 						if (e.keyCode === 9) {
-							if (e.shiftKey && target_id === 'cboxLoadedContent') {
+							if (e.shiftKey && target_id === 'colorbox') {
 								_pe.focus($lbClose);
 								e.preventDefault();
-							} else if (!e.shiftKey && target_id === 'cboxClose') {
-								_pe.focus($lbContent.find('#cboxLoadedContent'));
+							} else if ((!e.shiftKey && target_id === 'cboxClose') || (e.shiftKey && target_id === 'cboxLoadedContent')) {
+								_pe.focus($colorbox);
 								e.preventDefault();
 							}
 						} else if (e.keyCode === 13 || e.keyCode === 32) {
-							if (target_id === 'cboxLoadedContent' || target_id === 'cboxNext') {
+							if (target_id === 'cboxLoadedContent' || target_id === 'colorbox' || target_id === 'cboxNext') {
 								$.colorbox.next();
 								e.preventDefault();
 							} else if (target_id === 'cboxPrevious') {
