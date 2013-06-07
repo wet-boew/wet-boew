@@ -25,6 +25,8 @@
 				lbItems,
 				lbItem,
 				$lbContent,
+				$lbTitle,
+				$lbCurrent,
 				$lbLoadedContent,
 				$lbNext,
 				$lbPrev,
@@ -53,9 +55,7 @@
 				slideshow : false,
 				slideshowAuto : false,
 				onComplete : function () {
-					var $lbTitle = $lbContent.find('#cboxTitle'),
-						$lbCurrent = $lbContent.find('#cboxCurrent'),
-						currentText = $lbCurrent.text(),
+					var currentText = $lbCurrent.text(),
 						$origImg,
 						$currImg,
 						describedBy,
@@ -64,7 +64,9 @@
 					$lbLoadedContent = $lbContent.find('#cboxLoadedContent').attr({'tabindex': '0', 'role': 'document'});
 					$currImg = $lbLoadedContent.children('.cboxPhoto');
 					$colorbox.attr('aria-label', alt_text);
-					if ($currImg.length !== 0) {
+					if ($currImg.length === 0) {
+						$lbLoadedContent.attr('aria-label', alt_text);
+					} else {
 						$currImg.attr('alt', alt_text);
 						$origImg = $.colorbox.element().find('img');
 
@@ -118,10 +120,12 @@
 			// Add WAI-ARIA
 			$colorbox = $('#colorbox');
 			$lbContent = $('#cboxContent');
-			$lbContent.find('#cboxNext, #cboxPrevious, #cboxClose').attr({'tabindex': '0', 'role': 'button', 'aria-controls': 'cboxLoadedContent'});
+			$lbTitle = $lbContent.find('#cboxTitle');
+			$lbCurrent = $lbContent.find('#cboxCurrent');
 			$lbNext = $lbContent.find('#cboxNext');
 			$lbPrev = $lbContent.find('#cboxPrevious');
 			$lbClose = $lbContent.find('#cboxClose');
+			$lbNext.add($lbPrev).add($lbClose).attr({'tabindex': '0', 'role': 'button', 'aria-controls': 'cboxLoadedContent'});
 
 			// Add extra keyboard support (handling for tab, enter and space)
 			$lbContent.on('keydown', function (e) {
