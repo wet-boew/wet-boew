@@ -56,16 +56,18 @@
 				slideshowAuto : false,
 				onComplete : function () {
 					var currentText = $lbCurrent.text(),
+						titleText = $lbTitle.text(),
 						$origImg,
 						$currImg,
 						describedBy,
-						longdesc,
-						alt_text = $lbTitle.text() + (currentText.length !== 0 ? ' - ' + currentText : '');
-					$lbLoadedContent = $lbContent.find('#cboxLoadedContent').attr({'tabindex': '0', 'role': 'document'});
+						longdesc;
+					$lbLoadedContent = $lbContent.find('#cboxLoadedContent');
 					$currImg = $lbLoadedContent.children('.cboxPhoto');
-					$colorbox.attr('aria-label', alt_text);
-					if ($currImg.length !== 0) {
-						$currImg.attr('alt', alt_text);
+					$colorbox.attr('aria-label', (titleText + (currentText.length !== 0 ? ' - ' + currentText : '')));
+					if ($currImg.length === 0) {
+						$lbLoadedContent.attr({'tabindex': '0', 'role': 'document', 'aria-labelledby': 'cboxTitle'});
+					} else {
+						$currImg.attr({'alt': titleText, 'tabindex': '0'});
 						$origImg = $.colorbox.element().find('img');
 
 						// Bring over some of the original image attributes
@@ -126,7 +128,7 @@
 			$lbNext.add($lbPrev).add($lbClose).attr({'tabindex': '0', 'role': 'button', 'aria-controls': 'cboxLoadedContent'});
 
 			// Add extra keyboard support (handling for tab, enter and space)
-			$lbContent.on('keydown', function (e) {
+			$colorbox.on('keydown', function (e) {
 				var target_id = e.target.id;
 				if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 					if (e.keyCode === 9) {
