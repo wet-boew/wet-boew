@@ -68,7 +68,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		echo -e "Updating working examples...\n"
 
 		cd ..
-		git clone -q -b $build_branch https://${GH_TOKEN}@github.com/wet-boew/wet-boew.github.io.git 2> /dev/null  || error_exit "Error cloning the working examples repository";
+		git clone -q https://${GH_TOKEN}@github.com/wet-boew/wet-boew.github.io.git 2> /dev/null  || error_exit "Error cloning the working examples repository";
 		cd wet-boew.github.io
 
 		if [ "$TRAVIS_BRANCH" == "master" ]; then
