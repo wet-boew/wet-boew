@@ -317,10 +317,6 @@ table {
 	margin: 0;
 }
 
-#wet-sig {
-	@extend %wet-default-small-medium-screen-display-none;
-}
-
 #wet-subsite {
 	font-size: 130%;
 	@extend %wet-default-small-medium-screen-text-shadow-none;
