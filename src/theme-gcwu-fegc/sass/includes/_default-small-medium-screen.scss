@@ -226,6 +226,14 @@ table {
 		@extend %gcwu-default-small-medium-screen-display-none;
 		visibility: hidden;
 	}
+	#gcwu-sig {
+		@extend %gcwu-default-small-medium-screen-display-none;
+	}
+	#gcwu-bnr {
+		#gcwu-wmms {
+			@extend %gcwu-default-small-medium-screen-display-none-important;
+		}
+	}
 }
 
 #wb-head {
@@ -342,10 +350,6 @@ table {
 	@extend %gcwu-default-small-medium-screen-margin-0;
 }
 
-#gcwu-sig {
-	@extend %gcwu-default-small-medium-screen-display-none;
-}
-
 #gcwu-bc {
 	@extend %gcwu-default-small-medium-screen-display-none;
 }
@@ -372,9 +376,6 @@ table {
 
 #gcwu-bnr {
 	background: #225C96;
-	#gcwu-wmms {
-		@extend %gcwu-default-small-medium-screen-display-none-important;
-	}
 }
 
 #gcwu-bnr-in {
