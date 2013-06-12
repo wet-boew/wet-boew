@@ -153,6 +153,34 @@
 	}
 }
 
+/* Workaround for Firefox autoHeight margin collapsing bug. See issue #2471 and pull #2486 for more information. */
+@-moz-document url-prefix() {
+	%tabbedinterface-auto-height-bottom-padding {
+		padding-bottom: 11px !important;
+	}
+	.wet-boew-tabbedinterface {
+		&:not(.auto-height-none) {
+			.tabs-panel {
+				@extend %tabbedinterface-auto-height-bottom-padding;
+			}
+		}
+		&.tabs-style-1 {
+			&:not(.auto-height-none) {
+				.tabs-panel {
+					@extend %tabbedinterface-auto-height-bottom-padding;
+				}
+			}
+		}
+	}
+	[class*="tabs-style-"] {
+		&:not(.auto-height-none) {
+			.tabs-panel {
+				padding-bottom: 0 !important;
+			}
+		}
+	}
+}
+
 .clear {
     clear: both;
     display: block;
