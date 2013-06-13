@@ -39,7 +39,7 @@
 				}
 			});
 
-			notice.on('click', 'a', function(e) {
+			notice.on('click', 'a', function() {
 				window.location.hash = this.hash;
 			});
 
