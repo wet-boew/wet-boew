@@ -1,0 +1,150 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+%ogpl-default-responsive-large-1200-min-width-1200 {
+	min-width: 1200px;
+}
+%ogpl-default-responsive-large-1200-width-1200 {
+	width: 1200px;
+}
+%ogpl-default-responsive-large-1200-width-600 {
+	width: 600px;
+}
+%ogpl-default-responsive-large-1200-width-300 {
+	width: 300px;
+}
+
+body {
+	@extend %ogpl-default-responsive-large-1200-min-width-1200;
+}
+
+#wb-head {
+	@extend %ogpl-default-responsive-large-1200-min-width-1200;
+}
+
+#wb-core {
+	@extend %ogpl-default-responsive-large-1200-min-width-1200;
+}
+
+#wb-foot {
+	@extend %ogpl-default-responsive-large-1200-min-width-1200;
+}
+
+#wb-head-in {
+	@extend %ogpl-default-responsive-large-1200-min-width-1200;
+}
+
+#ogpl-fullhd {
+	@extend %ogpl-default-responsive-large-1200-min-width-1200;
+}
+
+#ogpl-bnr {
+	@extend %ogpl-default-responsive-large-1200-min-width-1200;
+}
+
+#ogpl-psnb {
+	@extend %ogpl-default-responsive-large-1200-min-width-1200;
+	.mb-menu {
+		@extend %ogpl-default-responsive-large-1200-width-1200;
+	}
+}
+
+#ogpl-bc {
+	@extend %ogpl-default-responsive-large-1200-min-width-1200;
+}
+
+#wb-foot-in {
+	@extend %ogpl-default-responsive-large-1200-min-width-1200;
+}
+
+#ogpl-fullft {
+	@extend %ogpl-default-responsive-large-1200-min-width-1200;
+}
+
+#ogpl-sft {
+	@extend %ogpl-default-responsive-large-1200-min-width-1200;
+}
+
+#wb-body-sec-sup {
+	#wb-main {
+		@extend %ogpl-default-responsive-large-1200-width-600;
+		left: 300px;
+	}
+	#wb-main-in {
+		@extend %ogpl-default-responsive-large-1200-width-600;
+	}
+}
+
+#wb-sec {
+	@extend %ogpl-default-responsive-large-1200-width-300;
+}
+
+#wb-sup {
+	@extend %ogpl-default-responsive-large-1200-width-300;
+	left:600px;
+}
+
+#wb-core-in {
+	@extend %ogpl-default-responsive-large-1200-width-1200;
+}
+
+#ogpl-fullhd-in {
+	@extend %ogpl-default-responsive-large-1200-width-1200;
+}
+
+#ogpl-bnr-in {
+	@extend %ogpl-default-responsive-large-1200-width-1200;
+}
+
+#ogpl-psnb-in {
+	@extend %ogpl-default-responsive-large-1200-width-1200;
+}
+
+#ogpl-bc-in {
+	@extend %ogpl-default-responsive-large-1200-width-1200;
+}
+
+#ogpl-fullft-in {
+	@extend %ogpl-default-responsive-large-1200-width-1200;
+}
+
+#ogpl-sft-in {
+	@extend %ogpl-default-responsive-large-1200-width-1200;
+}
+
+#wb-body {
+	#wb-main {
+		@extend %ogpl-default-responsive-large-1200-width-1200;
+	}
+}
+
+#ogpl-subsite {
+	p {
+		@extend %ogpl-default-responsive-large-1200-width-1200;
+		margin: 0 auto;
+	}
+}
+
+[id|="wb-body-sec"] {
+	[id|="wb-main"] {
+		width: 900px;
+	}
+}
+
+/* Right to left (RTL) CSS */
+%ogpl-default-responsive-large-1200-left-auto {
+	left: auto;
+}
+[dir="rtl"] {
+	#wb-body-sec-sup {
+		#wb-main {
+			@extend %ogpl-default-responsive-large-1200-left-auto;
+			right: 300px;
+		}
+	}
+	#wb-sup {
+		@extend %ogpl-default-responsive-large-1200-left-auto;
+		right: 600px;
+	}
+}
