@@ -30,7 +30,9 @@
 				var $this = $(this);
 				$this.find('span span').remove();
 				$this.off('click vclick').on('click vclick', function () {
-					var referrer = _ctn.find($(this).attr('href')).find('a');
+					var refId = _pe.string.jqescape($(this).attr('href')).substring(1),
+						referrer = _ctn.find(refId).find('a');
+					
 					if (_pe.mobile) {
 						$.mobile.silentScroll(_pe.focus(referrer).offset().top);
 					} else {
@@ -43,10 +45,12 @@
 			//listen for footnote reference links that get clicked
 			_ctn.find('sup a.footnote-link').on('click vclick', function () {
 				//captures certain information about the clicked link
-				var _refLinkDest = elm.find($(this).attr('href'));
+				var _refLinkDest = elm.find(_pe.string.jqescape($(this).attr('href')).substring(1));
 
 				_refLinkDest.find('p.footnote-return a').attr('href', '#' + this.parentNode.id).off('click vclick').on('click vclick', function () {
-					var referrer = _ctn.find($(this).attr('href')).find('a');
+					var refId = _pe.string.jqescape($(this).attr('href')).substring(1),
+						referrer = _ctn.find(refId).find('a');
+					
 					if (_pe.mobile === true) {
 						$.mobile.silentScroll(_pe.focus(referrer).offset().top);
 					} else {
