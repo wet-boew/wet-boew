@@ -39,6 +39,10 @@
 				}
 			});
 
+			notice.on('click', 'a', function(e) {
+				window.location.hash = this.hash;
+			});
+
 			// now test to ensure that we have this correctly placed
 			if (scrollTop < 10 || scrollTop === 'undefined') {
 				notice.attr('aria-hidden', 'true');
