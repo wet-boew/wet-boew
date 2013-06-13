@@ -32,8 +32,10 @@
 			// Ensure that the archived notice does not overlap a link that gains focus
 			_pe.document.on('focusin', function (e) {
 				var target = $(e.target);
-				if (notice.attr('aria-hidden') === 'false' && (target.offset().top + target.outerHeight()) <= (notice.offset().top + notice.outerHeight())) {
-					$window.scrollTop($window.scrollTop() - notice.outerHeight());
+				if (notice.attr('aria-hidden') === 'false' && typeof target.offset() !== 'undefined' && (target.offset().top + target.outerHeight()) <= (notice.offset().top + notice.outerHeight())) {
+					setTimeout(function() {
+						$window.scrollTop(target.offset().top - notice.outerHeight());
+					}, 100);
 				}
 			});
 
