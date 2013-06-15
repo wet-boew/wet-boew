@@ -55,6 +55,7 @@
 		resizetest: '',
 		settings: (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
 		scrollTopInit: 0,
+		activeElement: '',
 
 		/**
 		* @namespace pe.dic
@@ -203,26 +204,34 @@
 			// If the page URL includes a hash upon page load, then focus on and scroll to the target
 			// pe.scrollTopInit is a workaround for jQuery Mobile scrolling to the top by restoring the original scroll point
 			// TODO: Find an elegant way (preferably in jQuery Mobile) to prevent the scroll to top except where needed or at least restore the original scroll point
-			pe.scrollTopInit = pe.window.scrollTop();
-			if (pe.scrollTopInit === 0) {
-				window.onload = function() {
-					setTimeout(function() {
-						pe.scrollTopInit = pe.window.scrollTop();
-					}, 1);
-				};
-			}
+			window.onload = function() {
+				setTimeout(function() {
+					pe.scrollTopInit = pe.window.scrollTop();
+					pe.activeElement = document.activeElement;
+				}, 1);
+			};
+
 			if (pe.urlhash.length !== 0) {
 				target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
-				target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-				validTarget = (target.length !== 0 && target.attr('data-role') !== 'page');
 			}
 			pe.document.on('silentscroll.wbinit', function() {
 				silentscroll_fired = true;
 				if (pageinit_fired) {
 					pe.document.off('silentscroll.wbinit');
 				}
-				if (validTarget || pe.scrollTopInit > 1) {
-					$.mobile.silentScroll(validTarget ? pe.focus(target).offset().top : pe.scrollTopInit);
+
+				// Update the target if the user had changed the focus
+				if (pe.activeElement.nodeName.toLowerCase() !== 'body') {
+					target = $(pe.activeElement);
+				}
+
+				// Restore the original focus and/or scroll position
+				if (typeof target !== 'undefined' && target.length !== 0 && target.attr('data-role') !== 'page') {
+					target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+					validTarget = true;
+					$.mobile.silentScroll(pe.focus(target).offset().top);
+				} else if (pe.scrollTopInit > 1) {
+					$.mobile.silentScroll(pe.scrollTopInit);
 				}
 			});
 
