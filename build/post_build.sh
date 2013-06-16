@@ -72,10 +72,17 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		cd wet-boew.github.io
 
 		if [ "$TRAVIS_BRANCH" == "master" ]; then
-			cd wet-boew
+			submodule_name="wet-boew"
 		else
-			cd "$TRAVIS_BRANCH-ci"
+			submodule_name="$TRAVIS_BRANCH-ci"
 		fi
+
+		echo -e "Updating submodule '$submodule_name'"
+		#Use the existing local repo for initializing the submodule
+		git submodule update --reference ../wet-boew-dist --init "$submodule_name"
+
+		cd "$submodule_name"
+		#Checkout dist branch to move forward submodule HEAD pointer
 		git checkout $build_branch
 		cd ..
 		git add .
