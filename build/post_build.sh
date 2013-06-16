@@ -76,7 +76,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 		else
 			cd "$TRAVIS_BRANCH-ci"
 		fi
-		git pull origin $build_branch
+		git checkout $build_branch
 		cd ..
 		git add .
 		git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER"
