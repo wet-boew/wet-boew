@@ -277,39 +277,6 @@
 
 				// Append all the popups to the body
 				pe.bodydiv.append(bodyAppend + settings_popup);
-			} else {
-				// Handling for splash page language buttons
-				lang_links = document.getElementById('base-lang');
-				if (lang_links !== null) {
-					nodes = lang_links.getElementsByTagName('li');
-					lang_nav = '<div data-role="navbar"><ul>';
-					for (i = 0, len = nodes.length; i < len; i += 1) {
-						node = nodes[i];
-						link = node.getElementsByTagName('a')[0];
-						lang_nav += '<li><a href="' + link.href + '"' + (node.hasAttribute('lang') ? ' lang="' + node.getAttribute('lang') + '"' : '') + ' data-theme="a">' + link.innerHTML + '</a></li>';
-					}
-					lang_nav += '</ul></div>';
-					document.getElementById('base-other-lang').parentNode.innerHTML = lang_nav;
-				}
-
-				// Handling for the terms and conditions links
-				target = document.getElementById('base-tc');
-				if (target !== null) {
-					nodes = target.getElementsByTagName('li');
-
-					// Transform the footer into a nav bar
-					footer1 = '<ul class="ui-grid-a">';
-					for (i = 0, len = nodes.length; i < len; i += 1) {
-						node = nodes[i];
-						link = node.getElementsByTagName('a')[0];
-						footer1 += '<li class="ui-block-' + (i % 2 !== 0 ? 'b' : 'a') + '"><a href="' + link.href + '"' + (node.hasAttribute('lang') ? ' lang="' + node.getAttribute('lang') + '"' : '') + ' data-role="button" data-theme="c" data-corners="false">' + link.innerHTML + '</a></li>';
-					}
-					footer1 += '</ul>';
-					target.id = '';
-					target.className = '';
-					target.setAttribute('data-role', 'footer');
-					target.innerHTML = footer1;
-				}
 			}
 
 			// jQuery mobile has loaded
