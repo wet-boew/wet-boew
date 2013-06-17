@@ -1,0 +1,176 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+%base-sp-pe-screen-margin-auto {
+	margin: auto;
+}
+%base-sp-pe-screen-overflow-hidden  {
+	overflow: hidden;
+}
+%base-sp-pe-screen-display-block-auto-margins {
+	display: block;
+	float: none;
+	margin: auto;
+}
+%base-sp-pe-screen-img-margin-bottom-0 {
+	img {
+		margin-bottom: 0;
+	}
+}
+%base-sp-pe-screen-li-margin-right-10 {
+	li {
+		margin-right: 10px;
+	}
+}
+%base-sp-pe-screen-display-none {
+	display: none;
+}
+%base-sp-pe-screen-display-block {
+	display: block;
+}
+%base-sp-pe-screen-wmms-sig-display-none {
+	#base-wmms-in {
+		@extend %base-sp-pe-screen-display-none;
+	}
+	#base-sig-in {
+		@extend %base-sp-pe-screen-display-none;
+	}
+}
+%base-sp-pe-screen-wmms-sig-display-block {
+	#base-wmms-in {
+		@extend %base-sp-pe-screen-display-block;
+	}
+	#base-sig-in {
+		@extend %base-sp-pe-screen-display-block;
+	}
+}
+%base-sp-pe-screen-ui-mobile-rendering-wmms-sig-display-block-none {
+	&.ui-mobile {
+		@extend %base-sp-pe-screen-wmms-sig-display-block;
+		&.ui-mobile-rendering {
+			@extend %base-sp-pe-screen-wmms-sig-display-none;
+		}
+	}
+}
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#wb-main {
+	h1 {
+		text-align: center;
+		padding: 40px 0;
+		margin: 0;
+		border: none;
+	}
+}
+
+#wb-head-in {
+	@extend %base-sp-pe-screen-margin-auto;
+	@extend %base-sp-pe-screen-overflow-hidden;
+}
+
+#wb-foot-in {
+	@extend %base-sp-pe-screen-margin-auto;
+	@extend %base-sp-pe-screen-overflow-hidden;
+}
+
+#wb-head {
+	@extend %base-sp-pe-screen-overflow-hidden;
+}
+
+#wb-foot {
+	@extend %base-sp-pe-screen-overflow-hidden;
+}
+
+#base-sig {
+	@extend %base-sp-pe-screen-display-block-auto-margins;
+	@extend %base-sp-pe-screen-img-margin-bottom-0;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	line-height: normal;
+}
+
+#base-wmms {
+	@extend %base-sp-pe-screen-img-margin-bottom-0;
+}
+
+#base-wmms-in {
+	@extend %base-sp-pe-screen-display-none;
+}
+#base-sig-in {
+	@extend %base-sp-pe-screen-display-none;
+}
+.svg {
+	@extend %base-sp-pe-screen-wmms-sig-display-block;
+}
+.pe-disable {
+	@extend %base-sp-pe-screen-wmms-sig-display-block;
+}
+.no-svg {
+	@extend %base-sp-pe-screen-ui-mobile-rendering-wmms-sig-display-block-none;
+}
+.ie9 {
+	@extend %base-sp-pe-screen-ui-mobile-rendering-wmms-sig-display-block-none;
+}
+.ie10 {
+	@extend %base-sp-pe-screen-ui-mobile-rendering-wmms-sig-display-block-none;
+}
+
+#wb-core-in {
+	@extend %base-sp-pe-screen-margin-auto;
+	overflow: visible !important;
+	&:after {
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+}
+
+#wb-main-in {
+	position: relative;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+#base-bnr {
+	width: 100%;
+}
+
+#base-title {
+	width: auto;
+	min-height: 115px;
+}
+
+%base-sp-pe-screen-right-titles {
+	text-align: right;
+}
+
+#base-title-right {
+	@extend %base-sp-pe-screen-right-titles;
+}
+
+.base-alt-title-right {
+	@extend %base-sp-pe-screen-right-titles;
+}
+
+#base-lang {
+	@extend %base-sp-pe-screen-li-margin-right-10;
+	margin-top: 20px;
+	line-height: normal;
+}
+
+#base-tc {
+	@extend %base-sp-pe-screen-li-margin-right-10;
+	@extend %base-sp-pe-screen-display-block-auto-margins;
+}

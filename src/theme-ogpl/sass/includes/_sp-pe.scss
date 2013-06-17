@@ -1,0 +1,221 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+@import "compass/css3/inline-block";
+@import "compass/css3/appearance";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/images";
+
+%ogpl-sp-pe-width-214-height-20 {
+	width: 214px;
+	height: 20px;
+}
+%ogpl-sp-pe-width-126-height-30 {
+	width: 126px;
+	height: 30px;
+}
+%ogpl-sp-pe-font-weight-700 {
+	font-weight: 700;
+}
+%ogpl-sp-pe-title-all {
+	padding-top: 10px;
+	color: #333;
+	@extend %ogpl-sp-pe-font-weight-700;
+}
+%ogpl-sp-pe-title {
+	font-size: 1.5em;
+	@extend %ogpl-sp-pe-title-all;
+}
+%ogpl-sp-pe-alt-title {
+	font-size: 1.2em;
+	@extend %ogpl-sp-pe-title-all;
+}
+%ogpl-sp-pe-lang {
+	list-style-type: none;
+	@include inline-block;
+	margin: 10px 0 0;
+	padding-left: 0;
+	div {
+		min-width: 8em;
+	}
+	li {
+		@extend %ogpl-sp-pe-float-left;
+		@extend %ogpl-sp-pe-padding-0;
+		text-align: center;
+		a {
+			@include appearance(none);
+			@if $legacy-support-for-ie8 { 
+				@include filter-gradient(#EEE, #CCC);
+			} @else {
+				@include background-image(linear-gradient(#EEE, #CCC));
+			}
+			border: {
+				bottom: 1px solid #999;
+				right: 1px solid #999;
+				top: 1px solid #fff;
+				left: 1px solid #fff;
+			}
+			color: #333;
+			padding: 10px 0;
+			@include border-radius(2px);
+			text-shadow: 0 1px 0 #eee;
+			@extend %ogpl-sp-pe-font-weight-700;
+			font-size: 120%;
+			@include box-shadow(none);
+			@extend %ogpl-sp-pe-display-block;
+			@extend %ogpl-sp-pe-text-decoration-none;
+			text-transform: capitalize;
+			@include pseudo-focus {
+				@include box-shadow(none);
+				@if $legacy-support-for-ie8 { 
+					@include filter-gradient(#DDD, #CCC);
+				} @else {
+					@include background-image(linear-gradient(#DDD, #CCC));
+				}
+				border: 1px solid #999;
+				text-shadow: 0 1px 0 #ddd;
+			}
+		}
+	}
+}
+%ogpl-sp-pe-tc {
+	list-style-type: none;
+	@include inline-block;
+	margin: 0;
+	padding: {
+		top: 4px;
+		left: 0;
+	}
+	line-height: normal;
+	div {
+		min-width: 8em;
+	}
+	li {
+		@extend %ogpl-sp-pe-float-left;
+		@extend %ogpl-sp-pe-padding-0;
+		a {
+			@extend %ogpl-sp-pe-display-block;
+			@extend %ogpl-sp-pe-text-decoration-none;
+			font-size: 0.9em;
+			@include pseudo-focus {
+				text-decoration: underline;
+			}
+		}
+	}
+}
+%ogpl-sp-pe-text-shadow-none {
+	text-shadow: none;
+}
+%ogpl-sp-pe-float-left {
+	float: left;
+}
+%ogpl-sp-pe-padding-0 {
+	padding: 0;
+}
+%ogpl-sp-pe-display-block {
+	display: block;
+}
+%ogpl-sp-pe-text-decoration-none {
+	text-decoration: none;
+}
+
+h1 {
+	font-size: 2em;
+	color: #222;
+	border: none;
+	@extend %ogpl-sp-pe-font-weight-700;
+	margin-bottom: 0 !important;
+	@extend %ogpl-sp-pe-text-shadow-none;
+}
+
+h2 {
+	position: absolute;
+	@include clip-rect;
+	height: 0 !important;
+	width: 0 !important;
+	overflow: hidden !important;
+	margin: 0 !important;
+}
+
+#ogpl-title {
+	@extend %ogpl-sp-pe-text-shadow-none;
+}
+
+#wb-body {
+	background: #fff;
+}
+
+#wb-skip {
+	display: none;
+	visibility: hidden;
+}
+
+#ogpl-sig {
+	height: 20px;
+	img {
+		@extend %ogpl-sp-pe-width-214-height-20;
+	}
+}
+
+#ogpl-sig-in {
+	@extend %ogpl-sp-pe-width-214-height-20;
+}
+
+#ogpl-wmms {
+	height: 30px;
+	img {
+		@extend %ogpl-sp-pe-width-126-height-30;
+	}
+}
+
+#ogpl-wmms-in {
+	@extend %ogpl-sp-pe-width-126-height-30;
+	position: absolute;
+	right: 0;
+}
+
+#ogpl-title-left {
+	@extend %ogpl-sp-pe-title;
+}
+
+#ogpl-title-right {
+	@extend %ogpl-sp-pe-title;
+}
+
+.ogpl-alt-title-left {
+	@extend %ogpl-sp-pe-alt-title;
+}
+
+.ogpl-alt-title-right {
+	@extend %ogpl-sp-pe-alt-title;
+}
+
+#ogpl-other-lang {
+	@extend %ogpl-sp-pe-lang;
+}
+
+#ogpl-ef-lang {
+	@extend %ogpl-sp-pe-lang;
+	li {
+		@include inline-block;
+		a {
+			&:active {
+				@include box-shadow(inset 0 0 5px 2px #999, 0 0 0 0 #eee);
+			}
+		}
+	}
+}
+
+#ogpl-tc {
+	margin-top: 0;
+}
+
+#ogpl-ef-tc {
+	@extend %ogpl-sp-pe-tc;
+}
+
+#ogpl-other-tc {
+	@extend %ogpl-sp-pe-tc;
+}

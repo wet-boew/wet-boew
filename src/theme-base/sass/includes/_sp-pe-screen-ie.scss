@@ -1,0 +1,49 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+.ie7 {
+	#base-sig {
+		margin-top: 20px;
+		padding-bottom: 3px;
+	}
+	%base-sp-pe-screen-ie7-title-all {
+		padding-top: 10px;
+	}
+	#base-title-left {
+		@extend %base-sp-pe-screen-ie7-title-all;
+	}
+	#base-title-right {
+		@extend %base-sp-pe-screen-ie7-title-all;
+	}
+	.base-alt-title-left {
+		@extend %base-sp-pe-screen-ie7-title-all;
+	}
+	.base-alt-title-right {
+		@extend %base-sp-pe-screen-ie7-title-all;
+	}
+	%base-sp-pe-screen-ie7-langs {
+		margin: 10px 0 0;
+	}
+	#base-ef-lang {
+		@extend %base-sp-pe-screen-ie7-langs;
+	}
+	#base-other-lang {
+		@extend %base-sp-pe-screen-ie7-langs;
+	}
+	%base-sp-pe-screen-ie7-padding-top-7px {
+		padding-top: 7px;
+	}
+	#base-ef-tc {
+		@extend %base-sp-pe-screen-ie7-padding-top-7px;
+	}
+	#base-other-tc {
+		@extend %base-sp-pe-screen-ie7-padding-top-7px;
+	}
+	#wb-core {
+		margin-bottom: -20px;
+	}
+	#wb-main-in {
+		position: static;
+	}
+}

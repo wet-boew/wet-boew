@@ -1,0 +1,176 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+%ogpl-sp-pe-screen-margin-auto {
+	margin: auto;
+}
+%ogpl-sp-pe-screen-overflow-hidden  {
+	overflow: hidden;
+}
+%ogpl-sp-pe-screen-display-block-auto-margins {
+	display: block;
+	float: none;
+	margin: auto;
+}
+%ogpl-sp-pe-screen-img-margin-bottom-0 {
+	img {
+		margin-bottom: 0;
+	}
+}
+%ogpl-sp-pe-screen-li-margin-right-10 {
+	li {
+		margin-right: 10px;
+	}
+}
+%ogpl-sp-pe-screen-display-none {
+	display: none;
+}
+%ogpl-sp-pe-screen-display-block {
+	display: block;
+}
+%ogpl-sp-pe-screen-wmms-sig-display-none {
+	#ogpl-wmms-in {
+		@extend %ogpl-sp-pe-screen-display-none;
+	}
+	#ogpl-sig-in {
+		@extend %ogpl-sp-pe-screen-display-none;
+	}
+}
+%ogpl-sp-pe-screen-wmms-sig-display-block {
+	#ogpl-wmms-in {
+		@extend %ogpl-sp-pe-screen-display-block;
+	}
+	#ogpl-sig-in {
+		@extend %ogpl-sp-pe-screen-display-block;
+	}
+}
+%ogpl-sp-pe-screen-ui-mobile-rendering-wmms-sig-display-block-none {
+	&.ui-mobile {
+		@extend %ogpl-sp-pe-screen-wmms-sig-display-block;
+		&.ui-mobile-rendering {
+			@extend %ogpl-sp-pe-screen-wmms-sig-display-none;
+		}
+	}
+}
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#wb-main {
+	h1 {
+		text-align: center;
+		padding: 40px 0;
+		margin: 0;
+		border: none;
+	}
+}
+
+#wb-head-in {
+	@extend %ogpl-sp-pe-screen-margin-auto;
+	@extend %ogpl-sp-pe-screen-overflow-hidden;
+}
+
+#wb-foot-in {
+	@extend %ogpl-sp-pe-screen-margin-auto;
+	@extend %ogpl-sp-pe-screen-overflow-hidden;
+}
+
+#wb-head {
+	@extend %ogpl-sp-pe-screen-overflow-hidden;
+}
+
+#wb-foot {
+	@extend %ogpl-sp-pe-screen-overflow-hidden;
+}
+
+#ogpl-sig {
+	@extend %ogpl-sp-pe-screen-display-block-auto-margins;
+	@extend %ogpl-sp-pe-screen-img-margin-bottom-0;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	line-height: normal;
+}
+
+#ogpl-wmms {
+	@extend %ogpl-sp-pe-screen-img-margin-bottom-0;
+}
+
+#ogpl-wmms-in {
+	@extend %ogpl-sp-pe-screen-display-none;
+}
+#ogpl-sig-in {
+	@extend %ogpl-sp-pe-screen-display-none;
+}
+.svg {
+	@extend %ogpl-sp-pe-screen-wmms-sig-display-block;
+}
+.pe-disable {
+	@extend %ogpl-sp-pe-screen-wmms-sig-display-block;
+}
+.no-svg {
+	@extend %ogpl-sp-pe-screen-ui-mobile-rendering-wmms-sig-display-block-none;
+}
+.ie9 {
+	@extend %ogpl-sp-pe-screen-ui-mobile-rendering-wmms-sig-display-block-none;
+}
+.ie10 {
+	@extend %ogpl-sp-pe-screen-ui-mobile-rendering-wmms-sig-display-block-none;
+}
+
+#wb-core-in {
+	@extend %ogpl-sp-pe-screen-margin-auto;
+	overflow: visible !important;
+	&:after {
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+}
+
+#wb-main-in {
+	position: relative;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+#ogpl-bnr {
+	width: 100%;
+}
+
+#ogpl-title {
+	width: auto;
+	min-height: 115px;
+}
+
+%ogpl-sp-pe-screen-right-titles {
+	text-align: right;
+}
+
+#ogpl-title-right {
+	@extend %ogpl-sp-pe-screen-right-titles;
+}
+
+.ogpl-alt-title-right {
+	@extend %ogpl-sp-pe-screen-right-titles;
+}
+
+#ogpl-lang {
+	@extend %ogpl-sp-pe-screen-li-margin-right-10;
+	margin-top: 20px;
+	line-height: normal;
+}
+
+#ogpl-tc {
+	@extend %ogpl-sp-pe-screen-li-margin-right-10;
+	@extend %ogpl-sp-pe-screen-display-block-auto-margins;
+}

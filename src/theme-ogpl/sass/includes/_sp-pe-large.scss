@@ -1,0 +1,21 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+%ogpl-sp-pe-large-display-none {
+	display: none;
+}
+
+.ui-navbar {
+	@extend %ogpl-sp-pe-large-display-none;
+}
+
+.ui-footer {
+	@extend %ogpl-sp-pe-large-display-none;
+}
+
+#wb-foot {
+	#ogpl-wmms {
+		@extend %ogpl-sp-pe-large-display-none;
+	}
+}

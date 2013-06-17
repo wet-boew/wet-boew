@@ -1,0 +1,161 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+%base-serv-width-214-height-20 {
+	width: 214px;
+	height: 20px;
+}
+%base-serv-width-126-height-30 {
+	width: 126px;
+	height: 30px;
+}
+%base-serv-background-white {
+	background: #fff;
+}
+%base-serv-font-weight-700 {
+	font-weight: 700;
+}
+%base-serv-img-margin-bottom-0 {
+	img {
+		margin-bottom: 0;
+	}
+}
+%base-serv-title-right-left {
+	padding: 0;
+	color: #000;
+	font-size: 1.5em;
+	@extend %base-serv-font-weight-700;
+}
+%base-serv-alt-title-right-left {
+	padding: 0;
+	color: #000;
+	font-size: 1.2em;
+	@extend %base-serv-font-weight-700;
+}
+%base-serv-margin-left-0 {
+	margin-left: 0;
+}
+%base-serv-margin-bottom-11 {
+	margin-bottom: 11px;
+}
+%base-serv-color-295376 {
+	color: #295376;
+}
+%base-serv-text-decoration-none {
+	text-decoration: none;
+}
+%base-serv-text-decoration-underline {
+	text-decoration: underline;
+}
+
+h1 {
+	position: absolute;
+	@include clip-rect;
+	height: 0 !important;
+	width: 0 !important;
+	overflow: hidden !important;
+	margin: 0 !important;
+}
+
+#wb-skip {
+	display: none;
+	visibility: hidden;
+}
+
+#wb-body {
+	@extend %base-serv-background-white;
+}
+
+#wb-head-in {
+	@extend %base-serv-background-white;
+}
+
+#base-sig {
+	height: 20px;
+	@extend %base-serv-img-margin-bottom-0;
+	margin-top: 20px;
+	@extend %base-serv-margin-bottom-11;
+	img {
+		@extend %base-serv-width-214-height-20;
+	}
+}
+
+#base-sig-in {
+	@extend %base-serv-width-214-height-20;
+}
+
+#base-wmms {
+	height: 30px;
+	@extend %base-serv-img-margin-bottom-0;
+	text-align: right;
+	margin-top: 10px;
+	@extend %base-serv-margin-bottom-11;
+	img {
+		@extend %base-serv-width-126-height-30;
+	}
+}
+
+#base-wmms-in {
+	@extend %base-serv-width-126-height-30;
+	position: absolute;
+	right: 0;
+}
+
+#base-title {
+	border-bottom: 1px solid #666;
+	a {
+		@extend %base-serv-color-295376;
+		@extend %base-serv-text-decoration-none;
+		&:visited {
+			@extend %base-serv-color-295376;
+			@extend %base-serv-text-decoration-none;
+		}
+		@include pseudo-focus {
+			@extend %base-serv-color-295376;
+			@extend %base-serv-text-decoration-underline;
+		}
+	}
+}
+
+#base-title-left {
+	@extend %base-serv-title-right-left;
+}
+
+#base-title-right {
+	@extend %base-serv-title-right-left;
+}
+
+.base-alt-title-left {
+	@extend %base-serv-title-right-left;
+	@extend %base-serv-alt-title-right-left;
+}
+
+.base-alt-title-right {
+	@extend %base-serv-title-right-left;
+	@extend %base-serv-alt-title-right-left;
+}
+
+#wb-core-in {
+	@extend %base-serv-background-white;
+	h2 {
+		@extend %base-serv-margin-left-0;
+	}
+	p {
+		@extend %base-serv-margin-left-0;
+	}
+	li {
+		a {
+			@extend %base-serv-text-decoration-none;
+			@include pseudo-focus {
+				@extend %base-serv-text-decoration-underline;
+			}
+		}
+	}
+}
+
+[dir="rtl"] {
+	#base-wmms {
+		text-align: left;
+	}
+}

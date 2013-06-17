@@ -1,0 +1,161 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+%ogpl-serv-width-214-height-20 {
+	width: 214px;
+	height: 20px;
+}
+%ogpl-serv-width-126-height-30 {
+	width: 126px;
+	height: 30px;
+}
+%ogpl-serv-background-white {
+	background: #fff;
+}
+%ogpl-serv-font-weight-700 {
+	font-weight: 700;
+}
+%ogpl-serv-img-margin-bottom-0 {
+	img {
+		margin-bottom: 0;
+	}
+}
+%ogpl-serv-title-right-left {
+	padding: 0;
+	color: #000;
+	font-size: 1.5em;
+	@extend %ogpl-serv-font-weight-700;
+}
+%ogpl-serv-alt-title-right-left {
+	padding: 0;
+	color: #000;
+	font-size: 1.2em;
+	@extend %ogpl-serv-font-weight-700;
+}
+%ogpl-serv-margin-left-0 {
+	margin-left: 0;
+}
+%ogpl-serv-margin-bottom-11 {
+	margin-bottom: 11px;
+}
+%ogpl-serv-color-295376 {
+	color: #295376;
+}
+%ogpl-serv-text-decoration-none {
+	text-decoration: none;
+}
+%ogpl-serv-text-decoration-underline {
+	text-decoration: underline;
+}
+
+h1 {
+	position: absolute;
+	@include clip-rect;
+	height: 0 !important;
+	width: 0 !important;
+	overflow: hidden !important;
+	margin: 0 !important;
+}
+
+#wb-skip {
+	display: none;
+	visibility: hidden;
+}
+
+#wb-body {
+	@extend %ogpl-serv-background-white;
+}
+
+#wb-head-in {
+	@extend %ogpl-serv-background-white;
+}
+
+#ogpl-sig {
+	height: 20px;
+	@extend %ogpl-serv-img-margin-bottom-0;
+	margin-top: 20px;
+	@extend %ogpl-serv-margin-bottom-11;
+	img {
+		@extend %ogpl-serv-width-214-height-20;
+	}
+}
+
+#ogpl-sig-in {
+	@extend %ogpl-serv-width-214-height-20;
+}
+
+#ogpl-wmms {
+	height: 30px;
+	@extend %ogpl-serv-img-margin-bottom-0;
+	text-align: right;
+	margin-top: 10px;
+	@extend %ogpl-serv-margin-bottom-11;
+	img {
+		@extend %ogpl-serv-width-126-height-30;
+	}
+}
+
+#ogpl-wmms-in {
+	@extend %ogpl-serv-width-126-height-30;
+	position: absolute;
+	right: 0;
+}
+
+#ogpl-title {
+	border-bottom: 1px solid #666;
+	a {
+		@extend %ogpl-serv-color-295376;
+		@extend %ogpl-serv-text-decoration-none;
+		&:visited {
+			@extend %ogpl-serv-color-295376;
+			@extend %ogpl-serv-text-decoration-none;
+		}
+		@include pseudo-focus {
+			@extend %ogpl-serv-color-295376;
+			@extend %ogpl-serv-text-decoration-underline;
+		}
+	}
+}
+
+#ogpl-title-left {
+	@extend %ogpl-serv-title-right-left;
+}
+
+#ogpl-title-right {
+	@extend %ogpl-serv-title-right-left;
+}
+
+.ogpl-alt-title-left {
+	@extend %ogpl-serv-title-right-left;
+	@extend %ogpl-serv-alt-title-right-left;
+}
+
+.ogpl-alt-title-right {
+	@extend %ogpl-serv-title-right-left;
+	@extend %ogpl-serv-alt-title-right-left;
+}
+
+#wb-core-in {
+	@extend %ogpl-serv-background-white;
+	h2 {
+		@extend %ogpl-serv-margin-left-0;
+	}
+	p {
+		@extend %ogpl-serv-margin-left-0;
+	}
+	li {
+		a {
+			@extend %ogpl-serv-text-decoration-none;
+			@include pseudo-focus {
+				@extend %ogpl-serv-text-decoration-underline;
+			}
+		}
+	}
+}
+
+[dir="rtl"] {
+	#ogpl-wmms {
+		text-align: left;
+	}
+}

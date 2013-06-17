@@ -81,9 +81,6 @@
 %wet-default-large-screen-color-fff {
 	color: #FFF;
 }
-%wet-default-large-screen-font-family-arial {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-}
 %wet-default-large-screen-background-none {
 	background: none;
 }
@@ -97,7 +94,6 @@ html {
 
 body {
 	@extend %wet-default-large-screen-padding-0;
-	@extend %wet-default-large-screen-font-family-arial;
 	background: #F9F9F9;
 }
 
@@ -223,6 +219,7 @@ h1 {
 	@extend %wet-default-large-screen-overflow-hidden;
 	@extend %wet-default-large-screen-a-hover-focus-active-text-decoration-underline;
 	font-size: 0.9em;
+	min-height: 31px;
 	border-bottom: 1px solid #FFF;
 	a {
 		@extend %wet-default-large-screen-display-block;
@@ -258,10 +255,10 @@ h1 {
 	@extend %wet-default-large-screen-hover-focus-active-text-decoration-underline;
 	@extend %wet-default-large-screen-a-hover-focus-active-text-decoration-underline;
 	@extend %wet-default-large-screen-font-size-1-52-em;
+	border: none !important;
 	a {
 		@extend %wet-default-large-screen-color-fff;
 		@extend %wet-default-large-screen-font-size-1-52-em;
-		@extend %wet-default-large-screen-font-family-arial;
 		text-shadow: #333 1px 1px 1px;
 		display: table-row;
 	}
@@ -428,7 +425,7 @@ h1 {
 
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
-	#wb-body, #wb-body-sec {
+	#wb-body-sec {
 		#wb-main {
 			@extend %wet-default-large-screen-float-left;
 		}

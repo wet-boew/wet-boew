@@ -1,0 +1,128 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+@import "compass/css3/images";
+
+%wet-sp-pe-small-medium-screen-right-5-left-auto {
+	right: 5px;
+	left: auto;
+}
+%wet-sp-pe-small-medium-screen-display-none-important {
+	display: none !important;
+}
+%wet-sp-pe-small-medium-screen-display-block {
+	display: block;
+}
+%wet-sp-pe-small-medium-screen-position-absolute-width-69-width-32 {
+	position: absolute;
+	width: 69px;
+	height: 32px;
+}
+%wet-sp-pe-small-medium-screen-width-69-height-32-position-absolute-left-5-top-5 {
+	@extend %wet-sp-pe-small-medium-screen-position-absolute-width-69-width-32;
+	left: 5px;
+	top: 5px;
+}
+
+body {
+	@if $experimental-support-for-webkit {
+		-webkit-text-size-adjust: none;
+	}
+	font-size: 80%;
+	color: #333;
+}
+
+#wb-head {
+	&:after {
+		content: ".";
+		@extend %wet-sp-pe-small-medium-screen-display-block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+}
+
+[id|="wb-body"] {
+	background: #fff !important;
+}
+
+#wet-fullhd {
+	min-height: 42px;
+	@include background-image(linear-gradient(#3C3C3C, #515151));
+	object {
+		@extend %wet-sp-pe-small-medium-screen-width-69-height-32-position-absolute-left-5-top-5;
+	}
+	img {
+		@extend %wet-sp-pe-small-medium-screen-width-69-height-32-position-absolute-left-5-top-5;
+	}
+}
+
+#wet-title {
+	@include background-image(linear-gradient(#11507C, #176DA7));
+	border: 1px solid #456F9A;
+	p {
+		font-size: 1.5em;
+		font-weight: 400;
+		padding: 3px 5px;
+		margin: 0;
+		color: #fff;
+		text-shadow: 0 1px 1px #044062;
+	}
+	object {
+		@extend %wet-sp-pe-small-medium-screen-display-none-important;
+	}
+	img {
+		@extend %wet-sp-pe-small-medium-screen-display-none-important;
+	}
+	span {
+		display: table-cell;
+		+ {
+			span {
+				padding-left: 15px;
+			}
+		}
+	}
+}
+
+#wb-main-in {
+	h1 {
+		margin-top: 0.5em;
+	}
+}
+
+#wet-bnr {
+	background: #225C96;
+}
+
+#wet-bnr-in {
+	.ui-mini {
+		.ui-btn-inner {
+			font-size: 1em;
+		}
+	}
+}
+
+#wb-core {
+	clear: both;
+}
+
+.ui-loader-default {
+	h1 {
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#wet-title {
+		object {
+			@extend %wet-sp-pe-small-medium-screen-right-5-left-auto;
+		}
+		img {
+			@extend %wet-sp-pe-small-medium-screen-right-5-left-auto;
+		}
+	}
+}
