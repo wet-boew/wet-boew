@@ -259,7 +259,7 @@ input {
 #wet-sft {
 	background: #CCC;
 	border-top: #BBB 1px solid;
-	font-family: Arial, Helvetica, sans-serif;
+	@extend %wet-default-font-body;
 	a {
 		@extend %wet-default-screen-color-222;
 	}
