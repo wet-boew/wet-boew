@@ -284,6 +284,7 @@ h1 {
 #gcwu-title {
 	height: 123px;
 	display: table-row;
+	border: none !important;
 	a {
 		display: inline-block;
 		@extend %gcwu-default-large-screen-margin-left-10;

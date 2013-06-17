@@ -157,6 +157,7 @@ h1 {
 #base-title {
 	@extend %base-default-large-screen-title-font;
 	display: table-row;
+	border: none !important;
 	a {
 		@extend %base-default-large-screen-title-font;
 		display: inline-block;
@@ -218,9 +219,6 @@ h1 {
 	p {
 		@extend %base-default-large-screen-float-left;
 	}
-}
-
-#base-fullhd-in {
 	@extend %base-default-large-screen-overflow-hidden;
 	background: #333;
 }

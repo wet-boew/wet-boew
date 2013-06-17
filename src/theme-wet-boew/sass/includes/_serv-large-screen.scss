@@ -1,0 +1,148 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+@import "compass/css3/images";
+
+%wet-sp-pe-large-screen-position-relative {
+	position: relative;
+}
+%wet-sp-pe-large-screen-font-size-1-52-em {
+	font-size: 1.52em;
+}
+%wet-sp-pe-large-screen-overflow-hidden {
+	overflow: hidden;
+}
+%wet-sp-pe-large-screen-padding-9-15-9-0-position-absolute-width-141-width-65 {
+	padding: 9px 15px 9px 0;
+	position: absolute;
+	width: 141px;
+	height: 65px;
+}
+%wet-sp-pe-large-screen-padding-9-0-9-15 {
+	padding: 9px 0 9px 15px;
+}
+%wet-sp-pe-large-screen-display-none-important {
+	display: none !important;
+}
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+	padding: 0;
+}
+
+#wb-head {
+	@extend %wet-sp-pe-large-screen-overflow-hidden;
+}
+
+#wb-head-in {
+	@extend %wet-sp-pe-large-screen-overflow-hidden;
+}
+
+#wet-fullhd {
+	min-height: 31px;
+	border-bottom: 1px solid #FFFFFF;
+	object {
+		@extend %wet-sp-pe-large-screen-display-none-important;
+	}
+	img {
+		@extend %wet-sp-pe-large-screen-display-none-important;
+	}
+}
+
+#wb-body {
+	background: #FFF !important;
+	#wb-main {
+		float: left;
+	}
+}
+
+#wb-core-in {
+	overflow: visible !important;
+	@extend %wet-sp-pe-large-screen-position-relative;
+	background: #FFF;
+	&:after {
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+}
+
+#wet-bnr {
+	@extend %wet-sp-pe-large-screen-position-relative;
+	@extend %wet-sp-pe-large-screen-overflow-hidden;
+	z-index: 501 !important;
+	background: #114F7A;
+	@if $legacy-support-for-ie8 {
+		@include filter-gradient(#176CA7, #114F7A);
+	} @else {
+		@include background-image(linear-gradient(#176CA7, #114F7A));
+	}
+}
+
+#wet-bnr-in {
+	@extend %wet-sp-pe-large-screen-position-relative;
+	@extend %wet-sp-pe-large-screen-overflow-hidden;
+}
+
+#wb-main-in {
+	padding-top: 1px;
+	padding-bottom: 2.5em;
+}
+
+#wet-title {
+	@extend %wet-sp-pe-large-screen-font-size-1-52-em;
+	border: none !important;
+	p {
+		color: #FFF;
+		@extend %wet-sp-pe-large-screen-font-size-1-52-em;
+		text-shadow: #333 1px 1px 1px;
+		display: table-row;
+		font-weight: 400;
+	}
+	object {
+		@extend %wet-sp-pe-large-screen-padding-9-15-9-0-position-absolute-width-141-width-65;
+	}
+	img {
+		@extend %wet-sp-pe-large-screen-padding-9-15-9-0-position-absolute-width-141-width-65;
+	}
+	span {
+		display: table-cell;
+		vertical-align: middle;
+		height: 2.82em;
+		padding-left: 155px;
+		+ {
+			span {
+				padding-left: 20px;
+			}
+		}
+	}
+}
+
+#wet-title-in {
+	margin: 0;
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#wet-title {
+		object {
+			@extend %wet-sp-pe-large-screen-padding-9-0-9-15;
+		}
+		img {
+			@extend %wet-sp-pe-large-screen-padding-9-0-9-15;
+		}
+		span {
+			padding-left: 0;
+			padding-right: 155px;
+		}
+	}
+	#wet-title-in {
+		background-position: right center;
+	}
+}
