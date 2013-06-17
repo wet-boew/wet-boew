@@ -223,6 +223,7 @@ h1 {
 	@extend %ogpl-default-large-screen-overflow-hidden;
 	@extend %ogpl-default-large-screen-a-hover-focus-active-text-decoration-underline;
 	font-size: 0.9em;
+	min-height: 31px;
 	border-bottom: 1px solid #FFF;
 	a {
 		@extend %ogpl-default-large-screen-display-block;
@@ -258,6 +259,7 @@ h1 {
 	@extend %ogpl-default-large-screen-hover-focus-active-text-decoration-underline;
 	@extend %ogpl-default-large-screen-a-hover-focus-active-text-decoration-underline;
 	@extend %ogpl-default-large-screen-font-size-1-52-em;
+	border: none !important;
 	a {
 		@extend %ogpl-default-large-screen-color-fff;
 		@extend %ogpl-default-large-screen-font-size-1-52-em;
