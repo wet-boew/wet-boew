@@ -25,19 +25,19 @@
 	overflow: hidden;
 	*zoom: 1;
 	margin: 0 auto;
-	
+
 	.row {
 	  width: auto;
 	  max-width: none;
 	  *zoom: 1;
 	  margin: 0 -10px;
 	}
-	
+
 	&:before {
 	  content: " ";
 	  display: table;
 	}
-	
+
 	&:after, .row:after {
 	  clear: both;
 	  content: " ";
@@ -137,7 +137,7 @@ $i: 1;
 	.container { width: 1200px; }
 	.row .row { margin-left: -15px; margin-right: -15px; }
 	[class*="span-"] { padding-left: 15px; padding-right: 15px; }
-	[class*="module"], [class~="background"] {padding: 0 15px;margin-bottom: 30px;}
+	[class*="module"], [class*="background-"] {padding: 0 15px;margin-bottom: 30px;}
 	[class*="span-"] [class*="border-"] { padding: 0 15px; margin-bottom: 30px; }
 	.bleed-full {
 		[class*="pull-"]:last-child, > .row [class*="pull-"]:last-child { padding-right: 15px; }
@@ -153,18 +153,14 @@ $i: 1;
 		&:last-child [class*="span-"] { margin-bottom: 10px;}
 	}
 	[class*="span-"] { padding-left: 5px; padding-right: 5px; width: 100%;}
-	
+
 	@include create_mobile_grid($columns);
 }
 
 @media screen and (max-width: 479px) and (min-device-width: 479px) {
 	.span-m-stack-small { width: 100%; }
 }
-   
+
 @media screen and (max-width: 319px) and (min-device-width: 319px) {
 	.span-m-stack-xsmall { width: 100%;}
 }
-
-
-
-
