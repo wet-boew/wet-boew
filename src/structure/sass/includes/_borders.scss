@@ -13,7 +13,7 @@ $border-width-thick: 3px !default;
 $border-width-xthick: 5px !default;
 
 [class*="border-"] {
-  border-color: transparent;
+  border-color: $border-color-medium;
   border-width: 0;
   border-style: solid;
 }
@@ -23,10 +23,10 @@ $border-width-xthick: 5px !default;
 [class~="border-accent"] {  border-color: $border-color-accent; }
 [class~="border-dashed"] {  border-style: dashed; }
 [class~="border-double"] {  border-style: double; border-width: 3px; }
+[class~="border-xthick"] { border-width: $border-width-xthick; }
+[class~="border-thick"] { border-width: $border-width-thick; }
 
 [class~="border-all"] { border-width: $border-width-normal; }
-[class~="border-all-thick"] { border-width: $border-width-thick; }
-[class~="border-all-xthick"] { border-width: $border-width-xthick; }
 [class~="border-all-none"] { border: none; }
 
 [class~="border-right"] { border-right-width: $border-width-normal; }

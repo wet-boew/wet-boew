@@ -7,6 +7,7 @@
  * Version: @wet-boew-build.version@
  *
  */
+@import 'mixins';
 @import 'base'; /* Base styles for all Themes */
-@import 'grids';
 @import 'helpers';
+@import 'grids';

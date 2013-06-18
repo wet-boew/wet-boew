@@ -2,42 +2,42 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
+
 // Standard gutter width
-$gutterWidth: 10px;
+$gutterWidth: 15px !default;
 $columns : 12 !default;
 $width: 960px !default;
 
 $columnWidth: 100%/$columns;
 
-
 @mixin create_column($name, $num) {
-	.span-#{$name} { width: $columnWidth * $num; _width: $columnWidth * $num - 0.0694%; }
+	.row .span-#{$name} { width: $columnWidth * $num; _width: $columnWidth * $num - 0.0694%; }
 }
 
 @mixin create_mobile_column($name, $num) {
-	.span-m-#{$name} { width: $columnWidth * $num; }
+	.row .span-m-#{$name} { width: $columnWidth * $num; }
 }
 
 @mixin create_list_column($name, $num) {
-	.list-grid-#{$name} > li { width: 100%/$num; }
+	.row .list-grid-#{$name} > li { width: 100%/$num; }
 }
 
 @mixin create_offset($name, $num) {
-	.offset-#{$num} { margin-left: $columnWidth * $num; _margin-left: $columnWidth * $num - 0.0694%; }
+	.row .offset-#{$num} { margin-left: $columnWidth * $num; _margin-left: $columnWidth * $num - 0.0694%; }
 }
 
 @mixin create_mobile_offset($name, $num) {
-	.offset-m-#{$num} { margin-left: $columnWidth * $num; _margin-left: $columnWidth * $num - 0.0694%; }
+	.row .offset-m-#{$num} { margin-left: $columnWidth * $num; _margin-left: $columnWidth * $num - 0.0694%; }
 }
 
 @mixin create_pull_push($name, $num) {
-	.pull-#{$num} { right: $columnWidth * $num; _right: $columnWidth * $num - 0.0694%; }
-	.push-#{$num} { left: $columnWidth * $num; _left: $columnWidth * $num - 0.0694%; }
+	.row .pull-#{$num} { right: $columnWidth * $num; _right: $columnWidth * $num - 0.0694%; }
+	.row .push-#{$num} { left: $columnWidth * $num; _left: $columnWidth * $num - 0.0694%; }
 }
 
 @mixin create_mobile_pull_push($name, $num) {
-	.pull-m-#{$num} { right: $columnWidth * $num; _right: $columnWidth * $num - 0.0694%; }
-	.push-m-#{$num} { left: $columnWidth * $num; _left: $columnWidth * $num - 0.0694%; }
+	.row .pull-m-#{$num} { right: $columnWidth * $num; _right: $columnWidth * $num - 0.0694%; }
+	.row .push-m-#{$num} { left: $columnWidth * $num; _left: $columnWidth * $num - 0.0694%; }
 }
 
 @mixin create_grid($max){
@@ -55,8 +55,8 @@ $columnWidth: 100%/$columns;
 		@include create_mobile_offset($i, $i);
 		@include create_mobile_pull_push($i,$i);
 	}
-	.span-m-uncentered {margin-left: 0; margin-right: 0;float: left!important;}
-	.span-m-centered { position: relative; margin-left: auto; margin-right: auto; float: none; display: block; }
+	.row .span-m-uncentered {margin-left: 0; margin-right: 0;float: left!important;}
+	.row .span-m-centered { position: relative; margin-left: auto; margin-right: auto; float: none; display: block; }
 }
 
 @mixin create_list($max) {
