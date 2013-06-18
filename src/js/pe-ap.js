@@ -54,8 +54,8 @@
 		viewtest: '',
 		resizetest: '',
 		settings: (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
-		scrollTopInit: 0,
-		activeElement: '',
+		scrollTopInit: window.pageYOffset || document.documentElement.scrollTop,
+		activeElement: null,
 
 		/**
 		* @namespace pe.dic
@@ -124,7 +124,6 @@
 			var $html = pe.html,
 				hlinks_same = [],
 				target,
-				validTarget = false,
 				classes = '',
 				test,
 				test_elms,
@@ -204,34 +203,44 @@
 			// If the page URL includes a hash upon page load, then focus on and scroll to the target
 			// pe.scrollTopInit is a workaround for jQuery Mobile scrolling to the top by restoring the original scroll point
 			// TODO: Find an elegant way (preferably in jQuery Mobile) to prevent the scroll to top except where needed or at least restore the original scroll point
-			window.onload = function() {
-				setTimeout(function() {
-					pe.scrollTopInit = pe.window.scrollTop();
-					pe.activeElement = document.activeElement;
-				}, 1);
-			};
-
-			if (pe.urlhash.length !== 0) {
-				target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
-			}
+			pe.window.on('scroll.wbinit', function() {
+				var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+				if (scrollTop > 1) {
+					pe.scrollTopInit = scrollTop;
+				}
+			});
+			pe.document.on('focus.wbinit blur.wbinit', function(e) {
+				var target = e.target;
+				if (e.type === 'focus.wbinit' && target.nodeName.toLowerCase() !== 'body' && target.getAttribute('data-role') !== 'page') {
+					pe.activeElement = target;
+				} else {
+					pe.activeElement = null;
+				}
+			});
 			pe.document.on('silentscroll.wbinit', function() {
+				var scrollTop = pe.scrollTopInit,
+					activeElement = pe.activeElement;
+
 				silentscroll_fired = true;
+				// Remove event handlers
 				if (pageinit_fired) {
 					pe.document.off('silentscroll.wbinit');
 				}
-
-				// Update the target if the user had changed the focus
-				if (pe.activeElement.nodeName.toLowerCase() !== 'body') {
-					target = $(pe.activeElement);
-				}
+				pe.window.off('scroll.wbinit');
+				pe.document.off('focus.wbinit blur.wbinit');
 
 				// Restore the original focus and/or scroll position
-				if (typeof target !== 'undefined' && target.length !== 0 && target.attr('data-role') !== 'page') {
+				if (activeElement !== null) {
+					target = $(activeElement);
+				} else if (pe.urlhash.length !== 0) {
+					target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
 					target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-					validTarget = true;
-					$.mobile.silentScroll(pe.focus(target).offset().top);
-				} else if (pe.scrollTopInit > 1) {
-					$.mobile.silentScroll(pe.scrollTopInit);
+				}
+				if (typeof target !== 'undefined' && target.length !== 0) {					
+					pe.focus(target);
+					$.mobile.silentScroll(scrollTop > 1 ? scrollTop : target.offset().top);
+				} else if (scrollTop > 1) {
+					$.mobile.silentScroll(scrollTop);
 				}
 			});
 
