@@ -6,7 +6,7 @@
 	WET-BOEW Grid structure
  */
 
-@import 'includes/grid-mixins';
+@import 'mixins';
 
 /*-----------------------------
 	Fixed Width Container Block
@@ -21,58 +21,42 @@
 	Clearing Row markup
  ------------------------------*/
 .row {
-	margin: $gutterWidth/2;
-	@include microfix;
-	// nested row
-	.row { 
-		margin: 0;
-		[class*="span-"] {
-			&:first-child{ .inner-span { margin-left: 0} }
-			&:last-child{ .inner-span { margin-right: 0} }
-		}
-	 }
-	// inner child margin
-	.inner-span { 
-		margin: 0 $gutterWidth/2;
+	width: 100%;
+	overflow: hidden;
+	*zoom: 1;
+	margin: 0 auto;
+	
+	.row {
+	  width: auto;
+	  max-width: none;
+	  *zoom: 1;
+	  margin: 0 -10px;
 	}
-	// heading for developers
-	h1, h2, h3, h4, h5, h6 {
-		margin-right: $gutterWidth / 2;
-		margin-left: $gutterWidth / 2;
+	
+	&:before {
+	  content: " ";
+	  display: table;
+	}
+	
+	&:after, .row:after {
+	  clear: both;
+	  content: " ";
+	  display: table;
 	}
 }
+
 
 /*-----------------------------
-	Default Heading spacing
+	Basic grid set-up
  ------------------------------*/
-// headings
-h1, h2, h3, h4, h5, h6 {
-	margin-right: $gutterWidth;
-	margin-left: $gutterWidth;
+[class*="span-"] {
+  position: relative;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+  float: left;
+  display: inline;
 }
-// nested headings
-.inner-span {
-	h1, h2, h3, h4, h5, h6 {
-		margin-right: 0;
-		margin-left: 0;
-	}
-}
-
-/*-----------------------------
-	Visually pleasing divisions
- ------------------------------*/
-.span-golden-a {
-	width: 61.803399%;
-	_width: 61.803399% - 0.0694%; /* IE6-7 */
-	float: left;
-}
-
-.span-golden-b {
-	width: 38.196601%;
-	_width: 38.196601% - 0.0694%; /* IE6-7 */
-	float: left;
-}
-
 
 /*-----------------------------
 	Column Loop for all the classes
@@ -87,7 +71,100 @@ $i: 1;
 	$col: floor($columns/$i);
 	@include create_column($spn, $col);
 	$i: $i + 1;
-} 
+}
+
+/*-----------------------------
+	Visually pleasing divisions
+ ------------------------------*/
+.span-golden-a {
+	width: 61.803399%;
+	_width: 61.803399% - 0.0694%; /* IE6-7 */
+}
+
+.span-golden-b {
+	width: 38.196601%;
+	_width: 38.196601% - 0.0694%; /* IE6-7 */
+}
+
+/*-----------------------------
+	Helper Reflows
+ ------------------------------*/
+.span-reflow {
+  width: auto;
+  display: block;
+  float: none;
+}
+
+.span-centered {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+  display: block;
+}
+
+.bleed-full {
+  > [class*="span-"]:first-child, > .row > [class*="span-"]:first-child {
+    padding-left: 0;
+  }
+  > [class*="span-"]:last-child, > .row > [class*="span-"]:last-child {
+    padding-right: 0;
+  }
+}
+
+.bleed-left {
+  > [class*="span-"]:first-child, > .row > [class*="span-"]:first-child { padding-left: 0; }
+}
+.bleed-right  {
+  > [class*="span-"]:last-child, > .row > [class*="span-"]:last-child { padding-right: 0; }
+}
+
+[class*="bleed-"] {
+  > [class*="pull-"]:last-child, > .row [class*="pull-"]:last-child { padding-right: 10px; padding-left: 0;}
+  > [class*="push-"]:first-child, > .row [class*="push-"]:first-child { padding-right: 0; padding-left: 10px;}
+}
+
+[class*="span-"] [class*="border-"] { padding: 0 10px;}
+
+
+@media screen and (min-width: 768px) and (max-width: 959px), screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+   .container { width: 100%; }
+}
+
+@media screen and (min-width: 960px) and (min-device-width: 1024px) { }
+
+@media screen and (min-width: 1200px) and (min-device-width: 1024px) {
+	.container { width: 1200px; }
+	.row .row { margin-left: -15px; margin-right: -15px; }
+	[class*="span-"] { padding-left: 15px; padding-right: 15px; }
+	[class*="module"], [class~="background"] {padding: 0 15px;margin-bottom: 30px;}
+	[class*="span-"] [class*="border-"] { padding: 0 15px; margin-bottom: 30px; }
+	.bleed-full {
+		[class*="pull-"]:last-child, > .row [class*="pull-"]:last-child { padding-right: 15px; }
+		[class*="push-"]:first-child, > .row [class*="push-"]:first-child {padding-left: 15px; }
+	}
+}
+
+@media screen and (max-width: 767px), screen and (max-device-width: 767px) {
+	.container { width: 100%;}
+	.row .row {
+		margin-left: -5px;
+		margin-right: -5px;
+		&:last-child [class*="span-"] { margin-bottom: 10px;}
+	}
+	[class*="span-"] { padding-left: 5px; padding-right: 5px; width: 100%;}
+	
+	@include create_mobile_grid($columns);
+}
+
+@media screen and (max-width: 479px) and (min-device-width: 479px) {
+	.span-m-stack-small { width: 100%; }
+}
+   
+@media screen and (max-width: 319px) and (min-device-width: 319px) {
+	.span-m-stack-xsmall { width: 100%;}
+}
+
 
 
 

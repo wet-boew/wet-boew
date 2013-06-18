@@ -15,19 +15,27 @@ module.exports = function(grunt) {
 			banner: '/* Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt */\n',
 			stripBanners: true
 			},
-			dist: {
-			src: [ 'lib/modernizr/modernizr.js','src/core/vapour/vapour.js'],
-			dest: 'dist/js/vapour.js'
-			}
+			vapour: {
+				src: [ 'lib/modernizr/modernizr.js','src/core/vapour/vapour.js'],
+				dest: 'build/js/vapour.js'
+			},
+			wetboew: {
+				src: [ 'src/plugins/**/*.js'],
+				dest: 'build/js/wet-boew.js'
+			},
+
 		},
 		sass: {
-			dist: {
+			build: {
 				/* options: {
 					outputStyle: 'expanded' ## Currently libsass has a bug with the property outputStyle [https://github.com/andrew/node-sass]
 				}, */
 				files: {
-					'dist/css/base.css': 'src/structure/base.scss'
-				}	
+					'build/css/base.css': 'src/structure/sass/_structure.scss',
+					'themes/bare/css/theme.css': 'themes/bare/css/theme.scss',
+					'themes/demo/css/theme.css': 'themes/demo/css/theme.scss',
+					//'dist/css/theme.css': 'themes/demo/css/theme.scss'
+				}
 			}
 		},
 		uglify: {
@@ -36,7 +44,23 @@ module.exports = function(grunt) {
 					banner : '/*! jQuery v1.9.1 | (c) 2005, 2012 jQuery Foundation, Inc. | jquery.org/license */\n'
 				},
 				files : {
-					'dist/js/vendor/jquery-1.9.1.min.js': ['lib/jquery/jquery-1.9.1.js']
+					'build/js/vendor/jquery-1.9.1.min.js': ['lib/jquery/jquery-1.9.1.js']
+				}
+			},
+			jquery2 : {
+				options: {
+					banner : '/*! jQuery v2.0.2 | (c) 2005, 2012 jQuery Foundation, Inc. | jquery.org/license */\n'
+				},
+				files : {
+					'build/js/vendor/jquery-2.0.2.min.js': ['lib/jquery/jquery-2.0.2.js']
+				}
+			},
+			selectivizr : {
+				options: {
+					banner : '/*!* selectivizr v1.0.2 - (c) Keith Clark, freely distributable under the terms of the MIT license. * selectivizr.com */\n'
+				},
+				files : {
+					'build/js/vendor/selectivizr.min.js': ['lib/selectivizr/selectivizr.js']
 				}
 			},
 			jqm: {
@@ -44,7 +68,7 @@ module.exports = function(grunt) {
 					banner : '/*! jQuery Mobile Git HEAD hash: 74b4bec049fd93e4fe40205e6157de16eb64eb46 <> Date: Wed Apr 10 2013 21:57:23 UTC jquerymobile.com | jquery.org/license */\n'
 				},
 				files: {
-					'dist/js/vendor/jquery-mobile-1.3.1.min.js': ['lib/jquery.mobile/jquery.mobile-1.3.1.js']
+					'build/js/vendor/jquery-mobile-1.3.1.min.js': ['lib/jquery.mobile/jquery.mobile-1.3.1.js']
 				}
 			},
 			polyfills: {
@@ -52,16 +76,16 @@ module.exports = function(grunt) {
 					preserveComments : 'some'
 				},
 				files: {
-					'dist/js/polyfills/datalist.min.js': ['src/core/vapour/polyfills/datalist.js'],
-					'dist/js/polyfills/respond.min.js': ['src/core/vapour/polyfills/respond.js'],
-					'dist/js/polyfills/excanvas.min.js': ['src/core/vapour/polyfills/excanvas.js'],
-					'dist/js/polyfills/datepicker.min.js': ['src/core/vapour/polyfills/datepicker.js'],
-					'dist/js/polyfills/detailssummary.min.js': ['src/core/vapour/polyfills/detailssummary.js'],
-					'dist/js/polyfills/localstorage.min.js': ['src/core/vapour/polyfills/localstorage.js'],
-					'dist/js/polyfills/meter.min.js': ['src/core/vapour/polyfills/meter.js'],
-					'dist/js/polyfills/progress.min.js': ['src/core/vapour/polyfills/progress.js'],
-					'dist/js/polyfills/sessionstorage.min.js': ['src/core/vapour/polyfills/sessionstorage.js'],
-					'dist/js/polyfills/slider.min.js': ['src/core/vapour/polyfills/slider.js']
+					'build/js/polyfills/datalist.min.js': ['src/core/vapour/polyfills/datalist.js'],
+					'build/js/polyfills/respond.min.js': ['src/core/vapour/polyfills/respond.js'],
+					'build/js/polyfills/excanvas.min.js': ['src/core/vapour/polyfills/excanvas.js'],
+					'build/js/polyfills/datepicker.min.js': ['src/core/vapour/polyfills/datepicker.js'],
+					'build/js/polyfills/detailssummary.min.js': ['src/core/vapour/polyfills/detailssummary.js'],
+					'build/js/polyfills/localstorage.min.js': ['src/core/vapour/polyfills/localstorage.js'],
+					'build/js/polyfills/meter.min.js': ['src/core/vapour/polyfills/meter.js'],
+					'build/js/polyfills/progress.min.js': ['src/core/vapour/polyfills/progress.js'],
+					'build/js/polyfills/sessionstorage.min.js': ['src/core/vapour/polyfills/sessionstorage.js'],
+					'build/js/polyfills/slider.min.js': ['src/core/vapour/polyfills/slider.js']
 					}
 			},
 			vapour: {
@@ -69,7 +93,7 @@ module.exports = function(grunt) {
 					banner: '/* Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt */\n'
 				},
 				files: {
-					'dist/js/vapour.min.js': ['lib/modernizr/modernizr.js', 'src/core/vapour/vapour.js']
+					'build/js/vapour.min.js': ['lib/modernizr/modernizr.js', 'src/core/vapour/vapour.js']
 				}
 			},
 			 wetboew: {
@@ -77,36 +101,36 @@ module.exports = function(grunt) {
 						banner: '/* Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt */'
 				},
 				files: {
-						'dist/js/wet-boew.min.js': ['src/plugins/zebra/wet-boew.zebra.js']
+						'build/js/wet-boew.min.js': ['build/js/wet-boew.js']
 			 	}
 			}
 		},
 		coffee: {
 			compileBare: {
-                options: {
-                    bare: true
-                },
-                files: [
-                    { 'src/core/vapour/vapour.js': 'src/core/vapour/vapour.coffee' }, // 1:1 compile
-                   // { 'plugins/bare/wet-boew-plugin.bare.js': 'src/plugins/bare/wet-boew-plugin.coffee' }
-                    { 'src/plugins/zebra/wet-boew.zebra.js': 'src/plugins/zebra/wet-boew-plugin-zebra.coffee' } 
-                ]
+				options: {
+				    bare: true
+				},
+				files: [
+				    { 'src/core/vapour/vapour.js': 'src/core/vapour/vapour.coffee' }, // 1:1 compile
+				   // { 'plugins/bare/wet-boew-plugin.bare.js': 'src/plugins/bare/wet-boew-plugin.coffee' }
+				    { 'src/plugins/equalize/wet-boew.equalize.js': 'src/plugins/equalize/wet-boew-plugin-equalize.coffee' },
+				    { 'src/plugins/dimensions/wet-boew.dimensions.js': 'src/plugins/dimensions/wet-boew-plugin-dimensions.coffee' }
+				]
 			}
 		},
 		copy: {
-			dist: [
-                { 
-                    src: ['lib/jquery/jquery-1.9.1.min.js'],
-                    dest: 'dist/vendor/', filter: 'isFile'
-                },
-                {
-                    src: ['lib/jquery.mobile/*min.js'],
-                    dest: 'dist/vendor/', filter: 'isFile'
-                }
-			 ]
+
+			main : {
+				files : [
+					{expand: true, cwd: 'build/', src: ['**'], dest: 'dist/bare/'},
+					{expand: true, cwd: 'themes/bare/', src: ['**'], dest: 'dist/bare/'},
+					{expand: true, cwd: 'build/', src: ['**'], dest: 'dist/demo/'},
+					{expand: true, cwd: 'themes/demo/', src: ['**'], dest: 'dist/demo/'}
+				]
+			}
 		},
 
-		clean: ["dist"],
+		clean: ["dist", "build"],
 		watch: {
 			gruntfile: {
                 files: '<%= jshint.gruntfile.src %>',
@@ -132,7 +156,7 @@ module.exports = function(grunt) {
 
 	// Default task.
 	grunt.registerTask('build', ['coffee']);
-	grunt.registerTask('default', ['clean','coffee','sass','concat','uglify']);
-	grunt.registerTask('generic', ['clean','coffee','sass','concat','uglify']);
+	grunt.registerTask('default', ['clean','coffee','sass','concat','uglify', 'copy']);
+	grunt.registerTask('generic', ['clean','coffee','sass','concat','uglify', 'copy']);
 
 };

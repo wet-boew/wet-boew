@@ -1,0 +1,51 @@
+/*
+ * BACKGROUND SCSS
+ * - Decorative OOCSS Extending CSS for background treatment of elements
+ */
+
+$background-light-color: #eee !default;
+$background-light-text: #222 !default;
+$background-medium-color: #777 !default;
+$background-medium-text: #fff !default;
+$background-accent-color: #0056b7 !default;
+$background-accent-text: #fff !default;
+$background-dark-color: #222 !default;
+$background-dark-text: #fff !default;
+
+$background-highlight-color: #ffffc9 !default;
+$background-highlight-text: #222 !default;
+$background-white-color: #fff !default;
+$background-white-text: #222 !default;
+
+[class~="background"] {
+  color: #fff;
+  padding: 0 10px;
+  &:after, &:before { // TODO review this background clearfix, since this should not really happen
+    display:block;
+    visibility:hidden;
+    height:0;
+    clear:both;
+    content:".";
+    }
+}
+
+[class*="background light"] { background: $background-light-color; color: $background-light-text; }
+[class*="background medium"] { background: $background-medium-color; color: $background-medium-text; }
+[class*="background accent"] { background: $background-accent-color; color: $background-accent-text; }
+[class*="background dark"] { background: $background-dark-color; color: $background-dark-text; }
+[class*="background highlight"] { background: $background-highlight-color; color: $background-highlight-text; }
+[class*="background white"] { background: $background-white-color; color: $background-white-text; }
+
+
+h1,h2,h3,h4,h5,h6 {
+    &[class~="background"]{
+         padding: 5px 10px;
+    }
+
+}
+
+p {
+  &[class~="background"] {
+    padding: 3px 8px;
+  }
+}

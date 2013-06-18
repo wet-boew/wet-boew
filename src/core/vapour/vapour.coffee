@@ -1,5 +1,5 @@
-### 
-	WET-BOEW Vapour loader 
+###
+	WET-BOEW Vapour loader
 ###
 # Lets establish the base path to be more flexiable in terms of WCMS where JS can reside in theme folders and not in the root of sites
 (($)->
@@ -27,17 +27,20 @@ Modernizr.load [
     ,
     	test: Modernizr.progress,
     	nope : "#{Modernizr._vpbpath}/polyfills/progress.min.js"
-    ,	
+    ,
     	test: Modernizr.meter
     	nope : "#{Modernizr._vpbpath}/polyfills/meter.min.js"
-    ,	
+    ,
     	test: Modernizr.localstorage,
     	nope : "#{Modernizr._vpbpath}/polyfills/sessionstorage.min.js"
+    ,
+	test: Modernizr.lastchild,
+    	nope : "#{Modernizr._vpbpath}/vendor/selectivizr.min.js"
     ,
     	load: "#{Modernizr._vpbpath}/wet-boew.min.js"
     ,
         load : "//code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js",
-        complete :-> 
+        complete :->
           Modernizr.load "#{Modernizr._vpbpath}/vendor/jquery.mobile-1.3.1.min.js" if  window.jQuery.mobile?
     ,
 ]

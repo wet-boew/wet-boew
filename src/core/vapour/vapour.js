@@ -1,6 +1,7 @@
-/* 
+/*
 	WET-BOEW Vapour loader
 */
+
 (function($) {
   return Modernizr._vpbpath = $('script[src$="vapour.js"]').last().prop("src").split('?')[0].split('/').slice(0, -1).join('/');
 })(jQuery);
@@ -30,6 +31,10 @@ Modernizr.load([
   }, {
     test: Modernizr.localstorage,
     nope: "" + Modernizr._vpbpath + "/polyfills/sessionstorage.min.js"
+  }, {
+    test: Modernizr.lastchild
+  }, {
+    nope: "" + Modernizr._vpbpath + "/vendor/selectivizr.min.js"
   }, {
     load: "" + Modernizr._vpbpath + "/wet-boew.min.js"
   }, {

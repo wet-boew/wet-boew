@@ -1,9 +1,40 @@
 /*
-	Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW) 
+	Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW)
 	@theme : generic
 	@author : World Wide Web
 	@notes: A basic theme for WET-BOEW
 	@licence: wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
 */
 
-@import "../src/structure/sass/structure";
+html,body{ font-size: 100%;}
+body { font-size: 80%}
+body{background:#FFF;color:#222;font-family:"Helvetica Neue", Helvetica, Helvetica, Arial, sans-serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:default;margin:0;padding:0;}
+
+
+/* just for demo purposes */
+.container {
+  border: 1px dashed #999;
+  border-top: none;
+  border-bottom: none;
+}
+
+.dimensions {
+  margin-left: 0;
+  display: block;
+}
+
+.demo-grids {
+  [class*="module"], [class*="background-"] {
+    text-align: center;
+  }
+}
+
+code {
+  background-color: #eee;
+  border: 1px solid #D4D4D4;
+  color: #222 !important;
+  font-size: 110%;
+  font-weight: 400;
+  padding: 0 2px !important;
+  text-shadow: none;
+}
