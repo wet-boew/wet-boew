@@ -683,7 +683,7 @@
 					if (!$('#cb_' + featureId).prop('checked')) {
 						geomap.selectControl.unselect(context.feature);
 					} else {
-						geomap.selectControl.select(context.feature);
+						_pe.fn.geomap.onFeatureClick(context.feature);
 					}
 				});
 			}
@@ -770,7 +770,7 @@
 				if (!$('#cb_' + featureId).prop('checked')) {
 					geomap.selectControl.unselect(feature);
 				} else {
-					geomap.selectControl.select(feature);
+					_pe.fn.geomap.onFeatureClick(feature);
 				}
 			});
 		},
