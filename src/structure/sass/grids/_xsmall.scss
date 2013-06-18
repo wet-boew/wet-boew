@@ -1,0 +1,8 @@
+/*
+ * Small Mobile Device
+ */
+
+
+@include create_mobile_grid($columns);
+.span-m-stack-small { width: auto }
+.span-m-stack-xsmall { width: 100%; }
