@@ -7,3 +7,9 @@
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
   &:before, &:after { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 }
+
+/* responsive Images */
+img{height: auto;max-width: 100%;width:100%;}
+
+/* Code block */
+code {font-size:112%;font-family:"Courier New",Courier,monospace;}

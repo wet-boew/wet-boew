@@ -19,6 +19,17 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box; }
 
+/* responsive Images */
+img {
+  height: auto;
+  max-width: 100%;
+  width: 100%; }
+
+/* Code block */
+code {
+  font-size: 112%;
+  font-family: "Courier New", Courier, monospace; }
+
 /* Base styles for all Themes */
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
@@ -357,7 +368,7 @@
     padding-left: 15px;
     padding-right: 15px; }
 
-  [class*="module"], [class~="background"] {
+  [class*="module"], [class*="background-"] {
     padding: 0 15px;
     margin-bottom: 30px; }
 
@@ -586,188 +597,188 @@
  * PADDING SCSS
  * - PADDING OOCSS Extending CSS for positioning of elements
  */
-[class*="padding-all"] {
+[class~="padding-all"] {
   padding: 10px !important; }
 
-[class*="padding-all none"] {
+[class~="padding-all-none"], [class~="padding-none"] {
   padding: 0 !important; }
 
-[class*="padding-all xsml"] {
+[class~="padding-all-xsmall"] {
   padding: 2px !important; }
 
-[class*="padding-all sml"] {
+[class~="padding-all-small"] {
   padding: 5px !important; }
 
-[class*="padding-all lrg"] {
+[class~="padding-all-large"] {
   padding: 20px !important; }
 
-[class*="padding-all xlrg"] {
+[class~="padding-all-xlarge"] {
   padding: 50px !important; }
 
-[class*="padding-left"] {
+[class~="padding-left"] {
   padding-left: 10px !important; }
 
-[class*="padding-left none"] {
+[class~="padding-left-none"] {
   padding-left: 0 !important; }
 
-[class*="padding-left xsml"] {
+[class~="padding-left-xsmall"] {
   padding-left: 2px !important; }
 
-[class*="padding-left sml"] {
+[class~="padding-left-small"] {
   padding-left: 5px !important; }
 
-[class*="padding-left lrg"] {
+[class~="padding-left-large"] {
   padding-left: 20px !important; }
 
-[class*="padding-left xlrg"] {
+[class~="padding-left-xlarge"] {
   padding-left: 50px !important; }
 
-[class*="padding-right"] {
+[class~="padding-right"] {
   padding-right: 10px !important; }
 
-[class*="padding-right none"] {
+[class~="padding-right-none"] {
   padding-right: 0 !important; }
 
-[class*="padding-right xsml"] {
+[class~="padding-right-xsmall"] {
   padding-right: 2px !important; }
 
-[class*="padding-right sml"] {
+[class~="padding-right-small"] {
   padding-right: 5px !important; }
 
-[class*="padding-right lrg"] {
+[class~="padding-right-large"] {
   padding-right: 20px !important; }
 
-[class*="padding-right xlrg"] {
+[class~="padding-right-xlarge"] {
   padding-right: 50px !important; }
 
-[class*="padding-top"] {
+[class~="padding-top"] {
   padding-top: 10px !important; }
 
-[class*="padding-top none"] {
+[class~="padding-top-none"] {
   padding-top: 0 !important; }
 
-[class*="padding-top xsml"] {
+[class~="padding-top-xsmall"] {
   padding-top: 2px !important; }
 
-[class*="padding-top sml"] {
+[class~="padding-top-small"] {
   padding-top: 5px !important; }
 
-[class*="padding-top lrg"] {
+[class~="padding-top-large"] {
   padding-top: 20px !important; }
 
-[class*="padding-top xlrg"] {
+[class~="padding-top-xlarge"] {
   padding-top: 50px !important; }
 
-[class*="padding-bottom"] {
+[class~="padding-bottom"] {
   padding-bottom: 10px !important; }
 
-[class*="padding-bottom none"] {
+[class~="padding-bottom-none"] {
   padding-bottom: 0 !important; }
 
-[class*="padding-bottom xsml"] {
+[class~="padding-bottom-xsmall"] {
   padding-bottom: 2px !important; }
 
-[class*="padding-bottom sml"] {
+[class~="padding-bottom-small"] {
   padding-bottom: 5px !important; }
 
-[class*="padding-bottom lrg"] {
+[class~="padding-bottom-large"] {
   padding-bottom: 20px !important; }
 
-[class*="padding-bottom xlrg"] {
+[class~="padding-bottom-xlarge"] {
   padding-bottom: 50px !important; }
 
 /*
  * MARGIN SCSS
  * - MARGIN OOCSS Extending CSS for positioning of elements
  */
-[class*="margin-all"] {
+[class~="margin-all"] {
   margin: 10px !important; }
 
-[class*="margin-all none"] {
+[class~="margin-all-none"] {
   margin: 0 !important; }
 
-[class*="margin-all xsml"] {
+[class~="margin-all-xsmall"] {
   margin: 2px !important; }
 
-[class*="margin-all sml"] {
+[class~="margin-all-small"] {
   margin: 5px !important; }
 
-[class*="margin-all lrg"] {
+[class~="margin-all-large"] {
   margin: 20px !important; }
 
-[class*="margin-all xlrg"] {
+[class~="margin-all-xlarge"] {
   margin: 50px !important; }
 
-[class*="margin-left"] {
+[class~="margin-left"] {
   margin-left: 10px !important; }
 
-[class*="margin-left none"] {
+[class~="margin-left-none"] {
   margin-left: 0 !important; }
 
-[class*="margin-left xsml"] {
+[class~="margin-left-xsmall"] {
   margin-left: 2px !important; }
 
-[class*="margin-left sml"] {
+[class~="margin-left-small"] {
   margin-left: 5px !important; }
 
-[class*="margin-left lrg"] {
+[class~="margin-left-large"] {
   margin-left: 20px !important; }
 
-[class*="margin-left xlrg"] {
+[class~="margin-left-xlarge"] {
   margin-left: 50px !important; }
 
-[class*="margin-right"] {
+[class~="margin-right"] {
   margin-right: 10px !important; }
 
-[class*="margin-right none"] {
+[class~="margin-right-none"] {
   margin-right: 0 !important; }
 
-[class*="margin-right xsml"] {
+[class~="margin-right-xsmall"] {
   margin-right: 2px !important; }
 
-[class*="margin-right sml"] {
+[class~="margin-right-small"] {
   margin-right: 5px !important; }
 
-[class*="margin-right lrg"] {
+[class~="margin-right-large"] {
   margin-right: 20px !important; }
 
-[class*="margin-right xlrg"] {
+[class~="margin-right-xlarge"] {
   margin-right: 50px !important; }
 
-[class*="margin-top"] {
+[class~="margin-top"] {
   margin-top: 10px !important; }
 
-[class*="margin-top none"] {
+[class~="margin-top-none"] {
   margin-top: 0 !important; }
 
-[class*="margin-top xsml"] {
+[class~="margin-top-xsmall"] {
   margin-top: 2px !important; }
 
-[class*="margin-top sml"] {
+[class~="margin-top-small"] {
   margin-top: 5px !important; }
 
-[class*="margin-top lrg"] {
+[class~="margin-top-large"] {
   margin-top: 20px !important; }
 
-[class*="margin-top xlrg"] {
+[class~="margin-top-xlarge"] {
   margin-top: 50px !important; }
 
-[class*="margin-bottom"] {
+[class~="margin-bottom"] {
   margin-bottom: 10px !important; }
 
-[class*="margin-bottom none"] {
+[class~="margin-bottom-none"] {
   margin-bottom: 0 !important; }
 
-[class*="margin-bottom xsml"] {
+[class~="margin-bottom-xsmall"] {
   margin-bottom: 2px !important; }
 
-[class*="margin-bottom sml"] {
+[class~="margin-bottom-small"] {
   margin-bottom: 5px !important; }
 
-[class*="margin-bottom lrg"] {
+[class~="margin-bottom-large"] {
   margin-bottom: 20px !important; }
 
-[class*="margin-bottom xlrg"] {
+[class~="margin-bottom-xlarge"] {
   margin-bottom: 50px !important; }
 
 /*
@@ -778,132 +789,201 @@
   border-color: transparent;
   border-width: 0;
   border-style: solid; }
-  [class*="border-"].lght {
-    border-color: #eeeeee; }
-  [class*="border-"].med {
-    border-color: #999999; }
-  [class*="border-"].drk {
-    border-color: #222222; }
-  [class*="border-"].acct {
-    border-color: #00556b; }
-  [class*="border-"].dshd {
-    border-style: dashed; }
-  [class*="border-"].dbl {
-    border-style: double; }
 
-[class*="border-all"] {
-  border-width: 1px; }
+[class~="border-light"] {
+  border-color: #eeeeee; }
 
-[class*="border-all thck"] {
+[class~="border-medium"] {
+  border-color: #999999; }
+
+[class~="border-dark"] {
+  border-color: #222222; }
+
+[class~="border-accent"] {
+  border-color: #00556b; }
+
+[class~="border-dashed"] {
+  border-style: dashed; }
+
+[class~="border-double"] {
+  border-style: double;
   border-width: 3px; }
 
-[class*="border-all xthck"] {
+[class~="border-all"] {
+  border-width: 1px; }
+
+[class~="border-all-thick"] {
+  border-width: 3px; }
+
+[class~="border-all-xthick"] {
   border-width: 5px; }
 
-[class*="border-all none"] {
+[class~="border-all-none"] {
   border: none; }
 
-[class*="border-right"] {
+[class~="border-right"] {
   border-right-width: 1px; }
 
-[class*="border-right thck"] {
+[class~="border-right-thick"] {
   border-right-width: 3px; }
 
-[class*="border-right xthck"] {
+[class~="border-right-xthick"] {
   border-right-width: 5px; }
 
-[class*="border-right none"] {
+[class~="border-right-none"] {
   border-right-width: 0; }
 
-[class*="border-left"] {
+[class~="border-left"] {
   border-left-width: 1px; }
 
-[class*="border-left thck"] {
+[class~="border-left-thick"] {
   border-left-width: 3px; }
 
-[class*="border-left xthck"] {
+[class~="border-left-xthick"] {
   border-left-width: 5px; }
 
-[class*="border-left none"] {
+[class~="border-left-none"] {
   border-left-width: 0; }
 
-[class*="border-top"] {
+[class~="border-top"] {
   border-top-width: 1px; }
 
-[class*="border-top thck"] {
+[class~="border-top-thick"] {
   border-top-width: 3px; }
 
-[class*="border-top xthck"] {
+[class~="border-top-xthick"] {
   border-top-width: 5px; }
 
-[class*="border-top none"] {
+[class~="border-top-none"] {
   border-top-width: 0; }
 
-[class*="border-bottom"] {
+[class~="border-bottom"] {
   border-bottom-width: 1px; }
 
-[class*="border-bottom thck"] {
+[class~="border-bottom-thick"] {
   border-bottom-width: 3px; }
 
-[class*="border-bottom xthck"] {
+[class~="border-bottom-xthick"] {
   border-bottom-width: 5px; }
 
-[class*="border-bottom none"] {
+[class~="border-bottom-none"] {
   border-bottom-width: 0; }
 
 /*
  * BACKGROUND SCSS
  * - Decorative OOCSS Extending CSS for background treatment of elements
  */
-[class~="background"] {
+[class*="background-"] {
   color: #fff;
   padding: 0 10px; }
-  [class~="background"]:after, [class~="background"]:before {
+  [class*="background-"]:after, [class*="background-"]:before {
     display: block;
     visibility: hidden;
     height: 0;
     clear: both;
     content: "."; }
 
-[class*="background light"] {
+[class~="background-light"] {
   background: #eeeeee;
   color: #222222; }
 
-[class*="background medium"] {
+[class~="background-medium"] {
   background: #777777;
   color: white; }
 
-[class*="background accent"] {
+[class~="background-accent"] {
   background: #0056b7;
   color: white; }
 
-[class*="background dark"] {
+[class~="background-dark"] {
   background: #222222;
   color: white; }
 
-[class*="background highlight"] {
+[class~="background-highlight"] {
   background: #ffffc9;
   color: #222222; }
 
-[class*="background white"] {
+[class~="background-white"] {
   background: white;
   color: #222222; }
 
-h1[class~="background"], h2[class~="background"], h3[class~="background"], h4[class~="background"], h5[class~="background"], h6[class~="background"] {
+h1[class*="background-"], h2[class*="background-"], h3[class*="background-"], h4[class*="background-"], h5[class*="background-"], h6[class*="background-"] {
   padding: 5px 10px; }
 
-p[class~="background"] {
+p[class*="background-"] {
   padding: 3px 8px; }
 
 /*
  * POSITIONAL BASED SCSS
  * - Decorative OOCSS Extending CSS for position based treatment of elements
  */
-[class*="float rght"] {
+[class~="float-right"] {
   float: right !important; }
 
-[class*="float lft"] {
+[class~="float-left"] {
   float: left !important; }
+
+/*
+ * LISTS SCSS
+ * - Decorative OOCSS Extending CSS for List of elements
+ */
+[class*=list-grid-] {
+  display: block;
+  *zoom: 1;
+  margin: 0 -10px;
+  padding: 0; }
+
+[class*=list-grid-]:before, [class*=list-grid-]:after {
+  content: " ";
+  display: table; }
+
+[class*=list-grid-] > li {
+  display: inline;
+  height: auto;
+  float: left;
+  padding: 0 10px 20px; }
+
+.list-grid-1 > li {
+  width: 100%; }
+
+.list-grid-2 > li {
+  width: 50%; }
+
+.list-grid-3 > li {
+  width: 33.33333%; }
+
+.list-grid-4 > li {
+  width: 25%; }
+
+.list-grid-5 > li {
+  width: 20%; }
+
+.list-grid-6 > li {
+  width: 16.66667%; }
+
+.list-grid-7 > li {
+  width: 14.28571%; }
+
+.list-grid-8 > li {
+  width: 12.5%; }
+
+.list-grid-9 > li {
+  width: 11.11111%; }
+
+.list-grid-10 > li {
+  width: 10%; }
+
+.list-grid-11 > li {
+  width: 9.09091%; }
+
+.list-grid-12 > li {
+  width: 8.33333%; }
+
+.list-grid-1 > li:nth-of-type(n), .list-grid-2 > li:nth-of-type(n), .list-grid-3 > li:nth-of-type(n), .list-grid-4 > li:nth-of-type(n), .list-grid-5 > li:nth-of-type(n), .list-grid-6 > li:nth-of-type(n), .list-grid-7 > li:nth-of-type(n), .list-grid-8 > li:nth-of-type(n), .list-grid-9 > li:nth-of-type(n), .list-grid-10 > li:nth-of-type(n), .list-grid-11 > li:nth-of-type(n), .list-grid-12 > li:nth-of-type(n) {
+  clear: none; }
+
+.list-grid-1 > li:nth-of-type(1n+1), .list-grid-2 > li:nth-of-type(2n+1), .list-grid-3 > li:nth-of-type(3n+1), .list-grid-4 > li:nth-of-type(4n+1), .list-grid-5 > li:nth-of-type(5n+1), .list-grid-6 > li:nth-of-type(6n+1), .list-grid-7 > li:nth-of-type(7n+1), .list-grid-8 > li:nth-of-type(8n+1), .list-grid-9 > li:nth-of-type(9n+1), .list-grid-10 > li:nth-of-type(10n+1), .list-grid-11 > li:nth-of-type(11n+1), .list-grid-12 > li:nth-of-type(12n+1) {
+  clear: both; }
 
 /** others */
 [class*="module"], [class~="background"] {

@@ -11,19 +11,23 @@ $columnWidth: 100%/$columns;
 
 
 @mixin create_column($name, $num) {
-	.span-#{$name} { width: $columnWidth * $num; _width: $columnWidth * $num - 0.0694%; }	
+	.span-#{$name} { width: $columnWidth * $num; _width: $columnWidth * $num - 0.0694%; }
 }
 
 @mixin create_mobile_column($name, $num) {
-	.span-m-#{$name} { width: $columnWidth * $num; }	
+	.span-m-#{$name} { width: $columnWidth * $num; }
+}
+
+@mixin create_list_column($name, $num) {
+	.list-grid-#{$name} > li { width: 100%/$num; }
 }
 
 @mixin create_offset($name, $num) {
-	.offset-#{$num} { margin-left: $columnWidth * $num; _margin-left: $columnWidth * $num - 0.0694%; }	
+	.offset-#{$num} { margin-left: $columnWidth * $num; _margin-left: $columnWidth * $num - 0.0694%; }
 }
 
 @mixin create_mobile_offset($name, $num) {
-	.offset-m-#{$num} { margin-left: $columnWidth * $num; _margin-left: $columnWidth * $num - 0.0694%; }	
+	.offset-m-#{$num} { margin-left: $columnWidth * $num; _margin-left: $columnWidth * $num - 0.0694%; }
 }
 
 @mixin create_pull_push($name, $num) {
@@ -42,7 +46,7 @@ $columnWidth: 100%/$columns;
 		@include create_offset($i, $i);
 		@include create_pull_push($i,$i);
 	}
-	
+
 }
 
 @mixin create_mobile_grid($max){
@@ -53,8 +57,17 @@ $columnWidth: 100%/$columns;
 	}
 	.span-m-uncentered {margin-left: 0; margin-right: 0;float: left!important;}
 	.span-m-centered { position: relative; margin-left: auto; margin-right: auto; float: none; display: block; }
-	
 }
+
+@mixin create_list($max) {
+
+	@for $i from 1 through $max {
+		@include create_list_column($i, $i);
+	}
+	.list-grid-1 > li:nth-of-type(n),.list-grid-2 > li:nth-of-type(n),.list-grid-3 > li:nth-of-type(n),.list-grid-4 > li:nth-of-type(n),.list-grid-5 > li:nth-of-type(n),.list-grid-6 > li:nth-of-type(n),.list-grid-7 > li:nth-of-type(n),.list-grid-8 > li:nth-of-type(n),.list-grid-9 > li:nth-of-type(n),.list-grid-10 > li:nth-of-type(n),.list-grid-11 > li:nth-of-type(n),.list-grid-12 > li:nth-of-type(n){clear:none;}
+	.list-grid-1 > li:nth-of-type(1n+1),.list-grid-2 > li:nth-of-type(2n+1),.list-grid-3 > li:nth-of-type(3n+1),.list-grid-4 > li:nth-of-type(4n+1),.list-grid-5 > li:nth-of-type(5n+1),.list-grid-6 > li:nth-of-type(6n+1),.list-grid-7 > li:nth-of-type(7n+1),.list-grid-8 > li:nth-of-type(8n+1),.list-grid-9 > li:nth-of-type(9n+1),.list-grid-10 > li:nth-of-type(10n+1),.list-grid-11 > li:nth-of-type(11n+1),.list-grid-12 > li:nth-of-type(12n+1){clear:both;}
+}
+
 
 
 @mixin microfix(){
