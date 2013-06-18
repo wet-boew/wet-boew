@@ -267,7 +267,23 @@ div {
   margin-bottom: 10px;
 }
 
+.geomap-legend-item {
+	float: left;
+	padding-left: 10px;
+}
 
+.geomap-legend-detail {
+	padding-top: 10px;
+}
+
+.geomap-legend-symbol {
+	height: 18px;
+	width: 18px;
+}
+
+.geomap-clear-format {
+	clear: both;
+}
 
 @media print {
 	%geomap-print-visibility-hidden {

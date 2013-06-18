@@ -483,7 +483,7 @@
 					$ul = $('<ul class="list-bullet-none margin-left-none"></ul>').appendTo($fieldset);
 				}
 
-				$chkBox = $('<input type="checkbox" id="cb_' + featureTableId + '" value="' + featureTableId + '"' + $checked + ' />');
+				$chkBox = $('<div style="float: left;"><input type="checkbox" id="cb_' + featureTableId + '" value="' + featureTableId + '"' + $checked + ' /></div>');
 
 				$chkBox.on('change', function() {				
 					var layer = geomap.map.getLayer(olLayerId),				
@@ -512,11 +512,112 @@
 					}
 				});	
 
-				$label = $('<label class="form-checkbox" for="cb_' + featureTableId + '">' + $featureTable.attr('aria-label') + '</lable>');
-				$ul.append($('<li>').append($chkBox, $label));			
+				$label = ('<div class="geomap-legend-item"><details class="geomap-legend' + geomap.uniqueid + '"><summary>' + $featureTable.attr('aria-label') + '</summary><div class="geomap-legend-detail" id="sb_' + featureTableId + '"</div></details></div>');
+				$ul.append($('<li class="geomap-clear-format"/>').append($chkBox, $label));			
 			}	
 		},
 
+		/*
+		 * Add the layer symbology to the legend 
+		 */
+		symbolizeLegend: function(geomap) {
+			var len = geomap.map.layers.length,
+				ruleLen,
+				$symbol,
+				layer,
+				style;
+			
+			while (len--) {
+				layer = geomap.map.layers[len];
+				if (!layer.isBaseLayer) {
+					$symbol = $('#sb_' + layer.name);
+					
+					if ($symbol.length) {
+						style = layer.styleMap.styles['default'];
+
+						if (style.rules.length) {
+							
+							ruleLen = style.rules.length;
+							while (ruleLen--) {
+								
+								if (style.rules[ruleLen].filter.type === '==') {
+									style.rules[ruleLen].filter.type = _pe.dic.get('%colon');
+								}
+								
+								if (style.rules[ruleLen].filter.value !== null) {
+									$symbol.append('<label>' + style.rules[ruleLen].filter.property + ' ' + style.rules[ruleLen].filter.type + ' ' + style.rules[ruleLen].filter.value + '</label>' + _pe.fn.geomap.getLegengSymbol(style.rules[ruleLen].symbolizer));
+								} else {
+									$symbol.append('<label>' + style.rules[ruleLen].filter.property + ' ' + style.rules[ruleLen].filter.lowerBoundary + ' ' + style.rules[ruleLen].filter.type + ' ' + style.rules[ruleLen].filter.upperBoundary + '</label>' + _pe.fn.geomap.getLegengSymbol(style.rules[ruleLen].symbolizer));
+								}
+							}
+
+						} else if (typeof style.defaultStyle.fillColor !== 'undefined') {
+							$symbol.append(_pe.fn.geomap.getLegengSymbol(style.defaultStyle));
+						} else if (typeof style.defaultStyle.externalGraphic !== 'undefined') {
+							$symbol.append(_pe.fn.geomap.getLegengGraphic(style.defaultStyle));
+						}
+					}	
+				}
+			}
+		},
+		
+		/*
+		 * Get the div object with the proper style
+		 */
+		getLegengSymbol: function(style) {
+			var opacity = '',
+				fillColor = '',
+				strokeColor = '',
+				divInfo = '<div class="geomap-legend-symbol" style="fillColor strokeColor opacity">';
+				
+				if (typeof style.fillColor !== 'undefined') {
+					fillColor = 'background-color: ' + style.fillColor + ';';
+				}
+				
+				if (typeof style.strokeColor !== 'undefined') {
+					strokeColor = 'border-style: solid; border-width: 2px; border-color: ' + style.strokeColor + ';';
+				}
+				
+				if (typeof style.fillOpacity !== 'undefined') {
+					opacity += 'opacity: ' + style.fillOpacity + ';';
+				}
+				
+				divInfo = divInfo.replace('fillColor', fillColor);
+				divInfo = divInfo.replace('strokeColor', strokeColor);
+				divInfo = divInfo.replace('opacity', opacity);
+				
+				return divInfo;
+		},
+		
+		getLegengGraphic: function(style) {
+			var opacity = '',
+				height = '',
+				width = '',
+				divInfo = '<img src="' + style.externalGraphic + '" style="opacity height width">';
+				
+				if (typeof style.graphicOpacity !== 'undefined') {
+					if (_pe.ie > 0 && _pe.ie < 8) {
+						opacity = 'filter:alpha(opacity=' + (style.graphicOpacity * 10) + ');';
+					} else {
+						opacity = 'opacity: ' + style.graphicOpacity + ';';
+					}
+				}
+				
+				if (typeof style.pointRadius !== 'undefined') {
+					height = 'height: ' + style.pointRadius + 'px;';
+					width = 'width: ' + style.PointRadius + 'px;';
+				} else if ((typeof style.graphicHeight !== 'undefined') && (typeof style.graphicWidth !== 'undefined')) {
+					height = 'height: ' + style.graphicHeight + 'px;';
+					width = 'width: ' + style.graphicWidth + 'px;';
+				}
+				
+				divInfo = divInfo.replace('opacity', opacity);
+				divInfo = divInfo.replace('height', height);
+				divInfo = divInfo.replace('width', width);
+				
+				return divInfo;
+		},
+		
 		/*
 		 * Create tabs - one for each layer added
 		 */
@@ -1592,7 +1693,7 @@
 
 			// add overlay data
 			_pe.fn.geomap.addOverlayData(geomap, opts);
-
+			
 			// load Controls
 			_pe.fn.geomap.loadControls(geomap, opts);
 
@@ -1604,6 +1705,10 @@
 		},
 
 		refreshPlugins: function(geomap) {
+			
+			// Symbolize legend
+			_pe.fn.geomap.symbolizeLegend(geomap);
+			
 			_pe.wb_load({
 				'plugins': {
 					'tabbedinterface': geomap.glayers.find('.wet-boew-geomap-tabs'),
@@ -1615,6 +1720,9 @@
 				// enhance the checkboxes with jQuery Mobile
 				geomap.glegend.trigger('create');
 			}
+			
+			// enhance the legend details summary
+			_pe.polyfills.enhance('detailssummary', _pe.main.find('.geomap-legend' + geomap.uniqueid));
 			
 			// set map id to be able to access by getMap.
 			// if no id provided, set random id. This is needed because id was not mandatatory before version 3.1.2
