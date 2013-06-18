@@ -1,0 +1,7 @@
+/*
+ * POSITIONAL BASED SCSS
+ * - Decorative OOCSS Extending CSS for position based treatment of elements
+ */
+
+[class*="float rght"] { float: right !important; }
+[class*="float lft"] { float: left !important; }

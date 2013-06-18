@@ -1,0 +1,63 @@
+/*
+ * BORDERS SCSS
+ * - Decorative OOCSS Extending CSS for Border treatment of elements
+ */
+
+$border-color-light: #eee !default;
+$border-color-medium: #999 !default;
+$border-color-dark : #222 !default;
+$border-color-accent: #00556b !default;
+
+$border-width-normal: 1px !default;
+$border-width-thick: 3px !default;
+$border-width-xthick: 5px !default;
+
+[class*="border-"] {
+  border-color: transparent;
+  border-width: 0;
+  border-style: solid;
+  &.lght {
+        border-color: $border-color-light;
+    }
+    &.med {
+        border-color: $border-color-medium;
+    }
+    &.drk {
+        border-color: $border-color-dark;
+    }
+    &.acct {
+        border-color: $border-color-accent;
+    }
+    &.dshd {
+        border-style: dashed;
+    }
+    &.dbl {
+        border-style: double;
+    }
+    
+}
+
+[class*="border-all"] { border-width: $border-width-normal; }
+[class*="border-all thck"] { border-width: $border-width-thick; }
+[class*="border-all xthck"] { border-width: $border-width-xthick; }
+[class*="border-all none"] { border: none; }
+
+[class*="border-right"] { border-right-width: $border-width-normal; }
+[class*="border-right thck"] { border-right-width: $border-width-thick; }
+[class*="border-right xthck"] { border-right-width: $border-width-xthick; }
+[class*="border-right none"] { border-right-width: 0; }
+
+[class*="border-left"] { border-left-width: $border-width-normal; }
+[class*="border-left thck"] { border-left-width: $border-width-thick; }
+[class*="border-left xthck"] { border-left-width: $border-width-xthick; }
+[class*="border-left none"] { border-left-width: 0; }
+
+[class*="border-top"] { border-top-width: $border-width-normal; }
+[class*="border-top thck"] { border-top-width: $border-width-thick; }
+[class*="border-top xthck"] { border-top-width: $border-width-xthick; }
+[class*="border-top none"] { border-top-width: 0; }
+
+[class*="border-bottom"] { border-bottom-width: $border-width-normal; }
+[class*="border-bottom thck"] { border-bottom-width: $border-width-thick; }
+[class*="border-bottom xthck"] { border-bottom-width: $border-width-xthick; }
+[class*="border-bottom none"] { border-bottom-width: 0; }

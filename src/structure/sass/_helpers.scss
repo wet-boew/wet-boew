@@ -1,0 +1,21 @@
+/*
+ * HELPER ooCSS classes for all WET-BOEW Themes
+ */
+
+@import "includes/paddings";
+@import "includes/margins";
+@import "includes/borders";
+@import "includes/backgrounds";
+@import "includes/color";
+@import "includes/positions";
+/** others */
+
+[class*="module"], [class~="background"] {
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+.module {
+  background-color: #F9F9F9;
+  border: 1px solid #D4D4D4;
+}
