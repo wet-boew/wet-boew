@@ -23,6 +23,21 @@
 // Structure is last to ensure no overwrites
 @import 'sass/grids/default';
 
+
+@media only screen and (min-width: 480px) {
+	.container { width: 100% }
+}
+@media only screen and (min-width: 768px) {
+     .container { width: 100% }
+     @include create_mobile_grid($columns);
+}
+@media only screen and (min-width: 992px) {
+	.container { width: 960px }
+}
+@media only screen and (min-width: 1382px) {
+	.container { width: 1200px }
+}
+
 @media screen and (max-width: 767px), screen and (max-device-width: 767px) {
 /* ----- Small screens - Screen media type - Start of build includes ----- */
 @import 'sass/grids/small';
