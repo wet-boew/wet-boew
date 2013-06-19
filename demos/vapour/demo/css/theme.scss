@@ -6,9 +6,20 @@
 	@licence: wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
 */
 
-html,body{ font-size: 100%;}
-body { font-size: 80%}
-body{background:#FFF;color:#222;font-family:"Helvetica Neue", Helvetica, Helvetica, Arial, sans-serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:default;margin:0;padding:0;}
+body{
+
+  background:#FFF;
+  color:#222;
+  font-family:Arial,Verdana,Helvetica,sans-serif;
+  font-weight:400;
+  font-style:normal;
+  line-height:1.5;
+  position:relative;
+  cursor:default;
+  margin:0;
+  padding:0;
+  font-size:80%;
+}
 
 
 /* just for demo purposes */
@@ -28,6 +39,8 @@ body{background:#FFF;color:#222;font-family:"Helvetica Neue", Helvetica, Helveti
     text-align: center;
   }
 }
+
+
 
 code {
   background-color: #eee;

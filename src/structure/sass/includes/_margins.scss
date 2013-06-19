@@ -3,45 +3,30 @@
  * - MARGIN OOCSS Extending CSS for positioning of elements
  */
 
-$margin-xsmall : 2px !default;
-$margin-small : 5px !default;
-$margin-medium: 10px !default;
-$margin-large: 20px !default;
-$margin-xlarge: 50px !default;
+$margin: 5 !default;
+$margin-xsmall : floor($margin*.618*.618) + px;
+$margin-small : floor($margin*.618) + px;
+$margin-large: floor($margin*1.618)  + px ;
+$margin-xlarge: floor($margin*1.618*1.618) +px;
 
+// Mapping Margin function 
+@function margin-return($context){
+  @if $context == '-xsmall' { @return $margin-xsmall }
+  @else if $context == '-small' { @return $margin-small }
+  @else if $context == '-large' { @return $margin-large }
+  @else if $context == '-xlarge' { @return $margin-xlarge }
+  @else if $context == '-none' { @return 0px }
+  @else { @return $margin + px }
+}
 
-[class~="margin-all"]      { margin: $margin-medium !important;}
-[class~="margin-all-none"] { margin: 0 !important; }
-[class~="margin-all-xsmall"] { margin: $margin-xsmall !important; }
-[class~="margin-all-small"]  { margin: $margin-small !important; }
-[class~="margin-all-large"]  { margin: $margin-large !important; }
-[class~="margin-all-xlarge"] { margin: $margin-xlarge !important; }
+$sizes: '-none','-xsmall','-small','-large','-xlarge';
+$sides : '','-left','-right','-top','-bottom';
 
-[class~="margin-left"]      { margin-left: $margin-medium !important;}
-[class~="margin-left-none"] { margin-left: 0 !important; }
-[class~="margin-left-xsmall"] { margin-left: $margin-xsmall !important; }
-[class~="margin-left-small"]  { margin-left: $margin-small !important; }
-[class~="margin-left-large"]  { margin-left: $margin-large !important; }
-[class~="margin-left-xlarge"] { margin-left: $margin-xlarge !important; }
+@each $sds in $sides {
+	// looping through sides
+	@each $sz in $sizes {
+		.margin#{$sds}#{$sz} { margin#{$sds}: margin-return($sz)}
+	}
+}
 
-[class~="margin-right"]      { margin-right: $margin-medium !important;}
-[class~="margin-right-none"] { margin-right: 0 !important; }
-[class~="margin-right-xsmall"] { margin-right: $margin-xsmall !important; }
-[class~="margin-right-small"]  { margin-right: $margin-small !important; }
-[class~="margin-right-large"]  { margin-right: $margin-large !important; }
-[class~="margin-right-xlarge"] { margin-right: $margin-xlarge !important; }
-
-[class~="margin-top"]      { margin-top: $margin-medium !important;}
-[class~="margin-top-none"] { margin-top: 0 !important; }
-[class~="margin-top-xsmall"] { margin-top: $margin-xsmall !important; }
-[class~="margin-top-small"]  { margin-top: $margin-small !important; }
-[class~="margin-top-large"]  { margin-top: $margin-large !important; }
-[class~="margin-top-xlarge"] { margin-top: $margin-xlarge !important; }
-
-[class~="margin-bottom"]      { margin-bottom: $margin-medium !important;}
-[class~="margin-bottom-none"] { margin-bottom: 0 !important; }
-[class~="margin-bottom-xsmall"] { margin-bottom: $margin-xsmall !important; }
-[class~="margin-bottom-small"]  { margin-bottom: $margin-small !important; }
-[class~="margin-bottom-large"]  { margin-bottom: $margin-large !important; }
-[class~="margin-bottom-xlarge"] { margin-bottom: $margin-xlarge !important; }
 

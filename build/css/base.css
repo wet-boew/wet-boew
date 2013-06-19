@@ -10,10 +10,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
-/*
- * Base Global settings for all WET-BOEW Themes
- */
-/* Box Model */
+/* Box sizing stability */
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -23,208 +20,170 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box; }
 
-/* responsive Images */
+/* Responsive images */
 img {
   height: auto;
   max-width: 100%;
   width: 100%; }
 
-/* Code block */
-code {
-  font-size: 112%;
-  font-family: "Courier New", Courier, monospace; }
-
 /* Base styles for all Themes */
-/*
- * HELPER ooCSS classes for all WET-BOEW Themes
- */
 /*
  * PADDING SCSS
  * - PADDING OOCSS Extending CSS for positioning of elements
  */
-[class~="padding-all"] {
-  padding: 10px !important; }
+.padding-none {
+  padding: 0px; }
 
-[class~="padding-all-none"], [class~="padding-none"] {
-  padding: 0 !important; }
+.padding-xsmall {
+  padding: 3px; }
 
-[class~="padding-all-xsmall"] {
-  padding: 2px !important; }
+.padding-small {
+  padding: 6px; }
 
-[class~="padding-all-small"] {
-  padding: 5px !important; }
+.padding-large {
+  padding: 16px; }
 
-[class~="padding-all-large"] {
-  padding: 20px !important; }
+.padding-xlarge {
+  padding: 26px; }
 
-[class~="padding-all-xlarge"] {
-  padding: 50px !important; }
+.padding-left-none {
+  padding-left: 0px; }
 
-[class~="padding-left"] {
-  padding-left: 10px !important; }
+.padding-left-xsmall {
+  padding-left: 3px; }
 
-[class~="padding-left-none"] {
-  padding-left: 0 !important; }
+.padding-left-small {
+  padding-left: 6px; }
 
-[class~="padding-left-xsmall"] {
-  padding-left: 2px !important; }
+.padding-left-large {
+  padding-left: 16px; }
 
-[class~="padding-left-small"] {
-  padding-left: 5px !important; }
+.padding-left-xlarge {
+  padding-left: 26px; }
 
-[class~="padding-left-large"] {
-  padding-left: 20px !important; }
+.padding-right-none {
+  padding-right: 0px; }
 
-[class~="padding-left-xlarge"] {
-  padding-left: 50px !important; }
+.padding-right-xsmall {
+  padding-right: 3px; }
 
-[class~="padding-right"] {
-  padding-right: 10px !important; }
+.padding-right-small {
+  padding-right: 6px; }
 
-[class~="padding-right-none"] {
-  padding-right: 0 !important; }
+.padding-right-large {
+  padding-right: 16px; }
 
-[class~="padding-right-xsmall"] {
-  padding-right: 2px !important; }
+.padding-right-xlarge {
+  padding-right: 26px; }
 
-[class~="padding-right-small"] {
-  padding-right: 5px !important; }
+.padding-top-none {
+  padding-top: 0px; }
 
-[class~="padding-right-large"] {
-  padding-right: 20px !important; }
+.padding-top-xsmall {
+  padding-top: 3px; }
 
-[class~="padding-right-xlarge"] {
-  padding-right: 50px !important; }
+.padding-top-small {
+  padding-top: 6px; }
 
-[class~="padding-top"] {
-  padding-top: 10px !important; }
+.padding-top-large {
+  padding-top: 16px; }
 
-[class~="padding-top-none"] {
-  padding-top: 0 !important; }
+.padding-top-xlarge {
+  padding-top: 26px; }
 
-[class~="padding-top-xsmall"] {
-  padding-top: 2px !important; }
+.padding-bottom-none {
+  padding-bottom: 0px; }
 
-[class~="padding-top-small"] {
-  padding-top: 5px !important; }
+.padding-bottom-xsmall {
+  padding-bottom: 3px; }
 
-[class~="padding-top-large"] {
-  padding-top: 20px !important; }
+.padding-bottom-small {
+  padding-bottom: 6px; }
 
-[class~="padding-top-xlarge"] {
-  padding-top: 50px !important; }
+.padding-bottom-large {
+  padding-bottom: 16px; }
 
-[class~="padding-bottom"] {
-  padding-bottom: 10px !important; }
-
-[class~="padding-bottom-none"] {
-  padding-bottom: 0 !important; }
-
-[class~="padding-bottom-xsmall"] {
-  padding-bottom: 2px !important; }
-
-[class~="padding-bottom-small"] {
-  padding-bottom: 5px !important; }
-
-[class~="padding-bottom-large"] {
-  padding-bottom: 20px !important; }
-
-[class~="padding-bottom-xlarge"] {
-  padding-bottom: 50px !important; }
+.padding-bottom-xlarge {
+  padding-bottom: 26px; }
 
 /*
  * MARGIN SCSS
  * - MARGIN OOCSS Extending CSS for positioning of elements
  */
-[class~="margin-all"] {
-  margin: 10px !important; }
+.margin-none {
+  margin: 0px; }
 
-[class~="margin-all-none"] {
-  margin: 0 !important; }
+.margin-xsmall {
+  margin: 1px; }
 
-[class~="margin-all-xsmall"] {
-  margin: 2px !important; }
+.margin-small {
+  margin: 3px; }
 
-[class~="margin-all-small"] {
-  margin: 5px !important; }
+.margin-large {
+  margin: 8px; }
 
-[class~="margin-all-large"] {
-  margin: 20px !important; }
+.margin-xlarge {
+  margin: 13px; }
 
-[class~="margin-all-xlarge"] {
-  margin: 50px !important; }
+.margin-left-none {
+  margin-left: 0px; }
 
-[class~="margin-left"] {
-  margin-left: 10px !important; }
+.margin-left-xsmall {
+  margin-left: 1px; }
 
-[class~="margin-left-none"] {
-  margin-left: 0 !important; }
+.margin-left-small {
+  margin-left: 3px; }
 
-[class~="margin-left-xsmall"] {
-  margin-left: 2px !important; }
+.margin-left-large {
+  margin-left: 8px; }
 
-[class~="margin-left-small"] {
-  margin-left: 5px !important; }
+.margin-left-xlarge {
+  margin-left: 13px; }
 
-[class~="margin-left-large"] {
-  margin-left: 20px !important; }
+.margin-right-none {
+  margin-right: 0px; }
 
-[class~="margin-left-xlarge"] {
-  margin-left: 50px !important; }
+.margin-right-xsmall {
+  margin-right: 1px; }
 
-[class~="margin-right"] {
-  margin-right: 10px !important; }
+.margin-right-small {
+  margin-right: 3px; }
 
-[class~="margin-right-none"] {
-  margin-right: 0 !important; }
+.margin-right-large {
+  margin-right: 8px; }
 
-[class~="margin-right-xsmall"] {
-  margin-right: 2px !important; }
+.margin-right-xlarge {
+  margin-right: 13px; }
 
-[class~="margin-right-small"] {
-  margin-right: 5px !important; }
+.margin-top-none {
+  margin-top: 0px; }
 
-[class~="margin-right-large"] {
-  margin-right: 20px !important; }
+.margin-top-xsmall {
+  margin-top: 1px; }
 
-[class~="margin-right-xlarge"] {
-  margin-right: 50px !important; }
+.margin-top-small {
+  margin-top: 3px; }
 
-[class~="margin-top"] {
-  margin-top: 10px !important; }
+.margin-top-large {
+  margin-top: 8px; }
 
-[class~="margin-top-none"] {
-  margin-top: 0 !important; }
+.margin-top-xlarge {
+  margin-top: 13px; }
 
-[class~="margin-top-xsmall"] {
-  margin-top: 2px !important; }
+.margin-bottom-none {
+  margin-bottom: 0px; }
 
-[class~="margin-top-small"] {
-  margin-top: 5px !important; }
+.margin-bottom-xsmall {
+  margin-bottom: 1px; }
 
-[class~="margin-top-large"] {
-  margin-top: 20px !important; }
+.margin-bottom-small {
+  margin-bottom: 3px; }
 
-[class~="margin-top-xlarge"] {
-  margin-top: 50px !important; }
+.margin-bottom-large {
+  margin-bottom: 8px; }
 
-[class~="margin-bottom"] {
-  margin-bottom: 10px !important; }
-
-[class~="margin-bottom-none"] {
-  margin-bottom: 0 !important; }
-
-[class~="margin-bottom-xsmall"] {
-  margin-bottom: 2px !important; }
-
-[class~="margin-bottom-small"] {
-  margin-bottom: 5px !important; }
-
-[class~="margin-bottom-large"] {
-  margin-bottom: 20px !important; }
-
-[class~="margin-bottom-xlarge"] {
-  margin-bottom: 50px !important; }
+.margin-bottom-xlarge {
+  margin-bottom: 13px; }
 
 /*
  * BORDERS SCSS
@@ -429,15 +388,6 @@ p[class*="background-"] {
 
 .list-grid-1 > li:nth-of-type(1n+1), .list-grid-2 > li:nth-of-type(2n+1), .list-grid-3 > li:nth-of-type(3n+1), .list-grid-4 > li:nth-of-type(4n+1), .list-grid-5 > li:nth-of-type(5n+1), .list-grid-6 > li:nth-of-type(6n+1), .list-grid-7 > li:nth-of-type(7n+1), .list-grid-8 > li:nth-of-type(8n+1), .list-grid-9 > li:nth-of-type(9n+1), .list-grid-10 > li:nth-of-type(10n+1), .list-grid-11 > li:nth-of-type(11n+1), .list-grid-12 > li:nth-of-type(12n+1) {
   clear: both; }
-
-/** others */
-[class*="module"], [class~="background"] {
-  margin-bottom: 20px;
-  padding: 0 10px; }
-
-.module {
-  background-color: #F9F9F9;
-  border: 1px solid #D4D4D4; }
 
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)

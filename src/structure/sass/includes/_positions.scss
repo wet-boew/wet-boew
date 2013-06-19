@@ -3,5 +3,5 @@
  * - Decorative OOCSS Extending CSS for position based treatment of elements
  */
 
-[class~="float-right"] { float: right !important; }
-[class~="float-left"] { float: left !important; }
+.float-right { float: right !important; }
+.float-left { float: left !important; }

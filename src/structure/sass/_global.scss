@@ -1,0 +1,19 @@
+
+/* Box sizing stability */
+* {
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box;
+  &:before, &:after { 
+  	-moz-box-sizing: border-box; 
+  	-webkit-box-sizing: border-box; 
+  	box-sizing: border-box; 
+  }
+}
+
+/* Responsive images */
+img{
+	height: auto;
+	max-width: 100%;
+	width:100%;
+}
