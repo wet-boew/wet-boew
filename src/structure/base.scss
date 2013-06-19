@@ -8,5 +8,16 @@
  *
  */
 
-@import 'variables';
-@import 'sass/structure';
+// Set the variables and functions for WET-BOEW
+@import 'sass/mixins';
+@import 'sass/global'; /* Base styles for all Themes */
+// Helper Class for Web Developers
+@import "sass/includes/paddings";
+@import "sass/includes/margins";
+@import "sass/includes/borders";
+@import "sass/includes/backgrounds";
+@import "sass/includes/color";
+@import "sass/includes/positions";
+@import "sass/includes/lists";
+// Structure is last to ensure no overwrites
+@import 'sass/grids';

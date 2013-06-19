@@ -3,25 +3,63 @@
  * - Decorative OOCSS Extending CSS for Border treatment of elements
  */
 
-$border-color-light: #eee !default;
-$border-color-medium: #999 !default;
-$border-color-dark : #222 !default;
-$border-color-accent: #00556b !default;
+$border : 1 !default;
+$radius: 6 !default;
+$border-color: #999 !default;
+$border-accent: #00556b !default;
 
-$border-width-normal: 1px !default;
-$border-width-thick: 3px !default;
-$border-width-xthick: 5px !default;
+$border-width-thick: floor($border*1.618) + px;
+$border-width-xthick: floor($border*1.618*1.618) + px;
 
+$border-radius-sharp: floor($radius*1.618) + px;
+$border-radius-sharper: floor($border*1.618*1.618) + px;
+$border-radius-loose: floor($border*.618) + px;
+$border-radius-looser: floor($border*.618*.618) + px;
+
+$border-color-light: lighten($border-color, 20%);
+$border-color-dark : darken($border-color, 20%);
+$border-accent-light: lighten($border-accent, 20%);
+$border-accent-dark: lighten($border-accent, 20%);
+
+// Set the defaults around border with low specificity and no background color
 [class*="border-"] {
-  border-color: $border-color-medium;
+  border-color: transparent;
   border-width: 0;
   border-style: solid;
 }
+
+@function border-return($context){
+  @if $context == '-light' { @return $border-color-light }
+  @else if $context == '-dark' { @return $border-color-dark }
+  @else if $context == '-large' { @return $border-width-thick + px }
+  @else if $context == '-xlarge' { @return $border-width-xthick + px }
+  @else if $context == '-dashed' { @return dashed }
+  @else if $context == '-double' { @return double }
+  @else if $context == '-none' { @return 0px }
+  @else { @return $radius + px }
+}
+
+$sizes: '-none','-large','-xlarge';
+$sides : '','-left','-right','-top','-bottom';
+$shades : '-light', '-dark';
+$types : '-dashed', '-double';
+$amounts : '-xthick', '-thick', '-thin', '-xthin' 
+
+// lets loop through colors
+@each $sds in $sides {
+	// looping through sides
+	@each $sz in $sizes {
+		.border#{$sds}#{$sz} { margin#{$sds}: margin-return($sz)}
+	}
+}
+
+
 [class~="border-light"] {  border-color: $border-color-light; }
 [class~="border-medium"] {  border-color: $border-color-medium; }
 [class~="border-dark"] {  border-color: $border-color-dark; }
 [class~="border-accent"] {  border-color: $border-color-accent; }
 [class~="border-dashed"] {  border-style: dashed; }
+
 [class~="border-double"] {  border-style: double; border-width: 3px; }
 [class~="border-xthick"] { border-width: $border-width-xthick; }
 [class~="border-thick"] { border-width: $border-width-thick; }
