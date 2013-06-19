@@ -91,31 +91,6 @@
 					swapPNG(true);
 				}
 			}
-			
-			var current = pe.menu.navcurrent(wet_boew_theme.menubar, wet_boew_theme.bcrumb),
-				submenu = current.parents('div.mb-sm'),
-				len,
-				mobile = pe.mobile,
-				svgid = (mobile ? ['gcwu-wmms'] : ['gcwu-wmms', 'gcwu-sig']),
-				svgelm,
-				object,
-				contentPage = wet_boew_theme.sft.length !== 0;
-
-			// Remove the object for loading the SVG images  and leave only the fallback image element (content pages only)
-			// Also switch to the white PNG if not in print view
-			if (!pe.svg || pe.svgfix) {
-				len = svgid.length;
-				while (len--) {
-					svgelm = document.getElementById(svgid[len]);
-					if (svgelm !== null) {
-						object = svgelm.getElementsByTagName('object');
-						if (object.length > 0) {
-							object = object[0];
-							object.parentNode.innerHTML = object.parentNode.innerHTML.replace(/<object[\s\S]*?\/object>/i, ((mobile && contentPage) ? object.innerHTML.replace('.png', '-w.png') : object.innerHTML));
-						}
-					}
-				}
-			}
 
 			// If the link with class="nav-current" is in the submenu, then move the class up to the associated menu bar link
 			if (submenu.length !== 0) {
