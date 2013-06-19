@@ -37,13 +37,6 @@ body {
 	}
 }
 
-#base-title {
-	small {
-		font-size: 0.45em;
-		display: block;
-	}		
-}
-
 .wb-sec-def {//TODO: Highly nested class, any cleanup possible?
 	a {
 		&.nav-current {

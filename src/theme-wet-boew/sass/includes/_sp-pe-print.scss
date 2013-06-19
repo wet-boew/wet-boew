@@ -16,6 +16,7 @@
 
 #wet-title {
 	@extend %wet-sp-pe-print-base-title-styles;
+	border: none;
 	p {
 		@extend %wet-sp-pe-print-base-title-styles;
 		display: table-row;
@@ -34,6 +35,10 @@
 		font-size: 0.45em;
 		display: block;
 	}	
+}
+
+#wet-fullhd {
+	display: none;
 }
 
 #wb-main-in {

@@ -17,6 +17,7 @@
 	@extend %base-default-print-width-100perc;
 	position: relative;
 	top: 9px;
+	border: none;
 }
 #base-title {
 	@extend %base-default-print-base-title-styles;
@@ -90,10 +91,8 @@ h6 {
 	@extend %base-default-print-display-none;
 }
 
-#wb-fullhd {
-	ul {
-		@extend %base-default-print-display-none;
-	}
+#base-fullhd {
+	@extend %base-default-print-display-none;
 }
 
 #base-srchbx {
