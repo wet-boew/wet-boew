@@ -167,11 +167,10 @@
 			// Identify whether or not the device supports JavaScript, the current theme, the current view and screen size, and if the device has a touchscreen
 			pe.mobile = pe.mobilecheck();
 			pe.medium = pe.mediumcheck();
-			pe.print = (pe.mobile ? false : pe.printcheck());
 
 			// Add theme specific CSS classes and favicon
 			if (wet_boew_theme !== null) {
-				classes += wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.medium ? ' medium-screen' : ' small-screen')) : (pe.print ? ' print-view' : ' desktop-view large-screen'));
+				classes += wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.medium ? ' medium-screen' : ' small-screen')) : ' desktop-view large-screen');
 				if (typeof wet_boew_theme.favicon !== 'undefined') {
 					pe.add.favicon(pe.add.themecsslocation.replace(/css\/$/, wet_boew_theme.favicon.href), wet_boew_theme.favicon.rel, wet_boew_theme.favicon.sizes);
 				}
@@ -378,11 +377,7 @@
 		*/
 		mobile: false,
 		mobilecheck: function () {
-			return pe.viewtest.offsetWidth > 1; // CSS (through media queries) sets to offsetWidth = 0 in print view, offsetWidth = 1 desktop view (large screen), offsetWidth = 2 or 3 mobile view (2 = small screen, 3 = medium screen)
-		},
-		print: false,
-		printcheck: function () {
-			return pe.viewtest.offsetWidth === 0; // CSS (through media queries) sets to offsetWidth = 0 in print view
+			return pe.viewtest.offsetWidth > 1; // CSS (through media queries) sets to offsetWidth = 1 desktop view (large screen), offsetWidth = 2 or 3 mobile view (2 = small screen, 3 = medium screen)
 		},
 		medium: false,
 		mediumcheck: function () {

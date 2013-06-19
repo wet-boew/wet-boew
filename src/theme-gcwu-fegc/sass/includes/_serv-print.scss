@@ -10,15 +10,6 @@
 	width: 126px;
 	height: 30px;
 }
-%gcwu-serv-print-position-absolute {
-	position: absolute;
-}
-%gcwu-serv-print-left-0 {
-	left: 0;
-}
-%gcwu-serv-print-right-0 {
-	right: 0;
-}
 %gcwu-serv-margin-0-padding-0-width-100perc {
 	margin: 0;
 	padding: 0;
@@ -26,9 +17,8 @@
 }
  
 #gcwu-sig {
-	@extend %gcwu-serv-print-position-absolute;
-	top: 10px;
-	@extend %gcwu-serv-print-left-0;
+	margin-top: 10px;
+	float: left;
 	img {
 		@extend %gcwu-serv-print-width-214-height-20;
 	}
@@ -42,9 +32,7 @@
 }
 
 #gcwu-wmms {
-	@extend %gcwu-serv-print-position-absolute;
-	top: 0;
-	@extend %gcwu-serv-print-right-0;
+	float: right;
 	img {
 		@extend %gcwu-serv-print-width-126-height-30;
 	}
@@ -84,12 +72,10 @@
 
 [dir="rtl"] {
 	#gcwu-sig {
-		left: auto;
-		@extend %gcwu-serv-print-right-0;
+		float: right;
 	}
 
 	#gcwu-wmms {
-		right: auto;
-		@extend %gcwu-serv-print-left-0;
+		float: left;
 	}
 }

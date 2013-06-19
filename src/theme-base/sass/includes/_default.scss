@@ -38,6 +38,13 @@
 	}
 }
 
+#base-title {
+	small {
+		font-size: 0.45em;
+		display: block;
+	}		
+}
+
 #base-psnb {
 	h2 {
 		@extend %base-default-hidden-clip;
