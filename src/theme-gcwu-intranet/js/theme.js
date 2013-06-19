@@ -49,25 +49,46 @@
 			var current = pe.menu.navcurrent(wet_boew_theme.menubar, wet_boew_theme.bcrumb),
 				submenu = current.parents('div.mb-sm'),
 				len,
-				mobile = pe.mobile,
-				svgid = (mobile ? ['gcwu-wmms'] : ['gcwu-wmms', 'gcwu-sig']),
-				svgelm,
+				elms,
+				elm,
 				object,
-				contentPage = wet_boew_theme.sft.length !== 0;
+				swapPNG,
+				contentPage,
+				mobile = pe.mobile;
 
-			// Remove the object for loading the SVG images  and leave only the fallback image element (content pages only)
-			// Also switch to the white PNG if not in print view
+			// If SVG is not properly supported, remove the objects for loading the SVG images and leave only the fallback image element
+			// Also switch to the black PNG if not mobile or when printing a page
 			if (!pe.svg || pe.svgfix) {
-				len = svgid.length;
-				while (len--) {
-					svgelm = document.getElementById(svgid[len]);
-					if (svgelm !== null) {
-						object = svgelm.getElementsByTagName('object');
-						if (object.length > 0) {
-							object = object[0];
-							object.parentNode.innerHTML = object.parentNode.innerHTML.replace(/<object[\s\S]*?\/object>/i, ((mobile && contentPage) ? object.innerHTML.replace('.png', '-w.png') : object.innerHTML));
-						}
+				contentPage = wet_boew_theme.sft.length !== 0;
+				swapPNG = function(toAlt) {
+					var elms = $('#gcwu-wmms img').get(),
+						len = elms.length,
+						image;
+					while (len--) {
+						image = elms[len];
+						image.src = (toAlt ? image.src.replace('.png', '-alt.png') : image.src.replace('-alt.png', '.png'));
 					}
+				};
+				if (contentPage && mobile) {
+					window.onbeforeprint = function() {
+						swapPNG(true);
+					};
+					window.onafterprint = function() {
+						swapPNG(false);
+					};
+				}
+
+				elms = $('#gcwu-wmms-in, #gcwu-sig-in').get();
+				len = elms.length;
+				while (len--) {
+					elm = elms[len];
+					object = elm.getElementsByTagName('object');
+					if (object.length > 0) {
+						elm.innerHTML = elm.innerHTML.replace(/<object[\s\S]*?\/object>/i, object[0].innerHTML);
+					}
+				}
+				if (contentPage && !mobile) {
+					swapPNG(true);
 				}
 			}
 
@@ -214,7 +235,7 @@
 				header += popup_button + ' href="#popupSettings" data-icon="gear">' + settings_txt + '</a></map></div>';
 				// Append the header
 				wet_boew_theme.gcnb.children('#gcwu-gcnb-in').before(header);
-				wet_boew_theme.gcnb.find('.ui-title').append(document.getElementById('gcwu-wmms'));
+				wet_boew_theme.gcnb.find('.ui-title').append($('#gcwu-wmms').clone());
 				// Apply a theme to the site title
 				wet_boew_theme.title[0].className += ' ui-bar-b';
 
@@ -351,7 +372,6 @@
 				wmms = document.getElementById('gcwu-wmms');
 				if (wmms !== null) {
 					pe.footer[0].getElementsByTagName('footer')[0].appendChild(wmms.cloneNode(true));
-					wmms.parentNode.removeChild(wmms);
 				}
 			}
 

@@ -79,8 +79,9 @@ h6 {
 }
 
 #gcwu-wmms {
+	position: absolute;
 	top: 0;
-	@extend %gcwu-default-print-float-right;
+	right: 0;
 	img {
 		@extend %gcwu-default-print-width-126-height-30;
 	}
@@ -144,6 +145,13 @@ h6 {
 	ul {
 		@extend %gcwu-default-print-display-none;
 	}
+	.ui-title {
+		@extend %gcwu-default-print-display-none;
+	}
+}
+
+#gcwu-mnavbar {
+	@extend %gcwu-default-print-display-none;
 }
 
 #gcwu-srchbx {

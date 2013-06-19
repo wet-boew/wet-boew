@@ -48,31 +48,39 @@
 
 			var current = pe.menu.navcurrent(wet_boew_theme.menubar, wet_boew_theme.bcrumb),
 				submenu = current.parents('div.mb-sm'),
-				img,
 				len,
-				svgid = ['wet-title'],
-				svgelm,
+				elms,
+				elm,
 				object,
-				print = pe.print;
+				swapPNG,
+				mobile = pe.mobile;
 
-			// Remove the object for loading the SVG images  and leave only the fallback image element
-			// Also switch to the white PNG if not in print view
+			// If SVG is not properly supported, remove the objects for loading the SVG images and leave only the fallback image element
+			// Also switch to the black PNG if printing
 			if (!pe.svg || pe.svgfix) {
-				len = svgid.length;
+				swapPNG = function(toAlt) {
+					var elms = $((mobile ? '#wet-fullhd .ui-title img' : '#wet-title img')).get(),
+						len = elms.length,
+						image;
+					while (len--) {
+						image = elms[len];
+						image.src = (toAlt ? image.src.replace('.png', '-alt.png') : image.src.replace('-alt.png', '.png'));
+					}
+				};
+				window.onbeforeprint = function() {
+					swapPNG(true);
+				};
+				window.onafterprint = function() {
+					swapPNG(false);
+				};
+
+				elms = $('#wet-title-in a').get();
+				len = elms.length;
 				while (len--) {
-					svgelm = document.getElementById(svgid[len]);
-					if (svgelm !== null) {
-						object = svgelm.getElementsByTagName('object');
-						if (object.length > 0) {
-							object = object[0];
-							object.parentNode.innerHTML = object.parentNode.innerHTML.replace(/<object[\s\S]*?\/object>/i, (print ? object.innerHTML : object.innerHTML.replace('.png', '-w.png')));
-						} else {
-							img = svgelm.getElementsByTagName('img');
-							if (img.length > 0) {
-								img = img[0];
-								img.src = (print ? img.src : img.src.replace('.png', '-w.png'));
-							}
-						}
+					elm = elms[len];
+					object = elm.getElementsByTagName('object');
+					if (object.length > 0) {
+						elm.innerHTML = elm.innerHTML.replace(/<object[\s\S]*?\/object>/i, object[0].innerHTML);
 					}
 				}
 			}
@@ -219,7 +227,7 @@
 
 			// Append the header
 			wet_boew_theme.fullhd.children('#wet-fullhd-in').before(header + '</div>');
-			wet_boew_theme.fullhd.find('.ui-title').append(wet_boew_theme.title.find(!pe.svg || pe.svgfix ? 'img' : 'object').attr((!pe.svg || pe.svgfix ? 'alt' : 'aria-label'), wet_boew_theme.title.find('span').text()));
+			wet_boew_theme.fullhd.find('.ui-title').append(wet_boew_theme.title.find(!pe.svg || pe.svgfix ? 'img' : 'object').clone().attr((!pe.svg || pe.svgfix ? 'alt' : 'aria-label'), wet_boew_theme.title.find('span').text()));
 			// Apply a theme to the site title
 			node = wet_boew_theme.title[0];
 			node.className += ' ui-bar-b';
