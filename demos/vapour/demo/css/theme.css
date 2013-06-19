@@ -28,8 +28,10 @@ body {
   margin-left: 0;
   display: block; }
 
-.demo-grids [class*="module"], .demo-grids [class*="background-"] {
-  text-align: center; }
+[class*="module"], [class*="background-"] {
+  text-align: center;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important; }
 
 code {
   background-color: #eee;

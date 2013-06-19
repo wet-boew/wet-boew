@@ -1,12 +1,6 @@
 
-
-.container { width: 100%;}
-[class*="span-"] { padding-left: 5px; padding-right: 5px; width: 100%; }
-.row .row {
-    margin-left: -5px;
-    margin-right: -5px;
-    &:last-child [class*="span-"] { margin-bottom: 10px;}
+.container { width: 960px;}
+[class*="span-"] {
+		width: auto;
+		float: none;
 }
-
-.span-m-stack-small { width: auto }
-.span-m-stack-xsmall { width: auto }

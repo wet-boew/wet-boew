@@ -5,7 +5,21 @@
 
 
 
-[class*=list-grid-] {display:block;*zoom:1;margin:0 -10px;padding:0;}
-[class*=list-grid-]:before,[class*=list-grid-]:after{content:" ";display:table;}
-[class*=list-grid-] > li{display:inline;height:auto;float:left; padding:0 10px 20px;}
+[class*=list-grid-] {
+	display:block;
+	*zoom:1;
+	margin:0 -10px;
+	padding:0;
+	&:before, &:after {
+		content: " ";
+		display: table;
+	}
+	> li {
+		display:inline;
+		height:auto;
+		float:left;
+		padding:0 10px 20px;
+	}
+}
+
 @include create_list($columns);

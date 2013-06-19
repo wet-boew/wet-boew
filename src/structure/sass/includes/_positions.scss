@@ -3,5 +3,11 @@
  * - Decorative OOCSS Extending CSS for position based treatment of elements
  */
 
-.float-right { float: right !important; }
-.float-left { float: left !important; }
+.float-right { float: right  }
+.float-left { float: left  }
+
+/*-----------------------------
+	Pull Standardization
+ ------------------------------*/
+[class*="pull-"]{left:auto;}
+[class*="push-"]{right:auto;}
