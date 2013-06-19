@@ -1,5 +1,10 @@
 /*
  * Small Mobile Device
  */
-.span-m-stack-small { width: 100% }
-.span-m-stack-xsmall { width: auto }
+.container{width:100%;}
+.row .row{margin-left:-5px;margin-right:-5px;}
+[class*=span-]{width:100%; float:none;}
+
+@include create_mobile_grid($columns);
+.span-m-stack-small { width: auto }
+.span-m-stack-xsmall { width: 100%; }

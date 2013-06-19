@@ -34,11 +34,13 @@ body{
   display: block;
 }
 
-.demo-grids {
-  [class*="module"], [class*="background-"] {
+
+[class*="module"], [class*="background-"] {
     text-align: center;
-  }
+    padding-top: 10px  !important;
+    padding-bottom: 10px !important;
 }
+
 
 
 

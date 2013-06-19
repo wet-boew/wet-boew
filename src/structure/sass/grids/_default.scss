@@ -1,4 +1,122 @@
+/*
+	WET-BOEW Grid structure
+*/
 
 
-.container { width: 960px;}
-[class*="span-"] { float: none; display: inline; }
+
+
+/*-----------------------------
+	Fixed Width Container Block
+ ------------------------------*/
+.container {
+	width: $width;
+	margin: 0 auto;
+}
+
+/*-----------------------------
+	Clearing Row markup
+ ------------------------------*/
+.row {
+	width: 100%;
+	overflow: hidden;
+	*zoom: 1;
+	margin: 0 auto;
+
+	.row {
+	  width: auto;
+	  max-width: none;
+	  *zoom: 1;
+	  margin: 0 -10px;
+	}
+
+	&:before, .row:after{
+	  content: " ";
+	  display: table;
+	}
+
+	&:after, .row:after {
+	  clear: both;
+	  content: " ";
+	  display: table;
+	}
+}
+
+/*-----------------------------
+	Basic grid set-up
+ ------------------------------*/
+[class*="span-"] {
+  position: relative;
+  padding: $gutterWidth/2 $gutterWidth;
+  width: 100%;
+  float: left;
+  display: inline;
+  
+}
+
+/*-----------------------------
+	Column Loop for all the classes
+ ------------------------------*/
+@include create_grid($columns);
+
+/*-----------------------------
+	Human Readable Column loop
+ ------------------------------*/
+$i: 1;
+@each $spn in full, half, third, fourth, fifth, sixth {
+	$col: floor($columns/$i);
+	@include create_column($spn, $col);
+	$i: $i + 1;
+}
+
+/*-----------------------------
+	Visually pleasing divisions
+ ------------------------------*/
+.span-golden-a {
+	width: 61.803399%;
+	_width: 61.803399% - 0.0694%; /* IE6-7 */
+}
+
+.span-golden-b {
+	width: 38.196601%;
+	_width: 38.196601% - 0.0694%; /* IE6-7 */
+}
+
+/*-----------------------------
+	Helper Reflows
+ ------------------------------*/
+.span-reflow {
+  width: auto;
+  display: block;
+  float: none;
+}
+
+.span-centered {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+  display: inline;
+}
+
+.bleed-full {
+  > [class*="span-"]:first-child, > .row > [class*="span-"]:first-child {
+    padding-left: 0 !important;
+  }
+  > [class*="span-"]:last-child, > .row > [class*="span-"]:last-child {
+    padding-right: 0 !important;
+  }
+}
+
+.bleed-left {
+  > [class*="span-"]:first-child, > .row > [class*="span-"]:first-child { padding-left: 0 !important; }
+}
+.bleed-right  {
+  > [class*="span-"]:last-child, > .row > [class*="span-"]:last-child { padding-right: 0 !important; }
+}
+
+[class*="bleed-"] {
+  > [class*="pull-"]:last-child, > .row [class*="pull-"]:last-child { padding-right: $gutterWidth !important; padding-left: 0 !important;}
+  > [class*="push-"]:first-child, > .row [class*="push-"]:first-child { padding-right: 0 !important; padding-left: $gutterWidth !important;}
+}
+
+

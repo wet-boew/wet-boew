@@ -10,6 +10,7 @@
 
 // Set the variables and functions for WET-BOEW
 @import 'sass/mixins';
+@import 'sass/reset'; // lets reset the values of elements to control things a bit better
 @import 'sass/global'; /* Base styles for all Themes */
 // Helper Class for Web Developers
 @import "sass/includes/paddings";
@@ -20,4 +21,10 @@
 @import "sass/includes/positions";
 @import "sass/includes/lists";
 // Structure is last to ensure no overwrites
-@import 'sass/grids';
+@import 'sass/grids/default';
+
+@media screen and (max-width: 767px), screen and (max-device-width: 767px) {
+/* ----- Small screens - Screen media type - Start of build includes ----- */
+@import 'sass/grids/small';
+/* ----- Small screens - Screen media type - End of build includes ----- */
+}

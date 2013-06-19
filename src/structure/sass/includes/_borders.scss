@@ -8,13 +8,13 @@ $radius: 6 !default;
 $border-color: #999 !default;
 $border-accent: #00556b !default;
 
-$border-width-thick: floor($border*1.618) + px;
-$border-width-xthick: floor($border*1.618*1.618) + px;
+$border-width-thick: floor($border*1.618*1.618) + px;
+$border-width-xthick: floor($border*1.618*1.618*1.618*1.618) + px;
 
 $border-radius-sharp: floor($radius*1.618) + px;
-$border-radius-sharper: floor($border*1.618*1.618) + px;
-$border-radius-loose: floor($border*.618) + px;
-$border-radius-looser: floor($border*.618*.618) + px;
+$border-radius-sharper: floor($radius*1.618*1.618) + px;
+$border-radius-loose: floor($radius*.618) + px;
+$border-radius-looser: floor($radius*.618*.618) + px;
 
 $border-color-light: lighten($border-color, 20%);
 $border-color-dark : darken($border-color, 20%);
@@ -22,67 +22,55 @@ $border-accent-light: lighten($border-accent, 20%);
 $border-accent-dark: lighten($border-accent, 20%);
 
 // Set the defaults around border with low specificity and no background color
-[class*="border-"] {
-  border-color: transparent;
-  border-width: 0;
-  border-style: solid;
-}
+
 
 @function border-return($context){
   @if $context == '-light' { @return $border-color-light }
   @else if $context == '-dark' { @return $border-color-dark }
-  @else if $context == '-large' { @return $border-width-thick + px }
-  @else if $context == '-xlarge' { @return $border-width-xthick + px }
+  @else if $context == '-large' { @return $border-width-thick }
+  @else if $context == '-xlarge' { @return $border-width-xthick }
+
+  @else if $context == '-loose' { @return $border-radius-loose }
+  @else if $context == '-looser' { @return $border-radius-looser }
+  @else if $context == '-sharp' { @return $border-radius-sharp }
+  @else if $context == '-sharper' { @return $border-radius-sharper }
+
   @else if $context == '-dashed' { @return dashed }
   @else if $context == '-double' { @return double }
   @else if $context == '-none' { @return 0px }
-  @else { @return $radius + px }
+  @else { @return $border + px }
 }
 
-$sizes: '-none','-large','-xlarge';
+@function property-return($context, $part){
+  @if $context == '-light' { @return #{$part}-color }
+  @else if $context == '-dark' { @return #{$part}-color }
+  @else if $context == '-large' { @return #{$part}-width }
+
+  @else if $context == '-loose' { @return #{$part}-radius }
+  @else if $context == '-looser' { @return #{$part}-radius }
+  @else if $context == '-sharp' { @return #{$part}-radius }
+  @else if $context == '-sharper' { @return #{$part}-radius }
+
+  @else if $context == '-xlarge' { @return #{$part}-width }
+  @else if $context == '-dashed' { @return #{$part}-style }
+  @else if $context == '-double' { @return #{$part}-style }
+  @else if $context == '-none' { @return #{$part}-width }
+  @else { @return #{$part}-width  }
+}
+
+$sizes: '','-none','-large','-xlarge';
 $sides : '','-left','-right','-top','-bottom';
 $shades : '-light', '-dark';
 $types : '-dashed', '-double';
-$amounts : '-xthick', '-thick', '-thin', '-xthin' 
+$curves : '-loose', '-looser', '-sharp', '-sharper' ;
+$all : '','-none','-large','-xlarge', '-light', '-dark', '-dashed', '-double', '-loose', '-looser', '-sharp', '-sharper';
 
 // lets loop through colors
 @each $sds in $sides {
 	// looping through sides
-	@each $sz in $sizes {
-		.border#{$sds}#{$sz} { margin#{$sds}: border-return($sz)}
+	@each $sz in $all {
+		.border#{$sds}#{$sz} { border#{property-return($sz,$sds)}: border-return($sz)}
 	}
 }
 
 
-[class~="border-light"] {  border-color: $border-color-light; }
-[class~="border-medium"] {  border-color: $border-color-medium; }
-[class~="border-dark"] {  border-color: $border-color-dark; }
-[class~="border-accent"] {  border-color: $border-color-accent; }
-[class~="border-dashed"] {  border-style: dashed; }
-
-[class~="border-double"] {  border-style: double; border-width: 3px; }
-[class~="border-xthick"] { border-width: $border-width-xthick; }
-[class~="border-thick"] { border-width: $border-width-thick; }
-
-[class~="border-all"] { border-width: $border-width-normal; }
-[class~="border-all-none"] { border: none; }
-
-[class~="border-right"] { border-right-width: $border-width-normal; }
-[class~="border-right-thick"] { border-right-width: $border-width-thick; }
-[class~="border-right-xthick"] { border-right-width: $border-width-xthick; }
-[class~="border-right-none"] { border-right-width: 0; }
-
-[class~="border-left"] { border-left-width: $border-width-normal; }
-[class~="border-left-thick"] { border-left-width: $border-width-thick; }
-[class~="border-left-xthick"] { border-left-width: $border-width-xthick; }
-[class~="border-left-none"] { border-left-width: 0; }
-
-[class~="border-top"] { border-top-width: $border-width-normal; }
-[class~="border-top-thick"] { border-top-width: $border-width-thick; }
-[class~="border-top-xthick"] { border-top-width: $border-width-xthick; }
-[class~="border-top-none"] { border-top-width: 0; }
-
-[class~="border-bottom"] { border-bottom-width: $border-width-normal; }
-[class~="border-bottom-thick"] { border-bottom-width: $border-width-thick; }
-[class~="border-bottom-xthick"] { border-bottom-width: $border-width-xthick; }
-[class~="border-bottom-none"] { border-bottom-width: 0; }

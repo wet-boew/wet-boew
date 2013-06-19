@@ -10,6 +10,43 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after {
+  content: '';
+  content: none; }
+
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
 /* Box sizing stability */
 * {
   -moz-box-sizing: border-box;
@@ -189,143 +226,235 @@ img {
  * BORDERS SCSS
  * - Decorative OOCSS Extending CSS for Border treatment of elements
  */
-[class*="border-"] {
-  border-color: #999999;
-  border-width: 0;
-  border-style: solid; }
-
-[class~="border-light"] {
-  border-color: #eeeeee; }
-
-[class~="border-medium"] {
-  border-color: #999999; }
-
-[class~="border-dark"] {
-  border-color: #222222; }
-
-[class~="border-accent"] {
-  border-color: #00556b; }
-
-[class~="border-dashed"] {
-  border-style: dashed; }
-
-[class~="border-double"] {
-  border-style: double;
-  border-width: 3px; }
-
-[class~="border-xthick"] {
-  border-width: 5px; }
-
-[class~="border-thick"] {
-  border-width: 3px; }
-
-[class~="border-all"] {
+.border {
   border-width: 1px; }
 
-[class~="border-all-none"] {
-  border: none; }
+.border-none {
+  border-width: 0px; }
 
-[class~="border-right"] {
-  border-right-width: 1px; }
+.border-large {
+  border-width: 2px; }
 
-[class~="border-right-thick"] {
-  border-right-width: 3px; }
+.border-xlarge {
+  border-width: 6px; }
 
-[class~="border-right-xthick"] {
-  border-right-width: 5px; }
+.border-light {
+  border-color: #cccccc; }
 
-[class~="border-right-none"] {
-  border-right-width: 0; }
+.border-dark {
+  border-color: #666666; }
 
-[class~="border-left"] {
+.border-dashed {
+  border-style: dashed; }
+
+.border-double {
+  border-style: double; }
+
+.border-loose {
+  border-radius: 3px; }
+
+.border-looser {
+  border-radius: 2px; }
+
+.border-sharp {
+  border-radius: 9px; }
+
+.border-sharper {
+  border-radius: 15px; }
+
+.border-left {
   border-left-width: 1px; }
 
-[class~="border-left-thick"] {
-  border-left-width: 3px; }
+.border-left-none {
+  border-left-width: 0px; }
 
-[class~="border-left-xthick"] {
-  border-left-width: 5px; }
+.border-left-large {
+  border-left-width: 2px; }
 
-[class~="border-left-none"] {
-  border-left-width: 0; }
+.border-left-xlarge {
+  border-left-width: 6px; }
 
-[class~="border-top"] {
+.border-left-light {
+  border-left-color: #cccccc; }
+
+.border-left-dark {
+  border-left-color: #666666; }
+
+.border-left-dashed {
+  border-left-style: dashed; }
+
+.border-left-double {
+  border-left-style: double; }
+
+.border-left-loose {
+  border-left-radius: 3px; }
+
+.border-left-looser {
+  border-left-radius: 2px; }
+
+.border-left-sharp {
+  border-left-radius: 9px; }
+
+.border-left-sharper {
+  border-left-radius: 15px; }
+
+.border-right {
+  border-right-width: 1px; }
+
+.border-right-none {
+  border-right-width: 0px; }
+
+.border-right-large {
+  border-right-width: 2px; }
+
+.border-right-xlarge {
+  border-right-width: 6px; }
+
+.border-right-light {
+  border-right-color: #cccccc; }
+
+.border-right-dark {
+  border-right-color: #666666; }
+
+.border-right-dashed {
+  border-right-style: dashed; }
+
+.border-right-double {
+  border-right-style: double; }
+
+.border-right-loose {
+  border-right-radius: 3px; }
+
+.border-right-looser {
+  border-right-radius: 2px; }
+
+.border-right-sharp {
+  border-right-radius: 9px; }
+
+.border-right-sharper {
+  border-right-radius: 15px; }
+
+.border-top {
   border-top-width: 1px; }
 
-[class~="border-top-thick"] {
-  border-top-width: 3px; }
+.border-top-none {
+  border-top-width: 0px; }
 
-[class~="border-top-xthick"] {
-  border-top-width: 5px; }
+.border-top-large {
+  border-top-width: 2px; }
 
-[class~="border-top-none"] {
-  border-top-width: 0; }
+.border-top-xlarge {
+  border-top-width: 6px; }
 
-[class~="border-bottom"] {
+.border-top-light {
+  border-top-color: #cccccc; }
+
+.border-top-dark {
+  border-top-color: #666666; }
+
+.border-top-dashed {
+  border-top-style: dashed; }
+
+.border-top-double {
+  border-top-style: double; }
+
+.border-top-loose {
+  border-top-radius: 3px; }
+
+.border-top-looser {
+  border-top-radius: 2px; }
+
+.border-top-sharp {
+  border-top-radius: 9px; }
+
+.border-top-sharper {
+  border-top-radius: 15px; }
+
+.border-bottom {
   border-bottom-width: 1px; }
 
-[class~="border-bottom-thick"] {
-  border-bottom-width: 3px; }
+.border-bottom-none {
+  border-bottom-width: 0px; }
 
-[class~="border-bottom-xthick"] {
-  border-bottom-width: 5px; }
+.border-bottom-large {
+  border-bottom-width: 2px; }
 
-[class~="border-bottom-none"] {
-  border-bottom-width: 0; }
+.border-bottom-xlarge {
+  border-bottom-width: 6px; }
+
+.border-bottom-light {
+  border-bottom-color: #cccccc; }
+
+.border-bottom-dark {
+  border-bottom-color: #666666; }
+
+.border-bottom-dashed {
+  border-bottom-style: dashed; }
+
+.border-bottom-double {
+  border-bottom-style: double; }
+
+.border-bottom-loose {
+  border-bottom-radius: 3px; }
+
+.border-bottom-looser {
+  border-bottom-radius: 2px; }
+
+.border-bottom-sharp {
+  border-bottom-radius: 9px; }
+
+.border-bottom-sharper {
+  border-bottom-radius: 15px; }
 
 /*
  * BACKGROUND SCSS
  * - Decorative OOCSS Extending CSS for background treatment of elements
  */
 [class*="background-"] {
-  color: #fff;
-  padding: 0 10px; }
-  [class*="background-"]:after, [class*="background-"]:before {
-    display: block;
-    visibility: hidden;
-    height: 0;
-    clear: both;
-    content: "."; }
+  color: #fff; }
 
-[class~="background-light"] {
+.background-light {
   background: #eeeeee;
   color: #222222; }
 
-[class~="background-medium"] {
+.background-medium {
   background: #777777;
   color: white; }
 
-[class~="background-accent"] {
+.background-accent {
   background: #0056b7;
   color: white; }
 
-[class~="background-dark"] {
+.background-dark {
   background: #222222;
   color: white; }
 
-[class~="background-highlight"] {
+.background-highlight {
   background: #ffffc9;
   color: #222222; }
 
-[class~="background-white"] {
+.background-white {
   background: white;
   color: #222222; }
-
-h1[class*="background-"], h2[class*="background-"], h3[class*="background-"], h4[class*="background-"], h5[class*="background-"], h6[class*="background-"] {
-  padding: 5px 10px; }
-
-p[class*="background-"] {
-  padding: 3px 8px; }
 
 /*
  * POSITIONAL BASED SCSS
  * - Decorative OOCSS Extending CSS for position based treatment of elements
  */
-[class~="float-right"] {
-  float: right !important; }
+.float-right {
+  float: right; }
 
-[class~="float-left"] {
-  float: left !important; }
+.float-left {
+  float: left; }
+
+/*-----------------------------
+	Pull Standardization
+ ------------------------------*/
+[class*="pull-"] {
+  left: auto; }
+
+[class*="push-"] {
+  right: auto; }
 
 /*
  * LISTS SCSS
@@ -336,16 +465,14 @@ p[class*="background-"] {
   *zoom: 1;
   margin: 0 -10px;
   padding: 0; }
-
-[class*=list-grid-]:before, [class*=list-grid-]:after {
-  content: " ";
-  display: table; }
-
-[class*=list-grid-] > li {
-  display: inline;
-  height: auto;
-  float: left;
-  padding: 0 10px 20px; }
+  [class*=list-grid-]:before, [class*=list-grid-]:after {
+    content: " ";
+    display: table; }
+  [class*=list-grid-] > li {
+    display: inline;
+    height: auto;
+    float: left;
+    padding: 0 10px 20px; }
 
 .row .list-grid-1 > li {
   width: 100%; }
@@ -390,10 +517,6 @@ p[class*="background-"] {
   clear: both; }
 
 /*
- * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
- */
-/*
 	WET-BOEW Grid structure
 */
 /*-----------------------------
@@ -425,23 +548,14 @@ p[class*="background-"] {
     display: table; }
 
 /*-----------------------------
-	Pull Standardization
- ------------------------------*/
-[class*="pull-"] {
-  left: auto; }
-
-[class*="push-"] {
-  right: auto; }
-
-/*-----------------------------
 	Basic grid set-up
  ------------------------------*/
 [class*="span-"] {
   position: relative;
-  padding: 0 15px 15px 15px;
+  padding: 7.5px 15px;
   width: 100%;
-  float: none;
-  display: inline-block; }
+  float: left;
+  display: inline; }
 
 /*-----------------------------
 	Column Loop for all the classes
@@ -694,31 +808,39 @@ p[class*="background-"] {
   display: inline; }
 
 .bleed-full > [class*="span-"]:first-child, .bleed-full > .row > [class*="span-"]:first-child {
-  padding-left: 0; }
+  padding-left: 0 !important; }
 .bleed-full > [class*="span-"]:last-child, .bleed-full > .row > [class*="span-"]:last-child {
-  padding-right: 0; }
+  padding-right: 0 !important; }
 
 .bleed-left > [class*="span-"]:first-child, .bleed-left > .row > [class*="span-"]:first-child {
-  padding-left: 0; }
+  padding-left: 0 !important; }
 
 .bleed-right > [class*="span-"]:last-child, .bleed-right > .row > [class*="span-"]:last-child {
-  padding-right: 0; }
+  padding-right: 0 !important; }
 
 [class*="bleed-"] > [class*="pull-"]:last-child, [class*="bleed-"] > .row [class*="pull-"]:last-child {
-  padding-right: 10px;
-  padding-left: 0; }
+  padding-right: 15px !important;
+  padding-left: 0 !important; }
 [class*="bleed-"] > [class*="push-"]:first-child, [class*="bleed-"] > .row [class*="push-"]:first-child {
-  padding-right: 0;
-  padding-left: 10px; }
+  padding-right: 0 !important;
+  padding-left: 15px !important; }
 
-[class*="span-"] [class*="border-"] {
-  padding: 0 10px; }
-
-/* Extra Small mobile Devices */
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 767px), screen and (max-device-width: 767px) {
+  /* ----- Small screens - Screen media type - Start of build includes ----- */
   /*
  * Small Mobile Device
  */
+  .container {
+    width: 100%; }
+
+  .row .row {
+    margin-left: -5px;
+    margin-right: -5px; }
+
+  [class*=span-] {
+    width: 100%;
+    float: none; }
+
   .row .span-m-1 {
     width: 8.33333%; }
 
@@ -915,63 +1037,6 @@ p[class*="background-"] {
     width: auto; }
 
   .span-m-stack-xsmall {
-    width: 100%; } }
-/* Small mobile Devices */
-@media screen and (max-width: 480px) {
-  /*
- * Small Mobile Device
- */
-  .span-m-stack-small {
     width: 100%; }
 
-  .span-m-stack-xsmall {
-    width: auto; } }
-/* Tablets and lower resolution monitors */
-@media screen and (max-width: 767px) {
-  .container {
-    width: 100%; }
-
-  [class*="span-"] {
-    padding-left: 5px;
-    padding-right: 5px;
-    width: 100%; }
-
-  .row .row {
-    margin-left: -5px;
-    margin-right: -5px; }
-    .row .row:last-child [class*="span-"] {
-      margin-bottom: 10px; }
-  .span-m-stack-small {
-    width: auto; }
-
-  .span-m-stack-xsmall {
-    width: auto; } }
-/* Default resolution */
-@media screen and (min-width: 768px) {
-  .container {
-    width: 960px; }
-
-  [class*="span-"] {
-    float: none;
-    display: inline; } }
-/* xtra high resolution monitors > 1200px */
-@media only screen and (min-width: 75.000em) {
-  /* Large Screen */
-  .container {
-    width: 1200px; }
-
-  .row .row {
-    margin-left: -15px;
-    margin-right: -15px; }
-
-  /* lets grow the padding in larger screens */
-  [class*="span-"] {
-    padding-left: 15px;
-    padding-right: 15px;
-    float: none;
-    display: inline; }
-
-  /* Check to see if this is correct */
-  .bleed-full [class*="pull-"]:last-child, .bleed-full > .row [class*="pull-"]:last-child {
-    padding-right: 15px; }  .bleed-full [class*="push-"]:first-child, .bleed-full > .row [class*="push-"]:first-child {
-    padding-left: 15px; } }
+  /* ----- Small screens - Screen media type - End of build includes ----- */ }

@@ -2,7 +2,10 @@
  * Small Mobile Device
  */
 
-
+[class*="span-"] {
+		width: auto;
+		float: none;
+}
 @include create_mobile_grid($columns);
 .span-m-stack-small { width: auto }
 .span-m-stack-xsmall { width: 100%; }
