@@ -49,7 +49,7 @@ $amounts : '-xthick', '-thick', '-thin', '-xthin'
 @each $sds in $sides {
 	// looping through sides
 	@each $sz in $sizes {
-		.border#{$sds}#{$sz} { margin#{$sds}: margin-return($sz)}
+		.border#{$sds}#{$sz} { margin#{$sds}: border-return($sz)}
 	}
 }
 
