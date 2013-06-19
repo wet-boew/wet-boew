@@ -3,8 +3,6 @@
 */
 
 
-
-
 /*-----------------------------
 	Fixed Width Container Block
  ------------------------------*/
@@ -25,8 +23,8 @@
 	.row {
 	  width: auto;
 	  max-width: none;
-	  *zoom: 1;
-	  margin: 0 -10px;
+	  margin-left: -$gutterWidth;
+	  margin-right: -$gutterWidth;
 	}
 
 	&:before, .row:after{
@@ -98,25 +96,23 @@ $i: 1;
   display: inline;
 }
 
+// Full Bleeds for the grid system
 .bleed-full {
-  > [class*="span-"]:first-child, > .row > [class*="span-"]:first-child {
-    padding-left: 0 !important;
-  }
-  > [class*="span-"]:last-child, > .row > [class*="span-"]:last-child {
-    padding-right: 0 !important;
-  }
+	&.row > [class*='span-']:first-child {  padding-left: 0px;}
+	&.row > [class*='span-']:last-child {  padding-right: 0px;}
+	> .row > [class*='span-']:first-child {  padding-left: 0px;}
+	> .row > [class*='span-']:last-child {  padding-right: 0px;}
+	> [class*='span-']:first-child { padding-left: 0px; }
+	> [class*='span-']:last-child { padding-right: 0px; }
 }
-
 .bleed-left {
-  > [class*="span-"]:first-child, > .row > [class*="span-"]:first-child { padding-left: 0 !important; }
-}
-.bleed-right  {
-  > [class*="span-"]:last-child, > .row > [class*="span-"]:last-child { padding-right: 0 !important; }
-}
-
-[class*="bleed-"] {
-  > [class*="pull-"]:last-child, > .row [class*="pull-"]:last-child { padding-right: $gutterWidth !important; padding-left: 0 !important;}
-  > [class*="push-"]:first-child, > .row [class*="push-"]:first-child { padding-right: 0 !important; padding-left: $gutterWidth !important;}
+	&.row > [class*='span-']:first-child {  padding-left: 0px;}
+	> [class*='span-']:first-child { padding-left: 0px; }
+	> .row > [class*='span-']:first-child { padding-left: 0px; }
 }
 
-
+.bleed-right {
+	&.row > [class*='span-']:last-child {  padding-right: 0px;}
+	> [class*='span-']:last-child { padding-right: 0px; }
+	> .row > [class*='span-']:last-child { padding-right: 0px; }
+}
