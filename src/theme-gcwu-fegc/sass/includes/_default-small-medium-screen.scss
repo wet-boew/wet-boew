@@ -221,18 +221,16 @@ table {
 	}
 }
 
-.mobile-view {
-	#wb-skip2 {
-		@extend %gcwu-default-small-medium-screen-display-none;
-		visibility: hidden;
-	}
-	#gcwu-sig {
-		@extend %gcwu-default-small-medium-screen-display-none;
-	}
-	#gcwu-bnr {
-		#gcwu-wmms {
-			@extend %gcwu-default-small-medium-screen-display-none-important;
-		}
+#wb-skip2 {
+	@extend %gcwu-default-small-medium-screen-display-none;
+	visibility: hidden;
+}
+#gcwu-sig {
+	@extend %gcwu-default-small-medium-screen-display-none;
+}
+#gcwu-bnr {
+	#gcwu-wmms {
+		@extend %gcwu-default-small-medium-screen-display-none-important;
 	}
 }
 

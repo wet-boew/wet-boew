@@ -113,10 +113,6 @@ input {
 		position: relative;
 		z-index: 1;
 	}
-	small {
-		font-size: 0.45em;
-		display: block;
-	}		
 }
 .svg {
 	@extend %wet-default-screen-wet-title-object-display-block;
@@ -259,7 +255,7 @@ input {
 #wet-sft {
 	background: #CCC;
 	border-top: #BBB 1px solid;
-	font-family: Arial, Helvetica, sans-serif;
+	@extend %wet-default-font-body;
 	a {
 		@extend %wet-default-screen-color-222;
 	}

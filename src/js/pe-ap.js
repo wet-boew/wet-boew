@@ -54,7 +54,8 @@
 		viewtest: '',
 		resizetest: '',
 		settings: (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
-		scrollTopInit: 0,
+		scrollTopInit: window.pageYOffset || document.documentElement.scrollTop,
+		activeElement: null,
 
 		/**
 		* @namespace pe.dic
@@ -123,7 +124,6 @@
 			var $html = pe.html,
 				hlinks_same = [],
 				target,
-				validTarget = false,
 				classes = '',
 				test,
 				test_elms,
@@ -167,11 +167,10 @@
 			// Identify whether or not the device supports JavaScript, the current theme, the current view and screen size, and if the device has a touchscreen
 			pe.mobile = pe.mobilecheck();
 			pe.medium = pe.mediumcheck();
-			pe.print = (pe.mobile ? false : pe.printcheck());
 
 			// Add theme specific CSS classes and favicon
 			if (wet_boew_theme !== null) {
-				classes += wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.medium ? ' medium-screen' : ' small-screen')) : (pe.print ? ' print-view' : ' desktop-view large-screen'));
+				classes += wet_boew_theme.theme + (pe.mobile ? (' mobile-view' + (pe.medium ? ' medium-screen' : ' small-screen')) : ' desktop-view large-screen');
 				if (typeof wet_boew_theme.favicon !== 'undefined') {
 					pe.add.favicon(pe.add.themecsslocation.replace(/css\/$/, wet_boew_theme.favicon.href), wet_boew_theme.favicon.rel, wet_boew_theme.favicon.sizes);
 				}
@@ -203,26 +202,44 @@
 			// If the page URL includes a hash upon page load, then focus on and scroll to the target
 			// pe.scrollTopInit is a workaround for jQuery Mobile scrolling to the top by restoring the original scroll point
 			// TODO: Find an elegant way (preferably in jQuery Mobile) to prevent the scroll to top except where needed or at least restore the original scroll point
-			pe.scrollTopInit = pe.window.scrollTop();
-			if (pe.scrollTopInit === 0) {
-				window.onload = function() {
-					setTimeout(function() {
-						pe.scrollTopInit = pe.window.scrollTop();
-					}, 1);
-				};
-			}
-			if (pe.urlhash.length !== 0) {
-				target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
-				target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
-				validTarget = (target.length !== 0 && target.attr('data-role') !== 'page');
-			}
+			pe.window.on('scroll.wbinit', function() {
+				var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+				if (scrollTop > 1) {
+					pe.scrollTopInit = scrollTop;
+				}
+			});
+			pe.document.on('focus.wbinit blur.wbinit', function(e) {
+				var target = e.target;
+				if (e.type === 'focus.wbinit' && target.nodeName.toLowerCase() !== 'body' && target.getAttribute('data-role') !== 'page') {
+					pe.activeElement = target;
+				} else {
+					pe.activeElement = null;
+				}
+			});
 			pe.document.on('silentscroll.wbinit', function() {
+				var scrollTop = pe.scrollTopInit,
+					activeElement = pe.activeElement;
+
 				silentscroll_fired = true;
+				// Remove event handlers
 				if (pageinit_fired) {
 					pe.document.off('silentscroll.wbinit');
 				}
-				if (validTarget || pe.scrollTopInit > 1) {
-					$.mobile.silentScroll(validTarget ? pe.focus(target).offset().top : pe.scrollTopInit);
+				pe.window.off('scroll.wbinit');
+				pe.document.off('focus.wbinit blur.wbinit');
+
+				// Restore the original focus and/or scroll position
+				if (activeElement !== null) {
+					target = $(activeElement);
+				} else if (pe.urlhash.length !== 0) {
+					target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
+					target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
+				}
+				if (typeof target !== 'undefined' && target.length !== 0) {					
+					pe.focus(target);
+					$.mobile.silentScroll(scrollTop > 1 ? scrollTop : target.offset().top);
+				} else if (scrollTop > 1) {
+					$.mobile.silentScroll(scrollTop);
 				}
 			});
 
@@ -360,11 +377,7 @@
 		*/
 		mobile: false,
 		mobilecheck: function () {
-			return pe.viewtest.offsetWidth > 1; // CSS (through media queries) sets to offsetWidth = 0 in print view, offsetWidth = 1 desktop view (large screen), offsetWidth = 2 or 3 mobile view (2 = small screen, 3 = medium screen)
-		},
-		print: false,
-		printcheck: function () {
-			return pe.viewtest.offsetWidth === 0; // CSS (through media queries) sets to offsetWidth = 0 in print view
+			return pe.viewtest.offsetWidth > 1; // CSS (through media queries) sets to offsetWidth = 1 desktop view (large screen), offsetWidth = 2 or 3 mobile view (2 = small screen, 3 = medium screen)
 		},
 		medium: false,
 		mediumcheck: function () {
