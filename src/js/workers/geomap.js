@@ -483,7 +483,7 @@
 					$ul = $('<ul class="list-bullet-none margin-left-none"></ul>').appendTo($fieldset);
 				}
 
-				$chkBox = $('<div style="float: left;"><input type="checkbox" id="cb_' + featureTableId + '" value="' + featureTableId + '"' + $checked + ' /></div>');
+				$chkBox = $('<div class="geomap-legend-chk"><input type="checkbox" id="cb_' + featureTableId + '" value="' + featureTableId + '"' + $checked + ' /></div>');
 
 				$chkBox.on('change', function() {				
 					var layer = geomap.map.getLayer(olLayerId),				
@@ -512,7 +512,8 @@
 					}
 				});	
 
-				$label = ('<div class="geomap-legend-item"><details class="geomap-legend' + geomap.uniqueid + '"><summary>' + $featureTable.attr('aria-label') + '</summary><div class="geomap-legend-detail" id="sb_' + featureTableId + '"</div></details></div>');
+				$label = ('<div class="geomap-legend-item"><details class="geomap-legend' + geomap.uniqueid + '"><summary>' +
+							$featureTable.attr('aria-label') + '</summary><div class="geomap-legend-detail" id="sb_' + featureTableId + '"</div></details></div>');
 				$ul.append($('<li class="geomap-clear-format"/>').append($chkBox, $label));			
 			}	
 		},
@@ -524,38 +525,47 @@
 			var len = geomap.map.layers.length,
 				ruleLen,
 				$symbol,
+				symbolText,
 				layer,
-				style;
+				style,
+				styleDefault,
+				colon = _pe.dic.get('%colon');
 			
 			while (len--) {
 				layer = geomap.map.layers[len];
 				if (!layer.isBaseLayer) {
 					$symbol = $('#sb_' + layer.name);
+					symbolText = '';
 					
 					if ($symbol.length) {
 						style = layer.styleMap.styles['default'];
-
-						if (style.rules.length) {
-							
-							ruleLen = style.rules.length;
+						styleDefault = style.defaultStyle;
+						ruleLen = style.rules.length;
+						
+						if (ruleLen) {
 							while (ruleLen--) {
-								
-								if (style.rules[ruleLen].filter.type === '==') {
-									style.rules[ruleLen].filter.type = _pe.dic.get('%colon');
+								var filter = style.rules[ruleLen].filter,
+									filterType = filter.type,
+									symbolizer = style.rules[ruleLen].symbolizer;
+									
+								if (filterType === '==') {
+									filterType = colon;
 								}
 								
-								if (style.rules[ruleLen].filter.value !== null) {
-									$symbol.append('<label>' + style.rules[ruleLen].filter.property + ' ' + style.rules[ruleLen].filter.type + ' ' + style.rules[ruleLen].filter.value + '</label>' + _pe.fn.geomap.getLegengSymbol(style.rules[ruleLen].symbolizer));
+								if (filter.value !== null) {
+									symbolText += ('<label>' + filter.property + ' ' + filterType + ' ' + filter.value + '</label>' + _pe.fn.geomap.getLegendSymbol(symbolizer));
 								} else {
-									$symbol.append('<label>' + style.rules[ruleLen].filter.property + ' ' + style.rules[ruleLen].filter.lowerBoundary + ' ' + style.rules[ruleLen].filter.type + ' ' + style.rules[ruleLen].filter.upperBoundary + '</label>' + _pe.fn.geomap.getLegengSymbol(style.rules[ruleLen].symbolizer));
+									symbolText += ('<label>' + filter.property + ' ' + filter.lowerBoundary + ' ' + filterType + ' ' + filter.upperBoundary + '</label>' + _pe.fn.geomap.getLegendSymbol(symbolizer));
 								}
 							}
 
-						} else if (typeof style.defaultStyle.fillColor !== 'undefined') {
-							$symbol.append(_pe.fn.geomap.getLegengSymbol(style.defaultStyle));
-						} else if (typeof style.defaultStyle.externalGraphic !== 'undefined') {
-							$symbol.append(_pe.fn.geomap.getLegengGraphic(style.defaultStyle));
+						} else if (typeof styleDefault.fillColor !== 'undefined') {
+							symbolText += _pe.fn.geomap.getLegendSymbol(styleDefault);
+						} else if (typeof styleDefault.externalGraphic !== 'undefined') {
+							symbolText += _pe.fn.geomap.getLegendGraphic(styleDefault);
 						}
+						
+						$symbol.append(symbolText);
 					}	
 				}
 			}
@@ -564,58 +574,49 @@
 		/*
 		 * Get the div object with the proper style
 		 */
-		getLegengSymbol: function(style) {
-			var opacity = '',
-				fillColor = '',
-				strokeColor = '',
-				divInfo = '<div class="geomap-legend-symbol" style="fillColor strokeColor opacity">';
+		getLegendSymbol: function(style) {
+			var symbolStyle = '',
+				fillColor = style.fillColor,
+				strokeColor = style.strokeColor,
+				fillOpacity = style.fillOpacity;
 				
-				if (typeof style.fillColor !== 'undefined') {
-					fillColor = 'background-color: ' + style.fillColor + ';';
-				}
+			if (typeof fillColor !== 'undefined') {
+				symbolStyle += 'background-color: ' + fillColor + ';';
+			}
 				
-				if (typeof style.strokeColor !== 'undefined') {
-					strokeColor = 'border-style: solid; border-width: 2px; border-color: ' + style.strokeColor + ';';
-				}
+			if (typeof strokeColor !== 'undefined') {
+				symbolStyle += 'border-style: solid; border-width: 2px; border-color: ' + strokeColor + ';';
+			}
 				
-				if (typeof style.fillOpacity !== 'undefined') {
-					opacity += 'opacity: ' + style.fillOpacity + ';';
-				}
+			if (typeof fillOpacity !== 'undefined') {
+				symbolStyle += 'opacity: ' + fillOpacity + ';';
+			}
 				
-				divInfo = divInfo.replace('fillColor', fillColor);
-				divInfo = divInfo.replace('strokeColor', strokeColor);
-				divInfo = divInfo.replace('opacity', opacity);
-				
-				return divInfo;
+			return '<div class="geomap-legend-symbol"' + (symbolStyle !== '' ? ' style="' + symbolStyle + '"/>' : '/>');
 		},
 		
-		getLegengGraphic: function(style) {
-			var opacity = '',
-				height = '',
-				width = '',
-				divInfo = '<img src="' + style.externalGraphic + '" style="opacity height width">';
+		getLegendGraphic: function(style) {
+			var symbolStyle = '',
+				graphicOpacity = style.graphicOpacity,
+				pointRadius = style.pointRadius,
+				graphicHeight = style.graphicHeight,
+				graphicWidth = style.graphicWidth;
 				
-				if (typeof style.graphicOpacity !== 'undefined') {
-					if (_pe.ie > 0 && _pe.ie < 8) {
-						opacity = 'filter:alpha(opacity=' + (style.graphicOpacity * 10) + ');';
-					} else {
-						opacity = 'opacity: ' + style.graphicOpacity + ';';
-					}
+			if (typeof graphicOpacity !== 'undefined') {
+				if (_pe.ie > 0 && _pe.ie < 8) {
+					symbolStyle += 'filter:alpha(opacity=' + (graphicOpacity * 10) + ');';
+				} else {
+					symbolStyle += 'opacity: ' + graphicOpacity + ';';
 				}
+			}
 				
-				if (typeof style.pointRadius !== 'undefined') {
-					height = 'height: ' + style.pointRadius + 'px;';
-					width = 'width: ' + style.PointRadius + 'px;';
-				} else if ((typeof style.graphicHeight !== 'undefined') && (typeof style.graphicWidth !== 'undefined')) {
-					height = 'height: ' + style.graphicHeight + 'px;';
-					width = 'width: ' + style.graphicWidth + 'px;';
-				}
+			if (typeof pointRadius !== 'undefined') {
+				symbolStyle += 'height: ' + pointRadius + 'px; width: ' + pointRadius + 'px;';
+			} else if ((typeof graphicHeight !== 'undefined') && (typeof graphicWidth !== 'undefined')) {
+				symbolStyle += 'height: ' + graphicHeight + 'px; width: ' + graphicWidth + 'px;';
+			}
 				
-				divInfo = divInfo.replace('opacity', opacity);
-				divInfo = divInfo.replace('height', height);
-				divInfo = divInfo.replace('width', width);
-				
-				return divInfo;
+			return '<img src="' + style.externalGraphic + '" ' + (symbolStyle !== '' ? ' style="' + symbolStyle + '"/>' : '/>');
 		},
 		
 		/*
@@ -1722,7 +1723,6 @@
 		},
 
 		refreshPlugins: function(geomap) {
-			
 			// Symbolize legend
 			_pe.fn.geomap.symbolizeLegend(geomap);
 			
