@@ -104,6 +104,69 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 </div>
 
 
+<h2>Configuration de beigne <code>wb-charts-donnut</code></h2>
+
+<p>Nouveau &agrave; partir de la BOEW 3.1.2. Pour les version ant&eacute;rieur de la BOEW 3.1.x il peut être reproduit avec l'utilisation d'options combiné.</p>
+<details>
+  <summary>Example de code source javascript pour la configuration de beigne</summary>
+<pre><code>
+// PVI - La configuration en beigne est déjà définie par défauts, ceci est seulement pour illustrer un example de comment un autre ensemble de configuration peut être créer.
+
+// Dans les configuration générale setting.js
+var wet_boew_charts = {
+  preset: {
+    donnut: {
+      // Donnut setting
+      type: 'pie',
+      height: 250,
+      percentlegend: true,
+      pieinnerradius: 45,
+      pietilt: 50,
+      piehoverable: true,
+      decimal: 1,
+      piethreshold: 8,
+      legendinline: true,
+      piestartangle: 100
+    }
+  }
+}
+</code></pre>
+</details>
+
+<table class="wet-boew-charts wb-charts-donnut">
+  <caption>Configuration en beigne <code>wb-charts-donnut</code></caption>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Series 1</th>
+      <th>Series 2</th>
+      <th>Series 3</th>
+      <th>Series 4</th>
+      <th>Series 5</th>
+      <th>Series 6</th>
+      <th>Series 7</th>
+      <th>Series 8</th>
+      <th>Series 9</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Défauts</th>
+      <td>7.7</td>
+      <td>10.10</td>
+     <td>4.4</td>
+      <td>14.14</td>
+      <td>15.15</td>
+      <td>7.7</td>
+      <td>23.23</td>
+      <td>8.8</td>
+      <td>12.12</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="clear"></div>
+
 <h2>Défauts</h2>
 
 <p>Options ajouté</p>
