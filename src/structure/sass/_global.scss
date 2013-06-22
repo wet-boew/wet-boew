@@ -1,4 +1,11 @@
-
+/* Basic Body Defaults after RESET.CSS */
+body{
+  line-height:1.5em
+  }
+p,table{
+  margin-bottom:10px;
+  margin-top:10px
+}
 /* Box sizing stability */
 * {
   -moz-box-sizing: border-box; 

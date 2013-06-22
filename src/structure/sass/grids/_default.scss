@@ -7,7 +7,7 @@
 	Fixed Width Container Block
  ------------------------------*/
 .container {
-	width: $width;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -51,20 +51,7 @@
   
 }
 
-/*-----------------------------
-	Column Loop for all the classes
- ------------------------------*/
-@include create_grid($columns);
 
-/*-----------------------------
-	Human Readable Column loop
- ------------------------------*/
-$i: 1;
-@each $spn in full, half, third, fourth, fifth, sixth {
-	$col: floor($columns/$i);
-	@include create_column($spn, $col);
-	$i: $i + 1;
-}
 
 /*-----------------------------
 	Visually pleasing divisions
@@ -95,6 +82,11 @@ $i: 1;
   float: none;
   display: inline;
 }
+
+/*-----------------------------
+		Column Loop for all the classes
+	 ------------------------------*/
+@include create_mobile_grid($columns);
 
 // Full Bleeds for the grid system
 .bleed-full {

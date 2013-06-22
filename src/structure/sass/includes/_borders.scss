@@ -22,7 +22,12 @@ $border-accent-light: lighten($border-accent, 20%);
 $border-accent-dark: lighten($border-accent, 20%);
 
 // Set the defaults around border with low specificity and no background color
-[class*="border-"] { border-color: $border-color; border-style: solid; }
+[class*="span-"] [class*="border-"] {
+  border-color: $border-color; 
+  border-style: solid;
+  margin-bottom: 30px;
+  padding: 0 15px;
+}
 
 @function border-return($context){
   @if $context == '-light' { @return $border-color-light }
