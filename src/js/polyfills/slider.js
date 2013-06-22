@@ -1,21 +1,21 @@
 /*! Unobtrusive Slider Control / HTML5 Input Range polyfill - MIT/GPL2 @freqdec */
 /*jshint sub:true, evil:true, boss:true */
 var fdSlider = (function() {
-	var sliders		  = {},
-		uniqueid		  = 0,
+	var sliders           = {},
+		uniqueid          = 0,
 		mouseWheelEnabled = true,
-		fullARIA		  = true,
-		describedBy	  = "fd-slider-describedby",
-		varSetRules	  = {
+		fullARIA          = true,
+		describedBy       = "fd-slider-describedby",
+		varSetRules       = {
 			onfocus:true,
 			onvalue:true
 		},
-		noRangeBar		  = false,
-		html5Animation	  = "jump",
+		noRangeBar        = false,
+		html5Animation    = "jump",
 		useDOMAttrModEvt  = false,
-		isOpera		  = Object.prototype.toString.call(window.opera) === "[object Opera]",
-		fpRegExp		  = /^([\-]{0,1}[0-9]+(\.[0-9]+){0,1})$/,
-		stepRegExp		  = /^([0-9]+(\.[0-9]+){0,1})$/;
+		isOpera           = Object.prototype.toString.call(window.opera) === "[object Opera]",
+		fpRegExp          = /^([\-]{0,1}[0-9]+(\.[0-9]+){0,1})$/,
+		stepRegExp        = /^([0-9]+(\.[0-9]+){0,1})$/;
 
 	var parseJSON = function(str) {
 		if(typeof str !== "string" || str === "") {
@@ -149,21 +149,21 @@ var fdSlider = (function() {
 			if(options.inp.options.length < 2) {
 				return false;
 			}
-			options.min			= 0;
-			options.max			= options.inp.options.length - 1;
-			options.step			= 1;
-			options.precision		= 0;
-			options.scale			= false;
-			options.forceValue		= true;
+			options.min             = 0;
+			options.max             = options.inp.options.length - 1;
+			options.step            = 1;
+			options.precision       = 0;
+			options.scale           = false;
+			options.forceValue      = true;
 		} else {
 			if(String(options.inp.type).search(/^(text|range)$/i) == -1) {
 				return false;
 			}
-			options.min	   = options.min && String(options.min).search(fpRegExp) != -1 ? +options.min : 0;
-			options.max	   = options.max && String(options.max).search(fpRegExp) != -1 ? +options.max : 100;
-			options.step	   = options.step && String(options.step).search(stepRegExp) != -1 ? options.step : 1;
+			options.min        = options.min && String(options.min).search(fpRegExp) != -1 ? +options.min : 0;
+			options.max        = options.max && String(options.max).search(fpRegExp) != -1 ? +options.max : 100;
+			options.step       = options.step && String(options.step).search(stepRegExp) != -1 ? options.step : 1;
 			options.precision  = options.precision && String(options.precision).search(/^[0-9]+$/) != -1 ? options.precision : (String(options.step).search(/\.([0-9]+)$/) != -1 ? String(options.step).match(/\.([0-9]+)$/)[1].length : 0);
-			options.scale	   = options.scale || false;
+			options.scale      = options.scale || false;
 			options.forceValue = ("forceValue" in options) ? !!options.forceValue : false;
 			options.userSnap   = ("userSnap" in options) ? !!options.userSnap : false;
 		}
@@ -188,11 +188,11 @@ var fdSlider = (function() {
 		for(var i = 0, inp; inp = inputs[i]; i++) {
 
 			if(inp.tagName.toLowerCase() == "input" &&
-			   (getAttribute(inp,"type") && getAttribute(inp,"type").toLowerCase() == "range") &&
-			   (getAttribute(inp, "min") && getAttribute(inp, "min").search(fpRegExp) != -1 ||
+			(getAttribute(inp,"type") && getAttribute(inp,"type").toLowerCase() == "range") &&
+			(getAttribute(inp, "min") && getAttribute(inp, "min").search(fpRegExp) != -1 ||
 				getAttribute(inp, "max") && getAttribute(inp, "max").search(fpRegExp) != -1 ||
 				getAttribute(inp, "step") && getAttribute(inp, "step").search(/^(any|([0-9]+(\.[0-9]+){0,1}))$/i) != -1
-			   )) {
+			)) {
 
 				// Skip elements that have already been created are are resident in the DOM
 				if(inp.id && document.getElementById("fd-slider-"+inp.id)) {
@@ -209,12 +209,12 @@ var fdSlider = (function() {
 
 				// Basic option Object
 				options = {
-					inp:			inp,
-					callbacks:		[],
-					animation:		html5Animation,
-					vertical:		getAttribute(inp, "data-fd-slider-vertical") ? true : (inp.offsetHeight > inp.offsetWidth),
-					classNames:	getAttribute(inp, "data-fd-slider-vertical"),
-					html5Shim:		true
+					inp:            inp,
+					callbacks:      [],
+					animation:      html5Animation,
+					vertical:       getAttribute(inp, "data-fd-slider-vertical") ? true : (inp.offsetHeight > inp.offsetWidth),
+					classNames:     getAttribute(inp, "data-fd-slider-vertical"),
+					html5Shim:      true
 				};
 
 				if(options.vertical && !getAttribute(inp, "data-fd-slider-vertical")) {
@@ -223,11 +223,11 @@ var fdSlider = (function() {
 
 				defs = getInputAttributes(inp);
 
-				options.min			= defs.min;
-				options.max			= defs.max;
-				options.step			= defs.step;
-				options.precision		= String(options.step).search(/\.([0-9]+)$/) != -1 ? String(options.step).match(/\.([0-9]+)$/)[1].length : 0;
-				options.maxStep		= options.step * 2;
+				options.min             = defs.min;
+				options.max             = defs.max;
+				options.step            = defs.step;
+				options.precision       = String(options.step).search(/\.([0-9]+)$/) != -1 ? String(options.step).match(/\.([0-9]+)$/)[1].length : 0;
+				options.maxStep         = options.step * 2;
 
 				destroySingleSlider(options.inp.id);
 				sliders[options.inp.id] = new fdRange(options);
@@ -248,7 +248,7 @@ var fdSlider = (function() {
 			sliders[id].destroy();
 			delete sliders[id];
 			return true;
-		}
+		};
 		return false;
 	};
 	var destroyAllsliders = function(e) {
@@ -285,51 +285,51 @@ var fdSlider = (function() {
 		removeEvent(window, "load",   init);
 	};
 	function fdRange(options) {
-		var inp		= options.inp,
-			disabled	= false,
-			tagName	= inp.tagName.toLowerCase(),
-			min		= +options.min,
-			max		= +options.max,
-			rMin		= +options.min,
-			rMax		= +options.max,
-			range		= Math.abs(max - min),
-			step		= tagName == "select" ? 1 : +options.step,
-			maxStep	= options.maxStep ? +options.maxStep : step * 2,
-			precision	= options.precision || 0,
-			steps		= Math.ceil(range / step),
-			scale		= options.scale || false,
-			hideInput	= !!options.hideInput,
-			animation	= options.animation || "",
-			vertical	= !!options.vertical,
-			callbacks	= options.callbacks || {},
-			classNames	= options.classNames || "",
-			html5Shim	= !!options.html5Shim,
-			defaultVal	= max < min ? min : min + ((max - min) / 2),
-			resetDef	= tagName == "select" ? inp.selectedIndex : inp.defaultValue || defaultVal,
-			forceValue	= html5Shim || !!options.forceValue,
-			inpHeight	= html5Shim && vertical && ("inpHeight" in options) ? options.inpHeight : false,
-			ariaFormat	= !html5Shim && options.ariaFormat ? options.ariaFormat : false,
-			userSnap	= !html5Shim && !(tagName == "select") && ("userSnap" in options) ? !!options.userSnap : false,
-			userInput	= false,
-			timer		= null,
-			kbEnabled	= true,
-			initialVal	= tagName == "select" ? inp.selectedIndex : inp.value,
-			sliderH	= 0,
-			sliderW	= 0,
-			tweenX		= 0,
-			tweenB		= 0,
-			tweenC		= 0,
-			tweenD		= 0,
-			frame		= 0,
-			x			= 0,
-			y			= 0,
-			rMaxPx		= 0,
-			rMinPx		= 0,
-			handlePos	= 0,
-			destPos	= 0,
-			mousePos	= 0,
-			stepPx		= 0,
-			userSet	= false,
+		var inp         = options.inp,
+			disabled    = false,
+			tagName     = inp.tagName.toLowerCase(),
+			min         = +options.min,
+			max         = +options.max,
+			rMin        = +options.min,
+			rMax        = +options.max,
+			range       = Math.abs(max - min),
+			step        = tagName == "select" ? 1 : +options.step,
+			maxStep     = options.maxStep ? +options.maxStep : step * 2,
+			precision   = options.precision || 0,
+			steps       = Math.ceil(range / step),
+			scale       = options.scale || false,
+			hideInput   = !!options.hideInput,
+			animation   = options.animation || "",
+			vertical    = !!options.vertical,
+			callbacks   = options.callbacks || {},
+			classNames  = options.classNames || "",
+			html5Shim   = !!options.html5Shim,
+			defaultVal  = max < min ? min : min + ((max - min) / 2),
+			resetDef    = tagName == "select" ? inp.selectedIndex : inp.defaultValue || defaultVal,
+			forceValue  = html5Shim || !!options.forceValue,
+			inpHeight   = html5Shim && vertical && ("inpHeight" in options) ? options.inpHeight : false,
+			ariaFormat  = !html5Shim && options.ariaFormat ? options.ariaFormat : false,
+			userSnap    = !html5Shim && !(tagName == "select") && ("userSnap" in options) ? !!options.userSnap : false,
+			userInput   = false,
+			timer       = null,
+			kbEnabled   = true,
+			initialVal  = tagName == "select" ? inp.selectedIndex : inp.value,
+			sliderH     = 0,
+			sliderW     = 0,
+			tweenX      = 0,
+			tweenB      = 0,
+			tweenC      = 0,
+			tweenD      = 0,
+			frame       = 0,
+			x           = 0,
+			y           = 0,
+			rMaxPx      = 0,
+			rMinPx      = 0,
+			handlePos   = 0,
+			destPos     = 0,
+			mousePos    = 0,
+			stepPx      = 0,
+			userSet     = false,
 			touchEvents = false,
 			outerWrapper,
 			innerWrapper,
@@ -345,7 +345,7 @@ var fdSlider = (function() {
 
 		// Make sure we have a negative step if the max < min
 		if(max < min) {
-			step	= -Math.abs(step);
+			step    = -Math.abs(step);
 			maxStep = -Math.abs(maxStep);
 		}
 
@@ -374,15 +374,15 @@ var fdSlider = (function() {
 				return;
 			}
 			
-			min		= +defs.min;
-			max		= +defs.max;
-			rMin		= min;
-			rMax		= max;
-			step		= +defs.step;
-			range		= Math.abs(max - min);
-			maxStep	= step * 2;
-			steps		= Math.ceil(range / step);
-			userSet	= false;
+			min         = +defs.min;
+			max         = +defs.max;
+			rMin        = min;
+			rMax        = max;
+			step        = +defs.step;
+			range       = Math.abs(max - min);
+			maxStep     = step * 2;
+			steps       = Math.ceil(range / step);
+			userSet     = false;
 			setSliderRange(min, max);
 		}
 		
@@ -397,15 +397,15 @@ var fdSlider = (function() {
 				removeEvent(handle, "blur",  onBlur);
 
 				if(!isOpera) {
-					removeEvent(handle, "keydown",	 onKeyDown);
+					removeEvent(handle, "keydown",   onKeyDown);
 					removeEvent(handle, "keypress",  onKeyPress);
 				} else {
 					removeEvent(handle, "keypress",  onKeyDown);
 				}
 
-				removeEvent(outerWrapper, "mouseover",	onMouseOver);
-				removeEvent(outerWrapper, "mouseout",	onMouseOut);
-				removeEvent(outerWrapper, "mousedown",	onMouseDown);
+				removeEvent(outerWrapper, "mouseover",  onMouseOver);
+				removeEvent(outerWrapper, "mouseout",   onMouseOut);
+				removeEvent(outerWrapper, "mousedown",  onMouseDown);
 				removeEvent(outerWrapper, "touchstart", onMouseDown);
 
 				if(mouseWheelEnabled) {
@@ -449,7 +449,7 @@ var fdSlider = (function() {
 			addEvent(outerWrapper, "touchstart", onMouseDown);
 			addEvent(outerWrapper, "mousedown",  onMouseDown);
 			addEvent(outerWrapper, "mouseover",  onMouseOver);
-			addEvent(outerWrapper, "mouseout",	 onMouseOut);
+			addEvent(outerWrapper, "mouseout",   onMouseOut);
 
 			removeClass(innerWrapper, "fd-slider-disabled");
 			outerWrapper.setAttribute("aria-disabled", false);
@@ -474,12 +474,12 @@ var fdSlider = (function() {
 			// Internet Explorer requires the try catch as hidden
 			// elements throw errors
 			try {
-				var sW	= outerWrapper.offsetWidth,
-					sH	= outerWrapper.offsetHeight,
-					hW	= handle.offsetWidth,
-					hH	= handle.offsetHeight,
-					bH	= bar.offsetHeight,
-					bW	= bar.offsetWidth,
+				var sW  = outerWrapper.offsetWidth,
+					sH  = outerWrapper.offsetHeight,
+					hW  = handle.offsetWidth,
+					hH  = handle.offsetHeight,
+					bH  = bar.offsetHeight,
+					bW  = bar.offsetWidth,
 					mPx = vertical ? sH - hH : sW - hW;
 
 				stepPx = mPx / steps;
@@ -759,7 +759,7 @@ var fdSlider = (function() {
 			removeClass(innerWrapper, "fd-slider-active");
 
 			clearTimeout(timer);
-			timer	  = null;
+			timer     = null;
 			kbEnabled = true;
 
 			return false;
@@ -773,13 +773,13 @@ var fdSlider = (function() {
 
 			if(touchEvents) {
 				removeEvent(document, 'touchmove', trackMouse);
-				removeEvent(document, 'touchend',	stopDrag);
+				removeEvent(document, 'touchend',   stopDrag);
 			} else {
 				removeEvent(document, 'mousemove', trackMouse);
 				removeEvent(document, 'mouseup',   stopDrag);
 			}
 
-			kbEnabled	= true;
+			kbEnabled   = true;
 			removeClass(document.body, "fd-slider-drag-" + (vertical ? "vertical" : "horizontal"));
 			removeClass(innerWrapper, "fd-slider-active");
 
@@ -818,14 +818,14 @@ var fdSlider = (function() {
 		// Attempts to locate the on-screen position of the slider
 		function locate(){
 			var curleft = 0,
-				curtop	= 0,
-				obj	= outerWrapper;
+				curtop  = 0,
+				obj     = outerWrapper;
 
 			// Try catch for IE's benefit
 			try {
 				do {
 					curleft += obj.offsetLeft;
-					curtop	+= obj.offsetTop;
+					curtop  += obj.offsetTop;
 				} while(obj = obj.offsetParent);
 			} catch(err) {}
 			x = curleft;
@@ -863,7 +863,7 @@ var fdSlider = (function() {
 				timer = setTimeout(tween, 20);
 			} else {
 				clearTimeout(timer);
-				timer	  = null;
+				timer     = null;
 				kbEnabled = true;
 
 				removeClass(innerWrapper, "fd-slider-focused");
@@ -876,11 +876,11 @@ var fdSlider = (function() {
 
 		function tweenTo(tx){
 			kbEnabled = false;
-			tweenX	  = parseInt(tx, 10);
-			tweenB	  = parseInt(vertical ? handle.offsetTop : handle.offsetLeft, 10);
-			tweenC	  = tweenX - tweenB;
-			tweenD	  = 20;
-			frame	  = 0;
+			tweenX    = parseInt(tx, 10);
+			tweenB    = parseInt(vertical ? handle.offsetTop : handle.offsetLeft, 10);
+			tweenC    = tweenX - tweenB;
+			tweenD    = 20;
+			frame     = 0;
 
 			if(!timer) {
 				timer = setTimeout(tween, 20);
@@ -930,7 +930,7 @@ var fdSlider = (function() {
 
 			// Allow empty values for non-polyfill sliders
 			if((typeof val === "undefined" || isNaN(val) || val === "") && tagName == "input" && !forceValue) {
-				value	 = defaultVal;
+				value    = defaultVal;
 				clearVal = true;
 				userSet  = false;
 			} else {
@@ -990,8 +990,8 @@ var fdSlider = (function() {
 
 		// Calculates the percentage handle position according to form element value
 		function valueToPercent(value) {
-			var st	= 0,
-				fr	= min,
+			var st  = 0,
+				fr  = min,
 				pct = 0;
 
 			for(var s in scale) {
@@ -1042,7 +1042,6 @@ var fdSlider = (function() {
 				} catch (err) {}
 			} else {
 				if(val !== "" && !userInput) {
-				console.log("val:" + val + ", min:" + min + ", max:" + max + ", step:" + step);
 					val = (min + (Math.round((+val - min) / step) * step)).toFixed(precision);
 				}
 				if(inp.value === val) {
@@ -1143,10 +1142,6 @@ var fdSlider = (function() {
 			updateAriaValues();
 		}
 
-		function valueSet(tf) {
-			userSet = !!tf;
-		}
-
 		// Sets a tabindex attribute on an element, bends over for IE.
 		function setTabIndex(e, i) {
 			e.setAttribute(!/*@cc_on!@*/false ? "tabIndex" : "tabindex", i);
@@ -1156,6 +1151,16 @@ var fdSlider = (function() {
 		(function() {
 			if(html5Shim || hideInput) {
 				addClass(inp, "fd-form-element-hidden");
+				try {
+					// FF21 hack to change input type to text
+					if(inp.type != "range"
+					&&
+					getAttribute(inp, "type") == "range"
+					&&
+					document.defaultView.getComputedStyle(inp, null).getPropertyValue("display") == "inline-block") {
+						inp.type="number";
+					}
+				} catch(err){};
 			} else {
 				addEvent(inp, 'change', onInputChange);
 			}
@@ -1163,7 +1168,7 @@ var fdSlider = (function() {
 			// Add stepUp & stepDown methods to input element if using the html5Shim
 			if(html5Shim) {
 				inp.setAttribute("fd-range-enabled", 1);
-				inp.stepUp	 = function(n) { increment(n||1); };
+				inp.stepUp   = function(n) { increment(n||1); };
 				inp.stepDown = function(n) { increment(n||-1); };
 				
 				if(useDOMAttrModEvt) {
@@ -1171,41 +1176,41 @@ var fdSlider = (function() {
 				}
 			}
 
-			outerWrapper			  = document.createElement('span');
-			outerWrapper.className	  = "fd-slider" + (vertical ? "-vertical " : " ") + classNames;
-			outerWrapper.id		  = "fd-slider-" + inp.id;
+			outerWrapper              = document.createElement('span');
+			outerWrapper.className    = "fd-slider" + (vertical ? "-vertical " : " ") + classNames;
+			outerWrapper.id           = "fd-slider-" + inp.id;
 
 			if(vertical && inpHeight) {
 				outerWrapper.style.height = inpHeight + "px";
 			}
 
-			innerWrapper			  = document.createElement('span');
-			innerWrapper.className	  = "fd-slider-wrapper" + (!html5Shim ? " fd-slider-no-value" : "");
+			innerWrapper              = document.createElement('span');
+			innerWrapper.className    = "fd-slider-wrapper" + (!html5Shim ? " fd-slider-no-value" : "");
 
-			ieBlur					  = document.createElement('span');
-			ieBlur.className		  = "fd-slider-inner";
+			ieBlur                    = document.createElement('span');
+			ieBlur.className          = "fd-slider-inner";
 
-			bar						  = document.createElement('span');
-			bar.className			  = "fd-slider-bar";
+			bar                       = document.createElement('span');
+			bar.className             = "fd-slider-bar";
 
 			if(fullARIA) {
-				handle			  = document.createElement('span');
+				handle            = document.createElement('span');
 			} else {
-				handle			  = document.createElement('a');
+				handle            = document.createElement('a');
 				handle.setAttribute("href", "#");
 				addEvent(handle, "click", stopEvent);
 			}
 
 			setTabIndex(handle, 0);
 
-			handle.className		  = "fd-slider-handle";
+			handle.className          = "fd-slider-handle";
 			handle.appendChild(document.createTextNode(String.fromCharCode(160)));
 
 			innerWrapper.appendChild(ieBlur);
 
 			if(!noRangeBar) {
-				rangeBar				  = document.createElement('span');
-				rangeBar.className		  = "fd-slider-range";
+				rangeBar                  = document.createElement('span');
+				rangeBar.className        = "fd-slider-range";
 				innerWrapper.appendChild(rangeBar);
 			}
 
@@ -1216,20 +1221,20 @@ var fdSlider = (function() {
 			inp.parentNode.insertBefore(outerWrapper, inp);
 
 			if(isOpera || /*@cc_on!@*/!true) {
-				handle.unselectable	  = "on";
-				bar.unselectable		  = "on";
-				ieBlur.unselectable	  = "on";
+				handle.unselectable       = "on";
+				bar.unselectable          = "on";
+				ieBlur.unselectable       = "on";
 				outerWrapper.unselectable = "on";
 				innerWrapper.unselectable = "on";
 				if(!noRangeBar) {
-					rangeBar.unselectable	  = "on";
+					rangeBar.unselectable     = "on";
 				}
 			}
 
 			// Add ARIA accessibility info programmatically
 			outerWrapper.setAttribute("role", "application");
 
-			handle.setAttribute("role",		  "slider");
+			handle.setAttribute("role",           "slider");
 			handle.setAttribute("aria-valuemin",  tagName == "select" ? inp.options[0].value : min);
 			handle.setAttribute("aria-valuemax",  tagName == "select" ? inp.options[inp.options.length - 1].value : max);
 
@@ -1275,19 +1280,19 @@ var fdSlider = (function() {
 		})();
 
 		return {
-			onResize:		function(e) { if(outerWrapper.offsetHeight != sliderH || outerWrapper.offsetWidth != sliderW) { redraw(); } },
-			destroy:		function() { destroySlider(); },
-			reset:			function() { valueToPixels(tagName == "input" ? parseFloat(inp.value) : inp.selectedIndex); },
-			stepUp:		function(n) { increment(Math.abs(n)||1); },
-			stepDown:		function(n) { increment(-Math.abs(n)||-1); },
-			increment:		function(n) { increment(n); },
-			disable:		function() { disableSlider(); },
-			enable:		function() { enableSlider(); },
-			setRange:		function(mi, mx) { setSliderRange(mi, mx); },
-			getValueSet:	function() { return !!userSet; },
-			setValueSet:	function(tf) { valueSet(tf); },
-			rescan:		function() { rescanAttrs(); },
-			checkValue:	function() { if(varSetRules.onvalue) { userSet = true; checkValue(tagName == "input" ? parseFloat(inp.value) : inp.selectedIndex); } updateAriaValues(); redraw(); }
+			onResize:       function(e) { if(outerWrapper.offsetHeight != sliderH || outerWrapper.offsetWidth != sliderW) { redraw(); } },
+			destroy:        function() { destroySlider(); },
+			reset:          function() { valueToPixels(tagName == "input" ? parseFloat(inp.value) : inp.selectedIndex); },
+			stepUp:         function(n) { increment(Math.abs(n)||1); },
+			stepDown:       function(n) { increment(-Math.abs(n)||-1); },
+			increment:      function(n) { increment(n); },
+			disable:        function() { disableSlider(); },
+			enable:         function() { enableSlider(); },
+			setRange:       function(mi, mx) { setSliderRange(mi, mx); },
+			getValueSet:    function() { return !!userSet; },
+			setValueSet:    function(tf) { valueSet(tf); },
+			rescan:         function() { rescanAttrs(); },
+			checkValue:     function() { if(varSetRules.onvalue) { userSet = true; checkValue(tagName == "input" ? parseFloat(inp.value) : inp.selectedIndex); } updateAriaValues(); redraw(); }
 		};
 	}
 
@@ -1298,8 +1303,8 @@ var fdSlider = (function() {
 
 	// Have we been passed JSON within the including script tag
 	(function() {
-		var scriptFiles	  = document.getElementsByTagName('script'),
-			json			  = parseJSON(String(scriptFiles[scriptFiles.length - 1].innerHTML).replace(/[\n\r\s\t]+/g, " ").replace(/^\s+/, "").replace(/\s+$/, ""));
+		var scriptFiles       = document.getElementsByTagName('script'),
+			json              = parseJSON(String(scriptFiles[scriptFiles.length - 1].innerHTML).replace(/[\n\r\s\t]+/g, " ").replace(/^\s+/, "").replace(/\s+$/, ""));
 
 		if(typeof json === "object" && !("err" in json)) {
 			affectJSON(json);
@@ -1313,26 +1318,26 @@ var fdSlider = (function() {
 	/*@end@*/
 
 	return {
-		rescanDocument:		init,
-		createSlider:			function(opts) { return createSlider(opts); },
-		onDomReady:			function() { onDomReady(); },
-		destroyAll:			function() { destroyAllsliders(); },
-		destroySlider:			function(id) { return destroySingleSlider(id); },
-		redrawAll:				function() { resize(); },
-		addEvent:				addEvent,
-		removeEvent:			removeEvent,
-		stopEvent:				stopEvent,
-		increment:				function(id, numSteps) { if(!sliderExists(id)) { return false; } sliders[id].increment(numSteps); },
-		stepUp:				function(id, n) { if(!sliderExists(id)) { return false; } sliders[id].stepUp(Math.abs(n)||1); },
-		stepDown:				function(id, n) { if(!sliderExists(id)) { return false; } sliders[id].stepDown(-Math.abs(n)||-1); },
-		setRange:				function(id, newMin, newMax) { if(!sliderExists(id)) { return false; } sliders[id].setRange(newMin, newMax); },
-		updateSlider:			function(id) { if(!sliderExists(id)) { return false; } sliders[id].onResize(); sliders[id].reset(); },
-		disable:				function(id) { if(!sliderExists(id)) { return false; } sliders[id].disable(); },
-		enable:				function(id) { if(!sliderExists(id)) { return false; } sliders[id].enable(); },
-		getValueSet:			function() { return getValueSet(); },
-		setValueSet:			function(a, tf) { if(!sliderExists(id)) { return false; } setValueSet(a, tf); },
-		setGlobalVariables:	function(json) { affectJSON(json); },
-		removeOnload:			function() { removeOnLoadEvent(); },
-		rescanAttributes:		rescanAttributes
+		rescanDocument:         init,
+		createSlider:           function(opts) { return createSlider(opts); },
+		onDomReady:             function() { onDomReady(); },
+		destroyAll:             function() { destroyAllsliders(); },
+		destroySlider:          function(id) { return destroySingleSlider(id); },
+		redrawAll:              function() { resize(); },
+		addEvent:               addEvent,
+		removeEvent:            removeEvent,
+		stopEvent:              stopEvent,
+		increment:              function(id, numSteps) { if(!sliderExists(id)) { return false; } sliders[id].increment(numSteps); },
+		stepUp:                 function(id, n) { if(!sliderExists(id)) { return false; } sliders[id].stepUp(Math.abs(n)||1); },
+		stepDown:               function(id, n) { if(!sliderExists(id)) { return false; } sliders[id].stepDown(-Math.abs(n)||-1); },
+		setRange:               function(id, newMin, newMax) { if(!sliderExists(id)) { return false; } sliders[id].setRange(newMin, newMax); },
+		updateSlider:           function(id) { if(!sliderExists(id)) { return false; } sliders[id].onResize(); sliders[id].reset(); },
+		disable:                function(id) { if(!sliderExists(id)) { return false; } sliders[id].disable(); },
+		enable:                 function(id) { if(!sliderExists(id)) { return false; } sliders[id].enable(); },
+		getValueSet:            function() { return getValueSet(); },
+		setValueSet:            function(a, tf) { if(!sliderExists(id)) { return false; } setValueSet(a, tf); },
+		setGlobalVariables:     function(json) { affectJSON(json); },
+		removeOnload:           function() { removeOnLoadEvent(); },
+		rescanAttributes:       rescanAttributes
 	};
 })();
