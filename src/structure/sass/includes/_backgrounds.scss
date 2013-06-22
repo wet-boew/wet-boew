@@ -17,7 +17,11 @@ $background-highlight-text: #222 !default;
 $background-white-color: #fff !default;
 $background-white-text: #222 !default;
 
-[class*="background-"] {color: #fff;}
+[class*="background-"] {
+	color: #fff;
+	margin-bottom: 30px;
+    padding: 0 15px;
+}
 
 .background-light  { background: $background-light-color; color: $background-light-text; }
 .background-medium { background: $background-medium-color; color: $background-medium-text; }

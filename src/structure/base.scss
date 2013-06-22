@@ -20,26 +20,47 @@
 @import "sass/includes/color";
 @import "sass/includes/positions";
 @import "sass/includes/lists";
+@import "sass/includes/modules";
 // Structure is last to ensure no overwrites
 @import 'sass/grids/default';
 
 
-@media only screen and (min-width: 480px) {
-	.container { width: 100% }
-}
-@media only screen and (min-width: 768px) {
-     .container { width: 100% }
-     @include create_mobile_grid($columns);
-}
-@media only screen and (min-width: 992px) {
-	.container { width: 960px }
-}
-@media only screen and (min-width: 1382px) {
-	.container { width: 1200px }
+/* ===== == = === 68.75em (1100px) === = == ===== */
+
+@media only screen and (min-width : 768px) {
+
+	.container { width: 748px }
+	// fixed width: container
+	[class*="span-m-"] { width: auto }
+
+	/*-----------------------------
+		Column Loop for all the classes
+	 ------------------------------*/
+	@include create_grid($columns);
+
+	/*-----------------------------
+		Human Readable Column loop
+	 ------------------------------*/
+	$i: 1;
+	@each $spn in full, half, third, fourth, fifth, sixth {
+		$col: floor($columns/$i);
+		@include create_column($spn, $col);
+		$i: $i + 1;
+	}
 }
 
-@media screen and (max-width: 767px), screen and (max-device-width: 767px) {
-/* ----- Small screens - Screen media type - Start of build includes ----- */
-@import 'sass/grids/small';
-/* ----- Small screens - Screen media type - End of build includes ----- */
+/* Desktops and laptops ----------- */
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 980px) {
+	.container { width: 960px }
 }
+
+@media only screen 
+and (min-width : 1224px) {
+   .container { width: 1200px }
+}
+
+
+
+
