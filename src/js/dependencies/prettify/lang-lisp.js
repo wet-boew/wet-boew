@@ -1,5 +1,4 @@
-/*!
-// Copyright (C) 2006 Google Inc.
+// Copyright (C) 2008 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,7 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
- */
+
+
 
 /**
  * @fileoverview
@@ -28,6 +28,7 @@
  *	   lang-el - Emacs Lisp
  *	   lang-lisp - Lisp
  *	   lang-scm - Scheme
+ *	   lang-lsp - FAT 8.3 filename version of lang-lisp.
  *
  *
  * I used http://www.devincook.com/goldparser/doc/meta-language/grammar-LISP.htm
@@ -70,14 +71,14 @@ PR['registerLangHandler'](
 		 ['opn',			 /^\(+/, null, '('],
 		 ['clo',			 /^\)+/, null, ')'],
 		 // A line comment that starts with ;
-		 [PR['PR_COMMENT'],	/^;[^\r\n]*/, null, ';'],
+		 [PR['PR_COMMENT'], 	/^;[^\r\n]*/, null, ';'],
 		 // Whitespace
 		 [PR['PR_PLAIN'],		/^[\t\n\r \xA0]+/, null, '\t\n\r \xA0'],
 		 // A double quoted, possibly multi-line, string.
 		 [PR['PR_STRING'],		/^\"(?:[^\"\\]|\\[\s\S])*(?:\"|$)/, null, '"']
 		],
 		[
-		 [PR['PR_KEYWORD'],	/^(?:block|c[ad]+r|catch|con[ds]|def(?:ine|un)|do|eq|eql|equal|equalp|eval-when|flet|format|go|if|labels|lambda|let|load-time-value|locally|macrolet|multiple-value-call|nil|progn|progv|quote|require|return-from|setq|symbol-macrolet|t|tagbody|the|throw|unwind)\b/, null],
+		 [PR['PR_KEYWORD'], 	/^(?:block|c[ad]+r|catch|con[ds]|def(?:ine|un)|do|eq|eql|equal|equalp|eval-when|flet|format|go|if|labels|lambda|let|load-time-value|locally|macrolet|multiple-value-call|nil|progn|progv|quote|require|return-from|setq|symbol-macrolet|t|tagbody|the|throw|unwind)\b/, null],
 		 [PR['PR_LITERAL'],
 		  /^[+\-]?(?:[0#]x[0-9a-f]+|\d+\/\d+|(?:\.\d+|\d+(?:\.\d*)?)(?:[ed][+\-]?\d+)?)/i],
 		 // A single quote possibly followed by a word that optionally ends with
@@ -90,4 +91,4 @@ PR['registerLangHandler'](
 		 // A printable non-space non-special character
 		 [PR['PR_PUNCTUATION'], /^[^\w\t\n\r \xA0()\"\\\';]+/]
 		]),
-	['cl', 'el', 'lisp', 'scm']);
+	['cl', 'el', 'lisp', 'lsp', 'scm', 'ss', 'rkt']);

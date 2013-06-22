@@ -1,5 +1,5 @@
-/*!
- * jQuery EasyTabs plugin 3.1.1
+/*
+ * jQuery EasyTabs plugin 3.2.0
  *
  * Copyright (c) 2010-2011 Steve Schwartz (JangoSteve)
  *
@@ -7,9 +7,10 @@
  *	 http://www.opensource.org/licenses/mit-license.php
  *	 http://www.gnu.org/licenses/gpl.html
  *
- * Date: Tue Jan 26 16:30:00 2012 -0500
+ * Date: Thu May 09 17:30:00 2013 -0500
  */
 ( function($) {
+
   $.easytabs = function(container, options) {
 
 		// Attach to plugin anything that should be available via
@@ -43,6 +44,7 @@
 		  tabClass: "",
 		  panelClass: "",
 		  cache: true,
+		  event: 'click',
 		  panelContext: $container
 		},
 
@@ -70,6 +72,7 @@
 	plugin.init = function() {
 
 	  plugin.settings = settings = $.extend({}, defaults, options);
+	  settings.bind_str = settings.event+".easytabs";
 
 	  // Add jQuery UI's crazy class names to markup,
 	  // so that markup will match theme CSS
@@ -168,7 +171,7 @@
 		} else {
 		  targetId = $a.attr('href');
 		}
-		targetId = targetId.match(/#([^\?]+)/)[0].substr(1);
+		targetId = targetId.match(/#([^\?]+)/)[1];
 
 		$matchingPanel = settings.panelContext.find("#" + targetId);
 
@@ -191,6 +194,9 @@
 		// Otherwise, remove tab from tabs collection
 		} else {
 		  plugin.tabs = plugin.tabs.not($tab);
+		  if ('console' in window) {
+			console.warn('Warning: tab without matching panel for selector \'#' + targetId +'\' removed from set');
+		  }
 		}
 	  });
 	};
@@ -278,7 +284,13 @@
 
 	// Find panel with `id` matching value
 	plugin.matchInPanel = function(hash) {
-	  return ( hash.length > 1 ? plugin.panels.filter(':has(' + hash + ')').first() : [] );
+	  return ( hash && plugin.validId(hash) ? plugin.panels.filter(':has(' + hash + ')').first() : [] );
+	};
+
+	// Make sure hash is a valid id value (admittedly strict in that HTML5 allows almost anything without a space)
+	// but jQuery has issues with such id values anyway, so we can afford to be strict here.
+	plugin.validId = function(id) {
+	  return id.substr(1).match(/^[A-Za-z]+[A-Za-z0-9\-_:\.].$/);
 	};
 
 	// Select matching tab when URL hash changes
@@ -407,7 +419,7 @@
 		} else {
 		  $defaultTab = plugin.tabs.parent().find(settings.defaultTab);
 		  if ( $defaultTab.length === 0 ) {
-			$.error("The specified default tab ('" + settings.defaultTab + "') could not be found in the tab set.");
+			$.error("The specified default tab ('" + settings.defaultTab + "') could not be found in the tab set ('" + settings.tabs + "') out of " + plugin.tabs.length + " tabs.");
 		  }
 		}
 	  }
@@ -450,12 +462,15 @@
 		  .children()
 			.addClass(settings.tabActiveClass);
 	  }
+
+	  // Fire event when the plugin is initialised
+	  $container.trigger("easytabs:initialised", [$defaultTabLink, defaultPanel]);
 	};
 
 	// Bind tab-select funtionality to namespaced click event, called by
 	// init
 	var bindToTabClicks = function() {
-	  plugin.tabs.children("a").bind("click.easytabs", function(e) {
+	  plugin.tabs.children("a").bind(settings.bind_str, function(e) {
 
 		// Stop cycling when a tab is clicked
 		settings.cycle = false;
@@ -468,7 +483,7 @@
 		plugin.selectTab( $(this) );
 
 		// Don't follow the link to the anchor
-		e.preventDefault();
+		e.preventDefault ? e.preventDefault() : e.returnValue = false;
 	  });
 	};
 
@@ -588,12 +603,23 @@
 
 	  // this is the only property easytabs changes, so we need to grab its value on each tab change
 	  var display = $targetPanel.css('display'),
+		  outerCloak,
+		  height;
 
-		  // Workaround, because firefox returns wrong height if element itself has absolute positioning
-		  height = $targetPanel
-			.wrap($('<div>', {position: 'absolute', 'visibility': 'hidden', 'overflow': 'hidden'}))
-			.css({'position':'relative','visibility':'hidden','display':'block'})
-			.outerHeight();
+	  // Workaround with wrapping height, because firefox returns wrong
+	  // height if element itself has absolute positioning.
+	  // but try/catch block needed for IE7 and IE8 because they throw
+	  // an "Unspecified error" when trying to create an element
+	  // with the css position set.
+	  try {
+		outerCloak = $('<div></div>', {'position': 'absolute', 'visibility': 'hidden', 'overflow': 'hidden'});
+	  } catch (e) {
+		outerCloak = $('<div></div>', {'visibility': 'hidden', 'overflow': 'hidden'});
+	  }
+	  height = $targetPanel
+		.wrap(outerCloak)
+		.css({'position':'relative','visibility':'hidden','display':'block'})
+		.outerHeight();
 
 	  $targetPanel.unwrap();
 

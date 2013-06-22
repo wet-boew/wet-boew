@@ -1,4 +1,4 @@
-/*!*
+/**
  * @license Copyright (C) 2011 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -50,7 +50,7 @@ PR['registerLangHandler'](
 		 ['opn',			 /^[\(\{\[]+/, null, '([{'],
 		 ['clo',			 /^[\)\}\]]+/, null, ')]}'],
 		 // A line comment that starts with ;
-		 [PR['PR_COMMENT'],	/^;[^\r\n]*/, null, ';'],
+		 [PR['PR_COMMENT'], 	/^;[^\r\n]*/, null, ';'],
 		 // Whitespace
 		 [PR['PR_PLAIN'],		/^[\t\n\r \xA0]+/, null, '\t\n\r \xA0'],
 		 // A double quoted, possibly multi-line, string.
@@ -58,7 +58,7 @@ PR['registerLangHandler'](
 		],
 		[
 		 // clojure has a much larger set of keywords
-		 [PR['PR_KEYWORD'],	/^(?:def|if|do|let|quote|var|fn|loop|recur|throw|try|monitor-enter|monitor-exit|defmacro|defn|defn-|macroexpand|macroexpand-1|for|doseq|dosync|dotimes|and|or|when|not|assert|doto|proxy|defstruct|first|rest|cons|defprotocol|deftype|defrecord|reify|defmulti|defmethod|meta|with-meta|ns|in-ns|create-ns|import|intern|refer|alias|namespace|resolve|ref|deref|refset|new|set!|memfn|to-array|into-array|aset|gen-class|reduce|map|filter|find|nil?|empty?|hash-map|hash-set|vec|vector|seq|flatten|reverse|assoc|dissoc|list|list?|disj|get|union|difference|intersection|extend|extend-type|extend-protocol|prn)\b/, null],
+		 [PR['PR_KEYWORD'], 	/^(?:def|if|do|let|quote|var|fn|loop|recur|throw|try|monitor-enter|monitor-exit|defmacro|defn|defn-|macroexpand|macroexpand-1|for|doseq|dosync|dotimes|and|or|when|not|assert|doto|proxy|defstruct|first|rest|cons|defprotocol|deftype|defrecord|reify|defmulti|defmethod|meta|with-meta|ns|in-ns|create-ns|import|intern|refer|alias|namespace|resolve|ref|deref|refset|new|set!|memfn|to-array|into-array|aset|gen-class|reduce|map|filter|find|nil?|empty?|hash-map|hash-set|vec|vector|seq|flatten|reverse|assoc|dissoc|list|list?|disj|get|union|difference|intersection|extend|extend-type|extend-protocol|prn)\b/, null],
 		 [PR['PR_TYPE'], /^:[0-9a-zA-Z\-]+/]
 		]),
 	['clj']);
