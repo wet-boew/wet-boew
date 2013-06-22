@@ -1,4 +1,3 @@
-/*!
 // Copyright (C) 2009 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,7 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
- */
+
 
 /**
  * @fileoverview
@@ -36,7 +35,7 @@ PR['registerLangHandler'](
 		 // Meta-info like #summary, #labels, etc.
 		 ['lang-wiki.meta',  /(?:^^|\r\n?|\n)(#[a-z]+)\b/],
 		 // A WikiWord
-		 [PR['PR_LITERAL'],	/^(?:[A-Z][a-z][a-z0-9]+[A-Z][a-z][a-zA-Z0-9]+)\b/
+		 [PR['PR_LITERAL'], 	/^(?:[A-Z][a-z][a-z0-9]+[A-Z][a-z][a-zA-Z0-9]+)\b/
 		  ],
 		 // A preformatted block in an unknown language
 		 ['lang-',			 /^\{\{\{([\s\S]+?)\}\}\}/],

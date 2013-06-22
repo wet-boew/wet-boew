@@ -1,5 +1,4 @@
-/*!
-// Copyright (C) 2006 Google Inc.
+// Copyright (C) 2010 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,7 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
- */
+
+
 
 /**
  * @fileoverview
@@ -52,7 +52,7 @@ PR['registerLangHandler'](
 		[
 		 // Block comments are delimited by /* and */.
 		 // Single-line comments begin with // and extend to the end of a line.
-		 [PR['PR_COMMENT'],	/^(?:\/\/[^\r\n]*|\/\*[\s\S]*?\*\/)/],
+		 [PR['PR_COMMENT'], 	/^(?:\/\/[^\r\n]*|\/\*[\s\S]*?\*\/)/],
 		 [PR['PR_PLAIN'],		/^(?:[^\/\"\'`]|\/(?![\/\*]))+/i]
 		]),
 	['go']);

@@ -1,4 +1,4 @@
-/*!*
+/**
  * @fileoverview
  * Registers a language handler for VHDL '93.
  *
