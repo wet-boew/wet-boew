@@ -1,4 +1,4 @@
-/*
+/*!
   proj4js.js -- Javascript reprojection library. 
   
   Authors:		Mike Adair madairATdmsolutions.ca
