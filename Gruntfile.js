@@ -87,9 +87,9 @@ module.exports = function(grunt) {
                     bare: true
                 },
                 files: [
-                    { 'src/core/vapour/vapour.js': 'src/core/vapour/vapour.coffee' }, // 1:1 compile
+                    { 'dist/core/vapour/vapour.js': 'src/core/vapour/vapour.coffee' }, // 1:1 compile
                    // { 'plugins/bare/wet-boew-plugin.bare.js': 'src/plugins/bare/wet-boew-plugin.coffee' }
-                    { 'src/plugins/zebra/wet-boew.zebra.js': 'src/plugins/zebra/wet-boew-plugin-zebra.coffee' } 
+                    { 'dist/plugins/zebra/wet-boew.zebra.js': 'src/plugins/zebra/wet-boew-plugin-zebra.coffee' } 
                 ]
 			}
 		},

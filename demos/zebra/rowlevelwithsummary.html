@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt -->
+<title>Row Level with Summary Table - Zebra striping - Working examples - Web Experience Toolkit&#160;(WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="#" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-eng.html" lang="en"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
+<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/projectmenu-eng.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-eng.html">WET project</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Implementing-WET">Implement WET</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-eng.html">Home</a></li>
+<li><a href="../index-eng.html">Working examples</a></li>
+<li><a href="zebra-eng.html">Zebra striping</a></li>
+<li>Row Level with Summary Table</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Row Level with Summary Table</h1>
+
+
+<ul class="button-group">
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Zebra-striping" class="button">Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
+</ul>
+
+<table class="wet-boew-zebra hassum">
+	<caption>
+		<strong>Row level with summary Table example</strong>
+		<p>With a "<code>td</code>" layout cell at the top left corner and "<code>hassum</code>" option set.</p>
+	</caption>
+	<colgroup><col></colgroup><colgroup><col><col><col><col><col><col><col><col><col></colgroup>
+	<thead>
+		<tr>
+			<td></td>
+			<th id="tble6">Header</th>
+			<th id="tble8">Header</th>
+			<th id="tble9">Header</th>
+			<th id="tble10">Header</th>
+			<th id="tble11">Header</th>
+			<th id="tble12">Header</th>
+			<th id="tble13">Header</th>
+			<th id="tble14">Header</th>
+			<th id="tble15">Header</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tble19">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tble22" headers="tble19">Header</th>
+			<td headers="tble6 tble19 tble22">Data</td>
+			<td headers="tble8 tble19 tble22">Data</td>
+			<td headers="tble9 tble19 tble22">Data</td>
+			<td headers="tble10 tble19 tble22">Data</td>
+			<td headers="tble11 tble19 tble22">Data</td>
+			<td headers="tble12 tble19 tble22">Data</td>
+			<td headers="tble13 tble19 tble22">Data</td>
+			<td headers="tble14 tble19 tble22">Data</td>
+			<td headers="tble15 tble19 tble22">Data</td>
+		</tr>
+		<tr>
+			<th id="tble47" headers="tble19">Header</th>
+			<td headers="tble6 tble19 tble47">Data</td>
+			<td headers="tble8 tble19 tble47">Data</td>
+			<td headers="tble9 tble19 tble47">Data</td>
+			<td headers="tble10 tble19 tble47">Data</td>
+			<td headers="tble11 tble19 tble47">Data</td>
+			<td headers="tble12 tble19 tble47">Data</td>
+			<td headers="tble13 tble19 tble47">Data</td>
+			<td headers="tble14 tble19 tble47">Data</td>
+			<td headers="tble15 tble19 tble47">Data</td>
+		</tr>
+		<tr>
+			<th id="tble60" headers="tble19">Header</th>
+			<td headers="tble6 tble19 tble60">Data</td>
+			<td headers="tble8 tble19 tble60">Data</td>
+			<td headers="tble9 tble19 tble60">Data</td>
+			<td headers="tble10 tble19 tble60">Data</td>
+			<td headers="tble11 tble19 tble60">Data</td>
+			<td headers="tble12 tble19 tble60">Data</td>
+			<td headers="tble13 tble19 tble60">Data</td>
+			<td headers="tble14 tble19 tble60">Data</td>
+			<td headers="tble15 tble19 tble60">Data</td>
+		</tr>
+		<tr>
+			<th id="tble73" headers="tble19">Header</th>
+			<td headers="tble6 tble19 tble73">Data</td>
+			<td headers="tble8 tble19 tble73">Data</td>
+			<td headers="tble9 tble19 tble73">Data</td>
+			<td headers="tble10 tble19 tble73">Data</td>
+			<td headers="tble11 tble19 tble73">Data</td>
+			<td headers="tble12 tble19 tble73">Data</td>
+			<td headers="tble13 tble19 tble73">Data</td>
+			<td headers="tble14 tble19 tble73">Data</td>
+			<td headers="tble15 tble19 tble73">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tble87" headers="tble19">Summary</th>
+			<td headers="tble6 tble19 tble87">Data</td>
+			<td headers="tble8 tble19 tble87">Data</td>
+			<td headers="tble9 tble19 tble87">Data</td>
+			<td headers="tble10 tble19 tble87">Data</td>
+			<td headers="tble11 tble19 tble87">Data</td>
+			<td headers="tble12 tble19 tble87">Data</td>
+			<td headers="tble13 tble19 tble87">Data</td>
+			<td headers="tble14 tble19 tble87">Data</td>
+			<td headers="tble15 tble19 tble87">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tble101">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tble104" headers="tble101">Header</th>
+			<td headers="tble6 tble101 tble104">Data</td>
+			<td headers="tble8 tble101 tble104">Data</td>
+			<td headers="tble9 tble101 tble104">Data</td>
+			<td headers="tble10 tble101 tble104">Data</td>
+			<td headers="tble11 tble101 tble104">Data</td>
+			<td headers="tble12 tble101 tble104">Data</td>
+			<td headers="tble13 tble101 tble104">Data</td>
+			<td headers="tble14 tble101 tble104">Data</td>
+			<td headers="tble15 tble101 tble104">Data</td>
+		</tr>
+		<tr>
+			<th id="tble117" headers="tble101">Header</th>
+			<td headers="tble6 tble101 tble117">Data</td>
+			<td headers="tble8 tble101 tble117">Data</td>
+			<td headers="tble9 tble101 tble117">Data</td>
+			<td headers="tble10 tble101 tble117">Data</td>
+			<td headers="tble11 tble101 tble117">Data</td>
+			<td headers="tble12 tble101 tble117">Data</td>
+			<td headers="tble13 tble101 tble117">Data</td>
+			<td headers="tble14 tble101 tble117">Data</td>
+			<td headers="tble15 tble101 tble117">Data</td>
+		</tr>
+		<tr>
+			<th id="tble130" headers="tble101">Header</th>
+			<td headers="tble6 tble101 tble130">Data</td>
+			<td headers="tble8 tble101 tble130">Data</td>
+			<td headers="tble9 tble101 tble130">Data</td>
+			<td headers="tble10 tble101 tble130">Data</td>
+			<td headers="tble11 tble101 tble130">Data</td>
+			<td headers="tble12 tble101 tble130">Data</td>
+			<td headers="tble13 tble101 tble130">Data</td>
+			<td headers="tble14 tble101 tble130">Data</td>
+			<td headers="tble15 tble101 tble130">Data</td>
+		</tr>
+		<tr>
+			<th id="tble143" headers="tble101">Header</th>
+			<td headers="tble6 tble101 tble143">Data</td>
+			<td headers="tble8 tble101 tble143">Data</td>
+			<td headers="tble9 tble101 tble143">Data</td>
+			<td headers="tble10 tble101 tble143">Data</td>
+			<td headers="tble11 tble101 tble143">Data</td>
+			<td headers="tble12 tble101 tble143">Data</td>
+			<td headers="tble13 tble101 tble143">Data</td>
+			<td headers="tble14 tble101 tble143">Data</td>
+			<td headers="tble15 tble101 tble143">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tble157" headers="tble101">Summary</th>
+			<td headers="tble6 tble101 tble157">Data</td>
+			<td headers="tble8 tble101 tble157">Data</td>
+			<td headers="tble9 tble101 tble157">Data</td>
+			<td headers="tble10 tble101 tble157">Data</td>
+			<td headers="tble11 tble101 tble157">Data</td>
+			<td headers="tble12 tble101 tble157">Data</td>
+			<td headers="tble13 tble101 tble157">Data</td>
+			<td headers="tble14 tble101 tble157">Data</td>
+			<td headers="tble15 tble101 tble157">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tble171">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tble174" headers="tble171">Header</th>
+			<td headers="tble6 tble171 tble174">Data</td>
+			<td headers="tble8 tble171 tble174">Data</td>
+			<td headers="tble9 tble171 tble174">Data</td>
+			<td headers="tble10 tble171 tble174">Data</td>
+			<td headers="tble11 tble171 tble174">Data</td>
+			<td headers="tble12 tble171 tble174">Data</td>
+			<td headers="tble13 tble171 tble174">Data</td>
+			<td headers="tble14 tble171 tble174">Data</td>
+			<td headers="tble15 tble171 tble174">Data</td>
+		</tr>
+		<tr>
+			<th id="tble187" headers="tble171">Header</th>
+			<td headers="tble6 tble171 tble187">Data</td>
+			<td headers="tble8 tble171 tble187">Data</td>
+			<td headers="tble9 tble171 tble187">Data</td>
+			<td headers="tble10 tble171 tble187">Data</td>
+			<td headers="tble11 tble171 tble187">Data</td>
+			<td headers="tble12 tble171 tble187">Data</td>
+			<td headers="tble13 tble171 tble187">Data</td>
+			<td headers="tble14 tble171 tble187">Data</td>
+			<td headers="tble15 tble171 tble187">Data</td>
+		</tr>
+		<tr>
+			<th id="tble200" headers="tble171">Header</th>
+			<td headers="tble6 tble171 tble200">Data</td>
+			<td headers="tble8 tble171 tble200">Data</td>
+			<td headers="tble9 tble171 tble200">Data</td>
+			<td headers="tble10 tble171 tble200">Data</td>
+			<td headers="tble11 tble171 tble200">Data</td>
+			<td headers="tble12 tble171 tble200">Data</td>
+			<td headers="tble13 tble171 tble200">Data</td>
+			<td headers="tble14 tble171 tble200">Data</td>
+			<td headers="tble15 tble171 tble200">Data</td>
+		</tr>
+		<tr>
+			<th id="tble213" headers="tble171">Header</th>
+			<td headers="tble6 tble171 tble213">Data</td>
+			<td headers="tble8 tble171 tble213">Data</td>
+			<td headers="tble9 tble171 tble213">Data</td>
+			<td headers="tble10 tble171 tble213">Data</td>
+			<td headers="tble11 tble171 tble213">Data</td>
+			<td headers="tble12 tble171 tble213">Data</td>
+			<td headers="tble13 tble171 tble213">Data</td>
+			<td headers="tble14 tble171 tble213">Data</td>
+			<td headers="tble15 tble171 tble213">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tble227" headers="tble171">Summary</th>
+			<td headers="tble6 tble171 tble227">Data</td>
+			<td headers="tble8 tble171 tble227">Data</td>
+			<td headers="tble9 tble171 tble227">Data</td>
+			<td headers="tble10 tble171 tble227">Data</td>
+			<td headers="tble11 tble171 tble227">Data</td>
+			<td headers="tble12 tble171 tble227">Data</td>
+			<td headers="tble13 tble171 tble227">Data</td>
+			<td headers="tble14 tble171 tble227">Data</td>
+			<td headers="tble15 tble171 tble227">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th colspan="10" id="tble241">Row Group Heading</th>
+		</tr>
+		<tr>
+			<th id="tble244" headers="tble241">Header</th>
+			<td headers="tble6 tble241 tble244">Data</td>
+			<td headers="tble8 tble241 tble244">Data</td>
+			<td headers="tble9 tble241 tble244">Data</td>
+			<td headers="tble10 tble241 tble244">Data</td>
+			<td headers="tble11 tble241 tble244">Data</td>
+			<td headers="tble12 tble241 tble244">Data</td>
+			<td headers="tble13 tble241 tble244">Data</td>
+			<td headers="tble14 tble241 tble244">Data</td>
+			<td headers="tble15 tble241 tble244">Data</td>
+		</tr>
+		<tr>
+			<th id="tble257" headers="tble241">Header</th>
+			<td headers="tble6 tble241 tble257">Data</td>
+			<td headers="tble8 tble241 tble257">Data</td>
+			<td headers="tble9 tble241 tble257">Data</td>
+			<td headers="tble10 tble241 tble257">Data</td>
+			<td headers="tble11 tble241 tble257">Data</td>
+			<td headers="tble12 tble241 tble257">Data</td>
+			<td headers="tble13 tble241 tble257">Data</td>
+			<td headers="tble14 tble241 tble257">Data</td>
+			<td headers="tble15 tble241 tble257">Data</td>
+		</tr>
+		<tr>
+			<th id="tble270" headers="tble241">Header</th>
+			<td headers="tble6 tble241 tble270">Data</td>
+			<td headers="tble8 tble241 tble270">Data</td>
+			<td headers="tble9 tble241 tble270">Data</td>
+			<td headers="tble10 tble241 tble270">Data</td>
+			<td headers="tble11 tble241 tble270">Data</td>
+			<td headers="tble12 tble241 tble270">Data</td>
+			<td headers="tble13 tble241 tble270">Data</td>
+			<td headers="tble14 tble241 tble270">Data</td>
+			<td headers="tble15 tble241 tble270">Data</td>
+		</tr>
+		<tr>
+			<th id="tble283" headers="tble241">Header</th>
+			<td headers="tble6 tble241 tble283">Data</td>
+			<td headers="tble8 tble241 tble283">Data</td>
+			<td headers="tble9 tble241 tble283">Data</td>
+			<td headers="tble10 tble241 tble283">Data</td>
+			<td headers="tble11 tble241 tble283">Data</td>
+			<td headers="tble12 tble241 tble283">Data</td>
+			<td headers="tble13 tble241 tble283">Data</td>
+			<td headers="tble14 tble241 tble283">Data</td>
+			<td headers="tble15 tble241 tble283">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tble297" headers="tble241">Summary</th>
+			<td headers="tble6 tble241 tble297">Data</td>
+			<td headers="tble8 tble241 tble297">Data</td>
+			<td headers="tble9 tble241 tble297">Data</td>
+			<td headers="tble10 tble241 tble297">Data</td>
+			<td headers="tble11 tble241 tble297">Data</td>
+			<td headers="tble12 tble241 tble297">Data</td>
+			<td headers="tble13 tble241 tble297">Data</td>
+			<td headers="tble14 tble241 tble297">Data</td>
+			<td headers="tble15 tble241 tble297">Data</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<th id="tble311" headers="">Summary</th>
+			<td headers="tble6 tble311">Data</td>
+			<td headers="tble8 tble311">Data</td>
+			<td headers="tble9 tble311">Data</td>
+			<td headers="tble10 tble311">Data</td>
+			<td headers="tble11 tble311">Data</td>
+			<td headers="tble12 tble311">Data</td>
+			<td headers="tble13 tble311">Data</td>
+			<td headers="tble14 tble311">Data</td>
+			<td headers="tble15 tble311">Data</td>
+		</tr>
+	</tbody>
+</table>
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code>
+
+&lt;table class="wet-boew-zebra hassum"&gt;
+	&lt;caption&gt;
+		&lt;strong&gt;Row level with summary Table example&lt;/strong&gt;
+		&lt;p&gt;With a "&lt;code&gt;td&lt;/code&gt;" layout cell at the top left corner and "&lt;code&gt;hassum&lt;/code&gt;" option set.&lt;/p&gt;
+	&lt;/caption&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;/td&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th colspan="10"&gt;Row Group Heading&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Summary&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+</code></pre>
+</details>
+
+<div class="module-note span-6 margin-top-large">
+<p><strong>Note:</strong></p>
+<p>For that kind of table, the recommandation is to use the technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H43" rel="external">H43: Using id and headers attributes to associate data cells with header cells in data tables</a>. A short way to assign id/headers is to use the <a href="../tableparser/validator-htmltable.html">HTML Table Validator</a>.</p>
+</div>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2013-04-11</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-eng.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

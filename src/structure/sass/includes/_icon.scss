@@ -6,7 +6,7 @@
 @import "compass/utilities/sprites";
 
 //Inline the sprite if not outputing for IE8
-$wb-icon-inline: not $legacy-support-for-ie8; 
+$wb-icon-inline: not $legacy-support-for-ie8;
 
 @import "wb-icon/*.png";
 
@@ -44,20 +44,20 @@ $wb-icon-inline: not $legacy-support-for-ie8;
 [rel="external"] {
 	background: url(../images/wb-icon/external.png) 100% 0 no-repeat;
 
-	//gh-2104 fixes overriding background because of increased specificity when wb-main was used	
+	//gh-2104 fixes overriding background because of increased specificity when wb-main was used
 	#wb-head &, #wb-foot & {
 		background: inherit;
 	}
-	
-	#wb-main & {
+
+	#wb-main &, #colorbox & {
 		padding-right: 20px;
-		
+
 		&.wb-icon-none {
 			padding-right: 0;
 		}
 	}
 }
-	
+
 .wb-icon-none {
 	background-image: none;
 	padding-left: 0;
@@ -98,7 +98,7 @@ $wb-icon-inline: not $legacy-support-for-ie8;
 		background: url(../images/external-rtl.png) no-repeat;
 	}
 	
-	#wb-main {
+	#wb-main, #colorbox {
 		[rel="external"] {
 			padding-left: 20px;
 			padding-right: 0;

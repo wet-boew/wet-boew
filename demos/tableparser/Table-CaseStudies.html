@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt -->
+<title>Case Studies #1 - Working examples - Web Experience Toolkit&#160;(WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="#" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-eng.html" lang="en"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
+<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/projectmenu-eng.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-eng.html">WET project</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Implementing-WET">Implement WET</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-eng.html">Home</a></li>
+<li><a href="../index-eng.html">Working examples</a></li>
+<li>Case Studies #1</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Case Studies #1</h1>
+
+
+<p>This case study is about to transform a complex table in a more usable table</p>
+
+<div class="module-note span-6">
+	<h2><span class="color-dark">Note:</span> Table in "hassum" mode</h2>
+	<p>This case study use table with the option "hassum".</p>
+</div>
+
+<div class="clear"></div>
+
+<h2>The result</h2>
+
+
+<table class="wet-boew-zebra hassum">
+<caption>Canada – Permanent residents by gender and category, 1986 to 2010</caption>
+<colgroup>
+	<col>
+</colgroup>
+<colgroup>
+	<col>
+	<col>
+	<col>
+	<col>
+	<col>
+	<col>
+	<col>
+	<col>
+	<col>
+	<col>
+	<col>
+	<col>
+</colgroup>
+<thead>
+<tr>
+  <th>Category</th>
+  <th>1986</th>
+  <th>1987</th>
+  <th>1988</th>
+  <th>1989</th>
+  <th>1990</th>
+  <th>1991</th>
+  <th>1992</th>
+  <th>1993</th>
+  <th>1994</th>
+  <th>1995</th>
+  <th>1996</th>
+  <th>1997</th>
+</tr>
+</thead>
+
+<tbody>
+   <tr>
+		<th colspan="13">Males</th>
+   </tr>
+<tr>
+  <th>Family    class</th>
+  <td>18,246</td>
+  <td>22,973</td>
+  <td>21,153</td>
+  <td>26,670</td>
+  <td>33,665</td>
+  <td>38,781</td>
+  <td>43,394</td>
+  <td>47,267</td>
+  <td>40,026</td>
+  <td>32,255</td>
+  <td>28,121</td>
+  <td>24,080</td>
+</tr>
+<tr>
+  <th>Economic immigrants</th>
+  <td>18,605</td>
+  <td>39,907</td>
+  <td>40,666</td>
+  <td>45,733</td>
+  <td>49,932</td>
+  <td>43,138</td>
+  <td>47,813</td>
+  <td>51,007</td>
+  <td>50,611</td>
+  <td>53,721</td>
+  <td>64,497</td>
+  <td>66,825</td>
+</tr>
+<tr>
+  <th>Refugees&#160;</th>
+  <td>11,416</td>
+  <td>12,749</td>
+  <td>15,820</td>
+  <td>21,742</td>
+  <td>24,027</td>
+  <td>33,298</td>
+  <td>32,091</td>
+  <td>17,555</td>
+  <td>11,285</td>
+  <td>15,437</td>
+  <td>15,447</td>
+  <td>13,486</td>
+</tr>
+<tr>
+  <th>Other    immigrants</th>
+  <td>854</td>
+  <td>1,277</td>
+  <td>1,487</td>
+  <td>1,671</td>
+  <td>1,733</td>
+  <td>2,014</td>
+  <td>2,719</td>
+  <td>3,850</td>
+  <td>3,657</td>
+  <td>477</td>
+  <td>2,318</td>
+  <td>1,900</td>
+</tr>
+<tr>
+  <th>Category    not stated</th>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>1</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>1</td>
+  <td>0</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+  <th>Sub Total</th>
+  <td>49,121</td>
+  <td>76,906</td>
+  <td>79,126</td>
+  <td>95,817</td>
+  <td>109,357</td>
+  <td>117,231</td>
+  <td>126,017</td>
+  <td>119,679</td>
+  <td>105,579</td>
+  <td>101,890</td>
+  <td>110,384</td>
+  <td>106,291</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+	<th colspan="13">Females</th>
+</tr>
+
+<tr>
+  <th>Family    class</th>
+  <td>24,135</td>
+  <td>30,825</td>
+  <td>30,236</td>
+  <td>34,273</td>
+  <td>41,002</td>
+  <td>49,168</td>
+  <td>57,715</td>
+  <td>65,374</td>
+  <td>54,162</td>
+  <td>45,123</td>
+  <td>40,196</td>
+  <td>35,847</td>
+</tr>
+<tr>
+  <th>Economic immigrants</th>
+  <td>17,192</td>
+  <td>34,170</td>
+  <td>39,535</td>
+  <td>44,397</td>
+  <td>47,992</td>
+  <td>43,355</td>
+  <td>47,975</td>
+  <td>54,638</td>
+  <td>51,694</td>
+  <td>52,903</td>
+  <td>60,871</td>
+  <td>61,524</td>
+</tr>
+<tr>
+  <th>Refugees&#160;</th>
+  <td>7,771</td>
+  <td>8,707</td>
+  <td>10,940</td>
+  <td>15,110</td>
+  <td>16,189</td>
+  <td>20,776</td>
+  <td>20,247</td>
+  <td>13,038</td>
+  <td>9,148</td>
+  <td>12,656</td>
+  <td>13,027</td>
+  <td>10,821</td>
+</tr>
+<tr>
+  <th>Other    immigrants</th>
+  <td>981</td>
+  <td>1,389</td>
+  <td>1,683</td>
+  <td>1,896</td>
+  <td>1,868</td>
+  <td>2,234</td>
+  <td>2,825</td>
+  <td>3,901</td>
+  <td>3,796</td>
+  <td>284</td>
+  <td>1,547</td>
+  <td>1,500</td>
+</tr>
+<tr>
+  <th>Category    not stated</th>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>1</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+  <th>Sub Total</th>
+  <td>50,079</td>
+  <td>75,091</td>
+  <td>82,394</td>
+  <td>95,677</td>
+  <td>107,051</td>
+  <td>115,533</td>
+  <td>128,762</td>
+  <td>136,951</td>
+  <td>118,800</td>
+  <td>110,966</td>
+  <td>115,641</td>
+  <td>109,692</td>
+</tr>
+</tbody>
+
+<tbody>
+<tr>
+	<th colspan="13">Sub Total</th>
+</tr>
+<tr>
+  <th>Family    class</th>
+  <td>42,381</td>
+  <td>53,798</td>
+  <td>51,389</td>
+  <td>60,943</td>
+  <td>74,667</td>
+  <td>87,949</td>
+  <td>101,109</td>
+  <td>112,641</td>
+  <td>94,188</td>
+  <td>77,378</td>
+  <td>68,317</td>
+  <td>59,927</td>
+</tr>
+<tr>
+  <th>Economic immigrants</th>
+  <td>35,797</td>
+  <td>74,077</td>
+  <td>80,201</td>
+  <td>90,130</td>
+  <td>97,924</td>
+  <td>86,493</td>
+  <td>95,788</td>
+  <td>105,645</td>
+  <td>102,305</td>
+  <td>106,624</td>
+  <td>125,368</td>
+  <td>128,349</td>
+</tr>
+<tr>
+  <th>Refugees&#160;</th>
+  <td>19,187</td>
+  <td>21,456</td>
+  <td>26,760</td>
+  <td>36,852</td>
+  <td>40,216</td>
+  <td>54,074</td>
+  <td>52,338</td>
+  <td>30,593</td>
+  <td>20,433</td>
+  <td>28,093</td>
+  <td>28,474</td>
+  <td>24,307</td>
+</tr>
+<tr>
+  <th>Other    immigrants</th>
+  <td>1,835</td>
+  <td>2,666</td>
+  <td>3,170</td>
+  <td>3,567</td>
+  <td>3,601</td>
+  <td>4,248</td>
+  <td>5,544</td>
+  <td>7,751</td>
+  <td>7,453</td>
+  <td>761</td>
+  <td>3,865</td>
+  <td>3,400</td>
+</tr>
+<tr>
+  <th>Category    not stated</th>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>2</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>1</td>
+  <td>0</td>
+</tr>
+<tr>
+  <th>Gender    not stated</th>
+  <td>154</td>
+  <td>81</td>
+  <td>64</td>
+  <td>53</td>
+  <td>44</td>
+  <td>44</td>
+  <td>13</td>
+  <td>11</td>
+  <td>8</td>
+  <td>9</td>
+  <td>46</td>
+  <td>52</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+  <th>Total</th>
+  <td>99,354</td>
+  <td>152,078</td>
+  <td>161,584</td>
+  <td>191,547</td>
+  <td>216,452</td>
+  <td>232,808</td>
+  <td>254,792</td>
+  <td>256,641</td>
+  <td>224,387</td>
+  <td>212,865</td>
+  <td>226,071</td>
+  <td>216,035</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+	<summary>Source Code</summary>
+	<pre><code>
+
+
+&lt;table class="hassum"&gt;
+&lt;caption&gt;Canada &amp;#8211; Permanent residents by gender and category, 1986 to 2010&lt;/caption&gt;
+&lt;colgroup&gt;
+	&lt;col /&gt;
+&lt;/colgroup&gt;
+&lt;colgroup&gt;
+	&lt;col /&gt;
+	&lt;col /&gt;
+	&lt;col /&gt;
+	&lt;col /&gt;
+	&lt;col /&gt;
+	&lt;col /&gt;
+	&lt;col /&gt;
+	&lt;col /&gt;
+	&lt;col /&gt;
+	&lt;col /&gt;
+	&lt;col /&gt;
+	&lt;col /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+  &lt;th&gt;Category&lt;/th&gt;
+  &lt;th&gt;1986&lt;/th&gt;
+  &lt;th&gt;1987&lt;/th&gt;
+  &lt;th&gt;1988&lt;/th&gt;
+  &lt;th&gt;1989&lt;/th&gt;
+  &lt;th&gt;1990&lt;/th&gt;
+  &lt;th&gt;1991&lt;/th&gt;
+  &lt;th&gt;1992&lt;/th&gt;
+  &lt;th&gt;1993&lt;/th&gt;
+  &lt;th&gt;1994&lt;/th&gt;
+  &lt;th&gt;1995&lt;/th&gt;
+  &lt;th&gt;1996&lt;/th&gt;
+  &lt;th&gt;1997&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+   &lt;tr&gt;
+		&lt;th colspan="13"&gt;Males&lt;/th&gt;
+   &lt;/tr&gt;
+&lt;tr&gt;
+  &lt;th&gt;Family    class&lt;/th&gt;
+  &lt;td&gt;18,246&lt;/td&gt;
+  &lt;td&gt;22,973&lt;/td&gt;
+  &lt;td&gt;21,153&lt;/td&gt;
+  &lt;td&gt;26,670&lt;/td&gt;
+  &lt;td&gt;33,665&lt;/td&gt;
+  &lt;td&gt;38,781&lt;/td&gt;
+  &lt;td&gt;43,394&lt;/td&gt;
+  &lt;td&gt;47,267&lt;/td&gt;
+  &lt;td&gt;40,026&lt;/td&gt;
+  &lt;td&gt;32,255&lt;/td&gt;
+  &lt;td&gt;28,121&lt;/td&gt;
+  &lt;td&gt;24,080&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;th&gt;Economic immigrants&lt;/th&gt;
+  &lt;td&gt;18,605&lt;/td&gt;
+  &lt;td&gt;39,907&lt;/td&gt;
+  &lt;td&gt;40,666&lt;/td&gt;
+  &lt;td&gt;45,733&lt;/td&gt;
+  &lt;td&gt;49,932&lt;/td&gt;
+  &lt;td&gt;43,138&lt;/td&gt;
+  &lt;td&gt;47,813&lt;/td&gt;
+  &lt;td&gt;51,007&lt;/td&gt;
+  &lt;td&gt;50,611&lt;/td&gt;
+  &lt;td&gt;53,721&lt;/td&gt;
+  &lt;td&gt;64,497&lt;/td&gt;
+  &lt;td&gt;66,825&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;th&gt;Refugees&amp;nbsp;&lt;/th&gt;
+  &lt;td&gt;11,416&lt;/td&gt;
+  &lt;td&gt;12,749&lt;/td&gt;
+  &lt;td&gt;15,820&lt;/td&gt;
+  &lt;td&gt;21,742&lt;/td&gt;
+  &lt;td&gt;24,027&lt;/td&gt;
+  &lt;td&gt;33,298&lt;/td&gt;
+  &lt;td&gt;32,091&lt;/td&gt;
+  &lt;td&gt;17,555&lt;/td&gt;
+  &lt;td&gt;11,285&lt;/td&gt;
+  &lt;td&gt;15,437&lt;/td&gt;
+  &lt;td&gt;15,447&lt;/td&gt;
+  &lt;td&gt;13,486&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;th&gt;Other    immigrants&lt;/th&gt;
+  &lt;td&gt;854&lt;/td&gt;
+  &lt;td&gt;1,277&lt;/td&gt;
+  &lt;td&gt;1,487&lt;/td&gt;
+  &lt;td&gt;1,671&lt;/td&gt;
+  &lt;td&gt;1,733&lt;/td&gt;
+  &lt;td&gt;2,014&lt;/td&gt;
+  &lt;td&gt;2,719&lt;/td&gt;
+  &lt;td&gt;3,850&lt;/td&gt;
+  &lt;td&gt;3,657&lt;/td&gt;
+  &lt;td&gt;477&lt;/td&gt;
+  &lt;td&gt;2,318&lt;/td&gt;
+  &lt;td&gt;1,900&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;th&gt;Category    not stated&lt;/th&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;1&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;1&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;th&gt;Sub Total&lt;/th&gt;
+  &lt;td&gt;49,121&lt;/td&gt;
+  &lt;td&gt;76,906&lt;/td&gt;
+  &lt;td&gt;79,126&lt;/td&gt;
+  &lt;td&gt;95,817&lt;/td&gt;
+  &lt;td&gt;109,357&lt;/td&gt;
+  &lt;td&gt;117,231&lt;/td&gt;
+  &lt;td&gt;126,017&lt;/td&gt;
+  &lt;td&gt;119,679&lt;/td&gt;
+  &lt;td&gt;105,579&lt;/td&gt;
+  &lt;td&gt;101,890&lt;/td&gt;
+  &lt;td&gt;110,384&lt;/td&gt;
+  &lt;td&gt;106,291&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+	&lt;th colspan="13"&gt;Females&lt;/th&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+  &lt;th&gt;Family    class&lt;/th&gt;
+  &lt;td&gt;24,135&lt;/td&gt;
+  &lt;td&gt;30,825&lt;/td&gt;
+  &lt;td&gt;30,236&lt;/td&gt;
+  &lt;td&gt;34,273&lt;/td&gt;
+  &lt;td&gt;41,002&lt;/td&gt;
+  &lt;td&gt;49,168&lt;/td&gt;
+  &lt;td&gt;57,715&lt;/td&gt;
+  &lt;td&gt;65,374&lt;/td&gt;
+  &lt;td&gt;54,162&lt;/td&gt;
+  &lt;td&gt;45,123&lt;/td&gt;
+  &lt;td&gt;40,196&lt;/td&gt;
+  &lt;td&gt;35,847&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;th&gt;Economic immigrants&lt;/th&gt;
+  &lt;td&gt;17,192&lt;/td&gt;
+  &lt;td&gt;34,170&lt;/td&gt;
+  &lt;td&gt;39,535&lt;/td&gt;
+  &lt;td&gt;44,397&lt;/td&gt;
+  &lt;td&gt;47,992&lt;/td&gt;
+  &lt;td&gt;43,355&lt;/td&gt;
+  &lt;td&gt;47,975&lt;/td&gt;
+  &lt;td&gt;54,638&lt;/td&gt;
+  &lt;td&gt;51,694&lt;/td&gt;
+  &lt;td&gt;52,903&lt;/td&gt;
+  &lt;td&gt;60,871&lt;/td&gt;
+  &lt;td&gt;61,524&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;th&gt;Refugees&amp;nbsp;&lt;/th&gt;
+  &lt;td&gt;7,771&lt;/td&gt;
+  &lt;td&gt;8,707&lt;/td&gt;
+  &lt;td&gt;10,940&lt;/td&gt;
+  &lt;td&gt;15,110&lt;/td&gt;
+  &lt;td&gt;16,189&lt;/td&gt;
+  &lt;td&gt;20,776&lt;/td&gt;
+  &lt;td&gt;20,247&lt;/td&gt;
+  &lt;td&gt;13,038&lt;/td&gt;
+  &lt;td&gt;9,148&lt;/td&gt;
+  &lt;td&gt;12,656&lt;/td&gt;
+  &lt;td&gt;13,027&lt;/td&gt;
+  &lt;td&gt;10,821&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;th&gt;Other    immigrants&lt;/th&gt;
+  &lt;td&gt;981&lt;/td&gt;
+  &lt;td&gt;1,389&lt;/td&gt;
+  &lt;td&gt;1,683&lt;/td&gt;
+  &lt;td&gt;1,896&lt;/td&gt;
+  &lt;td&gt;1,868&lt;/td&gt;
+  &lt;td&gt;2,234&lt;/td&gt;
+  &lt;td&gt;2,825&lt;/td&gt;
+  &lt;td&gt;3,901&lt;/td&gt;
+  &lt;td&gt;3,796&lt;/td&gt;
+  &lt;td&gt;284&lt;/td&gt;
+  &lt;td&gt;1,547&lt;/td&gt;
+  &lt;td&gt;1,500&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;th&gt;Category    not stated&lt;/th&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;1&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;th&gt;Sub Total&lt;/th&gt;
+  &lt;td&gt;50,079&lt;/td&gt;
+  &lt;td&gt;75,091&lt;/td&gt;
+  &lt;td&gt;82,394&lt;/td&gt;
+  &lt;td&gt;95,677&lt;/td&gt;
+  &lt;td&gt;107,051&lt;/td&gt;
+  &lt;td&gt;115,533&lt;/td&gt;
+  &lt;td&gt;128,762&lt;/td&gt;
+  &lt;td&gt;136,951&lt;/td&gt;
+  &lt;td&gt;118,800&lt;/td&gt;
+  &lt;td&gt;110,966&lt;/td&gt;
+  &lt;td&gt;115,641&lt;/td&gt;
+  &lt;td&gt;109,692&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+	&lt;th colspan="13"&gt;Sub Total&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;th&gt;Family    class&lt;/th&gt;
+  &lt;td&gt;42,381&lt;/td&gt;
+  &lt;td&gt;53,798&lt;/td&gt;
+  &lt;td&gt;51,389&lt;/td&gt;
+  &lt;td&gt;60,943&lt;/td&gt;
+  &lt;td&gt;74,667&lt;/td&gt;
+  &lt;td&gt;87,949&lt;/td&gt;
+  &lt;td&gt;101,109&lt;/td&gt;
+  &lt;td&gt;112,641&lt;/td&gt;
+  &lt;td&gt;94,188&lt;/td&gt;
+  &lt;td&gt;77,378&lt;/td&gt;
+  &lt;td&gt;68,317&lt;/td&gt;
+  &lt;td&gt;59,927&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;th&gt;Economic immigrants&lt;/th&gt;
+  &lt;td&gt;35,797&lt;/td&gt;
+  &lt;td&gt;74,077&lt;/td&gt;
+  &lt;td&gt;80,201&lt;/td&gt;
+  &lt;td&gt;90,130&lt;/td&gt;
+  &lt;td&gt;97,924&lt;/td&gt;
+  &lt;td&gt;86,493&lt;/td&gt;
+  &lt;td&gt;95,788&lt;/td&gt;
+  &lt;td&gt;105,645&lt;/td&gt;
+  &lt;td&gt;102,305&lt;/td&gt;
+  &lt;td&gt;106,624&lt;/td&gt;
+  &lt;td&gt;125,368&lt;/td&gt;
+  &lt;td&gt;128,349&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;th&gt;Refugees&amp;nbsp;&lt;/th&gt;
+  &lt;td&gt;19,187&lt;/td&gt;
+  &lt;td&gt;21,456&lt;/td&gt;
+  &lt;td&gt;26,760&lt;/td&gt;
+  &lt;td&gt;36,852&lt;/td&gt;
+  &lt;td&gt;40,216&lt;/td&gt;
+  &lt;td&gt;54,074&lt;/td&gt;
+  &lt;td&gt;52,338&lt;/td&gt;
+  &lt;td&gt;30,593&lt;/td&gt;
+  &lt;td&gt;20,433&lt;/td&gt;
+  &lt;td&gt;28,093&lt;/td&gt;
+  &lt;td&gt;28,474&lt;/td&gt;
+  &lt;td&gt;24,307&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;th&gt;Other    immigrants&lt;/th&gt;
+  &lt;td&gt;1,835&lt;/td&gt;
+  &lt;td&gt;2,666&lt;/td&gt;
+  &lt;td&gt;3,170&lt;/td&gt;
+  &lt;td&gt;3,567&lt;/td&gt;
+  &lt;td&gt;3,601&lt;/td&gt;
+  &lt;td&gt;4,248&lt;/td&gt;
+  &lt;td&gt;5,544&lt;/td&gt;
+  &lt;td&gt;7,751&lt;/td&gt;
+  &lt;td&gt;7,453&lt;/td&gt;
+  &lt;td&gt;761&lt;/td&gt;
+  &lt;td&gt;3,865&lt;/td&gt;
+  &lt;td&gt;3,400&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;th&gt;Category    not stated&lt;/th&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;2&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+  &lt;td&gt;1&lt;/td&gt;
+  &lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;th&gt;Gender    not stated&lt;/th&gt;
+  &lt;td&gt;154&lt;/td&gt;
+  &lt;td&gt;81&lt;/td&gt;
+  &lt;td&gt;64&lt;/td&gt;
+  &lt;td&gt;53&lt;/td&gt;
+  &lt;td&gt;44&lt;/td&gt;
+  &lt;td&gt;44&lt;/td&gt;
+  &lt;td&gt;13&lt;/td&gt;
+  &lt;td&gt;11&lt;/td&gt;
+  &lt;td&gt;8&lt;/td&gt;
+  &lt;td&gt;9&lt;/td&gt;
+  &lt;td&gt;46&lt;/td&gt;
+  &lt;td&gt;52&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;th&gt;Total&lt;/th&gt;
+  &lt;td&gt;99,354&lt;/td&gt;
+  &lt;td&gt;152,078&lt;/td&gt;
+  &lt;td&gt;161,584&lt;/td&gt;
+  &lt;td&gt;191,547&lt;/td&gt;
+  &lt;td&gt;216,452&lt;/td&gt;
+  &lt;td&gt;232,808&lt;/td&gt;
+  &lt;td&gt;254,792&lt;/td&gt;
+  &lt;td&gt;256,641&lt;/td&gt;
+  &lt;td&gt;224,387&lt;/td&gt;
+  &lt;td&gt;212,865&lt;/td&gt;
+  &lt;td&gt;226,071&lt;/td&gt;
+  &lt;td&gt;216,035&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+<h2>Before</h2>
+<p>This example was taken from the first table at : <a href="http://www.cic.gc.ca/english/resources/statistics/facts2010/permanent/01.asp" rel="external">http://www.cic.gc.ca/english/resources/statistics/facts2010/permanent/01.asp</a></p>
+
+<h3>Original Lool</h3>
+<img src="img-casestudies1.jpg" alt="Visual of what the table look like before on the source website">
+
+<h3>Copy of the HTML Table Code</h3>
+
+<p>Canada – Permanent residents by gender and category, 1986 to 2010</p>
+      <table class="table-fact">
+	  <caption>Number</caption>
+        <tr>
+          <th class="left" scope="col">Category</th>
+          <th scope="col">1986</th>
+          <th scope="col">1987</th>
+          <th scope="col">1988</th>
+          <th scope="col">1989</th>
+          <th scope="col">1990</th>
+          <th scope="col">1991</th>
+          <th scope="col">1992</th>
+          <th scope="col">1993</th>
+          <th scope="col">1994</th>
+          <th scope="col">1995</th>
+          <th scope="col">1996</th>
+          <th scope="col">1997</th>
+        </tr>
+        <tr>
+          <td class="left">Family    class</td>
+          <td>18,246</td>
+          <td>22,973</td>
+          <td>21,153</td>
+          <td>26,670</td>
+          <td>33,665</td>
+          <td>38,781</td>
+          <td>43,394</td>
+          <td>47,267</td>
+          <td>40,026</td>
+          <td>32,255</td>
+          <td>28,121</td>
+          <td>24,080</td>
+        </tr>
+        <tr>
+          <td class="left">Economic immigrants</td>
+          <td>18,605</td>
+          <td>39,907</td>
+          <td>40,666</td>
+          <td>45,733</td>
+          <td>49,932</td>
+          <td>43,138</td>
+          <td>47,813</td>
+          <td>51,007</td>
+          <td>50,611</td>
+          <td>53,721</td>
+          <td>64,497</td>
+          <td>66,825</td>
+        </tr>
+        <tr>
+          <td class="left">Refugees&#160;</td>
+          <td>11,416</td>
+          <td>12,749</td>
+          <td>15,820</td>
+          <td>21,742</td>
+          <td>24,027</td>
+          <td>33,298</td>
+          <td>32,091</td>
+          <td>17,555</td>
+          <td>11,285</td>
+          <td>15,437</td>
+          <td>15,447</td>
+          <td>13,486</td>
+        </tr>
+        <tr>
+          <td class="left">Other    immigrants</td>
+          <td>854</td>
+          <td>1,277</td>
+          <td>1,487</td>
+          <td>1,671</td>
+          <td>1,733</td>
+          <td>2,014</td>
+          <td>2,719</td>
+          <td>3,850</td>
+          <td>3,657</td>
+          <td>477</td>
+          <td>2,318</td>
+          <td>1,900</td>
+        </tr>
+        <tr>
+          <td class="left">Category    not stated</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+        </tr>
+        <tr class="subtotal">
+          <td class="left">Males</td>
+          <td>49,121</td>
+          <td>76,906</td>
+          <td>79,126</td>
+          <td>95,817</td>
+          <td>109,357</td>
+          <td>117,231</td>
+          <td>126,017</td>
+          <td>119,679</td>
+          <td>105,579</td>
+          <td>101,890</td>
+          <td>110,384</td>
+          <td>106,291</td>
+        </tr>
+        <tr>
+          <td class="left">Family    class</td>
+          <td>24,135</td>
+          <td>30,825</td>
+          <td>30,236</td>
+          <td>34,273</td>
+          <td>41,002</td>
+          <td>49,168</td>
+          <td>57,715</td>
+          <td>65,374</td>
+          <td>54,162</td>
+          <td>45,123</td>
+          <td>40,196</td>
+          <td>35,847</td>
+        </tr>
+        <tr>
+          <td class="left">Economic immigrants</td>
+          <td>17,192</td>
+          <td>34,170</td>
+          <td>39,535</td>
+          <td>44,397</td>
+          <td>47,992</td>
+          <td>43,355</td>
+          <td>47,975</td>
+          <td>54,638</td>
+          <td>51,694</td>
+          <td>52,903</td>
+          <td>60,871</td>
+          <td>61,524</td>
+        </tr>
+        <tr>
+          <td class="left">Refugees&#160;</td>
+          <td>7,771</td>
+          <td>8,707</td>
+          <td>10,940</td>
+          <td>15,110</td>
+          <td>16,189</td>
+          <td>20,776</td>
+          <td>20,247</td>
+          <td>13,038</td>
+          <td>9,148</td>
+          <td>12,656</td>
+          <td>13,027</td>
+          <td>10,821</td>
+        </tr>
+        <tr>
+          <td class="left">Other    immigrants</td>
+          <td>981</td>
+          <td>1,389</td>
+          <td>1,683</td>
+          <td>1,896</td>
+          <td>1,868</td>
+          <td>2,234</td>
+          <td>2,825</td>
+          <td>3,901</td>
+          <td>3,796</td>
+          <td>284</td>
+          <td>1,547</td>
+          <td>1,500</td>
+        </tr>
+        <tr>
+          <td class="left">Category    not stated</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr class="subtotal">
+          <td class="left">Females</td>
+          <td>50,079</td>
+          <td>75,091</td>
+          <td>82,394</td>
+          <td>95,677</td>
+          <td>107,051</td>
+          <td>115,533</td>
+          <td>128,762</td>
+          <td>136,951</td>
+          <td>118,800</td>
+          <td>110,966</td>
+          <td>115,641</td>
+          <td>109,692</td>
+        </tr>
+        <tr>
+          <td class="left">Family    class</td>
+          <td>42,381</td>
+          <td>53,798</td>
+          <td>51,389</td>
+          <td>60,943</td>
+          <td>74,667</td>
+          <td>87,949</td>
+          <td>101,109</td>
+          <td>112,641</td>
+          <td>94,188</td>
+          <td>77,378</td>
+          <td>68,317</td>
+          <td>59,927</td>
+        </tr>
+        <tr>
+          <td class="left">Economic immigrants</td>
+          <td>35,797</td>
+          <td>74,077</td>
+          <td>80,201</td>
+          <td>90,130</td>
+          <td>97,924</td>
+          <td>86,493</td>
+          <td>95,788</td>
+          <td>105,645</td>
+          <td>102,305</td>
+          <td>106,624</td>
+          <td>125,368</td>
+          <td>128,349</td>
+        </tr>
+        <tr>
+          <td class="left">Refugees&#160;</td>
+          <td>19,187</td>
+          <td>21,456</td>
+          <td>26,760</td>
+          <td>36,852</td>
+          <td>40,216</td>
+          <td>54,074</td>
+          <td>52,338</td>
+          <td>30,593</td>
+          <td>20,433</td>
+          <td>28,093</td>
+          <td>28,474</td>
+          <td>24,307</td>
+        </tr>
+        <tr>
+          <td class="left">Other    immigrants</td>
+          <td>1,835</td>
+          <td>2,666</td>
+          <td>3,170</td>
+          <td>3,567</td>
+          <td>3,601</td>
+          <td>4,248</td>
+          <td>5,544</td>
+          <td>7,751</td>
+          <td>7,453</td>
+          <td>761</td>
+          <td>3,865</td>
+          <td>3,400</td>
+        </tr>
+        <tr>
+          <td class="left">Category    not stated</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>2</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td class="left">Gender    not stated</td>
+          <td>154</td>
+          <td>81</td>
+          <td>64</td>
+          <td>53</td>
+          <td>44</td>
+          <td>44</td>
+          <td>13</td>
+          <td>11</td>
+          <td>8</td>
+          <td>9</td>
+          <td>46</td>
+          <td>52</td>
+        </tr>
+        <tr class="total">
+          <td class="left">Total</td>
+          <td>99,354</td>
+          <td>152,078</td>
+          <td>161,584</td>
+          <td>191,547</td>
+          <td>216,452</td>
+          <td>232,808</td>
+          <td>254,792</td>
+          <td>256,641</td>
+          <td>224,387</td>
+          <td>212,865</td>
+          <td>226,071</td>
+          <td>216,035</td>
+        </tr>
+      </table>
+
+
+<details>
+	<summary>Source Code</summary>
+
+<pre><code>
+
+&lt;table class="table-fact"&gt;
+  &lt;caption&gt;Number&lt;/caption&gt;
+	&lt;tr&gt;
+	  &lt;th class="left" scope="col"&gt;Category&lt;/th&gt;
+	  &lt;th scope="col"&gt;1986&lt;/th&gt;
+	  &lt;th scope="col"&gt;1987&lt;/th&gt;
+	  &lt;th scope="col"&gt;1988&lt;/th&gt;
+	  &lt;th scope="col"&gt;1989&lt;/th&gt;
+	  &lt;th scope="col"&gt;1990&lt;/th&gt;
+	  &lt;th scope="col"&gt;1991&lt;/th&gt;
+	  &lt;th scope="col"&gt;1992&lt;/th&gt;
+	  &lt;th scope="col"&gt;1993&lt;/th&gt;
+	  &lt;th scope="col"&gt;1994&lt;/th&gt;
+	  &lt;th scope="col"&gt;1995&lt;/th&gt;
+	  &lt;th scope="col"&gt;1996&lt;/th&gt;
+	  &lt;th scope="col"&gt;1997&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+	  &lt;td class="left"&gt;Family    class&lt;/td&gt;
+	  &lt;td&gt;18,246&lt;/td&gt;
+	  &lt;td&gt;22,973&lt;/td&gt;
+	  &lt;td&gt;21,153&lt;/td&gt;
+	  &lt;td&gt;26,670&lt;/td&gt;
+	  &lt;td&gt;33,665&lt;/td&gt;
+	  &lt;td&gt;38,781&lt;/td&gt;
+	  &lt;td&gt;43,394&lt;/td&gt;
+	  &lt;td&gt;47,267&lt;/td&gt;
+	  &lt;td&gt;40,026&lt;/td&gt;
+	  &lt;td&gt;32,255&lt;/td&gt;
+	  &lt;td&gt;28,121&lt;/td&gt;
+	  &lt;td&gt;24,080&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+	  &lt;td class="left"&gt;Economic immigrants&lt;/td&gt;
+	  &lt;td&gt;18,605&lt;/td&gt;
+	  &lt;td&gt;39,907&lt;/td&gt;
+	  &lt;td&gt;40,666&lt;/td&gt;
+	  &lt;td&gt;45,733&lt;/td&gt;
+	  &lt;td&gt;49,932&lt;/td&gt;
+	  &lt;td&gt;43,138&lt;/td&gt;
+	  &lt;td&gt;47,813&lt;/td&gt;
+	  &lt;td&gt;51,007&lt;/td&gt;
+	  &lt;td&gt;50,611&lt;/td&gt;
+	  &lt;td&gt;53,721&lt;/td&gt;
+	  &lt;td&gt;64,497&lt;/td&gt;
+	  &lt;td&gt;66,825&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+	  &lt;td class="left"&gt;Refugees&amp;nbsp;&lt;/td&gt;
+	  &lt;td&gt;11,416&lt;/td&gt;
+	  &lt;td&gt;12,749&lt;/td&gt;
+	  &lt;td&gt;15,820&lt;/td&gt;
+	  &lt;td&gt;21,742&lt;/td&gt;
+	  &lt;td&gt;24,027&lt;/td&gt;
+	  &lt;td&gt;33,298&lt;/td&gt;
+	  &lt;td&gt;32,091&lt;/td&gt;
+	  &lt;td&gt;17,555&lt;/td&gt;
+	  &lt;td&gt;11,285&lt;/td&gt;
+	  &lt;td&gt;15,437&lt;/td&gt;
+	  &lt;td&gt;15,447&lt;/td&gt;
+	  &lt;td&gt;13,486&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+	  &lt;td class="left"&gt;Other    immigrants&lt;/td&gt;
+	  &lt;td&gt;854&lt;/td&gt;
+	  &lt;td&gt;1,277&lt;/td&gt;
+	  &lt;td&gt;1,487&lt;/td&gt;
+	  &lt;td&gt;1,671&lt;/td&gt;
+	  &lt;td&gt;1,733&lt;/td&gt;
+	  &lt;td&gt;2,014&lt;/td&gt;
+	  &lt;td&gt;2,719&lt;/td&gt;
+	  &lt;td&gt;3,850&lt;/td&gt;
+	  &lt;td&gt;3,657&lt;/td&gt;
+	  &lt;td&gt;477&lt;/td&gt;
+	  &lt;td&gt;2,318&lt;/td&gt;
+	  &lt;td&gt;1,900&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+	  &lt;td class="left"&gt;Category    not stated&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;1&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;1&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="subtotal"&gt;
+	  &lt;td class="left"&gt;Males&lt;/td&gt;
+	  &lt;td&gt;49,121&lt;/td&gt;
+	  &lt;td&gt;76,906&lt;/td&gt;
+	  &lt;td&gt;79,126&lt;/td&gt;
+	  &lt;td&gt;95,817&lt;/td&gt;
+	  &lt;td&gt;109,357&lt;/td&gt;
+	  &lt;td&gt;117,231&lt;/td&gt;
+	  &lt;td&gt;126,017&lt;/td&gt;
+	  &lt;td&gt;119,679&lt;/td&gt;
+	  &lt;td&gt;105,579&lt;/td&gt;
+	  &lt;td&gt;101,890&lt;/td&gt;
+	  &lt;td&gt;110,384&lt;/td&gt;
+	  &lt;td&gt;106,291&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+	  &lt;td class="left"&gt;Family    class&lt;/td&gt;
+	  &lt;td&gt;24,135&lt;/td&gt;
+	  &lt;td&gt;30,825&lt;/td&gt;
+	  &lt;td&gt;30,236&lt;/td&gt;
+	  &lt;td&gt;34,273&lt;/td&gt;
+	  &lt;td&gt;41,002&lt;/td&gt;
+	  &lt;td&gt;49,168&lt;/td&gt;
+	  &lt;td&gt;57,715&lt;/td&gt;
+	  &lt;td&gt;65,374&lt;/td&gt;
+	  &lt;td&gt;54,162&lt;/td&gt;
+	  &lt;td&gt;45,123&lt;/td&gt;
+	  &lt;td&gt;40,196&lt;/td&gt;
+	  &lt;td&gt;35,847&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+	  &lt;td class="left"&gt;Economic immigrants&lt;/td&gt;
+	  &lt;td&gt;17,192&lt;/td&gt;
+	  &lt;td&gt;34,170&lt;/td&gt;
+	  &lt;td&gt;39,535&lt;/td&gt;
+	  &lt;td&gt;44,397&lt;/td&gt;
+	  &lt;td&gt;47,992&lt;/td&gt;
+	  &lt;td&gt;43,355&lt;/td&gt;
+	  &lt;td&gt;47,975&lt;/td&gt;
+	  &lt;td&gt;54,638&lt;/td&gt;
+	  &lt;td&gt;51,694&lt;/td&gt;
+	  &lt;td&gt;52,903&lt;/td&gt;
+	  &lt;td&gt;60,871&lt;/td&gt;
+	  &lt;td&gt;61,524&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+	  &lt;td class="left"&gt;Refugees&amp;nbsp;&lt;/td&gt;
+	  &lt;td&gt;7,771&lt;/td&gt;
+	  &lt;td&gt;8,707&lt;/td&gt;
+	  &lt;td&gt;10,940&lt;/td&gt;
+	  &lt;td&gt;15,110&lt;/td&gt;
+	  &lt;td&gt;16,189&lt;/td&gt;
+	  &lt;td&gt;20,776&lt;/td&gt;
+	  &lt;td&gt;20,247&lt;/td&gt;
+	  &lt;td&gt;13,038&lt;/td&gt;
+	  &lt;td&gt;9,148&lt;/td&gt;
+	  &lt;td&gt;12,656&lt;/td&gt;
+	  &lt;td&gt;13,027&lt;/td&gt;
+	  &lt;td&gt;10,821&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+	  &lt;td class="left"&gt;Other    immigrants&lt;/td&gt;
+	  &lt;td&gt;981&lt;/td&gt;
+	  &lt;td&gt;1,389&lt;/td&gt;
+	  &lt;td&gt;1,683&lt;/td&gt;
+	  &lt;td&gt;1,896&lt;/td&gt;
+	  &lt;td&gt;1,868&lt;/td&gt;
+	  &lt;td&gt;2,234&lt;/td&gt;
+	  &lt;td&gt;2,825&lt;/td&gt;
+	  &lt;td&gt;3,901&lt;/td&gt;
+	  &lt;td&gt;3,796&lt;/td&gt;
+	  &lt;td&gt;284&lt;/td&gt;
+	  &lt;td&gt;1,547&lt;/td&gt;
+	  &lt;td&gt;1,500&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+	  &lt;td class="left"&gt;Category    not stated&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;1&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="subtotal"&gt;
+	  &lt;td class="left"&gt;Females&lt;/td&gt;
+	  &lt;td&gt;50,079&lt;/td&gt;
+	  &lt;td&gt;75,091&lt;/td&gt;
+	  &lt;td&gt;82,394&lt;/td&gt;
+	  &lt;td&gt;95,677&lt;/td&gt;
+	  &lt;td&gt;107,051&lt;/td&gt;
+	  &lt;td&gt;115,533&lt;/td&gt;
+	  &lt;td&gt;128,762&lt;/td&gt;
+	  &lt;td&gt;136,951&lt;/td&gt;
+	  &lt;td&gt;118,800&lt;/td&gt;
+	  &lt;td&gt;110,966&lt;/td&gt;
+	  &lt;td&gt;115,641&lt;/td&gt;
+	  &lt;td&gt;109,692&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+	  &lt;td class="left"&gt;Family    class&lt;/td&gt;
+	  &lt;td&gt;42,381&lt;/td&gt;
+	  &lt;td&gt;53,798&lt;/td&gt;
+	  &lt;td&gt;51,389&lt;/td&gt;
+	  &lt;td&gt;60,943&lt;/td&gt;
+	  &lt;td&gt;74,667&lt;/td&gt;
+	  &lt;td&gt;87,949&lt;/td&gt;
+	  &lt;td&gt;101,109&lt;/td&gt;
+	  &lt;td&gt;112,641&lt;/td&gt;
+	  &lt;td&gt;94,188&lt;/td&gt;
+	  &lt;td&gt;77,378&lt;/td&gt;
+	  &lt;td&gt;68,317&lt;/td&gt;
+	  &lt;td&gt;59,927&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+	  &lt;td class="left"&gt;Economic immigrants&lt;/td&gt;
+	  &lt;td&gt;35,797&lt;/td&gt;
+	  &lt;td&gt;74,077&lt;/td&gt;
+	  &lt;td&gt;80,201&lt;/td&gt;
+	  &lt;td&gt;90,130&lt;/td&gt;
+	  &lt;td&gt;97,924&lt;/td&gt;
+	  &lt;td&gt;86,493&lt;/td&gt;
+	  &lt;td&gt;95,788&lt;/td&gt;
+	  &lt;td&gt;105,645&lt;/td&gt;
+	  &lt;td&gt;102,305&lt;/td&gt;
+	  &lt;td&gt;106,624&lt;/td&gt;
+	  &lt;td&gt;125,368&lt;/td&gt;
+	  &lt;td&gt;128,349&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+	  &lt;td class="left"&gt;Refugees&amp;nbsp;&lt;/td&gt;
+	  &lt;td&gt;19,187&lt;/td&gt;
+	  &lt;td&gt;21,456&lt;/td&gt;
+	  &lt;td&gt;26,760&lt;/td&gt;
+	  &lt;td&gt;36,852&lt;/td&gt;
+	  &lt;td&gt;40,216&lt;/td&gt;
+	  &lt;td&gt;54,074&lt;/td&gt;
+	  &lt;td&gt;52,338&lt;/td&gt;
+	  &lt;td&gt;30,593&lt;/td&gt;
+	  &lt;td&gt;20,433&lt;/td&gt;
+	  &lt;td&gt;28,093&lt;/td&gt;
+	  &lt;td&gt;28,474&lt;/td&gt;
+	  &lt;td&gt;24,307&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+	  &lt;td class="left"&gt;Other    immigrants&lt;/td&gt;
+	  &lt;td&gt;1,835&lt;/td&gt;
+	  &lt;td&gt;2,666&lt;/td&gt;
+	  &lt;td&gt;3,170&lt;/td&gt;
+	  &lt;td&gt;3,567&lt;/td&gt;
+	  &lt;td&gt;3,601&lt;/td&gt;
+	  &lt;td&gt;4,248&lt;/td&gt;
+	  &lt;td&gt;5,544&lt;/td&gt;
+	  &lt;td&gt;7,751&lt;/td&gt;
+	  &lt;td&gt;7,453&lt;/td&gt;
+	  &lt;td&gt;761&lt;/td&gt;
+	  &lt;td&gt;3,865&lt;/td&gt;
+	  &lt;td&gt;3,400&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+	  &lt;td class="left"&gt;Category    not stated&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;2&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	  &lt;td&gt;1&lt;/td&gt;
+	  &lt;td&gt;0&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+	  &lt;td class="left"&gt;Gender    not stated&lt;/td&gt;
+	  &lt;td&gt;154&lt;/td&gt;
+	  &lt;td&gt;81&lt;/td&gt;
+	  &lt;td&gt;64&lt;/td&gt;
+	  &lt;td&gt;53&lt;/td&gt;
+	  &lt;td&gt;44&lt;/td&gt;
+	  &lt;td&gt;44&lt;/td&gt;
+	  &lt;td&gt;13&lt;/td&gt;
+	  &lt;td&gt;11&lt;/td&gt;
+	  &lt;td&gt;8&lt;/td&gt;
+	  &lt;td&gt;9&lt;/td&gt;
+	  &lt;td&gt;46&lt;/td&gt;
+	  &lt;td&gt;52&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="total"&gt;
+	  &lt;td class="left"&gt;Total&lt;/td&gt;
+	  &lt;td&gt;99,354&lt;/td&gt;
+	  &lt;td&gt;152,078&lt;/td&gt;
+	  &lt;td&gt;161,584&lt;/td&gt;
+	  &lt;td&gt;191,547&lt;/td&gt;
+	  &lt;td&gt;216,452&lt;/td&gt;
+	  &lt;td&gt;232,808&lt;/td&gt;
+	  &lt;td&gt;254,792&lt;/td&gt;
+	  &lt;td&gt;256,641&lt;/td&gt;
+	  &lt;td&gt;224,387&lt;/td&gt;
+	  &lt;td&gt;212,865&lt;/td&gt;
+	  &lt;td&gt;226,071&lt;/td&gt;
+	  &lt;td&gt;216,035&lt;/td&gt;
+	&lt;/tr&gt;
+  &lt;/table&gt;
+
+ </code></pre>
+</details>
+
+
+
+
+<h2>What I did</h2>
+
+<ol>
+	<li>I calculated the data per column to know the relationship</li>
+	<li>By look at the table and the table source code, I found 2 row group title (Males, Females) located in the sub-total row</li>
+	<li>I removed in the table source code any id, headers and scope attribute</li>
+	<li>I found the two subtotal row and total row was already identified by a css class of the same name, I used them</li>
+	<li>I added the appropriate row grouping tag for each section, header row group (thead), data row group (tbody), summary row group (tbody)</li>
+	<li>I put the table in the "hassum" mode</li>
+	<li>That was my choice but I decided to use an another tbody element to define the total row group. The tfoot element can be also used here</li>
+</ol>
+
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2013-04-11</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-eng.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

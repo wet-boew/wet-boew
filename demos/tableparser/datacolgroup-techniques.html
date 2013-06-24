@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt -->
+<title>Defining a Data Column Group in a Data Table - Working examples - Web Experience Toolkit&#160;(WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="#" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-eng.html" lang="en"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
+<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/projectmenu-eng.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-eng.html">WET project</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Implementing-WET">Implement WET</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-eng.html">Home</a></li>
+<li><a href="../index-eng.html">Working examples</a></li>
+<li>Defining a Data Column Group in a Data Table</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Defining a Data Column Group in a Data Table</h1>
+
+
+<div class="module-attention span-6">
+	<h2><span class="color-dark">Attention:</span> Since WET 3.0.2</h2>
+	<p>The default behaviour regarding the subsequent group has been changed because of backward compatibility issue and because of some use case. See the Test File 1 and the Test File 2 for examples.</p>
+</div>
+<div class="clear"></div>
+
+<div class="module-note span-6">
+	<h2><span class="color-dark">Note:</span> Table Source Code Example</h2>
+	<p>Id/Headers attribute, colgroup element and col element was omited intentionally for clarity.</p>
+</div>
+
+<div class="clear"></div>
+
+<h2>Technique Author</h2>
+<p>Name: Pierre Dubois</p>
+<!-- <p>Email: Pierre Dubois at ic dot gc dot ca</p> -->
+
+<h2>Technique Information</h2>
+
+<h3>Technology</h3>
+<p>HTML and XHTML Techniques</p>
+
+<h3>Guidelines Reference</h3>
+<p>Success Criterion 1.3.1 (Info and Relationships)</p>
+
+<h3>Technique Title</h3>
+<p>Defining a Data Column Group in a Data Table</p>
+
+<h3>Applicability</h3>
+<p>Use for data tables when the table contain a data column.</p>
+
+<h3>User Agent Issues</h3>
+<p>Not Available</p>
+
+<h3>Description of Technique</h3>
+
+<p>The objective of this technique is to define a relationship between the colgroup element and the data cell in the table.</p>
+
+<p>If the table contain an header column group, the <ins>second</ins> <del>next</del> colgroup is considerated as a data column group.</p>
+<p>If the table don't have an header column group, the first colgroup is considerated as a data column group.</p>
+<p><del>When the table don't have column header cell,</del> Each colgroup is a data column group except for the first one if there a presence of a row header cell. <ins>When the table is on the "hassum" mode, this allow to have summary column group when the table have columns header cell.</ins></p>
+
+<h2>Examples</h2>
+
+<h3>Table 1</h3>
+
+<table class="wet-boew-zebra">
+	<caption>Table 1</caption>
+	<colgroup>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+		<col>
+		<col>
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th id="tbl12">Col Header</th>
+			<th id="tbl13">Col Header</th>
+			<th id="tbl14">Col Header</th>
+			<th id="tbl15">Col Header</th>
+			<th id="tbl16">Col Header</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th headers="tbl12" id="tbl20">Row Header</th>
+			<td headers="tbl13 tbl20">Data</td>
+			<td headers="tbl14 tbl20">Data</td>
+			<td headers="tbl15 tbl20">Data</td>
+			<td headers="tbl16 tbl20">Data</td>
+		</tr>
+		<tr>
+			<th headers="tbl12" id="tbl28">Row Header</th>
+			<td headers="tbl13 tbl28">Data</td>
+			<td headers="tbl14 tbl28">Data</td>
+			<td headers="tbl15 tbl28">Data</td>
+			<td headers="tbl16 tbl28">Data</td>
+		</tr>
+		<tr>
+			<th headers="tbl12" id="tbl36">Row Header</th>
+			<td headers="tbl13 tbl36">Data</td>
+			<td headers="tbl14 tbl36">Data</td>
+			<td headers="tbl15 tbl36">Data</td>
+			<td headers="tbl16 tbl36">Data</td>
+		</tr>
+	</tbody>
+</table>
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code>&lt;table class="wet-boew-zebra"&gt;
+	&lt;caption&gt;Table 1&lt;/caption&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Col Header&lt;/th&gt;
+			&lt;th&gt;Col Header&lt;/th&gt;
+			&lt;th&gt;Col Header&lt;/th&gt;
+			&lt;th&gt;Col Header&lt;/th&gt;
+			&lt;th&gt;Col Header&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</details>
+
+
+
+<h3>Table 2</h3>
+
+<table class="wet-boew-zebra">
+	<caption>Table 2</caption>
+	<colgroup>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+		<col>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+		<col>
+		<col>
+	</colgroup>
+	<tbody>
+		<tr>
+			<th id="tbla16">Row Header</th>
+			<td headers="tbla16">Data</td>
+			<td headers="tbla16">Data</td>
+			<td headers="tbla16">Data</td>
+			<td headers="tbla16">Data</td>
+			<td headers="tbla16">Data</td>
+			<td headers="tbla16">Data</td>
+		</tr>
+		<tr>
+			<th id="tbla26">Row Header</th>
+			<td headers="tbla26">Data</td>
+			<td headers="tbla26">Data</td>
+			<td headers="tbla26">Data</td>
+			<td headers="tbla26">Data</td>
+			<td headers="tbla26">Data</td>
+			<td headers="tbla26">Data</td>
+		</tr>
+		<tr>
+			<th id="tbla36">Row Header</th>
+			<td headers="tbla36">Data</td>
+			<td headers="tbla36">Data</td>
+			<td headers="tbla36">Data</td>
+			<td headers="tbla36">Data</td>
+			<td headers="tbla36">Data</td>
+			<td headers="tbla36">Data</td>
+		</tr>
+	</tbody>
+</table>
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code>&lt;table class="wet-boew-zebra"&gt;
+	&lt;caption&gt;Table 2&lt;/caption&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</details>
+
+
+<h3>Table 3</h3>
+
+<table class="wet-boew-zebra">
+	<caption>Table 3</caption>
+	<colgroup>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+		<col>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+		<col>
+		<col>
+	</colgroup>
+	<tbody>
+		<tr>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+		<tr>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+			<td>Data</td>
+		</tr>
+	</tbody>
+</table>
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code>&lt;table class="wet-boew-zebra"&gt;
+	&lt;caption&gt;Table 3&lt;/caption&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+		&lt;col /&gt;
+	&lt;/colgroup&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</details>
+
+
+<!--
+
+<h3>Examples Titles</h3>
+
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code></code></pre>
+</details>
+
+-->
+
+
+
+<h2>Resources</h2>
+
+<ul>
+	<li><a href="validator-htmltable.html">HTML Table Validator</a> <em>(With ids/headers/aria-describedby auto assignation)</em></li>
+	<li><a href="About-the-Table-Usability-Concept.html">About the Table Usability Concept</a></li>
+	<li><a href="ExtendedDefinition.html">Extended definition of HTML5 table elements</a></li>
+	<li><a href="index-eng.html">All the resources</a></li>
+</ul>
+
+
+<h2>Related Techniques</h2>
+
+<ul>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H51" rel="external">H51: Using table markup to present tabular information</a></li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H39" rel="external">H39: Using caption elements to associate data table captions with data tables</a></li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H73" rel="external">H73: Using the summary attribute of the table element to give an overview of data tables</a></li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H63" rel="external">H63: Using the scope attribute to associate header cells and data cells in data tables</a></li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H43" rel="external">H43: Using id and headers attributes to associate data cells with header cells in data tables</a></li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H79" rel="external">H79: Identifying the purpose of a link using link text combined with its enclosing table cell and associated table headings</a></li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/F34" rel="external">F34: Failure of Success Criterion 1.3.1 and 1.3.2 due to using white space characters to format tables in plain text content</a></li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/F49" rel="external">F49: Failure of Success Criterion 1.3.2 due to using an HTML layout table that does not make sense when linearized</a></li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/F46" rel="external">F46: Failure of Success Criterion 1.3.1 due to using th elements, caption elements, or non-empty summary attributes in layout tables</a></li>
+	<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G57" rel="external">G57: Ordering the content in a meaningful sequence</a></li>
+</ul>
+
+
+<h2>Test</h2>
+
+<h3>Procedure</h3>
+<ol>
+	<li>If the table contain a data, check if there are defined also with the a colgroup element.</li>
+</ol>
+
+<h3>Expected Result</h3>
+
+<ul>
+	<li>#1 is true</li>
+</ul>
+
+<h3>Test File 1</h3>
+<p>This Test File 1 <strong>pass</strong> this technique</p>
+
+
+<table class="wet-boew-zebra">
+	<caption>Table 4</caption>
+	<colgroup>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th id="tblb13">Col Header</th>
+			<th id="tblb14">Col Header</th>
+			<th id="tblb15">Col Header</th>
+			<th id="tblb16">Col Header</th>
+			<th id="tblb17">Col Header</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th headers="tblb13" id="tblb21">Row Header</th>
+			<td headers="tblb14 tblb21">Data</td>
+			<td headers="tblb15 tblb21">Data</td>
+			<td headers="tblb16 tblb21">Data</td>
+			<td headers="tblb17 tblb21">Data</td>
+		</tr>
+		<tr>
+			<th headers="tblb13" id="tblb29">Row Header</th>
+			<td headers="tblb14 tblb29">Data</td>
+			<td headers="tblb15 tblb29">Data</td>
+			<td headers="tblb16 tblb29">Data</td>
+			<td headers="tblb17 tblb29">Data</td>
+		</tr>
+		<tr>
+			<th headers="tblb13" id="tblb37">Row Header</th>
+			<td headers="tblb14 tblb37">Data</td>
+			<td headers="tblb15 tblb37">Data</td>
+			<td headers="tblb16 tblb37">Data</td>
+			<td headers="tblb17 tblb37">Data</td>
+		</tr>
+	</tbody>
+</table>
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code>&lt;table class="wet-boew-zebra"&gt;
+	&lt;caption&gt;Table 4&lt;/caption&gt;
+	&lt;colgroup&gt;
+		&lt;col&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col&gt;
+		&lt;col&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col&gt;
+		&lt;col&gt;
+	&lt;/colgroup&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Col Header&lt;/th&gt;
+			&lt;th&gt;Col Header&lt;/th&gt;
+			&lt;th&gt;Col Header&lt;/th&gt;
+			&lt;th&gt;Col Header&lt;/th&gt;
+			&lt;th&gt;Col Header&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</details>
+
+
+
+<h3>Test File 2</h3>
+<p>This Test File 2 <strong>pass</strong> this technique</p>
+
+<table class="wet-boew-zebra">
+	<caption>Table 5</caption>
+	<colgroup>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+		<col>
+	</colgroup>
+	<colgroup>
+		<col>
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th id="tblc13" rowspan="2">Col Header</th>
+			<th id="tblc14" colspan="2">Col Header</th>
+			<th id="tblc15" colspan="2">Col Header</th>
+		</tr>
+		<tr>
+			<th headers="tblc14" id="tblc18">Col Header</th>
+			<th headers="tblc14" id="tblc19">Col Header</th>
+			<th headers="tblc15" id="tblc20">Col Header</th>
+			<th headers="tblc15" id="tblc21">Col Header</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th headers="tblc13" id="tblc25">Row Header</th>
+			<td headers="tblc14 tblc18 tblc25">Data</td>
+			<td headers="tblc14 tblc19 tblc25">Data</td>
+			<td headers="tblc15 tblc20 tblc25">Data</td>
+			<td headers="tblc15 tblc21 tblc25">Data</td>
+		</tr>
+		<tr>
+			<th headers="tblc13" id="tblc33">Row Header</th>
+			<td headers="tblc14 tblc18 tblc33">Data</td>
+			<td headers="tblc14 tblc19 tblc33">Data</td>
+			<td headers="tblc15 tblc20 tblc33">Data</td>
+			<td headers="tblc15 tblc21 tblc33">Data</td>
+		</tr>
+		<tr>
+			<th headers="tblc13" id="tblc41">Row Header</th>
+			<td headers="tblc14 tblc18 tblc41">Data</td>
+			<td headers="tblc14 tblc19 tblc41">Data</td>
+			<td headers="tblc15 tblc20 tblc41">Data</td>
+			<td headers="tblc15 tblc21 tblc41">Data</td>
+		</tr>
+	</tbody>
+</table>
+
+<details>
+	<summary>Table Source Code</summary>
+<pre><code>&lt;table class="wet-boew-zebra"&gt;
+	&lt;caption&gt;Table 5&lt;/caption&gt;
+	&lt;colgroup&gt;
+		&lt;col&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col&gt;
+		&lt;col&gt;
+	&lt;/colgroup&gt;
+	&lt;colgroup&gt;
+		&lt;col&gt;
+		&lt;col&gt;
+	&lt;/colgroup&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th rowspan="2"&gt;Col Header&lt;/th&gt;
+			&lt;th colspan="2"&gt;Col Header&lt;/th&gt;
+			&lt;th colspan="2"&gt;Col Header&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Col Header&lt;/th&gt;
+			&lt;th&gt;Col Header&lt;/th&gt;
+			&lt;th&gt;Col Header&lt;/th&gt;
+			&lt;th&gt;Col Header&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Row Header&lt;/th&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+			&lt;td&gt;Data&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</details>
+
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2013-04-11</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-eng.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>
