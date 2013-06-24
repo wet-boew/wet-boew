@@ -1,0 +1,49 @@
+/*
+  BLEEDS and GUTTER manipulation for WET-BOEW
+ */
+
+.bleed-full {
+	 .row, &.row { 
+    padding-left: 0; 
+    padding-right: 0;
+    > [class*="span-"]:first-child { padding-left: 0; }
+    > [class*="span-"]:last-child { padding-right: 0; }
+  }
+}
+
+.bleed-left {
+	.row, &.row { padding-left: 0;}
+	// Direct Child modifiers
+	> [class*="span-"]:first-child, .row > [class*="span-"]:first-child { padding-left: 0;}
+}
+
+.bleed-right {
+  .row, &.row {padding-right: 0;}
+  // Direct Children Modifier
+  > [class*=span-]:last-child, .row > [class*=span-]:last-child { padding-right: 0;}
+}
+
+/* Global Bleed tweak */
+[class*=bleed-] {
+  [class*=pull-]:last-child, > .row [class*=pull-]:last-child {
+    padding-right: $gutters;
+    padding-left: 0;
+  }
+  [class*=push-]:first-child, > .row [class*=push-]:first-child {
+    padding-right: 0;
+    padding-left: $gutters;
+  }
+}
+
+.gutterless {
+  [class*=span-] {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .row, &.row {
+    padding-left: $gutters;
+    padding-right: $gutters;
+  }
+}
+
+

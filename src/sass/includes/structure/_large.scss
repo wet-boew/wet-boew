@@ -1,0 +1,29 @@
+/*
+   Responsive container - Large Screen 1200px and higher
+ */ 
+
+.container{
+	width: 1200px;
+}
+/*.row .row{
+	margin-left:-$gutters-large;
+	margin-right:-$gutters-large;
+}*/
+.row [class*=span-]{
+	padding-left:$gutters-large;
+	padding-right:$gutters-large;
+}
+.bleed-full {
+	[class*=pull-]:last-child,  > .row  [class*=pull-]:last-child { padding-left:$gutters-large; }
+	[class*=push-]:first-child, > .row  [class*=push-]:first-child { padding-left:$gutters-large; }
+}
+
+[class*=module],[class*=background-],[class*=span-] [class*=border-] {
+	padding: $gutters-large;
+}
+[class*=list-grid-] {
+	margin:0 $gutters-large;
+	> li{
+		padding:0 $gutters-large $gutters-xlarge;
+	}
+}

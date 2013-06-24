@@ -1,0 +1,12 @@
+/* MODULES oCSS Classes */
+
+[class*="module"] {
+	margin-bottom: $gutters-xlarge;
+	padding: 0 $gutters;
+}
+
+.row .module {
+	background-color: $background-medium-color;
+	color: $background-medium-text;
+	border: $border + px solid $border-color-dark;
+}

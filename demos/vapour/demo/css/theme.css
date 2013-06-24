@@ -28,19 +28,8 @@ body {
   margin-left: 0;
   display: block; }
 
-[class*="module"], [class*="background-"] {
-  text-align: center;
-  padding-top: 10px !important;
-  padding-bottom: 10px !important; }
-
-code {
-  background-color: #eee;
-  border: 1px solid #D4D4D4;
-  color: #222 !important;
-  font-size: 110%;
-  font-weight: 400;
-  padding: 0 2px !important;
-  text-shadow: none; }
+.demo-grids .row [class*=module], .demo-grids .row [class*=background-] {
+  text-align: center; }
 
 pre.prettyprint {
   background-color: #F5F5F5;
