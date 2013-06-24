@@ -1,0 +1,23 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+@import 'compass/css3/transform';
+
+%base-default-large-images-scaleX--1 {
+	@include scaleX(-1);
+}
+[dir="rtl"] {
+	[id|="wb-body"] {
+		@extend %base-default-large-images-scaleX--1;
+	}
+	#base-fullhd {
+		@extend %base-default-large-images-scaleX--1;
+	}
+	#base-bnr {
+		@extend %base-default-large-images-scaleX--1;
+	}
+	#wb-core {
+		@extend %base-default-large-images-scaleX--1;
+	}
+}

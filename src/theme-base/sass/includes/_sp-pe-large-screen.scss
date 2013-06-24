@@ -1,0 +1,131 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+@import "compass/css3/images";
+
+%base-default-large-screen-position-relative {
+	position: relative;
+}
+%base-default-large-screen-overflow-hidden {
+	overflow: hidden;
+}
+%base-default-large-screen-title-font {
+	color: #fff;
+	font-size: 1.52em;
+	font-family: Arial, Helvetica, sans-serif;
+	text-shadow: 1px 1px 1px #333;
+}
+%base-default-large-screen-float-left {
+	float: left;
+}
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+	padding: 0;
+}
+
+#wb-head {
+	@extend %base-default-large-screen-overflow-hidden;
+}
+
+#wb-head-in {
+	@extend %base-default-large-screen-overflow-hidden;
+	background-color: #ccc;
+}
+
+#wb-core-in {
+	@extend %base-default-large-screen-position-relative;
+	background: #FFF;
+	overflow: visible !important;
+	padding-top: 5px;
+	&:after {
+		content:".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+}
+
+#base-bnr {
+	@extend %base-default-large-screen-position-relative;
+	@extend %base-default-large-screen-overflow-hidden;
+	z-index: 501 !important;
+}
+
+#base-bnr-in {
+	@extend %base-default-large-screen-position-relative;
+	@extend %base-default-large-screen-overflow-hidden;
+	background: #cf3f0e;
+}
+
+#wb-main-in {
+	padding: {
+		top: 1px;
+		bottom: 2.5em; //TODO: mixed px and ems
+	}
+	a {
+		&, &.ui-link {
+			&:link {
+				color: #295376;
+			}
+			&:visited {
+				color: #5a306b;
+			}
+		}
+	}
+}
+
+#base-title {
+	@extend %base-default-large-screen-title-font;
+	border: none !important;
+	p {
+		@extend %base-default-large-screen-title-font;
+		margin-left: 10px;
+	}
+}
+
+#wb-body {
+	#wb-main {
+		@extend %base-default-large-screen-float-left;
+	}
+}
+
+#base-fullhd-in {
+	p {
+		@extend %base-default-large-screen-float-left;
+	}
+	@extend %base-default-large-screen-overflow-hidden;
+	background: #333;
+}
+
+#base-title-in {
+	margin: 0;
+	padding: 3px 0;
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#wb-body {
+		#wb-main {
+			@extend %base-default-large-screen-float-left;
+		}
+	}
+
+	#base-fullhd-in {
+		p {
+			float: right;
+		}
+	}
+
+	#base-title {
+		a {
+			margin-left: auto;
+			padding-right: 10px;
+		}
+	}
+}

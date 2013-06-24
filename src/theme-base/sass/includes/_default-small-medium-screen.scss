@@ -182,17 +182,6 @@ img {
 	@extend %base-default-small-medium-screen-display-block;
 }
 
-li {
-	&#base-fullft-ca { //TODO: Is this ID ever outside an li?
-		a {
-			@extend %base-default-small-medium-screen-padding-left-0;
-			@extend %base-default-small-medium-screen-padding-right-0;
-			font-size: 0.7em;
-			@extend %base-default-small-medium-screen-border-none;
-		}
-	}
-}
-
 p {
 	@extend %base-default-small-medium-screen-text-shadow-none;
 }
@@ -310,10 +299,6 @@ table {
 	min-height: 22px;
 	display: inline;
 	@extend %base-default-small-medium-screen-margin-0;
-}
-
-#base-sig {
-	@extend %base-default-small-medium-screen-display-none;
 }
 
 #base-subsite {
@@ -767,9 +752,6 @@ select {
 			@extend %base-default-small-medium-screen-display-block;
 		}
 	}
-	#base-wmms {
-		@extend %base-default-small-medium-screen-display-block;
-	}
 	#base-bc {
 		@extend %base-default-small-medium-screen-display-block;
 	}
@@ -870,10 +852,6 @@ select {
 		}
 	}
 	
-	.ul-li {
-		@extend %base-default-small-medium-screen-text-align-right;
-	}
-
 	#jqm-wb-mb {
 		.wb-nested-menu {
 			.ui-btn-icon-right {
@@ -935,11 +913,6 @@ select {
 	#base-fullft {
 		li {
 			float: right !important;
-			&#base-fullft-ca {
-				div {
-					@extend %base-default-small-medium-screen-text-align-right;
-				}
-			}
 		}
 	}
 
