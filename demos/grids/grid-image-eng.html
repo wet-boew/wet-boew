@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt -->
+<title>Images - Grid System - Working examples - Web Experience Toolkit&#160;(WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body-sec">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="#" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-eng.html" lang="en"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
+<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/projectmenu-eng.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-eng.html">WET project</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Implementing-WET">Implement WET</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-eng.html">Home</a></li>
+<li><a href="../index-eng.html">Working examples</a></li>
+<li>Images - Grid System</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Images - Grid System</h1>
+
+<div class="wet-boew-prettify all-pre linenums">
+<div class="span-4 module-table-contents">
+<h2>Table of contents</h2>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#fluid">Fluid width images</a></li>
+
+<li><a href="#fixed">Fixed width images</a></li>
+</ul>
+</div>
+	<div class="span-2 module-related margin-bottom-small">
+		
+		<h2 class="background-accent"><strong>Related module</strong></h2>
+		<ul>
+			<li><a href="grid-module-eng.html#poster">module-poster</a></li>
+		</ul>
+	</div>
+    <div class="span-2 module-related">
+<h2 class="background-accent">Related accessibility topic</h2>
+<ul>
+<li><a href="../opt-cont/img-eng.html">Images - Optimal Content Examples</a></li>
+</ul>
+</div>
+    <div class="clear"></div>
+<h2 id="overview">Overview</h2>
+<p>An image is a static two dimensional visual artifact that is a type of non-text content classified as decorative, simple, complex, or an image of text.</p>
+<p>In order to accommodate multiple resolutions, grids automatically resize themselves. Text automatically word-wraps, but images are typically a fixed size. This can cause problems within a responsive grid system. To avoid such problems, images within a grid cell expand to fill 100% of the particular grid's width.</p>
+<p>To override this feature, you may use the <code>image-actual</code> class.</p>
+
+<h2 id="fluid">Fluid width images</h2>
+<p>The examples provided use the same source file, which is a 220 pixels wide. The smallest <code>span-1</code> version pinches the image at the corners; the largest <code>span-3</code> version stretches, and blurs it. Therefore, the best grid to view the below sunflower image is within in a <code>span-2</code> at 1024x768 resolution, as it is a perfect fit (optimal size for its placement).</p>
+
+
+	<div class="span-1"><img src="images/a7.jpg" alt="Example of fluid sunflower image, grid 1" width="220" height="168"></div>
+	<div class="span-2"><img src="images/a7.jpg" alt="Example of fluid sunflower image, grid 2" width="220" height="168"></div>
+	<div class="span-3"><img src="images/a7.jpg" alt="Example of fluid sunflower image, grid 3" width="220" height="168"></div>
+	<div class="clear"></div>
+
+
+<details class="span-6">
+	<summary>View code</summary>
+	<pre>&lt;div class="span-1"&gt;
+   &lt;img src="images/a7.jpg" alt="" width="224" height="168" /&gt;
+&lt;/div&gt;</pre>
+</details>
+<div class="clear"></div>
+
+<h2 id="fixed">Fixed width images</h2>
+<p>If you <strong>do not</strong> want an image to stretch to 100% of the cell width, apply the <code>image-actual</code> class to the image. For example, if you view the 20x20 pixel check-mark image at 100% of a grid cell, it appears pixilated. The <code>image-actual</code> class ensures the image retains its width and height properties, and never visually distorts.</p>
+<h3>Undesired effect</h3>
+<p>The small images are being stretched to fit the full width of the grid cell.</p>
+<div class="span-2">
+	
+	<div class="span-1 row-start"><img src="images/tick.gif" alt="Example of large distorted check mark" width="20" height="20"></div>
+	<div class="span-1 row-end"><img src="images/x.gif" alt="Example of large distorted X" width="20" height="20"></div>	
+</div>
+
+<details class="span-4">
+	<summary>View code</summary>
+	<pre>&lt;div class="span-1"&gt;
+   &lt;img src="tick.gif" alt="___" width="20" height="20" /&gt;
+&lt;/div&gt;
+&lt;div class="span-1"&gt;      
+   &lt;img src="x.gif" alt="___" width="20" height="20" /&gt;
+&lt;/div&gt;</pre>
+</details>
+<div class="clear"></div>
+<h3>Desired effect</h3>
+<p>The images retain their default size.</p>
+<div class="span-2">
+	
+	<div class="span-1 row-start"><img class="image-actual" src="images/tick.gif" alt="Example of large distorted check mark" width="20" height="20"></div>
+<div class="span-1 row-end"><img class="image-actual" src="images/x.gif" alt="Example of large distorted X" width="20" height="20"></div>
+</div>
+
+<details class="span-4">
+	<summary>View code</summary>
+	<pre>&lt;div class="span-1"&gt;
+   &lt;img class="image-actual" src="tick.gif" alt="___" width="20" height="20" /&gt;
+&lt;/div&gt;
+&lt;div class="span-1"&gt;   
+   &lt;img class="image-actual" src="x.gif" alt="___" width="20" height="20" /&gt;
+&lt;/div&gt;</pre>
+</details>
+<div class="clear"></div>
+</div>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2013-04-11</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+
+<div id="wb-sec"><div id="wb-sec-in"><nav role="navigation"><h2 id="wb-nav"></h2>
+<div class="wb-sec-def">
+<!-- SecNavStart -->
+	<section>
+      <h3><a href="grid-structure-eng.html">Structure</a></h3>
+      <ul>
+        <li><a href="grid-base-eng.html">Grid System</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-basic-eng.html">Basic effects</a></h3>
+      <ul>
+        <li><a href="grid-text-eng.html">Text</a></li>
+        <li><a href="grid-table-eng.html">Tables</a></li>
+        <li><a href="grid-form-eng.html">Forms</a></li>
+        <li><a href="grid-image-eng.html">Images</a></li>
+        <li><a href="grid-color-eng.html">Colour</a></li>
+        <li><a href="grid-button-eng.html">Buttons</a></li>
+        <li><a href="grid-border-eng.html">Borders</a></li>
+        <li><a href="grid-icon-eng.html">Icons</a></li>
+        <li><a href="grid-opacity-eng.html">Opacity</a></li>
+        <li><a href="grid-proximity-eng.html">Proximity</a></li>
+        <li><a href="grid-position-eng.html">Positioning and alignment</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-specialty-eng.html">Specialty effects</a></h3>
+      <ul>
+        <li><a href="grid-message-eng.html">Messages</a></li>
+        <li><a href="grid-module-eng.html">Modules</a></li>
+        <li><a href="grid-other-eng.html">Other</a></li>
+      </ul>
+    </section>
+<!-- SecNavEnd -->
+</div>
+</nav></div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2>Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-eng.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

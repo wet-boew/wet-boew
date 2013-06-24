@@ -1,0 +1,141 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+@import 'compass/css3/transform';
+
+%base-default-print-scaleX--1 {
+	@include scaleX(-1);
+}
+%base-default-print-width-100perc {
+	width: 100%;
+}
+%base-default-print-base-title-styles {
+	font-size: 16pt;
+	text-decoration: none;
+	color: #000;
+	@extend %base-default-print-width-100perc;
+	position: relative;
+	top: 9px;
+	border: none;
+}
+#base-title {
+	@extend %base-default-print-base-title-styles;
+	a {
+		@extend %base-default-print-base-title-styles;
+	}
+}
+
+#wb-main-in {
+	border-top: 3px outset #666;
+	padding-top: 5px;
+}
+
+h1 {
+	font-size: 140%;
+	margin: 0 !important;
+}
+
+h2 {
+	font-size: 125%;
+}
+
+h3 {
+	font-size: 120%;
+}
+
+h4 {
+	font-size: 115%;
+}
+
+h5 {
+	font-size: 110%;
+}
+
+h6 {
+	font-size: 100%;
+}
+
+#base-bc {
+	min-height: inherit;
+	height: auto;
+	ol {
+		@extend %base-default-print-width-100perc;
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		background: none;
+		&:before {
+			content: " > ";
+		}
+		&:first-child:before {
+			content: "";
+		}
+	}
+	a {
+		padding: 0 5px 0 0;
+		background: none;
+	}
+}
+
+%base-default-print-display-none {
+	display: none;
+}
+
+#wb-sec {
+	@extend %base-default-print-display-none;
+}
+
+#wb-sup {
+	@extend %base-default-print-display-none;
+}
+
+#base-fullhd {
+	@extend %base-default-print-display-none;
+}
+
+#base-srchbx {
+	@extend %base-default-print-display-none;
+}
+
+#base-psnb {
+	@extend %base-default-print-display-none;
+}
+
+#wb-foot {
+	@extend %base-default-print-display-none;
+}
+
+#base-date-mod {
+	float: right;
+	display: inline;
+}
+
+.clear {
+	clear: both;
+	display: block;
+	height: 0 !important;
+	min-height: 0 !important;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	margin: 0;
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#base-bc {
+		@extend %base-default-print-scaleX--1;
+		li {
+			@extend %base-default-print-scaleX--1;
+		}
+		a {
+			padding: 0 0 0 5px;
+		}
+	}
+
+	#base-date-mod {
+		float: left;
+	}
+}
