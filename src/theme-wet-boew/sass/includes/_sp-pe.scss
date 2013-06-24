@@ -6,6 +6,13 @@
 	line-height: normal;
 }
 
+#wet-title {
+	small {
+		font-size: 0.45em;
+		display: block;
+	}	
+}
+
 #wb-main {
 	li {
 		&:first-child {
