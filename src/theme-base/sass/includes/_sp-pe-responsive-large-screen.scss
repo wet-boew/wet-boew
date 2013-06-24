@@ -1,0 +1,57 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+%base-default-responsive-large-width100pct-min-width-960 {
+	width: 100%;
+	min-width: 960px;
+}
+%base-default-responsive-large-width960px {
+	width: 960px;
+}
+%base-default-responsive-large-margin-auto-width960px {
+	@extend %base-default-responsive-large-width960px;
+	margin: auto;
+}
+
+body {
+	min-width: 960px;
+}
+
+#wb-head {
+	@extend %base-default-responsive-large-width100pct-min-width-960;
+}
+
+#wb-core {
+	@extend %base-default-responsive-large-width100pct-min-width-960;
+}
+
+#wb-head-in {
+	@extend %base-default-responsive-large-width100pct-min-width-960;
+}
+
+#base-fullhd {
+	@extend %base-default-responsive-large-width100pct-min-width-960;
+}
+
+#base-bnr {
+	@extend %base-default-responsive-large-width100pct-min-width-960;
+}
+
+#wb-core-in {
+	@extend %base-default-responsive-large-margin-auto-width960px;
+}
+
+#base-fullhd-in {
+	@extend %base-default-responsive-large-margin-auto-width960px;
+}
+
+#base-bnr-in {
+	@extend %base-default-responsive-large-margin-auto-width960px;
+}
+
+#wb-body {
+	#wb-main {
+		@extend %base-default-responsive-large-width960px;
+	}
+}

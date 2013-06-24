@@ -49,10 +49,6 @@ body {
 		position: relative;
 		z-index: 1;
 	}
-	small {
-		font-size: 0.45em;
-		display: block;
-	}	
 }
 .svg {
 	@extend %wet-sp-pe-screen-wet-title-object-display-block;

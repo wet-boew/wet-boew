@@ -39,6 +39,9 @@
 }
 
 #base-title {
+	a {
+		text-decoration: none;
+	}
 	small {
 		font-size: 0.45em;
 		display: block;
@@ -122,12 +125,6 @@
 	dd {
 		@extend %base-default-float-left;
 		margin: 0 0 0 0.39em;
-	}
-}
-
-#base-title {
-	a {
-		text-decoration: none;
 	}
 }
 
