@@ -1,0 +1,18 @@
+
+
+// Box Model Tweak
+* {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
+
+
+// Basic Code Formatting
+code {
+	font-size:112%;
+	font-family:"Courier New",Courier,monospace;
+}
+
+// Responsive Images
+img {
+	height: auto;
+	max-width: 100%;
+	width:100%;
+}

@@ -1,0 +1,99 @@
+/*
+ * Small Mobile Device
+ */
+
+.container{
+	width:100%;
+}
+.row {
+	.row{
+		//margin-left:-$gutters-small;
+		//margin-right:-$gutters-small;
+		&:last-child [class*=span-] { margin-bottom: $gutters }
+    }
+	[class*=span-]{ 
+		padding-left: $gutters-small;
+		padding-right: $gutters-small;
+		width:100%;
+	}
+
+		/* Helper Classes */
+	.span-m-uncentered{
+		margin-left:0;
+		margin-right:0;
+		float:left
+	}
+	.span-m-centered{
+		margin-left:auto;
+		margin-right:auto;
+		float:none;
+		display:block;
+	}
+	/* offset tweaks */
+	[class*=offset-]{ margin-left:0;}
+	/* push pull tweaks */
+	[class*=push-]{left:auto;}
+	[class*=pull-]{right:auto;}
+	/* global mobile tweaks */
+
+	[class*=module],[class*=background-], [class*=span-] [class*=border-]{
+		margin-bottom: $gutters;
+		padding: $gutters-small;
+	}
+
+	> [class*=border-]:not([class*=span-m-]){
+		border-left:none;
+		border-right:none;
+	}
+	> [class*=border-][class*=span-m-]:first-child{border-left:none;}
+	> [class*=border-][class*=span-m-]:last-child{border-right:none;}
+ }
+
+@for $i from 1 through $columns {
+		@include create_mobile_column($i, $i);
+        @include create_mobile_offset($i, $i);
+		@include create_mobile_pull_push($i, $i);
+}
+
+/* Bleeds */
+.bleed-full {
+	 [class*=span-]:first-child { padding-left:0; }
+	 [class*=span-]:last-child{ padding-right:0 ;}
+	 [class*=pull-]:last-child,  > .row  [class*=pull-]:last-child{ padding-right:$gutters-small;}
+	 [class*=push-]:first-child, > .row  [class*=push-]:first-child { padding-left:$gutters-small;}
+	 :not([class*=span-m-]){
+	 	padding-left:0;
+	 	padding-right:0;
+	 }
+}
+
+.bleed-left > {
+	:not([class*=span-m-]):first-child{ padding-right:0; }
+}
+.bleed-right > {
+	:not([class*=span-m-]):last-child{ padding-left:0; }
+}
+
+// Spacial end node grid clearing
+$listclend: ();
+$listclother: ();
+@for $i from 1 through $columns {
+	 $listclend: join($listclend, unquote(".list-grid-m-#{$i} > li:nth-of-type(n)"), comma);
+	 $listclother: join($listclother, unquote(".list-grid-m-#{$i} > li:nth-of-type(#{$i}n+1)"), comma);
+}
+#{$listclend} { clear: none }
+#{$listclother} { clear: both } 
+
+
+[class*=list-grid-] {
+	margin:0 -$gutters-small;
+	> li{
+		padding:0 $gutters-small $gutters;
+	}
+	&:after { clear: both; }
+}
+
+	
+	
+
+

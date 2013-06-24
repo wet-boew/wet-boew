@@ -1,0 +1,11 @@
+/*
+ PUSH PULL Classes for WET-BOEW
+ */
+
+// Normalize the classes
+[class*=pull-]{left:auto;}
+[class*=push-]{right:auto;}
+
+@for $i from 1 through $columns {
+        @include create_pull_push($i,$i);
+}

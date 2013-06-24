@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 					outputStyle: 'expanded' ## Currently libsass has a bug with the property outputStyle [https://github.com/andrew/node-sass]
 				}, */
 				files: {
-					'build/css/base.css': 'src/structure/base.scss',
+					'build/css/base.css': 'src/sass/base.scss',
 					'themes/bare/css/theme.css': 'themes/bare/css/theme.scss',
 					'themes/demo/css/theme.css': 'themes/demo/css/theme.scss',
 					//'dist/css/theme.css': 'themes/demo/css/theme.scss'
