@@ -124,9 +124,11 @@ module.exports = function(grunt) {
 			main : {
 				files : [
 					{expand: true, cwd: 'build/', src: ['**'], dest: 'dist/bare/'},
-					{expand: true, cwd: 'themes/bare/', src: ['**'], dest: 'dist/bare/'},
+					{expand: true, cwd: 'themes/bare/', src: ['*.css'], dest: 'dist/bare/css/'},
+					{expand: true, cwd: 'themes/bare/', src: ['*.html'], dest: 'dist/bare/'},
 					{expand: true, cwd: 'build/', src: ['**'], dest: 'dist/demo/'},
-					{expand: true, cwd: 'themes/demo/', src: ['**'], dest: 'dist/demo/'}
+					{expand: true, cwd: 'themes/demo/', src: ['*.html'], dest: 'dist/demo/'},
+					{expand: true, cwd: 'themes/demo/css/', src: ['*.css'], dest: 'dist/demo/css/'}
 				]
 			}
 		},
