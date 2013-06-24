@@ -6,6 +6,8 @@ dist/*
 build/lib/vendors*
 build/lib/jruby-compiled
 _notes/
+*.sublime-project
+*.sublime-workspace
 
 # OS generated files #
 .DS_Store
@@ -21,3 +23,4 @@ csslint.out.xml
 *.orig
 *.tmp
 *.log
+node_modules/
