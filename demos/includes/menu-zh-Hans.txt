@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt -->
+wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html -->
 <!-- DataAjaxFragmentStart -->
 <li lang="en"><section><h3><a href="http://wet-boew.github.io/wet-boew/index-eng.html">WET项目</a></h3><div class="mb-sm">
 <div class="span-2">
@@ -10,7 +10,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <li><a href="http://wet-boew.github.io/wet-boew/demos/index-eng.html">工作实例</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">文档</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/downloads">下载</a></li>
-<li><a href="http://wet-boew.github.io/wet-boew/License-eng.txt">限制性规定</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/License-eng.html">限制性规定</a></li>
 </ul>
 </div>
 <div class="clear"></div>
