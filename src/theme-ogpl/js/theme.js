@@ -114,7 +114,6 @@
 				$document = $(document),
 				contentPage = wet_boew_theme.sft.length !== 0,
 				home_href,
-				header,
 				sessionSettings,
 				sessionSetting,
 				signInOut,
