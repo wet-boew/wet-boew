@@ -28,8 +28,8 @@
 %ogpl-default-print-display-none {
 	display: none;
 }
-%ogpl-default-print-width-69-height-32 {
-	width: 69px;
+%ogpl-default-print-width-112-height-32 {
+	width: 112px;
 	height: 32px;
 }
 
@@ -40,10 +40,10 @@
 		display: table-row;
 	}
 	object {
-		@extend %ogpl-default-print-width-69-height-32;
+		@extend %ogpl-default-print-width-112-height-32;
 	}
 	img {
-		@extend %ogpl-default-print-width-69-height-32;
+		@extend %ogpl-default-print-width-112-height-32;
 	}
 	span {
 		display: table-cell;
