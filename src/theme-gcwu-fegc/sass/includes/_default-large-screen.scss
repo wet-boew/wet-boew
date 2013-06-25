@@ -288,9 +288,6 @@ h1 {
 	a {
 		display: inline-block;
 		@extend %gcwu-default-large-screen-margin-left-10;
-		@include pseudo-focus {
-			text-decoration: underline;
-		}
 	}
 	&, a {
 		@extend %gcwu-default-large-screen-color-fff;
