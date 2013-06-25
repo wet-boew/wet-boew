@@ -81,6 +81,10 @@
 	}
 }
 
+%gcwu-default-screen-font-arial {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
 	margin: 0;
 }
@@ -113,6 +117,11 @@ body {
 }
 
 #gcwu-title {
+	a {
+		@include pseudo-focus {
+			text-decoration: underline;
+		}
+	}
 	small {
 		font-size: 0.45em;
 		display: block;
