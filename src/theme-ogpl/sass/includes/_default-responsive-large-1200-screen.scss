@@ -66,6 +66,10 @@ body {
 	@extend %ogpl-default-responsive-large-1200-min-width-1200;
 }
 
+#ogpl-title-in {
+	width: 800px;
+}
+
 #wb-body-sec-sup {
 	#wb-main {
 		@extend %ogpl-default-responsive-large-1200-width-600;

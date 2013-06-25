@@ -1,0 +1,85 @@
+@charset "utf-8";
+/*!!
+ *
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ *
+ * Version: @wet-boew-build.version@
+ *
+ */
+
+/* ----- jQuery Mobile CSS - Start of build includes ----- */
+@import '../jquerymobile/jquery.mobile.theme';
+@import '../../js/jquerymobile/jquery.mobile.structure';
+/* ----- jQuery Mobile CSS - End of build includes ----- */
+
+@import '../../base/sass/modern-vendor-prefix';
+
+/* ----- All screens - All media types - Start of build includes ----- */
+@import '../../base/sass/default';
+@import 'includes/serv';
+/* ----- All screens - All media types - End of build includes ----- */
+
+@media screen {
+/* ----- All screens - Screen media type - Start of build includes ----- */
+@import '../../base/sass/default-screen';
+@import 'includes/serv-screen';
+/* ----- All screens - Screen media type - End of build includes ----- */
+}
+
+@media (min-width: 960px) and (min-device-width: 1024px) {
+/* ----- Large screens - Start of build includes ----- */
+@import '../../base/sass/default-large';
+@import 'includes/serv-large';
+@import 'includes/serv-large-images';
+/* ----- Large screens - All media types - End of build includes ----- */
+}
+
+@media screen and (min-width: 768px) and (min-device-width: 768px) {
+/* ----- Medium and large screens - Screen media type - Start of build includes ----- */
+@import '../../grids/sass/responsive-medium-large-screen';
+/* ----- Medium and large screens - Screen media type - End of build includes ----- */
+}
+
+@media screen and (min-width: 960px) and (min-device-width: 1024px) {
+/* ----- Large screens - Screen media type - Start of build includes ----- */
+@import 'includes/serv-responsive-large-screen';
+@import '../../base/sass/default-large-screen';
+@import 'includes/serv-large-screen';
+/* ----- Large screens - Screen media type - End of build includes ----- */
+}
+
+@media screen and (min-width: 1200px) and (min-device-width: 1024px) {
+/* ----- Large screens (1200+ pixel width) - Screen media type - Start of build includes ----- */
+@import '../../grids/sass/responsive-large-1200-screen';
+@import 'includes/serv-responsive-large-1200-screen';
+/* ----- Large screens (1200+ pixel width) - Screen media type - End of build includes ----- */
+}
+
+@media screen and (max-width: 959px), screen and (max-device-width: 1023px) {
+/* ----- Small and medium screens - Screen media type - Start of build includes ----- */
+@import '../../base/sass/default-small-medium-screen';
+@import 'includes/serv-small-medium-screen';
+/* ----- Small and medium screens - Screen media type - End of build includes ----- */
+}
+
+@media screen and (max-width: 767px), screen and (max-device-width: 767px) {
+/* ----- Small screens - Screen media type - Start of build includes ----- */
+@import '../../base/sass/default-small-screen';
+@import 'includes/serv-small-screen';
+/* ----- Small screens - Screen media type - End of build includes ----- */
+}
+
+@media screen and (min-width: 768px) and (max-width: 959px), screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+/* ----- Medium screens - Screen media type - Start of build includes ----- */
+@import '../../grids/sass/responsive-medium-screen';
+@import '../../base/sass/default-medium-screen';
+/* ----- Medium screens - Screen media type - End of build includes ----- */
+}
+
+@media print {
+/* ----- Print media type only - Start of build includes ----- */
+@import '../../base/sass/default-print';
+@import 'includes/serv-print';
+/* ----- Print media type only - End of build includes ----- */
+}

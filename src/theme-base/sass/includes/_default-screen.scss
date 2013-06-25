@@ -46,10 +46,10 @@ body {
 }
 
 #base-title {
-	@extend %base-default-large-screen-a-hover-focus-active-text-decoration-underline;
+	@extend %base-default-screen-a-hover-focus-active-text-decoration-underline;
 }
 #base-subsite {
-	@extend %base-default-large-screen-a-hover-focus-active-text-decoration-underline;
+	@extend %base-default-screen-a-hover-focus-active-text-decoration-underline;
 }
 
 .wb-sec-def {//TODO: Highly nested class, any cleanup possible?

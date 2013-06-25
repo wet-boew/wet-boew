@@ -113,7 +113,7 @@ input {
 }
 
 #ogpl-title {
-	@extend %ogpl-default-large-screen-a-hover-focus-active-text-decoration-underline;
+	@extend %ogpl-default-screen-a-hover-focus-active-text-decoration-underline;
 	span {
 		position: relative;
 		z-index: 1;
@@ -123,8 +123,9 @@ input {
 		display: block;
 	}		
 }
+
 #ogpl-subsite {
-	@extend %ogpl-default-large-screen-a-hover-focus-active-text-decoration-underline;
+	@extend %ogpl-default-screen-a-hover-focus-active-text-decoration-underline;
 }
 
 .wb-sec-def {

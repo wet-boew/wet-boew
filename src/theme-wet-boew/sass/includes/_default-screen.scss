@@ -113,7 +113,7 @@ input {
 }
 
 #wet-title {
-	@extend %wet-default-large-screen-a-hover-focus-active-text-decoration-underline;
+	@extend %wet-default-screen-a-hover-focus-active-text-decoration-underline;
 	object {
 		@extend %wet-default-screen-display-none;
 	}
@@ -123,7 +123,7 @@ input {
 	}
 }
 #wet-subsite {
-	@extend %wet-default-large-screen-a-hover-focus-active-text-decoration-underline;
+	@extend %wet-default-screen-a-hover-focus-active-text-decoration-underline;
 }
 
 .svg {
