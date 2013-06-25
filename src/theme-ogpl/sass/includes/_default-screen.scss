@@ -59,6 +59,13 @@
 %ogpl-default-screen-line-height-175 {
 	line-height: 1.75em;
 }
+%ogpl-default-screen-a-hover-focus-active-text-decoration-underline {
+	a {
+		@include pseudo-focus {
+			text-decoration: underline;
+		}
+	}
+}
 
 body {
 	@extend %ogpl-default-font-body;
@@ -106,6 +113,7 @@ input {
 }
 
 #ogpl-title {
+	@extend %ogpl-default-screen-a-hover-focus-active-text-decoration-underline;
 	span {
 		position: relative;
 		z-index: 1;
@@ -114,6 +122,10 @@ input {
 		font-size: 0.45em;
 		display: block;
 	}		
+}
+
+#ogpl-subsite {
+	@extend %ogpl-default-screen-a-hover-focus-active-text-decoration-underline;
 }
 
 .wb-sec-def {

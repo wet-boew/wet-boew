@@ -112,16 +112,18 @@
 				node,
 				next,
 				$document = $(document),
+				contentPage = wet_boew_theme.sft.length !== 0,
 				home_href,
 				header,
 				sessionSettings,
 				sessionSetting,
 				signInOut,
 				session,
-				header_fixed = typeof wet_boew_mobile_view !== 'undefined' && wet_boew_mobile_view.header_fixed;
+				header_fixed = typeof wet_boew_mobile_view !== 'undefined' && wet_boew_mobile_view.header_fixed,
+				header = '<div data-role="header"' + (header_fixed ? ' data-position="fixed"' : '') + '><div class="ui-title"><div></div></div><map id="ogpl-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
 
 			// Content pages only
-			if (wet_boew_theme.sft.length !== 0) {
+			if (contentPage) {
 				// Build the menu popup
 				if (wet_boew_theme.menubar.length !== 0 || pe.secnav.length !== 0 || wet_boew_theme.bcrumb.length !== 0) {
 					// Transform the menu to a popup
@@ -188,12 +190,16 @@
 				}
 				// Append the Settings button
 				header += popup_button + ' href="#popupSettings" data-icon="gear">' + settings_txt + '</a></map></div>';
-				// Append the header
-				wet_boew_theme.fullhd.children('#ogpl-fullhd-in').before(header);
-				wet_boew_theme.fullhd.find('.ui-title').append(wet_boew_theme.title.find('img').attr('alt', wet_boew_theme.title.find('span').text()));
-				// Apply a theme to the site title
-				node.className += ' ui-bar-b';
+			}
 
+			// Append the header
+			wet_boew_theme.fullhd.children('#ogpl-fullhd-in').before(header + '</div>');
+			wet_boew_theme.fullhd.find('.ui-title').append(wet_boew_theme.title.find('img').clone().attr('alt', wet_boew_theme.title.find('span').text()));
+			// Apply a theme to the site title
+			node = wet_boew_theme.title[0];
+			node.className += ' ui-bar-b';
+
+			if (contentPage) {
 				// Build the settings popup
 				session = document.getElementById('wb-session');
 				lang_links = wet_boew_theme.fullhd.find('li[id*="-lang"]');
