@@ -8,8 +8,20 @@
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+%gcwu-default-screen-font-arial {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
 	margin: 0;
+}
+
+#gcwu-title {
+	a {
+		@include pseudo-focus {
+			text-decoration: underline;
+		}
+	}
 }
 
 .wb-sec-def {

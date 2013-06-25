@@ -159,7 +159,11 @@
 }
 
 #gcwu-intranetnb {
-	@extend %intranet-default-desktop-screen-a-psuedo-underline;
+	a {
+		@include pseudo-focus {
+			text-decoration: underline;
+		}
+	}
 	min-height: 32px;
 	font-size: 90%;
 	position: absolute;
@@ -308,18 +312,6 @@
 #gcwu-sig-in {
 	@extend %intranet-default-desktop-screen-height20px-overflow-visible;
 	margin: 0;
-}
-
-%intranet-default-desktop-screen-a-psuedo-underline {
-	a {
-		@include pseudo-focus {
-			text-decoration: underline;
-		}
-	}
-}
-
-#gcwu-subsite {
-	@extend %intranet-default-desktop-screen-a-psuedo-underline;
 }
 
 #wb-foot-in {
