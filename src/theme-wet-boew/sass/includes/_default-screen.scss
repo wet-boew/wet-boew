@@ -59,6 +59,13 @@
 %wet-default-screen-line-height-175 {
 	line-height: 1.75em;
 }
+%wet-default-screen-a-hover-focus-active-text-decoration-underline {
+	a {
+		@include pseudo-focus {
+			text-decoration: underline;
+		}
+	}
+}
 
 body {
 	@extend %wet-default-font-body;
@@ -106,6 +113,7 @@ input {
 }
 
 #wet-title {
+	@extend %wet-default-screen-a-hover-focus-active-text-decoration-underline;
 	object {
 		@extend %wet-default-screen-display-none;
 	}
@@ -114,6 +122,10 @@ input {
 		z-index: 1;
 	}
 }
+#wet-subsite {
+	@extend %wet-default-screen-a-hover-focus-active-text-decoration-underline;
+}
+
 .svg {
 	@extend %wet-default-screen-wet-title-object-display-block;
 }
