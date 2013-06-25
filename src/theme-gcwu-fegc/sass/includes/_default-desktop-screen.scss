@@ -249,9 +249,6 @@ a {
 	a {
 		display: inline-block;
 		margin-left: 10px;
-		@include pseudo-focus {
-			text-decoration: underline;
-		}
 	}
 	&, a {
 		color: #fff;
