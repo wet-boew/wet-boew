@@ -1403,17 +1403,20 @@
 						trElmsInd = trElms[trlen],
 						geomType = trElmsInd.getAttribute('data-type'), // get the geometry type
 						vectorFeatures,
-						featAtt,
 						features = trElmsInd.getElementsByTagName('td'),
-						len = features.length;
+						len = features.length,
+						feature,
+						script;
 						
 					while (len--) {
 						// use innerHTML instead of innerText or textContent because they react differently in different browser
-						// change <br> before we remove tag then put back <br>
-						featAtt = features[len].innerHTML.replace(/(<br\ ?\/?>)+/g, '\n');
-						featAtt = featAtt.replace(/<\/?[^>]+>/gi, '');
-						featAtt = featAtt.replace(/\n/g, '<br />');
-						attrMap[attr[len]] = featAtt;
+						// remove script tag from the attribute
+						feature = features[len];
+						script = feature.getElementsByTagName('script')[0];
+						if (typeof script !== 'undefined') {
+							script.parentNode.removeChild(script);
+						}
+						attrMap[attr[len]] = feature.innerHTML;
 					}
 
 					if (geomType !== null) {
