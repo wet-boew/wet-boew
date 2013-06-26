@@ -8,7 +8,7 @@ function error_exit
 	exit 1
 }
 
-if ["$POST_BUILD" == "false"] && [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/wet-boew" ]; then
+if ["$POST_BUILD" == "true"] && [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/wet-boew" ]; then
 	declare -a supported_branches=('v4.0' 'master' 'v3.0') # List of branches to store build output for
 
 	#Set git user
