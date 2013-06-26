@@ -1,2129 +1,278 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"></html>
 <head>
-<meta charset="UTF-8">
-<title>Welcome :: Grid CSS Demo</title>
-<link rel="shortcut icon" href="/favicon.ico" />
-<meta name="description" content="" />
-<meta name="dcterms.creator" content="" />
-<meta name="dcterms.title" content="" />
-<meta name="dcterms.issued" title="W3CDTF" content="" />
-<meta name="dcterms.modified" title="W3CDTF" content="" />
-<meta name="dcterms.subject" title="gccore" content="" />
-<meta name="dcterms.language" title="ISO639-2" content="eng" />
-<!-- Mobile Goodness -->
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<!-- CSS Magic -->
-<link rel="stylesheet" href="css/base.css" />
-<link rel="stylesheet" href="css/theme.css" />
-<!-- WET-BOEW Vapour -->
-<script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
-<script src="js/vapour.js"></script>
-<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+  <meta charset="UTF-8">
+  <title>Welcome :: Grid CSS Demo</title>
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="description" content="">
+  <meta name="dcterms.creator" content="">
+  <meta name="dcterms.title" content="">
+  <meta name="dcterms.issued" title="W3CDTF" content="">
+  <meta name="dcterms.modified" title="W3CDTF" content="">
+  <meta name="dcterms.subject" title="gccore" content="">
+  <meta name="dcterms.language" title="ISO639-2" content="eng">
+  <!-- Mobile Goodness -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- CSS Magic -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <!-- WET-BOEW Vapour -->
+  <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+  <script src="js/vapour.js"></script>
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 </head>
 <body>
-<div class="demo-grids">
-  <div class="row">
-    <div class="span-full">
-      <h1>WET-BOEW 4 grid framework</h1>
+  <div class="grid-container">
+    <div class="grid-100 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">100%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-
-<div class="row">
-  <div class="span-full">
-    <h2>Fluid grids | Fixed width container | Gutter in between container and grids</h2>
-  </div>
-</div>
-<div class="container">
-  <section class="row equalize">
-    <div class="span-1">
-      <div class="background-light">
-        <p>span-1</p>
-      </div>
-    </div>
-    <div class="span-11">
-      <div class="background-light">
-        <p>span-11</p>
-      </div>
-    </div>
-  </section>
-  <section class="row">
-    <div class="span-2">
-      <div class="background-light">
-        <p>span-2</p>
-      </div>
-    </div>
-    <div class="span-10">
-      <div class="background-light">
-        <p>span-10</p>
-      </div>
-    </div>
-  </section>
-  <section class="row">
-    <div class="span-3">
-      <div class="background-light">
-        <p>span-3</p>
-      </div>
-    </div>
-    <div class="span-9">
-      <div class="background-light">
-        <p>span-9</p>
-      </div>
-    </div>
-  </section>
-  <section class="row">
-    <div class="span-4">
-      <div class="background-light">
-        <p>span-4</p>
-      </div>
-    </div>
-    <div class="span-8">
-      <div class="background-light">
-        <p>span-8</p>
-      </div>
-    </div>
-  </section>
-  <section class="row">
-    <div class="span-5">
-      <div class="background-light">
-        <p>span-5</p>
-      </div>
-    </div>
-    <div class="span-7">
-      <div class="background-light">
-        <p>span-7</p>
-      </div>
-    </div>
-  </section>
-  <section class="row">
-    <div class="span-6">
-      <div class="background-light">
-        <p>span-6</p>
-      </div>
+    <div class="grid-95 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">95%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-6">
-      <div class="background-light">
-        <p>span-6</p>
-      </div>
-    </div>
-  </section>
-  <section class="row">
-    <div class="span-7">
-      <div class="background-light">
-        <p>span-7</p>
-      </div>
-    </div>
-    <div class="span-5">
-      <div class="background-light">
-        <p>span-5</p>
-      </div>
-    </div>
-  </section>
-  <section class="row">
-    <div class="span-8">
-      <div class="background-light">
-        <p>span-8</p>
-      </div>
-    </div>
-    <div class="span-4">
-      <div class="background-light">
-        <p>span-4</p>
-      </div>
-    </div>
-  </section>
-  <section class="row">
-    <div class="span-9">
-      <div class="background-light">
-        <p>span-9</p>
-      </div>
+    <div class="grid-5 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">5%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-3">
-      <div class="background-light">
-        <p>span-3</p>
-      </div>
-    </div>
-  </section>
-  <section class="row equalize">
-    <div class="span-10">
-      <div class="background-light padding-none">
-        <p>span-10</p>
-        <div class="row">
-          <div class="span-third">
-            <div class="background-dark">
-              <p> .span-third</p>
-            </div>
-          </div>
-          <div class="span-third">
-            <div class="background-dark">
-              <p> .span-third</p>
-            </div>
-          </div>
-          <div class="span-third">
-            <div class="background-dark">
-              <p> .span-third</p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="span-half">
-            <div class="background-dark">
-              <p> .span-half</p>
-            </div>
-          </div>
-          <div class="span-half">
-            <div class="background-dark">
-              <p> .span-half</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="span-2">
-      <div class="background-light">
-        <p>span-2</p>
-      </div>
-    </div>
-  </section>
-  <section class="row equalize">
-    <div class="span-11">
-      <div class="background-light padding-none">
-        <p>span-11</p>
-        <section class="row equalize">
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-        </section>
-      </div>
+    <div class="grid-90 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">90%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-1">
-      <div class="background-light">
-        <p>span-1</p>
-      </div>
+    <div class="grid-10 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-</div>
-<div class="row">
-  <div class="span-full">
-    <h2>Fluid grids | Fixed width container | Full bleed to container edges</h2>
-  </div>
-</div>
-<div class="container bleed-full">
-  <section class="row equalize ">
-    <div class="span-1">
-      <div class="background-light">
-        <p>span-1</p>
-      </div>
+    <div class="grid-85 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">85%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-11">
-      <div class="background-light">
-        <p>span-11</p>
-      </div>
+    <div class="grid-15 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">15%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-  <section class="row">
-    <div class="span-2">
-      <div class="background-light">
-        <p>span-2</p>
-      </div>
+    <div class="grid-80 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">80%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-10">
-      <div class="background-light">
-        <p>span-10</p>
-      </div>
+    <div class="grid-20 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">20%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-  <section class="row">
-    <div class="span-3">
-      <div class="background-light">
-        <p>span-3</p>
-      </div>
+    <div class="grid-75 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">75%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-9">
-      <div class="background-light">
-        <p>span-9</p>
-      </div>
+    <div class="grid-25 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">25%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-  <section class="row">
-    <div class="span-4">
-      <div class="background-light">
-        <p>span-4</p>
-      </div>
+    <div class="grid-70 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">70%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-8">
-      <div class="background-light">
-        <p>span-8</p>
-      </div>
+    <div class="grid-30 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">30%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-  <section class="row">
-    <div class="span-5">
-      <div class="background-light">
-        <p>span-5</p>
-      </div>
+    <div class="grid-65 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">65%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-7">
-      <div class="background-light">
-        <p>span-7</p>
-      </div>
+    <div class="grid-35 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">35%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-  <section class="row">
-    <div class="span-6">
-      <div class="background-light">
-        <p>span-6</p>
-      </div>
+    <div class="grid-60 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">60%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-6">
-      <div class="background-light">
-        <p>span-6</p>
-      </div>
+    <div class="grid-40 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">40%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-  <section class="row">
-    <div class="span-7">
-      <div class="background-light">
-        <p>span-7</p>
-      </div>
+    <div class="grid-55 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">55%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-5">
-      <div class="background-light">
-        <p>span-5</p>
-      </div>
+    <div class="grid-45 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">45%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-  <section class="row">
-    <div class="span-8">
-      <div class="background-light">
-        <p>span-8</p>
-      </div>
+    <div class="grid-50 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">50%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-4">
-      <div class="background-light">
-        <p>span-4</p>
-      </div>
+    <div class="grid-50 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">50%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-  <section class="row">
-    <div class="span-9">
-      <div class="background-light">
-        <p>span-9</p>
-      </div>
+    <div class="grid-33 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">33%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-3">
-      <div class="background-light">
-        <p>span-3</p>
-      </div>
+    <div class="grid-33 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">33%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-  <section class="row equalize">
-    <div class="span-10">
-      <div class="background-light padding-none">
-        <p>span-10</p>
-        <div class="row">
-          <div class="span-third">
-            <div class="background-dark">
-              <p> .span-third</p>
-            </div>
-          </div>
-          <div class="span-third">
-            <div class="background-dark">
-              <p> .span-third</p>
-            </div>
-          </div>
-          <div class="span-third">
-            <div class="background-dark">
-              <p> .span-third</p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="span-half">
-            <div class="background-dark">
-              <p> .span-half</p>
-            </div>
-          </div>
-          <div class="span-half">
-            <div class="background-dark">
-              <p> .span-half</p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="grid-33 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">33%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-2">
-      <div class="background-light">
-        <p>span-2</p>
-      </div>
+    <div class="grid-66 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">66%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-  <section class="row equalize">
-    <div class="span-11">
-      <div class="background-light padding-none">
-        <p>span-11</p>
-        <section class="row equalize">
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-        </section>
-      </div>
+    <div class="grid-33 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">33%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-1">
-      <div class="background-light">
-        <p>span-1</p>
-      </div>
+    <hr>
+    <div class="grid-33 tablet-grid-50">
+      <section class="example-block"><b class="hide-on-tablet">33%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-</div>
-<div class="row">
-  <div class="span-full">
-    <h2>Fluid grids | Full width | Gutter in between grids and chrome </h2>
-  </div>
-</div>
-<section class="row equalize">
-  <div class="span-1">
-    <div class="background-light">
-      <p>span-1</p>
+    <div class="grid-33 tablet-grid-50">
+      <section class="example-block"><b class="hide-on-tablet">33%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-  <div class="span-11">
-    <div class="background-light">
-      <p>span-11</p>
+    <div class="grid-33">
+      <section class="example-block"><b class="hide-on-mobile">33%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-2">
-    <div class="background-light">
-      <p>span-2</p>
+    <hr>
+    <div class="grid-100 align-center">
+      <h3>Prefix & Suffix</h3>
     </div>
-  </div>
-  <div class="span-10">
-    <div class="background-light">
-      <p>span-10</p>
+    <div class="grid-10 suffix-90 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-3">
-    <div class="background-light">
-      <p>span-3</p>
+    <div class="grid-10 prefix-10 suffix-80 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-  <div class="span-9">
-    <div class="background-light">
-      <p>span-9</p>
+    <div class="grid-10 prefix-20 suffix-70 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-4">
-    <div class="background-light">
-      <p>span-4</p>
+    <div class="grid-10 prefix-30 suffix-60 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-  <div class="span-8">
-    <div class="background-light">
-      <p>span-8</p>
+    <div class="grid-10 prefix-40 suffix-50 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-5">
-    <div class="background-light">
-      <p>span-5</p>
+    <div class="grid-10 prefix-50 suffix-40 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-  <div class="span-7">
-    <div class="background-light">
-      <p>span-7</p>
+    <div class="grid-10 prefix-60 suffix-30 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-6">
-    <div class="background-light">
-      <p>span-6</p>
+    <div class="grid-10 prefix-70 suffix-20 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-  <div class="span-6">
-    <div class="background-light">
-      <p>span-6</p>
+    <div class="grid-10 prefix-80 suffix-10 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-7">
-    <div class="background-light">
-      <p>span-7</p>
+    <div class="grid-10 prefix-90 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-  <div class="span-5">
-    <div class="background-light">
-      <p>span-5</p>
+    <hr>
+    <div class="grid-100 align-center">
+      <h3>Push & Pull (for SEO)</h3>
+      <p>Green = push. Pink = pull.</p>
     </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-8">
-    <div class="background-light">
-      <p>span-8</p>
+    <div class="grid-10 push-90 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-  <div class="span-4">
-    <div class="background-light">
-      <p>span-4</p>
+    <div class="grid-10 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-9">
-    <div class="background-light">
-      <p>span-9</p>
+    <div class="grid-10 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-  <div class="span-3">
-    <div class="background-light">
-      <p>span-3</p>
+    <div class="grid-10 push-30 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-</section>
-<section class="row equalize">
-  <div class="span-10">
-    <div class="background-light padding-none">
-      <p>span-10</p>
-      <div class="row">
-        <div class="span-third">
-          <div class="background-dark">
-            <p> .span-third</p>
-          </div>
-        </div>
-        <div class="span-third">
-          <div class="background-dark">
-            <p> .span-third</p>
-          </div>
-        </div>
-        <div class="span-third">
-          <div class="background-dark">
-            <p> .span-third</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span-half">
-          <div class="background-dark">
-            <p> .span-half</p>
-          </div>
-        </div>
-        <div class="span-half">
-          <div class="background-dark">
-            <p> .span-half</p>
-          </div>
-        </div>
-      </div>
+    <div class="grid-10 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light">
-      <p>span-2</p>
+    <div class="grid-10 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-</section>
-<section class="row equalize">
-  <div class="span-11">
-    <div class="background-light padding-none">
-      <p>span-11</p>
-      <section class="row equalize">
-        <div class="span-1">
-          <div class="background-dark">
-            <p>span-1</p>
-          </div>
-        </div>
-        <div class="span-1">
-          <div class="background-dark">
-            <p>span-1</p>
-          </div>
-        </div>
-        <div class="span-1">
-          <div class="background-dark">
-            <p>span-1</p>
-          </div>
-        </div>
-        <div class="span-1">
-          <div class="background-dark">
-            <p>span-1</p>
-          </div>
-        </div>
-        <div class="span-1">
-          <div class="background-dark">
-            <p>span-1</p>
-          </div>
-        </div>
-        <div class="span-1">
-          <div class="background-dark">
-            <p>span-1</p>
-          </div>
-        </div>
-        <div class="span-1">
-          <div class="background-dark">
-            <p>span-1</p>
-          </div>
-        </div>
-        <div class="span-1">
-          <div class="background-dark">
-            <p>span-1</p>
-          </div>
-        </div>
-        <div class="span-1">
-          <div class="background-dark">
-            <p>span-1</p>
-          </div>
-        </div>
-        <div class="span-1">
-          <div class="background-dark">
-            <p>span-1</p>
-          </div>
-        </div>
-        <div class="span-1">
-          <div class="background-dark">
-            <p>span-1</p>
-          </div>
-        </div>
-        <div class="span-1">
-          <div class="background-dark">
-            <p>span-1</p>
-          </div>
-        </div>
-      </section>
+    <div class="grid-10 pull-30 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-  <div class="span-1">
-    <div class="background-light">
-      <p>span-1</p>
+    <div class="grid-10 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Fluid grids | Full width | Full bleed to chrome edges</h2>
-  </div>
-</div>
-<div class="bleed-full">
-  <section class="row equalize">
-    <div class="span-1">
-      <div class="background-light">
-        <p>span-1</p>
-      </div>
+    <div class="grid-10 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-11">
-      <div class="background-light">
-        <p>span-11</p>
-      </div>
+    <div class="grid-10 pull-90 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">10%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-  <section class="row">
-    <div class="span-2">
-      <div class="background-light">
-        <p>span-2</p>
-      </div>
+    <div class="grid-20 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">20%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-10">
-      <div class="background-light">
-        <p>span-10</p>
-      </div>
+    <div class="grid-20 push-60 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">20%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-  <section class="row">
-    <div class="span-3">
-      <div class="background-light">
-        <p>span-3</p>
-      </div>
+    <div class="grid-20 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">20%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-9">
-      <div class="background-light">
-        <p>span-9</p>
-      </div>
+    <div class="grid-20 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">20%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-  <section class="row">
-    <div class="span-4">
-      <div class="background-light">
-        <p>span-4</p>
-      </div>
+    <div class="grid-20 pull-60 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">20%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-8">
-      <div class="background-light">
-        <p>span-8</p>
-      </div>
+    <div class="grid-25 push-50 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">25%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-  <section class="row">
-    <div class="span-5">
-      <div class="background-light">
-        <p>span-5</p>
-      </div>
+    <div class="grid-25 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">25%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-7">
-      <div class="background-light">
-        <p>span-7</p>
-      </div>
+    <div class="grid-25 pull-50 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">25%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-  <section class="row">
-    <div class="span-6">
-      <div class="background-light">
-        <p>span-6</p>
-      </div>
+    <div class="grid-25 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">25%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-6">
-      <div class="background-light">
-        <p>span-6</p>
-      </div>
+    <div class="grid-66 push-33 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">66%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-  <section class="row">
-    <div class="span-7">
-      <div class="background-light">
-        <p>span-7</p>
-      </div>
+    <div class="grid-33 pull-66 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">33%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-5">
-      <div class="background-light">
-        <p>span-5</p>
-      </div>
+    <div class="grid-33 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">33%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-  <section class="row">
-    <div class="span-8">
-      <div class="background-light">
-        <p>span-8</p>
-      </div>
+    <div class="grid-33 push-33 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">33%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-    <div class="span-4">
-      <div class="background-light">
-        <p>span-4</p>
-      </div>
+    <div class="grid-33 pull-33 mobile-grid-50">
+      <section class="example-block"><b class="hide-on-mobile">33%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
     </div>
-  </section>
-  <section class="row">
-    <div class="span-9">
-      <div class="background-light">
-        <p>span-9</p>
-      </div>
+    <hr>
+    <div class="grid-100 align-center">
+      <h3>Nested Columns</h3>
     </div>
-    <div class="span-3">
-      <div class="background-light">
-        <p>span-3</p>
+    <div class="grid-50 grid-parent">
+      <p class="grid-100 align-center"><b>Parent Column</b></p>
+      <div class="grid-50 mobile-grid-50">
+        <section class="example-block"><b class="hide-on-mobile">50%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
       </div>
-    </div>
-  </section>
-  <section class="row equalize">
-    <div class="span-10">
-      <div class="background-light padding-none">
-        <p>span-10</p>
-        <div class="row">
-          <div class="span-third">
-            <div class="background-dark">
-              <p> .span-third</p>
-            </div>
-          </div>
-          <div class="span-third">
-            <div class="background-dark">
-              <p> .span-third</p>
-            </div>
-          </div>
-          <div class="span-third">
-            <div class="background-dark">
-              <p> .span-third</p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="span-half">
-            <div class="background-dark">
-              <p> .span-half</p>
-            </div>
-          </div>
-          <div class="span-half">
-            <div class="background-dark">
-              <p> .span-half</p>
-            </div>
-          </div>
-        </div>
+      <div class="grid-50 mobile-grid-50">
+        <section class="example-block"><b class="hide-on-mobile">50%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
       </div>
     </div>
-    <div class="span-2">
-      <div class="background-light">
-        <p>span-2</p>
+    <div class="grid-50 grid-parent">
+      <p class="grid-100 align-center"><b>Parent Column</b></p>
+      <div class="grid-50 mobile-grid-50">
+        <section class="example-block"><b class="hide-on-mobile">50%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
       </div>
-    </div>
-  </section>
-  <section class="row equalize">
-    <div class="span-11">
-      <div class="background-light padding-none">
-        <p>span-11</p>
-        <section class="row equalize">
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-          <div class="span-1">
-            <div class="background-dark">
-              <p>span-1</p>
-            </div>
-          </div>
-        </section>
+      <div class="grid-50 mobile-grid-50">
+        <section class="example-block"><b class="hide-on-mobile">50%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
       </div>
     </div>
-    <div class="span-1">
-      <div class="background-light">
-        <p>span-1</p>
+    <div class="grid-50 grid-parent">
+      <p class="grid-100 align-center"><b>Parent Column</b></p>
+      <div class="grid-25 mobile-grid-50">
+        <section class="example-block"><b class="hide-on-mobile">25%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
       </div>
-    </div>
-  </section>
-</div>
-<div class="row">
-  <div class="span-full">
-    <h2>Bleed only on one side </h2>
-    <p>Desktop: Bleed either left or right <br>
-      Mobile: Bleed becomes full bleed as grid cells stack</p>
-  </div>
-</div>
-<section class="row bleed-left">
-  <div class="span-4">
-    <div class="background-light">
-      <p>bleed-left (mobile becomes bleed-full)</p>
-    </div>
-  </div>
-  <div class="span-8">
-    <div class="background-light">
-      <p>normal</p>
-    </div>
-  </div>
-</section>
-<section class="row bleed-right">
-  <div class="span-4">
-    <div class="background-light">
-      <p>normal</p>
-    </div>
-  </div>
-  <div class="span-8">
-    <div class="background-light">
-      <p>bleed-right (mobile becomes bleed-full)</p>
-    </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Persistent fluid grids </h2>
-    <p>Desktop: Grids display as 4+8 <br>
-      Mobile: Grids display as 4+8</p>
-  </div>
-</div>
-<section class="row">
-  <div class="span-4 span-m-4">
-    <div class="background-light">
-      <p>span-4 span-m-4</p>
-    </div>
-  </div>
-  <div class="span-8 span-m-8">
-    <div class="background-light">
-      <p>span-8 span-m-8</p>
-    </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Persistent bleed only on one side </h2>
-    <p>Desktop: Bleed either left or right <br>
-      Mobile: If grids are maintained for mobile, the bleed left or right is maintained.</p>
-  </div>
-</div>
-<section class="row bleed-left">
-  <div class="span-4 span-m-4">
-    <div class="background-light">
-      <p>bleed-left (mobile maintains the bleed-left)</p>
-    </div>
-  </div>
-  <div class="span-8 span-m-8">
-    <div class="background-light">
-      <p>normal</p>
-    </div>
-  </div>
-</section>
-<section class="row bleed-right">
-  <div class="span-4 span-m-4">
-    <div class="background-light">
-      <p>normal</p>
-    </div>
-  </div>
-  <div class="span-8 span-m-8">
-    <div class="background-light">
-      <p>bleed-right (mobile maintains the bleed-right)</p>
-    </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Persistent fluid grids | New grid model created in mobile </h2>
-    <p>Desktop: Grids display as 4+8 <br>
-      Mobile: Grids display as 2+10</p>
-  </div>
-</div>
-<section class="row">
-  <div class="span-4 span-m-2">
-    <div class="background-light">
-      <p>span-4 span-m-2</p>
-    </div>
-  </div>
-  <div class="span-8 span-m-10">
-    <div class="background-light">
-      <p>span-8 span-m-10</p>
-    </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Persistent fluid grids | Grids stack when the resolution hits 480px wide </h2>
-  </div>
-</div>
-<section class="row">
-  <div class="span-4 span-m-4 span-m-stack-small">
-    <div class="background-light">
-      <p>span-4 span-m-4 span-m-stack-small</p>
-    </div>
-  </div>
-  <div class="span-8 span-m-8 span-m-stack-small">
-    <div class="background-light">
-      <p>span-8 span-m-8 span-m-stack-small</p>
-    </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Persistent fluid grids | Grids stack when the resolution hits 320px wide </h2>
-  </div>
-</div>
-<section class="row">
-  <div class="span-4 span-m-4 span-m-stack-xsmall">
-    <div class="background-light">
-      <p>span-4 span-m-4 span-m-stack-xsmall</p>
-    </div>
-  </div>
-  <div class="span-8 span-m-8 span-m-stack-xsmall">
-    <div class="background-light">
-      <p>span-8 span-m-8 span-m-stack-xsmall</p>
-    </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Center grids cells </h2>
-    <p>Desktop: Centered <br>
-      Mobile: All grid cells become full width, not centered</p>
-  </div>
-</div>
-<section class="row">
-  <div class="span-3 span-centered">
-    <div class="background-light">
-      <p>span-3 span-centered</p>
-    </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-8 span-centered">
-    <div class="background-light">
-      <p>span-8 span-centered</p>
-    </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-10 span-centered">
-    <div class="background-light padding-none">
-      <p>span-10 span-centered</p>
-      <div class="row">
-        <div class="span-half">
-          <div class="background-dark">
-            <p> .span-half</p>
-          </div>
-        </div>
-        <div class="span-half">
-          <div class="background-dark">
-            <p> .span-half</p>
-          </div>
-        </div>
+      <div class="grid-25 mobile-grid-50">
+        <section class="example-block"><b class="hide-on-mobile">25%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
       </div>
-    </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Persistent centered grid cells </h2>
-    <p>Desktop: Centered <br>
-      Mobile: Centered</p>
-  </div>
-</div>
-<section class="row">
-  <div class="span-8 span-m-8 span-centered">
-    <div class="background-light">
-      <p>span-8 span-m-8 span-centered</p>
-    </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Center only on mobile </h2>
-    <p>Desktop: Not centered <br>
-      Mobile: Centered</p>
-  </div>
-</div>
-<section class="row">
-  <div class="span-8 span-m-8 span-m-centered">
-    <div class="background-light">
-      <p>span-8 span-m-8 span-m-centered</p>
-    </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Centered on desktop but not centered on mobile although grid width maintained on mobile </h2>
-    <p>Desktop: Centered <br>
-      Mobile: Not centered but grid width is persistent</p>
-  </div>
-</div>
-<section class="row">
-  <div class="span-8 span-m-8 span-centered span-m-uncentered">
-    <div class="background-light">
-      <p>span-8 span-m-8 span-centered span-m-uncentered</p>
-    </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Offset grid cells </h2>
-    <p>Desktop: Offset applies <br>
-      Mobile: No offset</p>
-  </div>
-</div>
-<section class="row">
-  <div class="span-1">
-    <div class="background-light">
-      <p>span-1</p>
-    </div>
-  </div>
-  <div class="span-11">
-    <div class="background-light">
-      <p>span-11</p>
-    </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-1">
-    <div class="background-light">
-      <p>span-1</p>
-    </div>
-  </div>
-  <div class="span-10 offset-1">
-    <div class="background-light">
-      <p>span-10 offset-1</p>
-    </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-1">
-    <div class="background-light">
-      <p>span-1</p>
-    </div>
-  </div>
-  <div class="span-9 offset-2">
-    <div class="background-light">
-      <p>span-9 offset-2</p>
-    </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-1">
-    <div class="background-light">
-      <p>span-1</p>
-    </div>
-  </div>
-  <div class="span-8 offset-3">
-    <div class="background-light">
-      <p>span-8 offset-3</p>
-    </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Persistent offset grid cells </h2>
-    <p>Desktop: Offset applies <br>
-      Mobile: Offset applies</p>
-  </div>
-</div>
-<section class="row">
-  <div class="span-3 span-m-3">
-    <div class="background-light">
-      <p>span-3 span-m-3</p>
-    </div>
-  </div>
-  <div class="span-5 span-m-5 offset-4 offset-m-4">
-    <div class="background-light">
-      <p>span-5 span-m-5 offset-4 offset-m-4</p>
-    </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Push and pull grid cells </h2>
-    <p>Desktop: Push/pull applies <br>
-      Mobile: Push/pull applied but grid stack on top of each other</p>
-  </div>
-</div>
-<section class="row">
-  <div class="span-2 push-10">
-    <div class="background-light">
-      <p>span-2 push-10</p>
-    </div>
-  </div>
-  <div class="span-10 pull-2">
-    <div class="background-light">
-      <p>span-10 pull-2 (coded last)</p>
-    </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-3 push-9">
-    <div class="background-light">
-      <p>span-3 push-9</p>
-    </div>
-  </div>
-  <div class="span-9 pull-3">
-    <div class="background-light">
-      <p>span-9 pull-3 (coded last)</p>
-    </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-4 push-8">
-    <div class="background-light">
-      <p>span-4 push-8</p>
-    </div>
-  </div>
-  <div class="span-8 pull-4">
-    <div class="background-light">
-      <p>span-8 pull-4 (coded last)</p>
-    </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-5 push-7">
-    <div class="background-light">
-      <p>span-5 push-7</p>
-    </div>
-  </div>
-  <div class="span-7 pull-5">
-    <div class="background-light">
-      <p>span-7 pull-5 (coded last)</p>
-    </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-6 push-6">
-    <div class="background-light">
-      <p>span-6 push-6</p>
-    </div>
-  </div>
-  <div class="span-6 pull-6">
-    <div class="background-light">
-      <p>span-6 pull-6 (coded last)</p>
-    </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Persistent push and pull grid cells </h2>
-    <p>Desktop: Push/pull applies <br>
-      Mobile: Push/pull applies</p>
-  </div>
-</div>
-<section class="row">
-  <div class="span-2 span-m-2 push-10 push-m-10">
-    <div class="background-light">
-      <p>span-2 span-m-2 push-10 push-m-10 (coded last)</p>
-    </div>
-  </div>
-  <div class="span-10 span-m-10 pull-2 pull-m-2">
-    <div class="background-light">
-      <p>span-10 span-m-10 pull-2 pull-m-2</p>
-    </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Borders directly ON the grid cell, in the gutter area</h2>
-    <p>Desktop: Border is visible <br>
-      Mobile: Borders on the far left and right will be dropped</p>
-  </div>
-</div>
-<section class="row">
-  <div class="span-2 border-right">
-    <div class="background-light">
-      <p>span-2 border-right</p>
-    </div>
-  </div>
-  <div class="span-3 span-m-3">
-    <div class="background-light">
-      <p>span-3 span-m-3</p>
-    </div>
-  </div>
-  <div class="span-7 span-m-7 border-bottom border-left border-right">
-    <div class="background-light">
-      <p>span-7 span-m-7 border-bottom border-left border-right <br>
-        (In mobile, the border-right on this cell with disappear)</p>
-    </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Persistent borders on content WITHIN the grid cell</h2>
-    <p>Desktop: Border is visible <br>
-      Mobile: Border is visible</p>
-  </div>
-</div>
-<section class="row">
-  <div class="span-2">
-    <div class="background-light border border-light">
-      <p>background-light border border-light</p>
-    </div>
-  </div>
-  <div class="span-10 span-m-10">
-    <div class="background-light border-dark border">
-      <p>background-light border border-dark</p>
-    </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Border overrides (color and thickness)</h2>
-    <p>Desktop: Border override visible <br>
-      Mobile: Border override visible</p>
-  </div>
-</div>
-
-<section class="row equalize">
-  <div class="span-2 border-right">
-    <div class="background-light">
-      <p>span-2 border-right</p>
-    </div>
-  </div>
-  <div class="span-2 border-right-large">
-    <div class="background-light">
-      <p>span-2 border-right-large</p>
-    </div>
-  </div>
-  <div class="span-2 border-right-xlarge">
-    <div class="background-light">
-      <p>span-2 border-right-xlarge</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border">
-      <p>background-light border</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border-large">
-      <p>background-light border-large</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border-xlarge">
-      <p>background-light border-xlarge</p>
-    </div>
-  </div>
-</section>
-
-<section class="row equalize">
-  <div class="span-2 border-left">
-    <div class="background-light">
-      <p>span-2 border-left</p>
-    </div>
-  </div>
-  <div class="span-2 border-left-large">
-    <div class="background-light">
-      <p>span-2 border-left-large</p>
-    </div>
-  </div>
-  <div class="span-2 border-left-large border-light">
-    <div class="background-light">
-      <p>span-2 border-left-large border-light</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-light">
-      <p>background-light border border-light</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-large border-light">
-      <p>background-light border border-large border-light</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border-xlarge border-light">
-      <p>background-light border border-xlarge border-light</p>
-    </div>
-  </div>
-</section>
-
-<section class="row equalize">
-  <div class="span-2 border-bottom">
-    <div class="background-light">
-      <p>span-2 border-bottom</p>
-    </div>
-  </div>
-  <div class="span-2 border-bottom-large">
-    <div class="background-light">
-      <p>span-2 border-bottom-large</p>
-    </div>
-  </div>
-  <div class="span-2 border-bottom-xlarge">
-    <div class="background-light">
-      <p>span-2 border-bottom-large</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-dark">
-      <p>background-light border-dark</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border-large border-dark">
-      <p>background-light border-large border-dark</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border-xlarge border-dark">
-      <p>background-light border-xlarge border-dark</p>
-    </div>
-  </div>
-</section>
-
-<section class="row equalize">
-  <div class="span-2 border-right border-dark">
-    <div class="background-light">
-      <p>span-2 border-right border-dark</p>
-    </div>
-  </div>
-  <div class="span-2 border-right border-thick border-dark">
-    <div class="background-light">
-      <p>span-2 border-right border-thick border-dark</p>
-    </div>
-  </div>
-  <div class="span-2 border-right border-xthick border-dark">
-    <div class="background-light">
-      <p>span-2 border-right border-xthick border-dark</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-dark">
-      <p>background-light border border-dark</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-thick border-dark">
-      <p>background-light border border-thick border-dark</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-xthick border-dark">
-      <p>background-light border border-xthick border-dark</p>
-    </div>
-  </div>
-</section>
-<section class="row equalize">
-  <div class="span-2 border-right border-accent">
-    <div class="background-light">
-      <p>span-2 border-right border-accent</p>
-    </div>
-  </div>
-  <div class="span-2 border-right border-thick border-accent">
-    <div class="background-light">
-      <p>span-2 border-right border-thick border-accent</p>
-    </div>
-  </div>
-  <div class="span-2 border-right border-xthick border-accent">
-    <div class="background-light">
-      <p>span-2 border-right border-xthick border-accent</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-accent">
-      <p>background-light border border-accent</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-thick border-accent">
-      <p>background-light border border-thick border-accent</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-xthick border-accent">
-      <p>background-light border border-xthick border-accent</p>
-    </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Border overrides (style)</h2>
-    <p>Desktop: Border override visible <br>
-      Mobile: Border override visible</p>
-    <p>Color and thickness can also be applied to the modified style.  However, if you are overriding the solid line, you must use the CSS classes remove the sides you do not want you show.  Otherwise, all four sides will show by default.  This is native to the browser.</p>
-  </div>
-</div>
-<section class="row">
-  <div class="span-2 border-right border-dashed">
-    <div class="background-light">
-      <p>span-2 border-right border-dashed</p>
-    </div>
-  </div>
-  <div class="span-2 border-right border-dashed border-thick">
-    <div class="background-light">
-      <p>span-2 border-right border-dashed border-thick</p>
-    </div>
-  </div>
-  <div class="span-2 border-right border-dashed border-xthick">
-    <div class="background-light">
-      <p>span-2 border-right border-dashed border-xthick</p>
-    </div>
-  </div>
-  <div class="span-2 border-right border-double">
-    <div class="background-light">
-      <p>span-2 border-right border-double</p>
-    </div>
-  </div>
-  <div class="span-2 border-right border-double border-thick">
-    <div class="background-light">
-      <p>span-2 border-right border-double border-thick</p>
-    </div>
-  </div>
-  <div class="span-2 border-right border-double border-xthick">
-    <div class="background-light">
-      <p>span-2 border-right border-double border-xthick</p>
-    </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-2">
-    <div class="background-light border border-dashed">
-      <p>background-light border border-dashed</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-dashed border-thick">
-      <p>background-light border border-dashed border-thick</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-dashed border-xthick">
-      <p>background-light border border-dashed border-xthick</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-double">
-      <p>background-light border border-double</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-double border-thick">
-      <p>background-light border border-double border-thick</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-double border-xthick">
-      <p>background-light border border-double border-xthick</p>
-    </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-2">
-    <div class="background-light border border-dashed border-dark">
-      <p>background-light border border-dashed border-dark</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-dashed border-thick border-medium">
-      <p>background-light border border-dashed border-thick border-medium</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-dashed border-xthick border-accent">
-      <p>background-light border border-dashed border-xthick border-accent</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-double border-dark">
-      <p>background-light border border-double border-dark</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-double border-thick border-medium">
-      <p>background-light border border-double border-thick border-medium</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-double border-xthick border-accent">
-      <p>background-light border border-double border-xthick border-accent</p>
-    </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-2">
-    <div class="background-light border border-radius-xxlarge">
-      <p>background-light border border-radius-xxlarge</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-dashed border-thick border-medium border-radius-medium">
-      <p>background-light border border-dashed border-thick border-medium border-radius-medium</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-dashed border-xthick border-accent border-radius-large">
-      <p>background-light border border-dashed border-xthick border-accent border-radius-large</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-double border-dark border-radius-xlarge">
-      <p>background-light border border-double border-dark border-radius-xlarge</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-double border-thick border-medium border-radius-small">
-      <p>background-light border border-double border-thick border-medium border-radius-small</p>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light border border-double border-xthick border-accent border-radius-xsmall">
-      <p>background-light border border-double border-xthick border-accent border-radius-xsmall</p>
-    </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Content wrapping around a grid cell</h2>
-  </div>
-</div>
-<section class="row">
-  <div class="span-3 span-m-3 float-right">
-    <div class="background-light">
-      <p>background-light</p>
-    </div>
-  </div>
-  <div class="span-reflow">
-    <p class="margin-top-none">Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells! Look at me.  I'm a grid cell that reflows around other grid cells!</p>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>Nested grids padded in or flush</h2>
-    <p>By default, nested grids are flush left unless you add background-*, a border-* or a module-*.  In those cases they pad left and right so the inner content is not touching the permimeter.  To override this, use the padding-none CSS (or any other padding-* CSS to increase or decrease the default).</p>
-  </div>
-</div>
-<section class="row">
-  <div class="span-full">
-    <p>Default design: With <code>background-light</code>, you can see that there is padding by default</p>
-  </div>
-</section>
-<section class="row equalize">
-  <div class="span-10">
-    <div class="background-light" >
-      <p>span-10</p>
-      <div class="row">
-        <div class="span-third">
-          <div class="background-dark">
-            <p> .span-third</p>
-          </div>
-        </div>
-        <div class="span-third">
-          <div class="background-dark">
-            <p> .span-third</p>
-          </div>
-        </div>
-        <div class="span-third">
-          <div class="background-dark">
-            <p> .span-third</p>
-          </div>
-        </div>
+      <div class="grid-25 mobile-grid-50">
+        <section class="example-block"><b class="hide-on-mobile">25%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
       </div>
-      <div class="row">
-        <div class="span-half">
-          <div class="background-dark">
-            <p> .span-half</p>
-          </div>
-        </div>
-        <div class="span-half">
-          <div class="background-dark">
-            <p> .span-half</p>
-          </div>
-        </div>
+      <div class="grid-25 mobile-grid-50">
+        <section class="example-block"><b class="hide-on-mobile">25%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
       </div>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light" >
-      <p>span-2</p>
     </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-full">
-    <p>With <code>background-light padding-none</code></p>
-  </div>
-</section>
-<section class="row equalize">
-  <div class="span-10">
-    <div class="background-light padding-none" >
-      <p>span-10</p>
-      <div class="row">
-        <div class="span-third">
-          <div class="background-dark">
-            <p> .span-third</p>
-          </div>
-        </div>
-        <div class="span-third">
-          <div class="background-dark">
-            <p> .span-third</p>
-          </div>
-        </div>
-        <div class="span-third">
-          <div class="background-dark">
-            <p> .span-third</p>
-          </div>
-        </div>
+    <div class="grid-50 grid-parent">
+      <p class="grid-100 align-center"><b>Parent Column</b></p>
+      <div class="grid-25 mobile-grid-50">
+        <section class="example-block"><b class="hide-on-mobile">25%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
       </div>
-      <div class="row">
-        <div class="span-half">
-          <div class="background-dark">
-            <p> .span-half</p>
-          </div>
-        </div>
-        <div class="span-half">
-          <div class="background-dark">
-            <p> .span-half</p>
-          </div>
-        </div>
+      <div class="grid-25 mobile-grid-50">
+        <section class="example-block"><b class="hide-on-mobile">25%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
       </div>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light" >
-      <p>span-2</p>
-    </div>
-  </div>
-</section>
-<section class="row">
-  <div class="span-full">
-    <p>With <code>background-light padding-left-xlarge padding-right-xlarge</code></p>
-  </div>
-</section>
-<section class="row equalize">
-  <div class="span-10">
-    <div class="background-light padding-left-xlarge padding-right-xlarge" >
-      <p>span-10</p>
-      <div class="row">
-        <div class="span-third">
-          <div class="background-dark">
-            <p> .span-third</p>
-          </div>
-        </div>
-        <div class="span-third">
-          <div class="background-dark">
-            <p> .span-third</p>
-          </div>
-        </div>
-        <div class="span-third">
-          <div class="background-dark">
-            <p> .span-third</p>
-          </div>
-        </div>
+      <div class="grid-25 mobile-grid-50">
+        <section class="example-block"><b class="hide-on-mobile">25%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
       </div>
-      <div class="row">
-        <div class="span-half">
-          <div class="background-dark">
-            <p> .span-half</p>
-          </div>
-        </div>
-        <div class="span-half">
-          <div class="background-dark">
-            <p> .span-half</p>
-          </div>
-        </div>
+      <div class="grid-25 mobile-grid-50">
+        <section class="example-block"><b class="hide-on-mobile">25%</b><b class="hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
       </div>
-    </div>
-  </div>
-  <div class="span-2">
-    <div class="background-light" >
-      <p>span-2</p>
     </div>
-  </div>
-</section>
-<div class="row">
-  <div class="span-full">
-    <h2>List grid</h2>
-    <p>Desktop: 4 cells across (using <code>list-grid-4</code>)<br>
-      Mobile: 2 cells across (using <code>list-grid-m-2</code>)</p>
-    <ul class="list-grid-m-2 list-grid-4">
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-    </ul>
-    <p>Desktop: 12 cells across (using <code>list-grid-12</code>)<br>
-      Mobile: 4 cells across (using <code>list-grid-m-4</code>)</p>
-    <ul class="list-grid-m-4 list-grid-12">
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-    </ul>
-    <p>Desktop: 3 cells across (using <code>list-grid-3</code>)<br>
-      Mobile: 5 cells across (using <code>list-grid-m-5</code>)</p>
-    <ul class="list-grid-m-5 list-grid-3">
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-      <li><img  src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
-    </ul>
-  </div>
-</div>
-
-
-
-<div class="row">
-  <div class="span-full">
-    <h2>Coding the grid system</h2>
-    <p><strong>Note:</strong> The <code>row</code> and the <code>span-*</code> classes create the framework.  Content and styling should be placed <strong>inside</strong> the framework, not attached to the framework.</p>
-  </div>
-</div>
-<div class="row">
-  <div class="span-3">
-    <p>Full width to browser | Basic content directly inside grid</p>
-    <pre class="prettyprint">
-<code>&lt;div class=&quot;row&quot;&gt;
-  &lt;div class=&quot;span-6&quot;&gt;
-    ...
-  &lt;/div&gt;
-  &lt;div class=&quot;span-6&quot;&gt;
-    ...
-  &lt;/div&gt;
-&lt;/div&gt;</code>
-</pre>
-  </div>
-  <div class="span-3">
-    <p>Full width to browser | Decorated content directly inside grid</p>
-    <pre class="prettyprint">
-<code>&lt;div class=&quot;row&quot;&gt;
-  &lt;div class=&quot;span-6&quot;&gt;
-    &lt;div class=&quot;module-attention&quot;&gt;
-    ...
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;span-6&quot;&gt;
-     &lt;div class=&quot;module-alert&quot;&gt;
-    ...
-     &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code>
-</pre>
-  </div>
-  <div class="span-3">
-    <p>Full width to fixed container | Basic content directly inside grid</p>
-    <pre class="prettyprint">
-<code>&lt;div class=&quot;container&quot;&gt;
-  &lt;div class=&quot;row&quot;&gt;
-    &lt;div class=&quot;span-6&quot;&gt;
-      ...
-    &lt;/div&gt;
-    &lt;div class=&quot;span-6&quot;&gt;
-      ...
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code>
-</pre>
-  </div>
-  <div class="span-3">
-    <p>Full width to fixed container | Decorated content directly inside grid</p>
-    <pre class="prettyprint">
-<code>&lt;div class=&quot;container&quot;&gt;
-  &lt;div class=&quot;row&quot;&gt;
-    &lt;div class=&quot;span-6&quot;&gt;
-      &lt;div class=&quot;module-attention&quot;&gt;
-      ...
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;span-6&quot;&gt;
-       &lt;div class=&quot;module-alert&quot;&gt;
-      ...
-       &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code>
-</pre>
-  </div>
-</div>
-<div class="row">
-  <div class="span-full">
-    <h3>Supported changed to <code>row</code> and the <code>span-*</code></h3>
-    <p>The <code>row</code> and the <code>span-*</code> can be mutil-classed in the following ways:</p>
-  </div>
-</div>
-<div class="row">
-  <div class="span-full">
-    <h4>Changed to <code>row</code> CSS</h4>
-  </div>
-</div>
-<div class="row">
-  <div class="span-3">
-    <p>Attach a <code>bleed-*</code> to the <code>row</code></p>
-    <pre class="prettyprint">
-<code>&lt;div class=&quot;row bleed-full&quot;&gt;
-  &lt;div class=&quot;span-6&quot;&gt;
-    ...
-  &lt;/div&gt;
-  &lt;div class=&quot;span-6&quot;&gt;
-    ...
-  &lt;/div&gt;
-&lt;/div&gt;</code>
-</pre>
-  </div>
-  <div class="span-3">
-    <p>Attach an <code>equalize</code> to the <code>row</code></p>
-    <pre class="prettyprint">
-<code>&lt;div class=&quot;row equalize&quot;&gt;
-  &lt;div class=&quot;span-6&quot;&gt;
-    ...
-  &lt;/div&gt;
-  &lt;div class=&quot;span-6&quot;&gt;
-    ...
-  &lt;/div&gt;
-&lt;/div&gt;</code>
-</pre>
-  </div>
-</div>
-<div class="row">
-  <div class="span-full">
-    <h4>Changed to <code>span-*</code> CSS</h4>
-  </div>
-</div>
-<div class="row">
-  <div class="span-3">
-    <p>Attach a <code>border-*</code> to the <code>span-*</code></p>
-    <pre class="prettyprint">
-<code>&lt;div class=&quot;row&quot;&gt;
-  &lt;div class=&quot;span-6 border-right&quot;&gt;
-    ...
-  &lt;/div&gt;
-  &lt;div class=&quot;span-6&quot;&gt;
-    ...
-  &lt;/div&gt;
-&lt;/div&gt;</code>
-</pre>
-  </div>
-  <div class="span-3">
-    <p>Attach a <code>float-right</code> to the <code>span-*</code></p>
-    <pre class="prettyprint">
-<code>&lt;div class=&quot;row&quot;&gt;
-  &lt;div class=&quot;span-6 float-right&quot;&gt;
-    ...
-  &lt;/div&gt;
-  &lt;div class=&quot;span-reflow&quot;&gt;
-    ...
-
-  &lt;/div&gt;
-&lt;/div&gt;</code>
-</pre>
-  </div>
-  <div class="span-3">
-    <p>Attach a mobile grid <code>span-m-*</code> to the <code>span-*</code></p>
-    <pre class="prettyprint">
-<code>&lt;div class=&quot;row&quot;&gt;
-  &lt;div class=&quot;span-6 span-m-6&quot;&gt;
-    ...
-  &lt;/div&gt;
-  &lt;div class=&quot;span-6 span-m-6&quot;&gt;
-    ...
-  &lt;/div&gt;
-&lt;/div&gt;</code>
-</pre>
-  </div>
-  <div class="span-3">
-    <p>Attach a <code>push-*</code> and <code>pull-*</code> to the <code>span-*</code></p>
-    <pre class="prettyprint">
-<code>&lt;div class=&quot;row&quot;&gt;
-  &lt;div class=&quot;span-4 push-8&quot;&gt;
-    ...
-  &lt;/div&gt;
-  &lt;div class=&quot;span-8 pull-4&quot;&gt;
-    ...
-  &lt;/div&gt;
-&lt;/div&gt;</code>
-</pre>
-  </div>
-</div>
-<div class="row">
-  <div class="span-3">
-    <p>Attach a mobile <code>push-m-*</code> and <code>pull-m-*</code> to the <code>span-*</code></p>
-    <pre class="prettyprint">
-<code>&lt;div class=&quot;row&quot;&gt;
-  &lt;div class=&quot;span-4 span-m-4 push-8 push-m-8&quot;&gt;
-    ...
-  &lt;/div&gt;
-  &lt;div class=&quot;span-8 span-m-4 pull-4 pull-m-8&quot;&gt;
-    ...
-  &lt;/div&gt;
-&lt;/div&gt;</code>
-</pre>
-  </div>
-  <div class="span-3">
-    <p>Attach an <code>offset-*</code> to the <code>row</code></p>
-    <pre class="prettyprint">
-<code>&lt;div class=&quot;row&quot;&gt;
-  &lt;div class=&quot;span-6 offset-2&quot;&gt;
-    ...
-  &lt;/div&gt;
-  &lt;div class=&quot;span-4&quot;&gt;
-    ...
-  &lt;/div&gt;
-&lt;/div&gt;</code>
-</pre>
-  </div>
-  <div class="span-3">
-    <p>Attach a mobile <code>offset-m-*</code> to the <code>row</code></p>
-    <pre class="prettyprint">
-<code>&lt;div class=&quot;row&quot;&gt;
-  &lt;div class=&quot;span-6 span-m-6 offset-2 offset-m-2&quot;&gt;
-    ...
-  &lt;/div&gt;
-  &lt;div class=&quot;span-4&quot;&gt;
-    ...
-  &lt;/div&gt;
-&lt;/div&gt;</code>
-</pre>
-  </div>
-  <div class="span-3">
-    <p>Attach a <code>span-centered</code> to the <code>span-*</code></p>
-    <pre class="prettyprint">
-<code>&lt;div class=&quot;row&quot;&gt;
-  &lt;div class=&quot;span-6 span-centered&quot;&gt;
-    ...
-  &lt;/div&gt;
-&lt;/div&gt;</code>
-</pre>
-  </div>
-</div>
-<div class="row">
-  <div class="span-3">
-    <p>Attach a mobile centered <code>span-m-centered</code> to the <code>span-*</code></p>
-    <pre class="prettyprint">
-<code>&lt;div class=&quot;row&quot;&gt;
-  &lt;div class=&quot;span-6 span-m-6 span-m-centered&quot;&gt;
-    ...
-  &lt;/div&gt;
-&lt;/div&gt;</code>
-</pre>
-  </div>
-  <div class="span-3">
-    <p>Attach a mobile uncentered <code>span-m-uncentered</code> to the <code>span-*</code></p>
-    <pre class="prettyprint">
-<code>&lt;div class=&quot;row&quot;&gt;
-  &lt;div class=&quot;span-6 span-m-6 span-m-uncentered&quot;&gt;
-    ...
-  &lt;/div&gt;
-&lt;/div&gt;</code>
-</pre>
   </div>
-</div>
-</div>
-</div>
 </body>
-</html>

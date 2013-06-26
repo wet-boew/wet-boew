@@ -5,32 +5,112 @@
 	@notes: A basic theme for WET-BOEW
 	@licence: wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
 */
-
-body{
-
-  background:#FFF;
-  color:#222;
-  font-family:Arial,Verdana,Helvetica,sans-serif;
-  font-weight:400;
-  font-style:normal;
-  line-height:1.5;
-  position:relative;
-  cursor:default;
-  margin:0;
-  padding:0;
-  font-size:80%;
+hr {
+  border: 0 #cccccc solid;
+  border-top-width: 1px;
+  clear: both;
+  height: 0;
 }
 
-
-/* just for demo purposes */
-.container {
-  border: 1px dashed #999;
-  border-top: none;
-  border-bottom: none;
+h1 {
+  font-size: 25px;
 }
 
+h2 {
+  font-size: 23px;
+}
 
-.example-box { background-color: #eee;  text-align: center; }
+h3 {
+  font-size: 21px;
+}
 
+h4 {
+  font-size: 19px;
+}
 
-pre.prettyprint {background-color: #F5F5F5;border-radius: 3px 3px 3px 3px;}
+h5 {
+  font-size: 17px;
+}
+
+h6 {
+  font-size: 15px;
+}
+
+ol {
+  list-style: decimal;
+}
+
+ul {
+  list-style: disc;
+}
+
+li {
+  margin-left: 30px;
+}
+
+p,
+dl,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ol,
+ul,
+pre,
+table,
+address,
+fieldset,
+figure {
+  margin-bottom: 20px;
+}
+
+body {
+  background: white;
+  color: #333333;
+  text-align: center;
+}
+
+a {
+  color: blue;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  padding-top: 20px;
+}
+
+.example-block {
+  background: #eeeeee;
+  font-size: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.grid-container {
+  padding-bottom: 20px;
+}
+
+.grid-container > hr {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+div[class*="push-"] section {
+  background: #ddeecc;
+}
+
+div[class*="pull-"] section {
+  background: #ffccdd;
+}
+
+.dynamic-px-width {
+  display: block;
+}
