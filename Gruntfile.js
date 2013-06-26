@@ -118,6 +118,20 @@ module.exports = function(grunt) {
 				]
 			}
 		},
+		jade: {
+		  html: {
+		    options: {
+            pretty: true
+	        },
+	        files: [{
+	            expand: true,
+	            cwd: 'themes',
+	            dest: 'themes',
+	            src: '**/*.jade',
+	            ext: '.html'
+	        }]
+		  }
+		},
 		copy: {
 
 			main : {
@@ -149,6 +163,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-jade');
 	grunt.loadNpmTasks('grunt-contrib-nodeunit');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');
@@ -158,7 +173,7 @@ module.exports = function(grunt) {
 
 	// Default task.
 	grunt.registerTask('build', ['coffee']);
-	grunt.registerTask('default', ['clean','coffee','sass','concat','uglify', 'copy']);
-	grunt.registerTask('generic', ['clean','coffee','sass','concat','uglify', 'copy']);
+	grunt.registerTask('default', ['clean','coffee','jade','sass','concat','uglify', 'copy']);
+	grunt.registerTask('generic', ['clean','coffee','jade','sass','concat','uglify', 'copy']);
 
 };

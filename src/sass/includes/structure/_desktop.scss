@@ -1,0 +1,90 @@
+/* --------------------------------------------
+   Desktop View :: Default for lower end browsers
+ ----------------------------------------------*/
+
+.container{
+	margin:0 auto;
+	width: 100%;
+}
+
+.row{
+	width:100%;
+	overflow:hidden;
+	//margin: $gutters auto;
+	@if $has-ie-backward-support == true {  *zoom:1; }
+	@include clearfix();
+}
+
+/* Straight numeric column spans */
+@for $i from 1 through 20 {
+		$num: $i * 5;
+  		$decimal: $num / 100;
+  		$percent: $num * 1%;
+		@include create_column($num, $percent);
+}
+
+@for $i from 1 through 2 {
+	  $name: $i * 33;
+	  $one-third: 0.333333;
+	  $decimal: ($i * $one-third);
+	  $percent: ($name + $decimal) * 1%;
+		@include create_column($name, $percent);
+}
+
+	/*-----------------------------
+		Visually pleasing divisions
+	 ------------------------------*/
+.row {
+	.span-golden-a {
+		width: 61.803399%;
+		@if $has-ie-backward-support == true { _width: 61.803399% - 0.0694%; /* IE6-7 */ }
+	}
+
+	.span-golden-b {
+		width: 38.196601%;
+		@if $has-ie-backward-support == true { _width: 38.196601% - 0.0694%; /* IE6-7 */ }
+	}
+}
+// Structure adjustments
+.row {
+
+/*-----------------------------
+	Basic grid set-up
+ ------------------------------*/
+ 	[class*=push], [class*=pull], [class*=span-], [class*=offset-] { position: relative; }
+
+	[class*=span-] {
+	  -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+	  padding-left: $gutters;
+	  padding-right: $gutters;
+	  float: left;
+	}
+	
+	/*-----------------------------
+		Helper Reflows
+	 ------------------------------*/
+	.span-reflow {
+	  width: auto;
+	  display: block;
+	  float: none;
+	}
+
+	.span-centered {
+	  //position: relative;
+	  margin-left: auto;
+	  margin-right: auto;
+	  float: none;
+	  display: block;
+	}
+
+	/*-----------------------------
+		Internalization
+	 ------------------------------*/
+	.rtl [class*=span-] {
+		float: right;
+	}
+
+
+}

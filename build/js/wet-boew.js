@@ -27,7 +27,7 @@
   var _equalize;
   return _equalize = function(_elm) {
     var tallest, _group;
-    _group = $(_elm).find('> [class*="span-"] > *');
+    _group = $(_elm).find('[class*="span-"]');
     _group.css("min-height", "0");
     if (_group.length > 0) {
       tallest = 0;
@@ -45,6 +45,7 @@
       _equalize(this);
       return void 0;
     });
+    _equalize('.equalize');
     return void 0;
   };
 })(jQuery);

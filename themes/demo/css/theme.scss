@@ -29,13 +29,8 @@ body{
   border-bottom: none;
 }
 
-.dimensions {
-  margin-left: 0;
-  display: block;
-}
 
-.demo-grids .row {
-  [class*=module],[class*=background-]{text-align:center;}
-}
+.example-box { background-color: #eee;  text-align: center; }
+
 
 pre.prettyprint {background-color: #F5F5F5;border-radius: 3px 3px 3px 3px;}

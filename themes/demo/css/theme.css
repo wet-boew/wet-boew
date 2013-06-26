@@ -24,11 +24,8 @@ body {
   border-top: none;
   border-bottom: none; }
 
-.dimensions {
-  margin-left: 0;
-  display: block; }
-
-.demo-grids .row [class*=module], .demo-grids .row [class*=background-] {
+.example-box {
+  background-color: #eee;
   text-align: center; }
 
 pre.prettyprint {

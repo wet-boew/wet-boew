@@ -1,0 +1,77 @@
+ //- Mixins
+mixin grids
+      - var grids = [5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95]
+        each grid in grids
+          -var left = grid
+          -var right = 100 - grid
+            section.row.equalize
+              - if (left < 90)
+                div(class="span-#{left}")
+                  .example-box
+                    p span-#{left}
+                div(class="span-#{right}")
+                   .example-box
+                    p span-#{right}
+              - else
+                - if (left < 95)
+                  div(class="span-#{left}")
+                   .example-box
+                    p span-#{left}
+                    .row
+                      .span-33
+                        .example-box.background-dark
+                          p  .span-33
+                      .span-33
+                        .example-box.background-dark
+                          p  .span-33
+                      .span-33
+                        .example-box.background-dark
+                          p  .span-33
+                     .row
+                      .span-50
+                        .example-box.background-dark
+                          p  .span-50
+                      .span-50
+                        .example-box.background-dark
+                          p  .span-50
+                  .span-10
+                    .example-box.background-light
+                      p span-10
+                - else
+                  .span-95
+                    .example-box.background-light
+                      p span-95
+                      section.row.equalize
+                        .span-10
+                          .example-box.background-dark
+                            p span-10
+                        .span-10
+                          .example-box.background-dark
+                            p span-10
+                        .span-10
+                          .example-box.background-dark
+                            p span-10
+                        .span-10
+                          .example-box.background-dark
+                            p span-10
+                        .span-10
+                          .example-box.background-dark
+                            p span-10
+                        .span-10
+                          .example-box.background-dark
+                            p span-10
+                        .span-10
+                          .example-box.background-dark
+                            p span-10
+                        .span-10
+                          .example-box.background-dark
+                            p span-10
+                        .span-10
+                          .example-box.background-dark
+                            p span-10
+                        .span-10
+                          .example-box.background-dark
+                            p span-10
+                  .span-5
+                    .example-box.background-light
+                      p span-5

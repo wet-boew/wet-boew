@@ -1,5 +1,17 @@
 
 
-@for $i from 1 through $columns {
-		@include create_offset($i, $i);
-	}
+
+@for $i from 1 through 20 {
+	    $name: $i * 5;
+  		$decimal: $name / 100;
+  		$percent: $name * 1%;
+        @include create_offset($name,$percent);
+}
+
+@for $i from 1 through 2 {
+	  $name: $i * 33;
+	  $one-third: 0.333333;
+	  $decimal: ($i*$one-third);
+	  $percent: ($name+$decimal) * 1%;
+		@include create_offset($name, $percent);
+}

@@ -5,51 +5,69 @@
 
 
 
-$columnWidth: 100%/$columns;
+//$columnWidth: 100%/$columns;
 
 @mixin create_column($name, $num) {
-	.row .span-#{$name} { width: $columnWidth * $num; @if $has-ie-backward-support == true { _width: $columnWidth * $num - 0.0694%; } }
+	.row .span-#{$name} { width: $num ; @if $has-ie-backward-support == true { _width: $num - 0.0694%; } }
 }
 
 @mixin create_mobile_column($name, $num) {
-	.row .span-m-#{$name} { position: relative; width: $columnWidth * $num; }
+	.row .span-m-#{$name} { width: $num; }
+}
+
+@mixin create_tablet_column($name, $num) {
+	.row .span-t-#{$name} { width: $num; }
 }
 
 @mixin create_list_column($name, $num) {
-	.row .list-grid-#{$name} > li { width: 100%/$num; }
+	.row .list-grid-#{$name} > li { width: $num; }
 }
 
 @mixin create_mobile_list_column($name, $num) {
-	.row .list-grid-m-#{$name} > li { width: 100%/$num; }
+	.row .list-grid-m-#{$name} > li { width:  $num; }
+}
+@mixin create_tablet_list_column($name, $num) {
+	.row .list-grid-t-#{$name} > li { width:  $num; }
 }
 
 @mixin create_offset($name, $num) {
-	.row .offset-#{$num} { margin-left: $columnWidth * $num; @if $has-ie-backward-support == true { _margin-left: $columnWidth * $num - 0.0694%; } }
+	.row .offset-#{$name} { margin-left: $num; @if $has-ie-backward-support == true { _margin-left: $num - 0.0694%; } }
 }
 
 @mixin create_mobile_offset($name, $num) {
-	.row .offset-m-#{$num} { margin-left: $columnWidth * $num; @if $has-ie-backward-support == true { _margin-left: $columnWidth * $num - 0.0694%; } }
+	.row .offset-m-#{$name} { margin-left: $num; @if $has-ie-backward-support == true { _margin-left: $num - 0.0694%; } }
 }
 
+
+
 @mixin create_pull_push($name, $num) {
-	.row .pull-#{$num} { right: $columnWidth * $num; @if $has-ie-backward-support == true { _right: $columnWidth * $num - 0.0694%; } }
-	.row .push-#{$num} { left: $columnWidth * $num; @if $has-ie-backward-support == true { _left: $columnWidth * $num - 0.0694%; } }
+	.row .pull-#{$name} { left: (-$num); @if $has-ie-backward-support == true { _left: (-$num) - 0.0694%; } }
+	.row .push-#{$name} { left: (-$num); @if $has-ie-backward-support == true { _left: (-$num) - 0.0694%; } }
 }
 
 @mixin create_mobile_pull_push($name, $num) {
-	.row .pull-m-#{$num} { right: $columnWidth * $num; @if $has-ie-backward-support == true { _right: $columnWidth * $num - 0.0694%; } }
-	.row .push-m-#{$num} { left: $columnWidth * $num; @if $has-ie-backward-support == true { _left: $columnWidth * $num - 0.0694%; } }
+	.row .pull-m-#{$name} { left: (-$num); @if $has-ie-backward-support == true { _left: (-$num) - 0.0694%; } }
+	.row .push-m-#{$name} { left: (-$num); @if $has-ie-backward-support == true { _left: (-$num) - 0.0694%; } }
 }
 
+@mixin create_tablet_pull_push($name, $num) {
+	.row .pull-t-#{$name} { left: (-$num); @if $has-ie-backward-support == true { _left: (-$num) - 0.0694%; } }
+	.row .push-t-#{$name} { left: (-$num); @if $has-ie-backward-support == true { _left: (-$num) - 0.0694%; } }
+}
 
-
-@mixin microfix(){
-	&:before, &:after {
-	content: " "; /* 1 */
-	display: table; /* 2 */
+@mixin clearfix() {
+	&:before , &:after  {
+		content: ".";
+    	display: block;
+	    overflow: hidden;
+	    visibility: hidden;
+	    font-size: 0;
+	    line-height: 0;
+	    width: 0;
+	    height: 0;
 	}
-	&:after {  clear: both; }
-	zoom: 1;
-	@if $has-ie-backward-support == true {  _height: 1%; }
-	overflow: hidden;
+	&:after {
+		clear: both;
+	}
 }
+
