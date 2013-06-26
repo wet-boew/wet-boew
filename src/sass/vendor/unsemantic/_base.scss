@@ -1,0 +1,25 @@
+/* ================================================================== */
+/* This file has a mobile-to-tablet, and tablet-to-desktop breakpoint */
+/* ================================================================== */
+@media screen and (max-width: 400px) {
+  @-ms-viewport {
+    width: 320px;
+  }
+}
+
+@media screen {
+  @import 'all';
+}
+
+@media screen and (max-width: 767px) {
+  @import 'mobile';
+}
+
+@media screen and (min-width: 768px) {
+  @import 'desktop'
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  @import 'tablet';
+}
+

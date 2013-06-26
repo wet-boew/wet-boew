@@ -1,0 +1,64 @@
+/* ================================================================== */
+/* This file has the general styles for all viewports */
+/* ================================================================== */
+
+
+.cflat {
+	display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+.clear {
+	@extend .cflat;
+    clear: both;
+}
+
+/* ================================================================== */
+/* Global box model settings */
+/* ================================================================== */
+[class*=grid-] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left: $gutters;
+    padding-right: $gutters;
+    float:left;
+ }
+
+ .rtl { // Internationalization //
+ 	[class*=grid-] { float: right; }
+ }
+
+ [class*=push], [class*=pull]{ position: relative; }
+
+/* ================================================================== */
+/* Safe overrides */
+/* ================================================================== */
+.grid-container {
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    max-width: $viewport-large;
+    padding-left: $gutters-large;
+    padding-right: $gutters-large;
+ }
+
+.grid-container, .clearfix {
+	&:before, &:after {
+		content: ".";
+	    font-size: 0;
+	    line-height: 0;
+	    @extend .cflat;
+	}
+
+	&:after {
+		  clear: both;
+	}
+}
+
+.grid-parent {
+    padding-left: 0;
+    padding-right: 0;
+  }

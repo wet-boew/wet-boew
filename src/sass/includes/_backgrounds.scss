@@ -2,12 +2,12 @@
  * BACKGROUND SCSS
  * - Decorative OOCSS Extending CSS for background treatment of elements
  */
-.row {
+.grid-container {
 
 
 	[class*=background-]{
-		color:#333;
-		//padding:$gutters;
+		padding-left:$gutters-large;
+		padding-right:$gutters-large;
 		//@include microfix();
 	}
 
