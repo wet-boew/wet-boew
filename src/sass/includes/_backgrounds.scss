@@ -7,21 +7,21 @@
 
 	[class*=background-]{
 		color:#333;
-		padding:0 $gutters;
-		@include microfix();
+		//padding:$gutters;
+		//@include microfix();
 	}
 
 	/* background extensions */
-	h1,h2,h3,h4,h5,h6,p {
-		&[class*=background-] { padding:$gutters-small $gutters;}
-	}
+	//h1,h2,h3,h4,h5,h6,p {
+	//	&[class*=background-] { padding:$gutters-small $gutters;}
+	//}
 
-	.background-light  { background: $background-light-color; color: $background-light-text; }
-	.background-medium { background: $background-medium-color; color: $background-medium-text; }
-	.background-accent { background: $background-accent-color; color: $background-accent-text; }
-	.background-dark   { background: $background-dark-color; color: $background-dark-text; }
-	.background-highlight { background: $background-highlight-color; color: $background-highlight-text; }
-	.background-white { background: $background-white-color; color: $background-white-text; }
+	.background-light  { background-color: $background-light-color; color: $background-light-text; }
+	.background-medium {  background-color: $background-medium-color; color: $background-medium-text; }
+	.background-accent {background-color: $background-accent-color; color: $background-accent-text; }
+	.background-dark   {background-color: $background-dark-color; color: $background-dark-text; }
+	.background-highlight {background-color: $background-highlight-color; color: $background-highlight-text; }
+	.background-white {background-color: $background-white-color; color: $background-white-text; }
 
 }
 

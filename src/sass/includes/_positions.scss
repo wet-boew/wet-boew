@@ -3,6 +3,6 @@
  * - Decorative OOCSS Extending CSS for position based treatment of elements
  */
 
-.float-right { float: right  }
-.float-left { float: left  }
+.float-right { float: right !important; }
+.float-left { float: left  !important; }
 

@@ -7,57 +7,64 @@
  * Version: @wet-boew-build.version@
  *
  */
+//
+// Fix for IE in Windows 8 "snap" mode.
+// http://timkadlec.com/2012/10/ie10-snap-mode-and-responsive-design
+@media screen and (max-width: 400px) { @-ms-viewport { width: 320px } } 
+
 
 // Set the variables and functions for WET-BOEW
 @import 'variables';
 @import 'mixins';
 @import 'vendor/normalize'; // lets reset the values of elements to control things a bit better
 
-@import 'includes/global'; /* Base styles for all Themes */
-
-@import 'includes/structure/default';
-
-// Helper Class for Web Developers
-@import "includes/pullpush";
-@import "includes/offsets";
-@import "includes/bleeds";
-@import "includes/lists";
-
-@import "includes/modules";
-@import "includes/backgrounds";
-@import "includes/paddings";
-@import "includes/margins";
-@import "includes/borders";
-@import "includes/positions";
-// Structure is last to ensure no overwrites
 
 
-@media screen and (min-width: 768px) and (max-width: 959px), screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+@media screen { // default settings
+	@import 'includes/structure/desktop';
+
+	// Helper Class for Web Developers
+	@import "includes/pullpush";
+	@import "includes/offsets";
+	@import "includes/bleeds";
+	@import "includes/backgrounds";
+	@import "includes/paddings";
+	@import "includes/margins";
+	@import "includes/borders";
+	@import "includes/positions";
+	// Extra Goodies
+	@import "includes/modules";
+	@import "includes/lists";
+    
+}
+/* ================================================================== */
+/* Global CSS Tricks for web Developers */
+/* ================================================================== */
+@import 'includes/goodies';
+
+/* ================================================================== */
+/* This is the mobile breakpoint */
+/* ================================================================== */
+@media screen and (max-width: 767px)  { 
  	.container{width:100%;}
+ 	@import "includes/structure/mobile";
 }
 
-/*
-   Large Screen Tweaks
- */
-@media screen and (min-width: 1200px) and (min-device-width: 1024px) {
-	@import 'includes/structure/large';
-}
-/*
-	Mobile Tweak Point
-*/
-@media screen and (max-width: 767px), screen and (max-device-width: 767px) {
+/* ================================================================== */
+/* This is the tablet breakpoint */
+/* ================================================================== */
 
-	@import 'includes/structure/small';
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+	.container{width:100%; }
+	@import "includes/structure/tablet";
 }
-
-@media screen and (max-width: 479px) and (min-device-width: 479px) {
-	.span-m-stack-small {width: 100%;}
+/* ================================================================== */
+/* This is the large screen breakpoint */
+/* ================================================================== */
+@media screen and (min-width: 1200px) {
+    .container{width: 1200px; }
+    @import "includes/structure/wide";
 }
-   
-@media screen and (max-width: 319px) and (min-device-width: 319px) {
-	.span-m-stack-xsmall {width: 100%;}
-}
- 
 
 
 

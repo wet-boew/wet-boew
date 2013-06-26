@@ -6,7 +6,7 @@
 ###
 (($)->
 	_equalize = (_elm)->
-		_group = $(_elm).find('> [class*="span-"] > *')
+		_group = $(_elm).find('[class*="span-"]')
 		_group.css "min-height" , "0"
 		if (_group.length > 0)
 			tallest = 0;
@@ -18,5 +18,6 @@
  	$(document).on 'pagebeforecreate throttledresize','.equalize', ()->
  		_equalize(@)
  		undefined
+ 	_equalize '.equalize'
  	undefined
 )(jQuery)

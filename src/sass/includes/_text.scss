@@ -1,0 +1,37 @@
+
+body { font: 13px/1.5 "Helvetica Neue", Arial, "Liberation Sans", FreeSans, sans-serif }
+
+pre,code { font-family: "DejaVu Sans Mono", Monaco, Consolas, monospace }
+
+hr {
+  border: 0 $border-color solid;
+  border-top-width: $border + px;
+  clear: both;
+  height: 0;
+}
+
+// `Headings
+//----------------------------------------------------------------------------------------------------
+
+h1 { font-size: 25px }
+
+h2 { font-size: 23px }
+
+h3 { font-size: 21px }
+
+h4 { font-size: 19px }
+
+h5 { font-size: 17px }
+
+h6 { font-size: 15px }
+
+// `Spacing
+//----------------------------------------------------------------------------------------------------
+
+ol { list-style: decimal }
+
+ul { list-style: disc }
+
+li { margin-left: $margin-xlarge }
+
+p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset,figure { margin-bottom: $margin-xlarge }
