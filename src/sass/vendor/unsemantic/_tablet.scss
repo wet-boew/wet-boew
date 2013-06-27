@@ -5,16 +5,17 @@
   .hide-on-tablet {
     display: none !important;
   }
-
-   .hide-on-desktop {
-    display: auto !important;
+  
+ [class*=grid-] {
+    padding-left:$gutters;
+	padding-right:$gutters;
   }
   
-  [class*=background-]{
-		padding-left:$gutters;
-		padding-right:$gutters;
+  //[class*=background-]{
+	//	padding-left:$gutters;
+	//	padding-right:$gutters;
 		//@include microfix();
-	}
+	//}
   /* ================================================================== */
 /* Loop to create grid cells */
 /* ================================================================== */
@@ -38,7 +39,7 @@
 	  $decimal: ($i * $one-third);
 	  $percent: ($num + $decimal) * 1%;
 	  // create classes
-		.tablet-grid-#{$num} { width: $percent; }
+		.tablet-grid-#{$num} {  width: $percent; }
 		.tablet-prefix-#{$num} { margin-left: $percent; }
 		.tablet-suffix-#{$num} {  margin-right: $percent; }
 		.tablet-push-#{$num} {  left: $percent; }

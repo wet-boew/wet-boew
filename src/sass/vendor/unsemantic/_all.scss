@@ -22,9 +22,10 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    padding-left: $gutters;
-    padding-right: $gutters;
-    float:left;
+    padding-left: $gutters-large;
+    padding-right: $gutters-large;
+    float: left;
+    position: relative;
  }
 
  .rtl { // Internationalization //
@@ -32,6 +33,41 @@
  }
 
  [class*=push], [class*=pull]{ position: relative; }
+
+ /* ================================================================== */
+/* Loop to create grid cells */
+/* ================================================================== */
+
+/* Straight numeric column spans */
+@for $i from 1 through 20 {
+        $num: $i * 5;
+        $decimal: $num / 100;
+        $percent: $num * 1%;
+        // create classes
+        .grid-#{$num} {  width: $percent; }
+        .prefix-#{$num} { margin-left: $percent; }
+        .suffix-#{$num} {  margin-right: $percent; }
+        .push-#{$num} {  left: $percent; }
+        .pull-#{$num} {  left: (-$percent); }
+}
+
+@for $i from 1 through 2 {
+      $num: $i * 33;
+      $one-third: 0.333333;
+      $decimal: ($i * $one-third);
+      $percent: ($num + $decimal) * 1%;
+      // create classes
+        .grid-#{$num} {  width: $percent; }
+        .prefix-#{$num} { margin-left: $percent; }
+        .suffix-#{$num} {  margin-right: $percent; }
+        .push-#{$num} {  left: $percent; }
+        .pull-#{$num} {  left: (-$percent); }
+    
+}
+.grid-100 {
+    clear: both;
+    width: 100%;
+  }
 
 /* ================================================================== */
 /* Safe overrides */

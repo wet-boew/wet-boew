@@ -20,8 +20,8 @@
 
 
 @media screen {
-  @import 'vendor/unsemantic/all';
-  // Helper Class for Web Developers
+  	@import 'vendor/unsemantic/all';
+  	// Helper Class for Web Developers
 	@import "includes/bleeds";
 	@import "includes/backgrounds";
 	@import "includes/paddings";
@@ -37,13 +37,18 @@
   @import 'vendor/unsemantic/mobile';
 }
 
-@media screen and (min-width: 768px) {
-  @import 'vendor/unsemantic/desktop'
-}
-
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   @import 'vendor/unsemantic/tablet';
 }
+
+@media screen and (min-width: 1025px) {
+  @import 'vendor/unsemantic/desktop'
+}
+
+
+
+
+
 
 /* ================================================================== */
 /* Global CSS Tricks for web Developers */

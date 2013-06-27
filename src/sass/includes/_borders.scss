@@ -6,9 +6,8 @@
 
 
 // Set the defaults around border with low specificity and no background color
-.row {
-  &[class*=border], [class*=border] { border-color: $border-color; border-width: 0; padding: 0 $gutters }
-}
+[class*=border] { border-color: $border-color; border-width: 0; }
+
 
 @function border-return($context){
   @if $context == '-light' { @return $border-color-light }
@@ -64,7 +63,7 @@ $all : '','-none','-large','-xlarge', '-light', '-dark', '-dashed', '-double';
 @each $sds in $sides {
 	// looping through sides
 	@each $sz in $all {
-		.row .border#{$sds}#{$sz}, .border#{$sds}#{$sz}.row  { border#{property-return($sz,$sds)}: border-return($sz)}
+   .border#{$sds}#{$sz} { border#{property-return($sz,$sds)}: border-return($sz); border-width: $border + px}
 	}
 }
 
@@ -75,6 +74,6 @@ $styles : '', '-fallen', '-flush', '-arced', '-arched';
 @each $sds in $radius {
   // looping through sides
   @each $sz in $styles {
-   .row .border#{$sds}#{$sz}, .border#{$sds}#{$sz}.row  { border#{radius-return($sz,$sds)}:  border-return($sz)}
+   .border#{$sds}#{$sz}  { border#{radius-return($sz,$sds)}:  border-return($sz)}
   }
 }

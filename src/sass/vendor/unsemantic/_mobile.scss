@@ -8,11 +8,21 @@
     display: none !important;
   }
  
- 	[class*=background-]{
-		padding-left:$gutters-small;
-		padding-right:$gutters-small;
+  [class*=grid-] {
+    width: 100%;
+    padding-left:$gutters-small;
+	padding-right:$gutters-small;
+  }
+
+ [class*=push-], [class*=pull-] { left: auto; }
+ [class*=prefix-] { margin-left: 0; }
+ [class*=suffix-] { margin-right: 0; }
+  
+ // [class*=background-]{
+//		padding-left:$gutters-small;
+//		padding-right:$gutters-small;
 		//@include microfix();
-	}
+//	}
 /* ================================================================== */
 /* Loop to create grid cells */
 /* ================================================================== */
@@ -23,7 +33,7 @@
   		$decimal: $num / 100;
   		$percent: $num * 1%;
   		// create classes
-		.mobile-grid-#{$num} { width: $percent; }
+		.mobile-grid-#{$num} {  float:left; width: $percent; }
 		.mobile-prefix-#{$num} { margin-left: $percent; }
 		.mobile-suffix-#{$num} {  margin-right: $percent; }
 		.mobile-push-#{$num} {  left: $percent; }
@@ -36,7 +46,7 @@
 	  $decimal: ($i * $one-third);
 	  $percent: ($num + $decimal) * 1%;
 	  // create classes
-		.mobile-grid-#{$num} { width: $percent; }
+		.mobile-grid-#{$num} {  float:left; width: $percent; }
 		.mobile-prefix-#{$num} { margin-left: $percent; }
 		.mobile-suffix-#{$num} {  margin-right: $percent; }
 		.mobile-push-#{$num} {  left: $percent; }
