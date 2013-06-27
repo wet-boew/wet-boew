@@ -1,40 +1,41 @@
 {
-	"name": "wet-boew",
-	"version": "4.0.0-a1-development",
-	"description": "Web Experience Toolkit (WET): Open source code library for building innovative websites that are accessible, usable, interoperable, mobile-friendly and multilingual. This collaborative open source project is led by the Government of Canada. / Boîte à outils de l’expérience Web (BOEW) : Une bibliothèque de code primée pour construire des sites Web innovants qui sont accessibles, faciles d'emploi, interopérables, optimisés pour les appareils mobiles et multilingues. Ceci est un projet à source ouverte collaboratif dirigé par le Gouvernement du Canada.",
-	"main": "index.html",
-	"scripts": {
-		"test": "grunt -v"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/wet-boew/wet-boew.git"
-	},
-	"keywords": [
-		"framework",
-		"web",
-		"html5",
-		"javascript",
-		"modernizr",
-		"polyfill",
-		"WCAG2.0",
-		"accessiblity",
-		"usability",
-		"interoperability",
-		"mobile",
-		"multilingual"
-	],
-	"author": "",
-	"license": "MIT",
-	"devDependencies": {
-		"grunt": "~0.4.1",
-		"grunt-contrib-coffee": "~0.6.4",
-		"grunt-contrib-concat": "~0.1.3",
-		"grunt-contrib-uglify": "~0.2.0",
-		"grunt-contrib-nodeunit": "~0.1.2",
-		"grunt-contrib-watch": "~0.3.1",
-		"grunt-contrib-jshint": "~0.3.0",
-		"grunt-contrib-clean": "~0.4.0",
-		"grunt-contrib-copy": "~0.4.1"
-	}
+  "name": "wet-boew",
+  "version": "4.0.0-a1-development",
+  "description": "Web Experience Toolkit (WET): Open source code library for building innovative websites that are accessible, usable, interoperable, mobile-friendly and multilingual. This collaborative open source project is led by the Government of Canada. / Boîte à outils de l’expérience Web (BOEW) : Une bibliothèque de code primée pour construire des sites Web innovants qui sont accessibles, faciles d'emploi, interopérables, optimisés pour les appareils mobiles et multilingues. Ceci est un projet à source ouverte collaboratif dirigé par le Gouvernement du Canada.",
+  "main": "index.html",
+  "scripts": {
+    "test": "grunt -v"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wet-boew/wet-boew.git"
+  },
+  "keywords": [
+    "framework",
+    "web",
+    "html5",
+    "javascript",
+    "modernizr",
+    "polyfill",
+    "WCAG2.0",
+    "accessiblity",
+    "usability",
+    "interoperability",
+    "mobile",
+    "multilingual"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-coffee": "~0.6.4",
+    "grunt-contrib-concat": "~0.1.3",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-nodeunit": "~0.1.2",
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-contrib-jshint": "~0.3.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-sass": "~0.6.0"
+  }
 }
