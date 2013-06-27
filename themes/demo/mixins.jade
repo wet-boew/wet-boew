@@ -42,7 +42,7 @@ mixin ngrids
 
 mixin borders
   - var sides = ['','-left', '-right', '-top', '-bottom']
-  - var styles = ['-dashed', '-double']
+  - var styles = ['','-dashed', '-double']
   - var sizes = [ '','-none','-large','-xlarge' ]
   - var colors = [ '-light', '-dark' ]
   // lets do the styles first
@@ -55,6 +55,20 @@ mixin borders
             section(class="example-block border#{side}#{style}")
               b
                 | border#{side}#{style}
+      if (_count == 5)
+        div.clear
+        -_count = 1
+      else
+        - _count++
+   h4
+    | Sizes
+  -var _count = 1
+  each size in sizes
+    each side in sides
+      div(class="grid-20 tablet-grid-20 mobile-grid-20")
+            section(class="example-block border#{side}#{size}")
+              b
+                | border#{side}#{size}
       if (_count == 5)
         div.clear
         -_count = 1
