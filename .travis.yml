@@ -1,6 +1,9 @@
 language: node_js
-node_js:
-  - "0.8"
-  - "0.10"
+matrix:
+  exclude: [{}]
+  include:
+    -  { node_js: "0.10", env: POST_BUILD=true }
 before_install:
   - npm install -g grunt-cli
+script:
+  - npm test && ./build/post_build.sh

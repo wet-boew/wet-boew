@@ -1,0 +1,308 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+@import "compass/css3/border-radius";
+
+%ogpl-default-font-body {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+}
+%ogpl-default-screen-display-none {
+	display: none;
+}
+%ogpl-default-screen-display-block {
+	display: block;
+}
+%ogpl-default-screen-ogpl-title-object-display-none {
+	#ogpl-title {
+		object {
+			@extend %ogpl-default-screen-display-none;
+		}
+	}
+}
+%ogpl-default-screen-ogpl-title-object-display-block {
+	#ogpl-title {
+		object {
+			@extend %ogpl-default-screen-display-block;
+		}
+	}
+}
+%ogpl-default-screen-ui-mobile-rendering-ogpl-title-object-display-block-none {
+	&.ui-mobile {
+		@extend %ogpl-default-screen-ogpl-title-object-display-block;
+		&.ui-mobile-rendering {
+			@extend %ogpl-default-screen-ogpl-title-object-display-none;
+		}
+	}
+}
+%ogpl-default-screen-list-style-type-none {
+	list-style-type: none;
+}
+%ogpl-default-screen-padding-0 {
+	padding: 0;
+}
+%ogpl-default-screen-color-fff {
+	color: #fff;
+}
+%ogpl-default-screen-color-333 {
+	color: #333;
+}
+%ogpl-default-screen-font-weight-700 {
+	font-weight: 700;
+}
+%ogpl-default-screen-margin-top-0 {
+	margin-top: 0;
+}
+%ogpl-default-screen-color-222 {
+	color: #222;
+}
+%ogpl-default-screen-line-height-175 {
+	line-height: 1.75em;
+}
+
+body {
+	@extend %ogpl-default-font-body;
+	margin: 0;
+}
+
+textarea {
+	@extend %ogpl-default-font-body;
+}
+
+input {
+	@extend %ogpl-default-font-body;
+}
+
+.button {
+	@extend %ogpl-default-font-body;
+}
+
+#wb-skip {
+	li {
+		top: 7px;
+	}
+}
+
+#ogpl-fullhd {
+	background: #474747;
+	@extend %ogpl-default-screen-color-fff;
+	ul {
+		@extend %ogpl-default-screen-list-style-type-none;
+		float: right;
+		margin: 0 0 0 10px;
+		@extend %ogpl-default-screen-padding-0;
+		li {
+			float: left;
+			padding: 13px 0;
+			&[id|=ogpl-fullhd-lang] {
+				text-transform: capitalize;
+			}
+		}
+	}
+	a {
+		@extend %ogpl-default-screen-color-fff;
+		text-decoration: none;
+	}
+}
+
+#ogpl-title {
+	span {
+		position: relative;
+		z-index: 1;
+	}
+	small {
+		font-size: 0.45em;
+		display: block;
+	}		
+}
+
+.wb-sec-def {
+	h3.top-section {
+		a {
+			&, &.ui-link {
+				background: #0B3048;
+				padding-top: 8px;
+				padding-bottom: 8px;
+				font-size: 1.1em;
+				&:link, &:visited {
+					@extend %ogpl-default-screen-color-fff;
+				}
+				@include pseudo-focus {
+					@extend %ogpl-default-screen-color-fff;
+					text-decoration: underline;
+				}
+				&.nav-current {
+					@extend %ogpl-default-screen-color-fff;
+					padding-top: 7px;
+					padding-bottom: 7px;
+					background: #0F315B;
+				}
+			}
+		}
+	}
+	h3, h4, .top-level {
+		font-size: 100%;
+		border-bottom: none;
+		@include border-radius(2px);
+		margin: 0 0 3px;
+		a {
+			&, &.ui-link {
+				@extend %ogpl-default-screen-font-weight-700;
+				background: #DDD;
+				padding: 2px 4px;
+				&.nav-current {
+					color: #0F315B;
+					padding: 1px 3px;
+				}
+			}
+		}
+	}
+	li {
+		a {
+			&, &.ui-link {
+				padding: 4px 5px;
+				&.nav-current {
+					color: #0F315B;
+					padding: 3px 4px;
+				}
+			}
+		}
+	}
+	a.nav-current{
+		border: 1px solid #777;
+		@include border-radius(2px);
+	}
+	h3, h4, .top-level, li {
+		a {
+			&, &.ui-link {
+				display: block;
+				text-decoration: none;
+				&:link, &:visited {
+					@extend %ogpl-default-screen-color-333;
+				}
+				@include pseudo-focus {
+					@extend %ogpl-default-screen-color-333;
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+	ul {
+		@extend %ogpl-default-screen-list-style-type-none;
+		margin:0 0 3px;
+		@extend %ogpl-default-screen-padding-0;
+		ul {
+			@extend %ogpl-default-screen-list-style-type-none;
+			margin-left: 10px;
+			padding-left: 5px;
+			border-left: 1px solid #CCC;
+		}
+	}
+	li {
+		li{
+			margin-left: 0;
+			border: none;
+			@extend %ogpl-default-screen-list-style-type-none;
+			@extend %ogpl-default-screen-padding-0;
+		}
+	}
+}
+
+#wb-foot {
+	h4, .ogpl-col-head {
+		font-size: 110%;
+		border: none;
+		@extend %ogpl-default-screen-font-weight-700;
+		margin: 20px 0 5px;
+	}
+	ul {
+		@extend %ogpl-default-screen-list-style-type-none;
+		margin: 0;
+		@extend %ogpl-default-screen-padding-0;
+	}
+	li {
+		a {
+			font-weight: 400;
+		}
+	}
+	a {
+		text-decoration:none;
+	}
+	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
+		margin-bottom: 0;
+	}
+	.ogpl-col-head {
+		.ui-link {
+			@extend %ogpl-default-screen-font-weight-700;
+		}
+	}
+}
+
+#ogpl-sft {
+	background: #CCC;
+	border-top: #BBB 1px solid;
+	font-family: Arial, Helvetica, sans-serif;
+	a {
+		@extend %ogpl-default-screen-color-222;
+	}
+	span {
+		&.link	{
+			@extend %ogpl-default-screen-color-222;
+		}
+	}
+	li {
+		a {
+			@extend %ogpl-default-screen-line-height-175;
+		}
+		span {
+			&.link {
+				@extend %ogpl-default-screen-line-height-175;
+			}
+		}
+	}
+	h4 {
+		@extend %ogpl-default-screen-margin-top-0;
+	}
+	.ogpl-col-head {
+		@extend %ogpl-default-screen-margin-top-0;
+	}
+	address {
+		font-style: normal;
+	}
+}
+
+#ogpl-sft-in {
+	padding: 20px 0;
+	.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
+		position: static;
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	.wb-sec-def {
+		ul {
+			ul {
+				margin-left: auto;
+				margin-right: 10px;
+				padding-left: 0;
+				padding-right: 5px;
+				border-left: none;
+				border-right: 1px solid #ccc;
+			}
+		}
+
+		li {
+			li {
+				margin-left: auto;
+				margin-right: 0;
+			}
+		}
+	}
+
+	#ogpl-fullhd {
+		ul {
+			margin: 0 10px 0 0;
+		}
+	}
+}

@@ -1,0 +1,162 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+%ogpl-default-responsive-large-width-100perc-min-width-960 {
+	width: 100%;
+	min-width: 960px;
+}
+%ogpl-default-responsive-large-width-960 {
+	width: 960px;
+}
+%ogpl-default-responsive-large-width-480 {
+	width: 480px;
+}
+%ogpl-default-responsive-large-margin-auto {
+	margin: auto;
+}
+
+body{
+	min-width: 960px;
+}
+
+#wb-head {
+	@extend %ogpl-default-responsive-large-width-100perc-min-width-960;
+}
+
+#wb-core {
+	@extend %ogpl-default-responsive-large-width-100perc-min-width-960;
+}
+
+#wb-foot {
+	@extend %ogpl-default-responsive-large-width-100perc-min-width-960;
+}
+
+#wb-head-in {
+	@extend %ogpl-default-responsive-large-width-100perc-min-width-960;
+}
+
+#ogpl-fullhd {
+	@extend %ogpl-default-responsive-large-width-100perc-min-width-960;
+}
+
+#ogpl-bnr {
+	@extend %ogpl-default-responsive-large-width-100perc-min-width-960;
+}
+
+#ogpl-psnb {
+	@extend %ogpl-default-responsive-large-width-100perc-min-width-960;
+	.mb-menu {
+		@extend %ogpl-default-responsive-large-width-960;
+	}
+}
+
+#ogpl-bc {
+	@extend %ogpl-default-responsive-large-width-100perc-min-width-960;
+}
+
+#wb-foot-in {
+	@extend %ogpl-default-responsive-large-width-100perc-min-width-960;
+}
+
+#ogpl-fullft {
+	@extend %ogpl-default-responsive-large-width-100perc-min-width-960;
+}
+
+#ogpl-sft {
+	@extend %ogpl-default-responsive-large-width-100perc-min-width-960;
+}
+
+#wb-core-in {
+	@extend %ogpl-default-responsive-large-margin-auto;
+	@extend %ogpl-default-responsive-large-width-960;
+}
+
+#ogpl-fullhd-in {
+	@extend %ogpl-default-responsive-large-margin-auto;
+	@extend %ogpl-default-responsive-large-width-960;
+}
+
+#ogpl-bnr-in {
+	@extend %ogpl-default-responsive-large-margin-auto;
+	@extend %ogpl-default-responsive-large-width-960;
+}
+
+#ogpl-psnb-in {
+	@extend %ogpl-default-responsive-large-margin-auto;
+	@extend %ogpl-default-responsive-large-width-960;
+}
+
+#ogpl-bc-in {
+	@extend %ogpl-default-responsive-large-margin-auto;
+	@extend %ogpl-default-responsive-large-width-960;
+}
+
+#ogpl-fullft-in {
+	@extend %ogpl-default-responsive-large-margin-auto;
+	@extend %ogpl-default-responsive-large-width-960;
+}
+
+#ogpl-sft-in {
+	@extend %ogpl-default-responsive-large-margin-auto;
+	@extend %ogpl-default-responsive-large-width-960;
+}
+
+#ogpl-subsite {
+	@extend %ogpl-default-responsive-large-margin-auto;
+	p {
+		@extend %ogpl-default-responsive-large-width-960;
+	}
+}
+
+#wb-body-sec-sup {
+	#wb-main {
+		@extend %ogpl-default-responsive-large-width-480;
+		right: 240px;
+	}
+}
+
+%ogpl-default-responsive-large-width-240 {
+	width: 240px;
+}
+#wb-sec {
+	@extend %ogpl-default-responsive-large-width-240;
+}
+
+#wb-sup {
+	@extend %ogpl-default-responsive-large-width-240;
+	left: 480px;
+}
+
+#wb-body {
+	#wb-main {
+		@extend %ogpl-default-responsive-large-width-960;
+	}
+}
+
+[id|="wb-body-sec"] {
+	[id|="wb-main"] {
+		width: 720px;
+	}
+}
+
+#wb-body-sec-sup {
+	#wb-main-in {
+		@extend %ogpl-default-responsive-large-width-480;
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#wb-body-sec-sup {
+		#wb-main {
+			right: auto;
+			left: 240px;
+		}
+	}
+
+	#wb-sup {
+		left: auto;
+		right: 480px;
+	}
+}

@@ -1,0 +1,264 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+
+body {
+	margin: 0;
+}
+
+#base-fullhd {
+	overflow: hidden;
+	background: #555;
+	font-size: 0.9em;
+	color: #fff;
+	ul {
+		list-style-type: none;
+		float: right;
+		margin: 0;
+		padding: 0;
+		li {
+			float: left;
+			padding: 13px 0;
+			&#base-fullhd-lang {
+				a {
+					padding-right: 10px;
+					margin-right: 1px;
+					text-transform: capitalize;
+				}
+			}
+		}
+	}
+	a {
+		color: #fff;
+		text-decoration: none;
+	}
+}
+
+.wb-sec-def {//TODO: Highly nested class, any cleanup possible?
+	a {
+		&.nav-current {
+			border: 1px solid #777;
+			@include border-radius(2px);
+		}
+	}
+	h3 {
+		@extend %base-default-screen-wb-sec-def-child-a-plus-ui-link;
+		@extend %base-default-screen-wb-sec-def-child-fonts-a-plus-ui-link;
+		&.top-section {
+			a {
+				&, &.ui-link {
+					background: #333;
+					color: #FFF;
+					padding-top: 5px;
+					padding-bottom: 5px;
+					font-size: 1.1em;
+					@include pseudo-focus {
+						color: #FFF;
+						text-decoration: underline;
+					}
+					&.nav-current {
+						color: #FFF;
+						padding-top: 4px;
+						padding-bottom: 4px;
+						background: #0f315b;
+					}
+				}
+			}
+		}
+	}
+	%base-default-screen-wb-sec-def-child-fonts-a-plus-ui-link {
+		font-size: 100%;
+		border-bottom: none;
+		@include border-radius(2px);
+		margin: 0 0 3px;
+		a {
+			&, &.ui-link {
+				font-weight: 700;
+				background: #DDD;
+				padding: 2px 4px;
+				&.nav-current {
+					color: #0F315B;
+					padding: 1px 3px;
+				}
+			}
+		}
+	}
+	h4 {
+		@extend %base-default-screen-wb-sec-def-child-fonts-a-plus-ui-link;
+		@extend %base-default-screen-wb-sec-def-child-a-plus-ui-link;
+	}
+	li {
+		@extend %base-default-screen-wb-sec-def-child-a-plus-ui-link;
+		a {
+			&, &.ui-link {
+				padding: 4px 5px;
+				&.nav-current {
+					color: #0F315B;
+					padding: 3px 4px;
+				}
+			}
+		}
+		li {
+			margin-left: 0;
+			border: none;
+			list-style-type: none;
+			padding: 0;
+		}
+	}
+	%base-default-screen-wb-sec-def-child-a-plus-ui-link {
+		a {
+			&, &.ui-link {
+				display: block;
+				color: #333;
+				text-decoration: none;
+				@include pseudo-focus {
+					color: #333;
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+	ul {
+		list-style-type: none;
+		margin: 0 0 3px;
+		padding: 0;
+		ul {
+			list-style-type: none;
+			margin-left: 10px;
+			padding-left: 5px;
+			border-left: 1px solid #ccc;
+		}
+	}
+	.top-level {
+		@extend %base-default-screen-wb-sec-def-child-a-plus-ui-link;
+		@extend %base-default-screen-wb-sec-def-child-fonts-a-plus-ui-link;
+	}
+}
+
+#wb-foot {
+	%base-default-screen-wb-foot-font-border {
+		border: none;
+		font: {
+			size: 110%;
+			weight: 700;
+		}
+		margin: 20px 0 5px;
+	}
+	h4 {
+		@extend %base-default-screen-wb-foot-font-border;
+	}
+	ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		a {
+			font-weight: 400;
+		}
+	}
+	a {
+		text-decoration: none;
+	}
+	[class*="span-"] {
+		margin-bottom: 0;
+	}
+	.base-col-head {
+		@extend %base-default-screen-wb-foot-font-border;
+		.ui-link {
+			font-weight: 700;
+		}
+	}
+}
+
+#base-sft {
+	background: #cf3f0e;
+	font-family: Arial, Helvetica, sans-serif;
+	%base-default-screen-base-sft-color222 {
+		color: #222;
+	}
+	a {
+		@extend %base-default-screen-base-sft-color222;
+	}
+	span {
+		&.link {
+			@extend %base-default-screen-base-sft-color222;
+		}
+	}
+	li {
+		%base-default-screen-base-sft-li-line-height175em {
+			line-height: 1.75em;
+		}
+		a {
+			@extend %base-default-screen-base-sft-li-line-height175em;
+		}
+		span {
+			&.link {
+				@extend %base-default-screen-base-sft-li-line-height175em;
+			}
+		}
+	}
+	%base-default-screen-base-sft-margin-top10px {
+		margin-top: 10px;
+	}
+	h4 {
+		@extend %base-default-screen-base-sft-margin-top10px;
+	}
+	address {
+		font-style: normal;
+	}
+	.base-col-head {
+		@extend %base-default-screen-base-sft-margin-top10px;
+	}
+}
+
+#base-sft-in {
+	background: #CCC;
+	padding: 20px 0;
+	[class*="span-"] {
+		position: static;
+	}
+}
+
+#base-fullft {
+	background: #333;
+	color: #FFF;
+}
+
+#base-fullft-in {
+	background: #666;
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	.wb-sec-def {
+		ul {
+			ul {
+				margin: {
+					left: auto;
+					right: 10px;
+				}
+				padding: {
+					left: 0;
+					right: 5px;
+				}
+				border: {
+					left: none;
+					right: 1px solid #ccc;
+				}
+			}
+		}
+
+		li {
+			li {
+				margin: {
+					left: auto;
+					right: 0;
+				}
+			}
+		}
+	}
+}
