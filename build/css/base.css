@@ -107,869 +107,15 @@ pre, code {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    padding-left: 10px;
-    padding-right: 10px;
-    float: left; }
+    padding-left: 16px;
+    padding-right: 16px;
+    float: left;
+    position: relative; }
 
   .rtl [class*=grid-] {
     float: right; }
   [class*=push], [class*=pull] {
     position: relative; }
-
-  /* ================================================================== */
-  /* Safe overrides */
-  /* ================================================================== */
-  .grid-container {
-    margin-left: auto;
-    margin-right: auto;
-    float: none;
-    max-width: 1200px;
-    padding-left: 16px;
-    padding-right: 16px; }
-
-  .grid-container:before, .grid-container:after, .clearfix:before, .clearfix:after {
-    content: ".";
-    font-size: 0;
-    line-height: 0; }  .grid-container:after, .clearfix:after {
-    clear: both; }
-  .grid-parent {
-    padding-left: 0;
-    padding-right: 0; }
-
-  /*
-  BLEEDS and GUTTER manipulation for WET-BOEW
- */
-  .bleed-full .row, .bleed-full.row {
-    margin-left: -10px;
-    margin-right: -10px; }
-  .bleed-left .row, .bleed-left.row {
-    margin-left: -10px; }
-  .bleed-right .row, .bleed-right.row {
-    margin-right: -10px; }
-
-  /*
- * BACKGROUND SCSS
- * - Decorative OOCSS Extending CSS for background treatment of elements
- */
-  .grid-container {
-    /* background extensions */ }
-    .grid-container [class*=background-] {
-      padding-left: 16px;
-      padding-right: 16px; }    .grid-container .background-light {
-      background-color: #eeeeee;
-      color: #222222; }    .grid-container .background-medium {
-      background-color: #777777;
-      color: white; }    .grid-container .background-accent {
-      background-color: #0056b7;
-      color: white; }    .grid-container .background-dark {
-      background-color: #222222;
-      color: white; }    .grid-container .background-highlight {
-      background-color: #ffffc9;
-      color: #222222; }    .grid-container .background-white {
-      background-color: white;
-      color: #222222; }
-
-  /*
- * PADDING SCSS
- * - PADDING OOCSS Extending CSS for positioning of elements
- */
-  .row .padding-none {
-    padding: 0px !important; }
-
-  .row .padding-xsmall {
-    padding: 3px !important; }
-
-  .row .padding-small {
-    padding: 6px !important; }
-
-  .row .padding-large {
-    padding: 16px !important; }
-
-  .row .padding-xlarge {
-    padding: 26px !important; }
-
-  .row .padding-left-none {
-    padding-left: 0px !important; }
-
-  .row .padding-left-xsmall {
-    padding-left: 3px !important; }
-
-  .row .padding-left-small {
-    padding-left: 6px !important; }
-
-  .row .padding-left-large {
-    padding-left: 16px !important; }
-
-  .row .padding-left-xlarge {
-    padding-left: 26px !important; }
-
-  .row .padding-right-none {
-    padding-right: 0px !important; }
-
-  .row .padding-right-xsmall {
-    padding-right: 3px !important; }
-
-  .row .padding-right-small {
-    padding-right: 6px !important; }
-
-  .row .padding-right-large {
-    padding-right: 16px !important; }
-
-  .row .padding-right-xlarge {
-    padding-right: 26px !important; }
-
-  .row .padding-top-none {
-    padding-top: 0px !important; }
-
-  .row .padding-top-xsmall {
-    padding-top: 3px !important; }
-
-  .row .padding-top-small {
-    padding-top: 6px !important; }
-
-  .row .padding-top-large {
-    padding-top: 16px !important; }
-
-  .row .padding-top-xlarge {
-    padding-top: 26px !important; }
-
-  .row .padding-bottom-none {
-    padding-bottom: 0px !important; }
-
-  .row .padding-bottom-xsmall {
-    padding-bottom: 3px !important; }
-
-  .row .padding-bottom-small {
-    padding-bottom: 6px !important; }
-
-  .row .padding-bottom-large {
-    padding-bottom: 16px !important; }
-
-  .row .padding-bottom-xlarge {
-    padding-bottom: 26px !important; }
-
-  /*
- * MARGIN SCSS
- * - MARGIN OOCSS Extending CSS for positioning of elements
- */
-  .row .margin-none {
-    margin: 0px !important; }
-
-  .row .margin-xsmall {
-    margin: 1px !important; }
-
-  .row .margin-small {
-    margin: 3px !important; }
-
-  .row .margin-large {
-    margin: 8px !important; }
-
-  .row .margin-xlarge {
-    margin: 13px !important; }
-
-  .row .margin-left-none {
-    margin-left: 0px !important; }
-
-  .row .margin-left-xsmall {
-    margin-left: 1px !important; }
-
-  .row .margin-left-small {
-    margin-left: 3px !important; }
-
-  .row .margin-left-large {
-    margin-left: 8px !important; }
-
-  .row .margin-left-xlarge {
-    margin-left: 13px !important; }
-
-  .row .margin-right-none {
-    margin-right: 0px !important; }
-
-  .row .margin-right-xsmall {
-    margin-right: 1px !important; }
-
-  .row .margin-right-small {
-    margin-right: 3px !important; }
-
-  .row .margin-right-large {
-    margin-right: 8px !important; }
-
-  .row .margin-right-xlarge {
-    margin-right: 13px !important; }
-
-  .row .margin-top-none {
-    margin-top: 0px !important; }
-
-  .row .margin-top-xsmall {
-    margin-top: 1px !important; }
-
-  .row .margin-top-small {
-    margin-top: 3px !important; }
-
-  .row .margin-top-large {
-    margin-top: 8px !important; }
-
-  .row .margin-top-xlarge {
-    margin-top: 13px !important; }
-
-  .row .margin-bottom-none {
-    margin-bottom: 0px !important; }
-
-  .row .margin-bottom-xsmall {
-    margin-bottom: 1px !important; }
-
-  .row .margin-bottom-small {
-    margin-bottom: 3px !important; }
-
-  .row .margin-bottom-large {
-    margin-bottom: 8px !important; }
-
-  .row .margin-bottom-xlarge {
-    margin-bottom: 13px !important; }
-
-  /*
- * BORDERS SCSS
- * - Decorative OOCSS Extending CSS for Border treatment of elements
- */
-  .row[class*=border], .row [class*=border] {
-    border-color: #999999;
-    border-width: 0;
-    padding: 0 10px; }
-  .row .border, .border.row {
-    border-width: 1px; }
-
-  .row .border-none, .border-none.row {
-    border-width: 0px; }
-
-  .row .border-large, .border-large.row {
-    border-width: 2px; }
-
-  .row .border-xlarge, .border-xlarge.row {
-    border-width: 4px; }
-
-  .row .border-light, .border-light.row {
-    border-color: #cccccc; }
-
-  .row .border-dark, .border-dark.row {
-    border-color: #666666; }
-
-  .row .border-dashed, .border-dashed.row {
-    border-style: dashed; }
-
-  .row .border-double, .border-double.row {
-    border-style: double; }
-
-  .row .border-left, .border-left.row {
-    border-left-width: 1px; }
-
-  .row .border-left-none, .border-left-none.row {
-    border-left-width: 0px; }
-
-  .row .border-left-large, .border-left-large.row {
-    border-left-width: 2px; }
-
-  .row .border-left-xlarge, .border-left-xlarge.row {
-    border-left-width: 4px; }
-
-  .row .border-left-light, .border-left-light.row {
-    border-left-color: #cccccc; }
-
-  .row .border-left-dark, .border-left-dark.row {
-    border-left-color: #666666; }
-
-  .row .border-left-dashed, .border-left-dashed.row {
-    border-left-style: dashed; }
-
-  .row .border-left-double, .border-left-double.row {
-    border-left-style: double; }
-
-  .row .border-right, .border-right.row {
-    border-right-width: 1px; }
-
-  .row .border-right-none, .border-right-none.row {
-    border-right-width: 0px; }
-
-  .row .border-right-large, .border-right-large.row {
-    border-right-width: 2px; }
-
-  .row .border-right-xlarge, .border-right-xlarge.row {
-    border-right-width: 4px; }
-
-  .row .border-right-light, .border-right-light.row {
-    border-right-color: #cccccc; }
-
-  .row .border-right-dark, .border-right-dark.row {
-    border-right-color: #666666; }
-
-  .row .border-right-dashed, .border-right-dashed.row {
-    border-right-style: dashed; }
-
-  .row .border-right-double, .border-right-double.row {
-    border-right-style: double; }
-
-  .row .border-top, .border-top.row {
-    border-top-width: 1px; }
-
-  .row .border-top-none, .border-top-none.row {
-    border-top-width: 0px; }
-
-  .row .border-top-large, .border-top-large.row {
-    border-top-width: 2px; }
-
-  .row .border-top-xlarge, .border-top-xlarge.row {
-    border-top-width: 4px; }
-
-  .row .border-top-light, .border-top-light.row {
-    border-top-color: #cccccc; }
-
-  .row .border-top-dark, .border-top-dark.row {
-    border-top-color: #666666; }
-
-  .row .border-top-dashed, .border-top-dashed.row {
-    border-top-style: dashed; }
-
-  .row .border-top-double, .border-top-double.row {
-    border-top-style: double; }
-
-  .row .border-bottom, .border-bottom.row {
-    border-bottom-width: 1px; }
-
-  .row .border-bottom-none, .border-bottom-none.row {
-    border-bottom-width: 0px; }
-
-  .row .border-bottom-large, .border-bottom-large.row {
-    border-bottom-width: 2px; }
-
-  .row .border-bottom-xlarge, .border-bottom-xlarge.row {
-    border-bottom-width: 4px; }
-
-  .row .border-bottom-light, .border-bottom-light.row {
-    border-bottom-color: #cccccc; }
-
-  .row .border-bottom-dark, .border-bottom-dark.row {
-    border-bottom-color: #666666; }
-
-  .row .border-bottom-dashed, .border-bottom-dashed.row {
-    border-bottom-style: dashed; }
-
-  .row .border-bottom-double, .border-bottom-double.row {
-    border-bottom-style: double; }
-  .row .border, .border.row {
-    border-radius: 1px; }
-
-  .row .border-fallen, .border-fallen.row {
-    border-radius: 3px; }
-
-  .row .border-flush, .border-flush.row {
-    border-radius: 2px; }
-
-  .row .border-arced, .border-arced.row {
-    border-radius: 9px; }
-
-  .row .border-arched, .border-arched.row {
-    border-radius: 15px; }
-
-  .row .border-top-left, .border-top-left.row {
-    border-top-left-radius: 1px; }
-
-  .row .border-top-left-fallen, .border-top-left-fallen.row {
-    border-top-left-radius: 3px; }
-
-  .row .border-top-left-flush, .border-top-left-flush.row {
-    border-top-left-radius: 2px; }
-
-  .row .border-top-left-arced, .border-top-left-arced.row {
-    border-top-left-radius: 9px; }
-
-  .row .border-top-left-arched, .border-top-left-arched.row {
-    border-top-left-radius: 15px; }
-
-  .row .border-top-right, .border-top-right.row {
-    border-top-right-radius: 1px; }
-
-  .row .border-top-right-fallen, .border-top-right-fallen.row {
-    border-top-right-radius: 3px; }
-
-  .row .border-top-right-flush, .border-top-right-flush.row {
-    border-top-right-radius: 2px; }
-
-  .row .border-top-right-arced, .border-top-right-arced.row {
-    border-top-right-radius: 9px; }
-
-  .row .border-top-right-arched, .border-top-right-arched.row {
-    border-top-right-radius: 15px; }
-
-  .row .border-bottom-left, .border-bottom-left.row {
-    border-bottom-left-radius: 1px; }
-
-  .row .border-bottom-left-fallen, .border-bottom-left-fallen.row {
-    border-bottom-left-radius: 3px; }
-
-  .row .border-bottom-left-flush, .border-bottom-left-flush.row {
-    border-bottom-left-radius: 2px; }
-
-  .row .border-bottom-left-arced, .border-bottom-left-arced.row {
-    border-bottom-left-radius: 9px; }
-
-  .row .border-bottom-left-arched, .border-bottom-left-arched.row {
-    border-bottom-left-radius: 15px; }
-
-  .row .border-bottom-right, .border-bottom-right.row {
-    border-bottom-right-radius: 1px; }
-
-  .row .border-bottom-right-fallen, .border-bottom-right-fallen.row {
-    border-bottom-right-radius: 3px; }
-
-  .row .border-bottom-right-flush, .border-bottom-right-flush.row {
-    border-bottom-right-radius: 2px; }
-
-  .row .border-bottom-right-arced, .border-bottom-right-arced.row {
-    border-bottom-right-radius: 9px; }
-
-  .row .border-bottom-right-arched, .border-bottom-right-arched.row {
-    border-bottom-right-radius: 15px; }
-
-  /*
- * POSITIONAL BASED SCSS
- * - Decorative OOCSS Extending CSS for position based treatment of elements
- */
-  .float-right {
-    float: right !important; }
-
-  .float-left {
-    float: left !important; }
-
-  /* MODULES oCSS Classes */
-  [class*="module"] {
-    margin-bottom: 26px;
-    padding: 0 10px; }
-
-  .row .module {
-    background-color: #777777;
-    color: white;
-    border: 1px solid #666666; }
-
-  /*
- * LISTS SCSS
- * - Decorative OOCSS Extending CSS for List of elements
- */
-  .row .list-grid-1 > li {
-    width: 1; }
-
-  .row .list-grid-2 > li {
-    width: 2; }
-
-  .row .list-grid-3 > li {
-    width: 3; }
-
-  .row .list-grid-4 > li {
-    width: 4; }
-
-  .row .list-grid-5 > li {
-    width: 5; }
-
-  .row .list-grid-6 > li {
-    width: 6; }
-
-  .row .list-grid-7 > li {
-    width: 7; }
-
-  .row .list-grid-8 > li {
-    width: 8; }
-
-  .row .list-grid-9 > li {
-    width: 9; }
-
-  .row .list-grid-10 > li {
-    width: 10; }
-
-  .row .list-grid-11 > li {
-    width: 11; }
-
-  .row .list-grid-12 > li {
-    width: 12; }
-
-  .row .list-grid-13 > li {
-    width: 13; }
-
-  .row .list-grid-14 > li {
-    width: 14; }
-
-  .row .list-grid-15 > li {
-    width: 15; }
-
-  .row .list-grid-16 > li {
-    width: 16; }
-
-  .row .list-grid-17 > li {
-    width: 17; }
-
-  .row .list-grid-18 > li {
-    width: 18; }
-
-  .row .list-grid-19 > li {
-    width: 19; }
-
-  .row .list-grid-20 > li {
-    width: 20; }
-  .list-grid-1 > li:nth-of-type(n), .list-grid-2 > li:nth-of-type(n), .list-grid-3 > li:nth-of-type(n), .list-grid-4 > li:nth-of-type(n), .list-grid-5 > li:nth-of-type(n), .list-grid-6 > li:nth-of-type(n), .list-grid-7 > li:nth-of-type(n), .list-grid-8 > li:nth-of-type(n), .list-grid-9 > li:nth-of-type(n), .list-grid-10 > li:nth-of-type(n), .list-grid-11 > li:nth-of-type(n), .list-grid-12 > li:nth-of-type(n), .list-grid-13 > li:nth-of-type(n), .list-grid-14 > li:nth-of-type(n), .list-grid-15 > li:nth-of-type(n), .list-grid-16 > li:nth-of-type(n), .list-grid-17 > li:nth-of-type(n), .list-grid-18 > li:nth-of-type(n), .list-grid-19 > li:nth-of-type(n), .list-grid-20 > li:nth-of-type(n) {
-    clear: none; }
-
-  .list-grid-1 > li:nth-of-type(1n+1), .list-grid-2 > li:nth-of-type(2n+1), .list-grid-3 > li:nth-of-type(3n+1), .list-grid-4 > li:nth-of-type(4n+1), .list-grid-5 > li:nth-of-type(5n+1), .list-grid-6 > li:nth-of-type(6n+1), .list-grid-7 > li:nth-of-type(7n+1), .list-grid-8 > li:nth-of-type(8n+1), .list-grid-9 > li:nth-of-type(9n+1), .list-grid-10 > li:nth-of-type(10n+1), .list-grid-11 > li:nth-of-type(11n+1), .list-grid-12 > li:nth-of-type(12n+1), .list-grid-13 > li:nth-of-type(13n+1), .list-grid-14 > li:nth-of-type(14n+1), .list-grid-15 > li:nth-of-type(15n+1), .list-grid-16 > li:nth-of-type(16n+1), .list-grid-17 > li:nth-of-type(17n+1), .list-grid-18 > li:nth-of-type(18n+1), .list-grid-19 > li:nth-of-type(19n+1), .list-grid-20 > li:nth-of-type(20n+1) {
-    clear: both; }
-
-  [class*="list-grid-"] {
-    display: block;
-    margin: 0 10px;
-    padding: 0; }
-    [class*="list-grid-"]:before, [class*="list-grid-"]:after {
-      content: ".";
-      display: block;
-      overflow: hidden;
-      visibility: hidden;
-      font-size: 0;
-      line-height: 0;
-      width: 0;
-      height: 0; }    [class*="list-grid-"]:after {
-      clear: both; }    [class*="list-grid-"] > li {
-      display: inline;
-      height: auto;
-      float: left;
-      padding: 0 6px 16px;
-      clear: none; } }
-@media screen and (max-width: 767px) {
-  /* ================================================================== */
-  /* This file has the general styles for the mobile viewport */
-  /* ================================================================== */
-  .hide-on-mobile {
-    display: none !important; }
-
-  [class*=background-] {
-    padding-left: 6px;
-    padding-right: 6px; }
-
-  /* ================================================================== */
-  /* Loop to create grid cells */
-  /* ================================================================== */
-  /* Straight numeric column spans */
-  .mobile-grid-5 {
-    width: 5%; }
-
-  .mobile-prefix-5 {
-    margin-left: 5%; }
-
-  .mobile-suffix-5 {
-    margin-right: 5%; }
-
-  .mobile-push-5 {
-    left: 5%; }
-
-  .mobile-pull-5 {
-    left: -5%; }
-  .mobile-grid-10 {
-    width: 10%; }
-
-  .mobile-prefix-10 {
-    margin-left: 10%; }
-
-  .mobile-suffix-10 {
-    margin-right: 10%; }
-
-  .mobile-push-10 {
-    left: 10%; }
-
-  .mobile-pull-10 {
-    left: -10%; }
-  .mobile-grid-15 {
-    width: 15%; }
-
-  .mobile-prefix-15 {
-    margin-left: 15%; }
-
-  .mobile-suffix-15 {
-    margin-right: 15%; }
-
-  .mobile-push-15 {
-    left: 15%; }
-
-  .mobile-pull-15 {
-    left: -15%; }
-  .mobile-grid-20 {
-    width: 20%; }
-
-  .mobile-prefix-20 {
-    margin-left: 20%; }
-
-  .mobile-suffix-20 {
-    margin-right: 20%; }
-
-  .mobile-push-20 {
-    left: 20%; }
-
-  .mobile-pull-20 {
-    left: -20%; }
-  .mobile-grid-25 {
-    width: 25%; }
-
-  .mobile-prefix-25 {
-    margin-left: 25%; }
-
-  .mobile-suffix-25 {
-    margin-right: 25%; }
-
-  .mobile-push-25 {
-    left: 25%; }
-
-  .mobile-pull-25 {
-    left: -25%; }
-  .mobile-grid-30 {
-    width: 30%; }
-
-  .mobile-prefix-30 {
-    margin-left: 30%; }
-
-  .mobile-suffix-30 {
-    margin-right: 30%; }
-
-  .mobile-push-30 {
-    left: 30%; }
-
-  .mobile-pull-30 {
-    left: -30%; }
-  .mobile-grid-35 {
-    width: 35%; }
-
-  .mobile-prefix-35 {
-    margin-left: 35%; }
-
-  .mobile-suffix-35 {
-    margin-right: 35%; }
-
-  .mobile-push-35 {
-    left: 35%; }
-
-  .mobile-pull-35 {
-    left: -35%; }
-  .mobile-grid-40 {
-    width: 40%; }
-
-  .mobile-prefix-40 {
-    margin-left: 40%; }
-
-  .mobile-suffix-40 {
-    margin-right: 40%; }
-
-  .mobile-push-40 {
-    left: 40%; }
-
-  .mobile-pull-40 {
-    left: -40%; }
-  .mobile-grid-45 {
-    width: 45%; }
-
-  .mobile-prefix-45 {
-    margin-left: 45%; }
-
-  .mobile-suffix-45 {
-    margin-right: 45%; }
-
-  .mobile-push-45 {
-    left: 45%; }
-
-  .mobile-pull-45 {
-    left: -45%; }
-  .mobile-grid-50 {
-    width: 50%; }
-
-  .mobile-prefix-50 {
-    margin-left: 50%; }
-
-  .mobile-suffix-50 {
-    margin-right: 50%; }
-
-  .mobile-push-50 {
-    left: 50%; }
-
-  .mobile-pull-50 {
-    left: -50%; }
-  .mobile-grid-55 {
-    width: 55%; }
-
-  .mobile-prefix-55 {
-    margin-left: 55%; }
-
-  .mobile-suffix-55 {
-    margin-right: 55%; }
-
-  .mobile-push-55 {
-    left: 55%; }
-
-  .mobile-pull-55 {
-    left: -55%; }
-  .mobile-grid-60 {
-    width: 60%; }
-
-  .mobile-prefix-60 {
-    margin-left: 60%; }
-
-  .mobile-suffix-60 {
-    margin-right: 60%; }
-
-  .mobile-push-60 {
-    left: 60%; }
-
-  .mobile-pull-60 {
-    left: -60%; }
-  .mobile-grid-65 {
-    width: 65%; }
-
-  .mobile-prefix-65 {
-    margin-left: 65%; }
-
-  .mobile-suffix-65 {
-    margin-right: 65%; }
-
-  .mobile-push-65 {
-    left: 65%; }
-
-  .mobile-pull-65 {
-    left: -65%; }
-  .mobile-grid-70 {
-    width: 70%; }
-
-  .mobile-prefix-70 {
-    margin-left: 70%; }
-
-  .mobile-suffix-70 {
-    margin-right: 70%; }
-
-  .mobile-push-70 {
-    left: 70%; }
-
-  .mobile-pull-70 {
-    left: -70%; }
-  .mobile-grid-75 {
-    width: 75%; }
-
-  .mobile-prefix-75 {
-    margin-left: 75%; }
-
-  .mobile-suffix-75 {
-    margin-right: 75%; }
-
-  .mobile-push-75 {
-    left: 75%; }
-
-  .mobile-pull-75 {
-    left: -75%; }
-  .mobile-grid-80 {
-    width: 80%; }
-
-  .mobile-prefix-80 {
-    margin-left: 80%; }
-
-  .mobile-suffix-80 {
-    margin-right: 80%; }
-
-  .mobile-push-80 {
-    left: 80%; }
-
-  .mobile-pull-80 {
-    left: -80%; }
-  .mobile-grid-85 {
-    width: 85%; }
-
-  .mobile-prefix-85 {
-    margin-left: 85%; }
-
-  .mobile-suffix-85 {
-    margin-right: 85%; }
-
-  .mobile-push-85 {
-    left: 85%; }
-
-  .mobile-pull-85 {
-    left: -85%; }
-  .mobile-grid-90 {
-    width: 90%; }
-
-  .mobile-prefix-90 {
-    margin-left: 90%; }
-
-  .mobile-suffix-90 {
-    margin-right: 90%; }
-
-  .mobile-push-90 {
-    left: 90%; }
-
-  .mobile-pull-90 {
-    left: -90%; }
-  .mobile-grid-95 {
-    width: 95%; }
-
-  .mobile-prefix-95 {
-    margin-left: 95%; }
-
-  .mobile-suffix-95 {
-    margin-right: 95%; }
-
-  .mobile-push-95 {
-    left: 95%; }
-
-  .mobile-pull-95 {
-    left: -95%; }
-  .mobile-grid-100 {
-    width: 100%; }
-
-  .mobile-prefix-100 {
-    margin-left: 100%; }
-
-  .mobile-suffix-100 {
-    margin-right: 100%; }
-
-  .mobile-push-100 {
-    left: 100%; }
-
-  .mobile-pull-100 {
-    left: -100%; }
-  .mobile-grid-33 {
-    width: 33.33333%; }
-
-  .mobile-prefix-33 {
-    margin-left: 33.33333%; }
-
-  .mobile-suffix-33 {
-    margin-right: 33.33333%; }
-
-  .mobile-push-33 {
-    left: 33.33333%; }
-
-  .mobile-pull-33 {
-    left: -33.33333%; }
-  .mobile-grid-66 {
-    width: 66.66667%; }
-
-  .mobile-prefix-66 {
-    margin-left: 66.66667%; }
-
-  .mobile-suffix-66 {
-    margin-right: 66.66667%; }
-
-  .mobile-push-66 {
-    left: 66.66667%; }
-
-  .mobile-pull-66 {
-    left: -66.66667%; }
-
-  .mobile-grid-100 {
-    clear: both;
-    width: 100%; } }
-@media screen and (min-width: 768px) {
-  /* ================================================================== */
-  /* This file has the general styles for desktop viewports */
-  /* ================================================================== */
-  .hide-on-desktop {
-    display: none !important; }
 
   /* ================================================================== */
   /* Loop to create grid cells */
@@ -1286,6 +432,924 @@ pre, code {
 
   .grid-100 {
     clear: both;
+    width: 100%; }
+
+  /* ================================================================== */
+  /* Safe overrides */
+  /* ================================================================== */
+  .grid-container {
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    max-width: 1200px;
+    padding-left: 16px;
+    padding-right: 16px; }
+
+  .grid-container:before, .grid-container:after, .clearfix:before, .clearfix:after {
+    content: ".";
+    font-size: 0;
+    line-height: 0; }  .grid-container:after, .clearfix:after {
+    clear: both; }
+  .grid-parent {
+    padding-left: 0;
+    padding-right: 0; }
+
+  /*
+  BLEEDS and GUTTER manipulation for WET-BOEW
+ */
+  .bleed-full .row, .bleed-full.row {
+    margin-left: -10px;
+    margin-right: -10px; }
+  .bleed-left .row, .bleed-left.row {
+    margin-left: -10px; }
+  .bleed-right .row, .bleed-right.row {
+    margin-right: -10px; }
+
+  /*
+ * BACKGROUND SCSS
+ * - Decorative OOCSS Extending CSS for background treatment of elements
+ */
+  .grid-container {
+    /* background extensions */ }
+    .grid-container [class*=background-] {
+      padding-left: 16px;
+      padding-right: 16px; }    .grid-container .background-light {
+      background-color: #eeeeee;
+      color: #222222; }    .grid-container .background-medium {
+      background-color: #777777;
+      color: white; }    .grid-container .background-accent {
+      background-color: #0056b7;
+      color: white; }    .grid-container .background-dark {
+      background-color: #222222;
+      color: white; }    .grid-container .background-highlight {
+      background-color: #ffffc9;
+      color: #222222; }    .grid-container .background-white {
+      background-color: white;
+      color: #222222; }
+
+  /*
+ * PADDING SCSS
+ * - PADDING OOCSS Extending CSS for positioning of elements
+ */
+  .row .padding-none {
+    padding: 0px !important; }
+
+  .row .padding-xsmall {
+    padding: 3px !important; }
+
+  .row .padding-small {
+    padding: 6px !important; }
+
+  .row .padding-large {
+    padding: 16px !important; }
+
+  .row .padding-xlarge {
+    padding: 26px !important; }
+
+  .row .padding-left-none {
+    padding-left: 0px !important; }
+
+  .row .padding-left-xsmall {
+    padding-left: 3px !important; }
+
+  .row .padding-left-small {
+    padding-left: 6px !important; }
+
+  .row .padding-left-large {
+    padding-left: 16px !important; }
+
+  .row .padding-left-xlarge {
+    padding-left: 26px !important; }
+
+  .row .padding-right-none {
+    padding-right: 0px !important; }
+
+  .row .padding-right-xsmall {
+    padding-right: 3px !important; }
+
+  .row .padding-right-small {
+    padding-right: 6px !important; }
+
+  .row .padding-right-large {
+    padding-right: 16px !important; }
+
+  .row .padding-right-xlarge {
+    padding-right: 26px !important; }
+
+  .row .padding-top-none {
+    padding-top: 0px !important; }
+
+  .row .padding-top-xsmall {
+    padding-top: 3px !important; }
+
+  .row .padding-top-small {
+    padding-top: 6px !important; }
+
+  .row .padding-top-large {
+    padding-top: 16px !important; }
+
+  .row .padding-top-xlarge {
+    padding-top: 26px !important; }
+
+  .row .padding-bottom-none {
+    padding-bottom: 0px !important; }
+
+  .row .padding-bottom-xsmall {
+    padding-bottom: 3px !important; }
+
+  .row .padding-bottom-small {
+    padding-bottom: 6px !important; }
+
+  .row .padding-bottom-large {
+    padding-bottom: 16px !important; }
+
+  .row .padding-bottom-xlarge {
+    padding-bottom: 26px !important; }
+
+  /*
+ * MARGIN SCSS
+ * - MARGIN OOCSS Extending CSS for positioning of elements
+ */
+  .row .margin-none {
+    margin: 0px !important; }
+
+  .row .margin-xsmall {
+    margin: 1px !important; }
+
+  .row .margin-small {
+    margin: 3px !important; }
+
+  .row .margin-large {
+    margin: 8px !important; }
+
+  .row .margin-xlarge {
+    margin: 13px !important; }
+
+  .row .margin-left-none {
+    margin-left: 0px !important; }
+
+  .row .margin-left-xsmall {
+    margin-left: 1px !important; }
+
+  .row .margin-left-small {
+    margin-left: 3px !important; }
+
+  .row .margin-left-large {
+    margin-left: 8px !important; }
+
+  .row .margin-left-xlarge {
+    margin-left: 13px !important; }
+
+  .row .margin-right-none {
+    margin-right: 0px !important; }
+
+  .row .margin-right-xsmall {
+    margin-right: 1px !important; }
+
+  .row .margin-right-small {
+    margin-right: 3px !important; }
+
+  .row .margin-right-large {
+    margin-right: 8px !important; }
+
+  .row .margin-right-xlarge {
+    margin-right: 13px !important; }
+
+  .row .margin-top-none {
+    margin-top: 0px !important; }
+
+  .row .margin-top-xsmall {
+    margin-top: 1px !important; }
+
+  .row .margin-top-small {
+    margin-top: 3px !important; }
+
+  .row .margin-top-large {
+    margin-top: 8px !important; }
+
+  .row .margin-top-xlarge {
+    margin-top: 13px !important; }
+
+  .row .margin-bottom-none {
+    margin-bottom: 0px !important; }
+
+  .row .margin-bottom-xsmall {
+    margin-bottom: 1px !important; }
+
+  .row .margin-bottom-small {
+    margin-bottom: 3px !important; }
+
+  .row .margin-bottom-large {
+    margin-bottom: 8px !important; }
+
+  .row .margin-bottom-xlarge {
+    margin-bottom: 13px !important; }
+
+  /*
+ * BORDERS SCSS
+ * - Decorative OOCSS Extending CSS for Border treatment of elements
+ */
+  [class*=border] {
+    border-color: #999999;
+    border-width: 0; }
+  .border {
+    border-width: 1px;
+    border-width: 1px; }
+
+  .border-none {
+    border-width: 0px;
+    border-width: 1px; }
+
+  .border-large {
+    border-width: 2px;
+    border-width: 1px; }
+
+  .border-xlarge {
+    border-width: 4px;
+    border-width: 1px; }
+
+  .border-light {
+    border-color: #cccccc;
+    border-width: 1px; }
+
+  .border-dark {
+    border-color: #666666;
+    border-width: 1px; }
+
+  .border-dashed {
+    border-style: dashed;
+    border-width: 1px; }
+
+  .border-double {
+    border-style: double;
+    border-width: 1px; }
+
+  .border-left {
+    border-left-width: 1px;
+    border-width: 1px; }
+
+  .border-left-none {
+    border-left-width: 0px;
+    border-width: 1px; }
+
+  .border-left-large {
+    border-left-width: 2px;
+    border-width: 1px; }
+
+  .border-left-xlarge {
+    border-left-width: 4px;
+    border-width: 1px; }
+
+  .border-left-light {
+    border-left-color: #cccccc;
+    border-width: 1px; }
+
+  .border-left-dark {
+    border-left-color: #666666;
+    border-width: 1px; }
+
+  .border-left-dashed {
+    border-left-style: dashed;
+    border-width: 1px; }
+
+  .border-left-double {
+    border-left-style: double;
+    border-width: 1px; }
+
+  .border-right {
+    border-right-width: 1px;
+    border-width: 1px; }
+
+  .border-right-none {
+    border-right-width: 0px;
+    border-width: 1px; }
+
+  .border-right-large {
+    border-right-width: 2px;
+    border-width: 1px; }
+
+  .border-right-xlarge {
+    border-right-width: 4px;
+    border-width: 1px; }
+
+  .border-right-light {
+    border-right-color: #cccccc;
+    border-width: 1px; }
+
+  .border-right-dark {
+    border-right-color: #666666;
+    border-width: 1px; }
+
+  .border-right-dashed {
+    border-right-style: dashed;
+    border-width: 1px; }
+
+  .border-right-double {
+    border-right-style: double;
+    border-width: 1px; }
+
+  .border-top {
+    border-top-width: 1px;
+    border-width: 1px; }
+
+  .border-top-none {
+    border-top-width: 0px;
+    border-width: 1px; }
+
+  .border-top-large {
+    border-top-width: 2px;
+    border-width: 1px; }
+
+  .border-top-xlarge {
+    border-top-width: 4px;
+    border-width: 1px; }
+
+  .border-top-light {
+    border-top-color: #cccccc;
+    border-width: 1px; }
+
+  .border-top-dark {
+    border-top-color: #666666;
+    border-width: 1px; }
+
+  .border-top-dashed {
+    border-top-style: dashed;
+    border-width: 1px; }
+
+  .border-top-double {
+    border-top-style: double;
+    border-width: 1px; }
+
+  .border-bottom {
+    border-bottom-width: 1px;
+    border-width: 1px; }
+
+  .border-bottom-none {
+    border-bottom-width: 0px;
+    border-width: 1px; }
+
+  .border-bottom-large {
+    border-bottom-width: 2px;
+    border-width: 1px; }
+
+  .border-bottom-xlarge {
+    border-bottom-width: 4px;
+    border-width: 1px; }
+
+  .border-bottom-light {
+    border-bottom-color: #cccccc;
+    border-width: 1px; }
+
+  .border-bottom-dark {
+    border-bottom-color: #666666;
+    border-width: 1px; }
+
+  .border-bottom-dashed {
+    border-bottom-style: dashed;
+    border-width: 1px; }
+
+  .border-bottom-double {
+    border-bottom-style: double;
+    border-width: 1px; }
+  .border {
+    border-radius: 1px; }
+
+  .border-fallen {
+    border-radius: 3px; }
+
+  .border-flush {
+    border-radius: 2px; }
+
+  .border-arced {
+    border-radius: 9px; }
+
+  .border-arched {
+    border-radius: 15px; }
+
+  .border-top-left {
+    border-top-left-radius: 1px; }
+
+  .border-top-left-fallen {
+    border-top-left-radius: 3px; }
+
+  .border-top-left-flush {
+    border-top-left-radius: 2px; }
+
+  .border-top-left-arced {
+    border-top-left-radius: 9px; }
+
+  .border-top-left-arched {
+    border-top-left-radius: 15px; }
+
+  .border-top-right {
+    border-top-right-radius: 1px; }
+
+  .border-top-right-fallen {
+    border-top-right-radius: 3px; }
+
+  .border-top-right-flush {
+    border-top-right-radius: 2px; }
+
+  .border-top-right-arced {
+    border-top-right-radius: 9px; }
+
+  .border-top-right-arched {
+    border-top-right-radius: 15px; }
+
+  .border-bottom-left {
+    border-bottom-left-radius: 1px; }
+
+  .border-bottom-left-fallen {
+    border-bottom-left-radius: 3px; }
+
+  .border-bottom-left-flush {
+    border-bottom-left-radius: 2px; }
+
+  .border-bottom-left-arced {
+    border-bottom-left-radius: 9px; }
+
+  .border-bottom-left-arched {
+    border-bottom-left-radius: 15px; }
+
+  .border-bottom-right {
+    border-bottom-right-radius: 1px; }
+
+  .border-bottom-right-fallen {
+    border-bottom-right-radius: 3px; }
+
+  .border-bottom-right-flush {
+    border-bottom-right-radius: 2px; }
+
+  .border-bottom-right-arced {
+    border-bottom-right-radius: 9px; }
+
+  .border-bottom-right-arched {
+    border-bottom-right-radius: 15px; }
+
+  /*
+ * POSITIONAL BASED SCSS
+ * - Decorative OOCSS Extending CSS for position based treatment of elements
+ */
+  .float-right {
+    float: right !important; }
+
+  .float-left {
+    float: left !important; }
+
+  /* MODULES oCSS Classes */
+  .grid-container [class*="module"] {
+    margin-bottom: 26px;
+    padding: 0 10px; }  .grid-container .module {
+    background-color: #777777;
+    color: white;
+    border: 1px solid #666666; }
+
+  /*
+ * LISTS SCSS
+ * - Decorative OOCSS Extending CSS for List of elements
+ */
+  .row .list-grid-1 > li {
+    width: 1; }
+
+  .row .list-grid-2 > li {
+    width: 2; }
+
+  .row .list-grid-3 > li {
+    width: 3; }
+
+  .row .list-grid-4 > li {
+    width: 4; }
+
+  .row .list-grid-5 > li {
+    width: 5; }
+
+  .row .list-grid-6 > li {
+    width: 6; }
+
+  .row .list-grid-7 > li {
+    width: 7; }
+
+  .row .list-grid-8 > li {
+    width: 8; }
+
+  .row .list-grid-9 > li {
+    width: 9; }
+
+  .row .list-grid-10 > li {
+    width: 10; }
+
+  .row .list-grid-11 > li {
+    width: 11; }
+
+  .row .list-grid-12 > li {
+    width: 12; }
+
+  .row .list-grid-13 > li {
+    width: 13; }
+
+  .row .list-grid-14 > li {
+    width: 14; }
+
+  .row .list-grid-15 > li {
+    width: 15; }
+
+  .row .list-grid-16 > li {
+    width: 16; }
+
+  .row .list-grid-17 > li {
+    width: 17; }
+
+  .row .list-grid-18 > li {
+    width: 18; }
+
+  .row .list-grid-19 > li {
+    width: 19; }
+
+  .row .list-grid-20 > li {
+    width: 20; }
+  .list-grid-1 > li:nth-of-type(n), .list-grid-2 > li:nth-of-type(n), .list-grid-3 > li:nth-of-type(n), .list-grid-4 > li:nth-of-type(n), .list-grid-5 > li:nth-of-type(n), .list-grid-6 > li:nth-of-type(n), .list-grid-7 > li:nth-of-type(n), .list-grid-8 > li:nth-of-type(n), .list-grid-9 > li:nth-of-type(n), .list-grid-10 > li:nth-of-type(n), .list-grid-11 > li:nth-of-type(n), .list-grid-12 > li:nth-of-type(n), .list-grid-13 > li:nth-of-type(n), .list-grid-14 > li:nth-of-type(n), .list-grid-15 > li:nth-of-type(n), .list-grid-16 > li:nth-of-type(n), .list-grid-17 > li:nth-of-type(n), .list-grid-18 > li:nth-of-type(n), .list-grid-19 > li:nth-of-type(n), .list-grid-20 > li:nth-of-type(n) {
+    clear: none; }
+
+  .list-grid-1 > li:nth-of-type(1n+1), .list-grid-2 > li:nth-of-type(2n+1), .list-grid-3 > li:nth-of-type(3n+1), .list-grid-4 > li:nth-of-type(4n+1), .list-grid-5 > li:nth-of-type(5n+1), .list-grid-6 > li:nth-of-type(6n+1), .list-grid-7 > li:nth-of-type(7n+1), .list-grid-8 > li:nth-of-type(8n+1), .list-grid-9 > li:nth-of-type(9n+1), .list-grid-10 > li:nth-of-type(10n+1), .list-grid-11 > li:nth-of-type(11n+1), .list-grid-12 > li:nth-of-type(12n+1), .list-grid-13 > li:nth-of-type(13n+1), .list-grid-14 > li:nth-of-type(14n+1), .list-grid-15 > li:nth-of-type(15n+1), .list-grid-16 > li:nth-of-type(16n+1), .list-grid-17 > li:nth-of-type(17n+1), .list-grid-18 > li:nth-of-type(18n+1), .list-grid-19 > li:nth-of-type(19n+1), .list-grid-20 > li:nth-of-type(20n+1) {
+    clear: both; }
+
+  [class*="list-grid-"] {
+    display: block;
+    margin: 0 10px;
+    padding: 0; }
+    [class*="list-grid-"]:before, [class*="list-grid-"]:after {
+      content: ".";
+      display: block;
+      overflow: hidden;
+      visibility: hidden;
+      font-size: 0;
+      line-height: 0;
+      width: 0;
+      height: 0; }    [class*="list-grid-"]:after {
+      clear: both; }    [class*="list-grid-"] > li {
+      display: inline;
+      height: auto;
+      float: left;
+      padding: 0 6px 16px;
+      clear: none; } }
+@media screen and (max-width: 767px) {
+  /* ================================================================== */
+  /* This file has the general styles for the mobile viewport */
+  /* ================================================================== */
+  .hide-on-mobile {
+    display: none !important; }
+
+  [class*=grid-] {
+    width: 100%;
+    padding-left: 6px;
+    padding-right: 6px; }
+
+  [class*=push-], [class*=pull-] {
+    left: auto; }
+
+  [class*=prefix-] {
+    margin-left: 0; }
+
+  [class*=suffix-] {
+    margin-right: 0; }
+
+  /* ================================================================== */
+  /* Loop to create grid cells */
+  /* ================================================================== */
+  /* Straight numeric column spans */
+  .mobile-grid-5 {
+    float: left;
+    width: 5%; }
+
+  .mobile-prefix-5 {
+    margin-left: 5%; }
+
+  .mobile-suffix-5 {
+    margin-right: 5%; }
+
+  .mobile-push-5 {
+    left: 5%; }
+
+  .mobile-pull-5 {
+    left: -5%; }
+  .mobile-grid-10 {
+    float: left;
+    width: 10%; }
+
+  .mobile-prefix-10 {
+    margin-left: 10%; }
+
+  .mobile-suffix-10 {
+    margin-right: 10%; }
+
+  .mobile-push-10 {
+    left: 10%; }
+
+  .mobile-pull-10 {
+    left: -10%; }
+  .mobile-grid-15 {
+    float: left;
+    width: 15%; }
+
+  .mobile-prefix-15 {
+    margin-left: 15%; }
+
+  .mobile-suffix-15 {
+    margin-right: 15%; }
+
+  .mobile-push-15 {
+    left: 15%; }
+
+  .mobile-pull-15 {
+    left: -15%; }
+  .mobile-grid-20 {
+    float: left;
+    width: 20%; }
+
+  .mobile-prefix-20 {
+    margin-left: 20%; }
+
+  .mobile-suffix-20 {
+    margin-right: 20%; }
+
+  .mobile-push-20 {
+    left: 20%; }
+
+  .mobile-pull-20 {
+    left: -20%; }
+  .mobile-grid-25 {
+    float: left;
+    width: 25%; }
+
+  .mobile-prefix-25 {
+    margin-left: 25%; }
+
+  .mobile-suffix-25 {
+    margin-right: 25%; }
+
+  .mobile-push-25 {
+    left: 25%; }
+
+  .mobile-pull-25 {
+    left: -25%; }
+  .mobile-grid-30 {
+    float: left;
+    width: 30%; }
+
+  .mobile-prefix-30 {
+    margin-left: 30%; }
+
+  .mobile-suffix-30 {
+    margin-right: 30%; }
+
+  .mobile-push-30 {
+    left: 30%; }
+
+  .mobile-pull-30 {
+    left: -30%; }
+  .mobile-grid-35 {
+    float: left;
+    width: 35%; }
+
+  .mobile-prefix-35 {
+    margin-left: 35%; }
+
+  .mobile-suffix-35 {
+    margin-right: 35%; }
+
+  .mobile-push-35 {
+    left: 35%; }
+
+  .mobile-pull-35 {
+    left: -35%; }
+  .mobile-grid-40 {
+    float: left;
+    width: 40%; }
+
+  .mobile-prefix-40 {
+    margin-left: 40%; }
+
+  .mobile-suffix-40 {
+    margin-right: 40%; }
+
+  .mobile-push-40 {
+    left: 40%; }
+
+  .mobile-pull-40 {
+    left: -40%; }
+  .mobile-grid-45 {
+    float: left;
+    width: 45%; }
+
+  .mobile-prefix-45 {
+    margin-left: 45%; }
+
+  .mobile-suffix-45 {
+    margin-right: 45%; }
+
+  .mobile-push-45 {
+    left: 45%; }
+
+  .mobile-pull-45 {
+    left: -45%; }
+  .mobile-grid-50 {
+    float: left;
+    width: 50%; }
+
+  .mobile-prefix-50 {
+    margin-left: 50%; }
+
+  .mobile-suffix-50 {
+    margin-right: 50%; }
+
+  .mobile-push-50 {
+    left: 50%; }
+
+  .mobile-pull-50 {
+    left: -50%; }
+  .mobile-grid-55 {
+    float: left;
+    width: 55%; }
+
+  .mobile-prefix-55 {
+    margin-left: 55%; }
+
+  .mobile-suffix-55 {
+    margin-right: 55%; }
+
+  .mobile-push-55 {
+    left: 55%; }
+
+  .mobile-pull-55 {
+    left: -55%; }
+  .mobile-grid-60 {
+    float: left;
+    width: 60%; }
+
+  .mobile-prefix-60 {
+    margin-left: 60%; }
+
+  .mobile-suffix-60 {
+    margin-right: 60%; }
+
+  .mobile-push-60 {
+    left: 60%; }
+
+  .mobile-pull-60 {
+    left: -60%; }
+  .mobile-grid-65 {
+    float: left;
+    width: 65%; }
+
+  .mobile-prefix-65 {
+    margin-left: 65%; }
+
+  .mobile-suffix-65 {
+    margin-right: 65%; }
+
+  .mobile-push-65 {
+    left: 65%; }
+
+  .mobile-pull-65 {
+    left: -65%; }
+  .mobile-grid-70 {
+    float: left;
+    width: 70%; }
+
+  .mobile-prefix-70 {
+    margin-left: 70%; }
+
+  .mobile-suffix-70 {
+    margin-right: 70%; }
+
+  .mobile-push-70 {
+    left: 70%; }
+
+  .mobile-pull-70 {
+    left: -70%; }
+  .mobile-grid-75 {
+    float: left;
+    width: 75%; }
+
+  .mobile-prefix-75 {
+    margin-left: 75%; }
+
+  .mobile-suffix-75 {
+    margin-right: 75%; }
+
+  .mobile-push-75 {
+    left: 75%; }
+
+  .mobile-pull-75 {
+    left: -75%; }
+  .mobile-grid-80 {
+    float: left;
+    width: 80%; }
+
+  .mobile-prefix-80 {
+    margin-left: 80%; }
+
+  .mobile-suffix-80 {
+    margin-right: 80%; }
+
+  .mobile-push-80 {
+    left: 80%; }
+
+  .mobile-pull-80 {
+    left: -80%; }
+  .mobile-grid-85 {
+    float: left;
+    width: 85%; }
+
+  .mobile-prefix-85 {
+    margin-left: 85%; }
+
+  .mobile-suffix-85 {
+    margin-right: 85%; }
+
+  .mobile-push-85 {
+    left: 85%; }
+
+  .mobile-pull-85 {
+    left: -85%; }
+  .mobile-grid-90 {
+    float: left;
+    width: 90%; }
+
+  .mobile-prefix-90 {
+    margin-left: 90%; }
+
+  .mobile-suffix-90 {
+    margin-right: 90%; }
+
+  .mobile-push-90 {
+    left: 90%; }
+
+  .mobile-pull-90 {
+    left: -90%; }
+  .mobile-grid-95 {
+    float: left;
+    width: 95%; }
+
+  .mobile-prefix-95 {
+    margin-left: 95%; }
+
+  .mobile-suffix-95 {
+    margin-right: 95%; }
+
+  .mobile-push-95 {
+    left: 95%; }
+
+  .mobile-pull-95 {
+    left: -95%; }
+  .mobile-grid-100 {
+    float: left;
+    width: 100%; }
+
+  .mobile-prefix-100 {
+    margin-left: 100%; }
+
+  .mobile-suffix-100 {
+    margin-right: 100%; }
+
+  .mobile-push-100 {
+    left: 100%; }
+
+  .mobile-pull-100 {
+    left: -100%; }
+  .mobile-grid-33 {
+    float: left;
+    width: 33.33333%; }
+
+  .mobile-prefix-33 {
+    margin-left: 33.33333%; }
+
+  .mobile-suffix-33 {
+    margin-right: 33.33333%; }
+
+  .mobile-push-33 {
+    left: 33.33333%; }
+
+  .mobile-pull-33 {
+    left: -33.33333%; }
+  .mobile-grid-66 {
+    float: left;
+    width: 66.66667%; }
+
+  .mobile-prefix-66 {
+    margin-left: 66.66667%; }
+
+  .mobile-suffix-66 {
+    margin-right: 66.66667%; }
+
+  .mobile-push-66 {
+    left: 66.66667%; }
+
+  .mobile-pull-66 {
+    left: -66.66667%; }
+
+  .mobile-grid-100 {
+    clear: both;
     width: 100%; } }
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   /* ================================================================== */
@@ -1294,10 +1358,7 @@ pre, code {
   .hide-on-tablet {
     display: none !important; }
 
-  .hide-on-desktop {
-    display: auto !important; }
-
-  [class*=background-] {
+  [class*=grid-] {
     padding-left: 10px;
     padding-right: 10px; }
 
@@ -1617,6 +1678,12 @@ pre, code {
   .tablet-grid-100 {
     clear: both;
     width: 100%; } }
+@media screen and (min-width: 1025px) {
+  /* ================================================================== */
+  /* This file has the general styles for desktop viewports */
+  /* ================================================================== */
+  .hide-on-desktop {
+    display: none !important; } }
 /* ================================================================== */
 /* Global CSS Tricks for web Developers */
 /* ================================================================== */
