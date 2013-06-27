@@ -6,7 +6,7 @@
 
 
 // Set the defaults around border with low specificity and no background color
-[class*=border] { border-color: $border-color; border-width: 0; }
+[class*=border] { border-color: $border-color; border-width: 0; border-style: transparent }
 
 
 @function border-return($context){
@@ -63,7 +63,9 @@ $all : '','-none','-large','-xlarge', '-light', '-dark', '-dashed', '-double';
 @each $sds in $sides {
 	// looping through sides
 	@each $sz in $all {
-   .border#{$sds}#{$sz} { border#{property-return($sz,$sds)}: border-return($sz); border-width: $border + px}
+    $thickness : $border + px;
+    @if ($border < 3 and $sz == '-double') { $thickness: 3px }
+   .border#{$sds}#{$sz} {  border#{property-return($sz,$sds)}: border-return($sz);  }
 	}
 }
 
