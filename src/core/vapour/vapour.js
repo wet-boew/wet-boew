@@ -37,12 +37,5 @@ Modernizr.load([
     nope: "" + Modernizr._vpbpath + "/vendor/selectivizr.min.js"
   }, {
     load: "" + Modernizr._vpbpath + "/wet-boew.min.js"
-  }, {
-    load: "//code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js",
-    complete: function() {
-      if (window.jQuery.mobile != null) {
-        return Modernizr.load("" + Modernizr._vpbpath + "/vendor/jquery-mobile-1.3.1.min.js");
-      }
-    }
   }
 ]);

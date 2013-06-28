@@ -22,14 +22,125 @@ head
     script(src='https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js')
     include mixins
   body
-    .grid-container
-      h3
+    .grid-container.border-left-dashed.border-right-dashed
+      h1
           | Basic Grid Demonstration
         p
           | There are 3 distinct classes for grid manipulation to allow and even better control of grid cell behaviour in small (mobile), medium (tablet), and large (desktop) views.
       mixin ngrids()
       hr
-      h3
+      h2
           | Border Demonstration
       mixin borders()
       hr
+      h2 List grid
+      p
+        | Desktop: 4 cells across (using
+        code list-grid-4
+        | )
+        br
+        | Mobile: 2 cells across (using
+        code list-grid-small-2
+        | )
+      ul.list-grid-small-2.list-grid-4
+        - var i = 8
+        - while(i--)
+            li
+              img(src='http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg')
+
+      p
+        | Desktop: 12 cells across (using
+        code list-grid-12
+        | )
+        br
+        | Mobile: 4 cells across (using
+        code list-grid-small-4
+        | )
+      ul.list-grid-small-4.list-grid-12
+        - var i = 12
+        - while(i--)
+            li
+              img(src='http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg')
+
+      p
+        | Desktop: 3 cells across (using
+        code list-grid-3
+        | )
+        br
+        | Mobile: 5 cells across (using
+        code list-grid-small-5
+        | )
+      ul.list-grid-small-5.list-grid-3
+       - var i = 8
+        - while(i--)
+            li
+              img(src='http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg')
+       hr
+       h2 Bleed and Gutter Demonstration
+      .gutterless
+          .grid-25
+            section.example-block
+               b
+                | 25%
+             span.dynamic-px-width
+          .grid-50
+            section.example-block
+               b
+                | 50%
+             span.dynamic-px-width
+          .grid-25
+            section.example-block
+               b
+                | 25%
+             span.dynamic-px-width
+      .clear
+      .bleed-full        
+        .grid-25
+          section.example-block
+             b
+              | 25%
+           span.dynamic-px-width
+        .grid-50
+          section.example-block
+             b
+              | 50%
+           span.dynamic-px-width
+        .grid-25
+          section.example-block
+             b
+              | 25%
+           span.dynamic-px-width
+      .clear
+      .bleed-left        
+        .grid-25
+          section.example-block
+             b
+              | 25%
+           span.dynamic-px-width
+        .grid-50
+          section.example-block
+             b
+              | 50%
+           span.dynamic-px-width
+        .grid-25
+          section.example-block
+             b
+              | 25%
+           span.dynamic-px-width
+      .clear
+      .bleed-right        
+        .grid-25
+          section.example-block
+             b
+              | 25%
+           span.dynamic-px-width
+        .grid-50
+          section.example-block
+             b
+              | 50%
+           span.dynamic-px-width
+        .grid-25
+          section.example-block
+             b
+              | 25%
+           span.dynamic-px-width

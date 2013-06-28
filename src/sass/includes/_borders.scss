@@ -6,7 +6,7 @@
 
 
 // Set the defaults around border with low specificity and no background color
-[class*=border] { border-color: $border-color; border-width: 0; border-style: transparent }
+[class*=border] { border-color: $border-color; border-width: 0; border-style: solid; }
 
 
 @function border-return($context){
@@ -57,7 +57,7 @@ $sides : '','-left','-right','-top','-bottom';
 
 $shades : '-light', '-dark';
 $types : '-dashed', '-double';
-$all : '','-none','-large','-xlarge', '-light', '-dark', '-dashed', '-double';
+$all : '-light', '-dark', '-dashed', '-double';
 
 // lets loop through colors
 @each $sds in $sides {
@@ -65,8 +65,15 @@ $all : '','-none','-large','-xlarge', '-light', '-dark', '-dashed', '-double';
 	@each $sz in $all {
     $thickness : $border + px;
     @if ($border < 3 and $sz == '-double') { $thickness: 3px }
-   .border#{$sds}#{$sz} {  border#{property-return($sz,$sds)}: border-return($sz);  }
+   .border#{$sds}#{$sz} {  border#{property-return($sz,$sds)}: border-return($sz); border#{$sds}-width: $thickness  }
 	}
+}
+
+@each $sds in $sides {
+  // looping through sides
+  @each $sz in $sizes {
+   .border#{$sds}#{$sz} {  border#{property-return($sz,$sds)}: border-return($sz);   }
+  }
 }
 
 // radius

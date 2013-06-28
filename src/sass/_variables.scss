@@ -71,10 +71,11 @@ $border-accent: #00556b;
 $border-width-thick: golden_increase($border, 2) + px;
 $border-width-xthick: golden_increase($border, 3) + px;
 
-$border-radius-sharp: golden_increase($radius, 1) + px;
-$border-radius-sharper: golden_increase($radius, 2) + px;
-$border-radius-loose: golden_decrease($radius, 1) + px;
-$border-radius-looser: golden_decrease($radius, 2) + px;
+$border-radius-sharp: golden_increase($radius, 2) + px;
+$border-radius-sharper: golden_increase($radius, 3) + px;
+$border-radius-loose: golden_decrease($radius, 2) + px;
+$border-radius-looser: golden_decrease($radius, 3) + px;
+
 
 $border-color-light: lighten($border-color, 20%);
 $border-color-dark : darken($border-color, 20%);

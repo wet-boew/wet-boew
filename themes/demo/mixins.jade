@@ -14,7 +14,7 @@ mixin ngrids
     section.example-block
       b.hide-on-mobile
         | 33%
-      b.hide-on-tablet
+      b.hide-on-tablet.hide-on-desktop
         | 50%
       span.dynamic-px-width
   - var grids = [5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95]
@@ -45,13 +45,15 @@ mixin borders
   - var styles = ['','-dashed', '-double']
   - var sizes = [ '','-none','-large','-xlarge' ]
   - var colors = [ '-light', '-dark' ]
+  - var radius  = ['','-top-left','-top-right','-bottom-left','-bottom-right']
+  - var rstyles = [ '-fallen', '-flush', '-arced', '-arched']
   // lets do the styles first
   h4
     | Styles
   -var _count = 1
   each style in styles
     each side in sides
-      div(class="grid-20 tablet-grid-20 mobile-grid-20")
+      div(class="grid-20")
             section(class="example-block border#{side}#{style}")
               b
                 | border#{side}#{style}
@@ -65,7 +67,7 @@ mixin borders
   -var _count = 1
   each size in sizes
     each side in sides
-      div(class="grid-20 tablet-grid-20 mobile-grid-20")
+      div(class="grid-20")
             section(class="example-block border#{side}#{size}")
               b
                 | border#{side}#{size}
@@ -74,9 +76,20 @@ mixin borders
         -_count = 1
       else
         - _count++
-   
-
-
+   h4
+    | Radius
+  -var _count = 1
+  each size in rstyles
+    each side in radius
+      div(class="grid-20")
+            section(class="example-block border border#{side}#{size}")
+              b
+                | border border#{side}#{size}
+      if (_count == 5)
+        div.clear
+        -_count = 1
+      else
+        - _count++
 
 mixin grids
       - var grids = [5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95]
