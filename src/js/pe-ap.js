@@ -55,7 +55,7 @@
 		resizetest: '',
 		settings: (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
 		scrollTopInit: window.pageYOffset || document.documentElement.scrollTop,
-		activeElement: null,
+		activeElement: document.activeElement,
 
 		/**
 		* @namespace pe.dic
@@ -229,7 +229,7 @@
 				pe.document.off('focus.wbinit blur.wbinit');
 
 				// Restore the original focus and/or scroll position
-				if (activeElement !== null) {
+				if (activeElement !== null && activeElement.nodeName.toLowerCase() !== 'body') {
 					target = $(activeElement);
 				} else if (pe.urlhash.length !== 0) {
 					target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
