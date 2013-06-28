@@ -3,26 +3,24 @@
  * - Decorative OOCSS Extending CSS for List of elements
  */
 
-@for $i from 1 through 20 {
-		@include create_list_column($i, $i);
-}
-
-// Spacial end node grid clearing
-$listclend: ();
-$listclother: ();
-@for $i from 1 through 20 {
-	 $listclend: join($listclend, unquote(".list-grid-#{$i} > li:nth-of-type(n)"), comma);
-	 $listclother: join($listclother, unquote(".list-grid-#{$i} > li:nth-of-type(#{$i}n+1)"), comma);
-}
-#{$listclend} { clear: none }
-#{$listclother} { clear: both } 
-
 // Setting overall properties on list items
 [class*="list-grid-"] {
+	@extend .cflat;
 	display:block;
 	@if $has-ie-backward-support == true {  *zoom:1; }
-	margin:0 $gutters;
+	margin:0;
 	padding:0;
-	@include clearfix();
-	> li { display:inline; height:auto; float:left; padding:0 $gutters-small $gutters-large; clear: none }
+	float: none;
+	
+	> li { 
+		display:inline;
+		height:auto;
+		float:left;
+		padding:0 $gutters-small $gutters-large;
+		clear: none;
+		margin: 0;
+		-webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;
+	    box-sizing: border-box;
+	 }
 }

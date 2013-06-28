@@ -86,6 +86,40 @@ body {
 pre, code {
   font-family: "DejaVu Sans Mono", Monaco, Consolas, monospace; }
 
+/* ================================================================== */
+/* Global CSS Tricks for web Developers */
+/* ================================================================== */
+/* ================================================================== */
+/* Global HTML/CSS Goodies to help stabilize some features for web developers
+/* ================================================================== */
+/* ================================================================== */
+/* Responsive Images */
+/* ================================================================== */
+img {
+  height: auto;
+  max-width: 100%;
+  width: 100%;
+  border: 0; }
+
+.ie8 img {
+  width: auto; }
+
+/* ================================================================== */
+/* Responsive video */
+/* ================================================================== */
+.video-responsive {
+  position: relative;
+  padding-bottom: 56.25%;
+  /* 16:9 */
+  padding-top: 25px;
+  height: 0; }
+  .video-responsive iframe, .video-responsive object, .video-responsive embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+
 @media screen {
   /* ================================================================== */
   /* This file has the general styles for all viewports */
@@ -457,13 +491,25 @@ pre, code {
   /*
   BLEEDS and GUTTER manipulation for WET-BOEW
  */
-  .bleed-full .row, .bleed-full.row {
-    margin-left: -10px;
-    margin-right: -10px; }
-  .bleed-left .row, .bleed-left.row {
-    margin-left: -10px; }
-  .bleed-right .row, .bleed-right.row {
-    margin-right: -10px; }
+  [class*=bleed-] {
+    position: relative; }
+
+  .bleed-full {
+    margin-left: -20px;
+    margin-right: -20px; }
+
+  .bleed-left {
+    margin-left: -20px; }
+
+  .bleed-right {
+    margin-right: -20px; }
+
+  /* ================================================================== */
+  /* Gutterless */
+  /* ================================================================== */
+  .gutterless[class*=grid-], .gutterless [class*=grid-] {
+    padding-left: 0;
+    padding-right: 0; }
 
   /*
  * BACKGROUND SCSS
@@ -652,201 +698,201 @@ pre, code {
   [class*=border] {
     border-color: #999999;
     border-width: 0;
-    border-style: transparent; }
-  .border {
-    border-style: solid;
-    border-width: 1px; }
-  .border-none {
-    border-style: solid;
-    border-width: 0px; }
-  .border-large {
-    border-style: solid;
-    border-width: 2px; }
-  .border-xlarge {
-    border-style: solid;
-    border-width: 4px; }
+    border-style: solid; }
   .border-light {
-    border-style: solid;
-    border-color: #cccccc; }
+    border-color: #cccccc;
+    border-width: 1px; }
   .border-dark {
-    border-style: solid;
-    border-color: #666666; }
+    border-color: #666666;
+    border-width: 1px; }
   .border-dashed {
-    border-style: solid;
-    border-style: dashed; }
+    border-style: dashed;
+    border-width: 1px; }
   .border-double {
-    border-style: solid;
-    border-style: double; }
-  .border-left {
-    border-style: solid;
-    border-left-width: 1px; }
-  .border-left-none {
-    border-style: solid;
-    border-left-width: 0px; }
-  .border-left-large {
-    border-style: solid;
-    border-left-width: 2px; }
-  .border-left-xlarge {
-    border-style: solid;
-    border-left-width: 4px; }
+    border-style: double;
+    border-width: 3px; }
   .border-left-light {
-    border-style: solid;
-    border-left-color: #cccccc; }
+    border-left-color: #cccccc;
+    border-left-width: 1px; }
   .border-left-dark {
-    border-style: solid;
-    border-left-color: #666666; }
+    border-left-color: #666666;
+    border-left-width: 1px; }
   .border-left-dashed {
-    border-style: solid;
-    border-left-style: dashed; }
+    border-left-style: dashed;
+    border-left-width: 1px; }
   .border-left-double {
-    border-style: solid;
-    border-left-style: double; }
-  .border-right {
-    border-style: solid;
-    border-right-width: 1px; }
-  .border-right-none {
-    border-style: solid;
-    border-right-width: 0px; }
-  .border-right-large {
-    border-style: solid;
-    border-right-width: 2px; }
-  .border-right-xlarge {
-    border-style: solid;
-    border-right-width: 4px; }
+    border-left-style: double;
+    border-left-width: 3px; }
   .border-right-light {
-    border-style: solid;
-    border-right-color: #cccccc; }
+    border-right-color: #cccccc;
+    border-right-width: 1px; }
   .border-right-dark {
-    border-style: solid;
-    border-right-color: #666666; }
+    border-right-color: #666666;
+    border-right-width: 1px; }
   .border-right-dashed {
-    border-style: solid;
-    border-right-style: dashed; }
+    border-right-style: dashed;
+    border-right-width: 1px; }
   .border-right-double {
-    border-style: solid;
-    border-right-style: double; }
-  .border-top {
-    border-style: solid;
-    border-top-width: 1px; }
-  .border-top-none {
-    border-style: solid;
-    border-top-width: 0px; }
-  .border-top-large {
-    border-style: solid;
-    border-top-width: 2px; }
-  .border-top-xlarge {
-    border-style: solid;
-    border-top-width: 4px; }
+    border-right-style: double;
+    border-right-width: 3px; }
   .border-top-light {
-    border-style: solid;
-    border-top-color: #cccccc; }
+    border-top-color: #cccccc;
+    border-top-width: 1px; }
   .border-top-dark {
-    border-style: solid;
-    border-top-color: #666666; }
+    border-top-color: #666666;
+    border-top-width: 1px; }
   .border-top-dashed {
-    border-style: solid;
-    border-top-style: dashed; }
+    border-top-style: dashed;
+    border-top-width: 1px; }
   .border-top-double {
-    border-style: solid;
-    border-top-style: double; }
-  .border-bottom {
-    border-style: solid;
-    border-bottom-width: 1px; }
-  .border-bottom-none {
-    border-style: solid;
-    border-bottom-width: 0px; }
-  .border-bottom-large {
-    border-style: solid;
-    border-bottom-width: 2px; }
-  .border-bottom-xlarge {
-    border-style: solid;
-    border-bottom-width: 4px; }
+    border-top-style: double;
+    border-top-width: 3px; }
   .border-bottom-light {
-    border-style: solid;
-    border-bottom-color: #cccccc; }
+    border-bottom-color: #cccccc;
+    border-bottom-width: 1px; }
   .border-bottom-dark {
-    border-style: solid;
-    border-bottom-color: #666666; }
+    border-bottom-color: #666666;
+    border-bottom-width: 1px; }
   .border-bottom-dashed {
-    border-style: solid;
-    border-bottom-style: dashed; }
+    border-bottom-style: dashed;
+    border-bottom-width: 1px; }
   .border-bottom-double {
-    border-style: solid;
-    border-bottom-style: double; }
+    border-bottom-style: double;
+    border-bottom-width: 3px; }
+
+  .border {
+    border-width: 1px; }
+
+  .border-none {
+    border-width: 0px; }
+
+  .border-large {
+    border-width: 2px; }
+
+  .border-xlarge {
+    border-width: 4px; }
+
+  .border-left {
+    border-left-width: 1px; }
+
+  .border-left-none {
+    border-left-width: 0px; }
+
+  .border-left-large {
+    border-left-width: 2px; }
+
+  .border-left-xlarge {
+    border-left-width: 4px; }
+
+  .border-right {
+    border-right-width: 1px; }
+
+  .border-right-none {
+    border-right-width: 0px; }
+
+  .border-right-large {
+    border-right-width: 2px; }
+
+  .border-right-xlarge {
+    border-right-width: 4px; }
+
+  .border-top {
+    border-top-width: 1px; }
+
+  .border-top-none {
+    border-top-width: 0px; }
+
+  .border-top-large {
+    border-top-width: 2px; }
+
+  .border-top-xlarge {
+    border-top-width: 4px; }
+
+  .border-bottom {
+    border-bottom-width: 1px; }
+
+  .border-bottom-none {
+    border-bottom-width: 0px; }
+
+  .border-bottom-large {
+    border-bottom-width: 2px; }
+
+  .border-bottom-xlarge {
+    border-bottom-width: 4px; }
   .border {
     border-radius: 1px; }
 
   .border-fallen {
-    border-radius: 3px; }
-
-  .border-flush {
     border-radius: 2px; }
 
+  .border-flush {
+    border-radius: 1px; }
+
   .border-arced {
-    border-radius: 9px; }
+    border-radius: 15px; }
 
   .border-arched {
-    border-radius: 15px; }
+    border-radius: 25px; }
 
   .border-top-left {
     border-top-left-radius: 1px; }
 
   .border-top-left-fallen {
-    border-top-left-radius: 3px; }
-
-  .border-top-left-flush {
     border-top-left-radius: 2px; }
 
+  .border-top-left-flush {
+    border-top-left-radius: 1px; }
+
   .border-top-left-arced {
-    border-top-left-radius: 9px; }
+    border-top-left-radius: 15px; }
 
   .border-top-left-arched {
-    border-top-left-radius: 15px; }
+    border-top-left-radius: 25px; }
 
   .border-top-right {
     border-top-right-radius: 1px; }
 
   .border-top-right-fallen {
-    border-top-right-radius: 3px; }
-
-  .border-top-right-flush {
     border-top-right-radius: 2px; }
 
+  .border-top-right-flush {
+    border-top-right-radius: 1px; }
+
   .border-top-right-arced {
-    border-top-right-radius: 9px; }
+    border-top-right-radius: 15px; }
 
   .border-top-right-arched {
-    border-top-right-radius: 15px; }
+    border-top-right-radius: 25px; }
 
   .border-bottom-left {
     border-bottom-left-radius: 1px; }
 
   .border-bottom-left-fallen {
-    border-bottom-left-radius: 3px; }
-
-  .border-bottom-left-flush {
     border-bottom-left-radius: 2px; }
 
+  .border-bottom-left-flush {
+    border-bottom-left-radius: 1px; }
+
   .border-bottom-left-arced {
-    border-bottom-left-radius: 9px; }
+    border-bottom-left-radius: 15px; }
 
   .border-bottom-left-arched {
-    border-bottom-left-radius: 15px; }
+    border-bottom-left-radius: 25px; }
 
   .border-bottom-right {
     border-bottom-right-radius: 1px; }
 
   .border-bottom-right-fallen {
-    border-bottom-right-radius: 3px; }
-
-  .border-bottom-right-flush {
     border-bottom-right-radius: 2px; }
 
+  .border-bottom-right-flush {
+    border-bottom-right-radius: 1px; }
+
   .border-bottom-right-arced {
-    border-bottom-right-radius: 9px; }
+    border-bottom-right-radius: 15px; }
 
   .border-bottom-right-arched {
-    border-bottom-right-radius: 15px; }
+    border-bottom-right-radius: 25px; }
 
   /*
  * POSITIONAL BASED SCSS
@@ -870,90 +916,21 @@ pre, code {
  * LISTS SCSS
  * - Decorative OOCSS Extending CSS for List of elements
  */
-  .row .list-grid-1 > li {
-    width: 1; }
-
-  .row .list-grid-2 > li {
-    width: 2; }
-
-  .row .list-grid-3 > li {
-    width: 3; }
-
-  .row .list-grid-4 > li {
-    width: 4; }
-
-  .row .list-grid-5 > li {
-    width: 5; }
-
-  .row .list-grid-6 > li {
-    width: 6; }
-
-  .row .list-grid-7 > li {
-    width: 7; }
-
-  .row .list-grid-8 > li {
-    width: 8; }
-
-  .row .list-grid-9 > li {
-    width: 9; }
-
-  .row .list-grid-10 > li {
-    width: 10; }
-
-  .row .list-grid-11 > li {
-    width: 11; }
-
-  .row .list-grid-12 > li {
-    width: 12; }
-
-  .row .list-grid-13 > li {
-    width: 13; }
-
-  .row .list-grid-14 > li {
-    width: 14; }
-
-  .row .list-grid-15 > li {
-    width: 15; }
-
-  .row .list-grid-16 > li {
-    width: 16; }
-
-  .row .list-grid-17 > li {
-    width: 17; }
-
-  .row .list-grid-18 > li {
-    width: 18; }
-
-  .row .list-grid-19 > li {
-    width: 19; }
-
-  .row .list-grid-20 > li {
-    width: 20; }
-  .list-grid-1 > li:nth-of-type(n), .list-grid-2 > li:nth-of-type(n), .list-grid-3 > li:nth-of-type(n), .list-grid-4 > li:nth-of-type(n), .list-grid-5 > li:nth-of-type(n), .list-grid-6 > li:nth-of-type(n), .list-grid-7 > li:nth-of-type(n), .list-grid-8 > li:nth-of-type(n), .list-grid-9 > li:nth-of-type(n), .list-grid-10 > li:nth-of-type(n), .list-grid-11 > li:nth-of-type(n), .list-grid-12 > li:nth-of-type(n), .list-grid-13 > li:nth-of-type(n), .list-grid-14 > li:nth-of-type(n), .list-grid-15 > li:nth-of-type(n), .list-grid-16 > li:nth-of-type(n), .list-grid-17 > li:nth-of-type(n), .list-grid-18 > li:nth-of-type(n), .list-grid-19 > li:nth-of-type(n), .list-grid-20 > li:nth-of-type(n) {
-    clear: none; }
-
-  .list-grid-1 > li:nth-of-type(1n+1), .list-grid-2 > li:nth-of-type(2n+1), .list-grid-3 > li:nth-of-type(3n+1), .list-grid-4 > li:nth-of-type(4n+1), .list-grid-5 > li:nth-of-type(5n+1), .list-grid-6 > li:nth-of-type(6n+1), .list-grid-7 > li:nth-of-type(7n+1), .list-grid-8 > li:nth-of-type(8n+1), .list-grid-9 > li:nth-of-type(9n+1), .list-grid-10 > li:nth-of-type(10n+1), .list-grid-11 > li:nth-of-type(11n+1), .list-grid-12 > li:nth-of-type(12n+1), .list-grid-13 > li:nth-of-type(13n+1), .list-grid-14 > li:nth-of-type(14n+1), .list-grid-15 > li:nth-of-type(15n+1), .list-grid-16 > li:nth-of-type(16n+1), .list-grid-17 > li:nth-of-type(17n+1), .list-grid-18 > li:nth-of-type(18n+1), .list-grid-19 > li:nth-of-type(19n+1), .list-grid-20 > li:nth-of-type(20n+1) {
-    clear: both; }
-
   [class*="list-grid-"] {
     display: block;
-    margin: 0 10px;
-    padding: 0; }
-    [class*="list-grid-"]:before, [class*="list-grid-"]:after {
-      content: ".";
-      display: block;
-      overflow: hidden;
-      visibility: hidden;
-      font-size: 0;
-      line-height: 0;
-      width: 0;
-      height: 0; }    [class*="list-grid-"]:after {
-      clear: both; }    [class*="list-grid-"] > li {
+    margin: 0;
+    padding: 0;
+    float: none; }
+    [class*="list-grid-"] > li {
       display: inline;
       height: auto;
       float: left;
       padding: 0 6px 16px;
-      clear: none; } }
+      clear: none;
+      margin: 0;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box; } }
 @media screen and (max-width: 767px) {
   /* ================================================================== */
   /* This file has the general styles for the mobile viewport */
@@ -1312,7 +1289,65 @@ pre, code {
 
   .mobile-grid-100 {
     clear: both;
-    width: 100%; } }
+    width: 100%; }
+
+  /* ================================================================== */
+  /* Additions to small viewport */
+  /* ================================================================== */
+  /* ================================================================== */
+  /* Centering */
+  /* ================================================================== */
+  .small-centered {
+    margin-left: auto;
+    margin-right: auto; }
+
+  /* ================================================================== */
+  /* Bleeds */
+  /* ================================================================== */
+  .bleed-full {
+    margin-left: -12px;
+    margin-right: -12px; }
+
+  .bleed-left {
+    margin-left: -12px; }
+
+  .bleed-right {
+    margin-right: -12px; }
+
+  /* ================================================================== */
+  /* Lists */
+  /* ================================================================== */
+  [class*="list-grid-"] {
+    width: auto; }
+  .list-grid-small-1 > li {
+    width: 100%; }
+  .list-grid-small-2 > li {
+    width: 50%; }
+  .list-grid-small-3 > li {
+    width: 33.33333%; }
+  .list-grid-small-4 > li {
+    width: 25%; }
+  .list-grid-small-5 > li {
+    width: 20%; }
+  .list-grid-small-6 > li {
+    width: 16.66667%; }
+  .list-grid-small-7 > li {
+    width: 14.28571%; }
+  .list-grid-small-8 > li {
+    width: 12.5%; }
+  .list-grid-small-9 > li {
+    width: 11.11111%; }
+  .list-grid-small-10 > li {
+    width: 10%; }
+  .list-grid-small-11 > li {
+    width: 9.09091%; }
+  .list-grid-small-12 > li {
+    width: 8.33333%; }
+  .list-grid-small-1 > li:nth-of-type(n), .list-grid-small-2 > li:nth-of-type(n), .list-grid-small-3 > li:nth-of-type(n), .list-grid-small-4 > li:nth-of-type(n), .list-grid-small-5 > li:nth-of-type(n), .list-grid-small-6 > li:nth-of-type(n), .list-grid-small-7 > li:nth-of-type(n), .list-grid-small-8 > li:nth-of-type(n), .list-grid-small-9 > li:nth-of-type(n), .list-grid-small-10 > li:nth-of-type(n), .list-grid-small-11 > li:nth-of-type(n), .list-grid-small-12 > li:nth-of-type(n) {
+    clear: none; }
+
+  .list-grid-small-1 > li:nth-of-type(1n+1), .list-grid-small-2 > li:nth-of-type(2n+1), .list-grid-small-3 > li:nth-of-type(3n+1), .list-grid-small-4 > li:nth-of-type(4n+1), .list-grid-small-5 > li:nth-of-type(5n+1), .list-grid-small-6 > li:nth-of-type(6n+1), .list-grid-small-7 > li:nth-of-type(7n+1), .list-grid-small-8 > li:nth-of-type(8n+1), .list-grid-small-9 > li:nth-of-type(9n+1), .list-grid-small-10 > li:nth-of-type(10n+1), .list-grid-small-11 > li:nth-of-type(11n+1), .list-grid-small-12 > li:nth-of-type(12n+1) {
+    clear: both; } }
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   /* ================================================================== */
   /* This file has the general styles for all viewports */
@@ -1639,43 +1674,113 @@ pre, code {
 
   .tablet-grid-100 {
     clear: both;
-    width: 100%; } }
+    width: 100%; }
+
+  /* ================================================================== */
+  /* Additions to default viewport */
+  /* ================================================================== */
+  /* ================================================================== */
+  /* Centering */
+  /* ================================================================== */
+  .centered {
+    margin-left: auto;
+    margin-right: auto; }
+
+  /* ================================================================== */
+  /* Lists */
+  /* ================================================================== */
+  [class*="list-grid-"] {
+    width: auto; }
+  .list-grid-medium-1 > li {
+    width: 100%; }
+  .list-grid-medium-2 > li {
+    width: 50%; }
+  .list-grid-medium-3 > li {
+    width: 33.33333%; }
+  .list-grid-medium-4 > li {
+    width: 25%; }
+  .list-grid-medium-5 > li {
+    width: 20%; }
+  .list-grid-medium-6 > li {
+    width: 16.66667%; }
+  .list-grid-medium-7 > li {
+    width: 14.28571%; }
+  .list-grid-medium-8 > li {
+    width: 12.5%; }
+  .list-grid-medium-9 > li {
+    width: 11.11111%; }
+  .list-grid-medium-10 > li {
+    width: 10%; }
+  .list-grid-medium-11 > li {
+    width: 9.09091%; }
+  .list-grid-medium-12 > li {
+    width: 8.33333%; }
+  .list-grid-medium-1 > li:nth-of-type(n), .list-grid-medium-2 > li:nth-of-type(n), .list-grid-medium-3 > li:nth-of-type(n), .list-grid-medium-4 > li:nth-of-type(n), .list-grid-medium-5 > li:nth-of-type(n), .list-grid-medium-6 > li:nth-of-type(n), .list-grid-medium-7 > li:nth-of-type(n), .list-grid-medium-8 > li:nth-of-type(n), .list-grid-medium-9 > li:nth-of-type(n), .list-grid-medium-10 > li:nth-of-type(n), .list-grid-medium-11 > li:nth-of-type(n), .list-grid-medium-12 > li:nth-of-type(n) {
+    clear: none; }
+
+  .list-grid-medium-1 > li:nth-of-type(1n+1), .list-grid-medium-2 > li:nth-of-type(2n+1), .list-grid-medium-3 > li:nth-of-type(3n+1), .list-grid-medium-4 > li:nth-of-type(4n+1), .list-grid-medium-5 > li:nth-of-type(5n+1), .list-grid-medium-6 > li:nth-of-type(6n+1), .list-grid-medium-7 > li:nth-of-type(7n+1), .list-grid-medium-8 > li:nth-of-type(8n+1), .list-grid-medium-9 > li:nth-of-type(9n+1), .list-grid-medium-10 > li:nth-of-type(10n+1), .list-grid-medium-11 > li:nth-of-type(11n+1), .list-grid-medium-12 > li:nth-of-type(12n+1) {
+    clear: both; } }
 @media screen and (min-width: 1025px) {
   /* ================================================================== */
   /* This file has the general styles for desktop viewports */
   /* ================================================================== */
   .hide-on-desktop {
-    display: none !important; } }
-/* ================================================================== */
-/* Global CSS Tricks for web Developers */
-/* ================================================================== */
-/* ================================================================== */
-/* Global HTML/CSS Goodies to help stabilize some features for web developers
-/* ================================================================== */
-/* ================================================================== */
-/* Responsive Images */
-/* ================================================================== */
-img {
-  height: auto;
-  max-width: 100%;
-  width: 100%;
-  border: 0; }
+    display: none !important; }
 
-.ie8 img {
-  width: auto; }
+  /* ================================================================== */
+  /* Additions to large viewport */
+  /* ================================================================== */
+  /* ================================================================== */
+  /* Centering */
+  /* ================================================================== */
+  .large-centered {
+    margin-left: auto;
+    margin-right: auto; }
 
-/* ================================================================== */
-/* Responsive video */
-/* ================================================================== */
-.video-responsive {
-  position: relative;
-  padding-bottom: 56.25%;
-  /* 16:9 */
-  padding-top: 25px;
-  height: 0; }
-  .video-responsive iframe, .video-responsive object, .video-responsive embed {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; }
+  /* ================================================================== */
+  /* Bleeds */
+  /* ================================================================== */
+  .bleed-full {
+    margin-left: -32px;
+    margin-right: -32px; }
+
+  .bleed-left {
+    margin-left: -32px; }
+
+  .bleed-right {
+    margin-right: -32px; }
+
+  /* ================================================================== */
+  /* Lists */
+  /* ================================================================== */
+  [class*="list-grid-"] {
+    width: auto; }
+  .list-grid-1 > li {
+    width: 100%; }
+  .list-grid-2 > li {
+    width: 50%; }
+  .list-grid-3 > li {
+    width: 33.33333%; }
+  .list-grid-4 > li {
+    width: 25%; }
+  .list-grid-5 > li {
+    width: 20%; }
+  .list-grid-6 > li {
+    width: 16.66667%; }
+  .list-grid-7 > li {
+    width: 14.28571%; }
+  .list-grid-8 > li {
+    width: 12.5%; }
+  .list-grid-9 > li {
+    width: 11.11111%; }
+  .list-grid-10 > li {
+    width: 10%; }
+  .list-grid-11 > li {
+    width: 9.09091%; }
+  .list-grid-12 > li {
+    width: 8.33333%; }
+  .list-grid-1 > li:nth-of-type(n), .list-grid-2 > li:nth-of-type(n), .list-grid-3 > li:nth-of-type(n), .list-grid-4 > li:nth-of-type(n), .list-grid-5 > li:nth-of-type(n), .list-grid-6 > li:nth-of-type(n), .list-grid-7 > li:nth-of-type(n), .list-grid-8 > li:nth-of-type(n), .list-grid-9 > li:nth-of-type(n), .list-grid-10 > li:nth-of-type(n), .list-grid-11 > li:nth-of-type(n), .list-grid-12 > li:nth-of-type(n) {
+    clear: none; }
+
+  .list-grid-1 > li:nth-of-type(1n+1), .list-grid-2 > li:nth-of-type(2n+1), .list-grid-3 > li:nth-of-type(3n+1), .list-grid-4 > li:nth-of-type(4n+1), .list-grid-5 > li:nth-of-type(5n+1), .list-grid-6 > li:nth-of-type(6n+1), .list-grid-7 > li:nth-of-type(7n+1), .list-grid-8 > li:nth-of-type(8n+1), .list-grid-9 > li:nth-of-type(9n+1), .list-grid-10 > li:nth-of-type(10n+1), .list-grid-11 > li:nth-of-type(11n+1), .list-grid-12 > li:nth-of-type(12n+1) {
+    clear: both; } }

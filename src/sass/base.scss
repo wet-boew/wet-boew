@@ -18,6 +18,11 @@
 @import 'mixins';
 @import 'vendor/reset'; // lets reset the values of elements to control things a bit better
 
+/* ================================================================== */
+/* Global CSS Tricks for web Developers */
+/* ================================================================== */
+@import 'includes/goodies';
+
 
 @media screen {
   	@import 'vendor/unsemantic/all';
@@ -35,14 +40,17 @@
 
 @media screen and (max-width: 767px) {
   @import 'vendor/unsemantic/mobile';
+  @import 'includes/extras/small';
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   @import 'vendor/unsemantic/tablet';
+  @import 'includes/extras/medium';
 }
 
 @media screen and (min-width: 1025px) {
-  @import 'vendor/unsemantic/desktop'
+  @import 'vendor/unsemantic/desktop';
+  @import 'includes/extras/large';
 }
 
 
@@ -50,7 +58,3 @@
 
 
 
-/* ================================================================== */
-/* Global CSS Tricks for web Developers */
-/* ================================================================== */
-@import 'includes/goodies';

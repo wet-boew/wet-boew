@@ -22,14 +22,14 @@
   <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 </head>
 <body>
-  <div class="grid-container">
-    <h3>Basic Grid Demonstration</h3>
+  <div class="grid-container border-left-dashed border-right-dashed">
+    <h1>Basic Grid Demonstration</h1>
     <p>There are 3 distinct classes for grid manipulation to allow and even better control of grid cell behaviour in small (mobile), medium (tablet), and large (desktop) views.</p>
       <div class="grid-100 tablet-grid-66 mobile-grid-50">
         <section class="example-block"><b class="hide-on-mobile hide-on-tablet">100%</b><b class="hide-on-mobile hide-on-desktop">66%</b><b class="hide-on-desktop hide-on-tablet">50%</b><span class="dynamic-px-width"></span></section>
       </div>
       <div class="tablet-grid-33 mobile-grid-50 hide-on-desktop">
-        <section class="example-block"><b class="hide-on-mobile">33%</b><b class="hide-on-tablet">50%</b><span class="dynamic-px-width"></span></section>
+        <section class="example-block"><b class="hide-on-mobile">33%</b><b class="hide-on-tablet hide-on-desktop">50%</b><span class="dynamic-px-width"></span></section>
       </div>
       <div class="grid-95 tablet-grid-33 mobile-grid-50">
         <section class="example-block"><b class="hide-on-mobile hide-on-tablet">95%</b><b class="hide-on-mobile hide-on-desktop">33%</b><b class="hide-on-desktop hide-on-tablet">50%</b><span class="dynamic-px-width"></span></section>
@@ -146,122 +146,274 @@
         <section class="example-block"><b class="hide-on-mobile hide-on-tablet">95%</b><b class="hide-on-mobile hide-on-desktop">66%</b><b class="hide-on-desktop hide-on-tablet">50%</b><span class="dynamic-px-width"></span></section>
       </div>
     <hr>
-    <h3>Border Demonstration</h3>
+    <h2>Border Demonstration</h2>
       <!-- lets do the styles first-->
       <h4>Styles</h4>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border"><b>border</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-left"><b>border-left</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-right"><b>border-right</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-top"><b>border-top</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-bottom"><b>border-bottom</b></section>
       </div>
       <div class="clear"></div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-dashed"><b>border-dashed</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-left-dashed"><b>border-left-dashed</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-right-dashed"><b>border-right-dashed</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-top-dashed"><b>border-top-dashed</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-bottom-dashed"><b>border-bottom-dashed</b></section>
       </div>
       <div class="clear"></div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-double"><b>border-double</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-left-double"><b>border-left-double</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-right-double"><b>border-right-double</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-top-double"><b>border-top-double</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-bottom-double"><b>border-bottom-double</b></section>
       </div>
       <div class="clear"></div>
       <h4>Sizes</h4>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border"><b>border</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-left"><b>border-left</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-right"><b>border-right</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-top"><b>border-top</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-bottom"><b>border-bottom</b></section>
       </div>
       <div class="clear"></div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-none"><b>border-none</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-left-none"><b>border-left-none</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-right-none"><b>border-right-none</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-top-none"><b>border-top-none</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-bottom-none"><b>border-bottom-none</b></section>
       </div>
       <div class="clear"></div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-large"><b>border-large</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-left-large"><b>border-left-large</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-right-large"><b>border-right-large</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-top-large"><b>border-top-large</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-bottom-large"><b>border-bottom-large</b></section>
       </div>
       <div class="clear"></div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-xlarge"><b>border-xlarge</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-left-xlarge"><b>border-left-xlarge</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-right-xlarge"><b>border-right-xlarge</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-top-xlarge"><b>border-top-xlarge</b></section>
       </div>
-      <div class="grid-20 tablet-grid-20 mobile-grid-20">
+      <div class="grid-20">
         <section class="example-block border-bottom-xlarge"><b>border-bottom-xlarge</b></section>
       </div>
       <div class="clear"></div>
+      <h4>Radius</h4>
+      <div class="grid-20">
+        <section class="example-block border border-fallen"><b>border border-fallen</b></section>
+      </div>
+      <div class="grid-20">
+        <section class="example-block border border-top-left-fallen"><b>border border-top-left-fallen</b></section>
+      </div>
+      <div class="grid-20">
+        <section class="example-block border border-top-right-fallen"><b>border border-top-right-fallen</b></section>
+      </div>
+      <div class="grid-20">
+        <section class="example-block border border-bottom-left-fallen"><b>border border-bottom-left-fallen</b></section>
+      </div>
+      <div class="grid-20">
+        <section class="example-block border border-bottom-right-fallen"><b>border border-bottom-right-fallen</b></section>
+      </div>
+      <div class="clear"></div>
+      <div class="grid-20">
+        <section class="example-block border border-flush"><b>border border-flush</b></section>
+      </div>
+      <div class="grid-20">
+        <section class="example-block border border-top-left-flush"><b>border border-top-left-flush</b></section>
+      </div>
+      <div class="grid-20">
+        <section class="example-block border border-top-right-flush"><b>border border-top-right-flush</b></section>
+      </div>
+      <div class="grid-20">
+        <section class="example-block border border-bottom-left-flush"><b>border border-bottom-left-flush</b></section>
+      </div>
+      <div class="grid-20">
+        <section class="example-block border border-bottom-right-flush"><b>border border-bottom-right-flush</b></section>
+      </div>
+      <div class="clear"></div>
+      <div class="grid-20">
+        <section class="example-block border border-arced"><b>border border-arced</b></section>
+      </div>
+      <div class="grid-20">
+        <section class="example-block border border-top-left-arced"><b>border border-top-left-arced</b></section>
+      </div>
+      <div class="grid-20">
+        <section class="example-block border border-top-right-arced"><b>border border-top-right-arced</b></section>
+      </div>
+      <div class="grid-20">
+        <section class="example-block border border-bottom-left-arced"><b>border border-bottom-left-arced</b></section>
+      </div>
+      <div class="grid-20">
+        <section class="example-block border border-bottom-right-arced"><b>border border-bottom-right-arced</b></section>
+      </div>
+      <div class="clear"></div>
+      <div class="grid-20">
+        <section class="example-block border border-arched"><b>border border-arched</b></section>
+      </div>
+      <div class="grid-20">
+        <section class="example-block border border-top-left-arched"><b>border border-top-left-arched</b></section>
+      </div>
+      <div class="grid-20">
+        <section class="example-block border border-top-right-arched"><b>border border-top-right-arched</b></section>
+      </div>
+      <div class="grid-20">
+        <section class="example-block border border-bottom-left-arched"><b>border border-bottom-left-arched</b></section>
+      </div>
+      <div class="grid-20">
+        <section class="example-block border border-bottom-right-arched"><b>border border-bottom-right-arched</b></section>
+      </div>
+      <div class="clear"></div>
     <hr>
+    <h2>List grid</h2>
+    <p>Desktop: 4 cells across (using<code>list-grid-4</code>)<br>Mobile: 2 cells across (using<code>list-grid-small-2</code>)</p>
+    <ul class="list-grid-small-2 list-grid-4">
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+    </ul>
+    <p>Desktop: 12 cells across (using<code>list-grid-12</code>)<br>Mobile: 4 cells across (using<code>list-grid-small-4</code>)</p>
+    <ul class="list-grid-small-4 list-grid-12">
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+    </ul>
+    <p>Desktop: 3 cells across (using<code>list-grid-3</code>)<br>Mobile: 5 cells across (using<code>list-grid-small-5</code>)</p>
+    <ul class="list-grid-small-5 list-grid-3">
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <li><img src="http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg"></li>
+      <hr>
+      <h2>Bleed and Gutter Demonstration</h2>
+    </ul>
+    <div class="gutterless">
+      <div class="grid-25">
+        <section class="example-block"><b>25%</b></section><span class="dynamic-px-width"></span>
+      </div>
+      <div class="grid-50">
+        <section class="example-block"><b>50%</b></section><span class="dynamic-px-width"></span>
+      </div>
+      <div class="grid-25">
+        <section class="example-block"><b>25%</b></section><span class="dynamic-px-width"></span>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="bleed-full">       
+      <div class="grid-25">
+        <section class="example-block"><b>25%</b></section><span class="dynamic-px-width"></span>
+      </div>
+      <div class="grid-50">
+        <section class="example-block"><b>50%</b></section><span class="dynamic-px-width"></span>
+      </div>
+      <div class="grid-25">
+        <section class="example-block"><b>25%</b></section><span class="dynamic-px-width"></span>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="bleed-left">       
+      <div class="grid-25">
+        <section class="example-block"><b>25%</b></section><span class="dynamic-px-width"></span>
+      </div>
+      <div class="grid-50">
+        <section class="example-block"><b>50%</b></section><span class="dynamic-px-width"></span>
+      </div>
+      <div class="grid-25">
+        <section class="example-block"><b>25%</b></section><span class="dynamic-px-width"></span>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="bleed-right">       
+      <div class="grid-25">
+        <section class="example-block"><b>25%</b></section><span class="dynamic-px-width"></span>
+      </div>
+      <div class="grid-50">
+        <section class="example-block"><b>50%</b></section><span class="dynamic-px-width"></span>
+      </div>
+      <div class="grid-25">
+        <section class="example-block"><b>25%</b></section><span class="dynamic-px-width"></span>
+      </div>
+    </div>
   </div>
 </body>
