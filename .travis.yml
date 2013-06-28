@@ -1,12 +1,14 @@
 language: node_js
-env:
+matrix:
+  env:
   global:
     - secure: "Vd6aDdDAKL8SZQx8L/LeoDI4+I/Y6cjIoedk31MFCWn6NzAWNj08h6JfRT31\noCH7+jPjIVoakzdjFHBxiLskPfqPSZA4xkVCml3kMai9UqYortnRK8VcFg2W\nqi8XQHOCF7e5mOmHt4AycN/1kJHJZ39u1gdoXu1eO4ml62uKLxc="
-matrix:
   exclude: [{}]
   include:
     -  { node_js: "0.10", env: POST_BUILD=true }
+
 before_install:
   - npm install -g grunt-cli
+ 
 script:
   - npm test && ./build/post_build.sh
