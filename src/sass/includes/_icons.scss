@@ -1,0 +1,210 @@
+/* ================================================================== */
+/* This file has the general styles for all icons */
+/* ================================================================== */
+
+/* ================================================================== */
+/* Icons Sprites */
+/* ================================================================== */
+[class*="wb-icon-"] {
+	width:16px;
+	height:16px;
+	margin-right:4px;
+	display:inline-block;
+	vertical-align:text-top;
+	background-image:url(images/icons/sprite.png);
+	background-position: top left;
+}
+
+[href$='.psd'],[href^='mailto:'],[href$='.zip'],[href$='.egret'],[href$='.doc'],[href$='.pdf'],[href$='.xls'],[href$='.rtf'],[href$='.pot'],[href$='.ppt'],[href$='.pps'],[href$='.pptm'],[href$='.docx'],[href$='.xlsx'],[href$='.pptx'],[href$='.pub'] {
+	background-image:url(images/wb-icon/drive-download.png);
+	background-repeat:no-repeat;
+	padding-left:19px;
+}
+
+[href^='mailto:'] {
+	background-image:url(images/wb-icon/mail.png);
+}
+
+[rel="external"] {
+	background:url(images/wb-icon/external.png) 100% 0 no-repeat;
+}
+
+
+.wb-icon-none {
+background-image:none;
+padding-left:0;
+display:inline;
+margin-right:0;
+}
+
+/* ================================================================== */
+/* Individual Sprites */
+/* ================================================================== */
+
+.wb-icon-alarm{ background-position: 0 0;  } 
+.wb-icon-bank{ background-position: -32px 0;  } 
+.wb-icon-book-address{ background-position: -64px 0;  } 
+.wb-icon-book-alt{ background-position: -96px 0;  } 
+.wb-icon-book-open{ background-position: -128px 0;  } 
+.wb-icon-book{ background-position: -160px 0;  } 
+.wb-icon-box{ background-position: -192px 0;  } 
+.wb-icon-briefcase{ background-position: -224px 0;  } 
+.wb-icon-bulb-off{ background-position: -256px 0;  } 
+.wb-icon-bulb{ background-position: -288px 0;  } 
+.wb-icon-calculator-arrow{ background-position: -320px 0;  } 
+.wb-icon-calculator-exclamation{ background-position: -352px 0;  } 
+.wb-icon-calculator-minus{ background-position: -384px 0;  } 
+.wb-icon-calculator-plus{ background-position: -416px 0;  } 
+.wb-icon-calculator{ background-position: -448px 0;  } 
+.wb-icon-calendar-day{ background-position: -480px 0;  } 
+.wb-icon-calendar-list{ background-position: -512px 0;  } 
+.wb-icon-calendar-month{ background-position: -544px 0;  } 
+.wb-icon-calendar{ background-position: -576px 0;  } 
+.wb-icon-car{ background-position: -608px 0;  } 
+.wb-icon-chart-down{ background-position: -640px 0;  } 
+.wb-icon-chart-pie{ background-position: -672px 0;  } 
+.wb-icon-chart-up{ background-position: -704px 0;  } 
+.wb-icon-chart{ background-position: -736px 0;  } 
+.wb-icon-clip{ background-position: -768px 0;  } 
+.wb-icon-clipboard-exclamation{ background-position: -800px 0;  } 
+.wb-icon-clipboard{ background-position: -832px 0;  } 
+.wb-icon-clock{ background-position: -864px 0;  } 
+.wb-icon-comment{ background-position: -896px 0;  } 
+.wb-icon-compass{ background-position: -928px 0;  } 
+.wb-icon-cone{ background-position: -960px 0;  } 
+.wb-icon-construction{ background-position: -992px 0;  } 
+.wb-icon-currency{ background-position: -1024px 0;  } 
+.wb-icon-desktop{ background-position: -1056px 0;  } 
+.wb-icon-direction{ background-position: -1088px 0;  } 
+.wb-icon-disk{ background-position: -1120px 0;  } 
+.wb-icon-document-zip{ background-position: -1152px 0;  } 
+.wb-icon-document{ background-position: -1184px 0;  } 
+.wb-icon-documents{ background-position: -1216px 0;  } 
+.wb-icon-door-open{ background-position: -1248px 0;  } 
+.wb-icon-door{ background-position: -1280px 0;  } 
+.wb-icon-drive-arrow{ background-position: -1312px 0;  } 
+.wb-icon-drive-download{ background-position: -1344px 0;  } 
+.wb-icon-drive-network{ background-position: -1376px 0;  } 
+.wb-icon-drive-upload{ background-position: -1408px 0;  } 
+.wb-icon-envelope-arrow{ background-position: -1440px 0;  } 
+.wb-icon-envelope-share{ background-position: -1472px 0;  } 
+.wb-icon-envelope{ background-position: -1504px 0;  } 
+.wb-icon-eraser{ background-position: -1536px 0;  } 
+.wb-icon-exclamation-alt{ background-position: -1568px 0;  } 
+.wb-icon-exclamation-alt2{ background-position: -1600px 0;  } 
+.wb-icon-exclamation{ background-position: -1632px 0;  } 
+.wb-icon-external{ background-position: -1664px 0;  } 
+.wb-icon-fax{ background-position: -1696px 0;  } 
+.wb-icon-film{ background-position: -1728px 0;  } 
+.wb-icon-folder-alt{ background-position: -1760px 0;  } 
+.wb-icon-folder-bookmark{ background-position: -1792px 0;  } 
+.wb-icon-folder-open{ background-position: -1824px 0;  } 
+.wb-icon-folder-search{ background-position: -1856px 0;  } 
+.wb-icon-folder{ background-position: -1888px 0;  } 
+.wb-icon-gavel{ background-position: -1920px 0;  } 
+.wb-icon-gear{ background-position: -1952px 0;  } 
+.wb-icon-globe{ background-position: 0 -32px;  } 
+.wb-icon-home{ background-position: -32px -32px;  } 
+.wb-icon-hourglass{ background-position: -64px -32px;  } 
+.wb-icon-image{ background-position: -96px -32px;  } 
+.wb-icon-info-alt{ background-position: -128px -32px;  } 
+.wb-icon-info{ background-position: -160px -32px;  } 
+.wb-icon-key{ background-position: -192px -32px;  } 
+.wb-icon-light-exclamation{ background-position: -224px -32px;  } 
+.wb-icon-light-green{ background-position: -256px -32px;  } 
+.wb-icon-light-red{ background-position: -288px -32px;  } 
+.wb-icon-light-yellow{ background-position: -320px -32px;  } 
+.wb-icon-light{ background-position: -352px -32px;  } 
+.wb-icon-lock-unlock{ background-position: -384px -32px;  } 
+.wb-icon-lock{ background-position: -416px -32px;  } 
+.wb-icon-luggage{ background-position: -448px -32px;  } 
+.wb-icon-magnet{ background-position: -480px -32px;  } 
+.wb-icon-magnifier{ background-position: -512px -32px;  } 
+.wb-icon-mail-open{ background-position: -544px -32px;  } 
+.wb-icon-mail{ background-position: -576px -32px;  } 
+.wb-icon-marker{ background-position: -608px -32px;  } 
+.wb-icon-megaphone{ background-position: -640px -32px;  } 
+.wb-icon-microphone{ background-position: -672px -32px;  } 
+.wb-icon-monitor{ background-position: -704px -32px;  } 
+.wb-icon-nav-090-alt{ background-position: -736px -32px;  } 
+.wb-icon-nav-090{ background-position: -768px -32px;  } 
+.wb-icon-nav-180-alt{ background-position: -800px -32px;  } 
+.wb-icon-nav-180{ background-position: -832px -32px;  } 
+.wb-icon-nav-270-alt{ background-position: -864px -32px;  } 
+.wb-icon-nav-270{ background-position: -896px -32px;  } 
+.wb-icon-nav-alt{ background-position: -928px -32px;  } 
+.wb-icon-nav{ background-position: -960px -32px;  } 
+.wb-icon-newspaper{ background-position: -992px -32px;  } 
+.wb-icon-note-pencil{ background-position: -1024px -32px;  } 
+.wb-icon-note{ background-position: -1056px -32px;  } 
+.wb-icon-paper-pencil{ background-position: -1088px -32px;  } 
+.wb-icon-paper-share{ background-position: -1120px -32px;  } 
+.wb-icon-paper{ background-position: -1152px -32px;  } 
+.wb-icon-pencil{ background-position: -1184px -32px;  } 
+.wb-icon-picture{ background-position: -1216px -32px;  } 
+.wb-icon-printer{ background-position: -1248px -32px;  } 
+.wb-icon-prohibit{ background-position: -1280px -32px;  } 
+.wb-icon-question-alt{ background-position: -1312px -32px;  } 
+.wb-icon-question{ background-position: -1344px -32px;  } 
+.wb-icon-report-pencil{ background-position: -1376px -32px;  } 
+.wb-icon-report{ background-position: -1408px -32px;  } 
+.wb-icon-reports{ background-position: -1440px -32px;  } 
+.wb-icon-rss{ background-position: -1472px -32px;  } 
+.wb-icon-safe{ background-position: -1504px -32px;  } 
+.wb-icon-scale{ background-position: -1536px -32px;  } 
+.wb-icon-server-network{ background-position: -1568px -32px;  } 
+.wb-icon-server{ background-position: -1600px -32px;  } 
+.wb-icon-service-bell{ background-position: -1632px -32px;  } 
+.wb-icon-sitemap{ background-position: -1664px -32px;  } 
+.wb-icon-star-empty{ background-position: -1696px -32px;  } 
+.wb-icon-star-half{ background-position: -1728px -32px;  } 
+.wb-icon-star{ background-position: -1760px -32px;  } 
+.wb-icon-table{ background-position: -1792px -32px;  } 
+.wb-icon-target{ background-position: -1824px -32px;  } 
+.wb-icon-telephone{ background-position: -1856px -32px;  } 
+.wb-icon-thermometer-high{ background-position: -1888px -32px;  } 
+.wb-icon-thermometer-low{ background-position: -1920px -32px;  } 
+.wb-icon-thermometer{ background-position: -1952px -32px;  } 
+.wb-icon-tick-alt{ background-position: 0 -64px;  } 
+.wb-icon-tick-alt2{ background-position: -32px -64px;  } 
+.wb-icon-tick{ background-position: -64px -64px;  } 
+.wb-icon-tool{ background-position: -96px -64px;  } 
+.wb-icon-toolbox{ background-position: -128px -64px;  } 
+.wb-icon-tshirt{ background-position: -160px -64px;  } 
+.wb-icon-usb-arrow{ background-position: -192px -64px;  } 
+.wb-icon-usb-logo{ background-position: -224px -64px;  } 
+.wb-icon-usb{ background-position: -256px -64px;  } 
+.wb-icon-user{ background-position: -288px -64px;  } 
+.wb-icon-users{ background-position: -320px -64px;  } 
+.wb-icon-weather-cloud{ background-position: -352px -64px;  } 
+.wb-icon-weather-lightning{ background-position: -384px -64px;  } 
+.wb-icon-weather-rain{ background-position: -416px -64px;  } 
+.wb-icon-weather-snow{ background-position: -448px -64px;  } 
+.wb-icon-weather-sun-cloud{ background-position: -480px -64px;  } 
+.wb-icon-weather-sun{ background-position: -512px -64px;  } 
+.wb-icon-x-alt{ background-position: -544px -64px;  } 
+.wb-icon-x-alt2{ background-position: -576px -64px;  } 
+.wb-icon-x{ background-position: -608px -64px;  } 
+
+
+/* Internationaliztion */
+
+[dir="rtl"] {
+	[href$='.psd'],[href^='mailto:'],[href$='.zip'], [href$='.doc'], [href$='.pdf'], [href$='.xls'], [href$='.rtf'], [href$='.pot'], [href$='.ppt'], [href$='.pps'], [href$='.pptm'], [href$='.docx'], [href$='.xlsx'], [href$='.pptx'] {
+		background-position:100% 0;
+		padding-left:0;
+		padding-right:19px;
+	}
+
+	[class*=wb-icon-] {
+		margin-right:auto;
+		margin-left:4px;
+		background-position:top right; 
+	}
+	 .wb-icon-none {
+		padding-right:0;
+		margin-right:auto;
+		margin-left:0;
+	}
+
+}
