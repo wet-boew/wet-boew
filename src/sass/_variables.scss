@@ -43,6 +43,7 @@ $gutters: $gutter + px;
 $gutters-small: golden_decrease($gutter, 1) + px;
 $gutters-large: golden_increase($gutter, 1) + px;
 $gutters-xlarge: golden_increase($gutter, 2) + px;
+$gutters-xxlarge: golden_increase($gutter, 3) + px;
 
 
 
