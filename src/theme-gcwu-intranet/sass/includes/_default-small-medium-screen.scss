@@ -5,6 +5,11 @@
 %gcwu-default-small-medium-padding-3-5 {
 	padding: 3px 5px;
 }
+#gcwu-gcnb-in {
+	#gcwu-wmms {
+		@extend %gcwu-default-small-medium-screen-display-none-important;
+	}
+}
 #gcwu-subsite {
 	font-size: 130%;
 	text-shadow: 1px 1px 1px #333;
