@@ -1263,7 +1263,12 @@
 
 								// The original menu item was not in a menu bar and is a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
 								if (!menubar && hlink.length > 0 && (toplevel || collapsible || !collapseTopOnly)) {
-									menu += link + hlinkDOM.href + '">' + hlinkDOM.innerHTML + ' - ' + mainText + '</a>';
+									if (toplevel) {
+										menu = menu.substring(0, menu.length - 6) + link + hlinkDOM.href + '" class="ui-corner-bottom';
+									} else {
+										menu += link + hlinkDOM.href;
+									}
+									menu += '">' + hlinkDOM.innerHTML + ' - ' + mainText + '</a>';
 								}
 								menu += '</div>';
 							} else if (mItemTag === 'ul') { // If the menu item is a ul
