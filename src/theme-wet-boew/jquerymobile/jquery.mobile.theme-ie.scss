@@ -1,4 +1,4 @@
-/*!!
+/*
 * jQuery Mobile 1.3.1
 * Git HEAD hash: 74b4bec049fd93e4fe40205e6157de16eb64eb46 <> Date: Mon Apr 8 2013 19:41:28 UTC
 * http://jquerymobile.com
@@ -52,7 +52,7 @@
 .ui-body-a,
 .ui-overlay-a {
 	border: 1px solid #aaaaaa /*{a-body-border}*/;
-	color: #333333 /*{a-body-color}*/;
+	color: #000000 /*{a-body-color}*/;
 	text-shadow: 0 /*{a-body-shadow-x}*/ 1px /*{a-body-shadow-y}*/ 0 /*{a-body-shadow-radius}*/ #ffffff /*{a-body-shadow-color}*/;
 	background: #f9f9f9 /*{a-body-background-color}*/;
 	background-image: -webkit-gradient(linear, left top, left bottom, from( #f9f9f9 /*{a-body-background-start}*/), to( #eeeeee /*{a-body-background-end}*/)); /* Saf4+, Chrome */
@@ -74,7 +74,7 @@
 	 font-family: Arial, Verdana, Helvetica, sans-serif /*{global-font-family}*/;
 }
 .ui-body-a .ui-link-inherit {
-	color: #333333 /*{a-body-color}*/;
+	color: #000000 /*{a-body-color}*/;
 }
 .ui-body-a .ui-link {
 	color: #295376 /*{a-body-link-color}*/;
@@ -189,7 +189,7 @@
 .ui-body-b,
 .ui-overlay-b {
 	border: 1px solid #aaaaaa /*{b-body-border}*/;
-	color: #333333 /*{b-body-color}*/;
+	color: #000000 /*{b-body-color}*/;
 	text-shadow: 0 /*{b-body-shadow-x}*/ 1px /*{b-body-shadow-y}*/ 0 /*{b-body-shadow-radius}*/ #ffffff /*{b-body-shadow-color}*/;
 	background: #f9f9f9 /*{b-body-background-color}*/;
 	background-image: -webkit-gradient(linear, left top, left bottom, from( #f9f9f9 /*{b-body-background-start}*/), to( #eeeeee /*{b-body-background-end}*/)); /* Saf4+, Chrome */
@@ -211,7 +211,7 @@
 	 font-family: Arial, Verdana, Helvetica, sans-serif /*{global-font-family}*/;
 }
 .ui-body-b .ui-link-inherit {
-	color: #333333 /*{b-body-color}*/;
+	color: #000000 /*{b-body-color}*/;
 }
 .ui-body-b .ui-link {
 	color: #295376 /*{b-body-link-color}*/;
@@ -328,7 +328,7 @@
 .ui-body-c,
 .ui-overlay-c {
 	border: 1px solid #aaaaaa /*{c-body-border}*/;
-	color: #333333 /*{c-body-color}*/;
+	color: #000000 /*{c-body-color}*/;
 	text-shadow: 0 /*{c-body-shadow-x}*/ 1px /*{c-body-shadow-y}*/ 0 /*{c-body-shadow-radius}*/ #ffffff /*{c-body-shadow-color}*/;
 	background: #f9f9f9 /*{c-body-background-color}*/;
 	background-image: -webkit-gradient(linear, left top, left bottom, from( #f9f9f9 /*{c-body-background-start}*/), to( #eeeeee /*{c-body-background-end}*/)); /* Saf4+, Chrome */
@@ -350,7 +350,7 @@
 	 font-family: Arial, Verdana, Helvetica, sans-serif /*{global-font-family}*/;
 }
 .ui-body-c .ui-link-inherit {
-	color: #333333 /*{c-body-color}*/;
+	color: #000000 /*{c-body-color}*/;
 }
 .ui-body-c .ui-link {
 	color: #295376 /*{c-body-link-color}*/;

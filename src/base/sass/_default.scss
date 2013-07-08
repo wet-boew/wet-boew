@@ -19,11 +19,6 @@ body {
 	padding: 0;
 }
 
-/* Prevent jQuery Mobile from changing the default font colour to dark grey. */
-.ui-body-c, .ui-overlay-c {
-	color: #000;
-}
-
 /* Override jQuery Mobile hiding of content on mobile loading to eliminate white flicker (exact opposite of what jQuery Mobile does) */
 .ui-mobile-rendering {
 	> {
