@@ -116,9 +116,8 @@
 				opened = !opened;
 
 				if (_pe.ie <= 0 || _pe.ie > 8) { // IE 9 and other browsers
-					tabWidth = tab.width();
+					tabWidth = tab.outerWidth();
 				} else {
-					// tabWidth = tab.height();
 					tabWidth = 0;
 				}
 
