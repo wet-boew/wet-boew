@@ -349,7 +349,7 @@
 							var panel,
 								panelId;
 							panel = anchor.parents('[role="tabpanel"]:hidden');
-							if (panel) {
+							if (panel.length !== 0) {
 								e.preventDefault();
 								panelId = panel.attr('id');
 								panel.parent().siblings('.tabs').find('a').filter('[href="#' + panelId + '"]').trigger('click');
