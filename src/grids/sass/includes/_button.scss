@@ -314,7 +314,7 @@
 
 	@include background-image(linear-gradient($color, darken($color, 10%)));
 	@include pseudo-focus {
-		background-color: darken($color, 10%);
+		background-color: darken($color, 10%) !important;
 	}
 	@if $experimental-support-for-mozilla {
 		&:focus::-moz-focus-inner, &:active::-moz-focus-inner {
