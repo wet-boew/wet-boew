@@ -1,0 +1,52 @@
+/* ================================================================== */
+/* This file has the general styles for all viewports */
+/* ================================================================== */
+
+  .hide-on-tablet {
+    display: none !important;
+  }
+  
+ [class*=grid-] {
+    padding-left:$gutters;
+	padding-right:$gutters;
+  }
+  
+  //[class*=background-]{
+	//	padding-left:$gutters;
+	//	padding-right:$gutters;
+		//@include microfix();
+	//}
+  /* ================================================================== */
+/* Loop to create grid cells */
+/* ================================================================== */
+
+/* Straight numeric column spans */
+@for $i from 1 through 20 {
+		$num: $i * 5;
+  		$decimal: $num / 100;
+  		$percent: $num * 1%;
+  		// create classes
+		.tablet-grid-#{$num} { width: $percent; }
+		.tablet-prefix-#{$num} { margin-left: $percent; }
+		.tablet-suffix-#{$num} {  margin-right: $percent; }
+		.tablet-push-#{$num} {  left: $percent; }
+		.tablet-pull-#{$num} {  left: (-$percent); }
+}
+
+@for $i from 1 through 2 {
+	  $num: $i * 33;
+	  $one-third: 0.333333;
+	  $decimal: ($i * $one-third);
+	  $percent: ($num + $decimal) * 1%;
+	  // create classes
+		.tablet-grid-#{$num} {  width: $percent; }
+		.tablet-prefix-#{$num} { margin-left: $percent; }
+		.tablet-suffix-#{$num} {  margin-right: $percent; }
+		.tablet-push-#{$num} {  left: $percent; }
+		.tablet-pull-#{$num} {  left: (-$percent); }
+	
+}
+.tablet-grid-100 {
+    clear: both;
+    width: 100%;
+  }

@@ -1,708 +1,81 @@
-@charset "utf-8";
 /*
- * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
- */
-/* line 55, sass/partials/_normalize.scss */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-nav,
-section,
-summary {
-  display: block;
-}
-
-/* line 63, sass/partials/_normalize.scss */
-audio,
-canvas,
-video {
-  display: inline-block;
-}
-
-/* line 74, sass/partials/_normalize.scss */
-audio:not([controls]) {
-  display: none;
-  height: 0;
-}
-
-/* line 81, sass/partials/_normalize.scss */
-[hidden] {
-  display: none;
-}
-
-/* line 94, sass/partials/_normalize.scss */
-html {
-  background: white;
-  color: black;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-}
-
-/* line 110, sass/partials/_normalize.scss */
-html,
-button,
-input,
-select,
-textarea {
-  font-family: sans-serif;
-}
-
-/* line 116, sass/partials/_normalize.scss */
-body {
-  margin: 0;
-}
-
-/* line 132, sass/partials/_normalize.scss */
-a:focus {
-  outline: thin dotted;
-}
-/* line 139, sass/partials/_normalize.scss */
-a:hover, a:active {
-  outline: 0;
-}
-
-/* line 152, sass/partials/_normalize.scss */
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
-
-/* line 157, sass/partials/_normalize.scss */
-h2 {
-  font-size: 1.5em;
-  margin: 0.83em 0;
-}
-
-/* line 162, sass/partials/_normalize.scss */
-h3 {
-  font-size: 1.17em;
-  margin: 1em 0;
-}
-
-/* line 167, sass/partials/_normalize.scss */
-h4 {
-  font-size: 1em;
-  margin: 1.33em 0;
-}
-
-/* line 172, sass/partials/_normalize.scss */
-h5 {
-  font-size: 0.83em;
-  margin: 1.67em 0;
-}
-
-/* line 177, sass/partials/_normalize.scss */
-h6 {
-  font-size: 0.75em;
-  margin: 2.33em 0;
-}
-
-/* line 185, sass/partials/_normalize.scss */
-abbr[title] {
-  border-bottom: 1px dotted;
-}
-
-/* line 192, sass/partials/_normalize.scss */
-b,
-strong {
-  font-weight: bold;
-}
-
-/* line 204, sass/partials/_normalize.scss */
-dfn {
-  font-style: italic;
-}
-
-/* line 210, sass/partials/_normalize.scss */
-mark {
-  background: #ff0;
-  color: #000;
-}
-
-/* line 229, sass/partials/_normalize.scss */
-code,
-kbd,
-pre,
-samp {
-  font-family: monospace, serif;
-  font-size: 1em;
-}
-
-/* line 239, sass/partials/_normalize.scss */
-pre {
-  white-space: pre;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
-/* line 247, sass/partials/_normalize.scss */
-q {
-  quotes: "\201C" "\201D" "\2018" "\2019";
-}
-
-/* line 263, sass/partials/_normalize.scss */
-q:before,
-q:after {
-  content: '';
-  content: none;
-}
-
-/* line 270, sass/partials/_normalize.scss */
-small {
-  font-size: 80%;
-}
-
-/* line 278, sass/partials/_normalize.scss */
-sub,
-sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-
-/* line 285, sass/partials/_normalize.scss */
-sup {
-  top: -0.5em;
-}
-
-/* line 289, sass/partials/_normalize.scss */
-sub {
-  bottom: -0.25em;
-}
-
-/* line 341, sass/partials/_normalize.scss */
-img {
-  border: 0;
-}
-
-/* line 350, sass/partials/_normalize.scss */
-svg:not(:root) {
-  overflow: hidden;
-}
-
-/* line 360, sass/partials/_normalize.scss */
-figure {
-  margin: 0;
-}
-
-/* line 377, sass/partials/_normalize.scss */
-fieldset {
-  border: 1px solid #c0c0c0;
-  margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em;
-}
-
-/* line 388, sass/partials/_normalize.scss */
-legend {
-  border: 0;
-  padding: 0;
-  white-space: normal;
-}
-
-/* line 405, sass/partials/_normalize.scss */
-button,
-input,
-select,
-textarea {
-  font-family: inherit;
-  font-size: 100%;
-  margin: 0;
-  vertical-align: baseline;
-}
-
-/* line 418, sass/partials/_normalize.scss */
-button,
-input {
-  line-height: normal;
-}
-
-/* line 428, sass/partials/_normalize.scss */
-button,
-select {
-  text-transform: none;
-}
-
-/* line 443, sass/partials/_normalize.scss */
-button,
-html input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-  -webkit-appearance: button;
-  cursor: pointer;
-}
-
-/* line 454, sass/partials/_normalize.scss */
-button[disabled],
-input[disabled] {
-  cursor: default;
-}
-
-/* line 464, sass/partials/_normalize.scss */
-input[type="checkbox"],
-input[type="radio"] {
-  box-sizing: border-box;
-  padding: 0;
-}
-
-/* line 476, sass/partials/_normalize.scss */
-input[type="search"] {
-  -webkit-appearance: textfield;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
-}
-
-/* line 487, sass/partials/_normalize.scss */
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-
-/* line 495, sass/partials/_normalize.scss */
-button::-moz-focus-inner, input::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
-
-/* line 504, sass/partials/_normalize.scss */
-textarea {
-  overflow: auto;
-  vertical-align: top;
-}
-
-/* line 515, sass/partials/_normalize.scss */
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-/* line 4, sass/partials/_base.scss */
-body {
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
-  font-size: 100%;
-  line-height: 16px;
-  overflow-y: scroll;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-}
-
-/*
- * Flux Grid System 0.1
- *
- * Creator: Mario Bonito
- * Site: http://beelabs.ca
- * Credits: http://fluidable.com;
- */
-/* line 49, sass/partials/_gridsbeta.scss */
-.container {
-  width: 1200px;
-  margin: 0 auto;
-}
-
-/* line 56, sass/partials/_gridsbeta.scss */
-.row {
-  margin: 10px;
-  zoom: 1;
-}
-/* line 39, sass/partials/_gridsbeta.scss */
-.row:after {
-  display: block;
-  visibility: hidden;
-  height: 0;
+	Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW)
+	@theme : generic
+	@author : World Wide Web
+	@notes: A basic theme for WET-BOEW
+	@licence: wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+*/
+hr {
+  border: 0 #cccccc solid;
+  border-top-width: 1px;
   clear: both;
-  content: ".";
-}
-/* line 60, sass/partials/_gridsbeta.scss */
-.row .row {
-  margin: 0;
-}
-/* line 63, sass/partials/_gridsbeta.scss */
-.row .row [class*="span-"]:first-child .inner-span {
-  margin-left: 0;
-}
-/* line 64, sass/partials/_gridsbeta.scss */
-.row .row [class*="span-"]:last-child .inner-span {
-  margin-right: 0;
-}
-/* line 68, sass/partials/_gridsbeta.scss */
-.row .inner-span {
-  margin: 0 10px;
-}
-/* line 72, sass/partials/_gridsbeta.scss */
-.row h1, .row h2, .row h3, .row h4, .row h5, .row h6 {
-  margin-right: 10px;
+  height: 0; }
+
+h1 {
+  font-size: 25px; }
+
+h2 {
+  font-size: 23px; }
+
+h3 {
+  font-size: 21px; }
+
+h4 {
+  font-size: 19px; }
+
+h5 {
+  font-size: 17px; }
+
+h6 {
+  font-size: 15px; }
+
+ol {
+  list-style: decimal; }
+
+ul {
+  list-style: disc; }
+
+li {
+  margin-left: 30px; }
+
+p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset, figure {
+  margin-bottom: 20px; }
+
+body {
+  background: white;
+  color: #333333;
+  text-align: center; }
+
+a {
+  color: blue;
+  text-decoration: none; }
+
+a:hover {
+  text-decoration: underline; }
+
+h1 {
+  padding-top: 20px; }
+
+.example-block {
+  background: #eeeeee;
+  font-size: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  padding: 10px 0;
+  text-align: center; }
+
+.grid-container {
+  padding-bottom: 20px; }
+
+.grid-container > hr {
   margin-left: 10px;
-}
+  margin-right: 10px; }
 
-/* line 82, sass/partials/_gridsbeta.scss */
-h1, h2, h3, h4, h5, h6 {
-  margin-right: 20px;
-  margin-left: 20px;
-}
+div[class*="push-"] section {
+  background: #ddeecc; }
 
-/* line 88, sass/partials/_gridsbeta.scss */
-.inner-span h1, .inner-span h2, .inner-span h3, .inner-span h4, .inner-span h5, .inner-span h6 {
-  margin-right: 0;
-  margin-left: 0;
-}
+div[class*="pull-"] section {
+  background: #ffccdd; }
 
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-1 {
-  width: 8.33333%;
-  _width: 8.26393%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-2 {
-  width: 16.66667%;
-  _width: 16.59727%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-3 {
-  width: 25%;
-  _width: 24.9306%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-4 {
-  width: 33.33333%;
-  _width: 33.26393%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-5 {
-  width: 41.66667%;
-  _width: 41.59727%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-6 {
-  width: 50%;
-  _width: 49.9306%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-7 {
-  width: 58.33333%;
-  _width: 58.26393%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-8 {
-  width: 66.66667%;
-  _width: 66.59727%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-9 {
-  width: 75%;
-  _width: 74.9306%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-10 {
-  width: 83.33333%;
-  _width: 83.26393%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-11 {
-  width: 91.66667%;
-  _width: 91.59727%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-12 {
-  width: 100%;
-  _width: 99.9306%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-full {
-  width: 100%;
-  _width: 99.9306%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-half {
-  width: 50%;
-  _width: 49.9306%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-third {
-  width: 33.33333%;
-  _width: 33.26393%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-fourth {
-  width: 25%;
-  _width: 24.9306%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-fifth {
-  width: 16.66667%;
-  _width: 16.59727%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-sixth {
-  width: 16.66667%;
-  _width: 16.59727%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-seventh {
-  width: 8.33333%;
-  _width: 8.26393%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-eighth {
-  width: 8.33333%;
-  _width: 8.26393%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-ninth {
-  width: 8.33333%;
-  _width: 8.26393%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-tenth {
-  width: 8.33333%;
-  _width: 8.26393%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-eleventh {
-  width: 8.33333%;
-  _width: 8.26393%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 23, sass/partials/_gridsbeta.scss */
-.span-twelfth {
-  width: 8.33333%;
-  _width: 8.26393%;
-  /* IE6-7 */
-  float: left;
-  display: inline;
-  position: relative;
-}
-
-/* line 109, sass/partials/_gridsbeta.scss */
-.span-golden-a {
-  width: 61.803399%;
-  _width: 61.734%;
-  /* IE6-7 */
-  float: left;
-}
-
-/* line 115, sass/partials/_gridsbeta.scss */
-.span-golden-b {
-  width: 38.196601%;
-  _width: 38.1272%;
-  /* IE6-7 */
-  float: left;
-}
-
-@media screen and (min-width: 768px) and (max-width: 959px), screen and (min-device-width: 768px) and (max-device-width: 1023px) {
-  /* line 125, sass/partials/_gridsbeta.scss */
-  .container {
-    width: 100%;
-  }
-}
-@media screen and (min-width: 960px) and (min-device-width: 1024px) {
-  /* line 129, sass/partials/_gridsbeta.scss */
-  .container {
-    width: 960px;
-  }
-}
-@media screen and (min-width: 1200px) and (min-device-width: 1024px) {
-  /* line 134, sass/partials/_gridsbeta.scss */
-  .container {
-    width: 1200px;
-  }
-}
-@media screen and (max-width: 767px), screen and (max-device-width: 767px) {
-  /* line 142, sass/partials/_gridsbeta.scss */
-  .container {
-    width: 100%;
-  }
-
-  /* line 143, sass/partials/_gridsbeta.scss */
-  .row {
-    margin-bottom: 0;
-    margin-top: 0;
-  }
-  /* line 147, sass/partials/_gridsbeta.scss */
-  .row [class*="span-"] {
-    width: auto;
-    float: none;
-  }
-  /* line 153, sass/partials/_gridsbeta.scss */
-  .row .inner-span {
-    margin: 0;
-    margin-bottom: 5px;
-    margin-top: 5px;
-  }
-  /* line 159, sass/partials/_gridsbeta.scss */
-  .row [class*="offset-"] {
-    margin-left: 0;
-  }
-}
-/* line 3, sass/partials/_borders.scss */
-.border-left {
-  background: url("data:image/gif;base64,R0lGODlhAQABAPAAAAAAAP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==") top left repeat-y;
-}
-
-/* line 7, sass/partials/_borders.scss */
-.border-right {
-  background: url("data:image/gif;base64,R0lGODlhAQABAPAAAAAAAP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==") top right repeat-y;
-}
-
-/* line 11, sass/partials/_borders.scss */
-.border-top {
-  background: url("data:image/gif;base64,R0lGODlhAQABAPAAAAAAAP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==") top left repeat-x;
-}
-
-/* line 14, sass/partials/_borders.scss */
-.border-bottom {
-  background: url("data:image/gif;base64,R0lGODlhAQABAPAAAAAAAP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==") bottom left repeat-x;
-}
-
-/* line 18, sass/partials/_borders.scss */
-.border-all {
-  background-image: url("data:image/gif;base64,R0lGODlhAQABAPAAAAAAAP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="), url("data:image/gif;base64,R0lGODlhAQABAPAAAIiIiP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="), url("data:image/gif;base64,R0lGODlhAQABAPAAAIiIiP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="), url("data:image/gif;base64,R0lGODlhAQABAPAAAIiIiP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==");
-  background-position: top left, top right, top left, bottom left;
-  background-repeat: repeat-y, repeat-y, repeat-x, repeat-x;
-  background-color: inherit;
-}
-
-/*
-  Theme specific styles
- */
-/* line 29, sass/style.scss */
-.show-box {
-  font-size: 0.75em;
-  line-height: 1em;
-  color: #ffffff;
-  text-transform: uppercase;
-  text-align: center;
-  background: #6a4895;
-  padding: 1em 0;
-}
-
-/* line 39, sass/style.scss */
-.dimensions {
-  margin-left: 10px;
-}
-
-/* line 44, sass/style.scss */
-.show-box .show-box {
-  background: #9070ba;
-  font-size: 1em;
-}
+.dynamic-px-width {
+  display: block; }

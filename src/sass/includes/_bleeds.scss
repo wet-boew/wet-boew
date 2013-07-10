@@ -1,0 +1,26 @@
+/*
+  BLEEDS and GUTTER manipulation for WET-BOEW
+ */
+
+[class*=bleed-] { position: relative; }
+.bleed-full { 
+	margin-left: (-$gutter*2) + px;
+	margin-right: (-$gutter*2) + px; 
+    
+}
+.bleed-left { margin-left: (-$gutter*2) + px; }
+.bleed-right {margin-right: (-$gutter*2) + px ;}
+
+/* ================================================================== */
+/* Gutterless */
+/* ================================================================== */
+
+.gutterless {
+	&[class*=grid-], [class*=grid-] {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+
+

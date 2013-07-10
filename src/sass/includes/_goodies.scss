@@ -1,0 +1,35 @@
+/* ================================================================== */
+/* Global HTML/CSS Goodies to help stabilize some features for web developers
+/* ================================================================== */
+
+
+
+/* ================================================================== */
+/* Responsive Images */
+/* ================================================================== */
+img {
+	height: auto;
+	max-width: 100%;
+	width:100%;
+	border: 0;
+}
+.ie8 img { width: auto; }
+
+/* ================================================================== */
+/* Responsive video */
+/* ================================================================== */
+.video-responsive {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+	iframe, object, embed {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+

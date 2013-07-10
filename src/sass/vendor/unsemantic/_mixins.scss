@@ -1,0 +1,32 @@
+
+
+@function text-contrast(
+$bg-color,
+$dark-text: $dark-text-default,
+$light-text: $light-text-default
+) {
+  
+  $color-brightness: round((red($bg-color) * 299) + (green($bg-color) * 587) + (blue($bg-color) * 114) / 1000);
+  
+  $light-text-brightness: round((red($light-text) * 299) + (green($light-text) * 587) + (blue($light-text) * 114) / 1000);
+  
+  $dark-text-brightness: round((red($dark-text) * 299) + (green($dark-text) * 587) + (blue($dark-text) * 114) / 1000);
+  
+  @if abs($color-brightness - $light-text-brightness) > abs($color-brightness - $dark-text-brightness) {
+    @return $light-text;
+  }
+    
+  @else {
+    @return $dark-text;
+  }
+  
+}
+
+@mixin contrasty(
+  $background-color,
+  $dark: $dark-text-default,
+  $light: $light-text-default
+) {
+  background-color: $background-color;
+  color: text-contrast($background-color, $dark, $light);
+}

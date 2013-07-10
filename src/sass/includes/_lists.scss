@@ -1,0 +1,26 @@
+/*
+ * LISTS SCSS
+ * - Decorative OOCSS Extending CSS for List of elements
+ */
+
+// Setting overall properties on list items
+[class*="list-grid-"] {
+	@extend .cflat;
+	display:block;
+	@if $has-ie-backward-support == true {  *zoom:1; }
+	margin:0;
+	padding:0;
+	float: none;
+	
+	> li { 
+		display:inline;
+		height:auto;
+		float:left;
+		padding:0 $gutters-small $gutters-large;
+		clear: none;
+		margin: 0;
+		-webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;
+	    box-sizing: border-box;
+	 }
+}

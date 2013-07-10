@@ -1,0 +1,13 @@
+/*
+ PUSH PULL Classes for WET-BOEW
+ */
+
+@for $i from 1 through 20 {
+	    $num: $i * 5;
+        @include create_pull_push($num,$num);
+}
+
+@for $i from 1 through 2 {
+		$num : $i * 33;
+		@include create_pull_push($num, $num);
+}
