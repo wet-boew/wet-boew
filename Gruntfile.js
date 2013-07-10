@@ -32,8 +32,8 @@ module.exports = function(grunt) {
 				}, */
 				files: {
 					'build/css/base.css': 'src/sass/base.scss',
-					'themes/bare/css/theme.css': 'themes/bare/css/theme.scss',
-					'themes/demo/css/theme.css': 'themes/demo/css/theme.scss',
+					'demos/vapour/bare/css/theme.css': 'themes/bare/css/theme.scss',
+					'demos/vapour/demo/css/theme.css': 'themes/demo/css/theme.scss',
 					//'dist/css/theme.css': 'themes/demo/css/theme.scss'
 				}
 			}
@@ -114,8 +114,8 @@ module.exports = function(grunt) {
                     { 'dist/core/vapour/vapour.js': 'src/core/vapour/vapour.coffee' }, // 1:1 compile
                    // { 'plugins/bare/wet-boew-plugin.bare.js': 'src/plugins/bare/wet-boew-plugin.coffee' }
                     { 'dist/plugins/zebra/wet-boew.zebra.js': 'src/plugins/zebra/wet-boew-plugin-zebra.coffee' },
-				    { 'src/plugins/equalize/wet-boew.equalize.js': 'src/plugins/equalize/wet-boew-plugin-equalize.coffee' },
-				    { 'src/plugins/dimensions/wet-boew.dimensions.js': 'src/plugins/dimensions/wet-boew-plugin-dimensions.coffee' }
+				    { 'dist/plugins/equalize/wet-boew.equalize.js': 'src/plugins/equalize/wet-boew-plugin-equalize.coffee' },
+				    { 'dist/plugins/dimensions/wet-boew.dimensions.js': 'src/plugins/dimensions/wet-boew-plugin-dimensions.coffee' }
 				]
 			}
 		},
