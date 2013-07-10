@@ -1,0 +1,59 @@
+
+/* ================================================================== */
+/* This file has the general styles for the mobile viewport */
+/* ================================================================== */
+
+
+  .hide-on-mobile {
+    display: none !important;
+  }
+ 
+  [class*=grid-] {
+    width: 100%;
+    padding-left:$gutters-small;
+	padding-right:$gutters-small;
+  }
+
+ [class*=push-], [class*=pull-] { left: auto; }
+ [class*=prefix-] { margin-left: 0; }
+ [class*=suffix-] { margin-right: 0; }
+  
+ // [class*=background-]{
+//		padding-left:$gutters-small;
+//		padding-right:$gutters-small;
+		//@include microfix();
+//	}
+/* ================================================================== */
+/* Loop to create grid cells */
+/* ================================================================== */
+
+/* Straight numeric column spans */
+@for $i from 1 through 20 {
+		$num: $i * 5;
+  		$decimal: $num / 100;
+  		$percent: $num * 1%;
+  		// create classes
+		.mobile-grid-#{$num} {  float:left; width: $percent; }
+		.mobile-prefix-#{$num} { margin-left: $percent; }
+		.mobile-suffix-#{$num} {  margin-right: $percent; }
+		.mobile-push-#{$num} {  left: $percent; }
+		.mobile-pull-#{$num} {  left: (-$percent); }
+}
+
+@for $i from 1 through 2 {
+	  $num: $i * 33;
+	  $one-third: 0.333333;
+	  $decimal: ($i * $one-third);
+	  $percent: ($num + $decimal) * 1%;
+	  // create classes
+		.mobile-grid-#{$num} {  float:left; width: $percent; }
+		.mobile-prefix-#{$num} { margin-left: $percent; }
+		.mobile-suffix-#{$num} {  margin-right: $percent; }
+		.mobile-push-#{$num} {  left: $percent; }
+		.mobile-pull-#{$num} {  left: (-$percent); }
+	
+}
+.mobile-grid-100 {
+    clear: both;
+    width: 100%;
+  }

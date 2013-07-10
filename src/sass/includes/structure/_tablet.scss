@@ -1,0 +1,45 @@
+/* --------------------------------------------
+   Tablet View :: For tablets
+ ----------------------------------------------*/
+
+.row {
+	[class*=span-] { width: 100%;}
+	[class*=pull-], [class*=push-] {
+		left: auto;
+	}
+}
+
+/* Straight numeric column spans */
+@for $i from 1 through 20 {
+		$num: $i * 5;
+  		$decimal: $num / 100;
+  		$percent: $num * 1%;
+		@include create_tablet_column($num, $percent);
+}
+
+@for $i from 1 through 2 {
+	 $name: $i * 33;
+	 $one-third: 0.333333;
+	 $decimal: $i * $one-third;
+	 $percent: ($name + $decimal) * 1%;
+	 @include create_tablet_column($name, $percent);
+}
+
+/* --------------------------------------------
+  Tablet Push and Pull
+ ----------------------------------------------*/
+
+@for $i from 1 through 20 {
+	    $num: $i * 5;
+  		$decimal: $num / 100;
+  		$percent: $num * 1%;
+        @include create_tablet_pull_push($num,$percent);
+}
+
+@for $i from 1 through 2 {
+	 $name: $i * 33;
+	 $one-third: 0.333333;
+	 $decimal: $i * $one-third;
+	 $percent: ($name + $decimal) * 1%;
+	 @include create_tablet_pull_push($name, $percent);
+}

@@ -1,0 +1,100 @@
+/* 
+	WET-BOEW Variables
+*/
+
+// Calculations Functions
+
+@function golden_increase($value: 10, $multiplier: 1){
+	@return floor($value * power(1.618, $multiplier))
+}
+@function golden_decrease($value: 10, $multiplier: 1){
+	@return floor($value * power(0.618, $multiplier))
+}
+
+@function power ($x, $n) {
+    $ret: 1;
+    @if $n >= 0 {
+        @for $i from 1 through $n {
+            $ret: $ret * $x;
+        } 
+    } @else {
+        @for $i from $n to 0 {
+            $ret: $ret / $x;
+        }
+    }
+    @return $ret;
+}
+
+
+// Global settings
+
+$has-ie-backward-support: false;
+
+// Structure 
+//$columns : 12;
+
+// Setting variables
+$viewport-default: 960px;
+$viewport-small: 478px;
+$viewport-large: 1200px;
+
+$gutter : 10; // default grid spacing for lowest common denominator in px
+$gutters: $gutter + px; 
+$gutters-small: golden_decrease($gutter, 1) + px;
+$gutters-large: golden_increase($gutter, 1) + px;
+$gutters-xlarge: golden_increase($gutter, 2) + px;
+$gutters-xxlarge: golden_increase($gutter, 3) + px;
+
+
+
+// Backgrounds
+$background-light-color: #eee ;
+$background-light-text: #222 ;
+$background-medium-color: #777 ;
+$background-medium-text: #fff ;
+$background-accent-color: #0056b7 ;
+$background-accent-text: #fff;
+$background-dark-color: #222;
+$background-dark-text: #fff;
+
+$background-highlight-color: #ffffc9;
+$background-highlight-text: #222;
+$background-white-color: #fff;
+$background-white-text: #222;
+
+/* Borders */
+
+$border : 1;
+$radius: 6;
+$border-color: #999;
+$border-accent: #00556b;
+
+$border-width-thick: golden_increase($border, 2) + px;
+$border-width-xthick: golden_increase($border, 3) + px;
+
+$border-radius-sharp: golden_increase($radius, 2) + px;
+$border-radius-sharper: golden_increase($radius, 3) + px;
+$border-radius-loose: golden_decrease($radius, 2) + px;
+$border-radius-looser: golden_decrease($radius, 3) + px;
+
+
+$border-color-light: lighten($border-color, 20%);
+$border-color-dark : darken($border-color, 20%);
+$border-accent-light: lighten($border-accent, 20%);
+$border-accent-dark: lighten($border-accent, 20%);
+
+/* Margin */
+$margin: 5;
+
+$margin-xsmall : golden_decrease($margin, 2) + px;
+$margin-small : golden_decrease($margin, 1) + px;
+$margin-large: golden_increase($margin, 1)  + px ;
+$margin-xlarge: golden_increase($margin, 2) + px;
+
+/* Padding */
+$padding: 10;
+
+$padding-xsmall : golden_decrease($padding, 2) + px;
+$padding-small : golden_decrease($padding, 1) + px;
+$padding-large: golden_increase($padding, 1) + px;
+$padding-xlarge: golden_increase($padding, 2) + px;

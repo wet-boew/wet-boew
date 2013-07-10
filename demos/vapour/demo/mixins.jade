@@ -1,0 +1,169 @@
+
+//- Mixins
+mixin ngrids
+  div(class="grid-100 tablet-grid-66 mobile-grid-50")
+    section.example-block
+       b.hide-on-mobile.hide-on-tablet
+        | 100%
+       b.hide-on-mobile.hide-on-desktop
+        | 66%
+       b.hide-on-desktop.hide-on-tablet
+        | 50%
+       span.dynamic-px-width
+  div(class="tablet-grid-33 mobile-grid-50 hide-on-desktop")
+    section.example-block
+      b.hide-on-mobile
+        | 33%
+      b.hide-on-tablet.hide-on-desktop
+        | 50%
+      span.dynamic-px-width
+  - var grids = [5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95]
+    each grid in grids
+      -var left = grid
+      -var right = 100 - grid
+        div(class="grid-#{right} tablet-grid-33 mobile-grid-50")
+          section.example-block
+            b.hide-on-mobile.hide-on-tablet
+              | #{right}%
+            b.hide-on-mobile.hide-on-desktop
+              | 33%
+            b.hide-on-desktop.hide-on-tablet
+              | 50%
+            span.dynamic-px-width
+        div(class="grid-#{left} tablet-grid-66 mobile-grid-50")
+          section.example-block
+            b.hide-on-mobile.hide-on-tablet
+              | #{left}%
+            b.hide-on-mobile.hide-on-desktop
+              | 66%
+            b.hide-on-desktop.hide-on-tablet
+              | 50%
+            span.dynamic-px-width
+
+mixin borders
+  - var sides = ['','-left', '-right', '-top', '-bottom']
+  - var styles = ['','-dashed', '-double']
+  - var sizes = [ '','-none','-large','-xlarge' ]
+  - var colors = [ '-light', '-dark' ]
+  - var radius  = ['','-top-left','-top-right','-bottom-left','-bottom-right']
+  - var rstyles = [ '-fallen', '-flush', '-arced', '-arched']
+  // lets do the styles first
+  h4
+    | Styles
+  -var _count = 1
+  each style in styles
+    each side in sides
+      div(class="grid-20")
+            section(class="example-block border#{side}#{style}")
+              b
+                | border#{side}#{style}
+      if (_count == 5)
+        div.clear
+        -_count = 1
+      else
+        - _count++
+   h4
+    | Sizes
+  -var _count = 1
+  each size in sizes
+    each side in sides
+      div(class="grid-20")
+            section(class="example-block border#{side}#{size}")
+              b
+                | border#{side}#{size}
+      if (_count == 5)
+        div.clear
+        -_count = 1
+      else
+        - _count++
+   h4
+    | Radius
+  -var _count = 1
+  each size in rstyles
+    each side in radius
+      div(class="grid-20")
+            section(class="example-block border border#{side}#{size}")
+              b
+                | border border#{side}#{size}
+      if (_count == 5)
+        div.clear
+        -_count = 1
+      else
+        - _count++
+
+mixin grids
+      - var grids = [5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95]
+        each grid in grids
+          -var left = grid
+          -var right = 100 - grid
+            section.row.equalize
+              - if (left < 90)
+                div(class="grid-#{left}")
+                  .example-box
+                    p grid-#{left}
+                div(class="grid-#{right}")
+                   .example-box
+                    p grid-#{right}
+              - else
+                - if (left < 95)
+                  div(class="grid-#{left}")
+                   .example-box
+                    p grid-#{left}
+                    .row
+                      .grid-33
+                        .example-box.background-dark
+                          p  .grid-33
+                      .grid-33
+                        .example-box.background-dark
+                          p  .grid-33
+                      .grid-33
+                        .example-box.background-dark
+                          p  .grid-33
+                     .row
+                      .grid-50
+                        .example-box.background-dark
+                          p  .grid-50
+                      .grid-50
+                        .example-box.background-dark
+                          p  .grid-50
+                  .grid-10
+                    .example-box.background-light
+                      p grid-10
+                - else
+                  .grid-95
+                    .example-box.background-light
+                      p grid-95
+                      section.row.equalize
+                        .grid-10
+                          .example-box.background-dark
+                            p grid-10
+                        .grid-10
+                          .example-box.background-dark
+                            p grid-10
+                        .grid-10
+                          .example-box.background-dark
+                            p grid-10
+                        .grid-10
+                          .example-box.background-dark
+                            p grid-10
+                        .grid-10
+                          .example-box.background-dark
+                            p grid-10
+                        .grid-10
+                          .example-box.background-dark
+                            p grid-10
+                        .grid-10
+                          .example-box.background-dark
+                            p grid-10
+                        .grid-10
+                          .example-box.background-dark
+                            p grid-10
+                        .grid-10
+                          .example-box.background-dark
+                            p grid-10
+                        .grid-10
+                          .example-box.background-dark
+                            p grid-10
+                  .grid-5
+                    .example-box.background-light
+                      p grid-5

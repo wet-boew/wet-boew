@@ -1,0 +1,232 @@
+!!! 5
+html(lang='en')
+head
+    meta(charset='UTF-8')
+    title Welcome :: Grid CSS Demo
+    link(rel='shortcut icon', href='/favicon.ico')
+    meta(name='description', content='')
+    meta(name='dcterms.creator', content='')
+    meta(name='dcterms.title', content='')
+    meta(name='dcterms.issued', title='W3CDTF', content='')
+    meta(name='dcterms.modified', title='W3CDTF', content='')
+    meta(name='dcterms.subject', title='gccore', content='')
+    meta(name='dcterms.language', title='ISO639-2', content='eng')
+    // Mobile Goodness 
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // CSS Magic 
+    link(rel='stylesheet', href='css/base.css')
+    link(rel='stylesheet', href='css/theme.css')
+    // WET-BOEW Vapour 
+    script(src='http://code.jquery.com/jquery-2.0.2.min.js')
+    script(src='js/vapour.js')
+    script(src='https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js')
+    include mixins
+  body
+    .grid-container.border-left-dashed.border-right-dashed
+      h1
+          | Basic Grid Demonstration
+        p
+          | There are 3 distinct classes for grid manipulation to allow and even better control of grid cell behaviour in small (mobile), medium (tablet), and large (desktop) views.
+      mixin ngrids()
+      hr
+      h2
+          | Border Demonstration
+      mixin borders()
+      hr
+      h2 List grid
+      p
+        | Desktop: 4 cells across (using
+        code list-grid-4
+        | )
+        br
+        | Mobile: 2 cells across (using
+        code list-grid-small-2
+        | )
+      ul.list-grid-small-2.list-grid-4
+        - var i = 8
+        - while(i--)
+            li
+              img(src='http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg')
+
+      p
+        | Desktop: 12 cells across (using
+        code list-grid-12
+        | )
+        br
+        | Mobile: 4 cells across (using
+        code list-grid-small-4
+        | )
+      ul.list-grid-small-4.list-grid-12
+        - var i = 12
+        - while(i--)
+            li
+              img(src='http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg')
+
+      p
+        | Desktop: 3 cells across (using
+        code list-grid-3
+        | )
+        br
+        | Mobile: 5 cells across (using
+        code list-grid-small-5
+        | )
+      ul.list-grid-small-5.list-grid-3
+       - var i = 8
+        - while(i--)
+            li
+              img(src='http://wet-boew.github.io/wet-boew/demos/tabs/images/demo-1.jpg')
+       hr
+       h2 Bleed and Gutter Demonstration
+      .gutterless
+          .grid-25
+            section.example-block
+               b
+                | 25%
+             span.dynamic-px-width
+          .grid-50
+            section.example-block
+               b
+                | 50%
+             span.dynamic-px-width
+          .grid-25
+            section.example-block
+               b
+                | 25%
+             span.dynamic-px-width
+      .clear
+      .bleed-full        
+        .grid-25
+          section.example-block
+             b
+              | 25%
+           span.dynamic-px-width
+        .grid-50
+          section.example-block
+             b
+              | 50%
+           span.dynamic-px-width
+        .grid-25
+          section.example-block
+             b
+              | 25%
+           span.dynamic-px-width
+      .clear
+      .bleed-left        
+        .grid-25
+          section.example-block
+             b
+              | 25%
+           span.dynamic-px-width
+        .grid-50
+          section.example-block
+             b
+              | 50%
+           span.dynamic-px-width
+        .grid-25
+          section.example-block
+             b
+              | 25%
+           span.dynamic-px-width
+      .clear
+      .bleed-right        
+        .grid-25
+          section.example-block
+             b
+              | 25%
+           span.dynamic-px-width
+        .grid-50
+          section.example-block
+             b
+              | 50%
+           span.dynamic-px-width
+        .grid-25
+          section.example-block
+             b
+              | 25%
+           span.dynamic-px-width
+      .clear
+      hr
+      h2 Icons Demonstration
+      - var icons = ['alarm','bank','book-address','book-alt','book-open','book','box','briefcase','bulb-off','bulb','calculator-arrow','calculator-exclamation','calculator-minus','calculator-plus','calculator','calendar-day','calendar-list','calendar-month','calendar','car','chart-down','chart-pie','chart-up','chart','clip','clipboard-exclamation','clipboard','clock','comment','compass','cone','construction','currency','desktop','direction','disk','document-zip','document','documents','door-open','door','drive-arrow','drive-download','drive-network','drive-upload','envelope-arrow','envelope-share','envelope','eraser','exclamation-alt','exclamation-alt2','exclamation','external','fax','film','folder-alt','folder-bookmark','folder-open','folder-search','folder','gavel','gear','globe','home','hourglass','image','info-alt','info','key','light-exclamation','light-green','light-red','light-yellow','light','lock-unlock','lock','luggage','magnet','magnifier','mail-open','mail','marker','megaphone','microphone','monitor','nav-090-alt','nav-090','nav-180-alt','nav-180','nav-270-alt','nav-270','nav-alt','nav','newspaper','note-pencil','note','paper-pencil','paper-share','paper','pencil','picture','printer','prohibit','question-alt','question','report-pencil','report','reports','rss','safe','scale','server-network','server','service-bell','sitemap','star-empty','star-half','star','table','target','telephone','thermometer-high','thermometer-low','thermometer','tick-alt','tick-alt2','tick','tool','toolbox','tshirt','usb-arrow','usb-logo','usb','user','users','weather-cloud','weather-lightning','weather-rain','weather-snow','weather-sun-cloud','weather-sun','x-alt','x-alt2','x']
+      - var _c = 1 
+      each icon in icons
+        .grid-5
+          section
+            div(class="padding-large wb-icon-#{icon}")
+        - _c += 1
+        - if (_c%20 == 0)
+          .clear
+      hr
+      h2 Buttons
+      table.table-simplify.span-6
+        thead
+            tr
+              th Button
+              th Disabled
+              th Class
+              th Description
+          tbody
+            tr
+              td
+                button.button Default
+              td
+                button.button.button-disabled(disabled='disabled') Default
+              td
+                code button
+              td Standard gray button with gradient
+            tr
+              td
+                button.button.button-accent Accent
+              td
+                button.button.button-accent.button-disabled(disabled='disabled') Accent
+              td
+                code button button-accent
+              td Provides extra visual weight and identifies the primary action
+            tr
+              td
+                button.button.button-info Info
+              td
+                button.button.button-info.button-disabled(disabled='disabled') Info
+              td
+                code button button-info
+              td Used as an alternate to the default styles
+            tr
+              td
+                button.button.button-confirm Confirm
+              td
+                button.button.button-confirm.button-disabled(disabled='disabled') Confirm
+              td
+                code button button-confirm
+              td Indicates a successful or positive action
+            tr
+              td
+                button.button.button-alert Alert
+              td
+                button.button.button-alert.button-disabled(disabled='disabled') Alert
+              td
+                code button button-alert
+              td Indicates a dangerous or potentially negative action
+            tr
+              td
+                button.button.button-attention Attention
+              td
+                button.button.button-attention.button-disabled(disabled='disabled') Attention
+              td
+                code button button-attention
+              td Indicates caution should be taken with this action
+            tr
+              td
+                button.button.button-dark Dark
+              td
+                button.button.button-dark.button-disabled(disabled='disabled') Dark
+              td
+                code button button-dark
+              td Alternate dark gray button, not tied to a semantic action or use
+            tr
+              td
+                button.button.button-none None
+              td
+                button.button.button-none.button-disabled(disabled='disabled') None
+              td
+                code button button-none
+              td Maintains the dimensions of a button without creating the visual style

@@ -1,0 +1,36 @@
+/* ================================================================== */
+/* Additions to small viewport */
+/* ================================================================== */
+
+/* ================================================================== */
+/* Centering */
+/* ================================================================== */
+.small-centered { margin-left: auto; margin-right: auto; }
+
+/* ================================================================== */
+/* Bleeds */
+/* ================================================================== */
+.bleed-full { margin-left: (-golden_decrease($gutter, 1)*2 + px); margin-right: (-golden_decrease($gutter, 1)*2 + px); }
+.bleed-left { margin-left: (-golden_decrease($gutter, 1)*2 + px);}
+.bleed-right {margin-right: (-golden_decrease($gutter, 1)*2 + px);}
+/* ================================================================== */
+/* Lists */
+/* ================================================================== */
+
+
+[class*="list-grid-"] { width: auto; }
+
+@for $i from 1 through 12 {
+		$num : percentage(1/$i);
+		.list-grid-small-#{$i} > li { width: $num; }
+}
+
+// Spacial end node grid clearing
+$listclend: ();
+$listclother: ();
+@for $i from 1 through 12 {
+	 $listclend: join($listclend, unquote(".list-grid-small-#{$i} > li:nth-of-type(n)"), comma);
+	 $listclother: join($listclother, unquote(".list-grid-small-#{$i} > li:nth-of-type(#{$i}n+1)"), comma);
+}
+#{$listclend} { clear: none }
+#{$listclother} { clear: both } 

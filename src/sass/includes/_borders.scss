@@ -1,0 +1,88 @@
+/*
+ * BORDERS SCSS
+ * - Decorative OOCSS Extending CSS for Border treatment of elements
+ */
+
+
+
+// Set the defaults around border with low specificity and no background color
+[class*=border] { border-color: $border-color; border-width: 0; border-style: solid; }
+
+
+@function border-return($context){
+  @if $context == '-light' { @return $border-color-light }
+  @else if $context == '-dark' { @return $border-color-dark }
+  @else if $context == '-large' { @return $border-width-thick }
+  @else if $context == '-xlarge' { @return $border-width-xthick }
+
+  @else if $context == '-fallen' { @return $border-radius-loose }
+  @else if $context == '-flush' { @return $border-radius-looser }
+  @else if $context == '-arced' { @return $border-radius-sharp }
+  @else if $context == '-arched' { @return $border-radius-sharper }
+
+  @else if $context == '-dashed' { @return dashed }
+  @else if $context == '-double' { @return double }
+  @else if $context == '-none' { @return 0px }
+  @else { @return $border + px }
+}
+
+@function property-return($context, $part){
+  @if $context == '-light' { @return #{$part}-color }
+  @else if $context == '-dark' { @return #{$part}-color }
+  @else if $context == '-large' { @return #{$part}-width }
+
+  @else if $context == '-fallen' { @return #{$part}-radius }
+  @else if $context == '-flush' { @return #{$part}-radius }
+  @else if $context == '-arced' { @return #{$part}-radius }
+  @else if $context == '-arced' { @return #{$part}-radius }
+
+  @else if $context == '-xlarge' { @return #{$part}-width }
+  @else if $context == '-dashed' { @return #{$part}-style }
+  @else if $context == '-double' { @return #{$part}-style }
+  @else if $context == '-none' { @return #{$part}-width }
+  @else { @return #{$part}-width  }
+}
+
+@function radius-return($context, $part){
+  @if $context == '-fallen' { @return #{$part}-radius }
+  @else if $context == '-flush' { @return #{$part}-radius }
+  @else if $context == '-arced' { @return #{$part}-radius }
+  @else if $context == '-arched' { @return #{$part}-radius }
+  @else { @return #{$part}-radius  }
+}
+
+
+$sizes: '','-none','-large','-xlarge';
+$sides : '','-left','-right','-top','-bottom';
+
+$shades : '-light', '-dark';
+$types : '-dashed', '-double';
+$all : '-light', '-dark', '-dashed', '-double';
+
+// lets loop through colors
+@each $sds in $sides {
+	// looping through sides
+	@each $sz in $all {
+    $thickness : $border + px;
+    @if ($border < 3 and $sz == '-double') { $thickness: 3px }
+   .border#{$sds}#{$sz} {  border#{property-return($sz,$sds)}: border-return($sz); border#{$sds}-width: $thickness  }
+	}
+}
+
+@each $sds in $sides {
+  // looping through sides
+  @each $sz in $sizes {
+   .border#{$sds}#{$sz} {  border#{property-return($sz,$sds)}: border-return($sz);   }
+  }
+}
+
+// radius
+$radius : '','-top-left','-top-right','-bottom-left','-bottom-right';
+$styles : '', '-fallen', '-flush', '-arced', '-arched';
+// lets loop through colors
+@each $sds in $radius {
+  // looping through sides
+  @each $sz in $styles {
+   .border#{$sds}#{$sz}  { border#{radius-return($sz,$sds)}:  border-return($sz)}
+  }
+}

@@ -1,0 +1,27 @@
+/*
+ * BACKGROUND SCSS
+ * - Decorative OOCSS Extending CSS for background treatment of elements
+ */
+.grid-container {
+
+
+	[class*=background-]{
+		padding-left:$gutters-large;
+		padding-right:$gutters-large;
+		//@include microfix();
+	}
+
+	/* background extensions */
+	//h1,h2,h3,h4,h5,h6,p {
+	//	&[class*=background-] { padding:$gutters-small $gutters;}
+	//}
+
+	.background-light  { background-color: $background-light-color; color: $background-light-text; }
+	.background-medium {  background-color: $background-medium-color; color: $background-medium-text; }
+	.background-accent {background-color: $background-accent-color; color: $background-accent-text; }
+	.background-dark   {background-color: $background-dark-color; color: $background-dark-text; }
+	.background-highlight {background-color: $background-highlight-color; color: $background-highlight-text; }
+	.background-white {background-color: $background-white-color; color: $background-white-text; }
+
+}
+

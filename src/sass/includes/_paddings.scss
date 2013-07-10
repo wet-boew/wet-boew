@@ -1,0 +1,26 @@
+/*
+ * PADDING SCSS
+ * - PADDING OOCSS Extending CSS for positioning of elements
+ */
+
+
+
+// Mapping Margin function 
+@function padding-return($context){
+  @if $context == '-xsmall' { @return $padding-xsmall }
+  @else if $context == '-small' { @return $padding-small }
+  @else if $context == '-large' { @return $padding-large }
+  @else if $context == '-xlarge' { @return $padding-xlarge }
+  @else if $context == '-none' { @return 0px }
+  @else { @return $padding+px }
+}
+
+$sizes: '-none','-xsmall','-small','-large','-xlarge';
+$sides : '','-left','-right','-top','-bottom';
+
+@each $sds in $sides {
+	// looping through sides
+	@each $sz in $sizes {
+		.row .padding#{$sds}#{$sz} { padding#{$sds}: padding-return($sz) !important; }
+	}
+}
