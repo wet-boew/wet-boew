@@ -37,7 +37,9 @@
 				ie7 = _pe.ie > 0 && _pe.ie < 8,
 				$wbcorein = $('#wb-core-in'),
 				defaultOpen = false,
-				tab;
+				tab,
+				rightOrLeft = _pe.rtl ? 'left' : 'right',
+				styles;
 
 			defaultOpen = elm.hasClass('wb-slideout-open');
 			opts = {
@@ -75,20 +77,23 @@
 				if (!opened) { // Only when slideout is closed
 					var newPosition = $wbcorein.offset().left;
 
-					if (newPosition <= borderWidth) {
+					if (newPosition <= borderWidth || (navigator.userAgent.match(/WebKit/i) && _pe.rtl)) {
 						newPosition = 0;
 					}
 
 					// Vertical
 					wrapper.css('top', $wbcorein.offset().top);
 					// Horizontal
-					wrapper.css('right', newPosition);
+					wrapper.css(rightOrLeft, newPosition);
 				}
 			};
 
 			toggle = function (e) {
 				var position = wrapper.offset(),
-					tabWidth;
+					tabWidth,
+					styles = {top: position.top - $wbcorein.offset().top};
+
+				styles[rightOrLeft] = borderWidth - 10;
 
 				toggleLink.off('click vclick touchstart', toggle);
 				tocLinks.off('click vclick touchstart', toggle);
@@ -101,10 +106,7 @@
 					if (_pe.ie <= 0 || document.documentMode !== undefined) { // IE8 compat. and up
 						wrapper.removeClass('slideoutWrapper')
 							.addClass('slideoutWrapperRel')
-							.css({
-								top: position.top - $wbcorein.offset().top,
-								right: borderWidth - 10
-							});
+							.css(styles);
 					}
 					// Give the tab time to move out of view to prevent overlap
 					setTimeout(function () {
@@ -316,10 +318,9 @@
 				reposition();
 			} else {
 				wrapper.addClass('so-ie7');
-				wrapper.addClass('slideoutWrapperRel').css({
-					right: borderWidth - 10,
-					top: 0
-				});
+				styles = {top: 0};
+				styles[rightOrLeft] = borderWidth - 10;
+				wrapper.addClass('slideoutWrapperRel').css(styles);
 			}
 
 			// Toggle slideout
@@ -344,7 +345,7 @@
 
 			if (_pe.ie === '8.0') {
 				$('#slideoutToggle').css({
-					left: '-' + $('#slideoutToggle').outerWidth() + 'px',
+					left: (rightOrLeft === 'left') ? $('#slideoutToggle').outerWidth() + 'px' : '-' + $('#slideoutToggle').outerWidth() + 'px',
 					top: $('#slideoutToggle').outerWidth() + 'px'
 				});
 				wrapper.width(focusOutlineAllowance);
@@ -368,4 +369,3 @@
 	return _pe;
 }
 (jQuery));
-

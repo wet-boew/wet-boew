@@ -4,6 +4,10 @@
  */
 
 .ie7 {
+	&[dir="rtl"] #toggleLink {
+		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+		left: 0;
+	}
 	#toggleLink {
 		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 		right: 0;
@@ -21,6 +25,9 @@
 	}
 	#slideoutInnerWrapper {
 		width: auto;
+	}
+	&[dir="rtl"] #slideoutToggle {
+		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
 	}
 	#slideoutToggle {
 		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);

@@ -92,6 +92,27 @@ div {
 	}
 }
 
+/* rtl */
+[dir="rtl"] {
+	.tabbedSlideout {
+		border-left: 0;
+		border-right: 1px solid #CCC;
+		float: right;
+	}
+	.slideoutWrapperRel {
+		right: auto;
+	}
+	.slideoutToggle {
+		border-right: 1px solid #000;
+		border-left: 0;
+		float: right;
+	}
+	#toggleLink {
+		@include transform-origin(top, right);
+		@include transform(rotate(90deg) translate(100%, 0));
+	}
+}
+
 /*Print SCSS*/
 @media print {
 	#slideoutWrapper {
