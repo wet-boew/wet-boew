@@ -66,7 +66,7 @@
 			// Create the accordion panels
 			for (index = 0, len = $panels.length; index < len; index += 1) {
 				$link = $tabs.eq(index).children('a');
-				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + ' data-tab="' + _pe.fn.tabbedinterface._get_hash($link.attr('href')) + '">' + hopen + $link.text() + hclose + '</div>';
+				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + ' data-tab="' + this._get_hash($link.attr('href')) + '">' + hopen + $link.text() + hclose + '</div>';
 			}
 			$accordion = $(accordion);
 
@@ -76,6 +76,11 @@
 				$panelElms.eq(len).append($panels.eq(len));
 			}
 			elm.empty().append($accordion);
+
+			this._init_panel_links($panelElms, $panelElms, 'data-tab', function (event) {
+				event.data.tab.trigger('expand');
+				return false;
+			});
 
 			// Track the active panel during the user's session
 			$panelElms.on('expand', function () {
@@ -561,27 +566,41 @@
 				});
 			}
 
-			// Trigger panel change if a link within a panel is clicked and matches a tab
-			$panels.find('a').filter('[href^="#"]').each(function () {
-				var $tab,
-					$this = $(this),
-					hash = _pe.fn.tabbedinterface._get_hash($this.attr('href'));
-				if (hash.length > 1) {
-					$tab = $tabs.filter('[href="' + hash + '"]');
-					if ($tab.length) {
-						$this.off('click.hlinks vclick.hlinks').on('click vclick', function () {
-							$tab.trigger('click');
-							if (opts.cycle) {
-								stopCycle();
-							}
-							return false;
-						});
-					}
+			this._init_panel_links($panels, $tabs, 'href', function (event) {
+				event.data.tab.trigger('click');
+				if (opts.cycle) {
+					stopCycle();
 				}
+				return false;
 			});
 
 			return elm.attr('class', elm.attr('class').replace(/\bwidget-style-/, "style-"));
 		}, // end of exec
+
+		/**
+		* Setup links in the tab panel content that cause the tabbed interface to change panels
+		* @memberof pe.fn.tabbedinterface
+		* @param {jQuery object} $panels Tab panels of the tabbed interface
+		* @param {jQuery object} $tabs Tab links of the tabbed interface
+		* @param {string} attr HTML attribute used to check if there is a matching tab for a given link
+		* @param {function} clickHandler Function that handles clicks on tab panel content links with a matching tab
+		*/
+		_init_panel_links : function ($panels, $tabs, attr, clickHandler) {
+			var $tab,
+				hash,
+				links = $panels.find('a').filter('[href^="#"]'),
+				len = links.length;
+
+			while (len--) {
+				hash = this._get_hash(links[len].href);
+				if (hash.length > 1) {
+					$tab = $tabs.filter('['+ attr + '="' + hash + '"]');
+					if ($tab.length !== 0) {
+						$(links[len]).off('click.hlinks vclick.hlinks').on('click vclick', {tab: $tab}, clickHandler);
+					}
+				}
+			}
+		},
 
 		/**
 		 * Given an element, find the appropriate heading level for its content
