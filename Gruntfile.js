@@ -26,16 +26,14 @@ module.exports = function(grunt) {
 
 		},
 		sass: {
-			build: {
-				/* options: {
-					outputStyle: 'expanded' ## Currently libsass has a bug with the property outputStyle [https://github.com/andrew/node-sass]
-				}, */
-				files: {
-					'dist/css/base.css': 'src/sass/base.scss',
-					'demos/vapour/bare/css/theme.css': 'themes/bare/css/theme.scss',
-					'demos/vapour/demo/css/theme.css': 'themes/demo/css/theme.scss',
-					//'dist/css/theme.css': 'themes/demo/css/theme.scss'
-				}
+			base: {
+				'dist/css/base.css': 'src/sass/base.scss'
+			},
+			bare: {
+				'demos/vapour/bare/css/theme.css': 'themes/bare/css/theme.scss'
+			},
+			demo: {
+				'demos/vapour/demo/css/theme.css': 'themes/demo/css/theme.scss'
 			}
 		},
 		uglify: {
