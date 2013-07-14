@@ -9,8 +9,6 @@ _notes/
 *.sublime-project
 *.sublime-workspace
 sftp.json
-build/*
-dist/*
 
 # OS generated files #
 .DS_Store
