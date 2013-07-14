@@ -37,22 +37,6 @@ module.exports = function(grunt) {
 			}
 		},
 		uglify: {
-			jquery : {
-				options: {
-					banner : '/*! jQuery v1.9.1 | (c) 2005, 2012 jQuery Foundation, Inc. | jquery.org/license */\n'
-				},
-				files : {
-					'dist/js/vendor/jquery-1.9.1.min.js': ['lib/jquery/jquery-1.9.1.js']
-				}
-			},
-			jquery2 : {
-				options: {
-					banner : '/*! jQuery v2.0.2 | (c) 2005, 2012 jQuery Foundation, Inc. | jquery.org/license */\n'
-				},
-				files : {
-					'dist/js/vendor/jquery-2.0.2.min.js': ['lib/jquery/jquery-2.0.2.js']
-				}
-			},
 			selectivizr : {
 				options: {
 					banner : '/*!* selectivizr v1.0.2 - (c) Keith Clark, freely distributable under the terms of the MIT license. * selectivizr.com */\n'
@@ -132,7 +116,6 @@ module.exports = function(grunt) {
 		  }
 		},
 		copy: {
-
 			main : {
 				files : [
 					{expand: true, cwd: 'dist/', src: ['**'], dest: 'dist/bare/'},
@@ -144,6 +127,14 @@ module.exports = function(grunt) {
 					{expand: true, cwd: 'themes/demo/css/', src: ['*.css'], dest: 'dist/demo/css/'},
 					{expand: true, cwd: 'src/sass/images/icons/', src: ['**'], dest: 'dist/demo/css/images/icons'},
 				]
+			},
+			jquery: {
+				files: [{
+					cwd: 'lib/jquery',
+					src: '*.js',
+					dest: 'dist/js/vendor',
+					expand: true
+				}]
 			}
 		},
 
