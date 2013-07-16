@@ -178,28 +178,30 @@
 				var $target = $(e.target),
 					$panel,
 					href,
-					hash;
+					hash,
+					isKeyNext,
+					isKeyPrev,
+					isKeySelect;
 				if (e.type === 'keydown') {
-					if (e.keyCode === 13 || e.keyCode === 32) {
-						if (e.stopPropagation) {
-							e.stopImmediatePropagation();
-						} else {
-							e.cancelBubble = true;
+					isKeySelect = e.keyCode === 13 || e.keyCode === 32;	// enter, space
+					isKeyPrev = e.keyCode === 37 || e.keyCode === 38;	// left, up
+					isKeyNext = e.keyCode === 39 || e.keyCode === 40;	// right, down
+					if (isKeySelect || isKeyPrev || isKeyNext) {
+						e.preventDefault();
+						if (opts.cycle) {
+							stopCycle();
 						}
-						e.preventDefault();
-						if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
-							selectTab($target, $tabs, $panels, opts, false);
+						if (isKeySelect) {
+							if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
+								selectTab($target, $tabs, $panels, opts, false);
+							} else {
+								href = $target.attr('href');
+								hash = href.substring(href.indexOf('#'));
+								_pe.focus($panels.filter(hash));
+							}
 						} else {
-							href = $target.attr('href');
-							hash = href.substring(href.indexOf('#'));
-							_pe.focus($panels.filter(hash));
+							selectTab(isKeyPrev ? getPrevTab($tabs) : getNextTab($tabs), $tabs, $panels, opts, false);
 						}
-					} else if (e.keyCode === 37 || e.keyCode === 38) { // left or up
-						selectTab(getPrevTab($tabs), $tabs, $panels, opts, false);
-						e.preventDefault();
-					} else if (e.keyCode === 39 || e.keyCode === 40) { // right or down
-						selectTab(getNextTab($tabs), $tabs, $panels, opts, false);
-						e.preventDefault();
 					}
 				} else {
 					href = $target.attr('href');
