@@ -289,6 +289,10 @@ div {
 	clear: both;
 }
 
+.geomap-legend-label {
+	display: inline;
+}
+
 @media print {
 	%geomap-print-visibility-hidden {
 		visibility: hidden;
