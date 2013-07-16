@@ -17,50 +17,32 @@ module.exports = function(grunt) {
 			},
 			vapour: {
 				src: [ 'lib/modernizr/modernizr.js','src/core/vapour/vapour.js'],
-				dest: 'build/js/vapour.js'
+				dest: 'dist/js/vapour.js'
 			},
 			wetboew: {
 				src: [ 'src/plugins/**/*.js'],
-				dest: 'build/js/wet-boew.js'
+				dest: 'dist/js/wet-boew.js'
 			},
 
 		},
 		sass: {
-			build: {
-				/* options: {
-					outputStyle: 'expanded' ## Currently libsass has a bug with the property outputStyle [https://github.com/andrew/node-sass]
-				}, */
-				files: {
-					'build/css/base.css': 'src/sass/base.scss',
-					'demos/vapour/bare/css/theme.css': 'themes/bare/css/theme.scss',
-					'demos/vapour/demo/css/theme.css': 'themes/demo/css/theme.scss',
-					//'dist/css/theme.css': 'themes/demo/css/theme.scss'
-				}
+			base: {
+				'dist/css/base.css': 'src/sass/base.scss'
+			},
+			bare: {
+				'demos/vapour/bare/css/theme.css': 'themes/bare/css/theme.scss'
+			},
+			demo: {
+				'demos/vapour/demo/css/theme.css': 'themes/demo/css/theme.scss'
 			}
 		},
 		uglify: {
-			jquery : {
-				options: {
-					banner : '/*! jQuery v1.9.1 | (c) 2005, 2012 jQuery Foundation, Inc. | jquery.org/license */\n'
-				},
-				files : {
-					'build/js/vendor/jquery-1.9.1.min.js': ['lib/jquery/jquery-1.9.1.js']
-				}
-			},
-			jquery2 : {
-				options: {
-					banner : '/*! jQuery v2.0.2 | (c) 2005, 2012 jQuery Foundation, Inc. | jquery.org/license */\n'
-				},
-				files : {
-					'build/js/vendor/jquery-2.0.2.min.js': ['lib/jquery/jquery-2.0.2.js']
-				}
-			},
 			selectivizr : {
 				options: {
 					banner : '/*!* selectivizr v1.0.2 - (c) Keith Clark, freely distributable under the terms of the MIT license. * selectivizr.com */\n'
 				},
 				files : {
-					'build/js/vendor/selectivizr.min.js': ['lib/selectivizr/selectivizr.js']
+					'dist/js/vendor/selectivizr.min.js': ['lib/selectivizr/selectivizr.js']
 				}
 			},
 			jqm: {
@@ -68,7 +50,7 @@ module.exports = function(grunt) {
 					banner : '/*! jQuery Mobile Git HEAD hash: 74b4bec049fd93e4fe40205e6157de16eb64eb46 <> Date: Wed Apr 10 2013 21:57:23 UTC jquerymobile.com | jquery.org/license */\n'
 				},
 				files: {
-					'build/js/vendor/jquery-mobile-1.3.1.min.js': ['lib/jquery.mobile/jquery.mobile-1.3.1.js']
+					'dist/js/vendor/jquery-mobile-1.3.1.min.js': ['lib/jquery.mobile/jquery.mobile-1.3.1.js']
 				}
 			},
 			polyfills: {
@@ -76,16 +58,16 @@ module.exports = function(grunt) {
 					preserveComments : 'some'
 				},
 				files: {
-					'build/js/polyfills/datalist.min.js': ['src/core/vapour/polyfills/datalist.js'],
-					'build/js/polyfills/respond.min.js': ['src/core/vapour/polyfills/respond.js'],
-					'build/js/polyfills/excanvas.min.js': ['src/core/vapour/polyfills/excanvas.js'],
-					'build/js/polyfills/datepicker.min.js': ['src/core/vapour/polyfills/datepicker.js'],
-					'build/js/polyfills/detailssummary.min.js': ['src/core/vapour/polyfills/detailssummary.js'],
-					'build/js/polyfills/localstorage.min.js': ['src/core/vapour/polyfills/localstorage.js'],
-					'build/js/polyfills/meter.min.js': ['src/core/vapour/polyfills/meter.js'],
-					'build/js/polyfills/progress.min.js': ['src/core/vapour/polyfills/progress.js'],
-					'build/js/polyfills/sessionstorage.min.js': ['src/core/vapour/polyfills/sessionstorage.js'],
-					'build/js/polyfills/slider.min.js': ['src/core/vapour/polyfills/slider.js']
+					'dist/js/polyfills/datalist.min.js': ['src/core/vapour/polyfills/datalist.js'],
+					'dist/js/polyfills/respond.min.js': ['src/core/vapour/polyfills/respond.js'],
+					'dist/js/polyfills/excanvas.min.js': ['src/core/vapour/polyfills/excanvas.js'],
+					'dist/js/polyfills/datepicker.min.js': ['src/core/vapour/polyfills/datepicker.js'],
+					'dist/js/polyfills/detailssummary.min.js': ['src/core/vapour/polyfills/detailssummary.js'],
+					'dist/js/polyfills/localstorage.min.js': ['src/core/vapour/polyfills/localstorage.js'],
+					'dist/js/polyfills/meter.min.js': ['src/core/vapour/polyfills/meter.js'],
+					'dist/js/polyfills/progress.min.js': ['src/core/vapour/polyfills/progress.js'],
+					'dist/js/polyfills/sessionstorage.min.js': ['src/core/vapour/polyfills/sessionstorage.js'],
+					'dist/js/polyfills/slider.min.js': ['src/core/vapour/polyfills/slider.js']
 					}
 			},
 			vapour: {
@@ -93,7 +75,7 @@ module.exports = function(grunt) {
 					banner: '/* Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt */\n'
 				},
 				files: {
-					'build/js/vapour.min.js': ['lib/modernizr/modernizr.js', 'src/core/vapour/vapour.js']
+					'dist/js/vapour.min.js': ['lib/modernizr/modernizr.js', 'src/core/vapour/vapour.js']
 				}
 			},
 			 wetboew: {
@@ -101,7 +83,7 @@ module.exports = function(grunt) {
 						banner: '/* Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt */'
 				},
 				files: {
-						'build/js/wet-boew.min.js': ['build/js/wet-boew.js']
+						'dist/js/wet-boew.min.js': ['dist/js/wet-boew.js']
 			 	}
 			}
 		},
@@ -134,22 +116,31 @@ module.exports = function(grunt) {
 		  }
 		},
 		copy: {
-
 			main : {
 				files : [
-					{expand: true, cwd: 'build/', src: ['**'], dest: 'dist/bare/'},
+					{expand: true, cwd: 'dist/', src: ['**'], dest: 'dist/bare/'},
 					{expand: true, cwd: 'themes/bare/', src: ['*.css'], dest: 'dist/bare/css/'},
 					{expand: true, cwd: 'themes/bare/', src: ['*.html'], dest: 'dist/bare/'},
 					{expand: true, cwd: 'src/sass/images/icons/', src: ['**'], dest: 'dist/bare/css/images/icons'},
-					{expand: true, cwd: 'build/', src: ['**'], dest: 'dist/demo/'},
+					{expand: true, cwd: 'dist/', src: ['**'], dest: 'dist/demo/'},
 					{expand: true, cwd: 'themes/demo/', src: ['*.html'], dest: 'dist/demo/'},
 					{expand: true, cwd: 'themes/demo/css/', src: ['*.css'], dest: 'dist/demo/css/'},
 					{expand: true, cwd: 'src/sass/images/icons/', src: ['**'], dest: 'dist/demo/css/images/icons'},
 				]
+			},
+			jquery: {
+				files: [{
+					cwd: 'lib/jquery',
+					src: '*.js',
+					dest: 'dist/js/vendor',
+					expand: true
+				}]
 			}
 		},
 
-		clean: ["dist", "build"],
+		clean: [
+			'dist'
+		],
 		watch: {
 			gruntfile: {
                 files: '<%= jshint.gruntfile.src %>',
