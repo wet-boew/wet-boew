@@ -836,9 +836,6 @@
 		 *
 		 */
 		onLoadEnd: function(geomap) {
-			// TODO: fix no alt attribute on tile image in OpenLayers rather than use this override
-			geomap.gmap.find('.olTileImage').attr('alt', '');
-
 			// we need to call it here as well because if we use a config outside the domain it is called
 			// before the table is created. We need to call it only once loading for all overlays has ended
 			geomap.overlaysLoaded += 1;
@@ -1756,6 +1753,35 @@
 			
 			// if all geomap instance are loaded, trigger geomap-ready
 			if (mapArray.length === _pe.document.find('.wet-boew-geomap').length) {
+				
+				// set the alt attributes for images to fix the missing alt attribute. Need to do it afer zoom because each zoom brings new tiles.
+				// to solve this modifications needs to be done to OpenLayers core code OpenLayers.Util.createImage and OpenLayers.Util.createAlphaImageDiv
+				// TODO: fix no alt attribute on tile image in OpenLayers rather than use this override
+				// wait 2 seconds for all tile to be loaded in the page
+				setTimeout(function(){
+					var images = geomap.gmap.find('image'),
+					imgs = _pe.document.find('.olTileImage'),
+					lenimages = images.length,
+					lenimgs = imgs.length;
+					
+					while (lenimages--) {
+						$(images[lenimages]).attr('alt', '');
+					}
+					
+					while (lenimgs--) {
+						$(imgs[lenimgs]).attr('alt', '');
+					}
+				},2000);
+				
+			geomap.map.events.on({'moveend': function(){
+				// every times we zoom/pan we need to put back the alt for OpenLayers tiles
+				var imgs = $(document).find('.olTileImage'),
+					lenimgs = imgs.length;
+					
+				while (lenimgs--) {
+					$(imgs[lenimgs]).attr('alt', '');
+				}		 
+			}});
 				_pe.document.trigger('geomap-ready');
 			}
 		}
