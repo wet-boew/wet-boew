@@ -15,14 +15,7 @@
 	_pe.fn.tabbedinterface = {
 		type : 'plugin',
 		depends : (_pe.mobile ? [] : ['easytabs']),
-		mobile : function (elm, nested) {
-			// Process any nested tabs
-			if (typeof nested === 'undefined' || !nested) {
-				elm.find('.wet-boew-tabbedinterface').each(function () {
-					_pe.fn.tabbedinterface.mobile($(this), true);
-				});
-			}
-
+		mobile : function (elm) {
 			var $accordion,
 				$panelElms,
 				$panels = elm.children('.tabs-panel').children('div'),
