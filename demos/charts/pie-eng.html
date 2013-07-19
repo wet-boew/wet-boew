@@ -98,80 +98,27 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 <p>"Options" means which CSS class name applied to the <code>table</code> elements. Each following charts include the options of the preceding respective charts.</p>
 
+<p>This working example is about:</p>
+<ul>
+	<li>How a pie chart can become a donnut chart, and</li>
+	<li>How you can simplify multiple chart options in one simple options, like:
+		<ul>
+			<li>Use this: <code>&lt;table class=&quot;wet-boew-charts <strong>wb-charts-donnut</strong>&quot;&gt;</code></li>
+			<li>Instead of this: <code>&lt;table class=&quot;wet-boew-charts <em>wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-charts-pieinnerradius-45 wb-charts-pietilt-50 wb-charts-piehoverable-true wb-charts-decimal-1 wb-charts-piethreshold-8  wb-charts-legendinline-true wb-charts-piestartangle-100</em>&quot;&gt;</code> and</li>
+			<li><strong>How to create your own personalized preset</strong></li>
+		</ul>
+	</li>
+</ul>
+
+
 
 <div class="module-info span-2 float-right">
 <h2>Requirement</h2>
 <p>WET v3.1 or later</p>
 </div>
 
-<h2>Donnut preset <code>wb-charts-donnut</code></h2>
 
-<p>New from WET 3.1.x release. This preset could be emulated for prior version, WET 3.1.x, by combining setting.</p>
-<details>
-	<summary>Donnut Preset Javascript Source Code</summary>
-<pre><code>
-// FYI - The "Donnut" preset is already defined by default, this are just to show an example on how to create your own preset.
 
-// In the global settings.js
-var wet_boew_charts = {
-	preset: {
-		donnut: {
-			// Donnut setting
-			type: 'pie',
-			height: 250,
-			percentlegend: true,
-			pieinnerradius: 45,
-			pietilt: 50,
-			piehoverable: true,
-			decimal: 1,
-			piethreshold: 8,
-			legendinline: true,
-			piestartangle: 100
-		},
-		
-		engnum: {
-			// Default setting
-		},
-		
-		presetname: "URL of the setting to be loaded"
-	}
-}
-</code></pre>
-</details>
-
-<table class="wet-boew-charts wb-charts-donnut">
-	<caption>Donnut preset <code>wb-charts-donnut</code></caption>
-	<thead>
-		<tr>
-			<th></th>
-			<th>Series 1</th>
-			<th>Series 2</th>
-			<th>Series 3</th>
-			<th>Series 4</th>
-			<th>Series 5</th>
-			<th>Series 6</th>
-			<th>Series 7</th>
-			<th>Series 8</th>
-			<th>Series 9</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<th>Default</th>
-			<td>7.7</td>
-			<td>10.10</td>
-			<td>4.4</td>
-			<td>14.14</td>
-			<td>15.15</td>
-			<td>7.7</td>
-			<td>23.23</td>
-			<td>8.8</td>
-			<td>12.12</td>
-		</tr>
-	</tbody>
-</table>
-
-<div class="clear"></div>
 
 <h2>Defaults</h2>
 
@@ -256,16 +203,16 @@ var wet_boew_charts = {
 	</tbody>
 </table>
 
-<h2>Donut hole</h2>
+<h2>Donnut hole</h2>
 
 <p>Options Added</p>
 <ul>
-	<li><strong>wb-charts-pieinnerradius-45</strong>: Percentage of the donut hole size.</li>
+	<li><strong>wb-charts-pieinnerradius-45</strong>: Percentage of the donnut hole size.</li>
 </ul>
 
 
 <table class="wet-boew-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-chart-nolegend-true wb-charts-pieinnerradius-45">
-	<caption>Donut hole</caption>
+	<caption>Donnut hole</caption>
 	<thead>
 		<tr>
 			<th></th>
@@ -556,8 +503,93 @@ var wet_boew_charts = {
 
 <div class="clear"></div>
 
+
+
+<h2>Donnut preset <code>wb-charts-donnut</code></h2>
+
+<p>New from WET 3.1.2 release. The <em>preset</em> functionality could be emulated for prior version, WET 3.1.2, by combining the setting of the previous chart.</p>
+<details>
+	<summary>Donnut Preset Javascript Source Code</summary>
+<pre class="wet-boew-prettify prettyprint lang-javascript"><code>
+// FYI - The "Donnut" preset is already defined in the chart, this are just an help to show an example on how to create your own preset.
+
+// In the global settings.js
+var wet_boew_charts = {
+	preset: {
+		donnut: {
+			// Donnut setting
+			type: 'pie',
+			height: 250,
+			percentlegend: true,
+			pieinnerradius: 45,
+			pietilt: 50,
+			piehoverable: true,
+			decimal: 1,
+			piethreshold: 8,
+			legendinline: true,
+			piestartangle: 100
+		}
+	}
+}
+</code></pre>
+</details>
+
+<table class="wet-boew-charts wb-charts-donnut">
+	<caption>Donnut preset <code>wb-charts-donnut</code></caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7.7</td>
+			<td>10.10</td>
+			<td>4.4</td>
+			<td>14.14</td>
+			<td>15.15</td>
+			<td>7.7</td>
+			<td>23.23</td>
+			<td>8.8</td>
+			<td>12.12</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="clear"></div>
+
+
+<section>
+<h2>Know Issue - Trivial - Undesirable inner white circle</h2>
+
+<p><strong>What is the bug?</strong> An undesirable white circle that appearing in the middle of a pie chart.</p>
+
+<p><strong>What is the bug severity?</strong> Trivial bug that are happening in a very specific context. It's only about to be an undesirable visual effect. The information provided from the pie chart, the pie chart functionality, are out of scope of this bug.</p>
+
+<p><strong>When this bug occur?</strong> This trivial bug are only valid when, in that specific order (as appearing in the HTML), a donnut pie chart (with a hole in center) co-exist with a standard pie chart (with no hole in center) in the same page. <em>Here, the specific order are not representing the same order comparing to the execution order in the WET context.</em></p>
+
+<p><strong>When this bug occur? (more specific and technical)</strong> It is when the CSS option <code>pieinnerradius</code> is used with multiple value on the same page. Also, in addition to this bug, you may notice that, when activated, the hovering effect could be altered. For more information about when this bug will be fix, see the <a href="https://github.com/flot/flot/issues/1128">Flot issue #1128: Pie Chart - Undesirable inner white circle</a>.</p>
+
+<p><strong>What is the workaround?</strong> It is possible to order the pie chart, in the HTML, in a way to not reproduce this bug, like this working example. Standard pie chart followed by donnut pie chart. Or to use, by web pages, pie chart where the value of the <code>pieinnerradius</code> stay the same for each of them.</p>
+
+<p>If you are experiencing another issue or if you have any question, do not hesitate to <a href="https://github.com/wet-boew/wet-boew/issues/new">submit an issue</a>.</p>
+
+</section>
+
+<div class="clear"></div>
+
 <dl id="wet-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2013-04-29</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2013-09-13</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
