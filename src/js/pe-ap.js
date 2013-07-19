@@ -1330,6 +1330,15 @@
 				} else {
 					$html.addClass('sessionstorage');
 				}
+				
+				// String.prototype.trim - http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.20
+				if (!''.trim) {
+					// trim returns a new string (which replace supports)
+					String.prototype.trim = function () { 
+						return this.replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g,''); // trim the left and right sides of the string
+					};
+					$html.addClass('polyfill-stringtrim');
+				}
 			},
 			/**
 			* Determines which polyfills need to be loaded then loads them if they don't have dependencies
