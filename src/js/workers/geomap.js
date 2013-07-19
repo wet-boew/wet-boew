@@ -485,7 +485,7 @@
 
 				$chkBox = $('<div class="geomap-legend-chk"><input type="checkbox" id="cb_' + featureTableId + '" value="' + featureTableId + '"' + $checked + ' /></div>');
 
-				$chkBox.on('change', function() {				
+				$chkBox.on('change', function() {	console.log("changing!");			
 					var layer = geomap.map.getLayer(olLayerId),				
 						visibility = geomap.glegend.find('#cb_' + featureTableId).prop('checked') ? true : false,
 						$table = geomap.glayers.find('#' + featureTableId),
@@ -512,9 +512,21 @@
 					}
 				});	
 
-				$label = ('<div class="geomap-legend-item"><details class="geomap-legend' + geomap.uniqueid + '"><summary>' +
+				/*$label = ('<div class="geomap-legend-item"><details class="geomap-legend' + geomap.uniqueid + '"><summary>' +
 							$featureTable.attr('aria-label') + '</summary><div class="geomap-legend-detail" id="sb_' + featureTableId + '"</div></details></div>');
-				$ul.append($('<li class="geomap-clear-format"/>').append($chkBox, $label));			
+				$ul.append($('<li class="geomap-clear-format"/>').append($chkBox, $label));*/
+				
+				var $legendGraphic = $('<div>', {
+					"id": "sb_" + featureTableId					
+				});
+				
+				$label = $('<label>' , {
+					"for": "cb_" + featureTableId,
+					"html": $featureTable.attr('aria-label'),
+					"class": "form-checkbox"
+				}).append($chkBox, $legendGraphic);					
+					
+				$ul.append($('<li>').append($label));		
 			}	
 		},
 
@@ -1677,6 +1689,9 @@
 			
 			// add a listener on the window to update map when resized
 			window.onresize = function() {		
+				if(_pe.mobile) {
+					$mapDiv.removeClass('span-6').addClass('span-8');
+				}
 				$mapDiv.height($mapDiv.width() * 0.8);
 				map.updateSize();
 				map.zoomToMaxExtent();
