@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  */
 @import "compass/css3/box-shadow";
 @import "compass/css3/border-radius";
@@ -8,26 +8,26 @@
 @import "compass/css3/transform";
 
 %wet-default-small-medium-screen-no-rounded-corners {
-	@include border-radius(0);
+	@include border-radius(0 !important);
 }
 %wet-default-small-medium-screen-all-rounded-corners {
-	@include border-radius(0.6em);
+	@include border-radius(0.6em !important);
 }
 %wet-default-small-medium-screen-no-bottom-rounded-corners {
-	@include border-bottom-left-radius(0);
-	@include border-bottom-right-radius(0);
+	@include border-bottom-left-radius(0 !important);
+	@include border-bottom-right-radius(0 !important);
 }
 %wet-default-small-medium-screen-no-top-rounded-corners {
-	@include border-top-left-radius(0);
-	@include border-top-right-radius(0);
+	@include border-top-left-radius(0 !important);
+	@include border-top-right-radius(0 !important);
 }
 %wet-default-small-medium-screen-bottom-rounded-corners {
-	@include border-bottom-left-radius(0.6em);
-	@include border-bottom-right-radius(0.6em);
+	@include border-bottom-left-radius(0.6em !important);
+	@include border-bottom-right-radius(0.6em !important);
 }
 %wet-default-small-medium-screen-top-rounded-corners {
-	@include border-top-left-radius(0.6em);
-	@include border-top-right-radius(0.6em);
+	@include border-top-left-radius(0.6em !important);
+	@include border-top-right-radius(0.6em !important);
 }
 %wet-default-small-medium-screen-font-weight-normal {
 	font-weight: normal;
@@ -254,14 +254,12 @@ table {
 			@extend %wet-default-small-medium-screen-padding-0;
 		}
 	}
-	.ui-li, a {
-		&.ui-corner-top {
-			@extend %wet-default-small-medium-screen-top-rounded-corners;
-		}
-		&.ui-corner-bottom {
-			@extend %wet-default-small-medium-screen-border-bottom-width-1;
-			@extend %wet-default-small-medium-screen-bottom-rounded-corners;
-		}
+	.ui-corner-top {
+		@extend %wet-default-small-medium-screen-top-rounded-corners;
+	}
+	.ui-corner-bottom {
+		@extend %wet-default-small-medium-screen-border-bottom-width-1;
+		@extend %wet-default-small-medium-screen-bottom-rounded-corners;
 	}
 	.mobile-lang-current {
 		text-transform: capitalize;
@@ -425,27 +423,6 @@ table {
 		@extend %wet-default-small-medium-screen-margin-left-right--15;
 		@extend %wet-default-small-medium-screen-padding-0-15;
 	}
-	.ui-li {
-		@extend %wet-default-small-medium-screen-padding-0;
-	}
-	.ui-collapsible-content {
-		@extend %wet-default-small-medium-screen-padding-0-15;
-		li {
-			&.ui-li {
-				padding-left: 35px;
-			}
-		}
-	}
-	.ui-collapsible-set {
-		a {
-			@extend %wet-default-small-medium-screen-font-size-08-em;
-		}
-	}
-	.ui-listview-inset {
-		.ui-li {
-			border-width: 0;
-		}
-	}
 }
 
 h3 {
@@ -460,6 +437,12 @@ h3 {
 }
 
 .wb-nested-menu {
+	h2 {
+		@extend %wet-default-small-medium-screen-font-1em-margin-0;
+	}
+	h3 {
+		@extend %wet-default-small-medium-screen-font-1em-margin-0;
+	}
 	h4 {
 		@extend %wet-default-small-medium-screen-font-1em-margin-0;
 	}
@@ -535,7 +518,7 @@ select {
 	}
 }
 
-#jqm-wb-mb {
+.jqm-wb-mb {
 	a {
 		@extend %wet-default-small-medium-screen-text-shadow-none;
 		&:link {
@@ -658,9 +641,11 @@ select {
 			}
 		}
 		a {
-			padding-left: 55px;
-			&.ui-btn-icon-left {
-				padding-left: 0;
+			&, &.ui-link-inherit {
+				padding-left: 55px;
+				&.ui-btn-icon-left {
+					padding-left: 0;
+				}
 			}
 		}
 		.wb-nested-menu {
@@ -888,7 +873,7 @@ select {
 		@extend %wet-default-small-medium-screen-text-align-right;
 	}
 
-	#jqm-wb-mb {
+	.jqm-wb-mb {
 		.wb-nested-menu {
 			.ui-btn-icon-right {
 				.ui-btn-inner {
@@ -897,9 +882,11 @@ select {
 			}
 
 			a {
-				padding-right: 55px;
-				&.ui-btn-icon-left {
-					@extend %wet-default-small-medium-screen-padding-right-0;
+				&, &.ui-link-inherit {
+					padding-right: 55px;
+					&.ui-btn-icon-left {
+						@extend %wet-default-small-medium-screen-padding-right-0;
+					}
 				}
 			}
 

@@ -1,6 +1,6 @@
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  */
 /*
  * Exemple d'un fichier de configuration français pour Géocarte
@@ -129,17 +129,18 @@ var wet_boew_geomap = {
 			// default style			
 			style: {
 				type: 'symbol',
-				init: { 'pointRadius': '15', 'externalGraphic': '../../demos/geomap/data/icons/trafficcamera.png', 'fillOpacity': 1.0 },
-				select: { 'pointRadius': '15', 'externalGraphic': '../../demos/geomap/data/icons/trafficcamera_active.png', 'fillOpacity': 1.0 }
+				init: {'graphicWidth': 30, 'graphicHeight': 30, 'externalGraphic': '../../demos/geomap/data/icons/trafficcamera.png', 'graphicOpacity': 1.0 },
+				select: {'graphicWidth': 20, 'graphicHeight': 20, 'externalGraphic': '../../demos/geomap/data/icons/trafficcamera_active.png', 'graphicOpacity': 0.5 }
 			}
-			/*
+			
 			// unique value style
-			style: {
+			/*style: {
 				type: 'unique',
-				field: 'Location',
-				init: {'Bayshore & Richmond': {'pointRadius':'25', 'strokeWidth':'20', 'strokeColor': '#800080'},'Baseline & Greenbank': {'pointRadius':'25', 'strokeWidth':'10', 'fillColor': '#800080'}},
-				select: {'pointRadius': 30, 'externalGraphic': '../../OverIcon.png', 'label': "${Location}", 'fillOpacity': 0.90}
+				field: 'Emplacement',
+				init: {'Albert & Booth': {'pointRadius':'25', 'strokeWidth':'20', 'fillColor': '#800080'},'Baseline & Greenbank': {'pointRadius':'25', 'strokeWidth':'10', 'fillColor': '#800080'}},
+				select: {'pointRadius': 30, 'externalGraphic': '../../demos/geomap/data/icons/trafficcamera.png', 'label': "${Emplacement}", 'fillOpacity': 0.90}
 			}
+			
 			// rule style
 			style: {
 				type: 'rule',

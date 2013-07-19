@@ -1,7 +1,7 @@
 /*!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  *
  * Version: @wet-boew-build.version@
  *
@@ -55,7 +55,6 @@
 		resizetest: '',
 		settings: (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
 		scrollTopInit: window.pageYOffset || document.documentElement.scrollTop,
-		activeElement: null,
 
 		/**
 		* @namespace pe.dic
@@ -123,7 +122,6 @@
 		_init: function () {
 			var $html = pe.html,
 				hlinks_same = [],
-				target,
 				classes = '',
 				test,
 				test_elms,
@@ -197,6 +195,7 @@
 			// Remove the "no-js" class and add the identification classes to the HTML element.
 			$html.removeClass('no-js').addClass(classes);
 
+			// Set the jQuery Mobile active page
 			pe.bodydiv.attr('data-role', 'page').addClass('ui-page-active');
 
 			// If the page URL includes a hash upon page load, then focus on and scroll to the target
@@ -208,17 +207,9 @@
 					pe.scrollTopInit = scrollTop;
 				}
 			});
-			pe.document.on('focus.wbinit blur.wbinit', function(e) {
-				var target = e.target;
-				if (e.type === 'focus.wbinit' && target.nodeName.toLowerCase() !== 'body' && target.getAttribute('data-role') !== 'page') {
-					pe.activeElement = target;
-				} else {
-					pe.activeElement = null;
-				}
-			});
 			pe.document.on('silentscroll.wbinit', function() {
 				var scrollTop = pe.scrollTopInit,
-					activeElement = pe.activeElement;
+					target;
 
 				silentscroll_fired = true;
 				// Remove event handlers
@@ -226,12 +217,9 @@
 					pe.document.off('silentscroll.wbinit');
 				}
 				pe.window.off('scroll.wbinit');
-				pe.document.off('focus.wbinit blur.wbinit');
 
-				// Restore the original focus and/or scroll position
-				if (activeElement !== null) {
-					target = $(activeElement);
-				} else if (pe.urlhash.length !== 0) {
+				// Restore the original scroll position
+				if (pe.urlhash.length !== 0) {
 					target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
 					target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 				}
@@ -259,6 +247,13 @@
 				// Remove the silentscroll handling for determining scrollTop if the silentscroll event has already fired
 				if (silentscroll_fired) {
 					pe.document.off('silentscroll.wbinit');
+				}
+
+				// Restore the original focus if jQuery Mobile causes loss of focus on a form field
+				if (document.activeElement.nodeName.toLowerCase() !== 'body') {
+					pe.document.one('focusout.wbinit', function(e) {
+						pe.focus(e.target);
+					});
 				}
 
 				// Removes tabindex="0" from the first div within the body element (workaround for jQuery Mobile applying tabindex="0" which results in focus shifting to the first div on mouse click)
@@ -1268,7 +1263,12 @@
 
 								// The original menu item was not in a menu bar and is a top level section, all sections are to be collapsed (collapseTopOnly = false) or collapsible content is forced (collapsible = true)
 								if (!menubar && hlink.length > 0 && (toplevel || collapsible || !collapseTopOnly)) {
-									menu += link + hlinkDOM.href + '">' + hlinkDOM.innerHTML + ' - ' + mainText + '</a>';
+									if (toplevel) {
+										menu = menu.substring(0, menu.length - 6) + link + hlinkDOM.href + '" class="ui-corner-bottom';
+									} else {
+										menu += link + hlinkDOM.href;
+									}
+									menu += '">' + hlinkDOM.innerHTML + ' - ' + mainText + '</a>';
 								}
 								menu += '</div>';
 							} else if (mItemTag === 'ul') { // If the menu item is a ul

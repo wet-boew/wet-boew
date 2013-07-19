@@ -1,0 +1,67 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ */
+%ogpl-sp-pe-font-body {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+}
+%ogpl-sp-pe-screen-display-none {
+	display: none;
+}
+%ogpl-sp-pe-screen-wet-title-object-display-block {
+	#ogpl-title {
+		object {
+			display: block;
+		}
+	}
+}
+%ogpl-sp-pe-screen-ui-mobile-rendering-wet-title-object-display-block-none {
+	&.ui-mobile {
+		@extend %ogpl-sp-pe-screen-wet-title-object-display-block;
+		&.ui-mobile-rendering {
+			#ogpl-title {
+				object {
+					@extend %ogpl-sp-pe-screen-display-none;
+				}
+			}
+		}
+	}
+}
+
+body {
+	@extend %ogpl-sp-pe-font-body;
+	margin: 0;
+}
+
+.button {
+	@extend %ogpl-sp-pe-font-body;
+}
+
+#ogpl-fullhd {
+	background: #474747;
+}
+
+#ogpl-title {
+	object {
+		@extend %ogpl-sp-pe-screen-display-none;
+	}
+	span {
+		position: relative;
+		z-index: 1;
+	}
+}
+.svg {
+	@extend %ogpl-sp-pe-screen-wet-title-object-display-block;
+}
+.pe-disable {
+	@extend %ogpl-sp-pe-screen-wet-title-object-display-block;
+}
+.no-svg {
+	@extend %ogpl-sp-pe-screen-ui-mobile-rendering-wet-title-object-display-block-none;
+}
+.ie9 {
+	@extend %ogpl-sp-pe-screen-ui-mobile-rendering-wet-title-object-display-block-none;
+}
+.ie10 {
+	@extend %ogpl-sp-pe-screen-ui-mobile-rendering-wet-title-object-display-block-none;
+}

@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  */
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
@@ -29,14 +29,11 @@
 		}
 	}
 }
-%ogpl-default-large-screen-hover-focus-active-text-decoration-underline {
-	@include pseudo-focus {
-		text-decoration: underline;
-	}
-}
 %ogpl-default-large-screen-a-hover-focus-active-text-decoration-underline {
 	a {
-		@extend %ogpl-default-large-screen-hover-focus-active-text-decoration-underline;
+		@include pseudo-focus {
+			text-decoration: underline;
+		}
 	}
 }
 %ogpl-default-large-screen-background-202A33 {
@@ -256,8 +253,6 @@ h1 {
 }
 
 #ogpl-title {
-	@extend %ogpl-default-large-screen-hover-focus-active-text-decoration-underline;
-	@extend %ogpl-default-large-screen-a-hover-focus-active-text-decoration-underline;
 	@extend %ogpl-default-large-screen-font-size-1-52-em;
 	border: none !important;
 	a {
@@ -333,10 +328,6 @@ h1 {
 			padding: 2px;
 		}
 	}
-}
-
-#ogpl-subsite {
-	@extend %ogpl-default-large-screen-a-hover-focus-active-text-decoration-underline;
 }
 
 #ogpl-srchbx {

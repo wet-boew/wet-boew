@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  */
 /*
  * Slideout
@@ -116,9 +116,8 @@
 				opened = !opened;
 
 				if (_pe.ie <= 0 || _pe.ie > 8) { // IE 9 and other browsers
-					tabWidth = tab.width();
+					tabWidth = tab.outerWidth();
 				} else {
-					// tabWidth = tab.height();
 					tabWidth = 0;
 				}
 

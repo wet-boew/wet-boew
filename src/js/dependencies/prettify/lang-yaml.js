@@ -1,6 +1,6 @@
 /*!
 // Contributed by ribrdb @ code.google.com
- */
+*/
 
 /**
  * @fileoverview

@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  */
 /*
  * Menu bar plugin
@@ -138,7 +138,7 @@
 				if ($childmenu.length > 0) {
 					$elm.attr('aria-haspopup', 'true').addClass('mb-has-sm').attr('href', '#').wrapInner('<span class="expandicon"><span class="sublink"></span></span>');
 					$childmenu.attr({'role': 'menu', 'aria-expanded': 'false', 'aria-hidden': 'true'}).find(':has(:header) ul').attr('role', 'menu');
-					$elm.append('<span class="wb-invisible">' + submenuHelp + '</span>');
+					$elm.append('<span class="wb-invisible"> ' + submenuHelp + '</span>');
 					$elm.closest('li').hoverIntent({
 						over: function () {
 							return showsubmenu(this);

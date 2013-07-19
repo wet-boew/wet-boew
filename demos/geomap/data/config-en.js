@@ -1,6 +1,6 @@
 /*!
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  */
 /*
  * Example English configuration file for Geomap
@@ -128,8 +128,8 @@ var wet_boew_geomap = {
 			// default style			
 			style: {
 				type: 'symbol',
-				init: { 'pointRadius': '15', 'externalGraphic': '../../demos/geomap/data/icons/trafficcamera.png', 'fillOpacity': 1.0 },
-				select: { 'pointRadius': '15', 'externalGraphic': '../../demos/geomap/data/icons/trafficcamera_active.png', 'fillOpacity': 1.0 }
+				init: {'graphicWidth': 30, 'graphicHeight': 30, 'externalGraphic': '../../demos/geomap/data/icons/trafficcamera.png', 'graphicOpacity': 1.0 },
+				select: {'graphicWidth': 20, 'graphicHeight': 20, 'externalGraphic': '../../demos/geomap/data/icons/trafficcamera_active.png', 'graphicOpacity': 0.5 }
 			}
 			/*
 			// unique value style

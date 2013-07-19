@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  */
 %base-default-large-background-none {
 	background: none;
@@ -54,6 +54,7 @@
 #base-bc-in {
 	font-size: 85%;
 	color: #555;
+	background: #FFF;
 	ol {
 		line-height: 1.57em;
 		list-style-type: none;
@@ -86,10 +87,6 @@
 			text-decoration: underline;
 		}
 	}
-}
-
-#base-bc-in {
-	background: #FFF;
 }
 
 #base-date-mod {

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="bg">
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt -->
+wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html -->
 <!-- DataAjaxFragmentStart -->
 <li><section><h3><a href="http://wet-boew.github.io/wet-boew/index-eng.html">WET проект</a></h3><div class="mb-sm">
 <div class="span-2">
@@ -10,7 +10,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <li><a href="http://wet-boew.github.io/wet-boew/demos/index-eng.html">Работни примери</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">Документация</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/downloads">Изтегляния</a></li>
-<li><a href="http://wet-boew.github.io/wet-boew/License-eng.txt">Правила и условия</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/License-eng.html">Правила и условия</a></li>
 </ul>
 </div>
 <div class="clear"></div>

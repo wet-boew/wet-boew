@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt -->
+wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html -->
 <!-- DataAjaxFragmentStart -->
 <li><section><h3><a href="http://wet-boew.github.io/wet-boew/index-eng.html">WET project</a></h3><div class="mb-sm">
 <div class="span-2">
@@ -12,7 +12,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Accolades">Accolades for WET</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Accolades#wiki-Known_implementations">Known implementations</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki#upcoming-events">Events</a></li>
-<li><a href="http://wet-boew.github.io/wet-boew/License-eng.txt">Terms and conditions of use</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/License-eng.html">Terms and conditions of use</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Roadmap">Roadmap of past and future releases</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/index-eng.html#version-history">Version history</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/External-Projects-used-in-WET">External projects used in WET</a></li>

@@ -1,7 +1,7 @@
 /*!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  *
  * Version: @wet-boew-build.version@
  *
@@ -174,7 +174,7 @@
 					mb_btn_txt = pe.dic.get('%menu');
 					mb_li = wet_boew_theme.menubar.find('ul.mb-menu li');
 					secnav_h2 = (pe.secnav.length !== 0 ? pe.secnav[0].getElementsByTagName('h2')[0] : '');
-					mb_popup = popup + ' id="jqm-wb-mb">' + popup_default_header_open + mb_btn_txt + '</h1>' + popup_close_btn + '</div><div data-role="content" data-inset="true"><nav role="navigation">';
+					mb_popup = popup + ' id="jqm-wb-mb" class="jqm-wb-mb">' + popup_default_header_open + mb_btn_txt + '</h1>' + popup_close_btn + '</div><div data-role="content" data-inset="true"><nav role="navigation">';
 
 					if (wet_boew_theme.bcrumb.length !== 0) {
 						node = wet_boew_theme.bcrumb[0];
@@ -285,7 +285,7 @@
 				}
 
 				// Build the about sub-popup
-				settings_popup += popup + ' id="popupAbout"' + popup_settings;
+				settings_popup += popup + ' id="popupAbout" data-theme="c" class="ui-corner-all jqm-wb-mb">';
 				settings_popup += popup_settings_header_open + pe.dic.get('%about') + '</h1>' + popup_back_btn_open + ' href="#popupSettings"' + popup_back_btn_close + popup_close_btn + '</div>';
 				settings_popup += popup_settings_content_open;
 				settings_popup += '<div class="site-app-title"><div class="ui-title">' + wet_boew_theme.title[0].getElementsByTagName('a')[0].innerHTML + '</div></div>';
@@ -297,13 +297,15 @@
 						settings_popup += '<div class="app-version">' + node[0].innerHTML + ' ' + target.innerHTML + '</div>';
 					}
 				}
-				settings_popup += listView + ' data-inset="true">';
+				settings_popup += '<div data-role="controlgroup" data-theme="c"><div data-role="collapsible-set" data-inset="false">';
 				// Add the terms and conditions and transparency links
+				settings_popup += listView + '>';
 				links = document.getElementById('gcwu-tctr').getElementsByTagName('a');
 				for (i = 0, len = links.length; i !== len; i += 1) {
 					link = links[i];
-					settings_popup += '<li><a href="' + link.href + '">' + link.innerHTML + '</a></li>';
+					settings_popup += '<li class="top-level' + (i === 0 ? ' ui-corner-top' : '') + '"><a href="' + link.href + '">' + link.innerHTML + '</a></li>';
 				}
+				settings_popup += '</ul>';
 				// Add the footer links
 				nodes = wet_boew_theme.sft.find('.gcwu-col-head');
 				for (i = 0, len = nodes.length; i !== len; i += 1) {
@@ -312,7 +314,7 @@
 					next = node.find('+ ul, + address ul');
 					target = link.length !== 0 ? link[0].innerHTML : node[0].innerHTML;
 					if (next.length !== 0) {
-						settings_popup += '<li data-role="collapsible" data-inset="false"><h2>' + target + '</h2><ul data-role="listview">';
+						settings_popup += '<div class="wb-nested-menu" data-role="collapsible"><h2>' + target + '</h2>' + listView + '>';
 						links = next[0].getElementsByTagName('a');
 						for (j = 0, len2 = links.length; j !== len2; j += 1) {
 							node = links[j];
@@ -321,12 +323,13 @@
 						if (link.length !== 0) {
 							settings_popup += '<li><a href="' + link.attr('href') + '">' + link.html() + mainpage_txt + '</a></li>';
 						}
-						settings_popup += '</ul></li>';
+						settings_popup += '</ul></div>';
 					} else if (link.length !== 0) {
-						settings_popup += '<li' + (i === (len - 1) ? ' class="ui-corner-bottom"' : '') + '><a href="' + link.href + '">' + link.html() + '</a></li>';
+						settings_popup += '<li><a href="' + link.href + '">' + link.html() + '</a></li>';
 					}
 				}
-				settings_popup += '</ul></div>' + popup_close;
+				target = settings_popup.lastIndexOf('<li');
+				settings_popup = settings_popup.substring(0, target) + '<li class="ui-corner-bottom"' + settings_popup.substring(target + 3) + '</ul></div></div>' + popup_close;
 
 				// Append all the popups to the body
 				pe.bodydiv.append(bodyAppend + settings_popup);

@@ -1,5 +1,5 @@
 /*!
-// Copyright (C) 2006 Google Inc.
+// Copyright (C) 2008 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,7 +12,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
- */
+*/
+
 
 /**
  * @fileoverview
@@ -28,6 +29,7 @@
  *	   lang-el - Emacs Lisp
  *	   lang-lisp - Lisp
  *	   lang-scm - Scheme
+ *	   lang-lsp - FAT 8.3 filename version of lang-lisp.
  *
  *
  * I used http://www.devincook.com/goldparser/doc/meta-language/grammar-LISP.htm
@@ -90,4 +92,4 @@ PR['registerLangHandler'](
 		 // A printable non-space non-special character
 		 [PR['PR_PUNCTUATION'], /^[^\w\t\n\r \xA0()\"\\\';]+/]
 		]),
-	['cl', 'el', 'lisp', 'scm']);
+	['cl', 'el', 'lisp', 'lsp', 'scm', 'ss', 'rkt']);

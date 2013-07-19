@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  */
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
@@ -29,14 +29,11 @@
 		}
 	}
 }
-%wet-default-large-screen-hover-focus-active-text-decoration-underline {
-	@include pseudo-focus {
-		text-decoration: underline;
-	}
-}
 %wet-default-large-screen-a-hover-focus-active-text-decoration-underline {
 	a {
-		@extend %wet-default-large-screen-hover-focus-active-text-decoration-underline;
+		@include pseudo-focus {
+			text-decoration: underline;
+		}
 	}
 }
 %wet-default-large-screen-background-0E4164 {
@@ -252,8 +249,6 @@ h1 {
 }
 
 #wet-title {
-	@extend %wet-default-large-screen-hover-focus-active-text-decoration-underline;
-	@extend %wet-default-large-screen-a-hover-focus-active-text-decoration-underline;
 	@extend %wet-default-large-screen-font-size-1-52-em;
 	border: none !important;
 	a {
@@ -331,10 +326,6 @@ h1 {
 			padding: 2px;
 		}
 	}
-}
-
-#wet-subsite {
-	@extend %wet-default-large-screen-a-hover-focus-active-text-decoration-underline;
 }
 
 #wet-srchbx {

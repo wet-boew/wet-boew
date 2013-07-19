@@ -1,10 +1,16 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  */
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
 @import "compass/css3/images";
+
+%base-default-large-screen-psuedo-underline {
+	@include pseudo-focus {
+		text-decoration: underline;
+	}
+}
 
 html {
 	overflow-y: scroll;
@@ -162,9 +168,6 @@ h1 {
 		@extend %base-default-large-screen-title-font;
 		display: inline-block;
 		margin-left: 10px;
-	}
-	@include pseudo-focus {
-		text-decoration: underline;
 	}
 }
 
@@ -332,18 +335,6 @@ h1 {
 	&:active {
 		@include box-shadow(inset 0 0 5px 2px #999, 0 0 0 0 #eee);
 		border: 1px solid #999;
-	}
-}
-
-%base-default-large-screen-psuedo-underline {
-	@include pseudo-focus {
-		text-decoration: underline;
-	}
-}
-
-#base-subsite {
-	a {
-		@extend %base-default-large-screen-psuedo-underline;
 	}
 }
 

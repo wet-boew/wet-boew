@@ -1,0 +1,96 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ */
+@import "compass/css3/images";
+
+body {
+	@if $experimental-support-for-webkit {
+		-webkit-text-size-adjust: none;
+	}
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 80%;
+	color: #333;
+}
+
+a {
+	color: #295376;
+	font-weight: 700;
+	&:active {
+		text-decoration: underline !important;
+	}
+}
+
+#wb-head {
+	&:after {
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+}
+
+[id|="wb-body"] {
+	background: #fff !important;
+}
+
+#base-title {
+	@include background-image(linear-gradient(#BA380C, #E3450F));
+	border: none;
+	p {
+		font-size: 1.5em;
+		font-weight: 400;
+		padding: 3px 5px;
+		margin: 0;
+		color: #fff !important;
+		text-shadow: 0 1px 1px #044062;
+	}
+	span {
+		+ {
+			span {
+				padding-left: 15px;
+			}
+		}
+	}
+}
+	
+#wb-main-in {
+	h1 {
+		margin-top: 0.5em;
+	}
+}
+
+#base-fullhd {
+	min-height: 42px;
+	@include background-image(linear-gradient(#4C4C4C, #5D5D5D));
+}
+.ui-page-header-fixed {
+	#base-fullhd {
+		min-height: 0;
+	}
+}
+
+#base-bnr {
+	background: #CF3F0E;
+}
+
+#base-bnr-in {
+	.ui-mini {
+		.ui-btn-inner {
+			font-size: 1em;
+		}
+	}
+}
+
+#wb-core {
+	clear: both;
+}
+
+.ui-loader-default {
+	h1 {
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+}

@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  */
 @import "compass/css3/border-radius";
 
@@ -81,6 +81,10 @@
 	}
 }
 
+%gcwu-default-screen-font-arial {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
 	margin: 0;
 }
@@ -113,6 +117,11 @@ body {
 }
 
 #gcwu-title {
+	a {
+		@include pseudo-focus {
+			text-decoration: underline;
+		}
+	}
 	small {
 		font-size: 0.45em;
 		display: block;

@@ -2,7 +2,7 @@
 /*!!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  *
  * Version: @wet-boew-build.version@
  *
@@ -40,6 +40,7 @@
 @import '../../theme-gcwu-fegc/sass/includes/default-screen-ie';
 @import 'includes/default-images-screen-ie';
 @import 'includes/default-responsive-large-screen';
+@import 'includes/default-screen';
 @import 'includes/default-large-screen';
 @import 'includes/default-large-images-screen';
 @import 'includes/default-screen-ie';

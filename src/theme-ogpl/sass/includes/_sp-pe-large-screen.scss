@@ -1,0 +1,148 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ */
+@import "compass/css3/images";
+
+%ogpl-sp-pe-large-screen-position-relative {
+	position: relative;
+}
+%ogpl-sp-pe-large-screen-font-size-1-52-em {
+	font-size: 1.52em;
+}
+%ogpl-sp-pe-large-screen-overflow-hidden {
+	overflow: hidden;
+}
+%ogpl-sp-pe-large-screen-padding-9-15-9-0-position-absolute-width-210-width-60 {
+	padding: 9px 15px 9px 0;
+	position: absolute;
+	width: 210px;
+	height: 60px;
+}
+%ogpl-sp-pe-large-screen-padding-9-0-9-15 {
+	padding: 9px 0 9px 15px;
+}
+%ogpl-sp-pe-large-screen-display-none-important {
+	display: none !important;
+}
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+	padding: 0;
+}
+
+#wb-head {
+	@extend %ogpl-sp-pe-large-screen-overflow-hidden;
+}
+
+#wb-head-in {
+	@extend %ogpl-sp-pe-large-screen-overflow-hidden;
+}
+
+#ogpl-fullhd {
+	min-height: 31px;
+	border-bottom: 1px solid #FFFFFF;
+	object {
+		@extend %ogpl-sp-pe-large-screen-display-none-important;
+	}
+	img {
+		@extend %ogpl-sp-pe-large-screen-display-none-important;
+	}
+}
+
+#wb-body {
+	background: #FFF !important;
+	#wb-main {
+		float: left;
+	}
+}
+
+#wb-core-in {
+	overflow: visible !important;
+	@extend %ogpl-sp-pe-large-screen-position-relative;
+	background: #FFF;
+	&:after {
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+}
+
+#ogpl-bnr {
+	@extend %ogpl-sp-pe-large-screen-position-relative;
+	@extend %ogpl-sp-pe-large-screen-overflow-hidden;
+	z-index: 501 !important;
+	background: #33479E;
+	@if $legacy-support-for-ie8 {
+		@include filter-gradient(#4065B3, #33479E);
+	} @else {
+		@include background-image(linear-gradient(#4065B3, #33479E));
+	}
+}
+
+#ogpl-bnr-in {
+	@extend %ogpl-sp-pe-large-screen-position-relative;
+	@extend %ogpl-sp-pe-large-screen-overflow-hidden;
+}
+
+#wb-main-in {
+	padding-top: 1px;
+	padding-bottom: 2.5em;
+}
+
+#ogpl-title {
+	@extend %ogpl-sp-pe-large-screen-font-size-1-52-em;
+	border: none !important;
+	p {
+		color: #FFF;
+		@extend %ogpl-sp-pe-large-screen-font-size-1-52-em;
+		text-shadow: #333 1px 1px 1px;
+		display: table-row;
+		font-weight: 400;
+	}
+	object {
+		@extend %ogpl-sp-pe-large-screen-padding-9-15-9-0-position-absolute-width-210-width-60;
+	}
+	img {
+		@extend %ogpl-sp-pe-large-screen-padding-9-15-9-0-position-absolute-width-210-width-60;
+	}
+	span {
+		display: table-cell;
+		vertical-align: middle;
+		height: 2.82em;
+		padding-left: 225px;
+		+ {
+			span {
+				padding-left: 20px;
+			}
+		}
+	}
+}
+
+#ogpl-title-in {
+	margin: 0;
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#ogpl-title {
+		object {
+			@extend %ogpl-sp-pe-large-screen-padding-9-0-9-15;
+		}
+		img {
+			@extend %ogpl-sp-pe-large-screen-padding-9-0-9-15;
+		}
+		span {
+			padding-left: 0;
+			padding-right: 155px;
+		}
+	}
+	#ogpl-title-in {
+		background-position: right center;
+	}
+}

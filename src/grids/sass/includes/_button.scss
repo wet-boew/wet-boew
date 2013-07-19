@@ -1,6 +1,6 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  */
 @import "compass/css3/box-shadow";
 @import "compass/css3/border-radius";
@@ -314,7 +314,7 @@
 
 	@include background-image(linear-gradient($color, darken($color, 10%)));
 	@include pseudo-focus {
-		background-color: darken($color, 10%);
+		background-color: darken($color, 10%) !important;
 	}
 	@if $experimental-support-for-mozilla {
 		&:focus::-moz-focus-inner, &:active::-moz-focus-inner {
