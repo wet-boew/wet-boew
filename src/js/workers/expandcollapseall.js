@@ -58,7 +58,7 @@
 			this._initTogglers(elm, opts);
 
 			// Open details on print
-			if(opts.printOpen) {
+			if (opts.printOpen) {
 
 				// Native event support
 				_pe.window.on('beforeprint', $.proxy(function() {
@@ -113,14 +113,14 @@
 				ul = document.createElement('ul');
 
 			// Make sure there is at least one toggle control
-			if(!opts.togglers || (!opts.togglers.toggle && !opts.togglers.open && !opts.togglers.close)){
+			if (!opts.togglers || (!opts.togglers.toggle && !opts.togglers.open && !opts.togglers.close)) {
 				opts.togglers.toggle = true;
 			}
 
 			// Create the requested togglers and add to the page
 			types = _pe.array.keys(opts.togglers);
-			for(var i = 0, length = types.length; i < length; i++) {
-				if(opts.togglers[types[i]] === true) {
+			for (var i = 0, length = types.length; i < length; i++) {
+				if (opts.togglers[types[i]] === true) {
 					toggler = this._createToggler(types[i], opts);
 					li = document.createElement('li');
 					li.appendChild(toggler[0]);
@@ -131,8 +131,8 @@
 			ul.className = 'menu-horizontal';
 			elm.append(ul);
 
-			if(opts.accentFirst === true) {
-				this._togglers[0].addClass('button-accent');
+			if (opts.accentFirst === true) {
+				$(ul).find('li:first-child > .button').addClass('button-accent');
 			}
 		},
 
@@ -162,7 +162,7 @@
 			var ids = '';
 
 			// Init with a space separated list of <details> element IDs
-			if(this._aria_controls === null) {
+			if (this._aria_controls === null) {
 				$('details').each(function(idx) {
 					if(this.id === '') {
 						this.id = 'details_' + idx;
