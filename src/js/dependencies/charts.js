@@ -1297,6 +1297,7 @@
 							
 							valueCumul += header[header.length - 1].flotDelta;
 						
+							break;
 						}
 						var tdOptions =  setClassOptions(RowDefaultOptions,				
 				($(dataGroup.col[i].cell[rIndex].elem).attr('class') !== undefined ? 
@@ -1405,7 +1406,8 @@
 						$('.legend > table', $placeHolder).removeAttr('style').addClass('font-small');
 						$placeHolder.css('height', 'auto');
 					}
-					
+					$('canvas:eq(1)', $placeHolder).css('position', 'static');
+
 					// Remove any "pieLabel" ids set by the flotPie.js plugin at line #457
 					$('.pieLabel').removeAttr('id');
 					
@@ -1645,6 +1647,7 @@
 				// Remove the legend
 				$('.legend', $placeHolder).remove();
 			}
+			$('canvas:eq(1)', $placeHolder).css('position', 'static');
 			
 			// Destroy the temp table if used
 			if (options.parsedirection === 'y') {
