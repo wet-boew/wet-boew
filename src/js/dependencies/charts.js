@@ -486,7 +486,7 @@
 						// return [5.1, "g"]
 
 						// Default Cell value extraction
-						var cellRawValue = $(elem).text().trim();
+						var cellRawValue = $.trim($(elem).text());
 
 						//remove spaces inside the string;
 						cellRawValue = cellRawValue.replace(/\s/g, '');
@@ -508,13 +508,13 @@
 						},
 						usnumber: {
 							getcellvalue: function(elem) {
-								var raw = $(elem).text().trim().replace(/,/g, '');
+								var raw = $.trim($(elem).text()).replace(/,/g, '');
 								return [parseFloat(raw.match(/[\+\-0-9]+[0-9,\. ]*/)), raw.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
 							}
 						},
 						germannumber: {
 							getcellvalue: function(elem) {
-								var raw = $(elem).text().trim().replace(/\./g, '');
+								var raw = $.trim($(elem).text()).replace(/\./g, '');
 								return [parseFloat(raw.match(/[\+\-0-9]+[0-9,\. ]*/)), raw.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
 							}
 						}
