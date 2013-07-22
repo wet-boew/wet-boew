@@ -107,6 +107,7 @@
 				stopHiddenText = _pe.dic.get('%tab-rotation', 'disable'),
 				startText = _pe.dic.get('%play'),
 				startHiddenText = _pe.dic.get('%tab-rotation', 'enable'),
+				sep = ' ' + _pe.dic.get('%hyphen') + ' ',
 				stopCycle,
 				toggleCycle,
 				tabListCount = $tabbedInterfaces.length > 1 ? ' ' + ($tabbedInterfaces.index(elm) + 1) : '',
@@ -248,8 +249,8 @@
 			toggleCycle = function () {
 				if ($toggleRow.data('state') === 'stopped') {
 					cycle($tabs, $panels, opts);
-					$toggleButton.removeClass('tabs-start').addClass('tabs-stop').html(stopText + '<span class="wb-invisible">' + stopHiddenText + '</span>');
-					return $('.wb-invisible', $toggleButton).text(stopHiddenText);
+					$toggleButton.removeClass('tabs-start').addClass('tabs-stop').html(stopText + '<span class="wb-invisible">' + sep + stopHiddenText + '</span>');
+					return $('.wb-invisible', $toggleButton).text(sep + stopHiddenText);
 				}
 				if ($toggleRow.data('state') === 'started') {
 					return stopCycle();
@@ -285,8 +286,8 @@
 					elm.find('.tabs-roller').width(0).hide().stop();
 					elm.find('.tabs-toggle').data('state', 'stopped');
 					$nav.removeClass('started');
-					$toggleButton.removeClass('tabs-stop').addClass('tabs-start').html(startText + '<span class="wb-invisible">' + startHiddenText + '</span>');
-					return $('.wb-invisible', $toggleButton).text(startHiddenText);
+					$toggleButton.removeClass('tabs-stop').addClass('tabs-start').html(startText + '<span class="wb-invisible">' + sep + startHiddenText + '</span>');
+					return $('.wb-invisible', $toggleButton).text(sep + startHiddenText);
 				};
 				//
 				// creates a play/pause, prev/next buttons, and lets the user toggle the stateact as PREV button MB
@@ -309,7 +310,7 @@
 				//
 				//End NEXT button
 				//
-				$toggleRow = $('<li class="tabs-toggle"><a class="tabs-stop" href="javascript:;" role="button">' + stopText + '<span class="wb-invisible">' + stopHiddenText + '</span></a></li>');
+				$toggleRow = $('<li class="tabs-toggle"><a class="tabs-stop" href="javascript:;" role="button">' + stopText + '<span class="wb-invisible">' + sep + stopHiddenText + '</span></a></li>');
 				$toggleButton = $toggleRow.find('a');
 				$nav.append($toggleRow);
 				$toggleRow.click(toggleCycle).on('keydown', function (e) {
