@@ -15,14 +15,7 @@
 	_pe.fn.tabbedinterface = {
 		type : 'plugin',
 		depends : (_pe.mobile ? [] : ['easytabs']),
-		mobile : function (elm, nested) {
-			// Process any nested tabs
-			if (typeof nested === 'undefined' || !nested) {
-				elm.find('.wet-boew-tabbedinterface').each(function () {
-					_pe.fn.tabbedinterface.mobile($(this), true);
-				});
-			}
-
+		mobile : function (elm) {
 			var $accordion,
 				$panelElms,
 				$panels = elm.children('.tabs-panel').children('div'),
@@ -121,6 +114,7 @@
 				stopHiddenText = _pe.dic.get('%tab-rotation', 'disable'),
 				startText = _pe.dic.get('%play'),
 				startHiddenText = _pe.dic.get('%tab-rotation', 'enable'),
+				sep = ' ' + _pe.dic.get('%hyphen') + ' ',
 				stopCycle,
 				toggleCycle,
 				tabListIdx = $tabbedInterfaces.index(elm),
@@ -236,27 +230,31 @@
 				var $target = $(e.target),
 					$panel,
 					$link,
-					hash;
+					href,
+					hash,
+					isKeyNext,
+					isKeyPrev,
+					isKeySelect;
 				if (e.type === 'keydown') {
-					if (e.keyCode === 13 || e.keyCode === 32) {
-						if (e.stopPropagation) {
-							e.stopImmediatePropagation();
-						} else {
-							e.cancelBubble = true;
+					isKeySelect = e.keyCode === 13 || e.keyCode === 32;	// enter, space
+					isKeyPrev = e.keyCode === 37 || e.keyCode === 38;	// left, up
+					isKeyNext = e.keyCode === 39 || e.keyCode === 40;	// right, down
+					if (isKeySelect || isKeyPrev || isKeyNext) {
+						e.preventDefault();
+						if (opts.cycle) {
+							stopCycle();
 						}
-						e.preventDefault();
-						if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
-							selectTab($target, $tabs, $panels, opts, false);
+						if (isKeySelect) {
+							if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
+								selectTab($target, $tabs, $panels, opts, false);
+							} else {
+								href = $target.attr('href');
+								hash = href.substring(href.indexOf('#'));
+								_pe.focus($panels.filter(hash));
+							}
 						} else {
-							hash = _pe.fn.tabbedinterface._get_hash($target.attr('href'));
-							_pe.focus($panels.filter(hash));
+							selectTab(isKeyPrev ? getPrevTab($tabs) : getNextTab($tabs), $tabs, $panels, opts, false);
 						}
-					} else if (e.keyCode === 37 || e.keyCode === 38) { // left or up
-						selectTab(getPrevTab($tabs), $tabs, $panels, opts, false);
-						e.preventDefault();
-					} else if (e.keyCode === 39 || e.keyCode === 40) { // right or down
-						selectTab(getNextTab($tabs), $tabs, $panels, opts, false);
-						e.preventDefault();
 					}
 				} else {
 					// Make sure working with a link since it's possible for an image to be the target of a mouse click
@@ -348,8 +346,8 @@
 			toggleCycle = function () {
 				if ($toggleRow.data('state') === 'stopped') {
 					cycle($tabs, $panels, opts);
-					$toggleButton.removeClass('tabs-start').addClass('tabs-stop').html(stopText + '<span class="wb-invisible">' + stopHiddenText + '</span>');
-					return $('.wb-invisible', $toggleButton).text(stopHiddenText);
+					$toggleButton.removeClass('tabs-start').addClass('tabs-stop').html(stopText + '<span class="wb-invisible">' + sep + stopHiddenText + '</span>');
+					return $('.wb-invisible', $toggleButton).text(sep + stopHiddenText);
 				}
 				if ($toggleRow.data('state') === 'started') {
 					return stopCycle();
@@ -470,8 +468,8 @@
 					elm.find('.tabs-roller').width(0).hide().stop();
 					elm.find('.tabs-toggle').data('state', 'stopped');
 					$nav.removeClass('started');
-					$toggleButton.removeClass('tabs-stop').addClass('tabs-start').html(startText + '<span class="wb-invisible">' + startHiddenText + '</span>');
-					return $('.wb-invisible', $toggleButton).text(startHiddenText);
+					$toggleButton.removeClass('tabs-stop').addClass('tabs-start').html(startText + '<span class="wb-invisible">' + sep + startHiddenText + '</span>');
+					return $('.wb-invisible', $toggleButton).text(sep + startHiddenText);
 				};
 				//
 				// creates a play/pause, prev/next buttons, and lets the user toggle the stateact as PREV button MB
@@ -494,7 +492,7 @@
 				//
 				//End NEXT button
 				//
-				$toggleRow = $('<li class="tabs-toggle"><a class="tabs-stop" href="javascript:;" role="button">' + stopText + '<span class="wb-invisible">' + stopHiddenText + '</span></a></li>');
+				$toggleRow = $('<li class="tabs-toggle"><a class="tabs-stop" href="javascript:;" role="button">' + stopText + '<span class="wb-invisible">' + sep + stopHiddenText + '</span></a></li>');
 				$toggleButton = $toggleRow.find('a');
 				$nav.append($toggleRow);
 				$toggleRow.click(toggleCycle).on('keydown', function (e) {
