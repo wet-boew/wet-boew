@@ -1,0 +1,155 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+#wb-skip {
+	.ui-link {
+		text-shadow: none !important;
+	}
+}
+#wb-head, #wb-foot, #wb-sec, #ogpl-date-mod {
+	line-height: normal;
+}
+ 
+%ogpl-default-hidden-clip {
+	@include clip-rect;
+	height: 0 !important;
+	overflow: hidden !important;
+	position: absolute;
+	width: 0 !important;
+	margin: 0 !important;
+}
+ 
+#ogpl-fullhd {
+	h2 {
+		@extend %ogpl-default-hidden-clip;
+	}
+}
+
+#ogpl-psnb {
+	h2 {
+		@extend %ogpl-default-hidden-clip;
+	}
+}
+
+#ogpl-srchbx {
+	h2 {
+		@extend %ogpl-default-hidden-clip;
+	}
+	label {
+		@extend %ogpl-default-hidden-clip;
+	}
+}
+
+#ogpl-sft {
+	h3 {
+		@extend %ogpl-default-hidden-clip;
+	}
+}
+
+#ogpl-bc {
+	h2 {
+		@extend %ogpl-default-hidden-clip;
+	}
+}
+
+#ogpl-bc-in {
+	color: #555;
+	ol {
+		line-height: 1.57em;
+		list-style-type: none;
+		padding: 0;
+		&:after {
+			content:".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+	}
+	li {
+		float: left;
+		white-space: nowrap;
+		&:last-child {
+			background-image: none;
+			padding-right: 0;
+		}
+	}
+	a {
+		color: #295376;
+		text-decoration: none;
+		@include pseudo-focus {
+			color: #295376;
+			text-decoration: underline;
+		}
+	}
+}
+
+#ogpl-fullft {
+	h3 {
+		@extend %ogpl-default-hidden-clip;
+	}
+}
+
+#ogpl-date-mod {
+	dt, dd {
+		float: left;
+	}
+	dd {
+		margin: 0 0 0 0.39em;
+	}
+}
+
+#ogpl-title {
+	a {
+		text-decoration: none;
+	}
+}
+
+#ogpl-subsite {
+	border-top: 2px solid #114F7A;
+	clear: left;
+	font-size: 130%;
+	text-shadow: 1px 1px 1px #333;
+	p {
+		margin: 0 auto;
+		padding-top: 1px;
+		padding-bottom: 5px;
+	}
+	a {
+		color: #fff;
+		text-decoration: none;
+		padding: 0 5px 0 10px;
+		text-shadow: 1px 1px 1px #333;
+		border-left: 1px solid #ccc;
+		font-size: 90%;
+		&:first-child {
+			border-left: none;
+			font-size: 100%;
+		}
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#ogpl-date-mod {
+		dt, dd {
+			float: right;
+		}
+		dd {
+			margin: 0 0.39em 0 0;
+		}
+	}
+
+	#ogpl-subsite {
+		clear: right;
+		a {
+			padding: 0 10px 0 5px;
+			border-left: none;
+			border-right: 1px solid #ccc;
+			&:first-child {
+				border-right: none;
+			}
+		}
+	}
+}
