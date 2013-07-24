@@ -103,10 +103,9 @@
 				popupDOM = $popup[0];
 				popupDOM.setAttribute('id', 'bookmark_popup');
 				popupDOM.setAttribute('aria-hidden', 'true');
-				popupDOM.setAttribute('role', 'menu');
 				$popup.prepend('<p class="popup_title">' + opts.popupText + '</p>');
 				popupLinkListDOM = popupDOM.getElementsByTagName('ul')[0];
-				popupLinkListDOM.setAttribute('role', 'presentation');
+				popupLinkListDOM.setAttribute('role', 'menu');
 				popupLinksDOM = popupLinkListDOM.getElementsByTagName('a');
 				$popupLinks = $(popupLinksDOM);
 				popupLinksLen = popupLinksDOM.length;
@@ -148,7 +147,7 @@
 				});
 
 				$popupText = elm.find('.bookmark_popup_text').off('click vclick touchstart keydown').wrap('<' + opts.popupTag + ' />');
-				$popupText.attr({'role': 'button', 'aria-controls': 'bookmark_popup'}).on('click vclick touchstart keydown', function (e) {
+				$popupText.attr({'role': 'button', 'aria-controls': 'bookmark_popup', 'aria-haspopup': 'true'}).on('click vclick touchstart keydown', function (e) {
 					if (e.type === "keydown") {
 						if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 							if (e.keyCode === 13 || e.keyCode === 32) { // enter or space
