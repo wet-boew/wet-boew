@@ -15,14 +15,7 @@
 	_pe.fn.tabbedinterface = {
 		type : 'plugin',
 		depends : (_pe.mobile ? [] : ['easytabs']),
-		mobile : function (elm, nested) {
-			// Process any nested tabs
-			if (typeof nested === 'undefined' || !nested) {
-				elm.find('.wet-boew-tabbedinterface').each(function () {
-					_pe.fn.tabbedinterface.mobile($(this), true);
-				});
-			}
-
+		mobile : function (elm) {
 			var $accordion,
 				$panelElms,
 				$panels = elm.children('.tabs-panel').children('div'),
@@ -66,7 +59,7 @@
 			// Create the accordion panels
 			for (index = 0, len = $panels.length; index < len; index += 1) {
 				$link = $tabs.eq(index).children('a');
-				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + ' data-tab="' + _pe.fn.tabbedinterface._get_hash($link.attr('href')) + '">' + hopen + $link.text() + hclose + '</div>';
+				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + ' data-tab="' + this._get_hash($link.attr('href')) + '">' + hopen + $link.text() + hclose + '</div>';
 			}
 			$accordion = $(accordion);
 
@@ -76,6 +69,11 @@
 				$panelElms.eq(len).append($panels.eq(len));
 			}
 			elm.empty().append($accordion);
+
+			this._init_panel_links($panelElms, $panelElms, 'data-tab', function (event) {
+				event.data.tab.trigger('expand');
+				return false;
+			});
 
 			// Track the active panel during the user's session
 			$panelElms.on('expand', function () {
@@ -116,6 +114,7 @@
 				stopHiddenText = _pe.dic.get('%tab-rotation', 'disable'),
 				startText = _pe.dic.get('%play'),
 				startHiddenText = _pe.dic.get('%tab-rotation', 'enable'),
+				sep = ' ' + _pe.dic.get('%hyphen') + ' ',
 				stopCycle,
 				toggleCycle,
 				tabListIdx = $tabbedInterfaces.index(elm),
@@ -231,27 +230,31 @@
 				var $target = $(e.target),
 					$panel,
 					$link,
-					hash;
+					href,
+					hash,
+					isKeyNext,
+					isKeyPrev,
+					isKeySelect;
 				if (e.type === 'keydown') {
-					if (e.keyCode === 13 || e.keyCode === 32) {
-						if (e.stopPropagation) {
-							e.stopImmediatePropagation();
-						} else {
-							e.cancelBubble = true;
+					isKeySelect = e.keyCode === 13 || e.keyCode === 32;	// enter, space
+					isKeyPrev = e.keyCode === 37 || e.keyCode === 38;	// left, up
+					isKeyNext = e.keyCode === 39 || e.keyCode === 40;	// right, down
+					if (isKeySelect || isKeyPrev || isKeyNext) {
+						e.preventDefault();
+						if (opts.cycle) {
+							stopCycle();
 						}
-						e.preventDefault();
-						if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
-							selectTab($target, $tabs, $panels, opts, false);
+						if (isKeySelect) {
+							if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
+								selectTab($target, $tabs, $panels, opts, false);
+							} else {
+								href = $target.attr('href');
+								hash = href.substring(href.indexOf('#'));
+								_pe.focus($panels.filter(hash));
+							}
 						} else {
-							hash = _pe.fn.tabbedinterface._get_hash($target.attr('href'));
-							_pe.focus($panels.filter(hash));
+							selectTab(isKeyPrev ? getPrevTab($tabs) : getNextTab($tabs), $tabs, $panels, opts, false);
 						}
-					} else if (e.keyCode === 37 || e.keyCode === 38) { // left or up
-						selectTab(getPrevTab($tabs), $tabs, $panels, opts, false);
-						e.preventDefault();
-					} else if (e.keyCode === 39 || e.keyCode === 40) { // right or down
-						selectTab(getNextTab($tabs), $tabs, $panels, opts, false);
-						e.preventDefault();
 					}
 				} else {
 					// Make sure working with a link since it's possible for an image to be the target of a mouse click
@@ -343,8 +346,8 @@
 			toggleCycle = function () {
 				if ($toggleRow.data('state') === 'stopped') {
 					cycle($tabs, $panels, opts);
-					$toggleButton.removeClass('tabs-start').addClass('tabs-stop').html(stopText + '<span class="wb-invisible">' + stopHiddenText + '</span>');
-					return $('.wb-invisible', $toggleButton).text(stopHiddenText);
+					$toggleButton.removeClass('tabs-start').addClass('tabs-stop').html(stopText + '<span class="wb-invisible">' + sep + stopHiddenText + '</span>');
+					return $('.wb-invisible', $toggleButton).text(sep + stopHiddenText);
 				}
 				if ($toggleRow.data('state') === 'started') {
 					return stopCycle();
@@ -449,8 +452,8 @@
 					elm.find('.tabs-roller').width(0).hide().stop();
 					elm.find('.tabs-toggle').data('state', 'stopped');
 					$nav.removeClass('started');
-					$toggleButton.removeClass('tabs-stop').addClass('tabs-start').html(startText + '<span class="wb-invisible">' + startHiddenText + '</span>');
-					return $('.wb-invisible', $toggleButton).text(startHiddenText);
+					$toggleButton.removeClass('tabs-stop').addClass('tabs-start').html(startText + '<span class="wb-invisible">' + sep + startHiddenText + '</span>');
+					return $('.wb-invisible', $toggleButton).text(sep + startHiddenText);
 				};
 				//
 				// creates a play/pause, prev/next buttons, and lets the user toggle the stateact as PREV button MB
@@ -473,7 +476,7 @@
 				//
 				//End NEXT button
 				//
-				$toggleRow = $('<li class="tabs-toggle"><a class="tabs-stop" href="javascript:;" role="button">' + stopText + '<span class="wb-invisible">' + stopHiddenText + '</span></a></li>');
+				$toggleRow = $('<li class="tabs-toggle"><a class="tabs-stop" href="javascript:;" role="button">' + stopText + '<span class="wb-invisible">' + sep + stopHiddenText + '</span></a></li>');
 				$toggleButton = $toggleRow.find('a');
 				$nav.append($toggleRow);
 				$toggleRow.click(toggleCycle).on('keydown', function (e) {
@@ -545,27 +548,41 @@
 				});
 			}
 
-			// Trigger panel change if a link within a panel is clicked and matches a tab
-			$panels.find('a').filter('[href^="#"]').each(function () {
-				var $tab,
-					$this = $(this),
-					hash = _pe.fn.tabbedinterface._get_hash($this.attr('href'));
-				if (hash.length > 1) {
-					$tab = $tabs.filter('[href="' + hash + '"]');
-					if ($tab.length) {
-						$this.off('click.hlinks vclick.hlinks').on('click vclick', function () {
-							$tab.trigger('click');
-							if (opts.cycle) {
-								stopCycle();
-							}
-							return false;
-						});
-					}
+			this._init_panel_links($panels, $tabs, 'href', function (event) {
+				event.data.tab.trigger('click');
+				if (opts.cycle) {
+					stopCycle();
 				}
+				return false;
 			});
 
 			return elm.attr('class', elm.attr('class').replace(/\bwidget-style-/, "style-"));
 		}, // end of exec
+
+		/**
+		* Setup links in the tab panel content that cause the tabbed interface to change panels
+		* @memberof pe.fn.tabbedinterface
+		* @param {jQuery object} $panels Tab panels of the tabbed interface
+		* @param {jQuery object} $tabs Tab links of the tabbed interface
+		* @param {string} attr HTML attribute used to check if there is a matching tab for a given link
+		* @param {function} clickHandler Function that handles clicks on tab panel content links with a matching tab
+		*/
+		_init_panel_links : function ($panels, $tabs, attr, clickHandler) {
+			var $tab,
+				hash,
+				links = $panels.find('a').filter('[href^="#"]'),
+				len = links.length;
+
+			while (len--) {
+				hash = this._get_hash(links[len].href);
+				if (hash.length > 1) {
+					$tab = $tabs.filter('['+ attr + '="' + hash + '"]');
+					if ($tab.length !== 0) {
+						$(links[len]).off('click.hlinks vclick.hlinks').on('click vclick', {tab: $tab}, clickHandler);
+					}
+				}
+			}
+		},
 
 		/**
 		 * Given an element, find the appropriate heading level for its content
