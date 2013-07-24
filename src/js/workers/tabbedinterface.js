@@ -354,14 +354,18 @@
 				}
 			};
 			getMaxPanelSize = function () {
-				var maxHeight = 0;
+				var $panel,
+					len = $panels.length,
+					maxHeight = 0;
 
-				// Remove position and size to allow content to determine max size of panels
-				$tabsPanel.css({width: '', height: ''});
-				$panels.css({width: '', height: ''});
-				$panels.each(function() {
-					maxHeight = Math.max(maxHeight, $(this).outerHeight());
-				});
+				// Allow the content to set the width/height of each panel
+				$panels.css({width: '', height: '', minHeight: ''});
+				while (len--) {
+					// Make sure the panel is visible when determining its height
+					$panel = $panels.eq(len).addClass('display-block');
+					maxHeight = Math.max(maxHeight, $panel.outerHeight());
+					$panel.removeClass('display-block');
+				}
 				return {width: $tabsPanel.width(), height: maxHeight};
 			};
 			getSlideTo = function (panel) {
@@ -376,14 +380,24 @@
 				return opts.transition === 'slide-horz' || opts.transition === 'slide-vert';
 			};
 			positionPanels = function() {
-				var isSlideHorz = opts.transition === 'slide-horz',
+				var $hiddenParents = $tabsPanel.parents('.tabs-panel > div').filter(':hidden'),
+					isSlideHorz = opts.transition === 'slide-horz',
 					viewportSize = {width: 0, height: 0},
 					panelSize;
 
-				if ($viewport === undefined) {
+				// Create the viewport that holds the sliding panels
+				if (typeof $viewport === 'undefined') {
 					$panels.wrapAll('<div class="viewport">').wrap('<div class="panel">');
-					$viewport = $('.viewport', $tabsPanel);
+					$viewport = $panels.closest('.viewport');
+
+				// Reset the size of the viewport and panels so everything can be resized properly
+				} else {
+					$viewport.css({width: '', height: ''});
+					$tabsPanel.css({width: '', height: ''});
 				}
+
+				// Hidden parents must be temporarily visible so that the panel width, height and position can be calculated
+				$hiddenParents.addClass('display-block');
 
 				panelSize = getMaxPanelSize();
 				for(var i = 0, len = $panels.length; i < len; i++) {
@@ -411,6 +425,8 @@
 						height: viewportSize.height
 					}, getSlideTo($panels.filter('.' + opts.panelActiveClass))));
 				}
+
+				$hiddenParents.removeClass('display-block');
 			};
 			if (isSlider() || (opts.autoHeight && !elm.hasClass('tabs-style-4') && !elm.hasClass('tabs-style-5'))) {
 				$panels.show();
@@ -537,7 +553,7 @@
 
 			// Setup sliding panel behaviour
 			if (isSlider()) {
-				_pe.window.resize(positionPanels);
+				_pe.window.on('resize', positionPanels);
 				positionPanels();
 
 				// Override the tab transition with our slide animation
