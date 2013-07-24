@@ -1,0 +1,165 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+@import 'compass/css3/transform';
+
+%ogpl-default-print-width-100 {
+	width: 100%;
+}
+%ogpl-default-print-margin-0 {
+	margin: 0;
+}
+%ogpl-default-print-padding-0 {
+	padding: 0;
+}
+%ogpl-default-print-background-none {
+	background: none;
+}
+%ogpl-default-print-scaleX--1 {
+	@include scaleX(-1);
+}
+%ogpl-default-print-base-title-styles {
+	font-size: 16pt;
+	text-decoration: none;
+	color: #000;
+	@extend %ogpl-default-print-width-100;
+}
+%ogpl-default-print-display-none {
+	display: none;
+}
+%ogpl-default-print-width-69-height-32 {
+	width: 69px;
+	height: 32px;
+}
+
+#ogpl-title {
+	@extend %ogpl-default-print-base-title-styles;
+	a {
+		@extend %ogpl-default-print-base-title-styles;
+		display: table-row;
+	}
+	object {
+		@extend %ogpl-default-print-width-69-height-32;
+	}
+	img {
+		@extend %ogpl-default-print-width-69-height-32;
+	}
+	span {
+		display: table-cell;
+		vertical-align: middle;
+		margin-left: 10px;
+	}
+}
+
+#wb-main-in {
+	border-top: 3px outset #666;
+	padding-top: 5px;
+}
+
+h1 {
+	font-size: 140%;
+	margin: 0 !important;
+}
+
+h2 {
+	font-size: 125%;
+}
+
+h3 {
+	font-size: 120%;
+}
+
+h4 {
+	font-size: 115%;
+}
+
+h5 {
+	font-size: 110%;
+}
+
+h6 {
+	font-size: 100%;
+}
+
+#ogpl-bc {
+	min-height: inherit;
+	height: auto;
+	ol {
+		@extend %ogpl-default-print-width-100;
+		@extend %ogpl-default-print-margin-0;
+		@extend %ogpl-default-print-padding-0;
+	}
+	li{
+		@extend %ogpl-default-print-background-none;
+		@extend %ogpl-default-print-padding-0;
+		&:before {
+			content: " > ";
+		}
+		&:first-child:before{
+			content: "";
+		}
+	}
+	a {
+		padding: 0 5px 0 0;
+		@extend %ogpl-default-print-background-none;
+	}
+}
+
+#wb-sec {
+	@extend %ogpl-default-print-display-none;
+}
+
+#wb-sup {
+	@extend %ogpl-default-print-display-none;
+}
+
+#ogpl-fullhd {
+	ul {
+		@extend %ogpl-default-print-display-none;
+	}
+}
+
+#ogpl-srchbx {
+	@extend %ogpl-default-print-display-none;
+}
+
+#ogpl-psnb {
+	@extend %ogpl-default-print-display-none;
+}
+
+#wb-foot {
+	@extend %ogpl-default-print-display-none;
+}
+
+#ogpl-date-mod {
+	float: right;
+	display: inline;
+}
+
+.clear {
+	clear: both;
+	display: block;
+	height: 0 !important;
+	min-height: 0 !important;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	@extend %ogpl-default-print-margin-0;
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	#ogpl-bc {
+		@extend %ogpl-default-print-scaleX--1;
+		li {
+			@extend %ogpl-default-print-scaleX--1;
+		}
+		a {
+			padding: 0 0 0 5px;
+		}
+	}
+	#ogpl-date-mod {
+		float: left;
+	}
+}

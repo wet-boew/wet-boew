@@ -1,0 +1,167 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+ */
+%ogpl-default-screen-ie-float-left {
+	float: left;
+}
+%ogpl-default-screen-ie-position-relative {
+	position: relative;
+}
+%ogpl-default-screen-ie-float-right {
+	float: right;
+}
+%ogpl-default-screen-ie-font-size-0 {
+	font-size: 0;
+}
+.ie7 {
+	#wb-skip {
+		li {
+			top: 1px;
+		}
+		a {
+			&:link {
+				@extend %ogpl-default-screen-ie-font-size-0;
+			}
+			&:visited {
+				@extend %ogpl-default-screen-ie-font-size-0;
+			}
+			&:active {
+				font-size: 100%;
+			}
+		}
+	}
+	#wb-core {
+		margin-bottom: -20px;
+	}
+	#ogpl-srchbx {
+		padding-bottom: 0;
+	}
+	#ogpl-srch-submit {
+		padding: 2px 0;
+		margin-right: 1px;
+		top: -1px;
+		@extend %ogpl-default-screen-ie-position-relative;
+	}
+	#ogpl-title {
+		zoom: 1;
+		@extend %ogpl-default-screen-ie-position-relative;
+		a {
+			height: 2.9em;
+			display: block;
+		}
+		span {
+			height: auto;
+			@extend %ogpl-default-screen-ie-position-relative;
+			top: 0.8em;
+		}
+		small {
+			padding-left: 155px;
+		}
+	}
+	#ogpl-date-mod {
+		@extend %ogpl-default-screen-ie-position-relative;
+		@extend %ogpl-default-screen-ie-float-right;
+		margin-bottom: -15px;
+		top: 17px;
+	}
+	#ogpl-tctr {
+		padding: 7px 0 6px;
+		li {
+			&.ogpl-tc {
+				padding: 0 10px;
+			}
+			&.ogpl-tr {
+				padding-left: 10px;
+			}
+		}
+	}
+	#ogpl-bnr {
+		@extend %ogpl-default-screen-ie-float-left;
+	}
+	#ogpl-tctr {
+		li {
+			@extend %ogpl-default-screen-ie-float-left;
+		}
+	}
+	#ogpl-fullft {
+		display: none;
+	}
+
+	// Right to left (RTL) CSS
+	&[dir="rtl"] {
+		%ogpl-default-screen-ie7-rtl-float-fix {
+			zoom: 1;
+			float: none;
+			display: inline;
+		}
+
+		#ogpl-fullhd {
+			ul {
+				margin: 0;
+				@extend %ogpl-default-screen-ie-float-left;
+				li {
+					@extend %ogpl-default-screen-ie-float-left;
+					border-left: 1px solid #777;
+					border-right: none;
+					padding-left: 10px;
+					&:first-child {
+						border-left: none;
+						padding-left: 0;
+					}
+				}
+			}
+		}
+
+		#ogpl-srchbx {
+			input {
+				@extend %ogpl-default-screen-ie7-rtl-float-fix;
+			}
+		}
+
+		#ogpl-srch-submit {
+			margin-right: 3px;
+			top: 1px;
+		}
+
+		#ogpl-date-mod {
+			@extend %ogpl-default-screen-ie-float-left;
+			dt {
+				@extend %ogpl-default-screen-ie7-rtl-float-fix;
+			}
+			dd {
+				@extend %ogpl-default-screen-ie7-rtl-float-fix;
+			}
+		}
+
+		#ogpl-tctr {
+			li {
+				&.ogpl-tr {
+					padding-left: 0;
+					padding-right: 10px;
+				}
+			}
+		}
+
+		#ogpl-bnr {
+			@extend %ogpl-default-screen-ie-float-right;
+		}
+
+		#ogpl-tctr {
+			li {
+				@extend %ogpl-default-screen-ie-float-right;
+			}
+		}
+	}
+}
+
+.ie8 {
+	#ogpl-srch-submit {
+		padding: 2px 5px;
+		@extend %ogpl-default-screen-ie-position-relative;
+		top: 1px;
+	}
+	#ogpl-psnb {
+		padding-bottom: 1px;
+	}
+}
