@@ -147,22 +147,14 @@
 						} else {
 							this.pause();
 						}
-					}
-
-					if ($target.hasClass('cc')) {
+					} else if ($target.hasClass('cc')) {
 						this.setCaptionsVisible(!this.getCaptionsVisible());
-					}
-
-					if ($target.hasClass('mute')) {
+					} else if ($target.hasClass('mute')) {
 						this.setMuted(!this.getMuted());
-					}
-
-					if ($target.is('progress') || $target.hasClass('wb-progress-inner') || $target.hasClass('wb-progress-outer')) {
+					} else if ($target.is('progress') || $target.hasClass('wb-progress-inner') || $target.hasClass('wb-progress-outer')) {
 						p = (e.pageX - $target.offset().left) / $target.width();
 						this.setCurrentTime(this.getDuration() * p);
-					}
-
-					if ($target.hasClass('rewind') || $target.hasClass('fastforward')) {
+					} else if ($target.hasClass('rewind') || $target.hasClass('fastforward')) {
 						s = this.getDuration() * 0.05;
 						if ($target.hasClass('rewind')) {
 							s *= -1;
@@ -179,22 +171,18 @@
 					if ((e.which === 32 || e.which === 13) && e.target === this.object) {
 						$w.find('.wb-mm-controls .playpause').click();
 						return false;
-					}
-					if (e.keyCode === 37) {
+					} else if (e.keyCode === 37) {
 						$w.find('.wb-mm-controls .rewind').click();
 						return false;
-					}
-					if (e.keyCode === 39) {
+					} else if (e.keyCode === 39) {
 						$w.find('.wb-mm-controls .fastforward').click();
 						return false;
-					}
-					if (e.keyCode === 38) {
+					} else if (e.keyCode === 38) {
 						v = Math.round(this.getVolume() * 10) / 10 + 0.1;
 						v = v < 1 ? v : 1;
 						this.setVolume(v);
 						return false;
-					}
-					if (e.keyCode === 40) {
+					} else if (e.keyCode === 40) {
 						v = Math.round(this.getVolume() * 10) / 10 - 0.1;
 						v = v > 0 ? v : 0;
 						this.setVolume(v);
