@@ -26,6 +26,7 @@
 				popupLinksDOM,
 				popupLink,
 				popupLinksLen,
+				popupLinksIndex,
 				popupLinkSpan,
 				match,
 				addSites,
@@ -109,11 +110,13 @@
 				popupLinksDOM = popupLinkListDOM.getElementsByTagName('a');
 				$popupLinks = $(popupLinksDOM);
 				popupLinksLen = popupLinksDOM.length;
-				while (popupLinksLen--) {
-					popupLink = popupLinksDOM[popupLinksLen];
+				popupLinksIndex = popupLinksLen;
+				while (popupLinksIndex--) {
+					popupLink = popupLinksDOM[popupLinksIndex];
 					popupLink.setAttribute('role', 'menuitem');
 					popupLink.setAttribute('rel', 'external');
-					popupLink.parentNode.setAttribute('role', 'presentation');
+					popupLink.setAttribute('aria-posinset', (popupLinksIndex + 1));
+					popupLink.setAttribute('aria-setsize', popupLinksLen);
 					// TODO: Should work with author to fix in bookmark.js rather than maintain this workaround (fix needed otherwise some screen readers read the link twice)
 					popupLinkSpan = popupLink.getElementsByTagName('span');
 					if (popupLinkSpan.length > 0) {
