@@ -32,16 +32,15 @@
 			var $menu,
 				$menuBoundary,
 				$scope = elm,
+				$elms,
+				elmslen,
 				$scopeParent = $scope.parent(),
 				correctheight,
 				gotosubmenu,
 				hideallsubmenus,
 				hidesubmenu,
 				showsubmenu,
-				submenuHelp = _pe.dic.get('%sub-menu-help'),
-				menuelms,
-				menuelm,
-				menulen;
+				submenuHelp = _pe.dic.get('%sub-menu-help');
 
 			/* functions that would be necessary for helpers */
 			showsubmenu = function (toplink) {
@@ -110,31 +109,26 @@
 			$scope.detach();
 			
 			/* ARIA additions */
-			menuelms = $scope.find('> div > ul').attr('role', 'menubar').get(0).getElementsByTagName('*');
-			menulen = menuelms.length;
-			while (menulen--) {
-				menuelm = menuelms[menulen];
-				if (menuelm.tagName.toLowerCase() === 'a') {
-					menuelm.setAttribute('role', 'menuitem');
-				} else {
-					menuelm.setAttribute('role', 'presentation');
-				}
-			}
+			$scope.find('> div > ul').attr('role', 'menubar');
 			_pe.resize(correctheight);
 
 			/* [Main] parse mega menu and establish all ARIA and Navigation classes */
-			$scope.find('ul.mb-menu > li').find('a:eq(0)').each(function (index, value) {
-				var $elm = $(value).addClass('knav-' + index + '-0-0'),
+			$elms = $scope.find('ul.mb-menu > li').find('a:eq(0)');
+			elmslen = $elms.length;
+			$elms.each(function (index, value) {
+				var $elm = $(value).addClass('knav-' + index + '-0-0').attr({'role': 'menuitem', 'aria-posinset': (index + 1), 'aria-setsize': elmslen}),
 					$childmenu = $elm.closest('li').find('.mb-sm'),
 					$nodes,
 					$node,
 					nodeName,
 					$link,
+					link,
 					links,
 					i,
 					j,
 					len,
-					len2;
+					len2,
+					itemnum;
 				if ($childmenu.length > 0) {
 					$elm.attr('aria-haspopup', 'true').addClass('mb-has-sm').attr('href', '#').wrapInner('<span class="expandicon"><span class="sublink"></span></span>');
 					$childmenu.attr({'role': 'menu', 'aria-expanded': 'false', 'aria-hidden': 'true'}).find(':has(:header) ul').attr('role', 'menu');
@@ -154,21 +148,35 @@
 						$node = $nodes.eq(i);
 						nodeName = $node[0].nodeName.toLowerCase();
 						$link = $node.children('a');
+						itemnum = i + 1;
 						if ($link.length !== 0) {
-							$link.addClass('knav-' + index + '-' + (i + 1) + '-0');
+							$link.addClass('knav-' + index + '-' + itemnum + '-0');
 						} else {
 							$node.addClass('no-link');
+							$link = $node;
 						}
+						$link.attr({'role': 'menuitem', 'aria-posinset': itemnum, 'aria-setsize': len});
+						
 						if (nodeName === 'h3' || nodeName === 'h4') {
 							links = $node.next('ul').find('a').get();
 							for (j = 0, len2 = links.length; j !== len2; j += 1) {
-								links[j].className += ' knav-' + index + '-' + (i + 1) + '-' + (j + 1);
+								link = links[j];
+								itemnum = j + 1;
+								link.className += ' knav-' + index + '-' + (i + 1) + '-' + (j + 1);
+								link.setAttribute('role', 'menuitem');
+								link.setAttribute('aria-posinset', itemnum);
+								link.setAttribute('aria-setsize', len2);
 							}
 						}
 					}
 					links = $childmenu.find('> ul li, > div > ul li').filter(':not(.top-level)').children('a').get();
 					for (i = 0, len = links.length; i !== len; i += 1) {
-						links[i].className += ' knav-' + index + '-0-' + (i + 1);
+						link = links[i];
+						itemnum = i + 1;
+						link.className += ' knav-' + index + '-0-' + (i + 1);
+						link.setAttribute('role', 'menuitem');
+						link.setAttribute('aria-posinset', itemnum);
+						link.setAttribute('aria-setsize', len);
 					}
 				}
 			});
