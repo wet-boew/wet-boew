@@ -46,6 +46,7 @@
 		_exec: function (elm) {
 			var id,
 				canPlay = false,
+				e = elm.get(0),
 				media = elm.children('audio, video').eq(0),
 				media_type = media.is('video') ? 'video' : 'audio',
 				media_id,
@@ -59,7 +60,8 @@
 				fbAudioType = 'audio/mp3', //MP3
 				fbBin = _pe.add.liblocation + 'binary/multimedia.swf?seed=' + Math.random(),
 				fbVars,
-				evtmgr;
+				evtmgr,
+				s;
 
 			//Add an id if an id is missing
 			if (elm.attr('id') !== undefined) {
@@ -113,10 +115,10 @@
 			}
 
 			if (canPlay) {
-				evtmgr = media.is('object') ? media.children(':first-child') : media;
+				evtmgr = media.is('object') ? media.children(':first-child') : media.load();
 
 				//Add the interface
-				$.extend(elm.get(0), {object: media.get(0), evtmgr: evtmgr}, _pe.fn.multimedia._intf);
+				$.extend(e, {object: media.get(0), evtmgr: evtmgr}, _pe.fn.multimedia._intf);
 				if (media_type === 'video') {
 					media.before($('<button class="wb-mm-overlay" type="button" data-role="none"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
 				}
@@ -205,109 +207,121 @@
 				});
 
 				//Map media events (For flash, must use other element than object because it doesn't trigger or receive events)
-				evtmgr.on('timeupdate seeked canplay play volumechange pause ended waiting captionsloaded captionsloadfailed captionsvisiblechange progress', $.proxy(function (e) {
+				evtmgr.on('durationchange play pause ended volumechange timeupdate captionsloaded captionsloadfailed captionsvisiblechange waiting canplay progress', $.proxy(function (e) {
 					var $w = $(this),
+						d,
 						b,
 						p,
 						o,
 						timeline;
 					switch (e.type) {
-					case 'play':
-						b = $w.find('.playpause');
-						b.empty().append(_pe.fn.multimedia.get_image('pause', _pe.dic.get('%pause')));
-						b.attr('title', _pe.dic.get('%pause'));
-						$w.find('.wb-mm-overlay').hide();
-						break;
-					case 'pause':
-					case 'ended':
-						b = $w.find('.playpause');
-						b.empty().append(_pe.fn.multimedia.get_image('play', _pe.dic.get('%play')));
-						b.attr('title', _pe.dic.get('%play'));
-						o = $w.find('.wb-mm-overlay');
-						o.empty().append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play'));
-						o.show();
+						case 'durationchange':
+							d = this.getDuration();
+							if (!isNaN(d) && d !== Infinity) {
+								$w.find('.wb-mm-timeline-total span:not(.wb-invisible)').text(_pe.fn.multimedia._format_time(d));
 
-						// Prevent loading from appearing
-						clearTimeout(this.loading);
-						this.loading = false;
-						break;
-					case 'volumechange':
-						b = $w.find('.mute').empty();
-						if (this.getMuted()) {
-							b.append(_pe.fn.multimedia.get_image('mute_on', _pe.dic.get('%mute', 'disable')));
-							b.attr('title', _pe.dic.get('%mute', 'disable'));
-						} else {
-							b.append(_pe.fn.multimedia.get_image('mute_off', _pe.dic.get('%mute', 'enable')));
-							b.attr('title', _pe.dic.get('%mute', 'enable'));
-						}
-						break;
-					case 'captionsvisiblechange':
-						b = $w.find('.cc').empty();
-						if (this.getCaptionsVisible()) {
-							b.append(_pe.fn.multimedia.get_image('cc', _pe.dic.get('%closed-caption', 'disable')));
-							b.attr('title', _pe.dic.get('%closed-caption', 'disable'));
-						} else {
-							b.append(_pe.fn.multimedia.get_image('cc', _pe.dic.get('%closed-caption', 'enable')));
-							b.attr('title', _pe.dic.get('%closed-caption', 'enable'));
-						}
-						break;
-					case 'timeupdate':
-						p = Math.round(this.getCurrentTime() / this.getDuration() * 1000) / 10;
-						timeline = $w.find('.wb-mm-timeline progress');
-						timeline.attr('value', p);
-
-						$w.find('.wb-mm-timeline-current span:not(.wb-invisible)').text(_pe.fn.multimedia._format_time(this.getCurrentTime()));
-						$w.find('.wb-mm-timeline-total span:not(.wb-invisible)').text(_pe.fn.multimedia._format_time(this.getDuration()));
-
-						//Update captions
-						if ($.data(e.target, 'captions') !== undefined) {
-							_pe.fn.multimedia._update_captions($w.find('.wb-mm-captionsarea'), this.getCurrentTime(), $.data(e.target, 'captions'));
-						}
-						break;
-					case 'captionsloaded':
-						//Store the captions
-						$.data(e.target, 'captions', e.captions);
-						break;
-					case 'captionsloadfailed':
-						$w.find('.wb-mm-captionsarea').append('<p>' + _pe.dic.get('%closed-caption-error') + '</p>');
-						break;
-					// Determine when the loading icon should be shown.
-					case 'waiting':
-						//Prevents the loading icon to show up when waiting for less than half a second
-						if (this.getPaused() === false && !this.loading) {
-							this.loading = setTimeout(function () {
-								o = $w.find('.wb-mm-overlay');
-								o.empty().append(_pe.fn.multimedia._get_loading_ind(this, 'loading', _pe.dic.get('%loading'), 100, 100));
-								o.show();
-							}, 500);
-						}
-						break;
-					case 'canplay':
-						clearTimeout(this.loading);
-						this.loading = false;
-						if (this.getPaused() === false) {
+								//Skip to pointer from the querystring
+								if (_pe.urlquery[this.id] !== undefined) {
+									s = _pe.fn.multimedia._parse_time(_pe.urlquery[this.id]);
+									this.setCurrentTime(s);
+								}
+							}
+							break;
+						case 'play':
+							b = $w.find('.playpause');
+							b.empty().append(_pe.fn.multimedia.get_image('pause', _pe.dic.get('%pause')));
+							b.attr('title', _pe.dic.get('%pause'));
+							$w.find('.wb-mm-overlay').hide();
+							break;
+						case 'pause':
+						case 'ended':
+							b = $w.find('.playpause');
+							b.empty().append(_pe.fn.multimedia.get_image('play', _pe.dic.get('%play')));
+							b.attr('title', _pe.dic.get('%play'));
 							o = $w.find('.wb-mm-overlay');
 							o.empty().append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play'));
-							o.hide();
-						}
-						break;
-					// Fallback for browsers that don't implement the waiting/canplay events
-					case 'progress':
-						// Waiting detected, display the loading icon
-						if (this.getWaiting() === true) {
-							if (this.getBuffering() === false) {
-								this.setBuffering(true);
-								evtmgr.trigger('waiting');
+							o.show();
+
+							// Prevent loading from appearing
+							clearTimeout(this.loading);
+							this.loading = false;
+							break;
+						case 'volumechange':
+							b = $w.find('.mute').empty();
+							if (this.getMuted()) {
+								b.append(_pe.fn.multimedia.get_image('mute_on', _pe.dic.get('%mute', 'disable')));
+								b.attr('title', _pe.dic.get('%mute', 'disable'));
+							} else {
+								b.append(_pe.fn.multimedia.get_image('mute_off', _pe.dic.get('%mute', 'enable')));
+								b.attr('title', _pe.dic.get('%mute', 'enable'));
 							}
-						// Waiting has ended, but icon is still visible - remove it.
-						} else if (this.getBuffering() === true) {
-							this.setBuffering(false);
-							evtmgr.trigger('canplay');
-						}
-						this.setPreviousTime(this.getCurrentTime());
-						break;
+							break;
+						case 'timeupdate':
+							p = Math.round(this.getCurrentTime() / this.getDuration() * 1000) / 10;
+							timeline = $w.find('.wb-mm-timeline progress');
+							timeline.attr('value', p);
+
+							$w.find('.wb-mm-timeline-current span:not(.wb-invisible)').text(_pe.fn.multimedia._format_time(this.getCurrentTime()));
+
+							//Update captions
+							if ($.data(e.target, 'captions') !== undefined) {
+								_pe.fn.multimedia._update_captions($w.find('.wb-mm-captionsarea'), this.getCurrentTime(), $.data(e.target, 'captions'));
+							}
+							break;
+						case 'captionsloaded':
+							//Store the captions
+							$.data(e.target, 'captions', e.captions);
+							break;
+						case 'captionsloadfailed':
+							$w.find('.wb-mm-captionsarea').append('<p>' + _pe.dic.get('%closed-caption-error') + '</p>');
+							break;
+						case 'captionsvisiblechange':
+							b = $w.find('.cc').empty();
+							if (this.getCaptionsVisible()) {
+								b.append(_pe.fn.multimedia.get_image('cc', _pe.dic.get('%closed-caption', 'disable')));
+								b.attr('title', _pe.dic.get('%closed-caption', 'disable'));
+							} else {
+								b.append(_pe.fn.multimedia.get_image('cc', _pe.dic.get('%closed-caption', 'enable')));
+								b.attr('title', _pe.dic.get('%closed-caption', 'enable'));
+							}
+							break;
+						// Determine when the loading icon should be shown.
+						case 'waiting':
+							//Prevents the loading icon to show up when waiting for less than half a second
+							if (this.getPaused() === false && !this.loading) {
+								this.loading = setTimeout(function () {
+									o = $w.find('.wb-mm-overlay');
+									o.empty().append(_pe.fn.multimedia._get_loading_ind(this, 'loading', _pe.dic.get('%loading'), 100, 100));
+									o.show();
+								}, 500);
+							}
+							break;
+						case 'canplay':
+							clearTimeout(this.loading);
+							this.loading = false;
+							if (this.getPaused() === false) {
+								o = $w.find('.wb-mm-overlay');
+								o.empty().append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play'));
+								o.hide();
+							}
+							break;
+						// Fallback for browsers that don't implement the waiting/canplay events
+						case 'progress':
+							// Waiting detected, display the loading icon
+							if (this.getWaiting() === true) {
+								if (this.getBuffering() === false) {
+									this.setBuffering(true);
+									evtmgr.trigger('waiting');
+								}
+							// Waiting has ended, but icon is still visible - remove it.
+							} else if (this.getBuffering() === true) {
+								this.setBuffering(false);
+								evtmgr.trigger('canplay');
+							}
+							this.setPreviousTime(this.getCurrentTime());
+							break;
 					}
-				}, elm.get(0)));
+				}, e));
 
 				if (captions !== undefined) {
 					media.after($('<div class="wb-mm-captionsarea"/>').hide());
@@ -401,7 +415,7 @@
 		},
 
 		//Standardized multimedia interface
-		_intf : {
+		_intf: {
 			// Methods
 			play: function () {
 				try {
@@ -472,36 +486,61 @@
 				$(this.evtmgr).trigger('captionsvisiblechange');
 			},
 
-			getMuted : function () {
+			getMuted: function () {
 				return (typeof this.object.muted !== 'function' ? this.object.muted : this.object.muted());
 			},
 
-			setMuted : function (m) {
+			setMuted: function (m) {
 				if (typeof this.object.muted !== 'function') {this.object.muted = m; } else {this.object.setMuted(m); }
 			},
 
-			getVolume : function () {
+			getVolume: function () {
 				return (typeof this.object.volume !== 'function' ? this.object.volume : this.object.volume());
 			},
 
-			setVolume : function (v) {
+			setVolume: function (v) {
 				if (typeof this.object.volume !== 'function') {this.object.volume = v; } else {this.object.setVolume(v); }
 			},
 
-			getWaiting : function () {
+			getWaiting: function () {
 				return this.getPaused() === false && this.getCurrentTime() === this.getPreviousTime();
 			},
 
-			getBuffering : function () {
+			getBuffering: function () {
 				return (typeof this.object.buffering !== 'undefined' ? this.object.buffering : false);
 			},
 
-			setBuffering : function (b) {
+			setBuffering: function (b) {
 				this.object.buffering = b;
 			}
 		},
 
-		_format_time : function (current) {
+
+		_parse_time: function (string) {
+			var parts,
+				seconds = 0,
+				p,
+				_plen,
+				v;
+
+			if (string !== undefined) {
+				if (string.substring(string.length - 1) === 's') {
+					//offset-time
+					return parseFloat(string.substring(0, string.length - 1));
+				} else {
+					//clock time
+					parts = string.split(':').reverse();
+					for (p = 0, _plen = parts.length; p < _plen; p += 1) {
+						v = (p === 0) ? parseFloat(parts[p]) : parseInt(parts[p], 10);
+						seconds += v * Math.pow(60, p);
+					}
+					return seconds;
+				}
+			}
+			return -1;
+		},
+
+		_format_time: function (current) {
 			var t = "",
 				i,
 				c,
@@ -519,41 +558,14 @@
 			return t;
 		},
 
-		_load_captions : function (evtmgr, src) {
-			var parse_time,
-				parse_html,
+		_load_captions: function (evtmgr, src) {
+			var parse_html,
 				parse_xml,
 				load_captions_internal,
 				load_captions_external,
 				curUrl,
 				srcUrl,
 				c;
-
-			/*-------------------------------------------*/
-			/* Caption parsing, can be moved to a web service */
-			parse_time = function (string) {
-				var parts,
-					s = 0,
-					p,
-					_plen,
-					v;
-
-				if (string !== undefined) {
-					if (string.substring(string.length - 1) === 's') {
-						//offset-time
-						return parseFloat(string.substring(0, string.length - 1));
-					} else {
-						//clock time
-						parts = string.split(':').reverse();
-						for (p = 0, _plen = parts.length; p < _plen; p += 1) {
-							v = (p === 0) ? parseFloat(parts[p]) : parseInt(parts[p], 10);
-							s += v * Math.pow(60, p);
-						}
-						return s;
-					}
-				}
-				return -1;
-			};
 
 			parse_html = function (content) {
 				var s = '.wet-boew-tt',
@@ -568,8 +580,8 @@
 
 					if (e.attr('data-begin') !== undefined) {
 						//HTML5 captions (seperate attributes)
-						begin = parse_time(e.attr('data-begin'));
-						end = e.attr('data-end') !== undefined ? parse_time(e.attr('data-end')) : parse_time(e.attr('data-dur')) + begin;
+						begin = _pe.fn.multimedia._parse_time(e.attr('data-begin'));
+						end = e.attr('data-end') !== undefined ? _pe.fn.multimedia._parse_time(e.attr('data-end')) : _pe.fn.multimedia._parse_time(e.attr('data-dur')) + begin;
 					} else if (e.attr('data') !== undefined) {
 						json = e.attr('data');
 
@@ -577,8 +589,8 @@
 						json = json.replace(/(begin|dur|end)/gi, '"$1"').replace(/'/g, '"');
 						json = $.parseJSON(json);
 
-						begin = parse_time(json.begin);
-						end = json.end !== undefined ? parse_time(json.end) : parse_time(json.dur) + begin;
+						begin = _pe.fn.multimedia._parse_time(json.begin);
+						end = json.end !== undefined ? _pe.fn.multimedia._parse_time(json.end) : _pe.fn.multimedia._parse_time(json.dur) + begin;
 					}
 					//Removes nested captions if any
 					e = e.clone();
@@ -605,8 +617,8 @@
 						begin = -1,
 						end = -1;
 
-					begin = parse_time(e.attr('begin'));
-					end = e.attr('end') !== undefined ? parse_time(e.attr('end')) : parse_time(e.attr('dur')) + begin;
+					begin = _pe.fn.multimedia._parse_time(e.attr('begin'));
+					end = e.attr('end') !== undefined ? _pe.fn.multimedia._parse_time(e.attr('end')) : _pe.fn.multimedia._parse_time(e.attr('dur')) + begin;
 
 					//Removes nested captions if any
 					e = e.clone();
@@ -682,7 +694,7 @@
 			});
 		},
 
-		_update_captions : function (area, seconds, captions) {
+		_update_captions: function (area, seconds, captions) {
 			var c, _clen, caption;
 			area.empty();
 			for (c = 0, _clen = captions.length; c < _clen; c += 1) {

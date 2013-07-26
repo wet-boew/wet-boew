@@ -1,6 +1,6 @@
 /*!
-* jQuery Mobile 1.3.1
-* Git HEAD hash: 74b4bec049fd93e4fe40205e6157de16eb64eb46 <> Date: Wed Apr 10 2013 21:57:23 UTC
+* jQuery Mobile 1.3.2
+* Git HEAD hash: 528cf0e96940644ea644096bfeb913ed920ffaef <> Date: Fri Jul 19 2013 22:17:57 UTC
 * http://jquerymobile.com
 *
 * Copyright 2010, 2013 jQuery Foundation, Inc. and other contributors
@@ -14,6 +14,7 @@
 .ui-mobile, .ui-mobile body { height: 99.9%; }
 .ui-mobile fieldset, .ui-page { padding: 0; margin: 0; }
 .ui-mobile a img, .ui-mobile fieldset { border-width: 0; }
+.ui-mobile fieldset { min-width: 0; }
 /* responsive page widths */
 .ui-mobile-viewport { margin: 0; overflow-x: visible; -webkit-text-size-adjust: 100%; -ms-text-size-adjust:none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 /* Issue #2066 */
@@ -1121,6 +1122,8 @@ label.ui-submit { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 .ui-field-contain .ui-controlgroup, .ui-field-contain fieldset.ui-controlgroup { margin: 0; }
 .ui-bar .ui-controlgroup { margin: 0 5px; }
 .ui-controlgroup-label { font-size: 16px; line-height: 1.4; font-weight: normal; margin: 0 0 .4em; }
+/* Fixes legend not wrapping on IE10 */
+.ui-controlgroup-label legend {	max-width: 100%; }
 .ui-controlgroup-controls label.ui-select,
 .ui-controlgroup-controls label.ui-submit { position: absolute; left: -9999px; }
 .ui-controlgroup li { list-style: none; }
@@ -1355,7 +1358,7 @@ label.ui-submit { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 }
 .ui-popup > .ui-btn-left { left: -9px; }
 .ui-popup > .ui-btn-right { right: -9px; }
-.ui-popup-hidden { top: -99999px; left: -9999px; }
+.ui-popup-hidden { top: -99999px; left: -9999px; visibility: hidden; }
 .ui-checkbox, .ui-radio { position: relative; clear: both; margin: 0; z-index: 1; }
 .ui-checkbox .ui-btn, .ui-radio .ui-btn { text-align: left; z-index: 2; }
 .ui-controlgroup .ui-checkbox .ui-btn, .ui-controlgroup .ui-radio .ui-btn { margin: 0; }
@@ -1455,6 +1458,8 @@ textarea.ui-mini { height: 45px; }
 .ui-input-search .ui-input-clear-hidden, .ui-input-text .ui-input-clear-hidden { display: none; }
 /* Resolves issue #5166: Added to support issue introduced in Firefox 15. We can likely remove this in the future. */
 input::-moz-placeholder, textarea::-moz-placeholder { color: #aaa; }
+/* For IE10 */
+:-ms-input-placeholder { color: #aaa; }
 /* Resolves issue #5131: Width of textinput depends on its type, for Android 4.1 */
 input[type=number]::-webkit-outer-spin-button { margin: 0; }
 @media all and (min-width: 28em){
@@ -2030,7 +2035,6 @@ div.ui-slider-switch.ui-mini {
 	/* Make the label elements a percentage width */ 
 	.ui-table-reflow td .ui-table-cell-label,
 	.ui-table-reflow th .ui-table-cell-label { 
-		display: block;
 		padding: .4em; 
 		min-width: 30%; 
 		display: inline-block;
