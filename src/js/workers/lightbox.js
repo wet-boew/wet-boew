@@ -160,8 +160,20 @@
 				isInline = $link.attr('href').substring(0, 1) === '#',
 				isGroup = (group !== undefined),
 				groupRel = (isGroup ? group : false),
-				dataTitle = document.getElementById(link.getAttribute('data-title'));
-			$link.colorbox((isInline || isGroup || dataTitle) ? $.extend(((dataTitle && dataTitle.innerHTML.length > 0) ? {title: dataTitle.innerHTML} : {}), opts, {inline: isInline, rel: groupRel}) : opts);
+				dataTitle = document.getElementById(link.getAttribute('data-title')),
+				data = _pe.data.getData($link, 'wet-boew-lightbox'),
+				inline = {inline: isInline, rel: groupRel};
+
+			$link.colorbox($.extend(opts,
+				(isInline || isGroup || dataTitle) ?
+					(dataTitle && dataTitle.innerHTML.length > 0) ?
+						$.extend({title: dataTitle.innerHTML}, inline):
+						inline :
+					{}
+				), (data !== null) ?
+					{data: data.postData}:
+					{}
+			);
 		}
 	};
 	window.pe = _pe;
