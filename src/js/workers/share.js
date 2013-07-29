@@ -138,34 +138,42 @@
 				elm.append($popup);
 
 				$popup.on('click vclick touchstart focusin', function (e) {
-					if (e.stopPropagation) {
-						e.stopImmediatePropagation();
-					} else {
-						e.cancelBubble = true;
+					var button = e.button;
+					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						if (e.stopPropagation) {
+							e.stopImmediatePropagation();
+						} else {
+							e.cancelBubble = true;
+						}
 					}
-				}).on('click vclick touchstart', 'a', function () { // Workaround for some touchscreen devices that don't 
-					window.open(this.href, '_blank');
-					$popup.trigger('close');
-					return false;
+				}).on('click vclick touchstart', 'a', function (e) { // Workaround for some touchscreen devices that don't handle a 'click' on a link
+					var button = e.button;
+					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						window.open(this.href, '_blank');
+						$popup.trigger('close');
+						return false;
+					}
 				});
 
 				$popupText = elm.find('.bookmark_popup_text').off('click vclick touchstart keydown').wrap('<' + opts.popupTag + ' />');
 				$popupText.attr({'role': 'button', 'aria-controls': 'bookmark_popup', 'aria-haspopup': 'true'}).on('click vclick touchstart keydown', function (e) {
-					if (e.type === "keydown") {
+					var keyCode = e.keyCode,
+						button = e.button;
+					if (e.type === 'keydown') {
 						if (!(e.ctrlKey || e.altKey || e.metaKey)) {
-							if (e.keyCode === 13 || e.keyCode === 32) { // enter or space
+							if (keyCode === 13 || keyCode === 32) { // enter or space
 								e.preventDefault();
 								if ($popup.attr('aria-hidden') === 'true') {
 									$popup.trigger('open');
 								} else {
 									$popup.trigger('close');
 								}
-							} else if (e.keyCode === 38 || e.keyCode === 40) { // up or down arrow
+							} else if (keyCode === 38 || keyCode === 40) { // up or down arrow
 								e.preventDefault();
 								$popup.trigger('open');
 							}
 						}
-					} else {
+					} else if (typeof button === 'undefined' || button === _pe.leftMouseButton) {
 						if ($popup.attr('aria-hidden') === 'true') {
 							$popup.trigger('open');
 						} else {
@@ -178,6 +186,7 @@
 					if (e.type === 'keydown') {
 						if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 							var target = $(e.target),
+								keyCode = e.keyCode,
 								leftoffset,
 								keychar,
 								matches,
@@ -186,7 +195,7 @@
 								i,
 								text,
 								elmtext;
-							switch (e.keyCode) {
+							switch (keyCode) {
 							case 27: // escape key (close the popup)
 								$popup.trigger('close');
 								return false;
@@ -250,7 +259,7 @@
 								return false;
 							default:
 								// 0 - 9 and a - z keys (go to the next link that starts with that key)
-								if ((e.keyCode > 47 && e.keyCode < 58) || (e.keyCode > 64 && e.keyCode < 91)) {
+								if ((keyCode > 47 && keyCode < 58) || (keyCode > 64 && keyCode < 91)) {
 									keychar = String.fromCharCode(e.keyCode).toLowerCase();
 									elmtext = target.text();
 									matches = $popupLinks.filter(function () {
@@ -293,11 +302,12 @@
 				});
 
 				_pe.document.on('click vclick touchstart focusin', function (e) {
-					var className = e.target.className;
+					var className = e.target.className,
+						button = e.button;
 					if ($popup.attr('aria-hidden') === 'false' && (className === null || className.indexOf('bookmark_popup_text') === -1)) {
 						if (e.type === 'focusin') {
 							$popup.trigger('closenofocus');
-						} else {
+						} else if (typeof button === 'undefined' || button === _pe.leftMouseButton) {
 							$popup.trigger('close');
 						}
 					}
