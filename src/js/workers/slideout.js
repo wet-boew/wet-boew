@@ -36,7 +36,7 @@
 				tocLinks,
 				documentToggle,
 				opts,
-				ie7 = pe.ie > 0 && pe.ie < 8,
+				ie7 = pe.preIE7,
 				$wbcorein = $('#wb-core-in'),
 				imagesDir = pe.add.liblocation + 'images/slideout/';
 
@@ -99,72 +99,75 @@
 			};
 
 			toggle = function (e) {
-				toggleLink.off('click vclick touchstart', toggle);
-				tocLinks.off('click vclick touchstart', toggle);
-				slideoutClose.off('click vclick touchstart', toggle);
-				wrapper.off('keydown', keyhandler);
-				elm.off('keydown', keyhandler);
-				_pe.document.off('click vclick touchstart', documentToggle);
+				var button = e.button;
+				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+					toggleLink.off('click vclick touchstart', toggle);
+					tocLinks.off('click vclick touchstart', toggle);
+					slideoutClose.off('click vclick touchstart', toggle);
+					wrapper.off('keydown', keyhandler);
+					elm.off('keydown', keyhandler);
+					_pe.document.off('click vclick touchstart', documentToggle);
 
-				if (!opened) {
-					var position = wrapper.position();
-					if (pe.ie <= 0 || document.documentMode !== undefined) {
-						wrapper.removeClass('slideoutWrapper')
-							.addClass('slideoutWrapperRel')
-							.css({'top': position.top - $wbcorein.offset().top, 'right': borderWidth - 10});
-					}
-					// Give the tab time to move out of view to prevent overlap
-					setTimeout(function () {
-						elm.show();
-					}, 50);
-					pe.focus(tocLinks.eq(0));
-				}
-
-				opened = !opened;
-				wrapper.animate({
-					width: parseInt(wrapper.css('width'), 10) === (opts.imgShow.width + focusOutlineAllowance) ? elm.outerWidth() + (opts.imgShow.width + focusOutlineAllowance) : (opts.imgShow.width + focusOutlineAllowance) + 'px'
-				}, function () {
-					// Animation complete.
 					if (!opened) {
-						elm.hide(); // Hide the widget content if the widget was just closed
-						wrapper.find('#slideoutInnerWrapper').css('width', opts.imgHide.width);
-
+						var position = wrapper.position();
 						if (pe.ie <= 0 || document.documentMode !== undefined) {
-							wrapper.addClass('slideoutWrapper');
-							wrapper.removeClass('slideoutWrapperRel');
-							wrapper.css('width', (opts.imgShow.width + focusOutlineAllowance) + 'px').css('top', $wbcorein.offset().top);
-							reposition();
+							wrapper.removeClass('slideoutWrapper')
+								.addClass('slideoutWrapperRel')
+								.css({'top': position.top - $wbcorein.offset().top, 'right': borderWidth - 10});
 						}
-					} else { // Slideout just opened
-						if (ie7 && document.documentMode === undefined) { // Just true IE7
-							elm.find('ul').html(elm.find('ul').html()); // Ugly fix for #4312 (post #11)
-						}
+						// Give the tab time to move out of view to prevent overlap
+						setTimeout(function () {
+							elm.show();
+						}, 50);
+						pe.focus(tocLinks.eq(0));
 					}
-					toggleLink.on('click vclick touchstart', toggle);
-					tocLinks.on('click vclick touchstart', toggle);
-					slideoutClose.on('click vclick touchstart', toggle);
-					wrapper.on('keydown', keyhandler);
-					elm.on('keydown', keyhandler);
-					_pe.document.on('click vclick touchstart', documentToggle);
-				});
 
-				if (opened) {
-					wrapper.find('#slideoutToggle a img').attr({'src': opts.imgHide.src,
-						'title': opts.imgHide.alt,
-						'alt': opts.imgHide.alt});
-					wrapper.find('#slideoutToggle a');
-					elm.attr('aria-hidden', 'false');
-					wrapper.find('#slideoutInnerWrapper').css('width', '');
-				} else {
-					wrapper.find('#slideoutToggle a img').attr({'src': opts.imgShow.src,
-						'title': opts.imgShow.alt,
-						'alt': opts.imgShow.alt});
-					wrapper.find('#slideoutToggle a');
-					elm.attr('aria-hidden', 'true');
-				}
+					opened = !opened;
+					wrapper.animate({
+						width: parseInt(wrapper.css('width'), 10) === (opts.imgShow.width + focusOutlineAllowance) ? elm.outerWidth() + (opts.imgShow.width + focusOutlineAllowance) : (opts.imgShow.width + focusOutlineAllowance) + 'px'
+					}, function () {
+						// Animation complete.
+						if (!opened) {
+							elm.hide(); // Hide the widget content if the widget was just closed
+							wrapper.find('#slideoutInnerWrapper').css('width', opts.imgHide.width);
 
-				if (typeof e !== 'undefined' && $(e.target).is(slideoutClose)) {
-					return false;
+							if (pe.ie <= 0 || document.documentMode !== undefined) {
+								wrapper.addClass('slideoutWrapper');
+								wrapper.removeClass('slideoutWrapperRel');
+								wrapper.css('width', (opts.imgShow.width + focusOutlineAllowance) + 'px').css('top', $wbcorein.offset().top);
+								reposition();
+							}
+						} else { // Slideout just opened
+							if (ie7 && document.documentMode === undefined) { // Just true IE7
+								elm.find('ul').html(elm.find('ul').html()); // Ugly fix for #4312 (post #11)
+							}
+						}
+						toggleLink.on('click vclick touchstart', toggle);
+						tocLinks.on('click vclick touchstart', toggle);
+						slideoutClose.on('click vclick touchstart', toggle);
+						wrapper.on('keydown', keyhandler);
+						elm.on('keydown', keyhandler);
+						_pe.document.on('click vclick touchstart', documentToggle);
+					});
+
+					if (opened) {
+						wrapper.find('#slideoutToggle a img').attr({'src': opts.imgHide.src,
+							'title': opts.imgHide.alt,
+							'alt': opts.imgHide.alt});
+						wrapper.find('#slideoutToggle a');
+						elm.attr('aria-hidden', 'false');
+						wrapper.find('#slideoutInnerWrapper').css('width', '');
+					} else {
+						wrapper.find('#slideoutToggle a img').attr({'src': opts.imgShow.src,
+							'title': opts.imgShow.alt,
+							'alt': opts.imgShow.alt});
+						wrapper.find('#slideoutToggle a');
+						elm.attr('aria-hidden', 'true');
+					}
+
+					if (typeof e !== 'undefined' && $(e.target).is(slideoutClose)) {
+						return false;
+					}
 				}
 			};
 
@@ -287,9 +290,12 @@
 
 			// Close slideout if clicking outside of the slideout area
 			documentToggle = function (e) {
-				var $target = $(e.target);
-				if (opened && !$target.is(elm) && !$target.is(wrapper) && $target.closest(elm).length === 0) {
-					toggle();
+				var $target = $(e.target),
+					button = e.button;
+				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+					if (opened && !$target.is(elm) && !$target.is(wrapper) && $target.closest(elm).length === 0) {
+						toggle();
+					}
 				}
 			};
 			_pe.document.on('click vclick touchstart', documentToggle);

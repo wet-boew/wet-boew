@@ -138,36 +138,38 @@
 				//Map UI mouse events
 				elm.on('click', function (e) {
 					var $target = $(e.target),
+						button = e.button,
 						p,
 						s;
-
-					if ($target.hasClass('playpause') || e.target === this.object || $target.hasClass('wb-mm-overlay')) {
-						if (this.getPaused() === true) {
-							this.play();
-						} else {
-							this.pause();
+					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						if ($target.hasClass('playpause') || e.target === this.object || $target.hasClass('wb-mm-overlay')) {
+							if (this.getPaused() === true) {
+								this.play();
+							} else {
+								this.pause();
+							}
 						}
-					}
 
-					if ($target.hasClass('cc')) {
-						this.setCaptionsVisible(!this.getCaptionsVisible());
-					}
-
-					if ($target.hasClass('mute')) {
-						this.setMuted(!this.getMuted());
-					}
-
-					if ($target.is('progress') || $target.hasClass('wb-progress-inner') || $target.hasClass('wb-progress-outer')) {
-						p = (e.pageX - $target.offset().left) / $target.width();
-						this.setCurrentTime(this.getDuration() * p);
-					}
-
-					if ($target.hasClass('rewind') || $target.hasClass('fastforward')) {
-						s = this.getDuration() * 0.05;
-						if ($target.hasClass('rewind')) {
-							s *= -1;
+						if ($target.hasClass('cc')) {
+							this.setCaptionsVisible(!this.getCaptionsVisible());
 						}
-						this.setCurrentTime(this.getCurrentTime() + s);
+
+						if ($target.hasClass('mute')) {
+							this.setMuted(!this.getMuted());
+						}
+
+						if ($target.is('progress') || $target.hasClass('wb-progress-inner') || $target.hasClass('wb-progress-outer')) {
+							p = (e.pageX - $target.offset().left) / $target.width();
+							this.setCurrentTime(this.getDuration() * p);
+						}
+
+						if ($target.hasClass('rewind') || $target.hasClass('fastforward')) {
+							s = this.getDuration() * 0.05;
+							if ($target.hasClass('rewind')) {
+								s *= -1;
+							}
+							this.setCurrentTime(this.getCurrentTime() + s);
+						}
 					}
 				});
 
