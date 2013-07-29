@@ -294,10 +294,13 @@
 					} else if (type === 'mouseleave') {
 						_pe.fn.share.ignoreFocusoutside = false;
 					}
-				}).on('click vclick touchstart', 'a', function () { // Workaround for some touchscreen devices that don't 
-					window.open(this.href, '_blank');
-					$popup.trigger('close');
-					return false;
+				}).on('click vclick touchstart', 'a', function (e) { // Workaround for some touchscreen devices that don't handle a 'click' on a link
+					var button = e.button;
+					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						window.open(this.href, '_blank');
+						$popup.trigger('close');
+						return false;
+					}
 				});
 
 				_pe.document.on('click vclick touchstart focusin', function (e) {

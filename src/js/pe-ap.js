@@ -286,14 +286,15 @@
 				pe.bodydiv.removeAttr('tabindex');
 			
 				// On click, puts focus on and scrolls to the target of same page links
-				$(hlinks_same).off('click vclick').on('click.hlinks vclick.hlinks', function () {
+				$(hlinks_same).off('click vclick').on('click.hlinks vclick.hlinks', function (e) {
 					var hash = this.hash,
 						node = document.getElementById(hash.substring(1)),
 						$node,
 						nodeName,
-						role;
+						role,
+						button = e.button;
 
-					if (node !== null) {
+					if (node !== null && (typeof button === 'undefined' || button === pe.leftMouseButton)) {
 						$node = $(node);
 						nodeName = node.nodeName.toLowerCase();
 						if (nodeName !== 'a' && nodeName !== 'button' && nodeName !== 'input' && nodeName !== 'textarea' && nodeName !== 'select') {
