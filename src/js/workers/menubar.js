@@ -193,14 +193,15 @@
 					event.cancelBubble = true;
 				}
 			}).parent().on('click vclick touchstart mouseenter mouseleave', '> :header a', function (e) {
-				var type = e.type;
+				var type = e.type,
+					button = e.button;
 				if (type === 'mouseenter') {
 					_pe.fn.menubar.ignoreMenuBarClicks = true;
 				} else if (type === 'mouseleave') {
 					_pe.fn.menubar.ignoreMenuBarClicks = false;
 				} else {
 					if ($(this).closest('li').hasClass('mb-active')) {
-						if (type !== 'click' || !_pe.fn.menubar.ignoreMenuBarClicks) { // Ignore clicks on the menu bar if menu opened by hover
+						if (type !== 'click' || ((typeof button === 'undefined' || button === _pe.leftMouseButton) && !_pe.fn.menubar.ignoreMenuBarClicks)) { // Ignore clicks on the menu bar if menu opened by hover or if middle or right button click
 							hidesubmenu(this);
 						}
 					} else {
