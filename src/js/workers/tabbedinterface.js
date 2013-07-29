@@ -71,8 +71,11 @@
 			elm.empty().append($accordion);
 
 			this._init_panel_links($panelElms, $panelElms, 'data-tab', function (event) {
-				event.data.tab.trigger('expand');
-				return false;
+				var button = event.button;
+				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+					event.data.tab.trigger('expand');
+					return false;
+				}
 			});
 
 			// Track the active panel during the user's session
@@ -158,7 +161,7 @@
 
 			// Add hidden tab list heading
 			$tabListHeading = $('<h'+ this._get_heading_level(elm) + ' class="wb-invisible">').text(_pe.dic.get('%tab-list') + tabListCount);
-			if (_pe.ie > 0 && _pe.ie < 9) {
+			if (_pe.preIE9) {
 				$tabListHeading.wrap('<div>'); // Stop empty text nodes from moving the tabs around
 			}
 			$tabListHeading.insertBefore($nav);
@@ -228,6 +231,7 @@
 
 			$tabs.off('click vclick').on('keydown click', function (e) {
 				var $target = $(e.target),
+					button = e.button,
 					$panel,
 					$link,
 					href,
@@ -256,7 +260,7 @@
 							selectTab(isKeyPrev ? getPrevTab($tabs) : getNextTab($tabs), $tabs, $panels, opts, false);
 						}
 					}
-				} else {
+				} else if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
 					// Make sure working with a link since it's possible for an image to be the target of a mouse click
 					$link = (e.target.tagName.toLowerCase() !== 'a') ? $target.closest('a') : $target;
 					hash = _pe.fn.tabbedinterface._get_hash($link.attr('href'));
@@ -476,8 +480,11 @@
 				tabsPanelId = $tabsPanel.attr('id');
 				$nav.append('<li class="tabs-toggle"><a class="tabs-prev" href="javascript:;" role="button">&nbsp;&nbsp;&nbsp;<span class="wb-invisible">' + _pe.dic.get('%previous') + '</span></a></li>');
 				// lets the user jump to the previous tab by clicking on the PREV button
-				$nav.find('.tabs-prev').on('click', function () {
-					selectTab(getPrevTab($tabs), $tabs, $panels, opts, true);
+				$nav.find('.tabs-prev').on('click', function (e) {
+					var button = e.button;
+					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						selectTab(getPrevTab($tabs), $tabs, $panels, opts, true);
+					}
 				});
 				//
 				//End PREV button
@@ -485,8 +492,11 @@
 				//
 				$nav.append('<li class="tabs-toggle"><a class="tabs-next" href="javascript:;" role="button">&nbsp;&nbsp;&nbsp;<span class="wb-invisible">' + _pe.dic.get('%next') + '</span></a></li>');
 				// lets the user jump to the next tab by clicking on the NEXT button
-				$nav.find('.tabs-next').on('click', function () {
-					selectTab(getNextTab($tabs), $tabs, $panels, opts, true);
+				$nav.find('.tabs-next').on('click', function (e) {
+					var button = e.button;
+					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						selectTab(getNextTab($tabs), $tabs, $panels, opts, true);
+					}
 				});
 				//End animation
 				//
@@ -501,15 +511,18 @@
 						return e.preventDefault();
 					}
 				});
-				$nav.find('li a').not($toggleRow.find('a')).on('click', function () {
-					return stopCycle();
+				$nav.find('li a').not($toggleRow.find('a')).on('click', function (e) {
+					var button = e.button;
+					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						return stopCycle();
+					}
 				});
 				$tabs.each(function () {
 					var $pbar;
 					$pbar = $('<div class="tabs-roller">').hide().on('click', function () {
 						return $(this).siblings('a').trigger('click');
 					});
-					if (_pe.ie > 0 && _pe.ie < 8) {
+					if (_pe.preIE8) {
 						$('.tabs-style-2 .tabs, .tabs-style-2 .tabs li').css('filter', '');
 					}
 					return $(this).parent().append($pbar);
@@ -538,13 +551,16 @@
 					if (anchor.length) {
 						return $this.on('click', function (e) {
 							var panel,
-								panelId;
-							panel = anchor.parents('[role="tabpanel"]:hidden');
-							if (panel.length !== 0) {
-								e.preventDefault();
-								panelId = panel.attr('id');
-								panel.parent().siblings('.tabs').find('a').filter('[href="#' + panelId + '"]').trigger('click');
-								return anchor.get(0).scrollIntoView(true);
+								panelId,
+								button = e.button;
+							if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+								panel = anchor.parents('[role="tabpanel"]:hidden');
+								if (panel.length !== 0) {
+									e.preventDefault();
+									panelId = panel.attr('id');
+									panel.parent().siblings('.tabs').find('a').filter('[href="#' + panelId + '"]').trigger('click');
+									return anchor.get(0).scrollIntoView(true);
+								}
 							}
 						});
 					}

@@ -114,6 +114,14 @@
 		*/
 		ie: (/(MSIE) ([\w.]+)/.exec(navigator.userAgent) || [])[2] || '0',
 		/**
+		* @memberof pe
+		* @type {boolean} - True if pre-IE10/IE9/IE8/IE7, false otherwise (set at the beginning of the init function)
+		*/
+		preIE10: false,
+		preIE9: false,
+		preIE8: false,
+		preIE7: false,
+		/**
 		* A private function for initializing for pe.
 		* @function
 		* @memberof pe
@@ -129,6 +137,23 @@
 				pageinit_fired = false,
 				init_on_mobileinit = false;
 
+			// Is this IE8 or earlier?
+			if (pe.ie > 0 && pe.ie < 10) {
+				pe.preIE10 = true;
+				if (pe.ie < 9) {
+					pe.preIE9 = true;
+					if (pe.ie < 8) {
+						pe.preIE8 = true;
+						if (pe.ie < 7) {
+							pe.preIE7 = true;
+						}
+					}
+				}
+			}
+			
+			// What is the e.button value for the left mouse button?
+			pe.leftMouseButton = (pe.preIE9 ? 1 : 0);
+				
 			// Determine the page language and if the text direction is right to left (rtl)
 			test = $html.attr('lang');
 			if (typeof test !== 'undefined' && test.length > 0) {
@@ -983,7 +1008,7 @@
 					}
 				}
 
-				if (disable === 'true' || (((pe.ie > 0 && pe.ie < 7) || $html.hasClass('bb-pre6')) && disable !== 'false')) {
+				if (disable === 'true' || ((pe.preIE7 || $html.hasClass('bb-pre6')) && disable !== 'false')) {
 					$html.addClass('no-js pe-disable');
 					if (lsenabled) {
 						localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
@@ -1042,7 +1067,7 @@
 					bclink,
 					bclinkurl,
 					match = false,
-					hrefBug = pe.ie > 0 && pe.ie < 8; // IE7 and below have an href bug so need a workaround
+					hrefBug = pe.preIE8; // IE7 and below have an href bug so need a workaround
 				menusrc = typeof menusrc.jquery !== 'undefined' ? menusrc : $(menusrc);
 				menulinks = menusrc.find('a').get();
 				navclass = (typeof navclass === 'undefined') ? 'nav-current' : navclass;
@@ -1697,7 +1722,7 @@
 							pe.document.trigger({ type: msg, js: js });
 						};
 						scriptElem.src = js;
-						if ((pe.ie > 0 && pe.ie < 9) || !head.insertBefore) {
+						if (pe.preIE9 || !head.insertBefore) {
 							$(scriptElem).appendTo($(head)).delay(100);
 						} else {
 							head.insertBefore(scriptElem, head.firstChild);
@@ -1762,7 +1787,7 @@
 					var head = pe.add.head,
 						styleElement = document.createElement('link');
 					pe.add.set(styleElement, 'rel', 'stylesheet').set(styleElement, 'href', css);
-					if ((pe.ie > 0 && pe.ie < 10) || !head.insertBefore) {
+					if (pe.preIE10 || !head.insertBefore) {
 						$(styleElement).appendTo($(head)).attr('href', css);
 					} else {
 						head.insertBefore(styleElement, head.firstChild);
@@ -2010,7 +2035,7 @@
 			var loading_finished = 'wb-init-loaded',
 				plugins = {};
 			pe.document.one(loading_finished, function () {
-				if (!(pe.ie > 0 && pe.ie < 9)) {
+				if (!pe.preIE9) {
 					pe.resize(function () {
 						var mobilecheck = pe.mobilecheck(),
 							mediumcheck;

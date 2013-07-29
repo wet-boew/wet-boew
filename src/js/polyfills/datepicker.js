@@ -321,7 +321,7 @@
 					} else if (wbMainIn.height() < calendarBottom) {
 						wbMainIn.css('min-height', calendarBottom);
 					}
-				} else if (pe.ie > 0 && pe.ie < 7) {
+				} else if (pe.preIE7) {
 					calendarBottom = container.height() + container.offset().top - wbMainIn.offset().top + 50;
 					if (wbMainIn.height() >= calendarBottom) {
 						wbMainIn.css('height', '');

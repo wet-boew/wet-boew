@@ -153,7 +153,12 @@
 		
 			start_liveTimeout();
 			if (opts.refreshOnClick) {
-				_pe.document.on('click', start_liveTimeout);
+				_pe.document.on('click', function (e) {
+					var button = e.button;
+					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						start_liveTimeout();
+					}
+				});
 			}
 
 			return elm;

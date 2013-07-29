@@ -141,7 +141,9 @@
 
 				$popupText = elm.find('.bookmark_popup_text').off('click vclick touchstart keydown').wrap('<' + opts.popupTag + ' />');
 				$popupText.attr({'role': 'button', 'aria-controls': 'bookmark_popup'}).on('click vclick touchstart keydown', function (e) {
-					var keyCode = e.keyCode;
+					var keyCode = e.keyCode,
+						button = e.button;
+
 					if (e.type === 'keydown') {
 						if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 							if (keyCode === 13 || keyCode === 32) { // enter or space
@@ -156,7 +158,7 @@
 								$popup.trigger('open');
 							}
 						}
-					} else {
+					} else if (typeof button === 'undefined' || button === _pe.leftMouseButton) {
 						if ($popup.attr('aria-hidden') === 'true') {
 							$popup.trigger('open');
 						} else {
@@ -299,11 +301,12 @@
 				});
 
 				_pe.document.on('click vclick touchstart focusin', function (e) {
-					var className = e.target.className;
+					var className = e.target.className,
+						button = e.button;
 					if (!_pe.fn.share.ignoreFocusoutside && $popup.attr('aria-hidden') === 'false' && (className === null || className.indexOf('bookmark_popup_text') === -1)) {
 						if (e.type === 'focusin') {
 							$popup.trigger('closenofocus');
-						} else {
+						} else if (typeof button === 'undefined' || button === _pe.leftMouseButton) {
 							$popup.trigger('close');
 						}
 					}

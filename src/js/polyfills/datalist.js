@@ -69,7 +69,7 @@
 
 			correctWidth = function () {
 				autolist.css('width', elm.innerWidth());
-				if (pe.ie > 0 && pe.ie < 8) {
+				if (pe.preIE8) {
 					autolist.css('top', elm.innerHeight() + 13);
 				}
 			};
@@ -130,7 +130,7 @@
 						closeOptions();
 					}
 					return false;
-				} else if (type === 'focus' && pe.ie > 0 && pe.ie < 8) {
+				} else if (pe.preIE8 && type === 'focus') {
 					autolist.addClass('al-hide').empty();
 				}
 			});
