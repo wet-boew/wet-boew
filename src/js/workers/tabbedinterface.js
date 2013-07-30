@@ -169,8 +169,11 @@
 			// End of panel text to notify screen reader users that there are more tab panels available
 			if ($panels.length > 1) {
 				$panels.append('<p class="panel-end"><span class="wb-invisible">' + _pe.dic.get('%tab-panel-end-1') + ($tabsPanel.prev().hasClass('tabs') ? '</span><a href="javascript:;" class="wb-show-onfocus button button-accent position-bottom-medium position-left">' + _pe.dic.get('%tab-panel-end-2') + '</a><span class="wb-invisible">' + _pe.dic.get('%tab-panel-end-3') : '') + '</span></p>').find('.panel-end a').on('click', function(e) {
-					_pe.focus($tabs.filter('.' + opts.tabActiveClass));
-					e.preventDefault();
+					var button = e.button;
+					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						_pe.focus($tabs.filter('.' + opts.tabActiveClass));
+						e.preventDefault();
+					}
 				});
 			}
 
@@ -221,7 +224,7 @@
 			elm.trigger('easytabs:after', [$default_tab, $panels.filter(href.substring(href.indexOf('#')))]);
 
 			// easytabs IE7 bug: using images as tabs breaks easytabs.activateDefaultTab().
-			if (_pe.ie > 0 && _pe.ie < 8) {
+			if (_pe.preIE8) {
 				if ($tabs.parent().hasClass('img')) {
 					$tabs.parent().removeClass('img');
 					$tabs.find('span').removeClass('wb-invisible');
@@ -519,8 +522,11 @@
 				});
 				$tabs.each(function () {
 					var $pbar;
-					$pbar = $('<div class="tabs-roller">').hide().on('click', function () {
-						return $(this).siblings('a').trigger('click');
+					$pbar = $('<div class="tabs-roller">').hide().on('click', function (e) {
+						var button = e.button;
+						if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+							return $(this).siblings('a').trigger('click');
+						}
 					});
 					if (_pe.preIE8) {
 						$('.tabs-style-2 .tabs, .tabs-style-2 .tabs li').css('filter', '');

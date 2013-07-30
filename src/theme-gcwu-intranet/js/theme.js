@@ -444,7 +444,7 @@
 			var elms,
 				len;
 
-			if (pe.ie > 0 && pe.ie < 9) {
+			if (pe.preIE9) {
 				elms = $('input, textarea, select, button').get();
 			} else {
 				elms = document.querySelectorAll('input, textarea, select, button');

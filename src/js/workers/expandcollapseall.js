@@ -148,10 +148,13 @@
 				}).text(opts.text[type]);
 
 			$toggler.on('click', $.proxy(function(e) {
-				this.setOpen(type === 'open' ? false : type === 'close' ? true : this.isOpen());
-				this.toggle();
-				e.preventDefault();
-				e.target.focus();
+				var button = e.button;
+				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+					this.setOpen(type === 'open' ? false : type === 'close' ? true : this.isOpen());
+					this.toggle();
+					e.preventDefault();
+					e.target.focus();
+				}
 			}, this));
 
 			this._setTitle($toggler);
