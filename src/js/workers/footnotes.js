@@ -29,46 +29,56 @@
 			footnote_dd.find('p.footnote-return a').each(function () {
 				var $this = $(this);
 				$this.find('span span').remove();
-				$this.off('click vclick').on('click vclick', function () {
-					var refId = _pe.string.jqescape($(this).attr('href')).substring(1),
-						referrer = _ctn.find(refId).find('a');
-					
-					if (_pe.mobile) {
-						$.mobile.silentScroll(_pe.focus(referrer).offset().top);
-					} else {
-						_pe.focus(referrer);
+				$this.off('click vclick').on('click vclick', function (e) {
+					var button = e.button;
+					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						var refId = _pe.string.jqescape($(this).attr('href')).substring(1),
+							referrer = _ctn.find(refId).find('a');
+						
+						if (_pe.mobile) {
+							$.mobile.silentScroll(_pe.focus(referrer).offset().top);
+						} else {
+							_pe.focus(referrer);
+						}
+						return false;
 					}
-					return false;
 				});
 			});
 
 			//listen for footnote reference links that get clicked
-			_ctn.find('sup a.footnote-link').on('click vclick', function () {
+			_ctn.find('sup a.footnote-link').on('click vclick', function (e) {
 				//captures certain information about the clicked link
-				var _refLinkDest = elm.find(_pe.string.jqescape($(this).attr('href')).substring(1));
+				var _refLinkDest = elm.find(_pe.string.jqescape($(this).attr('href')).substring(1)),
+					button = e.button;
+				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+					_refLinkDest.find('p.footnote-return a').attr('href', '#' + this.parentNode.id).off('click vclick').on('click vclick', function (e) {
+						var button = e.button,
+							refId,
+							referrer;
+						if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+							refId = _pe.string.jqescape($(this).attr('href')).substring(1);
+							referrer = _ctn.find(refId).find('a');
 
-				_refLinkDest.find('p.footnote-return a').attr('href', '#' + this.parentNode.id).off('click vclick').on('click vclick', function () {
-					var refId = _pe.string.jqescape($(this).attr('href')).substring(1),
-						referrer = _ctn.find(refId).find('a');
-
+							if (_pe.mobile) {
+								$.mobile.silentScroll(_pe.focus(referrer).offset().top);
+							} else {
+								_pe.focus(referrer);
+							}
+							return false;
+						}
+					});
 					if (_pe.mobile) {
-						$.mobile.silentScroll(_pe.focus(referrer).offset().top);
+						$.mobile.silentScroll(_pe.focus(_refLinkDest).offset().top);
 					} else {
-						_pe.focus(referrer);
+						_pe.focus(_refLinkDest);
+					}
+					if (_pe.preIE8) {
+						_refLinkDest.addClass('footnote-focus').one('blur', function () {
+							$(this).removeClass('footnote-focus');
+						});
 					}
 					return false;
-				});
-				if (_pe.mobile) {
-					$.mobile.silentScroll(_pe.focus(_refLinkDest).offset().top);
-				} else {
-					_pe.focus(_refLinkDest);
 				}
-				if (_pe.ie > 0 && _pe.ie < 8) {
-					_refLinkDest.addClass('footnote-focus').one('blur', function () {
-						$(this).removeClass('footnote-focus');
-					});
-				}
-				return false;
 			});
 		} // end of exec
 	};

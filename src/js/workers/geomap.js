@@ -337,10 +337,12 @@
 			icon.setAttribute('tabindex', '0');
 			feature.popup.closeDiv.appendChild(icon);
 			$('.close_' + featureid).on('keypress click', function(e) {
-				if (e.keyCode === 13) {
-					feature.popup.hide();
-				}
-				if (e.type === 'click') {
+				var button = e.button;
+				if (e.type === 'keypress') {
+					if (e.keyCode === 13) {
+						feature.popup.hide();
+					}
+				} else if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
 					feature.layer.map.getControlsByClass('OpenLayers.Control.SelectFeature')[0].unselect(selectedFeature);
 				}
 			});
@@ -615,7 +617,7 @@
 				graphicWidth = style.graphicWidth;
 				
 			if (typeof graphicOpacity !== 'undefined') {
-				if (_pe.ie > 0 && _pe.ie < 8) {
+				if (_pe.preIE8) {
 					symbolStyle += 'filter:alpha(opacity=' + (graphicOpacity * 10) + ');';
 				} else {
 					symbolStyle += 'opacity: ' + graphicOpacity + ';';
@@ -908,8 +910,8 @@
 			}		 
 			
 			$ref.on('click', 'a', function(e) {
-				var type = e.type;
-				if (type === 'click') {
+				var button = e.button;
+				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
 					e.preventDefault();			
 					geomap.map.zoomToExtent(feature.geometry.bounds);	
 					$.mobile.silentScroll(_pe.focus(geomap.gmap).offset().top);

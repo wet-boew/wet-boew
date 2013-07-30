@@ -14,9 +14,9 @@
 	/* local reference */
 	_pe.fn.css3ie = {
 		type : 'plugin',
-		depends : (_pe.ie > 0 && _pe.ie < 9 ? ['pie'] : []),
+		depends : (_pe.preIE9 ? ['pie'] : []),
 		_exec : function (elm) {
-			if (_pe.mobile || !(_pe.ie > 0 && _pe.ie < 9)) {
+			if (_pe.mobile || !_pe.preIE9) {
 				return;
 			}
 

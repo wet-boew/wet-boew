@@ -19,6 +19,8 @@
 
 		icons: $('<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><g id="play"><path d="M 14.299775,10.18788 5.7002247,4.610169 5.7867772,15.389831 14.299775,10.18788 z" /></g><g id="pause" style="display:inline"><path d="M 5.3405667,4.610169 5.3405667,15.389831 8.9169966,15.389831 8.9169966,4.610169 5.3405667,4.610169 z M 11.083003,4.610169 11.083003,15.389831 14.659433,15.389831 14.659433,4.610169 11.083003,4.610169 z" /></g><g id="rewind" transform="matrix(-1,0,0,-1,20,20)"><path d="M 8.4182018,15.389831 16.924761,10.187472 8.3244655,4.610169 8.3478995,8.03154 3.0752388,4.610169 3.168975,15.389831 8.3947677,12.202801 8.4182018,15.389831 z" /></g><g id="ff"><path  d="M 16.929004,10.187879 8.3294498,4.610169 8.4160023,15.389831 16.929004,10.187879 z M 11.67055,10.187879 3.0709963,4.610169 3.157549,15.389831 11.67055,10.187879 z" /></g><g id="mute_off"><path d="M 12.476712,4.599486 9.3409347,7.735268 5.5431537,7.735268 5.5431537,12.22989 9.3235137,12.22989 12.476712,15.400514 12.476712,4.599486 z"/></g><g id="mute_on"><path  d="M 12.466782,4.5994858 9.3309993,7.7352682 5.5332183,7.7352682 5.5332183,12.22989 9.3135782,12.22989 12.466782,15.400514 12.466782,4.5994858 z" /><path d="M 10,1.75 C 5.454363,1.75 1.78125,5.4543629 1.78125,10 1.78125,14.545637 5.454363,18.25 10,18.25 14.545637,18.25 18.25,14.545637 18.25,10 18.25,5.4543629 14.545637,1.75 10,1.75 z M 10,3.25 C 11.602784,3.25 13.062493,3.7896774 14.21875,4.71875 L 4.71875,14.21875 C 3.8057703,13.065541 3.28125,11.593619 3.28125,10 3.28125,6.2650231 6.2650232,3.25 10,3.25 z M 15.25,5.8125 C 16.169282,6.9656383 16.75,8.4065929 16.75,10 16.75,13.734977 13.734977,16.75 10,16.75 8.4063811,16.75 6.9279359,16.200753 5.78125,15.28125 L 15.25,5.8125 z"/></g><g id="cc"><path d="M 9.2241211,6.4042969 9.2241211,8.4003906 C 8.8914318,8.1725317 8.5564712,8.0039121 8.2192383,7.8945312 7.88655,7.7851623 7.5401961,7.7304748 7.1801758,7.7304687 6.4965774,7.7304748 5.9633748,7.9309955 5.5805664,8.3320313 5.2023079,8.7285207 5.0131804,9.2845097 5.0131836,10 5.0131804,10.715498 5.2023079,11.273766 5.5805664,11.674805 5.9633748,12.071291 6.4965774,12.269533 7.1801758,12.269531 7.5629826,12.269533 7.9252869,12.212567 8.2670898,12.098633 8.6134373,11.984702 8.9324474,11.816083 9.2241211,11.592773 L 9.2241211,13.595703 C 8.8413016,13.736979 8.4516536,13.841797 8.0551758,13.910156 7.6632429,13.983073 7.2690376,14.019531 6.8725586,14.019531 5.4916956,14.019531 4.4116185,13.666341 3.6323242,12.959961 2.8530264,12.249025 2.4633783,11.262372 2.4633789,10 2.4633783,8.7376353 2.8530264,7.7532613 3.6323242,7.046875 4.4116185,6.335945 5.4916956,5.9804766 6.8725586,5.9804687 7.2735948,5.9804766 7.6678002,6.0169349 8.0551758,6.0898437 8.4470963,6.1582108 8.8367443,6.2630284 9.2241211,6.4042969" /><path d="M 17.536621,6.4042969 17.536621,8.4003906 C 17.203932,8.1725317 16.868971,8.0039121 16.531738,7.8945312 16.19905,7.7851623 15.852696,7.7304748 15.492676,7.7304687 14.809077,7.7304748 14.275875,7.9309955 13.893066,8.3320313 13.514808,8.7285207 13.32568,9.2845097 13.325684,10 13.32568,10.715498 13.514808,11.273766 13.893066,11.674805 14.275875,12.071291 14.809077,12.269533 15.492676,12.269531 15.875483,12.269533 16.237787,12.212567 16.57959,12.098633 16.925937,11.984702 17.244947,11.816083 17.536621,11.592773 L 17.536621,13.595703 C 17.153802,13.736979 16.764154,13.841797 16.367676,13.910156 15.975743,13.983073 15.581538,14.019531 15.185059,14.019531 13.804196,14.019531 12.724119,13.666341 11.944824,12.959961 11.165526,12.249025 10.775878,11.262372 10.775879,10 10.775878,8.7376353 11.165526,7.7532613 11.944824,7.046875 12.724119,6.335945 13.804196,5.9804766 15.185059,5.9804687 15.586095,5.9804766 15.9803,6.0169349 16.367676,6.0898437 16.759596,6.1582108 17.149244,6.2630284 17.536621,6.4042969" /></g><g id="overlay"><rect rx="3" ry="3" width="20" height="20" style="fill:#000;opacity:0.4"/><polygon points="5,5 15,10, 5,15" fill="#FFF" style="fill:#FFF;" /></g><g id="loading"><rect rx="3" ry="3" width="20" height="20" style="fill:#000;opacity:0.4"/><g id="spinner" style="stroke-linecap:round;stroke:#FFF;stroke-width:1.5px" transform="translate(9.8,9.8)"><line x1="0" y1="5" x2="0" y2="7" transform="rotate(0,0,0)" opacity="0.09"/><line x1="0" y1="5" x2="0" y2="7" transform="rotate(30,0,0)" opacity="0.17"/><line x1="0" y1="5" x2="0" y2="7" transform="rotate(60,0,0)" opacity="0.25"/><line x1="0" y1="5" x2="0" y2="7" transform="rotate(90,0,0)" opacity="0.33"/><line x1="0" y1="5" x2="0" y2="7" transform="rotate(120,0,0)" opacity="0.42"/><line x1="0" y1="5" x2="0" y2="7" transform="rotate(150,0,0)" opacity="0.50"/><line x1="0" y1="5" x2="0" y2="7" transform="rotate(180,0,0)" opacity="0.58"/><line x1="0" y1="5" x2="0" y2="7" transform="rotate(210,0,0)" opacity="0.66"/><line x1="0" y1="5" x2="0" y2="7" transform="rotate(240,0,0)" opacity="0.75"/><line x1="0" y1="5" x2="0" y2="7" transform="rotate(270,0,0)" opacity="0.83"/><line x1="0" y1="5" x2="0" y2="7" transform="rotate(300,0,0)" opacity="0.91"/><line x1="0" y1="5" x2="0" y2="7" transform="rotate(330,0,0)" opacity="1"/></g></g></svg>'),
 
+		seed: 0,
+
 		get_image: function (id, alt, height, width) {
 			var icon, g;
 
@@ -44,6 +46,7 @@
 		_exec: function (elm) {
 			var id,
 				canPlay = false,
+				e = elm.get(0),
 				media = elm.children('audio, video').eq(0),
 				media_type = media.is('video') ? 'video' : 'audio',
 				media_id,
@@ -57,13 +60,14 @@
 				fbAudioType = 'audio/mp3', //MP3
 				fbBin = _pe.add.liblocation + 'binary/multimedia.swf?seed=' + Math.random(),
 				fbVars,
-				evtmgr;
+				evtmgr,
+				s;
 
 			//Add an id if an id is missing
 			if (elm.attr('id') !== undefined) {
 				id = elm.attr('id');
 			} else {
-				id = 'wet-boew-mediaplayer' + elm.index();
+				id = 'wet-boew-mediaplayer' + _pe.fn.multimedia.seed++;
 				elm.attr('id', id);
 			}
 			if (media.attr('id') !== undefined) {
@@ -111,10 +115,10 @@
 			}
 
 			if (canPlay) {
-				evtmgr = media.is('object') ? media.children(':first-child') : media;
+				evtmgr = media.is('object') ? media.children(':first-child') : media.load();
 
 				//Add the interface
-				$.extend(elm.get(0), {object: media.get(0), evtmgr: evtmgr}, _pe.fn.multimedia._intf);
+				$.extend(e, {object: media.get(0), evtmgr: evtmgr}, _pe.fn.multimedia._intf);
 				if (media_type === 'video') {
 					media.before($('<button class="wb-mm-overlay" type="button" data-role="none"/>').append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play')));
 				}
@@ -136,36 +140,38 @@
 				//Map UI mouse events
 				elm.on('click', function (e) {
 					var $target = $(e.target),
+						button = e.button,
 						p,
 						s;
-
-					if ($target.hasClass('playpause') || e.target === this.object || $target.hasClass('wb-mm-overlay')) {
-						if (this.getPaused() === true) {
-							this.play();
-						} else {
-							this.pause();
+					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						if ($target.hasClass('playpause') || e.target === this.object || $target.hasClass('wb-mm-overlay')) {
+							if (this.getPaused() === true) {
+								this.play();
+							} else {
+								this.pause();
+							}
 						}
-					}
 
-					if ($target.hasClass('cc')) {
-						this.setCaptionsVisible(!this.getCaptionsVisible());
-					}
-
-					if ($target.hasClass('mute')) {
-						this.setMuted(!this.getMuted());
-					}
-
-					if ($target.is('progress') || $target.hasClass('wb-progress-inner') || $target.hasClass('wb-progress-outer')) {
-						p = (e.pageX - $target.offset().left) / $target.width();
-						this.setCurrentTime(this.getDuration() * p);
-					}
-
-					if ($target.hasClass('rewind') || $target.hasClass('fastforward')) {
-						s = this.getDuration() * 0.05;
-						if ($target.hasClass('rewind')) {
-							s *= -1;
+						if ($target.hasClass('cc')) {
+							this.setCaptionsVisible(!this.getCaptionsVisible());
 						}
-						this.setCurrentTime(this.getCurrentTime() + s);
+
+						if ($target.hasClass('mute')) {
+							this.setMuted(!this.getMuted());
+						}
+
+						if ($target.is('progress') || $target.hasClass('wb-progress-inner') || $target.hasClass('wb-progress-outer')) {
+							p = (e.pageX - $target.offset().left) / $target.width();
+							this.setCurrentTime(this.getDuration() * p);
+						}
+
+						if ($target.hasClass('rewind') || $target.hasClass('fastforward')) {
+							s = this.getDuration() * 0.05;
+							if ($target.hasClass('rewind')) {
+								s *= -1;
+							}
+							this.setCurrentTime(this.getCurrentTime() + s);
+						}
 					}
 				});
 
@@ -203,109 +209,121 @@
 				});
 
 				//Map media events (For flash, must use other element than object because it doesn't trigger or receive events)
-				evtmgr.on('timeupdate seeked canplay play volumechange pause ended waiting captionsloaded captionsloadfailed captionsvisiblechange progress', $.proxy(function (e) {
+				evtmgr.on('durationchange play pause ended volumechange timeupdate captionsloaded captionsloadfailed captionsvisiblechange waiting canplay progress', $.proxy(function (e) {
 					var $w = $(this),
+						d,
 						b,
 						p,
 						o,
 						timeline;
 					switch (e.type) {
-					case 'play':
-						b = $w.find('.playpause');
-						b.empty().append(_pe.fn.multimedia.get_image('pause', _pe.dic.get('%pause')));
-						b.attr('title', _pe.dic.get('%pause'));
-						$w.find('.wb-mm-overlay').hide();
-						break;
-					case 'pause':
-					case 'ended':
-						b = $w.find('.playpause');
-						b.empty().append(_pe.fn.multimedia.get_image('play', _pe.dic.get('%play')));
-						b.attr('title', _pe.dic.get('%play'));
-						o = $w.find('.wb-mm-overlay');
-						o.empty().append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play'));
-						o.show();
+						case 'durationchange':
+							d = this.getDuration();
+							if (!isNaN(d) && d !== Infinity) {
+								$w.find('.wb-mm-timeline-total span:not(.wb-invisible)').text(_pe.fn.multimedia._format_time(d));
 
-						// Prevent loading from appearing
-						clearTimeout(this.loading);
-						this.loading = false;
-						break;
-					case 'volumechange':
-						b = $w.find('.mute').empty();
-						if (this.getMuted()) {
-							b.append(_pe.fn.multimedia.get_image('mute_on', _pe.dic.get('%mute', 'disable')));
-							b.attr('title', _pe.dic.get('%mute', 'disable'));
-						} else {
-							b.append(_pe.fn.multimedia.get_image('mute_off', _pe.dic.get('%mute', 'enable')));
-							b.attr('title', _pe.dic.get('%mute', 'enable'));
-						}
-						break;
-					case 'captionsvisiblechange':
-						b = $w.find('.cc').empty();
-						if (this.getCaptionsVisible()) {
-							b.append(_pe.fn.multimedia.get_image('cc', _pe.dic.get('%closed-caption', 'disable')));
-							b.attr('title', _pe.dic.get('%closed-caption', 'disable'));
-						} else {
-							b.append(_pe.fn.multimedia.get_image('cc', _pe.dic.get('%closed-caption', 'enable')));
-							b.attr('title', _pe.dic.get('%closed-caption', 'enable'));
-						}
-						break;
-					case 'timeupdate':
-						p = Math.round(this.getCurrentTime() / this.getDuration() * 1000) / 10;
-						timeline = $w.find('.wb-mm-timeline progress');
-						timeline.attr('value', p);
-
-						$w.find('.wb-mm-timeline-current span:not(.wb-invisible)').text(_pe.fn.multimedia._format_time(this.getCurrentTime()));
-						$w.find('.wb-mm-timeline-total span:not(.wb-invisible)').text(_pe.fn.multimedia._format_time(this.getDuration()));
-
-						//Update captions
-						if ($.data(e.target, 'captions') !== undefined) {
-							_pe.fn.multimedia._update_captions($w.find('.wb-mm-captionsarea'), this.getCurrentTime(), $.data(e.target, 'captions'));
-						}
-						break;
-					case 'captionsloaded':
-						//Store the captions
-						$.data(e.target, 'captions', e.captions);
-						break;
-					case 'captionsloadfailed':
-						$w.find('.wb-mm-captionsarea').append('<p>' + _pe.dic.get('%closed-caption-error') + '</p>');
-						break;
-					// Determine when the loading icon should be shown.
-					case 'waiting':
-						//Prevents the loading icon to show up when waiting for less than half a second
-						if (this.getPaused() === false && !this.loading) {
-							this.loading = setTimeout(function () {
-								o = $w.find('.wb-mm-overlay');
-								o.empty().append(_pe.fn.multimedia._get_loading_ind(this, 'loading', _pe.dic.get('%loading'), 100, 100));
-								o.show();
-							}, 500);
-						}
-						break;
-					case 'canplay':
-						clearTimeout(this.loading);
-						this.loading = false;
-						if (this.getPaused() === false) {
+								//Skip to pointer from the querystring
+								if (_pe.urlquery[this.id] !== undefined) {
+									s = _pe.fn.multimedia._parse_time(_pe.urlquery[this.id]);
+									this.setCurrentTime(s);
+								}
+							}
+							break;
+						case 'play':
+							b = $w.find('.playpause');
+							b.empty().append(_pe.fn.multimedia.get_image('pause', _pe.dic.get('%pause')));
+							b.attr('title', _pe.dic.get('%pause'));
+							$w.find('.wb-mm-overlay').hide();
+							break;
+						case 'pause':
+						case 'ended':
+							b = $w.find('.playpause');
+							b.empty().append(_pe.fn.multimedia.get_image('play', _pe.dic.get('%play')));
+							b.attr('title', _pe.dic.get('%play'));
 							o = $w.find('.wb-mm-overlay');
 							o.empty().append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play'));
-							o.hide();
-						}
-						break;
-					// Fallback for browsers that don't implement the waiting/canplay events
-					case 'progress':
-						// Waiting detected, display the loading icon
-						if (this.getWaiting() === true) {
-							if (this.getBuffering() === false) {
-								this.setBuffering(true);
-								evtmgr.trigger('waiting');
+							o.show();
+
+							// Prevent loading from appearing
+							clearTimeout(this.loading);
+							this.loading = false;
+							break;
+						case 'volumechange':
+							b = $w.find('.mute').empty();
+							if (this.getMuted()) {
+								b.append(_pe.fn.multimedia.get_image('mute_on', _pe.dic.get('%mute', 'disable')));
+								b.attr('title', _pe.dic.get('%mute', 'disable'));
+							} else {
+								b.append(_pe.fn.multimedia.get_image('mute_off', _pe.dic.get('%mute', 'enable')));
+								b.attr('title', _pe.dic.get('%mute', 'enable'));
 							}
-						// Waiting has ended, but icon is still visible - remove it.
-						} else if (this.getBuffering() === true) {
-							this.setBuffering(false);
-							evtmgr.trigger('canplay');
-						}
-						this.setPreviousTime(this.getCurrentTime());
-						break;
+							break;
+						case 'timeupdate':
+							p = Math.round(this.getCurrentTime() / this.getDuration() * 1000) / 10;
+							timeline = $w.find('.wb-mm-timeline progress');
+							timeline.attr('value', p);
+
+							$w.find('.wb-mm-timeline-current span:not(.wb-invisible)').text(_pe.fn.multimedia._format_time(this.getCurrentTime()));
+
+							//Update captions
+							if ($.data(e.target, 'captions') !== undefined) {
+								_pe.fn.multimedia._update_captions($w.find('.wb-mm-captionsarea'), this.getCurrentTime(), $.data(e.target, 'captions'));
+							}
+							break;
+						case 'captionsloaded':
+							//Store the captions
+							$.data(e.target, 'captions', e.captions);
+							break;
+						case 'captionsloadfailed':
+							$w.find('.wb-mm-captionsarea').append('<p>' + _pe.dic.get('%closed-caption-error') + '</p>');
+							break;
+						case 'captionsvisiblechange':
+							b = $w.find('.cc').empty();
+							if (this.getCaptionsVisible()) {
+								b.append(_pe.fn.multimedia.get_image('cc', _pe.dic.get('%closed-caption', 'disable')));
+								b.attr('title', _pe.dic.get('%closed-caption', 'disable'));
+							} else {
+								b.append(_pe.fn.multimedia.get_image('cc', _pe.dic.get('%closed-caption', 'enable')));
+								b.attr('title', _pe.dic.get('%closed-caption', 'enable'));
+							}
+							break;
+						// Determine when the loading icon should be shown.
+						case 'waiting':
+							//Prevents the loading icon to show up when waiting for less than half a second
+							if (this.getPaused() === false && !this.loading) {
+								this.loading = setTimeout(function () {
+									o = $w.find('.wb-mm-overlay');
+									o.empty().append(_pe.fn.multimedia._get_loading_ind(this, 'loading', _pe.dic.get('%loading'), 100, 100));
+									o.show();
+								}, 500);
+							}
+							break;
+						case 'canplay':
+							clearTimeout(this.loading);
+							this.loading = false;
+							if (this.getPaused() === false) {
+								o = $w.find('.wb-mm-overlay');
+								o.empty().append(_pe.fn.multimedia.get_image('overlay', _pe.dic.get('%play'), 100, 100)).attr('title', _pe.dic.get('%play'));
+								o.hide();
+							}
+							break;
+						// Fallback for browsers that don't implement the waiting/canplay events
+						case 'progress':
+							// Waiting detected, display the loading icon
+							if (this.getWaiting() === true) {
+								if (this.getBuffering() === false) {
+									this.setBuffering(true);
+									evtmgr.trigger('waiting');
+								}
+							// Waiting has ended, but icon is still visible - remove it.
+							} else if (this.getBuffering() === true) {
+								this.setBuffering(false);
+								evtmgr.trigger('canplay');
+							}
+							this.setPreviousTime(this.getCurrentTime());
+							break;
 					}
-				}, elm.get(0)));
+				}, e));
 
 				if (captions !== undefined) {
 					media.after($('<div class="wb-mm-captionsarea"/>').hide());
@@ -399,7 +417,7 @@
 		},
 
 		//Standardized multimedia interface
-		_intf : {
+		_intf: {
 			// Methods
 			play: function () {
 				try {
@@ -470,36 +488,61 @@
 				$(this.evtmgr).trigger('captionsvisiblechange');
 			},
 
-			getMuted : function () {
+			getMuted: function () {
 				return (typeof this.object.muted !== 'function' ? this.object.muted : this.object.muted());
 			},
 
-			setMuted : function (m) {
+			setMuted: function (m) {
 				if (typeof this.object.muted !== 'function') {this.object.muted = m; } else {this.object.setMuted(m); }
 			},
 
-			getVolume : function () {
+			getVolume: function () {
 				return (typeof this.object.volume !== 'function' ? this.object.volume : this.object.volume());
 			},
 
-			setVolume : function (v) {
+			setVolume: function (v) {
 				if (typeof this.object.volume !== 'function') {this.object.volume = v; } else {this.object.setVolume(v); }
 			},
 
-			getWaiting : function () {
+			getWaiting: function () {
 				return this.getPaused() === false && this.getCurrentTime() === this.getPreviousTime();
 			},
 
-			getBuffering : function () {
+			getBuffering: function () {
 				return (typeof this.object.buffering !== 'undefined' ? this.object.buffering : false);
 			},
 
-			setBuffering : function (b) {
+			setBuffering: function (b) {
 				this.object.buffering = b;
 			}
 		},
 
-		_format_time : function (current) {
+
+		_parse_time: function (string) {
+			var parts,
+				seconds = 0,
+				p,
+				_plen,
+				v;
+
+			if (string !== undefined) {
+				if (string.substring(string.length - 1) === 's') {
+					//offset-time
+					return parseFloat(string.substring(0, string.length - 1));
+				} else {
+					//clock time
+					parts = string.split(':').reverse();
+					for (p = 0, _plen = parts.length; p < _plen; p += 1) {
+						v = (p === 0) ? parseFloat(parts[p]) : parseInt(parts[p], 10);
+						seconds += v * Math.pow(60, p);
+					}
+					return seconds;
+				}
+			}
+			return -1;
+		},
+
+		_format_time: function (current) {
 			var t = "",
 				i,
 				c,
@@ -517,41 +560,14 @@
 			return t;
 		},
 
-		_load_captions : function (evtmgr, src) {
-			var parse_time,
-				parse_html,
+		_load_captions: function (evtmgr, src) {
+			var parse_html,
 				parse_xml,
 				load_captions_internal,
 				load_captions_external,
 				curUrl,
 				srcUrl,
 				c;
-
-			/*-------------------------------------------*/
-			/* Caption parsing, can be moved to a web service */
-			parse_time = function (string) {
-				var parts,
-					s = 0,
-					p,
-					_plen,
-					v;
-
-				if (string !== undefined) {
-					if (string.substring(string.length - 1) === 's') {
-						//offset-time
-						return parseFloat(string.substring(0, string.length - 1));
-					} else {
-						//clock time
-						parts = string.split(':').reverse();
-						for (p = 0, _plen = parts.length; p < _plen; p += 1) {
-							v = (p === 0) ? parseFloat(parts[p]) : parseInt(parts[p], 10);
-							s += v * Math.pow(60, p);
-						}
-						return s;
-					}
-				}
-				return -1;
-			};
 
 			parse_html = function (content) {
 				var s = '.wet-boew-tt',
@@ -566,8 +582,8 @@
 
 					if (e.attr('data-begin') !== undefined) {
 						//HTML5 captions (seperate attributes)
-						begin = parse_time(e.attr('data-begin'));
-						end = e.attr('data-end') !== undefined ? parse_time(e.attr('data-end')) : parse_time(e.attr('data-dur')) + begin;
+						begin = _pe.fn.multimedia._parse_time(e.attr('data-begin'));
+						end = e.attr('data-end') !== undefined ? _pe.fn.multimedia._parse_time(e.attr('data-end')) : _pe.fn.multimedia._parse_time(e.attr('data-dur')) + begin;
 					} else if (e.attr('data') !== undefined) {
 						json = e.attr('data');
 
@@ -575,8 +591,8 @@
 						json = json.replace(/(begin|dur|end)/gi, '"$1"').replace(/'/g, '"');
 						json = $.parseJSON(json);
 
-						begin = parse_time(json.begin);
-						end = json.end !== undefined ? parse_time(json.end) : parse_time(json.dur) + begin;
+						begin = _pe.fn.multimedia._parse_time(json.begin);
+						end = json.end !== undefined ? _pe.fn.multimedia._parse_time(json.end) : _pe.fn.multimedia._parse_time(json.dur) + begin;
 					}
 					//Removes nested captions if any
 					e = e.clone();
@@ -603,8 +619,8 @@
 						begin = -1,
 						end = -1;
 
-					begin = parse_time(e.attr('begin'));
-					end = e.attr('end') !== undefined ? parse_time(e.attr('end')) : parse_time(e.attr('dur')) + begin;
+					begin = _pe.fn.multimedia._parse_time(e.attr('begin'));
+					end = e.attr('end') !== undefined ? _pe.fn.multimedia._parse_time(e.attr('end')) : _pe.fn.multimedia._parse_time(e.attr('dur')) + begin;
 
 					//Removes nested captions if any
 					e = e.clone();
@@ -680,7 +696,7 @@
 			});
 		},
 
-		_update_captions : function (area, seconds, captions) {
+		_update_captions: function (area, seconds, captions) {
 			var c, _clen, caption;
 			area.empty();
 			for (c = 0, _clen = captions.length; c < _clen; c += 1) {
