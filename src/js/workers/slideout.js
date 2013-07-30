@@ -336,7 +336,7 @@
 			container.append(wrapper);
 			wrapper.unwrap();
 
-			if (_pe.ie <= 0 || _pe.ie > 8) { // IE 9 and other browsers
+			if (!_pe.preIE9) { // IE 9 and other browsers
 				tab.css({
 					height: toggleLink.outerWidth() + 'px',
 					width: toggleLink.outerHeight() + 'px'

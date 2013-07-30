@@ -194,10 +194,13 @@
 
 			// Handles opening and closing of a submenu on click of a menu bar item but prevents any changes on click of the empty area in the submenu
 			$scope.on('click vclick touchstart focusin', function (event) {
-				if (event.stopPropagation) {
-					event.stopPropagation();
-				} else {
-					event.cancelBubble = true;
+				var button = event.button;
+				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+					if (event.stopPropagation) {
+						event.stopPropagation();
+					} else {
+						event.cancelBubble = true;
+					}
 				}
 			}).parent().on('click vclick touchstart mouseenter mouseleave', '> :header a', function (e) {
 				var type = e.type,

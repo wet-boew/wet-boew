@@ -231,7 +231,7 @@
 				} else {
 					elem.addClass('rowtdhover');
 				}
-				if (_pe.ie > 0 && _pe.ie < 9) {
+				if (_pe.preIE9) {
 					$trs.on('mouseleave focusout', function (e) {
 						e.stopPropagation();
 						$(this).removeClass('table-hover');
@@ -246,13 +246,13 @@
 			if (opts.vectorstripe) {
 				if (!opts.columnhighlight) {
 					elem.addClass('rowzebra');
-					if (_pe.ie > 0 && _pe.ie < 9) {
+					if (_pe.preIE9) {
 						$trs.filter(':odd').addClass('table-odd');
 					}
 				} else {
 					elem.addClass('colzebra');
 
-					if (_pe.ie > 0	&& _pe.ie < 9) {
+					if (_pe.preIE9) {
 						$cols = [];
 						for (i = 0, col_length = tblparser.col.length; i < col_length; i += 1) {
 							if (tblparser.col[i].elem) {
@@ -353,7 +353,7 @@
 						$('tr:first()', elem).appendTo($(domTable.createTHead()));
 					}
 					
-					if (!(_pe.ie > 0 && _pe.ie < 9)) {
+					if (!_pe.preIE9) {
 						
 						if (!opts.columnhighlight) {
 							elem.addClass('rowzebra');
@@ -493,7 +493,7 @@
 					elem.addClass('zebra-hover');
 				}
 				
-				if (_pe.ie > 0 && _pe.ie < 9) {
+				if (_pe.preIE9) {
 					
 					$lis = elem.children('li');
 					parity = (elem.parents('li').length + 1) % 2;

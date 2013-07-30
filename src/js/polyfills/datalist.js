@@ -94,6 +94,7 @@
 			
 			elm.on('keyup keydown click vclick touchstart focus', function (e) {
 				var type = e.type,
+					button = e.button,
 					keycode = e.keyCode,
 					dest;
 				if (type === 'keyup') {
@@ -126,8 +127,10 @@
 						}
 					}
 				} else if (type === 'click' || type === 'vclick') {
-					if (!autolist.hasClass('al-hide')) {
-						closeOptions();
+					if (typeof button === 'undefined' || button === pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						if (!autolist.hasClass('al-hide')) {
+							closeOptions();
+						}
 					}
 					return false;
 				} else if (pe.preIE8 && type === 'focus') {
@@ -138,6 +141,7 @@
 			autolist.on('keyup keydown click vclick touchstart', 'a, span', function (e) {
 				var type = e.type,
 					keycode = e.keyCode,
+					button = e.button,
 					target = $(e.target),
 					visible_options,
 					index,
@@ -189,22 +193,27 @@
 						}
 					}
 				} else if (type === 'click' || type === 'vclick' || type === 'touchstart') {
-					if (!target.hasClass('al-option')) {
-						target = target.parent();
+					if (typeof button === 'undefined' || button === pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						if (!target.hasClass('al-option')) {
+							target = target.parent();
+						}
+						value = target.find('span.al-value').html();
+						if (value.length === 0) {
+							value = target.find('span.al-label').html();
+						}
+						elm.val(value);
+						pe.focus(elm);
+						closeOptions();
 					}
-					value = target.find('span.al-value').html();
-					if (value.length === 0) {
-						value = target.find('span.al-label').html();
-					}
-					elm.val(value);
-					pe.focus(elm);
-					closeOptions();
 				}
 			});
 
 			pe.document.on('click vclick touchstart', function (e) {
-				if (!autolist.hasClass('al-hide') && !$(e.target).is(elm)) {
-					closeOptions();
+				var button = e.button;
+				if (typeof button === 'undefined' || button === pe.leftMouseButton) { // Ignore middle/right mouse buttons
+					if (!autolist.hasClass('al-hide') && !$(e.target).is(elm)) {
+						closeOptions();
+					}
 				}
 			});
 		});
