@@ -200,7 +200,7 @@
 			}
 			classes += (pe.touchscreen ? ' touchscreen' : '');
 			classes += (pe.svg ? ' svg' : ' no-svg');
-			classes += (pe.ie > 8 ? ' ie' + parseInt(pe.ie, 10) : (pe.ie < 1 ? ' no-ie' : ''));
+			classes += (!pe.preIE9 ? ' ie' + parseInt(pe.ie, 10) : (pe.ie < 1 ? ' no-ie' : ''));
 
 			// Check for browsers that needs SVG loaded through an object element removed
 			test = navigator.userAgent.match(/WebKit\/53(\d)\.(\d{1,2})/i);
@@ -2057,7 +2057,7 @@
 			// Figure out if we need to load plugins for IE
 			if (pe.ie > 0) {
 				plugins.equalize = pe.main;
-				if (pe.ie < 9) {
+				if (pe.preIE9) {
 					plugins.css3ie = pe.main;
 				}
 			}

@@ -48,9 +48,12 @@
 				var fieldLabel = $('label[for="' + fieldid + '"]').text(),
 					objToggle = $('<a id="' + fieldid + '-picker-toggle" class="picker-toggle-hidden wb-invisible" href="javascript:;"><img class="image-actual" src="' + pe.add.liblocation + 'images/datepicker/calendar-month.png" alt="' + datepickerShow + interwordSpace + fieldLabel + '"/></a>');
 
-				objToggle.on('click vclick touchstart', function () {
-					toggle(fieldid);
-					return false;
+				objToggle.on('click vclick touchstart', function (e) {
+					var button = e.button;
+					if (typeof button === 'undefined' || button === pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						toggle(fieldid);
+						return false;
+					}
 				});
 
 				elm.after(objToggle);
@@ -154,17 +157,20 @@
 						});
 
 						link.on('click vclick touchstart', {fieldid: fieldid, year: year, month : month, day: index + 1, days: days, format: format}, function (event) {
-							var $field = $('#' + event.data.fieldid),
-								prevDate = $field.val();
+							var button = event.button;
+							if (typeof button === 'undefined' || button === pe.leftMouseButton) { // Ignore middle/right mouse buttons
+								var $field = $('#' + event.data.fieldid),
+									prevDate = $field.val();
 
-							addSelectedDateToField(event.data.fieldid, event.data.year, event.data.month + 1, event.data.day, event.data.format);
-							if (prevDate !== $field.val()) {
-								$field.trigger('change');
+								addSelectedDateToField(event.data.fieldid, event.data.year, event.data.month + 1, event.data.day, event.data.format);
+								if (prevDate !== $field.val()) {
+									$field.trigger('change');
+								}
+								setSelectedDate(event.data.fieldid, event.data.year, event.data.month, event.data.days, event.data.format);
+								//Hide the calendar on selection
+								toggle(event.data.fieldid);
+								return false;
 							}
-							setSelectedDate(event.data.fieldid, event.data.year, event.data.month, event.data.days, event.data.format);
-							//Hide the calendar on selection
-							toggle(event.data.fieldid);
-							return false;
 						});
 					}
 				});
@@ -362,25 +368,34 @@
 					setSelectedDate(fieldid, year, month, days, format);
 
 					$this.on('click vclick touchstart focusin', function (e) {
-						if (e.stopPropagation) {
-							e.stopImmediatePropagation();
-						} else {
-							e.cancelBubble = true;
+						var button = e.button;
+						if (typeof button === 'undefined' || button === pe.leftMouseButton) { // Ignore middle/right mouse buttons
+							if (e.stopPropagation) {
+								e.stopImmediatePropagation();
+							} else {
+								e.cancelBubble = true;
+							}
 						}
 					});
 				});
 
-				pe.document.on('click vclick touchstart focusin', function () {
-					if (container.attr('aria-hidden') === 'false') {
-						hide(container.parent().find('#' + container.attr('aria-controls')));
-						return false;
+				pe.document.on('click vclick touchstart focusin', function (e) {
+					var button = e.button;
+					if (typeof button === 'undefined' || button === pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						if (container.attr('aria-hidden') === 'false') {
+							hide(container.parent().find('#' + container.attr('aria-controls')));
+							return false;
+						}
 					}
 				});
 
 				// Close button
 				$('<a class="picker-close" role="button" href="javascript:;"><img src="' + pe.add.liblocation + 'images/datepicker/cross-button.png" alt="' + datepickerHide + '" class="image-actual" /></a>').appendTo(container)
-					.click(function () {
-						toggle(container.attr('aria-controls'));
+					.click(function (e) {
+						var button = e.button;
+						if (typeof button === 'undefined' || button === pe.leftMouseButton) { // Ignore middle/right mouse buttons
+							toggle(container.attr('aria-controls'));
+						}
 					});
 
 				// Disable the tabbing of all the links when calendar is hidden
