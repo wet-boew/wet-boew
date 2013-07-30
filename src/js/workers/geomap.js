@@ -1690,7 +1690,8 @@
 			// add a listener on the window to update map when resized
 			window.onresize = function() {		
 				if(_pe.mobile) {
-					$mapDiv.removeClass('span-6').addClass('span-8');
+					$mapDiv.removeClass('span-6');
+					$mapDiv.addClass('span-8');
 				}
 				$mapDiv.height($mapDiv.width() * 0.8);
 				map.updateSize();
