@@ -193,7 +193,7 @@
 			});
 
 			// Updates ARIA attributes of the tabs and panels after a change
-			elm.on('easytabs:after', function(e, $tab, $panel) {
+			elm.on('easytabs:after', function(event, $tab, $panel) {
 				$panels.not($panel).attr({'aria-hidden': 'true', 'aria-expanded': 'false'});
 				$panel.attr({'aria-hidden': 'false', 'aria-expanded': 'true'});
 				$tabs.not($tab).attr({'aria-selected': 'false', 'tabindex': '-1'});
@@ -203,6 +203,7 @@
 				if (elm.data('easytabs') !== undefined && !$nav.hasClass('started')) {
 					_pe.focus($tab);
 				}
+				event.stopPropagation();
 			});
 
 			// Find the default tab: precendence given to the URL hash
