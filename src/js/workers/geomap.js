@@ -484,10 +484,12 @@
 				if ($ul.length === 0) {
 					$ul = $('<ul class="list-bullet-none margin-left-none"></ul>').appendTo($fieldset);
 				}
+				
+				var $div = $('<div class="geomap-legend-chk"></div>');
 
-				$chkBox = $('<div class="geomap-legend-chk"><input type="checkbox" id="cb_' + featureTableId + '" value="' + featureTableId + '"' + $checked + ' /></div>');
+				$chkBox = $('<input type="checkbox" id="cb_' + featureTableId + '" value="' + featureTableId + '"' + $checked + ' />').appendTo($div);
 
-				$chkBox.on('change', function() {				
+				$chkBox.on('change', function() {			
 					var layer = geomap.map.getLayer(olLayerId),				
 						visibility = geomap.glegend.find('#cb_' + featureTableId).prop('checked') ? true : false,
 						$table = geomap.glayers.find('#' + featureTableId),
@@ -504,7 +506,7 @@
 					if ($alert.length !== 0) {
 						$alert.fadeToggle();					
 					} else {
-						$parent.after('<div id="msg_' + featureTableId + '" class="module-attention module-simplify margin-bottom-medium margin-top-medium"><p>' + _pe.dic.get('%geo-hiddenlayer') + '</p></div>');				
+						$parent.after('<div id="msg_' + featureTableId + '"><p>' + _pe.dic.get('%geo-hiddenlayer') + '</p></div>');				
 					}					
 
 					if (visibility) {
@@ -512,11 +514,19 @@
 					} else {
 						$parent.css('display', 'none');
 					}
-				});	
-
-				$label = ('<div class="geomap-legend-item"><details class="geomap-legend' + geomap.uniqueid + '"><summary>' +
-							$featureTable.attr('aria-label') + '</summary><div class="geomap-legend-detail" id="sb_' + featureTableId + '"</div></details></div>');
-				$ul.append($('<li class="geomap-clear-format"/>').append($chkBox, $label));			
+				});					
+				
+				var $legendGraphic = $('<div>', {
+					"id": "sb_" + featureTableId					
+				});
+				
+				$label = $('<label>' , {
+					"for": "cb_" + featureTableId,
+					"html": $featureTable.attr('aria-label'),
+					"class": "form-checkbox"
+				}).append($chkBox, $legendGraphic);					
+					
+				$ul.append($('<li>').append($label));		
 			}	
 		},
 
@@ -636,7 +646,7 @@
 			$layerTab = $('<div id="tabs_' + featureTableId + '">').append(featureTable);
 			$tabsPanel.append($layerTab);
 			if (!enabled) {
-				$layerTab.append('<div id="msg_' + featureTableId + '" class="module-attention module-simplify"><p>' + _pe.dic.get('%geo-hiddenlayer') + '</p></div>');	
+				$layerTab.append('<div id="msg_' + featureTableId + '"><p>' + _pe.dic.get('%geo-hiddenlayer') + '</p></div>');	
 				featureTable.fadeOut();
 			}			
 		},
@@ -1679,6 +1689,10 @@
 			
 			// add a listener on the window to update map when resized
 			window.onresize = function() {		
+				if(_pe.mobile) {
+					$mapDiv.removeClass('span-6');
+					$mapDiv.addClass('span-8');
+				}
 				$mapDiv.height($mapDiv.width() * 0.8);
 				map.updateSize();
 				map.zoomToMaxExtent();
