@@ -485,7 +485,7 @@
 					$ul = $('<ul class="list-bullet-none margin-left-none"></ul>').appendTo($fieldset);
 				}
 
-				$chkBox = $('<div class="geomap-legend-chk"><input type="checkbox" id="cb_' + featureTableId + '" value="' + featureTableId + '"' + $checked + ' /></div>');
+				$chkBox = $('<div class="geomap-legend-chk"><input type="checkbox" id="cb_' + featureTableId + '" value="' + featureTableId + '"' + $checked + '/></div>');
 
 				$chkBox.on('change', function() {				
 					var layer = geomap.map.getLayer(olLayerId),				
@@ -514,8 +514,8 @@
 					}
 				});	
 
-				$label = ('<div class="geomap-legend-item"><details class="geomap-legend' + geomap.uniqueid + '"><summary>' +
-							$featureTable.attr('aria-label') + '</summary><div class="geomap-legend-detail" id="sb_' + featureTableId + '"</div></details></div>');
+				$label = ('<div class="geomap-legend-item"><details class="geomap-legend' + geomap.uniqueid + '"><summary><label class="geomap-legend-label" for="cb_' + featureTableId + '">' + $featureTable.attr('aria-label') + '</label>' +
+							'</summary><div class="geomap-legend-detail" id="sb_' + featureTableId + '"></div></details></div>');
 				$ul.append($('<li class="geomap-clear-format"/>').append($chkBox, $label));			
 			}	
 		},
