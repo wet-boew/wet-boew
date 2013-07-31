@@ -485,7 +485,7 @@
 					$ul = $('<ul class="list-bullet-none margin-left-none"></ul>').appendTo($fieldset);
 				}
 
-				$chkBox = $('<div class="geomap-legend-chk"><input type="checkbox" id="cb_' + featureTableId + '" value="' + featureTableId + '"' + $checked + '/></div>');
+				$chkBox = $('<div class="geomap-legend-chk"><input type="checkbox" id="cb_' + featureTableId + '" value="' + featureTableId + '"' + $checked + ' /></div>');
 
 				$chkBox.on('change', function() {				
 					var layer = geomap.map.getLayer(olLayerId),				
