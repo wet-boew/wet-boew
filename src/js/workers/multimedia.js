@@ -228,6 +228,7 @@
 									this.setCurrentTime(s);
 								}
 							}
+							evtmgr.off('durationchange');
 							break;
 						case 'play':
 							b = $w.find('.playpause');

@@ -550,6 +550,7 @@
 						ruleLen = style.rules.length;
 						
 						if (ruleLen) {
+							symbolText += '<ul class="list-bullet-none margin-left-none">';
 							while (ruleLen--) {
 								var filter = style.rules[ruleLen].filter,
 									filterType = filter.type,
@@ -558,20 +559,21 @@
 								if (filterType === '==') {
 									filterType = colon;
 								}
-								
+
+								symbolText += '<li class="margin-bottom-medium">' + filter.property + ' ';
 								if (filter.value !== null) {
-									symbolText += ('<label>' + filter.property + ' ' + filterType + ' ' + filter.value + '</label>' + _pe.fn.geomap.getLegendSymbol(symbolizer));
+									symbolText += (filterType + ' ' + filter.value + _pe.fn.geomap.getLegendSymbol(symbolizer) + '</li>');
 								} else {
-									symbolText += ('<label>' + filter.property + ' ' + filter.lowerBoundary + ' ' + filterType + ' ' + filter.upperBoundary + '</label>' + _pe.fn.geomap.getLegendSymbol(symbolizer));
+									symbolText += (filter.lowerBoundary + ' ' + filterType + ' ' + filter.upperBoundary + '</label>' + _pe.fn.geomap.getLegendSymbol(symbolizer) + '</li>');
 								}
 							}
-
+							symbolText += '</ul>';
 						} else if (typeof styleDefault.fillColor !== 'undefined') {
 							symbolText += _pe.fn.geomap.getLegendSymbol(styleDefault);
 						} else if (typeof styleDefault.externalGraphic !== 'undefined') {
 							symbolText += _pe.fn.geomap.getLegendGraphic(styleDefault);
 						}
-						
+
 						$symbol.append(symbolText);
 					}	
 				}
@@ -601,14 +603,15 @@
 				
 			return '<div class="geomap-legend-symbol"' + (symbolStyle !== '' ? ' style="' + symbolStyle + '"/>' : '/>');
 		},
-		
-		getLegendGraphic: function(style) {
+
+		getLegendGraphic: function(style, alt) {
 			var symbolStyle = '',
+				altText = typeof alt !== 'undefined' ? alt : '',
 				graphicOpacity = style.graphicOpacity,
 				pointRadius = style.pointRadius,
 				graphicHeight = style.graphicHeight,
 				graphicWidth = style.graphicWidth;
-				
+
 			if (typeof graphicOpacity !== 'undefined') {
 				if (_pe.preIE8) {
 					symbolStyle += 'filter:alpha(opacity=' + (graphicOpacity * 10) + ');';
@@ -616,14 +619,14 @@
 					symbolStyle += 'opacity: ' + graphicOpacity + ';';
 				}
 			}
-				
+
 			if (typeof pointRadius !== 'undefined') {
 				symbolStyle += 'height: ' + pointRadius + 'px; width: ' + pointRadius + 'px;';
 			} else if ((typeof graphicHeight !== 'undefined') && (typeof graphicWidth !== 'undefined')) {
 				symbolStyle += 'height: ' + graphicHeight + 'px; width: ' + graphicWidth + 'px;';
 			}
-				
-			return '<img src="' + style.externalGraphic + '" ' + (symbolStyle !== '' ? ' style="' + symbolStyle + '"/>' : '/>');
+
+			return '<img src="' + style.externalGraphic + '" alt="' + altText + (symbolStyle !== '' ? '" style="' + symbolStyle + '" />' : '" />');
 		},
 		
 		/*
@@ -1765,7 +1768,20 @@
 			mapArray.push(geomap.map);
 			
 			// if all geomap instance are loaded, trigger geomap-ready
-			if (mapArray.length === _pe.document.find('.wet-boew-geomap').length) {
+			if (mapArray.length === _pe.main.find('.wet-boew-geomap').length) {
+				// set the alt attributes for images to fix the missing alt attribute. Need to do it after zoom because each zoom brings new tiles.
+				// to solve this modifications needs to be done to OpenLayers core code OpenLayers.Util.createImage and OpenLayers.Util.createAlphaImageDiv
+				// TODO: fix no alt attribute on tile image in OpenLayers rather than use this override
+				// wait 2 seconds for all tile to be loaded in the page
+				setTimeout(function() {
+					geomap.gmap.find('img').attr('alt', '');
+					_pe.main.find('.olTileImage').attr('alt', '');
+				}, 2000);
+
+				geomap.map.events.on({'moveend': function() {
+					// every time we zoom/pan we need to put back the alt for OpenLayers tiles
+					_pe.main.find('.olTileImage').attr('alt', '');
+				}});
 				_pe.document.trigger('geomap-ready');
 			}
 		}
