@@ -469,7 +469,8 @@
 				$ul,
 				$checked,
 				$chkBox,
-				$label;	
+				$label,
+				$legendGraphic;	
 
 			if (typeof geomap.glegend !== 'undefined') {			
 				// if no legend or fieldset add them
@@ -485,9 +486,7 @@
 					$ul = $('<ul class="list-bullet-none margin-left-none"></ul>').appendTo($fieldset);
 				}
 				
-				var $div = $('<div class="geomap-legend-chk"></div>');
-
-				$chkBox = $('<input type="checkbox" id="cb_' + featureTableId + '" value="' + featureTableId + '"' + $checked + ' />').appendTo($div);
+				$chkBox = $('<input type="checkbox" id="cb_' + featureTableId + '" value="' + featureTableId + '"' + $checked + ' />').appendTo('<div class="geomap-legend-chk"></div>');
 
 				$chkBox.on('change', function() {			
 					var layer = geomap.map.getLayer(olLayerId),				
@@ -514,19 +513,15 @@
 					} else {
 						$parent.css('display', 'none');
 					}
-				});					
-				
-				var $legendGraphic = $('<div>', {
-					"id": "sb_" + featureTableId					
 				});
 				
 				$label = $('<label>' , {
 					"for": "cb_" + featureTableId,
 					"html": $featureTable.attr('aria-label'),
 					"class": "form-checkbox"
-				}).append($chkBox, $legendGraphic);					
+				}).append($chkBox, '<div id="' + 'sb_' + featureTableId + '"></div>');					
 					
-				$ul.append($('<li>').append($label));		
+				$ul.append($('<li>').append($label));
 			}	
 		},
 
@@ -1690,8 +1685,7 @@
 			// add a listener on the window to update map when resized
 			window.onresize = function() {		
 				if(_pe.mobile) {
-					$mapDiv.removeClass('span-6');
-					$mapDiv.addClass('span-8');
+					$mapDiv.removeClass('span-6').addClass('span-8');
 				}
 				$mapDiv.height($mapDiv.width() * 0.8);
 				map.updateSize();
