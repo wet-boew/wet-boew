@@ -115,8 +115,8 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <option value="mr">M.</option>
 <option value="ms">Madame</option>
 </select>
-<label for="fname"><span class="field-name">Prénom</span> <strong>(obligatoire)</strong></label><input id="fname" name="fname" type="text" required="required" pattern="{2,}" data-rule-minlength="2" />
-<label for="lname"><span class="field-name">Nom de famille</span> <strong>(obligatoire)</strong></label><input id="lname" name="lname" type="text" required="required" pattern="{2,}" data-rule-minlength="2" />
+<label for="fname"><span class="field-name">Prénom</span> <strong>(obligatoire)</strong></label><input id="fname" name="fname" type="text" required="required" pattern=".{2,}" data-rule-minlength="2" />
+<label for="lname"><span class="field-name">Nom de famille</span> <strong>(obligatoire)</strong></label><input id="lname" name="lname" type="text" required="required" pattern=".{2,}" data-rule-minlength="2" />
 <label for="tel"><span class="field-name">Numéro de téléphone</span> (999-999-9999) <strong>(obligatoire)</strong></label><input id="tel" name="tel" type="tel" required="required" data-rule-phoneUS="true" />
 <label for="email1"><span class="field-name">Adresse électronique</span></label><input id="email1" name="email1" type="email" />
 <label for="url1"><span class="field-name">URL du site Web (http://www.url.com)</span></label><input id="url1" name="url1" type="url" />
@@ -130,7 +130,7 @@ wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licenc
 <label for="integer1"><span class="field-name">Intègre</span> (entre 5 et 40)</label><input id="integer1" name="integer1" type="number" min="5" max="40" />
 <label for="letters1"><span class="field-name">Lettres seulement</span> (5 caractères maximum)</label><input id="letters1" name="letters1" type="text" size="5" maxlength="5" pattern="[A-Za-z\s]" data-rule-lettersonly="true" />
 <label for="text1"><span class="field-name">Lettres et des signes de ponctuation seulement</span> (ponctuation qui est permis&#160;: [. , ( ) "])</label><input id="text1" name="text1" type="text" pattern="[A-Za-z-.,()'&quot;\s]" data-rule-letterswithbasicpunc="true" />
-<label for="password1"><span class="field-name">Mot de passe</span> (entre 5 et 10 characters)</label><input id="password1" name="password1" type="password" maxlength="10" size="10" pattern="{5,10}" data-rule-rangelength="[5,10]" />
+<label for="password1"><span class="field-name">Mot de passe</span> (entre 5 et 10 characters)</label><input id="password1" name="password1" type="password" maxlength="10" size="10" pattern=".{5,10}" data-rule-rangelength="[5,10]" />
 </fieldset>
 
 <fieldset class="margin-top-large" data-role="controlgroup"><legend><span class="field-name">Animal favori</span> (sélectionner au moins une des options ci-dessous)</legend>
