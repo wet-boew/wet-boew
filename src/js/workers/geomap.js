@@ -545,6 +545,7 @@
 						ruleLen = style.rules.length;
 						
 						if (ruleLen) {
+							symbolText += '<ul class="list-bullet-none margin-left-none">';
 							while (ruleLen--) {
 								var filter = style.rules[ruleLen].filter,
 									filterType = filter.type,
@@ -553,20 +554,21 @@
 								if (filterType === '==') {
 									filterType = colon;
 								}
-								
+
+								symbolText += '<li class="margin-bottom-medium">' + filter.property + ' ';
 								if (filter.value !== null) {
-									symbolText += ('<label>' + filter.property + ' ' + filterType + ' ' + filter.value + '</label>' + _pe.fn.geomap.getLegendSymbol(symbolizer));
+									symbolText += (filterType + ' ' + filter.value + _pe.fn.geomap.getLegendSymbol(symbolizer) + '</li>');
 								} else {
-									symbolText += ('<label>' + filter.property + ' ' + filter.lowerBoundary + ' ' + filterType + ' ' + filter.upperBoundary + '</label>' + _pe.fn.geomap.getLegendSymbol(symbolizer));
+									symbolText += (filter.lowerBoundary + ' ' + filterType + ' ' + filter.upperBoundary + '</label>' + _pe.fn.geomap.getLegendSymbol(symbolizer) + '</li>');
 								}
 							}
-
+							symbolText += '</ul>';
 						} else if (typeof styleDefault.fillColor !== 'undefined') {
 							symbolText += _pe.fn.geomap.getLegendSymbol(styleDefault);
 						} else if (typeof styleDefault.externalGraphic !== 'undefined') {
 							symbolText += _pe.fn.geomap.getLegendGraphic(styleDefault);
 						}
-						
+
 						$symbol.append(symbolText);
 					}	
 				}
