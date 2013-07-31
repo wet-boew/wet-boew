@@ -131,7 +131,7 @@
 					itemnum;
 				if ($childmenu.length > 0) {
 					$elm.attr('aria-haspopup', 'true').addClass('mb-has-sm').attr('href', '#').wrapInner('<span class="expandicon"><span class="sublink"></span></span>');
-					$childmenu.attr({'role': 'menu', 'aria-haspopup': 'true', 'aria-expanded': 'false', 'aria-hidden': 'true'}).find(':has(:header) ul').attr({'role': 'menu', 'aria-haspopup': 'true'});
+					$childmenu.attr({'role': 'menu', 'aria-expanded': 'false', 'aria-hidden': 'true'}).find(':has(:header) ul').attr('role', 'menu');
 					$elm.append('<span class="wb-invisible"> ' + submenuHelp + '</span>');
 					$elm.closest('li').hoverIntent({
 						over: function () {
@@ -158,6 +158,7 @@
 						$link.attr({'role': 'menuitem', 'aria-posinset': itemnum, 'aria-setsize': len});
 						
 						if (nodeName === 'h3' || nodeName === 'h4') {
+							$node.children('a').attr('aria-haspopup', 'true');
 							links = $node.next('ul').find('a').get();
 							for (j = 0, len2 = links.length; j !== len2; j += 1) {
 								link = links[j];
