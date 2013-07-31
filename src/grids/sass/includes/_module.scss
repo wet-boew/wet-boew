@@ -22,12 +22,6 @@
 			@include colorize-base($accent);
 			@include colorize($accent);
 		}
-		a {
-			text-decoration: none;
-			@include pseudo-focus {
-				text-decoration: underline;
-			}
-		}
 	}
 
 	.module-billboard li, .module-related > ul, .module-menu-section > ul {
@@ -158,7 +152,7 @@
 			}
 		}
 	}
-	
+
 	.module-table-contents {
 		background: none;
 		> [class*="span-"] {
@@ -182,7 +176,7 @@
 			}
 		}
 	}
-	
+
 	.module-table-contents {
 		ul {
 			&, &[class*="column-"] {
