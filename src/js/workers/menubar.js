@@ -131,7 +131,7 @@
 					itemnum;
 				if ($childmenu.length > 0) {
 					$elm.attr('aria-haspopup', 'true').addClass('mb-has-sm').attr('href', '#').wrapInner('<span class="expandicon"><span class="sublink"></span></span>');
-					$childmenu.attr({'role': 'menu', 'aria-expanded': 'false', 'aria-hidden': 'true'}).find(':has(:header) ul').attr('role', 'menu');
+					$childmenu.attr({'role': 'menu', 'aria-haspopup': 'true', 'aria-expanded': 'false', 'aria-hidden': 'true'}).find(':has(:header) ul').attr({'role': 'menu', 'aria-haspopup': 'true'});
 					$elm.append('<span class="wb-invisible"> ' + submenuHelp + '</span>');
 					$elm.closest('li').hoverIntent({
 						over: function () {
