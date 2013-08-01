@@ -36,60 +36,37 @@
 				elmslen,
 				$scopeParent = $scope.parent(),
 				correctheight,
-				gotosubmenu,
-				hideallsubmenus,
 				hidesubmenu,
 				showsubmenu,
 				submenuHelp = _pe.dic.get('%sub-menu-help');
 
 			/* functions that would be necessary for helpers */
 			showsubmenu = function (toplink) {
-				hideallsubmenus();
 				var _node = $(toplink).closest('li'),
 					_sm = _node.find('.mb-sm');
-				_sm.attr({'aria-expanded':'true', 'aria-hidden':'false'}).toggleClass('mb-sm mb-sm-open');
-
-				if (_pe.rtl) {
-					if ((Math.floor(_sm.offset().left) - Math.floor($menuBoundary.offset().left)) <= 0) {
-						_sm.css('left', '0');
+				if (_sm.length !== 0) {
+					hidesubmenu();
+					_sm.attr({'aria-expanded':'true', 'aria-hidden':'false'}).toggleClass('mb-sm mb-sm-open').find('a').attr('tabindex', '0');
+					if (_pe.rtl) {
+						if ((Math.floor(_sm.offset().left) - Math.floor($menuBoundary.offset().left)) <= 0) {
+							_sm.css('left', '0');
+						}
+					} else {
+						if ((Math.floor(_sm.offset().left + _sm.width()) - Math.floor($menuBoundary.offset().left + $menuBoundary.width())) >= -1) {
+							_sm.css('right', '0');
+						}
 					}
-				} else {
-					if ((Math.floor(_sm.offset().left + _sm.width()) - Math.floor($menuBoundary.offset().left + $menuBoundary.width())) >= -1) {
-						_sm.css('right', '0');
-					}
+					_node.addClass('mb-active');
 				}
-
-				_node.addClass('mb-active');
-				return;
-			};
-			/* action function to go to menu */
-			gotosubmenu = function (toplink) {
-				var _node = $(toplink),
-					_sm = _node.closest('li').find('.mb-sm-open');
-				if (_pe.cssenabled) {
-					_sm.find('a').attr('tabindex', '0');
-				}
-				_node.trigger('item-next');
 				return;
 			};
 			/* hidemenu worker function */
-			hidesubmenu = function (toplink) {
-				var _node = $(toplink).closest('li'),
-					_sm = _node.find('.mb-sm-open');
-				_sm.attr({'aria-expanded':'false', 'aria-hidden':'true'}).toggleClass('mb-sm mb-sm-open').css('right', '');
+			hidesubmenu = function () {
+				var _sm = $menu.find('.mb-sm-open').attr({'aria-expanded':'false', 'aria-hidden':'true'}).toggleClass('mb-sm mb-sm-open').css('right', '');
 				if (_pe.cssenabled) {
 					_sm.find('a').attr('tabindex', '-1');
 				}
-				_node.removeClass('mb-active');
-				return;
-			};
-			/* hide all the submenus */
-			hideallsubmenus = function () {
-				var _opensm = $menu.find('.mb-sm-open');
-				if (_opensm.length !== 0) {
-					return hidesubmenu(_opensm.closest('li'));
-				}
-				return;
+				return _sm.closest('li').removeClass('mb-active');
 			};
 			/* function to correct the height of the menu on resize */
 			correctheight = function () {
@@ -206,11 +183,14 @@
 			}).parent().on('click vclick touchstart mouseenter mouseleave', '> :header a', function (e) {
 				var type = e.type,
 					button = e.button;
-				if (type === 'mouseenter') {
+				switch (type) {
+				case 'mouseenter':
 					_pe.fn.menubar.ignoreMenuBarClicks = true;
-				} else if (type === 'mouseleave') {
+					break;
+				case 'mouseleave':
 					_pe.fn.menubar.ignoreMenuBarClicks = false;
-				} else {
+					break;
+				default:
 					if ($(this).closest('li').hasClass('mb-active')) {
 						if (type !== 'click' || ((typeof button === 'undefined' || button === _pe.leftMouseButton) && !_pe.fn.menubar.ignoreMenuBarClicks)) { // Ignore clicks on the menu bar if menu opened by hover or if middle or right button click
 							hidesubmenu(this);
@@ -226,9 +206,12 @@
 			$scope.on('keydown focusin section-next section-previous item-next item-previous close', 'li', function (e) {
 				var next,
 					prev,
-					_elm = $(e.target),
+					target = e.target,
+					_elm = $(target),
 					_activemenu = $scope.find('.mb-active'),
-					_id,
+					_id = $.map(/\bknav-(\d+)-(\d+)-(\d+)/.exec(_elm.attr('class')), function (n) {
+						return parseInt(n, 10);
+					}),
 					keycode = e.keyCode,
 					type = e.type,
 					keychar,
@@ -236,52 +219,43 @@
 					elmtext,
 					matches,
 					match,
-					level,
+					level = !!_id[2] << 1 | !!_id[3],
 					i,
 					len;
-				_id = $.map(/\bknav-(\d+)-(\d+)-(\d+)/.exec(_elm.attr('class')), function (n) {
-					return parseInt(n, 10);
-				});
-				if (type === 'keydown') {
+				switch (type) {
+				case 'keydown':
 					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
-						if (keycode === 13) { // enter key
-							if (_id[2] === 0 && _id[3] === 0 && _elm.hasClass('mb-has-sm')) {
-								gotosubmenu(e.target);
-								return false;
-							}
-						} else if (keycode === 27) { // escape key
-							_elm.trigger('close');
-							return false;
-						} else if (keycode === 32) { // spacebar
-							if (_id[2] === 0 && _id[3] === 0 && _elm.hasClass('mb-has-sm')) {
-								gotosubmenu(e.target);
+						switch (keycode) {
+						case 13: // enter key
+						case 32: // spacebar
+							if (level === 0 && _elm.attr('aria-haspopup') === 'true') {
+								_elm.trigger('item-next');
 							} else {
 								window.location = _elm.attr('href');
 							}
 							return false;
-						} else if (keycode === 37) { // left arrow
+						case 27: // escape key
+							_elm.trigger('close');
+							return false;
+						case 37: // left arrow
 							_elm.trigger('section-previous');
 							return false;
-						} else if (keycode === 38) { // up arrow
-							if (_id[2] === 0 && _id[3] === 0) {
-								gotosubmenu(e.target);
+						case 38: // up arrow
+							if (level === 0) {
+								_elm.trigger('item-next');
 							} else {
 								_elm.trigger('item-previous');
 							}
 							return false;
-						} else if (keycode === 39) { // right arrow
+						case 39: // right arrow
 							_elm.trigger('section-next');
 							return false;
-						} else if (keycode === 40) { // down arrow
-							if (_id[2] === 0 && _id[3] === 0) {
-								gotosubmenu(e.target);
-							} else {
-								_elm.trigger('item-next');
-							}
+						case 40: // down arrow
+							_elm.trigger('item-next');
 							return false;
-						} else {
+						default:
 							// 0 - 9 and a - z keys
-							if ((keycode > 47 && keycode < 58) || (keycode > 64 && keycode < 91)) {
+							if (keycode > 47 && keycode < 91) {
 								keychar = String.fromCharCode(keycode).toLowerCase();
 								sublink = (_id[2] !== 0 || _id[3] !== 0);
 								elmtext = _elm.text();
@@ -307,19 +281,21 @@
 								}
 								return false;
 							}
+							break;
 						}
 					}
-				} else if (type === 'close') {
-					if ((!!_id[2] << 1 | !!_id[3]) === 0) { // top-level menu link has focus so close menus and put focus after menu bar
+					break;
+				case 'close':
+					if (level === 0) { // top-level menu link has focus so close menus and put focus after menu bar
 						_pe.focus(_pe.main.find('#wb-cont').attr('tabindex', '-1'));
 					} else { // submenu link has focus so close menu and put focus on the parent menu bar link
 						_pe.focus(_activemenu.find('.knav-' + _id[1] + '-0-0'));
 					}
 					setTimeout(function () {
-						return hideallsubmenus();
+						return hidesubmenu();
 					}, 5);
-				} else if (type === 'section-previous') {
-					level = !!_id[2] << 1 | !!_id[3];
+					break;
+				case 'section-previous':
 					switch (level) {
 					case 0: // top-level menu link has focus
 					case 1: // 3rd level menu link has focus, but the popup menu doesn't have sub-sections
@@ -345,9 +321,8 @@
 						}
 						break;
 					}
-					return false;
-				} else if (type === 'section-next') {
-					level = !!_id[2] << 1 | !!_id[3];
+					break;
+				case 'section-next':
 					switch (level) {
 					case 0: // top-level menu link has focus
 					case 1: // 3rd level menu link has focus, but the popup menu doesn't have sub-sections
@@ -373,8 +348,11 @@
 						}
 						break;
 					}
-					return false;
-				} else if (type === 'item-next') {
+					break;
+				case 'item-next':
+					if (level === 0) {
+						showsubmenu(target);
+					}
 					next = _activemenu.find('.knav-' + _id[1] + '-' + (_id[2]) + '-' + (_id[3] + 1)); // move to next item
 					if (next.length === 0) {
 						next = _activemenu.find('.knav-' + _id[1] + '-' + (_id[2] + 1) + '-0, .knav-' + _id[1] + '-' + (_id[2] + 1) + '-1').first(); // move to next section
@@ -384,9 +362,9 @@
 					} else {
 						_pe.focus(_activemenu.find('.knav-' + _id[1] + '-0-1, .knav-' + _id[1] + '-1-0, .knav-' + _id[1] + '-1-1').first()); // move to first item in the submenu
 					}
-					return false;
-				} else if (type === 'item-previous') {
-					prev = ((_id[2] !== 0 && _id[3] !== 0) || (_id[2] === 0 && _id[3] > 1) ? _activemenu.find('.knav-' + _id[1] + '-' + (_id[2]) + '-' + (_id[3] - 1)) : ''); // move to previous item
+					break;
+				case 'item-previous':
+					prev = (level === 3 || (level === 1 && _id[3] > 1) ? _activemenu.find('.knav-' + _id[1] + '-' + (_id[2]) + '-' + (_id[3] - 1)) : ''); // move to previous item
 					if (prev.length === 0) {
 						prev = (_id[2] !== 0 ? _activemenu.find('a').filter('[class*="knav-' + _id[1] + '-' + (_id[2] - 1) + '-"]:not(.knav-' + _id[1] + '-0-0)').last() : ''); // move to last item of the previous section
 					}
@@ -395,16 +373,19 @@
 					} else {
 						_pe.focus(_activemenu.find('[class*="knav-"]').last()); // move to last item in the submenu
 					}
-					return false;
-				} else if (type === 'focusin' && _id[2] === 0 && _id[3] === 0) {
-					hideallsubmenus();
-					if (_elm.find('.expandicon').length > 0) {
-						showsubmenu(e.target);
+					break;
+				case 'focusin':
+					if (level === 0) {
+						hidesubmenu();
+						if (_elm.find('.expandicon').length > 0) {
+							showsubmenu(e.target);
+						}
 					}
+					break;
 				}
 			});
 			_pe.document.on('touchstart focusin', function () {
-				return hideallsubmenus();
+				return hidesubmenu();
 			});
 
 			return $scope;
