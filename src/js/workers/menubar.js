@@ -55,8 +55,9 @@
 				return;
 			};
 			/* hidemenu worker function */
-			hidesubmenu = function () {
-				var _sm = $menu.find('.mb-sm-open').attr({'aria-expanded':'false', 'aria-hidden':'true'}).toggleClass('mb-sm mb-sm-open').css('right', '');
+			hidesubmenu = function (toplink) {
+				var _sm = toplink === undefined ? $menu.find('.mb-sm-open') : $(toplink).find('.mb-sm-open');
+				_sm.attr({'aria-expanded':'false', 'aria-hidden':'true'}).toggleClass('mb-sm mb-sm-open').css('right', '');
 				if (_pe.cssenabled) {
 					_sm.find('a').attr('tabindex', '-1');
 				}
@@ -75,10 +76,10 @@
 			/* establish boundaries */
 			$menuBoundary = $scope.children('div');
 			$menu = $menuBoundary.children('ul');
-			
+
 			/* Detach $scope to minimize reflow while enhancing the menu */
 			$scope.detach();
-			
+
 			/* ARIA additions */
 			$scope.find('> div > ul').attr('role', 'menubar');
 			_pe.resize(correctheight);
@@ -127,7 +128,7 @@
 							$link = $node;
 						}
 						$link.attr({'role': 'menuitem', 'aria-posinset': itemnum, 'aria-setsize': len});
-						
+
 						if (nodeName === 'h3' || nodeName === 'h4') {
 							$node.children('a').attr('aria-haspopup', 'true');
 							links = $node.next('ul').find('a').get();
