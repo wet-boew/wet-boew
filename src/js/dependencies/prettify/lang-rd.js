@@ -5,7 +5,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//		http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -28,22 +28,22 @@
  * @author Jeffrey Arnold
  */
 PR['registerLangHandler'](
-    PR['createSimpleLexer'](
-        [
-            // whitespace
-            [PR['PR_PLAIN'],   /^[\t\n\r \xA0]+/, null, '\t\n\r \xA0'],
-            // all comments begin with '%'
-            [PR['PR_COMMENT'], /^%[^\r\n]*/, null, '%']
-        ],
-        [// special macros with no args
-            [PR['PR_LITERAL'], /^\\(?:cr|l?dots|R|tab)\b/],
-	    // macros
-            [PR['PR_KEYWORD'], /^\\[a-zA-Z@]+/],
-	    // highlighted as macros, since technically they are
-            [PR['PR_KEYWORD'],  /^#(?:ifn?def|endif)/ ],
-	    // catch escaped brackets
-	    [PR['PR_PLAIN'], /^\\[{}]/],
-            // punctuation
-            [PR['PR_PUNCTUATION'], /^[{}()\[\]]+/]
-        ]),
-    ['Rd', 'rd']);
+	PR['createSimpleLexer'](
+		[
+			// whitespace
+			[PR['PR_PLAIN'],   /^[\t\n\r \xA0]+/, null, '\t\n\r \xA0'],
+			// all comments begin with '%'
+			[PR['PR_COMMENT'], /^%[^\r\n]*/, null, '%']
+		],
+		[// special macros with no args
+			[PR['PR_LITERAL'], /^\\(?:cr|l?dots|R|tab)\b/],
+		// macros
+			[PR['PR_KEYWORD'], /^\\[a-zA-Z@]+/],
+		// highlighted as macros, since technically they are
+			[PR['PR_KEYWORD'],	/^#(?:ifn?def|endif)/ ],
+		// catch escaped brackets
+		[PR['PR_PLAIN'], /^\\[{}]/],
+			// punctuation
+			[PR['PR_PUNCTUATION'], /^[{}()\[\]]+/]
+		]),
+	['Rd', 'rd']);
