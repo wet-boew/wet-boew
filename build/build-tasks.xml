@@ -4,7 +4,7 @@
 	<property file="${tasks.basedir}/build-tasks.properties"/>
 	
 	<!-- Version and build time-->
-	<property name="wet-boew-build.version" value="v3.0.9-release"/>
+	<property name="wet-boew-build.version" value="v3.0.10-development"/>
 	<tstamp>
 		<format property="wet-boew-build.starttime" pattern="yyyy-MM-dd hh:mm aa z" locale="en,CA" timezone="America/Toronto" />
 	</tstamp>
