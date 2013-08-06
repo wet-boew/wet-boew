@@ -42,25 +42,25 @@ var commands = 'B|BREAK|'		+
 			   'C|CLOSE|'		+
 			   'D|DO|'			+
 			   'E|ELSE|'		+
-			   'F|FOR|'		+
+			   'F|FOR|' 		+
 			   'G|GOTO|'		+
 			   'H|HALT|'		+
 			   'H|HANG|'		+
 			   'I|IF|'			+
-			   'J|JOB|'		+
+			   'J|JOB|' 		+
 			   'K|KILL|'		+
 			   'L|LOCK|'		+
 			   'M|MERGE|'		+
-			   'N|NEW|'		+
+			   'N|NEW|' 		+
 			   'O|OPEN|'		+	  
 			   'Q|QUIT|'		+
 			   'R|READ|'		+
-			   'S|SET|'		+
+			   'S|SET|' 		+
 			   'TC|TCOMMIT|'	+
 			   'TRE|TRESTART|'	+
 			   'TRO|TROLLBACK|' +
-			   'TS|TSTART|'	+
-			   'U|USE|'		+
+			   'TS|TSTART|' 	+
+			   'U|USE|' 		+
 			   'V|VIEW|'		+  
 			   'W|WRITE|'		+
 			   'X|XECUTE';
@@ -85,7 +85,7 @@ var intrinsicVariables = 'D|DEVICE|'	   +
 						 'Y|'			   +
 						 'Z[A-Z]*|';	
 
-var intrinsicFunctions = 'A|ASCII|'	   +
+var intrinsicFunctions = 'A|ASCII|' 	   +
 						 'C|CHAR|'		   +
 						 'D|DATA|'		   +
 						 'E|EXTRACT|'	   +
@@ -94,12 +94,12 @@ var intrinsicFunctions = 'A|ASCII|'	   +
 						 'G|GET|'		   +
 						 'J|JUSTIFY|'	   +
 						 'L|LENGTH|'	   +
-						 'NA|NAME|'	   +
-						 'O|ORDER|'	   +
-						 'P|PIECE|'	   +
+						 'NA|NAME|' 	   +
+						 'O|ORDER|' 	   +
+						 'P|PIECE|' 	   +
 						 'QL|QLENGTH|'	   +
 						 'QS|QSUBSCRIPT|'  +
-						 'Q|QUERY|'	   +
+						 'Q|QUERY|' 	   +
 						 'R|RANDOM|'	   +
 						 'RE|REVERSE|'	   +
 						 'S|SELECT|'	   +
@@ -121,7 +121,7 @@ var shortcutStylePatterns = [
 
 var fallthroughStylePatterns = [
 		 // A line comment that starts with ;
-		 [PR['PR_COMMENT'],	/^;[^\r\n]*/, null, ';'],
+		 [PR['PR_COMMENT'], 	/^;[^\r\n]*/, null, ';'],
 		 // Add intrinsic variables and functions as declarations, there not really but it mean
 		 // they will hilighted differently from commands.
 		 [PR['PR_DECLARATION'], new RegExp('^(?:\\$(?:' + intrinsic + '))\\b', 'i'), null],

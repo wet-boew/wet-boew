@@ -53,7 +53,7 @@ PR['registerLangHandler'](
 		[
 		 // Block comments are delimited by /* and */.
 		 // Single-line comments begin with // and extend to the end of a line.
-		 [PR['PR_COMMENT'],	/^(?:\/\/[^\r\n]*|\/\*[\s\S]*?\*\/)/],
+		 [PR['PR_COMMENT'], 	/^(?:\/\/[^\r\n]*|\/\*[\s\S]*?\*\/)/],
 		 [PR['PR_PLAIN'],		/^(?:[^\/\"\'`]|\/(?![\/\*]))+/i]
 		]),
 	['go']);

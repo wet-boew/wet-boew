@@ -491,7 +491,7 @@ var prettyPrint;
    * (Element	"p"
    *   (Element "b"
    *	 (Text	"print "))		 ; #1
-   *   (Text	"'Hello '")	 ; #2
+   *   (Text	"'Hello '") 	 ; #2
    *   (Element "br")			 ; #3
    *   (Text	"  + 'World';")) ; #4
    * </pre>
@@ -504,7 +504,7 @@ var prettyPrint;
    * <pre>
    * {
    *   sourceCode: "print 'Hello '\n  + 'World';",
-   *   //					  1		 2
+   *   //					  1 		 2
    *   //			012345678901234 5678901234567
    *   spans: [0, #1, 6, #2, 14, #3, 15, #4]
    * }
@@ -879,7 +879,7 @@ var prettyPrint;
 		  +    '|\\x5C' + regexAny
 		  // or non-nesting character sets (\x5B\x5D);
 		  +    '|\\x5B(?:[^\\x5C\\x5D' + regexExcls + ']'
-		  +			'|\\x5C' + regexAny + ')*(?:\\x5D|$))+'
+		  + 			'|\\x5C' + regexAny + ')*(?:\\x5D|$))+'
 		  // finally closed by a /.
 		  + '/');
 	  fallthroughStylePatterns.push(
@@ -1280,7 +1280,7 @@ var prettyPrint;
 		  [
 		   [PR_PLAIN,		/^[^<?]+/],
 		   [PR_DECLARATION, /^<!\w[^>]*(?:>|$)/],
-		   [PR_COMMENT,	/^<\!--[\s\S]*?(?:-\->|$)/],
+		   [PR_COMMENT, 	/^<\!--[\s\S]*?(?:-\->|$)/],
 		   // Unescaped content in an unknown language
 		   ['lang-',		/^<\?([\s\S]+?)(?:\?>|$)/],
 		   ['lang-',		/^<%([\s\S]+?)(?:%>|$)/],
@@ -1289,7 +1289,7 @@ var prettyPrint;
 		   // Unescaped content in javascript.	(Or possibly vbscript).
 		   ['lang-js',		/^<script\b[^>]*>([\s\S]*?)(<\/script\b[^>]*>)/i],
 		   // Contains unescaped stylesheet content
-		   ['lang-css',	/^<style\b[^>]*>([\s\S]*?)(<\/style\b[^>]*>)/i],
+		   ['lang-css', 	/^<style\b[^>]*>([\s\S]*?)(<\/style\b[^>]*>)/i],
 		   ['lang-in.tag',	/^(<\/?[a-z][^<>]*>)/i]
 		  ]),
 	  ['default-markup', 'htm', 'html', 'mxml', 'xhtml', 'xml', 'xsl']);
@@ -1300,16 +1300,16 @@ var prettyPrint;
 		   [PR_ATTRIB_VALUE, /^(?:\"[^\"]*\"?|\'[^\']*\'?)/, null, '\"\'']
 		   ],
 		  [
-		   [PR_TAG,		 /^^<\/?[a-z](?:[\w.:-]*\w)?|\/?>$/i],
+		   [PR_TAG, 		 /^^<\/?[a-z](?:[\w.:-]*\w)?|\/?>$/i],
 		   [PR_ATTRIB_NAME,  /^(?!style[\s=]|on)[a-z](?:[\w:-]*\w)?/i],
 		   ['lang-uq.val',	 /^=\s*([^>\'\"\s]*(?:[^>\'\"\s\/]|\/(?=\s)))/],
 		   [PR_PUNCTUATION,  /^[=<>\/]+/],
 		   ['lang-js',		 /^on\w+\s*=\s*\"([^\"]+)\"/i],
 		   ['lang-js',		 /^on\w+\s*=\s*\'([^\']+)\'/i],
 		   ['lang-js',		 /^on\w+\s*=\s*([^\"\'>\s]+)/i],
-		   ['lang-css',	 /^style\s*=\s*\"([^\"]+)\"/i],
-		   ['lang-css',	 /^style\s*=\s*\'([^\']+)\'/i],
-		   ['lang-css',	 /^style\s*=\s*([^\"\'>\s]+)/i]
+		   ['lang-css', 	 /^style\s*=\s*\"([^\"]+)\"/i],
+		   ['lang-css', 	 /^style\s*=\s*\'([^\']+)\'/i],
+		   ['lang-css', 	 /^style\s*=\s*([^\"\'>\s]+)/i]
 		   ]),
 	  ['in.tag']);
   registerLangHandler(

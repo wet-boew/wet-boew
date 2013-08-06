@@ -36,7 +36,7 @@ PR['registerLangHandler'](
 		 // Meta-info like #summary, #labels, etc.
 		 ['lang-wiki.meta',  /(?:^^|\r\n?|\n)(#[a-z]+)\b/],
 		 // A WikiWord
-		 [PR['PR_LITERAL'],	/^(?:[A-Z][a-z][a-z0-9]+[A-Z][a-z][a-zA-Z0-9]+)\b/
+		 [PR['PR_LITERAL'], 	/^(?:[A-Z][a-z][a-z0-9]+[A-Z][a-z][a-zA-Z0-9]+)\b/
 		  ],
 		 // A preformatted block in an unknown language
 		 ['lang-',			 /^\{\{\{([\s\S]+?)\}\}\}/],
