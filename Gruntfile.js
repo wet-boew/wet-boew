@@ -1,6 +1,6 @@
 /*global module:false*/
 module.exports = function(grunt) {
-
+	"use strict";
 	// Project configuration.
 	grunt.initConfig({
 		// Metadata.
@@ -22,8 +22,7 @@ module.exports = function(grunt) {
 			wetboew: {
 				src: [ 'src/plugins/**/*.js'],
 				dest: 'dist/js/wet-boew.js'
-			},
-
+			}
 		},
 		sass: {
 			base: {
@@ -78,42 +77,42 @@ module.exports = function(grunt) {
 					'dist/js/vapour.min.js': ['lib/modernizr/modernizr.js', 'src/core/vapour/vapour.js']
 				}
 			},
-			 wetboew: {
+			wetboew: {
 				options: {
 						banner: '/* Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt */'
 				},
 				files: {
 						'dist/js/wet-boew.min.js': ['dist/js/wet-boew.js']
-			 	}
+				}
 			}
 		},
 		coffee: {
 			compileBare: {
-                options: {
-                    bare: true
-                },
-                files: [
-                    { 'dist/core/vapour/vapour.js': 'src/core/vapour/vapour.coffee' }, // 1:1 compile
-                   // { 'plugins/bare/wet-boew-plugin.bare.js': 'src/plugins/bare/wet-boew-plugin.coffee' }
-                    { 'dist/plugins/zebra/wet-boew.zebra.js': 'src/plugins/zebra/wet-boew-plugin-zebra.coffee' },
-				    { 'dist/plugins/equalize/wet-boew.equalize.js': 'src/plugins/equalize/wet-boew-plugin-equalize.coffee' },
-				    { 'dist/plugins/dimensions/wet-boew.dimensions.js': 'src/plugins/dimensions/wet-boew-plugin-dimensions.coffee' }
+				options: {
+					bare: true
+				},
+				files: [
+					{ 'dist/core/vapour/vapour.js': 'src/core/vapour/vapour.coffee' }, // 1:1 compile
+					// { 'plugins/bare/wet-boew-plugin.bare.js': 'src/plugins/bare/wet-boew-plugin.coffee' }
+					{ 'dist/plugins/zebra/wet-boew.zebra.js': 'src/plugins/zebra/wet-boew-plugin-zebra.coffee' },
+					{ 'dist/plugins/equalize/wet-boew.equalize.js': 'src/plugins/equalize/wet-boew-plugin-equalize.coffee' },
+					{ 'dist/plugins/dimensions/wet-boew.dimensions.js': 'src/plugins/dimensions/wet-boew-plugin-dimensions.coffee' }
 				]
 			}
 		},
 		jade: {
-		  html: {
-		    options: {
-            	pretty: true
-	        },
-	        files: [{
-	            expand: true,
-	            cwd: 'themes',
-	            dest: 'themes',
-	            src: '**/*.jade',
-	            ext: '.html'
-	        }]
-		  }
+			html: {
+				options: {
+					pretty: true
+				},
+				files: [{
+					expand: true,
+					cwd: 'themes',
+					dest: 'themes',
+					src: '**/*.jade',
+					ext: '.html'
+				}]
+			}
 		},
 		copy: {
 			main : {
@@ -137,18 +136,25 @@ module.exports = function(grunt) {
 				}]
 			}
 		},
-
 		clean: [
 			'dist'
 		],
 		watch: {
-			gruntfile: {
-                files: '<%= jshint.gruntfile.src %>',
-                tasks: ['jshint:gruntfile']
-			},
-			lib_test: {
-                files: '<%= jshint.lib_test.src %>',
-                tasks: ['jshint:lib_test', 'qunit']
+			source: {
+				files: ['src/**/*'],
+				tasks: ['default'],
+				options: {
+					interval: 5007,
+					livereload: true
+				}
+			}
+		},
+		connect: {
+			server: {
+				options: {
+					port: 8000,
+					base: '.'
+				}
 			}
 		}
 	});
@@ -163,11 +169,13 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-coffee');
 	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-sass');
 
 	// Default task.
 	grunt.registerTask('build', ['coffee']);
 	grunt.registerTask('default', ['clean','coffee','jade','sass','concat','uglify', 'copy']);
 	grunt.registerTask('generic', ['clean','coffee','jade','sass','concat','uglify', 'copy']);
+	grunt.registerTask('server', ['connect','watch:source']);
 
 };
