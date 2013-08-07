@@ -351,7 +351,7 @@
 
 			if (_pe.ie === '8.0') {
 				$('#slideoutToggle').css({
-					left: (rightOrLeft === 'left') ? $('#slideoutToggle').outerWidth() + 'px' : '-' + $('#slideoutToggle').outerWidth() + 'px',
+					left: (_pe.rtl ?  '' : '-') + $('#slideoutToggle').outerWidth() + 'px',
 					top: $('#slideoutToggle').outerWidth() + 'px'
 				});
 				wrapper.width(focusOutlineAllowance);

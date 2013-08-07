@@ -5,6 +5,11 @@
  
 @import "compass/css3/transform";
 
+%so-float-right-border-left-0 {
+	border-left: 0;
+	float: right;
+}
+
 .wet-boew-slideout {
 	display: none;
 }
@@ -95,17 +100,15 @@ div {
 /* rtl */
 [dir="rtl"] {
 	.tabbedSlideout {
-		border-left: 0;
+		@extend %so-float-right-border-left-0;
 		border-right: 1px solid #CCC;
-		float: right;
 	}
 	.slideoutWrapperRel {
 		right: auto;
 	}
 	.slideoutToggle {
 		border-right: 1px solid #000;
-		border-left: 0;
-		float: right;
+		@extend %so-float-right-border-left-0;
 	}
 	#toggleLink {
 		@include transform-origin(top, right);
