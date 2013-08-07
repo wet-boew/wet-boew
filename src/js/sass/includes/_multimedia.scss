@@ -95,12 +95,6 @@ $progress-color: #000;
 		}
 	}
 
-	&.wb-mm-no-cc {
-		.wb-mm-timeline {
-			margin-right: 25px;
-		}
-	}
-
 	progress {
 		@extend %multimedia-border-1px-solid-BBB;
 		color: $progress-color;

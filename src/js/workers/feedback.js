@@ -28,21 +28,23 @@
 				contact2 = contact_coord.find('#contact2'),
 				info = contact_coord.find('#info'),
 				referrerUrl = document.referrer,
-				urlParams = _pe.url(window.location.href).params,
-				load;
+				urlParams = _pe.url(window.location.href).params;
 
 			// Web Questions
 			feedback.attr('aria-controls', 'web').on('keyup click load', function (e) {
-				load = (e.type === 'load');
-				if (!load && this.value === 'web') {
-					this.setAttribute('aria-hidden', 'false');
-					web.show('slow');
-				} else {
-					this.setAttribute('aria-hidden', 'true');
-					if (load) {
-						web.css('display', 'none');
+				var load = (e.type === 'load'),
+					button = e.button;
+				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+					if (!load && this.value === 'web') {
+						this.setAttribute('aria-hidden', 'false');
+						web.show('slow');
 					} else {
-						web.hide('slow');
+						this.setAttribute('aria-hidden', 'true');
+						if (load) {
+							web.css('display', 'none');
+						} else {
+							web.hide('slow');
+						}
 					}
 				}
 			});
@@ -55,49 +57,58 @@
 
 			// Computer and Mobile
 			access.attr('aria-controls', 'mobile computer').on('keyup click load', function (e) {
-				load = (e.type === 'load');
-				if (!load && this.value === 'mobile') {
-					mobile.attr('aria-hidden', 'false').show('slow');
-					computer.attr('aria-hidden', 'true').hide('slow');
-				} else {
-					computer.attr('aria-hidden', 'false');
-					mobile.attr('aria-hidden', 'true');
-					if (load) {
-						computer.css('display', 'block');
-						mobile.css('display', 'none');
+				var load = (e.type === 'load'),
+					button = e.button;
+				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+					if (!load && this.value === 'mobile') {
+						mobile.attr('aria-hidden', 'false').show('slow');
+						computer.attr('aria-hidden', 'true').hide('slow');
 					} else {
-						computer.show('slow');
-						mobile.hide('slow');
+						computer.attr('aria-hidden', 'false');
+						mobile.attr('aria-hidden', 'true');
+						if (load) {
+							computer.css('display', 'block');
+							mobile.css('display', 'none');
+						} else {
+							computer.show('slow');
+							mobile.hide('slow');
+						}
 					}
 				}
 			}).trigger('load');
 
 			// Contact info first selection
 			contact1.on('keyup click load', function (e) {
-				load = (e.type === 'load');
-				if (!load && (this.checked || (!contactCheckbox && this.value === 'yes'))) {
-					info.attr('aria-hidden', 'false').show('slow');
-				} else if (load || (!this.checked && !contact2.prop('checked')) || (!contactCheckbox && this.value !== 'yes' && contact2.val() !== 'yes')) {
-					info.attr('aria-hidden', 'true');
-					if (load) {
-						info.css('display', 'none');
-					} else {
-						info.hide('slow');
+				var load = (e.type === 'load'),
+					button = e.button;
+				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+					if (!load && (this.checked || (!contactCheckbox && this.value === 'yes'))) {
+						info.attr('aria-hidden', 'false').show('slow');
+					} else if (load || (!this.checked && !contact2.prop('checked')) || (!contactCheckbox && this.value !== 'yes' && contact2.val() !== 'yes')) {
+						info.attr('aria-hidden', 'true');
+						if (load) {
+							info.css('display', 'none');
+						} else {
+							info.hide('slow');
+						}
 					}
 				}
 			}).trigger('load');
 
 			// Contact info second selection
 			contact2.on('keyup click load', function (e) {
-				load = (e.type === 'load');
-				if (!load && (this.checked || (!contactCheckbox && this.value === 'yes'))) {
-					info.attr('aria-hidden', 'false').show('slow');
-				} else if (load || (!this.checked && !contact1.prop('checked')) || (!contactCheckbox && this.value !== 'yes' && contact1.val() !== 'yes')) {
-					info.attr('aria-hidden', 'true');
-					if (load) {
-						info.css('display', 'none');
-					} else {
-						info.hide('slow');
+				var load = (e.type === 'load'),
+					button = e.button;
+				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+					if (!load && (this.checked || (!contactCheckbox && this.value === 'yes'))) {
+						info.attr('aria-hidden', 'false').show('slow');
+					} else if (load || (!this.checked && !contact1.prop('checked')) || (!contactCheckbox && this.value !== 'yes' && contact1.val() !== 'yes')) {
+						info.attr('aria-hidden', 'true');
+						if (load) {
+							info.css('display', 'none');
+						} else {
+							info.hide('slow');
+						}
 					}
 				}
 			}).trigger('load');
@@ -106,11 +117,14 @@
 			web.find('#page').attr('value', referrerUrl);
 
 			// Return to the form defaults when the reset button is activated
-			elm.find('input[type=reset]').on('click', function () {
-				feedback.trigger('load');
-				access.trigger('load');
-				contact1.trigger('load');
-				contact2.trigger('load');
+			elm.find('input[type=reset]').on('click', function (e) {
+				var button = e.button;
+				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+					feedback.trigger('load');
+					access.trigger('load');
+					contact1.trigger('load');
+					contact2.trigger('load');
+				}
 			});
 
 			return elm;

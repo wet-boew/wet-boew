@@ -15,14 +15,7 @@
 	_pe.fn.tabbedinterface = {
 		type : 'plugin',
 		depends : (_pe.mobile ? [] : ['easytabs']),
-		mobile : function (elm, nested) {
-			// Process any nested tabs
-			if (typeof nested === 'undefined' || !nested) {
-				elm.find('.wet-boew-tabbedinterface').each(function () {
-					_pe.fn.tabbedinterface.mobile($(this), true);
-				});
-			}
-
+		mobile : function (elm) {
 			var $accordion,
 				$panelElms,
 				$panels = elm.children('.tabs-panel').children('div'),
@@ -66,7 +59,7 @@
 			// Create the accordion panels
 			for (index = 0, len = $panels.length; index < len; index += 1) {
 				$link = $tabs.eq(index).children('a');
-				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + ' data-tab="' + _pe.fn.tabbedinterface._get_hash($link.attr('href')) + '">' + hopen + $link.text() + hclose + '</div>';
+				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + ' data-tab="' + this._get_hash($link.attr('href')) + '">' + hopen + $link.text() + hclose + '</div>';
 			}
 			$accordion = $(accordion);
 
@@ -76,6 +69,14 @@
 				$panelElms.eq(len).append($panels.eq(len));
 			}
 			elm.empty().append($accordion);
+
+			this._init_panel_links($panelElms, $panelElms, 'data-tab', function (event) {
+				var button = event.button;
+				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+					event.data.tab.trigger('expand');
+					return false;
+				}
+			});
 
 			// Track the active panel during the user's session
 			$panelElms.on('expand', function () {
@@ -116,6 +117,7 @@
 				stopHiddenText = _pe.dic.get('%tab-rotation', 'disable'),
 				startText = _pe.dic.get('%play'),
 				startHiddenText = _pe.dic.get('%tab-rotation', 'enable'),
+				sep = ' ' + _pe.dic.get('%hyphen') + ' ',
 				stopCycle,
 				toggleCycle,
 				tabListIdx = $tabbedInterfaces.index(elm),
@@ -159,7 +161,7 @@
 
 			// Add hidden tab list heading
 			$tabListHeading = $('<h'+ this._get_heading_level(elm) + ' class="wb-invisible">').text(_pe.dic.get('%tab-list') + tabListCount);
-			if (_pe.ie > 0 && _pe.ie < 9) {
+			if (_pe.preIE9) {
 				$tabListHeading.wrap('<div>'); // Stop empty text nodes from moving the tabs around
 			}
 			$tabListHeading.insertBefore($nav);
@@ -167,8 +169,11 @@
 			// End of panel text to notify screen reader users that there are more tab panels available
 			if ($panels.length > 1) {
 				$panels.append('<p class="panel-end"><span class="wb-invisible">' + _pe.dic.get('%tab-panel-end-1') + ($tabsPanel.prev().hasClass('tabs') ? '</span><a href="javascript:;" class="wb-show-onfocus button button-accent position-bottom-medium position-left">' + _pe.dic.get('%tab-panel-end-2') + '</a><span class="wb-invisible">' + _pe.dic.get('%tab-panel-end-3') : '') + '</span></p>').find('.panel-end a').on('click', function(e) {
-					_pe.focus($tabs.filter('.' + opts.tabActiveClass));
-					e.preventDefault();
+					var button = e.button;
+					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						_pe.focus($tabs.filter('.' + opts.tabActiveClass));
+						e.preventDefault();
+					}
 				});
 			}
 
@@ -188,7 +193,7 @@
 			});
 
 			// Updates ARIA attributes of the tabs and panels after a change
-			elm.on('easytabs:after', function(e, $tab, $panel) {
+			elm.on('easytabs:after', function(event, $tab, $panel) {
 				$panels.not($panel).attr({'aria-hidden': 'true', 'aria-expanded': 'false'});
 				$panel.attr({'aria-hidden': 'false', 'aria-expanded': 'true'});
 				$tabs.not($tab).attr({'aria-selected': 'false', 'tabindex': '-1'});
@@ -198,6 +203,7 @@
 				if (elm.data('easytabs') !== undefined && !$nav.hasClass('started')) {
 					_pe.focus($tab);
 				}
+				event.stopPropagation();
 			});
 
 			// Find the default tab: precendence given to the URL hash
@@ -219,7 +225,7 @@
 			elm.trigger('easytabs:after', [$default_tab, $panels.filter(href.substring(href.indexOf('#')))]);
 
 			// easytabs IE7 bug: using images as tabs breaks easytabs.activateDefaultTab().
-			if (_pe.ie > 0 && _pe.ie < 8) {
+			if (_pe.preIE8) {
 				if ($tabs.parent().hasClass('img')) {
 					$tabs.parent().removeClass('img');
 					$tabs.find('span').removeClass('wb-invisible');
@@ -229,31 +235,36 @@
 
 			$tabs.off('click vclick').on('keydown click', function (e) {
 				var $target = $(e.target),
+					button = e.button,
 					$panel,
 					$link,
-					hash;
+					href,
+					hash,
+					isKeyNext,
+					isKeyPrev,
+					isKeySelect;
 				if (e.type === 'keydown') {
-					if (e.keyCode === 13 || e.keyCode === 32) {
-						if (e.stopPropagation) {
-							e.stopImmediatePropagation();
-						} else {
-							e.cancelBubble = true;
+					isKeySelect = e.keyCode === 13 || e.keyCode === 32;	// enter, space
+					isKeyPrev = e.keyCode === 37 || e.keyCode === 38;	// left, up
+					isKeyNext = e.keyCode === 39 || e.keyCode === 40;	// right, down
+					if (isKeySelect || isKeyPrev || isKeyNext) {
+						e.preventDefault();
+						if (opts.cycle) {
+							stopCycle();
 						}
-						e.preventDefault();
-						if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
-							selectTab($target, $tabs, $panels, opts, false);
+						if (isKeySelect) {
+							if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
+								selectTab($target, $tabs, $panels, opts, false);
+							} else {
+								href = $target.attr('href');
+								hash = href.substring(href.indexOf('#'));
+								_pe.focus($panels.filter(hash));
+							}
 						} else {
-							hash = _pe.fn.tabbedinterface._get_hash($target.attr('href'));
-							_pe.focus($panels.filter(hash));
+							selectTab(isKeyPrev ? getPrevTab($tabs) : getNextTab($tabs), $tabs, $panels, opts, false);
 						}
-					} else if (e.keyCode === 37 || e.keyCode === 38) { // left or up
-						selectTab(getPrevTab($tabs), $tabs, $panels, opts, false);
-						e.preventDefault();
-					} else if (e.keyCode === 39 || e.keyCode === 40) { // right or down
-						selectTab(getNextTab($tabs), $tabs, $panels, opts, false);
-						e.preventDefault();
 					}
-				} else {
+				} else if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
 					// Make sure working with a link since it's possible for an image to be the target of a mouse click
 					$link = (e.target.tagName.toLowerCase() !== 'a') ? $target.closest('a') : $target;
 					hash = _pe.fn.tabbedinterface._get_hash($link.attr('href'));
@@ -343,22 +354,26 @@
 			toggleCycle = function () {
 				if ($toggleRow.data('state') === 'stopped') {
 					cycle($tabs, $panels, opts);
-					$toggleButton.removeClass('tabs-start').addClass('tabs-stop').html(stopText + '<span class="wb-invisible">' + stopHiddenText + '</span>');
-					return $('.wb-invisible', $toggleButton).text(stopHiddenText);
+					$toggleButton.removeClass('tabs-start').addClass('tabs-stop').html(stopText + '<span class="wb-invisible">' + sep + stopHiddenText + '</span>');
+					return $('.wb-invisible', $toggleButton).text(sep + stopHiddenText);
 				}
 				if ($toggleRow.data('state') === 'started') {
 					return stopCycle();
 				}
 			};
 			getMaxPanelSize = function () {
-				var maxHeight = 0;
+				var $panel,
+					len = $panels.length,
+					maxHeight = 0;
 
-				// Remove position and size to allow content to determine max size of panels
-				$tabsPanel.css({width: '', height: ''});
-				$panels.css({width: '', height: ''});
-				$panels.each(function() {
-					maxHeight = Math.max(maxHeight, $(this).outerHeight());
-				});
+				// Allow the content to set the width/height of each panel
+				$panels.css({width: '', height: '', minHeight: ''});
+				while (len--) {
+					// Make sure the panel is visible when determining its height
+					$panel = $panels.eq(len).addClass('display-block');
+					maxHeight = Math.max(maxHeight, $panel.outerHeight());
+					$panel.removeClass('display-block');
+				}
 				return {width: $tabsPanel.width(), height: maxHeight};
 			};
 			getSlideTo = function (panel) {
@@ -373,14 +388,24 @@
 				return opts.transition === 'slide-horz' || opts.transition === 'slide-vert';
 			};
 			positionPanels = function() {
-				var isSlideHorz = opts.transition === 'slide-horz',
+				var $hiddenParents = $tabsPanel.parents('.tabs-panel > div').filter(':hidden'),
+					isSlideHorz = opts.transition === 'slide-horz',
 					viewportSize = {width: 0, height: 0},
 					panelSize;
 
-				if ($viewport === undefined) {
+				// Create the viewport that holds the sliding panels
+				if (typeof $viewport === 'undefined') {
 					$panels.wrapAll('<div class="viewport">').wrap('<div class="panel">');
-					$viewport = $('.viewport', $tabsPanel);
+					$viewport = $panels.closest('.viewport');
+
+				// Reset the size of the viewport and panels so everything can be resized properly
+				} else {
+					$viewport.css({width: '', height: ''});
+					$tabsPanel.css({width: '', height: ''});
 				}
+
+				// Hidden parents must be temporarily visible so that the panel width, height and position can be calculated
+				$hiddenParents.addClass('display-block');
 
 				panelSize = getMaxPanelSize();
 				for(var i = 0, len = $panels.length; i < len; i++) {
@@ -408,6 +433,8 @@
 						height: viewportSize.height
 					}, getSlideTo($panels.filter('.' + opts.panelActiveClass))));
 				}
+
+				$hiddenParents.removeClass('display-block');
 			};
 			if (isSlider() || (opts.autoHeight && !elm.hasClass('tabs-style-4') && !elm.hasClass('tabs-style-5'))) {
 				$panels.show();
@@ -449,16 +476,19 @@
 					elm.find('.tabs-roller').width(0).hide().stop();
 					elm.find('.tabs-toggle').data('state', 'stopped');
 					$nav.removeClass('started');
-					$toggleButton.removeClass('tabs-stop').addClass('tabs-start').html(startText + '<span class="wb-invisible">' + startHiddenText + '</span>');
-					return $('.wb-invisible', $toggleButton).text(startHiddenText);
+					$toggleButton.removeClass('tabs-stop').addClass('tabs-start').html(startText + '<span class="wb-invisible">' + sep + startHiddenText + '</span>');
+					return $('.wb-invisible', $toggleButton).text(sep + startHiddenText);
 				};
 				//
 				// creates a play/pause, prev/next buttons, and lets the user toggle the stateact as PREV button MB
 				tabsPanelId = $tabsPanel.attr('id');
 				$nav.append('<li class="tabs-toggle"><a class="tabs-prev" href="javascript:;" role="button">&nbsp;&nbsp;&nbsp;<span class="wb-invisible">' + _pe.dic.get('%previous') + '</span></a></li>');
 				// lets the user jump to the previous tab by clicking on the PREV button
-				$nav.find('.tabs-prev').on('click', function () {
-					selectTab(getPrevTab($tabs), $tabs, $panels, opts, true);
+				$nav.find('.tabs-prev').on('click', function (e) {
+					var button = e.button;
+					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						selectTab(getPrevTab($tabs), $tabs, $panels, opts, true);
+					}
 				});
 				//
 				//End PREV button
@@ -466,14 +496,17 @@
 				//
 				$nav.append('<li class="tabs-toggle"><a class="tabs-next" href="javascript:;" role="button">&nbsp;&nbsp;&nbsp;<span class="wb-invisible">' + _pe.dic.get('%next') + '</span></a></li>');
 				// lets the user jump to the next tab by clicking on the NEXT button
-				$nav.find('.tabs-next').on('click', function () {
-					selectTab(getNextTab($tabs), $tabs, $panels, opts, true);
+				$nav.find('.tabs-next').on('click', function (e) {
+					var button = e.button;
+					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						selectTab(getNextTab($tabs), $tabs, $panels, opts, true);
+					}
 				});
 				//End animation
 				//
 				//End NEXT button
 				//
-				$toggleRow = $('<li class="tabs-toggle"><a class="tabs-stop" href="javascript:;" role="button">' + stopText + '<span class="wb-invisible">' + stopHiddenText + '</span></a></li>');
+				$toggleRow = $('<li class="tabs-toggle"><a class="tabs-stop" href="javascript:;" role="button">' + stopText + '<span class="wb-invisible">' + sep + stopHiddenText + '</span></a></li>');
 				$toggleButton = $toggleRow.find('a');
 				$nav.append($toggleRow);
 				$toggleRow.click(toggleCycle).on('keydown', function (e) {
@@ -482,15 +515,21 @@
 						return e.preventDefault();
 					}
 				});
-				$nav.find('li a').not($toggleRow.find('a')).on('click', function () {
-					return stopCycle();
+				$nav.find('li a').not($toggleRow.find('a')).on('click', function (e) {
+					var button = e.button;
+					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						return stopCycle();
+					}
 				});
 				$tabs.each(function () {
 					var $pbar;
-					$pbar = $('<div class="tabs-roller">').hide().on('click', function () {
-						return $(this).siblings('a').trigger('click');
+					$pbar = $('<div class="tabs-roller">').hide().on('click', function (e) {
+						var button = e.button;
+						if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+							return $(this).siblings('a').trigger('click');
+						}
 					});
-					if (_pe.ie > 0 && _pe.ie < 8) {
+					if (_pe.preIE8) {
 						$('.tabs-style-2 .tabs, .tabs-style-2 .tabs li').css('filter', '');
 					}
 					return $(this).parent().append($pbar);
@@ -519,13 +558,16 @@
 					if (anchor.length) {
 						return $this.on('click', function (e) {
 							var panel,
-								panelId;
-							panel = anchor.parents('[role="tabpanel"]:hidden');
-							if (panel.length !== 0) {
-								e.preventDefault();
-								panelId = panel.attr('id');
-								panel.parent().siblings('.tabs').find('a').filter('[href="#' + panelId + '"]').trigger('click');
-								return anchor.get(0).scrollIntoView(true);
+								panelId,
+								button = e.button;
+							if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+								panel = anchor.parents('[role="tabpanel"]:hidden');
+								if (panel.length !== 0) {
+									e.preventDefault();
+									panelId = panel.attr('id');
+									panel.parent().siblings('.tabs').find('a').filter('[href="#' + panelId + '"]').trigger('click');
+									return anchor.get(0).scrollIntoView(true);
+								}
 							}
 						});
 					}
@@ -534,7 +576,7 @@
 
 			// Setup sliding panel behaviour
 			if (isSlider()) {
-				_pe.window.resize(positionPanels);
+				_pe.window.on('resize', positionPanels);
 				positionPanels();
 
 				// Override the tab transition with our slide animation
@@ -545,27 +587,41 @@
 				});
 			}
 
-			// Trigger panel change if a link within a panel is clicked and matches a tab
-			$panels.find('a').filter('[href^="#"]').each(function () {
-				var $tab,
-					$this = $(this),
-					hash = _pe.fn.tabbedinterface._get_hash($this.attr('href'));
-				if (hash.length > 1) {
-					$tab = $tabs.filter('[href="' + hash + '"]');
-					if ($tab.length) {
-						$this.off('click.hlinks vclick.hlinks').on('click vclick', function () {
-							$tab.trigger('click');
-							if (opts.cycle) {
-								stopCycle();
-							}
-							return false;
-						});
-					}
+			this._init_panel_links($panels, $tabs, 'href', function (event) {
+				event.data.tab.trigger('click');
+				if (opts.cycle) {
+					stopCycle();
 				}
+				return false;
 			});
 
 			return elm.attr('class', elm.attr('class').replace(/\bwidget-style-/, "style-"));
 		}, // end of exec
+
+		/**
+		* Setup links in the tab panel content that cause the tabbed interface to change panels
+		* @memberof pe.fn.tabbedinterface
+		* @param {jQuery object} $panels Tab panels of the tabbed interface
+		* @param {jQuery object} $tabs Tab links of the tabbed interface
+		* @param {string} attr HTML attribute used to check if there is a matching tab for a given link
+		* @param {function} clickHandler Function that handles clicks on tab panel content links with a matching tab
+		*/
+		_init_panel_links : function ($panels, $tabs, attr, clickHandler) {
+			var $tab,
+				hash,
+				links = $panels.find('a').filter('[href^="#"]'),
+				len = links.length;
+
+			while (len--) {
+				hash = this._get_hash(links[len].href);
+				if (hash.length > 1) {
+					$tab = $tabs.filter('['+ attr + '="' + hash + '"]');
+					if ($tab.length !== 0) {
+						$(links[len]).off('click.hlinks vclick.hlinks').on('click vclick', {tab: $tab}, clickHandler);
+					}
+				}
+			}
+		},
 
 		/**
 		 * Given an element, find the appropriate heading level for its content

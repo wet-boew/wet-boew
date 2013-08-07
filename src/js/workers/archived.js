@@ -39,8 +39,11 @@
 				}
 			});
 
-			notice.on('click', 'a', function() {
-				window.location.hash = this.hash;
+			notice.on('click', 'a', function(e) {
+				var button = e.button;
+				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+					window.location.hash = this.hash;
+				}
 			});
 
 			// now test to ensure that we have this correctly placed

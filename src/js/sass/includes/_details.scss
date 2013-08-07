@@ -67,21 +67,18 @@ details {
 	}
 }
 
-.detailssummary {
-	details {
-		> {
-			* { /* Show the details content for browsers that natively support it. */
-				@extend %pe-details-display-block;
-			}
-		}
-	}
-}
-
 .no-js {
 	details {
 		> {
 			* {
 				@extend %pe-details-display-block;
+			}
+		}
+		&:not([open]) {
+			> {
+				* {
+					@extend %pe-details-display-block;
+				}
 			}
 		}
 	}

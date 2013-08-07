@@ -39,6 +39,10 @@ select {
 	@extend %wb-default-print-display-none;
 }
 
+#wb-session {
+	@extend %wb-default-print-display-none;
+}
+
 a {
 	&.wb-linkdesc {
 		span {
