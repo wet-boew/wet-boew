@@ -30,7 +30,7 @@ PR['registerLangHandler'](
 	PR['createSimpleLexer'](
 		[
 		 // A line comment that starts with ;
-		 [PR['PR_COMMENT'], 	/^#[^\r\n]*/, null, '#'],
+		 [PR['PR_COMMENT'],	/^#[^\r\n]*/, null, '#'],
 		 // Whitespace
 		 [PR['PR_PLAIN'],		/^[\t\n\r \xA0]+/, null, '\t\n\r \xA0'],
 		 // A double quoted, possibly multi-line, string.
