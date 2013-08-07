@@ -29,33 +29,33 @@ PR['registerLangHandler'](
 		[
 		 // Whitespace
 		 // whitechar	 ->    newline | vertab | space | tab | uniWhite
-		 // newline 	 ->    return linefeed | return | linefeed | formfeed
+		 // newline	 ->    return linefeed | return | linefeed | formfeed
 		 [PR['PR_PLAIN'],		/^[\t\n\x0B\x0C\r ]+/, null, '\t\n\x0B\x0C\r '],
 		 // Single line double-quoted strings.
 		 [PR['PR_STRING'],		/^\"(?:[^\"\\\n\x0C\r]|\\[\s\S])*(?:\"|$)/,
 		  null, '"'],
 		 
 		 // Handle atoms
-		 [PR['PR_LITERAL'], 	 /^[a-z][a-zA-Z0-9_]*/],
+		 [PR['PR_LITERAL'],	 /^[a-z][a-zA-Z0-9_]*/],
 		 // Handle single quoted atoms
-		 [PR['PR_LITERAL'], 	 /^\'(?:[^\'\\\n\x0C\r]|\\[^&])+\'?/,
+		 [PR['PR_LITERAL'],	 /^\'(?:[^\'\\\n\x0C\r]|\\[^&])+\'?/,
 		  null, "'"],
 		 
 		 // Handle macros. Just to be extra clear on this one, it detects the ?
 		 // then uses the regexp to end it so be very careful about matching
 		 // all the terminal elements
-		 [PR['PR_LITERAL'], 	 /^\?[^ \t\n({]+/, null, "?"],
+		 [PR['PR_LITERAL'],	 /^\?[^ \t\n({]+/, null, "?"],
 
 		  
 		 
-		 // decimal 	 ->    digit{digit}
+		 // decimal	 ->    digit{digit}
 		 // octal		 ->    octit{octit}
 		 // hexadecimal  ->    hexit{hexit}
-		 // integer 	 ->    decimal
-		 // 			  |    0o octal | 0O octal
-		 // 			  |    0x hexadecimal | 0X hexadecimal
+		 // integer	 ->    decimal
+		 //			  |    0o octal | 0O octal
+		 //			  |    0x hexadecimal | 0X hexadecimal
 		 // float		 ->    decimal . decimal [exponent]
-		 // 			  |    decimal exponent
+		 //			  |    decimal exponent
 		 // exponent	 ->    (e | E) [+ | -] decimal
 		 [PR['PR_LITERAL'],
 		  /^(?:0o[0-7]+|0x[\da-f]+|\d+(?:\.\d+)?(?:e[+\-]?\d+)?)/i,
