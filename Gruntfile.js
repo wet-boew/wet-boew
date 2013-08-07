@@ -22,8 +22,7 @@ module.exports = function(grunt) {
 			wetboew: {
 				src: [ 'src/plugins/**/*.js'],
 				dest: 'dist/js/wet-boew.js'
-			},
-
+			}
 		},
 		sass: {
 			base: {
@@ -78,46 +77,53 @@ module.exports = function(grunt) {
 					'dist/js/vapour.min.js': ['lib/modernizr/modernizr.js', 'src/core/vapour/vapour.js']
 				}
 			},
-			 wetboew: {
+			wetboew: {
 				options: {
-						banner: '/* Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt */'
+					banner: '/* Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt */'
 				},
 				files: {
-						'dist/js/wet-boew.min.js': ['dist/js/wet-boew.js']
-			 	}
+					'dist/js/wet-boew.min.js': ['dist/js/wet-boew.js']
+				}
 			}
 		},
 		coffee: {
 			compileBare: {
-                options: {
-                    bare: true
-                },
-                files: [
-                    { 'dist/core/vapour/vapour.js': 'src/core/vapour/vapour.coffee' }, // 1:1 compile
-                   // { 'plugins/bare/wet-boew-plugin.bare.js': 'src/plugins/bare/wet-boew-plugin.coffee' }
-                    { 'dist/plugins/zebra/wet-boew.zebra.js': 'src/plugins/zebra/wet-boew-plugin-zebra.coffee' },
-				    { 'dist/plugins/equalize/wet-boew.equalize.js': 'src/plugins/equalize/wet-boew-plugin-equalize.coffee' },
-				    { 'dist/plugins/dimensions/wet-boew.dimensions.js': 'src/plugins/dimensions/wet-boew-plugin-dimensions.coffee' }
+				options: {
+					bare: true
+				},
+				files: [
+					{
+						'dist/core/vapour/vapour.js': 'src/core/vapour/vapour.coffee'
+					}, // 1:1 compile
+					{
+						'dist/plugins/zebra/wet-boew.zebra.js': 'src/plugins/zebra/wet-boew-plugin-zebra.coffee'
+					},
+					{
+						'dist/plugins/equalize/wet-boew.equalize.js': 'src/plugins/equalize/wet-boew-plugin-equalize.coffee'
+					},
+					{
+						'dist/plugins/dimensions/wet-boew.dimensions.js': 'src/plugins/dimensions/wet-boew-plugin-dimensions.coffee'
+					}
 				]
 			}
 		},
 		jade: {
-		  html: {
-		    options: {
-            	pretty: true
-	        },
-	        files: [{
-	            expand: true,
-	            cwd: 'themes',
-	            dest: 'themes',
-	            src: '**/*.jade',
-	            ext: '.html'
-	        }]
-		  }
+			html: {
+				options: {
+					pretty: true
+				},
+				files: [{
+					expand: true,
+					cwd: 'themes',
+					dest: 'themes',
+					src: '**/*.jade',
+					ext: '.html'
+				}]
+			}
 		},
 		copy: {
-			main : {
-				files : [
+			main: {
+				files: [
 					{expand: true, cwd: 'dist/', src: ['**'], dest: 'dist/bare/'},
 					{expand: true, cwd: 'themes/bare/', src: ['*.css'], dest: 'dist/bare/css/'},
 					{expand: true, cwd: 'themes/bare/', src: ['*.html'], dest: 'dist/bare/'},
@@ -125,7 +131,7 @@ module.exports = function(grunt) {
 					{expand: true, cwd: 'dist/', src: ['**'], dest: 'dist/demo/'},
 					{expand: true, cwd: 'themes/demo/', src: ['*.html'], dest: 'dist/demo/'},
 					{expand: true, cwd: 'themes/demo/css/', src: ['*.css'], dest: 'dist/demo/css/'},
-					{expand: true, cwd: 'src/sass/images/icons/', src: ['**'], dest: 'dist/demo/css/images/icons'},
+					{expand: true, cwd: 'src/sass/images/icons/', src: ['**'], dest: 'dist/demo/css/images/icons'}
 				]
 			},
 			jquery: {
@@ -143,12 +149,68 @@ module.exports = function(grunt) {
 		],
 		watch: {
 			gruntfile: {
-                files: '<%= jshint.gruntfile.src %>',
-                tasks: ['jshint:gruntfile']
+				files: '<%= jshint.gruntfile.src %>',
+				tasks: ['jshint:gruntfile']
 			},
 			lib_test: {
-                files: '<%= jshint.lib_test.src %>',
-                tasks: ['jshint:lib_test', 'qunit']
+				files: '<%= jshint.lib_test.src %>',
+				tasks: ['jshint:lib_test', 'qunit']
+			}
+		},
+		jshint: {
+			options: {
+				curly: true,
+				eqeqeq: true,
+				immed: true,
+				latedef: true,
+				newcap: true,
+				noarg: true,
+				sub: true,
+				undef: true,
+				unused: true,
+				boss: true,
+				eqnull: true,
+				browser: true,
+				globals: {
+					jQuery: true
+				}
+			},
+			gruntfile: {
+				src: 'Gruntfile.js'
+			},
+			lib_test: {
+				src: [
+					'src/**/*.js',
+					'!src/**/*min.js',
+					'!src/js/polyfills/datalist.js',
+					'!src/js/polyfills/html5shiv.js',
+					'!src/js/dependencies/bookmark.js',
+					'!src/js/dependencies/browsertweaks.js',
+					'!src/js/dependencies/colorbox.js',
+					'!src/js/dependencies/easytabs.js',
+					'!src/js/dependencies/hashchange.js',
+					'!src/js/dependencies/hoverintent.js',
+					'!src/js/dependencies/json.js',
+					'!src/js/dependencies/matchMedia.js',
+					'!src/js/dependencies/metadata.js',
+					'!src/js/dependencies/outside.js',
+					'!src/js/dependencies/pie.js',
+					'!src/js/dependencies/prettify.js',
+					'!src/js/dependencies/prettify/**/*.js',
+					'!src/js/dependencies/raphael.js',
+					'!src/js/dependencies/resize.js',
+					'!src/js/dependencies/validate.js',
+					'!src/js/dependencies/validateAdditional.js',
+					'!src/js/dependencies/xregexp.js',
+					'!src/js/dependencies/proj4js.js',
+					'!src/js/dependencies/openlayers.js',
+					'!src/core/vapour/polyfills/excanvas.js',
+					'!src/core/vapour/polyfills/sessionstorage.js',
+					'!src/core/vapour/polyfills/slider.js',
+					'!src/core/vapour/polyfills/localstorage.js',
+					'!src/core/vapour/polyfills/detailssummary.js',
+					'test/**/*.js'
+				]
 			}
 		}
 	});
@@ -166,8 +228,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-sass');
 
 	// Default task.
-	grunt.registerTask('build', ['coffee']);
-	grunt.registerTask('default', ['clean','coffee','jade','sass','concat','uglify', 'copy']);
-	grunt.registerTask('generic', ['clean','coffee','jade','sass','concat','uglify', 'copy']);
-
+	grunt.registerTask('build', ['coffee','jade','sass','concat','uglify', 'copy']);
+	grunt.registerTask('test', ['jshint']);
+	grunt.registerTask('default', ['clean', 'build', 'test']);
 };
