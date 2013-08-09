@@ -1,0 +1,96 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ */
+ 
+@import "compass/css3/box-shadow";
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/transition";
+@import "../../../grids/sass/includes/_button";
+
+ul {
+	.simple-pagination {
+		list-style: none;
+	}
+}
+
+.simple-pagination {
+	display: block;
+	overflow: hidden;
+	padding: 0 5px 5px 0;
+	margin: 0;
+	
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	
+	li {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		float: left;
+	}
+}
+
+.pagination-accent, .pagination-dark {
+	a, span {
+		float: left;
+		min-width: 14px;
+		padding: 0 7px;
+		margin: 0 5px 0 0;
+		@include button($light);
+	}
+}
+
+.pagination-accent
+	a {
+		&:hover {
+			text-decoration: none;
+			background: #FCFCFC;
+	}
+}
+
+.pagination-accent {
+	.current {
+		@include button($accent);
+	}
+}
+
+.pagination-accent {
+	.ellipse {
+		background: none;
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+		font-weight: bold;
+		cursor: default;
+	}
+}
+
+.pagination-dark
+	a {
+		&:hover {
+			text-decoration: none;
+			background: #FCFCFC;
+	}
+}
+
+.pagination-dark {
+	.current {
+		@include button($dark);
+	}
+}
+
+.pagination-dark {
+	.ellipse {
+		background: none;
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+		font-weight: bold;
+		cursor: default;
+	}
+}
