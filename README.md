@@ -1,4 +1,4 @@
-# Web Experience Toolkit (WET)
+﻿# Web Experience Toolkit (WET)
 
 [![Build Status](https://secure.travis-ci.org/wet-boew/wet-boew.png?branch=master)](http://travis-ci.org/wet-boew/wet-boew)
 
@@ -15,7 +15,7 @@
  * [Developed openly by the community on GitHub](#collaborative-approach)
 
 ## Key resources
- 
+ TEST MARTYNa
 * [Benefits](#benefits)
 * [Working examples](http://wet-boew.github.io/wet-boew/demos/index-eng.html)
 * [Documentation](https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation)
