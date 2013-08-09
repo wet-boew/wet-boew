@@ -2,11 +2,32 @@
 <html>
 <head>
 <title></title>
+<link rel="stylesheet" href="overlay.css"/>
+<script src="jquery.js"></script>
+<script src="overlay.js"></script>
+<script>
+//Fake the core timer	
+$(document).ready(function(){
+	setInterval(function(){
+		$(document).trigger('wb.timerpoke');
+	}, 500);
+})
+</script>
 </head>
 <body>
-<a href="#myOverlay" class="wb-trigger">Open an overlay</a>
+<p><a href="#myOverlay">Open a fade overlay</a></p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<p><a href="#myOverlay2">Open an slide left overlay</a></p>
+<p><a href="#myOverlay2">Open an slide top overlay</a></p>
 
-<div id="myOverlay" class="wb-overlay">
+
+<div id="myOverlay" class="wb-overlay fade">
+	<p>Test</p>
+	<p><a href="#myOverlayTrigger">Close</a></p>
+</div>
+
+<div id="myOverlay2" class="wb-overlay slide-top">
+	<p>Test</p>
+	<p><a href="#myOverlayTrigger2">Close</a></p>
 </div>
 
 </body>

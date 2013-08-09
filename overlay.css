@@ -1,3 +1,42 @@
-.wb-overlay {
-	display: none;
+.wb-overlay{
+	position:fixed;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+	background:#FFF;
+	box-shadow: 3px 3px 5px 6px #ccc;
 }
+
+.wb-overlay.fade, .wb-overlay.slide-left {
+	top:50%;
+	left:50%;
+}
+
+.wb-overlay.fade {
+	opacity: 0;
+}
+
+.wb-overlay.fade:target{
+	opacity:1;
+}
+
+.wb-overlay.slide-left {
+	left:-100%;
+	top:50%
+}
+
+.wb-overlay.slide-left:target{
+	left:50%;
+}
+
+.wb-overlay.slide-top {
+	top:-100%;
+	left:50%
+}
+
+.wb-overlay.slide-top:target{
+	top:50%;
+}
+
