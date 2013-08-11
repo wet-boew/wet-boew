@@ -155,6 +155,14 @@ module.exports = function(grunt) {
 			lib_test: {
 				files: '<%= jshint.lib_test.src %>',
 				tasks: ['jshint:lib_test', 'qunit']
+			},
+			source: {
+				files: '<%= jshint.lib_test.src %>',
+				tasks: ['build'],
+				options: {
+					interval: 5007,
+					livereload: true
+				}
 			}
 		},
 		jshint: {
@@ -212,6 +220,14 @@ module.exports = function(grunt) {
 					'test/**/*.js'
 				]
 			}
+		},
+		connect: {
+			server: {
+				options: {
+					port: 8000,
+					base: '.'
+				}
+			}
 		}
 	});
 
@@ -225,10 +241,12 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-coffee');
 	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-sass');
 
 	// Default task.
 	grunt.registerTask('build', ['coffee','jade','sass','concat','uglify', 'copy']);
 	grunt.registerTask('test', ['jshint']);
 	grunt.registerTask('default', ['clean', 'build', 'test']);
+	grunt.registerTask('server', ['connect','watch:source']);
 };
