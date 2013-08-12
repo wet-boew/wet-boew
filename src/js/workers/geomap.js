@@ -469,8 +469,7 @@
 				$ul,
 				$checked,
 				$chkBox,
-				$label,
-				$legendGraphic;	
+				$label;	
 
 			if (typeof geomap.glegend !== 'undefined') {			
 				// if no legend or fieldset add them
@@ -1587,7 +1586,7 @@
 
 			// TODO: ensure WCAG compliance before enabling			
 			geomap.selectControl = new OpenLayers.Control.SelectFeature(
-				geomap.queryLayers,
+				geomap.queryLayers,				
 				{
 					onSelect: this.onFeatureSelect,
 					onUnselect: this.onFeatureUnselect,
