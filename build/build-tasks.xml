@@ -2,23 +2,23 @@
 <project name="build-tasks" default="default" basedir=".">
 	<dirname property="tasks.basedir" file="${ant.file.build-tasks}"/>
 	<property file="${tasks.basedir}/build-tasks.properties"/>
-	
+
 	<!-- Version and build time-->
 	<property name="wet-boew-build.version" value="v3.1.4-development"/>
 	<tstamp>
 		<format property="wet-boew-build.starttime" pattern="yyyy-MM-dd hh:mm aa z" locale="en,CA" timezone="America/Toronto" />
 	</tstamp>
-	
+
 	<!-- ant contribs task definition  -->
 	<path id="antcontrib.classpath">
 		<pathelement location="${antcontribs.jar}" />
-	</path> 
+	</path>
 	<taskdef resource="net/sf/antcontrib/antlib.xml">
 		<classpath refid="antcontrib.classpath" />
 	</taskdef>
-	
+
 	<extension-point name="-init"/>
-	
+
 	<!-- yui-compressor task definition  -->
 	<path id="yui.classpath">
 		<pathelement location="${yui-compressor.jar}" />
@@ -34,7 +34,7 @@
 	<taskdef name="cssurlembed" classname="net.nczonline.web.cssembed.CSSEmbedTask">
 		<classpath refid="cssurlembed.classpath" />
 	</taskdef>
-	
+
 	<!-- JSHint Ant task definition -->
 	<path id="jshint.classpath">
 		<pathelement location="${jshint.jar}" />
@@ -42,7 +42,7 @@
 	<taskdef name="jshint" classname="com.philmander.jshint.JsHintAntTask">
 		<classpath refid="jshint.classpath" />
 	</taskdef>
-	
+
 	<!-- Include jruby + gems (compass + sass) -->
 	<target name="-build-jruby" extensionOf="-init" depends="-jruby.jar.check" unless="jruby.jar.exists">
 		<mkdir dir="${lib.dir}/jruby-compiled" />
@@ -78,7 +78,7 @@
 			</and>
 		</condition>
 	</target>
-	
+
 	<!-- Compile all of the SCSS files into their CSS counterparts "ant compile.sass" -->
 	<target name="compile.sass">
 		<antcall target="call.sass">
@@ -86,7 +86,7 @@
 		</antcall>
 		<echo level="info" message="---Converted CSS SCSS Files into CSS---"/>
 	</target>
-	
+
 	<target name="call.sass">
 		<java fork="true" failonerror="true" jar="${lib.dir}/${jruby.jar}">
 			<arg value="--1.8"/>
@@ -98,11 +98,11 @@
 			<arg value="${isdebugging}"/>
 		</java>
 	</target>
-	
+
 	<target name="usedebugging">
 		<property name="isdebugging" value="true"/>
 	</target>
-	
+
 	<!-- Watch for any polling changes in the SCSS directory "ant watch.sass" -->
 	<target name="watch.sass">
 		<antcall target="call.sass">
@@ -110,7 +110,7 @@
 		</antcall>
 		<echo level="info" message="---Watching for SCSS Changes in CSS Directory---"/>
 	</target>
-	
+
 	<target name="-jshint">
 		<jshint dir="${src.dir}" fail="${jshint.failbuild}" globalsFile="${jshint.globals.file}" options="strict:false">
 			<report type="xml" destfile="${src.dir}/jshint.out.xml" />
@@ -145,6 +145,7 @@
 			<exclude name="dependencies/xregexp.js"/>
 			<exclude name="dependencies/openlayers.js"/>
 			<exclude name="dependencies/proj4js.js"/>
+			<exclude name="dependencies/simplePagination.js"/>
 		</jshint>
 	</target>
 
@@ -162,7 +163,7 @@
 			</fileset>
 			<arg value="-jar"/>
 			<arg path="${lib.dir}/js.jar"/>
-			<arg path="${lib.dir}/csslint-rhino.js" />      
+			<arg path="${lib.dir}/csslint-rhino.js" />
 
 			<!-- your customized arguments go here -->
 			<arg value="--format=compact"/>
@@ -171,31 +172,31 @@
 			<srcfile/>
 		</apply>
 	</target>
-	  
+
 	<target name="clean">
 		<delete dir="${dist.dir}" />
 	</target>
-	
+
 	<extension-point name="build" depends="prepare-files, encode-images, compress, finalize" description="Core build task. Subprojects should subscrib to the 'prepare-files' and 'compress'" />
-	
+
 	<extension-point name="debug" depends="usedebugging, prepare-files, encode-images, fake-compress, finalize" description="Build that produces the CSS and JS files unminified but with the same file name as the production ones" />
-	
+
 	<extension-point name="prepare-files" depends="-init" />
-	
+
 	<extension-point name="encode-images" depends="prepare-files" />
-	
+
 	<target name="encode-css" extensionOf="encode-images" depends="-base64-encode"/>
 
 	<extension-point name="compress" depends="encode-images, -minify" />
-	
+
 	<extension-point name="fake-compress" depends="encode-images, -rename-to-min" />
-	
+
 	<extension-point name="finalize"/>
-	
+
 	<extension-point name="test" />
-	
+
 	<target name="lint" extensionOf="test" depends="-jshint, csslint"/>
-	
+
 	<target name="-base64-encode">
 		<property name="image.dir" location="${dist.dir}/images"/>
 
@@ -207,7 +208,7 @@
 				<exclude name="util.css"/>
 			</fileset>
 		</cssurlembed>
-		
+
 		<property name="jquerymobile.dir" location="${src.dir}/jquerymobile"/>
 		<cssurlembed skipMissing="true" root="${jquerymobile.dir}">
 			<fileset dir="${dist.dir}/css">
@@ -218,7 +219,7 @@
 			</fileset>
 		</cssurlembed>
 	</target>
-		
+
 	<target name="-minify">
 		<yui-compressor warn="false" munge="true" preserveAllSemiColons="false" fromDir="${dist.dir}" toDir="${dist.dir}" charset="utf-8">
 			<include name="**/*.css" />
@@ -241,7 +242,7 @@
 			</fileset>
 		</delete>
 	</target>
-	
+
 	<target name="-rename-to-min">
 		<move todir="${dist.dir}" encoding="UTF-8">
 			<fileset dir="${dist.dir}">
@@ -252,7 +253,7 @@
 				<exclude name="**/*.min.js" />
 			</fileset>
 			<globmapper from="*.js" to="*-min.js"/>
-		</move>	
+		</move>
 		<move todir="${dist.dir}" encoding="UTF-8">
 			<fileset dir="${dist.dir}">
 				<include name="**/*.css" />
@@ -261,7 +262,7 @@
 			<globmapper from="*.css" to="*-min.css"/>
 		</move>
 	</target>
-	
+
 	<target name="-copy-css" depends="compile.sass"/>
 
 	<target name="-copy-jquery-mobile">
@@ -281,13 +282,13 @@
 		<!-- Temporary fix - to be replaced by modern and old IE targeted output -->
 		<copy file="${dist.dir}/js/theme.js" tofile="${dist.dir}/js/theme-ie.js" failonerror="false"/>
 	</target>
-	
+
 	<target name="-copy-images">
 		<copy todir="${dist.dir}/images">
 			<fileset dir="${src.dir}/images" />
 		</copy>
 	</target>
-	
+
 	<target name="-update-headers" extensionOf="finalize">
 		<echo>Setting build timestamp to '${wet-boew-build.starttime}'</echo>
 		<replace dir="${dist.dir}" encoding="UTF-8">
