@@ -4,31 +4,35 @@
 <title></title>
 <link rel="stylesheet" href="overlay.css"/>
 <script src="jquery.js"></script>
-<script src="overlay.js"></script>
-<script>
-//Fake the core timer	
-$(document).ready(function(){
-	setInterval(function(){
-		$(document).trigger('wb.timerpoke');
-	}, 500);
-})
-</script>
+<script src="modernizer.js"></script>
 </head>
 <body>
-<p><a href="#myOverlay">Open a fade overlay</a></p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<p><a href="#myOverlay">Open a fade overlay</a></p>
 <p><a href="#myOverlay2">Open an slide left overlay</a></p>
-<p><a href="#myOverlay2">Open an slide top overlay</a></p>
+<p><a href="#myOverlay3">Open an slide top overlay</a></p>
 
 
-<div id="myOverlay" class="wb-overlay fade">
-	<p>Test</p>
-	<p><a href="#myOverlayTrigger">Close</a></p>
+<div id="myOverlay" class="wet-boew-overlay fade">
+    <header>
+        <h1>Title of myOverlay</h1>
+    </header>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt varius gravida. Vestibulum condimentum quam at sapien sagittis, non hendrerit sapien rutrum. Quisque sit amet leo nec nunc scelerisque aliquet. Nam a eros nisl. Quisque tristique dictum sodales. Praesent molestie fermentum nunc. Morbi lacinia ipsum non augue pulvinar, ut porttitor arcu commodo. Donec consequat dui nisi, a vehicula odio sollicitudin nec. Proin sit amet mattis urna. Nullam suscipit blandit arcu at porta. Quisque suscipit erat eu nisl tincidunt, non congue turpis facilisis. Fusce vitae sagittis leo. Quisque auctor est nec sapien condimentum dictum. Pellentesque eleifend mattis vehicula. Fusce ipsum nisl.</p>
 </div>
 
-<div id="myOverlay2" class="wb-overlay slide-top">
-	<p>Test</p>
-	<p><a href="#myOverlayTrigger2">Close</a></p>
+<div id="myOverlay2" class="wet-boew-overlay slide-left">
+    <header>
+        <h1>Title of myOverlay2</h1>
+    </header>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt varius gravida. Vestibulum condimentum quam at sapien sagittis, non hendrerit sapien rutrum. Quisque sit amet leo nec nunc scelerisque aliquet. Nam a eros nisl. Quisque tristique dictum sodales. Praesent molestie fermentum nunc. Morbi lacinia ipsum non augue pulvinar, ut porttitor arcu commodo. Donec consequat dui nisi, a vehicula odio sollicitudin nec. Proin sit amet mattis urna. Nullam suscipit blandit arcu at porta. Quisque suscipit erat eu nisl tincidunt, non congue turpis facilisis. Fusce vitae sagittis leo. Quisque auctor est nec sapien condimentum dictum. Pellentesque eleifend mattis vehicula. Fusce ipsum nisl.</p>
 </div>
 
+<div id="myOverlay3" class="wet-boew-overlay slide-top">
+    <header>
+        <h1>Title of myOverlay3</h1>
+    </header>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt varius gravida. Vestibulum condimentum quam at sapien sagittis, non hendrerit sapien rutrum. Quisque sit amet leo nec nunc scelerisque aliquet. Nam a eros nisl. Quisque tristique dictum sodales. Praesent molestie fermentum nunc. Morbi lacinia ipsum non augue pulvinar, ut porttitor arcu commodo. Donec consequat dui nisi, a vehicula odio sollicitudin nec. Proin sit amet mattis urna. Nullam suscipit blandit arcu at porta. Quisque suscipit erat eu nisl tincidunt, non congue turpis facilisis. Fusce vitae sagittis leo. Quisque auctor est nec sapien condimentum dictum. Pellentesque eleifend mattis vehicula. Fusce ipsum nisl.</p>
+</div>
+<script src="vapour.js"></script>
+<script src="overlay.js"></script>
 </body>
 </html>
