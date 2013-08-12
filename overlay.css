@@ -1,4 +1,4 @@
-.wb-overlay{
+.wet-boew-overlay {
 	position:fixed;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
@@ -7,36 +7,74 @@
 	transition: all 0.5s;
 	background:#FFF;
 	box-shadow: 3px 3px 5px 6px #ccc;
+    z-index: -1000;
+    width:80%;
 }
 
-.wb-overlay.fade, .wb-overlay.slide-left {
-	top:50%;
-	left:50%;
+/*TODO: only display nav-menu when in mobile width
+Push the rest of the screen over when navmenu triggers.
+*/
+nav ul li {
+    list-style-type: none;
 }
 
-.wb-overlay.fade {
+.wet-boew-overlay.nav-menu{
+    top:0;
+    left:-1000%
+}
+.wet-boew-overlay.nav-menu.open{
+    left:0;
+    width:80%;
+    height:100%;
+    z-index:10000;
+}
+
+.wet-boew-overlay.fade, .wet-boew-overlay.slide-left {
+	top:10%;
+	left:10%;
+}
+
+.wet-boew-overlay.fade {
 	opacity: 0;
+    
 }
 
-.wb-overlay.fade:target{
+.wet-boew-overlay.fade:target {
 	opacity:1;
+    z-index: 1000;
 }
 
-.wb-overlay.slide-left {
-	left:-100%;
-	top:50%
+.wet-boew-overlay.slide-left {
+	left:-1000%;
+	top:10%
 }
 
-.wb-overlay.slide-left:target{
-	left:50%;
+.wet-boew-overlay.slide-left:target{
+	left:10%;
+    z-index: 1000;
 }
 
-.wb-overlay.slide-top {
-	top:-100%;
-	left:50%
+.wet-boew-overlay.slide-top {
+	top:-1000%;
+	left:10%
 }
 
-.wb-overlay.slide-top:target{
-	top:50%;
+.wet-boew-overlay.slide-top:target{
+	top:10%;
+    z-index: 1000;
 }
 
+.wet-boew-overlay header {
+    width: 100%;
+    background-color: #ddd;
+}
+
+header h1 {
+    display: inline-block;
+    margin: 1%;
+}
+
+header a {
+    float: right;
+    margin: 1%;
+}
