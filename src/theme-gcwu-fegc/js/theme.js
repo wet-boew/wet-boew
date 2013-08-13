@@ -324,7 +324,7 @@
 						}
 						settings_popup += '</ul></div>';
 					} else if (link.length !== 0) {
-						settings_popup += '<li><a href="' + link.href + '">' + link.html() + '</a></li>';
+						settings_popup += '<li><a href="' + link.attr('href') + '">' + link.html() + '</a></li>';
 					}
 				}
 				target = settings_popup.lastIndexOf('<li');
