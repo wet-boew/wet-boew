@@ -316,7 +316,7 @@
 						// lets see if the cell is empty is so lets create the cell
 						if (day.children('a').length < 1) {
 							day.empty();
-							link = $('<a href="#ev-' + day.attr('id') + '" class="cal-event">' + content + '</a>');
+							link = $('<a data-ajax="false" href="#ev-' + day.attr('id') + '" class="cal-event">' + content + '</a>');
 							day.append(link);
 							dayEvents = $('<ul class="wb-invisible"></ul>');
 
@@ -339,7 +339,7 @@
 							dayEvents = day.find('ul.wb-invisible');
 						}
 
-						eventDetails = $('<li><a href="' + eventslist[e].href +  '">' + eventslist[e].title + '</a></li>');
+						eventDetails = $('<li><a data-ajax="false" href="' + eventslist[e].href +  '">' + eventslist[e].title + '</a></li>');
 
 						if (_pe.cssenabled) {
 							eventDetails.children('a').attr('tabindex', '-1');
