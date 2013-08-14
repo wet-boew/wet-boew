@@ -80,10 +80,10 @@
 				var $this = $(this),
 					value = $this.attr('value'),
 					label = $this.attr('label');
-				if (value === 'undefined') {
+				if (typeof(value) === 'undefined') {
 					value = $this.text();
 				}	
-				datalist_items.push('<li class="al-option" id="al-option-' + index + '-' + index2 + '"><a href="javascript:;"><span class="al-value">' + (value !== 'undefined' ? value : "") + '</span><span class="al-label">' + (label !== 'undefined' ? label : "") + '</span></a></li>');
+				datalist_items.push('<li class="al-option" id="al-option-' + index + '-' + index2 + '"><a href="javascript:;"><span class="al-value">' + (typeof(value) !== 'undefined' ? value : "") + '</span><span class="al-label">' + (typeof(label) !== 'undefined' ? label : "") + '</span></a></li>');
 			});
 
 			elm.attr({'autocomplete': 'off', 'role': 'textbox', 'aria-haspopup': 'true', 'aria-autocomplete': 'list', 'aria-owns': 'wb-autolist-' + index, 'aria-activedescendent': ''}).wrap('<div class="wb-al-container" role="application" aria-' + (label.length !== 0 ? 'labelledby="' + uniqueid : '-label="' + elm.attr('title')) + '"/>');
