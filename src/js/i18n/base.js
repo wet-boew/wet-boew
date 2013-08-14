@@ -198,6 +198,22 @@
 		'%geo-attributiontitle': '@%geo-attributiontitle@',
 		'%geo-select': '@%geo-select@',
 		'%geo-labelselect': '@%geo-labelselect@',
+		/* Youtube player */
+		'%you-play': '@%you-play@',
+		'%you-pause': '@%you-pause@',
+		'%you-forward': '@%you-forward@',
+		'%you-back': '@%you-back@',
+		'%you-stop': '@%you-stop@',
+		'%you-volumeup': '@%you-volumeup@',
+		'%you-volumedown': '@%you-volumedown@',
+		'%you-mute': '@%you-mute@',
+		'%you-unmute': '@%you-unmute@',
+		'%you-playing': '@%you-playing@',
+		'%you-time': '@%you-time@',
+		'%you-transcript-heading': '@%you-transcript-heading@',
+		'%you-playlist-heading': '@%you-playlist-heading@',
+		'%you-controls-heading': '@%you-controls-heading@',
+		'%you-status-heading': '@%you-status-heading@',
 		/* Disable/enable PE */
 		'%pe-disable': '@%pe-disable@',
 		'%pe-enable': '@%pe-enable@'
