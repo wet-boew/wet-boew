@@ -365,9 +365,9 @@
 			};
 
 			// Load ajax content
-			$.when.apply($, $.map(elm.find('*[data-cal-events]'), function (o) {
-				var $o = $(o),
-					urls = $o.attr('data-cal-events').split(/\s+/),
+			$.when.apply($, $.map(elm.find('[data-cal-events]'), function (ajaxContainer) {
+				var $ajaxContainer = $(ajaxContainer),
+					urls = $ajaxContainer.attr('data-cal-events').split(/\s+/),
 					dfd = $.Deferred(),
 					i,
 					len = urls.length,
@@ -375,7 +375,7 @@
 					appendData;
 
 				appendData = function (data) {
-					$o.append($.trim(data));
+					$ajaxContainer.append($.trim(data));
 				};
 
 				for (i = 0; i < len; i += 1) {
