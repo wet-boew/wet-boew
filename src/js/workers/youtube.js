@@ -14,7 +14,9 @@
 * XRegExp.build v0.1.0 (http://xregexp.com/) 
 * which all maintain an MIT License: http://www.opensource.org/licenses/mit-license.php
 */
-/*global jQuery: false, wet_boew_youtube: false*/
+/*global jQuery: false, window, XRegExp, swfobject, wet_boew_youtube: false*/
+/*jslint bitwise: true, nomen: true, white: true */
+/*jshint forin:true, noarg:true, noempty:true, eqeqeq:true, strict:true, undef:true, unused:true, curly:true, browser:true, jquery:true, maxerr:50, smarttabs:true, newcap: false */
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -582,10 +584,10 @@
 				// normalize line breaks;
 				data = data.replace(/\r?\n|\r/g, "\n");
 
-				while (blockmatch = XRegExp.exec(data, block, blockpos, true)) {
+				while ((blockmatch = XRegExp.exec(data, block, blockpos, true)) !== null) {
 
 					phrasepos = 0;
-					while (phrasematch = XRegExp.exec(blockmatch[0], phrase, phrasepos, true)) {
+					while ((phrasematch = XRegExp.exec(blockmatch[0], phrase, phrasepos, true)) !== null) {
 						caption = {
 							start: phrasematch.start,
 							end: phrasematch.end,
