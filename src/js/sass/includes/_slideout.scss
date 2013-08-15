@@ -5,6 +5,11 @@
  
 @import "compass/css3/transform";
 
+%so-float-right-border-left-0 {
+	border-left: 0;
+	float: right;
+}
+
 .wet-boew-slideout {
 	display: none;
 }
@@ -89,6 +94,25 @@ div {
 				margin-left: 20px;
 			}
 		}
+	}
+}
+
+/* rtl */
+[dir="rtl"] {
+	.tabbedSlideout {
+		@extend %so-float-right-border-left-0;
+		border-right: 1px solid #CCC;
+	}
+	.slideoutWrapperRel {
+		right: auto;
+	}
+	.slideoutToggle {
+		border-right: 1px solid #000;
+		@extend %so-float-right-border-left-0;
+	}
+	#toggleLink {
+		@include transform-origin(top, right);
+		@include transform(rotate(90deg) translate(100%, 0));
 	}
 }
 
