@@ -201,8 +201,7 @@ div {
 }
 
 .olImageLoadError {
-	background-color: pink;
-	@include opacity(0.5);
+  display: none !important;
 }
 
 /**
