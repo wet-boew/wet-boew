@@ -3,9 +3,23 @@
  * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  */
 
+%so-filter-rotate-1 {
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+}
+
+%so-filter-rotate-3 {
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+ 
 .ie7 {
+	&[dir="rtl"] {
+		#toggleLink {
+			@extend %so-filter-rotate-1;
+			left: 0;
+		}
+	}
 	#toggleLink {
-		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+		@extend %so-filter-rotate-3;
 		right: 0;
 	}
 	#slideoutToggle {
@@ -22,7 +36,12 @@
 	#slideoutInnerWrapper {
 		width: auto;
 	}
+	&[dir="rtl"] {
+		#slideoutToggle {
+			@extend %so-filter-rotate-1;
+		}
+	}
 	#slideoutToggle {
-		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+		@extend %so-filter-rotate-3;
 	}
 }
