@@ -547,7 +547,7 @@
 			if (!options.height) {
 				options.height = 250;
 			}
-			
+
 			// 3. [Table element] CSS Overwrite - [Keep a list of required plugin "defaultnamespace-plugin" eg. wb-charts-donnut]
 			options = setClassOptions(options, (self.attr('class') !== undefined ? self.attr('class') : ''));
 
@@ -1305,7 +1305,6 @@
 								]);
 							
 							valueCumul += header[header.length - 1].flotDelta;
-						
 							break;
 						}
 						var tdOptions =  setClassOptions(RowDefaultOptions,				
@@ -1417,9 +1416,7 @@
 						$('.legend > table', $placeHolder).removeAttr('style').addClass('font-small');
 						$placeHolder.css('height', 'auto');
 					}
-					$('canvas:eq(1)', $placeHolder).css('position', 'static');//.css('width', '100%');
-					// $('canvas:eq(0)', $placeHolder).css('width', '100%');
-
+					$('canvas:eq(1)', $placeHolder).css('position', 'static');
 					// Remove any "pieLabel" ids set by the flotPie.js plugin at line #457
 					$('.pieLabel').removeAttr('id');
 					
@@ -1660,7 +1657,7 @@
 				// Remove the legend
 				$('.legend', $placeHolder).remove();
 			}
-			$('canvas:eq(1)', $placeHolder).css('position', 'static');//.removeAttr('width').css('width', '100%');
+			$('canvas:eq(1)', $placeHolder).css('position', 'static');
 			$('canvas:eq(0)', $placeHolder).css('width', '100%');
 			
 			// Destroy the temp table if used
