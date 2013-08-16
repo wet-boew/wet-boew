@@ -1111,9 +1111,10 @@
 					var $table = _pe.fn.geomap.createTable(index, layer.title, layer.caption, layer.datatable);
 
 					if (layer.type === 'kml') {	
+						var strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()]
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
-								strategies: [new OpenLayers.Strategy.Fixed()],
+								strategies: strategies,
 								protocol: new OpenLayers.Protocol.HTTP({
 									url: layer.url,
 									format: new OpenLayers.Format.KML({
@@ -1191,10 +1192,11 @@
 						_pe.fn.geomap.addLayerData(geomap, $table, layer.visible, olLayer.id, layer.tab);
 						olLayer.visibility = layer.visible;
 					} else if (layer.type === 'atom') {
+						var strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()]
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
 								projection: geomap.map.displayProjection,
-								strategies: [new OpenLayers.Strategy.Fixed()],
+								strategies: strategies,
 								protocol: new OpenLayers.Protocol.HTTP({
 									url: layer.url,
 									format: new OpenLayers.Format.Atom({
@@ -1254,10 +1256,11 @@
 						_pe.fn.geomap.addLayerData(geomap, $table, layer.visible, olLayer.id, layer.tab);
 						olLayer.visibility = layer.visible;					
 					} else if (layer.type === 'georss') {
+						var strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()]
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
 								projection: geomap.map.displayProjection,
-								strategies: [new OpenLayers.Strategy.Fixed()],
+								strategies: strategies,
 								protocol: new OpenLayers.Protocol.HTTP({
 									url: layer.url,
 									format: new OpenLayers.Format.GeoRSS({									
@@ -1321,10 +1324,11 @@
 						_pe.fn.geomap.addLayerData(geomap, $table, layer.visible, olLayer.id, layer.tab);
 						olLayer.visibility = layer.visible;
 					} else if (layer.type === 'json') {
+						var strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()]
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
 								projection: geomap.map.displayProjection,
-								strategies: [new OpenLayers.Strategy.Fixed()],
+								strategies: strategies,
 								protocol: new OpenLayers.Protocol.Script({
 									url: layer.url,
 									params: layer.params,
@@ -1387,11 +1391,12 @@
 						geomap.map.addLayer(olLayer);											
 						_pe.fn.geomap.addLayerData(geomap, $table, layer.visible, olLayer.id, layer.tab);
 						olLayer.visibility = layer.visible;			
-					} else if (layer.type ==='geojson') {						
+					} else if (layer.type ==='geojson') {
+						var strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()]
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
 								projection: geomap.map.displayProjection,
-								strategies: [new OpenLayers.Strategy.Fixed()],
+								strategies: strategies,
 								protocol: new OpenLayers.Protocol.Script({
 									url: layer.url,
 									params: layer.params,
@@ -1444,7 +1449,7 @@
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
 							}
-						);
+						);						
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
 						olLayer.popupsInfo = layer.popupsInfo;
@@ -1560,6 +1565,7 @@
 				tableLayer.popupsInfo = table.popupsInfo;
 				tableLayer.popups = table.popups;
 				tableLayer.name = table.id;
+				
 				geomap.map.addLayer(tableLayer);
 				geomap.queryLayers.push(tableLayer);
 
