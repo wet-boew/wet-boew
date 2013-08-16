@@ -139,6 +139,7 @@
 			<exclude name="dependencies/excanvas.js"/>
 			<exclude name="dependencies/flot.js"/>
 			<exclude name="dependencies/flotPie.js"/>
+			<exclude name="dependencies/flotCanvas.js"/>
 			<exclude name="dependencies/resize.js"/>
 			<exclude name="dependencies/validate.js"/>
 			<exclude name="dependencies/validateAdditional.js"/>

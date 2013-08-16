@@ -486,7 +486,7 @@
 						// return [5.1, "g"]
 
 						// Default Cell value extraction
-						var cellRawValue = $(elem).text().trim();
+						var cellRawValue = $.trim($(elem).text());
 
 						//remove spaces inside the string;
 						cellRawValue = cellRawValue.replace(/\s/g, '');
@@ -508,13 +508,13 @@
 						},
 						usnumber: {
 							getcellvalue: function(elem) {
-								var raw = $(elem).text().trim().replace(/,/g, '');
+								var raw = $.trim($(elem).text()).replace(/,/g, '');
 								return [parseFloat(raw.match(/[\+\-0-9]+[0-9,\. ]*/)), raw.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
 							}
 						},
 						germannumber: {
 							getcellvalue: function(elem) {
-								var raw = $(elem).text().trim().replace(/\./g, '');
+								var raw = $.trim($(elem).text()).replace(/\./g, '');
 								return [parseFloat(raw.match(/[\+\-0-9]+[0-9,\. ]*/)), raw.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
 							}
 						}
@@ -538,7 +538,16 @@
 				_pe.fn.chartsGraph.O = options; // ---- Save the setting here in a case of a second graphic on the same page
 			}
 			options = _pe.fn.chartsGraph.O;
-
+			options.height = $(elm).height();
+			options.width = $(elm).width();
+			// Fix default width and height in case the table is hidden.
+			if (!options.width) {
+				options.width = 250;
+			}
+			if (!options.height) {
+				options.height = 250;
+			}
+			
 			// 3. [Table element] CSS Overwrite - [Keep a list of required plugin "defaultnamespace-plugin" eg. wb-charts-donnut]
 			options = setClassOptions(options, (self.attr('class') !== undefined ? self.attr('class') : ''));
 
@@ -1351,6 +1360,7 @@
 					// Pie Charts Options
 					//
 					var pieOptions = {
+						canvas: true,
 						series: {
 							pie: {
 								show: true
@@ -1393,7 +1403,8 @@
 					// hoverable
 					if (options.piehoverable) {
 						pieOptions.grid = {
-							hoverable: true
+							hoverable: true,
+							autoHighlight: true
 						};
 					}
 					
@@ -1406,7 +1417,8 @@
 						$('.legend > table', $placeHolder).removeAttr('style').addClass('font-small');
 						$placeHolder.css('height', 'auto');
 					}
-					$('canvas:eq(1)', $placeHolder).css('position', 'static');
+					$('canvas:eq(1)', $placeHolder).css('position', 'static');//.css('width', '100%');
+					// $('canvas:eq(0)', $placeHolder).css('width', '100%');
 
 					// Remove any "pieLabel" ids set by the flotPie.js plugin at line #457
 					$('.pieLabel').removeAttr('id');
@@ -1577,7 +1589,7 @@
 			$(figureElem).append($placeHolder);
 			
 			// Canvas Size
-			$placeHolder.css('height', options.height).css('width', options.width);
+			$placeHolder.css('height', options.height).css('width', '100%');
 			
 			
 			$placeHolder.attr('role', 'img');
@@ -1607,6 +1619,7 @@
 			// Create the graphic
 			
 			var plotParameter = {
+					canvas: true,
 					xaxis: (calcTick.length > 0 ? {ticks: calcTick} : { })
 				};
 			if (options.topvalue) {
@@ -1647,7 +1660,8 @@
 				// Remove the legend
 				$('.legend', $placeHolder).remove();
 			}
-			$('canvas:eq(1)', $placeHolder).css('position', 'static');
+			$('canvas:eq(1)', $placeHolder).css('position', 'static');//.removeAttr('width').css('width', '100%');
+			$('canvas:eq(0)', $placeHolder).css('width', '100%');
 			
 			// Destroy the temp table if used
 			if (options.parsedirection === 'y') {
