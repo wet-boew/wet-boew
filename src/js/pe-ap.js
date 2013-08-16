@@ -55,6 +55,7 @@
 		resizetest: '',
 		settings: (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
 		scrollTopInit: window.pageYOffset || document.documentElement.scrollTop,
+		leftMouseButton: 0,
 
 		/**
 		* @namespace pe.dic
@@ -150,9 +151,6 @@
 					}
 				}
 			}
-			
-			// What is the e.button value for the left mouse button?
-			pe.leftMouseButton = (pe.preIE9 ? 1 : 0);
 				
 			// Determine the page language and if the text direction is right to left (rtl)
 			test = $html.attr('lang');
