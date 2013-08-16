@@ -374,7 +374,7 @@
 				// Move the Canada Wordmark to the footer
 				wmms = document.getElementById('gcwu-wmms');
 				if (wmms !== null) {
-					pe.footer[0].getElementsByTagName('footer')[0].appendChild(wmms.cloneNode(true));
+					pe.footer[0].getElementsByTagName('footer')[0].appendChild(wmms);
 				}
 			}
 
@@ -444,7 +444,7 @@
 			var elms,
 				len;
 
-			if (pe.ie > 0 && pe.ie < 9) {
+			if (pe.preIE9) {
 				elms = $('input, textarea, select, button').get();
 			} else {
 				elms = document.querySelectorAll('input, textarea, select, button');

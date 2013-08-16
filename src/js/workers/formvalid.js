@@ -73,11 +73,15 @@
 			}
 
 			// Clear the form and remove error messages on reset
-			$inputs.filter('[type="reset"]').on('click vclick touchstart', function() {
-				validator.resetForm();
-				var summaryContainer = form.find('#' + $errorFormId);
-				if (summaryContainer.length > 0) {
-					summaryContainer.empty();
+			$inputs.filter('[type="reset"]').on('click vclick touchstart', function(e) {
+				var button = e.button;
+				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+					validator.resetForm();
+					var summaryContainer = form.find('#' + $errorFormId);
+					if (summaryContainer.length > 0) {
+						summaryContainer.empty();
+					}
+					form.find('[aria-invalid="true"]').removeAttr('aria-invalid');
 				}
 				form.find('[aria-invalid="true"]').removeAttr('aria-invalid');
 				if (ariaLive.html().length !== 0) {
@@ -86,7 +90,7 @@
 			});
 
 			// Change form attributes and values that intefere with validation in IE7/8
-			if (_pe.ie > 0 && _pe.ie < 9) {
+			if (_pe.preIE9) {
 				required.removeAttr('required').each(function() {
 					this.setAttribute('data-rule-required', 'true');
 				});
@@ -203,17 +207,20 @@
 
 						// Move the focus to the associated input when an error message link is clicked
 						// and scroll to the top of the label or legend that contains the error
-						form.find('.errorContainer a').on('click vclick', function() {
+						form.find('.errorContainer a').on('click vclick', function(e) {
 							var hash = this.href.substring(this.href.indexOf('#')),
 								input = $(hash),
 								label = input.prev(),
 								legend = label.length === 0 ? input.closest('fieldset').find('legend') : [],
-								errorTop = label.length !== 0 ? label.offset().top : (legend.length !== 0 ? legend.offset().top : -1);
-							_pe.focus(input);
-							if(errorTop !== -1) {
-								$.mobile.silentScroll(errorTop);
+								errorTop = label.length !== 0 ? label.offset().top : (legend.length !== 0 ? legend.offset().top : -1),
+								button = e.button;
+							if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+								_pe.focus(input);
+								if (errorTop !== -1) {
+									$.mobile.silentScroll(errorTop);
+								}
+								return false;
 							}
-							return false;
 						});
 						submitted = false;
 					} else {

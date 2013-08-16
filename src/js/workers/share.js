@@ -27,6 +27,7 @@
 				popupLinksDOM,
 				popupLink,
 				popupLinksLen,
+				popupLinksIndex,
 				popupLinkSpan,
 				match,
 				lang = _pe.language,
@@ -105,18 +106,19 @@
 				popupDOM = $popup[0];
 				popupDOM.setAttribute('id', 'bookmark_popup');
 				popupDOM.setAttribute('aria-hidden', 'true');
-				popupDOM.setAttribute('role', 'menu');
 				$popup.prepend('<p class="popup_title">' + opts.popupText + '</p>');
 				popupLinkListDOM = popupDOM.getElementsByTagName('ul')[0];
-				popupLinkListDOM.setAttribute('role', 'presentation');
+				popupLinkListDOM.setAttribute('role', 'menu');
 				popupLinksDOM = popupLinkListDOM.getElementsByTagName('a');
 				$popupLinks = $(popupLinksDOM);
 				popupLinksLen = popupLinksDOM.length;
-				while (popupLinksLen--) {
-					popupLink = popupLinksDOM[popupLinksLen];
+				popupLinksIndex = popupLinksLen;
+				while (popupLinksIndex--) {
+					popupLink = popupLinksDOM[popupLinksIndex];
 					popupLink.setAttribute('role', 'menuitem');
 					popupLink.setAttribute('rel', 'external');
-					popupLink.parentNode.setAttribute('role', 'presentation');
+					popupLink.setAttribute('aria-posinset', (popupLinksIndex + 1));
+					popupLink.setAttribute('aria-setsize', popupLinksLen);
 					// TODO: Should work with author to fix in bookmark.js rather than maintain this workaround (fix needed otherwise some screen readers read the link twice)
 					popupLinkSpan = popupLink.getElementsByTagName('span');
 					if (popupLinkSpan.length !== 0) {
@@ -139,7 +141,9 @@
 
 				$popupText = elm.find('.bookmark_popup_text').off('click vclick touchstart keydown').wrap('<' + opts.popupTag + ' />');
 				$popupText.attr({'role': 'button', 'aria-controls': 'bookmark_popup'}).on('click vclick touchstart keydown', function (e) {
-					var keyCode = e.keyCode;
+					var keyCode = e.keyCode,
+						button = e.button;
+
 					if (e.type === 'keydown') {
 						if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 							if (keyCode === 13 || keyCode === 32) { // enter or space
@@ -154,7 +158,7 @@
 								$popup.trigger('open');
 							}
 						}
-					} else {
+					} else if (typeof button === 'undefined' || button === _pe.leftMouseButton) {
 						if ($popup.attr('aria-hidden') === 'true') {
 							$popup.trigger('open');
 						} else {
@@ -290,18 +294,22 @@
 					} else if (type === 'mouseleave') {
 						_pe.fn.share.ignoreFocusoutside = false;
 					}
-				}).on('click vclick touchstart', 'a', function () { // Workaround for some touchscreen devices that don't 
-					window.open(this.href, '_blank');
-					$popup.trigger('close');
-					return false;
+				}).on('click vclick touchstart', 'a', function (e) { // Workaround for some touchscreen devices that don't handle a 'click' on a link
+					var button = e.button;
+					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+						window.open(this.href, '_blank');
+						$popup.trigger('close');
+						return false;
+					}
 				});
 
 				_pe.document.on('click vclick touchstart focusin', function (e) {
-					var className = e.target.className;
+					var className = e.target.className,
+						button = e.button;
 					if (!_pe.fn.share.ignoreFocusoutside && $popup.attr('aria-hidden') === 'false' && (className === null || className.indexOf('bookmark_popup_text') === -1)) {
 						if (e.type === 'focusin') {
 							$popup.trigger('closenofocus');
-						} else {
+						} else if (typeof button === 'undefined' || button === _pe.leftMouseButton) {
 							$popup.trigger('close');
 						}
 					}

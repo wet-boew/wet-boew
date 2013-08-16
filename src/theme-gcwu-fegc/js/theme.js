@@ -324,7 +324,7 @@
 						}
 						settings_popup += '</ul></div>';
 					} else if (link.length !== 0) {
-						settings_popup += '<li><a href="' + link.href + '">' + link.html() + '</a></li>';
+						settings_popup += '<li><a href="' + link.attr('href') + '">' + link.html() + '</a></li>';
 					}
 				}
 				target = settings_popup.lastIndexOf('<li');
@@ -373,7 +373,7 @@
 				// Move the Canada Wordmark to the footer
 				wmms = document.getElementById('gcwu-wmms');
 				if (wmms !== null) {
-					pe.footer[0].getElementsByTagName('footer')[0].appendChild(wmms.cloneNode(true));
+					pe.footer[0].getElementsByTagName('footer')[0].appendChild(wmms);
 				}
 			}
 
@@ -443,7 +443,7 @@
 			var elms,
 				len;
 
-			if (pe.ie > 0 && pe.ie < 9) {
+			if (pe.preIE9) {
 				elms = $('input, textarea, select, button').get();
 			} else {
 				elms = document.querySelectorAll('input, textarea, select, button');

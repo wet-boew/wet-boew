@@ -6,13 +6,15 @@
 	details {
 		> {
 			* {
-				visibility: hidden;
+				display: none;
 			}
 		}
-		&[open] {
+	}
+	&.no-js {
+		details {
 			> {
 				* {
-					visibility: visible;
+					display: block;
 				}
 			}
 		}

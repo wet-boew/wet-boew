@@ -228,27 +228,31 @@
 			return monthNav;
 		},
 		prevMonth : function (event) {
-			var ctn = $(this).closest('.cal-container'),
+			var button = event.button,
+				ctn = $(this).closest('.cal-container'),
 				btnClass = 'cal-prevmonth';
+			if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+				_pe.fn.calendar.create(event.data.calID, event.data.year, event.data.month, true, event.data.mindate, event.data.maxdate);
 
-			_pe.fn.calendar.create(event.data.calID, event.data.year, event.data.month, true, event.data.mindate, event.data.maxdate);
-
-			if (ctn.find('.' + btnClass).length < 1) {
-				_pe.focus(ctn.find('.cal-goto-link a'));
-			} else {
-				_pe.focus(ctn.find('.' + btnClass + ' a'));
+				if (ctn.find('.' + btnClass).length < 1) {
+					_pe.focus(ctn.find('.cal-goto-link a'));
+				} else {
+					_pe.focus(ctn.find('.' + btnClass + ' a'));
+				}
 			}
 		},
 		nextMonth : function (event) {
-			var ctn = $(this).closest('.cal-container'),
+			var button = event.button,
+				ctn = $(this).closest('.cal-container'),
 				btnClass = 'cal-nextmonth';
+			if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+				_pe.fn.calendar.create(event.data.calID, event.data.year, event.data.month, true, event.data.mindate, event.data.maxdate);
 
-			_pe.fn.calendar.create(event.data.calID, event.data.year, event.data.month, true, event.data.mindate, event.data.maxdate);
-
-			if (ctn.find('.' + btnClass).length < 1) {
-				_pe.focus(ctn.find('.cal-goto-link a'));
-			} else {
-				_pe.focus(ctn.find('.' + btnClass + ' a'));
+				if (ctn.find('.' + btnClass).length < 1) {
+					_pe.focus(ctn.find('.cal-goto-link a'));
+				} else {
+					_pe.focus(ctn.find('.' + btnClass + ' a'));
+				}
 			}
 		},
 		yearChanged : function (event) {
@@ -332,16 +336,22 @@
 
 			buttonCancelContainer = $('<div class="cal-goto-button"></div>');
 			buttonCancel = $('<input type="button" class="button button-dark" value="' + _pe.dic.get('%calendar-cancelButton') + '" />');
-			buttonCancel.click(function () {
-				_pe.fn.calendar.hideGoToForm(calendarid);
+			buttonCancel.on('click', function (e) {
+				var button = e.button;
+				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+					_pe.fn.calendar.hideGoToForm(calendarid);
+				}
 			});
 			buttonCancelContainer.append(buttonCancel);
 			fieldset.append(buttonCancelContainer);
 
 			goToLinkContainer = $('<p class="cal-goto-link" id="cal-' + calendarid + '-goto-link"></p>');
 			goToLink = $('<a href="javascript:;" role="button" aria-controls="cal-' + calendarid + '-goto" aria-expanded="false">' + _pe.dic.get('%calendar-goToLink') + '</a>');
-			goToLink.on('click', function () {
-				_pe.fn.calendar.showGoToForm(calendarid);
+			goToLink.on('click', function (e) {
+				var button = e.button;
+				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+					_pe.fn.calendar.showGoToForm(calendarid);
+				}
 			});
 			goToLinkContainer.append(goToLink);
 

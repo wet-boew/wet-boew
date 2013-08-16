@@ -27,13 +27,13 @@
 %tables-cursor-pointer {
 	cursor: pointer;
 }
- 
+
 // Table
 table {
 	&.dataTable {
 		margin: 0 auto;
 		@extend %tables-clear-both;
-		width: 100%;
+		width: 100% !important;
 		thead {
 			th {
 				@extend %tables-border-bottom-1px-solid-black-font-weight-700;
@@ -248,7 +248,7 @@ table {
 .sorting_desc_disabled {
 	background: url('../images/tables/sort_desc_disabled.png') no-repeat center right;
 }
- 
+
 /*
  * Scrolling
  */
