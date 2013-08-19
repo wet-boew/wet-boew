@@ -43,7 +43,7 @@ ul {
 					padding: 0 5px;
 					@include pseudo-focus {
 						background: #406C93;
-						color: #fff;
+						color: #fff !important;
 					}
 				}
 			}
