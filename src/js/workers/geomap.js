@@ -1108,9 +1108,9 @@
 			if (overlayData.length !== 0) {
 				geomap.overlays = overlayData.length;
 				$.each(overlayData, function(index, layer) {	
-					var strategies, $table = _pe.fn.geomap.createTable(index, layer.title, layer.caption, layer.datatable);
+					var strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()], 
+						$table = _pe.fn.geomap.createTable(index, layer.title, layer.caption, layer.datatable);
 					if (layer.type === 'kml') {	
-						strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()];
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
 								strategies: strategies,
@@ -1191,7 +1191,6 @@
 						_pe.fn.geomap.addLayerData(geomap, $table, layer.visible, olLayer.id, layer.tab);
 						olLayer.visibility = layer.visible;
 					} else if (layer.type === 'atom') {
-						strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()];
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
 								projection: geomap.map.displayProjection,
@@ -1255,7 +1254,6 @@
 						_pe.fn.geomap.addLayerData(geomap, $table, layer.visible, olLayer.id, layer.tab);
 						olLayer.visibility = layer.visible;					
 					} else if (layer.type === 'georss') {
-						strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()];
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
 								projection: geomap.map.displayProjection,
@@ -1323,7 +1321,6 @@
 						_pe.fn.geomap.addLayerData(geomap, $table, layer.visible, olLayer.id, layer.tab);
 						olLayer.visibility = layer.visible;
 					} else if (layer.type === 'json') {
-						strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()];
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
 								projection: geomap.map.displayProjection,
@@ -1391,7 +1388,6 @@
 						_pe.fn.geomap.addLayerData(geomap, $table, layer.visible, olLayer.id, layer.tab);
 						olLayer.visibility = layer.visible;			
 					} else if (layer.type ==='geojson') {
-						strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()];
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
 								projection: geomap.map.displayProjection,
