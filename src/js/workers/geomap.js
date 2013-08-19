@@ -1108,10 +1108,9 @@
 			if (overlayData.length !== 0) {
 				geomap.overlays = overlayData.length;
 				$.each(overlayData, function(index, layer) {	
-					var $table = _pe.fn.geomap.createTable(index, layer.title, layer.caption, layer.datatable);
-
+					var strategies, $table = _pe.fn.geomap.createTable(index, layer.title, layer.caption, layer.datatable);
 					if (layer.type === 'kml') {	
-						var strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()]
+						strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()]
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
 								strategies: strategies,
@@ -1192,7 +1191,7 @@
 						_pe.fn.geomap.addLayerData(geomap, $table, layer.visible, olLayer.id, layer.tab);
 						olLayer.visibility = layer.visible;
 					} else if (layer.type === 'atom') {
-						var strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()]
+						strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()]
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
 								projection: geomap.map.displayProjection,
@@ -1256,7 +1255,7 @@
 						_pe.fn.geomap.addLayerData(geomap, $table, layer.visible, olLayer.id, layer.tab);
 						olLayer.visibility = layer.visible;					
 					} else if (layer.type === 'georss') {
-						var strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()]
+						strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()]
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
 								projection: geomap.map.displayProjection,
@@ -1324,7 +1323,7 @@
 						_pe.fn.geomap.addLayerData(geomap, $table, layer.visible, olLayer.id, layer.tab);
 						olLayer.visibility = layer.visible;
 					} else if (layer.type === 'json') {
-						var strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()]
+						strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()]
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
 								projection: geomap.map.displayProjection,
@@ -1392,7 +1391,7 @@
 						_pe.fn.geomap.addLayerData(geomap, $table, layer.visible, olLayer.id, layer.tab);
 						olLayer.visibility = layer.visible;			
 					} else if (layer.type ==='geojson') {
-						var strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()]
+						strategies = layer.clustering ? [new OpenLayers.Strategy.Cluster(), new OpenLayers.Strategy.Fixed()] : [new OpenLayers.Strategy.Fixed()]
 						olLayer = new OpenLayers.Layer.Vector(
 							layer.title, {
 								projection: geomap.map.displayProjection,
@@ -1449,7 +1448,7 @@
 								},
 								styleMap: _pe.fn.geomap.getStyleMap(overlayData[index])
 							}
-						);						
+						);
 						olLayer.name = 'overlay_' + index;
 						olLayer.datatable = layer.datatable;
 						olLayer.popupsInfo = layer.popupsInfo;
@@ -1477,6 +1476,7 @@
 			var thZoom = '<th>' + _pe.dic.get('%geo-zoomfeature') + '</th>',
 				thSelect = ('<th>' + _pe.dic.get('%geo-select') + '</th>'),
 				wktFeature,
+				tableFeatures = [],
 				wktParser = new OpenLayers.Format.WKT({						
 					'internalProjection': projMap,
 					'externalProjection': projLatLon
@@ -1488,15 +1488,17 @@
 					table = opts.tables[lenTable],
 					attr = [],
 					thead_tfoot_tr,
+					strategies = table.clustering ? [new OpenLayers.Strategy.Cluster()] : null,
 					tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), {
-						styleMap: _pe.fn.geomap.getStyleMap(table)
+						styleMap: _pe.fn.geomap.getStyleMap(table),
+						strategies: strategies			
 					}),
 					thElms = $table[0].getElementsByTagName('th'),
 					thlen = thElms.length,
 					trElms = $table[0].getElementsByTagName('tr'),
 					trlen = trElms.length,
 					useMapControls = opts.useMapControls;
-
+					
 				// get the attributes from table header
 				while (thlen--) {
 					attr[thlen] = thElms[thlen].innerHTML.replace(/<\/?[^>]+>/gi, '');
@@ -1554,11 +1556,17 @@
 						// set the table row id
 						trElmsInd.setAttribute('id', vectorFeatures.id.replace(/\W/g, '_'));
 
-						// add the attributes to the feature then add it to the map
-						vectorFeatures.attributes = attrMap;										
-						tableLayer.addFeatures([vectorFeatures]);
+						// add the attributes to the feature
+						vectorFeatures.attributes = attrMap;
+						tableFeatures.push(vectorFeatures);
 					}
 				}
+				
+				// add layer to the map
+				geomap.map.addLayer(tableLayer);
+				
+				// add features to the layer
+				tableLayer.addFeatures(tableFeatures);
 
 				tableLayer.id = '#' + table.id;
 				tableLayer.datatable = table.datatable;
@@ -1566,7 +1574,7 @@
 				tableLayer.popups = table.popups;
 				tableLayer.name = table.id;
 				
-				geomap.map.addLayer(tableLayer);
+				
 				geomap.queryLayers.push(tableLayer);
 
 				if (table.tab) {
