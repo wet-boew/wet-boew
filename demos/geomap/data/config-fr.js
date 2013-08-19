@@ -122,6 +122,7 @@ var wet_boew_geomap = {
 				latitude: 'Longitude',				
 				updated_at: 'Dernière mise à jour'
 			},
+			clustering: true,
 			visible: true,	
 			zoom:  [true, {type: 'text'}],
 			datatable: true,
