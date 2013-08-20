@@ -359,35 +359,60 @@
 					} // end of date range visible
 				} // end of event list loop
 			};
+
 			showOnlyEventsFor = function (year, month, calendarid) {
 				$('.' + calendarid + ' li.calendar-display-onshow').addClass('wb-invisible').has(':header[class*=filter-' + year + '-' + _pe.string.pad(parseInt(month, 10) + 1, 2) + ']').removeClass('wb-invisible');
 			};
 
-			if (elm_year.length > 0 && elm_month.length > 0) {
-				year = elm_year.text(); // we are going to assume this is always a number
-				if (elm_month.hasClass('textformat')) {
-					digit = $.inArray(elm_month.text(), monthNames);
-					month = digit;
-				} else {
-					month = elm_month.text() - 1;
+			// Load ajax content
+			$.when.apply($, $.map(elm.find('[data-cal-events]'), function (ajaxContainer) {
+				var $ajaxContainer = $(ajaxContainer),
+					urls = $ajaxContainer.attr('data-cal-events').split(/\s+/),
+					dfd = $.Deferred(),
+					i,
+					len = urls.length,
+					promises = [],
+					appendData;
+
+				appendData = function (data) {
+					$ajaxContainer.append($.trim(data));
+				};
+
+				for (i = 0; i < len; i += 1) {
+					promises.push($.get(urls[i], appendData, 'html'));
 				}
-			}
 
-			events = getEvents(elm);
-			containerid = elm.attr('class').split(' ').slice(-1);
-			$containerid = $('#' + containerid);
+				$.when.apply($, promises).always(function () {
+					dfd.resolve();
+				});
 
-			if ($('#wb-main-in').css('padding-left') === '0px') { //jQuery returns 0px even if no units specified in CSS "padding-left: 0;"
-				$containerid.css('margin-left', '10px');
-			}
+				return dfd.promise();
+			})).always(function () {
+				if (elm_year.length > 0 && elm_month.length > 0) {
+					year = elm_year.text(); // we are going to assume this is always a number
+					if (elm_month.hasClass('textformat')) {
+						digit = $.inArray(elm_month.text(), monthNames);
+						month = digit;
+					} else {
+						month = elm_month.text() - 1;
+					}
+				}
 
-			$containerid.on('calendarDisplayed', function (e, year, month, days) {
-				addEvents(year, month, days, containerid, events.list);
-				showOnlyEventsFor(year, month, containerid);
+				events = getEvents(elm);
+				containerid = elm.attr('class').split(' ').slice(-1);
+				$containerid = $('#' + containerid);
+
+				if ($('#wb-main-in').css('padding-left') === '0px') { //jQuery returns 0px even if no units specified in CSS "padding-left: 0;"
+					$containerid.css('margin-left', '10px');
+				}
+
+				$containerid.on('calendarDisplayed', function (e, year, month, days) {
+					addEvents(year, month, days, containerid, events.list);
+					showOnlyEventsFor(year, month, containerid);
+				});
+				calendar.create(containerid, year, month, true, events.minDate, events.maxDate);
+				$containerid.attr({'role': 'application', 'aria-label': _pe.dic.get('%calendar')});
 			});
-			calendar.create(containerid, year, month, true, events.minDate, events.maxDate);
-
-			$containerid.attr({'role': 'application', 'aria-label': _pe.dic.get('%calendar')});
 		} // end of exec
 	};
 	window.pe = _pe;
