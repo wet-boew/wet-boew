@@ -66,7 +66,7 @@
 			};
 
 			addLinksToCalendar = function (fieldid, year, month, days, minDate, maxDate, format) {
-				var field = $('#' + fieldid),
+				var field = $('#' + pe.string.jqescape(fieldid)),
 					lLimit,
 					hLimit;
 
@@ -208,7 +208,7 @@
 				pattern = '^' + format + '$';
 
 				//Get the date from the field
-				date = $('#' + fieldid).val();
+				date = $('#' + pe.string.jqescape(fieldid)).val();
 				regex = new XRegExp(pattern, 'x');
 
 				try {
@@ -225,13 +225,14 @@
 			};
 
 			addSelectedDateToField = function (fieldid, year, month, day, format) {
-				container.parent().find('#' + fieldid).val(formatDate(year, month, day, format));
+				container.parent().find('#' + pe.string.jqescape(fieldid)).val(formatDate(year, month, day, format));
 			};
 
 			toggle = function (fieldid) {
-				var field = $('#' + fieldid),
+				var escFieldID = pe.string.jqescape(fieldid),
+					field = $('#' + escFieldID),
 					wrapper = field.parent(),
-					toggle = wrapper.find('#' + fieldid + '-picker-toggle'),
+					toggle = wrapper.find('#' + escFieldID + '-picker-toggle'),
 					targetDate = pe.date.from_iso_format(field.val());
 
 				toggle.toggleClass('picker-toggle-hidden picker-toggle-visible');
@@ -285,9 +286,9 @@
 						}
 					}
 				} else {
-					hide($('#' + fieldid));
+					hide($('#' + escFieldID));
 
-					pe.focus(wrapper.find('#' + fieldid));
+					pe.focus(wrapper.find('#' + escFieldID));
 				}
 			};
 
@@ -300,10 +301,12 @@
 			};
 
 			hide = function (pickerField) {
-				var fieldid, toggle, fieldLabel;
+				var fieldid,
+					toggle,
+					fieldLabel;
 
 				fieldid = pickerField.attr('id');
-				toggle = $('#' + fieldid + '-picker-toggle');
+				toggle = $('#' + pe.string.jqescape(fieldid) + '-picker-toggle');
 				fieldLabel = $('label[for="' + fieldid + '"]').text();
 
 				//Disable the tabbing of all the links when calendar is hidden
