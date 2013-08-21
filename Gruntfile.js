@@ -36,45 +36,27 @@ module.exports = function(grunt) {
 			}
 		},
 		uglify: {
-			selectivizr : {
-				options: {
-					banner : '/*!* selectivizr v1.0.2 - (c) Keith Clark, freely distributable under the terms of the MIT license. * selectivizr.com */\n'
-				},
-				files : {
-					'dist/js/vendor/selectivizr.min.js': ['lib/selectivizr/selectivizr.js']
-				}
-			},
-			jqm: {
-				options: {
-					banner : '/*! jQuery Mobile Git HEAD hash: 74b4bec049fd93e4fe40205e6157de16eb64eb46 <> Date: Wed Apr 10 2013 21:57:23 UTC jquerymobile.com | jquery.org/license */\n'
-				},
-				files: {
-					'dist/js/vendor/jquery-mobile-1.3.1.min.js': ['lib/jquery.mobile/jquery.mobile-1.3.1.js']
-				}
-			},
 			polyfills: {
 				options: {
 					preserveComments : 'some'
 				},
 				files: {
-					'dist/js/polyfills/datalist.min.js': ['src/core/vapour/polyfills/datalist.js'],
-					'dist/js/polyfills/respond.min.js': ['src/core/vapour/polyfills/respond.js'],
-					'dist/js/polyfills/excanvas.min.js': ['src/core/vapour/polyfills/excanvas.js'],
-					'dist/js/polyfills/datepicker.min.js': ['src/core/vapour/polyfills/datepicker.js'],
-					'dist/js/polyfills/detailssummary.min.js': ['src/core/vapour/polyfills/detailssummary.js'],
-					'dist/js/polyfills/localstorage.min.js': ['src/core/vapour/polyfills/localstorage.js'],
-					'dist/js/polyfills/meter.min.js': ['src/core/vapour/polyfills/meter.js'],
-					'dist/js/polyfills/progress.min.js': ['src/core/vapour/polyfills/progress.js'],
-					'dist/js/polyfills/sessionstorage.min.js': ['src/core/vapour/polyfills/sessionstorage.js'],
-					'dist/js/polyfills/slider.min.js': ['src/core/vapour/polyfills/slider.js']
-					}
+					'dist/js/polyfills/datalist.min.js': ['src/js/polyfills/datalist.js'],
+					'dist/js/polyfills/datepicker.min.js': ['src/js/polyfills/datepicker.js'],
+					'dist/js/polyfills/detailssummary.min.js': ['src/js/polyfills/detailssummary.js'],
+					'dist/js/polyfills/localstorage.min.js': ['src/js/polyfills/localstorage.js'],
+					'dist/js/polyfills/meter.min.js': ['src/js/polyfills/meter.js'],
+					'dist/js/polyfills/progress.min.js': ['src/js/polyfills/progress.js'],
+					'dist/js/polyfills/sessionstorage.min.js': ['src/js/polyfills/sessionstorage.js'],
+					'dist/js/polyfills/slider.min.js': ['src/js/polyfills/slider.js']
+				}
 			},
 			vapour: {
 				options: {
 					banner: '/* Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt */\n'
 				},
 				files: {
-					'dist/js/vapour.min.js': ['lib/modernizr/modernizr.js', 'src/core/vapour/vapour.js']
+					'dist/js/vapour.min.js': ['src/js/core/vapour.js']
 				}
 			},
 			wetboew: {
@@ -215,11 +197,10 @@ module.exports = function(grunt) {
 					'!src/js/dependencies/xregexp.js',
 					'!src/js/dependencies/proj4js.js',
 					'!src/js/dependencies/openlayers.js',
-					'!src/core/vapour/polyfills/excanvas.js',
-					'!src/core/vapour/polyfills/sessionstorage.js',
-					'!src/core/vapour/polyfills/slider.js',
-					'!src/core/vapour/polyfills/localstorage.js',
-					'!src/core/vapour/polyfills/detailssummary.js',
+					'!src/js/polyfills/sessionstorage.js',
+					'!src/js/polyfills/slider.js',
+					'!src/js/polyfills/localstorage.js',
+					'!src/js/polyfills/detailssummary.js',
 					'test/**/*.js'
 				]
 			}
