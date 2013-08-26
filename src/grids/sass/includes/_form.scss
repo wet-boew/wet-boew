@@ -4,6 +4,7 @@
  */
 @import "compass/css3/appearance";
 @import "compass/css3/box-sizing";
+@import "mixins";
 
 @mixin forms {
 
@@ -134,8 +135,8 @@
 		&[type="search"] {
 			@include appearance(textfield);
 		}
-		@if $experimental-support-for-mozilla {
-			&:-moz-placeholder { color: $medium; }
+		@include input-placeholder {
+			 color: $medium;
 		}
 	}
 

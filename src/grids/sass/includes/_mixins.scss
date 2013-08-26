@@ -199,7 +199,7 @@ $default-box-shadow-v-offset: 0;
             &:focus, &:active {
                 @content;
             }
-        }        
+        }
     } @else if $hover {
 		&:hover, &:focus {
 			@content;
@@ -209,4 +209,25 @@ $default-box-shadow-v-offset: 0;
 			@content;
 		}
     }
+}
+
+// Style the html5 input placeholder in browsers that support it.
+// Backported from the 0.13 release of Compass.
+@mixin input-placeholder {
+	@if $experimental-support-for-webkit {
+		&::-webkit-input-placeholder {
+			@content;
+		}
+	}
+	@if $experimental-support-for-mozilla {
+		// Single colon for Firefox 19 and below, double for 20 and above.
+		&:-moz-placeholder, &::-moz-placeholder {
+			@content;
+		}
+	}
+	@if $experimental-support-for-microsoft {
+		&:-ms-input-placeholder {
+			@content;
+		}
+	}
 }
