@@ -2,6 +2,13 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
  */
+%datepicker-display-none {
+	display: none;
+}
+%datepicker-display-inline {
+	display: inline;
+}
+ 
 .cal-container {
 	&.picker-overlay {
 		position: absolute;
@@ -26,18 +33,18 @@
 .ui-mobile {
 	.polyfill {
 		&.picker-field {
-			display: inline;
+			@extend datepicker-display-inline;
 		}
 	}
 	.picker-toggle-hidden, .picker-toggle-visible {
 		img {
-			display: inline;
+			@extend datepicker-display-inline;
 		}
 	}
 }
 
 .picker-toggle {
-	display: none;
+	@extend datepicker-display-none;
 }
 
 .picker-toggle-visible, .picker-toggle-hidden {
@@ -69,5 +76,15 @@ div {
 				}
 			}
 		}
+	}
+}
+
+.datepicker-format {
+	@extend datepicker-display-none;
+}
+
+.datepicker-polyfill {
+	.datepicker-format {
+		@extend datepicker-display-inline;
 	}
 }
