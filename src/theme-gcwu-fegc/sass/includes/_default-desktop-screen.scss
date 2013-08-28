@@ -380,6 +380,17 @@ a {
 					border-left: 1px solid #CCC;
 				}
 			}
+			div {
+				> {
+					a {
+						@include pseudo-focus {
+							background-color: #CCC;
+							color: #000;
+						}
+					}
+				}
+				
+			}
 		}
 		a {
 			padding: 0.45em 1.17em 0.45em 0.79em;
