@@ -271,6 +271,17 @@
 			background: transparent; //TODO: Can these be removed as transparent is the default background colour
 			border-left-color: #1b5a9f;
 			border-right-color: #3874bd;
+			div {
+				> {
+					a {
+						@include pseudo-focus {
+							background-color: #CCC;
+							color: #000;
+						}
+					}
+				}
+				
+			}
 		}
 		a {
 			padding: {
