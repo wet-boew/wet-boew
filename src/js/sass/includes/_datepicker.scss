@@ -56,7 +56,7 @@
 }
 
 .picker-toggle {
-	@extend datepicker-display-none;
+	@extend %datepicker-display-none;
 }
 
 .picker-toggle-visible, .picker-toggle-hidden {
@@ -98,11 +98,11 @@ div {
 }
 
 .datepicker-format {
-	@extend datepicker-display-none;
+	@extend %datepicker-display-none;
 }
 
-.datepicker-polyfill {
+.polyfill-datepicker {
 	.datepicker-format {
-		@extend datepicker-display-inline;
+		@extend %datepicker-display-inline;
 	}
 }
