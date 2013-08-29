@@ -353,7 +353,7 @@
 					for (i = 0; i !== len; i += 1) {
 						node = nodes[i];
 						id = node.id;
-						if (id !== 'gcwu-gcnb-lang' && id !== 'gcwu-gcft-ca') {
+						if (id.indexOf('gcwu-gcnb-lang') === -1 && id !== 'gcwu-gcft-ca') {
 							link = node.getElementsByTagName('a');
 							if (link.length !== 0) {
 								link = link[0];
