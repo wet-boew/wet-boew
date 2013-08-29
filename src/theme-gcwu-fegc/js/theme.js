@@ -164,6 +164,8 @@
 				signInOut,
 				session,
 				listviewOpen,
+				sig,
+				id,
 				header_fixed = typeof wet_boew_mobile_view !== 'undefined' && wet_boew_mobile_view.header_fixed;
 
 			// Content pages only
@@ -309,7 +311,8 @@
 				// Add the footer links
 				nodes = wet_boew_theme.sft.find('.gcwu-col-head');
 				listviewOpen = false;
-				for (i = 0, len = nodes.length; i !== len; i += 1) {
+				len = nodes.length;
+				for (i = 0; i !== len; i += 1) {
 					node = nodes.eq(i);
 					link = node.children('a');
 					next = node.find('+ ul, + address ul');
@@ -339,7 +342,28 @@
 				}
 				if (listviewOpen) {
 					settings_popup += '</ul>';
-				}	
+				}
+
+				// Add GC links
+				sig = wet_boew_theme.gcnb.find('#gcwu-sig-in').children();
+				if (sig.length !== 0) {
+					settings_popup += '<div class="wb-nested-menu" data-role="collapsible"><h2>' + (typeof sig.attr('aria-label') !== 'undefined' ? sig.attr('aria-label') : sig.attr('alt')) + '</h2>' + listView + '>';
+					nodes = wet_boew_theme.gcnb.find('li').add(wet_boew_theme.gcft.find('li')).get();
+					len = nodes.length;
+					for (i = 0; i !== len; i += 1) {
+						node = nodes[i];
+						id = node.id;
+						if (id !== 'gcwu-gcnb-lang' && id !== 'gcwu-gcft-ca') {
+							link = node.getElementsByTagName('a');
+							if (link.length !== 0) {
+								link = link[0];
+								settings_popup += '<li><a href="' + link.href + (link.hasAttribute('target') ? '" target="' + link.getAttribute('target') : '') + '">' + link.innerHTML + '</a></li>';
+							}
+						}
+					}
+					settings_popup += '</ul></div>';
+				}
+
 				target = settings_popup.lastIndexOf('<li');
 				len2 = settings_popup.indexOf('<li class', target) === target ? 11 : 3;
 				settings_popup = settings_popup.substring(0, target) + '<li class="ui-corner-bottom' + (len2 === 3 ? '"' : ' ') + settings_popup.substring(target + len2) + '</ul></div></div>' + popup_close;
