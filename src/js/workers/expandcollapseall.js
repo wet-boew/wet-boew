@@ -15,6 +15,7 @@
 	_pe.fn.expandcollapseall = {
 		type : 'plugin',
 		_open : false,			// Globally track the toggle state to support multiple controls on a page
+		_polyfill : false,		// Tracks if the details polyfill is used on the page
 		_togglers : [],			// Reference to all toggle controls
 		_aria_controls : null,	// Space separated ID list of <details> elements for toggle control aria-controls attribute
 		_exec : function (elm) {
@@ -53,6 +54,9 @@
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_expandcollapseall) and class-based overrides
 			$.extend(opts, (typeof wet_boew_expandcollapseall !== 'undefined' ? wet_boew_expandcollapseall : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
+
+			// Check if this page is using the details polyfill
+			this._polyfill = _pe.html.hasClass('polyfill-detailssummary');
 
 			// Create the toggle controls and add them to the page
 			this._initTogglers(elm, opts);
@@ -95,9 +99,12 @@
 		toggle : function() {
 			var $details = $('details');
 
-			// Set the state we're currently in and trigger the change
-			$details.prop('open', this.isOpen());
-			$details.find('summary').click();
+			if (this._polyfill) {
+				$details.prop('open', this.isOpen());
+				$details.find('summary').click();
+			} else {
+				$details.prop('open', !this.isOpen());
+			}
 
 			// Update our state and the title of the toggler controls
 			this.setOpen(!this.isOpen());
