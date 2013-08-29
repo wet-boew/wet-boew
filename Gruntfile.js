@@ -5,34 +5,38 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		// Metadata.
 		pkg: grunt.file.readJSON('package.json'),
-		banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
+		banner: '/*! Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt\n' +
+			' - v<%= pkg.version %> - ' +
 			'<%= grunt.template.today("yyyy-mm-dd") %>\n' +
 			'<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
 			' License: <%= pkg.license %> */\n',
 		// Task configuration.
 		concat: {
 			options: {
-			banner: '/* Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt */\n',
-			stripBanners: true
+				banner: '<%= banner %>'
 			},
-			vapour: {
-				src: [ 'lib/modernizr/modernizr.js','src/core/vapour/vapour.js'],
-				dest: 'dist/js/vapour.js'
+			plugins: {
+				options: {
+					stripBanners: true
+				},
+                src: ['dist/js/wet-boew.js', 'src/plugins/**/*.js'],
+                dest: 'dist/js/wet-boew.js',
 			},
-			wetboew: {
-				src: [ 'src/plugins/**/*.js'],
-				dest: 'dist/js/wet-boew.js'
+			core: {
+				options: {
+					stripBanners: false
+				},
+				src: ['lib/modernizr/modernizr-custom.js', 'dist/js/vapour.js'],
+                dest: 'dist/js/vapour.js',
 			}
 		},
 		sass: {
-			base: {
-				'dist/css/base.css': 'src/sass/base.scss'
-			},
-			bare: {
-				'demos/vapour/bare/css/theme.css': 'themes/bare/css/theme.scss'
-			},
-			demo: {
-				'demos/vapour/demo/css/theme.css': 'themes/demo/css/theme.scss'
+			all: {
+				expand: true,
+				cwd: 'src/base',
+				src: ['**/*.scss', '!**/_*.scss'],
+				dest: 'dist/css/',
+				ext: '.css'
 			}
 		},
 		uglify: {
@@ -40,92 +44,131 @@ module.exports = function(grunt) {
 				options: {
 					preserveComments : 'some'
 				},
-				files: {
-					'dist/js/polyfills/datalist.min.js': ['src/js/polyfills/datalist.js'],
-					'dist/js/polyfills/datepicker.min.js': ['src/js/polyfills/datepicker.js'],
-					'dist/js/polyfills/detailssummary.min.js': ['src/js/polyfills/detailssummary.js'],
-					'dist/js/polyfills/localstorage.min.js': ['src/js/polyfills/localstorage.js'],
-					'dist/js/polyfills/meter.min.js': ['src/js/polyfills/meter.js'],
-					'dist/js/polyfills/progress.min.js': ['src/js/polyfills/progress.js'],
-					'dist/js/polyfills/sessionstorage.min.js': ['src/js/polyfills/sessionstorage.js'],
-					'dist/js/polyfills/slider.min.js': ['src/js/polyfills/slider.js']
-				}
+				expand: true,
+				cwd: 'src/polyfills',
+				src: ['**/*.js'],
+				dest: 'dist/js/polyfills/',
+				ext: '.min.js',
+				flatten: true
 			},
-			vapour: {
+			core: {
 				options: {
-					banner: '/* Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt */\n'
+					preserveComments : 'some'
 				},
 				files: {
-					'dist/js/vapour.min.js': ['src/js/core/vapour.js']
+					'dist/js/vapour.min.js': 'dist/js/vapour.js'
 				}
 			},
-			wetboew: {
-				options: {
-					banner: '/* Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt */'
+			plugins: {
+                options: {
+					banner: '<%= banner %>'
 				},
 				files: {
-					'dist/js/wet-boew.min.js': ['dist/js/wet-boew.js']
+					'dist/js/wet-boew.min.js': 'dist/js/wet-boew.js'
 				}
+			},
+			i18n: {
+				options: {
+					banner: '<%= banner %>'
+				},
+				expand: true,
+				cwd: 'dist/js/i18n',
+				src: ['**/*.js'],
+				dest: 'dist/js/i18n',
+				ext: '.min.js'
 			}
+			
 		},
 		coffee: {
-			compileBare: {
+			vapour: {
+				options: {
+					bare: true,
+				},
+				files: {
+					'dist/js/vapour.js': 'src/core/vapour.coffee'
+				}
+			},
+			plugins: {
 				options: {
 					bare: true
 				},
-				files: [
-					{
-						'dist/core/vapour/vapour.js': 'src/core/vapour/vapour.coffee'
-					}, // 1:1 compile
-					{
-						'dist/core/vapour/template.js': 'src/core/vapour/template.coffee'
-					},
-					{
-						'dist/plugins/zebra/wet-boew.zebra.js': 'src/plugins/zebra/wet-boew-plugin-zebra.coffee'
-					},
-					{
-						'dist/plugins/equalize/wet-boew.equalize.js': 'src/plugins/equalize/wet-boew-plugin-equalize.coffee'
-					},
-					{
-						'dist/plugins/dimensions/wet-boew.dimensions.js': 'src/plugins/dimensions/wet-boew-plugin-dimensions.coffee'
-					}
-				]
+				files: {
+					'dist/js/wet-boew.js': ['src/plugins/**/*.coffee']
+				}
 			}
+
 		},
-		jade: {
-			html: {
-				options: {
-					pretty: true
-				},
-				files: [{
-					expand: true,
-					cwd: 'themes',
-					dest: 'themes',
-					src: '**/*.jade',
-					ext: '.html'
-				}]
-			}
-		},
+        modernizr: {
+              // [REQUIRED] Path to the build you're using for development.
+            "devFile" : "lib/modernizr/modernizr-custom.js",
+            // By default, source is uglified before saving
+            "uglify" : true,
+            // [REQUIRED] Path to save out the built file.
+            "outputFile" : "lib/modernizr/modernizr-custom.js",
+            // Based on default settings on http://modernizr.com/download/
+            "extra" : {
+                "shiv" : true,
+                "printshiv" : false,
+                "load" : true,
+                "mq" : true,
+                "css3": true,
+                "html5": true,
+                "cssclasses" : true,
+                "fontface": true,
+                "backgroundsize" : true,
+                "borderimage" : true,
+                // continue with all tests
+            },
+             // Based on default settings on http://modernizr.com/download/
+            "extensibility" : {
+                "addtest" : false,
+                "prefixed" : false,
+                "teststyles" : true,
+                "testprops" : true,
+                "testallprops" : true,
+                "hasevents" : true,
+                "prefixes" : true,
+                "domprefixes" : true
+            },
+            // Define any tests you want to impliticly include.
+            "tests" : [],
+            // By default, this task will crawl your project for references to Modernizr tests.
+            // Set to false to disable.
+            "parseFiles" : false,
+            // When parseFiles = true, this task will crawl all *.js, *.css, *.scss files, except files that are in node_modules/.
+            // You can override this by defining a "files" array below.
+            // "files" : [],
+            // When parseFiles = true, matchCommunityTests = true will attempt to
+            // match user-contributed tests.
+            "matchCommunityTests" : false,
+            // Have custom Modernizr tests? Add paths to their location here.
+            "customTests" : []
+        },
 		copy: {
-			main: {
-				files: [
-					{expand: true, cwd: 'dist/', src: ['**'], dest: 'dist/bare/'},
-					{expand: true, cwd: 'themes/bare/', src: ['*.css'], dest: 'dist/bare/css/'},
-					{expand: true, cwd: 'themes/bare/', src: ['*.html'], dest: 'dist/bare/'},
-					{expand: true, cwd: 'src/sass/images/icons/', src: ['**'], dest: 'dist/bare/css/images/icons'},
-					{expand: true, cwd: 'dist/', src: ['**'], dest: 'dist/demo/'},
-					{expand: true, cwd: 'themes/demo/', src: ['*.html'], dest: 'dist/demo/'},
-					{expand: true, cwd: 'themes/demo/css/', src: ['*.css'], dest: 'dist/demo/css/'},
-					{expand: true, cwd: 'src/sass/images/icons/', src: ['**'], dest: 'dist/demo/css/images/icons'}
-				]
-			},
 			jquery: {
 				files: [{
 					cwd: 'lib/jquery',
-					src: '*.js',
-					dest: 'dist/js/vendor',
+					src: ['jquery.min.js', 'jquery.min.map'],
+					dest: 'dist/js',
 					expand: true
 				}]
+			},
+			oldie: {
+				cwd: 'lib/oldie',
+				src: [
+					'jquery/jquery.min.js',
+					'jquery/jquery.min.map',
+					'selectivizr.js', //TODO: Minify
+					'respond/respond.min.js'
+					],
+				dest: 'dist/js/oldie',
+				expand: true,
+				flatten: true
+			},
+			bootstrap: {
+				files: {
+					'dist/css/bootstrap.min.css': 'lib/bootstrap/dist/css/bootstrap.min.css'
+				}
 			}
 		},
 
@@ -135,7 +178,7 @@ module.exports = function(grunt) {
 		watch: {
 			gruntfile: {
 				files: '<%= jshint.gruntfile.src %>',
-				tasks: ['jshint:gruntfile']
+				tasks: ['jshint:gruntfile', 'build']
 			},
 			lib_test: {
 				files: '<%= jshint.lib_test.src %>',
@@ -175,32 +218,7 @@ module.exports = function(grunt) {
 				src: [
 					'src/**/*.js',
 					'!src/**/*min.js',
-					'!src/js/polyfills/datalist.js',
-					'!src/js/polyfills/html5shiv.js',
-					'!src/js/dependencies/bookmark.js',
-					'!src/js/dependencies/browsertweaks.js',
-					'!src/js/dependencies/colorbox.js',
-					'!src/js/dependencies/easytabs.js',
-					'!src/js/dependencies/hashchange.js',
-					'!src/js/dependencies/hoverintent.js',
-					'!src/js/dependencies/json.js',
-					'!src/js/dependencies/matchMedia.js',
-					'!src/js/dependencies/metadata.js',
-					'!src/js/dependencies/outside.js',
-					'!src/js/dependencies/pie.js',
-					'!src/js/dependencies/prettify.js',
-					'!src/js/dependencies/prettify/**/*.js',
-					'!src/js/dependencies/raphael.js',
-					'!src/js/dependencies/resize.js',
-					'!src/js/dependencies/validate.js',
-					'!src/js/dependencies/validateAdditional.js',
-					'!src/js/dependencies/xregexp.js',
-					'!src/js/dependencies/proj4js.js',
-					'!src/js/dependencies/openlayers.js',
-					'!src/js/polyfills/sessionstorage.js',
-					'!src/js/polyfills/slider.js',
-					'!src/js/polyfills/localstorage.js',
-					'!src/js/polyfills/detailssummary.js',
+					'!src/polyfills/**/*.js',
 					'test/**/*.js'
 				]
 			}
@@ -212,6 +230,31 @@ module.exports = function(grunt) {
 					base: '.'
 				}
 			}
+		},
+		bowerful: {
+			dist: {
+				packages: {
+					bootstrap: '3.0.0',
+					jquery: '2.0.3',
+					"jquery.validation": '1.11.1'
+				},
+				store: 'lib',
+			},
+			oldie: {
+				packages: {
+					jquery: '1.10.2',
+					respond: '1.2.0',
+					selectivizr: '1.0.2'
+				},
+				store: 'lib/oldie',
+			}
+		},
+		i18n: {
+			options: {
+				template: 'src/i18n/base.js',
+				csv: 'src/i18n/i18n.csv'
+			},
+			src: 'src/js/i18n/formvalid/*.js'
 		}
 	});
 
@@ -219,18 +262,20 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-contrib-jade');
-	grunt.loadNpmTasks('grunt-contrib-nodeunit');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-coffee');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-connect');
+	grunt.loadNpmTasks('grunt-bowerful');
 	grunt.loadNpmTasks('grunt-sass');
+	grunt.loadNpmTasks("grunt-modernizr");
+	grunt.loadTasks('tasks');
 
 	// Default task.
-	grunt.registerTask('build', ['coffee','jade','sass','concat','uglify', 'copy']);
+	grunt.registerTask('build', ['coffee','sass','concat', 'i18n', 'uglify', 'copy']);
 	grunt.registerTask('test', ['jshint']);
 	grunt.registerTask('default', ['clean', 'build', 'test']);
 	grunt.registerTask('server', ['connect','watch:source']);
+	grunt.registerTask('init', ['bowerful', 'modernizr']);
 };
