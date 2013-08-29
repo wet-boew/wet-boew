@@ -165,6 +165,7 @@
 				signInOut,
 				session,
 				listviewOpen,
+				id,
 				header_fixed = typeof wet_boew_mobile_view !== 'undefined' && wet_boew_mobile_view.header_fixed;
 
 			// Content pages only
@@ -338,9 +339,34 @@
 						settings_popup += '<li class="top-level' + (i === 0 ? ' ui-corner-top' : '') + '"><a href="' + link.attr('href') + '">' + link.html() + '</a></li>';
 					}
 				}
+
+				// Add custom top nav links
+				nodes = wet_boew_theme.gcnb.find('li');
+				len = nodes.length;
+				if (nodes.length !== 0) {
+					nodes = nodes.get();
+					if (!listviewOpen) {
+						settings_popup += listView + '>';
+						listviewOpen = true;
+					}	
+
+					for (i = 0; i !== len; i += 1) {
+						node = nodes[i];
+						id = node.id;
+						if (id.indexOf('gcwu-gcnb-lang') === -1) {
+							link = node.getElementsByTagName('a');
+							if (link.length !== 0) {
+								link = link[0];
+								settings_popup += '<li><a href="' + link.href + (link.hasAttribute('target') ? '" target="' + link.getAttribute('target') : '') + '">' + link.innerHTML + '</a></li>';
+							}
+						}
+					}
+				}
+				
 				if (listviewOpen) {
 					settings_popup += '</ul>';
-				}	
+				}
+
 				target = settings_popup.lastIndexOf('<li');
 				len2 = settings_popup.indexOf('<li class', target) === target ? 11 : 3;
 				settings_popup = settings_popup.substring(0, target) + '<li class="ui-corner-bottom' + (len2 === 3 ? '"' : ' ') + settings_popup.substring(target + len2) + '</ul></div></div>' + popup_close;
