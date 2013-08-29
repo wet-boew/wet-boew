@@ -1,1 +1,0 @@
-# Web Experience Toolkit Polyfills

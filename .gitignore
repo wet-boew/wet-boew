@@ -26,3 +26,4 @@ csslint.out.xml
 *.tmp
 *.log
 node_modules/
+lib/

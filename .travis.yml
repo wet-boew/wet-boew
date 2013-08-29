@@ -9,6 +9,6 @@ env:
 
 before_install:
   - npm install -g grunt-cli
- 
+
 script:
-  - npm test && ./build/post_build.sh
+  - npm test
