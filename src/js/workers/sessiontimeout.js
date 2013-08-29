@@ -11,11 +11,22 @@
 	var _pe = window.pe || {
 		fn : {}
 	};
+	
+	// Modified for v4.0 - Roch Lambert (AJAX limiter update)
+	var activity;
+	var last_activity;
+	var last_check = 0;
+	// End of modification for v4.0 - Roch Lambert
+	
 	/* local reference */
 	_pe.fn.sessiontimeout = {
 		type : 'plugin',
 		_exec : function (elm) {
 			var opts,
+				// Modified for v4.0 - Roch Lambert (AJAX limiter update)
+				ajax_limiter: 20000,		// default period of 20 seconds (ajax calls happen only once during this period)
+				// End of modification for v4.0 - Roch Lambert
+				
 				// An overlay over the screen when showing the dialog message
 				// Added &nbsp; to fix Chrome bug (received from Charlie Lavers - PWGSC)
 				overLay = '<div class="sOverlay jqmOverlay">&#160;</div>',
@@ -151,13 +162,38 @@
 				return hours + ':' + minutes + ':' + seconds + timeformat;
 			};
 		
-			start_liveTimeout();
+			// Modified for v4.0 - Roch Lambert (AJAX limiter update):
+			// Prevent the initial ajax call from happening, instead wait
+			// For the inactivity time to pass before this call is made
+			// start_liveTimeout();
+			setTimeout(start_liveTimeout(),timeParse(opts.inactivity));
+			// End of modification for v4.0 - Roch Lambert
+			
 			if (opts.refreshOnClick) {
 				_pe.document.on('click', function (e) {
-					var button = e.button;
-					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
-						start_liveTimeout();
-					}
+
+					// Modified for v4.0 - Roch Lambert (AJAX limiter update)
+					// Make sure start_livetimeout() only runs at most every 20 seconds
+					// If there is a click on the page
+					if (last_activity >= 1 && (getCurrentTimeMs() - last_check) > opts.ajax_limiter) {
+					// End of modification for v4.0 - Roch Lambert
+
+						var button = e.button;
+
+						// Modified for v4.0 - Roch Lambert (AJAX limiter update)
+						if (typeof button === 'undefined' || button === _pe.leftMouseButton) last_check = getCurrentTimeMs();
+						// End of modification for v4.0 - Roch Lambert
+
+						if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+							start_liveTimeout();
+						}
+
+					// Modified for v4.0 - Roch Lambert (AJAX limiter update)
+					} // END OF if (last_activity >= 1 && ...
+
+					if (typeof button === 'undefined' || button === _pe.leftMouseButton) last_activity = getCurrentTimeMs();
+					// End of modification for v4.0 - Roch Lambert
+
 				});
 			}
 
