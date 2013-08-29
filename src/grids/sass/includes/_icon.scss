@@ -46,7 +46,7 @@ $wb-icon-inline: not $legacy-support-for-ie8;
 
 	//gh-2104 fixes overriding background because of increased specificity when wb-main was used
 	#wb-head &, #wb-foot & {
-		background: inherit;
+		background: none;
 	}
 
 	#wb-main &, #colorbox & {
