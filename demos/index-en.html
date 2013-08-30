@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Working examples - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../dist/theme-gcwu-fegc/images/favicon.ico" />
+<meta name="description" content="Web Experience Toolkit (WET) working examples." />
+<meta name="dcterms.creator" content="Government of Canada, Treasury Board of Canada Secretariat, Chief Information Officer Branch, IT Project Review and Oversight, Web Standards Office" />
+<meta name="dcterms.title" content="Web Experience Toolkit (WET)" />
+<meta name="dcterms.issued" title="W3CDTF" content="2012-05-11" />
+<meta name="dcterms.modified" title="W3CDTF" content="2013-05-16" />
+<meta name="dcterms.subject" title="gccore" content="Internet;Standards;Design" />
+<meta name="dcterms.language" title="ISO639-2" content="eng" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script src="../dist/js/jquery.min.js"></script>
+<!--[if lte IE 8]>
+<script src="../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../dist/theme-gcwu-fegc/css/theme-min.css" />
+<!--<![endif]-->
+<noscript><link rel="stylesheet" href="../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+
+<!-- CustomScriptsCSSStart -->
+<!-- CustomScriptsCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../dist/theme-gcwu-fegc/images/sig-en.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
+<ul>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
+<li id="gcwu-gcnb-lang"><a href="index-fr.html" lang="fr">Français</a></li>
+</ul>
+</div></div></div></nav>
+
+<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../index-en.html">Web Experience Toolkit&#160;(WET)</a></p></div>
+
+<section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="gcwu-srchbx-in">
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="gcwu-psnb"><h2><span>Site </span>menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Implementing-WET">Implement WET</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
+<ol>
+<li><a href="../index-en.html">Home</a></li>
+<li>Working examples</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Working examples</h1>
+
+<div class="span-4">
+<section><h2 id="arb-rra">Accessibility Responsibility Breakdown (WCAG&#160;2.0)</h2>
+<ul>
+<li><a href="arb-rra/arb-rra-en.html"><span class="wb-invisible">Accessibility Responsibility Breakdown (WCAG 2.0) - </span>English example</a></li>
+<li><a href="arb-rra/arb-rra-fr.html"><span class="wb-invisible">Accessibility Responsibility Breakdown (WCAG 2.0) - </span>French example</a></li>
+<li><a href="arb-rra/arb-rra-planAccess-en.html"><span class="wb-invisible">Accessibility Responsibility Breakdown (WCAG 2.0) - </span>English example - Planning accessibility</a></li>
+<li><a href="arb-rra/arb-rra-planAccess-fr.html"><span class="wb-invisible">Accessibility Responsibility Breakdown (WCAG 2.0) - </span>French example - Planning accessibility</a></li>
+</ul>
+</section>
+
+<section><h2 id="arch">Archiving content</h2>
+<ul>
+<li><a href="archived/archived-en.html"><span class="wb-invisible">Archiving content - </span>English example</a></li>
+<li><a href="archived/archived-fr.html"><span class="wb-invisible">Archiving content - </span>French example</a></li>
+</ul>
+</section>
+
+<section><h2 id="autocomplete">Auto-complete</h2>
+<ul>
+<li><a href="datalist/datalist-en.html"><span class="wb-invisible">Auto-complete - </span>English example</a></li>
+<li><a href="datalist/datalist-fr.html"><span class="wb-invisible">Auto-complete - </span>French example</a></li>
+</ul>
+</section>
+
+<section><h2 id="cal">Calendar interface</h2>
+<ul>
+<li><a href="datepicker/datepicker-en.html"><span class="wb-invisible">Calendar interface - </span>Date picker - English example</a></li>
+<li><a href="datepicker/datepicker-fr.html"><span class="wb-invisible">Calendar interface - </span>Date picker - French example</a></li>
+<li><a href="eventscalendar/eventscalendar-en.html"><span class="wb-invisible">Calendar interface - </span>Events calendar - English example</a></li>
+<li><a href="eventscalendar/eventscalendar-fr.html"><span class="wb-invisible">Calendar interface - </span>Events calendar - French example</a></li>
+</ul>
+</section>
+
+<section><h2 id="charts">Charts and Graphs</h2>
+<ul>
+<li><a href="charts/simple-en.html"><span class="wb-invisible">Charts and Graphs - </span>Simple English examples</a></li>
+<li><a href="charts/simple-fr.html"><span class="wb-invisible">Charts and Graphs - </span>Simple French examples</a></li>
+<li><a href="charts/simpleCustomized-en.html"><span class="wb-invisible">Charts and Graphs - </span>Customized English examples</a></li>
+<li><a href="charts/simpleCustomized-fr.html"><span class="wb-invisible">Charts and Graphs - </span>Customized French examples</a></li>
+<li><a href="charts/complex-en.html"><span class="wb-invisible">Charts and Graphs - </span>Complex English examples</a></li>
+<li><a href="charts/complex-fr.html"><span class="wb-invisible">Charts and Graphs - </span>Complex French examples</a></li>
+</ul>
+</section>
+
+<section><h2 id="clf2">CLF 2.0 theme</h2>
+<ul>
+<li><a href="theme-clf2-nsi2/index-en.html#content"><span class="wb-invisible">CLF 2.0 theme - </span>Content pages</a></li>
+<li><a href="theme-clf2-nsi2/index-en.html#wp"><span class="wb-invisible">CLF 2.0 theme - </span>Welcome pages</a></li>
+<li><a href="theme-clf2-nsi2/index-en.html#serv"><span class="wb-invisible">CLF 2.0 theme - </span>Server message pages</a></li>
+</ul>
+</section>
+
+<section><h2 id="drupal">Drupal variant</h2>
+<ul>
+<li><a href="http://wet.openplus.ca/eng" rel="external"><span class="wb-invisible">Drupal variant - </span>English example</a></li>
+<li><a href="http://wet.openplus.ca/fra" rel="external"><span class="wb-invisible">Drupal variant - </span>French example</a></li>
+</ul>
+</section>
+
+<section><h2 id="details">Expandable/collapsible content</h2>
+<ul>
+<li><a href="details/details-en.html"><span class="wb-invisible">Expandable/collapsible content - </span>English example</a></li>
+<li><a href="details/details-fr.html"><span class="wb-invisible">Expandable/collapsible content - </span>French example</a></li>
+</ul>
+</section>
+
+<section><h2 id="feedback">Feedback form</h2>
+<ul>
+<li><a href="feedback/feedback-en.html"><span class="wb-invisible">Feedback form - </span>English example</a></li>
+<li><a href="feedback/feedback-fr.html"><span class="wb-invisible">Feedback form - </span>French example</a></li>
+</ul>
+</section>
+
+<section><h2 id="footnotes">Footnotes</h2>
+<ul>
+<li><a href="footnotes/footnotes-en.html"><span class="wb-invisible">Footnotes - </span>English examples</a></li>
+<li><a href="footnotes/footnotes-fr.html"><span class="wb-invisible">Footnotes - </span>French examples</a></li>
+</ul>
+</section>
+
+<section><h2 id="formvalid">Form validation</h2>
+<ul>
+<li><a href="formvalid/formvalid-en.html"><span class="wb-invisible">Form validation - </span>English examples</a></li>
+<li><a href="formvalid/formvalid-fr.html"><span class="wb-invisible">Form validation - </span>French examples</a></li>
+</ul>
+</section>
+
+<section><h2 id="gcwu">GC Web Usability theme</h2>
+<ul>
+<li><a href="theme-gcwu-fegc/index-en.html#en"><span class="wb-invisible">GC Web Usability theme - </span>English examples</a></li>
+<li><a href="theme-gcwu-fegc/index-en.html#fr"><span class="wb-invisible">GC Web Usability theme - </span>French examples</a></li>
+</ul>
+</section>
+
+<section><h2 id="gcwuintranet">GC Web Usability Intranet theme</h2>
+<ul>
+<li><a href="theme-gcwu-intranet/index-en.html#en"><span class="wb-invisible">GC Web Usability Intranet theme - </span>English examples</a></li>
+<li><a href="theme-gcwu-intranet/index-en.html#fr"><span class="wb-invisible">GC Web Usability Intranet theme - </span>French examples</a></li>
+</ul>
+</section>
+
+<section><h2 id="grids">Grid System</h2>
+<ul>
+<li><a href="grids/grid-base-en.html"><span class="wb-invisible">Grid System - </span>English example</a></li>
+</ul>
+</section>
+
+<section><h2 id="langselect">Language selector</h2>
+<ul>
+<li><a href="langselect/lang-js-en.html"><span class="wb-invisible">Language selector - </span>English example - JavaScript + PHP</a></li>
+<li><a href="langselect/lang-js-fr.html"><span class="wb-invisible">Language selector - </span>French example - JavaScript + PHP</a></li>
+</ul>
+</section>
+
+<section><h2 id="lightbox">Lightbox</h2>
+<ul>
+<li><a href="lightbox/lightbox-en.html"><span class="wb-invisible">Lightbox - </span>English examples</a></li>
+<li><a href="lightbox/lightbox-fr.html"><span class="wb-invisible">Lightbox - </span>French examples</a></li>
+</ul>
+</section>
+
+<section><h2 id="math">Mathematical/scientific formula display</h2>
+<ul>
+<li><a href="mathlib/mathlib-en.html"><span class="wb-invisible">Mathematical/scientific formula display (MathML polyfill) - </span>English examples</a></li>
+<li><a href="mathlib/mathlib-fr.html"><span class="wb-invisible">Mathematical/scientific formula display (MathML polyfill) - </span>French examples</a></li>
+<li><a href="mathlib/mathlib-complex-fr.html"><span class="wb-invisible">Mathematical/scientific formula display (MathML polyfill) - </span>Complex French example</a></li>
+</ul>
+</section>
+
+<section><h2 id="menubar">Menu bar</h2>
+<ul>
+<li><a href="menubar/megamenu-en.html"><span class="wb-invisible">Menu bar - </span>English example - Mega menu</a></li>
+<li><a href="menubar/megamenu-fr.html"><span class="wb-invisible">Menu bar - </span>French example - Mega menu</a></li>
+<li><a href="menubar/hsitenavbar-en.html"><span class="wb-invisible">Menu bar - </span>English example - Horizontal site menu bar</a></li>
+<li><a href="menubar/hsitenavbar-fr.html"><span class="wb-invisible">Menu bar - </span>French example - Horizontal site menu bar</a></li>
+</ul>
+</section>
+</div>
+
+<div class="span-4">
+<section><h2 id="multimedia">Multimedia player</h2>
+<ul>
+<li><a href="multimedia/multimedia-en.html"><span class="wb-invisible">Multimedia player - </span>English video examples</a></li>
+<li><a href="multimedia/multimedia-fr.html"><span class="wb-invisible">Multimedia player - </span>French video examples</a></li>
+</ul>
+</section>
+
+<section><h2 id="opt-cont">Optimal content examples</h2>
+<ul>
+<li><a href="opt-cont/index-en.html"><span class="wb-invisible">Optimal content examples - </span>English examples</a></li>
+<li><a href="tableparser/index-en.html">Documentation related to HTML Table</a></li>
+</ul>
+</section>
+
+<section><h2 id="opt-cont-tools">Optimal content development tools</h2>
+<ul>
+<li><a href="tableparser/validator-htmltable.html">HTML Table Validator</a></li>
+</ul>
+</section>
+
+<section><h2 id="php">PHP variant</h2>
+<ul>
+<li><a href="http://wet-boew-php.azurewebsites.net/demos-php/index-eng.php"><span class="wb-invisible">PHP variant - </span>English examples</a></li>
+<li><a href="http://wet-boew-php.azurewebsites.net/demos-php/index-fra.php"><span class="wb-invisible">PHP variant - </span>French examples</a></li>
+</ul>
+</section>
+
+<section><h2 id="prettify">Prettify</h2>
+<ul>
+<li><a href="prettify/prettify-en.html"><span class="wb-invisible">Prettify - </span>English examples</a></li>
+<li><a href="prettify/prettify-fr.html"><span class="wb-invisible">Prettify - </span>French examples</a></li>
+</ul>
+</section>
+
+<section><h2 id="progress">Progress bar</h2>
+<ul>
+<li><a href="progress/progress-en.html"><span class="wb-invisible">Progress bar - </span>English examples</a></li>
+<li><a href="progress/progress-fr.html"><span class="wb-invisible">Progress bar - </span>French examples</a></li>
+</ul>
+</section>
+
+<section><h2 id="rde">Responsive design emulator</h2>
+<ul>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-en.html"><span class="wb-invisible">Responsive design emulator - </span>Content page - English - GC Web Usability theme</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-fr.html"><span class="wb-invisible">Responsive design emulator - </span>Content page - French - GC Web Usability theme</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav1-en.html"><span class="wb-invisible">Responsive design emulator - </span>Content page + Secondary menu 1 - English - GC Web Usability theme</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav1-fr.html"><span class="wb-invisible">Responsive design emulator - </span>Content page + Secondary menu 1 - French - GC Web Usability theme</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav2-en.html"><span class="wb-invisible">Responsive design emulator - </span>Content page + Secondary menu 2 - English - GC Web Usability theme</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav2-fr.html"><span class="wb-invisible">Responsive design emulator - </span>Content page + Secondary menu 2 - French - GC Web Usability theme</a></li>
+</ul>
+</section>
+
+<section><h2 id="sessiontimeout">Session timeout</h2>
+<ul>
+<li><a href="sessiontimeout/sessiontimeout-en.html"><span class="wb-invisible">Session timeout - </span>English example</a></li>
+<li><a href="sessiontimeout/sessiontimeout-fr.html"><span class="wb-invisible">Session timeout - </span>French example</a></li>
+</ul>
+</section>
+
+<section><h2 id="share">Share widget</h2>
+<ul>
+<li><a href="share/share-en.html"><span class="wb-invisible">Share widget - </span>English example</a></li>
+<li><a href="share/share-fr.html"><span class="wb-invisible">Share widget - </span>French example</a></li>
+<li><a href="share/share-filtered-en.html"><span class="wb-invisible">Share widget - </span>English example - Filtered sites</a></li>
+<li><a href="share/share-filtered-fr.html"><span class="wb-invisible">Share widget - </span>French example - Filtered sites</a></li>
+</ul>
+</section>
+
+<section><h2 id="slideout">Slide out tab</h2>
+<ul>
+<li><a href="slideout/slideout-en.html"><span class="wb-invisible">Slide out tab - </span>English example</a></li>
+<li><a href="slideout/slideout-fr.html"><span class="wb-invisible">Slide out tab - </span>French example</a></li>
+</ul>
+</section>
+
+<section><h2 id="slider">Slider control</h2>
+<ul>
+<li><a href="slider/slider-en.html"><span class="wb-invisible">Slider control - </span>English examples</a></li>
+<li><a href="slider/slider-fr.html"><span class="wb-invisible">Slider control - </span>French examples</a></li>
+</ul>
+</section>
+
+<section><h2 id="ssi">SSI variant</h2>
+<ul>
+<li><a href="ssi/index-en.html"><span class="wb-invisible">SSI variant - </span>English examples</a></li>
+<li><a href="ssi/index-fr.html"><span class="wb-invisible">SSI variant - </span>French examples</a></li>
+</ul>
+</section>
+
+<section><h2 id="tabs">Tabbed interface</h2>
+<ul>
+<li><a href="tabs/tabs-en.html"><span class="wb-invisible">Tabbed interface - </span>English examples</a></li>
+<li><a href="tabs/tabs-fr.html"><span class="wb-invisible">Tabbed interface - </span>French examples</a></li>
+</ul>
+</section>
+
+<section><h2 id="texthighlight">Text highlighting</h2>
+<ul>
+<li><a href="texthighlight/texthighlight-en.html?texthighlight=avian%20influenza+world+cook+flu-like%20symptoms+Don't%20Forget...+causes%20sickness%20in%20birds,%20it%20can%20also%20infect%20people."><span class="wb-invisible">Text highlighting - </span>English example</a></li>
+<li><a href="texthighlight/texthighlight-fr.html?texthighlight=influenza%20aviaire+monde+suffis+sympt&#244;mes%20semblables%20à%20ceux%20de%20l'influenza+À%20titre%20de%20rappel+&#192;%20de%20rares%20occasions,%20des%20humains%20ont%20été%20infectés%20par%20ce%20virus."><span class="wb-invisible">Text highlighting - </span>French example</a></li>
+</ul>
+</section>
+
+<section><h2 id="wamethod">Web Accessibility Assessment Methodology</h2>
+<ul>
+<li><a href="wamethod/wamethod-en.html"><span class="wb-invisible">Web Accessibility Assessment Methodology - </span>English methodology</a></li>
+<li><a href="wamethod/wamethod-fr.html"><span class="wb-invisible">Web Accessibility Assessment Methodology - </span>French methodology</a></li>
+<li><a href="wamethod/wamethod-AAA-en.html"><span class="wb-invisible">Web Accessibility Assessment Methodology - </span>English methodology (AAA)</a></li>
+<li><a href="wamethod/wamethod-AAA-fr.html"><span class="wb-invisible">Web Accessibility Assessment Methodology - </span>French methodology (AAA)</a></li>
+</ul>
+</section>
+
+<section><h2 id="feeds">Web feeds</h2>
+<ul>
+<li><a href="webfeeds/webfeeds-en.html"><span class="wb-invisible">Web feeds - </span>English examples</a></li>
+<li><a href="webfeeds/webfeeds-fr.html"><span class="wb-invisible">Web feeds - </span>French examples</a></li>
+</ul>
+</section>
+
+<section><h2 id="webstorage">Web Storage (HTML5)</h2>
+<ul>
+<li><a href="webstorage/localstorage-en.html"><span class="wb-invisible">Web Storage (HTML5) - </span>English example - Persistent storage</a></li>
+<li><a href="webstorage/localstorage-fr.html"><span class="wb-invisible">Web Storage (HTML5) - </span>French example - Persistent storage</a></li>
+</ul>
+</section>
+
+<section><h2 id="wordpress">WordPress variant</h2>
+<ul>
+<li><a href="http://www.lostprototype.com/wet-boew3/" rel="external"><span class="wb-invisible">WordPress variant - </span>English examples</a></li>
+</ul>
+</section>
+
+<section><h2 id="zebra">Zebra striping</h2>
+<ul>
+<li><a href="zebra/zebra-en.html"><span class="wb-invisible">Zebra striping - </span>English examples</a></li>
+<li><a href="zebra/zebra-fr.html"><span class="wb-invisible">Zebra striping - </span>French examples</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2013-05-16</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="gcwu-sft"><h3>Site footer</h3><div id="gcwu-sft-in">
+<div id="gcwu-tctr">
+<ul>
+<li class="gcwu-tc"><a href="https://wet-boew.github.io/wet-boew/License-en.html" rel="license">Terms and conditions</a></li>
+<li class="gcwu-tr"><a href="http://www.tbs-sct.gc.ca/pd-dp/gr-rg/index-eng.asp">Transparency</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<section><div class="span-2"><h4 class="gcwu-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<nav role="navigation"><div id="gcwu-gcft"><h3>Government of Canada footer</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
+<ul>
+<li><a rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
+<li><a rel="external" href="http://actionplan.gc.ca/en"><span>Economy</span><br />actionplan.gc.ca</a></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
+</ul>
+</div></div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../dist/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../dist/js/settings.js"></script>
+<script src="../dist/js/pe-ap-min.js"></script>
+<!-- ScriptsEnd -->
+
+<script>
+/* <![CDATA[ */
+(function ($) {
+	$('#wb-main-in #rde + ul a').each(function () {
+		var $this = $(this),
+			url = window.location.href;
+		$this.attr('href', $this.attr('href') + '?' + url.substring(0, url.lastIndexOf('/') + 1) + $this.attr('data-url'));
+	});
+}(jQuery));
+/* ]]> */
+</script>
+</body>
+</html>

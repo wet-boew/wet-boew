@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Proximity - Grid System - Working examples - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-gcwu-fegc/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title / Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
+<meta name="dcterms.language" title="ISO639-2" content="eng" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script src="../../dist/js/jquery.min.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css" />
+<!--<![endif]-->
+<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+
+<!-- CustomScriptsCSSStart -->
+<!-- CustomScriptsCSSEnd -->
+</head>
+
+<body><div id="wb-body-sec">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to secondary menu</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-en.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
+<ul>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
+<li id="gcwu-gcnb-lang"><a href="#" lang="fr">Français</a></li>
+</ul>
+</div></div></div></nav>
+
+<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-en.html">Web Experience Toolkit&#160;(WET)</a></p></div>
+
+<section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="gcwu-srchbx-in">
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="gcwu-psnb"><h2><span>Site </span>menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/menu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="section2/index-en.html">Section 2</a></div></li>
+<li><div><a href="#">Section 3</a></div></li>
+<li><div><a href="#">Section 4</a></div></li>
+<li><div><a href="#">Section 5</a></div></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
+<ol>
+<li><a href="../../index-en.html">Home</a></li>
+<li><a href="../index-en.html">Working examples</a></li>
+<li><a href="grid-base-en.html">Grid System</a></li>
+<li>Proximity</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Proximity</h1>
+
+<div class="span-4 module-table-contents">
+<h2>Table of contents</h2>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#padding">Padding</a></li>
+<li><a href="#line">Line height</a></li>
+<li><a href="#margin">Margins and gutters</a></li>
+</ul>
+
+</div>
+<div class="clear"></div>
+<h2 id="overview">Overview</h2>
+<p>White space is an important feature of the grid system &mdash; which automatically generates by default. You can overwrite some white space with additional <abbr title="Cascading Style Sheet">CSS</abbr> in order to increase or decrease the default settings.</p>
+<p>Within a grid system, you can only change the white space above and below a grid cell. You can never change the <strong>gutters</strong> (white space to the left and right of a grid cell). This is because the grid system design fits perfectly in the content area, and is tied to the user's browser setting. There is no room for extra pixels. Reducing pixels causes the cells to behave in unexpected ways due to their <code>float: left</code> property.</p>
+<div class="clear"></div>
+
+<h2 id="padding">Padding</h2>
+<p>By default, grid cells do not contain any padding. As a result, all content placed within grid cells <strong>must</strong> be placed within a list, paragraph, heading, form, image, table or other content element. <p>
+
+	<div class="span-4 background-light">
+	   No paragraph tag, which leaves the grid cell without padding.
+	</div>
+
+
+<details class="span-2">
+	<summary>View code</summary>
+	<pre class="prettyprint linenums">&lt;div class=&quot;span-4 background-light&quot;&gt;
+	With paragraph tag - text is easier to read with padding.
+&lt;/div&gt;</pre>
+</details>
+
+<div class="clear"></div>
+
+
+	<div class="span-4 background-light">
+		<p>With paragraph tag - text is easier to read with padding.</p>
+	</div>
+
+
+<details class="span-2">
+	<summary>View code</summary>
+	<pre class="prettyprint linenums">&lt;div class=&quot;span-4 background-light&quot;&gt;
+	&lt;p&gt;With paragraph tag - text is easier to read with padding.&lt;/p&gt;
+&lt;/div&gt;</pre>
+</details>
+
+<div class="clear"></div>
+<h2 id="line">Line height</h2>
+<p>The <abbr title="Cascading Style Sheet">CSS</abbr> provides several line height options that you can use to override the default size. The sizes range from 1.0 to 2.0.</p>
+<div class="clear"></div>
+
+<table class="table-simplify span-6">
+	<caption>
+	Line height options
+	</caption>
+	<thead>
+		<tr>
+			<th scope="col">Class</th>
+			<th scope="col">Details</th>
+			<th scope="col">Example</th>
+		</tr>
+	</thead>
+	<tr>
+	<td><code>line-height-xsmall</code></td>
+	<td>Extra small font (0.8)</td>
+	<td><ul class="line-height-xsmall">
+		<li>Resulting height</li>
+		<li>Resulting height</li>
+		</ul></td>
+	</tr>
+	<tr>
+	<td><code>line-height-small</code></td>
+	<td>Small font (1.0)</td>
+	<td><ul class="line-height-small">
+		<li>Resulting height</li>
+		<li>Resulting height</li>
+		</ul></td>
+	</tr>
+	<tr>
+	<td><code>line-height-medium</code></td>
+	<td>Medium (1.25) = default size</td>
+	<td><ul class="line-height-medium">
+		<li>Resulting height</li>
+		<li>Resulting height</li>
+		</ul></td>
+	</tr>
+	<tr>
+	<td><code>line-height-large</code></td>
+	<td>Large (1.5)</td>
+	<td><ul class="line-height-large">
+		<li>Resulting height</li>
+		<li>Resulting height</li>
+		</ul></td>
+	</tr>
+	<tr>
+	<td><code>line-height-xlarge</code></td>
+	<td>Extra large (2.0)</td>
+	<td><ul class="line-height-xlarge">
+		<li>Resulting height</li>
+		<li>Resulting height</li>
+		</ul></td>
+	</tr>
+</table>
+<div class="clear"></div>
+<h2 id="margin">Margins and gutters</h2>
+<p>The white space to the left and right of a grid cell is called the <strong>gutter</strong>. The white space above and below a grid cell is the <strong>margin</strong>. The default <code>margin</code> settings of a grid cell are as follows:
+<ul>
+	<li>the <strong>margin-top</strong> is set to zero</li>
+	<li>the <strong>margin-right</strong> and <strong>margin-left</strong> is 20px.
+	</li>
+	<li>the <strong>margin-bottom</strong> is set to 20px</li>
+
+</ul>
+
+<p class="color-attention">You can only increase or decrease vertical proximity of content (move up or down). There are a variety of reasons to modify vertical proximity, such as visually connecting related components. In which case, you may need to increase or decrease white space between menu items, or move content closer to or farther from a heading tag. The classes you can use are as follows:</p>
+
+<table class="table-simplify span-6">
+	<caption><strong>Table 1:</strong> Top Margin</caption>
+	<thead>
+		<tr>
+			<th>Class</th>
+			<th>Margin</th>
+			<th>Example</th>
+		</tr>
+	</thead>
+	<tr>
+		<td><code>margin-top-none</code></td>
+		<td>0px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="margin-top-none background-accent margin-bottom-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><code>margin-top-small</code></td>
+		<td>2px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="margin-top-small background-accent margin-bottom-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><code>margin-top-medium</code></td>
+		<td>10px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="margin-top-medium background-accent margin-bottom-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><code>margin-top-large</code></td>
+		<td>20px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="margin-top-large background-accent margin-bottom-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><code>margin-top-xlarge</code></td>
+		<td>50px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="margin-top-xlarge background-accent margin-bottom-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+</table>
+
+<table class="table-simplify span-6">
+	<caption><strong>Table 2:</strong> Right Margin</caption>
+	<thead>
+		<tr>
+			<th>Class</th>
+			<th>Margin</th>
+			<th>Example</th>
+		</tr>
+	</thead>
+	<tr>
+		<td><code>margin-right-none</code></td>
+		<td>0px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="margin-right-none background-accent margin-top-none margin-bottom-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><code>margin-right-small</code></td>
+		<td>2px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="margin-right-small background-accent margin-top-none margin-bottom-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><code>margin-right-medium</code></td>
+		<td>10px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="margin-right-medium background-accent margin-top-none margin-bottom-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><code>margin-right-large</code></td>
+		<td>20px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="margin-right-large background-accent margin-top-none margin-bottom-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><code>margin-right-xlarge</code></td>
+		<td>50px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="margin-right-xlarge background-accent margin-top-none margin-bottom-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+</table>
+
+<table class="table-simplify span-6">
+	<caption><strong>Table 3:</strong> Bottom Margin</caption>
+	<thead>
+		<tr>
+			<th>Class</th>
+			<th>Margin</th>
+			<th>Example</th>
+		</tr>
+	</thead>
+	<tr>
+		<td><code>margin-bottom-none</code></td>
+		<td>0px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="margin-bottom-none background-accent margin-top-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><code>margin-bottom-small</code></td>
+		<td>2px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="margin-bottom-small background-accent margin-top-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><code>margin-bottom-medium</code></td>
+		<td>10px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="margin-bottom-medium background-accent margin-top-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><code>margin-bottom-large</code></td>
+		<td>20px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="margin-bottom-large background-accent margin-top-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><code>margin-bottom-xlarge</code></td>
+		<td>50px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="margin-bottom-xlarge background-accent margin-top-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+</table>
+
+<table id="indents" class="table-simplify span-6">
+	<caption><strong>Table 4:</strong> Indentation</caption>
+	<thead>
+		<tr>
+			<th>Class</th>
+			<th>Margin</th>
+			<th>Example</th>
+		</tr>
+	</thead>
+	<tr>
+		<td><code>indent-none</code></td>
+		<td>0px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="indent-none background-accent margin-top-none margin-bottom-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><code>indent-small</code></td>
+		<td>2px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="indent-small background-accent margin-top-none margin-bottom-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><code>indent-medium</code></td>
+		<td>10px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="indent-medium background-accent margin-top-none margin-bottom-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><code>indent-large</code></td>
+		<td>20px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="indent-large background-accent margin-top-none margin-bottom-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><code>indent-xlarge</code></td>
+		<td>50px</td>
+		<td class="background-light">
+			<div class="background-dark" style="overflow:auto;">
+				<p class="indent-xlarge background-accent margin-top-none margin-bottom-none">Lorem ipsum dolar sit amet.</p>
+			</div>
+		</td>
+	</tr>
+</table>
+
+<h2>Examples</h2>
+
+	<div class="span-2">
+		<h3 class="background-dark">Default Margins</h3>
+		<div class="span-2 background-light"><p>Lorem ipsum dolar sit amet.</p></div>
+		<div class="span-2 background-light"><p>Lorem ipsum dolar sit amet.</p></div>
+		<div class="span-2 margin-bottom-none"><img src="http://www.placehold.it/430x200" alt=""></div>
+	</div>
+	<div class="span-2">
+		<h3 class="background-dark">Using <code>margin-bottom-small</code></h3>
+		<div class="span-2 background-light margin-bottom-small"><p class="indent-medium">Lorem ipsum dolar sit amet.</p></div>
+		<div class="span-2 background-light margin-bottom-small"><p class="indent-medium">Lorem ipsum dolar sit amet.</p></div>
+		<div class="span-2 margin-bottom-none"><img src="http://www.placehold.it/430x200" alt=""></div>
+	</div>
+
+
+
+<details class="span-2">
+	<summary>View source</summary>
+	<pre class="prettyprint linenums">
+&lt;div class=&quot;span-2&quot;&gt;
+	&lt;h3 class=&quot;background-dark&quot;&gt;Heading&lt;/h3&gt;
+	&lt;div class=&quot;span-2 background-light margin-bottom-small&quot;&gt;
+		&lt;p class=&quot;indent-medium&quot;&gt;Lorem ipsum dolar sit amet.&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;span-2 background-light margin-bottom-small&quot;&gt;
+		&lt;p class=&quot;indent-medium&quot;&gt;Lorem ipsum dolar sit amet.&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;span-2&quot;&gt;&lt;img src=&quot;http://www.placehold.it/430x200&quot; alt=&quot;&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;	
+	</pre>
+</details>
+<div class="clear"></div>
+
+<h2>Recap</h2>
+<div class="span-6 module-summary">
+	<h3>Proximity: Padding, Margins and Gutters</h3>
+	<ul>
+		<li>White space is an important feature of the grid system.</li>
+		<li>A gutter is the white space to the left and right of a grid cell.</li>
+		<li>You can only change the white space above and below a grid cell &mdash; not the gutters.</li>
+		<li>Grid cells do not have inside padding. The padding is inherent to the paragraph, list or heading.</li>
+	</ul>
+</div>
+<div class="clear"></div>
+
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2013-04-11</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+<div id="wb-sec"><div id="wb-sec-in"><nav role="navigation"><h2 id="wb-nav">Secondary menu</h2>
+  <div class="wb-sec-def">
+    <!-- SecNavStart -->
+    <section>
+      <h3><a href="grid-structure-en.html">Structure</a></h3>
+      <ul>
+        <li><a href="grid-base-en.html">Grid System</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-basic-en.html">Basic effects</a></h3>
+      <ul>
+        <li><a href="grid-text-en.html">Text</a></li>
+        <li><a href="grid-table-en.html">Tables</a></li>
+        <li><a href="grid-form-en.html">Forms</a></li>
+        <li><a href="grid-image-en.html">Images</a></li>
+        <li><a href="grid-color-en.html">Colour</a></li>
+        <li><a href="grid-button-en.html">Buttons</a></li>
+        <li><a href="grid-border-en.html">Borders</a></li>
+        <li><a href="grid-icon-en.html">Icons</a></li>
+        <li><a href="grid-opacity-en.html">Opacity</a></li>
+        <li><a href="grid-proximity-en.html">Proximity</a></li>
+        <li><a href="grid-position-en.html">Positioning and alignment</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-specialty-en.html">Specialty effects</a></h3>
+      <ul>
+        <li><a href="grid-message-en.html">Messages</a></li>
+        <li><a href="grid-module-en.html">Modules</a></li>
+        <li><a href="grid-other-en.html">Other</a></li>
+      </ul>
+    </section>
+    <!-- SecNavEnd -->
+  </div>
+</nav></div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2>Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="gcwu-sft"><h3>Site footer</h3><div id="gcwu-sft-in">
+<div id="gcwu-tctr">
+<ul>
+<li class="gcwu-tc"><a href="#" rel="license">Terms and conditions</a></li>
+<li class="gcwu-tr"><a href="#">Transparency</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">About us</a></h4>
+<ul>
+<li><a href="#">Our Mandate</a></li>
+<li><a href="#">The Minister</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">News</a></h4>
+<ul>
+<li><a href="#">News releases</a></li>
+<li><a href="#">Media advisories</a></li>
+<li><a href="#">Multimedia</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contact us</a></h4>
+<address>
+<ul>
+<li><a href="#">Phone numbers</a></li>
+<li><a href="#">Office locations</a></li>
+</ul>
+</address>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Stay connected</a></h4>
+<ul>
+<li><a rel="external" href="#">YouTube</a></li>
+<li><a rel="external" href="#">Twitter</a></li>
+<li><a href="#">Feeds</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<nav role="navigation"><div id="gcwu-gcft"><h3>Government of Canada footer</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
+<ul>
+<li><a rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
+<li><a rel="external" href="http://actionplan.gc.ca/en"><span>Economy</span><br />actionplan.gc.ca</a></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></div></li>
+</ul>
+</div></div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../../dist/js/settings.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<!-- ScriptsEnd -->
+</body>
+</html>
