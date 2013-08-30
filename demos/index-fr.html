@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Exemples pratiques - Boîte à outils de l’expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../dist/theme-gcwu-fegc/images/favicon.ico" />
+<meta name="description" content="Exemple pratiques de la Boîte à outils de l’expérience Web (BOEW)." />
+<meta name="dcterms.creator" content="Gouvernement du Canada, Secrétariat du Conseil du Trésor du Canada, Direction du dirigeant principal de l'information, Division de l'examen et de la supervision de projets de TI, Bureau des normes Web" />
+<meta name="dcterms.title" content="Exemples pratiques - Boîte à outils de l’expérience Web (BOEW)" />
+<meta name="dcterms.issued" title="W3CDTF" content="2012-05-11" />
+<meta name="dcterms.modified" title="W3CDTF" content="2013-05-16" />
+<meta name="dcterms.subject" title="scheme" content="Internet;Normes;Conception" />
+<meta name="dcterms.language" title="ISO639-2" content="fra" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script src="../dist/js/jquery.min.js"></script>
+<!--[if lte IE 8]>
+<script src="../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../dist/theme-gcwu-fegc/css/theme-min.css" />
+<!--<![endif]-->
+<noscript><link rel="stylesheet" href="../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+
+<!-- CustomScriptsCSSStart -->
+<!-- CustomScriptsCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Barre de navigation du gouvernement du Canada</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-fra" title="Gouvernement du Canada"><img src="../dist/theme-gcwu-fegc/images/sig-fr.gif" width="214" height="20" alt="Gouvernement du Canada" /></div></div></div>
+<ul>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
+<li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-fra.html">Ministères</a></li>
+<li id="gcwu-gcnb-lang"><a href="index-en.html" lang="en">English</a></li>
+</ul>
+</div></div></div></nav>
+
+<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbole du gouvernement du Canada"><img src="../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30"  alt="Symbole du gouvernement du Canada" /></div></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../index-fr.html">Boîte à outils de l’expérience Web (BOEW)</a></p></div>
+
+<section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
+<form action="#" method="post"><div id="gcwu-srchbx-in">
+<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" data-icon="search" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="gcwu-psnb"><h2>Menu<span> du site</span></h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="includes/projectmenu-fr.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fr.html">Projet de la BOEW</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Mise-en-%C5%93uvre-de-la-BOEW">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Lignes-directrices-pour-les-contributeurs">Contribuer à la BOEW</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="gcwu-bc"><h2>Fil d'Ariane</h2><div id="gcwu-bc-in">
+<ol>
+<li><a href="../index-fr.html">Accueil</a></li>
+<li>Exemples pratiques</li>
+</ol></div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Exemples pratiques</h1>
+
+<div class="span-4">
+
+<section><h2 id="math">Affichage des formules mathématiques ou scientifiques</h2>
+<ul>
+<li><a href="mathlib/mathlib-en.html"><span class="wb-invisible">Affichage des formules mathématiques ou scientifiques (correctif pour MathML) - </span>Exemples en anglais</a></li>
+<li><a href="mathlib/mathlib-fr.html"><span class="wb-invisible">Affichage des formules mathématiques ou scientifiques (correctif pour MathML) - </span>Exemples en français</a></li>
+<li><a href="mathlib/mathlib-complex-fr.html"><span class="wb-invisible">Affichage des formules mathématiques ou scientifiques (correctif pour MathML) - </span>Exemple complex en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="slider">Barre coulissante</h2>
+<ul>
+<li><a href="slider/slider-en.html"><span class="wb-invisible">Barre coulissante - </span>Exemples en anglais</a></li>
+<li><a href="slider/slider-fr.html"><span class="wb-invisible">Barre coulissante - </span>Exemples en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="menubar">Barre de menu</h2>
+<ul>
+<li><a href="menubar/megamenu-en.html"><span class="wb-invisible">Barre de menu - </span>Exemple en anglais - Mégamenu</a></li>
+<li><a href="menubar/megamenu-fr.html"><span class="wb-invisible">Barre de menu - </span>Exemple en français - Mégamenu</a></li>
+<li><a href="menubar/hsitenavbar-en.html"><span class="wb-invisible">Barre de menu - </span>Exemple en anglais - Barre de navigation horizontale</a></li>
+<li><a href="menubar/hsitenavbar-fr.html"><span class="wb-invisible">Barre de menu - </span>Exemple en français - Barre de navigation horizontale</a></li>
+</ul>
+</section>
+
+<section><h2 id="progress">Barre de progression</h2>
+<ul>
+<li><a href="progress/progress-en.html"><span class="wb-invisible">Barre de progression - </span>Exemples en anglais</a></li>
+<li><a href="progress/progress-fr.html"><span class="wb-invisible">Barre de progression - </span>Exemples en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="arch">Contenu archivé</h2>
+<ul>
+<li><a href="archived/archived-en.html"><span class="wb-invisible">Contenu archivé - </span>Exemple en anglais</a></li>
+<li><a href="archived/archived-fr.html"><span class="wb-invisible">Contenu archivé - </span>Exemple en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="details">Contenu affichable/masquable</h2>
+<ul>
+<li><a href="details/details-en.html"><span class="wb-invisible">Contenu affichable/masquable - </span>Exemple en anglais</a></li>
+<li><a href="details/details-fr.html"><span class="wb-invisible">Contenu affichable/masquable- </span>Exemple en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="rde">Émulateur de conception réactive</h2>
+<ul>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-en.html"><span class="wb-invisible">Émulateur de conception réactive - </span>Page de contenu - Anglais - Thème de la facilité d'emploi Web GC</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-fr.html"><span class="wb-invisible">Émulateur de conception réactive - </span>Page de contenu - Français - Thème de la facilité d'emploi Web GC</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav1-en.html"><span class="wb-invisible">Émulateur de conception réactive - </span>Page de contenu + Menu secondaire 1 - Anglais - Thème de la facilité d'emploi Web GC</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav1-fr.html"><span class="wb-invisible">Émulateur de conception réactive - </span>Page de contenu + Menu secondaire 1 - Français - Thème de la facilité d'emploi Web GC</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav2-en.html"><span class="wb-invisible">Émulateur de conception réactive - </span>Page de contenu + Menu secondaire 2 - Anglais - Thème de la facilité d'emploi Web GC</a></li>
+<li><a href="../test/responsive-emulator.html" data-url="theme-gcwu-fegc/cont-secnav2-fr.html"><span class="wb-invisible">Émulateur de conception réactive - </span>Page de contenu + Menu secondaire 2 - Français - Thème de la facilité d'emploi Web GC</a></li>
+</ul>
+</section>
+
+<section><h2 id="opt-cont">Exemples de contenu optimaux</h2>
+<ul>
+<li><a href="opt-cont/index-en.html"><span class="wb-invisible">Exemples de contenu optimaux - </span>Exemples en anglais</a></li>
+<li><a lang="en" href="tableparser/index-en.html">Documentation related to HTML Table</a></li>
+</ul>
+</section>
+
+<section><h2 id="sessiontimeout">Expiration de la session</h2>
+<ul>
+<li><a href="sessiontimeout/sessiontimeout-en.html"><span class="wb-invisible">Expiration de la session - </span>Exemple en anglais</a></li>
+<li><a href="sessiontimeout/sessiontimeout-fr.html"><span class="wb-invisible">Expiration de la session - </span>Exemple en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="feedback">Formulaire de rétroaction</h2>
+<ul>
+<li><a href="feedback/feedback-en.html"><span class="wb-invisible">Formulaire de rétroaction - </span>Exemple en anglais</a></li>
+<li><a href="feedback/feedback-fr.html"><span class="wb-invisible">Formulaire de rétroaction - </span>Exemple en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="share">Gadget de partage</h2>
+<ul>
+<li><a href="share/share-en.html"><span class="wb-invisible">Gadget de partage - </span>Exemple en anglais</a></li>
+<li><a href="share/share-fr.html"><span class="wb-invisible">Gadget de partage - </span>Exemple en français</a></li>
+<li><a href="share/share-filtered-en.html"><span class="wb-invisible">Gadget de partage - </span>Exemples en anglais - Sites filtrés</a></li>
+<li><a href="share/share-filtered-fr.html"><span class="wb-invisible">Gadget de partage - </span>Exemple en français - Sites filtrés</a></li>
+</ul>
+</section>
+
+<section><h2 id="charts">Graphiques</h2>
+<ul>
+<li><a href="charts/simple-en.html"><span class="wb-invisible">Graphiques - </span>Exemples simples en anglais</a></li>
+<li><a href="charts/simple-fr.html"><span class="wb-invisible">Graphiques - </span>Exemples simples en français</a></li>
+<li><a href="charts/simpleCustomized-en.html"><span class="wb-invisible">Graphiques - </span>Exemples personnalisées en anglais</a></li>
+<li><a href="charts/simpleCustomized-fr.html"><span class="wb-invisible">Graphiques - </span>Exemples personnalisées en français</a></li>
+<li><a href="charts/complex-en.html"><span class="wb-invisible">Graphiques - </span>Exemples complexes en anglais</a></li>
+<li><a href="charts/complex-fr.html"><span class="wb-invisible">Graphiques - </span>Exemples complexes en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="feeds">Fils de syndication</h2>
+<ul>
+<li><a href="webfeeds/webfeeds-en.html"><span class="wb-invisible">Fils de syndication - </span>Exemple en anglais</a></li>
+<li><a href="webfeeds/webfeeds-fr.html"><span class="wb-invisible">Fils de syndication - </span>Exemple en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="tabs">Interface à onglets</h2>
+<ul>
+<li><a href="tabs/tabs-en.html"><span class="wb-invisible">Interface à onglets - </span>Exemples en anglais</a></li>
+<li><a href="tabs/tabs-fr.html"><span class="wb-invisible">Interface à onglets - </span>Exemples en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="cal">Interface du calendrier</h2>
+<ul>
+<li><a href="eventscalendar/eventscalendar-en.html"><span class="wb-invisible">Interface du calendrier - </span>Calendrier d'événements - Exemple en anglais</a></li>
+<li><a href="eventscalendar/eventscalendar-fr.html"><span class="wb-invisible">Interface du calendrier - </span>Calendrier d'événements - Exemple en français</a></li>
+<li><a href="datepicker/datepicker-en.html"><span class="wb-invisible">Interface du calendrier - </span>Sélecteur de date - Exemple en anglais</a></li>
+<li><a href="datepicker/datepicker-fr.html"><span class="wb-invisible">Interface du calendrier - </span>Sélecteur de date - Exemple en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="multimedia">Lecteur multimédia</h2>
+<ul>
+<li><a href="multimedia/multimedia-en.html"><span class="wb-invisible">Lecteur multimédia - </span>Exemples en anglais</a></li>
+<li><a href="multimedia/multimedia-fr.html"><span class="wb-invisible">Lecteur multimédia - </span>Exemples en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="lightbox" lang="en">Lightbox</h2>
+<ul>
+<li><a href="lightbox/lightbox-en.html"><span class="wb-invisible"><span lang="en">Lightbox</span> - </span>Exemples en anglais</a></li>
+<li><a href="lightbox/lightbox-fr.html"><span class="wb-invisible"><span lang="en">Lightbox</span> - </span>Exemples en français</a></li>
+</ul>
+</section>
+</div>
+
+<div class="span-4">
+<section><h2 id="texthighlight">Mise en surbrillance de texte</h2>
+<ul>
+<li><a href="texthighlight/texthighlight-en.html?texthighlight=avian%20influenza+world+cook+flu-like%20symptoms+Don't%20Forget...+causes%20sickness%20in%20birds,%20it%20can%20also%20infect%20people."><span class="wb-invisible">Mise en surbrillance de texte - </span>Exemples en anglais</a></li>
+<li><a href="texthighlight/texthighlight-fr.html?texthighlight=influenza%20aviaire+monde+suffis+sympt&#244;mes%20semblables%20à%20ceux%20de%20l'influenza+À%20titre%20de%20rappel...+&#192;%20de%20rares%20occasions,%20des%20humains%20ont%20été%20infectés%20par%20ce%20virus."><span class="wb-invisible">Mise en surbrillance de texte - </span>Exemples en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="wamethod">Méthodologie d’évaluation sur l’accessibilité des sites Web</h2>
+<ul>
+<li><a href="wamethod/wamethod-en.html"><span class="wb-invisible">Méthodologie d’évaluation sur l’accessibilité des sites Web - </span>Méthodologie en anglais</a></li>
+<li><a href="wamethod/wamethod-fr.html"><span class="wb-invisible">Méthodologie d’évaluation sur l’accessibilité des sites Web - </span>Méthodologie en français</a></li>
+<li><a href="wamethod/wamethod-AAA-en.html"><span class="wb-invisible">Méthodologie d’évaluation sur l’accessibilité des sites Web - </span>Méthodologie en anglais (AAA)</a></li>
+<li><a href="wamethod/wamethod-AAA-fr.html"><span class="wb-invisible">Méthodologie d’évaluation sur l’accessibilité des sites Web - </span>Méthodologie en français (AAA)</a></li>
+</ul>
+</section>
+
+<section><h2 id="footnotes">Notes de bas de page</h2>
+<ul>
+<li><a href="footnotes/footnotes-en.html"><span class="wb-invisible">Notes de bas de page - </span>Exemples en anglais</a></li>
+<li><a href="footnotes/footnotes-fr.html"><span class="wb-invisible">Notes de bas de page - </span>Exemples en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="slideout">Onglet coulissant</h2>
+<ul>
+<li><a href="slideout/slideout-en.html"><span class="wb-invisible">Onglet coulissant - </span>Exemple en anglais</a></li>
+<li><a href="slideout/slideout-fr.html"><span class="wb-invisible">Onglet coulissant - </span>Exemple en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="opt-cont-tools">Outils optimaux de contenu</h2>
+<ul>
+<li><a lang="en" href="tableparser/validator-htmltable.html">HTML Table Validator</a></li>
+</ul>
+</section>
+
+<section><h2 id="prettify" lang="en">Prettify</h2>
+<ul>
+<li><a href="prettify/prettify-en.html"><span class="wb-invisible"><span lang="en">Prettify</span> - </span>Exemples en anglais</a></li>
+<li><a href="prettify/prettify-fr.html"><span class="wb-invisible"><span lang="en">Prettify</span> - </span>Exemples en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="zebra">Rayage du zèbre</h2>
+<ul>
+<li><a href="zebra/zebra-en.html"><span class="wb-invisible">Rayage du zèbre - </span>Exemples en anglais</a></li>
+<li><a href="zebra/zebra-fr.html"><span class="wb-invisible">Rayage du zèbre - </span>Exemples en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="autocomplete">Saisie automatique</h2>
+<ul>
+<li><a href="datalist/datalist-en.html"><span class="wb-invisible">Saisie automatique - </span>Exemple en anglais</a></li>
+<li><a href="datalist/datalist-fr.html"><span class="wb-invisible">Saisie automatique - </span>Exemple en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="arb-rra">Répartition des responsabilités d'accessibilité (WCAG&#160;2.0)</h2>
+<ul>
+<li><a href="arb-rra/arb-rra-en.html"><span class="wb-invisible">Répartition des responsabilités d'accessibilité (WCAG 2.0) - </span>Exemple en anglais</a></li>
+<li><a href="arb-rra/arb-rra-fr.html"><span class="wb-invisible">Répartition des responsabilités d'accessibilité (WCAG 2.0) - </span>Exemple en français</a></li>
+<li><a href="arb-rra/arb-rra-planAccess-en.html"><span class="wb-invisible">Répartition des responsabilités d'accessibilité (WCAG 2.0) - </span>Exemple en anglais - Planifier l'accessibilité</a></li>
+<li><a href="arb-rra/arb-rra-planAccess-fr.html"><span class="wb-invisible">Répartition des responsabilités d'accessibilité (WCAG 2.0) - </span>Exemple en français - Planifier l'accessibilité</a></li>
+</ul>
+</section>
+
+<section><h2 id="langselect">Sélecteur de langue</h2>
+<ul>
+<li><a href="langselect/lang-js-en.html"><span class="wb-invisible">Sélecteur de langue - </span>Exemple en anglais - JavaScript + PHP</a></li>
+<li><a href="langselect/lang-js-fr.html"><span class="wb-invisible">Sélecteur de langue - </span>Exemple en français - JavaScript + PHP</a></li>
+</ul>
+</section>
+
+<section><h2 id="grids">Système de grilles</h2>
+<ul>
+<li><a href="grids/grid-base-en.html"><span class="wb-invisible">Système de grilles - </span>Exemple en anglais</a></li>
+</ul>
+</section>
+
+<section><h2 id="gcwu">Thème de la facilité d'emploi Web GC</h2>
+<ul>
+<li><a href="theme-gcwu-fegc/index-fr.html#en"><span class="wb-invisible">Thème de la facilité d'emploi Web GC - </span>Exemples en anglais</a></li>
+<li><a href="theme-gcwu-fegc/index-fr.html#fr"><span class="wb-invisible">Thème de la facilité d'emploi Web GC - </span>Exemples en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="gcwuintranet">Thème de la facilité d’emploi Web GC pour les sites intranet</h2>
+<ul>
+<li><a href="theme-gcwu-intranet/index-fr.html#en"><span class="wb-invisible">Thème de la facilité d’emploi Web GC pour les sites intranet - </span>Exemples en anglais</a></li>
+<li><a href="theme-gcwu-intranet/index-fr.html#fr"><span class="wb-invisible">Thème de la facilité d’emploi Web GC pour les sites intranet - </span>Exemples en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="clf2">Thème de la NSI 2.0</h2>
+<ul>
+<li><a href="theme-clf2-nsi2/index-fr.html#contenu"><span class="wb-invisible">Thème de la NSI 2.0 - </span>Pages de contenu</a></li>
+<li><a href="theme-clf2-nsi2/index-fr.html#pa"><span class="wb-invisible">Thème de la NSI 2.0 - </span>Pages d'accueil</a></li>
+<li><a href="theme-clf2-nsi2/index-fr.html#serv"><span class="wb-invisible">Thème de la NSI 2.0 - </span>Pages de messages du serveur</a></li>
+</ul>
+</section>
+
+<section><h2 id="formvalid">Validation de formulaires</h2>
+<ul>
+<li><a href="formvalid/formvalid-en.html"><span class="wb-invisible">Validation de formulaires - </span>Exemples en anglais</a></li>
+<li><a href="formvalid/formvalid-fr.html"><span class="wb-invisible">Validation de formulaires - </span>Exemples en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="drupal">Variant Drupal</h2>
+<ul>
+<li><a href="http://wet.openplus.ca/eng" rel="external"><span class="wb-invisible">Variant Drupal - </span>Exemple en anglais</a></li>
+<li><a href="http://wet.openplus.ca/fra" rel="external"><span class="wb-invisible">Variant Drupal - </span>Exemple en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="php">Variant pour PHP</h2>
+<ul>
+<li><a href="http://wet-boew-php.azurewebsites.net/demos-php/index-eng.php"><span class="wb-invisible">Variant pour PHP - </span>Exemples en anglais</a></li>
+<li><a href="http://wet-boew-php.azurewebsites.net/demos-php/index-fra.php"><span class="wb-invisible">Variant pour PHP - </span>Exemples en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="ssi">Variant pour SSI</h2>
+<ul>
+<li><a href="ssi/index-en.html"><span class="wb-invisible">Variant pour SSI - </span>Exemples en anglais</a></li>
+<li><a href="ssi/index-fr.html"><span class="wb-invisible">Variant pour SSI - </span>Exemples en français</a></li>
+</ul>
+</section>
+
+<section><h2 id="wordpress">Variant pour <span lang="en">WordPress</span></h2>
+<ul>
+<li><a href="http://www.lostprototype.com/wet-boew3/" rel="external"><span class="wb-invisible">Variant pour <span lang="en">WordPress</span> - </span>Exemples en anglais</a></li>
+</ul>
+</section>
+
+<section><h2 id="webstorage">Mémoire persistente (HTML5)</h2>
+<ul>
+<li><a href="webstorage/localstorage-en.html"><span class="wb-invisible">Mémoire persistente (HTML5) - </span>Exemple en anglais</a></li>
+<li><a href="webstorage/localstorage-fr.html"><span class="wb-invisible">Mémoire persistente (HTML5) - </span>Exemple en français</a></li>
+</ul>
+</section>
+</div>
+<div class="clear"></div>
+
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2013-05-16</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="gcwu-sft"><h3>Pied de page du site</h3><div id="gcwu-sft-in">
+<div id="gcwu-tctr">
+<ul>
+<li class="gcwu-tc"><a href="https://wet-boew.github.io/wet-boew/Licence-fr.html" rel="license">Avis</a></li>
+<li class="gcwu-tr"><a href="http://www.tbs-sct.gc.ca/pd-dp/gr-rg/index-fra.asp">Transparence</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<section><div class="span-2"><h4 class="gcwu-col-head">À propos</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head">Nouvelles</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Activité du projet récente</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Statistiques du projet</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head">Contactez-nous</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions ou commentaires?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head">Restez branchés</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/BoiteExpWeb">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<nav role="navigation"><div id="gcwu-gcft"><h3>Pied de page du gouvernement du Canada</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
+<ul>
+<li><a rel="external" href="http://canadiensensante.gc.ca/index-fra.php"><span>Santé</span><br />canadiensensante.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-fra.asp"><span>Voyage</span><br />voyage.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.guichetemplois.gc.ca/Intro-fra.aspx"><span>Emplois</span><br />guichetemplois.gc.ca</a></li>
+<li><a rel="external" href="http://plandaction.gc.ca/fr"><span>Économie</span><br />plandaction.gc.ca</a></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></div></li>
+</ul>
+</div></div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../dist/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../dist/js/settings.js"></script>
+<script src="../dist/js/pe-ap-min.js"></script>
+<!-- ScriptsEnd -->
+
+<script>
+/* <![CDATA[ */
+(function ($) {
+	$('#wb-main-in #rde + ul a').each(function () {
+		var $this = $(this),
+			url = window.location.href;
+		$this.attr('href', $this.attr('href') + '?' + url.substring(0, url.lastIndexOf('/') + 1) + $this.attr('data-url'));
+	});
+}(jQuery));
+/* ]]> */
+</script>
+</body>
+</html>
