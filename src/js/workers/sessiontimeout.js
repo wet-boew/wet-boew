@@ -3,7 +3,7 @@
  * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  */
 /*
- * Share widget plugin
+ * Session Timeout plugin
  */
 /*global jQuery: false, wet_boew_sessiontimeout:false, alert:false, confirm:false */
 (function ($) {
@@ -11,6 +11,7 @@
 	var _pe = window.pe || {
 		fn : {}
 	};
+
 	/* local reference */
 	_pe.fn.sessiontimeout = {
 		type : 'plugin',
@@ -31,10 +32,14 @@
 				timeParse,
 				getExpireTime,
 				alreadyTimeoutMsg = _pe.dic.get('%st-already-timeout-msg'),
-				timeoutMsg = _pe.dic.get('%st-timeout-msg');
+				timeoutMsg = _pe.dic.get('%st-timeout-msg'),
+				lastActivity, 
+				lastCheck = 0;
 
 			// Defaults
 			opts = {
+
+				ajaxLimiter: 200000,		// default period of 2 minutes (ajax calls happen only once during this period)
 				inactivity: 1200000,		// default inactivity period 20 minutes
 				reactionTime: 30000,		// default confirmation period of 30 seconds
 				sessionalive: 1200000,		// default session alive period 20 minutes
@@ -151,13 +156,27 @@
 				return hours + ':' + minutes + ':' + seconds + timeformat;
 			};
 		
-			start_liveTimeout();
+
+			// Prevent the initial ajax call from happening, instead wait for the inactivity time to pass before this call is made
+			// start_liveTimeout();
+			setTimeout(start_liveTimeout(),timeParse(opts.inactivity));
+
 			if (opts.refreshOnClick) {
 				_pe.document.on('click', function (e) {
-					var button = e.button;
-					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
-						start_liveTimeout();
-					}
+
+					// If there is a click on the page
+					if (lastActivity >= 1 && (getCurrentTimeMs() - lastCheck) > opts.ajaxLimiter) {
+						var button = e.button;
+
+						if (typeof button === 'undefined' || button === _pe.leftMouseButton) { lastCheck = getCurrentTimeMs(); }
+
+						if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+							start_liveTimeout();
+						}
+
+					} // END OF if (lastActivity >= 1 && ...
+
+					if (typeof e.button === 'undefined' || e.button === _pe.leftMouseButton) { lastActivity = getCurrentTimeMs(); }
 				});
 			}
 
