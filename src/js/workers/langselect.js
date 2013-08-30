@@ -6,7 +6,7 @@
  * Web archived top page banner
  */
 /*global jQuery: false*/
-(function ($) {
+(function () {
 	"use strict";
 	var _pe = window.pe || {
 		fn: {} 
@@ -19,19 +19,21 @@
 				var url = window.location.toString(),
 					button = e.button;
 				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
-					if ((url.search(/_f\.htm/) > -1) || (url.search(/-fra\./) > -1) || (url.search(/-fra\./) > -1)) {
+					if ((url.search(/_f\.htm/) !== -1) || (url.search(/-fra\./) !== -1) || (url.search(/-fra\./) !== -1)) {
 						url = url.replace(/_f\./, '_e.').replace(/-fra\./, '-eng.').replace(/-fr\./, '-en.');
 					} else {
 						url = url.replace(/_e\./, '_f.').replace(/-eng\./, '-fra.').replace(/-en\./, '-fr.');
 					}
-					if (url.search(/lang=eng/) > -1) {
-						url = url.replace(/lang=eng/, 'lang=fra');
-					else if (url.search(/lang=fra/) > -1) {
-						url = url.replace(/lang=fra/, 'lang=eng');
-					else if (url.search(/lang=en/) > -1) {
-						url = url.replace(/lang=en/, 'lang=fr');
-					} else {
-						url = url.replace(/lang=fr/, 'lang=en');
+					if (url.search(/lang=/) !== - 1) {
+						if (url.search(/lang=eng/) !== -1) {
+							url = url.replace(/lang=eng/, 'lang=fra');
+						} else if (url.search(/lang=fra/) !== -1) {
+							url = url.replace(/lang=fra/, 'lang=eng');
+						} else if (url.search(/lang=en/) !== -1) {
+							url = url.replace(/lang=en/, 'lang=fr');
+						} else {
+							url = url.replace(/lang=fr/, 'lang=en');
+						}
 					}
 					window.location = url;
 					return false;
