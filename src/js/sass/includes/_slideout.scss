@@ -2,78 +2,82 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
-.wet-boew-slideout {
-	display: none;
-}
-
-.no-js {
+ 
+/*Screen SCSS*/
+@media screen {
 	.wet-boew-slideout {
-		display: block;
+		display: none;
 	}
-}
 
-#slideoutInnerWrapper {
-	overflow: hidden;
-	position: relative;
-	width: 295px;
-}
-
-.slideoutWrapper { /* Follows on scrolling */
-	overflow: hidden;
-	position: fixed;
-    z-index: 1;
-}
-
-.slideoutWrapperRel { /* Does not follow on scrolling */
-    float: right;
-    right: 0;
-    position: absolute;
-    top: 0;
-    z-index: 1;
-}
-
-.slideoutToggle {
-	float: left;
-	position: relative; /* Needed for animation */
-}
-
-#toggleLink {
-	cursor: pointer;
-	img {
-		margin: 0;
+	.no-js {
+		.wet-boew-slideout {
+			display: block;
+		}
 	}
-}
 
-.tabbedSlideout {
-	background-color: #FFF;
-	border: 1px solid #CCC;
-	border-right: none;
-	float: left;
-	padding: 8px;
-	position: relative;
-	margin: auto;
-	width: 245px;
-	#slideoutClose {
+	#slideoutInnerWrapper {
+		overflow: hidden;
+		position: relative;
+		width: 295px;
+	}
+
+	.slideoutWrapper { /* Follows on scrolling */
+		overflow: hidden;
+		position: fixed;
+		z-index: 1;
+	}
+
+	.slideoutWrapperRel { /* Does not follow on scrolling */
 		float: right;
+		right: 0;
+		position: absolute;
+		top: 0;
+		z-index: 1;
 	}
-}
 
-div {
-	&.tabbedSlideout {
-		h2 {
+	.slideoutToggle {
+		float: left;
+		position: relative; /* Needed for animation */
+	}
+
+	#toggleLink {
+		cursor: pointer;
+		img {
 			margin: 0;
-			padding: 0 5px 5px 5px;
-			text-align: left;
 		}
-		ul, ol {
-			margin: 0;
-			list-style-type: none;
-			padding: 0 5px;
+	}
+
+	.tabbedSlideout {
+		background-color: #FFF;
+		border: 1px solid #CCC;
+		border-right: none;
+		float: left;
+		padding: 8px;
+		position: relative;
+		margin: auto;
+		width: 245px;
+		#slideoutClose {
+			float: right;
 		}
-		li {
-			margin: 6px 0;
+	}
+
+	div {
+		&.tabbedSlideout {
+			h2 {
+				margin: 0;
+				padding: 0 5px 5px 5px;
+				text-align: left;
+			}
 			ul, ol {
-				margin-left: 20px;
+				margin: 0;
+				list-style-type: none;
+				padding: 0 5px;
+			}
+			li {
+				margin: 6px 0;
+				ul, ol {
+					margin-left: 20px;
+				}
 			}
 		}
 	}
@@ -81,7 +85,24 @@ div {
 
 /*Print SCSS*/
 @media print {
-	#slideoutWrapper {
-		display: none;
-	}
+  %slideout-width-100-important {
+	width: 100% !important;
+  }
+  
+  #slideoutWrapper {
+	@extend %slideout-width-100-important;
+  }
+  
+  #slideoutInnerWrapper {
+	@extend %slideout-width-100-important;
+	padding: 0 !important;
+  }
+  
+  .wet-boew-slideout {
+    display: block !important;
+  }
+  
+  #slideoutToggle, #slideoutClose {
+	display: none;
+  }
 }
