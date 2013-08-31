@@ -19,15 +19,50 @@ module.exports = function(grunt) {
 				options: {
 					stripBanners: true
 				},
-                src: ['dist/js/wet-boew.js', 'src/plugins/**/*.js'],
-                dest: 'dist/js/wet-boew.js',
+				src: ['dist/js/wet-boew.js', 'src/plugins/**/*.js'],
+				dest: 'dist/js/wet-boew.js',
 			},
 			core: {
 				options: {
 					stripBanners: false
 				},
 				src: ['lib/modernizr/modernizr-custom.js', 'dist/js/vapour.js'],
-                dest: 'dist/js/vapour.js',
+				dest: 'dist/js/vapour.js',
+			}
+		},
+		assemble: {
+			options: {
+				prettify: {indent: 2},
+				marked: {sanitize: false},
+				production: false,
+				data: 'src/templates/data/*.yml',
+				assets: 'dist/assets',
+				helpers: 'src/helpers/helper-*.js',
+				layoutdir: 'src/templates/layouts',
+				partials: ['src/templates/includes/**/*.hbs']
+			},
+			site: {
+				options: {layout: 'default.hbs'},
+				files: [
+					{
+						expand: true,
+						cwd: 'src/templates/pages',
+						src: ['*.hbs'],
+						dest: 'dist/'
+					}
+				]
+			},
+			plugins: {
+				options: {layout: 'plugins.hbs'},
+				files: [
+					{
+						expand: true,
+						cwd: 'src/plugins',
+						src: ['**/*.hbs'],
+						dest: 'dist/demo/',
+						flatten: true
+					}
+				]
 			}
 		},
 		sass: {
@@ -60,7 +95,7 @@ module.exports = function(grunt) {
 				}
 			},
 			plugins: {
-                options: {
+				options: {
 					banner: '<%= banner %>'
 				},
 				files: {
@@ -77,7 +112,7 @@ module.exports = function(grunt) {
 				dest: 'dist/js/i18n',
 				ext: '.min.js'
 			}
-			
+
 		},
 		coffee: {
 			vapour: {
@@ -98,52 +133,52 @@ module.exports = function(grunt) {
 			}
 
 		},
-        modernizr: {
-              // [REQUIRED] Path to the build you're using for development.
-            "devFile" : "lib/modernizr/modernizr-custom.js",
-            // By default, source is uglified before saving
-            "uglify" : true,
-            // [REQUIRED] Path to save out the built file.
-            "outputFile" : "lib/modernizr/modernizr-custom.js",
-            // Based on default settings on http://modernizr.com/download/
-            "extra" : {
-                "shiv" : true,
-                "printshiv" : false,
-                "load" : true,
-                "mq" : true,
-                "css3": true,
-                "html5": true,
-                "cssclasses" : true,
-                "fontface": true,
-                "backgroundsize" : true,
-                "borderimage" : true,
-                // continue with all tests
-            },
-             // Based on default settings on http://modernizr.com/download/
-            "extensibility" : {
-                "addtest" : false,
-                "prefixed" : false,
-                "teststyles" : true,
-                "testprops" : true,
-                "testallprops" : true,
-                "hasevents" : true,
-                "prefixes" : true,
-                "domprefixes" : true
-            },
-            // Define any tests you want to impliticly include.
-            "tests" : [],
-            // By default, this task will crawl your project for references to Modernizr tests.
-            // Set to false to disable.
-            "parseFiles" : false,
-            // When parseFiles = true, this task will crawl all *.js, *.css, *.scss files, except files that are in node_modules/.
-            // You can override this by defining a "files" array below.
-            // "files" : [],
-            // When parseFiles = true, matchCommunityTests = true will attempt to
-            // match user-contributed tests.
-            "matchCommunityTests" : false,
-            // Have custom Modernizr tests? Add paths to their location here.
-            "customTests" : []
-        },
+		modernizr: {
+			// [REQUIRED] Path to the build you're using for development.
+			"devFile" : "lib/modernizr/modernizr-custom.js",
+			// By default, source is uglified before saving
+			"uglify" : true,
+			// [REQUIRED] Path to save out the built file.
+			"outputFile" : "lib/modernizr/modernizr-custom.js",
+			// Based on default settings on http://modernizr.com/download/
+			"extra" : {
+				"shiv" : true,
+				"printshiv" : false,
+				"load" : true,
+				"mq" : true,
+				"css3": true,
+				"html5": true,
+				"cssclasses" : true,
+				"fontface": true,
+				"backgroundsize" : true,
+				"borderimage" : true,
+				// continue with all tests
+			},
+			// Based on default settings on http://modernizr.com/download/
+			"extensibility" : {
+				"addtest" : false,
+				"prefixed" : false,
+				"teststyles" : true,
+				"testprops" : true,
+				"testallprops" : true,
+				"hasevents" : true,
+				"prefixes" : true,
+				"domprefixes" : true
+			},
+			// Define any tests you want to impliticly include.
+			"tests" : [],
+			// By default, this task will crawl your project for references to Modernizr tests.
+			// Set to false to disable.
+			"parseFiles" : false,
+			// When parseFiles = true, this task will crawl all *.js, *.css, *.scss files, except files that are in node_modules/.
+			// You can override this by defining a "files" array below.
+			// "files" : [],
+			// When parseFiles = true, matchCommunityTests = true will attempt to
+			// match user-contributed tests.
+			"matchCommunityTests" : false,
+			// Have custom Modernizr tests? Add paths to their location here.
+			"customTests" : []
+		},
 		copy: {
 			jquery: {
 				files: [{
@@ -270,11 +305,13 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-bowerful');
 	grunt.loadNpmTasks('grunt-sass');
 	grunt.loadNpmTasks("grunt-modernizr");
+	grunt.loadNpmTasks("assemble");
 	grunt.loadTasks('tasks');
 
 	// Default task.
-	grunt.registerTask('build', ['coffee','sass','concat', 'i18n', 'uglify', 'copy']);
+	grunt.registerTask('build', ['coffee','sass','concat', 'i18n', 'uglify', 'copy', 'assemble']);
 	grunt.registerTask('test', ['jshint']);
+	grunt.registerTask('html', ['assemble']);
 	grunt.registerTask('default', ['clean', 'build', 'test']);
 	grunt.registerTask('server', ['connect','watch:source']);
 	grunt.registerTask('init', ['bowerful', 'modernizr']);
