@@ -13,7 +13,7 @@ module.exports = function(grunt) {
 		grunt.log.write('Begining i18n transforms\n');
 
 		var targetFiles = grunt.task.filesSrc;
-		
+
 		var options = this.options({
 			template: '',
 			csv: ''
@@ -50,6 +50,18 @@ module.exports = function(grunt) {
 								var filename = 'dist/js/i18n/' + row[i] + '.js';
 								wetLanguages[i-2] = row[i];
 								langFiles[i] = basei18n;
+								var messagesFile = 'lib/jquery.validation/localization/messages_' + row[i] + '.js'
+								if (grunt.file.exists(messagesFile)) {
+									langFiles[i] += grunt.file.read(messagesFile);
+								} else {
+									grunt.verbose.write(messagesFile + ' not found\n')
+								}
+								var methodFile = 'lib/jquery.validation/localization/methods_' + row[i] + '.js'
+								if (grunt.file.exists(methodFile)) {
+									langFiles[i] += grunt.file.read(methodFile);
+								} else {
+									grunt.verbose.write(methodFile + ' not found\n')
+								}
 								outputNames[i] = filename;
 							}
 						}
