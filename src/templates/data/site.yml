@@ -1,0 +1,8 @@
+###
+# Site variables
+###
+
+production: <%= production %>
+
+#  git clone https://github.com/assemble/boilerplate-site.git -b gh-pages _gh-pages
+destination: ./_gh_pages
