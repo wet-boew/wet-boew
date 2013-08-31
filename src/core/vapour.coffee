@@ -16,9 +16,12 @@
 ###
 ;window._timer =
   _elms: []
-  _cache : $('body') # this is performace boast to allow for body targetting. 
+  _cache : [] # this is performace boast to allow for body targetting.
 
   add: (_rg) ->
+    # simple init pattern to ensure body element is available to the window timer
+    if @_cache.length < 1 then @_cache = $('body')
+    # continue
     _obj = @_cache.find(_rg)
     @_elms.push _obj if (_obj.length > 0)
     undefined
