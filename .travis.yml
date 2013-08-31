@@ -7,3 +7,7 @@ env:
 
 script:
   - ant test -Djshint.failbuild=true && ant && ./build/post_build.sh
+  
+notifications:
+  irc:
+  - "chat.freenode.net#wet-boew"
