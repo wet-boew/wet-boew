@@ -107,6 +107,14 @@ module.exports = function(grunt) {
 				src: ['**/*.js'],
 				dest: 'dist/js/i18n',
 				ext: '.min.js'
+			},
+			lib: {
+				options: {
+					preserveComments : 'some'
+				},
+				files: {
+					'dist/js/deps/jquery.pjax.min.js': 'lib/pjax/jquery.pjax.js'
+				}
 			}
 
 		},
@@ -272,8 +280,8 @@ module.exports = function(grunt) {
 					"jquery.validation": '1.11.1',
 					flot: '0.8.1',
 					DataTables: '1.9.4',
-					'magnific-popup': '0.9.5'
-
+					'magnific-popup': '0.9.5',
+					'jquery-pjax': '1.7.3'
 				},
 				store: 'lib',
 			},
