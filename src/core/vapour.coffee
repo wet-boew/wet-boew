@@ -20,7 +20,7 @@
 
   add: (_rg) ->
     # simple init pattern to ensure body element is available to the window timer
-    if @_cache.length < 1 then @_cache = $('body')
+    if @_cache.length < 1 then @_cache = $(document.body)
     # continue
     _obj = @_cache.find(_rg)
     @_elms.push _obj if (_obj.length > 0)
