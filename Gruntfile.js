@@ -128,7 +128,7 @@ module.exports = function(grunt) {
 					bare: true
 				},
 				files: {
-					'dist/js/wet-boew.js': ['src/plugins/**/*.coffee']
+					'dist/js/wet-boew.js': ['src/core/helpers.coffee','src/plugins/**/*.coffee']
 				}
 			}
 
