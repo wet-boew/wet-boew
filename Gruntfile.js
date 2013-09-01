@@ -42,27 +42,23 @@ module.exports = function(grunt) {
 				partials: ['src/templates/includes/**/*.hbs']
 			},
 			site: {
-				options: {layout: 'default.hbs'},
-				files: [
-					{
-						expand: true,
-						cwd: 'src/templates/pages',
-						src: ['*.hbs'],
-						dest: 'dist/'
-					}
-				]
+				options: {
+					layout: 'default.hbs'
+				},
+				expand: true,
+				cwd: 'src/templates/pages',
+				src: ['*.hbs'],
+				dest: 'dist/'
 			},
 			plugins: {
-				options: {layout: 'plugins.hbs'},
-				files: [
-					{
-						expand: true,
-						cwd: 'src/plugins',
-						src: ['**/*.hbs'],
-						dest: 'dist/demo/',
-						flatten: true
-					}
-				]
+				options: {
+					layout: 'plugins.hbs'
+				},
+				expand: true,
+				cwd: 'src/plugins',
+				src: ['**/*.hbs'],
+				dest: 'dist/demo/',
+				flatten: true
 			}
 		},
 		sass: {
@@ -273,7 +269,9 @@ module.exports = function(grunt) {
 				packages: {
 					bootstrap: '3.0.0',
 					jquery: '2.0.3',
-					"jquery.validation": '1.11.1'
+					"jquery.validation": '1.11.1',
+					flot: '0.8.1'
+
 				},
 				store: 'lib',
 			},
