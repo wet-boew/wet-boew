@@ -147,6 +147,8 @@ module.exports = function(grunt) {
 				"load" : true,
 				"mq" : true,
 				"css3": true,
+				"input": true,
+				"inputtypes": true,
 				"html5": true,
 				"cssclasses" : true,
 				"fontface": true,
