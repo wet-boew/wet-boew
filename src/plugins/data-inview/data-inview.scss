@@ -1,0 +1,32 @@
+/*
+Data Inview Plugin v1.0 - A simplified data-attribute driven plugin that responds to being in and out of the viewport.
+Release: 31/07/2013
+Author: WET Community
+
+
+Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+
+ */
+
+
+
+.pg-banner {
+    &.out {
+        @extend %pg-common-out;
+    }
+}
+.pg-panel {
+    &.out {
+        @extend %pg-common-out;
+        top: 30%;
+        position: absolute;
+        right: 0;
+    }
+}
+%pg-common-out {
+    display: block;
+    background: #eee;
+    border: 1px solid #999;
+    color: #000;
+}
