@@ -271,7 +271,8 @@ module.exports = function(grunt) {
 					jquery: '2.0.3',
 					"jquery.validation": '1.11.1',
 					flot: '0.8.1',
-					DataTables: '1.9.4'
+					DataTables: '1.9.4',
+					'magnific-popup': '0.9.5'
 
 				},
 				store: 'lib',
