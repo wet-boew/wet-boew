@@ -3,7 +3,7 @@
 	_plugin : Javascript Carousel
 	_author : World Wide Web
 	_notes  : A javascript carousel for WET-BOEW
-	_licence: wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+	_licence: wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
 ###
 do ($ = jQuery, window, document) ->
 	$(document).on "wb.timerpoke", ".wb-carousel", (event) ->
