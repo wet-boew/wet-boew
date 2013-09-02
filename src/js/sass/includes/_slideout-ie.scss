@@ -25,9 +25,6 @@
 	#slideoutToggle {
 		width: auto !important;
 	}
-	.so-ie7 {
-		position: relative;
-	}
 }
 .ie8 {
 	#toggleLink {
@@ -43,5 +40,14 @@
 	}
 	#slideoutToggle {
 		@extend %so-filter-rotate-3;
+	}
+}
+
+/*Screen SCSS*/
+@media screen {
+	.ie7 {
+		.so-ie7 {
+			position: relative;
+		}
 	}
 }
