@@ -113,7 +113,9 @@ module.exports = function(grunt) {
 					preserveComments : 'some'
 				},
 				files: {
-					'dist/js/deps/jquery.pjax.min.js': 'lib/pjax/jquery.pjax.js'
+					'dist/js/deps/pjax/jquery.pjax.min.js': 'lib/pjax/jquery.pjax.js',
+					'dist/js/deps/flot/jquery.flot.min.js': 'lib/flot/jquery.flot.js',
+					'dist/js/deps/datatables/jquery.dataTables.min.js': 'lib/DataTables/media/js/jquery.dataTables.js',
 				}
 			}
 
@@ -210,7 +212,17 @@ module.exports = function(grunt) {
 				files: {
 					'dist/css/bootstrap.min.css': 'lib/bootstrap/dist/css/bootstrap.min.css'
 				}
-			}
+			},
+			dependencies: {
+				files: {
+					'dist/css/bootstrap.min.css': 'lib/bootstrap/dist/css/bootstrap.min.css',
+					'dist/js/deps/magnific-popup/jquery.magnific-popup.min.js' : 'lib/magnific-popup/dist/jquery.magnific-popup.min.js',
+					'dist/js/deps/magnific-popup/magnific-popup.css' : 'lib/magnific-popup/dist/magnific-popup.css',
+					'dist/js/deps/datatables/images' : 'lib/DataTables/media/images/',
+					'dist/js/deps/datatables/css/jquery.dataTables.css' : 'lib/DataTables/media/css/jquery.dataTables.css',
+				}
+			},
+
 		},
 
 		clean: [
