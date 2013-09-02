@@ -2,6 +2,10 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
-.so-ie7 {
-   position: relative;
+
+/*Screen SCSS*/
+@media screen {
+	.so-ie7 {
+	   position: relative;
+	}
 }
