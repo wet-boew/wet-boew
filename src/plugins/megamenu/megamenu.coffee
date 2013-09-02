@@ -3,7 +3,7 @@
 	_plugin : Mega Menu
 	_author : World Wide Web
 	_notes: A Mega Menu for WET
-	_licence: wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+	_licence: wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
 ###
 
 do ($ = jQuery, window, document) ->

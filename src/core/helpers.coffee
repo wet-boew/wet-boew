@@ -6,7 +6,7 @@ Credits: http://kaibun.net/blog/2013/04/19/a-fully-fledged-coffeescript-boilerpl
 
 
 Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
 ###
 
 do ( $ = jQuery, window, document ) ->
