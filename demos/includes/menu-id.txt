@@ -1,22 +1,22 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html -->
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
 <!-- DataAjaxFragmentStart -->
-<li lang="en"><section><h3><a href="http://wet-boew.github.io/wet-boew/index-eng.html">WET proyek</a></h3><div class="mb-sm">
+<li lang="en"><section><h3><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET proyek</a></h3><div class="mb-sm">
 <div class="span-2">
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">Main proyek halaman</a></li>
-<li><a href="http://wet-boew.github.io/wet-boew/demos/index-eng.html">Bekerja contoh</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">Bekerja contoh</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">Dokumentasi</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/downloads">Unduhan</a></li>
-<li><a href="http://wet-boew.github.io/wet-boew/License-eng.html">Syarat dan kondisi</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/License-en.html">Syarat dan kondisi</a></li>
 </ul>
 </div>
 <div class="clear"></div>
-<div class="mb-main-link"><a href="http://wet-boew.github.io/wet-boew/index-eng.html">WET proyek - Halaman utama</a></div>
+<div class="mb-main-link"><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET proyek - Halaman utama</a></div>
 </div></section></li>
-<li><section><h3><a href="section2/index-eng.html">Bagian 2</a></h3><div class="mb-sm">
+<li><section><h3><a href="section2/index-en.html">Bagian 2</a></h3><div class="mb-sm">
 <div class="span-2">
 <ul>
 <li class="top-level"><a href="#">Barang 2a</a></li>
@@ -32,7 +32,7 @@ wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licen
 </section>
 </div>
 <div class="span-2">
-<section><h4><a href="section2/section22/index-eng.html">Bagian 2.2</a></h4>
+<section><h4><a href="section2/section22/index-en.html">Bagian 2.2</a></h4>
 <ul>
 <li><a href="#">Barang 2.2.1</a></li>
 <li><a href="#">Barang 2.2.2</a>
@@ -89,7 +89,7 @@ wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licen
 <div class="clear"></div>
 <div class="mb-main-link"><a href="#">Bagian 3 - Halaman utama</a></div>
 </div></section></li>
-<li><section><h3><a href="section4/index-eng.html">Bagian 4</a></h3><div class="mb-sm">
+<li><section><h3><a href="section4/index-en.html">Bagian 4</a></h3><div class="mb-sm">
 <div class="span-2">
 <section><h4><a href="#">Bagian 4.1</a></h4>
 <ul>
@@ -106,7 +106,7 @@ wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licen
 </section>
 </div>
 <div class="span-2">
-<section><h4><a href="section4/section43/index-eng.html">Bagian 4.3</a></h4>
+<section><h4><a href="section4/section43/index-en.html">Bagian 4.3</a></h4>
 <ul>
 <li><a href="#">Barang 4.3.1</a></li>
 <li><a href="#">Barang 4.3.2</a></li>

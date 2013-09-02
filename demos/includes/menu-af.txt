@@ -1,20 +1,20 @@
 ﻿<!DOCTYPE html>
 <html lang="bg">
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html -->
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
 <!-- DataAjaxFragmentStart -->
-<li><section><h3><a href="http://wet-boew.github.io/wet-boew/index-eng.html">WET projek</a></h3><div class="mb-sm">
+<li><section><h3><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET projek</a></h3><div class="mb-sm">
 <div class="span-2">
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">Main projek bladsy</a></li>
-<li><a href="http://wet-boew.github.io/wet-boew/demos/index-eng.html">Werk voorbeelde</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">Werk voorbeelde</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">Dokumentasie</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/downloads">Aflaaie</a></li>
-<li><a href="http://wet-boew.github.io/wet-boew/License-eng.html">Terme en voorwaardes</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/License-en.html">Terme en voorwaardes</a></li>
 </ul>
 </div>
 <div class="clear"></div>
-<div class="mb-main-link"><a href="http://wet-boew.github.io/wet-boew/index-eng.html">WET projek - Main bladsy</a></div>
+<div class="mb-main-link"><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET projek - Main bladsy</a></div>
 </div></section></li>
 <li><section><h3><a href="Artikel2/index-eng.html">Artikel 2</a></h3><div class="mb-sm">
 <div class="span-2">

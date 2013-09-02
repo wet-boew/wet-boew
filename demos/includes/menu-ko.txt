@@ -1,22 +1,22 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html -->
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
 <!-- DataAjaxFragmentStart -->
-<li lang="en"><section><h3><a href="http://wet-boew.github.io/wet-boew/index-eng.html">WET 프로젝트</a></h3><div class="mb-sm">
+<li lang="en"><section><h3><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET 프로젝트</a></h3><div class="mb-sm">
 <div class="span-2">
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">메인 프로젝트 페이지</a></li>
-<li><a href="http://wet-boew.github.io/wet-boew/demos/index-eng.html">작업 예제</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">작업 예제</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">문서</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/downloads">다운로드</a></li>
-<li><a href="http://wet-boew.github.io/wet-boew/License-eng.html">이용 약관</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/License-en.html">이용 약관</a></li>
 </ul>
 </div>
 <div class="clear"></div>
-<div class="mb-main-link"><a href="http://wet-boew.github.io/wet-boew/index-eng.html">WET 프로젝트 - 메인 페이지</a></div>
+<div class="mb-main-link"><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET 프로젝트 - 메인 페이지</a></div>
 </div></section></li>
-<li><section><h3><a href="section2/index-eng.html">섹션 2</a></h3><div class="mb-sm">
+<li><section><h3><a href="section2/index-en.html">섹션 2</a></h3><div class="mb-sm">
 <div class="span-2">
 <ul>
 <li class="top-level"><a href="#">항목 2a</a></li>
@@ -32,7 +32,7 @@ wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licen
 </section>
 </div>
 <div class="span-2">
-<section><h4><a href="section2/section22/index-eng.html">섹션 2.2</a></h4>
+<section><h4><a href="section2/section22/index-en.html">섹션 2.2</a></h4>
 <ul>
 <li><a href="#">항목 2.2.1</a></li>
 <li><a href="#">항목 2.2.2</a>
@@ -89,7 +89,7 @@ wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licen
 <div class="clear"></div>
 <div class="mb-main-link"><a href="#">섹션 3 - 메인 페이지</a></div>
 </div></section></li>
-<li><section><h3><a href="section4/index-eng.html">섹션 4</a></h3><div class="mb-sm">
+<li><section><h3><a href="section4/index-en.html">섹션 4</a></h3><div class="mb-sm">
 <div class="span-2">
 <section><h4><a href="#">섹션 4.1</a></h4>
 <ul>
@@ -106,7 +106,7 @@ wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licen
 </section>
 </div>
 <div class="span-2">
-<section><h4><a href="section4/section43/index-eng.html">섹션 4.3</a></h4>
+<section><h4><a href="section4/section43/index-en.html">섹션 4.3</a></h4>
 <ul>
 <li><a href="#">항목 4.3.1</a></li>
 <li><a href="#">항목 4.3.2</a></li>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Buttons - Grid System - Working examples - Web Experience Toolkit&#160;(WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body-sec">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="#" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-en.html" lang="en"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
+<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Implementing-WET">Implement WET</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-en.html">Home</a></li>
+<li><a href="../index-en.html">Working examples</a></li>
+<li>Buttons - Grid System</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Buttons - Grid System</h1>
+
+<div class="wet-boew-prettify all-pre linenums">
+<div class="span-4 module-table-contents">
+<h2>Table of contents</h2>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#base">Base classes</a></li>
+<li><a href="#supporting">Supporting classes</a>
+<ul>
+	<li><a href="#sizes">Button sizes</a></li>
+	<li><a href="#width">Button width</a></li>
+	<li><a href="#disabled">Disabled buttons</a></li>
+	<li><a href="#embedded">Embedded navigation</a></li>
+</ul>
+</li>
+<li><a href="#examples">Examples</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+
+<h2 id="overview">Overview</h2>
+<p>The button classes are based off Twitter Bootstrap. Due to colour contrast issues, the colours have been modified to pass WCAG 2.0 accessibility rules. They are styled to match the <a href="grid-message-en.html">"message" module classes</a>.</p>
+
+<p>Button styles, as the name sugguests, are meant to be applied to buttons - both <code>input</code> and <code>button</code>. There are certain cases where it may also be appropriate to apply them to links.</p>
+
+
+<h2 id="base">Base classes</h2>
+<p>Button CSS can be applied to a <code>&lt;button&gt;</code>, an <code>&lt;input&gt;</code> or a <code>&lt;a href&gt;</code>:  </p>
+<ul class="list-bullet-none indent-medium"><li class="margin-bottom-medium"><button class="button">Button</button></li>
+<li><input type="submit" value="Input" class="button" /></li>
+<li><a href="#" class="button">Link</a></li>
+</ul>
+<table class="table-simplify span-6">
+   <thead>
+      <tr>
+        <th>Button</th>
+        <th>Disabled</th>
+        <th>Class</th>
+        <th>Description</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+        <td><button class="button">Default</button></td>
+        <td><button class="button button-disabled" disabled="disabled">Default</button></td>
+        <td><code>button</code></td>
+        <td>Standard gray button with gradient</td>
+      </tr>
+      <tr>
+        <td><button class="button button-accent">Accent</button></td>
+        <td><button class="button button-accent button-disabled" disabled="disabled">Accent</button></td>
+        <td><code>button button-accent</code></td>
+        <td>Provides extra visual weight and identifies the primary action</td>
+      </tr>
+      <tr>
+        <td><button class="button button-info">Info</button></td>
+        <td><button class="button button-info button-disabled" disabled="disabled">Info</button></td>
+        <td><code>button button-info</code></td>
+        <td>Used as an alternate to the default styles</td>
+      </tr>
+      <tr>
+        <td><button class="button button-confirm">Confirm</button></td>
+        <td><button class="button button-confirm button-disabled" disabled="disabled">Confirm</button></td>
+        <td><code>button button-confirm</code></td>
+        <td>Indicates a successful or positive action</td>
+      </tr>
+      <tr>
+        <td><button class="button button-alert">Alert</button></td>
+        <td><button class="button button-alert button-disabled" disabled="disabled">Alert</button></td>
+        <td><code>button button-alert</code></td>
+        <td>Indicates a dangerous or potentially negative action</td>
+      </tr>
+      <tr>
+        <td><button class="button button-attention">Attention</button></td>
+        <td><button class="button button-attention button-disabled" disabled="disabled">Attention</button></td>
+        <td><code>button button-attention</code></td>
+        <td>Indicates caution should be taken with this action</td>
+      </tr>
+      <tr>
+        <td><button class="button button-dark">Dark</button></td>
+        <td><button class="button button-dark button-disabled" disabled="disabled">Dark</button></td>
+        <td><code>button button-dark</code></td>
+        <td>Alternate dark gray button, not tied to a semantic action or use</td>
+      </tr>
+      <tr>
+        <td><button class="button button-none">None</button></td>
+        <td><button class="button button-none button-disabled" disabled="disabled">None</button></td>
+        <td><code>button button-none</code></td>
+        <td>Maintains the dimensions of a button without creating the visual style</td>
+      </tr>
+   </tbody>
+</table>
+
+<div class="clear"></div>
+<h2 id="supporting">Supporting Classes</h2>
+<h3 id="sizes">Button sizes</h3>
+<p>A change in button size will affect the button padding and font-size. Be weary of combining the <code>button-*</code> size classes with the <code>font-*</code> size classes, as this may lead to illegible (too small) text.</p>
+
+
+
+<div class="span-3">
+   <ul class="menu-horizontal">
+      <li><a href="#" class="button button-small">button-small</a></li>
+      <li><a href="#" class="button">default</a></li>
+      <li><a href="#" class="button button-large">button-large</a></li>
+      <li><a href="#" class="button button-xlarge">button-xlarge</a></li>
+   </ul>
+   <ul class="menu-horizontal">
+      <li><a href="#" class="button button-small button-dark">button-small</a></li>
+      <li><a href="#" class="button button-dark">default</a></li>
+      <li><a href="#" class="button button-large button-dark">button-large</a></li>
+      <li><a href="#" class="button button-xlarge button-dark">button-xlarge</a></li>
+   </ul>
+</div>
+<details class="span-3">
+	<summary>View code</summary>
+	<pre>&lt;ul class=&quot;menu-horizontal&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;button button-small&quot;&gt;button-small&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;button&quot;&gt;default&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;button button-large&quot;&gt;button-large&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;button button-xlarge&quot;&gt;button-xlarge&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class=&quot;menu-horizontal&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;button button-small button-dark&quot;&gt;button-small&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;button button-dark&quot;&gt;default&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;button button-large button-dark&quot;&gt;button-large&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;button button-xlarge button-dark&quot;&gt;button-xlarge&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
+</details>
+<div class="clear"></div>
+<h3 id="width">Button width</h3>
+<p>Buttons have the attribute <code>display:inline;</code> by default.  Use the CSS <code>display-block</code> to make the button full width within the grid cell or container it is in.</p>
+<div class="span-3">
+<ul class="list-bullet-none margin-top-none indent-none">
+  <li class="margin-bottom-medium"><a href="#" class="button">default</a></li>
+  <li><a href="#" class="button display-block">display-block</a></li>
+</ul>
+</div>
+<details class="span-3">
+	<summary>View code</summary>
+	<pre>&lt;ul class=&quot;list-bullet-none margin-top-none indent-none&quot;&gt;
+  &lt;li class=&quot;margin-bottom-medium&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;button&quot;&gt;default&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;button display-block&quot;&gt;display-block&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
+</details>
+<div class="clear"></div>
+
+<h3 id="disabled">Disabled buttons</h3>
+<p>Remove the functionality of a button.</p>
+<div class="span-3">
+<ul class="menu-horizontal margin-top-none">
+  <li><a href="#" class="button">default</a></li>
+  <li><a href="#" class="button button-disabled ui-disabled">disabled</a></li>
+</ul>
+</div>
+<details class="span-3">
+	<summary>View code</summary>
+<pre>&lt;ul class=&quot;menu-horizontal margin-top-none&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;button&quot;&gt;default&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;button button-disabled ui-disabled&quot;&gt;disabled&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
+</details>
+<div class="clear"></div>
+
+<h3 id="embedded">Embedded navigation</h3>
+<p>These classes allows for embedded page navigation. The navigation may be based off an unordered list or paragraph text. To make the unordered list of buttons display horizontally, use the <code>menu-horizontal</code> class.  To group buttons together, use the <code>button-group</code>  class together.</p>
+
+<h4>Unordered list using <code>menu-horizontal</code></h4>
+<div class="span-3">
+	<ul class="menu-horizontal margin-top-none">
+		<li><a href="#" class="button button-accent">Primary Action</a></li>
+		<li><a href="#" class="button">Action</a></li>
+	</ul>
+
+</div>
+<details class="span-3">
+	<summary>View code</summary>
+	<pre>&lt;ul class=&quot;menu-horizontal margin-top-none&quot;&gt;
+   &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;button button-accent&quot;&gt;Primary Action&lt;/a&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;button&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
+</details>
+
+<div class="clear"></div>
+
+<h4>Unordered list using <code>button-group</code></h4>
+<div class="span-3">
+	<ul class="button-group margin-top-none">
+		<li><a href="#" class="button button-accent">Primary Action</a></li>
+		<li><a href="#" class="button">Action</a></li>
+	</ul>	
+</div>
+
+<details class="span-3">
+	<summary>View code</summary>
+	<pre>&lt;ul class=&quot;button-group margin-top-none&quot;&gt;
+   &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;button button-accent&quot;&gt;Primary Action&lt;/a&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;button&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
+</details>
+
+<div class="clear"></div>
+
+<h4>Muliple unordered lists using <code>button-toolbar</code> and <code>button-group</code></h4>
+<div class="span-3">
+	<div class="button-toolbar margin-top-none">
+	<ul class="button-group">
+		<li><a href="#" class="button button-accent">Primary Action</a></li>
+		<li><a href="#" class="button">Action</a></li>
+	</ul>
+	<ul class="button-group">
+		<li><a href="#" class="button">Action</a></li>
+		<li><a href="#" class="button">Action</a></li>
+	</ul>
+	<p class="button-group">
+		<a href="#" class="button">Help</a>
+	</p>
+	</div>	
+</div>
+
+<details class="span-3">
+	<summary>View code</summary>
+	<pre>&lt;div class=&quot;button-toolbar margin-top-none&quot;&gt;
+   &lt;ul class=&quot;button-group&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;button button-accent&quot;&gt;Primary Action&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;button&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
+   &lt;/ul&gt;
+   &lt;ul class=&quot;button-group&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;button&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot; class=&quot;button&quot;&gt;Action&lt;/a&gt;&lt;/li&gt;
+   &lt;/ul&gt;
+   &lt;p class=&quot;button-group&quot;&gt;
+      &lt;a href=&quot;#&quot; class=&quot;button&quot;&gt;Help&lt;/a&gt;
+   &lt;/p&gt;
+&lt;/div&gt;</pre>
+</details>
+
+<div class="clear"></div>
+
+    
+	<h2 id="examples">Examples</h2>
+
+    <ul class="menu-horizontal">
+      <li><a href="#" class="button button-small">A<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">B<span class="wb-invisible"> topics</span></a></li>
+      <li><a class="button button-small button-disabled ui-disabled">C<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">D<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">E<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">F<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">G<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small button-accent button-disabled ui-disabled">H<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">I<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">J<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">K<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">L<span class="wb-invisible"> topics</span></a></li>
+      <li><a class="button button-small button-disabled ui-disabled">M<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">N<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">O<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">P<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">Q<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">R<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">S<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">T<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">U<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">V<span class="wb-invisible"> topics</span></a></li>
+      <li><a class="button button-small button-disabled ui-disabled">W<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">X<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">Y<span class="wb-invisible"> topics</span></a></li>
+      <li><a href="#" class="button button-small">Z<span class="wb-invisible"> topics</span></a></li>
+   </ul>
+   
+    <ul class="menu-horizontal">
+      <li><a href="#" class="button button-small button-accent">Previous<span class="wb-invisible">page of search results</span></a></li>
+      <li><a href="#" class="button button-small">1<span class="wb-invisible">: Page 1 of search results</span></a></li>
+     <li> <a href="#" class="button button-small">2<span class="wb-invisible">: Page 2 of search results</span></a></li>
+     <li> <span class="button button-small button-attention button-disabled ui-disabled">3<span class="wb-invisible">: Page 3 of search results</span></span></li>
+      <li><a href="#" class="button button-small">4<span class="wb-invisible">: Page 4 of search results</span></a></li>
+      <li><a href="#" class="button button-small">5<span class="wb-invisible">: Page 5 of search results</span></a></li>
+     <li> <a href="#" class="button button-small">6<span class="wb-invisible">: Page 6 of search results</span></a></li>
+      <li><a href="#" class="button button-small">7<span class="wb-invisible">: Page 7 of search results</span></a></li>
+      <li><a href="#" class="button button-small">8<span class="wb-invisible">: Page 8 of search results</span></a></li>
+      <li><a href="#" class="button button-small">9<span class="wb-invisible">: Page 9 of search results</span></a></li>
+      <li><a href="#" class="button button-small">10<span class="wb-invisible">: Page 10 of search results</span></a></li>
+      <li><a href="#" class="button button-small button-accent">Next<span class="wb-invisible">page of search results</span></a></li>
+   </ul>
+   
+   <ul class="button-group">
+      <li><a href="#" rel="prev" class="button">Previous</a></li>
+      <li><a href="#" rel="index" class="button">Table of Contents</a></li>
+      <li><a href="#" rel="next" class="button">Next</a></li>
+   </ul>
+   
+   
+   <div class="clear"></div>
+   <div class="module-attention span-3 margin-top-xlarge">
+	<h3 class="font-xlarge"><span class="color-dark">Warning: </span> Lorem ipsum dolor sit amet</h3>
+   <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin gravida,   ipsum vitae malesuada pellentesque, mauris purus accumsan ipsum, sed   porta lectus justo ac mauris. </p>
+   <div class="button-toolbar">
+  <ul class="button-group">
+      <li><a href="#" class="button">Report a problem</a></li>
+      <li><a href="#" class="button">Learn more</a></li>
+   </ul>
+   <p class="button-group float-right">
+      <a href="#" class="button button-attention">Delete</a>
+   </p>
+   </div>
+</div>
+<div class="module-info module-simplify span-3 margin-top-xlarge">
+	<h3 class="font-xlarge">Did you know?</h3>
+   <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin gravida,   ipsum vitae malesuada pellentesque, mauris purus accumsan ipsum, sed   porta lectus justo ac mauris.</p>
+   <p><a class="button button-info" href="#">Continue reading</a></p>
+</div>
+
+<div class="clear"> </div>
+</div>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2013-04-11</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+<div id="wb-sec"><div id="wb-sec-in"><nav role="navigation"><h2 id="wb-nav"></h2>
+<div class="wb-sec-def">
+<!-- SecNavStart -->
+	<section>
+      <h3><a href="grid-structure-en.html">Structure</a></h3>
+      <ul>
+        <li><a href="grid-base-en.html">Grid System</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-basic-en.html">Basic effects</a></h3>
+      <ul>
+        <li><a href="grid-text-en.html">Text</a></li>
+        <li><a href="grid-table-en.html">Tables</a></li>
+        <li><a href="grid-form-en.html">Forms</a></li>
+        <li><a href="grid-image-en.html">Images</a></li>
+        <li><a href="grid-color-en.html">Colour</a></li>
+        <li><a href="grid-button-en.html">Buttons</a></li>
+        <li><a href="grid-border-en.html">Borders</a></li>
+        <li><a href="grid-icon-en.html">Icons</a></li>
+        <li><a href="grid-opacity-en.html">Opacity</a></li>
+        <li><a href="grid-proximity-en.html">Proximity</a></li>
+        <li><a href="grid-position-en.html">Positioning and alignment</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-specialty-en.html">Specialty effects</a></h3>
+      <ul>
+        <li><a href="grid-message-en.html">Messages</a></li>
+        <li><a href="grid-module-en.html">Modules</a></li>
+        <li><a href="grid-other-en.html">Other</a></li>
+      </ul>
+    </section>
+<!-- SecNavEnd -->
+</div>
+</nav></div></div>
+
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2>Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

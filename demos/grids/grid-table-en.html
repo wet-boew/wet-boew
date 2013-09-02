@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Tables - Grid System - Working examples - Web Experience Toolkit&#160;(WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body-sec">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="#" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-en.html" lang="en"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
+<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Implementing-WET">Implement WET</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-en.html">Home</a></li>
+<li><a href="../index-en.html">Working examples</a></li>
+<li>Tables - Grid System</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Tables - Grid System</h1>
+
+<div class="wet-boew-prettify all-pre linenums">
+
+<div class="span-4 module-table-contents">
+<h2>Table of contents</h2>
+<ul>
+<li><a href="#default">Default design</a></li>
+<li><a href="#supporting">Supporting classes</a>
+  <ul>
+    <li><a href="#header">Header background colours</a></li>
+    <li><a href="#simplified">Simplified design</a></li>
+    <li><a href="#bordered">Bordered design</a></li>
+    <li><a href="#condensed">Condensed table</a></li>
+    <li><a href="#right">Right align data</a></li>
+    <li><a href="#second">Second level header</a></li>
+    <li><a href="#zebra">Zebra striping</a></li>
+  </ul>
+</li>
+</ul>
+
+</div>
+<div class="span-2 module-related">
+<h2 class="background-accent">Related accessibility topic</h2>
+<ul>
+<li><a href="../opt-cont/tbl-en.html">Tables - Optimal Content Examples</a></li>
+
+
+</ul>
+</div>
+<div class="clear"></div>
+<h2 id="default">Default design</h2>
+<table class="span-6">
+   <caption>
+   Default table
+   </caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
+</table>
+<div class="clear"></div>
+<h2 id="supporting">Supporting classes</h2>
+<p>Additional CSS is provided to modify the appearance of a table.</p>
+<h3 id="header">Header background colours</h3>
+<p>Addition CSS: <code>table-accent</code></p>
+<table class="table-accent span-6">
+   <caption>
+   Accent style
+   </caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
+</table>
+<div class="clear"></div>
+
+<p>Addition CSS: <code>table-medium</code></p>
+<table class="table-medium span-6">
+   <caption>
+   Medium style
+   </caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
+</table>
+<div class="clear"></div>
+<p>Addition CSS: <code>table-dark</code></p>
+<table class="table-dark span-6">
+   <caption>
+   Dark style
+   </caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
+</table>
+<div class="clear"></div>
+<h3 id="simplified">Simplified design</h3>
+<p>Addition CSS: <code>table-simplify</code></p>
+<table class="table-simplify span-6">
+   <caption>Simple table</caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
+</table>
+<div class="clear"></div>
+<h3 id="bordered">Bordered design</h3>
+<div class="span-3">
+<p>Addition CSS: <code>table-bordered table-simplify</code></p>
+<table class="table-simplify table-bordered span-3">
+    <caption>Simple table with border</caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
+</table>
+</div>
+<div class="span-3">
+<p>Versus <strong>without</strong> <code>table-bordered</code></p>
+<table class="table-simplify span-3">
+    <caption>Simple table default</caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
+</table>
+</div>
+<div class="clear"></div>
+<div class="span-3">
+<p>Addition CSS: <code>table-bordered table-simplify table-medium</code></p>
+<table class="table-simplify table-bordered table-medium span-3">
+    <caption>
+    Simple medium table with border
+    </caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
+</table>
+</div>
+<div class="span-3">
+<p>Versus <strong>without</strong> <code>table-bordered</code></p>
+<table class="table-simplify table-medium span-3">
+    <caption>Simple medium table</caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
+</table>
+</div>
+<div class="clear"></div>
+<h3 id="condensed">Condensed table</h3>
+<div class="span-3">
+
+
+<p>Addition CSS: <code>table-condensed</code></p>
+<table class="table-condensed span-3">
+   <caption>Condensed table</caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
+</table>
+<div class="clear"></div>
+</div>
+<div class="span-3">
+<p>Versus <strong>without</strong> <code>table-condensed</code></p>
+<table class="span-3">
+   <caption>Normal table</caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
+</table>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+<div class="span-3">
+
+
+<p>Addition CSS: <code>table-condensed table-simplify</code></p>
+<table class="table-simplify table-condensed span-3">
+   <caption>Condensed table</caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
+</table>
+<div class="clear"></div>
+</div>
+<div class="span-3">
+<p>Versus <strong>without</strong> <code>table-condensed</code></p>
+<table class="table-simplify span-3">
+   <caption>Normal table</caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
+</table>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+<h3 id="right">Right align data</h3>
+<div class="span-6 module-note">
+<h4>Note: Headers must be individually aligned right</h4>
+<p>The align-right CSS on the <code>&lt;table&gt;</code> will only affect the  <code>&lt;td&gt;</code> data in the <code>&lt;tr&gt;</code> rows.  The headers will remain  left aligned, as the table may have horizontal and/or vertical headers and each may need a different alignment. Therefore,  in order to right align specifc headers, each  <code>&lt;th class="align-right"&gt;</code> must be manually classed, as desired.</p>
+</div>
+<div class="clear"></div>
+<table class="table-simplify align-right span-6">
+   <caption>Expenses</caption>
+   <colgroup>
+      <col class="width-30">
+      <col>
+      <col>
+      <col>
+      <col>
+   </colgroup>
+   <thead>
+   <tr>
+      <td></td>
+      <th class="align-right">Dollars (2009)</th>
+      <th class="align-right">Percentage (2009)</th>
+      <th class="align-right">Dollars (2008)</th>
+      <th class="align-right">Percentage (2008)</th>
+   </tr>
+   </thead>
+   <tbody>
+   <tr>
+      <th scope="row">Human Resources</th>
+      <td>$1,442,421</td>
+      <td>14.89%</td>
+      <td>$1,524,241</td>
+      <td>12.99%</td>
+   </tr>
+   <tr>
+      <th scope="row">Communications</th>
+      <td>$677,325</td>
+      <td>6.99%</td>
+      <td>$786,533</td>
+      <td>6.70%</td>
+   </tr>
+   <tr>
+      <th scope="row">Compensation</th>
+      <td>$1,532,523</td>
+      <td>15.82%</td>
+      <td>$1,678,235</td>
+      <td>14.30%</td>
+   </tr>
+   <tr>
+      <th scope="row">Information Technology</th>
+      <td>$5,361,325</td>
+      <td>55.36%</td>
+      <td>$6,836,643</td>
+      <td>58.27%</td>
+   </tr>
+   <tr>
+      <th scope="row">Administration</th>
+      <td>$437,634</td>
+      <td>4.52%</td>
+      <td>$563,235</td>
+      <td>4.80%</td>
+   </tr>
+   <tr>
+      <th scope="row">Other</th>
+      <td>$233,353</td>
+      <td>2.41%</td>
+      <td>$344,455</td>
+      <td>2.94%</td>
+   </tr>
+	</tbody>
+   <tfoot>
+   <tr>
+      <td>Total</td>
+      <td>$9,684,581</td>
+      <td>100.00%</td>
+      <td>$11,733,342</td>
+      <td>100.00%</td>
+   </tr>
+   </tfoot>
+</table>
+<div class="clear"></div>
+<h3 id="second">Second level header</h3>
+<p>Additional CSS: <code>&lt;tr class="table-header"&gt;</code></p>
+<table class="table-simplify  span-6 align-right">
+   <caption>Financial Table</caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col" class="align-right">Header</th>
+         <th scope="col" class="align-right">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr class="table-header">
+         <th colspan="3">Subheading:</th>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>$1,000,000</td>
+         <td>$1,000,000</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>$1,000,000</td>
+         <td>$1,000,000</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>$1,000,000</td>
+         <td>$1,000,000</td>
+      </tr>
+	</tbody>
+   <tfoot>
+      <tr>
+         <th>Total</th>
+         <td>$3,000,000</td>
+         <td>$3,000,000</td>
+      </tr>
+   </tfoot>
+</table>
+<div class="clear"></div>
+<h3 id="zebra">Zebra striping</h3>
+<p>There are several zebra striping techniques: <a href="../index-en.html#zebra" class="button button-accent">Learn more about zebra striping</a></p>
+<p class="margin-top-large">Addition CSS: <code>wet-boew-zebra table-simplify</code></p>
+<table class="wet-boew-zebra table-simplify span-6">
+	<caption>Striped table</caption>
+   <thead>
+      <tr>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+         <th scope="col">Header</th>
+      </tr>
+	</thead>
+   <tbody>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+      <tr>
+         <td>Data</td>
+         <td>Data</td>
+         <td>Data</td>
+      </tr>
+	</tbody>
+</table>
+<div class="clear"></div>
+<div class="span-6 module-note">
+<h2>Note</h2>
+<p>When using the zebra striping effect, the wet-boew-zebra class must appear <strong>first</strong> if the table is multi-classed with any other CSS.</p>
+
+<p>Correct: <code>&lt;table class="wet-boew-zebra table-simplify"&gt;</code></p>
+<p>Incorrect: <code>&lt;table class="table-simplify wet-boew-zebra"&gt;</code></p>
+</div>
+<div class="clear"></div>
+</div>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2013-04-11</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+<div id="wb-sec"><div id="wb-sec-in"><nav role="navigation"><h2 id="wb-nav"></h2>
+<div class="wb-sec-def">
+<!-- SecNavStart -->
+	<section>
+      <h3><a href="grid-structure-en.html">Structure</a></h3>
+      <ul>
+        <li><a href="grid-base-en.html">Grid System</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-basic-en.html">Basic effects</a></h3>
+      <ul>
+        <li><a href="grid-text-en.html">Text</a></li>
+        <li><a href="grid-table-en.html">Tables</a></li>
+        <li><a href="grid-form-en.html">Forms</a></li>
+        <li><a href="grid-image-en.html">Images</a></li>
+        <li><a href="grid-color-en.html">Colour</a></li>
+        <li><a href="grid-button-en.html">Buttons</a></li>
+        <li><a href="grid-border-en.html">Borders</a></li>
+        <li><a href="grid-icon-en.html">Icons</a></li>
+        <li><a href="grid-opacity-en.html">Opacity</a></li>
+        <li><a href="grid-proximity-en.html">Proximity</a></li>
+        <li><a href="grid-position-en.html">Positioning and alignment</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3><a href="grid-specialty-en.html">Specialty effects</a></h3>
+      <ul>
+        <li><a href="grid-message-en.html">Messages</a></li>
+        <li><a href="grid-module-en.html">Modules</a></li>
+        <li><a href="grid-other-en.html">Other</a></li>
+      </ul>
+    </section>
+<!-- SecNavEnd -->
+</div>
+</nav></div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2>Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

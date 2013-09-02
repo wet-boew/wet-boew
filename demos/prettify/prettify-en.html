@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Prettify - Working examples - Web Experience Toolkit&#160;(WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="prettify-fr.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-en.html" lang="en"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
+<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Implementing-WET">Implement WET</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-en.html">Home</a></li>
+<li><a href="../index-en.html">Working examples</a></li>
+<li>Prettify</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Prettify</h1>
+
+<ul class="button-group">
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Prettify" class="button">Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
+</ul>
+
+<p>Syntax highlighting of source code snippets in an html page using <a href="http://code.google.com/p/google-code-prettify/" rel="external">google-code-prettify</a>.</p>
+
+<section>
+	<h2>How to use</h2>
+	<ol>
+	<li>Apply <code>class="wet-boew-prettify"</code> to an element on the page to load the component (once per page).</li>
+	<li>Apply <code>class="prettyprint"</code> to a <code>pre</code> or <code>code</code> element to apply syntax highlighting. Alternatively use <code>class="wet-boew-prettify all-pre"</code> to apply syntax highlighting to all <code>pre</code> elements on the page.</li>
+	<li>Apply <code>class="linenums"</code> to a <code>pre</code> or <code>code</code> element to add line numbers. Alternatively use <code>class="wet-boew-prettify linenums"</code> to all applicable <code>pre</code> elements. Specify the starting number by adding <code>linenums:#</code> before <code>linenums</code>.</li>
+	<li>Add extra language support by using <code>class="wet-boew-prettify lang-*"</code> (e.g., <code>class="wet-boew-prettify lang-css"</code>) and applying <code>class="lang-*"</code> to each applicable <code>pre</code> or <code>code</code> element.</li>
+	</ol>
+</section>
+
+<section>
+	<h2 id="examples" class="wet-boew-prettify all-pre">Examples</h2>
+	<section>
+		<h3>HTML</h3>
+		<pre class="prettyprint"><code>&lt;form action="#" method="post"&gt;
+	&lt;div&gt;
+		&lt;label for="data1"&gt;Form input default appearance:&lt;/label&gt;
+		&lt;input name="data1" type="text" id="data1" /&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;label for="data2"&gt;Form text area default appearance:&lt;/label&gt;
+		&lt;textarea name="data2" cols="15" rows="3" id="data2"&gt;&lt;/textarea&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;label for="data4"&gt;Form &lt;code&gt;select&lt;/code&gt; default appearance:&lt;/label&gt;
+		&lt;select id="data4" name="data4"&gt;
+			&lt;option value="Option 1"&gt;Option 1&lt;/option&gt;
+			&lt;option value="Option 2"&gt;Option 2&lt;/option&gt;
+			&lt;option value="Option 3"&gt;Option 3&lt;/option&gt;
+			&lt;option value="Option 4"&gt;Option 4&lt;/option&gt;
+		&lt;/select&gt;
+	&lt;/div&gt;
+	&lt;fieldset&gt;
+		&lt;legend&gt;Form &lt;code&gt;legend&lt;/code&gt;, &lt;code&gt;fieldset&lt;/code&gt; and &lt;code&gt;checkbox&lt;/code&gt; default appearance&lt;/legend&gt;
+		&lt;div&gt;
+			&lt;input name="checkbox" type="checkbox" id="data5" value="checkbox" /&gt;&#160;&lt;label for="data5"&gt;Option 1&lt;/label&gt;&#160;&#160;
+			&lt;input name="checkbox" type="checkbox" id="data6" value="checkbox" /&gt;&#160;&lt;label for="data6"&gt;Option 2&lt;/label&gt;&#160;&#160;
+			&lt;input name="checkbox" type="checkbox" id="data7" value="checkbox" /&gt;&#160;&lt;label for="data7"&gt;Option 3&lt;/label&gt;&#160;&#160;
+			&lt;input name="checkbox" type="checkbox" id="data8" value="checkbox" /&gt;&#160;&lt;label for="data8"&gt;Option 4&lt;/label&gt;
+		&lt;/div&gt;
+	&lt;/fieldset&gt;
+	&lt;div&gt;
+		&lt;input name="submit" type="submit" id="submit" value="Submit default appearance" /&gt;
+		&lt;input name="reset" type="reset" id="reset" value="Reset default appearance" /&gt;
+	&lt;/div&gt;
+&lt;/form&gt;</code></pre>
+	</section>
+	<section>
+		<h3>CSS (uses linenums)</h3>
+		<pre class="prettyprint lang-css linenums"><code>#gcwu-date-mod dt,#gcwu-date-mod dd{
+	float:left;
+}
+
+#gcwu-date-mod dd{
+	margin:0 0 0 10px;
+}
+
+#gcwu-content h2,#gcwu-priorities h3{
+	color:#333;
+	font-weight:400;
+}
+
+#gcwu-content h2,#gcwu-priorities h3{
+	border:none;
+	margin-bottom:5px;
+	font-size:1.6em;
+}
+
+div#gcwu-headlines ul li,div#gcwu-headlines ul{
+	list-style:none !important;
+	margin:0 !important;
+	padding:0 !important;
+}</code></pre>
+	</section>
+	<section>
+		<h3>JavaScript (uses linenums:15 and linenums)</h3>
+		<pre class="prettyprint linenums:15 linenums"><code>_pe.fn.prettify = {
+	type: 'plugin',
+	depends : ['prettify'],
+	executed : false,
+	_exec: function (elm) {
+		// Make sure only executes once
+		if (!pe.fn.prettify.executed) {
+			var opts,
+				overrides,
+				pre = $('body').find('pre'),
+				classes = elm.attr('class').split(' '),
+				i;
+
+			// Load language extensions as needed (called by adding lang-* in class, e.g., lang-css)
+			for (i = 0; i &lt; classes.length; i += 1) {
+				if (classes[i].length &lt; 12 &amp;&amp; classes[i].indexOf('lang-') === 0) {
+					pe.add._load([pe.add.liblocation + 'dependencies/prettify/' + classes[i] + pe.suffix + '.js']);
+				}
+			}</code></pre>
+	</section>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2013-04-11</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

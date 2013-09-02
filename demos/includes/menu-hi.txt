@@ -1,22 +1,22 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html -->
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
 <!-- DataAjaxFragmentStart -->
-<li lang="en"><section><h3><a href="http://wet-boew.github.io/wet-boew/index-eng.html">परियोजना WET</a></h3><div class="mb-sm">
+<li lang="en"><section><h3><a href="http://wet-boew.github.io/wet-boew/index-en.html">परियोजना WET</a></h3><div class="mb-sm">
 <div class="span-2">
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">मुख्य परियोजना पृष्ठ</a></li>
-<li><a href="http://wet-boew.github.io/wet-boew/demos/index-eng.html">काम उदाहरण</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">काम उदाहरण</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">प्रलेखन</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/downloads">डाउनलोड</a></li>
-<li><a href="http://wet-boew.github.io/wet-boew/License-eng.html">निबंधन और शर्तें</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/License-en.html">निबंधन और शर्तें</a></li>
 </ul>
 </div>
 <div class="clear"></div>
-<div class="mb-main-link"><a href="http://wet-boew.github.io/wet-boew/index-eng.html">परियोजना WET - फोकस</a></div>
+<div class="mb-main-link"><a href="http://wet-boew.github.io/wet-boew/index-en.html">परियोजना WET - फोकस</a></div>
 </div></section></li>
-<li><section><h3><a href="section2/index-eng.html">अनुभाग 2</a></h3><div class="mb-sm">
+<li><section><h3><a href="section2/index-en.html">अनुभाग 2</a></h3><div class="mb-sm">
 <div class="span-2">
 <ul>
 <li class="top-level"><a href="#">मद 2a</a></li>
@@ -32,7 +32,7 @@ wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licen
 </section>
 </div>
 <div class="span-2">
-<section><h4><a href="section2/section22/index-eng.html">अनुभाग 2.2</a></h4>
+<section><h4><a href="section2/section22/index-en.html">अनुभाग 2.2</a></h4>
 <ul>
 <li><a href="#">मद 2.2.1</a></li>
 <li><a href="#">मद 2.2.2</a>
@@ -89,7 +89,7 @@ wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licen
 <div class="clear"></div>
 <div class="mb-main-link"><a href="#">अनुभाग 3 - फोकस</a></div>
 </div></section></li>
-<li><section><h3><a href="section4/index-eng.html">अनुभाग 4</a></h3><div class="mb-sm">
+<li><section><h3><a href="section4/index-en.html">अनुभाग 4</a></h3><div class="mb-sm">
 <div class="span-2">
 <section><h4><a href="#">अनुभाग 4.1</a></h4>
 <ul>
@@ -106,7 +106,7 @@ wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licen
 </section>
 </div>
 <div class="span-2">
-<section><h4><a href="section4/section43/index-eng.html">अनुभाग 4.3</a></h4>
+<section><h4><a href="section4/section43/index-en.html">अनुभाग 4.3</a></h4>
 <ul>
 <li><a href="#">मद 4.3.1</a></li>
 <li><a href="#">मद 4.3.2</a></li>
