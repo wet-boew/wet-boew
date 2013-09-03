@@ -522,6 +522,7 @@
 				};
 
 				// 2. Global "setting.js"
+				
 				if (typeof wet_boew_charts !== 'undefined') {
 					// a. if exisit copy and take care of preset separatly (Move away before extending)
 					if (wet_boew_charts.preset) {
@@ -1319,7 +1320,8 @@
 					$placeHolder = $('<div />');
 					
 					// Create a sub Figure or use the main one ?
-					var pieChartLabelText = '';
+					var pieChartLabelText = '',
+						$imgContainer = $('<div />');
 					if (parsedData.lstrowgroup[0].row.length === 1 && 
 						($(parsedData.lstrowgroup[0].row[0].header[0].elem).html() === tblCaptionHTML || 
 						parsedData.lstrowgroup[0].row[0].header.length === 0)) {
@@ -1327,7 +1329,7 @@
 						pieChartLabelText = tblCaptionText;
 						
 						// Use the main Container
-						$(mainFigureElem).append($placeHolder);
+						$(mainFigureElem).append($imgContainer);
 						
 					} else {
 					
@@ -1342,24 +1344,24 @@
 						$subFigureElem.append($subfigCaptionElem);
 						$subfigCaptionElem.append($(header[header.length - 1].elem).html());
 						
-						$subFigureElem.append($placeHolder);
+						$subFigureElem.append($imgContainer);
 					}
-						
+					
+					$imgContainer.append($placeHolder);
 					
 					// Canvas Size
 					$placeHolder.css('height', options.height).css('width', options.width);
 
 					
 					
-					$placeHolder.attr('role', 'img');
+					$imgContainer.attr('role', 'img');
 					// Add a aria label to the svg build from the table caption with the following text prepends ' Chart. Details in table following.'
-					$placeHolder.attr('aria-label', pieChartLabelText + ' ' + _pe.dic.get('%table-following')); // 'Chart. Details in table following.'
+					$imgContainer.attr('aria-label', pieChartLabelText + ' ' + _pe.dic.get('%table-following')); // 'Chart. Details in table following.'
 					
 					//
 					// Pie Charts Options
 					//
 					var pieOptions = {
-						canvas: true,
 						series: {
 							pie: {
 								show: true
@@ -1395,33 +1397,32 @@
 					if (options.piestartangle) {
 						pieOptions.series.pie.startAngle = options.piestartangle / 100;
 					}
-					//	Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
+					// Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
 					if (options.piehighlight) {
 						pieOptions.series.pie.highlight = options.piehighlight / 100;
 					}
 					// hoverable
 					if (options.piehoverable) {
 						pieOptions.grid = {
-							hoverable: true,
-							autoHighlight: true
+							hoverable: true
 						};
 					}
-					
+
 					// Create the graphic
 					$.plot($placeHolder, allSeries, pieOptions);
+					
 					
 					if (!options.legendinline) {
 						// Move the legend under the graphic
 						$('.legend > div', $placeHolder).remove();
 						$('.legend > table', $placeHolder).removeAttr('style').addClass('font-small');
-						$placeHolder.css('height', 'auto');
+						$('.legend', $placeHolder).appendTo($imgContainer);
 					}
-					$('canvas:eq(1)', $placeHolder).css('position', 'static');
+					
 					// Remove any "pieLabel" ids set by the flotPie.js plugin at line #457
 					$('.pieLabel').removeAttr('id');
 					
 					allSeries = [];
-
 				}
 				
 				if (!options.noencapsulation) { // eg of use:	wb-charts-noencapsulation-true
