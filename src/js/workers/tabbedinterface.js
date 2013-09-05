@@ -153,7 +153,7 @@
 			}
 			$tabListHeading.insertBefore($nav);
 
-			$nav.attr('role', 'tablist').children('li').attr('role', 'presentation');
+			$nav.attr({'role': 'tablist', 'aria-live': 'off'}).children('li').attr('role', 'presentation');
 			$tabs.attr({'role': 'tab', 'aria-selected': 'false'});
 			$tabsPanel.attr('id', $panels.eq(0).attr('id') + '-parent');
 			$panels.attr({'tabindex': '-1', 'role': 'tabpanel', 'aria-hidden': 'true'}).each(function () {
@@ -189,15 +189,7 @@
 						if (opts.cycle) {
 							stopCycle();
 						}
-						if (isKeySelect) {
-							if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
-								selectTab($target, $tabs, $panels, opts, false);
-							} else {
-								href = $target.attr('href');
-								hash = href.substring(href.indexOf('#'));
-								_pe.focus($panels.filter(hash));
-							}
-						} else {
+						if (!isKeySelect) {
 							selectTab(isKeyPrev ? getPrevTab($tabs) : getNextTab($tabs), $tabs, $panels, opts, false);
 						}
 					}
@@ -274,7 +266,7 @@
 					$current = $tabs.filter('.' + opts.tabActiveClass);
 					$pbar = $current.siblings('.tabs-roller');
 					$nav.addClass('started');
-					elm.find('.tabs-toggle').data('state', 'started');
+					elm.find('.tabs-toggle').data('state', 'started').attr('aria-live', 'polite');
 					return $pbar.show().animate({
 						width : $current.parent().width()
 					}, opts.cycle - 200, 'linear', function () {
@@ -349,6 +341,18 @@
 				if (!opts.autoPlay) {
 					stopCycle();
 				}
+
+				_pe.document.on('keydown', function (e) {
+					var $tabsToggle;
+					if (e.keyCode === 27) { // Escape
+						$tabsToggle = elm.find('.tabs-toggle');
+						if ($tabsToggle.data('state') === 'started') {
+							$tabsToggle.attr('aria-live', 'off');
+							stopCycle();
+							_pe.focus(elm.find('.tabs .' + opts.tabActiveClass));
+						}
+					}
+				});
 			}
 
 			elm.find('a').filter('[href^="#"]').each(function () {
