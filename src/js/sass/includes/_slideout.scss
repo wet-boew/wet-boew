@@ -11,8 +11,10 @@
 
 /*Screen SCSS*/
 @media screen {
-	.large-screen .wet-boew-slideout {
-		display: none;
+	.large-screen {
+		.wet-boew-slideout {
+			display: none;
+		}
 	}
 
 	.no-js {
