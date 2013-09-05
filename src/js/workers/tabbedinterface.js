@@ -178,7 +178,7 @@
 			}
 
 			// Set ARIA attributes on the tabs and panels
-			$nav.attr('role', 'tablist').children('li').attr('role', 'presentation');
+			$nav.attr('role', 'tablist', 'aria-live': 'off').children('li').attr('role', 'presentation');
 			$tabs.attr({'role': 'tab', 'aria-selected': 'false'}).each(function () {
 				var hash = _pe.fn.tabbedinterface._get_hash(this.href),
 					id = hash.length > 0 ? hash.substring(1) : false;
@@ -187,6 +187,7 @@
 					this.setAttribute('id', id + tabSuffix);
 				}
 			});
+
 			$tabsPanel.attr('id', $panels.eq(0).attr('id') + '-parent');
 			$panels.attr({'tabindex': '-1', 'role': 'tabpanel', 'aria-hidden': 'true', 'aria-expanded': 'false'}).each(function () {
 				this.setAttribute('aria-labelledby', this.id + tabSuffix);
@@ -252,15 +253,7 @@
 						if (opts.cycle) {
 							stopCycle();
 						}
-						if (isKeySelect) {
-							if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
-								selectTab($target, $tabs, $panels, opts, false);
-							} else {
-								href = $target.attr('href');
-								hash = href.substring(href.indexOf('#'));
-								_pe.focus($panels.filter(hash));
-							}
-						} else {
+						if (!isKeySelect) {
 							selectTab(isKeyPrev ? getPrevTab($tabs) : getNextTab($tabs), $tabs, $panels, opts, false);
 						}
 					}
@@ -460,7 +453,7 @@
 					$current = $tabs.filter('.' + opts.tabActiveClass);
 					$pbar = $current.siblings('.tabs-roller');
 					$nav.addClass('started');
-					elm.find('.tabs-toggle').data('state', 'started');
+					elm.find('.tabs-toggle').data('state', 'started').attr('aria-live', 'polite');
 					return $pbar.show().animate({
 						width : $current.parent().width()
 					}, opts.cycle - 200, 'linear', function () {
@@ -539,12 +532,24 @@
 					stopCycle();
 				}
 
+<<<<<<< HEAD
 				_pe.document.keyup(function (e) {
 					if (e.keyCode === 27) { // Escape
 						if (elm.find('.tabs-toggle').data('state') === 'started') {
 							elm.find('.tabs .' + opts.tabActiveClass).focus();
 						}
 						stopCycle();
+=======
+				_pe.document.on('keydown', function (e) {
+					var $tabsToggle;
+					if (e.keyCode === 27) { // Escape
+						$tabsToggle = elm.find('.tabs-toggle');
+						if ($tabsToggle.data('state') === 'started') {
+							$tabsToggle.attr('aria-live', 'off');
+							stopCycle();
+							_pe.focus(elm.find('.tabs .' + opts.tabActiveClass));
+						}
+>>>>>>> v3.0
 					}
 				});
 			}
