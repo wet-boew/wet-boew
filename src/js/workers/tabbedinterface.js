@@ -178,7 +178,7 @@
 			}
 
 			// Set ARIA attributes on the tabs and panels
-			$nav.attr('role', 'tablist', 'aria-live': 'off').children('li').attr('role', 'presentation');
+			$nav.attr({'role': 'tablist', 'aria-live': 'off'}).children('li').attr('role', 'presentation');
 			$tabs.attr({'role': 'tab', 'aria-selected': 'false'}).each(function () {
 				var hash = _pe.fn.tabbedinterface._get_hash(this.href),
 					id = hash.length > 0 ? hash.substring(1) : false;
@@ -239,7 +239,6 @@
 					button = e.button,
 					$panel,
 					$link,
-					href,
 					hash,
 					isKeyNext,
 					isKeyPrev,
