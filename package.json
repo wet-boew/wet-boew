@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "test": "grunt -v",
-    "postinstall": "grunt init"
+    "postinstall": "npm install -g grunt-cli bower && bower install && grunt init"
   },
   "repository": {
     "type": "git",
@@ -38,7 +38,6 @@
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-connect": "~0.3.0",
     "grunt-sass": "~0.6.1",
-    "grunt-bowerful": "~0.3.0",
     "csv": "~0.3.6",
     "grunt-modernizr": "~0.3.0",
     "assemble": "~0.4.4"

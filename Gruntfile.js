@@ -113,7 +113,7 @@ module.exports = function(grunt) {
 					preserveComments : 'some'
 				},
 				files: {
-					'dist/js/deps/jquery.pjax.min.js': 'lib/pjax/jquery.pjax.js'
+					'dist/js/deps/jquery.pjax.min.js': 'lib/jquery-pjax/jquery.pjax.js'
 				}
 			}
 
@@ -195,11 +195,11 @@ module.exports = function(grunt) {
 				}]
 			},
 			oldie: {
-				cwd: 'lib/oldie',
+				cwd: 'lib',
 				src: [
-					'jquery/jquery.min.js',
-					'jquery/jquery.min.map',
-					'selectivizr.js', //TODO: Minify
+					'jquery-ie/jquery.min.js',
+					'jquery-ie/jquery.min.map',
+					'selectivizr/selectivizr.js', //TODO: Minify
 					'respond/respond.min.js'
 					],
 				dest: 'dist/js/oldie',
@@ -272,28 +272,6 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		bowerful: {
-			dist: {
-				packages: {
-					bootstrap: '3.0.0',
-					jquery: '2.0.3',
-					"jquery.validation": '1.11.1',
-					flot: '0.8.1',
-					DataTables: '1.9.4',
-					'magnific-popup': '0.9.5',
-					'jquery-pjax': '1.7.3'
-				},
-				store: 'lib',
-			},
-			oldie: {
-				packages: {
-					jquery: '1.10.2',
-					respond: '1.2.0',
-					selectivizr: '1.0.2'
-				},
-				store: 'lib/oldie',
-			}
-		},
 		i18n: {
 			options: {
 				template: 'src/i18n/base.js',
@@ -312,7 +290,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-coffee');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-connect');
-	grunt.loadNpmTasks('grunt-bowerful');
 	grunt.loadNpmTasks('grunt-sass');
 	grunt.loadNpmTasks("grunt-modernizr");
 	grunt.loadNpmTasks("assemble");
@@ -324,5 +301,5 @@ module.exports = function(grunt) {
 	grunt.registerTask('html', ['assemble']);
 	grunt.registerTask('default', ['clean', 'build', 'test']);
 	grunt.registerTask('server', ['connect','watch:source']);
-	grunt.registerTask('init', ['bowerful', 'modernizr']);
+	grunt.registerTask('init', ['modernizr']);
 };
