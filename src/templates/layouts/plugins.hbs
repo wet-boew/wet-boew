@@ -34,27 +34,28 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	</ul>
 </div>
 <header>
-	<nav id="wb-glb-mn" role="navigation">
+	<nav role="navigation" id="wb-glb-mn">
+		<h2>Navigation bar</h2>
 		<ul id="wet-mnavbar">
 			<li><a href="#mnpanel" title="Menu"><span>Menu</span></a></li>
 			<li><a href="#srchpnl" title="Search"><span>Search</span></a></li>
 			<li><a href="#sttgpnl" title="Settings"><span>Settings</span></a></li>
 		</ul>
+		<section id="wb-lang">
+			<div class="container">
+				<h3>Languages</h3>
+				<ul>
+					<li class="current">English <span>(current)</span></li>
+					<li><a lang="fr" href="http://wet-boew.github.io/wet-boew/index-fr.html">Français</a></li>
+				</ul>
+			</div>
+		</section>
 	</nav>
-	<section id="wb-lang">
-		<div class="container">
-			<h3>Languages</h3>
-			<ul>
-				<li class="current">English <span>(current)</span></li>
-				<li><a lang="fr" href="http://wet-boew.github.io/wet-boew/index-fr.html">Français</a></li>
-			</ul>
-		</div>
-	</section>
-	<div id="wb-title">
+	<div role="banner" id="wb-title">
 		<div class="container">
 			<a href="../index-en.html"><object type="images/svg+xml" tabindex="-1" role="img" data="images/logo.svg" aria-label="Web Experience Toolkit"></object></a>
 			<p><a href="../index-en.html" lang="en"><span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p>
-			<section id="wb-srch">
+			<section role="search" id="wb-srch">
 				<h2>Search</h2>
 				<form action="#" method="post" class="form-inline">
 					<div id="wet-srchbx-in">
@@ -66,7 +67,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			</section>
 		</div>
 	</div>
-	<nav id="wb-st-nav" class="container">
+	<nav role="navigation" id="wb-st-nav" class="container">
 		<h2>Site Menu</h2>
 		<section>
 			<h3>WET Project</h3>
@@ -152,7 +153,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			</section>
 		</section>
 	</nav>
-	<nav id="wb-bc" class="container">
+	<nav role="navigation" id="wb-bc" class="container">
 		<h2>Breadcrumb trail</h2>
 		<ol>
 			<li><a href="../index-en.html">Home</a></li>
@@ -160,38 +161,41 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		</ol>
 	</nav>
 </header>
-<main class="container">
+<main role="main" class="container">
+	<h1 id="wb-cont">{{title}}</h1>
 	{{> body }}
 </main>
 <footer id="wb-org-nav" class="container">
-	<h2 id="wb-nav">Footer</h2>
-	<section class="row">
-		<h3>About</h3>
-		<section class="col-sm-3 col-lg-3">
-			<h4>About</h4>
-			<ul>
-				<li><a href="#">About the Web Experience Toolkit</a></li>
-				<li><a href="#">About the Web Standards</a></li>
-			</ul>
-		</section>
-		<section class="col-sm-3 col-lg-3">
-			<h4>Contact us</h4>
-			<ul>
-				<li><a href="#">Questions or comments?</a></li>
-			</ul>
-		</section>
-		<section class="col-sm-3 col-lg-3">
-			<h4>News</h4>
-			<ul>
-				<li><a href="#">Recent project activity</a></li>
-			</ul>
-		</section>
-		<section class="col-sm-3 col-lg-3">
-			<h4>Stay Connected</h4>
-			<ul>
-				<li><a href="#">Twitter</a></li>
-			</ul>
-		</section>
+	<section>
+		<h2 id="wb-nav">Footer</h2>
+		<nav role="navigation" class="row">
+			<h3>Site footer</h3>
+			<section class="col-sm-3 col-lg-3">
+				<h4>About</h4>
+				<ul>
+					<li><a href="#">About the Web Experience Toolkit</a></li>
+					<li><a href="#">About the Web Standards</a></li>
+				</ul>
+			</section>
+			<section class="col-sm-3 col-lg-3">
+				<h4>Contact us</h4>
+				<ul>
+					<li><a href="#">Questions or comments?</a></li>
+				</ul>
+			</section>
+			<section class="col-sm-3 col-lg-3">
+				<h4>News</h4>
+				<ul>
+					<li><a href="#">Recent project activity</a></li>
+				</ul>
+			</section>
+			<section class="col-sm-3 col-lg-3">
+				<h4>Stay Connected</h4>
+				<ul>
+					<li><a href="#">Twitter</a></li>
+				</ul>
+			</section>
+		</nav>
 	</section>
 </footer>
 
