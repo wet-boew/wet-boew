@@ -532,14 +532,6 @@
 					stopCycle();
 				}
 
-<<<<<<< HEAD
-				_pe.document.keyup(function (e) {
-					if (e.keyCode === 27) { // Escape
-						if (elm.find('.tabs-toggle').data('state') === 'started') {
-							elm.find('.tabs .' + opts.tabActiveClass).focus();
-						}
-						stopCycle();
-=======
 				_pe.document.on('keydown', function (e) {
 					var $tabsToggle;
 					if (e.keyCode === 27) { // Escape
@@ -549,7 +541,6 @@
 							stopCycle();
 							_pe.focus(elm.find('.tabs .' + opts.tabActiveClass));
 						}
->>>>>>> v3.0
 					}
 				});
 			}
