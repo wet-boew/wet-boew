@@ -26,7 +26,7 @@
 }
 
 
-.wb-skip {
+#wb-skip {
 		float: left;
 		height: 0;
 		ul {
@@ -55,11 +55,11 @@
 }
 
 
-.wb-invisible, .wb-mnavbar a, .wb-srch label, a + .wb-st-nav h2, .wb-srch h2, .wb-sttng h2, .wb-org-nav .wb-ft h3, .wb-skip a, .wb-skip a:link, .wb-skip a:visited {
+.wb-invisible, .wb-mnavbar a, .wb-srch label, a + .wb-st-nav h2, .wb-srch h2, .wb-sttng h2, .wb-org-nav .wb-ft h3, #wb-skip a, #wb-skip a:link, #wb-skip a:visited {
 	@extend %accessible-invisible;
 }
 
-.wb-skip a:focus, .wb-mnavbar a:focus {
+#wb-skip a:focus, .wb-mnavbar a:focus {
 	@extend %accessible-invisible-show;
 }
 
