@@ -1,0 +1,6 @@
+/* Disables transition during the switch between large and meidum view*/
+.notransition * {
+	-moz-transition: none!important;
+	-webkit-transition: none!important;
+	transition: none!important;
+}

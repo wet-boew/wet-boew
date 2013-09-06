@@ -1,11 +1,10 @@
 {
-  "name": "wet-boew",
+  "name": "theme-wet-boew",
   "version": "4.0.0-a1-development",
   "description": "Web Experience Toolkit (WET): Open source code library for building innovative websites that are accessible, usable, interoperable, mobile-friendly and multilingual. This collaborative open source project is led by the Government of Canada. / Boîte à outils de l’expérience Web (BOEW) : Une bibliothèque de code primée pour construire des sites Web innovants qui sont accessibles, faciles d'emploi, interopérables, optimisés pour les appareils mobiles et multilingues. Ceci est un projet à source ouverte collaboratif dirigé par le Gouvernement du Canada.",
   "main": "index.html",
   "scripts": {
-    "test": "grunt -v",
-    "postinstall": "npm install -g grunt-cli bower && bower install && grunt init"
+    "test": "grunt -v"
   },
   "repository": {
     "type": "git",
@@ -29,18 +28,13 @@
   "license": "MIT",
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-coffee": "~0.7.0",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-uglify": "~0.2.0",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-jshint": "~0.6.2",
-    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-connect": "~0.3.0",
-    "grunt-sass": "~0.6.1",
-    "csv": "~0.3.6",
-    "grunt-modernizr": "~0.3.0",
-    "assemble": "~0.4.4",
-    "grunt-hub": "~0.5.0"
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-sass": "~0.6.0",
+    "grunt-contrib-cssmin": "~0.6.0",
+    "grunt-docs": "~0.6.0",
+    "grunt-contrib-jshint": "~0.6.2",
+    "assemble": "~0.4.4"
   }
 }
