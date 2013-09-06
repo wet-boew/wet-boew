@@ -1,0 +1,230 @@
+/*
+* Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+* wet-boew.github.io/wet-boew/License-eng.txt / wet-boew.github.io/wet-boew/Licence-fra.txt
+*/
+
+#wb-lang h3,#wb-sttng h2,#wb-lang span,#wb-org-nav h3,#wb-st-nav h3,#wb-nav h2,#wet-mnavbar a,#wb-srch h2,#wb-srch label {
+height:1px!important;
+width:1px!important;
+clip:rect(1px,1px,1px,1px);
+overflow:hidden!important;
+position:absolute;
+margin:0!important;
+}
+
+.nav-close {
+	display:none;
+}
+
+#wb-glb-mn {
+display:none;
+}
+
+body {
+background:#f9f9f9;
+font-size:1.2em;
+}
+
+#wb-lang {
+background:#474747;
+color:#fff;
+border-bottom:1px solid #fff;
+z-index:1;
+}
+
+#wb-lang ul {
+float:right;
+margin:0;
+}
+
+#wb-lang a {
+color:#fff;
+text-decoration:none;
+}
+
+#wb-lang li:first-child {
+border:0 none;
+}
+
+#wb-lang li {
+border-left:1px solid #777;
+list-style-type:none;
+float:left;
+padding:6px 10px;
+}
+
+#wb-lang .current {
+background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAFCAYAAAB8ZH1oAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAB90RVh0U29mdHdhcmUATWFjcm9tZWRpYSBGaXJld29ya3MgOLVo0ngAAAA6SURBVAiZY/z//z8DMvj14+s+BgYGBjYObicUif///8Pxz+9f9v2HAigbLodVETbFOBWhK8arCFkxABifl5syjffvAAAAAElFTkSuQmCC) no-repeat scroll center bottom;
+}
+
+header object, header img {
+height: 65px;
+margin: 9px 15px 9px 0;
+width: 141px;
+float:left;
+}
+
+#wb-title {
+background:#114F7A;
+background-image: -webkit-linear-gradient(top,#176CA7,#114F7A);
+background-image:linear-gradient(#176CA7,#114F7A);
+}
+
+#wb-title p {
+width:700px;
+padding-top:15px;
+}
+
+#wb-title a {
+color:#fff;
+font-size:2.5em;
+text-shadow:1px 1px 1px #333;
+line-height:normal;
+}
+
+#wb-title .container {
+position:relative;
+}
+
+#wb-title small {
+font-size:.4em;
+display:block;
+}
+
+#wb-title object,#wb-title img {
+height:65px;
+width:141px;
+padding:9px 15px 9px 0;
+}
+
+#wb-st-nav > section {
+background:#0E4164;
+border-top:1px solid #0B3048;
+}
+
+#wb-st-nav ul {
+display:none;
+}
+
+#wb-st-nav h4 {
+display:inline;
+font-size:1em;
+font-weight:400;
+float:left;
+border-left:1px solid #0B3048;
+border-right:1px solid #135480;
+margin:0;
+padding:.8em;
+}
+
+#wb-st-nav a {
+color:#fff;
+}
+
+#wb-bc {
+background:#fff;
+}
+
+#wb-bc a {
+color:#295376;
+text-decoration:none;
+}
+
+#wb-bc li {
+float:left;
+white-space:nowrap;
+background:transparent url(data:image/gif;base64\,R0lGODlhBgAGAMQAAAAAAP///5aWlpCQkI+Pj42NjYyMjImJiYiIiIaGhoCAgHh4eHNzc25ubmxsbGhoaGdnZ2VlZWRkZFFRUQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAABMALAAAAAAGAAYAAAUa4MEsQmAiTjOYARFFiVlAkhIYknQESfSsgRAAOw==) no-repeat 100% 50%;
+padding-right:11px;
+margin-right:5px;
+}
+
+#wb-bc ol {
+line-height:1.57em;
+list-style-type:none;
+padding:0;
+}
+
+#wb-bc li:last-child {
+background-image:none;
+padding-right:0;
+}
+
+#wb-srch {
+right:0;
+text-align:right;
+top:2.1em;
+width:auto;
+z-index:100;
+position:absolute;
+float:right;
+background:#fff;
+padding:2px;
+}
+
+#wb-srch-txt {
+width:235px;
+border:none;
+height:30px;
+padding:6px;
+box-shadow:none;
+}
+
+#wb-srch-txt:focus,#wb-srch-txt:active {
+background:#f9f9f9;
+border:1px solid #eee;
+}
+
+#wb-lang a:hover,#wb-lang a:focus,#wb-bc a:hover,#wb-bc a:focus {
+text-decoration:underline;
+}
+
+main {
+background:#fff;
+padding-bottom:15px;
+}
+
+#wb-org-nav {
+background: none repeat scroll 0 0 #CCCCCC;
+border-top: 1px solid #BBBBBB;
+}
+
+#wb-org-nav h4 {
+border: none;
+font-size: 1.2em;
+margin: 20px 0 5px;
+color:#333;
+font-weight:700;
+}
+
+#wb-org-nav ul {
+padding:0;
+}
+
+#wb-org-nav li {
+list-style-type:none;
+}
+
+#wb-org-nav a {
+text-decoration:none;
+color:#333;
+line-height:1.75em;
+}
+
+#wb-org-nav a:hover,#wb-org-nav a:active,#wb-org-nav a:focus {
+text-decoration:underline;
+}
+
+/* forcing a gutter so that grids and content don't touch the white/gray border */
+main, #wb-org-nav .container, #wb-bc {
+padding-left:15px;
+padding-right:15px;
+}
+
+/* overrides to bootstrap (for now until we customize the colors) */
+.btn-primary {
+background-color:#176CA7;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+background-color:#114F7A;
+}
