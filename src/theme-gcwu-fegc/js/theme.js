@@ -59,16 +59,16 @@
 			// Also switch to the black PNG if printing a content page
 			if (!pe.svg || pe.svgfix) {
 				contentPage = wet_boew_theme.sft.length !== 0;
+				swapPNG = function(toAlt) {
+					var elms = $('#gcwu-wmms img, #gcwu-sig img').get(),
+						len = elms.length,
+						image;
+					while (len--) {
+						image = elms[len];
+						image.src = (toAlt ? image.src.replace('.png', '-alt.png') : image.src.replace('-alt.png', '.png'));
+					}
+				};
 				if (contentPage) {
-					swapPNG = function(toAlt) {
-						var elms = $('#gcwu-wmms img, #gcwu-sig img').get(),
-							len = elms.length,
-							image;
-						while (len--) {
-							image = elms[len];
-							image.src = (toAlt ? image.src.replace('.png', '-alt.png') : image.src.replace('-alt.png', '.png'));
-						}
-					};
 					window.onbeforeprint = function() {
 						swapPNG(true);
 					};
