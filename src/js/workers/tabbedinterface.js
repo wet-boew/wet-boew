@@ -248,7 +248,6 @@
 					isKeyPrev = e.keyCode === 37 || e.keyCode === 38;	// left, up
 					isKeyNext = e.keyCode === 39 || e.keyCode === 40;	// right, down
 					if (isKeySelect || isKeyPrev || isKeyNext) {
-						e.preventDefault();
 						if (opts.cycle) {
 							stopCycle();
 						}
@@ -452,7 +451,7 @@
 					$current = $tabs.filter('.' + opts.tabActiveClass);
 					$pbar = $current.siblings('.tabs-roller');
 					$nav.addClass('started');
-					elm.find('.tabs-toggle').data('state', 'started').attr('aria-live', 'polite');
+					elm.find('.tabs-toggle').data('state', 'started');
 					return $pbar.show().animate({
 						width : $current.parent().width()
 					}, opts.cycle - 200, 'linear', function () {
@@ -532,15 +531,17 @@
 				}
 
 				_pe.document.on('keydown', function (e) {
-					var $tabsToggle;
 					if (e.keyCode === 27) { // Escape
-						$tabsToggle = elm.find('.tabs-toggle');
-						if ($tabsToggle.data('state') === 'started') {
-							$tabsToggle.attr('aria-live', 'off');
-							stopCycle();
+						if ($toggleRow.data('state') === 'started') {
 							_pe.focus(elm.find('.tabs .' + opts.tabActiveClass));
+							stopCycle();
 						}
 					}
+				});
+
+				// Only have the play/pause button speak its changes when focused
+				$toggleButton.on('focus blur', function (e) {
+					$toggleButton.attr('aria-live', e.type === 'focus' ? 'polite' : 'off');
 				});
 			}
 
