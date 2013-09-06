@@ -17,23 +17,23 @@
 			if (breakpoint !== theme.previousBreakPoint) {
 				if (breakpoint < 4) {
 					// Mobile
-					theme.onMobileView();
+					theme.onMediumSmallView();
 				} else {
 					// Desktop
-					theme.onDesktopView();
+					theme.onLargeView();
 				}
 			}
 			theme.previousBreakPoint = breakpoint;
 		},
 		
-		onDesktopView: function(){
+		onLargeView: function(){
 			var languageSelect= document.querySelector('#wb-lang'),
 				header = document.querySelector('header .container');
 
 			header.insertBefore(languageSelect, header.firstChild);
 		},
 		
-		onMobileView: function(){
+		onMediumSmallView: function(){
 			//Disable transitions during the reflow
 			$(document.body).addClass('notransition'); //TODO convert to native DOM
 			setTimeout(function(){
