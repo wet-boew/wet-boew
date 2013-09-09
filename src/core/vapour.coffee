@@ -56,6 +56,9 @@
         test: Modernizr.canvas,
         nope: "site!polyfills/excanvas.min.js"
     ,
+        test: Modernizr.details,
+        nope: "site!polyfills/detailssummary.min.js"
+    ,
         test: Modernizr.input.list,
         nope : "site!polyfills/datalist.min.js"
     ,
