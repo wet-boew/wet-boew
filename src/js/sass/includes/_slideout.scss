@@ -4,13 +4,13 @@
  */
 @import "compass/css3/transform";
 
-%so-float-right-border-left-0 {
-	border-left: 0;
-	float: right;
-}
-
 /*Screen SCSS*/
 @media screen {
+	%so-float-right-border-left-0 {
+		border-left: 0;
+		float: right;
+	}
+
 	.large-screen {
 		.wet-boew-slideout {
 			display: none;
