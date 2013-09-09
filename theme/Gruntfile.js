@@ -55,7 +55,8 @@ module.exports = function(grunt) {
 				production: false,
 				layoutdir: 'layouts',
 				data: ['config/**/*.json'],
-				assets: 'dist/'
+				assets: 'dist/',
+				partials: ['includes/**/*.hbs']
 			},
 			static: {
 				options: {

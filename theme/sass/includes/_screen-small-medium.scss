@@ -5,6 +5,8 @@
  *
  */
 
+@import '../../../src/base/partials/accessibility';
+
 body {
 	background: #f9f9f9;
 }
@@ -145,8 +147,12 @@ main {
 	}
 }
 
-#wb-glb-mn {
+#wb-glb-nav {
 	width: 100%;
+	
+	h2 {
+		@extend %accessible-invisible;
+	}
 	ul {
 		list-style-type: none;
 		float: right;
