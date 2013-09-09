@@ -212,10 +212,10 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-
-		clean: [
-			'dist'
-		],
+		clean: {
+			dist: 'dist',
+			jsUncompressed: ['dist/js/**/*.js', '!dist/js/**/*.min.js']
+		},
 		watch: {
 			gruntfile: {
 				files: '<%= jshint.gruntfile.src %>',
@@ -296,10 +296,10 @@ module.exports = function(grunt) {
 	grunt.loadTasks('tasks');
 
 	// Default task.
-	grunt.registerTask('build', ['coffee','sass','concat', 'i18n', 'uglify', 'copy', 'assemble']);
+	grunt.registerTask('build', ['coffee','sass','concat', 'i18n', 'uglify', 'clean:jsUncompressed', 'copy', 'assemble']);
 	grunt.registerTask('test', ['jshint']);
 	grunt.registerTask('html', ['assemble']);
-	grunt.registerTask('default', ['clean', 'build', 'test']);
+	grunt.registerTask('default', ['clean:dist', 'build', 'test']);
 	grunt.registerTask('server', ['connect','watch:source']);
 	grunt.registerTask('init', ['modernizr']);
 };
