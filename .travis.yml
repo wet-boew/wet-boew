@@ -8,7 +8,7 @@ env:
     - POST_BUILD=true
 
 before_install:
-  - npm install -g grunt-cli
+  - ./run-first
 
 script:
   - npm test
