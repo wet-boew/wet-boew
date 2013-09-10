@@ -9,7 +9,7 @@
 /*
  * GC Web Usability Intranet theme scripting
  */
-/*global jQuery: false, pe: false, window: false, document: false*/
+/*global pe: false*/
 (function ($) {
 	"use strict";
 	var wet_boew_theme, _wet_boew_theme;

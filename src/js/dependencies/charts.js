@@ -9,7 +9,7 @@
 /*
  * Charts for WET 3.x
  */
-/*global jQuery: false, wet_boew_charts: false, Raphael: false*/
+/*global wet_boew_charts: false, Raphael: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {

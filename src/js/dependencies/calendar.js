@@ -6,7 +6,7 @@
  * Version: @wet-boew-build.version@
  *
  */
-/*global jQuery: false, pe: false*/
+
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -80,7 +80,7 @@
 				calHeader = $('<div class="cal-header"></div>');
 			}
 
-			calHeader.prepend('<div class="cal-month">' + pe.dic.get('%calendar-monthNames')[month] + ' ' + year + '</div>');
+			calHeader.prepend('<div class="cal-month">' + _pe.dic.get('%calendar-monthNames')[month] + ' ' + year + '</div>');
 
 			if (shownav) {
 				//Create the month navigation
@@ -122,7 +122,7 @@
 				switch (n) {
 				case 0:
 					suffix = 'prevmonth';
-					titleSuffix = pe.dic.get('%calendar-previousMonth');
+					titleSuffix = _pe.dic.get('%calendar-previousMonth');
 					if (month > 0) {
 						newMonth = month - 1;
 						newYear = year;
@@ -141,7 +141,7 @@
 						monthNav.append(_pe.fn.calendar.createGoToForm(calendarid, year, month, minDate, maxDate));
 					}
 					suffix = 'nextmonth';
-					titleSuffix = pe.dic.get('%calendar-nextMonth');
+					titleSuffix = _pe.dic.get('%calendar-nextMonth');
 					if (month < 11) {
 						newMonth = month + 1;
 						newYear = year;
@@ -161,14 +161,14 @@
 				}
 
 				if (showButton) {
-					alt = titleSuffix + pe.dic.get('%calendar-monthNames')[newMonth] + ' ' + newYear;
+					alt = titleSuffix + _pe.dic.get('%calendar-monthNames')[newMonth] + ' ' + newYear;
 
 					if (btnCtn) {
 						btn = btnCtn.children('a').unbind();
 						btn.children('img').attr('alt', alt);
 					} else {
 						btnCtn = $('<div class="cal-' + suffix + '"></div>');
-						btn = $('<a href="javascript:;" role="button"><img class="image-actual" src="' + pe.add.liblocation + 'images/calendar/' + suffix.substr(0, 1) + '.png" alt="' + alt + '" /></a>');
+						btn = $('<a href="javascript:;" role="button"><img class="image-actual" src="' + _pe.add.liblocation + 'images/calendar/' + suffix.substr(0, 1) + '.png" alt="' + alt + '" /></a>');
 
 						btnCtn.append(btn);
 						if (n === 0) {
@@ -193,9 +193,9 @@
 			_pe.fn.calendar.create(event.data.calID, event.data.year, event.data.month, true, event.data.mindate, event.data.maxdate);
 
 			if (ctn.find('.' + btnClass).length < 1) {
-				pe.focus(ctn.find('.cal-goto-link a'));
+				_pe.focus(ctn.find('.cal-goto-link a'));
 			} else {
-				pe.focus(ctn.find('.' + btnClass + ' a'));
+				_pe.focus(ctn.find('.' + btnClass + ' a'));
 			}
 		},
 		yearChanged : function (event) {
@@ -224,13 +224,13 @@
 			}
 
 			for (i = minMonth; i <= maxMonth; i += 1) {
-				monthField.append('<option value="' + i + '"' + ((i === month) ? ' selected="selected"' : '') + '>' + pe.dic.get('%calendar-monthNames')[i] + '</option>');
+				monthField.append('<option value="' + i + '"' + ((i === month) ? ' selected="selected"' : '') + '>' + _pe.dic.get('%calendar-monthNames')[i] + '</option>');
 			}
 		},
 
 		createGoToForm : function (calendarid, year, month, minDate, maxDate) {
 			var goToForm = $('<div class="cal-goto"></div>'),
-				form = $('<form id="cal-' + calendarid + '-goto" role="form" style="display:none;" action=""><fieldset><legend>' + pe.dic.get('%calendar-goToTitle') + '</legend></fieldset></form>'),
+				form = $('<form id="cal-' + calendarid + '-goto" role="form" style="display:none;" action=""><fieldset><legend>' + _pe.dic.get('%calendar-goToTitle') + '</legend></fieldset></form>'),
 				fieldset,
 				yearContainer,
 				yearField,
@@ -252,7 +252,7 @@
 
 			//Create the year field
 			yearContainer = $('<div class="cal-goto-year"></div>');
-			yearField = $('<select title="' + pe.dic.get('%calendar-goToYear') + '" id="cal-' + calendarid + '-goto-year"></select>');
+			yearField = $('<select title="' + _pe.dic.get('%calendar-goToYear') + '" id="cal-' + calendarid + '-goto-year"></select>');
 			for (y = minDate.getFullYear(), _ylen = maxDate.getFullYear(); y <= _ylen; y += 1) {
 				yearField.append($('<option value="' + y + '"' + (y === year ? ' selected="selected"' : '') + '>' + y + '</option>'));
 			}
@@ -262,14 +262,14 @@
 
 			//Create the list of month field
 			monthContainer = $('<div class="cal-goto-month"></div>');
-			monthField = $('<select title="' + pe.dic.get('%calendar-goToMonth') + '" id="cal-' + calendarid + '-goto-month"></select>');
+			monthField = $('<select title="' + _pe.dic.get('%calendar-goToMonth') + '" id="cal-' + calendarid + '-goto-month"></select>');
 
 			monthContainer.append(monthField);
 			fieldset.append(monthContainer);
 
 			// FIXME: Handle month filtering for IE6
-			if (pe.ie === 6) {
-				$(pe.dic.get('%calendar-monthNames')).each(function (index, value) {
+			if (_pe.ie === 6) {
+				$(_pe.dic.get('%calendar-monthNames')).each(function (index, value) {
 					monthField.append('<option value="' + index + '"' + ((index === month) ? ' selected="selected"' : '') + '>' + value + '</option>');
 				});
 			} else {
@@ -279,12 +279,12 @@
 			}
 
 			buttonContainer = $('<div class="cal-goto-button"></div>');
-			button = $('<input type="submit" class="button button-accent" value="' + pe.dic.get('%calendar-goToButton') + '" />');
+			button = $('<input type="submit" class="button button-accent" value="' + _pe.dic.get('%calendar-goToButton') + '" />');
 			buttonContainer.append(button);
 			fieldset.append(buttonContainer);
 
 			buttonCancelContainer = $('<div class="cal-goto-button"></div>');
-			buttonCancel = $('<input type="button" class="button button-dark" value="' + pe.dic.get('%calendar-cancelButton') + '" />');
+			buttonCancel = $('<input type="button" class="button button-dark" value="' + _pe.dic.get('%calendar-cancelButton') + '" />');
 			buttonCancel.click(function () {
 				_pe.fn.calendar.hideGoToForm(calendarid);
 			});
@@ -292,7 +292,7 @@
 			fieldset.append(buttonCancelContainer);
 
 			goToLinkContainer = $('<p class="cal-goto-link" id="cal-' + calendarid + '-goto-link"></p>');
-			goToLink = $('<a href="javascript:;" role="button" aria-controls="cal-' + calendarid + '-goto" aria-expanded="false">' + pe.dic.get('%calendar-goToLink') + '</a>');
+			goToLink = $('<a href="javascript:;" role="button" aria-controls="cal-' + calendarid + '-goto" aria-expanded="false">' + _pe.dic.get('%calendar-goToLink') + '</a>');
 			goToLink.on('click', function () {
 				_pe.fn.calendar.showGoToForm(calendarid);
 			});
@@ -310,7 +310,7 @@
 				txt,
 				wday;
 			for (wd = 0; wd < 7; wd += 1) {
-				txt = pe.dic.get('%calendar-weekDayNames')[wd];
+				txt = _pe.dic.get('%calendar-weekDayNames')[wd];
 				wday = $('<li id="cal-' + calendarid + '-wd' + (wd + 1) + '" class="cal-wd' + (wd + 1) + '"><abbr title="' + txt + '">' + txt.substr(0, 1) + '</abbr></li>');
 				if (wd === 0 || wd === 6) {
 					wday.addClass = 'we';
@@ -369,10 +369,10 @@
 						element = $('<li></li>');
 						child = $('<div></div>');
 
-						if (pe.language === 'en') {
-							child.append('<span class="wb-invisible">' + pe.dic.get('%calendar-weekDayNames')[day] + ' ' + pe.dic.get('%calendar-monthNames')[month] + ' </span>' + daycount + '<span class="wb-invisible"> ' + year + ((isCurrentDate) ? pe.dic.get('%calendar-currentDay') : '') + '</span>');
-						} else if (pe.language === 'fr') {
-							child.append('<span class="wb-invisible">' + pe.dic.get('%calendar-weekDayNames')[day] + ' </span>' + daycount + '<span class="wb-invisible"> ' + pe.dic.get('%calendar-monthNames')[month].toLowerCase() + ' ' + year + ((isCurrentDate) ? pe.dic.get('%calendar-currentDay') : '') + '</span>');
+						if (_pe.language === 'en') {
+							child.append('<span class="wb-invisible">' + _pe.dic.get('%calendar-weekDayNames')[day] + ' ' + _pe.dic.get('%calendar-monthNames')[month] + ' </span>' + daycount + '<span class="wb-invisible"> ' + year + ((isCurrentDate) ? _pe.dic.get('%calendar-currentDay') : '') + '</span>');
+						} else if (_pe.language === 'fr') {
+							child.append('<span class="wb-invisible">' + _pe.dic.get('%calendar-weekDayNames')[day] + ' </span>' + daycount + '<span class="wb-invisible"> ' + _pe.dic.get('%calendar-monthNames')[month].toLowerCase() + ' ' + year + ((isCurrentDate) ? _pe.dic.get('%calendar-currentDay') : '') + '</span>');
 						}
 						element.append(child);
 						elementParent = days;
@@ -404,7 +404,7 @@
 
 			link.stop().slideUp(0);
 			form.stop().slideDown(0).queue(function () {
-				pe.focus($(this).find(':input:eq(0)'));
+				_pe.focus($(this).find(':input:eq(0)'));
 			});
 
 			link.children('a').attr('aria-hidden', 'true').attr('aria-expanded', 'true');
@@ -434,7 +434,7 @@
 				_pe.fn.calendar.hideGoToForm(calendarid);
 
 				//Go to the first day to avoid having to tab opver the navigation again.
-				pe.focus($('#cal-' + calendarid + '-days').find('a:eq(0)'));
+				_pe.focus($('#cal-' + calendarid + '-days').find('a:eq(0)'));
 			}
 		}
 	};

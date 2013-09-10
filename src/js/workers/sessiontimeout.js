@@ -5,7 +5,7 @@
 /*
  * Share widget plugin
  */
-/*global jQuery: false, pe:false, wet_boew_sessiontimeout:false, alert:false, confirm:false */
+/*global wet_boew_sessiontimeout: false, alert: false, confirm: false */
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -30,8 +30,8 @@
 				stay_logged_in,
 				timeParse,
 				getExpireTime,
-				alreadyTimeoutMsg = pe.dic.get('%st-already-timeout-msg'),
-				timeoutMsg = pe.dic.get('%st-timeout-msg');
+				alreadyTimeoutMsg = _pe.dic.get('%st-already-timeout-msg'),
+				timeoutMsg = _pe.dic.get('%st-timeout-msg');
 
 			// Defaults
 			opts = {

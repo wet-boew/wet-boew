@@ -5,7 +5,7 @@
 /*
  * CSS3 for IE plugin
  */
-/*global jQuery: false, pe:false, PIE:false*/
+/*global PIE: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -14,9 +14,9 @@
 	/* local reference */
 	_pe.fn.css3ie = {
 		type : 'plugin',
-		depends : (pe.preIE9 ? ['pie'] : []),
+		depends : (_pe.preIE9 ? ['pie'] : []),
 		_exec : function (elm) {
-			if (pe.mobile || !pe.preIE9) {
+			if (_pe.mobile || !_pe.preIE9) {
 				return;
 			}
 
@@ -49,7 +49,7 @@
 					return $(this).css("position") === "static";
 				}).css("position", "relative");
 
-				if (pe.ie === 7) {
+				if (_pe.ie === 7) {
 					body = document.body;
 					r = body.getBoundingClientRect();
 					if ((r.left - r.right) / body.offsetWidth === -1) {
@@ -57,15 +57,15 @@
 					} else {
 						$wbcore.css("margin-bottom", ($wbcorein.offset().top + $wbcorein.height()) - ($wbcore.offset().top + $wbcore.height()));
 					}
-				} else if (pe.ie === 8) {
+				} else if (_pe.ie === 8) {
 					/*if (screen.deviceXDPI / screen.logicalXDPI === 1) {}*/
 					pieEnabled = setupPIE();
 				} else {
 					pieEnabled = setupPIE();
 				}
 
-				pe.resize(function () {
-					if (pe.ie === 7) {
+				_pe.resize(function () {
+					if (_pe.ie === 7) {
 						var body = document.body,
 							r = body.getBoundingClientRect();
 						if ((r.left - r.right) / body.offsetWidth !== -1) {

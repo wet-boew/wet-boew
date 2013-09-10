@@ -5,7 +5,7 @@
 /*
  * Web archived top page banner
  */
-/*global jQuery: false, pe: false*/
+
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {fn: {} };
@@ -13,11 +13,11 @@
 	_pe.fn.archived = {
 		type: 'plugin',
 		_exec: function (elm) {
-			if (pe.mobile) {
+			if (_pe.mobile) {
 				return; // we do not want this on mobile devices
 			}
 			// create the toolbar
-			var notice = $('<div class="archived" role="toolbar"><a class="archived-top-page" href="#archived" role="link">' + pe.dic.get('%archived-page') + '</a></div>'),
+			var notice = $('<div class="archived" role="toolbar"><a class="archived-top-page" href="#archived" role="link">' + _pe.dic.get('%archived-page') + '</a></div>'),
 				$window = _pe.window,
 				scrollTop = $window.scrollTop();
 			// lets bind the scrolls
@@ -46,7 +46,7 @@
 				notice.fadeIn('normal').attr('aria-hidden', 'false');
 			}
 			// add to page
-			pe.pagecontainer().append(notice);
+			_pe.pagecontainer().append(notice);
 			return elm;
 		} // end of exec
 	};

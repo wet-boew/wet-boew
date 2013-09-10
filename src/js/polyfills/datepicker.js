@@ -9,7 +9,7 @@
 /*
  * Datepicker
  */
-/*global jQuery: false, pe: false, XRegExp: false*/
+/*global pe: false, XRegExp: false*/
 (function ($) {
 	"use strict";
 	var container;

@@ -9,7 +9,7 @@
 /*
  * CLF 2.0 theme scripting
  */
-/*global jQuery: false, pe: false*/
+/*global pe: false*/
 (function ($) {
 	"use strict";
 	var wet_boew_theme, _wet_boew_theme;
