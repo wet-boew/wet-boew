@@ -35,29 +35,29 @@ module.exports = function(grunt) {
 				prettify: {indent: 2},
 				marked: {sanitize: false},
 				production: false,
-				data: 'src/templates/data/*.yml',
-				assets: 'dist/assets',
-				helpers: 'src/helpers/helper-*.js',
-				layoutdir: 'src/templates/layouts',
-				partials: ['src/templates/includes/**/*.hbs']
+				data: 'site/data/**/*.{yml,json}',
+				assets: 'dist',
+				helpers: 'site/helpers/helper-*.js',
+				layoutdir: 'theme/layouts',
+				partials: ['site/includes/**/*.hbs']
 			},
 			site: {
 				options: {
-					layout: 'default.hbs'
+					layout: 'theme.hbs'
 				},
 				expand: true,
-				cwd: 'src/templates/pages',
+				cwd: 'src',
 				src: ['*.hbs'],
 				dest: 'dist/'
 			},
-			plugins: {
+			demo: {
 				options: {
-					layout: 'plugins.hbs'
+					layout: 'theme.hbs'
 				},
 				expand: true,
 				cwd: 'src/plugins',
 				src: ['**/*.hbs'],
-				dest: 'dist/demo/',
+				dest: 'dist/demo',
 				flatten: true
 			}
 		},
