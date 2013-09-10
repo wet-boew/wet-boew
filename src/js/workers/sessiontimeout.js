@@ -48,7 +48,7 @@
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_sessiontimeout) and the data-wet-boew attribute
 			$.extend(opts, (typeof wet_boew_sessiontimeout !== 'undefined' ? wet_boew_sessiontimeout : {}), _pe.data.getData(elm, 'wet-boew'));
-		
+
 			//------------------------------------------------------ Main functions
 
 			keep_session = function () {
@@ -62,7 +62,7 @@
 						} else {
 							alert(alreadyTimeoutMsg);
 							redirect();
-						}	
+						}
 					});
 				}
 			};
@@ -91,8 +91,8 @@
 			logout = function () {
 				var start = getCurrentTimeMs();
 
-				// because of short circuit evaluation, this statement 
-				// will show the dialog before evaluating the time, thus the 
+				// because of short circuit evaluation, this statement
+				// will show the dialog before evaluating the time, thus the
 				// getCurrentTimeMs() will return the time after the alert
 				// box is shown.
 				if (displayTimeoutMessage() && getCurrentTimeMs() - start <= opts.reactionTime) {
@@ -103,7 +103,7 @@
 			};
 
 			//--------------------------------------------------- Utility functions
-	
+
 			getCurrentTimeMs = function () {
 				return (new Date()).getTime();
 			};
@@ -113,7 +113,7 @@
 			};
 
 			stay_logged_in = start_liveTimeout;
-		
+
 			// Parsing function for time period
 			timeParse = function (value) {
 				var result, num, mult;
@@ -133,11 +133,11 @@
 
 			getExpireTime = function () {
 				var expire = new Date(getCurrentTimeMs() + opts.reactionTime),
-					hours = expire.getHours(), 
-					minutes = expire.getMinutes(), 
+					hours = expire.getHours(),
+					minutes = expire.getMinutes(),
 					seconds = expire.getSeconds(),
 					timeformat = hours < 12 ? ' AM' : ' PM';
-					
+
 				hours = hours % 12;
 				if (hours === 0) {
 					hours = 12;
@@ -150,7 +150,7 @@
 
 				return hours + ':' + minutes + ':' + seconds + timeformat;
 			};
-		
+
 			start_liveTimeout();
 			if (opts.refreshOnClick) {
 				_pe.document.on('click', function (e) {

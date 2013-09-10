@@ -29,7 +29,7 @@
 		init: function () {
 			wet_boew_theme.psnb = pe.header.find('#cn-psnb');
 			wet_boew_theme.bcrumb = pe.header.find('#cn-bc');
-			
+
 			// Add nav-current
 			if (wet_boew_theme.psnb.length > 0) {
 				pe.menu.navcurrent(wet_boew_theme.psnb, wet_boew_theme.bcrumb);

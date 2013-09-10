@@ -78,7 +78,7 @@
 				addShowAll: elm.hasClass('showall') ? true : undefined,
 				addAnalytics: elm.hasClass('analytics') ? true : undefined
 			};
-			
+
 			// Extend the defaults with settings passed through settings.js (wet_boew_share), class-based overrides and the data-wet-boew attribute
 			$.extend(opts, (typeof wet_boew_share !== 'undefined' ? wet_boew_share : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 

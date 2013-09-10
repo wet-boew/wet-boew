@@ -44,12 +44,12 @@
 
 			// Append the aria-live region (for provide message updates to screen readers)
 			elm.append(ariaLive);
-			
+
 			// Load different language strings if page is not in English
 			if (lang !== null) {
 				_pe.add._load(liblocation + 'i18n/formvalid/messages_' + lang + suffixExt);
 			}
-			
+
 			if (mthdlang !== null) {
 				_pe.add._load(liblocation + 'i18n/formvalid/methods_' + mthdlang + suffixExt);
 			}
@@ -59,7 +59,7 @@
 			while (len--) {
 				labels[len].innerHTML += ' ';
 			}
-		
+
 			// Remove the pattern attribute until it is safe to use with jQuery Validation
 			len = pattern.length;
 			while (len--) {
@@ -216,7 +216,7 @@
 								}
 							});
 						}
-					
+
 						submitted = false;
 					} else {
 						// Update the aria-live region as necessary

@@ -115,7 +115,7 @@
 				"parsedirection-autocreate": true,
 				drawDirection: 'x', // TODO Not implemented yet - which direction are the dependant axis
 				//
-				// Pie Graph Option 
+				// Pie Graph Option
 				//
 				pieMargin: 20, //pie charts only - spacing around pie
 				pieLabelsAsPercent: true,
@@ -170,7 +170,7 @@
 			}
 			/**
 			* Chart plugin v2.0.1
-			* 
+			*
 			* @author: Pierre Dubois
 			*/
 			charts.circleGraph = {
@@ -245,10 +245,10 @@
 					// Note: Each pie are in a separate Paper
 					// console.log(charts.circleGraph);
 					if (!charts.circleGraph.height || charts.circleGraph.height < ((charts.circleGraph.width + (charts.circleGraph.levelPadding*2) + charts.circleGraph.options.font.height) * charts.circleGraph.series.series.length) / charts.circleGraph.series.series.length) {
-						
+
 						// Set the minimal height
 						charts.circleGraph.height = ((charts.circleGraph.width + charts.circleGraph.levelPadding + charts.circleGraph.options.font.height) * charts.circleGraph.series.series.length) / charts.circleGraph.series.series.length + charts.circleGraph.levelPadding;
-						
+
 					}
 					*/
 					//
@@ -256,29 +256,29 @@
 					//
 					/*
 				charts.circleGraph.minWidth = charts.circleGraph.options.width;
-				
+
 				// Get Number of Pie to be written (Each serie are a Pie)
 				var NbPie = charts.circleGraph.series.series.length;
-				
-				
-				
+
+
+
 				var minPieWidth = (NbPie * charts.circleGraph.props.minWidth) + ((charts.circleGraph.series.nbColLevel - 1) * charts.circleGraph.props.minLevelWidth);
-				
+
 				var realMinSize = charts.circleGraph.minWidth + (2* charts.circleGraph.graphPadding);
-				
-				
+
+
 				var pieOverPieces = realMinSize % (minPieWidth + (2*charts.circleGraph.graphPadding));
-				
+
 				var pieByRow = (charts.circleGraph.minWidth - pieOverPieces) / minPieWidth;
-				
-				
-				// Minimum Width Size: pieByRow * minPieWidth + (2* charts.circleGraph.graphPadding) 
+
+
+				// Minimum Width Size: pieByRow * minPieWidth + (2* charts.circleGraph.graphPadding)
 				if (pieByRow === 0) {
 					// Force the change of the width for the minimum requirement
-					charts.circleGraph.width = minPieWidth + (2* charts.circleGraph.graphPadding); 
+					charts.circleGraph.width = minPieWidth + (2* charts.circleGraph.graphPadding);
 				} else {
 					// Check what kind of strategy is used, like take full width or keep it as minimal space
-					
+
 					if (charts.circleGraph.sizeMode === 'minimal') {
 						charts.circleGraph.width = (pieByRow * minPieWidth) + (2* charts.circleGraph.graphPadding);
 						charts.circleGraph.height = Math.floor(NbPie / pieByRow * minPieWidth + (2* charts.circleGraph.graphPadding));
@@ -288,15 +288,15 @@
 						// TO BE IMPLEMENTED IN THE FUTURE
 					}
 
-					
+
 				}
-				
-				
+
+
 				charts.circleGraph.pieByRow = pieByRow;
 				charts.circleGraph.minPieWidth = minPieWidth;
-				
+
 				// console.log('minPieWidth: ' + minPieWidth + ' pieByRow: ' + pieByRow + ' charts.circleGraph.options.width:' + charts.circleGraph.options.width);
-				
+
 				*/
 				},
 				generateGraph: function (paperContainer, paper) {
@@ -313,7 +313,7 @@
 						legendGenerated = false;
 					$.each(charts.circleGraph.series.series, function () {
 						var chartsLabels = [],
-							lastPathObj, // This represent the last created item in the pie chart, it's used to ordered the text label on mouse over and to do overlap with each pie quarter					
+							lastPathObj, // This represent the last created item in the pie chart, it's used to ordered the text label on mouse over and to do overlap with each pie quarter
 							legendList,
 							currentPaper,
 							total,
@@ -344,8 +344,8 @@
 						var serieTitleX = (charts.circleGraph.width/2) + (charts.circleGraph.width * currColPos);
 						var serieTitleY = ((charts.circleGraph.width + charts.circleGraph.levelPadding + charts.circleGraph.options.font.height) * currRowPos2) + (charts.circleGraph.options.font.height/2); // + charts.circleGraph.levelPadding;
 
-						var serieTxt = currentPaper.text(serieTitleX, serieTitleY, this.header.rawValue).attr({fill: '#000', stroke: "none", "font-size": charts.circleGraph.captionFontSize, "text-anchor": "middle"});					
-						
+						var serieTxt = currentPaper.text(serieTitleX, serieTitleY, this.header.rawValue).attr({fill: '#000', stroke: "none", "font-size": charts.circleGraph.captionFontSize, "text-anchor": "middle"});
+
 						*/
 						// Calcule the percent based on their range
 						total = 0;
@@ -829,7 +829,7 @@
 			};
 			/**
 			* Chart plugin v2.0.2
-			* 
+			*
 			* @author: Pierre Dubois
 			*/
 			charts.graph2dAxis = {
@@ -1006,7 +1006,7 @@
 					range = charts.graph2dAxis.utils.topRound(TopValue - BottomValue);
 					interval = charts.graph2dAxis.utils.topRound(range / charts.graph2dAxis.nbStep);
 					// TODO, Validate the Precision, currently no decimal are authorized for the interval
-					// Set the Zero Position 
+					// Set the Zero Position
 					zeroPos = Math.round(charts.graph2dAxis.nbStep * TopValue / range);
 					if (zeroPos > charts.graph2dAxis.nbStep) {
 						zeroPos = charts.graph2dAxis.nbStep;
@@ -1103,7 +1103,7 @@
 						// Draw the graph
 						charts.graph2dAxis.graph();
 					} // else {
-					// There are a Maximum and a Minimum regarding the width of the graph, 
+					// There are a Maximum and a Minimum regarding the width of the graph,
 					// If is not possible to meet that requirement check if we can reverse the draw of the graphic, if not that graph are invalid
 					//}
 					/*if (nbCircleGraph > 0) {
@@ -1116,13 +1116,13 @@
 				}*/
 				},
 				xAxis: function () {
-					// 
+					//
 					// Draw the x-axis
 					//
 					//
 					// TODO: Developper NOTE:
 					//	Here they are a glitch when we draw the x axis, because his lenght is too long regarding the graph generated,
-					// 
+					//
 					charts.graph2dAxis.xAxisOffset = (charts.graph2dAxis.options.font.height * (charts.graph2dAxis.zeroPos - 1) + charts.graph2dAxis.offset.top + charts.graph2dAxis.cuttingOffset);
 					/*
 				var DrawXaxisTick = true;
@@ -1220,7 +1220,7 @@
 							middlePos = topPos + ((bottomPos - topPos) / 2);
 							// var h = ((charts.graph2dAxis.options.height -30) + ((((hMax-hMin) / 2) + hMin) * charts.graph2dAxis.options.font.height) - charts.graph2dAxis.options.font.height + charts.graph2dAxis.offset.top + charts.graph2dAxis.cuttingOffset + (4 * 2));
 							// var h = (charts.graph2dAxis.options.height + ((((hMax-hMin) / 2) + hMin) * charts.graph2dAxis.options.font.height) - charts.graph2dAxis.options.font.height - charts.graph2dAxis.offset.top - charts.graph2dAxis.cuttingOffset - (4 * 2));
-							// TopPos => offset.top + 
+							// TopPos => offset.top +
 							leftPos = xMinPosPaper + charts.graph2dAxis.offset.left;
 							// var topPos = (charts.graph2dAxis.options.height + (hMin * charts.graph2dAxis.options.font.height) -charts.graph2dAxis.options.font.height + charts.graph2dAxis.offset.top + charts.graph2dAxis.cuttingOffset);
 							// var topPos = (charts.graph2dAxis.options.height + (hMin * charts.graph2dAxis.options.font.height) -charts.graph2dAxis.options.font.height - charts.graph2dAxis.offset.top - charts.graph2dAxis.cuttingOffset);
@@ -1545,7 +1545,7 @@
 										width = SegmentWidth,
 										path = "",
 										bar;
-									// Check if the graphValue are below the 0 axis or top of 
+									// Check if the graphValue are below the 0 axis or top of
 									if (charts.graph2dAxis.xAxisOffset >= this.graphValue) {
 										// The Point are below the 0 axis
 										yTopLeft = this.graphValue;
@@ -1739,7 +1739,7 @@
 								// $(this).attr('headers', cellColHeaders + (cellColHeaders !== "" && cellRowHeaders !== ""? ' ': '') + cellRowHeaders);
 								// cellUnit will be use as global for the entire row group
 								if (this.nodeName.toLowerCase() === 'th') {
-									// Mark the current cell as Header 
+									// Mark the current cell as Header
 									cellInfo.isHeader = true;
 									// Generate a cell ID if none + add it inside the heading list
 									cellId = $(this).attr('id');
@@ -1768,7 +1768,7 @@
 									if (cellInfo.isHeader && parser.seriesHeadingLenght > CurrColPosition) {
 										// This represent a sub row grouping
 										currentSerieLevel += 1; // Increment the heading level
-										// Mark the current cell as Header 
+										// Mark the current cell as Header
 										cellInfo.isHeader = true;
 										header = {
 											id : parser.cellID,
@@ -1890,9 +1890,9 @@ label:
 				},
 				// Function to switch the series order, like make it as vertical series to horizontal series (see Task #2997)
 				swapTable: function () {
-					// function swapTable for request #2799, transforming horizontal table to virtical table; 
-					// Government of Canada. Contact Qibo or Pierre for algorithm info and bug-fixing; 
-					// important table element: id or class, th; 
+					// function swapTable for request #2799, transforming horizontal table to virtical table;
+					// Government of Canada. Contact Qibo or Pierre for algorithm info and bug-fixing;
+					// important table element: id or class, th;
 					var sMatrix = [],
 						i = 0,
 						_ilen,
@@ -1916,7 +1916,7 @@ label:
 									$(this).attr('colspan', 1);
 								}
 								maxRowCol += Number($(this).attr("colspan"));
-								// block change, 20120118 fix for defect #3226, jquery 1.4 problem about colspan attribute, qibo; 
+								// block change, 20120118 fix for defect #3226, jquery 1.4 problem about colspan attribute, qibo;
 							});
 						}
 						s += 1;
@@ -1941,7 +1941,7 @@ label:
 							}
 							attrCol = Number($(this).attr("colspan"));
 							attrRow = Number($(this).attr("rowspan"));
-							// block change, 20120118 fix for defect #3226, jquery 1.4 problem about colspan attribute, qibo; 
+							// block change, 20120118 fix for defect #3226, jquery 1.4 problem about colspan attribute, qibo;
 							while (tMatrix[i][j] === 3) {
 								j += 1;
 							}
@@ -1955,16 +1955,16 @@ label:
 								stopCol = j + attrCol - 1;
 								for (jj = j; jj <= stopCol; jj += 1) {
 									for (ii = i; ii <= stopRow; ii += 1) {
-										tMatrix[ii][jj] = 3; //random number as place marker; 
+										tMatrix[ii][jj] = 3; //random number as place marker;
 									}
 								}
 							} else if (attrRow > 1) {
 								for (ii = i; ii <= stopRow; ii += 1) {
-									tMatrix[ii][j] = 3; // place holder; 
+									tMatrix[ii][j] = 3; // place holder;
 								}
 							}
-							ss1 = $(this).clone(); // have a copy of it, not destroying the look of the original table; 
-							// transforming rows and cols and their properties; 
+							ss1 = $(this).clone(); // have a copy of it, not destroying the look of the original table;
+							// transforming rows and cols and their properties;
 							ss1.attr("colspan", attrRow);
 							ss1.attr("rowspan", attrCol);
 							(sMatrix[j] = sMatrix[j] || [])[i] = ss1;
@@ -1981,7 +1981,7 @@ label:
 							oneRow.append(val);
 						});
 					});
-					// now adding the missing thead; 
+					// now adding the missing thead;
 					html2 = swappedTable.html();
 					headStr = "<table id=\"swappedGraph\">" + "<caption>" + capVal + " (Horizontal to Virtical)</caption><thead>";
 					html2 = html2.replace(/<tbody>/gi, headStr);
@@ -1997,10 +1997,10 @@ label:
 						}
 					}
 					html2 = arr.join("\n");
-					// alert(html2); // see the source 
+					// alert(html2); // see the source
 					$(html2).insertAfter(self).hide(); //visible, for debugging and checking;
 					return $(html2);
-				}, //end of function; 
+				}, //end of function;
 				// Compute the series value (see Task #2998)
 				compute: function () {
 					$.each(parser.tBodySeries.series, function () {
@@ -2063,7 +2063,7 @@ label:
 					});
 				},
 				getCellValue: function (cellRawValue) {
-					//trim spaces in the string; 
+					//trim spaces in the string;
 					cellRawValue = cellRawValue.replace(/\s\s+/g, " ");
 					cellRawValue = cellRawValue.replace(/^\s+|\s+$/g, "");
 					// Return the result
@@ -2123,7 +2123,7 @@ label:
 							delete opt[arrToRemove[i]];
 						}
 					}
-					
+
 					// Check for an unsetOptionsLevel, if defined to the unset
 					if (sourceOptions['default-unsetoptionlevel'] && typeof(sourceOptions['default-unsetoptionlevel']) === "number") {
 						unsetOption(sourceOptions, 1, sourceOptions['default-unsetoptionlevel']);
@@ -2177,8 +2177,8 @@ label:
 							jsonString,
 							val;
 						// Get only the item larger than the namespace and remove the namespace
-						
-						
+
+
 						if ($.isArray(namespace)) {
 							// support to an array of namespace for backward compatibility and syntax error eg. wb-charts and wb-chart and wb-graph would be equivalent
 							for (i = 0, _ilen = namespace.length; i < _ilen; i += 1) {
@@ -2197,11 +2197,11 @@ label:
 								propName = arrNamespace[arrNamespace.length - 1];
 							}
 						}
-						
+
 						if (arrParameter && propName) {
 							// This is a valid parameter, start the convertion to a JSON object
 							// Get all defined parameter
-							
+
 							for (i = 0, _ilen = arrParameter.length; i < _ilen; i += 1) {
 								valIsNext = (i + 2 === _ilen ? true : false);
 								isVal = (i + 1 === _ilen ? true : false);
@@ -2373,7 +2373,7 @@ label:
 			// Old parser
 			//
 			parser.parse();
-			// 
+			//
 			// New Parser
 			//
 			// 1. Parse the table with the new parser
@@ -2412,8 +2412,8 @@ label:
 							$(this.elem).attr('id', cellHeaderId); // Add the new ID to the table
 						} else {
 							cellHeaderId = this.elem['id'];
-						}	
-						
+						}
+
 						colheadingCell.uniqueID = cellHeaderId;
 						*/
 							if (!parser.tBodySeries.ColHeading) {
@@ -2431,7 +2431,7 @@ label:
 			// $(self).data().ColHeading = parser.tBodySeries.ColHeading;
 			// $(self).data().oldColHeading = parser.tBodySeries.oldColHeading;
 			// TODO: Instead of parsing the table, use the new parser and adapt the data found in the old model.
-			parser.compute(); // Compute the parsed data	
+			parser.compute(); // Compute the parsed data
 			// var graphTableParsedTime = new Date().getTime();
 			// console.log('Table Parsed exec time ' + graphTableParsedTime);
 			// console.log('Elapsed : ' + (graphTableParsedTime - graphStartExecTime));
@@ -2708,7 +2708,7 @@ label:
 						var serieCaption = $('<figcaption />'),
 							subContainer = $('<figure />'),
 							subPaper;
-						// 
+						//
 						$(serieCaption).append(this.header.rawValue); // Set the caption text
 						// var serieCaptionID = 'graphcaption' + paper.length + new Date().getTime(); // Generate a new ID
 						// $(serieCaption).attr('id', serieCaptionID); // Add the new ID to the title
@@ -2763,7 +2763,7 @@ label:
 								// Get the inner HTML
 								$(graphTitle).append($(captionParsed.caption).html());
 							} else {
-								// Take that element 
+								// Take that element
 								$(graphTitle).append($(captionParsed.caption).clone());
 							}
 						} else {
@@ -2814,7 +2814,7 @@ label:
 							.after(self);
 
 						_pe.polyfills.enhance('detailssummary', tblSrcContainer);
-						
+
 					} else {
 						// Move the table inside the figure element
 						$(self).appendTo(paperContainer);
@@ -2824,7 +2824,7 @@ label:
 					$(paperContainer).remove();
 				}
 			});
-			// var graphTableENDTime = new Date().getTime(); 
+			// var graphTableENDTime = new Date().getTime();
 			// console.log('Table Graphed END exec time ' + graphTableENDTime);
 			// console.log('Elapsed : ' + (graphTableENDTime - graphTableParsedTime));
 			// designer.init();

@@ -116,7 +116,7 @@
 					last -= 1;
 					return last;
 				};
-				
+
 				finalize = function () {
 					$loading.remove();
 					$content.find('li').show();

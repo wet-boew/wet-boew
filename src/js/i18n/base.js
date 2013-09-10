@@ -51,10 +51,10 @@
 			'mixin': '@%days-ago@'
 		},
 		'%yesterday': '@%yesterday@',
-		
+
 		'%next': '@%next@',
 		'%previous': '@%previous@',
-		
+
 		/* Archived Web page template */
 		'%archived-page': '@%archived-page@',
 		/* Menu bar */

@@ -34,7 +34,7 @@
 					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
 						var refId = _pe.string.jqescape($(this).attr('href')).substring(1),
 							referrer = _ctn.find(refId).find('a');
-						
+
 						if (_pe.mobile) {
 							$.mobile.silentScroll(_pe.focus(referrer).offset().top);
 						} else {
@@ -84,4 +84,4 @@
 	};
 	window.pe = _pe;
 	return _pe;
-}(jQuery)); 
+}(jQuery));
