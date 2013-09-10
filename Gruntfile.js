@@ -35,29 +35,29 @@ module.exports = function(grunt) {
 				prettify: {indent: 2},
 				marked: {sanitize: false},
 				production: false,
-				data: 'src/templates/data/*.yml',
-				assets: 'dist/assets',
-				helpers: 'src/helpers/helper-*.js',
-				layoutdir: 'src/templates/layouts',
-				partials: ['src/templates/includes/**/*.hbs']
+				data: 'theme/config/**/*.{json,yml}',
+				assets: 'dist',
+				//helpers: 'theme/helpers/helper-*.js',
+				layoutdir: 'theme/layouts',
+				partials: ['theme/includes/**/*.hbs']
 			},
 			site: {
 				options: {
-					layout: 'default.hbs'
+					layout: 'theme.hbs'
 				},
 				expand: true,
 				cwd: 'src/templates/pages',
 				src: ['*.hbs'],
-				dest: 'dist/'
+				dest: 'dist'
 			},
 			plugins: {
 				options: {
-					layout: 'plugins.hbs'
+					layout: 'theme.hbs'
 				},
 				expand: true,
 				cwd: 'src/plugins',
 				src: ['**/*.hbs'],
-				dest: 'dist/demo/',
+				dest: 'dist/demo',
 				flatten: true
 			}
 		},
@@ -212,6 +212,12 @@ module.exports = function(grunt) {
 				files: {
 					'dist/css/bootstrap.min.css': 'lib/bootstrap/dist/css/bootstrap.min.css'
 				}
+			},
+			build_theme: {
+				cwd: 'theme/dist',
+				src: ['**'],
+				dest: 'dist',
+				expand: true
 			}
 		},
 		clean: {
@@ -280,6 +286,14 @@ module.exports = function(grunt) {
 				csv: 'src/i18n/i18n.csv'
 			},
 			src: 'src/js/i18n/formvalid/*.js'
+		},
+		hub: {
+			src: 'theme/Gruntfile.js'
+		},
+		'install-dependencies': {
+			options: {
+				cwd: 'theme'
+			}
 		}
 	});
 
@@ -294,14 +308,17 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-sass');
 	grunt.loadNpmTasks("grunt-modernizr");
-	grunt.loadNpmTasks("assemble");
+	grunt.loadNpmTasks('assemble');
+	grunt.loadNpmTasks('grunt-hub');
+	grunt.loadNpmTasks('grunt-install-dependencies');
 	grunt.loadTasks('tasks');
 
 	// Default task.
-	grunt.registerTask('build', ['coffee','sass','concat', 'i18n', 'uglify', 'clean:jsUncompressed', 'copy', 'assemble']);
+	grunt.registerTask('build', ['coffee','sass','concat', 'i18n', 'uglify', 'clean:jsUncompressed', 'copy', 'build_theme', 'assemble']);
+	grunt.registerTask('build_theme', ['hub', 'copy']);
 	grunt.registerTask('test', ['jshint']);
 	grunt.registerTask('html', ['assemble']);
 	grunt.registerTask('default', ['clean:dist', 'build', 'test']);
 	grunt.registerTask('server', ['connect','watch:source']);
-	grunt.registerTask('init', ['modernizr']);
+	grunt.registerTask('init', ['modernizr', 'install-dependencies']);
 };

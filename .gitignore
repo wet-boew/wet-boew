@@ -3,7 +3,7 @@ nbproject/*
 .c9revisions/*
 .DS_Store
 jruby*.jar
-dist/*
+**/dist/*
 build/lib/vendors*
 build/lib/jruby-compiled
 _notes/

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="{{language}}"{{#if dir}} dir="{{dir}}"{{/if}}><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="{{language}}"{{#if dir}} dir="{{dir}}"{{/if}}>
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>{{title}}</title>
+<link href="{{assets}}/theme/assets/favicon.ico" rel="shortcut icon">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+
+<link rel="stylesheet" href="{{assets}}/css/base.css">
+<link rel="stylesheet" href="{{assets}}/css/bootstrap.min.css">
+<link rel="stylesheet" href="{{assets}}/theme/css/theme.min.css">
+
+<!-- Polyfill loader-->
+<!--[if lt IE 9]>
+<script src="{{assets}}/js/oldie/respond.min.js"></script>
+<script src="{{assets}}/js/oldie/jquery.min.js"></script>
+<script src="{{assets}}/js/oldie/selectivizr.min.js"></script><![endif]-->
+<!--[if gte IE 9 | !IE ]><!-->
+<script src="{{assets}}/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="{{assets}}/js/vapour.min.js"></script>
+
+</head>
+<body>
+<div id="wb-skip">
+	<ul id="wb-tphp">
+		<li id="wb-skip1"><a href="#wb-cont">{{#i18n "%tmpl-skip-main"}}{{/i18n}}</a></li>
+		<li id="wb-skip2"><a href="#wb-nav">{{#i18n "%tmpl-skip-sec"}}{{/i18n}}</a></li>
+	</ul>
+</div>
+
+<header>
+<div class="container">
+	<a href="../index-en.html"><object type="image/svg+xml" tabindex="-1" role="img" data="{{assets}}/theme/assets/logo.svg" aria-label="Web Experience Toolkit"></object></a>
+	<nav id="wb-glb-nav" role="navigation">
+		<h2>Menu</h2>
+		<ul id="wb-mnavbar" class="btn-group">
+			<li class="btn wb-glb-mn-1"><a href="#wb-nav"><span>Navigation</span></a></li>
+			<li class="btn wb-glb-mn-2"><a href="#wb-srch"><span>Search</span></a></li>
+			<li class="btn wb-glb-mn-3"><a href="#wb-sttng"><span>Settings</span></a></li>
+		</ul>
+	</nav>
+</div>
+
+<div id="wb-title">
+	<p class="container"><a href="../index-en.html" lang="en"><span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p>
+</div>
+
+<section role="search" id="wb-srch">
+	<h2>Search</h2>
+	<form action="#" method="post" class="form-group">
+		<label for="wb-srch-txt">Search website</label>
+		<input id="wb-srch-txt" name="wb-srch-txt" type="search" value="" class="form-control" size="27" maxlength="150" />
+		<button type="submit" id="wb-srch-submit" class="wb-srch-submit btn btn-primary btn-small" name="wb-srch-submit"> Search </button>
+	</form>
+</section>
+
+<nav role="navigation" id="wb-nav">
+	<h2>Navigation</h2>
+	<section id="wb-st-nav">
+		<h3>Site Menu</h3>
+		<section>
+			<h4>WET Project</h4>
+			<section>
+				<h5><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About WET</a></h5>
+				<ul>
+					<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">What is WET?</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#benefits">Benefits</a></li>
+					<li><a href="https://github.com/wet-boew/wet-boew/wiki/Accolades">Accolades for WET</a></li>
+					<li><a href="https://github.com/wet-boew/wet-boew/wiki/Accolades#wiki-Known_implementations">Known implementations</a></li>
+					<li><a href="https://github.com/wet-boew/wet-boew/wiki#upcoming-events">Events</a></li>
+					<li><a href="https://github.com/wet-boew/wet-boew/">Main project</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew/License-en.html">Terms and conditions of use</a></li>
+					<li><a href="https://github.com/wet-boew/wet-boew/wiki/Roadmap">Roadmap of past and future releases</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#version-history">Version history</a></li>
+					<li><a href="https://github.com/wet-boew/wet-boew/wiki/External-Projects-used-in-WET">External projects used in WET</a></li>
+				</ul>
+			</section>
+			<section>
+				<h5><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></h5>
+				<ul>
+					<li><a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=27088">Standard on Optimizing Websites and Applications for Mobile Devices</a></li>
+					<li><a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=23601">Standard on Web Accessibility</a></li>
+					<li><a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=24227">Standard on Web Usability</a></li>
+					<li><a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=25875">Standard on Web Interoperability</a></li>
+				</ul>
+			</section>
+		</section>
+		<section>
+			<h4>Implement WET</h4>
+			<section>
+				<h5><a href="https://github.com/wet-boew/wet-boew/wiki#getting-started">Getting started</a></h5>
+				<ul>
+					<li><a href="https://github.com/wet-boew/wet-boew/wiki/Getting-Started-with-WET">Getting started with WET</a></li>
+					<li><a href="https://github.com/wet-boew/wet-boew/wiki/Using-Github-for-WET">Using Github for WET</a></li>
+					<li><a href="https://github.com/wet-boew/wet-boew/wiki/Downloads">Download WET</a></li>
+				</ul>
+			</section>
+			<section>
+				<h5><a href="http://wet-boew.github.io/wet-boew/demos/guide-design/guide-en.html">Designing sites and page layouts</a></h5>
+				<ul>
+					<li><a href="http://wet-boew.github.io/wet-boew/demos/grids/grid-base-en.html">Using grids to design pages</a></li>
+					<li><a href="https://github.com/wet-boew/wet-boew/wiki/Themes-and-Style">Themes and style</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew/demos/opt-cont/index-en.html">Optimal content examples</a></li>
+				</ul>
+			</section>
+			<section>
+				<h5><a href="https://github.com/wet-boew/wet-boew/wiki/Implementing-WET">Working with WET</a></h5>
+				<ul>
+					<li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">Working examples</a></li>
+					<li>
+						<section>
+							<h5><a href="https://github.com/wet-boew/wet-boew/wiki#reference">Documentation</a></h5>
+							<ul>
+								<li><a href="https://github.com/wet-boew/wet-boew/wiki/Core-Framework">Core framework</a></li>
+								<li><a href="https://github.com/wet-boew/wet-boew/wiki/Variants">Variants</a></li>
+								<li><a href="https://github.com/wet-boew/wet-boew/wiki/Themes-and-Style">Themes and style</a></li>
+								<li><a href="https://github.com/wet-boew/wet-boew/wiki/Plugins">Plugins</a></li>
+								<li><a href="https://github.com/wet-boew/wet-boew/wiki/Polyfills">Polyfills</a></li>
+							</ul>
+						</section>
+					</li>
+				</ul>
+			</section>
+		</section>
+		<section>
+			<h4>Contribute to WET</h4>
+			<section>
+				<h5><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines">Contributor guidelines</a></h5>
+				<ul>
+					<li><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines#wiki-Filing_a_bug_or_an_Issue">Filing a bug or an issue</a></li>
+					<li><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines#wiki-Creating_a_Pull_Request">Creating a pull request</a></li>
+					<li><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines#testing-you-pr-before-submitting">Testing your code</a></li>
+				</ul>
+			</section>
+			<section>
+				<h5><a href="https://github.com/wet-boew/wet-boew/wiki#ongoing-projects">Participating in a project</a></h5>
+				<ul>
+					<li><a href="https://github.com/wet-boew/wet-boew/wiki/Developing-for-WET">Developing for WET</a></li>
+					<li><a href="https://github.com/wet-boew/wet-boew/wiki/Creating-Documentation">Creating documentation</a></li>
+					<li><a href="https://github.com/wet-boew/wet-boew/wiki/Testing">Testing a component</a></li>
+				</ul>
+			</section>
+		</section>
+	</section>
+	<section id="wb-bc">
+		<h3>Breadcrumb trail</h3>
+		<ol>
+			<li><a href="../index-en.html">Home</a></li>
+			<li>Working examples</li>
+		</ol>
+	</section>
+</nav>
+</header>
+
+<main role="main" class="container">
+<h1 id="wb-cont">{{title}}</h1>
+{{> body }}
+</main>
+
+<footer id="wb-sttng">
+	<h2>Settings</h2>
+	<section id="wb-lang">
+		<h3>Languages</h3>
+		<ul>
+			<li class="current">English <span>(current)</span></li>
+			<li><a lang="fr" href="http://wet-boew.github.io/wet-boew/index-fra.html">Français</a></li>
+		</ul>
+	</section>
+	<nav id="wb-org-nav">
+		<section class="row">
+			<h3>About</h3>
+			<section class="col-sm-3 col-lg-3">
+				<h4>About</h4>
+				<ul>
+					<li><a href="#">About the Web Experience Toolkit</a></li>
+					<li><a href="#">About the Web Standards</a></li>
+				</ul>
+			</section>
+			<section class="col-sm-3 col-lg-3">
+				<h4>Contact us</h4>
+				<ul>
+					<li><a href="#">Questions or comments?</a></li>
+				</ul>
+			</section>
+			<section class="col-sm-3 col-lg-3">
+				<h4>News</h4>
+				<ul>
+					<li><a href="#">Recent project activity</a></li>
+				</ul>
+			</section>
+			<section class="col-sm-3 col-lg-3">
+				<h4>Stay Connected</h4>
+				<ul>
+					<li><a href="#">Twitter</a></li>
+				</ul>
+			</section>
+		</section>
+	</nav>
+</footer>
+
+<script src="{{assets}}/js/wet-boew.min.js"></script>
+<script src="{{assets}}/theme/js/theme.min.js"></script>
+</body>
+</html>
