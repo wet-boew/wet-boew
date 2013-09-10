@@ -1071,8 +1071,7 @@
 				};
 
 				fnParseSpannedRowCell = function () {
-					var i,
-						j,
+					var j,
 						currCell;
 
 					// Check for spanned row 

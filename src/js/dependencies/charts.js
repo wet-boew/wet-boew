@@ -9,16 +9,13 @@
 /*
  * Charts for WET 3.x
  */
-/*global jQuery: false, pe:false, wet_boew_charts: false, Raphael: false*/
+/*global jQuery: false, wet_boew_charts: false, Raphael: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
 		fn: {}
 	}; /* local reference */
 	_pe.fn.chartsGraph = {
-		// type: 'plugin',
-		// depends: ['raphael', 'parserTable'],
-		// polyfills: ['detailssummary'],
 		generate: function (elm) {
 			var options = {},
 				o,
@@ -309,7 +306,6 @@
 					var currPosition = 1,
 						currRowPos = 1,
 						currColPos = 0,
-						currRowPos2 = 0,
 						legendGenerated = false;
 					$.each(charts.circleGraph.series.series, function () {
 						var chartsLabels = [],
@@ -1655,7 +1651,6 @@
 							var currentSerieLevel = 0,
 								CurrColPosition = 0,
 								CurrentGroupingID = 0,
-								arrAllCell = $(this).children(),
 								cellOrdered = [],
 								cellHeadingOrdered = [],
 								serieHeaderText = '', // That would contain the current on process serie header
@@ -1691,9 +1686,8 @@
 							// Get the Row heading Width
 							$('th, td', this).each(function () {
 								parser.cellID += 1;
-								var IgnoreCurrentCell = false, // TODO check if wet-graph-ignore class is set, if yes use the cell value data as non numerical data
 								// Get the cell Value
-									cellValueObj = parser.getCellValue($(this).text()),
+								var cellValueObj = parser.getCellValue($(this).text()),
 									cellInfo = {
 										id : parser.cellID,
 										isHeader: false,
@@ -2507,9 +2501,8 @@ label:
 					}
 					if (!this.isRejected) {
 						fullSerieRejected = false;
-						var isCumulative = false,
 						// Get the param for the appropriate designer heading level
-							SerieObj = {},
+						var SerieObj = {},
 							MasterSeriesCell = [],
 							GraphType = '';
 						if (this.cellHeading.length > DesignerHeadingLevel) {

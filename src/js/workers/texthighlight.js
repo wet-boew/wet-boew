@@ -5,8 +5,8 @@
 /*
  * Text highlighting functionality 
  */
-/*global jQuery: false, pe: false*/
-(function ($) {
+/*global pe: false*/
+(function () {
 	"use strict";
 	var _pe = window.pe || {
 		fn: {}
@@ -59,4 +59,4 @@
 	};
 	window.pe = _pe;
 	return _pe;
-}(jQuery));
+}());
