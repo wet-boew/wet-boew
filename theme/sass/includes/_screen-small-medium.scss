@@ -1,0 +1,269 @@
+/*
+ *
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ *
+ */
+
+@import '../../../src/base/partials/accessibility';
+
+body {
+	background: #f9f9f9;
+}
+
+header {
+	background: #3C3C3C;
+	background-image: -webkit-linear-gradient(top, #3c3c3c, #515151);
+	background-image: linear-gradient(#3c3c3c, #515151);
+	object, img {
+		margin: 5px;
+		height: 40px;
+		width: 77px;
+		float: left;
+	}
+}
+
+#wb-nav, #wb-srch, #wb-sttng {
+	visibility: hidden;
+	position: fixed;
+	top: 0;
+	right: -75%;
+	width: 75%;
+	height: 100%;
+	background: #333;
+	color: #aaa;
+	z-index: 2;
+	box-shadow: -1.5em 0 1.5em -.75em outset;
+
+	&, &:target {
+		-moz-transition: all 0.5s ease;
+		-webkit-transition: all 0.5s ease;
+		transition: all 0.5s ease;
+	}
+
+	&:target {
+		visibility: visible;
+		right: 0;
+	}
+
+	h2 {
+		font-size: 1.2em;
+		margin: 0;
+		padding: 10px;
+	}
+
+	h3, h4, h5 {
+		margin: 0;
+		padding: 10px;
+	}
+}
+
+main {
+	padding: 0 20px 20px;
+	background: #fff;
+}
+
+#wb-lang, #wb-org-nav, #wb-st-nav, #wb-bc {
+	a {
+		display: block;
+		background: #3e3e3e;
+		background-image: -webkit-linear-gradient(top, #3e3e3e, #383838);
+		background-image: linear-gradient(#3e3e3e, #383838);
+		border-top: 1px solid #484848;
+		border-bottom: 1px solid #2E2E2E;
+		color: #fff;
+		padding: 10px;
+
+		:hover, :focus {
+			background: #484848;
+			background-image: -webkit-linear-gradient(top, #484848, #383838);
+			background-image: linear-gradient(#484848, #383838);
+		}
+	}
+}
+
+#wb-lang {
+	.current {
+		display: block;
+		background: #5e5e5e;
+		background-image: -webkit-linear-gradient(top, #5e5e5e, #585858);
+		background-image: linear-gradient(#5e5e5e, #585858);
+		border-top: 1px solid #484848;
+		border-bottom: 1px solid #2E2E2E;
+		color: #fff;
+		box-shadow: inset -1.5em 0 1.5em -.75em;
+		padding: 10px;
+	}
+}
+
+#wb-bc {
+	color: #555;
+	background: #fff;
+	border-top: 5px #999 solid;
+	border-bottom: 5px #999 solid;
+	ol {
+		border-radius: 0;
+		margin: 0;
+	}
+}
+
+#wb-st-nav, #wb-srch {
+	li {
+		a {
+			padding-left: 40px;
+			font-weight: 400;
+		}
+	}
+}
+
+#wb-sttng {
+	li {
+		a {
+			font-weight: 400;
+		}
+	}
+}
+
+#wb-st-nav a:active, #wb-srch a:active, #wb-sttng {
+	a {
+		&:active {
+			opacity: 0.5;
+		}
+	}
+}
+
+.nav-close {
+	background: url(http://dbushell.github.io/Responsive-Off-Canvas-Menu/img/close-btn.svg) no-repeat right center #333333;
+	color: #fff;
+	opacity: 0.7;
+	border: none;
+	float: right;
+	padding: 8px 35px 10px 10px;
+	margin-right: 5px;
+	&:hover, &:focus, &:active {
+		color: #fff;
+		opacity: 1;
+		background: url(http://dbushell.github.io/Responsive-Off-Canvas-Menu/img/close-btn.svg) no-repeat right center #333333;
+	}
+}
+
+#wb-glb-nav {
+	width: 100%;
+	
+	h2 {
+		@extend %accessible-invisible;
+	}
+	ul {
+		list-style-type: none;
+		float: right;
+		margin: 5px;
+		padding: 0;
+	}
+	li {
+		padding: 0;
+		background: #f1f1f1;
+		background-image: -webkit-linear-gradient(top, white, #f1f1f1);
+		background: linear-gradient(white, #f1f1f1);
+		float: left;
+		border: none;
+		border-left: 1px solid #eee;
+		&:first-child {
+			border-left: none;
+		}
+	}
+	a {
+		display: table;
+		&:after {
+			content: " ";
+			display: block;
+			height: 20px;
+			width: 20px;
+			margin: 10px;
+			border-radius: 100px;
+			background: url(../assets/icons.png) no-repeat 0 0 #474747;
+		}
+		&:active {
+			background: #d6d6d6;
+		}
+	}
+	span {
+		clip: rect(1px, 1px, 1px, 1px);
+		height: 0 !important;
+		margin: 0 !important;
+		overflow: hidden !important;
+		position: absolute;
+		width: 0 !important;
+	}
+	.wb-glb-mn-1 a:after {
+		background-position: -787px 0;
+	}
+	.wb-glb-mn-2 a:after {
+		background-position: -610px 0;
+	}
+	.wb-glb-mn-3 a:after {
+		background-position: -287px 0;
+	}
+	li:hover, a:focus {
+		background: #ccc;
+	}
+}
+
+#wb-srch {
+	form {
+		text-align: right;
+		padding: 10px;
+	}
+	button {
+		margin-top: 10px;
+	}
+}
+
+#wb-nav, #wb-sttng {
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+}
+
+#wb-title {
+	background: #114F7A;
+	background-image: -webkit-linear-gradient(top, #176ca7, #114f7a);
+	background-image: linear-gradient(#176ca7, #114f7a);
+	text-shadow: 1px 1px 1px #333;
+	p {
+		margin-bottom: 0;
+		padding: 5px 10px;
+	}
+	a {
+		color: #fff;
+		font-size: 1.5em;
+	}
+	small {
+		font-size: .5em;
+		display: block;
+	}
+}
+
+#wb-nav ul, #wb-srch ul, #wb-sttng ul, #wb-mnavbar li + li {
+	margin: 0;
+}
+
+/* This can be removed later.  Just don't want the mobile look to show up as grids when viewed on larger screens.  This will not be a problem when the desktop design/script is completed */
+.wb-org-nav {
+	.col-lg-3 {
+		width: 100%;
+		padding: 0;
+	}
+}
+
+/* End of stuff that can be deleted, per above */
+
+/* overrides to bootstrap (for now until we customize the colors) */
+.btn-primary {
+	background-color: #176CA7;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+	background-color: #114F7A;
+}
