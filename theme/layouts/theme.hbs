@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>{{title}}</title>
+<link href="{{assets}}/theme/assets/images/favicon.ico" rel="shortcut icon">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+
+<link rel="stylesheet" href="{{assets}}/css/base.css">
+<link rel="stylesheet" href="{{assets}}/css/bootstrap.min.css">
+<link rel="stylesheet" href="{{assets}}/css/theme.css">
+
+<!-- Polyfill loader-->
+<!--[if lt IE 9]>
+<script src="{{assets}}/js/oldie/respond.min.js"></script>
+<script src="{{assets}}/js/oldie/jquery.min.js"></script>
+<script src="{{assets}}/js/oldie/selectivizr.min.js"></script><![endif]-->
+<!--[if gte IE 9 | !IE ]><!-->
+<script src="{{assets}}/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="{{assets}}/js/vapour.js"></script>
+
+</head>
+<body>
+<div id="wb-skip">
+	<ul id="wb-tphp">
+		<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+		<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+	</ul>
+</div>
+<header>
+	<nav role="navigation" id="wb-glb-mn" aria-labelledby="wb-glb-mn-hd">
+		<h2 id="wb-glb-mn-hd">Navigation bar</h2>
+		<ul id="wet-mnavbar">
+			<li><a href="#mnpanel" title="Menu"><span>Menu</span></a></li>
+			<li><a href="#srchpnl" title="Search"><span>Search</span></a></li>
+			<li><a href="#sttgpnl" title="Settings"><span>Settings</span></a></li>
+		</ul>
+		<section id="wb-lang" aria-labelledby="wb-lang-hd">
+			<div class="container">
+				<h3 id="wb-lang-hd">Languages</h3>
+				<ul>
+					<li class="current">English <span>(current)</span></li>
+					<li><a lang="fr" href="http://wet-boew.github.io/wet-boew/index-fr.html">Français</a></li>
+				</ul>
+			</div>
+		</section>
+	</nav>
+	<div role="banner" id="wb-title">
+		<div class="container">
+			<a href="../index-en.html"><object type="images/svg+xml" tabindex="-1" role="img" data="images/logo.svg" aria-label="Web Experience Toolkit"></object></a>
+			<p><a href="../index-en.html" lang="en"><span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p>
+			<section id="wb-srch" aria-labelled-by="wb-srch-hd">
+				<h2 id="wb-srch-hd">Search</h2>
+				<form action="#" method="post" role="search" class="form-inline">
+					<div id="wet-srchbx-in">
+						<label for="wb-srch-txt">Search website</label>
+						<input id="wb-srch-txt" class="wb-srch-txt form-control" name="wb-srch-txt" type="search" value="" size="27" maxlength="150" />
+						<button type="submit" id="wb-srch-submit" class="wb-srch-submit btn btn-primary btn-small" name="wb-srch-submit">Search</button>
+					</div>
+				</form>
+			</section>
+		</div>
+	</div>
+	<nav role="navigation" id="wb-st-nav" aria-labelledby="wb-st-nav-hd" class="container">
+		<h2 id="wb-st-nav-hd">Site Menu</h2>
+		{{>sitemenu}}
+	</nav>
+	<nav role="navigation" id="wb-bc" aria-labelledby="wb-bc-hd" class="container">
+		<h2 id="wb-bc-hd">Breadcrumb trail</h2>
+		<ol>
+			<li><a href="../index-en.html">Home</a></li>
+			<li>Working examples</li>
+		</ol>
+	</nav>
+</header>
+<main role="main" aria-labelledby="wb-cont" class="container">
+	<h1 id="wb-cont">{{title}}</h1>
+	{{> body }}
+</main>
+<footer id="wb-org-nav" class="container">
+	<section aria-labelledby="wb-nav">
+		<h2 id="wb-nav">Footer</h2>
+		<nav role="navigation" aria-labelledby="wb-sf-hd" class="row">
+			{{>footer}}
+		</nav>
+	</section>
+</footer>
+
+<script src="{{assets}}/js/wet-boew.js"></script>
+</body>
+</html>
