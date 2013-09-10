@@ -74,10 +74,11 @@
 
 			// Clear the form and remove error messages on reset
 			$inputs.filter('[type="reset"]').on('click vclick touchstart', function(e) {
-				var button = e.button;
+				var summaryContainer,
+					button = e.button;
 				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
 					validator.resetForm();
-					var summaryContainer = form.find('#' + $errorFormId);
+					summaryContainer = form.find('#' + $errorFormId);
 					if (summaryContainer.length > 0) {
 						summaryContainer.empty();
 					}
@@ -204,9 +205,10 @@
 						// a simple href anchor link doesnt seem to place focus inside the input
 						if (_pe.preIE7) {
 							form.find('.errorContainer a').on('click vclick', function(e) {
-								var button = e.button;
+								var label_top,
+									button = e.button;
 								if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
-									var label_top = _pe.focus($($(this).attr('href'))).prev().offset().top;
+									label_top = _pe.focus($($(this).attr('href'))).prev().offset().top;
 									if (_pe.mobile) {
 										$.mobile.silentScroll(label_top);
 									} else {

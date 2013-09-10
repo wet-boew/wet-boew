@@ -99,7 +99,9 @@
 			};
 
 			toggle = function (e) {
-				var button = e.button;
+				var position,
+					button = e.button;
+
 				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
 					toggleLink.off('click vclick touchstart', toggle);
 					tocLinks.off('click vclick touchstart', toggle);
@@ -109,7 +111,7 @@
 					_pe.document.off('click vclick touchstart', documentToggle);
 
 					if (!opened) {
-						var position = wrapper.position();
+						position = wrapper.position();
 						if (pe.ie <= 0 || document.documentMode !== undefined) {
 							wrapper.removeClass('slideoutWrapper')
 								.addClass('slideoutWrapperRel')

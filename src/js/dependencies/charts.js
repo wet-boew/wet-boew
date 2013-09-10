@@ -25,7 +25,9 @@
 				parser = {},
 				fnNewParser,
 				DesignerHeadingLevel,
-				GraphTypeTableDefault = '';
+				GraphTypeTableDefault = '',
+				tick,
+				iteration = 0;
 			// console.log('graph start exec time ' + graphStartExecTime);
 			if (typeof (wet_boew_charts) !== 'undefined' && wet_boew_charts !== null) {
 				options = wet_boew_charts;
@@ -2327,8 +2329,6 @@ label:
 				if (!_pe.fn.chartsGraph.graphdelayedset) {
 					_pe.fn.chartsGraph.graphdelayedset = true;
 					// Fix the delayed processing
-					var tick,
-						iteration = 0;
 					(function ticker() {
 						if (iteration > 0) {
 							_pe.fn.chartsGraph.graphdelayed = true;
