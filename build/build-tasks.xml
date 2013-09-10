@@ -112,7 +112,7 @@
 	</target>
 	
 	<target name="-jshint">
-		<jshint dir="${src.dir}" fail="${jshint.failbuild}" globalsFile="${jshint.globals.file}" options="strict:false">
+		<jshint dir="${src.dir}" fail="${jshint.failbuild}" optionsFile=".jshintrc" globals="jQuery: true">
 			<report type="xml" destfile="${src.dir}/jshint.out.xml" />
 			<include name="**/*.js"/>
 			<exclude name="**/*.min.js"/>
