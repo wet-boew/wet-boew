@@ -172,7 +172,9 @@ module.exports = function(grunt) {
 				"domprefixes" : true
 			},
 			// Define any tests you want to impliticly include.
-			"tests" : [],
+			"tests" : [
+				"elem_details"
+			],
 			// By default, this task will crawl your project for references to Modernizr tests.
 			// Set to false to disable.
 			"parseFiles" : false,
