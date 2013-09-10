@@ -5,7 +5,13 @@
 
 /* Print open of details polyfill */
 @media print {
-  details.print-open > * {
-    display: block !important;
+  details {
+  	&.print-open {
+			> {
+  			* {
+    			display: block !important;
+    		}
+    	}
+  	}
   }
 }
