@@ -42,12 +42,12 @@ module.exports = (grunt) ->
 				data: "site/data/**/*.{yml,json}"
 				assets: "dist"
 				helpers: "site/helpers/helper-*.js"
-				layoutdir: "theme/layouts"
+				layoutdir: "site/layouts"
 				partials: ["site/includes/**/*.hbs"]
 
 			site:
 				options:
-					layout: "theme.hbs"
+					layout: "default.hbs"
 				expand: true
 				cwd: "src"
 				src: ["*.hbs"]
@@ -55,7 +55,7 @@ module.exports = (grunt) ->
 
 			demo:
 				options:
-					layout: "theme.hbs"
+					layout: "default.hbs"
 				expand: true
 				cwd: "src/plugins"
 				src: ["**/*.hbs"]

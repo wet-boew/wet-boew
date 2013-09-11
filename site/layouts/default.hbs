@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="{{language}}"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="{{language}}">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html -->
+<title>{{title}} - {{sitename}}</title>
+<link href="{{assets}}/images/favicon.ico" rel="shortcut icon">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<!-- Meta data -->
+<meta name="description" content="{{description}}" />
+<!-- Meta data-->
+<link rel="stylesheet" href="{{assets}}/css/base.css">
+<link rel="stylesheet" href="{{assets}}/css/bootstrap.min.css">
+<link rel="stylesheet" href="{{assets}}/css/theme.css">
+
+<!-- Polyfill loader-->
+<!--[if lt IE 9]>
+<script src="{{assets}}/js/oldie/respond.min.js"></script>
+<script src="{{assets}}/js/oldie/jquery.min.js"></script>
+<script src="{{assets}}/js/oldie/selectivizr.min.js"></script><![endif]-->
+<!--[if gte IE 9 | !IE ]><!-->
+<script src="{{assets}}/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="{{assets}}/js/vapour.min.js"></script>
+
+</head>
+<body>
+<div id="wb-skip">
+	<ul id="wb-tphp">
+		<li id="wb-skip1"><a href="#wb-cont">{{#i18n "%tmpl-skip-cont"}}{{/i18n}}</a></li>
+		<li id="wb-skip2"><a href="#wb-nav">{{#i18n "%tmpl-skip-foot"}}{{/i18n}}</a></li>
+	</ul>
+</div>
+<header>
+
+	<div role="banner" id="wb-banner">
+		<!-- Languages -->
+		<section id="wb-lang" aria-labelledby="wb-lang-hd">
+			<h2 id="wb-lang-hd">{{#i18n "%tmpl-lang-select"}}{{/i18n}}</h2>
+			{{>languagetoggle}}
+		</section>
+		<!-- Site Title  -->
+		<section id="wb-brand" aria-labelledby="wb-brand-hd">
+			<h2 id="wb-brand-hd">{{#i18n "%tmpl-site-title"}}{{/i18n}}</h2>
+			{{>brand}}
+		</section>
+		<!-- Site Search -->
+		<section id="wb-srch" aria-labelled-by="wb-srch-hd">
+			<h2 id="wb-srch-hd">{{#i18n "%tmpl-search"}}{{/i18n}}</h2>
+			{{>sitesearch}}
+		</section>
+	</div>
+
+	<nav role="navigation" id="wb-st-nav" aria-labelledby="wb-st-nav-hd">
+		<h2 id="wb-st-nav-hd">{{#i18n "%tmpl-site-menu"}}{{/i18n}}</h2>
+		{{>sitemenu}}
+	</nav>
+
+	<nav role="navigation" id="wb-bc" aria-labelledby="wb-bc-hd">
+		<h2 id="wb-bc-hd">{{#i18n "%tmpl-bcrumb"}}{{/i18n}}</h2>
+		{{>breadcrumbs}}
+	</nav>
+
+</header>
+
+<main role="main" aria-labelledby="wb-cont">
+	<h1 id="wb-cont">{{title}}</h1>
+	{{> body }}
+</main>
+
+<!-- Secondary Menu [optional] -->
+<nav role="navigation" id="wb-st-nav-sl" aria-labelledby="wb-st-nav-sl">
+	<h2 id="wb-st-nav-sl">{{#i18n "%tmpl-sec-menu"}}{{/i18n}}</h2>
+	{{>supporting}}
+</nav>
+
+<footer id="wb-org-nav">
+	<section aria-labelledby="wb-nav">
+		<h2 id="wb-nav">{{#i18n "%tmpl-site-info"}}{{/i18n}}</h2>
+		{{>footer}}
+	</section>
+</footer>
+
+<script src="{{assets}}/js/wet-boew.min.js"></script>
+</body>
+</html>
