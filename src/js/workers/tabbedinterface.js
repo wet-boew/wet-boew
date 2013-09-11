@@ -382,6 +382,8 @@
 				var $hiddenParents = $tabsPanel.parents('.tabs-panel > div').filter(':hidden'),
 					isSlideHorz = opts.transition === 'slide-horz',
 					viewportSize = {width: 0, height: 0},
+					i = 0,
+					len,
 					panelSize;
 
 				// Create the viewport that holds the sliding panels
@@ -399,7 +401,7 @@
 				$hiddenParents.addClass('display-block');
 
 				panelSize = getMaxPanelSize();
-				for(var i = 0, len = $panels.length; i < len; i++) {
+				for (len = $panels.length; i < len; i++) {
 					$panels.eq(i).parent().css($.extend({
 						position: 'absolute',
 						top: viewportSize.height,
