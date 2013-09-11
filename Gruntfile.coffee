@@ -174,7 +174,7 @@ module.exports = (grunt) ->
 		clean:
 			dist: "dist"
 
-			jsUncompressed: ["dist/js/**/*.js", "!dist/js/**/*.min.js"]
+			jsUncompressed: ["dist/js/**/*.js", "!dist/js/**/*.min.js", "!**/*/vapour.js", "!**/*/wet-boew.js"]
 
 		watch:
 			lib_test:
