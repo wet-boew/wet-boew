@@ -365,7 +365,7 @@
 
 				pe.document.on('click vclick touchstart focusin', function () {
 					if (container.attr('aria-hidden') === 'false') {
-						hide(container.parent().find('#' + container.attr('aria-controls')));
+						hide(container.parent().find('#' + pe.string.jqescape(container.attr('aria-controls'))));
 						return false;
 					}
 				});
