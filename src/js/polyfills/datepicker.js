@@ -157,10 +157,12 @@
 						});
 
 						link.on('click vclick touchstart', {fieldid: fieldid, year: year, month : month, day: index + 1, days: days, format: format}, function (event) {
-							var button = event.button;
+							var $field, prevDate,
+								button = event.button;
+
 							if (typeof button === 'undefined' || button === pe.leftMouseButton) { // Ignore middle/right mouse buttons
-								var $field = $('#' + event.data.fieldid),
-									prevDate = $field.val();
+								$field = $('#' + event.data.fieldid);
+								prevDate = $field.val();
 
 								addSelectedDateToField(event.data.fieldid, event.data.year, event.data.month + 1, event.data.day, event.data.format);
 								if (prevDate !== $field.val()) {

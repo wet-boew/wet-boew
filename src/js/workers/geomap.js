@@ -9,10 +9,9 @@
 (function($) {
 	"use strict";
 	var _pe = window.pe || {
-		fn: {}
-	};
-
-	var overlayTimeout = 2000, // timeout for overlay loading in milliseconds
+			fn: {}
+		},
+		overlayTimeout = 2000, // timeout for overlay loading in milliseconds
 		uniqueid = 0,
 		mapArray = [],
 		selectedFeature;
@@ -281,6 +280,7 @@
 				name,
 				popup,
 				icon,
+				regex,
 				featureid = feature.id.replace(/\W/g, '_'),
 				buttonText = _pe.dic.get('%close'),
 				mapSize = feature.layer.map.size;
@@ -295,7 +295,7 @@
 				// update content from feature
 				for (name in feature.attributes) {
 					if (feature.attributes.hasOwnProperty(name) && name.length !== 0) {
-						var regex = new RegExp('_'+ name, 'igm');
+						regex = new RegExp('_'+ name, 'igm');
 						content = content.replace(regex, feature.attributes[name]);
 					}
 				}
@@ -535,6 +535,9 @@
 				layer,
 				style,
 				styleDefault,
+				filter,
+				filterType,
+				symbolizer,
 				colon = _pe.dic.get('%colon');
 
 			while (len--) {
@@ -551,9 +554,9 @@
 						if (ruleLen) {
 							symbolText += '<ul class="list-bullet-none margin-left-none">';
 							while (ruleLen--) {
-								var filter = style.rules[ruleLen].filter,
-									filterType = filter.type,
-									symbolizer = style.rules[ruleLen].symbolizer;
+								filter = style.rules[ruleLen].filter;
+								filterType = filter.type;
+								symbolizer = style.rules[ruleLen].symbolizer;
 
 								if (filterType === '==') {
 									filterType = colon;
@@ -652,7 +655,7 @@
 		 * Generate StyleMap
 		 */
 		getStyleMap: function(elm) {
-			var styleMap, filter, select,
+			var styleMap, filter, select, rules, rule, i, len, style,
 				strokeColor = _pe.fn.geomap.randomColor(), // set random color
 				fillColor = strokeColor,
 				defaultStyle = {
@@ -679,14 +682,14 @@
 					styleMap.addUniqueValueRules('default', elm.style.field, elm.style.init);
 				} else if (elm.style.type === 'rule') {
 					// set the rules and add to the style
-					var rules = [],
-						i,
-						len,
-						style = new OpenLayers.Style();
+					rules = [];
+					i;
+					len;
+					style = new OpenLayers.Style();
 
 					for (i = 0, len = elm.style.rule.length; i !== len; i += 1) {
 						// set the filter
-						var rule = elm.style.rule[i];
+						rule = elm.style.rule[i];
 
 						if (rule.filter === 'LESS_THAN') {
 							filter = OpenLayers.Filter.Comparison.LESS_THAN;
@@ -1123,7 +1126,9 @@
 										externalProjection: new OpenLayers.Projection('EPSG:4269'),
 										read: function(data) {
 
-											var items, row, $row, i, len, feature, atts, features = [],
+											var items, row, $row, len, feature, atts, xmlDocument,
+												i = 0,
+												features = [],
 												layerAttributes = layer.attributes,
 												name;
 
@@ -1131,7 +1136,7 @@
 											if (typeof data === 'string') {
 												// with IE we cant use DOMParser
 												if (_pe.ie > 0) {
-													var xmlDocument = new ActiveXObject('Microsoft.XMLDOM');
+													xmlDocument = new ActiveXObject('Microsoft.XMLDOM');
 													xmlDocument.async = false;
 													xmlDocument.loadXML(data);
 													data = xmlDocument;
@@ -1141,7 +1146,7 @@
 											}
 											items = this.getElementsByTagNameNS(data, '*', 'Placemark');
 
-											for (i = 0, len = items.length; i !== len; i += 1) {
+											for (len = items.length; i !== len; i += 1) {
 												row = items[i];
 												$row = $(row);
 												feature = new OpenLayers.Feature.Vector();
@@ -1469,7 +1474,26 @@
 		*	]
 		*/
 		addTabularData: function(geomap, opts, projLatLon, projMap) {
-			var thZoom = '<th>' + _pe.dic.get('%geo-zoomfeature') + '</th>',
+			var $table,
+				table,
+				attr,
+				thead_tfoot_tr,
+				tableLayer,
+				thElms,
+				thlen,
+				trElms,
+				trlen,
+				useMapControls,
+				attrMap,
+				trElmsInd,
+				geomType,
+				vectorFeatures,
+				features,
+				len,
+				feature,
+				script,
+				bbox,
+				thZoom = '<th>' + _pe.dic.get('%geo-zoomfeature') + '</th>',
 				thSelect = ('<th>' + _pe.dic.get('%geo-select') + '</th>'),
 				wktFeature,
 				wktParser = new OpenLayers.Format.WKT({
@@ -1479,18 +1503,17 @@
 				lenTable = opts.tables.length;
 
 			while (lenTable--) {
-				var $table = $('#' + opts.tables[lenTable].id),
-					table = opts.tables[lenTable],
-					attr = [],
-					thead_tfoot_tr,
-					tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), {
-						styleMap: _pe.fn.geomap.getStyleMap(table)
-					}),
-					thElms = $table[0].getElementsByTagName('th'),
-					thlen = thElms.length,
-					trElms = $table[0].getElementsByTagName('tr'),
-					trlen = trElms.length,
-					useMapControls = opts.useMapControls;
+				$table = $('#' + opts.tables[lenTable].id);
+				table = opts.tables[lenTable];
+				attr = [];
+				tableLayer = new OpenLayers.Layer.Vector($table.find('caption').text(), {
+					styleMap: _pe.fn.geomap.getStyleMap(table)
+				});
+				thElms = $table[0].getElementsByTagName('th');
+				thlen = thElms.length;
+				trElms = $table[0].getElementsByTagName('tr');
+				trlen = trElms.length;
+				useMapControls = opts.useMapControls;
 
 				// get the attributes from table header
 				while (thlen--) {
@@ -1510,14 +1533,11 @@
 				while (trlen--) {
 
 					// create an array of attributes: value
-					var attrMap = {},
-						trElmsInd = trElms[trlen],
-						geomType = trElmsInd.getAttribute('data-type'), // get the geometry type
-						vectorFeatures,
-						features = trElmsInd.getElementsByTagName('td'),
-						len = features.length,
-						feature,
-						script;
+					attrMap = {};
+					trElmsInd = trElms[trlen];
+					geomType = trElmsInd.getAttribute('data-type'); // get the geometry type
+					features = trElmsInd.getElementsByTagName('td');
+					len = features.length;
 
 					while (len--) {
 						// use innerHTML instead of innerText or textContent because they react differently in different browser
@@ -1532,7 +1552,7 @@
 
 					if (geomType !== null) {
 						if (geomType === 'bbox') {
-							var bbox = trElmsInd.getAttribute('data-geometry').split(',');
+							bbox = trElmsInd.getAttribute('data-geometry').split(',');
 							wktFeature = 'POLYGON((' +
 								bbox[0] + ' ' + bbox[1] + ', ' +
 								bbox[0] + ' ' + bbox[3] + ', ' +
