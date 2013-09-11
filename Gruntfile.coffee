@@ -7,6 +7,8 @@ module.exports = (grunt) ->
 		pkg: grunt.file.readJSON("package.json")
 		banner: "/*! Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" - v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n*/\n"
+		environment:
+			suffix: ".min"
 
 		# Task configuration.
 		concat:
@@ -40,7 +42,7 @@ module.exports = (grunt) ->
 					sanitize: false
 				production: false
 				data: "site/data/**/*.{yml,json}"
-				assets: "dist"
+				assets: "dist/"
 				helpers: "site/helpers/helper-*.js"
 				layoutdir: "site/layouts"
 				partials: ["site/includes/**/*.hbs"]
@@ -48,6 +50,8 @@ module.exports = (grunt) ->
 			site:
 				options:
 					layout: "default.hbs"
+					environment:
+						suffix: "<%= environment.suffix %>"
 				expand: true
 				cwd: "src"
 				src: ["*.hbs"]
@@ -56,6 +60,8 @@ module.exports = (grunt) ->
 			demo:
 				options:
 					layout: "default.hbs"
+					environment:
+						suffix: "<%= environment.suffix %>"
 				expand: true
 				cwd: "src/plugins"
 				src: ["**/*.hbs"]
@@ -80,20 +86,20 @@ module.exports = (grunt) ->
 				cwd: "src/polyfills"
 				src: ["**/*.js"]
 				dest: "dist/js/polyfills/"
-				ext: ".min.js"
+				ext: "<%= environment.suffix %>.js"
 				flatten: true
 
 			core:
 				options:
 					preserveComments: "some"
 				files:
-					"dist/js/vapour.min.js": "dist/js/vapour.js"
+					"dist/js/vapour<%= environment.suffix %>.js": "dist/js/vapour.js"
 
 			plugins:
 				options:
 					banner: "<%= banner %>"
 				files:
-					"dist/js/wet-boew.min.js": "dist/js/wet-boew.js"
+					"dist/js/wet-boew<%= environment.suffix %>.js": "dist/js/wet-boew.js"
 
 			i18n:
 				options:
@@ -102,13 +108,13 @@ module.exports = (grunt) ->
 				cwd: "dist/js/i18n"
 				src: ["**/*.js"]
 				dest: "dist/js/i18n"
-				ext: ".min.js"
+				ext: "<%= environment.suffix %>.js"
 
 			lib:
 				options:
 					preserveComments: "some"
 				files:
-					"dist/js/deps/jquery.pjax.min.js": "lib/jquery-pjax/jquery.pjax.js"
+					"dist/js/deps/jquery.pjax<%= environment.suffix %>.js": "lib/jquery-pjax/jquery.pjax.js"
 
 		coffee:
 			vapour:
@@ -174,7 +180,7 @@ module.exports = (grunt) ->
 		clean:
 			dist: "dist"
 
-			jsUncompressed: ["dist/js/**/*.js", "!dist/js/**/*.min.js"]
+			jsUncompressed: ["dist/js/**/*.js", "!dist/js/**/*<%= environment.suffix %>.js"]
 
 		watch:
 			lib_test:
