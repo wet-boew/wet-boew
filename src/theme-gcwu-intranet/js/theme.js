@@ -320,7 +320,7 @@
 						if (listviewOpen) {
 							settings_popup += '</ul>';
 							listviewOpen = false;
-						}						
+						}
 						settings_popup += '<div class="wb-nested-menu" data-role="collapsible"><h2>' + target + '</h2>' + listView + '>';
 						links = next[0].getElementsByTagName('a');
 						for (j = 0, len2 = links.length; j !== len2; j += 1) {
@@ -335,7 +335,7 @@
 						if (!listviewOpen) {
 							settings_popup += listView + '>';
 							listviewOpen = true;
-						}	
+						}
 						settings_popup += '<li class="top-level' + (i === 0 ? ' ui-corner-top' : '') + '"><a href="' + link.attr('href') + '">' + link.html() + '</a></li>';
 					}
 				}
@@ -348,7 +348,7 @@
 					if (!listviewOpen) {
 						settings_popup += listView + '>';
 						listviewOpen = true;
-					}	
+					}
 
 					for (i = 0; i !== len; i += 1) {
 						node = nodes[i];
@@ -362,7 +362,7 @@
 						}
 					}
 				}
-				
+
 				if (listviewOpen) {
 					settings_popup += '</ul>';
 				}

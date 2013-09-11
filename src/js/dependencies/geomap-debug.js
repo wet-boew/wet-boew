@@ -41,7 +41,7 @@
 				warning: 'BOEW-Geomap AVERTISSEMENT',
 				warningLegend: "Aucun élément div comportant une classe <em>wet-boew-geomap-legend</em> n'a été trouvé. Si vous avez besoin d'une légende, vous pouvez ajouter un élément div avec une classe <em>wet-boew-geomap-legend</em>.",
 				overlayNotSpecify: 'BOEW-Géocarte : fichier des couches de superpositions non spécifié',
-				baseMapMapOptionsLoadError: "BOEW-Géocarte : une erreur est survenue lors du chargement des options de configuration de votre carte de base. S'il vous plaît, vérifiez que vous avez l'ensemble des options suivantes: maxExtent (ex: '-3000000,0, -800000,0, 4000000,0, 3900000,0'), maxResolution (ex: 'auto'), projection (ex: 'EPSG: 3978'), restrictedExtent (ex: '-3000000,0 , -800000,0, 4000000,0, 3900000,0'), units (ex: 'm'), displayProjection (ex: 'EPSG: 4269'), numZoomLevels (ex: 12), aspectRatio: (ex: 0.8).",	
+				baseMapMapOptionsLoadError: "BOEW-Géocarte : une erreur est survenue lors du chargement des options de configuration de votre carte de base. S'il vous plaît, vérifiez que vous avez l'ensemble des options suivantes: maxExtent (ex: '-3000000,0, -800000,0, 4000000,0, 3900000,0'), maxResolution (ex: 'auto'), projection (ex: 'EPSG: 3978'), restrictedExtent (ex: '-3000000,0 , -800000,0, 4000000,0, 3900000,0'), units (ex: 'm'), displayProjection (ex: 'EPSG: 4269'), numZoomLevels (ex: 12), aspectRatio: (ex: 0.8).",
 				warningTab: "Il n'y a pas de classe <em>tab</em> dans wet-boew-geomap mais une table a l'attribut égal vrai.",
 				layersNotSpecify: "Il n'y a pas de div avec le id <em>wet-boew-geomap-layers</em>. Vous devez en ajouter un."
 			}
@@ -61,7 +61,7 @@
 			}
 			warning_start = msg_start + messages.warning + msg_middle;
 			error_start = '<div class="module-alert"><h3>' + messages.error + msg_middle;
-			
+
 			console.log(debugMode);
 			$wb_main_in.prepend(msg_start + debugMode + msg_middle + messages.debugMess + msg_end);
 

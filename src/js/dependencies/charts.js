@@ -21,7 +21,7 @@
 				self = $(elm),
 				srcTbl = self,
 				smallestHorizontalFlotDelta,
-				smallestVerticalFlotDelta; 
+				smallestVerticalFlotDelta;
 
 			function colourNameToHex(colour) {
 				// colorsAccent = ['#8d201c', '#EE8310', '#2a7da6', '#5a306b', '#285228', '#154055', '#555555', '#f6d200', '#d73d38', '#418541', '#87aec9', '#23447e', '#999999'];
@@ -167,30 +167,30 @@
 					whitesmoke:  '#f5f5f5',
 					yellow: '#ffff00',
 					yellowgreen: '#9acd32',
-				
+
 					// Accent Colors
-					'accent-1': '#8d201c', 
-					'accent-2': '#EE8310', 
-					'accent-3': '#2a7da6', 
-					'accent-4': '#5a306b', 
-					'accent-5': '#285228', 
-					'accent-6': '#154055', 
-					'accent-7': '#555555', 
-					'accent-8': '#f6d200', 
-					'accent-9': '#d73d38', 
-					'accent-10': '#418541', 
-					'accent-11': '#87aec9', 
-					'accent-12': '#23447e', 
+					'accent-1': '#8d201c',
+					'accent-2': '#EE8310',
+					'accent-3': '#2a7da6',
+					'accent-4': '#5a306b',
+					'accent-5': '#285228',
+					'accent-6': '#154055',
+					'accent-7': '#555555',
+					'accent-8': '#f6d200',
+					'accent-9': '#d73d38',
+					'accent-10': '#418541',
+					'accent-11': '#87aec9',
+					'accent-12': '#23447e',
 					'accent-13': '#999999'
 				};
-				
+
 				if (typeof colour === 'number')  {
 					colour = 'accent-' + (colour + 1);
 				}
-				
+
 				return (colours[colour.toLowerCase()] !== 'undefined' ? colours[colour.toLowerCase()] : ($.isArray(options.colors) ? options.colors[0] : options.colors));
 			}
-			
+
 			// Function to Convert Class instance to JSON
 			function setClassOptions (sourceOptions, strClass, namespace) {
 				var separatorNS = '',
@@ -205,7 +205,7 @@
 				}
 				// Get a working copy for the sourceOptions
 				sourceOptions = jQuery.extend(true, {}, sourceOptions);
-				
+
 				// Test: strClass
 				if (typeof strClass !== 'string' || strClass.lenght === 0) {
 					// no string class;
@@ -254,8 +254,8 @@
 						jsonString,
 						val;
 					// Get only the item larger than the namespace and remove the namespace
-					
-					
+
+
 					if ($.isArray(namespace)) {
 						// support to an array of namespace for backward compatibility and syntax error eg. wb-charts and wb-chart and wb-graph would be equivalent
 						for (i = 0, _ilen = namespace.length; i < _ilen; i += 1) {
@@ -286,11 +286,11 @@
 									propName = arrParameter[i];
 									i += 1;
 									_ilen = arrParameter.length;
-								} else if (currObj.preset && currObj.preset[arrParameter[i]]) { 
+								} else if (currObj.preset && currObj.preset[arrParameter[i]]) {
 									// 2. It match a preset, overide the current setting
 									currObj = jQuery.extend(true, currObj, currObj.preset[arrParameter[i]]);
 									break;
-								} else if (_ilen === 1) { 
+								} else if (_ilen === 1) {
 									// 3. Use the Default set
 									propName = sourceOptions['default-option'] ? sourceOptions['default-option'] : undefined;
 								} else {
@@ -479,7 +479,7 @@
 						// Parameter: elem = HTML DOM node (td element)
 						//
 						// If this function return an array, it would be assume that the first item correspond at the cell numbered value and the second item correspond at the cell unit
-						// Example 
+						// Example
 						// return 25.14
 						// return 44
 						// return [44, "%"]
@@ -559,33 +559,33 @@
 			// Similar sample of code as the HTML Table validator
 			function addTblHeaders(tblparser) {
 			var i, j, k, m, currRow, currCell;
-			
+
 			// Set ID and Header for the table head
 			for (i = 0; i < tblparser.theadRowStack.length; i += 1) {
 				currRow = tblparser.theadRowStack[i];
-			
+
 				for (j = 0; j < currRow.cell.length; j += 1) {
 					currCell = currRow.cell[j];
-				
+
 					if ((currCell.type === 1 || currCell.type === 7) && (
 							!(j > 0 && currCell.uid === currRow.cell[j - 1].uid) &&
 							!(i > 0 && currCell.uid === tblparser.theadRowStack[i - 1].cell[j].uid)
 						) ) {
-					
+
 						if (!currCell.header) { // Imediate header
 							currCell.header = [];
 						}
 						if (!currCell.headers) { // all the headers
 							currCell.headers = [];
 						}
-						
+
 						if (!currCell.child) { // Imediate sub cell
 							currCell.child = [];
 						}
 						if (!currCell.childs) { // All the sub cell
 							currCell.childs = [];
 						}
-					
+
 						// Set the header of the current cell if required
 						if (i > 0) {
 							// All the header cells
@@ -598,71 +598,71 @@
 							currCell.header.push(tblparser.theadRowStack[i - 1].cell[j]);
 							tblparser.theadRowStack[i - 1].cell[j].child.push(currCell);
 						}
-					
-					
-						// Set the header on his descriptive cell if any 
+
+
+						// Set the header on his descriptive cell if any
 						if (currCell.descCell) {
 							currCell.descCell.header = currCell;
 							currCell.descCell.headers = currCell;
 						}
 					}
-				
+
 				}
-			
+
 			}
-			
+
 			// Set Id/headers for header cell and data cell in the table.
 			for (i = 0; i < tblparser.row.length; i += 1) {
 				currRow = tblparser.row[i];
 				var rowheadersgroup = [],
 					rowheaders = [],
 					currrowheader = [],
-					ongoingRowHeader = [], 
+					ongoingRowHeader = [],
 					coldataheader = [];
-				
+
 				// Get or Generate a unique ID for each header in this row
-				if (currRow.headerset && !currRow.idsheaderset) { 
+				if (currRow.headerset && !currRow.idsheaderset) {
 					for (j = 0; j < currRow.headerset.length; j += 1) {
 						rowheadersgroup = rowheadersgroup.concat(currRow.headerset[j]);
 					}
 					currRow.idsheaderset = rowheadersgroup;
 				}
-				
-				if (currRow.header) { 
+
+				if (currRow.header) {
 					for (j = 0; j < currRow.header.length; j += 1) {
 						rowheaders = rowheaders.concat(currRow.header[j]);
 					}
 				}
 				rowheaders = currRow.idsheaderset.concat(rowheaders);
 				for (j = 0; j < currRow.cell.length; j += 1) {
-					
+
 					if ((j === 0) || (j > 0 && currRow.cell[j].uid !== currRow.cell[(j - 1)].uid)){
 						currCell = currRow.cell[j];
 						coldataheader = [];
-						
+
 						if (!currCell.header) { // Imediate header
 							currCell.header = [];
 						}
 						if (!currCell.headers) { // all the headers
 							currCell.headers = [];
 						}
-						
-						
+
+
 						if (currCell.col && !currCell.col.dataheader) {
 							var currCol = currCell.col;
 							var colheaders = [],
 								colheadersgroup = [];
-							if (currCol.headerLevel) { 
+							if (currCol.headerLevel) {
 								for (m = 0; m < currCol.headerLevel.length; m += 1) {
 									colheadersgroup = colheadersgroup.concat(currCol.headerLevel[m]);
 								}
 							}
-							if (currCol.header) { 
+							if (currCol.header) {
 								for (m = 0; m < currCol.header.length; m += 1) {
 									colheaders = colheaders.concat(currCol.header[m]);
 								}
 							}
-							
+
 							if(!currCol.dataheader) {
 								currCol.dataheader = [];
 							}
@@ -670,12 +670,12 @@
 							currCol.dataheader = currCol.dataheader.concat(colheadersgroup);
 							currCol.dataheader = currCol.dataheader.concat(colheaders);
 						}
-						
+
 						if (currCell.col && currCell.col.dataheader) {
 							coldataheader = currCell.col.dataheader;
-						}						
+						}
 
-						
+
 						if (currCell.type === 1) {
 
 							if (!currCell.child) { // Imediate sub cell
@@ -684,7 +684,7 @@
 							if (!currCell.childs) { // All the sub cell
 								currCell.childs = [];
 							}
-								
+
 							for (m = 0; m < ongoingRowHeader.length; m += 1) {
 
 								if (currCell.colpos === (ongoingRowHeader[m].colpos + ongoingRowHeader[m].width)) {
@@ -695,27 +695,27 @@
 								}
 								ongoingRowHeader[m].childs.push(currCell);
 							}
-							
+
 							for (m = 0; m < currRow.idsheaderset.length; m += 1) {
-							
+
 								if (!currRow.idsheaderset[m].childs) { // All the sub cell
 									currRow.idsheaderset[m].childs = [];
 								}
 								currRow.idsheaderset[m].childs.push(currCell);
 							}
-							
-							currCell.header = currCell.header.concat(ongoingRowHeader); 
-							
+
+							currCell.header = currCell.header.concat(ongoingRowHeader);
+
 							currCell.headers = currCell.headers.concat(coldataheader);
 							currCell.headers = currCell.headers.concat(currRow.idsheaderset);
-							currCell.headers = currCell.headers.concat(ongoingRowHeader); 
+							currCell.headers = currCell.headers.concat(ongoingRowHeader);
 
 							ongoingRowHeader = ongoingRowHeader.concat(currCell);
 						}
-						
-						
+
+
 						if (currCell.type === 2 || currCell.type === 3) {
-							
+
 							// Get Current Column Headers
 							currrowheader = rowheaders;
 
@@ -740,12 +740,12 @@
 				}
 			}
 		}
-			
+
 			var tblMultiplier = [],
 				calcTick = [],
 				UseHeadRow,
 				uniformCumul;
-			
+
 			// Determine an appropriate tick for the colgroup head (first colgroup)
 			function helper1CalcVTick(parsedDataCell, headerlevel){
 				var kIndex;
@@ -761,12 +761,12 @@
 			}
 			function helper2CalcVTick(parsedDataCell, headerlevel){
 				var kIndex;
-				
-				
+
+
 				headerlevel += 1;
 				var internalCumul = 0;
 				internalCumul = parsedDataCell.flotValue - parsedDataCell.flotDelta;
-				
+
 				var flotDelta = (parsedDataCell.flotDelta / parsedDataCell.child.length);
 				if (!smallestVerticalFlotDelta || flotDelta < smallestVerticalFlotDelta){
 					smallestVerticalFlotDelta = flotDelta;
@@ -775,7 +775,7 @@
 					parsedDataCell.child[kIndex].flotDelta = flotDelta;
 					internalCumul = internalCumul + flotDelta;
 					parsedDataCell.child[kIndex].flotValue = internalCumul;
-					
+
 					if (headerlevel === UseHeadRow) {
 						calcTick.push([(parsedDataCell.child[kIndex].flotValue - flotDelta), $(parsedDataCell.child[kIndex].elem).text()]);
 					}
@@ -786,96 +786,96 @@
 				headerlevel -= 1;
 			}
 			function calculateVerticalTick(parsedData) {
-				
+
 				// Get the appropriate ticks
 				var nbCells = 0;
 				// var tblMultiplier = [];
-				
+
 				var headerlevel = 0;
 				var parsedDataCell;
 				var i;
-				
+
 				tblMultiplier = [];
-				
+
 				if (!parsedData.colgrouphead) {
 					return;
 				}
-				
+
 				for (i = 0; i < parsedData.colgrouphead.col[0].cell.length; i += 1) {
 
 					parsedDataCell = parsedData.colgrouphead.col[0].cell[i];
-					
+
 					if (i === 0 || (i > 0 && parsedData.colgrouphead.col[0].cell[i - 1].uid !== parsedDataCell.uid)) {
-						
+
 						if (parsedDataCell.rowgroup && parsedDataCell.rowgroup.type === 3) {
 							// We only process the first column data group
 							break;
 						}
-						
+
 						if (parsedDataCell.type === 1 || parsedDataCell.type === 7)  {
 							nbCells += 1;
-							
+
 							if (parsedDataCell.child.length > 0){
 								headerlevel = helper1CalcVTick(parsedDataCell, headerlevel);
 							}
 						}
 					}
 				}
-				
+
 				tblMultiplier.push([nbCells, headerlevel]);
-				
+
 				var TotalRowValue = tblMultiplier[0][0];
-				
+
 				for (i = 1; i < tblMultiplier.length; i += 1){
 					TotalRowValue = TotalRowValue * tblMultiplier[i][0];
 				}
-				
-				
+
+
 				//
 				// Get the tick
 				//
-				// From an option that would choose the appropriate row.			
+				// From an option that would choose the appropriate row.
 				// UseHeadRow get a number that represent the row to use to draw the label
-				
+
 				UseHeadRow = parsedData.colgrouphead.col.length - 1;
-				
-				
+
+
 				// var calcTick = [];
 				calcTick = [];
-				
+
 				var cumulFlotValue = 0;
-				
+
 				headerlevel = 0;
 				// Set the associate tick value along with the headers
 				for (i = 0; i < parsedData.colgrouphead.col[0].cell.length; i += 1) {
-					
+
 					parsedDataCell = parsedData.colgrouphead.col[0].cell[i];
-					
+
 					if (i === 0 || (i > 0 && parsedData.colgrouphead.col[0].cell[i - 1].uid !== parsedDataCell.uid)){
 
 						if (parsedDataCell.rowgroup && parsedDataCell.rowgroup.type === 3) {
 							// We only process the first column data group
 							break;
 						}
-						
+
 						if (parsedDataCell.type === 1 || parsedDataCell.type === 7)  {
-							
+
 							parsedDataCell.flotDelta = (TotalRowValue / nbCells);
-							
-						
+
+
 							if (!smallestVerticalFlotDelta || parsedDataCell.flotDelta < smallestVerticalFlotDelta){
 								smallestVerticalFlotDelta = parsedDataCell.flotDelta;
 							}
-							
+
 							cumulFlotValue += parsedDataCell.flotDelta;
-							
+
 							parsedDataCell.flotValue = cumulFlotValue;
-							if (headerlevel === UseHeadRow || 
-							
+							if (headerlevel === UseHeadRow ||
+
 								((parsedDataCell.colpos - 1) < UseHeadRow && UseHeadRow <= ((parsedDataCell.colpos - 1) + (parsedDataCell.width - 1)))){
 								calcTick.push([(parsedDataCell.flotValue - parsedDataCell.flotDelta), $(parsedDataCell.elem).text()]);
 							}
-							
+
 							if (parsedDataCell.child.length > 0){
 								helper2CalcVTick(parsedDataCell, headerlevel);
 							}
@@ -884,7 +884,7 @@
 				}
 				return calcTick;
 			}
-			
+
 			function helper1CalcHTick(parsedDataCell, headerlevel){
 				var kIndex;
 				if (parsedDataCell.child.length === 0) {
@@ -897,8 +897,8 @@
 				}
 				headerlevel -= 1;
 			}
-			
-			
+
+
 			function helper2CalcHTick(parsedDataCell, headerlevel){
 				var kIndex,
 					theadRowStack_len = parsedDataCell.groupZero.theadRowStack.length - 1;
@@ -908,42 +908,42 @@
 				headerlevel += 1;
 				var internalCumul = 0;
 				internalCumul = parsedDataCell.flotValue;
-				
+
 				var flotDelta = (!options.uniformtick ? (parsedDataCell.flotDelta / parsedDataCell.child.length): 1);
 				if (!smallestHorizontalFlotDelta || flotDelta < smallestHorizontalFlotDelta){
 					smallestHorizontalFlotDelta = flotDelta;
 				}
 				for (kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1) {
 					parsedDataCell.child[kIndex].flotDelta = flotDelta;
-					
+
 					if (headerlevel === UseHeadRow) {
 						calcTick.push([(!options.uniformtick ? internalCumul : uniformCumul), $(parsedDataCell.child[kIndex].elem).text()]);
 					}
-					
-					if (headerlevel === theadRowStack_len || 
-						((parsedDataCell.rowpos - 1) < theadRowStack_len && 
+
+					if (headerlevel === theadRowStack_len ||
+						((parsedDataCell.rowpos - 1) < theadRowStack_len &&
 						theadRowStack_len <= ((parsedDataCell.rowpos - 1) + (parsedDataCell.height - 1))) ||
 						theadRowStack_len === ((parsedDataCell.rowpos - 1) + (parsedDataCell.height - 1))) {
-							
+
 						uniformCumul += flotDelta;
 					}
-					
+
 					parsedDataCell.child[kIndex].flotValue = internalCumul;
 					internalCumul = internalCumul + flotDelta;
-					
+
 					helper2CalcHTick(parsedDataCell.child[kIndex], headerlevel);
 				}
 				headerlevel -= 1;
 			}
-			
+
 			// Determine an appropriate tick for the rowgroup head (thead)
 			function calculateHorisontalTick(parsedData) {
-				
+
 				if (!parsedData.theadRowStack) {
 					return;
 				}
-				
-					
+
+
 				// Find the range of the first data colgroup
 				var dataColgroupStart = -1;
 				var dataColgroupEnd = -1;
@@ -955,72 +955,72 @@
 						break;
 					}
 				}
-				
+
 				// Get the appropriate ticks
 				var nbCells = 0,
 					parsedDataCell,
 					nbTotSlots = 0,
 					headerlevel = 0;
-					
+
 				tblMultiplier = [];
 				for (i = 0; i < parsedData.theadRowStack[0].elem.cells.length; i += 1) {
-					
+
 					parsedDataCell = $(parsedData.theadRowStack[0].elem.cells[i]).data().tblparser;
-					
+
 					if (parsedDataCell.colgroup && parsedDataCell.colgroup.type === 3) {
 						// We only process the first column data group
 						break;
 					}
-					
+
 					if (parsedDataCell.colpos >= dataColgroupStart && (parsedDataCell.type === 1 || parsedDataCell.type === 7))  {
 						nbCells += 1;
-						
+
 						nbTotSlots += parsedDataCell.width;
-						
-						
-						
-						
+
+
+
+
 						helper1CalcHTick(parsedDataCell, headerlevel);
 					}
 				}
 				tblMultiplier.push([nbCells, headerlevel]);
-				
+
 				var TotalRowValue = tblMultiplier[0][0];
-				
+
 				for (i = 1; i < tblMultiplier.length; i += 1){
 					TotalRowValue = TotalRowValue * tblMultiplier[i][0];
 				}
-				
-				
+
+
 				//
 				// Get the tick
 				//
-				// From an option that would choose the appropriate row.			
+				// From an option that would choose the appropriate row.
 				// UseHeadRow get a number that represent the row to use to draw the label
-				
+
 				UseHeadRow = (!options.labelposition || (options.labelposition && options.labelposition > parsedData.theadRowStack.length) ? parsedData.theadRowStack.length : options.labelposition) - 1;
-				
+
 				calcTick = [];
-				
+
 				var cumulFlotValue = 0;
 				uniformCumul = 0;
 
 				headerlevel = 0;
 				// Set the associate tick value along with the headers
 				for (i = 0; i < parsedData.theadRowStack[0].elem.cells.length; i += 1) {
-					
+
 					parsedDataCell = $(parsedData.theadRowStack[0].elem.cells[i]).data().tblparser;
-					
+
 					if (parsedDataCell.colgroup && parsedDataCell.colgroup.type === 3) {
 						// We only process the first column data group
 						break;
 					}
-					
+
 					if (parsedDataCell.colpos >= dataColgroupStart && (parsedDataCell.type === 1 || parsedDataCell.type === 7))  {
 
 						parsedDataCell.flotDelta = (!options.uniformtick ? (TotalRowValue / nbCells) : 1);
-						
-						
+
+
 						if (!smallestHorizontalFlotDelta || parsedDataCell.flotDelta < smallestHorizontalFlotDelta){
 							smallestHorizontalFlotDelta = parsedDataCell.flotDelta;
 						}
@@ -1029,16 +1029,16 @@
 						if (headerlevel === UseHeadRow || ((parsedDataCell.rowpos - 1) < UseHeadRow && UseHeadRow <= ((parsedDataCell.rowpos - 1) + (parsedDataCell.height - 1)))) {
 							calcTick.push([(!options.uniformtick ? cumulFlotValue : uniformCumul), $(parsedDataCell.elem).text()]);
 						}
-						
-						if (headerlevel === (parsedData.theadRowStack.length - 1) || 
-						
-							((parsedDataCell.rowpos - 1) < (parsedData.theadRowStack.length - 1) && 
+
+						if (headerlevel === (parsedData.theadRowStack.length - 1) ||
+
+							((parsedDataCell.rowpos - 1) < (parsedData.theadRowStack.length - 1) &&
 							(parsedData.theadRowStack.length - 1) <= ((parsedDataCell.rowpos - 1) + (parsedDataCell.height - 1))) ||
-									
+
 							(parsedData.theadRowStack.length - 1) === ((parsedDataCell.rowpos - 1) + (parsedDataCell.height - 1))){
-							
+
 							uniformCumul += parsedDataCell.flotDelta;
-							
+
 						}
 
 						cumulFlotValue += parsedDataCell.flotDelta;
@@ -1049,12 +1049,12 @@
 				return calcTick;
 			}
 
-			
+
 			// Function to switch the series order, like make it as vertical series to horizontal series (see Task #2997)
 			function swapTable() {
-				// function swapTable for request #2799, transforming horizontal table to virtical table; 
-				// Government of Canada. Contact Qibo or Pierre for algorithm info and bug-fixing; 
-				// important table element: id or class, th; 
+				// function swapTable for request #2799, transforming horizontal table to virtical table;
+				// Government of Canada. Contact Qibo or Pierre for algorithm info and bug-fixing;
+				// important table element: id or class, th;
 				var sMatrix = [],
 					i = 0,
 					_ilen,
@@ -1078,7 +1078,7 @@
 								$(this).attr('colspan', 1);
 							}
 							maxRowCol += Number($(this).attr('colspan'));
-							// block change, 20120118 fix for defect #3226, jquery 1.4 problem about colspan attribute, qibo; 
+							// block change, 20120118 fix for defect #3226, jquery 1.4 problem about colspan attribute, qibo;
 						});
 					}
 					s += 1;
@@ -1103,7 +1103,7 @@
 						}
 						attrCol = Number($(this).attr('colspan'));
 						attrRow = Number($(this).attr('rowspan'));
-						// block change, 20120118 fix for defect #3226, jquery 1.4 problem about colspan attribute, qibo; 
+						// block change, 20120118 fix for defect #3226, jquery 1.4 problem about colspan attribute, qibo;
 						while (tMatrix[i][j] === 3) {
 							j += 1;
 						}
@@ -1117,16 +1117,16 @@
 							stopCol = j + attrCol - 1;
 							for (jj = j; jj <= stopCol; jj += 1) {
 								for (ii = i; ii <= stopRow; ii += 1) {
-									tMatrix[ii][jj] = 3; //random number as place marker; 
+									tMatrix[ii][jj] = 3; //random number as place marker;
 								}
 							}
 						} else if (attrRow > 1) {
 							for (ii = i; ii <= stopRow; ii += 1) {
-								tMatrix[ii][j] = 3; // place holder; 
+								tMatrix[ii][j] = 3; // place holder;
 							}
 						}
-						ss1 = $(this).clone(); // have a copy of it, not destroying the look of the original table; 
-						// transforming rows and cols and their properties; 
+						ss1 = $(this).clone(); // have a copy of it, not destroying the look of the original table;
+						// transforming rows and cols and their properties;
 						ss1.attr('colspan', attrRow);
 						ss1.attr('rowspan', attrCol);
 						(sMatrix[j] = sMatrix[j] || [])[i] = ss1;
@@ -1143,7 +1143,7 @@
 						oneRow.append(val);
 					});
 				});
-				// now adding the missing thead; 
+				// now adding the missing thead;
 				html2 = swappedTable.html();
 				headStr = '<table id="swappedGraph">' + '<caption>' + capVal + ' (Horizontal to Vertical)</caption><thead>';
 				html2 = html2.replace(/<tbody>/gi, headStr);
@@ -1162,19 +1162,19 @@
 				$(html2).insertAfter(srcTbl).hide(); //visible, for debugging and checking;
 				return $(html2);
 			}
-			
-			
-			
-			
+
+
+
+
 			if (options.parsedirection === 'y') {
 				self = swapTable(srcTbl);
 			}
-			
+
 			// Parse the table
 			if (!$(self).data().tblparser) {
 				_pe.fn.parsertable.parse($(self));
 			}
-			
+
 			var RowDefaultOptions = {
 				'default-option': 'type', // Default CSS Options
 				'default-namespace': ['wb-charts', 'wb-chart', 'wb-graph'],
@@ -1185,10 +1185,10 @@
 				parsedData = $(self).data().tblparser, // Retrieve the parsed data
 				horizontalCalcTick,
 				verticalCalcTick;
-			
+
 			// Fix the parsed data
 			addTblHeaders(parsedData);
-			
+
 			//
 			// Calculate the tick for a table where x is horizontal
 			//
@@ -1198,10 +1198,10 @@
 			// Reverse the axis for the data table
 			//
 			verticalCalcTick = calculateVerticalTick(parsedData);
-			
-		
+
+
 			calcTick = horizontalCalcTick;
-			
+
 			var allSeries = [],
 				isPieChart,
 				dataSeries = [],
@@ -1216,16 +1216,16 @@
 				tblSrcContainer,
 				tblSrcContainerSummary,
 				cellValue;
-			
 
-			
+
+
 			if (options.type === 'pie') {
 				// Use Reverse table axes
 				// Create a chart/ place holder, by series
 				var pieLabelFormater,
 					mainFigureElem = $('<figure />').insertAfter(srcTbl),
 					_graphclasslen;
-				
+
 				pieLabelFormater = function (label, series) {
 					var textlabel;
 					if (!options.decimal) {
@@ -1250,96 +1250,96 @@
 						mainFigureElem.addClass(options.graphclass);
 					}
 				}
-				
+
 				figCaptionElem = $('<figcaption />');
-				
+
 				$(mainFigureElem).append(figCaptionElem);
 				tblCaptionHTML = $('caption', srcTbl).html();
 				var tblCaptionText = $('caption', srcTbl).text();
 				$(figCaptionElem).append(tblCaptionHTML);
-				
-				
-				
-				
+
+
+
+
 				var dataGroup = (parsedData.colgroup[0].type === 1 ? parsedData.colgroup[1]: parsedData.colgroup[0]);
-				
+
 				for (rIndex=parsedData.lstrowgroup[0].row.length - 1; rIndex >= 0; rIndex -= 1) {
-					
-					
+
+
 					for (i=0;i<dataGroup.col.length; i += 1) {
 						dataSeries = [];
 						valueCumul = 0;
-						
+
 						// For each cells
 						for(j=0; j<dataGroup.col[i].cell.length; j += 1){
-							
-							
+
+
 							if(dataGroup.col[i].cell[j].rowgroup.type !== 2 || (j > 0 && dataGroup.col[i].cell[j -1].rowgroup.uid !== dataGroup.col[i].cell[j].rowgroup.uid) ){
 								break;
 							}
-						
+
 							// Get's the value
 							header = dataGroup.col[i].cell[j].row.header;
-							
+
 							cellValue = options.getcellvalue(dataGroup.col[i].cell[rIndex].elem);
-							
+
 							dataSeries.push(
 								[
-									valueCumul, 
+									valueCumul,
 									typeof cellValue === "object" ? cellValue[0] : cellValue
 								]);
-							
+
 							valueCumul += header[header.length - 1].flotDelta;
-						
+
 						}
-						var tdOptions =  setClassOptions(RowDefaultOptions,				
-				($(dataGroup.col[i].cell[rIndex].elem).attr('class') !== undefined ? 
+						var tdOptions =  setClassOptions(RowDefaultOptions,
+				($(dataGroup.col[i].cell[rIndex].elem).attr('class') !== undefined ?
 				$(dataGroup.col[i].cell[rIndex].elem).attr('class') : ''));
-						
+
 						allSeries.push({ data: dataSeries, label: $(dataGroup.col[i].dataheader[dataGroup.col[i].dataheader.length - 1].elem).text(), color: (!tdOptions.color?colourNameToHex(i):colourNameToHex(tdOptions.color))});
 					}
 
-					
+
 					// Create the Canvas
 					$placeHolder = $('<div />');
-					
+
 					// Create a sub Figure or use the main one ?
 					var pieChartLabelText = '';
-					if (parsedData.lstrowgroup[0].row.length === 1 && 
-						($(parsedData.lstrowgroup[0].row[0].header[0].elem).html() === tblCaptionHTML || 
+					if (parsedData.lstrowgroup[0].row.length === 1 &&
+						($(parsedData.lstrowgroup[0].row[0].header[0].elem).html() === tblCaptionHTML ||
 						parsedData.lstrowgroup[0].row[0].header.length === 0)) {
-						
+
 						pieChartLabelText = tblCaptionText;
-						
+
 						// Use the main Container
 						$(mainFigureElem).append($placeHolder);
-						
+
 					} else {
-					
+
 						// Use a sub container
 						var $subFigureElem = $('<figure />').appendTo(mainFigureElem),
 							$subfigCaptionElem = $('<figcaption />');
-						
+
 						header = parsedData.lstrowgroup[0].row[rIndex].header;
-						
+
 						pieChartLabelText = $(header[header.length - 1].elem).text();
-						
+
 						$subFigureElem.append($subfigCaptionElem);
 						$subfigCaptionElem.append($(header[header.length - 1].elem).html());
-						
+
 						$subFigureElem.append($placeHolder);
 					}
-						
-					
+
+
 					// Canvas Size
 					$placeHolder.css('height', options.height).css('width', options.width);
 
-					
-					
+
+
 					$placeHolder.attr('role', 'img');
 					// Add a aria label to the svg build from the table caption with the following text prepends ' Chart. Details in table following.'
 					$placeHolder.attr('aria-label', pieChartLabelText + ' ' + _pe.dic.get('%table-following')); // 'Chart. Details in table following.'
-					
+
 					//
 					// Pie Charts Options
 					//
@@ -1389,24 +1389,24 @@
 							hoverable: true
 						};
 					}
-					
+
 					// Create the graphic
 					$.plot($placeHolder, allSeries, pieOptions);
-					
+
 					if (!options.legendinline) {
 						// Move the legend under the graphic
 						$('.legend > div', $placeHolder).remove();
 						$('.legend > table', $placeHolder).removeAttr('style').addClass('font-small');
 						$placeHolder.css('height', 'auto');
 					}
-					
+
 					// Remove any "pieLabel" ids set by the flotPie.js plugin at line #457
 					$('.pieLabel').removeAttr('id');
-					
+
 					allSeries = [];
 
 				}
-				
+
 				if (!options.noencapsulation) { // eg of use:	wb-charts-noencapsulation-true
 					// Use a details/summary to encapsulate the table
 					// Add a aria label to the table element, build from his caption prepend the word ' Table'
@@ -1420,32 +1420,32 @@
 						.after(srcTbl);
 
 					_pe.polyfills.enhance('detailssummary', tblSrcContainer);
-					
+
 				} else {
 					// Move the table inside the figure element
 					$(srcTbl).appendTo(mainFigureElem);
 				}
-				
+
 				// Destroy the temp table if used
 				if (options.parsedirection === 'y') {
 					$(self).remove();
 				}
 				return;
 			}
-			
+
 			var nbBarChart = 0,
 				barDelta,
 				rowOptions;
-			
-			
-			// Count nbBarChart, 
+
+
+			// Count nbBarChart,
 			for (i=0;i<parsedData.lstrowgroup[0].row.length; i++) {
-				rowOptions = setClassOptions(RowDefaultOptions,				
-				($(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).attr('class') !== undefined ? 
+				rowOptions = setClassOptions(RowDefaultOptions,
+				($(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).attr('class') !== undefined ?
 				$(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).attr('class') : ''));
-				 
-				 
-				 
+
+
+
 				if ((!rowOptions.type && (options.type === 'bar' || options.type === 'stacked')) || (rowOptions.type && (rowOptions.type === 'bar' || rowOptions.type === 'stacked'))) {
 					nbBarChart += 1;
 					rowOptions.chartBarOption = nbBarChart;
@@ -1456,62 +1456,62 @@
 
 				parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].chartOption = rowOptions;
 			}
-			
-			// First rowgroup assume is a data row group. 
+
+			// First rowgroup assume is a data row group.
 			// For all row....
 			for (i=0;i<parsedData.lstrowgroup[0].row.length; i++) {
 				dataSeries = [];
 				var datacolgroupfound = 0;
 				valueCumul = 0;
-				
+
 				rowOptions = parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].chartOption;
 
 				// For each cells
 				for(j=0; j<parsedData.lstrowgroup[0].row[i].cell.length; j++){
-					
+
 					if(datacolgroupfound > 1 && parsedData.lstrowgroup[0].row[i].cell[j].col.groupstruct.type !== 2){
 						break;
 					}
-					
+
 					if(parsedData.lstrowgroup[0].row[i].cell[j].col.groupstruct.type === 2){
-					
+
 						// Get's the value
-						
+
 						header = parsedData.lstrowgroup[0].row[i].cell[j].col.header;
 						var valuePoint = valueCumul;
-						
+
 						// Bar chart case, re-evaluate the calculated point
 						if (barDelta && rowOptions.chartBarOption) {
 							// Position bar
 							valuePoint = valueCumul - (smallestHorizontalFlotDelta / 2)  + ((smallestHorizontalFlotDelta / nbBarChart) * (rowOptions.chartBarOption - 1));
-							
+
 							if (nbBarChart === 1) {
 								valuePoint = valueCumul;
 							}
-							
+
 						}
-						
+
 						cellValue = options.getcellvalue(parsedData.lstrowgroup[0].row[i].cell[j].elem);
-							
+
 						// Add the data point
 						dataSeries.push(
 							[
-								valuePoint, 
+								valuePoint,
 								typeof cellValue === "object" ? cellValue[0] : cellValue
 							]);
 						valueCumul += header[header.length - 1].flotDelta;
 						datacolgroupfound++;
 					}
 				}
-				
-				
-				
+
+
+
 				// Get the graph type
-				
+
 				if (!rowOptions.type) {
 					rowOptions.type = options.type;
 				}
-				
+
 				if (rowOptions.type === 'line') {
 					allSeries.push({ data: dataSeries, label: $(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).text(), color: (!rowOptions.color?colourNameToHex(i):colourNameToHex(rowOptions.color))});
 				} else if (rowOptions.type === 'area') {
@@ -1525,7 +1525,7 @@
 						barWidth: (1 / nbBarChart * 0.9),
 						align: 'center'
 					}});
-					
+
 				} else if (rowOptions.type === 'stacked') {
 					allSeries.push({ data: dataSeries, label: $(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).text(), color: (!rowOptions.color?colourNameToHex(i):colourNameToHex(rowOptions.color)),
 					bars: {
@@ -1534,14 +1534,14 @@
 						align: 'center'
 					}});
 				} else if (rowOptions.type === 'pie') {
-					
+
 					allSeries.push({ data: dataSeries, label: $(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).text(), color: (!rowOptions.color?colourNameToHex(i):colourNameToHex(rowOptions.color))});
-					
+
 					isPieChart = true;
 				}
 			}
-			
-			
+
+
 			var figureElem = $('<figure />').insertAfter(srcTbl),
 				_graphclasslen2;
 			figureElem.addClass('wb-charts'); // Default
@@ -1554,27 +1554,27 @@
 					figureElem.addClass(options.graphclass);
 				}
 			}
-			
+
 			figCaptionElem = $('<figcaption />');
-			
+
 			$(figureElem).append(figCaptionElem);
 			tblCaptionHTML = $('caption', srcTbl).html();
 			$(figCaptionElem).append(tblCaptionHTML);
-			
+
 			// Create the placeholder
 			$placeHolder = $('<div />');
-			
+
 			$(figureElem).append($placeHolder);
-			
+
 			// Canvas Size
 			$placeHolder.css('height', options.height).css('width', options.width);
-			
-			
+
+
 			$placeHolder.attr('role', 'img');
 			// Add a aria label to the svg build from the table caption with the following text prepends ' Chart. Details in table following.'
 			$placeHolder.attr('aria-label', $('caption', srcTbl).text() + ' ' + _pe.dic.get('%table-following')); // 'Chart. Details in table following.'
-			
-			
+
+
 			if (!options.noencapsulation) { // eg of use:	wb-charts-noencapsulation-true
 				// Use a details/summary to encapsulate the table
 				// Add a aria label to the table element, build from his caption prepend the word ' Table'
@@ -1588,14 +1588,14 @@
 					.after(srcTbl);
 
 				_pe.polyfills.enhance('detailssummary', tblSrcContainer);
-				
+
 			} else {
 				// Move the table inside the figure element
 				$(srcTbl).appendTo(figureElem);
 			}
-	
+
 			// Create the graphic
-			
+
 			var plotParameter = {
 					xaxis: (calcTick.length > 0 ? {ticks: calcTick} : { })
 				};
@@ -1622,11 +1622,11 @@
 					plotParameter.yaxis = {};
 				}
 				plotParameter.yaxis.ticks = options.steps;
-			} 
-			 
+			}
+
 			$.plot($placeHolder, allSeries, plotParameter);
-			
-			
+
+
 			if (!options.legendinline) {
 				// Move the legend under the graphic
 				$('.legend > div', $placeHolder).remove();
@@ -1637,11 +1637,11 @@
 				// Remove the legend
 				$('.legend', $placeHolder).remove();
 			}
-			
+
 			// Destroy the temp table if used
 			if (options.parsedirection === 'y') {
 				$(self).remove();
-			}				
+			}
 		} // end of exec
 	};
 	window.pe = _pe;
