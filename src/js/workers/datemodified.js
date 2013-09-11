@@ -5,7 +5,7 @@
 /*
  * Date Modified Plug-in
  */
-/*global jQuery: false, pe: false, wet_boew_datemodified: false*/
+/*global wet_boew_datemodified: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -14,7 +14,7 @@
 	/* local reference */
 	_pe.fn.datemodified = {
 		type: 'plugin',
-		_exec: function (elm) {
+		_exec: function () {
 			var opts,
 				timeholder,
 				modifiedMeta = document.getElementsByName('dcterms.modified')[0];

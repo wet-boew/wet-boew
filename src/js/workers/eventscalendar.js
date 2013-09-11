@@ -5,7 +5,7 @@
 /*
  * Events Calendar
  */
-/*global jQuery: false*/
+
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {

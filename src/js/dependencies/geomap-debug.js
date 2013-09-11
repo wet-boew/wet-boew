@@ -6,7 +6,7 @@
  * Version: @wet-boew-build.version@
  *
  */
-/*global jQuery: false, console: false*/
+/*jshint devel: true */
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {

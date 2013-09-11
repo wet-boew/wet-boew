@@ -5,7 +5,7 @@
 /*
  * Expand/Collapse All Content plugin
  */
-/*global jQuery: false, wet_boew_expandcollapseall: false */
+/*global wet_boew_expandcollapseall: false */
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {

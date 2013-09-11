@@ -5,7 +5,7 @@
 /*
 * Zebra stripping functionality for block level elements
 */
-/*global jQuery: false, wet_boew_zebra: false*/
+/*global wet_boew_zebra: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {

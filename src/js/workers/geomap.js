@@ -5,7 +5,7 @@
 /*
  * GeoMap plugin
  */
-/*global jQuery: false, wet_boew_geomap: false, OpenLayers: false, Proj4js: false, ActiveXObject: false*/
+/*global wet_boew_geomap: false, OpenLayers: false, Proj4js: false, ActiveXObject: false*/
 (function($) {
 	"use strict";
 	var _pe = window.pe || {
