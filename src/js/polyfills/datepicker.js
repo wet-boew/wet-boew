@@ -388,7 +388,7 @@
 					var button = e.button;
 					if (typeof button === 'undefined' || button === pe.leftMouseButton) { // Ignore middle/right mouse buttons
 						if (container.attr('aria-hidden') === 'false') {
-							hide(container.parent().find('#' + container.attr('aria-controls')));
+							hide(container.parent().find('#' + pe.string.jqescape(container.attr('aria-controls'))));
 							return false;
 						}
 					}
