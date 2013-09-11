@@ -246,7 +246,7 @@
 					target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
 					target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 				}
-				if (typeof target !== 'undefined' && target.length !== 0) {					
+				if (typeof target !== 'undefined' && target.length !== 0) {
 					pe.focus(target);
 					$.mobile.silentScroll(scrollTop > 1 ? scrollTop : target.offset().top);
 				} else if (scrollTop > 1) {
@@ -282,7 +282,7 @@
 				// Removes tabindex="0" from the first div within the body element (workaround for jQuery Mobile applying tabindex="0" which results in focus shifting to the first div on mouse click)
 				// TODO: Find a more elegant way to address this in jQuery Mobile
 				pe.bodydiv.removeAttr('tabindex');
-			
+
 				// On click, puts focus on and scrolls to the target of same page links
 				$(hlinks_same).off('click vclick').on('click.hlinks vclick.hlinks', function (e) {
 					var hash = this.hash,

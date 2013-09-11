@@ -9,7 +9,7 @@
 /*
  * WET theme scripting
  */
-/*global jQuery: false, pe: false, window: false, document: false, wet_boew_mobile_view: false*/
+/*global pe: false, wet_boew_mobile_view: false*/
 (function ($) {
 	"use strict";
 	var wet_boew_theme, _wet_boew_theme;
@@ -305,7 +305,7 @@
 						if (listviewOpen) {
 							settings_popup += '</ul>';
 							listviewOpen = false;
-						}						
+						}
 						settings_popup += '<div class="wb-nested-menu" data-role="collapsible"><h2>' + target + '</h2>' + listView + '>';
 						links = next[0].getElementsByTagName('a');
 						for (j = 0, len2 = links.length; j !== len2; j += 1) {
@@ -320,13 +320,13 @@
 						if (!listviewOpen) {
 							settings_popup += listView + '>';
 							listviewOpen = true;
-						}	
+						}
 						settings_popup += '<li class="top-level' + (i === 0 ? ' ui-corner-top' : '') + '"><a href="' + link.attr('href') + '">' + link.html() + '</a></li>';
 					}
 				}
 				if (listviewOpen) {
 					settings_popup += '</ul>';
-				}	
+				}
 				target = settings_popup.lastIndexOf('<li');
 				len2 = settings_popup.indexOf('<li class', target) === target ? 11 : 3;
 				settings_popup = settings_popup.substring(0, target) + '<li class="ui-corner-bottom' + (len2 === 3 ? '"' : ' ') + settings_popup.substring(target + len2) + '</ul></div></div>' + popup_close;
@@ -334,7 +334,7 @@
 				// Append all the popups to the body
 				pe.bodydiv.append(bodyAppend + settings_popup);
 			}
-			
+
 			// jQuery mobile has loaded
 			$document.on('pagecreate', function () {
 				var navbar = wet_boew_theme.fullhd.find('#wet-mnavbar'),

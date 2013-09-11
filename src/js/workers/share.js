@@ -5,7 +5,7 @@
 /*
  * Share widget plugin
  */
-/*global jQuery: false, wet_boew_share:false */
+/*global wet_boew_share: false */
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {

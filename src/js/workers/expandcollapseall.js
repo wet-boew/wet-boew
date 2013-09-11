@@ -5,7 +5,7 @@
 /*
  * Expand/Collapse All Content plugin
  */
-/*global jQuery: false, wet_boew_expandcollapseall: false */
+/*global wet_boew_expandcollapseall: false */
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -97,7 +97,9 @@
 		},
 
 		toggle : function() {
-			var $details = $('details');
+			var length,
+				i = 0,
+				$details = $('details');
 
 			if (this._polyfill) {
 				$details.prop('open', this.isOpen());
@@ -108,7 +110,7 @@
 
 			// Update our state and the title of the toggler controls
 			this.setOpen(!this.isOpen());
-			for(var i = 0, length = this._togglers.length; i < length; i++) {
+			for (length = this._togglers.length; i < length; i++) {
 				this._setTitle(this._togglers[i]);
 			}
 		},
@@ -117,6 +119,8 @@
 			var li,
 				toggler,
 				types,
+				length,
+				i = 0,
 				ul = document.createElement('ul');
 
 			// Make sure there is at least one toggle control
@@ -126,7 +130,7 @@
 
 			// Create the requested togglers and add to the page
 			types = _pe.array.keys(opts.togglers);
-			for (var i = 0, length = types.length; i < length; i++) {
+			for (length = types.length; i < length; i++) {
 				if (opts.togglers[types[i]] === true) {
 					toggler = this._createToggler(types[i], opts);
 					li = document.createElement('li');
