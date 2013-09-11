@@ -286,7 +286,7 @@
 
 
 				// This condifition for simple table are not supported by IE
-				// 
+				//
 				// if (isSimpleTable && $('th[rowspan], th[colspan], td[rowspan], td[colspan], colgroup[span]', elem).length > 0) {
 				//	isSimpleTable = false;
 				// }
@@ -346,7 +346,7 @@
 						$($cols).filter(':even').addClass('table-odd');
 
 					}
-					
+
 					return; // Simple Table Zebra Striping done
 				}
 

@@ -5,7 +5,7 @@
 /*
  * Slideout
  */
-/*global jQuery: false, pe: false, wet_boew_slideout:false*/
+/*global wet_boew_slideout:false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -17,8 +17,8 @@
 		opened: false,
 		_exec: function (elm) {
 			var borderWidth = 10,
-				tocText = pe.dic.get('%table-contents'),
-				hideText = pe.dic.get('%hide'),
+				tocText = _pe.dic.get('%table-contents'),
+				hideText = _pe.dic.get('%hide'),
 				closeLink = hideText + '<span class="wb-invisible">' + tocText + '</span>',
 				focusOutlineAllowance = 2,
 				opened = false,
@@ -36,19 +36,19 @@
 				tocLinks,
 				documentToggle,
 				opts,
-				ie7 = pe.preIE7,
+				ie7 = _pe.preIE7,
 				$wbcorein = $('#wb-core-in'),
-				imagesDir = pe.add.liblocation + 'images/slideout/';
+				imagesDir = _pe.add.liblocation + 'images/slideout/';
 
 			opts = {
 				imgShow: {
-					src: imagesDir + pe.dic.get('%show-image'),
+					src: imagesDir + _pe.dic.get('%show-image'),
 					height: 147,
 					width: 30,
-					alt: pe.dic.get('%show-toc') + tocText
+					alt: _pe.dic.get('%show-toc') + tocText
 				},
 				imgHide: {
-					src: imagesDir + pe.dic.get('%hide-image'),
+					src: imagesDir + _pe.dic.get('%hide-image'),
 					height: 147,
 					width: 30,
 					alt: hideText + tocText
@@ -59,7 +59,7 @@
 			$.extend(opts, (typeof wet_boew_slideout !== 'undefined' ? wet_boew_slideout : {}), _pe.data.getData(elm, 'wet-boew'));
 
 			// Don't do anything if CSS is disabled
-			if (!pe.cssenabled()) {
+			if (!_pe.cssenabled()) {
 				return;
 			}
 
@@ -99,7 +99,9 @@
 			};
 
 			toggle = function (e) {
-				var button = e.button;
+				var position,
+					button = e.button;
+
 				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
 					toggleLink.off('click vclick touchstart', toggle);
 					tocLinks.off('click vclick touchstart', toggle);
@@ -109,8 +111,8 @@
 					_pe.document.off('click vclick touchstart', documentToggle);
 
 					if (!opened) {
-						var position = wrapper.position();
-						if (pe.ie <= 0 || document.documentMode !== undefined) {
+						position = wrapper.position();
+						if (_pe.ie <= 0 || document.documentMode !== undefined) {
 							wrapper.removeClass('slideoutWrapper')
 								.addClass('slideoutWrapperRel')
 								.css({'top': position.top - $wbcorein.offset().top, 'right': borderWidth - 10});
@@ -119,7 +121,7 @@
 						setTimeout(function () {
 							elm.show();
 						}, 50);
-						pe.focus(tocLinks.eq(0));
+						_pe.focus(tocLinks.eq(0));
 					}
 
 					opened = !opened;
@@ -131,7 +133,7 @@
 							elm.hide(); // Hide the widget content if the widget was just closed
 							wrapper.find('#slideoutInnerWrapper').css('width', opts.imgHide.width);
 
-							if (pe.ie <= 0 || document.documentMode !== undefined) {
+							if (_pe.ie <= 0 || document.documentMode !== undefined) {
 								wrapper.addClass('slideoutWrapper');
 								wrapper.removeClass('slideoutWrapperRel');
 								wrapper.css('width', (opts.imgShow.width + focusOutlineAllowance) + 'px').css('top', $wbcorein.offset().top);
@@ -195,58 +197,58 @@
 					case 9: // tab key
 						if (opened && ((e.shiftKey && target.is(toggleLink)) || (!e.shiftKey && target.is(slideoutClose)))) {
 							toggleLink.trigger('click');
-							pe.focus(toggleLink);
+							_pe.focus(toggleLink);
 							return false;
 						}
 						break;
 					case 13: // enter key
 						target.trigger('click');
 						if (target.is(slideoutClose)) {
-							pe.focus(toggleLink);
+							_pe.focus(toggleLink);
 							return false;
 						}
 						break;
 					case 27: // escape key
 						if (opened) {
 							toggle();
-							pe.focus(toggleLink);
+							_pe.focus(toggleLink);
 							return false;
 						}
 						break;
 					case 32: // spacebar
 						target.trigger('click');
 						if (target.is(slideoutClose)) {
-							pe.focus(toggleLink);
+							_pe.focus(toggleLink);
 							return false;
 						}
 						break;
 					case 38: // up arrow
 						if (!menuitem) {
 							if (opened) {
-								pe.focus(tocLinks.eq(tocLinks.length - 1));
+								_pe.focus(tocLinks.eq(tocLinks.length - 1));
 							} else {
 								toggleLink.trigger('click');
 							}
 						} else {
 							if (tocLink === 0) {
-								pe.focus(tocLinks.eq(tocLinks.length - 1));
+								_pe.focus(tocLinks.eq(tocLinks.length - 1));
 							} else {
-								pe.focus(tocLinks.eq(tocLink - 1));
+								_pe.focus(tocLinks.eq(tocLink - 1));
 							}
 						}
 						return false;
 					case 40: // down arrow
 						if (!menuitem) {
 							if (opened) {
-								pe.focus(tocLinks.eq(0));
+								_pe.focus(tocLinks.eq(0));
 							} else {
 								toggleLink.trigger('click');
 							}
 						} else {
 							if (tocLink === tocLinks.length - 1) {
-								pe.focus(tocLinks.eq(0));
+								_pe.focus(tocLinks.eq(0));
 							} else {
-								pe.focus(tocLinks.eq(tocLink + 1));
+								_pe.focus(tocLinks.eq(tocLink + 1));
 							}
 						}
 						return false;
@@ -267,10 +269,10 @@
 									}
 								});
 								if (match < (matches.length - 1)) {
-									pe.focus(matches.eq(match + 1));
+									_pe.focus(matches.eq(match + 1));
 									return false;
 								}
-								pe.focus(matches.eq(0));
+								_pe.focus(matches.eq(0));
 							}
 							return false;
 						}
@@ -330,7 +332,7 @@
 			if (scroll) {
 				wrapper.addClass('slideoutWrapper');
 				// Handle window resize and zoom in/out events
-				pe.resize(reposition);
+				_pe.resize(reposition);
 				reposition();
 			} else {
 				wrapper.addClass('so-ie7');

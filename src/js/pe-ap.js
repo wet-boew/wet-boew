@@ -151,7 +151,7 @@
 					}
 				}
 			}
-				
+
 			// Determine the page language and if the text direction is right to left (rtl)
 			test = $html.attr('lang');
 			if (typeof test !== 'undefined' && test.length > 0) {
@@ -273,7 +273,7 @@
 							}
 						}
 					});
-					
+
 					// Workaround to ensure that the expanded area of a jQuery Mobile accordion doesn't disappear off the top of the viewport
 					pe.document.on('expand', function(e) {
 						var yPos = $(e.target).offset().top;

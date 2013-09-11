@@ -5,7 +5,7 @@
 /*
 * Multimedia player
 */
-/*global jQuery: false, pe: false*/
+
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -27,7 +27,7 @@
 			height = height !== undefined ? height : 20;
 			width = width !== undefined ? width : 20;
 
-			if (pe.svg) {
+			if (_pe.svg) {
 				icon = _pe.fn.multimedia.icons.clone();
 				icon.attr({'height': height, 'width': width});
 				icon.prepend('<title>' + alt + '</title>');

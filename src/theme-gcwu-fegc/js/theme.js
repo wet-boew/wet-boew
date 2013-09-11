@@ -9,7 +9,7 @@
 /*
  * GC Web Usability theme scripting
  */
-/*global jQuery: false, pe: false, window: false, document: false*/
+/*global pe: false*/
 (function ($) {
 	"use strict";
 	var wet_boew_theme, _wet_boew_theme;
@@ -113,7 +113,7 @@
 				if (wet_boew_theme.menubar.length !== 0) {
 					mb_menu += '<section><div><h2>' + wet_boew_theme.psnb.children(':header')[0].innerHTML + '</h2><div data-role="controlgroup">' + pe.menu.buildmobile(mb_li, 3, 'a', true, true, 'c', true, true) + '</div></div></section>';
 				}
-				
+
 				// Append the popup/dialog container and store the menu for appending later
 				mb_popup += '<div id="jqm-mb-menu"></div></nav></div></div></div>';
 				bodyAppend += mb_popup;
@@ -128,7 +128,7 @@
 				_list += '<li><a data-rel="popup" data-theme="a" data-icon="search" href="#jqm-wb-search">' + srch_btn_txt + '</a></li>';
 			}
 			pe.bodydiv.append(bodyAppend);
-			
+
 			if (_list.length !== 0) {
 				navbar = $('<div data-role="navbar" data-iconpos="right"><ul class="wb-hide">' + _list + '</ul></div>');
 				wet_boew_theme.title.after(navbar);
