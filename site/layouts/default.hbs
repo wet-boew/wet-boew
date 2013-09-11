@@ -13,9 +13,9 @@
 		<!-- Meta data -->
 		<meta name="description" content="{{description}}" />
 		<!-- Meta data-->
-		<link rel="stylesheet" href="{{assets}}/css/base.css">
-		<link rel="stylesheet" href="{{assets}}/css/bootstrap.min.css">
-		<link rel="stylesheet" href="{{assets}}/css/theme.css">
+		<link rel="stylesheet" href="{{assets}}css/base{{environment.suffix}}.css">
+		<link rel="stylesheet" href="{{assets}}css/bootstrap{{environment.suffix}}.css">
+		<link rel="stylesheet" href="{{assets}}css/theme{{environment.suffix}}.css">
 
 		<!-- Polyfill loader-->
 		<!--[if lt IE 9]>
@@ -25,7 +25,7 @@
 		<!--[if gte IE 9 | !IE ]><!-->
 		<script src="{{assets}}/js/jquery.min.js"></script>
 		<!--<![endif]-->
-		<script src="{{assets}}/js/vapour.min.js"></script>
+		<script src="{{assets}}/js/vapour{{environment.suffix}}.js"></script>
 
 	</head>
 	<body>
@@ -83,6 +83,6 @@
 			</nav>
 		</footer>
 
-		<script src="{{assets}}/js/wet-boew.min.js"></script>
+		<script src="{{assets}}/js/wet-boew{{environment.suffix}}.js"></script>
 	</body>
 </html>
