@@ -5,7 +5,7 @@
 /*
  * Text highlighting functionality 
  */
-/*global jQuery: false, wet_boew_prettify: false, prettyPrint: false*/
+/*global wet_boew_prettify: false, prettyPrint: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {

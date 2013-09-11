@@ -9,8 +9,8 @@
 /*
 ----- @%lang-eng@ dictionary (il8n) ---
  */
-/*global jQuery: false */
-(function ($) {
+
+(function () {
 	"use strict";
 	var _pe = window.pe || {
 		fn: {}
@@ -205,4 +205,4 @@
 	_pe.document.trigger('languageloaded');
 	window.pe = _pe;
 	return _pe;
-}(jQuery));
+}());

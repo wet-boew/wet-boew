@@ -5,7 +5,6 @@
 /*
  * Menu bar plugin
  */
-/*global jQuery: false */
 /*jshint bitwise: false */
 (function ($) {
 	"use strict";

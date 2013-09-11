@@ -151,7 +151,7 @@
 					}
 				}
 			}
-				
+
 			// Determine the page language and if the text direction is right to left (rtl)
 			test = $html.attr('lang');
 			if (typeof test !== 'undefined' && test.length > 0) {

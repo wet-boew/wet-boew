@@ -9,7 +9,7 @@
 /*
  * Charts for WET 3.1.x
  */
-/*global jQuery: false, wet_boew_charts: false*/
+/*global wet_boew_charts: false*/
 (function ($) {
 	'use strict';
 	var _pe = window.pe || {
@@ -673,8 +673,7 @@
 						
 						if (currCell.col && currCell.col.dataheader) {
 							coldataheader = currCell.col.dataheader;
-						}
-						
+						}						
 
 						
 						if (currCell.type === 1) {
@@ -719,32 +718,27 @@
 							
 							// Get Current Column Headers
 							currrowheader = rowheaders;
-							
+
 							if (currCell.addcolheaders) {
 								for (m = 0; m < currCell.addcolheaders.length; m += 1) {
 									coldataheader = coldataheader.concat(currCell.addcolheaders[m]);
 								}
 							}
-							
+
 							if (currCell.addrowheaders) {
 								for (m = 0; m < currCell.addrowheaders.length; m += 1) {
 									currrowheader = currrowheader.concat(currCell.addrowheaders[m]);
 								}
 							}
-							
-							
+
 							currCell.headers = currCell.headers.concat(coldataheader);
 							currCell.headers = currCell.headers.concat(currrowheader);
 
 							currCell.header = currCell.headers;
-							
 						}
-						
-										
 					}
 				}
 			}
-
 		}
 			
 			var tblMultiplier = [],
@@ -1046,9 +1040,9 @@
 							uniformCumul += parsedDataCell.flotDelta;
 							
 						}
-						
+
 						cumulFlotValue += parsedDataCell.flotDelta;
-						
+
 						helper2CalcHTick(parsedDataCell, headerlevel);
 					}
 				}
@@ -1545,8 +1539,6 @@
 					
 					isPieChart = true;
 				}
-				
-				
 			}
 			
 			
@@ -1649,8 +1641,7 @@
 			// Destroy the temp table if used
 			if (options.parsedirection === 'y') {
 				$(self).remove();
-			}
-				
+			}				
 		} // end of exec
 	};
 	window.pe = _pe;

@@ -5,7 +5,7 @@
 /*
  * Form validation plugin
  */
-/*global jQuery: false*/
+
 (function($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -74,10 +74,11 @@
 
 			// Clear the form and remove error messages on reset
 			$inputs.filter('[type="reset"]').on('click vclick touchstart', function(e) {
-				var button = e.button;
+				var summaryContainer,
+					button = e.button;
 				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
 					validator.resetForm();
-					var summaryContainer = form.find('#' + $errorFormId);
+					summaryContainer = form.find('#' + $errorFormId);
 					if (summaryContainer.length > 0) {
 						summaryContainer.empty();
 					}

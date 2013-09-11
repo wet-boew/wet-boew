@@ -5,7 +5,7 @@
 /*
  * CSS3 for IE plugin
  */
-/*global jQuery: false, PIE:false*/
+/*global PIE: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {

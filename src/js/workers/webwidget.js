@@ -5,7 +5,7 @@
 /*
  * Web feeds widget
  */
-/*global jQuery: false*/
+
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -116,7 +116,7 @@
 					last -= 1;
 					return last;
 				};
-				
+
 				finalize = function () {
 					$loading.remove();
 					$content.find('li').show();

@@ -5,7 +5,7 @@
 /*
  * Tabbed interface plugin
  */
-/*global jQuery: false, wet_boew_tabbedinterface: false*/
+/*global wet_boew_tabbedinterface: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {

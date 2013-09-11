@@ -5,7 +5,7 @@
 /*
  * Web archived top page banner
  */
-/*global jQuery: false*/
+
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {fn: {} };

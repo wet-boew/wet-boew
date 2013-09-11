@@ -9,7 +9,7 @@
 /*
  * Progress
  */
-/*global jQuery: false*/
+
 (function ($) {
 	"use strict";
 	$.fn.progress = function () {

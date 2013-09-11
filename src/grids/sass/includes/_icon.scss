@@ -61,7 +61,7 @@ $downloadable-file-type-list: (psd, zip, egret, doc, pdf, xls, rtf, pot, ppt, pp
 		}
 	}
 	//gh-2104 fixes overriding background because of increased specificity when wb-main was used
-	#wb-head &, #wb-foot & {
+	#wb-head &, #wb-sec &, #wb-foot & {
 		background: none;
 	}
 

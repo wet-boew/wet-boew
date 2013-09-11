@@ -368,7 +368,7 @@
 								elem.addClass('rowtdhover');
 							}
 						}
-						
+
 						return;  // Simple Table Zebra Striping done
 					} else {
 
