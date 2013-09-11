@@ -10,7 +10,7 @@
  * Datalist polyfill (Autocomplete for text input fields)
  * @author: Paul Jackson (TBS)
  */
-/*global jQuery: false, pe: false*/
+
 (function ($) {
 	"use strict";
 	$.fn.datalist = function () {

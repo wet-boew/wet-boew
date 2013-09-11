@@ -5,8 +5,8 @@
 /*
 * Chart for WET 3.0
 */
-/*global jQuery: false, pe:false, wet_boew_charts: false, Raphael: false*/
-(function ($) {
+
+(function () {
 	"use strict";
 	var _pe = window.pe || {
 		fn: {}
@@ -21,4 +21,4 @@
 	};
 	window.pe = _pe;
 	return _pe;
-}(jQuery));
+}());

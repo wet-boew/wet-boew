@@ -9,7 +9,7 @@
 /*
  * Datepicker
  */
-/*global jQuery: false, pe: false, XRegExp: false*/
+/*global pe: false, XRegExp: false*/
 (function ($) {
 	"use strict";
 	var container;
@@ -377,7 +377,7 @@
 					});
 
 				// Disable the tabbing of all the links when calendar is hidden
-				container.find('a').attr('tabindex', '-1');	
+				container.find('a').attr('tabindex', '-1');
 
 				pe.bodydiv.after(container);
 			}

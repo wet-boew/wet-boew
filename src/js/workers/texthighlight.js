@@ -5,8 +5,8 @@
 /*
  * Text highlighting functionality 
  */
-/*global jQuery: false, pe: false*/
-(function ($) {
+
+(function () {
 	"use strict";
 	var _pe = window.pe || {
 		fn: {}
@@ -51,12 +51,12 @@
 				return null;
 			} // end of addHighlight
 
-			if (pe.urlquery.texthighlight !== undefined) {
-				addHighlight(pe.urlquery.texthighlight, elm);
+			if (_pe.urlquery.texthighlight !== undefined) {
+				addHighlight(_pe.urlquery.texthighlight, elm);
 			}
 			return this;
 		} // end of exec
 	};
 	window.pe = _pe;
 	return _pe;
-}(jQuery));
+}());
