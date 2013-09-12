@@ -177,6 +177,13 @@ module.exports = (grunt) ->
 				files:
 					"dist/css/bootstrap.min.css": "lib/bootstrap/dist/css/bootstrap.min.css"
 
+			fonts:
+				cwd: "lib/bootstrap/fonts"
+				src: ["*.*"]
+				dest: "dist/fonts"
+				expand: true
+				flatten: true
+
 		clean:
 			dist: "dist"
 
