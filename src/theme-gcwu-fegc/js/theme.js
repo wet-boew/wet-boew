@@ -86,9 +86,6 @@
 						elm.innerHTML = elm.innerHTML.replace(/<object[\s\S]*?\/object>/i, object[0].innerHTML);
 					}
 				}
-				if (!contentPage) {
-					swapPNG(true);
-				}
 			}
 
 			// If the link with class="nav-current" is in the submenu, then move the class up to the associated menu bar link
