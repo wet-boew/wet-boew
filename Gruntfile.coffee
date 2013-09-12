@@ -116,6 +116,16 @@ module.exports = (grunt) ->
 				files:
 					"dist/js/deps/jquery.pjax<%= environment.suffix %>.js": "lib/jquery-pjax/jquery.pjax.js"
 
+		cssmin:
+			options:
+				banner: "<%= banner %>"
+			dist:
+				expand: true
+				cwd: "dist/css"
+				src: ["**/*.css", "!**/*.min.css"]
+				dest: 'dist/css'
+				ext: "<%= environment.suffix %>.css"
+
 		coffee:
 			vapour:
 				options:
@@ -188,6 +198,7 @@ module.exports = (grunt) ->
 			dist: "dist"
 
 			jsUncompressed: ["dist/js/**/*.js", "!dist/js/**/*<%= environment.suffix %>.js"]
+			cssUncompressed: ["dist/css/**/*.css", "!dist/css/**/*<%= environment.suffix %>.css"]
 
 		watch:
 			lib_test:
@@ -237,6 +248,7 @@ module.exports = (grunt) ->
 	# These plugins provide necessary tasks.
 	@loadNpmTasks "grunt-contrib-concat"
 	@loadNpmTasks "grunt-contrib-copy"
+	@loadNpmTasks "grunt-contrib-cssmin"
 	@loadNpmTasks "grunt-contrib-uglify"
 	@loadNpmTasks "grunt-contrib-jshint"
 	@loadNpmTasks "grunt-contrib-watch"
@@ -249,10 +261,11 @@ module.exports = (grunt) ->
 	@loadTasks "tasks"
 
 	# Default task.
-	@registerTask "default", ["clean:dist", "build", "test"]
+	@registerTask "default", ["clean:dist", "build", "test", "minify", "html"]
 
-	@registerTask "build", ["coffee", "sass", "concat", "i18n", "uglify", "clean:jsUncompressed", "copy", "assemble"]
+	@registerTask "build", ["coffee", "sass", "concat", "i18n", "copy"]
 	@registerTask "test", ["jshint"]
+	@registerTask "minify", ["uglify", "cssmin", "clean:jsUncompressed", "clean:cssUncompressed"]
 	@registerTask "html", ["assemble"]
 	@registerTask "server", ["connect", "watch:source"]
 	@registerTask "init", ["modernizr"]
