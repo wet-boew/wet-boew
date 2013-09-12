@@ -194,6 +194,12 @@ module.exports = (grunt) ->
 				expand: true
 				flatten: true
 
+			misc:
+				cwd: "src/plugins"
+				src: ["**/*.txt"]
+				dest: "dist/demo"
+				expand: true
+				flatten: true
 		clean:
 			dist: "dist"
 
