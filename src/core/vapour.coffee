@@ -80,6 +80,9 @@
         test: Modernizr.touch,
         yep : "site!polyfills/mobile.min.js"
     ,
+        test: navigator.userAgent.indexOf("Win") isnt -1 and navigator.userAgent.match(/^((?!mobi|tablet).)*$/i) isnt null,
+        yep : "site!polyfills/jawsariafixes.min.js"
+    ,
         complete: ()->
             window._timer.start()
 ]
