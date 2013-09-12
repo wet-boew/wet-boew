@@ -77,13 +77,9 @@
         test: Modernizr.localstorage,
         nope : "site!polyfills/sessionstorage.min.js"
     ,
-        test: Modernizr.lastchild,
-        nope : "site!vendor/selectivizr.min.js"
-    ,
         test: Modernizr.touch,
         yep : "site!polyfills/mobile.min.js"
     ,
-
         complete: ()->
             window._timer.start()
 ]
