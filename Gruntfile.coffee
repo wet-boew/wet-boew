@@ -254,9 +254,9 @@ module.exports = (grunt) ->
 	@loadTasks "tasks"
 
 	# Default task.
-	@registerTask "default", ["clean:dist", "build", "test"]
+	@registerTask "default", ["clean:dist", "build", "test", "minify", "html"]
 
-	@registerTask "build", ["coffee", "sass", "concat", "i18n", "minify", "copy", "assemble"]
+	@registerTask "build", ["coffee", "sass", "concat", "i18n", "copy"]
 	@registerTask "test", ["jshint"]
 	@registerTask "minify", ["uglify", "cssmin", "clean:jsUncompressed", "clean:cssUncompressed"]
 	@registerTask "html", ["assemble"]
