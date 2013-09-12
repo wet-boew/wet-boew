@@ -27,3 +27,7 @@ csslint.out.xml
 *.log
 node_modules/
 lib/
+
+# Html validation reports
+validation-report.json
+validation-status.json

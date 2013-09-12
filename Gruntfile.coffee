@@ -233,6 +233,11 @@ module.exports = (grunt) ->
 				csv: "src/i18n/i18n.csv"
 			src: "src/js/i18n/formvalid/*.js"
 
+		validation:
+			dist:
+				files:
+					src: "dist/**/*.html"
+
 
 	# These plugins provide necessary tasks.
 	@loadNpmTasks "grunt-contrib-concat"
@@ -245,6 +250,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-contrib-connect"
 	@loadNpmTasks "grunt-sass"
 	@loadNpmTasks "grunt-modernizr"
+	@loadNpmTasks "grunt-html-validation"
 	@loadNpmTasks "assemble"
 	@loadTasks "tasks"
 
@@ -253,6 +259,6 @@ module.exports = (grunt) ->
 
 	@registerTask "build", ["coffee", "sass", "concat", "i18n", "uglify", "clean:jsUncompressed", "copy", "assemble"]
 	@registerTask "test", ["jshint"]
-	@registerTask "html", ["assemble"]
+	@registerTask "html", ["assemble", "validation"]
 	@registerTask "server", ["connect", "watch:source"]
 	@registerTask "init", ["modernizr"]
