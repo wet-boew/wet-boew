@@ -8,24 +8,25 @@
 		<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 		wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
 		<title>{{title}} - {{sitename}}</title>
-		<link href="{{assets}}/images/favicon.ico" rel="shortcut icon">
+		<link href="./{{assets}}/images/favicon.ico" rel="shortcut icon">
 		<meta content="width=device-width, initial-scale=1" name="viewport">
 		<!-- Meta data -->
 		<meta name="description" content="{{description}}" />
 		<!-- Meta data-->
-		<link rel="stylesheet" href="{{assets}}/css/base.css">
-		<link rel="stylesheet" href="{{assets}}/css/bootstrap.min.css">
-		<link rel="stylesheet" href="{{assets}}/css/theme.css">
+		<link rel="stylesheet" href="./{{assets}}/css/base{{environment.suffix}}.css">
+		<link rel="stylesheet" href="./{{assets}}/css/bootstrap{{environment.suffix}}.css">
+		<link rel="stylesheet" href="./{{assets}}/css/theme{{environment.suffix}}.css">
 
 		<!-- Polyfill loader-->
 		<!--[if lt IE 9]>
-		<script src="{{assets}}/js/oldie/respond.min.js"></script>
-		<script src="{{assets}}/js/oldie/jquery.min.js"></script>
-		<script src="{{assets}}/js/oldie/selectivizr.min.js"></script><![endif]-->
+		<script src="./{{assets}}/js/oldie/respond.min.js"></script>
+		<script src="./{{assets}}/js/oldie/jquery.min.js"></script>
+		<script src="./{{assets}}/js/oldie/selectivizr.min.js"></script><![endif]-->
 		<!--[if gte IE 9 | !IE ]><!-->
-		<script src="{{assets}}/js/jquery.min.js"></script>
+		<script src="./{{assets}}/js/jquery.min.js"></script>
 		<!--<![endif]-->
-		<script src="{{assets}}/js/vapour.min.js"></script>
+		<script src="./{{assets}}/js/vapour{{environment.suffix}}.js"></script>
+
 	</head>
 	<body>
 		<div id="wb-skip">
@@ -42,46 +43,46 @@
 			<div id="wb-banner">
 				{{>brand}}
 
-				<section id="wb-lang" aria-labelledby="wb-lang-h">
-					<h2 id="wb-lang-h">{{#i18n "%tmpl-lang-select"}}{{/i18n}}</h2>
+				<section id="wb-lang">
+					<h2>{{#i18n "%tmpl-lang-select"}}{{/i18n}}</h2>
 					{{>languagetoggle}}
 				</section>
 
-				<section id="wb-srch" aria-labelledby="wb-srch-h">
-					<h2 id="wb-srch-h">{{#i18n "%tmpl-search"}}{{/i18n}}</h2>
+				<section id="wb-srch">
+					<h2>{{#i18n "%tmpl-search"}}{{/i18n}}</h2>
 					{{>sitesearch}}
 				</section>
 			</div>
 
-			<nav role="navigation" id="wb-sm" aria-labelledby="wb-sm-h">
-				<h2 id="wb-sm-h">{{#i18n "%tmpl-site-menu"}}{{/i18n}}</h2>
+			<nav role="navigation" id="wb-sm">
+				<h2>{{#i18n "%tmpl-site-menu"}}{{/i18n}}</h2>
 				{{>sitemenu}}
 			</nav>
 
-			<nav role="navigation" id="wb-bc" aria-labelledby="wb-bc-h">
-				<h2 id="wb-bc-h">{{#i18n "%tmpl-bcrumb"}}{{/i18n}}</h2>
+			<nav role="navigation" id="wb-bc">
+				<h2>{{#i18n "%tmpl-bcrumb"}}{{/i18n}}</h2>
 				{{>breadcrumbs}}
 			</nav>
 		</header>
 
-		<main role="main" aria-labelledby="wb-cont">
+		<main role="main">
 			<h1 id="wb-cont">{{title}}</h1>
 			{{>body}}
 		</main>
 
 		<!-- Secondary Menu [optional] -->
-		<nav role="navigation" id="wb-sec" aria-labelledby="wb-sec-h">
-			<h2 id="wb-sec-h">{{#i18n "%tmpl-sec-menu"}}{{/i18n}}</h2>
+		<nav role="navigation" id="wb-sec">
+			<h2>{{#i18n "%tmpl-sec-menu"}}{{/i18n}}</h2>
 			{{>supporting}}
 		</nav>
 
 		<footer role="contentinfo" id="wb-nav">
-			<nav role="navigation" aria-labelledby="wb-si-h">
-				<h2 id="wb-si-h">{{#i18n "%tmpl-site-info"}}{{/i18n}}</h2>
+			<nav role="navigation">
+				<h2>{{#i18n "%tmpl-site-info"}}{{/i18n}}</h2>
 				{{>footer}}
 			</nav>
 		</footer>
 
-		<script src="{{assets}}/js/wet-boew.min.js"></script>
+		<script src="./{{assets}}/js/wet-boew{{environment.suffix}}.js"></script>
 	</body>
 </html>
