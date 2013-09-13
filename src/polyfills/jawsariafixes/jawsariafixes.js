@@ -21,14 +21,17 @@
 	// Use aria-labelledby to fix the Jaws sectioning element/heading element association bug
 	for ( i = 0; i !== len; i += 1 ) {
 		node = nodes[ i ];
-		heading = ( node.firstElementChild || node.firstChild );
-		if ( heading.nodeName.match( /h[1-6]/i ) !== null ) {
-			id = heading.id;
-			if ( id.length === 0 ) {
-				id = idPrefix + i;
-				heading.id = id;
+		heading = node;
+		while ( ( heading = ( heading.firstElementChild || heading.firstChild ) ) !== null ) {
+			if ( heading.nodeName.match( /h[1-6]/i ) !== null ) {
+				id = heading.id;
+				if ( id.length === 0 ) {
+					id = idPrefix + i;
+					heading.id = id;
+				}
+				node.setAttribute( "aria-labelledby", id );
+				break;
 			}
-			node.setAttribute( "aria-labelledby", id );
 		}
 	}
 
