@@ -1,124 +1,145 @@
 ﻿/*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
- 
 @import "compass/css3/transform";
 
-%so-float-right-border-left-0 {
-	border-left: 0;
-	float: right;
-}
-
-.wet-boew-slideout {
-	display: none;
-}
-
-.no-js {
-	.wet-boew-slideout {
-		display: block;
-	}
-}
-
-#slideoutInnerWrapper {
-	position: relative;
-	width: 295px;
-}
-
-.slideoutWrapper { /* Follows on scrolling */
-	margin-top: 4.7em;
-	position: fixed;
-	z-index: 1;
-}
-
-.slideoutWrapperRel { /* Does not follow on scrolling */
-	float: right;
-	position: absolute;
-	right: 0;
-	top: 0;
-	z-index: 1;
-}
-
-.slideoutToggle {
-	background-color: #369;
-	border: 1px solid #000;
-	border-right: 0;
-	float: left;
-	padding: 2px;
-	position: relative; /* Needed for animation */
-}
-
-#toggleLink {
-	background-color: #369;
-	color: #FFF !important;
-	cursor: pointer;
-	display: block;
-	margin: 0;
-	padding: 3px;
-	position: absolute;
-	text-decoration: none;
-	@include transform-origin(0, 0);
-	@include transform(rotate(-90deg) translate(-100%, 0));
-	white-space: nowrap;
-}
-
-.tabbedSlideout {
-	background-color: #FFF;
-	border: 1px solid #CCC;
-	border-right: none;
-	float: left;
-	padding: 8px;
-	position: relative;
-	margin: auto;
-	width: 245px;
-	#slideoutClose {
+/*Screen SCSS*/
+@media screen {
+	%so-float-right-border-left-0 {
+		border-left: 0;
 		float: right;
 	}
-}
 
-div {
-	&.tabbedSlideout {
-		h2 {
-			margin: 0;
-			padding: 0 5px 5px 5px;
-			text-align: left;
+	.large-screen {
+		.wet-boew-slideout {
+			display: none;
 		}
-		ul, ol {
-			margin: 0;
-			list-style-type: none;
-			padding: 0 5px;
+	}
+
+	.no-js {
+		.wet-boew-slideout {
+			display: block;
 		}
-		li {
-			margin: 6px 0;
+	}
+
+	#slideoutInnerWrapper {
+		position: relative;
+		width: 295px;
+	}
+
+	.slideoutWrapper { /* Follows on scrolling */
+		margin-top: 4.7em;
+		position: fixed;
+		z-index: 1;
+	}
+
+	.slideoutWrapperRel { /* Does not follow on scrolling */
+		float: right;
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 1;
+	}
+
+	.slideoutToggle {
+		background-color: #369;
+		border: 1px solid #000;
+		border-right: 0;
+		float: left;
+		padding: 2px;
+		position: relative; /* Needed for animation */
+	}
+
+	#toggleLink {
+		background-color: #369;
+		color: #FFF !important;
+		cursor: pointer;
+		display: block;
+		margin: 0;
+		padding: 3px;
+		position: absolute;
+		text-decoration: none;
+		@include transform-origin(0, 0);
+		@include transform(rotate(-90deg) translate(-100%, 0));
+		white-space: nowrap;
+	}
+
+	.tabbedSlideout {
+		background-color: #FFF;
+		border: 1px solid #CCC;
+		border-right: none;
+		float: left;
+		padding: 8px;
+		position: relative;
+		margin: auto;
+		width: 245px;
+		#slideoutClose {
+			float: right;
+		}
+	}
+
+	div {
+		&.tabbedSlideout {
+			h2 {
+				margin: 0;
+				padding: 0 5px 5px 5px;
+				text-align: left;
+			}
 			ul, ol {
-				margin-left: 20px;
+				margin: 0;
+				list-style-type: none;
+				padding: 0 5px;
+			}
+			li {
+				margin: 6px 0;
+				ul, ol {
+					margin-left: 20px;
+				}
 			}
 		}
 	}
-}
 
-/* rtl */
-[dir="rtl"] {
-	.tabbedSlideout {
-		@extend %so-float-right-border-left-0;
-		border-right: 1px solid #CCC;
-	}
-	.slideoutWrapperRel {
-		right: auto;
-	}
-	.slideoutToggle {
-		border-right: 1px solid #000;
-		@extend %so-float-right-border-left-0;
-	}
-	#toggleLink {
-		@include transform-origin(top, right);
-		@include transform(rotate(90deg) translate(100%, 0));
+	/* rtl */
+	[dir="rtl"] {
+		.tabbedSlideout {
+			@extend %so-float-right-border-left-0;
+			border-right: 1px solid #CCC;
+		}
+		.slideoutWrapperRel {
+			right: auto;
+		}
+		.slideoutToggle {
+			border-right: 1px solid #000;
+			@extend %so-float-right-border-left-0;
+		}
+		#toggleLink {
+			@include transform-origin(top, right);
+			@include transform(rotate(90deg) translate(100%, 0));
+		}
 	}
 }
 
 /*Print SCSS*/
 @media print {
+	%slideout-width-100-important {
+		width: 100% !important;
+	}
+
 	#slideoutWrapper {
+		@extend %slideout-width-100-important;
+	}
+
+	#slideoutInnerWrapper {
+		@extend %slideout-width-100-important;
+		padding: 0 !important;
+	}
+
+	.wet-boew-slideout {
+		display: block !important;
+	}
+
+	#slideoutToggle, #slideoutClose {
 		display: none;
 	}
 }

@@ -1,11 +1,11 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 /*
  * Footnotes
  */
-/*global jQuery: false*/
+
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -27,14 +27,15 @@
 
 			//remove "first/premier/etc"-style text from certain footnote return links (via the child spans that hold those bits of text)
 			footnote_dd.find('p.footnote-return a').each(function () {
-				var $this = $(this);
+				var refId, referrer,
+					$this = $(this);
 				$this.find('span span').remove();
 				$this.off('click vclick').on('click vclick', function (e) {
 					var button = e.button;
 					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
-						var refId = _pe.string.jqescape($(this).attr('href')).substring(1),
-							referrer = _ctn.find(refId).find('a');
-						
+						refId = _pe.string.jqescape($(this).attr('href')).substring(1),
+						referrer = _ctn.find(refId).find('a');
+
 						if (_pe.mobile) {
 							$.mobile.silentScroll(_pe.focus(referrer).offset().top);
 						} else {
@@ -84,4 +85,4 @@
 	};
 	window.pe = _pe;
 	return _pe;
-}(jQuery)); 
+}(jQuery));

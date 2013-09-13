@@ -1,7 +1,7 @@
 /*!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  *
  * Version: @wet-boew-build.version@
  *
@@ -55,6 +55,7 @@
 		resizetest: '',
 		settings: (typeof wet_boew_properties !== 'undefined' && wet_boew_properties !== null) ? wet_boew_properties : false,
 		scrollTopInit: window.pageYOffset || document.documentElement.scrollTop,
+		leftMouseButton: 0,
 
 		/**
 		* @namespace pe.dic
@@ -150,10 +151,7 @@
 					}
 				}
 			}
-			
-			// What is the e.button value for the left mouse button?
-			pe.leftMouseButton = (pe.preIE9 ? 1 : 0);
-				
+
 			// Determine the page language and if the text direction is right to left (rtl)
 			test = $html.attr('lang');
 			if (typeof test !== 'undefined' && test.length > 0) {
@@ -248,7 +246,7 @@
 					target = pe.main.find('#' + pe.string.jqescape(pe.urlhash));
 					target.filter(':not(a, button, input, textarea, select)').attr('tabindex', '-1');
 				}
-				if (typeof target !== 'undefined' && target.length !== 0) {					
+				if (typeof target !== 'undefined' && target.length !== 0) {
 					pe.focus(target);
 					$.mobile.silentScroll(scrollTop > 1 ? scrollTop : target.offset().top);
 				} else if (scrollTop > 1) {
@@ -284,7 +282,7 @@
 				// Removes tabindex="0" from the first div within the body element (workaround for jQuery Mobile applying tabindex="0" which results in focus shifting to the first div on mouse click)
 				// TODO: Find a more elegant way to address this in jQuery Mobile
 				pe.bodydiv.removeAttr('tabindex');
-			
+
 				// On click, puts focus on and scrolls to the target of same page links
 				$(hlinks_same).off('click vclick').on('click.hlinks vclick.hlinks', function (e) {
 					var hash = this.hash,

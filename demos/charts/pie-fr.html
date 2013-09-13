@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Diagramme circulaire - Graphiques - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="French description / Description en français" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Barre d'en-tête</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-current">Français</li>
+<li id="wet-fullhd-lang-2"><a href="pie-en.html" lang="en">English</a></li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-fr.html" lang="fr"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
+<form action="#" method="post"><div id="wet-srchbx-in">
+<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
+<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/projectmenu-fr.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fr.html">Projet de la BOEW</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Mise-en-%C5%93uvre-de-la-BOEW">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Lignes-directrices-pour-les-contributeurs">Contribuer à la BOEW</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Fil d'Ariane</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-fr.html">Accueil</a></li>
+<li><a href="../index-fr.html">Exemples pratiques</a></li>
+<li><a href="index-fr.html">Graphiques</a></li>
+<li>Diagramme circulaire</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Diagramme circulaire</h1>
+
+<ul class="button-group">
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Graphiques" class="button">Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+</ul>
+
+<p>Les "options" font référence à la classe CSS utilisé à l'élément <code>table</code>. Chaques graphique inclus les options du graphique qui le précede.</p>
+
+
+<div class="module-info span-2 float-right">
+<h3>Pré requis</h3>
+<p>Version 3.1 de la BOEW ou plus récente</p>
+</div>
+
+
+<h2>Configuration de beigne <code>wb-charts-donnut</code></h2>
+
+<p>Nouveau &agrave; partir de la BOEW 3.1.2. Pour les version ant&eacute;rieur de la BOEW 3.1.x il peut être reproduit avec l'utilisation d'options combiné.</p>
+<details>
+  <summary>Example de code source javascript pour la configuration de beigne</summary>
+<pre><code>
+// PVI - La configuration en beigne est déjà définie par défauts, ceci est seulement pour illustrer un example de comment un autre ensemble de configuration peut être créer.
+
+// Dans les configuration générale setting.js
+var wet_boew_charts = {
+  preset: {
+    donnut: {
+      // Donnut setting
+      type: 'pie',
+      height: 250,
+      percentlegend: true,
+      pieinnerradius: 45,
+      pietilt: 50,
+      piehoverable: true,
+      decimal: 1,
+      piethreshold: 8,
+      legendinline: true,
+      piestartangle: 100
+    }
+  }
+}
+</code></pre>
+</details>
+
+<table class="wet-boew-charts wb-charts-donnut">
+  <caption>Configuration en beigne <code>wb-charts-donnut</code></caption>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Series 1</th>
+      <th>Series 2</th>
+      <th>Series 3</th>
+      <th>Series 4</th>
+      <th>Series 5</th>
+      <th>Series 6</th>
+      <th>Series 7</th>
+      <th>Series 8</th>
+      <th>Series 9</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Défauts</th>
+      <td>7.7</td>
+      <td>10.10</td>
+     <td>4.4</td>
+      <td>14.14</td>
+      <td>15.15</td>
+      <td>7.7</td>
+      <td>23.23</td>
+      <td>8.8</td>
+      <td>12.12</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="clear"></div>
+
+<h2>Défauts</h2>
+
+<p>Options ajouté</p>
+<ul>
+	<li><strong>wet-boew-charts</strong>: Active le composant des graphiques</li>
+	<li><strong>wb-charts-pie</strong>: Crée un graphique circulaire</li>
+	<li><strong>wb-charts-height-250</strong>: Indique que le graphique va avoir une hauteur de 250 pixels.</li>
+</ul>
+
+<table class="wet-boew-charts wb-charts-pie wb-charts-height-250">
+	<caption>Défauts</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7</td>
+			<td>10</td>
+			<td>4</td>
+			<td>14</td>
+			<td>15</td>
+			<td>7</td>
+			<td>23</td>
+			<td>8</td>
+			<td>13</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Étiquette des secteurs</h2>
+
+<p>Options ajouté</p>
+<ul>
+	<li><strong>wb-charts-percentlegend-true</strong>: Affiche une étiquette avec le pourcentage sur les secteurs.</li>
+	<li><strong>wb-chart-nolegend-true</strong>: Cache la légende. Le texte de la légende sera combiné avec le pourcentage du secteur respectif.</li>
+</ul>
+
+
+
+<table class="wet-boew-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-chart-nolegend-true">
+	<caption>Étiquette des secteurs</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7</td>
+			<td>10</td>
+			<td>4</td>
+			<td>14</td>
+			<td>15</td>
+			<td>7</td>
+			<td>23</td>
+			<td>8</td>
+			<td>13</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Trou de beigne</h2>
+
+<p>Options ajouté</p>
+<ul>
+	<li><strong>wb-charts-pieinnerradius-45</strong>: Poucentage de la grosseur du trou de beigne.</li>
+</ul>
+
+
+<table class="wet-boew-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-chart-nolegend-true wb-charts-pieinnerradius-45">
+	<caption>Trou de beigne</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7</td>
+			<td>10</td>
+			<td>4</td>
+			<td>14</td>
+			<td>15</td>
+			<td>7</td>
+			<td>23</td>
+			<td>8</td>
+			<td>13</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Graphique incliné</h2>
+
+
+<p>Options ajouté</p>
+<ul>
+	<li><strong>wb-charts-pietilt-50</strong>: Pourcentage de l'inclinaison.</li>
+</ul>
+
+<table class="wet-boew-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-chart-nolegend-true wb-charts-pieinnerradius-45 wb-charts-pietilt-50">
+	<caption>Graphique incliné</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7</td>
+			<td>10</td>
+			<td>4</td>
+			<td>14</td>
+			<td>15</td>
+			<td>7</td>
+			<td>23</td>
+			<td>8</td>
+			<td>13</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>Graphique rectangulaire</h2>
+
+
+<p>Options ajouté</p>
+<ul>
+	<li><strong>wb-charts-pieradius-500000</strong>: Longeur du secteur en pixels. Pour obtenir la valeur réel en pixel il faut divisé ce nombre par 100.</li>
+</ul>
+
+
+
+<table class="wet-boew-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-chart-nolegend-true wb-charts-pieinnerradius-45 wb-charts-pietilt-50 wb-charts-pieradius-500000">
+	<caption>Graphique rectangulaire</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7</td>
+			<td>10</td>
+			<td>4</td>
+			<td>14</td>
+			<td>15</td>
+			<td>7</td>
+			<td>23</td>
+			<td>8</td>
+			<td>13</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>Effet de survol</h2>
+
+<p>Options ajouté</p>
+<ul>
+	<li><strong>wb-charts-piehoverable-true</strong>: Ajoute un effet visuel au secteur lorsqu'il est survolé par la souris.</li>
+</ul>
+
+<p>Options retiré</p>
+<ul>
+	<li>wb-charts-pieradius-500000</li>
+</ul>
+
+<table class="wet-boew-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-chart-nolegend-true wb-charts-pieinnerradius-45 wb-charts-pietilt-50 wb-charts-piehoverable-true">
+	<caption>Effet de survol</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7.7</td>
+			<td>10.10</td>
+			<td>4.4</td>
+			<td>14.14</td>
+			<td>15.15</td>
+			<td>7.7</td>
+			<td>23.23</td>
+			<td>8.8</td>
+			<td>12.12</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Precision décimal</h2>
+
+
+<p>Options ajouté</p>
+<ul>
+	<li><strong>wb-charts-decimal-1</strong>: Indique le nombre de décimal à affiché pour l'étiquette du pourcentage.</li>
+</ul>
+
+<table class="wet-boew-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-chart-nolegend-true wb-charts-pieinnerradius-45 wb-charts-pietilt-50 wb-charts-piehoverable-true wb-charts-decimal-1">
+	<caption>Precision décimal</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7.7</td>
+			<td>10.10</td>
+			<td>4.4</td>
+			<td>14.14</td>
+			<td>15.15</td>
+			<td>7.7</td>
+			<td>23.23</td>
+			<td>8.8</td>
+			<td>12.12</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>Seuil d'étiquettage</h2>
+
+
+<p>Options ajouté</p>
+<ul>
+	<li><strong>wb-charts-piethreshold-8</strong>: Cache les étiquettes dont leur secteur est inférieur au pourcentage spécifié.</li>
+	<li><strong>wb-charts-legendinline-true</strong>: Indique que les étiquettes sera affiché à l'intérieur du graphique.</li>
+</ul>
+
+<p>Options retiré</p>
+<ul>
+	<li>wb-chart-nolegend-true</li>
+</ul>
+
+
+
+<table class="wet-boew-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-charts-pieinnerradius-45 wb-charts-pietilt-50 wb-charts-piehoverable-true wb-charts-decimal-1 wb-charts-piethreshold-8 wb-charts-legendinline-true">
+	<caption>Seuil d'étiquettage</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7.7</td>
+			<td>10.10</td>
+			<td>4.4</td>
+			<td>14.14</td>
+			<td>15.15</td>
+			<td>7.7</td>
+			<td>23.23</td>
+			<td>8.8</td>
+			<td>12.12</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="clear"></div>
+<h2>Angle de démarrage</h2>
+
+
+<p>Options ajouté</p>
+<ul>
+	<li><strong> wb-charts-piestartangle-100</strong>: Facteur de PI, multiplié par 100, qui indique l'angle de démarrage (en radian). Comme valeur de référence, <em>150</em> est la valeur par défaut.</li>
+</ul>
+
+<table class="wet-boew-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-charts-pieinnerradius-45 wb-charts-pietilt-50 wb-charts-piehoverable-true wb-charts-decimal-1 wb-charts-piethreshold-8  wb-charts-legendinline-true wb-charts-piestartangle-100">
+	<caption>Angle de démarrage</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7.7</td>
+			<td>10.10</td>
+			<td>4.4</td>
+			<td>14.14</td>
+			<td>15.15</td>
+			<td>7.7</td>
+			<td>23.23</td>
+			<td>8.8</td>
+			<td>12.12</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="clear"></div>
+
+
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2013-04-11</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contactez-nous</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions ou commentaires?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Nouvelles</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Activité du projet récente</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Statistiques du projet</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Restez branchés</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/BoiteExpWeb">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

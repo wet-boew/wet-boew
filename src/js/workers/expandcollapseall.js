@@ -5,7 +5,7 @@
 /*
  * Expand/Collapse All Content plugin
  */
-/*global jQuery: false, wet_boew_expandcollapseall: false */
+/*global wet_boew_expandcollapseall: false */
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -15,6 +15,7 @@
 	_pe.fn.expandcollapseall = {
 		type : 'plugin',
 		_open : false,			// Globally track the toggle state to support multiple controls on a page
+		_polyfill : false,		// Tracks if the details polyfill is used on the page
 		_togglers : [],			// Reference to all toggle controls
 		_aria_controls : null,	// Space separated ID list of <details> elements for toggle control aria-controls attribute
 		_exec : function (elm) {
@@ -53,6 +54,9 @@
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_expandcollapseall) and class-based overrides
 			$.extend(opts, (typeof wet_boew_expandcollapseall !== 'undefined' ? wet_boew_expandcollapseall : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
+
+			// Check if this page is using the details polyfill
+			this._polyfill = _pe.html.hasClass('polyfill-detailssummary');
 
 			// Create the toggle controls and add them to the page
 			this._initTogglers(elm, opts);
@@ -93,15 +97,20 @@
 		},
 
 		toggle : function() {
-			var $details = $('details');
+			var length,
+				i = 0,
+				$details = $('details');
 
-			// Set the state we're currently in and trigger the change
-			$details.prop('open', this.isOpen());
-			$details.find('summary').click();
+			if (this._polyfill) {
+				$details.prop('open', this.isOpen());
+				$details.find('summary').click();
+			} else {
+				$details.prop('open', !this.isOpen());
+			}
 
 			// Update our state and the title of the toggler controls
 			this.setOpen(!this.isOpen());
-			for(var i = 0, length = this._togglers.length; i < length; i++) {
+			for (length = this._togglers.length; i < length; i++) {
 				this._setTitle(this._togglers[i]);
 			}
 		},
@@ -110,6 +119,8 @@
 			var li,
 				toggler,
 				types,
+				length,
+				i = 0,
 				ul = document.createElement('ul');
 
 			// Make sure there is at least one toggle control
@@ -119,7 +130,7 @@
 
 			// Create the requested togglers and add to the page
 			types = _pe.array.keys(opts.togglers);
-			for (var i = 0, length = types.length; i < length; i++) {
+			for (length = types.length; i < length; i++) {
 				if (opts.togglers[types[i]] === true) {
 					toggler = this._createToggler(types[i], opts);
 					li = document.createElement('li');

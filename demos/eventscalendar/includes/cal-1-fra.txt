@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<!-- DataAjaxFragmentStart -->
+<li>
+<section>
+<h4><a href="http://www.canada.gc.ca" rel="external">Ajax 1 - Événement de seul-jour</a></h4>
+<p><time datetime="2012-03-11">11 mars 2012</time></p>
+<p>Description de l'événement</p>
+</section>
+</li>
+<li>
+<section>
+<h4><a href="http://www.canada.gc.ca" rel="external">Ajax 1 - Événement sur plusieurs jours</a></h4>
+<p>Le <time datetime="2012-03-22">22 mars 2012</time> au <time datetime="2012-04-26">26 avril 2012</time></p>
+<p>Description de l'événement</p>
+</section>
+</li>
+<!-- DataAjaxFragmentEnd -->
+</html>

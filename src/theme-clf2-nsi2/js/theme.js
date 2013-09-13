@@ -1,7 +1,7 @@
 /*!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  *
  * Version: @wet-boew-build.version@
  *
@@ -9,7 +9,7 @@
 /*
  * CLF 2.0 theme scripting
  */
-/*global jQuery: false, pe: false*/
+/*global pe: false*/
 (function ($) {
 	"use strict";
 	var wet_boew_theme, _wet_boew_theme;
@@ -29,7 +29,7 @@
 		init: function () {
 			wet_boew_theme.psnb = pe.header.find('#cn-psnb');
 			wet_boew_theme.bcrumb = pe.header.find('#cn-bc');
-			
+
 			// Add nav-current
 			if (wet_boew_theme.psnb.length > 0) {
 				pe.menu.navcurrent(wet_boew_theme.psnb, wet_boew_theme.bcrumb);

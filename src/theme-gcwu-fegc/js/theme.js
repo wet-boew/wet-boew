@@ -1,7 +1,7 @@
 /*!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  *
  * Version: @wet-boew-build.version@
  *
@@ -9,7 +9,7 @@
 /*
  * GC Web Usability theme scripting
  */
-/*global jQuery: false, pe: false, window: false, document: false, wet_boew_mobile_view: false*/
+/*global pe: false, wet_boew_mobile_view: false*/
 (function ($) {
 	"use strict";
 	var wet_boew_theme, _wet_boew_theme;
@@ -59,16 +59,16 @@
 			// Also switch to the black PNG if printing a content page
 			if (!pe.svg || pe.svgfix) {
 				contentPage = wet_boew_theme.sft.length !== 0;
+				swapPNG = function(toAlt) {
+					var elms = $('#gcwu-wmms img, #gcwu-sig img').get(),
+						len = elms.length,
+						image;
+					while (len--) {
+						image = elms[len];
+						image.src = (toAlt ? image.src.replace('.png', '-alt.png') : image.src.replace('-alt.png', '.png'));
+					}
+				};
 				if (contentPage) {
-					swapPNG = function(toAlt) {
-						var elms = $('#gcwu-wmms img, #gcwu-sig img').get(),
-							len = elms.length,
-							image;
-						while (len--) {
-							image = elms[len];
-							image.src = (toAlt ? image.src.replace('.png', '-alt.png') : image.src.replace('-alt.png', '.png'));
-						}
-					};
 					window.onbeforeprint = function() {
 						swapPNG(true);
 					};
@@ -85,9 +85,6 @@
 					if (object.length > 0) {
 						elm.innerHTML = elm.innerHTML.replace(/<object[\s\S]*?\/object>/i, object[0].innerHTML);
 					}
-				}
-				if (!contentPage) {
-					swapPNG(true);
 				}
 			}
 
@@ -163,6 +160,9 @@
 				sessionSetting,
 				signInOut,
 				session,
+				listviewOpen,
+				sig,
+				id,
 				header_fixed = typeof wet_boew_mobile_view !== 'undefined' && wet_boew_mobile_view.header_fixed;
 
 			// Content pages only
@@ -307,12 +307,18 @@
 				settings_popup += '</ul>';
 				// Add the footer links
 				nodes = wet_boew_theme.sft.find('.gcwu-col-head');
-				for (i = 0, len = nodes.length; i !== len; i += 1) {
+				listviewOpen = false;
+				len = nodes.length;
+				for (i = 0; i !== len; i += 1) {
 					node = nodes.eq(i);
 					link = node.children('a');
 					next = node.find('+ ul, + address ul');
 					target = link.length !== 0 ? link[0].innerHTML : node[0].innerHTML;
 					if (next.length !== 0) {
+						if (listviewOpen) {
+							settings_popup += '</ul>';
+							listviewOpen = false;
+						}
 						settings_popup += '<div class="wb-nested-menu" data-role="collapsible"><h2>' + target + '</h2>' + listView + '>';
 						links = next[0].getElementsByTagName('a');
 						for (j = 0, len2 = links.length; j !== len2; j += 1) {
@@ -324,11 +330,40 @@
 						}
 						settings_popup += '</ul></div>';
 					} else if (link.length !== 0) {
-						settings_popup += '<li><a href="' + link.attr('href') + '">' + link.html() + '</a></li>';
+						if (!listviewOpen) {
+							settings_popup += listView + '>';
+							listviewOpen = true;
+						}
+						settings_popup += '<li class="top-level' + (i === 0 ? ' ui-corner-top' : '') + '"><a href="' + link.attr('href') + '">' + link.html() + '</a></li>';
 					}
 				}
+				if (listviewOpen) {
+					settings_popup += '</ul>';
+				}
+
+				// Add GC links
+				sig = wet_boew_theme.gcnb.find('#gcwu-sig-in').children();
+				if (sig.length !== 0) {
+					settings_popup += '<div class="wb-nested-menu" data-role="collapsible"><h2>' + (typeof sig.attr('aria-label') !== 'undefined' ? sig.attr('aria-label') : sig.attr('alt')) + '</h2>' + listView + '>';
+					nodes = wet_boew_theme.gcnb.find('li').add(wet_boew_theme.gcft.find('li')).get();
+					len = nodes.length;
+					for (i = 0; i !== len; i += 1) {
+						node = nodes[i];
+						id = node.id;
+						if (id.indexOf('gcwu-gcnb-lang') === -1 && id !== 'gcwu-gcft-ca') {
+							link = node.getElementsByTagName('a');
+							if (link.length !== 0) {
+								link = link[0];
+								settings_popup += '<li><a href="' + link.href + (link.hasAttribute('target') ? '" target="' + link.getAttribute('target') : '') + '">' + link.innerHTML + '</a></li>';
+							}
+						}
+					}
+					settings_popup += '</ul></div>';
+				}
+
 				target = settings_popup.lastIndexOf('<li');
-				settings_popup = settings_popup.substring(0, target) + '<li class="ui-corner-bottom"' + settings_popup.substring(target + 3) + '</ul></div></div>' + popup_close;
+				len2 = settings_popup.indexOf('<li class', target) === target ? 11 : 3;
+				settings_popup = settings_popup.substring(0, target) + '<li class="ui-corner-bottom' + (len2 === 3 ? '"' : ' ') + settings_popup.substring(target + len2) + '</ul></div></div>' + popup_close;
 
 				// Append all the popups to the body
 				pe.bodydiv.append(bodyAppend + settings_popup);

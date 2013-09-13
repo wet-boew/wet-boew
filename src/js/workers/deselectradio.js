@@ -1,10 +1,11 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 /*
  * Deselectable radio buttons plugin
  */
+
 (function () {
 	"use strict";
 	var _pe = window.pe || {
@@ -26,17 +27,17 @@
 				}
 			}
 			_pe.document.on('click vclick', 'input[type="radio"].deselectable', function (e) {
-				var button = e.button;
+				var name, inputs, input, inputs_len,
+					button = e.button;
+
 				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
 					e.stopPropagation();
 					if (this.className.indexOf(' checked') !== -1) { // Already selected so deselect and remember that it is no longer selected
 						this.checked = false;
 						this.className = this.className.replace(' checked', '');
 					} else { // Not selected previously so remember that it is now selected
-						var name = this.getAttribute('name'),
-							inputs,
-							input,
-							inputs_len;
+						name = this.getAttribute('name');
+
 						if (name !== undefined) {
 							inputs = document.getElementsByName(name);
 							inputs_len = inputs.length;

@@ -1,16 +1,19 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 %datepicker-color-fff-important {
 	color: #FFF !important;
+}
+%datepicker-display-none {
+	display: none;
 }
 %datepicker-display-inline {
 	display: inline;
 }
 %datepicker-img-display-inline {
 	img {
-		display: inline;
+		@extend %datepicker-display-inline;
 	}
 }
 %datepicker-margin-0 {
@@ -53,7 +56,7 @@
 }
 
 .picker-toggle {
-	display: none;
+	@extend %datepicker-display-none;
 }
 
 .picker-toggle-visible, .picker-toggle-hidden {
@@ -91,5 +94,15 @@ div {
 				@extend %datepicker-color-fff-important;
 			}
 		}
+	}
+}
+
+.datepicker-format {
+	@extend %datepicker-display-none;
+}
+
+.polyfill-datepicker {
+	.datepicker-format {
+		@extend %datepicker-display-inline;
 	}
 }

@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Tabbed interface - Working examples - Web Experience Toolkit&#160;(WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="tabs-fr.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-en.html" lang="en"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
+<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Implementing-WET">Implement WET</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-en.html">Home</a></li>
+<li><a href="../index-en.html">Working examples</a></li>
+<li>Tabbed interface</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Tabbed interface</h1>
+
+<ul class="button-group">
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Tabbed-interface" class="button">Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
+</ul>
+
+<section><div class="span-4 module-table-contents"><h2>Table of contents</h2>
+<ul>
+<li><a href="#features">Features</a></li>
+<li><a href="#coding">Coding</a></li>
+<li><a href="#cssnames">CSS names</a></li>
+<li><a href="#basic">Basic examples</a></li>
+<li><a href="#complex">Complex examples</a></li>
+</ul>
+</div></section>
+<div class="clear"></div>
+
+<div class="span-8"><section><h2 id="features">Features</h2>
+<ul>
+<li>Multiple tabs on the same page.</li>
+<li>Multiple design options.</li>
+<li>Choose the default tab (<code>&lt;li class="default"&gt;</code>).</li>
+<li>Choose if the tabs cycle and choose the cycle speed (fast: <code>class="cycle-fast"</code>, slow: <code>class="cycle-slow"</code>, normal: <code>class="cycle"</code>).</li>
+<li>Injects Pause/Play if cycle is activated. Appropriate French is injected for French pages.</li>
+<li>Pause/Play alone would have accessibility issues as it not being descriptive enough (&quot;Pause&quot; what?), so the injected code actually says:
+<code>Pause &lt;span class="wb-invisible"&gt;: Stop tab rotation&lt;/span&gt;</code>
+and
+<code>Play &lt;span class="wb-invisible"&gt;: Start tab rotation&lt;/span&gt;</code></li>
+<li>Force tabs to be the same height, i.e. they will all be the height of the tallest tab. This is useful if there is a cycle effect, so the page doesn't jump as the tab cycles from one panel to the next.</li>
+</ul>
+</section></div>
+<div class="clear"></div>
+
+<div class="span-5"><section><h2 id="coding">Coding</h2>
+<pre class="wet-boew-prettify prettyprint linenums"><code>&lt;div class=&quot;wet-boew-tabbedinterface tabs-style-2&quot;&gt;
+	&lt;ul class=&quot;tabs&quot;&gt;
+		&lt;li&gt;&lt;a href=&quot;#tabs1_1&quot;&gt;Tab 1&lt;/a&gt;&lt;/li&gt;
+		&lt;li class=&quot;default&quot;&gt;&lt;a href=&quot;#tabs1_2&quot;&gt;Tab 2&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#tabs1_3&quot;&gt;Tab3&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;div class=&quot;tabs-panel&quot;&gt;
+		&lt;div id=&quot;tabs1_1&quot;&gt;
+			...
+		&lt;/div&gt;
+		&lt;div id=&quot;tabs1_2&quot;&gt;
+			...
+		&lt;/div&gt;
+		&lt;div id=&quot;tabs1_3&quot;&gt;
+			...
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</section></div>
+
+<div class="span-3"><section><h2 id="cssnames">CSS names</h2>
+<p>This plug-in uses the following CSS names:</p>
+<ul>
+<li><code>wet-boew-tabbedinterface</code></li>
+<li><code>tabs</code></li>
+<li><code>tabs-panel</code></li>
+<li><code>tabs-style-1</code></li>
+<li><code>tabs-style-2</code></li>
+<li><code>tabs-style-3</code></li>
+<li><code>tabs-style-4</code></li>
+<li><code>tabs-style-5</code></li>
+<li><code>tabs-style-6</code></li>
+<li><code>tabs-content-pad</code></li>
+<li><code>clear</code></li>
+<li><code>wb-invisible</code></li>
+<li><code>default</code></li>
+<li><code>cycle-fast</code></li>
+<li><code>cycle-slow</code></li>
+<li><code>cycle</code></li>
+<li><code>auto-play</code></li>
+<li><code>auto-height-none</code></li>
+<li><code>animate-fast</code></li>
+<li><code>animate-slow</code></li>
+<li><code>animate</code></li>
+<li><code>slide-horz</code></li>
+<li><code>slide-vert</code></li>
+</ul>
+</section></div>
+<div class="clear"></div>
+
+<section><h2 id="basic">Basic examples</h2>
+	<div class="span-4"><section><h3 class="background-dark margin-bottom-medium">Default design</h3>
+		<p><strong>Demo includes:</strong> Nothing extra</p>
+		<div class="wet-boew-tabbedinterface">
+			<ul class="tabs">
+				<li class="default"><a href="#tab1">Tab 1</a></li>
+				<li><a href="#tab2">Tab 2</a></li>
+				<li><a href="#tab3">Tab 3</a></li>
+			</ul>
+			<div class="tabs-panel">
+				<div id="tab1"><section><h4>Tab 1</h4>
+					<p><a href="#">fake link</a></p>
+					<p><a href="#tab2"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Tab 2</a><br /><br />
+						Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+				</section></div>
+				<div id="tab2"><section><h4>Tab 2</h4>
+					<div class="wet-boew-formvalid">
+						<form action="#" method="get" id="validation-example">
+							<fieldset><legend>Contact information</legend>
+								<label for="title1"><span class="field-name">Title</span> <strong>(required)</strong></label>
+								<select id="title1" name="title1" required="required">
+									<option></option>
+									<option value="dr">Dr.</option>
+									<option value="esq">Esq.</option>
+									<option value="mr">Mr.</option>
+									<option value="ms">Ms.</option>
+								</select>
+								<label for="fname1"><span class="field-name">First Name</span> <strong>(required)</strong></label><input id="fname1" name="fname1" type="text" required="required" pattern="{2,}" data-rule-minlength="2" />
+								<label for="lname1"><span class="field-name">Last Name</span> <strong>(required)</strong></label><input id="lname1" name="lname1" type="text" required="required" pattern="{2,}" data-rule-minlength="2" />
+								<label for="tel1"><span class="field-name">Telephone Number</span> (999-999-9999) <strong>(required)</strong></label><input id="tel1" name="tel1" type="tel" required="required" data-rule-phoneUS="true" />
+								<label for="email1"><span class="field-name">Email Address</span></label><input id="email1" name="email1" type="email" />
+								<label for="url1"><span class="field-name">Website URL (http://www.url.com)</span></label><input id="url1" name="url1" type="url" />
+							</fieldset>
+							<fieldset><legend>Other examples</legend>
+								<label for="date1"><span class="field-name">Date</span> (YYYY-MM-DD)</label><input id="date1" name="date1" type="date" data-rule-dateISO="true" />
+								<label for="time1"><span class="field-name">Time</span> (hh:mm)</label><input id="time1" name="time1" type="time" />
+								<label for="an1"><span class="field-name">Alphanumeric</span> (at least 4 characters)</label><input id="an1" name="an1" type="text" pattern="[A-Za-z0-9\s]{4,}" data-rule-alphanumeric="true" data-rule-minlength="4" />
+								<label for="digits1"><span class="field-name">Digits only</span></label><input id="digits1" name="digits1" type="number" />
+								<label for="integer1"><span class="field-name">Integer</span> (between 5 and 40)</label><input id="integer1" name="integer1" type="number" min="5" max="40" />
+								<label for="letters1"><span class="field-name">Letters only</span> (maximum of 5 characters)</label><input id="letters1" name="letters1" type="text" size="5" maxlength="5" pattern="[A-Za-z\s]" data-rule-lettersonly="true" />
+								<label for="text1"><span class="field-name">Letters and punctuation only</span> (allowed punctuation: [. , ( ) "])</label><input id="text1" name="text1" type="text" pattern="[A-Za-z-.,()'&quot;\s]" data-rule-letterswithbasicpunc="true" />
+								<label for="password1"><span class="field-name">Password</span> (between 5 and 10 characters)</label><input id="password1" name="password1" type="password" maxlength="10" size="10" pattern="{5,10}" data-rule-rangelength="[5,10]" />
+							</fieldset>
+							<div class="form-inline"><input type="submit" value="Submit" class="button button-accent"/> <input type="reset" value="Reset" class="button" /></div>
+						</form>
+					</div>
+					<div class="clear"></div>
+					<noscript>
+						<p>This form cannot be submitted without JavaScript. You may use one of the following methods:</p>
+						<ul>
+							<li>Method 1</li>
+							<li>Method 2</li>
+							<li>Method n</li>
+						</ul>
+					</noscript>
+				</section></div>
+				<div id="tab3"><section><h4>Tab 3</h4>
+					<p><a href="#">fake link</a></p>
+					<p><a href="#tab1"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Tab 1</a><br />
+						Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+					<div class="clear"></div>
+					<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />X heading</a><br />
+						Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+				</section></div>
+			</div>
+		</div>
+	</section></div>
+
+	<div class="span-4"><section><h3 class="background-dark margin-bottom-medium"><code>tabs-style-1</code> design</h3>
+		<p><strong>Demo includes:</strong> <code>default</code> tab is the middle tab</p>
+		<div class="wet-boew-tabbedinterface tabs-style-1">
+			<ul class="tabs">
+				<li><a href="#tab4">Tab 4</a></li>
+				<li class="default"><a href="#tab5">Tab 5</a></li>
+				<li><a href="#tab6">Tab 6</a></li>
+			</ul>
+			<div class="tabs-panel">
+				<div id="tab4"><section><h4>Tab 4</h4>
+					<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />X heading</a><br />
+						Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+					<p><a href="#">fake link</a></p>
+					<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />X heading</a><br />
+						Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+				</section></div>
+				<div id="tab5"><section><h4>Tab 5</h4>
+					<p><a href="#">fake link</a></p>
+					<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />X heading</a><br />
+						Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+				</section></div>
+				<div id="tab6"><section><h4>Tab 6</h4>
+					<p><a href="#">fake link</a></p>
+					<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />X heading</a><br />
+						Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+					<div class="clear"></div>
+					<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />X heading</a><br />
+						Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+					<div class="clear"></div>
+					<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />X heading</a><br />
+						Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+					<div class="clear"></div>
+				</section></div>
+			</div>
+		</div>
+	</section></div><div class="clear"></div>
+
+	<div class="span-4"><section><h3 class="background-dark margin-bottom-medium"><code>tabs-style-2</code> design</h3>
+		<p><strong>Demo includes:</strong> <code>cycle-slow</code>, <code>animate</code> and <code>slide-horz</code> (v3.1)</p>
+		<div class="wet-boew-tabbedinterface tabs-style-2 cycle-slow animate slide-horz">
+			<div class="tabs-panel">
+				<div id="tab7">
+					<section>
+						<div class="span-2 row-start margin-bottom-none">
+							<div class="tabs-content-pad">
+								<h2 class="margin-top-none">Tab 7</h2>
+								<p>Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+								<p><a href="#" class="button button-accent">Continue reading<span class="wb-invisible">: Descriptive link text 1</span></a></p>
+							</div>
+						</div>
+						<div class="span-2 row-end"><img src="images/demo-1.jpg" alt="description 1" class="margin-bottom-none" /></div>
+						<div class="clear"></div>
+					</section>
+				</div>
+				<div id="tab8">
+					<section>
+						<div class="span-2 row-start margin-bottom-none">
+							<div class="tabs-content-pad">
+								<h2 class="margin-top-none">Tab 8</h2>
+								<p>Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+								<p><a href="#" class="button button-accent">Continue reading<span class="wb-invisible">: Descriptive link text 2</span></a></p>
+							</div>
+						</div>
+						<div class="span-2 row-end"><img src="images/demo-2.jpg" alt="description 2" class="margin-bottom-none" /></div>
+						<div class="clear"></div>
+					</section>
+				</div>
+				<div id="tab9">
+					<section>
+						<div class="span-2 row-start margin-bottom-none">
+							<div class="tabs-content-pad">
+								<h2 class="margin-top-none">Tab 9</h2>
+								<p>Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.  Fake content. Fake content. Fake content.</p>
+								<p><a href="#" class="button button-accent">Continue reading<span class="wb-invisible">: Descriptive link text 3</span></a></p>
+							</div>
+						</div>
+						<div class="span-2 row-end"><img src="images/demo-3.jpg" alt="description 3" class="margin-bottom-none" /></div>
+						<div class="clear"></div>
+					</section>
+				</div>
+			</div>
+			<ul class="tabs">
+				<li><a href="#tab7">Tab 7</a></li>
+				<li><a href="#tab8">Tab 8</a></li>
+				<li><a href="#tab9">Tab 9</a></li>
+			</ul>
+		</div>
+	</section></div>
+
+	<div class="span-4"><section><h3 class="background-dark margin-bottom-medium"><code>tabs-style-3</code> design</h3>
+		<p><strong>Demo includes:</strong> <code>cycle-fast</code> and <code>animate-fast</code></p>
+		<div class="wet-boew-tabbedinterface tabs-style-3 cycle-fast animate-fast">
+			<ul class="tabs">
+				<li><a href="#tab10">Tab 10</a></li>
+				<li><a href="#tab11">Tab 11</a></li>
+				<li><a href="#tab12">Tab 12</a></li>
+			</ul>
+			<div class="tabs-panel">
+				<div id="tab10" class="tabs-content-pad"><section><h4>Tab 10</h4>
+					<p><a href="#tab11"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Tab 11</a><br />
+						Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+					<p><a href="#">fake link</a></p>
+					<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />X heading</a><br />
+						Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+				</section></div>
+				<div id="tab11" class="tabs-content-pad"><section><h4>Tab 11</h4>
+					<p><a href="#">fake link</a></p>
+					<p><a href="#tab12"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Tab 12</a><br />
+						Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+				</section></div>
+				<div id="tab12" class="tabs-content-pad"><section><h4>Tab 12</h4>
+					<p><a href="#">fake link</a></p>
+					<p><a href="#tab10"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />Tab 10</a><br />
+						Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+					<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />X heading</a><br />
+						Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+					<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />X heading</a><br />
+						Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+				</section></div>
+			</div>
+		</div>
+	</section></div><div class="clear"></div>
+
+	<div class="span-4"><section><h3 class="background-dark margin-bottom-medium"><code>tabs-style-4</code> design</h3>
+		<div class="wet-boew-tabbedinterface tabs-style-4 cycle span-2 row-start">
+			<div class="tabs-panel">
+				<div id="tab13"><a href="http://actionplan.gc.ca/en" rel="external"><img height="70" width="195" alt="Canada's Economic Action Plan: Jobs, Growth, Prosperity" src="images/demo1-en.jpg" /></a></div>
+				<div id="tab14"><a href="http://actionplan.gc.ca/eng/feature.asp?pageId=357&amp;featureId=30" rel="external"><img height="70" width="195" alt="Perimeter security and economic competitiveness" src="images/demo2-en.jpg" /></a></div>
+				<div id="tab15"><a href="http://www.forces.gc.ca/en/news-events/war-of-1812.page" rel="external"><img height="70" width="195" alt="The War of 1812" src="images/demo3-en.jpg" /></a></div>
+				<div id="tab16"><a href="http://www.forces.gc.ca/en/write-to-the-troops/index.page" rel="external"><img height="70" width="195" alt="Write to the Troops Morale by Message Board" src="images/demo4-en.jpg" /></a></div>
+				<div id="tab17"><a href="http://www.veterans.gc.ca/eng/" rel="external"><img height="70" width="195" alt="Veteran's Affairs Canada" src="images/demo5-en.jpg" /></a></div>
+			</div>
+			<ul class="tabs">
+				<li><a href="#tab13">Canada's Economic Action Plan: Jobs, Growth, Prosperity</a></li>
+				<li><a href="#tab14">Perimeter security and economic competitiveness</a></li>
+				<li><a href="#tab15">The War of 1812</a></li>
+				<li><a href="#tab16">Write to the Troops <em>Morale by Message Board</em></a></li>
+				<li><a href="#tab17">Veteran's Affairs Canada</a></li>
+			</ul>
+		</div>
+	</section></div>
+
+	<div class="span-4"><section><h3 class="background-dark margin-bottom-medium"><code>tabs-style-5</code> design</h3>
+		<div class="wet-boew-tabbedinterface tabs-style-5 cycle span-2 row-start">
+			<div class="tabs-panel">
+				<div id="tab18"><a href="http://actionplan.gc.ca/en" rel="external"><img height="70" width="195" alt="Canada's Economic Action Plan: Jobs, Growth, Prosperity" src="images/demo1-en.jpg" /></a></div>
+				<div id="tab19"><a href="http://actionplan.gc.ca/eng/feature.asp?pageId=357&amp;featureId=30" rel="external"><img height="70" width="195" alt="Perimeter security and economic competitiveness" src="images/demo2-en.jpg" /></a></div>
+				<div id="tab20"><a href="http://www.forces.gc.ca/en/news-events/war-of-1812.page" rel="external"><img height="70" width="195" alt="The War of 1812" src="images/demo3-en.jpg" /></a></div>
+				<div id="tab21"><a href="http://www.forces.gc.ca/en/write-to-the-troops/index.page" rel="external"><img height="70" width="195" alt="Write to the Troops Morale by Message Board" src="images/demo4-en.jpg" /></a></div>
+				<div id="tab22"><a href="http://www.veterans.gc.ca/eng/" rel="external"><img height="70" width="195" alt="Veteran's Affairs Canada" src="images/demo5-en.jpg" /></a></div>
+			</div>
+			<ul class="tabs">
+				<li><a href="#tab18">Canada's Economic Action Plan: Jobs, Growth, Prosperity</a></li>
+				<li><a href="#tab19">Perimeter security and economic competitiveness</a></li>
+				<li><a href="#tab20">The War of 1812</a></li>
+				<li><a href="#tab21">Write to the Troops <em>Morale by Message Board</em></a></li>
+				<li><a href="#tab22">Veteran's Affairs Canada</a></li>
+			</ul>
+		</div>
+	</section></div>
+	<div class="clear"></div>
+
+	<div class="span-8"><section><h3 class="background-dark margin-bottom-medium"><code>tabs-style-6</code> design (v3.1.0)</h3>
+		<p><strong>Demo includes:</strong> <code>embedded-grid</code>, <code>animate</code>, <code>cycle</code> and <code>slide-horz</code>.</p>
+		<div class="wet-boew-tabbedinterface embedded-grid tabs-style-6 animate cycle slide-horz">
+			<div class="tabs-panel">
+				<div id="tab23" class="span-8 margin-bottom-none"><section><h4 class="wb-invisible">Tab 23</h4>
+					<img height="190" width="700" alt="" src="../grids/images/position.png" class="margin-bottom-none" />
+					<div class="span-3 position-top position-right align-center font-small opacity-90">
+						<div class="span-1 row-start background-light">
+							<a href="#"><img height="50" width="100" src="../grids/images/position-mini-3.png" class="margin-bottom-none" alt="" />Lorem ipsum</a>
+						</div>
+						<div class="span-1 background-light">
+							<a href="#"> <img height="50" width="100" src="../grids/images/position-mini-2.png" class="margin-bottom-none" alt="" />Dolor sit amet</a>
+						</div>
+						<div class="span-1 background-light row-end">
+							<a href="#"><img height="50" width="100" src="../grids/images/position-mini-1.png" class="margin-bottom-none" alt="" />Nam sagittis</a>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</section></div>
+				<div id="tab24" class="span-8 margin-bottom-none"><section><h4 class="wb-invisible">Tab 24</h4>
+					<img height="190" width="700" src="../grids/images/position.png" class="margin-bottom-none" alt="" />
+					<div class="span-8 position-left position-bottom opacity-90 background-dark">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					</div>
+				</section></div>
+				<div id="tab25" class="span-8 margin-bottom-none"><section><h4 class="wb-invisible">Tab 25</h4>
+					<img height="190" width="700" src="../grids/images/position.png" class="margin-bottom-none" alt="" />
+					<div class="span-4 position-right position-top-large opacity-90 background-accent">
+						<p>Nam sagittis, eros bibendum vestibulum ultricies, mi elit luctus lectus, non tincidunt felis lectus ut dolor. Curabitur porttitor felis vel lorem malesuada non tristique enim pellentesque. </p>
+					</div>
+				</section></div>
+				<div id="tab26" class="span-8 margin-bottom-none"><section><h4 class="wb-invisible">Tab 26</h4>
+					<img height="190" width="700" src="../grids/images/position.png" class="margin-bottom-none" alt="" />
+					<div class="span-8 position-left position-bottom opacity-90 background-dark">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					</div>
+				</section></div>
+			</div>
+			<ul class="tabs">
+				<li class="img"><a href="#tab23"><span class="wb-invisible">Tab 23</span><img src="../grids/images/position-mini-3.png" width="100" height="50" class="image-actual" alt="" /></a></li>
+				<li class="img"><a href="#tab24"><span class="wb-invisible">Tab 24</span><img src="../grids/images/position-mini-2.png" width="100" height="50" class="image-actual" alt="" /></a></li>
+				<li class="img"><a href="#tab25"><span class="wb-invisible">Tab 25</span><img src="../grids/images/position-mini-1.png" width="100" height="50" class="image-actual" alt="" /></a></li>
+				<li><a href="#tab26">Tab 26</a></li>
+			</ul>
+		</div>
+	</section></div>
+</section>
+<div class="clear"></div>
+<section><h3 id="complex">Complex examples</h3>
+	<section><h4>Example 1</h4>
+		<p>When creating parent/child grids, you must use <code>row-start</code> and <code>row-end</code>. There are rare times where this may not be desirable. For example, with drag and drop widgets each grid cell must be the same size so the addition of
+			<code>row-start</code> or <code>row-end</code> on some of them may cause layout problems when the box is moved from one column to another. In such a case, you can use the class
+			<code>embedded-grid</code>. This CSS acts as a container for the tabs and you do not need to put them in a grid cell. It also removes the borders so the full with of the space is available.</p>
+		<div class="wet-boew-tabbedinterface embedded-grid animate slide-vert">
+			<ul class="tabs">
+				<li><a href="#tab30">National events</a></li>
+				<li><a href="#tab31">Regional events</a></li>
+				<li><a href="#tab32">Local events</a></li>
+			</ul>
+			<div class="tabs-panel">
+				<div id="tab30" class="span-8">
+					<h5>National events</h5>
+					<div class="span-4 background-light border-span-4 row-start"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
+					<div class="span-4 background-light border-span-4 row-end"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
+					<div class="clear"></div>
+				</div>
+				<div id="tab31" class="span-8">
+					<h5>Regional events</h5>
+					<div class="span-2 background-dark border-span-2 row-start"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
+					<div class="span-2 background-dark border-span-2"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
+					<div class="span-2 background-dark border-span-2"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
+					<div class="span-2 background-dark border-span-2 row-end"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
+					<div class="clear"></div>
+				</div>
+				<div id="tab32" class="grid-12">
+					<div class="span-12">
+						<h5>Local events</h5>
+						<div class="span-4 background-accent border-span-4 row-start"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
+						<div class="span-4 background-accent border-span-4"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
+						<div class="span-4 background-accent border-span-4 row-end"><p class="margin-top-xlarge margin-bottom-xlarge">Content</p></div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</section>
+	<section><h4>Example 2</h4>
+		<p>Some tabs accommodate parent/child grid cells (i.e. you can put a grid cell in another grid cell).</p>
+		<div class="span-8">
+			<div class="wet-boew-tabbedinterface embedded-grid tabs-style-2 cycle">
+				<div class="tabs-panel">
+					<div id="tab33">
+						<section>
+							<h4 class="align-center span-6 position-right margin-top-none margin-bottom-none">Tab 33</h4>
+							<div class="span-6 row-end margin-top-large margin-bottom-none float-right">
+								<section><h5><code>span-2</code> + <code>span-6</code></h5>
+									<p><a href="#">X heading</a><br />Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+									<p><a href="#">fake link</a></p>
+								</section>
+							</div>
+							<div class="span-2 row-start margin-bottom-none float-left"><img src="../grids/images/photo.jpg" width="220" height="220" alt="photo" /></div>
+							<div class="clear"></div>
+						</section>
+					</div>
+					<div id="tab34">
+						<section>
+							<h4 class="align-center span-6 position-right margin-top-none margin-bottom-none">Tab 34</h4>
+							<div class="span-6 row-end margin-top-large margin-bottom-none float-right">
+								<section><h5><code>span-6</code> + <code>span-2</code></h5>
+									<p><a href="#">fake link</a></p>
+									<p><a href="#">Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</a></p>
+								</section>
+							</div>
+							<div class="span-2 row-start margin-bottom-none float-left"><img src="../grids/images/photo.jpg" width="220" height="220" alt="photo" /></div>
+							<div class="clear"></div>
+						</section>
+					</div>
+					<div id="tab35">
+						<section><h4 class="align-center margin-top-none margin-bottom-none">Tab 35</h4>
+							<div class="span-2 margin-bottom-none row-start">
+								<div class="tabs-content-pad">
+									<section><h5><code>span-2</code></h5>
+										<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />X heading</a><br />Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+									</section>
+								</div>
+							</div>
+							<div class="span-2 margin-bottom-none">
+								<div class="tabs-content-pad">
+									<section><h5><code>span-2</code></h5>
+										<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />X heading</a><br />Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+									</section>
+								</div>
+							</div>
+							<div class="span-2 margin-bottom-none">
+								<div class="tabs-content-pad">
+									<section><h5><code>span-2</code></h5>
+										<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />X heading</a><br />Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+									</section>
+								</div>
+							</div>
+							<div class="span-2 margin-bottom-none row-end">
+								<div class="tabs-content-pad">
+									<section><h5><code>span-2</code></h5>
+										<p><a href="#"><img src="../grids/images/photo.jpg" width="60" height="60" class="image-actual float-left" alt="photo" />X heading</a><br />Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content. Fake content.</p>
+									</section>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</section>
+					</div>
+				</div>
+				<ul class="tabs">
+					<li><a href="#tab33">Tab 33</a></li>
+					<li><a href="#tab34">Tab 34</a></li>
+					<li><a href="#tab35">Tab 35</a></li>
+				</ul>
+			</div>
+		</div>
+	</section>
+</section>
+
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2013-04-11</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

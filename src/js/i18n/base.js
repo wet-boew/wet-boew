@@ -1,7 +1,7 @@
 /*!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  *
  * Version: @wet-boew-build.version@
  *
@@ -9,8 +9,8 @@
 /*
 ----- @%lang-eng@ dictionary (il8n) ---
  */
-/*global jQuery: false */
-(function ($) {
+
+(function () {
 	"use strict";
 	var _pe = window.pe || {
 		fn: {}
@@ -205,4 +205,4 @@
 	_pe.document.trigger('languageloaded');
 	window.pe = _pe;
 	return _pe;
-}(jQuery));
+}());

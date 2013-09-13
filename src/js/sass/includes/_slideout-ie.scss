@@ -1,6 +1,6 @@
 ﻿/*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 
 %so-filter-rotate-1 {
@@ -25,9 +25,6 @@
 	#slideoutToggle {
 		width: auto !important;
 	}
-	.so-ie7 {
-		position: relative;
-	}
 }
 .ie8 {
 	#toggleLink {
@@ -43,5 +40,14 @@
 	}
 	#slideoutToggle {
 		@extend %so-filter-rotate-3;
+	}
+}
+
+/*Screen SCSS*/
+@media screen {
+	.ie7 {
+		.so-ie7 {
+			position: relative;
+		}
 	}
 }

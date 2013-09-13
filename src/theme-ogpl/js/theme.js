@@ -9,7 +9,7 @@
 /*
  * WET theme scripting
  */
-/*global jQuery: false, pe: false, window: false, document: false, wet_boew_mobile_view: false*/
+/*globalpe: false, wet_boew_mobile_view: false*/
 (function ($) {
 	"use strict";
 	var wet_boew_theme, _wet_boew_theme;
@@ -118,6 +118,7 @@
 				sessionSetting,
 				signInOut,
 				session,
+				listviewOpen,
 				header_fixed = typeof wet_boew_mobile_view !== 'undefined' && wet_boew_mobile_view.header_fixed,
 				header = '<div data-role="header"' + (header_fixed ? ' data-position="fixed"' : '') + '><div class="ui-title"><div></div></div><map id="ogpl-mnavbar" data-role="controlgroup" data-type="horizontal" class="ui-btn-right wb-hide">';
 
@@ -260,13 +261,18 @@
 				settings_popup += '<div data-role="controlgroup" data-theme="c"><div data-role="collapsible-set" data-inset="false">';
 				// Add the footer links
 				nodes = wet_boew_theme.sft.find('.ogpl-col-head');
+				listviewOpen = false;
 				for (i = 0, len = nodes.length; i !== len; i += 1) {
 					node = nodes.eq(i);
 					link = node.children('a');
 					next = node.find('+ ul, + address ul');
 					target = link.length !== 0 ? link[0].innerHTML : node[0].innerHTML;
 					if (next.length !== 0) {
-						settings_popup += '<div class="wb-nested-menu' + (i === 0 ? ' ui-corner-top' : '') + '" data-role="collapsible"><h2>' + target + '</h2>' + listView + '>';
+						if (listviewOpen) {
+							settings_popup += '</ul>';
+							listviewOpen = false;
+						}
+						settings_popup += '<div class="wb-nested-menu" data-role="collapsible"><h2>' + target + '</h2>' + listView + '>';
 						links = next[0].getElementsByTagName('a');
 						for (j = 0, len2 = links.length; j !== len2; j += 1) {
 							node = links[j];
@@ -277,11 +283,19 @@
 						}
 						settings_popup += '</ul></div>';
 					} else if (link.length !== 0) {
-						settings_popup += '<li' + (i === 0 ? ' class="ui-corner-top"' : '') + '><a href="' + link.href + '">' + link.html() + '</a></li>';
+						if (!listviewOpen) {
+							settings_popup += listView + '>';
+							listviewOpen = true;
+						}
+						settings_popup += '<li class="top-level' + (i === 0 ? ' ui-corner-top' : '') + '"><a href="' + link.attr('href') + '">' + link.html() + '</a></li>';
 					}
 				}
+				if (listviewOpen) {
+					settings_popup += '</ul>';
+				}
 				target = settings_popup.lastIndexOf('<li');
-				settings_popup = settings_popup.substring(0, target) + '<li class="ui-corner-bottom"' + settings_popup.substring(target + 3) + '</ul></div></div>' + popup_close;
+				len2 = settings_popup.indexOf('<li class', target) === target ? 11 : 3;
+				settings_popup = settings_popup.substring(0, target) + '<li class="ui-corner-bottom' + (len2 === 3 ? '"' : ' ') + settings_popup.substring(target + len2) + '</ul></div></div>' + popup_close;
 
 				// Append all the popups to the body
 				pe.bodydiv.append(bodyAppend + settings_popup);

@@ -1,11 +1,11 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 /*
  * Tabbed interface plugin
  */
-/*global jQuery: false, wet_boew_tabbedinterface: false*/
+/*global wet_boew_tabbedinterface: false*/
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -178,7 +178,7 @@
 			}
 
 			// Set ARIA attributes on the tabs and panels
-			$nav.attr('role', 'tablist').children('li').attr('role', 'presentation');
+			$nav.attr({'role': 'tablist', 'aria-live': 'off'}).children('li').attr('role', 'presentation');
 			$tabs.attr({'role': 'tab', 'aria-selected': 'false'}).each(function () {
 				var hash = _pe.fn.tabbedinterface._get_hash(this.href),
 					id = hash.length > 0 ? hash.substring(1) : false;
@@ -187,6 +187,7 @@
 					this.setAttribute('id', id + tabSuffix);
 				}
 			});
+
 			$tabsPanel.attr('id', $panels.eq(0).attr('id') + '-parent');
 			$panels.attr({'tabindex': '-1', 'role': 'tabpanel', 'aria-hidden': 'true', 'aria-expanded': 'false'}).each(function () {
 				this.setAttribute('aria-labelledby', this.id + tabSuffix);
@@ -238,7 +239,6 @@
 					button = e.button,
 					$panel,
 					$link,
-					href,
 					hash,
 					isKeyNext,
 					isKeyPrev,
@@ -248,19 +248,10 @@
 					isKeyPrev = e.keyCode === 37 || e.keyCode === 38;	// left, up
 					isKeyNext = e.keyCode === 39 || e.keyCode === 40;	// right, down
 					if (isKeySelect || isKeyPrev || isKeyNext) {
-						e.preventDefault();
 						if (opts.cycle) {
 							stopCycle();
 						}
-						if (isKeySelect) {
-							if (!$target.is($tabs.filter('.' + opts.tabActiveClass))) {
-								selectTab($target, $tabs, $panels, opts, false);
-							} else {
-								href = $target.attr('href');
-								hash = href.substring(href.indexOf('#'));
-								_pe.focus($panels.filter(hash));
-							}
-						} else {
+						if (!isKeySelect) {
 							selectTab(isKeyPrev ? getPrevTab($tabs) : getNextTab($tabs), $tabs, $panels, opts, false);
 						}
 					}
@@ -391,6 +382,8 @@
 				var $hiddenParents = $tabsPanel.parents('.tabs-panel > div').filter(':hidden'),
 					isSlideHorz = opts.transition === 'slide-horz',
 					viewportSize = {width: 0, height: 0},
+					i = 0,
+					len,
 					panelSize;
 
 				// Create the viewport that holds the sliding panels
@@ -408,7 +401,7 @@
 				$hiddenParents.addClass('display-block');
 
 				panelSize = getMaxPanelSize();
-				for(var i = 0, len = $panels.length; i < len; i++) {
+				for (len = $panels.length; i < len; i++) {
 					$panels.eq(i).parent().css($.extend({
 						position: 'absolute',
 						top: viewportSize.height,
@@ -539,13 +532,18 @@
 					stopCycle();
 				}
 
-				_pe.document.keyup(function (e) {
+				_pe.document.on('keydown', function (e) {
 					if (e.keyCode === 27) { // Escape
-						if (elm.find('.tabs-toggle').data('state') === 'started') {
-							elm.find('.tabs .' + opts.tabActiveClass).focus();
+						if ($toggleRow.data('state') === 'started') {
+							_pe.focus(elm.find('.tabs .' + opts.tabActiveClass));
+							stopCycle();
 						}
-						stopCycle();
 					}
+				});
+
+				// Only have the play/pause button speak its changes when focused
+				$toggleButton.on('focus blur', function (e) {
+					$toggleButton.attr('aria-live', e.type === 'focus' ? 'polite' : 'off');
 				});
 			}
 

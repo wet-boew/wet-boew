@@ -1,22 +1,22 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html -->
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
 <!-- DataAjaxFragmentStart -->
-<li><section><h3><a href="http://wet-boew.github.io/wet-boew/index-eng.html">المشروع WET</a></h3><div class="mb-sm">
+<li><section><h3><a href="http://wet-boew.github.io/wet-boew/index-en.html">المشروع WET</a></h3><div class="mb-sm">
 <div class="span-2">
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">الرئيسية المشروع الصفحة</a></li>
-<li><a href="http://wet-boew.github.io/wet-boew/demos/index-eng.html">أمثلة العمل</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">أمثلة العمل</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">توثيق</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Downloads">التنزيلات</a></li>
-<li><a href="http://wet-boew.github.io/wet-boew/License-eng.html">الشروط والأحكام</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/License-en.html">الشروط والأحكام</a></li>
 </ul>
 </div>
 <div class="clear"></div>
-<div class="mb-main-link"><a href="http://wet-boew.github.io/wet-boew/index-eng.html">المشروع - الصفحة الرئيسية WET</a></div>
+<div class="mb-main-link"><a href="http://wet-boew.github.io/wet-boew/index-en.html">المشروع - الصفحة الرئيسية WET</a></div>
 </div></section></li>
-<li><section><h3><a href="section2/index-eng.html">قسم 2</a></h3><div class="mb-sm">
+<li><section><h3><a href="section2/index-en.html">قسم 2</a></h3><div class="mb-sm">
 <div class="span-2">
 <ul>
 <li class="top-level"><a href="#">بند 2a</a></li>
@@ -32,7 +32,7 @@ wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licen
 </section>
 </div>
 <div class="span-2">
-<section><h4><a href="section2/section22/index-eng.html">قسم 2.2</a></h4>
+<section><h4><a href="section2/section22/index-en.html">قسم 2.2</a></h4>
 <ul>
 <li><a href="#">بند 2.2.1</a></li>
 <li><a href="#">بند 2.2.2</a>
@@ -48,7 +48,7 @@ wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licen
 </section>
 </div>
 <div class="clear"></div>
-<div class="mb-main-link"><a href="section2/index-eng.html">قسم 2 - الصفحة الرئيسية</a></div>
+<div class="mb-main-link"><a href="section2/index-en.html">قسم 2 - الصفحة الرئيسية</a></div>
 </div></section></li>
 <li><section><h3><a href="#">قسم 3</a></h3><div class="mb-sm">
 <div class="mb-highlight">
@@ -107,7 +107,7 @@ wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licen
 </section>
 </div>
 <div class="span-2">
-<section><h4><a href="section4/section43/index-eng.html">قسم 4.3</a></h4>
+<section><h4><a href="section4/section43/index-en.html">قسم 4.3</a></h4>
 <ul>
 <li><a href="#">بند 4.3.1</a></li>
 <li><a href="#">بند 4.3.2</a></li>

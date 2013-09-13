@@ -1,11 +1,11 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 /*
  * Share widget plugin
  */
-/*global jQuery: false, wet_boew_share:false */
+/*global wet_boew_share: false */
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -81,7 +81,7 @@
 				addShowAll: elm.hasClass('showall') ? true : undefined,
 				addAnalytics: elm.hasClass('analytics') ? true : undefined
 			};
-			
+
 			// Extend the defaults with settings passed through settings.js (wet_boew_share), class-based overrides and the data-wet-boew attribute
 			$.extend(opts, (typeof wet_boew_share !== 'undefined' ? wet_boew_share : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 

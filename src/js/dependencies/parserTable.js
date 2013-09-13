@@ -1,7 +1,7 @@
 /*!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  *
  * Version: @wet-boew-build.version@
  *
@@ -12,7 +12,7 @@
 * @author: Pierre Dubois
 *
 */
-/*global jQuery: false*/
+
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
@@ -1071,8 +1071,7 @@
 				};
 
 				fnParseSpannedRowCell = function () {
-					var i,
-						j,
+					var j,
 						currCell;
 
 					// Check for spanned row 

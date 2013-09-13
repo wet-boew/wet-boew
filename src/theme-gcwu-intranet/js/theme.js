@@ -1,7 +1,7 @@
 /*!
  *
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  *
  * Version: @wet-boew-build.version@
  *
@@ -9,7 +9,7 @@
 /*
  * GC Web Usability Intranet theme scripting
  */
-/*global jQuery: false, pe: false, window: false, document: false, wet_boew_mobile_view: false*/
+/*global pe: false, wet_boew_mobile_view: false*/
 (function ($) {
 	"use strict";
 	var wet_boew_theme, _wet_boew_theme;
@@ -164,6 +164,8 @@
 				sessionSetting,
 				signInOut,
 				session,
+				listviewOpen,
+				id,
 				header_fixed = typeof wet_boew_mobile_view !== 'undefined' && wet_boew_mobile_view.header_fixed;
 
 			// Content pages only
@@ -308,12 +310,17 @@
 				settings_popup += '</ul>';
 				// Add the footer links
 				nodes = wet_boew_theme.sft.find('.gcwu-col-head');
+				listviewOpen = false;
 				for (i = 0, len = nodes.length; i !== len; i += 1) {
 					node = nodes.eq(i);
 					link = node.children('a');
 					next = node.find('+ ul, + address ul');
 					target = link.length !== 0 ? link[0].innerHTML : node[0].innerHTML;
 					if (next.length !== 0) {
+						if (listviewOpen) {
+							settings_popup += '</ul>';
+							listviewOpen = false;
+						}
 						settings_popup += '<div class="wb-nested-menu" data-role="collapsible"><h2>' + target + '</h2>' + listView + '>';
 						links = next[0].getElementsByTagName('a');
 						for (j = 0, len2 = links.length; j !== len2; j += 1) {
@@ -325,11 +332,44 @@
 						}
 						settings_popup += '</ul></div>';
 					} else if (link.length !== 0) {
-						settings_popup += '<li><a href="' + link.href + '">' + link.html() + '</a></li>';
+						if (!listviewOpen) {
+							settings_popup += listView + '>';
+							listviewOpen = true;
+						}
+						settings_popup += '<li class="top-level' + (i === 0 ? ' ui-corner-top' : '') + '"><a href="' + link.attr('href') + '">' + link.html() + '</a></li>';
 					}
 				}
+
+				// Add custom top nav links
+				nodes = wet_boew_theme.gcnb.find('li');
+				len = nodes.length;
+				if (nodes.length !== 0) {
+					nodes = nodes.get();
+					if (!listviewOpen) {
+						settings_popup += listView + '>';
+						listviewOpen = true;
+					}
+
+					for (i = 0; i !== len; i += 1) {
+						node = nodes[i];
+						id = node.id;
+						if (id.indexOf('gcwu-gcnb-lang') === -1) {
+							link = node.getElementsByTagName('a');
+							if (link.length !== 0) {
+								link = link[0];
+								settings_popup += '<li><a href="' + link.href + (link.hasAttribute('target') ? '" target="' + link.getAttribute('target') : '') + '">' + link.innerHTML + '</a></li>';
+							}
+						}
+					}
+				}
+
+				if (listviewOpen) {
+					settings_popup += '</ul>';
+				}
+
 				target = settings_popup.lastIndexOf('<li');
-				settings_popup = settings_popup.substring(0, target) + '<li class="ui-corner-bottom"' + settings_popup.substring(target + 3) + '</ul></div></div>' + popup_close;
+				len2 = settings_popup.indexOf('<li class', target) === target ? 11 : 3;
+				settings_popup = settings_popup.substring(0, target) + '<li class="ui-corner-bottom' + (len2 === 3 ? '"' : ' ') + settings_popup.substring(target + len2) + '</ul></div></div>' + popup_close;
 
 				// Append all the popups to the body
 				pe.bodydiv.append(bodyAppend + settings_popup);

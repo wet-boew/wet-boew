@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Slider control - Working examples - Web Experience Toolkit&#160;(WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="slider-fr.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-en.html" lang="en"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
+<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Implementing-WET">Implement WET</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-en.html">Home</a></li>
+<li><a href="../index-en.html">Working examples</a></li>
+<li>Slider control</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Slider control</h1>
+
+<ul class="button-group">
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Slider-control" class="button">Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
+</ul>
+
+<div>
+	<p>Use the following attributes to specify restrictions:</p>
+	<ul>
+		<li>max - specifies the maximum value allowed</li>
+		<li>min - specifies the minimum value allowed</li>
+		<li>step - specifies the legal number intervals</li>
+		<li>value - specifies the default value</li>
+	</ul>
+</div>
+
+<div class="wet-boew-prettify all-pre">
+	<section>
+		<h3 id="examples1">Horizontal Example</h3>
+		<div class="span-4">
+			<section>
+				<h4 class="background-dark margin-bottom-medium">Range: 0 to 100 in steps of 1 <span id="html5shim-1-out"></span></h4>
+				<p><input name="html5shim-1" id="html5shim-1" type="range" min="0" max="100" step="1" title="Range: 0 to 100 in steps of 1" value="50" onchange="document.getElementById('html5shim-1-out').innerHTML = '(Current Value: ' + this.value + ')'"></p>
+			</section>
+		</div>
+		<div class="span-4">
+			<section>
+				<h4 class="background-dark margin-bottom-medium">Coding</h4>
+				<pre><code>&lt;input name="html5shim-1" id="html5shim-1" type="range" min="0" max="100" step="1" title="Range: 0 to 100 in steps of 1" value="50" onchange="document.getElementById('html5shim-1-out').innerHTML = '(Current Value: ' + this.value + ')'" /&gt;</code></pre>
+			</section>
+		</div>
+		<div class="clear"></div>
+		<div class="span-4">
+			<section>
+				<h4 class="background-dark margin-bottom-medium">Range: 20 to 50 in steps of 10 <span id="html5shim-2-out"></span></h4>
+				<p><input name="html5shim-2" id="html5shim-2" type="range" min="20" max="50" step="10" title="Range: 20 to 50 in steps of 10" value="20" onchange="document.getElementById('html5shim-2-out').innerHTML = '(Current Value: ' + this.value + ')'"></p>
+			</section>
+		</div>
+		<div class="span-4">
+			<section>
+				<h4 class="background-dark margin-bottom-medium">Coding</h4>
+				<pre><code>&lt;input name="html5shim-2" id="html5shim-2" type="range" min="20" max="50" step="10" title="Range: 20 to 50 in steps of 10" value="20" onchange="document.getElementById('html5shim-1-out').innerHTML = '(Current Value: ' + this.value + ')'" /&gt;</code></pre>
+			</section>
+		</div>
+		<div class="clear"></div>
+	</section>
+	<section>
+		<h3 id="examples2">Vertical Example</h3>
+		<p>Set attribute data-fd-slider-vertical="v-s" to set the slider in vertical position.</p>
+		<div class="span-4">
+			<section>
+				<h4 class="background-dark margin-bottom-medium">Range: 0 to 100 in steps of 1 <span id="html5shim-V1-out"></span></h4>
+				<p><input data-fd-slider-vertical="v-s" name="html5shim-V1" id="html5shim-V1" type="range" min="0" max="100" step="1" title="Range: 0 to 100 in steps of 1" value="50" onchange="document.getElementById('html5shim-V1-out').innerHTML = '(Current Value: ' + this.value + ')'"></p>
+			</section>
+		</div>
+		<div class="span-4">
+			<section>
+				<h4 class="background-dark margin-bottom-medium">Coding</h4>
+				<pre><code>&lt;input data-fd-slider-vertical="v-s" name="html5shim-V1" id="html5shim-V1" type="range" min="0" max="100" step="1" title="Range: 0 to 100 in steps of 1" value="50" onchange="document.getElementById('html5shim-V1-out').innerHTML = '(Current Value: ' + this.value + ')'" /&gt;</code></pre>
+			</section>
+		</div>
+		<div class="clear"></div>
+		<div class="span-4">
+			<section>
+				<h4 class="background-dark margin-bottom-medium">Range: 20 to 50 in steps of 10 <span id="html5shim-V2-out"></span></h4>
+				<p><input data-fd-slider-vertical="v-s" name="html5shim-V2" id="html5shim-V2" type="range" min="20" max="50" step="10" title="Range: 20 to 50 in steps of 10" value="20" onchange="document.getElementById('html5shim-V2-out').innerHTML = '(Current Value: ' + this.value + ')'"></p>
+			</section>
+		</div>
+		<div class="span-4">
+			<section>
+				<h4 class="background-dark margin-bottom-medium">Coding</h4>
+				<pre><code>&lt;input data-fd-slider-vertical="v-s" name="html5shim-V2" id="html5shim-V2" type="range" min="20" max="50" step="10" title="Range: 20 to 50 in steps of 10" value="20" onchange="document.getElementById('html5shim-V2-out').innerHTML = '(Current Value: ' + this.value + ')'" /&gt;</code></pre>
+			</section>
+		</div>
+	</section>
+	<div class="clear"></div>
+</div>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2013-04-11</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

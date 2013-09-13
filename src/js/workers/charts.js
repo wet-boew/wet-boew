@@ -1,12 +1,11 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ * wet-boew.github.io/wet-boew/License-eng.htm / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 /*
- * Charts and graphs
+ * Charts for WET 3.1
  */
-/*global jQuery: false, pe:false*/
-(function ($) {
+(function () {
 	"use strict";
 	var _pe = window.pe || {
 		fn: {}
@@ -21,4 +20,4 @@
 	};
 	window.pe = _pe;
 	return _pe;
-}(jQuery));
+}());

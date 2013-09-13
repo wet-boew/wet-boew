@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Geomap widget - Working examples - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="geomap-fr.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-en.html" lang="en"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
+<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Implementing-WET">Implement WET</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-en.html">Home</a></li>
+<li><a href="../index-en.html">Working examples</a></li>
+<li>Geomap</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Geomap</h1>
+
+<ul class="button-group">
+<li><a href="https://github.com/wet-boew/wet-boew/wiki/Geomap" class="button">Documentation</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
+</ul>
+
+<!-- GeomapStart -->
+<div id="sample_map"
+	class="wet-boew-geomap position scaleline tab" 
+	data-wet-boew='{ 
+		"layersFile": "data/config-en.js", 
+		"tables": [{ 
+			"id": "cities", 
+			"zoom": [true, {type: "all"}],
+			"tab": false,
+			"datatable": true,
+			"popups": true,
+			"popupsInfo": {
+				"id": "citiesPopup",
+				"height": 200,
+				"width": 300,
+				"close": true,
+				"content": "<div style=\"white-space:nowrap;\"><p><strong>Census subdivision: </strong>_Census subdivision<div><a href=\"\#\" class=\"button\" role=\"button\" title=\"Zoom to city\" aria-label=\"Zoom to city\" onclick=\"zoomFeature()\">Zoom to city</a></div></div>"
+ 			},
+			"style": { 
+				"type": "rule", 
+				"rule": [
+				{
+					"field": "Population 2011",
+					"value": [1000000],
+					"filter": "LESS_THAN", 
+					"init": {
+						"strokeColor": "#0083f5", 
+						"fillColor": "#57a8f0", 
+						"pointRadius": "6", 
+						"fillOpacity": 0.80, 
+						"strokeWidth": 1.0
+					}
+				},
+				{
+					"field": "Population 2011",
+					"value": [1000000, 2000000],
+					"filter": "BETWEEN", 
+					"init": {
+						"strokeColor": "#F90", 
+						"fillColor": "#F90", 
+						"pointRadius": "8", 
+						"fillOpacity": 0.80, 
+						"strokeWidth": 1.0
+					}
+				},
+				{
+					"field": "Population 2011",
+					"value": [2000000],
+					"filter": "GREATER_THAN", 
+					"init": {
+						"strokeColor": "#F00", 
+						"fillColor": "#F00", 
+						"pointRadius": "10", 
+						"fillOpacity": 0.80, 
+						"strokeWidth": 1.0
+					}
+				}					        
+			]}
+		},
+		{
+			"id": "bbox",
+			"tab": true,
+			"zoom": [true, {"type": "image"}],
+			"popups": true
+		}]    
+	}'>
+
+	<!-- Insert Map Start (mandatory) -->
+	<div class="wet-boew-geomap-map span-6"></div>
+	<!-- Insert Map End -->
+
+	<!-- Insert Legend Start (optional) --> 
+	<section><div class="wet-boew-geomap-legend span-2">    
+		<h2 class="margin-top-none">Legend</h2>
+	</div></section>
+	<!-- Insert Legend End -->
+
+	<!-- Insert Layer Data Start (mandatory) -->
+	<div class="wet-boew-geomap-layers span-8"><section>
+		<h2>Map Layers</h2>
+		<div class="span-8"><section><h3 class="background-light">Cities</h3>
+		<table id="cities" class="table-simplify width-100" aria-label="Cities">
+			<caption>This is a sample layer created from a table in the current document. An attribute <em>data-geometry</em> to hold the geometry and an attribute <em>data-type</em> to hold the geometry type (wkt or bbox) are added to the column.</caption>
+			<thead>
+				<tr>
+					<th>Rank</th>
+					<th>Census subdivision</th>                            
+					<th>Population 2011</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-geometry="POINT (-79.3847, 43.6476)" data-type="wkt">
+					<td>1</td>
+					<td><a href="http://www.wikipedia.org/wiki/Toronto" title="Toronto">Toronto</a></td>
+					<td>2615060</td>
+				</tr>
+				<tr data-geometry="POINT (-73.56123, 45.52927)" data-type="wkt">
+					<td>2</td>
+					<td><a href="http://www.wikipedia.org/wiki/Montreal" title="Montreal">Montreal</a></td>
+					<td>1649519</td>
+				</tr>
+				<tr data-geometry="POINT (-114.05879, 51.04668)" data-type="wkt">
+					<td>3</td>
+					<td><a href="http://www.wikipedia.org/wiki/Calgary" title="Calgary">Calgary</a></td>
+					<td>1096833</td>
+				</tr>
+				<tr data-geometry="POINT (-75.68937, 45.41072)" data-type="wkt">
+					<td>4</td>
+					<td><a href="http://www.wikipedia.org/wiki/Ottawa" title="Ottawa">Ottawa</a></td>
+					<td>883391</td>
+				</tr>
+				<tr data-geometry="POINT (-113.49590, 53.53398)" data-type="wkt">
+					<td>5</td>
+					<td><a href="http://www.wikipedia.org/wiki/Edmonton" title="Edmonton">Edmonton</a></td>
+					<td>812201</td>
+				</tr>
+				<tr data-geometry="POINT (-79.65, 43.60)" data-type="wkt">
+					<td>6</td>
+					<td><a href="http://www.wikipedia.org/wiki/Mississauga" title="Mississauga">Mississauga</a></td>
+					<td>713443</td>
+				</tr>
+				<tr data-geometry="POINT (-97.14352, 49.89375)" data-type="wkt">
+					<td>7</td>
+					<td><a href="http://www.wikipedia.org/wiki/Winnipeg" title="Winnipeg">Winnipeg</a></td>
+					<td>663617</td>
+				</tr>
+				<tr data-geometry="POINT (-123.10091, 49.26428)" data-type="wkt">
+					<td>8</td>
+					<td><a href="http://www.wikipedia.org/wiki/Vancouver" title="Vancouver">Vancouver</a></td>
+					<td>603502</td>
+				</tr>
+				<tr data-geometry="POINT (-79.76181, 43.68686)" data-type="wkt">
+					<td>9</td>
+					<td><a href="http://www.wikipedia.org/wiki/Brampton" title="Brampton">Brampton</a></td>
+					<td>523911</td>
+				</tr>
+				<tr data-geometry="POINT (-79.86788, 43.25717)" data-type="wkt">
+					<td>10</td>
+					<td><a href="http://www.wikipedia.org/wiki/Hamilton,_Ontario" title="Hamilton, Ontario">Hamilton</a></td>
+					<td>519949</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th>Rank</th>
+					<th>Census subdivision</th>                            
+					<th>Population 2011</th>
+				</tr>
+			</tfoot>
+		</table>
+		</section></div>
+		<div class="clear margin-top-large"></div>
+	
+		<h2 class="wb-invisible">Search Results</h2>
+		<table id="bbox" class="table-simplify width-100" aria-label="Search Results">
+			<caption class="wb-invisible">Table of search results containing bounding box geometries.</caption>
+			<thead>
+				<tr>                        
+					<th></th>
+					<th>Title</th>
+					<th>Geometry</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-geometry="-136, 61, -118, 70" data-type="bbox">
+					<td>1</td>
+					<td>Report on 2011 field activities and collection of ground thermal and active layer data in the Mackenzie Corridor completed under Northwest Territories science licence #14918</td>
+					<td>-136, 61, -118, 70</td>
+				</tr>
+				<tr data-geometry="-92.5, 72.75, -79, 75.5" data-type="bbox">
+					<td>2</td>
+					<td>Dinoflagellate cysts from upper cretaceous-lower tertiary sections, Bylot and Devon Islands, Arctic Archipelago</td>
+					<td>-92.5, 72.75, -79, 75.5</td>                                           
+				</tr>    
+			</tbody>
+		</table>
+	</section></div>
+	<!-- Insert Layer Data End -->
+
+	<div class="clear"></div>
+</div>
+<!-- GeomapEnd -->
+
+<div style="height: 10px;"></div>
+
+<!-- GeomapStart -->
+<div id="location_map"
+	class="wet-boew-geomap static" 
+	data-wet-boew='{ 
+		"tables": [{
+			"id": "addNRCan"
+		}] 
+	}'>
+	
+	<!-- Insert Map Start (mandatory) -->
+	<div class="wet-boew-geomap-map  span-3"></div>
+	<!-- Insert Map End -->
+	
+	<!-- Insert Layer Data Start (mandatory) -->
+	<div class="wet-boew-geomap-layers span-3"><section>  
+	<h2 class="wb-invisible">Natural Resources Canada Ottawa office adress</h2>
+		<table id="addNRCan" class="table-simplify width-100" aria-label="NRCan Ottawa office adress">
+			<caption class="wb-invisible">Natural Resources Canada Ottawa office adress</caption>
+			<thead>
+				<tr>                    
+					<th>Adress</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-geometry="POINT (-75.70535, 45.3995)" data-type="wkt">
+					<td>615 Booth St.,<br>Ottawa (ON),<br>Canada,<br>K1A 0E8</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	</div>
+	<!-- Insert Layer Data End -->  
+</div>
+<!-- GeomapEnd -->
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2013-04-11</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+<script src="../../demos/geomap/script/popup_function.js"></script>
+<!-- CustomScriptsEnd -->
+</body>
+</html>

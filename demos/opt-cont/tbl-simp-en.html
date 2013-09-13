@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Table Simplification - Optimal Content Examples - Working examples - Web Experience Toolkit&#160;(WET)</title>
+
+<link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../dist/js/jquery-ie.min.js"></script>
+<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body-sec">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="#" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-en.html" lang="en"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
+<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Implementing-WET">Implement WET</a></div></li>
+<li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../index-en.html">Home</a></li>
+<li><a href="../index-en.html">Working examples</a></li>
+<li>Table Simplification - Optimal Content Examples</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Table Simplification - Optimal Content Examples</h1>
+
+<div class="span-4 module-table-contents">
+	<p>Table Of Contents</p>
+	<ul>
+		<li><a href="#intro">Introduction</a></li>
+		<li><a href="#ex">Content Examples</a></li>
+	</ul>
+</div>
+<div class="clear"></div>
+
+<h2 class="margin-top-none" id="intro">Introduction</h2>
+
+<p>Table simplification is the process of converting a complex table into a simple table.  A simple table is a table with every cell spanning exactly one row and one column.</p>
+<p>Complex tables associate more than one row <code>&lt;th&gt;</code> header cell or more than one <code>&lt;th&gt;</code> column header cell to a data cell.</p>
+<p>The process of table simplification involves splitting a complex table into multiple simple tables.  <code>&lt;th&gt;</code> header cells, used for creating grouping relationships or levels within a table, are transferred to other HTML markup such as <code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code> headings.</p>
+
+<div class="wet-boew-expandhide">
+
+<h3>General Technique</h3>
+<p>To divide a complex table into multiple simple tables, follow these steps:</p>
+<ol>
+	<li><p>Locate a complex table</p>
+		<div class="indent-medium">
+		<details>
+			<summary>See Example</summary>
+			<table class="indent-medium align-center width-90">
+				<tr>
+					<th>H01</th>
+					<th>H02</th>
+					<th colspan="2">H03</th>
+					<th colspan="2">H04</th>
+				</tr>
+				<tr>
+					<th>H05</th>
+					<th>H06</th>
+					<th>H07</th>
+					<th>H08</th>
+					<th>H09</th>
+					<th>H10</th>
+				</tr>
+				<tr>
+					<th rowspan="6">H11</th>
+					<th rowspan="3">H12</th>
+					<td>D01</td>
+					<td colspan="2">D02</td>
+					<td>D03</td>
+				</tr>
+				<tr>
+					<td>D04</td>
+					<td rowspan="2">D05</td>
+					<td>D06</td>
+					<td>D07</td>
+				</tr>
+				<tr>
+					<td>D08</td>
+					<td>D09</td>
+					<td rowspan="2">D10</td>
+				</tr>
+				<tr>
+					<th rowspan="3">H13</th>
+					<td>D11</td>
+					<td>D12</td>
+					<td rowspan="2">D13</td>
+					</tr>
+				<tr>
+					<td>D14</td>
+					<td>D15</td>
+					<td>D16</td>
+				</tr>
+				<tr>
+					<td colspan="2">D17</td>
+					<td>D18</td>
+					<td>D19</td>
+				</tr>
+			</table>
+		</details>
+		</div>
+	</li>
+	<li>
+		<p>For <code>&lt;td&gt;</code> data cells that span more than one row or column, split them to remove all row and column spanning.  Duplicate the original cell's contents in all of its splitted cells.</p>
+		<div class="indent-medium">
+		<details>
+			<summary>See Example</summary>
+			<p><strong>Cells indicated with an asterisk (*) have changed from the previous step.</strong></p>
+			<table class="indent-medium align-center width-90">
+				<tr>
+					<th>H01</th>
+					<th>H02</th>
+					<th colspan="2">H03</th>
+					<th colspan="2">H04</th>
+				</tr>
+				<tr>
+					<th>H05</th>
+					<th>H06</th>
+					<th>H07</th>
+					<th>H08</th>
+					<th>H09</th>
+					<th>H10</th>
+				</tr>
+				<tr>
+					<th rowspan="6">H11</th>
+					<th rowspan="3">H12</th>
+					<td>D01</td>
+					<td>D02 *</td>
+					<td>D02 *</td>
+					<td>D03</td>
+				</tr>
+				<tr>
+					<td>D04</td>
+					<td>D05 *</td>
+					<td>D06</td>
+					<td>D07</td>
+				</tr>
+				<tr>
+					<td>D08</td>
+					<td>D05 *</td>
+					<td>D09</td>
+					<td>D10 *</td>
+				</tr>
+				<tr>
+					<th rowspan="3">H13</th>
+					<td>D11</td>
+					<td>D12</td>
+					<td>D13</td>
+					<td>D10 *</td>
+					</tr>
+				<tr>
+					<td>D14</td>
+					<td>D15</td>
+					<td>D13 *</td>
+					<td>D16</td>
+				</tr>
+				<tr>
+					<td>D17 *</td>
+					<td>D17 *</td>
+					<td>D18</td>
+					<td>D19</td>
+				</tr>
+			</table>
+		</details>
+		</div>
+	</li>
+	<li>
+		<p>Merge consecutive <code>&lt;th&gt;</code> header cells into a comma seperated list.</p>
+		<div class="indent-medium">
+		<details>
+			<summary>See Example</summary>
+			<p><strong>Cells indicated with an asterisk (*) have changed from the previous step.</strong></p>
+			<table class="indent-medium align-center width-90">
+				<tr>
+					<th>H01, H02, H05, H06 *</th>
+					<th>H03, H07 *</th>
+					<th>H03, H08 *</th>
+					<th>H04, H09 *</th>
+					<th>H04, H10 *</th>
+				</tr>
+				<tr>
+					<th rowspan="3">H11, H12 *</th>
+					<td>D01</td>
+					<td>D02</td>
+					<td>D02</td>
+					<td>D03</td>
+				</tr>
+				<tr>
+					<td>D04</td>
+					<td>D05</td>
+					<td>D06</td>
+					<td>D07</td>
+				</tr>
+				<tr>
+					<td>D08</td>
+					<td>D05</td>
+					<td>D09</td>
+					<td>D10</td>
+				</tr>
+				<tr>
+					<th rowspan="3">H11, H13 *</th>
+					<td>D11</td>
+					<td>D12</td>
+					<td>D13</td>
+					<td>D10</td>
+					</tr>
+				<tr>
+					<td>D14</td>
+					<td>D15</td>
+					<td>D13</td>
+					<td>D16</td>
+				</tr>
+				<tr>
+					<td>D17</td>
+					<td>D17</td>
+					<td>D18</td>
+					<td>D19</td>
+				</tr>
+			</table>
+		</details>
+		</div>
+	</li>
+	<li>
+		<p>Remove <code>&lt;th&gt;</code> header cell information from any cell whose entire row and column are also <code>&lt;th&gt;</code> header cells (often the top left most cell).  Save the information in these affected cells for future steps.</p>
+		<div class="indent-medium">
+		<details>
+			<summary>See Example</summary>
+			<p><strong>Cells indicated with an asterisk (*) have changed from the previous step.</strong></p>
+			<table class="indent-medium align-center width-90">
+				<tr>
+					<td>*</td>
+					<th>H03, H07</th>
+					<th>H03, H08</th>
+					<th>H04, H09</th>
+					<th>H04, H10</th>
+				</tr>
+				<tr>
+					<th rowspan="3">H11, H12</th>
+					<td>D01</td>
+					<td>D02</td>
+					<td>D02</td>
+					<td>D03</td>
+				</tr>
+				<tr>
+					<td>D04</td>
+					<td>D05</td>
+					<td>D06</td>
+					<td>D07</td>
+				</tr>
+				<tr>
+					<td>D08</td>
+					<td>D05</td>
+					<td>D09</td>
+					<td>D10</td>
+				</tr>
+				<tr>
+					<th rowspan="3">H11, H13</th>
+					<td>D11</td>
+					<td>D12</td>
+					<td>D13</td>
+					<td>D10</td>
+					</tr>
+				<tr>
+					<td>D14</td>
+					<td>D15</td>
+					<td>D13</td>
+					<td>D16</td>
+				</tr>
+				<tr>
+					<td>D17</td>
+					<td>D17</td>
+					<td>D18</td>
+					<td>D19</td>
+				</tr>
+			</table>
+		</details>
+		</div>
+	</li>
+	<li><p>Split the table into multiple subtables.  The most logical place to split a table is often along those borders that spans either the entire width or height of the table.  If a subtable is still a complex table, split it again by repeating this step on that subtable.</p>
+		<div class="indent-medium">
+		<details>
+			<summary>See Example</summary>
+			<div class="span-3">
+				<table class="indent-medium align-center width-90">
+					<tr>
+						<td>&#160;</td>
+						<th>H03, H07</th>
+						<th>H03, H08</th>
+					</tr>
+					<tr>
+						<th rowspan="3">H11,H12</th>
+						<td>D01</td>
+						<td>D02</td>
+					</tr>
+					<tr>
+						<td>D04</td>
+						<td>D05</td>
+					</tr>
+					<tr>
+						<td>D08</td>
+						<td>D05</td>
+					</tr>
+				</table>
+			</div>
+			<div class="span-2">
+				<table class="indent-medium align-center width-90">
+					<tr>
+						<th>H04, H09</th>
+						<th>H04, H10</th>
+					</tr>
+					<tr>
+						<td>D02</td>
+						<td>D03</td>
+					</tr>
+					<tr>
+						<td>D06</td>
+						<td>D07</td>
+					</tr>
+					<tr>
+						<td>D09</td>
+						<td>D10</td>
+					</tr>
+				</table>
+			</div>
+			<div class="clear"></div>
+
+			<div class="span-3">
+				<table class="indent-medium align-center width-90">
+					<tr>
+						<th rowspan="3">H11,H13</th>
+						<td>D11</td>
+						<td>D12</td>
+					</tr>
+					<tr>
+						<td>D14</td>
+						<td>D15</td>
+					</tr>
+					<tr>
+						<td>D17</td>
+						<td>D17</td>
+					</tr>
+				</table>
+			</div>
+			<div class="span-2">
+				<table class="indent-medium align-center width-90">
+					<tr>
+						<td>D13</td>
+						<td>D10</td>
+						</tr>
+					<tr>
+						<td>D13</td>
+						<td>D16</td>
+					</tr>
+					<tr>
+						<td>D18</td>
+						<td>D19</td>
+					</tr>
+				</table>
+			</div>
+			<div class="clear"></div>
+		</details>
+		</div>
+	</li>
+	<li><p>Insert any missing <code>&lt;th&gt;</code> header cells into the subtables as a result of the table splitting.</p>
+		<div class="indent-medium">
+		<details>
+			<summary>See Example</summary>
+			<p><strong>Cells indicated with an asterisk (*) have changed from the previous step.</strong></p>
+			<div class="span-2">
+				<table class="indent-medium align-center width-90">
+					<tr>
+						<td>&#160;</td>
+						<th>H03, H07</th>
+						<th>H03, H08</th>
+					</tr>
+					<tr>
+						<th rowspan="3">H11,H12</th>
+						<td>D01</td>
+						<td>D02</td>
+					</tr>
+					<tr>
+						<td>D04</td>
+						<td>D05</td>
+					</tr>
+					<tr>
+						<td>D08</td>
+						<td>D05</td>
+					</tr>
+				</table>
+			</div>
+			<div class="span-2">
+				<table class="indent-medium align-center width-90">
+					<tr>
+						<td>&#160;</td>
+						<th>H04, H09</th>
+						<th>H04, H10</th>
+					</tr>
+					<tr>
+						<th rowspan="3">H11,H12 *</th>
+						<td>D02</td>
+						<td>D03</td>
+					</tr>
+					<tr>
+						<td>D06</td>
+						<td>D07</td>
+					</tr>
+					<tr>
+						<td>D09</td>
+						<td>D10</td>
+					</tr>
+				</table>
+			</div>
+			<div class="clear"></div>
+
+			<div class="span-2">
+				<table class="indent-medium align-center width-90">
+					<tr>
+						<td>&#160;</td>
+						<th>H03, H07 *</th>
+						<th>H03, H08 *</th>
+					</tr>
+					<tr>
+						<th rowspan="3">H11,H13</th>
+						<td>D11</td>
+						<td>D12</td>
+					</tr>
+					<tr>
+						<td>D14</td>
+						<td>D15</td>
+					</tr>
+					<tr>
+						<td>D17</td>
+						<td>D17</td>
+					</tr>
+				</table>
+			</div>
+			<div class="span-2">
+				<table class="indent-medium align-center width-90">
+					<tr>
+						<td>&#160;</td>
+						<th>H04, H09 *</th>
+						<th>H04, H10 *</th>
+					</tr>
+					<tr>
+						<th rowspan="3">H11,H13 *</th>
+						<td>D13</td>
+						<td>D10</td>
+					</tr>
+					<tr>
+						<td>D13</td>
+						<td>D16</td>
+					</tr>
+					<tr>
+						<td>D18</td>
+						<td>D19</td>
+					</tr>
+				</table>
+			</div>
+			<div class="clear"></div>
+		</details>
+		</div>
+	</li>
+	<li>
+		<p>To reduce the number of subtables, join and group them by common headers using <code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code> headings. Re-use the header information in Step 4 to add additional description and context as needed.</p>
+		<div class="indent-medium">
+		<details>
+			<summary>See Example</summary>
+			<h5>H01</h5>
+			<p>H11</p>
+			<h6>H03</h6>
+		</details>
+		</div>
+	</li>
+</ol>
+
+<h2 id="ex">Content Examples</h2>
+
+
+<h3>Column Spans</h3>
+<table class="indent-medium align-center width-90">
+	<tr>
+		<td>&#160;</td>
+		<th colspan="2">H01</th>
+		<th colspan="2">H02</th>
+		<th colspan="2">H03</th>
+		<th colspan="2">H04</th>
+	</tr>
+	<tr>
+		<td>&#160;</td>
+		<th>H03</th>
+		<th>H04</th>
+		<th>H05</th>
+		<th>H06</th>
+		<th>H07</th>
+		<th>H08</th>
+		<th>H09</th>
+		<th>H10</th>
+	</tr>
+	<tr>
+		<th>H11</th>
+		<td>D01</td>
+		<td>D02</td>
+		<td>D03</td>
+		<td>D04</td>
+		<td>D05</td>
+		<td>D06</td>
+		<td>D07</td>
+		<td>D08</td>
+	</tr>
+	<tr>
+		<th>H12</th>
+		<td colspan="2">D09</td>
+		<td colspan="2">D10</td>
+		<td colspan="2">D11</td>
+		<td colspan="2">D12</td>
+	</tr>
+	<tr>
+		<th>H13</th>
+		<td colspan="8">D13</td>
+	</tr>
+	<tr>
+		<th>H14</th>
+		<td colspan="8">D14</td>
+	</tr>
+</table>
+
+<div class="indent-medium">
+<details>
+	<summary>Simple Version</summary>
+	<table class="align-center width-90">
+		<colgroup>
+			<col class="width-10" />
+			<col />
+			<col />
+			<col />
+			<col />
+			<col />
+			<col />
+			<col />
+			<col />
+		</colgroup>
+		<tr>
+			<td>&#160;</td>
+			<th>H03</th>
+			<th>H04</th>
+			<th>H05</th>
+			<th>H06</th>
+			<th>H07</th>
+			<th>H08</th>
+			<th>H09</th>
+			<th>H10</th>
+		</tr>
+		<tr>
+			<th>H11</th>
+			<td>D01</td>
+			<td>D02</td>
+			<td>D03</td>
+			<td>D04</td>
+			<td>D05</td>
+			<td>D06</td>
+			<td>D07</td>
+			<td>D08</td>
+		</tr>
+	</table>
+	<table class="align-center width-90">
+		<colgroup>
+			<col class="width-10" />
+			<col />
+			<col />
+			<col />
+			<col />
+		</colgroup>
+		<tr>
+			<td>&#160;</td>
+			<th>H01</th>
+			<th>H02</th>
+			<th>H03</th>
+			<th>H04</th>
+		</tr>
+		<tr>
+			<th>H12</th>
+			<td>D09</td>
+			<td>D10</td>
+			<td>D11</td>
+			<td>D12</td>
+		</tr>
+	</table>
+	<table class="align-center width-90">
+		<colgroup>
+			<col class="width-10" />
+			<col />
+		</colgroup>
+		<tr>
+			<th>H13</th>
+			<td>D13</td>
+		</tr>
+		<tr>
+			<th>H14</th>
+			<td>D14</td>
+		</tr>
+	</table>
+</details>
+</div>
+
+<h3>Row Spans</h3>
+<table class="indent-medium align-center width-90">
+	<tr>
+		<th>H01</th>
+		<th>H02</th>
+		<th>H03</th>
+		<th>H04</th>
+	</tr>
+	<tr>
+		<th rowspan="3">H03</th>
+		<td rowspan="3">D01</td>
+		<td>D02</td>
+		<td>D03</td>
+	</tr>
+	<tr>
+		<td>D04</td>
+		<td>D05</td>
+	</tr>
+	<tr>
+		<td>D06</td>
+		<td>D07</td>
+	</tr>
+	<tr>
+		<th rowspan="3">H04</th>
+		<td rowspan="3">D08</td>
+		<td>D09</td>
+		<td>D10</td>
+	</tr>
+	<tr>
+		<td>D11</td>
+		<td>D12</td>
+	</tr>
+	<tr>
+		<td>D13</td>
+		<td>D14</td>
+	</tr>
+</table>
+<div class="indent-medium">
+<details>
+	<summary>Simple Version</summary>
+	<h4>H01</h4>
+	<h5>H03</h5>
+	<p><strong>H02: </strong>D01</p>
+	<table class="align-center width-90">
+		<tr>
+			<th>H03</th>
+			<th>H04</th>
+		</tr>
+		<tr>
+			<td>D02</td>
+			<td>D03</td>
+		</tr>
+		<tr>
+			<td>D04</td>
+			<td>D05</td>
+		</tr>
+		<tr>
+			<td>D06</td>
+			<td>D07</td>
+		</tr>
+	</table>
+	<h5>H04</h5>
+	<p><strong>H02: </strong>D08</p>
+	<table class="align-center width-90">
+		<tr>
+			<th>H03</th>
+			<th>H04</th>
+		</tr>
+		<tr>
+			<td>D09</td>
+			<td>D10</td>
+		</tr>
+		<tr>
+			<td>D11</td>
+			<td>D12</td>
+		</tr>
+		<tr>
+			<td>D13</td>
+			<td>D14</td>
+		</tr>
+	</table>
+</details>
+</div>
+
+
+<h3>Row Groups</h3>
+<table class="indent-medium width-90">
+	<tr>
+		<td>&#160;</td>
+		<th>H01</th>
+		<th>H02</th>
+	</tr>
+	<tr>
+		<th colspan="3">H03</th>
+	</tr>
+	<tr>
+		<th colspan="3" class="align-left">H04</th>
+	</tr>
+	<tr>
+		<td>D01</td>
+		<td>D02</td>
+		<td>D03</td>
+	</tr>
+	<tr>
+		<td>D04</td>
+		<td>D05</td>
+		<td>D06</td>
+	</tr>
+	<tr>
+		<th colspan="3" class="align-left">H05</th>
+	</tr>
+	<tr>
+		<td>D07</td>
+		<td>D08</td>
+		<td>D09</td>
+	</tr>
+	<tr>
+		<td>D10</td>
+		<td>D11</td>
+		<td>D12</td>
+	</tr>
+	<tr>
+		<th colspan="3">H06</th>
+	</tr>
+	<tr>
+		<th colspan="3" class="align-left">H07</th>
+	</tr>
+	<tr>
+		<td>D13</td>
+		<td>D14</td>
+		<td>D15</td>
+	</tr>
+	<tr>
+		<td>D16</td>
+		<td>D17</td>
+		<td>D18</td>
+	</tr>
+	<tr>
+		<th colspan="3" class="align-left">H08</th>
+	</tr>
+	<tr>
+		<td>D19</td>
+		<td>D20</td>
+		<td>D21</td>
+	</tr>
+	<tr>
+		<td>D22</td>
+		<td>D23</td>
+		<td>D24</td>
+	</tr>
+</table>
+
+<div class="indent-medium">
+<details>
+	<summary>Simple Version</summary>
+	<h4>H03</h4>
+	<h5>H04</h5>
+	<table class="align-center width-90">
+		<tr>
+			<td>&#160;</td>
+			<th>H01</th>
+			<th>H02</th>
+		</tr>
+		<tr>
+			<td>D01</td>
+			<td>D02</td>
+			<td>D03</td>
+		</tr>
+		<tr>
+			<td>D04</td>
+			<td>D05</td>
+			<td>D06</td>
+		</tr>
+	</table>
+	<h5>H05</h5>
+	<table class="align-center width-90">
+		<tr>
+			<td>&#160;</td>
+			<th>H01</th>
+			<th>H02</th>
+		</tr>
+		<tr>
+			<td>D07</td>
+			<td>D08</td>
+			<td>D09</td>
+		</tr>
+		<tr>
+			<td>D10</td>
+			<td>D11</td>
+			<td>D12</td>
+		</tr>
+	</table>
+	<h4>H06</h4>
+	<h5>H07</h5>
+	<table class="align-center width-90">
+		<tr>
+			<td>&#160;</td>
+			<th>H01</th>
+			<th>H02</th>
+		</tr>
+		<tr>
+			<td>D13</td>
+			<td>D14</td>
+			<td>D15</td>
+		</tr>
+		<tr>
+			<td>D16</td>
+			<td>D17</td>
+			<td>D18</td>
+		</tr>
+	</table>
+	<h5>H08</h5>
+	<table class="align-center width-90">
+		<tr>
+			<td>&#160;</td>
+			<th>H01</th>
+			<th>H02</th>
+		</tr>
+		<tr>
+			<td>D19</td>
+			<td>D20</td>
+			<td>D21</td>
+		</tr>
+		<tr>
+			<td>D22</td>
+			<td>D23</td>
+			<td>D24</td>
+		</tr>
+	</table>
+</details>
+</div>
+
+
+
+<h3>Column and Row Spans</h3>
+<table class="indent-medium align-center width-90">
+	<tr>
+		<th>H01</th>
+		<th>H02</th>
+		<th colspan="2">H03</th>
+		<th colspan="2">H04</th>
+	</tr>
+	<tr>
+		<th>H05</th>
+		<th>H06</th>
+		<th>H07</th>
+		<th>H08</th>
+		<th>H09</th>
+		<th>H10</th>
+	</tr>
+	<tr>
+		<th rowspan="3">H11</th>
+		<td rowspan="3">D01</td>
+		<td>D02</td>
+		<td colspan="2">D03</td>
+		<td>D04</td>
+	</tr>
+	<tr>
+		<td>D05</td>
+		<td rowspan="2">D06</td>
+		<td>D07</td>
+		<td>D08</td>
+	</tr>
+	<tr>
+		<td>D09</td>
+		<td>D10</td>
+		<td rowspan="2">D11</td>
+	</tr>
+	<tr>
+		<th rowspan="3">H12</th>
+		<td rowspan="3">D12</td>
+		<td>D13</td>
+		<td>D14</td>
+		<td rowspan="2">D15</td>
+		</tr>
+	<tr>
+		<td>D16</td>
+		<td>D17</td>
+		<td>D18</td>
+	</tr>
+	<tr>
+		<td colspan="2">D19</td>
+		<td>D20</td>
+		<td>D21</td>
+	</tr>
+</table>
+<div class="indent-medium">
+<details>
+	<summary>Simple Version</summary>
+	<h5>H01, H05</h5>
+	<h6>H11</h6>
+	<p>H02, H06: D01</p>
+	
+	<table class="indent-medium align-center width-90">
+		<tr>
+			<th>H03, H07</th>
+			<th>H03, H08</th>
+			<th>H04, H09</th>
+			<th>H04, H10</th>
+		</tr>
+		<tr>
+			<td>D02</td>
+			<td>D03</td>
+			<td>D03</td>
+			<td>D04</td>
+		</tr>
+		<tr>
+			<td>D05</td>
+			<td>D06</td>
+			<td>D07</td>
+			<td>D08</td>
+		</tr>
+		<tr>
+			<td>D09</td>
+			<td>D06</td>
+			<td>D10</td>
+			<td>D11</td>
+		</tr>
+	</table>
+
+	<h5>H12</h5>
+<p>H02, H06: D12</p>
+
+	<table class="indent-medium align-center width-90">
+		<tr>
+			<th>H03, H07</th>
+			<th>H03, H08</th>
+			<th>H04, H09</th>
+			<th>H04, H10</th>
+		</tr>
+		<tr>
+			<td>D13</td>
+			<td>D14</td>
+			<td>D15</td>
+			<td>D11</td>
+		</tr>
+		<tr>
+			<td>D16</td>
+			<td>D17</td>
+			<td>D15</td>
+			<td>D18</td>
+		</tr>
+		<tr>
+			<td>D19</td>
+			<td>D19</td>
+			<td>D20</td>
+			<td>D21</td>
+		</tr>
+	</table>
+</details>
+</div>
+</div>
+
+<h2 id="links">Related Links</h2>
+<ul>
+	<li><a href="tbl-en.html">Tables - Optimal Content Examples</a></li>
+	<li><p>Web Content Accessibility Guidelines (WCAG) 2.0 Success Criterions</p>
+		<ul>
+			<li><a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html" class="external" rel="external">1.3.1 Info and Relationships</a></li>
+			<li><a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-without-color.html" class="external" rel="external">1.4.1 Use Of Color</a></li>
+		</ul>
+	</li>
+	<li><p>Web Content Accessibility Guidelines (WCAG) 2.0 Sufficient Techniques</p>
+		<ul>
+			<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H51" class="external" rel="external">H51: Using table markup to present tabular information</a></li>
+			<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H39" class="external" rel="external">H39: Using caption elements to associate data table captions with data tables</a></li>
+			<li><a href="http://www.w3.org/TR/2012/NOTE-WCAG20-TECHS-20120103/H63" class="external" rel="external">H63: Using the scope attribute to associate header cells and data cells in data tables</a></li>
+			<li><a href="http://www.w3.org/TR/2012/NOTE-WCAG20-TECHS-20120103/H43" class="external" rel="external">H43: Using id and headers attributes to associate data cells with header cells in data tables</a></li>
+		</ul>
+	</li>
+</ul>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2013-04-11</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+
+<div id="wb-sec"><div id="wb-sec-in"><nav role="navigation"><h2 id="wb-nav"></h2>
+<div class="wb-sec-def">
+<!-- SecNavStart -->
+	<section>
+		<h3 class="top-section"><a href="index-en.html">Optimal Content Examples</a></h3>
+		<section>
+			<h4>Content Types</h4>
+			<ul>
+				<li><a href="smm-en.html">Summary Of Coding Requirements</a></li>
+				<li><a href="clr-en.html">Colour</a></li>
+				<li><a href="frm-en.html">Forms</a></li>
+				<li><a href="hdg-en.html">Headings and Titles</a></li>
+				<li><a href="img-en.html">Images</a></li>
+				<li><a href="kb-cv-en.html">Keyboard and User Controls</a></li>
+				<li><a href="lin-en.html">Links</a></li>
+				<li><a href="qlg-en.html">Quotations and Language</a></li>
+				<li><a href="tbl-en.html">Tables</a></li>
+				<li><a href="tbl-simp-en.html">Table Simplification</a></li>
+			</ul>
+		</section>
+		<section>
+			<h4><a href="wcag-en.html">Web Content Accessibility Guidelines (WCAG) 2.0</a></h4>
+			<ul>
+				<li><a href="app-en.html">WCAG 2.0 Success Criteria Applicability</a></li>
+			</ul>
+		</section>
+		<div class="top-level"><a href="dk-sv-en.html">Did You Know?</a></div>
+	</section>
+<!-- SecNavEnd -->
+</div>
+</nav></div></div>
+
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2>Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>

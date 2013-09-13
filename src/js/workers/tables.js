@@ -17,11 +17,11 @@
 		_exec: function (elm) {
 			var opts,
 				overrides;
-			
+
 			//Defaults
 			opts = {
 				aaSorting:[[1, 'asc']],
-				aColumns : [],		
+				aColumns : [],
 				aLengthMenu : [10, 25, 50, 100],
 				aMobileColumns : false,
 				bInfo: true,
@@ -34,10 +34,10 @@
 				iDisplayLength: 10,
 				sPaginationType: 'two_button'
 			};
-			
+
 			// Class-based overrides - use undefined where no override of defaults or settings.js should occur
 			overrides = {};
-			
+
 			// Extend the defaults with settings passed through settings.js (wet_boew_tables), class-based overrides and the data-wet-boew attribute
 			$.extend(opts, (typeof wet_boew_tables !== 'undefined' ? wet_boew_tables : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
 
