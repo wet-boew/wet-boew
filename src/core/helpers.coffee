@@ -41,3 +41,25 @@ do ( $ = jQuery, window, document ) ->
 			methods.init.apply @, arguments
 		else
 			$.error "Method " + method + " does not exist on jquery.wb"
+
+
+do ( $ = jQuery, window, document ) ->
+
+	# Visible not disabled elements can have focus.
+	# Pretends that image maps don't exist.
+	# http://mark-story.com/posts/view/creating-custom-selectors-with-jquery
+	canFocus = (element, hasTabIndex) ->
+	  nodeName = element.nodeName.toLowerCase()
+
+	  # Similar to $(element).is(':visible');
+	  return $.expr.filters.visible(element)  if /input|select|textarea|button|object/.test(nodeName) and not element.disabled
+
+	  # Similar to $(element).is(':visible');
+	  return $.expr.filters.visible(element)  if nodeName is "a" and element.href or tabIndex
+	  false
+
+	# Add the :tabable filter.
+	$.expr.filters.tabable = (element) ->
+	  tabIndex = $.attr(element, "tabindex")
+	  tabIndexNan = isNaN(tabIndex)
+	  canFocus element, tabIndexNan  if tabIndexNan or tabIndex >= 0
