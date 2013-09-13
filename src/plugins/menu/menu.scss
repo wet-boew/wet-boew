@@ -1,0 +1,31 @@
+/*
+ Menu Sass
+ */
+
+.expandicon {
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid #fff;
+}
+
+.wb-menu{
+
+	.item{
+		display: none;
+		position: relative;
+		top: 1em;
+		max-height: 0;
+		overflow: hidden;
+		/* Set our transitions up. */
+		-webkit-transition: max-height 0.8s;
+		-moz-transition: max-height 0.8s;
+		transition: max-height 0.8s;
+		&.open{
+			display: block;
+			max-height: 1000px;
+		}
+	}
+
+}
