@@ -7,10 +7,11 @@
 <head>
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html -->
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
 <title>Diagramme circulaire - Graphiques - Exemples pratiques - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../dist/theme-wet-boew/images/favicon.ico" />
+<link rel="canonical" href="pie-fr.html" />
 <meta name="description" content="French description / Description en français" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -48,13 +49,13 @@ wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licen
 <div id="wet-fullhd-in">
 <ul>
 <li id="wet-fullhd-lang-current">Français</li>
-<li id="wet-fullhd-lang-2"><a href="pie-eng.html" lang="en">English</a></li>
+<li id="wet-fullhd-lang-2"><a href="pie-en.html" lang="en">English</a></li>
 </ul>
 </div>
 </div></section>
 
 <div id="wet-bnr" role="banner"><div id="wet-bnr-in">
-<div id="wet-title"><p id="wet-title-in"><a href="../../index-fra.html" lang="fr"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
+<div id="wet-title"><p id="wet-title-in"><a href="../../index-fr.html" lang="fr"><object data="../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
 
 <section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
 <form action="#" method="post"><div id="wet-srchbx-in">
@@ -66,8 +67,8 @@ wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licen
 
 <nav role="navigation">
 <div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
-<ul class="mb-menu" data-ajax-replace="../includes/projectmenu-fra.txt">
-<li><div><a href="http://wet-boew.github.io/wet-boew/index-fra.html">Projet de la BOEW</a></div></li>
+<ul class="mb-menu" data-ajax-replace="../includes/projectmenu-fr.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fr.html">Projet de la BOEW</a></div></li>
 <li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Mise-en-%C5%93uvre-de-la-BOEW">Mise en œuvre de la BOEW</a></div></li>
 <li><div><a href="https://github.com/wet-boew/wet-boew/wiki/Lignes-directrices-pour-les-contributeurs">Contribuer à la BOEW</a></div></li>
 </ul>
@@ -75,9 +76,9 @@ wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licen
 
 <div id="wet-bc"><h2>Fil d'Ariane</h2><div id="wet-bc-in">
 <ol>
-<li><a href="../../index-fra.html">Accueil</a></li>
-<li><a href="../index-fra.html">Exemples pratiques</a></li>
-<li><a href="index-fra.html">Graphiques</a></li>
+<li><a href="../../index-fr.html">Accueil</a></li>
+<li><a href="../index-fr.html">Exemples pratiques</a></li>
+<li><a href="index-fr.html">Graphiques</a></li>
 <li>Diagramme circulaire</li>
 </ol>
 </div></div>
@@ -569,25 +570,29 @@ var wet_boew_charts = {
 
 <div class="clear"></div>
 
-<section lang="en">
-<h2>Know Issue - Trivial - Undesirable inner white circle</h2>
+<section>
+<h2>Probleme connu - Banal - Cercle blanc interne indésirable</h2>
 
-<p><strong>What is the bug?</strong> An undesirable white circle that appearing in the middle of a pie chart.</p>
+<p><strong>Quel est le problème?</strong> C'est un petit cercle blanc indésirable qui apparaît au milieu du diagramme circulaire.</p>
 
-<p><strong>What is the bug severity?</strong> Trivial bug that are happening in a very specific context. It's only about to be an undesirable visual effect. The information provided from the pie chart, the pie chart functionality, are out of scope of this bug.</p>
+<p><strong>Quel est le niveau d'importance de ce problème?</strong> Le niveau est considéré banal car il survient dans un context très spécifique et qu'il ne surviendra pas selon une utilisation dites &quot;normale&quot;. Ce problème est seulement par rapport à un effet visuelle qui peut être non-désiré. Toutefois, l'information divulgué à partir du diagramme circulaire n'est aucunement affecté par ce problème.</p>
 
-<p><strong>When this bug occur?</strong> This trivial bug are only valid when, in that specific order (as appearing in the HTML), a donnut pie chart (with a hole in center) co-exist with a standard pie chart (with no hole in center) in the same page. <em>Here, the specific order are not representing the same order comparing to the execution order in the WET context.</em></p>
+<p><strong>Quand est-ce que ce problème survient?</strong> Ce problème banale survient seulement lorsqu'un diagrame circulaire, selon l'ordre définie dans l'HTML, en beigne (ayant un troue blanc au centre) est utilisé avec un diagramme circulaire de base (sans trou) à l'intérieur d'une même page. <em>Ici, l'ordre définie dans l'HTML ne représente pas le même ordre lors de l'exécution des plugin dans le context de la WET.</em></p>
 
-<p><strong>When this bug occur? (more specific and technical)</strong> It is when the CSS option <code>pieinnerradius</code> is used with multiple value on the same page. Also, in addition to this bug, you may notice that, when activated, the hovering effect could be altered. For more information about when this bug will be fix, see the <a href="https://github.com/flot/flot/issues/1128">Flot issue #1128: Pie Chart - Undesirable inner white circle</a>.</p>
+<p><strong>Quand est-ce que ce problème survient? (plus spécifique et technique)</strong> C'est lorsque l'option CSS <code>pieinnerradius</code> est utilisé et attribu différente valeur dans la même page. Par ailleur, il est possible que l'effet de survole ne représente pas l'effect attendue lorsqu'il est activé, ceci dans lorsque le problème survient. Pour de plus ample renseignement veuillez consulter la requête suivante: <a href="https://github.com/flot/flot/issues/1128" hreflang="en" lang="en">Flot issue #1128: Pie Chart - Undesirable inner white circle</a> <em>(en anglais seulement)</em>.</p>
 
-<p><strong>What is the workaround?</strong> It is possible to order the pie chart, in the HTML, in a way to not reproduce this bug, like this working example. Standard pie chart followed by donnut pie chart. Or to use, by web pages, pie chart where the value of the <code>pieinnerradius</code> stay the same for each of them.</p>
+<p><strong>Comment contourner ce problème?</strong> Il est possible d'organiser les diagramme circulaire de manière à ne pas reproduire le problème, telque l'ordre utilisé dans cet example pratique. Un diagramme circulaire de base doit précédé les diagramme circulaire en beigne. Ou plus simplement, par page web, utiliser des diagramme circulaire qui ont une valeur constante pour l'option CSS <code>pieinnerradius</code>.</p>
 
-<p>If you are experiencing another issue or if you have any question, do not hesitate to <a href="https://github.com/wet-boew/wet-boew/issues/new">submit an issue</a>.</p>
+<p>Si vous éprouvez d'autre problème ou si vous avez des questions, n'hésitez pas à <a href="https://github.com/wet-boew/wet-boew/issues/new" hreflang="en">soumettre une nouvelle requête</a>.</p>
 
 </section>
 
+<div class="clear"></div>
+
+
+
 <dl id="wet-date-mod" role="contentinfo">
-<dt>Date de modification&#160;:</dt><dd><span><time>2013-04-11</time></span></dd>
+<dt>Date de modification&#160;:</dt><dd><span><time>2013-09-13</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
@@ -600,7 +605,7 @@ var wet_boew_charts = {
 <nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
 <section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
 <ul>
-<li><a href="http://wet-boew.github.io/wet-boew/index-fra.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
 <li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
 </ul>
 </div></section>
