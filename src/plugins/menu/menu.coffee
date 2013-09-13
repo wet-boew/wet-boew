@@ -12,7 +12,7 @@ do ($ = jQuery, window, document) ->
 		event.stopPropagation()
 		_elm = $(@)
 		_links = _elm.find ".menu li"
-		_links.find("a[href^=#]").append "<span class=\"expandicon\"></span>"
+		_links.find("a[href^='#'']").append "<span class=\"expandicon\"></span>"
 		_links.each (index)->
 			$(@).attr('data-index', index)
 		undefined
@@ -84,7 +84,7 @@ do ($ = jQuery, window, document) ->
 	###
 	 Mouse In and Out
 	###
-	$(document).on "mouseenter focusin", ".wb-menu .menu li a", (event) ->
+	$(document).on "mouseenter focusin", ".wb-menu .menu :tabable", (event) ->
 	  # Act on the event
 	  event.stopPropagation()
 	  _elm = $(@)
@@ -93,10 +93,12 @@ do ($ = jQuery, window, document) ->
 	  _target = _elm.attr('href')
 	  if _target.indexOf('#') is 0
 	  	# this is a page reference
+	  	console.log _target
 	  	$(_target).addClass('open')
 	###
 	 Keyboard Navigation
 	###
+	# Primary links in list
 	$(document).on "keydown", ".wb-menu .menu :tabable", (event) ->
 		event.stopPropagation()
 		code = event.which;
@@ -121,7 +123,7 @@ do ($ = jQuery, window, document) ->
 				type: 'wb.menu-menu-increment'
 				increment: 1
 				current: _index
-
+	# This is for the events for secondary items
 	$(document).on "keydown", ".wb-menu .item", (event) ->
 		event.stopPropagation()
 		code = event.which;
@@ -146,10 +148,8 @@ do ($ = jQuery, window, document) ->
 				increment: -1
 				current: _index
 
-	# add the down arrows
-	$(document).on "mousemoveoutside focusoutside", ".wb-menu", (event) ->
-	  # Act on the event
-	  $('.wb-menu').trigger('wb.menu-reset')
+	$(document).on "mouseleave focusout", ".wb-menu", (event) ->
+		$(@).trigger('wb.menu-reset')
 
 
 
