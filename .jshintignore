@@ -18,6 +18,7 @@ src/js/dependencies/datatables.js
 src/js/dependencies/easytabs.js
 src/js/dependencies/excanvas.js
 src/js/dependencies/flot.js
+src/js/dependencies/flotCanvas.js
 src/js/dependencies/flotPIE.js
 src/js/dependencies/hashchange.js
 src/js/dependencies/hoverintent.js
