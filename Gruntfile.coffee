@@ -1,14 +1,19 @@
 module.exports = (grunt) ->
 
+	# Command line flag for a dev build
+	dev = grunt.option "dev" ? false
+	
 	# Project configuration.
 	grunt.initConfig
 
 		# Metadata.
 		pkg: grunt.file.readJSON("package.json")
+		
 		banner: "/*! Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" - v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n*/\n"
+
 		environment:
-			suffix: ".min"
+			suffix: if dev then "" else ".min" 
 
 		# Task configuration.
 		concat:
