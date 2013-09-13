@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<!-- DataAjaxFragmentStart -->
+
+<h2>Navigation</h2>
+<ul class="list-inline menu">
+	<li><a href="#lore">Lorem ipsum dolor sit amet.</a></li>
+	<li><a href="#lor">Lorem ipsum.</a></li>
+	<li><a href="#lorm">Lorem ipsum dolor sit amet, consectetur.</a></li>
+	<li><a href="http://www.ec.gc.ca">Lorem ipsum toda.</a></li>
+</ul>
+<section  class="item" id="lore">
+		<h3 class="wb-invisible">Lorem ipsum dolor sit amet.</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, laboriosam neque similique voluptatem a ratione totam nostrum dolores illum perferendis. Aliquid, voluptatibus, natus quaerat ipsa quisquam dolorem assumenda in culpa.</p>
+			<ul>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur.</a></li>
+				<li><a href="#">Lorem ipsum amet, consectetur.</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet, .</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur.</a></li>
+				<li><a href="#">Lorem  amet, consectetur.</a></li>
+				<li><a href="#">Lorem ipsum dolor sit consectetur.</a></li>
+			</ul>
+</section>
+<section  class="item" id="lor">
+		<h3 class="wb-invisible">Lorem ipsum.</h3>
+			<ul>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur.</a></li>
+				<li><a href="#">Lorem ipsum amet, consectetur.</a></li>
+				<li><a href="#">Lorem ipsum dolor sit consectetur.</a></li>
+			</ul>
+</section>
+<section  class="item" id="lorm">
+		<h3 class="wb-invisible">Lorem ipsum dolor sit amet, consectetur.</h3>
+			<ul>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur.</a></li>
+				<li><a href="#">Lorem ipsum amet, consectetur.</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet, .</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur.</a></li>
+				<li><a href="#">Lorem  amet, consectetur.</a></li>
+				<li><a href="#">Lorem ipsum dolor sit consectetur.</a></li>
+			</ul>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, aut, quae, nobis dolorem at libero natus animi sit eaque voluptate nam quis vitae aliquid eius laborum possimus quibusdam. Quo, quam!</p>
+			<ul>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur.</a></li>
+				<li><a href="#">Lorem ipsum amet, consectetur.</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet, .</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur.</a></li>
+				<li><a href="#">Lorem  amet, consectetur.</a></li>
+				<li><a href="#">Lorem ipsum dolor sit consectetur.</a></li>
+			</ul>
+</section>
