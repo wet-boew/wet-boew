@@ -61,7 +61,8 @@
 				figureElem,
 				_graphclasslen2,
 				plotParameter,
-				pieChartLabelText = '';
+				pieChartLabelText = '',
+				$imgContainer;
 
 			function colourNameToHex(colour) {
 				// colorsAccent = ['#8d201c', '#EE8310', '#2a7da6', '#5a306b', '#285228', '#154055', '#555555', '#f6d200', '#d73d38', '#418541', '#87aec9', '#23447e', '#999999'];
@@ -575,7 +576,15 @@
 				_pe.fn.chartsGraph.O = options; // ---- Save the setting here in a case of a second graphic on the same page
 			}
 			options = _pe.fn.chartsGraph.O;
-
+			options.height = $(elm).height();
+			options.width = $(elm).width();
+			// Fix default width and height in case the table is hidden.
+			if (!options.width) {
+				options.width = 250;
+			}
+			if (!options.height) {
+				options.height = 250;
+			}
 			// 3. [Table element] CSS Overwrite - [Keep a list of required plugin "defaultnamespace-plugin" eg. wb-charts-donnut]
 			options = setClassOptions(options, (self.attr('class') !== undefined ? self.attr('class') : ''));
 
@@ -1299,7 +1308,7 @@
 								]);
 
 							valueCumul += header[header.length - 1].flotDelta;
-
+							break;
 						}
 						tdOptions = setClassOptions(RowDefaultOptions,
 							($(dataGroup.col[i].cell[rIndex].elem).attr('class') !== undefined ?
@@ -1320,40 +1329,35 @@
 					// Create the Canvas
 					$placeHolder = $('<div />');
 
-					// Create a sub Figure or use the main one ?
+					// Charts Container
+					$imgContainer = $('<div />');
+
+					// Create a sub Figure or use the main one
 					if (parsedData.lstrowgroup[0].row.length === 1 &&
 						($(parsedData.lstrowgroup[0].row[0].header[0].elem).html() === tblCaptionHTML ||
 						parsedData.lstrowgroup[0].row[0].header.length === 0)) {
-
 						pieChartLabelText = tblCaptionText;
-
-						// Use the main Container
-						$(mainFigureElem).append($placeHolder);
+						$(mainFigureElem).append($imgContainer);
 
 					} else {
 						// Use a sub container
 						$subFigureElem = $('<figure />').appendTo(mainFigureElem);
 						$subfigCaptionElem = $('<figcaption />');
-
 						header = parsedData.lstrowgroup[0].row[rIndex].header;
-
 						pieChartLabelText = $(header[header.length - 1].elem).text();
-
 						$subFigureElem.append($subfigCaptionElem);
 						$subfigCaptionElem.append($(header[header.length - 1].elem).html());
-
-						$subFigureElem.append($placeHolder);
+						$subFigureElem.append($imgContainer);
 					}
 
+					$imgContainer.append($placeHolder);
 
 					// Canvas Size
 					$placeHolder.css('height', options.height).css('width', options.width);
 
-
-
-					$placeHolder.attr('role', 'img');
+					$imgContainer.attr('role', 'img');
 					// Add a aria label to the svg build from the table caption with the following text prepends ' Chart. Details in table following.'
-					$placeHolder.attr('aria-label', pieChartLabelText + ' ' + _pe.dic.get('%table-following')); // 'Chart. Details in table following.'
+					$imgContainer.attr('aria-label', pieChartLabelText + ' ' + _pe.dic.get('%table-following')); // 'Chart. Details in table following.'
 
 					//
 					// Pie Charts Options
@@ -1412,14 +1416,13 @@
 						// Move the legend under the graphic
 						$('.legend > div', $placeHolder).remove();
 						$('.legend > table', $placeHolder).removeAttr('style').addClass('font-small');
-						$placeHolder.css('height', 'auto');
+						$('.legend', $placeHolder).appendTo($imgContainer);
 					}
 
 					// Remove any "pieLabel" ids set by the flotPie.js plugin at line #457
 					$('.pieLabel').removeAttr('id');
 
 					allSeries = [];
-
 				}
 
 				if (!options.noencapsulation) { // eg of use:	wb-charts-noencapsulation-true
@@ -1576,8 +1579,7 @@
 			$(figureElem).append($placeHolder);
 
 			// Canvas Size
-			$placeHolder.css('height', options.height).css('width', options.width);
-
+			$placeHolder.css('height', options.height).css('width', '100%');
 
 			$placeHolder.attr('role', 'img');
 			// Add a aria label to the svg build from the table caption with the following text prepends ' Chart. Details in table following.'
@@ -1605,6 +1607,7 @@
 
 			// Create the graphic
 			plotParameter = {
+				canvas: true,
 				xaxis: (calcTick.length > 0 ? {ticks: calcTick} : { })
 			};
 
@@ -1646,6 +1649,9 @@
 				// Remove the legend
 				$('.legend', $placeHolder).remove();
 			}
+
+			$('canvas:eq(1)', $placeHolder).css('position', 'static');
+			$('canvas:eq(0)', $placeHolder).css('width', '100%');
 
 			// Destroy the temp table if used
 			if (options.parsedirection === 'y') {
