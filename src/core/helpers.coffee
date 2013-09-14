@@ -34,6 +34,8 @@ do ( $ = jQuery, window, document ) ->
 				elm.attr 'aria-hidden', 'true'
 				unless onlyAria?
 					elm.addClass 'wb-invisible'
+		toggle: (to, from) ->
+      $(@).addClass(to).removeClass(from)
 	$.fn.wb = (method) ->
 		if methods[method]
 			methods[method].apply @, Array::slice.call(arguments, 1)
