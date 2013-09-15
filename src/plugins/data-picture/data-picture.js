@@ -1,0 +1,44 @@
+/*
+Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+plugin :	Picturefill
+author :	@patheard
+notes:		Wrapper for @scottjehl's Picturefill library
+licence:	wet-boew.github.io/wet-boew/License-en.html /
+			wet-boew.github.io/wet-boew/Licence-fr.html
+*/
+(function( $, window, document ) {
+	"use strict";
+	var $document = $( document ),
+		plugin = {
+			events: false,
+			selector: "[data-picture]",
+
+			/**
+			 * Initialize the plugin
+			 */
+			init: function() {
+				window._timer.remove( plugin.selector );
+
+				// Load picturefill dependencies and bind the init event handler
+				window.Modernizr.load({
+					test: window.matchMedia,
+					nope: "site!deps/matchMedia.min.js",
+					load: "site!deps/picturefill.min.js",
+					complete: function() {
+						if ( plugin.events === false ) {
+							plugin.events = true;
+							$document.on( "wb-data-picture.init", window.picturefill );
+						}
+						$document.trigger( "wb-data-picture.init" );
+					}
+				});
+			}
+		};
+
+	// Bind the init event of the plugin
+	$document.on( "wb.timerpoke", plugin.selector, plugin.init );
+
+	// Add the timer poke to initialize the plugin
+	window._timer.add( plugin.selector );
+
+}( jQuery, window, document ));

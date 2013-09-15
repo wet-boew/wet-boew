@@ -1,0 +1,72 @@
+---
+title: Picturefill
+language: en
+---
+
+<section>
+	<h2>Picturefill</h2>
+	
+	<h3>Browser Width</h3>
+	<p>This example uses <a href="http://www.w3.org/TR/css3-mediaqueries/#width">min-width</a> to determine which image should be displayed.  Resize the browser window to see the different images load.</p>
+	<span data-picture="data-picture" data-alt="Parliament Hill" class="wet-boew-responsiveimg">
+		<!-- Default image: <div [data-src]> with no data-media attribute is displayed when:
+		     1. None of the other <div [data-src]> media queries match.
+		     2. The browser doesn't support media queries  -->
+		<span data-src="parliament-hill-large.jpg"></span>
+
+		<!-- Images for browsers with CSS media query support -->
+		<span data-src="parliament-hill-small.jpg" data-media="(min-width: 0px)"></span>
+		<span data-src="parliament-hill-medium.jpg" data-media="(min-width: 500px)"></span>
+		<span data-src="parliament-hill-large.jpg" data-media="(min-width: 960px)"></span>
+		<span data-src="parliament-hill-extralarge.jpg" data-media="(min-width: 1200px)"></span>
+
+		<!-- Fallback content for non-JS browsers. -->
+		<noscript><img src="parliament-hill-large.jpg" alt="Parliament Hill"></noscript>
+	</span>
+	<p>Photo by <a href="http://www.flickr.com/photos/intercultura/6130311384">Noema Pérez</a>, licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/deed.en_CA">Creative Commons</a>.</p>
+	<details class="wet-boew-prettify all-pre linenums">
+		<summary>View code</summary>
+		<pre>
+&lt;span  data-picture="data-picture" data-alt="Parliament Hill" class="wet-boew-responsiveimg"&gt;
+   &lt;!-- Default image: &lt;div [data-src]&gt; with no data-media attribute is displayed when:
+           1. None of the other &lt;div [data-src]&gt; media queries match.
+           2. The browser doesn't support media queries  --&gt;
+   &lt;span data-src="parliament-hill-large.jpg"&gt;&lt;/span&gt;
+
+   &lt;!-- Images for browsers with CSS media query support --&gt;
+   &lt;span data-src="parliament-hill-small.jpg" data-media="(min-width: 0px)"&gt;&lt;/span&gt;
+   &lt;span data-src="parliament-hill-medium.jpg" data-media="(min-width: 500px)"&gt;&lt;/span&gt;
+   &lt;span data-src="parliament-hill-large.jpg" data-media="(min-width: 960px)"&gt;&lt;/span&gt;
+   &lt;span data-src="parliament-hill-extralarge.jpg" data-media="(min-width: 1200px)"&gt;&lt;/span&gt;
+
+   &lt;!-- Fallback content for non-JS browsers. --&gt;
+   &lt;noscript&gt;&lt;img src="parliament-hill-large.jpg" alt="Parliament Hill"/&gt;&lt;/noscript&gt;
+&lt;/span&gt;</pre>
+	</details>
+
+	<h3>High Pixel Density</h3>
+	<p>This example uses <a href="http://www.w3.org/blog/CSS/2012/06/14/unprefix-webkit-device-pixel-ratio/" title="Read about high resolution media queries">two media queries</a> to serve high resolution images to devices that will benefit from them (i.e. Retina displays).</p>
+	<span data-picture="data-picture" data-alt="False Kiva in the Canyonlands">
+		<!-- Images for different device resolutions -->
+	    <span data-src="cave-low-res.jpg"></span>
+	    <span data-src="cave-high-res.jpg" data-media="(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)"></span>
+
+	    <!-- Fallback content for non-JS browsers -->
+	    <noscript><img src="cave-low-res.jpg" alt="False Kiva in the Canyonlands"></noscript>
+    </span>
+
+    <p>Photo by <a href="http://www.flickr.com/photos/snowpeak/7351510924/">snowpeak</a>, licensed under <a href="http://creativecommons.org/licenses/by/2.0/">Creative Commons</a>.</p>
+	<details>
+		<summary>View code</summary>
+		<pre>
+&lt;span  data-picture="data-picture" data-alt="False Kiva in the Canyonlands"&gt;
+   &lt;!-- Images for different device resolutions --&gt;
+   &lt;span data-src="cave-low-res.jpg"&gt;&lt;/span&gt;
+   &lt;span data-src="cave-high-res.jpg" data-media="(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)"&gt;&lt;/span&gt;
+
+   &lt;!-- Fallback content for non-JS browsers --&gt;
+   &lt;noscript&gt;&lt;img src="cave-low-res.jpg" alt="False Kiva in the Canyonlands"/&gt;&lt;/noscript&gt;
+&lt;/span&gt;</pre>
+	</details>
+		
+</section>

@@ -115,6 +115,8 @@ module.exports = (grunt) ->
 					preserveComments: "some"
 				files:
 					"dist/js/deps/jquery.pjax<%= environment.suffix %>.js": "lib/jquery-pjax/jquery.pjax.js"
+					"dist/js/deps/matchMedia<%= environment.suffix %>.js": "lib/matchMedia/matchmedia.js"
+					"dist/js/deps/picturefill<%= environment.suffix %>.js": "lib/picturefill/picturefill.js"
 
 		cssmin:
 			options:
@@ -196,7 +198,7 @@ module.exports = (grunt) ->
 
 			misc:
 				cwd: "src/plugins"
-				src: ["**/*.txt"]
+				src: ["**/*.txt", "**/*.jpg"]
 				dest: "dist/demo"
 				expand: true
 				flatten: true
