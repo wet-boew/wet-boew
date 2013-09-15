@@ -117,6 +117,7 @@ module.exports = (grunt) ->
 					"dist/js/deps/jquery.pjax<%= environment.suffix %>.js": "lib/jquery-pjax/jquery.pjax.js"
 					"dist/js/deps/matchMedia<%= environment.suffix %>.js": "lib/matchMedia/matchmedia.js"
 					"dist/js/deps/picturefill<%= environment.suffix %>.js": "lib/picturefill/picturefill.js"
+					"dist/js/polyfills/excanvas<%= environment.suffix %>.js": "lib/excanvas/excanvas.js"
 
 		cssmin:
 			options:
@@ -173,28 +174,44 @@ module.exports = (grunt) ->
 		copy:
 			jquery:
 				cwd: "lib/jquery"
-				src: ["jquery.min.js", "jquery.min.map"]
+				src: [
+					"jquery.min.js",
+					"jquery.min.map"
+				]
 				dest: "dist/js"
 				expand: true
 
 			oldie:
 				cwd: "lib"
-				# TODO: Minify
-				src: ["jquery-ie/jquery.min.js", "jquery-ie/jquery.min.map", "selectivizr/selectivizr.js", "respond/respond.min.js"]
+				src: [
+					"jquery-ie/jquery.min.js",
+					"jquery-ie/jquery.min.map",
+					"selectivizr/selectivizr.js",
+					"respond/respond.min.js"
+				]
 				dest: "dist/js/oldie"
 				expand: true
 				flatten: true
 
 			bootstrap:
-				files:
-					"dist/css/bootstrap.min.css": "lib/bootstrap/dist/css/bootstrap.min.css"
-
-			fonts:
-				cwd: "lib/bootstrap/fonts"
-				src: ["*.*"]
-				dest: "dist/fonts"
-				expand: true
-				flatten: true
+				files: [
+					{
+						cwd: "lib/bootstrap"
+						src: [
+							"dist/css/bootstrap.min.css"
+						]
+						dest: "dist/css"
+						expand: true
+						flatten: true
+					}
+					{
+						cwd: "lib/bootstrap/fonts"
+						src: ["*.*"]
+						dest: "dist/fonts"
+						expand: true
+						flatten: true
+					}
+				]
 
 			misc:
 				cwd: "src/plugins"
@@ -202,6 +219,7 @@ module.exports = (grunt) ->
 				dest: "dist/demo"
 				expand: true
 				flatten: true
+
 		clean:
 			dist: "dist"
 
