@@ -212,7 +212,7 @@
 					_id = $.map(/\bknav-(\d+)-(\d+)-(\d+)/.exec(_elm.attr('class')), function (n) {
 						return parseInt(n, 10);
 					}),
-					keycode = e.keyCode,
+					keyCode = e.keyCode,
 					type = e.type,
 					keychar,
 					sublink,
@@ -225,7 +225,7 @@
 				switch (type) {
 				case 'keydown':
 					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
-						switch (keycode) {
+						switch (keyCode) {
 						case 13: // enter key
 						case 32: // spacebar
 							if (level === 0 && _elm.attr('aria-haspopup') === 'true') {
@@ -254,9 +254,9 @@
 							_elm.trigger('item-next');
 							return false;
 						default:
-							// 0 - 9 and a - z keys
-							if (keycode > 47 && keycode < 91) {
-								keychar = String.fromCharCode(keycode).toLowerCase();
+							// 0 - 9, a - z keys, punctuation and symbols
+							if ((keyCode > 47 && keyCode < 91) || (keyCode > 95 && keyCode < 112) || (keyCode > 185 && keyCode < 223))  {
+								keychar = String.fromCharCode(keyCode).toLowerCase();
 								sublink = (_id[2] !== 0 || _id[3] !== 0);
 								elmtext = _elm.text();
 								matches = _activemenu.find('.mb-sm-open a').filter(function () {

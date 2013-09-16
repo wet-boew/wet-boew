@@ -182,17 +182,18 @@
 					if (type === 'keydown') {
 						if (!(e.ctrlKey || e.altKey || e.metaKey)) {
 							target = $(e.target);
-							if (keyCode === 27) { // escape key (close the popup)
+							switch (keyCode) {
+							case 27: // escape key (close the popup)
 								$popup.trigger('close');
 								return false;
-							} else if (keyCode === 37) { // left arrow (go on link left, or to the right-most link in the previous row, or to the right-most link in the last row)
+							case 37: // left arrow (go on link left, or to the right-most link in the previous row, or to the right-most link in the last row)
 								target = target.closest('li').prev().find('a');
 								if (target.length === 0) {
 									target = $popupLinks;
 								}
 								_pe.focus(target.last());
 								return false;
-							} else if (keyCode === 38) { // up arrow (go one link up, or to the bottom-most link in the previous column, or to the bottom-most link of the last column)
+							case 38: // up arrow (go one link up, or to the bottom-most link in the previous column, or to the bottom-most link of the last column)
 								leftoffset = e.target.offsetLeft;
 								target = target.closest('li').prevAll().find('a').filter(function () {
 									return (this.offsetLeft === leftoffset);
@@ -218,14 +219,14 @@
 									}
 								}
 								return false;
-							} else if (keyCode === 39) { // right arrow (go one link right, or to the left-most link in the next row, or to the left-most link in the first row)
+							case 39: // right arrow (go one link right, or to the left-most link in the next row, or to the left-most link in the first row)
 								target = target.closest('li').next().find('a');
 								if (target.length === 0) {
 									target = $popupLinks;
 								}
 								_pe.focus(target.first());
 								return false;
-							} else if (keyCode === 40) { // down arrow (go one link down, or to the top-most link in the next column, or to the top-most link of the first column)
+							case 40: // down arrow (go one link down, or to the top-most link in the next column, or to the top-most link of the first column)
 								leftoffset = e.target.offsetLeft;
 								target = target.closest('li').nextAll().find('a').filter(function () {
 									return (this.offsetLeft === leftoffset);
@@ -243,9 +244,9 @@
 									}
 								}
 								return false;
-							} else {
-								// 0 - 9 and a - z keys (go to the next link that starts with that key)
-								if ((keyCode > 47 && keyCode < 58) || (keyCode > 64 && keyCode < 91)) {
+							default:
+								// 0 - 9, a - z keys, punctuation and symbols (go to the next link that starts with that key)
+								if ((keyCode > 47 && keyCode < 91) || (keyCode > 95 && keyCode < 112) || (keyCode > 185 && keyCode < 223)) {
 									keychar = String.fromCharCode(keyCode).toLowerCase();
 									elmtext = target.text();
 									matches = $popupLinks.filter(function () {
