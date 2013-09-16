@@ -50,7 +50,7 @@ do ( $ = jQuery, window, document ) ->
 
 do ( $ = jQuery, window, document ) ->
   # selectors
-  focusable = (element, isTabIndexNotNaN) ->
+  focusable = (element, isTabIndexNotNaN, visibility) ->
     nodeName = element.nodeName.toLowerCase()
     if "area" is nodeName
       map = element.parentNode
@@ -58,25 +58,33 @@ do ( $ = jQuery, window, document ) ->
       return false  if not element.href or not mapName or map.nodeName.toLowerCase() isnt "map"
       img = $("img[usemap=#" + mapName + "]")[0]
       return !!img and visible(img)
-    
-    # the element and all of its ancestors must be visible
-    ((if /input|select|textarea|button|object/.test(nodeName) then not element.disabled else (if "a" is nodeName then element.href or isTabIndexNotNaN else isTabIndexNotNaN))) and visible(element)
-  
+
+    if visibility
+     	 # the element and all of its ancestors must be visible
+    	return ((if /input|select|textarea|button|object/.test(nodeName) then not element.disabled else (if "a" is nodeName then element.href or isTabIndexNotNaN else isTabIndexNotNaN))) and visible(element)
+    else
+    	# dicoverable mode enabled
+    	return ((if /input|select|textarea|button|object/.test(nodeName) then not element.disabled else (if "a" is nodeName then element.href or isTabIndexNotNaN else isTabIndexNotNaN)))
+
+
   visible = (element) ->
     $.expr.filters.visible(element) and not $(element).parents().addBack().filter(->
       $.css(this, "visibility") is "hidden"
     ).length
-  
+
   $.extend $.expr[":"],
     data: (if $.expr.createPseudo then $.expr.createPseudo((dataName) ->
       (elem) ->
         !!$.data(elem, dataName)
-    
+
     # support: jQuery <1.8
     ) else (elem, i, match) ->
       !!$.data(elem, match[3])
     )
     focusable: (element) ->
+      focusable element, not isNaN($.attr(element, "tabindex")), true
+
+    discoverable: (element) ->
       focusable element, not isNaN($.attr(element, "tabindex"))
 
     tabable: (element) ->
