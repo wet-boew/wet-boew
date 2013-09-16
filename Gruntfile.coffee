@@ -8,7 +8,7 @@ module.exports = (grunt) ->
 		banner: "/*! Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" - v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n*/\n"
 		environment:
-			suffix: ".min"
+			suffix: if grunt.cli.tasks.indexOf('debug') > -1 then "" else ".min"
 
 		# Task configuration.
 		concat:
@@ -197,7 +197,7 @@ module.exports = (grunt) ->
 					{
 						cwd: "lib/bootstrap"
 						src: [
-							"dist/css/bootstrap.min.css"
+							"dist/css/bootstrap<%= environment.suffix %>.css"
 						]
 						dest: "dist/css"
 						expand: true
@@ -301,11 +301,18 @@ module.exports = (grunt) ->
 	@loadTasks "tasks"
 
 	# Default task.
-	@registerTask "default", ["clean:dist", "build", "test", "minify", "html"]
+	@registerTask "default", ["dist"]
 
-	@registerTask "build", ["coffee", "sass", "concat", "i18n", "copy"]
+	@registerTask "js", ["coffee","concat", "i18n", "copy"]
+	@registerTask "css", ["sass"]
+
+	@registerTask "dist-js", ["js", "uglify", "clean:jsUncompressed"]
+	@registerTask "dist-css", ["css", "cssmin", "clean:cssUncompressed"]
+
+	@registerTask "dist", ["clean:dist", "dist-js", "dist-css", "test", "html"]
+	@registerTask "debug", ["clean:dist","js", "css", "test", "html"]
+
 	@registerTask "test", ["jshint"]
-	@registerTask "minify", ["uglify", "cssmin", "clean:jsUncompressed", "clean:cssUncompressed"]
 	@registerTask "html", ["assemble"]
 	@registerTask "server", ["connect", "watch:source"]
 	@registerTask "init", ["modernizr"]
