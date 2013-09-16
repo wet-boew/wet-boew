@@ -119,12 +119,9 @@
 								pe.focus(dest);
 								return false;
 							}
-						} else {
-							// up or down arrow (with or without alt)
-							if (keyCode === 38 || keyCode === 40) {
-								showOptions('');
-								return false;
-							}
+						} else if (keyCode === 38 || keyCode === 40) { // up or down arrow (with or without alt)
+							showOptions('');
+							return false;
 						}
 					}
 				} else if (type === 'click' || type === 'vclick') {
