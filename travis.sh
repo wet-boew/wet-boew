@@ -38,7 +38,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 
 	echo -e "Updating submodule '$submodule_name'"
 	#Use the existing local repo for initializing the submodule
-	git submodule update --reference ../wet-boew-dist --init "$submodule_name"
+	git submodule update --reference ../wet-boew/wet-boew-dist --init "$submodule_name"
 
 	cd "$submodule_name"
 	#Checkout dist branch to move forward submodule HEAD pointer
