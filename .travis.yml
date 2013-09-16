@@ -11,7 +11,7 @@ before_install:
 
 script:
   - npm test
-  - travis.sh
+  - ./travis.sh
 
 notifications:
   irc:
