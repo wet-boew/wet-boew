@@ -44,112 +44,44 @@ do ( $ = jQuery, window, document ) ->
 		else
 			$.error "Method " + method + " does not exist on jquery.wb"
 
-
+###
+:focusable and :tabable jQuery helper expressions - https://github.com/jquery/jquery-ui/blob/24756a978a977d7abbef5e5bce403837a01d964f/ui/jquery.ui.core.js
+###
 do ( $ = jQuery, window, document ) ->
+  # selectors
+  focusable = (element, isTabIndexNotNaN) ->
+    map = undefined
+    mapName = undefined
+    img = undefined
+    nodeName = element.nodeName.toLowerCase()
+    if "area" is nodeName
+      map = element.parentNode
+      mapName = map.name
+      return false  if not element.href or not mapName or map.nodeName.toLowerCase() isnt "map"
+      img = $("img[usemap=#" + mapName + "]")[0]
+      return !!img and visible(img)
+    
+    # the element and all of its ancestors must be visible
+    ((if /input|select|textarea|button|object/.test(nodeName) then not element.disabled else (if "a" is nodeName then element.href or isTabIndexNotNaN else isTabIndexNotNaN))) and visible(element)
+  
+  visible = (element) ->
+    $.expr.filters.visible(element) and not $(element).parents().addBack().filter(->
+      $.css(this, "visibility") is "hidden"
+    ).length
+  
+  $.extend $.expr[":"],
+    data: (if $.expr.createPseudo then $.expr.createPseudo((dataName) ->
+      (elem) ->
+        !!$.data(elem, dataName)
+    
+    # support: jQuery <1.8
+    ) else (elem, i, match) ->
+      !!$.data(elem, match[3])
+    )
+    focusable: (element) ->
+      focusable element, not isNaN($.attr(element, "tabindex"))
 
-  ###
-  A collection of functions to determine if an element is tabbable
-
-  @class Subject
-  @static
-  ###
-  Subject =
-
-    FOCUSSABLE_ELEMS: ["input", "select", "textarea", "button"]
-
-
-    isTabbable: (elem) ->
-      Subject.hasTabindex(elem) and Subject.isFocussable(elem) and Subject.isVisible(elem)
-
-    hasTabindex: (elem) ->
-      elem.tabIndex >= 0
-
-    isVisible: (elem) ->
-      $(elem).is ":visible"
-
-
-    isFocussable: (elem) ->
-      node = elem.nodeName
-      regex = new RegExp(Subject.FOCUSSABLE_ELEMS.join("|"), "gi")
-      return true  if regex.test(node) and not elem.disabled
-      return true  if /a/i.test(node) and elem.href
-      false
-
-  # Adds a tabbable pseudo selector to jQuery
-  $.expr[":"].tabable = Subject.isTabbable
-
-#!
-# * jQuery outside events - v1.1 - 3/16/2010
-# * http://benalman.com/projects/jquery-outside-events-plugin/
-# *
-# * Copyright (c) 2010 "Cowboy" Ben Alman
-# * Dual licensed under the MIT and GPL licenses.
-# * http://benalman.com/about/license/
-#
-
-
-#
-#  OUTSIDE EVENT     - ORIGINATING EVENT
-#  clickoutside      - click
-#  dblclickoutside   - dblclick
-#  focusoutside      - focusin
-#  bluroutside       - focusout
-#  mousemoveoutside  - mousemove
-#  mousedownoutside  - mousedown
-#  mouseupoutside    - mouseup
-#  mouseoveroutside  - mouseover
-#  mouseoutoutside   - mouseout
-#  keydownoutside    - keydown
-#  keypressoutside   - keypress
-#  keyupoutside      - keyup
-#  changeoutside     - change
-#  selectoutside     - select
-#  submitoutside     - submit
-
-do ( $ = jQuery, doc = document, outside = "outside" ) ->
-
-  jq_addOutsideEvent = (event_name, outside_event_name) ->
-
-
-
-    # When the "originating" event is triggered..
-    handle_event = (event) ->
-
-      # Iterate over all elements to which this "outside" event is bound.
-      $(elems).each ->
-        elem = $(this)
-
-        # If this element isn't the element on which the event was triggered,
-        # and this element doesn't contain said element, then said element is
-        # considered to be outside, and the "outside" event will be triggered!
-
-        # Use triggerHandler instead of trigger so that the "outside" event
-        # doesn't bubble. Pass in the "originating" event's .target so that
-        # the "outside" event.target can be overridden with something more
-        # meaningful.
-        elem.triggerHandler outside_event_name, [event.target]  if this isnt event.target and not elem.has(event.target).length
-
-    outside_event_name = outside_event_name or event_name + outside
-    elems = $()
-    event_namespaced = event_name + "." + outside_event_name + "-special-event"
-    $.event.special[outside_event_name] =
-      setup: ->
-        elems = elems.add(this)
-        $(doc).bind event_namespaced, handle_event  if elems.length is 1
-
-      teardown: ->
-        elems = elems.not(this)
-        $(doc).unbind event_namespaced  if elems.length is 0
-
-      add: (handleObj) ->
-        old_handler = handleObj.handler
-        handleObj.handler = (event, elem) ->
-          event.target = elem
-          old_handler.apply this, arguments_
-
-  $.map "click dblclick mousemove mousedown mouseup mouseover mouseout change select submit keydown keypress keyup".split(" "), (event_name) ->
-    jq_addOutsideEvent event_name
-
-  jq_addOutsideEvent "focusin", "focus" + outside
-  jq_addOutsideEvent "focusout", "blur" + outside
-  $.addOutsideEvent = jq_addOutsideEvent
+    tabable: (element) ->
+      tabIndex = $.attr(element, "tabindex")
+      isTabIndexNaN = isNaN(tabIndex)
+      (isTabIndexNaN or tabIndex >= 0) and focusable(element, not isTabIndexNaN)
