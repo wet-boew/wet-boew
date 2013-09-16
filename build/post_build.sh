@@ -12,8 +12,8 @@ if [ "$POST_BUILD" == "true" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$
 	declare -a supported_branches=('v4.0' 'master' 'v3.0') # List of branches to store build output for
 
 	#Set git user
-	git config --global user.email "laurent.goderre@gmail.com"
-	git config --global user.name "Travis"
+	git config --global user.email "wet.boew.bot@gmail.com"
+	git config --global user.name "Web Experience Toolkit Bot"
 
 	#Copy result of build and demo in a temporary location
 	mkdir $HOME/temp_wet-boew
