@@ -10,8 +10,7 @@ before_install:
   - ./run-first
 
 script:
-  - npm test
-  - ./travis.sh
+  - npm test && ./travis.sh
 
 notifications:
   irc:
