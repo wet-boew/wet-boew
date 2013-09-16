@@ -12,9 +12,6 @@ before_install:
 script:
   - npm test
 
-after_success:
-  - ./travis.sh
-
 notifications:
   irc:
   - "chat.freenode.net#wet-boew"
