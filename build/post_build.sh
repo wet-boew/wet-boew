@@ -31,7 +31,7 @@ if [ "$POST_BUILD" == "true" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$
 		build_branch="$TRAVIS_BRANCH-dist"
 
 		cd ..
-		git clone -q -b $build_branch https://${GH_TOKEN}@github.com/wet-boew/wet-boew-dist.git 2> /dev/null  || error_exit "Error cloning the artifact repository";
+		git clone -q -b $build_branch https://${GH_TOKEN}@github.com/wet-boew/wet-boew-dist.git > /dev/null 2>&1  || error_exit "Error cloning the artifact repository";
 		cd wet-boew-dist
 
 		#Replace the new dist and demo folders and root files with the new ones
@@ -46,7 +46,7 @@ if [ "$POST_BUILD" == "true" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$
 		git add -f test
 		git add -f *.*
 		git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER"
-		git push -fq origin $build_branch 2> /dev/null || error_exit "Error uploading the build artifacts"
+		git push -fq origin $build_branch > /dev/null 2>&1 || error_exit "Error uploading the build artifacts"
 
 		#Create the dist without the GC themes
 		if [ "$TRAVIS_BRANCH" == "master" ]; then
@@ -59,7 +59,7 @@ if [ "$POST_BUILD" == "true" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$
 			cp -Rf $HOME/temp_wet-boew/demos/theme-wet-boew ./demos/theme-wet-boew
 			git add -f .
 			git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER"
-			git push -fq origin master-base-dist 2> /dev/null || error_exit "Error uploading the base build artifacts"
+			git push -fq origin master-base-dist > /dev/null 2>&1 || error_exit "Error uploading the base build artifacts"
 		fi
 
 		echo -e "Done uploading the build artifact for branch $TRAVIS_BRANCH\n"
@@ -68,7 +68,7 @@ if [ "$POST_BUILD" == "true" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$
 		echo -e "Updating working examples...\n"
 
 		cd ..
-		git clone -q https://${GH_TOKEN}@github.com/wet-boew/wet-boew.github.io.git 2> /dev/null  || error_exit "Error cloning the working examples repository";
+		git clone -q https://${GH_TOKEN}@github.com/wet-boew/wet-boew.github.io.git > /dev/null 2>&1  || error_exit "Error cloning the working examples repository";
 		cd wet-boew.github.io
 
 		if [ "$TRAVIS_BRANCH" == "master" ]; then
@@ -87,7 +87,7 @@ if [ "$POST_BUILD" == "true" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$
 		cd ..
 		git add .
 		git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER"
-		git push -fq origin master 2> /dev/null || error_exit "Error uploading the working examples"
+		git push -fq origin master > /dev/null 2>&1 || error_exit "Error uploading the working examples"
 
 		echo -e "Finished updating the working examples\n"
 	;; esac
