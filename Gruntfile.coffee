@@ -66,7 +66,6 @@ module.exports = (grunt) ->
 				cwd: "src/plugins"
 				src: ["**/*.hbs"]
 				dest: "dist/demo"
-				flatten: true
 
 		# Comiles the Sass files
 		sass:
@@ -215,10 +214,9 @@ module.exports = (grunt) ->
 
 			misc:
 				cwd: "src/plugins"
-				src: ["**/*.txt", "**/*.jpg"]
+				src: ["**/*.txt", "**/*.jpg", "**/*.png"]
 				dest: "dist/demo"
 				expand: true
-				flatten: true
 
 		clean:
 			dist: "dist"
