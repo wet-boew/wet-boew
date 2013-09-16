@@ -258,8 +258,8 @@
 								}
 								return false;
 							default:
-								// 0 - 9 and a - z keys (go to the next link that starts with that key)
-								if ((keyCode > 47 && keyCode < 58) || (keyCode > 64 && keyCode < 91)) {
+								// 0 - 9, a - z keys, punctuation and symbols
+								if ((keyCode > 47 && keyCode < 91) || (keyCode > 95 && keyCode < 112) || (keyCode > 185 && keyCode < 223)) {
 									keychar = String.fromCharCode(e.keyCode).toLowerCase();
 									elmtext = target.text();
 									matches = $popupLinks.filter(function () {
