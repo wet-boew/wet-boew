@@ -176,6 +176,7 @@
 			// Handles specialized keyboard input
 			keyhandler = function (e) {
 				var target = $(e.target),
+					keyCode = e.keyCode,
 					menuitem = target.is('[role="menuitem"]'),
 					tocLink,
 					keychar,
@@ -253,10 +254,10 @@
 						}
 						return false;
 					default:
-						// 0 - 9 and a - z keys
-						if ((e.keyCode > 47 && e.keyCode < 58) || (e.keyCode > 64 && e.keyCode < 91)) {
-							keychar = String.fromCharCode(e.keyCode).toLowerCase();
-							elmtext = $(e.target).text();
+						// 0 - 9, a - z keys, punctuation and symbols
+						if ((keyCode > 47 && keyCode < 91) || (keyCode > 95 && keyCode < 112) || (keyCode > 185 && keyCode < 223)) {
+							keychar = String.fromCharCode(keyCode).toLowerCase();
+							elmtext = target.text();
 							matches = elm.find('a').filter(function () {
 								return ($(this).text().substring(0, 1).toLowerCase() === keychar || $(this).text() === elmtext);
 							});
@@ -357,4 +358,3 @@
 	return _pe;
 }
 (jQuery));
-
