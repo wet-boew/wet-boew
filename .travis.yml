@@ -2,7 +2,7 @@ language: java
 
 env:
   global:
-    - secure: "H/SC2XHgUduwUts/6C+stzw18kXO1Zctc6zAFx58Pg05yWdKx+dW+9t1x2wB1S/jHdJ1tselO3dexV25SrQPi4u7UJyqBKL4LZfZi5e5g+qaKZ17T26Be+OqVqidzxNnimEKaw9wFtEz9t6tYXJ+kqzYCetdHuALjiMZYvH656E="
+    - secure: "gyVQRfoes8yaLoVsR1wIooyC99Qm0LjUHiii5ibtMJxEQC7T3kR6IJJAXhW9lbS1Lh6aBjUIXxx60Ix5tp/5AmcWq0X1PXxg+BR4Xy+6MnraFx8T+wzFd+vKdzfZbKgKWAu8lDd44Up4asnNx7LXuhZy0lFmG9BiyjfLgRJ9oCE="
     - POST_BUILD=true
 
 script:
