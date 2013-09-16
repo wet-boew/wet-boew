@@ -1,162 +1,183 @@
 ###
 	Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW)
-	_plugin : Mega Menu
+	_plugin : Menu Plugin
 	_author : World Wide Web
-	_notes: A Mega Menu for WET
+	_notes: A Menu plugin for WET
 	_licence: wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
 ###
 
 do ($ = jQuery, window, document) ->
 
-	$(document).on "wb.ajax-replace-loaded", ".wb-menu", (event) ->
-		event.stopPropagation()
-		_elm = $(@)
-		_links = _elm.find ".menu li"
-		_links.find("a[href^='#'']").append "<span class=\"expandicon\"></span>"
-		_links.each (index)->
-			$(@).attr('data-index', index)
-		undefined
-
-	$(document).on "wb.menu-reset", ".wb-menu", (event) ->
-		event.stopPropagation()
-		$(@).find('.open').removeClass('open')
-		undefined
+	$document = $(document)
+	###
+	Lets leverage JS assigment deconstruction to reduce the code output
+	###
+	expand = (elment, scopeitems)->
+		$elm = $(elment)
+		_elm = if $elm.hasClass('wb-menu') then $elm else $elm.parents('.wb-menu').first()
+		_items = if (scopeitems) then _elm.data('items').has(elment) else _elm.data('items')
+		[_elm.data('self'), _elm.data('menu'), _items, $elm]
 
 	###
-	 Generic Selection of item Event
+	Init
 	###
-	$(document).on "wb.menu-select-item", ".wb-menu .item", (event) ->
+	$document.on "wb.ajax-replace-loaded", ".wb-menu", (event) ->
 		event.stopPropagation()
-		_elm = $(@).addClass('open').find(':tabable').first()
-		setTimeout ( ->
-  				_elm.focus()
-		), 1
+		$container = $(@)
+		$menu = $container.find ".menu :focusable"
+		$items = $container.find ".item"
+		# lets store the object for maximun performance - prevent the jQuery overhead re-querying
+		$container.data('self', $container).data('menu', $menu).data('items',$items)
+		# lets disable tabbing through the menu for usability - leaving the first element open to the tab order
+		$container.find(':discoverable').attr('tabindex', '-1').eq(0).attr('tabindex', '0')
+		# lets add our down arrows where we need to
+		$menu.filter("[href^='#']").append "<span class=\"expandicon\"></span>"
 		undefined
-	###
-	 Generic exact selection of menu-item
-	###
-	$(document).on "wb.menu-select-exact", ".wb-menu .menu :tabable", (event) ->
-		event.stopPropagation()
-		_elm = $(@)
-		setTimeout ( ->
-  				_elm.focus()
-		), 1
-		undefined
-	###
-	 Generic incrementing selection of Menu Event
-	###
-	$(document).on "wb.menu-menu-increment", ".wb-menu", (event) ->
-		event.stopPropagation()
-		_menu = $(@)
-		_links = _menu.find('.menu :tabable')
-		_next =  event.current + event.increment
-		_index = _next
 
-		if _next >= _links.length
-			_index = 0
-		if _next < 0
-			_index = _links.length-1
-
-		_elm = $(@).find('.menu [data-index="' + _index + '"] :tabable')
-		setTimeout ( ->
-  				_elm.focus()
-		), 1
-		undefined
 	###
-	 Generic incrementing selection of items Event
+	 Menu Keyboard bindings
 	###
-	$(document).on "wb.menu-item-increment", ".wb-menu", (event) ->
+	$document.on "mouseover focusin", ".wb-menu .menu :focusable", (event) ->
 		event.stopPropagation()
-		_menu = $(@)
-		_links = _menu.find('.item :tabable')
-		_next =  event.current + event.increment
-		_index = _next
+		[$container, $menu, $items, $elm] = expand(event.target)
+		# some housecleaning
+		$menu.trigger('wb.reset')
+		# end of housecleaning
+		if $elm.find('.expandicon').length > 0
+			$menu.trigger
+					type: 'wb.display'
+					ident: $elm.attr('href')
 
-		if _next >= _links.length
-			_index = 0
-		if _next < 0
-			_index = _links.length-1
-
-		setTimeout ( ->
-  				_links.get(_index).focus()
-		), 1
-		undefined
-	###
-	 Mouse In and Out
-	###
-	$(document).on "mouseenter focusin", ".wb-menu .menu :tabable", (event) ->
-	  # Act on the event
-	  event.stopPropagation()
-	  _elm = $(@)
-	  _menu = _elm.parents('.wb-menu').trigger('wb.menu-reset')
-	  # clean up
-	  _target = _elm.attr('href')
-	  if _target.indexOf('#') is 0
-	  	# this is a page reference
-	  	console.log _target
-	  	$(_target).addClass('open')
-	###
-	 Keyboard Navigation
-	###
-	# Primary links in list
-	$(document).on "keydown", ".wb-menu .menu :tabable", (event) ->
+	$document.on "keydown", ".wb-menu .menu", (event) ->
 		event.stopPropagation()
-		code = event.which;
-		_elm = $(event.target)
-		_index = parseInt(_elm.parents('[data-index]').data('index'))
-		if _elm.find('.expandicon').length > 0
+		[$container, $menu, $items, $elm] = expand(event.target)
+		$code = event.which
+		$index = $menu.index($elm.get(0))
+		if $elm.find('.expandicon').length > 0
 			# ok we have a menu we want to listen for
-			if code is 13 or code is 40
+			if $code is 13 or $code is 40
 				event.preventDefault()
-				$(_elm.attr('href')).trigger('wb.menu-select-item')
-		if code is 37
+				$anchor = $elm.attr('href').slice(1)
+				$goto = $items.filter('[id="' + $anchor + '"]').find(':discoverable').first()
+				console.log $anchor
+				$container.trigger
+					type: 'wb.display'
+					ident: $elm.attr('href')
+				.trigger
+					type: 'wb.select'
+					goto: $goto
+		# since we have set the tabindex on elements the tabkey event should only
+		# ever close the menu since it is only used to enter and leave the menu
+		if $code is 9
+			$container.trigger
+				type: 'wb.reset'
+		if $code is 37
 			# left arrow
 			event.preventDefault()
-			_elm.parents('.wb-menu').trigger
-				type: 'wb.menu-menu-increment'
+			$container.trigger
+				type: 'wb.increment'
+				cnode:  $menu
 				increment: -1
-				current: _index
-		if code is 39
+				current: $index
+		if $code is 39
 			# right arrow
 			event.preventDefault()
-			_elm.parents('.wb-menu').trigger
-				type: 'wb.menu-menu-increment'
+			$container.trigger
+				type: 'wb.increment'
+				cnode:  $menu
 				increment: 1
-				current: _index
-	# This is for the events for secondary items
-	$(document).on "keydown", ".wb-menu .item", (event) ->
+				current: $index
+
+	###
+	 Item Keyboard bindings
+	###
+	$document.on "keydown", ".wb-menu .item", (event) ->
 		event.stopPropagation()
-		code = event.which;
-		_elm = $(@)
-		_index = _elm.find(':tabable').index($(event.target))
-		_menu = _elm.parents('.wb-menu')
-		if code is 27 or code is 37
-			event.preventDefault()
-			_menu.find('.menu [href="#' + _elm.attr('id') + '"]').trigger 'wb.menu-select-exact'
-		# TODO: right-arrow
-		if code is 40
-			event.preventDefault()
-			_menu.trigger
-				type: 'wb.menu-item-increment'
-				increment: 1
-				current: _index
+		[$container, $menu, $items, $elm] = expand(event.target, true)
+		$code = event.which
+		$links = $items.find(':focusable')
+		$index = $links.index($elm.get(0))
 
-		if code is 38
+		# escape key
+		if $code is 27 or $code is 37
 			event.preventDefault()
-			_menu.trigger
-				type: 'wb.menu-item-increment'
+			# look into this more
+			$goto = $menu.filter('[href="#' + $items.attr('id') + '"]')
+			$container.trigger
+				type: 'wb.select'
+				goto: $goto
+
+		if $code is 38
+			# up arrow
+			event.preventDefault()
+			$container.trigger
+				type: 'wb.increment'
+				cnode:  $links
 				increment: -1
-				current: _index
+				current: $index
 
-	$(document).on "mouseleave focusout", ".wb-menu", (event) ->
+		if $code is 40
+			# down arrow
+			event.preventDefault()
+			$container.trigger
+				type: 'wb.increment'
+				cnode:  $links
+				increment: 1
+				current: $index
+
+	###
+	 Global Menu Events
+	###
+	$document.on "mouseleave focusout", ".wb-menu", (event) ->
 		$(@).trigger('wb.menu-reset')
 
 
-
-###
-.find(':tabable:first');
-	  	_tar.addClass "open"
-	  	setTimeout ( ->
-  				tar.focus()
+	$document.on "wb.select", ".wb-menu", (event) ->
+		event.stopPropagation()
+		$elm = event.goto
+		setTimeout ( ->
+  				$elm.focus()
 		), 1
-###
+
+	$document.on "wb.increment", ".wb-menu", (event)->
+		event.stopPropagation()
+		$container = $(@)
+		$links = event.cnode
+		$next =  event.current + event.increment
+		$index = $next
+
+		if $next >= $links.length
+			$index = 0
+		if $next < 0
+			$index = $links.length - 1
+
+		$container.trigger
+			type: "wb.select"
+			goto: $links.eq($index)
+		undefined
+
+	###
+	 Helper Events
+	###
+
+	# Clear all open menus
+	$document.on "wb.reset", ".wb-menu", (event) ->
+		event.stopPropagation()
+		$container = $(@)
+		$container.find('.open').removeClass('open')
+		$container.find('.active').removeClass('active')
+
+
+	$document.on "wb.display", ".wb-menu", (event) ->
+		event.stopPropagation()
+		$container = $(@)
+		# lets reset the menu
+		$container.trigger
+			type: 'wb.reset'
+		# add the active class to the menu item
+		$container.find(".menu [href='#{event.ident}']").addClass('active')
+		$container.find(event.ident).addClass('open')
+
+
+
+
