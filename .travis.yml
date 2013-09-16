@@ -4,7 +4,7 @@ node_js:
 
 env:
   global:
-    - secure: "gwTdJcQxqg2Bxai+N9+T8tPJFnOexZRI1j2tVOHobvnMOaRVg9IU6Or+Q7Qz\nxIPtw7NlPFXhadwgRpEL0Y/I38mJlpXIAKmKAsUnEwyD4gdplbxlVXQZN54r\nGX7dzXpw94LYtRjquCeV5HpX8iMNnF4jgMbj94P1q8teWkyB7wM="
+    - secure: "gyVQRfoes8yaLoVsR1wIooyC99Qm0LjUHiii5ibtMJxEQC7T3kR6IJJAXhW9lbS1Lh6aBjUIXxx60Ix5tp/5AmcWq0X1PXxg+BR4Xy+6MnraFx8T+wzFd+vKdzfZbKgKWAu8lDd44Up4asnNx7LXuhZy0lFmG9BiyjfLgRJ9oCE="
 
 before_install:
   - ./run-first

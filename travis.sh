@@ -11,8 +11,8 @@ function error_exit
 if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/wet-boew" ]; then
 
 	#Set git user
-	git config --global user.email "ws-nw@tbs-sct.gc.ca"
-	git config --global user.name "wet-boew"
+	git config --global user.email "wet.boew.bot@gmail.com"
+	git config --global user.name "Web Experience Toolkit Bot"
 
 	#Add the latest build result
 	echo -e "Uploading the build artifact for branch $TRAVIS_BRANCH\n"
@@ -27,7 +27,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 	echo -e "Updating working examples...\n"
 
 	cd ..
-	git clone -q https://${GH_TOKEN}@github.com/wet-boew/wet-boew.github.io.git > /dev/null  2>&1  || error_exit "Error cloning the working examples repository";
+	git clone -q https://${GH_TOKEN}@github.com/wet-boew/wet-boew.github.io.git > /dev/null 2>&1  || error_exit "Error cloning the working examples repository";
 	cd wet-boew.github.io
 
 	if [ "$TRAVIS_BRANCH" == "master" ]; then
@@ -46,7 +46,8 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/
 	cd ..
 	git add .
 	git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER"
-	git push -fq origin master > /dev/null  2>&1 || error_exit "Error uploading the working examples"
+	git push -fq origin master > /dev/null 2>&1 || error_exit "Error uploading the working examples"
+
 
 	echo -e "Finished updating the working examples\n"
 
