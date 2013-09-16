@@ -10,7 +10,7 @@
  * Datalist polyfill (Autocomplete for text input fields)
  * @author: Paul Jackson (TBS)
  */
-/*global jQuery: false, pe: false*/
+/*global pe:false*/
 (function ($) {
 	"use strict";
 	$.fn.datalist = function () {
@@ -99,7 +99,8 @@
 					dest;
 				if (type === 'keyup') {
 					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
-						if ((keyCode > 47 && keyCode < 58) || (keyCode > 64 && keyCode < 91) || keyCode === 32 || keyCode === 8) { // Number keys, letter keys, spacebar or backspace
+						// 0 - 9, a - z keys, punctuation, symbols, spacebar and backspace
+						if ((keyCode > 47 && keyCode < 91) || (keyCode > 95 && keyCode < 112) || (keyCode > 185 && keyCode < 223) || keyCode === 32 || keyCode === 8) {
 							showOptions(elm.val());
 						}
 					}
@@ -120,7 +121,8 @@
 								return false;
 							}
 						} else {
-							if (keyCode === 38 || keyCode === 40) { // up or down arrow (with or without alt)
+							// up or down arrow (with or without alt)
+							if (keyCode === 38 || keyCode === 40) {
 								showOptions('');
 								return false;
 							}
@@ -150,7 +152,8 @@
 					value;
 				if (type === 'keyup') {
 					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
-						if ((keyCode > 47 && keyCode < 91) || (keyCode > 95 && keyCode < 112) || (keyCode > 185 && keyCode < 223) || keyCode === 32) { // Number keys, letter keys or spacebar
+						// 0 - 9, a - z keys, punctuation, symbols and spacebar
+						if ((keyCode > 47 && keyCode < 91) || (keyCode > 95 && keyCode < 112) || (keyCode > 185 && keyCode < 223) || keyCode === 32) {
 							elm.val(val + String.fromCharCode(keyCode));
 							pe.focus(elm);
 							showOptions(elm.val());
