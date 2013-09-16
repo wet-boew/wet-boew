@@ -40,7 +40,7 @@
     "grunt-sass": "~0.6.1",
     "csv": "~0.3.6",
     "grunt-modernizr": "~0.3.0",
-    "assemble": "~0.4.5",
+    "assemble": "~0.4.7",
     "grunt-contrib-cssmin": "~0.6.1",
     "grunt-gh-pages": "~0.7.2"
   }
