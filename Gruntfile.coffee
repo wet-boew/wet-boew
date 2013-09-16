@@ -270,20 +270,36 @@ module.exports = (grunt) ->
 				csv: "src/i18n/i18n.csv"
 			src: "src/js/i18n/formvalid/*.js"
 
+		"gh-pages":
+			options:
+				repo: "https://" + process.env.GH_TOKEN + "@github.com/wet-boew/wet-boew-dist.git"
+				branch: "v4.0-dist"
+				clone: "wet-boew-dist"
+				message: "Travis build " + process.env.TRAVIS_BUILD_NUMBER
+			src: [
+				"dist/**/*.*",
+				"*.html",
+				"*.md",
+				"*.txt"
+			]
+
 
 	# These plugins provide necessary tasks.
+	@loadNpmTasks "assemble"
+	@loadNpmTasks "grunt-contrib-clean"
+	@loadNpmTasks "grunt-contrib-coffee"
 	@loadNpmTasks "grunt-contrib-concat"
+	@loadNpmTasks "grunt-contrib-connect"
 	@loadNpmTasks "grunt-contrib-copy"
 	@loadNpmTasks "grunt-contrib-cssmin"
-	@loadNpmTasks "grunt-contrib-uglify"
 	@loadNpmTasks "grunt-contrib-jshint"
+	@loadNpmTasks "grunt-contrib-uglify"
 	@loadNpmTasks "grunt-contrib-watch"
-	@loadNpmTasks "grunt-contrib-coffee"
-	@loadNpmTasks "grunt-contrib-clean"
-	@loadNpmTasks "grunt-contrib-connect"
-	@loadNpmTasks "grunt-sass"
 	@loadNpmTasks "grunt-modernizr"
-	@loadNpmTasks "assemble"
+	@loadNpmTasks "grunt-gh-pages"
+	@loadNpmTasks "grunt-sass"
+
+	# Load custom grunt tasks form the tasks directory
 	@loadTasks "tasks"
 
 	# Default task.
@@ -295,3 +311,4 @@ module.exports = (grunt) ->
 	@registerTask "html", ["assemble"]
 	@registerTask "server", ["connect", "watch:source"]
 	@registerTask "init", ["modernizr"]
+	@registerTask "deploy", ["gh-pages"]

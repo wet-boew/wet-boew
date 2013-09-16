@@ -41,6 +41,7 @@
     "csv": "~0.3.6",
     "grunt-modernizr": "~0.3.0",
     "assemble": "~0.4.5",
-    "grunt-contrib-cssmin": "~0.6.1"
+    "grunt-contrib-cssmin": "~0.6.1",
+    "grunt-gh-pages": "~0.7.2"
   }
 }
