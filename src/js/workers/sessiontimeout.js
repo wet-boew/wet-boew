@@ -54,7 +54,7 @@
 					'hs': 100000,
 					'ks': 1000000
 				}
-			}; 
+			};
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_sessiontimeout) and the data-wet-boew attribute
 			$.extend(opts, (typeof wet_boew_sessiontimeout !== 'undefined' ? wet_boew_sessiontimeout : {}), _pe.data.getData(elm, 'wet-boew'));
@@ -161,7 +161,7 @@
 				return hours + ':' + minutes + ':' + seconds + timeformat;
 			};
 
-			
+
 			// Prevent the initial ajax call from happening, instead wait for the inactivity time to pass before this call is made
 			// start_liveTimeout();
 			setTimeout(start_liveTimeout(), timeParse(opts.inactivity));
