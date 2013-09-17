@@ -569,20 +569,17 @@ var wet_boew_charts = {
 
 
 <section>
-<h2>Know Issue - Trivial - Undesirable inner white circle</h2>
+<h2>Known Issue - Inner white circle bug on certain pie charts</h2>
 
 <p><strong>What is the bug?</strong> An undesirable white circle that appearing in the middle of a pie chart.</p>
 
-<p><strong>What is the bug severity?</strong> Trivial bug that are happening in a very specific context. It's only about to be an undesirable visual effect. The information provided from the pie chart, the pie chart functionality, are out of scope of this bug.</p>
+<p><strong>What is the severity?</strong> The bug is a trivial display glitch which occurs in very specific and limited scenarios.
 
-<p><strong>When this bug occur?</strong> This trivial bug are only valid when, in that specific order (as appearing in the HTML), a donnut pie chart (with a hole in center) co-exist with a standard pie chart (with no hole in center) in the same page. <em>Here, the specific order are not representing the same order comparing to the execution order in the WET context.</em></p>
+<p><strong>Where does this bug occur?</strong> The bug only occurs when a donut pie chart (hole in the middle) precedes a regular pie chart (no hole in the middle) on the same Web page.</p>
 
-<p><strong>When this bug occur? (more specific and technical)</strong> It is when the CSS option <code>pieinnerradius</code> is used with multiple value on the same page. Also, in addition to this bug, you may notice that, when activated, the hovering effect could be altered. For more information about when this bug will be fix, see the <a href="https://github.com/flot/flot/issues/1128">Flot issue #1128: Pie Chart - Undesirable inner white circle</a>.</p>
+<p><strong>What is the root cause?</strong> The root cause is that Flot.js currently can't support more than one value per page for the <code>pieinnerradius</code> CSS option. More information can be found on the <a href="https://github.com/flot/flot/issues/1128">Flot.js issue 1128: Pie Chart - Undesirable inner white circle</a>.</p>
 
-<p><strong>What is the workaround?</strong> It is possible to order the pie chart, in the HTML, in a way to not reproduce this bug, like this working example. Standard pie chart followed by donnut pie chart. Or to use, by web pages, pie chart where the value of the <code>pieinnerradius</code> stay the same for each of them.</p>
-
-<p>If you are experiencing another issue or if you have any question, do not hesitate to <a href="https://github.com/wet-boew/wet-boew/issues/new">submit an issue</a>.</p>
-
+<p><strong>What is the workaround?</strong> Either keep donut and regular pie charts on different Web pages or ensure that regular pie charts precede the donut pie charts.</p>
 </section>
 
 <div class="clear"></div>
