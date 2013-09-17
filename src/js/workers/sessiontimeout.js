@@ -3,21 +3,21 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 /*
- * Share widget plugin
+ * Session timeout plugin
  */
 /*global wet_boew_sessiontimeout: false, alert: false, confirm: false */
 (function ($) {
 	"use strict";
 	var _pe = window.pe || {
-		fn : {}
+		fn: {}
 	};
 	/* local reference */
 	_pe.fn.sessiontimeout = {
-		type : 'plugin',
-		_exec : function (elm) {
+		type: 'plugin',
+		_exec: function (elm) {
 			var opts,
 				// An overlay over the screen when showing the dialog message
-				// Added &nbsp; to fix Chrome bug (received from Charlie Lavers - PWGSC)
+				// Added &#160; to fix Chrome bug (received from Charlie Lavers - PWGSC)
 				overLay = '<div class="sOverlay jqmOverlay">&#160;</div>',
 				liveTimeout,
 				sessionTimeout,
@@ -31,7 +31,9 @@
 				timeParse,
 				getExpireTime,
 				alreadyTimeoutMsg = _pe.dic.get('%st-already-timeout-msg'),
-				timeoutMsg = _pe.dic.get('%st-timeout-msg');
+				timeoutMsg = _pe.dic.get('%st-timeout-msg'),
+				lastActivity,
+				lastAjaxCall = 0;
 
 			// Defaults
 			opts = {
@@ -41,10 +43,18 @@
 				logouturl: './',			// can't really set a default logout URL
 				refreshOnClick: true,		// refresh session if user clicks on the page
 				// Ajax call back url function to server to keep the session alive, this has to return true or false from server on success
-				refreshCallbackUrl: './',	// Can't really set a default callbackurl
-				regex:	/^([0-9]+(?:\.[0-9]*)?)\s*(.*s)?$/,
-				powers:	{'ms': 1, 'cs': 10, 'ds': 100, 's': 1000, 'das': 10000, 'hs': 100000, 'ks': 1000000}
-			};
+				refreshCallbackUrl: './', // Can't really set a default callbackurl
+				regex: /^([0-9]+(?:\.[0-9]*)?)\s*(.*s)?$/,
+				powers: {
+					'ms': 1,
+					'cs': 10,
+					'ds': 100,
+					's': 1000,
+					'das': 10000,
+					'hs': 100000,
+					'ks': 1000000
+				}
+			}; 
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_sessiontimeout) and the data-wet-boew attribute
 			$.extend(opts, (typeof wet_boew_sessiontimeout !== 'undefined' ? wet_boew_sessiontimeout : {}), _pe.data.getData(elm, 'wet-boew'));
@@ -151,15 +161,30 @@
 				return hours + ':' + minutes + ':' + seconds + timeformat;
 			};
 
-			start_liveTimeout();
-			if (opts.refreshOnClick) {
-				_pe.document.on('click', function (e) {
-					var button = e.button;
-					if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
-						start_liveTimeout();
-					}
-				});
-			}
+			
+			// Prevent the initial ajax call from happening, instead wait for the inactivity time to pass before this call is made
+			// start_liveTimeout();
+			setTimeout(start_liveTimeout(), timeParse(opts.inactivity));
+
+            if (opts.refreshOnClick) {
+                _pe.document.on('click', function (e) {
+
+                    // If there is a click on the page
+                    if (lastActivity >= 1 && (getCurrentTimeMs() - lastAjaxCall) > opts.ajaxLimiter) {
+                        if (typeof e.button === 'undefined' || e.button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+                            // Set the time of the last ajax call
+                            lastAjaxCall = getCurrentTimeMs();
+                            // Reset the activity counter
+                            lastActivity = 0;
+                            start_liveTimeout();
+                        }
+                    } else {
+                        if (typeof e.button === 'undefined' || e.button === _pe.leftMouseButton) {
+                            lastActivity = getCurrentTimeMs();
+                        }
+                    } // END OF if (lastActivity >= 1 && ...
+                });
+            }
 
 			return elm;
 		} // end of exec
