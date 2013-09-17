@@ -1,5 +1,6 @@
 module.exports = (grunt) ->
 
+	grunt.util.linefeed = "\n"
 	# Project configuration.
 	grunt.initConfig
 
@@ -317,3 +318,5 @@ module.exports = (grunt) ->
 	@registerTask "server", ["connect", "watch:source"]
 	@registerTask "init", ["modernizr"]
 	@registerTask "deploy", ["gh-pages"]
+
+	@
