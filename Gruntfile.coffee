@@ -70,12 +70,33 @@ module.exports = (grunt) ->
 
 		# Comiles the Sass files
 		sass:
+			options:
+				browsers: [
+					"last 2 versions,",
+					"ff >= 17",
+					"opera 12.1",
+					"bb >= 7",
+					"android >= 2.3",
+					"ie >= 8",
+					"ios 5"
+				]
 			all:
 				expand: true
 				cwd: "src/base"
 				src: ["**/*.scss", "!**/_*.scss"]
 				dest: "dist/css/"
 				ext: ".css"
+
+		autoprefixer:
+			all:
+				cwd: "dist/css"
+				src: [
+					"**/*.css",
+					"!**/*.min.css"
+				]
+				dest: "dist/css"
+				expand: true
+				flatten: true
 
 		# Minifiy
 		uglify:
@@ -285,6 +306,7 @@ module.exports = (grunt) ->
 
 	# These plugins provide necessary tasks.
 	@loadNpmTasks "assemble"
+	@loadNpmTasks "grunt-autoprefixer"
 	@loadNpmTasks "grunt-contrib-clean"
 	@loadNpmTasks "grunt-contrib-coffee"
 	@loadNpmTasks "grunt-contrib-concat"
@@ -305,7 +327,7 @@ module.exports = (grunt) ->
 	@registerTask "default", ["dist"]
 
 	@registerTask "js", ["coffee","concat", "i18n", "copy"]
-	@registerTask "css", ["sass"]
+	@registerTask "css", ["sass", "autoprefixer"]
 
 	@registerTask "dist-js", ["js", "uglify", "clean:jsUncompressed"]
 	@registerTask "dist-css", ["css", "cssmin", "clean:cssUncompressed"]
