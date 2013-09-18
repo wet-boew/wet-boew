@@ -37,13 +37,14 @@
 
 			// Defaults
 			opts = {
+				ajaxLimiter: 200000,		// default period of 2 minutes (ajax calls happen only once during this period)
 				inactivity: 1200000,		// default inactivity period 20 minutes
 				reactionTime: 30000,		// default confirmation period of 30 seconds
 				sessionalive: 1200000,		// default session alive period 20 minutes
 				logouturl: './',			// can't really set a default logout URL
 				refreshOnClick: true,		// refresh session if user clicks on the page
 				// Ajax call back url function to server to keep the session alive, this has to return true or false from server on success
-				refreshCallbackUrl: './', // Can't really set a default callbackurl
+				refreshCallbackUrl: './',	// Can't really set a default callbackurl
 				regex: /^([0-9]+(?:\.[0-9]*)?)\s*(.*s)?$/,
 				powers: {
 					'ms': 1,
