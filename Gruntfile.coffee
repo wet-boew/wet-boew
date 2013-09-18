@@ -104,11 +104,10 @@ module.exports = (grunt) ->
 				options:
 					preserveComments: "some"
 				expand: true
-				cwd: "src/polyfills"
-				src: ["**/*.js"]
+				cwd: "dist/js/polyfills/"
+				src: ["*.js"]
 				dest: "dist/js/polyfills/"
 				ext: "<%= environment.suffix %>.js"
-				flatten: true
 
 			core:
 				options:
@@ -131,14 +130,14 @@ module.exports = (grunt) ->
 				dest: "dist/js/i18n"
 				ext: "<%= environment.suffix %>.js"
 
-			lib:
+			deps:
 				options:
 					preserveComments: "some"
-				files:
-					"dist/js/deps/jquery.pjax<%= environment.suffix %>.js": "lib/jquery-pjax/jquery.pjax.js"
-					"dist/js/deps/matchMedia<%= environment.suffix %>.js": "lib/matchMedia/matchmedia.js"
-					"dist/js/deps/picturefill<%= environment.suffix %>.js": "lib/picturefill/picturefill.js"
-					"dist/js/polyfills/excanvas<%= environment.suffix %>.js": "lib/excanvas/excanvas.js"
+				expand: true
+				cwd: "dist/js/deps"
+				src: ["*.js"]
+				dest: "dist/js/deps"
+				ext: "<%= environment.suffix %>.js"
 
 		cssmin:
 			options:
@@ -240,6 +239,20 @@ module.exports = (grunt) ->
 				dest: "dist/demo"
 				expand: true
 
+			polyfills:
+				cwd: "src/polyfills"
+				src: "**/*.js"
+				dest: "dist/js/polyfills"
+				expand: true
+				flatten: true
+
+			deps:
+				files:
+					"dist/js/deps/jquery.pjax.js": "lib/jquery-pjax/jquery.pjax.js"
+					"dist/js/deps/matchMedia.js": "lib/matchMedia/matchmedia.js"
+					"dist/js/deps/picturefill.js": "lib/picturefill/picturefill.js"
+					"dist/js/polyfills/excanvas.js": "lib/excanvas/excanvas.js"
+
 			jsAssets:
 				cwd: "src/plugins"
 				src: "**/assets/*"
@@ -333,14 +346,14 @@ module.exports = (grunt) ->
 	# Default task.
 	@registerTask "default", ["dist"]
 
-	@registerTask "js", ["coffee","concat", "i18n", "copy"]
+	@registerTask "js", ["coffee","concat", "i18n"]
 	@registerTask "css", ["sass", "autoprefixer"]
 
 	@registerTask "dist-js", ["js", "uglify", "clean:jsUncompressed"]
 	@registerTask "dist-css", ["css", "cssmin", "clean:cssUncompressed"]
 
-	@registerTask "dist", ["clean:dist", "dist-js", "dist-css", "test", "html"]
-	@registerTask "debug", ["clean:dist","js", "css", "test", "html"]
+	@registerTask "dist", ["clean:dist", "copy", "dist-js", "dist-css", "test", "html"]
+	@registerTask "debug", ["clean:dist", "copy", "js", "css", "test", "html"]
 
 	@registerTask "test", ["jshint"]
 	@registerTask "html", ["assemble"]
