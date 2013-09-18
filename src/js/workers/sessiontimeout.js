@@ -37,6 +37,7 @@
 
 			// Defaults
 			opts = {
+				ajaxLimiter: 200000, // default period of 2 minutes (ajax calls happen only once during this period)
 				inactivity: 1200000,		// default inactivity period 20 minutes
 				reactionTime: 30000,		// default confirmation period of 30 seconds
 				sessionalive: 1200000,		// default session alive period 20 minutes
