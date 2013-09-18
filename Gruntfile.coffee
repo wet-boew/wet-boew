@@ -215,9 +215,16 @@ module.exports = (grunt) ->
 
 			misc:
 				cwd: "src/plugins"
-				src: ["**/*.txt", "**/*.jpg", "**/*.png"]
+				src: ["**/*.*", "!**/*.js", "!**/*.coffee", "!**/*.scss", "!**/*.hbs", "!**/assets/*"]
 				dest: "dist/demo"
 				expand: true
+
+			jsAssets:
+				cwd: "src/plugins"
+				src: "**/assets/*"
+				dest: "dist/js/assets"
+				expand: true
+				flatten: true
 
 		clean:
 			dist: "dist"
