@@ -215,7 +215,7 @@ module.exports = (grunt) ->
 
 			misc:
 				cwd: "src/plugins"
-				src: ["**/*.txt", "**/*.jpg", "**/*.png"]
+				src: ["**/*.*", "!**/*.js", "!**/*.coffee", "!**/*.scss", "!**/*.hbs", "!**/assets/*"]
 				dest: "dist/demo"
 				expand: true
 
