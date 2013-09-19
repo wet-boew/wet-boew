@@ -13,15 +13,11 @@
 }
 
 %accessible-invisible-show {
-	background-color: #000;
-	color: #FFF;
-	text-decoration: none;
-	clip: rect(auto, auto, auto, auto);
 	height: inherit !important;
+	width: inherit !important;
+	clip: rect(auto, auto, auto, auto);
 	overflow: inherit !important;
 	position: static;
-	width: inherit !important;
-	z-index: 501;
 	margin: inherit !important;
 }
 
