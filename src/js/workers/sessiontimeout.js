@@ -165,7 +165,7 @@
 
 			// Prevent the initial ajax call from happening, instead wait for the inactivity time to pass before this call is made
 			// start_liveTimeout();
-			setTimeout(start_liveTimeout(), timeParse(opts.inactivity));
+			setTimeout(start_liveTimeout, timeParse(opts.inactivity));
 
             if (opts.refreshOnClick) {
                 _pe.document.on('click', function (e) {
