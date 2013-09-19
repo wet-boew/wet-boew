@@ -6,10 +6,11 @@ language: en
 <p>For <a href="#audio-only">audio only</a>, the multimedia player leverages the native HTML5 audio tag and relies on Flash as a fallback mechanism when the HTML5 audio tag is not implemented.</p>
 <p>For both video and audio-only, the multimedia player's timeline relies on the HTML5 progress element and uses a polyfill when the element is not supported.</p>
 
-<section>		
+<section>
 	<h2>Examples</h2>
 	<p>The first two video examples and the audio only example use native HTML5 video or audio on most modern browsers including Firefox 6+, Google Chrome 3+ and IE9. The third video example works natively in some browsers but relies on the Flash fallback for Firefox. For all examples, the Flash fallback is used for IE 7 and 8 as well as older versions of Firefox.</p>
-    <section><div class="wet-boew-multimedia span-4">
+    <section class="row">
+    <div class="wet-boew-multimedia col-md-6">
 	<h3>MPEG4 (H264 + AAC) and WebM(VP8) source and HTML captions</h3>
 	<video width="480" height="270" poster="http://31591.vws.magma.ca/sct-tbs/wet-boew/thumbnail.png" title="Video Example">
 		<source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-eng.webm" type="video/webm" />
@@ -17,18 +18,19 @@ language: en
 		<track src="mediaplayer-transcript_captions-en.html" kind="captions" data-type="text/html" srclang="en" label="English" />
 	</video>
 	<p><a href="mediaplayer-transcript_captions-en.html">Transcript</a></p>
-    </div></section>
-
-    <section><div class="wet-boew-multimedia span-4">
+    </div>
+		<div class="wet-boew-multimedia col-md-6">
 	<h3>MPEG4 (H264 + AAC) and WebM(VP8) sources with TTML captions</h3>
-	<video width="480" height="270" poster="http://31591.vws.magma.ca/sct-tbs/wet-boew/thumbnail.png" title="Video Example">
+	<video width="480" height="270" poster="../thumbnail.png" title="Video Example">
 		<source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-2-eng.webm" type="video/webm" />
 		<source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-2-eng.mp4" type="video/mp4" />
 		<track src="captions-en.xml" kind="captions" data-type="application/ttml+xml" srclang="en" label="English" />
 	</video>
 	<p><a href="mediaplayer-transcript_captions-en.html">Transcript</a></p>
-    </div></section>
-	<div class="clear"></div>
+    </div>
+
+    </section>
+
 
     <section><div class="wet-boew-multimedia span-4">
 	<h3>MPEG4 (H264 + AAC) source with inline HTML captions</h3>
@@ -41,24 +43,24 @@ language: en
 		<summary>Small Aircraft Passenger Guidelines - HTML5 Transcript/Captions</summary>
 
 		<p class="wet-boew-vd"><em>(Our FIELD REPORTER is standing in the foreground, there is a small plane behind him. Throughout the entire video, he addresses the camera directly.)</em></p>
-			  
+
 		<p>
 			<span class="wet-boew-tt" data-begin="10.00s" data-dur="1.75s">When most people think of airports, </span>
 			<span class="wet-boew-tt" data-begin="11.75s" data-dur="1.75s">they think of big, busy terminals </span>
-			<span class="wet-boew-tt" data-begin="13.50s" data-dur="2.25s">that see thousands of passengers each day.</span> 
+			<span class="wet-boew-tt" data-begin="13.50s" data-dur="2.25s">that see thousands of passengers each day.</span>
 			<span class="wet-boew-tt" data-begin="15.75s" data-dur="1.75s">But that’s not the only way to fly. </span>
 			<span class="wet-boew-tt" data-begin="18.00s" data-dur="2.00s">Smaller aircraft such as light twins, </span>
 			<span class="wet-boew-tt" data-begin="20.00s" data-dur="1.50s">business jets, </span>
 			<span class="wet-boew-tt" data-begin="21.50s" data-dur="2.00s">floatplanes and helicopters </span>
 			<span class="wet-boew-tt" data-begin="23.50s" data-dur="2.25s">all take off from airstrips like this one…</span>
 		</p>
-			  
+
 		<p class="wet-boew-vd">(<em>As he speaks, shot of a light single engine plane taxiing on an airstrip with a forest in the background. Shot of a helicopter getting ready to land on another airstrip. And a shot of a plane that has just taken off while a light twin engine plane is taxiing on the airstrip</em>.)</p>
-			  
+
 		<p>
 			<span class="wet-boew-tt" data-begin="26.00s" data-dur="1.50s">Or this one.</span>
 		</p>
-			  
+
 		<p class="wet-boew-vd">(<em>Shot of a floatplane alongside a dock</em>.)</p>
 
 		<p>
@@ -80,7 +82,7 @@ language: en
 			<span class="wet-boew-tt" data-begin="46.75s" data-dur="2.25s">Without an enclosed walkway to shelter you, </span>
 			<span class="wet-boew-tt" data-begin="49.00s" data-dur="2.00s">here are a few things to keep in mind.</span>
 		</p>
-			  
+
 		<p class="wet-boew-vd">(<em>A small group of people holding their carry-on luggage are waiting at a doorway leading to the airstrip terminal. A young lady leads them to a small airplane</em>.)</p>
 
 		<p>
@@ -92,7 +94,7 @@ language: en
 			<span class="wet-boew-tt" data-begin="62.25s" data-dur="1.75s">and you’ll stay clear of hazards </span>
 			<span class="wet-boew-tt" data-begin="64.00s" data-dur="2.00s">like propellers or wings.</span>
 		</p>
-			  
+
 		<p>
 			<span class="wet-boew-tt" data-begin="66.00s" data-dur="2.00s">And make sure you have a firm grip on your belongings </span>
 			<span class="wet-boew-tt" data-begin="68.00s" data-dur="1.25s">at all times</span>—
@@ -111,7 +113,7 @@ language: en
 		</p>
 
 		<p>
-			<span class="wet-boew-tt" data-begin="82.50s" data-dur="3.00s">Above all, be aware of your surroundings at all times.</span> 
+			<span class="wet-boew-tt" data-begin="82.50s" data-dur="3.00s">Above all, be aware of your surroundings at all times.</span>
 			<span class="wet-boew-tt" data-begin="86.00s" data-dur="1.50s">This means not listening to music </span>
 			<span class="wet-boew-tt" data-begin="87.50s" data-dur="1.00s">or using your phone </span>
 			<span class="wet-boew-tt" data-begin="88.50s" data-dur="1.50s">while walking across the airstrip </span>
@@ -120,17 +122,17 @@ language: en
 			<span class="wet-boew-tt" data-begin="93.25s" data-dur="2.50s">rotor blades, exhausts and intakes</span>—
 			<span class="wet-boew-tt" data-begin="95.75s" data-dur="3.00s">all of which could cause serious injury.</span>
 		</p>
-		  
+
 		<p>
 			<span class="wet-boew-tt" data-begin="99.25s" data-dur="1.25s">Different types of aircraft </span>
 			<span class="wet-boew-tt" data-begin="100.50s" data-dur="1.50s">have different boarding procedures.</span>—
 			<span class="wet-boew-tt" data-begin="102.75s" data-dur="1.25s">Make sure you know in advance </span>
-			<span class="wet-boew-tt" data-begin="104.00s" data-dur="2.25s">how to approach and leave your aircraft.</span> 
-			<span class="wet-boew-tt" data-begin="106.25s" data-dur="3.25s">This is particularly important for helicopters and floatplanes.</span> 
+			<span class="wet-boew-tt" data-begin="104.00s" data-dur="2.25s">how to approach and leave your aircraft.</span>
+			<span class="wet-boew-tt" data-begin="106.25s" data-dur="3.25s">This is particularly important for helicopters and floatplanes.</span>
 			<span class="wet-boew-tt" data-begin="109.50s" data-dur="1.75s">With a helicopter, for example, </span>
 			<span class="wet-boew-tt" data-begin="111.25s" data-dur="3.00s">you should always approach from the front.</span>
 		</p>
-		  
+
 		<p class="wet-boew-vd">(<em>A couple of people approach a helicopter from the front and start to board</em>.)</p>
 
 		<p>
@@ -175,7 +177,7 @@ language: en
 				<span class="wet-boew-tt" data-begin="159.00s" data-dur="2.00s">and life preservers.</span>
 			</li>
 		</ul>
-		  
+
 		<p>
 			<span class="wet-boew-tt" data-begin="161.00s" data-dur="3.25s">The briefing should also include the emergency locator transmitter, </span>
 			<span class="wet-boew-tt" data-begin="164.25s" data-dur="1.50s">or ELT. </span>
@@ -229,7 +231,7 @@ language: en
 			<span class="wet-boew-tt" data-begin="225.00s" data-dur="2.00s">in fact, if you notice something out of the ordinary, </span>
 			<span class="wet-boew-tt" data-begin="227.00s" data-dur="2.00s">by all means, tell them.</span>
 		</p>
-		 
+
 		<p>
 			<span class="wet-boew-tt" data-begin="229.00s" data-dur="3.25s">Finally, don’t interfere with the operation of the aircraft. </span>
 			<span class="wet-boew-tt" data-begin="232.25s" data-dur="1.75s">This means not touching any controls, </span>
