@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<!-- DataAjaxFragmentStart -->
+
+	<object id="{{id}}"></object>
+	<div class="wb-mm-captionsarea"></div>
+	<div class="wb-mm-controls btn-toolbar">
+		
+		<div class="btn-group btn-group-sm">
+			<button type="button" class="btn btn-default rewind" aria-controls="{{id}}" title="Rewind" data-role="none"><span class="glyphicon glyphicon-backward"></span></button>
+			<button type="button" class="btn btn-default playpause" aria-controls="{{id}}" title="Play" data-role="none"><span class="glyphicon glyphicon-play"></span></button>
+			<button type="button" class="btn btn-default" aria-controls="{{id}}" title="Fast forward" data-role="none"><span class="glyphicon glyphicon-forward"></span></button>
+		</div>
+		<div tabindex="0" class="btn-group timeline">
+			
+			<div class="progress progress-striped active">
+				
+  				<div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+    				<p class="wb-mm-timeline-total"><span class="sr-only">Total time:</span><span>--:--:--</span></p>
+    				<span class="sr-only">45% Complete</span>
+    				<p class="wb-mm-timeline-current"><span class="sr-only">Current position:</span><span></span></p>
+  				</div>
+			
+			</div>
+		</div>
+		<div class="btn-group btn-group-sm">
+			<button type="button" class="btn btn-default cc" aria-controls="{{id}}" title="Show closed captioning" data-role="none"><span class="glyphicon glyphicon-subtitles"></span></button>
+			<button type="button" class="btn btn-default mute"  aria-controls="{{id}}" title="Mute" data-role="none"><span class="glyphicon glyphicon-volume-off"></span></button>
+		</div>
+
+
+		
+	</div>
+
+<!-- DataAjaxFragmentEnd -->
+</html>
