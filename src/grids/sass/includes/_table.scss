@@ -228,7 +228,6 @@
 @mixin table-color($color) {
 
 	$text: contrast-color($color, $dark, $white, 50%);
-	$shadow: contrast-color($text, $dark, $white, 50%);
 	$border: contrast-color($color, darken($color, 10%), lighten($color, 20%), 25%);
 
 	border-color: $border;
@@ -239,7 +238,6 @@
 	th {
 		background-color: $color;
 		color: $text;
-		text-shadow: 0 1px 1px $shadow;
 	}
 
 }
