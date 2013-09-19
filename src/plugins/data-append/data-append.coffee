@@ -7,18 +7,20 @@
 ###
 
 do ($ = jQuery, window, document) ->
+	$document = $(document)
 	$.ajaxSettings.cache = false;
-	$(document).on "wb.timerpoke", "[data-ajax-append]", (event) ->
+
+	$document.on "wb.timerpoke", "[data-ajax-append]", (event) ->
 		window._timer.remove "[data-ajax-append]"
 		_elm = $(@)
 		_url = _elm.data("ajax-append")
-		$(document).trigger
+		$document.trigger
 			type: "wb.ajax-fetch"
 			element: _elm
 			fetch: _url
 		undefined
 
-	$(document).on "wb.ajax-fetched", "[data-ajax-append]", (event) ->
+	$document.on "wb.ajax-fetched", "[data-ajax-append]", (event) ->
 		_elm = $(@)
 		_elm.append event.pointer.html()
 		_elm.trigger "wb.ajax-append-loaded"

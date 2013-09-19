@@ -9,9 +9,10 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 ###
 
 do( $ = jQuery, window, document) ->
+	$document = $(document)
 
 	# Initialization
-	$(document).on 'wb.timerpoke', '.wb-inview', (e)->
+	$document.on 'wb.timerpoke', '.wb-inview', (e)->
 		window._timer.remove '.wb-inview'
 
 		$this = $(@)

@@ -7,8 +7,10 @@
 ###
 
 do ($ = jQuery, window, document) ->
+	$document = $(document)
 	$.ajaxSettings.cache = false;
-	$(document).on "wb.timerpoke", "[data-ajax-replace]", (event) ->
+
+	$document.on "wb.timerpoke", "[data-ajax-replace]", (event) ->
 	  _elm = $(@)
 	  _url = _elm.data("ajax-replace")
 	  _elm.load _url, ->
