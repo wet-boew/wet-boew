@@ -7,20 +7,21 @@
 ###
 
 do ($ = jQuery, window, document) ->
+	$document = $(document)
 	$.ajaxSettings.cache = false;
 
-	$(document).on "wb.timerpoke", "[data-ajax-before]", (event) ->
+	$document.on "wb.timerpoke", "[data-ajax-before]", (event) ->
 		console.log "ok ajax-after inited"
 		window._timer.remove "[data-ajax-before]"
 		_elm = $(@)
 		_url = _elm.data("ajax-before")
-		$(document).trigger
+		$document.trigger
 			type: "wb.ajax-fetch"
 			element: _elm
 			fetch: _url
 		undefined
 
-	$(document).on "wb.ajax-fetched", "[data-ajax-before]", (event) ->
+	$document.on "wb.ajax-fetched", "[data-ajax-before]", (event) ->
 		_elm = $(@)
 		_elm.before event.pointer.html()
 		_elm.trigger "wb.ajax-after-loaded"

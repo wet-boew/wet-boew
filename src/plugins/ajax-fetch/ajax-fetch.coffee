@@ -7,6 +7,7 @@
 ###
 
 do ($ = jQuery, window, document) ->
+	$document = $(document)
 	$.ajaxSettings.cache = false;
 
 	### internal core functions ###
@@ -29,7 +30,7 @@ do ($ = jQuery, window, document) ->
 	  randomstring
 
 
-	$(document).on "wb.ajax-fetch", (event) ->
+	$document.on "wb.ajax-fetch", (event) ->
 
 		_caller  = event.element
 		_url = event.fetch
