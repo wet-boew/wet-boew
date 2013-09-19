@@ -6,7 +6,9 @@
 	_licence: wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
 ###
 do ($ = jQuery, window, document) ->
-	$(document).on "wb.timerpoke", ".wb-carousel", (event) ->
+	$document = $(document)
+
+	$document.on "wb.timerpoke", ".wb-carousel", (event) ->
 	  _sldr = $(this)
 	  if (typeof _sldr.attr("data-delay")) is "undefined"
 	    _sldr.trigger "carousel.init.wb"
@@ -30,7 +32,7 @@ do ($ = jQuery, window, document) ->
 
 
 	# ------ Init --------------
-	$(document).on "carousel.init.wb", ".wb-carousel", (event) ->
+	$document.on "carousel.init.wb", ".wb-carousel", (event) ->
 	  _sldr = $(this)
 	  _interval = 6
 	  _interval = 9  if _sldr.hasClass("slow")
@@ -40,7 +42,7 @@ do ($ = jQuery, window, document) ->
 
 
 	# ------ Next / Prev --------------
-	$(document).on "click", ".wb-carousel .prv, .wb-carousel .nxt, .wb-carousel .plypause", (event) ->
+	$document.on "click", ".wb-carousel .prv, .wb-carousel .nxt, .wb-carousel .plypause", (event) ->
 	  event.preventDefault()
 	  _elm = $(this)
 	  _sldr = _elm.parents(".wb-carousel")
@@ -65,7 +67,7 @@ do ($ = jQuery, window, document) ->
 
 
 	# ------ Change Slides --------------
-	$(document).on "wb.shift", ".wb-carousel", (event) ->
+	$document.on "wb.shift", ".wb-carousel", (event) ->
 	  _sldr = $(this)
 	  _items = _sldr.find(".item")
 	  _current = _items.index(".in")
