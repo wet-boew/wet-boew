@@ -4,21 +4,21 @@
  */
 
 %accessible-invisible {
-	height: 1px !important;
-	width: 1px !important;
+	height: 1px;
+	width: 1px;
 	clip: rect(1px, 1px, 1px, 1px);
-	overflow: hidden !important;
+	overflow: hidden;
 	position: absolute;
-	margin: 0 !important;
+	margin: 0;
 }
 
 %accessible-invisible-show {
-	height: inherit !important;
-	width: inherit !important;
+	height: inherit;
+	width: inherit;
 	clip: rect(auto, auto, auto, auto);
-	overflow: inherit !important;
+	overflow: inherit;
 	position: static;
-	margin: inherit !important;
+	margin: inherit;
 }
 
 .wb-skip-link, .wb-invisible, .wb-mnavbar a, .wb-srch label, a + .wb-st-nav h2, .wb-srch h2, .wb-sttng h2, .wb-org-nav .wb-ft h3 {
