@@ -91,3 +91,37 @@ do ( $ = jQuery, window, document ) ->
       tabIndex = $.attr(element, "tabindex")
       isTabIndexNaN = isNaN(tabIndex)
       (isTabIndexNaN or tabIndex >= 0) and focusable(element, not isTabIndexNaN)
+
+###
+Peformant micro templater
+@credit: https://github.com/premasagar/tim/blob/master/tinytim.js
+@todo: caching
+###
+do ( $ = jQuery, window, undef = undefined ) ->
+  # todo: implement a performance caching algorithm
+  cache = {}
+
+  tmpl = (->
+    "use strict"
+    start = "{{"
+    end = "}}"
+    path = "[a-z0-9_$][\\.a-z0-9_]*" # e.g. config.person.name
+    pattern = new RegExp(start + "\\s*(" + path + ")\\s*" + end, "gi")
+
+    (template, data) ->
+      # Merge data into the template string
+      template.replace pattern, (tag, token) ->
+        path = token.split(".")
+        len = path.length
+        lookup = data
+        i = 0
+        while i < len
+          lookup = lookup[path[i]]
+          # Property not found
+          $.error "template-parser: '" + path[i] + "' not found in " + tag  if lookup is undef
+          # Return the required value
+          return lookup  if i is len - 1
+          i++
+  )()
+
+  window.tmpl = tmpl
