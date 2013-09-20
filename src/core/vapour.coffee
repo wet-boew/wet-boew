@@ -14,6 +14,7 @@ do ( $ = jQuery, window, undef = undefined ) ->
         '/templates': "#{$homepath}/assets/templates"
         '/deps': "#{$homepath}/deps"
         'mode' : $mode
+        'document' : $(document)
 
         getPath: (prty)->
             res = if @hasOwnProperty(prty) then @[prty] else undef
@@ -26,7 +27,7 @@ do ( $ = jQuery, window, undef = undefined ) ->
 
 
 ###
- Lets establish the base path to be more flexiable in terms of WCMS where JS can reside in theme folders and not in the root of sites
+ Establish the base path to be more flexible in terms of WCMS where JS can reside in theme folders and not in the root of sites
 ###
 do (yepnope, vapour) ->
   yepnope.addPrefix "site", (resourceObj) ->
@@ -39,7 +40,7 @@ do (yepnope, vapour) ->
 ###
 ;window._timer =
   _elms: []
-  _cache : [] # this is performace boast to allow for body targetting.
+  _cache : [] # this gives a performance boost to allow for body targeting.
 
   add: (_rg) ->
     # simple init pattern to ensure body element is available to the window timer

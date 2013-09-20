@@ -1,14 +1,14 @@
 /*
 Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-plugin :	Toggle
-author :	@patheard
-notes:		Plugin that allows a link to toggle elements between on and off states.
-licence:	wet-boew.github.io/wet-boew/License-en.html /
+plugin	:	Toggle
+author	:	@patheard
+notes	:	Plugin that allows a link to toggle elements between on and off states.
+licence	:	wet-boew.github.io/wet-boew/License-en.html /
 			wet-boew.github.io/wet-boew/Licence-fr.html
 */
-(function( $, window, document ) {
+(function( $, window, vapour ) {
 	"use strict";
-	var $document = $( document ),
+	var $document = vapour.document,
 		plugin = {
 			events: false,
 			selector: ".wb-toggle",
@@ -156,4 +156,4 @@ licence:	wet-boew.github.io/wet-boew/License-en.html /
 	// Add the timer poke to initialize the plugin
 	window._timer.add( plugin.selector );
 
-}( jQuery, window, document ));
+}( jQuery, window, vapour ));
