@@ -1,14 +1,14 @@
 /*
 Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-plugin :	Picturefill
-author :	@patheard
-notes:		Wrapper for @scottjehl's Picturefill library
-licence:	wet-boew.github.io/wet-boew/License-en.html /
+plugin	:	Picturefill
+author	:	@patheard
+notes	:	Wrapper for @scottjehl's Picturefill library
+licence	:	wet-boew.github.io/wet-boew/License-en.html /
 			wet-boew.github.io/wet-boew/Licence-fr.html
 */
-(function( $, window, document ) {
+(function( $, window, vapour ) {
 	"use strict";
-	var $document = $( document ),
+	var $document = vapour.document,
 		plugin = {
 			events: false,
 			selector: "[data-picture]",
@@ -41,4 +41,4 @@ licence:	wet-boew.github.io/wet-boew/License-en.html /
 	// Add the timer poke to initialize the plugin
 	window._timer.add( plugin.selector );
 
-}( jQuery, window, document ));
+}( jQuery, window, vapour ));

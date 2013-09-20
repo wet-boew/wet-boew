@@ -2,13 +2,13 @@
 	Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW)
 	_plugin : Ajax Fetch [ ajax-fetch ]
 	_author : World Wide Web
-	_notes: A basic AjaxLoader wrapper for WET-BOEW that appends to elements
+	_notes	: A basic AjaxLoader wrapper for WET-BOEW that appends to elements
 	_licence: wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
 ###
 
-do ($ = jQuery, window, document) ->
-	$document = $(document)
-	$.ajaxSettings.cache = false;
+do ($ = jQuery, window, vapour) ->
+	$document = vapour.document
+	$.ajaxSettings.cache = false
 
 	### internal core functions ###
 

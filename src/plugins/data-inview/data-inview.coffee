@@ -1,15 +1,13 @@
 ###
-Data Inview Plugin v1.0 - A simplified data-attribute driven plugin that responds to being in and out of the viewport.
-Release: 31/07/2013
-Author: WET Community
-
-
-Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+	Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW)
+	_plugin : Data Inview Plugin v1.0
+	_author : WET Community
+	_notes	: A simplified data-attribute driven plugin that responds to moving in and out of the viewport.
+	_licence: wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
 ###
 
-do( $ = jQuery, window, document) ->
-	$document = $(document)
+do( $ = jQuery, window, vapour) ->
+	$document = vapour.document
 
 	# Initialization
 	$document.on 'wb.timerpoke', '.wb-inview', (e)->
