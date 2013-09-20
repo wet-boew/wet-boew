@@ -2,7 +2,7 @@
 
 
 do ($ = jQuery, window, document, vapour, undef = undefined) ->
-
+	"use strict"
 	### Local scoped variables ###
 	$document = $(document)
 	$selector = ".wet-boew-multimedia, .wb-multimedia"
@@ -26,7 +26,7 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 	    time += pad(c, 2)
 	    current -= p * c
 	    i -= 1
-	   t
+	   time
 
 	parse_time = (string) ->
 	  seconds = 0
@@ -102,7 +102,7 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 		    begin = -1
 		    end = -1
 		    begin = parse_time(e.attr("begin"))
-		    end = (if e.attr("end") isnt `undefined` then parse_time(e.attr("end")) else parse_time(e.attr("dur")) + begin)
+		    end = (if e.attr("end") isnt undef then parse_time(e.attr("end")) else parse_time(e.attr("dur")) + begin)
 
 		    #Removes nested captions if any
 		    e = e.clone()
@@ -154,6 +154,49 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 		    area.append $("<div>" + caption.text + "</div>")  if seconds >= caption.begin and seconds <= caption.end
 		    c += 1
 
+	playerapi = (fn, args)->
+		  switch fn
+		   when 'play'
+		    try
+		     @object.play()
+		    catch e
+		     @object.doPlay()
+
+		   when 'pause'
+		    try
+		     @object.pause()
+		    catch e
+		     @object.doPause()
+
+		   when 'getCaptionsVisible'
+		    $this = $(this)
+		    $this.find(".wb-mm-captionsarea").is ":visible"
+
+		   when 'setCaptionsVisible'
+		    $this = $(this)
+		    if args
+		     $this.find(".wb-mm-captionsarea").show()
+		    else
+		     $this.find(".wb-mm-captionsarea").hide()
+		    $this.trigger "captionsvisiblechange"
+
+		   when 'setPreviousTime'
+		     @object.previousTime = args
+
+		   when 'setBuffering'
+			    @object.buffering = args
+		   else
+		   	 prefix = fn.substr(0,3)
+		   	 method = fn.substr(3)
+		   	 method = method.substr(0,1).toLowerCase() + method.substr(1)
+		   	 console.log method
+
+		   	 if prefix is 'get'
+		     	(if typeof @object[method] isnt "function" then @object[method] else @object[method]())
+		     else if prefix is 'set'
+		     	(if typeof @object[method] isnt "function" then @object[method] = args else @object[fn](args))
+
+
 	$document.on "wb.timerpoke", $selector , (event) ->
 		window._timer.remove $selector
 		# self broadcasting
@@ -182,7 +225,8 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 		$type = if $media.is('video') then 'video' else 'audio'
 		$width = if $type is 'video' then $media.attr('width') else '0'
 		$height = if $type is 'video' then $media.attr('height') else '0'
-
+		$captions = if $media.children('track[kind="captions"]') then $media.children('track[kind="captions"]').attr("src") else undef
+		#$.extend @, _intf
 		data =
 			id: $id
 			media: $media
@@ -192,12 +236,15 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 			width: $width
 			object: ''
 
+		if $media.attr('id') is undef
+        	$media.attr 'id', $m_id
+
 		$this.data('properties', data)
 		# ok lets find out what we are playing and if we can play it
 		if $media.get(0).error is null && $media.get(0).currentSrc isnt '' && $media.get(0).currentSrc isnt undef
 			# ok we can play the media mentioned
-			#return $this.trigger("wb.mediaplayer.#{$type}")
-			return $this.trigger('wb.mediaplayer.fallback')
+			return $this.trigger("wb.mediaplayer.#{$type}")
+			#return $this.trigger('wb.mediaplayer.fallback')
 		else
 			return $this.trigger('wb.mediaplayer.fallback')
 
@@ -223,7 +270,10 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 
 	$document.on "wb.mediaplayer.video", $selector , (event) ->
 		[$this, $data] = expand(@)
-
+		$data.sObject = $data.media.wrap('<div />').parent().html()
+		$data.poster = '<img src="' + $data.media.attr("poster") + '" class="img-responsive" height="' + $data.height + '" width="' + $data.width + '" alt="' + $data.media.attr("title") + '"/>'
+		$this.data('properties', $data)
+		$this.trigger "wb.mediaplayer.renderui"
 
 	$document.on "wb.mediaplayer.audio", $selector , (event) ->
     	[$this, $data] = expand(@)
@@ -232,35 +282,42 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
     	[$this, $data] = expand(@)
     	# lets get our template and start the output
     	$this.html(tmpl($this.data('template'), $data))
-    	# lets bind the player object for our events	
-    	$data.player = $("##{$data.m_id}").get(0)
+    	# lets bind the player object for our events
+    	$player = $("##{$data.m_id}")
+    	$data.player = if $player.is('object') then $player.children(':first-child') else $player.load()
+    	# HTML5 Non bubble event bug workaround - Event Proxy Pattern
+    	$data.player.on "durationchange play pause ended volumechange timeupdate captionsloaded captionsloadfailed captionsvisiblechange waiting canplay progress", (e) ->
+    		$this.trigger(e)
+    	@object = $player.get(0)
+    	@player = playerapi
     	$this.data('properties', $data)
+    	### bind your events ###
+
+
 
     ###
 	UI Bindings
     ###
 	 $document.on "click", $selector, (e) ->
-	   [$this, $data, $player] = expand(@,true)
 	   $target = $(e.target)
-	   console.log $player
 	   return false if e.which is 2 or e.which is 3 # we only want left click
-	   
+
 	   if $target.hasClass("playpause") or $target.is('object') or $target.hasClass("wb-mm-overlay")
-	      if $player.getPaused() is true
-	         $player.play()
+	      if @player('getPaused') is true
+	         @player('play')
 	      else
-	         $player.pause()
+	      	 @player('pause')
 	   if $target.hasClass("cc")
-	       $player.setCaptionsVisible not $player.getCaptionsVisible()
+	       @player("setCaptionsVisible", not @player("getCaptionsVisible"))
 	   if $target.hasClass("mute")
-	       $player.setMuted not $player.getMuted()
+	       @player("setMuted", not @player("getMuted"))
 	   if $target.is("progress") or $target.hasClass("wb-progress-inner") or $target.hasClass("wb-progress-outer")
 	      p = (e.pageX - $target.offset().left) / $target.width()
-	      $player.setCurrentTime $player.getDuration() * p
+	      @player("setCurrentTime", @player("getDuration") * p)
 	   if $target.hasClass("rewind") or $target.hasClass("fastforward")
-	      s = $player.getDuration() * 0.05
+	      s = @player("getDuration") * 0.05
 	      s *= -1  if $target.hasClass("rewind")
-	      $player.setCurrentTime $player.getCurrentTime() + s
+	      @player("setCurrentTime", @player("getCurrentTime") + s)
 	   true
 
 
@@ -289,8 +346,60 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 		    return false
 		   true
 
+
+	# MEDIA Events
+	$document.on "durationchange play pause ended volumechange timeupdate captionsloaded captionsloadfailed captionsvisiblechange waiting canplay progress", $selector, (e) ->
+	  $w = $(this)
+
+	  switch e.type
+	    when "play"
+	      @player('play')
+	      b = $w.find(".playpause .glyphicon")
+	      b.removeClass('glyphicon-play').addClass('glyphicon-pause').end().attr('title', b.data('state-off'))
+	      $w.find(".wb-mm-overlay img").css('visibility', 'hidden')
+	      $w.find(".progress").addClass('active')
+	    when "pause"
+	      @player('pause')
+	      b = $w.find(".playpause .glyphicon")
+	      b.removeClass('glyphicon-pause').addClass('glyphicon-play').end().attr('title', b.data('state-on'))
+	      $w.find('.progress').removeClass('active')
+
+	    when "ended"
+	      b = $w.find(".playpause .glyphicon")
+	      b.removeClass('glyphicon-pause').addClass('glyphicon-play').end().attr('title', b.data('state-on'))
+	      $w.find(".wb-mm-overlay").css('visibility', 'show')
+
+	    when "volumechange"
+	      b = $w.find(".mute .glyphicon")
+	      if @player('getMuted')
+	      	b.removeClass('glyphicon-volume-off').addClass('glyphicon-volumne-on').end().attr('title', b.data('state-on'))
+	      else
+	        b.removeClass('glyphicon-volume-on').addClass('glyphicon-volumne-off').end().attr('title', b.data('state-off'))
+	    when "timeupdate"
+	      percentage = Math.round(@player('getCurrentTime') / @player('getDuration') * 1000) / 10
+	      timeline = $w.find(".progress-bar")
+	      timeline.attr("aria-valuenow", percentage).css('width',"#{percentage}%")
+	      $w.find(".wb-mm-timeline-current span:not(.wb-invisible)").text format_time(@player('getCurrentTime'))
+	      #Update captions
+	      update_captions $w.find(".wb-mm-captionsarea"), @player('getCurrentTime'), $.data(e.target, "captions")  if $.data(e.target, "captions") isnt undef
+	    when "captionsloaded"
+	      #Store the captions
+	      $.data e.target, "captions", e.captions
+	    when "captionsloadfailed"
+	      $w.find(".wb-mm-captionsarea").append "<p>ERROR: WB0342</p>"
+	    when "captionsvisiblechange"
+	      b = $w.find(".cc .glyphicon")
+	      if @player('getCaptionsVisible')
+	        b.attr('title', b.data('state-on')).css("opacity", "1")
+
+	      else
+	        b.attr('title', b.data('state-off')).css("opacity", ".5")
+
+
     $document.on "wb.mediaplayer.loadcaptions", $selector, (event)->
     	[$this, $data] = expand(@)
+
+
 
 
 

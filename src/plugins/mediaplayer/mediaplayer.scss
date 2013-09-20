@@ -10,10 +10,11 @@
         .display {
             position: relative;
             padding-bottom: 56.25%;
+            background: #000;
             /* 16:9 */
             padding-top: 25px;
             height: 0;
-            object, embed, .wb-mm-overlay {
+            video, object, embed, .wb-mm-overlay {
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -25,8 +26,13 @@
             background: transparent;
             text-indent: -9999px;
             border: 0;
+            padding: 0;
+            img {
+                width: 100%;
+
+            }
         }
-    
+
 }
 
 .wb-mm-captionsarea {
@@ -59,7 +65,7 @@
     display: table-cell;
     vertical-align: top;
     padding-top: 0.45em;
-    .textonly { 
+    .textonly {
         p { display: inline!important; float:left; }
     }
   }
