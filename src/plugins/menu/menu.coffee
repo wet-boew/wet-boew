@@ -2,13 +2,13 @@
 	Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW)
 	_plugin : Menu Plugin
 	_author : World Wide Web
-	_notes: A Menu plugin for WET
+	_notes	: A Menu plugin for WET
 	_licence: wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
 ###
 
-do ($ = jQuery, window, document) ->
+do ($ = jQuery, window, vapour) ->
+	$document = vapour.document
 
-	$document = $(document)
 	###
 	Lets leverage JS assigment deconstruction to reduce the code output
 	###

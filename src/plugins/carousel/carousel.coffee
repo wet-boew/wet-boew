@@ -1,12 +1,13 @@
 ###
 	Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW) 
-	_plugin : Javascript Carousel
+	_plugin : JavaScript Carousel
 	_author : World Wide Web
-	_notes  : A javascript carousel for WET-BOEW
+	_notes  : A JavaScript carousel for WET-BOEW
 	_licence: wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
 ###
-do ($ = jQuery, window, document) ->
-	$document = $(document)
+
+do ($ = jQuery, window, vapour) ->
+	$document = vapour.document
 
 	$document.on "wb.timerpoke", ".wb-carousel", (event) ->
 	  _sldr = $(this)

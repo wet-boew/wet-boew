@@ -2,13 +2,13 @@
 	Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW) 
 	_plugin : Ajax Loader [ data-replace ]
 	_author : World Wide Web
-	_notes: A basic AjaxLoader wrapper for WET-BOEW
+	_notes	: A basic AjaxLoader wrapper for WET-BOEW
 	_licence: wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
 ###
 
-do ($ = jQuery, window, document) ->
-	$document = $(document)
-	$.ajaxSettings.cache = false;
+do ($ = jQuery, window, vapour) ->
+	$document = vapour.document
+	$.ajaxSettings.cache = false
 
 	$document.on "wb.timerpoke", "[data-ajax-replace]", (event) ->
 	  _elm = $(@)
