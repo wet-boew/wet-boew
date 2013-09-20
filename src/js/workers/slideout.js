@@ -19,7 +19,9 @@
 			var borderWidth = 10,
 				tocText = _pe.dic.get('%table-contents'),
 				hideText = _pe.dic.get('%hide'),
-				closeLink = hideText + '<span class="wb-invisible"> ' + tocText + '</span>',
+				space = _pe.dic.get('%interword-space'),
+				%interword-space
+				closeLink = hideText + '<span class="wb-invisible">' + space + tocText + '</span>',
 				focusOutlineAllowance = 2,
 				opened = false,
 				reposition,
@@ -302,7 +304,7 @@
 			slideoutClose = elm.find('#slideoutClose');
 
 			// Add the slideout toggle
-			innerWrapper.css('padding', (focusOutlineAllowance / 2) + 'px').prepend('<div id="slideoutToggle" class="slideoutToggle"><a id="toggleLink" role="button" aria-controls="slideout-body" aria-label="' + opts.txtShow + '" href="#" onclick="return false;">' + opts.txtShow + '</a></div>');
+			innerWrapper.css('padding', (focusOutlineAllowance / 2) + 'px').prepend('<div id="slideoutToggle" class="slideoutToggle"><a id="toggleLink" role="button" aria-controls="slideout-body" href="#" onclick="return false;">' + opts.txtShow + '</a></div>');
 			tab = innerWrapper.find('#slideoutToggle');
 			toggleLink = innerWrapper.find('#toggleLink');
 
