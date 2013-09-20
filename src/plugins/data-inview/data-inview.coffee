@@ -7,7 +7,7 @@
 ###
 
 do( $ = jQuery, window, vapour) ->
-	$document = vapour.document
+	$document = vapour.doc
 
 	# Initialization
 	$document.on 'wb.timerpoke', '.wb-inview', (e)->

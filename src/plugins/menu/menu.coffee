@@ -7,7 +7,7 @@
 ###
 
 do ($ = jQuery, window, vapour) ->
-	$document = vapour.document
+	$document = vapour.doc
 
 	###
 	Lets leverage JS assigment deconstruction to reduce the code output

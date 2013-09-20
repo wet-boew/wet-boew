@@ -7,7 +7,7 @@
 ###
 
 do ($ = jQuery, window, vapour) ->
-	$document = vapour.document
+	$document = vapour.doc
 	$.ajaxSettings.cache = false
 
 	### internal core functions ###

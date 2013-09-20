@@ -14,7 +14,7 @@ do ( $ = jQuery, window, undef = undefined ) ->
         '/templates': "#{$homepath}/assets/templates"
         '/deps': "#{$homepath}/deps"
         'mode' : $mode
-        'document' : $(document)
+        'doc' : $(document)
 
         getPath: (prty)->
             res = if @hasOwnProperty(prty) then @[prty] else undef

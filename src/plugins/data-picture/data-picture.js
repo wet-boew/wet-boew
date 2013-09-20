@@ -8,7 +8,7 @@ licence	:	wet-boew.github.io/wet-boew/License-en.html /
 */
 (function( $, window, vapour ) {
 	"use strict";
-	var $document = vapour.document,
+	var $document = vapour.doc,
 		plugin = {
 			events: false,
 			selector: "[data-picture]",

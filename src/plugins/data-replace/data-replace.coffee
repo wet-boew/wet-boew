@@ -7,7 +7,7 @@
 ###
 
 do ($ = jQuery, window, vapour) ->
-	$document = vapour.document
+	$document = vapour.doc
 	$.ajaxSettings.cache = false
 
 	$document.on "wb.timerpoke", "[data-ajax-replace]", (event) ->
