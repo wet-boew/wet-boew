@@ -20,7 +20,6 @@
 				tocText = _pe.dic.get('%table-contents'),
 				hideText = _pe.dic.get('%hide'),
 				space = _pe.dic.get('%interword-space'),
-				%interword-space
 				closeLink = hideText + '<span class="wb-invisible">' + space + tocText + '</span>',
 				focusOutlineAllowance = 2,
 				opened = false,
