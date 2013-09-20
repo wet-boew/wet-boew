@@ -7,7 +7,7 @@
 ###
 
 do ($ = jQuery, window, vapour) ->
-	$document = vapour.document
+	$document = vapour.doc
 
 	$document.on "wb.timerpoke", ".wb-carousel", (event) ->
 	  _sldr = $(this)
