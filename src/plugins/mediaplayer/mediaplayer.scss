@@ -2,97 +2,68 @@
   Multimedia Player Code
  */
 
-.wet-boew-multimedia, .wb-mediplayer{
-	position: relative;
-
-
-
+.wet-boew-multimedia, .wb-mediplayer {
+        .btn {
+            border-top-right-radius: 0 !important;
+            border-top-left-radius: 0 !important;
+        }
+        .display {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 */
+            padding-top: 25px;
+            height: 0;
+            object, embed, .wb-mm-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .wb-mm-overlay {
+            background: transparent;
+            text-indent: -9999px;
+            border: 0;
+        }
+    
 }
+
 .wb-mm-captionsarea {
     background-color: #000;
     color: #FFF;
     text-align: center;
-    padding: 0.5em;
-    min-height: 1.5em;
+    padding: 0;
+    max-height: 0;
+    &.on {
+        padding: 0.5em;
+        max-height: 999em;
+    }
 }
 
-.responsive-video {
-    position: relative;
-    padding-bottom: 56.25%;
-    /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    object, embed {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
- }
-.wb-mm-overlay {
-        position: relative;
-        background: transparent;
-        max-width: 100%;
-        height: auto;
-        display: block;
-        > img {
-        	position: relative;
-			padding: 0;
-			margin: 0;
-			display: block;
-			outline: 0;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-        }
-    }
-
-
 .wb-mm-controls {
-    button {
-        padding: 0;
-        svg, img {
-
-        }
-        img {
-        	display: block;
-            margin: 0;
-            padding: 0;
-            width: 20px;
-            height: 20px;
-        }
+    display: table;
+    width: 100%;
+   .firstpanel {
+        width: 10em;
+        vertical-align: top;
+        display: table-cell;
+   }
+  .lastpanel {
+    text-align: right;
+    width: 7em;
+    display: table-cell;
+    vertical-align: top;
+  }
+  .timeline {
+    display: table-cell;
+    vertical-align: top;
+    padding-top: 0.45em;
+    .textonly { 
+        p { display: inline!important; float:left; }
     }
-    .wb-mm-controls-start, .wb-mm-timeline-current {
-        float: left;
-        padding-right: 0.2em;
-    }
-    .wb-mm-controls-end, .wb-mm-timeline-total {
-        float: right;
-        padding-left: 0.2em;
-    }
-    .wb-mm-timeline {
-        padding: 2px 4px;
-        p {
-            margin: 0;
-        }
-    }
-    progress {
-        width: 100%;
-        /* Polyfill */
-        div {
-            &.wb-progress-outer {
-                border: none;
-                background-color: transparent !important;
-                padding: 0;
-            }
-            &.wb-progress-inner {
-                background-color:  #eee !important;
-                padding: 0;
-            }
-        }
-    }
+  }
+  border-bottom: 1px solid #ddd;
 }
 
 @media print {

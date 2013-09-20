@@ -50,9 +50,14 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 	  -1
 
 
-	expand = (elm)->
+	expand = (elm, withPlayer)->
 		$this = $(elm)
-		return [$this, $this.data('properties')]
+		$data = $this.data('properties')
+		if withPlayer isnt undef
+			$player = $data.player
+			return [$this, $data, $player]
+		else
+			return [$this, $this.data('properties')]
 
 	## caption tools ##
 
@@ -198,59 +203,70 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 
 		$.error "[web-boew] Mediaplayer :: error - mp003 :: Cannot play listed media"
 
-
-
 	$document.on "wb.mediaplayer.fallback", $selector , (event) ->
 		# play the fallback
 		[$this, $data] = expand(@)
-		console.log $this
 		$data.flashvars = 'id=' + $data.id
 		$playerresource = vapour.getPath('/assets') + '/multimedia.swf?' + $data.flashvars
 		$data.poster = ''
 		if $data.type is 'video'
-			$data.poster = '<img src="' + $data.media.attr("poster") + '" class="img-responsive" alt="' + $data.media.attr("title") + '"/>';
+			$data.poster = '<img src="' + $data.media.attr("poster") + '" class="img-responsive" height="' + $data.height + '" width="' + $data.width + '" alt="' + $data.media.attr("title") + '"/>';
 			$data.flashvars =  '&height=' + $data.media.height() + '&width=' + $data.media.width() + '&posterimg=' + encodeURI(vapour.getUrlParts($data.media.attr('poster')).absolute) + '&media=' + encodeURI(vapour.getUrlParts($data.media.find('source').filter('[type="video/mp4"]').attr('src')).absolute)
 		else
 			$data.flashvars = '&media=' + encodeURI(vapour.getUrlParts($data.media.find('source').filter('[type="audio/mp3"]').attr('src')).absolute)
-
-		# add in object
-		$data.sObject = '<object play="" pause="" id="' + $data.m_id + '" width="' + $data.width + '" height="' + $data.height + '" class="' + $data.type + '" type="application/x-shockwave-flash" data="' + $playerresource + '" tabindex="-1"><param name="movie" value="' + $playerresource + '"/><param name="flashvars" value="' + $data.flashvars + '"/><param name="allowScriptAccess" value="always"/><param name="bgcolor" value="#000000"/><param name="wmode" value="opaque"/>' + $data.poster + '</object>'
+		# add in objectstring
+		$data.sObject = '<object id="' + $data.m_id + '" width="' + $data.width + '" height="' + $data.height + '" class="' + $data.type + '" type="application/x-shockwave-flash" data="' + $playerresource + '" tabindex="-1"><param name="movie" value="' + $playerresource + '"/><param name="flashvars" value="' + $data.flashvars + '"/><param name="allowScriptAccess" value="always"/><param name="bgcolor" value="#000000"/><param name="wmode" value="opaque"/>' + $data.poster + '</object>'
 		# add in the new vars back to data
 		$this.data('properties', $data)
-
+		# trigger the renderevent
 		$this.trigger "wb.mediaplayer.renderui"
-
-
-	$document.on "wb.mediaplayer.fallback.video", $selector , (event) ->
-		# play the fallback
-		[$this, $data] = expand(@)
-
 
 	$document.on "wb.mediaplayer.video", $selector , (event) ->
 		[$this, $data] = expand(@)
 
 
 	$document.on "wb.mediaplayer.audio", $selector , (event) ->
-    	console.log "in HTLM5 audio mode"
+    	[$this, $data] = expand(@)
 
     $document.on "wb.mediaplayer.renderui", $selector, (event)->
     	[$this, $data] = expand(@)
+    	# lets get our template and start the output
     	$this.html(tmpl($this.data('template'), $data))
-    	$data.player = $this.find('object')
+    	# lets bind the player object for our events	
+    	$data.player = $("##{$data.m_id}").get(0)
     	$this.data('properties', $data)
 
     ###
 	UI Bindings
     ###
-    $document.on "click", $selector, (e) ->
-    	[$this, $data] = expand(@)
-
+	 $document.on "click", $selector, (e) ->
+	   [$this, $data, $player] = expand(@,true)
+	   $target = $(e.target)
+	   console.log $player
+	   return false if e.which is 2 or e.which is 3 # we only want left click
+	   
+	   if $target.hasClass("playpause") or $target.is('object') or $target.hasClass("wb-mm-overlay")
+	      if $player.getPaused() is true
+	         $player.play()
+	      else
+	         $player.pause()
+	   if $target.hasClass("cc")
+	       $player.setCaptionsVisible not $player.getCaptionsVisible()
+	   if $target.hasClass("mute")
+	       $player.setMuted not $player.getMuted()
+	   if $target.is("progress") or $target.hasClass("wb-progress-inner") or $target.hasClass("wb-progress-outer")
+	      p = (e.pageX - $target.offset().left) / $target.width()
+	      $player.setCurrentTime $player.getDuration() * p
+	   if $target.hasClass("rewind") or $target.hasClass("fastforward")
+	      s = $player.getDuration() * 0.05
+	      s *= -1  if $target.hasClass("rewind")
+	      $player.setCurrentTime $player.getCurrentTime() + s
+	   true
 
 
     #Map UI keyboard events
 	$document.on "keydown", $selector, (e) ->
-		  [$this, $data] = expand(@)
-		  $player = $data.player.get(0)
+		  [$this, $data, $player] = expand(@, true)
 		  v = 0
 		  if (e.which is 32 or e.which is 13) and e.target is $player
 		    $this.find(".wb-mm-controls .playpause").click()
@@ -262,7 +278,7 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 		    $this.find(".wb-mm-controls .fastforward").click()
 		    return false
 		  if e.keyCode is 38
-		    v = Math.round($player.getVolume() * 10) / 10 + 0.1
+		    v = Math.round($player.getVolume() * 10) / 10 + 0.10
 		    v = (if v < 1 then v else 1)
 		    $player.setVolume v
 		    return false
