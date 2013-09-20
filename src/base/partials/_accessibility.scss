@@ -4,62 +4,27 @@
  */
 
 %accessible-invisible {
-	height: 1px !important;
-	width: 1px !important;
+	height: 1px;
+	width: 1px;
 	clip: rect(1px, 1px, 1px, 1px);
-	overflow: hidden !important;
+	overflow: hidden;
 	position: absolute;
-	margin: 0 !important;
+	margin: 0;
 }
 
 %accessible-invisible-show {
-	background-color: #000;
-	color: #FFF;
-	text-decoration: none;
+	height: inherit;
+	width: inherit;
 	clip: rect(auto, auto, auto, auto);
-	height: inherit !important;
-	overflow: inherit !important;
+	overflow: inherit;
 	position: static;
-	width: inherit !important;
-	z-index: 501;
-	margin: inherit !important;
+	margin: inherit;
 }
 
-
-.wb-skip {
-		float: left;
-		height: 0;
-		ul {
-			list-style-type: none;
-			margin-top: -1.8em;
-		}
-		li {
-			left: 0;
-			position: absolute;
-			text-align: center;
-			top: 10px;
-			width: 100%;
-			z-index: 3;
-		}
-		a {
-			background-color: transparent;
-			color: #FFF;
-			font-weight: 700;
-			&:link, &:visited {
-				  background-color: transparent;
-				  color: #FFF;
-				  font-weight: 700;
-			}
-			padding: 5px;
-	  }
-}
-
-
-.wb-invisible, .wb-mnavbar a, .wb-srch label, a + .wb-st-nav h2, .wb-srch h2, .wb-sttng h2, .wb-org-nav .wb-ft h3, .wb-skip a, .wb-skip a:link, .wb-skip a:visited {
+.wb-skip-link, .wb-invisible, .wb-mnavbar a, .wb-srch label, a + .wb-st-nav h2, .wb-srch h2, .wb-sttng h2, .wb-org-nav .wb-ft h3 {
 	@extend %accessible-invisible;
 }
 
-.wb-skip a:focus, .wb-mnavbar a:focus {
+.wb-skip-link:focus, .wb-mnavbar a:focus {
 	@extend %accessible-invisible-show;
 }
-
