@@ -19,7 +19,7 @@
 			var borderWidth = 10,
 				tocText = _pe.dic.get('%table-contents'),
 				hideText = _pe.dic.get('%hide'),
-				closeLink = hideText + '<span class="wb-invisible">' + tocText + '</span>',
+				closeLink = hideText + '<span class="wb-invisible"> ' + tocText + '</span>',
 				focusOutlineAllowance = 2,
 				opened = false,
 				reposition,
