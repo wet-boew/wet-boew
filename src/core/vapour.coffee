@@ -4,7 +4,7 @@
 ###
  Vapour Object that will store tombstone data for plugins to leverage
 ###
-do ( $ = jQuery, window, undef = undefined ) ->
+do ( $ = jQuery, window, document, undef = undefined ) ->
     $src = $('script[src$="vapour.js"],script[src$="vapour.min.js"]').last()
     $homepath = $src.prop("src").split('?')[0].split('/').slice(0, -1).join('/')
     $mode = if $src.prop("src").indexOf('.min') < 0 then '' else '.min'
@@ -13,8 +13,9 @@ do ( $ = jQuery, window, undef = undefined ) ->
         '/assets': "#{$homepath}/assets"
         '/templates': "#{$homepath}/assets/templates"
         '/deps': "#{$homepath}/deps"
-        'mode' : $mode
-        'doc' : $(document)
+        'mode': $mode
+        'doc': $(document)
+        'win': $(window)
 
         getPath: (prty)->
             res = if @hasOwnProperty(prty) then @[prty] else undef
@@ -68,7 +69,7 @@ do (yepnope, vapour) ->
 
     while i >= 0
       #console.log(this._elms[i].text());
-      @_elms[i].trigger "wb.timerpoke"
+      @_elms[i].trigger "timerpoke.wb"
       i--
     undefined
 

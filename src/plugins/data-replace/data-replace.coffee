@@ -10,11 +10,11 @@ do ($ = jQuery, window, vapour) ->
 	$document = vapour.doc
 	$.ajaxSettings.cache = false
 
-	$document.on "wb.timerpoke", "[data-ajax-replace]", (event) ->
+	$document.on "timerpoke.wb", "[data-ajax-replace]", (event) ->
 	  _elm = $(@)
 	  _url = _elm.data("ajax-replace")
 	  _elm.load _url, ->
-	    $(@).trigger "wb.ajax-replace-loaded"
+	    $(@).trigger "ajax-replace-loaded.wb"
 	  # lets remove the event from continous throddling
 	  window._timer.remove "[data-ajax-replace]"
 	  undefined
