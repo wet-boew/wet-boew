@@ -10,7 +10,8 @@ do( $ = jQuery, window, vapour) ->
 	$document = vapour.doc
 
 	# Initialization
-	$document.on 'wb.timerpoke', '.wb-inview', (e)->
+	$document.on 'timerpoke.wb', '.wb-inview', (e)->
+		$window = vapour.win
 		window._timer.remove '.wb-inview'
 
 		$this = $(@)
@@ -20,13 +21,13 @@ do( $ = jQuery, window, vapour) ->
 		# lets set some events to help manage this control
 
 		# bind our event
-		$(window).on 'scroll scrollstop resize', (e)->
+		$window.on 'scroll scrollstop resize', (e)->
 			$this.trigger 'scroll.wb-inview'
 
 		# set the element listeners
 		$this.on 'scroll.wb-inview', (e)->
 			_elm = $(@)
-			_viewport = $(window)
+			_viewport = $window
 			# lets start computing values
 			elementWidth = _elm.outerWidth()
 			elementHeight = _elm.outerHeight()

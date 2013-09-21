@@ -27,16 +27,16 @@ licence	:	wet-boew.github.io/wet-boew/License-en.html /
 					complete: function() {
 						if ( plugin.events === false ) {
 							plugin.events = true;
-							$document.on( "wb-data-picture.init", window.picturefill );
+							$document.on( "init.wb-data-picture", window.picturefill );
 						}
-						$document.trigger( "wb-data-picture.init" );
+						$document.trigger( "init.wb-data-picture" );
 					}
 				});
 			}
 		};
 
 	// Bind the init event of the plugin
-	$document.on( "wb.timerpoke", plugin.selector, plugin.init );
+	$document.on( "timerpoke.wb", plugin.selector, plugin.init );
 
 	// Add the timer poke to initialize the plugin
 	window._timer.add( plugin.selector );

@@ -10,21 +10,24 @@ do ($ = jQuery, window, vapour) ->
 	$document = vapour.doc
 	$.ajaxSettings.cache = false
 
-	$document.on "wb.timerpoke", "[data-ajax-append]", (event) ->
-		window._timer.remove "[data-ajax-append]"
-		_elm = $(@)
-		_url = _elm.data("ajax-append")
-		$document.trigger
-			type: "wb.ajax-fetch"
-			element: _elm
-			fetch: _url
-		undefined
+	$document.on "timerpoke.wb ajax-fetched.wb", "[data-ajax-append]", (event) ->
+		eventType = event.type
+		switch eventType
+			when "timerpoke"
+				window._timer.remove "[data-ajax-append]"
+				_elm = $(@)
+				_url = _elm.data("ajax-append")
+				$document.trigger
+					type: "ajax-fetch.wb"
+					element: _elm
+					fetch: _url
+				undefined
 
-	$document.on "wb.ajax-fetched", "[data-ajax-append]", (event) ->
-		_elm = $(@)
-		_elm.append event.pointer.html()
-		_elm.trigger "wb.ajax-append-loaded"
-		undefined
+			when "ajax-fetched"
+				_elm = $(@)
+				_elm.append event.pointer.html()
+				_elm.trigger "ajax-append-loaded.wb"
+				undefined
 
 	# Register Ajax Replacement
 	window._timer.add "[data-ajax-append]"

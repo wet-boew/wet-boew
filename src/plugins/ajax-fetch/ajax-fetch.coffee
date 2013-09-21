@@ -30,7 +30,7 @@ do ($ = jQuery, window, vapour) ->
 	  randomstring
 
 
-	$document.on "wb.ajax-fetch", (event) ->
+	$document.on "ajax-fetch.wb", (event) ->
 
 		_caller  = event.element
 		_url = event.fetch
@@ -39,7 +39,7 @@ do ($ = jQuery, window, vapour) ->
 
 		$("<div id=\"#{_id}\" />").load _url, ->
 			$(_caller).trigger
-				type: "wb.ajax-fetched"
+				type: "ajax-fetched.wb"
 				pointer: $(@)
 
 		undefined

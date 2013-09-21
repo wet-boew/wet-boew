@@ -27,14 +27,14 @@ licence	:	wet-boew.github.io/wet-boew/License-en.html /
 				if ( plugin.events === false ) {
 					plugin.events = true;
 					$document
-						.on( "wb-toggle.ariaControls", plugin.selector, plugin.setAriaControls )
-						.on( "wb-toggle.toggle", plugin.selector, plugin.toggle )
+						.on( "ariaControls.wb-toggle", plugin.selector, plugin.setAriaControls )
+						.on( "toggle.wb-toggle", plugin.selector, plugin.toggle )
 						.on( "click", plugin.selector, plugin.click );
 				}
 
 				// Initialize the aria-controls attribute of the link
 				if ( link.data( "selector" ) !== undefined  ) {
-					link.trigger( "wb-toggle.ariaControls", {
+					link.trigger( "ariaControls.wb-toggle", {
 						selector: link.data( "selector" ),
 						parent: link.data( "parent" )
 					});
@@ -72,7 +72,7 @@ licence	:	wet-boew.github.io/wet-boew/License-en.html /
 			click: function( event ) {
 				var link = $( this );
 
-				link.trigger( "wb-toggle.toggle", {
+				link.trigger( "toggle.wb-toggle", {
 					selector: link.data( "selector" ),
 					parent: link.data( "parent" ),
 					type: link.data( "type" )
@@ -151,7 +151,7 @@ licence	:	wet-boew.github.io/wet-boew/License-en.html /
 		};
 
 	// Bind the init event of the plugin
-	$document.on( "wb.timerpoke", plugin.selector, plugin.init );
+	$document.on( "timerpoke.wb", plugin.selector, plugin.init );
 
 	// Add the timer poke to initialize the plugin
 	window._timer.add( plugin.selector );
