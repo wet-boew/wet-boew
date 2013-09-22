@@ -10,33 +10,40 @@ licence	:	wet-boew.github.io/wet-boew/License-en.html /
 	"use strict";
 	var $document = vapour.doc,
 		plugin = {
-			events: false,
 			selector: "[data-picture]",
 
 			/**
 			 * Initialize the plugin
 			 */
 			init: function() {
+				var mode = vapour.getMode();
 				window._timer.remove( plugin.selector );
 
 				// Load picturefill dependencies and bind the init event handler
 				window.Modernizr.load({
 					test: window.matchMedia,
-					nope: "site!deps/matchMedia.min.js",
-					load: "site!deps/picturefill.min.js",
+					nope: "site!deps/matchMedia" + mode + ".js",
+					load: "site!deps/picturefill" + mode + ".js",
 					complete: function() {
-						if ( plugin.events === false ) {
-							plugin.events = true;
-							$document.on( "init.wb-data-picture", window.picturefill );
-						}
-						$document.trigger( "init.wb-data-picture" );
+						$document.trigger( "picturefill.wb-data-picture" );
 					}
 				});
+			},
+
+			/**
+			 * Invoke the picturefill library if it has been loaded
+			 */
+			picturefill: function() {
+				if ( window.picturefill !== undefined ) {
+					window.picturefill();
+				}
 			}
 		};
 
-	// Bind the init event of the plugin
-	$document.on( "timerpoke.wb", plugin.selector, plugin.init );
+	// Bind the plugin's events
+	$document
+		.on( "timerpoke.wb", plugin.selector, plugin.init)
+		.on( "picturefill.wb-data-picture", plugin.picturefill );
 
 	// Add the timer poke to initialize the plugin
 	window._timer.add( plugin.selector );
