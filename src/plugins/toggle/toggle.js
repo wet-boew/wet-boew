@@ -10,7 +10,6 @@ licence	:	wet-boew.github.io/wet-boew/License-en.html /
 	"use strict";
 	var $document = vapour.doc,
 		plugin = {
-			events: false,
 			selector: ".wb-toggle",
 			state: {},
 			stateOn: "on",
@@ -22,15 +21,6 @@ licence	:	wet-boew.github.io/wet-boew/License-en.html /
 			init: function() {
 				var link = $( this );
 				window._timer.remove( plugin.selector );
-
-				// Bind the plugin's event handlers only once
-				if ( plugin.events === false ) {
-					plugin.events = true;
-					$document
-						.on( "ariaControls.wb-toggle", plugin.selector, plugin.setAriaControls )
-						.on( "toggle.wb-toggle", plugin.selector, plugin.toggle )
-						.on( "click", plugin.selector, plugin.click );
-				}
 
 				// Initialize the aria-controls attribute of the link
 				if ( link.data( "selector" ) !== undefined  ) {
@@ -98,7 +88,7 @@ licence	:	wet-boew.github.io/wet-boew/License-en.html /
 			},
 
 			/**
-			 * Gets the current toggle state of a links given set of elements (based on selector and parent).
+			 * Gets the current toggle state of a link given set of elements (based on selector and parent).
 			 * @param {String} selector CSS selector of the elements the link controls
 			 * @param {String} parent CSS selector of the parent DOM element the link is restricted to.
 			 * @param {String} type The type of link: undefined (toggle), "on" or "off"
@@ -150,8 +140,24 @@ licence	:	wet-boew.github.io/wet-boew/License-en.html /
 			}
 		};
 
-	// Bind the init event of the plugin
-	$document.on( "timerpoke.wb", plugin.selector, plugin.init );
+	// Bind the plugin's events
+	$document.on( "timerpoke.wb ariaControls.wb-toggle toggle.wb-toggle click", plugin.selector, function( event ) {
+		switch( event.type ) {
+			case "click":
+				plugin.click.apply( this, arguments );
+				break;
+			case "toggle":
+				plugin.toggle.apply( this, arguments );
+				break;
+			case "ariaControls":
+				plugin.setAriaControls.apply( this, arguments );
+				break;
+			case "timerpoke":
+				plugin.init.apply( this, arguments );
+				break;
+		}
+	});
+
 
 	// Add the timer poke to initialize the plugin
 	window._timer.add( plugin.selector );
