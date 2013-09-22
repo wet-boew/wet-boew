@@ -151,17 +151,16 @@ module.exports = (grunt) ->
 				ext: "<%= environment.suffix %>.css"
 
 		coffee:
+			options:
+				bare: true
 			vapour:
-				options:
-					bare: true
-				files:
-					"dist/js/vapour.js": "src/core/vapour.coffee"
+				"dist/js/vapour.js": "vapour.coffee.md"
 
 			plugins:
-				options:
-					bare: true
-				files:
-					"dist/js/wet-boew.js": ["src/core/helpers.coffee", "src/plugins/**/*.coffee"]
+				"dist/js/wet-boew.js": [
+					"core/helpers.coffee.md",
+					"plugins/**/*.coffee.md"
+				]
 
 		modernizr:
 			devFile: "lib/modernizr/modernizr-custom.js"
