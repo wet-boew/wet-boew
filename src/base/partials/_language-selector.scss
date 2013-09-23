@@ -1,0 +1,49 @@
+/*
+  WET-BOEW
+  @title: Language selector
+ */
+
+//	Sourced from http://css-tricks.com/snippets/css/clear-fix/
+%clear-fix {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+%accessible-invisible {
+	height: 1px;
+	width: 1px;
+	clip: rect(1px, 1px, 1px, 1px);
+	overflow: hidden;
+	position: absolute;
+	margin: 0;
+}
+
+//	Horizontal language selector
+.wb-lang-links-horiz {
+	.wb-lang-link {
+		display: inline-block;
+	}
+}
+
+//	Vertical language selector
+.wb-lang-links-vert {
+	.wb-lang-link {
+		display: block;
+	}
+}
+
+//	Right-to-left horizontal language selector
+.wb-lang-links-rtl {
+	.wb-lang-link {
+		float: right;
+	}
+}
+
+.wb-lang-links-rtl:after {
+	@extend %clear-fix;
+}
+
+.wb-lang-heading {
+	@extend %accessible-invisible;
+}
