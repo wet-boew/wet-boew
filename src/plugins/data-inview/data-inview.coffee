@@ -1,17 +1,17 @@
 ###
-Data Inview Plugin v1.0 - A simplified data-attribute driven plugin that responds to being in and out of the viewport.
-Release: 31/07/2013
-Author: WET Community
-
-
-Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+	Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW)
+	_plugin : Data Inview Plugin v1.0
+	_author : WET Community
+	_notes	: A simplified data-attribute driven plugin that responds to moving in and out of the viewport.
+	_licence: wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
 ###
 
-do( $ = jQuery, window, document) ->
+do( $ = jQuery, window, vapour) ->
+	$document = vapour.doc
 
 	# Initialization
-	$(document).on 'wb.timerpoke', '.wb-inview', (e)->
+	$document.on 'timerpoke.wb', '.wb-inview', (e)->
+		$window = vapour.win
 		window._timer.remove '.wb-inview'
 
 		$this = $(@)
@@ -21,13 +21,13 @@ do( $ = jQuery, window, document) ->
 		# lets set some events to help manage this control
 
 		# bind our event
-		$(window).on 'scroll scrollstop resize', (e)->
+		$window.on 'scroll scrollstop resize', (e)->
 			$this.trigger 'scroll.wb-inview'
 
 		# set the element listeners
 		$this.on 'scroll.wb-inview', (e)->
 			_elm = $(@)
-			_viewport = $(window)
+			_viewport = $window
 			# lets start computing values
 			elementWidth = _elm.outerWidth()
 			elementHeight = _elm.outerHeight()

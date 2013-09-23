@@ -68,7 +68,7 @@ module.exports = (grunt) ->
 				src: ["**/*.hbs"]
 				dest: "dist/demo"
 
-		# Comiles the Sass files
+		# Compiles the Sass files
 		sass:
 			options:
 				browsers: [
@@ -98,7 +98,7 @@ module.exports = (grunt) ->
 				expand: true
 				flatten: true
 
-		# Minifiy
+		# Minify
 		uglify:
 			polyfills:
 				options:
@@ -312,6 +312,7 @@ module.exports = (grunt) ->
 				browser: true
 				globals:
 					jQuery: true
+					vapour: true
 
 			lib_test:
 				src: ["src/**/*.js", "!src/**/*min.js", "!src/polyfills/**/*.js", "test/**/*.js"]

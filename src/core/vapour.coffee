@@ -4,7 +4,7 @@
 ###
  Vapour Object that will store tombstone data for plugins to leverage
 ###
-do ( $ = jQuery, window, undef = undefined ) ->
+do ( $ = jQuery, window, document, undef = undefined ) ->
     $src = $('script[src$="vapour.js"],script[src$="vapour.min.js"]').last()
     $homepath = $src.prop("src").split('?')[0].split('/').slice(0, -1).join('/')
     $mode = if $src.prop("src").indexOf('.min') < 0 then '' else '.min'
@@ -13,7 +13,9 @@ do ( $ = jQuery, window, undef = undefined ) ->
         '/assets': "#{$homepath}/assets"
         '/templates': "#{$homepath}/assets/templates"
         '/deps': "#{$homepath}/deps"
-        'mode' : $mode
+        'mode': $mode
+        'doc': $(document)
+        'win': $(window)
 
         getPath: (prty)->
             res = if @hasOwnProperty(prty) then @[prty] else undef
@@ -42,7 +44,7 @@ do ( $ = jQuery, window, undef = undefined ) ->
 
 
 ###
- Lets establish the base path to be more flexiable in terms of WCMS where JS can reside in theme folders and not in the root of sites
+ Establish the base path to be more flexible in terms of WCMS where JS can reside in theme folders and not in the root of sites
 ###
 do (yepnope, vapour) ->
   yepnope.addPrefix "site", (resourceObj) ->
@@ -55,7 +57,7 @@ do (yepnope, vapour) ->
 ###
 ;window._timer =
   _elms: []
-  _cache : [] # this is performace boast to allow for body targetting.
+  _cache : [] # this gives a performance boost to allow for body targeting.
 
   add: (_rg) ->
     # simple init pattern to ensure body element is available to the window timer
@@ -83,7 +85,7 @@ do (yepnope, vapour) ->
 
     while i >= 0
       #console.log(this._elms[i].text());
-      @_elms[i].trigger "wb.timerpoke"
+      @_elms[i].trigger "timerpoke.wb"
       i--
     undefined
 
