@@ -20,18 +20,24 @@
 }
 
 //	Horizontal language selector
-.wb-lang-links-horiz .wb-lang-link {
-	display: inline-block;
+.wb-lang-links-horiz {
+	.wb-lang-link {
+		display: inline-block;
+	}
 }
 
 //	Vertical language selector
-.wb-lang-links-vert .wb-lang-link {
-	display: block;
+.wb-lang-links-vert {
+	.wb-lang-link {
+		display: block;
+	}
 }
 
 //	Right-to-left horizontal language selector
-.wb-lang-links-rtl .wb-lang-link {
-	float: right;
+.wb-lang-links-rtl {
+	.wb-lang-link {
+		float: right;
+	}
 }
 
 .wb-lang-links-rtl:after {
