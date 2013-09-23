@@ -1,6 +1,8 @@
-
-
-
+###
+ @plugin - Media player
+ @todo - Captions code port
+       - Youtube Chrome API hooks
+###
 do ($ = jQuery, window, document, vapour, undef = undefined) ->
 	"use strict"
 	### Local scoped variables ###
@@ -124,7 +126,7 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 		      data.replace /<img [^>]*>/g, "" #Remove images to prevent them from being loaded
 
 		    success: (data) ->
-		      eventObj = type: "wb.mediaplayer.captionsloaded"
+		      eventObj = type: "captionsloaded.mediaplayer.wb"
 		      if data.indexOf("<html") > -1
 		        eventObj.captions = parse_html($(data))
 		      else
@@ -133,12 +135,12 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 
 		    error: (response, textStatus, errorThrown) ->
 		      $(elm).trigger
-		        type: "captionsloadfailed"
+		        type: "captionsloadfailed.mediaplayer.wb"
 		        error: errorThrown
 
 	load_captions_internal = (elm,obj) ->
 		  eventObj =
-		    type: "wb.mediaplayer.captionsloaded"
+		    type: "captionsloaded.mediaplayer.wb"
 		    captions: parse_html(obj)
 
 		  $(elm).trigger eventObj
@@ -178,7 +180,7 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 		     $this.find(".wb-mm-captionsarea").show()
 		    else
 		     $this.find(".wb-mm-captionsarea").hide()
-		    $this.trigger "captionsvisiblechange"
+		    $this.trigger "captionsvisiblechange.mediaplayer.wb"
 
 		   when 'setPreviousTime'
 		     @object.previousTime = args
@@ -189,34 +191,32 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 		   	 prefix = fn.substr(0,3)
 		   	 method = fn.substr(3)
 		   	 method = method.substr(0,1).toLowerCase() + method.substr(1)
-		   	 console.log method
-
 		   	 if prefix is 'get'
 		     	(if typeof @object[method] isnt "function" then @object[method] else @object[method]())
 		     else if prefix is 'set'
 		     	(if typeof @object[method] isnt "function" then @object[method] = args else @object[fn](args))
 
 
-	$document.on "wb.timerpoke", $selector , (event) ->
+	$document.on "timerpoke.wb", $selector , (event) ->
 		window._timer.remove $selector
 		# self broadcasting
 		if (!$templatetriggered)
 			$templatetriggered = true # we only want one call out
 			$document.trigger
-				type: "wb.ajax-fetch"
+				type: "ajax-fetch.wb"
 				element: $($selector) # lets broadcast to all elements we have the template
 				fetch: "#{vapour.getPath('/assets')}/mediacontrol-#{$lang}.txt"
 
-	$document.on "wb.ajax-fetched", $selector , (event) ->
+	$document.on "ajax-fetched.wb", $selector , (event) ->
 		# ok this is our true init
 		$this = $(@)
 		$template = event.pointer.html()
 		# store the template
 		$this.data('template', $template)
 		$this.trigger
-			type: "wb.mediaplayer.init"
+			type: "init.mediaplayer.wb"
 
-	$document.on "wb.mediaplayer.init", $selector , (event) ->
+	$document.on "init.mediaplayer.wb", $selector , (event) ->
 		$this = $(@)
 		#ok lets set some variables
 		$id= if $this.attr("id") isnt undef then $this.attr("id") else "wb-mediaplayer-#{$seed++}"
@@ -240,17 +240,18 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
         	$media.attr 'id', $m_id
 
 		$this.data('properties', data)
+
 		# ok lets find out what we are playing and if we can play it
 		if $media.get(0).error is null && $media.get(0).currentSrc isnt '' && $media.get(0).currentSrc isnt undef
 			# ok we can play the media mentioned
-			return $this.trigger("wb.mediaplayer.#{$type}")
+			return $this.trigger("#{$type}.mediaplayer.wb")
 			#return $this.trigger('wb.mediaplayer.fallback')
 		else
-			return $this.trigger('wb.mediaplayer.fallback')
+			return $this.trigger('fallback.mediaplayer.wb')
 
 		$.error "[web-boew] Mediaplayer :: error - mp003 :: Cannot play listed media"
 
-	$document.on "wb.mediaplayer.fallback", $selector , (event) ->
+	$document.on "fallback.mediaplayer.wb", $selector , (event) ->
 		# play the fallback
 		[$this, $data] = expand(@)
 		$data.flashvars = 'id=' + $data.id
@@ -268,18 +269,19 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 		# trigger the renderevent
 		$this.trigger "wb.mediaplayer.renderui"
 
-	$document.on "wb.mediaplayer.video", $selector , (event) ->
+	$document.on "video.mediaplayer.wb", $selector , (event) ->
 		[$this, $data] = expand(@)
 		$data.sObject = $data.media.wrap('<div />').parent().html()
 		$data.poster = '<img src="' + $data.media.attr("poster") + '" class="img-responsive" height="' + $data.height + '" width="' + $data.width + '" alt="' + $data.media.attr("title") + '"/>'
 		$this.data('properties', $data)
-		$this.trigger "wb.mediaplayer.renderui"
+		$this.trigger "renderui.mediaplayer.wb"
 
-	$document.on "wb.mediaplayer.audio", $selector , (event) ->
+	$document.on "audio.mediaplayer.wb", $selector , (event) ->
     	[$this, $data] = expand(@)
 
-    $document.on "wb.mediaplayer.renderui", $selector, (event)->
+    $document.on "renderui.mediaplayer.wb", $selector, (event)->
     	[$this, $data] = expand(@)
+
     	# lets get our template and start the output
     	$this.html(tmpl($this.data('template'), $data))
     	# lets bind the player object for our events
@@ -323,9 +325,9 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 
     #Map UI keyboard events
 	$document.on "keydown", $selector, (e) ->
-		  [$this, $data, $player] = expand(@, true)
+		  [$this, $data] = expand(@)
 		  v = 0
-		  if (e.which is 32 or e.which is 13) and e.target is $player
+		  if (e.which is 32 or e.which is 13) and e.target is @player
 		    $this.find(".wb-mm-controls .playpause").click()
 		    return false
 		  if e.keyCode is 37
@@ -335,14 +337,14 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 		    $this.find(".wb-mm-controls .fastforward").click()
 		    return false
 		  if e.keyCode is 38
-		    v = Math.round($player.getVolume() * 10) / 10 + 0.10
+		    v = Math.round(@player.getVolume() * 10) / 10 + 0.10
 		    v = (if v < 1 then v else 1)
 		    $player.setVolume v
 		    return false
 		  if e.keyCode is 40
-		    v = Math.round($player.getVolume() * 10) / 10 - 0.1
+		    v = Math.round(@player.getVolume() * 10) / 10 - 0.1
 		    v = (if v > 0 then v else 0)
-		    $player.setVolume v
+		    @player.setVolume v
 		    return false
 		   true
 
@@ -372,9 +374,9 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 	    when "volumechange"
 	      b = $w.find(".mute .glyphicon")
 	      if @player('getMuted')
-	      	b.removeClass('glyphicon-volume-off').addClass('glyphicon-volumne-on').end().attr('title', b.data('state-on'))
+	      	b.removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off').end().attr('title', b.data('state-on'))
 	      else
-	        b.removeClass('glyphicon-volume-on').addClass('glyphicon-volumne-off').end().attr('title', b.data('state-off'))
+	        b.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up').end().attr('title', b.data('state-off'))
 	    when "timeupdate"
 	      percentage = Math.round(@player('getCurrentTime') / @player('getDuration') * 1000) / 10
 	      timeline = $w.find(".progress-bar")
@@ -396,7 +398,7 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 	        b.attr('title', b.data('state-off')).css("opacity", ".5")
 
 
-    $document.on "wb.mediaplayer.loadcaptions", $selector, (event)->
+    $document.on "loadcaptions.mediaplayer.wb", $selector, (event)->
     	[$this, $data] = expand(@)
 
 
