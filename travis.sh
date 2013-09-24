@@ -8,7 +8,7 @@ function error_exit
 	exit 1
 }
 
-if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/wet-boew" ]; then
+if [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/wet-boew" ] && [ "$TRAVIS_BRANCH" == "v4.0" ]; then
 
 	#Set git user
 	git config --global user.email "wet.boew.bot@gmail.com"
