@@ -14,7 +14,7 @@ do ($ = jQuery, window, vapour) ->
 	  _elm = $(@)
 	  _url = _elm.data("ajax-replace")
 	  _elm.load _url, ->
-	    $(@).trigger "ajax-replace-loaded.wb"
+	  	_elm.removeAttr('data-ajax-replace').trigger "ajax-replace-loaded.wb"
 	  # lets remove the event from continous throddling
 	  window._timer.remove "[data-ajax-replace]"
 	  undefined
