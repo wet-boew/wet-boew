@@ -77,6 +77,13 @@ module.exports = (grunt) ->
 				dest: "dist/css/"
 				ext: ".css"
 
+			theme:
+				expand: true
+				cwd: "theme/sass"
+				src: ["**/*.scss", "!**/_*.scss"]
+				dest: "dist/css/"
+				ext: ".css"
+
 		autoprefixer:
 			options:
 				browsers: [
@@ -143,7 +150,7 @@ module.exports = (grunt) ->
 
 		cssmin:
 			options:
-				banner: "<%= banner %>"
+				banner: "@charset \"utf-8\";\n<%= banner %>"
 			dist:
 				expand: true
 				cwd: "dist/css"
