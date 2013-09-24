@@ -30,23 +30,23 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 	    i -= 1
 	   time
 
-	parse_time = (string) ->
+	parse_time = (timestring) ->
 	  seconds = 0
-	  if string isnt undef
-	    if string.substring(string.length - 1) is "s"
+	  if timestring isnt undef
+	    if timestring.charAt(timestring.length - 1) is "s"
 
 	      #offset-time
-	      return parseFloat(string.substring(0, string.length - 1))
+	      return parseFloat(timestring.substring(0, timestring.length - 1))
 	    else
 
 	      #clock time
-	      parts = string.split(":").reverse()
+	      parts = timestring.split(":").reverse()
 	      p = 0
 	      _plen = parts.length
 
 	      while p < _plen
-	        v = (if (p is 0) then parseFloat(parts[p]) else parseInt(parts[p], 10))
-	        seconds += v * Math.pow(60, p)
+	        timestringportion = (if (p is 0) then parseFloat(parts[p]) else parseInt(parts[p], 10))
+	        seconds += timestringportion * Math.pow(60, p)
 	        p += 1
 	      return seconds
 	  -1
@@ -54,12 +54,12 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 
 	expand = (elm, withPlayer)->
 		$this = $(elm)
-		$data = $this.data('properties')
+		$data = $this.data("properties")
 		if withPlayer isnt undef
 			$player = $data.player
 			return [$this, $data, $player]
 		else
-			return [$this, $this.data('properties')]
+			return [$this, $this.data("properties")]
 
 	## caption tools ##
 
@@ -222,10 +222,10 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 		$id= if $this.attr("id") isnt undef then $this.attr("id") else "wb-mediaplayer-#{$seed++}"
 		$media= $this.children("audio, video").eq(0)
 		$m_id= if $media.attr("id") isnt undef then $media.attr('id') else "#{$id}-media"
-		$type = if $media.is('video') then 'video' else 'audio'
-		$width = if $type is 'video' then $media.attr('width') else '0'
-		$height = if $type is 'video' then $media.attr('height') else '0'
-		$captions = if $media.children('track[kind="captions"]') then $media.children('track[kind="captions"]').attr("src") else undef
+		$type = if $media.is("video") then "video" else "audio"
+		$width = if $type is "video" then $media.attr("width") else "0"
+		$height = if $type is "video" then $media.attr("height") else "0"
+		$captions = if $media.children("track[kind='captions']") then $media.children("track[kind='captions']").attr("src") else undef
 		#$.extend @, _intf
 		data =
 			id: $id
@@ -236,10 +236,10 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 			width: $width
 			object: ''
 
-		if $media.attr('id') is undef
-        	$media.attr 'id', $m_id
+		if $media.attr("id") is undef
+        	$media.attr "id", $m_id
 
-		$this.data('properties', data)
+		$this.data("properties", data)
 
 		# ok lets find out what we are playing and if we can play it
 		if $media.get(0).error is null && $media.get(0).currentSrc isnt '' && $media.get(0).currentSrc isnt undef
@@ -247,33 +247,33 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 			return $this.trigger("#{$type}.mediaplayer.wb")
 			#return $this.trigger('wb.mediaplayer.fallback')
 		else
-			return $this.trigger('fallback.mediaplayer.wb')
+			return $this.trigger("fallback.mediaplayer.wb")
 
 		$.error "[web-boew] Mediaplayer :: error - mp003 :: Cannot play listed media"
 
 	$document.on "fallback.mediaplayer.wb", $selector , (event) ->
 		# play the fallback
 		[$this, $data] = expand(@)
-		$data.flashvars = 'id=' + $data.id
-		$playerresource = vapour.getPath('/assets') + '/multimedia.swf?' + $data.flashvars
-		$data.poster = ''
-		if $data.type is 'video'
+		$data.flashvars = "id=" + $data.id
+		$playerresource = vapour.getPath("/assets") + "/multimedia.swf?" + $data.flashvars
+		$data.poster = ""
+		if $data.type is "video"
 			$data.poster = '<img src="' + $data.media.attr("poster") + '" class="img-responsive" height="' + $data.height + '" width="' + $data.width + '" alt="' + $data.media.attr("title") + '"/>';
-			$data.flashvars =  '&height=' + $data.media.height() + '&width=' + $data.media.width() + '&posterimg=' + encodeURI(vapour.getUrlParts($data.media.attr('poster')).absolute) + '&media=' + encodeURI(vapour.getUrlParts($data.media.find('source').filter('[type="video/mp4"]').attr('src')).absolute)
+			$data.flashvars =  '&height=' + $data.media.height() + '&width=' + $data.media.width() + '&posterimg=' + encodeURI(vapour.getUrlParts($data.media.attr("poster")).absolute) + '&media=' + encodeURI(vapour.getUrlParts($data.media.find('source').filter('[type="video/mp4"]').attr("src")).absolute)
 		else
-			$data.flashvars = '&media=' + encodeURI(vapour.getUrlParts($data.media.find('source').filter('[type="audio/mp3"]').attr('src')).absolute)
+			$data.flashvars = '&media=' + encodeURI(vapour.getUrlParts($data.media.find("source").filter("[type='audio/mp3']").attr("src")).absolute)
 		# add in objectstring
 		$data.sObject = '<object id="' + $data.m_id + '" width="' + $data.width + '" height="' + $data.height + '" class="' + $data.type + '" type="application/x-shockwave-flash" data="' + $playerresource + '" tabindex="-1"><param name="movie" value="' + $playerresource + '"/><param name="flashvars" value="' + $data.flashvars + '"/><param name="allowScriptAccess" value="always"/><param name="bgcolor" value="#000000"/><param name="wmode" value="opaque"/>' + $data.poster + '</object>'
 		# add in the new vars back to data
-		$this.data('properties', $data)
+		$this.data("properties", $data)
 		# trigger the renderevent
 		$this.trigger "wb.mediaplayer.renderui"
 
 	$document.on "video.mediaplayer.wb", $selector , (event) ->
 		[$this, $data] = expand(@)
-		$data.sObject = $data.media.wrap('<div />').parent().html()
+		$data.sObject = $data.media.wrap("<div />").parent().html()
 		$data.poster = '<img src="' + $data.media.attr("poster") + '" class="img-responsive" height="' + $data.height + '" width="' + $data.width + '" alt="' + $data.media.attr("title") + '"/>'
-		$this.data('properties', $data)
+		$this.data("properties", $data)
 		$this.trigger "renderui.mediaplayer.wb"
 
 	$document.on "audio.mediaplayer.wb", $selector , (event) ->
@@ -283,16 +283,16 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
     	[$this, $data] = expand(@)
 
     	# lets get our template and start the output
-    	$this.html(tmpl($this.data('template'), $data))
+    	$this.html(tmpl($this.data("template"), $data))
     	# lets bind the player object for our events
     	$player = $("##{$data.m_id}")
-    	$data.player = if $player.is('object') then $player.children(':first-child') else $player.load()
+    	$data.player = if $player.is("object") then $player.children(":first-child") else $player.load()
     	# HTML5 Non bubble event bug workaround - Event Proxy Pattern
     	$data.player.on "durationchange play pause ended volumechange timeupdate captionsloaded captionsloadfailed captionsvisiblechange waiting canplay progress", (e) ->
     		$this.trigger(e)
     	@object = $player.get(0)
     	@player = playerapi
-    	$this.data('properties', $data)
+    	$this.data("properties", $data)
     	### bind your events ###
 
 
@@ -304,11 +304,11 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 	   $target = $(e.target)
 	   return false if e.which is 2 or e.which is 3 # we only want left click
 
-	   if $target.hasClass("playpause") or $target.is('object') or $target.hasClass("wb-mm-overlay")
-	      if @player('getPaused') is true
-	         @player('play')
+	   if $target.hasClass("playpause") or $target.is("object") or $target.hasClass("wb-mm-overlay")
+	      if @player("getPaused") is true
+	         @player("play")
 	      else
-	      	 @player('pause')
+	      	 @player("pause")
 	   if $target.hasClass("cc")
 	       @player("setCaptionsVisible", not @player("getCaptionsVisible"))
 	   if $target.hasClass("mute")
@@ -355,35 +355,35 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 
 	  switch e.type
 	    when "play"
-	      @player('play')
+	      @player("play")
 	      b = $w.find(".playpause .glyphicon")
-	      b.removeClass('glyphicon-play').addClass('glyphicon-pause').end().attr('title', b.data('state-off'))
-	      $w.find(".wb-mm-overlay img").css('visibility', 'hidden')
-	      $w.find(".progress").addClass('active')
+	      b.removeClass("glyphicon-play").addClass("glyphicon-pause").end().attr("title", b.data("state-off"))
+	      $w.find(".wb-mm-overlay img").css("visibility", "hidden")
+	      $w.find(".progress").addClass("active")
 	    when "pause"
-	      @player('pause')
+	      @player("pause")
 	      b = $w.find(".playpause .glyphicon")
-	      b.removeClass('glyphicon-pause').addClass('glyphicon-play').end().attr('title', b.data('state-on'))
-	      $w.find('.progress').removeClass('active')
+	      b.removeClass("glyphicon-pause").addClass("glyphicon-play").end().attr("title", b.data("state-on"))
+	      $w.find(".progress").removeClass("active")
 
 	    when "ended"
 	      b = $w.find(".playpause .glyphicon")
-	      b.removeClass('glyphicon-pause').addClass('glyphicon-play').end().attr('title', b.data('state-on'))
-	      $w.find(".wb-mm-overlay").css('visibility', 'show')
+	      b.removeClass("glyphicon-pause").addClass("glyphicon-play").end().attr("title", b.data("state-on"))
+	      $w.find(".wb-mm-overlay").css("visibility", "show")
 
 	    when "volumechange"
 	      b = $w.find(".mute .glyphicon")
-	      if @player('getMuted')
-	      	b.removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off').end().attr('title', b.data('state-on'))
+	      if @player("getMuted")
+	      	b.removeClass("glyphicon-volume-up").addClass("glyphicon-volume-off").end().attr("title", b.data("state-on"))
 	      else
-	        b.removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up').end().attr('title', b.data('state-off'))
+	        b.removeClass("glyphicon-volume-off").addClass("glyphicon-volume-up").end().attr("title", b.data("state-off"))
 	    when "timeupdate"
-	      percentage = Math.round(@player('getCurrentTime') / @player('getDuration') * 1000) / 10
-	      timeline = $w.find(".progress-bar")
-	      timeline.attr("aria-valuenow", percentage).css('width',"#{percentage}%")
-	      $w.find(".wb-mm-timeline-current span:not(.wb-invisible)").text format_time(@player('getCurrentTime'))
+	      percentage = Math.round(@player("getCurrentTime") / @player("getDuration") * 1000) / 10
+	      timeline = $w.find("progress")
+	      timeline.attr("value", percentage)
+	      $w.find(".wb-mm-timeline-current span:not(.wb-invisible)").text format_time(@player("getCurrentTime"))
 	      #Update captions
-	      update_captions $w.find(".wb-mm-captionsarea"), @player('getCurrentTime'), $.data(e.target, "captions")  if $.data(e.target, "captions") isnt undef
+	      update_captions $w.find(".wb-mm-captionsarea"), @player("getCurrentTime"), $.data(e.target, "captions")  if $.data(e.target, "captions") isnt undef
 	    when "captionsloaded"
 	      #Store the captions
 	      $.data e.target, "captions", e.captions
@@ -391,11 +391,11 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 	      $w.find(".wb-mm-captionsarea").append "<p>ERROR: WB0342</p>"
 	    when "captionsvisiblechange"
 	      b = $w.find(".cc .glyphicon")
-	      if @player('getCaptionsVisible')
-	        b.attr('title', b.data('state-on')).css("opacity", "1")
+	      if @player("getCaptionsVisible")
+	        b.attr("title", b.data("state-on")).css("opacity", "1")
 
 	      else
-	        b.attr('title', b.data('state-off')).css("opacity", ".5")
+	        b.attr("title", b.data("state-off")).css("opacity", ".5")
 
 
     $document.on "loadcaptions.mediaplayer.wb", $selector, (event)->

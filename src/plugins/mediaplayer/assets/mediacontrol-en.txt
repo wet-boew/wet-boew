@@ -24,10 +24,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 				<p class="wb-mm-timeline-current"><span class="wb-invisible">Current position:</span><span>00:00:00</span></p>
 				<p class="wb-mm-timeline-total"><span class="wb-invisible">Total time:</span><span>--:--:--</span></p>
 			</div>
-			<div class="progress progress-striped hidden-xs">
-  				<div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-    				<p class="wb-mm-timeline-inner wb-invisible"><span>Playback percentage:</span></p>
-  				</div>
+			<div class="hidden-xs">
+				<progress aria-live="off" max="100" value="0"></progress>
 			</div>
 
 		</div>
