@@ -122,6 +122,7 @@ do ( $ = jQuery, window, undef = undefined ) ->
           # Return the required value
           return lookup  if i is len - 1
           i++
+
   )()
 
   window.tmpl = tmpl
