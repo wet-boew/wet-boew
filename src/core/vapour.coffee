@@ -20,9 +20,25 @@ do ( $ = jQuery, window, document, undef = undefined ) ->
         getPath: (prty)->
             res = if @hasOwnProperty(prty) then @[prty] else undef
             return res
-            
+
         getMode: ()->
             return @mode
+
+        getUrlParts: (url) ->
+
+            a = document.createElement("a")
+            a.href = url
+
+            href: a.href
+            absolute: a.href
+            host: a.host
+            hostname: a.hostname
+            port: a.port
+            pathname: a.pathname
+            protocol: a.protocol
+            hash: a.hash
+            search: a.search
+
 
     window.vapour = vapour
 

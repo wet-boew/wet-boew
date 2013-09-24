@@ -1,0 +1,104 @@
+/*
+  Multimedia Player Code
+ */
+
+.wet-boew-multimedia, .wb-mediplayer {
+    .btn {
+        border-top-right-radius: 0 !important;
+        border-top-left-radius: 0 !important;
+    }
+    .display {
+        position: relative;
+        padding-bottom: 56.25%;
+        background: #000;
+        /* 16:9 */
+        padding-top: 25px;
+        height: 0;
+        video, object, embed, .wb-mm-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .wb-mm-overlay {
+        background: transparent;
+        text-indent: -9999px;
+        border: 0;
+        padding: 0;
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.wb-mm-captionsarea {
+    background-color: #000;
+    color: #FFF;
+    text-align: center;
+    padding: 0;
+    max-height: 0;
+    &.on {
+        padding: 0.5em;
+        max-height: 999em;
+    }
+}
+
+.wb-mm-controls {
+    display: table;
+    width: 100%;
+    .firstpanel {
+        width: 10em;
+        vertical-align: top;
+        display: table-cell;
+    }
+    .lastpanel {
+        text-align: right;
+        width: 7em;
+        display: table-cell;
+        vertical-align: top;
+    }
+    .timeline {
+        display: table-cell;
+        vertical-align: top;
+        padding-top: 0.55em;
+        .textonly {
+            p {
+                display: inline !important;
+                float: left;
+            }
+        }
+        /* Progress Bar */
+        progress {
+            width: 100%;
+            height: 14px;
+            display: block;
+            /* Important Thing */
+            -webkit-appearance: none;
+            border: none;
+            &::-webkit-progress-bar {
+                background: black;
+                border-radius: 50px;
+                padding: 2px;
+                box-shadow: 0 1px 0px 0 rgba(255, 255, 255, 0.2);
+            }
+            /* Now the value part */
+            &::-webkit-progress-value {
+                border-radius: 50px;
+                box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4);
+                background: -webkit-linear-gradient(45deg, transparent, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%), -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.2)), -webkit-linear-gradient(left, #ba7448, #c4672d);
+                /* Looks great, now animating it */
+                background-size: 25px 14px, 100% 100%, 100% 100%;
+                -webkit-animation: move 5s linear 0 infinite;
+            }
+        }
+    }
+    border-bottom: 1px solid #ddd;
+}
+
+@media print {
+    .wb-mm-controls, .wb-mm-overlay {
+        display: none;
+    }
+}
