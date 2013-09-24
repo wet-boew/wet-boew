@@ -64,20 +64,20 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 	## caption tools ##
 
 	parse_html = (content) ->
-	    s = ".wet-boew-tt"
-	    te = content.find(s)
+	    selector = ".wet-boew-tt"
+	    te = content.find(selector)
 	    captions = []
 	    te.each ->
-	      e = $(this)
+	      elm = $(this)
 	      begin = -1
 	      end = -1
-	      if e.attr("data-begin") isnt undef
+	      if elm.attr("data-begin") isnt undef
 
 	        #HTML5 captions (seperate attributes)
-	        begin = parse_time(e.attr("data-begin"))
-	        end = (if e.attr("data-end") isnt undef then parse_time(e.attr("data-end")) else parse_time(e.attr("data-dur")) + begin)
-	      else if e.attr("data") isnt undef
-	        json = e.attr("data")
+	        begin = parse_time(elm.attr("data-begin"))
+	        end = (if elm.attr("data-end") isnt undef then parse_time(elm.attr("data-end")) else parse_time(elm.attr("data-dur")) + begin)
+	      else if elm.attr("data") isnt undef
+	        json = elm.attr("data") 
 
 	        #Sanitze the JSON
 	        json = json.replace(/(begin|dur|end)/g, "\"$1\"").replace(/'/g, "\"")
@@ -96,21 +96,21 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 	    captions
 
 	 parse_xml = (content) ->
-		  s = "[begin]"
-		  te = content.find(s)
+		  selector = "[begin]"
+		  te = content.find(selector)
 		  captions = []
 		  te.each ->
-		    e = $(this)
+		    elm = $(this)
 		    begin = -1
 		    end = -1
-		    begin = parse_time(e.attr("begin"))
-		    end = (if e.attr("end") isnt undef then parse_time(e.attr("end")) else parse_time(e.attr("dur")) + begin)
+		    begin = parse_time(elm.attr("begin"))
+		    end = (if elm.attr("end") isnt undef then parse_time(elm.attr("end")) else parse_time(elm.attr("dur")) + begin)
 
 		    #Removes nested captions if any
-		    e = e.clone()
-		    e.find(s).detach()
+		    elm = e.clone()
+		    elm.find(selector).detach()
 		    captions[captions.length] =
-		      text: e.html()
+		      text: elm.html()
 		      begin: begin
 		      end: end
 
@@ -148,13 +148,13 @@ do ($ = jQuery, window, document, vapour, undef = undefined) ->
 
 	update_captions = (area, seconds, captions) ->
 		  area.empty()
-		  c = 0
+		  counter = 0
 		  _clen = captions.length
 
-		  while c < _clen
-		    caption = captions[c]
+		  while counter < _clen
+		    caption = captions[counter]
 		    area.append $("<div>" + caption.text + "</div>")  if seconds >= caption.begin and seconds <= caption.end
-		    c += 1
+		    counter += 1
 
 	playerapi = (fn, args)->
 		  switch fn
