@@ -14,30 +14,40 @@ do ($ = jQuery, window, vapour) ->
 	###
 	expand = (elment, scopeitems)->
 		$elm = $(elment)
-		_elm = if $elm.hasClass('wb-menu') then $elm else $elm.parents('.wb-menu').first()
-		_items = if (scopeitems) then _elm.data('items').has(elment) else _elm.data('items')
-		[_elm.data('self'), _elm.data('menu'), _items, $elm]
+		_elm = if $elm.hasClass('wb-menu') then $elm.data() else $elm.parents('.wb-menu').first().data()
+		_items = if (scopeitems) then _elm.items.has(elment) else _elm.items
+		[_elm.self, _elm.menu, _items, $elm]
 
 	$document.on "ajax-replace-loaded.wb mouseleave focusout select.wb increment.wb reset.wb display.wb", ".wb-menu", (event) ->
 		eventType = event.type
+		$container = $(@)
 		switch eventType
 			# Init
 			when "ajax-replace-loaded"
 				event.stopPropagation()
-				$container = $(@)
+				###
+				Some hooks for post transformation
+				 - @data-post-remove : removes the space delimited class for the element. This is more a feature to fight the FOUC 
+				###
+				if $container.has('[data-post-remove]')
+					$container.removeClass($container.data('post-remove')).removeAttr('data-post-remove')
+
 				$menu = $container.find ".menu :focusable"
 				$items = $container.find ".item"
-				# lets store the object for maximun performance - prevent the jQuery overhead re-querying
-				$container.data('self', $container).data('menu', $menu).data('items',$items)
 				# lets disable tabbing through the menu for usability - leaving the first element open to the tab order
 				$container.find(':discoverable').attr('tabindex', '-1').eq(0).attr('tabindex', '0')
 				# lets add our down arrows where we need to
 				$menu.filter("[href^='#']").append "<span class=\"expandicon\"></span>"
+				# lets store the object for better performance
+				$container.data
+					'self': $container
+					'menu': $menu
+					'items':$items
 				undefined
 
 			# Global Menu Events
 			when "mouseleave", "focusout"
-				$(@).trigger('menu-reset.wb')
+				$container.trigger('reset.wb')
 
 			when "select"
 				event.stopPropagation()
@@ -48,7 +58,6 @@ do ($ = jQuery, window, vapour) ->
 
 			when "increment"
 				event.stopPropagation()
-				$container = $(@)
 				$links = event.cnode
 				$next =  event.current + event.increment
 				$index = $next
@@ -67,13 +76,11 @@ do ($ = jQuery, window, vapour) ->
 			when "reset"
 				# Clear all open menus
 				event.stopPropagation()
-				$container = $(@)
 				$container.find('.open').removeClass('open')
 				$container.find('.active').removeClass('active')
 
 			when "display"
 				event.stopPropagation()
-				$container = $(@)
 				# lets reset the menu
 				$container.trigger
 					type: 'reset.wb'
