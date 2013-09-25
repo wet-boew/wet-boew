@@ -124,6 +124,7 @@ do (yepnope, vapour) ->
         test: navigator.userAgent.indexOf("Win") isnt -1 and navigator.userAgent.match(/^((?!mobi|tablet).)*$/i) isnt null,
         yep : "site!polyfills/jawsariafixes#{vapour.getMode()}.js"
     ,
+        load: "site!i18n/#{document.documentElement.lang}.js"
         complete: ()->
             window._timer.start()
 ]
