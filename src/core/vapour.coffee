@@ -93,7 +93,10 @@ do (yepnope, vapour) ->
 # Using Modernizer to load the polyfills
 ;Modernizr.load [
 
-        ## test for Canvas support
+        ## Load Mouse and Touch normalization logic
+        # http://www.stucox.com/blog/you-cant-detect-a-touchscreen/
+        load: "site!polyfills/jquery.mobile.vmouse#{vapour.getMode()}.js"
+    ,
         test: Modernizr.canvas,
         nope: "site!polyfills/excanvas#{vapour.getMode()}.js"
     ,
