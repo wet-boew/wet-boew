@@ -305,22 +305,7 @@ module.exports = (grunt) ->
 					livereload: true
 
 		jshint:
-			options:
-				curly: true
-				eqeqeq: true
-				immed: true
-				latedef: true
-				newcap: true
-				noarg: true
-				sub: true
-				undef: true
-				unused: true
-				boss: true
-				eqnull: true
-				browser: true
-				globals:
-					jQuery: true
-					vapour: true
+			options: grunt.file.readJSON ".jshintrc"
 
 			lib_test:
 				src: ["src/**/*.js", "!src/**/*min.js", "!src/polyfills/**/*.js", "test/**/*.js"]
