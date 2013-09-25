@@ -22,6 +22,7 @@ module.exports = (grunt) ->
 				src: [
 					"dist/js/wet-boew.js",
 					"src/plugins/**/*.js"
+					"!src/plugins/**/test.js"
 				]
 				dest: "dist/js/wet-boew.js"
 
@@ -63,6 +64,7 @@ module.exports = (grunt) ->
 					layout: "default.hbs"
 					environment:
 						suffix: "<%= environment.suffix %>"
+					test: if grunt.cli.tasks.indexOf('test') then true else false
 				expand: true
 				cwd: "src/plugins"
 				src: ["**/*.hbs"]
@@ -244,7 +246,7 @@ module.exports = (grunt) ->
 
 			misc:
 				cwd: "src/plugins"
-				src: ["**/*.*", "!**/*.js", "!**/*.coffee", "!**/*.scss", "!**/*.hbs", "!**/assets/*"]
+				src: ["**/*.*", "!**/*.js", "!**/*.coffee", "!**/*.scss", "!**/*.hbs", "!**/assets/*"].concat(if grunt.cli.tasks.indexOf('test') > -1 then ["**/test.js"] else [])
 				dest: "dist/demo"
 				expand: true
 
@@ -330,6 +332,7 @@ module.exports = (grunt) ->
 				options:
 					port: 8000
 					base: "."
+					keepalive: true
 
 		i18n:
 			options:
@@ -379,10 +382,10 @@ module.exports = (grunt) ->
 	@registerTask "dist-js", ["js", "uglify", "clean:jsUncompressed"]
 	@registerTask "dist-css", ["css", "cssmin", "clean:cssUncompressed"]
 
-	@registerTask "dist", ["clean:dist", "copy", "dist-js", "dist-css", "test", "html"]
-	@registerTask "debug", ["clean:dist", "copy", "js", "css", "test", "html"]
+	@registerTask "dist", ["clean:dist", "copy", "dist-js", "dist-css", "html"]
+	@registerTask "debug", ["clean:dist", "copy", "js", "css", "html"]
+	@registerTask "test", ["dist", "jshint", "connect"]
 
-	@registerTask "test", ["jshint"]
 	@registerTask "html", ["assemble"]
 	@registerTask "server", ["connect", "watch:source"]
 	@registerTask "init", ["modernizr"]

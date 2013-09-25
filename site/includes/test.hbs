@@ -1,0 +1,18 @@
+<div id="mocha"></div>
+
+<!-- Mocha -->
+<link rel="stylesheet" href="{{assets}}/../node_modules/mocha/mocha.css" >
+<script src="{{assets}}/../node_modules/mocha/mocha.js"></script>
+<!-- Chai -->
+<script src="{{assets}}/../node_modules/chai/chai.js"></script>
+
+<script>
+	var expect = chai.expect;
+	mocha.setup('bdd');
+	$(document).on('ready', function(){
+		setTimeout(mocha.run, 2000);
+	});
+</script>
+
+<!-- Test -->
+<script src="test.js"></script>
