@@ -308,7 +308,12 @@ module.exports = (grunt) ->
 			options: grunt.file.readJSON ".jshintrc"
 
 			lib_test:
-				src: ["src/**/*.js", "!src/**/*min.js", "!src/polyfills/**/*.js", "test/**/*.js"]
+				src: [
+					"src/**/*.js",
+					"!src/**/*min.js",
+					"!src/polyfills/**/*.js",
+					"test/**/*.js", "tasks/*.*"
+				]
 
 		connect:
 			server:
