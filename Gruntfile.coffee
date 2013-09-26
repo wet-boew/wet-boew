@@ -333,11 +333,11 @@ module.exports = (grunt) ->
 		'saucelabs-mocha': 
             all: 
                 options: 
-                    urls: ["http://127.0.0.1:9999/dist/demo/carousel/carousel-en.html"]
+                    urls: ["http://127.0.0.1:8000/dist/demo/carousel/carousel-en.html"]
                     tunnelTimeout: 5
                     build: process.env.TRAVIS_BUILD_NUMBER
                     concurrency: 3
-                    browsers: null #TODO: load browsers from external JSON file
+                    browsers: grunt.file.readJSON("browsers.json");
                     testname: "WET-BOEW Travis Build #{process.env.TRAVIS_BUILD_NUMBER}"
                     tags: [process.env.TRAVIS_BRANCH, process.env.TRAVIS_COMMIT]
  
@@ -391,6 +391,6 @@ module.exports = (grunt) ->
 	@registerTask "html", ["assemble"]
 	@registerTask "server", ["connect", "watch:source"]
 	@registerTask "init", ["modernizr"]
-	@registerTask "deploy", ["gh-pages"]
+	@registerTask "deploy", ["clean:tests", "gh-pages"]
 
 	@
