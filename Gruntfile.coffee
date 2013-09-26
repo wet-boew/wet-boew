@@ -274,8 +274,6 @@ module.exports = (grunt) ->
 				cwd: "lib"
 				src: [
 					"jquery-pjax/jquery.pjax.js"
-					"matchMedia/matchmedia.js"
-					"picturefill/picturefill.js"
 				]
 				dest: "dist/js/deps"
 				expand: true
