@@ -333,7 +333,7 @@ module.exports = (grunt) ->
 		"gh-pages":
 			options:
 				repo: "https://" + process.env.GH_TOKEN + "@github.com/wet-boew/wet-boew-dist.git"
-				branch: "v4.0-dist"
+				branch: process.env.build_branch
 				clone: "wet-boew-dist"
 				message: "Travis build " + process.env.TRAVIS_BUILD_NUMBER
 			src: [
