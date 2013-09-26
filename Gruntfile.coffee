@@ -1,4 +1,4 @@
-module.exports = (grunt) ->
+﻿module.exports = (grunt) ->
 
 	grunt.util.linefeed = "\n"
 	# Project configuration.
@@ -21,8 +21,10 @@ module.exports = (grunt) ->
 					stripBanners: true
 				src: [
 					"src/core/helpers.js",
-					"src/plugins/**/*.js"
+					"dist/js/wet-boew.js",
+					"src/plugins/**/*.js",
 					"!src/plugins/**/test.js"
+
 				]
 				dest: "dist/js/wet-boew.js"
 
@@ -161,17 +163,11 @@ module.exports = (grunt) ->
 				ext: "<%= environment.suffix %>.css"
 
 		coffee:
-			vapour:
-				options:
-					bare: true
-				files:
-					"dist/js/vapour.js": "src/core/vapour.coffee"
-
 			plugins:
 				options:
 					bare: true
 				files:
-					"dist/js/wet-boew.js": ["src/core/helpers.coffee", "src/plugins/**/*.coffee"]
+					"dist/js/wet-boew.js": ["src/plugins/**/*.coffee"]
 
 		modernizr:
 			devFile: "lib/modernizr/modernizr-custom.js"
@@ -364,7 +360,7 @@ module.exports = (grunt) ->
 	# Default task.
 	@registerTask "default", ["dist"]
 
-	@registerTask "js", ["concat", "i18n"]
+	@registerTask "js", ["coffee","concat", "i18n"]
 	@registerTask "css", ["sass", "autoprefixer"]
 
 	@registerTask "dist-js", ["js", "uglify", "clean:jsUncompressed"]
