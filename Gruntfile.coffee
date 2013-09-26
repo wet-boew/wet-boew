@@ -290,6 +290,7 @@ module.exports = (grunt) ->
 
 			jsUncompressed: ["dist/js/**/*.js", "!dist/js/**/*<%= environment.suffix %>.js"]
 			cssUncompressed: ["dist/css/**/*.css", "!dist/css/**/*<%= environment.suffix %>.css"]
+			tests: ["dist/demo/**/test.js"]
 
 		watch:
 			lib_test:
@@ -319,7 +320,6 @@ module.exports = (grunt) ->
 				options:
 					port: 8000
 					base: "."
-					keepalive: true
 
 		i18n:
 			options:
@@ -327,6 +327,17 @@ module.exports = (grunt) ->
 				csv: "src/i18n/i18n.csv"
 			src: "src/js/i18n/formvalid/*.js"
 
+		'saucelabs-mocha': 
+            all: 
+                options: 
+                    urls: ["http://127.0.0.1:8000/dist/demo/carousel/carousel-en.html"]
+                    tunnelTimeout: 5
+                    build: process.env.TRAVIS_BUILD_NUMBER
+                    concurrency: 3
+                    browsers: grunt.file.readJSON("browsers.json");
+                    testname: "WET-BOEW Travis Build #{process.env.TRAVIS_BUILD_NUMBER}"
+                    tags: [process.env.TRAVIS_BRANCH, process.env.TRAVIS_COMMIT]
+ 
 		"gh-pages":
 			options:
 				repo: "https://" + process.env.GH_TOKEN + "@github.com/wet-boew/wet-boew-dist.git"
@@ -356,6 +367,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-modernizr"
 	@loadNpmTasks "grunt-gh-pages"
 	@loadNpmTasks "grunt-sass"
+	@loadNpmTasks "grunt-saucelabs"
 
 	# Load custom grunt tasks form the tasks directory
 	@loadTasks "tasks"
@@ -371,11 +383,12 @@ module.exports = (grunt) ->
 
 	@registerTask "dist", ["clean:dist", "copy", "dist-js", "dist-css", "html"]
 	@registerTask "debug", ["clean:dist", "copy", "js", "css", "html"]
-	@registerTask "test", ["dist", "connect"]
-
+	@registerTask "test", ["dist"]
+	@registerTask "saucelabs", ["connect", "saucelabs-mocha"]
+	
 	@registerTask "html", ["assemble"]
 	@registerTask "server", ["connect", "watch:source"]
 	@registerTask "init", ["modernizr"]
-	@registerTask "deploy", ["gh-pages"]
+	@registerTask "deploy", ["clean:tests", "gh-pages"]
 
 	@

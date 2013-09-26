@@ -3,14 +3,13 @@
 <!-- Mocha -->
 <link rel="stylesheet" href="{{assets}}/../node_modules/mocha/mocha.css" >
 <script src="{{assets}}/../node_modules/mocha/mocha.js"></script>
-<!-- Chai -->
-<script src="{{assets}}/../node_modules/chai/chai.js"></script>
+<!-- Expect.js -->
+<script src="{{assets}}/../node_modules/expect.js/expect.js"></script>
 
 <script>
-	var expect = chai.expect;
-	mocha.setup('bdd');
-	$(document).on('ready', function(){
-		setTimeout(mocha.run, 2000);
+	mocha.setup( "bdd" );
+	vapour.doc.on( "ready", function() {
+		setTimeout( mocha.run, 2000 );
 	});
 </script>
 
