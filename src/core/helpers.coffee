@@ -10,7 +10,6 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 ###
 
 do ( $ = jQuery, window, document ) ->
-	$this = undefined
 
 	_settings =
 		default: 'wet-boew'
@@ -36,6 +35,7 @@ do ( $ = jQuery, window, document ) ->
 					elm.addClass 'wb-invisible'
 		toggle: (to, from) ->
       $(@).addClass(to).removeClass(from)
+
 	$.fn.wb = (method) ->
 		if methods[method]
 			methods[method].apply @, Array::slice.call(arguments, 1)
@@ -49,6 +49,7 @@ do ( $ = jQuery, window, document ) ->
 ###
 
 do ( $ = jQuery, window, document ) ->
+
   # selectors
   focusable = (element, isTabIndexNotNaN, visibility) ->
     nodeName = element.nodeName.toLowerCase()
@@ -97,6 +98,7 @@ Peformant micro templater
 @credit: https://github.com/premasagar/tim/blob/master/tinytim.js
 @todo: caching
 ###
+
 do ( $ = jQuery, window, undef = undefined ) ->
   # todo: implement a performance caching algorithm
   cache = {}

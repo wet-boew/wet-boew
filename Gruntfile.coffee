@@ -1,4 +1,4 @@
-module.exports = (grunt) ->
+﻿module.exports = (grunt) ->
 
 	grunt.util.linefeed = "\n"
 	# Project configuration.
@@ -20,9 +20,11 @@ module.exports = (grunt) ->
 				options:
 					stripBanners: true
 				src: [
+					"src/core/helpers.js",
 					"dist/js/wet-boew.js",
-					"src/plugins/**/*.js"
+					"src/plugins/**/*.js",
 					"!src/plugins/**/test.js"
+
 				]
 				dest: "dist/js/wet-boew.js"
 
@@ -31,7 +33,7 @@ module.exports = (grunt) ->
 					stripBanners: false
 				src: [
 					"lib/modernizr/modernizr-custom.js",
-					"dist/js/vapour.js"
+					"src/core/vapour.js"
 				]
 				dest: "dist/js/vapour.js"
 
@@ -161,17 +163,11 @@ module.exports = (grunt) ->
 				ext: "<%= environment.suffix %>.css"
 
 		coffee:
-			vapour:
-				options:
-					bare: true
-				files:
-					"dist/js/vapour.js": "src/core/vapour.coffee"
-
 			plugins:
 				options:
 					bare: true
 				files:
-					"dist/js/wet-boew.js": ["src/core/helpers.coffee", "src/plugins/**/*.coffee"]
+					"dist/js/wet-boew.js": ["src/plugins/**/*.coffee"]
 
 		modernizr:
 			devFile: "lib/modernizr/modernizr-custom.js"
