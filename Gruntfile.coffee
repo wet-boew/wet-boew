@@ -20,7 +20,7 @@ module.exports = (grunt) ->
 				options:
 					stripBanners: true
 				src: [
-					"dist/js/wet-boew.js",
+					"src/core/helpers.js",
 					"src/plugins/**/*.js"
 				]
 				dest: "dist/js/wet-boew.js"
@@ -30,7 +30,7 @@ module.exports = (grunt) ->
 					stripBanners: false
 				src: [
 					"lib/modernizr/modernizr-custom.js",
-					"dist/js/vapour.js"
+					"src/core/vapour.js"
 				]
 				dest: "dist/js/vapour.js"
 
@@ -363,7 +363,7 @@ module.exports = (grunt) ->
 	# Default task.
 	@registerTask "default", ["dist"]
 
-	@registerTask "js", ["coffee","concat", "i18n"]
+	@registerTask "js", ["concat", "i18n"]
 	@registerTask "css", ["sass", "autoprefixer"]
 
 	@registerTask "dist-js", ["js", "uglify", "clean:jsUncompressed"]

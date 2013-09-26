@@ -10,6 +10,7 @@ _notes/
 *.sublime-project
 *.sublime-workspace
 sftp.json
+src/**/*.coffee
 
 # OS generated files #
 .DS_Store
