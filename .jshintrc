@@ -14,7 +14,9 @@
 	"unused": true,
 
 	"globals": {
-		"vapour": true
+		"vapour": true,
+		"Modernizr": true,
+		"yepnope" : true
 	},
 	"jquery": true,
 	"browser": true
