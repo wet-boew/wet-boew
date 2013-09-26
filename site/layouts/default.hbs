@@ -28,7 +28,7 @@
 		<script src="{{assets}}/js/vapour{{environment.suffix}}.js"></script>
 
 	</head>
-	<body>
+	<body>{{#if test}}{{>test}}{{/if}}
 		<div id="wb-skip">
 			<ul id="wb-tphp">
 				<li id="wb-skip1">
@@ -84,5 +84,6 @@
 		</footer>
 
 		<script src="{{assets}}/js/wet-boew{{environment.suffix}}.js"></script>
+		<script src="{{assets}}/js/theme.js"></script>
 	</body>
 </html>

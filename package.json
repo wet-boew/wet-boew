@@ -43,6 +43,8 @@
     "assemble": "~0.4.7",
     "grunt-contrib-cssmin": "~0.6.1",
     "grunt-gh-pages": "~0.7.2",
-    "grunt-autoprefixer": "~0.3.0"
+    "grunt-autoprefixer": "~0.3.0",
+    "mocha": "~1.13.0",
+    "chai": "~1.8.0"
   }
 }
