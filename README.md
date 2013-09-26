@@ -1,6 +1,7 @@
 # Web Experience Toolkit (WET)
 
-[![Build Status](https://secure.travis-ci.org/wet-boew/wet-boew.png?branch=master)](http://travis-ci.org/wet-boew/wet-boew)
+[![Build Status](https://secure.travis-ci.org/wet-boew/wet-boew.png?branch=master)](http://travis-ci.org/wet-boew/wet-boew)<br/>
+[![Selenium Test Status](https://saucelabs.com/browser-matrix/wet-boew-bot.svg)](https://saucelabs.com/u/wet-boew-bot)
 
 ## What is the Web Experience Toolkit?
 
