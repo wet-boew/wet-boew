@@ -276,6 +276,7 @@ module.exports = (grunt) ->
 					"jquery-pjax/jquery.pjax.js"
 					"matchMedia/matchmedia.js"
 					"picturefill/picturefill.js"
+					"DataTables/media/js/jquery.dataTables.js"
 				]
 				dest: "dist/js/deps"
 				expand: true
