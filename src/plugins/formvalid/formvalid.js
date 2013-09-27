@@ -5,7 +5,6 @@
 /*
  * WET-BOEW Form validation
  */
- /*global console: false */
 (function ( $, window, document, vapour, undefined ) {
     "use strict";
 
@@ -19,13 +18,12 @@
                 window._timer.remove( selector );
 
                 // read the selector node for parameters
-                var mode = vapour.getMode(),
-					i18n;
+                var mode = vapour.getMode();
 					//lang = document.documentElement.lang.replace( "-", "_" );
 
                 // Only initialize the i18nText once
                 if ( i18nText === undefined ) {
-					i18n = window.i18n,
+					i18n = window.i18n;
                     i18nText = {
 						colon: i18n( "%colon" ),
 						hyphen: i18n( "%hyphen" ),
@@ -35,7 +33,7 @@
 						formNotSubmitted: i18n( "%form-not-submitted" )
                     };
                 }
-				console.log("hi");
+
                 window.Modernizr.load( {
                     // For loading multiple dependencies
                     both: [
@@ -46,7 +44,6 @@
 						//"site!deps/methods_" + lang + mode + ".js"
                     ],
                     complete: function() {
-						console.log("hi2");
                         var form = $elm.find( "form" ),
 							formDOM = form.get( 0 ),
 							labels = formDOM.getElementsByTagName( "label" ),
@@ -256,16 +253,15 @@
                 } );
             }
 		};
-console.log('hi all');
+
     // Bind the init event of the plugin
     $document.on( "timerpoke.wb", selector, function (event) {
         // "this" is cached for all events to utilize
         var eventType = event.type,
             $elm = $(this);
-console.log('hi on');
+
         switch (eventType) {
         case "timerpoke":
-			console.log('hi timerpoke');
 			plugin.init.apply( this, [ $elm ] );
         }
         return true; // since we are working with events we want to ensure that we are being passive about out control, so return true allows for events to always continue
