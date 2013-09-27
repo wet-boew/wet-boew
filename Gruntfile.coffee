@@ -274,6 +274,9 @@ module.exports = (grunt) ->
 				cwd: "lib"
 				src: [
 					"jquery-pjax/jquery.pjax.js"
+					"jquery.validation/jquery.validate.js"
+					"jquery.validation/additional-methods.js"
+					"jquery.validation/localization/*.js"
 				]
 				dest: "dist/js/deps"
 				expand: true
