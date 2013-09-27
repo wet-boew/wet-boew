@@ -334,7 +334,7 @@ module.exports = (grunt) ->
                     tunnelTimeout: 5
                     build: process.env.TRAVIS_BUILD_NUMBER
                     concurrency: 3
-                    browsers: grunt.file.readJSON("browsers.json");
+                    browsers: grunt.file.readJSON("browsers.json")
                     testname: "WET-BOEW Travis Build #{process.env.TRAVIS_BUILD_NUMBER}"
                     tags: [process.env.TRAVIS_BRANCH, process.env.TRAVIS_COMMIT]
  
