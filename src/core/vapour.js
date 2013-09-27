@@ -168,7 +168,7 @@ Modernizr.load( [{
     yep: "site!polyfills/jawsariafixes" + ( vapour.getMode() ) + ".js"
 }, {
 
-    load: "site!i18n/" + document.documentElement.lang + ".js",
+    load: "site!i18n/" + document.documentElement.lang + ( vapour.getMode() ) + ".js",
     complete: function () {
         window._timer.start();
     }
