@@ -67,7 +67,7 @@ licence	:	wet-boew.github.io/wet-boew/License-en.html /
 							} );
 						}
 					}
-				});			
+				});
 			}
 		};
 
