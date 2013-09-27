@@ -363,7 +363,7 @@ module.exports = (grunt) ->
 	# Default task.
 	@registerTask "default", ["dist"]
 
-	@registerTask "js", ["coffee","concat", "i18n"]
+	@registerTask "js", ["jshint", "coffee","concat", "i18n"]
 	@registerTask "css", ["sass", "autoprefixer"]
 
 	@registerTask "dist-js", ["js", "uglify", "clean:jsUncompressed"]
@@ -371,7 +371,7 @@ module.exports = (grunt) ->
 
 	@registerTask "dist", ["clean:dist", "copy", "dist-js", "dist-css", "html"]
 	@registerTask "debug", ["clean:dist", "copy", "js", "css", "html"]
-	@registerTask "test", ["dist", "jshint", "connect"]
+	@registerTask "test", ["dist", "connect"]
 
 	@registerTask "html", ["assemble"]
 	@registerTask "server", ["connect", "watch:source"]
