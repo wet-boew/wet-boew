@@ -1,0 +1,73 @@
+---
+title: Form validation
+language: en
+---
+<div class="wb-formvalid">
+	<form action="#" method="get" id="validation-example">
+		<fieldset class="margin-top-large"><legend>Contact information</legend>
+			<label for="title1"><span class="field-name">Title</span> <strong>(required)</strong></label>
+			<select id="title1" name="title1" required="required">
+				<option label="Select a title"></option>
+				<option value="dr">Dr.</option>
+				<option value="esq">Esq.</option>
+				<option value="mr">Mr.</option>
+				<option value="ms">Ms.</option>
+			</select>
+			<label for="fname1"><span class="field-name">First Name</span> <strong>(required)</strong></label>
+			<input id="fname1" name="fname1" type="text" required="required" pattern=".{2,}" data-rule-minlength="2" />
+			<label for="lname1"><span class="field-name">Last Name</span> <strong>(required)</strong></label>
+			<input id="lname1" name="lname1" type="text" required="required" pattern=".{2,}" data-rule-minlength="2" />
+			<label for="tel1"><span class="field-name">Telephone Number</span> (999-999-9999) <strong>(required)</strong></label>
+			<input id="tel1" name="tel1" type="tel" required="required" data-rule-phoneUS="true" />
+			<label for="email1"><span class="field-name">Email Address</span></label>
+			<input id="email1" name="email1" type="email" />
+			<label for="url1"><span class="field-name">Website URL (http://www.url.com)</span></label>
+			<input id="url1" name="url1" type="url" />
+		</fieldset>
+
+		<fieldset class="margin-top-large"><legend>Other examples</legend>
+			<label for="date1"><span class="field-name">Date</span><span class="datepicker-format"> (YYYY-MM-DD)</span></label>
+			<input id="date1" name="date1" type="date" data-rule-dateISO="true" />
+			<label for="time1"><span class="field-name">Time</span> (hh:mm)</label><input id="time1" name="time1" type="time" />
+			<label for="an1"><span class="field-name">Alphanumeric</span> (at least 4 characters)</label>
+			<input id="an1" name="an1" type="text" pattern="[A-Za-z0-9\s]{4,}" data-rule-alphanumeric="true" data-rule-minlength="4" />
+			<label for="digits1"><span class="field-name">Digits only</span></label>
+			<input id="digits1" name="digits1" type="number" />
+			<label for="integer1"><span class="field-name">Integer</span> (between 5 and 40)</label>
+			<input id="integer1" name="integer1" type="number" min="5" max="40" />
+			<label for="letters1"><span class="field-name">Letters only</span> (maximum of 5 characters)</label>
+			<input id="letters1" name="letters1" type="text" size="5" maxlength="5" pattern="[A-Za-z\s]" data-rule-lettersonly="true" />
+			<label for="text1"><span class="field-name">Letters and punctuation only</span> (allowed punctuation: [. , ( ) "])</label>
+			<input id="text1" name="text1" type="text" pattern="[A-Za-z-.,()'&#34;\s]" data-rule-letterswithbasicpunc="true" />
+			<label for="password1"><span class="field-name">Password</span> (between 5 and 10 characters)</label>
+			<input id="password1" name="password1" type="password" maxlength="10" size="10" pattern=".{5,10}" data-rule-rangelength="[5,10]" />
+		</fieldset>
+
+		<fieldset class="margin-top-large" data-role="controlgroup"><legend><span class="field-name">Favourite pet</span> (select at least one of the following options)</legend>
+			<label for="animal1"><input type="checkbox" name="animal" value="1" id="animal1" required="required" />&#160;&#160;Dog</label>
+			<label for="animal2"><input type="checkbox" name="animal" value="2" id="animal2" />&#160;&#160;Cat</label>
+			<label for="animal3"><input type="checkbox" name="animal" value="3" id="animal3" />&#160;&#160;Fish</label>
+			<label for="animal4"><input type="checkbox" name="animal" value="4" id="animal4" />&#160;&#160;Other</label>
+		</fieldset>
+
+		<fieldset class="margin-top-large" data-role="controlgroup"><legend><span class="field-name">Citizenship status</span></legend>
+			<label for="status1"><input type="radio" name="status" value="1" id="status1" required="required" />&#160;&#160;Canadian citizen</label>
+			<label for="status2"><input type="radio" name="status" value="2" id="status2" />&#160;&#160;Permanent resident</label>
+			<label for="status3"><input type="radio" name="status" value="3" id="status3" />&#160;&#160;Work permit</label>
+			<label for="status4"><input type="radio" name="status" value="4" id="status4" />&#160;&#160;Other</label>
+		</fieldset>
+
+		<div class="form-inline margin-top-large">
+			<input type="submit" value="Submit" class="button button-accent"/> <input type="reset" value="Reset" class="button" />
+		</div>
+	</form>
+</div>
+<div class="clear"></div>
+<noscript>
+	<p>This form cannot be submitted without JavaScript. You may use one of the following methods:</p>
+	<ul>
+		<li>Method 1</li>
+		<li>Method 2</li>
+		<li>Method n</li>
+	</ul>
+</noscript>
