@@ -18,12 +18,13 @@ $document.on( "timerpoke.wb ajax-fetched.wb", "[data-ajax-before]", function (
     event ) {
 
     var eventType = event.type,
-        _elm = $( this );
+        _elm = $( this ),
+        _url;
 
     switch ( eventType ) {
     case "timerpoke":
         window._timer.remove( "[data-ajax-before]" );
-        var _url = _elm.data( "ajax-before" );
+        _url = _elm.data( "ajax-before" );
         $document.trigger( {
             type: "ajax-fetch.wb",
             element: _elm,
