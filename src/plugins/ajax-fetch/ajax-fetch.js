@@ -6,46 +6,52 @@
     _licence: wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
 */
 
-(function($, window, vapour) {
-    "use strict";
-    $.ajaxSettings.cache = false;
+(function ( $, window, vapour ) {
 
-    var $document = vapour.doc;
+"use strict";
 
-    /* internal core functions*/
+$.ajaxSettings.cache = false;
 
-    var generateSerial = function(len) {
+var $document = vapour.doc;
 
-        var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz",
-            string_length = len,
-            randomstring = "",
-            counter = 0;
+//internal core functions
+var generateSerial = function ( len ) {
 
-        while (counter < string_length) {
-            var letterOrNumber = Math.floor(Math.random() * 2);
-            if (letterOrNumber === 0) {
-                var newNum = Math.floor(Math.random() * 9);
-                randomstring += newNum;
-            } else {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum, rnum + 1);
-            }
-            counter++;
+    var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz",
+        string_length = len,
+        randomstring = "",
+        counter = 0;
+
+    while ( counter < string_length ) {
+        var letterOrNumber = Math.floor( Math.random( ) * 2 );
+        if ( letterOrNumber === 0 ) {
+            var newNum = Math.floor( Math.random( ) * 9 );
+            randomstring += newNum;
         }
-        return randomstring;
-    };
+        else {
+            var rnum = Math.floor( Math.random( ) * chars.length );
+            randomstring += chars.substring( rnum, rnum + 1 );
+        }
+        counter++;
+    }
+    return randomstring;
+};
 
-    $document.on("ajax-fetch.wb", function(event) {
-        var _caller = event.element,
-            _url = event.fetch,
-            _id = "wb" + (generateSerial(8));
+//Event binding
+$document.on( "ajax-fetch.wb", function ( event ) {
+    var _caller = event.element,
+        _url = event.fetch,
+        _id = "wb" + ( generateSerial( 8 ) );
 
-        $("<div id='" + _id + "' />").load(_url, function() {
-            $(_caller).trigger({
-                type: "ajax-fetched.wb",
-                pointer: $(this)
-            });
-        });
+    $( "<div id='" + _id + "' />" )
+        .load( _url, function () {
+            $( _caller )
+                .trigger( {
+                    type: "ajax-fetched.wb",
+                    pointer: $( this )
+                } );
+        } );
 
-    });
-})(jQuery, window, vapour);
+});
+
+})( jQuery, window, vapour );

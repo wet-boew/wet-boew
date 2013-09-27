@@ -6,33 +6,38 @@
     _licence: wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
 */
 
-(function($, window, vapour) {
-    "use strict";
-    $.ajaxSettings.cache = false;
+(function ( $, window, vapour ) {
 
-    var $document = vapour.doc;
+"use strict";
 
-    $document.on("timerpoke.wb ajax-fetched.wb", "[data-ajax-append]", function(event) {
-        var eventType = event.type,
-            _elm = $(this);
+$.ajaxSettings.cache = false;
 
-        switch (eventType) {
-            case "timerpoke":
-                window._timer.remove("[data-ajax-after]");
-                var _url = _elm.data("ajax-after");
-                $document.trigger({
-                    type: "ajax-fetch.wb",
-                    element: _elm,
-                    fetch: _url
-                });
-                break;
-            case "ajax-fetched":
-                _elm.after(event.pointer.html());
-                _elm.trigger("ajax-after-loaded.wb");
-                break;
+var $document = vapour.doc;
 
-        }
-        return false;
-    });
-    window._timer.add("[data-ajax-after]");
-})(jQuery, window, vapour);
+$document.on( "timerpoke.wb ajax-fetched.wb", "[data-ajax-append]", function (
+    event ) {
+    var eventType = event.type,
+        _elm = $( this );
+
+    switch ( eventType ) {
+    case "timerpoke":
+        window._timer.remove( "[data-ajax-after]" );
+        var _url = _elm.data( "ajax-after" );
+        $document.trigger({
+            type: "ajax-fetch.wb",
+            element: _elm,
+            fetch: _url
+        });
+        break;
+    case "ajax-fetched":
+        _elm.after( event.pointer.html() );
+        _elm.trigger( "ajax-after-loaded.wb" );
+        break;
+
+    }
+    return false;
+} );
+
+window._timer.add( "[data-ajax-after]" );
+
+})( jQuery, window, vapour );
