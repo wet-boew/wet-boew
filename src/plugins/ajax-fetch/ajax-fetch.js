@@ -12,24 +12,27 @@
 
 $.ajaxSettings.cache = false;
 
-var $document = vapour.doc;
-
-//internal core functions
-var generateSerial = function ( len ) {
+var $document = vapour.doc,
+    generateSerial;
+    
+generateSerial = function ( len ) { //internal core functions
 
     var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz",
         string_length = len,
         randomstring = "",
-        counter = 0;
+        counter = 0,
+        letterOrNumber,
+        newNum,
+        rnum;
 
     while ( counter < string_length ) {
-        var letterOrNumber = Math.floor( Math.random( ) * 2 );
+        letterOrNumber = Math.floor( Math.random( ) * 2 );
         if ( letterOrNumber === 0 ) {
-            var newNum = Math.floor( Math.random( ) * 9 );
+            newNum = Math.floor( Math.random( ) * 9 );
             randomstring += newNum;
         }
         else {
-            var rnum = Math.floor( Math.random( ) * chars.length );
+            rnum = Math.floor( Math.random( ) * chars.length );
             randomstring += chars.substring( rnum, rnum + 1 );
         }
         counter++;

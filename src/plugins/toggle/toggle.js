@@ -44,9 +44,7 @@ var $document = vapour.doc,
 		 */
 		setAriaControls: function ( event, data ) {
 			var elm, i, len,
-				elms = data.parent !== undefined
-							? $( data.parent ).find( data.selector )
-							: $( data.selector ),
+				elms = data.parent !== undefined ? $( data.parent ).find( data.selector ) : $( data.selector ),
 				ariaControls = "",
 				link = $( this );
 
@@ -87,14 +85,10 @@ var $document = vapour.doc,
 		 * @param {Object} data Simple key/value data object passed when the event was triggered
 		 */
 		toggle: function ( event, data ) {
-			var elms = data.parent !== undefined
-							? $( data.parent ).find( data.selector )
-							: $( data.selector ),
+			var elms = data.parent !== undefined ? $( data.parent ).find( data.selector ) : $( data.selector ),
 
 				stateFrom = plugin.getState( data.selector, data.parent, data.type ), // Current state of elements
-				stateTo = stateFrom === plugin.stateOn
-											? plugin.stateOff
-											: plugin.stateOn; // State to set the elements
+				stateTo = stateFrom === plugin.stateOn ? plugin.stateOff : plugin.stateOn; // State to set the elements
 
 			// Update the element state and store the new state
 			elms.wb( "toggle", stateTo, stateFrom );
@@ -120,9 +114,7 @@ var $document = vapour.doc,
 			}
 
 			// Toggle type: get opposite state of the requested type.  plugin.toggle will then reverse this to the requested state
-			return type === plugin.stateOn
-								? plugin.stateOff
-								: plugin.stateOn;
+			return type === plugin.stateOn ? plugin.stateOff : plugin.stateOn;
 		},
 
 		/**
