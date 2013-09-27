@@ -12,72 +12,91 @@
 
 var $document = vapour.doc,
     selector = ".wb-carousel",
-    controls = selector + " .prv, " + selector + " .nxt, " + selector +
-        " .plypause";
+    controls = selector + " .prv, " + selector + " .nxt, " + selector + " .plypause",
+    carousel;
 
+carousel = {
+    onTimerPoke: function( _elm ) {
+        var _setting,
+            _delay;
 
-$document.on( "timerpoke.wb carousel-init.wb shift.wb", selector, function (
-    event ) {
-
-    var eventType = event.type,
-        _sldr = $( this );
-
-    switch ( eventType ) {
-    case "timerpoke":
-        if ( _sldr.attr( "data-delay" ) === undefined ) {
-            _sldr.trigger( "carousel-init.wb" );
+        if ( _elm.attr( "data-delay" ) === undefined ) {
+            _elm.trigger( "carousel-init.wb" );
             return false;
         }
         /* state stopped*/
-        if ( _sldr.hasClass( "stopped" ) ) {
+        if ( _elm.hasClass( "stopped" ) ) {
             return false;
         }
         /* continue;*/
 
         /* add settings and counter*/
-        var _setting = parseFloat( _sldr.attr( "data-delay" ) ),
-            _delay = parseFloat( _sldr.attr( "data-ctime" ) );
+        _setting = parseFloat( _elm.attr( "data-delay" ) );
+        _delay = parseFloat( _elm.attr( "data-ctime" ) );
         _delay += 0.5;
 
         /* check if we need*/
 
         if ( _setting < _delay ) {
-            _sldr.trigger( "shift.wb" );
+            _elm.trigger( "shift.wb" );
             _delay = 0;
         }
-        _sldr.attr( "data-ctime", _delay );
+        _elm.attr( "data-ctime", _delay );
+    },
+
+    onInit: function ( _elm ) {
+        var _interval = 6;
+
+        if ( _elm.hasClass( "slow" ) ) {
+            _interval = 9;
+        }
+        if ( _elm.hasClass( "fast" ) ) {
+            _interval = 3;
+        }
+        _elm.find( ".item:not(.in)" )
+            .addClass( "out" );
+        _elm.attr( "data-delay", _interval )
+            .attr( "data-ctime", 0 );
+    },
+
+    onShift: function ( _elm ) {
+        var _items = _elm.find( ".item" ),
+            _current = _elm.find( ".item.in" ).prevAll( ".item" ).length,
+            _shiftto = ( event.shiftto ) ? event.shiftto : 1,
+            _next = _current > _items.length ? 0 : _current + _shiftto;
+
+        _next = ( _next > _items.length - 1 || _next < 0 ) ? 0 : _next;
+        _items.eq( _current ).removeClass( "in" ).addClass( "out" );
+        _items.eq( _next ).removeClass( "out" ).addClass( "in" );
+    },
+
+    onCycle: function ( _elm, shifto ) {
+        _elm.trigger( "shift.wb", {
+            shiftto: shifto
+        } );
+    }
+
+
+};
+
+$document.on( "timerpoke.wb carousel-init.wb shift.wb", selector, function ( event ) {
+
+    var eventType = event.type,
+        _elm = $( this );
+
+    switch ( eventType ) {
+    case "timerpoke":
+        carousel.onTimerPoke.apply(this, _elm);
         break;
 
         /* ------ Init --------------*/
     case "carousel-init":
-        var _interval = 6;
-        if ( _sldr.hasClass( "slow" ) ) {
-            _interval = 9;
-        }
-        if ( _sldr.hasClass( "fast" ) ) {
-            _interval = 3;
-        }
-        _sldr.find( ".item:not(.in)" )
-            .addClass( "out" );
-        _sldr.attr( "data-delay", _interval )
-            .attr( "data-ctime", 0 );
+        carousel.onInit.apply(this, _elm);
         break;
 
         /* ------ Change Slides --------------*/
     case "shift":
-        var _items = _sldr.find( ".item" ),
-            _current = _sldr.find( ".item.in" )
-                .prevAll( ".item" )
-                .length,
-            _shiftto = ( event.shiftto ) ? event.shiftto : 1,
-            _next = _current > _items.length ? 0 : _current + _shiftto;
-        _next = ( _next > _items.length - 1 || _next < 0 ) ? 0 : _next;
-        _items.eq( _current )
-            .removeClass( "in" )
-            .addClass( "out" );
-        _items.eq( _next )
-            .removeClass( "out" )
-            .addClass( "in" );
+        carousel.onShift.apply(this, _elm);
         break;
     }
     return false;
@@ -92,14 +111,10 @@ $document.on( "click", controls, function ( event ) {
 
     switch ( _action ) {
     case "prv":
-        _elm.trigger( "shift.wb", {
-            shiftto: 1
-        } );
+        carousel.onCycle.apply(this, _elm, 1);
         break;
     case "nxt":
-        _elm.trigger( "shift.wb", {
-            shiftto: -1
-        } );
+        carousel.onCycle.apply(this, _elm, -1);
         break;
     default:
         _sldr.toggleClass( "stopped" );

@@ -17,12 +17,13 @@ var $document = vapour.doc;
 $document.on( "timerpoke.wb ajax-fetched.wb", "[data-ajax-append]", function (
     event ) {
     var eventType = event.type,
-        _elm = $( this );
+        _elm = $( this ),
+        _url;
 
     switch ( eventType ) {
     case "timerpoke":
         window._timer.remove( "[data-ajax-after]" );
-        var _url = _elm.data( "ajax-after" );
+        _url = _elm.data( "ajax-after" );
         $document.trigger({
             type: "ajax-fetch.wb",
             element: _elm,
