@@ -6,26 +6,26 @@ notes	:	Plugin that helps to build a photo gallery on a web page..
 licence	:	wet-boew.github.io/wet-boew/License-en.html /
 			wet-boew.github.io/wet-boew/Licence-fr.html
 */
-(function( $, window, vapour, undefined ) {
+(function( $, window, vapour ) {
 	"use strict";
 
 	var selector = ".wb-lightbox",
-        $document = vapour.doc,
+		$document = vapour.doc,
 		i18n,
 		i18nText,
 		extendedGlobal = false,
 		plugin = {
 			init: function ( $elm ) {
-                // all plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-                window._timer.remove( selector );
+				// all plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+				window._timer.remove( selector );
 
 				// read the selector node for parameters
-                var mode = vapour.getMode();
+				var modeJS = vapour.getMode() + ".js";
 
-                // Only initialize the i18nText once
-                if ( i18nText === undefined ) {
+				// Only initialize the i18nText once
+				if ( !i18nText ) {
 					i18n = window.i18n;
-                    i18nText = {
+					i18nText = {
 						tClose: i18n( "%close" ),
 						tLoading: i18n( "%loading" ),
 						gallery: {
@@ -39,12 +39,12 @@ licence	:	wet-boew.github.io/wet-boew/License-en.html /
 						ajax: {
 							tError: i18n( "%lb-xhr-error" ) + " (<a href=\"%url%\">)"
 						}
-                    };
-                }
+					};
+				}
 
 				// Load Magnific Popup dependency and bind the init event handler
 				window.Modernizr.load({
-					load: "site!deps/jquery.magnific-popup" + mode + ".js",
+					load: "site!deps/jquery.magnific-popup" + modeJS,
 					complete: function() {
 						// Set the dependency i18nText only once
 						if ( !extendedGlobal ) {
@@ -71,19 +71,19 @@ licence	:	wet-boew.github.io/wet-boew/License-en.html /
 			}
 		};
 
-    // Bind the init event of the plugin
-    $document.on( "timerpoke.wb", selector, function (event) {
-        // "this" is cached for all events to utilize
-        var eventType = event.type,
-            $elm = $(this);
+	// Bind the init event of the plugin
+	$document.on( "timerpoke.wb", selector, function ( event ) {
+		// "this" is cached for all events to utilize
+		var eventType = event.type,
+			$elm = $( this );
 
-        switch (eventType) {
-        case "timerpoke":
+		switch ( eventType ) {
+		case "timerpoke":
 			plugin.init.apply( this, [ $elm ] );
-        }
-        return true; // since we are working with events we want to ensure that we are being passive about out control, so return true allows for events to always continue
-    });
+		}
+		return true; // since we are working with events we want to ensure that we are being passive about out control, so return true allows for events to always continue
+	});
 
-    // Add the timer poke to initialize the plugin
-    window._timer.add( selector );
+	// Add the timer poke to initialize the plugin
+	window._timer.add( selector );
 })( jQuery, window, vapour );
