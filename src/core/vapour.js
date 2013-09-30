@@ -4,7 +4,7 @@
 /*
 Vapour Object that will store tombstone data for plugins to leverage
 */
-(function ( $, window, document, undef ) {
+(function( $, window, document, undef ) {
 	"use strict";
 
 	var $src = $( "script[src$='vapour.js'],script[src$='vapour.min.js']" )
@@ -27,17 +27,17 @@ Vapour Object that will store tombstone data for plugins to leverage
 		"doc": $( document ),
 		"win": $( window ),
 
-		getPath: function ( property ) {
+		getPath: function( property ) {
 			var resource;
 			resource = this.hasOwnProperty( property ) ? this[ property ] : undef;
 			return resource;
 		},
 
-		getMode: function () {
+		getMode: function() {
 			return this.mode;
 		},
 
-		getUrlParts: function ( url ) {
+		getUrlParts: function( url ) {
 			var a = document.createElement( "a" );
 			a.href = url;
 			return {
@@ -51,7 +51,7 @@ Vapour Object that will store tombstone data for plugins to leverage
 				hash: a.hash,
 				search: a.search,
 				// A collection of the parameters of the query string part of the URL.
-				params: ( function () {
+				params: ( function() {
 					var key, strings, segment, _i,	_len,
 						results = {};
 					segment = a.search.replace( /^\?/, "" ).split( "&" );
@@ -66,6 +66,88 @@ Vapour Object that will store tombstone data for plugins to leverage
 					return results;
 				}())
 			};
+		},
+		
+		// Manages custom events for text and window resizing (based on http://alistapart.com/article/fontresizing)
+		resizeUtil: {
+			sizes: [],
+			events: [
+				"text-resize.wb",
+				"window-resize-width.wb",
+				"window-resize-height.wb"
+			],
+			eventsAll: "",
+			resizeTest: null,
+			initialized: false,
+
+			// Sets up the resize testing
+			init: function() {
+				var _resizeUtil = vapour.resizeUtil,
+					_resizeTest = document.createElement( "span" ),
+					_id = "wb-resize-test",
+					_selector = "#" + _id,
+					$window = vapour.win,
+					$document = vapour.doc;
+				
+				// Set up the DOM element used for resize testing
+				_resizeTest.innerHTML = "&#160;";
+				_resizeTest.setAttribute( "id", _id );
+				document.body.appendChild( _resizeTest );
+				_resizeUtil.resizeTest = _resizeTest;
+
+				// Get a snapshot of the current sizes
+				_resizeUtil.sizes = [
+					_resizeTest.offsetHeight,
+					$window.width(),
+					$window.height()
+				];
+
+				// Create a string containing all the events
+				_resizeUtil.eventsAll = _resizeUtil.events.join( " " );
+				
+				// Use timerpoke.wb for the testing interval
+				window._timer.add( _selector );
+				$document.on( "timerpoke.wb", _selector, vapour.resizeUtil.test );
+
+				_resizeUtil.initialized = true;
+			},
+
+			// Tests for text size, window width and window height changes and triggers an event when a change is found
+			test: function() {
+				var $window = vapour.win,
+					$document = vapour.doc,
+					_resizeUtil = vapour.resizeUtil,
+					currentSizes = [
+						_resizeUtil.resizeTest.offsetHeight,
+						$window.width(),
+						$window.height()
+					],
+					i,
+					len = currentSizes.length;
+				for ( i = 0; i !== len; i += 1 ) {
+					if ( currentSizes[ i ] !== _resizeUtil.sizes[ i ] ) {
+						$document.trigger( _resizeUtil.events[ i ], currentSizes );
+					}
+				}
+				_resizeUtil.sizes = currentSizes;
+				return;
+			}
+		},
+
+		// Registers callbacks for the custom resize events managed in vapour.resizeUtil
+		resize: function( callback ) {
+			var _resizeUtil = vapour.resizeUtil,
+				$document = vapour.doc;
+			
+			// Initialize the resize handling if it hasn't been initialized yet
+			if ( !_resizeUtil.initialized ) {
+				_resizeUtil.init();
+			}
+
+			$document.on( _resizeUtil.eventsAll, function( event, sizes ) {
+				callback( event, sizes );
+			} );
+			return;
 		}
 	};
 
@@ -75,10 +157,10 @@ Vapour Object that will store tombstone data for plugins to leverage
 /*
 Establish the base path to be more flexible in terms of WCMS where JS can reside in theme folders and not in the root of sites
 */
-(function ( yepnope, vapour ) {
+(function( yepnope, vapour ) {
 	"use strict";
 
-	yepnope.addPrefix( "site", function ( resourceObj ) {
+	yepnope.addPrefix( "site", function( resourceObj ) {
 		var _path = vapour.getPath( "/" );
 		resourceObj.url = _path + "/" + resourceObj.url;
 		return resourceObj;
@@ -87,7 +169,7 @@ Establish the base path to be more flexible in terms of WCMS where JS can reside
 /*
 Modernizr Load call
 */
-(function ( Modernizr, window, vapour ) {
+(function( Modernizr, window, vapour ) {
 	"use strict";
 
 	var modeJS = vapour.getMode() + ".js";
@@ -97,7 +179,7 @@ Modernizr Load call
 		_elms: [],
 		_cache: [],
 
-		add: function ( _selector ) {
+		add: function( _selector ) {
 			var _obj;
 			if ( this._cache.length < 1 ) {
 				this._cache = $( document.body );
@@ -108,7 +190,7 @@ Modernizr Load call
 			}
 		},
 
-		remove: function ( _selector ) {
+		remove: function( _selector ) {
 			var elms = this._elms,
 				$elm,
 				len = elms.length,
@@ -122,13 +204,13 @@ Modernizr Load call
 			}
 		},
 
-		start: function () {
-			setInterval( function () {
+		start: function() {
+			setInterval( function() {
 				window._timer.touch();
 			}, 500 );
 		},
 
-		touch: function () {
+		touch: function() {
 			var elms = this._elms,
 				$elm,
 				len = elms.length,
@@ -188,7 +270,7 @@ Modernizr Load call
 	}, {
 
 		load: "site!i18n/" + document.documentElement.lang + modeJS,
-		complete: function () {
+		complete: function() {
 			window._timer.start();
 		}
 	}]);
