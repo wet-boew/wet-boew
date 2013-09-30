@@ -1677,8 +1677,12 @@
 				* @type {string}
 				*/
 				liblocation: (function () {
+					// check for a meta tag entry of name="description" with an attribute of data-liblocation="PATH" instead of 
+					// the request path to pe-ap, otherwise, use path. 
+					var metaLibLocation = $('meta[name=description]').attr("data-liblocation");
 					var pefile = $('body script[src*="/pe-ap"]').attr('src');
-					return pefile.substr(0, pefile.lastIndexOf('/') + 1);
+					metaLibLocation = metaLibLocation.length ? metaLibLocation : pefile.substr(0, pefile.lastIndexOf('/') + 1);
+					return metaLibLocation
 				} ()),
 				themecsslocation: (function () {
 					var themecss = (wet_boew_theme !== null ? $('head link[rel="stylesheet"][href*="' + wet_boew_theme.theme + '"]') : '');
