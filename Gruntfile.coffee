@@ -311,6 +311,7 @@ module.exports = (grunt) ->
 				src: [
 					"src/**/*.js",
 					"!src/**/*min.js",
+					"theme/**/*.js",
 					"!src/polyfills/**/*.js",
 					"test/**/*.js", "tasks/*.*"
 				]

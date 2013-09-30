@@ -1,68 +1,84 @@
-/*!
-*
-* Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-* wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
-*
-* Version: @wet-boew-build.version@
-*
-*/
-(function ($, vapour) {
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+(function ( $, vapour ) {
+	"use strict";
+
 	var theme = {
 		previousBreakPoint: -1,
-		
-		onResize: function(){
-			var breakpoint = parseInt($('html').css('margin-bottom'), 10);
-			if (breakpoint !== theme.previousBreakPoint) {
-				switch (breakpoint){
-					case 4:
-						vapour.doc.trigger('xlargeview');
-						break;
-					case 3:
-						vapour.doc.trigger('largeview');
-						break;
-					case 2:
-						vapour.doc.trigger('mediumview');
-						break;
-					case 1:
-						vapour.doc.trigger('smallview');
-						break;
-					case 0:
-						vapour.doc.trigger('xsmallview');
-						break;
+
+		// Theme onResize handler
+		onResize: function() {
+			var $document = vapour.doc,
+				breakpoint = parseInt( $( "html" ).css( "margin-bottom" ), 10 );
+
+			if ( breakpoint !== theme.previousBreakPoint ) {
+				switch ( breakpoint ) {
+				case 4:
+					$document.trigger( "xlargeview" );
+					break;
+				case 3:
+					$document.trigger( "largeview" );
+					break;
+				case 2:
+					$document.trigger( "mediumview" );
+					break;
+				case 1:
+					$document.trigger( "smallview" );
+					break;
+				case 0:
+					$document.trigger( "xsmallview" );
+					break;
 				}
 			}
 			theme.previousBreakPoint = breakpoint;
 		},
-		
-		onLargeView: function(){
+
+		onLargeView: function() {
 			return;
 		},
 		
-		onMediumSmallView: function(){
+		onMediumSmallView: function() {
 			return;
 		},
 		
-		onMediumView: function(){
+		onMediumView: function() {
 			return;
 		},
 		
-		onSmallView: function(){
+		onSmallView: function() {
+			return;
+		},
+
+		onXSmallView: function() {
 			return;
 		}
 	};
 
-	vapour.doc.on('xlargeview largeview mediumview smallview xsmallview', function(event) {
-		if (event.type === 'xlargeview' || event.type === 'largeview') {
+	vapour.doc.on( "xlargeview largeview mediumview smallview xsmallview", function( event ) {
+		var eventType = event.type;
+
+		switch ( eventType ) {
+		case "xlargeview":
+		case "largeview":
 			theme.onLargeView();
-		}else if (event.type === 'mediumview') {
+			break;
+		case "mediumview":
 			theme.onMediumSmallView();
 			theme.onMediumView();
-		}else if (event.type === 'xsmallview' || event.type === 'smallview') {
+			break;
+		case "smallview":
+		case "xsmallview":
 			theme.onMediumSmallView();
 			theme.onSmallView();
+			break;
 		}
 	});
-	
-	vapour.win.on('resize', theme.onResize);
+
+	// Register the onResize callback with the Vapour resize handler
+	vapour.resize( theme.onResize );
+
+	// Trigger the initial onResize
 	theme.onResize();
-}(jQuery, vapour));
+}( jQuery, vapour ));
