@@ -1,51 +1,52 @@
 /*
- * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- */
+* Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+* wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+*/
 /*
  * WET-BOEW Form validation
  */
-(function ( $, window, document, vapour, undefined ) {
-    "use strict";
+(function ( $, window, document, vapour ) {
+	"use strict";
 
-    var selector = ".wb-formvalid",
-        $document = vapour.doc,
+	var selector = ".wb-formvalid",
+		$document = vapour.doc,
 		i18n,
 		i18nText,
-        plugin = {
-            init: function ( $elm ) {
-                // all plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-                window._timer.remove( selector );
+		plugin = {
+			init: function ( $elm ) {
+				// all plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+				window._timer.remove( selector );
 
-                // read the selector node for parameters
-                var mode = vapour.getMode();
+				// read the selector node for parameters
+				var modeJS = vapour.getMode() + ".js";
 					//lang = document.documentElement.lang.replace( "-", "_" );
 
-                // Only initialize the i18nText once
-                if ( i18nText === undefined ) {
+				// Only initialize the i18nText once
+				if ( !i18nText ) {
 					i18n = window.i18n;
-                    i18nText = {
+					i18nText = {
 						colon: i18n( "%colon" ),
 						hyphen: i18n( "%hyphen" ),
 						error: i18n( "%error" ),
 						errorFound: i18n( "%error-found" ),
 						errorsFound: i18n( "%errors-found" ),
 						formNotSubmitted: i18n( "%form-not-submitted" )
-                    };
-                }
+					};
+				}
 
-                window.Modernizr.load( {
-                    // For loading multiple dependencies
-                    both: [
-                        "site!deps/jquery.validate" + mode + ".js",
-						"site!deps/additional-methods" + mode + ".js"
+				window.Modernizr.load( {
+					// For loading multiple dependencies
+					both: [
+						"site!deps/jquery.validate" + modeJS,
+						"site!deps/additional-methods" + modeJS
 						// TODO: Need more elegant way to do these loads. Shouldn't load at all if English or if language file doesn't exist because complete never happens.
-						//"site!deps/messages_" + lang + mode + ".js",
-						//"site!deps/methods_" + lang + mode + ".js"
-                    ],
-                    complete: function() {
-                        var form = $elm.find( "form" ),
+						//"site!deps/messages_" + lang + modeJS,
+						//"site!deps/methods_" + lang + modeJS
+					],
+					complete: function() {
+						var form = $elm.find( "form" ),
 							formDOM = form.get( 0 ),
+							formId = form.attr( "id" ),
 							labels = formDOM.getElementsByTagName( "label" ),
 							labels_len = labels.length,
 							formElms = form.find( "input, select, textarea" ),
@@ -56,7 +57,7 @@
 							string,
 							submitted = false,
 							required = form.find( "[required]" ).attr( "aria-required", "true" ),
-							$errorFormId = "errors-" + ( form.attr( "id" ) === undefined ? "default" : form.attr( "id" ) ),
+							$errorFormId = "errors-" + ( !formId ? "default" : formId ),
 							validator,
 							ariaLive = $( "<div class=\"arialive wb-invisible\" aria-live=\"polite\" aria-relevant=\"all\"></div>" );
 
@@ -76,10 +77,10 @@
 						}
 
 						// Clear the form and remove error messages on reset
-						$inputs.filter( "[type=reset]" ).on( "click vclick touchstart", function( event ) {
+						$document.on( "click vclick touchstart", "input[type=reset]", function( event ) {
 							var summaryContainer,
 								button = event.button;
-							if ( button === undefined || button === 1 ) { // Ignore middle/right mouse buttons
+							if ( !button || button === 1 ) { // Ignore middle/right mouse buttons
 								validator.resetForm();
 								summaryContainer = form.find( "#" + $errorFormId );
 								if ( summaryContainer.length > 0 ) {
@@ -125,7 +126,7 @@
 									legend;
 
 								error.data( "element-id", element.attr( "id" ) );
-								if ( type !== undefined ) {
+								if ( type ) {
 									type = type.toLowerCase();
 									if ( type === "radio" || type === "checkbox" ) {
 										fieldset = element.closest( "fieldset" );
@@ -217,14 +218,14 @@
 
 									// Move the focus to the associated input when an error message link is clicked
 									// and scroll to the top of the label or legend that contains the error
-									form.find( ".errorContainer a" ).on( "click vclick", function( event ) {
+									$document.on( "click vclick", ".wb-formvalid .errorContainer a", function( event ) {
 										var hash = this.href.substring( this.href.indexOf( "#" ) ),
 											input = $( hash ),
 											label = input.prev(),
 											legend = label.length === 0 ? input.closest( "fieldset" ).find( "legend" ) : [],
 											errorTop = label.length !== 0 ? label.offset().top : ( legend.length !== 0 ? legend.offset().top : -1 ),
 											button = event.which;
-										if ( button === undefined || button === 1 ) { // Ignore middle/right mouse buttons
+										if ( !button || button === 1 ) { // Ignore middle/right mouse buttons
 											// TODO: Replace with use of global focus function
 											setTimeout( function () {
 												input.focus();
@@ -249,24 +250,24 @@
 								submitted = true;
 							}
 						} ); //end of validate()
-                    }
-                } );
-            }
+					}
+				} );
+			}
 		};
 
-    // Bind the init event of the plugin
-    $document.on( "timerpoke.wb", selector, function (event) {
-        // "this" is cached for all events to utilize
-        var eventType = event.type,
-            $elm = $(this);
+	// Bind the init event of the plugin
+	$document.on( "timerpoke.wb", selector, function ( event ) {
+		// "this" is cached for all events to utilize
+		var eventType = event.type,
+			$elm = $( this );
 
-        switch (eventType) {
-        case "timerpoke":
+		switch ( eventType ) {
+		case "timerpoke":
 			plugin.init.apply( this, [ $elm ] );
-        }
-        return true; // since we are working with events we want to ensure that we are being passive about out control, so return true allows for events to always continue
-    });
+		}
+		return true; // since we are working with events we want to ensure that we are being passive about out control, so return true allows for events to always continue
+	});
 
-    // Add the timer poke to initialize the plugin
-    window._timer.add( selector );
+	// Add the timer poke to initialize the plugin
+	window._timer.add( selector );
 })( jQuery, window, document, vapour );
