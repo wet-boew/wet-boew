@@ -68,7 +68,7 @@ vapour.doc.on( "timerpoke.wb picturefill.wb-data-picture", plugin.selector, func
 	}
 });
 
-vapour.win.on( "resize", plugin.resize );
+vapour.doc.on( "text-resize.wb window-resize-width.wb window-resize-height.wb", plugin.resize );
 
 // Add the timer poke to initialize the plugin
 window._timer.add( plugin.selector );
