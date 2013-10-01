@@ -12,25 +12,20 @@
 var plugin = {
 	selector: "[data-picture]",
 
-
 	//Initialize the [data-picture] elements
-	init: function ( ) {
+	init: function() {
 		window._timer.remove( plugin.selector );
-		$( this )
-			.trigger( "picturefill.wb-data-picture" );
+		$( this ).trigger( "picturefill.wb-data-picture" );
 	},
-
 
 	//Handles window resize so images can be updated as new media queries match
-	resize: function () {
-		$( plugin.selector )
-			.trigger( "picturefill.wb-data-picture" );
+	resize: function() {
+		$( plugin.selector ).trigger( "picturefill.wb-data-picture" );
 	},
-
 
 	 //Updates the image displayed according to media queries.  This is the logic
 	 //ported from Picturefill.
-	picturefill: function () {
+	picturefill: function() {
 		var i, len, matchedElm, media,
 			matches = [ ],
 			img = this.getElementsByTagName( "img" )[ 0 ],
@@ -54,26 +49,24 @@ var plugin = {
 			img.src = matchedElm.getAttribute( "data-src" );
 			matchedElm.appendChild( img );
 
-			// No match and an image exists: delete it
-		}
-		else if ( img !== undefined ) {
+		// No match and an image exists: delete it
+		} else if ( img !== undefined ) {
 			img.parentNode.removeChild( img );
 		}
 	}
 };
 
 // Bind the plugin's events
-vapour.doc.on( "timerpoke.wb picturefill.wb-data-picture", plugin.selector,
-	function ( event ) {
-		switch ( event.type ) {
-		case "timerpoke":
-			plugin.init.apply( this, arguments );
-			break;
-		case "picturefill":
-			plugin.picturefill.apply( this, arguments );
-			break;
-		}
-	} );
+vapour.doc.on( "timerpoke.wb picturefill.wb-data-picture", plugin.selector, function( event ) {
+	switch ( event.type ) {
+	case "timerpoke":
+		plugin.init.apply( this, arguments );
+		break;
+	case "picturefill":
+		plugin.picturefill.apply( this, arguments );
+		break;
+	}
+});
 
 vapour.win.on( "resize", plugin.resize );
 
