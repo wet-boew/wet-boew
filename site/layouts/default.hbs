@@ -28,7 +28,7 @@
 		<script src="{{assets}}/js/vapour{{environment.suffix}}.js"></script>
 
 	</head>
-	<body>{{#if test}}{{>test}}{{/if}}
+	<body vocab="http://schema.org/" typeof="WebPage">{{#if test}}{{>test}}{{/if}}
 		<div id="wb-skip">
 			<ul id="wb-tphp">
 				<li id="wb-skip1">
@@ -54,24 +54,24 @@
 				</section>
 			</div>
 
-			<nav role="navigation" id="wb-sm">
+			<nav role="navigation" id="wb-sm" typeof="SiteNavigationElement">
 				<h2>{{#i18n "%tmpl-site-menu"}}{{/i18n}}</h2>
 				{{>sitemenu}}
 			</nav>
 
-			<nav role="navigation" id="wb-bc">
+			<nav role="navigation" id="wb-bc" property="breadcrumb">
 				<h2>{{#i18n "%tmpl-bcrumb"}}{{/i18n}}</h2>
 				{{>breadcrumbs}}
 			</nav>
 		</header>
 
-		<main role="main">
-			<h1 id="wb-cont">{{title}}</h1>
+		<main role="main" property="mainContentOfPage">
+			<h1 id="wb-cont" property="name">{{title}}</h1>
 			{{>body}}
 		</main>
 
 		<!-- Secondary Menu [optional] -->
-		<nav role="navigation" id="wb-sec">
+		<nav role="navigation" id="wb-sec" typeof="SiteNavigationElement">
 			<h2>{{#i18n "%tmpl-sec-menu"}}{{/i18n}}</h2>
 			{{>supporting}}
 		</nav>
