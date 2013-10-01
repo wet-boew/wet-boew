@@ -24,7 +24,7 @@
 					contact2 = document.getElementById( "contact2" ),
 					$info = $elm.find( "#info" ),
 					referrerUrl = document.referrer,
-					urlParams = vapour.getUrlParts(window.location.href).params,
+					urlParams = vapour.pageURLParts.params,
 					loadEventName = "load.wb-feedback",
 					$loadFeedback = $.Event( loadEventName, { target: $feedback[0] } ),
 					$loadAccess = $.Event( loadEventName, { target: access } ),
@@ -107,6 +107,7 @@
 		// "this" is cached for all events to utilize
 		var eventType = event.type,
 			$elm = $( this );
+
 		switch ( eventType ) {
 		case "timerpoke":
 			plugin.init.apply( this, [ $elm ] );

@@ -197,9 +197,9 @@ var ind = {
 	"%geo-attributiontitle": "@%geo-attributiontitle@",
 	"%geo-select": "@%geo-select@",
 	"%geo-labelselect": "@%geo-labelselect@",
-	/* Disable/enable PE */
-	"%pe-disable": "@%pe-disable@",
-	"%pe-enable": "@%pe-enable@"
+	/* Disable/enable WET plugins and polyfills */
+	"%wb-disable": "@%wb-disable@",
+	"%wb-enable": "@%wb-enable@"
 },
 	i18n = function(key, state, mixin) {
 
