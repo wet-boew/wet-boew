@@ -34,7 +34,7 @@ var plugin = {
 		// Loop over the data-media elements and find matching media queries
 		for ( i = 0, len = sources.length; i < len; i++ ) {
 			media = sources[ i ].getAttribute( "data-media" );
-			if ( media === undefined || window.Modernizr.mq( media ) ) {
+			if ( media === null || window.Modernizr.mq( media ) ) {
 				matches.push( sources[ i ] );
 			}
 		}
