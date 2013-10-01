@@ -106,7 +106,7 @@
 	$document.on( "timerpoke.wb", selector, function ( event ) {
 		// "this" is cached for all events to utilize
 		var eventType = event.type,
-			$elm = $(this);
+			$elm = $( this );
 		switch ( eventType ) {
 		case "timerpoke":
 			plugin.init.apply( this, [ $elm ] );
