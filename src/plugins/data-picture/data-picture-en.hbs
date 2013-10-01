@@ -8,7 +8,7 @@ language: en
 	
 	<h3>Browser Width</h3>
 	<p>This example uses <a href="http://www.w3.org/TR/css3-mediaqueries/#width">min-width</a> to determine which image should be displayed.  Resize the browser window to see the different images load.</p>
-	<span data-picture="data-picture" data-alt="Parliament Hill" class="wet-boew-responsiveimg">
+	<span data-picture data-alt="Parliament Hill">
 		<!-- Default image: <div [data-src]> with no data-media attribute is displayed when:
 		     1. None of the other <div [data-src]> media queries match.
 		     2. The browser doesn't support media queries  -->
@@ -27,7 +27,7 @@ language: en
 	<details class="wet-boew-prettify all-pre linenums">
 		<summary>View code</summary>
 		<pre>
-&lt;span  data-picture="data-picture" data-alt="Parliament Hill" class="wet-boew-responsiveimg"&gt;
+&lt;span  data-picture data-alt="Parliament Hill"&gt;
    &lt;!-- Default image: &lt;div [data-src]&gt; with no data-media attribute is displayed when:
            1. None of the other &lt;div [data-src]&gt; media queries match.
            2. The browser doesn't support media queries  --&gt;
@@ -46,7 +46,7 @@ language: en
 
 	<h3>High Pixel Density</h3>
 	<p>This example uses <a href="http://www.w3.org/blog/CSS/2012/06/14/unprefix-webkit-device-pixel-ratio/" title="Read about high resolution media queries">two media queries</a> to serve high resolution images to devices that will benefit from them (i.e. Retina displays).</p>
-	<span data-picture="data-picture" data-alt="False Kiva in the Canyonlands">
+	<span data-picture data-alt="False Kiva in the Canyonlands">
 		<!-- Images for different device resolutions -->
 	    <span data-src="img/cave-low-res.jpg"></span>
 	    <span data-src="img/cave-high-res.jpg" data-media="(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)"></span>
@@ -59,7 +59,7 @@ language: en
 	<details>
 		<summary>View code</summary>
 		<pre>
-&lt;span  data-picture="data-picture" data-alt="False Kiva in the Canyonlands"&gt;
+&lt;span  data-picture data-alt="False Kiva in the Canyonlands"&gt;
    &lt;!-- Images for different device resolutions --&gt;
    &lt;span data-src="img/cave-low-res.jpg"&gt;&lt;/span&gt;
    &lt;span data-src="img/cave-high-res.jpg" data-media="(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)"&gt;&lt;/span&gt;
