@@ -1,0 +1,17 @@
+[{
+    "browserName": "firefox",
+    "version": "22",
+    "platform": "XP"
+},{
+    "browserName": "firefox",
+    "version": "21",
+    "platform": "XP"
+},{
+    "browserName": "chrome",
+    "version": "29",
+    "platform": "XP"
+},{
+    "browserName": "chrome",
+    "version": "28",
+    "platform": "Mac 10.6"
+}]
