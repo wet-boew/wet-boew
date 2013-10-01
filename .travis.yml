@@ -4,13 +4,15 @@ node_js:
 
 env:
   global:
-    - secure: "gyVQRfoes8yaLoVsR1wIooyC99Qm0LjUHiii5ibtMJxEQC7T3kR6IJJAXhW9lbS1Lh6aBjUIXxx60Ix5tp/5AmcWq0X1PXxg+BR4Xy+6MnraFx8T+wzFd+vKdzfZbKgKWAu8lDd44Up4asnNx7LXuhZy0lFmG9BiyjfLgRJ9oCE="
+    - secure: "gyVQRfoes8yaLoVsR1wIooyC99Qm0LjUHiii5ibtMJxEQC7T3kR6IJJAXhW9lbS1Lh6aBjUIXxx60Ix5tp/5AmcWq0X1PXxg+BR4Xy+6MnraFx8T+wzFd+vKdzfZbKgKWAu8lDd44Up4asnNx7LXuhZy0lFmG9BiyjfLgRJ9oCE=" #Github Token
+    - secure: "Msb6q00yX6COM1yutdN2+leMsafy61o06WHgJVhbN5d0C86f+XzSyngURZqaJTSb+ZysCgeotXN7Dynlhr3Ay8aMYIvYM8pU9NTt0Lx+ZGvB4GL3cpbWlXNj0PWZEKRsXVjbJFdZThoqfd7z0VuRP1A9xbj+gQrztA7NiRZ6Q50=" #Sauce User
+    - secure: "14iu5t7qzaF4KYE9XRND7WrkdEYqESr8+dxWtSNfv37F5Ef28yI0HWw9NeLr66PvCE/oSti5fF4JPqBmBAGMeLbCIpT9uROTYEM3Vd6KcEo8Vp3KW10sRKhjVquKb4u8km/qsoj4qudGaQ4MMxSo6sVo5SyHC4OsyBqxED83EWs=" #Sauce Access Key
 
 before_install:
   - ./run-first
 
 script:
-  - npm test && ./travis.sh
+  - npm test && grunt saucelabs && ./travis.sh
 
 notifications:
   irc:
