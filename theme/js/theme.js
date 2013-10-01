@@ -56,7 +56,7 @@
 		}
 	};
 
-	vapour.doc.on( "xlargeview largeview mediumview smallview xsmallview", function( event ) {
+	vapour.doc.on( "xlargeview largeview mediumview smallview xsmallview text-resize.wb window-resize-width.wb window-resize-height.wb", function( event ) {
 		var eventType = event.type;
 
 		switch ( eventType ) {
@@ -73,11 +73,14 @@
 			theme.onMediumSmallView();
 			theme.onSmallView();
 			break;
+		// Listen for the WET resize handler events
+		case "text-resize":
+		case "window-resize-width":
+		case "window-resize-height":
+			theme.onResize();
+			break;
 		}
 	});
-
-	// Register the onResize callback with the Vapour resize handler
-	vapour.resize( theme.onResize );
 
 	// Trigger the initial onResize
 	theme.onResize();
