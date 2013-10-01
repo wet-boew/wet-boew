@@ -1,7 +1,7 @@
 /*
-* Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-* wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
-*/
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
 /*
  * WET-BOEW Form validation
  */
@@ -95,7 +95,7 @@
 
 						// Change form attributes and values that interfere with validation in IE7/8
 						// TODO: Need better way of dealing with this rather than browser sniffing
-						if ( ( ( /(MSIE) ([\w.]+)/.exec(navigator.userAgent ) || [] )[ 2 ] || "0" ) < 9 ) {
+						if ( vapour.ieVersion < 9 ) {
 							len = required.length;
 							required.removeAttr( "required" );
 							for ( i = 0; i !== len; i += 1) {

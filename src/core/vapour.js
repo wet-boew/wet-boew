@@ -23,9 +23,11 @@ Vapour Object that will store tombstone data for plugins to leverage
 		"/assets": "" + $homepath + "/assets",
 		"/templates": "" + $homepath + "/assets/templates",
 		"/deps": "" + $homepath + "/deps",
-		"mode": $mode,
-		"doc": $( document ),
-		"win": $( window ),
+		mode: $mode,
+		doc: $( document ),
+		win: $( window ),
+		html: $( "html" ),
+		pageURLParts: null,
 
 		getPath: function( property ) {
 			var resource;
@@ -66,6 +68,58 @@ Vapour Object that will store tombstone data for plugins to leverage
 					return results;
 				}())
 			};
+		},
+		
+		// Escapes the characters in a string for use in a jQuery selector
+		// Based on http://totaldev.com/content/escaping-characters-get-valid-jquery-id
+		jqEscape: function( string ) {
+			return string.replace( /([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, "\\$1" );
+		},
+		
+		// TODO: Come up with a more elegant way of identify specific IE versions so can automatically disable plugins and polyfills for them (e.g., IE6)
+		ieVersion: ( ( /(MSIE) ([\w.]+)/.exec( navigator.userAgent ) || [] )[ 2 ] || "0" ),
+
+		// A generic function for enabling/disabling WET plugins and polyfills
+		wbDisable: function() {
+			var pageQueryParams = vapour.pageURLParts.params,
+				pageQueryParam,
+				newQuery = "?",
+				wbDisableLocalStorage = ( localStorage ? localStorage.getItem( "wbdisable" ) : null ),
+				wbDisableQuery = pageQueryParams.wbdisable,
+				wbDisable = ( wbDisableQuery ? wbDisableQuery : wbDisableLocalStorage ),
+				wbTphp = document.getElementById( "wb-tphp" ),
+				li = document.createElement( "li" ),
+				$html = this.html,
+				i18n = window.i18n;
+
+			if ( wbTphp ) {
+				for ( pageQueryParam in pageQueryParams ) { // Rebuild the query string
+					if ( pageQueryParams.hasOwnProperty( pageQueryParam ) && pageQueryParam !== "wbdisable" ) {
+						newQuery += pageQueryParam + "=" + pageQueryParams[ pageQueryParam ] + "&#38;";
+					}
+				}
+
+				// TODO: Find better way than browser sniffing to single out IE6
+				if ( wbDisable === "true" || ( vapour.ieVersion < 7 && wbDisable !== "false" ) ) {
+					$html.addClass( "no-js wb-disable" );
+					if ( localStorage ) {
+						// Store preference for WET plugins and polyfills to be disabled in localStorage
+						localStorage.setItem( "wbdisable", "true");
+					}
+
+					// Append the Standard version link
+					li.innerHTML = "<a href='" + newQuery + "wbdisable=false'>" + i18n( "%wb-enable" ) + "</a>";
+					wbTphp.appendChild( li ); // Add link to re-enable WET plugins and polyfills	
+					return true;
+				} else if ( localStorage ) {
+					localStorage.setItem( "wbdisable", "false" ); // Store preference for WET plugins and polyfills to be enabled in localStorage
+				}
+				
+				// Append the Basic HTML version link version
+				li.innerHTML = "<a href='" + newQuery + "wbdisable=true'>" + i18n( "%wb-disable" ) + "</a>";
+				wbTphp.appendChild( li ); // Add link to disable WET plugins and polyfills
+			}
+			return false;
 		}
 	};
 
@@ -142,54 +196,62 @@ Modernizr Load call
 		}
 	};
 
-	/* ------- Modernizr Load call -----------*/
-
+	/* ------- Modernizr load calls -----------*/
 	Modernizr.load( [{
 
-		test: Modernizr.canvas,
-		nope: "site!polyfills/excanvas" + modeJS
-	}, {
-
-		test: Modernizr.details,
-		nope: "site!polyfills/detailssummary" + modeJS
-	}, {
-
-		test: Modernizr.input.list,
-		nope: "site!polyfills/datalist" + modeJS
-	}, {
-
-		test: Modernizr.inputtypes.range,
-		nope: "site!polyfills/slider" + modeJS
-	}, {
-
-		test: Modernizr.sessionstorage,
-		nope: "site!polyfills/sessionstorage" + modeJS
-	}, {
-
-		test: Modernizr.progress,
-		nope: "site!polyfills/progress" + modeJS
-	}, {
-
-		test: Modernizr.meter,
-		nope: "site!/polyfills/meter" + modeJS
-	}, {
-
 		test: Modernizr.localstorage,
-		nope: "site!polyfills/sessionstorage" + modeJS
+		nope: "site!polyfills/localstorage" + modeJS
 	}, {
 
-		test: Modernizr.touch,
-		yep: "site!polyfills/mobile" + modeJS
-	}, {
-
-		test: navigator.userAgent.indexOf( "Win" ) !== -1 && navigator.userAgent.match(
-			/^((?!mobi|tablet).)*$/i ) !== null,
-		yep: "site!polyfills/jawsariafixes" + modeJS
-	}, {
-
+		// localStorage polyfill always loads in both Standard and Basic HTML versions so user preference can be stored 
 		load: "site!i18n/" + document.documentElement.lang + modeJS,
 		complete: function() {
-			window._timer.start();
+			// Process the page URL and cache the results in the vapour object
+			vapour.pageURLParts = vapour.getUrlParts( window.location.href );
+
+			// Only load plugins and polyfills if running in Standard version
+			if ( !vapour.wbDisable() ) {
+				Modernizr.load( [{
+
+					test: Modernizr.canvas,
+					nope: "site!polyfills/excanvas" + modeJS
+				}, {
+
+					test: Modernizr.details,
+					nope: "site!polyfills/detailssummary" + modeJS
+				}, {
+
+					test: Modernizr.input.list,
+					nope: "site!polyfills/datalist" + modeJS
+				}, {
+
+					test: Modernizr.inputtypes.range,
+					nope: "site!polyfills/slider" + modeJS
+				}, {
+
+					test: Modernizr.sessionstorage,
+					nope: "site!polyfills/sessionstorage" + modeJS
+				}, {
+
+					test: Modernizr.progress,
+					nope: "site!polyfills/progress" + modeJS
+				}, {
+
+					test: Modernizr.meter,
+					nope: "site!/polyfills/meter" + modeJS
+				}, {
+
+					test: Modernizr.touch,
+					yep: "site!polyfills/mobile" + modeJS
+				}, {
+
+					test: navigator.userAgent.indexOf( "Win" ) !== -1 && navigator.userAgent.match(
+						/^((?!mobi|tablet).)*$/i ) !== null,
+					yep: "site!polyfills/jawsariafixes" + modeJS
+				}]);
+
+				window._timer.start();
+			}
 		}
 	}]);
 
