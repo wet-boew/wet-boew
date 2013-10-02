@@ -329,16 +329,19 @@ module.exports = (grunt) ->
 				csv: "src/i18n/i18n.csv"
 			src: "src/js/i18n/formvalid/*.js"
 
-		'saucelabs-mocha': 
-            all: 
-                options: 
-                    urls: ["http://127.0.0.1:8000/dist/demo/carousel/carousel-en.html"]
-                    tunnelTimeout: 5
-                    build: process.env.TRAVIS_BUILD_NUMBER
-                    concurrency: 3
-                    browsers: grunt.file.readJSON("browsers.json")
-                    testname: "WET-BOEW Travis Build #{process.env.TRAVIS_BUILD_NUMBER}"
-                    tags: [process.env.TRAVIS_BRANCH, process.env.TRAVIS_COMMIT]
+		"saucelabs-mocha": 
+			all: 
+				options: 
+					urls: ["http://127.0.0.1:8000/dist/demo/carousel/carousel-en.html"]
+					tunnelTimeout: 5
+					build: process.env.TRAVIS_BUILD_NUMBER
+					concurrency: 3
+					browsers: grunt.file.readJSON "browsers.json"
+					testname: "WET-BOEW Travis Build #{process.env.TRAVIS_BUILD_NUMBER}"
+					tags: [
+						process.env.TRAVIS_BRANCH,
+						process.env.TRAVIS_COMMIT
+					]
  
 		"gh-pages":
 			options:
