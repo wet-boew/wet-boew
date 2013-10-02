@@ -69,13 +69,13 @@ Vapour Object that will store tombstone data for plugins to leverage
 				}())
 			};
 		},
-		
+
 		// Escapes the characters in a string for use in a jQuery selector
 		// Based on http://totaldev.com/content/escaping-characters-get-valid-jquery-id
 		jqEscape: function( string ) {
 			return string.replace( /([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, "\\$1" );
 		},
-		
+
 		// TODO: Come up with a more elegant way of identify specific IE versions so can automatically disable plugins and polyfills for them (e.g., IE6)
 		ieVersion: ( ( /(MSIE) ([\w.]+)/.exec( navigator.userAgent ) || [] )[ 2 ] || "0" ),
 
@@ -100,7 +100,7 @@ Vapour Object that will store tombstone data for plugins to leverage
 				}
 
 				// TODO: Find better way than browser sniffing to single out IE6
-				if ( wbDisable === "true" || ( vapour.ieVersion < 7 && wbDisable !== "false" ) ) {
+				if ( wbDisable === "true" || ( vapour.ieVersion > 0 && vapour.ieVersion < 7 && wbDisable !== "false" ) ) {
 					$html.addClass( "no-js wb-disable" );
 					if ( localStorage ) {
 						// Store preference for WET plugins and polyfills to be disabled in localStorage
@@ -109,12 +109,12 @@ Vapour Object that will store tombstone data for plugins to leverage
 
 					// Append the Standard version link
 					li.innerHTML = "<a href='" + newQuery + "wbdisable=false'>" + i18n( "%wb-enable" ) + "</a>";
-					wbTphp.appendChild( li ); // Add link to re-enable WET plugins and polyfills	
+					wbTphp.appendChild( li ); // Add link to re-enable WET plugins and polyfills
 					return true;
 				} else if ( localStorage ) {
 					localStorage.setItem( "wbdisable", "false" ); // Store preference for WET plugins and polyfills to be enabled in localStorage
 				}
-				
+
 				// Append the Basic HTML version link version
 				li.innerHTML = "<a href='" + newQuery + "wbdisable=true'>" + i18n( "%wb-disable" ) + "</a>";
 				wbTphp.appendChild( li ); // Add link to disable WET plugins and polyfills
@@ -203,7 +203,7 @@ Modernizr Load call
 		nope: "site!polyfills/localstorage" + modeJS
 	}, {
 
-		// localStorage polyfill always loads in both Standard and Basic HTML versions so user preference can be stored 
+		// localStorage polyfill always loads in both Standard and Basic HTML versions so user preference can be stored
 		load: "site!i18n/" + document.documentElement.lang + modeJS,
 		complete: function() {
 			// Process the page URL and cache the results in the vapour object
