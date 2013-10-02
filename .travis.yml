@@ -12,7 +12,7 @@ before_install:
   - ./run-first
 
 script:
-  - npm test && grunt saucelabs && ./travis.sh
+  - npm test && ./travis.sh
 
 notifications:
   irc:
