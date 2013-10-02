@@ -95,7 +95,7 @@
 
 						// Change form attributes and values that interfere with validation in IE7/8
 						// TODO: Need better way of dealing with this rather than browser sniffing
-						if ( vapour.ieVersion < 9 ) {
+						if ( vapour.ieVersion > 0 && vapour.ieVersion < 9 ) {
 							len = required.length;
 							required.removeAttr( "required" );
 							for ( i = 0; i !== len; i += 1) {
