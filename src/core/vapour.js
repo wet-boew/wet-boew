@@ -149,14 +149,9 @@ Modernizr Load call
 	// Our Base timer for all event driven plugins
 	window._timer = {
 		_elms: [],
-		_cache: [],
 
 		add: function( _selector ) {
-			var _obj;
-			if ( this._cache.length < 1 ) {
-				this._cache = $( document.body );
-			}
-			_obj = this._cache.find( _selector );
+			var _obj = vapour.doc.find( _selector );
 			if ( _obj.length > 0 ) {
 				this._elms.push( _obj );
 			}
