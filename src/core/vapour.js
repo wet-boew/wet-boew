@@ -27,7 +27,7 @@ Vapour Object that will store tombstone data for plugins to leverage
 		doc: $( document ),
 		win: $( window ),
 		html: $( "html" ),
-		pageURLParts: null,
+		pageUrlParts: null,
 
 		getPath: function( property ) {
 			var resource;
@@ -81,7 +81,7 @@ Vapour Object that will store tombstone data for plugins to leverage
 
 		// A generic function for enabling/disabling WET plugins and polyfills
 		wbDisable: function() {
-			var pageQueryParams = vapour.pageURLParts.params,
+			var pageQueryParams = vapour.pageUrlParts.params,
 				pageQueryParam,
 				newQuery = "?",
 				wbDisableLocalStorage = ( localStorage ? localStorage.getItem( "wbdisable" ) : null ),
@@ -207,7 +207,7 @@ Modernizr Load call
 		load: "site!i18n/" + document.documentElement.lang + modeJS,
 		complete: function() {
 			// Process the page URL and cache the results in the vapour object
-			vapour.pageURLParts = vapour.getUrlParts( window.location.href );
+			vapour.pageUrlParts = vapour.getUrlParts( window.location.href );
 
 			// Only load plugins and polyfills if running in Standard version
 			if ( !vapour.wbDisable() ) {

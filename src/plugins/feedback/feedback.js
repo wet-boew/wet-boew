@@ -24,7 +24,7 @@
 					contact2 = document.getElementById( "contact2" ),
 					$info = $elm.find( "#info" ),
 					referrerUrl = document.referrer,
-					urlParams = vapour.pageURLParts.params,
+					urlParams = vapour.pageUrlParts.params,
 					loadEventName = "load.wb-feedback",
 					$loadFeedback = $.Event( loadEventName, { target: $feedback[0] } ),
 					$loadAccess = $.Event( loadEventName, { target: access } ),
