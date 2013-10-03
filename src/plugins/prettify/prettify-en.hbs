@@ -1,0 +1,164 @@
+---
+title: Prettify
+language: en
+---
+
+<p>Syntax highlighting of source code snippets in an html page using <a href="http://code.google.com/p/google-code-prettify/" rel="external">google-code-prettify</a>.</p>
+
+<section>
+	<h2>How to use</h2>
+	<ol>	
+		<li>Apply <code>class="prettyprint"</code> to a <code>pre</code> or <code>code</code> element to apply syntax highlighting. Alternatively use <code>class="all-pre"</code> to apply syntax highlighting to all <code>pre</code> elements on the page.</li>
+		<li>Apply <code>class="linenums"</code> to a <code>pre</code> or <code>code</code> element to add line numbers. Alternatively use <code>class="all-linenums"</code> to all applicable <code>pre</code> elements. Specify the starting number by adding <code>linenums:#</code> before <code>linenums</code>.</li>
+		<li>Add extra language support by applying <code>class="lang-*"</code> to each applicable <code>pre</code> or <code>code</code> element.  Supported language syntax CSS classes are as follows:
+			<ul>
+				<li>lang-apollo</li>
+				<li>lang-clj</li>
+				<li>lang-css</li>
+				<li>lang-dart</li>
+				<li>lang-go</li>
+				<li>lang-hs</li>
+				<li>lang-lisp</li>
+				<li>lang-lua</li>
+				<li>lang-ml</li>
+				<li>lang-n</li>
+				<li>lang-proto</li>
+				<li>lang-scala</li>
+				<li>lang-sql</li>
+				<li>lang-tex</li>
+				<li>lang-vb</li>
+				<li>lang-vhdl</li>
+				<li>lang-wiki</li>
+				<li>lang-xq</li>
+				<li>lang-yaml</li>			
+			</ul>
+		</li>
+	</ol>
+</section>
+
+<section>
+	<h2 id="examples" class="wet-boew-prettify all-pre">Examples</h2>
+	<section>
+		<h3>HTML</h3>
+		<pre class="prettyprint"><code>&lt;form action="#" method="post"&gt;
+	&lt;div&gt;
+		&lt;label for="data1"&gt;Form input default appearance:&lt;/label&gt;
+		&lt;input name="data1" type="text" id="data1" /&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;label for="data2"&gt;Form text area default appearance:&lt;/label&gt;
+		&lt;textarea name="data2" cols="15" rows="3" id="data2"&gt;&lt;/textarea&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;label for="data4"&gt;Form &lt;code&gt;select&lt;/code&gt; default appearance:&lt;/label&gt;
+		&lt;select id="data4" name="data4"&gt;
+			&lt;option value="Option 1"&gt;Option 1&lt;/option&gt;
+			&lt;option value="Option 2"&gt;Option 2&lt;/option&gt;
+			&lt;option value="Option 3"&gt;Option 3&lt;/option&gt;
+			&lt;option value="Option 4"&gt;Option 4&lt;/option&gt;
+		&lt;/select&gt;
+	&lt;/div&gt;
+	&lt;fieldset&gt;
+		&lt;legend&gt;Form &lt;code&gt;legend&lt;/code&gt;, &lt;code&gt;fieldset&lt;/code&gt; and &lt;code&gt;checkbox&lt;/code&gt; default appearance&lt;/legend&gt;
+		&lt;div&gt;
+			&lt;input name="checkbox" type="checkbox" id="data5" value="checkbox" /&gt;&#160;&lt;label for="data5"&gt;Option 1&lt;/label&gt;&#160;&#160;
+			&lt;input name="checkbox" type="checkbox" id="data6" value="checkbox" /&gt;&#160;&lt;label for="data6"&gt;Option 2&lt;/label&gt;&#160;&#160;
+			&lt;input name="checkbox" type="checkbox" id="data7" value="checkbox" /&gt;&#160;&lt;label for="data7"&gt;Option 3&lt;/label&gt;&#160;&#160;
+			&lt;input name="checkbox" type="checkbox" id="data8" value="checkbox" /&gt;&#160;&lt;label for="data8"&gt;Option 4&lt;/label&gt;
+		&lt;/div&gt;
+	&lt;/fieldset&gt;
+	&lt;div&gt;
+		&lt;input name="submit" type="submit" id="submit" value="Submit default appearance" /&gt;
+		&lt;input name="reset" type="reset" id="reset" value="Reset default appearance" /&gt;
+	&lt;/div&gt;
+&lt;/form&gt;</code></pre>
+	</section>
+	<section>
+		<h3>CSS (uses linenums)</h3>
+		<pre class="prettyprint lang-css linenums"><code>#gcwu-date-mod dt,#gcwu-date-mod dd{
+	float:left;
+}
+
+#gcwu-date-mod dd{
+	margin:0 0 0 10px;
+}
+
+#gcwu-content h2,#gcwu-priorities h3{
+	color:#333;
+	font-weight:400;
+}
+
+#gcwu-content h2,#gcwu-priorities h3{
+	border:none;
+	margin-bottom:5px;
+	font-size:1.6em;
+}
+
+div#gcwu-headlines ul li,div#gcwu-headlines ul{
+	list-style:none !important;
+	margin:0 !important;
+	padding:0 !important;
+}</code></pre>
+	</section>
+	<section>
+		<h3>JavaScript (uses linenums:16 and linenums)</h3>
+		<pre class="prettyprint linenums:16 linenums"><code>/**
+ * Initialize the plugin. This only runs once on the DOM.
+ */
+init: function() {
+	var cssClass, cssClasses, deps, i, j, lenClasses, lenPres, modeJS, pre, pres, settings;
+	window._timer.remove( plugin.selector );
+
+	// Only initialize this plugin once.  The prettify lib updates the DOM in one pass.
+	if ( plugin.executed === false ) {
+		plugin.executed = true;
+
+		pres = vapour.doc[0].getElementsByTagName( "pre" );
+		modeJS = vapour.getMode() + ".js";
+		settings = $.extend( {}, plugin.defaults );
+		deps = [ "site!deps/prettify" + modeJS ];
+
+		// Check the pre CSS classes to determine plugin settings
+		for ( i = 0, lenPres = pres.length; i < lenPres; i++ ) {
+			pre = pres[ i ];
+			cssClasses = typeof pre.className === "string" ? pre.className.split( " " ) : [];
+			for ( j = 0, lenClasses = cssClasses.length; j < lenClasses; j++ ) {
+				cssClass = cssClasses[ j ];
+
+				// Language syntax file
+				if ( cssClass.indexOf( "lang-" ) === 0 ) {
+					deps.push( "site!deps/" + cssClass + modeJS );
+
+				// Add line numbers to all pre elements
+				} else if ( cssClass.indexOf( "all-linenums" ) === 0 ) {
+					settings.allLineNums = true;
+
+				// Prettify all pre elements
+				} else if ( cssClass.indexOf( "all-pre" ) === 0 ) {
+					settings.allPre = true;
+				}
+			}
+		}
+
+		// Apply global plugin settings
+		if ( settings.allPre || settings.allLinenums ) {
+			pres = $( pres );
+			if ( settings.allPre ) {
+				pres.addClass( plugin.selector );
+			}
+			if ( settings.allLinenums ) {
+				pres.filter( plugin.selector ).addClass( "linenums" );
+			}
+		}
+
+		// Load the required dependencies and prettify the code once finished
+		window.Modernizr.load({
+			load: deps,
+			complete: function() {
+				vapour.doc.trigger( "prettyprint.wb-prettify" );
+			}
+		});
+	}
+}</code></pre>
+	</section>
+</section>
