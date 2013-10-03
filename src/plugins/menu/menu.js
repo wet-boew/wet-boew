@@ -5,6 +5,7 @@
     _notes  : A Menu plugin for WET
     _licence: wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
 */
+
 (function ( $, window, vapour ) {
 
 "use strict";
@@ -110,7 +111,7 @@ $document.on("ajax-replace-loaded.wb mouseleave focusout select.wb increment.wb 
         switch ( eventType ) {
         case "ajax-replace-loaded":
             event.stopPropagation();
-            menu.onAjaxLoaded.apply(this, $elm);
+            menu.onAjaxLoaded($elm);
             return false;
         case "mouseleave":
         case "focusout":
@@ -118,19 +119,19 @@ $document.on("ajax-replace-loaded.wb mouseleave focusout select.wb increment.wb 
             break;
         case "select":
             event.stopPropagation();
-            menu.onSelect.apply(this, event);
+            menu.onSelect(event);
             break;
         case "increment":
             event.stopPropagation();
-            menu.onIncrement.apply(this, [$elm, event]);
+            menu.onIncrement($elm, event);
             break;
         case "reset":
             event.stopPropagation();
-            menu.onReset.apply(this, $elm);
+            menu.onReset($elm);
             break;
         case "display":
             event.stopPropagation();
-            menu.onDisplay.apply(this, [$elm, event]);
+            menu.onDisplay($elm, event);
             break;
         }
 
@@ -142,7 +143,7 @@ Menu Keyboard bindings
 $document.on( "mouseover focusin", ".wb-menu .menu :focusable", function ( event ) {
 
     event.stopPropagation();
-    menu.onHoverFocus.apply(this, event);
+    menu.onHoverFocus(event);
 
 });
 //TODO: Convert rest of events to plugin template
