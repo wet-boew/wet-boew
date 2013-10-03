@@ -1,0 +1,204 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+
+/*SCSS Variables*/
+$spacing: .375em;
+$ddRtnWidth: 2.75em;
+$clrWhite: #FFF;
+$clrLight: #EEE;
+$clrMedium: #CCC;
+$clrDark: #555;
+
+/*Default SCSS*/
+%footnote-link-highlight {
+	color: $clrWhite !important;
+	background-color: $clrDark;
+	border-color: $clrDark;
+}
+%footnote-link-background-white {
+	background-color: $clrWhite;
+}
+%footnote-link-background-light-border-medium-padding-whitespace {
+	background-color: $clrLight;
+	border: 1px solid $clrMedium;
+	padding: 0 4px 1px;
+	white-space: nowrap;
+	&:hover, &:focus {
+		@extend %footnote-link-highlight;
+	}
+}
+sup {
+	a {
+		&.footnote-link {
+			@extend %footnote-link-background-light-border-medium-padding-whitespace;
+		}
+	}
+}
+.background-light {
+	sup {
+		a {
+			&.footnote-link {
+				@extend %footnote-link-background-white;
+				&:hover, &:focus {
+					@extend %footnote-link-highlight;
+				}
+			}
+		}
+	}
+}
+table {
+	th {
+		sup {
+			a {
+				&.footnote-link {
+					@extend %footnote-link-background-white;
+					text-shadow: none;
+				}
+			}
+		}
+	}
+}
+.wb-footnotes {
+	margin: 2em 10px 0 10px;
+	border-width: 1px 0 1px 0;
+	border-style: solid;
+	border-color: $clrMedium;
+	h2 {
+		margin-left: 0;
+		margin-right: 0;
+		margin-top: 0;
+	}
+	dl {
+		margin: 0;
+		dt {
+			position: absolute;
+			clip: rect(0, 0, 0, 0);
+			height: 1px;
+			width: 1px;
+			overflow: hidden;
+			margin: 0;
+		}
+		dd {
+			position: relative;
+			margin: $spacing 0;
+			border: 1px solid transparent;
+			&:focus {
+				background-color: $clrLight;
+				border-color: $clrDark;
+				p {
+					&.footnote-return {
+						a {
+							@extend %footnote-link-highlight;
+						}
+					}
+				}
+			}
+			p {
+				margin: 0 0 0 ($spacing + $ddRtnWidth);
+				padding: 0 $spacing $spacing $spacing;
+				&:first-child {
+					padding-top: $spacing;
+				}
+				&.footnote-return {
+					top: 0;
+					margin: 0;
+					padding-top: $spacing;
+					padding-right: 0;
+					position: absolute;
+					width: $ddRtnWidth;
+					overflow: hidden;
+					a {
+						@extend %footnote-link-background-light-border-medium-padding-whitespace;
+						display: inline-block;
+						padding-bottom: 0;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	.wb-footnotes {
+		dl {
+			dd {
+				p {
+					margin-left: 0;
+					margin-right: 3.125em;
+					padding-left: 0;
+					padding-right: 0.375em;
+					&.footnote-return {
+						margin-right: 0;
+						padding-right: 0;
+					}
+				}
+			}
+		}
+	}
+}
+
+/*Print SCSS*/
+@media print {
+	%footnote-link-background-transparent {
+		background-color: transparent;
+	}
+	%footnote-print-link-background-transparent-border-0-padding-0 {
+		background-color: transparent;
+		border: 0;
+		padding: 0;
+	}
+	sup {
+		a {
+			&.footnote-link {
+				@extend %footnote-print-link-background-transparent-border-0-padding-0;
+			}
+		}
+	}
+	.background-light {
+		sup {
+			a {
+				&.footnote-link {
+					@extend %footnote-link-background-transparent;
+				}
+			}
+		}
+	}
+	table {
+		th {
+			sup {
+				a {
+					&.footnote-link {
+						@extend %footnote-link-background-transparent;
+					}
+				}
+			}
+		}
+	}
+	.wb-footnotes {
+		border {
+			left: 0;
+			right: 0;
+		}
+		margin-left: 0;
+		margin-right: 0;
+		margin-bottom: 1em;
+		dl {
+			dd {
+				border: 0;
+				width: 100%;
+				display: inline-block;
+				p {
+					&.footnote-return {
+						overflow: visible;
+						a {
+							@extend %footnote-print-link-background-transparent-border-0-padding-0;
+						}
+					}
+				}
+			}
+		}
+	}
+}
