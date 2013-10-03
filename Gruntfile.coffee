@@ -301,7 +301,7 @@ module.exports = (grunt) ->
 
 			source:
 				files: "<%= jshint.lib_test.src %>"
-				tasks: ["build"]
+				tasks: ["dist"]
 				options:
 					interval: 5007
 					livereload: true
@@ -330,9 +330,9 @@ module.exports = (grunt) ->
 				csv: "src/i18n/i18n.csv"
 			src: "src/js/i18n/formvalid/*.js"
 
-		"saucelabs-mocha": 
-			all: 
-				options: 
+		"saucelabs-mocha":
+			all:
+				options:
 					urls: ["http://127.0.0.1:8000/dist/demo/carousel/carousel-en.html"]
 					tunnelTimeout: 5
 					build: process.env.TRAVIS_BUILD_NUMBER
@@ -343,7 +343,7 @@ module.exports = (grunt) ->
 						process.env.TRAVIS_BRANCH,
 						process.env.TRAVIS_COMMIT
 					]
- 
+
 		"gh-pages":
 			options:
 				repo: "https://" + process.env.GH_TOKEN + "@github.com/wet-boew/wet-boew-dist.git"
@@ -391,10 +391,10 @@ module.exports = (grunt) ->
 	@registerTask "debug", ["clean:dist", "copy", "js", "css", "html"]
 	@registerTask "test", ["dist"]
 	@registerTask "saucelabs", ["connect", "saucelabs-mocha"]
-	
+
 	@registerTask "html", ["assemble"]
 	@registerTask "server", ["connect", "watch:source"]
 	@registerTask "init", ["modernizr"]
-	@registerTask "deploy", ["html","clean:tests", "gh-pages"]
+	@registerTask "deploy", ["html", "clean:tests", "gh-pages"]
 
 	@
