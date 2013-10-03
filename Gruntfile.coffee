@@ -274,6 +274,7 @@ module.exports = (grunt) ->
 					"jquery.validation/additional-methods.js"
 					"jquery.validation/localization/*.js"
 					"magnific-popup/dist/jquery.magnific-popup.js"
+					"google-code-prettify/src/*.js"
 				]
 				dest: "dist/js/deps"
 				expand: true
