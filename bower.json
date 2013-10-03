@@ -32,7 +32,8 @@
     "jquery-ie": "jquery#1.10.2",
     "respond": "1.2.0",
     "selectivizr": "1.0.2",
-    "excanvas": "*"
+    "excanvas": "*",
+    "google-code-prettify": "1.0.0"
   },
   "resolutions": {
     "jquery": ">= 1.9.0"
