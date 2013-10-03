@@ -21,7 +21,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_REPO_SLUG" == "wet-boew/w
 	#Add the latest build result
 	echo -e "Uploading the build artifact for branch $TRAVIS_BRANCH\n"
 
-	build_branch="$TRAVIS_BRANCH-dist"
+	export build_branch="$TRAVIS_BRANCH-dist"
 
 	grunt deploy > /dev/null 2>&1  || error_exit "Error cloning the artifact repository";
 
