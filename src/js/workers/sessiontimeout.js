@@ -167,25 +167,25 @@
 			// start_liveTimeout();
 			setTimeout(start_liveTimeout, timeParse(opts.inactivity));
 
-            if (opts.refreshOnClick) {
-                _pe.document.on('click', function (e) {
+			if (opts.refreshOnClick) {
+				_pe.document.on('click', function (e) {
 
-                    // If there is a click on the page
-                    if (lastActivity >= 1 && (getCurrentTimeMs() - lastAjaxCall) > opts.ajaxLimiter) {
-                        if (typeof e.button === 'undefined' || e.button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
-                            // Set the time of the last ajax call
-                            lastAjaxCall = getCurrentTimeMs();
-                            // Reset the activity counter
-                            lastActivity = 0;
-                            start_liveTimeout();
-                        }
-                    } else {
-                        if (typeof e.button === 'undefined' || e.button === _pe.leftMouseButton) {
-                            lastActivity = getCurrentTimeMs();
-                        }
-                    } // END OF if (lastActivity >= 1 && ...
-                });
-            }
+					// If there is a click on the page
+					if (lastActivity >= 1 && (getCurrentTimeMs() - lastAjaxCall) > opts.ajaxLimiter) {
+						if (typeof e.button === 'undefined' || e.button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+							// Set the time of the last ajax call
+							lastAjaxCall = getCurrentTimeMs();
+							// Reset the activity counter
+							lastActivity = 0;
+							start_liveTimeout();
+						}
+					} else {
+						if (typeof e.button === 'undefined' || e.button === _pe.leftMouseButton) {
+							lastActivity = getCurrentTimeMs();
+						}
+					} // END OF if (lastActivity >= 1 && ...
+				});
+			}
 
 			return elm;
 		} // end of exec
