@@ -307,7 +307,7 @@ module.exports = (grunt) ->
 					livereload: true
 
 		jshint:
-			options: grunt.file.readJSON ".jshintrc"
+			jshintrc: ".jshintrc"
 
 			lib_test:
 				src: [
