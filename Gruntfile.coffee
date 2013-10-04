@@ -65,7 +65,7 @@ module.exports = (grunt) ->
 					layout: "default.hbs"
 					environment:
 						suffix: "<%= environment.suffix %>"
-					test: if grunt.cli.tasks.indexOf('test') then true else false
+						test: grunt.cli.tasks.indexOf('test') > -1
 				expand: true
 				cwd: "src/plugins"
 				src: ["**/*.hbs"]
