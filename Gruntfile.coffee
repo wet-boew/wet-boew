@@ -333,7 +333,9 @@ module.exports = (grunt) ->
 		"saucelabs-mocha":
 			all:
 				options:
-					urls: ["http://127.0.0.1:8000/dist/demo/carousel/carousel-en.html"]
+					urls: grunt.file.glob.sync("dist/demo/**/*.{html,html}").map((file) ->
+						"http://127.0.0.1:8000/" + file
+					)
 					tunnelTimeout: 5
 					build: process.env.TRAVIS_BUILD_NUMBER
 					concurrency: 3
