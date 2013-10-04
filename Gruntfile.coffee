@@ -307,7 +307,8 @@ module.exports = (grunt) ->
 					livereload: true
 
 		jshint:
-			jshintrc: ".jshintrc"
+			options:
+				jshintrc: ".jshintrc"
 
 			lib_test:
 				src: [
