@@ -23,8 +23,8 @@ var plugin = {
 		$( plugin.selector ).trigger( "picturefill.wb-data-picture" );
 	},
 
-	 //Updates the image displayed according to media queries.  This is the logic
-	 //ported from Picturefill.
+	//Updates the image displayed according to media queries.  This is the logic
+	//ported from Picturefill.
 	picturefill: function() {
 		var i, len, matchedElm, media,
 			matches = [ ],

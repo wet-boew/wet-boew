@@ -3,10 +3,10 @@
  * Plugin	: Responsive equal height
  * Author	: @thomasgohard
  * Notes	: Sets the same height for all elements in a container that are
- * 			  rendered on the same baseline (row).
- * 			  Adapted from http://codepen.io/micahgodbolt/pen/FgqLc.
+ *				rendered on the same baseline (row).
+ *				Adapted from http://codepen.io/micahgodbolt/pen/FgqLc.
  * Licence	: wet-boew.github.io/wet-boew/License-en.html /
- * 			  wet-boew.github.io/wet-boew/Licence-fr.html
+ *				wet-boew.github.io/wet-boew/Licence-fr.html
  */
 
 (function ( $, window, vapour ) {

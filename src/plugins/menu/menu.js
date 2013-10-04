@@ -165,7 +165,7 @@ $document.on( "keydown", ".wb-menu .menu", function ( event ) {
     case 40:
         if ( $elm.find( ".expandicon" ).length > 0 ) {
             event.preventDefault();
-            $anchor = $elm.attr( "href" ).slice( 1 ),
+            $anchor = $elm.attr( "href" ).slice( 1 );
             $goto = $items.filter( "[id='" + $anchor + "']" ).find( ":discoverable" ).first();
 
             $container.trigger( {
