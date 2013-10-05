@@ -46,25 +46,49 @@ licence	:	wet-boew.github.io/wet-boew/License-en.html /
 				window.Modernizr.load({
 					load: "site!deps/jquery.magnific-popup" + modeJS,
 					complete: function() {
+						var settings = {},
+							children;
+
 						// Set the dependency i18nText only once
 						if ( !extendedGlobal ) {
 							$.extend( true, $.magnificPopup.defaults, i18nText );
 							extendedGlobal = true;
 						}
 
-						if ( $elm.hasClass( "popup-gallery" ) ) {
-							$elm.magnificPopup( {
-								type: "image",
-								delegate: "a",
-								gallery: {
+						// TODO: Add support for long description, aria-describedby and alternate title
+						// TODO: How to support other options available in Magnific Popup
+						// TODO: Ensure there is alt text on the resultant image
+						// TODO: Fix AJAX support
+						// TODO: Add WAI-ARIA and proper keyboard handling
+						// TODO: Add swipe support
+						
+						// Is the element a single lightbox item or a group?
+						// TODO: Add support for multiple non-gallery items of possibly mixed content
+						if ( $elm[ 0 ].nodeName.toLowerCase() !== "a" ) {
+							settings.delegate = "a";
+							settings.type = "image";
+							
+							// Is the element a gallery?
+							// TODO: Add support for ajax, inline and iframe galleries (also try to figure out mixed content galleries)
+							if ( $elm.hasClass( "lb-gallery" ) || $elm.hasClass( "lb-hidden-gallery" ) ) {
+								settings.gallery = {
 									enabled: true,
-									navigateByImgClick: true
-								}
-							} );
+								};
+							}
+
+							$elm.magnificPopup( settings );
 						} else {
-							$elm.magnificPopup( {
-								type: "image"
-							} );
+							children = $elm.children();
+							if ( children.length !== 0 && children[ 0 ].nodeName.toLowerCase() === "img" ) {
+								settings.type = "image";
+							} else if ( $elm.attr( "href" ).slice( 0, 1 ) === "#" ) {
+								settings.type = "inline";
+							} else if ( $elm.hasClass( "lb-iframe" ) ) {
+								settings.type = "iframe";
+							} else {
+								settings.type = "ajax";
+							}
+							$elm.magnificPopup( settings );
 						}
 					}
 				});

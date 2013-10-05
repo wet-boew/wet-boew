@@ -3,26 +3,310 @@ title: Lightbox
 language: en
 ---
 
+<style>
+	.inline-list > ul {
+		margin-left: 0;
+	}
+	.inline-list > ul > li {
+		list-style-type: none;
+		display: inline-block;
+		margin: 0 5px 0 0;
+	}
+	.inline-list ul li.box {
+		margin-bottom: 0.4em;
+	}
+	.inline-list li img {
+		margin-bottom: 0;
+	}
+	.inline-list > ul > li > a {
+		text-decoration: none;
+	}
+	.box > a, .lb-hidden-gallery li:first-child.box > a {
+		display: block;
+		width: 148px;
+		height: 148px;
+		border: 1px solid #000;
+		text-align: center;
+		line-height: 148px;
+		background: #EEE;
+	}
+	.box > a:hover, .box > a:focus, .box > a:active {
+		text-decoration: underline;
+		background: #FFF;
+	}
+	.lb-hidden-gallery a {
+		display: none;
+	}
+	.lb-hidden-gallery li:first-child a {
+		display: inline;
+	}
+	#inline_content {
+		background: none repeat scroll 0 0 #FFFFFF;
+		margin: 40px auto;
+		max-width: 650px;
+		padding: 20px 30px;
+		position: relative;
+		text-align: left;
+	}
+</style>
+
 <section>
-	<h2>Lightbox Example</h2>
-
-	<a class="wb-lightbox image-popup-vertical-fit" href="http://farm9.staticflickr.com/8241/8589392310_7b6127e243_b.jpg" title="Caption. Can be aligned it to any side and contain any HTML.">
-		<img src="http://farm9.staticflickr.com/8241/8589392310_7b6127e243_s.jpg" height="75" width="75">
-	</a>
-	<a class="wb-lightbox image-popup-fit-width" href="http://farm9.staticflickr.com/8379/8588290361_ecf8c27021_b.jpg" title="This image fits only horizontally.">
-		<img src="http://farm9.staticflickr.com/8379/8588290361_ecf8c27021_s.jpg" height="75" width="75">
-	</a>
-	<a class="wb-lightbox image-popup-no-margins" href="http://farm4.staticflickr.com/3721/9207329484_ba28755ec4_o.jpg">
-		<img src="http://farm4.staticflickr.com/3721/9207329484_ba28755ec4_o.jpg" height="75" width="107">
-	</a>
-
-	<div class="wb-lightbox popup-gallery">
-		<a href="http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg" title="The Cleaner"><img src="http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_s.jpg" height="75" width="75"></a>
-		<a href="http://farm9.staticflickr.com/8382/8558295631_0f56c1284f_b.jpg" title="Winter Dance"><img src="http://farm9.staticflickr.com/8382/8558295631_0f56c1284f_s.jpg" height="75" width="75"></a>
-		<a href="http://farm9.staticflickr.com/8225/8558295635_b1c5ce2794_b.jpg" title="The Uninvited Guest"><img src="http://farm9.staticflickr.com/8225/8558295635_b1c5ce2794_s.jpg" height="75" width="75"></a>
-		<a href="http://farm9.staticflickr.com/8383/8563475581_df05e9906d_b.jpg" title="Oh no, not again!"><img src="http://farm9.staticflickr.com/8383/8563475581_df05e9906d_s.jpg" height="75" width="75"></a>
-		<a href="http://farm9.staticflickr.com/8235/8559402846_8b7f82e05d_b.jpg" title="Swan Lake"><img src="http://farm9.staticflickr.com/8235/8559402846_8b7f82e05d_s.jpg" height="75" width="75"></a>
-		<a href="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_b.jpg" title="The Shake"><img src="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg" height="75" width="75"></a>
-		<a href="http://farm9.staticflickr.com/8378/8559402848_9fcd90d20b_b.jpg" title="Who's that, mommy?"><img src="http://farm9.staticflickr.com/8378/8559402848_9fcd90d20b_s.jpg" height="75" width="75"></a>
-	</div>
+	<h2>Table of contents</h2>
+	<ul>
+		<li><a href="#features">Features</a></li>
+		<li><a href="#examples">Examples</a>
+			<ul>
+				<li><a href="#examples1">Single items</a></li>
+				<li><a href="#examples2">Item gallery</a></li>
+				<li><a href="#examples3">Hidden item gallery</a></li>
+				<li><a href="#examples4">Alternative image title</a></li>
+			</ul>
+		</li>
+	</ul>
 </section>
+
+<section>
+	<h2 id="features">Features</h2>
+	<ul>
+		<li>Displays images and other content using the <a href="http://dimsemenov.com/plugins/magnific-popup/" rel="external">Magnific Popup</a> plugin.</li>
+		<li>Easy navigation in image galleries using mouse, touchscreen or keyboard.</li>
+	</ul>
+</section>
+
+<div class="wb-prettify all-pre">
+	<section>
+		<h2 id="examples">Examples</h2>
+
+		<div id="inline_content" class="mfp-hide">
+			<ol>
+				<li>ordered list (<code>ol</code>) first level default appearance</li>
+				<li>ordered list (<code>ol</code>) first level default appearance
+					<ol>
+						<li>ordered list (<code>ol</code>) second level default appearance</li>
+						<li>ordered list (<code>ol</code>) second level default appearance
+							<ol>
+								<li>ordered list (<code>ol</code>) third level default appearance</li>
+								<li>ordered list (<code>ol</code>) third level default appearance</li>
+							</ol>
+						</li>
+					</ol>
+				</li>
+			</ol>
+			<p><a href="#">Link default appearance</a></p>
+		</div>
+		<details>
+			<summary>Long description of image 2</summary>
+			<p id="image2-desc">Example long description of image 2 (referenced by <code>aria-describedby</code>).</p>
+		</details>
+
+		<section>
+			<h3 id="examples1">Single items</h3>
+			<section>
+				<h4>Example</h4>
+				<div class="inline-list">
+					<ul>
+						<li>
+							<a class="wb-lightbox" href="img/1_b.jpg" title="Image 1">
+								<img src="img/1_s.jpg" alt="Image 1" />
+							</a>
+						</li>
+						<li>
+							<a class="wb-lightbox" href="img/2_b.jpg" title="Image 2">
+								<img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" />
+							</a>
+						</li>
+						<li class="box">
+							<a class="wb-lightbox" title="Example of AJAX content" href="ajax/ajax-en.html">AJAX content</a>
+						</li>
+						<li class="box">
+							<a class="wb-lightbox" title="Example of inline content" href="#inline_content">Inline content</a>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<section>
+				<h4>Coding</h4>
+				<pre><code>&lt;ul&gt;
+    &lt;li&gt;
+      &lt;a class="wb-lightbox" href="img/1_b.jpg" title="Image 1"&gt;
+        &lt;img src="img/1_s.jpg" alt="Image 1" /&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;a class="wb-lightbox" href="img/2_b.jpg" title="Image 2"&gt;
+        &lt;img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;a class="wb-lightbox" title="Example of AJAX content" href="ajax/ajax-en.html"&gt;AJAX content&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;a class="wb-lightbox" title="Example of inline content" href="#inline_content"&gt;Inline content&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;</code></pre>
+			</section>
+		</section>
+
+		<section>
+			<h3 id="examples2">Image gallery</h3>
+			<section>
+				<h4>Example</h4>
+				<div class="wb-lightbox lb-gallery inline-list">
+					<ul>
+						<li>
+							<a href="img/1_b.jpg" title="Image 1">
+								<img src="img/1_s.jpg" alt="Image 1" />
+							</a>
+						</li>
+						<li>
+							<a href="img/2_b.jpg" title="Image 2">
+								<img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" />
+							</a>
+						</li>
+						<li>
+							<a href="img/3_b.jpg" title="Image 3">
+								<img src="img/3_s.jpg" alt="Image 3" />
+							</a>
+						</li>
+						<li>
+							<a href="img/4_b.jpg" title="Image 4">
+								<img src="img/4_s.jpg" alt="Image 4" />
+							</a>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<section>
+				<h4>Coding</h4>
+				<pre><code>&lt;div class="wb-lightbox lb-gallery inline-list"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+	  &lt;a href="img/1_b.jpg" title="Image 1"&gt;
+		&lt;img src="img/1_s.jpg" alt="Image 1" /&gt;
+	  &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+	  &lt;a href="img/2_b.jpg" title="Image 2"&gt;
+		&lt;img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
+	  &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+	  &lt;a href="img/3_b.jpg" title="Image 3"&gt;
+		&lt;img src="img/3_s.jpg" alt="Image 3" /&gt;
+	  &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+	  &lt;a href="img/4_b.jpg" title="Image 4"&gt;
+		&lt;img src="img/4_s.jpg" alt="Image 4" /&gt;
+	  &lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;	
+&lt;/div&gt;</code></pre>
+			</section>
+		</section>
+
+		<section>
+			<h3 id="examples3">Hidden image gallery</h3>
+			<section>
+				<h4>Example</h4>
+				<div class="wb-lightbox lb-hidden-gallery inline-list">
+					<ul>
+						<li>
+							<a href="img/1_b.jpg" title="Image 1">
+								<img src="img/1_s.jpg" alt="Image 1" />
+							</a>
+						</li>
+						<li>
+							<a href="img/2_b.jpg" title="Image 2">
+								<img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" />
+							</a>
+						</li>
+						<li>
+							<a href="img/3_b.jpg" title="Image 3">
+								<img src="img/3_s.jpg" alt="Image 3" />
+							</a>
+						</li>
+						<li>
+							<a href="img/4_b.jpg" title="Image 4">
+								<img src="img/4_s.jpg" alt="Image 4" />
+							</a>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<section>
+				<h4>Coding</h4>
+				<pre><code>&lt;div class="wb-lightbox lb-hidden-gallery inline-list"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;a href="img/1_b.jpg" title="Image 1"&gt;
+        &lt;img src="img/1_s.jpg" alt="Image 1" /&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;a href="img/2_b.jpg" title="Image 1"&gt;
+        &lt;img src="img/2_s.jpg" alt="Image 1" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+	  &lt;a href="img/3_b.jpg" title="Image 3"&gt;
+		&lt;img src="img/3_s.jpg" alt="Image 3" /&gt;
+	  &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+	  &lt;a href="img/4_b.jpg" title="Image 4"&gt;
+		&lt;img src="img/4_s.jpg" alt="Image 4" /&gt;
+	  &lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;	
+&lt;/div&gt;</code></pre>
+			</section>
+		</section>
+
+		<section>
+			<h3 id="examples4">Alternative image title (v3.1)</h3>
+			<section>
+				<h4>Example</h4>
+				<div class="wb-lightbox lb-gallery inline-list">
+					<ul>
+						<li>
+							<a href="img/1_b.jpg" title="Image 1" data-title="image_1_b">
+								<img src="img/1_s.jpg" alt="Image 1" />
+							</a>
+						</li>
+						<li>
+							<a href="img/2_b.jpg" title="Image 2" data-title="image_2_b">
+								<img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" />
+							</a>
+						</li>
+					</ul>
+				</div>
+				
+				<p id="image_1_b"><strong>Image 1:</strong> Lorem ipsum consectetur <em>adipiscing elit</em>.</p>
+				<p id="image_2_b"><strong>Image 2:</strong> Nulla mollis dolor leo. Quisque laoreet tincidunt mollis. Duis posuere scelerisque lectus quis lobortis. </p>
+			</section>
+
+			<section>
+				<h4>Coding</h4>
+				<pre><code>&lt;div class="wb-lightbox lb-gallery inline-list"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+	  &lt;a href="img/1_b.jpg" title="Image 1" data-title="image_1_b"&gt;
+		&lt;img src="img/1_s.jpg" alt="Image 1" /&gt;
+	  &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+	  &lt;a href="img/2_b.jpg" title="Image 2" data-title="image_2_b"&gt;
+		&lt;img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
+	  &lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;	
+&lt;/div&gt;
+&lt;p id="element_id"&gt;Title of the image&lt;/p&gt;</code></pre>
+			</section>
+		</section>
+	</section>
+</div>
