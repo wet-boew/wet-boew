@@ -1,5 +1,137 @@
 module.exports = (grunt) ->
 
+	# External tasks
+	@registerTask(
+		"default",
+		"Test and create the production files",
+		[
+			"dist"
+		]
+	)
+
+	@registerTask(
+		"dist",
+		"Produces the production files",
+		[
+			"test",
+			"clean:dist",
+			"assets",
+			"dist-js",
+			"dist-css",
+			"demos"
+		]
+	)
+
+	@registerTask(
+		"debug",
+		"Produces unminified files",
+		[
+			"test",
+			"clean:dist",
+			"assets",
+			"js",
+			"css",
+			"demos"
+		]
+	)
+
+	@registerTask(
+		"deploy",
+		"Used by Travis to update the wet-boew-dist build artifacts",
+		[
+			"demos",
+			"clean:tests",
+			"gh-pages"
+		]
+	)
+
+	@registerTask(
+		"init",
+		"Only needed when the repo is first cloned",
+		[
+			"modernizr"
+		]
+	)
+
+	#Internal task groups
+	@registerTask(
+		"js",
+		"Compiles CoffeeScript and copies all third party JS to the dist folder",
+		[
+			"coffee",
+			"copy:jquery",
+			"copy:oldie",
+			"copy:polyfills",
+			"copy:deps",
+			"copy:jsAssets",
+			"concat",
+			"i18n"
+		]
+	)
+
+	@registerTask(
+		"dist-js",
+		"Compile and minify JS, and then cleans up unminifed JS in dist",
+		[
+			"js",
+			"uglify",
+			"clean:jsUncompressed"
+		]
+	)
+
+	@registerTask(
+		"css",
+		"Compiles Sass and copies third party CSS to the dist folder"
+		[
+			"sass",
+			"autoprefixer",
+			"copy:bootstrap"
+		]
+	)
+
+	@registerTask(
+		"dist-css",
+		"Compile and minify CSS, and then cleans up unminifed files in dist",
+		[
+			"css",
+			"cssmin",
+			"clean:cssUncompressed"
+		]
+	)
+
+	@registerTask(
+		"assets",
+		"Process non-CSS/JS assets to dist",
+		[
+			"copy:misc"
+		]
+	)
+
+	@registerTask(
+		"test",
+		"Runs testing tasks, except for SauceLabs testing",
+		[
+			"jshint"
+		]
+	)
+
+	@registerTask(
+		"saucelabs",
+		"Runs tests on SauceLabs. Currently only for Travis builds",
+		[
+			"connect",
+			"saucelabs-mocha"
+		]
+	)
+
+	@registerTask(
+		"demos",
+		"Compile the demo files",
+		[
+			"assemble"
+		]
+	)
+
 	grunt.util.linefeed = "\n"
 	# Project configuration.
 	grunt.initConfig
@@ -242,7 +374,14 @@ module.exports = (grunt) ->
 
 			misc:
 				cwd: "src/plugins"
-				src: ["**/*.*", "!**/*.js", "!**/*.coffee", "!**/*.scss", "!**/*.hbs", "!**/assets/*"].concat(if grunt.cli.tasks.indexOf('test') > -1 then ["**/test.js"] else [])
+				src: [
+					"**/*.*",
+					"!**/*.js",
+					"!**/*.coffee",
+					"!**/*.scss",
+					"!**/*.hbs",
+					"!**/assets/*"
+				].concat(if grunt.cli.tasks.indexOf("test") > -1 then ["**/test.js"] else [])
 				dest: "dist/demo"
 				expand: true
 
@@ -380,24 +519,5 @@ module.exports = (grunt) ->
 
 	# Load custom grunt tasks form the tasks directory
 	@loadTasks "tasks"
-
-	# Default task.
-	@registerTask "default", ["jshint", "dist"]
-
-	@registerTask "js", ["coffee","concat", "i18n"]
-	@registerTask "css", ["sass", "autoprefixer"]
-
-	@registerTask "dist-js", ["js", "uglify", "clean:jsUncompressed"]
-	@registerTask "dist-css", ["css", "cssmin", "clean:cssUncompressed"]
-
-	@registerTask "dist", ["clean:dist", "copy", "dist-js", "dist-css", "html"]
-	@registerTask "debug", ["clean:dist", "copy", "js", "css", "html"]
-	@registerTask "test", ["default"]
-	@registerTask "saucelabs", ["connect", "saucelabs-mocha"]
-
-	@registerTask "html", ["assemble"]
-	@registerTask "server", ["connect", "watch:source"]
-	@registerTask "init", ["modernizr"]
-	@registerTask "deploy", ["html", "clean:tests", "gh-pages"]
 
 	@
