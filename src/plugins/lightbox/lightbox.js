@@ -26,11 +26,11 @@ licence	:	wet-boew.github.io/wet-boew/License-en.html /
 				if ( !i18nText ) {
 					i18n = window.i18n;
 					i18nText = {
-						tClose: i18n( "%close" ),
+						tClose: i18n( "%close-esc" ),
 						tLoading: i18n( "%loading" ),
 						gallery: {
-							tPrev: i18n( "%lb-previous" ),
-							tNext: i18n( "%lb-next" ),
+							tPrev: i18n( "%previous-left" ),
+							tNext: i18n( "%next-left" ),
 							tCounter: i18n( "%lb-current40" )
 						},
 						image: {
@@ -58,7 +58,7 @@ licence	:	wet-boew.github.io/wet-boew/License-en.html /
 						// TODO: Add support for long description, aria-describedby and alternate title
 						// TODO: How to support other options available in Magnific Popup
 						// TODO: Ensure there is alt text on the resultant image
-						// TODO: Fix AJAX support
+						// TODO: Fix AJAX support (works fine with "grunt server" but not locally)
 						// TODO: Add WAI-ARIA and proper keyboard handling
 						// TODO: Add swipe support
 						
