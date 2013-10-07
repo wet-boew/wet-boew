@@ -475,7 +475,7 @@
 				//
 				// creates a play/pause, prev/next buttons, and lets the user toggle the stateact as PREV button MB
 				tabsPanelId = $tabsPanel.attr('id');
-				$nav.append('<li class="tabs-toggle"><a class="tabs-prev" href="javascript:;" role="button">&nbsp;&nbsp;&nbsp;<span class="wb-invisible">' + _pe.dic.get('%previous') + '</span></a></li>');
+				$nav.append('<li class="tabs-toggle"><a class="tabs-prev" href="javascript:;" role="button">&nbsp;&nbsp;&nbsp;<span class="wb-invisible">' + _pe.dic.get('%previous-left') + '</span></a></li>');
 				// lets the user jump to the previous tab by clicking on the PREV button
 				$nav.find('.tabs-prev').on('click', function (e) {
 					var button = e.button;
@@ -487,7 +487,7 @@
 				//End PREV button
 				//Create duplicate of Play/pause button to act as NEXT button MB
 				//
-				$nav.append('<li class="tabs-toggle"><a class="tabs-next" href="javascript:;" role="button">&nbsp;&nbsp;&nbsp;<span class="wb-invisible">' + _pe.dic.get('%next') + '</span></a></li>');
+				$nav.append('<li class="tabs-toggle"><a class="tabs-next" href="javascript:;" role="button">&nbsp;&nbsp;&nbsp;<span class="wb-invisible">' + _pe.dic.get('%next-right') + '</span></a></li>');
 				// lets the user jump to the next tab by clicking on the NEXT button
 				$nav.find('.tabs-next').on('click', function (e) {
 					var button = e.button;
