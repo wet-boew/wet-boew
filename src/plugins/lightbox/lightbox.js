@@ -30,7 +30,7 @@ licence	:	wet-boew.github.io/wet-boew/License-en.html /
 						tLoading: i18n( "%loading" ),
 						gallery: {
 							tPrev: i18n( "%previous-left" ),
-							tNext: i18n( "%next-left" ),
+							tNext: i18n( "%next-right" ),
 							tCounter: i18n( "%lb-current40" )
 						},
 						image: {
