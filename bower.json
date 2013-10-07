@@ -15,7 +15,9 @@
   "license": "MIT",
   "private": true,
   "ignore": [
-    "**/.*",
+    ".git*",
+    ".travis.yml",
+    ".editorconfig",
     "node_modules",
     "bower_components",
     "test",
