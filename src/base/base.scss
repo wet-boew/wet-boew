@@ -1,19 +1,21 @@
 /*
- WET-BOEW - Web Experience Toolkit v4.0
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
-@import 'partials/accessibility';
-@import 'partials/bootstrap-overrides';
-@import 'partials/language-selector';
-@import 'partials/transitions';
+
+@import "partials/accessibility";
+@import "partials/bootstrap-overrides";
+@import "partials/language-selector";
+@import "partials/transitions";
 /*
  Plugins
  */
-@import '../plugins/data-inview/data-inview.scss';
-@import '../plugins/menu/menu.scss';
-@import '../plugins/mediaplayer/mediaplayer.scss';
-@import '../plugins/formvalid/formvalid.scss';
-@import '../plugins/lightbox/lightbox.scss';
-@import '../plugins/feedback/feedback.scss';
-@import '../plugins/texthighlight/texthighlight.scss';
-@import '../plugins/prettify/prettify.scss';
-@import '../plugins/footnotes/footnotes.scss';
+@import "../plugins/data-inview/data-inview";
+@import "../plugins/menu/menu";
+@import "../plugins/mediaplayer/mediaplayer";
+@import "../plugins/formvalid/formvalid";
+@import "../plugins/lightbox/lightbox";
+@import "../plugins/feedback/feedback";
+@import "../plugins/texthighlight/texthighlight";
+@import "../plugins/prettify/prettify";
+@import "../plugins/footnotes/footnotes";
