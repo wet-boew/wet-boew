@@ -65,9 +65,12 @@
 		'%yesterday': '@%yesterday@',
 
 		'%next': '@%next@',
+		'%next-right': '@%next-right@',
 		'%previous': '@%previous@',
+		'%previous-left': '@%previous-left@',
 		'%first': '@%first@',
 		'%last': '@%last@',
+		'%close-esc': '@%close-esc@',
 
 		/* Archived Web page template */
 		'%archived-page': '@%archived-page@',
