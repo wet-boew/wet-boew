@@ -23,9 +23,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_REPO_SLUG" == "wet-boew/w
 
 	export build_branch="$TRAVIS_BRANCH-dist"
 
-	grunt deploy > /dev/null 2>&1  || error_exit "Error cloning the artifact repository";
-
-	echo -e "Done uploading the build artifact for branch $TRAVIS_BRANCH\n"
+	grunt deploy || error_exit "Error running gh-pages task";
 
 	#Update the working examples
 	echo -e "Updating working examples...\n"
@@ -51,9 +49,6 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_REPO_SLUG" == "wet-boew/w
 	git add .
 	git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER"
 	git push -fq origin master > /dev/null 2>&1 || error_exit "Error uploading the working examples"
-
-
-	echo -e "Finished updating the working examples\n"
 
 fi
 
