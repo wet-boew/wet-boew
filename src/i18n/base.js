@@ -146,18 +146,9 @@ var ind = {
 	"%hide-text": "@%hide-text@",
 	"%table-contents": "@%table-contents@",
 	/* Lightbox */
-	"%lb-current": "@%lb-current@",
-	"%lb-next": "@%lb-next@",
-	"%lb-prev": "@%lb-prev@",
+	"%lb-current40": "@%lb-current40@",
 	"%lb-xhr-error": "@%lb-xhr-error@",
 	"%lb-img-error": "@%lb-img-error@",
-	"%lb-slideshow": "@%lb-slideshow@",
-	/* jQuery Mobile */
-	"%jqm-expand": "@%jqm-expand@",
-	"%jqm-collapse": "@%jqm-collapse@",
-	"%jqm-clear-search": "@%jqm-clear-search@",
-	"%jqm-filter": "@%jqm-filter@",
-	"%jqm-tbl-col-toggle": "@%jqm-tbl-col-toggle@",
 	/* Charts widget */
 	"%table-mention": "@%table-mention@",
 	"%table-following": "@%table-following@",
