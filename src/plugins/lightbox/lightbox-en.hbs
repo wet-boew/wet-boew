@@ -40,14 +40,6 @@ language: en
 	.lb-hidden-gallery li:first-child a {
 		display: inline;
 	}
-	.lb-default-popup {
-		background: none repeat scroll 0 0 #FFFFFF;
-		margin: 40px auto;
-		max-width: 650px;
-		padding: 20px 30px;
-		position: relative;
-		text-align: left;
-	}
 </style>
 
 <section>
@@ -77,23 +69,6 @@ language: en
 	<section>
 		<h2 id="examples">Examples</h2>
 
-		<div id="inline_content" class="mfp-hide lb-default-popup">
-			<ol>
-				<li>ordered list (<code>ol</code>) first level default appearance</li>
-				<li>ordered list (<code>ol</code>) first level default appearance
-					<ol>
-						<li>ordered list (<code>ol</code>) second level default appearance</li>
-						<li>ordered list (<code>ol</code>) second level default appearance
-							<ol>
-								<li>ordered list (<code>ol</code>) third level default appearance</li>
-								<li>ordered list (<code>ol</code>) third level default appearance</li>
-							</ol>
-						</li>
-					</ol>
-				</li>
-			</ol>
-			<p><a href="#">Link default appearance</a></p>
-		</div>
 		<details>
 			<summary>Long description of image 2</summary>
 			<p id="image2-desc">Example long description of image 2 (referenced by <code>aria-describedby</code>).</p>
@@ -120,6 +95,30 @@ language: en
 						</li>
 						<li class="box">
 							<a class="wb-lightbox" title="Example of inline content" href="#inline_content">Inline content</a>
+							<div id="inline_content" class="mfp-hide modal-dialog">
+								<article class="modal-content">
+									<header class="modal-header">
+										<h1 class="modal-title">Modal title</h1>
+									</header>
+									<div class="modal-body">
+										<ol>
+											<li>ordered list (<code>ol</code>) first level default appearance</li>
+											<li>ordered list (<code>ol</code>) first level default appearance
+												<ol>
+													<li>ordered list (<code>ol</code>) second level default appearance</li>
+													<li>ordered list (<code>ol</code>) second level default appearance
+														<ol>
+															<li>ordered list (<code>ol</code>) third level default appearance</li>
+															<li>ordered list (<code>ol</code>) third level default appearance</li>
+														</ol>
+													</li>
+												</ol>
+											</li>
+										</ol>
+										<p><a href="#">Link default appearance</a></p>
+									</div>
+								</article>
+							</div>
 						</li>
 					</ul>
 				</div>
@@ -128,23 +127,47 @@ language: en
 			<section>
 				<h4>Coding</h4>
 				<pre><code>&lt;ul&gt;
-    &lt;li&gt;
-      &lt;a class="wb-lightbox" href="img/1_b.jpg" title="Image 1"&gt;
-        &lt;img src="img/1_s.jpg" alt="Image 1" /&gt;
-      &lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li&gt;
-      &lt;a class="wb-lightbox" href="img/2_b.jpg" title="Image 2"&gt;
-        &lt;img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
-      &lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li&gt;
-      &lt;a class="wb-lightbox" title="Example of AJAX content" href="ajax/ajax-en.html"&gt;AJAX content&lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li&gt;
-      &lt;a class="wb-lightbox" title="Example of inline content" href="#inline_content"&gt;Inline content&lt;/a&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;</code></pre>
+	&lt;li&gt;
+		&lt;a class="wb-lightbox" href="img/1_b.jpg" title="Image 1"&gt;
+			&lt;img src="img/1_s.jpg" alt="Image 1" /&gt;
+		&lt;/a&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;a class="wb-lightbox" href="img/2_b.jpg" title="Image 2"&gt;
+			&lt;img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
+		&lt;/a&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;a class="wb-lightbox" title="Example of AJAX content" href="ajax/ajax-en.html"&gt;AJAX content&lt;/a&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;a class="wb-lightbox" title="Example of inline content" href="#inline_content"&gt;Inline content&lt;/a&gt;
+		&lt;div id="inline_content" class="mfp-hide modal-dialog"&gt;
+			&lt;article class="modal-content"&gt;
+				&lt;header class="modal-header"&gt;
+					&lt;h1 class="modal-title"&gt;Modal title&lt;/h1&gt;
+				&lt;/header&gt;
+				&lt;div class="modal-body"&gt;
+					&lt;ol&gt;
+						&lt;li&gt;ordered list (&lt;code&gt;ol&lt;/code&gt;) first level default appearance&lt;/li&gt;
+						&lt;li&gt;ordered list (&lt;code&gt;ol&lt;/code&gt;) first level default appearance
+							&lt;ol&gt;
+								&lt;li&gt;ordered list (&lt;code&gt;ol&lt;/code&gt;) second level default appearance&lt;/li&gt;
+								&lt;li&gt;ordered list (&lt;code&gt;ol&lt;/code&gt;) second level default appearance
+									&lt;ol&gt;
+										&lt;li&gt;ordered list (&lt;code&gt;ol&lt;/code&gt;) third level default appearance&lt;/li&gt;
+										&lt;li&gt;ordered list (&lt;code&gt;ol&lt;/code&gt;) third level default appearance&lt;/li&gt;
+									&lt;/ol&gt;
+								&lt;/li&gt;
+							&lt;/ol&gt;
+						&lt;/li&gt;
+					&lt;/ol&gt;
+					&lt;p&gt;&lt;a href="#"&gt;Link default appearance&lt;/a&gt;&lt;/p&gt;
+				&lt;/div&gt;
+			&lt;/article&gt;
+		&lt;/div&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
 			</section>
 		</section>
 
@@ -181,28 +204,28 @@ language: en
 			<section>
 				<h4>Coding</h4>
 				<pre><code>&lt;div class="wb-lightbox lb-gallery inline-list"&gt;
-  &lt;ul&gt;
-    &lt;li&gt;
-	  &lt;a href="img/1_b.jpg" title="Image 1"&gt;
-		&lt;img src="img/1_s.jpg" alt="Image 1" /&gt;
-	  &lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li&gt;
-	  &lt;a href="img/2_b.jpg" title="Image 2"&gt;
-		&lt;img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
-	  &lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li&gt;
-	  &lt;a href="img/3_b.jpg" title="Image 3"&gt;
-		&lt;img src="img/3_s.jpg" alt="Image 3" /&gt;
-	  &lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li&gt;
-	  &lt;a href="img/4_b.jpg" title="Image 4"&gt;
-		&lt;img src="img/4_s.jpg" alt="Image 4" /&gt;
-	  &lt;/a&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;	
+	&lt;ul&gt;
+		&lt;li&gt;
+			&lt;a href="img/1_b.jpg" title="Image 1"&gt;
+				&lt;img src="img/1_s.jpg" alt="Image 1" /&gt;
+			&lt;/a&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;a href="img/2_b.jpg" title="Image 2"&gt;
+				&lt;img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
+			&lt;/a&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;a href="img/3_b.jpg" title="Image 3"&gt;
+				&lt;img src="img/3_s.jpg" alt="Image 3" /&gt;
+			&lt;/a&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;a href="img/4_b.jpg" title="Image 4"&gt;
+				&lt;img src="img/4_s.jpg" alt="Image 4" /&gt;
+			&lt;/a&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;	
 &lt;/div&gt;</code></pre>
 			</section>
 		</section>
@@ -240,28 +263,28 @@ language: en
 			<section>
 				<h4>Coding</h4>
 				<pre><code>&lt;div class="wb-lightbox lb-hidden-gallery inline-list"&gt;
-  &lt;ul&gt;
-    &lt;li&gt;
-      &lt;a href="img/1_b.jpg" title="Image 1"&gt;
-        &lt;img src="img/1_s.jpg" alt="Image 1" /&gt;
-      &lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li&gt;
-      &lt;a href="img/2_b.jpg" title="Image 1"&gt;
-        &lt;img src="img/2_s.jpg" alt="Image 1" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
-      &lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li&gt;
-	  &lt;a href="img/3_b.jpg" title="Image 3"&gt;
-		&lt;img src="img/3_s.jpg" alt="Image 3" /&gt;
-	  &lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li&gt;
-	  &lt;a href="img/4_b.jpg" title="Image 4"&gt;
-		&lt;img src="img/4_s.jpg" alt="Image 4" /&gt;
-	  &lt;/a&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;	
+	&lt;ul&gt;
+		&lt;li&gt;
+			&lt;a href="img/1_b.jpg" title="Image 1"&gt;
+				&lt;img src="img/1_s.jpg" alt="Image 1" /&gt;
+			&lt;/a&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;a href="img/2_b.jpg" title="Image 1"&gt;
+				&lt;img src="img/2_s.jpg" alt="Image 1" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
+			&lt;/a&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;a href="img/3_b.jpg" title="Image 3"&gt;
+				&lt;img src="img/3_s.jpg" alt="Image 3" /&gt;
+			&lt;/a&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;a href="img/4_b.jpg" title="Image 4"&gt;
+				&lt;img src="img/4_s.jpg" alt="Image 4" /&gt;
+			&lt;/a&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;	
 &lt;/div&gt;</code></pre>
 			</section>
 		</section>
@@ -286,26 +309,27 @@ language: en
 				</div>
 				
 				<p id="image_1_b"><strong>Image 1:</strong> Lorem ipsum consectetur <em>adipiscing elit</em>.</p>
-				<p id="image_2_b"><strong>Image 2:</strong> Nulla mollis dolor leo. Quisque laoreet tincidunt mollis. Duis posuere scelerisque lectus quis lobortis. </p>
+				<p id="image_2_b"><strong>Image 2:</strong> Nulla mollis dolor leo. Quisque laoreet tincidunt mollis. Duis posuere scelerisque lectus quis lobortis.</p>
 			</section>
 
 			<section>
 				<h4>Coding</h4>
 				<pre><code>&lt;div class="wb-lightbox lb-gallery inline-list"&gt;
-  &lt;ul&gt;
-    &lt;li&gt;
-	  &lt;a href="img/1_b.jpg" title="Image 1" data-title="image_1_b"&gt;
-		&lt;img src="img/1_s.jpg" alt="Image 1" /&gt;
-	  &lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li&gt;
-	  &lt;a href="img/2_b.jpg" title="Image 2" data-title="image_2_b"&gt;
-		&lt;img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
-	  &lt;/a&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;	
+	&lt;ul&gt;
+		&lt;li&gt;
+			&lt;a href="img/1_b.jpg" title="Image 1" data-title="image_1_b"&gt;
+				&lt;img src="img/1_s.jpg" alt="Image 1" /&gt;
+			&lt;/a&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;a href="img/2_b.jpg" title="Image 2" data-title="image_2_b"&gt;
+				&lt;img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
+			&lt;/a&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;	
 &lt;/div&gt;
-&lt;p id="element_id"&gt;Title of the image&lt;/p&gt;</code></pre>
+&lt;p id="image_1_b"&gt;&lt;strong&gt;Image 1:&lt;/strong&gt; Lorem ipsum consectetur &lt;em&gt;adipiscing elit&lt;/em&gt;.&lt;/p&gt;
+&lt;p id="image_2_b"&gt;&lt;strong&gt;Image 2:&lt;/strong&gt; Nulla mollis dolor leo. Quisque laoreet tincidunt mollis. Duis posuere scelerisque lectus quis lobortis.&lt;/p&gt;</code></pre>
 			</section>
 		</section>
 	</section>
