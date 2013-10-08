@@ -92,6 +92,7 @@ Vapour Object that will store tombstone data for plugins to leverage
 				$html = this.html,
 				i18n = window.i18n;
 
+			li.className = "wb-skip";
 			if ( wbTphp ) {
 				for ( pageQueryParam in pageQueryParams ) { // Rebuild the query string
 					if ( pageQueryParams.hasOwnProperty( pageQueryParam ) && pageQueryParam !== "wbdisable" ) {
@@ -108,7 +109,7 @@ Vapour Object that will store tombstone data for plugins to leverage
 					}
 
 					// Append the Standard version link
-					li.innerHTML = "<a href='" + newQuery + "wbdisable=false'>" + i18n( "%wb-enable" ) + "</a>";
+					li.innerHTML = "<a class='wb-skip-link' href='" + newQuery + "wbdisable=false'>" + i18n( "%wb-enable" ) + "</a>";
 					wbTphp.appendChild( li ); // Add link to re-enable WET plugins and polyfills
 					return true;
 				} else if ( localStorage ) {
@@ -116,7 +117,7 @@ Vapour Object that will store tombstone data for plugins to leverage
 				}
 
 				// Append the Basic HTML version link version
-				li.innerHTML = "<a href='" + newQuery + "wbdisable=true'>" + i18n( "%wb-disable" ) + "</a>";
+				li.innerHTML = "<a class='wb-skip-link' href='" + newQuery + "wbdisable=true'>" + i18n( "%wb-disable" ) + "</a>";
 				wbTphp.appendChild( li ); // Add link to disable WET plugins and polyfills
 			}
 			return false;
