@@ -1,92 +1,81 @@
 /*
- * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * Plugin	: Responsive equal height
- * Author	: @thomasgohard
- * Notes	: Sets the same height for all elements in a container that are
- *				rendered on the same baseline (row).
- *				Adapted from http://codepen.io/micahgodbolt/pen/FgqLc.
- * Licence	: wet-boew.github.io/wet-boew/License-en.html /
- *				wet-boew.github.io/wet-boew/Licence-fr.html
+ * @title WET-BOEW Responsive equal height
+ * @overview Sets the same height for all elements in a container that are rendered on the same baseline (row). Adapted from http://codepen.io/micahgodbolt/pen/FgqLc.
+ * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ * @author @thomasgohard
  */
-
 (function ( $, window, vapour ) {
 	"use strict";
 
+	/* 
+	 * Variable and function definitions. 
+	 * These are global to the plugin - meaning that they will be initialized once per page,
+	 * not once per instance of plugin on the page. So, this is a good place to define
+	 * variables that are common to all instances of the plugin on a page.
+	 */
 	var selector = ".wb-equalheight",
 		$document = vapour.doc,
-		plugin = {
-			init: function ( $elm ) {
-				// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-				window._timer.remove( selector );
 
-				plugin.onResize( $elm );
-			},
+		init = function () {
 
-			// Re-equalise any time the window/document or a child element of 'selector' is resized.
-			onResize: function ( $elm ) {
-				var $children = $elm.children(),
-					row = [],
-					rowTop = -1,
-					currentChild,
-					currentChildTop = -1,
-					currentChildHeight = -1,
-					tallestHeight = -1,
-					i;
+			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+			window._timer.remove( selector );
 
-				for ( i = $children.length - 1; i >= 0; i-- ) {
-					currentChild = $children[i];
-					// Ensure all children that are on the same baseline have the same 'top' value.
-					currentChild.style.verticalAlign = "top";
+			onResize();
+		},
 
-					currentChildTop = currentChild.offsetTop;
-					currentChildHeight = currentChild.offsetHeight;
+		// Re-equalise any time the window/document or a child element of 'selector' is resized.
+		onResize = function () {
+			var $elm = $( selector ),
+				$children = $elm.children(),
+				row = [ ],
+				rowTop = -1,
+				currentChild,
+				currentChildTop = -1,
+				currentChildHeight = -1,
+				tallestHeight = -1,
+				i;
 
-					if ( currentChildTop !== rowTop ) {
-						plugin.setRowHeight( row, tallestHeight );
+			for ( i = $children.length - 1; i >= 0; i-- ) {
+				currentChild = $children[ i ];
 
-						rowTop = currentChildTop;
-						tallestHeight = currentChildHeight;
-					} else {
-						tallestHeight = (currentChildHeight > tallestHeight) ? currentChildHeight : tallestHeight;
-					}
+				// Ensure all children that are on the same baseline have the same 'top' value.
+				currentChild.style.verticalAlign = "top";
 
-					row.push(currentChild);
+				currentChildTop = currentChild.offsetTop;
+				currentChildHeight = currentChild.offsetHeight;
+
+				if ( currentChildTop !== rowTop ) {
+					setRowHeight( row, tallestHeight );
+
+					rowTop = currentChildTop;
+					tallestHeight = currentChildHeight;
+				} else {
+					tallestHeight = (currentChildHeight > tallestHeight) ? currentChildHeight : tallestHeight;
 				}
 
-				if ( row.length !== 0 ) {
-					plugin.setRowHeight( row, tallestHeight );
-				}
-			},
-
-			setRowHeight: function ( row, height ) {
-				for ( var i = row.length - 1; i >= 0; i-- ) {
-					row[i].style.height = height + "px";
-				}
-				row.length = 0;
+				row.push( currentChild );
 			}
+
+			if ( row.length !== 0 ) {
+				setRowHeight( row, tallestHeight );
+			}
+		},
+
+		setRowHeight = function ( row, height ) {
+			for ( var i = row.length - 1; i >= 0; i-- ) {
+				row[ i ].style.height = height + "px";
+			}
+			row.length = 0;
 		};
 
 	// Bind the init event of the plugin
-	$document.on( "timerpoke.wb", selector, function () {
-		// "this" is cached for all events to utilize
-		var $elm = $( this );
+	$document.on( "timerpoke.wb", selector, init );
 
-		plugin.init.apply( this, [ $elm ] );
-
-		// since we are working with events we want to ensure that we are being passive about our control, so returning true allows for events to always continue
-		return true;
-	});
-
-	$document.on( "text-resize.wb window-resize-width.wb window-resize-height.wb", function () {
-		// "this" is cached for all events to utilize
-		var $elm = $( this );
-
-		plugin.onResize.apply( this, [ $elm ] );
-
-		// since we are working with events we want to ensure that we are being passive about our control, so returning true allows for events to always continue
-		return true;
-	});
+	// Handle text and window resizing
+	$document.on( "text-resize.wb window-resize-width.wb window-resize-height.wb", onResize );
 
 	// Add the timer poke to initialize the plugin
 	window._timer.add( selector );
-})( jQuery, window, vapour );
+
+} )( jQuery, window, vapour );
