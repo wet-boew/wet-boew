@@ -151,8 +151,6 @@
 		'%table-contents': '@%table-contents@',
 		/* Lightbox */
 		'%lb-current': '@%lb-current@',
-		'%lb-next': '@%lb-next@',
-		'%lb-prev': '@%lb-prev@',
 		'%lb-xhr-error': '@%lb-xhr-error@',
 		'%lb-img-error': '@%lb-img-error@',
 		'%lb-slideshow': '@%lb-slideshow@',
