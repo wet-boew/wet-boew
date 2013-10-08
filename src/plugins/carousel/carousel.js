@@ -1,129 +1,165 @@
 /*
-    Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW)
-    _plugin : JavaScript Carousel
-    _author : World Wide Web
-    _notes  : A JavaScript carousel for WET-BOEW
-    _licence: wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
-*/
+ * @title WET-BOEW JavaScript Carousel
+ * @overview Explain the plug-in or any third party lib that it is inspired by
+ * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ * @author WET Community
+ */
+(function ( $, window, vapour ) {
+    "use strict";
 
-(function ( $, window, vapour) {
+    /* 
+     * Variable and function definitions. 
+     * These are global to the plugin - meaning that they will be initialized once per page,
+     * not once per instance of plugin on the page. So, this is a good place to define
+     * variables that are common to all instances of the plugin on a page.
+     */
+	var selector = ".wb-carousel",
+		$document = vapour.doc,
+		controls = selector + " .prv, " + selector + " .nxt, " + selector + " .plypause",
 
-"use strict";
+		/*  
+		 * @method onTimerPoke
+		 * @param {jQuery DOM element} $elm The plugin element
+		 */
+		onTimerPoke = function ( $elm ) {
+			var _setting,
+				_dataDelay = $elm.attr( "data-delay" ),
+				_delay;
 
-var $document = vapour.doc,
-    selector = ".wb-carousel",
-    controls = selector + " .prv, " + selector + " .nxt, " + selector + " .plypause",
-    carousel;
+			if ( !_dataDelay ) {
+				$elm.trigger( "init.wb-carousel" );
+				return false;
+			}
 
-carousel = {
-    onTimerPoke: function( _elm ) {
-        var _setting,
-            _delay;
+			/* state stopped*/
+			if ( $elm.hasClass( "stopped" ) ) {
+				return false;
+			}
+			/* continue;*/
 
-        if ( _elm.attr( "data-delay" ) === undefined ) {
-            _elm.trigger( "carousel-init.wb" );
-            return false;
-        }
-        /* state stopped*/
-        if ( _elm.hasClass( "stopped" ) ) {
-            return false;
-        }
-        /* continue;*/
+			/* add settings and counter*/
+			_setting = parseFloat( _dataDelay );
+			_delay = parseFloat( $elm.attr( "data-ctime" ) ) + 0.5;
 
-        /* add settings and counter*/
-        _setting = parseFloat( _elm.attr( "data-delay" ) );
-        _delay = parseFloat( _elm.attr( "data-ctime" ) );
-        _delay += 0.5;
+			/* check if we need*/
+			if ( _setting < _delay ) {
+				$elm.trigger( "shift.wb-carousel" );
+				_delay = 0;
+			}
+			$elm.attr( "data-ctime", _delay );
+		},
 
-        /* check if we need*/
+		/*  
+		 * @method onInit
+		 * @param {jQuery DOM element} $elm The plugin element
+		 */
+		onInit = function ( $elm ) {
+			var _interval = 6;
 
-        if ( _setting < _delay ) {
-            _elm.trigger( "shift.wb" );
-            _delay = 0;
-        }
-        _elm.attr( "data-ctime", _delay );
-    },
+			if ( $elm.hasClass( "slow" ) ) {
+				_interval = 9;
+			} else if ( $elm.hasClass( "fast" ) ) {
+				_interval = 3;
+			}
+			$elm.find( ".item:not(.in)" )
+				.addClass( "out" );
+			$elm.attr( {
+				"data-delay": _interval,
+				"data-ctime": 0
+			} );
+		},
 
-    onInit: function ( _elm ) {
-        var _interval = 6;
+		/*  
+		 * @method onShift
+		 * @param {jQuery DOM element} $elm The plugin element
+		 */
+		onShift = function ( $elm, event ) {
+			var _items = $elm.find( ".item" ),
+				_len = _items.length,
+				_current = $elm.find( ".item.in" ).prevAll( ".item" ).length,
+				_shiftto = ( event.shiftto ) ? event.shiftto : 1,
+				_next = _current > _len ? 0 : _current + _shiftto;
 
-        if ( _elm.hasClass( "slow" ) ) {
-            _interval = 9;
-        }
-        if ( _elm.hasClass( "fast" ) ) {
-            _interval = 3;
-        }
-        _elm.find( ".item:not(.in)" )
-            .addClass( "out" );
-        _elm.attr( "data-delay", _interval )
-            .attr( "data-ctime", 0 );
-    },
+			_next = ( _next > _len - 1 || _next < 0 ) ? 0 : _next;
+			_items.eq( _current ).removeClass( "in" ).addClass( "out" );
+			_items.eq( _next ).removeClass( "out" ).addClass( "in" );
+		},
 
-    onShift: function ( _elm ) {
-        var _items = _elm.find( ".item" ),
-            _current = _elm.find( ".item.in" ).prevAll( ".item" ).length,
-            _shiftto = ( event.shiftto ) ? event.shiftto : 1,
-            _next = _current > _items.length ? 0 : _current + _shiftto;
+		/*  
+		 * @method onShift
+		 * @param {jQuery DOM element} $elm The plugin element
+		 * @param {integer} shifto The item to shift to
+		 */
+		onCycle = function ( $elm, shifto ) {
+			$elm.trigger( "shift.wb-carousel", {
+				shiftto: shifto
+			} );
+		};
 
-        _next = ( _next > _items.length - 1 || _next < 0 ) ? 0 : _next;
-        _items.eq( _current ).removeClass( "in" ).addClass( "out" );
-        _items.eq( _next ).removeClass( "out" ).addClass( "in" );
-    },
+	// Bind the init event of the plugin
+	$document.on( "timerpoke.wb init.wb-carousel shift.wb-carousel", selector, function ( event ) {
+		var eventType = event.type,
 
-    onCycle: function ( _elm, shifto ) {
-        _elm.trigger( "shift.wb", {
-            shiftto: shifto
-        } );
-    }
+			// "this" is cached for all events to utilize
 
+			$elm = $( this );
 
-};
+		switch ( eventType ) {
+		case "timerpoke":
+			onTimerPoke( $elm );
+			break;
 
-$document.on( "timerpoke.wb carousel-init.wb shift.wb", selector, function ( event ) {
+		/*
+		 * Init
+		 */
+		case "init":
+			onInit( $elm );
+			break;
 
-    var eventType = event.type,
-        _elm = $( this );
+		/*
+		 * Change Slides
+		 */
+		case "shift":
+			onShift( $elm, event );
+			break;
+		}
+		
+        /*
+         * Since we are working with events we want to ensure that we are being passive about our control, 
+         * so returning true allows for events to always continue
+         */
+		return true;
+	} );
 
-    switch ( eventType ) {
-    case "timerpoke":
-        carousel.onTimerPoke.apply(this, _elm);
-        break;
+	/*
+	 * Next / Prev
+	 */
+	$document.on( "click", controls, function ( event ) {
+		event.preventDefault( );
+		var $elm = $( this ),
+			_sldr = $elm.parents( ".wb-carousel" ),
+			_action = $elm.attr( "class" );
 
-        /* ------ Init --------------*/
-    case "carousel-init":
-        carousel.onInit.apply(this, _elm);
-        break;
+		switch ( _action ) {
+		case "prv":
+			onCycle( $elm, 1 );
+			break;
+		case "nxt":
+			onCycle( $elm, -1 );
+			break;
+		default:
+			_sldr.toggleClass( "stopped" );
+		}
+		_sldr.attr( "data-ctime", 0 );
 
-        /* ------ Change Slides --------------*/
-    case "shift":
-        carousel.onShift.apply(this, _elm);
-        break;
-    }
-    return false;
-} );
+        /*
+         * Since we are working with events we want to ensure that we are being passive about our control, 
+         * so returning true allows for events to always continue
+         */
+		return true;
+	} );
 
-/* ------ Next / Prev --------------*/
-$document.on( "click", controls, function ( event ) {
-    event.preventDefault( );
-    var _elm = $( this ),
-        _sldr = _elm.parents( ".wb-carousel" ),
-        _action = _elm.attr( "class" );
+	// Add the timer poke to initialize the plugin
 
-    switch ( _action ) {
-    case "prv":
-        carousel.onCycle.apply(this, _elm, 1);
-        break;
-    case "nxt":
-        carousel.onCycle.apply(this, _elm, -1);
-        break;
-    default:
-        _sldr.toggleClass( "stopped" );
-    }
-    _sldr.attr( "data-ctime", 0 );
-    return false;
-} );
-
-/* ------ Register carousel --------------*/
-window._timer.add( ".wb-carousel" );
-
+	window._timer.add( ".wb-carousel" );
 })( jQuery, window, vapour );
