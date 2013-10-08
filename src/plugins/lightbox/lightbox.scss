@@ -14,3 +14,16 @@
 		font-size: 130%;
 	}
 }
+
+.lb-hidden-gallery {
+	a {
+		display: none;
+	}
+	li {
+		&:first-child {
+			a {
+				display: inline;
+			}
+		}
+	}
+}
