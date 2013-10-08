@@ -55,15 +55,61 @@ licence	:	wet-boew.github.io/wet-boew/License-en.html /
 							extendedGlobal = true;
 						}
 
-						// TODO: Add support for long description, aria-describedby and alternate title
+						// TODO: Add support for alternate title
 						// TODO: How to support other options available in Magnific Popup
-						// TODO: Ensure there is alt text on the resultant image
 						// TODO: Fix AJAX support (works fine with "grunt server" but not locally)
-						// TODO: Add WAI-ARIA and proper keyboard handling
+						// TODO: Fix keyboard handling and tweak WAI-ARIA as necessary
+						// TODO: Fix visible focus and hidden text for buttons
 						// TODO: Add swipe support
 						
 						// Is the element a single lightbox item or a group?
 						// TODO: Add support for multiple non-gallery items of possibly mixed content
+											
+						settings.callbacks = {
+							open: function() {
+								var $content = this.content,
+									$container = $content.parent().parent(),
+									$title;
+								if ( this.type === "image" ) {
+									$container.attr( {
+										"role": "dialog",
+										"aria-live": "polite",
+										"aria-labelledby": "lb-title"
+									} );
+									$content.find( ".mfp-bottom-bar" ).attr( "id", "lb-title" );
+								} else {
+									$title = $content.find( ".modal-title" );
+									if ( $title.length !== 0 ) {
+										$title.attr( "id", "lb-title" );
+										$container.attr( "aria-labelledby", "lb-title" );
+									}
+								}
+							},
+							markupParse: function( template, values, item ) {
+								var $el = item.el,
+									$source,
+									$target,
+									description;
+									
+								if ( item.type === "image" ) {
+									$source = $el.find( "img" );
+									$target = item.img.attr( "alt", values.title );
+									
+									// Replicate aria-describedby if it exists
+									description = $source.attr( "aria-describedby" );
+									if ( description ) {
+										$target.attr( "aria-describedby", description );
+									}
+
+									// Replicate longdesc if it exists
+									description = $source.attr( "longdesc" );
+									if ( description ) {
+										$target.attr( "longdesc", description );
+									}
+								}
+							}
+						};
+						
 						if ( $elm[ 0 ].nodeName.toLowerCase() !== "a" ) {
 							settings.delegate = "a";
 							settings.type = "image";
@@ -88,6 +134,7 @@ licence	:	wet-boew.github.io/wet-boew/License-en.html /
 							} else {
 								settings.type = "ajax";
 							}
+
 							$elm.magnificPopup( settings );
 						}
 					}
