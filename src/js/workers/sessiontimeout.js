@@ -20,7 +20,6 @@
 				// Added &#160; to fix Chrome bug (received from Charlie Lavers - PWGSC)
 				overLay = '<div class="sOverlay jqmOverlay">&#160;</div>',
 				liveTimeout,
-				sessionTimeout,
 				keep_session,
 				start_liveTimeout,
 				displayTimeoutMessage,
@@ -156,7 +155,6 @@
 			};
 
 
-			// Prevent the initial ajax call from happening, instead wait for the inactivity time to pass before this call is made
 			start_liveTimeout();
 
             if (opts.refreshOnClick) {
@@ -187,3 +185,4 @@
 	return _pe;
 }
 (jQuery));
+
