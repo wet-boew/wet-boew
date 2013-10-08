@@ -492,6 +492,7 @@ module.exports = (grunt) ->
 				branch: process.env.build_branch
 				clone: "wet-boew-dist"
 				message: "Travis build " + process.env.TRAVIS_BUILD_NUMBER
+				silent: true
 			src: [
 				"dist/**/*.*",
 				"*.html",
