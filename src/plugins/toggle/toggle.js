@@ -1,33 +1,42 @@
 /*
-Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
-plugin	:	Toggle
-author	:	@patheard
-notes	:	Plugin that allows a link to toggle elements between on and off states.
-licence	:	wet-boew.github.io/wet-boew/License-en.html /
-			wet-boew.github.io/wet-boew/Licence-fr.html
-*/
+ * @title WET-BOEW Toggle
+ * @overview Plugin that allows a link to toggle elements between on and off states.
+ * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ * @author @patheard
+ */
 (function ( $, window, vapour ) {
+    "use strict";
 
-"use strict";
+    /* 
+     * Variable and function definitions. 
+     * These are global to the plugin - meaning that they will be initialized once per page,
+     * not once per instance of plugin on the page. So, this is a good place to define
+     * variables that are common to all instances of the plugin on a page.
+     */
+    var selector = ".wb-toggle",
+        $document = vapour.doc,
+		state = { },
+		stateOn = "on",
+		stateOff = "off",
 
-var $document = vapour.doc,
-	plugin = {
-		selector: ".wb-toggle",
-		state: {},
-		stateOn: "on",
-		stateOff: "off",
 
+        /*
+         * Init runs once per plugin element on the page. There may be multiple elements. 
+         * It will run more than once per plugin if you don't remove the selector from the timer.
+         * @method init
+         */
+		init = function( event ) {
+			var $link = $( event.target ),
+				selector = $link.data( "selector" );
 
-		//Initialize the plugin
-		init: function() {
-			var link = $( this );
-			window._timer.remove( plugin.selector );
+            // All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+            window._timer.remove( selector );
 
 			// Initialize the aria-controls attribute of the link
-			if ( link.data( "selector" ) !== undefined ) {
-				link.trigger( "ariaControls.wb-toggle", {
-					selector: link.data( "selector" ),
-					parent: link.data( "parent" )
+			if ( selector ) {
+				$link.trigger( "ariaControls.wb-toggle", {
+					selector: selector,
+					parent: $link.data( "parent" )
 				});
 			} else {
 				$.error(
@@ -36,16 +45,16 @@ var $document = vapour.doc,
 			}
 		},
 
-		/**
+		/*
 		 * Sets the aria-controls attribute for a given link element
 		 * @param {jQuery Event} event The event that triggered this invocation
 		 * @param {Object} data Simple key/value data object passed when the event was triggered
 		 */
-		setAriaControls: function( event, data ) {
+		setAriaControls = function( event, data ) {
 			var elm, i, len,
 				elms = data.parent !== undefined ? $( data.parent ).find( data.selector ) : $( data.selector ),
 				ariaControls = "",
-				link = $( this );
+				link = event.target;
 
 			// Find the elements this link controls
 			for ( i = 0, len = elms.length; i < len; i++ ) {
@@ -55,116 +64,124 @@ var $document = vapour.doc,
 				}
 				ariaControls += elm.attr( "id" ) + " ";
 			}
-			link.attr( "aria-controls", ariaControls.slice( 0, -1 ) );
+			link.setAttribute( "aria-controls", ariaControls.slice( 0, -1 ) );
 		},
 
 		/**
 		 * Click handler for the toggle links
 		 * @param {jQuery Event} event The event that triggered this invocation
 		 */
-		click: function( event ) {
-			var link = $( this );
+		click = function( event ) {
+			var eventTarget = event.target,
+				$link = $( eventTarget );
 
-			link.trigger( "toggle.wb-toggle", {
-				selector: link.data( "selector" ),
-				parent: link.data( "parent" ),
-				type: link.data( "type" )
+			$link.trigger( "toggle.wb-toggle", {
+				selector: $link.data( "selector" ),
+				parent: $link.data( "parent" ),
+				type: $link.data( "type" )
 			});
 
 			event.preventDefault( );
-			event.target.focus( );
+			// TODO: Replace with use of global focus function
+			setTimeout( function () {
+				eventTarget.focus();
+			}, 0 );
 		},
 
-		/**
+		/*
 		 * Toggles the elements a link controls between the on and off states.
 		 * @param {jQuery Event} event The event that triggered this invocation
 		 * @param {Object} data Simple key/value data object passed when the event was triggered
 		 */
-		toggle: function( event, data ) {
-			var elms = data.parent !== undefined ? $( data.parent ).find( data.selector ) : $( data.selector ),
+		toggle = function( event, data ) {
+			var $elms = data.parent !== undefined ? $( data.parent ).find( data.selector ) : $( data.selector ),
 
-				stateFrom = plugin.getState( data.selector, data.parent, data.type ), // Current state of elements
-				stateTo = stateFrom === plugin.stateOn ? plugin.stateOff : plugin.stateOn; // State to set the elements
+				// Current state of elements
+				stateFrom = getState( data.selector, data.parent, data.type ),
+
+				// State to set the elements
+				stateTo = stateFrom === stateOn ? stateOff : stateOn;
 
 			// Update the element state and store the new state
-			elms.wb( "toggle", stateTo, stateFrom );
-			plugin.setState( data.selector, data.parent, stateTo );
+			$elms.wb( "toggle", stateTo, stateFrom );
+			setState( data.selector, data.parent, stateTo );
 		},
 
-		/**
+		/*
 		 * Gets the current toggle state of a link given set of elements (based on selector and parent).
 		 * @param {String} selector CSS selector of the elements the link controls
 		 * @param {String} parent CSS selector of the parent DOM element the link is restricted to.
 		 * @param {String} type The type of link: undefined (toggle), "on" or "off"
 		 */
-		getState: function( selector, parent, type ) {
+		getState = function( selector, parent, type ) {
 
 			// No toggle type: get the current on/off state of the elements specified by the selector and parent
-			if ( type === undefined ) {
-				if ( plugin.state.hasOwnProperty( selector ) ) {
-					return plugin.state[ selector ].hasOwnProperty( parent ) ?
-						plugin.state[ selector ][ parent ] :
-						plugin.state[ selector ].all;
+			if ( !type ) {
+				if ( state.hasOwnProperty( selector ) ) {
+					return state[ selector ].hasOwnProperty( parent ) ?
+						state[ selector ][ parent ] :
+						state[ selector ].all;
 				}
-				return plugin.stateOff;
+				return stateOff;
 			}
 
-			// Toggle type: get opposite state of the requested type.  plugin.toggle will then reverse this to the requested state
-			return type === plugin.stateOn ? plugin.stateOff : plugin.stateOn;
+			// Toggle type: get opposite state of the requested type.  toggle will then reverse this to the requested state
+			return type === stateOn ? stateOff : stateOn;
 		},
 
-		/**
+		/*
 		 * Sets the current toggle state of a links given set of elements (based on selector and parent)
 		 * @param {String} selector CSS selector of the elements the link controls
 		 * @param {String} parent CSS selector of the parent DOM element the link is restricted to.
 		 * @param {String} state Current state of the elements: "on" or "off"
 		 */
-		setState: function( selector, parent, state ) {
+		setState = function( selector, parent, state ) {
 			var prop;
 
 			// Check the selector object has been created
-			if ( plugin.state[ selector ] === undefined ) {
-				plugin.state[ selector ] = {
-					all: plugin.stateOff
+			if ( !state[ selector ] ) {
+				state[ selector ] = {
+					all: stateOff
 				};
 			}
 
 			// If there's a parent, set its state
-			if ( parent !== undefined ) {
-				plugin.state[ selector ][ parent ] = state;
+			if ( parent ) {
+				state[ selector ][ parent ] = state;
 
 				// No parent means set all states for the given selector.  This is
 				// because toggle links that apply to the entire DOM also affect
 				// links that are restricted by parent.
 			} else {
-				for ( prop in plugin.state[ selector ] ) {
-					if ( plugin.state[ selector ].hasOwnProperty( prop ) ) {
-						plugin.state[ selector ][ prop ] = state;
+				for ( prop in state[ selector ] ) {
+					if ( state[ selector ].hasOwnProperty( prop ) ) {
+						state[ selector ][ prop ] = state;
 					}
 				}
 			}
+		};
+
+	// Bind the plugin's events
+	$document.on( "timerpoke.wb ariaControls.wb-toggle toggle.wb-toggle click",	selector, function ( event, data ) {
+		var eventType = event.type;
+
+		switch ( eventType ) {
+		case "click":
+			click( event );
+			break;
+		case "toggle":
+			toggle( event, data );
+			break;
+		case "ariaControls":
+			setAriaControls( event, data );
+			break;
+		case "timerpoke":
+			init( event );
+			break;
 		}
-	};
+	});
 
-// Bind the plugin's events
-$document.on( "timerpoke.wb ariaControls.wb-toggle toggle.wb-toggle click",	plugin.selector, function ( event ) {
-	switch ( event.type ) {
-	case "click":
-		plugin.click.apply( this, arguments );
-		break;
-	case "toggle":
-		plugin.toggle.apply( this, arguments );
-		break;
-	case "ariaControls":
-		plugin.setAriaControls.apply( this, arguments );
-		break;
-	case "timerpoke":
-		plugin.init.apply( this, arguments );
-		break;
-	}
-});
+    // Add the timer poke to initialize the plugin
+    window._timer.add( selector );
 
-// Add the timer poke to initialize the plugin
-window._timer.add( plugin.selector );
-
-}( jQuery, window, vapour ) );
+} )( jQuery, window, vapour );
