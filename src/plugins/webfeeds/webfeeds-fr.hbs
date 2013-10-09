@@ -1,0 +1,80 @@
+---
+title: Fils de syndication
+language: fr
+---
+<p>>Cette composante est un gadget logiciel permettant de regrouper et d’afficher des données d'un ou plusieurs fils de syndication. Les formats soutenus sont Atom, RSS et Media RSS.</p>
+
+<section>
+	<h2>Avantages</h2>
+	<ul>
+		<li>Affichage des données d'un ou plusiers fils Atom, RSS ou Media RSS dans une page Web sans agrégateur de fil Web</li>
+		<li>Récupération dynamique des cinq derniers éléments de n’importe quel fil public d'Atom, RSS ou Media RSS</li>
+		<li>Fonctionnalité de promotion croisée et de partage d’information entre sites Web</li>
+		<li>Conformes à WCAG 2.0 AA</li>
+		<li>Recours aux WAI-ARIA pour accroître l’accessibilité</li>
+		<li>Approche d'amélioration progressive</li>
+		<li>Soutien pour Firefox, Opera, Safari, Chrome et IE 8+</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Exemples</h2>
+	<div class="wb-webfeeds">
+		<section class="widget-container">
+			<h3>Météo d'Ottawa</h3>
+			<ul class="widget-content">
+				<li><a href="http://weather.gc.ca/city/pages/on-118_metric_f.html" rel="external">Ottawa Ontario</a></li>
+			</ul>
+		</section>
+	</div>
+
+	<div class="wb-webfeeds limit-5">
+		<section class="widget-container">
+			<h3>Fils RSS</h3>
+			<ul class="widget-content">
+				<li>
+					<a href="http://www.tc.gc.ca/medias/rss/routier.xml" rel="external">Communiqués de presse routière (Tous)</a>
+				</li>
+				<li>
+					<a href="http://wwwapps.tc.gc.ca/Saf-Sec-Sur/7/VRDB-BDRV/Search/Rss-Search.aspx?lang=fra" rel="external">Rappels de la Sécurité Routière</a>
+				</li>
+			</ul>
+		</section>
+	</div>
+
+	<div class="wb-webfeeds">
+		<section class="widget-container">
+			<h3>Chronologie intégrée Twitter</h3>
+			<article>
+				<a class="twitter-timeline" href="https://twitter.com/search?q=%23boew" data-widget-id="329071414877495297">Tweets concernant "#boew"</a>
+			</article>
+		</section>
+	</div>
+</section>
+
+<section>
+	<h2>Paramètres</h2>
+	<table>
+		<caption>Paramètres et détails pour le gadget Web</caption>
+		<thead>
+			<tr>
+				<th scope="col">Classe (paramètre)</th>
+				<th scope="col">Rôle</th>
+				<th scope="col">Détails</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>wet-boew-webwidget</code></td>
+				<td>identificateur</td>
+				<td>classe principale qui identifie le code utilisé pour le gadget des fils de syndication</td>
+			</tr>
+			<tr>
+				<td><code>limit-<em>xxx</em></code></td>
+				<td>affichage</td>
+				<td>contrôle la quantité d'articles que le gadget des fils de syndication affichera (sauf les fils intégrés Twitter)</td>
+			</tr>
+		</tbody>
+	</table>
+	<p><a href="https://dev.twitter.com/docs/embedded-timelines">Options de configuration des fils intégrés Twitter</a></p>
+</section>
