@@ -5,14 +5,14 @@
  * @author WET Community
  */
 (function ( $, window, vapour ) {
-    "use strict";
+	"use strict";
 
-    /* 
-     * Variable and function definitions. 
-     * These are global to the plugin - meaning that they will be initialized once per page,
-     * not once per instance of plugin on the page. So, this is a good place to define
-     * variables that are common to all instances of the plugin on a page.
-     */
+	/* 
+	 * Variable and function definitions. 
+	 * These are global to the plugin - meaning that they will be initialized once per page,
+	 * not once per instance of plugin on the page. So, this is a good place to define
+	 * variables that are common to all instances of the plugin on a page.
+	 */
 	var selector = ".wb-carousel",
 		$document = vapour.doc,
 		controls = selector + " .prv, " + selector + " .nxt, " + selector + " .plypause",
@@ -101,7 +101,6 @@
 		var eventType = event.type,
 
 			// "this" is cached for all events to utilize
-
 			$elm = $( this );
 
 		switch ( eventType ) {
@@ -124,10 +123,10 @@
 			break;
 		}
 		
-        /*
-         * Since we are working with events we want to ensure that we are being passive about our control, 
-         * so returning true allows for events to always continue
-         */
+		/*
+		 * Since we are working with events we want to ensure that we are being passive about our control, 
+		 * so returning true allows for events to always continue
+		 */
 		return true;
 	} );
 
@@ -152,14 +151,14 @@
 		}
 		_sldr.attr( "data-ctime", 0 );
 
-        /*
-         * Since we are working with events we want to ensure that we are being passive about our control, 
-         * so returning true allows for events to always continue
-         */
+		/*
+		 * Since we are working with events we want to ensure that we are being passive about our control, 
+		 * so returning true allows for events to always continue
+		 */
 		return true;
 	} );
 
 	// Add the timer poke to initialize the plugin
-
 	window._timer.add( ".wb-carousel" );
-})( jQuery, window, vapour );
+
+} )( jQuery, window, vapour );
