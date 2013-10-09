@@ -1,0 +1,82 @@
+---
+title: Web feeds
+language: en
+---
+<p>This feature provides a widget for aggregating and displaying the entries from one or more Web feeds on a Web page. Supported Web feed formats are Atom, RSS, and Media RSS.</p>
+
+<section>
+	<h2>Benefits</h2>
+	<ul>
+		<li>Displays entries from one or more Atom, RSS, and Media RSS feeds on a Web page without the need for a Web feed reader</li>
+		<li>Dynamically fetches the top five items of any public Atom, RSS, or Media RSS feed</li>
+		<li>Enables cross-promotion and sharing of information between Web sites</li>
+		<li>Conforms to WCAG 2.0 AA</li>
+		<li>Uses WAI-ARIA to enhance accessibility</li>
+		<li>Progressive enhancement approach</li>
+		<li>Supports Firefox, Opera, Safari, Chrome, and IE 8+</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Samples</h2>
+	<div class="wb-webfeeds">
+		<section class="widget-container">
+			<h3>Ottawa Weather</h3>
+			<ul class="widget-content">
+				<li>
+					<a href="http://weather.gc.ca/city/pages/on-118_metric_e.html" rel="external">Ottawa Ontario</a>
+				</li>
+			</ul>
+		</section>
+	</div>
+
+	<div class="wb-webfeeds limit-5">
+		<section class="widget-container">
+			<h3>RSS Feed</h3>
+			<ul class="widget-content">
+				<li>
+					<a href="http://www.tc.gc.ca/mediaroom/rss/road.xml" rel="external">Road News Releases (All)</a>
+				</li>
+				<li>
+					<a href="http://wwwapps.tc.gc.ca/Saf-Sec-Sur/7/VRDB-BDRV/Search/Rss-Search.aspx" rel="external">Road Safety Recalls</a>
+				</li>
+			</ul>
+		</section>
+	</div>
+
+	<div class="wb-webfeeds">
+		<section class="widget-container">
+			<h3>Twitter Embedded Timeline</h3>
+			<article>
+				<a class="twitter-timeline" href="https://twitter.com/search?q=%23WxT" data-widget-id="329066756620566528">Tweets about "#WxT"</a>
+			</article>
+		</section>
+	</div>
+</section>
+
+<section>
+	<h2>Parameters</h2>
+	<table>
+		<caption>Parameters and details for the Web feeds widget</caption>
+		<thead>
+			<tr>
+				<th scope="col">Class (parameter)</th>
+				<th scope="col">Role</th>
+				<th scope="col">Details</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>wet-boew-webwidget</code></td>
+				<td>identifier</td>
+				<td>main targeting class that identifies the codeblock used for the Web feeds widget</td>
+			</tr>
+			<tr>
+				<td><code>limit-<em>xxx</em></code></td>
+				<td>display</td>
+				<td>controls the amount of items the Web feeds widget will display (except for the Twitter Embedded Timeline)</td>
+			</tr>
+		</tbody>
+	</table>
+	<p><a href="https://dev.twitter.com/docs/embedded-timelines">Twitter Embedded Timeline configuration options</a></p>
+</section>
