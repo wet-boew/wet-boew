@@ -1,6 +1,5 @@
-/**
- * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * @title Favicon Plugin
+/*
+ * @title WET-BOEW Favicon Plugin
  * @overview Provides the ability to add and update a page's favicons
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
@@ -19,100 +18,118 @@
  *     <link href="favion.ico" rel="shortcut icon" data-rel="apple-touch-icon-precomposed" data-filename="my-mobile-favicon.ico">
  */
 (function ( $, window, vapour ) {
+	"use strict";
 
-"use strict";
-
-/**
- * @class Favicon
- */
-var plugin = {
-	selector: "link[rel='shortcut icon']",
-	defaults: {
-		filename: "favicon-mobile.png",
-		path: null,
-		rel: "apple-touch-icon",
-		sizes: "57x57 72x72 114x114 144x144 150x150"
-	},
-
-	/**
-	 * Initialize the plugin
-	 * @method init
+	/* 
+	 * Variable and function definitions. 
+	 * These are global to the plugin - meaning that they will be initialized once per page,
+	 * not once per instance of plugin on the page. So, this is a good place to define
+	 * variables that are common to all instances of the plugin on a page.
 	 */
-	init: function() {
-		var $favicon = $( this ),
-			settings = $.extend( {}, plugin.defaults, $favicon.data() );
+	var selector = "link[rel='shortcut icon']",
+		$document = vapour.doc,
 
-		window._timer.remove( plugin.selector );
-		$favicon.trigger( "mobile.wb-favicon", settings );
-	},
+		/*
+		 * Plugin users can override these defaults by setting attributes on the html elements that the
+		 * selector matches.
+		 * For example, adding the attribute data-option1="false", will override option1 for that plugin instance.
+		 */
+		defaults = {
+			filename: "favicon-mobile.png",
+			path: null,
+			rel: "apple-touch-icon",
+			sizes: "57x57 72x72 114x114 144x144 150x150"
+		},
 
-	/**
-	 * Adds, or updates, the mobile favicon on a page.  Mobile favicons are identified by the
-	 * `apple` prefix in the `<link>` elements rel attribute.
-	 * @method mobile
-	 * @param {jQuery Event} event Event that triggered this handler
-	 * @param {Object} data Key-value data object passed with the event
-	 */
-	mobile: function( event, data ) {
-		var faviconPath,
-			favicon = this,
-			faviconMobile = $( "link[rel^='apple']" ),
-			isFaviconMobile = faviconMobile.length !== 0;
+		/*
+		 * Init runs once per plugin element on the page. There may be multiple elements. 
+		 * It will run more than once per plugin if you don't remove the selector from the timer.
+		 * @method init
+		 * @param {jQuery DOM element} $favicon The plugin element being initialized
+		 */
+		init = function ( $favicon ) {
+			// Merge default settings with overrides from the selected plugin element. There may be more than one, so don't override defaults globally!
+			var settings = $.extend( {}, defaults, $favicon.data() );
 
-		// Create the mobile favicon if it doesn't exist
-		if ( !isFaviconMobile ) {
-			faviconMobile = $( "<link rel='" + data.rel + "' sizes='" + data.sizes + "' class='wb-favicon'>" );
-		}
+			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+			window._timer.remove( selector );
 
-		// Only add/update a mobile favicon that was created by the plugin
-		if ( faviconMobile.hasClass( "wb-favicon" ) ) {
-			faviconPath = data.path !== null ? data.path : plugin.getPath( favicon.getAttribute( "href" ) );
-			faviconMobile.attr( "href", faviconPath + data.filename );
+			$favicon.trigger( "mobile.wb-favicon", settings );
+		},
 
+		/*
+		 * Adds, or updates, the mobile favicon on a page.  Mobile favicons are identified by the
+		 * `apple` prefix in the `<link>` elements rel attribute.
+		 * @method mobile
+		 * @param {DOM element} favicon Favicon element
+		 * @param {jQuery Event} event Event that triggered this handler
+		 * @param {Object} data Key-value data object passed with the event
+		 */
+		mobile = function ( favicon, event, data ) {
+			var faviconPath,
+				faviconMobile = $( "link[rel^='apple']" ),
+				isFaviconMobile = faviconMobile.length !== 0;
+
+			// Create the mobile favicon if it doesn't exist
 			if ( !isFaviconMobile ) {
-				favicon.parentNode.insertBefore( faviconMobile[0], favicon );
+				faviconMobile = $( "<link rel='" + data.rel + "' sizes='" + data.sizes + "' class='wb-favicon'>" );
 			}
+
+			// Only add/update a mobile favicon that was created by the plugin
+			if ( faviconMobile.hasClass( "wb-favicon" ) ) {
+				faviconPath = data.path !== null ? data.path : getPath( favicon.getAttribute( "href" ) );
+				faviconMobile.attr( "href", faviconPath + data.filename );
+
+				if ( !isFaviconMobile ) {
+					favicon.parentNode.insertBefore( faviconMobile[ 0 ], favicon );
+				}
+			}
+		},
+
+		/*
+		 * Updates the the page's shortcut icon
+		 * @method icon
+		 * @param {DOM element} favicon Favicon element
+		 * @param {jQuery Event} event Event that triggered this handler
+		 * @param {Object} data Key-value data object passed with the event
+		 */
+		icon = function( favicon, event, data ) {
+			var faviconPath = data.path !== null ? data.path : getPath( favicon.getAttribute( "href" ) );
+			favicon.setAttribute( "href", faviconPath + data.filename );
+		},
+
+		/*
+		 * Given a full file path, returns the path without the filename
+		 * @method getPath
+		 * @param {string} filepath The full path to file, including filename
+		 * @returns {string} The path to the file
+		 */
+		getPath = function( filepath ) {
+			return filepath.substring( 0, filepath.lastIndexOf( "/" ) + 1 );
+		};
+
+	// Bind the plugin events
+	$document.on( "timerpoke.wb mobile.wb-favicon icon.wb-favicon", selector, function( event, data ) {
+		switch ( event.type ) {
+		case "timerpoke":
+			init( $( this ) );
+			break;
+		case "mobile":
+			mobile( this, event, data );
+			break;
+		case "icon":
+			icon( this, event, data );
+			break;
 		}
-	},
 
-	/**
-	 * Updates the the page's shortcut icon
-	 * @method icon
-	 * @param {jQuery Event} event Event that triggered this handler
-	 * @param {Object} data Key-value data object passed with the event
-	 */
-	icon: function( event, data ) {
-		var faviconPath = data.path !== null ? data.path : plugin.getPath( this.getAttribute( "href" ) );
-		this.setAttribute( "href", faviconPath + data.filename );
-	},
+		/*
+		 * Since we are working with events we want to ensure that we are being passive about our control, 
+		 * so returning true allows for events to always continue
+		 */
+		return true;
+	} );
 
-	/**
-	 * Given a full file path, returns the path without the filename
-	 * @method getPath
-	 * @param {string} filepath The full path to file, including filename
-	 * @returns {string} The path to the file
-	 */
-	getPath: function( filepath ) {
-		return filepath.substring( 0, filepath.lastIndexOf( "/" ) + 1 );
-	}
-};
+	// Add the timer poke to initialize the plugin
+	window._timer.add( selector );
 
-// Bind the plugin events
-vapour.doc.on( "timerpoke.wb mobile.wb-favicon icon.wb-favicon", plugin.selector, function( event ) {
-	switch ( event.type ) {
-	case "timerpoke":
-		plugin.init.apply( this, arguments );
-		break;
-	case "mobile":
-		plugin.mobile.apply( this, arguments );
-		break;
-	case "icon":
-		plugin.icon.apply( this, arguments );
-		break;
-	}
-});
-
-// Add the timer poke to initialize the plugin
-window._timer.add( plugin.selector );
-
-}( jQuery, window, vapour ) );
+} )( jQuery, window, vapour );
