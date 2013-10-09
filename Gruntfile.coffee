@@ -3,7 +3,7 @@ module.exports = (grunt) ->
 	# External tasks
 	@registerTask(
 		"default",
-		"Test and create the production files",
+		"Default task, that runs the production build",
 		[
 			"dist"
 		]
@@ -37,11 +37,25 @@ module.exports = (grunt) ->
 
 	@registerTask(
 		"deploy",
-		"Used by Travis to update the wet-boew-dist build artifacts",
+		"Build and deploy artifacts to wet-boew-dist",
 		[
-			"demos",
-			"clean:tests",
+			"dist",
 			"gh-pages"
+		]
+	)
+	
+	@registerTask(
+		"saucelabs",
+		"Full build for running tests on SauceLabs. Currently only for Travis builds",
+		[
+			"clean:dist",
+			"assets",
+			"js",
+			"css",
+			"copy:tests",
+			"assemble:tests"
+			"connect",
+			"saucelabs-mocha",
 		]
 	)
 
@@ -56,7 +70,7 @@ module.exports = (grunt) ->
 	#Internal task groups
 	@registerTask(
 		"js",
-		"Compiles CoffeeScript and copies all third party JS to the dist folder",
+		"INTERNAL: Compiles CoffeeScript and copies all third party JS to the dist folder",
 		[
 			"coffee",
 			"copy:jquery",
@@ -71,7 +85,7 @@ module.exports = (grunt) ->
 
 	@registerTask(
 		"dist-js",
-		"Compile and minify JS, and then cleans up unminifed JS in dist",
+		"INTERNAL: Compile and minify JS, and then cleans up unminifed JS in dist",
 		[
 			"js",
 			"uglify",
@@ -81,7 +95,7 @@ module.exports = (grunt) ->
 
 	@registerTask(
 		"css",
-		"Compiles Sass and copies third party CSS to the dist folder"
+		"INTERNAL: Compiles Sass and copies third party CSS to the dist folder"
 		[
 			"sass",
 			"autoprefixer",
@@ -91,7 +105,7 @@ module.exports = (grunt) ->
 
 	@registerTask(
 		"dist-css",
-		"Compile and minify CSS, and then cleans up unminifed files in dist",
+		"INTERNAL: Compile and minify CSS, and then cleans up unminifed files in dist",
 		[
 			"css",
 			"cssmin",
@@ -101,7 +115,7 @@ module.exports = (grunt) ->
 
 	@registerTask(
 		"assets",
-		"Process non-CSS/JS assets to dist",
+		"INTERNAL: Process non-CSS/JS assets to dist",
 		[
 			"copy:misc"
 		]
@@ -109,26 +123,18 @@ module.exports = (grunt) ->
 
 	@registerTask(
 		"test",
-		"Runs testing tasks, except for SauceLabs testing",
+		"INTERNAL: Runs testing tasks, except for SauceLabs testing",
 		[
 			"jshint"
 		]
 	)
 
 	@registerTask(
-		"saucelabs",
-		"Runs tests on SauceLabs. Currently only for Travis builds",
-		[
-			"connect",
-			"saucelabs-mocha"
-		]
-	)
-
-	@registerTask(
 		"demos",
-		"Compile the demo files",
+		"INTERNAL: Compile the demo files",
 		[
-			"assemble"
+			"assemble:site",
+			"assemble:plugins"
 		]
 	)
 
@@ -181,23 +187,25 @@ module.exports = (grunt) ->
 				helpers: "site/helpers/helper-*.js"
 				layoutdir: "site/layouts"
 				partials: ["site/includes/**/*.hbs"]
+				layout: "default.hbs"
+				environment:
+					suffix: "<%= environment.suffix %>"
 
 			site:
-				options:
-					layout: "default.hbs"
-					environment:
-						suffix: "<%= environment.suffix %>"
 				expand: true
 				cwd: "src"
 				src: ["*.hbs"]
 				dest: "dist/"
 
-			demo:
+			plugins:
+				expand: true
+				cwd: "src/plugins"
+				src: ["**/*.hbs"]
+				dest: "dist/demo"
+			tests:
 				options:
-					layout: "default.hbs"
 					environment:
-						suffix: "<%= environment.suffix %>"
-						test: grunt.cli.tasks.indexOf('test') > -1
+						test: true
 				expand: true
 				cwd: "src/plugins"
 				src: ["**/*.hbs"]
@@ -381,7 +389,15 @@ module.exports = (grunt) ->
 					"!**/*.scss",
 					"!**/*.hbs",
 					"!**/assets/*"
-				].concat(if grunt.cli.tasks.indexOf("test") > -1 then ["**/test.js"] else [])
+				]
+				dest: "dist/demo"
+				expand: true
+			
+			tests:
+				cwd: "src/plugins"
+				src: [
+					"**/test.js"
+				]
 				dest: "dist/demo"
 				expand: true
 
