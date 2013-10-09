@@ -59,7 +59,7 @@
 			// Create the accordion panels
 			for (index = 0, len = $panels.length; index < len; index += 1) {
 				$link = $tabs.eq(index).children('a');
-				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + ' data-tab="' + this._get_hash($link.attr('href')) + '">' + hopen + $link.text() + hclose + '</div>';
+				accordion += '<div data-role="collapsible"' + (index === defaultTab ? ' data-collapsed="false"' : '') + ' data-tab="' + this._get_hash($link.attr('href')) + '">' + hopen + $link.html() + hclose + '</div>';
 			}
 			$accordion = $(accordion);
 
