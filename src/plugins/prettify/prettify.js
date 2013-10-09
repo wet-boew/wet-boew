@@ -34,93 +34,76 @@
 
 "use strict";
 
-var plugin = {
-	selector: ".prettyprint",
-	executed: false,
-	defaults: {
-		allLinenums: false,
-		allPre: false
+/*
+ * Global variable and function definitions.
+ */
+var selector = ".wb-prettify",
+	defaults = {
+		linenums: false,
+		allpre: false
 	},
 
 	/**
 	 * Initialize the plugin. This only runs once on the DOM.
+	 * @function init
 	 */
-	init: function() {
-		var cssClass, cssClasses, deps, i, j, lenClasses, lenPres, modeJS, pre, pres, settings;
+	init = function() {
+		var i, len, $pre,
+			$elm = $( this ),
+			classes = $elm.attr( "class" ).split( " " ),
+			modeJS = vapour.getMode() + ".js",
+			deps = [ "site!deps/prettify" + modeJS ],
+			settings = $.extend( {}, defaults, $elm.data() );
 
-		window._timer.remove( plugin.selector );
+		window._timer.remove( selector );
 
-		// Only initialize this plugin once.  The prettify lib updates the DOM in one pass.
-		if ( plugin.executed === false ) {
-			plugin.executed = true;
-
-			pres = vapour.doc[0].getElementsByTagName( "pre" );
-			modeJS = vapour.getMode() + ".js";
-			settings = $.extend( {}, plugin.defaults );
-			deps = [ "site!deps/prettify" + modeJS ];
-
-			// Check the <pre> CSS classes to determine plugin settings
-			for ( i = 0, lenPres = pres.length; i < lenPres; i++ ) {
-				pre = pres[ i ];
-				cssClasses = typeof pre.className === "string" ? pre.className : "";
-
-				// Add line numbers to all <pre> elements
-				if ( !settings.allLinenums && /all\-linenums/.test( cssClasses ) ) {
-					settings.allLinenums = true;
-				}
-
-				// Prettify all <pre> elements
-				if ( !settings.allPre && /all\-pre/.test( cssClasses ) ) {
-					settings.allPre = true;
-				}
-
-				// Language syntax file
-				cssClasses = pre.className.split( " " );
-				for ( j = 0, lenClasses = cssClasses.length; j < lenClasses; j++ ) {
-					cssClass = cssClasses[ j ];
-					if ( cssClass.indexOf( "lang-" ) === 0 ) {
-						deps.push( "site!deps/" + cssClass + modeJS );
-					}
-				}
+		// Check the element for `lang-*` syntax CSS classes
+		for ( i = 0, len = classes.length; i < len; i++ ) {
+			if ( classes[ i ].indexOf( "lang-" ) === 0 ) {
+				deps.push( "site!deps/" + classes[ i ] + modeJS );
 			}
-
-			// Apply global plugin settings
-			if ( settings.allPre || settings.allLinenums ) {
-				pres = $( pres );
-				if ( settings.allPre ) {
-					pres.addClass( plugin.selector.substring( 1 ) );
-				}
-				if ( settings.allLinenums ) {
-					pres.filter( plugin.selector ).addClass( "linenums" );
-				}
-			}
-
-			// Load the required dependencies and prettify the code once finished
-			window.Modernizr.load({
-				load: deps,
-				complete: function() {
-					vapour.doc.trigger( "prettyprint.wb-prettify" );
-				}
-			});
 		}
+
+		// CSS class overides of settings
+		settings.allpre = settings.allpre || $elm.hasClass( "all-pre" );
+		settings.linenums = settings.linenums || $elm.hasClass( "linenums" );
+
+		// Apply global settings
+		if ( settings.allpre || settings.linenums ) {
+			$pre = vapour.doc.find( "pre" );
+			if ( settings.allpre ) {
+				$pre.addClass( "prettyprint" );
+			}
+			if ( settings.linenums ) {
+				$pre.filter( ".prettyprint" ).addClass( "linenums" );
+			}
+		}
+
+		// Load the required dependencies and prettify the code once finished
+		window.Modernizr.load({
+			load: deps,
+			complete: function() {
+				vapour.doc.trigger( "prettyprint.wb-prettify" );
+			}
+		});
 	},
 
 	/**
 	 * Invoke the Google pretty print library if it has been initialized
+	 * @function prettyprint
 	 */
-	prettyprint: function() {
+	prettyprint = function() {
 		if ( typeof window.prettyPrint === "function" ) {
 			window.prettyPrint();
 		}
-	}
-};
+	};
 
 // Bind the plugin events
 vapour.doc
-	.on( "timerpoke.wb", plugin.selector, plugin.init )
-	.on( "prettyprint.wb-prettify", plugin.prettyprint );
+	.on( "timerpoke.wb", selector, init )
+	.on( "prettyprint.wb-prettify", prettyprint );
 
 // Add the timer poke to initialize the plugin
-window._timer.add( plugin.selector );
+window._timer.add( selector );
 
 }( jQuery, window, vapour ) );
