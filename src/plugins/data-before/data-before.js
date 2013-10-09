@@ -1,44 +1,65 @@
 /*
-    Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW)
-    _plugin : Ajax Loader [ data-append ]
-    _author : World Wide Web
-    _notes  : A basic AjaxLoader wrapper for WET-BOEW that appends to elements
-    _licence: wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
-*/
-
+ * @title WET-BOEW Ajax Loader [ data-append ]
+ * @overview A basic AjaxLoader wrapper for WET-BOEW that inserts content before elements
+ * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ * @author WET Community
+ */
 (function ( $, window, vapour ) {
+	"use strict";
 
-"use strict";
+	$.ajaxSettings.cache = false;
 
-$.ajaxSettings.cache = false;
+	/* 
+	 * Variable and function definitions. 
+	 * These are global to the plugin - meaning that they will be initialized once per page,
+	 * not once per instance of plugin on the page. So, this is a good place to define
+	 * variables that are common to all instances of the plugin on a page.
+	 */
+	var selector = "[data-ajax-before]",
+		$document = vapour.doc,
 
-var $document = vapour.doc;
+		/*
+		 * Init runs once per plugin element on the page. There may be multiple elements. 
+		 * It will run more than once per plugin if you don't remove the selector from the timer.
+		 * @method init
+		 * @param {jQuery DOM element} $elm The plugin element being initialized
+		 */
+		init = function ( $elm ) {
 
-$document.on( "timerpoke.wb ajax-fetched.wb", "[data-ajax-before]", function (
-    event ) {
+			var _url = $elm.data( "ajax-before" );
 
-    var eventType = event.type,
-        _elm = $( this ),
-        _url;
+			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+			window._timer.remove( selector );
 
-    switch ( eventType ) {
-    case "timerpoke":
-        window._timer.remove( "[data-ajax-before]" );
-        _url = _elm.data( "ajax-before" );
-        $document.trigger( {
-            type: "ajax-fetch.wb",
-            element: _elm,
-            fetch: _url
-        } );
-        break;
-    case "ajax-fetched":
-        _elm.before( event.pointer.html( ) );
-        _elm.trigger( "ajax-after-loaded.wb" );
-        break;
-    }
-    return false;
-});
+			$document.trigger( {
+				type: "ajax-fetch.wb",
+				element: $elm,
+				fetch: _url
+			} );
+		};
 
-window._timer.add( "[data-ajax-before]" );
+	$document.on( "timerpoke.wb ajax-fetched.wb", selector, function ( event ) {
+		var eventType = event.type,
+			$elm = $( this );
 
-})( jQuery, window, vapour );
+		switch ( eventType ) {
+		case "timerpoke":
+			init( $elm );
+			break;
+		case "ajax-fetched":
+			$elm.before( event.pointer.html() )
+				.trigger( "ajax-before-loaded.wb" );
+			break;
+		}
+
+		/*
+		 * Since we are working with events we want to ensure that we are being passive about our control, 
+		 * so returning true allows for events to always continue
+		 */
+		return true;
+	} );
+
+	// Add the timer poke to initialize the plugin
+	window._timer.add( selector );
+
+} )( jQuery, window, vapour );

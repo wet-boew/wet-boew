@@ -16,6 +16,11 @@
 	var selector = ".wb-equalheight",
 		$document = vapour.doc,
 
+		/*
+		 * Init runs once per plugin element on the page. There may be multiple elements. 
+		 * It will run more than once per plugin if you don't remove the selector from the timer.
+		 * @method init
+		 */
 		init = function () {
 
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
@@ -24,7 +29,10 @@
 			onResize();
 		},
 
-		// Re-equalise any time the window/document or a child element of 'selector' is resized.
+		/*
+		 * Re-equalise any time the window/document or a child element of 'selector' is resized.
+		 * @method onResize
+		 */
 		onResize = function () {
 			var $elm = $( selector ),
 				$children = $elm.children(),
@@ -62,6 +70,11 @@
 			}
 		},
 
+		/*
+		 * @method setRowHeight
+		 * @param {array} row The rows to be updated
+		 * @param {integer} height The new row height
+		 */
 		setRowHeight = function ( row, height ) {
 			for ( var i = row.length - 1; i >= 0; i-- ) {
 				row[ i ].style.height = height + "px";

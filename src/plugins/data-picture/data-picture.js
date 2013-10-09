@@ -1,76 +1,95 @@
-/**
- * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * @title data-picture Plugin
+/*
+ * @title WET-BOEW data-picture Plugin
  * @overview Event driven port of the Picturefill library: https://github.com/scottjehl/picturefill
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-( function ( $, window, vapour ) {
+(function ( $, window, vapour ) {
+	"use strict";
 
-"use strict";
+	/* 
+	 * Variable and function definitions. 
+	 * These are global to the plugin - meaning that they will be initialized once per page,
+	 * not once per instance of plugin on the page. So, this is a good place to define
+	 * variables that are common to all instances of the plugin on a page.
+	 */
+	var selector = "[data-picture]",
+		$document = vapour.doc,
 
-var plugin = {
-	selector: "[data-picture]",
+		/*
+		 * Init runs once per plugin element on the page. There may be multiple elements. 
+		 * It will run more than once per plugin if you don't remove the selector from the timer.
+		 * @method init
+		 * @param {jQuery DOM element} $elm The plugin element being initialized
+		 */
+		init = function ( $elm ) {
 
-	//Initialize the [data-picture] elements
-	init: function() {
-		window._timer.remove( plugin.selector );
-		$( this ).trigger( "picturefill.wb-data-picture" );
-	},
+			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+			window._timer.remove( selector );
+			
+			$elm.trigger( "picturefill.wb-data-picture" );
+		},
+		
+		/*
+		 * Updates the image displayed according to media queries.
+		 * This is the logic ported from Picturefill.
+		 * @method picturefill
+		 * @param {DOM element} _elm The element containing the images to be updated
+		 */
+		picturefill = function ( _elm ) {
+			var i, len, matchedElm, media,
+				matches = [ ],
+				img = _elm.getElementsByTagName( "img" )[ 0 ],
+				sources = _elm.getElementsByTagName( "span" );
 
-	//Handles window resize so images can be updated as new media queries match
-	resize: function() {
-		$( plugin.selector ).trigger( "picturefill.wb-data-picture" );
-	},
-
-	//Updates the image displayed according to media queries.  This is the logic
-	//ported from Picturefill.
-	picturefill: function() {
-		var i, len, matchedElm, media,
-			matches = [ ],
-			img = this.getElementsByTagName( "img" )[ 0 ],
-			sources = this.getElementsByTagName( "span" );
-
-		// Loop over the data-media elements and find matching media queries
-		for ( i = 0, len = sources.length; i < len; i++ ) {
-			media = sources[ i ].getAttribute( "data-media" );
-			if ( media === null || window.Modernizr.mq( media ) ) {
-				matches.push( sources[ i ] );
+			// Loop over the data-media elements and find matching media queries
+			for ( i = 0, len = sources.length; i !== len; i += 1 ) {
+				media = sources[ i ].getAttribute( "data-media" );
+				if ( !media || window.Modernizr.mq( media ) ) {
+					matches.push( sources[ i ] );
+				}
 			}
-		}
 
-		// If a media query match was found, add the image to the page
-		if ( matches.length !== 0 ) {
-			matchedElm = matches.pop( );
-			if ( img === undefined ) {
-				img = vapour.doc[ 0 ].createElement( "img" );
-				img.alt = this.getAttribute( "data-alt" );
+			// If a media query match was found, add the image to the page
+			if ( matches.length !== 0 ) {
+				matchedElm = matches.pop( );
+				if ( !img ) {
+					img = $document[ 0 ].createElement( "img" );
+					img.alt = _elm.getAttribute( "data-alt" );
+				}
+				img.src = matchedElm.getAttribute( "data-src" );
+				matchedElm.appendChild( img );
+
+			// No match and an image exists: delete it
+			} else if ( img ) {
+				img.parentNode.removeChild( img );
 			}
-			img.src = matchedElm.getAttribute( "data-src" );
-			matchedElm.appendChild( img );
+		};
 
-		// No match and an image exists: delete it
-		} else if ( img !== undefined ) {
-			img.parentNode.removeChild( img );
+	// Bind the init event of the plugin
+	$document.on( "timerpoke.wb picturefill.wb-data-picture", selector, function( event ) {
+		var eventType = event.type,
+			_elm = this,
+
+			// "this" is cached for all events to utilize
+			$elm = $( this );
+
+		switch ( eventType ) {
+		case "timerpoke":
+			init( $elm );
+			break;
+		case "picturefill":
+			picturefill( _elm );
+			break;
 		}
-	}
-};
+	} );
+	
+	// Handles window resize so images can be updated as new media queries match
+	$document.on( "text-resize.wb window-resize-width.wb window-resize-height.wb", function () {
+		$( selector ).trigger( "picturefill.wb-data-picture" );
+	} );
 
-// Bind the plugin's events
-vapour.doc.on( "timerpoke.wb picturefill.wb-data-picture", plugin.selector, function( event ) {
-	switch ( event.type ) {
-	case "timerpoke":
-		plugin.init.apply( this, arguments );
-		break;
-	case "picturefill":
-		plugin.picturefill.apply( this, arguments );
-		break;
-	}
-});
+	// Add the timer poke to initialize the plugin
+	window._timer.add( selector );
 
-vapour.doc.on( "text-resize.wb window-resize-width.wb window-resize-height.wb", plugin.resize );
-
-// Add the timer poke to initialize the plugin
-window._timer.add( plugin.selector );
-
-}( jQuery, window, vapour ) );
+} )( jQuery, window, vapour );
