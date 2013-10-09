@@ -1,31 +1,70 @@
 /*
-    Web Experience Toolkit (WET) / Boîte à outils de l\'expérience Web (BOEW)
-    _plugin : Ajax Loader [ data-replace ]
-    _author : World Wide Web
-    _notes  : A basic AjaxLoader wrapper for WET-BOEW
-    _licence: wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
-*/
-
+ * @title WET-BOEW Ajax Loader [ data-replace ]
+ * @overview A basic AjaxLoader wrapper for WET-BOEW for replacing elements
+ * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ * @author WET Community
+ */
 (function ( $, window, vapour ) {
-"use strict";
+	"use strict";
 
-$.ajaxSettings.cache = false;
+	$.ajaxSettings.cache = false;
 
-var $document = vapour.doc;
+	/* 
+	 * Variable and function definitions. 
+	 * These are global to the plugin - meaning that they will be initialized once per page,
+	 * not once per instance of plugin on the page. So, this is a good place to define
+	 * variables that are common to all instances of the plugin on a page.
+	 */
+	var selector = "[data-ajax-replace]",
+		$document = vapour.doc,
 
-$document.on( "timerpoke.wb", "[data-ajax-replace]", function () {
-    window._timer.remove( "[data-ajax-replace]" );
+		/*
+		 * Init runs once per plugin element on the page. There may be multiple elements. 
+		 * It will run more than once per plugin if you don't remove the selector from the timer.
+		 * @method init
+		 * @param {jQuery DOM element} $elm The plugin element being initialized
+		 */
+		init = function ( $elm ) {
 
-    var _elm = $( this ),
-        _url = _elm.data( "ajax-replace" );
+			var _url = $elm.data( "ajax-replace" );
 
-    _elm.load( _url, function () {
-        _elm.removeAttr( "data-ajax-replace" )
-            .trigger( "ajax-replace-loaded.wb" );
-    });
-    return false;
-});
+			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+			window._timer.remove( selector );
 
-window._timer.add( "[data-ajax-replace]" );
+			$document.trigger( {
+				type: "ajax-fetch.wb",
+				element: $elm,
+				fetch: _url
+			} );
+			
+			$elm.load( _url, function () {
+				$elm.removeAttr( "data-ajax-replace" )
+					.trigger( "ajax-replace-loaded.wb" );
+			});
+		};
 
-})( jQuery, window, vapour );
+	$document.on( "timerpoke.wb ajax-fetched.wb", selector, function ( event ) {
+		var eventType = event.type,
+			$elm = $( this );
+
+		switch ( eventType ) {
+		case "timerpoke":
+			init( $elm );
+			break;
+		case "ajax-fetched":
+			$elm.removeAttr( "data-ajax-replace" )
+				.trigger( "ajax-replace-loaded.wb" );
+			break;
+		}
+
+		/*
+		 * Since we are working with events we want to ensure that we are being passive about our control, 
+		 * so returning true allows for events to always continue
+		 */
+		return true;
+	} );
+
+	// Add the timer poke to initialize the plugin
+	window._timer.add( selector );
+
+} )( jQuery, window, vapour );
