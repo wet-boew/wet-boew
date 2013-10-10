@@ -1,17 +1,17 @@
 ---
 title: Prettify
-language: en
+language: fr
 ---
 
-<p>Syntax highlighting of source code snippets in an html page using <a href="http://code.google.com/p/google-code-prettify/" rel="external">google-code-prettify</a>.</p>
+<p>Mise en surbrillance de syntaxe des extraits de code source dans une page html en utilisant <a href="http://code.google.com/p/google-code-prettify/" rel="external">google-code-prettify</a>.</p>
 
 <section>
-	<h2>How to use</h2>
+	<h2>Comment utiliser</h2>
 	<ol>
-		<li>Apply <code>class="wb-prettify"</code> to an element on the page to load the component (once per page).</li>
-		<li>Apply <code>class="prettyprint"</code> to a <code>pre</code> or <code>code</code> element to apply syntax highlighting. Alternatively use <code>class="wb-prettify all-pre"</code> to apply syntax highlighting to all <code>pre</code> elements on the page.</li>
-		<li>Apply <code>class="linenums"</code> to a <code>pre</code> or <code>code</code> element to add line numbers. Alternatively use <code>class="wb-prettify linenums"</code> to apply line numbers to all applicable <code>pre</code> elements on the page. Specify the starting number by adding <code>linenums:#</code> before <code>linenums</code>.</li>
-		<li>Add extra language support by using <code>class="wb-prettify lang-*"</code> (e.g., <code>class="wet-boew-prettify lang-css"</code>) and applying <code>class="lang-*"</code> to each applicable <code>pre</code> or <code>code</code> element.  Supported formats are below:
+	<li>Appliquer <code>class="wb-prettify"</code> à un élément sur la page pour charger le composant (une fois par page).</li>
+	<li>Appliquer <code>class="prettyprint"</code> à un élément <code>pre</code> ou <code>code</code> pour appliquer la mise en surbrillance de syntaxe. Comme alternative utiliser <code>class="wb-prettify all-pre"</code> pour appliquer la mise en surbrillance de syntaxe à tous les éléments <code>pre</code> sur la page.</li>
+	<li>Appliquer <code>class="linenums"</code> à un élément <code>pre</code> ou <code>code</code> pour ajouter les nombres de ligne. Comme alternative utiliser <code>class="wb-prettify linenums"</code> à tous les éléments <code>pre</code> applicables. Spécifier le nombre commençant en ajoutant <code>linenums:#</code> avant <code>linenums</code>.</li>
+	<li>Ajouter le soutien supplémentaire de langage de programmation avec <code>class="wb-prettify lang-*"</code> (p. ex., <code>class="wb-prettify lang-css"</code>) et en ajoutant <code>class="lang-*"</code> à chaque élément <code>pre</code> ou <code>code</code> applicable.  Les formats supportés sont ci-dessous:
 			<ul>
 				<li>lang-apollo</li>
 				<li>lang-clj</li>
@@ -33,25 +33,25 @@ language: en
 				<li>lang-xq</li>
 				<li>lang-yaml</li>			
 			</ul>
-		</li>
+		</li>	
 	</ol>
 </section>
 
 <section>
-	<h2 id="examples" class="wb-prettify all-pre lang-css">Examples</h2>
+	<h2 id="examples" class="wb-prettify all-pre lang-css">Exemples</h2>
 	<section>
 		<h3>HTML</h3>
 		<pre class="prettyprint"><code>&lt;form action="#" method="post"&gt;
 	&lt;div&gt;
-		&lt;label for="data1"&gt;Form input default appearance:&lt;/label&gt;
+		&lt;label for="data1"&gt;Formulaire - Entrée - apparence par défaut&#160;:&lt;/label&gt;
 		&lt;input name="data1" type="text" id="data1" /&gt;
 	&lt;/div&gt;
 	&lt;div&gt;
-		&lt;label for="data2"&gt;Form text area default appearance:&lt;/label&gt;
+		&lt;label for="data2"&gt;Formulaire - Zone texte - apparence par défaut&#160;:&lt;/label&gt;
 		&lt;textarea name="data2" cols="15" rows="3" id="data2"&gt;&lt;/textarea&gt;
 	&lt;/div&gt;
 	&lt;div&gt;
-		&lt;label for="data4"&gt;Form &lt;code&gt;select&lt;/code&gt; default appearance:&lt;/label&gt;
+		&lt;label for="data4"&gt;Formulaire - Sélection - apparence par défaut&#160;:&lt;/label&gt;
 		&lt;select id="data4" name="data4"&gt;
 			&lt;option value="Option 1"&gt;Option 1&lt;/option&gt;
 			&lt;option value="Option 2"&gt;Option 2&lt;/option&gt;
@@ -60,7 +60,7 @@ language: en
 		&lt;/select&gt;
 	&lt;/div&gt;
 	&lt;fieldset&gt;
-		&lt;legend&gt;Form &lt;code&gt;legend&lt;/code&gt;, &lt;code&gt;fieldset&lt;/code&gt; and &lt;code&gt;checkbox&lt;/code&gt; default appearance&lt;/legend&gt;
+		&lt;legend&gt;Formulaire - &lt;code lang="en"&gt;legend&lt;/code&gt;, &lt;code lang="en"&gt;fieldset&lt;/code&gt; et case à cocher - apparence par défaut&lt;/legend&gt;
 		&lt;div&gt;
 			&lt;input name="checkbox" type="checkbox" id="data5" value="checkbox" /&gt;&#160;&lt;label for="data5"&gt;Option 1&lt;/label&gt;&#160;&#160;
 			&lt;input name="checkbox" type="checkbox" id="data6" value="checkbox" /&gt;&#160;&lt;label for="data6"&gt;Option 2&lt;/label&gt;&#160;&#160;
@@ -69,13 +69,13 @@ language: en
 		&lt;/div&gt;
 	&lt;/fieldset&gt;
 	&lt;div&gt;
-		&lt;input name="submit" type="submit" id="submit" value="Submit default appearance" /&gt;
-		&lt;input name="reset" type="reset" id="reset" value="Reset default appearance" /&gt;
+		&lt;input name="submit" type="submit" id="submit" value="Soumettre - apparence par défaut" /&gt;
+		&lt;input name="reset" type="reset" id="reset" value="Réinitialiser - apparence par défaut" /&gt;
 	&lt;/div&gt;
 &lt;/form&gt;</code></pre>
 	</section>
 	<section>
-		<h3>CSS (uses linenums)</h3>
+		<h3>CSS (utilise linenums)</h3>
 		<pre class="prettyprint lang-css linenums"><code>#gcwu-date-mod dt,#gcwu-date-mod dd{
 	float:left;
 }
@@ -102,7 +102,7 @@ div#gcwu-headlines ul li,div#gcwu-headlines ul{
 }</code></pre>
 	</section>
 	<section>
-		<h3>JavaScript (uses linenums:50 and linenums)</h3>
+		<h3>JavaScript (utilise linenums:50 et linenums)</h3>
 		<pre class="prettyprint linenums:50 linenums"><code>/**
  * Initialize the plugin. This only runs once on the DOM.
  * @function init
