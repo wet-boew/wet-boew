@@ -1,4 +1,4 @@
-/**
+/*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * @title Session Timeout Plugin Unit Tests
  * @overview Test the session timeout plugin behaviour
@@ -9,7 +9,7 @@
 /* jshint unused:vars */
 (function( $, vapour ) {
 
-/**
+/*
  * Create a suite of related test cases using `describe`.  Test suites can also be
  * nested in other test suites if you want to use the same setup `before()` and
  * teardown `after()` for more than one test suite (as is the case below.)
@@ -21,7 +21,7 @@ describe( "Session Timeout test suite", function() {
 		spies = {},
 		stubs = {};
 
-	/**
+	/*
 	 * Before begining the test suite, this function is exectued once.
 	 */
 	before(function( done ) {
@@ -49,7 +49,7 @@ describe( "Session Timeout test suite", function() {
 		clock = sinon.useFakeTimers();
 	});
 
-	/**
+	/*
 	 * After finishing the test suite, this function is exectued once.
 	 */
 	after(function() {
@@ -67,7 +67,7 @@ describe( "Session Timeout test suite", function() {
 		clock.restore();
 	});
 
-	/**
+	/*
 	 * Test the initialization events of the plugin
 	 */
 	describe( "init events", function() {

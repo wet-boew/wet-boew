@@ -4,8 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-(function ( $, window, document, vapour ) {
-
+(function( $, window, document, vapour ) {
 "use strict";
 
 /*
@@ -34,7 +33,7 @@ var selector = ".wb-session-timeout",
 		refreshLimit: 200000		// default period of 2 minutes (ajax calls happen only once during this period)
 	},
 
-	/**
+	/*
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @function init
@@ -75,7 +74,7 @@ var selector = ".wb-session-timeout",
 		});
 	},
 
-	/**
+	/*
 	 * Initialize the refresh on click keepalive behaviour.  This will cause a `keepalive.wb-session-timeout`
 	 * event to be triggered when the document is clicked, limited by the settings.refreshLimit value.
 	 * @function initRefreshOnClick
@@ -84,7 +83,7 @@ var selector = ".wb-session-timeout",
 	 */
 	initRefreshOnClick = function( $elm, settings ) {
 		if ( settings.refreshOnClick ) {
-			$document.on( "click", function () {
+			$document.on( "click", function() {
 				var lastActivity = $elm.data( "lastActivity" ),
 					currentTime = getCurrentTime();
 				if ( !lastActivity || ( currentTime - lastActivity ) > settings.refreshLimit ) {
@@ -97,7 +96,7 @@ var selector = ".wb-session-timeout",
 		}
 	},
 
-	/**
+	/*
 	 * Keepalive session event handler.  Sends the POST request to determine if the session is still alive.
 	 * @function keepalive
 	 * @param {jQuery Event} event `keepalive.wb-session-timeout` event that triggered the function call
@@ -126,7 +125,7 @@ var selector = ".wb-session-timeout",
 					clearTimeout( $elm.data( "keepalive.wb-session-timeout" ) );
 
 					// Let the user know their session is dead
-					setTimeout( function() {
+					setTimeout(function() {
 						// Open the popup
 						$document.trigger( "modal.wb-session-timeout", {
 							mainClass: "mfp-zoom-in",
@@ -198,7 +197,7 @@ var selector = ".wb-session-timeout",
 				open: function() {
 					var $minutes = $modal.find( ".min" ),
 						$seconds = $modal.find( ".sec" );
-					countdownInterval = setInterval( function() {
+					countdownInterval = setInterval(function() {
 						if ( countdown( $minutes, $seconds ) ) {
 							clearInterval( countdownInterval );
 
@@ -213,14 +212,15 @@ var selector = ".wb-session-timeout",
 				// Stop the countdown and restore focus to the original active element
 				afterClose: function() {
 					clearInterval( countdownInterval );
-					// TODO: Replace with use of global focus function
-					activeElement.focus();
+
+					// Assign focus to activeElement
+					$( activeElement ).trigger( "focus.wb" );
 				}
 			}
 		});
 	},
 
-	/**
+	/*
 	 * Initialize the inactivity and keepalive timeouts of the plugin
 	 * @function reset
 	 * @param {jQuery Event} event `reset.wb-session-timeout` event that triggered the function call
@@ -235,7 +235,7 @@ var selector = ".wb-session-timeout",
 		}
 	},
 
-	/**
+	/*
 	 * Checks if the user wants to keep their session alive.
 	 * @function inactivity
 	 * @param {jQuery Event} event `confirm.wb-session-timeout` event that triggered the function call
@@ -260,7 +260,7 @@ var selector = ".wb-session-timeout",
 		}
 	},
 
-	/**
+	/*
 	 * Opens a modal dialog defined by the settings object
 	 * @function modal
 	 * @param {jQuery Event} event `modal.wb-session-timeout` event that triggered the function call
@@ -308,7 +308,7 @@ var selector = ".wb-session-timeout",
 		return $modal;
 	},
 
-	/**
+	/*
 	 * Initializes a timeout that triggers an event
 	 * @function initEventTimeout
 	 * @param {jQuery DOM Element} $elm Element to trigger the event on
@@ -321,12 +321,12 @@ var selector = ".wb-session-timeout",
 		clearTimeout( $elm.data( eventName ) );
 
 		// Create the new timeout that will trigger the event
-		$elm.data( eventName, setTimeout( function() {
+		$elm.data( eventName, setTimeout(function() {
 			$elm.trigger( eventName, settings );
 		}, parseTime( time ) ) );
 	},
 
-	/**
+	/*
 	 * Returns the current time in milliseconds
 	 * @function getCurrentTime
 	 * @returns {integer} Current time in milliseconds
@@ -335,7 +335,7 @@ var selector = ".wb-session-timeout",
 		return ( new Date() ).getTime();
 	},
 
-	/**
+	/*
 	 * Parses a time value into a milliseconds integer value.
 	 * @function parseTime
 	 * @param {Mixed} value The time value to parse (integer or string)
@@ -366,7 +366,7 @@ var selector = ".wb-session-timeout",
 		return value;
 	},
 
-	/**
+	/*
 	 * Converts a millisecond value into minutes and seconds
 	 * @function getTime
 	 * @param {integer} milliseconds The time value in milliseconds
@@ -382,7 +382,7 @@ var selector = ".wb-session-timeout",
 		return time;
 	},
 
-	/**
+	/*
 	 * Given 2 elements representing minutes and seconds, decrement their time value by 1 second
 	 * @function countdown
 	 * @param {jQuery DOM Element} $minutes Element that contains the minute value
@@ -433,4 +433,4 @@ $document.on( "modal.wb-session-timeout", modal );
 // Add the timer poke to initialize the plugin
 window._timer.add( selector );
 
-} )( jQuery, window, document, vapour );
+})( jQuery, window, document, vapour );
