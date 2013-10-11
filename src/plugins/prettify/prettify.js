@@ -30,94 +30,94 @@
  *    - lang-xq
  *    - lang-yaml
  */
-(function ( $, window, vapour ) {
-	"use strict";
+(function( $, window, vapour ) {
+"use strict";
 
-    /* 
-     * Variable and function definitions. 
-     * These are global to the plugin - meaning that they will be initialized once per page,
-     * not once per instance of plugin on the page. So, this is a good place to define
-     * variables that are common to all instances of the plugin on a page.
-     */
-	var selector = ".wb-prettify",
-		$document = vapour.doc,
+/* 
+ * Variable and function definitions. 
+ * These are global to the plugin - meaning that they will be initialized once per page,
+ * not once per instance of plugin on the page. So, this is a good place to define
+ * variables that are common to all instances of the plugin on a page.
+ */
+var selector = ".wb-prettify",
+	$document = vapour.doc,
 
-        /*
-         * Plugin users can override these defaults by setting attributes on the html elements that the
-         * selector matches.
-         */
-		defaults = {
-			linenums: false,
-			allpre: false
-		},
+	/*
+	 * Plugin users can override these defaults by setting attributes on the html elements that the
+	 * selector matches.
+	 */
+	defaults = {
+		linenums: false,
+		allpre: false
+	},
 
-        /*
-         * Init runs once per plugin element on the page. There may be multiple elements. 
-         * It will run more than once per plugin if you don't remove the selector from the timer.
-         * @method init
-         * @param {jQuery DOM element} $elm The plugin element being initialized
-         */
-		init = function() {
-			var i, len, $pre,
-				$elm = $( this ),
-				classes = $elm.attr( "class" ).split( " " ),
-				modeJS = vapour.getMode() + ".js",
-				deps = [ "site!deps/prettify" + modeJS ],
+	/*
+	 * Init runs once per plugin element on the page. There may be multiple elements. 
+	 * It will run more than once per plugin if you don't remove the selector from the timer.
+	 * @method init
+	 * @param {jQuery DOM element} $elm The plugin element being initialized
+	 */
+	init = function() {
+		var i, len, $pre,
+			$elm = $( this ),
+			classes = $elm.attr( "class" ).split( " " ),
+			modeJS = vapour.getMode() + ".js",
+			deps = [ "site!deps/prettify" + modeJS ],
 
-                // Merge default settings with overrides from the selected plugin element. There may be more than one, so don't override defaults globally!
-				settings = $.extend( {}, defaults, $elm.data() );
+			// Merge default settings with overrides from the selected plugin element. There may be more than one, so don't override defaults globally!
+			settings = $.extend( {}, defaults, $elm.data() );
 
 
-            // All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-            window._timer.remove( selector );
+		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+		window._timer.remove( selector );
 
-			// Check the element for `lang-*` syntax CSS classes
-			for ( i = 0, len = classes.length; i !== len; i += 1 ) {
-				if ( classes[ i ].indexOf( "lang-" ) === 0 ) {
-					deps.push( "site!deps/" + classes[ i ] + modeJS );
-				}
+		// Check the element for `lang-*` syntax CSS classes
+		for ( i = 0, len = classes.length; i !== len; i += 1 ) {
+			if ( classes[ i ].indexOf( "lang-" ) === 0 ) {
+				deps.push( "site!deps/" + classes[ i ] + modeJS );
 			}
+		}
 
-			// CSS class overides of settings
-			settings.allpre = settings.allpre || $elm.hasClass( "all-pre" );
-			settings.linenums = settings.linenums || $elm.hasClass( "linenums" );
+		// CSS class overides of settings
+		settings.allpre = settings.allpre || $elm.hasClass( "all-pre" );
+		settings.linenums = settings.linenums || $elm.hasClass( "linenums" );
 
-			// Apply global settings
-			if ( settings.allpre || settings.linenums ) {
-				$pre = $document.find( "pre" );
-				if ( settings.allpre ) {
-					$pre.addClass( "prettyprint" );
-				}
-				if ( settings.linenums ) {
-					$pre.filter( ".prettyprint" ).addClass( "linenums" );
-				}
+		// Apply global settings
+		if ( settings.allpre || settings.linenums ) {
+			$pre = $document.find( "pre" );
+			if ( settings.allpre ) {
+				$pre.addClass( "prettyprint" );
 			}
-
-			// Load the required dependencies and prettify the code once finished
-			window.Modernizr.load({
-				load: deps,
-				complete: function() {
-					$document.trigger( "prettyprint.wb-prettify" );
-				}
-			});
-		},
-
-		/*
-		 * Invoke the Google pretty print library if it has been initialized
-		 * @method prettyprint
-		 */
-		prettyprint = function() {
-			if ( typeof window.prettyPrint === "function" ) {
-				window.prettyPrint();
+			if ( settings.linenums ) {
+				$pre.filter( ".prettyprint" ).addClass( "linenums" );
 			}
-		};
+		}
 
-	// Bind the plugin events
-	$document
-		.on( "timerpoke.wb", selector, init )
-		.on( "prettyprint.wb-prettify", prettyprint );
+		// Load the required dependencies and prettify the code once finished
+		window.Modernizr.load({
+			load: deps,
+			complete: function() {
+				$document.trigger( "prettyprint.wb-prettify" );
+			}
+		});
+	},
 
-    // Add the timer poke to initialize the plugin
-    window._timer.add( selector );
+	/*
+	 * Invoke the Google pretty print library if it has been initialized
+	 * @method prettyprint
+	 */
+	prettyprint = function() {
+		if ( typeof window.prettyPrint === "function" ) {
+			window.prettyPrint();
+		}
+	};
 
-} )( jQuery, window, vapour );
+// Bind the plugin events
+$document
+	.on( "timerpoke.wb", selector, init )
+	.on( "prettyprint.wb-prettify", prettyprint );
+
+// Add the timer poke to initialize the plugin
+window._timer.add( selector );
+
+})( jQuery, window, vapour );
