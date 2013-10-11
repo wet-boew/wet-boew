@@ -1,9 +1,9 @@
 /*
-	WET-BOEW Vapour loader
-*/
+ * WET-BOEW Vapour loader
+ */
 /*
-Vapour Object that will store tombstone data for plugins to leverage
-*/
+ * Vapour Object that will store tombstone data for plugins to leverage
+ */
 (function( $, window, document, undef ) {
 	"use strict";
 
@@ -128,8 +128,8 @@ Vapour Object that will store tombstone data for plugins to leverage
 
 })( jQuery, window, document );
 /*
-Establish the base path to be more flexible in terms of WCMS where JS can reside in theme folders and not in the root of sites
-*/
+ * Establish the base path to be more flexible in terms of WCMS where JS can reside in theme folders and not in the root of sites
+ */
 (function( yepnope, vapour ) {
 	"use strict";
 
@@ -140,8 +140,8 @@ Establish the base path to be more flexible in terms of WCMS where JS can reside
 	});
 })( yepnope, vapour );
 /*
-Modernizr Load call
-*/
+ * Modernizr Load call
+ */
 (function( Modernizr, window, vapour ) {
 	"use strict";
 
@@ -173,12 +173,13 @@ Modernizr Load call
 		},
 
 		start: function() {
-	            	/* Lets start our clock right away. We we need to test to ensure that there will not be any
-	             	* instances on Mobile were the DOM is not ready before the timer starts. That is why 0.5 seconds 
-	             	* was used a buffer.
-	        	 */
-	            	window._timer.touch();
-        		 // lets keep it ticking after
+			/* Lets start our clock right away. We we need to test to ensure that there will not be any
+			 * instances on Mobile were the DOM is not ready before the timer starts. That is why 0.5 seconds 
+			 * was used a buffer.
+			 */
+			window._timer.touch();
+
+			// lets keep it ticking after
 			setInterval( function() {
 				window._timer.touch();
 			}, 500 );
@@ -213,7 +214,7 @@ Modernizr Load call
 
 			// Only load plugins and polyfills if running in Standard version
 			if ( !vapour.wbDisable() ) {
-				Modernizr.load( [{
+				Modernizr.load( [ {
 
 					test: Modernizr.canvas,
 					nope: "site!polyfills/excanvas" + modeJS
@@ -250,11 +251,11 @@ Modernizr Load call
 					test: navigator.userAgent.indexOf( "Win" ) !== -1 && navigator.userAgent.match(
 						/^((?!mobi|tablet).)*$/i ) !== null,
 					yep: "site!polyfills/jawsariafixes" + modeJS
-				}]);
+				} ] );
 
 				window._timer.start();
 			}
 		}
-	}]);
+	} ] );
 
-})( Modernizr, window, vapour );
+} )( Modernizr, window, vapour );
