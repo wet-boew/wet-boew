@@ -1,0 +1,286 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
+ */
+
+
+%tables-clear-both {
+    clear: both;
+}
+
+%tables-outline-none {
+    outline: none;
+}
+
+%tables-float-left {
+    float: left;
+}
+
+%tables-text-align-center {
+    text-align: center;
+}
+
+%tables-float-right-text-align-right {
+    float: right;
+    text-align: right;
+}
+
+%tables-border-bottom-1px-solid-black-font-weight-700 {
+    border-bottom: 1px solid black;
+    font-weight: 700;
+}
+
+%tables-cursor-pointer {
+    cursor: pointer;
+}
+
+@mixin pseudo-focus($hover: true) {
+    @if $hover {
+        &:hover, &:focus {
+            @content;
+        }
+    }
+    @else {
+        &:focus {
+            @content;
+        }
+    }
+}
+
+// Table
+table {
+    &.dataTable {
+        margin: 0 auto;
+        @extend %tables-clear-both;
+        width: 100% !important;
+        thead {
+            th {
+                @extend %tables-border-bottom-1px-solid-black-font-weight-700;
+                @extend %tables-cursor-pointer;
+                &:active {
+                    @extend %tables-outline-none;
+                }
+            }
+            td {
+                &:active {
+                    @extend %tables-outline-none;
+                }
+            }
+        }
+        tfoot {
+            th {
+                @extend %tables-border-bottom-1px-solid-black-font-weight-700;
+            }
+        }
+        td {
+            &.center {
+                @extend %tables-text-align-center;
+            }
+            &.dataTables_empty {
+                @extend %tables-text-align-center;
+            }
+        }
+        tr {
+            &.odd {
+                background-color: #F0FCFF;
+                td {
+                    &.sorting_1 {
+                        background-color: #E6F1F4;
+                    }
+                    &.sorting_2 {
+                        background-color: #DADCFF;
+                    }
+                    &.sorting_3 {
+                        background-color: #E0E2FF;
+                    }
+                }
+            }
+            &.even {
+                background-color: #FFF;
+                td {
+                    &.sorting_1 {
+                        background-color: #E8F6F6;
+                    }
+                    &.sorting_2 {
+                        background-color: #F2F3FF;
+                    }
+                    &.sorting_3 {
+                        background-color: #F9F9FF;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Table wrapper
+.dataTables_wrapper {
+    position: relative;
+    @extend %tables-clear-both;
+}
+
+// Page length menu
+.dataTables_length {
+    @extend %tables-float-left;
+}
+
+// Filter
+.dataTables_filter {
+    @extend %tables-float-right-text-align-right;
+}
+
+// Table information
+.dataTables_info {
+    @extend %tables-clear-both;
+    @extend %tables-float-left;
+}
+
+// Pagination
+.dataTables_paginate {
+    @extend %tables-float-right-text-align-right;
+}
+
+/* Two button pagination - previous / next */
+
+.paginate_disabled_previous,
+.paginate_enabled_previous,
+.paginate_disabled_next,
+.paginate_enabled_next {
+    height: 19px;
+    float: left;
+    cursor: pointer;
+    color: #111 !important;
+    @include pseudo-focus {
+        text-decoration: none !important;
+    }
+
+    &:active {
+        @extend %tables-outline-none;
+    }
+}
+
+.paginate_disabled_previous,
+.paginate_disabled_next {
+    color: #666 !important;
+}
+
+.paginate_disabled_previous,
+.paginate_enabled_previous {
+    padding-left: 23px;
+}
+
+.paginate_disabled_next,
+.paginate_enabled_next {
+    padding-right: 23px;
+    margin-left: 10px;
+}
+
+.paginate_enabled_previous {
+    background: url('../js/assets/back_enabled.png') no-repeat top left;
+    @include pseudo-focus {
+        background: url('../js/assets/back_enabled_hover.png') no-repeat top left;
+    }
+}
+
+.paginate_disabled_previous {
+    background: url('../js/assets/back_disabled.png') no-repeat top left;
+}
+
+.paginate_enabled_next {
+    background: url('../js/assets/forward_enabled.png') no-repeat top right;
+    @include pseudo-focus {
+        background: url('../js/assets/forward_enabled_hover.png') no-repeat top right;
+    }
+}
+
+.paginate_disabled_next {
+    background: url('../js/assets/forward_disabled.png') no-repeat top right;
+}
+
+/* Full number pagination */
+%tables-paginate-button-active {
+    border: 1px solid #aaa;
+    padding: 2px 5px;
+    margin: 0 3px;
+    cursor: pointer;
+    color: #333 !important;
+}
+
+.paging_full_numbers {
+    height: 22px;
+    line-height: 22px;
+    a {
+        &:active {
+            @extend %tables-outline-none;
+        }
+        @include pseudo-focus {
+            text-decoration: none;
+        }
+
+        &.paginate_button {
+            @extend %tables-paginate-button-active;
+            background-color: #ddd;
+            @include pseudo-focus {
+                background-color: #ccc;
+                text-decoration: none !important;
+            }
+        }
+        &.paginate_active {
+            @extend %tables-paginate-button-active;
+            background-color: #99B3FF;
+        }
+    }
+}
+
+/*
+ * Processing indicator
+ */
+.dataTables_processing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250px;
+    height: 30px;
+    margin-left: -125px;
+    margin-top: -15px;
+    padding: 14px 0 2px 0;
+    border: 1px solid #ddd;
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+    background-color: #fff;
+}
+
+/*
+ * Sorting
+ */
+.sorting {
+    background: url("../js/assets/sort_both.png") no-repeat center right;
+}
+
+.sorting_asc {
+    background: url("../js/assets/sort_asc.png") no-repeat center right;
+}
+
+.sorting_desc {
+    background: url("../js/assets/sort_desc.png") no-repeat center right;
+}
+
+.sorting_asc_disabled {
+    background: url("../js/assets/sort_asc_disabled.png") no-repeat center right;
+}
+
+.sorting_desc_disabled {
+    background: url("../js/assets/sort_desc_disabled.png") no-repeat center right;
+}
+
+/*
+ * Scrolling
+ */
+.dataTables_scroll {
+    @extend %tables-clear-both;
+}
+
+.dataTables_scrollBody {
+    -webkit-overflow-scrolling: touch;
+}

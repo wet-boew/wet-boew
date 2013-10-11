@@ -431,6 +431,7 @@ module.exports = (grunt) ->
 					"jquery.validation/localization/*.js"
 					"magnific-popup/dist/jquery.magnific-popup.js"
 					"google-code-prettify/src/*.js"
+					"DataTables/media/js/jquery.dataTables.js"
 				]
 				dest: "dist/js/deps"
 				expand: true
