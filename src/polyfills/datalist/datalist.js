@@ -1,222 +1,363 @@
-/*!
- *
- * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- *
- * Version: @wet-boew-build.version@
- *
- */
 /*
- * Datalist polyfill (Autocomplete for text input fields)
- * @author: Paul Jackson (TBS)
+ * @title WET-BOEW Datalist polyfill
+ * @overview Adds auto-complete functionality to specific text input fields by dynamically displaying a list of words that match the user's input.
+ * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ * @author @pjackson28
  */
-/*global pe:false*/
-(function ($) {
-	"use strict";
-	$.fn.datalist = function () {
-		return $(this).each(function (index) {
-			var elm = $(this),
-				elmid = this.id,
-				uniqueid = elmid + '-label',
-				label = pe.main.find('label').filter('[for=' + elmid + ']'),
-				$datalist = $('#' + elm.attr('list')),
-				autolist,
-				options,
-				datalist_items = [],
-				showOptions,
-				closeOptions,
-				correctWidth,
-				container;
+(function( $, window, document, vapour ) {
+"use strict";
 
-			// Add uniqueid to the label if it exists
-			if (label.length !== 0) {
-				label.attr('id', uniqueid);
+/* 
+ * Variable and function definitions. 
+ * These are global to the polyfill - meaning that they will be initialized once per page.
+ */
+var selector = "input[list]",
+	$document = vapour.doc,
+	initialized = false,
+
+	/*
+	 * Init runs once per polyfill element on the page. There may be multiple elements. 
+	 * It will run more than once if you don't remove the selector from the timer.
+	 * @method init
+	 * @param {DOM element} _input The input field to be polyfilled
+	 * @param {jQuery DOM element} $input The input field to be polyfilled
+	 */
+	init = function( _input, $input ) {
+		var inputId = _input.id,
+			autolist = "<ul role='listbox' id='wb-autolist-" + _input.id + "' class='wb-autolist al-hide' aria-hidden='true' aria-live='polite'></ul>",
+			datalist = document.getElementById( _input.getAttribute( "list" ) ),
+			options = datalist.getElementsByTagName( "option" ),
+			len = options.length,
+			option, value, label, i;
+			//uniqueId = elmId + "-datalist";
+
+		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+		window._timer.remove( selector );
+		
+		_input.setAttribute( "autocomplete", "off" );
+		_input.setAttribute( "role", "textbox" );
+		_input.setAttribute( "aria-haspopup", "true" );
+		_input.setAttribute( "aria-autocomplete", "list" );
+		_input.setAttribute( "aria-owns", "wb-autolist-" + inputId );
+		_input.setAttribute( "aria-activedescendent", "" );
+		/*$input.wrap( "<div class='wb-al-container' role='application' aria-" +
+			( label.length !== 0 ? "labelledby='" + uniqueid : "-label='" +
+			_input.getAttribute( "title" ) ) + "'/>" );*/
+
+		autolist += "<ul id='wb-autolist-" + _input.id + "-src' class='wb-autolist-src' aria-hidden='true'>";
+		for ( i = 0; i !== len; i += 1 ) {
+			option = options[ i ];
+			value = option.getAttribute( "value" );
+			label = option.getAttribute( "label" );
+			if ( !value ) {
+				value = option.innerHTML;
+			}
+			autolist += "<li class='al-option' id='al-option-" + inputId + "-" + i + "'><a href='javascript:;'><span class='al-value'>" + ( !value ? "" : value  ) + "</span><span class='al-label'>" + ( !label || label === value ? "" : label ) + "</span></a></li>";
+		}
+		$input.after( autolist + "</ul>" );
+
+		initialized = true;
+	},
+
+	/*
+	 * Shows/hides the available options based upon the input in the polyfilled input field.
+	 * @method showOptions
+	 * @param {DOM element} _input The polyfilled input field
+	 */
+	showOptions = function( _input, value ) {
+		var $autolist = $( _input.nextSibling ),
+			$options = $autolist.next().children().clone(),
+			comparator;
+
+		if ( value && value.length !== 0) {
+			comparator = value.toLowerCase();
+			$options = $options.filter( function() {
+				var $this = $( this ),
+					value = $this.find( "span.al-value" ).html();
+				if ( value.length === 0 ) {
+					value = $this.find( "span.al-label" ).html();
+				}
+				return ( comparator.length === 0 || value.toLowerCase().indexOf( comparator ) !== -1 );
+			});
+		}
+
+		// Add the visible options to the autolist
+		$autolist.empty().append( $options );
+
+		if ( $options.length !== 0 ) {
+			correctWidth( _input );
+			$autolist.removeClass( "al-hide" );
+			_input.setAttribute( "aria-expanded", "true" );
+		} else {
+			$autolist.addClass( "al-hide" );
+			_input.setAttribute( "aria-expanded", "false" );
+		}
+	},
+
+	/*
+	 * Hides all the options
+	 * @method closeOptions
+	 * @param {DOM element} _input The polyfilled input field
+	 */
+	closeOptions = function( _input ) {
+		var _autolist = _input.nextSibling;
+
+		_autolist.className += " al-hide";
+		_autolist.innerHTML = "";			
+		_input.setAttribute( "aria-expanded", "false" );
+		_input.setAttribute( "aria-activedescendent", "" );
+	},
+
+	/*
+	 * Corrects the width of the autolist for the polyfilled input field
+	 * @method correctWidth
+	 * @param {DOM element} _input The polyfilled input field
+	 */
+	correctWidth = function( _elm ) {
+		var $elm = $( _elm ),
+			$autolist = $elm.next();
+
+		$autolist.css( "width", $elm.innerWidth() );
+	},
+
+	/*
+	 * Keyboard event handler for the polyfilled input field
+	 * @method correctWidth
+	 * @param {integer} eventWhich Value for event.which
+	 * @param {jQuery Event} event The event that triggered this method call
+	 */
+	keyboardHandlerInput = function( eventWhich, event ) {
+		var _input = event.target,
+			_autolist = _input.nextSibling,
+			_alHide = ( _autolist.className.indexOf( "al-hide" ) !== -1 ),
+			options, dest, value, len;
+
+		// Spacebar, a - z keys, 0 - 9 keys punctuation, and symbols
+		if ( eventWhich === 32 || ( eventWhich > 47 && eventWhich < 91 ) || 
+			( eventWhich > 95 && eventWhich < 112 ) || ( eventWhich > 159 && eventWhich < 177 ) || 
+			( eventWhich > 187 && eventWhich < 223 ) ) {
+			if ( !event.altKey ) {
+				showOptions( _input, _input.value + String.fromCharCode( eventWhich ) );
+			}
+		} else if ( eventWhich === 8 && !event.altKey ) { // Backspace
+			value = _input.value;
+			len = value.length;
+
+			if ( len !== 0 ) {
+				showOptions( _input, value.substring( 0, len - 1 ) );
+			}
+		}  else if ( ( eventWhich === 38 || eventWhich === 40) && _input.getAttribute( "aria-activedescendent" ) === "" ) { // Up / down arrow
+			if ( _alHide ) {
+				showOptions( _input );
 			}
 
-			showOptions = function (string) {
-				var comparator, visibleOptions;
+			options = _autolist.getElementsByTagName( "a" );
+			dest = options[ ( eventWhich === 38 ? options.length - 1 : 0 ) ];
 
-				if (string.length !== 0) {
-					comparator = string.toLowerCase();
-					visibleOptions = options.filter(function () {
-						var $this = $(this),
-							value = $this.find('span.al-value').html();
-						if (value.length === 0) {
-							value = $this.find('span.al-label').html();
-						}
-						return (comparator.length === 0 || value.toLowerCase().indexOf(comparator) !== -1);
-					});
-				} else {
-					visibleOptions = options;
-				}
+			_input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
+				
+			// Assign focus to dest
+			$( dest ).trigger( "focus.wb" );
 
-				autolist.empty().append(visibleOptions); // Add the visible options to the autolist
-
-				if (visibleOptions.length !== 0) {
-					correctWidth();
-					autolist.removeClass('al-hide');
-					elm.attr('aria-expanded', 'true');
-				} else {
-					autolist.addClass('al-hide');
-					elm.attr('aria-expanded', 'false');
-				}
-			};
+			return false;
+		}
 		
-			closeOptions = function () {
-				autolist.addClass('al-hide').empty();
-				elm.attr({'aria-expanded': 'false', 'aria-activedescendent': ''});
-			};
+		else if ( _alHide ) {
+			if ( eventWhich === 27 && !event.altKey ) {
+				// Escape key
+				closeOptions( _input );
+			}
+		}
+	},
 
-			correctWidth = function () {
-				autolist.css('width', elm.innerWidth());
-				if (pe.preIE8) {
-					autolist.css('top', elm.innerHeight() + 13);
+	/*
+	 * Keyboard event handler for the autolist of the polyfilled input field
+	 * @method correctWidth
+	 * @param {integer} eventWhich Value for event.which
+	 * @param {DOM element} link Link element that is the target of the event
+	 */
+	keyboardHandlerAutolist = function( eventWhich, link ) {
+		var	_autolist = link.parentNode.parentNode,
+			_input = _autolist.previousSibling,
+			$input = $( _input ),
+			_span, dest, value, len, children;
+
+		// Spacebar, a - z keys, 0 - 9 keys punctuation, and symbols
+		if ( eventWhich === 32 || ( eventWhich > 47 && eventWhich < 91 ) || 
+			( eventWhich > 95 && eventWhich < 112 ) || ( eventWhich > 159 && eventWhich < 177 ) || 
+			( eventWhich > 187 && eventWhich < 223 ) ) {
+
+			_input.value += String.fromCharCode( eventWhich );
+			$input.trigger( "focus.wb" );
+			showOptions( _input, _input.value );
+
+			return false;
+		} else if ( eventWhich === 8 ) { // Backspace
+			value = _input.value;
+			len = value.length;
+
+			if ( len !== 0 ) {
+				_input.value = value.substring( 0, len - 1 );
+				showOptions( _input, _input.value );
+			}
+
+			$input.trigger( "focus.wb" );
+
+			return false;
+		} else if ( eventWhich === 13) { // Enter key
+			_span = link.getElementsByTagName( "span" );
+
+			// .al-value
+			value = _span[ 0 ].innerHTML;
+
+			if ( value.length === 0 ) {
+				// .al-label
+				value = _span[ 1 ].innerHTML;
+			}
+
+			_input.value = value;
+			$input.trigger( "focus.wb" );
+			closeOptions( _input );
+
+			return false;
+		} else if ( eventWhich === 9 || eventWhich === 27 ) { // Tab or Escape key
+			$input.trigger( "focus.wb" );
+			closeOptions( _input );
+
+			return false;
+		} else if ( eventWhich === 38 || eventWhich === 40 ) { // Up or down arrow
+			if ( eventWhich === 38 ) { // Up arrow
+				dest = link.parentNode.previousSibling;
+				if ( dest === null ) {
+					dest = _autolist.getElementsByTagName( "li" )[ 0 ];
 				}
-			};
-
-			pe.resize(correctWidth);
-
-			$datalist.find('option').each(function (index2) {
-				var $this = $(this),
-					value = $this.attr('value'),
-					label = $this.attr('label');
-				if (typeof value === 'undefined') {
-					value = $this.text();
-				}	
-				datalist_items.push('<li class="al-option" id="al-option-' + index + '-' + index2 + '"><a href="javascript:;"><span class="al-value">' + (typeof value !== 'undefined' ? value : '') + '</span><span class="al-label">' + (typeof label !== 'undefined' && value !== label ? label : '') + '</span></a></li>');
-			});
-
-			elm.attr({'autocomplete': 'off', 'role': 'textbox', 'aria-haspopup': 'true', 'aria-autocomplete': 'list', 'aria-owns': 'wb-autolist-' + index, 'aria-activedescendent': ''}).wrap('<div class="wb-al-container" role="application" aria-' + (label.length !== 0 ? 'labelledby="' + uniqueid : '-label="' + elm.attr('title')) + '"/>');
-			container = elm.parent();
-			autolist = $('<ul role="listbox" id="wb-autolist-' + index + '" class="wb-autolist al-hide" aria-hidden="true" aria-live="polite"></ul>');
-			options = $(datalist_items.join(''));
-			elm.after(autolist);
-			
-			elm.on('keyup keydown click vclick touchstart focus', function (e) {
-				var type = e.type,
-					button = e.button,
-					keyCode = e.keyCode,
-					dest;
-				if (type === 'keyup') {
-					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
-						// 0 - 9, a - z keys, punctuation, symbols, spacebar and backspace
-						if ((keyCode > 47 && keyCode < 91) || (keyCode > 95 && keyCode < 112) || (keyCode > 185 && keyCode < 223) || keyCode === 32 || keyCode === 8) {
-							showOptions(elm.val());
-						}
-					}
-				} else if (type === 'keydown') {
-					if (!(e.ctrlKey || e.metaKey)) {
-						if (!e.altKey && !autolist.hasClass('al-hide')) {
-							if (keyCode === 27) { // escape key
-								closeOptions();
-								return false;
-							} else if ((keyCode === 38 || keyCode === 40) && elm.attr('aria-activedescendent') === '') { // up or down arrow (aria-activedescendent check for IE7)
-								if (keyCode === 38) { // up arrow
-									dest = autolist.find('a').last();
-								} else { // down arrow
-									dest = autolist.find('a').eq(0);
-								}
-								elm.attr('aria-activedescendent', dest.parent().attr('id'));
-								pe.focus(dest);
-								return false;
-							}
-						} else if (keyCode === 38 || keyCode === 40) { // up or down arrow (with or without alt)
-							showOptions('');
-							return false;
-						}
-					}
-				} else if (type === 'click' || type === 'vclick') {
-					if (typeof button === 'undefined' || button === pe.leftMouseButton) { // Ignore middle/right mouse buttons
-						if (!autolist.hasClass('al-hide')) {
-							closeOptions();
-						}
-					}
-					return false;
-				} else if (pe.preIE8 && type === 'focus') {
-					autolist.addClass('al-hide').empty();
+			} else {
+				dest = link.parentNode.nextSibling;
+				if ( dest === null ) {
+					children = _autolist.getElementsByTagName( "li" );
+					dest = children[ children.length - 1 ];
 				}
-			});
+			}
+			dest = dest.getElementsByTagName( "a" )[ 0 ];
 
-			autolist.on('keyup keydown click vclick touchstart', 'a, span', function (e) {
-				var type = e.type,
-					keyCode = e.keyCode,
-					button = e.button,
-					target = $(e.target),
-					visible_options,
-					index,
-					dest,
-					val = elm.val(),
-					value;
-				if (type === 'keyup') {
-					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
-						// 0 - 9, a - z keys, punctuation, symbols and spacebar
-						if ((keyCode > 47 && keyCode < 91) || (keyCode > 95 && keyCode < 112) || (keyCode > 185 && keyCode < 223) || keyCode === 32) {
-							elm.val(val + String.fromCharCode(keyCode));
-							pe.focus(elm);
-							showOptions(elm.val());
-						} else if (keyCode === 8) { // Backspace
-							if (elm.val().length > 0) {
-								elm.val(val.substring(0, val.length - 1));
-								showOptions(elm.val());
-							}
-							pe.focus(elm);
-						}
-					}
-				} else if (type === 'keydown') {
-					if (!(e.ctrlKey || e.altKey || e.metaKey)) {
-						if (keyCode === 13) { // enter key
-							value = target.find('span.al-value').html();
-							if (value.length === 0) {
-								value = target.find('span.al-label').html();
-							}
-							elm.val(value);
-							pe.focus(elm);
-							closeOptions();
-							return false;
-						} else if (keyCode === 9 || keyCode === 27) { // escape key
-							pe.focus(elm);
-							closeOptions();
-							return false;
-						} else if (keyCode === 38 || keyCode === 40) { // up or down arrow 
-							visible_options = autolist.find('a');
-							if (visible_options.length !== 0) {
-								index = visible_options.index(target);
-								if (keyCode === 38) { // up arrow
-									dest = ((index - 1) === -1 ? visible_options.last() : visible_options.eq(index - 1));
-								} else { // down arrow
-									dest = ((index + 1) === visible_options.length ? visible_options.eq(0) : visible_options.eq(index + 1));
-								}
-								elm.attr('aria-activedescendent', dest.parent().attr('id'));
-								pe.focus(dest);
-							}
-							return false;
-						}
-					}
-				} else if (type === 'click' || type === 'vclick' || type === 'touchstart') {
-					if (typeof button === 'undefined' || button === pe.leftMouseButton) { // Ignore middle/right mouse buttons
-						if (!target.hasClass('al-option')) {
-							target = target.parent();
-						}
-						value = target.find('span.al-value').html();
-						if (value.length === 0) {
-							value = target.find('span.al-label').html();
-						}
-						elm.val(value);
-						pe.focus(elm);
-						closeOptions();
-					}
-				}
-			});
+			_input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
+			$( dest ).trigger( "focus.wb" );
 
-			pe.document.on('click vclick touchstart', function (e) {
-				var button = e.button;
-				if (typeof button === 'undefined' || button === pe.leftMouseButton) { // Ignore middle/right mouse buttons
-					if (!autolist.hasClass('al-hide') && !$(e.target).is(elm)) {
-						closeOptions();
-					}
-				}
-			});
-		});
+			return false;
+		}
+	},
+
+	/*
+	 * Click / Touch event handler for the autolist of the polyfilled input field
+	 * @method correctWidth
+	 * @param {integer} eventTarget Value for event.target
+	 * @param {jQuery Event} event The event that triggered this method call
+	 */
+	clickHandlerAutolist = function( eventTarget ) {
+		var	nodeName = eventTarget.nodeName.toLowerCase(),
+			link = ( nodeName === "a" ? eventTarget : eventTarget.parentNode ),
+			_autolist = link.parentNode.parentNode,
+			_input = _autolist.previousSibling,
+			$input = $( _input ),
+			_span, value;
+
+		_span = link.getElementsByTagName( "span" );
+
+		// .al-value
+		value = _span[ 0 ].innerHTML;
+
+		if ( value.length === 0 ) {
+			// .al-label
+			value = _span[ 1 ].innerHTML;
+		}
+
+		_input.value = value;
+		$input.trigger( "focus.wb" );
+		closeOptions( _input );
+
+		return false;
 	};
-	$('input[list]').datalist();
-}(jQuery));
+
+// Bind the init event of the plugin
+$document.on( "timerpoke.wb keydown click vclick touchstart", selector, function( event ) {
+	var eventType = event.type,
+		eventWhich = event.which,
+		_input = event.target;
+
+	switch ( eventType ) {
+	case "timerpoke":
+		init( _input, $( _input ) );
+		break;
+	case "keydown":
+		if ( !(event.ctrlKey || event.metaKey ) ) {
+			return keyboardHandlerInput( eventWhich, event );
+		}
+		break;
+	case "click":
+	case "vclick":
+	case "touchstart":
+		// Ignore middle/right mouse buttons
+		if ( !eventWhich || eventWhich === 1 ) {
+			if ( _input.nextSibling.className.indexOf( "al-hide" ) === -1 ) { 
+				closeOptions( _input );
+			}
+			return false;
+		}
+		break;		
+	}
+
+	/*
+	* Since we are working with events we want to ensure that we are being passive about our control, 
+	* so returning true allows for events to always continue
+	*/
+	return true;
+});
+
+$document.on( "keydown click vclick touchstart", ".wb-autolist a, .wb-autolist span", function( event ) {
+	var eventType = event.type,
+		eventWhich = event.which,
+		link = event.target;
+
+	switch ( eventType ) {
+	case "keydown":
+		if ( !(event.ctrlKey || event.metaKey ) ) {
+			return keyboardHandlerAutolist( eventWhich, link );
+		}
+		break;
+	case "click":
+	case "vclick":
+	case "touchstart":
+		// Ignore middle/right mouse buttons
+		if ( !eventWhich || eventWhich === 1 ) {
+			return clickHandlerAutolist( link );
+		}
+		break;		
+	}
+});
+
+/*$document.on( "focusout", ".wb-autolist", function( event ) {
+	var _autolist = event.target;
+
+	if ( _autolist.className.indexOf( "al-hide" ) === -1 ) {
+		closeOptions( _autolist.previousSibling );
+	}
+});*/
+
+// Correct the widths of all the autolists on a text or window resize
+$document.on( "text-resize.wb window-resize-width.wb window-resize-height.wb", function() {
+	var _autolist, i, len;
+
+	// Only correct width if the polyfill has been initialized
+	if ( initialized ) {
+		_autolist = $document.find( selector ).get();
+		len = _autolist.length;
+		for ( i = 0; i !== len; i += 1 ) {
+			correctWidth( _autolist[ i ] );
+		}
+	}
+});
+
+// Add the timer poke to initialize the plugin
+window._timer.add( selector );
+
+})( jQuery, window, document, vapour );
