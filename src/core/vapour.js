@@ -109,13 +109,13 @@
 		// A generic function for enabling/disabling WET plugins and polyfills
 		wbDisable: function() {
 			var pageQueryParams = vapour.pageUrlParts.params,
-					wbDisableLocalStorage = ( localStorage ) ? localStorage.getItem( "wbdisable" ) : null;
+					wbDisableLocalStorage = ( localStorage ) ? ( localStorage.getItem( "wbdisable" ) !== null ? localStorage.getItem( "wbdisable" ).toLowerCase() : null ) : null;
 
 			// let override the function for optimization
-			vapour.wbDisable = ( pageQueryParams.wbdisable ) ? pageQueryParams.wbdisable : wbDisableLocalStorage;
+			vapour.wbDisable = ( pageQueryParams.wbdisable ) ? pageQueryParams.wbdisable.toLowerCase() : wbDisableLocalStorage;
 
 			// convert to true boolean
-			vapour.wbDisable = ( vapour.wbDisable.toLowerCase() === "true" );
+			vapour.wbDisable = ( vapour.wbDisable === "true" );
 			
 			return vapour.wbDisable;
 		}
