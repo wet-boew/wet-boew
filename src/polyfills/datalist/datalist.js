@@ -364,24 +364,27 @@ $document.on( "keydown click vclick touchstart", ".wb-autolist a, .wb-autolist s
 	}
 });
 
-/*$document.on( "focusout", ".wb-autolist", function( event ) {
-	var _autolist = event.target;
-
-	if ( _autolist.className.indexOf( "al-hide" ) === -1 ) {
-		closeOptions( _autolist.previousSibling );
-	}
-});*/
-
-// Correct the widths of all the autolists on a text or window resize
-$document.on( "text-resize.wb window-resize-width.wb window-resize-height.wb", function() {
-	var _autolist, i, len;
+// Handle focus and resize events
+$document.on( "focus text-resize.wb window-resize-width.wb window-resize-height.wb", function() {
+	var focusEvent = ( event.type === "focus" ),
+		eventTarget = event.target,
+		eventTargetId = eventTarget.id,
+		_inputs, _input, _autolist, i, len;
 
 	// Only correct width if the polyfill has been initialized
 	if ( initialized ) {
-		_autolist = $document.find( selector ).get();
-		len = _autolist.length;
+		_inputs = $document.find( selector ).get();
+		len = _inputs.length;
 		for ( i = 0; i !== len; i += 1 ) {
-			correctWidth( _autolist[ i ] );
+			_input = _inputs[ i ];
+			if ( focusEvent ) {
+				_autolist = _input.nextSibling;
+				if ( _autolist.className.indexOf( "al-hide" ) === -1 && eventTargetId !== _input.id && eventTargetId !== _autolist.id && !$.contains( _autolist, eventTarget ) ) {
+					closeOptions( _input );
+				}
+			} else {
+				correctWidth( _input );
+			}
 		}
 	}
 });
