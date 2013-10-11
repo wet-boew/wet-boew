@@ -156,6 +156,8 @@ var ind = {
 	"%st-timeout-msg": "@%st-timeout-msg@",
 	"%st-msgbox-title": "@%st-msgbox-title@",
 	"%st-already-timeout-msg": "@%st-already-timeout-msg@",
+	"%st-button-continue": "@%st-button-continue@",
+	"%st-button-end": "@%st-button-end@",
 	/* Toggle details */
 	"%td-toggle": "@%td-toggle@",
 	"%td-open": "@%td-open@",
@@ -193,7 +195,9 @@ var ind = {
 	"%geo-labelselect": "@%geo-labelselect@",
 	/* Disable/enable WET plugins and polyfills */
 	"%wb-disable": "@%wb-disable@",
-	"%wb-enable": "@%wb-enable@"
+	"%wb-enable": "@%wb-enable@",
+	/* Template */
+	"%tmpl-signin": "@%tmpl-signin@"
 },
 	i18n = function(key, state, mixin) {
 

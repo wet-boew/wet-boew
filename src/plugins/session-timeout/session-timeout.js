@@ -5,264 +5,432 @@
  * @author @patheard
  */
 (function ( $, window, document, vapour ) {
-    "use strict";
 
-    /* 
-     * Variable and function definitions. 
-     * These are global to the plugin - meaning that they will be initialized once per page,
-     * not once per instance of plugin on the page. So, this is a good place to define
-     * variables that are common to all instances of the plugin on a page.
-     */
-    var selector = ".wb-session-timeout",
-		$document = vapour.doc,
-        i18n,
-        i18nText,
-		
-        /*
-         * Plugin users can override these defaults by setting attributes on the html elements that the
-         * selector matches.
-         * For example, adding the attribute data-option1="false", will override option1 for that plugin instance.
-         */
-		defaults = {
-			inactivity: 1200000,		// default inactivity period 20 minutes
-			reaction: 30000,			// default confirmation period of 30 seconds
-			keepalive: 1200000,			// default keepalive period of 20 minutes
-			keepaliveurl: null,			// refresh callback if using AJAX keepalive (no default)
-			logouturl: "./",			// logout URL once the session has expired
-			refreshonclick: false,		// refresh session if user clicks on the page
-			refreshlimit: 200000		// default period of 2 minutes (ajax calls happen only once during this period)
-		},
+"use strict";
 
+/*
+ * Variable and function definitions.
+ * These are global to the plugin - meaning that they will be initialized once per page,
+ * not once per instance of plugin on the page. So, this is a good place to define
+ * variables that are common to all instances of the plugin on a page.
+ */
+var selector = ".wb-session-timeout",
+	$document = vapour.doc,
+	i18n,
+	i18nText,
 
-        /*
-         * Init runs once per plugin element on the page. There may be multiple elements. 
-         * It will run more than once per plugin if you don't remove the selector from the timer.
-         * @method init
-         */
-		init = function( event ) {
-			var $elm = $( event.target ),
+	/*
+	 * Plugin users can override these defaults by setting attributes on the html elements that the
+	 * selector matches.
+	 * For example, adding the attribute data-option1="false", will override option1 for that plugin instance.
+	 */
+	defaults = {
+		inactivity: 1200000,		// default inactivity period 20 minutes
+		reactionTime: 180000,		// default confirmation period of 3 minutes
+		sessionalive: 1200000,		// default keepalive period of 20 minutes
+		refreshCallbackUrl: null,	// refresh callback if using AJAX keepalive (no default)
+		logouturl: "./",			// logout URL once the session has expired
+		refreshOnClick: true,		// refresh session if user clicks on the page
+		refreshLimit: 200000		// default period of 2 minutes (ajax calls happen only once during this period)
+	},
 
-				// Merge default settings with overrides from the selected plugin element. There may be more than one, so don't override defaults globally!
-				settings = $.extend( {}, defaults, $elm.data( "wet-boew" ) );
+	/**
+	 * Init runs once per plugin element on the page. There may be multiple elements.
+	 * It will run more than once per plugin if you don't remove the selector from the timer.
+	 * @function init
+	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
+	 */
+	init = function( event ) {
+		var $elm = $( event.target ),
 
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-            window._timer.remove( selector );
+		// Merge default settings with overrides from the selected plugin element. There may be more than one, so don't override defaults globally!
+		settings = $.extend( {}, defaults, $elm.data( "wet-boew" ) );
 
-            // Only initialize the i18nText once
-            if ( !i18nText ) {
-                i18n = window.i18n;
-                i18nText = {
-					timeout: i18n( "%st-timeout-msg" ),
-					timeoutAlready: i18n( "%st-already-timeout-msg" )
-				};
-			}
+		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+		window._timer.remove( selector );
 
-			// Initialize the keepalive and inactive timeouts of the plugin
-			$elm.trigger( "reset.wb-session-timeout", settings );
-
-			// Setup the refresh on click behaviour
-			initRefreshOnClick( $elm, settings );
-		},
-
-		/*
-		 * Initialize the refresh on click keepalive behaviour.  This will cause a `keepalive.wb-session-timeout`
-		 * event to be triggered when the document is clicked, limited by the settings.refreshlimit value.
-		 * @method initRefreshOnClick
-		 * @param {jQuery DOM Element} $elm DOM element to trigger the event on
-		 * @param {Object} settings Key-value object that will be passed when event is triggered.
-		 */
-		initRefreshOnClick = function( $elm, settings ) {
-			if ( settings.refreshonclick ) {
-				$document.on( "click", function () {
-					var lastActivity = $elm.data( "lastActivity" ),
-						currentTime = getCurrentTime();
-					if ( !lastActivity || ( currentTime - lastActivity ) > settings.refreshlimit ) {
-						$elm
-							.trigger( "reset.wb-session-timeout", settings )
-							.trigger( "keepalive.wb-session-timeout", settings );
-					}
-					$elm.data( "lastActivity", currentTime );
-				});
-			}
-		},
-
-		/*
-		 * Keepalive session event handler.  Sends the POST request to determine if the session is still alive.
-		 * @method keepalive
-		 * @param {jQuery Event} event Event that triggered this handler.
-		 * @param {Object} settings Key-value object
-		 */
-		keepalive = function( event, settings ) {
-			var keepaliveurl = settings.keepaliveurl;
-			if ( keepaliveurl !== null ) {
-				$.post( keepaliveurl, function( response ) {
-					if ( response && response.replace( /\s/g, "" ) === "true" ) {
-						$( event.target ).trigger( "reset.wb-session-timeout", settings );
-					} else {
-						window.alert( i18nText.timeoutAlready );
-						window.location.href = settings.logouturl;
-					}
-				} );
-			}
-		},
-
-		/*
-		 * Inactivity check event handler.  Checks if the user wants to keep their session alive.
-		 * @method inactivity
-		 * @param {jQuery Event} event Event that triggered this handler.
-		 * @param {Object} settings Key-value object
-		 */
-		inactivity = function( event, settings ) {
-			var start = getCurrentTime(),
-				reaction = settings.reaction;
-
-			if ( confirmTimeout( reaction ) && ( getCurrentTime() - start ) <= reaction ) {
-				$( event.target )
-					.trigger( "reset.wb-session-timeout", settings )
-					.trigger( "keepalive.wb-session-timeout", settings );
-			} else {
-				window.location.href = settings.logouturl;
-			}
-		},
-
-		/*
-		 * Initialize the inactivity and keepalive timeouts of the plugin
-		 * @method reset
-		 * @param {jQuery Event} event Event that triggered this handler.
-		 * @param {Object} settings Key-value object
-		 */
-		reset = function( event, settings ) {
-			var $elm = $( event.target );
-
-			initEventTimeout( $elm, "inactivity.wb-session-timeout", settings.inactivity, settings );
-			if ( settings.keepaliveurl !== null ) {
-				initEventTimeout( $elm, "keepalive.wb-session-timeout", settings.keepalive, settings );
-			}
-		},
-
-		/*
-		 * Initializes a timeout that triggers an event
-		 * @method initEventTimeout
-		 * @param {jQuery DOM Element} $elm Element to trigger the event on
-		 * @param {string} eventName Name of the event to trigger on setTimeout
-		 * @param {mixed} time Time to wait before triggering the event
-		 * @param {Object} settings Key-value object
-		 */
-		initEventTimeout = function( $elm, eventName, time, settings ) {
-			// Clear any existing timeout for the event
-			clearTimeout( $elm.data( eventName ) );
-
-			// Create the new timeout that will trigger the event
-			$elm.data( eventName, setTimeout( function() {
-				$elm.trigger( eventName, settings );
-			}, parseTime( time ) ) );
-		},
-
-		/*
-		 * Displays the confirm dialog to check if the user wants to keep their session alive.
-		 * @method confirmTimeout
-		 * @param {integer} reaction Time in milliseconds the user has to interact with the confirm dialog
-		 */
-		confirmTimeout = function( reaction ) {
-			var isConfirmed,
-				activeElement = document.activeElement;
-
-			isConfirmed = window.confirm( i18nText.timeout.replace( "#expireTime#", getExpireTime( reaction ) ) );
-			// TODO: Replace with use of global focus function
-			setTimeout( function () {
-				activeElement.focus();
-			}, 0 );
-			return isConfirmed;
-		},
-
-		/*
-		 * Returns the current time in milliseconds
-		 * @method getCurrentTime
-		 * @returns {integer} Current time in milliseconds
-		 */
-		getCurrentTime = function() {
-			return ( new Date() ).getTime();
-		},
-
-		/*
-		 * Parses a time value into a milliseconds integer value.
-		 * @method parseTime
-		 * @param {Mixed} value The time value to parse (integer or string)
-		 * @returns {integer} Millisecond integer value parsed from the time value
-		 */
-		parseTime = function( value ) {
-			var result, num, mult,
-				powers = {
-							"ms": 1,
-							"cs": 10,
-							"ds": 100,
-							"s": 1000,
-							"das": 10000,
-							"hs": 100000,
-							"ks": 1000000
-						};
-
-			if ( value == null ) {
-				return null;
-			}
-
-			result = /^([0-9]+(?:\.[0-9]*)?)\s*(.*s)?$/.exec( $.trim( value.toString() ) );
-			if ( result[ 2 ] ) {
-				num = parseFloat( result[ 1 ] );
-				mult = powers[ result[ 2 ] ] || 1;
-				return num * mult;
-			}
-			return value;
-		},
-
-		/*
-		 * Returns a formatted, human readable, string with the amount of time left before
-		 * the inactivity check will expire.
-		 * @method getExpireTime
-		 * @param {integer} reaction Time in milliseconds the user has to interact with the confirm dialog
-		 * @returns {string} Formatted time string until inactivity expires
-		 */
-		getExpireTime = function( reaction ) {
-			var expire = new Date( getCurrentTime() + reaction ),
-				hours = expire.getHours(),
-				minutes = expire.getMinutes(),
-				seconds = expire.getSeconds(),
-				timeformat = hours < 12 ? " AM" : " PM";
-
-			hours = hours % 12;
-			if ( hours === 0 ) {
-				hours = 12;
-			}
-
-			// Add a zero if needed in the time
-			hours = hours < 10 ? "0" + hours : hours;
-			minutes = minutes < 10 ? "0" + minutes : minutes;
-			seconds = seconds < 10 ? "0" + seconds : seconds;
-
-			return hours + ":" + minutes + ":" + seconds + timeformat;
-		};
-
-	// Bind the plugin events
-	$document.on( "timerpoke.wb keepalive.wb-session-timeout inactivity.wb-session-timeout reset.wb-session-timeout", selector, function( event, settings ) {
-		var eventType = event.type;
-
-		switch ( eventType ) {
-		case "timerpoke":
-			init( event );
-			break;
-		case "keepalive":
-			keepalive( event, settings );
-			break;
-		case "inactivity":
-			inactivity( event, settings );
-			break;
-		case "reset":
-			reset( event, settings );
-			break;
+		// Only initialize the i18nText once
+		if ( !i18nText ) {
+			i18n = window.i18n;
+			i18nText = {
+				buttonContinue: i18n( "%st-button-continue" ),
+				buttonEnd: i18n( "%st-button-end" ),
+				buttonSignin: i18n( "%tmpl-signin" ),
+				timeout: i18n( "%st-timeout-msg" ),
+				timeoutTitle: i18n( "%st-msgbox-title" ),
+				timeoutAlready: i18n( "%st-already-timeout-msg" )
+			};
 		}
-	});
 
-    // Add the timer poke to initialize the plugin
-    window._timer.add( selector );
+		// Load the magnific popup dependency
+		window.Modernizr.load({
+			load: "site!deps/jquery.magnific-popup" + vapour.getMode() + ".js",
+			complete: function() {
+				// Initialize the keepalive and inactive timeouts of the plugin
+				$elm.trigger( "reset.wb-session-timeout", settings );
+
+				// Setup the refresh on click behaviour
+				initRefreshOnClick( $elm, settings );
+			}
+		});
+	},
+
+	/**
+	 * Initialize the refresh on click keepalive behaviour.  This will cause a `keepalive.wb-session-timeout`
+	 * event to be triggered when the document is clicked, limited by the settings.refreshLimit value.
+	 * @function initRefreshOnClick
+	 * @param {jQuery DOM Element} $elm DOM element to trigger the event on
+	 * @param {Object} settings Key-value object that will be passed when event is triggered.
+	 */
+	initRefreshOnClick = function( $elm, settings ) {
+		if ( settings.refreshOnClick ) {
+			$document.on( "click", function () {
+				var lastActivity = $elm.data( "lastActivity" ),
+					currentTime = getCurrentTime();
+				if ( !lastActivity || ( currentTime - lastActivity ) > settings.refreshLimit ) {
+					$elm
+						.trigger( "reset.wb-session-timeout", settings )
+						.trigger( "keepalive.wb-session-timeout", settings );
+				}
+				$elm.data( "lastActivity", currentTime );
+			});
+		}
+	},
+
+	/**
+	 * Keepalive session event handler.  Sends the POST request to determine if the session is still alive.
+	 * @function keepalive
+	 * @param {jQuery Event} event `keepalive.wb-session-timeout` event that triggered the function call
+	 * @param {Object} settings Key-value object
+	 */
+	keepalive = function( event, settings ) {
+		var $buttonSignin, $modal,
+			$elm = $( event.target );
+		if ( settings.refreshCallbackUrl !== null ) {
+			$.post( settings.refreshCallbackUrl, function( response ) {
+				// Session is valid
+				if ( response && response.replace( /\s/g, "" ) === "true" ) {
+					$elm.trigger( "reset.wb-session-timeout", settings );
+
+				// Session has timed out - let the user know they need to sign in again
+				} else {
+					$buttonSignin = $( "<button type='button' class='wb-session-timeout-confirm btn btn-primary'>" + i18nText.buttonSignin + "</button>" );
+					$buttonSignin.data( "logouturl", settings.logouturl );
+					$modal = buildModal({
+						content: "<p>" + i18nText.timeoutAlready + "</p>",
+						buttons:  $buttonSignin
+					});
+
+					// End the inactivity timeouts since the session is already kaput
+					clearTimeout( $elm.data( "inactivity.wb-session-timeout" ) );
+					clearTimeout( $elm.data( "keepalive.wb-session-timeout" ) );
+
+					// Let the user know their session is dead
+					setTimeout( function() {
+						// Open the popup
+						$document.trigger( "modal.wb-session-timeout", {
+							mainClass: "mfp-zoom-in",
+							items: { src: $modal, type: "inline" }
+						});
+					}, Modernizr.csstransitions ? 500 : 0 );
+				}
+			});
+		}
+	},
+
+	/**
+	 * Inactivity check event handler.  Displays the modal dialog to allow the user to confirm their activity.
+	 * @function inactivity
+	 * @param {jQuery Event} event `inactivity.wb-session-timeout` event that triggered the function call
+	 * @param {Object} settings Key-value object
+	 */
+	inactivity = function( event, settings ) {
+		var $buttonContinue, $buttonEnd, countdownInterval,
+			activeElement = $document[ 0 ].activeElement,
+			time = getTime( settings.reactionTime ),
+			content = i18nText.timeout
+				.replace( "#min#", "<span class='min'>" + time.minutes + "</span>" )
+				.replace( "#sec#",  "<span class='sec'>" + time.seconds + "</span>" ),
+			$modal = $( "#wb-session-modal" );
+
+		// No existing modal: create it
+		if ( $modal.length === 0 ) {
+			$buttonContinue = $( "<button type='button' class='wb-session-timeout-confirm btn btn-primary'>" +
+				i18nText.buttonContinue + "</button>" );
+			$buttonEnd = $( "<button type='button' class='wb-session-timeout-confirm btn btn-default'>" +
+				i18nText.buttonEnd + "</button>" );
+
+			// Build the modal and append to the document
+			$modal = buildModal({
+				id: "#wb-session-modal",
+				title: i18nText.timeoutTitle,
+				content: "<p class='content'>" + content + "</p>",
+				buttons: [
+					$buttonContinue,
+					$buttonEnd
+				]
+			});
+			$document.find( "body" ).append( $modal );
+
+		// Modal already created: get button references and update the content
+		} else {
+			$buttonContinue = $modal.find( ".btn-primary" );
+			$buttonEnd = $modal.find( ".btn-default" );
+			$modal.find( ".content" ).text( content );
+		}
+
+		// Add the session timeout settings to the buttons
+		$buttonEnd.data( "logouturl", settings.logouturl );
+		$buttonContinue
+			.data( settings )
+			.data( "start", getCurrentTime() );
+
+		// Open the modal dialog
+		$document.trigger( "modal.wb-session-timeout", {
+			mainClass: "mfp-zoom-in",
+			removalDelay: Modernizr.csstransitions ? 500 : 0,
+			items: {
+				src: $modal,
+				type: "inline"
+			},
+			callbacks: {
+				// Start the time countdown when the popup opens
+				open: function() {
+					var $minutes = $modal.find( ".min" ),
+						$seconds = $modal.find( ".sec" );
+					countdownInterval = setInterval( function() {
+						if ( countdown( $minutes, $seconds ) ) {
+							clearInterval( countdownInterval );
+
+							// Let the user know their session has timed out
+							$modal.find( ".content" ).text( i18nText.timeoutAlready );
+							$buttonContinue.text( i18nText.buttonSignin );
+							$buttonEnd.hide();
+						}
+					}, 1000 );
+				},
+
+				// Stop the countdown and restore focus to the original active element
+				afterClose: function() {
+					clearInterval( countdownInterval );
+					// TODO: Replace with use of global focus function
+					activeElement.focus();
+				}
+			}
+		});
+	},
+
+	/**
+	 * Initialize the inactivity and keepalive timeouts of the plugin
+	 * @function reset
+	 * @param {jQuery Event} event `reset.wb-session-timeout` event that triggered the function call
+	 * @param {Object} settings Key-value object
+	 */
+	reset = function( event, settings ) {
+		var $elm = $( event.target );
+
+		initEventTimeout( $elm, "inactivity.wb-session-timeout", settings.inactivity, settings );
+		if ( settings.refreshCallbackUrl !== null ) {
+			initEventTimeout( $elm, "keepalive.wb-session-timeout", settings.sessionalive, settings );
+		}
+	},
+
+	/**
+	 * Checks if the user wants to keep their session alive.
+	 * @function inactivity
+	 * @param {jQuery Event} event `confirm.wb-session-timeout` event that triggered the function call
+	 * @param {Object} settings Key-value object
+	 */
+	confirm = function( event ) {
+		var $elm = $( this ),
+			settings = $elm.data();
+
+		event.preventDefault();
+		$.magnificPopup.close();
+
+		// User wants their session maintained
+		if ( settings.start !== undefined && ( getCurrentTime() - settings.start ) <= settings.reactionTime ) {
+			$( selector )
+				.trigger( "reset.wb-session-timeout", settings )
+				.trigger( "keepalive.wb-session-timeout", settings );
+
+		// Negative confirmation or the user took too long; logout
+		} else {
+			window.location.href = settings.logouturl;
+		}
+	},
+
+	/**
+	 * Opens a modal dialog defined by the settings object
+	 * @function modal
+	 * @param {jQuery Event} event `modal.wb-session-timeout` event that triggered the function call
+	 * @param {Object} settings Key-value object
+	 */
+	modal = function( event, settings ) {
+		$.magnificPopup.open({
+			modal: true,
+			mainClass: settings.mainClass == null ? "mfp" : settings.mainClass,
+			removalDelay: settings.removalDelay == null ? 0 : settings.removalDelay,
+			items: settings.items,
+			callbacks: settings.callbacks
+		});
+	},
+
+	/**
+	 * Creates a modal dialog for use with the Magnific Popup library.
+	 * @function buildModal
+	 * @param {Object} data Key-value object used to build the modal dialog
+	 * @returns {jQuery Object} The modal jQuery DOM object
+	 */
+	buildModal = function( data ) {
+		var $modal = $(	"<div class='wb-modal mfp-anim'><div class='body' id='lb-desc'>" + data.content + "</div></div>" );
+
+		// Add modal's ID if it exists
+		if ( data.id != null ) {
+			$modal.attr( "id", data.id );
+		}
+
+		// Add modal's title if it exists
+		if ( data.title != null ) {
+			$modal.prepend( "<p class='lead' id='lb-title'>" + data.title + "</p>" );
+			$modal.attr( "aria-labelledby", "lb-title" );
+		}
+
+		// Set modal's accessibility attributes
+		$modal.attr({
+			"role": "alertdialog",
+			"aria-live": "polite",
+			"aria-describedby": "lb-desc"
+		});
+
+		// Add the buttons
+		$modal.append( data.buttons );
+		return $modal;
+	},
+
+	/**
+	 * Initializes a timeout that triggers an event
+	 * @function initEventTimeout
+	 * @param {jQuery DOM Element} $elm Element to trigger the event on
+	 * @param {string} eventName Name of the event to trigger on setTimeout
+	 * @param {mixed} time Time to wait before triggering the event
+	 * @param {Object} settings Key-value object
+	 */
+	initEventTimeout = function( $elm, eventName, time, settings ) {
+		// Clear any existing timeout for the event
+		clearTimeout( $elm.data( eventName ) );
+
+		// Create the new timeout that will trigger the event
+		$elm.data( eventName, setTimeout( function() {
+			$elm.trigger( eventName, settings );
+		}, parseTime( time ) ) );
+	},
+
+	/**
+	 * Returns the current time in milliseconds
+	 * @function getCurrentTime
+	 * @returns {integer} Current time in milliseconds
+	 */
+	getCurrentTime = function() {
+		return ( new Date() ).getTime();
+	},
+
+	/**
+	 * Parses a time value into a milliseconds integer value.
+	 * @function parseTime
+	 * @param {Mixed} value The time value to parse (integer or string)
+	 * @returns {integer} Millisecond integer value parsed from the time value
+	 */
+	parseTime = function( value ) {
+		var result, num, mult,
+			powers = {
+				"ms": 1,
+				"cs": 10,
+				"ds": 100,
+				"s": 1000,
+				"das": 10000,
+				"hs": 100000,
+				"ks": 1000000
+			};
+
+		if ( value == null ) {
+			return null;
+		}
+
+		result = /^([0-9]+(?:\.[0-9]*)?)\s*(.*s)?$/.exec( $.trim( value.toString() ) );
+		if ( result[ 2 ] ) {
+			num = parseFloat( result[ 1 ] );
+			mult = powers[ result[ 2 ] ] || 1;
+			return num * mult;
+		}
+		return value;
+	},
+
+	/**
+	 * Converts a millisecond value into minutes and seconds
+	 * @function getTime
+	 * @param {integer} milliseconds The time value in milliseconds
+	 * @returns {Object} An object with a seconds and minutes property
+	 */
+	getTime = function( milliseconds ) {
+		var time = { minutes: "", seconds: "" };
+
+		if ( milliseconds != null ) {
+			time.minutes = parseInt( ( milliseconds / ( 1000 * 60 ) ) % 60, 10 );
+			time.seconds = parseInt( ( milliseconds / 1000 ) % 60, 10 );
+		}
+		return time;
+	},
+
+	/**
+	 * Given 2 elements representing minutes and seconds, decrement their time value by 1 second
+	 * @function countdown
+	 * @param {jQuery DOM Element} $minutes Element that contains the minute value
+	 * @param {jQuery DOM Element} $seconds Element that contains the second value
+	 * @returns {boolean} Is the countdown finished?
+	 */
+	countdown = function( $minutes, $seconds ) {
+		var minutes = parseInt( $minutes.text(), 10 ),
+			seconds = parseInt( $seconds.text(), 10 );
+
+		// Decrement seconds and minutes
+		if ( seconds > 0 ) {
+			seconds -= 1;
+		} else if ( minutes > 0 ) {
+			minutes -= 1;
+			seconds = 59;
+		}
+
+		// Update the DOM elements
+		$minutes.text( minutes );
+		$seconds.text( seconds );
+
+		return minutes === 0 && seconds === 0;
+	};
+
+// Bind the plugin events
+$document.on( "timerpoke.wb keepalive.wb-session-timeout inactivity.wb-session-timeout reset.wb-session-timeout", selector, function( event, settings ) {
+	var eventType = event.type;
+
+	switch ( eventType ) {
+	case "timerpoke":
+		init( event );
+		break;
+	case "keepalive":
+		keepalive( event, settings );
+		break;
+	case "inactivity":
+		inactivity( event, settings );
+		break;
+	case "reset":
+		reset( event, settings );
+		break;
+	}
+});
+$document.on( "click", ".wb-session-timeout-confirm", confirm );
+$document.on( "modal.wb-session-timeout", modal );
+
+// Add the timer poke to initialize the plugin
+window._timer.add( selector );
 
 } )( jQuery, window, document, vapour );
