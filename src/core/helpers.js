@@ -5,6 +5,27 @@
  * @author WET Community
  * Credits: http://kaibun.net/blog/2013/04/19/a-fully-fledged-coffeescript-boilerplate-for-jquery-plugins/
  */
+ (function( $, window, document, undef ) {
+    vapour.getData = function( element, data_name ) {
+        var $element, dataAttr, dataObj;
+
+        $element = ( typeof element.jquery !== undef ? element : ( $element ) );
+        dataAttr = $element.attr( "data-" + data_name );
+
+        if ( dataAttr ) {
+
+            try{
+                dataObj = $.parseJSON( dataAttr );
+            } catch ( e ){
+                $.error( "Bad JSON array in data-" + data_name + " attribute" );
+            }
+        }
+
+        $.data( element, data_name, dataObj );
+        return dataObj;
+    };
+})( jQuery, vapour );
+
 (function( vapour ) {
 	"use strict";
 
