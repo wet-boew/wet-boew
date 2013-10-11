@@ -139,14 +139,20 @@ var selector = "input[list]",
 			if ( !event.altKey ) {
 				showOptions( _input, _input.value + String.fromCharCode( eventWhich ) );
 			}
-		} else if ( eventWhich === 8 && !event.altKey ) { // Backspace
+		}
+
+		// Backspace
+		else if ( eventWhich === 8 && !event.altKey ) {
 			value = _input.value;
 			len = value.length;
 
 			if ( len !== 0 ) {
 				showOptions( _input, value.substring( 0, len - 1 ) );
 			}
-		}  else if ( ( eventWhich === 38 || eventWhich === 40) && _input.getAttribute( "aria-activedescendent" ) === "" ) { // Up / down arrow
+		}
+		
+		// Up / down arrow
+		else if ( ( eventWhich === 38 || eventWhich === 40) && _input.getAttribute( "aria-activedescendent" ) === "" ) {
 			if ( _alHide ) {
 				showOptions( _input );
 			}
@@ -163,8 +169,10 @@ var selector = "input[list]",
 		}
 		
 		else if ( _alHide ) {
+
+			// Escape key
 			if ( eventWhich === 27 && !event.altKey ) {
-				// Escape key
+				
 				closeOptions( _input );
 			}
 		}
@@ -192,7 +200,10 @@ var selector = "input[list]",
 			showOptions( _input, _input.value );
 
 			return false;
-		} else if ( eventWhich === 8 ) { // Backspace
+		}
+
+		// Backspace
+		else if ( eventWhich === 8 ) {
 			value = _input.value;
 			len = value.length;
 
@@ -204,13 +215,17 @@ var selector = "input[list]",
 			$input.trigger( "focus.wb" );
 
 			return false;
-		} else if ( eventWhich === 13) { // Enter key
+		}
+
+		// Enter key
+		else if ( eventWhich === 13) {
 			_span = link.getElementsByTagName( "span" );
 
 			// .al-value
 			value = _span[ 0 ].innerHTML;
 
 			if ( value.length === 0 ) {
+
 				// .al-label
 				value = _span[ 1 ].innerHTML;
 			}
@@ -220,18 +235,29 @@ var selector = "input[list]",
 			closeOptions( _input );
 
 			return false;
-		} else if ( eventWhich === 9 || eventWhich === 27 ) { // Tab or Escape key
+		}
+
+		// Tab or Escape key
+		else if ( eventWhich === 9 || eventWhich === 27 ) {
 			$input.trigger( "focus.wb" );
 			closeOptions( _input );
 
 			return false;
-		} else if ( eventWhich === 38 || eventWhich === 40 ) { // Up or down arrow
-			if ( eventWhich === 38 ) { // Up arrow
+		}
+		
+		// Up or down arrow
+		else if ( eventWhich === 38 || eventWhich === 40 ) { 
+
+			// Up arrow
+			if ( eventWhich === 38 ) {
 				dest = link.parentNode.previousSibling;
 				if ( dest === null ) {
 					dest = _autolist.getElementsByTagName( "li" )[ 0 ];
 				}
-			} else {
+			}
+
+			// Down arrow
+			else {
 				dest = link.parentNode.nextSibling;
 				if ( dest === null ) {
 					children = _autolist.getElementsByTagName( "li" );
@@ -267,6 +293,7 @@ var selector = "input[list]",
 		value = _span[ 0 ].innerHTML;
 
 		if ( value.length === 0 ) {
+
 			// .al-label
 			value = _span[ 1 ].innerHTML;
 		}
@@ -296,6 +323,7 @@ $document.on( "timerpoke.wb keydown click vclick touchstart", selector, function
 	case "click":
 	case "vclick":
 	case "touchstart":
+
 		// Ignore middle/right mouse buttons
 		if ( !eventWhich || eventWhich === 1 ) {
 			if ( _input.nextSibling.className.indexOf( "al-hide" ) === -1 ) { 
@@ -307,9 +335,9 @@ $document.on( "timerpoke.wb keydown click vclick touchstart", selector, function
 	}
 
 	/*
-	* Since we are working with events we want to ensure that we are being passive about our control, 
-	* so returning true allows for events to always continue
-	*/
+	 * Since we are working with events we want to ensure that we are being passive about our control, 
+	 * so returning true allows for events to always continue
+	 */
 	return true;
 });
 
@@ -327,6 +355,7 @@ $document.on( "keydown click vclick touchstart", ".wb-autolist a, .wb-autolist s
 	case "click":
 	case "vclick":
 	case "touchstart":
+
 		// Ignore middle/right mouse buttons
 		if ( !eventWhich || eventWhich === 1 ) {
 			return clickHandlerAutolist( link );

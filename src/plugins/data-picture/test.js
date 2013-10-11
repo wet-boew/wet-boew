@@ -1,5 +1,4 @@
-/**
- * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+/*
  * @title data-picture Plugin Unit Tests
  * @overview Test the data-picture plugin behaviour
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -9,7 +8,7 @@
 /* jshint unused:vars */
 (function( $, vapour ) {
 
-/**
+/*
  * Create a suite of related test cases using `describe`.  Test suites can also be
  * nested in other test suites if you want to use the same setup `before()` and
  * teardown `after()` for more than one test suite (as is the case below.)
@@ -17,10 +16,10 @@
 describe( "[data-picture] test suite", function() {
 	var spy;
 
-	/**
+	/*
 	 * Before begining the test suite, this function is exectued once.
 	 */
-	before( function() {
+	before(function() {
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
 		spy = sinon.spy( $.prototype, "trigger" );
 
@@ -28,10 +27,10 @@ describe( "[data-picture] test suite", function() {
 		$( "[data-picture]" ).trigger( "timerpoke.wb" );
 	});
 
-	/**
+	/*
 	 * After finishing the test suite, this function is exectued once.
 	 */
-	after( function() {
+	after(function() {
 		// Restore the original behaviour of trigger once the tests are finished
 		$.prototype.trigger.restore();
 
@@ -39,7 +38,7 @@ describe( "[data-picture] test suite", function() {
 		$( ".test[data-picture]" ).remove();
 	});
 
-	/**
+	/*
 	 * Test the initialization events of the plugin
 	 */
 	describe( "init events", function() {
@@ -58,7 +57,7 @@ describe( "[data-picture] test suite", function() {
 		});
 	});
 
-	/**
+	/*
 	 * Test that onresize, the plugin reacts correctly
 	 */
 	describe( "resize events", function() {
@@ -79,14 +78,14 @@ describe( "[data-picture] test suite", function() {
 		});
 	});
 
-	/**
+	/*
 	 * Test that the plugin creates responsive images as expected
 	 */
 	describe( "responsive images", function() {
 
 		it( "should have created one responsive image that matches one of the span[data-src] elements", function() {
 			var $elm, $img, $span;
-			$( "[data-picture]" ).each( function() {
+			$( "[data-picture]" ).each(function() {
 				$elm = $( this );
 				$img = $elm.find( "img" );
 				$span = $elm.find( "[data-src='" + $img.attr("src") + "']" );
@@ -97,7 +96,7 @@ describe( "[data-picture] test suite", function() {
 
 		it( "should have set the responsive image alt attribute", function() {
 			var $elm;
-			$( "[data-picture]" ).each( function() {
+			$( "[data-picture]" ).each(function() {
 				$elm = $( this );
 				expect( $elm.find( "img" ).attr( "alt" ) ).to.equal( $elm.data( "alt" ) );
 			});
