@@ -1,0 +1,49 @@
+.wb-modal {
+  position: relative;
+  width: auto;
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+}
+
+.wb-session-timeout-confirm {
+  margin: 20px 10px 0 0;
+}
+
+.mfp-zoom-in {
+
+  /* start state */
+  .mfp-anim {
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+    transform: scale(0.8);
+  }
+
+  &.mfp-bg {
+    opacity: 0;
+    transition: all 0.3s ease-out;
+  }
+
+  /* animate in */
+  &.mfp-ready {
+    .mfp-anim {
+      opacity: 1;
+      transform: scale(1);
+    }
+    &.mfp-bg {
+      opacity: 0.8;
+    }
+  }
+
+  /* animate out */
+  &.mfp-removing {
+    .mfp-anim {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    &.mfp-bg {
+      opacity: 0;
+    }
+  }
+}
