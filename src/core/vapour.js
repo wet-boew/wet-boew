@@ -173,12 +173,12 @@ Modernizr Load call
 		},
 
 		start: function() {
-            /* Lets start our clock right away. We we need to test to ensure that there will not be any
-             * instances on Mobile were the DOM is not ready before the timer starts. That is why 0.5 seconds 
-             * was used a buffer.
-             */
-            window._timer.touch();
-            // lets keep it ticking after
+	            	/* Lets start our clock right away. We we need to test to ensure that there will not be any
+	             	* instances on Mobile were the DOM is not ready before the timer starts. That is why 0.5 seconds 
+	             	* was used a buffer.
+	        	 */
+	            	window._timer.touch();
+        		 // lets keep it ticking after
 			setInterval( function() {
 				window._timer.touch();
 			}, 500 );
