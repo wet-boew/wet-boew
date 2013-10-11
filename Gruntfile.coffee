@@ -135,6 +135,7 @@ module.exports = (grunt) ->
 		[
 			"assemble:site",
 			"assemble:plugins"
+			"assemble:polyfills"
 		]
 	)
 
@@ -202,6 +203,13 @@ module.exports = (grunt) ->
 				cwd: "src/plugins"
 				src: ["**/*.hbs"]
 				dest: "dist/demo"
+
+			polyfills:
+				expand: true
+				cwd: "src/polyfills"
+				src: ["**/*.hbs"]
+				dest: "dist/demo"
+
 			tests:
 				options:
 					environment:
