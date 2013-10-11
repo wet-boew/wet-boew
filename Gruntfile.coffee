@@ -43,7 +43,7 @@ module.exports = (grunt) ->
 			"gh-pages"
 		]
 	)
-	
+
 	@registerTask(
 		"saucelabs",
 		"Full build for running tests on SauceLabs. Currently only for Travis builds",
@@ -322,6 +322,7 @@ module.exports = (grunt) ->
 				inputtypes: true
 				html5: true
 				cssclasses: true
+				csstransitions: true
 				fontface: true
 				backgroundsize: true
 				borderimage: true
@@ -392,7 +393,7 @@ module.exports = (grunt) ->
 				]
 				dest: "dist/demo"
 				expand: true
-			
+
 			tests:
 				cwd: "src/plugins"
 				src: [
