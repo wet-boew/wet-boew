@@ -15,8 +15,7 @@
  */
 var selector = ".wb-lightbox",
 	$document = vapour.doc,
-	i18n,
-	i18nText,
+	i18n, i18nText,
 	extendedGlobal = false,
 
 	/*
