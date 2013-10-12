@@ -15,10 +15,9 @@ $.ajaxSettings.cache = false;
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-webfeeds",
+var  selector = ".wb-webfeeds",
 	$document = vapour.doc,
-	i18n,
-	i18nText,
+	i18n, i18nText,
 
 	weather = {
 		_parse_entries: function( entries, limit, $elm ) {
@@ -85,8 +84,8 @@ var selector = ".wb-webfeeds",
 	 */
 	init = function( _elm, $elm ) {
 
-		var $loading, $content,	feeds, limit, typeObj, entries,	i, last, process_entries,
-			parse_entries, _results, finalize, deferred, protocol, loadingTag, type;
+		var $loading, $content,	feeds, limit, typeObj, entries,	i, last,
+			process_entries, parse_entries, _results, finalize, deferred, type;
 
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 		window._timer.remove( selector );
@@ -102,9 +101,6 @@ var selector = ".wb-webfeeds",
 		limit = getLimit( _elm );
 		feeds = $elm.find( "a" ).map(function() {
 			var a = this.href;
-			if ( !type && /twitter.com/i.test( a ) ) {
-				type = "twitter";
-			}
 			if ( !type && /weather.gc.ca/i.test( a ) ) {
 				type = "weather";
 			}
@@ -114,60 +110,52 @@ var selector = ".wb-webfeeds",
 			return a;
 		});
 
-		loadingTag = type === "twitter" ? "a" : "li";
-		$loading = $( "<" + loadingTag + " class='widget-state-loading'><img src='assets/ajax-loader.gif' alt='" + i18nText.loading + "' /></" + loadingTag + ">" );
+		$loading = $( "<li class='widget-state-loading'><img src='assets/ajax-loader.gif' alt='" + i18nText.loading + "' /></li>" );
 		$content = $elm.find( ".widget-content, .twitter-timeline" );
 		$content.append( $loading );
 
-		if ( type !== "twitter" ) {
-			typeObj = ( type === "rss" ? rss : weather );
+		typeObj = ( type === "rss" ? rss : weather );
 
-			last = feeds.length - 1;
-			entries = [ ];
-			parse_entries = typeObj._parse_entries;
-			i = last;
-			_results = [ ];
+		last = feeds.length - 1;
+		entries = [ ];
+		parse_entries = typeObj._parse_entries;
+		i = last;
+		_results = [ ];
 
-			process_entries = function( data ) {
-				var k, len;
+		process_entries = function( data ) {
+			var k, len;
 
-				data = typeObj._map_entries( data );
-				len = data.length;
-				for ( k = 0; k !== len; k += 1 ) {
-					entries.push( data[ k ] );
-				}
-				if ( !last ) {
-					parse_entries( entries, limit, $content );
-				}
-
-				last -= 1;
-				return last;
-			};
-
-			finalize = function() {
-				$loading.remove();
-				// TODO: Use CSS instead
-				$content.find( "li" ).show();
-			};
-
-			deferred = [ ];
-			while ( i >= 0 ) {
-				deferred[ i ] = $.ajax( {
-					url: typeObj._json_request( feeds[ i ], limit ),
-					dataType: "json",
-					timeout: 1000
-				} ).done( process_entries );
-				_results.push( i -= 1 );
+			data = typeObj._map_entries( data );
+			len = data.length;
+			for ( k = 0; k !== len; k += 1 ) {
+				entries.push( data[ k ] );
 			}
-			$.when.apply( null, deferred ).always( finalize );
+			if ( !last ) {
+				parse_entries( entries, limit, $content );
+			}
 
-			$.extend( {}, _results );
-		} else {
-			protocol = vapour.pageUrlParts.protocol;
-			window.Modernizr.load( {
-				load: ( protocol.indexOf( "http" ) === -1 ? "http" : protocol ) + "://platform.twitter.com/widgets.js"
-			});
+			last -= 1;
+			return last;
+		};
+
+		finalize = function() {
+			$loading.remove();
+			// TODO: Use CSS instead
+			$content.find( "li" ).show();
+		};
+
+		deferred = [ ];
+		while ( i >= 0 ) {
+			deferred[ i ] = $.ajax( {
+				url: typeObj._json_request( feeds[ i ], limit ),
+				dataType: "json",
+				timeout: 1000
+			} ).done( process_entries );
+			_results.push( i -= 1 );
 		}
+		$.when.apply( null, deferred ).always( finalize );
+
+		$.extend( {}, _results );
 	},
 
 	// TODO: Should these be added as central helpers? They were in v3.1

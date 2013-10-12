@@ -1,0 +1,94 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+%webfeeds-twitter-timeline-ul {
+	font-size: 90%;
+	min-height: 50px;
+	overflow: auto;
+	background: #fff;
+	border: 1px solid #ccc;
+	margin: 0 !important;
+	padding: 5px !important;
+}
+%webfeeds-color-707070 {
+	color: #707070;
+}
+
+.wb-disable {
+	.wb-twitter {
+		.twitter-timeline {
+			text-indent: 0 !important;
+		}
+	}
+}
+
+.wb-twitter {
+	.widget-state-loading {
+		display: block !important;
+		margin: auto;
+		width: 100%;
+		line-height: 60px;
+		text-align: center;
+		text-indent: 0;
+		img {
+			margin: auto;
+			height: auto !important;
+			width: auto !important;
+			vertical-align: middle;
+		}
+	}
+	.twitter-timeline {
+		a {
+			&:link, &:visited {
+				@extend %webfeeds-color-707070;
+			}
+		}
+		.stats {
+			span {
+				@extend %webfeeds-color-707070;
+			}
+		}
+		.byline {
+			@extend %webfeeds-color-707070;
+		}
+		.retweet-credit {
+			@extend %webfeeds-color-707070;
+		}
+		.no-more-pane {
+			@extend %webfeeds-color-707070;
+		}
+		.no-tweets-pane {
+			p {
+				@extend %webfeeds-color-707070;
+			}
+		}
+		.p-geo {
+			@extend %webfeeds-color-707070;
+		}
+		.cards-base {
+			.byline-user {
+				@extend %webfeeds-color-707070;
+			}
+		}
+		tweet-box-button {
+			@extend %webfeeds-color-707070;
+		}
+	}
+	a {
+		&.twitter-timeline {
+			display: block;
+			text-indent: -9999px;
+			@extend %webfeeds-twitter-timeline-ul;
+		}
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	.wb-twitter {
+		.twitter-timeline {
+			text-indent: 9999px;
+		}
+	}
+}

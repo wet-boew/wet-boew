@@ -15,8 +15,7 @@
  */
 var selector = ".wb-formvalid",
 	$document = vapour.doc,
-	i18n,
-	i18nText,
+	i18n, i18nText,
 
 	/*
 	 * Init runs once per plugin element on the page. There may be multiple elements. 

@@ -15,8 +15,7 @@
  */
 var selector = ".wb-session-timeout",
 	$document = vapour.doc,
-	i18n,
-	i18nText,
+	i18n, i18nText,
 
 	/*
 	 * Plugin users can override these defaults by setting attributes on the html elements that the
