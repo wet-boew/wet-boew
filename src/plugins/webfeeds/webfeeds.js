@@ -15,9 +15,8 @@ $.ajaxSettings.cache = false;
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var  selector = ".wb-webfeeds",
+var selector = ".wb-webfeeds",
 	$document = vapour.doc,
-	i18n, i18nText,
 
 	weather = {
 		_parse_entries: function( entries, limit, $elm ) {
@@ -45,7 +44,7 @@ var  selector = ".wb-webfeeds",
 	},
 
 	rss = {
-		_parse_entries: function( entries, limit, elm ) {
+		_parse_entries: function( entries, limit, $elm ) {
 			var cap = ( limit > 0 && limit < entries.length ? limit : entries.length ),
 				result = "",
 				i, sorted, sorted_entry;
@@ -60,7 +59,7 @@ var  selector = ".wb-webfeeds",
 					( sorted_entry.publishedDate !== "" ?  " <span class='widget-datestamp'>[" +
 					to_iso_format( sorted_entry.publishedDate, true ) + "]</span>" : "" ) + "</li>";
 			}
-			return elm.empty().append( result );
+			return $elm.empty().append( result );
 		},
 
 		_map_entries: function( data ) {
@@ -82,72 +81,45 @@ var  selector = ".wb-webfeeds",
 	 * @method init
 	 * @param {jQuery DOM element} $elm The plugin element being initialized
 	 */
-	init = function( _elm, $elm ) {
-
-		var $loading, $content,	feeds, limit, typeObj, entries,	i, last,
-			process_entries, parse_entries, _results, finalize, deferred, type;
+	init = function( _elm ) {
 
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 		window._timer.remove( selector );
 
-		// Only initialize the i18nText once
-		if ( !i18nText ) {
-			i18n = window.i18n;
-			i18nText = {
-				loading: i18n( "%loading" )
+		var $content = $( _elm ).find( ".widget-content" ),
+			limit = getLimit( _elm ),
+			feeds = _elm.getElementsByTagName( "a" ),
+			last = feeds.length - 1,
+			i = last,
+			typeObj = ( /weather.gc.ca/i.test( feeds[ 0 ].href ) ? weather : rss ),
+			parse_entries = typeObj._parse_entries,
+			entries = [],
+			_results = [],
+			deferred = [],
+			process_entries = function( data ) {
+				var k, len;
+
+				data = typeObj._map_entries( data );
+				len = data.length;
+				for ( k = 0; k !== len; k += 1 ) {
+					entries.push( data[ k ] );
+				}
+				if ( !last ) {
+					parse_entries( entries, limit, $content );
+				}
+
+				last -= 1;
+				return last;
+			},
+			finalize = function() {
+
+				// TODO: Use CSS instead
+				$content.find( "li" ).show();
 			};
-		}
 
-		limit = getLimit( _elm );
-		feeds = $elm.find( "a" ).map(function() {
-			var a = this.href;
-			if ( !type && /weather.gc.ca/i.test( a ) ) {
-				type = "weather";
-			}
-			if ( !type ) {
-				type = "rss";
-			}
-			return a;
-		});
-
-		$loading = $( "<li class='widget-state-loading'><img src='assets/ajax-loader.gif' alt='" + i18nText.loading + "' /></li>" );
-		$content = $elm.find( ".widget-content, .twitter-timeline" );
-		$content.append( $loading );
-
-		typeObj = ( type === "rss" ? rss : weather );
-
-		last = feeds.length - 1;
-		entries = [ ];
-		parse_entries = typeObj._parse_entries;
-		i = last;
-		_results = [ ];
-
-		process_entries = function( data ) {
-			var k, len;
-
-			data = typeObj._map_entries( data );
-			len = data.length;
-			for ( k = 0; k !== len; k += 1 ) {
-				entries.push( data[ k ] );
-			}
-			if ( !last ) {
-				parse_entries( entries, limit, $content );
-			}
-
-			last -= 1;
-			return last;
-		};
-
-		finalize = function() {
-			$loading.remove();
-			// TODO: Use CSS instead
-			$content.find( "li" ).show();
-		};
-
-		deferred = [ ];
 		while ( i >= 0 ) {
 			deferred[ i ] = $.ajax( {
-				url: typeObj._json_request( feeds[ i ], limit ),
+				url: typeObj._json_request( feeds[ i ].href, limit ),
 				dataType: "json",
 				timeout: 1000
 			} ).done( process_entries );
@@ -252,7 +224,7 @@ var  selector = ".wb-webfeeds",
 	};
 
 $document.on( "timerpoke.wb", selector, function() {
-	init( this, $( this ) );
+	init( this );
 
 	/*
 	 * Since we are working with events we want to ensure that we are being passive about our control, 
