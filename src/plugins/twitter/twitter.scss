@@ -24,20 +24,6 @@
 }
 
 .wb-twitter {
-	.widget-state-loading {
-		display: block !important;
-		margin: auto;
-		width: 100%;
-		line-height: 60px;
-		text-align: center;
-		text-indent: 0;
-		img {
-			margin: auto;
-			height: auto !important;
-			width: auto !important;
-			vertical-align: middle;
-		}
-	}
 	.twitter-timeline {
 		a {
 			&:link, &:visited {

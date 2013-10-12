@@ -15,7 +15,6 @@
  */
 var selector = ".wb-twitter",
 	$document = vapour.doc,
-	i18n, i18nText,
 
 	/*
 	 * Init runs once per plugin element on the page. There may be multiple elements. 
@@ -23,33 +22,20 @@ var selector = ".wb-twitter",
 	 * @method init
 	 * @param {jQuery DOM element} $elm The plugin element being initialized
 	 */
-	init = function( _elm, $elm ) {
+	init = function() {
 
-		var $loading, $content,	protocol;
+		var protocol = vapour.pageUrlParts.protocol;
 
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 		window._timer.remove( selector );
 
-		// Only initialize the i18nText once
-		if ( !i18nText ) {
-			i18n = window.i18n;
-			i18nText = {
-				loading: i18n( "%loading" )
-			};
-		}
-
-		$loading = $( "<a class='widget-state-loading'><img src='assets/ajax-loader.gif' alt='" + i18nText.loading + "' /></a>" );
-		$content = $elm.find( ".twitter-timeline" );
-		$content.append( $loading );
-
-		protocol = vapour.pageUrlParts.protocol;
 		window.Modernizr.load( {
 			load: ( protocol.indexOf( "http" ) === -1 ? "http" : protocol ) + "://platform.twitter.com/widgets.js"
 		});
 	};
 
 $document.on( "timerpoke.wb", selector, function() {
-	init( this, $( this ) );
+	init();
 
 	/*
 	 * Since we are working with events we want to ensure that we are being passive about our control, 
