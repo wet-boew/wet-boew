@@ -32,6 +32,7 @@
     "magnific-popup": "0.9.6",
     "jquery-pjax": "1.7.3",
     "jquery-ie": "jquery#1.10.2",
+    "html5shiv": "3.7.0",
     "respond": "1.2.0",
     "selectivizr": "1.0.2",
     "excanvas": "*",
