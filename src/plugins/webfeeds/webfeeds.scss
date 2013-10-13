@@ -2,10 +2,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
-/*
- Web feeds RSS sass
- */
-
 %webfeeds-fontsize-90 {
 	font-size: 90%;
 }
@@ -38,20 +34,6 @@
 			img {
 				margin-right: 5px;
 			}
-		}
-	}
-	.widget-state-loading {
-		display: block !important;
-		margin: auto;
-		width: 100%;
-		line-height: 60px;
-		text-align: center;
-		text-indent: 0;
-		img {
-			margin: auto;
-			height: auto !important;
-			width: auto !important;
-			vertical-align: middle;
 		}
 	}
 	a {
