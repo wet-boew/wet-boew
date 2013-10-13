@@ -1,6 +1,6 @@
 ---
 title: Lightbox
-language: en
+language: fr
 ---
 
 <style>
@@ -37,41 +37,41 @@ language: en
 </style>
 
 <section>
-	<h2>Table of contents</h2>
+	<h2>Table des matières</h2>
 	<ul>
-		<li><a href="#features">Features</a></li>
-		<li><a href="#examples">Examples</a>
+		<li><a href="#features">Caractéristiques</a></li>
+		<li><a href="#examples">Exemples</a>
 			<ul>
-				<li><a href="#examples1">Single items</a></li>
-				<li><a href="#examples2">Item gallery</a></li>
-				<li><a href="#examples3">Hidden item gallery</a></li>
-				<li><a href="#examples4">Alternative image title</a></li>
+				<li><a href="#examples1">Articles seules</a></li>
+				<li><a href="#examples2">Galeries d'articles</a></li>
+				<li><a href="#examples3">Galeries d'articles cachées</a></li>
+				<li><a href="#examples4">Titre de l'image alternative</a></li>
 			</ul>
 		</li>
 	</ul>
 </section>
 
 <section>
-	<h2 id="features">Features</h2>
+	<h2 id="features">Caractéristiques</h2>
 	<ul>
-		<li>Displays images and other content using the <a href="http://dimsemenov.com/plugins/magnific-popup/" rel="external">Magnific Popup</a> plugin.</li>
-		<li>Easy navigation in image galleries using mouse, touchscreen or keyboard.</li>
+		<li>Affiche les images dans l'outil <a href="http://www.jacklmoore.com/colorbox" lang="en" rel="external">ColorBox</a></li>
+		<li>Utilisation d'un souris, écran tactile ou clavier pour une navigation facile.</li>
 	</ul>
 </section>
 
 <div class="wb-prettify all-pre">
 	<section>
-		<h2 id="examples">Examples</h2>
+		<h2 id="examples">Exemples</h2>
 
 		<details>
-			<summary>Long description of image 2</summary>
-			<p id="image2-desc">Example long description of image 2 (referenced by <code>aria-describedby</code>).</p>
+			<summary>Description longue d'image 2</summary>
+			<p id="image2-desc">Exemple d'une description longue d'image 2 (référencé par <code lang="en">aria-describedby</code>).</p>
 		</details>
 
 		<section>
-			<h3 id="examples1">Single items</h3>
+			<h3 id="examples1">Articles seules</h3>
 			<section>
-				<h4>Example</h4>
+				<h4>Exemple</h4>
 				<div class="inline-list" class="lb-default-popup">
 					<ul>
 						<li>
@@ -85,31 +85,31 @@ language: en
 							</a>
 						</li>
 						<li class="box">
-							<a class="wb-lightbox" title="Example of AJAX content" href="ajax/ajax-en.html">AJAX content</a>
+							<a class="wb-lightbox" title="Exemple de contenu AJAX" href="ajax/ajax-en.html">Contenu AJAX</a>
 						</li>
 						<li class="box">
-							<a class="wb-lightbox" title="Example of inline content" href="#inline_content">Inline content</a>
+							<a class="wb-lightbox" title="Exemple de contenu incorporé" href="#inline_content">Contenu incorporé</a>
 							<div id="inline_content" class="mfp-hide modal-dialog">
 								<article class="modal-content">
 									<header class="modal-header">
-										<h1 class="modal-title">Title</h1>
+										<h1 class="modal-title">Titre</h1>
 									</header>
 									<div class="modal-body">
 										<ol>
-											<li>ordered list (<code>ol</code>) first level default appearance</li>
-											<li>ordered list (<code>ol</code>) first level default appearance
+											<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+											<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
 												<ol>
-													<li>ordered list (<code>ol</code>) second level default appearance</li>
-													<li>ordered list (<code>ol</code>) second level default appearance
+													<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+													<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
 														<ol>
-															<li>ordered list (<code>ol</code>) third level default appearance</li>
-															<li>ordered list (<code>ol</code>) third level default appearance</li>
+															<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+															<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
 														</ol>
 													</li>
 												</ol>
 											</li>
 										</ol>
-										<p><a href="#">Link default appearance</a></p>
+										<p><a href="#">Lien - apparence par défaut</a></p>
 									</div>
 								</article>
 							</div>
@@ -119,7 +119,7 @@ language: en
 			</section>
 
 			<section>
-				<h4>Coding</h4>
+				<h4>Codage</h4>
 				<pre><code>&lt;ul&gt;
 	&lt;li&gt;
 		&lt;a class="wb-lightbox" href="img/1_b.jpg" title="Image 1"&gt;
@@ -132,31 +132,31 @@ language: en
 		&lt;/a&gt;
 	&lt;/li&gt;
 	&lt;li&gt;
-		&lt;a class="wb-lightbox" title="Example of AJAX content" href="ajax/ajax-en.html"&gt;AJAX content&lt;/a&gt;
+		&lt;a class="wb-lightbox" title="Exemple de contenu AJAX" href="ajax/ajax-en.html"&gt;Contenu AJAX&lt;/a&gt;
 	&lt;/li&gt;
 	&lt;li&gt;
-		&lt;a class="wb-lightbox" title="Example of inline content" href="#inline_content"&gt;Inline content&lt;/a&gt;
+		&lt;a class="wb-lightbox" title="Exemple de contenu incorporé" href="#inline_content"&gt;Contenu incorporé&lt;/a&gt;
 		&lt;div id="inline_content" class="mfp-hide modal-dialog"&gt;
 			&lt;article class="modal-content"&gt;
 				&lt;header class="modal-header"&gt;
-					&lt;h1 class="modal-title"&gt;Title&lt;/h1&gt;
+					&lt;h1 class="modal-title"&gt;Titre&lt;/h1&gt;
 				&lt;/header&gt;
 				&lt;div class="modal-body"&gt;
 					&lt;ol&gt;
-						&lt;li&gt;ordered list (&lt;code&gt;ol&lt;/code&gt;) first level default appearance&lt;/li&gt;
-						&lt;li&gt;ordered list (&lt;code&gt;ol&lt;/code&gt;) first level default appearance
+						&lt;li&gt;liste ordonnée (&lt;code&gt;ol&lt;/code&gt;) premier niveau - apparence par défaut&lt;/li&gt;
+						&lt;li&gt;liste ordonnée (&lt;code&gt;ol&lt;/code&gt;) premier niveau - apparence par défaut
 							&lt;ol&gt;
-								&lt;li&gt;ordered list (&lt;code&gt;ol&lt;/code&gt;) second level default appearance&lt;/li&gt;
-								&lt;li&gt;ordered list (&lt;code&gt;ol&lt;/code&gt;) second level default appearance
+								&lt;li&gt;liste ordonnée (&lt;code&gt;ol&lt;/code&gt;) deuxième niveau - apparence par défaut&lt;/li&gt;
+								&lt;li&gt;liste ordonnée (&lt;code&gt;ol&lt;/code&gt;) deuxième niveau - apparence par défaut
 									&lt;ol&gt;
-										&lt;li&gt;ordered list (&lt;code&gt;ol&lt;/code&gt;) third level default appearance&lt;/li&gt;
-										&lt;li&gt;ordered list (&lt;code&gt;ol&lt;/code&gt;) third level default appearance&lt;/li&gt;
+										&lt;li&gt;liste ordonnée (&lt;code&gt;ol&lt;/code&gt;) troisième niveau - apparence par défaut&lt;/li&gt;
+										&lt;li&gt;liste ordonnée (&lt;code&gt;ol&lt;/code&gt;) troisième niveau - apparence par défaut&lt;/li&gt;
 									&lt;/ol&gt;
 								&lt;/li&gt;
 							&lt;/ol&gt;
 						&lt;/li&gt;
 					&lt;/ol&gt;
-					&lt;p&gt;&lt;a href="#"&gt;Link default appearance&lt;/a&gt;&lt;/p&gt;
+					&lt;p&gt;&lt;a href="#"&gt;Lien - apparence par défaut&lt;/a&gt;&lt;/p&gt;
 				&lt;/div&gt;
 			&lt;/article&gt;
 		&lt;/div&gt;
@@ -166,9 +166,9 @@ language: en
 		</section>
 
 		<section>
-			<h3 id="examples2">Image gallery</h3>
+			<h3 id="examples2">Galerie d'images</h3>
 			<section>
-				<h4>Example</h4>
+				<h4>Exemple</h4>
 				<div class="wb-lightbox lb-gallery inline-list">
 					<ul>
 						<li>
@@ -196,7 +196,7 @@ language: en
 			</section>
 
 			<section>
-				<h4>Coding</h4>
+				<h4>Codage</h4>
 				<pre><code>&lt;div class="wb-lightbox lb-gallery inline-list"&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
@@ -225,7 +225,7 @@ language: en
 		</section>
 
 		<section>
-			<h3 id="examples3">Hidden image gallery</h3>
+			<h3 id="examples3">Galeries d'images cachés</h3>
 			<section>
 				<h4>Example</h4>
 				<div class="wb-lightbox lb-hidden-gallery inline-list">
@@ -255,7 +255,7 @@ language: en
 			</section>
 
 			<section>
-				<h4>Coding</h4>
+				<h4>Codage</h4>
 				<pre><code>&lt;div class="wb-lightbox lb-hidden-gallery inline-list"&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
@@ -284,7 +284,7 @@ language: en
 		</section>
 
 		<section>
-			<h3 id="examples4">Alternative image title</h3>
+			<h3 id="examples4">Titre de l'image alternative</h3>
 			<section>
 				<h4>Example</h4>
 				<div class="wb-lightbox lb-gallery inline-list">
@@ -302,12 +302,12 @@ language: en
 					</ul>
 				</div>
 				
-				<p id="image_1_b"><strong>Image 1:</strong> Lorem ipsum consectetur <em>adipiscing elit</em>.</p>
-				<p id="image_2_b"><strong>Image 2:</strong> Nulla mollis dolor leo. Quisque laoreet tincidunt mollis. Duis posuere scelerisque lectus quis lobortis.</p>
+				<p id="image_1_b"><strong>Image 1&#160;:</strong> Lorem ipsum consectetur <em>adipiscing elit</em>.</p>
+				<p id="image_2_b"><strong>Image 2&#160;:</strong> Nulla mollis dolor leo. Quisque laoreet tincidunt mollis. Duis posuere scelerisque lectus quis lobortis.</p>
 			</section>
 
 			<section>
-				<h4>Coding</h4>
+				<h4>Codage</h4>
 				<pre><code>&lt;div class="wb-lightbox lb-gallery inline-list"&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
@@ -322,8 +322,8 @@ language: en
 		&lt;/li&gt;
 	&lt;/ul&gt;	
 &lt;/div&gt;
-&lt;p id="image_1_b"&gt;&lt;strong&gt;Image 1:&lt;/strong&gt; Lorem ipsum consectetur &lt;em&gt;adipiscing elit&lt;/em&gt;.&lt;/p&gt;
-&lt;p id="image_2_b"&gt;&lt;strong&gt;Image 2:&lt;/strong&gt; Nulla mollis dolor leo. Quisque laoreet tincidunt mollis. Duis posuere scelerisque lectus quis lobortis.&lt;/p&gt;</code></pre>
+&lt;p id="image_1_b"&gt;&lt;strong&gt;Image 1&amp;#160;:&lt;/strong&gt; Lorem ipsum consectetur &lt;em&gt;adipiscing elit&lt;/em&gt;.&lt;/p&gt;
+&lt;p id="image_2_b"&gt;&lt;strong&gt;Image 2&amp;#160;:&lt;/strong&gt; Nulla mollis dolor leo. Quisque laoreet tincidunt mollis. Duis posuere scelerisque lectus quis lobortis.&lt;/p&gt;</code></pre>
 			</section>
 		</section>
 	</section>
