@@ -4,22 +4,27 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @gc
  */
+
 (function( $, window, vapour ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the event - meaning that they will be initialized once per page,
- * not once per instance of event on the page. 
+ * not once per instance of event on the page.
  */
-var selector = "wb-tphp",
+var selector = vapour.sDisabled,
 	$document = vapour.doc,
 
+
 /*
- * createOffer runs once per plugin element on the page. 
+ * createOffer runs once per plugin element on the page.
  * @method createOffer
  */
 createOffer = function( elm ) {
+	// Let remove ourselves from the queue we only run once
+    window._timer.remove( selector );
+
 	var li = document.createElement( "li" ),
 		pageUrl = vapour.pageUrlParts,
 		nQuery = "?",
@@ -28,6 +33,7 @@ createOffer = function( elm ) {
 		i18n = window.i18n;
 
 	li.className = "wb-skip";
+
 
 	// Rebuild the query string
 	for ( param in pageUrl.params ) {
@@ -46,7 +52,7 @@ createOffer = function( elm ) {
 
 		// Append the Standard version link
 		li.innerHTML = "<a class='wb-skip-link' href='" + nQuery + "wbdisable=false'>" + i18n( "%wb-enable" ) + "</a>";
-		
+
 		// Add link to re-enable WET plugins and polyfills
 		elm.appendChild( li );
 		return true;
@@ -61,13 +67,12 @@ createOffer = function( elm ) {
 	elm.appendChild( li ); // Add link to disable WET plugins and polyfills
 };
 
-	
 // Bind the events
-$document.on( "disable.wb", function() {
-	var topOfPage = document.getElementById(selector);
-	if ( topOfPage ) {
-		createOffer( topOfPage );
-	}
+$document.on( "timerpoke.wb", selector, function() {
+		createOffer( this );
 });
+
+// Add the timer poke to initialize the plugin
+window._timer.add( selector );
 
 })( jQuery, window, vapour );
