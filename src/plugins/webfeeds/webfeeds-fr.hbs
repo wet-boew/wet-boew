@@ -19,24 +19,26 @@ language: fr
 
 <section>
 	<h2>Exemples</h2>
-	<div class="wb-webfeeds">
-		<section class="widget-container">
-			<h3>Météo d'Ottawa</h3>
-			<ul class="widget-content">
-				<li><a href="http://weather.gc.ca/city/pages/on-118_metric_f.html" rel="external">Ottawa Ontario</a></li>
-			</ul>
-		</section>
-	</div>
-
 	<div class="wb-webfeeds limit-5">
 		<section class="widget-container">
-			<h3>Fils RSS</h3>
+			<h3>Communiqués de presse et rappels de la sécurité routière</h3>
 			<ul class="widget-content">
 				<li>
 					<a href="http://www.tc.gc.ca/medias/rss/routier.xml" rel="external">Communiqués de presse routière (Tous)</a>
 				</li>
 				<li>
 					<a href="http://wwwapps.tc.gc.ca/Saf-Sec-Sur/7/VRDB-BDRV/Search/Rss-Search.aspx?lang=fra" rel="external">Rappels de la Sécurité Routière</a>
+				</li>
+			</ul>
+		</section>
+	</div>
+
+	<div class="wb-webfeeds limit-1">
+		<section class="widget-container">
+			<h3>Météo d'Ottawa</h3>
+			<ul class="widget-content">
+				<li>
+					<a href="http://weather.gc.ca/rss/city/on-118_f.xml" rel="external">Ottawa Ontario</a>
 				</li>
 			</ul>
 		</section>
@@ -63,7 +65,7 @@ language: fr
 			<tr>
 				<td><code>limit-<em>xxx</em></code></td>
 				<td>affichage</td>
-				<td>contrôle la quantité d'articles que le gadget des fils de syndication affichera (sauf les fils intégrés Twitter)</td>
+				<td>contrôle la quantité d'articles que le gadget des fils de syndication affichera</td>
 			</tr>
 		</tbody>
 	</table>

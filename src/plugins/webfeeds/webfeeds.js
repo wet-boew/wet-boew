@@ -18,63 +18,6 @@ $.ajaxSettings.cache = false;
 var selector = ".wb-webfeeds",
 	$document = vapour.doc,
 
-	weather = {
-		_parse_entries: function( entries, limit, $elm ) {
-			var entry = entries[ 1 ],
-				result = "<li><a href='" + entry.link + "'>" + entry.title + "</a> <span class='widget-datestamp'>[" +
-					to_iso_format( entry.publishedDate, true ) + "]</span></li>";
-			return $elm.empty().append( result );
-		},
-		_map_entries: function( data ) {
-			return data.responseData.feed.entries;
-		},
-		_json_request: function( url, limit ) {
-			var rl = "http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q=" +
-						encodeURIComponent(
-							decodeURIComponent(
-								url.replace( /^.*?\.gc\.ca\/([a-z]+).+\/(.*?)_[a-z]+_([ef])\.html/i, "http://weather.gc.ca/rss/$1/$2_$3.xml" )
-							)
-						);
-			
-			if ( limit > 0 ) {
-				rl += "&num=" + limit;
-			}
-			return rl;
-		}
-	},
-
-	rss = {
-		_parse_entries: function( entries, limit, $elm ) {
-			var cap = ( limit > 0 && limit < entries.length ? limit : entries.length ),
-				result = "",
-				i, sorted, sorted_entry;
-			
-			sorted = entries.sort( function( a, b ) {
-				return compare( b.publishedDate, a.publishedDate );
-			} );
-
-			for ( i = 0; i !== cap; i += 1 ) {
-				sorted_entry = sorted[ i ];
-				result += "<li><a href='" + sorted_entry.link + "'>" + sorted_entry.title + "</a>" +
-					( sorted_entry.publishedDate !== "" ?  " <span class='widget-datestamp'>[" +
-					to_iso_format( sorted_entry.publishedDate, true ) + "]</span>" : "" ) + "</li>";
-			}
-			return $elm.empty().append( result );
-		},
-
-		_map_entries: function( data ) {
-			return data.responseData.feed.entries;
-		},
-
-		_json_request: function( url, limit ) {
-			var rl = "http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q=" + encodeURIComponent( decodeURIComponent( url ) );
-			if ( limit > 0 ) {
-				rl += "&num=" + limit;
-			}
-			return rl;
-		}
-	},
-
 	/*
 	 * Init runs once per plugin element on the page. There may be multiple elements. 
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
@@ -91,21 +34,19 @@ var selector = ".wb-webfeeds",
 			feeds = _elm.getElementsByTagName( "a" ),
 			last = feeds.length - 1,
 			i = last,
-			typeObj = ( /weather.gc.ca/i.test( feeds[ 0 ].href ) ? weather : rss ),
-			parse_entries = typeObj._parse_entries,
 			entries = [],
 			_results = [],
 			deferred = [],
-			process_entries = function( data ) {
+			processEntries = function( data ) {
 				var k, len;
 
-				data = typeObj._map_entries( data );
+				data = data.responseData.feed.entries;
 				len = data.length;
 				for ( k = 0; k !== len; k += 1 ) {
 					entries.push( data[ k ] );
 				}
 				if ( !last ) {
-					parse_entries( entries, limit, $content );
+					parseEntries( entries, limit, $content );
 				}
 
 				last -= 1;
@@ -118,11 +59,11 @@ var selector = ".wb-webfeeds",
 			};
 
 		while ( i >= 0 ) {
-			deferred[ i ] = $.ajax( {
-				url: typeObj._json_request( feeds[ i ].href, limit ),
+			deferred[ i ] = $.ajax({
+				url: jsonRequest( feeds[ i ].href, limit ),
 				dataType: "json",
 				timeout: 1000
-			} ).done( process_entries );
+			}).done( processEntries );
 			_results.push( i -= 1 );
 		}
 		$.when.apply( null, deferred ).always( finalize );
@@ -144,6 +85,49 @@ var selector = ".wb-webfeeds",
 			return 0;
 		}
 		return Number( count[ 0 ].replace( /limit-/i, "" ) );
+	},
+	
+	/*
+	 * Builds the URL for the JSON request
+	 * @method jsonRequest
+	 * @param {url} url URL of the feed.
+	 * @param {integer} limit Limit on the number of results for the JSON request to return.
+	 * @return {url} The URL for the JSON request
+	 */
+	jsonRequest = function( url, limit ) {
+		var requestURL = "http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q=" + encodeURIComponent( decodeURIComponent( url ) );
+		
+		// API returns a maximum of 4 entries by default so only override if more entries should be returned
+		if ( limit > 4 ) {
+			requestURL += "&num=" + limit;
+		}
+		return requestURL;
+	},
+
+	/*
+	 * Parses the results from a JSON request and appends to an element
+	 * @method parseEntries
+	 * @param {object} entries Results from a JSON request.
+	 * @param {integer} limit Limit on the number of results to append to the element.
+	 * @param {jQuery DOM element} $elm Element to which the elements will be appended.
+	 * @return {url} The URL for the JSON request
+	 */
+	parseEntries = function( entries, limit, $elm ) {
+		var cap = ( limit > 0 && limit < entries.length ? limit : entries.length ),
+			result = "",
+			i, sorted, sorted_entry;
+		
+		sorted = entries.sort( function( a, b ) {
+			return compare( b.publishedDate, a.publishedDate );
+		});
+
+		for ( i = 0; i !== cap; i += 1 ) {
+			sorted_entry = sorted[ i ];
+			result += "<li><a href='" + sorted_entry.link + "'>" + sorted_entry.title + "</a>" +
+				( sorted_entry.publishedDate !== "" ?  " <span class='widget-datestamp'>[" +
+				to_iso_format( sorted_entry.publishedDate, true ) + "]</span>" : "" ) + "</li>";
+		}
+		return $elm.empty().append( result );
 	},
 
 	/*
