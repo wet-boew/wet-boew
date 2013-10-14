@@ -74,7 +74,6 @@ module.exports = (grunt) ->
 		[
 			"coffee",
 			"copy:jquery",
-			"copy:oldie",
 			"copy:polyfills",
 			"copy:deps",
 			"copy:jsAssets",
@@ -175,6 +174,22 @@ module.exports = (grunt) ->
 				]
 				dest: "dist/js/vapour.js"
 
+			coreIE8:
+				options:
+					stripBanners: false
+				src: [
+					"lib/respond/respond.min.js"
+					"lib/html5shiv/dist/html5shiv.js"
+					"lib/excanvas/excanvas.js"
+					"lib/jquery-ie/jquery.min.js"
+					"lib/selectivizr/selectivizr.js"
+					"src/polyfills/localstorage/localstorage.js"
+					"lib/modernizr/modernizr-custom.js"
+					"src/core/vapour.js"
+				]
+				dest: "dist/js/vapour-ie8.js"
+
+
 		# Builds the demos
 		assemble:
 			options:
@@ -273,6 +288,7 @@ module.exports = (grunt) ->
 					preserveComments: "some"
 				files:
 					"dist/js/vapour<%= environment.suffix %>.js": "dist/js/vapour.js"
+					"dist/js/vapour-ie8<%= environment.suffix %>.js": "dist/js/vapour-ie8.js"
 
 			plugins:
 				options:
@@ -310,7 +326,6 @@ module.exports = (grunt) ->
 				ext: "<%= environment.suffix %>.css"
 
 		coffee:
-
 			plugins:
 				options:
 					bare: true
@@ -321,14 +336,14 @@ module.exports = (grunt) ->
 			devFile: "lib/modernizr/modernizr-custom.js"
 			outputFile: "lib/modernizr/modernizr-custom.js"
 			extra:
-				shiv: true
+				shiv: false
 				printshiv: false
 				load: true
 				mq: true
 				css3: true
 				input: true
 				inputtypes: true
-				html5: true
+				html5: false
 				cssclasses: true
 				csstransitions: true
 				fontface: true
@@ -356,18 +371,6 @@ module.exports = (grunt) ->
 				]
 				dest: "dist/js"
 				expand: true
-
-			oldie:
-				cwd: "lib"
-				src: [
-					"jquery-ie/jquery.min.js",
-					"jquery-ie/jquery.min.map",
-					"selectivizr/selectivizr.js",
-					"respond/respond.min.js"
-				]
-				dest: "dist/js/oldie"
-				expand: true
-				flatten: true
 
 			bootstrap:
 				files: [
@@ -411,24 +414,11 @@ module.exports = (grunt) ->
 				expand: true
 
 			polyfills:
-				files: [
-					(
-						cwd: "src/polyfills"
-						src: "**/*.js"
-						dest: "dist/js/polyfills"
-						expand: true
-						flatten: true
-					)
-					(
-						cwd: "lib"
-						src: [
-							"excanvas/excanvas.js"
-						]
-						dest: "dist/js/polyfills"
-						expand: true
-						flatten: true
-					)
-				]
+				cwd: "src/polyfills"
+				src: "**/*.js"
+				dest: "dist/js/polyfills"
+				expand: true
+				flatten: true
 
 			deps:
 				cwd: "lib"
