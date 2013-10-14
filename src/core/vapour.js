@@ -105,15 +105,12 @@ var getUrlParts = function( url ) {
 	 * @return {boolean} of state of disabled flag
 	 */
 	disabled = (function() {
-			var disabled = currentpage.params.wbdisable,
-				toBoolean = function( sBoolean ) {
-					return ( /^true$/i ).test( sBoolean.toString() );
-				};
+			var disabled = currentpage.params.wbdisable;
 
 			if ( disabled === undefined && localStorage && localStorage.getItem( "wbdisable" ) ) {
 					disabled = localStorage.getItem( "wbdisable" );
 			}
-			return toBoolean( disabled );
+			return !!disabled;
 		}()),
 
 	/*-----------------------------
@@ -270,8 +267,6 @@ window._timer = {
  *-----------------------------*/
 window.Modernizr.load([
 	{
-		load: "site!i18n!modejs!i18n/"
-	}, {
 		test: Modernizr.canvas,
 		nope: "disabled!site!modejs!polyfills/excanvas.min.js"
 	}, {
@@ -299,6 +294,8 @@ window.Modernizr.load([
 		test: vapour.ie && vapour.desktop,
 		yep: "disabled!site!modejs!polyfills/jawsariafixes.min.js",
 	*/
+	}, {
+		load: "site!i18n!modejs!i18n/",
 		complete: function() {
 			window._timer.start();
 		}
