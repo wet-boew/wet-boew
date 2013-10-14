@@ -284,9 +284,6 @@ window.Modernizr.load([
 		test: Modernizr.inputtypes.range,
 		nope: "disabled!site!modejs!polyfills/slider.min.js"
 	}, {
-		test: Modernizr.sessionstorage,
-		nope: "disabled!site!modejs!polyfills/sessionstorage.min.js"
-	}, {
 		test: Modernizr.progress,
 		nope: "disabled!site!modejs!polyfills/progress.min.js"
 	}, {
@@ -294,10 +291,14 @@ window.Modernizr.load([
 		nope: "disabled!site!modejs!/polyfills/meter.min.js"
 	}, {
 		test: Modernizr.touch,
-		yep: "disabled!site!modejs!/polyfills/mobile.min.js"
+		yep: "disabled!site!modejs!/polyfills/mobile.min.js",
+	/* TODO: Determine if this should be kept or not
+	 * Commented out for now to make it easy for people to enable it and to test it.
+	 * Will be deleted outright if decision is to not keep it.
 	}, {
 		test: vapour.ie && vapour.desktop,
 		yep: "disabled!site!modejs!polyfills/jawsariafixes.min.js",
+	*/
 		complete: function() {
 			window._timer.start();
 		}
