@@ -304,7 +304,7 @@ module.exports = (grunt) ->
 				options:
 					preserveComments: "some"
 				files:
-					"dist/js/oldie/ie8<%= environment.suffix %>.js" : [ "lib/respond/respond.min.js", "lib/html5shiv/dist/html5shiv.js", "lib/jquery-ie/jquery.min.js", "lib/selectivizr/selectivizr.js", "src/polyfills/localstorage/localstorage.js" ]
+					"dist/js/oldie/ie8<%= environment.suffix %>.js" : [ "lib/respond/respond.min.js", "lib/html5shiv/dist/html5shiv.js", "lib/excanvas/excanvas.js", "lib/jquery-ie/jquery.min.js", "lib/selectivizr/selectivizr.js", "src/polyfills/localstorage/localstorage.js" ]
 
 		cssmin:
 			options:
