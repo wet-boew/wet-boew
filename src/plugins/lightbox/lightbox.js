@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, vapour ) {
+(function( $, window, document, vapour ) {
 "use strict";
 
 /* 
@@ -64,10 +64,8 @@ var selector = ".wb-lightbox",
 					extendedGlobal = true;
 				}
 
-				// TODO: Add support for alternate title
 				// TODO: How to support other options available in Magnific Popup
 				// TODO: Fix AJAX support (works fine with "grunt server" but not locally)
-				// TODO: Fix keyboard handling and tweak WAI-ARIA as necessary
 				// TODO: Fix visible focus and hidden text for buttons
 				// TODO: Add swipe support
 				
@@ -76,34 +74,32 @@ var selector = ".wb-lightbox",
 									
 				settings.callbacks = {
 					open: function() {
-						var $content = this.content,
-							$container = $content.parent().parent(),
-							$title;
-						if ( this.type === "image" ) {
-							$container.attr( {
-								"role": "dialog",
-								"aria-live": "polite",
-								"aria-labelledby": "lb-title"
-							} );
-							$content.find( ".mfp-bottom-bar" ).attr( "id", "lb-title" );
-						} else {
-							$title = $content.find( ".modal-title" );
-							if ( $title.length !== 0 ) {
-								$title.attr( "id", "lb-title" );
-								$container.attr( "aria-labelledby", "lb-title" );
-							}
-						}
+						// TODO: Better if dealt with upstream by Magnific popup
+						this.wrap.attr({
+							"role": "dialog",
+							"aria-live": "polite",
+							"aria-labelledby": "lb-title",
+						});
 					},
-					markupParse: function( template, values, item ) {
-						var $el = item.el,
-							$source,
-							$target,
-							description;
-							
-						if ( item.type === "image" ) {
+					change: function() {
+						var $item = this.currItem,
+							$content = this.contentContainer,
+							$el, $bottomBar, $source, $target, description, altTitleId, altTitle;
+
+						// TODO: Better if dealt with upstream by Magnific Popup
+						if ( $item.type === "image" ) {
+							$el = $item.el;
 							$source = $el.find( "img" );
-							$target = item.img.attr( "alt", values.title );
-							
+							$target = $item.img.attr( "alt", $source.attr( "alt" ) );
+							$bottomBar = $content.find( ".mfp-bottom-bar" );
+							$content.find( ".mfp-bottom-bar" ).attr( "id", "lb-title" );
+
+							// Wrap image and bottom bar in figure and figcaption as needed
+							if ( $target.parent().hasClass( "mfp-figure" ) ) {
+								$target.add( $bottomBar ).wrapAll( "<figure/>" );
+								$bottomBar.wrap( "<figcaption/>" );
+							}
+
 							// Replicate aria-describedby if it exists
 							description = $source.attr( "aria-describedby" );
 							if ( description ) {
@@ -115,6 +111,21 @@ var selector = ".wb-lightbox",
 							if ( description ) {
 								$target.attr( "longdesc", description );
 							}
+							
+							// Handle alternate titles
+							altTitleId = $el.attr( "data-title" );
+							if ( altTitleId ) {
+								altTitle = document.getElementById( altTitleId );
+								if ( altTitle !== null ) {
+									$bottomBar.find( ".mfp-title" ).html( altTitle.innerHTML );
+								}
+							}
+						} else {
+							$content
+								.attr( "role", "document" )
+								.find( ".modal-title, h1" )
+								.first()
+								.attr( "id", "lb-title" );
 						}
 					}
 				};
@@ -154,10 +165,35 @@ var selector = ".wb-lightbox",
 $document.on( "timerpoke.wb", selector, function() {
 	init( $( this ) );
 
-	return true; // since we are working with events we want to ensure that we are being passive about out control, so return true allows for events to always continue
+	// since we are working with events we want to ensure that we are being passive about out control, so return true allows for events to always continue
+	return true;
+});
+
+$document.on( "keydown", ".mfp-wrap", function( event ) {
+	var eventTarget = event.target,
+		$elm;
+
+	// If the tab key is used
+	if ( event.which === 9 ) {
+		if ( event.shiftKey ) {
+			if ( eventTarget.className.indexOf("mfp-wrap") !== -1 ) {
+				$( this ).find( ":focusable" ).last().trigger( "focus.wb" );
+				return false;
+			}
+		} else {
+			$elm = $( this );
+			if ( $elm.find( ":focusable" ).last().is( $( eventTarget ) ) ) {
+				$elm.trigger( "focus.wb" );
+				return false;
+			}
+		}
+	}
+
+	// since we are working with events we want to ensure that we are being passive about out control, so return true allows for events to always continue
+	return true;
 });
 
 // Add the timer poke to initialize the plugin
 window._timer.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, document, vapour );
