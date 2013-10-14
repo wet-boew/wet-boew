@@ -74,10 +74,10 @@ module.exports = (grunt) ->
 		[
 			"coffee",
 			"copy:jquery",
-			"copy:oldie",
 			"copy:polyfills",
 			"copy:deps",
 			"copy:jsAssets",
+			"uglify:oldie",
 			"concat",
 			"i18n"
 		]
@@ -174,6 +174,7 @@ module.exports = (grunt) ->
 					"src/core/vapour.js"
 				]
 				dest: "dist/js/vapour.js"
+
 
 		# Builds the demos
 		assemble:
@@ -299,6 +300,12 @@ module.exports = (grunt) ->
 				rename: (destBase, destPath) ->
 					return destBase + destPath.replace(/\.js$/, "<%= environment.suffix %>.js")
 
+			oldie:
+				options:
+					banner: "<%= banner %>"
+				files:
+					"dist/js/oldie/ie8<%= environment.suffix %>.js" : [ "lib/respond/respond.min.js", "lib/excanvas/excanvas.js", "lib/html5shiv/dist/html5shiv.js", "lib/jquery-ie/jquery.min.js", "lib/selectivizr/selectivizr.js", "src/polyfills/localstorage/localstorage.js" ]
+
 		cssmin:
 			options:
 				banner: "@charset \"utf-8\";\n<%= banner %>"
@@ -321,7 +328,7 @@ module.exports = (grunt) ->
 			devFile: "lib/modernizr/modernizr-custom.js"
 			outputFile: "lib/modernizr/modernizr-custom.js"
 			extra:
-				shiv: true
+				shiv: false
 				printshiv: false
 				load: true
 				mq: true
@@ -358,12 +365,13 @@ module.exports = (grunt) ->
 				expand: true
 
 			oldie:
-				cwd: "lib"
+				cwd: "lib/oldie"
 				src: [
-					"jquery-ie/jquery.min.js",
-					"jquery-ie/jquery.min.map",
-					"selectivizr/selectivizr.js",
-					"respond/respond.min.js"
+					"oldie-helper.min.js"
+					#"jquery-ie/jquery.min.js",
+					#"jquery-ie/jquery.min.map",
+					#"selectivizr/selectivizr.js",
+					#"respond/respond.min.js"
 				]
 				dest: "dist/js/oldie"
 				expand: true

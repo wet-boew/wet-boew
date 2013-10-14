@@ -17,15 +17,11 @@
 		<link rel="stylesheet" href="{{assets}}/css/base{{environment.suffix}}.css">
 		<link rel="stylesheet" href="{{assets}}/css/theme{{environment.suffix}}.css">
 
-		<!-- Polyfill loader-->
+		<!-- [Optional] IE8 and backwards support -->
 		<!--[if lt IE 9]>
-		<script src="{{assets}}/js/oldie/respond.min.js"></script>
-		<script src="{{assets}}/js/oldie/jquery.min.js"></script>
-		<script src="{{assets}}/js/oldie/selectivizr.min.js"></script><![endif]-->
-		<!--[if gte IE 9 | !IE ]><!-->
-		<script src="{{assets}}/js/jquery.min.js"></script>
-		<!--<![endif]-->
+		<script src="{{assets}}/js/oldie/ie8{{environment.suffix}}.js"></script>
 		<script src="{{assets}}/js/vapour{{environment.suffix}}.js"></script>
+		<![endif]-->
 
 	</head>
 	<body vocab="http://schema.org/" typeof="WebPage">{{#if environment.test}}{{>test}}{{/if}}
@@ -80,7 +76,10 @@
 				{{>footer}}
 			</nav>
 		</footer>
-
+		<!--[if gte IE 9 | !IE ]><!-->
+		<script src="{{assets}}/js/jquery.min.js"></script>
+		<script src="{{assets}}/js/vapour{{environment.suffix}}.js"></script>
+		<!--<![endif]-->
 		<script src="{{assets}}/js/wet-boew{{environment.suffix}}.js"></script>
 		<script src="{{assets}}/js/theme.js"></script>
 	</body>

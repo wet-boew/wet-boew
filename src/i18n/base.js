@@ -1,10 +1,9 @@
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l"expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ *
+ * @TODO: Caching object to optimize lookups
  */
-
-//@TODO: Caching object to optimize lookups
-
 /*
 ----- @%lang-eng@ dictionary (il8n) ---
  */
