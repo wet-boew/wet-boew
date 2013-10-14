@@ -267,9 +267,6 @@ window._timer = {
  *-----------------------------*/
 window.Modernizr.load([
 	{
-		test: Modernizr.canvas,
-		nope: "disabled!site!modejs!polyfills/excanvas.min.js"
-	}, {
 		test: Modernizr.details,
 		nope: "disabled!site!modejs!polyfills/detailssummary.min.js"
 	}, {
