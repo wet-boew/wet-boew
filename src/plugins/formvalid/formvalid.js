@@ -28,6 +28,9 @@ var selector = ".wb-formvalid",
 		// read the selector node for parameters
 		var modeJS = vapour.getMode() + ".js";
 			//lang = document.documentElement.lang.replace( "-", "_" );
+			
+        // All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+        window._timer.remove( selector );
 
 		// Only initialize the i18nText once
 		if ( !i18nText ) {
