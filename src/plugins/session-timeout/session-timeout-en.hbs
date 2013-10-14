@@ -3,12 +3,12 @@ title: Session Timeout
 language: en
 ---
 
-<span class="wb-session-timeout" data-wet-boew='{"inactivity": 30000}'></span>
+<span class="wb-session-timeout wb-modal" data-wet-boew='{"inactivity": 30000}'></span>
 <section>
 	<h2>Overview</h2>
 	<p>This sub project will help web asset owners provide session timeout and inactivity timeout functionality. When a user requests a page with this plugin implemented their session will begin. After the specified session period, they will be notified that their session is about to timeout.  At this point, they will have the option to remain logged in by clicking "OK", or logging out by clicking "Cancel".  At anytime during the session, if the user remains idle for a specified amount of time, they will be notified that they're session is about to time out. In either case, if the user does not respond to the timeout notification within a specified amount of time, once they click either "OK" or "Cancel" they will be automatically redirected to the log out page.</p>
 	<p>The code you're allowed to edit (within the page) is:</p>
-	<p><code>&lt;span class="wb-session-timeout" data-wet-boew='{"inactivity": 1200000, "reactionTime": 30000, "sessionalive": 1200000, "logouturl": "./", "refreshCallbackUrl": "./"}'&gt;&lt;/span&gt;</code></p>
+	<p><code>&lt;span class="wb-session-timeout wb-modal" data-wet-boew='{"inactivity": 1200000, "reactionTime": 30000, "sessionalive": 1200000, "logouturl": "./", "refreshCallbackUrl": "./"}'&gt;&lt;/span&gt;</code></p>
 	<p>This allows you to configure the plugin:</p>
 	<ul>
 		<li><strong>inactivity:</strong> This is the inactivity period of time after which the dialog message will appear.</li>
@@ -18,7 +18,7 @@ language: en
 		<li><strong>refreshCallbackUrl:</strong> This is the URL to perform an ajax refresh, must return true/false.</li>
 	</ul>
 	<p>The only required parameter is logouturl, all other fields are optional. The default code would be:</p>
-	<p><code>&lt;span class="wb-session-timeout"&gt; data-wet-boew='{logouturl: "./"}'&gt;&lt;/span&gt;</code></p>
+	<p><code>&lt;span class="wb-session-timeout wb-modal"&gt; data-wet-boew='{logouturl: "./"}'&gt;&lt;/span&gt;</code></p>
 	<p><strong>IMPORTANT NOTE:</strong> The inactivity, reactionTime and sessionalive parameters are set in milliseconds. The only required parameter is the logouturl. The default inactivity and sessionalive is set to 20 minutes with a 30 second confirmation time with the dialog message. The refreshCallbackUrl must not be a page containing the timeout function again as a loop will be created, it should be simply a viewless page that refreshes the session.</p>
 	<p>Need help with the conversion? See: <a href="http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm" rel="external">http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm</a></p>
 	<p><strong>IMPORTANT NOTE</strong>: Your sessionalive and inactivity parameters should be equal to your web server session alive time minus the reactionTime time. If you set your sessionalive time and inactivity time to the same as your web server without taking into consideration the reactionTime time then the session will have ended by the server as soon as the popup appears to extend the session.</p>
@@ -26,7 +26,7 @@ language: en
 <section>
 	<h2>How do I use it?</h2>
 	<p>Add the following to the page:</p>
-	<p><code>&lt;span class="wb-session-timeout" data-wet-boew='{logouturl: "./"}'&gt;&lt;/span&gt;</code></p>
+	<p><code>&lt;span class="wb-session-timeout wb-modal" data-wet-boew='{logouturl: "./"}'&gt;&lt;/span&gt;</code></p>
 </section>
 <section>
 	<h2>Try it out!</h2>

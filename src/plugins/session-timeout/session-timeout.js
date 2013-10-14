@@ -60,16 +60,13 @@ var selector = ".wb-session-timeout",
 			};
 		}
 
-		// Load the magnific popup dependency
-		window.Modernizr.load({
-			load: "site!deps/jquery.magnific-popup" + vapour.getMode() + ".js",
-			complete: function() {
-				// Initialize the keepalive and inactive timeouts of the plugin
-				$elm.trigger( "reset.wb-session-timeout", settings );
+		// Setup the modal dialog behaviour
+		$document.one( "ready.wb-modal", function() {
+			// Initialize the keepalive and inactive timeouts of the plugin
+			$elm.trigger( "reset.wb-session-timeout", settings );
 
-				// Setup the refresh on click behaviour
-				initRefreshOnClick( $elm, settings );
-			}
+			// Setup the refresh on click behaviour
+			initRefreshOnClick( $elm, settings );
 		});
 	},
 
@@ -102,7 +99,7 @@ var selector = ".wb-session-timeout",
 	 * @param {Object} settings Key-value object
 	 */
 	keepalive = function( event, settings ) {
-		var $buttonSignin, $modal,
+		var $buttonSignin, building,
 			$elm = $( event.target );
 		if ( settings.refreshCallbackUrl !== null ) {
 			$.post( settings.refreshCallbackUrl, function( response ) {
@@ -112,25 +109,31 @@ var selector = ".wb-session-timeout",
 
 				// Session has timed out - let the user know they need to sign in again
 				} else {
+					building = $.Deferred();
 					$buttonSignin = $( "<button type='button' class='wb-session-timeout-confirm btn btn-primary'>" + i18nText.buttonSignin + "</button>" );
 					$buttonSignin.data( "logouturl", settings.logouturl );
-					$modal = buildModal({
+
+					// Build the modal dialog
+					$document.trigger( "build.wb-modal",  {
 						content: "<p>" + i18nText.timeoutAlready + "</p>",
-						buttons:  $buttonSignin
+						buttons:  $buttonSignin,
+						deferred: building
 					});
 
-					// End the inactivity timeouts since the session is already kaput
-					clearTimeout( $elm.data( "inactivity.wb-session-timeout" ) );
-					clearTimeout( $elm.data( "keepalive.wb-session-timeout" ) );
+					building.done( function( $modal ) {
+						// End the inactivity timeouts since the session is already kaput
+						clearTimeout( $elm.data( "inactivity.wb-session-timeout" ) );
+						clearTimeout( $elm.data( "keepalive.wb-session-timeout" ) );
 
-					// Let the user know their session is dead
-					setTimeout(function() {
-						// Open the popup
-						$document.trigger( "modal.wb-session-timeout", {
-							mainClass: "mfp-zoom-in",
-							items: { src: $modal, type: "inline" }
-						});
-					}, Modernizr.csstransitions ? 500 : 0 );
+						// Let the user know their session is dead
+						setTimeout(function() {
+							// Open the popup
+							$document.trigger( "show.wb-modal", {
+								mainClass: "mfp-zoom-in",
+								items: { src: $modal, type: "inline" }
+							});
+						}, Modernizr.csstransitions ? 500 : 0 );
+					});
 				}
 			});
 		}
@@ -145,77 +148,87 @@ var selector = ".wb-session-timeout",
 	inactivity = function( event, settings ) {
 		var $buttonContinue, $buttonEnd, countdownInterval,
 			activeElement = $document[ 0 ].activeElement,
+			building = $.Deferred(),
 			time = getTime( settings.reactionTime ),
 			content = i18nText.timeout
 				.replace( "#min#", "<span class='min'>" + time.minutes + "</span>" )
 				.replace( "#sec#",  "<span class='sec'>" + time.seconds + "</span>" ),
 			$modal = $( "#wb-session-modal" );
 
-		// No existing modal: create it
+		// Modal does not exists: build it
 		if ( $modal.length === 0 ) {
 			$buttonContinue = $( "<button type='button' class='wb-session-timeout-confirm btn btn-primary'>" +
 				i18nText.buttonContinue + "</button>" );
 			$buttonEnd = $( "<button type='button' class='wb-session-timeout-confirm btn btn-default'>" +
 				i18nText.buttonEnd + "</button>" );
 
-			// Build the modal and append to the document
-			$modal = buildModal({
-				id: "#wb-session-modal",
+			// Build the modal
+			$document.trigger( "build.wb-modal", {
+				id: "wb-session-modal",
 				title: i18nText.timeoutTitle,
 				content: "<p class='content'>" + content + "</p>",
-				buttons: [
-					$buttonContinue,
-					$buttonEnd
-				]
+				buttons: [ $buttonContinue, $buttonEnd ],
+				deferred: building
 			});
-			$document.find( "body" ).append( $modal );
 
-		// Modal already created: get button references and update the content
+		// Modal already exists: get element references and resolve the deferred object (causes the modal to be displayed)
 		} else {
 			$buttonContinue = $modal.find( ".btn-primary" );
 			$buttonEnd = $modal.find( ".btn-default" );
-			$modal.find( ".content" ).text( content );
+			$modal.find( ".content" ).html( content );
+
+			// Trigger the deferred object's done callback by resolving it
+			building.resolve( $modal );
 		}
 
-		// Add the session timeout settings to the buttons
-		$buttonEnd.data( "logouturl", settings.logouturl );
-		$buttonContinue
-			.data( settings )
-			.data( "start", getCurrentTime() );
+		// Display the modal when it's finished being built
+		building.done( function( $modal, isNew ) {
 
-		// Open the modal dialog
-		$document.trigger( "modal.wb-session-timeout", {
-			mainClass: "mfp-zoom-in",
-			removalDelay: Modernizr.csstransitions ? 500 : 0,
-			items: {
-				src: $modal,
-				type: "inline"
-			},
-			callbacks: {
-				// Start the time countdown when the popup opens
-				open: function() {
-					var $minutes = $modal.find( ".min" ),
-						$seconds = $modal.find( ".sec" );
-					countdownInterval = setInterval(function() {
-						if ( countdown( $minutes, $seconds ) ) {
-							clearInterval( countdownInterval );
-
-							// Let the user know their session has timed out
-							$modal.find( ".content" ).text( i18nText.timeoutAlready );
-							$buttonContinue.text( i18nText.buttonSignin );
-							$buttonEnd.hide();
-						}
-					}, 1000 );
-				},
-
-				// Stop the countdown and restore focus to the original active element
-				afterClose: function() {
-					clearInterval( countdownInterval );
-
-					// Assign focus to activeElement
-					$( activeElement ).trigger( "focus.wb" );
-				}
+			if ( isNew === true ) {
+				$document.find( "body" ).append( $modal );
 			}
+
+			// Add the session timeout settings to the buttons
+			$buttonEnd.data( "logouturl", settings.logouturl );
+			$buttonContinue
+				.data( settings )
+				.data( "start", getCurrentTime() );
+
+			// Open the modal dialog
+			$document.trigger( "show.wb-modal", {
+				modal: true,
+				mainClass: "mfp-zoom-in",
+				removalDelay: Modernizr.csstransitions ? 500 : 0,
+				items: {
+					src: $modal,
+					type: "inline"
+				},
+				callbacks: {
+					// Start the time countdown when the popup opens
+					open: function() {
+						var $minutes = $modal.find( ".min" ),
+							$seconds = $modal.find( ".sec" );
+						countdownInterval = setInterval(function() {
+							if ( countdown( $minutes, $seconds ) ) {
+								clearInterval( countdownInterval );
+
+								// Let the user know their session has timed out
+								$modal.find( ".content" ).text( i18nText.timeoutAlready );
+								$buttonContinue.text( i18nText.buttonSignin );
+								$buttonEnd.hide();
+							}
+						}, 1000 );
+					},
+
+					// Stop the countdown and restore focus to the original active element
+					afterClose: function() {
+						clearInterval( countdownInterval );
+
+						// Assign focus to activeElement
+						$( activeElement ).trigger( "focus.wb" );
+					}
+				}
+			});
 		});
 	},
 
@@ -257,54 +270,6 @@ var selector = ".wb-session-timeout",
 		} else {
 			window.location.href = settings.logouturl;
 		}
-	},
-
-	/*
-	 * Opens a modal dialog defined by the settings object
-	 * @function modal
-	 * @param {jQuery Event} event `modal.wb-session-timeout` event that triggered the function call
-	 * @param {Object} settings Key-value object
-	 */
-	modal = function( event, settings ) {
-		$.magnificPopup.open({
-			modal: true,
-			mainClass: settings.mainClass == null ? "mfp" : settings.mainClass,
-			removalDelay: settings.removalDelay == null ? 0 : settings.removalDelay,
-			items: settings.items,
-			callbacks: settings.callbacks
-		});
-	},
-
-	/**
-	 * Creates a modal dialog for use with the Magnific Popup library.
-	 * @function buildModal
-	 * @param {Object} data Key-value object used to build the modal dialog
-	 * @returns {jQuery Object} The modal jQuery DOM object
-	 */
-	buildModal = function( data ) {
-		var $modal = $(	"<div class='wb-modal mfp-anim'><div class='body' id='lb-desc'>" + data.content + "</div></div>" );
-
-		// Add modal's ID if it exists
-		if ( data.id != null ) {
-			$modal.attr( "id", data.id );
-		}
-
-		// Add modal's title if it exists
-		if ( data.title != null ) {
-			$modal.prepend( "<p class='lead' id='lb-title'>" + data.title + "</p>" );
-			$modal.attr( "aria-labelledby", "lb-title" );
-		}
-
-		// Set modal's accessibility attributes
-		$modal.attr({
-			"role": "alertdialog",
-			"aria-live": "polite",
-			"aria-describedby": "lb-desc"
-		});
-
-		// Add the buttons
-		$modal.append( data.buttons );
-		return $modal;
 	},
 
 	/*
@@ -427,7 +392,6 @@ $document.on( "timerpoke.wb keepalive.wb-session-timeout inactivity.wb-session-t
 	}
 });
 $document.on( "click", ".wb-session-timeout-confirm", confirm );
-$document.on( "modal.wb-session-timeout", modal );
 
 // Add the timer poke to initialize the plugin
 window._timer.add( selector );

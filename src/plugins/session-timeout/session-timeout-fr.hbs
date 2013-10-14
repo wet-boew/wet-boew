@@ -3,12 +3,12 @@ title: Expiration de la session
 language: fr
 ---
 
-<span class="wb-session-timeout" data-wet-boew='{"inactivity": 30000}'></span>
+<span class="wb-session-timeout wb-modal" data-wet-boew='{"inactivity": 30000}'></span>
 <section>
 	<h2>Aperçu</h2>
 	<p>Ce sous-projet aidera les propriétaires d'actifs Web à configurer leurs actifs avec une fonction «&#160;Expiration de la session&#160;». Celle-ci sera activée en deux circonstances&#160;: après une période de temps spécifique ou lors d'inactivité. Par exemple, si l'utilisateur demeure trop longtemps sur la même page, la fonction sera activée. De même, si l’utilisateur demeure inactif, la fonction sera activée. Le fureteur affichera alors une boîte de dialogue proposant deux options à l'utilisateur ; s’il souhaite rester connecté il devra sélectionner « OK » et ce, dans un laps de temps précis et s’il souhaite mettre fin à sa session, il n’aura qu’à choisir «&#160;Annuler&#160;». Advenant que l'utilisateur tarde trop à faire son choix, ce sera le paramètre de déconnexion qui s’affichera.</p>
 	<p>Le code que vous êtes autorisés à modifier (dans la page) est&#160;:</p>
-	<p><code>&lt;span class="wet-boew-sessiontimeout" data-wet-boew='{"inactivity": 1200000, "reactionTime": 30000, "sessionalive": 1200000, "logouturl": "./", "refreshCallbackUrl": "./"'}"&gt;&lt;/span&gt;</code></p>
+	<p><code>&lt;span class="wb-session-timeout wb-modal" data-wet-boew='{"inactivity": 1200000, "reactionTime": 30000, "sessionalive": 1200000, "logouturl": "./", "refreshCallbackUrl": "./"'}"&gt;&lt;/span&gt;</code></p>
 	<p>Les paramètres suivants vous permettent de configurer la fonction&#160;:</p>
 	<ul>
 		<li><strong>inactivity&#160;:</strong> période de temps d'inactivité après laquelle la boîte de dialogue apparaîtra.</li>
@@ -18,14 +18,14 @@ language: fr
 		<li><strong>refreshCallbackUrl&#160;:</strong> Ceci est l'URL pour effectuer une actualisation ajax, doit retourner true/false.</li>
 	</ul>
 	<p>Le seul paramètre requis est logouturl, tous les autres champs sont facultatifs. Le JavaScript par défaut serait&#160;:</p>
-	<p><code>&lt;span class="wet-boew-sessiontimeout" data-wet-boew='{"logouturl": "./"}'&gt;&lt;/span&gt;</code></p>
+	<p><code>&lt;span class="wb-session-timeout wb-modal" data-wet-boew='{"logouturl": "./"}'&gt;&lt;/span&gt;</code></p>
 	<p><strong>NOTE IMPORTANTE&#160;:</strong> Les paramètres inactivity, reactionTime et sessionAlive sont mis en millisecondes. Le seule paramètre obligatoire est le logouturl. Les paramètres inactivity et sessionalive est fixé à 20 minutes par défaut avec un temps de 30 secondes  pour la confirmation du message de dialogue. Le paramètre refreshCallbackUrl ne doit pas être une page contenant la fonction d'expiration de la session de nouveau sinon une boucle sera créé, il devrait être tout simplement une page qui rafraîchit la session.</p>
 	<p>Voici un outil qui vous aidera a convertir des minutes en millisecondes (disponible en anglais seulement)&#160;: <a href="http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm" rel="external">http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm</a></p>
 	<p><strong>NOTE IMPORTANTE&#160;:</strong> Les paramètres sessionalive et inactivity devrait être égal à votre session sur le serveur web moins le temps de reactionTime. Si vous définissez paramètres sessionalive et inactivity avec le même temps que la session sur le serveur web, sans prendre en considération le temps reactionTime, alors la session sur le serveur sera fini dès que la fenêtre contextuelle apparaît pour prolonger la session.</p>
 </section>
 <section><h2>Configuration</h2>
 	<p>Ajoutez les lignes suivantes à la page&#160;:</p>
-	<p><code>&lt;span class="wet-boew-sessiontimeout"&gt; data-wet-boew='{logouturl: "./"}'&gt;&lt;/span&gt;</code></p>
+	<p><code>&lt;span class="wb-session-timeout wb-modal" data-wet-boew='{logouturl: "./"}'&gt;&lt;/span&gt;</code></p>
 </section>
 <section><h2>Faites un essai</h2>
 	<p>Cette page a été configurée pour expirer dans 30 secondes. Après ce délai, vous aurez 30 secondes pour choisir de la garder active ou non. Veuillez svp attendre que la boîte de dialogue apparaisse.</p>
