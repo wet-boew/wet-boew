@@ -16,14 +16,11 @@
 }
 
 .lb-hidden-gallery {
-	a {
-		display: none;
-	}
 	li {
+		list-style-type: none;
+		display: none;
 		&:first-child {
-			a {
-				display: inline;
-			}
+			display: block;
 		}
 	}
 }

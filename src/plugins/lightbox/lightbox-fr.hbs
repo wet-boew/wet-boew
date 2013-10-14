@@ -54,7 +54,7 @@ language: fr
 <section>
 	<h2 id="features">Caractéristiques</h2>
 	<ul>
-		<li>Affiche les images dans l'outil <a href="http://www.jacklmoore.com/colorbox" lang="en" rel="external">ColorBox</a></li>
+		<li>Affiche les images dans l'outil <a href="http://dimsemenov.com/plugins/magnific-popup/" lang="en" rel="external">Magnific Popup</a></li>
 		<li>Utilisation d'un souris, écran tactile ou clavier pour une navigation facile.</li>
 	</ul>
 </section>
@@ -79,13 +79,8 @@ language: fr
 								<img src="img/1_s.jpg" alt="Image 1" />
 							</a>
 						</li>
-						<li>
-							<a class="wb-lightbox" href="img/2_b.jpg" title="Image 2">
-								<img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" />
-							</a>
-						</li>
 						<li class="box">
-							<a class="wb-lightbox" title="Exemple de contenu AJAX" href="ajax/ajax-en.html">Contenu AJAX</a>
+							<a class="wb-lightbox" title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html">AJAX - Exemple 1</a>
 						</li>
 						<li class="box">
 							<a class="wb-lightbox" title="Exemple de contenu incorporé" href="#inline_content">Contenu incorporé</a>
@@ -127,11 +122,6 @@ language: fr
 		&lt;/a&gt;
 	&lt;/li&gt;
 	&lt;li&gt;
-		&lt;a class="wb-lightbox" href="img/2_b.jpg" title="Image 2"&gt;
-			&lt;img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
-		&lt;/a&gt;
-	&lt;/li&gt;
-	&lt;li&gt;
 		&lt;a class="wb-lightbox" title="Exemple de contenu AJAX" href="ajax/ajax-en.html"&gt;Contenu AJAX&lt;/a&gt;
 	&lt;/li&gt;
 	&lt;li&gt;
@@ -166,10 +156,11 @@ language: fr
 		</section>
 
 		<section>
-			<h3 id="examples2">Galerie d'images</h3>
+			<h3 id="examples2">Galeries</h3>
 			<section>
-				<h4>Exemple</h4>
-				<div class="wb-lightbox lb-gallery inline-list">
+				<h4>Exemples</h4>
+				<section class="wb-lightbox lb-gallery inline-list">
+					<h5>Galerie d'images</h5>
 					<ul>
 						<li>
 							<a href="img/1_b.jpg" title="Image 1">
@@ -192,12 +183,27 @@ language: fr
 							</a>
 						</li>
 					</ul>
-				</div>
+				</section>
+				<section class="wb-lightbox lb-gallery inline-list">
+					<h5>Galerie d'AJAX</h5>
+					<ul>
+						<li class="box">
+							<a title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html">AJAX - Exemple 1</a>
+						</li>
+						<li class="box">
+							<a title="AJAX - Exemple 2 de contenu AJAX" href="ajax/ajax2-fr.html">AJAX - Exemple 2</a>
+						</li>
+						<li class="box">
+							<a title="AJAX - Exemple 3 de contenu AJAX" href="ajax/ajax3-fr.html">AJAX - Exemple 3</a>
+						</li>
+					</ul>
+				</section>
 			</section>
 
 			<section>
 				<h4>Codage</h4>
-				<pre><code>&lt;div class="wb-lightbox lb-gallery inline-list"&gt;
+				<pre><code>&lt;section class="wb-lightbox lb-gallery inline-list"&gt;
+	&lt;h5&gt;Galerie d'images&lt;/h5&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
 			&lt;a href="img/1_b.jpg" title="Image 1"&gt;
@@ -220,15 +226,30 @@ language: fr
 			&lt;/a&gt;
 		&lt;/li&gt;
 	&lt;/ul&gt;	
-&lt;/div&gt;</code></pre>
+&lt;/section&gt;
+&lt;section class="wb-lightbox lb-gallery inline-list"&gt;
+	&lt;h5&gt;Galerie d'AJAX&lt;/h5&gt;
+	&lt;ul&gt;
+		&lt;li&gt;
+			&lt;a title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html"&gt;AJAX - Exemple 1&lt;/a&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;a title="AJAX - Exemple 2 de contenu AJAX" href="ajax/ajax2-fr.html"&gt;AJAX - Exemple 2&lt;/a&gt;
+		&lt;/li&gt
+		&lt;li&gt;
+			&lt;a title="AJAX - Exemple 3 de contenu AJAX" href="ajax/ajax3-fr.html"&gt;AJAX - Exemple 3&lt;/a&gt;
+		&lt;/li&gt
+	&lt;/ul&gt;	
+&lt;/section&gt;</code></pre>
 			</section>
 		</section>
 
 		<section>
-			<h3 id="examples3">Galeries d'images cachés</h3>
+			<h3 id="examples3">Galeries cachés</h3>
 			<section>
-				<h4>Example</h4>
-				<div class="wb-lightbox lb-hidden-gallery inline-list">
+				<h4>Exemples</h4>
+				<section class="wb-lightbox lb-hidden-gallery">
+					<h5>Galerie d'images</h5>
 					<ul>
 						<li>
 							<a href="img/1_b.jpg" title="Image 1">
@@ -251,12 +272,27 @@ language: fr
 							</a>
 						</li>
 					</ul>
-				</div>
+				</section>
+				<section class="wb-lightbox lb-hidden-gallery">
+					<h5>Galerie d'AJAX</h5>
+					<ul>
+						<li class="box">
+							<a title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html">AJAX - Exemple 1</a>
+						</li>
+						<li class="box">
+							<a title="AJAX - Exemple 2 de contenu AJAX" href="ajax/ajax2-fr.html">AJAX - Exemple 2</a>
+						</li>
+						<li class="box">
+							<a title="AJAX - Exemple 3 de contenu AJAX" href="ajax/ajax3-fr.html">AJAX - Exemple 3</a>
+						</li>
+					</ul>
+				</section>
 			</section>
 
 			<section>
 				<h4>Codage</h4>
-				<pre><code>&lt;div class="wb-lightbox lb-hidden-gallery inline-list"&gt;
+				<pre><code>&lt;section class="wb-lightbox lb-hidden-gallery"&gt;
+	&lt;h5&gt;Galerie d'images&lt;/h5&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
 			&lt;a href="img/1_b.jpg" title="Image 1"&gt;
@@ -264,8 +300,8 @@ language: fr
 			&lt;/a&gt;
 		&lt;/li&gt;
 		&lt;li&gt;
-			&lt;a href="img/2_b.jpg" title="Image 1"&gt;
-				&lt;img src="img/2_s.jpg" alt="Image 1" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
+			&lt;a href="img/2_b.jpg" title="Image 2"&gt;
+				&lt;img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
 			&lt;/a&gt;
 		&lt;/li&gt;
 		&lt;li&gt;
@@ -279,7 +315,21 @@ language: fr
 			&lt;/a&gt;
 		&lt;/li&gt;
 	&lt;/ul&gt;	
-&lt;/div&gt;</code></pre>
+&lt;/section&gt;
+&lt;section class="wb-lightbox lb-hidden-gallery"&gt;
+	&lt;h5&gt;Galerie d'AJAX&lt;/h5&gt;
+	&lt;ul&gt;
+		&lt;li&gt;
+			&lt;a title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html"&gt;AJAX - Exemple 1&lt;/a&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;a title="AJAX - Exemple 2 de contenu AJAX" href="ajax/ajax2-fr.html"&gt;AJAX - Exemple 2&lt;/a&gt;
+		&lt;/li&gt
+		&lt;li&gt;
+			&lt;a title="AJAX - Exemple 3 de contenu AJAX" href="ajax/ajax3-fr.html"&gt;AJAX - Exemple 3&lt;/a&gt;
+		&lt;/li&gt
+	&lt;/ul&gt;	
+&lt;/section&gt;</code></pre>
 			</section>
 		</section>
 

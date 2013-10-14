@@ -79,13 +79,8 @@ language: en
 								<img src="img/1_s.jpg" alt="Image 1" />
 							</a>
 						</li>
-						<li>
-							<a class="wb-lightbox" href="img/2_b.jpg" title="Image 2">
-								<img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" />
-							</a>
-						</li>
 						<li class="box">
-							<a class="wb-lightbox" title="Example of AJAX content" href="ajax/ajax-en.html">AJAX content</a>
+							<a class="wb-lightbox" title="AJAX - Example 1 of AJAX content" href="ajax/ajax1-en.html">AJAX - Example 1</a>
 						</li>
 						<li class="box">
 							<a class="wb-lightbox" title="Example of inline content" href="#inline_content">Inline content</a>
@@ -127,12 +122,7 @@ language: en
 		&lt;/a&gt;
 	&lt;/li&gt;
 	&lt;li&gt;
-		&lt;a class="wb-lightbox" href="img/2_b.jpg" title="Image 2"&gt;
-			&lt;img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
-		&lt;/a&gt;
-	&lt;/li&gt;
-	&lt;li&gt;
-		&lt;a class="wb-lightbox" title="Example of AJAX content" href="ajax/ajax-en.html"&gt;AJAX content&lt;/a&gt;
+		&lt;a class="wb-lightbox" title="AJAX - Example 1 of AJAX content" href="ajax/ajax-en.html"&gt;AJAX - Example 1&lt;/a&gt;
 	&lt;/li&gt;
 	&lt;li&gt;
 		&lt;a class="wb-lightbox" title="Example of inline content" href="#inline_content"&gt;Inline content&lt;/a&gt;
@@ -166,10 +156,11 @@ language: en
 		</section>
 
 		<section>
-			<h3 id="examples2">Image gallery</h3>
+			<h3 id="examples2">Galleries</h3>
 			<section>
-				<h4>Example</h4>
-				<div class="wb-lightbox lb-gallery inline-list">
+				<h4>Examples</h4>
+				<section class="wb-lightbox lb-gallery inline-list">
+					<h5>Image gallery</h5>
 					<ul>
 						<li>
 							<a href="img/1_b.jpg" title="Image 1">
@@ -192,12 +183,27 @@ language: en
 							</a>
 						</li>
 					</ul>
-				</div>
+				</section>
+				<section class="wb-lightbox lb-gallery inline-list">
+					<h5>AJAX gallery</h5>
+					<ul>
+						<li class="box">
+							<a title="AJAX - Example 1 of AJAX content" href="ajax/ajax1-en.html">AJAX - Example 1</a>
+						</li>
+						<li class="box">
+							<a title="AJAX - Example 2 of AJAX content" href="ajax/ajax2-en.html">AJAX - Example 2</a>
+						</li>
+						<li class="box">
+							<a title="AJAX - Example 3 of AJAX content" href="ajax/ajax3-en.html">AJAX - Example 3</a>
+						</li>
+					</ul>
+				</section>
 			</section>
 
 			<section>
 				<h4>Coding</h4>
-				<pre><code>&lt;div class="wb-lightbox lb-gallery inline-list"&gt;
+				<pre><code>&lt;section class="wb-lightbox lb-gallery inline-list"&gt;
+	&lt;h5&gt;Image gallery&lt;/h5&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
 			&lt;a href="img/1_b.jpg" title="Image 1"&gt;
@@ -220,15 +226,30 @@ language: en
 			&lt;/a&gt;
 		&lt;/li&gt;
 	&lt;/ul&gt;	
-&lt;/div&gt;</code></pre>
+&lt;/section&gt;
+&lt;section class="wb-lightbox lb-gallery inline-list"&gt;
+	&lt;h5&gt;AJAX gallery&lt;/h5&gt;
+	&lt;ul&gt;
+		&lt;li&gt;
+			&lt;a title="AJAX - Example 1 of AJAX content" href="ajax/ajax1-en.html"&gt;AJAX - Example 1&lt;/a&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;a title="AJAX - Example 2 of AJAX content" href="ajax/ajax2-en.html"&gt;AJAX - Example 2&lt;/a&gt;
+		&lt;/li&gt
+		&lt;li&gt;
+			&lt;a title="AJAX - Example 3 of AJAX content" href="ajax/ajax3-en.html"&gt;AJAX - Example 3&lt;/a&gt;
+		&lt;/li&gt
+	&lt;/ul&gt;	
+&lt;/section&gt;</code></pre>
 			</section>
 		</section>
 
 		<section>
-			<h3 id="examples3">Hidden image gallery</h3>
+			<h3 id="examples3">Hidden image galleries</h3>
 			<section>
-				<h4>Example</h4>
-				<div class="wb-lightbox lb-hidden-gallery inline-list">
+				<h4>Examples</h4>
+				<section class="wb-lightbox lb-hidden-gallery">
+					<h5>Image gallery</h5>
 					<ul>
 						<li>
 							<a href="img/1_b.jpg" title="Image 1">
@@ -251,12 +272,27 @@ language: en
 							</a>
 						</li>
 					</ul>
-				</div>
+				</section>
+				<section class="wb-lightbox lb-hidden-gallery">
+					<h5>AJAX gallery</h5>
+					<ul>
+						<li class="box">
+							<a title="AJAX - Example 1 of AJAX content" href="ajax/ajax1-en.html">AJAX - Example 1</a>
+						</li>
+						<li class="box">
+							<a title="AJAX - Example 2 of AJAX content" href="ajax/ajax2-en.html">AJAX - Example 2</a>
+						</li>
+						<li class="box">
+							<a title="AJAX - Example 3 of AJAX content" href="ajax/ajax3-en.html">AJAX - Example 3</a>
+						</li>
+					</ul>
+				</section>
 			</section>
 
 			<section>
 				<h4>Coding</h4>
-				<pre><code>&lt;div class="wb-lightbox lb-hidden-gallery inline-list"&gt;
+				<pre><code>&lt;section class="wb-lightbox lb-hidden-gallery"&gt;
+	&lt;h5&gt;Image gallery&lt;/h5&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
 			&lt;a href="img/1_b.jpg" title="Image 1"&gt;
@@ -264,8 +300,8 @@ language: en
 			&lt;/a&gt;
 		&lt;/li&gt;
 		&lt;li&gt;
-			&lt;a href="img/2_b.jpg" title="Image 1"&gt;
-				&lt;img src="img/2_s.jpg" alt="Image 1" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
+			&lt;a href="img/2_b.jpg" title="Image 2"&gt;
+				&lt;img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
 			&lt;/a&gt;
 		&lt;/li&gt;
 		&lt;li&gt;
@@ -279,7 +315,21 @@ language: en
 			&lt;/a&gt;
 		&lt;/li&gt;
 	&lt;/ul&gt;	
-&lt;/div&gt;</code></pre>
+&lt;/section&gt;
+&lt;section class="wb-lightbox lb-hidden-gallery"&gt;
+	&lt;h5&gt;AJAX gallery&lt;/h5&gt;
+	&lt;ul&gt;
+		&lt;li&gt;
+			&lt;a title="AJAX - Example 1 of AJAX content" href="ajax/ajax1-en.html"&gt;AJAX - Example 1&lt;/a&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;a title="AJAX - Example 2 of AJAX content" href="ajax/ajax2-en.html"&gt;AJAX - Example 2&lt;/a&gt;
+		&lt;/li&gt
+		&lt;li&gt;
+			&lt;a title="AJAX - Example 3 of AJAX content" href="ajax/ajax3-en.html"&gt;AJAX - Example 3&lt;/a&gt;
+		&lt;/li&gt
+	&lt;/ul&gt;	
+&lt;/section&gt;</code></pre>
 			</section>
 		</section>
 
