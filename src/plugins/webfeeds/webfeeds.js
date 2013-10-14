@@ -115,17 +115,17 @@ var selector = ".wb-webfeeds",
 	parseEntries = function( entries, limit, $elm ) {
 		var cap = ( limit > 0 && limit < entries.length ? limit : entries.length ),
 			result = "",
-			i, sorted, sorted_entry;
+			i, sorted, sortedEntry;
 		
 		sorted = entries.sort( function( a, b ) {
 			return compare( b.publishedDate, a.publishedDate );
 		});
 
 		for ( i = 0; i !== cap; i += 1 ) {
-			sorted_entry = sorted[ i ];
-			result += "<li><a href='" + sorted_entry.link + "'>" + sorted_entry.title + "</a>" +
-				( sorted_entry.publishedDate !== "" ?  " <span class='widget-datestamp'>[" +
-				to_iso_format( sorted_entry.publishedDate, true ) + "]</span>" : "" ) + "</li>";
+			sortedEntry = sorted[ i ];
+			result += "<li><a href='" + sortedEntry.link + "'>" + sortedEntry.title + "</a>" +
+				( sortedEntry.publishedDate !== "" ?  " <span class='widget-datestamp'>[" +
+				dataISO( sortedEntry.publishedDate, true ) + "]</span>" : "" ) + "</li>";
 		}
 		return $elm.empty().append( result );
 	},
@@ -136,9 +136,9 @@ var selector = ".wb-webfeeds",
 	 * @param {number} length The width of the resulting padded number, not the number of zeros to add to the front of the string.
 	 * @return {string} The padded string
 	 */
-	pad = function(number, length) {
-		var str = String(number);
-		while (str.length < length) {
+	pad = function( number, length ) {
+		var str = String( number );
+		while ( str.length < length ) {
 			str = "0" + str;
 		}
 		return str;
@@ -153,58 +153,59 @@ var selector = ".wb-webfeeds",
 	 * <li>a string: Any format supported by the javascript engine, like 'YYYY/MM/DD', 'MM/DD/YYYY', 'Jan 31 2009' etc.</li>
 	 * <li>an object: Interpreted as an object with year, month and date attributes. **NOTE** month is 0-11.</li>
 	 * </ul>
-	 * @param {Date | number[] | number | string | object} d
+	 * @param {Date | number[] | number | string | object} dateValue
 	 * @return {Date | NaN}
 	 */
-	convert =  function( d ) {
-		if ( d.constructor === Date ) {
-			return d;
-		} else if ( d.constructor === Array ) {
-			return new Date( d[ 0 ], d[ 1 ], d[ 2 ] );
-		} else if ( d.constructor === Number || d.constructor === String ) {
-			return new Date( d );
-		} else if ( typeof d === "object" ) {
-			return new Date( d.year, d.month, d.date );
+	convert =  function( dateValue ) {
+		var dateConstructor = dateValue.constructor;
+		if ( dateConstructor === Date ) {
+			return dateConstructor;
+		} else if ( dateConstructor === Array ) {
+			return new Date( dateValue[ 0 ], dateValue[ 1 ], dateValue[ 2 ] );
+		} else if ( dateConstructor === Number || dateConstructor === String ) {
+			return new Date( dateValue );
+		} else if ( typeof dateValue === "object" ) {
+			return new Date( dateValue.year, dateValue.month, dateValue.date );
 		}
 		return NaN;
 	},
 
 	/*
-	 * Compares two dates (input can be any type supported by the convert function). NOTE: This function uses pe.date.isFinite, and the code inside isFinite does an assignment (=).
-	 * @param {Date | number[] | number | string | object} a
-	 * @param {Date | number[] | number | string | object} b
+	 * Compares two dates (input can be any type supported by the convert function).
+	 * @param {Date | number[] | number | string | object} dateValue1
+	 * @param {Date | number[] | number | string | object} dateValue2
 	 * @return {number | NaN}
 	 * @example returns
-	 * -1 if a < b
-	 * 0 if a = b
-	 * 1 if a > b
-	 * NaN if a or b is an illegal date
+	 * -1 if dateValue1 < dateValue2
+	 * 0 if dateValue1 = dateValue2
+	 * 1 if dateValue1 > dateValue2
+	 * NaN if dateValue1 or dateValue2 is an illegal date
 	 */
-	compare = function( a, b ) {
-		if ( isFinite( a = convert( a ).valueOf() ) && isFinite( b = convert( b ).valueOf() ) ) {
-			return ( a > b ) - ( a < b );
+	compare = function( dateValue1, dateValue2 ) {
+		if ( isFinite( dateValue1 = convert( dateValue1 ).valueOf() ) && isFinite( dateValue2 = convert( dateValue2 ).valueOf() ) ) {
+			return ( dateValue1 > dateValue2 ) - ( dateValue1 < dateValue2 );
 		}
 		return NaN;
 	},
 
 	/*
 	 * Cross-browser safe way of translating a date to ISO format
-	 * @param {Date | number[] | number | string | object} d
-	 * @param {boolean} timepresent Optional. Whether to include the time in the result, or just the date. False if blank.
+	 * @param {Date | number[] | number | string | object} dateValue
+	 * @param {boolean} withTime Optional. Whether to include the time in the result, or just the date. False if blank.
 	 * @return {string}
 	 * @example
-	 * to_iso_format( new Date() )
+	 * dataISO( new Date() )
 	 * returns "2012-04-27"
-	 * to_iso_format( new Date(), true )
+	 * dataISO( new Date(), true )
 	 * returns "2012-04-27 13:46"
 	 */
-	to_iso_format = function( d, timepresent ) {
-		var date = convert( d );
-			if ( timepresent ) {
-				return date.getFullYear() + "-" + pad( date.getMonth() + 1, 2, "0" ) + "-" + pad( date.getDate(), 2, "0" ) +
-					" " + pad( date.getHours(), 2, "0" ) + ":" + pad( date.getMinutes(), 2, "0" );
-			}
-			return date.getFullYear() + "-" + pad( date.getMonth() + 1, 2, "0" ) + "-" + pad( date.getDate(), 2, "0" );
+	dataISO = function( dateValue, withTime ) {
+		var date = convert( dateValue );
+		if ( withTime ) {
+			return date.getFullYear() + "-" + pad( date.getMonth() + 1, 2, "0" ) + "-" + pad( date.getDate(), 2, "0" ) +
+				" " + pad( date.getHours(), 2, "0" ) + ":" + pad( date.getMinutes(), 2, "0" );
+		}
+		return date.getFullYear() + "-" + pad( date.getMonth() + 1, 2, "0" ) + "-" + pad( date.getDate(), 2, "0" );
 	};
 
 $document.on( "timerpoke.wb", selector, function() {

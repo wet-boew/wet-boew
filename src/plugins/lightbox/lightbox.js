@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, vapour ) {
+(function( $, window, document, vapour ) {
 "use strict";
 
 /* 
@@ -24,7 +24,7 @@ var selector = ".wb-lightbox",
 	 * @method init
 	 * @param {jQuery DOM element} $elm The plugin element being initialized
 	 */
-	init = function( $elm ) {
+	init = function( _elm, $elm ) {
 		// read the selector node for parameters
 		var modeJS = vapour.getMode() + ".js";
 
@@ -56,7 +56,7 @@ var selector = ".wb-lightbox",
 			load: "site!deps/jquery.magnific-popup" + modeJS,
 			complete: function() {
 				var settings = {},
-					children;
+					firstLink;
 
 				// Set the dependency i18nText only once
 				if ( !extendedGlobal ) {
@@ -64,46 +64,48 @@ var selector = ".wb-lightbox",
 					extendedGlobal = true;
 				}
 
-				// TODO: Add support for alternate title
 				// TODO: How to support other options available in Magnific Popup
-				// TODO: Fix AJAX support (works fine with "grunt server" but not locally)
-				// TODO: Fix keyboard handling and tweak WAI-ARIA as necessary
+				// TODO: Fix AJAX support (works fine with "grunt connect watch" but not locally)
 				// TODO: Fix visible focus and hidden text for buttons
 				// TODO: Add swipe support
-				
-				// Is the element a single lightbox item or a group?
-				// TODO: Add support for multiple non-gallery items of possibly mixed content
-									
+				// TODO: Should support be added for multiple non-gallery items of possibly mixed content? Would come at a performance code.
+
 				settings.callbacks = {
 					open: function() {
-						var $content = this.content,
-							$container = $content.parent().parent(),
-							$title;
-						if ( this.type === "image" ) {
-							$container.attr( {
-								"role": "dialog",
-								"aria-live": "polite",
-								"aria-labelledby": "lb-title"
-							} );
-							$content.find( ".mfp-bottom-bar" ).attr( "id", "lb-title" );
+
+						// TODO: Better if dealt with upstream by Magnific popup
+						var $item = this.currItem,
+							$content = this.contentContainer,
+							$bottomBar;
+						
+						this.wrap.attr({
+							"role": "dialog",
+							"aria-live": "polite",
+							"aria-labelledby": "lb-title",
+						});
+						
+						if ( $item.type === "image" ) {
+							$bottomBar = $content.find( ".mfp-bottom-bar" ).attr( "id", "lb-title" );
+
+							// Wrap image and bottom bar in figure and figcaption as needed
+							$item.img.add( $bottomBar ).wrapAll( "<figure/>" );
+							$bottomBar.wrap( "<figcaption/>" );
 						} else {
-							$title = $content.find( ".modal-title" );
-							if ( $title.length !== 0 ) {
-								$title.attr( "id", "lb-title" );
-								$container.attr( "aria-labelledby", "lb-title" );
-							}
+							$content.attr( "role", "document" );
 						}
 					},
-					markupParse: function( template, values, item ) {
-						var $el = item.el,
-							$source,
-							$target,
-							description;
-							
-						if ( item.type === "image" ) {
+					change: function() {
+						var $item = this.currItem,
+							$content = this.contentContainer,
+							$el, $bottomBar, $source, $target, description, altTitleId, altTitle;
+
+						// TODO: Better if dealt with upstream by Magnific Popup
+						if ( $item.type === "image" ) {
+							$el = $item.el;
 							$source = $el.find( "img" );
-							$target = item.img.attr( "alt", values.title );
-							
+							$target = $item.img.attr( "alt", $source.attr( "alt" ) );
+							$bottomBar = $content.find( ".mfp-bottom-bar" );
+
 							// Replicate aria-describedby if it exists
 							description = $source.attr( "aria-describedby" );
 							if ( description ) {
@@ -115,49 +117,88 @@ var selector = ".wb-lightbox",
 							if ( description ) {
 								$target.attr( "longdesc", description );
 							}
+							
+							// Handle alternate titles
+							altTitleId = $el.attr( "data-title" );
+							if ( altTitleId ) {
+								altTitle = document.getElementById( altTitleId );
+								if ( altTitle !== null ) {
+									$bottomBar.find( ".mfp-title" ).html( altTitle.innerHTML );
+								}
+							}
+						} else {
+							$content
+								.find( ".modal-title, h1" )
+								.first()
+								.attr( "id", "lb-title" );
 						}
 					}
 				};
 				
-				if ( $elm[ 0 ].nodeName.toLowerCase() !== "a" ) {
+				if ( _elm.nodeName.toLowerCase() !== "a" ) {
 					settings.delegate = "a";
-					settings.type = "image";
-					
+					firstLink = _elm.getElementsByTagName( "a" )[0];
+
 					// Is the element a gallery?
-					// TODO: Add support for ajax, inline and iframe galleries (also try to figure out mixed content galleries)
-					if ( $elm.hasClass( "lb-gallery" ) || $elm.hasClass( "lb-hidden-gallery" ) ) {
+					// TODO: Should we support mixed content galleries? Could come at a performance cost and not very usable unless a hidden gallery (since always goes to first item).
+					if ( _elm.className.indexOf( "-gallery" ) !== -1 ) {
 						settings.gallery = {
 							enabled: true,
 						};
 					}
-
-					$elm.magnificPopup( settings );
 				} else {
-					children = $elm.children();
-					if ( children.length !== 0 && children[ 0 ].nodeName.toLowerCase() === "img" ) {
-						settings.type = "image";
-					} else if ( $elm.attr( "href" ).slice( 0, 1 ) === "#" ) {
-						settings.type = "inline";
-					} else if ( $elm.hasClass( "lb-iframe" ) ) {
-						settings.type = "iframe";
-					} else {
-						settings.type = "ajax";
-					}
-
-					$elm.magnificPopup( settings );
+					firstLink = _elm;
 				}
+
+				
+				if ( firstLink.getAttribute( "href" ).charAt( 0 ) === "#" ) {
+					settings.type = "inline";
+				} else if ( firstLink.className.indexOf( "lb-iframe" ) !== -1 ) {
+					settings.type = "iframe";
+				} else if ( firstLink.getElementsByTagName( "img" ).length === 0 ) {
+					settings.type = "ajax";
+				} else {
+					settings.type = "image";
+				}
+
+				$elm.magnificPopup( settings );
 			}
 		});
 	};
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb", selector, function() {
-	init( $( this ) );
+	init( this, $( this ) );
 
-	return true; // since we are working with events we want to ensure that we are being passive about out control, so return true allows for events to always continue
+	// since we are working with events we want to ensure that we are being passive about out control, so return true allows for events to always continue
+	return true;
+});
+
+$document.on( "keydown", ".mfp-wrap", function( event ) {
+	var eventTarget = event.target,
+		$elm;
+
+	// If the tab key is used
+	if ( event.which === 9 ) {
+		if ( event.shiftKey ) {
+			if ( eventTarget.className.indexOf("mfp-wrap") !== -1 ) {
+				$( this ).find( ":focusable" ).last().trigger( "focus.wb" );
+				return false;
+			}
+		} else {
+			$elm = $( this );
+			if ( $elm.find( ":focusable" ).last().is( $( eventTarget ) ) ) {
+				$elm.trigger( "focus.wb" );
+				return false;
+			}
+		}
+	}
+
+	// since we are working with events we want to ensure that we are being passive about out control, so return true allows for events to always continue
+	return true;
 });
 
 // Add the timer poke to initialize the plugin
 window._timer.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, document, vapour );

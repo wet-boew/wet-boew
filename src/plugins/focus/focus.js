@@ -7,26 +7,17 @@
 (function( $, vapour ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
- * These are global to the plugin - meaning that they will be initialized once per page,
- * not once per instance of plugin on the page. So, this is a good place to define
- * variables that are common to all instances of the plugin on a page.
- */
-var $document = vapour.doc,
+// Bind the focus event
+vapour.doc.on( "focus.wb", ".mfp-container", function ( event ) {
 
-	/*
-	 * Assigns focus to an element
-	 * @method test
-	 * @param {jQuery Event} event The event that triggered this method call
-	 */
-	focus = function( event ) {
+	// Ignore focus events that are not in the wb namespace
+	if ( event.namespace === "wb" ) {
+
+		// Assigns focus to an element
 		setTimeout(function () {
 			return $( event.target ).focus();
 		}, 0 );
-	};
-
-// Bind the focus event
-$document.on( "focus.wb", focus );
+	}
+});
 
 })( jQuery, vapour );
