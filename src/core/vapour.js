@@ -110,7 +110,7 @@ var getUrlParts = function( url ) {
 		if ( disabled === undefined && localStorage && localStorage.getItem( "wbdisable" ) ) {
 				disabled = localStorage.getItem( "wbdisable" );
 		}
-		return (typeof disabled === "string") ? (disabled.toLowerCase() === "true") : Boolean(disabled);
+		return ( typeof disabled === "string" ) ? ( disabled.toLowerCase() === "true" ) : Boolean( disabled );
 	}()),
 
 	/*-----------------------------
