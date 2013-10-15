@@ -18,8 +18,7 @@ describe( "Session Timeout test suite", function() {
 
 	var clock,
 		server,
-		spies = {},
-		stubs = {};
+		spies = {};
 
 	/*
 	 * Before begining the test suite, this function is exectued once.
@@ -29,24 +28,27 @@ describe( "Session Timeout test suite", function() {
 		spies.trigger = sinon.spy( $.prototype, "trigger" );
 		spies.post = sinon.spy( $, "post" );
 
-		// Stub for window.confirm() method:
-		// Empty function declaration for IE8 and below allows it to be stubbed
-		window.confirm = typeof window.confirm === "function" ? window.confirm : function() {};
-		stubs.confirm = sinon.stub( window, "confirm", function() {
-			return true;
-		});
-
 		// Fake server to test POST requests
 		server = sinon.fakeServer.create();
 
-		// Trigger the plugin's initialization
-		setTimeout(function() {
-			$( ".wb-session-timeout" ).trigger( "timerpoke.wb" );
-			done();
-		}, 500 );
-
 		// Use a fake timer (allows for easy testing of setTimeout calls)
 		clock = sinon.useFakeTimers();
+
+		// Wait for the reset event from the plugin's init method before beginning the test
+		$( ".wb-session-timeout" )
+			.data( "wet-boew", {
+				"inactivity": 10000,
+				"sessionalive": 10000,
+				"refreshOnClick": true,
+				"refreshLimit": 42000
+			})
+			.on( "reset.wb-session-timeout", function() {
+				done();
+			});
+
+		vapour.doc.on( "show.wb-modal", function() {
+			$( ".wb-session-timeout-confirm.btn-primary" ).trigger( "click" );
+		});
 	});
 
 	/*
@@ -56,9 +58,6 @@ describe( "Session Timeout test suite", function() {
 		// Restore the original behaviour of trigger and post once the tests are finished
 		$.prototype.trigger.restore();
 		$.post.restore();
-
-		// Restore the window.confirm stub
-		stubs.confirm.restore();
 
 		// Restore server
 		server.restore();
@@ -90,11 +89,6 @@ describe( "Session Timeout test suite", function() {
 
 		before(function() {
 			spies.trigger.reset();
-			$( ".wb-session-timeout" )
-				.data({
-					"inactivity": 10000
-				})
-				.trigger( "timerpoke.wb" );
 		});
 
 		it( "should trigger inactivity.wb-session-timeout after 10000ms", function() {
@@ -108,6 +102,14 @@ describe( "Session Timeout test suite", function() {
 
 		it( "should trigger reset.wb-session-timeout event after 10000ms", function() {
 			expect( spies.trigger.calledWith( "reset.wb-session-timeout" ) ).to.equal( true );
+		});
+
+		it( "should trigger build.wb-modal event after 10000ms", function() {
+			expect( spies.trigger.calledWith( "build.wb-modal" ) ).to.equal( true );
+		});
+
+		it( "should trigger show.wb-modal event after 10000ms", function() {
+			expect( spies.trigger.calledWith( "show.wb-modal" ) ).to.equal( true );
 		});
 
 		it( "should not have triggered inactivity events 19950ms", function() {
@@ -126,7 +128,7 @@ describe( "Session Timeout test suite", function() {
 			expect( spies.trigger.calledWith( "reset.wb-session-timeout" ) ).to.equal( true );
 		});
 
-		it( "has no keepalive URL so should not call $.post", function() {
+		it( "has no refreshCallbackUrl so should not call $.post", function() {
 			expect( spies.post.called ).to.equal( false );
 		});
 
@@ -135,21 +137,13 @@ describe( "Session Timeout test suite", function() {
 	describe( "refresh onclick", function() {
 
 		before(function(){
-
 			// Reset the state of the spies
 			spies.trigger.reset();
 			spies.post.reset();
-
-			// Re-initialize the session timeout element
-			$( ".wb-session-timeout" )
-				.data({
-					"refreshonclick": true,
-					"refreshlimit": 42000
-				})
-				.trigger( "timerpoke.wb" );
 		});
 
 		it( "should trigger keepalive.wb-session-timeout on document click", function() {
+			clock.tick( 42010 );
 			vapour.doc.trigger( "click" );
 			expect( spies.trigger.calledWith( "keepalive.wb-session-timeout" ) ).to.equal( true );
 		});
@@ -158,7 +152,7 @@ describe( "Session Timeout test suite", function() {
 			expect( spies.trigger.calledWith( "reset.wb-session-timeout" ) ).to.equal( true );
 		});
 
-		it( "has no keepalive URL so should not call $.post", function() {
+		it( "has no refreshCallbackUrl so should not call $.post", function() {
 			expect( spies.post.called ).to.equal( false );
 		});
 
@@ -178,19 +172,19 @@ describe( "Session Timeout test suite", function() {
 		});
 	});
 
-	describe( "keepalive", function() {
+	describe( "refreshCallbackUrl", function() {
 
-		before(function(){
-
+		before(function( done ){
 			// Setup the fake server response for all POST requests to foo.html
 			server.respondWith( "POST", "foo.html", "true" );
 
-			// Re-initialize the session timeout element
 			$( ".wb-session-timeout" )
-				.data({
-					"keepalive": 5000,
-					"keepaliveurl": "foo.html",
-					"refreshonclick": true
+				.data( "wet-boew", {
+					"sessionalive": 5000,
+					"refreshCallbackUrl": "foo.html"
+				})
+				.on( "reset.wb-session-timeout", function() {
+					done();
 				})
 				.trigger( "timerpoke.wb" );
 		});
@@ -203,7 +197,7 @@ describe( "Session Timeout test suite", function() {
 			expect( spies.trigger.calledWith( "keepalive.wb-session-timeout" ) ).to.equal( true );
 		});
 
-		it( "has a keepalive URL so should call $.post", function() {
+		it( "has refreshCallbackUrl so should call $.post", function() {
 			expect( spies.post.called ).to.equal( true );
 			expect( spies.post.calledWith( "foo.html" ) ).to.equal( true );
 		});
@@ -213,6 +207,7 @@ describe( "Session Timeout test suite", function() {
 			expect( spies.trigger.calledWith( "reset.wb-session-timeout" ) ).to.equal( true );
 		});
 	});
+
 });
 
 }( jQuery, vapour ));
