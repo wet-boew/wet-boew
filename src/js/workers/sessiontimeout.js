@@ -23,11 +23,11 @@
 				sessionTimeout,
 				keep_session,
 				start_liveTimeout,
+				start_sessionTimeout,
 				displayTimeoutMessage,
 				logout,
 				getCurrentTimeMs,
 				redirect,
-				stay_logged_in,
 				timeParse,
 				getExpireTime,
 				alreadyTimeoutMsg = _pe.dic.get('%st-already-timeout-msg'),
@@ -63,13 +63,12 @@
 			//------------------------------------------------------ Main functions
 
 			keep_session = function () {
-				clearTimeout(sessionTimeout);
 				// If the refreshCallbackUrl not present then dont show any error
 				if (opts.refreshCallbackUrl.length > 2) {
 					$.post(opts.refreshCallbackUrl,	function (responseData) {
 						// if the response data returns anything but "true", we should display that the session has timed out.
 						if (responseData && responseData.replace(/\s/g, '') === 'true') {
-							sessionTimeout = setTimeout(keep_session, timeParse(opts.sessionalive));
+							start_sessionTimeout();
 						} else {
 							alert(alreadyTimeoutMsg);
 							redirect();
@@ -81,10 +80,12 @@
 			start_liveTimeout = function () {
 				clearTimeout(liveTimeout);
 				liveTimeout = setTimeout(logout, timeParse(opts.inactivity));
-				if (opts.sessionalive) {
-					keep_session();
-				}
 			};
+			
+			start_sessionTimeout = function () {
+				clearTimeout(sessionTimeout);
+				sessionTimeout = setTimeout(keep_session, timeParse(opts.sessionalive));
+			}
 
 			// code to display the alert message
 			displayTimeoutMessage = function () {
@@ -107,7 +108,9 @@
 				// getCurrentTimeMs() will return the time after the alert
 				// box is shown.
 				if (displayTimeoutMessage() && getCurrentTimeMs() - start <= opts.reactionTime) {
-					stay_logged_in();
+					keep_session();
+					start_liveTimeout();
+					start_sessionTimeout();
 				} else {
 					redirect();
 				}
@@ -123,7 +126,6 @@
 				window.location.href = opts.logouturl;
 			};
 
-			stay_logged_in = start_liveTimeout;
 
 			// Parsing function for time period
 			timeParse = function (value) {
@@ -164,26 +166,27 @@
 
 
 			// Prevent the initial ajax call from happening, instead wait for the inactivity time to pass before this call is made
-			// start_liveTimeout();
-			setTimeout(start_liveTimeout, timeParse(opts.inactivity));
+			start_liveTimeout();
+			start_sessionTimeout();
 
 			if (opts.refreshOnClick) {
 				_pe.document.on('click', function (e) {
 
 					// If there is a click on the page
-					if (lastActivity >= 1 && (getCurrentTimeMs() - lastAjaxCall) > opts.ajaxLimiter) {
-						if (typeof e.button === 'undefined' || e.button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
+					if (typeof e.button === 'undefined' || e.button === _pe.leftMouseButton) { //ignore middle and right button
+						if (lastActivity >= 1 && (getCurrentTimeMs() - lastAjaxCall) > opts.ajaxLimiter) {
 							// Set the time of the last ajax call
 							lastAjaxCall = getCurrentTimeMs();
 							// Reset the activity counter
 							lastActivity = 0;
-							start_liveTimeout();
-						}
-					} else {
-						if (typeof e.button === 'undefined' || e.button === _pe.leftMouseButton) {
+							keep_session();
+						
+						} else {
 							lastActivity = getCurrentTimeMs();
-						}
-					} // END OF if (lastActivity >= 1 && ...
+						} // END OF if (lastActivity >= 1 && ...
+						start_liveTimeout();
+						start_sessionTimeout();
+					} 
 				});
 			}
 
@@ -194,3 +197,4 @@
 	return _pe;
 }
 (jQuery));
+
