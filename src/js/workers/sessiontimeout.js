@@ -81,11 +81,11 @@
 				clearTimeout(liveTimeout);
 				liveTimeout = setTimeout(logout, timeParse(opts.inactivity));
 			};
-			
+
 			start_sessionTimeout = function () {
 				clearTimeout(sessionTimeout);
 				sessionTimeout = setTimeout(keep_session, timeParse(opts.sessionalive));
-			}
+			};
 
 			// code to display the alert message
 			displayTimeoutMessage = function () {
@@ -180,13 +180,12 @@
 							// Reset the activity counter
 							lastActivity = 0;
 							keep_session();
-						
 						} else {
 							lastActivity = getCurrentTimeMs();
 						} // END OF if (lastActivity >= 1 && ...
 						start_liveTimeout();
 						start_sessionTimeout();
-					} 
+					}
 				});
 			}
 
