@@ -164,8 +164,6 @@
 				return hours + ':' + minutes + ':' + seconds + timeformat;
 			};
 
-
-			// Prevent the initial ajax call from happening, instead wait for the inactivity time to pass before this call is made
 			start_liveTimeout();
 			start_sessionTimeout();
 
