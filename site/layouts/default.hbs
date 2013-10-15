@@ -23,7 +23,7 @@
 		<![endif]-->
 
 	</head>
-	<body vocab="http://schema.org/" typeof="WebPage">{{#if environment.test}}{{>test}}{{/if}}
+	<body vocab="http://schema.org/" typeof="WebPage">
 		<ul id="wb-tphp">
 			<li class="wb-skip">
 				<a class="wb-skip-link" href="#wb-cont">{{#i18n "%tmpl-skip-cont"}}{{/i18n}}</a>
@@ -79,6 +79,7 @@
 		<script src="{{assets}}/js/jquery.min.js"></script>
 		<script src="{{assets}}/js/vapour{{environment.suffix}}.js"></script>
 		<!--<![endif]-->
-		<script src="{{assets}}/js/wet-boew{{environment.suffix}}.js"></script>
+		<script src="{{assets}}/js/wet-boew{{environment.suffix}}.js"></script>		
+		{{#if environment.test}}{{>test}}{{/if}}
 	</body>
 </html>
