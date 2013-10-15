@@ -114,9 +114,9 @@ var selector = ".wb-session-timeout",
 					$buttonSignin.data( "logouturl", settings.logouturl );
 
 					// Build the modal dialog
-					$document.trigger( "build.wb-modal",  {
+					$document.trigger( "build.wb-modal", {
 						content: "<p>" + i18nText.timeoutAlready + "</p>",
-						buttons:  $buttonSignin,
+						buttons: $buttonSignin,
 						deferred: building
 					});
 
@@ -129,6 +129,7 @@ var selector = ".wb-session-timeout",
 						setTimeout(function() {
 							// Open the popup
 							$document.trigger( "show.wb-modal", {
+								modal: true,
 								mainClass: "mfp-zoom-in",
 								items: { src: $modal, type: "inline" }
 							});
@@ -152,7 +153,7 @@ var selector = ".wb-session-timeout",
 			time = getTime( settings.reactionTime ),
 			content = i18nText.timeout
 				.replace( "#min#", "<span class='min'>" + time.minutes + "</span>" )
-				.replace( "#sec#",  "<span class='sec'>" + time.seconds + "</span>" ),
+				.replace( "#sec#", "<span class='sec'>" + time.seconds + "</span>" ),
 			$modal = $( "#wb-session-modal" );
 
 		// Modal does not exists: build it

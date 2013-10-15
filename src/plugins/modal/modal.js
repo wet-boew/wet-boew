@@ -17,6 +17,17 @@ var selector = ".wb-modal",
 	$document = vapour.doc,
 
 	/*
+	 * Plugin users can override these defaults by setting attributes on the html elements that the
+	 * selector matches.
+	 * For example, adding the attribute data-option1="false", will override option1 for that plugin instance.
+	 */
+	defaults = {
+		modal: false,		// When true, force a modal-like behaviour (no close button and escape key or overlay click won't close)
+		mainClass: "mfp",	// CSS class for the modal wrapper element
+		removalDelay: 0		// Number of milliseconds to wait before removing modal element from DOM (use with closing animations)
+	},
+
+	/*
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @function init
@@ -42,13 +53,7 @@ var selector = ".wb-modal",
 	 * @param {Object} settings Key-value object
 	 */
 	show = function( event, settings ) {
-		$.magnificPopup.open({
-			modal: settings.modal == null ? "false" : settings.modal,
-			mainClass: settings.mainClass == null ? "mfp" : settings.mainClass,
-			removalDelay: settings.removalDelay == null ? 0 : settings.removalDelay,
-			items: settings.items,
-			callbacks: settings.callbacks
-		});
+		$.magnificPopup.open( $.extend( {}, defaults, settings ) );
 	},
 
 	/*
