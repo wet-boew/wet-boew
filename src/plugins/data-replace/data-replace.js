@@ -9,8 +9,8 @@
 
 $.ajaxSettings.cache = false;
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
@@ -19,7 +19,7 @@ var selector = "[data-ajax-replace]",
 	$document = vapour.doc,
 
 	/*
-	 * Init runs once per plugin element on the page. There may be multiple elements. 
+	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
 	 * @param {jQuery DOM element} $elm The plugin element being initialized
@@ -36,11 +36,7 @@ var selector = "[data-ajax-replace]",
 			element: $elm,
 			fetch: _url
 		});
-		
-		$elm.load( _url, function() {
-			$elm.removeAttr( "data-ajax-replace" )
-				.trigger( "ajax-replace-loaded.wb" );
-		});
+
 	};
 
 $document.on( "timerpoke.wb ajax-fetched.wb", selector, function( event ) {
@@ -53,12 +49,13 @@ $document.on( "timerpoke.wb ajax-fetched.wb", selector, function( event ) {
 		break;
 	case "ajax-fetched":
 		$elm.removeAttr( "data-ajax-replace" )
+			.html( event.pointer.html() )
 			.trigger( "ajax-replace-loaded.wb" );
 		break;
 	}
 
 	/*
-	 * Since we are working with events we want to ensure that we are being passive about our control, 
+	 * Since we are working with events we want to ensure that we are being passive about our control,
 	 * so returning true allows for events to always continue
 	 */
 	return true;
