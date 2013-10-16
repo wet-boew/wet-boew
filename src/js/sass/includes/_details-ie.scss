@@ -2,8 +2,20 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
+
+/* details polyfill */
+
+/* <details> and <summary> are block level elements */
+%pe-ie-details-display-block {
+    display: block;
+}
+
 .ie7, .ie8 {
+	summary {
+		@extend %pe-ie-details-display-block;
+	}
 	details {
+		@extend %pe-ie-details-display-block;
 		> {
 			* {
 				display: none;
