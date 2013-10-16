@@ -232,10 +232,11 @@
 	}
 
 	.module-news-article {
-		padding: $spacing-medium $spacing-medium 0;
+		padding: 0 $spacing-medium;
 		@include module-colorize($border: "border", $shadow: true);
 		img {
 			display: block;
+			margin: $spacing-medium 0;
 		}
 	}
 
