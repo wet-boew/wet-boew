@@ -45,15 +45,19 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
+		"test-mocha",
+		"Full build for running tests locally with Grunt Mocha",
+		[
+			"pre-mocha",
+			"mocha"
+		]
+	)
+
+	@registerTask(
 		"saucelabs",
 		"Full build for running tests on SauceLabs. Currently only for Travis builds",
 		[
-			"clean:dist",
-			"assets",
-			"js",
-			"css",
-			"copy:tests",
-			"assemble:tests"
+			"pre-mocha",
 			"connect",
 			"saucelabs-mocha",
 		]
@@ -136,6 +140,19 @@ module.exports = (grunt) ->
 			"assemble:site",
 			"assemble:plugins"
 			"assemble:polyfills"
+		]
+	)
+
+	@registerTask(
+		"pre-mocha",
+		"INTERNAL: prepare for running Mocha unit tests",
+		[
+			"clean:dist",
+			"assets",
+			"js",
+			"css",
+			"copy:tests",
+			"assemble:tests"
 		]
 	)
 
@@ -493,6 +510,12 @@ module.exports = (grunt) ->
 				csv: "src/i18n/i18n.csv"
 			src: "src/js/i18n/formvalid/*.js"
 
+		mocha:
+			all: [
+				"dist/demos/data-picture/data-picture-en.html"
+				"dist/demos/session-timeout/session-timeout-en.html"
+			]
+
 		"saucelabs-mocha":
 			all:
 				options:
@@ -536,6 +559,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-contrib-jshint"
 	@loadNpmTasks "grunt-contrib-uglify"
 	@loadNpmTasks "grunt-contrib-watch"
+	@loadNpmTasks "grunt-mocha"
 	@loadNpmTasks "grunt-modernizr"
 	@loadNpmTasks "grunt-gh-pages"
 	@loadNpmTasks "grunt-sass"
