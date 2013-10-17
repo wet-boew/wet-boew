@@ -79,7 +79,7 @@ describe( "Session Timeout test suite", function() {
 			var len = spies.trigger.thisValues.length,
 				isSelector = false;
 			while ( !isSelector && len-- ) {
-				isSelector = spies.trigger.thisValues[len].selector === ".wb-session-timeout";
+				isSelector = spies.trigger.thisValues[len][0].className.indexOf( "wb-session-timeout" ) > -1;
 			}
 			expect( isSelector ).to.equal( true );
 		});
