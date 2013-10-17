@@ -10,15 +10,6 @@
 	clear: both;
 }
 
-%accessible-invisible {
-	height: 1px;
-	width: 1px;
-	clip: rect(1px, 1px, 1px, 1px);
-	overflow: hidden;
-	position: absolute;
-	margin: 0;
-}
-
 //	Horizontal language selector
 .wb-lang-links-horiz {
 	.wb-lang-link {
@@ -44,6 +35,8 @@
 	@extend %clear-fix;
 }
 
-.wb-lang-heading {
-	@extend %accessible-invisible;
+#wb-lang {
+	h2 {
+		@extend %accessible-invisible;
+	}
 }

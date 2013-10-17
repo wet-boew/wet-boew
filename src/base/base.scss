@@ -3,6 +3,27 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 
+/*
+ Global placeholder
+ */
+%accessible-invisible {
+	height: 1px;
+	width: 1px;
+	clip: rect(1px, 1px, 1px, 1px);
+	overflow: hidden;
+	position: absolute;
+	margin: 0;
+}
+
+%accessible-invisible-show {
+	height: inherit;
+	width: inherit;
+	clip: rect(auto, auto, auto, auto);
+	overflow: inherit;
+	position: static;
+	margin: inherit;
+}
+ 
 @import "partials/accessibility";
 @import "partials/bootstrap-overrides";
 @import "partials/language-selector";

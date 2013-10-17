@@ -3,28 +3,59 @@
   @title: Accessibility Additions to WET-BOEW
  */
 
-%accessible-invisible {
-	height: 1px;
-	width: 1px;
-	clip: rect(1px, 1px, 1px, 1px);
-	overflow: hidden;
-	position: absolute;
-	margin: 0;
+.wb-invisible {
+	@extend %accessible-invisible;
+}
+ 
+#wb-tphp {
+	list-style-type: none;
 }
 
-%accessible-invisible-show {
-	height: inherit;
-	width: inherit;
-	clip: rect(auto, auto, auto, auto);
-	overflow: inherit;
-	position: static;
-	margin: inherit;
+.wb-skip-link {
+	@extend %accessible-invisible;
+	&:focus {
+		@extend %accessible-invisible-show;
+	}
 }
 
-.wb-skip-link, .wb-invisible, .wb-mnavbar a, .wb-srch label, a + .wb-st-nav h2, .wb-srch h2, .wb-sttng h2, .wb-org-nav .wb-ft h3 {
+#wb-srch {
+	h2 {
+		@extend %accessible-invisible;
+	}
+	label {
+		@extend %accessible-invisible;
+	}
+}
+
+#wb-sm {
+	h2 {
+		@extend %accessible-invisible;
+	}
+}
+
+#wb-bc {
+	h2 {
+		@extend %accessible-invisible;
+	}
+}
+
+#wb-sec {
+	h2 {
+		@extend %accessible-invisible;
+	}
+}
+
+footer {
+	h2 {
+		@extend %accessible-invisible;
+	}
+}
+
+
+.wb-mnavbar a, a + .wb-st-nav h2, .wb-sttng h2, .wb-org-nav .wb-ft h3 {
 	@extend %accessible-invisible;
 }
 
-.wb-skip-link:focus, .wb-mnavbar a:focus {
+.wb-mnavbar a:focus {
 	@extend %accessible-invisible-show;
 }
