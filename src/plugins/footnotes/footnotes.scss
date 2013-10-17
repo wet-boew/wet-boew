@@ -66,12 +66,7 @@ table {
 	dl {
 		margin: 0;
 		dt {
-			position: absolute;
-			clip: rect(0, 0, 0, 0);
-			height: 1px;
-			width: 1px;
-			overflow: hidden;
-			margin: 0;
+			@extend %accessible-invisible;
 		}
 		dd {
 			position: relative;
