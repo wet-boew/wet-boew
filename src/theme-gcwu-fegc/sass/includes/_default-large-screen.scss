@@ -143,6 +143,10 @@ h1 {
 	@extend %gcwu-default-large-screen-overflow-hidden;
 }
 
+#wb-head-in .coa {
+	background-position: 5.4em;
+}
+
 #wb-foot {
 	@extend %gcwu-default-large-screen-overflow-hidden;
 	@extend %gcwu-default-text-decoration-underline-a-psuedos;
