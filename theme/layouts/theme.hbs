@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="{{language}}"><![endif]-->
+<!--[if IE 8]><html class="no-js ie8" lang="{{language}}"><![endif]-->
 <!--[if gt IE 8]><!-->
 <html lang="{{language}}">
 <!--<![endif]-->
@@ -17,19 +17,14 @@
 		<link rel="stylesheet" href="{{assets}}/css/base{{environment.suffix}}.css">
 		<link rel="stylesheet" href="{{assets}}/css/theme{{environment.suffix}}.css">
 
-		<!-- Polyfill loader-->
-		<!--[if lt IE 9]>
-		<script src="{{assets}}/js/oldie/respond.min.js"></script>
-		<script src="{{assets}}/js/oldie/jquery.min.js"></script>
-		<script src="{{assets}}/js/oldie/selectivizr.min.js"></script><![endif]-->
-		<!--[if gte IE 9 | !IE ]><!-->
-		<script src="{{assets}}/js/jquery.min.js"></script>
-		<!--<![endif]-->
-		<script src="{{assets}}/js/vapour{{environment.suffix}}.js"></script>
+		<!-- IE8 Support -->
+		<!--[if IE 8]>
+		<script src="{{assets}}/js/vapour-ie8{{environment.suffix}}.js"></script>
+		<![endif]-->
 
 	</head>
-	<body>
-		<ul id="wb-tphp">
+	<body vocab="http://schema.org/" typeof="WebPage">
+		<ul id="wb-tphp" class="sr-only">
 			<li class="wb-skip">
 				<a class="wb-skip-link" href="#wb-cont">{{#i18n "%tmpl-skip-cont"}}{{/i18n}}</a>
 			</li>
@@ -39,37 +34,41 @@
 		</ul>
 		<header role="banner">
 			<div id="wb-banner">
-				{{>brand}}
-
 				<section id="wb-lang">
 					<h2>{{#i18n "%tmpl-lang-select"}}{{/i18n}}</h2>
 					{{>languagetoggle}}
 				</section>
-
-				<section id="wb-srch">
-					<h2>{{#i18n "%tmpl-search"}}{{/i18n}}</h2>
-					{{>sitesearch}}
-				</section>
+				<div class="container">
+					<div class="row">
+						<section id="wb-sitetitle" class="col-md-8">
+							{{>brand}}
+						</section>
+						<section id="wb-srch" class="col-md-4">
+							<h2>{{#i18n "%tmpl-search"}}{{/i18n}}</h2>
+							{{>sitesearch}}
+						</section>
+					</div>
+				</div>
 			</div>
 
-			<nav role="navigation" id="wb-sm">
+			<nav role="navigation" id="wb-sm" typeof="SiteNavigationElement">
 				<h2>{{#i18n "%tmpl-site-menu"}}{{/i18n}}</h2>
 				{{>sitemenu}}
 			</nav>
 
-			<nav role="navigation" id="wb-bc">
+			<nav role="navigation" id="wb-bc" property="breadcrumb">
 				<h2>{{#i18n "%tmpl-bcrumb"}}{{/i18n}}</h2>
 				{{>breadcrumbs}}
 			</nav>
 		</header>
 
-		<main role="main">
-			<h1 id="wb-cont">{{title}}</h1>
+		<main role="main" property="mainContentOfPage">
+			<h1 id="wb-cont" property="name">{{title}}</h1>
 			{{>body}}
 		</main>
 
 		<!-- Secondary Menu [optional] -->
-		<nav role="navigation" id="wb-sec">
+		<nav role="navigation" id="wb-sec" typeof="SiteNavigationElement">
 			<h2>{{#i18n "%tmpl-sec-menu"}}{{/i18n}}</h2>
 			{{>supporting}}
 		</nav>
@@ -80,7 +79,11 @@
 				{{>footer}}
 			</nav>
 		</footer>
-
+		<!--[if gte IE 9 | !IE ]><!-->
+		<script src="{{assets}}/js/jquery.min.js"></script>
+		<script src="{{assets}}/js/vapour{{environment.suffix}}.js"></script>
+		<!--<![endif]-->
 		<script src="{{assets}}/js/wet-boew{{environment.suffix}}.js"></script>
+		{{#if environment.test}}{{>test}}{{/if}}
 	</body>
 </html>

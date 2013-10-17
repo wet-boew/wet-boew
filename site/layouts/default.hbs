@@ -24,7 +24,7 @@
 
 	</head>
 	<body vocab="http://schema.org/" typeof="WebPage">
-		<ul id="wb-tphp">
+		<ul id="wb-tphp" class="sr-only">
 			<li class="wb-skip">
 				<a class="wb-skip-link" href="#wb-cont">{{#i18n "%tmpl-skip-cont"}}{{/i18n}}</a>
 			</li>
@@ -34,17 +34,26 @@
 		</ul>
 		<header role="banner">
 			<div id="wb-banner">
-				{{>brand}}
-
 				<section id="wb-lang">
 					<h2>{{#i18n "%tmpl-lang-select"}}{{/i18n}}</h2>
 					{{>languagetoggle}}
 				</section>
 
-				<section id="wb-srch">
-					<h2>{{#i18n "%tmpl-search"}}{{/i18n}}</h2>
-					{{>sitesearch}}
-				</section>
+				<div class="container">
+					<div class="row">
+
+						<section id="wb-sitetitle" class="col-md-8">
+							{{>brand}}
+						</section>
+
+						<section id="wb-srch" class="col-md-4 visible-md visible-lg">
+							<h2>{{#i18n "%tmpl-search"}}{{/i18n}}</h2>
+							{{>sitesearch}}
+						</section>
+
+					</div>
+				</div>
+
 			</div>
 
 			<nav role="navigation" id="wb-sm" typeof="SiteNavigationElement">
@@ -58,16 +67,22 @@
 			</nav>
 		</header>
 
-		<main role="main" property="mainContentOfPage">
-			<h1 id="wb-cont" property="name">{{title}}</h1>
-			{{>body}}
+		<main role="main" property="mainContentOfPage" class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1 id="wb-cont" property="name">{{title}}</h1>
+					{{>body}}
+				</div>
+
+			</div>
 		</main>
 
-		<!-- Secondary Menu [optional] -->
+		<!-- Secondary Menu
 		<nav role="navigation" id="wb-sec" typeof="SiteNavigationElement">
 			<h2>{{#i18n "%tmpl-sec-menu"}}{{/i18n}}</h2>
 			{{>supporting}}
 		</nav>
+		[optional] -->
 
 		<footer role="contentinfo" id="wb-nav">
 			<nav role="navigation">
@@ -79,7 +94,7 @@
 		<script src="{{assets}}/js/jquery.min.js"></script>
 		<script src="{{assets}}/js/vapour{{environment.suffix}}.js"></script>
 		<!--<![endif]-->
-		<script src="{{assets}}/js/wet-boew{{environment.suffix}}.js"></script>		
+		<script src="{{assets}}/js/wet-boew{{environment.suffix}}.js"></script>
 		{{#if environment.test}}{{>test}}{{/if}}
 	</body>
 </html>
