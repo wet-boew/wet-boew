@@ -1,8 +1,12 @@
-<ul>
-	<li class="current">
-		{{#i18n "%lang-native"}}{{/i18n}}{{#i18n "%interword-space"}}{{/i18n}}<span>{{#i18n "%current"}}{{/i18n}}</span>
-	</li>
-	<li>
-		<a lang="fr" href="#">Français</a>
-	</li>
-</ul>
+<div class="container">
+	<div class="row text-right">
+		<ul data-ajax-before="{{assets}}/js/assets/mobmenu-{{language}}.html" class="visible-md visible-lg">
+			<li class="current">
+				{{#i18n "%lang-native"}}{{/i18n}}{{#i18n "%interword-space"}}{{/i18n}}<span>{{#i18n "%current"}}{{/i18n}}</span>
+			</li>
+			<li>
+				<a lang="fr" href="#">Français</a>
+			</li>
+		</ul>
+	</div>
+</div>
