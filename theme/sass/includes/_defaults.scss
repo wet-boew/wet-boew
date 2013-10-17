@@ -1,0 +1,21 @@
+/*
+ Default Mixins and namespace variables
+ */
+
+%wb-default-screen-verdana-font {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+%wb-default-screen-clearfix {
+        content: "";
+        display: table;
+}
+
+%wb-hidden {
+
+        height: 0 !important;
+        overflow: hidden !important;
+        position: absolute;
+        width: 0 !important;
+        margin: 0 !important;
+}
