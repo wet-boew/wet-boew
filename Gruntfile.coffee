@@ -217,13 +217,13 @@ module.exports = (grunt) ->
 				expand: true
 				cwd: "src/plugins"
 				src: ["**/*.hbs"]
-				dest: "dist/demo"
+				dest: "dist/demos"
 
 			polyfills:
 				expand: true
 				cwd: "src/polyfills"
 				src: ["**/*.hbs"]
-				dest: "dist/demo"
+				dest: "dist/demos"
 
 			tests:
 				options:
@@ -232,7 +232,7 @@ module.exports = (grunt) ->
 				expand: true
 				cwd: "src/plugins"
 				src: ["**/*.hbs"]
-				dest: "dist/demo"
+				dest: "dist/demos"
 
 		# Compiles the Sass files
 		sass:
