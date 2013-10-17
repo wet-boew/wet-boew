@@ -402,7 +402,7 @@ module.exports = (grunt) ->
 					"!**/*.hbs",
 					"!**/assets/*"
 				]
-				dest: "dist/demo"
+				dest: "dist/demos"
 				expand: true
 
 			tests:
@@ -410,7 +410,7 @@ module.exports = (grunt) ->
 				src: [
 					"**/test.js"
 				]
-				dest: "dist/demo"
+				dest: "dist/demos"
 				expand: true
 
 			polyfills:
@@ -447,7 +447,7 @@ module.exports = (grunt) ->
 
 			jsUncompressed: ["dist/js/**/*.js", "!dist/js/**/*<%= environment.suffix %>.js"]
 			cssUncompressed: ["dist/css/**/*.css", "!dist/css/**/*<%= environment.suffix %>.css"]
-			tests: ["dist/demo/**/test.js"]
+			tests: ["dist/demos/**/test.js"]
 
 		watch:
 			lib_test:
@@ -489,7 +489,7 @@ module.exports = (grunt) ->
 		"saucelabs-mocha":
 			all:
 				options:
-					urls: grunt.file.glob.sync("dist/demo/**/*.{html,html}").map((file) ->
+					urls: grunt.file.glob.sync("dist/demos/**/*.{html,html}").map((file) ->
 						"http://127.0.0.1:8000/" + file
 					)
 					tunnelTimeout: 5
