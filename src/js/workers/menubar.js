@@ -255,7 +255,7 @@
 							return false;
 						default:
 							// 0 - 9, a - z keys, punctuation and symbols
-							if ((keyCode > 47 && keyCode < 91) || (keyCode > 95 && keyCode < 112) || (keyCode > 185 && keyCode < 223))  {
+							if ((keyCode > 47 && keyCode < 91) || (keyCode > 95 && keyCode < 112) || (keyCode > 185 && keyCode < 223))	{
 								keychar = String.fromCharCode(keyCode).toLowerCase();
 								sublink = (_id[2] !== 0 || _id[3] !== 0);
 								elmtext = _elm.text();
