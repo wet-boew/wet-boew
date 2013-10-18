@@ -1,51 +1,16 @@
 
 #wb-lang {
-	 min-height: 2.5em;
-}
-#wb-tphp {
-    margin-bottom: 0;
-
+	min-height: 2.3em;
 }
 
-
-.wb-skip-link:focus {
-    background-color: #000;
-    color: #FFF;
-    text-decoration: none;
-    height: inherit !important;
-    overflow: inherit !important;
-    position: static;
-    width: inherit !important;
-    z-index: 501;
-    margin: inherit !important;
-}
-
-.wb-skip {
-    float: left;
-    height: 0;
-    ul {
-        list-style-type: none;
-        margin-top: -1.8em;
-    }
-    li {
-        left: 0;
-        position: absolute;
-        text-align: center;
-        top: 10px;
-        width: 100%;
-        z-index: 3;
-        &:first-child {
-            border: 0 none;
-        }
-    }
-    a {
-        background-color: transparent;
-        color: #FFF;
-        font-weight: 700;
-        &:link, &:visited {
-            background-color: transparent;
-            color: #FFF;
-            font-weight: 700;
-        }
-    }
+.wb-skip-link {
+	background-color: #000;
+	color: #FFF;
+	font-weight: 700;
+	&:focus {
+		color: #FFF;
+		text-decoration: none;
+		/* Shouldn't be needed. Only here because Bootstrap forces an outline colour */
+		outline-color: #FFF;
+	}
 }

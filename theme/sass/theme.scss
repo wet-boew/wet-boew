@@ -11,14 +11,9 @@ body {
     background: #f9f9f9;
 }
 
-header {
-    position: relative;
-    width: 100%;
-    left: 0;
-    transition: all .3s ease;
-    background: #3C3C3C;
-    background: -webkit-linear-gradient(top, #3c3c3c, #515151);
-    background: linear-gradient(#3c3c3c, #515151);
+/* Shouldn't be needed. Only being used to override Bootstrap default colours which fails WCAG 2.0 contrast */
+a {
+	color: #295376;
 }
 
 @import "includes/defaults";
@@ -29,4 +24,3 @@ header {
 @import "parts/sitenav";
 @import "parts/breadcrumb";
 @import "parts/main";
-
