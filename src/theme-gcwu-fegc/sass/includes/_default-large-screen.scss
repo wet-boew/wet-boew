@@ -299,6 +299,9 @@ h1 {
 #gcwu-gcnb-in {
 	@extend %gcwu-default-large-screen-overflow-hidden;
 	min-height: 41px;
+	.ui-coa {
+		padding-top:12px;
+	}
 }
 
 #gcwu-title {
