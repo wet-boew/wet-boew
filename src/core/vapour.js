@@ -70,6 +70,12 @@ var getUrlParts = function( url ) {
 		.join( "/" ),
 
 	/*
+	 * @variable $homecss
+	 * @return {string} of version current path to CSS directory
+	 */
+	$homecss =  $homepath.substring( 0, $homepath.length - 2 ) + "css",
+
+	/*
 	 * @variable $mode
 	 * @return {string} of version of JS [development or production]
 	 */
@@ -165,38 +171,33 @@ window.vapour = vapour;
  */
 
 /*
- * @prefix: site! - adds the root js directory of yepnope resources
+ * @prefix: plyfll! - builds the path for the polyfill resource
  */
-yepnope.addPrefix( "site", function( resourceObj ) {
-	resourceObj.url = $homepath + "/" + resourceObj.url;
-	return resourceObj;
-});
+yepnope.addPrefix( "plyfll", function( resourceObj ) {
+	var path;
 
-/*
- * @prefix: i18n! - adds the correct document langugage for our i18n library
- */
-yepnope.addPrefix( "i18n", function( resourceObj ) {
-	resourceObj.url = resourceObj.url + i18n + $mode + ".js";
-	return resourceObj;
-});
-
-/*
- * @prefix: modejs! - adds the correct document langugage for our i18n library
- */
-yepnope.addPrefix( "modejs", function( resourceObj ) {
-	if ( !$mode ) {
-		resourceObj.url = resourceObj.url.replace( ".min", "" );
-	}
-	return resourceObj;
-});
-
-/*
- * @prefix: disabled! - checks if the user has disabled settings and bypassed the resource
- */
-yepnope.addPrefix( "disabled", function( resourceObj ) {
 	if ( disabled ) {
 		resourceObj.bypass = true;
+	} else if ( !$mode ) {
+		resourceObj.url = resourceObj.url.replace( ".min", "" );
 	}
+
+	if ( resourceObj.url.indexOf( ".css" ) !== -1 ) {
+		resourceObj.forceCSS = true;
+		path = $homecss;
+	} else {
+		path = $homepath;
+	}
+	resourceObj.url = path + "/polyfills/" + resourceObj.url;
+
+	return resourceObj;
+});
+
+/*
+ * @prefix: i18n! - adds the correct document language for our i18n library
+ */
+yepnope.addPrefix( "i18n", function( resourceObj ) {
+	resourceObj.url = $homepath + "/" + resourceObj.url + i18n + $mode + ".js";
 	return resourceObj;
 });
 
@@ -268,31 +269,34 @@ window._timer = {
 window.Modernizr.load([
 	{
 		test: Modernizr.details,
-		nope: "disabled!site!modejs!polyfills/detailssummary.min.js"
+		nope: "plyfll!detailssummary.min.js"
 	}, {
 		test: Modernizr.input.list,
-		nope: "disabled!site!modejs!polyfills/datalist.min.js"
+		nope: [
+			"plyfll!datalist.min.js",
+			"plyfll!datalist.min.css"
+		]
 	}, {
 		test: Modernizr.inputtypes.range,
-		nope: "disabled!site!modejs!polyfills/slider.min.js"
+		nope: "plyfll!slider.min.js"
 	}, {
 		test: Modernizr.progress,
-		nope: "disabled!site!modejs!polyfills/progress.min.js"
+		nope: "plyfll!progress.min.js"
 	}, {
 		test: Modernizr.meter,
-		nope: "disabled!site!modejs!/polyfills/meter.min.js"
+		nope: "plyfll!meter.min.js"
 	}, {
 		test: Modernizr.touch,
-		yep: "disabled!site!modejs!/polyfills/mobile.min.js",
+		yep: "plyfll!mobile.min.js",
 	/* TODO: Determine if this should be kept or not
 	 * Commented out for now to make it easy for people to enable it and to test it.
 	 * Will be deleted outright if decision is to not keep it.
 	}, {
 		test: vapour.ie && vapour.desktop,
-		yep: "disabled!site!modejs!polyfills/jawsariafixes.min.js",
+		yep: "plyfll!jawsariafixes.min.js",
 	*/
 	}, {
-		load: "site!i18n!modejs!i18n/",
+		load: "i18n!i18n/",
 		complete: function() {
 			window._timer.start();
 		}

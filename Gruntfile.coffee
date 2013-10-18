@@ -257,15 +257,31 @@ module.exports = (grunt) ->
 			all:
 				expand: true
 				cwd: "src/base"
-				src: ["**/*.scss", "!**/_*.scss"]
+				src: [
+					"**/*.scss"
+					"!**/_*.scss"
+				]
 				dest: "dist/css/"
 				ext: ".css"
 
 			theme:
 				expand: true
 				cwd: "theme/sass"
-				src: ["**/*.scss", "!**/_*.scss"]
+				src: [
+					"**/*.scss"
+					"!**/_*.scss"
+				]
 				dest: "dist/css/"
+				ext: ".css"
+
+			polyfills:
+				expand: true
+				cwd: "src/polyfills"
+				src: [
+					"**/*.scss"
+					"!**/base.scss"
+				]
+				dest: "dist/css/polyfills/"
 				ext: ".css"
 
 		autoprefixer:
