@@ -9,10 +9,21 @@
  
 #wb-tphp {
 	list-style-type: none;
+	margin-bottom: 0;
+}
+
+.wb-skip {
+	left: 0;
+	position: absolute;
+	text-align: center;
+	top: 10px;
+	width: 100%;
+	z-index: 3;
 }
 
 .wb-skip-link {
 	@extend %accessible-invisible;
+	padding: 5px;
 	&:focus {
 		@extend %accessible-invisible-show;
 	}
