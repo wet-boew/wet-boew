@@ -30,7 +30,7 @@ var selector = ".wb-twitter",
 		window._timer.remove( selector );
 
 		window.Modernizr.load( {
-			load: ( protocol.indexOf( "http" ) === -1 ? "http" : protocol ) + "://platform.twitter.com/widgets.js"
+			load: ( protocol.indexOf( "http" ) === -1 ? "http:" : protocol ) + "//platform.twitter.com/widgets.js"
 		});
 	};
 
