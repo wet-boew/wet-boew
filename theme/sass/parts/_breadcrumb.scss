@@ -8,12 +8,20 @@
 		border-radius: 0;
 		min-height: 3em;
 		margin-bottom: 0;
-		> li + li:before {
-			display: none;
+		> {
+			li {
+				+ {
+					li {
+						&:before {
+							display: none;
+						}
+					}
+				}
+			}
 		}
 	}
 	li {
-		background: url("data:image/gif;base64,R0lGODlhBgAGAMQAAAAAAP///5aWlpCQkI+Pj42NjYyMjImJiYiIiIaGhoCAgHh4eHNzc25ubmxsbGhoaGdnZ2VlZWRkZFFRUQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAABMALAAAAAAGAAYAAAUa4MEsQmAiTjOYARFFiVlAkhIYknQESfSsgRAAOw==") no-repeat scroll 100% 50% rgba(0, 0, 0, 0);
+		background: url("data:image/gif;base64,R0lGODlhBgAGAMQAAAAAAP///5aWlpCQkI+Pj42NjYyMjImJiYiIiIaGhoCAgHh4eHNzc25ubmxsbGhoaGdnZ2VlZWRkZFFRUQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAABMALAAAAAAGAAYAAAUa4MEsQmAiTjOYARFFiVlAkhIYknQESfSsgRAAOw==") no-repeat scroll 100% 50%;
 		float: left;
 		margin-right: 5px;
 		padding-right: 11px;

@@ -1,15 +1,14 @@
 #wb-banner {
 	background: #114F7A;
-	background: -webkit-linear-gradient(top, #176CA7, #114F7A);
 	background: linear-gradient(#176CA7, #114F7A);
 }
 
 #wb-sitetitle {
 	a {
-		color: #FFFFFF;
+		color: #FFF;
 		font-size: 2.1em;
 		line-height: normal;
-		text-shadow: 1px 1px 1px #333333;
+		text-shadow: 1px 1px 1px #333;
 		text-decoration: none;
 		display: table-row;
 	}
@@ -25,6 +24,6 @@
 		height: 65px;
 		margin: 9px 15px 9px 0;
 		width: 141px;
-		float:left;
+		float: left;
 	}
 }
