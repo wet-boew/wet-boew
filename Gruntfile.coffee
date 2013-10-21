@@ -39,7 +39,8 @@ module.exports = (grunt) ->
 		"deploy",
 		"Build and deploy artifacts to wet-boew-dist",
 		[
-			"dist",
+			"dist"
+			"copy:deploy"
 			"gh-pages"
 		]
 	)
@@ -482,6 +483,14 @@ module.exports = (grunt) ->
 				dest: "dist"
 				expand: true
 
+			deploy:
+				src: [
+					"*.txt"
+					"README.md"
+				]
+				dest: "dist"
+				expand: true
+
 		clean:
 			dist: "dist"
 
@@ -555,11 +564,9 @@ module.exports = (grunt) ->
 				clone: "wet-boew-dist"
 				message: "Travis build " + process.env.TRAVIS_BUILD_NUMBER
 				silent: true
+				base: "dist"
 			src: [
-				"dist/**/*.*",
-				"*.html",
-				"*.md",
-				"*.txt"
+				"**/*.*"
 			]
 
 
