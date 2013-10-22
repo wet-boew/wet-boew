@@ -269,7 +269,10 @@ window._timer = {
 window.Modernizr.load([
 	{
 		test: Modernizr.details,
-		nope: "plyfll!detailssummary.min.js"
+		nope: [
+			"plyfll!details.min.js",
+			"plyfll!details.min.css"
+		]
 	}, {
 		test: Modernizr.input.list,
 		nope: [

@@ -1,0 +1,53 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+
+/* Details/summary polyfill */
+
+/* <details> and <summary> are block level elements */
+%pe-details-display-block {
+    display: block;
+}
+
+summary {
+	@extend %pe-details-display-block;
+	cursor: pointer; /* Apply a pointer cursor upon hover to indicate it’s a clickable element. These styles can be applied regardless of whether the fallback is needed */
+	&:hover, &:focus { /* Add focus styles (for keyboard accessibility) */
+		color: #000;
+		background: #ddd;
+	}
+}
+
+details {
+	> {
+		summary {
+			&:before { /* Add the closed pointer */
+				content: "\25BA\a0";
+			}
+		}
+	}
+	&[open] {
+		@extend %pe-details-display-block;
+		> {
+			summary {
+				&:before { /* Add the opened pointer */
+					content: "\25BC\a0";
+				}
+			}
+		}
+	}
+}
+
+/* Right to left (RTL) CSS */
+[dir="rtl"] {
+	details {
+		> {
+			summary {
+				&:before { /* Add the close pointer */
+					content: "\25C0\a0";
+				}
+			}
+		}
+	}
+}
