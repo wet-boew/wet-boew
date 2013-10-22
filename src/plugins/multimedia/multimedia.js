@@ -1,6 +1,6 @@
 /*
- * @title WET-BOEW Mediaplayer
- * @overview An accessible mediaplayer for <audio> and <video> tags, including a Flash fallback
+ * @title WET-BOEW Multimedia PLayer
+ * @overview An accessible multimedia player for <audio> and <video> tags, including a Flash fallback
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
@@ -10,7 +10,7 @@
 
 /* Local scoped variables*/
 var $document = $(document),
-	$selector = ".wet-boew-multimedia, .wb-multimedia",
+	$selector = ".wb-mltmd",
 	$seed = 0,
 	$templatetriggered = false,
 	$lang = document.documentElement.lang,
