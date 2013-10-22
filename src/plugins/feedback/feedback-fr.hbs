@@ -2,11 +2,19 @@
 title: Formulaire de rétroaction
 language: fr
 ---
+<style>
+.wb-feedback label {
+	display: block;
+	margin-top: 15px;
+}
+#otherprob {
+	margin-top: 10px;
+}
+</style>
 <div class="wb-formvalid wb-feedback">
 	<p>Si vous avez des problèmes avec le formulaire suivant, vous pouvez utiliser une des <a href="#osc-avs">autres voies de service</a> pour communiquer avec nous. S'il vous plaît lire l'<a href="#pics-ecrp">énoncé de collecte de renseignements personnels</a> avant de compléter ce formulaire.</p>
-	<form action="#" method="get" id="feeback-form"><div>
+	<form action="#" method="get" id="feeback-form">
 		<input type="hidden" name="language" value="fra" />
-
 		<div id="type">
 			<label for="feedback"><span class="field-name">Raison pour communiquer avec nous</span> <strong>(obligatoire)</strong></label>
 			<select name="feedback" id="feedback" required="required">
@@ -106,7 +114,7 @@ language: fr
 			</section>
 		</section>
 
-		<input type="submit" name="submit" id="submit" value="Soumettre la rétroaction" class="button button-accent" /> <input type="reset" value="Réinitialiser" class="button" />
+		<input type="submit" name="submit" id="submit" value="Soumettre la rétroaction" /> <input type="reset" value="Réinitialiser" />
 	</form>
 
 	<section id="privacy">
