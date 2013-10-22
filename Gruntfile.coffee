@@ -197,16 +197,16 @@ module.exports = (grunt) ->
 				options:
 					stripBanners: false
 				src: [
-					"lib/respond/respond.min.js"
-					"lib/html5shiv/dist/html5shiv.js"
-					"lib/excanvas/excanvas.js"
 					"lib/jquery-ie/jquery.min.js"
+					"lib/respond/respond.src.js"
+					"lib/excanvas/excanvas.js"
+					"lib/html5shiv/dist/html5shiv.js"
 					"lib/selectivizr/selectivizr.js"
 					"src/polyfills/localstorage/localstorage.js"
 					"lib/modernizr/modernizr-custom.js"
 					"src/core/vapour.js"
 				]
-				dest: "dist/js/vapour-ie8.js"
+				dest: "dist/js/ie8-vapour.js"
 
 
 		# Builds the demos
