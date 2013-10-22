@@ -194,6 +194,14 @@ yepnope.addPrefix( "plyfll", function( resourceObj ) {
 });
 
 /*
+ * @prefix: site! - builds the path for the polyfill resource
+ */
+yepnope.addPrefix( "site", function( resourceObj ) {
+	resourceObj.url = ( resourceObj.url.indexOf( "://" ) > 0 ) ?  resourceObj.url : $homepath + resourceObj.url;
+	return resourceObj;
+});
+
+/*
  * @prefix: i18n! - adds the correct document language for our i18n library
  */
 yepnope.addPrefix( "i18n", function( resourceObj ) {
