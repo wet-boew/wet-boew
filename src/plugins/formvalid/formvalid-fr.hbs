@@ -2,30 +2,44 @@
 title: Validation de formulaires
 language: fr
 ---
+<style>
+.wb-formvalid fieldset {
+	margin-bottom: 20px;
+}
+.wb-formvalid legend {
+	margin-bottom: 0;
+}
+.wb-formvalid label {
+	display: block;
+	margin-top: 15px;
+}
+</style>
 <div class="wb-formvalid">
 	<form action="#" method="get" id="validation-example">
-		<fieldset class="margin-top-large"><legend>Coordonnées</legend>
-		<label for="title1"><span class="field-name">Titre</span> <strong>(obligatoire)</strong></label>
-		<select id="title1" name="title1" required="required">
-			<option label="Sélectionner un titre"></option>
-			<option value="dr">D. Ph.</option>
-			<option value="esq">Me</option>
-			<option value="mr">M.</option>
-			<option value="ms">Madame</option>
-		</select>
-		<label for="fname"><span class="field-name">Prénom</span> <strong>(obligatoire)</strong></label>
-		<input id="fname" name="fname" type="text" required="required" pattern=".{2,}" data-rule-minlength="2" />
-		<label for="lname"><span class="field-name">Nom de famille</span> <strong>(obligatoire)</strong></label>
-		<input id="lname" name="lname" type="text" required="required" pattern=".{2,}" data-rule-minlength="2" />
-		<label for="tel"><span class="field-name">Numéro de téléphone</span> (999-999-9999) <strong>(obligatoire)</strong></label>
-		<input id="tel" name="tel" type="tel" required="required" data-rule-phoneUS="true" />
-		<label for="email1"><span class="field-name">Adresse électronique</span></label>
-		<input id="email1" name="email1" type="email" />
-		<label for="url1"><span class="field-name">URL du site Web (http://www.url.com)</span></label>
-		<input id="url1" name="url1" type="url" />
+		<fieldset>
+			<legend>Coordonnées</legend>
+			<label for="title1"><span class="field-name">Titre</span> <strong>(obligatoire)</strong></label>
+			<select id="title1" name="title1" required="required">
+				<option label="Sélectionner un titre"></option>
+				<option value="dr">D. Ph.</option>
+				<option value="esq">Me</option>
+				<option value="mr">M.</option>
+				<option value="ms">Madame</option>
+			</select>
+			<label for="fname"><span class="field-name">Prénom</span> <strong>(obligatoire)</strong></label>
+			<input id="fname" name="fname" type="text" required="required" pattern=".{2,}" data-rule-minlength="2" />
+			<label for="lname"><span class="field-name">Nom de famille</span> <strong>(obligatoire)</strong></label>
+			<input id="lname" name="lname" type="text" required="required" pattern=".{2,}" data-rule-minlength="2" />
+			<label for="tel"><span class="field-name">Numéro de téléphone</span> (999-999-9999) <strong>(obligatoire)</strong></label>
+			<input id="tel" name="tel" type="tel" required="required" data-rule-phoneUS="true" />
+			<label for="email1"><span class="field-name">Adresse électronique</span></label>
+			<input id="email1" name="email1" type="email" />
+			<label for="url1"><span class="field-name">URL du site Web (http://www.url.com)</span></label>
+			<input id="url1" name="url1" type="url" />
 		</fieldset>
 
-		<fieldset class="margin-top-large"><legend>Autres exemples</legend>
+		<fieldset>
+			<legend>Autres exemples</legend>
 			<label for="date1"><span class="field-name">Date</span><span class="datepicker-format"> (AAAA-MM-JJ)</span></label>
 			<input id="date1" name="date1" type="date" data-rule-dateISO="true" />
 			<label for="time1"><span class="field-name">Heure</span> (hh:mm)</label>
@@ -44,23 +58,23 @@ language: fr
 			<input id="password1" name="password1" type="password" maxlength="10" size="10" pattern=".{5,10}" data-rule-rangelength="[5,10]" />
 		</fieldset>
 
-		<fieldset class="margin-top-large" data-role="controlgroup"><legend><span class="field-name">Animal favori</span> (sélectionner au moins une des options ci-dessous)</legend>
+		<fieldset>
+			<legend><span class="field-name">Animal favori</span> (sélectionner au moins une des options ci-dessous)</legend>
 			<label for="animal1"><input type="checkbox" name="animal" value="1" id="animal1" required="required" />&#160;&#160;Chien</label>
 			<label for="animal2"><input type="checkbox" name="animal" value="2" id="animal2" />&#160;&#160;Chat</label>
 			<label for="animal3"><input type="checkbox" name="animal" value="3" id="animal3" />&#160;&#160;Poisson</label>
 			<label for="animal4"><input type="checkbox" name="animal" value="4" id="animal4" />&#160;&#160;Autre</label>
 		</fieldset>
 
-		<fieldset class="margin-top-large" data-role="controlgroup"><legend><span class="field-name">Statut de citoyen</span></legend>
+		<fieldset>
+			<legend><span class="field-name">Statut de citoyen</span></legend>
 			<label for="status1"><input type="radio" name="status" value="1" id="status1" required="required" />&#160;&#160;Citoyen canadien</label>
 			<label for="status2"><input type="radio" name="status" value="2" id="status2" />&#160;&#160;Résident permanent</label>
 			<label for="status3"><input type="radio" name="status" value="3" id="status3" />&#160;&#160;Permis de travail</label>
 			<label for="status4"><input type="radio" name="status" value="4" id="status4" />&#160;&#160;Autre</label>
 		</fieldset>
 
-		<div class="form-inline margin-top-large">
-			<input type="submit" value="Soumettre" class="button button-accent" /> <input type="reset" value="Réinitialiser" class="button" />
-		</div>
+		<input type="submit" value="Soumettre" /> <input type="reset" value="Réinitialiser" />
 	</form>
 </div>
 <div class="clear"></div>

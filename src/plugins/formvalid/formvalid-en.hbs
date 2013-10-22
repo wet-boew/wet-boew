@@ -1,12 +1,23 @@
 ---
 title: Form validation
 language: en
-sitetitle: Web Experience Toolkit (WET)
-tagline: Collaborative open source project led by the Government of Canada
 ---
+<style>
+.wb-formvalid fieldset {
+	margin-bottom: 20px;
+}
+.wb-formvalid legend {
+	margin-bottom: 0;
+}
+.wb-formvalid label {
+	display: block;
+	margin-top: 15px;
+}
+</style>
 <div class="wb-formvalid">
 	<form action="#" method="get" id="validation-example">
-		<fieldset class="margin-top-large"><legend>Contact information</legend>
+		<fieldset>
+			<legend>Contact information</legend>
 			<label for="title1"><span class="field-name">Title</span> <strong>(required)</strong></label>
 			<select id="title1" name="title1" required="required">
 				<option label="Select a title"></option>
@@ -27,7 +38,8 @@ tagline: Collaborative open source project led by the Government of Canada
 			<input id="url1" name="url1" type="url" />
 		</fieldset>
 
-		<fieldset class="margin-top-large"><legend>Other examples</legend>
+		<fieldset>
+			<legend>Other examples</legend>
 			<label for="date1"><span class="field-name">Date</span><span class="datepicker-format"> (YYYY-MM-DD)</span></label>
 			<input id="date1" name="date1" type="date" data-rule-dateISO="true" />
 			<label for="time1"><span class="field-name">Time</span> (hh:mm)</label><input id="time1" name="time1" type="time" />
@@ -45,23 +57,23 @@ tagline: Collaborative open source project led by the Government of Canada
 			<input id="password1" name="password1" type="password" maxlength="10" size="10" pattern=".{5,10}" data-rule-rangelength="[5,10]" />
 		</fieldset>
 
-		<fieldset class="margin-top-large" data-role="controlgroup"><legend><span class="field-name">Favourite pet</span> (select at least one of the following options)</legend>
+		<fieldset>
+			<legend><span class="field-name">Favourite pet</span> (select at least one of the following options)</legend>
 			<label for="animal1"><input type="checkbox" name="animal" value="1" id="animal1" required="required" />&#160;&#160;Dog</label>
 			<label for="animal2"><input type="checkbox" name="animal" value="2" id="animal2" />&#160;&#160;Cat</label>
 			<label for="animal3"><input type="checkbox" name="animal" value="3" id="animal3" />&#160;&#160;Fish</label>
 			<label for="animal4"><input type="checkbox" name="animal" value="4" id="animal4" />&#160;&#160;Other</label>
 		</fieldset>
 
-		<fieldset class="margin-top-large" data-role="controlgroup"><legend><span class="field-name">Citizenship status</span></legend>
+		<fieldset>
+			<legend><span class="field-name">Citizenship status</span></legend>
 			<label for="status1"><input type="radio" name="status" value="1" id="status1" required="required" />&#160;&#160;Canadian citizen</label>
 			<label for="status2"><input type="radio" name="status" value="2" id="status2" />&#160;&#160;Permanent resident</label>
 			<label for="status3"><input type="radio" name="status" value="3" id="status3" />&#160;&#160;Work permit</label>
 			<label for="status4"><input type="radio" name="status" value="4" id="status4" />&#160;&#160;Other</label>
 		</fieldset>
 
-		<div class="form-inline margin-top-large">
-			<input type="submit" value="Submit" class="button button-accent"/> <input type="reset" value="Reset" class="button" />
-		</div>
+		<input type="submit" value="Submit" /> <input type="reset" value="Reset" />
 	</form>
 </div>
 <div class="clear"></div>
