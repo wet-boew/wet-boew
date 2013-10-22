@@ -183,18 +183,21 @@ yepnope.addPrefix( "plyfll", function( resourceObj ) {
 	}
 
 	if ( resourceObj.url.indexOf( ".css" ) !== -1 ) {
-		resourceObj.forceCSS = true;
 		path = $homecss;
+		resourceObj.url = path + "/polyfills/" + resourceObj.url;
+		yepnope.injectCss( resourceObj.url );
+		resourceObj.bypass = true;
 	} else {
 		path = $homepath;
+		resourceObj.url = path + "/polyfills/" + resourceObj.url;
 	}
-	resourceObj.url = path + "/polyfills/" + resourceObj.url;
+
 
 	return resourceObj;
 });
 
 /*
- * @prefix: site! - builds the path for the polyfill resource
+ * @prefix: site! - builds the path for the js resources ( which should be root for most of WET )
  */
 yepnope.addPrefix( "site", function( resourceObj ) {
 	resourceObj.url = ( resourceObj.url.indexOf( "://" ) > 0 ) ?  resourceObj.url : $homepath + "/" + resourceObj.url;
