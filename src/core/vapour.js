@@ -197,7 +197,7 @@ yepnope.addPrefix( "plyfll", function( resourceObj ) {
  * @prefix: site! - builds the path for the polyfill resource
  */
 yepnope.addPrefix( "site", function( resourceObj ) {
-	resourceObj.url = ( resourceObj.url.indexOf( "://" ) > 0 ) ?  resourceObj.url : $homepath + resourceObj.url;
+	resourceObj.url = ( resourceObj.url.indexOf( "://" ) > 0 ) ?  resourceObj.url : $homepath + "/" + resourceObj.url;
 	return resourceObj;
 });
 
