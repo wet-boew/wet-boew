@@ -194,14 +194,6 @@ yepnope.addPrefix( "plyfll", function( resourceObj ) {
 });
 
 /*
- * @prefix: site! - builds the path for the polyfill resource
- */
-yepnope.addPrefix( "site", function( resourceObj ) {
-	resourceObj.url = ( resourceObj.url.indexOf( "://" ) > 0 ) ?  resourceObj.url : $homepath + "/" + resourceObj.url;
-	return resourceObj;
-});
-
-/*
  * @prefix: i18n! - adds the correct document language for our i18n library
  */
 yepnope.addPrefix( "i18n", function( resourceObj ) {
@@ -277,7 +269,10 @@ window._timer = {
 window.Modernizr.load([
 	{
 		test: Modernizr.details,
-		nope: "plyfll!details.min.js"
+		nope: [
+			"plyfll!details.min.js",
+			"plyfll!details.min.css"
+		]
 	}, {
 		test: Modernizr.input.list,
 		nope: [
@@ -289,7 +284,10 @@ window.Modernizr.load([
 		nope: "plyfll!slider.min.js"
 	}, {
 		test: Modernizr.progress,
-		nope: "plyfll!progress.min.js"
+		nope: [
+			"plyfll!progress.min.js",
+			"plyfll!progress.min.css"
+		]
 	}, {
 		test: Modernizr.meter,
 		nope: "plyfll!meter.min.js"
