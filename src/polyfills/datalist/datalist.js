@@ -24,7 +24,7 @@ var selector = "input[list]",
 	 */
 	init = function( _input, $input ) {
 		var inputId = _input.id,
-			autolist = "<ul role='listbox' id='wb-autolist-" + _input.id + "' class='wb-autolist al-hide' aria-hidden='true' aria-live='polite'></ul>",
+			autolist = "<ul role='listbox' id='wb-al-" + _input.id + "' class='wb-al hide' aria-hidden='true' aria-live='polite'></ul>",
 			datalist = document.getElementById( _input.getAttribute( "list" ) ),
 			options = datalist.getElementsByTagName( "option" ),
 			len = options.length,
@@ -38,13 +38,10 @@ var selector = "input[list]",
 		_input.setAttribute( "role", "textbox" );
 		_input.setAttribute( "aria-haspopup", "true" );
 		_input.setAttribute( "aria-autocomplete", "list" );
-		_input.setAttribute( "aria-owns", "wb-autolist-" + inputId );
+		_input.setAttribute( "aria-owns", "wb-al-" + inputId );
 		_input.setAttribute( "aria-activedescendent", "" );
-		/*$input.wrap( "<div class='wb-al-container' role='application' aria-" +
-			( label.length !== 0 ? "labelledby='" + uniqueid : "-label='" +
-			_input.getAttribute( "title" ) ) + "'/>" );*/
 
-		autolist += "<ul id='wb-autolist-" + _input.id + "-src' class='wb-autolist-src' aria-hidden='true'>";
+		autolist += "<ul id='wb-al-" + _input.id + "-src' class='wb-al-src hide' aria-hidden='true'>";
 		for ( i = 0; i !== len; i += 1 ) {
 			option = options[ i ];
 			value = option.getAttribute( "value" );
@@ -52,7 +49,7 @@ var selector = "input[list]",
 			if ( !value ) {
 				value = option.innerHTML;
 			}
-			autolist += "<li class='al-option' id='al-option-" + inputId + "-" + i + "'><a href='javascript:;'><span class='al-value'>" + ( !value ? "" : value  ) + "</span><span class='al-label'>" + ( !label || label === value ? "" : label ) + "</span></a></li>";
+			autolist += "<li id='al-opt-" + inputId + "-" + i + "'><a href='javascript:;' tabindex='-1'><span class='al-val'>" + ( !value ? "" : value  ) + "</span><span class='al-lbl'>" + ( !label || label === value ? "" : label ) + "</span></a></li>";
 		}
 		$input.after( autolist + "</ul>" );
 
@@ -73,9 +70,9 @@ var selector = "input[list]",
 			comparator = value.toLowerCase();
 			$options = $options.filter( function() {
 				var $this = $( this ),
-					value = $this.find( "span.al-value" ).html();
+					value = $this.find( "span.al-val" ).html();
 				if ( value.length === 0 ) {
-					value = $this.find( "span.al-label" ).html();
+					value = $this.find( "span.al-lbl" ).html();
 				}
 				return ( comparator.length === 0 || value.toLowerCase().indexOf( comparator ) !== -1 );
 			});
@@ -86,10 +83,10 @@ var selector = "input[list]",
 
 		if ( $options.length !== 0 ) {
 			correctWidth( _input );
-			$autolist.removeClass( "al-hide" );
+			$autolist.removeClass( "hide" ).attr( "aria-hidden", "false" );
 			_input.setAttribute( "aria-expanded", "true" );
 		} else {
-			$autolist.addClass( "al-hide" );
+			$autolist.addClass( "hide" ).attr( "aria-hidden", "true" );
 			_input.setAttribute( "aria-expanded", "false" );
 		}
 	},
@@ -102,8 +99,9 @@ var selector = "input[list]",
 	closeOptions = function( _input ) {
 		var _autolist = _input.nextSibling;
 
-		_autolist.className += " al-hide";
-		_autolist.innerHTML = "";			
+		_autolist.className += " hide";
+		_autolist.innerHTML = "";	
+		_autolist.setAttribute( "aria-hidden", "true" );
 		_input.setAttribute( "aria-expanded", "false" );
 		_input.setAttribute( "aria-activedescendent", "" );
 	},
@@ -117,7 +115,10 @@ var selector = "input[list]",
 		var $elm = $( _elm ),
 			$autolist = $elm.next();
 
-		$autolist.css( "width", $elm.innerWidth() );
+		$autolist.css({
+			"width": $elm.outerWidth(),
+			"left": $elm.position().left
+		});
 	},
 
 	/*
@@ -129,7 +130,7 @@ var selector = "input[list]",
 	keyboardHandlerInput = function( eventWhich, event ) {
 		var _input = event.target,
 			_autolist = _input.nextSibling,
-			_alHide = ( _autolist.className.indexOf( "al-hide" ) !== -1 ),
+			_alHide = ( _autolist.className.indexOf( "hide" ) !== -1 ),
 			options, dest, value, len;
 
 		// Spacebar, a - z keys, 0 - 9 keys punctuation, and symbols
@@ -167,12 +168,11 @@ var selector = "input[list]",
 
 			return false;
 		}
-		
-		else if ( _alHide ) {
 
-			// Escape key
-			if ( eventWhich === 27 && !event.altKey ) {
-				
+		else if ( !_alHide ) {
+
+			// Tab or Escape key
+			if ( ( eventWhich === 9 || eventWhich === 27 ) || ( eventWhich === 27 && !event.altKey ) ) {
 				closeOptions( _input );
 			}
 		}
@@ -221,12 +221,12 @@ var selector = "input[list]",
 		else if ( eventWhich === 13) {
 			_span = link.getElementsByTagName( "span" );
 
-			// .al-value
+			// .al-val
 			value = _span[ 0 ].innerHTML;
 
 			if ( value.length === 0 ) {
 
-				// .al-label
+				// .al-lbl
 				value = _span[ 1 ].innerHTML;
 			}
 
@@ -251,17 +251,17 @@ var selector = "input[list]",
 			// Up arrow
 			if ( eventWhich === 38 ) {
 				dest = link.parentNode.previousSibling;
-				if ( dest === null ) {
-					dest = _autolist.getElementsByTagName( "li" )[ 0 ];
+				if ( !dest ) {
+					children = _autolist.getElementsByTagName( "li" );
+					dest = children[ children.length - 1 ];					
 				}
 			}
 
 			// Down arrow
 			else {
 				dest = link.parentNode.nextSibling;
-				if ( dest === null ) {
-					children = _autolist.getElementsByTagName( "li" );
-					dest = children[ children.length - 1 ];
+				if ( !dest ) {
+					dest = _autolist.getElementsByTagName( "li" )[ 0 ];
 				}
 			}
 			dest = dest.getElementsByTagName( "a" )[ 0 ];
@@ -289,12 +289,12 @@ var selector = "input[list]",
 
 		_span = link.getElementsByTagName( "span" );
 
-		// .al-value
+		// .al-val
 		value = _span[ 0 ].innerHTML;
 
 		if ( value.length === 0 ) {
 
-			// .al-label
+			// .al-lbl
 			value = _span[ 1 ].innerHTML;
 		}
 
@@ -326,12 +326,14 @@ $document.on( "timerpoke.wb keydown click vclick touchstart", selector, function
 
 		// Ignore middle/right mouse buttons
 		if ( !eventWhich || eventWhich === 1 ) {
-			if ( _input.nextSibling.className.indexOf( "al-hide" ) === -1 ) { 
+			if ( _input.nextSibling.className.indexOf( "hide" ) === -1 ) { 
 				closeOptions( _input );
+			} else {
+				showOptions( _input, _input.value );
 			}
 			return false;
 		}
-		break;		
+		break;
 	}
 
 	/*
@@ -341,7 +343,7 @@ $document.on( "timerpoke.wb keydown click vclick touchstart", selector, function
 	return true;
 });
 
-$document.on( "keydown click vclick touchstart", ".wb-autolist a, .wb-autolist span", function( event ) {
+$document.on( "keydown click vclick touchstart", ".wb-al a, .wb-al span", function( event ) {
 	var eventType = event.type,
 		eventWhich = event.which,
 		link = event.target;
@@ -365,10 +367,10 @@ $document.on( "keydown click vclick touchstart", ".wb-autolist a, .wb-autolist s
 });
 
 // Handle focus and resize events
-$document.on( "focus text-resize.wb window-resize-width.wb window-resize-height.wb", function() {
-	var focusEvent = ( event.type === "focus" ),
+$document.on( "focusin text-resize.wb window-resize-width.wb window-resize-height.wb", function() {
+	var focusEvent = ( event.type === "focusin" ),
 		eventTarget = event.target,
-		eventTargetId = eventTarget.id,
+		eventTargetId = ( eventTarget ? eventTarget.id : null ),
 		_inputs, _input, _autolist, i, len;
 
 	// Only correct width if the polyfill has been initialized
@@ -379,7 +381,7 @@ $document.on( "focus text-resize.wb window-resize-width.wb window-resize-height.
 			_input = _inputs[ i ];
 			if ( focusEvent ) {
 				_autolist = _input.nextSibling;
-				if ( _autolist.className.indexOf( "al-hide" ) === -1 && eventTargetId !== _input.id && eventTargetId !== _autolist.id && !$.contains( _autolist, eventTarget ) ) {
+				if ( _autolist.className.indexOf( "hide" ) === -1 && eventTargetId !== _input.id && eventTargetId !== _autolist.id && !$.contains( _autolist, eventTarget ) ) {
 					closeOptions( _input );
 				}
 			} else {
