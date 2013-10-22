@@ -1,7 +1,21 @@
 ---
 title: Fils de syndication
 language: fr
+sitetitle: Boîte à outils de l'expérience Web (BOEW) 
+tagline: Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada
 ---
+<style>
+.feeds-cont {
+	border: 1px solid #ccc;
+	background-color: #e0e2e4;
+	padding: 10px 10px 0 10px;
+}
+.feeds-cont li {
+	padding: 0 0 10px 0;
+	list-style-type: none;
+}
+</style>
+
 <p>Cette composante est un gadget logiciel permettant de regrouper et d’afficher des données d'un ou plusieurs fils de syndication. Les formats soutenus sont Atom, RSS et Media RSS.</p>
 
 <section>
@@ -19,10 +33,10 @@ language: fr
 
 <section>
 	<h2>Exemples</h2>
-	<div class="wb-webfeeds limit-5">
-		<section class="widget-container">
+	<div class="wb-feeds limit-5">
+		<section class="feeds-cntr">
 			<h3>Communiqués de presse et rappels de la sécurité routière</h3>
-			<ul class="widget-content">
+			<ul class="feeds-cont">
 				<li>
 					<a href="http://www.tc.gc.ca/medias/rss/routier.xml" rel="external">Communiqués de presse routière (Tous)</a>
 				</li>
@@ -33,10 +47,10 @@ language: fr
 		</section>
 	</div>
 
-	<div class="wb-webfeeds limit-1">
-		<section class="widget-container">
+	<div class="wb-feeds limit-1">
+		<section class="feeds-cntr">
 			<h3>Météo d'Ottawa</h3>
-			<ul class="widget-content">
+			<ul class="feeds-cont">
 				<li>
 					<a href="http://weather.gc.ca/rss/city/on-118_f.xml" rel="external">Ottawa Ontario</a>
 				</li>
@@ -48,7 +62,6 @@ language: fr
 <section>
 	<h2>Paramètres</h2>
 	<table>
-		<caption>Paramètres et détails pour le gadget Web</caption>
 		<thead>
 			<tr>
 				<th scope="col">Classe (paramètre)</th>
@@ -58,7 +71,7 @@ language: fr
 		</thead>
 		<tbody>
 			<tr>
-				<td><code>wet-boew-webwidget</code></td>
+				<td><code>wb-feeds</code></td>
 				<td>identificateur</td>
 				<td>classe principale qui identifie le code utilisé pour le gadget des fils de syndication</td>
 			</tr>

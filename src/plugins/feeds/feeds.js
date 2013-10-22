@@ -15,7 +15,7 @@ $.ajaxSettings.cache = false;
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-webfeeds",
+var selector = ".wb-feeds",
 	$document = vapour.doc,
 
 	/*
@@ -29,7 +29,7 @@ var selector = ".wb-webfeeds",
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 		window._timer.remove( selector );
 
-		var $content = $( _elm ).find( ".widget-content" ),
+		var $content = $( _elm ).find( ".feeds-cont" ),
 			limit = getLimit( _elm ),
 			feeds = _elm.getElementsByTagName( "a" ),
 			last = feeds.length - 1,
@@ -124,7 +124,7 @@ var selector = ".wb-webfeeds",
 		for ( i = 0; i !== cap; i += 1 ) {
 			sortedEntry = sorted[ i ];
 			result += "<li><a href='" + sortedEntry.link + "'>" + sortedEntry.title + "</a>" +
-				( sortedEntry.publishedDate !== "" ?  " <span class='widget-datestamp'>[" +
+				( sortedEntry.publishedDate !== "" ?  " <span class='feeds-date'>[" +
 				dataISO( sortedEntry.publishedDate, true ) + "]</span>" : "" ) + "</li>";
 		}
 		return $elm.empty().append( result );

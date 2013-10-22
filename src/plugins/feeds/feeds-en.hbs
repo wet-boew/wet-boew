@@ -4,6 +4,18 @@ language: en
 sitetitle: Web Experience Toolkit (WET)
 tagline: Collaborative open source project led by the Government of Canada
 ---
+<style>
+.feeds-cont {
+	border: 1px solid #ccc;
+	background-color: #e0e2e4;
+	padding: 10px 10px 0 10px;
+}
+.feeds-cont li {
+	padding: 0 0 10px 0;
+	list-style-type: none;
+}
+</style>
+
 <p>This feature provides a widget for aggregating and displaying the entries from one or more Web feeds on a Web page. Supported Web feed formats are Atom, RSS, and Media RSS.</p>
 
 <section>
@@ -21,10 +33,10 @@ tagline: Collaborative open source project led by the Government of Canada
 
 <section>
 	<h2>Examples</h2>
-	<div class="wb-webfeeds limit-5">
-		<section class="widget-container">
+	<div class="wb-feeds limit-5">
+		<section>
 			<h3>Road News Releases and Safety Recalls</h3>
-			<ul class="widget-content">
+			<ul class="feeds-cont">
 				<li>
 					<a href="http://www.tc.gc.ca/mediaroom/rss/road.xml" rel="external">Road News Releases (All)</a>
 				</li>
@@ -35,10 +47,10 @@ tagline: Collaborative open source project led by the Government of Canada
 		</section>
 	</div>
 
-	<div class="wb-webfeeds limit-1">
-		<section class="widget-container">
+	<div class="wb-feeds limit-1">
+		<section>
 			<h3>Ottawa Weather</h3>
-			<ul class="widget-content">
+			<ul class="feeds-cont">
 				<li>
 					<a href="http://weather.gc.ca/rss/city/on-118_e.xml" rel="external">Ottawa Ontario</a>
 				</li>
@@ -50,7 +62,6 @@ tagline: Collaborative open source project led by the Government of Canada
 <section>
 	<h2>Parameters</h2>
 	<table>
-		<caption>Parameters and details for the Web feeds widget</caption>
 		<thead>
 			<tr>
 				<th scope="col">Class (parameter)</th>
@@ -60,7 +71,7 @@ tagline: Collaborative open source project led by the Government of Canada
 		</thead>
 		<tbody>
 			<tr>
-				<td><code>wet-boew-webwidget</code></td>
+				<td><code>wb-feeds</code></td>
 				<td>identifier</td>
 				<td>main targeting class that identifies the codeblock used for the Web feeds widget</td>
 			</tr>
