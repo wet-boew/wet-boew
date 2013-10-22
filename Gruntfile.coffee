@@ -284,6 +284,7 @@ module.exports = (grunt) ->
 				]
 				dest: "dist/css/polyfills/"
 				ext: ".css"
+				flatten: true
 
 		autoprefixer:
 			options:
