@@ -301,11 +301,21 @@ module.exports = (grunt) ->
 				cwd: "dist/css"
 				src: [
 					"**/*.css",
+					"!**/polyfills/**/*.css",
 					"!**/*.min.css"
 				]
 				dest: "dist/css"
 				expand: true
 				flatten: true
+
+			polyfills:
+				cwd: "dist/css/polyfills"
+				src: [
+					"**/*.css",
+					"!**/*.min.css"
+				]
+				dest: "dist/css/polyfills/"
+				expand: true
 
 		# Minify
 		uglify:

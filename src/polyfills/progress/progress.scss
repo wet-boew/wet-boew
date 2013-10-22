@@ -1,0 +1,30 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+
+/* Progress polyfill */
+
+%progress-bar {
+	height: 1em;
+	width: 100%;
+	padding: 2px;
+	border: 1px solid black;
+}
+
+progress {
+	display: inline-block;
+	.outer {
+		@extend %progress-bar;
+		background-color: #fff;
+	}
+	.undef {
+		@extend %progress-bar;
+		background-color: #f99;
+	}
+	.inner {
+		height: 100%;
+		border: none;
+		background-color: #090;
+	}
+}

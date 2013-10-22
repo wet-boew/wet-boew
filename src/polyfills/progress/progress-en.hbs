@@ -1,0 +1,41 @@
+---
+title: Progress polyfill
+language: en
+---
+<style>
+progress {
+	width: 10em;
+}
+</style>
+
+<p>The HTML5 <code>progress</code> elements is used to provide a progress bar. This component adds support for this elements in browsers that do not already have native support.</p>
+
+<section>
+	<h2>Examples</h2>
+	<table>
+		<thead>
+			<tr>
+				<th scope="col">Value</th>
+				<th scope="col">Max</th>
+				<th scope="col">Result</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>22</td>
+				<td>100</td>
+				<td><progress value="22" max="100"><span class="wb-invisible">22%</span></progress></td>
+			</tr>
+			<tr>
+				<td>198</td>
+				<td>300</td>
+				<td><progress value="198" max="300"><span class="wb-invisible">66%</span></progress></td>
+			</tr>
+			<tr>
+				<td>500</td>
+				<td>500</td>
+				<td><progress value="500" max="500"><span class="wb-invisible">100%</span></progress></td>
+			</tr>
+		</tbody>
+	</table>
+</section>
