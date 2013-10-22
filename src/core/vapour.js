@@ -183,12 +183,15 @@ yepnope.addPrefix( "plyfll", function( resourceObj ) {
 	}
 
 	if ( resourceObj.url.indexOf( ".css" ) !== -1 ) {
-		resourceObj.forceCSS = true;
 		path = $homecss;
+		resourceObj.url = path + "/polyfills/" + resourceObj.url;
+		yepnope.injectCss( resourceObj.url );
+		resourceObj.bypass = true;
 	} else {
 		path = $homepath;
+		resourceObj.url = path + "/polyfills/" + resourceObj.url;
 	}
-	resourceObj.url = path + "/polyfills/" + resourceObj.url;
+
 
 	return resourceObj;
 });
@@ -279,7 +282,7 @@ window.Modernizr.load([
 		test: Modernizr.details,
 		nope: "plyfll!details.min.js"
 	}, {
-		test: Modernizr.input.list,
+		test: false,
 		nope: [
 			"plyfll!datalist.min.js",
 			"plyfll!datalist.min.css"
