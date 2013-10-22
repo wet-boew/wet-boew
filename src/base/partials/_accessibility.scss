@@ -12,7 +12,7 @@
 	margin-bottom: 0;
 }
 
-.wb-skip {
+.wb-slc {
 	left: 0;
 	position: absolute;
 	text-align: center;
@@ -21,7 +21,7 @@
 	z-index: 3;
 }
 
-.wb-skip-link {
+.wb-sl {
 	@extend %accessible-invisible;
 	padding: 5px;
 	&:focus {

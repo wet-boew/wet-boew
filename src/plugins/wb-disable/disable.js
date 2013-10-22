@@ -31,7 +31,7 @@ var selector = vapour.sDisabled,
 			$html = vapour.html,
 			i18n = window.i18n;
 
-		li.className = "wb-skip";
+		li.className = "wb-slc";
 
 
 		// Rebuild the query string
@@ -50,7 +50,7 @@ var selector = vapour.sDisabled,
 			}
 
 			// Append the Standard version link
-			li.innerHTML = "<a class='wb-skip-link' href='" + nQuery + "wbdisable=false'>" + i18n( "%wb-enable" ) + "</a>";
+			li.innerHTML = "<a class='wb-sl' href='" + nQuery + "wbdisable=false'>" + i18n( "%wb-enable" ) + "</a>";
 
 			// Add link to re-enable WET plugins and polyfills
 			elm.appendChild( li );
@@ -62,7 +62,7 @@ var selector = vapour.sDisabled,
 		}
 
 		// Append the Basic HTML version link version
-		li.innerHTML = "<a class='wb-skip-link' href='" + nQuery + "wbdisable=true'>" + i18n( "%wb-disable" ) + "</a>";
+		li.innerHTML = "<a class='wb-sl' href='" + nQuery + "wbdisable=true'>" + i18n( "%wb-disable" ) + "</a>";
 		elm.appendChild( li ); // Add link to disable WET plugins and polyfills
 	};
 
