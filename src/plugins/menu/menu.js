@@ -39,6 +39,9 @@ expand = function( element, scopeitems ) {
  */
 onInit = function( $elm ) {
 
+	// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+	window._timer.remove( selector );
+
 	// Lets test to see if we have any
 	if ( $elm.data("ajax-fetch") ) {
 		$document.trigger({
@@ -54,38 +57,42 @@ onInit = function( $elm ) {
 /*
  * Lets set some aria states and attributes
  * @method setAria
- * @param {jQuery DOM elements} element The plugin element
+ * @param {jQuery DOM elements} list of elements
  */
-setAria = function( /* menu, items*/ ) {
-	/*
-	 * [private] treatspecifc itemlists with aria attributes
+setAria = function( elmlist ) {
 
-	function treatItem( elmlist ) {
-		var length = elmlist.length;
+	var length = elmlist.length,
+		_elm, i, _submenu;
 
-		for (var i = 1; i >= length; i++) {
-			var _elm = elmlist.eq( i );
+	for (i = 1; i >= length; i++) {
+		_elm = elmlist.eq( i );
+		_submenu = _elm.siblings( ".sbmnu" );
+
+		_elm.attr({
+			"aria-posinset": i,
+			"aria-setsize": length,
+			"role": "menuitem"
+		});
+
+		// if there is a submenu lets put in the aria for it
+		if ( _submenu.length > 0 ) {
 
 			_elm.attr({
-				"aria-posinset": i,
-				"aria-setsize": length,
-
+				"aria-haspopup": "true"
 			});
 
-			if ( _elm.sibling(".sb-mnu").length > 0 ) {
-				_elm.attr({
+			_submenu.attr({
+				"aria-expanded": "false",
+				"aria-hidden": "true"
+			});
+		}
+	}
 
-					});
-			}
-		};
-	// lets set the aria position
-	treatItem( menu );
-	treatItem( items );
-	*/
-	return true;
-
+	// lets makes this nicely chainable
+	return {
+		and: setAria
+	};
 },
-
 
 /*
  * @method onAjaxLoaded
@@ -107,7 +114,8 @@ onAjaxLoaded = function( $elm, $ajaxed ) {
 		.append( "<span class='expandicon'></span>" );
 
 	// lets tweak for aria
-	setAria( $menu, $items );
+	setAria( $menu ).and( $items );
+
 
 	// Now lets replace the html since we were working off canvas for performance
 	if ( $elm.has( "[data-post-remove]" ) ) {
@@ -115,11 +123,16 @@ onAjaxLoaded = function( $elm, $ajaxed ) {
 			.removeAttr( "data-post-remove" );
 	}
 
+	// replace elements
+	$elm.html( $ajaxed.html() );
+
+	// recalibrate context
 	$elm.data({
 		"self": $elm,
-		"menu": $menu,
-		"items": $items
+		"menu": $elm.find( "[role='menubar'] .item" ),
+		"items": $elm.find( ".sb-mnu" )
 	});
+
 },
 
 /*
@@ -365,5 +378,8 @@ $document.on( "keydown", selector + " .item", function( event ) {
 		break;
 	}
 });
+
+// Add the timer poke to initialize the plugin
+window._timer.add( selector );
 
 })( jQuery, window, vapour );

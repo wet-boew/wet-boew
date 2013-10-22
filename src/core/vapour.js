@@ -282,7 +282,7 @@ window.Modernizr.load([
 		test: Modernizr.details,
 		nope: "plyfll!details.min.js"
 	}, {
-		test: false,
+		test: Modernizr.input.list,
 		nope: [
 			"plyfll!datalist.min.js",
 			"plyfll!datalist.min.css"
