@@ -15,7 +15,7 @@ var $document = $(document),
 	$templatetriggered = false,
 	$lang = document.documentElement.lang,
 	formatTime, parseTime, expand, load_captions_external, load_captions_internal,
-	parse_html, parse_xml, playerapi, update_captions;
+	parseHtml, parseXml, playerapi, update_captions;
 
 /* helper functions*/
 
@@ -52,7 +52,7 @@ formatTime = function( time ) {
 };
 
 /*
-@method fparseTime
+@method parseTime
 @description parse an SMTPE Timecode string (HH:MM:SS.FF) or duration (45s) and returns the number of seconds for the timecode
 @param {String} time The timecode or duration string to parse
 @returns {Float} the number of seconds in time
@@ -90,23 +90,32 @@ expand = function( elm, withPlayer ) {
 		 [ $this, $data ];
 };
 
-parse_html = function( content ) {
-	var te = content.find( ".wet-boew-tt" ),
-		captions = [];
 
-	te.each(function() {
-		var e, json,
-			begin = -1,
-			elm = $( this ),
-			end = -1;
+/*
+@method parseHtml
+@description parse an HTML fragment and extract embed captions
+@param {String} content The HTML fragment containing the captions
+@returns {Array} An array of captions objects (ex: {text: "Caption", begin: 0, end :10})
+*/
+parseHtml = function( content ) {
+	var captions = [],
+		captionSelector = ".wb-tmtxt",
+		captionElements = content.find( captionSelector ),
+		_len = captionElements.length,
+		_i, captionElement, json, begin, end;
 
-		if ( elm.attr("data-begin") !== undef ) {
-			begin = parseTime( elm.attr( "data-begin" ) );
-			end = elm.attr( "data-end" ) !== undef ?
-				parseTime( elm.attr( "data-end" ) ) :
-				parseTime( elm.attr( "data-dur" ) ) + begin;
-		} else if (elm.attr("data") !== undef) {
-			json = elm.attr("data")
+	for ( _i = 0; _i !== _len; _i += 1 ) {
+		captionElement = captionElements[ _i ];
+		begin = -1;
+		end = -1;
+
+		if ( captionElement.attr("data-begin") !== undef ) {
+			begin = parseTime( captionElement.attr( "data-begin" ) );
+			end = captionElement.attr( "data-end" ) !== undef ?
+				parseTime( captionElement.attr( "data-end" ) ) :
+				parseTime( captionElement.attr( "data-dur" ) ) + begin;
+		} else if (captionElement.attr("data") !== undef) {
+			json = captionElement.attr("data")
 				.replace( /(begin|dur|end)/g, "\"$1\"" )
 				.replace( /'/g, "\"" );
 			json = $.parseJSON(json);
@@ -116,40 +125,50 @@ parse_html = function( content ) {
 				parseTime( json.dur ) + begin;
 		}
 
-		// FIXME: Where are "e" and "s" supposed to be comming from?
-		e = e.clone();
-		e.find(s).detach();
+		//Removes nested captions if an
+		captionElement = captionElement.clone();
+		captionElement.find(captionSelector).detach();
 
 		captions[ captions.length ] = {
-				text: e.html(),
+				text: captionElement.html(),
 				begin: begin,
 				end: end
 		};
-	});
+	}
 
 	return captions;
 };
 
-parse_xml = function( content ) {
+/*
+@method parseXml
+@description parse an TTML (Xml) document and extract captions
+@param {String} content The TTML fragment containing the captions
+@returns {Array} An array of captions objects (ex: {text: "Caption", begin: 0, end :10})
+*/
+parseXml = function( content ) {
 	var captions = [],
-		selector = "[begin]",
-		te = content.find( selector );
+		captionSelector = "[begin]",
+		captionElements = content.find( captionSelector ),
+		_len = captionElements.length,
+		_i, captionElement, begin, end;
 
-	te.each(function() {
-		var elm = $( this ),
-			begin = parseTime( elm.attr( "begin" ) ),
-			end = elm.attr("end") !== undef ? parseTime(elm.attr("end")) : parseTime(elm.attr("dur")) + begin;
+	for ( _i = 0; _i !== _len; _i += 1 ) {
+		captionElement = captionElements[ _i ];
+		begin = parseTime( captionElement.attr( "begin" ) );
+		end = captionElement.attr("end") !== undef ?
+			parseTime(captionElement.attr("end")) :
+			parseTime(captionElement.attr("dur")) + begin;
 
-		// FIXME: What is "e" refering to?
-		elm = e.clone();
-		elm.find( selector ).detach();
+		
+		captionElement = captionElement.clone();
+		captionElement.find( captionSelector ).detach();
 
 		return captions[ captions.length ] = {
-			text: elm.html(),
+			text: captionElement.html(),
 			begin: begin,
 			end: end
 		};
-	});
+	}
 	return captions;
 };
 
@@ -166,8 +185,8 @@ load_captions_external = function( elm, url ) {
 			return $( elm ).trigger({
 				type: "captionsloaded.mediaplayer.wb",
 				captions: data.indexOf( "<html" ) !== -1 ?
-					parse_html( $( data ) ) :
-					parse_xml( $( data ) )
+					parseHtml( $( data ) ) :
+					parseXml( $( data ) )
 			});
 		},
 		error: function( response, textStatus, errorThrown ) {
@@ -182,7 +201,7 @@ load_captions_external = function( elm, url ) {
 load_captions_internal = function( elm, obj ) {
 	return $( elm ).trigger({
 		type: "captionsloaded.mediaplayer.wb",
-		captions: parse_html( obj )
+		captions: parseHtml( obj )
 	});
 };
 
