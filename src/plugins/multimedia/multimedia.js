@@ -14,52 +14,66 @@ var $document = $(document),
 	$seed = 0,
 	$templatetriggered = false,
 	$lang = document.documentElement.lang,
-	expand, format_time, load_captions_external, load_captions_internal,
-	parse_html, parse_time, parse_xml, playerapi, update_captions;
+	formatTime, parseTime, expand, load_captions_external, load_captions_internal,
+	parse_html, parse_xml, playerapi, update_captions;
 
 /* helper functions*/
 
-format_time = function( current ) {
-	var i = 2, time = "",
-		c, p, pad;
+/*
+@method formatTime
+@description format a number of seconds to SMTPE Timecode format (HH:MM:SS.FF)
+@param {Float} time The time to format
+@returns {String} the formatted time
+*/
+formatTime = function( time ) {
+	var index = 2, timecode = "",
+		secondsIn, current, pad;
 
 	pad = function( number, digits ) {
-		return new Array( Math.max( digits - String( number ).length + 1, 0 ) )
-			.join( 0 ) + number;
+		return new Array( Math.max( digits - String( number ).length + 1, 0 ) ).join( 0 ) + number;
 	};
 
-	current = Math.floor( current );
+	time = Math.floor( time );
 
-	while (i >= 0) {
-		p = Math.pow( 60, i );
-		c = Math.floor( current / p );
+	//Loop to extract hours, minutes and seconds
+	while (index >= 0) {
+		secondsIn = Math.pow( 60, index ); //Get the number of seconds for the current iteration (hour, minute or second)
+		current = Math.floor( time / secondsIn );
 
-		if ( time !== "" ) {
-			time += ":";
+		if ( timecode !== "" ) {
+			timecode += ":";
 		}
 
-		time += pad( c, 2 );
-		current -= p * c;
-		i -= 1;
+		timecode += pad( current, 2 );
+		time -= secondsIn * current;
+		index -= 1;
 	}
-	return time;
+	return timecode;
 };
 
-parse_time = function( timestring ) {
-	var p, parts, timestringportion, _plen, seconds;
+/*
+@method fparseTime
+@description parse an SMTPE Timecode string (HH:MM:SS.FF) or duration (45s) and returns the number of seconds for the timecode
+@param {String} time The timecode or duration string to parse
+@returns {Float} the number of seconds in time
+*/
+parseTime = function( time ) {
+	var p, parts, timeStringPortion, _partLength, seconds;
 
-	if ( timestring !== undef ) {
-		if ( timestring.charAt( timestring.length - 1 ) === "s" ) {
-			return parseFloat( timestring.substring( 0, timestring.length - 1 ) );
+	if ( time !== undef ) {
+		if ( time.charAt( time.length - 1 ) === "s" ) {
+			//Duration parsing
+			return parseFloat( time.substring( 0, time.length - 1 ) );
 		} else {
-			parts = timestring.split( ":" ).reverse();
+			//SMTPE Timecode Parsing
+			parts = time.split( ":" ).reverse();
 			seconds = 0;
 
-			for (p = 0, _plen = parts.length; p < _plen; p += 1 ) {
-				timestringportion = p === 0 ?
+			for (p = 0, _partLength = parts.length; p < _partLength; p += 1 ) {
+				timeStringPortion = p === 0 ?
 					parseFloat( parts[ p ] ) :
 					parseInt( parts[ p ], 10 );
-				seconds += timestringportion * Math.pow( 60, p );
+				seconds += timeStringPortion * Math.pow( 60, p );
 			}
 			return seconds;
 		}
@@ -87,19 +101,19 @@ parse_html = function( content ) {
 			end = -1;
 
 		if ( elm.attr("data-begin") !== undef ) {
-			begin = parse_time( elm.attr( "data-begin" ) );
+			begin = parseTime( elm.attr( "data-begin" ) );
 			end = elm.attr( "data-end" ) !== undef ?
-				parse_time( elm.attr( "data-end" ) ) :
-				parse_time( elm.attr( "data-dur" ) ) + begin;
+				parseTime( elm.attr( "data-end" ) ) :
+				parseTime( elm.attr( "data-dur" ) ) + begin;
 		} else if (elm.attr("data") !== undef) {
 			json = elm.attr("data")
 				.replace( /(begin|dur|end)/g, "\"$1\"" )
 				.replace( /'/g, "\"" );
 			json = $.parseJSON(json);
-			begin = parse_time( json.begin );
+			begin = parseTime( json.begin );
 			end = json.end !== undefined ?
-				parse_time( json.end ) :
-				parse_time( json.dur ) + begin;
+				parseTime( json.end ) :
+				parseTime( json.dur ) + begin;
 		}
 
 		// FIXME: Where are "e" and "s" supposed to be comming from?
@@ -123,8 +137,8 @@ parse_xml = function( content ) {
 
 	te.each(function() {
 		var elm = $( this ),
-			begin = parse_time( elm.attr( "begin" ) ),
-			end = elm.attr("end") !== undef ? parse_time(elm.attr("end")) : parse_time(elm.attr("dur")) + begin;
+			begin = parseTime( elm.attr( "begin" ) ),
+			end = elm.attr("end") !== undef ? parseTime(elm.attr("end")) : parseTime(elm.attr("dur")) + begin;
 
 		// FIXME: What is "e" refering to?
 		elm = e.clone();
@@ -484,7 +498,7 @@ $document.on("durationchange play pause ended volumechange timeupdate captionslo
 			);
 
 		$this.find( ".wb-mm-timeline-current span:not(.wb-invisible)" )
-			.text( format_time( this.player( "getCurrentTime" ) ) );
+			.text( formatTime( this.player( "getCurrentTime" ) ) );
 
 		if ( $.data( event.target, "captions" ) !== undef ) {
 			update_captions(
