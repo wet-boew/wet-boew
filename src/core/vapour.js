@@ -171,6 +171,14 @@ window.vapour = vapour;
  */
 
 /*
+ * @prefix: site! - adds the root js directory of yepnope resources
+ */
+yepnope.addPrefix( "site", function( resourceObj ) {
+	resourceObj.url = $homepath + "/" + resourceObj.url;
+	return resourceObj;
+});
+ 
+/*
  * @prefix: plyfll! - builds the path for the polyfill resource
  */
 yepnope.addPrefix( "plyfll", function( resourceObj ) {
