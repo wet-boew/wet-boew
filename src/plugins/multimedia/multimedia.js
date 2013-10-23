@@ -14,8 +14,8 @@ var $document = $(document),
 	$seed = 0,
 	$templatetriggered = false,
 	$lang = document.documentElement.lang,
-	formatTime, parseTime, expand, load_captions_external, load_captions_internal,
-	parseHtml, parseXml, playerapi, update_captions;
+	formatTime, parseTime, expand, loadCaptionsExternal, loadCaptionsInternal,
+	parseHtml, parseXml, playerapi, updateCaptions;
 
 /* helper functions*/
 
@@ -172,17 +172,22 @@ parseXml = function( content ) {
 	return captions;
 };
 
-load_captions_external = function( elm, url ) {
-	return $.ajax({
+/*
+@method loadCaptionsExternal
+@description Loads captions from an external source (HTML embed or TTML)
+@param {Object} elm The jQuery object for the multimedia player loading the captions
+@param {String} url The url for the captions resource to load
+*/
+loadCaptionsExternal = function( elm, url ) {
+	$.ajax({
 		url: url,
-		// FIXME: Where is "evtmgr" from?
-		context: evtmgr,
 		dataType: "html",
 		dataFilter: function( data ) {
-			return data.replace( /<img [^>]*>/g, "" );
+			//Filters out images and objects from the content to avoid loading them
+			return data.replace( /<img|object [^>]*>/g, "" );
 		},
 		success: function( data ) {
-			return $( elm ).trigger({
+			elm.trigger({
 				type: "captionsloaded.mediaplayer.wb",
 				captions: data.indexOf( "<html" ) !== -1 ?
 					parseHtml( $( data ) ) :
@@ -190,7 +195,7 @@ load_captions_external = function( elm, url ) {
 			});
 		},
 		error: function( response, textStatus, errorThrown ) {
-			return $( elm ).trigger({
+			elm.trigger({
 				type: "captionsloadfailed.mediaplayer.wb",
 				error: errorThrown
 			});
@@ -198,28 +203,40 @@ load_captions_external = function( elm, url ) {
 	});
 };
 
-load_captions_internal = function( elm, obj ) {
-	return $( elm ).trigger({
+/*
+@method loadCaptionsInternal
+@description Loads same page captions emebed in HTML
+@param {Object} elm The jQuery object for the multimedia player loading the captions
+@param {Object} obj The jQUery object containing the captions
+*/
+loadCaptionsInternal = function( elm, obj ) {
+	elm.trigger({
 		type: "captionsloaded.mediaplayer.wb",
 		captions: parseHtml( obj )
 	});
 };
 
-update_captions = function( area, seconds, captions ) {
-	var caption, counter, _clen,
-		_results = [];
+/*
+@method updateCaptions
+@description Update the captions for a multimedia player (called from the timeupdate event of the HTML5 media API)
+@param {Object} area The jQuery object for the element where captions are displayed
+@param {Float} seconds The current time of the media (use to sync the captions)
+@param {Object} captions The JavaScript object containing the captions
+*/
+updateCaptions = function( area, seconds, captions ) {
+	var caption, _c,
+		_clen = captions.length;
 
 	area.empty();
 
-	for ( counter = 0, _clen = captions.length; counter < _clen; ) {
-		caption = captions[ counter ];
+	for ( _c = 0; _c < _clen; _c += 1 ) {
+		caption = captions[ _c ];
 		if ( seconds >= caption.begin && seconds <= caption.end ) {
 			area.append( $( "<div>" + caption.text + "</div>" ) );
 		}
-		_results.push( counter += 1 );
 	}
-	return _results;
 };
+
 playerapi = function( fn, args ) {
 	var $this, captionsArea, method;
 
@@ -520,7 +537,7 @@ $document.on("durationchange play pause ended volumechange timeupdate captionslo
 			.text( formatTime( this.player( "getCurrentTime" ) ) );
 
 		if ( $.data( event.target, "captions" ) !== undef ) {
-			update_captions(
+			updateCaptions(
 				$this.find( ".wb-mm-captionsarea" ),
 				this.player( "getCurrentTime" ),
 				$.data( event.target, "captions" )
