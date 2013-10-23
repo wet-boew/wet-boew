@@ -177,6 +177,8 @@ parseXml = function( content ) {
 @description Loads captions from an external source (HTML embed or TTML)
 @param {Object} elm The jQuery object for the multimedia player loading the captions
 @param {String} url The url for the captions resource to load
+@fires captionsloaded.mediaplayer.wb
+@fires captionsloadfailed.mediaplayer.wb
 */
 loadCaptionsExternal = function( elm, url ) {
 	$.ajax({
@@ -208,6 +210,7 @@ loadCaptionsExternal = function( elm, url ) {
 @description Loads same page captions emebed in HTML
 @param {Object} elm The jQuery object for the multimedia player loading the captions
 @param {Object} obj The jQUery object containing the captions
+@fires captionsloaded.mediaplayer.wb
 */
 loadCaptionsInternal = function( elm, obj ) {
 	elm.trigger({
