@@ -73,7 +73,7 @@ var getUrlParts = function( url ) {
 	 * @variable $homecss
 	 * @return {string} of version current path to CSS directory
 	 */
-	$homecss =  $homepath.substring( 0, $homepath.length - 2 ) + "css",
+	$homecss = $homepath.substring( 0, $homepath.length - 2 ) + "css",
 
 	/*
 	 * @variable $mode
@@ -114,7 +114,7 @@ var getUrlParts = function( url ) {
 		var disabled = currentpage.params.wbdisable;
 
 		if ( disabled === undefined && localStorage && localStorage.getItem( "wbdisable" ) ) {
-				disabled = localStorage.getItem( "wbdisable" );
+			disabled = localStorage.getItem( "wbdisable" );
 		}
 		return ( typeof disabled === "string" ) ? ( disabled.toLowerCase() === "true" ) : Boolean( disabled );
 	}()),
@@ -177,7 +177,7 @@ yepnope.addPrefix( "site", function( resourceObj ) {
 	resourceObj.url = $homepath + "/" + resourceObj.url;
 	return resourceObj;
 });
- 
+
 /*
  * @prefix: plyfll! - builds the path for the polyfill resource
  */
