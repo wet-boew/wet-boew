@@ -6,7 +6,6 @@
 	ol {
 		background: #fff;
 		border-radius: 0;
-		min-height: 3em;
 		margin-bottom: 0;
 		> {
 			li {
@@ -21,10 +20,14 @@
 		}
 	}
 	li {
-		background: url("data:image/gif;base64,R0lGODlhBgAGAMQAAAAAAP///5aWlpCQkI+Pj42NjYyMjImJiYiIiIaGhoCAgHh4eHNzc25ubmxsbGhoaGdnZ2VlZWRkZFFRUQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAABMALAAAAAAGAAYAAAUa4MEsQmAiTjOYARFFiVlAkhIYknQESfSsgRAAOw==") no-repeat scroll 100% 50%;
+		background: url("data:image/gif;base64,R0lGODlhBgAGAMQAAAAAAP///5aWlpCQkI+Pj42NjYyMjImJiYiIiIaGhoCAgHh4eHNzc25ubmxsbGhoaGdnZ2VlZWRkZFFRUQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAABMALAAAAAAGAAYAAAUa4MEsQmAiTjOYARFFiVlAkhIYknQESfSsgRAAOw==") no-repeat scroll 0 50%;
 		float: left;
 		margin-right: 5px;
-		padding-right: 11px;
+		padding-left: 11px;
 		white-space: nowrap;
+		&:first-child {
+			background: none;
+			padding-left: 0;
+		}
 	}
 }

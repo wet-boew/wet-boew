@@ -1,6 +1,6 @@
 /*
- * @title WET-BOEW JavaScript Carousel
- * @overview Explain the plug-in or any third party lib that it is inspired by
+ * @title WET-BOEW Carousel
+ * @overview Interface for cycling through content
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
