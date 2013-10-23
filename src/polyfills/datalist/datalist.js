@@ -7,8 +7,8 @@
 (function( $, window, document, vapour ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
 var selector = "input[list]",
@@ -16,7 +16,7 @@ var selector = "input[list]",
 	initialized = false,
 
 	/*
-	 * Init runs once per polyfill element on the page. There may be multiple elements. 
+	 * Init runs once per polyfill element on the page. There may be multiple elements.
 	 * It will run more than once if you don't remove the selector from the timer.
 	 * @method init
 	 * @param {DOM element} _input The input field to be polyfilled
@@ -33,7 +33,7 @@ var selector = "input[list]",
 
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 		window._timer.remove( selector );
-		
+
 		_input.setAttribute( "autocomplete", "off" );
 		_input.setAttribute( "role", "textbox" );
 		_input.setAttribute( "aria-haspopup", "true" );
@@ -100,7 +100,7 @@ var selector = "input[list]",
 		var _autolist = _input.nextSibling;
 
 		_autolist.className += " hide";
-		_autolist.innerHTML = "";	
+		_autolist.innerHTML = "";
 		_autolist.setAttribute( "aria-hidden", "true" );
 		_input.setAttribute( "aria-expanded", "false" );
 		_input.setAttribute( "aria-activedescendent", "" );
@@ -134,8 +134,8 @@ var selector = "input[list]",
 			options, dest, value, len;
 
 		// Spacebar, a - z keys, 0 - 9 keys punctuation, and symbols
-		if ( eventWhich === 32 || ( eventWhich > 47 && eventWhich < 91 ) || 
-			( eventWhich > 95 && eventWhich < 112 ) || ( eventWhich > 159 && eventWhich < 177 ) || 
+		if ( eventWhich === 32 || ( eventWhich > 47 && eventWhich < 91 ) ||
+			( eventWhich > 95 && eventWhich < 112 ) || ( eventWhich > 159 && eventWhich < 177 ) ||
 			( eventWhich > 187 && eventWhich < 223 ) ) {
 			if ( !event.altKey ) {
 				showOptions( _input, _input.value + String.fromCharCode( eventWhich ) );
@@ -151,7 +151,7 @@ var selector = "input[list]",
 				showOptions( _input, value.substring( 0, len - 1 ) );
 			}
 		}
-		
+
 		// Up / down arrow
 		else if ( ( eventWhich === 38 || eventWhich === 40) && _input.getAttribute( "aria-activedescendent" ) === "" ) {
 			if ( _alHide ) {
@@ -162,7 +162,7 @@ var selector = "input[list]",
 			dest = options[ ( eventWhich === 38 ? options.length - 1 : 0 ) ];
 
 			_input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
-				
+
 			// Assign focus to dest
 			$( dest ).trigger( "focus.wb" );
 
@@ -191,8 +191,8 @@ var selector = "input[list]",
 			_span, dest, value, len, children;
 
 		// Spacebar, a - z keys, 0 - 9 keys punctuation, and symbols
-		if ( eventWhich === 32 || ( eventWhich > 47 && eventWhich < 91 ) || 
-			( eventWhich > 95 && eventWhich < 112 ) || ( eventWhich > 159 && eventWhich < 177 ) || 
+		if ( eventWhich === 32 || ( eventWhich > 47 && eventWhich < 91 ) ||
+			( eventWhich > 95 && eventWhich < 112 ) || ( eventWhich > 159 && eventWhich < 177 ) ||
 			( eventWhich > 187 && eventWhich < 223 ) ) {
 
 			_input.value += String.fromCharCode( eventWhich );
@@ -244,16 +244,16 @@ var selector = "input[list]",
 
 			return false;
 		}
-		
+
 		// Up or down arrow
-		else if ( eventWhich === 38 || eventWhich === 40 ) { 
+		else if ( eventWhich === 38 || eventWhich === 40 ) {
 
 			// Up arrow
 			if ( eventWhich === 38 ) {
 				dest = link.parentNode.previousSibling;
 				if ( !dest ) {
 					children = _autolist.getElementsByTagName( "li" );
-					dest = children[ children.length - 1 ];					
+					dest = children[ children.length - 1 ];
 				}
 			}
 
@@ -326,7 +326,7 @@ $document.on( "timerpoke.wb keydown click vclick touchstart", selector, function
 
 		// Ignore middle/right mouse buttons
 		if ( !eventWhich || eventWhich === 1 ) {
-			if ( _input.nextSibling.className.indexOf( "hide" ) === -1 ) { 
+			if ( _input.nextSibling.className.indexOf( "hide" ) === -1 ) {
 				closeOptions( _input );
 			} else {
 				showOptions( _input, _input.value );
@@ -337,7 +337,7 @@ $document.on( "timerpoke.wb keydown click vclick touchstart", selector, function
 	}
 
 	/*
-	 * Since we are working with events we want to ensure that we are being passive about our control, 
+	 * Since we are working with events we want to ensure that we are being passive about our control,
 	 * so returning true allows for events to always continue
 	 */
 	return true;
@@ -362,12 +362,12 @@ $document.on( "keydown click vclick touchstart", ".wb-al a, .wb-al span", functi
 		if ( !eventWhich || eventWhich === 1 ) {
 			return clickHandlerAutolist( link );
 		}
-		break;		
+		break;
 	}
 });
 
 // Handle focus and resize events
-$document.on( "focusin text-resize.wb window-resize-width.wb window-resize-height.wb", function() {
+$document.on( "focusin text-resize.wb window-resize-width.wb window-resize-height.wb", function( event ) {
 	var focusEvent = ( event.type === "focusin" ),
 		eventTarget = event.target,
 		eventTargetId = ( eventTarget ? eventTarget.id : null ),
