@@ -15,7 +15,7 @@ var $document = $(document),
 	$templatetriggered = false,
 	$lang = document.documentElement.lang,
 	formatTime, parseTime, expand, loadCaptionsExternal, loadCaptionsInternal,
-	parseHtml, parseXml, playerapi, updateCaptions;
+	parseHtml, parseXml, playerApi, updateCaptions;
 
 /* helper functions*/
 
@@ -240,51 +240,57 @@ updateCaptions = function( area, seconds, captions ) {
 	}
 };
 
-playerapi = function( fn, args ) {
+/*
+@method playerApi
+@description Normalizes the calls to the HTML5 media API and Flash Fallback
+@param {String} fn The function to call
+@param {} Args The arguments to send to the function call
+*/
+playerApi = function( fn, args ) {
 	var $this, captionsArea, method;
 
 	switch ( fn ) {
-	case "play":
-		try {
-			return this.object.play();
-		} catch ( ex ) {
-			return this.object.doPlay();
-		}
-		break;
-	case "pause":
-		try {
-			return this.object.pause();
-		} catch ( ex ) {
-			return this.object.doPause();
-		}
-		break;
-	case "getCaptionsVisible":
-		return $( this ).find( ".wb-mm-captionsarea" ).is( ":visible" );
-	case "setCaptionsVisible":
-		$this = $( this );
-		captionsArea = $this.find( ".wb-mm-captionsarea" );
-		if ( args ) {
-			captionsArea.show();
-		} else {
-			captionsArea.hide();
-		}
-		return $this.trigger( "captionsvisiblechange.mediaplayer.wb" );
-	case "setPreviousTime":
-		return this.object.previousTime = args;
-	case "setBuffering":
-		return this.object.buffering = args;
-	default:
-		method = fn.charAt( 3 ).toLowerCase() + fn.substr( 4 );
-		switch ( fn.substr( 0, 3 ) ) {
-		case "get":
-			return typeof this.object[ method ] !== "function" ?
-				this.object[ method ] :
-				this.object[ method ]();
-		case "set":
-			return typeof this.object[ method ] !== "function" ?
-				this.object[ method ] = args :
-				this.object[ fn ]( args );
-		}
+		case "play":
+			try {
+				return this.object.play();
+			} catch ( ex ) {
+				return this.object.doPlay();
+			}
+			break;
+		case "pause":
+			try {
+				return this.object.pause();
+			} catch ( ex ) {
+				return this.object.doPause();
+			}
+			break;
+		case "getCaptionsVisible":
+			return $( this ).find( ".wb-mm-captionsarea" ).is( ":visible" );
+		case "setCaptionsVisible":
+			$this = $( this );
+			captionsArea = $this.find( ".wb-mm-captionsarea" );
+			if ( args ) {
+				captionsArea.show();
+			} else {
+				captionsArea.hide();
+			}
+			return $this.trigger( "captionsvisiblechange.mediaplayer.wb" );
+		case "setPreviousTime":
+			return this.object.previousTime = args;
+		case "setBuffering":
+			return this.object.buffering = args;
+		default:
+			method = fn.charAt( 3 ).toLowerCase() + fn.substr( 4 );
+			switch ( fn.substr( 0, 3 ) ) {
+			case "get":
+				return typeof this.object[ method ] !== "function" ?
+					this.object[ method ] :
+					this.object[ method ]();
+			case "set":
+				return typeof this.object[ method ] !== "function" ?
+					this.object[ method ] = args :
+					this.object[ fn ]( args );
+			}
 	}
 };
 
@@ -422,7 +428,7 @@ $document.on("renderui.mediaplayer.wb", $selector, function() {
 	});
 
 	this.object = $player.get( 0 );
-	this.player = playerapi;
+	this.player = playerApi;
 	return $this.data( "properties", $data );
 });
 
