@@ -1,6 +1,6 @@
 /*
  * @title WET-BOEW Data Ajax [data-ajax-after], [data-ajax-append], [data-ajax-before], [data-ajax-prepend] and [data-ajax-replace] 
- * @overview A basic AjaxLoader wrapper for WET-BOEW that inserts AJAXed in content
+ * @overview A basic AjaxLoader wrapper that inserts AJAXed in content
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */

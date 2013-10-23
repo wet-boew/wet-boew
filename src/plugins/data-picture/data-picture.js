@@ -1,5 +1,5 @@
 /*
- * @title WET-BOEW data-picture Plugin
+ * @title WET-BOEW Data Picture
  * @overview Event driven port of the Picturefill library: https://github.com/scottjehl/picturefill
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
