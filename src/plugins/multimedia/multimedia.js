@@ -419,7 +419,7 @@ $document.on("renderui.mediaplayer.wb", $selector, function() {
 		$player;
 
 	// FIXME: Where is "tmpl" defined?
-	$this.html( tmpl( $this.data( "template" ), $data ) );
+	$this.html( window.tmpl( $this.data( "template" ), $data ) );
 	$player = $( "#" + $data.m_id );
 	$data.player = $player.is( "object") ? $player.children( ":first-child" ) : $player.load();
 
@@ -459,6 +459,7 @@ $document.on( "click", $selector, function( event ) {
 
 	return true;
 });
+
 $document.on( "keydown", $selector, function( event ) {
 	var _ref = expand( this ),
 		$this = _ref[ 0 ],
