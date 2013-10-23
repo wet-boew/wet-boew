@@ -1,4 +1,4 @@
-
+ï»¿
 globalVariables:
  -
   ? lang 
@@ -20,9 +20,9 @@ globalVariables:
   ? tagline
   : Projet de collaboration de code source ouvert du Gouvernement du Canada
   ? sitetitle
-  : Boîte à outils de l'expérience Web (BOEW)
+  : BoÃ®te Ã  outils de l'expÃ©rience Web (BOEW)
   ? description
-  : Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada  
+  : Projet Ã  source ouverte collaboratif dirigÃ© par le Gouvernement du Canada  
   
 description: Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities
 
