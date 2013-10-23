@@ -165,6 +165,7 @@
  
 * [Avantages](#avantages)
 * [Exemples pratiques](http://wet-boew.github.io/wet-boew/demos/index-fr.html)
+* [Exemples pratiques - v4.0](http://wet-boew.github.io/v4.0-ci/index-fr.html)
 * [Documentation](https://github.com/wet-boew/wet-boew/wiki/Accueil#wiki-Documentation)
 * [Téléchargements](https://github.com/wet-boew/wet-boew/wiki/T%C3%A9l%C3%A9chargements)
 * [Projet principal](https://github.com/wet-boew/wet-boew/)
