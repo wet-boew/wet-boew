@@ -54,7 +54,8 @@ var selector = ".wb-session-timeout",
 				buttonContinue: i18n( "%st-button-continue" ),
 				buttonEnd: i18n( "%st-button-end" ),
 				buttonSignin: i18n( "%tmpl-signin" ),
-				timeout: i18n( "%st-timeout-msg" ),
+				timeoutBegin: i18n( "%st-timeout-msg-bgn" ),
+				timeoutEnd: i18n( "%st-timeout-msg-end" ),
 				timeoutTitle: i18n( "%st-msgbox-title" ),
 				timeoutAlready: i18n( "%st-already-timeout-msg" )
 			};
@@ -151,7 +152,7 @@ var selector = ".wb-session-timeout",
 			activeElement = $document[ 0 ].activeElement,
 			building = $.Deferred(),
 			time = getTime( settings.reactionTime ),
-			content = i18nText.timeout
+			timeoutBegin = i18nText.timeoutBegin
 				.replace( "#min#", "<span class='min'>" + time.minutes + "</span>" )
 				.replace( "#sec#", "<span class='sec'>" + time.seconds + "</span>" ),
 			$modal = $( "#wb-session-modal" );
@@ -167,7 +168,7 @@ var selector = ".wb-session-timeout",
 			$document.trigger( "build.wb-modal", {
 				id: "wb-session-modal",
 				title: i18nText.timeoutTitle,
-				content: "<p class='content'>" + content + "</p>",
+				content: "<p class='content'>" + timeoutBegin + "<br />" + i18nText.timeoutEnd + "</p>",
 				buttons: [ $buttonContinue, $buttonEnd ],
 				deferred: building
 			});
@@ -176,7 +177,7 @@ var selector = ".wb-session-timeout",
 		} else {
 			$buttonContinue = $modal.find( ".btn-primary" );
 			$buttonEnd = $modal.find( ".btn-default" );
-			$modal.find( ".content" ).html( content );
+			$modal.find( ".content" ).html( timeoutBegin + "<br />" + i18nText.timeoutEnd );
 
 			// Trigger the deferred object's done callback by resolving it
 			building.resolve( $modal );
