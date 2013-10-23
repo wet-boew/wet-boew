@@ -1,6 +1,6 @@
 /*
  * @title WET-BOEW Twitter embedded timeline
- * @overview This plugin helps with implementing Twitter embedded timelines.
+ * @overview Helps with implementing Twitter embedded timelines.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
