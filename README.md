@@ -18,6 +18,7 @@
  
 * [Benefits](#benefits)
 * [Working examples](http://wet-boew.github.io/wet-boew/demos/index-en.html)
+* [Working examples - v4.0](http://wet-boew.github.io/v4.0-ci/index-en.html)
 * [Documentation](https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation)
 * [Downloads](https://github.com/wet-boew/wet-boew/wiki/Downloads)
 * [Main project](https://github.com/wet-boew/wet-boew/)
