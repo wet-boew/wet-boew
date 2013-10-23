@@ -1,5 +1,5 @@
 /*
- * @title WET-BOEW Web feeds
+ * @title WET-BOEW Feeds
  * @overview Aggregates and displays entries from one or more Web feeds.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
