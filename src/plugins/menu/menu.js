@@ -68,7 +68,7 @@ drizzleAria = function( $elements ){
 		subMenu = elm.siblings( ".sbmnu" );
 
 		elm.attr({
-			"aria-posinset": ( i+1 ),
+			"aria-posinset": ( i + 1 ),
 			"aria-setsize": length,
 			"role": "menuitem"
 		});
