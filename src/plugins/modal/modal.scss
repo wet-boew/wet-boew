@@ -6,49 +6,49 @@
 @import "../../../lib/magnific-popup/src/css/main";
 
 .mfp-content {
-  .modal-dialog {
-    padding: 0;
-    position: relative;
-    left: auto;
-  }
-  .modal-title {
-    font-size: 130%;
-  }
+	.modal-dialog {
+		padding: 0;
+		position: relative;
+		left: auto;
+	}
+	.modal-title {
+		font-size: 130%;
+	}
 }
 
 .mfp-zoom-in {
 
-  // start state
-  .modal-dialog {
-    opacity: 0;
-    transition: all 0.2s ease-in-out;
-    transform: scale(0.8);
-  }
+	// start state
+	.modal-dialog {
+		opacity: 0;
+		transition: all 0.2s ease-in-out;
+		transform: scale(0.8);
+	}
 
-  &.mfp-bg {
-    opacity: 0;
-    transition: all 0.3s ease-out;
-  }
+	&.mfp-bg {
+		opacity: 0;
+		transition: all 0.3s ease-out;
+	}
 
-  // animate in
-  &.mfp-ready {
-    .modal-dialog {
-      opacity: 1;
-      transform: scale(1);
-    }
-    &.mfp-bg {
-      opacity: 0.8;
-    }
-  }
+	// animate in
+	&.mfp-ready {
+		.modal-dialog {
+			opacity: 1;
+			transform: scale(1);
+		}
+		&.mfp-bg {
+			opacity: 0.8;
+		}
+	}
 
-  // animate out
-  &.mfp-removing {
-    .modal-dialog {
-      transform: scale(0.8);
-      opacity: 0;
-    }
-    &.mfp-bg {
-      opacity: 0;
-    }
-  }
+	// animate out
+	&.mfp-removing {
+		.modal-dialog {
+			transform: scale(0.8);
+			opacity: 0;
+		}
+		&.mfp-bg {
+			opacity: 0;
+		}
+	}
 }

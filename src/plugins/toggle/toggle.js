@@ -124,7 +124,7 @@ var selector = ".wb-toggle",
 			return stateOff;
 		}
 
-		// Toggle type: get opposite state of the requested type.  toggle will then reverse this to the requested state
+		// Toggle type: get opposite state of the requested type. toggle will then reverse this to the requested state
 		return type === stateOn ? stateOff : stateOn;
 	},
 
@@ -148,7 +148,7 @@ var selector = ".wb-toggle",
 		if ( parent ) {
 			state[ selector ][ parent ] = state;
 
-			// No parent means set all states for the given selector.  This is
+			// No parent means set all states for the given selector. This is
 			// because toggle links that apply to the entire DOM also affect
 			// links that are restricted by parent.
 		} else {

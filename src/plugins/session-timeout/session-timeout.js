@@ -72,7 +72,7 @@ var selector = ".wb-session-timeout",
 	},
 
 	/*
-	 * Initialize the refresh on click keepalive behaviour.  This will cause a `keepalive.wb-session-timeout`
+	 * Initialize the refresh on click keepalive behaviour. This will cause a `keepalive.wb-session-timeout`
 	 * event to be triggered when the document is clicked, limited by the settings.refreshLimit value.
 	 * @function initRefreshOnClick
 	 * @param {jQuery DOM Element} $elm DOM element to trigger the event on
@@ -94,7 +94,7 @@ var selector = ".wb-session-timeout",
 	},
 
 	/*
-	 * Keepalive session event handler.  Sends the POST request to determine if the session is still alive.
+	 * Keepalive session event handler. Sends the POST request to determine if the session is still alive.
 	 * @function keepalive
 	 * @param {jQuery Event} event `keepalive.wb-session-timeout` event that triggered the function call
 	 * @param {Object} settings Key-value object
@@ -142,7 +142,7 @@ var selector = ".wb-session-timeout",
 	},
 
 	/**
-	 * Inactivity check event handler.  Displays the modal dialog to allow the user to confirm their activity.
+	 * Inactivity check event handler. Displays the modal dialog to allow the user to confirm their activity.
 	 * @function inactivity
 	 * @param {jQuery Event} event `inactivity.wb-session-timeout` event that triggered the function call
 	 * @param {Object} settings Key-value object

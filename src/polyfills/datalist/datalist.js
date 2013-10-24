@@ -49,7 +49,7 @@ var selector = "input[list]",
 			if ( !value ) {
 				value = option.innerHTML;
 			}
-			autolist += "<li id='al-opt-" + inputId + "-" + i + "'><a href='javascript:;' tabindex='-1'><span class='al-val'>" + ( !value ? "" : value  ) + "</span><span class='al-lbl'>" + ( !label || label === value ? "" : label ) + "</span></a></li>";
+			autolist += "<li id='al-opt-" + inputId + "-" + i + "'><a href='javascript:;' tabindex='-1'><span class='al-val'>" + ( !value ? "" : value ) + "</span><span class='al-lbl'>" + ( !label || label === value ? "" : label ) + "</span></a></li>";
 		}
 		$input.after( autolist + "</ul>" );
 

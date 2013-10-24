@@ -31,7 +31,7 @@ var selector = ".wb-inview",
 		$elm.trigger( "scroll.wb-inview" );
 	},
 
-	/*  
+	/*
 	 * @method onInview
 	 * @param {jQuery DOM element} $elm The plugin element
 	 * @param {jQuery Event} event The event that triggered this method call

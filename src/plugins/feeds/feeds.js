@@ -124,7 +124,7 @@ var selector = ".wb-feeds",
 		for ( i = 0; i !== cap; i += 1 ) {
 			sortedEntry = sorted[ i ];
 			result += "<li><a href='" + sortedEntry.link + "'>" + sortedEntry.title + "</a>" +
-				( sortedEntry.publishedDate !== "" ?  " <span class='feeds-date'>[" +
+				( sortedEntry.publishedDate !== "" ? " <span class='feeds-date'>[" +
 				dataISO( sortedEntry.publishedDate, true ) + "]</span>" : "" ) + "</li>";
 		}
 		return $elm.empty().append( result );

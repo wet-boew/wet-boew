@@ -12,10 +12,10 @@
 
 .wb-menu{
 	.sbmnu {
-		  display: none;
-		  position: relative;
-		  max-height: 0;
-		  overflow: hidden;
+		display: none;
+		position: relative;
+		max-height: 0;
+		overflow: hidden;
 		&.open{
 			display: block;
 			max-height: 1000px;

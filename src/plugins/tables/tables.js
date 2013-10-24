@@ -19,25 +19,25 @@
 						asStripeClasses : [],
 						oLanguage: {
 							oAria: {
-								sSortAscending : i18n( "%sSortAscending" ),
-								sSortDescending :  i18n( "%sSortDescending" )
+								sSortAscending: i18n( "%sSortAscending" ),
+								sSortDescending: i18n( "%sSortDescending" )
 							},
 							oPaginate: {
-								sFirst : i18n( "%first" ),
-								sLast : i18n( "%last" ),
-								sNext : i18n( "%next" ),
-								sPrevious : i18n( "%previous" )
+								sFirst: i18n( "%first" ),
+								sLast: i18n( "%last" ),
+								sNext: i18n( "%next" ),
+								sPrevious: i18n( "%previous" )
 							},
-							sEmptyTable : i18n( "%sEmptyTable" ),
-							sInfo : i18n( "%sInfo" ),
-							sInfoEmpty : i18n( "%sInfoEmpty" ),
-							sInforFiltered : i18n( "%sInforFiltered" ),
-							sInfoThousands : i18n( "%sInfoThousands" ),
-							sLengthMenu : i18n( "%sLengthMenu" ),
-							sLoadingRecords : i18n( "%sLoadingRecords" ),
-							sProcessing : i18n( "%sProcessing" ),
-							sSearch : i18n( "%sSearch" ),
-							sZeroRecords : i18n( "%sZeroRecords" )
+							sEmptyTable: i18n( "%sEmptyTable" ),
+							sInfo: i18n( "%sInfo" ),
+							sInfoEmpty: i18n( "%sInfoEmpty" ),
+							sInforFiltered: i18n( "%sInforFiltered" ),
+							sInfoThousands: i18n( "%sInfoThousands" ),
+							sLengthMenu: i18n( "%sLengthMenu" ),
+							sLoadingRecords: i18n( "%sLoadingRecords" ),
+							sProcessing: i18n( "%sProcessing" ),
+							sSearch: i18n( "%sSearch" ),
+							sZeroRecords: i18n( "%sZeroRecords" )
 						}
 					},
 					mode = vapour.getMode(),
