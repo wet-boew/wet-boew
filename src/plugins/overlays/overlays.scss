@@ -1,0 +1,58 @@
+.wb-overlay {
+	box-sizing: border-box;
+	display: none;
+	visibility: hidden;
+	&:target {
+		position: absolute;
+		display: block;
+		visibility: visible;
+	}
+}
+
+.panel {
+	top: 0px;
+	min-height: 100%;
+	max-width: 90%;
+}
+
+.panel-left {
+	left: 0;
+}
+
+.panel-right {
+	right: 0;
+}
+
+.bar {
+	max-height: 90%;
+	min-width: 100%;
+	left: 0;
+}
+
+.bar-top {
+	top: 0;
+}
+
+.bar-bottom {
+	bottom: 0;
+}
+
+.pop-up {
+	max-height: 90%;
+	max-width: 90%;
+}
+
+.pop-up-centred {
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.full-screen {
+	min-width: 100%;
+	min-height: 100%;
+	top: 0;
+	left: 0;
+}
