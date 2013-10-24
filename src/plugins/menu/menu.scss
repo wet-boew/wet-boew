@@ -17,9 +17,6 @@
 		  position: relative;
 		  max-height: 0;
 		  overflow: hidden;
-		  /* Set our transitions up. */
-		  -webkit-transition: max-height 0.8s;
-		  transition: max-height 0.8s;
 		&.open{
 			display: block;
 			max-height: 1000px;

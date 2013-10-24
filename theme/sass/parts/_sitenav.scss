@@ -2,10 +2,6 @@
  Site menu
  */
 
-.menu .expandicon {
-    border-top-color: #bbb;
-}
-
 #wb-sm {
     background: none repeat scroll 0 0 #0E4164;
     border-top: 1px solid #0B3048;
@@ -47,18 +43,23 @@
                     background: #243850;
                 }
             }
-            li a {
-                &:hover, &:focus, &:active {
-                    background: none;
+            li {
+                a {
+                    &:hover, &:focus, &:active {
+                        background: none;
+                    }
                 }
             }
+        }
+        .expandicon {
+            border-top-color: #bbb;
         }
     }
 }
 
 /* chad's add-ons */
 #menu-demo {
-	margin-bottom: 5em;
+    margin-bottom: 5em;
     .menu {
         display: table;
         width: 100%;
@@ -73,9 +74,11 @@
                     background: #243850;
                 }
             }
-            li a {
-                &:hover, &:focus, &:active {
-                    background: none;
+            li {
+                a {
+                    &:hover, &:focus, &:active {
+                        background: none;
+                    }
                 }
             }
         }
@@ -87,28 +90,27 @@
         margin-right: 0.8em;
     }
     .sbmnu {
-
-    	.open {
-    	        background: #CCCCCC;
-    	        border-bottom: 5px solid #243850;
-    	        border-left: 0 none;
-    	        border-right: 0 none;
-    	        box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.3), 3px 3px 3px -2px rgba(0, 0, 0, 0.3), -3px 3px 3px -2px rgba(0, 0, 0, 0.3);
-    	        display: inline-block;
-    	        padding: 5px;
-    	        margin: 0;
-    	        list-style-type: none;
-    	        position: absolute;
-    	        left: 0;
-    	        z-index: 100;
-    	        width: auto;
-    	        li {
-    	            display: block;
-    	            float: none;
-    	        }
-    	        a {
-    	            color: #333;
-    	        }
-    	    }
+        .open {
+            background: #ccc;
+            border-bottom: 5px solid #243850;
+            border-left: 0 none;
+            border-right: 0 none;
+            box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.3), 3px 3px 3px -2px rgba(0, 0, 0, 0.3), -3px 3px 3px -2px rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            padding: 5px;
+            margin: 0;
+            list-style-type: none;
+            position: absolute;
+            left: 0;
+            z-index: 100;
+            width: auto;
+            li {
+                display: block;
+                float: none;
+            }
+            a {
+                color: #333;
+            }
+        }
     }
 }

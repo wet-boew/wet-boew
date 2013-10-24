@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET community
  */
-/* globals console */
+
 (function( $, window, vapour ) {
 "use strict";
 
@@ -43,11 +43,11 @@ onInit = function( $elm ) {
 	window._timer.remove( selector );
 
 	// Lets test to see if we have any
-	if ( $elm.data("ajax-fetch") ) {
+	if ( $elm.data( "ajax-fetch" ) ) {
 		$document.trigger({
 			type: "ajax-fetch.wb",
 			element: $elm,
-			fetch: $elm.data("ajax-fetch")
+			fetch: $elm.data( "ajax-fetch" )
 		});
 	}
 
@@ -60,33 +60,33 @@ onInit = function( $elm ) {
  */
 drizzleAria = function( $elements ){
 	var length = $elements.length,
-		_elm, _submenu, i;
+		elm, subMenu, i;
 
 	// lets tweak for aria
-	for (i = 0; i <= length; i++) {
-		_elm = $elements.eq( i );
-		_submenu = _elm.siblings( ".sbmnu" );
+	for ( i = 0; i <= length; i++ ) {
+		elm = $elements.eq( i );
+		subMenu = elm.siblings( ".sbmnu" );
 
-		_elm.attr({
-			"aria-posinset": (i+1),
+		elm.attr({
+			"aria-posinset": ( i+1 ),
 			"aria-setsize": length,
 			"role": "menuitem"
 		});
 
 		// if there is a submenu lets put in the aria for it
-		if ( _submenu.length > 0 ) {
+		if ( subMenu.length > 0 ) {
 
-			_elm.attr({
+			elm.attr({
 				"aria-haspopup": "true"
 			});
 
-			_submenu.attr({
+			subMenu.attr({
 				"aria-expanded": "false",
 				"aria-hidden": "true"
 			});
 
 			// recurse into submenu
-			drizzleAria( _submenu.find( ":discoverable" ) );
+			drizzleAria( subMenu.find( ":discoverable" ) );
 		}
 	}
 },
@@ -121,9 +121,9 @@ onAjaxLoaded = function( $elm, $ajaxed ) {
 
 	// recalibrate context
 	$elm.data({
-		"self": $elm,
-		"menu": $elm.find( "[role='menubar'] .item" ),
-		"items": $elm.find( ".sbmnu" )
+		self: $elm,
+		menu: $elm.find( "[role='menubar'] .item" ),
+		items: $elm.find( ".sbmnu" )
 	});
 
 },
@@ -189,9 +189,9 @@ onDisplay = function( $elm, event ) {
  * @param {jQuery event} event The current event
  */
 onHoverFocus = function( event ) {
-	var _ref = expand( event.target ),
-		$menu = _ref[ 1 ],
-		$elm = _ref[ 3 ];
+	var ref = expand( event.target ),
+		$menu = ref[ 1 ],
+		$elm = ref[ 3 ];
 
 	if ( $elm.find( ".expandicon" ).length > 0 ) {
 		$menu.trigger({
@@ -247,13 +247,12 @@ $document.on("timerpoke.wb mouseleave focusout select.wb-menu ajax-fetched.wb in
 
 $document.on( "mouseleave focusout", selector, function( event ) {
 
-	var _ref = expand( event.target ),
-		$container = _ref[ 0 ],
-		$elm = _ref[ 3 ];
+	var ref = expand( event.target ),
+		$container = ref[ 0 ],
+		$elm = ref[ 3 ];
 
 	event.stopPropagation();
 	if ( $elm === $container ) {
-		console.log ( "ok mouse leaving now" );
 		onReset( $container );
 	}
 });
@@ -270,11 +269,11 @@ $document.on( "mouseover focusin", selector + " .menu :focusable", function( eve
 $document.on( "keydown", selector + " .menu", function( event ) {
 	event.stopPropagation();
 
-	var _ref = expand( event.target ),
-		$container = _ref[ 0 ],
-		$menu = _ref[ 1 ],
-		$items = _ref[ 2 ],
-		$elm = _ref[ 3 ],
+	var ref = expand( event.target ),
+		$container = ref[ 0 ],
+		$menu = ref[ 1 ],
+		$items = ref[ 2 ],
+		$elm = ref[ 3 ],
 		$code = event.which,
 		$index = $menu.index( $elm.get( 0 ) ),
 		$anchor,
@@ -330,11 +329,11 @@ $document.on( "keydown", selector + " .menu", function( event ) {
 $document.on( "keydown", selector + " .item", function( event ) {
 
 	event.stopPropagation();
-	var _ref = expand( event.target, true ),
-		$container = _ref[ 0 ],
-		$menu = _ref[ 1 ],
-		$items = _ref[ 2 ],
-		$elm = _ref[ 3 ],
+	var ref = expand( event.target, true ),
+		$container = ref[ 0 ],
+		$menu = ref[ 1 ],
+		$items = ref[ 2 ],
+		$elm = ref[ 3 ],
 		$code = event.which,
 		$links = $items.find( ":focusable" ),
 		$index = $links.index( $elm.get( 0 ) ),
