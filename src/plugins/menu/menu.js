@@ -245,17 +245,6 @@ $document.on("timerpoke.wb mouseleave focusout select.wb-menu ajax-fetched.wb in
 	return true;
 });
 
-$document.on( "mouseleave focusout", selector, function( event ) {
-
-	var ref = expand( event.target ),
-		$container = ref[ 0 ],
-		$elm = ref[ 3 ];
-
-	event.stopPropagation();
-	if ( $elm === $container ) {
-		onReset( $container );
-	}
-});
 
 /*
  * Menu Keyboard bindings
