@@ -331,9 +331,11 @@ module.exports = (grunt) ->
 			core:
 				options:
 					preserveComments: "some"
-				files:
-					"dist/js/vapour<%= environment.suffix %>.js": "dist/js/vapour.js"
-					"dist/js/vapour-ie8<%= environment.suffix %>.js": "dist/js/vapour-ie8.js"
+				cwd: "dist/js/"
+				src: [ "*vapour.js" ]
+				dest: "dist/js/"
+				ext: "<%= environment.suffix %>.js"
+				expand: true
 
 			plugins:
 				options:
