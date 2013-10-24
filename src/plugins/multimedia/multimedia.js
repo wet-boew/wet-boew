@@ -13,9 +13,9 @@ var $document = $(document),
 	$selector = ".wb-mltmd",
 	$seed = 0,
 	$templatetriggered = false,
-	$lang = document.documentElement.lang,
 	formatTime, parseTime, expand, loadCaptionsExternal, loadCaptionsInternal,
-	parseHtml, parseXml, playerApi, updateCaptions;
+	parseHtml, parseXml, playerApi, updateCaptions,
+	i18n, i18nText;
 
 /* helper functions*/
 
@@ -297,12 +297,29 @@ playerApi = function( fn, args ) {
 $document.on( "timerpoke.wb", $selector, function() {
 	window._timer.remove( $selector );
 
+	// Only initialize the i18nText once
+	if ( !i18nText ) {
+		i18n = window.i18n;
+		i18nText = {
+			rewind: i18n( "%rewind" ),
+			ff: i18n( "%fast-forward" ),
+			play: i18n( "%play" ),
+			pause: i18n( "%pause" ),
+			cc_on: i18n( "%closed-caption", "enable" ),
+			cc_off: i18n( "%closed-caption", "disable"),
+			mute_on: i18n( "%mute", "enable"),
+			mute_off: i18n( "%mute", "disable"),
+			duration: i18n( "%duration"),
+			position: i18n( "%position")
+		};
+	}
+
 	if ( !$templatetriggered ) {
 		$templatetriggered = true;
 		return $document.trigger({
 			type: "ajax-fetch.wb",
 			element: $( $selector ),
-			fetch: "" + vapour.getPath( "/assets" ) + "/mediacontrol-" + $lang + ".html"
+			fetch: "" + vapour.getPath( "/assets" ) + "/mediacontrols.html"
 		});
 	}
 });
@@ -327,7 +344,7 @@ $document.on( "init.mediaplayer.wb", $selector, function() {
 		$width = $type === "video" ? $media.attr( "width" ) : "0",
 		$height = $type === "video" ? $media.attr( "height" ) : "0",
 		$captions = $media.children("track[kind='captions']") ? $media.children("track[kind='captions']").attr("src") : undef,
-		data = {
+		data = $.extend({
 			id: $id,
 			media: $media,
 			m_id: $m_id,
@@ -336,7 +353,7 @@ $document.on( "init.mediaplayer.wb", $selector, function() {
 			width: $width,
 			captions: $captions,
 			object: ""
-		};
+		}, i18nText);
 
 	if ( $media.attr( "id" ) === undef ) {
 		$media.attr( "id", $m_id );
