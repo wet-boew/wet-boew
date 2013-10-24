@@ -4,11 +4,11 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  *
- * This plugin provides the ability to add and update the favicon's on a web page.  Its default behaviour is to add a mobile favicon to web pages that have a favicon defined by a `<link rel="shortcut icon">` element.
+ * This plugin provides the ability to add and update the favicon's on a web page. Its default behaviour is to add a mobile favicon to web pages that have a favicon defined by a `<link rel="shortcut icon">` element.
  *
  * The mobile favicon's file name, rel, path and sizes can be set with data attributes on the `<link rel="shortcut icon">`:
  *
- * -**data-filename:** filename of the mobile favicon (defaults to "favicon-mobile.png").  This will be appended to the favicon's path.
+ * -**data-filename:** filename of the mobile favicon (defaults to "favicon-mobile.png"). This will be appended to the favicon's path.
  * -**data-path:** path to the mobile favicon (defaults to using the same path as the shortcut icon).
  * -**data-rel:** rel attribute of the mobile favicon (defaults to "apple-touch-icon").
  * -**data-sizes:** sizes attribute of the mobile favicon (defaults to "57x57 72x72 114x114 144x144 150x150").
@@ -58,7 +58,7 @@ var selector = "link[rel='shortcut icon']",
 	},
 
 	/*
-	 * Adds, or updates, the mobile favicon on a page.  Mobile favicons are identified by the
+	 * Adds, or updates, the mobile favicon on a page. Mobile favicons are identified by the
 	 * `apple` prefix in the `<link>` elements rel attribute.
 	 * @method mobile
 	 * @param {DOM element} favicon Favicon element

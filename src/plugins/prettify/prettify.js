@@ -9,7 +9,7 @@
  *
  * 1. Apply `class="prettyprint"` to a `pre` or `code` element to apply syntax highlighting. Alternatively use `class="all-pre"` to apply syntax highlighting to all `pre` elements on the page.
  * 2. Apply `class="linenums"` to a `pre` or `code` element to add line numbers. Alternatively use `class="all-linenums"` to all applicable `pre` elements. Specify the starting number by adding `linenums:#` before `linenums`.
- * 3. Add extra language support by applying `class="lang-*"` to each applicable `pre` or `code` element.  Supported language syntax CSS classes are as follows:
+ * 3. Add extra language support by applying `class="lang-*"` to each applicable `pre` or `code` element. Supported language syntax CSS classes are as follows:
  *    - lang-apollo
  *    - lang-clj
  *    - lang-css

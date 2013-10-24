@@ -17,7 +17,7 @@ var $document = vapour.doc,
 	breadcrumbLinksArray, breadcrumbLinksUrlArray,
 	navClass = "wb-navcurrent",
 
-	/*  
+	/*
 	 * We start the logic for what the plugin truly does
 	 * For demonstration purposes lets display some text with an alert 
 	 * @method otherEvent

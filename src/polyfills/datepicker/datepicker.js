@@ -360,7 +360,7 @@
 					}
 				});
 
-				container.on('calendarDisplayed', function (e, year,  month, days) {
+				container.on('calendarDisplayed', function (e, year, month, days) {
 					var $this = $(this),
 						fieldid = $this.attr('aria-controls');
 

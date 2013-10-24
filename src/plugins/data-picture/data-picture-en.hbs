@@ -9,13 +9,13 @@ language: en
 	<h2>Features</h2>
 	<section>
 		<h3>Browser Width</h3>
-		<p>This example uses <a href="http://www.w3.org/TR/css3-mediaqueries/#width">min-width</a> to determine which image should be displayed.  Resize the browser window to see the different images load.</p>
+		<p>This example uses <a href="http://www.w3.org/TR/css3-mediaqueries/#width">min-width</a> to determine which image should be displayed. Resize the browser window to see the different images load.</p>
 
 		<figure>
 			<span data-picture data-alt="Parliament Hill">
 				<!-- Default image: <div [data-src]> with no data-media attribute is displayed when:
 					1. None of the other <div [data-src]> media queries match.
-					2. The browser doesn't support media queries  -->
+					2. The browser doesn't support media queries -->
 				<span data-src="img/parliament-hill-large.jpg"></span>
 
 				<!-- Images for browsers with CSS media query support -->
@@ -36,19 +36,19 @@ language: en
 			<summary>View code</summary>
 			<pre><code>&lt;figure&gt;
 	&lt;span data-picture data-alt="Parliament Hill"&gt;
-	   &lt;!-- Default image: &lt;div [data-src]&gt; with no data-media attribute is displayed when:
-			   1. None of the other &lt;div [data-src]&gt; media queries match.
-			   2. The browser doesn't support media queries  --&gt;
-	   &lt;span data-src="img/parliament-hill-large.jpg"&gt;&lt;/span&gt;
+		&lt;!-- Default image: &lt;div [data-src]&gt; with no data-media attribute is displayed when:
+				1. None of the other &lt;div [data-src]&gt; media queries match.
+				2. The browser doesn't support media queries --&gt;
+		&lt;span data-src="img/parliament-hill-large.jpg"&gt;&lt;/span&gt;
 
-	   &lt;!-- Images for browsers with CSS media query support --&gt;
-	   &lt;span data-src="img/parliament-hill-small.jpg" data-media="(min-width: 0px)"&gt;&lt;/span&gt;
-	   &lt;span data-src="img/parliament-hill-medium.jpg" data-media="(min-width: 500px)"&gt;&lt;/span&gt;
-	   &lt;span data-src="img/parliament-hill-large.jpg" data-media="(min-width: 960px)"&gt;&lt;/span&gt;
-	   &lt;span data-src="img/parliament-hill-extralarge.jpg" data-media="(min-width: 1200px)"&gt;&lt;/span&gt;
+		&lt;!-- Images for browsers with CSS media query support --&gt;
+		&lt;span data-src="img/parliament-hill-small.jpg" data-media="(min-width: 0px)"&gt;&lt;/span&gt;
+		&lt;span data-src="img/parliament-hill-medium.jpg" data-media="(min-width: 500px)"&gt;&lt;/span&gt;
+		&lt;span data-src="img/parliament-hill-large.jpg" data-media="(min-width: 960px)"&gt;&lt;/span&gt;
+		&lt;span data-src="img/parliament-hill-extralarge.jpg" data-media="(min-width: 1200px)"&gt;&lt;/span&gt;
 
-	   &lt;!-- Fallback content for non-JS browsers. --&gt;
-	   &lt;noscript&gt;&lt;img src="img/parliament-hill-large.jpg" alt="Parliament Hill"/&gt;&lt;/noscript&gt;
+		&lt;!-- Fallback content for non-JS browsers. --&gt;
+		&lt;noscript&gt;&lt;img src="img/parliament-hill-large.jpg" alt="Parliament Hill"/&gt;&lt;/noscript&gt;
 	&lt;/span&gt;
 	&lt;figcaption&gt;
 		&lt;p&gt;Photo by &lt;a href="http://www.flickr.com/photos/intercultura/6130311384"&gt;Noema Pérez&lt;/a&gt;, licensed under &lt;a href="http://creativecommons.org/licenses/by-nc-sa/2.0/deed.en_CA"&gt;Creative Commons&lt;/a&gt;.&lt;/p&gt;
@@ -78,12 +78,12 @@ language: en
 			<summary>View code</summary>
 			<pre><code>&lt;figure&gt;
 	&lt;span data-picture data-alt="False Kiva in the Canyonlands"&gt;
-	   &lt;!-- Images for different device resolutions --&gt;
-	   &lt;span data-src="img/cave-low-res.jpg"&gt;&lt;/span&gt;
-	   &lt;span data-src="img/cave-high-res.jpg" data-media="(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)"&gt;&lt;/span&gt;
+		&lt;!-- Images for different device resolutions --&gt;
+		&lt;span data-src="img/cave-low-res.jpg"&gt;&lt;/span&gt;
+		&lt;span data-src="img/cave-high-res.jpg" data-media="(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)"&gt;&lt;/span&gt;
 
-	   &lt;!-- Fallback content for non-JS browsers --&gt;
-	   &lt;noscript&gt;&lt;img src="img/cave-low-res.jpg" alt="False Kiva in the Canyonlands"/&gt;&lt;/noscript&gt;
+		&lt;!-- Fallback content for non-JS browsers --&gt;
+		&lt;noscript&gt;&lt;img src="img/cave-low-res.jpg" alt="False Kiva in the Canyonlands"/&gt;&lt;/noscript&gt;
 	&lt;/span&gt;
 	&lt;figcaption&gt;
 		&lt;p&gt;Photo by &lt;a href="http://www.flickr.com/photos/snowpeak/7351510924/"&gt;snowpeak&lt;/a&gt;, licensed under &lt;a href="http://creativecommons.org/licenses/by/2.0/"&gt;Creative Commons&lt;/a&gt;.&lt;/p&gt;

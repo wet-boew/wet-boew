@@ -7,8 +7,8 @@
 (function( $, window, vapour ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
@@ -17,7 +17,7 @@ var selector = ".wb-carousel",
 	$document = vapour.doc,
 	controls = selector + " .prv, " + selector + " .nxt, " + selector + " .plypause",
 
-	/*  
+	/*
 	 * @method onTimerPoke
 	 * @param {jQuery DOM element} $elm The plugin element
 	 */
@@ -49,7 +49,7 @@ var selector = ".wb-carousel",
 		$elm.attr( "data-ctime", _delay );
 	},
 
-	/*  
+	/*
 	 * @method onInit
 	 * @param {jQuery DOM element} $elm The plugin element
 	 */
@@ -69,7 +69,7 @@ var selector = ".wb-carousel",
 		});
 	},
 
-	/*  
+	/*
 	 * @method onShift
 	 * @param {jQuery DOM element} $elm The plugin element
 	 */
@@ -85,7 +85,7 @@ var selector = ".wb-carousel",
 		_items.eq( _next ).removeClass( "out" ).addClass( "in" );
 	},
 
-	/*  
+	/*
 	 * @method onShift
 	 * @param {jQuery DOM element} $elm The plugin element
 	 * @param {integer} shifto The item to shift to
@@ -122,9 +122,9 @@ $document.on( "timerpoke.wb init.wb-carousel shift.wb-carousel", selector, funct
 		onShift( $elm, event );
 		break;
 	}
-	
+
 	/*
-	 * Since we are working with events we want to ensure that we are being passive about our control, 
+	 * Since we are working with events we want to ensure that we are being passive about our control,
 	 * so returning true allows for events to always continue
 	 */
 	return true;
@@ -152,7 +152,7 @@ $document.on( "click", controls, function( event ) {
 	_sldr.attr( "data-ctime", 0 );
 
 	/*
-	 * Since we are working with events we want to ensure that we are being passive about our control, 
+	 * Since we are working with events we want to ensure that we are being passive about our control,
 	 * so returning true allows for events to always continue
 	 */
 	return true;
