@@ -80,7 +80,7 @@ var selector = ".wb-carousel",
 			_shiftto = ( event.shiftto ) ? event.shiftto : 1,
 			_next = _current > _len ? 0 : _current + _shiftto;
 
-		_next = ( _next > _len - 1 || _next < 0 ) ? 0 : _next;
+		_next = ( _next > _len - 1 ) ? 0 : ( _next < 0 ) ? _len - 1 : _next;
 		_items.eq( _current ).removeClass( "in" ).addClass( "out" );
 		_items.eq( _next ).removeClass( "out" ).addClass( "in" );
 	},
@@ -91,7 +91,8 @@ var selector = ".wb-carousel",
 	 * @param {integer} shifto The item to shift to
 	 */
 	onCycle = function( $elm, shifto ) {
-		$elm.trigger( "shift.wb-carousel", {
+		$elm.trigger( {
+			type: "shift.wb-carousel",
 			shiftto: shifto
 		});
 	};
@@ -141,10 +142,10 @@ $document.on( "click", controls, function( event ) {
 
 	switch ( _action ) {
 	case "prv":
-		onCycle( $elm, 1 );
+		onCycle( $elm, -1 );
 		break;
 	case "nxt":
-		onCycle( $elm, -1 );
+		onCycle( $elm, 1 );
 		break;
 	default:
 		_sldr.toggleClass( "stopped" );
