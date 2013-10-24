@@ -2,13 +2,10 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l"expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
-
-// @TODO: Caching object to optimize lookups
-
 /*
 ----- @%lang-eng@ dictionary (il8n) ---
  */
-(function(window) {
+( function( window ) {
 "use strict";
 /* main index */
 var ind = {
@@ -199,25 +196,8 @@ var ind = {
 	"%wb-enable": "@%wb-enable@",
 	/* Template */
 	"%tmpl-signin": "@%tmpl-signin@"
-},
-	i18n = function(key, state, mixin) {
+};
 
-		var truthiness = (typeof key === "string" && key !== "") | // eg. 000 or 001 ie. 0 or 1
-		(typeof state === "string" && state !== "") << 1 | // eg. 000 or 010 ie. 0 or 2
-		(typeof mixin === "string" && mixin !== "") << 2; // eg. 000 or 100 ie. 0 or 4
+window.i18nObj = ind;
 
-		switch (truthiness) {
-			case 1:
-				return ind[key]; // only key was provided.
-			case 3:
-				return ind[key][state]; // key and state were provided.
-			case 7:
-				return ind[key][state].replace("[MIXIN]", mixin); // key, state, and mixin were provided.
-			default:
-				return "";
-		}
-	};
-
-window.i18n = i18n;
-
-}(window));
+})( window );
