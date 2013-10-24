@@ -4,11 +4,12 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET community
  */
+/* globals console */
 (function( $, window, vapour ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
@@ -16,8 +17,8 @@
 var selector = ".wb-menu",
 	$document = vapour.doc,
 
-/*  
- * Lets leverage JS assigment deconstruction to reduce the code output 
+/*
+ * Lets leverage JS assigment deconstruction to reduce the code output
  * @method expand
  * @param {DOM element} element The plugin element
  * @param {boolean} scopeitems ***Description needed***
@@ -31,23 +32,75 @@ expand = function( element, scopeitems ) {
 	return [ _elm.self, _elm.menu, _items, $elm ];
 },
 
-/*  
- * @method onAjaxLoaded
+/*
+ * Lets set some aria states and attributes
+ * @method onInit
  * @param {jQuery DOM element} element The plugin element
  */
-onAjaxLoaded = function( $elm ) {
+onInit = function( $elm ) {
+
+	// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+	window._timer.remove( selector );
+
+	// Lets test to see if we have any
+	if ( $elm.data("ajax-fetch") ) {
+		$document.trigger({
+			type: "ajax-fetch.wb",
+			element: $elm,
+			fetch: $elm.data("ajax-fetch")
+		});
+	}
+
+	//anything else
+},
+/*
+ * Lets set some aria states and attributes
+ * @method drizzleAria
+ * @param {jQuery DOM elements} collection of elements
+ */
+drizzleAria = function( $elements ){
+	var length = $elements.length,
+		_elm, _submenu, i;
+
+	// lets tweak for aria
+	for (i = 0; i <= length; i++) {
+		_elm = $elements.eq( i );
+		_submenu = _elm.siblings( ".sbmnu" );
+
+		_elm.attr({
+			"aria-posinset": (i+1),
+			"aria-setsize": length,
+			"role": "menuitem"
+		});
+
+		// if there is a submenu lets put in the aria for it
+		if ( _submenu.length > 0 ) {
+
+			_elm.attr({
+				"aria-haspopup": "true"
+			});
+
+			_submenu.attr({
+				"aria-expanded": "false",
+				"aria-hidden": "true"
+			});
+
+			// recurse into submenu
+			drizzleAria( _submenu.find( ":discoverable" ) );
+		}
+	}
+},
+/*
+ * @method onAjaxLoaded
+ * @param {jQuery DOM elements} element The plugin element
+ */
+onAjaxLoaded = function( $elm, $ajaxed ) {
 
 	//Some hooks for post transformation
 	// - @data-post-remove : removes the space delimited class for the element. This is more a feature to fight the FOUC
-	var $menu = $elm.find( ".menu :focusable" ),
-		$items = $elm.find( ".item" );
+	var $menu = $ajaxed.find( "[role='menubar'] .item" );
 
-	if ( $elm.has( "[data-post-remove]" ) ) {
-		$elm.removeClass( $elm.data( "post-remove" ) )
-			.removeAttr( "data-post-remove" );
-	}
-
-	$elm.find( ":discoverable" )
+	$ajaxed.find( ":discoverable" )
 		.attr( "tabindex", "-1" )
 		.eq( 0 )
 		.attr( "tabindex", "0" );
@@ -55,14 +108,27 @@ onAjaxLoaded = function( $elm ) {
 	$menu.filter( "[href^='#']" )
 		.append( "<span class='expandicon'></span>" );
 
+	drizzleAria( $menu );
+
+	// Now lets replace the html since we were working off canvas for performance
+	if ( $elm.has( "[data-post-remove]" ) ) {
+		$elm.removeClass( $elm.data( "post-remove" ) )
+			.removeAttr( "data-post-remove" );
+	}
+
+	// replace elements
+	$elm.html( $ajaxed.html() );
+
+	// recalibrate context
 	$elm.data({
 		"self": $elm,
-		"menu": $menu,
-		"items": $items
+		"menu": $elm.find( "[role='menubar'] .item" ),
+		"items": $elm.find( ".sbmnu" )
 	});
+
 },
 
-/*  
+/*
  * @method onSelect
  * @param {jQuery event} event The current event
  */
@@ -70,7 +136,7 @@ onSelect = function( event ) {
 	event.goto.trigger( "focus.wb" );
 },
 
-/*  
+/*
  * @method onIncrement
  * @param {jQuery DOM element} element The plugin element
  * @param {jQuery event} event The current event
@@ -91,7 +157,7 @@ onIncrement = function( $elm, event ) {
 	});
 },
 
-/*  
+/*
  * @method onReset
  * @param {jQuery DOM element} element The plugin element
  */
@@ -100,20 +166,25 @@ onReset = function( $elm ) {
 	$elm.find( ".active" ).removeClass( "active" );
 },
 
-/*  
+/*
  * @method onDisplay
  * @param {jQuery DOM element} element The plugin element
  * @param {jQuery event} event The current event
  */
 onDisplay = function( $elm, event ) {
+	var $item = event.ident;
+
+	// lets reset the menus to ensure no overlap
 	$elm.trigger({
 		type: "reset.wb-menu"
 	});
-	$elm.find( ".menu [href='" + event.ident + "']" ).addClass( "active" );
-	$elm.find( event.ident ).addClass( "open" );
+	// add the open state classes
+	$item.find( ".item" ).addClass( "active" )
+		.end().find( ".sbmnu" )
+		.addClass( "open" );
 },
 
-/*  
+/*
  * @method onHoverFocus
  * @param {jQuery event} event The current event
  */
@@ -122,36 +193,40 @@ onHoverFocus = function( event ) {
 		$menu = _ref[ 1 ],
 		$elm = _ref[ 3 ];
 
-	$menu.trigger( "reset.wb-menu" );
 	if ( $elm.find( ".expandicon" ).length > 0 ) {
 		$menu.trigger({
 			type: "display.wb-menu",
-			ident: $elm.attr( "href" )
+			ident: $elm.parent()
 		});
 	}
 };
 
 // Bind the events of the plugin
-$document.on("ajax-replace-loaded.wb mouseleave focusout select.wb-menu increment.wb-menu reset.wb-menu display.wb-menu", selector, function( event ) {
+$document.on("timerpoke.wb mouseleave focusout select.wb-menu ajax-fetched.wb increment.wb-menu reset.wb-menu display.wb-menu", selector, function( event ) {
 	var eventType = event.type,
 		$elm = $( this );
 
 	switch ( eventType ) {
-	case "ajax-replace-loaded":
+	case "ajax-fetched":
 		event.stopPropagation();
-		onAjaxLoaded( $elm );
+		onAjaxLoaded( $elm, event.pointer );
 		return false;
-	case "mouseleave":
-	case "focusout":
-		$elm.trigger( "reset.wb-menu" );
-		break;
 	case "select":
 		event.stopPropagation();
 		onSelect( event );
 		break;
+	case "timerpoke":
+		event.stopPropagation();
+		onInit( $elm );
+		break;
 	case "increment":
 		event.stopPropagation();
 		onIncrement( $elm, event );
+		break;
+	case "mouseleave":
+	case "focusout":
+		event.stopPropagation();
+		onReset( $elm );
 		break;
 	case "reset":
 		event.stopPropagation();
@@ -164,10 +239,23 @@ $document.on("ajax-replace-loaded.wb mouseleave focusout select.wb-menu incremen
 	}
 
 	/*
-	 * Since we are working with events we want to ensure that we are being passive about our control, 
+	 * Since we are working with events we want to ensure that we are being passive about our control,
 	 * so returning true allows for events to always continue
 	 */
 	return true;
+});
+
+$document.on( "mouseleave focusout", selector, function( event ) {
+
+	var _ref = expand( event.target ),
+		$container = _ref[ 0 ],
+		$elm = _ref[ 3 ];
+
+	event.stopPropagation();
+	if ( $elm === $container ) {
+		console.log ( "ok mouse leaving now" );
+		onReset( $container );
+	}
 });
 
 /*
@@ -282,5 +370,8 @@ $document.on( "keydown", selector + " .item", function( event ) {
 		break;
 	}
 });
+
+// Add the timer poke to initialize the plugin
+window._timer.add( selector );
 
 })( jQuery, window, vapour );
