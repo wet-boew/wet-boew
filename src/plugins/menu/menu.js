@@ -190,15 +190,13 @@ onDisplay = function( $elm, event ) {
  */
 onHoverFocus = function( event ) {
 	var ref = expand( event.target ),
-		$menu = ref[ 1 ],
+		$container = ref[ 0 ],
 		$elm = ref[ 3 ];
 
-	if ( $elm.find( ".expandicon" ).length > 0 ) {
-		$menu.trigger({
+		$container.trigger({
 			type: "display.wb-menu",
 			ident: $elm.parent()
 		});
-	}
 };
 
 // Bind the events of the plugin
@@ -249,7 +247,7 @@ $document.on("timerpoke.wb mouseleave focusout select.wb-menu ajax-fetched.wb in
 /*
  * Menu Keyboard bindings
  */
-$document.on( "mouseover focusin", selector + " .menu :focusable", function( event ) {
+$document.on( "mouseover focusin", selector + " .item", function( event ) {
 	event.stopPropagation();
 	onHoverFocus( event );
 });
