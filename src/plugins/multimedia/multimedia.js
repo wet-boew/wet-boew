@@ -159,7 +159,7 @@ parseXml = function( content ) {
 			parseTime(captionElement.attr("end")) :
 			parseTime(captionElement.attr("dur")) + begin;
 
-		
+
 		captionElement = captionElement.clone();
 		captionElement.find( captionSelector ).detach();
 
@@ -302,7 +302,7 @@ $document.on( "timerpoke.wb", $selector, function() {
 		return $document.trigger({
 			type: "ajax-fetch.wb",
 			element: $( $selector ),
-			fetch: "" + vapour.getPath( "/assets" ) + "/mediacontrol-" + $lang + ".txt"
+			fetch: "" + vapour.getPath( "/assets" ) + "/mediacontrol-" + $lang + ".html"
 		});
 	}
 });
@@ -318,6 +318,7 @@ $document.on( "ajax-fetched.wb", $selector, function( event ) {
 });
 
 $document.on( "init.mediaplayer.wb", $selector, function() {
+
 	var $this = $( this ),
 		$id = $this.attr( "id" ) !== undef ? $this.attr( "id" ) : "wb-mediaplayer-" + ( $seed++ ),
 		$media = $this.children( "audio, video" ).eq( 0 ),
@@ -406,8 +407,9 @@ $document.on( "video.mediaplayer.wb", $selector, function() {
 	return $this.trigger( "renderui.mediaplayer.wb" );
 });
 
-//FIXME: Not sure what was supposed to be going on here
+
 $document.on("audio.mediaplayer.wb", $selector, function() {
+	// Implement audio player
 	var $data, $this, _ref;
 	return _ref = expand(this), $this = _ref[0], $data = _ref[1], _ref;
 });
@@ -418,18 +420,31 @@ $document.on("renderui.mediaplayer.wb", $selector, function() {
 		$data = _ref[ 1 ],
 		$player;
 
-	// FIXME: Where is "tmpl" defined?
+
 	$this.html( window.tmpl( $this.data( "template" ), $data ) );
 	$player = $( "#" + $data.m_id );
 	$data.player = $player.is( "object") ? $player.children( ":first-child" ) : $player.load();
 
+	// Create an adapter for the event management
 	$data.player.on( "durationchange play pause ended volumechange timeupdate captionsloaded captionsloadfailed captionsvisiblechange waiting canplay progress", function( event ) {
-		return $this.trigger( event );
+		$this.trigger( event );
 	});
 
 	this.object = $player.get( 0 );
 	this.player = playerApi;
-	return $this.data( "properties", $data );
+	$this.data( "properties", $data );
+
+	if ( $data.captions === undefined ) {
+		return 1;
+	}
+
+	//captionsUrl = vapour.getUrlParts( $data.captions ).absolute;
+
+	//if (captionsUrl !== window.location.href ) {
+	//	loadCaptionsExternal( $this, captionsUrl );
+	//} else {
+	//	loadCaptionsInternal( $this, captionsUrl );
+	//}
 });
 
 /*
@@ -492,11 +507,12 @@ $document.on("durationchange play pause ended volumechange timeupdate captionslo
 	switch (event.type) {
 	case "play":
 		this.player( "play" );
-		$this.find( ".playpause .glyphicon" )
+		button = $this.find( ".playpause .glyphicon" )
 			.removeClass( "glyphicon-play" )
 			.addClass( "glyphicon-pause" )
-			.end()
-			.attr( "title", button.data( "state-off" ));
+			.parent();
+
+		button.attr( "title", button.data( "state-off" ));
 
 		//TODO: Replace with class?
 		$this.find( ".wb-mm-overlay img" ).css( "visibility", "hidden" );
@@ -505,35 +521,38 @@ $document.on("durationchange play pause ended volumechange timeupdate captionslo
 		break;
 	case "pause":
 		this.player( "pause" );
-		$this.find( ".playpause .glyphicon" )
+		button = $this.find( ".playpause .glyphicon" )
 			.removeClass( "glyphicon-pause" )
 			.addClass( "glyphicon-play" )
-			.end()
-			.attr( "title", button.data( "state-on" ) );
+			.parent();
+
+		button.attr( "title", button.data( "state-on" ) );
 
 		$this.find( ".progress" ).removeClass( "active" );
 		break;
 	case "ended":
-		$this.find( ".playpause .glyphicon" )
+		button = $this.find( ".playpause .glyphicon" )
 			.removeClass( "glyphicon-pause" )
 			.addClass( "glyphicon-play" )
-			.end()
-			.attr( "title", button.data( "state-on" ) );
+			.parent();
+
+		button.attr( "title", button.data( "state-on" ) );
 		$this.find(".wb-mm-overlay").css("visibility", "show" );
 		break;
 	case "volumechange":
 		// TODO: Think can be optimized for the minfier with some ternaries
 		button = $this.find( ".mute .glyphicon" );
 		if ( this.player( "getMuted" ) ) {
-			button.removeClass( "glyphicon-volume-up" )
+			button = button.removeClass( "glyphicon-volume-up" )
 				.addClass( "glyphicon-volume-off" )
-				.end()
-				.attr( "title" , button.data( "state-on" ) );
+				.parent();
+
+			button.attr( "title" , button.data( "state-off" ) );
 		} else {
-			button.removeClass( "glyphicon-volume-off" )
+			button = button.removeClass( "glyphicon-volume-off" )
 				.addClass( "glyphicon-volume-up" )
-				.end()
-				.attr( "title", button.data( "state-off" ) );
+				.parent();
+			button.attr( "title", button.data( "state-on" ) );
 		}
 		break;
 	case "timeupdate":
@@ -543,7 +562,7 @@ $document.on("durationchange play pause ended volumechange timeupdate captionslo
 				Math.round( this.player( "getCurrentTime" ) / this.player( "getDuration" ) * 1000 ) / 10
 			);
 
-		$this.find( ".wb-mm-timeline-current span:not(.wb-invisible)" )
+		$this.find( ".wb-mm-timeline-current span" )
 			.text( formatTime( this.player( "getCurrentTime" ) ) );
 
 		if ( $.data( event.target, "captions" ) !== undef ) {
@@ -562,7 +581,7 @@ $document.on("durationchange play pause ended volumechange timeupdate captionslo
 		break;
 	case "captionsvisiblechange":
 		// TODO: Think can be optimized for the minfier with some ternarie
-		button = $this.find( ".cc .glyphicon" );
+		button = $this.find( ".cc" );
 		if ( this.player( "getCaptionsVisible" ) ) {
 			button.attr( "title", button.data( "state-on" ) )
 				.css( "opacity", "1" );
@@ -572,13 +591,13 @@ $document.on("durationchange play pause ended volumechange timeupdate captionslo
 		}
 	}
 
-	// FIXME: Not sure what should actually be returned here
-	return $document.on( "loadcaptions.mediaplayer.wb", $selector, function() {
-		var $data, $this, _ref;
-		return _ref = expand( this ), $this = _ref[0], $data = _ref[1], _ref;
-	});
+
+	//return $document.on( "loadcaptions.mediaplayer.wb", $selector, function() {
+	//	var $data, $this, _ref;
+	//	return _ref = expand( this ), $this = _ref[0], $data = _ref[1], _ref;
+	//});
 });
 
-return window._timer.add( $selector );
+window._timer.add( $selector );
 
 })( jQuery, window, document, vapour, undefined );
