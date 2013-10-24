@@ -11,19 +11,14 @@
 }
 
 .wb-menu{
-
-	.item{
-		display: none;
-		position: relative;
-		top: 1em;
-		max-height: 0;
-		overflow: hidden;
-		/* Set our transitions up. */
-		transition: max-height 0.8s;
+	.sbmnu {
+		  display: none;
+		  position: relative;
+		  max-height: 0;
+		  overflow: hidden;
 		&.open{
 			display: block;
 			max-height: 1000px;
 		}
 	}
-
 }

@@ -29,4 +29,30 @@
 			}
 		}
 	}
+	.menu {
+		display: table;
+		width: 100%;
+		margin: 0;
+		> li {
+			display: table-cell;
+			padding: 0;
+		}
+		li {
+			a {
+				&:hover, &:focus, &:active {
+					background: #243850;
+				}
+			}
+			li {
+				a {
+					&:hover, &:focus, &:active {
+						background: none;
+					}
+				}
+			}
+		}
+		.expandicon {
+			border-top-color: #bbb;
+		}
+	}
 }
