@@ -58,7 +58,7 @@ formatTime = function( time ) {
 @returns {Float} the number of seconds in time
 */
 parseTime = function( time ) {
-	var p, parts, timeStringPortion, _partLength, seconds;
+	var p, parts, timeStringPortion, partLength, seconds;
 
 	if ( time !== undef ) {
 		if ( time.charAt( time.length - 1 ) === "s" ) {
@@ -69,7 +69,7 @@ parseTime = function( time ) {
 			parts = time.split( ":" ).reverse();
 			seconds = 0;
 
-			for (p = 0, _partLength = parts.length; p < _partLength; p += 1 ) {
+			for (p = 0, partLength = parts.length; p < partLength; p += 1 ) {
 				timeStringPortion = p === 0 ?
 					parseFloat( parts[ p ] ) :
 					parseInt( parts[ p ], 10 );
@@ -81,6 +81,7 @@ parseTime = function( time ) {
 	return -1;
 };
 
+// TODO: Document this function
 expand = function( elm, withPlayer ) {
 	var $this = $( elm ),
 		$data = $this.data( "properties" );
@@ -101,11 +102,11 @@ parseHtml = function( content ) {
 	var captions = [],
 		captionSelector = ".wb-tmtxt",
 		captionElements = content.find( captionSelector ),
-		_len = captionElements.length,
-		_i, captionElement, json, begin, end;
+		len = captionElements.length,
+		i, captionElement, json, begin, end;
 
-	for ( _i = 0; _i !== _len; _i += 1 ) {
-		captionElement = $( captionElements[ _i ] );
+	for ( i = 0; i !== len; i += 1 ) {
+		captionElement = $( captionElements[ i ] );
 		begin = -1;
 		end = -1;
 
@@ -149,11 +150,11 @@ parseXml = function( content ) {
 	var captions = [],
 		captionSelector = "[begin]",
 		captionElements = content.find( captionSelector ),
-		_len = captionElements.length,
-		_i, captionElement, begin, end;
+		len = captionElements.length,
+		i, captionElement, begin, end;
 
-	for ( _i = 0; _i !== _len; _i += 1 ) {
-		captionElement = $( captionElements[ _i ] );
+	for ( i = 0; i !== len; i += 1 ) {
+		captionElement = $( captionElements[ i ] );
 		begin = parseTime( captionElement.attr( "begin" ) );
 		end = captionElement.attr("end") !== undef ?
 			parseTime(captionElement.attr("end")) :
@@ -457,7 +458,7 @@ $document.on("renderui.mediaplayer.wb", $selector, function() {
 		return 1;
 	}
 
-	if (captionsUrl !== window.location.href ) {
+	if ( captionsUrl !== window.location.href ) {
 		loadCaptionsExternal( $player, captionsUrl );
 	} else {
 		loadCaptionsInternal( $player, captionsUrl );
