@@ -1,3 +1,5 @@
+path = require("path")
+
 module.exports = (grunt) ->
 
 	# External tasks
@@ -49,7 +51,7 @@ module.exports = (grunt) ->
 		"test-mocha",
 		"Full build for running tests locally with Grunt Mocha",
 		[
-			"pre-mocha",
+			"pre-mocha"
 			"mocha"
 		]
 	)
@@ -58,9 +60,9 @@ module.exports = (grunt) ->
 		"saucelabs",
 		"Full build for running tests on SauceLabs. Currently only for Travis builds",
 		[
-			"pre-mocha",
-			"connect",
-			"saucelabs-mocha",
+			"pre-mocha"
+			"connect"
+			"saucelabs-mocha"
 		]
 	)
 
@@ -540,17 +542,21 @@ module.exports = (grunt) ->
 			src: "src/js/i18n/formvalid/*.js"
 
 		mocha:
-			all: [
-				"dist/demos/data-picture/data-picture-en.html"
-				"dist/demos/session-timeout/session-timeout-en.html"
-			]
+			all:
+				grunt.file.expand
+					filter: (src) ->
+						grunt.file.exists src.substring(0, src.lastIndexOf(path.sep) + 1) + "test.js"
+				, "dist/demos/**/*.html"
 
 		"saucelabs-mocha":
 			all:
 				options:
-					urls: grunt.file.glob.sync("dist/demos/**/*.{html,html}").map((file) ->
-						"http://127.0.0.1:8000/" + file
-					)
+					urls:
+						grunt.file.expandMapping("dist/demos/**/*.html", "http://127.0.0.1:8000/",
+							filter: (src) ->
+								grunt.file.exists src.substring(0, src.lastIndexOf(path.sep) + 1) + "test.js"
+						).map (paths) ->
+							paths.dest
 					tunnelTimeout: 5
 					build: process.env.TRAVIS_BUILD_NUMBER
 					concurrency: 3
