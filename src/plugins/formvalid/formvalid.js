@@ -50,9 +50,6 @@ var selector = ".wb-formvalid",
 			both: [
 				"site!deps/jquery.validate" + modeJS,
 				"site!deps/additional-methods" + modeJS
-				// TODO: Need more elegant way to do these loads. Shouldn't load at all if English or if language file doesn't exist because complete never happens.
-				//"site!deps/messages_" + lang + modeJS,
-				//"site!deps/methods_" + lang + modeJS
 			],
 			complete: function() {
 				var $form = $elm.find( "form" ),
@@ -236,6 +233,9 @@ var selector = ".wb-formvalid",
 						}
 					}
 				});
+
+				// Tell the i18n file to execute to run any $.validator extends
+				$form.trigger( "formLanguages.wb" );
 			}
 		});
 	};
