@@ -74,7 +74,8 @@
 			// Clear the form and remove error messages on reset
 			$inputs.filter('[type="reset"]').on('click vclick touchstart', function(e) {
 				var summaryContainer,
-					button = e.button;
+					button = e.button,
+					ariaLive = elm.find('.arialive')[0];
 				if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
 					validator.resetForm();
 					summaryContainer = form.find('#' + $errorFormId);
@@ -84,8 +85,8 @@
 					form.find('[aria-invalid="true"]').removeAttr('aria-invalid');
 				}
 				form.find('[aria-invalid="true"]').removeAttr('aria-invalid');
-				if (ariaLive.html().length !== 0) {
-					ariaLive.empty();
+				if (ariaLive.innerHTML.length !== 0) {
+					ariaLive.innerHTML = "";
 				}
 			});
 
