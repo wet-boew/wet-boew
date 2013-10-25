@@ -115,6 +115,8 @@ var selector = ".wb-feeds",
 	parseEntries = function( entries, limit, $elm ) {
 		var cap = ( limit > 0 && limit < entries.length ? limit : entries.length ),
 			result = "",
+			toDateISO = vapour.date.toDateISO,
+			compare = vapour.date.compare,
 			i, sorted, sortedEntry;
 		
 		sorted = entries.sort( function( a, b ) {
@@ -125,87 +127,9 @@ var selector = ".wb-feeds",
 			sortedEntry = sorted[ i ];
 			result += "<li><a href='" + sortedEntry.link + "'>" + sortedEntry.title + "</a>" +
 				( sortedEntry.publishedDate !== "" ? " <span class='feeds-date'>[" +
-				dataISO( sortedEntry.publishedDate, true ) + "]</span>" : "" ) + "</li>";
+				toDateISO( sortedEntry.publishedDate, true ) + "]</span>" : "" ) + "</li>";
 		}
 		return $elm.empty().append( result );
-	},
-
-	/*
-	 * Left-pads a number with zeros.
-	 * @param {number} number The original number to pad.
-	 * @param {number} length The width of the resulting padded number, not the number of zeros to add to the front of the string.
-	 * @return {string} The padded string
-	 */
-	pad = function( number, length ) {
-		var str = String( number );
-		while ( str.length < length ) {
-			str = "0" + str;
-		}
-		return str;
-	},
-	
-	/*
-	 * Converts the date to a date-object. The input can be:
-	 * <ul>
-	 * <li>a Date object: returned without modification.</li>
-	 * <li>an array: Interpreted as [year,month,day]. NOTE: month is 0-11.</li>
-	 * <li>a number: Interpreted as number of milliseconds since 1 Jan 1970 (a timestamp).</li>
-	 * <li>a string: Any format supported by the javascript engine, like 'YYYY/MM/DD', 'MM/DD/YYYY', 'Jan 31 2009' etc.</li>
-	 * <li>an object: Interpreted as an object with year, month and date attributes. **NOTE** month is 0-11.</li>
-	 * </ul>
-	 * @param {Date | number[] | number | string | object} dateValue
-	 * @return {Date | NaN}
-	 */
-	convert =  function( dateValue ) {
-		var dateConstructor = dateValue.constructor;
-		if ( dateConstructor === Date ) {
-			return dateConstructor;
-		} else if ( dateConstructor === Array ) {
-			return new Date( dateValue[ 0 ], dateValue[ 1 ], dateValue[ 2 ] );
-		} else if ( dateConstructor === Number || dateConstructor === String ) {
-			return new Date( dateValue );
-		} else if ( typeof dateValue === "object" ) {
-			return new Date( dateValue.year, dateValue.month, dateValue.date );
-		}
-		return NaN;
-	},
-
-	/*
-	 * Compares two dates (input can be any type supported by the convert function).
-	 * @param {Date | number[] | number | string | object} dateValue1
-	 * @param {Date | number[] | number | string | object} dateValue2
-	 * @return {number | NaN}
-	 * @example returns
-	 * -1 if dateValue1 < dateValue2
-	 * 0 if dateValue1 = dateValue2
-	 * 1 if dateValue1 > dateValue2
-	 * NaN if dateValue1 or dateValue2 is an illegal date
-	 */
-	compare = function( dateValue1, dateValue2 ) {
-		if ( isFinite( dateValue1 = convert( dateValue1 ).valueOf() ) && isFinite( dateValue2 = convert( dateValue2 ).valueOf() ) ) {
-			return ( dateValue1 > dateValue2 ) - ( dateValue1 < dateValue2 );
-		}
-		return NaN;
-	},
-
-	/*
-	 * Cross-browser safe way of translating a date to ISO format
-	 * @param {Date | number[] | number | string | object} dateValue
-	 * @param {boolean} withTime Optional. Whether to include the time in the result, or just the date. False if blank.
-	 * @return {string}
-	 * @example
-	 * dataISO( new Date() )
-	 * returns "2012-04-27"
-	 * dataISO( new Date(), true )
-	 * returns "2012-04-27 13:46"
-	 */
-	dataISO = function( dateValue, withTime ) {
-		var date = convert( dateValue );
-		if ( withTime ) {
-			return date.getFullYear() + "-" + pad( date.getMonth() + 1, 2, "0" ) + "-" + pad( date.getDate(), 2, "0" ) +
-				" " + pad( date.getHours(), 2, "0" ) + ":" + pad( date.getMinutes(), 2, "0" );
-		}
-		return date.getFullYear() + "-" + pad( date.getMonth() + 1, 2, "0" ) + "-" + pad( date.getDate(), 2, "0" );
 	};
 
 $document.on( "timerpoke.wb", selector, function() {

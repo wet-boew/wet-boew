@@ -5,7 +5,7 @@
  * @author WET Community
  * Credits: http://kaibun.net/blog/2013/04/19/a-fully-fledged-coffeescript-boilerplate-for-jquery-plugins/
  */
-(function( $, window, document, undef ) {
+(function( $, undef ) {
 	vapour.getData = function( element, data_name ) {
 		var $element, dataAttr, dataObj;
 
@@ -24,7 +24,7 @@
 		$.data( element, data_name, dataObj );
 		return dataObj;
 	};
-})( jQuery, vapour );
+})( jQuery );
 
 (function( vapour ) {
 	"use strict";
@@ -34,10 +34,122 @@
 	vapour.jqEscape = function( selector ) {
 		return selector.replace( /([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, "\\$1" );
 	};
-	
+
+	/*
+	 * @namespace vapour.string
+	 */
+	vapour.string = {
+		/*
+		 * Left-pads a number with zeros.
+		 * @memberof vapour.string
+		 * @param {number} number The original number to pad.
+		 * @param {number} length The width of the resulting padded number, not the number of zeros to add to the front of the string.
+		 * @return {string} The padded string
+		 */
+		pad: function( number, length ) {
+			var str = String( number );
+			while ( str.length < length ) {
+				str = "0" + str;
+			}
+			return str;
+		}
+	};
+
+	/*
+	 * A suite of date related functions for easier parsing of dates
+	 * @namespace vapour.date
+	 */
+	vapour.date = {
+		/*
+		 * Converts the date to a date-object. The input can be:
+		 * <ul>
+		 * <li>a Date object: returned without modification.</li>
+		 * <li>an array: Interpreted as [year,month,day]. NOTE: month is 0-11.</li>
+		 * <li>a number: Interpreted as number of milliseconds since 1 Jan 1970 (a timestamp).</li>
+		 * <li>a string: Any format supported by the javascript engine, like 'YYYY/MM/DD', 'MM/DD/YYYY', 'Jan 31 2009' etc.</li>
+		 * <li>an object: Interpreted as an object with year, month and date attributes. **NOTE** month is 0-11.</li>
+		 * </ul>
+		 * @memberof vapour.date
+		 * @param {Date | number[] | number | string | object} dateValue
+		 * @return {Date | NaN}
+		 */
+		convert: function( dateValue ) {
+			var dateConstructor = dateValue.constructor;
+
+			switch ( dateConstructor ) {
+			case Date:
+				return dateConstructor;
+			case Array:
+				return new Date( dateValue[ 0 ], dateValue[ 1 ], dateValue[ 2 ] );
+			case Number:
+			case String:
+				return new Date( dateValue );
+			default:
+				return typeof dateValue === "object" ? new Date( dateValue.year, dateValue.month, dateValue.date ) : NaN;
+			}
+		},
+
+		/*
+		 * Compares two dates (input can be any type supported by the convert function).
+		 * @memberof vapour.date
+		 * @param {Date | number[] | number | string | object} dateValue1
+		 * @param {Date | number[] | number | string | object} dateValue2
+		 * @return {number | NaN}
+		 * @example returns
+		 * -1 if dateValue1 < dateValue2
+		 * 0 if dateValue1 = dateValue2
+		 * 1 if dateValue1 > dateValue2
+		 * NaN if dateValue1 or dateValue2 is an illegal date
+		 */
+		compare: function( dateValue1, dateValue2 ) {
+			var convert = vapour.date.convert;
+
+			if ( isFinite( dateValue1 = convert( dateValue1 ).valueOf() ) && isFinite( dateValue2 = convert( dateValue2 ).valueOf() ) ) {
+				return ( dateValue1 > dateValue2 ) - ( dateValue1 < dateValue2 );
+			}
+			return NaN;
+		},
+
+		/*
+		 * Cross-browser safe way of translating a date to ISO format
+		 * @memberof vapour.date
+		 * @param {Date | number[] | number | string | object} dateValue
+		 * @param {boolean} withTime Optional. Whether to include the time in the result, or just the date. False if blank.
+		 * @return {string}
+		 * @example
+		 * toDateISO( new Date() )
+		 * returns "2012-04-27"
+		 * toDateISO( new Date(), true )
+		 * returns "2012-04-27 13:46"
+		 */
+		toDateISO: function( dateValue, withTime ) {
+			var date = vapour.date.convert( dateValue ),
+				pad = vapour.string.pad;
+
+			return date.getFullYear() + "-" + pad( date.getMonth() + 1, 2, "0" ) + "-" + pad( date.getDate(), 2, "0" ) +
+				( withTime ? " " + pad( date.getHours(), 2, "0" ) + ":" + pad( date.getMinutes(), 2, "0" ) : "" );
+		},
+
+		/*
+		 * Cross-browser safe way of creating a date object from a date string in ISO format
+		 * @memberof vapour.date
+		 * @param {string} dateISO Date string in ISO format
+		 * @return {Date}
+		 */
+		fromDateISO: function ( dateISO ) {
+			var date = null;
+
+			if ( dateISO && dateISO.match( /\d{4}-\d{2}-\d{2}/ ) ) {
+				date = new Date();
+				date.setFullYear( dateISO.substr( 0, 4 ), dateISO.substr( 5, 2 ) - 1, dateISO.substr( 8, 2 ) - 1 );
+			}
+			return date;
+		}
+	};
+
 })( vapour );
 
-(function( $, window, document, undef ) {
+(function( $, undef ) {
 	"use strict";
 	
 	var methods,
@@ -95,7 +207,7 @@
 		}
 	};
 
-})( jQuery, window, document );
+})( jQuery );
 
 /*
 :focusable and :tabable jQuery helper expressions - https://github.com/jquery/jquery-ui/blob/24756a978a977d7abbef5e5bce403837a01d964f/ui/jquery.ui.core.js
@@ -172,7 +284,7 @@ Peformant micro templater
 @credit: https://github.com/premasagar/tim/blob/master/tinytim.js
 @todo: caching
 */
-(function ( $, window, undef ) {
+(function ( window, undef ) {
 	"use strict";
 	var tmpl = (function () {
 		var start = "{{",
@@ -203,4 +315,4 @@ Peformant micro templater
 	
 	window.tmpl = tmpl;
 
-})( jQuery, window );
+})( window );
