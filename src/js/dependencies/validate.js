@@ -719,7 +719,7 @@ $.extend($.validator, {
 		errorsFor: function( element ) {
 			var name = this.idOrName(element);
 			return this.errors().filter(function() {
-				return $(this).attr("for") === name;
+				return this.getAttribute("for") === name || this.parentNode.getAttribute("for") === name;
 			});
 		},
 
