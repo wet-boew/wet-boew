@@ -39,11 +39,10 @@
 				lang = _pe.get_language(vlang, _pe.fn.formvalid.languages, '_'),
 				mthdlang = _pe.get_language(vlang, _pe.fn.formvalid.methods, '_'),
 				liblocation = _pe.add.liblocation,
-				suffixExt = _pe.suffix + '.js',
-				ariaLive = $('<div class="arialive wb-invisible" aria-live="polite" aria-relevant="all"></div>');
+				suffixExt = _pe.suffix + '.js';
 
 			// Append the aria-live region (for provide message updates to screen readers)
-			elm.append(ariaLive);
+			elm.append('<div class="arialive wb-invisible" aria-live="polite" aria-relevant="all"></div>');
 
 			// Load different language strings if page is not in English
 			if (lang !== null) {
@@ -146,8 +145,9 @@
 						prefixStart = '<span class="prefix">' + _pe.dic.get('%error') + '&#160;',
 						prefixEnd = _pe.dic.get('%colon') + ' </span>',
 						separator = _pe.dic.get('%hyphen'),
+						ariaLive = elm.find('.arialive')[0],
 						summary,
-						key;
+						key, label, labelString;
 
 					form.find('[aria-invalid="true"]').removeAttr('aria-invalid');
 					if (errors.length !== 0) {
@@ -197,12 +197,19 @@
 								}
 							}
 							if (i !== 0) {
-								string = errors.filter('[for=' + key + ']')[0].innerHTML;
-								if (string !== ariaLive.html()) {
-									ariaLive.html(string);
+								len = errors.length;
+								for (i = 0; i !== len; i += 1) {
+									label = errors[i].parentNode;
+									if (label.getAttribute("for") === key) {
+										labelString = label.innerHTML;
+										if (labelString !== ariaLive.innerHTML) {
+											ariaLive.innerHTML = labelString;
+										}
+										break;
+									}
 								}
-							} else if (ariaLive.html().length !== 0) {
-								ariaLive.empty();
+							} else if (ariaLive.innerHTML.length !== 0) {
+								ariaLive.innerHTML = "";
 							}
 						}
 
@@ -226,8 +233,8 @@
 						submitted = false;
 					} else {
 						// Update the aria-live region as necessary
-						if (ariaLive.html().length !== 0) {
-							ariaLive.empty();
+						if (ariaLive.innerHTML.length !== 0) {
+							ariaLive.innerHTML = "";
 						}
 						summaryContainer.detach();
 					}
