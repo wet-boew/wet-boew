@@ -105,7 +105,7 @@ parseHtml = function( content ) {
 		_i, captionElement, json, begin, end;
 
 	for ( _i = 0; _i !== _len; _i += 1 ) {
-		captionElement = captionElements[ _i ];
+		captionElement = $( captionElements[ _i ] );
 		begin = -1;
 		end = -1;
 
@@ -153,7 +153,7 @@ parseXml = function( content ) {
 		_i, captionElement, begin, end;
 
 	for ( _i = 0; _i !== _len; _i += 1 ) {
-		captionElement = captionElements[ _i ];
+		captionElement = $( captionElements[ _i ] );
 		begin = parseTime( captionElement.attr( "begin" ) );
 		end = captionElement.attr("end") !== undef ?
 			parseTime(captionElement.attr("end")) :
@@ -163,7 +163,7 @@ parseXml = function( content ) {
 		captionElement = captionElement.clone();
 		captionElement.find( captionSelector ).detach();
 
-		return captions[ captions.length ] = {
+		captions[ captions.length ] = {
 			text: captionElement.html(),
 			begin: begin,
 			end: end
@@ -265,14 +265,14 @@ playerApi = function( fn, args ) {
 			}
 			break;
 		case "getCaptionsVisible":
-			return $( this ).find( ".wb-mm-captionsarea" ).is( ":visible" );
+			return $( this ).find( ".wb-mm-captionsarea" ).hasClass( "on" );
 		case "setCaptionsVisible":
 			$this = $( this );
 			captionsArea = $this.find( ".wb-mm-captionsarea" );
 			if ( args ) {
-				captionsArea.show();
+				captionsArea.addClass("on");
 			} else {
-				captionsArea.hide();
+				captionsArea.removeClass("on");
 			}
 			return $this.trigger( "captionsvisiblechange.mediaplayer.wb" );
 		case "setPreviousTime":
@@ -307,6 +307,7 @@ $document.on( "timerpoke.wb", $selector, function() {
 			pause: i18n( "%pause" ),
 			cc_on: i18n( "%closed-caption", "enable" ),
 			cc_off: i18n( "%closed-caption", "disable"),
+			cc_error: i18n ( "%closed-caption-error" ),
 			mute_on: i18n( "%mute", "enable"),
 			mute_off: i18n( "%mute", "disable"),
 			duration: i18n( "%duration"),
@@ -368,6 +369,7 @@ $document.on( "init.mediaplayer.wb", $selector, function() {
 	}
 
 	// FIXME: This is unreachable
+	// Where does this come from?
 	return $.error( "[web-boew] Mediaplayer :: error - mp003 :: Cannot play listed media" );
 });
 
@@ -424,7 +426,6 @@ $document.on( "video.mediaplayer.wb", $selector, function() {
 	return $this.trigger( "renderui.mediaplayer.wb" );
 });
 
-
 $document.on("audio.mediaplayer.wb", $selector, function() {
 	// Implement audio player
 	var $data, $this, _ref;
@@ -435,7 +436,8 @@ $document.on("renderui.mediaplayer.wb", $selector, function() {
 	var _ref = expand( this ),
 		$this = _ref[ 0 ],
 		$data = _ref[ 1 ],
-		$player;
+		$player,
+		captionsUrl = vapour.getUrlParts( $data.captions ).absolute;
 
 
 	$this.html( window.tmpl( $this.data( "template" ), $data ) );
@@ -455,13 +457,11 @@ $document.on("renderui.mediaplayer.wb", $selector, function() {
 		return 1;
 	}
 
-	//captionsUrl = vapour.getUrlParts( $data.captions ).absolute;
-
-	//if (captionsUrl !== window.location.href ) {
-	//	loadCaptionsExternal( $this, captionsUrl );
-	//} else {
-	//	loadCaptionsInternal( $this, captionsUrl );
-	//}
+	if (captionsUrl !== window.location.href ) {
+		loadCaptionsExternal( $player, captionsUrl );
+	} else {
+		loadCaptionsInternal( $player, captionsUrl );
+	}
 });
 
 /*
@@ -517,7 +517,7 @@ $document.on( "keydown", $selector, function( event ) {
 	return false;
 });
 
-$document.on("durationchange play pause ended volumechange timeupdate captionsloaded captionsloadfailed captionsvisiblechange waiting canplay progress", $selector, function( event ) {
+$document.on("durationchange play pause ended volumechange timeupdate captionsloaded.mediaplayer.wb captionsloadfailed.mediaplayer.wb captionsvisiblechange waiting canplay progress", $selector, function( event ) {
 	var button,
 		$this = $( this );
 
@@ -594,7 +594,7 @@ $document.on("durationchange play pause ended volumechange timeupdate captionslo
 		$.data( event.target, "captions", event.captions );
 		break;
 	case "captionsloadfailed":
-		$this.find( ".wb-mm-captionsarea" ).append( "<p>ERROR: WB0342</p>" );
+		$this.find( ".wb-mm-captionsarea" ).append( "<p>" + i18nText.cc_error + "</p>" );
 		break;
 	case "captionsvisiblechange":
 		// TODO: Think can be optimized for the minfier with some ternarie
@@ -607,12 +607,6 @@ $document.on("durationchange play pause ended volumechange timeupdate captionslo
 				.css( "opacity", ".5" );
 		}
 	}
-
-
-	//return $document.on( "loadcaptions.mediaplayer.wb", $selector, function() {
-	//	var $data, $this, _ref;
-	//	return _ref = expand( this ), $this = _ref[0], $data = _ref[1], _ref;
-	//});
 });
 
 window._timer.add( $selector );
