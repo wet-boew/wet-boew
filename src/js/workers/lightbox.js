@@ -174,16 +174,19 @@
 				data = _pe.data.getData($link, 'wet-boew-lightbox'),
 				inline = {inline: isInline, rel: groupRel};
 
-			$link.colorbox($.extend(opts,
-				(isInline || isGroup || dataTitle) ?
-					(dataTitle && dataTitle.innerHTML.length > 0) ?
+			opts = $.extend(opts,
+				(isInline || isGroup || dataTitle ?
+					(dataTitle && dataTitle.innerHTML.length > 0 ?
 						$.extend({title: dataTitle.innerHTML}, inline):
-						inline :
+						inline
+					) :
 					{}
-				), (data !== null) ?
-					{data: data.postData}:
-					{}
-			);
+				), (data !== null ?
+						{data: data.postData}:
+						{}
+					)
+				);
+			$link.colorbox(opts);
 		}
 	};
 	window.pe = _pe;
