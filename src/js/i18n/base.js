@@ -164,7 +164,8 @@
 		'%table-mention': '@%table-mention@',
 		'%table-following': '@%table-following@',
 		/* Session timeout */
-		'%st-timeout-msg': '@%st-timeout-msg@',
+		'%st-timeout-msg-bgn': '@%st-timeout-msg-bgn@',
+		'%st-timeout-msg-end': '@%st-timeout-msg-end@',
 		'%st-msgbox-title': '@%st-msgbox-title@',
 		'%st-already-timeout-msg': '@%st-already-timeout-msg@',
 		/* Toggle details */
