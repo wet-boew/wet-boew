@@ -79,12 +79,12 @@ module.exports = (grunt) ->
 		"js",
 		"INTERNAL: Copies all third party JS to the dist folder",
 		[
-			"copy:jquery",
-			"copy:polyfills",
-			"copy:deps",
-			"copy:jsAssets",
-			"concat",
+			"copy:jquery"
+			"copy:polyfills"
+			"copy:deps"
+			"copy:jsAssets"
 			"i18n"
+			"concat"
 		]
 	)
 
@@ -209,6 +209,38 @@ module.exports = (grunt) ->
 				]
 				dest: "dist/js/ie8-vapour.js"
 
+			i18n:
+				options:
+					process: ( src, filepath ) ->
+						lang = filepath.replace "dist/js/i18n/", ""
+						# jQuery validation uses an underscore for locals
+						lang = lang.replace "_", "-"
+						validationPath = "lib/jquery.validation/localization/"
+
+						# Check and append message file
+						messagesPath = validationPath + "messages_" + lang
+						messages = if grunt.file.exists messagesPath then grunt.file.read( messagesPath ) else ""
+
+						# Check and append method file
+						methodsPath = validationPath + "methods_" + lang
+						methods = if grunt.file.exists methodsPath then grunt.file.read( methodsPath ) else ""
+
+						if methods != "" or messages != ""
+							src += "\nvapour.doc.one( \"formLanguages.wb\", function() {\n"
+							src += messages
+							src += "\n"
+							src += methods
+							src += "\n});"
+
+						return src
+
+				cwd: "dist/js/i18n"
+				src: [
+					"*.js"
+					"!*.min.js"
+				]
+				dest: "dist/js/i18n"
+				expand: true
 
 		# Builds the demos
 		assemble:
