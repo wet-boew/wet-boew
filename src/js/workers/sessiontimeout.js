@@ -31,7 +31,8 @@
 				timeParse,
 				getExpireTime,
 				alreadyTimeoutMsg = _pe.dic.get('%st-already-timeout-msg'),
-				timeoutMsg = _pe.dic.get('%st-timeout-msg'),
+				timeoutMsgBegin = _pe.dic.get('%st-timeout-msg-bgn'),
+				timeoutMsgEnd = _pe.dic.get('%st-timeout-msg-end'),
 				lastActivity,
 				lastAjaxCall = 0;
 
@@ -39,7 +40,7 @@
 			opts = {
 				ajaxLimiter: 200000,		// default period of 2 minutes (ajax calls happen only once during this period)
 				inactivity: 1200000,		// default inactivity period 20 minutes
-				reactionTime: 30000,		// default confirmation period of 30 seconds
+				reactionTime: 180000,		// default confirmation period of 3 minutes
 				sessionalive: 1200000,		// default session alive period 20 minutes
 				logouturl: './',			// can't really set a default logout URL
 				refreshOnClick: true,		// refresh session if user clicks on the page
@@ -89,12 +90,13 @@
 
 			// code to display the alert message
 			displayTimeoutMessage = function () {
-				var expireTime = getExpireTime(),
+				var expireTime = getExpireTime(opts.reactionTime),
+					timeoutMsg = timeoutMsgBegin.replace('#min#', expireTime.minutes).replace('#sec#', expireTime.seconds) + ' ' + timeoutMsgEnd,
 					$where_was_i = document.activeElement, // Grab where the focus in the page was BEFORE the modal dialog appears
 					result;
 
 				$(document.body).append(overLay);
-				result = confirm(timeoutMsg.replace('#expireTime#', expireTime));
+				result = confirm(timeoutMsg);
 				$where_was_i.focus();
 				$('.jqmOverlay').detach();
 				return result;
@@ -144,24 +146,20 @@
 				}
 			};
 
-			getExpireTime = function () {
-				var expire = new Date(getCurrentTimeMs() + opts.reactionTime),
-					hours = expire.getHours(),
-					minutes = expire.getMinutes(),
-					seconds = expire.getSeconds(),
-					timeformat = hours < 12 ? ' AM' : ' PM';
+			/*
+			 * Converts a millisecond value into minutes and seconds
+			 * @function getExpireTime
+			 * @param {integer} milliseconds The time value in milliseconds
+			 * @returns {Object} An object with a seconds and minutes property
+			 */
+			getExpireTime = function( milliseconds ) {
+				var time = { minutes: "", seconds: "" };
 
-				hours = hours % 12;
-				if (hours === 0) {
-					hours = 12;
+				if ( milliseconds != null ) {
+					time.minutes = parseInt( ( milliseconds / ( 1000 * 60 ) ) % 60, 10 );
+					time.seconds = parseInt( ( milliseconds / 1000 ) % 60, 10 );
 				}
-
-				// Add a zero if needed in the time
-				hours = hours < 10 ? '0' + hours : hours;
-				minutes = minutes < 10 ? '0' + minutes : minutes;
-				seconds = seconds < 10 ? '0' + seconds : seconds;
-
-				return hours + ':' + minutes + ':' + seconds + timeformat;
+				return time;
 			};
 
 			start_liveTimeout();
