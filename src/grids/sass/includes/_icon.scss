@@ -50,6 +50,14 @@ $downloadable-file-type-list: (psd, zip, egret, doc, pdf, xls, rtf, pot, ppt, pp
 // Adds icon to all external links that are outside the header or footer
 [rel="external"] {
 	background: url(../images/wb-icon/external.png) 100% 0 no-repeat;
+	&[href^='mailto:'] {
+		&:not(.wb-icon-none) {
+			@extend %grids-icon-external-mailto;
+			&.button {
+				@extend %grid-icon-external-button-background;
+			}
+		}
+	}
 	@each $downloadable-file-type in $downloadable-file-type-list {
 		&[href$='.#{$downloadable-file-type}'] {
 			&:not(.wb-icon-none) {
@@ -74,10 +82,21 @@ $downloadable-file-type-list: (psd, zip, egret, doc, pdf, xls, rtf, pot, ppt, pp
 	}
 }
 
+%grids-icon-external-mailto {
+	background-image: url(../images/wb-icon/mail.png), url(../images/wb-icon/external.png);
+	@extend %grids-icon-external-combo;
+}
+
 %grids-icon-external-download {
 	background-image: url(../images/wb-icon/drive-download.png), url(../images/wb-icon/external.png);
-	background-repeat: no-repeat;
-	background-position: 0 100%, 100% 0;
+	@extend %grids-icon-external-combo;
+}
+
+%grids-icon-external-combo {
+	background: {
+		repeat: no-repeat;
+		position: 0 100%, 100% 0;
+	}
 }
 
 .wb-icon-none {
