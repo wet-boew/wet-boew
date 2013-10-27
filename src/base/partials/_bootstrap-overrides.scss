@@ -3,7 +3,319 @@
   @title: Bootstrap overrides for WET-BOEW
  */
 
-// Links
+/*
+ *	Font size -- Reset base font size to 16px as required by the Technical
+ *	specifications for the Web and mobile presence.
+ */
+
+
+// variables.less
+
+$font-size-base: 16px;
+$font-size-large: ceil($font-size-base * 1.25);
+$font-size-small: ceil($font-size-base * 0.85);
+
+$screen-sm: 768px;
+
+$padding-large-vertical: 10px;
+$padding-large-horizontal: 16px;
+$line-height-large: 1.33;
+$border-radius-large: 6px;
+$input-height-large: (floor($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2);
+
+$padding-small-vertical: 5px;
+$padding-small-horizontal: 10px;
+$line-height-small: 1.5;
+$border-radius-small: 3px;
+$input-height-small: (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2);
+
+
+// mixins.less
+
+@mixin border-right-radius($radius) {
+	border-bottom-right-radius: $radius;
+	border-top-right-radius: $radius;
+}
+
+@mixin border-left-radius($radius) {
+	border-bottom-left-radius: $radius;
+	border-top-left-radius: $radius;
+}
+
+@mixin button-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
+	padding: $padding-vertical $padding-horizontal;
+	font-size: $font-size;
+	line-height: $line-height;
+	border-radius: $border-radius;
+}
+
+@mixin input-size($input-height, $padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
+	height: $input-height;
+	padding: $padding-vertical $padding-horizontal;
+	font-size: $font-size;
+	line-height: $line-height;
+	border-radius: $border-radius;
+	// The following cannot be accomplished using SASS and has been recreated below
+	/*select& {
+		height: $input-height;
+		line-height: $input-height;
+	}
+	textarea& {
+		height: auto;
+	}*/
+}
+
+@mixin pagination-size($padding-vertical, $padding-horizontal, $font-size, $border-radius) {
+	> {
+		li {
+			> {
+				a, span {
+					padding: $padding-vertical $padding-horizontal;
+					font-size: $font-size;
+				}
+			}
+			&:first-child {
+				> {
+					a, span {
+						@include border-left-radius($border-radius);
+					}
+				}
+			}
+			&:last-child {
+				> {
+					a, span {
+						@include border-right-radius($border-radius);
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// badges.less
+
+.badge {
+	font-size: $font-size-small;
+}
+
+
+// button.less
+
+.btn {
+	font-size: $font-size-base;
+}
+	
+.btn-lg {
+	@include button-size($padding-large-vertical, $padding-large-horizontal, $font-size-large, $line-height-large, $border-radius-large);
+}
+
+.btn-sm, .btn-xs {
+	@include button-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $border-radius-small);
+}
+
+
+// close.less
+
+.close {
+	font-size: ($font-size-base * 1.5);
+}
+
+
+// code.less
+
+pre {
+	font-size: ($font-size-base - 1);
+}
+
+
+// dropdown.less
+
+.dropdown-menu {
+	font-size: $font-size-base;
+}
+
+.dropdown-header {
+	font-size: $font-size-small;
+}
+
+
+// forms.less
+
+legend {
+	font-size: ($font-size-base * 1.5);
+}
+
+.form-control {
+	font-size: $font-size-base;
+}
+
+.input-sm {
+	@include input-size($input-height-small, $padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $border-radius-small);
+}
+
+select.input-sm {
+	height: $input-height-small;
+	line-height: $input-height-small;
+}
+
+textarea.input-sm {
+	height: auto;
+}
+
+.input-lg {
+	@include input-size($input-height-large, $padding-large-vertical, $padding-large-horizontal, $font-size-large, $line-height-large, $border-radius-large);
+}
+
+select.input-lg {
+	height: $input-height-large;
+	line-height: $input-height-large;
+}
+
+textarea.input-lg {
+	height: auto;
+}
+
+
+// input-groups.less
+
+.input-group-addon {
+	font-size: $font-size-base;
+	&.input-sm {
+		padding: $padding-small-vertical $padding-small-horizontal;
+		font-size: $font-size-small;
+		border-radius: $border-radius-small;
+	}
+	&.input-lg {
+		padding: $padding-large-vertical $padding-large-horizontal;
+		font-size: $font-size-large;
+		border-radius: $border-radius-large;
+	}
+}
+
+
+// jumbotron.less
+
+.jumbotron {
+	font-size: ($font-size-base * 1.5);
+}
+
+@media screen and (min-width: $screen-sm) {
+	h1 {
+		font-size: ($font-size-base * 4.5);
+	}
+}
+
+
+// navbar.less
+
+.navbar-brand {
+	font-size: $font-size-large;
+}
+
+
+// pagination.less
+
+.pagination-lg {
+	@include pagination-size($padding-large-vertical, $padding-large-horizontal, $font-size-large, $border-radius-large);
+}
+
+.pagination-sm {
+	@include pagination-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $border-radius-small);
+}
+
+
+// panels.less
+
+.panel-title {
+	font-size: ceil($font-size-base * 1.125);
+}
+
+
+// popovers.less
+
+.popover-title {
+	font-size: $font-size-base;
+}
+
+
+// progress-bars.less
+
+.progress-bar {
+	font-size: $font-size-small;
+}
+
+
+// scaffolding.less
+
+body {
+	font-size: $font-size-base;
+}
+
+
+// tooltip.less
+
+.tooltip {
+	font-size: $font-size-small;
+}
+
+
+// type.less
+
+.lead {
+	font-size: ($font-size-base * 1.15);
+
+	@media (min-width: $screen-sm) {
+		font-size: ($font-size-base * 1.5);
+	}
+}
+
+h1, .h1 {
+	font-size: floor($font-size-base * 2.60);
+}
+
+h2, .h2 {
+	font-size: floor($font-size-base * 2.15);
+}
+
+h3, .h3 {
+	font-size: ceil($font-size-base * 1.70);
+}
+
+h4, .h4 {
+	font-size: ceil($font-size-base * 1.25);
+}
+
+h5, .h5 {
+	font-size: $font-size-base;
+}
+
+h6, .h6 {
+	font-size: ceil($font-size-base * 0.85);
+}
+
+h1 small, .h1 small {
+	font-size: ceil($font-size-base * 1.70);
+}
+
+h2 small, .h2 small {
+	font-size: ceil($font-size-base * 1.25);
+}
+
+h3 small, .h3 small,
+h4 small, .h4 small {
+	font-size: $font-size-base;
+}
+
+blockquote {
+	p {
+		font-size: ($font-size-base * 1.25);
+	}
+}
+
+/*
+ *	Links
+ */
 
 a {
 	text-decoration: underline;		// re-enable underlining
