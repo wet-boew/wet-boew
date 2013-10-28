@@ -1,0 +1,33 @@
+---
+title: Correctif «&#160;input type="range"&#160;» (barre coulissante)
+language: fr
+en: slider
+---
+<div>
+	<p>Utilisez les attributs suivants pour spécifier les restrictions:</p>
+	<ul>
+		<li>max - spécifie la valeur maximale autorisée</li>
+		<li>min - spécifie la valeur minimale autorisée</li>
+		<li>step - spécifie la valeur d'intervalles (augmentations)</li>
+		<li>value - spécifie la valeur par défaut</li>
+	</ul>
+</div>
+
+<div class="wet-boew-prettify all-pre">
+	<section>
+		<h3>Étendue&#160;: 0 à 100 avec les augmentations de 1 <span id="html5shim-1-out"></span></h3>
+		<p><input name="html5shim-1" id="html5shim-1" type="range" min="0" max="100" step="1" title="Étendue&#160;: 0 à 100 avec les augmentations de 10" value="50" onchange="document.getElementById('html5shim-1-out').innerHTML = '(Valeur actuelle&#160;: ' + this.value + ')'"></p>
+	</section>
+	<section>
+		<h3>Code</h3>
+		<pre><code>&lt;input name="html5shim-1" id="html5shim-1" type="range" min="0" max="100" step="1" title="Étendue&#160;: 0 à 100 avec les augmentations de 10" value="50" onchange="document.getElementById('html5shim-1-out').innerHTML = '(Valeur actuelle&#160;: ' + this.value + ')'" /&gt;</code></pre>
+	</section>
+	<section>
+		<h3>Étendue&#160;: 20 à 50 avec les augmentations de 10 <span id="html5shim-2-out"></span></h3>
+		<p><input name="html5shim-2" id="html5shim-2" type="range" min="20" max="50" step="10" title="Étendue&#160;: 20 à 50 avec les augmentations de 10" value="20" onchange="document.getElementById('html5shim-2-out').innerHTML = '(Valeur actuelle&#160;: ' + this.value + ')'"></p>
+	</section>
+	<section>
+		<h3>Code</h3>
+		<pre><code>&lt;input name="html5shim-2" id="html5shim-2"  type="range" min="20" max="50" step="10" title="Étendue&#160;: 20 à 50 avec les augmentations de 10" value="20" onchange="document.getElementById('html5shim-2-out').innerHTML = '(Valeur actuelle&#160;: ' + this.value + ')'" /&gt;</code></pre>
+	</section>
+</div>

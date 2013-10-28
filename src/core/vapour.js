@@ -319,7 +319,10 @@ window.Modernizr.load([
 		]
 	}, {
 		test: Modernizr.inputtypes.range,
-		nope: "plyfll!slider.min.js"
+		nope: [
+			"plyfll!slider.min.js",
+			"plyfll!slider.min.css"
+		]
 	}, {
 		test: Modernizr.progress,
 		nope: [
@@ -328,7 +331,10 @@ window.Modernizr.load([
 		]
 	}, {
 		test: Modernizr.meter,
-		nope: "plyfll!meter.min.js"
+		nope: [
+			"plyfll!meter.min.js",
+			"plyfll!meter.min.css"
+		]
 	}, {
 		test: Modernizr.touch,
 		yep: "plyfll!mobile.min.js",
