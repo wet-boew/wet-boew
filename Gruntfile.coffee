@@ -503,14 +503,18 @@ module.exports = (grunt) ->
 					"magnific-popup/dist/jquery.magnific-popup.js"
 					"google-code-prettify/src/*.js"
 					"DataTables/media/js/jquery.dataTables.js"
+					"xregexp/src/xregexp.js"
 				]
 				dest: "dist/js/deps"
 				expand: true
 				flatten: true
 
 			jsAssets:
-				cwd: "src/plugins"
-				src: "**/assets/*"
+				cwd: "src"
+				src: [
+					"plugins/**/assets/*"
+					"polyfills/**/assets/*"
+				]
 				dest: "dist/js/assets"
 				expand: true
 				flatten: true
