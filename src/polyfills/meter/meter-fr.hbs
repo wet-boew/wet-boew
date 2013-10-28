@@ -1,0 +1,59 @@
+---
+title: Correctif «&#160;meter&#160;» (compteur)
+language: fr
+en: meter
+---
+<p>La description qui est inclus dans HTML5&#160;:</p>
+<blockquote lang="en" cite="http://www.w3.org/TR/html5/forms.html#the-meter-element">
+The meter element represents a scalar measurement within a known range, or a fractional value; for example disk usage, the relevance of a query result, or the fraction of a voting population to have selected a particular candidate.<br /><br />
+This is also known as a gauge.<br /><br />
+The meter element should not be used to indicate progress (as in a progress bar). For that role, HTML provides a separate progress element.<br /><br />
+The meter element also does not represent a scalar value of arbitrary range — for example, it would be wrong to use this to report a weight, or height, unless there is a known maximum value.
+</blockquote>
+
+<section>
+	<h2>Exemples</h2>
+
+	<table>
+		<thead>
+			<tr>
+				<th scope="col">Description</th>
+				<th scope="col" lang="en">Min</th>
+				<th scope="col" lang="en">Low</th>
+				<th scope="col" lang="en">Value</th>
+				<th scope="col" lang="en">Max</th>
+				<th scope="col" lang="en">High</th>
+				<th scope="col">Résultat</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Normal (75%)</td>
+				<td>20</td>
+				<td>n/a</td>
+				<td>65</td>
+				<td>80</td>
+				<td>n/a</td>
+				<td><meter min="20" value="65" max="80">75 % (normal)</meter></td>
+			</tr>
+			<tr>
+				<td>Trop haut (90%)</td>
+				<td>0</td>
+				<td>n/a</td>
+				<td>90</td>
+				<td>100</td>
+				<td>80</td>
+				<td><meter min="0" value="90" max="100" high="80">90 % (trop haut)</meter></td>
+			</tr>
+			<tr>
+				<td>Trop bas (15 %)</td>
+				<td>100</td>
+				<td>120</td>
+				<td>115</td>
+				<td>200</td>
+				<td>180</td>
+				<td><meter min="100" low="120" value="115" max="200" high="180">15 % (trop bas)</meter></td>
+			</tr>
+		</tbody>
+	</table>
+</section>

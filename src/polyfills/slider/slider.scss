@@ -1,0 +1,270 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+%slider-gradient-left-89A5BD-165C91 {
+	background-image: linear-gradient(left, #89A5BD, #165c91);
+}
+%slider-display-block {
+	display: block;
+}
+%slider-position-absolute {
+	position: absolute;
+}
+%slider-margin-0 {
+	margin: 0;
+}
+%slider-padding-0 {
+	padding: 0;
+}
+%slider-display-none {
+	display: none;
+}
+%slider-width-2 {
+	width: 2px;
+}
+%slider-width-20 {
+	width: 20px;
+}
+%slider-width-100perc {
+	width: 100%;
+}
+%slider-height-2 {
+	height: 2px;
+}
+%slider-height-20 {
+	height: 20px;
+}
+%slider-height-100perc {
+	height: 100%;
+}
+%slider-height-auto {
+	height: auto;
+}
+%slider-z-index-3 {
+	z-index: 3;
+}
+%slider-right-auto {
+	right: auto;
+}
+%slider-border-none {
+	border: none;
+}
+%slider-background-color-165c91 {
+	background-color: #165c91;
+}
+%slider-top-0 {
+	top: 0;
+}
+%slider-left-0 {
+	left: 0;
+}
+%slider-overflow-hidden {
+	overflow: hidden;
+}
+%slider-background-color-ddd {
+	background-color: #ddd;
+}
+%slider-border-radius-2 {
+	border-radius: 2px;
+}
+%slider-background-clip-padding-box {
+	background-clip: padding-box;
+}
+%slider-outline-0 {
+	outline: 0;
+}
+%slider-height-300 {
+	height: 300px;
+}
+%slider-height-160 {
+	height: 160px;
+}
+
+.fd-form-element-hidden {
+	@extend %slider-display-none;
+}
+.fd-slider {
+	@extend %slider-width-100perc;
+	@extend %slider-height-20;
+	margin: 0 0 10px 0;
+	text-align: center;
+	@extend %slider-display-block;
+	position: relative;
+	cursor: pointer;
+	text-decoration: none;
+	@extend %slider-border-none;
+	user-select: none;
+}
+.fd-slider-wrapper {
+	@extend %slider-position-absolute;
+	@extend %slider-top-0;
+	@extend %slider-left-0;
+	@extend %slider-width-100perc;
+	@extend %slider-height-100perc;
+}
+.fd-slider-inner {
+	@extend %slider-display-none;
+}
+.fd-slider-bar {
+	@extend %slider-display-block;
+	@extend %slider-position-absolute;
+	top: 8px;
+	right: 10px;
+	left: 10px;
+	z-index: 2;
+	@extend %slider-height-2;
+	@extend %slider-margin-0;
+	@extend %slider-padding-0;
+	@extend %slider-overflow-hidden;
+	border: 1px solid #606060;
+	border-bottom: 1px solid #aaa;
+	border-right: 1px solid #aaa;
+	border: 1px solid rgba(187, 187, 187, .8);
+	border-bottom: 1px solid rgba(170, 170, 170, .8);
+	border-right: 1px solid rgba(170, 170, 170, .8);
+	line-height: 4px;
+	@extend %slider-background-color-ddd;
+	background-image: linear-gradient(#ececec, #ccc);
+	@extend %slider-border-radius-2;
+	@extend %slider-background-clip-padding-box;
+}
+.fd-slider-focused {
+	.fd-slider-bar {
+		box-shadow: 0 0 6px rgba(10, 130, 170, 0.7);
+		/* Not sure what to do with this
+		@include experimental(animation, fd-pulse 2s infinite, -moz, -webkit, -o, not -ms, not -khtml, official);
+		*/
+	}
+}
+.fd-slider-range {
+	@extend %slider-display-block;
+	@extend %slider-position-absolute;
+	top: 9px;
+	left: 11px;
+	@extend %slider-z-index-3;
+	@extend %slider-height-2;
+	@extend %slider-margin-0;
+	@extend %slider-padding-0;
+	@extend %slider-overflow-hidden;
+	line-height: 2px;
+	@extend %slider-background-color-165c91;
+	@extend %slider-gradient-left-89A5BD-165C91;
+	@extend %slider-border-radius-2;
+	@extend %slider-background-clip-padding-box;
+}
+.fd-slider-handle {
+	@extend %slider-position-absolute;
+	@extend %slider-display-block;
+	@extend %slider-padding-0;
+	@extend %slider-border-none;
+	@extend %slider-margin-0;
+	@extend %slider-z-index-3;
+	@extend %slider-top-0;
+	@extend %slider-left-0;
+	@extend %slider-width-20;
+	@extend %slider-height-20;
+	@extend %slider-outline-0;
+	background: {
+		color: transparent;
+		image: url(../assets/fd-slider-sprite.png);
+		position: 0 0;
+	}
+	cursor: W-resize;
+	line-height: 20px;
+	font-size: 10px;
+	/* Are these needed?
+	@if $experimental-support-for-mozilla {-moz-outline: 0 none;}
+	@if $experimental-support-for-webkit {-webkit-touch-callout: none;}
+	*/
+	user-select: none;
+	&:focus {
+		@extend %slider-outline-0;
+		@extend %slider-border-none;
+		/* Is this needed?
+		@if $experimental-support-for-mozilla {-moz-user-focus: normal;}
+		*/
+	}
+}
+/* Is this needed?
+@if $experimental-support-for-mozilla {
+	.fd-slider-handle:focus::-moz-focus-inner {
+		border-color: transparent
+	}
+}
+*/
+.fd-slider-focused, .fd-slider-hover, .fd-slider-active {
+	.fd-slider-handle {
+		background-position: 0 -20px
+	}
+}
+.fd-slider-no-value {
+	.fd-slider-handle {
+		background-position: 0 -59px
+	}
+}
+body {
+	&.fd-slider-drag-horizontal, &.fd-slider-drag-horizontal * {
+		cursor: N-resize !important;
+		user-select: none;
+		cursor: W-resize !important
+	}
+}
+.fd-slider-disabled {
+	opacity: 0.8;
+	cursor: default;
+	.fd-slider-handle {
+		cursor: default !important;
+		background-position: 0 -40px;
+		opacity: 1;
+	}
+	.fd-slider-bar {
+		cursor: auto !important;
+		border: 1px solid #888;
+		border-bottom: 1px solid #999;
+		border-right: 1px solid #999;
+		border: 1px solid rgba(136, 136, 136, .8);
+		border-bottom: 1px solid rgba(153, 153, 153, .8);
+		border-right: 1px solid rgba(153, 153, 153, .8);
+		background-color: #555;
+		background-image: linear-gradient(left, #666, #333);
+	}
+	.fd-slider-range {
+		cursor: auto !important;
+		background-color: #222;
+		background-image: linear-gradient(left, #222, #000);
+	}
+}
+
+keyframes fd-pulse {
+	0%{box-shadow: 0 0 3px rgba(100, 130, 170, 0.55)}
+	20%{box-shadow: 0 0 4px rgba(70, 130, 170, 0.6)}
+	40%{box-shadow: 0 0 5px rgba(40, 130, 170, 0.65)}
+	60%{box-shadow: 0 0 6px rgba(10, 130, 170, 0.7)}
+	80%{box-shadow: 0 0 5px rgba(40, 130, 170, 0.65)}
+	100%{box-shadow: 0 0 4px rgba(70, 130, 170, 0.6)}
+}
+
+#fd-slider-describedby {
+	padding: 1em;
+	border: 3px solid #a84444;
+	background: #fff;
+	border-radius: 8px;
+}
+input {
+	&[type="range"] {
+		@extend %slider-width-100perc;
+	}
+}
+#html5shim-2-out {
+	font-weight: 400;
+	font-style: italic;
+}
+#html5shim-4 {
+	@extend %slider-width-20;
+	height: 400px;
+}
+.visu {
+	font: normal 3em impact, helvetica, sans serif;
+	color: #6cc;
+}

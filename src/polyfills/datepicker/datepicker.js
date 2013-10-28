@@ -17,6 +17,7 @@ var selector = "input[type=date]",
 	month = date.getMonth(),
 	year = date.getFullYear(),
 	format = "YYYY-MM-DD",
+	initialized = false,
 	i18n, i18nText, $container,
 
 	/*
@@ -79,6 +80,8 @@ var selector = "input[type=date]",
 		window.Modernizr.load({
 			load: "site!deps/xregexp" + modeJS
 		});
+
+		initialized = true;
 	},
 
 	createToggleIcon = function( fieldId ) {
@@ -311,12 +314,14 @@ var selector = "input[type=date]",
 $document.on( "timerpoke.wb", selector, init );
 
 $document.on( "click vclick touchstart focusin", function ( event ) {
-	var which = event.which;
+	var which = event.which,
+		container;
 
 	// Ignore middle/right mouse buttons
-	if ( !which || which === 1 ) {
-		if ( $container.attr("aria-hidden") === "false" && !$.contains( $container[ 0 ], event.target ) ) {
-			hide( $container.attr( "aria-controls") );
+	if ( initialized && ( !which || which === 1 ) ) {
+		container = document.getElementById( "wb-picker" );
+		if ( container.getAttribute( "aria-hidden" ) === "false" && !$.contains( container, event.target ) ) {
+			hide( container.getAttribute( "aria-controls") );
 			return false;
 		}
 	}
