@@ -312,6 +312,12 @@ window.Modernizr.load([
 			"plyfll!datalist.min.css"
 		]
 	}, {
+		test: Modernizr.inputtypes.date,
+		nope: [
+			"plyfll!datepicker.min.js",
+			"plyfll!datepicker.min.css"
+		]
+	}, {
 		test: Modernizr.inputtypes.range,
 		nope: "plyfll!slider.min.js"
 	}, {
