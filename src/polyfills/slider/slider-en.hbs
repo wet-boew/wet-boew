@@ -1,0 +1,33 @@
+---
+title: Input type="range" polyfill (slider control)
+language: en
+fr: slider
+---
+<div>
+	<p>Use the following attributes to specify restrictions:</p>
+	<ul>
+		<li>max - specifies the maximum value allowed</li>
+		<li>min - specifies the minimum value allowed</li>
+		<li>step - specifies the legal number intervals</li>
+		<li>value - specifies the default value</li>
+	</ul>
+</div>
+
+<div class="wet-boew-prettify all-pre">
+	<section>
+		<h3>Range: 0 to 100 in steps of 1 <span id="html5shim-1-out"></span></h3>
+		<p><input name="html5shim-1" id="html5shim-1" type="range" min="0" max="100" step="1" title="Range: 0 to 100 in steps of 1" value="50" onchange="document.getElementById('html5shim-1-out').innerHTML = '(Current Value: ' + this.value + ')'"></p>
+	</section>
+	<section>
+		<h3>Coding</h3>
+		<pre><code>&lt;input name="html5shim-1" id="html5shim-1" type="range" min="0" max="100" step="1" title="Range: 0 to 100 in steps of 1" value="50" onchange="document.getElementById('html5shim-1-out').innerHTML = '(Current Value: ' + this.value + ')'" /&gt;</code></pre>
+	</section>
+	<section>
+		<h3>Range: 20 to 50 in steps of 10 <span id="html5shim-2-out"></span></h3>
+		<p><input name="html5shim-2" id="html5shim-2" type="range" min="20" max="50" step="10" title="Range: 20 to 50 in steps of 10" value="20" onchange="document.getElementById('html5shim-2-out').innerHTML = '(Current Value: ' + this.value + ')'"></p>
+	</section>
+	<section>
+		<h3>Coding</h3>
+		<pre><code>&lt;input name="html5shim-2" id="html5shim-2" type="range" min="20" max="50" step="10" title="Range: 20 to 50 in steps of 10" value="20" onchange="document.getElementById('html5shim-1-out').innerHTML = '(Current Value: ' + this.value + ')'" /&gt;</code></pre>
+	</section>
+</div>

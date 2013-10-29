@@ -58,7 +58,7 @@ var getUrlParts = function( url ) {
 	 * @variable i18n
 	 * @return {string} of HTML document language
 	 */
-	i18n = document.documentElement.lang,
+	lang = document.documentElement.lang,
 
 	/*
 	 * @variable $homepath
@@ -156,8 +156,32 @@ var getUrlParts = function( url ) {
 		ielt8:  ( oldie < 8 ),
 		ielt9:  ( oldie < 9 ),
 		ielt10: ( oldie < 10 )
+	},
+
+	i18n = function( key, state, mixin ) {
+		var truthiness,
+			ind = window.i18nObj;
+
+		truthiness = ( typeof key === "string" && key !== "" ) | // eg. 000 or 001 ie. 0 or 1
+		( typeof state === "string" && state !== "" ) << 1 | // eg. 000 or 010 ie. 0 or 2
+		( typeof mixin === "string" && mixin !== "" ) << 2; // eg. 000 or 100 ie. 0 or 4
+
+		switch ( truthiness ) {
+			case 1:
+				// only key was provided
+				return ind[ key ];
+			case 3:
+				// key and state were provided
+				return ind[ key ][ state ];
+			case 7:
+				// key, state, and mixin were provided
+				return ind[ key ][ state ].replace( "[MIXIN]", mixin );
+			default:
+				return "";
+		}
 	};
 
+window.i18n = i18n;
 window.vapour = vapour;
 
 /*-----------------------------
@@ -205,7 +229,7 @@ yepnope.addPrefix( "plyfll", function( resourceObj ) {
  * @prefix: i18n! - adds the correct document language for our i18n library
  */
 yepnope.addPrefix( "i18n", function( resourceObj ) {
-	resourceObj.url = $homepath + "/" + resourceObj.url + i18n + $mode + ".js";
+	resourceObj.url = $homepath + "/" + resourceObj.url + lang + $mode + ".js";
 	return resourceObj;
 });
 
@@ -288,8 +312,17 @@ window.Modernizr.load([
 			"plyfll!datalist.min.css"
 		]
 	}, {
+		test: Modernizr.inputtypes.date,
+		nope: [
+			"plyfll!datepicker.min.js",
+			"plyfll!datepicker.min.css"
+		]
+	}, {
 		test: Modernizr.inputtypes.range,
-		nope: "plyfll!slider.min.js"
+		nope: [
+			"plyfll!slider.min.js",
+			"plyfll!slider.min.css"
+		]
 	}, {
 		test: Modernizr.progress,
 		nope: [
@@ -298,7 +331,10 @@ window.Modernizr.load([
 		]
 	}, {
 		test: Modernizr.meter,
-		nope: "plyfll!meter.min.js"
+		nope: [
+			"plyfll!meter.min.js",
+			"plyfll!meter.min.css"
+		]
 	}, {
 		test: Modernizr.touch,
 		yep: "plyfll!mobile.min.js",

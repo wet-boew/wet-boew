@@ -27,8 +27,7 @@ var $document = vapour.doc,
 	 * selector from the timer.
 	 * @method init
 	 * @param {jQuery DOM element} $elm The plugin element being initialized
-	 * @param {string} $elm The plugin ajaxType The type of AJAX operation,
-	 * either after, append, before or replace
+	 * @param {string} ajaxType The type of AJAX operation, either after, append, before or replace
 	 */
 	init = function( $elm, ajaxType ) {
 
@@ -70,12 +69,10 @@ $document.on( "timerpoke.wb ajax-fetched.wb", selector, function( event ) {
 	} else {
 
 		// ajax-fetched event
-
 		content = event.pointer.html();
 		$elm.removeAttr( "data-ajax-" + ajaxType );
 
 		// "replace" is the only event that doesn't map to a jQuery function
-
 		if ( ajaxType === "replace") {
 			$elm.html( content );
 		} else {
