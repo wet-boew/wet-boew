@@ -1,0 +1,350 @@
+---
+title: Chart and Graph - Number Formating working example
+language: en
+---
+
+<ul>
+	<li><a href="simple-en.html">Simple</a></li>
+	<li><a href="complex-en.html">Complex</a></li>
+	<li><a href="labels-en.html">Labels</a></li>
+	<li><a href="numberformat-en.html">Number Format</a></li>
+	<li><a href="pie-en.html">Pie</a></li>
+	<li><a href="simpleCustomized-en.html">Simple Customized</a></li>
+</ul>
+<hr />
+
+
+<h2>Default without any chart preset</h2>
+
+<h3>Space thousand separator</h3>
+<table class="wb-charts wb-charts-line wb-charts-parsedirectionremoved-y span-4">
+	<caption>WET Contribution from May 5 2012 to May 4 2013</caption>
+	<thead>
+		<tr>
+			<th>Contributor</th>
+			<th>Commits</th>
+			<th>Additions</th>
+			<th>Deletions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>pjackson28</th>
+			<td>1 713</td>
+			<td>1 483 907</td>
+			<td>928 648</td>
+		</tr>
+		<tr>
+			<th>nschonni</th>
+			<td>506</td>
+			<td>90 412</td>
+			<td>72 797</td>
+		</tr>
+		<tr>
+			<th>LaurentGoderre</th>
+			<td>398</td>
+			<td>52 983</td>
+			<td>29 957</td>
+		</tr>
+		<tr>
+			<th>duboisp</th>
+			<td>289</td>
+			<td>168 976</td>
+			<td>106 100</td>
+		</tr>	
+		<tr>
+			<th>patheard</th>
+			<td>135</td>
+			<td>6 820</td>
+			<td>3 639</td>
+		</tr>
+		<tr>
+			<th>cfarquharson</th>
+			<td>85</td>
+			<td>18 572</td>
+			<td>3 518</td>
+		</tr>	
+	</tbody>
+</table>
+<div class="clear"></div>
+
+<h3>Comma thousand separator</h3>
+<table class="wb-charts wb-charts-line wb-charts-parsedirectionremoved-y span-4">
+	<caption>WET Contribution from May 5 2012 to May 4 2013</caption>
+	<thead>
+		<tr>
+			<th>Contributor</th>
+			<th>Commits</th>
+			<th>Additions</th>
+			<th>Deletions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>pjackson28</th>
+			<td>1,713</td>
+			<td>1,483,907</td>
+			<td>928,648</td>
+		</tr>
+		<tr>
+			<th>nschonni</th>
+			<td>506</td>
+			<td>90,412</td>
+			<td>72,797</td>
+		</tr>
+		<tr>
+			<th>LaurentGoderre</th>
+			<td>398</td>
+			<td>52,983</td>
+			<td>29,957</td>
+		</tr>
+		<tr>
+			<th>duboisp</th>
+			<td>289</td>
+			<td>168,976</td>
+			<td>106,100</td>
+		</tr>	
+		<tr>
+			<th>patheard</th>
+			<td>135</td>
+			<td>6,820</td>
+			<td>3,639</td>
+		</tr>
+		<tr>
+			<th>cfarquharson</th>
+			<td>85</td>
+			<td>18,572</td>
+			<td>3,518</td>
+		</tr>	
+	</tbody>
+</table>
+<div class="clear"></div>
+
+<h3>Dot thousand separator</h3>
+<table class="wb-charts wb-charts-line wb-charts-parsedirectionremoved-y span-4">
+	<caption>WET Contribution from May 5 2012 to May 4 2013</caption>
+	<thead>
+		<tr>
+			<th>Contributor</th>
+			<th>Commits</th>
+			<th>Additions</th>
+			<th>Deletions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>pjackson28</th>
+			<td>1.713</td>
+			<td>1.483.907</td>
+			<td>928.648</td>
+		</tr>
+		<tr>
+			<th>nschonni</th>
+			<td>506</td>
+			<td>90.412</td>
+			<td>72.797</td>
+		</tr>
+		<tr>
+			<th>LaurentGoderre</th>
+			<td>398</td>
+			<td>52.983</td>
+			<td>29.957</td>
+		</tr>
+		<tr>
+			<th>duboisp</th>
+			<td>289</td>
+			<td>168.976</td>
+			<td>106.100</td>
+		</tr>	
+		<tr>
+			<th>patheard</th>
+			<td>135</td>
+			<td>6.820</td>
+			<td>3.639</td>
+		</tr>
+		<tr>
+			<th>cfarquharson</th>
+			<td>85</td>
+			<td>18.572</td>
+			<td>3.518</td>
+		</tr>	
+	</tbody>
+</table>
+<div class="clear"></div>
+
+<hr />
+
+<h2>Using Preset</h2>
+
+<h3>Comma thousand separator (<code>wb-charts-usnumber</code>)</h3>
+<table class="wb-charts wb-charts-usnumber wb-charts-line wb-charts-parsedirectionremoved-y span-4">
+	<caption>WET Contribution from May 5 2012 to May 4 2013</caption>
+	<thead>
+		<tr>
+			<th>Contributor</th>
+			<th>Commits</th>
+			<th>Additions</th>
+			<th>Deletions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>pjackson28</th>
+			<td>1,713</td>
+			<td>1,483,907</td>
+			<td>928,648</td>
+		</tr>
+		<tr>
+			<th>nschonni</th>
+			<td>506</td>
+			<td>90,412</td>
+			<td>72,797</td>
+		</tr>
+		<tr>
+			<th>LaurentGoderre</th>
+			<td>398</td>
+			<td>52,983</td>
+			<td>29,957</td>
+		</tr>
+		<tr>
+			<th>duboisp</th>
+			<td>289</td>
+			<td>168,976</td>
+			<td>106,100</td>
+		</tr>	
+		<tr>
+			<th>patheard</th>
+			<td>135</td>
+			<td>6,820</td>
+			<td>3,639</td>
+		</tr>
+		<tr>
+			<th>cfarquharson</th>
+			<td>85</td>
+			<td>18,572</td>
+			<td>3,518</td>
+		</tr>	
+	</tbody>
+</table>
+<div class="clear"></div>
+
+
+<h3>Dot thousand separator (<code>wb-charts-germannumber</code>)</h3>
+<table class="wb-charts wb-charts-germannumber wb-charts-line wb-charts-parsedirectionremoved-y span-4">
+	<caption>WET Contribution from May 5 2012 to May 4 2013</caption>
+	<thead>
+		<tr>
+			<th>Contributor</th>
+			<th>Commits</th>
+			<th>Additions</th>
+			<th>Deletions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>pjackson28</th>
+			<td>1.713</td>
+			<td>1.483.907</td>
+			<td>928.648</td>
+		</tr>
+		<tr>
+			<th>nschonni</th>
+			<td>506</td>
+			<td>90.412</td>
+			<td>72.797</td>
+		</tr>
+		<tr>
+			<th>LaurentGoderre</th>
+			<td>398</td>
+			<td>52.983</td>
+			<td>29.957</td>
+		</tr>
+		<tr>
+			<th>duboisp</th>
+			<td>289</td>
+			<td>168.976</td>
+			<td>106.100</td>
+		</tr>	
+		<tr>
+			<th>patheard</th>
+			<td>135</td>
+			<td>6.820</td>
+			<td>3.639</td>
+		</tr>
+		<tr>
+			<th>cfarquharson</th>
+			<td>85</td>
+			<td>18.572</td>
+			<td>3.518</td>
+		</tr>	
+	</tbody>
+</table>
+<div class="clear"></div>
+
+
+<h3>Custom thousand separator (<code>wb-charts-specialthousandseparator</code>)</h3>
+<table class="wb-charts wb-charts-specialthousandseparator wb-charts-line wb-charts-parsedirectionremoved-y span-4">
+	<caption>WET Contribution from May 5 2012 to May 4 2013</caption>
+	<thead>
+		<tr>
+			<th>Contributor</th>
+			<th>Commits</th>
+			<th>Additions</th>
+			<th>Deletions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>pjackson28</th>
+			<td>1N713</td>
+			<td>1N483N907</td>
+			<td>928N648</td>
+		</tr>
+		<tr>
+			<th>nschonni</th>
+			<td>506</td>
+			<td>90N412</td>
+			<td>72N797</td>
+		</tr>
+		<tr>
+			<th>LaurentGoderre</th>
+			<td>398</td>
+			<td>52N983</td>
+			<td>29N957</td>
+		</tr>
+		<tr>
+			<th>duboisp</th>
+			<td>289</td>
+			<td>168N976</td>
+			<td>106N100</td>
+		</tr>	
+		<tr>
+			<th>patheard</th>
+			<td>135</td>
+			<td>6N820</td>
+			<td>3N639</td>
+		</tr>
+		<tr>
+			<th>cfarquharson</th>
+			<td>85</td>
+			<td>18N572</td>
+			<td>3N518</td>
+		</tr>	
+	</tbody>
+</table>
+<div class="clear"></div>
+
+<details>
+	<summary>Special thousand separator javascript</summary>
+<pre class="wet-boew-prettify prettyprint linenums lang-javascript"><code>// Chart and graph - Declared in the current webpage
+var wet_boew_charts = {
+	preset: {
+		specialthousandseparator: {
+			getcellvalue: function(elem){
+				var raw = $(elem).text().replace(/\s\s+/g, ' ').replace(/^\s+|\s+$/g, '').replace(/N/g, '');
+				return [parseFloat(raw.match(/[\+\-0-9]+[0-9,\. ]*/)), raw.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
+			}
+		}
+	}
+}
+</code></pre>
