@@ -4,7 +4,7 @@
  */
 /* Gradient (avoid encoding duplication) */
 %tabbedinterface-gradient-background {
-	background: url(../../js/assets/tabs-gradient.png) repeat-x 0 0 #eee;
+	background: url(../js/assets/tabs-gradient.png) repeat-x 0 0 #eee;
 }
 
 %tabbedinterface-cursor-pointer {
@@ -12,51 +12,21 @@
 }
 
 %tabbedinterface-tabs-in {
-	color: #333 !important;
+	color: #333;
 	padding-top: 5px;
 	background: #fff;
 	cursor: text;
-}
-
-%tabbedinterface-color-000-important {
-	color: #000 !important;
 }
 
 %tabbedinterface-text-decoration-underline {
 	text-decoration: underline;
 }
 
-%tabbedinterface-rel-external {
-	a {
-		&[rel="external"] {
-			padding: 0 !important;
-			background: 0 !important;
-		}
-	}
+%tabbedinterface-padding-2-5 {
+	padding: 2px 5px;
 }
-
-.wb-tabs {
-	.ui-collapsible-content {
-		position: relative;
-		padding-top: 1px;
-		padding-bottom: 1px;
-	}
-	&.embedded-grid {
-		.ui-collapsible-content {
-			> {
-				[class*="span-"] {
-					float: none;
-				}
-			}
-		}
-	}
-}
-
-%tabbedinterface-padding-2-5-important {
-	padding: 2px 5px !important;
-}
-%tabbedinterface-padding-2-5-2-24-important {
-	padding: 2px 5px 2px 24px !important;
+%tabbedinterface-padding-2-5-2-24 {
+	padding: 2px 5px 2px 24px;
 }
 
 .tabs {
@@ -74,7 +44,7 @@
 			@extend %tabbedinterface-gradient-background;
 			display: block;
 			text-decoration: none;
-			color: #333 !important;
+			color: #333;
 			font-weight: 400;
 			padding: 4px;
 			position: relative;
@@ -91,41 +61,9 @@
 			background: #fff;
 			position: relative;
 		}
-		&.tabs-toggle {
-			a {
-				cursor: pointer;
-				border-radius: 2px;
-				border: 1px solid #999;
-				margin-right: 2px;
-				&:focus {
-					@extend %tabbedinterface-text-decoration-underline;
-					@extend %tabbedinterface-color-000-important;
-				}
-				&.tabs-prev {
-					background: url(../../js/assets/tabs-prev.gif) no-repeat center 5px #fff !important;
-					@extend %tabbedinterface-padding-2-5-important;
-				}
-				&.tabs-next {
-					background: url(../../js/assets/tabs-next.gif) no-repeat center 5px #fff !important;
-					@extend %tabbedinterface-padding-2-5-important;
-				}
-				&.tabs-stop {
-					background: url(../../js/assets/tabs-pause.png) no-repeat -1px 0 #fff !important;
-					@extend %tabbedinterface-padding-2-5-2-24-important;
-				}
-				&.tabs-start {
-					background: url(../../js/assets/tabs-play.png) no-repeat -1px 0 #fff !important;
-					@extend %tabbedinterface-padding-2-5-2-24-important;
-				}
-			}
-		}
 	}
 	a {
 		line-height: normal;
-	}
-	.tabs-toggle {
-		border: none;
-		background: none;
 	}
 	&.started {
 		a {
@@ -135,6 +73,38 @@
 					@extend %tabbedinterface-cursor-pointer;
 				}
 			}
+		}
+	}
+}
+.tabs-toggle {
+	border: none;
+	background: none;
+	display: inline;
+	a {
+		cursor: pointer;
+		border-radius: 2px;
+		border: 1px solid #999;
+		margin-right: 2px;
+		text-decoration: none;
+		&:focus {
+			@extend %tabbedinterface-text-decoration-underline;
+			color: #000;
+		}
+		&.prv {
+			background: url(../js/assets/tabs-prev.gif) no-repeat center 5px #fff;
+			@extend %tabbedinterface-padding-2-5;
+		}
+		&.nxt {
+			background: url(../js/assets/tabs-next.gif) no-repeat center 5px #fff;
+			@extend %tabbedinterface-padding-2-5;
+		}
+		&.plypause {
+			background: url(../js/assets/tabs-pause.png) no-repeat -1px 0 #fff;
+			@extend %tabbedinterface-padding-2-5-2-24;
+		}
+		&.plypause.stopped {
+			background: url(../js/assets/tabs-play.png) no-repeat -1px 0 #fff;
+			@extend %tabbedinterface-padding-2-5-2-24;
 		}
 	}
 }
@@ -185,7 +155,7 @@
 /* Workaround for Firefox autoHeight margin collapsing bug. See issue #2471 and pull #2486 for more information. */
 @-moz-document url-prefix() {
 	%tabbedinterface-auto-height-bottom-padding {
-		padding-bottom: 11px !important;
+		padding-bottom: 11px;
 	}
 	.wet-boew-tabbedinterface {
 		&:not(.auto-height-none) {
@@ -204,7 +174,7 @@
 	[class*="tabs-style-"] {
 		&:not(.auto-height-none) {
 			.tabs-panel {
-				padding-bottom: 0 !important;
+				padding-bottom: 0;
 			}
 		}
 	}
@@ -213,9 +183,9 @@
 .wb-tabs .clear {
     clear: both;
     display: block;
-    height: 0 !important;
+    height: 0;
     margin: 0;
-    min-height: 0 !important;
+    min-height: 0;
     overflow: hidden;
     visibility: hidden;
     width: 0;
@@ -230,20 +200,6 @@
     cursor:pointer;
     background-color: #000;
     opacity: 0.1;
-}
-
-/*with grids*/
-.embedded-grid {
-	&, .tabs-panel {
-		border: none;
-		padding: 0;
-	}
-	.tabs {
-		margin: 0 10px 10px;
-	}
-	.panel-end {
-	  margin: 0;
-	}
 }
 
 .span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
@@ -264,7 +220,7 @@
 }
 
 %tabbedinterface-tab-style-1-in {
-	@extend %tabbedinterface-color-000-important;
+	color: #000;
 	background: #fff;
 	border-top: none;
 	padding: 4px;
@@ -288,13 +244,13 @@
 		padding: 2px 2px 0;
 		li {
 			a {
-				background: #555 url(../../js/assets/tabs-gradient2.png) repeat-x  0 bottom;
+				background: #555 url(../js/assets/tabs-gradient2.png) repeat-x  0 bottom;
 				border-top: none;
-				color: #fff !important;
+				color: #fff;
 				padding: 3px 4px 4px;
 				&:focus {
 					@extend %tabbedinterface-gradient-background;
-					@extend %tabbedinterface-color-000-important;
+					color: #000;
 					border-top: 1px solid #fff;
 					padding-top: 1px;
 				}
@@ -304,26 +260,8 @@
 						@extend %tabbedinterface-tab-style-1-in;
 					}
 				}
-				&.tabs-start {
-					@extend %tabbedinterface-color-000-important;
-				}
-				&.tabs-stop {
-					@extend %tabbedinterface-color-000-important;
-				}
-			}
-		}
-		li {
-			&.tabs-toggle {
-				a {
-					@extend %tabbedinterface-color-000-important;
-					@extend %tabbedinterface-no-repeat-border999;
-					&:focus {
-						@extend %tabbedinterface-no-repeat-border999;
-						color: #c00 !important;
-					}
-					&.tabs-prev, &.tabs-next {
-						background-position: center 5px;
-					}
+				&.plypause {
+					color: #000;
 				}
 			}
 		}
@@ -331,11 +269,24 @@
 	.tabs-panel {
 		border: none;
 	}
+	.tabs-toggle {
+		a {
+			color: #000;
+			@extend %tabbedinterface-no-repeat-border999;
+			&:focus {
+				@extend %tabbedinterface-no-repeat-border999;
+				color: #c00;
+			}
+			&.prv, &.nxt {
+				background-position: center 5px;
+			}
+		}
+	}
 }
 
 %tabbedinterface-tab-style-2-in {
 	background: #333;
-	color: #fff !important;
+	color: #fff;
 	outline-color: #000;
 	padding-top: 2px;
 }
@@ -377,34 +328,34 @@
 			&.in {
 				border: none;
 				top: auto;
-				color: #fff !important;
-			}
-			&.tabs-toggle {
-				@extend %tabbedinterface-gradient-background;
-				margin-left: 6px;
-				margin-right: -6px;
-				a {
-					background-color: transparent !important;
-					&:focus {
-						@extend %tabbedinterface-color-000-important;
-					}
-				}
+				color: #fff;
 			}
 		}
 	}
-	.tabs-panel, .ui-collapsible-content {
+	.tabs-panel {
 		border: none;
 		min-height: 220px;
-		background: url(../../js/assets/tabs-gradient3.png) repeat-x 0 bottom #555;
+		background: url(../js/assets/tabs-gradient3.png) repeat-x 0 bottom #555;
 		color: #fff;
 		margin: 0;
 		padding: 0;
 		a, a:visited, h2,h3,h4,h5,h6 {
-			color: #fff !important;
+			color: #fff;
 		}
 	}
 	.tabs-content-pad {
 		padding: 10px 10px 36px;
+	}
+	.tabs-toggle {
+		@extend %tabbedinterface-gradient-background;
+		margin-left: 6px;
+		margin-right: -6px;
+		a {
+			background-color: transparent;
+			&:focus {
+				color: #000;
+			}
+		}
 	}
 	.tabs-roller {
 		background-color: #fff;
@@ -414,20 +365,11 @@
 
 %tabbedinterface-tab-style-3-in {
 	background: #000;
-	color: #fff !important;
+	color: #fff;
 	outline-color: #000;
 	margin-right: 0;
 	padding: 5px 5px 5px 25px;
 	opacity: 0.75;
-}
-
-%tabbedinterface-tab-style-3-tabspanel-uicollapsiblecontent {
-	@extend %tabbedinterface-gradient-background;
-	background-position: 0 bottom;
-	color: #333;
-	margin: 0;
-	padding: 0;
-	min-height: 220px;
 }
 
 /* style 3 */
@@ -465,7 +407,7 @@
 			}
 			&.in {
 				border: none;
-				color: #fff !important;
+				color: #fff;
 				a {
 					&:before {
 					    border: {
@@ -483,37 +425,33 @@
 					}
 				}
 			}
-			&.tabs-toggle {
-				width: auto;
-				a {
-					float: right;
-					margin-top: 10px;
-					border: 1px solid #ccc;
-					&:focus {
-						opacity: 1;
-						@extend %tabbedinterface-color-000-important;
-						margin-right: 2px;
-					}
-				}
-			}
 		}
 	}
-	.ui-collapsible-content {
-		@extend %tabbedinterface-tab-style-3-tabspanel-uicollapsiblecontent;
-	}
 	.tabs-panel {
-		@extend %tabbedinterface-tab-style-3-tabspanel-uicollapsiblecontent;
 		background-color: #eee;
 		border: 1px solid #ccc;
 		box-shadow: 0 0 7px #999999 inset;
 		width: 66%;
 		z-index: 2;
 	}
-	.tabs-prev {
+	.prv {
 		margin-left: 15px;
 	}
 	.tabs-content-pad {
 		padding: 10px;
+	}
+	.tabs-toggle {
+		width: auto;
+		a {
+			float: right;
+			margin-top: 10px;
+			border: 1px solid #ccc;
+			&:focus {
+				opacity: 1;
+				color: #000;
+				margin-right: 2px;
+			}
+		}
 	}
 	.tabs-roller {
 		background-color: #fff;
@@ -527,7 +465,7 @@
 %tabbedinterface-tab-style-4-in-hover {
 	background: none repeat scroll 0 0 #FFF;
 	border: none;
-	@extend %tabbedinterface-color-000-important;
+	color: #000;
 	padding-top: 2px;
 }
 .tabs-style-4 {
@@ -536,20 +474,20 @@
 		font-weight: 700;
 		margin-bottom: 2px;
 		padding: 0 0 1px 0;
-		height: auto !important;
+		height: auto;
 		border: none;
 		li {
 			display: block;
 			a {
-				background: url(../../js/assets/tabs-gradient2-style4.png) repeat-x scroll 50% 50% #000;
+				background: url(../js/assets/tabs-gradient2-style4.png) repeat-x scroll 50% 50% #000;
 				border-top: 1px solid #000;
-				color: #FFF !important;
+				color: #FFF;
 				font-size: 80%;
 				margin: 0;
 				padding: 2px;
 				&:focus {
 					@extend %tabbedinterface-gradient-background;
-					@extend %tabbedinterface-color-000-important;
+					color: #000;
 				}
 				&.in {
 					@extend %tabbedinterface-tab-style-4-in-hover;
@@ -558,21 +496,9 @@
 					}
 				}
 			}
-			&.tabs-toggle {
-				margin-top: 3px;
-				display: inline-block;
-				vertical-align: middle;
-				a {
-					font-size: 100%;
-					width: auto !important;
-					@extend %tabbedinterface-color-000-important;
-					border-top: 1px solid #999 !important;
-					margin-right: 2px;
-				}
-			}
 		}
 	}
-	.tabs-panel, .ui-collapsible-content {
+	.tabs-panel {
 		border: none;
 		margin: 0;
 		padding: 0;
@@ -580,47 +506,26 @@
 			display: block;
 			margin-bottom: 0;
 		}
-		@extend %tabbedinterface-rel-external;
-	}
-}
-
-.wb-sup-def {
-	.tabs-style-4 {
-		padding: 0;
-	}
-	.tabs-style-5 {
-		padding: 0;
-		.tabs {
-			margin-bottom: 1px;
-		}
-		.tabs-toggle {
-			margin-left: 9px !important;
-		}
-	}
-	.tabs {
-		margin-left: -1px;
-		padding: 0;
-		li {
-			padding-left: 0;
-			margin-left: 0;
-			a:visited {
-				color: #FFF;
-			}
-		}
 		a {
-			&.in {
-				@extend %tabbedinterface-color-000-important;
-				&:hover {
-					@extend %tabbedinterface-color-000-important;
-				}
+			&[rel="external"] {
+				padding: 0;
+				background: 0;
 			}
 		}
 	}
 	.tabs-toggle {
-		margin-left: 2px !important;
+		margin-top: 3px;
+		display: inline-block;
+		vertical-align: middle;
+		a {
+			font-size: 100%;
+			width: auto;
+			color: #000;
+			border-top: 1px solid #999;
+			margin-right: 2px;
+		}
 	}
 }
-
 
 /* style 5 */
 .tabs-style-5 {
@@ -630,17 +535,9 @@
 		top: 3px;
 		li {
 			display: none;
-			&.tabs-toggle {
-				display: inline-block;
-				vertical-align: middle;
-				a {
-					display: block;
-					width: auto;
-				}
-			}
 		}
 	}
-	.tabs-panel, .ui-collapsible-content {
+	.tabs-panel {
 		border: none;
 		margin: 0;
 		padding: 0;
@@ -648,7 +545,20 @@
 			display: block;
 			margin-bottom: 0;
 		}
-		@extend %tabbedinterface-rel-external;
+		a {
+			&[rel="external"] {
+				padding: 0;
+				background: 0;
+			}
+		}
+	}
+	.tabs-toggle {
+		display: inline-block;
+		vertical-align: middle;
+		a {
+			display: block;
+			width: auto;
+		}
 	}
 }
 
@@ -661,22 +571,19 @@
 }
 %tabbedinterface-tab-style-6-in {
 	text-decoration: none;
-	color: #fff !important;
+	color: #fff;
 	background: #333;
 	border-color: #000;
 }
-%tabbedinterface-tab-style-6-opacity-1-color-000-important {
+%tabbedinterface-tab-style-6-opacity-1-color-000 {
 	opacity: 1;
-	@extend %tabbedinterface-color-000-important;
+	color: #000;
 }
 %tabbedinterface-tab-style-6-padding-0-background-eee {
 	padding: 0;
 	background: #eee;
 }
 .tabs-style-6 {
-	.ui-collapsible-content {
-		@extend %tabbedinterface-tab-style-6-padding-0-background-eee;
-	}
 	.tabs-panel {
 		@extend %tabbedinterface-tab-style-6-padding-0-background-eee;
 		display: inline-block;
@@ -717,20 +624,10 @@
 					border: 0;
 					border-radius: 0;
 					&.in {
-						@extend %tabbedinterface-tab-style-6-opacity-1-color-000-important;
+						@extend %tabbedinterface-tab-style-6-opacity-1-color-000;
 					}
 					&:focus {
-						@extend %tabbedinterface-tab-style-6-opacity-1-color-000-important;
-					}
-				}
-			}
-			&.tabs-toggle {
-				a {
-					&:focus {
-						@extend %tabbedinterface-text-decoration-underline;
-						@extend %tabbedinterface-color-000-important;
-						background: 0;
-						border-color: #999;
+						@extend %tabbedinterface-tab-style-6-opacity-1-color-000;
 					}
 				}
 			}
@@ -740,15 +637,18 @@
 			padding: 0;
 		}
 	}
+	.tabs-toggle {
+		a {
+			&:focus {
+				@extend %tabbedinterface-text-decoration-underline;
+				color: #000;
+				background: 0;
+				border-color: #999;
+			}
+		}
+	}
 	.tabs-roller {
 		opacity: 0.5;
-	}
-}
-
-.ui-mobile {
-	.tabs-style-1, .tabs-style-3 {
-	    border: none;
-		padding: 0;
 	}
 }
 
@@ -769,45 +669,28 @@
 		}
 	}
 	.tabs-style-3 {
-		.tabs {
-			li {
-				&:not(.tabs-toggle) {
-					display: inline;
-				}
+		li {
+			&:not(.tabs-toggle) {
+				display: inline;
 			}
 		}
 	}
 }
 
 /* Right to left (RTL) CSS */
-%tabbedinterface-background-position-right-0-important {
-	background-position: right 0 !important;
+%tabbedinterface-background-position-right-0 {
+	background-position: right 0;
 }
-%tabbedinterface-padding-2-24-2-5-important {
-	padding: 2px 24px 2px 5px !important;
+%tabbedinterface-padding-2-24-2-5 {
+	padding: 2px 24px 2px 5px;
 }
 [dir="rtl"] {
 	.tabs {
-		margin: 0 !important;
+		margin: 0;
 		li {
 			border-radius: 2px 2px 0 0;
-			&.tabs-toggle {
-				a {
-					margin-left: 2px;
-					margin-right: auto;
-					&.tabs-stop {
-						@extend %tabbedinterface-background-position-right-0-important;
-						@extend %tabbedinterface-padding-2-24-2-5-important;
-					}
-					&.tabs-start {
-						@extend %tabbedinterface-background-position-right-0-important;
-						@extend %tabbedinterface-padding-2-24-2-5-important;
-					}
-				}
-			}
 		}
 	}
-
 	.tabs-panel {
 		.viewport {
 			left: auto;
@@ -822,7 +705,16 @@
 			margin-right: auto;
 		}
 	}
-
+	.tabs-toggle {
+		a {
+			margin-left: 2px;
+			margin-right: auto;
+			&.plypause {
+				@extend %tabbedinterface-background-position-right-0;
+				@extend %tabbedinterface-padding-2-24-2-5;
+			}
+		}
+	}
 	.tabs-roller {
 		left: auto;
 		right: 0;
@@ -830,15 +722,11 @@
 	}
 
 	.tabs-style-1 {
-		.tabs {
-			li {
-				&.tabs-toggle {
-					a {
-						@extend %tabbedinterface-background-position-right-0-important;
-						&:focus {
-							@extend %tabbedinterface-background-position-right-0-important;
-						}
-					}
+		.tabs-toggle {
+			a {
+				@extend %tabbedinterface-background-position-right-0;
+				&:focus {
+					@extend %tabbedinterface-background-position-right-0;
 				}
 			}
 		}
@@ -851,11 +739,11 @@
 			li {
 				margin-left: -3px;
 				margin-right: auto;
-				&.tabs-toggle {
-					margin-left: -6px;
-					margin-right: 6px;
-				}
 			}
+		}
+		.tabs-toggle {
+			margin-left: -6px;
+			margin-right: 6px;
 		}
 	}
 
@@ -901,58 +789,33 @@
 						}
 					}
 				}
-				&.tabs-toggle {
-					a {
-						float: left;
-						&:focus {
-							@extend %tabbedinterface-margin-left-2px-margin-right-auto;
-						}
-					}
+			}
+		}
+		.tabs-toggle {
+			a {
+				float: left;
+				&:focus {
+					@extend %tabbedinterface-margin-left-2px-margin-right-auto;
 				}
 			}
 		}
-		.tabs-prev {
-			margin-right: 15px !important;
+		.prv {
+			margin-right: 15px;
 		}
 	}
 
 	.tabs-style-4 {
 		padding: 0;
-		.tabs {
-			li {
-				&.tabs-toggle {
-					a {
-						@extend %tabbedinterface-margin-left-2px-margin-right-auto;
-					}
-				}
-			}
-		}
-	}
-
-	.wb-sup-def {
-		.tabs-style-5 {
-			.tabs-toggle {
-				margin-left: auto !important;
-				margin-right: 9px !important;
-			}
-		}
-		.tabs {
-			margin-left: auto;
-			margin-right: -1px;
-			li {
-				padding-right: 0;
-				margin-right: 0;
-			}
-		}
 		.tabs-toggle {
-			margin-left: auto !important;
-			margin-right: 2px !important;
+			a {
+				@extend %tabbedinterface-margin-left-2px-margin-right-auto;
+			}
 		}
 	}
 
 	.tabs-style-6 {
 		.tabs {
-			margin: 15px 0 !important;
+			margin: 15px 0;
 			li {
 				&.img {
 					margin-left: 10px;

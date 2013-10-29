@@ -62,10 +62,14 @@ var selector = ".wb-tabs",
 			};
 		}*/
 		// Use the carousel plugin to do the cycling
-		$elm.addClass( "wb-carousel" );
+		$elm.addClass( "wb-carousel stopped" );
 		// Set up the clickable tabs
 		tabs = $elm.find( ".tabs li" );
-		defaultTab = $elm.find( ".tabs li.default" ).addClass( "active" );
+		defaultTab = $elm.find( ".tabs li.default" );
+		if ( !defaultTab.length ) {
+			defaultTab = $elm.find( ".tabs li:first" );
+		}
+		defaultTab.addClass( "active" );
 		// Set up the stacked panels
 		panels = $elm.children( ".tabs-panel" ).children();
 		panels.addClass( "item fade" );
