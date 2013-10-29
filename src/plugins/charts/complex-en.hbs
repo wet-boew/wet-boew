@@ -1,0 +1,434 @@
+---
+title: Chart and Graph - Complex working example
+language: en
+---
+
+<ul>
+	<li><a href="simple-en.html">Simple</a></li>
+	<li><a href="complex-en.html">Complex</a></li>
+	<li><a href="labels-en.html">Labels</a></li>
+	<li><a href="numberformat-en.html">Number Format</a></li>
+	<li><a href="pie-en.html">Pie</a></li>
+	<li><a href="simpleCustomized-en.html">Simple Customized</a></li>
+</ul>
+<hr />
+
+
+<table class="wb-charts wb-charts-graphclass-abc123 wb-charts-graphclass-supersize">
+<caption>Current account balances</caption>
+<thead>
+<tr>
+<td colspan="3" rowspan="2" style="border: none;">&#160;</td>
+<th rowspan="2" id="a1">Goods</th>
+<th colspan="2" id="b1">Test Group</th>
+</tr>
+<tr>
+<th id="b11" headers="b1">Other current account</th>
+<th id="b12" headers="b1">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th rowspan="6" id="c1">Previous Year</th>
+<th rowspan="2" id="c11" headers="c1">2006</th>
+<th id="c111" headers="c1 c11" class="wb-charts-bar wb-charts-color-green wb-charts-fillopacity-20">Q3</th>
+<td headers="a1 c1 c11 c111">11.406</td>
+<td headers="b1 b11 c1 c11 c111">-7.010</td>
+<td headers="b1 b12 c1 c11 c111">4.396</td>
+</tr>
+<tr>
+<th id="c112" headers="c1 c11" class="wb-charts-bar wb-charts-color-red wb-charts-fillopacity-20">Q4</th>
+<td headers="a1 c1 c11 c112">12.139</td>
+<td headers="b1 b11 c1 c11 c112">-7.437</td>
+<td headers="b1 b12 c1 c11 c112">4.702</td>
+</tr>
+<tr>
+<th id="c12" headers="c1" rowspan="4">2007</th>
+<th id="c121" headers="c1 c12" class="wb-charts-bar wb-charts-color-blue wb-charts-fillopacity-20">Q1</th>
+<td headers="a1 c1 c12 c121">13.563</td>
+<td headers="b1 b11 b12 c1 c12 c121 c122 c123" rowspan="3" colspan="2">-10.231</td>
+</tr>
+<tr>
+<th id="c122" headers="c1 c12" class="wb-charts-bar wb-charts-color-green wb-charts-fillopacity-40">Q2</th>
+<td headers="a1 c1 c12 c122">$15.134</td>
+</tr>
+<tr>
+<th id="c123" headers="c1 c12" class="wb-charts-bar wb-charts-color-red wb-charts-fillopacity-40">Q3</th>
+<td headers="a1 c1 c12 c123">9.510 $</td>
+</tr>
+<tr>
+<th id="c124" headers="c1 c12" class="wb-charts-bar wb-charts-color-blue wb-charts-fillopacity-40">Q4</th>
+<td headers="a1 c1 c12 c124">9.230</td>
+<td headers="b1 b11 c1 c12 c124">-7.009</td>
+<td headers="b1 b12 c1 c12 c124">2.221</td>
+</tr>
+<tr>
+<th id="d1" class="wb-charts-bar wb-charts-color-green wb-charts-fillopacity-60" colspan="3">2008 - Q1</th>
+<td headers="a1 d1">12.551</td>
+<td headers="b1 b11 d1">-6.387</td>
+<td headers="b1 b12 d1">6.164</td>
+</tr>
+<tr>
+<th id="e1" class="wb-charts-bar wb-charts-color-red wb-charts-fillopacity-60" colspan="3">2008 - Q1</th>
+<td headers="a1 e1">12.551</td>
+<td headers="b1 b11 e1">-6.387</td>
+<td headers="b1 b12 e1">6.164</td>
+</tr>
+</tbody>
+</table>
+
+<table class="wb-charts">
+<caption>Current account balances</caption>
+<thead>
+<tr>
+<th rowspan="3" colspan="2" class="wb-charts-fill-Azure wb-charts-fillover-Beige" id="graphcellid1328101393632row0col0">&#160;</th>
+<th colspan="6" class="wb-charts-fill-Bisque wb-charts-fillover-BurlyWood" id="graphcellid1328101393632row0col2">Previous Year</th>
+<th rowspan="3" class="wb-charts-fill-Cornsilk wb-charts-fillover-Cyan" id="graphcellid1328101393632row0col8">2008 - Q1</th>
+<th rowspan="3" class="wb-charts-fill-LightCoral wb-charts-fillover-HotPink" id="graphcellid1328101393632row0col9">2008 - Q1</th>
+</tr>
+<tr>
+<th colspan="2" class="wb-charts-fill-pink wb-charts-fillover-yellow" headers="graphcellid1328101393632row0col2" id="graphcellid1328101393632row1col2">2006</th>
+<th colspan="4" class="wb-charts-fill-lightblue wb-charts-fillover-lightgreen" headers="graphcellid1328101393632row0col2" id="graphcellid1328101393632row1col4">2007</th>
+</tr>
+<tr>
+<th class="wb-charts-fill-pink wb-charts-fillover-yellow" headers="graphcellid1328101393632row0col2 graphcellid1328101393632row1col2" id="graphcellid1328101393632row2col2">Q3</th>
+<th class="wb-charts-fill-pink wb-charts-fillover-blue" headers="graphcellid1328101393632row0col2 graphcellid1328101393632row1col2" id="graphcellid1328101393632row2col3">Q4</th>
+<th class="wb-charts-fill-pink wb-charts-fillover-red" headers="graphcellid1328101393632row0col2 graphcellid1328101393632row1col4" id="graphcellid1328101393632row2col4">Q1</th>
+<th class="wb-charts-fill-pink wb-charts-fillover-yellow" headers="graphcellid1328101393632row0col2 graphcellid1328101393632row1col4" id="graphcellid1328101393632row2col5">Q2</th>
+<th class="wb-charts-fill-pink wb-charts-fillover-blue" headers="graphcellid1328101393632row0col2 graphcellid1328101393632row1col4" id="graphcellid1328101393632row2col6">Q3</th>
+<th class="wb-charts-fill-pink wb-charts-fillover-red" headers="graphcellid1328101393632row0col2 graphcellid1328101393632row1col4" id="graphcellid1328101393632row2col7">Q4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th colspan="2" class="wb-charts-stacked wb-charts-color-red wb-charts-dasharray-DashSpace wb-charts-fillopacity-50" headers="graphcellid1328101393632row0col0" id="graphcellid1328101393632row3col0">Goods</th>
+<td headers="graphcellid1328101393632row0col2 graphcellid1328101393632row1col2 graphcellid1328101393632row2col2 graphcellid1328101393632row3col0">11.406</td>
+<td headers="graphcellid1328101393632row0col2 graphcellid1328101393632row1col2 graphcellid1328101393632row2col3 graphcellid1328101393632row3col0">12.139</td>
+<td headers="graphcellid1328101393632row0col2 graphcellid1328101393632row1col4 graphcellid1328101393632row2col4 graphcellid1328101393632row3col0">13.563</td>
+<td headers="graphcellid1328101393632row0col2 graphcellid1328101393632row1col4 graphcellid1328101393632row2col5 graphcellid1328101393632row3col0">$15.134</td>
+<td headers="graphcellid1328101393632row0col2 graphcellid1328101393632row1col4 graphcellid1328101393632row2col6 graphcellid1328101393632row3col0">9.510 $</td>
+<td headers="graphcellid1328101393632row0col2 graphcellid1328101393632row1col4 graphcellid1328101393632row2col7 graphcellid1328101393632row3col0">9.230</td>
+<td headers="graphcellid1328101393632row0col8 graphcellid1328101393632row3col0">12.551</td>
+<td headers="graphcellid1328101393632row0col9 graphcellid1328101393632row3col0">12.551</td>
+</tr>
+<tr>
+<th rowspan="2" class="wb-charts-line wb-charts-color-yellow" headers="graphcellid1328101393632row0col0" id="graphcellid1328101393632row4col0">Test Group</th>
+<th class="wb-charts-stacked wb-charts-color-blue wb-charts-dasharray-DashDot wb-charts-fillopacity-50" headers="graphcellid1328101393632row0col0 graphcellid1328101393632row4col0" id="graphcellid1328101393632row4col1">Other current account</th>
+<td headers="graphcellid1328101393632row0col2 graphcellid1328101393632row1col2 graphcellid1328101393632row2col2 graphcellid1328101393632row4col0 graphcellid1328101393632row4col1">-7.010</td>
+<td headers="graphcellid1328101393632row0col2 graphcellid1328101393632row1col2 graphcellid1328101393632row2col3 graphcellid1328101393632row4col0 graphcellid1328101393632row4col1">-7.437</td>
+<td rowspan="2" colspan="3" headers="graphcellid1328101393632row0col2 graphcellid1328101393632row1col4 graphcellid1328101393632row2col4 graphcellid1328101393632row2col5 graphcellid1328101393632row2col6 graphcellid1328101393632row4col0 graphcellid1328101393632row4col1 graphcellid1328101393632row5col1">-10.231</td>
+<td headers="graphcellid1328101393632row0col2 graphcellid1328101393632row1col4 graphcellid1328101393632row2col7 graphcellid1328101393632row4col0 graphcellid1328101393632row4col1">-7.009</td>
+<td headers="graphcellid1328101393632row0col8 graphcellid1328101393632row4col0 graphcellid1328101393632row4col1">-6.387</td>
+<td headers="graphcellid1328101393632row0col9 graphcellid1328101393632row4col0 graphcellid1328101393632row4col1">-6.387</td>
+</tr>
+<tr>
+<th class="wb-charts-area wb-charts-color-green" headers="graphcellid1328101393632row0col0 graphcellid1328101393632row4col0" id="graphcellid1328101393632row5col1">Total</th>
+<td headers="graphcellid1328101393632row0col2 graphcellid1328101393632row1col2 graphcellid1328101393632row2col2 graphcellid1328101393632row4col0 graphcellid1328101393632row5col1">4.396</td>
+<td headers="graphcellid1328101393632row0col2 graphcellid1328101393632row1col2 graphcellid1328101393632row2col3 graphcellid1328101393632row4col0 graphcellid1328101393632row5col1">4.702</td>
+<td headers="graphcellid1328101393632row0col2 graphcellid1328101393632row1col4 graphcellid1328101393632row2col7 graphcellid1328101393632row4col0 graphcellid1328101393632row5col1">2.221</td>
+<td headers="graphcellid1328101393632row0col8 graphcellid1328101393632row4col0 graphcellid1328101393632row5col1">-6.164</td>
+<td headers="graphcellid1328101393632row0col9 graphcellid1328101393632row4col0 graphcellid1328101393632row5col1">6.164</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+<h2>Positive Table</h2>
+<table class="wb-charts  wb-charts-noencapsulation-true">
+<caption>Current account balances
+	<p>Default chart rendering with the option &quot;noencapsulation&quot; to show the table.</p>
+</caption>
+<thead>
+<tr>
+<th rowspan="3" colspan="2" id="graphcellid1328101726914row0col0">&#160;</th>
+<th colspan="6" id="graphcellid1328101726914row0col2">Previous Year</th>
+<th rowspan="3" id="graphcellid1328101726914row0col8">2008 - Q1</th>
+<th rowspan="3" id="graphcellid1328101726914row0col9">2008 - Q1</th>
+</tr>
+<tr>
+<th colspan="2" headers="graphcellid1328101726914row0col2" id="graphcellid1328101726914row1col2">2006</th>
+<th colspan="4" headers="graphcellid1328101726914row0col2" id="graphcellid1328101726914row1col4">2007</th>
+</tr>
+<tr>
+<th headers="graphcellid1328101726914row0col2 graphcellid1328101726914row1col2" id="graphcellid1328101726914row2col2">Q3</th>
+<th headers="graphcellid1328101726914row0col2 graphcellid1328101726914row1col2" id="graphcellid1328101726914row2col3">Q4</th>
+<th headers="graphcellid1328101726914row0col2 graphcellid1328101726914row1col4" id="graphcellid1328101726914row2col4">Q1</th>
+<th headers="graphcellid1328101726914row0col2 graphcellid1328101726914row1col4" id="graphcellid1328101726914row2col5">Q2</th>
+<th headers="graphcellid1328101726914row0col2 graphcellid1328101726914row1col4" id="graphcellid1328101726914row2col6">Q3</th>
+<th headers="graphcellid1328101726914row0col2 graphcellid1328101726914row1col4" id="graphcellid1328101726914row2col7">Q4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th colspan="2" headers="graphcellid1328101726914row0col0" id="graphcellid1328101726914row3col0">Goods</th>
+<td headers="graphcellid1328101726914row0col2 graphcellid1328101726914row1col2 graphcellid1328101726914row2col2 graphcellid1328101726914row3col0">11.406</td>
+<td headers="graphcellid1328101726914row0col2 graphcellid1328101726914row1col2 graphcellid1328101726914row2col3 graphcellid1328101726914row3col0">12.139</td>
+<td headers="graphcellid1328101726914row0col2 graphcellid1328101726914row1col4 graphcellid1328101726914row2col4 graphcellid1328101726914row3col0">13.563</td>
+<td headers="graphcellid1328101726914row0col2 graphcellid1328101726914row1col4 graphcellid1328101726914row2col5 graphcellid1328101726914row3col0">$15.134</td>
+<td headers="graphcellid1328101726914row0col2 graphcellid1328101726914row1col4 graphcellid1328101726914row2col6 graphcellid1328101726914row3col0">9.510 $</td>
+<td headers="graphcellid1328101726914row0col2 graphcellid1328101726914row1col4 graphcellid1328101726914row2col7 graphcellid1328101726914row3col0">9.230</td>
+<td headers="graphcellid1328101726914row0col8 graphcellid1328101726914row3col0">12.551</td>
+<td headers="graphcellid1328101726914row0col9 graphcellid1328101726914row3col0">12.551</td>
+</tr>
+<tr>
+<th rowspan="2" headers="graphcellid1328101726914row0col0" id="graphcellid1328101726914row4col0">Test Group</th>
+<th headers="graphcellid1328101726914row0col0 graphcellid1328101726914row4col0" id="graphcellid1328101726914row4col1">Other current account</th>
+<td headers="graphcellid1328101726914row0col2 graphcellid1328101726914row1col2 graphcellid1328101726914row2col2 graphcellid1328101726914row4col0 graphcellid1328101726914row4col1">7.010</td>
+<td headers="graphcellid1328101726914row0col2 graphcellid1328101726914row1col2 graphcellid1328101726914row2col3 graphcellid1328101726914row4col0 graphcellid1328101726914row4col1">7.437</td>
+<td rowspan="2" colspan="3" headers="graphcellid1328101726914row0col2 graphcellid1328101726914row1col4 graphcellid1328101726914row2col4 graphcellid1328101726914row2col5 graphcellid1328101726914row2col6 graphcellid1328101726914row4col0 graphcellid1328101726914row4col1 graphcellid1328101726914row5col1">10.231</td>
+<td headers="graphcellid1328101726914row0col2 graphcellid1328101726914row1col4 graphcellid1328101726914row2col7 graphcellid1328101726914row4col0 graphcellid1328101726914row4col1">7.009</td>
+<td headers="graphcellid1328101726914row0col8 graphcellid1328101726914row4col0 graphcellid1328101726914row4col1">6.387</td>
+<td headers="graphcellid1328101726914row0col9 graphcellid1328101726914row4col0 graphcellid1328101726914row4col1">6.387</td>
+</tr>
+<tr>
+<th headers="graphcellid1328101726914row0col0 graphcellid1328101726914row4col0" id="graphcellid1328101726914row5col1">Total</th>
+<td headers="graphcellid1328101726914row0col2 graphcellid1328101726914row1col2 graphcellid1328101726914row2col2 graphcellid1328101726914row4col0 graphcellid1328101726914row5col1">4.396</td>
+<td headers="graphcellid1328101726914row0col2 graphcellid1328101726914row1col2 graphcellid1328101726914row2col3 graphcellid1328101726914row4col0 graphcellid1328101726914row5col1">4.702</td>
+<td headers="graphcellid1328101726914row0col2 graphcellid1328101726914row1col4 graphcellid1328101726914row2col7 graphcellid1328101726914row4col0 graphcellid1328101726914row5col1">2.221</td>
+<td headers="graphcellid1328101726914row0col8 graphcellid1328101726914row4col0 graphcellid1328101726914row5col1">6.164</td>
+<td headers="graphcellid1328101726914row0col9 graphcellid1328101726914row4col0 graphcellid1328101726914row5col1">6.164</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+<h2>Negative Table</h2>
+<table class="wb-charts wb-charts-width-250">
+<caption>Current account balances</caption>
+<thead>
+<tr>
+<th rowspan="3" colspan="2" id="graphcellid1328101841953row0col0">&#160;</th>
+<th colspan="6" id="graphcellid1328101841953row0col2">Previous Year</th>
+<th rowspan="3" id="graphcellid1328101841953row0col8">2008 - Q1</th>
+<th rowspan="3" id="graphcellid1328101841953row0col9">2008 - Q1</th>
+</tr>
+<tr>
+<th colspan="2" headers="graphcellid1328101841953row0col2" id="graphcellid1328101841953row1col2">2006</th>
+<th colspan="4" headers="graphcellid1328101841953row0col2" id="graphcellid1328101841953row1col4">2007</th>
+</tr>
+<tr>
+<th headers="graphcellid1328101841953row0col2 graphcellid1328101841953row1col2" id="graphcellid1328101841953row2col2">Q3</th>
+<th headers="graphcellid1328101841953row0col2 graphcellid1328101841953row1col2" id="graphcellid1328101841953row2col3">Q4</th>
+<th headers="graphcellid1328101841953row0col2 graphcellid1328101841953row1col4" id="graphcellid1328101841953row2col4">Q1</th>
+<th headers="graphcellid1328101841953row0col2 graphcellid1328101841953row1col4" id="graphcellid1328101841953row2col5">Q2</th>
+<th headers="graphcellid1328101841953row0col2 graphcellid1328101841953row1col4" id="graphcellid1328101841953row2col6">Q3</th>
+<th headers="graphcellid1328101841953row0col2 graphcellid1328101841953row1col4" id="graphcellid1328101841953row2col7">Q4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th colspan="2" headers="graphcellid1328101841953row0col0" id="graphcellid1328101841953row3col0">Goods</th>
+<td headers="graphcellid1328101841953row0col2 graphcellid1328101841953row1col2 graphcellid1328101841953row2col2 graphcellid1328101841953row3col0">-11.406</td>
+<td headers="graphcellid1328101841953row0col2 graphcellid1328101841953row1col2 graphcellid1328101841953row2col3 graphcellid1328101841953row3col0">-12.139</td>
+<td headers="graphcellid1328101841953row0col2 graphcellid1328101841953row1col4 graphcellid1328101841953row2col4 graphcellid1328101841953row3col0">-13.563</td>
+<td headers="graphcellid1328101841953row0col2 graphcellid1328101841953row1col4 graphcellid1328101841953row2col5 graphcellid1328101841953row3col0">$-15.134</td>
+<td headers="graphcellid1328101841953row0col2 graphcellid1328101841953row1col4 graphcellid1328101841953row2col6 graphcellid1328101841953row3col0">-9.510 $</td>
+<td headers="graphcellid1328101841953row0col2 graphcellid1328101841953row1col4 graphcellid1328101841953row2col7 graphcellid1328101841953row3col0">-9.230</td>
+<td headers="graphcellid1328101841953row0col8 graphcellid1328101841953row3col0">-12.551</td>
+<td headers="graphcellid1328101841953row0col9 graphcellid1328101841953row3col0">-12.551</td>
+</tr>
+<tr>
+<th rowspan="2" headers="graphcellid1328101841953row0col0" id="graphcellid1328101841953row4col0">Test Group</th>
+<th headers="graphcellid1328101841953row0col0 graphcellid1328101841953row4col0" id="graphcellid1328101841953row4col1">Other current account</th>
+<td headers="graphcellid1328101841953row0col2 graphcellid1328101841953row1col2 graphcellid1328101841953row2col2 graphcellid1328101841953row4col0 graphcellid1328101841953row4col1">-7.010</td>
+<td headers="graphcellid1328101841953row0col2 graphcellid1328101841953row1col2 graphcellid1328101841953row2col3 graphcellid1328101841953row4col0 graphcellid1328101841953row4col1">-7.437</td>
+<td rowspan="2" colspan="3" headers="graphcellid1328101841953row0col2 graphcellid1328101841953row1col4 graphcellid1328101841953row2col4 graphcellid1328101841953row2col5 graphcellid1328101841953row2col6 graphcellid1328101841953row4col0 graphcellid1328101841953row4col1 graphcellid1328101841953row5col1">-10.231</td>
+<td headers="graphcellid1328101841953row0col2 graphcellid1328101841953row1col4 graphcellid1328101841953row2col7 graphcellid1328101841953row4col0 graphcellid1328101841953row4col1">-7.009</td>
+<td headers="graphcellid1328101841953row0col8 graphcellid1328101841953row4col0 graphcellid1328101841953row4col1">-6.387</td>
+<td headers="graphcellid1328101841953row0col9 graphcellid1328101841953row4col0 graphcellid1328101841953row4col1">-6.387</td>
+</tr>
+<tr>
+<th class="wb-charts-area wb-charts-color-green wb-charts-fillopacity-50" headers="graphcellid1328101841953row0col0 graphcellid1328101841953row4col0" id="graphcellid1328101841953row5col1">Total</th>
+<td headers="graphcellid1328101841953row0col2 graphcellid1328101841953row1col2 graphcellid1328101841953row2col2 graphcellid1328101841953row4col0 graphcellid1328101841953row5col1">-4.396</td>
+<td headers="graphcellid1328101841953row0col2 graphcellid1328101841953row1col2 graphcellid1328101841953row2col3 graphcellid1328101841953row4col0 graphcellid1328101841953row5col1">-4.702</td>
+<td headers="graphcellid1328101841953row0col2 graphcellid1328101841953row1col4 graphcellid1328101841953row2col7 graphcellid1328101841953row4col0 graphcellid1328101841953row5col1">-2.221</td>
+<td headers="graphcellid1328101841953row0col8 graphcellid1328101841953row4col0 graphcellid1328101841953row5col1">-6.164</td>
+<td headers="graphcellid1328101841953row0col9 graphcellid1328101841953row4col0 graphcellid1328101841953row5col1">-6.164</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+<h2>Positive Table - Small range</h2>
+<table class="wb-charts">
+<caption>Current account balances</caption>
+<thead>
+<tr>
+<th style="border: none;" rowspan="3" colspan="2" id="graphcellid1328101901890row0col0">&#160;</th>
+<th colspan="6" id="graphcellid1328101901890row0col2">Previous Year</th>
+<th rowspan="3" id="graphcellid1328101901890row0col8">2008 - Q1</th>
+<th rowspan="3" id="graphcellid1328101901890row0col9">2008 - Q1</th>
+</tr>
+<tr>
+<th colspan="2" headers="graphcellid1328101901890row0col2" id="graphcellid1328101901890row1col2">2006</th>
+<th colspan="4" headers="graphcellid1328101901890row0col2" id="graphcellid1328101901890row1col4">2007</th>
+</tr>
+<tr>
+<th headers="graphcellid1328101901890row0col2 graphcellid1328101901890row1col2" id="graphcellid1328101901890row2col2">Q3</th>
+<th headers="graphcellid1328101901890row0col2 graphcellid1328101901890row1col2" id="graphcellid1328101901890row2col3">Q4</th>
+<th headers="graphcellid1328101901890row0col2 graphcellid1328101901890row1col4" id="graphcellid1328101901890row2col4">Q1</th>
+<th headers="graphcellid1328101901890row0col2 graphcellid1328101901890row1col4" id="graphcellid1328101901890row2col5">Q2</th>
+<th headers="graphcellid1328101901890row0col2 graphcellid1328101901890row1col4" id="graphcellid1328101901890row2col6">Q3</th>
+<th headers="graphcellid1328101901890row0col2 graphcellid1328101901890row1col4" id="graphcellid1328101901890row2col7">Q4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th colspan="2" class="wb-charts-stacked wb-charts-color-green wb-charts-fillopacity-50" headers="graphcellid1328101901890row0col0" id="graphcellid1328101901890row3col0">Goods</th>
+<td headers="graphcellid1328101901890row0col2 graphcellid1328101901890row1col2 graphcellid1328101901890row2col2 graphcellid1328101901890row3col0">11.406</td>
+<td headers="graphcellid1328101901890row0col2 graphcellid1328101901890row1col2 graphcellid1328101901890row2col3 graphcellid1328101901890row3col0">12.139</td>
+<td headers="graphcellid1328101901890row0col2 graphcellid1328101901890row1col4 graphcellid1328101901890row2col4 graphcellid1328101901890row3col0">13.563</td>
+<td headers="graphcellid1328101901890row0col2 graphcellid1328101901890row1col4 graphcellid1328101901890row2col5 graphcellid1328101901890row3col0">$15.134</td>
+<td headers="graphcellid1328101901890row0col2 graphcellid1328101901890row1col4 graphcellid1328101901890row2col6 graphcellid1328101901890row3col0">10.510 $</td>
+<td headers="graphcellid1328101901890row0col2 graphcellid1328101901890row1col4 graphcellid1328101901890row2col7 graphcellid1328101901890row3col0">10.230</td>
+<td headers="graphcellid1328101901890row0col8 graphcellid1328101901890row3col0">12.551</td>
+<td headers="graphcellid1328101901890row0col9 graphcellid1328101901890row3col0">12.551</td>
+</tr>
+<tr>
+<th rowspan="2" headers="graphcellid1328101901890row0col0" id="graphcellid1328101901890row4col0">Test Group</th>
+<th class="wb-charts-stacked wb-charts-color-blue wb-charts-fillopacity-20" headers="graphcellid1328101901890row0col0 graphcellid1328101901890row4col0" id="graphcellid1328101901890row4col1">Other current account</th>
+<td headers="graphcellid1328101901890row0col2 graphcellid1328101901890row1col2 graphcellid1328101901890row2col2 graphcellid1328101901890row4col0 graphcellid1328101901890row4col1">11.010</td>
+<td headers="graphcellid1328101901890row0col2 graphcellid1328101901890row1col2 graphcellid1328101901890row2col3 graphcellid1328101901890row4col0 graphcellid1328101901890row4col1">11.437</td>
+<td rowspan="2" colspan="3" headers="graphcellid1328101901890row0col2 graphcellid1328101901890row1col4 graphcellid1328101901890row2col4 graphcellid1328101901890row2col5 graphcellid1328101901890row2col6 graphcellid1328101901890row4col0 graphcellid1328101901890row4col1 graphcellid1328101901890row5col1">10.231</td>
+<td headers="graphcellid1328101901890row0col2 graphcellid1328101901890row1col4 graphcellid1328101901890row2col7 graphcellid1328101901890row4col0 graphcellid1328101901890row4col1">12.009</td>
+<td headers="graphcellid1328101901890row0col8 graphcellid1328101901890row4col0 graphcellid1328101901890row4col1">15.387</td>
+<td headers="graphcellid1328101901890row0col9 graphcellid1328101901890row4col0 graphcellid1328101901890row4col1">15.387</td>
+</tr>
+<tr>
+<th class="wb-charts-area wb-charts-color-red" headers="graphcellid1328101901890row0col0 graphcellid1328101901890row4col0" id="graphcellid1328101901890row5col1">Total</th>
+<td headers="graphcellid1328101901890row0col2 graphcellid1328101901890row1col2 graphcellid1328101901890row2col2 graphcellid1328101901890row4col0 graphcellid1328101901890row5col1">14.396</td>
+<td headers="graphcellid1328101901890row0col2 graphcellid1328101901890row1col2 graphcellid1328101901890row2col3 graphcellid1328101901890row4col0 graphcellid1328101901890row5col1">14.702</td>
+<td headers="graphcellid1328101901890row0col2 graphcellid1328101901890row1col4 graphcellid1328101901890row2col7 graphcellid1328101901890row4col0 graphcellid1328101901890row5col1">12.221</td>
+<td headers="graphcellid1328101901890row0col8 graphcellid1328101901890row4col0 graphcellid1328101901890row5col1">11.164</td>
+<td headers="graphcellid1328101901890row0col9 graphcellid1328101901890row4col0 graphcellid1328101901890row5col1">10.164</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+<h2>Negative Table - Small range</h2>
+<table class="wb-charts">
+<caption>Current account balances</caption>
+<thead>
+<tr>
+<th style="border: none;" rowspan="3" colspan="2" id="graphcellid1328101936094row0col0">&#160;</th>
+<th colspan="6" id="graphcellid1328101936094row0col2">Previous Year</th>
+<th rowspan="3" id="graphcellid1328101936094row0col8">2008 - Q1</th>
+<th rowspan="3" id="graphcellid1328101936094row0col9">2008 - Q1</th>
+</tr>
+<tr>
+<th colspan="2" headers="graphcellid1328101936094row0col2" id="graphcellid1328101936094row1col2">2006</th>
+<th colspan="4" headers="graphcellid1328101936094row0col2" id="graphcellid1328101936094row1col4">2007</th>
+</tr>
+<tr>
+<th headers="graphcellid1328101936094row0col2 graphcellid1328101936094row1col2" id="graphcellid1328101936094row2col2">Q3</th>
+<th headers="graphcellid1328101936094row0col2 graphcellid1328101936094row1col2" id="graphcellid1328101936094row2col3">Q4</th>
+<th headers="graphcellid1328101936094row0col2 graphcellid1328101936094row1col4" id="graphcellid1328101936094row2col4">Q1</th>
+<th headers="graphcellid1328101936094row0col2 graphcellid1328101936094row1col4" id="graphcellid1328101936094row2col5">Q2</th>
+<th headers="graphcellid1328101936094row0col2 graphcellid1328101936094row1col4" id="graphcellid1328101936094row2col6">Q3</th>
+<th headers="graphcellid1328101936094row0col2 graphcellid1328101936094row1col4" id="graphcellid1328101936094row2col7">Q4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th colspan="2" class="wb-charts-stacked wb-charts-color-green wb-charts-fillopacity-50" headers="graphcellid1328101936094row0col0" id="graphcellid1328101936094row3col0">Goods</th>
+<td headers="graphcellid1328101936094row0col2 graphcellid1328101936094row1col2 graphcellid1328101936094row2col2 graphcellid1328101936094row3col0">-11.406</td>
+<td headers="graphcellid1328101936094row0col2 graphcellid1328101936094row1col2 graphcellid1328101936094row2col3 graphcellid1328101936094row3col0">-12.139</td>
+<td headers="graphcellid1328101936094row0col2 graphcellid1328101936094row1col4 graphcellid1328101936094row2col4 graphcellid1328101936094row3col0">-13.563</td>
+<td headers="graphcellid1328101936094row0col2 graphcellid1328101936094row1col4 graphcellid1328101936094row2col5 graphcellid1328101936094row3col0">$-15.134</td>
+<td headers="graphcellid1328101936094row0col2 graphcellid1328101936094row1col4 graphcellid1328101936094row2col6 graphcellid1328101936094row3col0">-10.510 $</td>
+<td headers="graphcellid1328101936094row0col2 graphcellid1328101936094row1col4 graphcellid1328101936094row2col7 graphcellid1328101936094row3col0">-10.230</td>
+<td headers="graphcellid1328101936094row0col8 graphcellid1328101936094row3col0">-12.551</td>
+<td headers="graphcellid1328101936094row0col9 graphcellid1328101936094row3col0">-12.551</td>
+</tr>
+<tr>
+<th rowspan="2" headers="graphcellid1328101936094row0col0" id="graphcellid1328101936094row4col0">Test Group</th>
+<th class="wb-charts-bar wb-charts-color-blue wb-charts-fillopacity-20" headers="graphcellid1328101936094row0col0 graphcellid1328101936094row4col0" id="graphcellid1328101936094row4col1">Other current account</th>
+<td headers="graphcellid1328101936094row0col2 graphcellid1328101936094row1col2 graphcellid1328101936094row2col2 graphcellid1328101936094row4col0 graphcellid1328101936094row4col1">-11.010</td>
+<td headers="graphcellid1328101936094row0col2 graphcellid1328101936094row1col2 graphcellid1328101936094row2col3 graphcellid1328101936094row4col0 graphcellid1328101936094row4col1">-11.437</td>
+<td rowspan="2" colspan="3" headers="graphcellid1328101936094row0col2 graphcellid1328101936094row1col4 graphcellid1328101936094row2col4 graphcellid1328101936094row2col5 graphcellid1328101936094row2col6 graphcellid1328101936094row4col0 graphcellid1328101936094row4col1 graphcellid1328101936094row5col1">-10.231</td>
+<td headers="graphcellid1328101936094row0col2 graphcellid1328101936094row1col4 graphcellid1328101936094row2col7 graphcellid1328101936094row4col0 graphcellid1328101936094row4col1">-12.009</td>
+<td headers="graphcellid1328101936094row0col8 graphcellid1328101936094row4col0 graphcellid1328101936094row4col1">-15.387</td>
+<td headers="graphcellid1328101936094row0col9 graphcellid1328101936094row4col0 graphcellid1328101936094row4col1">-15.387</td>
+</tr>
+<tr>
+<th class="wb-charts-area wb-charts-color-black" headers="graphcellid1328101936094row0col0 graphcellid1328101936094row4col0" id="graphcellid1328101936094row5col1">Total</th>
+<td headers="graphcellid1328101936094row0col2 graphcellid1328101936094row1col2 graphcellid1328101936094row2col2 graphcellid1328101936094row4col0 graphcellid1328101936094row5col1">-14.396</td>
+<td headers="graphcellid1328101936094row0col2 graphcellid1328101936094row1col2 graphcellid1328101936094row2col3 graphcellid1328101936094row4col0 graphcellid1328101936094row5col1">-14.702</td>
+<td headers="graphcellid1328101936094row0col2 graphcellid1328101936094row1col4 graphcellid1328101936094row2col7 graphcellid1328101936094row4col0 graphcellid1328101936094row5col1">-12.221</td>
+<td headers="graphcellid1328101936094row0col8 graphcellid1328101936094row4col0 graphcellid1328101936094row5col1">-11.164</td>
+<td headers="graphcellid1328101936094row0col9 graphcellid1328101936094row4col0 graphcellid1328101936094row5col1">-10.164</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+<h2>Pie Chart with Positive Table</h2>
+<table class="wb-charts wb-charts-pie">
+<caption>Current account balances</caption>
+<thead>
+<tr>
+<th rowspan="3" colspan="2" id="graphcellid1328102035974row0col0">&#160;</th>
+<th colspan="6" id="graphcellid1328102035974row0col2">Previous Year</th>
+<th colspan="2" id="graphcellid1328102035974row0col8">2008</th>
+</tr>
+<tr>
+<th colspan="2" headers="graphcellid1328102035974row0col2" id="graphcellid1328102035974row1col2">2006</th>
+<th colspan="4" headers="graphcellid1328102035974row0col2" id="graphcellid1328102035974row1col4">2007</th>
+<th rowspan="2" headers="graphcellid1328102035974row0col8" id="graphcellid1328102035974row1col8">Q1</th>
+<th rowspan="2" headers="graphcellid1328102035974row0col8" id="graphcellid1328102035974row1col9">Q1</th>
+</tr>
+<tr>
+<th headers="graphcellid1328102035974row0col2 graphcellid1328102035974row1col2" id="graphcellid1328102035974row2col2">Q3</th>
+<th headers="graphcellid1328102035974row0col2 graphcellid1328102035974row1col2" id="graphcellid1328102035974row2col3">Q4</th>
+<th headers="graphcellid1328102035974row0col2 graphcellid1328102035974row1col4" id="graphcellid1328102035974row2col4">Q1</th>
+<th headers="graphcellid1328102035974row0col2 graphcellid1328102035974row1col4" id="graphcellid1328102035974row2col5">Q2</th>
+<th headers="graphcellid1328102035974row0col2 graphcellid1328102035974row1col4" id="graphcellid1328102035974row2col6">Q3</th>
+<th headers="graphcellid1328102035974row0col2 graphcellid1328102035974row1col4" id="graphcellid1328102035974row2col7">Q4</th>
+</tr>
+</thead>
+<tbody class="wb-charts-type-pie">
+<tr>
+<th colspan="2" headers="graphcellid1328102035974row0col0" id="graphcellid1328102035974row3col0">Goods</th>
+<td class="wb-charts-color-blue wb-charts-overcolor-red" headers="graphcellid1328102035974row0col2 graphcellid1328102035974row1col2 graphcellid1328102035974row2col2 graphcellid1328102035974row3col0">11.406</td>
+<td class="wb-charts-color-lightblue wb-charts-overcolor-red" headers="graphcellid1328102035974row0col2 graphcellid1328102035974row1col2 graphcellid1328102035974row2col3 graphcellid1328102035974row3col0">12.139</td>
+<td class="wb-charts-color-blue wb-charts-overcolor-red" headers="graphcellid1328102035974row0col2 graphcellid1328102035974row1col4 graphcellid1328102035974row2col4 graphcellid1328102035974row3col0">13.563</td>
+<td class="wb-charts-color-lightblue wb-charts-overcolor-red" headers="graphcellid1328102035974row0col2 graphcellid1328102035974row1col4 graphcellid1328102035974row2col5 graphcellid1328102035974row3col0">$15.134</td>
+<td class="wb-charts-color-blue wb-charts-overcolor-red" headers="graphcellid1328102035974row0col2 graphcellid1328102035974row1col4 graphcellid1328102035974row2col6 graphcellid1328102035974row3col0">9.510 $</td>
+<td class="wb-charts-color-lightblue wb-charts-overcolor-red" headers="graphcellid1328102035974row0col2 graphcellid1328102035974row1col4 graphcellid1328102035974row2col7 graphcellid1328102035974row3col0">9.230</td>
+<td class="wb-charts-color-blue wb-charts-overcolor-red" headers="graphcellid1328102035974row0col8 graphcellid1328102035974row1col8 graphcellid1328102035974row3col0">12.551</td>
+<td class="wb-charts-color-lightblue wb-charts-overcolor-red" headers="graphcellid1328102035974row0col8 graphcellid1328102035974row1col9 graphcellid1328102035974row3col0">12.551</td>
+</tr>
+<tr>
+<th rowspan="2" headers="graphcellid1328102035974row0col0" id="graphcellid1328102035974row4col0">Test Group</th>
+<th headers="graphcellid1328102035974row0col0 graphcellid1328102035974row4col0" id="graphcellid1328102035974row4col1">Other current account</th>
+<td headers="graphcellid1328102035974row0col2 graphcellid1328102035974row1col2 graphcellid1328102035974row2col2 graphcellid1328102035974row4col0 graphcellid1328102035974row4col1">7.010</td>
+<td headers="graphcellid1328102035974row0col2 graphcellid1328102035974row1col2 graphcellid1328102035974row2col3 graphcellid1328102035974row4col0 graphcellid1328102035974row4col1">7.437</td>
+<td rowspan="2" colspan="3" headers="graphcellid1328102035974row0col2 graphcellid1328102035974row1col4 graphcellid1328102035974row2col4 graphcellid1328102035974row2col5 graphcellid1328102035974row2col6 graphcellid1328102035974row4col0 graphcellid1328102035974row4col1 graphcellid1328102035974row5col1">10.231</td>
+<td headers="graphcellid1328102035974row0col2 graphcellid1328102035974row1col4 graphcellid1328102035974row2col7 graphcellid1328102035974row4col0 graphcellid1328102035974row4col1">7.009</td>
+<td headers="graphcellid1328102035974row0col8 graphcellid1328102035974row1col8 graphcellid1328102035974row4col0 graphcellid1328102035974row4col1">6.387</td>
+<td headers="graphcellid1328102035974row0col8 graphcellid1328102035974row1col9 graphcellid1328102035974row4col0 graphcellid1328102035974row4col1">6.387</td>
+</tr>
+<tr>
+<th headers="graphcellid1328102035974row0col0 graphcellid1328102035974row4col0" id="graphcellid1328102035974row5col1">Total</th>
+<td headers="graphcellid1328102035974row0col2 graphcellid1328102035974row1col2 graphcellid1328102035974row2col2 graphcellid1328102035974row4col0 graphcellid1328102035974row5col1">4.396</td>
+<td headers="graphcellid1328102035974row0col2 graphcellid1328102035974row1col2 graphcellid1328102035974row2col3 graphcellid1328102035974row4col0 graphcellid1328102035974row5col1">4.702</td>
+<td headers="graphcellid1328102035974row0col2 graphcellid1328102035974row1col4 graphcellid1328102035974row2col7 graphcellid1328102035974row4col0 graphcellid1328102035974row5col1">2.221</td>
+<td headers="graphcellid1328102035974row0col8 graphcellid1328102035974row1col8 graphcellid1328102035974row4col0 graphcellid1328102035974row5col1">6.164</td>
+<td headers="graphcellid1328102035974row0col8 graphcellid1328102035974row1col9 graphcellid1328102035974row4col0 graphcellid1328102035974row5col1">6.164</td>
+</tr>
+</tbody>
+</table>
