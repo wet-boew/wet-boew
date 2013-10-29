@@ -98,14 +98,16 @@ onAjaxLoaded = function( $elm, $ajaxed ) {
 
 	//Some hooks for post transformation
 	// - @data-post-remove : removes the space delimited class for the element. This is more a feature to fight the FOUC
-	var $menu = $ajaxed.find( "[role='menubar'] .item" );
+	var $menu = $ajaxed.find( "[role=menubar] .item" );
 
 	$ajaxed.find( ":discoverable" )
 		.attr( "tabindex", "-1" )
+		.end()
+		.find( ".item" )
 		.eq( 0 )
 		.attr( "tabindex", "0" );
 
-	$menu.filter( "[href^='#']" )
+	$menu.filter( "[href^=#]" )
 		.append( "<span class='expandicon'></span>" );
 
 	drizzleAria( $menu );
@@ -122,7 +124,7 @@ onAjaxLoaded = function( $elm, $ajaxed ) {
 	// recalibrate context
 	$elm.data({
 		self: $elm,
-		menu: $elm.find( "[role='menubar'] .item" ),
+		menu: $elm.find( "[role=menubar] .item" ),
 		items: $elm.find( ".sbmnu" )
 	});
 
@@ -133,7 +135,22 @@ onAjaxLoaded = function( $elm, $ajaxed ) {
  * @param {jQuery event} event The current event
  */
 onSelect = function( event ) {
-	event.goto.trigger( "focus.wb" );
+
+	if ( event.special ) {
+
+		// Assigns focus to an element
+		setTimeout(function () {
+			event.goto.focus();
+			return onReset( event.goto.parents( selector ) );
+		}, 0 );
+
+	}else{
+
+		// Assigns focus to an element
+		setTimeout(function () {
+			return event.goto.focus();
+		}, 0 );
+	}
 },
 
 /*
@@ -179,8 +196,8 @@ onDisplay = function( $elm, event ) {
 		type: "reset.wb-menu"
 	});
 	// add the open state classes
-	$item.find( ".item" ).addClass( "active" )
-		.end().find( ".sbmnu" )
+	$item.addClass( "active" )
+		.find( ".sbmnu" )
 		.addClass( "open" );
 },
 
@@ -200,7 +217,7 @@ onHoverFocus = function( event ) {
 };
 
 // Bind the events of the plugin
-$document.on("timerpoke.wb mouseleave focusout select.wb-menu ajax-fetched.wb increment.wb-menu reset.wb-menu display.wb-menu", selector, function( event ) {
+$document.on("timerpoke.wb select.wb-menu ajax-fetched.wb increment.wb-menu reset.wb-menu display.wb-menu", selector, function( event ) {
 	var eventType = event.type,
 		$elm = $( this );
 
@@ -221,11 +238,7 @@ $document.on("timerpoke.wb mouseleave focusout select.wb-menu ajax-fetched.wb in
 		event.stopPropagation();
 		onIncrement( $elm, event );
 		break;
-	case "mouseleave":
-	case "focusout":
-		event.stopPropagation();
-		onReset( $elm );
-		break;
+
 	case "reset":
 		event.stopPropagation();
 		onReset( $elm );
@@ -252,18 +265,22 @@ $document.on( "mouseover focusin", selector + " .item", function( event ) {
 	onHoverFocus( event );
 });
 
+$document.on( "mouseleave focusout", selector, function( event ) {
+	event.stopPropagation();
+	onReset( $( selector )  );
+});
+
+
 // TODO: Convert rest of events to plugin template
-$document.on( "keydown", selector + " .menu", function( event ) {
+$document.on( "keydown", selector + " .item", function( event ) {
 	event.stopPropagation();
 
 	var ref = expand( event.target ),
 		$container = ref[ 0 ],
 		$menu = ref[ 1 ],
-		$items = ref[ 2 ],
 		$elm = ref[ 3 ],
 		$code = event.which,
 		$index = $menu.index( $elm.get( 0 ) ),
-		$anchor,
 		$goto;
 
 	switch ( $code ) {
@@ -271,23 +288,18 @@ $document.on( "keydown", selector + " .menu", function( event ) {
 	case 40:
 		if ( $elm.find( ".expandicon" ).length > 0 ) {
 			event.preventDefault();
-			$anchor = $elm.attr( "href" ).slice( 1 );
-			$goto = $items.filter( "[id='" + $anchor + "']" ).find( ":discoverable" ).first();
-
+			$goto = $elm.closest("li").find(".sbmnu [role=menuitem]").first();
+			window.console.log( $goto.text() );
 			$container.trigger({
-				type: "display.wb-menu",
-				ident: $elm.attr( "href" )
-			})
-				.trigger({
+				type: "increment.wb-menu",
+				cnode: $menu,
+				increment: 0,
+				current: $index
+			}).trigger({
 					type: "select.wb-menu",
 					goto: $goto
 				});
 		}
-		break;
-	case 9:
-		$container.trigger({
-			type: "reset.wb-menu"
-		});
 		break;
 	case 37:
 		event.preventDefault();
@@ -313,7 +325,7 @@ $document.on( "keydown", selector + " .menu", function( event ) {
 /*
  * Item Keyboard bindings
  */
-$document.on( "keydown", selector + " .item", function( event ) {
+$document.on( "keydown", selector + " [role=menu]", function( event ) {
 
 	event.stopPropagation();
 	var ref = expand( event.target, true ),
@@ -330,11 +342,13 @@ $document.on( "keydown", selector + " .item", function( event ) {
 	case 27:
 	case 37:
 		event.preventDefault();
-		$goto = $menu.filter( "[href='#" + $items.attr( "id" ) + "']" );
+		$goto = $menu.filter( "[href=#" + $items.attr( "id" ) + "]" );
 		$container.trigger({
 			type: "select.wb-menu",
-			goto: $goto
+			goto: $goto,
+			special: "reset"
 		});
+
 		break;
 	case 38:
 		event.preventDefault();
@@ -356,6 +370,7 @@ $document.on( "keydown", selector + " .item", function( event ) {
 		break;
 	}
 });
+
 
 // Add the timer poke to initialize the plugin
 window._timer.add( selector );
