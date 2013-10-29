@@ -23,12 +23,18 @@
 	#gcwu-sig-in {
 		@extend %gcwu-default-screen-display-none;
 	}
+	#gcwu-sig-coa-in {
+		@extend %gcwu-default-screen-display-none;
+	}
 }
 %gcwu-default-screen-wmms-sig-display-block {
 	#gcwu-wmms-in {
 		@extend %gcwu-default-screen-display-block;
 	}
 	#gcwu-sig-in {
+		@extend %gcwu-default-screen-display-block;
+	}
+	#gcwu-sig-coa-in {
 		@extend %gcwu-default-screen-display-block;
 	}
 }
@@ -132,6 +138,9 @@ body {
 	@extend %gcwu-default-screen-display-none;
 }
 #gcwu-sig-in {
+	@extend %gcwu-default-screen-display-none;
+}
+#gcwu-sig-coa-in {
 	@extend %gcwu-default-screen-display-none;
 }
 .svg {
