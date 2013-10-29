@@ -11,15 +11,11 @@
 	cursor: pointer;
 }
 
-%tabbedinterface-tabs-in {
+%tabbedinterface-tabs-active {
 	color: #333;
 	padding-top: 5px;
 	background: #fff;
 	cursor: text;
-}
-
-%tabbedinterface-text-decoration-underline {
-	text-decoration: underline;
 }
 
 %tabbedinterface-padding-2-5 {
@@ -50,11 +46,8 @@
 			position: relative;
 			top: 1px;
 			margin-top: -1px;
-			&.in {
-				@extend %tabbedinterface-tabs-in;
-				&:focus {
-					@extend %tabbedinterface-tabs-in;
-				}
+			&.active, &:focus, &:hover {
+				@extend %tabbedinterface-tabs-active;
 			}
 		}
 		&.in {
@@ -69,7 +62,7 @@
 		a {
 			&.in {
 				@extend %tabbedinterface-cursor-pointer;
-				&:focus {
+				&:focus, &:hover {
 					@extend %tabbedinterface-cursor-pointer;
 				}
 			}
@@ -86,8 +79,7 @@
 		border: 1px solid #999;
 		margin-right: 2px;
 		text-decoration: none;
-		&:focus {
-			@extend %tabbedinterface-text-decoration-underline;
+		&:focus, &:hover {
 			color: #000;
 		}
 		&.prv {
@@ -248,20 +240,20 @@
 				border-top: none;
 				color: #fff;
 				padding: 3px 4px 4px;
-				&:focus {
+				&:focus, &:hover {
 					@extend %tabbedinterface-gradient-background;
 					color: #000;
 					border-top: 1px solid #fff;
 					padding-top: 1px;
 				}
-				&.in {
-					@extend %tabbedinterface-tab-style-1-in;
-					&:focus {
-						@extend %tabbedinterface-tab-style-1-in;
-					}
-				}
 				&.plypause {
 					color: #000;
+				}
+			}
+			&.active a {
+				@extend %tabbedinterface-tab-style-1-in;
+				&:focus, &:hover {
+					@extend %tabbedinterface-tab-style-1-in;
 				}
 			}
 		}
@@ -273,7 +265,7 @@
 		a {
 			color: #000;
 			@extend %tabbedinterface-no-repeat-border999;
-			&:focus {
+			&:focus, &:hover {
 				@extend %tabbedinterface-no-repeat-border999;
 				color: #c00;
 			}
@@ -318,17 +310,20 @@
 				border: 1px solid #999;
 				padding: 2px 5px;
 				border-radius: 2px;
-				&.in {
-					@extend %tabbedinterface-tab-style-2-in;
-				}
-				&:focus {
+				&:focus, &:hover {
 					@extend %tabbedinterface-tab-style-2-in;
 				}
 			}
-			&.in {
+			&.active {
 				border: none;
 				top: auto;
 				color: #fff;
+				a {
+					@extend %tabbedinterface-tab-style-2-in;
+					&:focus, &:hover {
+						@extend %tabbedinterface-tab-style-2-in;
+					}
+				}
 			}
 		}
 	}
@@ -352,7 +347,7 @@
 		margin-right: -6px;
 		a {
 			background-color: transparent;
-			&:focus {
+			&:focus, &:hover {
 				color: #000;
 			}
 		}
@@ -368,7 +363,6 @@
 	color: #fff;
 	outline-color: #000;
 	margin-right: 0;
-	padding: 5px 5px 5px 25px;
 	opacity: 0.75;
 }
 
@@ -398,31 +392,32 @@
 				text-decoration: none;
 				background: transparent;
 				padding: 5px 5px 5px 25px;
-				&.in {
-					@extend %tabbedinterface-tab-style-3-in;
-				}
-				&:focus {
+				&:focus, &:hover {
 					@extend %tabbedinterface-tab-style-3-in;
 				}
 			}
-			&.in {
-				border: none;
-				color: #fff;
-				a {
-					&:before {
-					    border: {
-							color: transparent black transparent transparent;
-							style: solid;
-							width: 13px;
-						}
-						content: "";
-						display: block;
-						height: 0;
-						left: -20px;
-						position: absolute;
-						top: 0;
-						width: 0;
+		}
+		li.active {
+			border: none;
+			color: #fff;
+			a {
+				&:before {
+				    border: {
+						color: transparent black transparent transparent;
+						style: solid;
+						width: 13px;
 					}
+					content: "";
+					display: block;
+					height: 0;
+					left: -20px;
+					position: absolute;
+					top: 0;
+					width: 0;
+				}
+				@extend %tabbedinterface-tab-style-3-in;
+				&:focus, &:hover {
+					@extend %tabbedinterface-tab-style-3-in;
 				}
 			}
 		}
@@ -446,7 +441,7 @@
 			float: right;
 			margin-top: 10px;
 			border: 1px solid #ccc;
-			&:focus {
+			&:focus, &:hover {
 				opacity: 1;
 				color: #000;
 				margin-right: 2px;
@@ -485,16 +480,13 @@
 				font-size: 80%;
 				margin: 0;
 				padding: 2px;
-				&:focus {
+				&:focus, &:hover {
 					@extend %tabbedinterface-gradient-background;
 					color: #000;
 				}
-				&.in {
-					@extend %tabbedinterface-tab-style-4-in-hover;
-					&:hover {
-						@extend %tabbedinterface-tab-style-4-in-hover;
-					}
-				}
+			}
+			&.active a {
+				@extend %tabbedinterface-tab-style-4-in-hover;
 			}
 		}
 	}
@@ -565,15 +557,8 @@
 /* style 6 */
 %tabbedinterface-tab-style-6-link {
 	padding: 2px 4px;
-	background: 0;
 	border: 1px solid #999;
 	border-radius: 2px;
-}
-%tabbedinterface-tab-style-6-in {
-	text-decoration: none;
-	color: #fff;
-	background: #333;
-	border-color: #000;
 }
 %tabbedinterface-tab-style-6-opacity-1-color-000 {
 	opacity: 1;
@@ -582,6 +567,12 @@
 %tabbedinterface-tab-style-6-padding-0-background-eee {
 	padding: 0;
 	background: #eee;
+}
+%tabbedinterface-tab-style-6-tab-active {
+	background: none repeat scroll 0 0 #333333;
+    border-color: #000000;
+    color: #FFFFFF;
+    text-decoration: none;
 }
 .tabs-style-6 {
 	.tabs-panel {
@@ -603,16 +594,15 @@
 		border: 0;
 		li {
 			vertical-align: top;
-			background: 0;
 			border: 0;
 			a {
 				@extend %tabbedinterface-tab-style-6-link;
-				&.in {
-					@extend %tabbedinterface-tab-style-6-link;
-					@extend %tabbedinterface-tab-style-6-in;
-				}
-				&:focus {
-					@extend %tabbedinterface-tab-style-6-in;
+				background: none repeat scroll 0 center rgba(0, 0, 0, 0);
+			    border: 1px solid #999999;
+			    border-radius: 2px 2px 2px 2px;
+			    padding: 2px 4px;
+				&:focus, &:hover {
+					@extend %tabbedinterface-tab-style-6-tab-active;
 				}
 			}
 			&.img {
@@ -623,14 +613,17 @@
 					padding: 0;
 					border: 0;
 					border-radius: 0;
-					&.in {
+					&.active {
 						@extend %tabbedinterface-tab-style-6-opacity-1-color-000;
 					}
-					&:focus {
+					&:focus, &:hover {
 						@extend %tabbedinterface-tab-style-6-opacity-1-color-000;
 					}
 				}
 			}
+		}
+		li.active a {
+			@extend %tabbedinterface-tab-style-6-tab-active;
 		}
 		img {
 			margin: 0;
@@ -639,10 +632,9 @@
 	}
 	.tabs-toggle {
 		a {
-			&:focus {
-				@extend %tabbedinterface-text-decoration-underline;
+			&:focus, &:hover {
+				text-decoration: underline;
 				color: #000;
-				background: 0;
 				border-color: #999;
 			}
 		}
@@ -725,7 +717,7 @@
 		.tabs-toggle {
 			a {
 				@extend %tabbedinterface-background-position-right-0;
-				&:focus {
+				&:focus, &:hover {
 					@extend %tabbedinterface-background-position-right-0;
 				}
 			}
@@ -764,7 +756,7 @@
 					&.in {
 						@extend %tabbedinterface-padding-5-25-5-5;
 					}
-					&:focus {
+					&:focus, &:hover {
 						@extend %tabbedinterface-padding-5-25-5-5;
 					}
 				}
@@ -794,7 +786,7 @@
 		.tabs-toggle {
 			a {
 				float: left;
-				&:focus {
+				&:focus, &:hover {
 					@extend %tabbedinterface-margin-left-2px-margin-right-auto;
 				}
 			}
