@@ -12,6 +12,7 @@
 		color: #fff;
 	}
 }
+
 %gcwu-default-large-screen-images-deco-side {
 	background: {
 		image: url(../images/content-deco-side.gif), url(../images/content-deco-side.gif);
@@ -28,6 +29,12 @@
 #wb-head-in {
 	@extend %gcwu-default-large-screen-images-header-background;
 	background-color: #406C93;
+}
+
+.ui-body-coa {
+	background: {
+		position: center 5em !important;
+	}
 }
 
 #wb-core-in {
