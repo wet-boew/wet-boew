@@ -289,13 +289,12 @@ $document.on( "keydown", selector + " .item", function( event ) {
 		if ( $elm.find( ".expandicon" ).length > 0 ) {
 			event.preventDefault();
 			$goto = $elm.closest("li").find(".sbmnu [role=menuitem]").first();
-			window.console.log( $goto.text() );
 			$container.trigger({
 				type: "increment.wb-menu",
 				cnode: $menu,
 				increment: 0,
-				current: $index
-			}).trigger({
+				current: $index })
+			.trigger({
 					type: "select.wb-menu",
 					goto: $goto
 				});
@@ -370,7 +369,6 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 		break;
 	}
 });
-
 
 // Add the timer poke to initialize the plugin
 window._timer.add( selector );
