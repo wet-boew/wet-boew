@@ -1,0 +1,465 @@
+---
+title: Chart and Graph - Pie working example
+language: en
+---
+
+<ul>
+	<li><a href="simple-en.html">Simple</a></li>
+	<li><a href="complex-en.html">Complex</a></li>
+	<li><a href="labels-en.html">Labels</a></li>
+	<li><a href="numberformat-en.html">Number Format</a></li>
+	<li><a href="pie-en.html">Pie</a></li>
+	<li><a href="simpleCustomized-en.html">Simple Customized</a></li>
+</ul>
+<hr />
+
+
+<h2>Donnut preset <code>wb-charts-donnut</code></h2>
+
+<p>New from WET 3.1.x release. This preset could be emulated for prior version, WET 3.1.x, by combining setting.</p>
+<details>
+	<summary>Donnut Preset Javascript Source Code</summary>
+<pre><code>
+// FYI - The "Donnut" preset is already defined by default, this are just to show an example on how to create your own preset.
+
+// In the global settings.js
+var wet_boew_charts = {
+	preset: {
+		donnut: {
+			// Donnut setting
+			type: 'pie',
+			height: 250,
+			percentlegend: true,
+			pieinnerradius: 45,
+			pietilt: 50,
+			piehoverable: true,
+			decimal: 1,
+			piethreshold: 8,
+			legendinline: true,
+			piestartangle: 100
+		},
+		
+		engnum: {
+			// Default setting
+		},
+		
+		presetname: "URL of the setting to be loaded"
+	}
+}
+</code></pre>
+</details>
+
+<table class="wb-charts wb-charts-donnut">
+	<caption>Donnut preset <code>wb-charts-donnut</code></caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7.7</td>
+			<td>10.10</td>
+			<td>4.4</td>
+			<td>14.14</td>
+			<td>15.15</td>
+			<td>7.7</td>
+			<td>23.23</td>
+			<td>8.8</td>
+			<td>12.12</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="clear"></div>
+
+<h2>Defaults</h2>
+
+<p>Options Added</p>
+<ul>
+	<li><strong>wb-charts</strong>: Activate the charts and graph plugin</li>
+	<li><strong>wb-charts-pie</strong>: Generate a pie charts</li>
+	<li><strong>wb-charts-height-250</strong>: Force an height of 250 pixels.</li>
+</ul>
+
+<table class="wb-charts wb-charts-pie wb-charts-height-250">
+	<caption>Defaults</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7</td>
+			<td>10</td>
+			<td>4</td>
+			<td>14</td>
+			<td>15</td>
+			<td>7</td>
+			<td>23</td>
+			<td>8</td>
+			<td>13</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Sectors labeling</h2>
+
+<p>Options added</p>
+<ul>
+	<li><strong>wb-charts-percentlegend-true</strong>: Show the percent label on the sector</li>
+	<li><strong>wb-chart-nolegend-true</strong>: Hide the legend. The legend text will be added over their sector</li>
+</ul>
+
+
+
+<table class="wb-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-chart-nolegend-true">
+	<caption>Sectors labeling</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7</td>
+			<td>10</td>
+			<td>4</td>
+			<td>14</td>
+			<td>15</td>
+			<td>7</td>
+			<td>23</td>
+			<td>8</td>
+			<td>13</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Donut hole</h2>
+
+<p>Options Added</p>
+<ul>
+	<li><strong>wb-charts-pieinnerradius-45</strong>: Percentage of the donut hole size.</li>
+</ul>
+
+
+<table class="wb-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-chart-nolegend-true wb-charts-pieinnerradius-45">
+	<caption>Donut hole</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7</td>
+			<td>10</td>
+			<td>4</td>
+			<td>14</td>
+			<td>15</td>
+			<td>7</td>
+			<td>23</td>
+			<td>8</td>
+			<td>13</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Tilted pie</h2>
+
+
+<p>Options Added</p>
+<ul>
+	<li><strong>wb-charts-pietilt-50</strong>: Percentage of tilt.</li>
+</ul>
+
+<table class="wb-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-chart-nolegend-true wb-charts-pieinnerradius-45 wb-charts-pietilt-50">
+	<caption>Tilted pie</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7</td>
+			<td>10</td>
+			<td>4</td>
+			<td>14</td>
+			<td>15</td>
+			<td>7</td>
+			<td>23</td>
+			<td>8</td>
+			<td>13</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>Rectangular pie</h2>
+
+
+<p>Options Added</p>
+<ul>
+	<li><strong>wb-charts-pieradius-500000</strong>: Size of the drawed pie in pixels. The real pixel value is the number set divided by 100.</li>
+</ul>
+
+
+
+<table class="wb-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-chart-nolegend-true wb-charts-pieinnerradius-45 wb-charts-pietilt-50 wb-charts-pieradius-500000">
+	<caption>Rectangular pie</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7</td>
+			<td>10</td>
+			<td>4</td>
+			<td>14</td>
+			<td>15</td>
+			<td>7</td>
+			<td>23</td>
+			<td>8</td>
+			<td>13</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>Hovering Effect</h2>
+
+<p>Options Added</p>
+<ul>
+	<li><strong>wb-charts-piehoverable-true</strong>: Add a visual effect to the slice when hovered with the mouse.</li>
+</ul>
+
+<p>Options Removed</p>
+<ul>
+	<li>wb-charts-pieradius-500000</li>
+</ul>
+
+<table class="wb-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-chart-nolegend-true wb-charts-pieinnerradius-45 wb-charts-pietilt-50 wb-charts-piehoverable-true">
+	<caption>Hovering Effect</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7.7</td>
+			<td>10.10</td>
+			<td>4.4</td>
+			<td>14.14</td>
+			<td>15.15</td>
+			<td>7.7</td>
+			<td>23.23</td>
+			<td>8.8</td>
+			<td>12.12</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Decimal precision</h2>
+
+
+<p>Options Added</p>
+<ul>
+	<li><strong>wb-charts-decimal-1</strong>: Indicate the number of decimal show in the percentage labels</li>
+</ul>
+
+<table class="wb-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-chart-nolegend-true wb-charts-pieinnerradius-45 wb-charts-pietilt-50 wb-charts-piehoverable-true wb-charts-decimal-1">
+	<caption>Decimal precision</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7.7</td>
+			<td>10.10</td>
+			<td>4.4</td>
+			<td>14.14</td>
+			<td>15.15</td>
+			<td>7.7</td>
+			<td>23.23</td>
+			<td>8.8</td>
+			<td>12.12</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>Labeling threshold</h2>
+
+
+<p>Options Added</p>
+<ul>
+	<li><strong>wb-charts-piethreshold-8</strong>: Hides the labels of any pie slice that is smaller than the specified percentage</li>
+	<li><strong>wb-charts-legendinline-true</strong>: Indicate that the labels will be show inline</li>
+</ul>
+
+<p>Options Removed</p>
+<ul>
+	<li>wb-chart-nolegend-true</li>
+</ul>
+
+
+
+<table class="wb-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-charts-pieinnerradius-45 wb-charts-pietilt-50 wb-charts-piehoverable-true wb-charts-decimal-1 wb-charts-piethreshold-8 wb-charts-legendinline-true">
+	<caption>Labeling threshold</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7.7</td>
+			<td>10.10</td>
+			<td>4.4</td>
+			<td>14.14</td>
+			<td>15.15</td>
+			<td>7.7</td>
+			<td>23.23</td>
+			<td>8.8</td>
+			<td>12.12</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="clear"></div>
+<h2>Start Angle</h2>
+
+
+<p>Options Added</p>
+<ul>
+	<li><strong> wb-charts-piestartangle-100</strong>: Factor of PI, multiplied by 100, used for the starting angle (in radians). For your reference the default value is <em>150</em>.</li>
+</ul>
+
+<table class="wb-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-charts-pieinnerradius-45 wb-charts-pietilt-50 wb-charts-piehoverable-true wb-charts-decimal-1 wb-charts-piethreshold-8  wb-charts-legendinline-true wb-charts-piestartangle-100">
+	<caption>Start Angle</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7.7</td>
+			<td>10.10</td>
+			<td>4.4</td>
+			<td>14.14</td>
+			<td>15.15</td>
+			<td>7.7</td>
+			<td>23.23</td>
+			<td>8.8</td>
+			<td>12.12</td>
+		</tr>
+	</tbody>
+</table>
