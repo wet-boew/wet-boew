@@ -13,7 +13,7 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-footnotes",
+var selector = ".wb-fnote",
 	$document = vapour.doc,
 
 	/*
@@ -43,7 +43,7 @@ var selector = ".wb-footnotes",
 		}
 
 		// Remove "first/premier/etc"-style text from certain footnote return links (via the child spans that hold those bits of text)
-		$returnLinks = $elm.find( "dd p.footnote-return a span span" ).remove();
+		$returnLinks = $elm.find( "dd p.fn-rtn a span span" ).remove();
 	};
 
 // Bind the init event of the plugin
@@ -54,7 +54,7 @@ $document.on( "timerpoke.wb", selector, function() {
 });
 
 // Listen for footnote reference links that get clicked
-$document.on( "click vclick", "main :not(.wb-footnotes) sup a.footnote-link", function( event ) {
+$document.on( "click vclick", "main :not(" + selector + ") sup a.fn-lnk", function( event ) {
 	var button = event.which,
 		refId, $refLinkDest;
 
@@ -63,7 +63,7 @@ $document.on( "click vclick", "main :not(.wb-footnotes) sup a.footnote-link", fu
 		refId = "#" + vapour.jqEscape( this.getAttribute( "href" ).substring( 1 ) );
 		$refLinkDest = $document.find( refId );
 	
-		$refLinkDest.find( "p.footnote-return a" )
+		$refLinkDest.find( "p.fn-rtn a" )
 					.attr( "href", "#" + this.parentNode.id );
 
 		// Assign focus to $refLinkDest
@@ -73,7 +73,7 @@ $document.on( "click vclick", "main :not(.wb-footnotes) sup a.footnote-link", fu
 } );
 
 // Listen for footnote return links that get clicked
-$document.on( "click.wb-footnotes vclick.wb-footnotes", selector + " dd p.footnote-return a", function( event ) {
+$document.on( "click vclick", selector + " dd p.fn-rtn a", function( event ) {
 	var button = event.which,
 		refId;
 

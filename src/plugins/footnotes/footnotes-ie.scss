@@ -3,64 +3,16 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 
-@import "../../variables";
-
-/*Default SCSS*/
-.ie7 {
-	.wb-footnotes {
-		display: inline-block;
-		dl {
-			dt {
-				position: relative;
-				float: left;
-				margin-bottom: -1px;
-			}
-		}
-	}
-}
-
-/*Screen SCSS*/
-@media screen {
-	.ie7 {
-		.wb-footnotes {
-			dd {
-				&.footnote-focus {
-					background-color: $clrLight;
-					border-color: $clrDark;
-					p {
-						&.footnote-return {
-							a {
-								color: $clrWhite !important;
-								background-color: $clrDark;
-								border-color: $clrDark;
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-}
-
 /*Print SCSS*/
 @media print {
-	.ie7 {
-		.wb-footnotes {
-			dl {
-				dd {
-					overflow: auto;
-				}
-			}
-		}
-	}
 	.ie8 {
-		.wb-footnotes {
+		.wb-fnote {
 			dl {
 				dd {
 					display: block;
 					p {
 						display: inline-block;
-						&.footnote-return {
+						&.fn-rtn {
 							display: block;
 						}
 					}
