@@ -54,10 +54,10 @@ var selector = ".wb-session-timeout",
 				buttonContinue: i18n( "%st-button-continue" ),
 				buttonEnd: i18n( "%st-button-end" ),
 				buttonSignin: i18n( "%tmpl-signin" ),
-				timeoutBegin: i18n( "%st-timeout-msg-bgn" ),
-				timeoutEnd: i18n( "%st-timeout-msg-end" ),
-				timeoutTitle: i18n( "%st-msgbox-title" ),
-				timeoutAlready: i18n( "%st-already-timeout-msg" )
+				timeoutBegin: i18n( "%st-to-msg-bgn" ),
+				timeoutEnd: i18n( "%st-to-msg-end" ),
+				timeoutTitle: i18n( "%st-msgbx-ttl" ),
+				timeoutAlready: i18n( "%st-alrdy-to-msg" )
 			};
 		}
 

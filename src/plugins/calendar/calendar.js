@@ -33,17 +33,17 @@ var $document = vapour.doc,
 		if ( !i18nText ) {
 			i18n = window.i18n;
 			i18nText = {
-				monthNames: i18n( "%calendar-monthNames" ),
-				prevMonth: i18n( "%calendar-previousMonth" ),
-				nextMonth: i18n( "%calendar-nextMonth" ),
-				goToTitle: i18n( "%calendar-goToTitle" ),
-				goToYear: i18n( "%calendar-goToYear" ),
-				goToMonth: i18n( "%calendar-goToMonth" ),
-				goToLink: i18n( "%calendar-goToLink" ),
-				goToBtn: i18n( "%calendar-goToButton" ),
-				cancelBtn: i18n( "%calendar-cancelButton" ),
-				dayNames: i18n( "%calendar-weekDayNames" ),
-				currDay: i18n( "%calendar-currentDay" )
+				monthNames: i18n( "%mnths" ),
+				prevMonth: i18n( "%prvMnth" ),
+				nextMonth: i18n( "%nxtMnth" ),
+				goToTitle: i18n( "%cal-goToTtl" ),
+				goToYear: i18n( "%cal-goToYr" ),
+				goToMonth: i18n( "%cal-goToMnth" ),
+				goToLink: i18n( "%cal-goToLnk" ),
+				goToBtn: i18n( "%cal-goToBtn" ),
+				cancelBtn: i18n( "%cancel" ),
+				dayNames: i18n( "%days" ),
+				currDay: i18n( "%currDay" )
 			};
 		}
 

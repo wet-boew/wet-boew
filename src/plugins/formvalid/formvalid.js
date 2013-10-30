@@ -38,10 +38,10 @@ var selector = ".wb-formvalid",
 			i18nText = {
 				colon: i18n( "%colon" ),
 				hyphen: i18n( "%hyphen" ),
-				error: i18n( "%error" ),
-				errorFound: i18n( "%error-found" ),
-				errorsFound: i18n( "%errors-found" ),
-				formNotSubmitted: i18n( "%form-not-submitted" )
+				error: i18n( "%err" ),
+				errorFound: i18n( "%err-fnd" ),
+				errorsFound: i18n( "%errs-fnd" ),
+				formNotSubmitted: i18n( "%frm-nosubmit" )
 			};
 		}
 
