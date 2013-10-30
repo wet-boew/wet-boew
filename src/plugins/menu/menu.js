@@ -132,20 +132,14 @@ onAjaxLoaded = function( $elm, $ajaxed ) {
  * @param {jQuery event} event The current event
  */
 onSelect = function( event ) {
-	if ( event.special ) {
 
-		// Assigns focus to an element
-		setTimeout(function () {
-			event.goto.focus();
+	setTimeout(function () {
+		event.goto.focus();
+		if ( event.special ) {
 			onReset( event.goto.parents( selector ) );
-		}, 0 );
-	}else{
+		}
+	}, 0 );
 
-		// Assigns focus to an element
-		setTimeout(function () {
-			event.goto.focus();
-		}, 0 );
-	}
 },
 
 /*
@@ -277,8 +271,8 @@ $document.on( "keydown", selector + " .item", function( event ) {
 	case 40:
 		if ( $elm.find( ".expandicon" ).length > 0 ) {
 			event.preventDefault();
-			$goto = $elm.closest("li").find( ".sbmnu [role=menuitem]" ).first();
-			window.console.log( $goto.text() );
+			$goto = $elm.closest( "li" ).find( ".sbmnu [role=menuitem]" ).first();
+
 			$container.trigger({
 				type: "increment.wb-menu",
 				cnode: $menu,
