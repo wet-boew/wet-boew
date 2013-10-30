@@ -29,22 +29,22 @@
 								sPrevious: i18n( "%prv" )
 							},
 							sEmptyTable: i18n( "%emptyTbl" ),
-							sInfo: i18n( "%sInfo" ),
+							sInfo: i18n( "%infoEntr" ),
 							sInfoEmpty: i18n( "%infoEmpty" ),
-							sInforFiltered: i18n( "%sInforFiltered" ),
+							sInforFiltered: i18n( "%infoFilt" ),
 							sInfoThousands: i18n( "%info1000" ),
 							sLengthMenu: i18n( "%lenMenu" ),
-							sLoadingRecords: i18n( "%sLoadingRecords" ),
-							sProcessing: i18n( "%sProcessing" ),
-							sSearch: i18n( "%sSearch" ),
-							sZeroRecords: i18n( "%sZeroRecords" )
+							sLoadingRecords: i18n( "%load" ),
+							sProcessing: i18n( "%process" ),
+							sSearch: i18n( "%srch" ),
+							sZeroRecords: i18n( "%infoEmpty" )
 						}
 					},
 					mode = vapour.getMode(),
 					_settings = $.extend( true, defaults, vapour.getData( $elm, "wet-boew" ) );
 
 				window.Modernizr.load( [{
-					load: ["site!deps/jquery.dataTables" + mode + ".js"],
+					load: [ "site!deps/jquery.dataTables" + mode + ".js" ],
 					complete: function(){
 						$elm.dataTable( _settings );
 					}

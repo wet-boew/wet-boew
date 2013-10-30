@@ -36,7 +36,7 @@ var selector = ".wb-lightbox",
 			i18n = window.i18n;
 			i18nText = {
 				tClose: i18n( "%close-esc" ),
-				tLoading: i18n( "%loading" ),
+				tLoading: i18n( "%load" ),
 				gallery: {
 					tPrev: i18n( "%prv-l" ),
 					tNext: i18n( "%nxt-r" ),
