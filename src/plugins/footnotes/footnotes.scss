@@ -5,55 +5,31 @@
 
 @import "../../variables";
  
-%footnote-link-highlight {
+%fnote-link-highlight {
 	color: $clrWhite !important;
 	background-color: $clrDark;
 	border-color: $clrDark;
 }
-%footnote-link-background-white {
+%fnote-link-background-white {
 	background-color: $clrWhite;
 }
-%footnote-link-background-light-border-medium-padding-whitespace {
+%fnote-link-background-light-border-medium-padding-whitespace {
 	background-color: $clrLight;
 	border: 1px solid $clrMedium;
 	padding: 0 4px 1px;
 	white-space: nowrap;
 	&:hover, &:focus {
-		@extend %footnote-link-highlight;
+		@extend %fnote-link-highlight;
 	}
 }
 sup {
 	a {
-		&.footnote-link {
-			@extend %footnote-link-background-light-border-medium-padding-whitespace;
+		&.fn-lnk {
+			@extend %fnote-link-background-light-border-medium-padding-whitespace;
 		}
 	}
 }
-.background-light {
-	sup {
-		a {
-			&.footnote-link {
-				@extend %footnote-link-background-white;
-				&:hover, &:focus {
-					@extend %footnote-link-highlight;
-				}
-			}
-		}
-	}
-}
-table {
-	th {
-		sup {
-			a {
-				&.footnote-link {
-					@extend %footnote-link-background-white;
-					text-shadow: none;
-				}
-			}
-		}
-	}
-}
-.wb-footnotes {
+.wb-fnote {
 	margin: 2em 10px 0 10px;
 	border-width: 1px 0 1px 0;
 	border-style: solid;
@@ -76,9 +52,9 @@ table {
 				background-color: $clrLight;
 				border-color: $clrDark;
 				p {
-					&.footnote-return {
+					&.fn-rtn {
 						a {
-							@extend %footnote-link-highlight;
+							@extend %fnote-link-highlight;
 						}
 					}
 				}
@@ -89,7 +65,7 @@ table {
 				&:first-child {
 					padding-top: $spacing;
 				}
-				&.footnote-return {
+				&.fn-rtn {
 					top: 0;
 					margin: 0;
 					padding-top: $spacing;
@@ -98,7 +74,7 @@ table {
 					width: $ddRtnWidth;
 					overflow: hidden;
 					a {
-						@extend %footnote-link-background-light-border-medium-padding-whitespace;
+						@extend %fnote-link-background-light-border-medium-padding-whitespace;
 						display: inline-block;
 						padding-bottom: 0;
 					}
@@ -110,7 +86,7 @@ table {
 
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
-	.wb-footnotes {
+	.wb-fnote {
 		dl {
 			dd {
 				p {
@@ -118,7 +94,7 @@ table {
 					margin-right: 3.125em;
 					padding-left: 0;
 					padding-right: 0.375em;
-					&.footnote-return {
+					&.fn-rtn {
 						margin-right: 0;
 						padding-right: 0;
 					}
@@ -130,42 +106,22 @@ table {
 
 /*Print SCSS*/
 @media print {
-	%footnote-link-background-transparent {
+	%fnote-link-background-transparent {
 		background-color: transparent;
 	}
-	%footnote-print-link-background-transparent-border-0-padding-0 {
+	%fnote-print-link-background-transparent-border-0-padding-0 {
 		background-color: transparent;
 		border: 0;
 		padding: 0;
 	}
 	sup {
 		a {
-			&.footnote-link {
-				@extend %footnote-print-link-background-transparent-border-0-padding-0;
+			&.fn-lnk {
+				@extend %fnote-print-link-background-transparent-border-0-padding-0;
 			}
 		}
 	}
-	.background-light {
-		sup {
-			a {
-				&.footnote-link {
-					@extend %footnote-link-background-transparent;
-				}
-			}
-		}
-	}
-	table {
-		th {
-			sup {
-				a {
-					&.footnote-link {
-						@extend %footnote-link-background-transparent;
-					}
-				}
-			}
-		}
-	}
-	.wb-footnotes {
+	.wb-fnote {
 		border {
 			left: 0;
 			right: 0;
@@ -179,10 +135,10 @@ table {
 				width: 100%;
 				display: inline-block;
 				p {
-					&.footnote-return {
+					&.fn-rtn {
 						overflow: visible;
 						a {
-							@extend %footnote-print-link-background-transparent-border-0-padding-0;
+							@extend %fnote-print-link-background-transparent-border-0-padding-0;
 						}
 					}
 				}
