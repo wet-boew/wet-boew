@@ -251,9 +251,6 @@ $document.on( "mouseover focusin", selector + " .item", function( event ) {
 	onHoverFocus( event );
 });
 
-
-
-
 // TODO: Convert rest of events to plugin template
 $document.on( "keydown", selector + " .item", function( event ) {
 	event.stopPropagation();
