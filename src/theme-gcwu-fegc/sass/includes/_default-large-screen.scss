@@ -19,8 +19,7 @@
 	width: 234px;
 	height: 22px;
 }
-%gcwu-default-large-screen-width-342-height-61 {
-	width: 342px;
+%gcwu-default-large-screen-height-61 {
 	height: 61px;
 }
 %gcwu-default-large-screen-font-weight-400-color-333 {
@@ -267,15 +266,15 @@ h1 {
 	margin: 2px 0 2px 10px;
 	img {
 		@extend %gcwu-default-large-screen-margin-left-0;
-		@extend %gcwu-default-large-screen-width-342-height-61;
+		@extend %gcwu-default-large-screen-height-61;
 	}
 	object {
-		@extend %gcwu-default-large-screen-width-342-height-61;
+		@extend %gcwu-default-large-screen-height-61;
 	}
 }
 
 #gcwu-sig-coa-in {
-	@extend %gcwu-default-large-screen-width-342-height-61;
+	@extend %gcwu-default-large-screen-height-61;
 }
 
 #gcwu-gcnb {
