@@ -3,18 +3,33 @@
  */
 
 .wb-mltmd {
+	color: #fff;
+	// lets fight the FOUC
+	// base state
+	display: block;
+	video {
+		width: 100%;
+		height: auto;
+	}
 	.btn {
 		border-top-right-radius: 0 !important;
 		border-top-left-radius: 0 !important;
+		background: transparent;
+		border: 0;
+		color: #fff;
+
 	}
+	progress, .btn {
+		&:focus { outline: #fff thin dotted; }
+	}
+
 	.display {
 		position: relative;
-		padding-bottom: 56.25%;
+		padding-bottom: 52.25%;
+		padding-top: 22px;
 		background: #000;
-		/* 16:9 */
-		padding-top: 25px;
 		height: 0;
-		video, object, embed, .wb-mm-overlay {
+		iframe, video, object, embed, .wb-mm-overlay {
 			position: absolute;
 			top: 0;
 			left: 0;
@@ -30,6 +45,51 @@
 		img {
 			width: 100%;
 		}
+		&.playing {
+			img {
+				visibility: hidden;
+			}
+			.errormsg {
+				display: none;
+			}
+		}
+		// Lets make sure error messages are more prominant
+		.errormsg {
+			position: absolute;
+			z-index: 105;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			background-color: rgba(0,0,0,0.7);
+			margin-bottom: 0;
+
+			span {
+				color: #fff;
+				display: block;
+				top: 45%;
+				text-indent: 0;
+				position: relative;
+			}
+		}
+
+	}
+
+	&[data-youtube] .wb-mm-overlay { visibility: hidden }
+	/*
+	  Light Skinning of mediacontrols
+	 */
+	&.skn-lght{
+		color: #000 !important;
+		.wb-mm-controls {
+			background: #fff;
+		}
+		.btn {
+			background: #fff;
+			border: 0;
+			color: #000 !important;
+		}
+		border-bottom: 1px solid #ddd;
 	}
 }
 
@@ -39,6 +99,7 @@
 	text-align: center;
 	padding: 0;
 	max-height: 0;
+	transition: all 0.26s ease;
 	&.on {
 		padding: 0.5em;
 		max-height: 999em;
@@ -47,6 +108,8 @@
 
 .wb-mm-controls {
 	display: table;
+	background: #000;
+	position: relative;
 	width: 100%;
 	.firstpanel {
 		width: 10em;
@@ -77,24 +140,16 @@
 			/* Important Thing */
 			-webkit-appearance: none;
 			border: none;
-			&::-webkit-progress-bar {
-				background: black;
-				border-radius: 50px;
-				padding: 2px;
-				box-shadow: 0 1px 0px 0 rgba(255, 255, 255, 0.2);
+			&::-webkit-progress-bar, &::-moz-progress-bar {
+				background: #fff;
 			}
 			/* Now the value part */
 			&::-webkit-progress-value {
-				border-radius: 50px;
-				box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4);
-				background: -webkit-linear-gradient(45deg, transparent, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%), -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.2)), -webkit-linear-gradient(left, #ba7448, #c4672d);
-				/* Looks great, now animating it */
-				background-size: 25px 14px, 100% 100%, 100% 100%;
-				-webkit-animation: move 5s linear 0 infinite;
+				background: #176CA7;
 			}
 		}
 	}
-	border-bottom: 1px solid #ddd;
+
 }
 
 @media print {
