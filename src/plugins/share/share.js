@@ -131,7 +131,7 @@ var selector = ".wb-share",
 		if ( !i18nText ) {
 			i18n = window.i18n;
 			i18nText = {
-				disclaimer: i18n( "%share-disclaimer" )
+				disclaimer: i18n( "%shr-disc" )
 			};
 		}
 		

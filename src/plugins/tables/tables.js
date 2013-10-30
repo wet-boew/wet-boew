@@ -19,21 +19,21 @@
 						asStripeClasses : [],
 						oLanguage: {
 							oAria: {
-								sSortAscending: i18n( "%sSortAscending" ),
-								sSortDescending: i18n( "%sSortDescending" )
+								sSortAscending: i18n( "%sortAsc" ),
+								sSortDescending: i18n( "%sortDesc" )
 							},
 							oPaginate: {
 								sFirst: i18n( "%first" ),
 								sLast: i18n( "%last" ),
-								sNext: i18n( "%next" ),
-								sPrevious: i18n( "%previous" )
+								sNext: i18n( "%nxt" ),
+								sPrevious: i18n( "%prv" )
 							},
-							sEmptyTable: i18n( "%sEmptyTable" ),
+							sEmptyTable: i18n( "%emptyTbl" ),
 							sInfo: i18n( "%sInfo" ),
-							sInfoEmpty: i18n( "%sInfoEmpty" ),
+							sInfoEmpty: i18n( "%infoEmpty" ),
 							sInforFiltered: i18n( "%sInforFiltered" ),
-							sInfoThousands: i18n( "%sInfoThousands" ),
-							sLengthMenu: i18n( "%sLengthMenu" ),
+							sInfoThousands: i18n( "%info1000" ),
+							sLengthMenu: i18n( "%lenMenu" ),
 							sLoadingRecords: i18n( "%sLoadingRecords" ),
 							sProcessing: i18n( "%sProcessing" ),
 							sSearch: i18n( "%sSearch" ),

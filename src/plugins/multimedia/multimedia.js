@@ -302,17 +302,17 @@ $document.on( "timerpoke.wb", $selector, function() {
 	if ( !i18nText ) {
 		i18n = window.i18n;
 		i18nText = {
-			rewind: i18n( "%rewind" ),
-			ff: i18n( "%fast-forward" ),
+			rewind: i18n( "%rew" ),
+			ff: i18n( "%ffwd" ),
 			play: i18n( "%play" ),
 			pause: i18n( "%pause" ),
-			cc_on: i18n( "%closed-caption", "enable" ),
-			cc_off: i18n( "%closed-caption", "disable"),
-			cc_error: i18n ( "%closed-caption-error" ),
-			mute_on: i18n( "%mute", "enable"),
-			mute_off: i18n( "%mute", "disable"),
-			duration: i18n( "%duration"),
-			position: i18n( "%position")
+			cc_on: i18n( "%cc", "on" ),
+			cc_off: i18n( "%cc", "off"),
+			cc_error: i18n ( "%cc-err" ),
+			mute_on: i18n( "%mute", "on"),
+			mute_off: i18n( "%mute", "off"),
+			duration: i18n( "%dur"),
+			position: i18n( "%pos")
 		};
 	}
 

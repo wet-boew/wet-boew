@@ -119,7 +119,7 @@
   "%tmpl-toppage": "Haut de la page",
   "%tmpl-site-info": "Information du site",
   "%lang-native": "Français",
-  "%interword-space" : "&#32;",
+  "%space" : "&#32;",
   "%current": "(courant)",
   	"%cont-service" : "Services &amp; Information",
 	"%cont-dept" : "Department &amp; Agencies",
