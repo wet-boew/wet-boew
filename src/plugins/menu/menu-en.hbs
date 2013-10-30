@@ -5,51 +5,91 @@ language: en
 
 <style type="text/css">
 #menu-demo {
-	margin-bottom: 5em;
+  background: #0B3048;
 }
 #menu-demo .menu {
-	display: table;
-	width: 100%;
-	margin: 0;
+  text-transform: uppercase;
+  display: table;
+  width: 100%;
+  text-shadow: 1px 1px 1px #222;
+  position: relative;
+  margin-bottom: 0;
+  font-size: 15px;
+}
+#menu-demo .menu .active {
+  text-shadow: none;
+  background: #243850;
 }
 #menu-demo .menu > li {
-	display: table-cell;
-	padding: 0;
+  position: relative;
+  display: table-cell;
+  margin: 0;
+  padding: 0;
 }
-#menu-demo .menu li a:hover, #menu-demo .menu li a:focus, #menu-demo .menu li a:active {
-	background: #243850;
+#menu-demo .menu > li a {
+  color: #fff;
+  font-size: 14px;
+  padding: 1em;
+  text-align: center;
+  display: block;
+  border-left: 2px ridge #284468;
 }
-#menu-demo .menu li li a:hover, #menu-demo .menu li li a:focus, #menu-demo .menu li li a:active {
-	background: none;
+#menu-demo .menu > li a:hover {
+  text-decoration: none;
+}
+#menu-demo .menu > li:last-child a {
+  border-right: 2px ridge #284468;
+}
+#menu-demo .sbmnu {
+  display: none;
+}
+#menu-demo .sbmnu.open {
+  display: inline;
+  position: absolute;
+  z-index: 100;
+  box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.3), 3px 3px 3px -2px rgba(0, 0, 0, 0.3), -3px 3px 3px -2px rgba(0, 0, 0, 0.3);
+  border-left: none;
+  border-right: none;
+  border-bottom: 5px solid #243850;
+  text-transform: none;
+  padding: 0;
+  background: #ccc;
+  top: auto;
+  min-width: 200px;
+}
+#menu-demo .sbmnu.open li {
+  display: block;
+}
+#menu-demo .sbmnu.open li a {
+  color: #444;
+  border-left: none;
+  border-right: none;
+  text-shadow: none;
+  text-align: left;
+  padding: 5px 10px;
+}
+#menu-demo .sbmnu.open li a:hover, #menu-demo .sbmnu.open li a:focus, #menu-demo .sbmnu.open li a:active {
+  background: #243850;
+  color: #fff;
+}
+#menu-demo .sbmnu.open .slflnk {
+  background: #bbb;
+}
+#menu-demo .sbmnu.open .expandicon {
+  display: none;
+}
+#menu-demo .sbmnu .row {
+  background: transparent;
+}
+#menu-demo .sbmnu .row a {
+  color: #6e6e6e;
 }
 #menu-demo .expandicon {
-	left: 0.75em;
-	position: relative;
-	top: 0.75em;
-	margin-right: 0.8em;
+  left: 0.75em;
+  position: relative;
+  top: 0.75em;
 }
-#menu-demo .sbmnu .open {
-	background: #ccc;
-	border-bottom: 5px solid #243850;
-	border-left: 0 none;
-	border-right: 0 none;
-	box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.3), 3px 3px 3px -2px rgba(0, 0, 0, 0.3), -3px 3px 3px -2px rgba(0, 0, 0, 0.3);
-	display: inline-block;
-	padding: 5px;
-	margin: 0;
-	list-style-type: none;
-	position: absolute;
-	left: 0;
-	z-index: 100;
-	width: auto;
-}
-#menu-demo .sbmnu .open li {
-	display: block;
-	float: none;
-}
-#menu-demo .sbmnu .open a {
-	color: #333;
-}
+
 </style>
 
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minima deleniti autem tenetur odit nostrum sunt eligendi quasi maiores veritatis voluptate tempore dolorem animi libero!</p>

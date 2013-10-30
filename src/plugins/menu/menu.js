@@ -101,12 +101,9 @@ onAjaxLoaded = function( $elm, $ajaxed ) {
 	var $menu = $ajaxed.find( "[role=menubar] .item" );
 
 	$ajaxed.find( ":discoverable" )
-		.attr( "tabindex", "-1" )
-		.end()
-		.find( ".item" )
-		.eq( 0 )
-		.attr( "tabindex", "0" );
+		.attr( "tabindex", "-1" );
 
+	$menu.eq(0).attr( "tabindex", "0" );
 	$menu.filter( "[href^=#]" )
 		.append( "<span class='expandicon'></span>" );
 
@@ -135,20 +132,18 @@ onAjaxLoaded = function( $elm, $ajaxed ) {
  * @param {jQuery event} event The current event
  */
 onSelect = function( event ) {
-
 	if ( event.special ) {
 
 		// Assigns focus to an element
 		setTimeout(function () {
 			event.goto.focus();
-			return onReset( event.goto.parents( selector ) );
+			onReset( event.goto.parents( selector ) );
 		}, 0 );
-
 	}else{
 
 		// Assigns focus to an element
 		setTimeout(function () {
-			return event.goto.focus();
+			event.goto.focus();
 		}, 0 );
 	}
 },
@@ -168,6 +163,7 @@ onIncrement = function( $elm, event ) {
 	} else if ( $next < 0 ) {
 		$index = $links.length - 1;
 	}
+
 	$elm.trigger({
 		type: "select.wb-menu",
 		goto: $links.eq( $index )
@@ -179,8 +175,7 @@ onIncrement = function( $elm, event ) {
  * @param {jQuery DOM element} element The plugin element
  */
 onReset = function( $elm ) {
-	$elm.find( ".open" ).removeClass( "open" );
-	$elm.find( ".active" ).removeClass( "active" );
+	$elm.find( ".open, .active" ).removeClass( "open active" );
 },
 
 /*
@@ -217,34 +212,31 @@ onHoverFocus = function( event ) {
 };
 
 // Bind the events of the plugin
-$document.on("timerpoke.wb select.wb-menu ajax-fetched.wb increment.wb-menu reset.wb-menu display.wb-menu", selector, function( event ) {
+$document.on("timerpoke.wb mouseleave select.wb-menu ajax-fetched.wb increment.wb-menu reset.wb-menu display.wb-menu", selector, function( event ) {
+	event.stopPropagation();
 	var eventType = event.type,
 		$elm = $( this );
 
 	switch ( eventType ) {
 	case "ajax-fetched":
-		event.stopPropagation();
 		onAjaxLoaded( $elm, event.pointer );
 		return false;
 	case "select":
-		event.stopPropagation();
 		onSelect( event );
 		break;
+	case "mouseleave":
+		onReset( $elm );
+		break;
 	case "timerpoke":
-		event.stopPropagation();
 		onInit( $elm );
 		break;
 	case "increment":
-		event.stopPropagation();
 		onIncrement( $elm, event );
 		break;
-
 	case "reset":
-		event.stopPropagation();
 		onReset( $elm );
 		break;
 	case "display":
-		event.stopPropagation();
 		onDisplay( $elm, event );
 		break;
 	}
@@ -265,10 +257,7 @@ $document.on( "mouseover focusin", selector + " .item", function( event ) {
 	onHoverFocus( event );
 });
 
-$document.on( "mouseleave focusout", selector, function( event ) {
-	event.stopPropagation();
-	onReset( $( selector )  );
-});
+
 
 
 // TODO: Convert rest of events to plugin template
@@ -288,17 +277,21 @@ $document.on( "keydown", selector + " .item", function( event ) {
 	case 40:
 		if ( $elm.find( ".expandicon" ).length > 0 ) {
 			event.preventDefault();
-			$goto = $elm.closest("li").find(".sbmnu [role=menuitem]").first();
+			$goto = $elm.closest("li").find( ".sbmnu [role=menuitem]" ).first();
+			window.console.log( $goto.text() );
 			$container.trigger({
 				type: "increment.wb-menu",
 				cnode: $menu,
 				increment: 0,
-				current: $index })
-			.trigger({
+				current: $index
+			}).trigger({
 					type: "select.wb-menu",
 					goto: $goto
 				});
 		}
+		break;
+	case 9:
+		onReset( $container );
 		break;
 	case 37:
 		event.preventDefault();
@@ -357,6 +350,9 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 			increment: -1,
 			current: $index
 		});
+		break;
+	case 9:
+		onReset( $container );
 		break;
 	case 40:
 		event.preventDefault();
