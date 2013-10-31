@@ -4,6 +4,8 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
+
+/*global XRegExp */
 (function( $, window, document, vapour ) {
 "use strict";
 
@@ -75,8 +77,9 @@ var selector = "input[type=date]",
 		if ( elmId ) {
 			createToggleIcon( elmId );
 		}
-		
-		// Load Magnific Popup dependency and bind the init event handler
+
+		// Load XRegExp dependency for named RegExp results.
+		// @todo: Can this dependency be removed?
 		window.Modernizr.load({
 			load: "site!deps/xregexp" + modeJS
 		});
@@ -120,12 +123,13 @@ var selector = "input[type=date]",
 						fieldId = event.data.fieldId,
 						year = event.data.year,
 						month = event.data.month,
-						format = event.data.format;
+						format = event.data.format,
+						$field, prevDate;
 
 					// Ignore middle/right mouse buttons
-					if ( !which || which === 1 ) { 
-						var $field = $("#" + event.data.fieldId),
-							prevDate = $field.val();
+					if ( !which || which === 1 ) {
+						$field = $("#" + event.data.fieldId);
+						prevDate = $field.val();
 
 						$field.val( formatDate( year, month + 1, event.data.day, format) );
 						if ( prevDate !== $field.val() ) {
@@ -399,7 +403,7 @@ $document.on( "keydown", ".cal-day-list a", function ( event ) {
 			nextDate = new Date( year, month, index + 2 );
 			break;
 
-		// down arrow	
+		// down arrow
 		case 40:
 			nextDate = new Date( year, month, index + 8 );
 			break;
