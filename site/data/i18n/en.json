@@ -118,7 +118,7 @@
 	"%tmpl-toppage": "Top of Page",
 	"%tmpl-site-info": "Site Information",
 	"%lang-native": "English",
-	"%interword-space" : "&#32;",
+	"%space" : "&#32;",
 	"%current": "(current)",
 	"%cont-service" : "Services &amp; Information",
 	"%cont-dept" : "Department &amp; Agencies",

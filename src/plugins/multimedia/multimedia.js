@@ -302,17 +302,17 @@ $document.on( "timerpoke.wb", $selector, function() {
 	if ( !i18nText ) {
 		i18n = window.i18n;
 		i18nText = {
-			rewind: i18n( "%rewind" ),
-			ff: i18n( "%fast-forward" ),
+			rewind: i18n( "%rew" ),
+			ff: i18n( "%ffwd" ),
 			play: i18n( "%play" ),
 			pause: i18n( "%pause" ),
-			cc_on: i18n( "%closed-caption", "enable" ),
-			cc_off: i18n( "%closed-caption", "disable"),
-			cc_error: i18n ( "%closed-caption-error" ),
-			mute_on: i18n( "%mute", "enable"),
-			mute_off: i18n( "%mute", "disable"),
-			duration: i18n( "%duration"),
-			position: i18n( "%position")
+			cc_on: i18n( "%cc", "on" ),
+			cc_off: i18n( "%cc", "off"),
+			cc_error: i18n ( "%cc-err" ),
+			mute_on: i18n( "%mute", "on"),
+			mute_off: i18n( "%mute", "off"),
+			duration: i18n( "%dur"),
+			position: i18n( "%pos")
 		};
 	}
 
@@ -409,7 +409,7 @@ $document.on( "fallback.mediaplayer.wb", $selector, function() {
 		$data.poster + "</object>";
 	$this.data( "properties", $data );
 
-	return $this.trigger( "wb.mediaplayer.renderui" );
+	return $this.trigger( "renderui.mediaplayer.wb" );
 });
 
 $document.on( "video.mediaplayer.wb", $selector, function() {
@@ -476,18 +476,18 @@ $document.on( "click", $selector, function( event ) {
 		return false;
 	}
 
-	if ( $target.hasClass( "playpause" ) || $target.is( "object" ) || $target.hasClass( "wb-mm-overlay" )) {
-		this.player( this.player( "getPaused" ) ? "play" : "pause" );
-	} else if ( $target.hasClass( "cc" ) ) {
-		this.player( "setCaptionsVisible", !this.player( "getCaptionsVisible") );
-	} else if ($target.hasClass( "mute" ) ) {
-		this.player( "setMuted", !this.player( "getMuted" ) );
+	if ( $target.attr( "class" ).match( /playpause|-(play|pause)|wb-mm-overlay/ ) || $target.is( "object" ) ) {
+		   this.player( this.player( "getPaused" ) ? "play" : "pause" );
+	} else if ( $target.attr( "class" ).match( /\bcc\b|-subtitles/ )  ) {
+		   this.player( "setCaptionsVisible", !this.player( "getCaptionsVisible") );
+	} else if ( $target.attr( "class" ).match( /\bmute\b|-volume-(up|off)/ ) ) {
+		   this.player( "setMuted", !this.player( "getMuted" ) );
 	} else if ( $target.is( "progress" ) || $target.hasClass( "wb-progress-inner") || $target.hasClass( "wb-progress-outer" ) ) {
-		this.player( "setCurrentTime", this.player( "getDuration" ) * ( ( event.pageX - $target.offset().left ) / $target.width() ) );
-	} else if ( $target.hasClass( "rewind" ) ) {
-		this.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05);
-	} else if ( $target.hasClass( "fastforward" ) ) {
-		this.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05);
+		   this.player( "setCurrentTime", this.player( "getDuration" ) * ( ( event.pageX - $target.offset().left ) / $target.width() ) );
+	} else if ( $target.attr( "class" ).match( /\brewind\b|-backwards/ ) ) {
+		   this.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05);
+	} else if (  $target.attr( "class" ).match( /\bfastforward\b|-forward/ ) ) {
+		   this.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05);
 	}
 
 	return true;
@@ -532,8 +532,7 @@ $document.on("durationchange play pause ended volumechange timeupdate captionslo
 
 		button.attr( "title", button.data( "state-off" ));
 
-		//TODO: Replace with class?
-		$this.find( ".wb-mm-overlay img" ).css( "visibility", "hidden" );
+		$this.find( ".wb-mm-overlay" ).addClass( "playing" );
 
 		$this.find(".progress").addClass("active");
 		break;
@@ -555,7 +554,7 @@ $document.on("durationchange play pause ended volumechange timeupdate captionslo
 			.parent();
 
 		button.attr( "title", button.data( "state-on" ) );
-		$this.find(".wb-mm-overlay").css("visibility", "show" );
+		$this.find( ".wb-mm-overlay" ).removeClass( "playing" );
 		break;
 	case "volumechange":
 		// TODO: Think can be optimized for the minfier with some ternaries
@@ -595,7 +594,11 @@ $document.on("durationchange play pause ended volumechange timeupdate captionslo
 		$.data( event.target, "captions", event.captions );
 		break;
 	case "captionsloadfailed":
-		$this.find( ".wb-mm-captionsarea" ).append( "<p>" + i18nText.cc_error + "</p>" );
+		$this.find( ".wb-mm-captionsarea" )
+		.append( "<p class='errormsg'><span>" + i18nText.cc_error + "</span></p>" )
+        .end()
+        .find( ".cc" )
+        .attr( "disabled", "" );
 		break;
 	case "captionsvisiblechange":
 		// TODO: Think can be optimized for the minfier with some ternarie

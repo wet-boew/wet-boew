@@ -3,50 +3,51 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 /*
------ @%lang-eng@ dictionary (il8n) ---
+----- @%lang-en@ dictionary (il8n) ---
  */
 ( function( window ) {
 "use strict";
 /* main index */
 var ind = {
 	"%lang-code": "@%lang-code@",
-	"%lang-eng": "@%lang-eng@",
-	"%lang-fra": "@%lang-fra@",
-	"%lang-native": "@%lang-native@",
+	"%lang-en": "@%lang-en@",
+	"%lang-fr": "@%lang-fr@",
+	"%lang-nat": "@%lang-nat@",
 	"%all": "@%all@",
 	"%home": "@%home@",
 	"%main-page": "@%main-page@",
-	"%top-of-page": "@%top-of-page@",
+	"%tphp": "@%tphp@",
 	"%you-are-in": "@%you-are-in@",
 	"%welcome-to": "@%welcome-to@",
-	"%loading": "@%loading@",
-	"%processing": "@%processing@",
-	"%search": "@%search@",
-	"%search-for-terms": "@%search-for-terms@",
-	"%no-match-found": "@%no-match-found@",
-	"%matches-found": {
-		"mixin": "@%matches-found@"
+	"%load": "@%load@",
+	"%process": "@%process@",
+	"%srch": "@%srch@",
+	"%srch-terms": "@%srch-terms@",
+	"%no-match": "@%no-match@",
+	"%matches": {
+		"mixin": "@%matches@"
 	},
 	"%menu": "@%menu@",
 	"%settings": "@%settings@",
-	"%languages": "@%languages@",
+	"%langs": "@%langs@",
 	"%about": "@%about@",
-	"%current": "@%current@",
+	"%curr": "@%curr@",
 	"%hide": "@%hide@",
-	"%error": "@%error@",
+	"%err": "@%err@",
 	"%colon": "@%colon@",
 	"%hyphen": "@%hyphen@",
 	"%full-stop": "@%full-stop@",
-	"%list-comma-space": "@%list-comma-space@",
-	"%interword-space": "@%interword-space@",
+	"%comma-space": "@%comma-space@",
+	"%space": "@%space@",
 	"%start": "@%start@",
 	"%stop": "@%stop@",
 	"%back": "@%back@",
-	"%new-window": "@%new-window@",
-	"%minute-ago": "@%minute-ago@",
-	"%couple-of-minutes": "@%couple-of-minutes@",
-	"%minutes-ago": {
-		"mixin": "@%minutes-ago@"
+	"%cancel": "@%cancel@",
+	"%new-win": "@%new-win@",
+	"%min-ago": "@%min-ago@",
+	"%coup-mins": "@%coup-mins@",
+	"%mins-ago": {
+		"mixin": "@%mins-ago@"
 	},
 	"%hour-ago": "@%hour-ago@",
 	"%hours-ago": {
@@ -57,103 +58,102 @@ var ind = {
 	},
 	"%yesterday": "@%yesterday@",
 
-	"%next": "@%next@",
-	"%next-right": "@%next-right@",
-	"%previous": "@%previous@",
-	"%previous-left": "@%previous-left@",
+	"%nxt": "@%nxt@",
+	"%nxt-r": "@%nxt-r@",
+	"%prv": "@%prv@",
+	"%prv-l": "@%prv-l@",
 	"%first": "@%first@",
 	"%last": "@%last@",
 	"%close-esc": "@%close-esc@",
+	"%show": "@%show@",
 
 	/* Archived Web page template */
-	"%archived-page": "@%archived-page@",
+	"%arch-pg": "@%arch-pg@",
 	/* Menu bar */
-	"%sub-menu-help": "@%sub-menu-help@",
+	"%sm-hlp": "@%sm-hlp@",
 	/* Tabbed interface */
-	"%tab-rotation": {
-		"disable": "@%tab-rotation-disable@",
-		"enable": "@%tab-rotation-enable@"
+	"%tab-rot": {
+		"off": "@%tab-rot-off@",
+		"on": "@%tab-rot-on@"
 	},
 	"%tab-list": "@%tab-list@",
-	"%tab-panel-end-1": "@%tab-panel-end-1@",
-	"%tab-panel-end-2": "@%tab-panel-end-2@",
-	"%tab-panel-end-3": "@%tab-panel-end-3@",
+	"%tab-pnl-end1": "@%tab-pnl-end1@",
+	"%tab-pnl-end2": "@%tab-pnl-end2@",
+	"%tab-pnl-end3": "@%tab-pnl-end3@",
 	/* Multimedia player */
 	"%play": "@%play@",
 	"%pause": "@%pause@",
 	"%open": "@%open@",
 	"%close": "@%close@",
-	"%rewind": "@%rewind@",
-	"%fast-forward": "@%fast-forward@",
+	"%rew": "@%rew@",
+	"%ffwd": "@%ffwd@",
 	"%mute": {
-		"enable": "@%mute-enable@",
-		"disable": "@%mute-disable@"
+		"on": "@%mute-on@",
+		"off": "@%mute-off@"
 	},
-	"%closed-caption": {
-		"disable": "@%closed-caption-disable@",
-		"enable": "@%closed-caption-enable@"
+	"%cc": {
+		"off": "@%cc-off@",
+		"on": "@%cc-on@"
 	},
-	"%closed-caption-error": "@%closed-caption-error@",
-	"%audio-description": {
-		"enable": "@%audio-description-enable@",
-		"disable": "@%audio-description-disable@"
+	"%cc-err": "@%cc-err@",
+	"%adesc": {
+		"on": "@%adesc-on@",
+		"off": "@%adesc-off@"
 	},
-	"%progress-bar": "@%progress-bar@",
+	"%prog-bar": "@%prog-bar@",
 	"%no-video": "@%no-video@",
-	"%position": "@%position@",
-	"%percentage": "@%percentage@",
-	"%duration": "@%duration@",
-	"%buffered": "@%buffered@",
+	"%pos": "@%pos@",
+	"%perc": "@%perc@",
+	"%dur": "@%dur@",
+	"%buff": "@%buff@",
 	/* Share widget */
-	"%favourite": "@%favourite@",
+	"%fav": "@%fav@",
 	"%email": "@%email@",
-	"%share-text": "@%share-text@",
-	"%share-hint": "@%share-hint@",
-	"%share-email-subject": "@%share-email-subject@",
-	"%share-email-body": "@%share-email-body@",
-	"%share-fav-title": "@%share-fav-title@",
-	"%share-manual": "@%share-manual@",
-	"%share-showall": "@%share-showall@",
-	"%share-showall-title": "@%share-showall-title@",
-	"%share-disclaimer": "@%share-disclaimer@",
+	"%shr-txt": "@%shr-txt@",
+	"%shr-hnt": "@%shr-hnt@",
+	"%shr-email-sub": "@%shr-email-sub@",
+	"%shr-email-bd": "@%shr-email-bd@",
+	"%shr-fav-ttl": "@%shr-fav-ttl@",
+	"%shr-man": "@%shr-man@",
+	"%shr-all": "@%shr-all@",
+	"%shr-all-ttl": "@%shr-all-ttl@",
+	"%shr-disc": "@%shr-disc@",
 	/* Form validation */
-	"%form-not-submitted": "@%form-not-submitted@",
-	"%errors-found": "@%errors-found@",
-	"%error-found": "@%error-found@",
+	"%frm-nosubmit": "@%frm-nosubmit@",
+	"%errs-fnd": "@%errs-fnd@",
+	"%err-fnd": "@%err-fnd@",
 	/* Date picker */
-	"%datepicker-hide": "@%datepicker-hide@",
-	"%datepicker-show": "@%datepicker-show@",
-	"%datepicker-selected": "@%datepicker-selected@",
+	"%date-hide": "@%date-hide@",
+	"%date-show": "@%date-show@",
+	"%date-sel": "@%date-sel@",
 	/* Calendar */
-	"%calendar-weekDayNames": ["@%calendar-weekDayNames-1@", "@%calendar-weekDayNames-2@", "@%calendar-weekDayNames-3@", "@%calendar-weekDayNames-4@", "@%calendar-weekDayNames-5@", "@%calendar-weekDayNames-6@", "@%calendar-weekDayNames-7@"],
-	"%calendar-monthNames": ["@%calendar-monthNames-1@", "@%calendar-monthNames-2@", "@%calendar-monthNames-3@", "@%calendar-monthNames-4@", "@%calendar-monthNames-5@", "@%calendar-monthNames-6@", "@%calendar-monthNames-7@", "@%calendar-monthNames-8@", "@%calendar-monthNames-9@", "@%calendar-monthNames-10@", "@%calendar-monthNames-11@", "@%calendar-monthNames-12@"],
-	"%calendar": "@%calendar@",
-	"%calendar-currentDay": "@%calendar-currentDay@",
-	"%calendar-goToLink": "@%calendar-goToLink@",
-	"%calendar-goToTitle": "@%calendar-goToTitle@",
-	"%calendar-goToMonth": "@%calendar-goToMonth@",
-	"%calendar-goToYear": "@%calendar-goToYear@",
-	"%calendar-goToButton": "@%calendar-goToButton@",
-	"%calendar-cancelButton": "@%calendar-cancelButton@",
-	"%calendar-previousMonth": "@%calendar-previousMonth@",
-	"%calendar-nextMonth": "@%calendar-nextMonth@",
+	"%days": ["@%days-1@", "@%days-2@", "@%days-3@", "@%days-4@", "@%days-5@", "@%days-6@", "@%days-7@"],
+	"%mnths": ["@%mnths-1@", "@%mnths-2@", "@%mnths-3@", "@%mnths-4@", "@%mnths-5@", "@%mnths-6@", "@%mnths-7@", "@%mnths-8@", "@%mnths-9@", "@%mnths-10@", "@%mnths-11@", "@%mnths-12@"],
+	"%cal": "@%cal@",
+	"%currDay": "@%currDay@",
+	"%cal-goToLnk": "@%cal-goToLnk@",
+	"%cal-goToTtl": "@%cal-goToTtl@",
+	"%cal-goToMnth": "@%cal-goToMnth@",
+	"%cal-goToYr": "@%cal-goToYr@",
+	"%cal-goToBtn": "@%cal-goToBtn@",
+	"%prvMnth": "@%prvMnth@",
+	"%nxtMnth": "@%nxtMnth@",
 	/* Slideout */
 	"%show-toc": "@%show-toc@",
-	"%show-text": "@%show-text@",
-	"%hide-text": "@%hide-text@",
-	"%table-contents": "@%table-contents@",
+	"%hide-toc": "@%hide-toc@",
+	"%toc": "@%toc@",
 	/* Lightbox */
-	"%lb-current40": "@%lb-current40@",
-	"%lb-xhr-error": "@%lb-xhr-error@",
-	"%lb-img-error": "@%lb-img-error@",
+	"%lb-curr": "@%lb-curr@",
+	"%lb-xhr-err": "@%lb-xhr-err@",
+	"%lb-img-err": "@%lb-img-err@",
 	/* Charts widget */
 	"%table-mention": "@%table-mention@",
 	"%table-following": "@%table-following@",
 	/* Session timeout */
-	"%st-timeout-msg-bgn": "@%st-timeout-msg-bgn@",
-	"%st-timeout-msg-end": "@%st-timeout-msg-end@",
-	"%st-msgbox-title": "@%st-msgbox-title@",
-	"%st-already-timeout-msg": "@%st-already-timeout-msg@",
+	"%st-to-msg-bgn": "@%st-to-msg-bgn@",
+	"%st-to-msg-end": "@%st-to-msg-end@",
+	"%st-msgbx-ttl": "@%st-msgbx-ttl@",
+	"%st-alrdy-to-msg": "@%st-alrdy-to-msg@",
 	"%st-button-continue": "@%st-button-continue@",
 	"%st-button-end": "@%st-button-end@",
 	/* Toggle details */
@@ -163,14 +163,14 @@ var ind = {
 	"%td-ttl-open": "@%td-ttl-open@",
 	"%td-ttl-close": "@%td-ttl-close@",
 	/* Table enhancement */
-	"%sSortAscending": "@%sSortAscending@",
-	"%sSortDescending": "@%sSortDescending@",
-	"%sEmptyTable": "@%sEmptyTable@",
-	"%sInfo": "@%sInfo@",
-	"%sInfoEmpty": "@%sInfoEmpty@",
-	"%sInfoFiltered": "@%sInfoFiltered@",
-	"%sInfoThousands": "@%sInfoThousands@",
-	"%sLengthMenu": "@%sLengthMenu@",
+	"%sortAsc": "@%sortAsc@",
+	"%sortDesc": "@%sortDesc@",
+	"%emptyTbl": "@%emptyTbl@",
+	"%infoEntr": "@%infoEntr@",
+	"%infoEmpty": "@%infoEmpty@",
+	"%infoFilt": "@%infoFilt@",
+	"%info1000": "@%info1000@",
+	"%lenMenu": "@%lenMenu@",
 	/* Geomap */
 	"%geo-mapcontrol": "@%geo-mapcontrol@",
 	"%geo-zoomin": "@%geo-zoomin@",

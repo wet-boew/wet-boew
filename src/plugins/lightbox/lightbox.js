@@ -36,17 +36,17 @@ var selector = ".wb-lightbox",
 			i18n = window.i18n;
 			i18nText = {
 				tClose: i18n( "%close-esc" ),
-				tLoading: i18n( "%loading" ),
+				tLoading: i18n( "%load" ),
 				gallery: {
-					tPrev: i18n( "%previous-left" ),
-					tNext: i18n( "%next-right" ),
-					tCounter: i18n( "%lb-current40" )
+					tPrev: i18n( "%prv-l" ),
+					tNext: i18n( "%nxt-r" ),
+					tCounter: i18n( "%lb-curr" )
 				},
 				image: {
-					tError: i18n( "%lb-img-error" ) + " (<a href=\"%url%\">)"
+					tError: i18n( "%lb-img-err" ) + " (<a href=\"%url%\">)"
 				},
 				ajax: {
-					tError: i18n( "%lb-xhr-error" ) + " (<a href=\"%url%\">)"
+					tError: i18n( "%lb-xhr-err" ) + " (<a href=\"%url%\">)"
 				}
 			};
 		}
