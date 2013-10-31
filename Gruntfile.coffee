@@ -139,9 +139,10 @@ module.exports = (grunt) ->
 		"demos",
 		"INTERNAL: Compile the demo files",
 		[
-			"assemble:site",
+			"assemble:site"
 			"assemble:plugins"
 			"assemble:polyfills"
+			"htmlmin"
 		]
 	)
 
@@ -406,6 +407,18 @@ module.exports = (grunt) ->
 				dest: 'dist/css'
 				ext: "<%= environment.suffix %>.css"
 
+		htmlmin:
+			options:
+				removeComments: true,
+				collapseWhitespace: true
+			all:
+				cwd: "dist"
+				src: [
+					"**/*.html"
+				]
+				dest: "dist"
+				expand: true
+
 		modernizr:
 			devFile: "lib/modernizr/modernizr-custom.js"
 			outputFile: "lib/modernizr/modernizr-custom.js"
@@ -623,12 +636,13 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-contrib-connect"
 	@loadNpmTasks "grunt-contrib-copy"
 	@loadNpmTasks "grunt-contrib-cssmin"
+	@loadNpmTasks "grunt-contrib-htmlmin"
 	@loadNpmTasks "grunt-contrib-jshint"
 	@loadNpmTasks "grunt-contrib-uglify"
 	@loadNpmTasks "grunt-contrib-watch"
+	@loadNpmTasks "grunt-gh-pages"
 	@loadNpmTasks "grunt-mocha"
 	@loadNpmTasks "grunt-modernizr"
-	@loadNpmTasks "grunt-gh-pages"
 	@loadNpmTasks "grunt-sass"
 	@loadNpmTasks "grunt-saucelabs"
 
