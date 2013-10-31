@@ -558,11 +558,10 @@ module.exports = (grunt) ->
 
 			lib_test:
 				src: [
-					"src/**/*.js",
-					"!src/**/*min.js",
-					"theme/**/*.js",
-					"!src/polyfills/**/*.js",
-					"test/**/*.js", "tasks/*.*"
+					"src/**/*.js"
+					"theme/**/*.js"
+					"test/**/*.js"
+					"tasks/*.js"
 				]
 
 		connect:
