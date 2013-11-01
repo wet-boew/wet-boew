@@ -266,10 +266,10 @@ playerApi = function( fn, args ) {
 			}
 			break;
 		case "getCaptionsVisible":
-			return $( this ).find( ".wb-mm-captionsarea" ).hasClass( "on" );
+			return $( this ).find( ".wb-mm-cc" ).hasClass( "on" );
 		case "setCaptionsVisible":
 			$this = $( this );
-			captionsArea = $this.find( ".wb-mm-captionsarea" );
+			captionsArea = $this.find( ".wb-mm-cc" );
 			if ( args ) {
 				captionsArea.addClass("on");
 			} else {
@@ -476,7 +476,7 @@ $document.on( "click", $selector, function( event ) {
 		return false;
 	}
 
-	if ( $target.attr( "class" ).match( /playpause|-(play|pause)|wb-mm-overlay/ ) || $target.is( "object" ) ) {
+	if ( $target.attr( "class" ).match( /playpause|-(play|pause)|wb-mm-ovrly/ ) || $target.is( "object" ) ) {
 		   this.player( this.player( "getPaused" ) ? "play" : "pause" );
 	} else if ( $target.attr( "class" ).match( /\bcc\b|-subtitles/ )  ) {
 		   this.player( "setCaptionsVisible", !this.player( "getCaptionsVisible") );
@@ -499,11 +499,11 @@ $document.on( "keydown", $selector, function( event ) {
 		volume = 0;
 
 	if ( ( event.which === 32 || event.which === 13 ) && event.target === this.player) {
-		$this.find( ".wb-mm-controls .playpause" ).click();
+		$this.find( ".wb-mm-ctrls .playpause" ).click();
 	} else if ( event.keyCode === 37 ) {
-		$this.find( ".wb-mm-controls .rewind ").click();
+		$this.find( ".wb-mm-ctrls .rewind ").click();
 	} else if ( event.keyCode === 39 ) {
-		$this.find( ".wb-mm-controls .fastforward" ).click();
+		$this.find( ".wb-mm-ctrls .fastforward" ).click();
 	} else if ( event.keyCode === 38 ) {
 		volume = Math.round( this.player.getVolume() * 10) / 10 + 0.10;
 		volume = (volume < 1 ? volume : 1);
@@ -532,7 +532,7 @@ $document.on("durationchange play pause ended volumechange timeupdate captionslo
 
 		button.attr( "title", button.data( "state-off" ));
 
-		$this.find( ".wb-mm-overlay" ).addClass( "playing" );
+		$this.find( ".wb-mm-ovrly" ).addClass( "playing" );
 
 		$this.find(".progress").addClass("active");
 		break;
@@ -554,7 +554,7 @@ $document.on("durationchange play pause ended volumechange timeupdate captionslo
 			.parent();
 
 		button.attr( "title", button.data( "state-on" ) );
-		$this.find( ".wb-mm-overlay" ).removeClass( "playing" );
+		$this.find( ".wb-mm-ovrly" ).removeClass( "playing" );
 		break;
 	case "volumechange":
 		// TODO: Think can be optimized for the minfier with some ternaries
@@ -579,12 +579,12 @@ $document.on("durationchange play pause ended volumechange timeupdate captionslo
 				Math.round( this.player( "getCurrentTime" ) / this.player( "getDuration" ) * 1000 ) / 10
 			);
 
-		$this.find( ".wb-mm-timeline-current span" )
+		$this.find( ".wb-mm-tline-current span" )
 			.text( formatTime( this.player( "getCurrentTime" ) ) );
 
 		if ( $.data( event.target, "captions" ) !== undef ) {
 			updateCaptions(
-				$this.find( ".wb-mm-captionsarea" ),
+				$this.find( ".wb-mm-cc" ),
 				this.player( "getCurrentTime" ),
 				$.data( event.target, "captions" )
 			);
@@ -594,8 +594,8 @@ $document.on("durationchange play pause ended volumechange timeupdate captionslo
 		$.data( event.target, "captions", event.captions );
 		break;
 	case "captionsloadfailed":
-		$this.find( ".wb-mm-captionsarea" )
-		.append( "<p class='errormsg'><span>" + i18nText.cc_error + "</span></p>" )
+		$this.find( ".wb-mm-cc" )
+		.append( "<p class='errmsg'><span>" + i18nText.cc_error + "</span></p>" )
         .end()
         .find( ".cc" )
         .attr( "disabled", "" );
