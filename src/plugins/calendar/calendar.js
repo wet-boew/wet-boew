@@ -178,11 +178,11 @@ var $document = vapour.doc,
 			alt = titleSuffix + monthNames[newMonth] + " " + newYear;
 
 			if ( btnCtn ) {
-				btnCtn.toggleClass( "wb-invisible", !showButton );
+				btnCtn.toggleClass( "wb-inv", !showButton );
 				btn = btnCtn.children( "a" ).off();
 				btn.children( "img" ).attr( "alt", alt );
 			} else {
-				btnCtn = $( "<div class='cal-" + suffix + ( showButton ? "" : " wb-invisible" ) + "'></div>" );
+				btnCtn = $( "<div class='cal-" + suffix + ( showButton ? "" : " wb-inv" ) + "'></div>" );
 				btn = $( "<a href='javascript:;' role='button'><img src='" + vapour.getPath( "/assets" ) + "/" + suffix.substr( 0, 1 ) + ".png' alt='" + alt + "' /></a>" );
 
 				btnCtn.append(btn);
@@ -232,7 +232,7 @@ var $document = vapour.doc,
 				event.data.maxdate
 			]);
 
-			if ( $container.find( "." + btnClass + ".wb-invisible" ).length === 0 ) {
+			if ( $container.find( "." + btnClass + ".wb-inv" ).length === 0 ) {
 				$container.find(".cal-goto-link a").trigger( "focus.wb" );
 			} else {
 				$container.find("." + btnClass + " a").trigger( "focus.wb" );
@@ -256,7 +256,7 @@ var $document = vapour.doc,
 				event.data.maxdate
 			]);
 
-			if ( $container.find( "." + btnClass + ".wb-invisible" ).length === 0 ) {
+			if ( $container.find( "." + btnClass + ".wb-inv" ).length === 0 ) {
 				$container.find(".cal-goto-link a").trigger( "focus.wb" );
 			} else {
 				$container.find("." + btnClass + " a").trigger( "focus.wb" );
@@ -420,10 +420,10 @@ var $document = vapour.doc,
 					if (daycount > lastday) {
 						breakAtEnd = true;
 					}
-					element = $( "<li><div><span class='wb-invisible'>" + textWeekDayNames[ day ] +
-						( frenchLang ? ( " </span>" + daycount + "<span class='wb-invisible'> " +
+					element = $( "<li><div><span class='wb-inv'>" + textWeekDayNames[ day ] +
+						( frenchLang ? ( " </span>" + daycount + "<span class='wb-inv'> " +
 						textMonthNames[ month ].toLowerCase() + " " ) : ( " " + textMonthNames[ month ] +
-						" </span>" + daycount + "<span class='wb-invisible'> " ) ) + year +
+						" </span>" + daycount + "<span class='wb-inv'> " ) ) + year +
 						( isCurrentDate ? textCurrentDay : "" ) + "</span></div></li>" );
 					elementParent = days;
 				}
@@ -449,7 +449,7 @@ var $document = vapour.doc,
 
 	showGoToForm = function( calendarId ) {
 		// Hide the month navigation
-		$("#cal-" + calendarId +  "-monthnav").children(".cal-prevmonth, .cal-nextmonth").addClass("wb-invisible").children("a").attr("aria-hidden", "true");
+		$("#cal-" + calendarId +  "-monthnav").children(".cal-prevmonth, .cal-nextmonth").addClass("wb-inv").children("a").attr("aria-hidden", "true");
 
 		var link = $("#cal-" + calendarId + "-goto-link"),
 			form = $("#cal-" + calendarId + "-goto");
@@ -472,7 +472,7 @@ var $document = vapour.doc,
 			// Show the month navigation
 			$( "#cal-" + calendarId +  "-monthnav" )
 				.children(".cal-prevmonth, .cal-nextmonth")
-					.removeClass("wb-invisible")
+					.removeClass("wb-inv")
 					.children("a")
 						.attr("aria-hidden", "false");
 			$( "#" + calendarId ).removeClass( "cal-container-extended" );

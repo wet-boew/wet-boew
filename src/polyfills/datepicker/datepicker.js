@@ -198,7 +198,7 @@ var selector = "input[type=date]",
 					$( days[ cpntDate.day - 1 ] )
 						.addClass( "datepicker-selected" )
 						.children( "a" )
-						.append( "<span class='wb-invisible datepicker-selected-text'> [" + i18nText.datepickerSelected + "]</span>");
+						.append( "<span class='wb-inv datepicker-selected-text'> [" + i18nText.datepickerSelected + "]</span>");
 				}
 			}
 		} catch ( error ) {

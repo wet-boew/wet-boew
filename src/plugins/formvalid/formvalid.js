@@ -66,7 +66,7 @@ var selector = ".wb-formvalid",
 					i, len,	validator;
 
 				// Append the aria-live region (for provide message updates to screen readers)
-				$elm.append( "<div class='arialive wb-invisible' aria-live='polite' aria-relevant='all'></div>" );
+				$elm.append( "<div class='arialive wb-inv' aria-live='polite' aria-relevant='all'></div>" );
 
 				// Add space to the end of the labels (so separation between label and error when CSS turned off)
 				len = labels_len;
@@ -146,7 +146,7 @@ var selector = ".wb-formvalid",
 						if ( $errors.length !== 0 ) {
 							// Create our container if one doesn't already exist
 							if ( $summaryContainer.length === 0 ) {
-								$summaryContainer = $( "<div id='" + errorFormId + "' class='errorContainer' tabindex='-1'/>" ).prependTo( $form );
+								$summaryContainer = $( "<div id='" + errorFormId + "' class='errCnt' tabindex='-1'/>" ).prependTo( $form );
 							} else {
 								$summaryContainer.empty();
 							}
@@ -260,7 +260,7 @@ $document.on( "timerpoke.wb", selector, function() {
 
 // Move the focus to the associated input when an error message link is clicked
 // and scroll to the top of the label or legend that contains the error
-$document.on( "click vclick", selector + " .errorContainer a", function( event ) {
+$document.on( "click vclick", selector + " .errCnt a", function( event ) {
 	var button = event.which,
 		hash, $input, $label, $legend, errorTop;
 

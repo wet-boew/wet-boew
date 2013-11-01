@@ -76,7 +76,7 @@ var selector = ".wb-tabs",
 		style = $elm.attr( "class" ).match( /tabs-style-(\d+)/ );
 		// style is something like ["tabs-style-2", "2", index: 25, input: "wet-boew-tabbedinterface tabs-style-2 cycle-slow animate slide-horz wb-carousel"]
 		if ( style && $.inArray( style[1], ["2","3","4","5","6"] ) > -1 ) {
-			controls = $( "<ul class='tabs-controls'><li class='tabs-toggle'><a class='prv' href='javascript:;' role='button'>&nbsp;&nbsp;&nbsp;<span class='wb-invisible'>Previous</span></a></li><li class='tabs-toggle'><a class='nxt' href='javascript:;' role='button'>&nbsp;&nbsp;&nbsp;<span class='wb-invisible'>Next</span></a></li><li class='tabs-toggle'><a class='plypause' href='javascript:;' role='button'>Play<span class='wb-invisible'>  -  Start tab rotation</span></a></li></ul>" );
+			controls = $( "<ul class='tabs-controls'><li class='tabs-toggle'><a class='prv' href='javascript:;' role='button'>&nbsp;&nbsp;&nbsp;<span class='wb-inv'>Previous</span></a></li><li class='tabs-toggle'><a class='nxt' href='javascript:;' role='button'>&nbsp;&nbsp;&nbsp;<span class='wb-inv'>Next</span></a></li><li class='tabs-toggle'><a class='plypause' href='javascript:;' role='button'>Play<span class='wb-inv'>  -  Start tab rotation</span></a></li></ul>" );
 			$elm.append( controls );
 		}
 		

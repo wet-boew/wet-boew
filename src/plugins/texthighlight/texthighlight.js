@@ -38,7 +38,7 @@ var selector = ".wb-texthighlight",
 			searchCriteria = "(?=([^>]*<))([\\s'])?(" + searchCriteria + ")(?!>)";
 
 			newText = $elm.html().replace( new RegExp( searchCriteria, "gi" ), function( match, group1, group2, group3 ) {
-				return ( !group2 ? "" : group2 ) + "<span class='texthighlight'><mark>" + group3 + "</mark></span>";
+				return ( !group2 ? "" : group2 ) + "<span class='txthlt'><mark>" + group3 + "</mark></span>";
 			});
 			$elm.html( newText );
 		}
