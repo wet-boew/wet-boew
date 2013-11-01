@@ -13,21 +13,7 @@ module.exports = (grunt) ->
 
 	@registerTask(
 		"dist"
-		"Produces the production files"
-		[
-			"test"
-			"clean:dist"
-			"assets"
-			"dist-js"
-			"dist-css"
-			"demos"
-			"htmlcompressor"
-		]
-	)
-
-	@registerTask(
-		"debug"
-		"Produces unminified files"
+		"Basic build of all assets in the project"
 		[
 			"test"
 			"clean:dist"
@@ -39,11 +25,20 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
+		"debug"
+		"Debug build that will reference unminified files when building demos"
+		[
+			"dist"
+		]
+	)
+
+	@registerTask(
 		"deploy"
 		"Build and deploy artifacts to wet-boew-dist"
 		[
 			"dist"
 			"copy:deploy"
+			"htmlcompressor"
 			"gh-pages"
 		]
 	)
@@ -89,16 +84,7 @@ module.exports = (grunt) ->
 			"concat:coreIE8"
 			"concat:plugins"
 			"concat:i18n"
-		]
-	)
-
-	@registerTask(
-		"dist-js"
-		"INTERNAL: Compile and minify JS, and then cleans up unminifed JS in dist"
-		[
-			"js"
 			"uglify"
-			"clean:jsUncompressed"
 		]
 	)
 
@@ -109,16 +95,7 @@ module.exports = (grunt) ->
 			"sass"
 			"autoprefixer"
 			"concat:css"
-		]
-	)
-
-	@registerTask(
-		"dist-css"
-		"INTERNAL: Compile and minify CSS, and then cleans up unminifed files in dist"
-		[
-			"css"
 			"cssmin"
-			"clean:cssUncompressed"
 		]
 	)
 
@@ -173,7 +150,7 @@ module.exports = (grunt) ->
 		banner: "/*! Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" - v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n*/\n"
 		environment:
-			suffix: if grunt.cli.tasks.indexOf('debug') > -1 then "" else ".min"
+			suffix: if grunt.cli.tasks.indexOf( "debug" ) > -1 then "" else ".min"
 
 		# Task configuration.
 		concat:
@@ -385,7 +362,9 @@ module.exports = (grunt) ->
 					preserveComments: "some"
 				expand: true
 				cwd: "dist/js/polyfills/"
-				src: ["*.js"]
+				src: [
+					"*.js"
+				]
 				dest: "dist/js/polyfills/"
 				ext: "<%= environment.suffix %>.js"
 
@@ -393,7 +372,9 @@ module.exports = (grunt) ->
 				options:
 					preserveComments: "some"
 				cwd: "dist/js/"
-				src: [ "*vapour.js" ]
+				src: [
+					"*vapour.js"
+				]
 				dest: "dist/js/"
 				ext: "<%= environment.suffix %>.js"
 				expand: true
@@ -401,15 +382,22 @@ module.exports = (grunt) ->
 			plugins:
 				options:
 					banner: "<%= banner %>"
-				files:
-					"dist/js/wet-boew<%= environment.suffix %>.js": "dist/js/wet-boew.js"
+				cwd: "dist/js/"
+				src: [
+					"wet-boew.js"
+				]
+				dest: "dist/js/"
+				ext: "<%= environment.suffix %>.js"
+				expand: true
 
 			i18n:
 				options:
 					banner: "<%= banner %>"
 				expand: true
 				cwd: "dist/js/i18n"
-				src: ["**/*.js"]
+				src: [
+					"**/*.js"
+				]
 				dest: "dist/js/i18n"
 				ext: "<%= environment.suffix %>.js"
 
@@ -418,7 +406,9 @@ module.exports = (grunt) ->
 					preserveComments: "some"
 				expand: true
 				cwd: "dist/js/deps"
-				src: ["*.js"]
+				src: [
+					"*.js"
+				]
 				dest: "dist/js/deps/"
 				rename: (destBase, destPath) ->
 					return destBase + destPath.replace(/\.js$/, "<%= environment.suffix %>.js")
@@ -431,7 +421,6 @@ module.exports = (grunt) ->
 				cwd: "dist/css"
 				src: [
 					"**/*.css"
-					"!**/*.min.css"
 				]
 				dest: "dist/css"
 				ext: "<%= environment.suffix %>.css"
@@ -560,11 +549,20 @@ module.exports = (grunt) ->
 				expand: true
 
 		clean:
-			dist: "dist"
+			dist: [
+				"dist"
+			]
 
-			jsUncompressed: ["dist/js/**/*.js", "!dist/js/**/*<%= environment.suffix %>.js"]
-			cssUncompressed: ["dist/css/**/*.css", "!dist/css/**/*<%= environment.suffix %>.css"]
-			tests: ["dist/demos/**/test.js"]
+			uncompressed: [
+				"dist/js/**/*.js"
+				"!dist/js/**/*.min.js"
+				"dist/css/**/*.css"
+				"!dist/css/**/*.min.css"
+			]
+
+			tests: [
+				"dist/demos/**/test.js"
+			]
 
 		watch:
 			lib_test:
@@ -600,7 +598,9 @@ module.exports = (grunt) ->
 			options:
 				template: "src/i18n/base.js"
 				csv: "src/i18n/i18n.csv"
-			src: "src/js/i18n/formvalid/*.js"
+			src: [
+				"src/js/i18n/formvalid/*.js"
+			]
 
 		mocha:
 			all:
