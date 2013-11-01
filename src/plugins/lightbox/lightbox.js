@@ -86,10 +86,6 @@ var selector = ".wb-lightbox",
 						
 						if ( $item.type === "image" ) {
 							$bottomBar = $content.find( ".mfp-bottom-bar" ).attr( "id", "lb-title" );
-
-							// Wrap image and bottom bar in figure and figcaption as needed
-							$item.img.add( $bottomBar ).wrapAll( "<figure/>" );
-							$bottomBar.wrap( "<figcaption/>" );
 						} else {
 							$content.attr( "role", "document" );
 						}
