@@ -32,9 +32,9 @@ en: prettify
 				<li>lang-vhdl</li>
 				<li>lang-wiki</li>
 				<li>lang-xq</li>
-				<li>lang-yaml</li>			
+				<li>lang-yaml</li>
 			</ul>
-		</li>	
+		</li>
 	</ol>
 </section>
 
@@ -142,7 +142,7 @@ init = function() {
 	}
 
 	// Load the required dependencies and prettify the code once finished
-	window.Modernizr.load({
+	Modernizr.load({
 		load: deps,
 		complete: function() {
 			vapour.doc.trigger( "prettyprint.wb-prettify" );

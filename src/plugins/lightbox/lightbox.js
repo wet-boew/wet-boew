@@ -7,8 +7,8 @@
 (function( $, window, document, vapour ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
@@ -19,7 +19,7 @@ var selector = ".wb-lightbox",
 	extendedGlobal = false,
 
 	/*
-	 * Init runs once per plugin element on the page. There may be multiple elements. 
+	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
 	 * @param {jQuery DOM element} $elm The plugin element being initialized
@@ -52,7 +52,7 @@ var selector = ".wb-lightbox",
 		}
 
 		// Load Magnific Popup dependency and bind the init event handler
-		window.Modernizr.load({
+		Modernizr.load({
 			load: "site!deps/jquery.magnific-popup" + modeJS,
 			complete: function() {
 				var settings = {},
@@ -77,13 +77,13 @@ var selector = ".wb-lightbox",
 						var $item = this.currItem,
 							$content = this.contentContainer,
 							$bottomBar;
-						
+
 						this.wrap.attr({
 							"role": "dialog",
 							"aria-live": "polite",
 							"aria-labelledby": "lb-title",
 						});
-						
+
 						if ( $item.type === "image" ) {
 							$bottomBar = $content.find( ".mfp-bottom-bar" ).attr( "id", "lb-title" );
 						} else {
@@ -113,7 +113,7 @@ var selector = ".wb-lightbox",
 							if ( description ) {
 								$target.attr( "longdesc", description );
 							}
-							
+
 							// Handle alternate titles
 							altTitleId = $el.attr( "data-title" );
 							if ( altTitleId ) {
@@ -130,7 +130,7 @@ var selector = ".wb-lightbox",
 						}
 					}
 				};
-				
+
 				if ( _elm.nodeName.toLowerCase() !== "a" ) {
 					settings.delegate = "a";
 					firstLink = _elm.getElementsByTagName( "a" )[0];
@@ -146,7 +146,7 @@ var selector = ".wb-lightbox",
 					firstLink = _elm;
 				}
 
-				
+
 				if ( firstLink.getAttribute( "href" ).charAt( 0 ) === "#" ) {
 					settings.type = "inline";
 				} else if ( firstLink.className.indexOf( "lb-iframe" ) !== -1 ) {

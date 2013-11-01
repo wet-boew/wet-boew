@@ -80,7 +80,7 @@ var selector = "input[type=date]",
 
 		// Load XRegExp dependency for named RegExp results.
 		// @todo: Can this dependency be removed?
-		window.Modernizr.load({
+		Modernizr.load({
 			load: "site!deps/xregexp" + modeJS
 		});
 

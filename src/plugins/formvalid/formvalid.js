@@ -7,8 +7,8 @@
 (function( $, window, document, vapour ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
@@ -18,7 +18,7 @@ var selector = ".wb-formvalid",
 	i18n, i18nText,
 
 	/*
-	 * Init runs once per plugin element on the page. There may be multiple elements. 
+	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
 	 * @param {jQuery DOM element} $elm The plugin element being initialized
@@ -28,7 +28,7 @@ var selector = ".wb-formvalid",
 		// read the selector node for parameters
 		var modeJS = vapour.getMode() + ".js";
 			//lang = document.documentElement.lang.replace( "-", "_" );
-			
+
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 		window._timer.remove( selector );
 
@@ -45,7 +45,7 @@ var selector = ".wb-formvalid",
 			};
 		}
 
-		window.Modernizr.load({
+		Modernizr.load({
 			// For loading multiple dependencies
 			both: [
 				"site!deps/jquery.validate" + modeJS,
@@ -222,7 +222,7 @@ var selector = ".wb-formvalid",
 						submitted = true;
 					}
 				} ); //end of validate()
-				
+
 				// Clear the form and remove error messages on reset
 				$document.on( "click vclick touchstart", selector + " input[type=reset]", function( event ) {
 					var $summaryContainer,
@@ -271,7 +271,7 @@ $document.on( "click vclick", selector + " .errCnt a", function( event ) {
 		$label = $input.prev();
 		$legend = $label.length === 0 ? $input.closest( "fieldset" ).find( "legend" ) : [];
 		errorTop = $label.length !== 0 ? $label.offset().top : ( $legend.length !== 0 ? $legend.offset().top : -1 );
-	
+
 		// Assign focus to $input
 		$input.trigger( "focus.wb" );
 

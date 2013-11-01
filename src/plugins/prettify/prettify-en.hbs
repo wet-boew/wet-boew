@@ -142,7 +142,7 @@ init = function() {
 	}
 
 	// Load the required dependencies and prettify the code once finished
-	window.Modernizr.load({
+	Modernizr.load({
 		load: deps,
 		complete: function() {
 			vapour.doc.trigger( "prettyprint.wb-prettify" );
