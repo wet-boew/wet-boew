@@ -21,6 +21,7 @@ module.exports = (grunt) ->
 			"dist-js"
 			"dist-css"
 			"demos"
+			"htmlcompressor"
 		]
 	)
 
@@ -146,7 +147,6 @@ module.exports = (grunt) ->
 			"assemble:site"
 			"assemble:plugins"
 			"assemble:polyfills"
-			"htmlcompressor"
 		]
 	)
 
