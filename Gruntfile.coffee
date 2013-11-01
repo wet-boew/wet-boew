@@ -142,7 +142,7 @@ module.exports = (grunt) ->
 			"assemble:site"
 			"assemble:plugins"
 			"assemble:polyfills"
-			"htmlmin"
+			"htmlcompressor"
 		]
 	)
 
@@ -407,10 +407,9 @@ module.exports = (grunt) ->
 				dest: 'dist/css'
 				ext: "<%= environment.suffix %>.css"
 
-		htmlmin:
+		htmlcompressor:
 			options:
-				removeComments: true,
-				collapseWhitespace: true
+				type: "html"
 			all:
 				cwd: "dist"
 				src: [
@@ -635,11 +634,11 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-contrib-connect"
 	@loadNpmTasks "grunt-contrib-copy"
 	@loadNpmTasks "grunt-contrib-cssmin"
-	@loadNpmTasks "grunt-contrib-htmlmin"
 	@loadNpmTasks "grunt-contrib-jshint"
 	@loadNpmTasks "grunt-contrib-uglify"
 	@loadNpmTasks "grunt-contrib-watch"
 	@loadNpmTasks "grunt-gh-pages"
+	@loadNpmTasks "grunt-htmlcompressor"
 	@loadNpmTasks "grunt-mocha"
 	@loadNpmTasks "grunt-modernizr"
 	@loadNpmTasks "grunt-sass"
