@@ -38,7 +38,7 @@ var selector = ".wb-modal",
 		window._timer.remove( selector );
 
 		// Load the magnific popup dependency
-		window.Modernizr.load({
+		Modernizr.load({
 			load: "site!deps/jquery.magnific-popup" + vapour.getMode() + ".js",
 			complete: function() {
 				$document.trigger( "ready.wb-modal" );

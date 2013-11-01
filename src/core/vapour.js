@@ -298,7 +298,7 @@ window._timer = {
 /*-----------------------------
  * Modernizr Polyfill Loading
  *-----------------------------*/
-window.Modernizr.load([
+Modernizr.load([
 	{
 		test: Modernizr.details,
 		nope: [

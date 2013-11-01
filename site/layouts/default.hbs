@@ -13,7 +13,6 @@
 		<!-- Meta data -->
 		<meta name="description" content="{{description}}" />
 		<!-- Meta data-->
-		<link rel="stylesheet" href="{{assets}}/css/bootstrap{{environment.suffix}}.css">
 		<link rel="stylesheet" href="{{assets}}/css/base{{environment.suffix}}.css">
 		<link rel="stylesheet" href="{{assets}}/css/theme{{environment.suffix}}.css">
 
@@ -33,8 +32,8 @@
 			</li>
 		</ul>
 		<header role="banner">
-			<div id="wb-banner">
-				<section data-ajax-after="{{assets}}/assets/mobmenu-{{language}}.html" id="wb-lang">
+			<div id="wb-bnr">
+				<section data-ajax-after="{{assets}}/assets/mobmenu-{{language}}.html" id="wb-lng">
 					<h2>{{#i18n "%tmpl-lang-select"}}{{/i18n}}</h2>
 					{{>languagetoggle}}
 				</section>
@@ -42,7 +41,7 @@
 				<div class="container">
 					<div class="row">
 
-						<section id="wb-sitetitle" class="col-md-8">
+						<section id="wb-sttl" class="col-md-8">
 							{{>brand}}
 						</section>
 

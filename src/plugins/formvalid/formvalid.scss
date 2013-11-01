@@ -8,9 +8,6 @@
 %formvalid-display-block {
 	display: block;
 }
-%formvalid-margin-top-1em {
-	margin-top: 1em;
-}
 %formvalid-margin-right-0 {
 	margin-right: 0;
 }
@@ -46,34 +43,8 @@
 	}
 }
 
-.mobile-view {
-	.wet-boew-formvalid {
-		input {
-			&[type=checkbox] {
-				+ {
-					label {
-						@extend %formvalid-display-block;
-					}
-				}
-			}
-		}
-		label {
-			@extend %formvalid-margin-top-1em;
-		}
-		fieldset {
-			@extend %formvalid-margin-top-1em;
-		}
-		legend {
-			margin-bottom: -0.5em;
-		}
-		.buttons {
-			margin-top: 2em;
-		}
-	}
-}
-
 div {
-	&.errorContainer {
+	&.errCnt {
 		p {
 			margin-left: 0;
 			@extend %formvalid-margin-right-0;
@@ -86,11 +57,5 @@ div {
 				margin-bottom: 5px;
 			}
 		}
-	}
-}
-
-.no-js {
-	.wet-boew-formvalid {
-		display: none;
 	}
 }

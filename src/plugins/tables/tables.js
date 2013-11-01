@@ -7,8 +7,8 @@
 (function( $, window, vapour ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
@@ -18,14 +18,14 @@ var selector = ".wb-tables",
 	i18n, i18nText, defaults,
 
 	/*
-	 * Init runs once per plugin element on the page. There may be multiple elements. 
+	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
 	 */
 	init = function( event ) {
 
 		var $elm = $( event.target );
-	
+
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 		window._timer.remove( selector );
 
@@ -60,9 +60,9 @@ var selector = ".wb-tables",
 			asStripeClasses : [],
 			oLanguage: i18nText
 		};
-		
 
-		window.Modernizr.load([{
+
+		Modernizr.load([{
 			load: [ "site!deps/jquery.dataTables" + vapour.getMode() + ".js" ],
 			complete: function() {
 				$elm.dataTable( $.extend( true, defaults, vapour.getData( $elm, "wet-boew" ) ) );

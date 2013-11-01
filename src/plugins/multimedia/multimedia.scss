@@ -20,7 +20,9 @@
 
 	}
 	progress, .btn {
-		&:focus { outline: #fff thin dotted; }
+		&:focus { 
+			outline: #fff thin dotted; 
+		}
 	}
 
 	.display {
@@ -29,7 +31,7 @@
 		padding-top: 22px;
 		background: #000;
 		height: 0;
-		iframe, video, object, embed, .wb-mm-overlay {
+		iframe, video, object, embed, .wb-mm-ovrly {
 			position: absolute;
 			top: 0;
 			left: 0;
@@ -37,7 +39,7 @@
 			height: 100%;
 		}
 	}
-	.wb-mm-overlay {
+	.wb-mm-ovrly {
 		background: transparent;
 		text-indent: -9999px;
 		border: 0;
@@ -49,19 +51,19 @@
 			img {
 				visibility: hidden;
 			}
-			.errormsg {
+			.errmsg {
 				display: none;
 			}
 		}
 		// Lets make sure error messages are more prominant
-		.errormsg {
+		.errmsg {
 			position: absolute;
 			z-index: 105;
 			top: 0;
 			left: 0;
 			bottom: 0;
 			right: 0;
-			background-color: rgba(0,0,0,0.7);
+			background-color: rgba( 0, 0, 0, 0.7 );
 			margin-bottom: 0;
 
 			span {
@@ -75,13 +77,18 @@
 
 	}
 
-	&[data-youtube] .wb-mm-overlay { visibility: hidden }
+	&[data-youtube] {
+		.wb-mm-ovrly { 
+			visibility: hidden;
+		}
+	}
 	/*
 	  Light Skinning of mediacontrols
 	 */
-	&.skn-lght{
+	&.skn-lt {
 		color: #000 !important;
-		.wb-mm-controls {
+		border-bottom: 1px solid #ddd;
+		.wb-mm-ctrls {
 			background: #fff;
 		}
 		.btn {
@@ -89,11 +96,10 @@
 			border: 0;
 			color: #000 !important;
 		}
-		border-bottom: 1px solid #ddd;
 	}
 }
 
-.wb-mm-captionsarea {
+.wb-mm-cc {
 	background-color: #000;
 	color: #FFF;
 	text-align: center;
@@ -106,23 +112,23 @@
 	}
 }
 
-.wb-mm-controls {
+.wb-mm-ctrls {
 	display: table;
 	background: #000;
 	position: relative;
 	width: 100%;
-	.firstpanel {
+	.frstpnl {
 		width: 10em;
 		vertical-align: top;
 		display: table-cell;
 	}
-	.lastpanel {
+	.lastpnl {
 		text-align: right;
 		width: 7em;
 		display: table-cell;
 		vertical-align: top;
 	}
-	.timeline {
+	.tline {
 		display: table-cell;
 		vertical-align: top;
 		padding-top: 0.55em;
@@ -153,7 +159,7 @@
 }
 
 @media print {
-	.wb-mm-controls, .wb-mm-overlay {
+	.wb-mm-ctrls, .wb-mm-ovrly {
 		display: none;
 	}
 }

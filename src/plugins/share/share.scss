@@ -3,13 +3,17 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 .wb-share {
-	.share-link {
-		display: inline-block;
-		padding-left: 37px;
+	.shr-lnk {
+		display: block;
+		padding-left: 42px;
 		min-height: 32px;
 		line-height: 32px;
 		background-repeat: no-repeat;
-		background-position: left center;
+		background-position: 5px center;
+		margin-bottom: 8px;
+		text-align: left;
+		text-decoration: none;
+		font-size: 115%;
 	}
 	.bitly {
 		background-image: url(../js/assets/bitly.png);
@@ -71,4 +75,21 @@
 	.twitter {
 		background-image: url(../js/assets/twitter.png);
 	}
+	ul {
+		list-style-type: none;
+		padding-left: 0;
+	}
 }
+
+#shr-pg {
+	//	@todo	Move this to the overlays plugin
+	background-color: #fff;
+	//	@todo	Automate the setting of the width
+	width: 250px;
+}
+
+//	@todo	Move this to the overlays plugin
+.wb-overlay {
+	z-index: 999;
+}
+

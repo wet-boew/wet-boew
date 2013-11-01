@@ -65,7 +65,7 @@ drizzleAria = function( $elements ){
 	// lets tweak for aria
 	for ( i = 0; i <= length; i++ ) {
 		elm = $elements.eq( i );
-		subMenu = elm.siblings( ".sbmnu" );
+		subMenu = elm.siblings( ".sm" );
 
 		elm.attr({
 			"aria-posinset": ( i + 1 ),
@@ -105,7 +105,7 @@ onAjaxLoaded = function( $elm, $ajaxed ) {
 
 	$menu.eq(0).attr( "tabindex", "0" );
 	$menu.filter( "[href^=#]" )
-		.append( "<span class='expandicon'></span>" );
+		.append( "<span class='expicon'></span>" );
 
 	drizzleAria( $menu );
 
@@ -122,7 +122,7 @@ onAjaxLoaded = function( $elm, $ajaxed ) {
 	$elm.data({
 		self: $elm,
 		menu: $elm.find( "[role=menubar] .item" ),
-		items: $elm.find( ".sbmnu" )
+		items: $elm.find( ".sm" )
 	});
 
 },
@@ -186,7 +186,7 @@ onDisplay = function( $elm, event ) {
 	});
 	// add the open state classes
 	$item.addClass( "active" )
-		.find( ".sbmnu" )
+		.find( ".sm" )
 		.addClass( "open" );
 },
 
@@ -266,9 +266,9 @@ $document.on( "keydown", selector + " .item", function( event ) {
 	switch ( $code ) {
 	case 13:
 	case 40:
-		if ( $elm.find( ".expandicon" ).length > 0 ) {
+		if ( $elm.find( ".expicon" ).length > 0 ) {
 			event.preventDefault();
-			$goto = $elm.closest( "li" ).find( ".sbmnu [role=menuitem]" ).first();
+			$goto = $elm.closest( "li" ).find( ".sm [role=menuitem]" ).first();
 
 			$container.trigger({
 				type: "increment.wb-menu",

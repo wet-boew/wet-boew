@@ -119,7 +119,7 @@ init = function() {
 
 	// Check the element for `lang-*` syntax CSS classes
 	cssClasses = typeof $elm[0].className === "string" ? $elm[0].className.split( " " ) : [];
-	for ( i = 0, len = cssClasses.length; i < len; i++ ) {
+	for ( i = 0, len = cssClasses.length; i &lt; len; i++ ) {
 		cssClass = cssClasses[ i ];
 		if ( cssClass.indexOf( "lang-" ) === 0 ) {
 			deps.push( "site!deps/" + cssClass + modeJS );
@@ -142,7 +142,7 @@ init = function() {
 	}
 
 	// Load the required dependencies and prettify the code once finished
-	window.Modernizr.load({
+	Modernizr.load({
 		load: deps,
 		complete: function() {
 			vapour.doc.trigger( "prettyprint.wb-prettify" );

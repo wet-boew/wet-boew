@@ -142,7 +142,7 @@ var selector = ".wb-share",
 					.replace( /\{t\}/, pageTitle )
 					.replace( /\{i\}/, pageImage )
 					.replace( /\{d\}/, pageDescription );
-			links += "<li><a href='" + url + "' class='share-link " + site + "'>" + siteProperties.name + "</a></li>";
+			links += "<li><a href='" + url + "' class='shr-lnk " + site + " btn btn-default'>" + siteProperties.name + "</a></li>";
 		}
 
 		links += "</ul><p>" + i18nText.disclaimer + "</p>";

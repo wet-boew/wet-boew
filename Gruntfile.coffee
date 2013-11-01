@@ -4,42 +4,42 @@ module.exports = (grunt) ->
 
 	# External tasks
 	@registerTask(
-		"default",
-		"Default task, that runs the production build",
+		"default"
+		"Default task that runs the production build"
 		[
 			"dist"
 		]
 	)
 
 	@registerTask(
-		"dist",
-		"Produces the production files",
+		"dist"
+		"Produces the production files"
 		[
-			"test",
-			"clean:dist",
-			"assets",
-			"dist-js",
-			"dist-css",
+			"test"
+			"clean:dist"
+			"assets"
+			"dist-js"
+			"dist-css"
 			"demos"
 		]
 	)
 
 	@registerTask(
-		"debug",
-		"Produces unminified files",
+		"debug"
+		"Produces unminified files"
 		[
-			"test",
-			"clean:dist",
-			"assets",
-			"js",
-			"css",
+			"test"
+			"clean:dist"
+			"assets"
+			"js"
+			"css"
 			"demos"
 		]
 	)
 
 	@registerTask(
-		"deploy",
-		"Build and deploy artifacts to wet-boew-dist",
+		"deploy"
+		"Build and deploy artifacts to wet-boew-dist"
 		[
 			"dist"
 			"copy:deploy"
@@ -48,8 +48,8 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
-		"test-mocha",
-		"Full build for running tests locally with Grunt Mocha",
+		"test-mocha"
+		"Full build for running tests locally with Grunt Mocha"
 		[
 			"pre-mocha"
 			"mocha"
@@ -57,8 +57,8 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
-		"saucelabs",
-		"Full build for running tests on SauceLabs. Currently only for Travis builds",
+		"saucelabs"
+		"Full build for running tests on SauceLabs. Currently only for Travis builds"
 		[
 			"pre-mocha"
 			"connect"
@@ -67,8 +67,8 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
-		"init",
-		"Only needed when the repo is first cloned",
+		"init"
+		"Only needed when the repo is first cloned"
 		[
 			"modernizr"
 		]
@@ -76,84 +76,89 @@ module.exports = (grunt) ->
 
 	#Internal task groups
 	@registerTask(
-		"js",
-		"INTERNAL: Copies all third party JS to the dist folder",
+		"js"
+		"INTERNAL: Copies all third party JS to the dist folder"
 		[
 			"copy:jquery"
 			"copy:polyfills"
 			"copy:deps"
 			"copy:jsAssets"
 			"i18n"
-			"concat"
+			"concat:core"
+			"concat:coreIE8"
+			"concat:plugins"
+			"concat:i18n"
 		]
 	)
 
 	@registerTask(
-		"dist-js",
-		"INTERNAL: Compile and minify JS, and then cleans up unminifed JS in dist",
+		"dist-js"
+		"INTERNAL: Compile and minify JS, and then cleans up unminifed JS in dist"
 		[
-			"js",
-			"uglify",
+			"js"
+			"uglify"
 			"clean:jsUncompressed"
 		]
 	)
 
 	@registerTask(
-		"css",
+		"css"
 		"INTERNAL: Compiles Sass and copies third party CSS to the dist folder"
 		[
-			"sass",
-			"autoprefixer",
-			"copy:bootstrap"
+			"sass"
+			"autoprefixer"
+			"concat:css"
 		]
 	)
 
 	@registerTask(
-		"dist-css",
-		"INTERNAL: Compile and minify CSS, and then cleans up unminifed files in dist",
+		"dist-css"
+		"INTERNAL: Compile and minify CSS, and then cleans up unminifed files in dist"
 		[
-			"css",
-			"cssmin",
+			"css"
+			"cssmin"
 			"clean:cssUncompressed"
 		]
 	)
 
 	@registerTask(
-		"assets",
-		"INTERNAL: Process non-CSS/JS assets to dist",
+		"assets"
+		"INTERNAL: Process non-CSS/JS assets to dist"
 		[
 			"copy:misc"
 			"copy:themeAssets"
+			"copy:bootstrap"
 		]
 	)
 
 	@registerTask(
-		"test",
-		"INTERNAL: Runs testing tasks, except for SauceLabs testing",
+		"test"
+		"INTERNAL: Runs testing tasks except for SauceLabs testing"
 		[
 			"jshint"
 		]
 	)
 
 	@registerTask(
-		"demos",
-		"INTERNAL: Compile the demo files",
+		"demos"
+		"INTERNAL: Compile the demo files"
 		[
-			"assemble:site",
+			"assemble:site"
 			"assemble:plugins"
 			"assemble:polyfills"
+			"htmlcompressor"
 		]
 	)
 
 	@registerTask(
-		"pre-mocha",
-		"INTERNAL: prepare for running Mocha unit tests",
+		"pre-mocha"
+		"INTERNAL: prepare for running Mocha unit tests"
 		[
-			"clean:dist",
-			"assets",
-			"js",
-			"css",
-			"copy:tests",
+			"clean:dist"
+			"assets"
+			"js"
+			"css"
+			"copy:tests"
 			"assemble:tests"
 		]
 	)
@@ -179,8 +184,8 @@ module.exports = (grunt) ->
 					stripBanners: true
 				src: [
 					"src/core/helpers.js"
-					"dist/js/wet-boew.js",
-					"src/plugins/**/*.js",
+					"dist/js/wet-boew.js"
+					"src/plugins/**/*.js"
 					"!src/plugins/**/test.js"
 				]
 				dest: "dist/js/wet-boew.js"
@@ -189,7 +194,7 @@ module.exports = (grunt) ->
 				options:
 					stripBanners: false
 				src: [
-					"lib/modernizr/modernizr-custom.js",
+					"lib/modernizr/modernizr-custom.js"
 					"src/core/vapour.js"
 				]
 				dest: "dist/js/vapour.js"
@@ -241,6 +246,15 @@ module.exports = (grunt) ->
 				]
 				dest: "dist/js/i18n"
 				expand: true
+
+			css:
+				options:
+					banner: ""
+				files:
+					"dist/css/base.css": [
+						"lib/bootstrap/dist/css/bootstrap.css"
+						"dist/css/base.css"
+					]
 
 		# Builds the demos
 		assemble:
@@ -322,20 +336,20 @@ module.exports = (grunt) ->
 		autoprefixer:
 			options:
 				browsers: [
-					"last 2 versions",
-					"ff >= 17",
-					"opera 12.1",
-					"bb >= 7",
-					"android >= 2.3",
-					"ie >= 8",
+					"last 2 versions"
+					"ff >= 17"
+					"opera 12.1"
+					"bb >= 7"
+					"android >= 2.3"
+					"ie >= 8"
 					"ios 5"
 				]
 
 			all:
 				cwd: "dist/css"
 				src: [
-					"**/*.css",
-					"!**/polyfills/**/*.css",
+					"**/*.css"
+					"!**/polyfills/**/*.css"
 					"!**/*.min.css"
 				]
 				dest: "dist/css"
@@ -345,7 +359,7 @@ module.exports = (grunt) ->
 			polyfills:
 				cwd: "dist/css/polyfills"
 				src: [
-					"**/*.css",
+					"**/*.css"
 					"!**/*.min.css"
 				]
 				dest: "dist/css/polyfills/"
@@ -402,9 +416,23 @@ module.exports = (grunt) ->
 			dist:
 				expand: true
 				cwd: "dist/css"
-				src: ["**/*.css", "!**/*.min.css"]
-				dest: 'dist/css'
+				src: [
+					"**/*.css"
+					"!**/*.min.css"
+				]
+				dest: "dist/css"
 				ext: "<%= environment.suffix %>.css"
+
+		htmlcompressor:
+			options:
+				type: "html"
+			all:
+				cwd: "dist"
+				src: [
+					"**/*.html"
+				]
+				dest: "dist"
+				expand: true
 
 		modernizr:
 			devFile: "lib/modernizr/modernizr-custom.js"
@@ -440,39 +468,26 @@ module.exports = (grunt) ->
 			jquery:
 				cwd: "lib/jquery"
 				src: [
-					"jquery.min.js",
+					"jquery.min.js"
 					"jquery.min.map"
 				]
 				dest: "dist/js"
 				expand: true
 
 			bootstrap:
-				files: [
-					{
-						cwd: "lib/bootstrap"
-						src: [
-							"dist/css/bootstrap<%= environment.suffix %>.css"
-						]
-						dest: "dist/css"
-						expand: true
-						flatten: true
-					}
-					{
-						cwd: "lib/bootstrap/fonts"
-						src: ["*.*"]
-						dest: "dist/fonts"
-						expand: true
-						flatten: true
-					}
-				]
+				cwd: "lib/bootstrap/fonts"
+				src: "*.*"
+				dest: "dist/fonts"
+				expand: true
+				flatten: true
 
 			misc:
 				cwd: "src/plugins"
 				src: [
-					"**/*.*",
-					"!**/*.js",
-					"!**/*.scss",
-					"!**/*.hbs",
+					"**/*.*"
+					"!**/*.js"
+					"!**/*.scss"
+					"!**/*.hbs"
 					"!**/assets/*"
 				]
 				dest: "dist/demos"
@@ -499,7 +514,6 @@ module.exports = (grunt) ->
 					"jquery-pjax/jquery.pjax.js"
 					"jquery.validation/jquery.validate.js"
 					"jquery.validation/additional-methods.js"
-					"jquery.validation/localization/*.js"
 					"magnific-popup/dist/jquery.magnific-popup.js"
 					"google-code-prettify/src/*.js"
 					"DataTables/media/js/jquery.dataTables.js"
@@ -558,11 +572,10 @@ module.exports = (grunt) ->
 
 			lib_test:
 				src: [
-					"src/**/*.js",
-					"!src/**/*min.js",
-					"theme/**/*.js",
-					"!src/polyfills/**/*.js",
-					"test/**/*.js", "tasks/*.*"
+					"src/**/*.js"
+					"theme/**/*.js"
+					"test/**/*.js"
+					"tasks/*.js"
 				]
 
 		connect:
@@ -627,9 +640,10 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-contrib-jshint"
 	@loadNpmTasks "grunt-contrib-uglify"
 	@loadNpmTasks "grunt-contrib-watch"
+	@loadNpmTasks "grunt-gh-pages"
+	@loadNpmTasks "grunt-htmlcompressor"
 	@loadNpmTasks "grunt-mocha"
 	@loadNpmTasks "grunt-modernizr"
-	@loadNpmTasks "grunt-gh-pages"
 	@loadNpmTasks "grunt-sass"
 	@loadNpmTasks "grunt-saucelabs"
 

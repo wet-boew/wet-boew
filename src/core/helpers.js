@@ -170,7 +170,7 @@
 				elm = $( this );
 				elm.attr( "aria-hidden", "false" );
 				if ( onlyAria === undef ) {
-					elm.removeClass( "wb-invisible" );
+					elm.removeClass( "wb-inv" );
 				}
 			});
 		},
@@ -182,7 +182,7 @@
 					elm = $( this );
 					elm.attr( "aria-hidden", "true" );
 					if ( onlyAria === undef ) {
-						return elm.addClass( "wb-invisible" );
+						return elm.addClass( "wb-inv" );
 					}
 				});
 		},

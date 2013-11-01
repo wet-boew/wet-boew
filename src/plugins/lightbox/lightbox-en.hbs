@@ -5,24 +5,24 @@ fr: lightbox
 ---
 
 <style>
-	.inline-list > ul {
+	.inline-lst > ul {
 		margin-left: 0;
 	}
-	.inline-list > ul > li {
+	.inline-lst > ul > li {
 		list-style-type: none;
 		display: inline-block;
 		margin: 0 5px 0 0;
 	}
-	.inline-list ul li.box {
+	.inline-lst ul li.box {
 		margin-bottom: 0.4em;
 	}
-	.inline-list li img {
+	.inline-lst li img {
 		margin-bottom: 0;
 	}
-	.inline-list > ul > li > a {
+	.inline-lst > ul > li > a {
 		text-decoration: none;
 	}
-	.box > a, .lb-hidden-gallery li:first-child.box > a {
+	.box > a, .lb-hide-gal li:first-child.box > a {
 		display: block;
 		width: 150px;
 		height: 150px;
@@ -73,7 +73,7 @@ fr: lightbox
 			<h3 id="examples1">Single items</h3>
 			<section>
 				<h4>Example</h4>
-				<div class="inline-list" class="lb-default-popup">
+				<div class="inline-lst" class="lb-default-popup">
 					<ul>
 						<li>
 							<a class="wb-lightbox" href="img/1_b.jpg" title="Image 1">
@@ -160,7 +160,7 @@ fr: lightbox
 			<h3 id="examples2">Galleries</h3>
 			<section>
 				<h4>Examples</h4>
-				<section class="wb-lightbox lb-gallery inline-list">
+				<section class="wb-lightbox lb-gallery inline-lst">
 					<h5>Image gallery</h5>
 					<ul>
 						<li>
@@ -185,7 +185,7 @@ fr: lightbox
 						</li>
 					</ul>
 				</section>
-				<section class="wb-lightbox lb-gallery inline-list">
+				<section class="wb-lightbox lb-gallery inline-lst">
 					<h5>AJAX gallery</h5>
 					<ul>
 						<li class="box">
@@ -203,7 +203,7 @@ fr: lightbox
 
 			<section>
 				<h4>Coding</h4>
-				<pre><code>&lt;section class="wb-lightbox lb-gallery inline-list"&gt;
+				<pre><code>&lt;section class="wb-lightbox lb-gallery inline-lst"&gt;
 	&lt;h5&gt;Image gallery&lt;/h5&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
@@ -228,7 +228,7 @@ fr: lightbox
 		&lt;/li&gt;
 	&lt;/ul&gt;
 &lt;/section&gt;
-&lt;section class="wb-lightbox lb-gallery inline-list"&gt;
+&lt;section class="wb-lightbox lb-gallery inline-lst"&gt;
 	&lt;h5&gt;AJAX gallery&lt;/h5&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
@@ -249,7 +249,7 @@ fr: lightbox
 			<h3 id="examples3">Hidden image galleries</h3>
 			<section>
 				<h4>Examples</h4>
-				<section class="wb-lightbox lb-hidden-gallery">
+				<section class="wb-lightbox lb-hide-gal">
 					<h5>Image gallery</h5>
 					<ul>
 						<li>
@@ -274,7 +274,7 @@ fr: lightbox
 						</li>
 					</ul>
 				</section>
-				<section class="wb-lightbox lb-hidden-gallery">
+				<section class="wb-lightbox lb-hide-gal">
 					<h5>AJAX gallery</h5>
 					<ul>
 						<li class="box">
@@ -292,7 +292,7 @@ fr: lightbox
 
 			<section>
 				<h4>Coding</h4>
-				<pre><code>&lt;section class="wb-lightbox lb-hidden-gallery"&gt;
+				<pre><code>&lt;section class="wb-lightbox lb-hide-gal"&gt;
 	&lt;h5&gt;Image gallery&lt;/h5&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
@@ -317,7 +317,7 @@ fr: lightbox
 		&lt;/li&gt;
 	&lt;/ul&gt;
 &lt;/section&gt;
-&lt;section class="wb-lightbox lb-hidden-gallery"&gt;
+&lt;section class="wb-lightbox lb-hide-gal"&gt;
 	&lt;h5&gt;AJAX gallery&lt;/h5&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
@@ -338,7 +338,7 @@ fr: lightbox
 			<h3 id="examples4">Alternative image title</h3>
 			<section>
 				<h4>Example</h4>
-				<div class="wb-lightbox lb-gallery inline-list">
+				<div class="wb-lightbox lb-gallery inline-lst">
 					<ul>
 						<li>
 							<a href="img/1_b.jpg" title="Image 1" data-title="image_1_b">
@@ -359,7 +359,7 @@ fr: lightbox
 
 			<section>
 				<h4>Coding</h4>
-				<pre><code>&lt;div class="wb-lightbox lb-gallery inline-list"&gt;
+				<pre><code>&lt;div class="wb-lightbox lb-gallery inline-lst"&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
 			&lt;a href="img/1_b.jpg" title="Image 1" data-title="image_1_b"&gt;
