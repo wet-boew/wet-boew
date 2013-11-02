@@ -36,8 +36,7 @@
     "respond": "1.3.0",
     "selectivizr": "1.0.2",
     "excanvas": "*",
-    "google-code-prettify": "1.0.0",
-    "xregexp": "2.0.0"
+    "google-code-prettify": "1.0.0"
   },
   "resolutions": {
     "jquery": ">= 1.9.0"
