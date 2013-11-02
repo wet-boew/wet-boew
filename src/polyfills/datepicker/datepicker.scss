@@ -17,7 +17,7 @@
 	margin: 0;
 }
  
-.cal-container {
+.cal-cnt {
 	&.picker-overlay {
 		position: absolute;
 		z-index: 498 !important;
@@ -50,28 +50,22 @@
 	}
 }
 
-div {
-	&.cal-days {
-		a {
-			text-decoration: underline;
-		}
-		li {
-			&.datepicker-selected {
-				a {
-					&, &:link {
-						background-color: #333;
-						@extend %datepicker-color-fff-important;
-					}
-				}
-			}
-		}
-		a {
-			&, &:link {
-				color: #111;
-			}
-			&:hover, &:focus {
+.cal-days {
+	a {
+		text-decoration: underline;
+	}
+	li {
+		&.datepicker-selected {
+			a {
+				background-color: #333;
 				@extend %datepicker-color-fff-important;
 			}
+		}
+	}
+	a {
+		color: #111;
+		&:hover, &:focus {
+			@extend %datepicker-color-fff-important;
 		}
 	}
 }

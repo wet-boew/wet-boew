@@ -141,7 +141,7 @@
 
 			if ( dateISO && dateISO.match( /\d{4}-\d{2}-\d{2}/ ) ) {
 				date = new Date();
-				date.setFullYear( dateISO.substr( 0, 4 ), dateISO.substr( 5, 2 ) - 1, dateISO.substr( 8, 2 ) - 1 );
+				date.setFullYear( dateISO.substr( 0, 4 ), dateISO.substr( 5, 2 ) - 1, dateISO.substr( 8, 2 ) );
 			}
 			return date;
 		}
