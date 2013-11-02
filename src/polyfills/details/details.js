@@ -21,10 +21,16 @@ var selector = "details",
 	 * @param {DOM element} _input The input field to be polyfilled
 	 */
 	init = function( _elm ) {
+		var summary;
+
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 		window._timer.remove( selector );
 
 		_elm.setAttribute( "aria-expanded", ( _elm.getAttribute( "open" ) === null ) );
+		summary = _elm.getElementsByTagName( "summary" );
+		if ( summary.length !== 0 ) {
+			summary[ 0 ].setAttribute( "tabindex", "0" );
+		}
 	};
 
 // Bind the init event of the plugin
@@ -39,12 +45,12 @@ $document.on( "timerpoke.wb", selector, function( event ) {
 });
 
 // Bind the init event of the plugin
-$document.on( "click vclick touchstart", selector + " summary", function( event ) {
+$document.on( "click vclick touchstart keydown", selector + " summary", function( event ) {
 	var eventWhich = event.which,
 		_details, _isClosed;
 
 	// Ignore middle/right mouse buttons
-	if ( !eventWhich || eventWhich === 1 ) {
+	if ( !eventWhich || eventWhich === 1 || eventWhich === 13 || eventWhich === 32 ) {
 		_details = event.target.parentNode;
 		_isClosed = ( _details.getAttribute( "open" ) === null );
 		
