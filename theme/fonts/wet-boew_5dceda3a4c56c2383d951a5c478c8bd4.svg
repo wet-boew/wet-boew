@@ -1,0 +1,33 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-11-1: Created.
+-->
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>
+Created by FontForge 20120731 at Fri Nov  1 22:13:12 2013
+ By Mario Bonito
+Created by Mario Bonito with FontForge 2.0 (http://fontforge.sf.net)
+</metadata>
+<defs>
+<font id="wet-boew" horiz-adv-x="1114" >
+  <font-face 
+    font-family="wet-boew"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="512"
+    panose-1="2 0 6 9 0 0 0 0 0 0"
+    ascent="448"
+    descent="-64"
+    bbox="0 -63 1114 448.26"
+    underline-thickness="25.6"
+    underline-position="-51.2"
+    unicode-range="U+F100-F100"
+  />
+    <missing-glyph />
+    <glyph glyph-name="uniF100" unicode="&#xf100;" 
+d="M902 448c63 -1 212 0 212 0v-98s-147 4 -168 -1s-23 -28 -24 -34c-5 -31 -7 -59 -12 -108s-12 -100 -28 -146s-42 -96 -93 -114c-39 -14 -79 -12 -108 5s-43 37 -59 58s-70 74 -100 74c-51 -3 -83 -96 -84 -147h-99c-1 26 3 63 18 105c10 29 38 61 49 80s3 47 -25 46
+c-31 -1 -74 -81 -123 -79s-67 17 -92 38s-47 47 -67 75c-39 57 -82 139 -99 246h97c15 -68 72 -254 145 -254s97 110 145 110s79 -119 133 -119s89 105 122 154c24 41 76 99 126 105c26 3 71 5 134 4zM826 348c-36 9 -81 -10 -101 -50v0s-15 -28 -35 -62
+c-18 -29 -39 -61 -66 -88c36 -24 61 -56 77 -78c14 -19 25 -31 29 -33c28 -16 52 36 58 55c27 82 29 169 38 256z" />
+  </font>
+</defs></svg>
