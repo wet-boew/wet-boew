@@ -33,7 +33,7 @@
 		</ul>
 		<header role="banner">
 			<div id="wb-bnr">
-				<section data-ajax-after="{{assets}}/assets/mobmenu-{{language}}.html" id="wb-lng">
+				<section id="wb-lng">
 					<h2>{{#i18n "%tmpl-lang-select"}}{{/i18n}}</h2>
 					{{>languagetoggle}}
 				</section>
@@ -54,6 +54,7 @@
 				</div>
 			</div>
 
+			<!-- <nav role="navigation" id="wb-sm" class="wb-menu" data-ajax-fetch="{{assets}}/ajax/sitemenu-{{language}}.txt" typeof="SiteNavigationElement"> -->
 			<nav role="navigation" id="wb-sm" typeof="SiteNavigationElement">
 				<h2>{{#i18n "%tmpl-site-menu"}}{{/i18n}}</h2>
 				{{>sitemenu}}

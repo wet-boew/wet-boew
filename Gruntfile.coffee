@@ -147,6 +147,7 @@ module.exports = (grunt) ->
 			"assemble:site"
 			"assemble:plugins"
 			"assemble:polyfills"
+			"assemble:ajax"
 		]
 	)
 
@@ -290,6 +291,18 @@ module.exports = (grunt) ->
 				cwd: "src/polyfills"
 				src: ["**/*.hbs"]
 				dest: "dist/demos"
+
+			ajax:
+				options:
+					layout: "ajax.hbs"
+					ext: ".txt"
+				cwd: "site/pages/ajax"
+				src: [
+					"*.hbs"
+				]
+				dest: "dist/ajax/"
+				expand: true
+				flatten: true
 
 			tests:
 				options:
