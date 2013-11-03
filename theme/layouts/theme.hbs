@@ -7,13 +7,12 @@
 		<meta charset="utf-8">
 		<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 		wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-		<title>{{title}} - {{sitename}}</title>
+		<title>{{title}} - {{sitetitle}}</title>
 		<link href="{{assets}}/images/favicon.ico" rel="shortcut icon">
 		<meta content="width=device-width, initial-scale=1" name="viewport">
 		<!-- Meta data -->
 		<meta name="description" content="{{description}}" />
 		<!-- Meta data-->
-		<link rel="stylesheet" href="{{assets}}/css/bootstrap{{environment.suffix}}.css">
 		<link rel="stylesheet" href="{{assets}}/css/base{{environment.suffix}}.css">
 		<link rel="stylesheet" href="{{assets}}/css/theme{{environment.suffix}}.css">
 
@@ -24,7 +23,7 @@
 
 	</head>
 	<body vocab="http://schema.org/" typeof="WebPage">
-		<ul id="wb-tphp" class="sr-only">
+		<ul id="wb-tphp">
 			<li class="wb-slc">
 				<a class="wb-sl" href="#wb-cont">{{#i18n "%tmpl-skip-cont"}}{{/i18n}}</a>
 			</li>
@@ -33,20 +32,24 @@
 			</li>
 		</ul>
 		<header role="banner">
-			<div id="wb-banner">
-				<section id="wb-lang">
+			<div id="wb-bnr">
+				<section id="wb-lng">
 					<h2>{{#i18n "%tmpl-lang-select"}}{{/i18n}}</h2>
 					{{>languagetoggle}}
 				</section>
+
 				<div class="container">
 					<div class="row">
-						<section id="wb-sitetitle" class="col-md-8">
+
+						<section id="wb-sttl" class="col-md-7 col-lg-8">
 							{{>brand}}
 						</section>
-						<section id="wb-srch" class="col-md-4">
+
+						<section id="wb-srch" class="col-md-5 col-lg-4 visible-md visible-lg">
 							<h2>{{#i18n "%tmpl-search"}}{{/i18n}}</h2>
 							{{>sitesearch}}
 						</section>
+
 					</div>
 				</div>
 			</div>
@@ -55,23 +58,31 @@
 				<h2>{{#i18n "%tmpl-site-menu"}}{{/i18n}}</h2>
 				{{>sitemenu}}
 			</nav>
+{{#unless_eq page.dirname compare="dist"}}
 
 			<nav role="navigation" id="wb-bc" property="breadcrumb">
 				<h2>{{#i18n "%tmpl-bcrumb"}}{{/i18n}}</h2>
 				{{>breadcrumbs}}
 			</nav>
+{{/unless_eq}}
 		</header>
 
-		<main role="main" property="mainContentOfPage">
-			<h1 id="wb-cont" property="name">{{title}}</h1>
-			{{>body}}
+		<main role="main" property="mainContentOfPage" class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1 id="wb-cont" property="name">{{title}}</h1>
+					{{>body}}
+				</div>
+
+			</div>
 		</main>
 
-		<!-- Secondary Menu [optional] -->
+		<!-- Secondary Menu
 		<nav role="navigation" id="wb-sec" typeof="SiteNavigationElement">
 			<h2>{{#i18n "%tmpl-sec-menu"}}{{/i18n}}</h2>
 			{{>supporting}}
 		</nav>
+		[optional] -->
 
 		<footer role="contentinfo" id="wb-nav">
 			<nav role="navigation">
