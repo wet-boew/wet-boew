@@ -7,11 +7,11 @@
 		<meta charset="utf-8">
 		<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 		wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-		<title>{{title}} - {{sitetitle}}</title>
+		<title>{{title}} - {{site.sitetitle}}</title>
 		<link href="{{assets}}/images/favicon.ico" rel="shortcut icon">
 		<meta content="width=device-width, initial-scale=1" name="viewport">
 		<!-- Meta data -->
-		<meta name="description" content="{{description}}" />
+		<meta name="description" content="{{site.description}}" />
 		<!-- Meta data-->
 		<link rel="stylesheet" href="{{assets}}/css/base{{environment.suffix}}.css">
 		<link rel="stylesheet" href="{{assets}}/css/theme{{environment.suffix}}.css">
@@ -41,11 +41,11 @@
 				<div class="container">
 					<div class="row">
 
-						<section id="wb-sttl" class="col-md-7 col-lg-8">
+						<section id="wb-sttl" class="col-md-8">
 							{{>brand}}
 						</section>
 
-						<section id="wb-srch" class="col-md-5 col-lg-4 visible-md visible-lg">
+						<section id="wb-srch" class="col-md-4 visible-md visible-lg">
 							<h2>{{#i18n "%tmpl-search"}}{{/i18n}}</h2>
 							{{>sitesearch}}
 						</section>
