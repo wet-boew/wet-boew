@@ -1,0 +1,32 @@
+//
+// Icon Font: wet-boew
+// Bootstrap Override
+//
+
+@font-face {
+  font-family: "wet-boew";
+  src: url("../fonts/wet-boew_5dceda3a4c56c2383d951a5c478c8bd4.eot");
+  src: url("../fonts/wet-boew_5dceda3a4c56c2383d951a5c478c8bd4.eot?#iefix") format("embedded-opentype"),
+       url("../fonts/wet-boew_5dceda3a4c56c2383d951a5c478c8bd4.woff") format("woff"),
+       url("../fonts/wet-boew_5dceda3a4c56c2383d951a5c478c8bd4.ttf") format("truetype"),
+       url("../fonts/wet-boew_5dceda3a4c56c2383d951a5c478c8bd4.svg#wet-boew") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before { content: attr(data-icon); }
+
+[data-icon]:before,
+.icn-wblogo:before {
+  font-family: "wet-boew";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  text-decoration: inherit;
+}
+
+.icn-wblogo:before { content: "\f100"; }

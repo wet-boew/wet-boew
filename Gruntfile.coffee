@@ -128,6 +128,15 @@ module.exports = (grunt) ->
 		[
 			"copy:misc"
 			"copy:themeAssets"
+			"fonts"
+		]
+	)
+
+	@registerTask(
+		"fonts"
+		"INTERNAL: Process non-CSS/JS assets to dist"
+		[
+			"copy:themeFonts"
 			"copy:bootstrap"
 		]
 	)
@@ -535,6 +544,12 @@ module.exports = (grunt) ->
 			themeAssets:
 				cwd: "theme/"
 				src: "**/assets/*.*"
+				dest: "dist"
+				expand: true
+
+			themeFonts:
+				cwd: "theme/"
+				src: "fonts/*.*"
 				dest: "dist"
 				expand: true
 
