@@ -25,7 +25,7 @@
   ],
   "dependencies": {
     "jquery.validation": "1.11.1",
-    "bootstrap": "3.0.0",
+    "bootstrap": "3.0.1",
     "jquery": "2.0.3",
     "flot": "0.8.1",
     "DataTables": "1.9.4",
