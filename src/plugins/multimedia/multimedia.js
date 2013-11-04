@@ -471,27 +471,27 @@ UI Bindings
 
 $document.on( "click", $selector, function( event ) {
 	var eventTarget = event.target,
+		playerTarget = event.currentTarget,
 		which = event.which,
 		className = eventTarget.className,
-		$target, player;
+		$target;
 
 	// Ignore middle and right mouse buttons
 	if ( !which || which === 1 ) {
 		$target = $( eventTarget );
-		player = eventTarget.player;
 
-		if ( className.match( /playpause|-(play|pause)|wb-mm-ovrly/ ) || typeof eventTarget === "object" ) {
-			player( player( "getPaused" ) ? "play" : "pause" );
+		if ( className.match( /playpause|-(play|pause)|wb-mm-ovrly/ ) ) {
+			playerTarget.player( playerTarget.player( "getPaused" ) ? "play" : "pause" );
 		} else if ( className.match( /\bcc\b|-subtitles/ )  ) {
-			player( "setCaptionsVisible", !player( "getCaptionsVisible" ) );
+			playerTarget.player( "setCaptionsVisible", !playerTarget.player( "getCaptionsVisible" ) );
 		} else if ( className.match( /\bmute\b|-volume-(up|off)/ ) ) {
-			player( "setMuted", !player( "getMuted" ) );
+			playerTarget.player( "setMuted", !playerTarget.player( "getMuted" ) );
 		} else if ( $target.is( "progress" ) || className.indexOf( "wb-progress-inner") !== -1 || className.indexOf( "wb-progress-outer" ) !== -1 ) {
-			player( "setCurrentTime", player( "getDuration" ) * ( ( event.pageX - $target.offset().left ) / $target.width() ) );
+			playerTarget.player( "setCurrentTime", playerTarget.player( "getDuration" ) * ( ( event.pageX - $target.offset().left ) / $target.width() ) );
 		} else if ( className.match( /\brewind\b|-backwards/ ) ) {
-			player( "setCurrentTime", player( "getCurrentTime" ) - player( "getDuration" ) * 0.05 );
+			playerTarget.player( "setCurrentTime", playerTarget.player( "getCurrentTime" ) - playerTarget.player( "getDuration" ) * 0.05 );
 		} else if ( className.match( /\bfastforward\b|-forward/ ) ) {
-			player( "setCurrentTime", player( "getCurrentTime" ) + player( "getDuration" ) * 0.05 );
+			playerTarget.player( "setCurrentTime", playerTarget.player( "getCurrentTime" ) + playerTarget.player( "getDuration" ) * 0.05 );
 		}
 
 		return false;
@@ -501,17 +501,15 @@ $document.on( "click", $selector, function( event ) {
 });
 
 $document.on( "keydown", $selector, function( event ) {
-	var eventTarget = event.target,
+	var playerTarget = event.currentTarget,
 		which = event.which,
 		ctrls = ".wb-mm-ctrls",
-		ref = expand( eventTarget ),
+		ref = expand( playerTarget ),
 		$this = ref[ 0 ],
-		volume = 0,
-		player = eventTarget.player;
+		volume = 0;
 
 	switch ( which ) {
 	case 32:
-	case 13:
 		$this.find( ctrls + " .playpause" ).trigger( "click" );
 		break;
 
@@ -524,13 +522,13 @@ $document.on( "keydown", $selector, function( event ) {
 		break;
 
 	case 38:
-		volume = Math.round( player.getVolume() * 10 ) / 10 + 0.1;
-		player.setVolume( ( volume < 1 ? volume : 1 ) );
+		volume = Math.round( playerTarget.player( "getVolume" ) * 10 ) / 10 + 0.1;
+		playerTarget.player( "setVolume", volume < 1 ? volume : 1 );
 		break;
 
 	case 40:
-		volume = Math.round( player.getVolume() * 10 ) / 10 - 0.1;
-		player.setVolume( ( volume > 0 ? volume : 0 ) );
+		volume = Math.round( playerTarget.player( "getVolume" ) * 10 ) / 10 - 0.1;
+		playerTarget.player( "setVolume",  volume > 0 ? volume : 0 );
 		break;
 
 	default:
@@ -539,16 +537,22 @@ $document.on( "keydown", $selector, function( event ) {
 	return false;
 });
 
+$document.on( "keyup", $selector, function( event ) {
+	if ( event.which === 32 ) {
+		//Allows the spacebar to be used for play/pause without double triggering
+		return false;
+	}
+});
+
 $document.on( "durationchange play pause ended volumechange timeupdate captionsloaded.mediaplayer.wb captionsloadfailed.mediaplayer.wb captionsvisiblechange waiting canplay progress", $selector, function( event ) {
-	var eventTarget = event.target,
+	var eventTarget = event.currentTarget,
 		eventType = event.type,
-		player = eventTarget.player,
 		$this = $( eventTarget ),
+		currentTime,
 		button;
 
 	switch ( eventType ) {
 	case "play":
-		player( "play" );
 		button = $this.find( ".playpause .glyphicon" )
 			.removeClass( "glyphicon-play" )
 			.addClass( "glyphicon-pause" )
@@ -562,7 +566,6 @@ $document.on( "durationchange play pause ended volumechange timeupdate captionsl
 		break;
 
 	case "pause":
-		player( "pause" );
 		button = $this.find( ".playpause .glyphicon" )
 			.removeClass( "glyphicon-pause" )
 			.addClass( "glyphicon-play" )
@@ -586,7 +589,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate captionsl
 	case "volumechange":
 		// TODO: Think can be optimized for the minifier with some ternaries
 		button = $this.find( ".mute .glyphicon" );
-		if ( player( "getMuted" ) ) {
+		if ( eventTarget.player( "getMuted" ) ) {
 			button = button.removeClass( "glyphicon-volume-up" )
 				.addClass( "glyphicon-volume-off" )
 				.parent();
@@ -601,19 +604,20 @@ $document.on( "durationchange play pause ended volumechange timeupdate captionsl
 		break;
 
 	case "timeupdate":
+		currentTime = eventTarget.player( "getCurrentTime" );
 		$this.find( "progress" )
 			.attr(
 				"value",
-				Math.round( player( "getCurrentTime" ) / player( "getDuration" ) * 1000 ) / 10
+				Math.round( currentTime / eventTarget.player( "getDuration" ) * 1000 ) / 10
 			);
 
 		$this.find( ".wb-mm-tline-current span" )
-			.text( formatTime( player( "getCurrentTime" ) ) );
+			.text( formatTime( currentTime ) );
 
 		if ( $.data( eventTarget, "captions" ) !== undef ) {
 			updateCaptions(
 				$this.find( ".wb-mm-cc" ),
-				player( "getCurrentTime" ),
+				currentTime,
 				$.data( eventTarget, "captions" )
 			);
 		}
@@ -634,7 +638,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate captionsl
 	case "captionsvisiblechange":
 		// TODO: Think can be optimized for the minifier with some ternarie
 		button = $this.find( ".cc" );
-		if ( player( "getCaptionsVisible" ) ) {
+		if ( eventTarget.player( "getCaptionsVisible" ) ) {
 			button.attr( "title", button.data( "state-on" ) )
 				.css( "opacity", "1" );
 		} else {
