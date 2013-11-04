@@ -5,23 +5,21 @@
  * @author WET Community
  * Credits: http://kaibun.net/blog/2013/04/19/a-fully-fledged-coffeescript-boilerplate-for-jquery-plugins/
  */
-(function( $, undef ) {
-	vapour.getData = function( element, data_name ) {
-		var $element, dataAttr, dataObj;
-
-		$element = ( typeof element.jquery !== undef ? element : ( $element ) );
-		dataAttr = $element.attr( "data-" + data_name );
+(function( $ ) {
+	vapour.getData = function( element, dataName ) {
+		var elm = !element.jquery ? element : element[ 0 ],
+			dataAttr = elm.getAttribute( "data-" + dataName ),
+			dataObj;
 
 		if ( dataAttr ) {
-
-			try{
-				dataObj = $.parseJSON( dataAttr );
-			} catch ( e ){
-				$.error( "Bad JSON array in data-" + data_name + " attribute" );
+			try {
+				dataObj = JSON.parse( dataAttr );
+			} catch ( error ) {
+				$.error( "Bad JSON array in data-" + dataName + " attribute" );
 			}
 		}
 
-		$.data( element, data_name, dataObj );
+		$.data( elm, dataName, dataObj );
 		return dataObj;
 	};
 })( jQuery );
@@ -47,8 +45,10 @@
 		 * @return {string} The padded string
 		 */
 		pad: function( number, length ) {
-			var str = String( number );
-			while ( str.length < length ) {
+			var str = number + "",
+				diff = length - str.length,
+				i;
+			for ( i = 0; i !== diff; i += 1 ) {
 				str = "0" + str;
 			}
 			return str;
@@ -149,7 +149,7 @@
 
 })( vapour );
 
-(function( $, undef ) {
+(function( $ ) {
 	"use strict";
 	
 	var methods,
@@ -162,31 +162,7 @@
 		init: function( options ) {
 			return $.extend( _settings, options || {} );
 		},
-	
-		show: function( onlyAria ) {
-			var $this = $( this );
-			$this.each(function() {
-				var elm;
-				elm = $( this );
-				elm.attr( "aria-hidden", "false" );
-				if ( onlyAria === undef ) {
-					elm.removeClass( "wb-inv" );
-				}
-			});
-		},
-	
-		hide: function( onlyAria ) {
-			$( this )
-				.each(function() {
-					var elm;
-					elm = $( this );
-					elm.attr( "aria-hidden", "true" );
-					if ( onlyAria === undef ) {
-						return elm.addClass( "wb-inv" );
-					}
-				});
-		},
-	
+
 		toggle: function( to, from ) {
 			$( this )
 				.addClass( to )
