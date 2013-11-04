@@ -38,7 +38,6 @@ module.exports = (grunt) ->
 		[
 			"dist"
 			"copy:deploy"
-			"htmlcompressor"
 			"gh-pages"
 		]
 	)
@@ -125,6 +124,7 @@ module.exports = (grunt) ->
 			"assemble:plugins"
 			"assemble:polyfills"
 			"assemble:ajax"
+			"htmlcompressor"
 		]
 	)
 
@@ -256,18 +256,21 @@ module.exports = (grunt) ->
 				cwd: "src"
 				src: ["*.hbs"]
 				dest: "dist/"
+				ext: ".orig.html"
 
 			plugins:
 				expand: true
 				cwd: "src/plugins"
 				src: ["**/*.hbs"]
 				dest: "dist/demos"
+				ext: ".orig.html"
 
 			polyfills:
 				expand: true
 				cwd: "src/polyfills"
 				src: ["**/*.hbs"]
 				dest: "dist/demos"
+				ext: ".orig.html"
 
 			ajax:
 				options:
@@ -289,6 +292,7 @@ module.exports = (grunt) ->
 				cwd: "src/plugins"
 				src: ["**/*.hbs"]
 				dest: "dist/demos"
+				ext: ".orig.html"
 
 		# Compiles the Sass files
 		sass:
@@ -431,10 +435,11 @@ module.exports = (grunt) ->
 			all:
 				cwd: "dist"
 				src: [
-					"**/*.html"
+					"**/*.orig.html"
 				]
 				dest: "dist"
 				expand: true
+				ext: ".html"
 
 		modernizr:
 			devFile: "lib/modernizr/modernizr-custom.js"
