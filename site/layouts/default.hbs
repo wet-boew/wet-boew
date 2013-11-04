@@ -59,7 +59,7 @@
 				<h2>{{#i18n "%tmpl-site-menu"}}{{/i18n}}</h2>
 				{{>sitemenu}}
 			</nav>
-{{#unless_eq page.dirname compare="dist"}}
+{{#unless_eq assets compare="."}}
 
 			<nav role="navigation" id="wb-bc" property="breadcrumb">
 				<h2>{{#i18n "%tmpl-bcrumb"}}{{/i18n}}</h2>
