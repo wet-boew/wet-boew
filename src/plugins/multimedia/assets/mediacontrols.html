@@ -6,12 +6,12 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 	<div class="display">
 		{{sObject}}
-		<button class="wb-mm-overlay" type="button" data-role="none" aria-controls="{{m_id}}">{{poster}}</button>
+		<button class="wb-mm-ovrly" type="button" data-role="none" aria-controls="{{m_id}}">{{poster}}</button>
 	</div>
-	<div class="wb-mm-captionsarea"></div>
-	<div class="wb-mm-controls">
+	<div class="wb-mm-cc"></div>
+	<div class="wb-mm-ctrls">
 
-		<div class="firstpanel">
+		<div class="frstpnl">
 			<div class="btn-group btn-group-sm">
 			<button type="button" class="btn btn-default rewind" aria-controls="{{m_id}}" title="{{rewind}}" data-role="none"><span class="glyphicon glyphicon-backward"></span></button>
 			<button type="button" class="btn btn-default playpause" aria-controls="{{m_id}}" title="{{play}}" data-state-on="{{play}}" data-state-off="{{pause}}" data-role="none"><span class="glyphicon glyphicon-play"></span></button>
@@ -19,7 +19,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			</div>
 		</div>
 
-		<div tabindex="0" class="timeline">
+		<div tabindex="0" class="tline">
 			<div class="visible-xs textonly">
 				<p class="wb-mm-timeline-current"><span class="wb-inv">{{position}}</span><span>00:00:00</span></p>
 				<p class="wb-mm-timeline-total"><span class="wb-inv">{{duration}}</span><span>--:--:--</span></p>
@@ -30,7 +30,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 		</div>
 
-		<div class="lastpanel">
+		<div class="lastpnl">
 			<div class="btn-group btn-group-sm">
 				<button type="button" class="btn btn-default cc" aria-controls="{{m_id}}" title="{{cc_on}}" data-state-on="{{cc_on}}" data-state-off="{{cc_off}}" data-role="none"><span class="glyphicon glyphicon-subtitles"></span></button>
 				<button type="button" class="btn btn-default mute" aria-controls="{{m_id}}" title="{{mute_on}}" data-state-on="{{mute_on}}" data-state-off="{{mute_off}}" data-role="none"><span class="glyphicon glyphicon-volume-up"></span></button>
