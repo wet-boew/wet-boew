@@ -14,7 +14,8 @@ module.exports = function(grunt) {
 
 		var options = this.options({
 			template: "",
-			csv: ""
+			csv: "",
+			dest: ""
 		});
 
 		var basei18n = grunt.file.read(options.template);
@@ -45,7 +46,7 @@ module.exports = function(grunt) {
 						if (index === 1) {
 							grunt.log.write("Creating i18n dictionary files\n");
 							for (i = 2; i < len; i++) {
-								var filename = "dist/js/i18n/" + row[i] + ".js";
+								var filename = options.dest + row[i] + ".js";
 								wetLanguages[i-2] = row[i];
 								langFiles[i] = basei18n;
 								outputNames[i] = filename;
