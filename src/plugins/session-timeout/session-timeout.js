@@ -51,8 +51,8 @@ var selector = ".wb-session-timeout",
 		if ( !i18nText ) {
 			i18n = window.i18n;
 			i18nText = {
-				buttonContinue: i18n( "%st-button-continue" ),
-				buttonEnd: i18n( "%st-button-end" ),
+				buttonContinue: i18n( "%st-btn-cont" ),
+				buttonEnd: i18n( "%st-btn-end" ),
 				buttonSignin: i18n( "%tmpl-signin" ),
 				timeoutBegin: i18n( "%st-to-msg-bgn" ),
 				timeoutEnd: i18n( "%st-to-msg-end" ),
