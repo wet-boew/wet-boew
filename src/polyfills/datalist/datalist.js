@@ -19,50 +19,54 @@ var selector = "input[list]",
 	 * Init runs once per polyfill element on the page. There may be multiple elements.
 	 * It will run more than once if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {DOM element} _input The input field to be polyfilled
-	 * @param {jQuery DOM element} $input The input field to be polyfilled
+	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
 	 */
-	init = function( _input, $input ) {
-		var inputId = _input.id,
-			autolist = "<ul role='listbox' id='wb-al-" + _input.id + "' class='wb-al hide' aria-hidden='true' aria-live='polite'></ul>",
-			datalist = document.getElementById( _input.getAttribute( "list" ) ),
-			options = datalist.getElementsByTagName( "option" ),
-			len = options.length,
-			option, value, label, i;
-			//uniqueId = elmId + "-datalist";
+	init = function( event ) {
+		var input = event.target,
+			inputId = input.id,
+			$input, autolist, datalist, options, len, option, value, label, i;
 
-		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
+		// Filter out any events triggered by descendants
+		if ( event.currentTarget === input ) {
+			$input = $( input );
+			autolist = "<ul role='listbox' id='wb-al-" + input.id + "' class='wb-al hide' aria-hidden='true' aria-live='polite'></ul>";
+			datalist = document.getElementById( input.getAttribute( "list" ) );
+			options = datalist.getElementsByTagName( "option" );
+			len = options.length;
+		
+			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+			window._timer.remove( selector );
 
-		_input.setAttribute( "autocomplete", "off" );
-		_input.setAttribute( "role", "textbox" );
-		_input.setAttribute( "aria-haspopup", "true" );
-		_input.setAttribute( "aria-autocomplete", "list" );
-		_input.setAttribute( "aria-owns", "wb-al-" + inputId );
-		_input.setAttribute( "aria-activedescendent", "" );
+			input.setAttribute( "autocomplete", "off" );
+			input.setAttribute( "role", "textbox" );
+			input.setAttribute( "aria-haspopup", "true" );
+			input.setAttribute( "aria-autocomplete", "list" );
+			input.setAttribute( "aria-owns", "wb-al-" + inputId );
+			input.setAttribute( "aria-activedescendent", "" );
 
-		autolist += "<ul id='wb-al-" + _input.id + "-src' class='wb-al-src hide' aria-hidden='true'>";
-		for ( i = 0; i !== len; i += 1 ) {
-			option = options[ i ];
-			value = option.getAttribute( "value" );
-			label = option.getAttribute( "label" );
-			if ( !value ) {
-				value = option.innerHTML;
+			autolist += "<ul id='wb-al-" + input.id + "-src' class='wb-al-src hide' aria-hidden='true'>";
+			for ( i = 0; i !== len; i += 1 ) {
+				option = options[ i ];
+				value = option.getAttribute( "value" );
+				label = option.getAttribute( "label" );
+				if ( !value ) {
+					value = option.innerHTML;
+				}
+				autolist += "<li id='al-opt-" + inputId + "-" + i + "'><a href='javascript:;' tabindex='-1'><span class='al-val'>" + ( !value ? "" : value ) + "</span><span class='al-lbl'>" + ( !label || label === value ? "" : label ) + "</span></a></li>";
 			}
-			autolist += "<li id='al-opt-" + inputId + "-" + i + "'><a href='javascript:;' tabindex='-1'><span class='al-val'>" + ( !value ? "" : value ) + "</span><span class='al-lbl'>" + ( !label || label === value ? "" : label ) + "</span></a></li>";
-		}
-		$input.after( autolist + "</ul>" );
+			$input.after( autolist + "</ul>" );
 
-		initialized = true;
+			initialized = true;
+		}
 	},
 
 	/*
 	 * Shows/hides the available options based upon the input in the polyfilled input field.
 	 * @method showOptions
-	 * @param {DOM element} _input The polyfilled input field
+	 * @param {DOM element} input The polyfilled input field
 	 */
-	showOptions = function( _input, value ) {
-		var $autolist = $( _input.nextSibling ),
+	showOptions = function( input, value ) {
+		var $autolist = $( input.nextSibling ),
 			$options = $autolist.next().children().clone(),
 			comparator;
 
@@ -82,34 +86,34 @@ var selector = "input[list]",
 		$autolist.empty().append( $options );
 
 		if ( $options.length !== 0 ) {
-			correctWidth( _input );
+			correctWidth( input );
 			$autolist.removeClass( "hide" ).attr( "aria-hidden", "false" );
-			_input.setAttribute( "aria-expanded", "true" );
+			input.setAttribute( "aria-expanded", "true" );
 		} else {
 			$autolist.addClass( "hide" ).attr( "aria-hidden", "true" );
-			_input.setAttribute( "aria-expanded", "false" );
+			input.setAttribute( "aria-expanded", "false" );
 		}
 	},
 
 	/*
 	 * Hides all the options
 	 * @method closeOptions
-	 * @param {DOM element} _input The polyfilled input field
+	 * @param {DOM element} input The polyfilled input field
 	 */
-	closeOptions = function( _input ) {
-		var _autolist = _input.nextSibling;
+	closeOptions = function( input ) {
+		var _autolist = input.nextSibling;
 
 		_autolist.className += " hide";
 		_autolist.innerHTML = "";
 		_autolist.setAttribute( "aria-hidden", "true" );
-		_input.setAttribute( "aria-expanded", "false" );
-		_input.setAttribute( "aria-activedescendent", "" );
+		input.setAttribute( "aria-expanded", "false" );
+		input.setAttribute( "aria-activedescendent", "" );
 	},
 
 	/*
 	 * Corrects the width of the autolist for the polyfilled input field
 	 * @method correctWidth
-	 * @param {DOM element} _input The polyfilled input field
+	 * @param {DOM element} input The polyfilled input field
 	 */
 	correctWidth = function( _elm ) {
 		var $elm = $( _elm ),
@@ -124,44 +128,44 @@ var selector = "input[list]",
 	/*
 	 * Keyboard event handler for the polyfilled input field
 	 * @method correctWidth
-	 * @param {integer} eventWhich Value for event.which
+	 * @param {integer} which Value for event.which
 	 * @param {jQuery Event} event The event that triggered this method call
 	 */
-	keyboardHandlerInput = function( eventWhich, event ) {
-		var _input = event.target,
-			_autolist = _input.nextSibling,
+	keyboardHandlerInput = function( which, event ) {
+		var input = event.target,
+			_autolist = input.nextSibling,
 			_alHide = ( _autolist.className.indexOf( "hide" ) !== -1 ),
 			options, dest, value, len;
 
 		// Spacebar, a - z keys, 0 - 9 keys punctuation, and symbols
-		if ( eventWhich === 32 || ( eventWhich > 47 && eventWhich < 91 ) ||
-			( eventWhich > 95 && eventWhich < 112 ) || ( eventWhich > 159 && eventWhich < 177 ) ||
-			( eventWhich > 187 && eventWhich < 223 ) ) {
+		if ( which === 32 || ( which > 47 && which < 91 ) ||
+			( which > 95 && which < 112 ) || ( which > 159 && which < 177 ) ||
+			( which > 187 && which < 223 ) ) {
 			if ( !event.altKey ) {
-				showOptions( _input, _input.value + String.fromCharCode( eventWhich ) );
+				showOptions( input, input.value + String.fromCharCode( which ) );
 			}
 		}
 
 		// Backspace
-		else if ( eventWhich === 8 && !event.altKey ) {
-			value = _input.value;
+		else if ( which === 8 && !event.altKey ) {
+			value = input.value;
 			len = value.length;
 
 			if ( len !== 0 ) {
-				showOptions( _input, value.substring( 0, len - 1 ) );
+				showOptions( input, value.substring( 0, len - 1 ) );
 			}
 		}
 
 		// Up / down arrow
-		else if ( ( eventWhich === 38 || eventWhich === 40) && _input.getAttribute( "aria-activedescendent" ) === "" ) {
+		else if ( ( which === 38 || which === 40) && input.getAttribute( "aria-activedescendent" ) === "" ) {
 			if ( _alHide ) {
-				showOptions( _input );
+				showOptions( input );
 			}
 
 			options = _autolist.getElementsByTagName( "a" );
-			dest = options[ ( eventWhich === 38 ? options.length - 1 : 0 ) ];
+			dest = options[ ( which === 38 ? options.length - 1 : 0 ) ];
 
-			_input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
+			input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
 
 			// Assign focus to dest
 			$( dest ).trigger( "focus.wb" );
@@ -172,8 +176,8 @@ var selector = "input[list]",
 		else if ( !_alHide ) {
 
 			// Tab or Escape key
-			if ( ( eventWhich === 9 || eventWhich === 27 ) || ( eventWhich === 27 && !event.altKey ) ) {
-				closeOptions( _input );
+			if ( ( which === 9 || which === 27 ) || ( which === 27 && !event.altKey ) ) {
+				closeOptions( input );
 			}
 		}
 	},
@@ -181,35 +185,35 @@ var selector = "input[list]",
 	/*
 	 * Keyboard event handler for the autolist of the polyfilled input field
 	 * @method correctWidth
-	 * @param {integer} eventWhich Value for event.which
+	 * @param {integer} which Value for event.which
 	 * @param {DOM element} link Link element that is the target of the event
 	 */
-	keyboardHandlerAutolist = function( eventWhich, link ) {
+	keyboardHandlerAutolist = function( which, link ) {
 		var	_autolist = link.parentNode.parentNode,
-			_input = _autolist.previousSibling,
-			$input = $( _input ),
+			input = _autolist.previousSibling,
+			$input = $( input ),
 			_span, dest, value, len, children;
 
 		// Spacebar, a - z keys, 0 - 9 keys punctuation, and symbols
-		if ( eventWhich === 32 || ( eventWhich > 47 && eventWhich < 91 ) ||
-			( eventWhich > 95 && eventWhich < 112 ) || ( eventWhich > 159 && eventWhich < 177 ) ||
-			( eventWhich > 187 && eventWhich < 223 ) ) {
+		if ( which === 32 || ( which > 47 && which < 91 ) ||
+			( which > 95 && which < 112 ) || ( which > 159 && which < 177 ) ||
+			( which > 187 && which < 223 ) ) {
 
-			_input.value += String.fromCharCode( eventWhich );
+			input.value += String.fromCharCode( which );
 			$input.trigger( "focus.wb" );
-			showOptions( _input, _input.value );
+			showOptions( input, input.value );
 
 			return false;
 		}
 
 		// Backspace
-		else if ( eventWhich === 8 ) {
-			value = _input.value;
+		else if ( which === 8 ) {
+			value = input.value;
 			len = value.length;
 
 			if ( len !== 0 ) {
-				_input.value = value.substring( 0, len - 1 );
-				showOptions( _input, _input.value );
+				input.value = value.substring( 0, len - 1 );
+				showOptions( input, input.value );
 			}
 
 			$input.trigger( "focus.wb" );
@@ -218,7 +222,7 @@ var selector = "input[list]",
 		}
 
 		// Enter key
-		else if ( eventWhich === 13) {
+		else if ( which === 13) {
 			_span = link.getElementsByTagName( "span" );
 
 			// .al-val
@@ -230,26 +234,26 @@ var selector = "input[list]",
 				value = _span[ 1 ].innerHTML;
 			}
 
-			_input.value = value;
+			input.value = value;
 			$input.trigger( "focus.wb" );
-			closeOptions( _input );
+			closeOptions( input );
 
 			return false;
 		}
 
 		// Tab or Escape key
-		else if ( eventWhich === 9 || eventWhich === 27 ) {
+		else if ( which === 9 || which === 27 ) {
 			$input.trigger( "focus.wb" );
-			closeOptions( _input );
+			closeOptions( input );
 
 			return false;
 		}
 
 		// Up or down arrow
-		else if ( eventWhich === 38 || eventWhich === 40 ) {
+		else if ( which === 38 || which === 40 ) {
 
 			// Up arrow
-			if ( eventWhich === 38 ) {
+			if ( which === 38 ) {
 				dest = link.parentNode.previousSibling;
 				if ( !dest ) {
 					children = _autolist.getElementsByTagName( "li" );
@@ -266,7 +270,7 @@ var selector = "input[list]",
 			}
 			dest = dest.getElementsByTagName( "a" )[ 0 ];
 
-			_input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
+			input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
 			$( dest ).trigger( "focus.wb" );
 
 			return false;
@@ -283,8 +287,8 @@ var selector = "input[list]",
 		var	nodeName = eventTarget.nodeName.toLowerCase(),
 			link = ( nodeName === "a" ? eventTarget : eventTarget.parentNode ),
 			_autolist = link.parentNode.parentNode,
-			_input = _autolist.previousSibling,
-			$input = $( _input ),
+			input = _autolist.previousSibling,
+			$input = $( input ),
 			_span, value;
 
 		_span = link.getElementsByTagName( "span" );
@@ -298,26 +302,26 @@ var selector = "input[list]",
 			value = _span[ 1 ].innerHTML;
 		}
 
-		_input.value = value;
+		input.value = value;
 		$input.trigger( "focus.wb" );
-		closeOptions( _input );
+		closeOptions( input );
 
 		return false;
 	};
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb keydown click vclick touchstart", selector, function( event ) {
-	var eventType = event.type,
-		eventWhich = event.which,
-		_input = event.target;
+	var input = event.target,
+		eventType = event.type,
+		which = event.which;
 
 	switch ( eventType ) {
 	case "timerpoke":
-		init( _input, $( _input ) );
+		init( event );
 		break;
 	case "keydown":
 		if ( !(event.ctrlKey || event.metaKey ) ) {
-			return keyboardHandlerInput( eventWhich, event );
+			return keyboardHandlerInput( which, event );
 		}
 		break;
 	case "click":
@@ -325,11 +329,11 @@ $document.on( "timerpoke.wb keydown click vclick touchstart", selector, function
 	case "touchstart":
 
 		// Ignore middle/right mouse buttons
-		if ( !eventWhich || eventWhich === 1 ) {
-			if ( _input.nextSibling.className.indexOf( "hide" ) === -1 ) {
-				closeOptions( _input );
+		if ( !which || which === 1 ) {
+			if ( input.nextSibling.className.indexOf( "hide" ) === -1 ) {
+				closeOptions( input );
 			} else {
-				showOptions( _input, _input.value );
+				showOptions( input, input.value );
 			}
 			return false;
 		}
@@ -344,14 +348,14 @@ $document.on( "timerpoke.wb keydown click vclick touchstart", selector, function
 });
 
 $document.on( "keydown click vclick touchstart", ".wb-al a, .wb-al span", function( event ) {
-	var eventType = event.type,
-		eventWhich = event.which,
-		link = event.target;
+	var link = event.target,
+		eventType = event.type,
+		which = event.which;
 
 	switch ( eventType ) {
 	case "keydown":
 		if ( !(event.ctrlKey || event.metaKey ) ) {
-			return keyboardHandlerAutolist( eventWhich, link );
+			return keyboardHandlerAutolist( which, link );
 		}
 		break;
 	case "click":
@@ -359,7 +363,7 @@ $document.on( "keydown click vclick touchstart", ".wb-al a, .wb-al span", functi
 	case "touchstart":
 
 		// Ignore middle/right mouse buttons
-		if ( !eventWhich || eventWhich === 1 ) {
+		if ( !which || which === 1 ) {
 			return clickHandlerAutolist( link );
 		}
 		break;
@@ -371,21 +375,21 @@ $document.on( "focusin text-resize.wb window-resize-width.wb window-resize-heigh
 	var focusEvent = ( event.type === "focusin" ),
 		eventTarget = event.target,
 		eventTargetId = ( eventTarget ? eventTarget.id : null ),
-		_inputs, _input, _autolist, i, len;
+		inputs, input, _autolist, i, len;
 
 	// Only correct width if the polyfill has been initialized
 	if ( initialized ) {
-		_inputs = $document.find( selector ).get();
-		len = _inputs.length;
+		inputs = $document.find( selector ).get();
+		len = inputs.length;
 		for ( i = 0; i !== len; i += 1 ) {
-			_input = _inputs[ i ];
+			input = inputs[ i ];
 			if ( focusEvent ) {
-				_autolist = _input.nextSibling;
-				if ( _autolist.className.indexOf( "hide" ) === -1 && eventTargetId !== _input.id && eventTargetId !== _autolist.id && !$.contains( _autolist, eventTarget ) ) {
-					closeOptions( _input );
+				_autolist = input.nextSibling;
+				if ( _autolist.className.indexOf( "hide" ) === -1 && eventTargetId !== input.id && eventTargetId !== _autolist.id && !$.contains( _autolist, eventTarget ) ) {
+					closeOptions( input );
 				}
 			} else {
-				correctWidth( _input );
+				correctWidth( input );
 			}
 		}
 	}

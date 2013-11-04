@@ -34,13 +34,13 @@ var selector = "[data-picture]",
 	 * Updates the image displayed according to media queries.
 	 * This is the logic ported from Picturefill.
 	 * @method picturefill
-	 * @param {DOM element} _elm The element containing the images to be updated
+	 * @param {DOM element} elm The element containing the images to be updated
 	 */
-	picturefill = function( _elm ) {
-		var i, len, matchedElm, media,
-			matches = [],
-			img = _elm.getElementsByTagName( "img" )[ 0 ],
-			sources = _elm.getElementsByTagName( "span" );
+	picturefill = function( elm ) {
+		var matches = [],
+			img = elm.getElementsByTagName( "img" )[ 0 ],
+			sources = elm.getElementsByTagName( "span" ),
+			i, len, matchedElm, media;
 
 		// Loop over the data-media elements and find matching media queries
 		for ( i = 0, len = sources.length; i !== len; i += 1 ) {
@@ -55,7 +55,7 @@ var selector = "[data-picture]",
 			matchedElm = matches.pop();
 			if ( !img ) {
 				img = $document[ 0 ].createElement( "img" );
-				img.alt = _elm.getAttribute( "data-alt" );
+				img.alt = elm.getAttribute( "data-alt" );
 			}
 			img.src = matchedElm.getAttribute( "data-src" );
 			matchedElm.appendChild( img );
@@ -68,19 +68,19 @@ var selector = "[data-picture]",
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb picturefill.wb-data-picture", selector, function( event ) {
-	var eventType = event.type,
-		_elm = this,
-
-		// "this" is cached for all events to utilize
-		$elm = $( this );
-
-	switch ( eventType ) {
-	case "timerpoke":
-		init( $elm );
-		break;
-	case "picturefill":
-		picturefill( _elm );
-		break;
+	var eventTarget = event.target,
+		eventType = event.type;
+		
+	// Filter out any events triggered by descendants
+	if ( event.currentTarget === eventTarget ) {
+		switch ( eventType ) {
+		case "timerpoke":
+			init( $( eventTarget ) );
+			break;
+		case "picturefill":
+			picturefill( eventTarget );
+			break;
+		}
 	}
 });
 

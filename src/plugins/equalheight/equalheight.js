@@ -20,13 +20,21 @@ var selector = ".wb-equalheight",
 	 * Init runs once per plugin element on the page. There may be multiple elements. 
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
+	 * @param {jQuery Event} event Event that triggered this handler
 	 */
-	init = function() {
+	init = function( event ) {
 
-		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
+		// Filter out any events triggered by descendants
+		if ( event.currentTarget === event.target ) {
+		
+			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+			window._timer.remove( selector );
+			
+			// Remove the event handler since only want init fired once per page (not per element)
+			$document.off( "timerpoke.wb", selector );
 
-		onResize();
+			onResize();
+		}
 	},
 
 	/*

@@ -110,16 +110,21 @@ var selector = "link[rel='shortcut icon']",
 
 // Bind the plugin events
 $document.on( "timerpoke.wb mobile.wb-favicon icon.wb-favicon", selector, function( event, data ) {
-	switch ( event.type ) {
-	case "timerpoke":
-		init( $( this ) );
-		break;
-	case "mobile":
-		mobile( this, event, data );
-		break;
-	case "icon":
-		icon( this, event, data );
-		break;
+	var eventTarget = event.target;
+	
+	// Filter out any events triggered by descendants
+	if ( event.currentTarget === eventTarget ) {
+		switch ( event.type ) {
+		case "timerpoke":
+			init( $( eventTarget ) );
+			break;
+		case "mobile":
+			mobile( eventTarget, event, data );
+			break;
+		case "icon":
+			icon( eventTarget, event, data );
+			break;
+		}
 	}
 
 	/*

@@ -8,14 +8,16 @@
 "use strict";
 
 // Bind the focus event
-vapour.doc.on( "focus.wb", ".mfp-container", function ( event ) {
+vapour.doc.on( "focus.wb", function ( event ) {
+	var eventTarget = event.target;
 
-	// Ignore focus events that are not in the wb namespace
-	if ( event.namespace === "wb" ) {
+	// Ignore focus events that are not in the wb namespace and
+	// filter out any events triggered by descendants
+	if ( event.namespace === "wb" && event.currentTarget === eventTarget ) {
 
 		// Assigns focus to an element
 		setTimeout(function () {
-			return $( event.target ).focus();
+			return $( eventTarget ).focus();
 		}, 0 );
 	}
 });

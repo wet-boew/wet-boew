@@ -24,24 +24,31 @@ var selector = ".wb-toggle",
 	 * Init runs once per plugin element on the page. There may be multiple elements. 
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
+	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
 	 */
 	init = function( event ) {
-		var $link = $( event.target ),
+		var link = event.target,
+			$link, selector;
+
+		// Filter out any events triggered by descendants
+		if ( event.currentTarget === link ) {
+			$link = $( link );
 			selector = $link.data( "selector" );
 
-		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
+			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+			window._timer.remove( selector );
 
-		// Initialize the aria-controls attribute of the link
-		if ( selector ) {
-			$link.trigger( "ariaControls.wb-toggle", {
-				selector: selector,
-				parent: $link.data( "parent" )
-			});
-		} else {
-			$.error(
-				".wb-toggle: you must specify a [data-selector] attribute with the CSS selector of the element(s) the toggle link controls."
-			);
+			// Initialize the aria-controls attribute of the link
+			if ( selector ) {
+				$link.trigger( "ariaControls.wb-toggle", {
+					selector: selector,
+					parent: $link.data( "parent" )
+				});
+			} else {
+				$.error(
+					".wb-toggle: you must specify a [data-selector] attribute with the CSS selector of the element(s) the toggle link controls."
+				);
+			}
 		}
 	},
 

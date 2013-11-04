@@ -46,20 +46,22 @@ $document.on( "timerpoke.wb", selector, function( event ) {
 
 // Bind the init event of the plugin
 $document.on( "click vclick touchstart keydown", selector + " summary", function( event ) {
-	var eventWhich = event.which,
-		_details, _isClosed;
+	var which = event.which,
+		details, isClosed;
 
-	// Ignore middle/right mouse buttons
-	if ( !eventWhich || eventWhich === 1 || eventWhich === 13 || eventWhich === 32 ) {
-		_details = event.target.parentNode;
-		_isClosed = ( _details.getAttribute( "open" ) === null );
+	// Filter out any events triggered by descendants and 
+	// ignore middle/right mouse buttons
+	if ( !which || which === 1 || which === 13 || which === 32 ) {
+
+		details = event.target.parentNode;
+		isClosed = ( details.getAttribute( "open" ) === null );
 		
-		if ( _isClosed ) {
-			_details.setAttribute( "open", "open" );
+		if ( isClosed ) {
+			details.setAttribute( "open", "open" );
 		} else {
-			_details.removeAttribute( "open" );
+			details.removeAttribute( "open" );
 		}
-		_details.setAttribute( "aria-expanded", _isClosed );
+		details.setAttribute( "aria-expanded", isClosed );
 
 		return false;
 	}

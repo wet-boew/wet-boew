@@ -31,19 +31,24 @@ var selector = ".wb-modal",
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @function init
+	 * @param {jQuery Event} event Event that triggered this handler
 	 */
-	init = function() {
+	init = function( event ) {
 
-		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
+		// Filter out any events triggered by descendants
+		if ( event.currentTarget === event.target ) {
 
-		// Load the magnific popup dependency
-		Modernizr.load({
-			load: "site!deps/jquery.magnific-popup" + vapour.getMode() + ".js",
-			complete: function() {
-				$document.trigger( "ready.wb-modal" );
-			}
-		});
+			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+			window._timer.remove( selector );
+
+			// Load the magnific popup dependency
+			Modernizr.load({
+				load: "site!deps/jquery.magnific-popup" + vapour.getMode() + ".js",
+				complete: function() {
+					$document.trigger( "ready.wb-modal" );
+				}
+			});
+		}
 	},
 
 	/*
@@ -117,16 +122,19 @@ $document
 	.on( "build.wb-modal show.wb-modal hide.wb-modal", function( event, settings ) {
 		var eventType = event.type;
 
-		switch ( eventType ) {
-		case "build":
-			build( event, settings );
-			break;
-		case "show":
-			show( event, settings );
-			break;
-		case "hide":
-			hide( event, settings );
-			break;
+		// Filter out any events triggered by descendants
+		if ( event.currentTarget === event.target ) {
+			switch ( eventType ) {
+			case "build":
+				build( event, settings );
+				break;
+			case "show":
+				show( event, settings );
+				break;
+			case "hide":
+				hide( event, settings );
+				break;
+			}
 		}
 	});
 
