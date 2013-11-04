@@ -16,6 +16,10 @@
 }
 
 .cal-cnt {
+	.cal-wd {
+		background: #555;
+		border-color: #333;
+	}
 	.cal-hd {
 		@extend %cal-background-333;
 		@extend %cal-color-fff;
@@ -48,15 +52,7 @@
 	}
 }
 
-.cal-empty, .cal-day-lst li {
-	border-style: solid;
-	border-color: #AAA;
-	background: #FFF;
-}
-.cal-we, .cal-day-lst li.cal-we {
-	background: #EEE;
-}
-.cal-day-lst {
+.cal-days {
 	a {
 		color: #111;
 		&:hover, &:focus {
@@ -71,15 +67,5 @@
 	a {
 		@extend %cal-color-fff-important;
 		@extend %cal-background-color-333;
-	}
-}
-
-.cal-wd {
-	li {
-		border-style: solid;
-		border-color: #333;
-		font-weight: bolder;
-		background: #555;
-		@extend %cal-color-fff;
 	}
 }

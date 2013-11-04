@@ -3,27 +3,20 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 .cal-cnt {
-	height: 22em;
 	width: 18em;
 	margin-top: 0.5em;
 	text-shadow: none;
 }
 
-.cal-cnt-ext {
-	height: 28em;
-}
-
 .cal-cnt {
-	text-align: left;
+	background: #FFF;
 	* {
 		font-size: 100%;
 	}
 	.cal-hd {
-		float: left;
 		overflow: hidden;
 		padding: 0.5em 4px;
 		text-align: center;
-		width: 91%;
 	}
 	.cal-mnth {
 		font-size: 110%;
@@ -32,7 +25,7 @@
 		margin-left: 16px;
 		p {
 			float: left;
-			width: 13.5em;
+			width: 15.2em;
 		}
 		fieldset {
 			> {
@@ -64,6 +57,11 @@
 			padding: 0.1em 0.2em;
 		}
 	}
+	td {
+		border: 1px solid #AAA;
+		padding: 0;
+		text-align: center;
+	}
 }
 
 .cal-nxtmnth , .cal-prvmnth {
@@ -85,46 +83,21 @@
 	text-align: right;
 }
 
-.cal-day-lst, .cal-wd {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	li {
-		margin: 0;
-		padding-left: 0;
-	}
+.cal-wd {
+	color: #FFF;
+	border: 1px solid #333;
+	padding: 0.5em 0;
+	text-align: center;
 }
 
 .cal-days {
 	a, div {
+		display: block;
 		height: 100%;
+		padding: 0.5em 0;
 		width: 100%;
 	}
 	.cal-currday {
 		font-weight: bolder;
 	}
-}
-
-.cal-days, .cal-wd {
-	margin: 0;
-}
-
-.cal-empty, .cal-day-lst li, .cal-wd li {
-	position: relative;
-	float: left;
-	border-width: 0;
-	border-left-width: 1px;
-	border-bottom-width: 1px;
-	width: 13%;
-	text-align: center;
-}
-
-.cal-wd7, .cal-w1d7, .cal-w2d7, .cal-w3d7, .cal-w4d7, .cal-w5d7, .cal-w6d7 {
-	border-right-width: 1px;
-	clear: right;
-}
-
-.cal-empty, .cal-wd li, .cal-days a, .cal-days div {
-	display: block;
-	padding: 0.5em 0;
 }

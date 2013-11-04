@@ -47,9 +47,7 @@ var $document = vapour.doc,
 			};
 		}
 
-		$calendar
-			.addClass( "cal-cnt" )
-			.removeClass( "cal-cnt-ext" );
+		$calendar.addClass( "cal-cnt" );
 
 		// Converts min and max date from string to date objects
 		if ( typeof mindate === "string" ) {
@@ -88,14 +86,14 @@ var $document = vapour.doc,
 			$objCalendar.find( "#cal-" + calendarId + "-wd, .cal-mnth, #cal-" + calendarId + "-days").remove();
 			$objCalendar = $calendar.children("#cal-" + calendarId + "-cnt");
 		} else {
-			$objCalendar = $( "<div id='cal-" + calendarId + "-cnt' class='cal-cnt'></div>" );
+			$objCalendar = $( "<table id='cal-" + calendarId + "-cnt' class='cal-cnt'></table>" );
 			$calendar.append( $objCalendar );
 		}
 
 		// Creates the calendar header
 		$calendarHeader = $objCalendar.children( ".cal-hd" );
 		if ( $calendarHeader.length === 0 ) {
-			$calendarHeader = $( "<div class='cal-hd'></div>" );
+			$calendarHeader = $( "<caption class='cal-hd'></caption>" );
 		}
 
 		$calendarHeader.prepend( "<div class='cal-mnth'>" + i18nText.monthNames[ month ] + " " + year + "</div>" );
@@ -115,7 +113,8 @@ var $document = vapour.doc,
 
 		// Creates the rest of the calendar | Cree le reste du calendrier
 		$days = createDays( calendarId, year, month );
-		$daysList = $days.find( ".cal-day-lst li" );
+		$daysList = $days.find( "td:not(.cal-empty)" );
+
 		$objCalendar.append( $days );
 				
 		// Trigger the displayed.wb-cal Event
@@ -179,7 +178,7 @@ var $document = vapour.doc,
 					.children( "img" )
 						.attr( "alt", alt );
 			} else {
-				$btn = $( buttonStart + buttonClass + "'><img src='" + assetsPath + "/" + buttonClass.substring( 0, 1 ) + ".png' alt='" + alt + "' /></a>" );
+				$btn = $( buttonStart + buttonClass + "'><img src='" + assetsPath + "/" + buttonClass.charAt( 0 ) + ".png' alt='" + alt + "' /></a>" );
 				$monthNav[ buttonSpec[ 3 ] ]( $btn );
 			}
 			$btn
@@ -331,22 +330,22 @@ var $document = vapour.doc,
 	},
 
 	createWeekdays = function( calendarId ) {
-		var weekdays = "<ol id='cal-" + calendarId + "-days' class='cal-wd' role='presentation'>",
+		var weekdays = "<thead id='cal-" + calendarId + "-days' class='cal-wd' role='presentation'><tr>",
 			dayNames = i18nText.dayNames,
 			wd, wd1, dayName;
 		for ( wd = 0; wd < 7; wd += 1 ) {
 			dayName = dayNames[ wd ];
 			wd1 = wd + 1;
-			weekdays += "<li id='cal-" + calendarId + "-wd" + wd1 + "' class='cal-wd" + wd1 +
+			weekdays += "<th id='cal-" + calendarId + "-wd" + wd1 + "' class='cal-wd cal-wd" + wd1 +
 				( wd === 0 || wd === 6 ? "we" : "" ) + "' role='columnheader'><abbr title='" + dayName + "'>" +
-				dayName.substr( 0, 1 ) + "</abbr></li>";
+				dayName.charAt( 0 ) + "</abbr></th>";
 		}
 
-		return $( weekdays + "</ol>" );
+		return $( weekdays + "</tr></thead>" );
 	},
 
 	createDays = function( calendarId, year, month ) {
-		var cells = "<div id='cal-" + calendarId + "-days' class='cal-days'>",
+		var cells = "<tbody id='cal-" + calendarId + "-days' class='cal-days'>",
 			date = new Date(),
 			textWeekDayNames = i18nText.dayNames,
 			textMonthNames = i18nText.monthNames,
@@ -371,6 +370,7 @@ var $document = vapour.doc,
 		currDay = date.getDate();
 
 		for ( week = 1; week < 7; week += 1 ) {
+			cells += "<tr>";
 			for ( day = 0; day < 7; day += 1 ) {
 				
 				id = "cal-" + calendarId + "-w" + week + "d" + ( day + 1 );
@@ -380,36 +380,32 @@ var $document = vapour.doc,
 				if ( ( week === 1 && day < firstDay ) || ( dayCount > lastDay ) ) {
 
 					// Creates empty cells | Cree les cellules vides
-					cells += "<span id='" + id + "' class='cal-empty " + className + "'>&#160;</span>";
+					cells += "<td id='" + id + "' class='cal-empty " + className + "'>&#160;</td>";
 				} else {
 
 					// Creates date cells | Cree les cellules de date
 					dayCount += 1;
 					isCurrentDate = ( dayCount === currDay && month === currMonth && year === currYear );
 
-					if (dayCount === 1) {
-						cells += "<ol id='cal-" + calendarId + "-" + month + "_" + year + "' class='cal-day-lst' role='grid'>";
-					}
-
-					cells += "<li id='" + id + "' class='" + ( isCurrentDate ? "cal-currday " : "" ) + className + "' role='grid-cell'><div><time datetime='" + currYear + "-" +
+					cells += "<td id='" + id + "' class='" + ( isCurrentDate ? "cal-currday " : "" ) + className + "'><div><time datetime='" + currYear + "-" +
 						( month < 9 ? "0" : "" ) + ( month + 1 ) + "-" + ( dayCount < 10 ? "0" : "" ) + dayCount + "'><span class='wb-inv'>" + textWeekDayNames[ day ] +
 						( frenchLang ? ( " </span>" + dayCount + "<span class='wb-inv'> " + textMonthNames[ month ].toLowerCase() + " " ) :
 						( " " + textMonthNames[ month ] + " </span>" + dayCount + "<span class='wb-inv'> " ) ) + year +
-						( isCurrentDate ?  textCurrentDay : "" ) + "</span></time></div></li>";
+						( isCurrentDate ?  textCurrentDay : "" ) + "</span></time></div></td>";
 						
 					if ( dayCount > lastDay ) {
-						cells += "</ol>";
 						breakAtEnd = true;
 					}
 				}
 			}
+			cells += "</tr>";
 			if ( breakAtEnd ) {
 				break;
 			}
 		}
-		cells += "</div>";
+		cells += "</tbody></table>";
 
-		return $( cells += "</div>" );
+		return $( cells );
 	},
 
 	showGoToForm = function( calendarId ) {
@@ -434,7 +430,6 @@ var $document = vapour.doc,
 					"aria-hidden": "true",
 					"aria-expanded": "true"
 				});
-		document.getElementById( calendarId ).className += " cal-cnt-ext";
 	},
 
 	hideGoToFrm = function( event ) {
@@ -449,7 +444,6 @@ var $document = vapour.doc,
 				.children( ".cal-prvmnth, .cal-nxtmnth" )
 					.removeClass( "wb-inv" )
 					.attr( "aria-hidden", "false" );
-			$( "#" + calendarId ).removeClass( "cal-cnt-ext" );
 		});
 		$link
 			.stop()
@@ -514,7 +508,7 @@ var $document = vapour.doc,
 $document.on( "create.wb-cal" , create );
 
 // Keyboard nav
-$document.on( "keydown", ".cal-day-lst a", function ( event ) {
+$document.on( "keydown", ".cal-days a", function ( event ) {
 	var elm = event.target,
 		$elm = $( elm ),
 		$container = $elm.closest( ".cal-cnt" ),
