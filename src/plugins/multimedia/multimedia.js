@@ -178,8 +178,8 @@ parseXml = function( content ) {
 @description Loads captions from an external source (HTML embed or TTML)
 @param {Object} elm The jQuery object for the multimedia player loading the captions
 @param {String} url The url for the captions resource to load
-@fires captionsloaded.mediaplayer.wb
-@fires captionsloadfailed.mediaplayer.wb
+@fires captionsloaded.multimedia.wb
+@fires captionsloadfailed.multimedia.wb
 */
 loadCaptionsExternal = function( elm, url ) {
 	$.ajax({
@@ -191,7 +191,7 @@ loadCaptionsExternal = function( elm, url ) {
 		},
 		success: function( data ) {
 			elm.trigger({
-				type: "captionsloaded.mediaplayer.wb",
+				type: "captionsloaded.multimedia.wb",
 				captions: data.indexOf( "<html" ) !== -1 ?
 					parseHtml( $( data ) ) :
 					parseXml( $( data ) )
@@ -199,7 +199,7 @@ loadCaptionsExternal = function( elm, url ) {
 		},
 		error: function( response, textStatus, errorThrown ) {
 			elm.trigger({
-				type: "captionsloadfailed.mediaplayer.wb",
+				type: "captionsloadfailed.multimedia.wb",
 				error: errorThrown
 			});
 		}
@@ -211,11 +211,11 @@ loadCaptionsExternal = function( elm, url ) {
 @description Loads same page captions emebed in HTML
 @param {Object} elm The jQuery object for the multimedia player loading the captions
 @param {Object} obj The jQUery object containing the captions
-@fires captionsloaded.mediaplayer.wb
+@fires captionsloaded.multimedia.wb
 */
 loadCaptionsInternal = function( elm, obj ) {
 	elm.trigger({
-		type: "captionsloaded.mediaplayer.wb",
+		type: "captionsloaded.multimedia.wb",
 		captions: parseHtml( obj )
 	});
 };
@@ -275,7 +275,7 @@ playerApi = function( fn, args ) {
 			} else {
 				captionsArea.removeClass("on");
 			}
-			return $this.trigger( "captionsvisiblechange.mediaplayer.wb" );
+			return $this.trigger( "captionsvisiblechange.multimedia.wb" );
 		case "setPreviousTime":
 			return this.object.previousTime = args;
 		case "setBuffering":
@@ -332,11 +332,11 @@ $document.on( "ajax-fetched.wb", $selector, function( event ) {
 
 	$this.data( "template", $template );
 	return $this.trigger({
-		type: "init.mediaplayer.wb"
+		type: "init.multimedia.wb"
 	});
 });
 
-$document.on( "init.mediaplayer.wb", $selector, function() {
+$document.on( "init.multimedia.wb", $selector, function() {
 
 	var $this = $( this ),
 		$id = $this.attr( "id" ) !== undef ? $this.attr( "id" ) : "wb-mediaplayer-" + ( $seed++ ),
@@ -364,9 +364,9 @@ $document.on( "init.mediaplayer.wb", $selector, function() {
 	$this.data( "properties", data );
 
 	if ( $media.get( 0 ).error === null && $media.get( 0 ).currentSrc !== "" && $media.get( 0 ).currentSrc !== undef ) {
-		return $this.trigger( "" + $type + ".mediaplayer.wb" );
+		return $this.trigger( "" + $type + ".multimedia.wb" );
 	} else {
-		return $this.trigger( "fallback.mediaplayer.wb" );
+		return $this.trigger( "fallback.multimedia.wb" );
 	}
 
 	// FIXME: This is unreachable
@@ -374,7 +374,7 @@ $document.on( "init.mediaplayer.wb", $selector, function() {
 	return $.error( "[web-boew] Mediaplayer :: error - mp003 :: Cannot play listed media" );
 });
 
-$document.on( "fallback.mediaplayer.wb", $selector, function() {
+$document.on( "fallback.multimedia.wb", $selector, function() {
 	var _ref = expand( this ),
 		$this = _ref[ 0 ],
 		$data = _ref[ 1 ],
@@ -409,10 +409,10 @@ $document.on( "fallback.mediaplayer.wb", $selector, function() {
 		$data.poster + "</object>";
 	$this.data( "properties", $data );
 
-	return $this.trigger( "renderui.mediaplayer.wb" );
+	return $this.trigger( "renderui.multimedia.wb" );
 });
 
-$document.on( "video.mediaplayer.wb", $selector, function() {
+$document.on( "video.multimedia.wb", $selector, function() {
 	var _ref = expand( this ),
 		$this = _ref[ 0 ],
 		$data = _ref[ 1 ];
@@ -424,16 +424,16 @@ $document.on( "video.mediaplayer.wb", $selector, function() {
 
 	$this.data( "properties", $data );
 
-	return $this.trigger( "renderui.mediaplayer.wb" );
+	return $this.trigger( "renderui.multimedia.wb" );
 });
 
-$document.on("audio.mediaplayer.wb", $selector, function() {
+$document.on("audio.multimedia.wb", $selector, function() {
 	// Implement audio player
 	var $data, $this, _ref;
 	return _ref = expand(this), $this = _ref[0], $data = _ref[1], _ref;
 });
 
-$document.on("renderui.mediaplayer.wb", $selector, function() {
+$document.on("renderui.multimedia.wb", $selector, function() {
 	var _ref = expand( this ),
 		$this = _ref[ 0 ],
 		$data = _ref[ 1 ],
@@ -544,7 +544,7 @@ $document.on( "keyup", $selector, function( event ) {
 	}
 });
 
-$document.on( "durationchange play pause ended volumechange timeupdate captionsloaded.mediaplayer.wb captionsloadfailed.mediaplayer.wb captionsvisiblechange waiting canplay progress", $selector, function( event ) {
+$document.on( "durationchange play pause ended volumechange timeupdate captionsloaded.multimedia.wb captionsloadfailed.multimedia.wb captionsvisiblechange waiting canplay progress", $selector, function( event ) {
 	var eventTarget = event.currentTarget,
 		eventType = event.type,
 		$this = $( eventTarget ),
