@@ -21,64 +21,71 @@ var selector = ".wb-feedback",
 	 * Init runs once per plugin element on the page. There may be multiple elements. 
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
+	 * @param {jQuery Event} event Event that triggered this handler
 	 */
-	init = function() {
-		var $elm = $( selector ),
-			$feedback = $elm.find( "#feedback" ),
+	init = function( event ) {
+		var eventTarget = event.target,
 			referrerUrl = document.referrer,
+			$elm, $feedback, urlParams;
+
+		// Filter out any events triggered by descendants
+		if ( event.currentTarget === eventTarget ) {
+			$elm = $( eventTarget );
+			$feedback = $elm.find( "#feedback" );
 			urlParams = vapour.pageUrlParts.params;
 
-		// Cache the form areas
-		feedback = $feedback[ 0 ];
-		access = document.getElementById( "access" );
-		contact1 = document.getElementById( "contact1" );
-		contact2 = document.getElementById( "contact2" );
-		$web = $elm.find( "#web" );
-		$mobile = $web.find( "#mobile" );
-		$computer = $web.find( "#computer" );
-		$info = $elm.find( "#info" );
-			
-		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
+			// Cache the form areas
+			feedback = $feedback[ 0 ];
+			access = document.getElementById( "access" );
+			contact1 = document.getElementById( "contact1" );
+			contact2 = document.getElementById( "contact2" );
+			$web = $elm.find( "#web" );
+			$mobile = $web.find( "#mobile" );
+			$computer = $web.find( "#computer" );
+			$info = $elm.find( "#info" );
+				
+			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+			window._timer.remove( selector );
 
-		// Set the initial value for the feedback field based on the query string
-		if ( !urlParams.submit && urlParams.feedback ) {
-			$feedback.find( "option[value='" + urlParams.feedback + "']" ).attr( "selected", "selected" );
+			// Set the initial value for the feedback field based on the query string
+			if ( !urlParams.submit && urlParams.feedback ) {
+				$feedback.find( "option[value='" + urlParams.feedback + "']" ).attr( "selected", "selected" );
+			}
+
+			// Set aria-controls
+			feedback.setAttribute( "aria-controls", "web" );
+			access.setAttribute( "aria-controls", "mobile computer" );
+		
+			// Set the initial show/hide state of the form
+			showHide( feedback );
+			showHide( access );
+			showHide( contact1 );
+			showHide( contact2 );
+
+			// Prepopulates URL form field with referrer
+			document.getElementById( "page" ).setAttribute( "value", referrerUrl );
 		}
-
-		// Set aria-controls
-		feedback.setAttribute( "aria-controls", "web" );
-		access.setAttribute( "aria-controls", "mobile computer" );
-	
-		// Set the initial show/hide state of the form
-		showHide( feedback );
-		showHide( access );
-		showHide( contact1 );
-		showHide( contact2 );
-
-		// Prepopulates URL form field with referrer
-		document.getElementById( "page" ).setAttribute( "value", referrerUrl );
 	},
 
 	/*
 	 * @method showHide
-	 * @param {DOM element} _elm The element triggering the show/hide
+	 * @param {DOM element} elm The element triggering the show/hide
 	 */
-	showHide = function( _elm ) {
-		var targetId = _elm.id,
+	showHide = function( elm ) {
+		var targetId = elm.id,
 			$show,
 			$hide;
 
 		switch ( targetId ) {
 		case "feedback":
-			if ( _elm.value === "web" ) {
+			if ( elm.value === "web" ) {
 				$show = $web;
 			} else {
 				$hide = $web;
 			}
 			break;
 		case "access":
-			if ( _elm.value === "mobile" ) {
+			if ( elm.value === "mobile" ) {
 				$show = $mobile;
 				$hide = $computer;
 			} else {
@@ -114,20 +121,20 @@ $document.on( "timerpoke.wb", selector, init );
 
 // Show/hide form areas when certain form fields are changed
 $document.on( "keydown click", "#feedback, #access, #contact1, #contact2", function( event ) {
-	var button = event.which;
+	var which = event.which;
 
 	// Ignore middle/right mouse buttons
-	if ( button !== 2 && button !== 3 ) {
-		showHide( event.currentTarget );
+	if ( !which || which === 1 ) {
+		showHide( event.target );
 	}
 } );
 
 // Return to the form defaults when the reset button is activated
 $document.on( "click", selector + " input[type=reset]", function( event ) {
-	var button = event.which;
+	var which = event.which;
 
 	// Ignore middle/right mouse buttons
-	if ( button !== 2 && button !== 3 ) {
+	if ( !which || which === 1 ) {
 		showHide( feedback );
 		showHide( access );
 		showHide( contact1 );

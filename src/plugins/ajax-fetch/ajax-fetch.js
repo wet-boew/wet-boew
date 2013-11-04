@@ -45,18 +45,23 @@ var $document = vapour.doc,
 
 // Event binding
 $document.on( "ajax-fetch.wb", function( event ) {
-	var _caller = event.element,
-		_url = event.fetch,
-		_id = "wb" + ( generateSerial( 8 ) );
+	var caller = event.element,
+		url = event.fetch,
+		id;
 
-	$( "<div id='" + _id + "' />" )
-		.load( _url, function() {
-			$( _caller )
-				.trigger( {
-					type: "ajax-fetched.wb",
-					pointer: $( this )
-				});
-		});
+	// Filter out any events triggered by descendants
+	if ( event.currentTarget === event.target ) {
+		id = "wb" + ( generateSerial( 8 ) );
+
+		$( "<div id='" + id + "' />" )
+			.load( url, function() {
+				$( caller )
+					.trigger( {
+						type: "ajax-fetched.wb",
+						pointer: $( this )
+					});
+			});
+	}
 });
 
 })( jQuery, vapour );

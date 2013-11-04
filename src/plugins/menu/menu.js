@@ -206,33 +206,44 @@ onHoverFocus = function( event ) {
 };
 
 // Bind the events of the plugin
-$document.on("timerpoke.wb mouseleave select.wb-menu ajax-fetched.wb increment.wb-menu reset.wb-menu display.wb-menu", selector, function( event ) {
-	event.stopPropagation();
-	var eventType = event.type,
-		$elm = $( this );
+$document.on( "timerpoke.wb mouseleave select.wb-menu ajax-fetched.wb increment.wb-menu reset.wb-menu display.wb-menu", selector, function( event ) {
+	var elm = event.target,
+		eventType = event.type,
+		$elm;
 
-	switch ( eventType ) {
-	case "ajax-fetched":
-		onAjaxLoaded( $elm, event.pointer );
-		return false;
-	case "select":
-		onSelect( event );
-		break;
-	case "timerpoke":
-		onInit( $elm );
-		break;
-	case "increment":
-		onIncrement( $elm, event );
-		break;
-	case "mouseleave":
-		onReset( $elm );
-		break;
-	case "reset":
-		onReset( $elm );
-		break;
-	case "display":
-		onDisplay( $elm, event );
-		break;
+	// Filter out any events triggered by descendants
+	if ( event.currentTarget === elm ) {
+		$elm = $( elm );
+	
+		switch ( eventType ) {
+		case "ajax-fetched":
+			onAjaxLoaded( $elm, event.pointer );
+			return false;
+
+		case "select":
+			onSelect( event );
+			break;
+
+		case "timerpoke":
+			onInit( $elm );
+			break;
+
+		case "increment":
+			onIncrement( $elm, event );
+			break;
+
+		case "mouseleave":
+			onReset( $elm );
+			break;
+
+		case "reset":
+			onReset( $elm );
+			break;
+
+		case "display":
+			onDisplay( $elm, event );
+			break;
+		}
 	}
 
 	/*
@@ -246,24 +257,19 @@ $document.on("timerpoke.wb mouseleave select.wb-menu ajax-fetched.wb increment.w
 /*
  * Menu Keyboard bindings
  */
-$document.on( "mouseover focusin", selector + " .item", function( event ) {
-	event.stopPropagation();
-	onHoverFocus( event );
-});
+$document.on( "mouseover focusin", selector + " .item", onHoverFocus );
 
-// TODO: Convert rest of events to plugin template
 $document.on( "keydown", selector + " .item", function( event ) {
-	event.stopPropagation();
-
-	var ref = expand( event.target ),
+	var elm = event.target,
+		which = event.which,
+		ref = expand( elm ),
 		$container = ref[ 0 ],
 		$menu = ref[ 1 ],
 		$elm = ref[ 3 ],
-		$code = event.which,
-		$index = $menu.index( $elm.get( 0 ) ),
+		$index = $menu.index( $elm[ 0 ] ),
 		$goto;
 
-	switch ( $code ) {
+	switch ( which ) {
 	case 13:
 	case 40:
 		if ( $elm.find( ".expicon" ).length > 0 ) {
@@ -281,9 +287,11 @@ $document.on( "keydown", selector + " .item", function( event ) {
 				});
 		}
 		break;
+
 	case 9:
 		onReset( $container );
 		break;
+
 	case 37:
 		event.preventDefault();
 		$container.trigger({
@@ -293,6 +301,7 @@ $document.on( "keydown", selector + " .item", function( event ) {
 			current: $index
 		});
 		break;
+
 	case 39:
 		event.preventDefault();
 		$container.trigger({
@@ -309,19 +318,18 @@ $document.on( "keydown", selector + " .item", function( event ) {
  * Item Keyboard bindings
  */
 $document.on( "keydown", selector + " [role=menu]", function( event ) {
-
-	event.stopPropagation();
-	var ref = expand( event.target, true ),
+	var elm = event.target,
+		which = event.which,
+		ref = expand( elm, true ),
 		$container = ref[ 0 ],
 		$menu = ref[ 1 ],
 		$items = ref[ 2 ],
 		$elm = ref[ 3 ],
-		$code = event.which,
 		$links = $items.find( ":focusable" ),
-		$index = $links.index( $elm.get( 0 ) ),
+		$index = $links.index( $elm[ 0 ] ),
 		$goto;
 
-	switch ( $code ) {
+	switch ( which ) {
 	case 27:
 	case 37:
 		event.preventDefault();
@@ -331,8 +339,8 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 			goto: $goto,
 			special: "reset"
 		});
-
 		break;
+
 	case 38:
 		event.preventDefault();
 		$container.trigger({
@@ -342,9 +350,11 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 			current: $index
 		});
 		break;
+
 	case 9:
 		onReset( $container );
 		break;
+
 	case 40:
 		event.preventDefault();
 		$container.trigger({

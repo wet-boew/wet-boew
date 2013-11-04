@@ -67,16 +67,22 @@ var selector = ".wb-inview",
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb scroll.wb-inview", selector, function( event ) {
-	var eventType = event.type,
-		$elm = $( this );
+	var eventTarget = event.target,
+		eventType = event.type,
+		$elm;
 
-	switch ( eventType ) {
-	case "timerpoke":
-		init( $elm );
-		break;
-	case "scroll":
-		onInview( $elm );
-		break;
+	// Filter out any events triggered by descendants
+	if ( event.currentTarget === eventTarget ) {
+		$elm = $( eventTarget );
+
+		switch ( eventType ) {
+		case "timerpoke":
+			init( $elm );
+			break;
+		case "scroll":
+			onInview( $elm );
+			break;
+		}
 	}
 
 	/*

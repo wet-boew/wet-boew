@@ -25,59 +25,62 @@ var selector = "input[type=date]",
 	 * Init runs once per polyfill element on the page. There may be multiple elements.
 	 * It will run more than once if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {DOM element} _input The input field to be polyfilled
-	 * @param {jQuery DOM element} $input The input field to be polyfilled
+	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
 	 */
 	init = function( event ) {
 		var elm = event.target,
 			elmId = elm.id;
 
-		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
+		// Filter out any events triggered by descendants
+		if ( event.currentTarget === elm ) {
 
-		if ( elm.className.indexOf( "picker-field" ) !== -1 ) {
-			return;
+			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+			window._timer.remove( selector );
+
+			if ( elm.className.indexOf( "picker-field" ) !== -1 ) {
+				return;
+			}
+
+			// Only initialize the i18nText once
+			if ( !i18nText ) {
+				i18n = window.i18n;
+				i18nText = {
+					datepickerShow: i18n( "%date-show" ) + i18n( "%space" ),
+					datepickerHide: i18n( "%date-hide" ),
+					datepickerSelected: i18n( "%date-sel" )
+				};
+			}
+
+			elm.className += " picker-field";
+
+			if ( !$container) {
+				$container = $( "<div id='wb-picker' class='picker-overlay' role='dialog' aria-hidden='true'></div>" );
+
+				// Close button
+				$( "<a class='picker-close' role='button' href='javascript:;'><img src='" +
+						vapour.getPath( "/assets" ) + "/cross-button.png' alt='" + i18nText.datepickerHide + "' /></a>" )
+					.appendTo( $container )
+					.on( "click", function( event ) {
+						var which = event.which;
+
+						// Ignore middle/right mouse buttons
+						if ( !which || which === 1 ) {
+							toggle( $container.attr( "aria-controls") );
+						}
+					});
+
+				// Disable the tabbing of all the links when calendar is hidden
+				$container.find( "a" ).attr( "tabindex", "-1" );
+
+				$( "body > main > div" ).after( $container );
+			}
+
+			if ( elmId ) {
+				createToggleIcon( elmId );
+			}
+
+			initialized = true;
 		}
-
-		// Only initialize the i18nText once
-		if ( !i18nText ) {
-			i18n = window.i18n;
-			i18nText = {
-				datepickerShow: i18n( "%date-show" ) + i18n( "%space" ),
-				datepickerHide: i18n( "%date-hide" ),
-				datepickerSelected: i18n( "%date-sel" )
-			};
-		}
-
-		elm.className += " picker-field";
-
-		if ( !$container) {
-			$container = $( "<div id='wb-picker' class='picker-overlay' role='dialog' aria-hidden='true'></div>" );
-
-			// Close button
-			$( "<a class='picker-close' role='button' href='javascript:;'><img src='" +
-					vapour.getPath( "/assets" ) + "/cross-button.png' alt='" + i18nText.datepickerHide + "' /></a>" )
-				.appendTo( $container )
-				.on( "click", function( event ) {
-					var which = event.which;
-
-					// Ignore middle/right mouse buttons
-					if ( !which || which === 1 ) {
-						toggle( $container.attr( "aria-controls") );
-					}
-				});
-
-			// Disable the tabbing of all the links when calendar is hidden
-			$container.find( "a" ).attr( "tabindex", "-1" );
-
-			$( "body > main > div" ).after( $container );
-		}
-
-		if ( elmId ) {
-			createToggleIcon( elmId );
-		}
-
-		initialized = true;
 	},
 
 	createToggleIcon = function( fieldId ) {
