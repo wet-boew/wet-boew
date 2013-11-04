@@ -27,8 +27,8 @@
 
 .picker-close {
 	position: absolute;
-	right: 1.9em;
-	top: 5px;
+	right: 0.3em;
+	top: 10px;
 	img {
 		@extend %datepicker-margin-0;
 	}
@@ -54,7 +54,7 @@
 	a {
 		text-decoration: underline;
 	}
-	li {
+	td {
 		&.datepicker-selected {
 			a {
 				background-color: #333;

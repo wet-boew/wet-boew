@@ -95,7 +95,7 @@ var selector = "input[type=date]",
 			maxDate = field.getAttribute( "max" ),
 			fromDateISO = vapour.date.fromDateISO,
 			len = $days.length,
-			$parent = $days.parent(),
+			// $parent = $days.parent(),
 			focusDay = ( targetDay ? targetDay - 1 : 0 ),
 			lowLimit, highLimit, minDay, maxDay, index, day, links;
 
@@ -107,7 +107,8 @@ var selector = "input[type=date]",
 		lowLimit = ( year === minDate.getFullYear() && month === minDate.getMonth() );
 		highLimit = ( year === maxDate.getFullYear() && month === maxDate.getMonth() );
 
-		$days.detach();
+		// TODO: Find a way to keep detach()
+		// $days.detach();
 		for ( index = 0; index !== len; index += 1 ) {
 			if ( ( !lowLimit && !highLimit ) || ( lowLimit && index >= minDay ) || ( highLimit && index < maxDay ) ) {
 				day = $days[ index ];
@@ -117,7 +118,7 @@ var selector = "input[type=date]",
 			}
 		}
 
-		$parent.append( $days );
+		// $parent.append( $days );
 
 		if ( targetDay ) {
 			links = $days.find( "a" );
@@ -333,7 +334,7 @@ $document.on( "click", ".picker-toggle", function ( event ) {
 	}
 });
 
-$document.on( "click", ".cal-day-lst a", function ( event ) {
+$document.on( "click", ".cal-days a", function ( event ) {
 	var which = event.which,
 		fieldId, date, year, month, day, $field;
 
