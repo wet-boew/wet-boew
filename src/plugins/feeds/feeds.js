@@ -22,65 +22,68 @@ var selector = ".wb-feeds",
 	 * Init runs once per plugin element on the page. There may be multiple elements. 
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery DOM element} $elm The plugin element being initialized
+	 * @param {jQuery Event} event Event that triggered this handler
 	 */
-	init = function( _elm ) {
+	init = function( event ) {
 
-		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
+		// Filter out any events triggered by descendants
+		if ( event.currentTarget === event.target ) {
 
-		var $content = $( _elm ).find( ".feeds-cont" ),
-			limit = getLimit( _elm ),
-			feeds = _elm.getElementsByTagName( "a" ),
-			last = feeds.length - 1,
-			i = last,
-			entries = [],
-			_results = [],
-			deferred = [],
-			processEntries = function( data ) {
-				var k, len;
+			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+			window._timer.remove( selector );
 
-				data = data.responseData.feed.entries;
-				len = data.length;
-				for ( k = 0; k !== len; k += 1 ) {
-					entries.push( data[ k ] );
-				}
-				if ( !last ) {
-					parseEntries( entries, limit, $content );
-				}
+			var elm = event.target,
+				$content = $( elm ).find( ".feeds-cont" ),
+				limit = getLimit( elm ),
+				feeds = elm.getElementsByTagName( "a" ),
+				last = feeds.length - 1,
+				i = last,
+				entries = [],
+				_results = [],
+				deferred = [],
+				processEntries = function( data ) {
+					var k, len;
 
-				last -= 1;
-				return last;
-			},
-			finalize = function() {
+					data = data.responseData.feed.entries;
+					len = data.length;
+					for ( k = 0; k !== len; k += 1 ) {
+						entries.push( data[ k ] );
+					}
+					if ( !last ) {
+						parseEntries( entries, limit, $content );
+					}
 
-				// TODO: Use CSS instead
-				$content.find( "li" ).show();
-			};
+					last -= 1;
+					return last;
+				},
+				finalize = function() {
 
-		while ( i >= 0 ) {
-			deferred[ i ] = $.ajax({
-				url: jsonRequest( feeds[ i ].href, limit ),
-				dataType: "json",
-				timeout: 1000
-			}).done( processEntries );
-			_results.push( i -= 1 );
+					// TODO: Use CSS instead
+					$content.find( "li" ).show();
+				};
+
+			while ( i >= 0 ) {
+				deferred[ i ] = $.ajax({
+					url: jsonRequest( feeds[ i ].href, limit ),
+					dataType: "json",
+					timeout: 1000
+				}).done( processEntries );
+				_results.push( i -= 1 );
+			}
+			$.when.apply( null, deferred ).always( finalize );
+
+			$.extend( {}, _results );
 		}
-		$.when.apply( null, deferred ).always( finalize );
-
-		$.extend( {}, _results );
 	},
 
-	// TODO: Should these be added as central helpers? They were in v3.1
-	
 	/*
 	 * Returns a class-based set limit on plugin instances
 	 * @method getLimit
 	 * @param {DOM object} elm The element to search for a class of the form blimit-5
 	 * @return {number} 0 if none found, which means the plugin default
 	 */
-	getLimit = function( _elm ) {
-		var count = _elm.className.match( /\blimit-\d+/ );
+	getLimit = function( elm ) {
+		var count = elm.className.match( /\blimit-\d+/ );
 		if ( !count ) {
 			return 0;
 		}
@@ -132,15 +135,7 @@ var selector = ".wb-feeds",
 		return $elm.empty().append( result );
 	};
 
-$document.on( "timerpoke.wb", selector, function() {
-	init( this );
-
-	/*
-	 * Since we are working with events we want to ensure that we are being passive about our control, 
-	 * so returning true allows for events to always continue
-	 */
-	return true;
-});
+$document.on( "timerpoke.wb", selector, init );
 
 // Add the timer poke to initialize the plugin
 window._timer.add( selector );

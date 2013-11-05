@@ -1,6 +1,9 @@
 ---
-title: Menu Plugin
-language: en
+{
+  "title": "Menu",
+  "language": "en",
+  "fr": "menu"
+}
 ---
 
 <style type="text/css">
@@ -39,10 +42,10 @@ language: en
 #menu-demo .menu > li:last-child a {
   border-right: 2px ridge #284468;
 }
-#menu-demo .sbmnu {
+#menu-demo .sm {
   display: none;
 }
-#menu-demo .sbmnu.open {
+#menu-demo .sm.open {
   display: inline;
   position: absolute;
   z-index: 100;
@@ -56,10 +59,10 @@ language: en
   top: auto;
   min-width: 200px;
 }
-#menu-demo .sbmnu.open li {
+#menu-demo .sm.open li {
   display: block;
 }
-#menu-demo .sbmnu.open li a {
+#menu-demo .sm.open li a {
   color: #444;
   border-left: none;
   border-right: none;
@@ -67,23 +70,23 @@ language: en
   text-align: left;
   padding: 5px 10px;
 }
-#menu-demo .sbmnu.open li a:hover, #menu-demo .sbmnu.open li a:focus, #menu-demo .sbmnu.open li a:active {
+#menu-demo .sm.open li a:hover, #menu-demo .sm.open li a:focus, #menu-demo .sm.open li a:active {
   background: #243850;
   color: #fff;
 }
-#menu-demo .sbmnu.open .slflnk {
+#menu-demo .sm.open .slflnk {
   background: #bbb;
 }
-#menu-demo .sbmnu.open .expandicon {
+#menu-demo .sm.open .expicon {
   display: none;
 }
-#menu-demo .sbmnu .row {
+#menu-demo .sm .row {
   background: transparent;
 }
-#menu-demo .sbmnu .row a {
+#menu-demo .sm .row a {
   color: #6e6e6e;
 }
-#menu-demo .expandicon {
+#menu-demo .expicon {
   left: 0.75em;
   position: relative;
   top: 0.75em;

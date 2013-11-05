@@ -20,28 +20,24 @@ var selector = ".wb-overlay",
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
+	 * @param {jQuery Event} event Event that triggered this handler
 	 */
-	init = function() {
+	init = function( event ) {
 
-		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
+		// Filter out any events triggered by descendants
+		if ( event.currentTarget === event.target ) {
 
-		/*
-		 *	@todo	Add ARIA attributes.
-		 */
+			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+			window._timer.remove( selector );
 
+			/*
+			 *	@todo	Add ARIA attributes.
+			 */
+		}
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb", selector, function() {
-	init();
-
-	/*
-	 * Since we are working with events we want to ensure that we are being passive about our control,
-	 * so returning true allows for events to always continue
-	 */
-	return true;
-});
+$document.on( "timerpoke.wb", selector, init );
 
 // Add the timer poke to initialize the plugin
 window._timer.add( selector );

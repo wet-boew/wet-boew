@@ -1,11 +1,12 @@
 ---
-title: Correctif «&#160;datalist&#160;» (saisie automatique)
-language: fr
-en: datalist
+{
+	"title": "Correctif «&#160;datalist&#160;» (saisie automatique)",
+	"language": "fr",
+	"en": "datalist"
+}
 ---
 <p>La balise <code lang="en">datalist</code> spécifie une liste d'options pré-définis pour un élément <code lang="en">input</code>.</p>
 
-<!-- Start of Datalist content -->
 <section>
 	<h2>Exemple</h2>
 	<form action="#" method="get">
@@ -38,11 +39,9 @@ en: datalist
 			<!--[if lte IE 9]></select><![endif]-->
 		</datalist>
 	</form>
-</section>
-
-<section>
-	<h2>Usage</h2>
-	<pre class="wb-prettify prettyprint linenums"><code>&lt;label for="city"&gt;Ville&lt;/label&gt;
+	<details>
+		<summary>Visualiser le code</summary>
+		<pre class="wb-prettify prettyprint linenums"><code>&lt;label for="city"&gt;Ville&lt;/label&gt;
 &lt;input type="text" id="city" name="city" list="suggestions" /&gt;
 &lt;datalist id="suggestions"&gt;
 	&lt;!--[if lte IE 9]&gt;&lt;select&gt;&lt;![endif]--&gt;
@@ -70,5 +69,5 @@ en: datalist
 	&lt;option label="Yellowknife" value="Yellowknife"&gt;&lt;/option&gt;
 	&lt;!--[if lte IE 9]&gt;&lt;/select&gt;&lt;![endif]--&gt;
 &lt;/datalist&gt;</code></pre>
+	</details>
 </section>
-<!-- End of Datalist content -->

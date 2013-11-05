@@ -16,28 +16,30 @@
 }
 
 .cal-cnt {
-	.cal-header {
+	.cal-wd {
+		background: #555;
+		border-color: #333;
+	}
+	.cal-hd {
 		@extend %cal-background-333;
 		@extend %cal-color-fff;
 		font-weight: 700;
 	}
-	.cal-nextmonth, .cal-prevmonth {
-		a {
-			&:link, &:visited {
-				border: 1px solid #333;
-			}
-			@include pseudo-focus {
-				@extend %cal-color-fff;
-				border: 1px solid #FFF;
-			}
+	.cal-nxtmnth, .cal-prvmnth {
+		&:link, &:visited {
+			border: 1px solid #333;
+		}
+		&:hover, &:focus {
+			@extend %cal-color-fff;
+			border: 1px solid #FFF;
 		}
 	}
-	.cal-goto-link {
+	.cal-goto-lnk {
 		a {
 			&:link, &:visited {
 				@extend %cal-color-fff-important;
 			}
-			@include pseudo-focus {
+			&:focus, &:hover {
 				color: #36C !important;
 				background-color: #FFF;
 			}
@@ -51,75 +53,19 @@
 }
 
 .cal-days {
-	span.cal-empty, ol.cal-day-list li {
-		border-style: solid;
-		border-color: #AAA;
-		background: #FFF;
-	}
-	span.cal-we, ol.cal-day-list li.cal-we {
-		background: #EEE;
-	}
-	.cal-day-list {
-		a {
-			color: #111;
-			@include pseudo-focus {
-				@extend %cal-background-333;
-				@extend %cal-color-fff-important;
-			}
-		}
-	}
-	.cal-currentday {
-		@extend %cal-color-fff;
-		a {
-			&, &:link {
-				@extend %cal-color-fff-important;
-			}
-		}
-	}
-}
-
-.ui-mobile-viewport {
-	div {
-		&.cal-cnt {
-			.cal-nextmonth, .cal-prevmonth {
-				a {
-					&:link, &:visited {
-						border: none !important;
-					}
-				}
-			}
-		}
-	}
-}
-
-ol {
-	&.cal-weekdays {
-		li {
-			border-style: solid;
-			border-color: #333;
-			font-weight: bolder;
-			background: #555;
-			@extend %cal-color-fff;
-		}
-	}
-}
-
-div {
-	&.cal-days {
-		ol {
-			&.cal-day-list {
-				li {
-					&.cal-currentday {
-						@extend %cal-background-color-333;
-					}
-				}
-			}
-		}
-	}
-}
-
-.cal-currentday {
 	a {
+		color: #111;
+		&:hover, &:focus {
+			@extend %cal-background-333;
+			@extend %cal-color-fff-important;
+		}
+	}
+}
+.cal-currday {
+	@extend %cal-color-fff;
+	@extend %cal-background-color-333;
+	a {
+		@extend %cal-color-fff-important;
 		@extend %cal-background-color-333;
 	}
 }

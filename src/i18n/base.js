@@ -154,8 +154,8 @@ var ind = {
 	"%st-to-msg-end": "@%st-to-msg-end@",
 	"%st-msgbx-ttl": "@%st-msgbx-ttl@",
 	"%st-alrdy-to-msg": "@%st-alrdy-to-msg@",
-	"%st-button-continue": "@%st-button-continue@",
-	"%st-button-end": "@%st-button-end@",
+	"%st-btn-cont": "@%st-btn-cont@",
+	"%st-btn-end": "@%st-btn-end@",
 	/* Toggle details */
 	"%td-toggle": "@%td-toggle@",
 	"%td-open": "@%td-open@",

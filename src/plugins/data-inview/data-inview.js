@@ -14,6 +14,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-inview",
+	$elms = $( selector ),
 	$document = vapour.doc,
 	$window = vapour.win,
 
@@ -37,46 +38,45 @@ var selector = ".wb-inview",
 	 * @param {jQuery Event} event The event that triggered this method call
 	 */
 	onInview = function( $elm ) {
-		var $window = vapour.win,
-			elementWidth = $elm.outerWidth(),
+		var elementWidth = $elm.outerWidth(),
 			elementHeight = $elm.outerHeight(),
-			viewportHeight = $window.height(),
 			scrollTop = $window.scrollTop(),
-			scrollLeft = $window.scrollLeft(),
-			scrollRight = scrollLeft + elementWidth,
-			scrollBottom = scrollTop + viewportHeight,
+			scrollBottom = scrollTop + $window.height(),
+			scrollRight = $window.scrollLeft() + elementWidth,
 			x1 = $elm.offset().left,
 			x2 = x1 + elementWidth,
 			y1 = $elm.offset().top,
 			y2 = y1 + elementHeight,
-			$message = $elm.find( ".pg-banner, .pg-panel" ).attr({
-				"role": "toolbar",
-				"aria-hidden": "true"
-			});
+			inView = ( scrollBottom < y1 || scrollTop > y2 ) || ( scrollRight < x1 || scrollRight > x2 );
 
-		if ( ( scrollBottom < y1 || scrollTop > y2 ) || ( scrollRight < x1 || scrollRight > x2 ) ) {
-			$message.removeClass( "in" )
-				.addClass( "out" )
-				.wb( "hide", true );
-		} else {
-			$message.removeClass( "out" )
-				.addClass( "in" )
-				.wb( "show", true );
-		}
+		$elm
+			.find( ".pg-banner, .pg-panel" )
+				.attr({
+					"role": "toolbar",
+					"aria-hidden": !inView
+				})
+				.toggleClass( "in", !inView )
+				.toggleClass( "out", inView );
 	};
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb scroll.wb-inview", selector, function( event ) {
-	var eventType = event.type,
-		$elm = $( this );
+	var eventTarget = event.target,
+		eventType = event.type,
+		$elm;
 
-	switch ( eventType ) {
-	case "timerpoke":
-		init( $elm );
-		break;
-	case "scroll":
-		onInview( $elm );
-		break;
+	// Filter out any events triggered by descendants
+	if ( event.currentTarget === eventTarget ) {
+		$elm = $( eventTarget );
+
+		switch ( eventType ) {
+		case "timerpoke":
+			init( $elm );
+			break;
+		case "scroll":
+			onInview( $elm );
+			break;
+		}
 	}
 
 	/*
@@ -87,11 +87,11 @@ $document.on( "timerpoke.wb scroll.wb-inview", selector, function( event ) {
 });
 
 $window.on( "scroll scrollstop", function() {
-	$( selector ).trigger( "scroll.wb-inview" );
+	$elms.trigger( "scroll.wb-inview" );
 });
 
 $document.on( "text-resize.wb window-resize-width.wb window-resize-height.wb", function() {
-	$( selector ).trigger( "scroll.wb-inview" );
+	$elms.trigger( "scroll.wb-inview" );
 });
 
 // Add the timer poke to initialize the plugin

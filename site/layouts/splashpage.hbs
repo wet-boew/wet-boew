@@ -7,11 +7,11 @@
 		<meta charset="utf-8">
 		<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 		wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-		<title>{{title}} - {{sitename}}</title>
-		<link href="{{assets}}/images/favicon.ico" rel="shortcut icon">
+		<title>{{title}} - {{site.sitetitle}}</title>
+		<link href="{{assets}}/assets/favicon.ico" rel="shortcut icon">
 		<meta content="width=device-width, initial-scale=1" name="viewport">
 		<!-- Meta data -->
-		<meta name="description" content="{{description}}" />
+		<meta name="description" content="{{site.description}}" />
 		<!-- Meta data-->
 		<link rel="stylesheet" href="{{assets}}/css/base{{environment.suffix}}.css">
 		<link rel="stylesheet" href="{{assets}}/css/theme{{environment.suffix}}.css">
@@ -28,7 +28,7 @@
 				<div class="container">
 					<div class="row">
 						<section class="full-hd">
-							<object type="image/svg+xml" tabindex="-1" role="img" data="{{assets}}/assets/logo.svg" aria-label="{{sitetitle}}"></object>
+							<object type="image/svg+xml" tabindex="-1" role="img" data="{{assets}}/assets/logo.svg" aria-label="{{site.sitetitle}}"></object>
 						</section>
 					</div>
 				</div>
@@ -43,7 +43,7 @@
 		</main>
 
 		<!--[if gte IE 9 | !IE ]><!-->
-		<script src="{{assets}}/js/jquery.min.js"></script>
+		<script src="{{assets}}/js/jquery{{environment.suffix}}.js"></script>
 		<script src="{{assets}}/js/vapour{{environment.suffix}}.js"></script>
 		<!--<![endif]-->
 		<script src="{{assets}}/js/wet-boew{{environment.suffix}}.js"></script>

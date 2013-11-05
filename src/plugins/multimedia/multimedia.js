@@ -178,8 +178,8 @@ parseXml = function( content ) {
 @description Loads captions from an external source (HTML embed or TTML)
 @param {Object} elm The jQuery object for the multimedia player loading the captions
 @param {String} url The url for the captions resource to load
-@fires captionsloaded.mediaplayer.wb
-@fires captionsloadfailed.mediaplayer.wb
+@fires captionsloaded.multimedia.wb
+@fires captionsloadfailed.multimedia.wb
 */
 loadCaptionsExternal = function( elm, url ) {
 	$.ajax({
@@ -191,7 +191,7 @@ loadCaptionsExternal = function( elm, url ) {
 		},
 		success: function( data ) {
 			elm.trigger({
-				type: "captionsloaded.mediaplayer.wb",
+				type: "captionsloaded.multimedia.wb",
 				captions: data.indexOf( "<html" ) !== -1 ?
 					parseHtml( $( data ) ) :
 					parseXml( $( data ) )
@@ -199,7 +199,7 @@ loadCaptionsExternal = function( elm, url ) {
 		},
 		error: function( response, textStatus, errorThrown ) {
 			elm.trigger({
-				type: "captionsloadfailed.mediaplayer.wb",
+				type: "captionsloadfailed.multimedia.wb",
 				error: errorThrown
 			});
 		}
@@ -211,11 +211,11 @@ loadCaptionsExternal = function( elm, url ) {
 @description Loads same page captions emebed in HTML
 @param {Object} elm The jQuery object for the multimedia player loading the captions
 @param {Object} obj The jQUery object containing the captions
-@fires captionsloaded.mediaplayer.wb
+@fires captionsloaded.multimedia.wb
 */
 loadCaptionsInternal = function( elm, obj ) {
 	elm.trigger({
-		type: "captionsloaded.mediaplayer.wb",
+		type: "captionsloaded.multimedia.wb",
 		captions: parseHtml( obj )
 	});
 };
@@ -275,7 +275,7 @@ playerApi = function( fn, args ) {
 			} else {
 				captionsArea.removeClass("on");
 			}
-			return $this.trigger( "captionsvisiblechange.mediaplayer.wb" );
+			return $this.trigger( "captionsvisiblechange.multimedia.wb" );
 		case "setPreviousTime":
 			return this.object.previousTime = args;
 		case "setBuffering":
@@ -332,11 +332,11 @@ $document.on( "ajax-fetched.wb", $selector, function( event ) {
 
 	$this.data( "template", $template );
 	return $this.trigger({
-		type: "init.mediaplayer.wb"
+		type: "init.multimedia.wb"
 	});
 });
 
-$document.on( "init.mediaplayer.wb", $selector, function() {
+$document.on( "init.multimedia.wb", $selector, function() {
 
 	var $this = $( this ),
 		$id = $this.attr( "id" ) !== undef ? $this.attr( "id" ) : "wb-mediaplayer-" + ( $seed++ ),
@@ -364,9 +364,9 @@ $document.on( "init.mediaplayer.wb", $selector, function() {
 	$this.data( "properties", data );
 
 	if ( $media.get( 0 ).error === null && $media.get( 0 ).currentSrc !== "" && $media.get( 0 ).currentSrc !== undef ) {
-		return $this.trigger( "" + $type + ".mediaplayer.wb" );
+		return $this.trigger( "" + $type + ".multimedia.wb" );
 	} else {
-		return $this.trigger( "fallback.mediaplayer.wb" );
+		return $this.trigger( "fallback.multimedia.wb" );
 	}
 
 	// FIXME: This is unreachable
@@ -374,7 +374,7 @@ $document.on( "init.mediaplayer.wb", $selector, function() {
 	return $.error( "[web-boew] Mediaplayer :: error - mp003 :: Cannot play listed media" );
 });
 
-$document.on( "fallback.mediaplayer.wb", $selector, function() {
+$document.on( "fallback.multimedia.wb", $selector, function() {
 	var _ref = expand( this ),
 		$this = _ref[ 0 ],
 		$data = _ref[ 1 ],
@@ -409,10 +409,10 @@ $document.on( "fallback.mediaplayer.wb", $selector, function() {
 		$data.poster + "</object>";
 	$this.data( "properties", $data );
 
-	return $this.trigger( "renderui.mediaplayer.wb" );
+	return $this.trigger( "renderui.multimedia.wb" );
 });
 
-$document.on( "video.mediaplayer.wb", $selector, function() {
+$document.on( "video.multimedia.wb", $selector, function() {
 	var _ref = expand( this ),
 		$this = _ref[ 0 ],
 		$data = _ref[ 1 ];
@@ -424,16 +424,16 @@ $document.on( "video.mediaplayer.wb", $selector, function() {
 
 	$this.data( "properties", $data );
 
-	return $this.trigger( "renderui.mediaplayer.wb" );
+	return $this.trigger( "renderui.multimedia.wb" );
 });
 
-$document.on("audio.mediaplayer.wb", $selector, function() {
+$document.on("audio.multimedia.wb", $selector, function() {
 	// Implement audio player
 	var $data, $this, _ref;
 	return _ref = expand(this), $this = _ref[0], $data = _ref[1], _ref;
 });
 
-$document.on("renderui.mediaplayer.wb", $selector, function() {
+$document.on("renderui.multimedia.wb", $selector, function() {
 	var _ref = expand( this ),
 		$this = _ref[ 0 ],
 		$data = _ref[ 1 ],
@@ -470,74 +470,102 @@ UI Bindings
 */
 
 $document.on( "click", $selector, function( event ) {
-	var $target = $( event.target );
+	var eventTarget = event.target,
+		playerTarget = event.currentTarget,
+		which = event.which,
+		className = eventTarget.className,
+		$target;
 
-	if (event.which === 2 || event.which === 3) {
+	// Ignore middle and right mouse buttons
+	if ( !which || which === 1 ) {
+		$target = $( eventTarget );
+
+		if ( className.match( /playpause|-(play|pause)|wb-mm-ovrly/ ) ) {
+			playerTarget.player( playerTarget.player( "getPaused" ) ? "play" : "pause" );
+		} else if ( className.match( /\bcc\b|-subtitles/ )  ) {
+			playerTarget.player( "setCaptionsVisible", !playerTarget.player( "getCaptionsVisible" ) );
+		} else if ( className.match( /\bmute\b|-volume-(up|off)/ ) ) {
+			playerTarget.player( "setMuted", !playerTarget.player( "getMuted" ) );
+		} else if ( $target.is( "progress" ) || className.indexOf( "wb-progress-inner") !== -1 || className.indexOf( "wb-progress-outer" ) !== -1 ) {
+			playerTarget.player( "setCurrentTime", playerTarget.player( "getDuration" ) * ( ( event.pageX - $target.offset().left ) / $target.width() ) );
+		} else if ( className.match( /\brewind\b|-backwards/ ) ) {
+			playerTarget.player( "setCurrentTime", playerTarget.player( "getCurrentTime" ) - playerTarget.player( "getDuration" ) * 0.05 );
+		} else if ( className.match( /\bfastforward\b|-forward/ ) ) {
+			playerTarget.player( "setCurrentTime", playerTarget.player( "getCurrentTime" ) + playerTarget.player( "getDuration" ) * 0.05 );
+		}
+
 		return false;
-	}
-
-	if ( $target.attr( "class" ).match( /playpause|-(play|pause)|wb-mm-ovrly/ ) || $target.is( "object" ) ) {
-		   this.player( this.player( "getPaused" ) ? "play" : "pause" );
-	} else if ( $target.attr( "class" ).match( /\bcc\b|-subtitles/ )  ) {
-		   this.player( "setCaptionsVisible", !this.player( "getCaptionsVisible") );
-	} else if ( $target.attr( "class" ).match( /\bmute\b|-volume-(up|off)/ ) ) {
-		   this.player( "setMuted", !this.player( "getMuted" ) );
-	} else if ( $target.is( "progress" ) || $target.hasClass( "wb-progress-inner") || $target.hasClass( "wb-progress-outer" ) ) {
-		   this.player( "setCurrentTime", this.player( "getDuration" ) * ( ( event.pageX - $target.offset().left ) / $target.width() ) );
-	} else if ( $target.attr( "class" ).match( /\brewind\b|-backwards/ ) ) {
-		   this.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05);
-	} else if (  $target.attr( "class" ).match( /\bfastforward\b|-forward/ ) ) {
-		   this.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05);
 	}
 
 	return true;
 });
 
 $document.on( "keydown", $selector, function( event ) {
-	var _ref = expand( this ),
-		$this = _ref[ 0 ],
+	var playerTarget = event.currentTarget,
+		which = event.which,
+		ctrls = ".wb-mm-ctrls",
+		ref = expand( playerTarget ),
+		$this = ref[ 0 ],
 		volume = 0;
 
-	if ( ( event.which === 32 || event.which === 13 ) && event.target === this.player) {
-		$this.find( ".wb-mm-ctrls .playpause" ).click();
-	} else if ( event.keyCode === 37 ) {
-		$this.find( ".wb-mm-ctrls .rewind ").click();
-	} else if ( event.keyCode === 39 ) {
-		$this.find( ".wb-mm-ctrls .fastforward" ).click();
-	} else if ( event.keyCode === 38 ) {
-		volume = Math.round( this.player.getVolume() * 10) / 10 + 0.10;
-		volume = (volume < 1 ? volume : 1);
-		this.player.setVolume( volume );
-	} else if ( event.keyCode === 40 ) {
-		volume = Math.round( this.player.getVolume() * 10 ) / 10 - 0.1;
-		volume = ( volume > 0 ? volume : 0 );
-		this.player.setVolume( volume );
-	} else {
+	switch ( which ) {
+	case 32:
+		$this.find( ctrls + " .playpause" ).trigger( "click" );
+		break;
+
+	case 37:
+		$this.find( ctrls + " .rewind ").trigger( "click" );
+		break;
+
+	case 39:
+		$this.find( ctrls + " .fastforward" ).trigger( "click" );
+		break;
+
+	case 38:
+		volume = Math.round( playerTarget.player( "getVolume" ) * 10 ) / 10 + 0.1;
+		playerTarget.player( "setVolume", volume < 1 ? volume : 1 );
+		break;
+
+	case 40:
+		volume = Math.round( playerTarget.player( "getVolume" ) * 10 ) / 10 - 0.1;
+		playerTarget.player( "setVolume",  volume > 0 ? volume : 0 );
+		break;
+
+	default:
 		return true;
 	}
 	return false;
 });
 
-$document.on("durationchange play pause ended volumechange timeupdate captionsloaded.mediaplayer.wb captionsloadfailed.mediaplayer.wb captionsvisiblechange waiting canplay progress", $selector, function( event ) {
-	var button,
-		$this = $( this );
+$document.on( "keyup", $selector, function( event ) {
+	if ( event.which === 32 ) {
+		//Allows the spacebar to be used for play/pause without double triggering
+		return false;
+	}
+});
 
-	switch (event.type) {
+$document.on( "durationchange play pause ended volumechange timeupdate captionsloaded.multimedia.wb captionsloadfailed.multimedia.wb captionsvisiblechange waiting canplay progress", $selector, function( event ) {
+	var eventTarget = event.currentTarget,
+		eventType = event.type,
+		$this = $( eventTarget ),
+		currentTime,
+		button;
+
+	switch ( eventType ) {
 	case "play":
-		this.player( "play" );
 		button = $this.find( ".playpause .glyphicon" )
 			.removeClass( "glyphicon-play" )
 			.addClass( "glyphicon-pause" )
 			.parent();
 
-		button.attr( "title", button.data( "state-off" ));
+		button.attr( "title", button.data( "state-off" ) );
 
 		$this.find( ".wb-mm-ovrly" ).addClass( "playing" );
 
-		$this.find(".progress").addClass("active");
+		$this.find( ".progress" ).addClass( "active" );
 		break;
+
 	case "pause":
-		this.player( "pause" );
 		button = $this.find( ".playpause .glyphicon" )
 			.removeClass( "glyphicon-pause" )
 			.addClass( "glyphicon-play" )
@@ -547,6 +575,7 @@ $document.on("durationchange play pause ended volumechange timeupdate captionslo
 
 		$this.find( ".progress" ).removeClass( "active" );
 		break;
+
 	case "ended":
 		button = $this.find( ".playpause .glyphicon" )
 			.removeClass( "glyphicon-pause" )
@@ -556,10 +585,11 @@ $document.on("durationchange play pause ended volumechange timeupdate captionslo
 		button.attr( "title", button.data( "state-on" ) );
 		$this.find( ".wb-mm-ovrly" ).removeClass( "playing" );
 		break;
+
 	case "volumechange":
-		// TODO: Think can be optimized for the minfier with some ternaries
+		// TODO: Think can be optimized for the minifier with some ternaries
 		button = $this.find( ".mute .glyphicon" );
-		if ( this.player( "getMuted" ) ) {
+		if ( eventTarget.player( "getMuted" ) ) {
 			button = button.removeClass( "glyphicon-volume-up" )
 				.addClass( "glyphicon-volume-off" )
 				.parent();
@@ -572,38 +602,43 @@ $document.on("durationchange play pause ended volumechange timeupdate captionslo
 			button.attr( "title", button.data( "state-on" ) );
 		}
 		break;
+
 	case "timeupdate":
+		currentTime = eventTarget.player( "getCurrentTime" );
 		$this.find( "progress" )
 			.attr(
 				"value",
-				Math.round( this.player( "getCurrentTime" ) / this.player( "getDuration" ) * 1000 ) / 10
+				Math.round( currentTime / eventTarget.player( "getDuration" ) * 1000 ) / 10
 			);
 
 		$this.find( ".wb-mm-tline-current span" )
-			.text( formatTime( this.player( "getCurrentTime" ) ) );
+			.text( formatTime( currentTime ) );
 
-		if ( $.data( event.target, "captions" ) !== undef ) {
+		if ( $.data( eventTarget, "captions" ) !== undef ) {
 			updateCaptions(
 				$this.find( ".wb-mm-cc" ),
-				this.player( "getCurrentTime" ),
-				$.data( event.target, "captions" )
+				currentTime,
+				$.data( eventTarget, "captions" )
 			);
 		}
 		break;
+
 	case "captionsloaded":
-		$.data( event.target, "captions", event.captions );
+		$.data( eventTarget, "captions", event.captions );
 		break;
+
 	case "captionsloadfailed":
 		$this.find( ".wb-mm-cc" )
 		.append( "<p class='errmsg'><span>" + i18nText.cc_error + "</span></p>" )
-        .end()
-        .find( ".cc" )
-        .attr( "disabled", "" );
+		.end()
+		.find( ".cc" )
+		.attr( "disabled", "" );
 		break;
+
 	case "captionsvisiblechange":
-		// TODO: Think can be optimized for the minfier with some ternarie
+		// TODO: Think can be optimized for the minifier with some ternarie
 		button = $this.find( ".cc" );
-		if ( this.player( "getCaptionsVisible" ) ) {
+		if ( eventTarget.player( "getCaptionsVisible" ) ) {
 			button.attr( "title", button.data( "state-on" ) )
 				.css( "opacity", "1" );
 		} else {

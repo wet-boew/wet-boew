@@ -21,10 +21,16 @@ var selector = "details",
 	 * @param {DOM element} _input The input field to be polyfilled
 	 */
 	init = function( _elm ) {
+		var summary;
+
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 		window._timer.remove( selector );
 
 		_elm.setAttribute( "aria-expanded", ( _elm.getAttribute( "open" ) === null ) );
+		summary = _elm.getElementsByTagName( "summary" );
+		if ( summary.length !== 0 ) {
+			summary[ 0 ].setAttribute( "tabindex", "0" );
+		}
 	};
 
 // Bind the init event of the plugin
@@ -39,21 +45,23 @@ $document.on( "timerpoke.wb", selector, function( event ) {
 });
 
 // Bind the init event of the plugin
-$document.on( "click vclick touchstart", selector + " summary", function( event ) {
-	var eventWhich = event.which,
-		_details, _isClosed;
+$document.on( "click vclick touchstart keydown", selector + " summary", function( event ) {
+	var which = event.which,
+		details, isClosed;
 
-	// Ignore middle/right mouse buttons
-	if ( !eventWhich || eventWhich === 1 ) {
-		_details = event.target.parentNode;
-		_isClosed = ( _details.getAttribute( "open" ) === null );
+	// Filter out any events triggered by descendants and 
+	// ignore middle/right mouse buttons
+	if ( !which || which === 1 || which === 13 || which === 32 ) {
+
+		details = event.target.parentNode;
+		isClosed = ( details.getAttribute( "open" ) === null );
 		
-		if ( _isClosed ) {
-			_details.setAttribute( "open", "open" );
+		if ( isClosed ) {
+			details.setAttribute( "open", "open" );
 		} else {
-			_details.removeAttribute( "open" );
+			details.removeAttribute( "open" );
 		}
-		_details.setAttribute( "aria-expanded", _isClosed );
+		details.setAttribute( "aria-expanded", isClosed );
 
 		return false;
 	}

@@ -45,8 +45,8 @@ var $document = vapour.doc,
 	};
 
 $document.on( "timerpoke.wb ajax-fetched.wb", selector, function( event ) {
-	var eventType = event.type,
-		$elm = $( this ),
+	var eventTarget = event.target,
+		eventType = event.type,
 		ajaxTypes = [
 			"before",
 			"replace",
@@ -55,31 +55,36 @@ $document.on( "timerpoke.wb ajax-fetched.wb", selector, function( event ) {
 			"prepend"
 		],
 		len = ajaxTypes.length,
-		ajaxType, i, content;
+		$elm, ajaxType, i, content;
 
-	for ( i = 0; i !== len; i += 1 ) {
-		ajaxType = ajaxTypes[ i ];
-		if ( this.getAttribute( "data-ajax-" + ajaxType ) !== null ) {
-			break;
+	// Filter out any events triggered by descendants
+	if ( event.currentTarget === eventTarget ) {
+		$elm = $( eventTarget );
+
+		for ( i = 0; i !== len; i += 1 ) {
+			ajaxType = ajaxTypes[ i ];
+			if ( this.getAttribute( "data-ajax-" + ajaxType ) !== null ) {
+				break;
+			}
 		}
-	}
 
-	if ( eventType === "timerpoke" ) {
-		init( $elm, ajaxType );
-	} else {
-
-		// ajax-fetched event
-		content = event.pointer.html();
-		$elm.removeAttr( "data-ajax-" + ajaxType );
-
-		// "replace" is the only event that doesn't map to a jQuery function
-		if ( ajaxType === "replace") {
-			$elm.html( content );
+		if ( eventType === "timerpoke" ) {
+			init( $elm, ajaxType );
 		} else {
-			$elm[ ajaxType ]( content );
-		}
 
-		$elm.trigger( "ajax-" + ajaxType + "-loaded.wb" );
+			// ajax-fetched event
+			content = event.pointer.html();
+			$elm.removeAttr( "data-ajax-" + ajaxType );
+
+			// "replace" is the only event that doesn't map to a jQuery function
+			if ( ajaxType === "replace") {
+				$elm.html( content );
+			} else {
+				$elm[ ajaxType ]( content );
+			}
+
+			$elm.trigger( "ajax-" + ajaxType + "-loaded.wb" );
+		}
 	}
 
 	/*

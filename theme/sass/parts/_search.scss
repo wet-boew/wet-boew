@@ -4,3 +4,17 @@
 	padding-top: 2em;
 	padding-right: 10px;
 }
+
+#wb-srch {
+	.form-group {
+		width: 70%;
+	}
+}
+
+[lang=fr] {
+	#wb-srch {
+		.form-group {
+			width: 60%;
+		}
+	}
+}

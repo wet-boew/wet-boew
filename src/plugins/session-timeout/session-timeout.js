@@ -39,36 +39,42 @@ var selector = ".wb-session-timeout",
 	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
 	 */
 	init = function( event ) {
-		var $elm = $( event.target ),
+		var elm = event.target,
+			$elm, settings;
+	
+		// Filter out any events triggered by descendants
+		if ( event.currentTarget === elm ) {
+			$elm = $( elm );
 
-		// Merge default settings with overrides from the selected plugin element. There may be more than one, so don't override defaults globally!
-		settings = $.extend( {}, defaults, $elm.data( "wet-boew" ) );
+			// Merge default settings with overrides from the selected plugin element. There may be more than one, so don't override defaults globally!
+			settings = $.extend( {}, defaults, $elm.data( "wet-boew" ) );
 
-		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
+			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+			window._timer.remove( selector );
 
-		// Only initialize the i18nText once
-		if ( !i18nText ) {
-			i18n = window.i18n;
-			i18nText = {
-				buttonContinue: i18n( "%st-button-continue" ),
-				buttonEnd: i18n( "%st-button-end" ),
-				buttonSignin: i18n( "%tmpl-signin" ),
-				timeoutBegin: i18n( "%st-to-msg-bgn" ),
-				timeoutEnd: i18n( "%st-to-msg-end" ),
-				timeoutTitle: i18n( "%st-msgbx-ttl" ),
-				timeoutAlready: i18n( "%st-alrdy-to-msg" )
-			};
+			// Only initialize the i18nText once
+			if ( !i18nText ) {
+				i18n = window.i18n;
+				i18nText = {
+					buttonContinue: i18n( "%st-btn-cont" ),
+					buttonEnd: i18n( "%st-btn-end" ),
+					buttonSignin: i18n( "%tmpl-signin" ),
+					timeoutBegin: i18n( "%st-to-msg-bgn" ),
+					timeoutEnd: i18n( "%st-to-msg-end" ),
+					timeoutTitle: i18n( "%st-msgbx-ttl" ),
+					timeoutAlready: i18n( "%st-alrdy-to-msg" )
+				};
+			}
+
+			// Setup the modal dialog behaviour
+			$document.one( "ready.wb-modal", function() {
+				// Initialize the keepalive and inactive timeouts of the plugin
+				$elm.trigger( "reset.wb-session-timeout", settings );
+
+				// Setup the refresh on click behaviour
+				initRefreshOnClick( $elm, settings );
+			});
 		}
-
-		// Setup the modal dialog behaviour
-		$document.one( "ready.wb-modal", function() {
-			// Initialize the keepalive and inactive timeouts of the plugin
-			$elm.trigger( "reset.wb-session-timeout", settings );
-
-			// Setup the refresh on click behaviour
-			initRefreshOnClick( $elm, settings );
-		});
 	},
 
 	/*
@@ -253,10 +259,10 @@ var selector = ".wb-session-timeout",
 	 * Checks if the user wants to keep their session alive.
 	 * @function inactivity
 	 * @param {jQuery Event} event `confirm.wb-session-timeout` event that triggered the function call
-	 * @param {Object} settings Key-value object
 	 */
 	confirm = function( event ) {
-		var $elm = $( this ),
+		var elm = event.target,
+			$elm = $( elm ),
 			settings = $elm.data();
 
 		event.preventDefault();
@@ -382,17 +388,21 @@ $document.on( "timerpoke.wb keepalive.wb-session-timeout inactivity.wb-session-t
 	case "timerpoke":
 		init( event );
 		break;
+
 	case "keepalive":
 		keepalive( event, settings );
 		break;
+
 	case "inactivity":
 		inactivity( event, settings );
 		break;
+
 	case "reset":
 		reset( event, settings );
 		break;
 	}
 });
+
 $document.on( "click", ".wb-session-timeout-confirm", confirm );
 
 // Add the timer poke to initialize the plugin
