@@ -159,7 +159,6 @@ module.exports = (grunt) ->
 		pkg: grunt.file.readJSON("package.json")
 		banner: "/*! Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" - v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n*/\n"
-		min_suffix: ".min"
 
 		# Task configuration.
 		concat:
@@ -297,7 +296,7 @@ module.exports = (grunt) ->
 			demos_min:
 				options:
 					environment:
-						suffix: "<%= min_suffix %>"
+						suffix: ".min"
 					assets: "dist"
 				files: [
 					{
@@ -336,7 +335,7 @@ module.exports = (grunt) ->
 			tests:
 				options:
 					environment:
-						suffix: "<%= min_suffix %>"
+						suffix: ".min"
 						test: true
 				expand: true
 				cwd: "src/plugins"
@@ -438,7 +437,7 @@ module.exports = (grunt) ->
 				cwd: "dist/unmin/js/polyfills/"
 				src: ["*.js"]
 				dest: "dist/js/polyfills/"
-				ext: "<%= min_suffix %>.js"
+				ext: ".min.js"
 
 			other:
 				options:
@@ -455,14 +454,14 @@ module.exports = (grunt) ->
 				cwd: "dist/unmin/js/"
 				src: [ "*vapour.js" ]
 				dest: "dist/js/"
-				ext: "<%= min_suffix %>.js"
+				ext: ".min.js"
 				expand: true
 
 			plugins:
 				options:
 					banner: "<%= banner %>"
 				files:
-					"dist/js/wet-boew<%= min_suffix %>.js": "dist/unmin/js/wet-boew.js"
+					"dist/js/wet-boew.min.js": "dist/unmin/js/wet-boew.js"
 
 			i18n:
 				options:
@@ -471,7 +470,7 @@ module.exports = (grunt) ->
 				cwd: "dist/unmin/js/i18n"
 				src: ["**/*.js"]
 				dest: "dist/js/i18n"
-				ext: "<%= min_suffix %>.js"
+				ext: ".min.js"
 
 			deps:
 				options:
@@ -481,7 +480,7 @@ module.exports = (grunt) ->
 				src: ["*.js"]
 				dest: "dist/js/deps/"
 				rename: (destBase, destPath) ->
-					return destBase + destPath.replace(/\.js$/, "<%= min_suffix %>.js")
+					return destBase + destPath.replace(/\.js$/, ".min.js")
 
 		cssmin:
 			options:
@@ -494,7 +493,7 @@ module.exports = (grunt) ->
 					"!**/*.min.css"
 				]
 				dest: "dist/css"
-				ext: "<%= min_suffix %>.css"
+				ext: ".min.css"
 
 		htmlcompressor:
 			options:
