@@ -124,6 +124,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Process non-CSS/JS assets to dist"
 		[
 			"assets"
+			"copy:jquery_min"
 			"copy:assets_min"
 			"copy:misc_min"
 		]
@@ -223,7 +224,7 @@ module.exports = (grunt) ->
 				options:
 					stripBanners: false
 				src: [
-					"lib/jquery-ie/jquery.min.js"
+					"lib/jquery-ie/jquery.js"
 					"lib/respond/respond.src.js"
 					"lib/excanvas/excanvas.js"
 					"lib/html5shiv/dist/html5shiv.js"
@@ -329,7 +330,7 @@ module.exports = (grunt) ->
 
 			site_min:
 				options:
-					assets: "dist/min"
+					assets: "dist"
 					environment:
 						suffix: "<%= min_suffix %>"
 				expand: true
@@ -339,7 +340,7 @@ module.exports = (grunt) ->
 
 			plugins_min:
 				options:
-					assets: "dist/min"
+					assets: "dist"
 					environment:
 						suffix: "<%= min_suffix %>"
 				expand: true
@@ -349,7 +350,7 @@ module.exports = (grunt) ->
 
 			polyfills_min:
 				options:
-					assets: "dist/min"
+					assets: "dist"
 					environment:
 						suffix: "<%= min_suffix %>"
 				expand: true
@@ -546,10 +547,7 @@ module.exports = (grunt) ->
 		copy:
 			jquery:
 				cwd: "lib/jquery"
-				src: [
-					"jquery.min.js"
-					"jquery.min.map"
-				]
+				src: "jquery.js"
 				dest: "dist/unmin/js"
 				expand: true
 
@@ -615,6 +613,15 @@ module.exports = (grunt) ->
 				cwd: "theme/"
 				src: "**/assets/*.*"
 				dest: "dist/unmin"
+				expand: true
+
+			jquery_min:
+				cwd: "lib/jquery"
+				src: [
+					"jquery.min.js"
+					"jquery.min.map"
+				]
+				dest: "dist/js"
 				expand: true
 
 			assets_min:
