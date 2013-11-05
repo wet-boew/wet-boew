@@ -18,9 +18,8 @@ module.exports = (grunt) ->
 			"test"
 			"build"
 			"assets-dist"
-			"demos"
+			"assemble:demos"
 			"assemble:demos_min"
-			"assemble:ajax_min"
 			"htmlcompressor"
 		]
 	)
@@ -30,7 +29,7 @@ module.exports = (grunt) ->
 		"Produces unminified files"
 		[
 			"build"
-			"demos"
+			"assemble:demos"
 		]
 	)
 
@@ -42,7 +41,6 @@ module.exports = (grunt) ->
 			"assets"
 			"js"
 			"css"
-			"demos"
 		]
 	)
 
@@ -51,6 +49,8 @@ module.exports = (grunt) ->
 		"Build and deploy artifacts to wet-boew-dist"
 		[
 			"dist"
+			"assemble:demos"
+			"assemble:demos_min"
 			"copy:deploy"
 			"gh-pages"
 		]
@@ -138,15 +138,6 @@ module.exports = (grunt) ->
 		"INTERNAL: Runs testing tasks except for SauceLabs testing"
 		[
 			"jshint"
-		]
-	)
-
-	@registerTask(
-		"demos"
-		"INTERNAL: Compile the demo files"
-		[
-			"assemble:demos"
-			"assemble:ajax"
 		]
 	)
 
@@ -294,19 +285,14 @@ module.exports = (grunt) ->
 						src: "**/*.hbs"
 						dest: "dist/unmin/demos"
 					}
+					{
+						cwd: "site/pages/ajax"
+						src: "*.hbs"
+						dest: "dist/unmin/ajax"
+						expand: true
+						flatten: true
+					}
 				]
-
-			ajax:
-				options:
-					layout: "ajax.hbs"
-					ext: ".txt"
-				cwd: "site/pages/ajax"
-				src: [
-					"*.hbs"
-				]
-				dest: "dist/unmin/ajax"
-				expand: true
-				flatten: true
 
 			demos_min:
 				options:
@@ -323,36 +309,29 @@ module.exports = (grunt) ->
 					{
 						expand: true
 						cwd: "src/plugins"
-						src: ["**/*.hbs"]
+						src: "**/*.hbs"
 						dest: "dist/demos"
 					}
 					{
 						expand: true
 						cwd: "src/polyfills"
-						src: ["**/*.hbs"]
+						src: "**/*.hbs"
 						dest: "dist/demos"
 					}
 					{
 						expand: true
 						cwd: "src/other"
-						src: ["**/*.hbs"]
+						src: "**/*.hbs"
 						dest: "dist/demos"
 					}
+					{
+						cwd: "site/pages/ajax"
+						src: "*.hbs"
+						dest: "dist/ajax"
+						expand: true
+						flatten: true
+					}
 				]
-
-			ajax_min:
-				options:
-					environment:
-						suffix: "<%= min_suffix %>"
-					layout: "ajax.hbs"
-					ext: ".txt"
-				cwd: "site/pages/ajax"
-				src: [
-					"*.hbs"
-				]
-				dest: "dist/ajax"
-				expand: true
-				flatten: true
 
 			tests:
 				options:
