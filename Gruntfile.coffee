@@ -16,11 +16,11 @@ module.exports = (grunt) ->
 		"Produces the production files"
 		[
 			"test"
-			"clean:dist"
+			"build"
 			"assets-dist"
-			"dist-js"
-			"dist-css"
-			"demos-dist"
+			"assemble:demos"
+			"assemble:demos_min"
+			"htmlcompressor"
 		]
 	)
 
@@ -28,12 +28,19 @@ module.exports = (grunt) ->
 		"debug"
 		"Produces unminified files"
 		[
-			"test"
+			"build"
+			"assemble:demos"
+		]
+	)
+
+	@registerTask(
+		"build"
+		"Run full build."
+		[
 			"clean:dist"
 			"assets"
 			"js"
 			"css"
-			"demos"
 		]
 	)
 
@@ -42,6 +49,8 @@ module.exports = (grunt) ->
 		"Build and deploy artifacts to wet-boew-dist"
 		[
 			"dist"
+			"assemble:demos"
+			"assemble:demos_min"
 			"copy:deploy"
 			"gh-pages"
 		]
@@ -89,14 +98,6 @@ module.exports = (grunt) ->
 			"concat:coreIE8"
 			"concat:plugins"
 			"concat:i18n"
-		]
-	)
-
-	@registerTask(
-		"dist-js"
-		"INTERNAL: Compile and minify JS, and then cleans up unminifed JS in dist"
-		[
-			"js"
 			"uglify"
 		]
 	)
@@ -108,14 +109,6 @@ module.exports = (grunt) ->
 			"sass"
 			"autoprefixer"
 			"concat:css"
-		]
-	)
-
-	@registerTask(
-		"dist-css"
-		"INTERNAL: Compile and minify CSS, and then cleans up unminifed files in dist"
-		[
-			"css"
 			"cssmin"
 		]
 	)
@@ -124,7 +117,6 @@ module.exports = (grunt) ->
 		"assets-dist"
 		"INTERNAL: Process non-CSS/JS assets to dist"
 		[
-			"assets"
 			"copy:jquery_min"
 			"copy:assets_min"
 			"copy:misc_min"
@@ -150,39 +142,10 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
-		"demos-dist"
-		"INTERNAL: Compile the demo files"
-		[
-			"demos"
-			"assemble:site_min"
-			"assemble:plugins_min"
-			"assemble:polyfills_min"
-			"assemble:other_min"
-			"assemble:ajax_min"
-			"htmlcompressor"
-		]
-	)
-
-	@registerTask(
-		"demos"
-		"INTERNAL: Compile the demo files"
-		[
-			"assemble:site"
-			"assemble:plugins"
-			"assemble:polyfills"
-			"assemble:other"
-			"assemble:ajax"
-		]
-	)
-
-	@registerTask(
 		"pre-mocha"
 		"INTERNAL: prepare for running Mocha unit tests"
 		[
-			"clean:dist"
-			"assets"
-			"js"
-			"css"
+			"build"
 			"copy:tests"
 			"assemble:tests"
 		]
@@ -196,7 +159,6 @@ module.exports = (grunt) ->
 		pkg: grunt.file.readJSON("package.json")
 		banner: "/*! Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" - v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n*/\n"
-		min_suffix: ".min"
 
 		# Task configuration.
 		concat:
@@ -291,110 +253,89 @@ module.exports = (grunt) ->
 				data: "site/data/**/*.{yml,json}"
 				helpers: "site/helpers/helper-*.js"
 				layoutdir: "site/layouts"
-				partials: ["site/includes/**/*.hbs"]
+				partials: "site/includes/**/*.hbs"
 				layout: "default.hbs"
 
-			site:
+			demos:
 				options:
 					assets: "dist/unmin"
-				expand: true
-				cwd: "src"
-				src: ["*.hbs"]
-				dest: "dist/unmin"
-
-			plugins:
-				options:
-					assets: "dist/unmin"
-				expand: true
-				cwd: "src/plugins"
-				src: ["**/*.hbs"]
-				dest: "dist/unmin/demos"
-
-			polyfills:
-				options:
-					assets: "dist/unmin"
-				expand: true
-				cwd: "src/polyfills"
-				src: ["**/*.hbs"]
-				dest: "dist/unmin/demos"
-
-			other:
-				options:
-					assets: "dist/unmin"
-				expand: true
-				cwd: "src/other"
-				src: ["**/*.hbs"]
-				dest: "dist/unmin/demos"
-
-			ajax:
-				options:
-					layout: "ajax.hbs"
-					ext: ".txt"
-					assets: "dist/unmin"
-				cwd: "site/pages/ajax"
-				src: [
-					"*.hbs"
+				files: [
+					{
+						expand: true
+						cwd: "src"
+						src: "*.hbs"
+						dest: "dist/unmin"
+					}
+					{
+						expand: true
+						cwd: "src/plugins"
+						src: "**/*.hbs"
+						dest: "dist/unmin/demos"
+					}
+					{
+						expand: true
+						cwd: "src/polyfills"
+						src: "**/*.hbs"
+						dest: "dist/unmin/demos"
+					}
+					{
+						expand: true
+						cwd: "src/other"
+						src: "**/*.hbs"
+						dest: "dist/unmin/demos"
+					}
+					{
+						cwd: "site/pages/ajax"
+						src: "*.hbs"
+						dest: "dist/unmin/ajax"
+						expand: true
+						flatten: true
+					}
 				]
-				dest: "dist/unmin/ajax/"
-				expand: true
-				flatten: true
 
-			site_min:
+			demos_min:
 				options:
-					assets: "dist"
 					environment:
-						suffix: "<%= min_suffix %>"
-				expand: true
-				cwd: "src"
-				src: ["*.hbs"]
-				dest: "dist"
-
-			plugins_min:
-				options:
+						suffix: ".min"
 					assets: "dist"
-					environment:
-						suffix: "<%= min_suffix %>"
-				expand: true
-				cwd: "src/plugins"
-				src: ["**/*.hbs"]
-				dest: "dist/demos"
-
-			polyfills_min:
-				options:
-					assets: "dist"
-					environment:
-						suffix: "<%= min_suffix %>"
-				expand: true
-				cwd: "src/polyfills"
-				src: ["**/*.hbs"]
-				dest: "dist/demos"
-
-			other_min:
-				options:
-					assets: "dist"
-					environment:
-						suffix: "<%= min_suffix %>"
-				expand: true
-				cwd: "src/other"
-				src: ["**/*.hbs"]
-				dest: "dist/demos"
-
-			ajax_min:
-				options:
-					layout: "ajax.hbs"
-					ext: ".txt"
-				cwd: "site/pages/ajax"
-				src: [
-					"*.hbs"
+				files: [
+					{
+						expand: true
+						cwd: "src"
+						src: "*.hbs"
+						dest: "dist"
+					}
+					{
+						expand: true
+						cwd: "src/plugins"
+						src: "**/*.hbs"
+						dest: "dist/demos"
+					}
+					{
+						expand: true
+						cwd: "src/polyfills"
+						src: "**/*.hbs"
+						dest: "dist/demos"
+					}
+					{
+						expand: true
+						cwd: "src/other"
+						src: "**/*.hbs"
+						dest: "dist/demos"
+					}
+					{
+						cwd: "site/pages/ajax"
+						src: "*.hbs"
+						dest: "dist/ajax"
+						expand: true
+						flatten: true
+					}
 				]
-				dest: "dist/ajax/"
-				expand: true
-				flatten: true
 
 			tests:
 				options:
 					environment:
-						suffix: "<%= min_suffix %>"
+						suffix: ".min"
 						test: true
 				expand: true
 				cwd: "src/plugins"
@@ -496,7 +437,7 @@ module.exports = (grunt) ->
 				cwd: "dist/unmin/js/polyfills/"
 				src: ["*.js"]
 				dest: "dist/js/polyfills/"
-				ext: "<%= min_suffix %>.js"
+				ext: ".min.js"
 
 			other:
 				options:
@@ -513,14 +454,14 @@ module.exports = (grunt) ->
 				cwd: "dist/unmin/js/"
 				src: [ "*vapour.js" ]
 				dest: "dist/js/"
-				ext: "<%= min_suffix %>.js"
+				ext: ".min.js"
 				expand: true
 
 			plugins:
 				options:
 					banner: "<%= banner %>"
 				files:
-					"dist/js/wet-boew<%= min_suffix %>.js": "dist/unmin/js/wet-boew.js"
+					"dist/js/wet-boew.min.js": "dist/unmin/js/wet-boew.js"
 
 			i18n:
 				options:
@@ -529,7 +470,7 @@ module.exports = (grunt) ->
 				cwd: "dist/unmin/js/i18n"
 				src: ["**/*.js"]
 				dest: "dist/js/i18n"
-				ext: "<%= min_suffix %>.js"
+				ext: ".min.js"
 
 			deps:
 				options:
@@ -539,7 +480,7 @@ module.exports = (grunt) ->
 				src: ["*.js"]
 				dest: "dist/js/deps/"
 				rename: (destBase, destPath) ->
-					return destBase + destPath.replace(/\.js$/, "<%= min_suffix %>.js")
+					return destBase + destPath.replace(/\.js$/, ".min.js")
 
 		cssmin:
 			options:
@@ -552,17 +493,18 @@ module.exports = (grunt) ->
 					"!**/*.min.css"
 				]
 				dest: "dist/css"
-				ext: "<%= min_suffix %>.css"
+				ext: ".min.css"
 
 		htmlcompressor:
 			options:
 				type: "html"
 			all:
-				cwd: "dist/min"
+				cwd: "dist"
 				src: [
 					"**/*.html"
+					"!unmin/**/*.html"
 				]
-				dest: "dist/min"
+				dest: "dist"
 				expand: true
 
 		modernizr:
@@ -685,7 +627,11 @@ module.exports = (grunt) ->
 
 			assets_min:
 				cwd: "dist/unmin/"
-				src: ["assets/*", "fonts/*"]
+				src: [
+					"assets/*"
+					"fonts/*"
+					"js/assets/*"
+				]
 				dest: "dist"
 				expand: true
 
@@ -748,7 +694,6 @@ module.exports = (grunt) ->
 				template: "src/i18n/base.js"
 				csv: "src/i18n/i18n.csv"
 				dest: "dist/unmin/js/i18n/"
-			src: "src/js/i18n/formvalid/*.js"
 
 		mocha:
 			all:
