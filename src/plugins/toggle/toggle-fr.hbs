@@ -1,0 +1,39 @@
+---
+{
+	"title": "Basculer",
+	"language": "fr"
+}
+---
+
+<style>
+	.on {
+		color: #d9534f !important;
+	}
+	.off {
+		color: inherit;
+	}
+
+</style>
+
+<p>Plugiciel qui permet un lien à basculer des éléments entre les états activé et désactivé.</p>
+
+<section>
+	<h2>Exemple</h2>
+
+	<div class="row">
+		<div class="col-md-1"><span class="glyphicon glyphicon-adjust"></span></div>
+		<div class="col-md-1"><span class="glyphicon glyphicon-align-center"></span></div>
+		<div class="col-md-1"><span class="glyphicon glyphicon-align-justify"></span></div>
+		<div class="col-md-1"><span class="glyphicon glyphicon-align-left"></span></div>
+		<div class="col-md-1"><span class="glyphicon glyphicon-align-right"></span></div>
+		<div class="col-md-1"><span class="glyphicon glyphicon-arrow-down"></span></div>
+		<div class="col-md-1"><span class="glyphicon glyphicon-arrow-left"></span></div>
+		<div class="col-md-1"><span class="glyphicon glyphicon-tower"></span></div>
+	</div>
+
+	<div class="btn-group">
+		<button type="button" class="btn btn-primary wb-toggle" data-selector=".glyphicon">Basculer</button>
+		<button type="button" class="btn btn-default wb-toggle" data-selector=".glyphicon" data-type="on">Activer</button>
+		<button type="button" class="btn btn-default wb-toggle" data-selector=".glyphicon" data-type="off">Désactiver</button>
+	</div>
+</section>
