@@ -16,19 +16,19 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-parsing",
-    $document = vapour.doc,
+	$document = vapour.doc,
 
-	
+
 	/*
-     * Init runs once per plugin element on the page. There may be multiple elements. 
-     * It will run more than once per plugin if you don't remove the selector from the timer.
-     * @method init
-     * @param {jQuery DOM element} $elm The plugin element being initialized
-     */
-    init = function( obj ) {
+	* Init runs once per plugin element on the page. There may be multiple elements. 
+	* It will run more than once per plugin if you don't remove the selector from the timer.
+	* @method init
+	* @param {jQuery DOM element} $elm The plugin element being initialized
+	*/
+	init = function( obj ) {
 
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-        window._timer.remove( selector );
+		window._timer.remove( selector );
 
 		var $obj = obj,
 			groupZero = {
@@ -1344,7 +1344,7 @@ var selector = ".wb-parsing",
 					}
 				}
 
-				if (row.colgroup.length > 1  && currentRowPos !== 1) {
+				if (row.colgroup.length > 1 && currentRowPos !== 1) {
 					$obj.trigger( {
 						type: "warning.wb-table.wb",
 						pointer: $obj,
@@ -1677,7 +1677,7 @@ var selector = ".wb-parsing",
 						}
 						if (row.header) {
 							for (j = 0; j < row.header.length; j += 1) {
-								if ((row.header[j].rowpos === currentRowPos && row.cell[i].addrowheaders.length === 0) || (row.header[j].rowpos === currentRowPos && row.cell[i].addrowheaders[row.cell[i].addrowheaders.length - 1].uid !==  row.header[j].uid)) {
+								if ((row.header[j].rowpos === currentRowPos && row.cell[i].addrowheaders.length === 0) || (row.header[j].rowpos === currentRowPos && row.cell[i].addrowheaders[row.cell[i].addrowheaders.length - 1].uid !== row.header[j].uid)) {
 									row.cell[i].addrowheaders.push(row.header[j]); // Add the current header
 								}
 							}
@@ -1803,7 +1803,7 @@ var selector = ".wb-parsing",
 
 				stackRowHeader = false;
 
-				// Here it"s not possible to  Diggest the thead and the colgroup because we need the first data row to be half processed before
+				// Here it"s not possible to Diggest the thead and the colgroup because we need the first data row to be half processed before
 			} else if (nodeName === "tbody" || nodeName === "tfoot") {
 
 				if (nodeName === "tfoot") {
@@ -1886,40 +1886,40 @@ var selector = ".wb-parsing",
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb pasiveparse.wb-table.wb", selector, function( event ) {
-    var eventTarget = event.target,
-        eventType = event.type,
-        $elm;
+	var eventTarget = event.target,
+		eventType = event.type,
+		$elm;
 
-    // Filter out any events triggered by descendants
-    if ( event.currentTarget === eventTarget ) {
-        $elm = $( eventTarget );
+	// Filter out any events triggered by descendants
+	if ( event.currentTarget === eventTarget ) {
+		$elm = $( eventTarget );
 
-        switch ( eventType ) {
-        case "timerpoke":
-            init( $elm );
-            break;
-        }
-    }
+		switch ( eventType ) {
+		case "timerpoke":
+			init( $elm );
+			break;
+		}
+	}
 
-    /*
-     * Since we are working with events we want to ensure that we are being passive about our control, 
-     * so returning true allows for events to always continue
-     */
-    return true;
+	/*
+	* Since we are working with events we want to ensure that we are being passive about our control, 
+	* so returning true allows for events to always continue
+	*/
+	return true;
 });
 
 // Bind the init event of the plugin on passive table parsing request 
 $document.on( "pasiveparse.wb-table.wb", function( event ) {
-    var eventTarget = event.target,
-        $elm = $( eventTarget );
+	var eventTarget = event.target,
+		$elm = $( eventTarget );
 	
-    init( $elm );
+	init( $elm );
 
-    /*
-     * Since we are working with events we want to ensure that we are being passive about our control, 
-     * so returning true allows for events to always continue
-     */
-    return true;
+	/*
+	* Since we are working with events we want to ensure that we are being passive about our control, 
+	* so returning true allows for events to always continue
+	*/
+	return true;
 });
 
 

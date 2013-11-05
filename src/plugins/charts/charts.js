@@ -18,13 +18,13 @@
  */
 var wet_boew_charts,
 	selector = ".wb-charts",
-    $document = vapour.doc,
-    
-    /*
-     * Main Entry function to create the charts
-     * @method createCharts
-     * @param {jQuery DOM element} $elm table element use to create the chart  
-     */
+	$document = vapour.doc,
+
+	/*
+	* Main Entry function to create the charts
+	* @method createCharts
+	* @param {jQuery DOM element} $elm table element use to create the chart
+	*/
 	createCharts = function ($elm) {
 		var options = {},
 			i18n = window.i18n,
@@ -209,12 +209,12 @@ var wet_boew_charts,
 				tan: "#d2b48c",
 				teal: "#008080",
 				thistle: "#d8bfd8",
-				tomato:  "#ff6347",
-				turquoise:	"#40e0d0",
-				violet:  "#ee82ee",
-				wheat:	"#f5deb3",
-				white:	"#ffffff",
-				whitesmoke:  "#f5f5f5",
+				tomato: "#ff6347",
+				turquoise: "#40e0d0",
+				violet: "#ee82ee",
+				wheat: "#f5deb3",
+				white: "#ffffff",
+				whitesmoke: "#f5f5f5",
 				yellow: "#ffff00",
 				yellowgreen: "#9acd32",
 
@@ -234,7 +234,7 @@ var wet_boew_charts,
 				"accent-13": "#999999"
 			};
 
-			if ( typeof colour === "number" )  {
+			if ( typeof colour === "number" ) {
 				colour = "accent-" + ( colour + 1 );
 			}
 
@@ -305,12 +305,12 @@ var wet_boew_charts,
 					if ( $.isArray( namespace ) ) {
 						for ( i = 0, _ilen = namespace.length; i < _ilen; i += 1 ) {
 							detectedNamespace = namespace[i] + separatorNS;
-							if ( parameter.slice( 0, detectedNamespace.length ) ===  detectedNamespace ) {
+							if ( parameter.slice( 0, detectedNamespace.length ) === detectedNamespace ) {
 								_lenDetectedNamespace = detectedNamespace.length;
 								break;
 							}
 						}
-					} else if ( parameter.slice( 0, namespace.length + separatorNS.length ) ===  namespace + separatorNS ) {
+					} else if ( parameter.slice( 0, namespace.length + separatorNS.length ) === namespace + separatorNS ) {
 						detectedNamespace = namespace + separatorNS;
 						_lenDetectedNamespace = detectedNamespace.length;
 					} else if ( namespace === "" ) {
@@ -321,7 +321,7 @@ var wet_boew_charts,
 				// Get the parameter without the namespace
 				arrParameters = ( _lenDetectedNamespace !== undefined ) ? parameter.slice( _lenDetectedNamespace ).split( separatorNS ) : [];
 				// Convert the parameter in a controled JSON object
-				if ( arrParameters.length > 0 && parameter.slice( 0, _lenDetectedNamespace ) ===  detectedNamespace ) {
+				if ( arrParameters.length > 0 && parameter.slice( 0, _lenDetectedNamespace ) === detectedNamespace ) {
 					// Get all defined parameter
 					for ( i = 0, _ilen = arrParameters.length; i < _ilen; i += 1 ) {
 						arrParameter = arrParameters[ i ];
@@ -329,7 +329,7 @@ var wet_boew_charts,
 						isVal = i + 1 === _ilen;
 						// Check if that is the default value and make a reset to the parameter name if applicable
 						if ( isVal && _ilen ) {
-							if ( sourceOptions[ arrParameter + "-autocreate" ] || ( sourceOptions[ arrParameter ] &&  sourceOptions[ arrParameter + "-typeof" ] && sourceOptions[ arrParameter + "-typeof" ] === "boolean" ) ) {
+							if ( sourceOptions[ arrParameter + "-autocreate" ] || ( sourceOptions[ arrParameter ] && sourceOptions[ arrParameter + "-typeof" ] && sourceOptions[ arrParameter + "-typeof" ] === "boolean" ) ) {
 								// 1. If match an existing option and that option is boolean
 								arrParameter.push( "true" );
 								propName = arrParameter;
@@ -351,7 +351,7 @@ var wet_boew_charts,
 						// Get the type of the current option (if available)
 						// (Note: an invalid value are defined by "undefined" value)
 						// Check if the type are defined
-						if  (sourceOptions[ propName + "-typeof" ] ) {
+						if (sourceOptions[ propName + "-typeof" ] ) {
 							// Repair the value if needed
 							arrValue = [];
 							for ( j = ( i + 1 ); j < _ilen; j += 1 ) {
@@ -501,7 +501,7 @@ var wet_boew_charts,
 				"pieinnerradius-typeof": "number",
 				"piestartangle-autocreate": true, // Factor of PI used for the starting angle (in radians) It can range between 0 and 200 (where 0 and 200 have the same result).
 				"piestartangle-typeof": "number",
-				"piehighlight-autocreate": true, //  Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
+				"piehighlight-autocreate": true, // Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
 				"piehighlight-typeof": "number",
 				"piehoverable-autocreate": true, // Hoverable pie slice
 				"piehoverable-typeof": "boolean",
@@ -864,7 +864,7 @@ var wet_boew_charts,
 						break;
 					}
 
-					if ( parsedDataCell.type === 1 || parsedDataCell.type === 7 )  {
+					if ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ){
 						nbCells += 1;
 
 						if ( parsedDataCell.child.length > 0 ){
@@ -906,7 +906,7 @@ var wet_boew_charts,
 						break;
 					}
 
-					if ( parsedDataCell.type === 1 || parsedDataCell.type === 7 )  {
+					if ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) {
 
 						parsedDataCell.flotDelta = ( TotalRowValue / nbCells );
 
@@ -1020,7 +1020,7 @@ var wet_boew_charts,
 					break;
 				}
 
-				if ( parsedDataCell.colpos >= dataColgroupStart && ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) )  {
+				if ( parsedDataCell.colpos >= dataColgroupStart && ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) ) {
 					nbCells += 1;
 
 					nbTotSlots += parsedDataCell.width;
@@ -1059,7 +1059,7 @@ var wet_boew_charts,
 					break;
 				}
 
-				if ( parsedDataCell.colpos >= dataColgroupStart && ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) )  {
+				if ( parsedDataCell.colpos >= dataColgroupStart && ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) ) {
 
 					parsedDataCell.flotDelta = !options.uniformtick ? ( TotalRowValue / nbCells ) : 1;
 
@@ -1112,7 +1112,7 @@ var wet_boew_charts,
 				headStr,
 				arr,
 				tr;
-			capVal =  $( "caption", srcTbl ).text();
+			capVal = $( "caption", srcTbl ).text();
 			$( "tr ", srcTbl ).each( function () {
 				maxRowCol += 1;
 				if ( s < 1 ) {
@@ -1302,7 +1302,7 @@ var wet_boew_charts,
 			tblCaptionText = $( "caption", srcTbl ).text();
 			$( figCaptionElem ).append( tblCaptionHTML );
 
-			dataGroup =  parsedData.colgroup[ 0 ].type === 1 ? parsedData.colgroup[ 1 ] : parsedData.colgroup[ 0 ];
+			dataGroup = parsedData.colgroup[ 0 ].type === 1 ? parsedData.colgroup[ 1 ] : parsedData.colgroup[ 0 ];
 
 			for ( rIndex = parsedData.lstrowgroup[ 0 ].row.length - 1; rIndex >= 0; rIndex -= 1 ) {
 
@@ -1526,7 +1526,7 @@ var wet_boew_charts,
 					// Bar chart case, re-evaluate the calculated point
 					if ( barDelta && rowOptions.chartBarOption ) {
 						// Position bar
-						valuePoint = valueCumul - ( smallestHorizontalFlotDelta / 2 )  + ( smallestHorizontalFlotDelta / nbBarChart * ( rowOptions.chartBarOption - 1) );
+						valuePoint = valueCumul - ( smallestHorizontalFlotDelta / 2 ) + ( smallestHorizontalFlotDelta / nbBarChart * ( rowOptions.chartBarOption - 1) );
 
 						if ( nbBarChart === 1 ) {
 							valuePoint = valueCumul;
@@ -1713,11 +1713,11 @@ var wet_boew_charts,
 	},
 
 	/*
-     * Init runs once per plugin element on the page. There may be multiple elements. 
-     * It will run more than once per plugin if you don't remove the selector from the timer.
-     * @method init
-     * @param {jQuery DOM element} $elm The plugin element being initialized
-     */
+	* Init runs once per plugin element on the page. There may be multiple elements. 
+	* It will run more than once per plugin if you don't remove the selector from the timer.
+	* @method init
+	* @param {jQuery DOM element} $elm The plugin element being initialized
+	*/
 	init = function( $elm ) {
 		window._timer.remove( selector );
 		
@@ -1727,11 +1727,11 @@ var wet_boew_charts,
 		window.Modernizr.load({
 		
 			// For loading multiple dependencies
-            both: [
-                "site!deps/jquery.flot" + modeJS,
+			both: [
+				"site!deps/jquery.flot" + modeJS,
 				"site!deps/jquery.flot.pie" + modeJS,
 				"site!deps/jquery.flot.canvas" + modeJS
-            ],
+			],
 			complete: function() {
 				// Let parse the table
 				$elm.trigger( "pasiveparse.wb-table.wb" );
@@ -1741,29 +1741,29 @@ var wet_boew_charts,
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb parsecomplete.wb-table.wb", selector, function( event ) {
-    var eventTarget = event.target,
-        eventType = event.type,
-        $elm;
+	var eventTarget = event.target,
+		eventType = event.type,
+		$elm;
 
-    // Filter out any events triggered by descendants
-    if ( event.currentTarget === eventTarget ) {
-        $elm = $( eventTarget );
+	// Filter out any events triggered by descendants
+	if ( event.currentTarget === eventTarget ) {
+		$elm = $( eventTarget );
 
-        switch ( eventType ) {
-        case "timerpoke":
-            init( $elm );
-            break;
-        case "parsecomplete":
-            createCharts( $elm );
-            break;
-        }
-    }
+		switch ( eventType ) {
+		case "timerpoke":
+			init( $elm );
+			break;
+		case "parsecomplete":
+			createCharts( $elm );
+			break;
+		}
+	}
 
-    /*
-     * Since we are working with events we want to ensure that we are being passive about our control, 
-     * so returning true allows for events to always continue
-     */
-    return true;
+	/*
+	* Since we are working with events we want to ensure that we are being passive about our control, 
+	* so returning true allows for events to always continue
+	*/
+	return true;
 });
 
 // Add the timer poke to initialize the plugin
