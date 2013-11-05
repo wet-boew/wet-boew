@@ -81,6 +81,7 @@ module.exports = (grunt) ->
 		[
 			"copy:jquery"
 			"copy:polyfills"
+			"copy:other"
 			"copy:deps"
 			"copy:jsAssets"
 			"i18n"
@@ -156,6 +157,7 @@ module.exports = (grunt) ->
 			"assemble:site_min"
 			"assemble:plugins_min"
 			"assemble:polyfills_min"
+			"assemble:other_min"
 			"assemble:ajax_min"
 			"htmlcompressor"
 		]
@@ -168,6 +170,7 @@ module.exports = (grunt) ->
 			"assemble:site"
 			"assemble:plugins"
 			"assemble:polyfills"
+			"assemble:other"
 			"assemble:ajax"
 		]
 	)
@@ -315,6 +318,14 @@ module.exports = (grunt) ->
 				src: ["**/*.hbs"]
 				dest: "dist/unmin/demos"
 
+			other:
+				options:
+					assets: "dist/unmin"
+				expand: true
+				cwd: "src/other"
+				src: ["**/*.hbs"]
+				dest: "dist/unmin/demos"
+
 			ajax:
 				options:
 					layout: "ajax.hbs"
@@ -355,6 +366,16 @@ module.exports = (grunt) ->
 						suffix: "<%= min_suffix %>"
 				expand: true
 				cwd: "src/polyfills"
+				src: ["**/*.hbs"]
+				dest: "dist/demos"
+
+			other_min:
+				options:
+					assets: "dist"
+					environment:
+						suffix: "<%= min_suffix %>"
+				expand: true
+				cwd: "src/other"
 				src: ["**/*.hbs"]
 				dest: "dist/demos"
 
@@ -413,6 +434,17 @@ module.exports = (grunt) ->
 				ext: ".css"
 				flatten: true
 
+			other:
+				expand: true
+				cwd: "other"
+				src: [
+					"**/*.scss"
+					"!**/base.scss"
+				]
+				dest: "dist/unmin/css/other/"
+				ext: ".css"
+				flatten: true
+
 		autoprefixer:
 			options:
 				browsers: [
@@ -430,6 +462,7 @@ module.exports = (grunt) ->
 				src: [
 					"**/*.css"
 					"!**/polyfills/**/*.css"
+					"!**/other/**/*.css"
 					"!**/*.min.css"
 				]
 				dest: "dist/unmin/css"
@@ -445,6 +478,15 @@ module.exports = (grunt) ->
 				dest: "dist/unmin/css/polyfills/"
 				expand: true
 
+			other:
+				cwd: "dist/unmin/css/other"
+				src: [
+					"**/*.css"
+					"!**/*.min.css"
+				]
+				dest: "dist/unmin/css/other/"
+				expand: true
+
 		# Minify
 		uglify:
 			polyfills:
@@ -454,6 +496,15 @@ module.exports = (grunt) ->
 				cwd: "dist/unmin/js/polyfills/"
 				src: ["*.js"]
 				dest: "dist/js/polyfills/"
+				ext: "<%= min_suffix %>.js"
+
+			other:
+				options:
+					preserveComments: "some"
+				expand: true
+				cwd: "dist/unmin/js/other/"
+				src: ["*.js"]
+				dest: "dist/js/other/"
 				ext: "<%= min_suffix %>.js"
 
 			core:
@@ -585,6 +636,13 @@ module.exports = (grunt) ->
 				expand: true
 				flatten: true
 
+			other:
+				cwd: "src/other"
+				src: "**/*.js"
+				dest: "dist/unmin/js/other"
+				expand: true
+				flatten: true
+
 			deps:
 				cwd: "lib"
 				src: [
@@ -604,6 +662,7 @@ module.exports = (grunt) ->
 				src: [
 					"plugins/**/assets/*"
 					"polyfills/**/assets/*"
+					"other/**/assets/*"
 				]
 				dest: "dist/unmin/js/assets"
 				expand: true
