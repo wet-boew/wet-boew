@@ -260,37 +260,31 @@ module.exports = (grunt) ->
 				options:
 					assets: "dist/unmin"
 				files: [
-					{
 						expand: true
 						cwd: "src"
 						src: "*.hbs"
 						dest: "dist/unmin"
-					}
-					{
+					,
 						expand: true
 						cwd: "src/plugins"
 						src: "**/*.hbs"
 						dest: "dist/unmin/demos"
-					}
-					{
+					,
 						expand: true
 						cwd: "src/polyfills"
 						src: "**/*.hbs"
 						dest: "dist/unmin/demos"
-					}
-					{
+					,
 						expand: true
 						cwd: "src/other"
 						src: "**/*.hbs"
 						dest: "dist/unmin/demos"
-					}
-					{
+					,
 						cwd: "site/pages/ajax"
 						src: "*.hbs"
 						dest: "dist/unmin/ajax"
 						expand: true
 						flatten: true
-					}
 				]
 
 			demos_min:
@@ -299,37 +293,31 @@ module.exports = (grunt) ->
 						suffix: ".min"
 					assets: "dist"
 				files: [
-					{
 						expand: true
 						cwd: "src"
 						src: "*.hbs"
 						dest: "dist"
-					}
-					{
+					,
 						expand: true
 						cwd: "src/plugins"
 						src: "**/*.hbs"
 						dest: "dist/demos"
-					}
-					{
+					,
 						expand: true
 						cwd: "src/polyfills"
 						src: "**/*.hbs"
 						dest: "dist/demos"
-					}
-					{
+					,
 						expand: true
 						cwd: "src/other"
 						src: "**/*.hbs"
 						dest: "dist/demos"
-					}
-					{
+					,
 						cwd: "site/pages/ajax"
 						src: "*.hbs"
 						dest: "dist/ajax"
 						expand: true
 						flatten: true
-					}
 				]
 
 			tests:
@@ -337,10 +325,7 @@ module.exports = (grunt) ->
 					environment:
 						suffix: ".min"
 						test: true
-				expand: true
-				cwd: "src/plugins"
-				src: ["**/*.hbs"]
-				dest: "dist/demos"
+				files: "<%= assemble.demos_min.files %>"
 
 		# Compiles the Sass files
 		sass:
