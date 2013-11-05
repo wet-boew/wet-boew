@@ -3,85 +3,61 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 (function ( $, vapour ) {
-	"use strict";
+"use strict";
 
-	var theme = {
-		previousBreakPoint: -1,
+/* 
+ * Variable and function definitions. 
+ * These are global to the plugin - meaning that they will be initialized once per page,
+ * not once per instance of plugin on the page. So, this is a good place to define
+ * variables that are common to all instances of the plugin on a page.
+ */
+var $document = vapour.doc,
 
-		// Theme onResize handler
-		onResize: function() {
-			var $document = vapour.doc,
-				breakpoint = parseInt( $( "html" ).css( "margin-bottom" ), 10 );
+	onXXSmallView = function() {
+		return;
+	},
 
-			if ( breakpoint !== theme.previousBreakPoint ) {
-				switch ( breakpoint ) {
-				case 4:
-					$document.trigger( "xlargeview" );
-					break;
-				case 3:
-					$document.trigger( "largeview" );
-					break;
-				case 2:
-					$document.trigger( "mediumview" );
-					break;
-				case 1:
-					$document.trigger( "smallview" );
-					break;
-				case 0:
-					$document.trigger( "xsmallview" );
-					break;
-				}
-			}
-			theme.previousBreakPoint = breakpoint;
-		},
+	onXSmallView = function() {
+		return;
+	},
 
-		onLargeView: function() {
-			return;
-		},
-		
-		onMediumSmallView: function() {
-			return;
-		},
-		
-		onMediumView: function() {
-			return;
-		},
-		
-		onSmallView: function() {
-			return;
-		},
+	onSmallView = function() {
+		return;
+	},
 
-		onXSmallView: function() {
-			return;
-		}
+	onMediumView = function() {
+		return;
+	},
+
+	onLargeView = function() {
+		return;
 	};
 
-	vapour.doc.on( "xlargeview largeview mediumview smallview xsmallview text-resize.wb window-resize-width.wb window-resize-height.wb", function( event ) {
-		var eventType = event.type;
+$document.on( "xxsmallview.wb xsmallview.wb smallview.wb mediumview.wb largeview.wb", function( event ) {
+	var eventType = event.type;
 
-		switch ( eventType ) {
-		case "xlargeview":
-		case "largeview":
-			theme.onLargeView();
-			break;
-		case "mediumview":
-			theme.onMediumSmallView();
-			theme.onMediumView();
-			break;
-		case "smallview":
-		case "xsmallview":
-			theme.onMediumSmallView();
-			theme.onSmallView();
-			break;
-		// Listen for the WET resize handler events
-		case "text-resize":
-		case "window-resize-width":
-		case "window-resize-height":
-			theme.onResize();
-			break;
-		}
-	});
+	switch ( eventType ) {
 
-	// Trigger the initial onResize
-	theme.onResize();
-}( jQuery, vapour ));
+	case "xxsmallview":
+		onXXSmallView();
+		break;
+
+	case "xsmallview":
+		onXSmallView();
+		break;
+
+	case "smallview":
+		onSmallView();
+		break;
+
+	case "mediumview":
+		onMediumView();
+		break;
+
+	case "largeview":
+		onLargeView();
+		break;
+	}
+});
+
+})( jQuery, vapour );
