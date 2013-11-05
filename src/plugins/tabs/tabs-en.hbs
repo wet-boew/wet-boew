@@ -1,21 +1,19 @@
 ---
 {
-	"title": "Tabbed Interface Demo",
-	"language": "en"
+	"title": "Tabbed Interface",
+	"language": "en",
+	"fr": "tabs"
 }
 ---
-<div class="span-8"><section><h2 id="features">Features</h2>
+<div class="span-8"><section><h2 id="cara">Caractéristiques</h2>
 <ul>
-<li>Multiple tabs on the same page.</li>
-<li>Multiple design options.</li>
-<li>Choose the default tab (<code>&lt;li class="default"&gt;</code>).</li>
-<li>Choose if the tabs cycle and choose the cycle speed (fast: <code>class="cycle-fast"</code>, slow: <code>class="cycle-slow"</code>, normal: <code>class="cycle"</code>).</li>
-<li>Injects Pause/Play if cycle is activated. Appropriate French is injected for French pages.</li>
-<li>Pause/Play alone would have accessibility issues as it not being descriptive enough (&quot;Pause&quot; what?), so the injected code actually says:
-<code>Pause &lt;span class="wb-inv"&gt;: Stop tab rotation&lt;/span&gt;</code>
-and
-<code>Play &lt;span class="wb-inv"&gt;: Start tab rotation&lt;/span&gt;</code></li>
-<li>Force tabs to be the same height, i.e. they will all be the height of the tallest tab. This is useful if there is a cycle effect, so the page doesn't jump as the tab cycles from one panel to the next.</li>
+<li>Prise en charge de plusieurs onglets sur une même page.</li>
+<li>Plusieurs options de mise en forme.</li>
+<li>Possibilité de choisir l'onglet par défaut (<code lang="en">&lt;li class="default"&gt;</code>).</li>
+<li>Possibilité de choisir si le passage automatique d’un onglet à l’autre est activé; le délai est réglable (rapide&#160;: <code lang="en">class="cycle-fast"</code>, lent&#160;: <code lang="en">class="cycle-slow"</code>, normal&#160;: <code lang="en">class="cycle"</code>).</li>
+<li>Insertion de l'option Pause/Jouer si le passage automatique d’un onglet à l’autre est activé. Insertion du français pour les pages en français.</li>
+<li>Seule, l'option Pause/Jouer n'est pas disponible puisque ces commandes ne sont pas significatives («&#160;Pause&#160;» quoi?), et le code inséré dit en réalité&#160;: <code lang="en"><span lang="fr">Pause</span>&lt;span class="wb-invisible"&gt;<span lang="fr">&#160;: Arrêter la rotation des onglets</span>&lt;/span&gt;</code> et <code lang="en"><span lang="fr">Jouer</span>&lt;span class="wb-invisible"><span lang="fr">&#160;: Lancer la rotation des onglets</span>&lt;/span&gt;</code>.</li>
+<li>Possibilité d’imposer la même hauteur à tous les onglets (celle du plus long). Cette caractéristique est utile lorsque le passage automatique d’un onglet à l’autre est activé&#160;: la page ne saute pas quand on passe d’un panneau à l’autre.</li>
 </ul>
 </section></div>
 <div class="clear"></div>
