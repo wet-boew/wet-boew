@@ -34,6 +34,11 @@
 	cursor: pointer;
 }
 
+%tables-sort-button-padding {
+	padding-left: 10px;
+	padding-right: 18px;
+}
+
 @mixin pseudo-focus($hover: true) {
 	@if $hover {
 		&:hover, &:focus {
@@ -56,7 +61,6 @@ table {
 		thead {
 			th {
 				@extend %tables-border-bottom-1px-solid-black-font-weight-700;
-				@extend %tables-cursor-pointer;
 				&:active {
 					@extend %tables-outline-none;
 				}
@@ -256,22 +260,33 @@ table {
  */
 .sorting {
 	background: url("../js/assets/sort_both.png") no-repeat center right;
+	@extend %tables-sort-button-padding;
+	@extend %tables-cursor-pointer;
 }
 
 .sorting_asc {
 	background: url("../js/assets/sort_asc.png") no-repeat center right;
+	@extend %tables-sort-button-padding;
+	@extend %tables-cursor-pointer;
 }
 
 .sorting_desc {
 	background: url("../js/assets/sort_desc.png") no-repeat center right;
+	@extend %tables-sort-button-padding;
+	@extend %tables-cursor-pointer;
 }
+
 
 .sorting_asc_disabled {
 	background: url("../js/assets/sort_asc_disabled.png") no-repeat center right;
+	@extend %tables-sort-button-padding;
+	@extend %tables-cursor-pointer;
 }
 
 .sorting_desc_disabled {
 	background: url("../js/assets/sort_desc_disabled.png") no-repeat center right;
+	@extend %tables-sort-button-padding;
+	@extend %tables-cursor-pointer;
 }
 
 /*
