@@ -23,7 +23,17 @@ var id = "wb-resize",
 		"window-resize-width.wb",
 		"window-resize-height.wb"
 	],
-	eventsAll, resizeTest,
+
+	// Breakpoint names and lower pixel limits
+	breakpoints = {
+		xxsmallview: 0,
+		xsmallview: 480,
+		smallview: 768,
+		mediumview: 992,
+		largeview: 1200,
+		xlargeview: 1600
+	},
+	eventsAll, resizeTest, currentView,
 
 	/*
 	 * Init runs once per plugin element on the page. There may be multiple elements. 
@@ -47,6 +57,37 @@ var id = "wb-resize",
 
 		// Create a string containing all the events
 		eventsAll = events.join( " " );
+
+		// Determine the current view
+		viewChange( sizes[ 1 ] );
+	},
+
+	viewChange = function ( viewportWidth ) {
+		var breakpoint;
+
+		// Check for a change between views
+		for ( breakpoint in breakpoints ) {
+
+			// Determine the current view
+			if ( viewportWidth < breakpoints[ breakpoint ] ) {
+
+				// Determine if the current view is different the previous view
+				if ( breakpoint !== currentView ) {
+
+					// Change the breakpoint class on the html element
+					vapour.html
+						.removeClass( currentView )
+						.addClass( breakpoint );
+
+					// Update the current breakpoint
+					currentView = breakpoint;
+
+					// Trigger the breakpoint event
+					$document.trigger( breakpoint + ".wb" );
+				}
+				break;
+			}
+		}
 	},
 
 	/*
@@ -59,12 +100,18 @@ var id = "wb-resize",
 				$window.width(),
 				$window.height()
 			],
-			i,
-			len = currentSizes.length;
+			len = currentSizes.length,
+			i;
 
+		// Check for a viewport or text size change
 		for ( i = 0; i !== len; i += 1 ) {
 			if ( currentSizes[ i ] !== sizes[ i ] ) {
+			
+				// Change detected so trigger related event
 				$document.trigger( events[ i ], currentSizes );
+
+				// Check for a view change
+				viewChange( currentSizes[ 1 ] );
 			}
 		}
 		sizes = currentSizes;
