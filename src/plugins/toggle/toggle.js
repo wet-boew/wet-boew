@@ -7,21 +7,21 @@
 (function( $, window, vapour ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-toggle",
 	$document = vapour.doc,
-	state = {},
+	states = {},
 	stateOn = "on",
 	stateOff = "off",
 
 
 	/*
-	 * Init runs once per plugin element on the page. There may be multiple elements. 
+	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
 	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
@@ -89,7 +89,7 @@ var selector = ".wb-toggle",
 		});
 
 		event.preventDefault();
-		
+
 		// Assign focus to eventTarget
 		$( eventTarget ).trigger( "focus.wb" );
 	},
@@ -123,10 +123,10 @@ var selector = ".wb-toggle",
 
 		// No toggle type: get the current on/off state of the elements specified by the selector and parent
 		if ( !type ) {
-			if ( state.hasOwnProperty( selector ) ) {
-				return state[ selector ].hasOwnProperty( parent ) ?
-					state[ selector ][ parent ] :
-					state[ selector ].all;
+			if ( states.hasOwnProperty( selector ) ) {
+				return states[ selector ].hasOwnProperty( parent ) ?
+					states[ selector ][ parent ] :
+					states[ selector ].all;
 			}
 			return stateOff;
 		}
@@ -145,23 +145,23 @@ var selector = ".wb-toggle",
 		var prop;
 
 		// Check the selector object has been created
-		if ( !state[ selector ] ) {
-			state[ selector ] = {
+		if ( !states[ selector ] ) {
+			states[ selector ] = {
 				all: stateOff
 			};
 		}
 
 		// If there's a parent, set its state
 		if ( parent ) {
-			state[ selector ][ parent ] = state;
+			states[ selector ][ parent ] = state;
 
 			// No parent means set all states for the given selector. This is
 			// because toggle links that apply to the entire DOM also affect
 			// links that are restricted by parent.
 		} else {
-			for ( prop in state[ selector ] ) {
-				if ( state[ selector ].hasOwnProperty( prop ) ) {
-					state[ selector ][ prop ] = state;
+			for ( prop in states[ selector ] ) {
+				if ( states[ selector ].hasOwnProperty( prop ) ) {
+					states[ selector ][ prop ] = state;
 				}
 			}
 		}
