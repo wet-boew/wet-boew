@@ -74,7 +74,7 @@ var wet_boew_charts,
 			pieChartLabelText = "",
 			$imgContainer;
 
-		function colourNameToHex(colour) {
+		function colourNameToHex( colour ) {
 			var colours = {
 				// HTML colors
 				aliceblue: "#f0f8ff",
@@ -234,15 +234,15 @@ var wet_boew_charts,
 				"accent-13": "#999999"
 			};
 
-			if (typeof colour === "number")  {
-				colour = "accent-" + (colour + 1);
+			if ( typeof colour === "number" )  {
+				colour = "accent-" + ( colour + 1 );
 			}
 
-			return (colours[colour.toLowerCase()] !== "undefined" ? colours[colour.toLowerCase()] : ($.isArray(options.colors) ? options.colors[0] : options.colors));
+			return ( colours[ colour.toLowerCase() ] !== "undefined" ? colours[ colour.toLowerCase() ] : ( $.isArray( options.colors ) ? options.colors[ 0 ] : options.colors ) );
 		}
 
 		// Function to Convert Class instance to JSON
-		function setClassOptions (sourceOptions, strClass, namespace) {
+		function setClassOptions ( sourceOptions, strClass, namespace ) {
 			var separatorNS = "",
 				separator = "",
 				autoCreate = false,
@@ -250,6 +250,7 @@ var wet_boew_charts,
 				_lenDetectedNamespace,
 				arrClass,
 				parameter,
+				arrParameters,
 				arrParameter,
 				propName,
 				i, _ilen,
@@ -262,118 +263,120 @@ var wet_boew_charts,
 				autoCreateMe = false,
 				jsonString,
 				val;
+
 			// Test: optSource
-			if (typeof sourceOptions !== "object") {
+			if ( typeof sourceOptions !== "object" ) {
 				// Empty source
 				return {};
 			}
 			// Get a working copy for the sourceOptions
-			sourceOptions = jQuery.extend(true, {}, sourceOptions);
+			sourceOptions = jQuery.extend( true, {}, sourceOptions );
 
 			// Test: strClass
-			if (typeof strClass !== "string" || strClass.length === 0) {
+			if ( typeof strClass !== "string" || strClass.length === 0 ) {
 				// no string class;
 				return sourceOptions;
 			}
 			// Test: namespace
-			if (typeof namespace !== "string" || namespace.length === 0) {
+			if ( typeof namespace !== "string" || namespace.length === 0 ) {
 				// Try to get the default namespace
-				if (sourceOptions["default-namespace"] && (typeof sourceOptions["default-namespace"] === "string" || $.isArray(sourceOptions["default-namespace"]))) {
-					namespace = sourceOptions["default-namespace"];
+				if ( sourceOptions[ "default-namespace" ] && ( typeof sourceOptions[ "default-namespace" ] === "string" || $.isArray( sourceOptions[ "default-namespace" ] ) ) ) {
+					namespace = sourceOptions[ "default-namespace" ];
 				} else {
 					// This a not a valid namespace (no namespace)
 					return sourceOptions;
 				}
 			}
 			// Get the namespace separator if defined (optional)
-			separatorNS = (sourceOptions["default-namespace-separator"] && typeof sourceOptions["default-namespace-separator"] === "string") ? sourceOptions["default-namespace-separator"] : "-";
-			
+			separatorNS = ( sourceOptions[ "default-namespace-separator" ] && typeof sourceOptions[ "default-namespace-separator" ] === "string") ? sourceOptions[ "default-namespace-separator" ] : "-";
+			 
 			// Get the option separator if defined (optional)
-			separator = (sourceOptions["default-separator"] && typeof sourceOptions["default-separator"] === "string") ? sourceOptions["default-separator"] : " ";
+			separator = ( sourceOptions[ "default-separator" ] && typeof sourceOptions[ "default-separator" ] === "string" ) ? sourceOptions[ "default-separator" ] : " ";
 
 			// Check if the the Auto Json option creation are authorized from class
-			autoCreate = sourceOptions["default-autocreate"]; // Espected returning value True | False
+			autoCreate = sourceOptions[ "default-autocreate" ]; // Espected returning value True | False
 			
-			arrClass = strClass.split(separator); // Get each defined class
-			for (m = 0, _mlen = arrClass.length; m < _mlen; m +=1) {
+			arrClass = strClass.split( separator ); // Get each defined class
+			for ( m = 0, _mlen = arrClass.length; m < _mlen; m +=1 ) {
 				parameter = arrClass[m];
 
 				// Detect the namespace used
-				if (_lenDetectedNamespace === undefined) {
-					if ($.isArray(namespace)) {
-						for (i = 0, _ilen = namespace.length; i < _ilen; i += 1) {
+				if ( _lenDetectedNamespace === undefined ) {
+					if ( $.isArray( namespace ) ) {
+						for ( i = 0, _ilen = namespace.length; i < _ilen; i += 1 ) {
 							detectedNamespace = namespace[i] + separatorNS;
-							if (parameter.slice(0, detectedNamespace.length) ===  detectedNamespace) {
+							if ( parameter.slice( 0, detectedNamespace.length ) ===  detectedNamespace ) {
 								_lenDetectedNamespace = detectedNamespace.length;
 								break;
 							}
 						}
-					} else if (parameter.slice(0, namespace.length + separatorNS.length) ===  namespace + separatorNS) {
+					} else if ( parameter.slice( 0, namespace.length + separatorNS.length ) ===  namespace + separatorNS ) {
 						detectedNamespace = namespace + separatorNS;
 						_lenDetectedNamespace = detectedNamespace.length;
-					} else if (namespace === "") {
+					} else if ( namespace === "" ) {
 						detectedNamespace = "";
 						_lenDetectedNamespace = 0;
 					}
 				}
 				// Get the parameter without the namespace
-				arrParameter = (_lenDetectedNamespace !== undefined) ? parameter.slice(_lenDetectedNamespace).split(separatorNS) : [];
+				arrParameters = ( _lenDetectedNamespace !== undefined ) ? parameter.slice( _lenDetectedNamespace ).split( separatorNS ) : [];
 				// Convert the parameter in a controled JSON object
-				if (arrParameter.length > 0 && parameter.slice(0, _lenDetectedNamespace) ===  detectedNamespace) {
+				if ( arrParameters.length > 0 && parameter.slice( 0, _lenDetectedNamespace ) ===  detectedNamespace ) {
 					// Get all defined parameter
-					for (i = 0, _ilen = arrParameter.length; i < _ilen; i += 1) {
+					for ( i = 0, _ilen = arrParameters.length; i < _ilen; i += 1 ) {
+						arrParameter = arrParameters[ i ];
 						valIsNext = i + 2 === _ilen;
 						isVal = i + 1 === _ilen;
 						// Check if that is the default value and make a reset to the parameter name if applicable
-						if (isVal && _ilen) {
-							if (sourceOptions[arrParameter[i] + "-autocreate"] || (sourceOptions[arrParameter[i]] &&  sourceOptions[arrParameter[i] + "-typeof"] && sourceOptions[arrParameter[i] + "-typeof"] === "boolean")) {
+						if ( isVal && _ilen ) {
+							if ( sourceOptions[ arrParameter + "-autocreate" ] || ( sourceOptions[ arrParameter ] &&  sourceOptions[ arrParameter + "-typeof" ] && sourceOptions[ arrParameter + "-typeof" ] === "boolean" ) ) {
 								// 1. If match an existing option and that option is boolean
-								arrParameter.push("true");
-								propName = arrParameter[i];
+								arrParameter.push( "true" );
+								propName = arrParameter;
 								i += 1;
 								_ilen = arrParameter.length;
-							} else if (sourceOptions.preset && sourceOptions.preset[arrParameter[i]]) {
+							} else if ( sourceOptions.preset && sourceOptions.preset[ arrParameter ]) {
 								// 2. It match a preset, overide the current setting
-								sourceOptions = jQuery.extend(true, sourceOptions, sourceOptions.preset[arrParameter[i]]);
+								sourceOptions = jQuery.extend( true, sourceOptions, sourceOptions.preset[ arrParameter ] );
 								break;
-							} else if (_ilen === 1) {
+							} else if ( _ilen === 1 ) {
 								// 3. Use the Default set
-								propName = sourceOptions["default-option"] ? sourceOptions["default-option"] : undefined;
+								propName = sourceOptions[ "default-option" ] ? sourceOptions[ "default-option" ] : undefined;
 							} else {
 								propName = undefined;
 							}
-						} else if (!isVal) {
-							propName = arrParameter[i];
+						} else if ( !isVal ) {
+							propName = arrParameter;
 						}
 						// Get the type of the current option (if available)
 						// (Note: an invalid value are defined by "undefined" value)
 						// Check if the type are defined
-						if (sourceOptions[propName + "-typeof"]) {
+						if  (sourceOptions[ propName + "-typeof" ] ) {
 							// Repair the value if needed
 							arrValue = [];
-							for (j = (i + 1); j < _ilen; j += 1) {
-								arrValue.push(arrParameter[j]);
+							for ( j = ( i + 1 ); j < _ilen; j += 1 ) {
+								arrValue.push( arrParameter[ j ] );
 							}
 							if (i < _ilen - 1) {
-								arrParameter[i] = arrValue.join(separatorNS);
+								arrParameter = arrParameters[ i ] = arrValue.join( separatorNS );
 							}
 							valIsNext = false;
 							isVal = true;
-							switch (sourceOptions[propName + "-typeof"]) {
+							switch ( sourceOptions[ propName + "-typeof" ] ) {
 							case "boolean":
-								if (arrParameter[i] === "true" || arrParameter[i] === "1" || arrParameter[i] === "vrai" || arrParameter[i] === "yes" || arrParameter[i] === "oui") {
-									arrParameter[i] = true;
-								} else if (arrParameter[i] === "false" || arrParameter[i] === "0" || arrParameter[i] === "faux" || arrParameter[i] === "no" || arrParameter[i] === "non") {
-									arrParameter[i] = false;
+								if ( arrParameter === "true" || arrParameter === "1" || arrParameter === "vrai" || arrParameter === "yes" || arrParameter === "oui" ) {
+									arrParameter = arrParameters[ i ] = true;
+								} else if ( arrParameter === "false" || arrParameter === "0" || arrParameter === "faux" || arrParameter === "no" || arrParameter === "non") {
+									arrParameter = arrParameters[ i ] = false;
 								} else {
-									arrParameter[i] = undefined;
+									arrParameter = arrParameters[ i ] = undefined;
 								}
 								break;
 							case "number":
-								if (!isNaN(parseInt(arrParameter[i], 10))) {
-									arrParameter[i] = parseInt(arrParameter[i], 10);
+								if ( !isNaN( parseInt( arrParameter, 10 ) ) ) {
+									arrParameter = arrParameters[ i ] = parseInt( arrParameter, 10 );
 								} else {
-									arrParameter[i] = undefined;
+									arrParameter = arrParameters[ i ] = undefined;
 								}
 								break;
 							case "string":
@@ -381,7 +384,7 @@ var wet_boew_charts,
 							case "undefined":
 							case "function":
 							case "locked":
-								arrParameter[i] = undefined;
+								arrParameter = arrParameters[ i ] = undefined;
 								break;
 							default:
 								// that include the case "object"
@@ -389,48 +392,48 @@ var wet_boew_charts,
 							}
 						}
 						// Get the type of overwritting, default are replacing the value
-						if (sourceOptions[propName + "-overwrite-array-mode"]) {
+						if (sourceOptions[ propName + "-overwrite-array-mode" ] ) {
 							arrayOverwrite = true;
 						}
 						// Check if this unique option can be autocreated
-						if (sourceOptions[propName + "-autocreate"]) {
+						if ( sourceOptions[ propName + "-autocreate" ] ) {
 							autoCreateMe = true;
 						}
-						if (valIsNext && arrParameter[i] !== undefined) {
+						if ( valIsNext && arrParameter !== undefined ) {
 							// Keep the Property Name
-							propName = arrParameter[i];
-						} else if (isVal && arrParameter[i] !== undefined) {
-							if (sourceOptions[propName] && arrayOverwrite) {
+							propName = arrParameter;
+						} else if ( isVal && arrParameter !== undefined ) {
+							if ( sourceOptions[propName] && arrayOverwrite ) {
 								// Already one object defined and array overwriting authorized
-								if ($.isArray(sourceOptions[propName])) {
-									sourceOptions[propName].push(arrParameter[i]);
+								if ( $.isArray( sourceOptions[ propName ] ) ) {
+									sourceOptions[ propName ].push( arrParameter );
 								} else {
-									val = sourceOptions[propName];
-									sourceOptions[propName] = [];
-									sourceOptions[propName].push(val);
-									sourceOptions[propName].push(arrParameter[i]);
+									val = sourceOptions[ propName ];
+									sourceOptions[ propName ] = [];
+									sourceOptions[ propName ].push( val );
+									sourceOptions[ propName ].push( arrParameter );
 								}
-							} else if (sourceOptions[propName] || autoCreate || autoCreateMe || sourceOptions[propName] === 0 || sourceOptions[propName] === false) {
+							} else if ( sourceOptions[ propName ] || autoCreate || autoCreateMe || sourceOptions[ propName ] === 0 || sourceOptions[ propName ] === false) {
 								// Set the value by extending the options
 								jsonString = "";
-								if (typeof arrParameter[i] === "boolean" || typeof arrParameter[i] === "number") {
-									jsonString = "{\"" + propName + "\": " + arrParameter[i] + "}";
+								if ( typeof arrParameter === "boolean" || typeof arrParameter === "number" ) {
+									jsonString = "{\"" + propName + "\": " + arrParameter + "}";
 								} else {
-									jsonString = "{\"" + propName + "\": \"" + arrParameter[i] + "\"}";
+									jsonString = "{\"" + propName + "\": \"" + arrParameter + "\"}";
 								}
 								sourceOptions = jQuery.extend(true, sourceOptions, jQuery.parseJSON(jsonString));
 							}
 							i = _ilen; // Make sur we don't iterate again
 						} else {
 							// Create a sub object
-							if (arrParameter[i] !== undefined && sourceOptions[arrParameter[i]]) {
+							if ( arrParameter !== undefined && sourceOptions[ arrParameter ] ) {
 								// The object or property already exist, just get the reference of it
-								sourceOptions = sourceOptions[arrParameter[i]];
-								propName = arrParameter[i];
-							} else if ((autoCreate || autoCreateMe) && arrParameter[i] !== undefined) {
+								sourceOptions = sourceOptions[ arrParameter ];
+								propName = arrParameter;
+							} else if ( ( autoCreate || autoCreateMe ) && arrParameter !== undefined ) {
 								jsonString = "{\"" + arrParameter[i] + "\": {}}";
-								sourceOptions = jQuery.extend(true, sourceOptions, jQuery.parseJSON(jsonString));
-								sourceOptions = sourceOptions[arrParameter[i]];
+								sourceOptions = jQuery.extend( true, sourceOptions, jQuery.parseJSON( jsonString ) );
+								sourceOptions = sourceOptions[ arrParameter ];
 							} else {
 								// This configuration are rejected
 								i = _ilen; // We don't iterate again
@@ -442,7 +445,7 @@ var wet_boew_charts,
 			return sourceOptions;
 		}
 
-		if (!window.chartsGraphOpts){
+		if ( !window.chartsGraphOpts ){
 			// 1. Charts Default Setting
 			options = {
 				"default-namespace": ["wb-charts", "wb-chart", "wb-graph"],
@@ -521,7 +524,7 @@ var wet_boew_charts,
 				parsedirection: "x", // which direction to parse the table data
 				"parsedirection-typeof": "string",
 				"parsedirection-autocreate": true,
-				getcellvalue: function(elem) {
+				getcellvalue: function( elem ) {
 					// Parameter: elem = HTML DOM node (td element)
 					//
 					// If this function return an array, it would be assume that the first item correspond at the cell numbered value and the second item correspond at the cell unit
@@ -532,11 +535,11 @@ var wet_boew_charts,
 					// return [5.1, "g"]
 
 					// Default Cell value extraction
-					var cellRawValue = $.trim($(elem).text());
+					var cellRawValue = $.trim( $( elem ).text() );
 
 					//remove spaces inside the string;
-					cellRawValue = cellRawValue.replace(/\s/g, "");
-					return [parseFloat(cellRawValue.match(/[\+\-0-9]+[0-9,\. ]*/)), cellRawValue.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
+					cellRawValue = cellRawValue.replace( /\s/g, "" );
+					return [ parseFloat( cellRawValue.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), cellRawValue.match (/[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
 				},
 				preset: {
 					donnut: {
@@ -553,32 +556,32 @@ var wet_boew_charts,
 						piestartangle: 100
 					},
 					usnumber: {
-						getcellvalue: function(elem) {
-							var raw = $.trim($(elem).text()).replace(/,/g, "");
-							return [parseFloat(raw.match(/[\+\-0-9]+[0-9,\. ]*/)), raw.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
+						getcellvalue: function( elem ) {
+							var raw = $.trim( $( elem ).text() ).replace( /,/g, "" );
+							return [ parseFloat( raw.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), raw.match( /[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
 						}
 					},
 					germannumber: {
-						getcellvalue: function(elem) {
-							var raw = $.trim($(elem).text()).replace(/\./g, "");
-							return [parseFloat(raw.match(/[\+\-0-9]+[0-9,\. ]*/)), raw.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
+						getcellvalue: function( elem ) {
+							var raw = $.trim( $( elem ).text() ).replace( /\./g, "" );
+							return [ parseFloat( raw.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), raw.match( /[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
 						}
 					}
 				}
 			};
 
 			// 2. Global "setting.js"
-			if (typeof wet_boew_charts !== "undefined") {
+			if ( typeof wet_boew_charts !== "undefined" ) {
 				// a. if exisit copy and take care of preset separatly (Move away before extending)
-				if (wet_boew_charts.preset) {
-					window.chartsGraphOpts = jQuery.extend(true, {}, wet_boew_charts.preset);
+				if ( wet_boew_charts.preset ) {
+					window.chartsGraphOpts = jQuery.extend( true, {}, wet_boew_charts.preset );
 					delete wet_boew_charts.preset;
 				}
 				// b. Overwrite the chart default setting
-				$.extend(true, options, wet_boew_charts);
+				$.extend( true, options, wet_boew_charts );
 				// c. Separatly extend the preset to at the current chart default seting
-				if (window.chartsGraphOpts) {
-					$.extend(true, options.preset, window.chartsGraphOpts);
+				if ( window.chartsGraphOpts ) {
+					$.extend( true, options.preset, window.chartsGraphOpts );
 				}
 			}
 			window.chartsGraphOpts = options; // ---- Save the setting here in a case of a second graphic on the same page
@@ -592,13 +595,13 @@ var wet_boew_charts,
 		options.height = options.height | 250;
 
 		// 3. [Table element] CSS Overwrite - [Keep a list of required plugin "defaultnamespace-plugin" eg. wb-charts-donnut]
-		options = setClassOptions(options, (self.attr("class") !== undefined ? self.attr("class") : ""));
+		options = setClassOptions( options, ( self.attr( "class" ) !== undefined ? self.attr( "class" ) : "" ) );
 
 		// 4. [Table element] HTML5 Data Overwrite property
 		for ( i in self.data() ){
 			// Check if the prefix "wbcharts" is used
-			if (i.slice(0, 8) === "wbcharts") {
-				options[i.slice(8)] = self.data()[i];
+			if ( i.slice( 0, 8 ) === "wbcharts" ) {
+				options[ i.slice( 8 ) ] = self.data()[ i ];
 			}
 		}
 
@@ -609,7 +612,7 @@ var wet_boew_charts,
 
 		// Add headers information to the table parsed data structure
 		// Similar sample of code as the HTML Table validator
-		function addTblHeaders(tblparser) {
+		function addTblHeaders( tblparser ) {
 			var i, j, k, m, currRow, currCell,
 				rowheadersgroup,
 				rowheaders,
@@ -622,47 +625,42 @@ var wet_boew_charts,
 				childLength;
 
 			// Set ID and Header for the table head
-			for (i = 0; i < tblparser.theadRowStack.length; i += 1) {
-				currRow = tblparser.theadRowStack[i];
+			for ( i = 0; i < tblparser.theadRowStack.length; i += 1 ) {
+				currRow = tblparser.theadRowStack[ i ];
 
-				for (j = 0; j < currRow.cell.length; j += 1) {
-					currCell = currRow.cell[j];
+				for ( j = 0; j < currRow.cell.length; j += 1 ) {
+					currCell = currRow.cell[ j ];
 
-					if ((currCell.type === 1 || currCell.type === 7) && (
-							!(j > 0 && currCell.uid === currRow.cell[j - 1].uid) &&
-							!(i > 0 && currCell.uid === tblparser.theadRowStack[i - 1].cell[j].uid)
+					if ( ( currCell.type === 1 || currCell.type === 7 ) && (
+							!( j > 0 && currCell.uid === currRow.cell[ j - 1 ].uid ) &&
+							!( i > 0 && currCell.uid === tblparser.theadRowStack[ i - 1 ].cell[ j ].uid )
 						) ) {
 
-						if (!currCell.header) { // Imediate header
-							currCell.header = [];
-						}
-						if (!currCell.headers) { // all the headers
-							currCell.headers = [];
-						}
-
-						if (!currCell.child) { // Imediate sub cell
-							currCell.child = [];
-						}
-						if (!currCell.childs) { // All the sub cell
-							currCell.childs = [];
-						}
+						// Imediate header
+						currCell.header = currCell.header || [];
+						// all the headers
+						currCell.headers = currCell.headers || [];
+						// Imediate sub cell
+						currCell.child = currCell.child || [];
+						// All the sub cell
+						currCell.childs = currCell.childs || [];
 
 						// Set the header of the current cell if required
-						if (i > 0) {
+						if ( i > 0 ) {
 							// All the header cells
-							for (k = 0; k < tblparser.theadRowStack[i - 1].cell[j].header.length; k += 1) {
-								currCell.headers.push(tblparser.theadRowStack[i - 1].cell[j].header[k]);
-								tblparser.theadRowStack[i - 1].cell[j].header[k].childs.push(currCell);
+							for ( k = 0; k < tblparser.theadRowStack[ i - 1 ].cell[ j ].header.length; k += 1 ) {
+								currCell.headers.push( tblparser.theadRowStack[ i - 1 ].cell[ j ].header[ k ]);
+								tblparser.theadRowStack[ i - 1 ].cell[ j ].header[ k ].childs.push( currCell );
 							}
 							// Imediate header cell
-							currCell.headers.push(tblparser.theadRowStack[i - 1].cell[j]);
-							currCell.header.push(tblparser.theadRowStack[i - 1].cell[j]);
-							tblparser.theadRowStack[i - 1].cell[j].child.push(currCell);
+							currCell.headers.push( tblparser.theadRowStack[ i - 1 ].cell[ j ] );
+							currCell.header.push( tblparser.theadRowStack[ i - 1 ].cell[ j ]);
+							tblparser.theadRowStack[ i - 1 ].cell[ j ].child.push( currCell );
 						}
 
 
 						// Set the header on his descriptive cell if any
-						if (currCell.descCell) {
+						if ( currCell.descCell ) {
 							currCell.descCell.header = currCell;
 							currCell.descCell.headers = currCell;
 						}
@@ -673,8 +671,8 @@ var wet_boew_charts,
 			}
 
 			// Set Id/headers for header cell and data cell in the table.
-			for (i = 0; i < tblparser.row.length; i += 1) {
-				currRow = tblparser.row[i];
+			for ( i = 0; i < tblparser.row.length; i += 1 ) {
+				currRow = tblparser.row[ i ];
 				rowheadersgroup = [];
 				rowheaders = [];
 				currrowheader = [];
@@ -682,118 +680,116 @@ var wet_boew_charts,
 				coldataheader = [];
 
 				// Get or Generate a unique ID for each header in this row
-				if (currRow.headerset && !currRow.idsheaderset) {
-					for (j = 0; j < currRow.headerset.length; j += 1) {
-						rowheadersgroup = rowheadersgroup.concat(currRow.headerset[j]);
+				if ( currRow.headerset && !currRow.idsheaderset ) {
+					for ( j = 0; j < currRow.headerset.length; j += 1 ) {
+						rowheadersgroup = rowheadersgroup.concat( currRow.headerset[ j ] );
 					}
 					currRow.idsheaderset = rowheadersgroup;
 				}
 
-				if (currRow.header) {
-					for (j = 0; j < currRow.header.length; j += 1) {
-						rowheaders = rowheaders.concat(currRow.header[j]);
+				if ( currRow.header ) {
+					for ( j = 0; j < currRow.header.length; j += 1 ) {
+						rowheaders = rowheaders.concat( currRow.header[ j ] );
 					}
 				}
-				rowheaders = currRow.idsheaderset.concat(rowheaders);
+				rowheaders = currRow.idsheaderset.concat( rowheaders );
 				for (j = 0; j < currRow.cell.length; j += 1) {
 
-					if ((j === 0) || (j > 0 && currRow.cell[j].uid !== currRow.cell[(j - 1)].uid)){
-						currCell = currRow.cell[j];
+					if ( ( j === 0 ) || ( j > 0 && currRow.cell[ j ].uid !== currRow.cell[ ( j - 1 ) ].uid ) ){
+						currCell = currRow.cell[ j ];
 						coldataheader = [];
 
-						if (!currCell.header) { // Imediate header
+						if ( !currCell.header ) { // Imediate header
 							currCell.header = [];
 						}
-						if (!currCell.headers) { // all the headers
+						if ( !currCell.headers ) { // all the headers
 							currCell.headers = [];
 						}
 
 
-						if (currCell.col && !currCell.col.dataheader) {
+						if ( currCell.col && !currCell.col.dataheader ) {
 							currCol = currCell.col;
 							colheaders = [];
 							colheadersgroup = [];
-							if (currCol.headerLevel) {
-								for (m = 0; m < currCol.headerLevel.length; m += 1) {
-									colheadersgroup = colheadersgroup.concat(currCol.headerLevel[m]);
+							if ( currCol.headerLevel ) {
+								for ( m = 0; m < currCol.headerLevel.length; m += 1 ) {
+									colheadersgroup = colheadersgroup.concat( currCol.headerLevel[ m ] );
 								}
 							}
-							if (currCol.header) {
-								for (m = 0; m < currCol.header.length; m += 1) {
-									colheaders = colheaders.concat(currCol.header[m]);
+							if ( currCol.header ) {
+								for ( m = 0; m < currCol.header.length; m += 1 ) {
+									colheaders = colheaders.concat( currCol.header[ m ] );
 								}
 							}
 
-							if(!currCol.dataheader) {
+							if( !currCol.dataheader ) {
 								currCol.dataheader = [];
 							}
 
-							currCol.dataheader = currCol.dataheader.concat(colheadersgroup);
-							currCol.dataheader = currCol.dataheader.concat(colheaders);
+							currCol.dataheader = currCol.dataheader.concat( colheadersgroup );
+							currCol.dataheader = currCol.dataheader.concat( colheaders );
 						}
 
-						if (currCell.col && currCell.col.dataheader) {
+						if ( currCell.col && currCell.col.dataheader ) {
 							coldataheader = currCell.col.dataheader;
 						}
 
 
-						if (currCell.type === 1) {
+						if ( currCell.type === 1 ) {
 
-							if (!currCell.child) { // Imediate sub cell
-								currCell.child = [];
-							}
-							if (!currCell.childs) { // All the sub cell
-								currCell.childs = [];
-							}
+							// Imediate sub cell
+							currCell.child = currCell.child || [];
+							// All the sub cell
+							currCell.childs = currCell.childs || [];
 
-							for (m = 0; m < ongoingRowHeader.length; m += 1) {
+							for ( m = 0; m < ongoingRowHeader.length; m += 1 ) {
 
-								if (currCell.colpos === (ongoingRowHeader[m].colpos + ongoingRowHeader[m].width)) {
-									childLength = ongoingRowHeader[m].child.length;
-									if(childLength === 0 || (childLength > 0 && ongoingRowHeader[m].child[childLength - 1].uid !== currCell.uid)) {
-										ongoingRowHeader[m].child.push(currCell);
+								if ( currCell.colpos === ( ongoingRowHeader[ m ].colpos + ongoingRowHeader[ m ].width) ) {
+									childLength = ongoingRowHeader[ m ].child.length;
+									if( childLength === 0 || ( childLength > 0 && ongoingRowHeader[ m ].child[ childLength - 1 ].uid !== currCell.uid ) ) {
+										ongoingRowHeader[ m ].child.push( currCell );
 									}
 								}
-								ongoingRowHeader[m].childs.push(currCell);
+								ongoingRowHeader[ m ].childs.push( currCell );
 							}
 
-							for (m = 0; m < currRow.idsheaderset.length; m += 1) {
+							for ( m = 0; m < currRow.idsheaderset.length; m += 1 ) {
 
-								if (!currRow.idsheaderset[m].childs) { // All the sub cell
-									currRow.idsheaderset[m].childs = [];
+								if ( !currRow.idsheaderset[m].childs ) { // All the sub cell
+									currRow.idsheaderset[ m ].childs = [];
 								}
-								currRow.idsheaderset[m].childs.push(currCell);
+								currRow.idsheaderset[m].childs.push( currCell );
 							}
 
-							currCell.header = currCell.header.concat(ongoingRowHeader);
+							currCell.header = currCell.header.concat( ongoingRowHeader );
 
-							currCell.headers = currCell.headers.concat(coldataheader);
-							currCell.headers = currCell.headers.concat(currRow.idsheaderset);
-							currCell.headers = currCell.headers.concat(ongoingRowHeader);
+							currCell.headers = currCell.headers.concat( coldataheader );
+							currCell.headers = currCell.headers.concat( currRow.idsheaderset );
+							currCell.headers = currCell.headers.concat( ongoingRowHeader );
 
-							ongoingRowHeader = ongoingRowHeader.concat(currCell);
+							ongoingRowHeader = ongoingRowHeader.concat( currCell );
 						}
 
 
-						if (currCell.type === 2 || currCell.type === 3) {
+						if ( currCell.type === 2 || currCell.type === 3 ) {
 
 							// Get Current Column Headers
 							currrowheader = rowheaders;
 
-							if (currCell.addcolheaders) {
-								for (m = 0; m < currCell.addcolheaders.length; m += 1) {
-									coldataheader = coldataheader.concat(currCell.addcolheaders[m]);
+							if ( currCell.addcolheaders ) {
+								for ( m = 0; m < currCell.addcolheaders.length; m += 1 ) {
+									coldataheader = coldataheader.concat( currCell.addcolheaders[m] );
 								}
 							}
 
-							if (currCell.addrowheaders) {
-								for (m = 0; m < currCell.addrowheaders.length; m += 1) {
-									currrowheader = currrowheader.concat(currCell.addrowheaders[m]);
+							if ( currCell.addrowheaders ) {
+								for ( m = 0; m < currCell.addrowheaders.length; m += 1 ) {
+									currrowheader = currrowheader.concat( currCell.addrowheaders[ m ] );
 								}
 							}
 
-							currCell.headers = currCell.headers.concat(coldataheader);
-							currCell.headers = currCell.headers.concat(currrowheader);
+							currCell.headers = currCell.headers.concat( coldataheader );
+							currCell.headers = currCell.headers.concat( currrowheader );
 
 							currCell.header = currCell.headers;
 						}
@@ -804,20 +800,20 @@ var wet_boew_charts,
 
 
 		// Determine an appropriate tick for the colgroup head (first colgroup)
-		function helper1CalcVTick(parsedDataCell, headerlevel){
+		function helper1CalcVTick( parsedDataCell, headerlevel ){
 			var kIndex;
 
 			headerlevel += 1;
-			tblMultiplier.push([parsedDataCell.child.length, headerlevel]);
-			for (kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1) {
-				if (parsedDataCell.child[kIndex].child.length > 0){
-					headerlevel = helper1CalcVTick(parsedDataCell.child[kIndex], headerlevel);
+			tblMultiplier.push( [ parsedDataCell.child.length, headerlevel ] );
+			for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
+				if ( parsedDataCell.child[ kIndex ].child.length > 0 ){
+					headerlevel = helper1CalcVTick( parsedDataCell.child[ kIndex ], headerlevel );
 				}
 			}
 			headerlevel -= 1;
 			return headerlevel;
 		}
-		function helper2CalcVTick(parsedDataCell, headerlevel){
+		function helper2CalcVTick( parsedDataCell, headerlevel ){
 			var kIndex, flotDelta,
 				internalCumul = 0;
 
@@ -825,25 +821,25 @@ var wet_boew_charts,
 
 			internalCumul = parsedDataCell.flotValue - parsedDataCell.flotDelta;
 
-			flotDelta = (parsedDataCell.flotDelta / parsedDataCell.child.length);
-			if (!smallestVerticalFlotDelta || flotDelta < smallestVerticalFlotDelta){
+			flotDelta = ( parsedDataCell.flotDelta / parsedDataCell.child.length );
+			if ( !smallestVerticalFlotDelta || flotDelta < smallestVerticalFlotDelta ){
 				smallestVerticalFlotDelta = flotDelta;
 			}
-			for (kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1) {
-				parsedDataCell.child[kIndex].flotDelta = flotDelta;
+			for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
+				parsedDataCell.child[ kIndex ].flotDelta = flotDelta;
 				internalCumul = internalCumul + flotDelta;
-				parsedDataCell.child[kIndex].flotValue = internalCumul;
+				parsedDataCell.child[ kIndex ].flotValue = internalCumul;
 
 				if (headerlevel === UseHeadRow) {
-					calcTick.push([(parsedDataCell.child[kIndex].flotValue - flotDelta), $(parsedDataCell.child[kIndex].elem).text()]);
+					calcTick.push( [ ( parsedDataCell.child[ kIndex ].flotValue - flotDelta ), $( parsedDataCell.child[ kIndex ].elem ).text() ] );
 				}
-				if (parsedDataCell.child[kIndex].child.length > 0){
-					helper2CalcVTick(parsedDataCell.child[kIndex], headerlevel);
+				if ( parsedDataCell.child[ kIndex ].child.length > 0 ){
+					helper2CalcVTick( parsedDataCell.child[ kIndex ], headerlevel );
 				}
 			}
 			headerlevel -= 1;
 		}
-		function calculateVerticalTick(parsedData) {
+		function calculateVerticalTick( parsedData ) {
 
 			// Get the appropriate ticks
 			var parsedDataCell, i, TotalRowValue,
@@ -853,37 +849,37 @@ var wet_boew_charts,
 
 			tblMultiplier = [];
 
-			if (!parsedData.colgrouphead) {
+			if ( !parsedData.colgrouphead ) {
 				return;
 			}
 
-			for (i = 0; i < parsedData.colgrouphead.col[0].cell.length; i += 1) {
+			for ( i = 0; i < parsedData.colgrouphead.col[ 0 ].cell.length; i += 1 ) {
 
-				parsedDataCell = parsedData.colgrouphead.col[0].cell[i];
+				parsedDataCell = parsedData.colgrouphead.col[ 0 ].cell[ i ];
 
-				if (i === 0 || (i > 0 && parsedData.colgrouphead.col[0].cell[i - 1].uid !== parsedDataCell.uid)) {
+				if ( i === 0 || ( i > 0 && parsedData.colgrouphead.col[ 0 ].cell[ i - 1 ].uid !== parsedDataCell.uid ) ) {
 
-					if (parsedDataCell.rowgroup && parsedDataCell.rowgroup.type === 3) {
+					if ( parsedDataCell.rowgroup && parsedDataCell.rowgroup.type === 3 ) {
 						// We only process the first column data group
 						break;
 					}
 
-					if (parsedDataCell.type === 1 || parsedDataCell.type === 7)  {
+					if ( parsedDataCell.type === 1 || parsedDataCell.type === 7 )  {
 						nbCells += 1;
 
-						if (parsedDataCell.child.length > 0){
-							headerlevel = helper1CalcVTick(parsedDataCell, headerlevel);
+						if ( parsedDataCell.child.length > 0 ){
+							headerlevel = helper1CalcVTick( parsedDataCell, headerlevel );
 						}
 					}
 				}
 			}
 
-			tblMultiplier.push([nbCells, headerlevel]);
+			tblMultiplier.push( [ nbCells, headerlevel ] );
 
-			TotalRowValue = tblMultiplier[0][0];
+			TotalRowValue = tblMultiplier[ 0 ][ 0 ];
 
-			for (i = 1; i < tblMultiplier.length; i += 1){
-				TotalRowValue = TotalRowValue * tblMultiplier[i][0];
+			for ( i = 1; i < tblMultiplier.length; i += 1 ){
+				TotalRowValue = TotalRowValue * tblMultiplier[ i ][ 0 ];
 			}
 
 
@@ -899,23 +895,23 @@ var wet_boew_charts,
 
 			headerlevel = 0;
 			// Set the associate tick value along with the headers
-			for (i = 0; i < parsedData.colgrouphead.col[0].cell.length; i += 1) {
+			for ( i = 0; i < parsedData.colgrouphead.col[ 0 ].cell.length; i += 1 ) {
 
-				parsedDataCell = parsedData.colgrouphead.col[0].cell[i];
+				parsedDataCell = parsedData.colgrouphead.col[ 0 ].cell[ i ];
 
-				if (i === 0 || (i > 0 && parsedData.colgrouphead.col[0].cell[i - 1].uid !== parsedDataCell.uid)){
+				if ( i === 0 || ( i > 0 && parsedData.colgrouphead.col[ 0 ].cell[ i - 1 ].uid !== parsedDataCell.uid ) ){
 
-					if (parsedDataCell.rowgroup && parsedDataCell.rowgroup.type === 3) {
+					if ( parsedDataCell.rowgroup && parsedDataCell.rowgroup.type === 3 ) {
 						// We only process the first column data group
 						break;
 					}
 
-					if (parsedDataCell.type === 1 || parsedDataCell.type === 7)  {
+					if ( parsedDataCell.type === 1 || parsedDataCell.type === 7 )  {
 
-						parsedDataCell.flotDelta = (TotalRowValue / nbCells);
+						parsedDataCell.flotDelta = ( TotalRowValue / nbCells );
 
 
-						if (!smallestVerticalFlotDelta || parsedDataCell.flotDelta < smallestVerticalFlotDelta){
+						if ( !smallestVerticalFlotDelta || parsedDataCell.flotDelta < smallestVerticalFlotDelta ){
 							smallestVerticalFlotDelta = parsedDataCell.flotDelta;
 						}
 
@@ -924,12 +920,12 @@ var wet_boew_charts,
 						parsedDataCell.flotValue = cumulFlotValue;
 						if (headerlevel === UseHeadRow ||
 
-							((parsedDataCell.colpos - 1) < UseHeadRow && UseHeadRow <= ((parsedDataCell.colpos - 1) + (parsedDataCell.width - 1)))){
-							calcTick.push([(parsedDataCell.flotValue - parsedDataCell.flotDelta), $(parsedDataCell.elem).text()]);
+							( ( parsedDataCell.colpos - 1 ) < UseHeadRow && UseHeadRow <= ( ( parsedDataCell.colpos - 1 ) + ( parsedDataCell.width - 1 ) ) ) ){
+							calcTick.push( [ ( parsedDataCell.flotValue - parsedDataCell.flotDelta ), $( parsedDataCell.elem ).text() ] );
 						}
 
-						if (parsedDataCell.child.length > 0){
-							helper2CalcVTick(parsedDataCell, headerlevel);
+						if ( parsedDataCell.child.length > 0 ){
+							helper2CalcVTick( parsedDataCell, headerlevel );
 						}
 					}
 				}
@@ -937,60 +933,60 @@ var wet_boew_charts,
 			return calcTick;
 		}
 
-		function helper1CalcHTick(parsedDataCell, headerlevel){
+		function helper1CalcHTick( parsedDataCell, headerlevel ){
 			var kIndex;
-			if (parsedDataCell.child.length === 0) {
+			if ( parsedDataCell.child.length === 0 ) {
 				return;
 			}
 			headerlevel += 1;
-			tblMultiplier.push([parsedDataCell.child.length, headerlevel]);
-			for (kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1) {
-				helper1CalcHTick(parsedDataCell.child[kIndex], headerlevel);
+			tblMultiplier.push( [ parsedDataCell.child.length, headerlevel ] );
+			for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
+				helper1CalcHTick( parsedDataCell.child[ kIndex ], headerlevel );
 			}
 			headerlevel -= 1;
 		}
 
 
-		function helper2CalcHTick(parsedDataCell, headerlevel){
+		function helper2CalcHTick( parsedDataCell, headerlevel ){
 			var kIndex, flotDelta,
 				internalCumul = 0,
 				theadRowStack_len = parsedDataCell.groupZero.theadRowStack.length - 1;
-			if (parsedDataCell.child.length === 0) {
+			if ( parsedDataCell.child.length === 0 ) {
 				return;
 			}
 			headerlevel += 1;
 
 			internalCumul = parsedDataCell.flotValue;
 
-			flotDelta = (!options.uniformtick ? (parsedDataCell.flotDelta / parsedDataCell.child.length): 1);
-			if (!smallestHorizontalFlotDelta || flotDelta < smallestHorizontalFlotDelta){
+			flotDelta = !options.uniformtick ? ( parsedDataCell.flotDelta / parsedDataCell.child.length ) : 1;
+			if ( !smallestHorizontalFlotDelta || flotDelta < smallestHorizontalFlotDelta ){
 				smallestHorizontalFlotDelta = flotDelta;
 			}
-			for (kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1) {
-				parsedDataCell.child[kIndex].flotDelta = flotDelta;
+			for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
+				parsedDataCell.child[ kIndex ].flotDelta = flotDelta;
 
-				if (headerlevel === UseHeadRow) {
-					calcTick.push([(!options.uniformtick ? internalCumul : uniformCumul), $(parsedDataCell.child[kIndex].elem).text()]);
+				if ( headerlevel === UseHeadRow ) {
+					calcTick.push( [ !options.uniformtick ? internalCumul : uniformCumul, $( parsedDataCell.child[ kIndex ].elem ).text() ] );
 				}
 
-				if (headerlevel === theadRowStack_len ||
-					((parsedDataCell.rowpos - 1) < theadRowStack_len &&
-					theadRowStack_len <= ((parsedDataCell.rowpos - 1) + (parsedDataCell.height - 1))) ||
-					theadRowStack_len === ((parsedDataCell.rowpos - 1) + (parsedDataCell.height - 1))) {
+				if ( headerlevel === theadRowStack_len ||
+					( ( parsedDataCell.rowpos - 1 ) < theadRowStack_len &&
+					theadRowStack_len <= ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) ||
+					theadRowStack_len === ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) {
 
 					uniformCumul += flotDelta;
 				}
 
-				parsedDataCell.child[kIndex].flotValue = internalCumul;
+				parsedDataCell.child[ kIndex ].flotValue = internalCumul;
 				internalCumul = internalCumul + flotDelta;
 
-				helper2CalcHTick(parsedDataCell.child[kIndex], headerlevel);
+				helper2CalcHTick( parsedDataCell.child[ kIndex ], headerlevel );
 			}
 			headerlevel -= 1;
 		}
 
 		// Determine an appropriate tick for the rowgroup head (thead)
-		function calculateHorisontalTick(parsedData) {
+		function calculateHorisontalTick( parsedData ) {
 			// Find the range of the first data colgroup
 			var dataColgroupStart = -1,
 				dataColgroupEnd = -1,
@@ -1001,43 +997,43 @@ var wet_boew_charts,
 				cumulFlotValue = 0,
 				i, TotalRowValue;
 
-			if (!parsedData.theadRowStack) {
+			if ( !parsedData.theadRowStack ) {
 				return;
 			}
 
-			for (i = 0; i < parsedData.colgroup.length; i += 1) {
-				if (parsedData.colgroup[i].type === 2){
-					dataColgroupStart = parsedData.colgroup[i].start;
-					dataColgroupEnd = parsedData.colgroup[i].end;
+			for ( i = 0; i < parsedData.colgroup.length; i += 1 ) {
+				if ( parsedData.colgroup[ i ].type === 2 ){
+					dataColgroupStart = parsedData.colgroup[ i ].start;
+					dataColgroupEnd = parsedData.colgroup[ i ].end;
 					break;
 				}
 			}
 
 			// Get the appropriate ticks
 			tblMultiplier = [];
-			for (i = 0; i < parsedData.theadRowStack[0].elem.cells.length; i += 1) {
+			for ( i = 0; i < parsedData.theadRowStack[ 0 ].elem.cells.length; i += 1 ) {
 
-				parsedDataCell = $(parsedData.theadRowStack[0].elem.cells[i]).data().tblparser;
+				parsedDataCell = $( parsedData.theadRowStack[ 0 ].elem.cells[ i ] ).data().tblparser;
 
-				if (parsedDataCell.colgroup && parsedDataCell.colgroup.type === 3) {
+				if ( parsedDataCell.colgroup && parsedDataCell.colgroup.type === 3 ) {
 					// We only process the first column data group
 					break;
 				}
 
-				if (parsedDataCell.colpos >= dataColgroupStart && (parsedDataCell.type === 1 || parsedDataCell.type === 7))  {
+				if ( parsedDataCell.colpos >= dataColgroupStart && ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) )  {
 					nbCells += 1;
 
 					nbTotSlots += parsedDataCell.width;
 
-					helper1CalcHTick(parsedDataCell, headerlevel);
+					helper1CalcHTick( parsedDataCell, headerlevel );
 				}
 			}
-			tblMultiplier.push([nbCells, headerlevel]);
+			tblMultiplier.push( [ nbCells, headerlevel ] );
 
-			TotalRowValue = tblMultiplier[0][0];
+			TotalRowValue = tblMultiplier[ 0 ][ 0 ];
 
-			for (i = 1; i < tblMultiplier.length; i += 1){
-				TotalRowValue = TotalRowValue * tblMultiplier[i][0];
+			for ( i = 1; i < tblMultiplier.length; i += 1 ){
+				TotalRowValue = TotalRowValue * tblMultiplier[ i ][ 0 ];
 			}
 
 			//
@@ -1046,7 +1042,7 @@ var wet_boew_charts,
 			// From an option that would choose the appropriate row.
 			// UseHeadRow get a number that represent the row to use to draw the label
 
-			UseHeadRow = (!options.labelposition || (options.labelposition && options.labelposition > parsedData.theadRowStack.length) ? parsedData.theadRowStack.length : options.labelposition) - 1;
+			UseHeadRow = ( !options.labelposition || ( options.labelposition && options.labelposition > parsedData.theadRowStack.length ) ? parsedData.theadRowStack.length : options.labelposition ) - 1;
 
 			calcTick = [];
 
@@ -1054,35 +1050,35 @@ var wet_boew_charts,
 
 			headerlevel = 0;
 			// Set the associate tick value along with the headers
-			for (i = 0; i < parsedData.theadRowStack[0].elem.cells.length; i += 1) {
+			for ( i = 0; i < parsedData.theadRowStack[ 0 ].elem.cells.length; i += 1 ) {
 
-				parsedDataCell = $(parsedData.theadRowStack[0].elem.cells[i]).data().tblparser;
+				parsedDataCell = $( parsedData.theadRowStack[ 0 ].elem.cells[ i ]).data().tblparser;
 
-				if (parsedDataCell.colgroup && parsedDataCell.colgroup.type === 3) {
+				if ( parsedDataCell.colgroup && parsedDataCell.colgroup.type === 3 ) {
 					// We only process the first column data group
 					break;
 				}
 
-				if (parsedDataCell.colpos >= dataColgroupStart && (parsedDataCell.type === 1 || parsedDataCell.type === 7))  {
+				if ( parsedDataCell.colpos >= dataColgroupStart && ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) )  {
 
-					parsedDataCell.flotDelta = (!options.uniformtick ? (TotalRowValue / nbCells) : 1);
+					parsedDataCell.flotDelta = !options.uniformtick ? ( TotalRowValue / nbCells ) : 1;
 
 
-					if (!smallestHorizontalFlotDelta || parsedDataCell.flotDelta < smallestHorizontalFlotDelta){
+					if ( !smallestHorizontalFlotDelta || parsedDataCell.flotDelta < smallestHorizontalFlotDelta ){
 						smallestHorizontalFlotDelta = parsedDataCell.flotDelta;
 					}
 					parsedDataCell.flotValue = cumulFlotValue;
 
-					if (headerlevel === UseHeadRow || ((parsedDataCell.rowpos - 1) < UseHeadRow && UseHeadRow <= ((parsedDataCell.rowpos - 1) + (parsedDataCell.height - 1)))) {
-						calcTick.push([(!options.uniformtick ? cumulFlotValue : uniformCumul), $(parsedDataCell.elem).text()]);
+					if ( headerlevel === UseHeadRow || ( ( parsedDataCell.rowpos - 1 ) < UseHeadRow && UseHeadRow <= ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) ) {
+						calcTick.push( [ ( !options.uniformtick ? cumulFlotValue : uniformCumul ), $( parsedDataCell.elem ).text() ] );
 					}
 
-					if (headerlevel === (parsedData.theadRowStack.length - 1) ||
+					if ( headerlevel === ( parsedData.theadRowStack.length - 1 ) ||
 
-						((parsedDataCell.rowpos - 1) < (parsedData.theadRowStack.length - 1) &&
-						(parsedData.theadRowStack.length - 1) <= ((parsedDataCell.rowpos - 1) + (parsedDataCell.height - 1))) ||
+						( ( parsedDataCell.rowpos - 1 ) < ( parsedData.theadRowStack.length - 1 ) &&
+						( parsedData.theadRowStack.length - 1 ) <= ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) ||
 
-						(parsedData.theadRowStack.length - 1) === ((parsedDataCell.rowpos - 1) + (parsedDataCell.height - 1))){
+						( parsedData.theadRowStack.length - 1 ) === ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ){
 
 						uniformCumul += parsedDataCell.flotDelta;
 
@@ -1090,7 +1086,7 @@ var wet_boew_charts,
 
 					cumulFlotValue += parsedDataCell.flotDelta;
 
-					helper2CalcHTick(parsedDataCell, headerlevel);
+					helper2CalcHTick( parsedDataCell, headerlevel );
 				}
 			}
 			return calcTick;
@@ -1116,113 +1112,119 @@ var wet_boew_charts,
 				headStr,
 				arr,
 				tr;
-			capVal =  $("caption", srcTbl).text();
-			$("tr ", srcTbl).each(function () {
+			capVal =  $( "caption", srcTbl ).text();
+			$( "tr ", srcTbl ).each( function () {
 				maxRowCol += 1;
-				if (s < 1) {
-					$("td,th", $(this)).each(function () {
-						if ($(this).attr("colspan") === undefined) {
-							$(this).attr("colspan", 1);
+				if ( s < 1 ) {
+					$( "td,th", $( this ) ).each( function () {
+						var $this = $( this );
+						if ($this.attr( "colspan" ) === undefined) {
+							$this.attr( "colspan", 1 );
 						}
-						maxRowCol += Number($(this).attr("colspan"));
+						maxRowCol += Number( $this.attr( "colspan" ) );
 						// block change, 20120118 fix for defect #3226, jquery 1.4 problem about colspan attribute, qibo;
 					});
 				}
 				s += 1;
-			});
+			} );
 			// prepare the place holding matrix;
-			for (s = 0; s < maxRowCol; s += 1) {
-				tMatrix[s] = [];
-				for (t = 0; t < maxRowCol; t += 1) {
-					tMatrix[s][t] = 0;
+			for ( s = 0; s < maxRowCol; s += 1 ) {
+				tMatrix[ s ] = [];
+				for ( t = 0; t < maxRowCol; t += 1 ) {
+					tMatrix[ s ][ t ] = 0;
 				}
 			}
-			$("tr ", srcTbl).each(function () {
+			$( "tr ", srcTbl ).each( function () {
 				j = 0;
 				var attrCol = 1,
 					attrRow = 1;
-				$("td,th", $(this)).each(function () {
-					if ($(this).attr("colspan") === undefined) {
-						$(this).attr("colspan", 1);
-					}
-					if ($(this).attr("rowspan") === undefined) {
-						$(this).attr("rowspan", 1);
-					}
-					attrCol = Number($(this).attr("colspan"));
-					attrRow = Number($(this).attr("rowspan"));
-					// block change, 20120118 fix for defect #3226, jquery 1.4 problem about colspan attribute, qibo;
-					while (tMatrix[i][j] === 3) {
-						j += 1;
-					}
+				$( "td,th", $(this)).each( function () {
 					var ii = i,
-						stopRow = i + attrRow - 1,
+						stopRow,
 						jj,
 						stopCol,
-						ss1;
-					if (attrRow > 1 && attrCol > 1) {
+						ss1,
+						$this = $( this );
+
+					if ( $this.attr( "colspan" ) === undefined ) {
+						$this.attr( "colspan", 1 );
+					}
+					if ($this.attr( "rowspan" ) === undefined ) {
+						$this.attr( "rowspan", 1 );
+					}
+					attrCol = Number( $this.attr( "colspan" ) );
+					attrRow = Number( $this.attr( "rowspan" ) );
+					// block change, 20120118 fix for defect #3226, jquery 1.4 problem about colspan attribute, qibo;
+					while ( tMatrix[ i ] [ j ] === 3 ) {
+						j += 1;
+					}
+
+					stopRow = i + attrRow - 1;
+						
+					if ( attrRow > 1 && attrCol > 1 ) {
 						jj = j;
 						stopCol = j + attrCol - 1;
-						for (jj = j; jj <= stopCol; jj += 1) {
-							for (ii = i; ii <= stopRow; ii += 1) {
-								tMatrix[ii][jj] = 3; //random number as place marker;
+						for ( jj = j; jj <= stopCol; jj += 1 ) {
+							for ( ii = i; ii <= stopRow; ii += 1 ) {
+								tMatrix[ ii ][ jj ] = 3; //random number as place marker;
 							}
 						}
-					} else if (attrRow > 1) {
-						for (ii = i; ii <= stopRow; ii += 1) {
-							tMatrix[ii][j] = 3; // place holder;
+					} else if ( attrRow > 1 ) {
+						for ( ii = i; ii <= stopRow; ii += 1 ) {
+							tMatrix[ ii ][ j ] = 3; // place holder;
 						}
 					}
-					ss1 = $(this).clone(); // have a copy of it, not destroying the look of the original table;
+					ss1 = $this.clone(); // have a copy of it, not destroying the look of the original table;
 					// transforming rows and cols and their properties;
-					ss1.attr("colspan", attrRow);
-					ss1.attr("rowspan", attrCol);
-					(sMatrix[j] = sMatrix[j] || [])[i] = ss1;
+					ss1.attr( "colspan", attrRow );
+					ss1.attr( "rowspan", attrCol );
+					( sMatrix[j] = sMatrix[ j ] || [] )[ i ] = ss1;
 					j = j + attrCol;
-				});
+				} );
 				i += 1;
-			});
+			} );
 			// now creating the swapped table from the transformed matrix;
-			swappedTable = $("<table>");
-			$.each(sMatrix, function (s) {
-				var oneRow = $("<tr>");
-				swappedTable.append(oneRow);
-				$.each(sMatrix[s], function (ind, val) {
-					oneRow.append(val);
-				});
-			});
+			swappedTable = $( "<table>" );
+			$.each( sMatrix, function ( s ) {
+				var oneRow = $( "<tr>" );
+				swappedTable.append( oneRow );
+				$.each( sMatrix[ s ], function ( ind, val ) {
+					oneRow.append( val );
+				} );
+			} );
 			// now adding the missing thead;
 			html2 = swappedTable.html();
 			headStr = "<table id=\"swappedGraph\">" + "<caption>" + capVal + " (Horizontal to Vertical)</caption><thead>";
-			html2 = html2.replace(/<tbody>/gi, headStr);
-			html2 = html2.replace(/<\/tbody>/gi, "</tbody></table>");
-			html2 = html2.replace(/\n/g, "");
-			html2 = html2.replace(/<tr/gi, "\n<tr");
-			arr = html2.split("\n");
-			for (i = 0, _ilen = arr.length; i < _ilen; i += 1) {
-				tr = arr[i];
-				if (tr.match(/<td/i) !== null) {
-					arr[i] = "</thead><tbody>" + tr;
+			html2 = html2.replace( /<tbody>/gi, headStr );
+			html2 = html2.replace( /<\/tbody>/gi, "</tbody></table>" );
+			html2 = html2.replace( /\n/g, "" );
+			html2 = html2.replace( /<tr/gi, "\n<tr" );
+			arr = html2.split( "\n" );
+			for ( i = 0, _ilen = arr.length; i < _ilen; i += 1 ) {
+				tr = arr[ i ];
+				if ( tr.match( /<td/i ) !== null ) {
+					arr[ i ] = "</thead><tbody>" + tr;
 					break;
 				}
 			}
-			html2 = arr.join("\n");
-			$(html2).insertAfter(srcTbl); // .hide(); //visible, for debugging and checking;
-			return $(html2);
+			html2 = arr.join( "\n" );
+			$( html2 ).insertAfter( srcTbl ); // .hide(); //visible, for debugging and checking;
+			return $( html2 );
 		}
 
-		if (options.parsedirection === "y") {
+		if ( options.parsedirection === "y" ) {
 			
-			self = swapTable(srcTbl);
+			self = swapTable( srcTbl );
 			
-			$(self).attr("class", $(srcTbl).attr("class"));
-			
-			$(self).removeClass("wb-charts-parsedirection-y");
+			$( self )
+				.attr("class", $( srcTbl ).attr( "class" ) )
+				.removeClass( "wb-charts-parsedirection-y" );
 			
 			// Re-lunch the parsing
 			vapour.doc.trigger( {
 				type: "pasiveparse.wb-table.wb",
-				pointer: $(self)
-			});
+				pointer: $( self )
+			} );
 			return;
 		}
 
@@ -1243,123 +1245,121 @@ var wet_boew_charts,
 			"color-typeof": "string",
 			"color-autocreate": true
 		};
-		parsedData = $(self).data().tblparser; // Retrieve the parsed data
+		parsedData = $( self ).data().tblparser; // Retrieve the parsed data
 
 
 		// Fix the parsed data
-		addTblHeaders(parsedData);
+		addTblHeaders( parsedData );
 
 		//
 		// Calculate the tick for a table where x is horizontal
 		//
-		horizontalCalcTick = calculateHorisontalTick(parsedData);
+		horizontalCalcTick = calculateHorisontalTick( parsedData );
 
 		//
 		// Reverse the axis for the data table
 		//
-		verticalCalcTick = calculateVerticalTick(parsedData);
+		verticalCalcTick = calculateVerticalTick( parsedData );
 
 
 		calcTick = horizontalCalcTick;
 
-		if (options.type === "pie") {
+		if ( options.type === "pie" ) {
 			// Use Reverse table axes
 			// Create a chart/ place holder, by series
-			mainFigureElem = $("<figure />").insertAfter(srcTbl);
+			mainFigureElem = $( "<figure />" ).insertAfter( srcTbl );
 
-			pieLabelFormater = function (label, series) {
+			pieLabelFormater = function ( label, series ) {
 				var textlabel;
-				if (!options.decimal) {
-					textlabel = Math.round(series.percent);
+				if ( !options.decimal ) {
+					textlabel = Math.round( series.percent );
 				} else {
-					textlabel = Math.round(series.percent * Math.pow(10, options.decimal));
-					textlabel = textlabel / Math.pow(10, options.decimal);
+					textlabel = Math.round( series.percent * Math.pow( 10, options.decimal ) );
+					textlabel = textlabel / Math.pow( 10, options.decimal );
 				}
-				if (options.nolegend) {
+				if ( options.nolegend ) {
 					// Add the series label
 					textlabel = label + "<br/>" + textlabel;
 				}
 				return textlabel + "%";
 			};
-			mainFigureElem.addClass("wb-charts"); // Default
-			if (options.graphclass) {
-				if ($.isArray(options.graphclass)) {
-					for (i = 0, _graphclasslen = options.graphclass.length; i < _graphclasslen; i += 1) {
-						mainFigureElem.addClass(options.graphclass[i]);
+			// Default
+			mainFigureElem.addClass("wb-charts");
+			if ( options.graphclass ) {
+				if ( $.isArray( options.graphclass ) ) {
+					for ( i = 0, _graphclasslen = options.graphclass.length; i < _graphclasslen; i += 1 ) {
+						mainFigureElem.addClass( options.graphclass[ i ] );
 					}
 				} else {
-					mainFigureElem.addClass(options.graphclass);
+					mainFigureElem.addClass( options.graphclass );
 				}
 			}
 
-			figCaptionElem = $("<figcaption />");
+			figCaptionElem = $( "<figcaption />" );
 
-			$(mainFigureElem).append(figCaptionElem);
-			tblCaptionHTML = $("caption", srcTbl).html();
-			tblCaptionText = $("caption", srcTbl).text();
-			$(figCaptionElem).append(tblCaptionHTML);
+			$( mainFigureElem ).append( figCaptionElem );
+			tblCaptionHTML = $( "caption", srcTbl ).html();
+			tblCaptionText = $( "caption", srcTbl ).text();
+			$( figCaptionElem ).append( tblCaptionHTML );
 
+			dataGroup =  parsedData.colgroup[ 0 ].type === 1 ? parsedData.colgroup[ 1 ] : parsedData.colgroup[ 0 ];
 
-
-
-			dataGroup = (parsedData.colgroup[0].type === 1 ? parsedData.colgroup[1]: parsedData.colgroup[0]);
-
-			for (rIndex=parsedData.lstrowgroup[0].row.length - 1; rIndex >= 0; rIndex -= 1) {
+			for ( rIndex = parsedData.lstrowgroup[ 0 ].row.length - 1; rIndex >= 0; rIndex -= 1 ) {
 
 
-				for (i=0;i<dataGroup.col.length; i += 1) {
+				for ( i = 0; i < dataGroup.col.length; i += 1 ) {
 					dataSeries = [];
 					valueCumul = 0;
 
 					// For each cells
-					for(j=0; j<dataGroup.col[i].cell.length; j += 1){
+					for( j = 0; j < dataGroup.col[i].cell.length; j += 1 ){
 
 
-						if(dataGroup.col[i].cell[j].rowgroup.type !== 2 || (j > 0 && dataGroup.col[i].cell[j -1].rowgroup.uid !== dataGroup.col[i].cell[j].rowgroup.uid) ){
+						if( dataGroup.col[ i ].cell[ j ].rowgroup.type !== 2 || ( j > 0 && dataGroup.col[ i ].cell[ j -1 ].rowgroup.uid !== dataGroup.col[ i ].cell[ j ].rowgroup.uid ) ) {
 							break;
 						}
 
 						// Get"s the value
-						header = dataGroup.col[i].cell[j].row.header;
+						header = dataGroup.col[ i ].cell[ j ].row.header;
 
-						cellValue = options.getcellvalue(dataGroup.col[i].cell[rIndex].elem);
+						cellValue = options.getcellvalue( dataGroup.col[ i ].cell[ rIndex ].elem );
 
 						dataSeries.push(
 							[
 								valueCumul,
-								typeof cellValue === "object" ? cellValue[0] : cellValue
+								typeof cellValue === "object" ? cellValue[ 0 ] : cellValue
 							]);
 
-						valueCumul += header[header.length - 1].flotDelta;
+						valueCumul += header[ header.length - 1 ].flotDelta;
 
 						break;
 					}
-					tdOptions = setClassOptions(RowDefaultOptions,
-						($(dataGroup.col[i].cell[rIndex].elem).attr("class") !== undefined ?
-							$(dataGroup.col[i].cell[rIndex].elem).attr("class") :
+					tdOptions = setClassOptions( RowDefaultOptions,
+						( $( dataGroup.col[ i ].cell[ rIndex ].elem ).attr( "class" ) !== undefined ?
+							$( dataGroup.col[ i ].cell[ rIndex ].elem ).attr( "class" ) :
 							""
 						)
 					);
-					allSeries.push({
+					allSeries.push( {
 						data: dataSeries,
-						label: $(dataGroup.col[i].dataheader[dataGroup.col[i].dataheader.length - 1].elem).text(),
-						color: (!tdOptions.color ?
+						label: $( dataGroup.col[ i ].dataheader[ dataGroup.col[ i ].dataheader.length - 1 ].elem ).text(),
+						color: !tdOptions.color ?
 							colourNameToHex(i) :
-							colourNameToHex(tdOptions.color))
-					});
+							colourNameToHex( tdOptions.color )
+					} );
 				}
 
 
 				// Create the Canvas
-				$placeHolder = $("<div />");
+				$placeHolder = $( "<div />" );
 
 				// Charts Container
-				$imgContainer = $("<div />");
+				$imgContainer = $( "<div />" );
 
 				// Create a sub Figure or use the main one
-				if (parsedData.lstrowgroup[0].row.length === 1 &&
-					($(parsedData.lstrowgroup[0].row[0].header[0].elem).html() === tblCaptionHTML ||
-					parsedData.lstrowgroup[0].row[0].header.length === 0)) {
+				if ( parsedData.lstrowgroup[ 0 ].row.length === 1 &&
+					( $( parsedData.lstrowgroup[ 0 ].row[ 0 ].header[ 0 ].elem ).html() === tblCaptionHTML ||
+					parsedData.lstrowgroup[ 0 ].row[ 0 ].header.length === 0 ) ) {
 
 					pieChartLabelText = tblCaptionText;
 
@@ -1367,29 +1367,29 @@ var wet_boew_charts,
 
 				} else {
 					// Use a sub container
-					$subFigureElem = $("<figure />").appendTo(mainFigureElem);
-					$subfigCaptionElem = $("<figcaption />");
+					$subFigureElem = $( "<figure />" ).appendTo( mainFigureElem );
+					$subfigCaptionElem = $( "<figcaption />" );
 
-					header = parsedData.lstrowgroup[0].row[rIndex].header;
+					header = parsedData.lstrowgroup[ 0 ].row[ rIndex ].header;
 
-					pieChartLabelText = $(header[header.length - 1].elem).text();
+					pieChartLabelText = $( header[ header.length - 1 ].elem ).text();
 
-					$subFigureElem.append($subfigCaptionElem);
-					$subfigCaptionElem.append($(header[header.length - 1].elem).html());
+					$subFigureElem.append( $subfigCaptionElem );
+					$subfigCaptionElem.append( $( header[ header.length - 1 ].elem ).html() );
 
-					$subFigureElem.append($imgContainer);
+					$subFigureElem.append( $imgContainer );
 				}
 
-				$imgContainer.append($placeHolder);
+				$imgContainer.append( $placeHolder );
 
 				// Canvas Size
-				$placeHolder.css("height", options.height).css("width", options.width);
+				$placeHolder.css( "height", options.height ).css( "width", options.width );
 
 
 
-				$imgContainer.attr("role", "img");
+				$imgContainer.attr( "role", "img" );
 				// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
-				$imgContainer.attr("aria-label", pieChartLabelText + " " + i18n("%table-following")); // "Chart. Details in table following."
+				$imgContainer.attr( "aria-label", pieChartLabelText + " " + i18n( "%table-following" ) ); // "Chart. Details in table following."
 
 				//
 				// Pie Charts Options
@@ -1402,11 +1402,11 @@ var wet_boew_charts,
 					}
 				};
 				// Hide the legend,
-				if (options.nolegend) {
-					pieOptions.legend = {show: false};
+				if ( options.nolegend ) {
+					pieOptions.legend = { show: false };
 				}
 				// Add pie chart percentage label on slice
-				if (options.percentlegend) {
+				if ( options.percentlegend ) {
 					pieOptions.series.pie.radius = options.pieradius / 100;
 					pieOptions.series.pie.label = {
 						show: true,
@@ -1414,135 +1414,136 @@ var wet_boew_charts,
 						formatter: pieLabelFormater
 					};
 					// Hides the labels of any pie slice that is smaller than the specified percentage (ranging from 0 to 100)
-					if (options.piethreshold) {
+					if ( options.piethreshold ) {
 						pieOptions.series.pie.label.threshold = options.piethreshold / 100;
 					}
 				}
 				// Percentage of tilt ranging from 0 and 100, where 100 has no change (fully vertical) and 0 is completely flat (fully horizontal -- in which case nothing actually gets drawn)
-				if (options.pietilt) {
+				if ( options.pietilt ) {
 					pieOptions.series.pie.tilt = options.pietilt / 100;
 				}
 				// Sets the radius of the donut hole. If value is between 0 and 100 (inclusive) then it will use that as a percentage of the radius, otherwise it will use the value as a direct pixel length.
-				if (options.pieinnerradius) {
+				if ( options.pieinnerradius ) {
 					pieOptions.series.pie.innerRadius = options.pieinnerradius / 100;
 				}
 				// Factor of PI used for the starting angle (in radians) It can range between 0 and 200 (where 0 and 200 have the same result).
-				if (options.piestartangle) {
+				if ( options.piestartangle ) {
 					pieOptions.series.pie.startAngle = options.piestartangle / 100;
 				}
 				//	Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
-				if (options.piehighlight) {
+				if ( options.piehighlight ) {
 					pieOptions.series.pie.highlight = options.piehighlight / 100;
 				}
 				// hoverable
-				if (options.piehoverable) {
+				if ( options.piehoverable ) {
 					pieOptions.grid = {
 						hoverable: true
 					};
 				}
 
 				// Create the graphic
-				$.plot($placeHolder, allSeries, pieOptions);
+				$.plot( $placeHolder, allSeries, pieOptions );
 
-				if (!options.legendinline) {
+				if ( !options.legendinline ) {
 					// Move the legend under the graphic
-					$(".legend > div", $placeHolder).remove();
-					$(".legend > table", $placeHolder).removeAttr("style").addClass("font-small");
-					$(".legend", $placeHolder).appendTo($imgContainer);
+					$( ".legend > div", $placeHolder ).remove();
+					$( ".legend > table", $placeHolder ).removeAttr( "style" ).addClass( "font-small" );
+					$( ".legend", $placeHolder ).appendTo( $imgContainer );
 				}
 
 				// Remove any "pieLabel" ids set by the flotPie.js plugin at line #457
-				$(".pieLabel").removeAttr("id");
+				$( ".pieLabel" ).removeAttr( "id" );
 
 				allSeries = [];
 			}
 
-			if (!options.noencapsulation) { // eg of use:	wb-charts-noencapsulation-true
+			if ( !options.noencapsulation ) { // eg of use:	wb-charts-noencapsulation-true
 				// Use a details/summary to encapsulate the table
 				// Add a aria label to the table element, build from his caption prepend the word " Table"
 				// For the details summary, use the table caption prefixed with Table.
-				tblSrcContainer = $("<details />");
-				tblSrcContainerSummary = $("<summary />");
-				$(tblSrcContainer).appendTo(mainFigureElem);
+				tblSrcContainer = $( "<details />" );
+				tblSrcContainerSummary = $( "<summary />" );
+				$( tblSrcContainer ).appendTo( mainFigureElem );
 				// set the title for the ability to show or hide the table as a data source
-				$(tblSrcContainerSummary).text(tblCaptionHTML + " " + i18n("%table-mention"))
-					.appendTo(tblSrcContainer)
-					.after(srcTbl);
+				$( tblSrcContainerSummary ).text( tblCaptionHTML + " " + i18n( "%table-mention" ) )
+					.appendTo( tblSrcContainer )
+					.after( srcTbl );
 
 
 			} else {
 				// Move the table inside the figure element
-				$(srcTbl).appendTo(mainFigureElem);
+				$( srcTbl ).appendTo( mainFigureElem );
 			}
 
 			// Destroy the temp table if used
-			if (options.parsedirection === "y") {
-				$(self).remove();
+			if ( options.parsedirection === "y" ) {
+				$( self ).remove();
 			}
 			return;
 		}
 
 		// Count nbBarChart,
-		for (i=0;i<parsedData.lstrowgroup[0].row.length; i++) {
-			rowOptions = setClassOptions(RowDefaultOptions,
-			($(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).attr("class") !== undefined ?
-			$(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).attr("class") : ""));
+		for ( i = 0; i < parsedData.lstrowgroup[ 0 ].row.length; i++ ) {
+			rowOptions = setClassOptions( RowDefaultOptions,
+			( $ ( parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].elem ).attr( "class" ) !== undefined ?
+			$( parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].elem ).attr( "class" ) : "" ) );
 
 
 
-			if ((!rowOptions.type && (options.type === "bar" || options.type === "stacked")) || (rowOptions.type && (rowOptions.type === "bar" || rowOptions.type === "stacked"))) {
+			if (( !rowOptions.type && ( options.type === "bar" || options.type === "stacked" ) ) || ( rowOptions.type && ( rowOptions.type === "bar" || rowOptions.type === "stacked" ) ) ) {
 				nbBarChart += 1;
 				rowOptions.chartBarOption = nbBarChart;
-				if (!barDelta && ((rowOptions.type && rowOptions.type === "bar") || (!rowOptions.type && options.type === "bar"))) {
+				if ( !barDelta && ( ( rowOptions.type && rowOptions.type === "bar" ) || ( !rowOptions.type && options.type === "bar" ) ) ) {
 					barDelta = true;
 				}
 			}
 
-			parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].chartOption = rowOptions;
+			parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].chartOption = rowOptions;
 		}
 
 		// First rowgroup assume is a data row group.
 		// For all row....
-		for (i=0;i<parsedData.lstrowgroup[0].row.length; i++) {
+		for ( i = 0; i < parsedData.lstrowgroup[ 0 ].row.length; i++ ) {
 			dataSeries = [];
 			datacolgroupfound = 0;
 			valueCumul = 0;
 
-			rowOptions = parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].chartOption;
+			rowOptions = parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].chartOption;
 
 			// For each cells
-			for(j=0; j<parsedData.lstrowgroup[0].row[i].cell.length; j++){
+			for( j = 0; j < parsedData.lstrowgroup[ 0 ].row[ i ].cell.length; j++ ){
 
-				if(datacolgroupfound > 1 && parsedData.lstrowgroup[0].row[i].cell[j].col.groupstruct.type !== 2){
+				if( datacolgroupfound > 1 && parsedData.lstrowgroup[ 0 ].row[ i ].cell[ j ].col.groupstruct.type !== 2 ){
 					break;
 				}
 
-				if(parsedData.lstrowgroup[0].row[i].cell[j].col.groupstruct.type === 2){
+				if( parsedData.lstrowgroup[ 0 ].row[ i ].cell[ j ].col.groupstruct.type === 2 ){
 
 					// Get's the value
-					header = parsedData.lstrowgroup[0].row[i].cell[j].col.header;
+					header = parsedData.lstrowgroup[ 0 ].row[ i ].cell[ j ].col.header;
 					valuePoint = valueCumul;
 
 					// Bar chart case, re-evaluate the calculated point
-					if (barDelta && rowOptions.chartBarOption) {
+					if ( barDelta && rowOptions.chartBarOption ) {
 						// Position bar
-						valuePoint = valueCumul - (smallestHorizontalFlotDelta / 2)  + ((smallestHorizontalFlotDelta / nbBarChart) * (rowOptions.chartBarOption - 1));
+						valuePoint = valueCumul - ( smallestHorizontalFlotDelta / 2 )  + ( smallestHorizontalFlotDelta / nbBarChart * ( rowOptions.chartBarOption - 1) );
 
-						if (nbBarChart === 1) {
+						if ( nbBarChart === 1 ) {
 							valuePoint = valueCumul;
 						}
 
 					}
 
-					cellValue = options.getcellvalue(parsedData.lstrowgroup[0].row[i].cell[j].elem);
+					cellValue = options.getcellvalue( parsedData.lstrowgroup[ 0 ].row[ i ].cell[ j ].elem);
 
 					// Add the data point
 					dataSeries.push(
 						[
 							valuePoint,
-							typeof cellValue === "object" ? cellValue[0] : cellValue
-						]);
-					valueCumul += header[header.length - 1].flotDelta;
+							typeof cellValue === "object" ? cellValue[ 0 ] : cellValue
+						]
+					);
+					valueCumul += header[ header.length - 1 ].flotDelta;
 					datacolgroupfound++;
 				}
 			}
@@ -1551,141 +1552,163 @@ var wet_boew_charts,
 
 			// Get the graph type
 
-			if (!rowOptions.type) {
+			if ( !rowOptions.type ) {
 				rowOptions.type = options.type;
 			}
 
-			if (rowOptions.type === "line") {
-				allSeries.push({ data: dataSeries, label: $(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).text(), color: (!rowOptions.color?colourNameToHex(i):colourNameToHex(rowOptions.color))});
-			} else if (rowOptions.type === "area") {
-				allSeries.push({ data: dataSeries, label: $(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).text(), color: (!rowOptions.color?colourNameToHex(i):colourNameToHex(rowOptions.color)),
-				lines: { show: true, fill: true }
+			if ( rowOptions.type === "line" ) {
+				allSeries.push( {
+					data: dataSeries,
+					label: $( parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].elem ).text(),
+					color: !rowOptions.color ? colourNameToHex( i ) : colourNameToHex( rowOptions.color )
+				} );
+			} else if ( rowOptions.type === "area" ) {
+				allSeries.push( {
+					data: dataSeries,
+					label: $( parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].elem ).text(),
+					color: !rowOptions.color ? colourNameToHex( i ) : colourNameToHex( rowOptions.color ),
+					lines: {
+						show: true,
+						fill: true
+					}
 				});
-			} else if (rowOptions.type === "bar" || (barDelta && rowOptions.type === "stacked")) {
-				allSeries.push({ data: dataSeries, label: $(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).text(), color: (!rowOptions.color?colourNameToHex(i):colourNameToHex(rowOptions.color)),
-				bars: {
-					show: true,
-					barWidth: (1 / nbBarChart * 0.9),
-					align: "center"
-				}});
+			} else if ( rowOptions.type === "bar" || ( barDelta && rowOptions.type === "stacked" ) ) {
+				allSeries.push( {
+					data: dataSeries,
+					label: $( parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].elem ).text(),
+					color: !rowOptions.color ? colourNameToHex( i ) : colourNameToHex( rowOptions.color ),
+					bars: {
+						show: true,
+						barWidth: ( 1 / nbBarChart * 0.9 ),
+						align: "center"
+					}
+				} );
 
-			} else if (rowOptions.type === "stacked") {
-				allSeries.push({ data: dataSeries, label: $(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).text(), color: (!rowOptions.color?colourNameToHex(i):colourNameToHex(rowOptions.color)),
-				bars: {
-					show: true,
-					barWidth: 0.9,
-					align: "center"
-				}});
-			} else if (rowOptions.type === "pie") {
+			} else if ( rowOptions.type === "stacked" ) {
+				allSeries.push( {
+					data: dataSeries,
+					label: $( parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].elem ).text(),
+					color: !rowOptions.color ? colourNameToHex( i ) : colourNameToHex( rowOptions.color ),
+					bars: {
+						show: true,
+						barWidth: 0.9,
+						align: "center"
+					}
+				} );
+			} else if ( rowOptions.type === "pie" ) {
 
-				allSeries.push({ data: dataSeries, label: $(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).text(), color: (!rowOptions.color?colourNameToHex(i):colourNameToHex(rowOptions.color))});
+				allSeries.push( {
+					data: dataSeries,
+					label: $(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).text(),
+					color: !rowOptions.color ? colourNameToHex( i ) : colourNameToHex( rowOptions.color )
+				} );
 
 				isPieChart = true;
 			}
 		}
 
 
-		figureElem = $("<figure />").insertAfter(srcTbl);
+		figureElem = $( "<figure />" ).insertAfter( srcTbl );
 
-		figureElem.addClass("wb-charts"); // Default
-		if (options.graphclass) {
-			if ($.isArray(options.graphclass)) {
-				for (i = 0, _graphclasslen2 = options.graphclass.length; i < _graphclasslen2; i += 1) {
-					figureElem.addClass(options.graphclass[i]);
+		figureElem.addClass( "wb-charts" ); // Default
+		if ( options.graphclass ) {
+			if ( $.isArray( options.graphclass ) ) {
+				for ( i = 0, _graphclasslen2 = options.graphclass.length; i < _graphclasslen2; i += 1 ) {
+					figureElem.addClass( options.graphclass[ i ] );
 				}
 			} else {
-				figureElem.addClass(options.graphclass);
+				figureElem.addClass( options.graphclass );
 			}
 		}
 
-		figCaptionElem = $("<figcaption />");
+		figCaptionElem = $( "<figcaption />" );
 
-		$(figureElem).append(figCaptionElem);
-		tblCaptionHTML = $("caption", srcTbl).html();
-		$(figCaptionElem).append(tblCaptionHTML);
+		$( figureElem ).append( figCaptionElem );
+		tblCaptionHTML = $( "caption", srcTbl ).html();
+		$( figCaptionElem ).append( tblCaptionHTML );
 
 		// Create the placeholder
-		$placeHolder = $("<div />");
+		$placeHolder = $( "<div />" );
 
-		$(figureElem).append($placeHolder);
+		$( figureElem ).append( $placeHolder );
 
 		// Canvas Size
-		$placeHolder.css("height", options.height).css("width", "100%");
+		$placeHolder.css( "height", options.height ).css( "width", "100%" );
 
 
-		$placeHolder.attr("role", "img");
+		$placeHolder.attr( "role", "img" );
 		// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
-		$placeHolder.attr("aria-label", $("caption", srcTbl).text() + " " + i18n("%table-following")); // "Chart. Details in table following."
+		$placeHolder.attr( "aria-label", $( "caption", srcTbl ).text() + " " + i18n( "%table-following" ) ); // "Chart. Details in table following."
 
 
-		if (!options.noencapsulation) { // eg of use:	wb-charts-noencapsulation-true
+		if ( !options.noencapsulation ) { // eg of use:	wb-charts-noencapsulation-true
 			// Use a details/summary to encapsulate the table
 			// Add a aria label to the table element, build from his caption prepend the word " Table"
 			// For the details summary, use the table caption prefixed with Table.
-			tblSrcContainer = $("<details />");
-			tblSrcContainerSummary = $("<summary />");
-			$(tblSrcContainer).appendTo(figureElem);
+			tblSrcContainer = $( "<details />" );
+			tblSrcContainerSummary = $( "<summary />" );
+			$( tblSrcContainer ).appendTo( figureElem );
 			// set the title for the ability to show or hide the table as a data source
-			$(tblSrcContainerSummary).text(tblCaptionHTML + " " + i18n("%table-mention"))
-				.appendTo(tblSrcContainer)
-				.after(srcTbl);
+			$( tblSrcContainerSummary ).text( tblCaptionHTML + " " + i18n( "%table-mention" ) )
+				.appendTo( tblSrcContainer )
+				.after( srcTbl );
 
 		} else {
 			// Move the table inside the figure element
-			$(srcTbl).appendTo(figureElem);
+			$( srcTbl ).appendTo( figureElem );
 		}
 
 		// Create the graphic
 		plotParameter = {
 			canvas: true,
-			xaxis: (calcTick.length > 0 ? {ticks: calcTick} : { })
+			xaxis: ( calcTick.length > 0 ? { ticks: calcTick } : {} )
 		};
 
-		if (options.topvalue) {
-			if (!plotParameter.yaxis) {
+		if ( options.topvalue ) {
+			if ( !plotParameter.yaxis ) {
 				plotParameter.yaxis = {};
 			}
-			if (options.topvaluenegative) {
+			if ( options.topvaluenegative ) {
 				options.topvalue *= -1;
 			}
 			plotParameter.yaxis.max = options.topvalue;
 		}
-		if (options.bottomvalue) {
-			if (!plotParameter.yaxis) {
+		if ( options.bottomvalue ) {
+			if ( !plotParameter.yaxis ) {
 				plotParameter.yaxis = {};
 			}
-			if (options.bottomvaluenegative) {
+			if ( options.bottomvaluenegative ) {
 				options.bottomvalue *= -1;
 			}
 			plotParameter.yaxis.min = options.bottomvalue;
 		}
-		if (options.steps) {
-			if (!plotParameter.yaxis) {
+		if ( options.steps ) {
+			if ( !plotParameter.yaxis ) {
 				plotParameter.yaxis = {};
 			}
 			plotParameter.yaxis.ticks = options.steps;
 		}
 
-		$.plot($placeHolder, allSeries, plotParameter);
+		$.plot( $placeHolder, allSeries, plotParameter );
 
 
-		if (!options.legendinline) {
+		if ( !options.legendinline ) {
 			// Move the legend under the graphic
-			$(".legend > div", $placeHolder).remove();
-			$(".legend > table", $placeHolder).removeAttr("style").addClass("font-small");
-			$placeHolder.css("height", "auto");
+			$( ".legend > div", $placeHolder ).remove();
+			$( ".legend > table", $placeHolder ).removeAttr( "style" ).addClass( "font-small" );
+			$placeHolder.css( "height", "auto" );
 		}
-		if (options.nolegend) {
+		if ( options.nolegend ) {
 			// Remove the legend
-			$(".legend", $placeHolder).remove();
+			$( ".legend", $placeHolder ).remove();
 		}
 
-		$("canvas:eq(1)", $placeHolder).css("position", "static");
-		$("canvas:eq(0)", $placeHolder).css("width", "100%");
+		$( "canvas:eq(1)", $placeHolder ).css( "position", "static" );
+		$( "canvas:eq(0)", $placeHolder ).css( "width", "100%" );
 
 		// Destroy the temp table if used
-		if (options.parsedirection === "y") {
-			$(self).remove();
+		if ( options.parsedirection === "y" ) {
+			$( self ).remove();
 		}
 	},
 
