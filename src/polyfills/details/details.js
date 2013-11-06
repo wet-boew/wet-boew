@@ -49,11 +49,9 @@ $document.on( "click vclick touchstart keydown", selector + " summary", function
 	var which = event.which,
 		details, isClosed;
 
-	// Filter out any events triggered by descendants and 
-	// ignore middle/right mouse buttons
+	// Ignore middle/right mouse buttons
 	if ( !which || which === 1 || which === 13 || which === 32 ) {
-
-		details = event.target.parentNode;
+		details = event.currentTarget.parentNode;
 		isClosed = ( details.getAttribute( "open" ) === null );
 		
 		if ( isClosed ) {

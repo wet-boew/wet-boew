@@ -12,5 +12,8 @@ details {
 	}
 	summary { /* Make sure summary remains visible */
 		display: block !important;
+		&:hover {
+			cursor: pointer;
+		}
 	}
 }
