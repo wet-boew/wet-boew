@@ -209,41 +209,49 @@ onHoverFocus = function( event ) {
 $document.on( "timerpoke.wb mouseleave select.wb-menu ajax-fetched.wb increment.wb-menu reset.wb-menu display.wb-menu", selector, function( event ) {
 	var elm = event.target,
 		eventType = event.type,
-		$elm;
-
-	// Filter out any events triggered by descendants
-	if ( event.currentTarget === elm ) {
 		$elm = $( elm );
 	
-		switch ( eventType ) {
-		case "ajax-fetched":
+	switch ( eventType ) {
+	case "ajax-fetched":
+
+		// Filter out any events triggered by descendants
+		if ( event.currentTarget === elm ) {
 			onAjaxLoaded( $elm, event.pointer );
-			return false;
-
-		case "select":
-			onSelect( event );
-			break;
-
-		case "timerpoke":
-			onInit( $elm );
-			break;
-
-		case "increment":
-			onIncrement( $elm, event );
-			break;
-
-		case "mouseleave":
-			onReset( $elm );
-			break;
-
-		case "reset":
-			onReset( $elm );
-			break;
-
-		case "display":
-			onDisplay( $elm, event );
-			break;
 		}
+		return false;
+
+	case "select":
+		onSelect( event );
+		break;
+
+	case "timerpoke":
+
+		// Filter out any events triggered by descendants
+		if ( event.currentTarget === elm ) {
+			onInit( $elm );
+		}
+		break;
+
+	case "increment":
+		onIncrement( $elm, event );
+		break;
+
+	case "mouseleave":
+	
+		// Make sure we are dealing with the top level container
+		if ( !$elm.hasClass( "wb-menu" ) ) {
+			$elm = $elm.closest( ".wb-menu" );
+		}
+		onReset( $elm );
+		break;
+
+	case "reset":
+		onReset( $elm );
+		break;
+
+	case "display":
+		onDisplay( $elm, event );
+		break;
 	}
 
 	/*
