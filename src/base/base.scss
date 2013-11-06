@@ -28,6 +28,7 @@
 @import "partials/bootstrap-overrides";
 @import "partials/language-selector";
 @import "partials/transitions";
+
 /*
  Plugins
  */
@@ -41,12 +42,16 @@
 @import "../plugins/prettify/prettify";
 @import "../plugins/footnotes/footnotes";
 @import "../plugins/modal/modal";
-@import '../plugins/tables/tables.scss';
-@import '../plugins/overlays/overlays';
-@import '../polyfills/datalist/base.scss';
-@import '../polyfills/details/base.scss';
-@import '../polyfills/datepicker/base.scss';
-@import '../plugins/share/share.scss';
-@import '../plugins/calendar/calendar-base.scss';
-@import '../plugins/calendar/calendar-theme.scss';
-@import '../plugins/tabs/tabs.scss';
+@import "../plugins/tables/tables";
+@import "../plugins/overlays/overlays";
+@import "../plugins/share/share";
+@import "../plugins/calendar/calendar-base";
+@import "../plugins/calendar/calendar-theme";
+@import "../plugins/tabs/tabs";
+
+/*
+ Polyfills
+ */
+@import "../polyfills/datalist/datalist-base";
+@import "../polyfills/details/details-base";
+@import "../polyfills/datepicker/datepicker-base";

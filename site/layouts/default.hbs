@@ -1,25 +1,27 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js ie8" lang="{{language}}"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lt-ie9" lang="{{language}}"><![endif]-->
 <!--[if gt IE 8]><!-->
 <html lang="{{language}}">
 <!--<![endif]-->
 	<head>
-		<meta charset="utf-8">
+		<meta charset="utf-8" />
 		<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 		wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
 		<title>{{title}} - {{site.sitetitle}}</title>
-		<link href="{{assets}}/assets/favicon.ico" rel="shortcut icon">
-		<meta content="width=device-width, initial-scale=1" name="viewport">
+		<link href="{{assets}}/assets/favicon.ico" rel="shortcut icon" />
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
 		<!-- Meta data -->
 		<meta name="description" content="{{site.description}}" />
 		<!-- Meta data-->
-		<link rel="stylesheet" href="{{assets}}/css/base{{environment.suffix}}.css">
-		<link rel="stylesheet" href="{{assets}}/css/theme{{environment.suffix}}.css">
+		<link rel="stylesheet" href="{{assets}}/css/base{{environment.suffix}}.css" />
+		<link rel="stylesheet" href="{{assets}}/css/theme{{environment.suffix}}.css" />
 
-		<!-- IE8 Support -->
-		<!--[if IE 8]>
+		<!--[if lt IE 9]>
+		<link rel="stylesheet" href="{{assets}}/css/ie8{{environment.suffix}}.css" />
 		<script src="{{assets}}/js/ie8-vapour{{environment.suffix}}.js"></script>
 		<![endif]-->
+
+		<noscript><link rel="stylesheet" href="{{assets}}/css/noscript{{environment.suffix}}.css" /></noscript>
 
 	</head>
 	<body vocab="http://schema.org/" typeof="WebPage">

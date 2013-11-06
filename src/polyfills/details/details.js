@@ -58,8 +58,10 @@ $document.on( "click vclick touchstart keydown", selector + " summary", function
 		
 		if ( isClosed ) {
 			details.setAttribute( "open", "open" );
+			details.className += " open";
 		} else {
 			details.removeAttribute( "open" );
+			details.className = details.className.replace( " open", "" );
 		}
 		details.setAttribute( "aria-expanded", isClosed );
 

@@ -369,7 +369,9 @@ module.exports = (grunt) ->
 				cwd: "src/polyfills"
 				src: [
 					"**/*.scss"
-					"!**/base.scss"
+					"!**/*-base.scss"
+					"!**/*-ie8.scss"
+					"!**/*-noscript.scss"
 				]
 				dest: "dist/unmin/css/polyfills/"
 				ext: ".css"
