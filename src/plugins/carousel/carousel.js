@@ -86,7 +86,21 @@ var selector = ".wb-carousel",
 	},
 
 	/*
-	 * @method onShift
+	 * @method onSelect Assumes the clicked element was an <a> inside an <li>.
+	 * @param {jQuery DOM element} $elm The plugin element
+	 * @param {jQuery event} event The current event
+	 */
+	onSelect = function( $elm, event ) {
+		var _items = $elm.find( ".item" ),
+			_current = $elm.find( ".item.in" ).prevAll( ".item" ).length,
+			_target = $( event.target ).parent().index(); // using index here because we added the <ul> ourself, so we know it only contains the <li>s we put there.
+		
+		_items.eq (_current ).removeClass( "in" ).addClass( "out" );
+		_items.eq( _target ).removeClass( "out" ).addClass( "in" );
+	},
+	
+	/*
+	 * @method onCycle
 	 * @param {jQuery DOM element} $elm The plugin element
 	 * @param {integer} shifto The item to shift to
 	 */
@@ -98,7 +112,7 @@ var selector = ".wb-carousel",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb init.wb-carousel shift.wb-carousel", selector, function( event ) {
+$document.on( "timerpoke.wb init.wb-carousel shift.wb-carousel select.wb-carousel", selector, function( event ) {
 	var eventType = event.type,
 
 		// "this" is cached for all events to utilize
@@ -121,6 +135,13 @@ $document.on( "timerpoke.wb init.wb-carousel shift.wb-carousel", selector, funct
 	 */
 	case "shift":
 		onShift( $elm, event );
+		break;
+		
+	/*
+	 * Select a specific slide
+	 */
+	case "select":
+		onSelect( $elm, event );
 		break;
 	}
 

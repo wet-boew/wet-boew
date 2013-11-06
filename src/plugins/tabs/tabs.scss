@@ -69,7 +69,7 @@
 		}
 	}
 }
-.tabs-toggle {
+.tabs-controls {
 	border: none;
 	background: none;
 	display: inline;
@@ -101,13 +101,14 @@
 	}
 }
 
-.tabs-panel {
+.wb-tabs {
     border: solid 1px #ccc;
     border-top: none;
     padding: 1px 10px;
-	> {
-		div {
-			display: none;
+	div {
+		display: none;
+		&.in {
+			display: block;
 		}
 	}
 	.viewport {
@@ -119,26 +120,13 @@
 	h2,h3,h4,h5,h6 {
 		border: none;
 	}
-	.float-right {
-		margin-left: 10px;
-	}
-	.float-left {
-		margin-right: 10px;
-	}
-	> {
-		div {
-			&.in {
-				display: block;
-			}
-		}
-	}
 	.panel-end {
 		margin: 0 10px;
 	}
 }
 
 .slide-horz, .slide-vert {
-	.tabs-panel {
+	.wb-tabs {
 		overflow: hidden;
 		position: relative;
 	}
@@ -149,38 +137,18 @@
 	%tabbedinterface-auto-height-bottom-padding {
 		padding-bottom: 11px;
 	}
-	.wet-boew-tabbedinterface {
+	.wb-tabs {
 		&:not(.auto-height-none) {
-			.tabs-panel {
+			.wb-tabs {
 				@extend %tabbedinterface-auto-height-bottom-padding;
-			}
-		}
-		&.tabs-style-1 {
-			&:not(.auto-height-none) {
-				.tabs-panel {
-					@extend %tabbedinterface-auto-height-bottom-padding;
-				}
 			}
 		}
 	}
 	[class*="tabs-style-"] {
 		&:not(.auto-height-none) {
-			.tabs-panel {
-				padding-bottom: 0;
-			}
+			padding-bottom: 0;
 		}
 	}
-}
-
-.wb-tabs .clear {
-    clear: both;
-    display: block;
-    height: 0;
-    margin: 0;
-    min-height: 0;
-    overflow: hidden;
-    visibility: hidden;
-    width: 0;
 }
 
 .tabs-roller {
@@ -192,12 +160,6 @@
     cursor:pointer;
     background-color: #000;
     opacity: 0.1;
-}
-
-.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12 {
-	.tabs {
-		margin: 0;
-	}
 }
 
 .tabs-style-default, .tabs-style-1 {
@@ -258,10 +220,7 @@
 			}
 		}
 	}
-	.tabs-panel {
-		border: none;
-	}
-	.tabs-toggle {
+	.tabs-controls {
 		a {
 			color: #000;
 			@extend %tabbedinterface-no-repeat-border999;
@@ -271,548 +230,6 @@
 			}
 			&.prv, &.nxt {
 				background-position: center 5px;
-			}
-		}
-	}
-}
-
-%tabbedinterface-tab-style-2-in {
-	background: #333;
-	color: #fff;
-	outline-color: #000;
-	padding-top: 2px;
-}
-
-/* style 2 */
-.tabs-style-2 {
-    border: 0;
-    padding: 0;
-    position: relative;
-    z-index: 1;
-    margin: 0;
-	.tabs {
-		border: none;
-		background: #eee;
-		opacity: 0.95;
-		min-height: 24px;
-		position: absolute;
-		width: 100%;
-		z-index: 2;
-		padding-top: 1px;
-		margin-top: 0;
-		bottom: 0;
-		left: 0;
-		li {
-			border: none;
-			margin-right: -3px;
-			width: auto;
-			a {
-				border: 1px solid #999;
-				padding: 2px 5px;
-				border-radius: 2px;
-				&:focus, &:hover {
-					@extend %tabbedinterface-tab-style-2-in;
-				}
-			}
-			&.active {
-				border: none;
-				top: auto;
-				color: #fff;
-				a {
-					@extend %tabbedinterface-tab-style-2-in;
-					&:focus, &:hover {
-						@extend %tabbedinterface-tab-style-2-in;
-					}
-				}
-			}
-		}
-	}
-	.tabs-panel {
-		border: none;
-		min-height: 220px;
-		background: url(../js/assets/tabs-gradient3.png) repeat-x 0 bottom #555;
-		color: #fff;
-		margin: 0;
-		padding: 0;
-		a, a:visited, h2,h3,h4,h5,h6 {
-			color: #fff;
-		}
-	}
-	.tabs-content-pad {
-		padding: 10px 10px 36px;
-	}
-	.tabs-toggle {
-		@extend %tabbedinterface-gradient-background;
-		margin-left: 6px;
-		margin-right: -6px;
-		a {
-			background-color: transparent;
-			&:focus, &:hover {
-				color: #000;
-			}
-		}
-	}
-	.tabs-roller {
-		background-color: #fff;
-		opacity: 0.25;
-	}
-}
-
-%tabbedinterface-tab-style-3-in {
-	background: #000;
-	color: #fff;
-	outline-color: #000;
-	margin-right: 0;
-	opacity: 0.75;
-}
-
-/* style 3 */
-.tabs-style-3 {
-    position: relative;
-    z-index: 1;
-    border: 1px solid #ccc;
-    margin: 0;
-    min-height: 220px;
-    padding: 10px 0 10px 10px;
-    border-radius: 3px;
-	.tabs {
-		width: 34%;
-		position: absolute;
-		z-index: 3;
-		border: none;
-		margin: 20px 0 0;
-		right: 0;
-		li {
-			border: none;
-			margin: 0;
-			width: 100%;
-			a {
-				display: block;
-				border: none;
-				text-decoration: none;
-				background: transparent;
-				padding: 5px 5px 5px 25px;
-				&:focus, &:hover {
-					@extend %tabbedinterface-tab-style-3-in;
-				}
-			}
-		}
-		li.active {
-			border: none;
-			color: #fff;
-			a {
-				&:before {
-				    border: {
-						color: transparent black transparent transparent;
-						style: solid;
-						width: 13px;
-					}
-					content: "";
-					display: block;
-					height: 0;
-					left: -20px;
-					position: absolute;
-					top: 0;
-					width: 0;
-				}
-				@extend %tabbedinterface-tab-style-3-in;
-				&:focus, &:hover {
-					@extend %tabbedinterface-tab-style-3-in;
-				}
-			}
-		}
-	}
-	.tabs-panel {
-		background-color: #eee;
-		border: 1px solid #ccc;
-		box-shadow: 0 0 7px #999999 inset;
-		width: 66%;
-		z-index: 2;
-	}
-	.prv {
-		margin-left: 15px;
-	}
-	.tabs-content-pad {
-		padding: 10px;
-	}
-	.tabs-toggle {
-		width: auto;
-		a {
-			float: right;
-			margin-top: 10px;
-			border: 1px solid #ccc;
-			&:focus, &:hover {
-				opacity: 1;
-				color: #000;
-				margin-right: 2px;
-			}
-		}
-	}
-	.tabs-roller {
-		background-color: #fff;
-		opacity: 0.2;
-		border-radius: 3px 0 0 3px;
-	}
-}
-
-
-/* style 4 */
-%tabbedinterface-tab-style-4-in-hover {
-	background: none repeat scroll 0 0 #FFF;
-	border: none;
-	color: #000;
-	padding-top: 2px;
-}
-.tabs-style-4 {
-    padding: 0;
-	.tabs {
-		font-weight: 700;
-		margin-bottom: 2px;
-		padding: 0 0 1px 0;
-		height: auto;
-		border: none;
-		li {
-			display: block;
-			a {
-				background: url(../js/assets/tabs-gradient2-style4.png) repeat-x scroll 50% 50% #000;
-				border-top: 1px solid #000;
-				color: #FFF;
-				font-size: 80%;
-				margin: 0;
-				padding: 2px;
-				&:focus, &:hover {
-					@extend %tabbedinterface-gradient-background;
-					color: #000;
-				}
-			}
-			&.active a {
-				@extend %tabbedinterface-tab-style-4-in-hover;
-			}
-		}
-	}
-	.tabs-panel {
-		border: none;
-		margin: 0;
-		padding: 0;
-		img {
-			display: block;
-			margin-bottom: 0;
-		}
-		a {
-			&[rel="external"] {
-				padding: 0;
-				background: 0;
-			}
-		}
-	}
-	.tabs-toggle {
-		margin-top: 3px;
-		display: inline-block;
-		vertical-align: middle;
-		a {
-			font-size: 100%;
-			width: auto;
-			color: #000;
-			border-top: 1px solid #999;
-			margin-right: 2px;
-		}
-	}
-}
-
-/* style 5 */
-.tabs-style-5 {
-    padding: 0;
-	.tabs {
-		border: none;
-		top: 3px;
-		li {
-			display: none;
-		}
-	}
-	.tabs-panel {
-		border: none;
-		margin: 0;
-		padding: 0;
-		img {
-			display: block;
-			margin-bottom: 0;
-		}
-		a {
-			&[rel="external"] {
-				padding: 0;
-				background: 0;
-			}
-		}
-	}
-	.tabs-toggle {
-		display: inline-block;
-		vertical-align: middle;
-		a {
-			display: block;
-			width: auto;
-		}
-	}
-}
-
-/* style 6 */
-%tabbedinterface-tab-style-6-link {
-	padding: 2px 4px;
-	border: 1px solid #999;
-	border-radius: 2px;
-}
-%tabbedinterface-tab-style-6-opacity-1-color-000 {
-	opacity: 1;
-	color: #000;
-}
-%tabbedinterface-tab-style-6-padding-0-background-eee {
-	padding: 0;
-	background: #eee;
-}
-%tabbedinterface-tab-style-6-tab-active {
-	background: none repeat scroll 0 0 #333333;
-    border-color: #000000;
-    color: #FFFFFF;
-    text-decoration: none;
-}
-.tabs-style-6 {
-	.tabs-panel {
-		@extend %tabbedinterface-tab-style-6-padding-0-background-eee;
-		display: inline-block;
-		background: #eee;
-		box-shadow: 0 15px 15px -10px #999, 0 1px 1px #aaa;
-	}
-	&.slide-vert, &.slide-horz {
-		.tabs-panel {
-			display: block;
-		}
-	}
-	img {
-		display: block;
-	}
-	.tabs {
-		margin: 15px 0;
-		border: 0;
-		li {
-			vertical-align: top;
-			border: 0;
-			a {
-				@extend %tabbedinterface-tab-style-6-link;
-				background: none repeat scroll 0 center rgba(0, 0, 0, 0);
-			    border: 1px solid #999999;
-			    border-radius: 2px 2px 2px 2px;
-			    padding: 2px 4px;
-				&:focus, &:hover {
-					@extend %tabbedinterface-tab-style-6-tab-active;
-				}
-			}
-			&.img {
-				margin-right: 10px;
-				a {
-					opacity: 0.5;
-					margin: -1px 0 0 0;
-					padding: 0;
-					border: 0;
-					border-radius: 0;
-					&.active {
-						@extend %tabbedinterface-tab-style-6-opacity-1-color-000;
-					}
-					&:focus, &:hover {
-						@extend %tabbedinterface-tab-style-6-opacity-1-color-000;
-					}
-				}
-			}
-		}
-		li.active a {
-			@extend %tabbedinterface-tab-style-6-tab-active;
-		}
-		img {
-			margin: 0;
-			padding: 0;
-		}
-	}
-	.tabs-toggle {
-		a {
-			&:focus, &:hover {
-				text-decoration: underline;
-				color: #000;
-				border-color: #999;
-			}
-		}
-	}
-	.tabs-roller {
-		opacity: 0.5;
-	}
-}
-
-.pe-disable {
-	.tabs-panel > div {
-		display: block;
-	}
-}
-
-.ie9 {
-	.tabs-style-2 {
-		.tabs {
-			li {
-				a {
-					display: inline;
-				}
-			}
-		}
-	}
-	.tabs-style-3 {
-		li {
-			&:not(.tabs-toggle) {
-				display: inline;
-			}
-		}
-	}
-}
-
-/* Right to left (RTL) CSS */
-%tabbedinterface-background-position-right-0 {
-	background-position: right 0;
-}
-%tabbedinterface-padding-2-24-2-5 {
-	padding: 2px 24px 2px 5px;
-}
-[dir="rtl"] {
-	.tabs {
-		margin: 0;
-		li {
-			border-radius: 2px 2px 0 0;
-		}
-	}
-	.tabs-panel {
-		.viewport {
-			left: auto;
-			right: 0;
-		}
-		.float-right {
-			margin-left: auto;
-			margin-right: 10px;
-		}
-		.float-left {
-			margin-left: 10px;
-			margin-right: auto;
-		}
-	}
-	.tabs-toggle {
-		a {
-			margin-left: 2px;
-			margin-right: auto;
-			&.plypause {
-				@extend %tabbedinterface-background-position-right-0;
-				@extend %tabbedinterface-padding-2-24-2-5;
-			}
-		}
-	}
-	.tabs-roller {
-		left: auto;
-		right: 0;
-		cursor:pointer;
-	}
-
-	.tabs-style-1 {
-		.tabs-toggle {
-			a {
-				@extend %tabbedinterface-background-position-right-0;
-				&:focus, &:hover {
-					@extend %tabbedinterface-background-position-right-0;
-				}
-			}
-		}
-	}
-
-	.tabs-style-2 {
-		.tabs {
-			left: auto;
-			right: 0;
-			li {
-				margin-left: -3px;
-				margin-right: auto;
-			}
-		}
-		.tabs-toggle {
-			margin-left: -6px;
-			margin-right: 6px;
-		}
-	}
-
-	%tabbedinterface-padding-5-25-5-5 {
-		padding: 5px 25px 5px 5px;
-	}
-	%tabbedinterface-margin-left-2px-margin-right-auto {
-		margin-left: 2px;
-		margin-right: auto;
-	}
-	.tabs-style-3 {
-		.tabs {
-			left: 0;
-			right: auto;
-			li {
-				a {
-					@extend %tabbedinterface-padding-5-25-5-5;
-					&.in {
-						@extend %tabbedinterface-padding-5-25-5-5;
-					}
-					&:focus, &:hover {
-						@extend %tabbedinterface-padding-5-25-5-5;
-					}
-				}
-				&.in {
-					a {
-						&:after {
-							border: {
-								color: transparent transparent transparent black;
-								style: solid;
-								width: 13px;
-							}
-							content: "";
-							display: block;
-							height: 0;
-							right: -20px;
-							position: absolute;
-							top: 0;
-							width: 0;
-						}
-						&:before {
-							border: none;
-						}
-					}
-				}
-			}
-		}
-		.tabs-toggle {
-			a {
-				float: left;
-				&:focus, &:hover {
-					@extend %tabbedinterface-margin-left-2px-margin-right-auto;
-				}
-			}
-		}
-		.prv {
-			margin-right: 15px;
-		}
-	}
-
-	.tabs-style-4 {
-		padding: 0;
-		.tabs-toggle {
-			a {
-				@extend %tabbedinterface-margin-left-2px-margin-right-auto;
-			}
-		}
-	}
-
-	.tabs-style-6 {
-		.tabs {
-			margin: 15px 0;
-			li {
-				&.img {
-					margin-left: 10px;
-					margin-right: auto;
-				}
 			}
 		}
 	}
