@@ -19,6 +19,9 @@
 	width: 234px;
 	height: 22px;
 }
+%gcwu-default-large-screen-height-61 {
+	height: 61px;
+}
 %gcwu-default-large-screen-font-weight-400-color-333 {
 	@extend %gcwu-default-large-screen-font-weight-400;
 	color: #333;
@@ -258,6 +261,22 @@ h1 {
 	@extend %gcwu-default-large-screen-width-234-height-22;
 }
 
+#gcwu-sig-coa {
+	@extend %gcwu-default-large-screen-float-left;
+	margin: 2px 0 2px 10px;
+	img {
+		@extend %gcwu-default-large-screen-margin-left-0;
+		@extend %gcwu-default-large-screen-height-61;
+	}
+	object {
+		@extend %gcwu-default-large-screen-height-61;
+	}
+}
+
+#gcwu-sig-coa-in {
+	@extend %gcwu-default-large-screen-height-61;
+}
+
 #gcwu-gcnb {
 	min-height: 3.6em;
 	a {
@@ -279,6 +298,9 @@ h1 {
 #gcwu-gcnb-in {
 	@extend %gcwu-default-large-screen-overflow-hidden;
 	min-height: 41px;
+	.ui-coa {
+		padding-top:12px;
+	}
 }
 
 #gcwu-title {
@@ -536,6 +558,18 @@ h1 {
 	}
 
 	#gcwu-sig-in {
+		@extend %gcwu-default-large-screen-margin-right-10;
+		@extend %gcwu-default-large-screen-margin-left-0;
+	}
+
+	#gcwu-sig-coa {
+		@extend %gcwu-default-large-screen-float-right;
+		img {
+			@extend %gcwu-default-large-screen-margin-right-0;
+		}
+	}
+
+	#gcwu-sig-coa-in {
 		@extend %gcwu-default-large-screen-margin-right-10;
 		@extend %gcwu-default-large-screen-margin-left-0;
 	}
