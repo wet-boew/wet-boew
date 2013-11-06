@@ -21,6 +21,11 @@
 		<script src="{{assets}}/js/ie8-vapour{{environment.suffix}}.js"></script>
 		<![endif]-->
 
+		<style>
+			.mrg-top { margin-top: 2em; }
+			.mrg-btm { margin-bottom: 2em; }
+		</style>
+
 		<noscript><link rel="stylesheet" href="{{assets}}/css/noscript{{environment.suffix}}.css" /></noscript>
 
 	</head>
@@ -28,8 +33,8 @@
 		<header role="banner">
 			<div id="wb-bnr">
 				<div class="container">
-					<div class="row">
-						<section class="full-hd">
+					<div class="row mrg-top mrg-btm">
+						<section class="col-md-8 col-md-offset-2">
 							<object type="image/svg+xml" tabindex="-1" role="img" data="{{assets}}/assets/logo.svg" aria-label="{{site.sitetitle}}"></object>
 						</section>
 					</div>
@@ -37,7 +42,7 @@
 			</div>
 		</header>
 		<main role="main" property="mainContentOfPage" class="container">
-			<div class="row">
+			<div class="row mrg-top">
 				<div class="col-md-12">
 					{{>body}}
 				</div>
