@@ -60,7 +60,7 @@
 			if (!pe.svg || pe.svgfix) {
 				contentPage = wet_boew_theme.sft.length !== 0;
 				swapPNG = function(toAlt) {
-					var elms = $('#gcwu-wmms img, #gcwu-sig img').get(),
+					var elms = $('#gcwu-wmms img, #gcwu-sig img, #gcwu-sig-coa img').get(),
 						len = elms.length,
 						image;
 					while (len--) {
@@ -77,7 +77,7 @@
 					};
 				}
 
-				elms = $('#gcwu-wmms-in, #gcwu-sig-in').get();
+				elms = $('#gcwu-wmms-in, #gcwu-sig-in, #gcwu-sig-coa-in').get();
 				len = elms.length;
 				while (len--) {
 					elm = elms[len];
@@ -342,7 +342,7 @@
 				}
 
 				// Add GC links
-				sig = wet_boew_theme.gcnb.find('#gcwu-sig-in').children();
+				sig = wet_boew_theme.gcnb.find('#gcwu-sig-in, #gcwu-sig-coa-in').children();
 				if (sig.length !== 0) {
 					settings_popup += '<div class="wb-nested-menu" data-role="collapsible"><h2>' + (typeof sig.attr('aria-label') !== 'undefined' ? sig.attr('aria-label') : sig.attr('alt')) + '</h2>' + listView + '>';
 					nodes = wet_boew_theme.gcnb.find('li').add(wet_boew_theme.gcft.find('li')).get();
