@@ -36,7 +36,7 @@ var selector = ".wb-tabs",
 	 */
 	init = function( event ) {
 		var elm = event.target,
-			$elm, modeJS, settings,	style, $controls, $tabs, $panels;
+			$elm, modeJS, settings, style, $controls, $tabs, $panels;
 
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === elm ) {
@@ -75,8 +75,8 @@ var selector = ".wb-tabs",
 			style = $elm.attr( "class" ).match( /tabs-style-(\d+)/ );
 			// style is something like ["tabs-style-2", "2", index: 25, input: "wb-tabs tabs-style-2 cycle-slow animate slide-horz wb-carousel"]
 			if ( style && $.inArray( style[1], ["2","3","4","5","6"] ) > -1 ) {
-				$controls = $( "<li class='tabs-controls'><a class='prv' href='javascript:;' role='button'>&nbsp;&nbsp;&nbsp;<span class='wb-inv'>" +
-					i18nText.prev + "</span></a></li><li class='tabs-controls'><a class='nxt' href='javascript:;' role='button'>&nbsp;&nbsp;&nbsp;<span class='wb-inv'>" +
+				$controls = $( "<li class='tabs-controls'><a class='prv' href='javascript:;' role='button'><span class='wb-inv'>" +
+					i18nText.prev + "</span></a></li><li class='tabs-controls'><a class='nxt' href='javascript:;' role='button'><span class='wb-inv'>" +
 					i18nText.next + "</span></a></li><li class='tabs-controls'><a class='plypause' href='javascript:;' role='button'>" +
 					i18nText.play + "<span class='wb-inv'>" + i18nText.space +
 					i18nText.hyphen + i18nText.space + i18nText.rotStart +
@@ -137,8 +137,7 @@ var selector = ".wb-tabs",
 	 * @param {jQuery event} event The current event
 	 */
 	onTabClick = function( event ) {
-		var $link = $( event.target ),
-			$panel = $( $link.parent().data( "target" ) );
+		var $link = $( event.target );
 		// handle switching the active tab
 		$link.parent().addClass( "active" ).siblings( ":not('tabs-controls')" ).removeClass( "active" );
 		// let carousel handle the switching of the panels
