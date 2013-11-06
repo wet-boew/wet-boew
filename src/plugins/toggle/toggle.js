@@ -27,28 +27,18 @@ var selector = ".wb-toggle",
 	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
 	 */
 	init = function( event ) {
-		var link = event.target,
-			$link, selector;
+		var $link,
+			link = event.target;
 
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === link ) {
-			$link = $( link );
-			selector = $link.data( "selector" );
 
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 			window._timer.remove( selector );
 
 			// Initialize the aria-controls attribute of the link
-			if ( selector ) {
-				$link.trigger( "ariaControls.wb-toggle", {
-					selector: selector,
-					parent: $link.data( "parent" )
-				});
-			} else {
-				$.error(
-					".wb-toggle: you must specify a [data-selector] attribute with the CSS selector of the element(s) the toggle link controls."
-				);
-			}
+			$link = $( link );
+			$link.trigger( "ariaControls.wb-toggle", $link.data( "toggle" ) || {} );
 		}
 	},
 
@@ -58,18 +48,18 @@ var selector = ".wb-toggle",
 	* @param {Object} data Simple key/value data object passed when the event was triggered
 	*/
 	setAriaControls = function( event, data ) {
-		var elm, i, len,
-			elms = data.parent !== undefined ? $( data.parent ).find( data.selector ) : $( data.selector ),
+		var i, len, $elm,
 			ariaControls = "",
-			link = event.target;
+			link = event.target,
+			$elms =  getElements( link, data );
 
 		// Find the elements this link controls
-		for ( i = 0, len = elms.length; i < len; i++ ) {
-			elm = elms.eq( i );
-			if ( elm.attr( "id" ) === undefined ) {
-				elm.attr( "id", "wb-toggle_" + i );
+		for ( i = 0, len = $elms.length; i < len; i++ ) {
+			$elm = $elms.eq( i );
+			if ( $elm.attr( "id" ) === undefined ) {
+				$elm.attr( "id", "wb-toggle_" + i );
 			}
-			ariaControls += elm.attr( "id" ) + " ";
+			ariaControls += $elm.attr( "id" ) + " ";
 		}
 		link.setAttribute( "aria-controls", ariaControls.slice( 0, -1 ) );
 	},
@@ -79,19 +69,13 @@ var selector = ".wb-toggle",
 	 * @param {jQuery Event} event The event that triggered this invocation
 	 */
 	click = function( event ) {
-		var eventTarget = event.target,
-			$link = $( eventTarget );
+		var $link = $( event.target );
 
-		$link.trigger( "toggle.wb-toggle", {
-			selector: $link.data( "selector" ),
-			parent: $link.data( "parent" ),
-			type: $link.data( "type" )
-		});
-
+		$link.trigger( "toggle.wb-toggle", $link.data( "toggle" ) || {} );
 		event.preventDefault();
 
 		// Assign focus to eventTarget
-		$( eventTarget ).trigger( "focus.wb" );
+		$link.trigger( "focus.wb" );
 	},
 
 	/*
@@ -100,30 +84,45 @@ var selector = ".wb-toggle",
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 */
 	toggle = function( event, data ) {
-		var $elms = data.parent !== undefined ? $( data.parent ).find( data.selector ) : $( data.selector ),
-
-			// Current state of elements
-			stateFrom = getState( data.selector, data.parent, data.type ),
-
-			// State to set the elements
+		var link = event.target,
+			$elms = getElements( link, data ),
+			stateFrom = getState( link, data ),
 			stateTo = stateFrom === stateOn ? stateOff : stateOn;
 
 		// Update the element state and store the new state
 		$elms.wb( "toggle", stateTo, stateFrom );
-		setState( data.selector, data.parent, stateTo );
+		setState( link, data, stateTo );
 	},
 
 	/*
-	 * Gets the current toggle state of a link given set of elements (based on selector and parent).
-	 * @param {String} selector CSS selector of the elements the link controls
-	 * @param {String} parent CSS selector of the parent DOM element the link is restricted to.
-	 * @param {String} type The type of link: undefined (toggle), "on" or "off"
+	 * Returns the elements a given toggle element controls.
+	 * @param {DOM element} link Toggle element that was clicked
+	 * @param {Object} data Simple key/value data object passed when the event was triggered
+	 * @returns {jQuery Object} DOM elements the toggle link controls
 	 */
-	getState = function( selector, parent, type ) {
+	getElements = function( link, data ) {
+		var selector = data.selector !== undefined ? data.selector : link,
+			parent = data.parent !== undefined ? data.parent : null;
+
+		return parent !== null ? $( parent ).find( selector ) : $( selector );
+	},
+
+	/*
+	 * Gets the current toggle state of elements controlled by the given link.
+	 * @param {DOM element} link Toggle link that was clicked
+	 * @param {Object} data Simple key/value data object passed when the event was triggered
+	 */
+	getState = function( link, data ) {
+		var parent = data.parent,
+			selector = data.selector,
+			type = data.type;
 
 		// No toggle type: get the current on/off state of the elements specified by the selector and parent
 		if ( !type ) {
-			if ( states.hasOwnProperty( selector ) ) {
+			if( !selector ) {
+				return $( link ).data( "state" );
+
+			} else if ( states.hasOwnProperty( selector ) ) {
 				return states[ selector ].hasOwnProperty( parent ) ?
 					states[ selector ][ parent ] :
 					states[ selector ].all;
@@ -136,35 +135,44 @@ var selector = ".wb-toggle",
 	},
 
 	/*
-	 * Sets the current toggle state of a links given set of elements (based on selector and parent)
-	 * @param {String} selector CSS selector of the elements the link controls
-	 * @param {String} parent CSS selector of the parent DOM element the link is restricted to.
-	 * @param {String} state Current state of the elements: "on" or "off"
+	 * Sets the current toggle state of elements controlled by the given link.
+	 * @param {DOM element} link Toggle link that was clicked
+	 * @param {Object} data Simple key/value data object passed when the event was triggered
+	 * @param {String} state The current state of the elements: "on" or "off"
 	 */
-	setState = function( selector, parent, state ) {
-		var prop;
+	setState = function( link, data, state ) {
+		var prop,
+			parent = data.parent,
+			selector = data.selector,
+			elmsState = states[ selector ],
+			$elms = getElements( link, data );
 
-		// Check the selector object has been created
-		if ( !states[ selector ] ) {
-			states[ selector ] = {
-				all: stateOff
-			};
-		}
+		if ( selector ) {
 
-		// If there's a parent, set its state
-		if ( parent ) {
-			states[ selector ][ parent ] = state;
+			// Check the selector object has been created
+			if ( !elmsState ) {
+				elmsState = { all: stateOff };
+				states[ selector ] = elmsState;
+			}
+
+			// If there's a parent, set its state
+			if ( parent ) {
+				elmsState[ parent ] = state;
 
 			// No parent means set all states for the given selector. This is
 			// because toggle links that apply to the entire DOM also affect
 			// links that are restricted by parent.
-		} else {
-			for ( prop in states[ selector ] ) {
-				if ( states[ selector ].hasOwnProperty( prop ) ) {
-					states[ selector ][ prop ] = state;
+			} else {
+				for ( prop in elmsState ) {
+					if ( elmsState.hasOwnProperty( prop ) ) {
+						elmsState[ prop ] = state;
+					}
 				}
 			}
 		}
+
+		// Store the state on the elements as well.  This allows a link to toggle itself.
+		$elms.data( "state", state );
 	};
 
 // Bind the plugin's events
