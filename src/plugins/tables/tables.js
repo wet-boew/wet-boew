@@ -63,7 +63,10 @@ var selector = ".wb-tables",
 
 			defaults = {
 				asStripeClasses : [],
-				oLanguage: i18nText
+				oLanguage: i18nText,
+				fnDrawCallback: function() {
+					$elm.trigger( "tables-draw.wb" );
+				}
 			};
 
 

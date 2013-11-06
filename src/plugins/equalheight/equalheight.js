@@ -94,7 +94,7 @@ var selector = ".wb-equalheight",
 $document.on( "timerpoke.wb", selector, init );
 
 // Handle text and window resizing
-$document.on( "text-resize.wb window-resize-width.wb window-resize-height.wb", onResize );
+$document.on( "text-resize.wb window-resize-width.wb window-resize-height.wb tables-draw.wb", onResize );
 
 // Add the timer poke to initialize the plugin
 window._timer.add( selector );
