@@ -322,7 +322,17 @@ Modernizr.load([
 		nope: [
 			"plyfll!slider.min.js",
 			"plyfll!slider.min.css"
-		]
+		],
+		callback: function() {
+
+			// If the slider file has loaded then fire the onDomReady event
+			if ( "fdSlider" in window && typeof ( window.fdSlider.onDomReady ) !== "undefined" ) {
+				try {
+					window.fdSlider.onDomReady();
+				} catch( err ) {
+				}
+			}
+		}
 	}, {
 		test: Modernizr.progress,
 		nope: [
