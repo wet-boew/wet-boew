@@ -649,7 +649,7 @@ module.exports = (grunt) ->
 		watch:
 			lib_test:
 				files: "<%= jshint.lib_test.src %>"
-				tasks: ["jshint:lib_test", "qunit"]
+				tasks: "jshint:lib_test"
 
 			source:
 				files: "<%= jshint.lib_test.src %>"
