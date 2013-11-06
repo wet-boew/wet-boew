@@ -1,4 +1,5 @@
 path = require("path")
+fs = require("fs")
 
 module.exports = (grunt) ->
 
@@ -70,7 +71,6 @@ module.exports = (grunt) ->
 		"Full build for running tests on SauceLabs. Currently only for Travis builds"
 		[
 			"pre-mocha"
-			"connect"
 			"saucelabs-mocha"
 		]
 	)
@@ -146,8 +146,9 @@ module.exports = (grunt) ->
 		"INTERNAL: prepare for running Mocha unit tests"
 		[
 			"build"
-			"copy:tests"
-			"assemble:tests"
+			"assets-dist"
+			"assemble:demos_min"
+			"connect"
 		]
 	)
 
@@ -318,13 +319,6 @@ module.exports = (grunt) ->
 						expand: true
 						flatten: true
 				]
-
-			tests:
-				options:
-					environment:
-						suffix: ".min"
-						test: true
-				files: "<%= assemble.demos_min.files %>"
 
 		# Compiles the Sass files
 		sass:
@@ -552,14 +546,6 @@ module.exports = (grunt) ->
 				dest: "dist/unmin/demos"
 				expand: true
 
-			tests:
-				cwd: "src/plugins"
-				src: [
-					"**/test.js"
-				]
-				dest: "dist/demos"
-				expand: true
-
 			polyfills:
 				cwd: "src/polyfills"
 				src: "**/*.js"
@@ -646,7 +632,6 @@ module.exports = (grunt) ->
 
 		clean:
 			dist: "dist"
-			tests: ["dist/demos/**/test.js"]
 
 		watch:
 			lib_test:
@@ -677,6 +662,63 @@ module.exports = (grunt) ->
 				options:
 					port: 8000
 					base: "."
+					middleware: (connect, options) ->
+						middlewares = []
+
+						mochascript = (req, res, next) ->
+							url = req._parsedUrl.pathname
+
+							# Skip to the static middleware if it's an index file or not HTML
+							if /index|mobmenu[-]?\w*\.html/.test( url ) or not /\.html/.test( url )
+								return next()
+
+							dir = url.substring( 0, url.lastIndexOf( "/" ) + 1 )
+
+							# Test to see if the plugin or polyfill has a test file
+							plugins = dir.replace("/dist/demos/", "src/plugins/") + "test.js"
+
+							polyfills = dir.replace("/dist/demos/", "src/polyfills/") + "test.js"
+
+							testFile = if fs.existsSync( plugins ) then plugins else if fs.existsSync( polyfills ) then polyfills else ""
+
+							if path != ""
+
+								result = fs.readFileSync( __dirname + url, { encoding: "utf-8" } )
+
+								# Append mocha content to the response above the footer
+								result = result.replace( "</main>", "<div class='row' id='mocha'></div></main>" )
+
+								mochaPath = path.dirname( require.resolve( "mocha" ) )
+
+								testHtml = "<link src='/" + path.relative(__dirname, mochaPath) + "/mocha.css' />"
+								testHtml += "<script src='/" + path.relative(__dirname, mochaPath) + "/mocha.js'></script>"
+
+								# Append ExpectJS script
+								testHtml += "<script src='/" + path.relative(__dirname, require.resolve( "expect.js" ) ) + "'></script>"
+
+								# Append Sinon scripts
+								testHtml += "<script src='/" + path.dirname( path.relative(__dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon.js'></script>"
+								testHtml += "<!--[if lt IE 9]><script src='/" + path.dirname( path.relative(__dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon-ie.js'></script><![endif]-->"
+
+								testHtml += "<script>mocha.setup( 'bdd' ); vapour.doc.on( 'ready', function() { mocha.run(); } );</script>"
+
+								testHtml += "<script src='/" + testFile + "'></script>"
+
+								testHtml += "</body>"
+
+								result = result.replace( "</body>", testHtml )
+
+								res.end( result )
+							else
+								# No test files found, skipping
+								return next()
+
+						middlewares.push mochascript
+
+						# Serve static files.
+						middlewares.push connect.static( options.base )
+
+						middlewares
 
 		i18n:
 			options:
@@ -686,20 +728,40 @@ module.exports = (grunt) ->
 
 		mocha:
 			all:
-				grunt.file.expand
-					filter: (src) ->
-						grunt.file.exists src.substring(0, src.lastIndexOf(path.sep) + 1) + "test.js"
-				, "dist/demos/**/*.html"
+				options:
+					reporter: "Spec"
+					urls: grunt.file.expand(
+						filter: ( src ) ->
+							src = path.dirname( src ).replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
+							return fs.existsSync( src + "/test.js" )
+						"src/plugins/**/*.hbs"
+						"src/polyfills/**/*.hbs"
+					).map( ( src ) ->
+						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
+						src = src.replace( "src/", "dist/")
+						src = src.replace( "plugins/", "demos/" )
+						src = src.replace( "polyfills/", "demos/" )
+						src = src.replace( ".hbs", ".html" )
+						return "http://localhost:8000/" + src
+					)
 
 		"saucelabs-mocha":
 			all:
 				options:
-					urls:
-						grunt.file.expandMapping("dist/demos/**/*.html", "http://127.0.0.1:8000/",
-							filter: (src) ->
-								grunt.file.exists src.substring(0, src.lastIndexOf(path.sep) + 1) + "test.js"
-						).map (paths) ->
-							paths.dest
+					urls: grunt.file.expand(
+						filter: ( src ) ->
+							src = path.dirname( src ).replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
+							return fs.existsSync( src + "/test.js" )
+						"src/plugins/**/*.hbs"
+						"src/polyfills/**/*.hbs"
+					).map( ( src ) ->
+						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
+						src = src.replace( "src/", "dist/")
+						src = src.replace( "plugins/", "demos/" )
+						src = src.replace( "polyfills/", "demos/" )
+						src = src.replace( ".hbs", ".html" )
+						return "http://localhost:8000/" + src
+					)
 					tunnelTimeout: 5
 					build: process.env.TRAVIS_BUILD_NUMBER
 					concurrency: 3
