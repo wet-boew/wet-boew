@@ -12,7 +12,7 @@ before_install:
   - ./run-first
 
 script:
-  - npm test && ./travis.sh
+  - grunt jshint test-mocha && ./travis.sh
 
 notifications:
   irc:
