@@ -70,3 +70,9 @@ footer {
 .wb-mnavbar a:focus {
 	@extend %accessible-invisible-show;
 }
+
+q {
+	&:before, &:after {
+		content: "";
+	}
+}
