@@ -75,9 +75,9 @@ var selector = ".wb-tabs",
 			style = $elm.attr( "class" ).match( /tabs-style-(\d+)/ );
 			// style is something like ["tabs-style-2", "2", index: 25, input: "wb-tabs tabs-style-2 cycle-slow animate slide-horz wb-carousel"]
 			if ( style && $.inArray( style[1], ["2","3","4","5","6"] ) > -1 ) {
-				$controls = $( "<li class='tabs-controls'><a class='prv' href='javascript:;' role='button'><span class='wb-inv'>" +
-					i18nText.prev + "</span></a></li><li class='tabs-controls'><a class='nxt' href='javascript:;' role='button'><span class='wb-inv'>" +
-					i18nText.next + "</span></a></li><li class='tabs-controls'><a class='plypause' href='javascript:;' role='button'>" +
+				$controls = $( "<li class='tabs-controls'><a class='prv glyphicon glyphicon-chevron-left' href='javascript:;' role='button'><span class='wb-inv'>" +
+					i18nText.prev + "</span></a></li><li class='tabs-controls'><a class='nxt glyphicon glyphicon-chevron-right' href='javascript:;' role='button'><span class='wb-inv'>" +
+					i18nText.next + "</span></a></li><li class='tabs-controls'><a class='plypause glyphicon-play' href='javascript:;' role='button'>" +
 					i18nText.play + "<span class='wb-inv'>" + i18nText.space +
 					i18nText.hyphen + i18nText.space + i18nText.rotStart +
 					"</span></a></li>" );
@@ -114,17 +114,9 @@ var selector = ".wb-tabs",
 					$tab.addClass( "active" );
 				}
 				if ( data.image ) {
-					if ( data.title ) {
-						$tab.append( $( "<a href='javascript:;'><img src='" + data.image + "' alt='" + data.title + "' /></a>" ) );
-					} else {
-						$tab.append( $( "<a href='javascript:;'><img src='" + data.image + "' alt='" + i18nText.tab.replace( "#num#", i + 1 ) + "' /></a>" ) );
-					}
+					$tab.append( "<a href='javascript:;'><img src='" + data.image + "' alt='" + ( data.title || i18nText.tab.replace( "#num#", i + 1 ) ) + "' /></a>" );
 				} else {
-					if ( data.title ) {
-						$tab.append( $( "<a href='javascript:;'>" + data.title + "</a>" ) );
-					} else {
-						$tab.text( $( "<a href='javascript:;'>" + i18nText.tab.replace( "#num#", i + 1 ) + "</a>" ) );
-					}
+					$tab.append( "<a href='javascript:;'>" + ( data.title || i18nText.tab.replace( "#num#", i + 1 ) ) + "</a>" );
 				}
 				$tabs.append( $tab );
 			}

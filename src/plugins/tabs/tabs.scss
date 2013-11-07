@@ -2,9 +2,8 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
-/* Gradient (avoid encoding duplication) */
-%tabbedinterface-gradient-background {
-	background: url(../js/assets/tabs-gradient.png) repeat-x 0 0 #eee;
+%tabbedinterface-default-background {
+	background: #eee;
 }
 
 %tabbedinterface-cursor-pointer {
@@ -25,85 +24,8 @@
 	padding: 2px 5px 2px 24px;
 }
 
-.tabs {
-    border-bottom: solid 1px #ccc;
-    margin: 0;
-    padding: 0;
-    position: relative;
-	li {
-		display: inline-block;
-		vertical-align: middle;
-		border: solid 1px #ccc;
-		border-bottom: none;
-		border-radius: 2px 2px 0 0;
-		a {
-			@extend %tabbedinterface-gradient-background;
-			display: block;
-			text-decoration: none;
-			color: #333;
-			font-weight: 400;
-			padding: 4px;
-			position: relative;
-			top: 1px;
-			margin-top: -1px;
-			&.active, &:focus, &:hover {
-				@extend %tabbedinterface-tabs-active;
-			}
-		}
-		&.in {
-			background: #fff;
-			position: relative;
-		}
-	}
-	a {
-		line-height: normal;
-	}
-	&.started {
-		a {
-			&.in {
-				@extend %tabbedinterface-cursor-pointer;
-				&:focus, &:hover {
-					@extend %tabbedinterface-cursor-pointer;
-				}
-			}
-		}
-	}
-}
-.tabs-controls {
-	border: none;
-	background: none;
-	display: inline;
-	a {
-		cursor: pointer;
-		border-radius: 2px;
-		border: 1px solid #999;
-		margin-right: 2px;
-		text-decoration: none;
-		&:focus, &:hover {
-			color: #000;
-		}
-		&.prv {
-			background: url(../js/assets/tabs-prev.gif) no-repeat center 5px #fff;
-			@extend %tabbedinterface-padding-2-5;
-		}
-		&.nxt {
-			background: url(../js/assets/tabs-next.gif) no-repeat center 5px #fff;
-			@extend %tabbedinterface-padding-2-5;
-		}
-		&.plypause {
-			background: url(../js/assets/tabs-pause.png) no-repeat -1px 0 #fff;
-			@extend %tabbedinterface-padding-2-5-2-24;
-		}
-		&.plypause.stopped {
-			background: url(../js/assets/tabs-play.png) no-repeat -1px 0 #fff;
-			@extend %tabbedinterface-padding-2-5-2-24;
-		}
-	}
-}
-
 .wb-tabs {
     border: solid 1px #ccc;
-    border-top: none;
     padding: 1px 10px;
 	div {
 		display: none;
@@ -151,6 +73,76 @@
 	}
 }
 
+.tabs {
+    border-bottom: solid 1px #ccc;
+    margin: 0;
+    padding: 0;
+    position: relative;
+	li {
+		display: inline-block;
+		vertical-align: middle;
+		border: solid 1px #ccc;
+		border-bottom: none;
+		border-radius: 2px 2px 0 0;
+		a {
+			@extend %tabbedinterface-default-background;
+			display: block;
+			text-decoration: none;
+			color: #333;
+			font-weight: 400;
+			padding: 4px;
+			position: relative;
+			top: 1px;
+			margin-top: -1px;
+			&:focus, &:hover {
+				@extend %tabbedinterface-tabs-active;
+				cursor: pointer;
+			}
+		}
+		&.active {
+			background: #fff;
+			position: relative;
+			a, a:focus, a:hover {
+				@extend %tabbedinterface-tabs-active;
+			}
+		}
+	}
+	a {
+		line-height: normal;
+	}
+	&.started {
+		a {
+			&.in {
+				@extend %tabbedinterface-cursor-pointer;
+				&:focus, &:hover {
+					@extend %tabbedinterface-cursor-pointer;
+				}
+			}
+		}
+	}
+}
+
+.tabs-controls {
+	border: none;
+	background: none;
+	display: inline;
+	a {
+		cursor: pointer;
+		border-radius: 2px;
+		border: 1px solid #999;
+		margin-right: 2px;
+		text-decoration: none;
+		&:focus, &:hover {
+			color: #000;
+			background-color: #ccc;
+		}
+		&.plypause.stopped:before {
+			/* glyphicons make swapping the play icon for a pause icon easy */
+			content: "\e073";
+		}
+	}
+}
+
 .tabs-roller {
     height: 100%;
     width: 0;
@@ -180,6 +172,14 @@
 	padding: 4px;
 }
 
+%tabbedinterface-tab-style-1-default-background {
+	background: #eee;
+}
+
+%tabbedinterface-tab-style-1-hover-background {
+	background: #eee;
+}
+
 %tabbedinterface-no-repeat-border999 {
 	background-repeat: no-repeat;
 	background-position: -1px 0;
@@ -191,22 +191,21 @@
     border: solid 1px #ccc;
     padding: 2px;
 	.tabs {
-		@extend %tabbedinterface-gradient-background;
+		@extend %tabbedinterface-tab-style-1-default-background;
 		border: 1px solid silver;
 		color: #222;
 		font-weight: 700;
 		padding: 2px 2px 0;
 		li {
 			a {
-				background: #555 url(../js/assets/tabs-gradient2.png) repeat-x  0 bottom;
+				@extend %tabbedinterface-tab-style-1-default-background;
 				border-top: none;
-				color: #fff;
 				padding: 3px 4px 4px;
 				&:focus, &:hover {
-					@extend %tabbedinterface-gradient-background;
+					@extend %tabbedinterface-tab-style-1-hover-background;
 					color: #000;
 					border-top: 1px solid #fff;
-					padding-top: 1px;
+					padding-bottom: 1px;
 				}
 				&.plypause {
 					color: #000;

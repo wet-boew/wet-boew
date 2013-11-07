@@ -77,8 +77,8 @@ var selector = ".wb-carousel",
 		var items = $elm.find( ".item" ),
 			len = items.length,
 			current = $elm.find( ".item.in" ).prevAll( ".item" ).length,
-			shiftto = ( event.shiftto ) ? event.shiftto : 1,
-			next = current > len ? 0 : current + shiftto;
+			shiftTo = event.shiftTo ? event.shiftTo : 1,
+			next = current > len ? 0 : current + shiftTo;
 
 		next = ( next > len - 1 ) ? 0 : ( next < 0 ) ? len - 1 : next;
 		items.eq( current ).removeClass( "in" ).addClass( "out" );
@@ -108,7 +108,7 @@ var selector = ".wb-carousel",
 	onCycle = function( $elm, shifto ) {
 		$elm.trigger( {
 			type: "shift.wb-carousel",
-			shiftto: shifto
+			shiftTo: shifto
 		});
 	};
 
