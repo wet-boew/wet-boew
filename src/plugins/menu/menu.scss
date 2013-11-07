@@ -1,13 +1,19 @@
 /*
  Menu Sass
  */
-
+%menu-text-decoration-none {
+	text-decoration: none;
+}
+ 
 .expicon {
 	width: 0;
 	height: 0;
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
 	border-top: 5px solid #fff;
+	left: 0.75em;
+	position: relative;
+	top: 0.75em;
 }
 
 .wb-menu {
@@ -16,9 +22,48 @@
 		position: relative;
 		max-height: 0;
 		overflow: hidden;
-		&.open{
-			display: block;
+		&.open {
 			max-height: 1000px;
+			display: inline;
+			position: absolute;
+			z-index: 100;
+			text-transform: none;
+			top: auto;
+			li {
+				display: block;
+				a {
+					text-align: left;
+				}
+			}
+		}
+	}
+	.menu {
+		display: table;
+		position: relative;
+		> {
+			li {
+				position: relative;
+				display: table-cell;
+				a {
+					text-align: center;
+					display: block;
+					&:hover, &:focus {
+						@extend %menu-text-decoration-none;
+					}
+				}
+			}
+		}
+	}
+	.active {
+		> {
+			a {
+				@extend %menu-text-decoration-none;
+			}
+		}
+	}
+	.sm-open {
+		.expicon {
+			border-color: transparent !important;
 		}
 	}
 }

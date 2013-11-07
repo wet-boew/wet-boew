@@ -19,7 +19,8 @@ var selector = ".wb-menu",
 
 	// Used for half second delay on showing/hiding menus because of mouse hover
 	hoverDelay = 500,
-	globalTimeout,
+	menuCount = 0,
+	globalTimeout = {},
 
 /*
  * Lets leverage JS assigment deconstruction to reduce the code output
@@ -46,6 +47,12 @@ onInit = function( $elm ) {
 	// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 	window._timer.remove( selector );
 
+	// Ensure the container has an id attribute
+	if ( !$elm.attr( "id" ) ) {
+		$elm.attr( "id", "wb-menu-" + menuCount );
+	}
+	menuCount += 1;
+
 	// Lets test to see if we have any
 	if ( $elm.data( "ajax-fetch" ) ) {
 		$document.trigger({
@@ -57,6 +64,7 @@ onInit = function( $elm ) {
 
 	//anything else
 },
+
 /*
  * Lets set some aria states and attributes
  * @method drizzleAria
@@ -137,12 +145,10 @@ onAjaxLoaded = function( $elm, $ajaxed ) {
  */
 onSelect = function( event ) {
 
-	setTimeout(function () {
-		event.goto.focus();
-		if ( event.special ) {
-			onReset( event.goto.parents( selector ) );
-		}
-	}, 0 );
+	event.goto.trigger( "focus.wb" );
+	if ( event.special ) {
+		onReset( event.goto.parents( selector ), true, true );
+	}
 
 },
 
@@ -171,20 +177,26 @@ onIncrement = function( $elm, event ) {
 /*
  * @method onReset
  * @param {jQuery DOM element} $elm The plugin element
- * @param {boolean} cancelDelay Whether or not to delay the closing of the menus
+ * @param {boolean} cancelDelay Whether or not to delay the closing of the menus (false by default)
+ * @param {boolean} keeptActive Whether or not to leave the active class alone (false by default)
  */
-onReset = function( $elm, cancelDelay ) {
+onReset = function( $elm, cancelDelay, keepActive ) {
+	var id = $elm.attr( "id" ),
+		$openActive = $elm.find( ".open, .active" );
 
-	// Clear the any timeouts for open/closing menus
-	clearTimeout( globalTimeout );
+	// Clear any timeouts for open/closing menus
+	clearTimeout( globalTimeout[ id ] );
 
 	if ( cancelDelay ) {
-		$elm.find( ".open, .active" ).removeClass( "open active" );
+		$openActive.removeClass( "open sm-open" );
+		if ( !keepActive ) {
+			$openActive.removeClass( "active" );
+		}
 	} else {
 
 		// Delay the closing of the menus
-		globalTimeout = setTimeout( function() {
-			$elm.find( ".open, .active" ).removeClass( "open active" );
+		globalTimeout[ id ] = setTimeout( function() {
+				$openActive.removeClass( "open sm-open active" );
 		}, hoverDelay );
 	}
 },
@@ -193,21 +205,24 @@ onReset = function( $elm, cancelDelay ) {
  * @method onDisplay
  * @param {jQuery DOM element} $elm The plugin element
  * @param {jQuery event} event The current event
+
  */
 onDisplay = function( $elm, event ) {
-	var $item = event.ident;
+	var menuItem = event.ident,
+		menuLink = menuItem.children( "a" );
 
-	// Delay the opening/closing of the menus
-	globalTimeout = setTimeout( function() {
+	// Lets reset the menus with no delay to ensure no overlap
+	$elm.find( ".open, .active" ).removeClass( "open sm-open active" );
 
-		// Lets reset the menus with no delay to ensure no overlap
-		onReset( $elm, true );
+	// Ignore if doesn't have a submenu
+	if ( menuLink.attr( "aria-haspopup" ) === "true" ) {
 
 		// Add the open state classes
-		$item.addClass( "active" )
+		menuItem
+			.addClass( "active sm-open" )
 			.find( ".sm" )
 			.addClass( "open" );
-	}, hoverDelay );
+	}
 },
 
 /*
@@ -215,18 +230,18 @@ onDisplay = function( $elm, event ) {
  * @param {jQuery event} event The current event
  */
 onHoverFocus = function( event ) {
-
-	// Clear the any timeouts for open/closing menus
-	clearTimeout( globalTimeout );
-
 	var ref = expand( event.target ),
 		$container = ref[ 0 ],
 		$elm = ref[ 3 ];
 
-		$container.trigger({
-			type: "display.wb-menu",
-			ident: $elm.parent()
-		});
+	// Clear the any timeouts for open/closing menus
+	clearTimeout( globalTimeout[ $container.attr( "id" ) ] );
+
+	$container.trigger({
+		type: "display.wb-menu",
+		ident: $elm.parent(),
+		cancelDelay: event.type === "focusin"
+	});
 };
 
 // Bind the events of the plugin
@@ -270,7 +285,13 @@ $document.on( "timerpoke.wb mouseleave select.wb-menu ajax-fetched.wb increment.
 		break;
 
 	case "display":
-		onDisplay( $elm, event );
+		if ( event.cancelDelay ) {
+			onDisplay( $elm, event );
+		} else {
+			globalTimeout[ $elm.attr( "id" ) ] = setTimeout( function() {
+				onDisplay( $elm, event );
+			}, hoverDelay );
+		}
 		break;
 	}
 
@@ -295,47 +316,57 @@ $document.on( "keydown", selector + " .item", function( event ) {
 		$menu = ref[ 1 ],
 		$elm = ref[ 3 ],
 		$index = $menu.index( $elm[ 0 ] ),
-		$goto;
+		$goto, $parent, $subMenu;
 
 	switch ( which ) {
-	case 13:
-	case 40:
-		if ( $elm.find( ".expicon" ).length > 0 ) {
-			event.preventDefault();
-			$goto = $elm.closest( "li" ).find( ".sm [role=menuitem]" ).first();
 
-			$container.trigger({
-				type: "increment.wb-menu",
-				cnode: $menu,
-				increment: 0,
-				current: $index
-			}).trigger({
+	// Enter key, up/down arrow
+	case 13:
+	case 38:
+	case 40:
+		if ( $elm.find( ".expicon" ).length !== 0 ) {
+			event.preventDefault();
+			$parent = $elm.parent();
+			$subMenu = $parent.find( ".sm" );
+			$goto = $subMenu.find( "a" ).first();
+			
+			// Open the submenu if it is not already open
+			if ( !$subMenu.hasClass( "open" ) ) {
+				$container.trigger({
+					type: "display.wb-menu",
+					ident: $parent,
+					cancelDelay: true
+				});
+			}
+
+			$container
+				.trigger({
+					type: "increment.wb-menu",
+					cnode: $menu,
+					increment: 0,
+					current: $index
+				})
+				.trigger({
 					type: "select.wb-menu",
 					goto: $goto
 				});
 		}
 		break;
 
+	// Tab/escape key
 	case 9:
-		onReset( $container );
+	case 27:
+		onReset( $container, true, ( which === 27 ) );
 		break;
 
+	// Left/right arrow
 	case 37:
-		event.preventDefault();
-		$container.trigger({
-			type: "increment.wb-menu",
-			cnode: $menu,
-			increment: -1,
-			current: $index
-		});
-		break;
-
 	case 39:
 		event.preventDefault();
 		$container.trigger({
 			type: "increment.wb-menu",
 			cnode: $menu,
-			increment: 1,
+			increment: ( which === 37 ? -1 : 1 ),
 			current: $index
 		});
 		break;
@@ -358,6 +389,8 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 		$goto;
 
 	switch ( which ) {
+
+	// Escape key/left arrow
 	case 27:
 	case 37:
 		event.preventDefault();
@@ -369,28 +402,21 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 		});
 		break;
 
+	// Up/down arrow
 	case 38:
-		event.preventDefault();
-		$container.trigger({
-			type: "increment.wb-menu",
-			cnode: $links,
-			increment: -1,
-			current: $index
-		});
-		break;
-
-	case 9:
-		onReset( $container );
-		break;
-
 	case 40:
 		event.preventDefault();
 		$container.trigger({
 			type: "increment.wb-menu",
 			cnode: $links,
-			increment: 1,
+			increment: ( which === 38 ? -1 : 1 ),
 			current: $index
 		});
+		break;
+
+	// Tab key
+	case 9:
+		onReset( $container, true );
 		break;
 	}
 });
