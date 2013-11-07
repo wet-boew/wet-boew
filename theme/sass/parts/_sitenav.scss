@@ -1,6 +1,6 @@
 /*
  Site menu
- */
+*/
 @import "../../../src/variables";
 
 #wb-sm {
@@ -71,43 +71,43 @@
 		margin-right: 5px;
 	}
 
-    /*
+	/*
 	Mobile view
 	*/
-    @media screen and (max-width: $mobile) {
-        .menu {
-            li {
+	@media screen and (max-width: $mobile) {
+		.menu {
+			li {
 				a {
 					&:hover, &:focus, &:active {
 						background: #eee;
 					}
 				}
-            }
-            .active {
-                background: #ddd !important;
-            }
-            li {
+			}
+			.active {
+				background: #ddd !important;
+			}
+			li {
 				li {
 					a {
 						&:hover, &:focus, &:active {
 							background: none;
 						}
 					}
-                }
-            }
-        }
-        background: #ddd;
+				}
+			}
+		}
+		background: #ddd;
 
-        &:target {
-            .container {
-                display: block !important;
-            }
-        }
-        .row {
-            border-bottom: 1px solid #bbb;
-            padding-bottom: 10px;
-        }
-        .menu {
+		&:target {
+			.container {
+				display: block !important;
+			}
+		}
+		.row {
+			border-bottom: 1px solid #bbb;
+			padding-bottom: 10px;
+		}
+		.menu {
 			> {
 				li {
 					a {
@@ -118,33 +118,39 @@
 					}
 				}
 			}
-        }
+		}
 		%theme-menu-sm-mobile {
 			-webkit-box-shadow: none;
-            box-shadow: none;
-            border-left: none;
-            border-right: none;
-            border-top: 1px solid #ddd;
-            padding: 0;
-            background: transparent;
+			box-shadow: none;
+			border-left: none;
+			border-right: none;
+			border-top: 1px solid #ddd;
+			padding: 0;
+			background: transparent;
 		}
-        .sm {
-            @extend %theme-menu-sm-mobile;
-            &.open {
-                @extend %theme-menu-sm-mobile;
-            }
-        }
-        .menu {
-            > li:last-child a {
-                border: none;
-            }
-            ul {
+		.sm {
+			@extend %theme-menu-sm-mobile;
+			&.open {
+				@extend %theme-menu-sm-mobile;
+			}
+		}
+		.menu {
+			> {
+				li {
+					&:last-child {
+						a {
+							border: none;
+						}
+					}
+				}
+			}
+			ul {
 				li {
 					border-bottom: 1px solid #ddd;
 					border-top: 1px solid #fff;
 					background: #eee;
 				}
-            }
-        }
-    }
+			}
+		}
+	}
 }
