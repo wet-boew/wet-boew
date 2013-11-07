@@ -1,8 +1,8 @@
 <!-- some mobile views -->
     <a href="#" class="nav-close visible-sm visible-xs"><span class="glyphicon glyphicon-remove"></span> Fermer le menu</a>
 <!-- secondary navigation if enabled -->
-<section class="container visible-md visible-lg nvbar">
-    <h2 class="wb-inv">Menu du site</h2>
+<div class="container visible-md visible-lg nvbar">
+	<h2>{{#i18n "%tmpl-site-menu"}}{{/i18n}}</h2>
     <div class="row">
         <ul class="list-inline menu" role="menubar">
             <li><a href="#projet" class="item">Projet de la BOEW</a>
@@ -38,7 +38,7 @@
             </li>
         </ul>
     </div>
-</section>
+</div>
 
 <section class="wb-nav container visible-sm visible-xs">
     <h2 class="wb-inv">Information du site</h2>

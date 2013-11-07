@@ -14,9 +14,8 @@
 	margin: 0;
 	padding: 0;
 }
-.menu-demo .menu > li a {
+.menu-demo .menu > li > a {
 	color: #fff;
-	padding: 1em;
 	border-left: 2px ridge #284468;
 }
 .menu-demo .menu > li:last-child a {
@@ -26,12 +25,12 @@
 	box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.3), 3px 3px 3px -2px rgba(0, 0, 0, 0.3), -3px 3px 3px -2px rgba(0, 0, 0, 0.3);
 	border-left: none;
 	border-right: none;
-	border-bottom: 5px solid #243850;
 	padding: 0;
 	background: #ccc;
 	min-width: 200px;
 }
 .menu-demo .sm.open li a {
+	font-size: 0.95em;
 	color: #444;
 	border-left: none;
 	border-right: none;
@@ -49,6 +48,15 @@
 	text-shadow: none;
 	background: #335075;
 }
+#menu-demo-1 .menu a {
+	text-decoration: none;
+}
+#menu-demo-1 .menu > li > a {
+	padding: 0.8em;
+}
+#menu-demo-1 .menu > li > a:hover, #menu-demo-1 .menu > li > a:focus {
+	text-decoration: underline;
+}
 #menu-demo-1 .sm.open li a:hover, #menu-demo-1 .sm.open li a:focus {
 	background: #243850;
 	color: #fff;
@@ -62,7 +70,9 @@
 #menu-demo-1 .sm.open {
 	border-bottom: 5px solid #243850;
 }
-
+#menu-demo-1 .expicon {
+	margin-right: 5px;
+}
 
 #menu-demo-2 {
 	background: #335075;
@@ -73,6 +83,9 @@
 #menu-demo-2 .menu .active {
 	text-shadow: none;
 	background: #0B3048;
+}
+#menu-demo-2 .menu > li > a {
+	padding: 1.0em;
 }
 #menu-demo-2 .sm.open li a:hover, #menu-demo-2 .sm.open li a:focus {
 	background: #243850;
@@ -110,5 +123,3 @@
 		<li><a href="http://www.ec.gc.ca" class="item">Section 4</a></li>
 	</ul>
 </nav>
-<!-- DataAjaxFragmentEnd -->
-</html>
