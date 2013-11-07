@@ -384,18 +384,18 @@ $document.on( "fallback.multimedia.wb", $selector, function() {
 		$playerresource;
 
 
-	$data.flashvars = "id=" + $data.id;
+	$data.flashvars = "id=" + $data.m_id;
 	$playerresource = vapour.getPath( "/assets" ) + "/multimedia.swf?" + $data.flashvars;
 	$data.poster = "";
 	if ( $data.type === "video" ) {
 		$data.poster = "<img src='" + $poster + " class='img-responsive' height='" +
 			$data.height + "' width='" + $data.width + "' alt='" + $media.attr( "title" ) + "'/>";
-		$data.flashvars = "&height=" + $media.height() + "&width=" +
+		$data.flashvars += "&height=" + $media.height() + "&width=" +
 			$media.width() + "&posterimg=" +
 			encodeURI( vapour.getUrlParts( $poster ).absolute ) + "&media=" +
 			encodeURI( vapour.getUrlParts( $source.filter( "[type='video/mp4']" ).attr( "src" ) ).absolute );
 	} else {
-		$data.flashvars = "&media=" + encodeURI( vapour.getUrlParts( $source.filter( "[type='audio/mp3']" ).attr( "src" ) ).absolute );
+		$data.flashvars += "&media=" + encodeURI( vapour.getUrlParts( $source.filter( "[type='audio/mp3']" ).attr( "src" ) ).absolute );
 	}
 	$data.sObject = "<object id='" + $data.m_id + "' width='" + $data.width +
 		"' height='" + $data.height + "' class='" + $data.type +
