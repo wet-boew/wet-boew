@@ -88,7 +88,7 @@ var selector = ".wb-tabs",
 			$elm.trigger( "init.wb-carousel" );
 
 			// Bind the merged settings to the element node for faster access in other events.
-			$elm.data( { settings: settings } );
+			$elm.data({ settings: settings });
 		}
 	},
 	
@@ -120,7 +120,7 @@ var selector = ".wb-tabs",
 				}
 				$tabs.append( $tab );
 			}
-		} );
+		});
 		return $tabs;
 	},
 	
@@ -131,13 +131,13 @@ var selector = ".wb-tabs",
 	onTabClick = function( event ) {
 		var $link = $( event.target );
 		// handle switching the active tab
-		$link.parent().addClass( "active" ).siblings( ":not('tabs-controls')" ).removeClass( "active" );
+		$link.parent().addClass( "active" ).siblings( ":not(.tabs-controls)" ).removeClass( "active" );
 		// let carousel handle the switching of the panels
 		$link.trigger( "select.wb-carousel" );
 	};
 	
 	// Bind the click event for the tabs
-	$document.on( "click", selector + " .tabs li:not('.tabs-controls')", onTabClick );
+	$document.on( "click", selector + " .tabs li:not(.tabs-controls)", onTabClick );
 
 	// Bind the init event of the plugin
 	$document.on( "timerpoke.wb", selector, init );

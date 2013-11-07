@@ -23,7 +23,7 @@ var selector = ".wb-carousel",
 	 */
 	onTimerPoke = function( $elm ) {
 		var setting,
-			dataDelay = $elm.attr( "data-delay" ),
+			dataDelay = $elm.data( "delay" ),
 			delay;
 
 		if ( !dataDelay ) {
@@ -39,14 +39,14 @@ var selector = ".wb-carousel",
 
 		/* add settings and counter*/
 		setting = parseFloat( dataDelay );
-		delay = parseFloat( $elm.attr( "data-ctime" ) ) + 0.5;
+		delay = parseFloat( $elm.data( "ctime" ) ) + 0.5;
 
 		/* check if we need*/
 		if ( setting < delay ) {
 			$elm.trigger( "shift.wb-carousel" );
 			delay = 0;
 		}
-		$elm.attr( "data-ctime", delay );
+		$elm.data( "ctime", delay );
 	},
 
 	/*
@@ -63,9 +63,9 @@ var selector = ".wb-carousel",
 		}
 		$elm.find( ".item:not(.in)" )
 			.addClass( "out" );
-		$elm.attr( {
-			"data-delay": interval,
-			"data-ctime": 0
+		$elm.data({
+			"delay": interval,
+			"ctime": 0
 		});
 	},
 
@@ -103,12 +103,12 @@ var selector = ".wb-carousel",
 	/*
 	 * @method onCycle
 	 * @param {jQuery DOM element} $elm The plugin element
-	 * @param {integer} shifto The item to shift to
+	 * @param {integer} shifTo The index of the panel to shift to
 	 */
-	onCycle = function( $elm, shifto ) {
-		$elm.trigger( {
+	onCycle = function( $elm, shifTo ) {
+		$elm.trigger({
 			type: "shift.wb-carousel",
-			shiftTo: shifto
+			shiftTo: shifTo
 		});
 	};
 
@@ -172,7 +172,7 @@ $document.on( "click", controls, function( event ) {
 	default:
 		sldr.toggleClass( "stopped" );
 	}
-	sldr.attr( "data-ctime", 0 );
+	sldr.data( "ctime", 0 );
 
 	/*
 	 * Since we are working with events we want to ensure that we are being passive about our control,

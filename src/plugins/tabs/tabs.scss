@@ -39,7 +39,7 @@
 		top: 0;
 		display: block;
 	}
-	h2,h3,h4,h5,h6 {
+	h2, h3, h4, h5, h6 {
 		border: none;
 	}
 	.panel-end {
@@ -102,8 +102,10 @@
 		&.active {
 			background: #fff;
 			position: relative;
-			a, a:focus, a:hover {
-				@extend %tabbedinterface-tabs-active;
+			a {
+				&, &:focus, &:hover {
+					@extend %tabbedinterface-tabs-active;
+				}
 			}
 		}
 	}
@@ -136,9 +138,13 @@
 			color: #000;
 			background-color: #ccc;
 		}
-		&.plypause.stopped:before {
-			/* glyphicons make swapping the play icon for a pause icon easy */
-			content: "\e073";
+		&.plypause {
+			&.stopped {
+				&:before {
+					/* glyphicons make swapping the play icon for a pause icon easy */
+					content: "\e073";
+				}
+			}
 		}
 	}
 }
@@ -211,10 +217,12 @@
 					color: #000;
 				}
 			}
-			&.active a {
-				@extend %tabbedinterface-tab-style-1-in;
-				&:focus, &:hover {
+			&.active {
+				a {
 					@extend %tabbedinterface-tab-style-1-in;
+					&:focus, &:hover {
+						@extend %tabbedinterface-tab-style-1-in;
+					}
 				}
 			}
 		}
