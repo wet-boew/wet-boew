@@ -1,6 +1,8 @@
 /*
  Menu Sass
  */
+@import "../../variables";
+
 %menu-text-decoration-none {
 	text-decoration: none;
 }
@@ -66,4 +68,55 @@
 			border-color: transparent !important;
 		}
 	}
+
+    /*
+	Mobile view
+	*/
+    @media screen and (max-width: $mobile) {
+        position: absolute;
+        z-index: 1000;
+        top: 0;
+        right: -100%;
+        display: block !important;
+
+        &:target {
+            width: 75%;
+            right: 0;
+            .container {
+                display: block !important;
+            }
+        }
+        .nav-close {
+            text-align: right;
+            margin-bottom: 5px;
+            padding: 5px 10px;
+        }
+        .menu {
+            display: block;
+        }
+        .menu {
+			> {
+				li {
+					display: block;
+					a {
+						text-align: left;
+					}
+				}
+			}
+        }
+		%menu-sm-mobile {
+			display: block;
+            position: relative;
+            z-index: auto;
+            text-transform: none;
+            top: auto;
+            min-width: 0;
+		}
+        .sm {
+            @extend %menu-sm-mobile;
+            &.open {
+                @extend %menu-sm-mobile;
+            }
+        }
+    }
 }

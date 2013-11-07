@@ -102,6 +102,7 @@ drizzleAria = function( $elements ){
 		}
 	}
 },
+
 /*
  * @method onAjaxLoaded
  * @param {jQuery DOM elements} element The plugin element
@@ -115,7 +116,7 @@ onAjaxLoaded = function( $elm, $ajaxed ) {
 	$ajaxed.find( ":discoverable" )
 		.attr( "tabindex", "-1" );
 
-	$menu.eq(0).attr( "tabindex", "0" );
+	$menu.eq( 0 ).attr( "tabindex", "0" );
 	$menu.filter( "[href^=#]" )
 		.append( "<span class='expicon'></span>" );
 
@@ -234,14 +235,17 @@ onHoverFocus = function( event ) {
 		$container = ref[ 0 ],
 		$elm = ref[ 3 ];
 
-	// Clear the any timeouts for open/closing menus
-	clearTimeout( globalTimeout[ $container.attr( "id" ) ] );
+	if ( $container ) {
+	
+		// Clear the any timeouts for open/closing menus
+		clearTimeout( globalTimeout[ $container.attr( "id" ) ] );
 
-	$container.trigger({
-		type: "display.wb-menu",
-		ident: $elm.parent(),
-		cancelDelay: event.type === "focusin"
-	});
+		$container.trigger({
+			type: "display.wb-menu",
+			ident: $elm.parent(),
+			cancelDelay: event.type === "focusin"
+		});
+	}
 };
 
 // Bind the events of the plugin

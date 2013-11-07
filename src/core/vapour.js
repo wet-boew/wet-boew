@@ -282,7 +282,7 @@ window._timer = {
 
 	touch: function() {
 
-		var elms = this._elms,
+		var elms = this._elms.slice( 0 ),
 			len = elms.length,
 			$elm, i;
 		for ( i = 0; i !== len; i += 1 ) {
