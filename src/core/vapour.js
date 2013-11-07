@@ -237,60 +237,36 @@ yepnope.addPrefix( "i18n", function( resourceObj ) {
  * Base Timer
  *-----------------------------*/
 window._timer = {
-	_elms: [],
 
-	add: function( _selector ) {
+	nodes: $(),
 
-		// lets ensure we are not running if things are disabled
-		if ( vapour.isDisabled && _selector !== vapour.sDisabled ) {
+	add: function( selector ) {
+	
+		// Lets ensure we are not running if things are disabled
+		if ( vapour.isDisabled && selector !== vapour.sDisabled ) {
 			return 0;
 		}
 
-		var _obj = vapour.doc.find( _selector );
-		if ( _obj.length > 0 ) {
-			this._elms.push( _obj );
-		}
+		this.nodes = this.nodes.add( selector );
 	},
 
-	remove: function( _selector ) {
-		var elms = this._elms,
-			len = elms.length,
-			$elm, i;
-		for ( i = 0; i !== len; i += 1 ) {
-			$elm = elms[ i ];
-			if ( $elm && $elm.selector === _selector ) {
-				this._elms.splice( i, 1 );
-				break;
-			}
-		}
+	// Remove nodes referenced by the selector
+	remove: function( selector ) {
+		this.nodes = this.nodes.not( selector );
 	},
 
 	start: function() {
 
 		/* Lets start our clock right away. We we need to test to ensure that there will not be any
 		 * instances on Mobile were the DOM is not ready before the timer starts. That is why 0.5 seconds
-		 * was used a buffer.
+		 * was used as a buffer.
 		 */
-		window._timer.touch();
+		this.nodes.trigger( "timerpoke.wb" );
 
 		// lets keep it ticking after
 		setInterval(function() {
-			window._timer.touch();
+			window._timer.nodes.trigger( "timerpoke.wb" );
 		}, 500 );
-
-	},
-
-	touch: function() {
-
-		var elms = this._elms.slice( 0 ),
-			len = elms.length,
-			$elm, i;
-		for ( i = 0; i !== len; i += 1 ) {
-			$elm = elms[ i ];
-			if ( $elm ) {
-				$elm.trigger( "timerpoke.wb" );
-			}
-		}
 
 	}
 };
