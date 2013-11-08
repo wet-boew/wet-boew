@@ -233,7 +233,7 @@ div {
  */
 .olLayerGrid {
 	.olTileImage {
-		@include transition(opacity 0.2s linear);
+		transition: opacity 0.2s linear;
 	}
 }
 
