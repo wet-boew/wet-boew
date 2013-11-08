@@ -70,6 +70,9 @@
 	.expicon {
 		margin-right: 5px;
 	}
+	#wb-sec-p {
+		display: none;
+	}
 
 	/*
 	Mobile view
@@ -152,5 +155,13 @@
 				}
 			}
 		}
+		#wb-sec-p {
+			display: block;
+		}
+	}
+}
+@media screen and (max-width: $mobile) {
+	#wb-sec {
+		display: none;
 	}
 }
