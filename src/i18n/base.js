@@ -80,6 +80,7 @@ var ind = {
 	"%tab-pnl-end1": "@%tab-pnl-end1@",
 	"%tab-pnl-end2": "@%tab-pnl-end2@",
 	"%tab-pnl-end3": "@%tab-pnl-end3@",
+	"%tab": "@%tab@",
 	/* Multimedia player */
 	"%play": "@%play@",
 	"%pause": "@%pause@",
