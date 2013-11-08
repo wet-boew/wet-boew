@@ -4,7 +4,6 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @YOU or WET Community
  */
-
  (function( $, window, vapour ) {
  "use strict";
 
