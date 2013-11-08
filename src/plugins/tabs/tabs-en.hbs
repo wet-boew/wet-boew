@@ -5,70 +5,15 @@
 	"fr": "tabs"
 }
 ---
-<style>
-
-
-.no-js #sample1 [role="tabpanel"] {
-	position: static;
-	display: block;
-}
-
-#sample1 {
-	min-height: 600px;
-}
-
-#sample1 [role="tablist"] {
-	list-style-type: none;
-	position: absolute;
-	top: 1em;
-	left: 25%;
-}
 
 
 
-#sample1 [role="tablist"] li {
-	list-style-type: none;
-	display: inline;
-}
 
-#sample1 [role="tabpanel"] {
-	position: absolute;
-	width: 100%;
-	top: 0;
-	left: 0;
-}
-
-#sample1 [role="tabpanel"] figure {
-	position: relative;
-	background: #fff;
-}
-
-#sample1 [role="tabpanel"] img {
-	min-width: 100%;
-	height: auto;
-	display: block;
-
-}
-
-#sample1 [role="tabpanel"] figcaption {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	color: #fff;
-	background: rgba(0,0,0,0.7);
-}
-
-
-</style>
-
-
-
-<div class="wb-tabs" id="sample1" data-speed="slow">
+<div class="wb-tabs tabs-s1" id="sample1" data-speed="slow">
 	<ul role="tablist">
-		<li><a href="#tab1" class="btn btn-default active">Tab 1</a></li>
-		<li><a href="#tab2" class="btn btn-default">Tab 2</a></li>
-		<li><a href="#tab3" class="btn btn-default">Tab 3</a></li>
+		<li><a href="#tab1" class="active">Tab 1</a></li>
+		<li><a href="#tab2">Tab 2</a></li>
+		<li><a href="#tab3">Tab 3</a></li>
 	</ul>
 	<section role="tabpanel" id="tab1" class="in fade">
 		<figure>
