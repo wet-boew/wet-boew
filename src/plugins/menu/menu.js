@@ -258,6 +258,18 @@ onHoverFocus = function( event ) {
 			cancelDelay: event.type === "focusin"
 		});
 	}
+},
+
+/*
+ * Causes virtual clicks on menu items to open submenus
+ * @method onVirtualClick
+ * @param {jQuery event} event The current event
+ */
+onVirtualClick = function( event ) {
+	if ( $( "#wb-sm" ).find( ".nav-close:visible" ) ) {
+		event.preventDefault();
+		$( this ).trigger( "focusin" );
+	}
 };
 
 // Bind the events of the plugin
@@ -320,6 +332,9 @@ $document.on( "timerpoke.wb mouseleave select.wb-menu ajax-fetched.wb increment.
 
 // Post processing for the site menu once it's finished loading
 $document.on( "loaded.wb-menu", "#wb-sm", onMenuLoaded );
+
+// Virtual clicks on menu items should open submenus
+$document.on( "vclick", selector + " .item", onVirtualClick );
 
 /*
  * Menu Keyboard bindings
