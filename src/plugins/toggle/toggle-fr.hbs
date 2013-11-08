@@ -7,13 +7,16 @@
 ---
 
 <style>
-	.on {
+	.glyphicon.on {
 		color: #d9534f !important;
 	}
-	.off {
+	.glyphicon.off {
 		color: inherit;
 	}
-
+	details,
+	.btn-group {
+		margin: 10px 0;
+	}
 </style>
 
 <p>Plugiciel qui permet un lien à basculer des éléments entre les états activé et désactivé.</p>
@@ -37,4 +40,109 @@
 		<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": ".glyphicon", "type": "on"}'>Activer</button>
 		<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": ".glyphicon", "type": "off"}'>Désactiver</button>
 	</div>	
+</section>
+
+<section>
+	<h2>Details</h2>
+	
+	<div class="row">
+		<details class="col-sm-12">
+			<summary>Exemple 1</summary>
+			<p>Le contenu d'exemple qui fournit plus de détails.</p>
+			<table>
+				<caption>Tasses de café bues par chaque député</caption>
+				<thead>
+				<tr>
+					<th scope="col">Nom</th>
+					<th scope="col">Tasses</th>
+					<th scope="col">Type de café</th>
+					<th scope="col">Sucre?</th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>T. Sexton</td>
+						<td>10</td>
+						<td>Expresso</td>
+						<td>Non</td>
+					</tr>
+					<tr>
+						<td>J. Dinnen</td>
+						<td>5</td>
+						<td>Déca</td>
+						<td>Oui</td>
+					</tr>
+				</tbody>
+			</table>
+		</details>
+	</div>
+
+	<div class="row">
+		<details class="col-sm-6">
+			<summary>Exemple 2</summary>
+			<p>Le contenu d'exemple qui fournit plus de détails.</p>
+			<table>
+				<caption>Tasses de café bues par chaque député</caption>
+				<thead>
+				<tr>
+					<th scope="col">Nom</th>
+					<th scope="col">Tasses</th>
+					<th scope="col">Type de café</th>
+					<th scope="col">Sucre?</th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>T. Sexton</td>
+						<td>10</td>
+						<td>Expresso</td>
+						<td>Non</td>
+					</tr>
+					<tr>
+						<td>J. Dinnen</td>
+						<td>5</td>
+						<td>Déca</td>
+						<td>Oui</td>
+					</tr>
+				</tbody>
+			</table>
+		</details>
+
+		<details class="col-sm-6">
+			<summary>Exemple 3</summary>
+			<p>Le contenu d'exemple qui fournit plus de détails.</p>
+			<table>
+				<caption>Tasses de café bues par chaque député</caption>
+				<thead>
+				<tr>
+					<th scope="col">Nom</th>
+					<th scope="col">Tasses</th>
+					<th scope="col">Type de café</th>
+					<th scope="col">Sucre?</th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>T. Sexton</td>
+						<td>10</td>
+						<td>Expresso</td>
+						<td>Non</td>
+					</tr>
+					<tr>
+						<td>J. Dinnen</td>
+						<td>5</td>
+						<td>Déca</td>
+						<td>Oui</td>
+					</tr>
+				</tbody>
+			</table>
+		</details>
+	</div>
+	
+	<div class="btn-group">
+		<button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": "details"}'>Basculer</button>
+		<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "type": "on"}'>Activer</button>
+		<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "type": "off"}'>Désactiver</button>
+	</div>	
+
 </section>

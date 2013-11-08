@@ -16,9 +16,10 @@
 var selector = ".wb-toggle",
 	$document = vapour.doc,
 	states = {},
-	stateOn = "on",
-	stateOff = "off",
-
+	defaults = {
+		stateOn: "on",
+		stateOff: "off"
+	},
 
 	/*
 	 * Init runs once per plugin element on the page. There may be multiple elements.
@@ -27,7 +28,7 @@ var selector = ".wb-toggle",
 	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
 	 */
 	init = function( event ) {
-		var $link,
+		var $link, data,
 			link = event.target;
 
 		// Filter out any events triggered by descendants
@@ -36,9 +37,13 @@ var selector = ".wb-toggle",
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 			window._timer.remove( selector );
 
-			// Initialize the aria-controls attribute of the link
+			// Merge the elements settings with the defaults
 			$link = $( link );
-			$link.trigger( "ariaControls.wb-toggle", $link.data( "toggle" ) || {} );
+			data = $.extend( {}, defaults, $link.data( "toggle" ) );
+			$link.data( "toggle", data );
+
+			// Initialize the aria-controls attribute of the link
+			$link.trigger( "ariaControls.wb-toggle", data );
 		}
 	},
 
@@ -71,7 +76,7 @@ var selector = ".wb-toggle",
 	click = function( event ) {
 		var $link = $( event.target );
 
-		$link.trigger( "toggle.wb-toggle", $link.data( "toggle" ) || {} );
+		$link.trigger( "toggle.wb-toggle", $link.data( "toggle" ) );
 		event.preventDefault();
 
 		// Assign focus to eventTarget
@@ -87,11 +92,31 @@ var selector = ".wb-toggle",
 		var link = event.target,
 			$elms = getElements( link, data ),
 			stateFrom = getState( link, data ),
-			stateTo = stateFrom === stateOn ? stateOff : stateOn;
+			isToggleOn = stateFrom === data.stateOff,
+			stateTo = isToggleOn ? data.stateOn : data.stateOff;
 
 		// Update the element state and store the new state
-		$elms.wb( "toggle", stateTo, stateFrom );
 		setState( link, data, stateTo );
+		$elms.wb( "toggle", stateTo, stateFrom );
+		$elms.trigger( "toggled.wb-toggle", { isOn: isToggleOn } );
+	},
+
+	/*
+	 * Sets the required property and attribute for toggling open/closed a details element
+	 * @param {jQuery Event} event The event that triggered this invocation
+	 * @param {Object} data Simple key/value data object passed when the event was triggered
+	 */
+	toggleDetails = function( event, data ) {
+		var $detail = $( this );
+
+		// Native details support
+		$detail.prop( "open", data.isOn );
+		
+		// Polyfill details support
+		if ( !Modernizr.details ) {
+			$detail.attr( "open", data.isOn ? null : "open" );
+			$detail.find( "summary" ).trigger( "click" );
+		}
 	},
 
 	/*
@@ -127,11 +152,11 @@ var selector = ".wb-toggle",
 					states[ selector ][ parent ] :
 					states[ selector ].all;
 			}
-			return stateOff;
+			return data.stateOff;
 		}
 
 		// Toggle type: get opposite state of the requested type. toggle will then reverse this to the requested state
-		return type === stateOn ? stateOff : stateOn;
+		return type === data.stateOn ? data.stateOff : data.stateOn;
 	},
 
 	/*
@@ -151,7 +176,7 @@ var selector = ".wb-toggle",
 
 			// Check the selector object has been created
 			if ( !elmsState ) {
-				elmsState = { all: stateOff };
+				elmsState = { all: data.stateOff };
 				states[ selector ] = elmsState;
 			}
 
@@ -194,6 +219,7 @@ $document.on( "timerpoke.wb ariaControls.wb-toggle toggle.wb-toggle click",	sele
 		break;
 	}
 });
+$document.on( "toggled.wb-toggle", "details", toggleDetails );
 
 // Add the timer poke to initialize the plugin
 window._timer.add( selector );

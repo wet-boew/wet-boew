@@ -7,13 +7,16 @@
 ---
 
 <style>
-	.on {
+	.glyphicon.on {
 		color: #d9534f !important;
 	}
-	.off {
+	.glyphicon.off {
 		color: inherit;
 	}
-
+	details,
+	.btn-group {
+		margin: 10px 0;
+	}
 </style>
 
 <p>Plugin that allows a link to toggle elements between on and off states.</p>
@@ -37,4 +40,109 @@
 		<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": ".glyphicon", "type": "on"}'>On</button>
 		<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": ".glyphicon", "type": "off"}'>Off</button>
 	</div>
+</section>
+
+<section>
+	<h2>Details</h2>
+	
+	<div class="row">
+		<details class="col-sm-12">
+			<summary>Example 1</summary>
+			<p>Example content that provides more details.</p>
+			<table>
+				<caption>Cups of coffee consumed by each delegate</caption>
+				<thead>
+					<tr>
+						<th scope="col">Name</th>
+						<th scope="col">Cups</th>
+						<th scope="col">Type of Coffee</th>
+						<th scope="col">Sugar?</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>T. Sexton</td>
+						<td>10</td>
+						<td>Espresso</td>
+						<td>No</td>
+					</tr>
+					<tr>
+						<td>J. Dinnen</td>
+						<td>5</td>
+						<td>Decaf</td>
+						<td>Yes</td>
+					</tr>
+				</tbody>
+			</table>
+		</details>
+	</div>
+	
+	<div class="row">
+		<details class="col-sm-6">
+			<summary>Example 2</summary>
+			<p>Example content that provides more details.</p>
+			<table>
+				<caption>Cups of coffee consumed by each delegate</caption>
+				<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Cups</th>
+					<th scope="col">Type of Coffee</th>
+					<th scope="col">Sugar?</th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>T. Sexton</td>
+						<td>10</td>
+						<td>Espresso</td>
+						<td>No</td>
+					</tr>
+					<tr>
+						<td>J. Dinnen</td>
+						<td>5</td>
+						<td>Decaf</td>
+						<td>Yes</td>
+					</tr>
+				</tbody>
+			</table>
+		</details>
+	
+		<details class="col-sm-6">
+			<summary>Example 3</summary>
+			<p>Example content that provides more details.</p>
+			<table>
+				<caption>Cups of coffee consumed by each delegate</caption>
+				<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Cups</th>
+					<th scope="col">Type of Coffee</th>
+					<th scope="col">Sugar?</th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>T. Sexton</td>
+						<td>10</td>
+						<td>Espresso</td>
+						<td>No</td>
+					</tr>
+					<tr>
+						<td>J. Dinnen</td>
+						<td>5</td>
+						<td>Decaf</td>
+						<td>Yes</td>
+					</tr>
+				</tbody>
+			</table>
+		</details>
+	</div>
+	
+	<div class="btn-group">
+		<button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": "details"}'>Toggle</button>
+		<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "type": "on"}'>On</button>
+		<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "type": "off"}'>Off</button>
+	</div>
+
 </section>
