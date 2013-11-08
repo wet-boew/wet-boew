@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utF-8" standalone="yes"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:georss="http://www.georss.org/georss"
+     version="2.0">
+   <channel>
+      <atom:link rel="self" type="application/rss+xml"
+                 href="http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst?start-index=808032&amp;max-results=10&amp;alt=rss"/>
+      <atom:link rel="next" type="application/rss+xml"
+                 href="http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst?start-index=808009&amp;max-results=10&amp;alt=rss"/>
+      <title>Sélection de produits GéoGratis</title>
+      <description>Ressources naturelles Canada</description>
+      <link>http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst?start-index=808032&amp;max-results=10</link>
+      <language>fr</language>
+      <pubDate>Mon, 10 Sep 2012 08:42:23 GMT</pubDate>
+      <lastBuildDate>Mon, 10 Sep 2012 08:42:23 GMT</lastBuildDate>
+      <managingEditor>info@geogratis.gc.ca (GeoGratis)</managingEditor>
+      <webMaster>info@geogratis.gc.ca (GeoGratis)</webMaster>
+      <docs>http://geogratis.gc.ca</docs>
+      <item>
+         <title>Huntingdon, Québec - Ontario</title>
+         <description><![CDATA[<p>Résumé non disponible.</p>]]></description>
+         <link>http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/d9619d1c-00a4-5c97-8690-ad7a9df36fe0.html</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 11 Nov 1111 05:00:00 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/d9619d1c-00a4-5c97-8690-ad7a9df36fe0.xml</guid>
+         <georss:polygon>45 -74.5 45.25 -74.5 45.25 -74 45 -74 45 -74.5</georss:polygon>
+      </item>
+      <item>
+         <title>Relief ombré du fond marin, Baie-des-Sables, Québec</title>
+         <description><![CDATA[<p>Résumé non disponible.</p>]]></description>
+         <link>http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/b7947f3a-05b4-56b4-918a-8cbc17285d97.html</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Sat, 01 Jan 2011 05:00:00 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/b7947f3a-05b4-56b4-918a-8cbc17285d97.xml</guid>
+         <georss:polygon>48.623600000000003 -68.359700000000004 48.884399999999999 -68.359700000000004 48.884399999999999 -67.649699999999996 48.623600000000003 -67.649699999999996 48.623600000000003 -68.359700000000004</georss:polygon>
+      </item>
+      <item>
+         <title>Dérivée première verticale du champ magnétique, levé aéromagnétique de la région de Burntbush, SNRC 32 E/05 (nord-ouest), Ontario</title>
+         <description><![CDATA[<p>Résumé non disponible.
+
+La série des dossiers publics vise à accélérer la diffusion de l'information en rendant publics des manuscrits non révisés qui feront l’objet d’une publication officielle, ainsi qu’à présenter les données complémentaires pertinentes qui sont mentionnées dans des rapports publiés.
+
+Les dossiers publics peuvent prendre les formes suivantes : cartes, rapports, volumineux ensembles de données provenant de levés géophysiques à paramètres multiples et de levés géochimiques, rapports de consultants, ainsi que les résultats provisoires et non vérifiés de travaux réalisés sur le terrain et en laboratoire.
+
+Les dossiers publics font l'objet d’un examen critique par un spécialiste. Ils s’adressent à des spécialistes (industrie minière, aménagement du territoire, étudiants en sciences de la Terre) plutôt qu’au grand public.</p>]]></description>
+         <link>http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/37938de7-33ce-5256-88db-b91eb6cc0bfd.html</link>
+         <author>info@geogratis.gc.ca (GeoGratis)</author>
+         <pubDate>Tue, 01 Jan 2008 05:00:00 GMT</pubDate>
+         <guid isPermaLink="false">http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst/37938de7-33ce-5256-88db-b91eb6cc0bfd.xml</guid>
+         <georss:polygon>49.375 -80 49.5 -80 49.5 -79.75 49.375 -79.75 49.375 -80</georss:polygon>
+      </item>
+   </channel>
+</rss>

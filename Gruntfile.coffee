@@ -89,6 +89,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Copies all third party JS to the dist folder"
 		[
 			"copy:jquery"
+			"copy:jsDemo"
 			"copy:polyfills"
 			"copy:other"
 			"copy:deps"
@@ -173,6 +174,8 @@ module.exports = (grunt) ->
 					"dist/js/wet-boew.js"
 					"src/plugins/**/*.js"
 					"!src/plugins/**/test.js"
+					"!src/plugins/**/assets/*.js"
+					"!src/plugins/**/demo/*.js"
 				]
 				dest: "dist/unmin/js/wet-boew.js"
 
@@ -450,6 +453,24 @@ module.exports = (grunt) ->
 				files:
 					"dist/js/wet-boew.min.js": "dist/unmin/js/wet-boew.js"
 
+			jsAssets:
+				options:
+					preserveComments: "some"
+				expand: true
+				cwd: "dist/unmin/js/assets/"
+				src: ["*.js"]
+				dest: "dist/js/assets/"
+				ext: ".min.js"
+
+			jsDemo:
+				options:
+					preserveComments: "some"
+				expand: true
+				cwd: "dist/unmin/demos/"
+				src: ["**/demo/*.js"]
+				dest: "dist/demos/"
+				ext: ".min.js"
+
 			i18n:
 				options:
 					banner: "<%= banner %>"
@@ -538,6 +559,12 @@ module.exports = (grunt) ->
 				expand: true
 				flatten: true
 
+			jsDemo:
+				cwd: "src/plugins"
+				src: "**/demo/*.js"
+				dest: "dist/unmin/demos"
+				expand: true		
+				
 			misc:
 				cwd: "src/plugins"
 				src: [
@@ -581,6 +608,8 @@ module.exports = (grunt) ->
 					"magnific-popup/dist/jquery.magnific-popup.js"
 					"google-code-prettify/src/*.js"
 					"DataTables/media/js/jquery.dataTables.js"
+					"../src/plugins/geomap/deps/openlayers.js"
+					"proj4/dist/proj4.js"
 				]
 				dest: "dist/unmin/js/deps"
 				expand: true
@@ -618,6 +647,7 @@ module.exports = (grunt) ->
 					"assets/*"
 					"fonts/*"
 					"js/assets/*"
+					"!**/assets/*.js"
 				]
 				dest: "dist"
 				expand: true
