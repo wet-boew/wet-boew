@@ -17,7 +17,7 @@
  var selector = ".wb-tabs",
 	$document = vapour.doc,
 	i18n, i18nText,
-	controls = selector + " [role=tablist] .btn",
+	controls = selector + " [role=tablist] a",
 
 	/*
 	 * @method onTimerPoke
@@ -25,7 +25,7 @@
 	 */
 	onTimerPoke = function( $elm ) {
 		var setting,
-			dataDelay = $elm.attr( "data-delay" ),
+			dataDelay = $elm.data( "delay" ),
 			delay;
 
 		if ( !dataDelay ) {
@@ -41,14 +41,14 @@
 
 		/* add settings and counter*/
 		setting = parseFloat( dataDelay );
-		delay = parseFloat( $elm.attr( "data-ctime" ) ) + 0.5;
+		delay = parseFloat( $elm.data( "ctime" ) ) + 0.5;
 
 		/* check if we need*/
 		if ( setting < delay ) {
 			$elm.trigger( "shift.wb-carousel" );
 			delay = 0;
 		}
-		$elm.attr( "data-ctime", delay );
+		$elm.data( "ctime", delay );
 	},
 
 	/*
@@ -59,17 +59,17 @@
 		var $sldr = $tablist.parents( selector ),
 			state = $sldr.hasClass( "stopped" ) ? i18nText.play :  i18nText.pause,
 			hidden = $sldr.hasClass( "stopped" ) ? i18nText.rotStart  :  i18nText.rotStop,
-			controls = "<li class='tabs-toggle'><a class='prv btn btn-default' href='javascript:;' role='button'>" +
-						"<span class='glyphicon glyphicon-backward'></span>" +
+			controls = "<li class='tabs-toggle'><a class='prv' href='javascript:;' role='button'>" +
+						"<span class='glyphicon glyphicon-chevron-left'></span>" +
 						"<span class='wb-inv'>" +
 						i18nText.prev +
-						"</span></a></li>" +
-						"<li class='tabs-toggle'><a class='nxt btn btn-default' href='javascript:;' role='button'>" +
-						"<span class='glyphicon glyphicon-forward'></span>" +
+						"</span></a></li> " +
+						"<li class='tabs-toggle'><a class='nxt' href='javascript:;' role='button'>" +
+						"<span class='glyphicon glyphicon-chevron-right'></span>" +
 						"<span class='wb-inv'>" +
 						i18nText.next +
-						"</span></a></li>" +
-						"<li class='tabs-toggle'><a class='plypause btn btn-default' href='javascript:;' role='button'><i>" +
+						"</span></a></li> " +
+						"<li class='tabs-toggle'><a class='plypause' href='javascript:;' role='button'><i>" +
 						state +
 						"</i><span class='wb-inv'>" +
 						i18nText.space + i18nText.hyphen + i18nText.space + hidden +
@@ -92,7 +92,7 @@
 			$item;
 
 
-		for (tabscounter; tabscounter >= 0; tabscounter--) {
+		for ( tabscounter; tabscounter >= 0; tabscounter-- ) {
 			$item = $tabs.eq( tabscounter );
 			$item.attr({
 				tabindex: "-1",
@@ -102,7 +102,7 @@
 			});
 		 }
 
-		 for (listcounter; listcounter >= 0; listcounter--) {
+		 for ( listcounter; listcounter >= 0; listcounter-- ) {
 			$item = $listitems.eq( listcounter ).find( "a" );
 			$item.attr({
 				tabindex: "0",
@@ -147,17 +147,17 @@
 
 		$tabs.filter( ":not(.in)" )
 			.addClass( "out" );
-		$elm.attr( {
-			"data-delay": interval,
-			"data-ctime": 0
+		$elm.data( {
+			"delay": interval,
+			"ctime": 0
 		});
 
 		drizzleAria( $tabs, $tablist );
 		createControls( $tablist );
 
 		$elm.data({
-			tabs: $tabs,
-			tablist: $tablist
+			"tabs": $tabs,
+			"tablist": $tablist
 		});
 	},
 
@@ -169,7 +169,7 @@
 		var $items = $sldr.data( "tabs" ),
 			$controls =  $sldr.data( "tablist" );
 
-		$items.filter(".in")
+		$items.filter( ".in" )
 			.removeClass( "in" )
 			.addClass( "out" )
 			.attr({

@@ -1,27 +1,104 @@
 /*
-Tabs Basic structure
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
+.no-js {
+	.wb-tabs{
+		[role="tablist"] {
+			display: none;
+		}
+		[role="tabpanel"] {
+			display: block;
+		}
+	}
+}
 
- .wb-tabs {
-   position: relative;
- }
+.wb-tabs {
+	/**
+	 * Default, minimal, shared style
+	 */
+	position: relative;
+	[role ="tablist"] {
+		position : relative;
+		z-index: 100;
+		display: none;
+		list-style: none;
+		li {
+			display: inline-block;
+			&[role="presentation"] {
+				
+			}
+			&.tabs-toggle {
+				
+			}
+			a {
+				text-decoration: none;
+			}
+		}
+	}
+	&.inited [role="tablist"] {
+		display: block;
+	}
+	[role="tabpanel"] {
+		display: relative;
+		z-index: 1;
+		&.out {
+			display: none;
+		}
+	}
+	
+	/**
+	 * Style 1 - Basic carousel style
+	 */
+	&.tabs-s1 {
+		[role="tablist"] {
+			position: absolute;
+			bottom: 1em;
+			left: 1em;
+			margin: 0;
+			padding: 0;
+			li {
+				display: inline-block;
+				cursor: pointer;
+				padding: .4em;
+				margin: 0 .1em 0 0;
+				color: #000;
+				background: #eee;
+				background: rgba(238, 238, 238, 0.9);
+				border: 1px solid #ccc;
+				text-align: center;
+				position: relative;
+				a {
+					color: #000;
+				}
+				&:focus, &:hover {
+					background: #ccc;
+					background: rgba(204, 204, 204, 0.9);
+					top: 1px;
+				}
+			}
+		}
+		[role="tabpanel"] {
+			figure {
+			 	position: relative;
+				img {
+					width: 100%;
+					height: auto;
+				}
+				figcaption {
+					position: absolute;
+					top: 3em;
+					right: 1em;
+					color: #fff;
+					background: #243850;
+					background: rgba(36, 56, 80, 0.9);
+					padding: 1em;
+					a {
+						color: #fff;
+					}
+				}
+			}
+		}
+	}
 
- .no-js .wb-tabs [role="tablist"] {
-   display: none;
- }
-
- .wb-tabs {
-   position: relative;
-   [role="tablist"] {
-     position: relative;
-     z-index: 100;
-     display: none;
-   }
-   &.inited [role="tablist"] {
-     display: block;
-   }
-   [role="tabpanel"] {
-     display: relative;
-     z-index: 1;
-   }
- }
+}
