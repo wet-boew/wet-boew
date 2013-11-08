@@ -131,7 +131,6 @@ var getUrlParts = function( url ) {
 		doc: $( document ),
 		win: $( window ),
 		html: $( "html" ),
-		sDisabled: "#wb-tphp",
 		pageUrlParts: currentpage,
 		getUrlParts: getUrlParts,
 		isDisabled : disabled,
@@ -241,9 +240,9 @@ window._timer = {
 	nodes: $(),
 
 	add: function( selector ) {
-	
+
 		// Lets ensure we are not running if things are disabled
-		if ( vapour.isDisabled && selector !== vapour.sDisabled ) {
+		if ( vapour.isDisabled && selector !== "#wb-tphp" ) {
 			return 0;
 		}
 
