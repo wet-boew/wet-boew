@@ -12,7 +12,7 @@
  * These are global to the event - meaning that they will be initialized once per page,
  * not once per instance of event on the page.
  */
-var selector = vapour.sDisabled,
+var selector = "#wb-tphp",
 	$document = vapour.doc,
 
 	/*
