@@ -1,0 +1,257 @@
+/*
+  WET-BOEW
+  @title: Proximity CSS
+ */
+
+%pstn {
+	position: absolute;
+	margin: 0;
+}
+
+.opct-100 {
+	opacity: 1;
+}
+
+.opct-90 {
+	opacity: .9;
+}
+
+.opct-80 {
+	opacity: .8;
+}
+
+.opct-70 {
+	opacity: .7;
+}
+
+.opct-60 {
+	opacity: .6;
+}
+
+.opct-50 {
+	opacity: .5;
+}
+
+.opct-40 {
+	opacity: .4;
+}
+
+.opct-30 {
+	opacity: .3;
+}
+
+.opct-20 {
+	opacity: .2;
+}
+
+.opct-10 {
+	opacity: .1;
+}
+
+.clmn-2 {
+	column-count: 2;
+}
+
+.clmn-3 {
+	column-count: 3;
+}
+
+.clmn-4 {
+	column-count: 4;
+}
+
+.pstn-lft {
+	@extend %pstn;
+	left: 0;
+}
+
+.pstn-lft-sm {
+	@extend %pstn;
+	left: 10px;
+}
+
+.pstn-lft-md {
+	@extend %pstn;
+	left: 20px;
+}
+
+.pstn-lft-lg {
+	@extend %pstn;
+	left: 50px;
+}
+
+.pstn-lft-xlg {
+	@extend %pstn;
+	left: 100px;
+}
+
+.pstn-rght {
+	@extend %pstn;
+	right: 0;
+}
+
+.pstn-rght-sm {
+	@extend %pstn;
+	right: 10px;
+}
+
+.pstn-rght-md {
+	@extend %pstn;
+	right: 20px;
+}
+
+.pstn-rght-lg {
+	@extend %pstn;
+	right: 50px;
+}
+
+.pstn-rght-xlg {
+	@extend %pstn;
+	right: 100px;
+}
+
+.pstn-tp {
+	@extend %pstn;
+	top: 0;
+}
+
+.pstn-tp-sm {
+	@extend %pstn;
+	top: 10px;
+}
+
+.pstn-tp-md {
+	@extend %pstn;
+	top: 20px;
+}
+
+.pstn-tp-lg {
+	@extend %pstn;
+	top: 50px;
+}
+
+.pstn-tp-xlg {
+	@extend %pstn;
+	top: 100px;
+}
+
+.pstn-bttm {
+	@extend %pstn;
+	bottom: 0;
+}
+
+.pstn-bttm-sm {
+	@extend %pstn;
+	bottom: 10px;
+}
+
+.pstn-bttm-md {
+	@extend %pstn;
+	bottom: 20px;
+}
+
+.pstn-bttm-lg {
+	@extend %pstn;
+	bottom: 50px;
+}
+
+.pstn-bttm-xlg {
+	@extend %pstn;
+	bottom: 100px;
+}
+
+.mrgn-lft-0 {
+	margin-left: 0;
+}
+
+.mrgn-lft-sm {
+	margin-left: 5px;
+}
+
+.mrgn-lft-md {
+	margin-left: 10px;
+}
+
+.mrgn-lft-lg {
+	margin-left: 20px;
+}
+
+.mrgn-lft-xlg {
+	margin-left: 50px;
+}
+
+.mrgn-bttm-0 {
+	margin-bottom: 0;
+}
+
+.mrgn-bttm-sm {
+	margin-bottom: 5px;
+}
+
+.mrgn-bttm-md {
+	margin-bottom: 10px;
+}
+
+.mrgn-bttm-lg {
+	margin-bottom: 20px;
+}
+
+.mrgn-bttm-xlg {
+	margin-bottom: 50px;
+}
+
+.mrgn-tp-sm {
+	margin-top: 5px;
+}
+
+.mrgn-tp-md {
+	margin-top: 10px;
+}
+
+.mrgn-tp-lg {
+	margin-top: 20px;
+}
+
+.mrgn-tp-xlg {
+	margin-top: 50px;
+}
+
+.mrgn-rght-0 {
+	margin-right: 0;
+}
+
+.mrgn-rght-sm {
+	margin-right: 5px;
+}
+
+.mrgn-rght-md {
+	margin-right: 10px;
+}
+
+.mrgn-rght-lg {
+	margin-right: 20px;
+}
+
+.mrgn-rght-xlg {
+	margin-right: 50px;
+}
+
+[class*=border] {
+	border: solid 0 #ccc;
+}
+
+.brdr-lft {
+	border-left-width: 1px;
+}
+
+.brdr-rght {
+	border-right-width: 1px;
+}
+
+.brdr-tp {
+	border-top-width: 1px;
+}
+
+.brdr-bttm {
+	border-bottom-width: 1px;
+}
