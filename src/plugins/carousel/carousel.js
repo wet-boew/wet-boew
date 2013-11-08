@@ -22,11 +22,11 @@ var selector = ".wb-carousel",
 	 * @param {jQuery DOM element} $elm The plugin element
 	 */
 	onTimerPoke = function( $elm ) {
-		var _setting,
-			_dataDelay = $elm.attr( "data-delay" ),
-			_delay;
+		var setting,
+			dataDelay = $elm.attr( "data-delay" ),
+			delay;
 
-		if ( !_dataDelay ) {
+		if ( !dataDelay ) {
 			$elm.trigger( "init.wb-carousel" );
 			return false;
 		}
@@ -38,35 +38,46 @@ var selector = ".wb-carousel",
 		/* continue;*/
 
 		/* add settings and counter*/
-		_setting = parseFloat( _dataDelay );
-		_delay = parseFloat( $elm.attr( "data-ctime" ) ) + 0.5;
+		setting = parseFloat( dataDelay );
+		delay = parseFloat( $elm.attr( "data-ctime" ) ) + 0.5;
 
 		/* check if we need*/
-		if ( _setting < _delay ) {
+		if ( setting < delay ) {
 			$elm.trigger( "shift.wb-carousel" );
-			_delay = 0;
+			delay = 0;
 		}
-		$elm.attr( "data-ctime", _delay );
+		$elm.attr( "data-ctime", delay );
 	},
 
 	/*
 	 * @method onInit
 	 * @param {jQuery DOM element} $elm The plugin element
 	 */
+	drizzleAria = function( $elm ) {
+		var $controls = $elm.find( ".cntrl" ),
+			$items = $elm.find( ".items" );
+
+	},
+	/*
+	 * @method onInit
+	 * @param {jQuery DOM element} $elm The plugin element
+	 */
 	onInit = function( $elm ) {
-		var _interval = 6;
+		var interval = 6;
 
 		if ( $elm.hasClass( "slow" ) ) {
-			_interval = 9;
+			interval = 9;
 		} else if ( $elm.hasClass( "fast" ) ) {
-			_interval = 3;
+			interval = 3;
 		}
 		$elm.find( ".item:not(.in)" )
 			.addClass( "out" );
 		$elm.attr( {
-			"data-delay": _interval,
+			"data-delay": interval,
 			"data-ctime": 0
 		});
+
+		drizzleAria( $elm );
 	},
 
 	/*
@@ -74,15 +85,25 @@ var selector = ".wb-carousel",
 	 * @param {jQuery DOM element} $elm The plugin element
 	 */
 	onShift = function( $elm, event ) {
-		var _items = $elm.find( ".item" ),
-			_len = _items.length,
-			_current = $elm.find( ".item.in" ).prevAll( ".item" ).length,
-			_shiftto = ( event.shiftto ) ? event.shiftto : 1,
-			_next = _current > _len ? 0 : _current + _shiftto;
+		var $items = $elm.find( ".item" ),
+			$controls = $elm.find( ".cntrl" ),
+			len = $items.length,
+			current = $elm.find( ".item.in" ).prevAll( ".item" ).length,
+			shiftto = ( event.shiftto ) ? event.shiftto : 1,
+			next = current > len ? 0 : current + shiftto;
 
-		_next = ( _next > _len - 1 ) ? 0 : ( _next < 0 ) ? _len - 1 : _next;
-		_items.eq( _current ).removeClass( "in" ).addClass( "out" );
-		_items.eq( _next ).removeClass( "out" ).addClass( "in" );
+		next = ( next > len - 1 ) ? 0 : ( next < 0 ) ? len - 1 : next;
+		$items.eq( current )
+			.removeClass( "in" )
+			.addClass( "out" );
+		$items.eq( next )
+			.removeClass( "out" )
+			.addClass( "in" );
+		$controls.find( ".active" )
+			.removeClass( "active" )
+			.end()
+			.find( "[data-shift-to=" + next + "]" )
+			.addClass( "active" );
 	},
 
 	/*
@@ -137,10 +158,10 @@ $document.on( "timerpoke.wb init.wb-carousel shift.wb-carousel", selector, funct
 $document.on( "click", controls, function( event ) {
 	event.preventDefault();
 	var $elm = $( this ),
-		_sldr = $elm.parents( ".wb-carousel" ),
-		_action = $elm.attr( "class" );
+		$sldr = $elm.parents( ".wb-carousel" ),
+		action = $elm.attr( "class" );
 
-	switch ( _action ) {
+	switch ( action ) {
 	case "prv":
 		onCycle( $elm, -1 );
 		break;
@@ -148,9 +169,9 @@ $document.on( "click", controls, function( event ) {
 		onCycle( $elm, 1 );
 		break;
 	default:
-		_sldr.toggleClass( "stopped" );
+		$sldr.toggleClass( "stopped" );
 	}
-	_sldr.attr( "data-ctime", 0 );
+	$sldr.attr( "data-ctime", 0 );
 
 	/*
 	 * Since we are working with events we want to ensure that we are being passive about our control,
