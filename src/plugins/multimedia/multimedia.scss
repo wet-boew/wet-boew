@@ -3,7 +3,6 @@
  */
 
 .wb-mltmd {
-	color: #fff;
 	// lets fight the FOUC
 	// base state
 	display: block;
@@ -86,15 +85,16 @@
 	  Light Skinning of mediacontrols
 	 */
 	&.skn-lt {
-		color: #000 !important;
+		color: #000;
 		border-bottom: 1px solid #ddd;
 		.wb-mm-ctrls {
 			background: #fff;
+			color: #000;
 		}
 		.btn {
 			background: #fff;
+			color: #000;
 			border: 0;
-			color: #000 !important;
 		}
 	}
 }
@@ -115,47 +115,54 @@
 .wb-mm-ctrls {
 	display: table;
 	background: #000;
+	color: #fff;
 	position: relative;
 	width: 100%;
-	.frstpnl {
-		width: 10em;
-		vertical-align: top;
+
+	%pnl {
+		vertical-align: middle;
 		display: table-cell;
+	}
+
+	.frstpnl {
+		@extend %pnl;
+		width: 6em;
 	}
 	.lastpnl {
+		@extend %pnl;
 		text-align: right;
-		width: 7em;
-		display: table-cell;
-		vertical-align: top;
+		width: 4em;
 	}
 	.tline {
-		display: table-cell;
-		vertical-align: top;
-		padding-top: 0.55em;
+		@extend %pnl;
 		.textonly {
 			p {
 				display: inline !important;
 				float: left;
-			}
-		}
-		/* Progress Bar */
-		progress {
-			width: 100%;
-			height: 14px;
-			display: block;
-			/* Important Thing */
-			-webkit-appearance: none;
-			border: none;
-			&::-webkit-progress-bar, &::-moz-progress-bar {
-				background: #fff;
-			}
-			/* Now the value part */
-			&::-webkit-progress-value {
-				background: #176CA7;
+				margin:0;
+				&:last-child {
+					float:right;
+				}
 			}
 		}
 	}
 
+	/* Progress Bar */
+	progress {
+		width: 100%;
+		height: 14px;
+		display: block;
+		/* Important Thing */
+		-webkit-appearance: none;
+		border: none;
+		&::-webkit-progress-bar, &::-moz-progress-bar {
+			background: #fff;
+		}
+		/* Now the value part */
+		&::-webkit-progress-value {
+			background: #176CA7;
+		}
+	}
 }
 
 @media print {
