@@ -111,7 +111,15 @@ onAjaxLoaded = function( $elm, $ajaxed ) {
 
 	//Some hooks for post transformation
 	// - @data-post-remove : removes the space delimited class for the element. This is more a feature to fight the FOUC
-	var $menu = $ajaxed.find( "[role='menubar'] .item" );
+	var $menu = $ajaxed.find( "[role='menubar'] .item" ),
+		$panel,
+		$wbsec = $( "#wb-sec" );
+
+	// lets see if we need to add a dynamic navigation section ( secondary nav )
+	if ( $wbsec.length !== 0 ) {
+		$panel = $ajaxed.find( ".pnl-strt" );
+		$panel.before( "<section id='dyn-nvgtn' class='" + $panel.siblings( ".wb-nav" ).eq( 0 ).attr( "class" ) + "'>" + $wbsec.html() + "</section>" );
+	}
 
 	$ajaxed.find( ":discoverable" )
 		.attr( "tabindex", "-1" );
@@ -138,19 +146,8 @@ onAjaxLoaded = function( $elm, $ajaxed ) {
 		items: $elm.find( ".sm" )
 	});
 
-	$elm.trigger( "loaded.wb-menu" );
 },
 
-/*
- * Adds the secondary menu to the medium view (and below) menu panel
- * @method onMenuLoaded
- */
-onMenuLoaded = function() {
-	var $wbsec = $( "#wb-sec" );
-	if ( $wbsec.length !== 0 ) {
-		$( this ).find( ".nav-close" ).after( $wbsec.clone().attr( "id", "wb-sec-p" ) );
-	}
-},
 
 /*
  * @method onSelect
@@ -330,8 +327,6 @@ $document.on( "timerpoke.wb mouseleave select.wb-menu ajax-fetched.wb increment.
 	return true;
 });
 
-// Post processing for the site menu once it's finished loading
-$document.on( "loaded.wb-menu", "#wb-sm", onMenuLoaded );
 
 // Panel clicks on menu items should open submenus
 $document.on( "click vclick", selector + " .item", onPanelClick );
