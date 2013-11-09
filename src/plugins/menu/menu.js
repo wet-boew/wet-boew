@@ -112,11 +112,13 @@ onAjaxLoaded = function( $elm, $ajaxed ) {
 	//Some hooks for post transformation
 	// - @data-post-remove : removes the space delimited class for the element. This is more a feature to fight the FOUC
 	var $menu = $ajaxed.find( "[role='menubar'] .item" ),
+		$panel,
 		$wbsec = $( "#wb-sec" );
 
 	// lets see if we need to add a dynamic navigation section ( secondary nav )
 	if ( $wbsec.length !== 0 ) {
-		$ajaxed.find( ".wb-nav" ).before( "<section class='dyn-nav container visible-sm visible-xs'>" + $wbsec.html() + "</section>" );
+		$panel = $ajaxed.find( ".wb-nav" );
+		$panel.before( "<section id='dyn-nvgtn' class='" + $panel.attr( "class" ) + "'>" + $wbsec.html() + "</section>" );
 	}
 
 	$ajaxed.find( ":discoverable" )
@@ -132,10 +134,6 @@ onAjaxLoaded = function( $elm, $ajaxed ) {
 	if ( $elm.has( "[data-post-remove]" ) ) {
 		$elm.removeClass( $elm.data( "post-remove" ) )
 			.removeAttr( "data-post-remove" );
-	}
-
-	if ( $wbsec.length !== 0 ) {
-		$( this ).find( ".nav-close" ).after(  );
 	}
 
 	// Replace elements
