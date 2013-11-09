@@ -117,8 +117,8 @@ onAjaxLoaded = function( $elm, $ajaxed ) {
 
 	// lets see if we need to add a dynamic navigation section ( secondary nav )
 	if ( $wbsec.length !== 0 ) {
-		$panel = $ajaxed.find( ".wb-nav" );
-		$panel.before( "<section id='dyn-nvgtn' class='" + $panel.attr( "class" ) + "'>" + $wbsec.html() + "</section>" );
+		$panel = $ajaxed.find( ".pnl-strt" );
+		$panel.before( "<section id='dyn-nvgtn' class='" + $panel.siblings( ".wb-nav" ).eq( 0 ).attr( "class" ) + "'>" + $wbsec.html() + "</section>" );
 	}
 
 	$ajaxed.find( ":discoverable" )
