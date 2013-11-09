@@ -261,12 +261,12 @@ onHoverFocus = function( event ) {
 },
 
 /*
- * Causes virtual clicks on menu items to open submenus
- * @method onVirtualClick
+ * Causes clicks on panel menu items to open submenus
+ * @method onPanelClick
  * @param {jQuery event} event The current event
  */
-onVirtualClick = function( event ) {
-	if ( $( "#wb-sm" ).find( ".nav-close:visible" ) ) {
+onPanelClick = function( event ) {
+	if ( $( "#wb-sm" ).find( ".nav-close" ).is( ":visible" ) ) {
 		event.preventDefault();
 		$( this ).trigger( "focusin" );
 	}
@@ -333,8 +333,8 @@ $document.on( "timerpoke.wb mouseleave select.wb-menu ajax-fetched.wb increment.
 // Post processing for the site menu once it's finished loading
 $document.on( "loaded.wb-menu", "#wb-sm", onMenuLoaded );
 
-// Virtual clicks on menu items should open submenus
-$document.on( "vclick", selector + " .item", onVirtualClick );
+// Panel clicks on menu items should open submenus
+$document.on( "click vclick", selector + " .item", onPanelClick );
 
 /*
  * Menu Keyboard bindings
