@@ -194,7 +194,6 @@ module.exports = (grunt) ->
 					"lib/excanvas/excanvas.js"
 					"lib/html5shiv/dist/html5shiv.js"
 					"lib/selectivizr/selectivizr.js"
-					"src/polyfills/localstorage/localstorage.js"
 					"lib/modernizr/modernizr-custom.js"
 					"src/core/vapour.js"
 				]
