@@ -1,164 +1,116 @@
-// Based on code from https://gist.github.com/667320
+/*
+ * @title WET-BOEW Progress polyfill
+ * @overview The <meter> element displays a gauge. Based on code from https://gist.github.com/667320
+ * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ * @author @nschonni
+ */
+(function( $, window, vapour ) {
+"use strict";
 
-// hack for backwards compatibility
-document.createElement('meter');
-// create polyfill
-function makeMeter(meterElement) {
-	var indicator,
-		width;
-
-	// parse values and attributes
-	function attr(attributeName, defaultValue) {
-		return meterElement.getAttribute(attributeName) !== null ?
-							meterElement.getAttribute(attributeName) :
-							(defaultValue ? defaultValue : null);
-	}
-	function addClass(classStr) {
-		var classes = meterElement.className.split(' '),
-			classStrVal;
-		if (classes.length === 0) {
-			meterElement.className = classStr;
-			return;
-		}
-		for (classStrVal in classes) {
-			if (classStr === classStrVal) { return; }
-		}
-		classes.push(classStr);
-		meterElement.className = classes.join(' ');
-	}
-	function removeClass(classStr) {
-		var classes = meterElement.className.split(' '),
-			i = classes.length;
-
-		while (i--) {
-			if (classes[i] === classStr) {
-				classes.splice(i, 1);
-				break;
-			}
-		}
-		meterElement.className = classes.join(' ');
-	}
-
-	function getFormParent() {
-		var element = meterElement;
-		while (element.parent && element.parent.tagName.toLowerCase() !== 'form') {
-			element = element.parent;
-		}
-		if (element.tagName.toLowerCase() === 'form') {
-			return element;
-		}
-		return null;
-	}
-
-	function getFormLabels() {
-		var id = meterElement.id,
-			elementsLabels = [],
-			labels,
-			l;
-
-		if (id === null || this.form === null) {
-			return null;
-		}
-		// otherwise loop through the form's child label elements 
-		// looking for the element that has a for="{this.id}"
-		labels = this.form.getElementsByTagName('label');
-		for (l in labels) {
-			if (l['for'] === id) {
-				elementsLabels.push(l);
-			}
-		}
-		if (elementsLabels.length > 0) {
-			return elementsLabels;
-		}
-		return null;
-	}
-
-	//this.min = parseFloat(attr('min', 0)); // default as per HTML5 spec
-	this.min = parseFloat((attr('min') !== null ? attr('min') : 0)); // default as per HTML5 spec
-	//this.max = parseFloat(attr('max', 1)); // default as per HTML5 spec
-	this.max = parseFloat((attr('max') !== null ? attr('max') : 0)); // default as per HTML5 spec
-	this.high = parseFloat(attr('high'));
-	this.low = parseFloat(attr('low'));
-	this.optimum = parseFloat(attr('optimum'));
-	// TODO: make this look for 'innerText' if the attribute doesn't exist
-	this.value = attr('value') !== null ? parseFloat(attr('value')) : (meterElement.textContent ? meterElement.textContent : meterElement.innerText);
-
-	if (meterElement.textContent) {
-		meterElement.textContent = '';
-	} else if (meterElement.innerText) {
-		meterElement.innerText = '';
-	}
-	//this.onchange = function() { alert(1); };
-
-	this.title = attr('title') !== null ? attr('title') : this.value;
-	this.form = getFormParent();
-	this.labels = getFormLabels();
+/*
+ * Variable and function definitions.
+ * These are global to the polyfill - meaning that they will be initialized once per page.
+ */
+var selector = "meter",
+	$document = vapour.doc,
 
 	/*
-	The following inequalities must hold, as applicable:
-	minimum = value = maximum
-	minimum = low = maximum (if low is specified)
-	minimum = high = maximum (if high is specified)
-	minimum = optimum = maximum (if optimum is specified)
-	low = high (if both low and high are specified)
-	*/
+	 * Init runs once per polyfill element on the page. There may be multiple elements.
+	 * It will run more than once if you don't remove the selector from the timer.
+	 * @method init
+	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
+	 */
+	init = function( event ) {
 
-	if (this.value < this.min) {
-		this.value = this.min;
-	}
+		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+		window._timer.remove( selector );
 
-	if (this.value > this.max) {
-		this.value = this.max;
-	}
+		meter( event.target );
+	},
 
-	if (this.low !== null && this.low < this.min) {
-		this.low = this.min;
-	}
+	// create polyfill
+	meter = function ( elm ) {
+		var $elm = $( elm ),
+			min = parseFloat( $elm.attr( "min" ) || 0 ),
+			max = parseFloat( $elm.attr( "max" ) || 1 ),
+			high = parseFloat( $elm.attr( "high" ) ),
+			low = parseFloat( $elm.attr( "low" ) ),
+			optimum = parseFloat( $elm.attr( "optimum" ) ),
+			value = $elm.attr( "value" ) !== null ? parseFloat( $elm.attr( "value" ) ) : ( elm.textContent ? elm.textContent : elm.innerText ),
+			indicator, width;
 
-	if (this.high !== null && this.high > this.max) {
-		this.high = this.max;
-	}
+		if ( elm.textContent ) {
+			elm.textContent = "";
+		} else if ( elm.innerText ) {
+			elm.innerText = "";
+		}
 
-	if (meterElement.children.length === 0) {
-		indicator = document.createElement("div");
-	} else {
-		indicator = meterElement.children[0];
-	}
+		/*
+		The following inequalities must hold, as applicable:
+		minimum ≤ value ≤ maximum
+		minimum ≤ low ≤ maximum (if low is specified)
+		minimum ≤ high ≤ maximum (if high is specified)
+		minimum ≤ optimum ≤ maximum (if optimum is specified)
+		low ≤ high (if both low and high are specified)
+		*/
 
-	width = meterElement.offsetWidth;
-	//width *= this.value / this.max;
-	width *= (this.value - this.min) / (this.max - this.min);
+		if ( value < min ) {
+			value = min;
+		} else if ( value > max ) {
+			value = max;
+		}
 
-	indicator.style.width = Math.ceil(width) + 'px';
+		if ( low !== null && low < min ) {
+			low = min;
+			$elm.attr( "low", low );
+		}
 
-	if (this.high && this.value >= this.high) {
-		addClass("meterValueTooHigh");
-	} else if (this.low && this.value <= this.low) {
-		addClass("meterValueTooLow");
-	} else {
-		removeClass("meterValueTooHigh");
-		removeClass("meterValueTooLow");
-	}
+		if ( optimum !== null && ( optimum < min || optimum > max ) ) {
+			// @TODO: Figure out default optimal value. Midpoint between min and max?
+		}
 
-	if (this.value >= this.max) {
-		addClass('meterIsMaxed');
-	} else {
-		removeClass('meterIsMaxed');
-	}
+		if ( high !== null && high > max ) {
+			high = max;
+			$elm.attr( "high", high );
+		}
 
-	meterElement.title = this.title;
+		width = elm.offsetWidth * ( ( value - min ) / ( max - min ) );
 
+		indicator = elm.children.length === 0 ? document.createElement( "div" ) : elm.children[ 0 ];
+		indicator.style.width = Math.ceil( width ) + "px";
 
-	if (meterElement.children.length === 0) {
-		meterElement.appendChild(indicator);
-	}
+		if (elm.children.length === 0) {
+			elm.appendChild(indicator);
+		}
 
-}
-//window.onload = function() {
-var meters = document.getElementsByTagName('meter'),
-	i = meters.length;
+		if ( high && value >= high ) {
+			$elm.addClass( "meterValueTooHigh" );
+		} else if ( low && value <= low ) {
+			$elm.addClass( "meterValueTooLow" );
+		} else {
+			$elm.removeClass( "meterValueTooHigh meterValueTooLow" );
+		}
 
-while (i--) {
-	makeMeter(meters[i]);
-}
-//}
+		if ( value >= max ) {
+			$elm.addClass( "meterIsMaxed" );
+		} else {
+			$elm.removeClass( "meterIsMaxed" );
+		}
+
+		// Set defaults as per HTML5 spec
+		$elm.attr({
+			min: min,
+			max: max,
+			value: value,
+			title: $elm.attr( "title" ) || value
+		});
+
+	};
+
+// Bind the init event of the plugin
+$document.on( "timerpoke.wb", selector, init );
+
+// Add the timer poke to initialize the plugin
+window._timer.add( selector );
+
+})( jQuery, window, vapour );
