@@ -120,7 +120,7 @@ var selector = ".wb-feedback",
 $document.on( "timerpoke.wb", selector, init );
 
 // Show/hide form areas when certain form fields are changed
-$document.on( "keydown click", "#feedback, #access, #contact1, #contact2", function( event ) {
+$document.on( "keydown click change", "#feedback, #access, #contact1, #contact2", function( event ) {
 	var which = event.which;
 
 	// Ignore middle/right mouse buttons
