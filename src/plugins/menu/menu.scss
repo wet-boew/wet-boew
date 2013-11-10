@@ -13,9 +13,10 @@
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
 	border-top: 5px solid #fff;
-	left: 0.75em;
 	position: relative;
+	left: 0.75em;
 	top: 0.75em;
+	margin-right: 5px;
 }
 
 .wb-menu {
@@ -118,5 +119,19 @@
 				@extend %menu-sm-mobile;
 			}
 		}
+	}
+}
+
+[dir=rtl] {
+	.wb-menu {
+		.menu {
+			padding-right: 0;
+		}
+	}
+	.expicon {
+		left: auto;
+		right: 0.75em;
+		margin-right: 0;
+		margin-left: 5px;
 	}
 }
