@@ -6,7 +6,7 @@
 }
 ---
 <style>
-.wb-feedback label {
+.wb-fdbck label {
 	display: block;
 	margin-top: 15px;
 }
@@ -14,13 +14,13 @@
 	margin-top: 10px;
 }
 </style>
-<div class="wb-formvalid wb-feedback">
+<div class="wb-formvalid wb-fdbck">
 	<p>If you have difficulty with the following form, you can use any of our <a href="#osc-avs">other service channels</a> to contact us. Please read the <a href="#pics-ecrp">Personal Information Collection Statement</a> before completing this form.</p>
-	<form action="#" method="get" id="feeback-form">
-		<input type="hidden" name="language" value="eng" />
+	<form action="#" method="get" id="fdbck-frm">
+		<input type="hidden" name="language" value="en" />
 		<div id="type">
-			<label for="feedback"><span class="field-name">Reason for contacting us</span> <strong>(required)</strong></label>
-			<select name="feedback" id="feedback" required="required">
+			<label for="fbrsn"><span class="field-name">Reason for contacting us</span> <strong>(required)</strong></label>
+			<select name="fbrsn" id="fbrsn" required="required">
 				<option value=""></option>
 				<option value="web">Critical problem with the website</option>
 				<option value="improvement">Suggested improvement for the website</option>
@@ -29,98 +29,98 @@
 				<option value="subject3">Question/comment about subject 3</option>
 				<option value="other">Other</option>
 			</select>
-			<label for="subject"><span class="field-name">Subject</span></label>
-			<input type="text" id="subject" name="subject" size="45" maxlength="60" />
-			<label for="message"><span class="field-name">Message</span> <strong>(required)</strong></label>
-			<textarea id="message" name="message" rows="5" cols="45" required="required"></textarea>
+			<label for="fbsbj"><span class="field-name">Subject</span></label>
+			<input type="text" id="fbsbj" name="fbsbj" size="45" maxlength="60" />
+			<label for="fbmsg"><span class="field-name">Message</span> <strong>(required)</strong></label>
+			<textarea id="fbmsg" name="fbmsg" rows="5" cols="45" required="required"></textarea>
 		</div>
 
-		<section id="web">
+		<section id="fbweb">
 			<h2>Website Issues</h2>
-			<a class="wb-show-onfocus" href="#contact-coord">Skip to Contact Information</a>
-			<label for="page"><span class="field-name">What page address (URL) or page description?</span></label>
-			<input type="text" id="page" name="page" size="80" maxlength="400" />
-			<label for="problem">What were you trying to do when you encountered the problem?</label>
-			<textarea id="problem" name="problem" rows="5" cols="45"></textarea>
-			<fieldset data-role="controlgroup">
+			<a class="wb-show-onfocus" href="#fbcntc">Skip to Contact Information</a>
+			<label for="fbpg"><span class="field-name">What page address (URL) or page description?</span></label>
+			<input type="text" id="fbpg" name="fbpg" size="80" maxlength="400" />
+			<label for="fbprb">What were you trying to do when you encountered the problem?</label>
+			<textarea id="fbprb" name="fbprb" rows="5" cols="45"></textarea>
+			<fieldset>
 				<legend>What were the problems?</legend>
-				<label for="q1"><input class="problems" type="checkbox" name="problems[]" id="q1" value="small font that can't be adjusted" /> small font that can't be adjusted</label>
-				<label for="q2"><input class="problems" type="checkbox" name="problems[]" id="q2" value="poor colour contrast" /> poor colour contrast</label>
-				<label for="q3"><input class="problems" type="checkbox" name="problems[]" id="q3" value="unclear information, typos or poor grammar" /> unclear information, typos or poor grammar</label>
-				<label for="q4"><input class="problems" type="checkbox" name="problems[]" id="q4" value="acronym or jargon not explained" /> acronym or jargon not explained</label>
-				<label for="q5"><input class="problems" type="checkbox" name="problems[]" id="q5" value="confusing search results" /> confusing search results</label>
-				<label for="q6"><input class="problems" type="checkbox" name="problems[]" id="q6" value="poor keyboard navigation" /> poor keyboard navigation</label>
-				<label for="q7"><input class="problems" type="checkbox" name="problems[]" id="q7" value="some elements are too small to click on" /> some elements are too small to click on</label>
-				<label for="q8"><input class="problems" type="checkbox" name="problems[]" id="q8" value="images with no text alternative provided" /> images with no text alternative provided</label>
-				<label for="q9"><input class="problems" type="checkbox" name="problems[]" id="q9" value="multimedia without captions or text equivalent" /> multimedia without captions or text equivalent</label>
-				<label for="q10"><input class="problems" type="checkbox" name="problems[]" id="q10" value="moving or flashing object that can’t be controlled" /> moving or flashing object that can’t be controlled</label>
-				<label for="q11"><input class="problems" type="checkbox" name="problems[]" id="q11" value="incomplete or non-existent page (for example, “Page not found” error)" /> incomplete or non-existent page (for example, “Page not found” error)</label>
-				<label for="q12"><input class="problems" type="checkbox" name="problems[]" id="q12" value="error notification is confusing or no error notification" /> error notification is confusing or no error notification</label>
-				<label for="otherprob">other problem</label>
-				<input class="problems" type="text" id="otherprob" name="otherprob" size="45" maxlength="60" />
+				<label for="fbq1"><input class="problems" type="checkbox" name="problems[]" id="fbq1" value="small font that can't be adjusted" /> small font that can't be adjusted</label>
+				<label for="fbq2"><input class="problems" type="checkbox" name="problems[]" id="fbq2" value="poor colour contrast" /> poor colour contrast</label>
+				<label for="fbq3"><input class="problems" type="checkbox" name="problems[]" id="fbq3" value="unclear information, typos or poor grammar" /> unclear information, typos or poor grammar</label>
+				<label for="fbq4"><input class="problems" type="checkbox" name="problems[]" id="fbq4" value="acronym or jargon not explained" /> acronym or jargon not explained</label>
+				<label for="fbq5"><input class="problems" type="checkbox" name="problems[]" id="fbq5" value="confusing search results" /> confusing search results</label>
+				<label for="fbq6"><input class="problems" type="checkbox" name="problems[]" id="fbq6" value="poor keyboard navigation" /> poor keyboard navigation</label>
+				<label for="fbq7"><input class="problems" type="checkbox" name="problems[]" id="fbq7" value="some elements are too small to click on" /> some elements are too small to click on</label>
+				<label for="fbq8"><input class="problems" type="checkbox" name="problems[]" id="fbq8" value="images with no text alternative provided" /> images with no text alternative provided</label>
+				<label for="fbq9"><input class="problems" type="checkbox" name="problems[]" id="fbq9" value="multimedia without captions or text equivalent" /> multimedia without captions or text equivalent</label>
+				<label for="fbq10"><input class="problems" type="checkbox" name="problems[]" id="fbq10" value="moving or flashing object that can’t be controlled" /> moving or flashing object that can’t be controlled</label>
+				<label for="fbq11"><input class="problems" type="checkbox" name="problems[]" id="fbq11" value="incomplete or non-existent page (for example, “Page not found” error)" /> incomplete or non-existent page (for example, “Page not found” error)</label>
+				<label for="fbq12"><input class="problems" type="checkbox" name="problems[]" id="fbq12" value="error notification is confusing or no error notification" /> error notification is confusing or no error notification</label>
+				<label for="fbop">other problem</label>
+				<input class="problems" type="text" id="fbop" name="fbop" size="45" maxlength="60" />
 			</fieldset>
 
-			<label for="access">How were you accessing the Web site today?</label>
-			<select name="access" id="access">
+			<label for="fbaxs">How were you accessing the Web site today?</label>
+			<select name="fbaxs" id="fbaxs">
 				<option value="desktop">Desktop computer</option>
 				<option value="laptop">Laptop</option>
 				<option value="mobile">Mobile device</option>
 			</select>
 
-			<section id="computer">
+			<section id="fbcomp">
 				<h3>Desktop &amp; Laptop Information</h3>
 				<fieldset>
 					<legend>Please include the version and other clarifying details</legend>
-					<label for="os">Operating System</label>
-					<input type="text" id="os" name="os" size="20" maxlength="100" />
-					<label for="dbrowser">Browser</label>
-					<input type="text" id="dbrowser" name="dbrowser" size="20" maxlength="100" />
-					<label for="daad">Adaptive or assistive device</label>
-					<input type="text" id="daad" name="daad" size="20" maxlength="100" />
+					<label for="fbos">Operating System</label>
+					<input type="text" id="fbos" name="fbos" size="20" maxlength="100" />
+					<label for="fbdbrwsr">Browser</label>
+					<input type="text" id="fbdbrwsr" name="fbdbrwsr" size="20" maxlength="100" />
+					<label for="fbdaad">Adaptive or assistive device</label>
+					<input type="text" id="fbdaad" name="fbdaad" size="20" maxlength="100" />
 				</fieldset>
 			</section>
 
-			<section id="mobile">
+			<section id="fbmob">
 				<h3>Mobile Information</h3>
 				<fieldset>
 					<legend>Please include the version and other clarifying details</legend>
-					<label for="sphone">Smartphone type</label>
-					<input type="text" id="sphone" name="sphone" size="20" maxlength="100" />
-					<label for="mbrowser">Browser</label>
-					<input type="text" id="mbrowser" name="mbrowser" size="20" maxlength="100" />
-					<label for="maad">Adaptive or assistive device</label>
-					<input type="text" id="maad" name="maad" size="20" maxlength="100" />
+					<label for="fbsphn">Smartphone type</label>
+					<input type="text" id="fbsphn" name="fbsphn" size="20" maxlength="100" />
+					<label for="fbmbrwsr">Browser</label>
+					<input type="text" id="fbmbrwsr" name="fbmbrwsr" size="20" maxlength="100" />
+					<label for="fbmaad">Adaptive or assistive device</label>
+					<input type="text" id="fbmaad" name="fbmaad" size="20" maxlength="100" />
 				</fieldset>
 			</section>
 		</section>
 
-		<section id="contact-coord">
+		<section id="fbcntc">
 			<h2 class="wb-inv">Follow-up</h2>
-			<label for="contact1"><input type="checkbox" name="contact1" id="contact1" value="yes" /> Please contact me if you require further details.</label>
-			<label for="contact2"><input type="checkbox" name="contact2" id="contact2" value="yes" /> Send me a response.</label>
+			<label for="fbcntc1"><input type="checkbox" name="fbcntc1" id="fbcntc1" value="yes" /> Please contact me if you require further details.</label>
+			<label for="fbcntc2"><input type="checkbox" name="fbcntc2" id="fbcntc2" value="yes" /> Send me a response.</label>
 
-			<section id="info">
+			<section id="fbinfo">
 				<h3>Contact Information</h3>
 				<fieldset>
 					<legend>Please provide information that we could use to contact you</legend>
-					<label for="name"><span class="field-name">Name</span></label>
-					<input type="text" id="name" name="name" size="45" maxlength="45" pattern=".{2,}" data-rule-minlength="2" />
-					<label for="email"><span class="field-name">E-mail address</span> <strong>(required)</strong></label>
-					<input type="email" id="email" name="email" size="45" maxlength="60" required="required" />
-					<label for="hphone"><span class="field-name">Home phone number</span> including area code (for example, 999-999-9999)</label>
-					<input type="tel" id="hphone" name="hphone" size="12" maxlength="12" data-rule-phoneUS="true" />
-					<label for="wphone"><span class="field-name">Work phone number</span> including area code (for example, 999-999-9999)</label>
-					<input type="tel" id="wphone" name="wphone" size="12" maxlength="12" data-rule-phoneUS="true" />
-					<label for="wphonext"><span class="field-name">Work phone number extension</span></label>
-					<input type="text" id="wphonext" name="wphonext" size="8" maxlength="8" />
+					<label for="fbnm"><span class="field-name">Name</span></label>
+					<input type="text" id="fbnm" name="fbnm" size="45" maxlength="45" pattern=".{2,}" data-rule-minlength="2" />
+					<label for="fbeml"><span class="field-name">E-mail address</span> <strong>(required)</strong></label>
+					<input type="fbeml" id="fbeml" name="fbeml" size="45" maxlength="60" required="required" />
+					<label for="fbhphn"><span class="field-name">Home phone number</span> including area code (for example, 999-999-9999)</label>
+					<input type="tel" id="fbhphn" name="fbhphn" size="12" maxlength="12" data-rule-phoneUS="true" />
+					<label for="fbwphn"><span class="field-name">Work phone number</span> including area code (for example, 999-999-9999)</label>
+					<input type="tel" id="fbwphn" name="fbwphn" size="12" maxlength="12" data-rule-phoneUS="true" />
+					<label for="fbwphnxt"><span class="field-name">Work phone number extension</span></label>
+					<input type="text" id="fbwphnxt" name="fbwphnxt" size="8" maxlength="8" />
 				</fieldset>
 			</section>
 		</section>
 
-		<input type="submit" name="submit" id="submit" value="Submit feedback" /> <input type="reset" value="Reset" />
+		<input type="submit" name="fbsbmt" id="fbsbmt" value="Submit feedback" /> <input type="reset" value="Reset" />
 	</form>
 
-	<section id="privacy">
+	<section>
 		<h2 id="pics-ecrp">Personal Information Collection Statement</h2>
 		<p>All personal information created, held or collected by this department is protected under the <a href="http://laws-lois.justice.gc.ca/eng/acts/P-21/index.html" rel="external"><em>Privacy Act</em></a>. This means that you will be informed of the purpose for which it is being collected and how to exercise your right of access to that information. You will be asked for your consent where appropriate.</p>
 		<section>
@@ -129,7 +129,7 @@
 			<p>The transmission of this information is not secure so sensitive personal information, such as your Social Insurance Number, should not be included in your message.</p>
 			<p>If after reading this statement, you prefer not to submit your inquiry via the Internet, you may use one of the following methods:</p>
 			<address>
-				<dl id="osc-avs">
+				<dl id="fbosc-avs">
 					<dt><strong>By Telephone:</strong></dt>
 					<dd><em>[telephone number]</em></dd>
 					<dt><strong>By Mail:</strong></dt>
