@@ -258,14 +258,25 @@ onHoverFocus = function( event ) {
 },
 
 /*
- * Causes clicks on panel menu items to open submenus
+ * Causes clicks on panel menu items to open and close submenus (except for mouse)
  * @method onPanelClick
  * @param {jQuery event} event The current event
  */
 onPanelClick = function( event ) {
-	if ( $( "#wb-sm" ).find( ".nav-close" ).is( ":visible" ) ) {
+	var which = event.which,
+		$this;
+
+	if ( which === 1 ) {
 		event.preventDefault();
-		$( this ).trigger( "focusin" );
+	} else if ( !which ) {
+		event.preventDefault();
+		$this = $( this );
+		if ( $( "#wb-sm" ).find( ".nav-close" ).is( ":visible" ) ) {
+			$this.trigger( "focusin" );
+		} else if ( !which ) {
+			event.preventDefault();
+			onReset( $this, true );
+		}
 	}
 };
 
@@ -334,7 +345,7 @@ $document.on( "click vclick", selector + " .item", onPanelClick );
 /*
  * Menu Keyboard bindings
  */
-$document.on( "mouseover focusin", selector + " .item", onHoverFocus );
+$document.on( "mouseover focusin", selector + " .item[aria-haspopup]", onHoverFocus );
 
 $document.on( "keydown", selector + " .item", function( event ) {
 	var elm = event.target,
