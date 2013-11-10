@@ -111,11 +111,7 @@ var getUrlParts = function( url ) {
 	 * @return {boolean} of state of disabled flag
 	 */
 	disabled = (function() {
-		var disabled = currentpage.params.wbdisable;
-
-		if ( disabled === undefined && localStorage && localStorage.getItem( "wbdisable" ) ) {
-			disabled = localStorage.getItem( "wbdisable" );
-		}
+		var disabled = currentpage.params.wbdisable || localStorage.getItem( "wbdisable" );
 		return ( typeof disabled === "string" ) ? ( disabled.toLowerCase() === "true" ) : Boolean( disabled );
 	}()),
 
