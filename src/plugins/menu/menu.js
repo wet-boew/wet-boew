@@ -152,10 +152,12 @@ var selector = ".wb-menu",
 	 * @param {jQuery event} event The current event
 	 */
 	onSelect = function( event ) {
+		var $goto = event.goto,
+			special = event.special;
 
-		event.goto.trigger( "focus.wb" );
-		if ( event.special ) {
-			onReset( event.goto.parents( selector ), true, true );
+		$goto.trigger( "focus.wb" );
+		if ( special || !$goto.attr( "aria-haspopup" ) ) {
+			onReset( $goto.parents( selector ), true, special );
 		}
 
 	},
