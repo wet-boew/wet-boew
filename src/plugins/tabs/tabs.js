@@ -162,7 +162,8 @@
 
 	/*
 	 * @method onShift
-	 * @param {jQuery DOM element} $elm The plugin element
+	 * @param {jQuery DOM element} $sldr The plugin element
+	 * @param {jQuery DOM element} $elm The selected link from the tablist
 	 */
 	onPick = function( $sldr, $elm ) {
 		var $items = $sldr.data( "tabs" ),
@@ -188,6 +189,7 @@
 			.attr( "aria-selected", "false" )
 			.end()
 			.find( $elm )
+			.parent()
 			.addClass( "active" )
 			.attr( "aria-selected", "true" );
 	},
@@ -227,6 +229,7 @@
 			.attr( "aria-selected", "false" )
 			.end()
 			.find( "[href=#" + $next.attr( "id" ) + "]" )
+			.parent()
 			.addClass( "active" )
 			.attr( "aria-selected", "true" );
 	},
