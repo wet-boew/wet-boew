@@ -10,27 +10,16 @@
 /* main index */
 var ind = {
 	"%lang-code": "@%lang-code@",
-	"%lang-en": "@%lang-en@",
-	"%lang-fr": "@%lang-fr@",
 	"%lang-nat": "@%lang-nat@",
 	"%all": "@%all@",
-	"%home": "@%home@",
-	"%main-page": "@%main-page@",
 	"%tphp": "@%tphp@",
-	"%you-are-in": "@%you-are-in@",
-	"%welcome-to": "@%welcome-to@",
 	"%load": "@%load@",
 	"%process": "@%process@",
 	"%srch": "@%srch@",
-	"%srch-terms": "@%srch-terms@",
 	"%no-match": "@%no-match@",
 	"%matches": {
 		"mixin": "@%matches@"
 	},
-	"%menu": "@%menu@",
-	"%settings": "@%settings@",
-	"%langs": "@%langs@",
-	"%about": "@%about@",
 	"%curr": "@%curr@",
 	"%hide": "@%hide@",
 	"%err": "@%err@",
@@ -43,7 +32,6 @@ var ind = {
 	"%stop": "@%stop@",
 	"%back": "@%back@",
 	"%cancel": "@%cancel@",
-	"%new-win": "@%new-win@",
 	"%min-ago": "@%min-ago@",
 	"%coup-mins": "@%coup-mins@",
 	"%mins-ago": {
@@ -67,10 +55,6 @@ var ind = {
 	"%close-esc": "@%close-esc@",
 	"%show": "@%show@",
 
-	/* Archived Web page template */
-	"%arch-pg": "@%arch-pg@",
-	/* Menu bar */
-	"%sm-hlp": "@%sm-hlp@",
 	/* Tabbed interface */
 	"%tab-rot": {
 		"off": "@%tab-rot-off@",
@@ -100,23 +84,11 @@ var ind = {
 		"on": "@%adesc-on@",
 		"off": "@%adesc-off@"
 	},
-	"%prog-bar": "@%prog-bar@",
-	"%no-video": "@%no-video@",
 	"%pos": "@%pos@",
-	"%perc": "@%perc@",
 	"%dur": "@%dur@",
-	"%buff": "@%buff@",
 	/* Share widget */
-	"%fav": "@%fav@",
-	"%email": "@%email@",
 	"%shr-txt": "@%shr-txt@",
 	"%shr-hnt": "@%shr-hnt@",
-	"%shr-email-sub": "@%shr-email-sub@",
-	"%shr-email-bd": "@%shr-email-bd@",
-	"%shr-fav-ttl": "@%shr-fav-ttl@",
-	"%shr-man": "@%shr-man@",
-	"%shr-all": "@%shr-all@",
-	"%shr-all-ttl": "@%shr-all-ttl@",
 	"%shr-disc": "@%shr-disc@",
 	/* Form validation */
 	"%frm-nosubmit": "@%frm-nosubmit@",
@@ -138,10 +110,6 @@ var ind = {
 	"%cal-goToBtn": "@%cal-goToBtn@",
 	"%prvMnth": "@%prvMnth@",
 	"%nxtMnth": "@%nxtMnth@",
-	/* Slideout */
-	"%show-toc": "@%show-toc@",
-	"%hide-toc": "@%hide-toc@",
-	"%toc": "@%toc@",
 	/* Lightbox */
 	"%lb-curr": "@%lb-curr@",
 	"%lb-xhr-err": "@%lb-xhr-err@",
