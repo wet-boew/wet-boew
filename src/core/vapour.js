@@ -266,13 +266,6 @@ window._timer = {
 	}
 };
 
-// @TODO: Upstream Modernizr Tests to remove after Modernizr v3.0 release
-// Tests for progressbar-support. All browsers that don't support progressbar returns undefined =)
-Modernizr.addTest( "progressbar", document.createElement( "progress" ).max !== undef );
-
-// Tests for meter-support. All browsers that don't support meters returns undefined =)
-Modernizr.addTest( "meter", document.createElement( "meter" ).max !== undef );
-
 /*-----------------------------
  * Modernizr Polyfill Loading
  *-----------------------------*/

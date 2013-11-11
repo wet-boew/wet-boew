@@ -519,7 +519,10 @@ module.exports = (grunt) ->
 				hasevents: true
 				prefixes: true
 				domprefixes: true
-			tests: ["elem_details"]
+			tests: [
+				"elem_details"
+				"elem_progress_meter"
+			]
 			parseFiles: false
 			matchCommunityTests: false
 
