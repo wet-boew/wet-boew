@@ -202,7 +202,7 @@ module.exports = (grunt) ->
 			i18n:
 				options:
 					process: ( src, filepath ) ->
-						lang = filepath.replace "dist/js/unmin/i18n/", ""
+						lang = filepath.replace "dist/unmin/js/i18n/", ""
 						# jQuery validation uses an underscore for locals
 						lang = lang.replace "_", "-"
 						validationPath = "lib/jquery.validation/localization/"
