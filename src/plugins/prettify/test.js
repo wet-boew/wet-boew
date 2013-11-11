@@ -54,7 +54,7 @@ describe( "Prettify test suite", function() {
 			var len = spy.thisValues.length,
 				isSelector = false;
 			while ( !isSelector && len-- ) {
-				isSelector = spy.thisValues[len].selector === ".wb-prettify";
+				isSelector = spy.thisValues[ len ].selector === ".wb-prettify";
 			}
 			expect( isSelector ).to.equal( true );
 		});
@@ -76,7 +76,7 @@ describe( "Prettify test suite", function() {
 	describe( "dependency loading", function() {
 
 		it( "should have loaded prettify.js file", function() {
-			expect( $("script[src*='/prettify']") ).to.have.length( 1 );
+			expect( $("script[src*='deps/prettify']") ).to.have.length( 1 );
 		});
 
 		it( "should have loaded lang-css.js syntax file", function() {
