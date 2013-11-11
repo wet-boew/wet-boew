@@ -45,9 +45,9 @@ var selector = "input[type=date]",
 			if ( !i18nText ) {
 				i18n = window.i18n;
 				i18nText = {
-					datepickerShow: i18n( "%date-show" ) + i18n( "%space" ),
-					datepickerHide: i18n( "%date-hide" ),
-					datepickerSelected: i18n( "%date-sel" )
+					datepickerShow: i18n( "date-show" ) + i18n( "space" ),
+					datepickerHide: i18n( "date-hide" ),
+					datepickerSelected: i18n( "date-sel" )
 				};
 			}
 
