@@ -3,167 +3,167 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 /*
------ @%lang-en@ dictionary (il8n) ---
+----- @lang-en@ dictionary (il8n) ---
  */
 ( function( window ) {
 "use strict";
 /* main index */
 var ind = {
-	"%lang-code": "@%lang-code@",
-	"%lang-nat": "@%lang-nat@",
-	"%all": "@%all@",
-	"%tphp": "@%tphp@",
-	"%load": "@%load@",
-	"%process": "@%process@",
-	"%srch": "@%srch@",
-	"%no-match": "@%no-match@",
-	"%matches": {
-		"mixin": "@%matches@"
+	"lang-code": "@lang-code@",
+	"lang-nat": "@lang-nat@",
+	"all": "@all@",
+	"tphp": "@tphp@",
+	"load": "@load@",
+	"process": "@process@",
+	"srch": "@srch@",
+	"no-match": "@no-match@",
+	"matches": {
+		"mixin": "@matches@"
 	},
-	"%curr": "@%curr@",
-	"%hide": "@%hide@",
-	"%err": "@%err@",
-	"%colon": "@%colon@",
-	"%hyphen": "@%hyphen@",
-	"%full-stop": "@%full-stop@",
-	"%comma-space": "@%comma-space@",
-	"%space": "@%space@",
-	"%start": "@%start@",
-	"%stop": "@%stop@",
-	"%back": "@%back@",
-	"%cancel": "@%cancel@",
-	"%min-ago": "@%min-ago@",
-	"%coup-mins": "@%coup-mins@",
-	"%mins-ago": {
-		"mixin": "@%mins-ago@"
+	"curr": "@curr@",
+	"hide": "@hide@",
+	"err": "@err@",
+	"colon": "@colon@",
+	"hyphen": "@hyphen@",
+	"full-stop": "@full-stop@",
+	"comma-space": "@comma-space@",
+	"space": "@space@",
+	"start": "@start@",
+	"stop": "@stop@",
+	"back": "@back@",
+	"cancel": "@cancel@",
+	"min-ago": "@min-ago@",
+	"coup-mins": "@coup-mins@",
+	"mins-ago": {
+		"mixin": "@mins-ago@"
 	},
-	"%hour-ago": "@%hour-ago@",
-	"%hours-ago": {
-		"mixin": "@%hours-ago@"
+	"hour-ago": "@hour-ago@",
+	"hours-ago": {
+		"mixin": "@hours-ago@"
 	},
-	"%days-ago": {
-		"mixin": "@%days-ago@"
+	"days-ago": {
+		"mixin": "@days-ago@"
 	},
-	"%yesterday": "@%yesterday@",
+	"yesterday": "@yesterday@",
 
-	"%nxt": "@%nxt@",
-	"%nxt-r": "@%nxt-r@",
-	"%prv": "@%prv@",
-	"%prv-l": "@%prv-l@",
-	"%first": "@%first@",
-	"%last": "@%last@",
-	"%close-esc": "@%close-esc@",
-	"%show": "@%show@",
+	"nxt": "@nxt@",
+	"nxt-r": "@nxt-r@",
+	"prv": "@prv@",
+	"prv-l": "@prv-l@",
+	"first": "@first@",
+	"last": "@last@",
+	"close-esc": "@close-esc@",
+	"show": "@show@",
 
 	/* Tabbed interface */
-	"%tab-rot": {
-		"off": "@%tab-rot-off@",
-		"on": "@%tab-rot-on@"
+	"tab-rot": {
+		"off": "@tab-rot-off@",
+		"on": "@tab-rot-on@"
 	},
-	"%tab-list": "@%tab-list@",
-	"%tab-pnl-end1": "@%tab-pnl-end1@",
-	"%tab-pnl-end2": "@%tab-pnl-end2@",
-	"%tab-pnl-end3": "@%tab-pnl-end3@",
+	"tab-list": "@tab-list@",
+	"tab-pnl-end1": "@tab-pnl-end1@",
+	"tab-pnl-end2": "@tab-pnl-end2@",
+	"tab-pnl-end3": "@tab-pnl-end3@",
 	/* Multimedia player */
-	"%play": "@%play@",
-	"%pause": "@%pause@",
-	"%open": "@%open@",
-	"%close": "@%close@",
-	"%rew": "@%rew@",
-	"%ffwd": "@%ffwd@",
-	"%mute": {
-		"on": "@%mute-on@",
-		"off": "@%mute-off@"
+	"play": "@play@",
+	"pause": "@pause@",
+	"open": "@open@",
+	"close": "@close@",
+	"rew": "@rew@",
+	"ffwd": "@ffwd@",
+	"mute": {
+		"on": "@mute-on@",
+		"off": "@mute-off@"
 	},
-	"%cc": {
-		"off": "@%cc-off@",
-		"on": "@%cc-on@"
+	"cc": {
+		"off": "@cc-off@",
+		"on": "@cc-on@"
 	},
-	"%cc-err": "@%cc-err@",
-	"%adesc": {
-		"on": "@%adesc-on@",
-		"off": "@%adesc-off@"
+	"cc-err": "@cc-err@",
+	"adesc": {
+		"on": "@adesc-on@",
+		"off": "@adesc-off@"
 	},
-	"%pos": "@%pos@",
-	"%dur": "@%dur@",
+	"pos": "@pos@",
+	"dur": "@dur@",
 	/* Share widget */
-	"%shr-txt": "@%shr-txt@",
-	"%shr-hnt": "@%shr-hnt@",
-	"%shr-disc": "@%shr-disc@",
+	"shr-txt": "@shr-txt@",
+	"shr-hnt": "@shr-hnt@",
+	"shr-disc": "@shr-disc@",
 	/* Form validation */
-	"%frm-nosubmit": "@%frm-nosubmit@",
-	"%errs-fnd": "@%errs-fnd@",
-	"%err-fnd": "@%err-fnd@",
+	"frm-nosubmit": "@frm-nosubmit@",
+	"errs-fnd": "@errs-fnd@",
+	"err-fnd": "@err-fnd@",
 	/* Date picker */
-	"%date-hide": "@%date-hide@",
-	"%date-show": "@%date-show@",
-	"%date-sel": "@%date-sel@",
+	"date-hide": "@date-hide@",
+	"date-show": "@date-show@",
+	"date-sel": "@date-sel@",
 	/* Calendar */
-	"%days": ["@%days-1@", "@%days-2@", "@%days-3@", "@%days-4@", "@%days-5@", "@%days-6@", "@%days-7@"],
-	"%mnths": ["@%mnths-1@", "@%mnths-2@", "@%mnths-3@", "@%mnths-4@", "@%mnths-5@", "@%mnths-6@", "@%mnths-7@", "@%mnths-8@", "@%mnths-9@", "@%mnths-10@", "@%mnths-11@", "@%mnths-12@"],
-	"%cal": "@%cal@",
-	"%currDay": "@%currDay@",
-	"%cal-goToLnk": "@%cal-goToLnk@",
-	"%cal-goToTtl": "@%cal-goToTtl@",
-	"%cal-goToMnth": "@%cal-goToMnth@",
-	"%cal-goToYr": "@%cal-goToYr@",
-	"%cal-goToBtn": "@%cal-goToBtn@",
-	"%prvMnth": "@%prvMnth@",
-	"%nxtMnth": "@%nxtMnth@",
+	"days": ["@days-1@", "@days-2@", "@days-3@", "@days-4@", "@days-5@", "@days-6@", "@days-7@"],
+	"mnths": ["@mnths-1@", "@mnths-2@", "@mnths-3@", "@mnths-4@", "@mnths-5@", "@mnths-6@", "@mnths-7@", "@mnths-8@", "@mnths-9@", "@mnths-10@", "@mnths-11@", "@mnths-12@"],
+	"cal": "@cal@",
+	"currDay": "@currDay@",
+	"cal-goToLnk": "@cal-goToLnk@",
+	"cal-goToTtl": "@cal-goToTtl@",
+	"cal-goToMnth": "@cal-goToMnth@",
+	"cal-goToYr": "@cal-goToYr@",
+	"cal-goToBtn": "@cal-goToBtn@",
+	"prvMnth": "@prvMnth@",
+	"nxtMnth": "@nxtMnth@",
 	/* Lightbox */
-	"%lb-curr": "@%lb-curr@",
-	"%lb-xhr-err": "@%lb-xhr-err@",
-	"%lb-img-err": "@%lb-img-err@",
+	"lb-curr": "@lb-curr@",
+	"lb-xhr-err": "@lb-xhr-err@",
+	"lb-img-err": "@lb-img-err@",
 	/* Charts widget */
-	"%table-mention": "@%table-mention@",
-	"%table-following": "@%table-following@",
+	"table-mention": "@table-mention@",
+	"table-following": "@table-following@",
 	/* Session timeout */
-	"%st-to-msg-bgn": "@%st-to-msg-bgn@",
-	"%st-to-msg-end": "@%st-to-msg-end@",
-	"%st-msgbx-ttl": "@%st-msgbx-ttl@",
-	"%st-alrdy-to-msg": "@%st-alrdy-to-msg@",
-	"%st-btn-cont": "@%st-btn-cont@",
-	"%st-btn-end": "@%st-btn-end@",
+	"st-to-msg-bgn": "@st-to-msg-bgn@",
+	"st-to-msg-end": "@st-to-msg-end@",
+	"st-msgbx-ttl": "@st-msgbx-ttl@",
+	"st-alrdy-to-msg": "@st-alrdy-to-msg@",
+	"st-btn-cont": "@st-btn-cont@",
+	"st-btn-end": "@st-btn-end@",
 	/* Toggle details */
-	"%td-toggle": "@%td-toggle@",
-	"%td-open": "@%td-open@",
-	"%td-close": "@%td-close@",
-	"%td-ttl-open": "@%td-ttl-open@",
-	"%td-ttl-close": "@%td-ttl-close@",
+	"td-toggle": "@td-toggle@",
+	"td-open": "@td-open@",
+	"td-close": "@td-close@",
+	"td-ttl-open": "@td-ttl-open@",
+	"td-ttl-close": "@td-ttl-close@",
 	/* Table enhancement */
-	"%sortAsc": "@%sortAsc@",
-	"%sortDesc": "@%sortDesc@",
-	"%emptyTbl": "@%emptyTbl@",
-	"%infoEntr": "@%infoEntr@",
-	"%infoEmpty": "@%infoEmpty@",
-	"%infoFilt": "@%infoFilt@",
-	"%info1000": "@%info1000@",
-	"%lenMenu": "@%lenMenu@",
+	"sortAsc": "@sortAsc@",
+	"sortDesc": "@sortDesc@",
+	"emptyTbl": "@emptyTbl@",
+	"infoEntr": "@infoEntr@",
+	"infoEmpty": "@infoEmpty@",
+	"infoFilt": "@infoFilt@",
+	"info1000": "@info1000@",
+	"lenMenu": "@lenMenu@",
 	/* Geomap */
-	"%geo-mapctrl": "@%geo-mapctrl@",
-	"%geo-zmin": "@%geo-zmin@",
-	"%geo-zmout": "@%geo-zmout@",
-	"%geo-zmwrld": "@%geo-zmwrld@",
-	"%geo-zmfeat": "@%geo-zmfeat@",
-	"%geo-sclln": "@%geo-sclln@",
-	"%geo-msepos": "@%geo-msepos@",
-	"%geo-ariamap": "@%geo-ariamap@",
-	"%geo-ally": "@%geo-ally@",
-	"%geo-allyttl": "@%geo-allyttl@",
-	"%geo-tgllyr": "@%geo-tgllyr@",
-	"%geo-hdnlyr": "@%geo-hdnlyr@",
-	"%geo-bmapurl": "@%geo-bmapurl@",
-	"%geo-bmapttl": "@%geo-bmapttl@",
-	"%geo-bmapurltxt": "@%geo-bmapurltxt@",
-	"%geo-attrlnk": "@%geo-attrlnk@",
-	"%geo-attrttl": "@%geo-attrttl@",
-	"%geo-sel": "@%geo-sel@",
-	"%geo-lblsel": "@%geo-lblsel@",
+	"geo-mapctrl": "@geo-mapctrl@",
+	"geo-zmin": "@geo-zmin@",
+	"geo-zmout": "@geo-zmout@",
+	"geo-zmwrld": "@geo-zmwrld@",
+	"geo-zmfeat": "@geo-zmfeat@",
+	"geo-sclln": "@geo-sclln@",
+	"geo-msepos": "@geo-msepos@",
+	"geo-ariamap": "@geo-ariamap@",
+	"geo-ally": "@geo-ally@",
+	"geo-allyttl": "@geo-allyttl@",
+	"geo-tgllyr": "@geo-tgllyr@",
+	"geo-hdnlyr": "@geo-hdnlyr@",
+	"geo-bmapurl": "@geo-bmapurl@",
+	"geo-bmapttl": "@geo-bmapttl@",
+	"geo-bmapurltxt": "@geo-bmapurltxt@",
+	"geo-attrlnk": "@geo-attrlnk@",
+	"geo-attrttl": "@geo-attrttl@",
+	"geo-sel": "@geo-sel@",
+	"geo-lblsel": "@geo-lblsel@",
 	/* Disable/enable WET plugins and polyfills */
-	"%wb-disable": "@%wb-disable@",
-	"%wb-enable": "@%wb-enable@",
+	"wb-disable": "@wb-disable@",
+	"wb-enable": "@wb-enable@",
 	/* Template */
-	"%tmpl-signin": "@%tmpl-signin@"
+	"tmpl-signin": "@tmpl-signin@"
 };
 
 window.i18nObj = ind;

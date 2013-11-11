@@ -24,8 +24,8 @@ var selector = ".wb-cal-evt",
 		if ( !i18nText ) {
 			i18n = window.i18n;
 			i18nText = {
-				monthNames: i18n( "%calendar-monthNames" ),
-				calendar: i18n( "%calendar" )
+				monthNames: i18n( "calendar-monthNames" ),
+				calendar: i18n( "calendar" )
 			};
 		}
 

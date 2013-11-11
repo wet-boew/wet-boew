@@ -39,25 +39,25 @@ var selector = ".wb-tables",
 				i18n = window.i18n;
 				i18nText = {
 					oAria: {
-						sSortAscending: i18n( "%sortAsc" ),
-						sSortDescending: i18n( "%sortDesc" )
+						sSortAscending: i18n( "sortAsc" ),
+						sSortDescending: i18n( "sortDesc" )
 					},
 					oPaginate: {
-						sFirst: i18n( "%first" ),
-						sLast: i18n( "%last" ),
-						sNext: i18n( "%nxt" ),
-						sPrevious: i18n( "%prv" )
+						sFirst: i18n( "first" ),
+						sLast: i18n( "last" ),
+						sNext: i18n( "nxt" ),
+						sPrevious: i18n( "prv" )
 					},
-					sEmptyTable: i18n( "%emptyTbl" ),
-					sInfo: i18n( "%infoEntr" ),
-					sInfoEmpty: i18n( "%infoEmpty" ),
-					sInfoFiltered: i18n( "%infoFilt" ),
-					sInfoThousands: i18n( "%info1000" ),
-					sLengthMenu: i18n( "%lenMenu" ),
-					sLoadingRecords: i18n( "%load" ),
-					sProcessing: i18n( "%process" ),
-					sSearch: i18n( "%srch" ),
-					sZeroRecords: i18n( "%infoEmpty" )
+					sEmptyTable: i18n( "emptyTbl" ),
+					sInfo: i18n( "infoEntr" ),
+					sInfoEmpty: i18n( "infoEmpty" ),
+					sInfoFiltered: i18n( "infoFilt" ),
+					sInfoThousands: i18n( "info1000" ),
+					sLengthMenu: i18n( "lenMenu" ),
+					sLoadingRecords: i18n( "load" ),
+					sProcessing: i18n( "process" ),
+					sSearch: i18n( "srch" ),
+					sZeroRecords: i18n( "infoEmpty" )
 				};
 			}
 

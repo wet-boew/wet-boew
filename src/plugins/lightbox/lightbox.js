@@ -42,18 +42,18 @@ var selector = ".wb-lightbox",
 			if ( !i18nText ) {
 				i18n = window.i18n;
 				i18nText = {
-					tClose: i18n( "%dlg-close" ) + i18n( "%space" ) + i18n( "%esc-key" ),
-					tLoading: i18n( "%load" ),
+					tClose: i18n( "close-esc" ),
+					tLoading: i18n( "load" ),
 					gallery: {
-						tPrev: i18n( "%prv-l" ),
-						tNext: i18n( "%nxt-r" ),
-						tCounter: i18n( "%lb-curr" )
+						tPrev: i18n( "prv-l" ),
+						tNext: i18n( "nxt-r" ),
+						tCounter: i18n( "lb-curr" )
 					},
 					image: {
-						tError: i18n( "%lb-img-err" ) + " (<a href=\"%url%\">)"
+						tError: i18n( "lb-img-err" ) + " (<a href=\"url%\">)"
 					},
 					ajax: {
-						tError: i18n( "%lb-xhr-err" ) + " (<a href=\"%url%\">)"
+						tError: i18n( "lb-xhr-err" ) + " (<a href=\"url%\">)"
 					}
 				};
 			}
