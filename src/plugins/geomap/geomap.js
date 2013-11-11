@@ -70,11 +70,14 @@ var selector = ".wb-geomap",
 					labelSelect: i18n( "%geo-lblsel" ),
 					select: i18n( "%geo-sel" ),
 					zoomFeature: i18n( "%geo-zmfeat" ),
+					zoomin: i18n( "%geo-zmin" ),
+					zoomout: i18n( "%geo-zmout" ),
+					zoomwrld: i18n( "%geo-zmwrld" ),
 					baseMapTitle: i18n( "%geo-bmapttl" ),
 					baseMapURL: i18n( "%geo-bmapurl" ),
 					baseMapURLTxt: i18n( "%geo-bmapurltxt" ),
-					scaleLine: i18n( "%geo-sclln" ),
-					mousePosition: i18n( "%geo-msepos" ),
+					scaleline: i18n( "%geo-sclln" ),
+					mouseposition: i18n( "%geo-msepos" ),
 					access: i18n( "%geo-ally" ),
 					accessTitle: i18n( "%geo-allyttl" ),
 					attribLink: i18n( "%geo-attrlnk" ),
@@ -259,7 +262,7 @@ var selector = ".wb-geomap",
 				actn = control.action;
 
 				// Add alt text
-				altTxt = i18n( "%geo-" + actn );
+				altTxt = i18nText[ actn ];
 				control.setAttribute( "aria-label", altTxt );
 				control.setAttribute( "title", altTxt );
 				control.setAttribute( "role", "button" );
@@ -1695,8 +1698,8 @@ var selector = ".wb-geomap",
 	loadControls = function( geomap, opts ){
 		var $mapDiv = geomap.gmap,
 			map = geomap.map,
-			i18nMousePosition = i18nText.mousePosition,
-			i18nScaleLine = i18nText.scaleLine,
+			i18nMousePosition = i18nText.mouseposition,
+			i18nScaleLine = i18nText.scaleline,
 			mousePositionDiv, scaleLineDiv, attribHref, attribTxt;
 
 		// TODO: Ensure WCAG compliance before enabling
@@ -1736,7 +1739,7 @@ var selector = ".wb-geomap",
 				mousePositionDiv.setAttribute( "aria-label", i18nMousePosition );
 				mousePositionDiv.setAttribute( "title", i18nMousePosition );
 			}
-			if (opts.useScaleLine) {
+			if ( opts.useScaleLine ) {
 				map.addControl( new OpenLayers.Control.ScaleLine() );
 				scaleLineDiv = map.getControlsByClass( "OpenLayers.Control.ScaleLine" )[ 0 ].div;
 				scaleLineDiv.setAttribute( "aria-label", i18nScaleLine );
