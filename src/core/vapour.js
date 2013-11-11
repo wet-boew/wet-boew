@@ -229,6 +229,25 @@ yepnope.addPrefix( "i18n", function( resourceObj ) {
 });
 
 /*-----------------------------
+ * Custom Modernizr tests
+ * TODO: See if can get included in custom Modernizr build
+ *-----------------------------*/
+/*
+{
+  "name": "progress Element",
+  "caniuse": "progressmeter",
+  "property": ["progressbar", "meter"],
+  "tags": ["elem"],
+  "authors": ["Stefan Wallin"]
+}
+!*/
+// Tests for progressbar-support. All browsers that don't support progressbar returns undefined =)
+Modernizr.addTest( "progressbar", document.createElement( "progress" ).max !== undefined );
+
+// Tests for meter-support. All browsers that don't support meters returns undefined =)
+Modernizr.addTest( "meter", document.createElement("meter").max !== undefined );
+
+/*-----------------------------
  * Base Timer
  *-----------------------------*/
 window._timer = {
@@ -305,7 +324,7 @@ Modernizr.load([
 			}
 		}
 	}, {
-		test: Modernizr.progress,
+		test: Modernizr.progressbar,
 		nope: [
 			"plyfll!progress.min.js",
 			"plyfll!progress.min.css"
