@@ -2,17 +2,6 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
-.no-js {
-	.wb-tabs {
-		[role="tablist"] {
-			display: none;
-		}
-		[role="tabpanel"] {
-			display: block;
-		}
-	}
-}
-
 .wb-tabs {
 	/**
 	 * Default, minimal, shared style
@@ -20,24 +9,40 @@
 	position: relative;
 	[role ="tablist"] {
 		position : relative;
-		z-index: 100;
-		display: none;
 		list-style: none;
+		margin: 0;
+		padding: 0;
 		li {
 			display: inline-block;
+			cursor: pointer;
+			// changed padding and margin from em to px to fix web-kit layout issue
+			padding: 7px;
+			margin: 0 1px 0 0;
+			color: #000;
+			background: #eee;
+			background: rgba(238, 238, 238, 0.9);
+			border: 1px solid #ccc;
+			text-align: center;
+			position: relative;
 			a {
 				text-decoration: none;
+				color: #000;
+			}
+			&:focus, &:hover {
+				background: #ccc;
+				background: rgba(204, 204, 204, 0.9);
+			}
+			&.active {
+				background: #ccc;
+				background: rgba(204, 204, 204, 0.9);
+				cursor: default;
+				a {
+					cursor: default;
+				}
 			}
 		}
 	}
-	&.inited {
-		[role="tablist"] {
-			display: block;
-		}
-	}
 	[role="tabpanel"] {
-		display: relative;
-		z-index: 1;
 		&.out {
 			display: none;
 		}
@@ -51,30 +56,15 @@
 			position: absolute;
 			bottom: 1em;
 			left: 1em;
-			margin: 0;
-			padding: 0;
+			z-index: 100;
 			li {
-				display: inline-block;
-				cursor: pointer;
-				padding: .4em;
-				margin: 0 .1em 0 0;
-				color: #000;
-				background: #eee;
-				background: rgba(238, 238, 238, 0.9);
-				border: 1px solid #ccc;
-				text-align: center;
-				position: relative;
-				a {
-					color: #000;
-				}
-				&:focus, &:hover {
-					background: #ccc;
-					background: rgba(204, 204, 204, 0.9);
+				&.active, &:focus, &:hover {
 					top: 1px;
 				}
 			}
 		}
 		[role="tabpanel"] {
+			z-index: 1;
 			figure {
 			 	position: relative;
 				img {
@@ -97,4 +87,16 @@
 		}
 	}
 
+}
+
+.no-js {
+	.wb-tabs {
+		[role="tablist"] {
+			display: none;
+		}
+		[role="tabpanel"] {
+			display: block;
+			opacity: 1;
+		}
+	}
 }
