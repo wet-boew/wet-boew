@@ -31,13 +31,13 @@ var getUrlParts = function( url ) {
 
 			// A collection of the parameters of the query string part of the URL.
 			params: (function() {
-				var key, strings, segment, _i,	_len,
-					results = {};
-				segment = a.search.replace( /^\?/, "" ).split( "&" );
-				_len = segment.length;
-				for ( _i = 0; _i !== _len; _i += 1 ) {
-					key = segment[ _i ];
-					if ( key ) {
+				var results = {},
+					queryString = a.search.replace( /^\?/, "" ).split( "&" ),
+					len = queryString.length,
+					key, strings, i;
+
+				for ( i = 0; i !== len; i += 1 ) {
+					if ( key = queryString[ i ] ) {
 						strings = key.split( "=" );
 						results[ strings[ 0 ] ] = strings[ 1 ];
 					}
