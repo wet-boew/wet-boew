@@ -51,10 +51,16 @@ describe( "Prettify test suite", function() {
 		});
 
 		it( "should have been triggered on a .wb-prettify element", function() {
-			var len = spy.thisValues.length,
+			var call, i, j, lenCalls, lenElms,
 				isSelector = false;
-			while ( !isSelector && len-- ) {
-				isSelector = spy.thisValues[len].selector === ".wb-prettify";
+
+			// Loop over calls made on the trigger() spy
+			for ( i = 0, lenCalls = spy.callCount; !isSelector && i < lenCalls; i++ ) {
+				call = spy.getCall( i );
+				// There may be multiple `this` objects for each call
+				for ( j = 0, lenElms = call.thisValue.length; !isSelector && j < lenElms; j++ ) {
+					isSelector = call.thisValue[ j ].className.indexOf( "wb-prettify" ) > -1;
+				}
 			}
 			expect( isSelector ).to.equal( true );
 		});
@@ -76,7 +82,7 @@ describe( "Prettify test suite", function() {
 	describe( "dependency loading", function() {
 
 		it( "should have loaded prettify.js file", function() {
-			expect( $("script[src*='/prettify']") ).to.have.length( 1 );
+			expect( $("script[src*='deps/prettify']") ).to.have.length( 1 );
 		});
 
 		it( "should have loaded lang-css.js syntax file", function() {
