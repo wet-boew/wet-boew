@@ -3,6 +3,31 @@
 	background: linear-gradient(#176CA7, #114F7A);
 }
 
+#wb-bar {
+	background: #474747;
+	color: #fff;
+	border-bottom: 1px solid #fff;
+	z-index: 1;
+	min-height: 2.2em;
+	a {
+		color: #fff;
+		text-decoration: none;
+	}
+	ul {
+		float: right;
+		margin: 0;
+		li {
+			border-left: 1px solid #777;
+			list-style-type: none;
+			float: left;
+			padding: 6px 10px;
+			&:first-child {
+				border-left: none;
+			}
+		}
+	}
+}
+	
 #wb-sttl {
 	a {
 		color: #FFF;
@@ -29,6 +54,11 @@
 }
 
 [dir=rtl] {
+	#wb-bar {
+		ul {
+			float: left;
+		}
+	}
 	#wb-sttl {
 		float: right;
 		object {

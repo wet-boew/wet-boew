@@ -29,6 +29,12 @@
 	}
 }
 
+#wb-glb-mn {
+	h2 {
+		@extend %accessible-invisible;
+	}
+}
+
 #wb-srch {
 	h2 {
 		@extend %accessible-invisible;
@@ -61,7 +67,6 @@ footer {
 		@extend %accessible-invisible;
 	}
 }
-
 
 .wb-mnavbar a, a + .wb-st-nav h2, .wb-sttng h2, .wb-org-nav .wb-ft h3 {
 	@extend %accessible-invisible;
