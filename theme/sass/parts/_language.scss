@@ -1,30 +1,8 @@
 #wb-lng {
-	background: #474747;
-	color: #fff;
-	border-bottom: 1px solid #fff;
-	z-index: 1;
-	min-height: 2.2em;
 	.btn-group {
 		text-align: right;
 		margin: 5px 0;
 		float: right;
-	}
-	a {
-		color: #fff;
-		text-decoration: none;
-	}
-	ul {
-		float: right;
-		margin: 0;
-		li {
-			border-left: 1px solid #777;
-			list-style-type: none;
-			float: left;
-			padding: 6px 10px;
-			&:first-child {
-				border-left: none;
-			}
-		}
 	}
 	.curr {
 		display: block;
@@ -32,14 +10,6 @@
 		background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAFCAYAAAB8ZH1oAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAB90RVh0U29mdHdhcmUATWFjcm9tZWRpYSBGaXJld29ya3MgOLVo0ngAAAA6SURBVAiZY/z//z8DMvj14+s+BgYGBjYObicUif///8Pxz+9f9v2HAigbLodVETbFOBWhK8arCFkxABifl5syjffvAAAAAElFTkSuQmCC) no-repeat scroll center bottom;
 		span {
 			@extend %wb-hidden;
-		}
-	}
-}
-
-[dir=rtl] {
-	#wb-lng {
-		ul {
-			float: left;
 		}
 	}
 }
