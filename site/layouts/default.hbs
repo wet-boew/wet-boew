@@ -26,17 +26,19 @@
 		</ul>
 		<header role="banner">
 			<div id="wb-bnr">
-				<section id="wb-lng">
-					<h2>{{#i18n "%tmpl-lang-select"}}{{/i18n}}</h2>
-					{{>languagetoggle}}
-				</section>
+				<div id="wb-bar" data-ajax-append="{{assets}}/ajax/mobmenu-{{language}}.html">
+					<section id="wb-lng" class="visible-md visible-lg">
+						<h2>{{#i18n "%tmpl-lang-select"}}{{/i18n}}</h2>
+						{{>languagetoggle}}
+					</section>
+				</div>
 
 				<div class="container">
 					<div class="row">
 
-						<section id="wb-sttl" class="col-md-8">
+						<div id="wb-sttl" class="col-md-8">
 							{{>brand}}
-						</section>
+						</div>
 
 						<section id="wb-srch" class="col-md-4 visible-md visible-lg">
 							<h2>{{#i18n "%tmpl-search"}}{{/i18n}}</h2>
