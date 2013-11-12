@@ -122,6 +122,8 @@
 	"%current": "(current)",
 	"%menu": "Menu",
 	"%menu-close": "Close menu",
+	"%dlg-close": "Close dialog box",
+	"%esc-key": "(escape key)",
 	"%you-are-here": "You are here:",
 	"%cont-service" : "Services &amp; Information",
 	"%cont-dept" : "Department &amp; Agencies",
