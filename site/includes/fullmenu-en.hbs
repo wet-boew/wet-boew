@@ -1,11 +1,11 @@
 <!-- some mobile views -->
-    <a href="#" class="nav-close visible-sm visible-xs"><span class="glyphicon glyphicon-remove"></span> Close menu</a>
+    <a href="#" class="nav-close visible-sm visible-xs"><span class="glyphicon glyphicon-remove"></span> {{#i18n "%menu-close"}}{{/i18n}}</a>
 <!-- secondary navigation if enabled -->
 <div class="pnl-strt container visible-md visible-lg nvbar">
     <h2>{{#i18n "%tmpl-site-menu"}}{{/i18n}}</h2>
     <div class="row">
         <ul class="list-inline menu" role="menubar">
-            <li><a href="#project" class="item">WET project</a>
+            <li><a href="#project" class="item">{{#i18n "%tmpl-wet-project"}}{{/i18n}}</a>
                 <ul class="sm list-unstyled" id="project" role="menu">
                     <li><a href="{{rooturl}}/index-en.html#about">About WET</a></li>
                     <li><a href="{{rooturl}}/index-en.html#benefits">Benefits</a></li>
@@ -14,19 +14,19 @@
 					<li><a href="{{rooturl}}/License-en.html">Terms and conditions of use</a></li>
 					<li><a href="https://github.com/wet-boew/wet-boew/wiki/Roadmap">Roadmap of past and future releases</a></li>
 					<li><a href="{{rooturl}}/index-en.html#version-history">Version history</a></li>
-					<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+					<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">{{#i18n "%tmpl-about-web-standards"}}{{/i18n}}</a></li>
                 </ul>
             </li>
-            <li><a href="#implement" class="item">Implement WET</a>
+            <li><a href="#implement" class="item">{{#i18n "%tmpl-implement-wet"}}{{/i18n}}</a>
                 <ul class="sm list-unstyled" id="implement" role="menu">
                     <li><a href="https://github.com/wet-boew/wet-boew/wiki/Getting-Started-with-WET">Getting started with WET</a></li>
                     <li><a href="https://github.com/wet-boew/wet-boew/wiki/Using-Github-for-WET">Using Github for WET</a></li>
                     <li><a href="https://github.com/wet-boew/wet-boew/wiki/Downloads">Download WET</a></li>
-                    <li><a href="{{rooturl}}/demos/index-en.html">Working examples</a></li>
-                    <li><a href="https://github.com/wet-boew/wet-boew/wiki#reference">Documentation</a></li>
+                    <li><a href="{{rooturl}}/demos/index-en.html">{{#i18n "%tmpl-work-examples"}}{{/i18n}}</a></li>
+                    <li><a href="https://github.com/wet-boew/wet-boew/wiki#reference">{{#i18n "%tmpl-documentation"}}{{/i18n}}</a></li>
                 </ul>
             </li>
-            <li><a href="#contribute" class="item">Contribute to WET</a>
+            <li><a href="#contribute" class="item">{{#i18n "%tmpl-contribute-wet"}}{{/i18n}}</a>
                 <ul class="sm list-unstyled" id="contribute" role="menu">
                     <li><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines">Contributor guidelines</a></li>
                     <li><a href="https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines#wiki-Filing_a_bug_or_an_Issue">Filing a bug or an issue</a></li>
@@ -41,23 +41,23 @@
 </div>
 
 <section class="wb-nav container visible-sm visible-xs">
-    <h2 class="wb-inv">Site Information</h2>
+    <h2 class="wb-inv">{{#i18n "%tmpl-site-info"}}{{/i18n}}</h2>
     <ul class="list-unstyled">
         <li>About
             <ul class="list-unstyled">
-                <li><a href="{{rooturl}}/index-en.html#about">About the Web Experience Toolkit</a></li>
-                <li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+                <li><a href="{{rooturl}}/index-en.html#about">{{#i18n "%tmpl-about-wet"}}{{/i18n}}</a></li>
+                <li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">{{#i18n "%tmpl-about-web-standards"}}{{/i18n}}</a></li>
             </ul>
         </li>
         <li>Contact us
 			<ul class="list-unstyled">
-				<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+				<li><a href="https://github.com/wet-boew/wet-boew/issues/new">{{#i18n "%tmpl-questions-comments"}}{{/i18n}}</a></li>
 			</ul>
         </li>
         <li>News
             <ul class="list-unstyled">
-                <li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
-				<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+                <li><a href="https://github.com/wet-boew/wet-boew/pulse">{{#i18n "%tmpl-recent-project-activity"}}{{/i18n}}</a></li>
+				<li><a href="https://github.com/wet-boew/wet-boew/graphs">{{#i18n "%tmpl-project-stats"}}{{/i18n}}</a></li>
             </ul>
         </li>
         <li>Stay connected

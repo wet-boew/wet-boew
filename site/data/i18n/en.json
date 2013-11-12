@@ -120,9 +120,14 @@
 	"%lang-native": "English",
 	"%space" : "&#32;",
 	"%current": "(current)",
+	"%menu": "Menu",
+	"%menu-close": "Close menu",
 	"%cont-service" : "Services &amp; Information",
 	"%cont-dept" : "Department &amp; Agencies",
 	"%cont-news" : "News",
 	"%cont-canada" : "About Canada",
-	"%cont-pub": "Publications &amp; Data"
+	"%cont-pub": "Publications &amp; Data",
+	"%site.description": "Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities",
+	"%site.title": "Web Experience Toolkit",
+	"%site.tagline": "Collaborative open source project led by the Government of Canada"
 }
