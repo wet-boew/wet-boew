@@ -7,26 +7,43 @@
 		background: #fff;
 		border-radius: 0;
 		margin-bottom: 0;
-		> {
-			li {
-				+ {
-					li {
-						&:before {
-							display: none;
-						}
-					}
-				}
+	}
+	li {
+		&:before, &:after {
+			font-family: "Glyphicons Halflings";
+			font-size: 0.5em;
+			color: #333;
+			vertical-align: 15%;
+		}
+		&:before {
+			content: "\e080";
+		}
+		white-space: nowrap;
+		&:first-child {
+			&:before {
+				content: "";
 			}
 		}
 	}
-	li {
-		background: url("data:image/gif;base64,R0lGODlhBgAGAMQAAAAAAP///5aWlpCQkI+Pj42NjYyMjImJiYiIiIaGhoCAgHh4eHNzc25ubmxsbGhoaGdnZ2VlZWRkZFFRUQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAABMALAAAAAAGAAYAAAUa4MEsQmAiTjOYARFFiVlAkhIYknQESfSsgRAAOw==") no-repeat scroll 0 50%;
-		margin-right: 5px;
-		padding-left: 11px;
-		white-space: nowrap;
-		&:first-child {
-			background: none;
-			padding-left: 0;
+}
+
+[dir=rtl] {
+	#wb-bc {
+		li {
+			&:before {
+				content: "";
+				padding: 0;
+			}
+			&:after {
+				content: "\e079";
+				padding: 0 5px;
+			}
+			&:first-child {
+				&:after {
+					content: "";
+					padding: 0;
+				}
+			}
 		}
 	}
 }

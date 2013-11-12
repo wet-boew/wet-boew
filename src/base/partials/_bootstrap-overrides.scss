@@ -327,3 +327,10 @@ a {
 code {
 	white-space: normal;
 }
+
+/* List unstyled RTL fix */
+[dir=rtl] {
+	.list-unstyled {
+		padding-right: 0;
+	}
+}
