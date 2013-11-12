@@ -42,7 +42,7 @@ var selector = ".wb-lightbox",
 			if ( !i18nText ) {
 				i18n = window.i18n;
 				i18nText = {
-					tClose: i18n( "%close-esc" ),
+					tClose: i18n( "%dlg-close" ) + i18n( "%space" ) + i18n( "%esc-key" ),
 					tLoading: i18n( "%load" ),
 					gallery: {
 						tPrev: i18n( "%prv-l" ),
