@@ -122,6 +122,8 @@
 	"%current": "(courant)",
 	"%menu": "Menu",
 	"%menu-close": "Fermer le menu",
+	"%dlg-close": "Fermez la boîte de dialogue",
+	"%esc-key": "(touche d'échappement)",
 	"%you-are-here": "Vous êtes dans :",
   	"%cont-service" : "Services et information",
 	"%cont-dept" : "Ministères et agences",
