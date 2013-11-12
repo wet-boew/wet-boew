@@ -301,7 +301,7 @@ var selector = ".wb-menu",
 	};
 
 // Bind the events of the plugin
-$document.on( "timerpoke.wb mouseleave select.wb-menu ajax-fetched.wb increment.wb-menu display.wb-menu", selector, function( event ) {
+$document.on( "timerpoke.wb select.wb-menu ajax-fetched.wb increment.wb-menu display.wb-menu", selector, function( event ) {
 	var elm = event.target,
 		eventType = event.type,
 		$elm = $( elm );
@@ -331,15 +331,6 @@ $document.on( "timerpoke.wb mouseleave select.wb-menu ajax-fetched.wb increment.
 		onIncrement( $elm, event );
 		break;
 
-	case "mouseleave":
-
-		// Make sure we are dealing with the top level container
-		if ( !$elm.hasClass( "wb-menu" ) ) {
-			$elm = $elm.closest( ".wb-menu" );
-		}
-		onReset( $elm );
-		break;
-
 	case "display":
 		if ( event.cancelDelay ) {
 			onDisplay( $elm, event );
@@ -358,14 +349,18 @@ $document.on( "timerpoke.wb mouseleave select.wb-menu ajax-fetched.wb increment.
 	return true;
 });
 
+$document.on( "mouseleave", selector + " .menu", function( event ) {
+	onReset( $( event.target ).closest( ".wb-menu" ) );
+});
+
 
 // Panel clicks on menu items should open submenus
-$document.on( "click vclick", selector + " .item", onPanelClick );
+$document.on( "click vclick", selector + " .item[aria-haspopup]", onPanelClick );
 
 /*
  * Menu Keyboard bindings
  */
-$document.on( "mouseover focusin", selector + " .item[aria-haspopup]", onHoverFocus );
+$document.on( "mouseover focusin", selector + " .item", onHoverFocus );
 
 $document.on( "keydown", selector + " .item", function( event ) {
 	var elm = event.target,
