@@ -127,6 +127,15 @@
 		.menu {
 			padding-right: 0;
 		}
+		.sm {
+			&.open {
+				li {
+					a {
+						text-align: right;
+					}
+				}
+			}
+		}
 	}
 	.expicon {
 		left: auto;

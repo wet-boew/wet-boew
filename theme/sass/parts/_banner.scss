@@ -27,3 +27,12 @@
 		float: left;
 	}
 }
+
+[dir=rtl] {
+	#wb-sttl {
+		float: right;
+		object {
+			margin: 9px 0 9px 15px;
+		}
+	}
+}
