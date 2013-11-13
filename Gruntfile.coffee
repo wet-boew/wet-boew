@@ -117,7 +117,6 @@ module.exports = (grunt) ->
 		"assets-dist"
 		"INTERNAL: Process non-CSS/JS assets to dist"
 		[
-			"copy:jquery_min"
 			"copy:assets_min"
 			"copy:misc_min"
 		]
@@ -181,6 +180,7 @@ module.exports = (grunt) ->
 				options:
 					stripBanners: false
 				src: [
+					"lib/jquery/jquery.js"
 					"lib/modernizr/modernizr-custom.js"
 					"src/core/vapour.js"
 				]
@@ -589,15 +589,6 @@ module.exports = (grunt) ->
 				cwd: "theme/"
 				src: "**/assets/*.*"
 				dest: "dist/unmin"
-				expand: true
-
-			jquery_min:
-				cwd: "lib/jquery"
-				src: [
-					"jquery.min.js"
-					"jquery.min.map"
-				]
-				dest: "dist/js"
 				expand: true
 
 			assets_min:
