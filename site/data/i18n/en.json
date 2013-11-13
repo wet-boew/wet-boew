@@ -1,8 +1,8 @@
 {
 	"%tmpl-settings" : "Settings",
-	"%tmpl-skip-cont": "Skip to content",
+	"%tmpl-skip-cont": "Skip to main content",
 	"%tmpl-skip-sec": "Skip to secondary menu",
-	"%tmpl-skip-foot": "Skip to footer",
+	"%tmpl-skip-info": "Skip to site information",
 	"%tmpl-search": "Search",
 	"%tmpl-search-site": "Search website",
 	"%tmpl-site-menu": "Site menu",
