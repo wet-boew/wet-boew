@@ -11,12 +11,11 @@
 	li {
 		&:before, &:after {
 			font-family: "Glyphicons Halflings";
-			font-size: 0.5em;
+			font-size: 0.7em;
 			color: #333;
-			vertical-align: 15%;
 		}
 		&:before {
-			content: "\e080";
+			content: "\e092";
 		}
 		white-space: nowrap;
 		&:first-child {
