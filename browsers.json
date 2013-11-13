@@ -1,17 +1,21 @@
 [{
     "browserName": "firefox",
-    "version": "22",
-    "platform": "XP"
-},{
-    "browserName": "firefox",
-    "version": "21",
-    "platform": "XP"
+    "platform": "Windows 7"
 },{
     "browserName": "chrome",
-    "version": "29",
-    "platform": "XP"
+    "platform": "Windows 7"
+},{
+    "browserName": "internet explorer",
+    "version": "9",
+    "platform": "Windows 7"
+},{
+    "browserName": "internet explorer",
+    "version": "8",
+    "platform": "Windows XP"
+},{
+    "browserName": "safari",
+    "platform": "OS X 10.8"
 },{
     "browserName": "chrome",
-    "version": "28",
-    "platform": "Mac 10.6"
+    "platform": "Mac 10.8"
 }]
