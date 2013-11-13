@@ -1,8 +1,8 @@
 {
 	"%tmpl-settings" : "Paramètres",
-	"%tmpl-skip-cont": "Passer au contentu",
-	"%tmpl-skip-sec": " menu secondaire",
-	"%tmpl-skip-foot": "Passer au pied de page",
+	"%tmpl-skip-cont": "Passer au contenu principal",
+	"%tmpl-skip-sec": "Passer au menu secondaire",
+	"%tmpl-skip-info": "Passer aux informations sur le site",
 	"%tmpl-search": "Recherche",
 	"%tmpl-search-site": "Recherchez le site Web",
 	"%tmpl-site-menu": "Menu du site",

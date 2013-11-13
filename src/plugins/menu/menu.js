@@ -115,7 +115,7 @@ var selector = ".wb-menu",
 		if ( $wbsec.length !== 0 ) {
 			$panel = $ajaxed.find( ".pnl-strt" );
 			$panel.before( "<section id='dyn-nvgtn' class='" +
-				$panel.siblings( ".wb-nav" ).eq( 0 ).attr( "class" ) +
+				$panel.siblings( ".wb-info" ).eq( 0 ).attr( "class" ) +
 				"'>" + $wbsec.html() + "</section>" );
 		}
 
