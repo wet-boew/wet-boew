@@ -6,6 +6,7 @@
 @import "compass/css3/images";
 @import "compass/css3/background-clip";
 @import "compass/css3/appearance";
+@import "compass/css3/box-sizing";
 
 %slider-gradient-left-89A5BD-165C91 {
 	@include background-image(linear-gradient(left, #89A5BD, #165c91));
@@ -310,6 +311,7 @@ body {
 input {
 	&[type="range"] {
 		@extend %slider-width-100perc;
+		@include box-sizing(border-box);
 	}
 }
 html {
