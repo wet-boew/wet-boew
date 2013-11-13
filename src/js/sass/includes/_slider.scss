@@ -6,6 +6,7 @@
 @import "compass/css3/images";
 @import "compass/css3/background-clip";
 @import "compass/css3/appearance";
+@import "compass/css3/box-sizing";
 
 .fd-form-element-hidden {
 	display: none
@@ -231,6 +232,7 @@ body {
 }
 input[type="range"] {
 	width: 100%;
+	@include box-sizing(border-box);
 }
 html {
 	&:not(.ui-mobile) {
