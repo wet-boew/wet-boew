@@ -156,7 +156,7 @@ var selector = ".wb-menu",
 			special = event.special;
 
 		$goto.trigger( "focus.wb" );
-		if ( special || !$goto.attr( "aria-haspopup" ) ) {
+		if ( special || ( $goto.hasClass( "item" ) && !$goto.attr( "aria-haspopup" ) ) ) {
 			onReset( $goto.parents( selector ), true, special );
 		}
 
@@ -170,11 +170,11 @@ var selector = ".wb-menu",
 	onIncrement = function( $elm, event ) {
 		var $links = event.cnode,
 			$next = event.current + event.increment,
-			$index = $next >= $links.length ? 0 : $next < 0 ? $links.length - 1 : $next;
+			index = $next >= $links.length ? 0 : $next < 0 ? $links.length - 1 : $next;
 
 		$elm.trigger({
 			type: "select.wb-menu",
-			goto: $links.eq( $index )
+			goto: $links.eq( index )
 		});
 	},
 
@@ -369,8 +369,7 @@ $document.on( "keydown", selector + " .item", function( event ) {
 		$container = ref[ 0 ],
 		$menu = ref[ 1 ],
 		$elm = ref[ 3 ],
-		$index = $menu.index( $elm[ 0 ] ),
-		$goto, $parent, $subMenu;
+		$parent, $subMenu;
 
 	switch ( which ) {
 
@@ -382,7 +381,6 @@ $document.on( "keydown", selector + " .item", function( event ) {
 			event.preventDefault();
 			$parent = $elm.parent();
 			$subMenu = $parent.find( ".sm" );
-			$goto = $subMenu.find( "a" ).first();
 
 			// Open the submenu if it is not already open
 			if ( !$subMenu.hasClass( "open" ) ) {
@@ -393,17 +391,10 @@ $document.on( "keydown", selector + " .item", function( event ) {
 				});
 			}
 
-			$container
-				.trigger({
-					type: "increment.wb-menu",
-					cnode: $menu,
-					increment: 0,
-					current: $index
-				})
-				.trigger({
-					type: "select.wb-menu",
-					goto: $goto
-				});
+			$container.trigger({
+				type: "select.wb-menu",
+				goto: $subMenu.find( "a" ).first()
+			});
 		}
 		break;
 
@@ -421,9 +412,10 @@ $document.on( "keydown", selector + " .item", function( event ) {
 			type: "increment.wb-menu",
 			cnode: $menu,
 			increment: ( which === 37 ? -1 : 1 ),
-			current: $index
+			current: $menu.index( $elm )
 		});
 		break;
+
 	default:
 
 		// Letters only
@@ -450,20 +442,30 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 		$items = ref[ 2 ],
 		$elm = ref[ 3 ],
 		$links = $items.find( ":focusable" ),
-		$index = $links.index( $elm[ 0 ] ),
-		$goto, $parent, result;
+		selector = "[href=#" + $items.attr( "id" ) + "]",
+		$parent, result;
 
 	switch ( which ) {
 
 	// Escape key/left arrow
 	case 27:
-	case 37:
 		event.preventDefault();
-		$goto = $menu.filter( "[href=#" + $items.attr( "id" ) + "]" );
 		$container.trigger({
 			type: "select.wb-menu",
-			goto: $goto,
+			goto: $menu.filter( selector ),
 			special: "reset"
+		});
+		break;
+
+	// Left/right arrow
+	case 37:
+	case 39:
+		event.preventDefault();
+		$container.trigger({
+			type: "increment.wb-menu",
+			cnode: $menu,
+			increment: ( which === 37 ? -1 : 1 ),
+			current: $menu.index( $menu.filter( selector ) )
 		});
 		break;
 
@@ -475,7 +477,7 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 			type: "increment.wb-menu",
 			cnode: $links,
 			increment: ( which === 38 ? -1 : 1 ),
-			current: $index
+			current: $links.index( $elm )
 		});
 		break;
 
