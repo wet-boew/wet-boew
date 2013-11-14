@@ -119,6 +119,7 @@
 	"%tmpl-site-info": "Site Information",
 	"%lang-native": "English",
 	"%space" : "&#32;",
+	"%comma-space": ", ",
 	"%current": "(current)",
 	"%menu": "Menu",
 	"%menu-close": "Close menu",
