@@ -169,8 +169,8 @@ var selector = ".wb-menu",
 	 */
 	onIncrement = function( $elm, event ) {
 		var $links = event.cnode,
-			$next = event.current + event.increment,
-			index = $next >= $links.length ? 0 : $next < 0 ? $links.length - 1 : $next;
+			next = event.current + event.increment,
+			index = next >= $links.length ? 0 : next < 0 ? $links.length - 1 : next;
 
 		$elm.trigger({
 			type: "select.wb-menu",
