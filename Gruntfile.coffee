@@ -763,7 +763,6 @@ module.exports = (grunt) ->
 						src = src.replace( ".hbs", ".html" )
 						return "http://localhost:8000/" + src
 					)
-					tunnelTimeout: 5
 					build: process.env.TRAVIS_BUILD_NUMBER
 					concurrency: 3
 					browsers: grunt.file.readJSON "browsers.json"
@@ -772,6 +771,8 @@ module.exports = (grunt) ->
 						process.env.TRAVIS_BRANCH,
 						process.env.TRAVIS_COMMIT
 					]
+					testReadyTimeout: 15000
+					testTimeout: 60000
 
 		"gh-pages":
 			options:
