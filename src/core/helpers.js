@@ -5,7 +5,7 @@
  * @author WET Community
  * Credits: http://kaibun.net/blog/2013/04/19/a-fully-fledged-coffeescript-boilerplate-for-jquery-plugins/
  */
-(function( $ ) {
+(function( $ , vapour ) {
 	vapour.getData = function( element, dataName ) {
 		var elm = !element.jquery ? element : element[ 0 ],
 			dataAttr = elm.getAttribute( "data-" + dataName ),
@@ -22,7 +22,7 @@
 		$.data( elm, dataName, dataObj );
 		return dataObj;
 	};
-})( jQuery );
+})( jQuery, vapour );
 
 (function( vapour ) {
 	"use strict";
@@ -151,14 +151,14 @@
 
 (function( $ ) {
 	"use strict";
-	
+
 	var methods,
 		_settings = {
 			"default": "wet-boew"
 		};
-	
+
 	methods = {
-	
+
 		init: function( options ) {
 			return $.extend( _settings, options || {} );
 		},
@@ -169,9 +169,9 @@
 				.removeClass( from );
 		}
 	};
-	
+
 	$.fn.wb = function( method ) {
-	
+
 		if ( methods[ method ] ) {
 			methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ) );
 		}
@@ -190,7 +190,7 @@
 */
 (function ( $ ) {
 	"use strict";
-	
+
 	function focusable( element, isTabIndexNotNaN, visibility ) {
 		var map, mapName, img,
 			nodeName = element.nodeName.toLowerCase( );
@@ -218,7 +218,7 @@
 				isTabIndexNotNaN );
 		}
 	}
-	
+
 	function visible( element ) {
 		return $.expr.filters.visible( element ) && !$( element )
 			.parents( )
@@ -228,7 +228,7 @@
 			})
 			.length;
 	}
-	
+
 	$.extend( $.expr[ ":" ], {
 		data: $.expr.createPseudo ? $.expr.createPseudo(function(dataName ) {
 			return function( elem ) {
@@ -236,7 +236,7 @@
 			};
 		} ) :
 		// support: jQuery <1.8
-	
+
 		function( elem, i, match ) {
 			return !!$.data( elem, match[ 3 ] );
 		},
@@ -288,7 +288,7 @@ Peformant micro templater
 			});
 		};
 	}());
-	
+
 	window.tmpl = tmpl;
 
 })( window );
