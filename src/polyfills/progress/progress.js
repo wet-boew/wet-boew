@@ -30,16 +30,17 @@ var selector = "progress",
 
 	progress = function( elm ) {
 		var $elm = $( elm ),
-			$progress = $elm.children( ".outer, .undef" ),
+			$progress = $elm.children( ".progress, .undef" ),
+			$span = $elm.children(".wb-inv"),
 			ariaValueMax = 1.0,
-			ariaValueNow;
+			ariaValueNow,
+			$progressbar;
 
 		$elm.off( "DOMAttrModified propertychange" );
-		elm.setAttribute( "role", "progressbar" );
 
 		if ( elm.getAttribute( "value" ) !== null ) {
 			if ( $progress.length === 0 ) {
-				$progress = $( "<div class='outer'><div class='inner'/></div>" );
+				$progress = $( "<div class='progress'><div class='progress-bar' role='progressbar' /></div>" );
 				$elm.append( $progress );
 			}
 
@@ -53,16 +54,23 @@ var selector = "progress",
 				ariaValueNow = ariaValueMax;
 			}
 
-			$progress.children( ".inner" ).css( "width", ( ( ariaValueNow / ariaValueMax ) * 100 ) + "%" );
+			$progressbar = $progress.children( ".progress-bar" );
 
-			elm.setAttribute( "aria-valuemin", 0 );
-			elm.setAttribute( "aria-valuemax", ariaValueMax );
-			elm.setAttribute( "aria-valuenow", ariaValueNow );
+			$progressbar.css( "width", ( ( ariaValueNow / ariaValueMax ) * 100 ) + "%" )
+				.attr({
+					"aria-valuemin": 0,
+					"aria-valuemax": ariaValueMax,
+					"aria-valuenow": ariaValueNow
+				});
+				
+			$span.detach();
+			$span.appendTo( $progressbar );
+
 		} else if ( $progress.length === 0 ) {
 			$elm.append( "<div class='undef'/>" );
 		}
 
-		setTimeout(function () {
+		setTimeout( function() {
 			$elm.on( "DOMAttrModified propertychange", function() {
 				progress( this );
 			});
