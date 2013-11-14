@@ -510,7 +510,7 @@ module.exports = (grunt) ->
 				teststyles: true
 				testprops: true
 				testallprops: true
-				hasevents: true
+				hasevent: true
 				prefixes: true
 				domprefixes: true
 			tests: [
@@ -519,6 +519,7 @@ module.exports = (grunt) ->
 			]
 			parseFiles: false
 			matchCommunityTests: false
+			uglify: false
 
 		copy:
 			jquery:
