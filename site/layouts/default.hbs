@@ -7,25 +7,25 @@
 		<meta charset="utf-8" />
 		<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 		wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-		<title>{{title}} - {{#i18n "%site.title"}}{{/i18n}}</title>
+		<title>{{title}} - {{#i18n "site.title"}}{{/i18n}}</title>
 		<link href="{{assets}}/assets/favicon.ico" rel="shortcut icon" />
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
 		<!-- Meta data -->
-		<meta name="description" content="{{#i18n "%site.description"}}{{/i18n}}" />
+		<meta name="description" content="{{#i18n "site.description"}}{{/i18n}}" />
 		<!-- Meta data-->
 		{{>headresources}}
 	</head>
 	<body vocab="http://schema.org/" typeof="WebPage">
 		<ul id="wb-tphp">
 			<li class="wb-slc">
-				<a class="wb-sl" href="#wb-cont">{{#i18n "%tmpl-skip-cont"}}{{/i18n}}</a>
+				<a class="wb-sl" href="#wb-cont">{{#i18n "tmpl-skip-cont"}}{{/i18n}}</a>
 			</li>
 			<li class="wb-slc visible-md visible-lg">
-				<a class="wb-sl" href="#wb-info">{{#i18n "%tmpl-skip-info"}}{{/i18n}}</a>
+				<a class="wb-sl" href="#wb-info">{{#i18n "tmpl-skip-info"}}{{/i18n}}</a>
 			</li>
 			<!-- Secondary Menu
 			<li class="wb-slc visible-md visible-lg">
-				<a class="wb-sl" href="#wb-sec">{{#i18n "%tmpl-skip-sec"}}{{/i18n}}</a>
+				<a class="wb-sl" href="#wb-sec">{{#i18n "tmpl-skip-sec"}}{{/i18n}}</a>
 			</li>
 			[optional] -->
 		</ul>
@@ -33,7 +33,7 @@
 			<div id="wb-bnr">
 				<div id="wb-bar" data-ajax-append="{{assets}}/ajax/mobmenu-{{language}}.html">
 					<section id="wb-lng" class="visible-md visible-lg">
-						<h2>{{#i18n "%tmpl-lang-select"}}{{/i18n}}</h2>
+						<h2>{{#i18n "tmpl-lang-select"}}{{/i18n}}</h2>
 						{{>languagetoggle}}
 					</section>
 				</div>
@@ -46,7 +46,7 @@
 						</div>
 
 						<section id="wb-srch" class="col-md-4 visible-md visible-lg">
-							<h2>{{#i18n "%tmpl-search"}}{{/i18n}}</h2>
+							<h2>{{#i18n "tmpl-search"}}{{/i18n}}</h2>
 							{{>sitesearch}}
 						</section>
 
@@ -60,7 +60,7 @@
 {{#unless_eq assets compare="."}}
 
 			<nav role="navigation" id="wb-bc" property="breadcrumb">
-				<h2>{{#i18n "%you-are-here"}}{{/i18n}}</h2>
+				<h2>{{#i18n "you-are-here"}}{{/i18n}}</h2>
 				{{>breadcrumbs}}
 			</nav>
 {{/unless_eq}}
@@ -78,14 +78,14 @@
 
 		<!-- Secondary Menu
 		<nav role="navigation" id="wb-sec" typeof="SiteNavigationElement">
-			<h2>{{#i18n "%tmpl-sec-menu"}}{{/i18n}}</h2>
+			<h2>{{#i18n "tmpl-sec-menu"}}{{/i18n}}</h2>
 			{{>supporting}}
 		</nav>
 		[optional] -->
 
 		<footer role="contentinfo" id="wb-info" class="container visible-md visible-lg">
 			<nav role="navigation" class="row">
-				<h2>{{#i18n "%tmpl-site-info"}}{{/i18n}}</h2>
+				<h2>{{#i18n "tmpl-site-info"}}{{/i18n}}</h2>
 				{{>footer}}
 			</nav>
 		</footer>
