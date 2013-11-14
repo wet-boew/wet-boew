@@ -368,10 +368,6 @@ $document.on( "init.multimedia.wb", $selector, function() {
 	} else {
 		return $this.trigger( "fallback.multimedia.wb" );
 	}
-
-	// FIXME: This is unreachable
-	// Where does this come from?
-	return $.error( "[web-boew] Mediaplayer :: error - mp003 :: Cannot play listed media" );
 });
 
 $document.on( "fallback.multimedia.wb", $selector, function() {
