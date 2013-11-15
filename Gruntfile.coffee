@@ -88,7 +88,6 @@ module.exports = (grunt) ->
 		"js"
 		"INTERNAL: Copies all third party JS to the dist folder"
 		[
-			"copy:jquery"
 			"copy:polyfills"
 			"copy:other"
 			"copy:deps"
@@ -117,7 +116,6 @@ module.exports = (grunt) ->
 		"assets-dist"
 		"INTERNAL: Process non-CSS/JS assets to dist"
 		[
-			"copy:jquery_min"
 			"copy:assets_min"
 			"copy:misc_min"
 		]
@@ -190,7 +188,6 @@ module.exports = (grunt) ->
 				options:
 					stripBanners: false
 				src: [
-					"lib/jquery-ie/jquery.js"
 					"lib/respond/respond.src.js"
 					"lib/excanvas/excanvas.js"
 					"lib/html5shiv/dist/html5shiv.js"
@@ -510,7 +507,7 @@ module.exports = (grunt) ->
 				teststyles: true
 				testprops: true
 				testallprops: true
-				hasevent: true
+				hasevents: true
 				prefixes: true
 				domprefixes: true
 			tests: [
@@ -519,15 +516,8 @@ module.exports = (grunt) ->
 			]
 			parseFiles: false
 			matchCommunityTests: false
-			uglify: false
 
 		copy:
-			jquery:
-				cwd: "lib/jquery"
-				src: "jquery.js"
-				dest: "dist/unmin/js"
-				expand: true
-
 			bootstrap:
 				cwd: "lib/bootstrap/fonts"
 				src: "*.*"
@@ -590,15 +580,6 @@ module.exports = (grunt) ->
 				cwd: "theme/"
 				src: "**/assets/*.*"
 				dest: "dist/unmin"
-				expand: true
-
-			jquery_min:
-				cwd: "lib/jquery"
-				src: [
-					"jquery.min.js"
-					"jquery.min.map"
-				]
-				dest: "dist/js"
 				expand: true
 
 			assets_min:
@@ -763,6 +744,7 @@ module.exports = (grunt) ->
 						src = src.replace( ".hbs", ".html" )
 						return "http://localhost:8000/" + src
 					)
+					tunnelTimeout: 5
 					build: process.env.TRAVIS_BUILD_NUMBER
 					concurrency: 3
 					browsers: grunt.file.readJSON "browsers.json"
@@ -771,8 +753,6 @@ module.exports = (grunt) ->
 						process.env.TRAVIS_BRANCH,
 						process.env.TRAVIS_COMMIT
 					]
-					testReadyTimeout: 15000
-					testTimeout: 60000
 
 		"gh-pages":
 			options:
