@@ -62,6 +62,7 @@ progress {
 			valuenow = parseInt( $elm.attr( "value" ), 10 );
 
 		$elm.attr( "value", ( valuenow === parseInt( $elm.attr( "max" ) ) ? 0 : valuenow + 1 ) );
+		$elm.find( "span" ).text( $elm.attr( "value" ) + "%" );
 	}
 </script>
 
