@@ -53,7 +53,7 @@ var selector = "#wb-tphp",
 				}
 
 				// Append the Standard version link
-				li.innerHTML = "<a class='wb-sl' href='" + nQuery + "wbdisable=false'>" + i18n( "%wb-enable" ) + "</a>";
+				li.innerHTML = "<a class='wb-sl' href='" + nQuery + "wbdisable=false'>" + i18n( "wb-enable" ) + "</a>";
 
 				// Add link to re-enable WET plugins and polyfills
 				elm.appendChild( li );
@@ -65,7 +65,7 @@ var selector = "#wb-tphp",
 			}
 
 			// Append the Basic HTML version link version
-			li.innerHTML = "<a class='wb-sl' href='" + nQuery + "wbdisable=true'>" + i18n( "%wb-disable" ) + "</a>";
+			li.innerHTML = "<a class='wb-sl' href='" + nQuery + "wbdisable=true'>" + i18n( "wb-disable" ) + "</a>";
 			elm.appendChild( li ); // Add link to disable WET plugins and polyfills
 		}
 	};

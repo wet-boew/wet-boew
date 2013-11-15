@@ -127,14 +127,14 @@
 		if ( !i18nText ) {
 			   i18n = window.i18n;
 			   i18nText = {
-					   prev: i18n( "%prv" ),
-					   next: i18n( "%nxt" ),
-					   play: i18n( "%play" ),
-					   rotStart: i18n( "%tab-rot" ).on,
-					   rotStop: i18n( "%tab-rot" ).off,
-					   space: i18n( "%space" ),
-					   hyphen: i18n( "%hyphen" ),
-					   pause: i18n( "%pause" )
+					   prev: i18n( "prv" ),
+					   next: i18n( "nxt" ),
+					   play: i18n( "play" ),
+					   rotStart: i18n( "tab-rot" ).on,
+					   rotStop: i18n( "tab-rot" ).off,
+					   space: i18n( "space" ),
+					   hyphen: i18n( "hyphen" ),
+					   pause: i18n( "pause" )
 			   };
 		}
 

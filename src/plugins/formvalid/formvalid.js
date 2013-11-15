@@ -41,12 +41,12 @@ var selector = ".wb-formvalid",
 			if ( !i18nText ) {
 				i18n = window.i18n;
 				i18nText = {
-					colon: i18n( "%colon" ),
-					hyphen: i18n( "%hyphen" ),
-					error: i18n( "%err" ),
-					errorFound: i18n( "%err-fnd" ),
-					errorsFound: i18n( "%errs-fnd" ),
-					formNotSubmitted: i18n( "%frm-nosubmit" )
+					colon: i18n( "colon" ),
+					hyphen: i18n( "hyphen" ),
+					error: i18n( "err" ),
+					errorFound: i18n( "err-fnd" ),
+					errorsFound: i18n( "errs-fnd" ),
+					formNotSubmitted: i18n( "frm-nosubmit" )
 				};
 			}
 
