@@ -148,7 +148,7 @@ module.exports = (grunt) ->
 			"build"
 			"assets-dist"
 			"assemble:demos_min"
-			"connect"
+			"connect:test"
 		]
 	)
 
@@ -665,6 +665,11 @@ module.exports = (grunt) ->
 
 		connect:
 			server:
+				options:
+					port: 8000
+					base: "."
+
+			test:
 				options:
 					port: 8000
 					base: "."
