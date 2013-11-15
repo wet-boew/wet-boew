@@ -95,7 +95,6 @@ module.exports = (grunt) ->
 			"i18n"
 			"concat:core"
 			"concat:coreIE8"
-			"concat:plugins"
 			"concat:i18n"
 			"uglify"
 		]
@@ -156,24 +155,14 @@ module.exports = (grunt) ->
 
 		# Metadata.
 		pkg: grunt.file.readJSON("package.json")
-		banner: "/*! Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
+		banner: "/*! Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\nwet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" - v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n*/\n"
+		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
 
 		# Task configuration.
 		concat:
 			options:
-				banner: "<%= banner %>"
-
-			plugins:
-				options:
-					stripBanners: true
-				src: [
-					"src/core/helpers.js"
-					"dist/js/wet-boew.js"
-					"src/plugins/**/*.js"
-					"!src/plugins/**/test.js"
-				]
-				dest: "dist/unmin/js/wet-boew.js"
+				banner: "<%= banner %><%= modernizrBanner %>"
 
 			core:
 				options:
@@ -181,21 +170,29 @@ module.exports = (grunt) ->
 				src: [
 					"lib/modernizr/modernizr-custom.js"
 					"src/core/vapour.js"
+					"src/core/helpers.js"
+					"dist/js/wet-boew.js"
+					"src/plugins/**/*.js"
+					"!src/plugins/**/test.js"
 				]
-				dest: "dist/unmin/js/vapour.js"
+				dest: "dist/unmin/js/wet-boew.js"
 
 			coreIE8:
 				options:
 					stripBanners: false
 				src: [
+					"lib/modernizr/modernizr-custom.js"
 					"lib/respond/respond.src.js"
 					"lib/excanvas/excanvas.js"
 					"lib/html5shiv/dist/html5shiv.js"
 					"lib/selectivizr/selectivizr.js"
-					"lib/modernizr/modernizr-custom.js"
 					"src/core/vapour.js"
+					"src/core/helpers.js"
+					"dist/js/wet-boew.js"
+					"src/plugins/**/*.js"
+					"!src/plugins/**/test.js"
 				]
-				dest: "dist/unmin/js/ie8-vapour.js"
+				dest: "dist/unmin/js/ie8-wet-boew.js"
 
 			i18n:
 				options:
@@ -412,7 +409,8 @@ module.exports = (grunt) ->
 		uglify:
 			polyfills:
 				options:
-					preserveComments: "some"
+					preserveComments: (uglify,comment) ->
+						return comment.value.match(/^!/i)
 				expand: true
 				cwd: "dist/unmin/js/polyfills/"
 				src: ["*.js"]
@@ -421,7 +419,8 @@ module.exports = (grunt) ->
 
 			other:
 				options:
-					preserveComments: "some"
+					preserveComments: (uglify,comment) ->
+						return comment.value.match(/^!/i)
 				expand: true
 				cwd: "dist/unmin/js/other/"
 				src: ["*.js"]
@@ -430,18 +429,13 @@ module.exports = (grunt) ->
 
 			core:
 				options:
-					preserveComments: "some"
+					preserveComments: (uglify,comment) ->
+						return comment.value.match(/^!/i)
 				cwd: "dist/unmin/js/"
-				src: [ "*vapour.js" ]
+				src: [ "*wet-boew.js" ]
 				dest: "dist/js/"
 				ext: ".min.js"
 				expand: true
-
-			plugins:
-				options:
-					banner: "<%= banner %>"
-				files:
-					"dist/js/wet-boew.min.js": "dist/unmin/js/wet-boew.js"
 
 			i18n:
 				options:
