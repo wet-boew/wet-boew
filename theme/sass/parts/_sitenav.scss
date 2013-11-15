@@ -21,13 +21,20 @@
 						&:hover, &:focus {
 							text-decoration: underline;
 						}
+						&.wb-navcurr {
+							background: #0b3048
+						}
 					}
 				}
 				&:last-child a {
 					border-right: 1px solid #135480;
 				}
 				&.active {
-					background: #243850;
+					> {
+						a {
+							background: #243850;
+						}
+					}
 				}
 			}
 		}
