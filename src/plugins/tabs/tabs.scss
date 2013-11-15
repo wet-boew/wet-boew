@@ -86,7 +86,127 @@
 			}
 		}
 	}
+	
+	/**
+	 * Style 2 - Slider-like carousel style
+	 */
+	&.tabs-s2 {
+		[role="tablist"] {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			z-index: 100;
+			visibility: hidden;
+			li {
+				border: none;
+				visibility: visible;
+				&:not( .tabs-toggle ) {
+					&.active, &:focus, &:hover {
+						top: 1px;
+					}
+				}
+				&.tabs-toggle {
+					position: absolute;
+					&.prv {
+						left: 0;
+					}
+					&.nxt {
+						right: 0;
+					}
+					&.plypause {
+						display: none;
+					}
+					&.prv, &.nxt {
+						height: 100%;
+						width: 3em;
+						background: none;
+						margin: 0;
+						padding: 0;
+						a {
+							position: absolute;
+							top: 0;
+							bottom: 0;
+							left: 0;
+							width: 100%;
+							color: #243850;
+							text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+							border: none;
+							&.prv {
+								background-image: linear-gradient(to right, rgba(255,255,255,0.25) 0%,rgba(255,255,255,0) 100%);
+								.glyphicon {
+									left: .25em;
+									padding-top: 1px;
+									padding-right: 2px;
+								}
+							}
+							&.nxt {
+								background-image: linear-gradient(to left, rgba(255,255,255,0.25) 0%,rgba(255,255,255,0) 100%);
+								.glyphicon {
+									right: .25em;
+								}
+							}
+							&:focus, &:hover {
+								background: #fff;
+								.glyphicon {
+									box-shadow: none;
+								}
+							}
+							.glyphicon {
+								position: absolute;
+								top: 0;
+								bottom: 0;
+								margin: auto 0;
+								height: 1.75em;
+								width: 1.75em;
+								font-size: 1.75em;
+								line-height: 1.75em;
+								text-align: center;
+								background: #fff;
+								border-radius: 999px;
+								box-shadow: 0 0 4px #243850;
+								&:focus, &:hover {
+									box-shadow: none;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		[role="tabpanel"] {
+			z-index: 1;
+			figure {
+			 	position: relative;
+				img {
+					width: 100%;
+					height: auto;
+				}
+				figcaption {
+					position: absolute;
+					bottom: 1em;
+					left: 3em;
+					color: #fff;
+					background: #243850;
+					background: rgba(36, 56, 80, 0.9);
+					padding: 1em;
+					a {
+						color: #fff;
+					}
+				}
+			}
+		}
+	}
 
+}
+
+@media (max-width: 768px) {
+	figcaption {
+		position: relative !important;
+		top: 0 !important;
+		right: 0 !important;
+		bottom: 0 !important;
+		left: 0 !important;
+	}
 }
 
 .no-js {

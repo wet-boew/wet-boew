@@ -58,17 +58,17 @@
 		var $sldr = $tablist.parents( selector ),
 			state = $sldr.hasClass( "stopped" ) ? i18nText.play :  i18nText.pause,
 			hidden = $sldr.hasClass( "stopped" ) ? i18nText.rotStart  :  i18nText.rotStop,
-			controls = "<li class='tabs-toggle'><a class='prv' href='javascript:;' role='button'>" +
+			controls = "<li class='tabs-toggle prv'><a class='prv' href='javascript:;' role='button'>" +
 						"<span class='glyphicon glyphicon-chevron-left'></span>" +
 						"<span class='wb-inv'>" +
 						i18nText.prev +
 						"</span></a></li> " +
-						"<li class='tabs-toggle'><a class='nxt' href='javascript:;' role='button'>" +
+						"<li class='tabs-toggle nxt'><a class='nxt' href='javascript:;' role='button'>" +
 						"<span class='glyphicon glyphicon-chevron-right'></span>" +
 						"<span class='wb-inv'>" +
 						i18nText.next +
 						"</span></a></li> " +
-						"<li class='tabs-toggle'><a class='plypause' href='javascript:;' role='button'><i>" +
+						"<li class='tabs-toggle plypause'><a class='plypause' href='javascript:;' role='button'><i>" +
 						state +
 						"</i><span class='wb-inv'>" +
 						i18nText.space + i18nText.hyphen + i18nText.space + hidden +
