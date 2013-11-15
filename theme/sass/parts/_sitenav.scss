@@ -6,7 +6,7 @@
 #wb-sm {
 	background: #0E4164;
 	.menu {
-		text-shadow: 1px 1px 1px #222;
+		text-shadow: 1px 1px 1px #666;
 		margin-bottom: 0;
 		> {
 			li {
@@ -32,7 +32,8 @@
 				&.active {
 					> {
 						a {
-							background: #243850;
+							color: #000;
+							background: #ccc;
 						}
 					}
 				}
