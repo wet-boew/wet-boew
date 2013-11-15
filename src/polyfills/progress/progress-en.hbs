@@ -48,6 +48,20 @@ progress {
 				<td>500</td>
 				<td><progress value="500" max="500"><span class="wb-inv">100%</span></progress></td>
 			</tr>
+			<tr>
+				<td colspan="2"><input type="button" value="Update" onclick="increaseProgress();" /></td>
+				<td><progress id="updateTest" value="82" max="100"><span class="wb-inv">82%</span></progress></td>
+			</tr>
 		</tbody>
 	</table>
 </section>
+
+<script>
+	function increaseProgress() {
+		var $elm = $( "#updateTest" ),
+			valuenow = parseInt( $elm.attr( "value" ), 10 );
+
+		$elm.attr( "value", ( valuenow === parseInt( $elm.attr( "max" ) ) ? 0 : valuenow + 1 ) );
+	}
+</script>
+
