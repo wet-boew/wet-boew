@@ -1,3 +1,5 @@
+/*!
+/*! WET-BOEW Core and Plugins */
 /*
  * @title WET-BOEW Vapour loader
  * @overview Helper methods for WET
@@ -51,7 +53,7 @@ var getUrlParts = function( url ) {
 	 * @variable $src
 	 * @return {jQuery Element} of vapour script element
 	 */
-	$src = $( "script[src$='vapour.js'],script[src$='vapour.min.js']" )
+	$src = $( "script[src$='wet-boew.js'],script[src$='wet-boew.min.js']" )
 		.last(),
 
 	/*
