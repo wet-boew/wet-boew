@@ -5,7 +5,7 @@
  * @author WET community
  */
 
-(function( $, window, vapour ) {
+(function( $, window, document, vapour ) {
 "use strict";
 
 /*
@@ -16,6 +16,7 @@
  */
 var selector = ".wb-menu",
 	$document = vapour.doc,
+	breadcrumb = document.getElementById( "wb-bc" ),
 
 	// Used for half second delay on showing/hiding menus because of mouse hover
 	hoverDelay = 500,
@@ -62,7 +63,10 @@ var selector = ".wb-menu",
 				fetch: $elm.data( "ajax-fetch" )
 			});
 		} else {
-			$elm.trigger( "loaded.wb-menu" );
+
+			// Trigger the navcurrent plugin
+			$elm.trigger( "navcurrent.wb", breadcrumb );
+			$( "#wb-sec" ).trigger( "navcurrent.wb", breadcrumb );
 		}
 	},
 
@@ -113,6 +117,10 @@ var selector = ".wb-menu",
 
 		// lets see if we need to add a dynamic navigation section ( secondary nav )
 		if ( $wbsec.length !== 0 ) {
+
+			// Trigger the navcurrent plugin
+			$wbsec.trigger( "navcurrent.wb", breadcrumb );
+		
 			$panel = $ajaxed.find( ".pnl-strt" );
 			$panel.before( "<section id='dyn-nvgtn' class='" +
 				$panel.siblings( ".wb-info" ).eq( 0 ).attr( "class" ) +
@@ -144,6 +152,8 @@ var selector = ".wb-menu",
 			items: $elm.find( ".sm" )
 		});
 
+		// Trigger the navcurrent plugin
+		$elm.trigger( "navcurrent.wb", breadcrumb );
 	},
 
 
@@ -515,4 +525,4 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 // Add the timer poke to initialize the plugin
 window._timer.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, document, vapour );
