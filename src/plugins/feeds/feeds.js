@@ -7,8 +7,6 @@
 (function( $, window, vapour ) {
 "use strict";
 
-$.ajaxSettings.cache = false;
-
 /* 
  * Variable and function definitions. 
  * These are global to the plugin - meaning that they will be initialized once per page,
