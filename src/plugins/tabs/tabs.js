@@ -58,21 +58,20 @@
 		var $sldr = $tablist.parents( selector ),
 			state = $sldr.hasClass( "stopped" ) ? i18nText.play :  i18nText.pause,
 			hidden = $sldr.hasClass( "stopped" ) ? i18nText.rotStart  :  i18nText.rotStop,
-			controls = "<li class='tabs-toggle prv'><a class='prv' href='javascript:;' role='button'>" +
+			iconState = $sldr.hasClass( "stopped" ) ? "<span class='glyphicon glyphicon-play'></span>" : "<span class='glyphicon glyphicon-pause'></span>",
+			controls = "<li class='tabs-toggle prv'><a class='prv' href='javascript:;' role='button' title='" + i18nText.prev + "'>" +
 						"<span class='glyphicon glyphicon-chevron-left'></span>" +
 						"<span class='wb-inv'>" +
 						i18nText.prev +
 						"</span></a></li> " +
-						"<li class='tabs-toggle nxt'><a class='nxt' href='javascript:;' role='button'>" +
+						"<li class='tabs-toggle plypause'><a class='plypause' href='javascript:;' role='button' title='" + state + "'>" +
+						iconState +
+						"<span class='wb-inv'>" + state + "</span></a></li> " +
+						"<li class='tabs-toggle nxt'><a class='nxt' href='javascript:;' role='button' title='" + i18nText.next + "'>" +
 						"<span class='glyphicon glyphicon-chevron-right'></span>" +
 						"<span class='wb-inv'>" +
 						i18nText.next +
-						"</span></a></li> " +
-						"<li class='tabs-toggle plypause'><a class='plypause' href='javascript:;' role='button'><i>" +
-						state +
-						"</i><span class='wb-inv'>" +
-						i18nText.space + i18nText.hyphen + i18nText.space + hidden +
-						"</span></a></li>";
+						"</span></a></li> ";
 
 		$tablist.append( controls );
 		$sldr.addClass( "inited" );
@@ -286,7 +285,7 @@
  $document.on( "click", controls, function( event ) {
 	event.preventDefault();
 	var $elm = $( this ),
-		$text, $inv,
+		$glyph, $inv,
 		$sldr = $elm.parents( ".wb-tabs" ),
 		action = $elm.hasClass( "prv" ) ? "prv" :
 					$elm.hasClass( "nxt" ) ? "nxt" :
@@ -304,13 +303,14 @@
 		onPick( $sldr, $elm );
 		break;
 	default:
-		$text = $elm.find("i");
-		$inv = $elm.find(".wb-inv");
-		$text.text(
-			($text.text() === i18nText.play ) ? i18nText.pause : i18nText.play
+		$glyph = $elm.find( ".glyphicon" ),
+		$inv = $elm.find( ".wb-inv" );
+		$glyph.toggleClass( "glyphicon-play" ).toggleClass( "glyphicon-pause" );
+		$elm.attr( "title",
+			( $elm.attr( "title") === i18nText.pause ) ? i18nText.play : i18nText.pause
 		);
 		$inv.text(
-			($inv.text() === i18nText.rotStop ) ? i18nText.rotStart : i18nText.rotStop
+			( $inv.text() === i18nText.rotStop ) ? i18nText.rotStart : i18nText.rotStop
 		);
 		$sldr.toggleClass( "stopped" );
 	}

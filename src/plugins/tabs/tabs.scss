@@ -104,6 +104,21 @@
 					&.active, &:focus, &:hover {
 						top: 1px;
 					}
+					&.active {
+						a {
+							img {
+								box-shadow: none;
+								opacity: .75;
+							}
+						}
+					}
+					a {
+						img {
+							max-height: 50px;
+							max-width: 100px;
+							box-shadow: 0 0 4px #243850;
+						}
+					}
 				}
 				&.tabs-toggle {
 					position: absolute;
