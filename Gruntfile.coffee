@@ -637,14 +637,15 @@ module.exports = (grunt) ->
 				]
 
 		connect:
+			options:
+				port: 8000
+
 			server:
 				options:
-					port: 8000
-					base: "."
+					base: "dist"
 
 			test:
 				options:
-					port: 8000
 					base: "."
 					middleware: (connect, options) ->
 						middlewares = []
