@@ -259,7 +259,7 @@ module.exports = (grunt) ->
 			demos:
 				options:
 					environment:
-						root: "/unmin"
+						root: "/v4.0-ci/unmin"
 					assets: "dist/unmin"
 				files: [
 						expand: true
@@ -293,6 +293,7 @@ module.exports = (grunt) ->
 				options:
 					environment:
 						suffix: ".min"
+						root: "/v4.0-ci"
 					assets: "dist"
 				files: [
 						expand: true
