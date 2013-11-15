@@ -665,7 +665,7 @@ module.exports = (grunt) ->
 
 							testFile = if fs.existsSync( plugins ) then plugins else if fs.existsSync( polyfills ) then polyfills else ""
 
-							if path != ""
+							if testFile != ""
 
 								result = fs.readFileSync( __dirname + url, { encoding: "utf-8" } )
 
