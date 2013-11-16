@@ -149,3 +149,108 @@
 	</div>
 
 </section>
+
+<section>
+<h3>Grouped Toggles</h3>
+<p>This parameter restricts grouped toggles to only have one of the elements active at a time much like the grouped checkbox behaviour</p>
+
+<div class="row">
+	<details id="toggle1" class="col-sm-12 grouped">
+		<summary>Example 1</summary>
+		<p>Example content that provides more details.</p>
+		<table>
+			<caption>Cups of coffee consumed by each delegate</caption>
+			<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Cups</th>
+					<th scope="col">Type of Coffee</th>
+					<th scope="col">Sugar?</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>T. Sexton</td>
+					<td>10</td>
+					<td>Espresso</td>
+					<td>No</td>
+				</tr>
+				<tr>
+					<td>J. Dinnen</td>
+					<td>5</td>
+					<td>Decaf</td>
+					<td>Yes</td>
+				</tr>
+			</tbody>
+		</table>
+	</details>
+</div>
+
+<div class="row">
+	<details id="toggle2" class="col-sm-6 grouped">
+		<summary>Example 2</summary>
+		<p>Example content that provides more details.</p>
+		<table>
+			<caption>Cups of coffee consumed by each delegate</caption>
+			<thead>
+			<tr>
+				<th scope="col">Name</th>
+				<th scope="col">Cups</th>
+				<th scope="col">Type of Coffee</th>
+				<th scope="col">Sugar?</th>
+			</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>T. Sexton</td>
+					<td>10</td>
+					<td>Espresso</td>
+					<td>No</td>
+				</tr>
+				<tr>
+					<td>J. Dinnen</td>
+					<td>5</td>
+					<td>Decaf</td>
+					<td>Yes</td>
+				</tr>
+			</tbody>
+		</table>
+	</details>
+
+	<details id="toggle3"  class="col-sm-6 grouped">
+		<summary>Example 3</summary>
+		<p>Example content that provides more details.</p>
+		<table>
+			<caption>Cups of coffee consumed by each delegate</caption>
+			<thead>
+			<tr>
+				<th scope="col">Name</th>
+				<th scope="col">Cups</th>
+				<th scope="col">Type of Coffee</th>
+				<th scope="col">Sugar?</th>
+			</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>T. Sexton</td>
+					<td>10</td>
+					<td>Espresso</td>
+					<td>No</td>
+				</tr>
+				<tr>
+					<td>J. Dinnen</td>
+					<td>5</td>
+					<td>Decaf</td>
+					<td>Yes</td>
+				</tr>
+			</tbody>
+		</table>
+	</details>
+</div>
+
+<div class="btn-group">
+	<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "#toggle1", "group": "grouped"}'>Example 1</button>
+	<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "#toggle2", "group": "grouped"}'>Example 2</button>
+	<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "#toggle3", "group": "grouped"}'>Example 3</button>
+</div>
+</section>
