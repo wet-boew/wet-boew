@@ -507,6 +507,7 @@ module.exports = (grunt) ->
 				css3: true
 				input: true
 				inputtypes: true
+				svg: true
 				html5: false
 				cssclasses: true
 				csstransitions: true

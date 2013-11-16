@@ -18,14 +18,14 @@
 	border: 1px solid $clrMedium;
 	padding: 0 4px 1px;
 	white-space: nowrap;
-	&:hover, &:focus {
-		@extend %fnote-link-highlight;
-	}
 }
 sup {
 	a {
 		&.fn-lnk {
 			@extend %fnote-link-background-light-border-medium-padding-whitespace;
+			&:hover, &:focus {
+				@extend %fnote-link-highlight;
+			}
 		}
 	}
 }
@@ -77,6 +77,9 @@ sup {
 						@extend %fnote-link-background-light-border-medium-padding-whitespace;
 						display: inline-block;
 						padding-bottom: 0;
+						&:hover, &:focus {
+							@extend %fnote-link-highlight;
+						}
 					}
 				}
 			}
