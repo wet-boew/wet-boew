@@ -105,10 +105,12 @@ module.exports = (grunt) ->
 		"css"
 		"INTERNAL: Compiles Sass and copies third party CSS to the dist folder"
 		[
+			"sprites"
 			"sass"
 			"autoprefixer"
 			"concat:css"
 			"cssmin"
+			"copy:sprites"
 		]
 	)
 
@@ -118,6 +120,7 @@ module.exports = (grunt) ->
 		[
 			"copy:assets_min"
 			"copy:misc_min"
+			"copy:sprites_min"
 		]
 	)
 
@@ -317,6 +320,17 @@ module.exports = (grunt) ->
 						expand: true
 						flatten: true
 				]
+
+		#Generate the sprites include stylesheets
+		sprites:
+			share:
+				src: [
+					"src/plugins/share/sprites/*.png"
+					"!src/plugins/share/sprites/sprites_*.png"
+				]
+				css: "src/plugins/share/_sprites.scss"
+				map: "src/plugins/share/sprites/sprites_share.png"
+				output: "scss"
 
 		# Compiles the Sass files
 		sass:
@@ -574,6 +588,13 @@ module.exports = (grunt) ->
 				expand: true
 				flatten: true
 
+			sprites:
+				cwd: "src/plugins"
+				src: "**/sprites/sprites_*.png"
+				dest: "dist/unmin/css/sprites"
+				expand: true
+				flatten: true
+
 			themeAssets:
 				cwd: "theme/"
 				src: "**/assets/*.*"
@@ -602,6 +623,12 @@ module.exports = (grunt) ->
 				dest: "dist/demos"
 				expand: true
 
+			sprites_min:
+				cwd: "dist/unmin/css"
+				src: "sprites/*.*"
+				dest: "dist/css"
+				expand: true
+
 			deploy:
 				src: [
 					"*.txt"
@@ -611,7 +638,7 @@ module.exports = (grunt) ->
 				expand: true
 
 		clean:
-			dist: "dist"
+			dist: ["dist", "src/base/partials/*sprites*"]
 
 		watch:
 			lib_test:
@@ -784,6 +811,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-contrib-watch"
 	@loadNpmTasks "grunt-gh-pages"
 	@loadNpmTasks "grunt-htmlcompressor"
+	@loadNpmTasks "grunt-imagine"
 	@loadNpmTasks "grunt-mocha"
 	@loadNpmTasks "grunt-modernizr"
 	@loadNpmTasks "grunt-sass"
