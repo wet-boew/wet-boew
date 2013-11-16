@@ -268,7 +268,7 @@ window._timer = {
 
 	}
 };
-
+ 
 /*-----------------------------
  * Modernizr Polyfill Loading
  *-----------------------------*/
@@ -322,13 +322,9 @@ Modernizr.load([
 	}, {
 		test: Modernizr.touch,
 		yep: "plyfll!mobile.min.js",
-	/* TODO: Determine if this should be kept or not
-	 * Commented out for now to make it easy for people to enable it and to test it.
-	 * Will be deleted outright if decision is to not keep it.
 	}, {
-		test: vapour.ie && vapour.desktop,
-		yep: "plyfll!jawsariafixes.min.js",
-	*/
+		test: Modernizr.svg,
+		nope: "plyfll!svg.min.js"
 	}, {
 		load: "i18n!i18n/",
 		complete: function() {
