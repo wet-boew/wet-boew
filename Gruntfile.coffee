@@ -52,6 +52,7 @@ module.exports = (grunt) ->
 			"dist"
 			"assemble:demos"
 			"assemble:demos_min"
+			"htmlcompressor"
 			"copy:deploy"
 			"gh-pages"
 		]
@@ -234,9 +235,9 @@ module.exports = (grunt) ->
 				options:
 					banner: ""
 				files:
-					"dist/unmin/css/base.css": [
+					"dist/unmin/css/wet-boew.css": [
 						"lib/bootstrap/dist/css/bootstrap.css"
-						"dist/unmin/css/base.css"
+						"dist/unmin/css/wet-boew.css"
 					]
 
 		# Builds the demos
@@ -371,7 +372,7 @@ module.exports = (grunt) ->
 				cwd: "other"
 				src: [
 					"**/*.scss"
-					"!**/base.scss"
+					"!**/*base.scss"
 				]
 				dest: "dist/unmin/css/other/"
 				ext: ".css"
