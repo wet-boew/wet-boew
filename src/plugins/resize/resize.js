@@ -33,24 +33,25 @@ var id = "wb-resize",
 		largeview: 1200,
 		xlargeview: 1600
 	},
+	initialized = false,
 	eventsAll, resizeTest, currentView,
 
 	/*
-	 * Init runs once per plugin element on the page. There may be multiple elements. 
+	 * Init runs once
 	 * @method init
 	 */
 	init = function() {
-		var _resizeTest = document.createElement( "span" );
+		var localResizeTest = document.createElement( "span" );
 
 		// Set up the DOM element used for resize testing
-		_resizeTest.innerHTML = "&#160;";
-		_resizeTest.setAttribute( "id", id );
-		document.body.appendChild( _resizeTest );
-		resizeTest = _resizeTest;
+		localResizeTest.innerHTML = "&#160;";
+		localResizeTest.setAttribute( "id", id );
+		document.body.appendChild( localResizeTest );
+		resizeTest = localResizeTest;
 
 		// Get a snapshot of the current sizes
 		sizes = [
-			_resizeTest.offsetHeight,
+			localResizeTest.offsetHeight,
 			$window.width(),
 			$window.height()
 		];
@@ -60,6 +61,8 @@ var id = "wb-resize",
 
 		// Determine the current view
 		viewChange( sizes[ 1 ] );
+
+		initialized = true;
 	},
 
 	viewChange = function ( viewportWidth ) {
@@ -95,31 +98,34 @@ var id = "wb-resize",
 	 * @method test
 	 */
 	test = function() {
-		var currentSizes = [
-				resizeTest.offsetHeight,
-				$window.width(),
-				$window.height()
-			],
-			len = currentSizes.length,
-			i;
+		if ( initialized ) {
+			var currentSizes = [
+					resizeTest.offsetHeight,
+					$window.width(),
+					$window.height()
+				],
+				len = currentSizes.length,
+				i;
 
-		// Check for a viewport or text size change
-		for ( i = 0; i !== len; i += 1 ) {
-			if ( currentSizes[ i ] !== sizes[ i ] ) {
-			
-				// Change detected so trigger related event
-				$document.trigger( events[ i ], currentSizes );
+			// Check for a viewport or text size change
+			for ( i = 0; i !== len; i += 1 ) {
+				if ( currentSizes[ i ] !== sizes[ i ] ) {
+				
+					// Change detected so trigger related event
+					$document.trigger( events[ i ], currentSizes );
 
-				// Check for a view change
-				viewChange( currentSizes[ 1 ] );
+					// Check for a view change
+					viewChange( currentSizes[ 1 ] );
+				}
 			}
-		}
-		sizes = currentSizes;
-		return;
-	};
+			sizes = currentSizes;
+			return;
+		} else {
 
-// Initialize the handler resources
-init();
+			// Initialize the handler resources
+			init();
+		}
+	};
 	
 // Re-test on each timerpoke
 $document.on( "timerpoke.wb", selector, test );
