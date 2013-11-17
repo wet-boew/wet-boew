@@ -96,6 +96,7 @@ module.exports = (grunt) ->
 			"i18n"
 			"concat:core"
 			"concat:coreIE8"
+			"concat:pluginsIE8"
 			"concat:i18n"
 			"uglify"
 		]
@@ -175,7 +176,6 @@ module.exports = (grunt) ->
 					"lib/modernizr/modernizr-custom.js"
 					"src/core/vapour.js"
 					"src/core/helpers.js"
-					"dist/js/wet-boew.js"
 					"src/plugins/**/*.js"
 					"!src/plugins/**/test.js"
 				]
@@ -191,12 +191,20 @@ module.exports = (grunt) ->
 					"lib/html5shiv/dist/html5shiv.js"
 					"lib/selectivizr/selectivizr.js"
 					"src/core/vapour.js"
-					"src/core/helpers.js"
-					"dist/js/wet-boew.js"
-					"src/plugins/**/*.js"
 					"!src/plugins/**/test.js"
 				]
 				dest: "dist/unmin/js/ie8-wet-boew.js"
+
+			pluginsIE8:
+				options:
+					banner: "<%= banner %>"
+					stripBanners: false
+				src: [
+					"src/core/helpers.js"
+					"src/plugins/**/*.js"
+					"!src/plugins/**/test.js"
+				]
+				dest: "dist/unmin/js/ie8-wet-boew2.js"
 
 			i18n:
 				options:
