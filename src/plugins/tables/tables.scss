@@ -61,6 +61,7 @@ table {
 		thead {
 			th {
 				@extend %tables-border-bottom-1px-solid-black-font-weight-700;
+				padding-right: 20px;
 				&:active {
 					@extend %tables-outline-none;
 				}
