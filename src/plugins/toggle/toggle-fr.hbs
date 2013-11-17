@@ -149,3 +149,109 @@
 	</div>
 
 </section>
+<section>
+	<h2>Basculer groupées</h2>
+	<p>
+		Cette paramètre <code> group </code> restreint bascule groupées d'avoir un seul des éléments actifs à un moment un peu comme le comportement de case à cocher groupées.
+	</p>
+
+	<div class="row">
+		<details id="toggle1" class="col-sm-12 grouped">
+			<summary>Exemple 1</summary>
+			<p>Le contenu d'exemple qui fournit plus de détails.</p>
+			<table>
+				<caption>Tasses de café bues par chaque député</caption>
+				<thead>
+				<tr>
+					<th scope="col">Nom</th>
+					<th scope="col">Tasses</th>
+					<th scope="col">Type de café</th>
+					<th scope="col">Sucre?</th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>T. Sexton</td>
+						<td>10</td>
+						<td>Expresso</td>
+						<td>Non</td>
+					</tr>
+					<tr>
+						<td>J. Dinnen</td>
+						<td>5</td>
+						<td>Déca</td>
+						<td>Oui</td>
+					</tr>
+				</tbody>
+			</table>
+		</details>
+	</div>
+
+	<div class="row">
+		<details id="toggle2" class="col-sm-6 grouped">
+			<summary>Exemple 2</summary>
+			<p>Le contenu d'exemple qui fournit plus de détails.</p>
+			<table>
+				<caption>Tasses de café bues par chaque député</caption>
+				<thead>
+				<tr>
+					<th scope="col">Nom</th>
+					<th scope="col">Tasses</th>
+					<th scope="col">Type de café</th>
+					<th scope="col">Sucre?</th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>T. Sexton</td>
+						<td>10</td>
+						<td>Expresso</td>
+						<td>Non</td>
+					</tr>
+					<tr>
+						<td>J. Dinnen</td>
+						<td>5</td>
+						<td>Déca</td>
+						<td>Oui</td>
+					</tr>
+				</tbody>
+			</table>
+		</details>
+
+		<details id="toggle3" class="col-sm-6 grouped">
+			<summary>Exemple 3</summary>
+			<p>Le contenu d'exemple qui fournit plus de détails.</p>
+			<table>
+				<caption>Tasses de café bues par chaque député</caption>
+				<thead>
+				<tr>
+					<th scope="col">Nom</th>
+					<th scope="col">Tasses</th>
+					<th scope="col">Type de café</th>
+					<th scope="col">Sucre?</th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>T. Sexton</td>
+						<td>10</td>
+						<td>Expresso</td>
+						<td>Non</td>
+					</tr>
+					<tr>
+						<td>J. Dinnen</td>
+						<td>5</td>
+						<td>Déca</td>
+						<td>Oui</td>
+					</tr>
+				</tbody>
+			</table>
+		</details>
+	</div>
+
+	<div class="btn-group">
+		<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "#toggle1", "group": "grouped" }'>Exemple 1</button>
+		<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector":  "#toggle2", "group": "grouped" }'>Exemple 2</button>
+		<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector":  "#toggle3", "group": "grouped" }'>Exemple 3</button>
+	</div>
+</section>

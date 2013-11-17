@@ -93,11 +93,17 @@ var selector = ".wb-toggle",
 			$elms = getElements( link, data ),
 			stateFrom = getState( link, data ),
 			isToggleOn = stateFrom === data.stateOff,
-			stateTo = isToggleOn ? data.stateOn : data.stateOff;
+			stateTo = isToggleOn ? data.stateOn : data.stateOff,
+			$grouped;
 
-		// Update the element state and store the new state
 		setState( link, data, stateTo );
 		$elms.wb( "toggle", stateTo, stateFrom );
+
+		// Update the states of the toggles first since grouped only allows for one of the toggles to be active at once
+		if ( data.group !== undefined ) {
+			$grouped = getGroupedElements( link, data );
+			$grouped.trigger( "toggled.wb-toggle", { isOn: false } );
+		}
 		$elms.trigger( "toggled.wb-toggle", { isOn: isToggleOn } );
 	},
 
@@ -111,7 +117,7 @@ var selector = ".wb-toggle",
 
 		// Native details support
 		$detail.prop( "open", data.isOn );
-		
+
 		// Polyfill details support
 		if ( !Modernizr.details ) {
 			$detail.attr( "open", data.isOn ? null : "open" );
@@ -127,6 +133,20 @@ var selector = ".wb-toggle",
 	 */
 	getElements = function( link, data ) {
 		var selector = data.selector !== undefined ? data.selector : link,
+			parent = data.parent !== undefined ? data.parent : null;
+
+		return parent !== null ? $( parent ).find( selector ) : $( selector );
+	},
+
+
+	/*
+	 * Returns the grouped elements a given toggle element controls.
+	 * @param {DOM element} link Toggle element that was clicked
+	 * @param {Object} data Simple key/value data object passed when the event was triggered
+	 * @returns {jQuery Object} DOM elements the toggle link controls
+	 */
+	getGroupedElements = function( link, data ) {
+		var selector = data.group !== undefined ? "." + data.group : link,
 			parent = data.parent !== undefined ? data.parent : null;
 
 		return parent !== null ? $( parent ).find( selector ) : $( selector );
