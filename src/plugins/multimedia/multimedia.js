@@ -368,10 +368,6 @@ $document.on( "init.multimedia.wb", $selector, function() {
 	} else {
 		return $this.trigger( "fallback.multimedia.wb" );
 	}
-
-	// FIXME: This is unreachable
-	// Where does this come from?
-	return $.error( "[web-boew] Mediaplayer :: error - mp003 :: Cannot play listed media" );
 });
 
 $document.on( "fallback.multimedia.wb", $selector, function() {
@@ -440,8 +436,7 @@ $document.on("renderui.multimedia.wb", $selector, function() {
 		$player,
 		captionsUrl = vapour.getUrlParts( $data.captions ).absolute;
 
-
-	$this.html( window.tmpl( $this.data( "template" ), $data ) );
+	$this.find( "video, audio" ).replaceWith( window.tmpl( $this.data( "template" ), $data ) );
 	$player = $( "#" + $data.m_id );
 	$data.player = $player.is( "object") ? $player.children( ":first-child" ) : $player.load();
 
