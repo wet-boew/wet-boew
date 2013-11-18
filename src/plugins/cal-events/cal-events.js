@@ -203,7 +203,7 @@ var selector = ".wb-cal-evt",
 					date.setFullYear( strDate1[ 0 ], strDate1[ 1 ], strDate1[ 2 ] );
 
 					// Now loop in events to load up all the days that it would be on tomorrow.setDate(tomorrow.getDate() + 1);
-					for ( z = 0, zLen = daysBetween( strDate1, strDate2 ) + 1; z <= zLen; z += 1 ) {
+					for ( z = 0, zLen = daysBetween( strDate1, strDate2 ); z <= zLen; z += 1 ) {
 						if ( events.minDate === null || date < events.minDate ) {
 							events.minDate = date;
 						}
