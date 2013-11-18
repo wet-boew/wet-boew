@@ -10,13 +10,13 @@
 .expicon {
 	width: 0;
 	height: 0;
-	border-left: 5px solid transparent;
-	border-right: 5px solid transparent;
-	border-top: 5px solid #fff;
+	border-left: 0.35em solid transparent;
+	border-right: 0.35em solid transparent;
+	border-top: 0.35em solid #fff;
 	position: relative;
 	left: 0.75em;
 	top: 0.75em;
-	margin-right: 5px;
+	margin-right: 0.35em;
 }
 
 .wb-menu {
@@ -141,6 +141,6 @@
 		left: auto;
 		right: 0.75em;
 		margin-right: 0;
-		margin-left: 5px;
+		margin-left: 0.35em;
 	}
 }
