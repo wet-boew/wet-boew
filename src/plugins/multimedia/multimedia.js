@@ -436,8 +436,7 @@ $document.on("renderui.multimedia.wb", $selector, function() {
 		$player,
 		captionsUrl = vapour.getUrlParts( $data.captions ).absolute;
 
-
-	$this.html( window.tmpl( $this.data( "template" ), $data ) );
+	$this.find( "video, audio" ).replaceWith( window.tmpl( $this.data( "template" ), $data ) );
 	$player = $( "#" + $data.m_id );
 	$data.player = $player.is( "object") ? $player.children( ":first-child" ) : $player.load();
 
