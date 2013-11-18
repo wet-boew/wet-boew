@@ -110,7 +110,7 @@ var id = "wb-resize",
 			// Check for a viewport or text size change
 			for ( i = 0; i !== len; i += 1 ) {
 				if ( currentSizes[ i ] !== sizes[ i ] ) {
-				
+
 					// Change detected so trigger related event
 					$document.trigger( events[ i ], currentSizes );
 
@@ -120,15 +120,14 @@ var id = "wb-resize",
 			}
 			sizes = currentSizes;
 			return;
-		} else {
-
-			// Initialize the handler resources
-			init();
 		}
 	};
 	
 // Re-test on each timerpoke
 $document.on( "timerpoke.wb", selector, test );
+
+// Initialize the resources
+init();
 
 // Add the timer poke to initialize the plugin
 window._timer.add( selector );
