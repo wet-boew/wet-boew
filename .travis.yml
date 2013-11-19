@@ -9,7 +9,7 @@ env:
     - secure: "14iu5t7qzaF4KYE9XRND7WrkdEYqESr8+dxWtSNfv37F5Ef28yI0HWw9NeLr66PvCE/oSti5fF4JPqBmBAGMeLbCIpT9uROTYEM3Vd6KcEo8Vp3KW10sRKhjVquKb4u8km/qsoj4qudGaQ4MMxSo6sVo5SyHC4OsyBqxED83EWs=" #Sauce Access Key
 
 before_install:
-  - ./run-first
+  - ./script/setup
 
 script:
   - grunt jshint test-mocha && ./script/travis_artifacts.sh
