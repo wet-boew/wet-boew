@@ -15,7 +15,7 @@ script:
   - grunt jshint test-mocha && ./script/travis_artifacts.sh
 
 after_success:
-  - ./script/saucelabs.sh
+  - ./script/travis_saucelabs.sh
 
 notifications:
   irc:
