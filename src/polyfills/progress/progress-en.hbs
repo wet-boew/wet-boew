@@ -5,21 +5,11 @@
 	"category": "Polyfill",
 	"description": "The <progress> element displays the progress of a task.",
 	"tag": "progress",
-	"fr": "progress"
+	"fr": "progress",
+	"css": "demo/progress",
+	"js": "demo/progress"
 }
 ---
-<style>
-table, th, td {
-	border: 1px solid black;
-}
-progress {
-	width: 10em;
-}
-.progress {
-	margin-bottom: 0px;
-}
-</style>
-
 <p>The HTML5 <code>progress</code> elements is used to provide a progress bar. This component adds support for this elements in browsers that do not already have native support.</p>
 
 <section>
@@ -49,20 +39,9 @@ progress {
 				<td><progress value="500" max="500"><span class="wb-inv">100%</span></progress></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="button" value="Update" onclick="increaseProgress();" /></td>
+				<td colspan="2"><input type="button" id="updateProgress" value="Update" /></td>
 				<td><progress id="updateTest" value="82" max="100"><span class="wb-inv">82%</span></progress></td>
 			</tr>
 		</tbody>
 	</table>
 </section>
-
-<script>
-	function increaseProgress() {
-		var $elm = $( "#updateTest" ),
-			valuenow = parseInt( $elm.attr( "value" ), 10 );
-
-		$elm.attr( "value", ( valuenow === parseInt( $elm.attr( "max" ) ) ? 0 : valuenow + 1 ) );
-		$elm.find( "span" ).text( $elm.attr( "value" ) + "%" );
-	}
-</script>
-
