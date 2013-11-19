@@ -135,12 +135,12 @@ var selector = ".wb-menu",
 
 				// Lets DomInsert since we are complete all our safeguards and pre-processing
 				// ** note we need to ensure our content is ID safe since this will invalidate the DOM
-				$panel.before( "<section id='wb-imrpt-" + i + "' class='" + 
-					classList + "'>" + 
-					$iElement.html().replace( /\b(id|for)="([^"]+)"/g , "\$1=\"\$2-imprt\"" ) +
+				$panel.before( "<section id='wb-imrpt-" + i + "' class='" +
+					classList + "'>" +
+					$iElement.html().replace( /\b(id|for)="([^"]+)"/g , "$1='$2-imprt'" ) +
 				"</section>" );
 				
-			};
+			}
 			
 		}
 
