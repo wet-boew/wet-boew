@@ -21,10 +21,10 @@
 .menu-demo .menu > li > a {
 	color: #fff;
 	padding: 1em;
-	border-left: 2px ridge #284468;
+	border-left: 2px groove #284468;
 }
 .menu-demo .menu > li:last-child a {
-	border-right: 2px ridge #284468;
+	border-right: 2px groove #284468;
 }
 .menu-demo .sm.open {
 	box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.3), 3px 3px 3px -2px rgba(0, 0, 0, 0.3), -3px 3px 3px -2px rgba(0, 0, 0, 0.3);
@@ -104,6 +104,128 @@
 }
 #menu-demo-2 .sm.open {
 	border-bottom: 5px solid #335075;
+}
+
+@media screen and (max-width:991px){
+	#wb-sm {
+	background: #114F7A;
+	}
+	#wb-sm .menu li a:hover, #wb-sm .menu li a:focus, #wb-sm .menu li a:active {
+		background: transparent;
+	}
+	#wb-sm .nav-close  {
+	    background: none repeat scroll 0 0 #305277;
+	    height: 44px;
+		margin-top:20px;
+		color:#fff;
+		text-decoration:none;
+		vertical-align:middle;
+		margin-left:-20px;
+		padding-top:10px;
+		text-transform:lowercase;
+	}
+
+	#wb-sm .nav-close span{
+	margin:-3px 10px 0;
+	font-size:1.5em;
+	vertical-align:middle;
+	}
+
+	#wb-sm .menu {
+	text-transform:none;
+	color:#fff;
+	}
+
+	#wb-sm .menu a{
+	color:#fff;
+	}
+
+	#wb-sm .expicon {
+	position:absolute;
+	top:.8em;
+	border-top-color:transparent;
+	border-left-color:#90a4b4;
+	border-bottom:5px solid transparent;
+	}
+
+	#wb-sm .sm.open {
+	border:none;
+	}
+
+	#wb-sm .menu li.active .expicon {
+	border-top-color:#fff !important;  /* note the !important is there to override the !important being used in base.css */
+	border-left-color:transparent;
+	top:1.1em;
+	}
+
+	#wb-sm .menu > li a {
+	padding-left:25px;
+	color:#fff;
+	}
+
+	#wb-sm .sm.open li a {
+	padding-left:35px;
+	color:#a5b5c2;
+	}
+
+	#wb-sm:target .wb-nav {
+	background:#1b3452;
+	padding:20px 0;
+	font-size:14px;
+	color:#90a4b4;
+	}
+
+	.wb-nav > ul > li {
+	padding:0 10px 0 25px;
+
+	}
+
+	.wb-nav a{
+	padding:5px 5px 5px 10px;
+	color:#fff;
+	text-decoration:none;
+	display:block;
+	}
+
+	#wb-sm .sm.open li a {
+		color: #fff;
+	}
+
+
+
+	#wb-sm .menu ul li, #wb-sm .menu .active, #wb-sm .menu > li.active > a, #wb-sm .menu > li.active > a , #wb-sm .menu .active:hover  {
+		background: transparent !important;
+		border: none !important;
+		color: #fff !important;
+	}
+
+	.wb-info .list-unstyled li, .wb-info .list-unstyled li a {
+		color: #fff;
+	}
+
+	#wb-sm .row ,#wb-sm .sm, #wb-sm .sm.open {
+		border: 0;
+	}
+
+	.wb-info .list-unstyled li ul li {
+		color: #eee;
+	}
+
+	#wb-imprt-1 {
+		padding: 20px 30px;
+	}
+
+	#wb-imprt-1 h2, label[for=wb-srch-q-imprt] { 
+	  position: absolute;
+	  width: 1px;
+	  height: 1px;
+	  margin: -1px;
+	  padding: 0;
+	  overflow: hidden;
+	  clip: rect(0 0 0 0);
+	  border: 0;
+	 }
+
 }
 </style>
 
