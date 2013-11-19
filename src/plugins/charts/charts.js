@@ -593,7 +593,7 @@ var wet_boew_charts,
 		options = setClassOptions( options, self.attr( "class" ) || "" );
 
 		// 4. [Table element] HTML5 Data Overwrite property
-		for ( i in self.data() ){
+		for ( i in self.data() ) {
 			// Check if the prefix "wbcharts" is used
 			if ( i.slice( 0, 8 ) === "wbcharts" ) {
 				options[ i.slice( 8 ) ] = self.data()[ i ];
@@ -607,23 +607,20 @@ var wet_boew_charts,
 
 		// Add headers information to the table parsed data structure
 		// Similar sample of code as the HTML Table validator
-		function addTblHeaders( tblparser ) {
-			var i, j, k, m, currRow, currCell,
-				rowheadersgroup,
+		function addHeaders( tblparser ) {
+			var headStackLength = tblparser.theadRowStack.length,
+				addColHeadersLength, addRowHeadersLength,
+				cellHeaderLength, cellLength, childLength, coldataheader,
+				colheaders, colheadersgroup, currCell, currCol, currRow,
+				currrowheader, headerLength, headerLevelLength, i, j, k, m, ongoingRowHeader, ongoingRowHeaderLength,
 				rowheaders,
-				currrowheader,
-				ongoingRowHeader,
-				coldataheader,
-				currCol,
-				colheaders,
-				colheadersgroup,
-				childLength;
+				rowheadersgroup, rowLength;
 
 			// Set ID and Header for the table head
-			for ( i = 0; i < tblparser.theadRowStack.length; i += 1 ) {
+			for ( i = 0; i < headStackLength; i += 1 ) {
 				currRow = tblparser.theadRowStack[ i ];
 
-				for ( j = 0; j < currRow.cell.length; j += 1 ) {
+				for ( j = 0, cellLength = currRow.cell.length; j < cellLength; j += 1 ) {
 					currCell = currRow.cell[ j ];
 
 					if ( ( currCell.type === 1 || currCell.type === 7 ) && (
@@ -633,20 +630,25 @@ var wet_boew_charts,
 
 						// Imediate header
 						currCell.header = currCell.header || [];
+
 						// all the headers
 						currCell.headers = currCell.headers || [];
+
 						// Imediate sub cell
 						currCell.child = currCell.child || [];
+
 						// All the sub cell
 						currCell.childs = currCell.childs || [];
 
 						// Set the header of the current cell if required
 						if ( i > 0 ) {
+
 							// All the header cells
-							for ( k = 0; k < tblparser.theadRowStack[ i - 1 ].cell[ j ].header.length; k += 1 ) {
+							for ( k = 0, cellHeaderLength = tblparser.theadRowStack[ i - 1 ].cell[ j ].header.length; k < cellHeaderLength; k += 1 ) {
 								currCell.headers.push( tblparser.theadRowStack[ i - 1 ].cell[ j ].header[ k ]);
 								tblparser.theadRowStack[ i - 1 ].cell[ j ].header[ k ].childs.push( currCell );
 							}
+
 							// Imediate header cell
 							currCell.headers.push( tblparser.theadRowStack[ i - 1 ].cell[ j ] );
 							currCell.header.push( tblparser.theadRowStack[ i - 1 ].cell[ j ]);
@@ -666,7 +668,7 @@ var wet_boew_charts,
 			}
 
 			// Set Id/headers for header cell and data cell in the table.
-			for ( i = 0; i < tblparser.row.length; i += 1 ) {
+			for ( i = 0, rowLength = tblparser.row.length; i < rowLength; i += 1 ) {
 				currRow = tblparser.row[ i ];
 				rowheadersgroup = [];
 				rowheaders = [];
@@ -690,29 +692,27 @@ var wet_boew_charts,
 				rowheaders = currRow.idsheaderset.concat( rowheaders );
 				for (j = 0; j < currRow.cell.length; j += 1) {
 
-					if ( ( j === 0 ) || ( j > 0 && currRow.cell[ j ].uid !== currRow.cell[ ( j - 1 ) ].uid ) ){
+					if ( j === 0 || ( j > 0 && currRow.cell[ j ].uid !== currRow.cell[ ( j - 1 ) ].uid ) ) {
 						currCell = currRow.cell[ j ];
 						coldataheader = [];
 
-						if ( !currCell.header ) { // Imediate header
-							currCell.header = [];
-						}
-						if ( !currCell.headers ) { // all the headers
-							currCell.headers = [];
-						}
+						// Imediate header
+						currCell.header = currCell.header || [];
 
+						// all the headers
+						currCell.headers = currCell.headers || [];
 
 						if ( currCell.col && !currCell.col.dataheader ) {
 							currCol = currCell.col;
 							colheaders = [];
 							colheadersgroup = [];
 							if ( currCol.headerLevel ) {
-								for ( m = 0; m < currCol.headerLevel.length; m += 1 ) {
+								for ( m = 0, headerLevelLength = currCol.headerLevel.length; m < headerLevelLength; m += 1 ) {
 									colheadersgroup = colheadersgroup.concat( currCol.headerLevel[ m ] );
 								}
 							}
 							if ( currCol.header ) {
-								for ( m = 0; m < currCol.header.length; m += 1 ) {
+								for ( m = 0, headerLength = currCol.header.length; m < headerLength; m += 1 ) {
 									colheaders = colheaders.concat( currCol.header[ m ] );
 								}
 							}
@@ -734,10 +734,11 @@ var wet_boew_charts,
 
 							// Imediate sub cell
 							currCell.child = currCell.child || [];
+
 							// All the sub cell
 							currCell.childs = currCell.childs || [];
 
-							for ( m = 0; m < ongoingRowHeader.length; m += 1 ) {
+							for ( m = 0, ongoingRowHeaderLength = ongoingRowHeader.length; m < ongoingRowHeaderLength; m += 1 ) {
 
 								if ( currCell.colpos === ( ongoingRowHeader[ m ].colpos + ongoingRowHeader[ m ].width) ) {
 									childLength = ongoingRowHeader[ m ].child.length;
@@ -750,7 +751,8 @@ var wet_boew_charts,
 
 							for ( m = 0; m < currRow.idsheaderset.length; m += 1 ) {
 
-								if ( !currRow.idsheaderset[m].childs ) { // All the sub cell
+								// All the sub cell
+								if ( !currRow.idsheaderset[m].childs ) {
 									currRow.idsheaderset[ m ].childs = [];
 								}
 								currRow.idsheaderset[m].childs.push( currCell );
@@ -758,9 +760,9 @@ var wet_boew_charts,
 
 							currCell.header = currCell.header.concat( ongoingRowHeader );
 
-							currCell.headers = currCell.headers.concat( coldataheader );
-							currCell.headers = currCell.headers.concat( currRow.idsheaderset );
-							currCell.headers = currCell.headers.concat( ongoingRowHeader );
+							currCell.headers = currCell.headers.concat( coldataheader )
+								.concat( currRow.idsheaderset )
+								.concat( ongoingRowHeader );
 
 							ongoingRowHeader = ongoingRowHeader.concat( currCell );
 						}
@@ -772,19 +774,19 @@ var wet_boew_charts,
 							currrowheader = rowheaders;
 
 							if ( currCell.addcolheaders ) {
-								for ( m = 0; m < currCell.addcolheaders.length; m += 1 ) {
+								for ( m = 0, addColHeadersLength = currCell.addcolheaders.length; m < addColHeadersLength; m += 1 ) {
 									coldataheader = coldataheader.concat( currCell.addcolheaders[m] );
 								}
 							}
 
 							if ( currCell.addrowheaders ) {
-								for ( m = 0; m < currCell.addrowheaders.length; m += 1 ) {
+								for ( m = 0, addRowHeadersLength = currCell.addrowheaders.length; m < addRowHeadersLength; m += 1 ) {
 									currrowheader = currrowheader.concat( currCell.addrowheaders[ m ] );
 								}
 							}
 
-							currCell.headers = currCell.headers.concat( coldataheader );
-							currCell.headers = currCell.headers.concat( currrowheader );
+							currCell.headers = currCell.headers.concat( coldataheader )
+								.concat( currrowheader );
 
 							currCell.header = currCell.headers;
 						}
@@ -1244,7 +1246,7 @@ var wet_boew_charts,
 
 
 		// Fix the parsed data
-		addTblHeaders( parsedData );
+		addHeaders( parsedData );
 
 		//
 		// Calculate the tick for a table where x is horizontal
