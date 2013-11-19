@@ -4,6 +4,16 @@
  */
 
 /*
+ *	Anchor outline
+ */
+a {
+	&:focus {
+		outline: invert none medium;
+		outline-offset: 0;
+	}
+}
+
+/*
  *	Table stripes and hover -- Increased the contrast for the table stripes
  *	and hover
  */
