@@ -11,20 +11,20 @@
 
 
 /*
- * Variable and function definitions. 
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
 var wet_boew_charts,
 	selector = ".wb-charts",
-    $document = vapour.doc,
-    
-    /*
-     * Main Entry function to create the charts
-     * @method createCharts
-     * @param {jQuery DOM element} $elm table element use to create the chart  
-     */
+	$document = vapour.doc,
+
+	/*
+	 * Main Entry function to create the charts
+	 * @method createCharts
+	 * @param {jQuery DOM element} $elm table element use to create the chart
+	 */
 	createCharts = function ($elm) {
 		var options = {},
 			i18n = window.i18n,
@@ -289,13 +289,13 @@ var wet_boew_charts,
 			}
 			// Get the namespace separator if defined (optional)
 			separatorNS = ( sourceOptions[ "default-namespace-separator" ] && typeof sourceOptions[ "default-namespace-separator" ] === "string") ? sourceOptions[ "default-namespace-separator" ] : "-";
-			 
+
 			// Get the option separator if defined (optional)
 			separator = ( sourceOptions[ "default-separator" ] && typeof sourceOptions[ "default-separator" ] === "string" ) ? sourceOptions[ "default-separator" ] : " ";
 
 			// Check if the the Auto Json option creation are authorized from class
 			autoCreate = sourceOptions[ "default-autocreate" ]; // Espected returning value True | False
-			
+
 			arrClass = strClass.split( separator ); // Get each defined class
 			for ( m = 0, _mlen = arrClass.length; m < _mlen; m +=1 ) {
 				parameter = arrClass[m];
@@ -1160,7 +1160,7 @@ var wet_boew_charts,
 					}
 
 					stopRow = i + attrRow - 1;
-						
+
 					if ( attrRow > 1 && attrCol > 1 ) {
 						jj = j;
 						stopCol = j + attrCol - 1;
@@ -1213,13 +1213,13 @@ var wet_boew_charts,
 		}
 
 		if ( options.parsedirection === "y" ) {
-			
+
 			self = swapTable( srcTbl );
-			
+
 			$( self )
 				.attr("class", $( srcTbl ).attr( "class" ) )
 				.removeClass( "wb-charts-parsedirection-y" );
-			
+
 			// Re-lunch the parsing
 			vapour.doc.trigger( {
 				type: "pasiveparse.wb-table.wb",
@@ -1713,25 +1713,25 @@ var wet_boew_charts,
 	},
 
 	/*
-     * Init runs once per plugin element on the page. There may be multiple elements. 
-     * It will run more than once per plugin if you don't remove the selector from the timer.
-     * @method init
-     * @param {jQuery DOM element} $elm The plugin element being initialized
-     */
+	 * Init runs once per plugin element on the page. There may be multiple elements.
+	 * It will run more than once per plugin if you don't remove the selector from the timer.
+	 * @method init
+	 * @param {jQuery DOM element} $elm The plugin element being initialized
+	 */
 	init = function( $elm ) {
 		window._timer.remove( selector );
-		
+
 		var modeJS = vapour.getMode() + ".js";
-			
+
 		// Load the required dependencies and prettify the code once finished
 		window.Modernizr.load({
-		
+
 			// For loading multiple dependencies
-            both: [
-                "site!deps/jquery.flot" + modeJS,
+			both: [
+				"site!deps/jquery.flot" + modeJS,
 				"site!deps/jquery.flot.pie" + modeJS,
 				"site!deps/jquery.flot.canvas" + modeJS
-            ],
+			],
 			complete: function() {
 				// Let parse the table
 				$elm.trigger( "pasiveparse.wb-table.wb" );
@@ -1741,29 +1741,29 @@ var wet_boew_charts,
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb parsecomplete.wb-table.wb", selector, function( event ) {
-    var eventTarget = event.target,
-        eventType = event.type,
-        $elm;
+	var eventTarget = event.target,
+		eventType = event.type,
+		$elm;
 
-    // Filter out any events triggered by descendants
-    if ( event.currentTarget === eventTarget ) {
-        $elm = $( eventTarget );
+	// Filter out any events triggered by descendants
+	if ( event.currentTarget === eventTarget ) {
+		$elm = $( eventTarget );
 
-        switch ( eventType ) {
-        case "timerpoke":
-            init( $elm );
-            break;
-        case "parsecomplete":
-            createCharts( $elm );
-            break;
-        }
-    }
+		switch ( eventType ) {
+		case "timerpoke":
+			init( $elm );
+			break;
+		case "parsecomplete":
+			createCharts( $elm );
+			break;
+		}
+	}
 
-    /*
-     * Since we are working with events we want to ensure that we are being passive about our control, 
-     * so returning true allows for events to always continue
-     */
-    return true;
+	/*
+	 * Since we are working with events we want to ensure that we are being passive about our control,
+	 * so returning true allows for events to always continue
+	 */
+	return true;
 });
 
 // Add the timer poke to initialize the plugin
