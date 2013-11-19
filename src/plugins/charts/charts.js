@@ -1721,7 +1721,7 @@ var wet_boew_charts,
 		var modeJS = vapour.getMode() + ".js";
 
 		// Load the required dependencies and prettify the code once finished
-		window.Modernizr.load({
+		Modernizr.load({
 
 			// For loading multiple dependencies
 			both: [
