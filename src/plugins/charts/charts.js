@@ -795,51 +795,10 @@ var wet_boew_charts,
 			}
 		}
 
-
-		// Determine an appropriate tick for the colgroup head (first colgroup)
-		function helper1CalcVTick( parsedDataCell, headerlevel ){
-			var kIndex;
-
-			headerlevel += 1;
-			tblMultiplier.push( [ parsedDataCell.child.length, headerlevel ] );
-			for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
-				if ( parsedDataCell.child[ kIndex ].child.length > 0 ){
-					headerlevel = helper1CalcVTick( parsedDataCell.child[ kIndex ], headerlevel );
-				}
-			}
-			headerlevel -= 1;
-			return headerlevel;
-		}
-		function helper2CalcVTick( parsedDataCell, headerlevel ){
-			var kIndex, flotDelta,
-				internalCumul = 0;
-
-			headerlevel += 1;
-
-			internalCumul = parsedDataCell.flotValue - parsedDataCell.flotDelta;
-
-			flotDelta = ( parsedDataCell.flotDelta / parsedDataCell.child.length );
-			if ( !smallestVerticalFlotDelta || flotDelta < smallestVerticalFlotDelta ){
-				smallestVerticalFlotDelta = flotDelta;
-			}
-			for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
-				parsedDataCell.child[ kIndex ].flotDelta = flotDelta;
-				internalCumul = internalCumul + flotDelta;
-				parsedDataCell.child[ kIndex ].flotValue = internalCumul;
-
-				if (headerlevel === useHeadRow) {
-					calcTick.push( [ ( parsedDataCell.child[ kIndex ].flotValue - flotDelta ), $( parsedDataCell.child[ kIndex ].elem ).text() ] );
-				}
-				if ( parsedDataCell.child[ kIndex ].child.length > 0 ){
-					helper2CalcVTick( parsedDataCell.child[ kIndex ], headerlevel );
-				}
-			}
-			headerlevel -= 1;
-		}
 		function calculateVerticalTick( parsedData ) {
 
 			// Get the appropriate ticks
-			var parsedDataCell, i, TotalRowValue,
+			var parsedDataCell, i, totalRowValue,
 			nbCells = 0,
 			headerlevel = 0,
 			cumulFlotValue = 0;
@@ -864,19 +823,22 @@ var wet_boew_charts,
 					if ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) {
 						nbCells += 1;
 
-						if ( parsedDataCell.child.length > 0 ){
-							headerlevel = helper1CalcVTick( parsedDataCell, headerlevel );
+						if ( parsedDataCell.child.length > 0 ) {
+							headerlevel = calcVTick( parsedDataCell, headerlevel );
 						}
 					}
 				}
 			}
 
-			tblMultiplier.push( [ nbCells, headerlevel ] );
+			tblMultiplier.push([
+				nbCells,
+				headerlevel
+			]);
 
-			TotalRowValue = tblMultiplier[ 0 ][ 0 ];
+			totalRowValue = tblMultiplier[ 0 ][ 0 ];
 
 			for ( i = 1; i < tblMultiplier.length; i += 1 ){
-				TotalRowValue = TotalRowValue * tblMultiplier[ i ][ 0 ];
+				totalRowValue = totalRowValue * tblMultiplier[ i ][ 0 ];
 			}
 
 
@@ -905,7 +867,7 @@ var wet_boew_charts,
 
 					if ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) {
 
-						parsedDataCell.flotDelta = ( TotalRowValue / nbCells );
+						parsedDataCell.flotDelta = ( totalRowValue / nbCells );
 
 
 						if ( !smallestVerticalFlotDelta || parsedDataCell.flotDelta < smallestVerticalFlotDelta ){
@@ -915,10 +877,12 @@ var wet_boew_charts,
 						cumulFlotValue += parsedDataCell.flotDelta;
 
 						parsedDataCell.flotValue = cumulFlotValue;
-						if (headerlevel === useHeadRow ||
-
-							( ( parsedDataCell.colpos - 1 ) < useHeadRow && useHeadRow <= ( ( parsedDataCell.colpos - 1 ) + ( parsedDataCell.width - 1 ) ) ) ){
-							calcTick.push( [ ( parsedDataCell.flotValue - parsedDataCell.flotDelta ), $( parsedDataCell.elem ).text() ] );
+						if ( headerlevel === useHeadRow ||
+							( ( parsedDataCell.colpos - 1 < useHeadRow ) && ( useHeadRow <= parsedDataCell.colpos + parsedDataCell.width - 2 ) ) ) {
+							calcTick.push([
+								parsedDataCell.flotValue - parsedDataCell.flotDelta,
+								$( parsedDataCell.elem ).text()
+							]);
 						}
 
 						if ( parsedDataCell.child.length > 0 ){
@@ -928,58 +892,48 @@ var wet_boew_charts,
 				}
 			}
 			return calcTick;
-		}
 
-		function helper1CalcHTick( parsedDataCell, headerlevel ){
-			var kIndex;
-			if ( parsedDataCell.child.length === 0 ) {
-				return;
-			}
-			headerlevel += 1;
-			tblMultiplier.push( [ parsedDataCell.child.length, headerlevel ] );
-			for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
-				helper1CalcHTick( parsedDataCell.child[ kIndex ], headerlevel );
-			}
-			headerlevel -= 1;
-		}
+			// Determine an appropriate tick for the colgroup head (first colgroup)
+			function calcVTick( parsedDataCell, headerlevel ) {
+				var childLength, kIndex;
 
-
-		function helper2CalcHTick( parsedDataCell, headerlevel ){
-			var kIndex, flotDelta,
-				internalCumul = 0,
-				theadRowStack_len = parsedDataCell.groupZero.theadRowStack.length - 1;
-			if ( parsedDataCell.child.length === 0 ) {
-				return;
-			}
-			headerlevel += 1;
-
-			internalCumul = parsedDataCell.flotValue;
-
-			flotDelta = !options.uniformtick ? ( parsedDataCell.flotDelta / parsedDataCell.child.length ) : 1;
-			if ( !smallestHorizontalFlotDelta || flotDelta < smallestHorizontalFlotDelta ){
-				smallestHorizontalFlotDelta = flotDelta;
-			}
-			for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
-				parsedDataCell.child[ kIndex ].flotDelta = flotDelta;
-
-				if ( headerlevel === useHeadRow ) {
-					calcTick.push( [ !options.uniformtick ? internalCumul : uniformCumul, $( parsedDataCell.child[ kIndex ].elem ).text() ] );
+				headerlevel += 1;
+				tblMultiplier.push( [ parsedDataCell.child.length, headerlevel ] );
+				for ( kIndex = 0, childLength = parsedDataCell.child.length; kIndex < childLength; kIndex += 1 ) {
+					if ( parsedDataCell.child[ kIndex ].child.length > 0 ){
+						headerlevel = calcVTick( parsedDataCell.child[ kIndex ], headerlevel );
+					}
 				}
-
-				if ( headerlevel === theadRowStack_len ||
-					( ( parsedDataCell.rowpos - 1 ) < theadRowStack_len &&
-					theadRowStack_len <= ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) ||
-					theadRowStack_len === ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) {
-
-					uniformCumul += flotDelta;
-				}
-
-				parsedDataCell.child[ kIndex ].flotValue = internalCumul;
-				internalCumul = internalCumul + flotDelta;
-
-				helper2CalcHTick( parsedDataCell.child[ kIndex ], headerlevel );
+				return headerlevel - 1;
 			}
-			headerlevel -= 1;
+
+			function helper2CalcVTick( parsedDataCell, headerlevel ) {
+				var internalCumul = parsedDataCell.flotValue - parsedDataCell.flotDelta,
+					kIndex, flotDelta;
+
+				headerlevel += 1;
+
+				flotDelta = parsedDataCell.flotDelta / parsedDataCell.child.length;
+				if ( !smallestVerticalFlotDelta || flotDelta < smallestVerticalFlotDelta ) {
+					smallestVerticalFlotDelta = flotDelta;
+				}
+				for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
+					parsedDataCell.child[ kIndex ].flotDelta = flotDelta;
+					internalCumul = internalCumul + flotDelta;
+					parsedDataCell.child[ kIndex ].flotValue = internalCumul;
+
+					if ( headerlevel === useHeadRow ) {
+						calcTick.push([
+							parsedDataCell.child[ kIndex ].flotValue - flotDelta,
+							$( parsedDataCell.child[ kIndex ].elem ).text()
+						]);
+					}
+					if ( parsedDataCell.child[ kIndex ].child.length > 0 ){
+						helper2CalcVTick( parsedDataCell.child[ kIndex ], headerlevel );
+					}
+				}
+				headerlevel -= 1;
+			}
 		}
 
 		// Determine an appropriate tick for the rowgroup head (thead)
@@ -992,7 +946,7 @@ var wet_boew_charts,
 				nbTotSlots = 0,
 				headerlevel = 0,
 				cumulFlotValue = 0,
-				i, TotalRowValue;
+				i, totalRowValue;
 
 			if ( !parsedData.theadRowStack ) {
 				return;
@@ -1027,10 +981,10 @@ var wet_boew_charts,
 			}
 			tblMultiplier.push( [ nbCells, headerlevel ] );
 
-			TotalRowValue = tblMultiplier[ 0 ][ 0 ];
+			totalRowValue = tblMultiplier[ 0 ][ 0 ];
 
 			for ( i = 1; i < tblMultiplier.length; i += 1 ){
-				TotalRowValue = TotalRowValue * tblMultiplier[ i ][ 0 ];
+				totalRowValue = totalRowValue * tblMultiplier[ i ][ 0 ];
 			}
 
 			//
@@ -1058,7 +1012,7 @@ var wet_boew_charts,
 
 				if ( parsedDataCell.colpos >= dataColgroupStart && ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) ) {
 
-					parsedDataCell.flotDelta = !options.uniformtick ? ( TotalRowValue / nbCells ) : 1;
+					parsedDataCell.flotDelta = !options.uniformtick ? ( totalRowValue / nbCells ) : 1;
 
 
 					if ( !smallestHorizontalFlotDelta || parsedDataCell.flotDelta < smallestHorizontalFlotDelta ){
@@ -1087,6 +1041,62 @@ var wet_boew_charts,
 				}
 			}
 			return calcTick;
+			function helper1CalcHTick( parsedDataCell, headerlevel ) {
+				var kIndex;
+				if ( parsedDataCell.child.length === 0 ) {
+					return;
+				}
+				headerlevel += 1;
+				tblMultiplier.push( [ parsedDataCell.child.length, headerlevel ] );
+				for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
+					helper1CalcHTick( parsedDataCell.child[ kIndex ], headerlevel );
+				}
+				headerlevel -= 1;
+			}
+
+
+			function helper2CalcHTick( parsedDataCell, headerlevel ) {
+				var kIndex, flotDelta,
+					internalCumul = 0,
+					theadRowStackLength = parsedDataCell.groupZero.theadRowStack.length - 1;
+				if ( parsedDataCell.child.length === 0 ) {
+					return;
+				}
+				headerlevel += 1;
+
+				internalCumul = parsedDataCell.flotValue;
+
+				flotDelta = !options.uniformtick ? ( parsedDataCell.flotDelta / parsedDataCell.child.length ) : 1;
+				if ( !smallestHorizontalFlotDelta || flotDelta < smallestHorizontalFlotDelta ) {
+					smallestHorizontalFlotDelta = flotDelta;
+				}
+				for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
+					parsedDataCell.child[ kIndex ].flotDelta = flotDelta;
+
+					if ( headerlevel === useHeadRow ) {
+						calcTick.push([
+							!options.uniformtick ?
+								internalCumul :
+								uniformCumul,
+							$( parsedDataCell.child[ kIndex ].elem ).text()
+						]);
+					}
+
+					if ( headerlevel === theadRowStackLength ||
+						( ( parsedDataCell.rowpos - 1 ) < theadRowStackLength &&
+						theadRowStackLength <= ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) ||
+						theadRowStackLength === ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) {
+
+						uniformCumul += flotDelta;
+					}
+
+					parsedDataCell.child[ kIndex ].flotValue = internalCumul;
+					internalCumul = internalCumul + flotDelta;
+
+					helper2CalcHTick( parsedDataCell.child[ kIndex ], headerlevel );
+				}
+				headerlevel -= 1;
+			}
 		}
 
 
@@ -1487,7 +1497,7 @@ var wet_boew_charts,
 
 
 
-			if (( !rowOptions.type && ( options.type === "bar" || options.type === "stacked" ) ) || ( rowOptions.type && ( rowOptions.type === "bar" || rowOptions.type === "stacked" ) ) ) {
+			if ( ( !rowOptions.type && ( options.type === "bar" || options.type === "stacked" ) ) || ( rowOptions.type && ( rowOptions.type === "bar" || rowOptions.type === "stacked" ) ) ) {
 				nbBarChart += 1;
 				rowOptions.chartBarOption = nbBarChart;
 				if ( !barDelta && ( ( rowOptions.type && rowOptions.type === "bar" ) || ( !rowOptions.type && options.type === "bar" ) ) ) {
