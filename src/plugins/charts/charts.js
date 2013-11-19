@@ -234,7 +234,7 @@ var wet_boew_charts,
 				return {};
 			}
 			// Get a working copy for the sourceOptions
-			sourceOptions = jQuery.extend( true, {}, sourceOptions );
+			sourceOptions = $.extend( true, {}, sourceOptions );
 
 			// Test: strClass
 			if ( typeof strClass !== "string" || strClass.length === 0 ) {
@@ -301,7 +301,7 @@ var wet_boew_charts,
 								iLength = arrParameter.length;
 							} else if ( sourceOptions.preset && sourceOptions.preset[ arrParameter ]) {
 								// 2. It match a preset, overide the current setting
-								sourceOptions = jQuery.extend( true, sourceOptions, sourceOptions.preset[ arrParameter ] );
+								sourceOptions = $.extend( true, sourceOptions, sourceOptions.preset[ arrParameter ] );
 								break;
 							} else if ( iLength === 1 ) {
 								// 3. Use the Default set
@@ -385,7 +385,7 @@ var wet_boew_charts,
 								} else {
 									jsonString = "{\"" + propName + "\": \"" + arrParameter + "\"}";
 								}
-								sourceOptions = jQuery.extend(true, sourceOptions, jQuery.parseJSON(jsonString));
+								sourceOptions = $.extend(true, sourceOptions, $.parseJSON(jsonString));
 							}
 							i = iLength; // Make sur we don't iterate again
 						} else {
@@ -396,7 +396,7 @@ var wet_boew_charts,
 								propName = arrParameter;
 							} else if ( ( autoCreate || autoCreateMe ) && arrParameter !== undefined ) {
 								jsonString = "{\"" + arrParameter[i] + "\": {}}";
-								sourceOptions = jQuery.extend( true, sourceOptions, jQuery.parseJSON( jsonString ) );
+								sourceOptions = $.extend( true, sourceOptions, $.parseJSON( jsonString ) );
 								sourceOptions = sourceOptions[ arrParameter ];
 							} else {
 								// This configuration are rejected
@@ -538,7 +538,7 @@ var wet_boew_charts,
 			if ( typeof wet_boew_charts !== "undefined" ) {
 				// a. if exisit copy and take care of preset separatly (Move away before extending)
 				if ( wet_boew_charts.preset ) {
-					window.chartsGraphOpts = jQuery.extend( true, {}, wet_boew_charts.preset );
+					window.chartsGraphOpts = $.extend( true, {}, wet_boew_charts.preset );
 					delete wet_boew_charts.preset;
 				}
 				// b. Overwrite the chart default setting
