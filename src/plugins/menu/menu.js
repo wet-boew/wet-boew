@@ -116,28 +116,28 @@ var selector = ".wb-menu",
 			// Optimized the code block to look to see if we need to import anything instead
 			// of just doing a query with which could result in no result
 			imports = $elm.data( "import" ) ? $elm.data( "import" ).split( " " ) : 0,
-			$panel, i, cClass, $iElement;
+			$panel, i, classList, $iElement;
 
 		// lets see if there is anything to import into our panel
 		if ( imports !== 0 ) {
 			$panel = $ajaxed.find( ".pnl-strt" );
-			cClass = $panel.siblings( ".wb-info" ).eq( 0 ).attr( "class" );
+			classList = $panel.siblings( ".wb-info" ).eq( 0 ).attr( "class" );
 
 			for ( i = imports.length - 1; i >= 0; i-- ) {
-				$iElement = $( "#" + imports[i] );
+				$iElement = $( "#" + imports[ i ] );
 
 				// lets only deal with elements that exist since there are possibilites where templates
 				// could add into a header and footer and the content areas change depending on levels
 				// in the site
-				if ( $iElement.length === 0 ){
+				if ( $iElement.length === 0 ) {
 					continue;
 				}
 
 				// Lets DomInsert since we are complete all our safeguards and pre-processing
 				// ** note we need to ensure our content is ID safe since this will invalidate the DOM
-				$panel.before( "<section id='wb-imrpt-" + i + "' class='" +
-				cClass + "'>" + 
-				$iElement.html().replace( /\b(id|for)="([^"]+)"/g , "\$1=\"\$2-imprt\"" ) +
+				$panel.before( "<section id='wb-imrpt-" + i + "' class='" + 
+					classList + "'>" + 
+					$iElement.html().replace( /\b(id|for)="([^"]+)"/g , "\$1=\"\$2-imprt\"" ) +
 				"</section>" );
 				
 			};
