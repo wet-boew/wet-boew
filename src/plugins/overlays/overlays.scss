@@ -81,3 +81,26 @@
 	top: 0;
 	left: 0;
 }
+
+/*
+ *	Overlay parts
+ */
+.overlay-header {
+	background-color: #000;
+	color: #fff;
+	display: block;
+	padding: 10px 26px 10px 10px;
+	h1, h2, h3, h4, h5, h6 {
+		font-size: 1.15em;
+		font-weight: normal;
+		margin: 0 1em;
+	}
+}
+
+.overlay-close {
+	color: #fff;
+	position: absolute;
+	right: 10px;
+	text-decoration: none;
+	top: 10px;
+}
