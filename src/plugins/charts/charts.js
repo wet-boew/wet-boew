@@ -213,7 +213,8 @@ var wet_boew_charts,
 				colour = "accent-" + ( colour + 1 );
 			}
 
-			return ( colours[ colour.toLowerCase() ] !== "undefined" ? colours[ colour.toLowerCase() ] : ( $.isArray( options.colors ) ? options.colors[ 0 ] : options.colors ) );
+			return colours[ colour.toLowerCase() ] ||
+				$.isArray( options.colors ) ? options.colors[ 0 ] : options.colors;
 		}
 
 		// Function to Convert Class instance to JSON
