@@ -112,19 +112,36 @@ var selector = ".wb-menu",
 	 */
 	onAjaxLoaded = function( $elm, $ajaxed ) {
 		var $menu = $ajaxed.find( "[role='menubar'] .item" ),
-			$wbsec = $( "#wb-sec" ),
-			$panel;
 
-		// lets see if we need to add a dynamic navigation section ( secondary nav )
-		if ( $wbsec.length !== 0 ) {
+			// Optimized the code block to look to see if we need to import anything instead
+			// of just doing a query with which could result in no result
+			imports = $elm.data( "import" ) ? $elm.data( "import" ).split( " " ) : 0,
+			$panel, i, cClass, $iElement;
 
-			// Trigger the navcurrent plugin
-			$wbsec.trigger( "navcurrent.wb", breadcrumb );
-		
+		// lets see if there is anything to import into our panel
+		if ( imports !== 0 ) {
 			$panel = $ajaxed.find( ".pnl-strt" );
-			$panel.before( "<section id='dyn-nvgtn' class='" +
-				$panel.siblings( ".wb-info" ).eq( 0 ).attr( "class" ) +
-				"'>" + $wbsec.html() + "</section>" );
+			cClass = $panel.siblings( ".wb-info" ).eq( 0 ).attr( "class" );
+
+			for ( i = imports.length - 1; i >= 0; i-- ) {
+				$iElement = $( "#" + imports[i] );
+
+				// lets only deal with elements that exist since there are possibilites where templates
+				// could add into a header and footer and the content areas change depending on levels
+				// in the site
+				if ( $iElement.length === 0 ){
+					continue;
+				}
+
+				// Lets DomInsert since we are complete all our safeguards and pre-processing
+				// ** note we need to ensure our content is ID safe since this will invalidate the DOM
+				$panel.before( "<section id='wb-imrpt-" + i + "' class='" +
+				cClass + "'>" + 
+				$iElement.html().replace( /\b(id|for)="([^"]+)"/g , "\$1=\"\$2-imprt\"" ) +
+				"</section>" );
+				
+			};
+			
 		}
 
 		$ajaxed.find( ":discoverable" )
