@@ -17,7 +17,7 @@ var id = "wb-resize",
 	selector = "#" + id,
 	$window = vapour.win,
 	$document = vapour.doc,
-	sizes= [],
+	sizes = [],
 	events = [
 		"text-resize.wb",
 		"window-resize-width.wb",
