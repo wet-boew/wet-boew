@@ -8,10 +8,6 @@ function error_exit
 	exit 1
 }
 
-if [ "$TRAVIS_SECURE_ENV_VARS" == "true" ] && [ "$TRAVIS_REPO_SLUG" == "wet-boew/wet-boew" ];  then
-	grunt saucelabs || error_exit "Error running Sauce tests";
-fi
-
 if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_REPO_SLUG" == "wet-boew/wet-boew" ] && [ "$TRAVIS_BRANCH" == "v4.0" ]; then
 
 	#Set git user
@@ -29,7 +25,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_REPO_SLUG" == "wet-boew/w
 	echo -e "Updating working examples...\n"
 
 	cd ..
-	git clone -q https://${GH_TOKEN}@github.com/wet-boew/wet-boew.github.io.git > /dev/null 2>&1  || error_exit "Error cloning the working examples repository";
+	git clone -q https://${GH_TOKEN}@github.com/wet-boew/wet-boew.github.io.git > /dev/null 2>&1 || error_exit "Error cloning the working examples repository";
 	cd wet-boew.github.io
 
 	if [ "$TRAVIS_BRANCH" == "master" ]; then
