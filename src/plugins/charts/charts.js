@@ -26,53 +26,28 @@ var wet_boew_charts,
 	 * @param {jQuery DOM element} $elm table element use to create the chart
 	 */
 	createCharts = function ($elm) {
-		var options = {},
+		var allSeries = [],
+			calcTick = [],
+			dataSeries = [],
 			i18n = window.i18n,
+			isPieChart,
+			nbBarChart = 0,
+			options = {},
+			pieChartLabelText = "",
 			self = $elm,
-			srcTbl = self,
 			smallestHorizontalFlotDelta,
 			smallestVerticalFlotDelta,
+			srcTbl = self,
 			tblMultiplier = [],
-			calcTick = [],
-			UseHeadRow,
-			uniformCumul,
-			RowDefaultOptions,
-			parsedData,
-			horizontalCalcTick,
-			verticalCalcTick,
-			allSeries = [],
-			isPieChart,
-			dataSeries = [],
 			valueCumul = 0,
-			header,
-			rIndex,
-			i,
-			j,
-			figCaptionElem,
-			tblCaptionHTML,
-			$placeHolder,
-			tblSrcContainer,
-			tblSrcContainerSummary,
-			cellValue,
-			pieLabelFormater,
-			mainFigureElem,
-			_graphclasslen,
-			tblCaptionText,
-			dataGroup,
-			tdOptions,
-			$subFigureElem,
-			$subfigCaptionElem,
-			pieOptions,
-			nbBarChart = 0,
-			barDelta,
-			rowOptions,
-			datacolgroupfound,
-			valuePoint,
-			figureElem,
-			_graphclasslen2,
-			plotParameter,
-			pieChartLabelText = "",
-			$imgContainer;
+			$imgContainer, $placeHolder, $subfigCaptionElem, $subFigureElem,
+			graphClassLength, graphClassLength2, barDelta, cellValue,
+			datacolgroupfound, dataGroup, figCaptionElem, figureElem, header,
+			horizontalCalcTick, i, j, mainFigureElem, parsedData,
+			pieLabelFormater, pieOptions, plotParameter, rIndex,
+			rowDefaultOptions, rowOptions, tblCaptionHTML, tblCaptionText,
+			tblSrcContainer, tblSrcContainerSummary, tdOptions, uniformCumul,
+			useHeadRow, valuePoint, verticalCalcTick;
 
 		function colourNameToHex( colour ) {
 			var colours = {
@@ -830,7 +805,7 @@ var wet_boew_charts,
 				internalCumul = internalCumul + flotDelta;
 				parsedDataCell.child[ kIndex ].flotValue = internalCumul;
 
-				if (headerlevel === UseHeadRow) {
+				if (headerlevel === useHeadRow) {
 					calcTick.push( [ ( parsedDataCell.child[ kIndex ].flotValue - flotDelta ), $( parsedDataCell.child[ kIndex ].elem ).text() ] );
 				}
 				if ( parsedDataCell.child[ kIndex ].child.length > 0 ){
@@ -887,9 +862,9 @@ var wet_boew_charts,
 			// Get the tick
 			//
 			// From an option that would choose the appropriate row.
-			// UseHeadRow get a number that represent the row to use to draw the label
+			// useHeadRow get a number that represent the row to use to draw the label
 
-			UseHeadRow = parsedData.colgrouphead.col.length - 1;
+			useHeadRow = parsedData.colgrouphead.col.length - 1;
 
 			calcTick = [];
 
@@ -918,9 +893,9 @@ var wet_boew_charts,
 						cumulFlotValue += parsedDataCell.flotDelta;
 
 						parsedDataCell.flotValue = cumulFlotValue;
-						if (headerlevel === UseHeadRow ||
+						if (headerlevel === useHeadRow ||
 
-							( ( parsedDataCell.colpos - 1 ) < UseHeadRow && UseHeadRow <= ( ( parsedDataCell.colpos - 1 ) + ( parsedDataCell.width - 1 ) ) ) ){
+							( ( parsedDataCell.colpos - 1 ) < useHeadRow && useHeadRow <= ( ( parsedDataCell.colpos - 1 ) + ( parsedDataCell.width - 1 ) ) ) ){
 							calcTick.push( [ ( parsedDataCell.flotValue - parsedDataCell.flotDelta ), $( parsedDataCell.elem ).text() ] );
 						}
 
@@ -965,7 +940,7 @@ var wet_boew_charts,
 			for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
 				parsedDataCell.child[ kIndex ].flotDelta = flotDelta;
 
-				if ( headerlevel === UseHeadRow ) {
+				if ( headerlevel === useHeadRow ) {
 					calcTick.push( [ !options.uniformtick ? internalCumul : uniformCumul, $( parsedDataCell.child[ kIndex ].elem ).text() ] );
 				}
 
@@ -1040,9 +1015,9 @@ var wet_boew_charts,
 			// Get the tick
 			//
 			// From an option that would choose the appropriate row.
-			// UseHeadRow get a number that represent the row to use to draw the label
+			// useHeadRow get a number that represent the row to use to draw the label
 
-			UseHeadRow = ( !options.labelposition || ( options.labelposition && options.labelposition > parsedData.theadRowStack.length ) ? parsedData.theadRowStack.length : options.labelposition ) - 1;
+			useHeadRow = ( !options.labelposition || ( options.labelposition && options.labelposition > parsedData.theadRowStack.length ) ? parsedData.theadRowStack.length : options.labelposition ) - 1;
 
 			calcTick = [];
 
@@ -1069,7 +1044,7 @@ var wet_boew_charts,
 					}
 					parsedDataCell.flotValue = cumulFlotValue;
 
-					if ( headerlevel === UseHeadRow || ( ( parsedDataCell.rowpos - 1 ) < UseHeadRow && UseHeadRow <= ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) ) {
+					if ( headerlevel === useHeadRow || ( ( parsedDataCell.rowpos - 1 ) < useHeadRow && useHeadRow <= ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) ) {
 						calcTick.push( [ ( !options.uniformtick ? cumulFlotValue : uniformCumul ), $( parsedDataCell.elem ).text() ] );
 					}
 
@@ -1238,7 +1213,7 @@ var wet_boew_charts,
 */
 
 
-		RowDefaultOptions = {
+		rowDefaultOptions = {
 			"default-option": "type", // Default CSS Options
 			"default-namespace": ["wb-charts", "wb-chart", "wb-graph"],
 			"type-autocreate": true,
@@ -1287,7 +1262,7 @@ var wet_boew_charts,
 			mainFigureElem.addClass("wb-charts");
 			if ( options.graphclass ) {
 				if ( $.isArray( options.graphclass ) ) {
-					for ( i = 0, _graphclasslen = options.graphclass.length; i < _graphclasslen; i += 1 ) {
+					for ( i = 0, graphClassLength = options.graphclass.length; i < graphClassLength; i += 1 ) {
 						mainFigureElem.addClass( options.graphclass[ i ] );
 					}
 				} else {
@@ -1334,7 +1309,7 @@ var wet_boew_charts,
 
 						break;
 					}
-					tdOptions = setClassOptions( RowDefaultOptions,
+					tdOptions = setClassOptions( rowDefaultOptions,
 						( $( dataGroup.col[ i ].cell[ rIndex ].elem ).attr( "class" ) !== undefined ?
 							$( dataGroup.col[ i ].cell[ rIndex ].elem ).attr( "class" ) :
 							""
@@ -1484,7 +1459,7 @@ var wet_boew_charts,
 
 		// Count nbBarChart,
 		for ( i = 0; i < parsedData.lstrowgroup[ 0 ].row.length; i++ ) {
-			rowOptions = setClassOptions( RowDefaultOptions,
+			rowOptions = setClassOptions( rowDefaultOptions,
 			( $ ( parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].elem ).attr( "class" ) !== undefined ?
 			$( parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].elem ).attr( "class" ) : "" ) );
 
@@ -1613,7 +1588,7 @@ var wet_boew_charts,
 		figureElem.addClass( "wb-charts" ); // Default
 		if ( options.graphclass ) {
 			if ( $.isArray( options.graphclass ) ) {
-				for ( i = 0, _graphclasslen2 = options.graphclass.length; i < _graphclasslen2; i += 1 ) {
+				for ( i = 0, graphClassLength2 = options.graphclass.length; i < graphClassLength2; i += 1 ) {
 					figureElem.addClass( options.graphclass[ i ] );
 				}
 			} else {
