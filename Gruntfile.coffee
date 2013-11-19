@@ -124,7 +124,6 @@ module.exports = (grunt) ->
 		[
 			"copy:assets_min"
 			"copy:misc_min"
-			"copy:sprites_min"
 		]
 	)
 
@@ -346,7 +345,7 @@ module.exports = (grunt) ->
 					"!src/plugins/share/sprites/sprites_*.png"
 				]
 				css: "src/plugins/share/_sprites.scss"
-				map: "src/plugins/share/sprites/sprites_share.png"
+				map: "src/plugins/assets/sprites_share.png"
 				output: "scss"
 			tables:
 				src: [
@@ -354,7 +353,7 @@ module.exports = (grunt) ->
 					"!src/plugins/tables/sprites/sprites_*.png"
 				]
 				css: "src/plugins/tables/_sprites.scss"
-				map: "src/plugins/tables/sprites/sprites_tables.png"
+				map: "src/plugins/assets/sprites_tables.png"
 				output: "scss"
 
 		# Compiles the Sass files
@@ -678,9 +677,9 @@ module.exports = (grunt) ->
 				expand: true
 
 			sprites:
-				cwd: "src/plugins"
-				src: "**/sprites/sprites_*.png"
-				dest: "dist/unmin/css/sprites"
+				cwd: "src/assets/"
+				src: "*.*"
+				dest: "dist/unmin/assets"
 				expand: true
 				flatten: true
 
@@ -711,12 +710,6 @@ module.exports = (grunt) ->
 					"!**/assets/*"
 				]
 				dest: "dist/demos"
-				expand: true
-
-			sprites_min:
-				cwd: "dist/unmin/css"
-				src: "sprites/*.*"
-				dest: "dist/css"
 				expand: true
 
 			deploy:
