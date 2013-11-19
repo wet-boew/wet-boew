@@ -601,7 +601,7 @@ module.exports = (grunt) ->
 					"polyfills/**/assets/*"
 					"other/**/assets/*"
 				]
-				dest: "dist/unmin/js/assets"
+				dest: "dist/unmin/assets"
 				expand: true
 				flatten: true
 
