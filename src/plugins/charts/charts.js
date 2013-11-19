@@ -11,7 +11,7 @@
 
 
 /*
- * Variable and function definitions. 
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
@@ -21,10 +21,10 @@ var wet_boew_charts,
 	$document = vapour.doc,
 
 	/*
-	* Main Entry function to create the charts
-	* @method createCharts
-	* @param {jQuery DOM element} $elm table element use to create the chart
-	*/
+	 * Main Entry function to create the charts
+	 * @method createCharts
+	 * @param {jQuery DOM element} $elm table element use to create the chart
+	 */
 	createCharts = function ($elm) {
 		var allSeries = [],
 			calcTick = [],
@@ -222,23 +222,11 @@ var wet_boew_charts,
 			var separatorNS = "",
 				separator = "",
 				autoCreate = false,
-				detectedNamespace,
-				_lenDetectedNamespace,
-				arrClass,
-				parameter,
-				arrParameters,
-				arrParameter,
-				propName,
-				i, _ilen,
-				j,
-				m, _mlen,
-				valIsNext,
-				isVal,
-				arrValue,
 				arrayOverwrite = false,
 				autoCreateMe = false,
-				jsonString,
-				val;
+				detectedNamespaceLength, arrClass, arrParameter, arrParameters,
+				arrValue, detectedNamespace, i, iLength, isVal, j, jsonString,
+				m, mLength, parameter, propName, val, valIsNext;
 
 			// Test: optSource
 			if ( typeof sourceOptions !== "object" ) {
@@ -265,57 +253,57 @@ var wet_boew_charts,
 			}
 			// Get the namespace separator if defined (optional)
 			separatorNS = ( sourceOptions[ "default-namespace-separator" ] && typeof sourceOptions[ "default-namespace-separator" ] === "string") ? sourceOptions[ "default-namespace-separator" ] : "-";
-			 
+
 			// Get the option separator if defined (optional)
 			separator = ( sourceOptions[ "default-separator" ] && typeof sourceOptions[ "default-separator" ] === "string" ) ? sourceOptions[ "default-separator" ] : " ";
 
 			// Check if the the Auto Json option creation are authorized from class
 			autoCreate = sourceOptions[ "default-autocreate" ]; // Espected returning value True | False
-			
+
 			arrClass = strClass.split( separator ); // Get each defined class
-			for ( m = 0, _mlen = arrClass.length; m < _mlen; m +=1 ) {
+			for ( m = 0, mLength = arrClass.length; m < mLength; m +=1 ) {
 				parameter = arrClass[m];
 
 				// Detect the namespace used
-				if ( _lenDetectedNamespace === undefined ) {
+				if ( detectedNamespaceLength === undefined ) {
 					if ( $.isArray( namespace ) ) {
-						for ( i = 0, _ilen = namespace.length; i < _ilen; i += 1 ) {
+						for ( i = 0, iLength = namespace.length; i < iLength; i += 1 ) {
 							detectedNamespace = namespace[i] + separatorNS;
-							if ( parameter.slice( 0, detectedNamespace.length ) === detectedNamespace ) {
-								_lenDetectedNamespace = detectedNamespace.length;
+							if ( parameter.slice( 0, detectedNamespace.length ) ===  detectedNamespace ) {
+								detectedNamespaceLength = detectedNamespace.length;
 								break;
 							}
 						}
-					} else if ( parameter.slice( 0, namespace.length + separatorNS.length ) === namespace + separatorNS ) {
+					} else if ( parameter.slice( 0, namespace.length + separatorNS.length ) ===  namespace + separatorNS ) {
 						detectedNamespace = namespace + separatorNS;
-						_lenDetectedNamespace = detectedNamespace.length;
+						detectedNamespaceLength = detectedNamespace.length;
 					} else if ( namespace === "" ) {
 						detectedNamespace = "";
-						_lenDetectedNamespace = 0;
+						detectedNamespaceLength = 0;
 					}
 				}
 				// Get the parameter without the namespace
-				arrParameters = ( _lenDetectedNamespace !== undefined ) ? parameter.slice( _lenDetectedNamespace ).split( separatorNS ) : [];
+				arrParameters = ( detectedNamespaceLength !== undefined ) ? parameter.slice( detectedNamespaceLength ).split( separatorNS ) : [];
 				// Convert the parameter in a controled JSON object
-				if ( arrParameters.length > 0 && parameter.slice( 0, _lenDetectedNamespace ) === detectedNamespace ) {
+				if ( arrParameters.length > 0 && parameter.slice( 0, detectedNamespaceLength ) ===  detectedNamespace ) {
 					// Get all defined parameter
-					for ( i = 0, _ilen = arrParameters.length; i < _ilen; i += 1 ) {
+					for ( i = 0, iLength = arrParameters.length; i < iLength; i += 1 ) {
 						arrParameter = arrParameters[ i ];
-						valIsNext = i + 2 === _ilen;
-						isVal = i + 1 === _ilen;
+						valIsNext = i + 2 === iLength;
+						isVal = i + 1 === iLength;
 						// Check if that is the default value and make a reset to the parameter name if applicable
-						if ( isVal && _ilen ) {
-							if ( sourceOptions[ arrParameter + "-autocreate" ] || ( sourceOptions[ arrParameter ] && sourceOptions[ arrParameter + "-typeof" ] && sourceOptions[ arrParameter + "-typeof" ] === "boolean" ) ) {
+						if ( isVal && iLength ) {
+							if ( sourceOptions[ arrParameter + "-autocreate" ] || ( sourceOptions[ arrParameter ] &&  sourceOptions[ arrParameter + "-typeof" ] && sourceOptions[ arrParameter + "-typeof" ] === "boolean" ) ) {
 								// 1. If match an existing option and that option is boolean
 								arrParameter.push( "true" );
 								propName = arrParameter;
 								i += 1;
-								_ilen = arrParameter.length;
+								iLength = arrParameter.length;
 							} else if ( sourceOptions.preset && sourceOptions.preset[ arrParameter ]) {
 								// 2. It match a preset, overide the current setting
 								sourceOptions = jQuery.extend( true, sourceOptions, sourceOptions.preset[ arrParameter ] );
 								break;
-							} else if ( _ilen === 1 ) {
+							} else if ( iLength === 1 ) {
 								// 3. Use the Default set
 								propName = sourceOptions[ "default-option" ] ? sourceOptions[ "default-option" ] : undefined;
 							} else {
@@ -327,13 +315,13 @@ var wet_boew_charts,
 						// Get the type of the current option (if available)
 						// (Note: an invalid value are defined by "undefined" value)
 						// Check if the type are defined
-						if (sourceOptions[ propName + "-typeof" ] ) {
+						if  (sourceOptions[ propName + "-typeof" ] ) {
 							// Repair the value if needed
 							arrValue = [];
-							for ( j = ( i + 1 ); j < _ilen; j += 1 ) {
+							for ( j = ( i + 1 ); j < iLength; j += 1 ) {
 								arrValue.push( arrParameter[ j ] );
 							}
-							if (i < _ilen - 1) {
+							if (i < iLength - 1) {
 								arrParameter = arrParameters[ i ] = arrValue.join( separatorNS );
 							}
 							valIsNext = false;
@@ -399,7 +387,7 @@ var wet_boew_charts,
 								}
 								sourceOptions = jQuery.extend(true, sourceOptions, jQuery.parseJSON(jsonString));
 							}
-							i = _ilen; // Make sur we don't iterate again
+							i = iLength; // Make sur we don't iterate again
 						} else {
 							// Create a sub object
 							if ( arrParameter !== undefined && sourceOptions[ arrParameter ] ) {
@@ -412,7 +400,7 @@ var wet_boew_charts,
 								sourceOptions = sourceOptions[ arrParameter ];
 							} else {
 								// This configuration are rejected
-								i = _ilen; // We don't iterate again
+								i = iLength; // We don't iterate again
 							}
 						}
 					}
@@ -477,7 +465,7 @@ var wet_boew_charts,
 				"pieinnerradius-typeof": "number",
 				"piestartangle-autocreate": true, // Factor of PI used for the starting angle (in radians) It can range between 0 and 200 (where 0 and 200 have the same result).
 				"piestartangle-typeof": "number",
-				"piehighlight-autocreate": true, // Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
+				"piehighlight-autocreate": true, //  Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
 				"piehighlight-typeof": "number",
 				"piehoverable-autocreate": true, // Hoverable pie slice
 				"piehoverable-typeof": "boolean",
@@ -840,7 +828,7 @@ var wet_boew_charts,
 						break;
 					}
 
-					if ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ){
+					if ( parsedDataCell.type === 1 || parsedDataCell.type === 7 )  {
 						nbCells += 1;
 
 						if ( parsedDataCell.child.length > 0 ){
@@ -882,7 +870,7 @@ var wet_boew_charts,
 						break;
 					}
 
-					if ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) {
+					if ( parsedDataCell.type === 1 || parsedDataCell.type === 7 )  {
 
 						parsedDataCell.flotDelta = ( TotalRowValue / nbCells );
 
@@ -996,7 +984,7 @@ var wet_boew_charts,
 					break;
 				}
 
-				if ( parsedDataCell.colpos >= dataColgroupStart && ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) ) {
+				if ( parsedDataCell.colpos >= dataColgroupStart && ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) )  {
 					nbCells += 1;
 
 					nbTotSlots += parsedDataCell.width;
@@ -1035,7 +1023,7 @@ var wet_boew_charts,
 					break;
 				}
 
-				if ( parsedDataCell.colpos >= dataColgroupStart && ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) ) {
+				if ( parsedDataCell.colpos >= dataColgroupStart && ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) )  {
 
 					parsedDataCell.flotDelta = !options.uniformtick ? ( TotalRowValue / nbCells ) : 1;
 
@@ -1076,7 +1064,7 @@ var wet_boew_charts,
 			// important table element: id or class, th;
 			var sMatrix = [],
 				i = 0,
-				_ilen,
+				iLength,
 				j = 0,
 				capVal = "Table caption tag is missing",
 				maxRowCol = 10, //basic;
@@ -1088,7 +1076,7 @@ var wet_boew_charts,
 				headStr,
 				arr,
 				tr;
-			capVal = $( "caption", srcTbl ).text();
+			capVal =  $( "caption", srcTbl ).text();
 			$( "tr ", srcTbl ).each( function () {
 				maxRowCol += 1;
 				if ( s < 1 ) {
@@ -1136,7 +1124,7 @@ var wet_boew_charts,
 					}
 
 					stopRow = i + attrRow - 1;
-						
+
 					if ( attrRow > 1 && attrCol > 1 ) {
 						jj = j;
 						stopCol = j + attrCol - 1;
@@ -1176,7 +1164,7 @@ var wet_boew_charts,
 			html2 = html2.replace( /\n/g, "" );
 			html2 = html2.replace( /<tr/gi, "\n<tr" );
 			arr = html2.split( "\n" );
-			for ( i = 0, _ilen = arr.length; i < _ilen; i += 1 ) {
+			for ( i = 0, iLength = arr.length; i < iLength; i += 1 ) {
 				tr = arr[ i ];
 				if ( tr.match( /<td/i ) !== null ) {
 					arr[ i ] = "</thead><tbody>" + tr;
@@ -1189,13 +1177,13 @@ var wet_boew_charts,
 		}
 
 		if ( options.parsedirection === "y" ) {
-			
+
 			self = swapTable( srcTbl );
-			
+
 			$( self )
 				.attr("class", $( srcTbl ).attr( "class" ) )
 				.removeClass( "wb-charts-parsedirection-y" );
-			
+
 			// Re-lunch the parsing
 			vapour.doc.trigger( {
 				type: "pasiveparse.wb-table.wb",
@@ -1278,7 +1266,7 @@ var wet_boew_charts,
 			tblCaptionText = $( "caption", srcTbl ).text();
 			$( figCaptionElem ).append( tblCaptionHTML );
 
-			dataGroup = parsedData.colgroup[ 0 ].type === 1 ? parsedData.colgroup[ 1 ] : parsedData.colgroup[ 0 ];
+			dataGroup =  parsedData.colgroup[ 0 ].type === 1 ? parsedData.colgroup[ 1 ] : parsedData.colgroup[ 0 ];
 
 			for ( rIndex = parsedData.lstrowgroup[ 0 ].row.length - 1; rIndex >= 0; rIndex -= 1 ) {
 
@@ -1502,7 +1490,7 @@ var wet_boew_charts,
 					// Bar chart case, re-evaluate the calculated point
 					if ( barDelta && rowOptions.chartBarOption ) {
 						// Position bar
-						valuePoint = valueCumul - ( smallestHorizontalFlotDelta / 2 ) + ( smallestHorizontalFlotDelta / nbBarChart * ( rowOptions.chartBarOption - 1) );
+						valuePoint = valueCumul - ( smallestHorizontalFlotDelta / 2 )  + ( smallestHorizontalFlotDelta / nbBarChart * ( rowOptions.chartBarOption - 1) );
 
 						if ( nbBarChart === 1 ) {
 							valuePoint = valueCumul;
@@ -1689,19 +1677,19 @@ var wet_boew_charts,
 	},
 
 	/*
-	* Init runs once per plugin element on the page. There may be multiple elements. 
-	* It will run more than once per plugin if you don't remove the selector from the timer.
-	* @method init
-	* @param {jQuery DOM element} $elm The plugin element being initialized
-	*/
+	 * Init runs once per plugin element on the page. There may be multiple elements.
+	 * It will run more than once per plugin if you don't remove the selector from the timer.
+	 * @method init
+	 * @param {jQuery DOM element} $elm The plugin element being initialized
+	 */
 	init = function( $elm ) {
 		window._timer.remove( selector );
-		
+
 		var modeJS = vapour.getMode() + ".js";
-			
+
 		// Load the required dependencies and prettify the code once finished
 		window.Modernizr.load({
-		
+
 			// For loading multiple dependencies
 			both: [
 				"site!deps/jquery.flot" + modeJS,
@@ -1736,9 +1724,9 @@ $document.on( "timerpoke.wb parsecomplete.wb-table.wb", selector, function( even
 	}
 
 	/*
-	* Since we are working with events we want to ensure that we are being passive about our control, 
-	* so returning true allows for events to always continue
-	*/
+	 * Since we are working with events we want to ensure that we are being passive about our control,
+	 * so returning true allows for events to always continue
+	 */
 	return true;
 });
 
