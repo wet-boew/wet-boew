@@ -93,7 +93,9 @@ module.exports = (grunt) ->
 			"copy:other"
 			"copy:deps"
 			"copy:jsAssets"
-			"copy:jsDemo"
+			"copy:jsDemoPlugins"
+			"copy:jsDemoPolyfills"
+			"copy:jsDemoOther"
 			"i18n"
 			"concat:core"
 			"concat:coreIE8"
@@ -121,7 +123,6 @@ module.exports = (grunt) ->
 		"INTERNAL: Process non-CSS/JS assets to dist"
 		[
 			"copy:assets_min"
-			"copy:demo_min"
 			"copy:misc_min"
 			"copy:sprites_min"
 		]
@@ -364,6 +365,7 @@ module.exports = (grunt) ->
 				src: [
 					"**/*.scss"
 					"!**/_*.scss"
+					"!**/demo/*.scss"
 				]
 				dest: "dist/unmin/css/"
 				ext: ".css"
@@ -386,6 +388,7 @@ module.exports = (grunt) ->
 					"!**/*-base.scss"
 					"!**/*-ie8.scss"
 					"!**/*-noscript.scss"
+					"!**/demo/*.scss"
 				]
 				dest: "dist/unmin/css/polyfills/"
 				ext: ".css"
@@ -393,14 +396,36 @@ module.exports = (grunt) ->
 
 			other:
 				expand: true
-				cwd: "other"
+				cwd: "src/other"
 				src: [
 					"**/*.scss"
 					"!**/*base.scss"
+					"!**/demo/*.scss"
 				]
 				dest: "dist/unmin/css/other/"
 				ext: ".css"
 				flatten: true
+
+			demo_plugins:
+				expand: true
+				cwd: "src/plugins"
+				src: "**/demo/*.scss"
+				dest: "dist/unmin/demos/"
+				ext: ".css"
+
+			demo_polyfills:
+				expand: true
+				cwd: "src/polyfills"
+				src: "**/demo/*.scss"
+				dest: "dist/unmin/demos/"
+				ext: ".css"
+
+			demo_other:
+				expand: true
+				cwd: "src/other"
+				src: "**/demo/*.scss"
+				dest: "dist/unmin/demos/"
+				ext: ".css"
 
 		autoprefixer:
 			options:
@@ -464,7 +489,18 @@ module.exports = (grunt) ->
 				cwd: "dist/unmin/js/other/"
 				src: ["*.js"]
 				dest: "dist/js/other/"
-				ext: "<%= min_suffix %>.js"
+				ext: ".min.js"
+
+			demo:
+				options:
+					banner: "<%= banner %>"
+					preserveComments: (uglify,comment) ->
+						return comment.value.match(/^!/i)
+				expand: true
+				cwd: "dist/unmin/demos/"
+				src: ["**/demo/*.js"]
+				dest: "dist/demos/"
+				ext: ".min.js"
 
 			core:
 				options:
@@ -506,6 +542,16 @@ module.exports = (grunt) ->
 					"!**/*.min.css"
 				]
 				dest: "dist/css"
+				ext: ".min.css"
+
+			demo:
+				expand: true
+				cwd: "dist/unmin/demos/"
+				src: [
+					"**/demo/*.css"
+					"!**/demo/*.min.css"
+				]
+				dest: "dist/demos/"
 				ext: ".min.css"
 
 		htmlcompressor:
@@ -561,7 +607,7 @@ module.exports = (grunt) ->
 				dest: "dist/unmin/fonts"
 				expand: true
 				flatten: true
-				
+
 			misc:
 				cwd: "src/plugins"
 				src: [
@@ -613,8 +659,20 @@ module.exports = (grunt) ->
 				expand: true
 				flatten: true
 
-			jsDemo:
+			jsDemoPlugins:
 				cwd: "src/plugins"
+				src: "**/demo/*.js"
+				dest: "dist/unmin/demos/"
+				expand: true
+
+			jsDemoPolyfills:
+				cwd: "src/polyfills"
+				src: "**/demo/*.js"
+				dest: "dist/unmin/demos/"
+				expand: true
+
+			jsDemoOther:
+				cwd: "src/other"
 				src: "**/demo/*.js"
 				dest: "dist/unmin/demos/"
 				expand: true
@@ -641,12 +699,6 @@ module.exports = (grunt) ->
 					"!**/assets/*.js"
 				]
 				dest: "dist"
-				expand: true
-
-			demo_min:
-				cwd: "dist/unmin/demos/"
-				src: "**/demo/*.js"
-				dest: "dist/demos/"
 				expand: true
 
 			misc_min:
