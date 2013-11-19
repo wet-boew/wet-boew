@@ -5,43 +5,10 @@
 	"category": "Plugiciel",
 	"description": "Crée une galerie photo sur une page Web.",
 	"tag": "lightbox",
-	"en": "lightbox"
+	"en": "lightbox",
+	"css": "demo/lightbox"
 }
 ---
-
-<style>
-	.inline-lst > ul {
-		margin-left: 0;
-	}
-	.inline-lst > ul > li {
-		list-style-type: none;
-		display: inline-block;
-		margin: 0 5px 0 0;
-	}
-	.inline-lst ul li.box {
-		margin-bottom: 0.4em;
-	}
-	.inline-lst li img {
-		margin-bottom: 0;
-	}
-	.inline-lst > ul > li > a {
-		text-decoration: none;
-	}
-	.box > a, .lb-hide-gal li:first-child.box > a {
-		display: block;
-		width: 150px;
-		height: 150px;
-		border: 1px solid #000;
-		text-align: center;
-		line-height: 148px;
-		background: #EEE;
-	}
-	.box > a:hover, .box > a:focus, .box > a:active {
-		text-decoration: underline;
-		background: #FFF;
-	}
-</style>
-
 <section>
 	<h2>Table des matières</h2>
 	<ul>
@@ -81,8 +48,8 @@
 				<div class="inline-lst" class="lb-default-popup">
 					<ul>
 						<li>
-							<a class="wb-lightbox" href="img/1_b.jpg" title="Image 1">
-								<img src="img/1_s.jpg" alt="Image 1" />
+							<a class="wb-lightbox" href="demo/1_b.jpg" title="Image 1">
+								<img src="demo/1_s.jpg" alt="Image 1" />
 							</a>
 						</li>
 						<li class="box">
@@ -122,8 +89,8 @@
 					<summary>Visualiser le code</summary>
 					<pre><code>&lt;ul&gt;
 	&lt;li&gt;
-		&lt;a class="wb-lightbox" href="img/1_b.jpg" title="Image 1"&gt;
-			&lt;img src="img/1_s.jpg" alt="Image 1" /&gt;
+		&lt;a class="wb-lightbox" href="demo/1_b.jpg" title="Image 1"&gt;
+			&lt;img src="demo/1_s.jpg" alt="Image 1" /&gt;
 		&lt;/a&gt;
 	&lt;/li&gt;
 	&lt;li&gt;
@@ -169,23 +136,23 @@
 					<h5>Galerie d'images</h5>
 					<ul>
 						<li>
-							<a href="img/1_b.jpg" title="Image 1">
-								<img src="img/1_s.jpg" alt="Image 1" />
+							<a href="demo/1_b.jpg" title="Image 1">
+								<img src="demo/1_s.jpg" alt="Image 1" />
 							</a>
 						</li>
 						<li>
-							<a href="img/2_b.jpg" title="Image 2">
-								<img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" />
+							<a href="demo/2_b.jpg" title="Image 2">
+								<img src="demo/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" />
 							</a>
 						</li>
 						<li>
-							<a href="img/3_b.jpg" title="Image 3">
-								<img src="img/3_s.jpg" alt="Image 3" />
+							<a href="demo/3_b.jpg" title="Image 3">
+								<img src="demo/3_s.jpg" alt="Image 3" />
 							</a>
 						</li>
 						<li>
-							<a href="img/4_b.jpg" title="Image 4">
-								<img src="img/4_s.jpg" alt="Image 4" />
+							<a href="demo/4_b.jpg" title="Image 4">
+								<img src="demo/4_s.jpg" alt="Image 4" />
 							</a>
 						</li>
 					</ul>
@@ -210,23 +177,23 @@
 	&lt;h5&gt;Galerie d'images&lt;/h5&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
-			&lt;a href="img/1_b.jpg" title="Image 1"&gt;
-				&lt;img src="img/1_s.jpg" alt="Image 1" /&gt;
+			&lt;a href="demo/1_b.jpg" title="Image 1"&gt;
+				&lt;img src="demo/1_s.jpg" alt="Image 1" /&gt;
 			&lt;/a&gt;
 		&lt;/li&gt;
 		&lt;li&gt;
-			&lt;a href="img/2_b.jpg" title="Image 2"&gt;
-				&lt;img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
+			&lt;a href="demo/2_b.jpg" title="Image 2"&gt;
+				&lt;img src="demo/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
 			&lt;/a&gt;
 		&lt;/li&gt;
 		&lt;li&gt;
-			&lt;a href="img/3_b.jpg" title="Image 3"&gt;
-				&lt;img src="img/3_s.jpg" alt="Image 3" /&gt;
+			&lt;a href="demo/3_b.jpg" title="Image 3"&gt;
+				&lt;img src="demo/3_s.jpg" alt="Image 3" /&gt;
 			&lt;/a&gt;
 		&lt;/li&gt;
 		&lt;li&gt;
-			&lt;a href="img/4_b.jpg" title="Image 4"&gt;
-				&lt;img src="img/4_s.jpg" alt="Image 4" /&gt;
+			&lt;a href="demo/4_b.jpg" title="Image 4"&gt;
+				&lt;img src="demo/4_s.jpg" alt="Image 4" /&gt;
 			&lt;/a&gt;
 		&lt;/li&gt;
 	&lt;/ul&gt;
@@ -257,23 +224,23 @@
 					<h5>Galerie d'images</h5>
 					<ul>
 						<li>
-							<a href="img/1_b.jpg" title="Image 1">
-								<img src="img/1_s.jpg" alt="Image 1" />
+							<a href="demo/1_b.jpg" title="Image 1">
+								<img src="demo/1_s.jpg" alt="Image 1" />
 							</a>
 						</li>
 						<li>
-							<a href="img/2_b.jpg" title="Image 2">
-								<img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" />
+							<a href="demo/2_b.jpg" title="Image 2">
+								<img src="demo/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" />
 							</a>
 						</li>
 						<li>
-							<a href="img/3_b.jpg" title="Image 3">
-								<img src="img/3_s.jpg" alt="Image 3" />
+							<a href="demo/3_b.jpg" title="Image 3">
+								<img src="demo/3_s.jpg" alt="Image 3" />
 							</a>
 						</li>
 						<li>
-							<a href="img/4_b.jpg" title="Image 4">
-								<img src="img/4_s.jpg" alt="Image 4" />
+							<a href="demo/4_b.jpg" title="Image 4">
+								<img src="demo/4_s.jpg" alt="Image 4" />
 							</a>
 						</li>
 					</ul>
@@ -299,23 +266,23 @@
 	&lt;h5&gt;Galerie d'images&lt;/h5&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
-			&lt;a href="img/1_b.jpg" title="Image 1"&gt;
-				&lt;img src="img/1_s.jpg" alt="Image 1" /&gt;
+			&lt;a href="demo/1_b.jpg" title="Image 1"&gt;
+				&lt;img src="demo/1_s.jpg" alt="Image 1" /&gt;
 			&lt;/a&gt;
 		&lt;/li&gt;
 		&lt;li&gt;
-			&lt;a href="img/2_b.jpg" title="Image 2"&gt;
-				&lt;img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
+			&lt;a href="demo/2_b.jpg" title="Image 2"&gt;
+				&lt;img src="demo/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
 			&lt;/a&gt;
 		&lt;/li&gt;
 		&lt;li&gt;
-			&lt;a href="img/3_b.jpg" title="Image 3"&gt;
-				&lt;img src="img/3_s.jpg" alt="Image 3" /&gt;
+			&lt;a href="demo/3_b.jpg" title="Image 3"&gt;
+				&lt;img src="demo/3_s.jpg" alt="Image 3" /&gt;
 			&lt;/a&gt;
 		&lt;/li&gt;
 		&lt;li&gt;
-			&lt;a href="img/4_b.jpg" title="Image 4"&gt;
-				&lt;img src="img/4_s.jpg" alt="Image 4" /&gt;
+			&lt;a href="demo/4_b.jpg" title="Image 4"&gt;
+				&lt;img src="demo/4_s.jpg" alt="Image 4" /&gt;
 			&lt;/a&gt;
 		&lt;/li&gt;
 	&lt;/ul&gt;
@@ -345,13 +312,13 @@
 				<div class="wb-lightbox lb-gallery inline-lst">
 					<ul>
 						<li>
-							<a href="img/1_b.jpg" title="Image 1" data-title="image_1_b">
-								<img src="img/1_s.jpg" alt="Image 1" />
+							<a href="demo/1_b.jpg" title="Image 1" data-title="image_1_b">
+								<img src="demo/1_s.jpg" alt="Image 1" />
 							</a>
 						</li>
 						<li>
-							<a href="img/2_b.jpg" title="Image 2" data-title="image_2_b">
-								<img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" />
+							<a href="demo/2_b.jpg" title="Image 2" data-title="image_2_b">
+								<img src="demo/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" />
 							</a>
 						</li>
 					</ul>
@@ -365,13 +332,13 @@
 					<pre><code>&lt;div class="wb-lightbox lb-gallery inline-lst"&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
-			&lt;a href="img/1_b.jpg" title="Image 1" data-title="image_1_b"&gt;
-				&lt;img src="img/1_s.jpg" alt="Image 1" /&gt;
+			&lt;a href="demo/1_b.jpg" title="Image 1" data-title="image_1_b"&gt;
+				&lt;img src="demo/1_s.jpg" alt="Image 1" /&gt;
 			&lt;/a&gt;
 		&lt;/li&gt;
 		&lt;li&gt;
-			&lt;a href="img/2_b.jpg" title="Image 2" data-title="image_2_b"&gt;
-				&lt;img src="img/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
+			&lt;a href="demo/2_b.jpg" title="Image 2" data-title="image_2_b"&gt;
+				&lt;img src="demo/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" /&gt;
 			&lt;/a&gt;
 		&lt;/li&gt;
 	&lt;/ul&gt;
