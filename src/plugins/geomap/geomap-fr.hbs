@@ -1,0 +1,249 @@
+---
+{
+	"title": "Géocarte",
+	"language": "fr",
+	"category": "Plugiciel",
+	"description": "Affiche une carte dynamique sur laquelle des informations de sources supplémentaires peuvent être superposées.",
+	"tag": "geomap",
+	"en": "geomap",
+	"js": "demo/popup_function"
+}
+---
+<!-- GeomapStart -->
+<div id="sample_map"
+	class="wb-geomap position scaleline tab" 
+	data-wet-boew='{ 
+		"layersFile": "demo/config-fr{{environment.suffix}}.js",
+		"tables": [{ 
+			"id": "cities", 
+			"zoom": [
+				true,
+				{
+					"type": "all"
+				}
+			],
+			"tab": false,
+			"datatable": true,
+			"popups": true,
+			"popupsInfo": {
+				"id": "citiesPopup",
+				"height": 200,
+				"width": 300,
+				"close": true,
+				"content": "<div style=\"white-space:nowrap;\"><p><strong>Subdivision de recensement: </strong>_Subdivision de recensement<div><a href=\"#\" class=\"button\" role=\"button\" title=\"Zoom à la ville\" aria-label=\"Zoom à la ville\" onclick=\"zoomFeature()\">Zoom à la ville</a></div></div>"
+			},
+			"style": { 
+				"type": "rule", 
+				"rule": [
+				{
+					"field": "Population de 2011",
+					"value": [1000000],
+					"filter": "LESS_THAN", 
+					"init": {
+						"strokeColor": "#0083f5", 
+						"fillColor": "#57a8f0", 
+						"pointRadius": "6", 
+						"fillOpacity": 0.80, 
+						"strokeWidth": 1.0
+					}
+				},
+				{
+					"field": "Population de 2011",
+					"value": [1000000, 2000000],
+					"filter": "BETWEEN", 
+					"init": {
+						"strokeColor": "#F90", 
+						"fillColor": "#F90", 
+						"pointRadius": "8", 
+						"fillOpacity": 0.80, 
+						"strokeWidth": 1.0
+					}
+				},
+				{
+					"field": "Population de 2011",
+					"value": [2000000],
+					"filter": "GREATER_THAN", 
+					"init": {
+						"strokeColor": "#F00", 
+						"fillColor": "#F00", 
+						"pointRadius": "10", 
+						"fillOpacity": 0.80, 
+						"strokeWidth": 1.0
+					}
+				}					        
+			]}
+		},
+		{
+			"id": "bbox", 
+			"tab": true,
+			"zoom": [true, {"type": "image"}],
+			"popups": true
+		}] 
+	}'>
+
+	<!-- Insert Map Start (mandatory) -->
+	<div class="wb-geomap-map col-sm-9"></div>
+	<!-- Insert Map End -->
+	
+	<!-- Insert Legend Start (optional) --> 
+	<section>
+		<div class="wb-geomap-legend col-sm-3">
+			<h2>Légende</h2>
+		</div>
+	</section>
+	<!-- Insert Legend End -->
+	
+	<!-- Insert Layer Data Start (mandatory) -->
+	<div class="wb-geomap-layers col-sm-12">
+		<section>    
+			<h2>Couches de la carte</h2>
+			<div class="col-md-12">
+				<section>
+					<h3>Villes</h3>
+					<table id="cities" class="table-simplify" aria-label="Villes">
+						<caption>Ceci est un exemple créé à partir d'une table dans le présent document. Un attribut <em>data-geometry</em> contient la géometry et un attribut <em>data-type</em> contient le type (wkt ou bbox) ont été ajoutés à la colone.</caption>
+						<thead>
+							<tr>
+								<th>Rang</th>
+								<th>Subdivision de recensement</th>                            
+								<th>Population de 2011</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-geometry="POINT (-79.3847, 43.6476)" data-type="wkt">
+								<td>1</td>
+								<td><a href="http://www.wikipedia.org/wiki/Toronto" title="Toronto">Toronto</a></td>
+								<td>2615060</td>
+							</tr>
+							<tr data-geometry="POINT (-73.56123, 45.52927)" data-type="wkt">
+								<td>2</td>
+								<td><a href="http://www.wikipedia.org/wiki/Montreal" title="Montreal">Montreal</a></td>
+								<td>1649519</td>
+							</tr>
+							<tr data-geometry="POINT (-114.05879, 51.04668)" data-type="wkt">
+								<td>3</td>
+								<td><a href="http://www.wikipedia.org/wiki/Calgary" title="Calgary">Calgary</a></td>
+								<td>1096833</td>
+							</tr>
+							<tr data-geometry="POINT (-75.68937, 45.41072)" data-type="wkt">
+								<td>4</td>
+								<td class="select"><a href="http://www.wikipedia.org/wiki/Ottawa" title="Ottawa">Ottawa</a></td>
+								<td>883391</td>
+							</tr>
+							<tr data-geometry="POINT (-113.49590, 53.53398)" data-type="wkt">
+								<td>5</td>
+								<td><a href="http://www.wikipedia.org/wiki/Edmonton" title="Edmonton">Edmonton</a></td>
+								<td>812201</td>
+							</tr>
+							<tr data-geometry="POINT (-79.65, 43.60)" data-type="wkt">
+								<td>6</td>
+								<td><a href="http://www.wikipedia.org/wiki/Mississauga" title="Mississauga">Mississauga</a></td>
+								<td>713443</td>
+							</tr>
+							<tr data-geometry="POINT (-97.14352, 49.89375)" data-type="wkt">
+								<td>7</td>
+								<td><a href="http://www.wikipedia.org/wiki/Winnipeg" title="Winnipeg">Winnipeg</a></td>
+								<td>663617</td>
+							</tr>
+							<tr data-geometry="POINT (-123.10091, 49.26428)" data-type="wkt">
+								<td>8</td>
+								<td><a href="http://www.wikipedia.org/wiki/Vancouver" title="Vancouver">Vancouver</a></td>
+								<td>603502</td>
+							</tr>
+							<tr data-geometry="POINT (-79.76181, 43.68686)" data-type="wkt">
+								<td>9</td>
+								<td><a href="http://www.wikipedia.org/wiki/Brampton" title="Brampton">Brampton</a></td>
+								<td>523911</td>
+							</tr>
+							<tr data-geometry="POINT (-79.86788, 43.25717)" data-type="wkt">
+								<td>10</td>
+								<td><a href="http://www.wikipedia.org/wiki/Hamilton,_Ontario" title="Hamilton, Ontario">Hamilton</a></td>
+								<td>519949</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th>Rang</th>
+								<th>Subdivision de recensement</th>                            
+								<th>Population de 2011</th>
+							</tr>
+						</tfoot>
+					</table>
+				</section>
+			</div>
+
+			<h2 class="wb-invisible">Résultats de la recherche</h2>
+			<table id="bbox" class="table-simplify" aria-label="Résultats de la recherche">
+				<caption class="wb-invisible">Tableau des résultats de la recherche contenant la géométries des étendues des éléments.</caption>
+				<thead>
+					<tr>
+						<th></th>                        
+						<th>Titre</th>
+						<th>Géometrie</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-geometry="-136, 61, -118, 70" data-type="bbox">
+						<td>1</td>
+						<td>Rapport de 2011 sur les activités terrain et la collecte de données terrain dont les couches thermiques et active dans le corridor du Mackenzie, Territoires du Nord, n ° de licence 14918</td>
+						<td>-136, 61, -118, 70</td>
+					</tr>
+					<tr data-geometry="-92.5, 72.75, -79, 75.5" data-type="bbox">
+						<td>2</td>
+						<td>Dinokystes du Crétacé supérieur-inférieur tertiaire, îles de Bylot et Devon, archipel arctique</td>
+						<td>-92.5, 72.75, -79, 75.5</td>                                           
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<th></th>                        
+						<th>Titre</th>
+						<th>Géometrie</th>
+					</tr>
+				</tfoot>
+			</table>
+		</section>
+	</div>
+	<!-- Insert Layer Data End-->
+	
+</div>
+<!-- GeomapEnd -->
+
+<div style="height: 10px;"></div>
+
+<!-- GeomapStart -->
+<div id="location_map"
+	class="wb-geomap static" 
+	data-wet-boew='{ 
+		"tables": [{
+			"id": "addNRCan"
+		}] 
+	}'>
+	
+	<!-- Insert Map Start (mandatory) -->
+	<div class="wb-geomap-map  span-3"></div>
+	<!-- Insert Map End -->
+	
+	<!-- Insert Layer Data Start (mandatory) -->
+	<div class="wb-geomap-layers span-3"><section>  
+	<h2 class="wb-invisible">Adresse du bureaux de ressources naturelles Canada, Ottawa</h2>
+		<table id="addNRCan" class="table-simplify width-100" aria-label="Adresse du bureaux de RNCan Ottawa">
+			<caption class="wb-invisible">Adresse du bureaux de ressources naturelles Canada, Ottawa</caption>
+			<thead>
+				<tr>                    
+					<th>Adresse</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-geometry="POINT (-75.70535, 45.3995)" data-type="wkt">
+					<td>615, rue Booth,<br />Ottawa (ON),<br />Canada,<br />K1A 0E8</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	</div>
+	<!-- Insert Layer Data End -->  
+</div>
+<!-- GeomapEnd -->
+
+<script src="demo/popup_function{{environment.suffix}}.js"></script>

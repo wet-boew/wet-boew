@@ -349,7 +349,6 @@ module.exports = (grunt) ->
 				css: "src/plugins/share/_sprites.scss"
 				map: "src/plugins/share/sprites/sprites_share.png"
 				output: "scss"
-
 		# Compiles the Sass files
 		sass:
 			all:
@@ -482,7 +481,29 @@ module.exports = (grunt) ->
 				cwd: "dist/unmin/js/other/"
 				src: ["*.js"]
 				dest: "dist/js/other/"
-				ext: "<%= min_suffix %>.js"
+				ext: ".min.js"
+
+			assets:
+				options:
+					banner: "<%= banner %>"
+					preserveComments: (uglify,comment) ->
+						return comment.value.match(/^!/i)
+				expand: true
+				cwd: "dist/unmin/js/assets"
+				src: ["*.js"]
+				dest: "dist/js/assets"
+				ext: ".min.js"
+				
+			demo:
+				options:
+					banner: "<%= banner %>"
+					preserveComments: (uglify,comment) ->
+						return comment.value.match(/^!/i)
+				expand: true
+				cwd: "dist/unmin/demos/"
+				src: ["**/demo/*.js"]
+				dest: "dist/demos/"
+				ext: ".min.js"
 
 			core:
 				options:
@@ -625,6 +646,8 @@ module.exports = (grunt) ->
 					"magnific-popup/dist/jquery.magnific-popup.js"
 					"google-code-prettify/src/*.js"
 					"DataTables/media/js/jquery.dataTables.js"
+					"../src/plugins/geomap/deps/openlayers.js"
+					"proj4/dist/proj4.js"
 				]
 				dest: "dist/unmin/js/deps"
 				expand: true
@@ -658,7 +681,6 @@ module.exports = (grunt) ->
 				src: "**/demo/*.js"
 				dest: "dist/unmin/demos/"
 				expand: true
-
 			sprites:
 				cwd: "src/plugins"
 				src: "**/sprites/sprites_*.png"
@@ -683,12 +705,6 @@ module.exports = (grunt) ->
 				dest: "dist"
 				expand: true
 
-			demo_min:
-				cwd: "dist/unmin/demos/"
-				src: "**/demo/*.js"
-				dest: "dist/demos/"
-				expand: true
-
 			misc_min:
 				cwd: "src/plugins"
 				src: [
@@ -706,7 +722,6 @@ module.exports = (grunt) ->
 				src: "sprites/*.*"
 				dest: "dist/css"
 				expand: true
-
 			deploy:
 				src: [
 					"*.txt"

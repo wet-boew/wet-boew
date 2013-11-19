@@ -1,0 +1,4109 @@
+
+{
+        
+    "links": [ 
+    
+      {
+          "rel": "self",          
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst"      
+      },
+      {
+          "rel": "next",          
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?start-index=944099"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst?alt=gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst"
+      }
+    
+    ],
+    "count": 171590,
+    "pagesize": 25,
+    "products": [
+        {
+            
+        "id": "cd6ed785-763a-58a8-848c-3d78c0a9c3c8",
+        "title": "Surficial geology of north-central Manitoba",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml"
+      }
+    
+        ],
+        "author": "Klassen, R W",
+        "summary": "Abstract not available. These are comprehensive final reports on the geology of specific geographic areas.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "klassen-r-w",
+                        "label": "Klassen, R W"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "permafrost",
+                        "label": "permafrost"
+                    },
+                    {
+                        "term": "fossils",
+                        "label": "fossils"
+                    },
+                    {
+                        "term": "stratigraphy",
+                        "label": "stratigraphy"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "zip",
+                        "label": "ZIP"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "manitoba",
+                        "label": "Manitoba"
+                    },
+                    {
+                        "term": "canadian-shield",
+                        "label": "Canadian Shield"
+                    },
+                    {
+                        "term": "hudson-bay-lowlands",
+                        "label": "Hudson Bay Lowlands"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-memoir",
+                        "label": "Geological Survey of Canada, Memoir"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "documentdigital-documentnumerique",
+                        "label": "documentDigital; documentNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-102.0,52.0], [-102.0,60.0], [-90.0,60.0], [-90.0,52.0], [-102.0,52.0] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "32c8131f-585c-5c2a-9405-48d93dda16c0",
+        "title": "A preliminary tsunami hazard assessment of the Canadian Coastline",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/32c8131f-585c-5c2a-9405-48d93dda16c0.xml"
+      }
+    
+        ],
+        "author": "Leonard, L J; Rogers, G C; Mazzotti, S",
+        "summary": "The Canadian coastline is the longest of any country in the world, and is at risk from tsunamis generated in three oceans. The current state of knowledge precludes a complete probabilistic tsunami hazard assessment, which would require quantification of a wide range of possible scenarios for each tsunami source, coupled with modelling that incorporates fine-resolution bathymetry and onland topography to adequately assess potential runup at the coast. This preliminary assessment presents a first attempt to quantify the tsunami hazard on the Canadian Pacific, Atlantic and Arctic coastlines from local and far-field, earthquake and large landslide sources. For each source considered, we calculate the probability that tsunami runup at the coast will exceed 1.5 m (threshold for potential damage) and 3 m (significant damage potential), in a 50-year period. For each coastal region, we then combine the relative hazard from each source to calculate the overall probability that the coastline in question will experience tsunami runup exceeding 1.5 m (and 3 m) within a 50-year period, from any geological source. We also consider the maximum runup levels expected to occur within time periods of 100, 500, 1000, and 2500 years. Our assessment indicates that the overall tsunami hazard (runup ? 1.5 m) of the outer Pacific coastline (~40-80% probability of exceedance in 50 y) is an order of magnitude greater than that of the outer Atlantic coastline (~1-15%), which in turn is an order of magnitude greater than the Arctic coastline (< 1%). These probabilities are equivalent to an expected recurrence of runup exceeding 1.5 m of ~30-100 years for the outer Pacific coast, ~300-1700 for the Atlantic, and ~6500-17,000 years for the Arctic. For larger runup (? 3 m), the estimated Pacific hazard (~10-30% probability of exceedance in 50 y) is significantly larger than both the Atlantic (~1-5%) and the Arctic (< 1%). Equivalent recurrence intervals are ~150-500 years for the Pacific, ~650-4000 years for the Atlantic, and ~7000-20,000 years for the Arctic. On the outer Pacific coastline, the 1.5 m runup hazard is dominated by far-field subduction zone sources, whereas the more severe 3 m runup hazard is almost entirely contributed by local subduction zone sources. The Cascadia subduction zone presents the highest tsunami hazard to the Pacific coast, with the most extreme potential runup; potential thrust sources along the Explorer and Queen Charlotte margins contribute a significant proportion of the estimated tsunami hazard for the northern BC coastline. For the more sheltered inner Pacific coasts of Juan de Fuca and Georgia Straits, the hazard at both levels is contributed mostly by Cascadia subduction zone events. Tsunami hazard on the Atlantic coastline is dominated by far-field subduction zone sources, but this hazard is poorly constrained. Significant tsunami hazard is also provided by near-field continental slope failures similar to the 1929 Grand Banks event. Tsunami hazard on the Arctic coastline remains poorly constrained, but these regions are assumed to be sheltered from far-field tsunamis, so the hazard is provided by local sources. A hypothetical earthquake source beneath the Mackenzie delta requires further study. We discuss briefly but do not quantify the hazard of locally-damaging waves triggered by subaerial or submarine landslides, but we highlight susceptible areas. A probabilistic analysis of local landslide tsunamis would require (1) the identification of potential sources; (2) evidence for past tsunamigenic events to establish frequency-size relationships and/or slope stability analyses that incorporate expected earthquake shaking levels; (3) probabilistic tsunami modelling of a wide range of possible failures.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "leonard-l-j",
+                        "label": "Leonard, L J"
+                    },
+                    {
+                        "term": "rogers-g-c",
+                        "label": "Rogers, G C"
+                    },
+                    {
+                        "term": "mazzotti-s",
+                        "label": "Mazzotti, S"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "health-hazards",
+                        "label": "health hazards"
+                    },
+                    {
+                        "term": "landslides",
+                        "label": "landslides"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "western-offshore-region",
+                        "label": "Western offshore region"
+                    },
+                    {
+                        "term": "eastern-offshore-region",
+                        "label": "Eastern offshore region"
+                    },
+                    {
+                        "term": "northern-offshore-region",
+                        "label": "Northern offshore region"
+                    },
+                    {
+                        "term": "british-columbia",
+                        "label": "British Columbia"
+                    },
+                    {
+                        "term": "ontario",
+                        "label": "Ontario"
+                    },
+                    {
+                        "term": "quebec",
+                        "label": "Quebec"
+                    },
+                    {
+                        "term": "new-brunswick",
+                        "label": "New Brunswick"
+                    },
+                    {
+                        "term": "nova-scotia",
+                        "label": "Nova Scotia"
+                    },
+                    {
+                        "term": "prince-edward-island",
+                        "label": "Prince Edward Island"
+                    },
+                    {
+                        "term": "newfoundland-and-labrador",
+                        "label": "Newfoundland and Labrador"
+                    },
+                    {
+                        "term": "northwest-territories",
+                        "label": "Northwest Territories"
+                    },
+                    {
+                        "term": "yukon",
+                        "label": "Yukon"
+                    },
+                    {
+                        "term": "nunavut",
+                        "label": "Nunavut"
+                    },
+                    {
+                        "term": "atlantic-ocean",
+                        "label": "Atlantic Ocean"
+                    },
+                    {
+                        "term": "pacific-ocean",
+                        "label": "Pacific Ocean"
+                    },
+                    {
+                        "term": "arctic-ocean",
+                        "label": "Arctic Ocean"
+                    },
+                    {
+                        "term": "vancouver-island",
+                        "label": "Vancouver Island"
+                    },
+                    {
+                        "term": "haida-gwaii",
+                        "label": "Haida Gwaii"
+                    },
+                    {
+                        "term": "pacific-coast",
+                        "label": "Pacific Coast"
+                    },
+                    {
+                        "term": "atlantic-coast",
+                        "label": "Atlantic Coast"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "documentdigital-documentnumerique",
+                        "label": "documentDigital; documentNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-144.0,42.0], [-144.0,84.0], [-48.0,84.0], [-48.0,42.0], [-144.0,42.0] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "ece83d21-83c8-5b28-a4b2-1303f0b74381",
+        "title": "Preliminary characterisation of metamorphism on Cumberland Peninsula, Baffin Island, Nunavut",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/ece83d21-83c8-5b28-a4b2-1303f0b74381.xml"
+      }
+    
+        ],
+        "author": "Hamilton, B M; Patison, D R M; Sanborn-Barrie, M; Young, M D",
+        "summary": "A metamorphic map of Cumberland Peninsula, Nunavut is presented based on field and petrographic observations of metapelite, metapsammite, and metabasite. Five metamorphic zones are recognized in metapelite: staurolite+muscovite (lower-amphibolite facies); andalusite+muscovite; sillimanite+muscovite (both middle-amphibolite facies); sillimanite±K-feldspar (upper-amphibolite facies); and cordierite+garnet±K-feldspar (granulite facies). These subfacies comprise approximately 1%, 5%, 15%, 70%, and 9% of Cumberland Peninsula's metamorphic rocks, respectively. Most amphibolite-facies assemblages developed during Paleoproterozoic regional metamorphism. Lower- and middle-amphibolite-facies rocks occur in a 120 km by 15 km, structurally controlled corridor. Sillimanite+muscovite zone rocks had sequential growth of staurolite, andalusite, then sillimanite. Both the sillimanite+muscovite prograde P-T path and the piezothermic array for the area transect the staurolite+andalusite stability field with a shallow P/T slope implying middle-amphibolite-facies metamorphism took place at low pressure (3.3- 4.1 kbar). Porphyroblasts in amphibolite-facies rocks are mostly intertectonic with respect to two phases of Paleoproterozoic deformation suggesting regional metamorphism was orogenic. Two styles of granulite-facies metamorphism occurred prior to regional metamorphism. The first comprises a southeastern domain of granulite-facies rocks variably overprinted by amphibolite-facies metamorphism. The second formed later in close proximity to widely dispersed charnockitic plutons, suggesting regional contact metamorphism.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "hamilton-b-m",
+                        "label": "Hamilton, B M"
+                    },
+                    {
+                        "term": "patison-d-r-m",
+                        "label": "Patison, D R M"
+                    },
+                    {
+                        "term": "sanborn-barrie-m",
+                        "label": "Sanborn-Barrie, M"
+                    },
+                    {
+                        "term": "young-m-d",
+                        "label": "Young, M D"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "nunavut",
+                        "label": "Nunavut"
+                    },
+                    {
+                        "term": "cumberland-peninsula",
+                        "label": "Cumberland Peninsula"
+                    },
+                    {
+                        "term": "baffin-island",
+                        "label": "Baffin Island"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-current-research-online",
+                        "label": "Geological Survey of Canada, Current Research (Online)"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "documentdigital-documentnumerique",
+                        "label": "documentDigital; documentNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-66.5,64.75], [-66.5,67.5], [-60.5,67.5], [-60.5,64.75], [-66.5,64.75] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "c9724666-50b6-5981-a775-c92b144f803a",
+        "title": "Structural model of the Greater Toronto and Oak Ridges Moraine areas, southern Ontario: Halton Till",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml"
+      }
+    
+        ],
+        "author": "Russell, H A J; Sharpe, D R; Logan, C",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "russell-h-a-j",
+                        "label": "Russell, H A J"
+                    },
+                    {
+                        "term": "sharpe-d-r",
+                        "label": "Sharpe, D R"
+                    },
+                    {
+                        "term": "logan-c",
+                        "label": "Logan, C"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "topography",
+                        "label": "topography"
+                    },
+                    {
+                        "term": "groundwater",
+                        "label": "groundwater"
+                    },
+                    {
+                        "term": "stratigraphy",
+                        "label": "stratigraphy"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    },
+                    {
+                        "term": "jpeg-2000",
+                        "label": "JPEG 2000"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "ontario",
+                        "label": "Ontario"
+                    },
+                    {
+                        "term": "toronto",
+                        "label": "Toronto"
+                    },
+                    {
+                        "term": "hamilton",
+                        "label": "Hamilton"
+                    },
+                    {
+                        "term": "brampton",
+                        "label": "Brampton"
+                    },
+                    {
+                        "term": "bolton",
+                        "label": "Bolton"
+                    },
+                    {
+                        "term": "markham",
+                        "label": "Markham"
+                    },
+                    {
+                        "term": "oshawa",
+                        "label": "Oshawa"
+                    },
+                    {
+                        "term": "port-hope",
+                        "label": "Port Hope"
+                    },
+                    {
+                        "term": "alliston",
+                        "label": "Alliston"
+                    },
+                    {
+                        "term": "scugog",
+                        "label": "Scugog"
+                    },
+                    {
+                        "term": "new-market",
+                        "label": "New Market"
+                    },
+                    {
+                        "term": "rice-lake",
+                        "label": "Rice Lake"
+                    },
+                    {
+                        "term": "guelph",
+                        "label": "Guelph"
+                    },
+                    {
+                        "term": "beaverton",
+                        "label": "Beaverton"
+                    },
+                    {
+                        "term": "orangeville",
+                        "label": "Orangeville"
+                    },
+                    {
+                        "term": "trenton",
+                        "label": "Trenton"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-80.0,43.25], [-80.0,44.5], [-78.0,44.5], [-78.0,43.25], [-80.0,43.25] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca",
+        "title": "U-Pb ages of Archean basement and Paleoproterozoic plutonic rocks, southern Cumberland Peninsula, eastern Baffin Island, Nunavut",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/73d2fe97-e311-5ba8-90ec-ea61a4d9b8ca.xml"
+      }
+    
+        ],
+        "author": "Rayner, N M; Sanborn-Barrie, M; Young, M D; Whalen, J B",
+        "summary": "Recent mapping coupled with geochronological and isotopic studies on the southern half of Cumberland Peninsula, Baffin Island, have identified and characterized four distinct plutonic suites. An extensive plutonic gneiss complex yields ages of 2991 ± 4 Ma, 2938 ± 4 Ma, and 2782 ± 4 Ma, whereas a second group of discrete plutons yields solely Neoarchean ages of 2772 ± 6 Ma, 2759 ± 3 Ma, and 2700 ± 4 Ma. These Archean rocks form the structural basement to a cover sequence, the Hoare Bay Group, both of which are cut by a charnockite-granodiorite-diorite suite with ages of 1894 ± 5 Ma and 1889 ± 3 Ma, informally designated the Qikiqtarjuaq plutonic suite. Mylonitic, high-K intrusive sheets, interpreted to have been emplaced syntectonically during regional deformation, yield ages of 1882 ± 13 Ma and 1873 ± 16 Ma.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "rayner-n-m",
+                        "label": "Rayner, N M"
+                    },
+                    {
+                        "term": "sanborn-barrie-m",
+                        "label": "Sanborn-Barrie, M"
+                    },
+                    {
+                        "term": "young-m-d",
+                        "label": "Young, M D"
+                    },
+                    {
+                        "term": "whalen-j-b",
+                        "label": "Whalen, J B"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "nunavut",
+                        "label": "Nunavut"
+                    },
+                    {
+                        "term": "cumberland-peninsula",
+                        "label": "Cumberland Peninsula"
+                    },
+                    {
+                        "term": "baffin-island",
+                        "label": "Baffin Island"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-current-research-online",
+                        "label": "Geological Survey of Canada, Current Research (Online)"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "documentdigital-documentnumerique",
+                        "label": "documentDigital; documentNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-66.5,64.75], [-66.5,67.5], [-60.5,67.5], [-60.5,64.75], [-66.5,64.75] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187",
+        "title": "Geophysical Series, detailed geophysical compilation project, Yukon Plateau, Yukon, NTS 115-I, J, K, N, O, P and 116A and B",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/d6ad7bc4-0ffe-520c-a04b-4d5ed2b3e187.xml"
+      }
+    
+        ],
+        "author": "Hayward, N; Miles, W; Oneschuk, D",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "hayward-n",
+                        "label": "Hayward, N"
+                    },
+                    {
+                        "term": "miles-w",
+                        "label": "Miles, W"
+                    },
+                    {
+                        "term": "oneschuk-d",
+                        "label": "Oneschuk, D"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "geophysics",
+                        "label": "geophysics"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    },
+                    {
+                        "term": "jpeg-2000",
+                        "label": "JPEG 2000"
+                    },
+                    {
+                        "term": "zip",
+                        "label": "ZIP"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "yukon",
+                        "label": "Yukon"
+                    },
+                    {
+                        "term": "yukon-plateau",
+                        "label": "Yukon Plateau"
+                    },
+                    {
+                        "term": "stevenson-ridge",
+                        "label": "Stevenson Ridge"
+                    },
+                    {
+                        "term": "stewart-river",
+                        "label": "Stewart River"
+                    },
+                    {
+                        "term": "mcquesten",
+                        "label": "McQuesten"
+                    },
+                    {
+                        "term": "carmacks",
+                        "label": "Carmacks"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-141.0,60.75], [-141.0,64.25], [-136.5,64.25], [-136.5,60.75], [-141.0,60.75] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "1d86ff27-fbc7-5fad-84ca-3708bf354205",
+        "title": "Configuration of Mike21 for the simulation of nearshore storm waves, currents and sediment transport: Brackley Bight, Prince Edward Island",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/1d86ff27-fbc7-5fad-84ca-3708bf354205.xml"
+      }
+    
+        ],
+        "author": "Manson, G K",
+        "summary": "The North Shore of Prince Edward Island (PEI) is a sandy, multi-barred coast with limited fetch in most directions but open to the Gulf of St. Lawrence for several hundred kilometres to the north. In the fall and winter, storms tracking northwards across PEI and into the Gulf can bring sustained storm waves which generate currents capable of transporting sand in both the along- and across-shore directions. Mike21 is a commercially available combined wave, hydrodynamic and sand transport model that may be utilised to improve understanding of contemporary sand transport and possible implications of changing climate in the Brackley Bight area of the North Shore. This manuscript describes the development of a Mike21 model domain and optimal configurations of the Mike21 Spectral Wave, Hydrodynamic and Sand Transport modules appropriate to the study area. The sensitivities of several parameters in each module are tested. The Spectral Wave and Hydrodynamic modules are sensitive to estimates of bed roughness with optimal values considerably lower than published semi-empirical estimates. The Sand Transport module is sensitive to the input sediment transport tables and estimates of the maximum amount of vertical bed level change per day. Simulation of a 4-day moderate northeasterly storm is conducted and the results are compared to currents, waves, and tides measured by S4 current meters and the instrumented seabed lander RALPH during a sediment transport experiment in 1999. The model successfully simulates storm waves and currents and provides reasonable estimates of the amount and patterns of sediment transport.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "manson-g-k",
+                        "label": "Manson, G K"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "modelling",
+                        "label": "modelling"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "prince-edward-island",
+                        "label": "Prince Edward Island"
+                    },
+                    {
+                        "term": "brackley-bight",
+                        "label": "Brackley Bight"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "documentdigital-documentnumerique",
+                        "label": "documentDigital; documentNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-63.5,47.3333], [-63.5,47.5833], [-62.6667,47.5833], [-62.6667,47.3333], [-63.5,47.3333] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "fb402a8a-1afb-59b3-91be-2524581558d2",
+        "title": "First vertical derivative of the magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-P/12 and part of 115-P/11, Yukon",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/fb402a8a-1afb-59b3-91be-2524581558d2.xml"
+      }
+    
+        ],
+        "author": "Kiss, F",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "kiss-f",
+                        "label": "Kiss, F"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "geophysics",
+                        "label": "geophysics"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    },
+                    {
+                        "term": "jpeg-2000",
+                        "label": "JPEG 2000"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "yukon",
+                        "label": "Yukon"
+                    },
+                    {
+                        "term": "stewart-river",
+                        "label": "Stewart River"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-138.0,63.5], [-138.0,63.75], [-137.4167,63.75], [-137.4167,63.5], [-138.0,63.5] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "791c2972-870b-5589-913a-3d8ec641b93f",
+        "title": "First vertical derivative of the magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/4 and part of 115-O/3, Yukon",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/791c2972-870b-5589-913a-3d8ec641b93f.xml"
+      }
+    
+        ],
+        "author": "Kiss, F",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "kiss-f",
+                        "label": "Kiss, F"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "geophysics",
+                        "label": "geophysics"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    },
+                    {
+                        "term": "jpeg-2000",
+                        "label": "JPEG 2000"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "yukon",
+                        "label": "Yukon"
+                    },
+                    {
+                        "term": "white-river",
+                        "label": "White River"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-139.9,63.0], [-139.9,63.25], [-139.25,63.25], [-139.25,63.0], [-139.9,63.0] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "49ab7617-e164-5daa-9241-311438ba72f7",
+        "title": "Residual total magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/8 and part of 115-O/7, Yukon",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/49ab7617-e164-5daa-9241-311438ba72f7.xml"
+      }
+    
+        ],
+        "author": "Kiss, F",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "kiss-f",
+                        "label": "Kiss, F"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "geophysics",
+                        "label": "geophysics"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    },
+                    {
+                        "term": "jpeg-2000",
+                        "label": "JPEG 2000"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "yukon",
+                        "label": "Yukon"
+                    },
+                    {
+                        "term": "stewart-river",
+                        "label": "Stewart River"
+                    },
+                    {
+                        "term": "rosebud-creek",
+                        "label": "Rosebud Creek"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-138.75,63.25], [-138.75,63.5], [-138.0,63.5], [-138.0,63.25], [-138.75,63.25] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "057a6a16-dda2-50cb-b511-1a453c911025",
+        "title": "First vertical derivative of the magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-P/13 and part of NTS 115-P/14, Yukon",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/057a6a16-dda2-50cb-b511-1a453c911025.xml"
+      }
+    
+        ],
+        "author": "Kiss, F",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "kiss-f",
+                        "label": "Kiss, F"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "geophysics",
+                        "label": "geophysics"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    },
+                    {
+                        "term": "jpeg-2000",
+                        "label": "JPEG 2000"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "yukon",
+                        "label": "Yukon"
+                    },
+                    {
+                        "term": "little-south-klondike-river",
+                        "label": "Little South Klondike River"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-138.0,63.75], [-138.0,64.0], [-137.3333,64.0], [-137.3333,63.75], [-138.0,63.75] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "50b27a79-be19-5509-957e-2267e1aa5d19",
+        "title": "Residual total magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/6 and part of 115-O/7, Yukon",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/50b27a79-be19-5509-957e-2267e1aa5d19.xml"
+      }
+    
+        ],
+        "author": "Kiss, F",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "kiss-f",
+                        "label": "Kiss, F"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "geophysics",
+                        "label": "geophysics"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    },
+                    {
+                        "term": "jpeg-2000",
+                        "label": "JPEG 2000"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "yukon",
+                        "label": "Yukon"
+                    },
+                    {
+                        "term": "white-river",
+                        "label": "White River"
+                    },
+                    {
+                        "term": "dome-creek",
+                        "label": "Dome Creek"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-139.25,63.0], [-139.25,63.4167], [-138.75,63.4167], [-138.75,63.0], [-139.25,63.0] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "bb694add-c5f2-55ea-8d46-da5259176a11",
+        "title": "First vertical derivative of the magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/9 and part of NTS 115-O/10, Yukon",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/bb694add-c5f2-55ea-8d46-da5259176a11.xml"
+      }
+    
+        ],
+        "author": "Kiss, F",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "kiss-f",
+                        "label": "Kiss, F"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "geophysics",
+                        "label": "geophysics"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    },
+                    {
+                        "term": "jpeg-2000",
+                        "label": "JPEG 2000"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "yukon",
+                        "label": "Yukon"
+                    },
+                    {
+                        "term": "dominion-creek",
+                        "label": "Dominion Creek"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-138.5833,63.5], [-138.5833,63.75], [-138.0,63.75], [-138.0,63.5], [-138.5833,63.5] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "f6077fc7-47c1-57b8-9777-843ea2e82eba",
+        "title": "Residual total magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-I/11 and parts of NTS 115-I/5, 6, 12, Yukon",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/f6077fc7-47c1-57b8-9777-843ea2e82eba.xml"
+      }
+    
+        ],
+        "author": "Kiss, F",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "kiss-f",
+                        "label": "Kiss, F"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "geophysics",
+                        "label": "geophysics"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    },
+                    {
+                        "term": "jpeg-2000",
+                        "label": "JPEG 2000"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "yukon",
+                        "label": "Yukon"
+                    },
+                    {
+                        "term": "big-creek",
+                        "label": "Big Creek"
+                    },
+                    {
+                        "term": "yukon-river",
+                        "label": "Yukon River"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-137.8333,62.4667], [-137.8333,62.75], [-137.0,62.75], [-137.0,62.4667], [-137.8333,62.4667] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "2124e2b9-c651-5309-95e0-7b44f51756bd",
+        "title": "Residual total magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/9 and part of NTS 115-O/10, Yukon",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/2124e2b9-c651-5309-95e0-7b44f51756bd.xml"
+      }
+    
+        ],
+        "author": "Kiss, F",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "kiss-f",
+                        "label": "Kiss, F"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "geophysics",
+                        "label": "geophysics"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    },
+                    {
+                        "term": "jpeg-2000",
+                        "label": "JPEG 2000"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "yukon",
+                        "label": "Yukon"
+                    },
+                    {
+                        "term": "dominion-creek",
+                        "label": "Dominion Creek"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-138.5833,63.5], [-138.5833,63.75], [-138.0,63.75], [-138.0,63.5], [-138.5833,63.5] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "99fd7646-9744-556c-a1dd-e906835e1519",
+        "title": "Residual total magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/4 and part of 115-O/3, Yukon",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/99fd7646-9744-556c-a1dd-e906835e1519.xml"
+      }
+    
+        ],
+        "author": "Kiss, F",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "kiss-f",
+                        "label": "Kiss, F"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "geophysics",
+                        "label": "geophysics"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    },
+                    {
+                        "term": "jpeg-2000",
+                        "label": "JPEG 2000"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "yukon",
+                        "label": "Yukon"
+                    },
+                    {
+                        "term": "white-river",
+                        "label": "White River"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-139.9,63.0], [-139.9,63.25], [-139.25,63.25], [-139.25,63.0], [-139.9,63.0] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "a1dc3e98-d64e-57ba-9384-db7231493c1e",
+        "title": "First vertical derivative of the magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/6 and part of 115-O/7, Yukon",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/a1dc3e98-d64e-57ba-9384-db7231493c1e.xml"
+      }
+    
+        ],
+        "author": "Kiss, F",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "kiss-f",
+                        "label": "Kiss, F"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "geophysics",
+                        "label": "geophysics"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    },
+                    {
+                        "term": "jpeg-2000",
+                        "label": "JPEG 2000"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "yukon",
+                        "label": "Yukon"
+                    },
+                    {
+                        "term": "white-river",
+                        "label": "White River"
+                    },
+                    {
+                        "term": "dome-creek",
+                        "label": "Dome Creek"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-139.25,63.0], [-139.25,63.4167], [-138.75,63.4167], [-138.75,63.0], [-139.25,63.0] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "a2032187-a1b2-55f9-afbd-12b8f1914d2d",
+        "title": "Residual total magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/2 and part of 115-O/3, Yukon",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/a2032187-a1b2-55f9-afbd-12b8f1914d2d.xml"
+      }
+    
+        ],
+        "author": "Kiss, F",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "kiss-f",
+                        "label": "Kiss, F"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "geophysics",
+                        "label": "geophysics"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    },
+                    {
+                        "term": "jpeg-2000",
+                        "label": "JPEG 2000"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "yukon",
+                        "label": "Yukon"
+                    },
+                    {
+                        "term": "clarke-creek",
+                        "label": "Clarke Creek"
+                    },
+                    {
+                        "term": "walhalla-creek",
+                        "label": "Walhalla Creek"
+                    },
+                    {
+                        "term": "scroggie-creek",
+                        "label": "Scroggie Creek"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-139.25,63.0], [-139.25,63.25], [-138.5,63.25], [-138.5,63.0], [-139.25,63.0] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "8da34d9b-8665-5b53-8679-c4578d5c310d",
+        "title": "First vertical derivative of the magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-I/11 and parts of NTS 115-I/5, 6, 12, Yukon",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/8da34d9b-8665-5b53-8679-c4578d5c310d.xml"
+      }
+    
+        ],
+        "author": "Kiss, F",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "kiss-f",
+                        "label": "Kiss, F"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "geophysics",
+                        "label": "geophysics"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    },
+                    {
+                        "term": "jpeg-2000",
+                        "label": "JPEG 2000"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "yukon",
+                        "label": "Yukon"
+                    },
+                    {
+                        "term": "big-creek",
+                        "label": "Big Creek"
+                    },
+                    {
+                        "term": "yukon-river",
+                        "label": "Yukon River"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-137.8333,62.4667], [-137.8333,62.75], [-137.0,62.75], [-137.0,62.4667], [-137.8333,62.4667] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "7b379460-bb03-5cd6-aef6-4b3ae076a284",
+        "title": "First vertical derivative of the magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/8 and part of 115-O/7, Yukon",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/7b379460-bb03-5cd6-aef6-4b3ae076a284.xml"
+      }
+    
+        ],
+        "author": "Kiss, F",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "kiss-f",
+                        "label": "Kiss, F"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "geophysics",
+                        "label": "geophysics"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    },
+                    {
+                        "term": "jpeg-2000",
+                        "label": "JPEG 2000"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "yukon",
+                        "label": "Yukon"
+                    },
+                    {
+                        "term": "stewart-river",
+                        "label": "Stewart River"
+                    },
+                    {
+                        "term": "rosebud-creek",
+                        "label": "Rosebud Creek"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-138.75,63.25], [-138.75,63.5], [-138.0,63.5], [-138.0,63.25], [-138.75,63.25] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2",
+        "title": "Residual total magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-P/12 and part of 115-P/11, Yukon",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/dd8eef78-5e34-53e2-ad1d-9e3af23fc8a2.xml"
+      }
+    
+        ],
+        "author": "Kiss, F",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "kiss-f",
+                        "label": "Kiss, F"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "geophysics",
+                        "label": "geophysics"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    },
+                    {
+                        "term": "jpeg-2000",
+                        "label": "JPEG 2000"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "yukon",
+                        "label": "Yukon"
+                    },
+                    {
+                        "term": "stewart-river",
+                        "label": "Stewart River"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-138.0,63.5], [-138.0,63.75], [-137.4167,63.75], [-137.4167,63.5], [-138.0,63.5] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "24fdaabc-0731-5662-8f83-9b9410b6602e",
+        "title": "Residual total magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-P/13 and part of NTS 115-P/14, Yukon",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/24fdaabc-0731-5662-8f83-9b9410b6602e.xml"
+      }
+    
+        ],
+        "author": "Kiss, F",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "kiss-f",
+                        "label": "Kiss, F"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "geophysics",
+                        "label": "geophysics"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    },
+                    {
+                        "term": "jpeg-2000",
+                        "label": "JPEG 2000"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "yukon",
+                        "label": "Yukon"
+                    },
+                    {
+                        "term": "little-south-klondike-river",
+                        "label": "Little South Klondike River"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-138.0,63.75], [-138.0,64.0], [-137.3333,64.0], [-137.3333,63.75], [-138.0,63.75] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "02b2ee26-b010-5009-8428-8eaaf9829b8b",
+        "title": "First vertical derivative of the magnetic field, aeromagnetic survey of the Scroggie Creek and Wolverine Creek areas, NTS 115-O/2 and part of 115-O/3, Yukon",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/02b2ee26-b010-5009-8428-8eaaf9829b8b.xml"
+      }
+    
+        ],
+        "author": "Kiss, F",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "kiss-f",
+                        "label": "Kiss, F"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "geophysics",
+                        "label": "geophysics"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    },
+                    {
+                        "term": "jpeg-2000",
+                        "label": "JPEG 2000"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "yukon",
+                        "label": "Yukon"
+                    },
+                    {
+                        "term": "clarke-creek",
+                        "label": "Clarke Creek"
+                    },
+                    {
+                        "term": "walhalla-creek",
+                        "label": "Walhalla Creek"
+                    },
+                    {
+                        "term": "scroggie-creek",
+                        "label": "Scroggie Creek"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-139.25,63.0], [-139.25,63.25], [-138.5,63.25], [-138.5,63.0], [-139.25,63.0] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "8b645dfc-b5fb-5e97-9c16-8c520029e115",
+        "title": "The search for surficial expressions of buried Cordilleran porphyry deposits; preliminary findings in a new TGI4 activity in the southern Canadian Cordillera",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/8b645dfc-b5fb-5e97-9c16-8c520029e115.xml"
+      }
+    
+        ],
+        "author": "Anderson, R G; Plouffe, A; Ferbey, T; Dunn, C E",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "anderson-r-g",
+                        "label": "Anderson, R G"
+                    },
+                    {
+                        "term": "plouffe-a",
+                        "label": "Plouffe, A"
+                    },
+                    {
+                        "term": "ferbey-t",
+                        "label": "Ferbey, T"
+                    },
+                    {
+                        "term": "dunn-c-e",
+                        "label": "Dunn, C E"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "british-columbia",
+                        "label": "British Columbia"
+                    },
+                    {
+                        "term": "williams-lake",
+                        "label": "Williams Lake"
+                    },
+                    {
+                        "term": "woodjam",
+                        "label": "Woodjam"
+                    },
+                    {
+                        "term": "gibraltar",
+                        "label": "Gibraltar"
+                    },
+                    {
+                        "term": "highland-valley",
+                        "label": "Highland Valley"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "documentdigital-documentnumerique",
+                        "label": "documentDigital; documentNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-123.0,50.0], [-123.0,53.0], [-120.0,53.0], [-120.0,50.0], [-123.0,50.0] ] ]
+  
+        }
+        }, 
+        {
+            
+        "id": "a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4",
+        "title": "Geophysical Series, detailed geophysical compilation project, Yukon Plateau, Yukon, NTS 115-I, J, K, N, O, P and 116A and B",
+    "links": [
+      {
+      "rel": "self",          
+      "method": "GET",
+      "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.xml"      
+      },
+      {
+          "rel": "alternate",
+          "enctype": "application/atom+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.atom"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/html",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.html"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/phtml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.phtml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "text/csv",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.csv"      
+      }
+      , 
+      {
+          "rel": "alternate",
+          "enctype": "application/rss+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.rss"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/vnd.google-earth.kml+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.kml"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/nap+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.nap"      
+      }, 
+      {
+          "rel": "alternate",
+          "enctype": "application/gcod+xml",
+          "method": "GET",
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.gcod"      
+      }, 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "en", 
+          "href": "http://geogratis.gc.ca/api/beta/en/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.xml"
+      }
+    , 
+      {
+          "rel": "alternate",
+          "method": "GET",
+          "hreflang": "fr", 
+          "href": "http://geogratis.gc.ca/api/beta/fr/nrcan-rncan/ess-sst/a883e47c-cd1f-5fa3-96c4-62ac1c93a8b4.xml"
+      }
+    
+        ],
+        "author": "Hayward, N; Oneschuk, D",
+        "summary": "Abstract not available. This series is produced to expedite the release of information by making unedited manuscript material available to the public in advance of formal publication, and to act as a repository for relevant supporting data that are referred to in published reports. Open Files can be maps; reports; voluminous data sets resulting from multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted field and laboratory results. They are all critically reviewed by one specialist. The series is geared towards specialists (mining industry, land-use planning, geoscience students) rather than the general public.",
+        "categories": [
+            {
+                "type": "urn:atom:author",
+                "terms": [
+                    {
+                        "term": "hayward-n",
+                        "label": "Hayward, N"
+                    },
+                    {
+                        "term": "oneschuk-d",
+                        "label": "Oneschuk, D"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:gc:subject",
+                "terms": [
+                    {
+                        "term": "earth-sciences",
+                        "label": "earth sciences"
+                    },
+                    {
+                        "term": "geophysics",
+                        "label": "geophysics"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:format",
+                "terms": [
+                    {
+                        "term": "pdf",
+                        "label": "PDF"
+                    },
+                    {
+                        "term": "zip",
+                        "label": "ZIP"
+                    },
+                    {
+                        "term": "jpeg-2000",
+                        "label": "JPEG 2000"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:place",
+                "terms": [
+                    {
+                        "term": "yukon",
+                        "label": "Yukon"
+                    },
+                    {
+                        "term": "yukon-plateau",
+                        "label": "Yukon Plateau"
+                    },
+                    {
+                        "term": "stevenson-ridge",
+                        "label": "Stevenson Ridge"
+                    },
+                    {
+                        "term": "stewart-river",
+                        "label": "Stewart River"
+                    },
+                    {
+                        "term": "mcquesten",
+                        "label": "McQuesten"
+                    },
+                    {
+                        "term": "carmacks",
+                        "label": "Carmacks"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:series",
+                "terms": [
+                    {
+                        "term": "geological-survey-of-canada-open-file",
+                        "label": "Geological Survey of Canada, Open File"
+                    }
+                 ]
+            },
+            {
+                "type": "urn:iso:type",
+                "terms": [
+                    {
+                        "term": "mapdigital-cartenumerique",
+                        "label": "mapDigital; carteNumérique"
+                    }
+                 ]
+            }
+        ],
+        "geometry": {
+             "type": "Polygon",
+             "coordinates": [ [ [-141.0,62.0], [-141.0,64.25], [-136.5,64.25], [-136.5,62.0], [-141.0,62.0] ] ]
+  
+        }
+        }]
+  
+}
+  
