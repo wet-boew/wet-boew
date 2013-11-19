@@ -1,0 +1,29 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+.pg-banner {
+	display: none;
+	&.out {
+		background-color: #fd0;
+		a {
+			color: #000;
+			text-decoration: underline;
+			font-weight: 700;
+		}
+	}
+}
+#archived {
+	background-color: #ffc;
+	border: 1px solid #fd0;
+	p {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	h2 {
+		background-color: #fd0;
+		color: #000;
+		margin: 0;
+		padding: 2px 10px 2px 10px;
+	}
+}

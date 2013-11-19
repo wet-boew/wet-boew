@@ -5,21 +5,11 @@
 	"category": "Correctif",
 	"description": "Émule l’élément <progress> pour les navigateurs qui ne le supportent pas.",
 	"tag": "progress",
-	"en": "progress"
+	"en": "progress",
+	"css": "demo/progress",
+	"js": "demo/progress"
 }
 ---
-<style>
-table, th, td {
-	border: 1px solid black;
-}
-progress {
-	width: 10em;
-}
-.progress {
-	margin-bottom: 0px;
-}
-</style>
-
 <p>L'élément HTML5 «&#160;<code lang="en">progress</code>&#160;» est utilisé pour fournir une barre de progression. Ce composant ajoute le soutien pour cet élément dans les navigateurs qui n'ont pas déjà la prise en charge native.</p>
 
 <section>
@@ -49,20 +39,9 @@ progress {
 				<td><progress value="500" max="500"><span class="wb-inv">100 %</span></progress></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="button" value="Réactualiser" onclick="increaseProgress();" /></td>
+				<td colspan="2"><input type="button" id="updateProgress" value="Réactualiser" /></td>
 				<td><progress id="updateTest" value="82" max="100"><span class="wb-inv">82%</span></progress></td>
 			</tr>
 		</tbody>
 	</table>
 </section>
-
-<script>
-	function increaseProgress() {
-		var $elm = $( "#updateTest" ),
-			valuenow = parseInt( $elm.attr( "value" ), 10 );
-
-		$elm.attr( "value", ( valuenow === parseInt( $elm.attr( "max" ) ) ? 0 : valuenow + 1 ) );
-		$elm.find( "span" ).text( $elm.attr( "value" ) + "%" );
-	}
-</script>
-
