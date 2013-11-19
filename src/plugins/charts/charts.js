@@ -184,12 +184,12 @@ var wet_boew_charts,
 				tan: "#d2b48c",
 				teal: "#008080",
 				thistle: "#d8bfd8",
-				tomato:  "#ff6347",
-				turquoise:	"#40e0d0",
-				violet:  "#ee82ee",
-				wheat:	"#f5deb3",
-				white:	"#ffffff",
-				whitesmoke:  "#f5f5f5",
+				tomato: "#ff6347",
+				turquoise: "#40e0d0",
+				violet: "#ee82ee",
+				wheat: "#f5deb3",
+				white: "#ffffff",
+				whitesmoke: "#f5f5f5",
 				yellow: "#ffff00",
 				yellowgreen: "#9acd32",
 
@@ -209,7 +209,7 @@ var wet_boew_charts,
 				"accent-13": "#999999"
 			};
 
-			if ( typeof colour === "number" )  {
+			if ( typeof colour === "number" ) {
 				colour = "accent-" + ( colour + 1 );
 			}
 
