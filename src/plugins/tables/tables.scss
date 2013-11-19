@@ -2,7 +2,16 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  */
+@import "sprites";
 
+%table_icons {
+	content: " ";
+	display: inline-block;
+	height: 19px;
+	width: 19px;
+	margin: 0 5px;
+	vertical-align: middle;
+}
 
 %tables-clear-both {
 	clear: both;
@@ -14,6 +23,11 @@
 
 %tables-float-left {
 	float: left;
+}
+
+%tables-float-right {
+	float: right;
+	margin-right:-20px;
 }
 
 %tables-text-align-center {
@@ -32,11 +46,6 @@
 
 %tables-cursor-pointer {
 	cursor: pointer;
-}
-
-%tables-sort-button-padding {
-	padding-left: 10px;
-	padding-right: 18px;
 }
 
 @mixin pseudo-focus($hover: true) {
@@ -61,7 +70,7 @@ table {
 		thead {
 			th {
 				@extend %tables-border-bottom-1px-solid-black-font-weight-700;
-				padding-right: 20px;
+				padding-right: 30px;
 				&:active {
 					@extend %tables-outline-none;
 				}
@@ -181,25 +190,44 @@ table {
 }
 
 .paginate_enabled_previous {
-	background: url('../assets/back_enabled.png') no-repeat top left;
+	&:before {
+		@extend %table_icons;
+		@include back_enabled;
+	}
+
 	@include pseudo-focus {
-		background: url('../assets/back_enabled_hover.png') no-repeat top left;
+		&:before {
+			@extend %table_icons;
+			@include back_enabled_hover;
+		}
 	}
 }
 
 .paginate_disabled_previous {
-	background: url('../assets/back_disabled.png') no-repeat top left;
+	&:before {
+		@extend %table_icons;
+		@include back_disabled;
+	}
 }
 
 .paginate_enabled_next {
-	background: url('../assets/forward_enabled.png') no-repeat top right;
+	&:after {
+		@extend %table_icons;
+		@include forward_enabled;
+	}
 	@include pseudo-focus {
-		background: url('../assets/forward_enabled_hover.png') no-repeat top right;
+		&:after {
+			@extend %table_icons;
+			@include forward_enabled_hover;
+		}
 	}
 }
 
 .paginate_disabled_next {
-	background: url('../assets/forward_disabled.png') no-repeat top right;
+	&:after {
+		@extend %table_icons;
+		@include forward_disabled;
+	}
 }
 
 /* Full number pagination */
@@ -260,34 +288,49 @@ table {
  * Sorting
  */
 .sorting {
-	background: url("../assets/sort_both.png") no-repeat center right;
-	@extend %tables-sort-button-padding;
 	@extend %tables-cursor-pointer;
+	&:after {
+		@extend %table_icons;
+		@extend %tables-float-right;
+		@include sort_both;
+	}
 }
 
 .sorting_asc {
-	background: url("../assets/sort_asc.png") no-repeat center right;
-	@extend %tables-sort-button-padding;
 	@extend %tables-cursor-pointer;
+	&:after {
+		@extend %table_icons;
+		@extend %tables-float-right;
+		@include sort_asc;
+	}
 }
 
 .sorting_desc {
-	background: url("../assets/sort_desc.png") no-repeat center right;
-	@extend %tables-sort-button-padding;
 	@extend %tables-cursor-pointer;
+	&:after {
+		@extend %table_icons;
+		@extend %tables-float-right;
+		@include sort_desc;
+	}
 }
 
 
 .sorting_asc_disabled {
-	background: url("../assets/sort_asc_disabled.png") no-repeat center right;
-	@extend %tables-sort-button-padding;
 	@extend %tables-cursor-pointer;
+	&:after {
+		@extend %table_icons;
+		@extend %tables-float-right;
+		@include sort_asc_disabled;
+	}
 }
 
 .sorting_desc_disabled {
-	background: url("../assets/sort_desc_disabled.png") no-repeat center right;
-	@extend %tables-sort-button-padding;
 	@extend %tables-cursor-pointer;
+	&:after {
+		@extend %table_icons;
+		@extend %tables-float-right;
+		@include sort_desc_disabled;
+	}
 }
 
 /*
