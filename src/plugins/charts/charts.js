@@ -25,7 +25,7 @@ var wet_boew_charts,
 	 * @method createCharts
 	 * @param {jQuery DOM element} $elm table element use to create the chart
 	 */
-	createCharts = function ($elm) {
+	createCharts = function ( $elm ) {
 		var allSeries = [],
 			calcTick = [],
 			dataSeries = [],
@@ -861,7 +861,7 @@ var wet_boew_charts,
 						break;
 					}
 
-					if ( parsedDataCell.type === 1 || parsedDataCell.type === 7 )  {
+					if ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) {
 						nbCells += 1;
 
 						if ( parsedDataCell.child.length > 0 ){
@@ -903,7 +903,7 @@ var wet_boew_charts,
 						break;
 					}
 
-					if ( parsedDataCell.type === 1 || parsedDataCell.type === 7 )  {
+					if ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) {
 
 						parsedDataCell.flotDelta = ( TotalRowValue / nbCells );
 
@@ -1017,7 +1017,7 @@ var wet_boew_charts,
 					break;
 				}
 
-				if ( parsedDataCell.colpos >= dataColgroupStart && ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) )  {
+				if ( parsedDataCell.colpos >= dataColgroupStart && ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) ) {
 					nbCells += 1;
 
 					nbTotSlots += parsedDataCell.width;
@@ -1056,7 +1056,7 @@ var wet_boew_charts,
 					break;
 				}
 
-				if ( parsedDataCell.colpos >= dataColgroupStart && ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) )  {
+				if ( parsedDataCell.colpos >= dataColgroupStart && ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) ) {
 
 					parsedDataCell.flotDelta = !options.uniformtick ? ( TotalRowValue / nbCells ) : 1;
 
@@ -1109,7 +1109,7 @@ var wet_boew_charts,
 				headStr,
 				arr,
 				tr;
-			capVal =  $( "caption", srcTbl ).text();
+			capVal = $( "caption", srcTbl ).text();
 			$( "tr ", srcTbl ).each( function () {
 				maxRowCol += 1;
 				if ( s < 1 ) {
@@ -1299,7 +1299,7 @@ var wet_boew_charts,
 			tblCaptionText = $( "caption", srcTbl ).text();
 			$( figCaptionElem ).append( tblCaptionHTML );
 
-			dataGroup =  parsedData.colgroup[ 0 ].type === 1 ? parsedData.colgroup[ 1 ] : parsedData.colgroup[ 0 ];
+			dataGroup = parsedData.colgroup[ 0 ].type === 1 ? parsedData.colgroup[ 1 ] : parsedData.colgroup[ 0 ];
 
 			for ( rIndex = parsedData.lstrowgroup[ 0 ].row.length - 1; rIndex >= 0; rIndex -= 1 ) {
 
@@ -1523,7 +1523,7 @@ var wet_boew_charts,
 					// Bar chart case, re-evaluate the calculated point
 					if ( barDelta && rowOptions.chartBarOption ) {
 						// Position bar
-						valuePoint = valueCumul - ( smallestHorizontalFlotDelta / 2 )  + ( smallestHorizontalFlotDelta / nbBarChart * ( rowOptions.chartBarOption - 1) );
+						valuePoint = valueCumul - ( smallestHorizontalFlotDelta / 2 ) + ( smallestHorizontalFlotDelta / nbBarChart * ( rowOptions.chartBarOption - 1) );
 
 						if ( nbBarChart === 1 ) {
 							valuePoint = valueCumul;
