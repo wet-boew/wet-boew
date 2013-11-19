@@ -463,7 +463,7 @@ module.exports = (grunt) ->
 					preserveComments: (uglify,comment) ->
 						return comment.value.match(/^!/i)
 				cwd: "dist/unmin/js/"
-				src: [ "*wet-boew.js" ]
+				src: [ "*wet-boew*.js" ]
 				dest: "dist/js/"
 				ext: ".min.js"
 				expand: true
