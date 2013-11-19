@@ -93,9 +93,7 @@ module.exports = (grunt) ->
 			"copy:other"
 			"copy:deps"
 			"copy:jsAssets"
-			"copy:jsDemoPlugins"
-			"copy:jsDemoPolyfills"
-			"copy:jsDemoOther"
+			"copy:jsDemo"
 			"i18n"
 			"concat:core"
 			"concat:coreIE8"
@@ -358,7 +356,6 @@ module.exports = (grunt) ->
 				src: [
 					"**/*.scss"
 					"!**/_*.scss"
-					"!**/demo/*.scss"
 				]
 				dest: "dist/unmin/css/"
 				ext: ".css"
@@ -381,7 +378,6 @@ module.exports = (grunt) ->
 					"!**/*-base.scss"
 					"!**/*-ie8.scss"
 					"!**/*-noscript.scss"
-					"!**/demo/*.scss"
 				]
 				dest: "dist/unmin/css/polyfills/"
 				ext: ".css"
@@ -389,36 +385,14 @@ module.exports = (grunt) ->
 
 			other:
 				expand: true
-				cwd: "src/other"
+				cwd: "other"
 				src: [
 					"**/*.scss"
 					"!**/*base.scss"
-					"!**/demo/*.scss"
 				]
 				dest: "dist/unmin/css/other/"
 				ext: ".css"
 				flatten: true
-
-			demo_plugins:
-				expand: true
-				cwd: "src/plugins"
-				src: "**/demo/*.scss"
-				dest: "dist/unmin/demos/"
-				ext: ".css"
-
-			demo_polyfills:
-				expand: true
-				cwd: "src/polyfills"
-				src: "**/demo/*.scss"
-				dest: "dist/unmin/demos/"
-				ext: ".css"
-
-			demo_other:
-				expand: true
-				cwd: "src/other"
-				src: "**/demo/*.scss"
-				dest: "dist/unmin/demos/"
-				ext: ".css"
 
 		autoprefixer:
 			options:
@@ -526,16 +500,6 @@ module.exports = (grunt) ->
 				dest: "dist/css"
 				ext: ".min.css"
 
-			demo:
-				expand: true
-				cwd: "dist/unmin/demos/"
-				src: [
-					"**/demo/*.css"
-					"!**/demo/*.min.css"
-				]
-				dest: "dist/demos/"
-				ext: ".min.css"
-
 		htmlcompressor:
 			options:
 				type: "html"
@@ -589,7 +553,7 @@ module.exports = (grunt) ->
 				dest: "dist/unmin/fonts"
 				expand: true
 				flatten: true
-
+				
 			misc:
 				cwd: "src/plugins"
 				src: [
@@ -641,20 +605,8 @@ module.exports = (grunt) ->
 				expand: true
 				flatten: true
 
-			jsDemoPlugins:
+			jsDemo:
 				cwd: "src/plugins"
-				src: "**/demo/*.js"
-				dest: "dist/unmin/demos/"
-				expand: true
-
-			jsDemoPolyfills:
-				cwd: "src/polyfills"
-				src: "**/demo/*.js"
-				dest: "dist/unmin/demos/"
-				expand: true
-
-			jsDemoOther:
-				cwd: "src/other"
 				src: "**/demo/*.js"
 				dest: "dist/unmin/demos/"
 				expand: true
