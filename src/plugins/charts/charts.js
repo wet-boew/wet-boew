@@ -230,35 +230,41 @@ var wet_boew_charts,
 
 			// Test: optSource
 			if ( typeof sourceOptions !== "object" ) {
+
 				// Empty source
 				return {};
 			}
+
 			// Get a working copy for the sourceOptions
 			sourceOptions = $.extend( true, {}, sourceOptions );
 
 			// Test: strClass
 			if ( typeof strClass !== "string" || strClass.length === 0 ) {
+
 				// no string class;
 				return sourceOptions;
-			}
-			// Test: namespace
-			if ( typeof namespace !== "string" || namespace.length === 0 ) {
+			} else if ( typeof namespace !== "string" || namespace.length === 0 ) {
+
 				// Try to get the default namespace
-				if ( sourceOptions[ "default-namespace" ] && ( typeof sourceOptions[ "default-namespace" ] === "string" || $.isArray( sourceOptions[ "default-namespace" ] ) ) ) {
+				if ( sourceOptions[ "default-namespace" ] &&
+					( typeof sourceOptions[ "default-namespace" ] === "string" || $.isArray( sourceOptions[ "default-namespace" ] ) ) ) {
 					namespace = sourceOptions[ "default-namespace" ];
 				} else {
+
 					// This a not a valid namespace (no namespace)
 					return sourceOptions;
 				}
 			}
+
 			// Get the namespace separator if defined (optional)
-			separatorNS = ( sourceOptions[ "default-namespace-separator" ] && typeof sourceOptions[ "default-namespace-separator" ] === "string") ? sourceOptions[ "default-namespace-separator" ] : "-";
+			separatorNS = sourceOptions[ "default-namespace-separator" ] || "-";
 
 			// Get the option separator if defined (optional)
-			separator = ( sourceOptions[ "default-separator" ] && typeof sourceOptions[ "default-separator" ] === "string" ) ? sourceOptions[ "default-separator" ] : " ";
+			separator = sourceOptions[ "default-separator" ] || " ";
 
 			// Check if the the Auto Json option creation are authorized from class
-			autoCreate = sourceOptions[ "default-autocreate" ]; // Espected returning value True | False
+			// Espected returning value True | False
+			autoCreate = !!sourceOptions[ "default-autocreate" ];
 
 			arrClass = strClass.split( separator ); // Get each defined class
 			for ( m = 0, mLength = arrClass.length; m < mLength; m +=1 ) {
@@ -269,12 +275,12 @@ var wet_boew_charts,
 					if ( $.isArray( namespace ) ) {
 						for ( i = 0, iLength = namespace.length; i < iLength; i += 1 ) {
 							detectedNamespace = namespace[i] + separatorNS;
-							if ( parameter.slice( 0, detectedNamespace.length ) ===  detectedNamespace ) {
+							if ( parameter.slice( 0, detectedNamespace.length ) === detectedNamespace ) {
 								detectedNamespaceLength = detectedNamespace.length;
 								break;
 							}
 						}
-					} else if ( parameter.slice( 0, namespace.length + separatorNS.length ) ===  namespace + separatorNS ) {
+					} else if ( parameter.slice( 0, namespace.length + separatorNS.length ) === namespace + separatorNS ) {
 						detectedNamespace = namespace + separatorNS;
 						detectedNamespaceLength = detectedNamespace.length;
 					} else if ( namespace === "" ) {
@@ -282,30 +288,41 @@ var wet_boew_charts,
 						detectedNamespaceLength = 0;
 					}
 				}
+
 				// Get the parameter without the namespace
-				arrParameters = ( detectedNamespaceLength !== undefined ) ? parameter.slice( detectedNamespaceLength ).split( separatorNS ) : [];
+				arrParameters = detectedNamespaceLength !== undefined ?
+					parameter.slice( detectedNamespaceLength ).split( separatorNS ) :
+					[];
+
 				// Convert the parameter in a controled JSON object
-				if ( arrParameters.length > 0 && parameter.slice( 0, detectedNamespaceLength ) ===  detectedNamespace ) {
+				if ( arrParameters.length > 0 && parameter.slice( 0, detectedNamespaceLength ) === detectedNamespace ) {
+
 					// Get all defined parameter
 					for ( i = 0, iLength = arrParameters.length; i < iLength; i += 1 ) {
 						arrParameter = arrParameters[ i ];
 						valIsNext = i + 2 === iLength;
 						isVal = i + 1 === iLength;
+
 						// Check if that is the default value and make a reset to the parameter name if applicable
 						if ( isVal && iLength ) {
-							if ( sourceOptions[ arrParameter + "-autocreate" ] || ( sourceOptions[ arrParameter ] &&  sourceOptions[ arrParameter + "-typeof" ] && sourceOptions[ arrParameter + "-typeof" ] === "boolean" ) ) {
+							if ( sourceOptions[ arrParameter + "-autocreate" ] ||
+								( sourceOptions[ arrParameter ] &&
+								sourceOptions[ arrParameter + "-typeof" ] &&
+								sourceOptions[ arrParameter + "-typeof" ] === "boolean" ) ) {
 								// 1. If match an existing option and that option is boolean
 								arrParameter.push( "true" );
 								propName = arrParameter;
 								i += 1;
 								iLength = arrParameter.length;
 							} else if ( sourceOptions.preset && sourceOptions.preset[ arrParameter ]) {
+
 								// 2. It match a preset, overide the current setting
 								sourceOptions = $.extend( true, sourceOptions, sourceOptions.preset[ arrParameter ] );
 								break;
 							} else if ( iLength === 1 ) {
+
 								// 3. Use the Default set
-								propName = sourceOptions[ "default-option" ] ? sourceOptions[ "default-option" ] : undefined;
+								propName = sourceOptions[ "default-option" ];
 							} else {
 								propName = undefined;
 							}
@@ -315,10 +332,10 @@ var wet_boew_charts,
 						// Get the type of the current option (if available)
 						// (Note: an invalid value are defined by "undefined" value)
 						// Check if the type are defined
-						if  (sourceOptions[ propName + "-typeof" ] ) {
+						if (sourceOptions[ propName + "-typeof" ] ) {
 							// Repair the value if needed
 							arrValue = [];
-							for ( j = ( i + 1 ); j < iLength; j += 1 ) {
+							for ( j = i + 1; j < iLength; j += 1 ) {
 								arrValue.push( arrParameter[ j ] );
 							}
 							if (i < iLength - 1) {
@@ -328,9 +345,9 @@ var wet_boew_charts,
 							isVal = true;
 							switch ( sourceOptions[ propName + "-typeof" ] ) {
 							case "boolean":
-								if ( arrParameter === "true" || arrParameter === "1" || arrParameter === "vrai" || arrParameter === "yes" || arrParameter === "oui" ) {
+								if ( !!arrParameter || arrParameter === "vrai" || arrParameter === "yes" || arrParameter === "oui" ) {
 									arrParameter = arrParameters[ i ] = true;
-								} else if ( arrParameter === "false" || arrParameter === "0" || arrParameter === "faux" || arrParameter === "no" || arrParameter === "non") {
+								} else if ( !arrParameter || arrParameter === "faux" || arrParameter === "no" || arrParameter === "non") {
 									arrParameter = arrParameters[ i ] = false;
 								} else {
 									arrParameter = arrParameters[ i ] = undefined;
@@ -350,19 +367,15 @@ var wet_boew_charts,
 							case "locked":
 								arrParameter = arrParameters[ i ] = undefined;
 								break;
-							default:
-								// that include the case "object"
-								break;
 							}
 						}
+
 						// Get the type of overwritting, default are replacing the value
-						if (sourceOptions[ propName + "-overwrite-array-mode" ] ) {
-							arrayOverwrite = true;
-						}
+						arrayOverwrite = !!sourceOptions[ propName + "-overwrite-array-mode" ];
+
 						// Check if this unique option can be autocreated
-						if ( sourceOptions[ propName + "-autocreate" ] ) {
-							autoCreateMe = true;
-						}
+						autoCreateMe = !!sourceOptions[ propName + "-autocreate" ];
+
 						if ( valIsNext && arrParameter !== undefined ) {
 							// Keep the Property Name
 							propName = arrParameter;
@@ -385,9 +398,10 @@ var wet_boew_charts,
 								} else {
 									jsonString = "{\"" + propName + "\": \"" + arrParameter + "\"}";
 								}
-								sourceOptions = $.extend(true, sourceOptions, $.parseJSON(jsonString));
+								sourceOptions = $.extend( true, sourceOptions, $.parseJSON( jsonString ) );
 							}
-							i = iLength; // Make sur we don't iterate again
+							// Make sure we don't iterate again
+							i = iLength;
 						} else {
 							// Create a sub object
 							if ( arrParameter !== undefined && sourceOptions[ arrParameter ] ) {
@@ -400,7 +414,8 @@ var wet_boew_charts,
 								sourceOptions = sourceOptions[ arrParameter ];
 							} else {
 								// This configuration are rejected
-								i = iLength; // We don't iterate again
+								// We don't iterate again
+								i = iLength;
 							}
 						}
 					}
@@ -412,8 +427,10 @@ var wet_boew_charts,
 		if ( !window.chartsGraphOpts ){
 			// 1. Charts Default Setting
 			options = {
-				"default-namespace": ["wb-charts", "wb-chart", "wb-graph"],
-				"graphclass-autocreate": true, // This add the ability to set custom css class to the figure container.
+				"default-namespace": [ "wb-charts", "wb-chart", "wb-graph" ],
+
+				// This adds the ability to set custom css class to the figure container.
+				"graphclass-autocreate": true,
 				"graphclass-overwrite-array-mode": true,
 				"graphclass-typeof": "string",
 				"noencapsulation-autocreate": true,
@@ -445,6 +462,7 @@ var wet_boew_charts,
 				"bottomvalue-typeof": "number",
 				"bottomvaluenegative-autocreate": true,
 				"bottomvaluenegative-typeof": "boolean",
+
 				// Ticks => Number of ticks for the y-axis
 				"ticks-autocreate": true,
 				"ticks-typeof": "number",
@@ -465,44 +483,52 @@ var wet_boew_charts,
 				"pieinnerradius-typeof": "number",
 				"piestartangle-autocreate": true, // Factor of PI used for the starting angle (in radians) It can range between 0 and 200 (where 0 and 200 have the same result).
 				"piestartangle-typeof": "number",
-				"piehighlight-autocreate": true, //  Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
+				"piehighlight-autocreate": true, // Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
 				"piehighlight-typeof": "number",
 				"piehoverable-autocreate": true, // Hoverable pie slice
 				"piehoverable-typeof": "boolean",
 
-				// General option
-				"default-option": "type", // Default CSS Options
-				// Graph Type
-				type: "bar", // this be one of or an array of: area, pie, line, bar, stacked
+				// General option: Default CSS Options
+				"default-option": "type",
+
+				// Graph Type: this be one of or an array of: area, pie, line, bar, stacked
+				type: "bar",
 				"type-autocreate": true,
+
 				//
 				// Graph Layout
 				//
-				width: $elm.width(), // width of canvas - defaults to table height
+
+				// width of canvas - defaults to table height
+				width: $elm.width(),
 				"width-typeof": "number",
-				height: $elm.height(), // height of canvas - defaults to table height
+
+				// height of canvas - defaults to table height
+				height: $elm.height(),
 				"height-typeof": "number",
+
 				//
 				// Data Table and Graph Orientation
 				//
-				parsedirection: "x", // which direction to parse the table data
+
+				// which direction to parse the table data
+				parsedirection: "x",
 				"parsedirection-typeof": "string",
 				"parsedirection-autocreate": true,
+
+				// Parameter: elem = HTML DOM node (td element)
+				//
+				// If this function return an array, it would be assume that the first item correspond at the cell numbered value and the second item correspond at the cell unit
+				// Example
+				// return 25.14
+				// return 44
+				// return [44, "%"]
+				// return [5.1, "g"]
 				getcellvalue: function( elem ) {
-					// Parameter: elem = HTML DOM node (td element)
-					//
-					// If this function return an array, it would be assume that the first item correspond at the cell numbered value and the second item correspond at the cell unit
-					// Example
-					// return 25.14
-					// return 44
-					// return [44, "%"]
-					// return [5.1, "g"]
 
 					// Default Cell value extraction
-					var cellRawValue = $.trim( $( elem ).text() );
+					var cellRawValue = $.trim( $( elem ).text() ).replace( /\s/g, "" );
 
-					//remove spaces inside the string;
-					cellRawValue = cellRawValue.replace( /\s/g, "" );
 					return [ parseFloat( cellRawValue.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), cellRawValue.match (/[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
 				},
 				preset: {
@@ -535,20 +561,25 @@ var wet_boew_charts,
 			};
 
 			// 2. Global "setting.js"
-			if ( typeof wet_boew_charts !== "undefined" ) {
+			if ( wet_boew_charts !== undefined ) {
+
 				// a. if exisit copy and take care of preset separatly (Move away before extending)
 				if ( wet_boew_charts.preset ) {
 					window.chartsGraphOpts = $.extend( true, {}, wet_boew_charts.preset );
 					delete wet_boew_charts.preset;
 				}
+
 				// b. Overwrite the chart default setting
 				$.extend( true, options, wet_boew_charts );
+
 				// c. Separatly extend the preset to at the current chart default seting
 				if ( window.chartsGraphOpts ) {
 					$.extend( true, options.preset, window.chartsGraphOpts );
 				}
 			}
-			window.chartsGraphOpts = options; // ---- Save the setting here in a case of a second graphic on the same page
+
+			// ---- Save the setting here in a case of a second graphic on the same page
+			window.chartsGraphOpts = options;
 		}
 		options = window.chartsGraphOpts;
 		options.height = $elm.height();
@@ -559,7 +590,7 @@ var wet_boew_charts,
 		options.height = options.height | 250;
 
 		// 3. [Table element] CSS Overwrite - [Keep a list of required plugin "defaultnamespace-plugin" eg. wb-charts-donnut]
-		options = setClassOptions( options, ( self.attr( "class" ) !== undefined ? self.attr( "class" ) : "" ) );
+		options = setClassOptions( options, self.attr( "class" ) || "" );
 
 		// 4. [Table element] HTML5 Data Overwrite property
 		for ( i in self.data() ){
