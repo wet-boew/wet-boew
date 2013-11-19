@@ -222,23 +222,11 @@ var wet_boew_charts,
 			var separatorNS = "",
 				separator = "",
 				autoCreate = false,
-				detectedNamespace,
-				_lenDetectedNamespace,
-				arrClass,
-				parameter,
-				arrParameters,
-				arrParameter,
-				propName,
-				i, _ilen,
-				j,
-				m, _mlen,
-				valIsNext,
-				isVal,
-				arrValue,
 				arrayOverwrite = false,
 				autoCreateMe = false,
-				jsonString,
-				val;
+				detectedNamespaceLength, arrClass, arrParameter, arrParameters,
+				arrValue, detectedNamespace, i, iLength, isVal, j, jsonString,
+				m, mLength, parameter, propName, val, valIsNext;
 
 			// Test: optSource
 			if ( typeof sourceOptions !== "object" ) {
@@ -273,49 +261,49 @@ var wet_boew_charts,
 			autoCreate = sourceOptions[ "default-autocreate" ]; // Espected returning value True | False
 
 			arrClass = strClass.split( separator ); // Get each defined class
-			for ( m = 0, _mlen = arrClass.length; m < _mlen; m +=1 ) {
+			for ( m = 0, mLength = arrClass.length; m < mLength; m +=1 ) {
 				parameter = arrClass[m];
 
 				// Detect the namespace used
-				if ( _lenDetectedNamespace === undefined ) {
+				if ( detectedNamespaceLength === undefined ) {
 					if ( $.isArray( namespace ) ) {
-						for ( i = 0, _ilen = namespace.length; i < _ilen; i += 1 ) {
+						for ( i = 0, iLength = namespace.length; i < iLength; i += 1 ) {
 							detectedNamespace = namespace[i] + separatorNS;
 							if ( parameter.slice( 0, detectedNamespace.length ) ===  detectedNamespace ) {
-								_lenDetectedNamespace = detectedNamespace.length;
+								detectedNamespaceLength = detectedNamespace.length;
 								break;
 							}
 						}
 					} else if ( parameter.slice( 0, namespace.length + separatorNS.length ) ===  namespace + separatorNS ) {
 						detectedNamespace = namespace + separatorNS;
-						_lenDetectedNamespace = detectedNamespace.length;
+						detectedNamespaceLength = detectedNamespace.length;
 					} else if ( namespace === "" ) {
 						detectedNamespace = "";
-						_lenDetectedNamespace = 0;
+						detectedNamespaceLength = 0;
 					}
 				}
 				// Get the parameter without the namespace
-				arrParameters = ( _lenDetectedNamespace !== undefined ) ? parameter.slice( _lenDetectedNamespace ).split( separatorNS ) : [];
+				arrParameters = ( detectedNamespaceLength !== undefined ) ? parameter.slice( detectedNamespaceLength ).split( separatorNS ) : [];
 				// Convert the parameter in a controled JSON object
-				if ( arrParameters.length > 0 && parameter.slice( 0, _lenDetectedNamespace ) ===  detectedNamespace ) {
+				if ( arrParameters.length > 0 && parameter.slice( 0, detectedNamespaceLength ) ===  detectedNamespace ) {
 					// Get all defined parameter
-					for ( i = 0, _ilen = arrParameters.length; i < _ilen; i += 1 ) {
+					for ( i = 0, iLength = arrParameters.length; i < iLength; i += 1 ) {
 						arrParameter = arrParameters[ i ];
-						valIsNext = i + 2 === _ilen;
-						isVal = i + 1 === _ilen;
+						valIsNext = i + 2 === iLength;
+						isVal = i + 1 === iLength;
 						// Check if that is the default value and make a reset to the parameter name if applicable
-						if ( isVal && _ilen ) {
+						if ( isVal && iLength ) {
 							if ( sourceOptions[ arrParameter + "-autocreate" ] || ( sourceOptions[ arrParameter ] &&  sourceOptions[ arrParameter + "-typeof" ] && sourceOptions[ arrParameter + "-typeof" ] === "boolean" ) ) {
 								// 1. If match an existing option and that option is boolean
 								arrParameter.push( "true" );
 								propName = arrParameter;
 								i += 1;
-								_ilen = arrParameter.length;
+								iLength = arrParameter.length;
 							} else if ( sourceOptions.preset && sourceOptions.preset[ arrParameter ]) {
 								// 2. It match a preset, overide the current setting
 								sourceOptions = jQuery.extend( true, sourceOptions, sourceOptions.preset[ arrParameter ] );
 								break;
-							} else if ( _ilen === 1 ) {
+							} else if ( iLength === 1 ) {
 								// 3. Use the Default set
 								propName = sourceOptions[ "default-option" ] ? sourceOptions[ "default-option" ] : undefined;
 							} else {
@@ -330,10 +318,10 @@ var wet_boew_charts,
 						if  (sourceOptions[ propName + "-typeof" ] ) {
 							// Repair the value if needed
 							arrValue = [];
-							for ( j = ( i + 1 ); j < _ilen; j += 1 ) {
+							for ( j = ( i + 1 ); j < iLength; j += 1 ) {
 								arrValue.push( arrParameter[ j ] );
 							}
-							if (i < _ilen - 1) {
+							if (i < iLength - 1) {
 								arrParameter = arrParameters[ i ] = arrValue.join( separatorNS );
 							}
 							valIsNext = false;
@@ -399,7 +387,7 @@ var wet_boew_charts,
 								}
 								sourceOptions = jQuery.extend(true, sourceOptions, jQuery.parseJSON(jsonString));
 							}
-							i = _ilen; // Make sur we don't iterate again
+							i = iLength; // Make sur we don't iterate again
 						} else {
 							// Create a sub object
 							if ( arrParameter !== undefined && sourceOptions[ arrParameter ] ) {
@@ -412,7 +400,7 @@ var wet_boew_charts,
 								sourceOptions = sourceOptions[ arrParameter ];
 							} else {
 								// This configuration are rejected
-								i = _ilen; // We don't iterate again
+								i = iLength; // We don't iterate again
 							}
 						}
 					}
@@ -1076,7 +1064,7 @@ var wet_boew_charts,
 			// important table element: id or class, th;
 			var sMatrix = [],
 				i = 0,
-				_ilen,
+				iLength,
 				j = 0,
 				capVal = "Table caption tag is missing",
 				maxRowCol = 10, //basic;
@@ -1176,7 +1164,7 @@ var wet_boew_charts,
 			html2 = html2.replace( /\n/g, "" );
 			html2 = html2.replace( /<tr/gi, "\n<tr" );
 			arr = html2.split( "\n" );
-			for ( i = 0, _ilen = arr.length; i < _ilen; i += 1 ) {
+			for ( i = 0, iLength = arr.length; i < iLength; i += 1 ) {
 				tr = arr[ i ];
 				if ( tr.match( /<td/i ) !== null ) {
 					arr[ i ] = "</thead><tbody>" + tr;
