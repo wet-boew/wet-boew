@@ -58,6 +58,9 @@ var selector = ".wb-equalheight",
 			// Ensure all children that are on the same baseline have the same 'top' value.
 			currentChild.style.verticalAlign = "top";
 
+			// Remove any previously set height
+			currentChild.style.height = "auto";
+
 			currentChildTop = currentChild.offsetTop;
 			currentChildHeight = currentChild.offsetHeight;
 
