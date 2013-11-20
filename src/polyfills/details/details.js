@@ -7,15 +7,15 @@
 (function( window, vapour ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
 var selector = "details",
 	$document = vapour.doc,
 
 	/*
-	 * Init runs once per polyfill element on the page. There may be multiple elements. 
+	 * Init runs once per polyfill element on the page. There may be multiple elements.
 	 * It will run more than once if you don't remove the selector from the timer.
 	 * @method init
 	 * @param {DOM element} _input The input field to be polyfilled
@@ -38,14 +38,14 @@ $document.on( "timerpoke.wb", selector, function( event ) {
 	init( event.target );
 
 	/*
-	 * Since we are working with events we want to ensure that we are being passive about our control, 
+	 * Since we are working with events we want to ensure that we are being passive about our control,
 	 * so returning true allows for events to always continue
 	 */
 	return true;
 });
 
 // Bind the init event of the plugin
-$document.on( "click vclick touchstart keydown", selector + " summary", function( event ) {
+$document.on( "click vclick touchstart keydown toggle.wb-details", selector + " summary", function( event ) {
 	var which = event.which,
 		details, isClosed;
 
@@ -53,7 +53,7 @@ $document.on( "click vclick touchstart keydown", selector + " summary", function
 	if ( !which || which === 1 || which === 13 || which === 32 ) {
 		details = event.currentTarget.parentNode;
 		isClosed = ( details.getAttribute( "open" ) === null );
-		
+
 		if ( isClosed ) {
 			details.setAttribute( "open", "open" );
 			details.className += " open";
@@ -62,12 +62,10 @@ $document.on( "click vclick touchstart keydown", selector + " summary", function
 			details.className = details.className.replace( " open", "" );
 		}
 		details.setAttribute( "aria-expanded", isClosed );
-
-		return false;
 	}
 
 	/*
-	 * Since we are working with events we want to ensure that we are being passive about our control, 
+	 * Since we are working with events we want to ensure that we are being passive about our control,
 	 * so returning true allows for events to always continue
 	 */
 	return true;
