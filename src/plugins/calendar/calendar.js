@@ -217,9 +217,9 @@ var $document = vapour.doc,
 			]);
 
 			if ( $btn.hasClass( "wb-inv" ) ) {
-				$container.find( ".cal-goto-lnk a" ).trigger( "focus.wb" );
+				$container.find( ".cal-goto-lnk a" ).trigger( "setfocus.wb" );
 			} else {
-				$btn.trigger( "focus.wb" );
+				$btn.trigger( "setfocus.wb" );
 			}
 		}
 	},
@@ -421,7 +421,7 @@ var $document = vapour.doc,
 		// TODO: Replace with CSS animation
 		link.stop().slideUp( 0 );
 		form.stop().slideDown( 0 ).queue(function() {
-			$( this ).find( ":input:eq(0)" ).trigger( "focus.wb" );
+			$( this ).find( ":input:eq(0)" ).trigger( "setfocus.wb" );
 		});
 
 		link
@@ -475,7 +475,7 @@ var $document = vapour.doc,
 			// Go to the first day to avoid having to tab over the navigation again.
 			$( "#cal-" + calendarId + "-days a" )
 				.eq( 0 )
-				.trigger( "focus.wb" );
+				.trigger( "setfocus.wb" );
 		}
 	},
 	
@@ -601,7 +601,7 @@ $document.on( "keydown", ".cal-days a", function ( event ) {
 		);
 		return false;
 	} else if ( currDay !== date.getDate() ) {
-		$( days[ date.getDate() - 1 ] ).trigger( "focus.wb" );
+		$( days[ date.getDate() - 1 ] ).trigger( "setfocus.wb" );
 		return false;
 	}
 });

@@ -165,7 +165,7 @@ var selector = ".wb-menu",
 		var $goto = event.goto,
 			special = event.special;
 
-		$goto.trigger( "focus.wb" );
+		$goto.trigger( "setfocus.wb" );
 		if ( special || ( $goto.hasClass( "item" ) && !$goto.attr( "aria-haspopup" ) ) ) {
 			onReset( $goto.parents( selector ), true, special );
 		}

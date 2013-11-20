@@ -80,7 +80,7 @@ var selector = ".wb-toggle",
 		event.preventDefault();
 
 		// Assign focus to eventTarget
-		$link.trigger( "focus.wb" );
+		$link.trigger( "setfocus.wb" );
 	},
 
 	/*

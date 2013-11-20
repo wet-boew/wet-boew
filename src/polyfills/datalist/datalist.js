@@ -168,7 +168,7 @@ var selector = "input[list]",
 			input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
 
 			// Assign focus to dest
-			$( dest ).trigger( "focus.wb" );
+			$( dest ).trigger( "setfocus.wb" );
 
 			return false;
 		}
@@ -200,7 +200,7 @@ var selector = "input[list]",
 			( which > 187 && which < 223 ) ) {
 
 			input.value += String.fromCharCode( which );
-			$input.trigger( "focus.wb" );
+			$input.trigger( "setfocus.wb" );
 			showOptions( input, input.value );
 
 			return false;
@@ -216,7 +216,7 @@ var selector = "input[list]",
 				showOptions( input, input.value );
 			}
 
-			$input.trigger( "focus.wb" );
+			$input.trigger( "setfocus.wb" );
 
 			return false;
 		}
@@ -235,7 +235,7 @@ var selector = "input[list]",
 			}
 
 			input.value = value;
-			$input.trigger( "focus.wb" );
+			$input.trigger( "setfocus.wb" );
 			closeOptions( input );
 
 			return false;
@@ -243,7 +243,7 @@ var selector = "input[list]",
 
 		// Tab or Escape key
 		else if ( which === 9 || which === 27 ) {
-			$input.trigger( "focus.wb" );
+			$input.trigger( "setfocus.wb" );
 			closeOptions( input );
 
 			return false;
@@ -271,7 +271,7 @@ var selector = "input[list]",
 			dest = dest.getElementsByTagName( "a" )[ 0 ];
 
 			input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
-			$( dest ).trigger( "focus.wb" );
+			$( dest ).trigger( "setfocus.wb" );
 
 			return false;
 		}
@@ -303,7 +303,7 @@ var selector = "input[list]",
 		}
 
 		input.value = value;
-		$input.trigger( "focus.wb" );
+		$input.trigger( "setfocus.wb" );
 		closeOptions( input );
 
 		return false;

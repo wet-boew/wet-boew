@@ -125,7 +125,7 @@ var selector = "input[type=date]",
 
 		if ( targetDay ) {
 			links = $days.find( "a" );
-			( targetDay === 1 ? links.first() : links.last() ).trigger( "focus.wb" );
+			( targetDay === 1 ? links.first() : links.last() ).trigger( "setfocus.wb" );
 		}
 	},
 
@@ -220,17 +220,17 @@ var selector = "input[type=date]",
 				if ( $prevMonthLink.hasClass( "wb-inv" ) ) {
 					$nextMonthLink = $container.find( ".cal-nxtmnth" );
 					if ( $nextMonthLink.hasClass( "wb-inv" ) ) {
-						$container.find( ".cal-goto a" ).trigger( "focus.wb" );
+						$container.find( ".cal-goto a" ).trigger( "setfocus.wb" );
 					} else {
-						$nextMonthLink.trigger( "focus.wb" );
+						$nextMonthLink.trigger( "setfocus.wb" );
 					}
 				} else {
-					$prevMonthLink.trigger( "focus.wb" );
+					$prevMonthLink.trigger( "setfocus.wb" );
 				}
 			}
 		} else {
 			hide( fieldId );
-			$field.trigger( "focus.wb" );
+			$field.trigger( "setfocus.wb" );
 		}
 	},
 
@@ -298,7 +298,7 @@ $document.on( "keydown displayed.wb-cal", "#wb-picker", function ( event, year, 
 		// Escape key to close overlay
 		if ( which === 27 ) {
 			hideAll();
-			$( "#" + fieldId ).trigger( "focus.wb" );
+			$( "#" + fieldId ).trigger( "setfocus.wb" );
 		}
 		break;
 

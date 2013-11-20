@@ -288,7 +288,7 @@ var selector = ".wb-cal-evt",
 			$children = $this.closest( "ul" ).children( "li" );
 			length = $children.length;
 			$children.eq( ( $this.closest( "li" ).index() - 1 ) % length )
-				.children( "a" ).trigger( "focus.wb" );
+				.children( "a" ).trigger( "setfocus.wb" );
 			return false;
 
 		// Down arrow
@@ -296,26 +296,26 @@ var selector = ".wb-cal-evt",
 			$children = $this.closest( "ul" ).children( "li" );
 			length = $children.length;
 			$children.eq( ( $this.closest( "li" ).index() + 1 ) % length )
-				.children( "a" ).trigger( "focus.wb" );
+				.children( "a" ).trigger( "setfocus.wb" );
 			return false;
 
 		// Left arrow
 		case 37:
 			$this.closest( "ol" )
 				.children( "li:lt(" + $this.closest( "li[id^=cal-]" ).index() + ")" )
-				.children( "a" ).last().trigger( "focus.wb" );
+				.children( "a" ).last().trigger( "setfocus.wb" );
 			return false;
 
 		// Right arrow
 		case 39:
 			$this.closest( "ol" )
 				.children( "li:gt(" + $this.closest( "li[id^=cal-]" ).index() + ")" )
-				.children( "a" ).first().trigger( "focus.wb" );
+				.children( "a" ).first().trigger( "setfocus.wb" );
 			return false;
 
 		// Escape
 		case 27:
-			$this.closest( "li[id^=cal-]" ).children( ".cal-event" ).trigger( "focus.wb" );
+			$this.closest( "li[id^=cal-]" ).children( ".cal-event" ).trigger( "setfocus.wb" );
 			return false;
 		}
 	},
