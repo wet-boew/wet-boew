@@ -17,10 +17,8 @@ var $document = vapour.doc,
 
 // Test and helper for browsers that can't change focus on a same page link click
 $document.on( clickEvents, linkSelector, function( event ) {
-	var testElm = event.target,
+	var testHref = event.currentTarget.getAttribute( "href" ),
 		$linkTarget;
-
-	testHref = testElm.getAttribute( "href" );
 
 	// Same page links only
 	if ( testHref.charAt( 0 ) === "#" &&
@@ -49,7 +47,7 @@ $document.on( clickEvents, linkSelector, function( event ) {
 				linkFocusTested = true;
 
 				$linkTarget.trigger( "setfocus.wb" );
-			}, 10 );
+			}, 20 );
 		}
 	}
 });
