@@ -304,13 +304,14 @@
 		onPick( $sldr, $elm );
 		break;
 	default:
-		$text = $elm.find("i");
-		$inv = $elm.find(".wb-inv");
+		$text = $elm.find( "i" );
+		$inv = $elm.find( ".wb-inv" );
+		$elm.find( ".glyphicon" ).toggleClass( "glyphicon-play" ).toggleClass( "glyphicon-pause" );
 		$text.text(
-			($text.text() === i18nText.play ) ? i18nText.pause : i18nText.play
+			$text.text() === i18nText.play ? i18nText.pause : i18nText.play
 		);
 		$inv.text(
-			($inv.text() === i18nText.rotStop ) ? i18nText.rotStart : i18nText.rotStop
+			$inv.text() === i18nText.rotStop ? i18nText.rotStart : i18nText.rotStop
 		);
 		$sldr.toggleClass( "stopped" );
 	}
