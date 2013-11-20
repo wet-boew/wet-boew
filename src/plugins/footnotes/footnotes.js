@@ -69,7 +69,7 @@ $document.on( "click vclick", "main :not(" + selector + ") sup a.fn-lnk", functi
 					.attr( "href", "#" + eventTarget.parentNode.id );
 
 		// Assign focus to $refLinkDest
-		$refLinkDest.trigger( "focus.wb" );
+		$refLinkDest.trigger( "setfocus.wb" );
 		return false;
 	}
 } );
@@ -84,7 +84,7 @@ $document.on( "click vclick", selector + " dd p.fn-rtn a", function( event ) {
 		refId = "#" + vapour.jqEscape( event.target.getAttribute( "href" ).substring( 1 ) );
 
 		// Assign focus to the link
-		$document.find( refId + " a" ).trigger( "focus.wb" );
+		$document.find( refId + " a" ).trigger( "setfocus.wb" );
 		return false;
 	}
 });

@@ -186,7 +186,7 @@ var selector = ".wb-formvalid",
 								if ( submitted ) {
 
 									// Assign focus to $summaryContainer
-									$summaryContainer.trigger( "focus.wb" );
+									$summaryContainer.trigger( "setfocus.wb" );
 								} else {
 
 									// Update the aria-live region as necessary
@@ -275,7 +275,7 @@ $document.on( "click vclick", selector + " .errCnt a", function( event ) {
 		errorTop = $label.length !== 0 ? $label.offset().top : ( $legend.length !== 0 ? $legend.offset().top : -1 );
 
 		// Assign focus to $input
-		$input.trigger( "focus.wb" );
+		$input.trigger( "setfocus.wb" );
 
 		if ( errorTop !== -1 ) {
 			window.scroll( 0, errorTop );

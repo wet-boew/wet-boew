@@ -183,12 +183,12 @@ $document.on( "keydown", ".mfp-wrap", function( event ) {
 
 		if ( event.shiftKey ) {
 			if ( event.currentTarget === eventTarget ) {
-				$elm.find( ":focusable" ).last().trigger( "focus.wb" );
+				$elm.find( ":focusable" ).last().trigger( "setfocus.wb" );
 				return false;
 			}
 		} else {
 			if ( $elm.find( ":focusable" ).last()[ 0 ] === eventTarget ) {
-				$elm.trigger( "focus.wb" );
+				$elm.trigger( "setfocus.wb" );
 				return false;
 			}
 		}

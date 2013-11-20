@@ -233,7 +233,7 @@ var selector = ".wb-session-timeout",
 						clearInterval( countdownInterval );
 
 						// Assign focus to activeElement
-						$( activeElement ).trigger( "focus.wb" );
+						$( activeElement ).trigger( "setfocus.wb" );
 					}
 				}
 			});

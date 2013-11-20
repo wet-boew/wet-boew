@@ -43,7 +43,7 @@ var $document = vapour.doc,
 			link = menuLinks[ i ];
 			linkHref = link.getAttribute( "href" );
 			if ( linkHref !== null ) {
-				if ( linkHref.length !== 0 && linkHref.slice( 0, 1 ) !== "#" ) {
+				if ( linkHref.length !== 0 && linkHref.charAt( 0 ) !== "#" ) {
 					linkUrl = link.hostname + link.pathname.replace( /^([^\/])/, "/$1" );
 					linkQuery = link.search;
 					linkQueryLen = linkQuery.length;
@@ -71,7 +71,7 @@ var $document = vapour.doc,
 				for ( i = 0; i !== len; i += 1) {
 					link = localBreadcrumbLinks[ i ];
 					linkHref = link.getAttribute( "href" );
-					if ( linkHref.length !== 0 && linkHref.slice( 0, 1 ) !== "#" ) {
+					if ( linkHref.length !== 0 && linkHref.charAt( 0 ) !== "#" ) {
 						localBreadcrumbLinksArray.push( link );
 						localBreadcrumbLinksUrlArray.push( link.hostname + link.pathname.replace( /^([^\/])/, "/$1" ) );
 					}
