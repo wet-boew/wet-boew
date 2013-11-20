@@ -4,6 +4,15 @@
  */
 
 /*
+ *	Anchor outline
+ */
+a {
+	&:focus {
+		outline: invert dotted thin;
+	}
+}
+
+/*
  *	Table stripes and hover -- Increased the contrast for the table stripes
  *	and hover
  */
@@ -134,7 +143,7 @@ $input-height-small: (floor($font-size-small * $line-height-small) + ($padding-s
 .btn {
 	font-size: $font-size-base;
 }
-	
+
 .btn-lg {
 	@include button-size($padding-large-vertical, $padding-large-horizontal, $font-size-large, $line-height-large, $border-radius-large);
 }
