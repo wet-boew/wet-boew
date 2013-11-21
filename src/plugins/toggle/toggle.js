@@ -72,9 +72,10 @@ var selector = ".wb-toggle",
 	/*
 	 * Click handler for the toggle links
 	 * @param {jQuery Event} event The event that triggered this invocation
+	 * @param {DOM element} link The toggle link that was clicked
 	 */
-	click = function( event ) {
-		var $link = $( event.target );
+	click = function( event, link ) {
+		var $link = $( link );
 
 		$link.trigger( "toggle.wb-toggle", $link.data( "toggle" ) );
 		event.preventDefault();
@@ -89,21 +90,29 @@ var selector = ".wb-toggle",
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 */
 	toggle = function( event, data ) {
-		var link = event.target,
+		var dataGroup, $elmsGroup,
+			link = event.target,
 			$elms = getElements( link, data ),
 			stateFrom = getState( link, data ),
 			isToggleOn = stateFrom === data.stateOff,
-			stateTo = isToggleOn ? data.stateOn : data.stateOff,
-			$grouped;
+			stateTo = isToggleOn ? data.stateOn : data.stateOff;
 
+		// Group toggle behaviour: only one element in the group open at a time.
+		if ( data.group != null ) {
+
+			// Get the grouped elements using data.group as the CSS selector
+			dataGroup = $.extend( {}, data, { selector: data.group } );
+			$elmsGroup = getElements( link, dataGroup );
+
+			// Toggle all grouped elements to "off"
+			setState( link, dataGroup, data.stateOff );
+			$elmsGroup.wb( "toggle", data.stateOff, data.stateOn );
+			$elmsGroup.trigger( "toggled.wb-toggle", { isOn: false } );
+		}
+
+		// Toggle all elements identified by data.selector to the requested state
 		setState( link, data, stateTo );
 		$elms.wb( "toggle", stateTo, stateFrom );
-
-		// Update the states of the toggles first since grouped only allows for one of the toggles to be active at once
-		if ( data.group !== undefined ) {
-			$grouped = getGroupedElements( link, data );
-			$grouped.trigger( "toggled.wb-toggle", { isOn: false } );
-		}
 		$elms.trigger( "toggled.wb-toggle", { isOn: isToggleOn } );
 	},
 
@@ -121,7 +130,7 @@ var selector = ".wb-toggle",
 		// Polyfill details support
 		if ( !Modernizr.details ) {
 			$detail.attr( "open", data.isOn ? null : "open" );
-			$detail.find( "summary" ).trigger( "click" );
+			$detail.find( "summary" ).trigger( "toggle.wb-details" );
 		}
 	},
 
@@ -138,20 +147,6 @@ var selector = ".wb-toggle",
 		return parent !== null ? $( parent ).find( selector ) : $( selector );
 	},
 
-
-	/*
-	 * Returns the grouped elements a given toggle element controls.
-	 * @param {DOM element} link Toggle element that was clicked
-	 * @param {Object} data Simple key/value data object passed when the event was triggered
-	 * @returns {jQuery Object} DOM elements the toggle link controls
-	 */
-	getGroupedElements = function( link, data ) {
-		var selector = data.group !== undefined ? "." + data.group : link,
-			parent = data.parent !== undefined ? data.parent : null;
-
-		return parent !== null ? $( parent ).find( selector ) : $( selector );
-	},
-
 	/*
 	 * Gets the current toggle state of elements controlled by the given link.
 	 * @param {DOM element} link Toggle link that was clicked
@@ -160,7 +155,7 @@ var selector = ".wb-toggle",
 	getState = function( link, data ) {
 		var parent = data.parent,
 			selector = data.selector,
-			type = data.type;
+			type = data.group != null ? data.stateOn : data.type;
 
 		// No toggle type: get the current on/off state of the elements specified by the selector and parent
 		if ( !type ) {
@@ -175,7 +170,7 @@ var selector = ".wb-toggle",
 			return data.stateOff;
 		}
 
-		// Toggle type: get opposite state of the requested type. toggle will then reverse this to the requested state
+		// Type: get opposite state of the type. Toggle reverses this to the requested state.
 		return type === data.stateOn ? data.stateOff : data.stateOn;
 	},
 
@@ -226,7 +221,7 @@ $document.on( "timerpoke.wb ariaControls.wb-toggle toggle.wb-toggle click",	sele
 
 	switch ( eventType ) {
 	case "click":
-		click( event );
+		click( event, this );
 		break;
 	case "toggle":
 		toggle( event, data );
