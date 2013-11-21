@@ -52,10 +52,10 @@ describe( "Favicon test suite", function() {
 				isSelector = false;
 
 			// Loop over calls made on the trigger() spy
-			for ( i = 0, lenCalls = spies.trigger.callCount; !isSelector && i < lenCalls; i++ ) {
+			for ( i = 0, lenCalls = spies.trigger.callCount; !isSelector && i < lenCalls; i += 1 ) {
 				call = spies.trigger.getCall( i );
 				// There may be multiple `this` objects for each call
-				for ( j = 0, lenElms = call.thisValue.length; !isSelector && j < lenElms; j++ ) {
+				for ( j = 0, lenElms = call.thisValue.length; !isSelector && j < lenElms; j += 1 ) {
 					isSelector =  call.thisValue[ j ].nodeName === "LINK" && call.thisValue[ j ].rel === "shortcut icon";
 				}
 			}

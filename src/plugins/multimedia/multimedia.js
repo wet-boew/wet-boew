@@ -339,7 +339,7 @@ $document.on( "ajax-fetched.wb", $selector, function( event ) {
 $document.on( "init.multimedia.wb", $selector, function() {
 
 	var $this = $( this ),
-		$id = $this.attr( "id" ) !== undef ? $this.attr( "id" ) : "wb-mediaplayer-" + ( $seed++ ),
+		$id = $this.attr( "id" ) !== undef ? $this.attr( "id" ) : "wb-mediaplayer-" + ( $seed += 1 ),
 		$media = $this.children( "audio, video" ).eq( 0 ),
 		$m_id = $media.attr( "id" ) !== undef ? $media.attr( "id" ) : "" + $id + "-media",
 		$type = $media.is( "video" ) ? "video" : "audio",

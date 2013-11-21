@@ -96,7 +96,7 @@ var getUrlParts = function( url ) {
 			all = div.getElementsByTagName( "i" );
 
 		while (
-			div.innerHTML = "<!--[if gt IE " + ( ++v ) + "]><i></i><![endif]-->",
+			div.innerHTML = "<!--[if gt IE " + ( v += 1 ) + "]><i></i><![endif]-->",
 			all[ 0 ]
 		){}
 

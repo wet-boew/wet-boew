@@ -55,10 +55,10 @@ describe( "Prettify test suite", function() {
 				isSelector = false;
 
 			// Loop over calls made on the trigger() spy
-			for ( i = 0, lenCalls = spy.callCount; !isSelector && i < lenCalls; i++ ) {
+			for ( i = 0, lenCalls = spy.callCount; !isSelector && i < lenCalls; i += 1 ) {
 				call = spy.getCall( i );
 				// There may be multiple `this` objects for each call
-				for ( j = 0, lenElms = call.thisValue.length; !isSelector && j < lenElms; j++ ) {
+				for ( j = 0, lenElms = call.thisValue.length; !isSelector && j < lenElms; j += 1 ) {
 					isSelector = call.thisValue[ j ].className.indexOf( "wb-prettify" ) > -1;
 				}
 			}

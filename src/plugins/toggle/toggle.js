@@ -59,7 +59,7 @@ var selector = ".wb-toggle",
 			$elms =  getElements( link, data );
 
 		// Find the elements this link controls
-		for ( i = 0, len = $elms.length; i < len; i++ ) {
+		for ( i = 0, len = $elms.length; i < len; i += 1 ) {
 			$elm = $elms.eq( i );
 			if ( $elm.attr( "id" ) === undefined ) {
 				$elm.attr( "id", "wb-toggle_" + i );
