@@ -7,13 +7,10 @@
  *
  */
 
-body {
-    background: #f9f9f9;
-}
-
-/* Shouldn't be needed. Only being used to override Bootstrap default colours which fails WCAG 2.0 contrast */
-a {
-	color: #295376;
+@media screen {
+	body {
+		background: #f9f9f9;
+	}
 }
 
 @import "includes/defaults";
@@ -24,3 +21,7 @@ a {
 @import "parts/sitenav";
 @import "parts/breadcrumb";
 @import "parts/main";
+
+@media print {
+	@import "includes/print";
+}

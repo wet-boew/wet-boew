@@ -11,11 +11,11 @@
         display: table;
 }
 
-%wb-hidden {
-
-        height: 0 !important;
-        overflow: hidden !important;
-        position: absolute;
-        width: 0 !important;
-        margin: 0 !important;
+%accessible-invisible {
+	height: 1px;
+	width: 1px;
+	clip: rect(1px, 1px, 1px, 1px);
+	overflow: hidden;
+	position: absolute;
+	margin: 0;
 }
