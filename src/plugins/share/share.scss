@@ -155,15 +155,8 @@
 }
 
 #shr-pg {
-	//	@todo	Move this to the overlays plugin
-	background-color: #fff;
 	//	@todo	Automate the setting of the width
 	width: 250px;
-}
-
-//	@todo	Move this to the overlays plugin
-.wb-overlay {
-	z-index: 999;
 }
 
 [dir=rtl] {

@@ -3,51 +3,70 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 
-.wb-overlay {
+/*
+ *	Overlay base
+ */
+@mixin overlay {
+	background-color: #fff;
+	border: 1px solid #000;
 	box-sizing: border-box;
 	display: none;
 	visibility: hidden;
 	&:target {
-		position: absolute;
+		position: fixed;
 		display: block;
 		visibility: visible;
+		z-index: 999;
 	}
 }
 
-.panel {
-	top: 0px;
+%panel {
+	top: 0;
 	min-height: 100%;
 	max-width: 90%;
 }
 
-.panel-left {
-	left: 0;
-}
-
-.panel-right {
-	right: 0;
-}
-
-.bar {
+%bar {
 	max-height: 90%;
 	min-width: 100%;
 	left: 0;
 }
 
-.bar-top {
-	top: 0;
-}
-
-.bar-bottom {
-	bottom: 0;
-}
-
-.pop-up {
+%pop-up {
 	max-height: 90%;
 	max-width: 90%;
 }
 
-.pop-up-centred {
+/*
+ *	Overlay styles
+ */
+.wb-panel-left {
+	@include overlay;
+	@extend %panel;
+	left: 0;
+}
+
+.wb-panel-right {
+	@include overlay;
+	@extend %panel;
+	right: 0;
+}
+
+.wb-bar-top {
+	@include overlay;
+	@extend %bar;
+	top: 0;
+}
+
+.wb-bar-bottom {
+	@include overlay;
+	@extend %bar;
+	bottom: 0;
+}
+
+.wb-pop-up-centred {
+	@include overlay;
+	@extend %pop-up;
 	top: 0;
 	bottom: 0;
 	left: 0;
@@ -55,9 +74,33 @@
 	margin: auto;
 }
 
-.full-screen {
+.wb-pop-up-full-screen {
+	@include overlay;
 	min-width: 100%;
 	min-height: 100%;
 	top: 0;
 	left: 0;
+}
+
+/*
+ *	Overlay parts
+ */
+.overlay-header {
+	background-color: #000;
+	color: #fff;
+	display: block;
+	padding: 10px 26px 10px 10px;
+	h1, h2, h3, h4, h5, h6 {
+		font-size: 1.15em;
+		font-weight: normal;
+		margin: 0 1em;
+	}
+}
+
+.overlay-close {
+	color: #fff;
+	position: absolute;
+	right: 10px;
+	text-decoration: none;
+	top: 10px;
 }
