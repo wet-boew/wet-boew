@@ -274,7 +274,7 @@ Peformant micro templater
 					len = path.length,
 					lookup = data,
 					i = 0;
-				for ( ; i < len; i++ ) {
+				for ( ; i < len; i += 1 ) {
 					lookup = lookup[ path[ i ] ];
 					// Property not found
 					if ( lookup === undef ) {
