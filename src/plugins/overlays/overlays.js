@@ -14,7 +14,9 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-panel-left, .wb-panel-right, .wb-bar-top, .wb-bar-bottom, .wb-pop-up-centred, .wb-pop-up-full-screen",
+	headerClass = "overlay-header",
 	$document = vapour.doc,
+	i18n, i18nText,
 
 	/*
 	 * Init runs once per plugin element on the page. There may be multiple elements.
@@ -23,12 +25,49 @@ var selector = ".wb-panel-left, .wb-panel-right, .wb-bar-top, .wb-bar-bottom, .w
 	 * @param {jQuery Event} event Event that triggered this handler
 	 */
 	init = function( event ) {
+		var elm = event.target,
+			overlayHeader = elm.children[ 0 ],
+			overlayClose, closeIcon, closeText;
 
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === event.target ) {
 
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 			window._timer.remove( selector );
+
+			// Only initialize the i18nText once
+			if ( !i18nText ) {
+				i18n = window.i18n;
+				i18nText = {
+					close: i18n( "close" )
+				};
+			}
+
+			// if no overlay header then add one
+			if ( !overlayHeader || overlayHeader.className.indexOf( headerClass ) === -1 ) {
+				overlayHeader = document.createElement( "div" );
+				overlayHeader.className = headerClass;
+
+				elm.insertBefore( overlayHeader, elm.firstChild );
+			}
+
+			// Add close button
+			overlayClose = document.createElement( "a" );
+			overlayClose.id = elm.id + "_0";
+			overlayClose.href = "#" + overlayClose.id;
+			overlayClose.className = "overlay-close";
+			overlayClose.setAttribute( "role", "button" );
+
+			closeIcon = document.createElement( "span" );
+			closeIcon.className = "glyphicon glyphicon-remove";
+			overlayClose.appendChild( closeIcon );
+
+			closeText = document.createElement( "span" );
+			closeText.className = "wb-inv";
+			closeText.appendChild( document.createTextNode( " " + i18nText.close ) );
+			overlayClose.appendChild( closeText );
+
+			overlayHeader.appendChild( overlayClose );
 
 			/*
 			 *	@todo	Add ARIA attributes.
