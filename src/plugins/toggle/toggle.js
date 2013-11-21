@@ -15,6 +15,7 @@
  */
 var selector = ".wb-toggle",
 	$document = vapour.doc,
+	$window = vapour.win,
 	states = {},
 	defaults = {
 		stateOn: "on",
@@ -94,11 +95,12 @@ var selector = ".wb-toggle",
 			link = event.target,
 			$elms = getElements( link, data ),
 			stateFrom = getState( link, data ),
+			isGroup = data.group != null,
 			isToggleOn = stateFrom === data.stateOff,
 			stateTo = isToggleOn ? data.stateOn : data.stateOff;
 
 		// Group toggle behaviour: only one element in the group open at a time.
-		if ( data.group != null ) {
+		if ( isGroup ) {
 
 			// Get the grouped elements using data.group as the CSS selector
 			dataGroup = $.extend( {}, data, { selector: data.group } );
@@ -107,13 +109,19 @@ var selector = ".wb-toggle",
 			// Toggle all grouped elements to "off"
 			setState( link, dataGroup, data.stateOff );
 			$elmsGroup.wb( "toggle", data.stateOff, data.stateOn );
-			$elmsGroup.trigger( "toggled.wb-toggle", { isOn: false } );
+			$elmsGroup.trigger( "toggled.wb-toggle", {
+				isOn: false,
+				isGroup: isGroup
+			});
 		}
 
 		// Toggle all elements identified by data.selector to the requested state
 		setState( link, data, stateTo );
 		$elms.wb( "toggle", stateTo, stateFrom );
-		$elms.trigger( "toggled.wb-toggle", { isOn: isToggleOn } );
+		$elms.trigger( "toggled.wb-toggle", {
+			isOn: isToggleOn,
+			isGroup: isGroup
+		});
 	},
 
 	/*
@@ -122,7 +130,8 @@ var selector = ".wb-toggle",
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 */
 	toggleDetails = function( event, data ) {
-		var $detail = $( this );
+		var top,
+			$detail = $( this );
 
 		// Native details support
 		$detail.prop( "open", data.isOn );
@@ -131,6 +140,14 @@ var selector = ".wb-toggle",
 		if ( !Modernizr.details ) {
 			$detail.attr( "open", data.isOn ? null : "open" );
 			$detail.find( "summary" ).trigger( "toggle.wb-details" );
+		}
+
+		// For grouped details elements, check that the top of the open details element is in view.
+		if ( data.isGroup && data.isOn ) {
+			top = $detail.offset().top;
+			if ( top < $window.scrollTop() ) {
+				$window.scrollTop( top );
+			}
 		}
 	},
 
