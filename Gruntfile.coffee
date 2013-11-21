@@ -729,8 +729,19 @@ module.exports = (grunt) ->
 				tasks: "jshint:lib_test"
 
 			source:
-				files: "<%= jshint.lib_test.src %>"
-				tasks: ["dist"]
+				files: "src/**.*"
+				tasks: "dist"
+				options:
+					interval: 5007
+					livereload: true
+
+			demos:
+				files: [
+					"**/*.hbs"
+				]
+				tasks: [
+					"assemble"
+				]
 				options:
 					interval: 5007
 					livereload: true
