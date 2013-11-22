@@ -484,29 +484,20 @@ $document.on( "click", $selector, function( event ) {
 	// Ignore middle and right mouse buttons
 	if ( !which || which === 1 ) {
 		$target = $( eventTarget );
-
 		if ( className.match( /playpause|-(play|pause)|wb-mm-ovrly/ ) ) {
 			playerTarget.player( playerTarget.player( "getPaused" ) ? "play" : "pause" );
-			return false;
 		} else if ( className.match( /\bcc\b|-subtitles/ )  ) {
 			playerTarget.player( "setCaptionsVisible", !playerTarget.player( "getCaptionsVisible" ) );
-			return false;
 		} else if ( className.match( /\bmute\b|-volume-(up|off)/ ) ) {
 			playerTarget.player( "setMuted", !playerTarget.player( "getMuted" ) );
-			return false;
 		} else if ( $target.is( "progress" ) || className.indexOf( "wb-progress-inner") !== -1 || className.indexOf( "wb-progress-outer" ) !== -1 ) {
 			playerTarget.player( "setCurrentTime", playerTarget.player( "getDuration" ) * ( ( event.pageX - $target.offset().left ) / $target.width() ) );
-			return false;
 		} else if ( className.match( /\brewind\b|-backwards/ ) ) {
 			playerTarget.player( "setCurrentTime", playerTarget.player( "getCurrentTime" ) - playerTarget.player( "getDuration" ) * 0.05 );
-			return false;
 		} else if ( className.match( /\bfastforward\b|-forward/ ) ) {
 			playerTarget.player( "setCurrentTime", playerTarget.player( "getCurrentTime" ) + playerTarget.player( "getDuration" ) * 0.05 );
-			return false;
 		}
 	}
-
-	return true;
 });
 
 $document.on( "keydown", $selector, function( event ) {
