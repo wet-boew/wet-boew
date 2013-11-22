@@ -65,6 +65,11 @@ var selector = ".wb-tables",
 				asStripeClasses : [],
 				oLanguage: i18nText,
 				fnDrawCallback: function() {
+
+					if ( $elm.data( "inviewstate" ) === "partial" ){
+						$( "html, body" ).scrollTop( $elm.prev().offset().top );
+					}
+
 					$elm.trigger( "tables-draw.wb" );
 				}
 			};

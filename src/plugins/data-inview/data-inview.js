@@ -7,8 +7,8 @@
 (function( $, window, vapour ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
@@ -19,7 +19,7 @@ var selector = ".wb-inview",
 	$window = vapour.win,
 
 	/*
-	 * Init runs once per plugin element on the page. There may be multiple elements. 
+	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
 	 * @param {jQuery DOM element} $elm The plugin element being initialized
@@ -47,16 +47,23 @@ var selector = ".wb-inview",
 			x2 = x1 + elementWidth,
 			y1 = $elm.offset().top,
 			y2 = y1 + elementHeight,
-			inView = ( scrollBottom < y1 || scrollTop > y2 ) || ( scrollRight < x1 || scrollRight > x2 );
+			inView = ( scrollBottom < y1 || scrollTop > y2 ) || ( scrollRight < x1 || scrollRight > x2 ),
 
-		$elm
+			// this is a bit of a play on true/false to get the desired effect. In short this variable depicts
+			// the view state of the element
+			// all - the whole element is in the viewport
+			// partial - part of the element is in the viewport
+			// none - no part of the element is in the viewport
+			viewstate = ( scrollBottom > y2 && scrollTop < y1 ) ? "all" : ( inView ) ? "none" : "partial";
+
+		$elm.attr( "data-inviewstate", viewstate )
 			.find( ".pg-banner, .pg-panel" )
-				.attr({
-					"role": "toolbar",
-					"aria-hidden": !inView
-				})
-				.toggleClass( "in", !inView )
-				.toggleClass( "out", inView );
+			.attr({
+				"role": "toolbar",
+				"aria-hidden": !inView
+			})
+			.toggleClass( "in", !inView )
+			.toggleClass( "out", inView );
 	};
 
 // Bind the init event of the plugin
@@ -80,7 +87,7 @@ $document.on( "timerpoke.wb scroll.wb-inview", selector, function( event ) {
 	}
 
 	/*
-	 * Since we are working with events we want to ensure that we are being passive about our control, 
+	 * Since we are working with events we want to ensure that we are being passive about our control,
 	 * so returning true allows for events to always continue
 	 */
 	return true;
