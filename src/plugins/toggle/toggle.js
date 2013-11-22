@@ -57,13 +57,14 @@ var selector = ".wb-toggle",
 		var i, len, $elm,
 			ariaControls = "",
 			link = event.target,
+			prefix = "wb-" + new Date().getTime(),
 			$elms =  getElements( link, data );
 
 		// Find the elements this link controls
 		for ( i = 0, len = $elms.length; i < len; i += 1 ) {
 			$elm = $elms.eq( i );
 			if ( $elm.attr( "id" ) === undefined ) {
-				$elm.attr( "id", "wb-toggle_" + i );
+				$elm.attr( "id", prefix + i );
 			}
 			ariaControls += $elm.attr( "id" ) + " ";
 		}
@@ -172,12 +173,12 @@ var selector = ".wb-toggle",
 	getState = function( link, data ) {
 		var parent = data.parent,
 			selector = data.selector,
-			type = data.group != null ? data.stateOn : data.type;
+			type = data.type;
 
 		// No toggle type: get the current on/off state of the elements specified by the selector and parent
 		if ( !type ) {
 			if( !selector ) {
-				return $( link ).data( "state" );
+				return $( link ).data( "state" ) || data.stateOff;
 
 			} else if ( states.hasOwnProperty( selector ) ) {
 				return states[ selector ].hasOwnProperty( parent ) ?
