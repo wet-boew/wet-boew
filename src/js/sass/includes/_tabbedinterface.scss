@@ -304,7 +304,7 @@
 	.tabs {
 		border: none;
 		background: #eee;
-		@include opacity(0.95);
+		opacity: 0.95;
 		min-height: 24px;
 		position: absolute;
 		width: 100%;
