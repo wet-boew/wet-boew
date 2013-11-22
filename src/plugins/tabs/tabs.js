@@ -58,21 +58,20 @@
 		var $sldr = $tablist.parents( selector ),
 			state = $sldr.hasClass( "playing" ) ? i18nText.pause :  i18nText.play,
 			hidden = $sldr.hasClass( "playing" ) ? i18nText.rotStop  :  i18nText.rotStart,
-			controls = "<li class='tabs-toggle prv'><a class='prv' href='javascript:;' role='button'>" +
+			iconState = $sldr.hasClass( "playing" ) ? "<span class='glyphicon glyphicon-pause'></span>" : "<span class='glyphicon glyphicon-play'></span>",
+			controls = "<li class='tabs-toggle prv'><a class='prv' href='javascript:;' role='button' title='" + i18nText.prev + "'>" +
 						"<span class='glyphicon glyphicon-chevron-left'></span>" +
 						"<span class='wb-inv'>" +
 						i18nText.prev +
 						"</span></a></li> " +
-						"<li class='tabs-toggle nxt'><a class='nxt' href='javascript:;' role='button'>" +
+						"<li class='tabs-toggle plypause'><a class='plypause' href='javascript:;' role='button' title='" + state + "'>" +
+						iconState + "<i>" + state + "</i>" +
+						"<span class='wb-inv'>" + state + "</span></a></li> " +
+						"<li class='tabs-toggle nxt'><a class='nxt' href='javascript:;' role='button' title='" + i18nText.next + "'>" +
 						"<span class='glyphicon glyphicon-chevron-right'></span>" +
 						"<span class='wb-inv'>" +
 						i18nText.next +
-						"</span></a></li> " +
-						"<li class='tabs-toggle plypause'><a class='plypause' href='javascript:;' role='button'><i>" +
-						state +
-						"</i><span class='wb-inv'>" +
-						i18nText.space + i18nText.hyphen + i18nText.space + hidden +
-						"</span></a></li>";
+						"</span></a></li> ";
 
 		$tablist.append( controls );
 		$sldr.addClass( "inited" );
