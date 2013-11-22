@@ -66,7 +66,7 @@
 						"</span></a></li> " +
 						"<li class='tabs-toggle plypause'><a class='plypause' href='javascript:;' role='button' title='" + state + "'>" +
 						iconState + "<i>" + state + "</i>" +
-						"<span class='wb-inv'>" + state + "</span></a></li> " +
+						"<span class='wb-inv'>" + i18nText.space + i18nText.hyphen + i18nText.space + hidden + "</span></a></li> " +
 						"<li class='tabs-toggle nxt'><a class='nxt' href='javascript:;' role='button' title='" + i18nText.next + "'>" +
 						"<span class='glyphicon glyphicon-chevron-right'></span>" +
 						"<span class='wb-inv'>" +
