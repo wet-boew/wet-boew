@@ -32,8 +32,8 @@
 			return false;
 		}
 
-		/* state stopped*/
-		if ( $elm.hasClass( "stopped" ) ) {
+		/* state playing*/
+		if ( !$elm.hasClass( "playing" ) ) {
 			return false;
 		}
 		/* continue;*/
@@ -56,8 +56,8 @@
 	 */
 	createControls = function( $tablist ) {
 		var $sldr = $tablist.parents( selector ),
-			state = $sldr.hasClass( "stopped" ) ? i18nText.play :  i18nText.pause,
-			hidden = $sldr.hasClass( "stopped" ) ? i18nText.rotStart  :  i18nText.rotStop,
+			state = $sldr.hasClass( "playing" ) ? i18nText.pause :  i18nText.play,
+			hidden = $sldr.hasClass( "playing" ) ? i18nText.rotStop  :  i18nText.rotStart,
 			controls = "<li class='tabs-toggle prv'><a class='prv' href='javascript:;' role='button'>" +
 						"<span class='glyphicon glyphicon-chevron-left'></span>" +
 						"<span class='wb-inv'>" +
@@ -313,7 +313,7 @@
 		$inv.text(
 			$inv.text() === i18nText.rotStop ? i18nText.rotStart : i18nText.rotStop
 		);
-		$sldr.toggleClass( "stopped" );
+		$sldr.toggleClass( "playing" );
 	}
 	$sldr.attr( "data-ctime", 0 );
 
