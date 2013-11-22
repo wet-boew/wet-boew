@@ -73,6 +73,14 @@ var selector = ".wb-tables",
 			Modernizr.load([{
 				load: [ "site!deps/jquery.dataTables" + vapour.getMode() + ".js" ],
 				complete: function() {
+
+					// lets introduce a scrolltotop of table function if required by implementers
+					if ( $elm.hasClass( "pg-scrlltp") ) {
+						$elm.on( "page" , function() {
+							$( "html , body" ).scrollTop( $(this).prev().offset().top  );
+						});
+					}
+
 					$elm.dataTable( $.extend( true, defaults, vapour.getData( $elm, "wet-boew" ) ) );
 
 					// Disable role="dialog" on table wrapper since it is
