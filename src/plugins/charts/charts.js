@@ -11,7 +11,7 @@
 
 
 /*
- * Variable and function definitions. 
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
@@ -21,58 +21,33 @@ var wet_boew_charts,
 	$document = vapour.doc,
 
 	/*
-	* Main Entry function to create the charts
-	* @method createCharts
-	* @param {jQuery DOM element} $elm table element use to create the chart
-	*/
-	createCharts = function ($elm) {
-		var options = {},
+	 * Main Entry function to create the charts
+	 * @method createCharts
+	 * @param {jQuery DOM element} $elm table element use to create the chart
+	 */
+	createCharts = function ( $elm ) {
+		var allSeries = [],
+			calcTick = [],
+			dataSeries = [],
 			i18n = window.i18n,
+			isPieChart,
+			nbBarChart = 0,
+			options = {},
+			pieChartLabelText = "",
 			self = $elm,
-			srcTbl = self,
 			smallestHorizontalFlotDelta,
 			smallestVerticalFlotDelta,
+			srcTbl = self,
 			tblMultiplier = [],
-			calcTick = [],
-			UseHeadRow,
-			uniformCumul,
-			RowDefaultOptions,
-			parsedData,
-			horizontalCalcTick,
-			verticalCalcTick,
-			allSeries = [],
-			isPieChart,
-			dataSeries = [],
 			valueCumul = 0,
-			header,
-			rIndex,
-			i,
-			j,
-			figCaptionElem,
-			tblCaptionHTML,
-			$placeHolder,
-			tblSrcContainer,
-			tblSrcContainerSummary,
-			cellValue,
-			pieLabelFormater,
-			mainFigureElem,
-			_graphclasslen,
-			tblCaptionText,
-			dataGroup,
-			tdOptions,
-			$subFigureElem,
-			$subfigCaptionElem,
-			pieOptions,
-			nbBarChart = 0,
-			barDelta,
-			rowOptions,
-			datacolgroupfound,
-			valuePoint,
-			figureElem,
-			_graphclasslen2,
-			plotParameter,
-			pieChartLabelText = "",
-			$imgContainer;
+			$imgContainer, $placeHolder, $subfigCaptionElem, $subFigureElem,
+			graphClassLength, graphClassLength2, barDelta, cellValue,
+			datacolgroupfound, dataGroup, figCaptionElem, figureElem, header,
+			horizontalCalcTick, i, j, mainFigureElem, parsedData,
+			pieLabelFormater, pieOptions, plotParameter, rIndex,
+			rowDefaultOptions, rowOptions, tblCaptionHTML, tblCaptionText,
+			tblSrcContainer, tblSrcContainerSummary, tdOptions, uniformCumul,
+			useHeadRow, valuePoint, verticalCalcTick;
 
 		function colourNameToHex( colour ) {
 			var colours = {
@@ -238,7 +213,8 @@ var wet_boew_charts,
 				colour = "accent-" + ( colour + 1 );
 			}
 
-			return ( colours[ colour.toLowerCase() ] !== "undefined" ? colours[ colour.toLowerCase() ] : ( $.isArray( options.colors ) ? options.colors[ 0 ] : options.colors ) );
+			return colours[ colour.toLowerCase() ] ||
+				$.isArray( options.colors ) ? options.colors[ 0 ] : options.colors;
 		}
 
 		// Function to Convert Class instance to JSON
@@ -246,102 +222,107 @@ var wet_boew_charts,
 			var separatorNS = "",
 				separator = "",
 				autoCreate = false,
-				detectedNamespace,
-				_lenDetectedNamespace,
-				arrClass,
-				parameter,
-				arrParameters,
-				arrParameter,
-				propName,
-				i, _ilen,
-				j,
-				m, _mlen,
-				valIsNext,
-				isVal,
-				arrValue,
 				arrayOverwrite = false,
 				autoCreateMe = false,
-				jsonString,
-				val;
+				detectedNamespaceLength, arrClass, arrParameter, arrParameters,
+				arrValue, detectedNamespace, i, iLength, isVal, j, jsonString,
+				m, mLength, parameter, propName, val, valIsNext;
 
 			// Test: optSource
 			if ( typeof sourceOptions !== "object" ) {
+
 				// Empty source
 				return {};
 			}
+
 			// Get a working copy for the sourceOptions
-			sourceOptions = jQuery.extend( true, {}, sourceOptions );
+			sourceOptions = $.extend( true, {}, sourceOptions );
 
 			// Test: strClass
 			if ( typeof strClass !== "string" || strClass.length === 0 ) {
+
 				// no string class;
 				return sourceOptions;
-			}
-			// Test: namespace
-			if ( typeof namespace !== "string" || namespace.length === 0 ) {
+			} else if ( typeof namespace !== "string" || namespace.length === 0 ) {
+
 				// Try to get the default namespace
-				if ( sourceOptions[ "default-namespace" ] && ( typeof sourceOptions[ "default-namespace" ] === "string" || $.isArray( sourceOptions[ "default-namespace" ] ) ) ) {
+				if ( sourceOptions[ "default-namespace" ] &&
+					( typeof sourceOptions[ "default-namespace" ] === "string" || $.isArray( sourceOptions[ "default-namespace" ] ) ) ) {
 					namespace = sourceOptions[ "default-namespace" ];
 				} else {
+
 					// This a not a valid namespace (no namespace)
 					return sourceOptions;
 				}
 			}
+
 			// Get the namespace separator if defined (optional)
-			separatorNS = ( sourceOptions[ "default-namespace-separator" ] && typeof sourceOptions[ "default-namespace-separator" ] === "string") ? sourceOptions[ "default-namespace-separator" ] : "-";
-			 
+			separatorNS = sourceOptions[ "default-namespace-separator" ] || "-";
+
 			// Get the option separator if defined (optional)
-			separator = ( sourceOptions[ "default-separator" ] && typeof sourceOptions[ "default-separator" ] === "string" ) ? sourceOptions[ "default-separator" ] : " ";
+			separator = sourceOptions[ "default-separator" ] || " ";
 
 			// Check if the the Auto Json option creation are authorized from class
-			autoCreate = sourceOptions[ "default-autocreate" ]; // Espected returning value True | False
-			
+			// Espected returning value True | False
+			autoCreate = !!sourceOptions[ "default-autocreate" ];
+
 			arrClass = strClass.split( separator ); // Get each defined class
-			for ( m = 0, _mlen = arrClass.length; m < _mlen; m +=1 ) {
+			for ( m = 0, mLength = arrClass.length; m < mLength; m +=1 ) {
 				parameter = arrClass[m];
 
 				// Detect the namespace used
-				if ( _lenDetectedNamespace === undefined ) {
+				if ( detectedNamespaceLength === undefined ) {
 					if ( $.isArray( namespace ) ) {
-						for ( i = 0, _ilen = namespace.length; i < _ilen; i += 1 ) {
+						for ( i = 0, iLength = namespace.length; i < iLength; i += 1 ) {
 							detectedNamespace = namespace[i] + separatorNS;
 							if ( parameter.slice( 0, detectedNamespace.length ) === detectedNamespace ) {
-								_lenDetectedNamespace = detectedNamespace.length;
+								detectedNamespaceLength = detectedNamespace.length;
 								break;
 							}
 						}
 					} else if ( parameter.slice( 0, namespace.length + separatorNS.length ) === namespace + separatorNS ) {
 						detectedNamespace = namespace + separatorNS;
-						_lenDetectedNamespace = detectedNamespace.length;
+						detectedNamespaceLength = detectedNamespace.length;
 					} else if ( namespace === "" ) {
 						detectedNamespace = "";
-						_lenDetectedNamespace = 0;
+						detectedNamespaceLength = 0;
 					}
 				}
+
 				// Get the parameter without the namespace
-				arrParameters = ( _lenDetectedNamespace !== undefined ) ? parameter.slice( _lenDetectedNamespace ).split( separatorNS ) : [];
+				arrParameters = detectedNamespaceLength !== undefined ?
+					parameter.slice( detectedNamespaceLength ).split( separatorNS ) :
+					[];
+
 				// Convert the parameter in a controled JSON object
-				if ( arrParameters.length > 0 && parameter.slice( 0, _lenDetectedNamespace ) === detectedNamespace ) {
+				if ( arrParameters.length > 0 && parameter.slice( 0, detectedNamespaceLength ) === detectedNamespace ) {
+
 					// Get all defined parameter
-					for ( i = 0, _ilen = arrParameters.length; i < _ilen; i += 1 ) {
+					for ( i = 0, iLength = arrParameters.length; i < iLength; i += 1 ) {
 						arrParameter = arrParameters[ i ];
-						valIsNext = i + 2 === _ilen;
-						isVal = i + 1 === _ilen;
+						valIsNext = i + 2 === iLength;
+						isVal = i + 1 === iLength;
+
 						// Check if that is the default value and make a reset to the parameter name if applicable
-						if ( isVal && _ilen ) {
-							if ( sourceOptions[ arrParameter + "-autocreate" ] || ( sourceOptions[ arrParameter ] && sourceOptions[ arrParameter + "-typeof" ] && sourceOptions[ arrParameter + "-typeof" ] === "boolean" ) ) {
+						if ( isVal && iLength ) {
+							if ( sourceOptions[ arrParameter + "-autocreate" ] ||
+								( sourceOptions[ arrParameter ] &&
+								sourceOptions[ arrParameter + "-typeof" ] &&
+								sourceOptions[ arrParameter + "-typeof" ] === "boolean" ) ) {
 								// 1. If match an existing option and that option is boolean
 								arrParameter.push( "true" );
 								propName = arrParameter;
 								i += 1;
-								_ilen = arrParameter.length;
+								iLength = arrParameter.length;
 							} else if ( sourceOptions.preset && sourceOptions.preset[ arrParameter ]) {
+
 								// 2. It match a preset, overide the current setting
-								sourceOptions = jQuery.extend( true, sourceOptions, sourceOptions.preset[ arrParameter ] );
+								sourceOptions = $.extend( true, sourceOptions, sourceOptions.preset[ arrParameter ] );
 								break;
-							} else if ( _ilen === 1 ) {
+							} else if ( iLength === 1 ) {
+
 								// 3. Use the Default set
-								propName = sourceOptions[ "default-option" ] ? sourceOptions[ "default-option" ] : undefined;
+								propName = sourceOptions[ "default-option" ];
 							} else {
 								propName = undefined;
 							}
@@ -354,19 +335,19 @@ var wet_boew_charts,
 						if (sourceOptions[ propName + "-typeof" ] ) {
 							// Repair the value if needed
 							arrValue = [];
-							for ( j = ( i + 1 ); j < _ilen; j += 1 ) {
+							for ( j = i + 1; j < iLength; j += 1 ) {
 								arrValue.push( arrParameter[ j ] );
 							}
-							if (i < _ilen - 1) {
+							if (i < iLength - 1) {
 								arrParameter = arrParameters[ i ] = arrValue.join( separatorNS );
 							}
 							valIsNext = false;
 							isVal = true;
 							switch ( sourceOptions[ propName + "-typeof" ] ) {
 							case "boolean":
-								if ( arrParameter === "true" || arrParameter === "1" || arrParameter === "vrai" || arrParameter === "yes" || arrParameter === "oui" ) {
+								if ( !!arrParameter || arrParameter === "vrai" || arrParameter === "yes" || arrParameter === "oui" ) {
 									arrParameter = arrParameters[ i ] = true;
-								} else if ( arrParameter === "false" || arrParameter === "0" || arrParameter === "faux" || arrParameter === "no" || arrParameter === "non") {
+								} else if ( !arrParameter || arrParameter === "faux" || arrParameter === "no" || arrParameter === "non") {
 									arrParameter = arrParameters[ i ] = false;
 								} else {
 									arrParameter = arrParameters[ i ] = undefined;
@@ -386,19 +367,15 @@ var wet_boew_charts,
 							case "locked":
 								arrParameter = arrParameters[ i ] = undefined;
 								break;
-							default:
-								// that include the case "object"
-								break;
 							}
 						}
+
 						// Get the type of overwritting, default are replacing the value
-						if (sourceOptions[ propName + "-overwrite-array-mode" ] ) {
-							arrayOverwrite = true;
-						}
+						arrayOverwrite = !!sourceOptions[ propName + "-overwrite-array-mode" ];
+
 						// Check if this unique option can be autocreated
-						if ( sourceOptions[ propName + "-autocreate" ] ) {
-							autoCreateMe = true;
-						}
+						autoCreateMe = !!sourceOptions[ propName + "-autocreate" ];
+
 						if ( valIsNext && arrParameter !== undefined ) {
 							// Keep the Property Name
 							propName = arrParameter;
@@ -421,9 +398,10 @@ var wet_boew_charts,
 								} else {
 									jsonString = "{\"" + propName + "\": \"" + arrParameter + "\"}";
 								}
-								sourceOptions = jQuery.extend(true, sourceOptions, jQuery.parseJSON(jsonString));
+								sourceOptions = $.extend( true, sourceOptions, $.parseJSON( jsonString ) );
 							}
-							i = _ilen; // Make sur we don't iterate again
+							// Make sure we don't iterate again
+							i = iLength;
 						} else {
 							// Create a sub object
 							if ( arrParameter !== undefined && sourceOptions[ arrParameter ] ) {
@@ -432,11 +410,12 @@ var wet_boew_charts,
 								propName = arrParameter;
 							} else if ( ( autoCreate || autoCreateMe ) && arrParameter !== undefined ) {
 								jsonString = "{\"" + arrParameter[i] + "\": {}}";
-								sourceOptions = jQuery.extend( true, sourceOptions, jQuery.parseJSON( jsonString ) );
+								sourceOptions = $.extend( true, sourceOptions, $.parseJSON( jsonString ) );
 								sourceOptions = sourceOptions[ arrParameter ];
 							} else {
 								// This configuration are rejected
-								i = _ilen; // We don't iterate again
+								// We don't iterate again
+								i = iLength;
 							}
 						}
 					}
@@ -448,8 +427,10 @@ var wet_boew_charts,
 		if ( !window.chartsGraphOpts ){
 			// 1. Charts Default Setting
 			options = {
-				"default-namespace": ["wb-charts", "wb-chart", "wb-graph"],
-				"graphclass-autocreate": true, // This add the ability to set custom css class to the figure container.
+				"default-namespace": [ "wb-charts", "wb-chart", "wb-graph" ],
+
+				// This adds the ability to set custom css class to the figure container.
+				"graphclass-autocreate": true,
 				"graphclass-overwrite-array-mode": true,
 				"graphclass-typeof": "string",
 				"noencapsulation-autocreate": true,
@@ -481,6 +462,7 @@ var wet_boew_charts,
 				"bottomvalue-typeof": "number",
 				"bottomvaluenegative-autocreate": true,
 				"bottomvaluenegative-typeof": "boolean",
+
 				// Ticks => Number of ticks for the y-axis
 				"ticks-autocreate": true,
 				"ticks-typeof": "number",
@@ -506,39 +488,47 @@ var wet_boew_charts,
 				"piehoverable-autocreate": true, // Hoverable pie slice
 				"piehoverable-typeof": "boolean",
 
-				// General option
-				"default-option": "type", // Default CSS Options
-				// Graph Type
-				type: "bar", // this be one of or an array of: area, pie, line, bar, stacked
+				// General option: Default CSS Options
+				"default-option": "type",
+
+				// Graph Type: this be one of or an array of: area, pie, line, bar, stacked
+				type: "bar",
 				"type-autocreate": true,
+
 				//
 				// Graph Layout
 				//
-				width: $elm.width(), // width of canvas - defaults to table height
+
+				// width of canvas - defaults to table height
+				width: $elm.width(),
 				"width-typeof": "number",
-				height: $elm.height(), // height of canvas - defaults to table height
+
+				// height of canvas - defaults to table height
+				height: $elm.height(),
 				"height-typeof": "number",
+
 				//
 				// Data Table and Graph Orientation
 				//
-				parsedirection: "x", // which direction to parse the table data
+
+				// which direction to parse the table data
+				parsedirection: "x",
 				"parsedirection-typeof": "string",
 				"parsedirection-autocreate": true,
+
+				// Parameter: elem = HTML DOM node (td element)
+				//
+				// If this function return an array, it would be assume that the first item correspond at the cell numbered value and the second item correspond at the cell unit
+				// Example
+				// return 25.14
+				// return 44
+				// return [44, "%"]
+				// return [5.1, "g"]
 				getcellvalue: function( elem ) {
-					// Parameter: elem = HTML DOM node (td element)
-					//
-					// If this function return an array, it would be assume that the first item correspond at the cell numbered value and the second item correspond at the cell unit
-					// Example
-					// return 25.14
-					// return 44
-					// return [44, "%"]
-					// return [5.1, "g"]
 
 					// Default Cell value extraction
-					var cellRawValue = $.trim( $( elem ).text() );
+					var cellRawValue = $.trim( $( elem ).text() ).replace( /\s/g, "" );
 
-					//remove spaces inside the string;
-					cellRawValue = cellRawValue.replace( /\s/g, "" );
 					return [ parseFloat( cellRawValue.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), cellRawValue.match (/[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
 				},
 				preset: {
@@ -571,20 +561,25 @@ var wet_boew_charts,
 			};
 
 			// 2. Global "setting.js"
-			if ( typeof wet_boew_charts !== "undefined" ) {
+			if ( wet_boew_charts !== undefined ) {
+
 				// a. if exisit copy and take care of preset separatly (Move away before extending)
 				if ( wet_boew_charts.preset ) {
-					window.chartsGraphOpts = jQuery.extend( true, {}, wet_boew_charts.preset );
+					window.chartsGraphOpts = $.extend( true, {}, wet_boew_charts.preset );
 					delete wet_boew_charts.preset;
 				}
+
 				// b. Overwrite the chart default setting
 				$.extend( true, options, wet_boew_charts );
+
 				// c. Separatly extend the preset to at the current chart default seting
 				if ( window.chartsGraphOpts ) {
 					$.extend( true, options.preset, window.chartsGraphOpts );
 				}
 			}
-			window.chartsGraphOpts = options; // ---- Save the setting here in a case of a second graphic on the same page
+
+			// ---- Save the setting here in a case of a second graphic on the same page
+			window.chartsGraphOpts = options;
 		}
 		options = window.chartsGraphOpts;
 		options.height = $elm.height();
@@ -595,10 +590,10 @@ var wet_boew_charts,
 		options.height = options.height | 250;
 
 		// 3. [Table element] CSS Overwrite - [Keep a list of required plugin "defaultnamespace-plugin" eg. wb-charts-donnut]
-		options = setClassOptions( options, ( self.attr( "class" ) !== undefined ? self.attr( "class" ) : "" ) );
+		options = setClassOptions( options, self.attr( "class" ) || "" );
 
 		// 4. [Table element] HTML5 Data Overwrite property
-		for ( i in self.data() ){
+		for ( i in self.data() ) {
 			// Check if the prefix "wbcharts" is used
 			if ( i.slice( 0, 8 ) === "wbcharts" ) {
 				options[ i.slice( 8 ) ] = self.data()[ i ];
@@ -612,23 +607,20 @@ var wet_boew_charts,
 
 		// Add headers information to the table parsed data structure
 		// Similar sample of code as the HTML Table validator
-		function addTblHeaders( tblparser ) {
-			var i, j, k, m, currRow, currCell,
-				rowheadersgroup,
+		function addHeaders( tblparser ) {
+			var headStackLength = tblparser.theadRowStack.length,
+				addColHeadersLength, addRowHeadersLength,
+				cellHeaderLength, cellLength, childLength, coldataheader,
+				colheaders, colheadersgroup, currCell, currCol, currRow,
+				currrowheader, headerLength, headerLevelLength, i, j, k, m, ongoingRowHeader, ongoingRowHeaderLength,
 				rowheaders,
-				currrowheader,
-				ongoingRowHeader,
-				coldataheader,
-				currCol,
-				colheaders,
-				colheadersgroup,
-				childLength;
+				rowheadersgroup, rowLength;
 
 			// Set ID and Header for the table head
-			for ( i = 0; i < tblparser.theadRowStack.length; i += 1 ) {
+			for ( i = 0; i < headStackLength; i += 1 ) {
 				currRow = tblparser.theadRowStack[ i ];
 
-				for ( j = 0; j < currRow.cell.length; j += 1 ) {
+				for ( j = 0, cellLength = currRow.cell.length; j < cellLength; j += 1 ) {
 					currCell = currRow.cell[ j ];
 
 					if ( ( currCell.type === 1 || currCell.type === 7 ) && (
@@ -638,20 +630,25 @@ var wet_boew_charts,
 
 						// Imediate header
 						currCell.header = currCell.header || [];
+
 						// all the headers
 						currCell.headers = currCell.headers || [];
+
 						// Imediate sub cell
 						currCell.child = currCell.child || [];
+
 						// All the sub cell
 						currCell.childs = currCell.childs || [];
 
 						// Set the header of the current cell if required
 						if ( i > 0 ) {
+
 							// All the header cells
-							for ( k = 0; k < tblparser.theadRowStack[ i - 1 ].cell[ j ].header.length; k += 1 ) {
+							for ( k = 0, cellHeaderLength = tblparser.theadRowStack[ i - 1 ].cell[ j ].header.length; k < cellHeaderLength; k += 1 ) {
 								currCell.headers.push( tblparser.theadRowStack[ i - 1 ].cell[ j ].header[ k ]);
 								tblparser.theadRowStack[ i - 1 ].cell[ j ].header[ k ].childs.push( currCell );
 							}
+
 							// Imediate header cell
 							currCell.headers.push( tblparser.theadRowStack[ i - 1 ].cell[ j ] );
 							currCell.header.push( tblparser.theadRowStack[ i - 1 ].cell[ j ]);
@@ -671,7 +668,7 @@ var wet_boew_charts,
 			}
 
 			// Set Id/headers for header cell and data cell in the table.
-			for ( i = 0; i < tblparser.row.length; i += 1 ) {
+			for ( i = 0, rowLength = tblparser.row.length; i < rowLength; i += 1 ) {
 				currRow = tblparser.row[ i ];
 				rowheadersgroup = [];
 				rowheaders = [];
@@ -695,29 +692,27 @@ var wet_boew_charts,
 				rowheaders = currRow.idsheaderset.concat( rowheaders );
 				for (j = 0; j < currRow.cell.length; j += 1) {
 
-					if ( ( j === 0 ) || ( j > 0 && currRow.cell[ j ].uid !== currRow.cell[ ( j - 1 ) ].uid ) ){
+					if ( j === 0 || ( j > 0 && currRow.cell[ j ].uid !== currRow.cell[ ( j - 1 ) ].uid ) ) {
 						currCell = currRow.cell[ j ];
 						coldataheader = [];
 
-						if ( !currCell.header ) { // Imediate header
-							currCell.header = [];
-						}
-						if ( !currCell.headers ) { // all the headers
-							currCell.headers = [];
-						}
+						// Imediate header
+						currCell.header = currCell.header || [];
 
+						// all the headers
+						currCell.headers = currCell.headers || [];
 
 						if ( currCell.col && !currCell.col.dataheader ) {
 							currCol = currCell.col;
 							colheaders = [];
 							colheadersgroup = [];
 							if ( currCol.headerLevel ) {
-								for ( m = 0; m < currCol.headerLevel.length; m += 1 ) {
+								for ( m = 0, headerLevelLength = currCol.headerLevel.length; m < headerLevelLength; m += 1 ) {
 									colheadersgroup = colheadersgroup.concat( currCol.headerLevel[ m ] );
 								}
 							}
 							if ( currCol.header ) {
-								for ( m = 0; m < currCol.header.length; m += 1 ) {
+								for ( m = 0, headerLength = currCol.header.length; m < headerLength; m += 1 ) {
 									colheaders = colheaders.concat( currCol.header[ m ] );
 								}
 							}
@@ -739,10 +734,11 @@ var wet_boew_charts,
 
 							// Imediate sub cell
 							currCell.child = currCell.child || [];
+
 							// All the sub cell
 							currCell.childs = currCell.childs || [];
 
-							for ( m = 0; m < ongoingRowHeader.length; m += 1 ) {
+							for ( m = 0, ongoingRowHeaderLength = ongoingRowHeader.length; m < ongoingRowHeaderLength; m += 1 ) {
 
 								if ( currCell.colpos === ( ongoingRowHeader[ m ].colpos + ongoingRowHeader[ m ].width) ) {
 									childLength = ongoingRowHeader[ m ].child.length;
@@ -755,7 +751,8 @@ var wet_boew_charts,
 
 							for ( m = 0; m < currRow.idsheaderset.length; m += 1 ) {
 
-								if ( !currRow.idsheaderset[m].childs ) { // All the sub cell
+								// All the sub cell
+								if ( !currRow.idsheaderset[m].childs ) {
 									currRow.idsheaderset[ m ].childs = [];
 								}
 								currRow.idsheaderset[m].childs.push( currCell );
@@ -763,9 +760,9 @@ var wet_boew_charts,
 
 							currCell.header = currCell.header.concat( ongoingRowHeader );
 
-							currCell.headers = currCell.headers.concat( coldataheader );
-							currCell.headers = currCell.headers.concat( currRow.idsheaderset );
-							currCell.headers = currCell.headers.concat( ongoingRowHeader );
+							currCell.headers = currCell.headers.concat( coldataheader )
+								.concat( currRow.idsheaderset )
+								.concat( ongoingRowHeader );
 
 							ongoingRowHeader = ongoingRowHeader.concat( currCell );
 						}
@@ -777,19 +774,19 @@ var wet_boew_charts,
 							currrowheader = rowheaders;
 
 							if ( currCell.addcolheaders ) {
-								for ( m = 0; m < currCell.addcolheaders.length; m += 1 ) {
+								for ( m = 0, addColHeadersLength = currCell.addcolheaders.length; m < addColHeadersLength; m += 1 ) {
 									coldataheader = coldataheader.concat( currCell.addcolheaders[m] );
 								}
 							}
 
 							if ( currCell.addrowheaders ) {
-								for ( m = 0; m < currCell.addrowheaders.length; m += 1 ) {
+								for ( m = 0, addRowHeadersLength = currCell.addrowheaders.length; m < addRowHeadersLength; m += 1 ) {
 									currrowheader = currrowheader.concat( currCell.addrowheaders[ m ] );
 								}
 							}
 
-							currCell.headers = currCell.headers.concat( coldataheader );
-							currCell.headers = currCell.headers.concat( currrowheader );
+							currCell.headers = currCell.headers.concat( coldataheader )
+								.concat( currrowheader );
 
 							currCell.header = currCell.headers;
 						}
@@ -798,51 +795,10 @@ var wet_boew_charts,
 			}
 		}
 
-
-		// Determine an appropriate tick for the colgroup head (first colgroup)
-		function helper1CalcVTick( parsedDataCell, headerlevel ){
-			var kIndex;
-
-			headerlevel += 1;
-			tblMultiplier.push( [ parsedDataCell.child.length, headerlevel ] );
-			for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
-				if ( parsedDataCell.child[ kIndex ].child.length > 0 ){
-					headerlevel = helper1CalcVTick( parsedDataCell.child[ kIndex ], headerlevel );
-				}
-			}
-			headerlevel -= 1;
-			return headerlevel;
-		}
-		function helper2CalcVTick( parsedDataCell, headerlevel ){
-			var kIndex, flotDelta,
-				internalCumul = 0;
-
-			headerlevel += 1;
-
-			internalCumul = parsedDataCell.flotValue - parsedDataCell.flotDelta;
-
-			flotDelta = ( parsedDataCell.flotDelta / parsedDataCell.child.length );
-			if ( !smallestVerticalFlotDelta || flotDelta < smallestVerticalFlotDelta ){
-				smallestVerticalFlotDelta = flotDelta;
-			}
-			for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
-				parsedDataCell.child[ kIndex ].flotDelta = flotDelta;
-				internalCumul = internalCumul + flotDelta;
-				parsedDataCell.child[ kIndex ].flotValue = internalCumul;
-
-				if (headerlevel === UseHeadRow) {
-					calcTick.push( [ ( parsedDataCell.child[ kIndex ].flotValue - flotDelta ), $( parsedDataCell.child[ kIndex ].elem ).text() ] );
-				}
-				if ( parsedDataCell.child[ kIndex ].child.length > 0 ){
-					helper2CalcVTick( parsedDataCell.child[ kIndex ], headerlevel );
-				}
-			}
-			headerlevel -= 1;
-		}
 		function calculateVerticalTick( parsedData ) {
 
 			// Get the appropriate ticks
-			var parsedDataCell, i, TotalRowValue,
+			var parsedDataCell, i, totalRowValue,
 			nbCells = 0,
 			headerlevel = 0,
 			cumulFlotValue = 0;
@@ -864,22 +820,25 @@ var wet_boew_charts,
 						break;
 					}
 
-					if ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ){
+					if ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) {
 						nbCells += 1;
 
-						if ( parsedDataCell.child.length > 0 ){
-							headerlevel = helper1CalcVTick( parsedDataCell, headerlevel );
+						if ( parsedDataCell.child.length > 0 ) {
+							headerlevel = calcVTick( parsedDataCell, headerlevel );
 						}
 					}
 				}
 			}
 
-			tblMultiplier.push( [ nbCells, headerlevel ] );
+			tblMultiplier.push([
+				nbCells,
+				headerlevel
+			]);
 
-			TotalRowValue = tblMultiplier[ 0 ][ 0 ];
+			totalRowValue = tblMultiplier[ 0 ][ 0 ];
 
 			for ( i = 1; i < tblMultiplier.length; i += 1 ){
-				TotalRowValue = TotalRowValue * tblMultiplier[ i ][ 0 ];
+				totalRowValue = totalRowValue * tblMultiplier[ i ][ 0 ];
 			}
 
 
@@ -887,9 +846,9 @@ var wet_boew_charts,
 			// Get the tick
 			//
 			// From an option that would choose the appropriate row.
-			// UseHeadRow get a number that represent the row to use to draw the label
+			// useHeadRow get a number that represent the row to use to draw the label
 
-			UseHeadRow = parsedData.colgrouphead.col.length - 1;
+			useHeadRow = parsedData.colgrouphead.col.length - 1;
 
 			calcTick = [];
 
@@ -908,7 +867,7 @@ var wet_boew_charts,
 
 					if ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) {
 
-						parsedDataCell.flotDelta = ( TotalRowValue / nbCells );
+						parsedDataCell.flotDelta = ( totalRowValue / nbCells );
 
 
 						if ( !smallestVerticalFlotDelta || parsedDataCell.flotDelta < smallestVerticalFlotDelta ){
@@ -918,10 +877,12 @@ var wet_boew_charts,
 						cumulFlotValue += parsedDataCell.flotDelta;
 
 						parsedDataCell.flotValue = cumulFlotValue;
-						if (headerlevel === UseHeadRow ||
-
-							( ( parsedDataCell.colpos - 1 ) < UseHeadRow && UseHeadRow <= ( ( parsedDataCell.colpos - 1 ) + ( parsedDataCell.width - 1 ) ) ) ){
-							calcTick.push( [ ( parsedDataCell.flotValue - parsedDataCell.flotDelta ), $( parsedDataCell.elem ).text() ] );
+						if ( headerlevel === useHeadRow ||
+							( ( parsedDataCell.colpos - 1 < useHeadRow ) && ( useHeadRow <= parsedDataCell.colpos + parsedDataCell.width - 2 ) ) ) {
+							calcTick.push([
+								parsedDataCell.flotValue - parsedDataCell.flotDelta,
+								$( parsedDataCell.elem ).text()
+							]);
 						}
 
 						if ( parsedDataCell.child.length > 0 ){
@@ -931,58 +892,48 @@ var wet_boew_charts,
 				}
 			}
 			return calcTick;
-		}
 
-		function helper1CalcHTick( parsedDataCell, headerlevel ){
-			var kIndex;
-			if ( parsedDataCell.child.length === 0 ) {
-				return;
-			}
-			headerlevel += 1;
-			tblMultiplier.push( [ parsedDataCell.child.length, headerlevel ] );
-			for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
-				helper1CalcHTick( parsedDataCell.child[ kIndex ], headerlevel );
-			}
-			headerlevel -= 1;
-		}
+			// Determine an appropriate tick for the colgroup head (first colgroup)
+			function calcVTick( parsedDataCell, headerlevel ) {
+				var childLength, kIndex;
 
-
-		function helper2CalcHTick( parsedDataCell, headerlevel ){
-			var kIndex, flotDelta,
-				internalCumul = 0,
-				theadRowStack_len = parsedDataCell.groupZero.theadRowStack.length - 1;
-			if ( parsedDataCell.child.length === 0 ) {
-				return;
-			}
-			headerlevel += 1;
-
-			internalCumul = parsedDataCell.flotValue;
-
-			flotDelta = !options.uniformtick ? ( parsedDataCell.flotDelta / parsedDataCell.child.length ) : 1;
-			if ( !smallestHorizontalFlotDelta || flotDelta < smallestHorizontalFlotDelta ){
-				smallestHorizontalFlotDelta = flotDelta;
-			}
-			for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
-				parsedDataCell.child[ kIndex ].flotDelta = flotDelta;
-
-				if ( headerlevel === UseHeadRow ) {
-					calcTick.push( [ !options.uniformtick ? internalCumul : uniformCumul, $( parsedDataCell.child[ kIndex ].elem ).text() ] );
+				headerlevel += 1;
+				tblMultiplier.push( [ parsedDataCell.child.length, headerlevel ] );
+				for ( kIndex = 0, childLength = parsedDataCell.child.length; kIndex < childLength; kIndex += 1 ) {
+					if ( parsedDataCell.child[ kIndex ].child.length > 0 ){
+						headerlevel = calcVTick( parsedDataCell.child[ kIndex ], headerlevel );
+					}
 				}
-
-				if ( headerlevel === theadRowStack_len ||
-					( ( parsedDataCell.rowpos - 1 ) < theadRowStack_len &&
-					theadRowStack_len <= ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) ||
-					theadRowStack_len === ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) {
-
-					uniformCumul += flotDelta;
-				}
-
-				parsedDataCell.child[ kIndex ].flotValue = internalCumul;
-				internalCumul = internalCumul + flotDelta;
-
-				helper2CalcHTick( parsedDataCell.child[ kIndex ], headerlevel );
+				return headerlevel - 1;
 			}
-			headerlevel -= 1;
+
+			function helper2CalcVTick( parsedDataCell, headerlevel ) {
+				var internalCumul = parsedDataCell.flotValue - parsedDataCell.flotDelta,
+					kIndex, flotDelta;
+
+				headerlevel += 1;
+
+				flotDelta = parsedDataCell.flotDelta / parsedDataCell.child.length;
+				if ( !smallestVerticalFlotDelta || flotDelta < smallestVerticalFlotDelta ) {
+					smallestVerticalFlotDelta = flotDelta;
+				}
+				for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
+					parsedDataCell.child[ kIndex ].flotDelta = flotDelta;
+					internalCumul = internalCumul + flotDelta;
+					parsedDataCell.child[ kIndex ].flotValue = internalCumul;
+
+					if ( headerlevel === useHeadRow ) {
+						calcTick.push([
+							parsedDataCell.child[ kIndex ].flotValue - flotDelta,
+							$( parsedDataCell.child[ kIndex ].elem ).text()
+						]);
+					}
+					if ( parsedDataCell.child[ kIndex ].child.length > 0 ){
+						helper2CalcVTick( parsedDataCell.child[ kIndex ], headerlevel );
+					}
+				}
+				headerlevel -= 1;
+			}
 		}
 
 		// Determine an appropriate tick for the rowgroup head (thead)
@@ -995,7 +946,7 @@ var wet_boew_charts,
 				nbTotSlots = 0,
 				headerlevel = 0,
 				cumulFlotValue = 0,
-				i, TotalRowValue;
+				i, totalRowValue;
 
 			if ( !parsedData.theadRowStack ) {
 				return;
@@ -1030,19 +981,19 @@ var wet_boew_charts,
 			}
 			tblMultiplier.push( [ nbCells, headerlevel ] );
 
-			TotalRowValue = tblMultiplier[ 0 ][ 0 ];
+			totalRowValue = tblMultiplier[ 0 ][ 0 ];
 
 			for ( i = 1; i < tblMultiplier.length; i += 1 ){
-				TotalRowValue = TotalRowValue * tblMultiplier[ i ][ 0 ];
+				totalRowValue = totalRowValue * tblMultiplier[ i ][ 0 ];
 			}
 
 			//
 			// Get the tick
 			//
 			// From an option that would choose the appropriate row.
-			// UseHeadRow get a number that represent the row to use to draw the label
+			// useHeadRow get a number that represent the row to use to draw the label
 
-			UseHeadRow = ( !options.labelposition || ( options.labelposition && options.labelposition > parsedData.theadRowStack.length ) ? parsedData.theadRowStack.length : options.labelposition ) - 1;
+			useHeadRow = ( !options.labelposition || ( options.labelposition && options.labelposition > parsedData.theadRowStack.length ) ? parsedData.theadRowStack.length : options.labelposition ) - 1;
 
 			calcTick = [];
 
@@ -1061,7 +1012,7 @@ var wet_boew_charts,
 
 				if ( parsedDataCell.colpos >= dataColgroupStart && ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) ) {
 
-					parsedDataCell.flotDelta = !options.uniformtick ? ( TotalRowValue / nbCells ) : 1;
+					parsedDataCell.flotDelta = !options.uniformtick ? ( totalRowValue / nbCells ) : 1;
 
 
 					if ( !smallestHorizontalFlotDelta || parsedDataCell.flotDelta < smallestHorizontalFlotDelta ){
@@ -1069,7 +1020,7 @@ var wet_boew_charts,
 					}
 					parsedDataCell.flotValue = cumulFlotValue;
 
-					if ( headerlevel === UseHeadRow || ( ( parsedDataCell.rowpos - 1 ) < UseHeadRow && UseHeadRow <= ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) ) {
+					if ( headerlevel === useHeadRow || ( ( parsedDataCell.rowpos - 1 ) < useHeadRow && useHeadRow <= ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) ) {
 						calcTick.push( [ ( !options.uniformtick ? cumulFlotValue : uniformCumul ), $( parsedDataCell.elem ).text() ] );
 					}
 
@@ -1090,6 +1041,62 @@ var wet_boew_charts,
 				}
 			}
 			return calcTick;
+			function helper1CalcHTick( parsedDataCell, headerlevel ) {
+				var kIndex;
+				if ( parsedDataCell.child.length === 0 ) {
+					return;
+				}
+				headerlevel += 1;
+				tblMultiplier.push( [ parsedDataCell.child.length, headerlevel ] );
+				for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
+					helper1CalcHTick( parsedDataCell.child[ kIndex ], headerlevel );
+				}
+				headerlevel -= 1;
+			}
+
+
+			function helper2CalcHTick( parsedDataCell, headerlevel ) {
+				var kIndex, flotDelta,
+					internalCumul = 0,
+					theadRowStackLength = parsedDataCell.groupZero.theadRowStack.length - 1;
+				if ( parsedDataCell.child.length === 0 ) {
+					return;
+				}
+				headerlevel += 1;
+
+				internalCumul = parsedDataCell.flotValue;
+
+				flotDelta = !options.uniformtick ? ( parsedDataCell.flotDelta / parsedDataCell.child.length ) : 1;
+				if ( !smallestHorizontalFlotDelta || flotDelta < smallestHorizontalFlotDelta ) {
+					smallestHorizontalFlotDelta = flotDelta;
+				}
+				for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
+					parsedDataCell.child[ kIndex ].flotDelta = flotDelta;
+
+					if ( headerlevel === useHeadRow ) {
+						calcTick.push([
+							!options.uniformtick ?
+								internalCumul :
+								uniformCumul,
+							$( parsedDataCell.child[ kIndex ].elem ).text()
+						]);
+					}
+
+					if ( headerlevel === theadRowStackLength ||
+						( ( parsedDataCell.rowpos - 1 ) < theadRowStackLength &&
+						theadRowStackLength <= ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) ||
+						theadRowStackLength === ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) {
+
+						uniformCumul += flotDelta;
+					}
+
+					parsedDataCell.child[ kIndex ].flotValue = internalCumul;
+					internalCumul = internalCumul + flotDelta;
+
+					helper2CalcHTick( parsedDataCell.child[ kIndex ], headerlevel );
+				}
+				headerlevel -= 1;
+			}
 		}
 
 
@@ -1100,7 +1107,7 @@ var wet_boew_charts,
 			// important table element: id or class, th;
 			var sMatrix = [],
 				i = 0,
-				_ilen,
+				iLength,
 				j = 0,
 				capVal = "Table caption tag is missing",
 				maxRowCol = 10, //basic;
@@ -1160,7 +1167,7 @@ var wet_boew_charts,
 					}
 
 					stopRow = i + attrRow - 1;
-						
+
 					if ( attrRow > 1 && attrCol > 1 ) {
 						jj = j;
 						stopCol = j + attrCol - 1;
@@ -1200,7 +1207,7 @@ var wet_boew_charts,
 			html2 = html2.replace( /\n/g, "" );
 			html2 = html2.replace( /<tr/gi, "\n<tr" );
 			arr = html2.split( "\n" );
-			for ( i = 0, _ilen = arr.length; i < _ilen; i += 1 ) {
+			for ( i = 0, iLength = arr.length; i < iLength; i += 1 ) {
 				tr = arr[ i ];
 				if ( tr.match( /<td/i ) !== null ) {
 					arr[ i ] = "</thead><tbody>" + tr;
@@ -1213,13 +1220,13 @@ var wet_boew_charts,
 		}
 
 		if ( options.parsedirection === "y" ) {
-			
+
 			self = swapTable( srcTbl );
-			
+
 			$( self )
 				.attr("class", $( srcTbl ).attr( "class" ) )
 				.removeClass( "wb-charts-parsedirection-y" );
-			
+
 			// Re-lunch the parsing
 			vapour.doc.trigger( {
 				type: "pasiveparse.wb-table.wb",
@@ -1238,7 +1245,7 @@ var wet_boew_charts,
 */
 
 
-		RowDefaultOptions = {
+		rowDefaultOptions = {
 			"default-option": "type", // Default CSS Options
 			"default-namespace": ["wb-charts", "wb-chart", "wb-graph"],
 			"type-autocreate": true,
@@ -1249,7 +1256,7 @@ var wet_boew_charts,
 
 
 		// Fix the parsed data
-		addTblHeaders( parsedData );
+		addHeaders( parsedData );
 
 		//
 		// Calculate the tick for a table where x is horizontal
@@ -1287,7 +1294,7 @@ var wet_boew_charts,
 			mainFigureElem.addClass("wb-charts");
 			if ( options.graphclass ) {
 				if ( $.isArray( options.graphclass ) ) {
-					for ( i = 0, _graphclasslen = options.graphclass.length; i < _graphclasslen; i += 1 ) {
+					for ( i = 0, graphClassLength = options.graphclass.length; i < graphClassLength; i += 1 ) {
 						mainFigureElem.addClass( options.graphclass[ i ] );
 					}
 				} else {
@@ -1334,7 +1341,7 @@ var wet_boew_charts,
 
 						break;
 					}
-					tdOptions = setClassOptions( RowDefaultOptions,
+					tdOptions = setClassOptions( rowDefaultOptions,
 						( $( dataGroup.col[ i ].cell[ rIndex ].elem ).attr( "class" ) !== undefined ?
 							$( dataGroup.col[ i ].cell[ rIndex ].elem ).attr( "class" ) :
 							""
@@ -1484,13 +1491,13 @@ var wet_boew_charts,
 
 		// Count nbBarChart,
 		for ( i = 0; i < parsedData.lstrowgroup[ 0 ].row.length; i++ ) {
-			rowOptions = setClassOptions( RowDefaultOptions,
+			rowOptions = setClassOptions( rowDefaultOptions,
 			( $ ( parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].elem ).attr( "class" ) !== undefined ?
 			$( parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].elem ).attr( "class" ) : "" ) );
 
 
 
-			if (( !rowOptions.type && ( options.type === "bar" || options.type === "stacked" ) ) || ( rowOptions.type && ( rowOptions.type === "bar" || rowOptions.type === "stacked" ) ) ) {
+			if ( ( !rowOptions.type && ( options.type === "bar" || options.type === "stacked" ) ) || ( rowOptions.type && ( rowOptions.type === "bar" || rowOptions.type === "stacked" ) ) ) {
 				nbBarChart += 1;
 				rowOptions.chartBarOption = nbBarChart;
 				if ( !barDelta && ( ( rowOptions.type && rowOptions.type === "bar" ) || ( !rowOptions.type && options.type === "bar" ) ) ) {
@@ -1613,7 +1620,7 @@ var wet_boew_charts,
 		figureElem.addClass( "wb-charts" ); // Default
 		if ( options.graphclass ) {
 			if ( $.isArray( options.graphclass ) ) {
-				for ( i = 0, _graphclasslen2 = options.graphclass.length; i < _graphclasslen2; i += 1 ) {
+				for ( i = 0, graphClassLength2 = options.graphclass.length; i < graphClassLength2; i += 1 ) {
 					figureElem.addClass( options.graphclass[ i ] );
 				}
 			} else {
@@ -1713,19 +1720,19 @@ var wet_boew_charts,
 	},
 
 	/*
-	* Init runs once per plugin element on the page. There may be multiple elements. 
-	* It will run more than once per plugin if you don't remove the selector from the timer.
-	* @method init
-	* @param {jQuery DOM element} $elm The plugin element being initialized
-	*/
+	 * Init runs once per plugin element on the page. There may be multiple elements.
+	 * It will run more than once per plugin if you don't remove the selector from the timer.
+	 * @method init
+	 * @param {jQuery DOM element} $elm The plugin element being initialized
+	 */
 	init = function( $elm ) {
 		window._timer.remove( selector );
-		
+
 		var modeJS = vapour.getMode() + ".js";
-			
+
 		// Load the required dependencies and prettify the code once finished
-		window.Modernizr.load({
-		
+		Modernizr.load({
+
 			// For loading multiple dependencies
 			both: [
 				"site!deps/jquery.flot" + modeJS,
@@ -1760,9 +1767,9 @@ $document.on( "timerpoke.wb parsecomplete.wb-table.wb", selector, function( even
 	}
 
 	/*
-	* Since we are working with events we want to ensure that we are being passive about our control, 
-	* so returning true allows for events to always continue
-	*/
+	 * Since we are working with events we want to ensure that we are being passive about our control,
+	 * so returning true allows for events to always continue
+	 */
 	return true;
 });
 
