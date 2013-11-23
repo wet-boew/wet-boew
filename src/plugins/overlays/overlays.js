@@ -75,8 +75,14 @@ var selector = ".wb-panel-left, .wb-panel-right, .wb-bar-top, .wb-bar-bottom, .w
 		}
 	};
 
-// Bind the init event of the plugin
-$document.on( "timerpoke.wb", selector, init );
+$document.on( "timerpoke.wb keydown", selector, function( event ) {
+	if ( event.type === "timerpoke" ) {
+		init( event );
+	} else if ( event.which === 27 ) {
+		window.location.hash += "_0";
+		$( "[href='#" + event.currentTarget.id + "']" ).trigger( "setfocus.wb" );
+	}
+});
 
 // Add the timer poke to initialize the plugin
 window._timer.add( selector );
