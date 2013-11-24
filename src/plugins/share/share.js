@@ -145,7 +145,7 @@ var selector = ".wb-share",
 
 			panel = "<section id='shr-pg' class='shr-pg wb-panel-" +
 				( vapour.html.attr( "dir" ) === "rtl" ? "left" : "right" ) +
-				"'><div class='overlay-header'><" + heading + ">" +
+				"'><div class='overlay-hd'><" + heading + ">" +
 				i18nText.shareText + "</" + heading + "></div><ul>";
 
 			for ( site in sites ) {

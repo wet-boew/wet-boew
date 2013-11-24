@@ -13,8 +13,8 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-panel-left, .wb-panel-right, .wb-bar-top, .wb-bar-bottom, .wb-pop-up-centred, .wb-pop-up-full-screen",
-	headerClass = "overlay-header",
+var selector = ".wb-panel-l, .wb-panel-r, .wb-bar-t, .wb-bar-b, .wb-popup-mid, .wb-popup-full",
+	headerClass = "overlay-hd",
 	$document = vapour.doc,
 	i18n, i18nText,
 
@@ -39,7 +39,7 @@ var selector = ".wb-panel-left, .wb-panel-right, .wb-bar-top, .wb-bar-bottom, .w
 			if ( !i18nText ) {
 				i18n = window.i18n;
 				i18nText = {
-					close: i18n( "close" )
+					close: i18n( "close-esc" )
 				};
 			}
 
