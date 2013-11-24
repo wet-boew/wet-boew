@@ -42,31 +42,31 @@
 /*
  *	Overlay styles
  */
-.wb-panel-left {
+.wb-panel-l {
 	@include overlay;
 	@extend %panel;
 	left: 0;
 }
 
-.wb-panel-right {
+.wb-panel-r {
 	@include overlay;
 	@extend %panel;
 	right: 0;
 }
 
-.wb-bar-top {
+.wb-bar-t {
 	@include overlay;
 	@extend %bar;
 	top: 0;
 }
 
-.wb-bar-bottom {
+.wb-bar-b {
 	@include overlay;
 	@extend %bar;
 	bottom: 0;
 }
 
-.wb-pop-up-centred {
+.wb-popup-mid {
 	@include overlay;
 	@extend %pop-up;
 	top: 0;
@@ -76,7 +76,7 @@
 	margin: auto;
 }
 
-.wb-pop-up-full-screen {
+.wb-popup-full {
 	@include overlay;
 	min-width: 100%;
 	min-height: 100%;
@@ -87,7 +87,7 @@
 /*
  *	Overlay parts
  */
-.overlay-header {
+.overlay-hd {
 	background-color: #000;
 	color: #fff;
 	display: block;
