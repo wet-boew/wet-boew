@@ -213,21 +213,18 @@ var wet_boew_charts,
 				colour = "accent-" + ( colour + 1 );
 			}
 
-			return colours[ colour.toLowerCase() ] ||
-				$.isArray( options.colors ) ? options.colors[ 0 ] : options.colors;
+			return colours[ colour.toLowerCase() ] ;
 		}
 
 		// Function to Convert Class instance to JSON
 		function setClassOptions ( sourceOptions, strClass, namespace ) {
-			var separatorNS = "",
-				separator = "",
-				autoCreate = false,
+			var autoCreate = false,
 				arrayOverwrite = false,
 				autoCreateMe = false,
 				detectedNamespaceLength, arrClass, arrParameter, arrParameters,
-				arrValue, detectedNamespace, i, iLength, isVal, j, jsonString,
-				m, mLength, parameter, propName, val, valIsNext;
-
+				arrValue, i, iLength, j, jsonString,
+				m, mLength, parameter, val, propName, propValue;
+				
 			// Test: optSource
 			if ( typeof sourceOptions !== "object" ) {
 
@@ -240,194 +237,172 @@ var wet_boew_charts,
 
 			// Test: strClass
 			if ( typeof strClass !== "string" || strClass.length === 0 ) {
-
 				// no string class;
 				return sourceOptions;
 			} else if ( typeof namespace !== "string" || namespace.length === 0 ) {
 
 				// Try to get the default namespace
 				if ( sourceOptions[ "default-namespace" ] &&
-					( typeof sourceOptions[ "default-namespace" ] === "string" || $.isArray( sourceOptions[ "default-namespace" ] ) ) ) {
+					( typeof sourceOptions[ "default-namespace" ] === "string" ) ) {
 					namespace = sourceOptions[ "default-namespace" ];
 				} else {
-
 					// This a not a valid namespace (no namespace)
 					return sourceOptions;
 				}
 			}
 
-			// Get the namespace separator if defined (optional)
-			separatorNS = sourceOptions[ "default-namespace-separator" ] || "-";
-
-			// Get the option separator if defined (optional)
-			separator = sourceOptions[ "default-separator" ] || " ";
+			if (namespace.length > 0) {
+				namespace = namespace + "-";
+			}
+			detectedNamespaceLength = namespace.length;
 
 			// Check if the the Auto Json option creation are authorized from class
 			// Espected returning value True | False
 			autoCreate = !!sourceOptions[ "default-autocreate" ];
 
-			arrClass = strClass.split( separator ); // Get each defined class
+			arrClass = strClass.split( " " ); // Get each defined class
 			for ( m = 0, mLength = arrClass.length; m < mLength; m +=1 ) {
 				parameter = arrClass[m];
 
-				// Detect the namespace used
-				if ( detectedNamespaceLength === undefined ) {
-					if ( $.isArray( namespace ) ) {
-						for ( i = 0, iLength = namespace.length; i < iLength; i += 1 ) {
-							detectedNamespace = namespace[i] + separatorNS;
-							if ( parameter.slice( 0, detectedNamespace.length ) === detectedNamespace ) {
-								detectedNamespaceLength = detectedNamespace.length;
-								break;
-							}
-						}
-					} else if ( parameter.slice( 0, namespace.length + separatorNS.length ) === namespace + separatorNS ) {
-						detectedNamespace = namespace + separatorNS;
-						detectedNamespaceLength = detectedNamespace.length;
-					} else if ( namespace === "" ) {
-						detectedNamespace = "";
-						detectedNamespaceLength = 0;
-					}
+				// Get the parameter without the namespace
+				arrParameters = parameter.slice( detectedNamespaceLength ).split( "-" );
+
+				// Is the parameter are in scope, if not just skip me
+				if ( !arrParameters.length || parameter.slice( 0, detectedNamespaceLength ) !== namespace ) {
+					continue;
 				}
 
-				// Get the parameter without the namespace
-				arrParameters = detectedNamespaceLength !== undefined ?
-					parameter.slice( detectedNamespaceLength ).split( separatorNS ) :
-					[];
+				// Get the name of the parameter
+				propName = arrParameters[ 0 ];
+				iLength = arrParameters.length;
 
-				// Convert the parameter in a controled JSON object
-				if ( arrParameters.length > 0 && parameter.slice( 0, detectedNamespaceLength ) === detectedNamespace ) {
+				// If only One parameter
+				if (iLength === 1 && (sourceOptions[ propName + "-autocreate" ] ||
+								( sourceOptions[ propName ] &&
+								sourceOptions[ propName + "-typeof" ] &&
+								sourceOptions[ propName + "-typeof" ] === "boolean" ))) {
+					// The parameter is boolean value
+					arrParameters.push("true");
+				} else if (iLength === 1 && (sourceOptions.preset && sourceOptions.preset[ propName ]) ) {
+					// Apply a predefined preset
+					sourceOptions = $.extend( true, sourceOptions, sourceOptions.preset[ propName ] );
+					continue;
+				} else if (iLength === 1) {
+					// Use the default option
+					arrParameters.push(propName);
+					arrParameters[ 0 ] = sourceOptions[ "default-option" ];
+				}
 
-					// Get all defined parameter
-					for ( i = 0, iLength = arrParameters.length; i < iLength; i += 1 ) {
-						arrParameter = arrParameters[ i ];
-						valIsNext = i + 2 === iLength;
-						isVal = i + 1 === iLength;
+				// two parameter & more
+				if (arrParameters.length === 2) {
 
-						// Check if that is the default value and make a reset to the parameter name if applicable
-						if ( isVal && iLength ) {
-							if ( sourceOptions[ arrParameter + "-autocreate" ] ||
-								( sourceOptions[ arrParameter ] &&
-								sourceOptions[ arrParameter + "-typeof" ] &&
-								sourceOptions[ arrParameter + "-typeof" ] === "boolean" ) ) {
-								// 1. If match an existing option and that option is boolean
-								arrParameter.push( "true" );
-								propName = arrParameter;
-								i += 1;
-								iLength = arrParameter.length;
-							} else if ( sourceOptions.preset && sourceOptions.preset[ arrParameter ]) {
+					propName = arrParameters[ 0 ];
+					propValue = arrParameters[ 1 ];
 
-								// 2. It match a preset, overide the current setting
-								sourceOptions = $.extend( true, sourceOptions, sourceOptions.preset[ arrParameter ] );
-								break;
-							} else if ( iLength === 1 ) {
+					// test the kind of value that propName is
+					if (sourceOptions[ propName + "-typeof" ] ) {
 
-								// 3. Use the Default set
-								propName = sourceOptions[ "default-option" ];
+						switch ( sourceOptions[ propName + "-typeof" ] ) {
+						case "boolean":
+							if ( !!propValue || propValue === "vrai" || propValue === "yes" || propValue === "oui" ) {
+								propValue = true;
+							} else if ( !propValue || propValue === "faux" || propValue === "no" || propValue === "non") {
+								propValue =  false;
 							} else {
-								propName = undefined;
+								propValue = undefined;
 							}
-						} else if ( !isVal ) {
-							propName = arrParameter;
-						}
-						// Get the type of the current option (if available)
-						// (Note: an invalid value are defined by "undefined" value)
-						// Check if the type are defined
-						if (sourceOptions[ propName + "-typeof" ] ) {
+							break;
+						case "number":
+							if ( !isNaN( parseInt( propValue, 10 ) ) ) {
+								propValue = parseInt( propValue, 10 );
+							} else {
+								propValue = undefined;
+							}
+							break;
+						case "string":
 							// Repair the value if needed
-							arrValue = [];
-							for ( j = i + 1; j < iLength; j += 1 ) {
-								arrValue.push( arrParameter[ j ] );
-							}
 							if (i < iLength - 1) {
-								arrParameter = arrParameters[ i ] = arrValue.join( separatorNS );
-							}
-							valIsNext = false;
-							isVal = true;
-							switch ( sourceOptions[ propName + "-typeof" ] ) {
-							case "boolean":
-								if ( !!arrParameter || arrParameter === "vrai" || arrParameter === "yes" || arrParameter === "oui" ) {
-									arrParameter = arrParameters[ i ] = true;
-								} else if ( !arrParameter || arrParameter === "faux" || arrParameter === "no" || arrParameter === "non") {
-									arrParameter = arrParameters[ i ] = false;
-								} else {
-									arrParameter = arrParameters[ i ] = undefined;
+								arrValue = [];
+								for ( j = i + 1; j < iLength; j += 1 ) {
+									arrValue.push( arrParameters[ j ] );
 								}
-								break;
-							case "number":
-								if ( !isNaN( parseInt( arrParameter, 10 ) ) ) {
-									arrParameter = arrParameters[ i ] = parseInt( arrParameter, 10 );
-								} else {
-									arrParameter = arrParameters[ i ] = undefined;
-								}
-								break;
-							case "string":
-								break;
-							case "undefined":
-							case "function":
-							case "locked":
-								arrParameter = arrParameters[ i ] = undefined;
-								break;
+								propValue = arrValue.join( "-" );
 							}
+							
+							break;
+						case "color":
+							propValue = "#" + propValue;
+							break;
+						case "undefined":
+						case "function":
+						case "locked":
+							propValue = undefined;
+							break;
 						}
+					}
+					
+					// We do not overwrite any option when there is no value
+					if (propValue === undefined) {
+						break;
+					}
+					
+					// Get the type of overwritting, default are replacing the value
+					arrayOverwrite = !!sourceOptions[ propName + "-overwrite-array-mode" ];
 
-						// Get the type of overwritting, default are replacing the value
-						arrayOverwrite = !!sourceOptions[ propName + "-overwrite-array-mode" ];
-
-						// Check if this unique option can be autocreated
-						autoCreateMe = !!sourceOptions[ propName + "-autocreate" ];
-
-						if ( valIsNext && arrParameter !== undefined ) {
-							// Keep the Property Name
-							propName = arrParameter;
-						} else if ( isVal && arrParameter !== undefined ) {
-							if ( sourceOptions[propName] && arrayOverwrite ) {
-								// Already one object defined and array overwriting authorized
-								if ( $.isArray( sourceOptions[ propName ] ) ) {
-									sourceOptions[ propName ].push( arrParameter );
-								} else {
-									val = sourceOptions[ propName ];
-									sourceOptions[ propName ] = [];
-									sourceOptions[ propName ].push( val );
-									sourceOptions[ propName ].push( arrParameter );
-								}
-							} else if ( sourceOptions[ propName ] || autoCreate || autoCreateMe || sourceOptions[ propName ] === 0 || sourceOptions[ propName ] === false) {
-								// Set the value by extending the options
-								jsonString = "";
-								if ( typeof arrParameter === "boolean" || typeof arrParameter === "number" ) {
-									jsonString = "{\"" + propName + "\": " + arrParameter + "}";
-								} else {
-									jsonString = "{\"" + propName + "\": \"" + arrParameter + "\"}";
-								}
-								sourceOptions = $.extend( true, sourceOptions, $.parseJSON( jsonString ) );
-							}
-							// Make sure we don't iterate again
-							i = iLength;
+					// Check if this unique option can be autocreated
+					autoCreateMe = !!sourceOptions[ propName + "-autocreate" ];
+					
+					// Overwride the value
+					if ( sourceOptions[propName] && arrayOverwrite ) {
+						// Already one object defined and array overwriting authorized
+						if ( $.isArray( sourceOptions[ propName ] ) ) {
+							sourceOptions[ propName ].push( arrParameter );
 						} else {
-							// Create a sub object
-							if ( arrParameter !== undefined && sourceOptions[ arrParameter ] ) {
-								// The object or property already exist, just get the reference of it
-								sourceOptions = sourceOptions[ arrParameter ];
-								propName = arrParameter;
-							} else if ( ( autoCreate || autoCreateMe ) && arrParameter !== undefined ) {
-								jsonString = "{\"" + arrParameter[i] + "\": {}}";
-								sourceOptions = $.extend( true, sourceOptions, $.parseJSON( jsonString ) );
-								sourceOptions = sourceOptions[ arrParameter ];
-							} else {
-								// This configuration are rejected
-								// We don't iterate again
-								i = iLength;
-							}
+							val = sourceOptions[ propName ];
+							sourceOptions[ propName ] = [];
+							sourceOptions[ propName ].push( val );
+							sourceOptions[ propName ].push( arrParameter );
 						}
+					} else if ( sourceOptions[ propName ] || autoCreate || autoCreateMe ) {
+
+						// Set the value by extending the options
+						jsonString = "";
+						if ( typeof propValue === "boolean" || typeof propValue === "number" ) {
+							jsonString = "{\"" + propName + "\": " + propValue + "}";
+						} else {
+							jsonString = "{\"" + propName + "\": \"" + propValue + "\"}";
+						}
+						sourceOptions = $.extend( true, sourceOptions, $.parseJSON( jsonString ) );
+					}
+				} else {
+					for ( i = 1; i < iLength; i += 1 ) {
+						
+						// Create a sub object
+						if ( arrParameter !== undefined && sourceOptions[ arrParameter ] ) {
+							// The object or property already exist, just get the reference of it
+							sourceOptions = sourceOptions[ arrParameter ];
+							propName = arrParameter;
+						} else if ( ( autoCreate || autoCreateMe ) && arrParameter !== undefined ) {
+							jsonString = "{\"" + arrParameter[i] + "\": {}}";
+							sourceOptions = $.extend( true, sourceOptions, $.parseJSON( jsonString ) );
+							sourceOptions = sourceOptions[ arrParameter ];
+						} else {
+							// This configuration are rejected
+							// We don't iterate again
+							i = iLength;
+						}
+
 					}
 				}
 			}
 			return sourceOptions;
 		}
 
+
 		if ( !window.chartsGraphOpts ){
 			// 1. Charts Default Setting
 			options = {
-				"default-namespace": [ "wb-charts", "wb-chart", "wb-graph" ],
+				"default-namespace": "wb-charts",
 
 				// This adds the ability to set custom css class to the figure container.
 				"graphclass-autocreate": true,
@@ -1247,13 +1222,12 @@ var wet_boew_charts,
 
 		rowDefaultOptions = {
 			"default-option": "type", // Default CSS Options
-			"default-namespace": ["wb-charts", "wb-chart", "wb-graph"],
+			"default-namespace": "wb-charts",
 			"type-autocreate": true,
 			"color-typeof": "string",
 			"color-autocreate": true
 		};
 		parsedData = $( self ).data().tblparser; // Retrieve the parsed data
-
 
 		// Fix the parsed data
 		addHeaders( parsedData );
