@@ -82,20 +82,25 @@ $document.on( "timerpoke.wb keydown", selector, function( event ) {
 	if ( event.type === "timerpoke" ) {
 		init( event );
 	} else if ( event.which === 27 ) {
+
+		// Hides the overlay
 		window.location.hash += "_0";
+
+		// Returns focus to the source link for the overlay
 		$( sourceLinks[ event.currentTarget.id ] ).trigger( "setfocus.wb" );
 	}
 });
 
+// Returns focus to the source link for the overlay
 $document.on( "click vclick", "." + closeClass, function( event ) {
 	$( sourceLinks[ event.currentTarget.parentNode.parentNode.id ] ).trigger( "setfocus.wb" );
 });
 
+// Stores the source link for the overlay
 $document.on( "click vclick", "." + linkClass, function( event ) {
 	var sourceLink = event.target,
 		hash = sourceLink.hash;
 
-	// Store the source link
 	sourceLinks[ hash.substring( 1 ) ] = sourceLink;
 });
 
