@@ -14,6 +14,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-share",
+	shareLink = "shr-lnk",
 	$document = vapour.doc,
 	i18n, i18nText,
 
@@ -155,7 +156,7 @@ var selector = ".wb-share",
 						.replace( /\{t\}/, pageTitle )
 						.replace( /\{i\}/, pageImage )
 						.replace( /\{d\}/, pageDescription );
-				panel += "<li><a href='" + url + "' class='shr-lnk overlay-lnk" + site + " btn btn-default'>" + siteProperties.name + "</a></li>";
+				panel += "<li><a href='" + url + "' class='" + shareLink + " " + site + " btn btn-default' target='_blank'>" + siteProperties.name + "</a></li>";
 			}
 
 			panel += "</ul><p>" + i18nText.disclaimer + "</p></section>";
@@ -172,6 +173,20 @@ var selector = ".wb-share",
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb", selector, init );
+
+$document.on( "click vclick", "." + shareLink, function( event) {
+	var which = event.which;
+
+	// Ignore middle and right mouse buttons
+	if ( !which || which === 1 ) {
+
+		// Close the overlay by emulating an escape key keydown
+		$( event.target ).trigger({
+			type: "keydown",
+			which: 27
+		});
+	}
+});
 
 // Add the timer poke to initialize the plugin
 window._timer.add( selector );
