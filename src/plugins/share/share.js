@@ -144,7 +144,7 @@ var selector = ".wb-share",
 			}
 
 			panel = "<section id='shr-pg' class='shr-pg wb-panel-" +
-				( vapour.html.attr( "dir" ) === "rtl" ? "left" : "right" ) +
+				( vapour.html.attr( "dir" ) === "rtl" ? "l" : "r" ) +
 				"'><div class='overlay-hd'><" + heading + ">" +
 				i18nText.shareText + "</" + heading + "></div><ul>";
 
@@ -155,11 +155,11 @@ var selector = ".wb-share",
 						.replace( /\{t\}/, pageTitle )
 						.replace( /\{i\}/, pageImage )
 						.replace( /\{d\}/, pageDescription );
-				panel += "<li><a href='" + url + "' class='shr-lnk " + site + " btn btn-default'>" + siteProperties.name + "</a></li>";
+				panel += "<li><a href='" + url + "' class='shr-lnk overlay-lnk" + site + " btn btn-default'>" + siteProperties.name + "</a></li>";
 			}
 
 			panel += "</ul><p>" + i18nText.disclaimer + "</p></section>";
-			link = "<a href='#shr-pg' class='shr-opn'><span class='glyphicon glyphicon-share'></span> " +
+			link = "<a href='#shr-pg' aria-controls='shr-pg' class='shr-opn overlay-lnk'><span class='glyphicon glyphicon-share'></span> " +
 				i18nText.shareText + "</a>";
 			
 			$share = $( panel + link );

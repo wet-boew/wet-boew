@@ -15,6 +15,9 @@
  */
 var selector = ".wb-panel-l, .wb-panel-r, .wb-bar-t, .wb-bar-b, .wb-popup-mid, .wb-popup-full",
 	headerClass = "overlay-hd",
+	closeClass = "overlay-close",
+	linkClass = "overlay-lnk",
+	sourceLinks = {},
 	$document = vapour.doc,
 	i18n, i18nText,
 
@@ -55,7 +58,7 @@ var selector = ".wb-panel-l, .wb-panel-r, .wb-bar-t, .wb-bar-b, .wb-popup-mid, .
 			overlayClose = document.createElement( "a" );
 			overlayClose.id = elm.id + "_0";
 			overlayClose.href = "#" + overlayClose.id;
-			overlayClose.className = "overlay-close";
+			overlayClose.className = closeClass;
 			overlayClose.setAttribute( "role", "button" );
 
 			closeIcon = document.createElement( "span" );
@@ -80,8 +83,20 @@ $document.on( "timerpoke.wb keydown", selector, function( event ) {
 		init( event );
 	} else if ( event.which === 27 ) {
 		window.location.hash += "_0";
-		$( "[href='#" + event.currentTarget.id + "']" ).trigger( "setfocus.wb" );
+		$( sourceLinks[ event.currentTarget.id ] ).trigger( "setfocus.wb" );
 	}
+});
+
+$document.on( "click vclick", "." + closeClass, function( event ) {
+	$( sourceLinks[ event.currentTarget.parentNode.parentNode.id ] ).trigger( "setfocus.wb" );
+});
+
+$document.on( "click vclick", "." + linkClass, function( event ) {
+	var sourceLink = event.target,
+		hash = sourceLink.hash;
+
+	// Store the source link
+	sourceLinks[ hash.substring( 1 ) ] = sourceLink;
 });
 
 // Add the timer poke to initialize the plugin
