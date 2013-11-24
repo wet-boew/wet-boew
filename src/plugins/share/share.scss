@@ -151,16 +151,8 @@
 	ul {
 		list-style-type: none;
 		padding-left: 0;
+		margin-top: 10px;
 	}
-
-	p {
-		margin: 5px 10px;
-	}
-}
-
-#shr-pg {
-	//	@todo	Automate the setting of the width
-	width: 250px;
 }
 
 [dir=rtl] {
