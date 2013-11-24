@@ -110,4 +110,7 @@
 	text-decoration: none;
 	top: 7px;
 	width: 1.5em;
+	&:hover, &:focus {
+		color: #999;
+	}
 }
