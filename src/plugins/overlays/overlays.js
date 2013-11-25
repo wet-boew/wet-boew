@@ -100,6 +100,7 @@ $document.on( "timerpoke.wb keydown", selector, function( event ) {
 
 // Handler for clicking on the close button of the overlay
 $document.on( "click vclick", "." + closeClass, function( event ) {
+	event.preventDefault();
 	closeOverlay( event.currentTarget.parentNode.parentNode.id );
 });
 
