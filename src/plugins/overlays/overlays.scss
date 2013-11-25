@@ -6,25 +6,22 @@
 /*
  *	Overlay base
  */
-@mixin overlay {
+.wb-overlay {
 	background-color: #fff;
 	border: 1px solid #000;
 	box-sizing: border-box;
 	display: none;
-	visibility: hidden;
-	&:target {
+	&.open {
 		position: fixed;
 		display: block;
-		visibility: visible;
 		z-index: 999;
 		overflow-y: auto;
-		max-height: 100%;
 	}
 }
 
 %panel {
 	top: 0;
-	min-height: 100%;
+	height: 100%;
 	max-width: 90%;
 }
 
@@ -43,31 +40,26 @@
  *	Overlay styles
  */
 .wb-panel-l {
-	@include overlay;
 	@extend %panel;
 	left: 0;
 }
 
 .wb-panel-r {
-	@include overlay;
 	@extend %panel;
 	right: 0;
 }
 
 .wb-bar-t {
-	@include overlay;
 	@extend %bar;
 	top: 0;
 }
 
 .wb-bar-b {
-	@include overlay;
 	@extend %bar;
 	bottom: 0;
 }
 
 .wb-popup-mid {
-	@include overlay;
 	@extend %pop-up;
 	top: 0;
 	bottom: 0;
@@ -77,7 +69,6 @@
 }
 
 .wb-popup-full {
-	@include overlay;
 	min-width: 100%;
 	min-height: 100%;
 	top: 0;

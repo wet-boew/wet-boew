@@ -5,7 +5,8 @@
 	"category": "Plugiciel",
 	"description": "Un plugiciel fournissant un modèle de contenu superposé flexible et réactif.",
 	"tag": "overlays",
-	"en": "overlays"
+	"en": "overlays",
+	"js": "demo/overlays"
 }
 ---
 <ul>
@@ -14,44 +15,58 @@
 	<li><a href="#barre-haut" aria-controls="barre-haut" class="overlay-lnk" role="button">Afficher une barre en haut</a></li>
 	<li><a href="#barre-bas" aria-controls="barre-bas" class="overlay-lnk" role="button">Afficher une barre en bas</a></li>
 	<li><a href="#cs-centre" aria-controls="cs-centre" class="overlay-lnk" role="button">Afficher un contenu superposé centré</a></li>
+	<li><a href="#cs-centre-modal" aria-controls="cs-centre-modal" class="overlay-lnk" role="button">Afficher un contenu superposé centré - Modal</a></li>
 	<li><a href="#cs-plein-ecran" aria-controls="cs-plein-ecran" class="overlay-lnk" role="button">Afficher un contenu superposé plein écran</a></li>
+	<li><a href="#cs-plein-ecran-modal" aria-controls="cs-plein-ecran-modal" class="overlay-lnk" role="button">Afficher un contenu superposé plein écran - Modal</a></li>
 	<li><a href="#sans-en-tete" aria-controls="sans-en-tete" class="overlay-lnk" role="button">Afficher un contenu superposé sans en-tête</a></li>
 </ul>
 
-<div id="panneau-gauche" class="wb-panel-l">
+<div id="panneau-gauche" class="wb-overlay wb-panel-l">
 	<div class="overlay-hd">
 		<h2>Panneau à gauche</h2>
 	</div>
 </div>
 
-<div id="panneau-droite" class="wb-panel-r">
+<div id="panneau-droite" class="wb-overlay wb-panel-r">
 	<div class="overlay-hd">
 		<h2>Panneau à droite</h2>
 	</div>
 </div>
 
-<div id="barre-haut" class="wb-bar-t">
+<div id="barre-haut" class="wb-overlay wb-bar-t">
 	<div class="overlay-hd">
 		<h2>Barre en haut</h2>
 	</div>
 </div>
 
-<div id="barre-bas" class="wb-bar-b">
+<div id="barre-bas" class="wb-overlay wb-bar-b">
 	<div class="overlay-hd">
 		<h2>Barre en bas</h2>
 	</div>
 </div>
 
-<div id="cs-centre" class="wb-popup-mid">
+<div id="cs-centre" class="wb-overlay wb-popup-mid">
 	<div class="overlay-hd">
 		<h2>Contenu superposé centré</h2>
 	</div>
 </div>
 
-<div id="cs-plein-ecran" class="wb-popup-full">
+<div id="cs-centre-modal" class="wb-overlay wb-popup-mid">
+	<div class="overlay-hd">
+		<h2>Contenu superposé centré - Modal</h2>
+	</div>
+</div>
+
+<div id="cs-plein-ecran" class="wb-overlay wb-popup-full">
 	<div class="overlay-hd">
 		<h2>Contenu superposé plein écran</h2>
 	</div>
 </div>
 
-<div id="sans-en-tete" class="wb-popup-mid"></div>
+<div id="cs-plein-ecran-modal" class="wb-overlay wb-popup-full">
+	<div class="overlay-hd">
+		<h2>Contenu superposé plein écran - Modal</h2>
+	</div>
+</div>
+
+<div id="sans-en-tete" class="wb-overlay wb-popup-mid"></div>

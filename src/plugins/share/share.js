@@ -144,7 +144,7 @@ var selector = ".wb-share",
 				};
 			}
 
-			panel = "<section id='shr-pg' class='shr-pg wb-panel-" +
+			panel = "<section id='shr-pg' class='shr-pg wb-overlay wb-panel-" +
 				( vapour.html.attr( "dir" ) === "rtl" ? "l" : "r" ) +
 				"'><div class='overlay-hd'><" + heading + ">" +
 				i18nText.shareText + "</" + heading + "></div><ul class='colcount-xs-2 colcount-sm-3'>";
@@ -180,11 +180,8 @@ $document.on( "click vclick", "." + shareLink, function( event) {
 	// Ignore middle and right mouse buttons
 	if ( !which || which === 1 ) {
 
-		// Close the overlay by emulating an escape key keydown
-		$( event.target ).trigger({
-			type: "keydown",
-			which: 27
-		});
+		// Close the overlay
+		$( event.target ).trigger( "close.wb-overlay" );
 	}
 });
 
