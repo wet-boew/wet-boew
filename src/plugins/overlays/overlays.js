@@ -13,11 +13,12 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-panel-l, .wb-panel-r, .wb-bar-t, .wb-bar-b, .wb-popup-mid, .wb-popup-full",
+var selector = ".wb-overlay",
 	headerClass = "overlay-hd",
 	closeClass = "overlay-close",
 	linkClass = "overlay-lnk",
 	sourceLinks = {},
+	modalOpen = false,
 	$document = vapour.doc,
 	i18n, i18nText,
 
@@ -30,7 +31,7 @@ var selector = ".wb-panel-l, .wb-panel-r, .wb-bar-t, .wb-bar-b, .wb-popup-mid, .
 	init = function( event ) {
 		var elm = event.target,
 			overlayHeader = elm.children[ 0 ],
-			overlayClose, closeIcon, closeText;
+			overlayClose;
 
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === event.target ) {
@@ -54,34 +55,43 @@ var selector = ".wb-panel-l, .wb-panel-r, .wb-bar-t, .wb-bar-b, .wb-popup-mid, .
 				elm.insertBefore( overlayHeader, elm.firstChild );
 			}
 
-			// Add close button
-			overlayClose = document.createElement( "a" );
-			overlayClose.id = elm.id + "_0";
-			overlayClose.href = "#" + overlayClose.id;
-			overlayClose.className = closeClass;
-			overlayClose.setAttribute( "role", "button" );
+			if ( elm.className.indexOf( "modal" ) === -1 ) {
 
-			closeIcon = document.createElement( "span" );
-			closeIcon.className = "glyphicon glyphicon-remove";
-			overlayClose.appendChild( closeIcon );
+				// Add close button
+				overlayClose = "<a href='javascript:;' class='" + closeClass +
+					"' role='button'><span class='glyphicon glyphicon-remove'></span>" +
+					"<span class='wb-inv'> " + i18nText.close + "</span></a>";
 
-			closeText = document.createElement( "span" );
-			closeText.className = "wb-inv";
-			closeText.appendChild( document.createTextNode( " " + i18nText.close ) );
-			overlayClose.appendChild( closeText );
-
-			overlayHeader.appendChild( overlayClose );
+				overlayHeader.appendChild( $( overlayClose )[ 0 ] );
+			}
 
 			elm.setAttribute( "aria-hidden", "true" );
 		}
 	},
 
-	closeOverlay = function( overlayId ) {
-		var overlay = document.getElementById( overlayId );
+	openOverlay = function( overlayId ) {
+		var $overlay = $( "#" + overlayId );
 
-		// Hides the overlay
-		window.location.hash += "_0";
-		overlay.setAttribute( "aria-hidden", "true" );
+		$overlay
+			.addClass( "open" )
+			.attr( "aria-hidden", "false" )
+			.trigger( "setfocus.wb" );
+
+		if ( $overlay.hasClass( "modal" ) ) {
+			modalOpen = true;
+		}
+	},
+
+	closeOverlay = function( overlayId ) {
+		var $overlay = $( "#" + overlayId );
+
+		$overlay
+			.removeClass( "open" )
+			.attr( "aria-hidden", "true" );
+
+		if ( $overlay.hasClass( "modal" ) ) {
+			modalOpen = false;
+		}
 
 		// Returns focus to the source link for the overlay
 		$( sourceLinks[ overlayId ] ).trigger( "setfocus.wb" );
@@ -90,34 +100,64 @@ var selector = ".wb-panel-l, .wb-panel-r, .wb-bar-t, .wb-bar-b, .wb-popup-mid, .
 		delete sourceLinks[ overlayId ];
 	};
 
-$document.on( "timerpoke.wb keydown", selector, function( event ) {
-	if ( event.type === "timerpoke" ) {
+$document.on( "timerpoke.wb keydown open.wb-overlay close.wb-overlay", selector, function( event ) {
+	var eventType = event.type,
+		which = event.which,
+		overlayId = event.currentTarget.id,
+		overlay;
+
+	switch ( eventType ) {
+	case "timerpoke":
 		init( event );
-	} else if ( event.which === 27 ) {
-		closeOverlay( event.currentTarget.id );
+		break;
+
+	case "open":
+		openOverlay( overlayId );
+		break;
+
+	case "close":
+		closeOverlay( overlayId );
+		break;
+
+	default:
+		overlay = document.getElementById( overlayId );
+		if ( which === 27 && overlay.className.indexOf( "modal" ) === -1 ) {
+			closeOverlay( overlayId );
+		}
 	}
 });
 
 // Handler for clicking on the close button of the overlay
 $document.on( "click vclick", "." + closeClass, function( event ) {
-	event.preventDefault();
-	closeOverlay( event.currentTarget.parentNode.parentNode.id );
+	var which = event.which;
+
+	// Ignore middle/right mouse buttons
+	if ( !which || which === 1 ) {
+		event.preventDefault();
+		closeOverlay( event.currentTarget.parentNode.parentNode.id );
+	}
 });
 
 // Handler for clicking on a source link for the overlay
 $document.on( "click vclick", "." + linkClass, function( event ) {
-	var sourceLink = event.target,
-		overlayId = sourceLink.hash.substring( 1 ),
-		overlay = document.getElementById( overlayId );
+	var which = event.which,
+		sourceLink = event.target,
+		overlayId = sourceLink.hash.substring( 1 );
 
-	// Introduce a delay to prevent outside activity detection
-	setTimeout(function() {
+	// Ignore middle/right mouse buttons and if modal open
+	if ( !modalOpen && ( !which || which === 1 ) ) {
+		event.preventDefault();
 
-		// Stores the source link for the overlay
-		sourceLinks[ overlayId ] = sourceLink;
+		// Introduce a delay to prevent outside activity detection
+		setTimeout(function() {
 
-		overlay.setAttribute( "aria-hidden", "false" );
-	}, 1 );
+			// Stores the source link for the overlay
+			sourceLinks[ overlayId ] = sourceLink;
+
+			// Opens the overlay
+			openOverlay( overlayId );
+		}, 1 );
+	}
 });
 
 // Outside activity detection
@@ -135,9 +175,14 @@ $document.on( "click vclick touchstart focusin", function ( event ) {
 			if ( overlay.getAttribute( "aria-hidden" ) === "false" &&
 				eventTarget.id !== overlayId &&
 				!$.contains( overlay, eventTarget ) ) {
-		
-				// Close the overlay
-				closeOverlay( overlayId );
+
+				if ( overlay.className.indexOf( "modal" ) !== -1 ) {
+					return false;
+				} else {
+
+					// Close the overlay
+					closeOverlay( overlayId );
+				}
 			}
 		}
 	}

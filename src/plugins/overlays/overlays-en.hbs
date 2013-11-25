@@ -5,7 +5,8 @@
 	"category": "Plugin",
 	"description": "A flexible, responsive overlay plugin.",
 	"tag": "overlay",
-	"fr": "overlays"
+	"fr": "overlays",
+	"js": "demo/overlays"
 }
 ---
 <ul>
@@ -14,44 +15,60 @@
 	<li><a href="#top-bar" aria-controls="top-bar" class="overlay-lnk" role="button">show top-bar</a></li>
 	<li><a href="#bottom-bar" aria-controls="bottom-bar" class="overlay-lnk" role="button">show bottom-bar</a></li>
 	<li><a href="#centred-popup" aria-controls="centred-popup" class="overlay-lnk" role="button">show centred-popup</a></li>
+	<li><a href="#centred-popup-modal" aria-controls="centred-popup-modal" class="overlay-lnk" role="button">show centred-popup - modal</a></li>
 	<li><a href="#full-screen" aria-controls="full-screen" class="overlay-lnk" role="button">show full-screen overlay</a></li>
+	<li><a href="#full-screen-modal" aria-controls="full-screen-modal" class="overlay-lnk" role="button">show full-screen overlay - modal</a></li>
 	<li><a href="#no-header" aria-controls="no-header" class="overlay-lnk" role="button">show overlay with no header</a></li>
 </ul>
 
-<div id="left-panel" class="wb-panel-l">
+<div id="left-panel" class="wb-overlay wb-panel-l">
 	<div class="overlay-hd">
 		<h2>Left panel</h2>
 	</div>
 </div>
 
-<div id="right-panel" class="wb-panel-r">
+<div id="right-panel" class="wb-overlay wb-panel-r">
 	<div class="overlay-hd">
 		<h2>Right panel</h2>
 	</div>
 </div>
 
-<div id="top-bar" class="wb-bar-t">
+<div id="top-bar" class="wb-overlay wb-bar-t">
 	<div class="overlay-hd">
 		<h2>Top bar</h2>
 	</div>
 </div>
 
-<div id="bottom-bar" class="wb-bar-b">
+<div id="bottom-bar" class="wb-overlay wb-bar-b">
 	<div class="overlay-hd">
 		<h2>Bottom bar</h2>
 	</div>
 </div>
 
-<div id="centred-popup" class="wb-popup-mid">
+<div id="centred-popup" class="wb-overlay wb-popup-mid">
 	<div class="overlay-hd">
 		<h2>Centred pop-up</h2>
 	</div>
 </div>
 
-<div id="full-screen" class="wb-popup-full">
+<div id="centred-popup-modal" class="wb-overlay wb-popup-mid modal">
+	<div class="overlay-hd">
+		<h2>Centred pop-up - Modal</h2>
+	</div>
+	<a href="javascript:;" class="btn btn-default modal-close">Close modal</a>
+</div>
+
+<div id="full-screen" class="wb-overlay wb-popup-full">
 	<div class="overlay-hd">
 		<h2>Full-screen overlay</h2>
 	</div>
 </div>
 
-<div id="no-header" class="wb-popup-mid"></div>
+<div id="full-screen-modal" class="wb-overlay wb-popup-full modal">
+	<div class="overlay-hd">
+		<h2>Full-screen overlay - Modal</h2>
+	</div>
+	<a href="javascript:;" class="btn btn-default modal-close">Close modal</a>
+</div>
+
+<div id="no-header" class="wb-overlay wb-popup-mid"></div>
