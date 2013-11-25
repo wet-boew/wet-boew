@@ -1,0 +1,14 @@
+/*
+ Banner (print view)
+ */
+#wb-bar {
+	@extend %theme-wet-boew-print-display-none-important;
+}
+
+#wb-sttl {
+	a {
+		&:after {
+			@extend %theme-wet-boew-print-display-none-important;
+		}
+	}
+}

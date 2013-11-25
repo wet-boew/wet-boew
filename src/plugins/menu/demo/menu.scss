@@ -118,7 +118,7 @@
 }
 
 /* Mobile flyout */
-@media screen and (max-width: $mobile) {
+@media screen and (max-width: $xSmallViewMax) {
 	#wb-sm {
 		background: #114F7A;
 		.nav-close {

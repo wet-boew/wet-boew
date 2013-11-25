@@ -256,33 +256,6 @@
 	}
 }
 
-/**
- * Mobile-friendly styles
- */
-@media (max-width: 768px) {
-	.wb-tabs {
-		&.tabs-s1, &.tabs-s2 {
-			[role="tabpanel"] {
-				figure {
-					figcaption {
-						position: relative;
-						top: auto;
-						right: 0;
-						bottom: 0;
-						left: 0;
-					}
-				}
-			}
-		}
-		&.tabs-s1 {
-			[role="tablist"] {
-				bottom: auto;
-				top: 1em;
-			}
-		}
-	}
-}
-
 .no-js {
 	.wb-tabs {
 		[role="tablist"] {
