@@ -38,6 +38,7 @@ table {
 			th {
 				@extend %tables-border-bottom-1px-solid-black-font-weight-700;
 				@extend %tables-cursor-pointer;
+				padding-right: 30px;
 				&:active {
 					@extend %tables-outline-none;
 				}
