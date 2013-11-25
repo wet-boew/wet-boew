@@ -93,7 +93,7 @@
 			$item;
 
 
-		for ( tabscounter; tabscounter !== -1; tabscounter -= 1 ) {
+		for ( ; tabscounter !== -1; tabscounter -= 1 ) {
 			$item = $tabs.eq( tabscounter );
 			$item.attr({
 				tabindex: "-1",
@@ -103,7 +103,7 @@
 			});
 		}
 
-		for ( listcounter; listcounter !== -1; listcounter -= 1 ) {
+		for ( ; listcounter !== -1; listcounter -= 1 ) {
 			$item = $listitems.eq( listcounter ).find( "a" );
 			$item.attr({
 				tabindex: "0",
