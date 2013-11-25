@@ -36,8 +36,6 @@
 		li {
 			display: inline-block;
 			cursor: pointer;
-			// changed padding and margin from em to px to fix web-kit layout issue
-			padding: 7px;
 			margin: 0 1px 0 0;
 			color: #000;
 			background: $lightGray;
@@ -48,6 +46,9 @@
 			a {
 				text-decoration: none;
 				color: #000;
+				display: inline-block;
+				// changed padding and margin from em to px to fix web-kit layout issue
+				padding: 7px;
 			}
 			&:focus, &:hover {
 				background: $medGray;
