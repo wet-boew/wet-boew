@@ -11,3 +11,8 @@
  Polyfills
  */
 @import "../polyfills/details/details-ie8";
+
+/* Print view */
+@media print {
+	@import "../plugins/footnotes/footnotes-ie-printView";
+}

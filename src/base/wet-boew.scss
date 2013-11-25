@@ -5,6 +5,8 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
+@import "../_variables";
+
 /*
  Global placeholder
  */
@@ -25,7 +27,7 @@
 	position: static;
 	margin: inherit;
 }
- 
+
 @import "partials/accessibility";
 @import "partials/bootstrap-overrides";
 @import "partials/language-selector";
@@ -60,3 +62,92 @@
 @import "../polyfills/datalist/datalist-base";
 @import "../polyfills/details/details-base";
 @import "../polyfills/datepicker/datepicker-base";
+
+/*
+ Views
+ */
+/* All screen views */
+@media screen {
+	@import "views/allScreenViews";
+	@import "../plugins/prettify/prettify-allScreenViews";
+}
+
+/* Extra-small view and under */
+@media screen and (max-width: $xSmallViewMax) {
+	@import "views/xSmallViewUnder";
+	@import "../plugins/tabs/tabs-xSmallViewUnder";
+}
+ 
+/* Small view and under */
+@media screen and (max-width: $smallViewMax) {
+	@import "views/smallViewUnder";
+	@import "../plugins/menu/menu-smallViewUnder";
+}
+
+/* Medium view and under */
+@media screen and (max-width: $mediumViewMax) {
+	@import "views/mediumViewUnder";
+}
+
+/* Large view and under */
+@media screen and (max-width: $largeViewMax) {
+	@import "views/largeViewUnder";
+}
+
+/* Extra-small view and over */
+@media screen and (min-width: $xSmallViewMin) {
+	@import "views/xSmallViewOver";
+}
+
+/* Small view and over */
+@media screen and (min-width: $smallViewMin) {
+	@import "views/smallViewOver";
+	@import "partials/bootstrap-overrides-smallViewOver";
+}
+
+/* Medium view and over */
+@media screen and (min-width: $mediumViewMin) {
+	@import "views/mediumViewOver";
+}
+
+/* Large view and over */
+@media screen and (min-width: $largeViewMin) {
+	@import "views/largeViewOver";
+}
+ 
+/* Extra-extra-small view */
+@media screen and (max-width: $xxSmallViewMax) {
+	@import "views/xxSmallView";
+}
+ 
+/* Extra-small view */
+@media screen and (min-width: $xSmallViewMin) and (max-width: $xSmallViewMax) {
+	@import "views/xSmallView";
+}
+
+/* Small view */
+@media screen and (min-width: $smallViewMin) and (max-width: $smallViewMax) {
+	@import "views/smallView";
+}
+
+/* Medium view */
+@media screen and (min-width: $mediumViewMin) and (max-width: $mediumViewMax) {
+	@import "views/mediumView";
+}
+
+/* Large view */
+@media screen and (min-width: $largeViewMin) and (max-width: $largeViewMax) {
+	@import "views/largeView";
+}
+
+/* Extra-large view */
+@media screen and (min-width: $xLargeViewMin) {
+	@import "views/xLargeView";
+}
+
+/* Print view */
+@media print {
+	@import "views/printView";
+	@import "../plugins/footnotes/footnotes-printView";
+	@import "../plugins/prettify/prettify-printView";
+}
