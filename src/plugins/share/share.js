@@ -147,7 +147,7 @@ var selector = ".wb-share",
 			panel = "<section id='shr-pg' class='shr-pg wb-panel-" +
 				( vapour.html.attr( "dir" ) === "rtl" ? "l" : "r" ) +
 				"'><div class='overlay-hd'><" + heading + ">" +
-				i18nText.shareText + "</" + heading + "></div><ul>";
+				i18nText.shareText + "</" + heading + "></div><ul class='colcount-xs-2 colcount-sm-3'>";
 
 			for ( site in sites ) {
 				siteProperties = sites[ site ];
@@ -156,7 +156,7 @@ var selector = ".wb-share",
 						.replace( /\{t\}/, pageTitle )
 						.replace( /\{i\}/, pageImage )
 						.replace( /\{d\}/, pageDescription );
-				panel += "<li class='col-md-4 col-sm-6'><a href='" + url + "' class='" + shareLink + " " + site + " btn btn-default' target='_blank'>" + siteProperties.name + "</a></li>";
+				panel += "<li><a href='" + url + "' class='" + shareLink + " " + site + " btn btn-default' target='_blank'>" + siteProperties.name + "</a></li>";
 			}
 
 			panel += "</ul><div class='clearfix'></div><p class='col-sm-12'>" + i18nText.disclaimer + "</p></section>";
