@@ -6,69 +6,140 @@
 	"description": "A flexible, responsive overlay plugin.",
 	"tag": "overlay",
 	"fr": "overlays",
-	"js": "demo/overlays"
+	"js": "demo/overlays",
+	"css": "demo/overlays"
 }
 ---
 <ul>
-	<li><a href="#left-panel" aria-controls="left-panel" class="overlay-lnk" role="button">show left-panel</a></li>
-	<li><a href="#right-panel" aria-controls="right-panel" class="overlay-lnk" role="button">show right-panel</a></li>
-	<li><a href="#top-bar" aria-controls="top-bar" class="overlay-lnk" role="button">show top-bar</a></li>
-	<li><a href="#bottom-bar" aria-controls="bottom-bar" class="overlay-lnk" role="button">show bottom-bar</a></li>
-	<li><a href="#centred-popup" aria-controls="centred-popup" class="overlay-lnk" role="button">show centred-popup</a></li>
-	<li><a href="#centred-popup-modal" aria-controls="centred-popup-modal" class="overlay-lnk" role="button">show centred-popup - modal</a></li>
-	<li><a href="#full-screen" aria-controls="full-screen" class="overlay-lnk" role="button">show full-screen overlay</a></li>
-	<li><a href="#full-screen-modal" aria-controls="full-screen-modal" class="overlay-lnk" role="button">show full-screen overlay - modal</a></li>
-	<li><a href="#no-header" aria-controls="no-header" class="overlay-lnk" role="button">show overlay with no header</a></li>
+	<li><a href="#left-panel" aria-controls="left-panel" class="overlay-lnk" role="button">Left-panel</a></li>
+	<li><a href="#right-panel" aria-controls="right-panel" class="overlay-lnk" role="button">Right-panel</a></li>
+	<li><a href="#top-bar" aria-controls="top-bar" class="overlay-lnk" role="button">Top-bar</a></li>
+	<li><a href="#bottom-bar" aria-controls="bottom-bar" class="overlay-lnk" role="button">Bottom-bar</a></li>
+	<li><a href="#centred-popup" aria-controls="centred-popup" class="overlay-lnk" role="button">Centred-popup</a></li>
+	<li><a href="#centred-popup-modal" aria-controls="centred-popup-modal" class="overlay-lnk" role="button">Centred-popup - modal</a></li>
+	<li><a href="#full-screen" aria-controls="full-screen" class="overlay-lnk" role="button">Full-screen overlay</a></li>
+	<li><a href="#full-screen-modal" aria-controls="full-screen-modal" class="overlay-lnk" role="button">Full-screen overlay - modal</a></li>
+	<li><a href="#no-header" aria-controls="no-header" class="overlay-lnk" role="button">Overlay with no header</a></li>
 </ul>
 
-<div id="left-panel" class="wb-overlay wb-panel-l">
-	<div class="overlay-hd">
+<section id="left-panel" class="wb-overlay wb-panel-l">
+	<header class="overlay-hd">
 		<h2>Left panel</h2>
+	</header>
+	<div class="modal-body">
+		<ul class="list-unstyled">
+			<li>
+				<a href="#">Link - Example 1</a>
+			</li>
+			<li>
+				<a href="#">Link - Example 2</a>
+			</li>
+			<li>
+				<a href="#">Link - Example 3</a>
+			</li>
+			<li>
+				<a href="#">Link - Example 4</a>
+			</li>
+			<li>
+				<a href="#">Link - Example 5</a>
+			</li>
+			<li>
+				<a href="#">Link - Example 6</a>
+			</li>
+		</ul>
 	</div>
-</div>
+</section>
 
-<div id="right-panel" class="wb-overlay wb-panel-r">
-	<div class="overlay-hd">
+<section id="right-panel" class="wb-overlay wb-panel-r">
+	<header class="overlay-hd">
 		<h2>Right panel</h2>
+	</header>
+	<div class="modal-body">
+		<ul class="list-unstyled">
+			<li>
+				<a href="#">Link - Example 1</a>
+			</li>
+			<li>
+				<a href="#">Link - Example 2</a>
+			</li>
+			<li>
+				<a href="#">Link - Example 3</a>
+			</li>
+			<li>
+				<a href="#">Link - Example 4</a>
+			</li>
+			<li>
+				<a href="#">Link - Example 5</a>
+			</li>
+			<li>
+				<a href="#">Link - Example 6</a>
+			</li>
+		</ul>
 	</div>
-</div>
+</section>
 
-<div id="top-bar" class="wb-overlay wb-bar-t">
+<section id="top-bar" class="wb-overlay wb-bar-t">
 	<div class="overlay-hd">
-		<h2>Top bar</h2>
+		<header>
+			<h2>Top bar</h2>
+		</header>
+		<ul class="list-inline">
+			<li>
+				<button class="btn btn-default">Button - Example 1</button>
+			</li>
+			<li>
+				<button class="btn btn-default">Button - Example 2</button>
+			</li>
+			<li>
+				<button class="btn btn-default">Button - Example 3</button>
+			</li>
+		</ul>
 	</div>
-</div>
+</section>
 
-<div id="bottom-bar" class="wb-overlay wb-bar-b">
+<section id="bottom-bar" class="wb-overlay wb-bar-b">
 	<div class="overlay-hd">
-		<h2>Bottom bar</h2>
+		<header>
+			<h2>Bottom bar</h2>
+		</header>
+		<ul class="list-inline">
+			<li>
+				<button class="btn btn-default">Button - Example 1</button>
+			</li>
+			<li>
+				<button class="btn btn-default">Button - Example 2</button>
+			</li>
+			<li>
+				<button class="btn btn-default">Button - Example 3</button>
+			</li>
+		</ul>
 	</div>
-</div>
+</section>
 
-<div id="centred-popup" class="wb-overlay wb-popup-mid">
-	<div class="overlay-hd">
+<section id="centred-popup" class="wb-overlay wb-popup-mid">
+	<header class="overlay-hd">
 		<h2>Centred pop-up</h2>
-	</div>
-</div>
+	</header>
+</section>
 
-<div id="centred-popup-modal" class="wb-overlay wb-popup-mid modal">
-	<div class="overlay-hd">
+<section id="centred-popup-modal" class="wb-overlay wb-popup-mid modal">
+	<header class="overlay-hd">
 		<h2>Centred pop-up - Modal</h2>
-	</div>
+	</header>
 	<a href="javascript:;" class="btn btn-default modal-close">Close modal</a>
-</div>
+</section>
 
-<div id="full-screen" class="wb-overlay wb-popup-full">
-	<div class="overlay-hd">
+<section id="full-screen" class="wb-overlay wb-popup-full">
+	<header class="overlay-hd">
 		<h2>Full-screen overlay</h2>
-	</div>
-</div>
+	</header>
+</section>
 
-<div id="full-screen-modal" class="wb-overlay wb-popup-full modal">
-	<div class="overlay-hd">
+<section id="full-screen-modal" class="wb-overlay wb-popup-full modal">
+	<header class="overlay-hd">
 		<h2>Full-screen overlay - Modal</h2>
-	</div>
+	</header>
 	<a href="javascript:;" class="btn btn-default modal-close">Close modal</a>
-</div>
+</section>
 
 <div id="no-header" class="wb-overlay wb-popup-mid"></div>

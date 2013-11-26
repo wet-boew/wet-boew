@@ -6,67 +6,138 @@
 	"description": "Un plugiciel fournissant un modèle de contenu superposé flexible et réactif.",
 	"tag": "overlays",
 	"en": "overlays",
-	"js": "demo/overlays"
+	"js": "demo/overlays",
+	"css": "demo/overlays"
 }
 ---
 <ul>
-	<li><a href="#panneau-gauche" aria-controls="panneau-gauche" class="overlay-lnk" role="button">Afficher un panneau à gauche</a></li>
-	<li><a href="#panneau-droite" aria-controls="panneau-droite" class="overlay-lnk" role="button">Afficher un panneau à droite</a></li>
-	<li><a href="#barre-haut" aria-controls="barre-haut" class="overlay-lnk" role="button">Afficher une barre en haut</a></li>
-	<li><a href="#barre-bas" aria-controls="barre-bas" class="overlay-lnk" role="button">Afficher une barre en bas</a></li>
-	<li><a href="#cs-centre" aria-controls="cs-centre" class="overlay-lnk" role="button">Afficher un contenu superposé centré</a></li>
-	<li><a href="#cs-centre-modal" aria-controls="cs-centre-modal" class="overlay-lnk" role="button">Afficher un contenu superposé centré - Modal</a></li>
-	<li><a href="#cs-plein-ecran" aria-controls="cs-plein-ecran" class="overlay-lnk" role="button">Afficher un contenu superposé plein écran</a></li>
-	<li><a href="#cs-plein-ecran-modal" aria-controls="cs-plein-ecran-modal" class="overlay-lnk" role="button">Afficher un contenu superposé plein écran - Modal</a></li>
-	<li><a href="#sans-en-tete" aria-controls="sans-en-tete" class="overlay-lnk" role="button">Afficher un contenu superposé sans en-tête</a></li>
+	<li><a href="#panneau-gauche" aria-controls="panneau-gauche" class="overlay-lnk" role="button">Panneau à gauche</a></li>
+	<li><a href="#panneau-droite" aria-controls="panneau-droite" class="overlay-lnk" role="button">Panneau à droite</a></li>
+	<li><a href="#barre-haut" aria-controls="barre-haut" class="overlay-lnk" role="button">Barre en haut</a></li>
+	<li><a href="#barre-bas" aria-controls="barre-bas" class="overlay-lnk" role="button">Barre en bas</a></li>
+	<li><a href="#cs-centre" aria-controls="cs-centre" class="overlay-lnk" role="button">Contenu superposé centré</a></li>
+	<li><a href="#cs-centre-modal" aria-controls="cs-centre-modal" class="overlay-lnk" role="button">Contenu superposé centré - Modal</a></li>
+	<li><a href="#cs-plein-ecran" aria-controls="cs-plein-ecran" class="overlay-lnk" role="button">Contenu superposé plein écran</a></li>
+	<li><a href="#cs-plein-ecran-modal" aria-controls="cs-plein-ecran-modal" class="overlay-lnk" role="button">Contenu superposé plein écran - Modal</a></li>
+	<li><a href="#sans-en-tete" aria-controls="sans-en-tete" class="overlay-lnk" role="button">Contenu superposé sans en-tête</a></li>
 </ul>
 
-<div id="panneau-gauche" class="wb-overlay wb-panel-l">
-	<div class="overlay-hd">
+<section id="panneau-gauche" class="wb-overlay wb-panel-l">
+	<header class="overlay-hd">
 		<h2>Panneau à gauche</h2>
+	</header>
+	<div class="modal-body">
+		<ul class="list-unstyled">
+			<li>
+				<a href="#">Lien - Exemple 1</a>
+			</li>
+			<li>
+				<a href="#">Lien - Exemple 2</a>
+			</li>
+			<li>
+				<a href="#">Lien - Exemple 3</a>
+			</li>
+			<li>
+				<a href="#">Lien - Exemple 4</a>
+			</li>
+			<li>
+				<a href="#">Lien - Exemple 5</a>
+			</li>
+			<li>
+				<a href="#">Lien - Exemple 6</a>
+			</li>
+		</ul>
 	</div>
-</div>
+</section>
 
-<div id="panneau-droite" class="wb-overlay wb-panel-r">
-	<div class="overlay-hd">
+<section id="panneau-droite" class="wb-overlay wb-panel-r">
+	<header class="overlay-hd">
 		<h2>Panneau à droite</h2>
+	</header>
+	<div class="modal-body">
+		<ul class="list-unstyled">
+			<li>
+				<a href="#">Lien - Exemple 1</a>
+			</li>
+			<li>
+				<a href="#">Lien - Exemple 2</a>
+			</li>
+			<li>
+				<a href="#">Lien - Exemple 3</a>
+			</li>
+			<li>
+				<a href="#">Lien - Exemple 4</a>
+			</li>
+			<li>
+				<a href="#">Lien - Exemple 5</a>
+			</li>
+			<li>
+				<a href="#">Lien - Exemple 6</a>
+			</li>
+		</ul>
 	</div>
-</div>
+</section>
 
-<div id="barre-haut" class="wb-overlay wb-bar-t">
+<section id="barre-haut" class="wb-overlay wb-bar-t">
 	<div class="overlay-hd">
-		<h2>Barre en haut</h2>
+		<header>
+			<h2>Barre en haut</h2>
+		</header>
+		<ul class="list-inline">
+			<li>
+				<button class="btn btn-default">Bouton - Exemple 1</button>
+			</li>
+			<li>
+				<button class="btn btn-default">Bouton - Exemple  2</button>
+			</li>
+			<li>
+				<button class="btn btn-default">Bouton - Exemple  3</button>
+			</li>
+		</ul>
 	</div>
-</div>
+</section>
 
-<div id="barre-bas" class="wb-overlay wb-bar-b">
+<section id="barre-bas" class="wb-overlay wb-bar-b">
 	<div class="overlay-hd">
-		<h2>Barre en bas</h2>
+		<header>
+			<h2>Barre en bas</h2>
+		</header>
+		<ul class="list-inline">
+			<li>
+				<button class="btn btn-default">Bouton - Exemple 1</button>
+			</li>
+			<li>
+				<button class="btn btn-default">Bouton - Exemple  2</button>
+			</li>
+			<li>
+				<button class="btn btn-default">Bouton - Exemple  3</button>
+			</li>
+		</ul>
 	</div>
-</div>
+</section>
 
-<div id="cs-centre" class="wb-overlay wb-popup-mid">
-	<div class="overlay-hd">
+<section id="cs-centre" class="wb-overlay wb-popup-mid">
+	<header class="overlay-hd">
 		<h2>Contenu superposé centré</h2>
-	</div>
-</div>
+	</header>
+</section>
 
-<div id="cs-centre-modal" class="wb-overlay wb-popup-mid">
-	<div class="overlay-hd">
+<section id="cs-centre-modal" class="wb-overlay wb-popup-mid">
+	<header class="overlay-hd">
 		<h2>Contenu superposé centré - Modal</h2>
-	</div>
-</div>
+	</header>
+</section>
 
-<div id="cs-plein-ecran" class="wb-overlay wb-popup-full">
-	<div class="overlay-hd">
+<section id="cs-plein-ecran" class="wb-overlay wb-popup-full">
+	<header class="overlay-hd">
 		<h2>Contenu superposé plein écran</h2>
-	</div>
-</div>
+	</header>
+</section>
 
-<div id="cs-plein-ecran-modal" class="wb-overlay wb-popup-full">
-	<div class="overlay-hd">
+<section id="cs-plein-ecran-modal" class="wb-overlay wb-popup-full">
+	<header class="overlay-hd">
 		<h2>Contenu superposé plein écran - Modal</h2>
-	</div>
-</div>
+	</header>
+</section>
 
 <div id="sans-en-tete" class="wb-overlay wb-popup-mid"></div>
