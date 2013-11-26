@@ -280,6 +280,13 @@
 				top: 1em;
 			}
 		}
+		&.carousel-s2 {
+			[role="tablist"] {
+				li:not( .control ) {
+					display: none;
+				}
+			}
+		}
 	}
 }
 

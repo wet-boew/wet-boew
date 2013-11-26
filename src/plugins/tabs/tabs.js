@@ -15,6 +15,9 @@
   */
  var selector = ".wb-tabs",
 	$document = vapour.doc,
+	hash = vapour.pageUrlParts.hash,
+	// Remove the 'tabs_' prefix added in click handler
+	$hash = hash ? $document.find( "#" + hash.slice( 6 ) ) : "",
 	
 	/*
 	 * @method init
@@ -23,11 +26,14 @@
 	init = function( $elm ) {
 		var $tabs = $elm.find( "[role=tablist]" ).children(),
 			$panels = $elm.find( "[role=tabpanel]" ),
-			$activeTab = $tabs.filter( ".active" ).length ? $tabs.filter( ".active" ).eq( 0 ) : $tabs.eq( 0 ),
+			// Figure out which tab to open initially. Order of precedence: 1. Hash in url. 2. Tab marked as active by developer. 3. The first tab.
+			$activeTab = $hash.length ? $tabs.eq( $panels.index( $hash ) ) : ( $tabs.filter( ".active" ).length ? $tabs.filter( ".active" ).eq( 0 ) : $tabs.eq( 0 ) ),
 			$activePanel = $panels.eq( $activeTab.index() );
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 		window._timer.remove( selector );
 
+		$tabs.removeClass( "active" );
+		$activeTab.addClass( "active" );
 		$panels.attr( "open", false )
 			.addClass( "out" );
 		$activePanel.attr( "open", true)
@@ -49,22 +55,33 @@
 	 * @param {jQuery DOM element} $elm The plugin element
 	 */
 	click = function( event, $elm ) {
-		var $button = $( event.target );
-		if ( $button.data( "toggle" ) && $button.data( "toggle" ).selector ) {
+		var $target = $( event.target ),
+			data = $target.data( "toggle" ),
+			selector = data ? data.selector : "",
+			tagName = $target.get( 0 ).tagName.toLowerCase();
+		if ( data && selector ) {
 			// A toggle link or button was clicked
-			$button.addClass( "active" ).siblings().removeClass( "active" );
-			$elm.find( "[role=tabpanel]" ).removeClass( "in" ).addClass( "out" );
-			$( $button.data( "toggle" ).selector ).removeClass( "out" ).addClass( "in" );
+			$elm.data( "tabs" ).eq( $elm.data( "panels" ).index( $( selector ) ) ).addClass( "active" ).siblings().removeClass( "active" );
+			$elm.data( "panels" ).removeClass( "in" ).addClass( "out" );
+			$( selector ).removeClass( "out" ).addClass( "in" );
+			// To get anchors to work without scrolling, I'm faking ids by prepending 'tabs_' to the given ids before
+			// changing location.hash. This will work whether the click trigger is an <a>, a <button>, or something else,
+			// as long as the trigger has a data attribute with a selector.
+			window.location.hash = "tabs_" + selector.slice( 1 );
 			event.preventDefault();
-		} else if ( $button.get( 0 ).tagName.toLowerCase() === "summary" ) {
+		} else if ( tagName === "summary" ) {
 			// A summary element was clicked (small screen)
 			// This check keeps tabs & panel states consistent for users who change screen size from narrow to wide
-			if ( !$button.parent().attr( "open") ) {
+			if ( !$target.parent().attr( "open") ) {
 				// open it
-				$button.parent().removeClass( "out" ).addClass( "in" )
+				$elm.data( "tabs" ).eq( $elm.data( "panels" ).index( $target.parent() ) ).addClass( "active" ).siblings().removeClass( "active" );
+				$target.parent().removeClass( "out" ).addClass( "in" )
 					.siblings().removeClass( "in" ).addClass( "out" ).attr( "open", false );
+				window.location.hash = "tabs_" + $target.parent().attr( "id" );
+			} else {
+				event.preventDefault();
 			}
-		}
+		} 
 	};
 
 	/*
