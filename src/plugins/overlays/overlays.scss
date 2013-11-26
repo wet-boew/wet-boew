@@ -10,14 +10,11 @@
 	background-color: #fff;
 	display: none;
 	border-radius: 0;
+	z-index: 1050;
 	&.open {
 		position: fixed;
 		display: inline-block;
 	}
-}
-
-.modal-content {
-	@extend %overlay-overflow-y-auto;
 }
 
 %overlay-panel {
