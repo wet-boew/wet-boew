@@ -15,16 +15,15 @@
 	<li><a href="#panneau-droite" aria-controls="panneau-droite" class="overlay-lnk" role="button">Panneau à droite</a></li>
 	<li><a href="#barre-haut" aria-controls="barre-haut" class="overlay-lnk" role="button">Barre en haut</a></li>
 	<li><a href="#barre-bas" aria-controls="barre-bas" class="overlay-lnk" role="button">Barre en bas</a></li>
-	<li><a href="#cs-centre" aria-controls="cs-centre" class="overlay-lnk" role="button">Contenu superposé centré</a></li>
-	<li><a href="#cs-centre-modal" aria-controls="cs-centre-modal" class="overlay-lnk" role="button">Contenu superposé centré - Modal</a></li>
+	<li><a href="#cs-centre" aria-controls="cs-centre" class="wb-lightbox" role="button">Contenu superposé centré (Lightbox)</a></li>
+	<li><a href="#cs-centre-modal" aria-controls="cs-centre-modal" class="wb-lightbox lb-modal" role="button">Contenu superposé centré - Modal (Lightbox + Modal)</a></li>
 	<li><a href="#cs-plein-ecran" aria-controls="cs-plein-ecran" class="overlay-lnk" role="button">Contenu superposé plein écran</a></li>
-	<li><a href="#cs-plein-ecran-modal" aria-controls="cs-plein-ecran-modal" class="overlay-lnk" role="button">Contenu superposé plein écran - Modal</a></li>
-	<li><a href="#sans-en-tete" aria-controls="sans-en-tete" class="overlay-lnk" role="button">Contenu superposé sans en-tête</a></li>
+	<li><a href="#en-tete-cache" aria-controls="en-tete-cache" class="overlay-lnk" role="button">Contenu superposé plein écran - En-tête caché</a></li>
 </ul>
 
-<section id="panneau-gauche" class="wb-overlay wb-panel-l">
-	<header class="overlay-hd">
-		<h2>Panneau à gauche</h2>
+<section id="panneau-gauche" class="wb-overlay modal-content wb-panel-l">
+	<header class="modal-header overlay-hd">
+		<h2 class="modal-title">Panneau à gauche</h2>
 	</header>
 	<div class="modal-body">
 		<ul class="list-unstyled">
@@ -50,9 +49,9 @@
 	</div>
 </section>
 
-<section id="panneau-droite" class="wb-overlay wb-panel-r">
-	<header class="overlay-hd">
-		<h2>Panneau à droite</h2>
+<section id="panneau-droite" class="wb-overlay modal-content overlay-def wb-panel-r">
+	<header class="modal-header">
+		<h2 class="modal-title">Panneau à droite</h2>
 	</header>
 	<div class="modal-body">
 		<ul class="list-unstyled">
@@ -78,66 +77,129 @@
 	</div>
 </section>
 
-<section id="barre-haut" class="wb-overlay wb-bar-t">
-	<div class="overlay-hd">
-		<header>
-			<h2>Barre en haut</h2>
-		</header>
-		<ul class="list-inline">
-			<li>
-				<button class="btn btn-default">Bouton - Exemple 1</button>
+<section id="barre-haut" class="wb-overlay modal-content overlay-def wb-bar-t">
+	<header>
+		<h2 class="modal-title">Barre en haut</h2>
+	</header>
+	<ul class="list-inline">
+		<li>
+			<button class="btn btn-default">Bouton - Exemple 1</button>
+		</li>
+		<li>
+			<button class="btn btn-default">Bouton - Exemple  2</button>
+		</li>
+		<li>
+			<button class="btn btn-default">Bouton - Exemple  3</button>
+		</li>
+	</ul>
+</section>
+
+<section id="barre-bas" class="wb-overlay modal-content overlay-def wb-bar-b">
+	<header>
+		<h2 class="modal-title">Barre en bas</h2>
+	</header>
+	<ul class="list-inline">
+		<li>
+			<button class="btn btn-default">Bouton - Exemple 1</button>
+		</li>
+		<li>
+			<button class="btn btn-default">Bouton - Exemple  2</button>
+		</li>
+		<li>
+			<button class="btn btn-default">Bouton - Exemple  3</button>
+		</li>
+	</ul>
+</section>
+
+<section id="cs-centre" class="mfp-hide modal-dialog modal-content overlay-def">
+	<header class="modal-header">
+		<h2 class="modal-title">Contenu superposé centré (Lightbox)</h2>
+	</header>
+	<div class="modal-body">
+		<ol>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+				<ol>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
+						<ol>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+						</ol>
+					</li>
+				</ol>
 			</li>
-			<li>
-				<button class="btn btn-default">Bouton - Exemple  2</button>
-			</li>
-			<li>
-				<button class="btn btn-default">Bouton - Exemple  3</button>
-			</li>
-		</ul>
+		</ol>
+		<p><a href="#">Lien - apparence par défaut</a></p>
 	</div>
 </section>
 
-<section id="barre-bas" class="wb-overlay wb-bar-b">
-	<div class="overlay-hd">
-		<header>
-			<h2>Barre en bas</h2>
-		</header>
-		<ul class="list-inline">
-			<li>
-				<button class="btn btn-default">Bouton - Exemple 1</button>
+<section id="cs-centre-modal" class="mfp-hide modal-dialog modal-content overlay-def">
+	<header class="modal-header">
+		<h2 class="modal-title">Contenu superposé centré - Modal (Lightbox + Modal)</h2>
+	</header>
+	<div class="modal-body">
+		<ol>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+				<ol>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
+						<ol>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+						</ol>
+					</li>
+				</ol>
 			</li>
-			<li>
-				<button class="btn btn-default">Bouton - Exemple  2</button>
-			</li>
-			<li>
-				<button class="btn btn-default">Bouton - Exemple  3</button>
-			</li>
-		</ul>
+		</ol>
+		<p><a href="#">Lien - apparence par défaut</a></p>
+		<button class="btn btn-primary popup-modal-dismiss">Fermer le contenu superposé modal</button>
 	</div>
 </section>
 
-<section id="cs-centre" class="wb-overlay wb-popup-mid">
-	<header class="overlay-hd">
-		<h2>Contenu superposé centré</h2>
+<section id="cs-plein-ecran" class="wb-overlay modal-content overlay-def wb-popup-full">
+	<header class="modal-header">
+		<h2 class="modal-title">Contenu superposé plein écran</h2>
 	</header>
+	<div class="modal-body">
+		<ol>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+				<ol>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
+						<ol>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+						</ol>
+					</li>
+				</ol>
+			</li>
+		</ol>
+		<p><a href="#">Lien - apparence par défaut</a></p>
+	</div>
 </section>
 
-<section id="cs-centre-modal" class="wb-overlay wb-popup-mid">
-	<header class="overlay-hd">
-		<h2>Contenu superposé centré - Modal</h2>
+<section id="en-tete-cache" class="wb-overlay modal-content wb-popup-full hidden-hd">
+	<header>
+		<h2 class="wb-inv">Contenu superposé plein écran - En-tête caché</h2>
 	</header>
+	<div class="modal-body">
+		<ol>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+			<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+				<ol>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+					<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
+						<ol>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+							<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+						</ol>
+					</li>
+				</ol>
+			</li>
+		</ol>
+		<p><a href="#">Lien - apparence par défaut</a></p>
+	</div>
 </section>
-
-<section id="cs-plein-ecran" class="wb-overlay wb-popup-full">
-	<header class="overlay-hd">
-		<h2>Contenu superposé plein écran</h2>
-	</header>
-</section>
-
-<section id="cs-plein-ecran-modal" class="wb-overlay wb-popup-full">
-	<header class="overlay-hd">
-		<h2>Contenu superposé plein écran - Modal</h2>
-	</header>
-</section>
-
-<div id="sans-en-tete" class="wb-overlay wb-popup-mid"></div>

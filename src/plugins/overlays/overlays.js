@@ -14,11 +14,9 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-overlay",
-	headerClass = "overlay-hd",
 	closeClass = "overlay-close",
 	linkClass = "overlay-lnk",
 	sourceLinks = {},
-	modalOpen = false,
 	$document = vapour.doc,
 	i18n, i18nText,
 
@@ -30,7 +28,6 @@ var selector = ".wb-overlay",
 	 */
 	init = function( event ) {
 		var elm = event.target,
-			overlayHeader = elm.children[ 0 ],
 			overlayClose;
 
 		// Filter out any events triggered by descendants
@@ -47,24 +44,11 @@ var selector = ".wb-overlay",
 				};
 			}
 
-			// if no overlay header then add one
-			if ( !overlayHeader || overlayHeader.className.indexOf( headerClass ) === -1 ) {
-				overlayHeader = document.createElement( "div" );
-				overlayHeader.className = headerClass;
+			// Add close button
+			overlayClose = "<button class='mfp-close " + closeClass +
+				"' title='" + i18nText.close + "'>×</button>";
 
-				elm.insertBefore( overlayHeader, elm.firstChild );
-			}
-
-			if ( elm.className.indexOf( "modal" ) === -1 ) {
-
-				// Add close button
-				overlayClose = "<a href='javascript:;' class='" + closeClass +
-					"' role='button'><span class='glyphicon glyphicon-remove'></span>" +
-					"<span class='wb-inv'> " + i18nText.close + "</span></a>";
-
-				overlayHeader.appendChild( $( overlayClose )[ 0 ] );
-			}
-
+			elm.appendChild( $( overlayClose )[ 0 ] );
 			elm.setAttribute( "aria-hidden", "true" );
 		}
 	},
@@ -76,10 +60,6 @@ var selector = ".wb-overlay",
 			.addClass( "open" )
 			.attr( "aria-hidden", "false" )
 			.trigger( "setfocus.wb" );
-
-		if ( $overlay.hasClass( "modal" ) ) {
-			modalOpen = true;
-		}
 	},
 
 	closeOverlay = function( overlayId ) {
@@ -88,10 +68,6 @@ var selector = ".wb-overlay",
 		$overlay
 			.removeClass( "open" )
 			.attr( "aria-hidden", "true" );
-
-		if ( $overlay.hasClass( "modal" ) ) {
-			modalOpen = false;
-		}
 
 		// Returns focus to the source link for the overlay
 		$( sourceLinks[ overlayId ] ).trigger( "setfocus.wb" );
@@ -104,7 +80,7 @@ $document.on( "timerpoke.wb keydown open.wb-overlay close.wb-overlay", selector,
 	var eventType = event.type,
 		which = event.which,
 		overlayId = event.currentTarget.id,
-		overlay;
+		overlay, $focusable, index, length;
 
 	switch ( eventType ) {
 	case "timerpoke":
@@ -121,8 +97,32 @@ $document.on( "timerpoke.wb keydown open.wb-overlay close.wb-overlay", selector,
 
 	default:
 		overlay = document.getElementById( overlayId );
-		if ( which === 27 && overlay.className.indexOf( "modal" ) === -1 ) {
+
+		switch ( which ) {
+
+		// Tab key
+		case 9:
+			event.preventDefault();
+			$focusable = $( overlay ).find( ":focusable" );
+			length = $focusable.length;
+			index = $focusable.index( event.target ) + ( event.shiftKey ? -1 : 1 );
+			if ( index === -1 ) {
+				index = length - 1;
+			} else if ( index === length ) {
+				index = 0;
+			}
+			$focusable.eq( index ).trigger( "setfocus.wb" );
+			break;
+
+		// Escape key
+		case 27:
 			closeOverlay( overlayId );
+			break;
+
+		// Up/down arrow
+		case 38:
+		case 40:
+			break;
 		}
 	}
 });
@@ -133,8 +133,7 @@ $document.on( "click vclick", "." + closeClass, function( event ) {
 
 	// Ignore middle/right mouse buttons
 	if ( !which || which === 1 ) {
-		event.preventDefault();
-		closeOverlay( event.currentTarget.parentNode.parentNode.id );
+		closeOverlay( $( event.currentTarget ).closest( ".wb-overlay" ).attr( "id" ) );
 	}
 });
 
@@ -144,8 +143,8 @@ $document.on( "click vclick", "." + linkClass, function( event ) {
 		sourceLink = event.target,
 		overlayId = sourceLink.hash.substring( 1 );
 
-	// Ignore middle/right mouse buttons and if modal open
-	if ( !modalOpen && ( !which || which === 1 ) ) {
+	// Ignore middle/right mouse buttons
+	if ( !which || which === 1 ) {
 		event.preventDefault();
 
 		// Introduce a delay to prevent outside activity detection
@@ -161,7 +160,7 @@ $document.on( "click vclick", "." + linkClass, function( event ) {
 });
 
 // Outside activity detection
-$document.on( "click vclick touchstart focusin", function ( event ) {
+$document.on( "click vclick touchstart focusin", "body", function ( event ) {
 	var eventTarget = event.target,
 		which = event.which,
 		overlayId, overlay;
@@ -176,13 +175,8 @@ $document.on( "click vclick touchstart focusin", function ( event ) {
 				eventTarget.id !== overlayId &&
 				!$.contains( overlay, eventTarget ) ) {
 
-				if ( overlay.className.indexOf( "modal" ) !== -1 ) {
-					return false;
-				} else {
-
-					// Close the overlay
-					closeOverlay( overlayId );
-				}
+				// Close the overlay
+				closeOverlay( overlayId );
 			}
 		}
 	}

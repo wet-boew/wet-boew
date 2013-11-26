@@ -79,9 +79,8 @@ var selector = ".wb-modal",
 	 */
 	build = function( event, settings ) {
 		// TODO: Add random serial to `id` attribute to prevent collisions
-		var $modal = $(	"<div class='modal-dialog'><article class='modal-content'>" +
-			"<div class='modal-body' id='lb-desc'>" + settings.content + "</div></article></div>" ),
-			$content = $modal.find( ".modal-content" );
+		var $modal = $(	"<section class='modal-dialog modal-content overlay-def'>" +
+			"<div class='modal-body' id='lb-desc'>" + settings.content + "</div></section>" );
 
 		// Add modal's ID if it exists
 		if ( settings.id != null ) {
@@ -90,14 +89,17 @@ var selector = ".wb-modal",
 
 		// Add modal's title if it exists
 		if ( settings.title != null ) {
-			$content.prepend( "<header class='modal-header'><h1 class='modal-title'>" + settings.title + "</h1></header>" );
-			$modal.attr( "aria-labelledby", "lb-title" );
+			$modal
+				.prepend( "<header class='modal-header'><h2 class='modal-title'>" + settings.title + "</h2></header>" )
+				.attr( "aria-labelledby", "lb-title" );
 		}
 
 		// Add the buttons
 		if ( settings.buttons != null ) {
-			$content.append( "<div class='modal-footer'>" );
-			$content.find( ".modal-footer" ).append( settings.buttons );
+			$modal
+				.append( "<div class='modal-footer'>" )
+				.find( ".modal-footer" )
+					.append( settings.buttons );
 		}
 
 		// Set modal's accessibility attributes
