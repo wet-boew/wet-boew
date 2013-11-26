@@ -8,7 +8,7 @@
  */
 .wb-overlay {
 	background-color: #fff;
-	border: 1px solid #000;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 	box-sizing: border-box;
 	display: none;
 	&.open {
@@ -19,19 +19,19 @@
 	}
 }
 
-%panel {
+%overlay-panel {
 	top: 0;
 	height: 100%;
 	max-width: 90%;
 }
 
-%bar {
+%overlay-bar {
 	max-height: 90%;
 	min-width: 100%;
 	left: 0;
 }
 
-%pop-up {
+%overlay-popup {
 	max-height: 90%;
 	max-width: 90%;
 }
@@ -40,27 +40,28 @@
  *	Overlay styles
  */
 .wb-panel-l {
-	@extend %panel;
+	@extend %overlay-panel;
 	left: 0;
 }
 
 .wb-panel-r {
-	@extend %panel;
+	@extend %overlay-panel;
 	right: 0;
 }
 
 .wb-bar-t {
-	@extend %bar;
+	@extend %overlay-bar;
 	top: 0;
 }
 
 .wb-bar-b {
-	@extend %bar;
+	@extend %overlay-bar;
 	bottom: 0;
 }
 
 .wb-popup-mid {
-	@extend %pop-up;
+	@extend %overlay-popup;
+	border-radius: 6px;
 	top: 0;
 	bottom: 0;
 	left: 0;
@@ -91,8 +92,6 @@
 }
 
 .overlay-close {
-	background-color: #000;
-	border-radius: 999px;
 	color: #fff;
 	height: 1.5em;
 	padding: 2px 0 0 4px;
@@ -103,5 +102,14 @@
 	width: 1.5em;
 	&:hover, &:focus {
 		color: #999;
+	}
+}
+
+div {
+	&.overlay-hd {
+		.overlay-close {
+			background-color: #000;
+			border-radius: 999px;
+		}
 	}
 }
