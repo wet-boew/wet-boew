@@ -47,7 +47,9 @@ var wet_boew_charts,
 			pieLabelFormater, pieOptions, plotParameter, rIndex,
 			rowDefaultOptions, rowOptions, tblCaptionHTML, tblCaptionText,
 			tblSrcContainer, tblSrcContainerSummary, tdOptions, uniformCumul,
-			useHeadRow, valuePoint, verticalCalcTick;
+			useHeadRow, valuePoint, verticalCalcTick,
+			currentRowGroup, currentRowGroupRow, reverseTblParsing, dataGroupVector,
+			dataCell;
 
 		// Function to Convert Class instance to JSON
 		function setClassOptions ( sourceOptions, strClass, namespace ) {
@@ -431,196 +433,6 @@ var wet_boew_charts,
 		// ---- Keep the url and his content for future reference for example second chart.
 		// b. If the preset are an object => Overwrite the default.
 
-		// Add headers information to the table parsed data structure
-		// Similar sample of code as the HTML Table validator
-		function addHeaders( tblparser ) {
-			var headStackLength = tblparser.theadRowStack.length,
-				addColHeadersLength, addRowHeadersLength,
-				cellHeaderLength, cellLength, childLength, coldataheader,
-				colheaders, colheadersgroup, currCell, currCol, currRow,
-				currrowheader, headerLength, headerLevelLength, i, j, k, m, ongoingRowHeader, ongoingRowHeaderLength,
-				rowheaders,
-				rowheadersgroup, rowLength;
-
-			// Set ID and Header for the table head
-			for ( i = 0; i < headStackLength; i += 1 ) {
-				currRow = tblparser.theadRowStack[ i ];
-
-				for ( j = 0, cellLength = currRow.cell.length; j < cellLength; j += 1 ) {
-					currCell = currRow.cell[ j ];
-
-					if ( ( currCell.type === 1 || currCell.type === 7 ) && (
-							!( j > 0 && currCell.uid === currRow.cell[ j - 1 ].uid ) &&
-							!( i > 0 && currCell.uid === tblparser.theadRowStack[ i - 1 ].cell[ j ].uid )
-						) ) {
-
-						// Imediate header
-						currCell.header = currCell.header || [];
-
-						// all the headers
-						currCell.headers = currCell.headers || [];
-
-						// Imediate sub cell
-						currCell.child = currCell.child || [];
-
-						// All the sub cell
-						currCell.childs = currCell.childs || [];
-
-						// Set the header of the current cell if required
-						if ( i > 0 ) {
-
-							// All the header cells
-							for ( k = 0, cellHeaderLength = tblparser.theadRowStack[ i - 1 ].cell[ j ].header.length; k < cellHeaderLength; k += 1 ) {
-								currCell.headers.push( tblparser.theadRowStack[ i - 1 ].cell[ j ].header[ k ]);
-								tblparser.theadRowStack[ i - 1 ].cell[ j ].header[ k ].childs.push( currCell );
-							}
-
-							// Imediate header cell
-							currCell.headers.push( tblparser.theadRowStack[ i - 1 ].cell[ j ] );
-							currCell.header.push( tblparser.theadRowStack[ i - 1 ].cell[ j ]);
-							tblparser.theadRowStack[ i - 1 ].cell[ j ].child.push( currCell );
-						}
-
-
-						// Set the header on his descriptive cell if any
-						if ( currCell.descCell ) {
-							currCell.descCell.header = currCell;
-							currCell.descCell.headers = currCell;
-						}
-					}
-
-				}
-
-			}
-
-			// Set Id/headers for header cell and data cell in the table.
-			for ( i = 0, rowLength = tblparser.row.length; i < rowLength; i += 1 ) {
-				currRow = tblparser.row[ i ];
-				rowheadersgroup = [];
-				rowheaders = [];
-				currrowheader = [];
-				ongoingRowHeader = [];
-				coldataheader = [];
-
-				// Get or Generate a unique ID for each header in this row
-				if ( currRow.headerset && !currRow.idsheaderset ) {
-					for ( j = 0; j < currRow.headerset.length; j += 1 ) {
-						rowheadersgroup = rowheadersgroup.concat( currRow.headerset[ j ] );
-					}
-					currRow.idsheaderset = rowheadersgroup;
-				}
-
-				if ( currRow.header ) {
-					for ( j = 0; j < currRow.header.length; j += 1 ) {
-						rowheaders = rowheaders.concat( currRow.header[ j ] );
-					}
-				}
-				rowheaders = currRow.idsheaderset.concat( rowheaders );
-				for (j = 0; j < currRow.cell.length; j += 1) {
-
-					if ( j === 0 || ( j > 0 && currRow.cell[ j ].uid !== currRow.cell[ ( j - 1 ) ].uid ) ) {
-						currCell = currRow.cell[ j ];
-						coldataheader = [];
-
-						// Imediate header
-						currCell.header = currCell.header || [];
-
-						// all the headers
-						currCell.headers = currCell.headers || [];
-
-						if ( currCell.col && !currCell.col.dataheader ) {
-							currCol = currCell.col;
-							colheaders = [];
-							colheadersgroup = [];
-							if ( currCol.headerLevel ) {
-								for ( m = 0, headerLevelLength = currCol.headerLevel.length; m < headerLevelLength; m += 1 ) {
-									colheadersgroup = colheadersgroup.concat( currCol.headerLevel[ m ] );
-								}
-							}
-							if ( currCol.header ) {
-								for ( m = 0, headerLength = currCol.header.length; m < headerLength; m += 1 ) {
-									colheaders = colheaders.concat( currCol.header[ m ] );
-								}
-							}
-
-							if( !currCol.dataheader ) {
-								currCol.dataheader = [];
-							}
-
-							currCol.dataheader = currCol.dataheader.concat( colheadersgroup );
-							currCol.dataheader = currCol.dataheader.concat( colheaders );
-						}
-
-						if ( currCell.col && currCell.col.dataheader ) {
-							coldataheader = currCell.col.dataheader;
-						}
-
-
-						if ( currCell.type === 1 ) {
-
-							// Imediate sub cell
-							currCell.child = currCell.child || [];
-
-							// All the sub cell
-							currCell.childs = currCell.childs || [];
-
-							for ( m = 0, ongoingRowHeaderLength = ongoingRowHeader.length; m < ongoingRowHeaderLength; m += 1 ) {
-
-								if ( currCell.colpos === ( ongoingRowHeader[ m ].colpos + ongoingRowHeader[ m ].width) ) {
-									childLength = ongoingRowHeader[ m ].child.length;
-									if( childLength === 0 || ( childLength > 0 && ongoingRowHeader[ m ].child[ childLength - 1 ].uid !== currCell.uid ) ) {
-										ongoingRowHeader[ m ].child.push( currCell );
-									}
-								}
-								ongoingRowHeader[ m ].childs.push( currCell );
-							}
-
-							for ( m = 0; m < currRow.idsheaderset.length; m += 1 ) {
-
-								// All the sub cell
-								if ( !currRow.idsheaderset[m].childs ) {
-									currRow.idsheaderset[ m ].childs = [];
-								}
-								currRow.idsheaderset[m].childs.push( currCell );
-							}
-
-							currCell.header = currCell.header.concat( ongoingRowHeader );
-
-							currCell.headers = currCell.headers.concat( coldataheader )
-								.concat( currRow.idsheaderset )
-								.concat( ongoingRowHeader );
-
-							ongoingRowHeader = ongoingRowHeader.concat( currCell );
-						}
-
-
-						if ( currCell.type === 2 || currCell.type === 3 ) {
-
-							// Get Current Column Headers
-							currrowheader = rowheaders;
-
-							if ( currCell.addcolheaders ) {
-								for ( m = 0, addColHeadersLength = currCell.addcolheaders.length; m < addColHeadersLength; m += 1 ) {
-									coldataheader = coldataheader.concat( currCell.addcolheaders[m] );
-								}
-							}
-
-							if ( currCell.addrowheaders ) {
-								for ( m = 0, addRowHeadersLength = currCell.addrowheaders.length; m < addRowHeadersLength; m += 1 ) {
-									currrowheader = currrowheader.concat( currCell.addrowheaders[ m ] );
-								}
-							}
-
-							currCell.headers = currCell.headers.concat( coldataheader )
-								.concat( currrowheader );
-
-							currCell.header = currCell.headers;
-						}
-					}
-				}
-			}
-		}
-
 		function calculateVerticalTick( parsedData ) {
 
 			// Get the appropriate ticks
@@ -925,150 +737,16 @@ var wet_boew_charts,
 			}
 		}
 
-
-		// Function to switch the series order, like make it as vertical series to horizontal series (see Task #2997)
-		function swapTable() {
-			// function swapTable for request #2799, transforming horizontal table to virtical table;
-			// Government of Canada. Contact Qibo or Pierre for algorithm info and bug-fixing;
-			// important table element: id or class, th;
-			var sMatrix = [],
-				i = 0,
-				iLength,
-				j = 0,
-				capVal = "Table caption tag is missing",
-				maxRowCol = 10, //basic;
-				s = 0,
-				t,
-				tMatrix = [],
-				swappedTable,
-				html2,
-				headStr,
-				arr,
-				tr;
-			capVal = $( "caption", srcTbl ).text();
-			$( "tr ", srcTbl ).each( function () {
-				maxRowCol += 1;
-				if ( s < 1 ) {
-					$( "td,th", $( this ) ).each( function () {
-						var $this = $( this );
-						if ($this.attr( "colspan" ) === undefined) {
-							$this.attr( "colspan", 1 );
-						}
-						maxRowCol += Number( $this.attr( "colspan" ) );
-						// block change, 20120118 fix for defect #3226, jquery 1.4 problem about colspan attribute, qibo;
-					});
-				}
-				s += 1;
-			} );
-			// prepare the place holding matrix;
-			for ( s = 0; s < maxRowCol; s += 1 ) {
-				tMatrix[ s ] = [];
-				for ( t = 0; t < maxRowCol; t += 1 ) {
-					tMatrix[ s ][ t ] = 0;
-				}
-			}
-			$( "tr ", srcTbl ).each( function () {
-				j = 0;
-				var attrCol = 1,
-					attrRow = 1;
-				$( "td,th", $(this)).each( function () {
-					var ii = i,
-						stopRow,
-						jj,
-						stopCol,
-						ss1,
-						$this = $( this );
-
-					if ( $this.attr( "colspan" ) === undefined ) {
-						$this.attr( "colspan", 1 );
-					}
-					if ($this.attr( "rowspan" ) === undefined ) {
-						$this.attr( "rowspan", 1 );
-					}
-					attrCol = Number( $this.attr( "colspan" ) );
-					attrRow = Number( $this.attr( "rowspan" ) );
-					// block change, 20120118 fix for defect #3226, jquery 1.4 problem about colspan attribute, qibo;
-					while ( tMatrix[ i ] [ j ] === 3 ) {
-						j += 1;
-					}
-
-					stopRow = i + attrRow - 1;
-
-					if ( attrRow > 1 && attrCol > 1 ) {
-						jj = j;
-						stopCol = j + attrCol - 1;
-						for ( jj = j; jj <= stopCol; jj += 1 ) {
-							for ( ii = i; ii <= stopRow; ii += 1 ) {
-								tMatrix[ ii ][ jj ] = 3; //random number as place marker;
-							}
-						}
-					} else if ( attrRow > 1 ) {
-						for ( ii = i; ii <= stopRow; ii += 1 ) {
-							tMatrix[ ii ][ j ] = 3; // place holder;
-						}
-					}
-					ss1 = $this.clone(); // have a copy of it, not destroying the look of the original table;
-					// transforming rows and cols and their properties;
-					ss1.attr( "colspan", attrRow );
-					ss1.attr( "rowspan", attrCol );
-					( sMatrix[j] = sMatrix[ j ] || [] )[ i ] = ss1;
-					j = j + attrCol;
-				} );
-				i += 1;
-			} );
-			// now creating the swapped table from the transformed matrix;
-			swappedTable = $( "<table>" );
-			$.each( sMatrix, function ( s ) {
-				var oneRow = $( "<tr>" );
-				swappedTable.append( oneRow );
-				$.each( sMatrix[ s ], function ( ind, val ) {
-					oneRow.append( val );
-				} );
-			} );
-			// now adding the missing thead;
-			html2 = swappedTable.html();
-			headStr = "<table id=\"swappedGraph\">" + "<caption>" + capVal + " (Horizontal to Vertical)</caption><thead>";
-			html2 = html2.replace( /<tbody>/gi, headStr );
-			html2 = html2.replace( /<\/tbody>/gi, "</tbody></table>" );
-			html2 = html2.replace( /\n/g, "" );
-			html2 = html2.replace( /<tr/gi, "\n<tr" );
-			arr = html2.split( "\n" );
-			for ( i = 0, iLength = arr.length; i < iLength; i += 1 ) {
-				tr = arr[ i ];
-				if ( tr.match( /<td/i ) !== null ) {
-					arr[ i ] = "</thead><tbody>" + tr;
-					break;
-				}
-			}
-			html2 = arr.join( "\n" );
-			$( html2 ).insertAfter( srcTbl ); // .hide(); //visible, for debugging and checking;
-			return $( html2 );
-		}
+		// Retrieve the parsed data
+		parsedData = $( self ).data().tblparser;
 
 		if ( options.parsedirection === "y" ) {
-
-			self = swapTable( srcTbl );
-
-			$( self )
-				.attr("class", $( srcTbl ).attr( "class" ) )
-				.removeClass( "wb-charts-parsedirection-y" );
-
-			// Re-lunch the parsing
-			vapour.doc.trigger( {
-				type: "pasiveparse.wb-table.wb",
-				pointer: $( self )
-			} );
-			return;
+			reverseTblParsing = true;
 		}
 
 
-/*
-* TODO: Fix the reversing table logic
-		// Parse the table
-		if (!$(self).data().tblparser) {
-			_pe.fn.parsertable.parse($(self));
-		}
-*/
+
+// TODO: Fix the reversing table logic for bar, area, line charts (support already added for pie charts)
 
 
 		rowDefaultOptions = {
@@ -1078,10 +756,6 @@ var wet_boew_charts,
 			"color-typeof": "color",
 			"color-autocreate": true
 		};
-		parsedData = $( self ).data().tblparser; // Retrieve the parsed data
-
-		// Fix the parsed data
-		addHeaders( parsedData );
 
 		//
 		// Calculate the tick for a table where x is horizontal
@@ -1093,6 +767,8 @@ var wet_boew_charts,
 		//
 		verticalCalcTick = calculateVerticalTick( parsedData );
 
+
+		currentRowGroup = parsedData.lstrowgroup[ 0 ];
 
 		calcTick = horizontalCalcTick;
 
@@ -1134,27 +810,52 @@ var wet_boew_charts,
 			tblCaptionText = $( "caption", srcTbl ).text();
 			$( figCaptionElem ).append( tblCaptionHTML );
 
-			dataGroup = parsedData.colgroup[ 0 ].type === 1 ? parsedData.colgroup[ 1 ] : parsedData.colgroup[ 0 ];
+			if ( !reverseTblParsing ) {
+				// If normal parsing
+				dataGroup = parsedData.colgroup[ 0 ].type === 1 ? parsedData.colgroup[ 1 ] : parsedData.colgroup[ 0 ];
 
-			for ( rIndex = parsedData.lstrowgroup[ 0 ].row.length - 1; rIndex >= 0; rIndex -= 1 ) {
+				rIndex = currentRowGroup.row.length - 1;
+			} else {
+				// If reverse parsing
+				dataGroup = currentRowGroup;
+				rIndex = (parsedData.colgroup[ 0 ].type === 1 ? parsedData.colgroup[ 1 ].col.length : parsedData.colgroup[ 0 ].col.length) - 1;
+				//currentRowGroupRow = dataGroup.row[ 0 ];
+			}
 
+			for ( rIndex; rIndex >= 0; rIndex -= 1 ) {
 
-				for ( i = 0; i < dataGroup.col.length; i += 1 ) {
+				dataGroupVector = !reverseTblParsing ? dataGroup.col : dataGroup.row;
+
+				// For each row or column
+				for ( i = 0; i < dataGroupVector.length; i += 1 ) {
 					dataSeries = [];
 					valueCumul = 0;
 
 					// For each cells
-					for( j = 0; j < dataGroup.col[i].cell.length; j += 1 ){
+					for( j = 0; j < dataGroupVector[ i ].cell.length; j += 1 ){
+						
+						dataCell = dataGroupVector[ i ].cell[ j ];
+						
+						// Skip the column if 
+						if (reverseTblParsing && dataCell.col.type === 1) {
+							continue;
+						}
 
-
-						if( dataGroup.col[ i ].cell[ j ].rowgroup.type !== 2 || ( j > 0 && dataGroup.col[ i ].cell[ j -1 ].rowgroup.uid !== dataGroup.col[ i ].cell[ j ].rowgroup.uid ) ) {
+						// Verify if the selected cell still in the scope of a data group in his another axes (eg. row/col)
+						// Verify if we are still in the same datagroup as the previous data cell
+						if ( !reverseTblParsing && ( dataCell.row.type !==2  || ( j > 0 &&
+								dataGroupVector[ i ].cell[ j -1 ].rowgroup.uid !== dataCell.rowgroup.uid ) ) ) {
+							break;
+						} else if (reverseTblParsing && ( dataCell.col.type !== 2 ) || ( j > 0 &&
+								dataGroupVector[ i ].cell[ j -1 ].col.type !== 1 &&
+								dataGroupVector[ i ].cell[ j -1 ].col.groupstruct.uid !== dataCell.col.groupstruct.uid ) ) {
 							break;
 						}
 
 						// Get"s the value
-						header = dataGroup.col[ i ].cell[ j ].row.header;
+						header = !reverseTblParsing ? dataCell.row.header : dataCell.col.header;
 
-						cellValue = options.getcellvalue( dataGroup.col[ i ].cell[ rIndex ].elem );
+						cellValue = options.getcellvalue(!reverseTblParsing ? dataGroupVector[ i ].cell[ rIndex ].elem : dataGroupVector[ i ].datacell[ rIndex ].elem );
 
 						dataSeries.push(
 							[
@@ -1166,18 +867,30 @@ var wet_boew_charts,
 
 						break;
 					}
-					tdOptions = setClassOptions( rowDefaultOptions,
-						( $( dataGroup.col[ i ].cell[ rIndex ].elem ).attr( "class" ) !== undefined ?
-							$( dataGroup.col[ i ].cell[ rIndex ].elem ).attr( "class" ) :
-							""
-						)
-					);
+					if ( !reverseTblParsing ) {
+						tdOptions = setClassOptions( rowDefaultOptions,
+							( $( dataGroupVector[ i ].cell[ rIndex ].elem ).attr( "class" ) !== undefined ?
+								$( dataGroupVector[ i ].cell[ rIndex ].elem ).attr( "class" ) :
+								""
+							)
+						);
+					} else {
+						tdOptions = setClassOptions( rowDefaultOptions,
+							( $( dataGroupVector[ i ].datacell[ rIndex ].elem ).attr( "class" ) !== undefined ?
+								$( dataGroupVector[ i ].datacell[ rIndex ].elem ).attr( "class" ) :
+								""
+							)
+						);
+					}
 					allSeries.push( {
 						data: dataSeries,
-						label: $( dataGroup.col[ i ].dataheader[ dataGroup.col[ i ].dataheader.length - 1 ].elem ).text(),
+						label: (!reverseTblParsing ? $( dataGroupVector[ i ].dataheader[ dataGroupVector[ i ].dataheader.length - 1 ].elem ).text() :
+								$( dataGroupVector[ i ].header[ dataGroupVector[ i ].header.length - 1 ].elem ).text()),
 						color: (!tdOptions.color ? options.colors[ i ] : tdOptions.color)
 					} );
 				}
+
+
 
 				// Create the Canvas
 				$placeHolder = $( "<div />" );
@@ -1186,9 +899,9 @@ var wet_boew_charts,
 				$imgContainer = $( "<div />" );
 
 				// Create a sub Figure or use the main one
-				if ( parsedData.lstrowgroup[ 0 ].row.length === 1 &&
-					( $( parsedData.lstrowgroup[ 0 ].row[ 0 ].header[ 0 ].elem ).html() === tblCaptionHTML ||
-					parsedData.lstrowgroup[ 0 ].row[ 0 ].header.length === 0 ) ) {
+				if ( currentRowGroup.row.length === 1 &&
+					( $( currentRowGroup.row[ 0 ].header[ 0 ].elem ).html() === tblCaptionHTML ||
+					currentRowGroup.row[ 0 ].header.length === 0 ) ) {
 
 					pieChartLabelText = tblCaptionText;
 
@@ -1199,7 +912,7 @@ var wet_boew_charts,
 					$subFigureElem = $( "<figure />" ).appendTo( mainFigureElem );
 					$subfigCaptionElem = $( "<figcaption />" );
 
-					header = parsedData.lstrowgroup[ 0 ].row[ rIndex ].header;
+					header = currentRowGroup.row[ rIndex ].header;
 
 					pieChartLabelText = $( header[ header.length - 1 ].elem ).text();
 
@@ -1303,21 +1016,20 @@ var wet_boew_charts,
 				// Move the table inside the figure element
 				$( srcTbl ).appendTo( mainFigureElem );
 			}
-
+/*
 			// Destroy the temp table if used
 			if ( options.parsedirection === "y" ) {
 				$( self ).remove();
-			}
+			}*/
 			return;
 		}
 
 		// Count nbBarChart,
-		for ( i = 0; i < parsedData.lstrowgroup[ 0 ].row.length; i++ ) {
+		for ( i = 0; i < currentRowGroup.row.length; i++ ) {
+			currentRowGroupRow = currentRowGroup.row[ i ];
 			rowOptions = setClassOptions( rowDefaultOptions,
-			( $ ( parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].elem ).attr( "class" ) !== undefined ?
-			$( parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].elem ).attr( "class" ) : "" ) );
-
-
+			( $ ( currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].elem ).attr( "class" ) !== undefined ?
+			$( currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].elem ).attr( "class" ) : "" ) );
 
 			if ( ( !rowOptions.type && ( options.type === "bar" || options.type === "stacked" ) ) || ( rowOptions.type && ( rowOptions.type === "bar" || rowOptions.type === "stacked" ) ) ) {
 				nbBarChart += 1;
@@ -1327,29 +1039,30 @@ var wet_boew_charts,
 				}
 			}
 
-			parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].chartOption = rowOptions;
+			currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].chartOption = rowOptions;
 		}
 
 		// First rowgroup assume is a data row group.
 		// For all row....
-		for ( i = 0; i < parsedData.lstrowgroup[ 0 ].row.length; i++ ) {
+		for ( i = 0; i < currentRowGroup.row.length; i++ ) {
 			dataSeries = [];
 			datacolgroupfound = 0;
 			valueCumul = 0;
+			currentRowGroupRow = currentRowGroup.row[ i ];
 
-			rowOptions = parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].chartOption;
+			rowOptions = currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].chartOption;
 
 			// For each cells
-			for( j = 0; j < parsedData.lstrowgroup[ 0 ].row[ i ].cell.length; j++ ){
+			for( j = 0; j < currentRowGroupRow.cell.length; j++ ){
 
-				if( datacolgroupfound > 1 && parsedData.lstrowgroup[ 0 ].row[ i ].cell[ j ].col.groupstruct.type !== 2 ){
+				if( datacolgroupfound > 1 && currentRowGroupRow.cell[ j ].col.groupstruct.type !== 2 ){
 					break;
 				}
 
-				if( parsedData.lstrowgroup[ 0 ].row[ i ].cell[ j ].col.groupstruct.type === 2 ){
+				if( currentRowGroupRow.cell[ j ].col.groupstruct.type === 2 ){
 
 					// Get's the value
-					header = parsedData.lstrowgroup[ 0 ].row[ i ].cell[ j ].col.header;
+					header = currentRowGroupRow.cell[ j ].col.header;
 					valuePoint = valueCumul;
 
 					// Bar chart case, re-evaluate the calculated point
@@ -1363,7 +1076,7 @@ var wet_boew_charts,
 
 					}
 
-					cellValue = options.getcellvalue( parsedData.lstrowgroup[ 0 ].row[ i ].cell[ j ].elem);
+					cellValue = options.getcellvalue( currentRowGroupRow.cell[ j ].elem);
 
 					// Add the data point
 					dataSeries.push(
@@ -1388,13 +1101,13 @@ var wet_boew_charts,
 			if ( rowOptions.type === "line" ) {
 				allSeries.push( {
 					data: dataSeries,
-					label: $( parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].elem ).text(),
+					label: $( currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].elem ).text(),
 					color: (!rowOptions.color ? options.colors[ i ] : rowOptions.color)
 				} );
 			} else if ( rowOptions.type === "area" ) {
 				allSeries.push( {
 					data: dataSeries,
-					label: $( parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].elem ).text(),
+					label: $( currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].elem ).text(),
 					color: (!rowOptions.color ? options.colors[ i ] : rowOptions.color),
 					lines: {
 						show: true,
@@ -1404,7 +1117,7 @@ var wet_boew_charts,
 			} else if ( rowOptions.type === "bar" || ( barDelta && rowOptions.type === "stacked" ) ) {
 				allSeries.push( {
 					data: dataSeries,
-					label: $( parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].elem ).text(),
+					label: $( currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].elem ).text(),
 					color: (!rowOptions.color ? options.colors[ i ] : rowOptions.color),
 					bars: {
 						show: true,
@@ -1416,7 +1129,7 @@ var wet_boew_charts,
 			} else if ( rowOptions.type === "stacked" ) {
 				allSeries.push( {
 					data: dataSeries,
-					label: $( parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].elem ).text(),
+					label: $( currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].elem ).text(),
 					color: (!rowOptions.color ? options.colors[ i ] : rowOptions.color),
 					bars: {
 						show: true,
@@ -1428,7 +1141,7 @@ var wet_boew_charts,
 
 				allSeries.push( {
 					data: dataSeries,
-					label: $(parsedData.lstrowgroup[0].row[i].header[parsedData.lstrowgroup[0].row[i].header.length - 1].elem).text(),
+					label: $(currentRowGroupRow.header[currentRowGroupRow.header.length - 1].elem).text(),
 					color: (!rowOptions.color ? options.colors[ i ] : rowOptions.color)
 				} );
 
