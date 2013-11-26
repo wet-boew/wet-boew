@@ -163,6 +163,10 @@ var selector = ".wb-lightbox",
 					} else {
 						settings.type = "image";
 					}
+					
+					if ( elm.className.indexOf( "lb-modal" ) !== -1 ) {
+						settings.modal = true;
+					}
 
 					$elm.magnificPopup( settings );
 				}
@@ -174,24 +178,21 @@ var selector = ".wb-lightbox",
 $document.on( "timerpoke.wb", selector, init );
 
 $document.on( "keydown", ".mfp-wrap", function( event ) {
-	var eventTarget = event.target,
-		$elm;
+	var $elm, $focusable, index, length;
 
 	// If the tab key is used and filter out any events triggered by descendants
 	if ( extendedGlobal && event.which === 9 ) {
+		event.preventDefault();
 		$elm = $( this );
-
-		if ( event.shiftKey ) {
-			if ( event.currentTarget === eventTarget ) {
-				$elm.find( ":focusable" ).last().trigger( "setfocus.wb" );
-				return false;
-			}
-		} else {
-			if ( $elm.find( ":focusable" ).last()[ 0 ] === eventTarget ) {
-				$elm.trigger( "setfocus.wb" );
-				return false;
-			}
+		$focusable = $elm.find( ":focusable" );
+		length = $focusable.length;
+		index = $focusable.index( event.target ) + ( event.shiftKey ? -1 : 1 );
+		if ( index === -1 ) {
+			index = length - 1;
+		} else if ( index === length ) {
+			index = 0;
 		}
+		$focusable.eq( index ).trigger( "setfocus.wb" );
 	}
 
 	/*
@@ -199,6 +200,12 @@ $document.on( "keydown", ".mfp-wrap", function( event ) {
 	 * so returning true allows for events to always continue
 	 */
 	return true;
+});
+
+// Event handler for closing a modal popup
+$(document).on( "click", ".popup-modal-dismiss", function ( event ) {
+	event.preventDefault();
+	$.magnificPopup.close();
 });
 
 // Add the timer poke to initialize the plugin
