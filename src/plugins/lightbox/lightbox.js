@@ -42,7 +42,7 @@ var selector = ".wb-lightbox",
 			if ( !i18nText ) {
 				i18n = window.i18n;
 				i18nText = {
-					tClose: i18n( "close-esc" ),
+					tClose: i18n( "overlay-close" ) + i18n( "space" ) + i18n( "esc-key" ),
 					tLoading: i18n( "load" ),
 					gallery: {
 						tPrev: i18n( "prv-l" ),
@@ -71,11 +71,7 @@ var selector = ".wb-lightbox",
 						extendedGlobal = true;
 					}
 
-					// TODO: How to support other options available in Magnific Popup
-					// TODO: Fix AJAX support (works fine with "grunt connect watch" but not locally)
-					// TODO: Fix visible focus and hidden text for buttons
 					// TODO: Add swipe support
-					// TODO: Should support be added for multiple non-gallery items of possibly mixed content? Would come at a performance code.
 
 					settings.callbacks = {
 						open: function() {
@@ -143,7 +139,6 @@ var selector = ".wb-lightbox",
 						firstLink = elm.getElementsByTagName( "a" )[0];
 
 						// Is the element a gallery?
-						// TODO: Should we support mixed content galleries? Could come at a performance cost and not very usable unless a hidden gallery (since always goes to first item).
 						if ( elm.className.indexOf( "-gallery" ) !== -1 ) {
 							settings.gallery = {
 								enabled: true,
@@ -168,7 +163,14 @@ var selector = ".wb-lightbox",
 						settings.modal = true;
 					}
 
-					$elm.magnificPopup( settings );
+					// Extend the settings with data-wet-boew then 
+					$elm.magnificPopup(
+						$.extend(
+							true,
+							settings,
+							vapour.getData( $elm, "wet-boew" )
+						)
+					);
 				}
 			});
 		}
