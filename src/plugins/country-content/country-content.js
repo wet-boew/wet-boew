@@ -41,7 +41,7 @@ var $document = vapour.doc,
 				// @TODO: Handle bad country values or any whitelist of countries.
 			}
 
-			url = url.replace( "{country}", countryCode );
+			url = url.replace( "{country}", countryCode.toLowerCase() );
 
 			$elm.removeAttr( "data-country-content" );
 
