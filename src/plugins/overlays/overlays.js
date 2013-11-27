@@ -16,6 +16,7 @@
 var selector = ".wb-overlay",
 	closeClass = "overlay-close",
 	linkClass = "overlay-lnk",
+	ignoreOutsideClass = "outside-off",
 	sourceLinks = {},
 	$document = vapour.doc,
 	i18n, i18nText,
@@ -53,27 +54,38 @@ var selector = ".wb-overlay",
 		}
 	},
 
-	openOverlay = function( overlayId ) {
+	openOverlay = function( overlayId, noFocus ) {
 		var $overlay = $( "#" + overlayId );
 
 		$overlay
 			.addClass( "open" )
-			.attr( "aria-hidden", "false" )
-			.trigger( "setfocus.wb" );
+			.attr( "aria-hidden", "false" );
+
+		if ( !noFocus ) {
+			$overlay.trigger( "setfocus.wb" );
+		}
 	},
 
-	closeOverlay = function( overlayId ) {
-		var $overlay = $( "#" + overlayId );
+	closeOverlay = function( overlayId, noFocus, userClosed ) {
+		var $overlay = $( "#" + overlayId ),
+			sourceLink = sourceLinks[ overlayId ];
 
 		$overlay
 			.removeClass( "open" )
 			.attr( "aria-hidden", "true" );
 
-		// Returns focus to the source link for the overlay
-		$( sourceLinks[ overlayId ] ).trigger( "setfocus.wb" );
+		if ( userClosed ) {
+			$overlay.addClass( "user-closed" );
+		}
 
-		// Delete the source link reference
-		delete sourceLinks[ overlayId ];
+		if ( !noFocus && sourceLink ) {
+
+			// Returns focus to the source link for the overlay
+			$( sourceLink ).trigger( "setfocus.wb" );
+
+			// Delete the source link reference
+			delete sourceLinks[ overlayId ];
+		}
 	};
 
 $document.on( "timerpoke.wb keydown open.wb-overlay close.wb-overlay", selector, function( event ) {
@@ -102,26 +114,25 @@ $document.on( "timerpoke.wb keydown open.wb-overlay close.wb-overlay", selector,
 
 		// Tab key
 		case 9:
-			event.preventDefault();
-			$focusable = $( overlay ).find( ":focusable" );
-			length = $focusable.length;
-			index = $focusable.index( event.target ) + ( event.shiftKey ? -1 : 1 );
-			if ( index === -1 ) {
-				index = length - 1;
-			} else if ( index === length ) {
-				index = 0;
+
+			// No special tab handling when ignoring outside activity
+			if ( overlay.className.indexOf( ignoreOutsideClass ) === -1 ) {
+				event.preventDefault();
+				$focusable = $( overlay ).find( ":focusable" );
+				length = $focusable.length;
+				index = $focusable.index( event.target ) + ( event.shiftKey ? -1 : 1 );
+				if ( index === -1 ) {
+					index = length - 1;
+				} else if ( index === length ) {
+					index = 0;
+				}
+				$focusable.eq( index ).trigger( "setfocus.wb" );
 			}
-			$focusable.eq( index ).trigger( "setfocus.wb" );
 			break;
 
 		// Escape key
 		case 27:
-			closeOverlay( overlayId );
-			break;
-
-		// Up/down arrow
-		case 38:
-		case 40:
+			closeOverlay( overlayId, false, true );
 			break;
 		}
 	}
@@ -133,7 +144,11 @@ $document.on( "click vclick", "." + closeClass, function( event ) {
 
 	// Ignore middle/right mouse buttons
 	if ( !which || which === 1 ) {
-		closeOverlay( $( event.currentTarget ).closest( ".wb-overlay" ).attr( "id" ) );
+		closeOverlay(
+			$( event.currentTarget ).closest( ".wb-overlay" ).attr( "id" ),
+			false,
+			true
+		);
 	}
 });
 
@@ -173,6 +188,7 @@ $document.on( "click vclick touchstart focusin", "body", function ( event ) {
 			overlay = document.getElementById( overlayId );
 			if ( overlay.getAttribute( "aria-hidden" ) === "false" &&
 				eventTarget.id !== overlayId &&
+				overlay.className.indexOf( ignoreOutsideClass ) === -1 &&
 				!$.contains( overlay, eventTarget ) ) {
 
 				// Close the overlay

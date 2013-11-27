@@ -10,7 +10,12 @@
 	background-color: #fff;
 	display: none;
 	border-radius: 0;
+	border: none;
+	background-clip: border-box;
 	z-index: 1050;
+	&.wb-inview {
+		display: block;
+	}
 	&.open {
 		position: fixed;
 		display: inline-block;

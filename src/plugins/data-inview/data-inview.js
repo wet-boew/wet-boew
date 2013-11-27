@@ -1,5 +1,5 @@
 /*
- * @title WET-BOEW Data Inview
+ * @title WET-BOEW Data InView
  * @overview A simplified data-attribute driven plugin that responds to moving in and out of the viewport.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
@@ -33,11 +33,11 @@ var selector = ".wb-inview",
 	},
 
 	/*
-	 * @method onInview
+	 * @method onInView
 	 * @param {jQuery DOM element} $elm The plugin element
 	 * @param {jQuery Event} event The event that triggered this method call
 	 */
-	onInview = function( $elm ) {
+	onInView = function( $elm ) {
 		var elementWidth = $elm.outerWidth(),
 			elementHeight = $elm.outerHeight(),
 			scrollTop = $window.scrollTop(),
@@ -47,6 +47,7 @@ var selector = ".wb-inview",
 			x2 = x1 + elementWidth,
 			y1 = $elm.offset().top,
 			y2 = y1 + elementHeight,
+			oldViewState = $elm.attr( "data-inviewstate" ),
 			inView = ( scrollBottom < y1 || scrollTop > y2 ) || ( scrollRight < x1 || scrollRight > x2 ),
 
 			// this is a bit of a play on true/false to get the desired effect. In short this variable depicts
@@ -54,16 +55,31 @@ var selector = ".wb-inview",
 			// all - the whole element is in the viewport
 			// partial - part of the element is in the viewport
 			// none - no part of the element is in the viewport
-			viewstate = ( scrollBottom > y2 && scrollTop < y1 ) ? "all" : ( inView ) ? "none" : "partial";
+			viewState = ( scrollBottom > y2 && scrollTop < y1 ) ? "all" : ( inView ) ? "none" : "partial",
+			$dataInView;
 
-		$elm.attr( "data-inviewstate", viewstate )
-			.find( ".pg-banner, .pg-panel" )
-			.attr({
-				"role": "toolbar",
-				"aria-hidden": !inView
-			})
-			.toggleClass( "in", !inView )
-			.toggleClass( "out", inView );
+		// Only if the view state has changed
+		if ( viewState !== oldViewState ) {
+			$elm.attr( "data-inviewstate", viewState );
+			$dataInView = $( "#" + $elm.attr( "data-inview" ) );
+
+			// Keep closed if the user closed the inView result
+			if ( !$dataInView.hasClass( "user-closed" ) ) {
+				if ( $dataInView.hasClass( "wb-overlay" ) ) {
+					if ( !oldViewState ) {
+						$dataInView.addClass( "outside-off" );
+					}
+					$dataInView.trigger(
+						( inView ? "open" : "close" ) + ".wb-overlay"
+					);
+				} else {
+					$dataInView
+						.attr( "aria-hidden", !inView )
+						.toggleClass( "in", !inView )
+						.toggleClass( "out", inView );
+				}
+			}
+		}
 	};
 
 // Bind the init event of the plugin
@@ -81,7 +97,7 @@ $document.on( "timerpoke.wb scroll.wb-inview", selector, function( event ) {
 			init( $elm );
 			break;
 		case "scroll":
-			onInview( $elm );
+			onInView( $elm );
 			break;
 		}
 	}
