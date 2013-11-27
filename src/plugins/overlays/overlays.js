@@ -41,7 +41,7 @@ var selector = ".wb-overlay",
 			if ( !i18nText ) {
 				i18n = window.i18n;
 				i18nText = {
-					close: i18n( "close-esc" )
+					close: i18n( "overlay-close" ) + i18n( "space" ) + i18n( "esc-key" )
 				};
 			}
 

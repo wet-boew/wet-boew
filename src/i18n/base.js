@@ -52,7 +52,9 @@ var ind = {
 	"prv-l": "@prv-l@",
 	"first": "@first@",
 	"last": "@last@",
-	"close-esc": "@close-esc@",
+	"menu-close": "@menu-close@",
+	"overlay-close": "@overlay-close@",
+	"esc-key": "@esc-key@",
 	"show": "@show@",
 
 	/* Tabbed interface */
