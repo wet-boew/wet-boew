@@ -287,39 +287,44 @@
   * Next / Prev
   */
  $document.on( "click", controls, function( event ) {
-	event.preventDefault();
-	var $elm = $( this ),
-		$text, $inv,
+	var which = event.which,
 		rotStopText = i18nText.rotStop,
 		playText = i18nText.play,
-		$sldr = $elm.parents( ".wb-tabs" ),
+		$elm, $text, $inv, $sldr, action;
+
+	// Ignore middle and right mouse buttons
+	if ( !which || which === 1 ) {
+		event.preventDefault();
+		$elm = $( this );
+		$sldr = $elm.parents( ".wb-tabs" );
 		action = $elm.hasClass( "prv" ) ? "prv" :
 					$elm.hasClass( "nxt" ) ? "nxt" :
 					$elm.attr( "href" ).indexOf( "#" ) > -1 ? "select" : "0";
 
-	switch ( action ) {
-	case "prv":
-		onCycle( $elm, -1 );
-		break;
-	case "nxt":
-		onCycle( $elm, 1 );
-		break;
-	case "select":
-		onPick( $sldr, $elm );
-		break;
-	default:
-		$text = $elm.find( "i" );
-		$inv = $elm.find( ".wb-inv" );
-		$elm.find( ".glyphicon" ).toggleClass( "glyphicon-play glyphicon-pause" );
-		$text.text(
-			$text.text() === playText ? i18nText.pause : playText
-		);
-		$inv.text(
-			$inv.text() === rotStopText ? i18nText.rotStart : rotStopText
-		);
-		$sldr.toggleClass( "playing" );
+		switch ( action ) {
+		case "prv":
+			onCycle( $elm, -1 );
+			break;
+		case "nxt":
+			onCycle( $elm, 1 );
+			break;
+		case "select":
+			onPick( $sldr, $elm );
+			break;
+		default:
+			$text = $elm.find( "i" );
+			$inv = $elm.find( ".wb-inv" );
+			$elm.find( ".glyphicon" ).toggleClass( "glyphicon-play glyphicon-pause" );
+			$text.text(
+				$text.text() === playText ? i18nText.pause : playText
+			);
+			$inv.text(
+				$inv.text() === rotStopText ? i18nText.rotStart : rotStopText
+			);
+			$sldr.toggleClass( "playing" );
+		}
+		$sldr.attr( "data-ctime", 0 );
 	}
-	$sldr.attr( "data-ctime", 0 );
 
 	/*
 	 * Since we are working with events we want to ensure that we are being passive about our control,
