@@ -55,7 +55,7 @@ var selector = ".wb-inview",
 			// all - the whole element is in the viewport
 			// partial - part of the element is in the viewport
 			// none - no part of the element is in the viewport
-			viewState = ( scrollBottom > y2 && scrollTop < y1 ) ? "all" : ( inView ) ? "none" : "partial",
+			viewState = ( scrollBottom > y2 && scrollTop < y1 ) ? "all" : inView ? "none" : "partial",
 			$dataInView;
 
 		// Only if the view state has changed
