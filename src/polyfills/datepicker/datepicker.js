@@ -45,9 +45,10 @@ var selector = "input[type=date]",
 			if ( !i18nText ) {
 				i18n = window.i18n;
 				i18nText = {
-					datepickerShow: i18n( "date-show" ) + i18n( "space" ),
-					datepickerHide: i18n( "date-hide" ),
-					datepickerSelected: i18n( "date-sel" )
+					show: i18n( "date-show" ) + i18n( "space" ),
+					hide: i18n( "date-hide" ),
+					selected: i18n( "date-sel" ),
+					close: i18n( "overlay-close" ) + i18n( "space" ) + i18n( "esc-key" )
 				};
 			}
 
@@ -57,8 +58,7 @@ var selector = "input[type=date]",
 				$container = $( "<div id='wb-picker' class='picker-overlay' role='dialog' aria-hidden='true'></div>" );
 
 				// Close button
-				$( "<a class='picker-close' role='button' href='javascript:;'><img src='" +
-						vapour.getPath( "/assets" ) + "/cross-button.png' alt='" + i18nText.datepickerHide + "' /></a>" )
+				$( "<button class='picker-close mfp-close overlay-close' title='" + i18nText.close + "'>×</button>" )
 					.appendTo( $container )
 					.on( "click", function( event ) {
 						var which = event.which;
@@ -85,8 +85,8 @@ var selector = "input[type=date]",
 
 	createToggleIcon = function( fieldId ) {
 		var fieldLabel = $( "label[for=" + fieldId + "]" ).text(),
-			objToggle = "<a id='" + fieldId + "-picker-toggle' class='picker-toggle' href='javascript:;'><img src='" +
-				vapour.getPath( "/assets" ) + "/calendar-month.png' alt='" + i18nText.datepickerShow + fieldLabel + "'/></a>";
+			objToggle = "<button id='" + fieldId + "-picker-toggle' class='picker-toggle' href='javascript:;' title='" +
+				i18nText.show + fieldLabel + "'><span class='glyphicon glyphicon-calendar'></span></button>";
 
 		$( "#" + fieldId ).after( objToggle );
 		$container.slideUp( 0 );
@@ -150,7 +150,7 @@ var selector = "input[type=date]",
 						.children( "a" )
 						.attr( "aria-selected", "true" )
 						.append( "<span class='wb-inv datepicker-selected-text'> [" +
-							i18nText.datepickerSelected + "]</span>" );
+							i18nText.selected + "]</span>" );
 				}
 			}
 		} catch ( error ) {
@@ -163,8 +163,7 @@ var selector = "input[type=date]",
 			minDate = field.getAttribute( "min" ),
 			maxDate = field.getAttribute( "max" ),
 			fromDateISO = vapour.date.fromDateISO,
-			targetDate = fromDateISO( field.value ),
-			$prevMonthLink, $nextMonthLink;
+			targetDate = fromDateISO( field.value );
 
 		if ( !minDate ) {
 			minDate = "1800-01-01";
@@ -203,9 +202,9 @@ var selector = "input[type=date]",
 			$( "#" + fieldId + "-picker-toggle" )
 				.children( "a" )
 					.children( "span" )
-						.text( i18nText.datepickerHide );
+						.text( i18nText.hide );
 
-			if (targetDate !== null) {
+			if ( targetDate !== null ) {
 				$document.trigger( "setFocus.wb-cal", [
 						"wb-picker",
 						year,
@@ -216,17 +215,7 @@ var selector = "input[type=date]",
 					]
 				);
 			} else {
-				$prevMonthLink = $container.find( ".cal-prvmnth" );
-				if ( $prevMonthLink.hasClass( "wb-inv" ) ) {
-					$nextMonthLink = $container.find( ".cal-nxtmnth" );
-					if ( $nextMonthLink.hasClass( "wb-inv" ) ) {
-						$container.find( ".cal-goto a" ).trigger( "setfocus.wb" );
-					} else {
-						$nextMonthLink.trigger( "setfocus.wb" );
-					}
-				} else {
-					$prevMonthLink.trigger( "setfocus.wb" );
-				}
+				$( "#wb-picker" ).trigger( "setfocus.wb" );
 			}
 		} else {
 			hide( fieldId );
@@ -255,7 +244,7 @@ var selector = "input[type=date]",
 			.slideUp( "fast" )
 			.attr( "aria-hidden", "true" )
 			.trigger( "hideGoToFrm.wb-cal" );
-		toggle.children( "a" ).children( "span" ).text( i18nText.datepickerShow + fieldLabel );
+		toggle.children( "a" ).children( "span" ).text( i18nText.show + fieldLabel );
 	},
 
 	formatDate = function( year, month, day, format ) {
@@ -279,7 +268,10 @@ $document.on( "click vclick touchstart focusin", "body", function ( event ) {
 	// Ignore middle/right mouse buttons
 	if ( initialized && ( !which || which === 1 ) ) {
 		container = document.getElementById( "wb-picker" );
-		if ( container.getAttribute( "aria-hidden" ) === "false" && !$.contains( container, event.target ) ) {
+		if ( container.getAttribute( "aria-hidden" ) === "false" &&
+			event.target.id !== container.id &&
+			!$.contains( container, event.target ) ) {
+
 			hide( container.getAttribute( "aria-controls") );
 			return false;
 		}
