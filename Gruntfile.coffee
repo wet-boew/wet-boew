@@ -21,6 +21,7 @@ module.exports = (grunt) ->
 			"assets-dist"
 			"assemble:demos"
 			"assemble:demos_min"
+			"imagemin:min"
 			"htmlcompressor"
 		]
 	)
@@ -40,9 +41,9 @@ module.exports = (grunt) ->
 		[
 			"clean:dist"
 			"assets"
-			"images"
 			"js"
 			"css"
+			"imagemin:unmin"
 		]
 	)
 
@@ -110,19 +111,11 @@ module.exports = (grunt) ->
 		"css"
 		"INTERNAL: Compiles Sass and copies third party CSS to the dist folder"
 		[
+			"sprites"
 			"sass"
 			"autoprefixer"
 			"concat:css"
 			"cssmin"
-		]
-	)
-
-	@registerTask(
-		"images"
-		"INTERNAL: Compiles sprites and optimized images"
-		[
-			"sprites"
-			"imagemin"
 		]
 	)
 
@@ -704,10 +697,15 @@ module.exports = (grunt) ->
 				expand: true
 
 		imagemin:
-			sprites:
-				cwd: "src"
-				src: "**/sprites_*.png"
-				dest: "src"
+			unmin:
+				cwd: "dist/unmin/assets"
+				src: "*.png"
+				dest: "dist"
+				expand: true
+			min:
+				cwd: "dist/assets"
+				src: "*.png"
+				dest: "dist"
 				expand: true
 
 		clean:
