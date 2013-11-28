@@ -15,6 +15,8 @@
 	"site.title": "Boîte à outils de l'expérience Web",
 	"space" : "&#32;",
 	"tmpl-abbr": "Abréviation",
+	"tmpl-about": "À propos",
+	"tmpl-about-anchor": "apropos",
 	"tmpl-about-minister": "Le ministre",
 	"tmpl-about-us": "À propos de nous",
 	"tmpl-about-web-standards": "À propos des normes Web",
@@ -131,6 +133,7 @@
 	"tmpl-wet-project": "Projet de la BOEW",
 	"tmpl-wet-subline": "Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada",
 	"tmpl-wet-theme": "Thème de la BOEW",
+	"tmpl-wet-twitter": "BoiteExpWeb",
 	"tmpl-work-examples": "Exemples pratiques",
 	"you-are-here": "Vous êtes dans :",
   	"cont-service" : "Services et information"

@@ -16,6 +16,8 @@
 	"site.title": "Web Experience Toolkit",
 	"space" : "&#32;",
 	"tmpl-abbr": "Abbreviation",
+	"tmpl-about": "About",
+	"tmpl-about-anchor": "about",
 	"tmpl-about-minister": "About the minister",
 	"tmpl-about-us": "About us",
 	"tmpl-about-web-standards": "About the Web Standards",
@@ -132,6 +134,7 @@
 	"tmpl-wet-project": "WET project",
 	"tmpl-wet-subline": "Collaborative open source project led by the Government of Canada",
 	"tmpl-wet-theme": "WET theme",
+	"tmpl-wet-twitter": "WebExpToolkit",
 	"tmpl-work-examples": "Working examples",
 	"you-are-here": "You are here:"
 }
