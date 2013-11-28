@@ -112,3 +112,10 @@
 		line-height: 1em;
 	}
 }
+
+[dir=rtl] {
+	.mfp-close {
+		right: auto;
+		left: 0;
+	}
+}

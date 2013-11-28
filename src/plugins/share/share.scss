@@ -6,11 +6,11 @@
 
 %share_icons {
 	content: " ";
-	display: block;
-	float: left;
+	display: inline-block;
 	height: 32px;
 	width: 32px;
-	margin-right: 42px;
+	margin-right: 12px;
+	vertical-align: middle;
 }
 
 .wb-share {
@@ -150,18 +150,7 @@
 
 	ul {
 		list-style-type: none;
-		padding-left: 0;
+		padding: 0;
 		margin: 10px;
-	}
-}
-
-[dir=rtl] {
-	.wb-share {
-		.shr-lnk {
-			padding-left: 12px;
-			padding-right: 42px;
-			background-position: 97% center;
-			text-align: right;
-		}
 	}
 }
