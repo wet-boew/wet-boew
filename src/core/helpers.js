@@ -149,7 +149,7 @@
 
 })( vapour );
 
-(function( $ ) {
+(function( $, undef ) {
 	"use strict";
 
 	var methods,
@@ -161,6 +161,27 @@
 
 		init: function( options ) {
 			return $.extend( _settings, options || {} );
+		},
+
+		show: function( onlyAria ) {
+			$( this ).each( function() {
+				var $elm = $( this );
+				$elm.attr( "aria-hidden", "false" );
+				if ( onlyAria === undef ) {
+					$elm.removeClass( "wb-inv" );
+				}
+			} );
+		},
+
+		hide: function( onlyAria ) {
+			$( this )
+				.each( function() {
+					var $elm = $( this );
+					$elm.attr( "aria-hidden", "true" );
+					if ( onlyAria === undef ) {
+						return $elm.addClass( "wb-inv" );
+					}
+				} );
 		},
 
 		toggle: function( to, from ) {

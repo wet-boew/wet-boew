@@ -38,7 +38,6 @@
 		background: transparent;
 		border: 0;
 		color: #fff;
-
 	}
 	progress, .btn {
 		&:focus { 
@@ -95,26 +94,6 @@
 				display: none;
 			}
 		}
-		// Lets make sure error messages are more prominant
-		.errmsg {
-			position: absolute;
-			z-index: 105;
-			top: 0;
-			left: 0;
-			bottom: 0;
-			right: 0;
-			background-color: rgba( 0, 0, 0, 0.7 );
-			margin-bottom: 0;
-
-			span {
-				color: #fff;
-				display: block;
-				top: 45%;
-				text-indent: 0;
-				position: relative;
-			}
-		}
-
 	}
 
 	&[data-youtube] {
