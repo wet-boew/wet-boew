@@ -84,36 +84,38 @@
 	 * @method drizzleAria
 	 * @param {2 jQuery DOM element} $tabs for the tabpanel grouping, and $tablist for the pointers to the groupings
 	 */
-	drizzleAria = function( $tabs, $tabslist ) {
+	drizzleAria = function( $tabs, $tabList ) {
 
 		// lets process the elements for aria
-		var tabscounter = $tabs.length - 1,
-			$listitems = $tabslist.children(),
-			listcounter = $listitems.length - 1,
-			$item;
+		var tabs = $tabs.get(),
+			tabCounter = tabs.length - 1,
+			listItems = $tabList.children().get(),
+			listCounter = listItems.length - 1,
+			isActive, item, link;
 
 
-		for ( ; tabscounter !== -1; tabscounter -= 1 ) {
-			$item = $tabs.eq( tabscounter );
-			$item.attr({
-				tabindex: "-1",
-				"aria-hidden": "true",
-				"aria-expanded": "false",
-				"aria-labelledby": $item.attr( "id" ) + "-lnk"
-			});
+		for ( ; tabCounter !== -1; tabCounter -= 1 ) {
+			item = tabs[ tabCounter ];
+			isActive = item.className.indexOf( "in" ) !== -1;
+			
+			item.tabIndex = isActive ? "0" : "-1";
+			item.setAttribute( "aria-hidden", isActive ? "false" : "true" );
+			item.setAttribute( "aria-expanded", isActive ? "true" : "false" );
+			item.setAttribute( "aria-labelledby", item.id + "-lnk" );
 		}
 
-		for ( ; listcounter !== -1; listcounter -= 1 ) {
-			$item = $listitems.eq( listcounter ).find( "a" );
-			$item.attr({
-				tabindex: "0",
-				"aria-selected": "false",
-				"aria-controls": $item.attr( "href" ).replace( "#", "" ) + "-lnk",
-			});
-			$item.parent().attr( "role", "presentation" );
-		}
+		for ( ; listCounter !== -1; listCounter -= 1 ) {
+			item = listItems[ listCounter ];
+			item.setAttribute( "role", "presentation" );
+			isActive = item.className.indexOf( "active" ) !== -1;
 
-		 $tabslist.attr( "aria-live", "off" );
+			link = item.getElementsByTagName( "a" )[ 0 ];
+			link.tabIndex = isActive ? "0" : "-1";
+			link.setAttribute( "role", "tab" );
+			link.setAttribute( "aria-selected", isActive ? "true" : "false" );
+			link.setAttribute( "aria-controls", link.getAttribute( "href" ).substring( 1 ) + "-lnk" );
+		}
+		$tabList.attr( "aria-live", "off" );
 	},
 
 	/*
@@ -176,7 +178,8 @@
 			.addClass( "out" )
 			.attr({
 				"aria-hidden": "true",
-				"aria-expanded": "false"
+				"aria-expanded": "false",
+				tabindex: "-1"
 			});
 
 		$items.filter( "[aria-labelledby=" + $elm.attr( "aria-controls" ) + "]" )
@@ -184,17 +187,25 @@
 			.addClass( "in" )
 			.attr({
 				"aria-hidden": "false",
-				"aria-expanded": "true"
+				"aria-expanded": "true",
+				tabindex: "0"
 			});
 
 		$controls.find( ".active" )
 			.removeClass( "active" )
-			.attr( "aria-selected", "false" )
+			.children( "a" )
+				.attr({
+					"aria-selected": "false",
+					tabindex: "-1"
+				})
 			.end()
 				.find( $elm )
+					.attr({
+						"aria-selected": "true",
+						tabindex: "0"
+					})
 					.parent()
-						.addClass( "active" )
-						.attr( "aria-selected", "true" );
+						.addClass( "active" );
 	},
 
 	/*
@@ -286,44 +297,43 @@
  /*
   * Next / Prev
   */
- $document.on( "click", controls, function( event ) {
+ $document.on( "click vclick keydown", controls, function( event ) {
 	var which = event.which,
+		elm = event.currentTarget,
+		className = elm.className,
 		rotStopText = i18nText.rotStop,
 		playText = i18nText.play,
-		$elm, $text, $inv, $sldr, action;
+		$elm, text, inv, $sldr;
 
 	// Ignore middle and right mouse buttons
-	if ( !which || which === 1 ) {
+	if ( !which || which === 1 || which === 32 || ( which > 36 && which < 41 ) ) {
 		event.preventDefault();
-		$elm = $( this );
-		$sldr = $elm.parents( ".wb-tabs" );
-		action = $elm.hasClass( "prv" ) ? "prv" :
-					$elm.hasClass( "nxt" ) ? "nxt" :
-					$elm.attr( "href" ).indexOf( "#" ) > -1 ? "select" : "0";
+		$elm = $( elm );
+		$sldr = $elm
+			.parents( ".wb-tabs" )
+			.attr( "data-ctime", 0 );
+			
+		// Spacebar
+		if ( which > 36 ) {
+			onCycle( $elm, which < 39 ? -1 : 1 );
+			$sldr.find( ".active a" ).trigger( "setfocus.wb" );
+		} else {
+			if ( elm.getAttribute( "role" ) === "tab" ) {
+				onPick( $sldr, $elm );
+				$( elm.getAttribute( "href" ) ).trigger( "setfocus.wb" );
+			} else if ( className.indexOf( "plypause" ) !== -1 ) {
+				$elm.find( ".glyphicon" ).toggleClass( "glyphicon-play glyphicon-pause" );
+				$sldr.toggleClass( "playing" );
 
-		switch ( action ) {
-		case "prv":
-			onCycle( $elm, -1 );
-			break;
-		case "nxt":
-			onCycle( $elm, 1 );
-			break;
-		case "select":
-			onPick( $sldr, $elm );
-			break;
-		default:
-			$text = $elm.find( "i" );
-			$inv = $elm.find( ".wb-inv" );
-			$elm.find( ".glyphicon" ).toggleClass( "glyphicon-play glyphicon-pause" );
-			$text.text(
-				$text.text() === playText ? i18nText.pause : playText
-			);
-			$inv.text(
-				$inv.text() === rotStopText ? i18nText.rotStart : rotStopText
-			);
-			$sldr.toggleClass( "playing" );
+				text = elm.getElementsByTagName( "i" )[ 0 ];
+				text.innerHTML = text.innerHTML === playText ? i18nText.pause : playText;
+				
+				inv = $elm.find( ".wb-inv" )[ 0 ];
+				inv.innerHTML = inv.innerHTML === rotStopText ? i18nText.rotStart : rotStopText;
+			} else {
+				onCycle( $elm, className.indexOf( "prv" ) !== -1 ? -1 : 1 );
+			}
 		}
-		$sldr.attr( "data-ctime", 0 );
 	}
 
 	/*
