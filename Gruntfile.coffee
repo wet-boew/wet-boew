@@ -277,11 +277,6 @@ module.exports = (grunt) ->
 					assets: "dist/unmin"
 				files: [
 						expand: true
-						cwd: "src"
-						src: "*.hbs"
-						dest: "dist/unmin"
-					,
-						expand: true
 						cwd: "src/plugins"
 						src: "**/*.hbs"
 						dest: "dist/unmin/demos"
@@ -296,11 +291,10 @@ module.exports = (grunt) ->
 						src: "**/*.hbs"
 						dest: "dist/unmin/demos"
 					,
-						cwd: "site/pages/ajax"
-						src: "*.hbs"
-						dest: "dist/unmin/ajax"
+						cwd: "site/pages"
+						src: "**/*.hbs"
+						dest: "dist/unmin"
 						expand: true
-						flatten: true
 				]
 
 			demos_min:
@@ -311,11 +305,6 @@ module.exports = (grunt) ->
 					assets: "dist"
 				files: [
 						expand: true
-						cwd: "src"
-						src: "*.hbs"
-						dest: "dist"
-					,
-						expand: true
 						cwd: "src/plugins"
 						src: "**/*.hbs"
 						dest: "dist/demos"
@@ -330,11 +319,10 @@ module.exports = (grunt) ->
 						src: "**/*.hbs"
 						dest: "dist/demos"
 					,
-						cwd: "site/pages/ajax"
-						src: "*.hbs"
-						dest: "dist/ajax"
+						cwd: "site/pages"
+						src: "**/*.hbs"
+						dest: "dist"
 						expand: true
-						flatten: true
 				]
 
 		#Generate the sprites include stylesheets
