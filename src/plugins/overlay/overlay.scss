@@ -7,7 +7,7 @@
  *	Overlay base
  */
 .wb-overlay {
-	background-color: #fff;
+	background-color: $body-bg;
 	display: none;
 	border-radius: 0;
 	border: none;
@@ -87,7 +87,7 @@
 	overflow-y: auto;
 	header {
 		background-color: #000;
-		color: #fff;
+		color: $body-bg;
 		display: block;
 		padding: 0;
 		h1, h2, h3, h4 {
@@ -99,7 +99,7 @@
 		background-color: #000;
 	}
 	.mfp-close {
-		color: #fff;
+		color: $body-bg;
 	}
 }
 

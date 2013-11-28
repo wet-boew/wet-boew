@@ -2,23 +2,26 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
+
+@import "../../variables";
+
 %cal-color-fff {
-	color: #FFF;
+	color: $body-bg;
 }
 %cal-color-fff-important {
-	color: #FFF !important;
+	color: $body-bg !important;
 }
 %cal-background-333 {
-	background: #333;
+	background: $gray-dark;
 }
 %cal-background-color-333 {
-	background-color: #333;
+	background-color: $gray-dark;
 }
 
 .cal-cnt {
 	.cal-wd {
-		background: #555;
-		border-color: #333;
+		background: $gray;
+		border-color: $gray-dark;
 	}
 	.cal-hd {
 		@extend %cal-background-333;

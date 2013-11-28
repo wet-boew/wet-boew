@@ -2,8 +2,11 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
+
+@import "../../../variables";
+
 .bar-demo {
-	border: 1px solid #333;
+	border: 1px solid $gray-dark;
 	p {
 		padding-top: 10px;
 		padding-bottom: 10px;

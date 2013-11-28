@@ -2,8 +2,11 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
+
+@import "../../variables";
+
 %datepicker-color-fff-important {
-	color: #FFF !important;
+	color: $body-bg !important;
 }
 %datepicker-display-inline {
 	display: inline;
@@ -13,7 +16,7 @@
 		@extend %datepicker-display-inline;
 	}
 }
- 
+
 .cal-cnt {
 	&.picker-overlay {
 		position: absolute;
@@ -51,7 +54,7 @@
 	td {
 		&.datepicker-selected {
 			a {
-				background-color: #333;
+				background-color: $gray-dark;
 				@extend %datepicker-color-fff-important;
 			}
 		}

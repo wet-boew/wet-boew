@@ -19,7 +19,7 @@ pre {
 		padding: 8px;
 		/* Specify class=linenums on a pre to get line numbering */
 		&.linenums {
-			box-shadow: 40px 0 0 #FBFBFC inset, 41px 0 0 #eee inset;
+			box-shadow: 40px 0 0 #FBFBFC inset, 41px 0 0 $gray-lighter inset;
 		}
 	}
 }
@@ -29,7 +29,7 @@ ol {
 		margin: 0 !important;
 		li {
 			padding-left: 10px;
-			text-shadow: 0 1px 0 #fff;
+			text-shadow: 0 1px 0 $body-bg;
 		}
 	}
 }

@@ -2,13 +2,10 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
+
+@import "../../variables";
+
 .wb-carousel {
-	/**
-	 * Shared variables
-	 */
-	$drabBlue: #243850;
-	$lightGray: #eee;
-	$medGray: #ccc;
 	@mixin grayFilterOn() {
 		/* Firefox 10+, Firefox on Android */
 		filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
@@ -23,7 +20,7 @@
 		/* Chrome 19+, Safari 6+, Safari 6+ iOS */
 		-webkit-filter: unquote('grayscale(0%)');
 	}
-	
+
 	/**
 	 * Default, minimal, shared style
 	 */
@@ -37,26 +34,26 @@
 			display: inline-block;
 			cursor: pointer;
 			margin: 0 1px 0 0;
-			color: #000;
-			background: $lightGray;
-			background: transparentize($lightGray, 0.1);
-			border: 1px solid $medGray;
+			color: $carousel-tablist-colour;
+			background: $carousel-tablist-bg;
+			background: transparentize($carousel-tablist-bg, 0.1);
+			border: 1px solid $carousel-tablist-border-colour;
 			text-align: center;
 			position: relative;
 			a {
 				text-decoration: none;
-				color: #000;
+				color: $carousel-tablist-link-colour;
 				display: inline-block;
 				// changed padding and margin from em to px to fix web-kit layout issue
 				padding: 7px;
 			}
 			&:focus, &:hover {
-				background: $medGray;
-				background: transparentize($medGray, 0.1);
+				background: $carousel-tablist-hover-bg;
+				background: transparentize($carousel-tablist-hover-bg, 0.1);
 			}
 			&.active {
-				background: $medGray;
-				background: transparentize($medGray, 0.1);
+				background: $carousel-tablist-active-bg;
+				background: transparentize($carousel-tablist-active-bg, 0.1);
 				cursor: default;
 				a {
 					cursor: default;
@@ -69,7 +66,7 @@
 			display: none;
 		}
 	}
-	
+
 	/**
 	 * Style 1 - Basic carousel style
 	 */
@@ -98,17 +95,17 @@
 					top: 3em;
 					right: 1em;
 					color: #fff;
-					background: $drabBlue;
-					background: transparentize($drabBlue, 0.1);
+					background: $carousel-s1-tabpanel-figcaption-bg;
+					background: transparentize($carousel-s1-tabpanel-figcaption-bg, 0.1);
 					padding: 1em;
 					a {
-						color: #fff;
+						color: $carousel-s1-tabpanel-figcaption-link-colour;
 					}
 				}
 			}
 		}
 	}
-	
+
 	/**
 	 * Style 2 - Slider-like carousel style
 	 */
@@ -127,10 +124,10 @@
 				&[role="presentation"] {
 					padding: 4px;
 					top: 100%;
-					background: $lightGray;
-					background: transparentize($lightGray, .1);
+					background: $carousel-s2-tablist-presentation-bg;
+					background: transparentize($carousel-s2-tablist-presentation-bg, .1);
 					&.active, &:focus, &:hover {
-						box-shadow: 0 0 4px $drabBlue;
+						box-shadow: 0 0 4px $carousel-s2-tablist-presentation-active-shadow-colour;
 					}
 					&.active {
 						a {
@@ -169,7 +166,7 @@
 							bottom: 0;
 							left: 0;
 							width: 100%;
-							color: $drabBlue;
+							color: $carousel-s2-tablist-control-link-colour;
 							border: none;
 							&.prv {
 								background-image: linear-gradient(to right, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
@@ -207,9 +204,9 @@
 								font-size: 1.75em;
 								line-height: 1.75em;
 								text-align: center;
-								background: #fff;
+								background: $carousel-s2-tablist-control-link-glyphicon-bg;
 								border-radius: 999px;
-								box-shadow: 0 0 4px $drabBlue;
+								box-shadow: 0 0 4px $carousel-s2-tablist-control-link-glyphicon-box-shadow-colour;
 								&:focus, &:hover {
 									box-shadow: none;
 								}
@@ -224,7 +221,7 @@
                         right: 0;
                         padding: 2px 10px;
                         i {
-                            color: #000 !important;
+                            color: $carousel-s2-tablist-control-play-pause-colour !important;
                             font-style: normal;
                         }
                     }
@@ -244,11 +241,11 @@
 					bottom: 1em;
 					left: 3em;
 					color: #fff;
-					background: $drabBlue;
-					background: transparentize($drabBlue, 0.1);
+					background: $carousel-s2-tabpanel-figcaption-bg;
+					background: transparentize($carousel-s2-tabpanel-figcaption-bg, 0.1);
 					padding: 1em;
 					a {
-						color: #fff;
+						color: $carousel-s2-tabpanel-figcaption-link-colour;
 					}
 				}
 			}

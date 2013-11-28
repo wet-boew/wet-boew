@@ -11,7 +11,7 @@
 }
 
 .cal-cnt {
-	background: #FFF;
+	background: $body-bg;
 	* {
 		font-size: 100%;
 	}
@@ -27,7 +27,7 @@
 	.cal-goto {
 		fieldset {
 			margin-bottom: 34px;
-			border-bottom: 1px solid #fff;
+			border-bottom: 1px solid $body-bg;
 		}
 		legend {
 			margin-bottom: 10px;
@@ -88,8 +88,8 @@
 }
 
 .cal-wd {
-	color: #FFF;
-	border: 1px solid #333;
+	color: $body-bg;
+	border: 1px solid $gray-dark;
 	padding: 0.5em 0;
 	text-align: center;
 }
