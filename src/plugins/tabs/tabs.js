@@ -1,8 +1,8 @@
 /*
- * @title Tabbed Interface Plugin
- * @overview Explain the plug-in or any third party lib that it is inspired by
+ * @title Tabbed Interface
+ * @overview Dynamically stacks multiple sections of content, transforming them into a tabbed interface
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- * @author @YOU or WET Community
+ * @author WET Community
  */
  (function( $, window, vapour ) {
  "use strict";
