@@ -40,9 +40,9 @@ module.exports = (grunt) ->
 		[
 			"clean:dist"
 			"assets"
+			"images"
 			"js"
 			"css"
-			"pngmin"
 		]
 	)
 
@@ -110,11 +110,19 @@ module.exports = (grunt) ->
 		"css"
 		"INTERNAL: Compiles Sass and copies third party CSS to the dist folder"
 		[
-			"sprites"
 			"sass"
 			"autoprefixer"
 			"concat:css"
 			"cssmin"
+		]
+	)
+
+	@registerTask(
+		"images"
+		"INTERNAL: Compiles sprites and optimized images"
+		[
+			"sprites"
+			"imagemin"
 		]
 	)
 
@@ -695,9 +703,12 @@ module.exports = (grunt) ->
 				dest: "dist"
 				expand: true
 
-		pngmin:
-			src: 'dist/unmin/assets/*.png'
-			dest: 'dist'
+		imagemin:
+			sprites:
+				cwd: "src"
+				src: "**/sprites_*.png"
+				dest: "src"
+				expand: true
 
 		clean:
 			dist: ["dist", "src/base/partials/*sprites*"]
@@ -887,6 +898,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-contrib-connect"
 	@loadNpmTasks "grunt-contrib-copy"
 	@loadNpmTasks "grunt-contrib-cssmin"
+	@loadNpmTasks "grunt-contrib-imagemin"
 	@loadNpmTasks "grunt-contrib-jshint"
 	@loadNpmTasks "grunt-contrib-uglify"
 	@loadNpmTasks "grunt-contrib-watch"
