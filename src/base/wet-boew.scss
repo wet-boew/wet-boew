@@ -47,7 +47,7 @@
 @import "../plugins/footnotes/footnotes";
 @import "../plugins/modal/modal";
 @import "../plugins/tables/tables";
-@import "../plugins/overlays/overlays";
+@import "../plugins/overlay/overlay";
 @import "../plugins/share/share";
 @import "../plugins/calendar/calendar-base";
 @import "../plugins/calendar/calendar-theme";
@@ -76,7 +76,7 @@
 	@import "views/xSmallViewUnder";
 	@import "../plugins/tabs/tabs-xSmallViewUnder";
 }
- 
+
 /* Small view and under */
 @media screen and (max-width: $smallViewMax) {
 	@import "views/smallViewUnder";
@@ -113,12 +113,12 @@
 @media screen and (min-width: $largeViewMin) {
 	@import "views/largeViewOver";
 }
- 
+
 /* Extra-extra-small view */
 @media screen and (max-width: $xxSmallViewMax) {
 	@import "views/xxSmallView";
 }
- 
+
 /* Extra-small view */
 @media screen and (min-width: $xSmallViewMin) and (max-width: $xSmallViewMax) {
 	@import "views/xSmallView";
