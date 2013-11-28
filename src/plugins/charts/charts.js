@@ -767,10 +767,7 @@ var wet_boew_charts,
 		//
 		verticalCalcTick = calculateVerticalTick( parsedData );
 
-
 		currentRowGroup = parsedData.lstrowgroup[ 0 ];
-
-		calcTick = horizontalCalcTick;
 
 		if ( options.type === "pie" ) {
 			// Use Reverse table axes
@@ -819,7 +816,6 @@ var wet_boew_charts,
 				// If reverse parsing
 				dataGroup = currentRowGroup;
 				rIndex = (parsedData.colgroup[ 0 ].type === 1 ? parsedData.colgroup[ 1 ].col.length : parsedData.colgroup[ 0 ].col.length) - 1;
-				//currentRowGroupRow = dataGroup.row[ 0 ];
 			}
 
 			for ( rIndex; rIndex >= 0; rIndex -= 1 ) {
@@ -1016,17 +1012,29 @@ var wet_boew_charts,
 				// Move the table inside the figure element
 				$( srcTbl ).appendTo( mainFigureElem );
 			}
-/*
-			// Destroy the temp table if used
-			if ( options.parsedirection === "y" ) {
-				$( self ).remove();
-			}*/
 			return;
 		}
 
-		// Count nbBarChart,
-		for ( i = 0; i < currentRowGroup.row.length; i++ ) {
-			currentRowGroupRow = currentRowGroup.row[ i ];
+
+
+		if ( !reverseTblParsing ) {
+			// If normal parsing
+			dataGroup = currentRowGroup;
+			rIndex = (parsedData.colgroup[ 0 ].type === 1 ? parsedData.colgroup[ 1 ].col.length : parsedData.colgroup[ 0 ].col.length) - 1;
+			calcTick = horizontalCalcTick;
+		} else {
+			// If reverse parsing
+			dataGroup = parsedData.colgroup[ 0 ].type === 1 ? parsedData.colgroup[ 1 ] : parsedData.colgroup[ 0 ];
+			rIndex = currentRowGroup.row.length - 1;
+			calcTick = verticalCalcTick;
+		}
+
+		dataGroupVector = !reverseTblParsing ? dataGroup.row : dataGroup.col;
+
+		// Count the number of bar charts,
+		for ( i = 0; i < dataGroupVector.length; i++ ) {
+			currentRowGroupRow = dataGroupVector[ i ];
+			
 			rowOptions = setClassOptions( rowDefaultOptions,
 			( $ ( currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].elem ).attr( "class" ) !== undefined ?
 			$( currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].elem ).attr( "class" ) : "" ) );
@@ -1039,30 +1047,34 @@ var wet_boew_charts,
 				}
 			}
 
+
 			currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].chartOption = rowOptions;
 		}
 
 		// First rowgroup assume is a data row group.
 		// For all row....
-		for ( i = 0; i < currentRowGroup.row.length; i++ ) {
+		for ( i = 0; i < dataGroupVector.length; i++ ) {
 			dataSeries = [];
 			datacolgroupfound = 0;
 			valueCumul = 0;
-			currentRowGroupRow = currentRowGroup.row[ i ];
+			currentRowGroupRow = dataGroupVector[ i ];
 
 			rowOptions = currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].chartOption;
 
 			// For each cells
 			for( j = 0; j < currentRowGroupRow.cell.length; j++ ){
 
-				if( datacolgroupfound > 1 && currentRowGroupRow.cell[ j ].col.groupstruct.type !== 2 ){
+				dataCell = currentRowGroupRow.cell[ j ];
+				
+				if( datacolgroupfound > 1 && dataCell.col.groupstruct.type !== 2 ){
 					break;
 				}
 
-				if( currentRowGroupRow.cell[ j ].col.groupstruct.type === 2 ){
+				if ( (!reverseTblParsing && dataCell.col.groupstruct.type === 2 ) ||
+						(reverseTblParsing && dataCell.row.rowgroup.type === 2 ) ) {
 
 					// Get's the value
-					header = currentRowGroupRow.cell[ j ].col.header;
+					header = !reverseTblParsing ? dataCell.col.header : dataCell.row.header;
 					valuePoint = valueCumul;
 
 					// Bar chart case, re-evaluate the calculated point
@@ -1076,7 +1088,7 @@ var wet_boew_charts,
 
 					}
 
-					cellValue = options.getcellvalue( currentRowGroupRow.cell[ j ].elem);
+					cellValue = options.getcellvalue( dataCell.elem);
 
 					// Add the data point
 					dataSeries.push(
@@ -1248,10 +1260,6 @@ var wet_boew_charts,
 		$( "canvas:eq(1)", $placeHolder ).css( "position", "static" );
 		$( "canvas:eq(0)", $placeHolder ).css( "width", "100%" );
 
-		// Destroy the temp table if used
-		if ( options.parsedirection === "y" ) {
-			$( self ).remove();
-		}
 	},
 
 	/*
