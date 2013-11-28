@@ -139,9 +139,10 @@ var wet_boew_charts,
 
 						switch ( sourceOptions[ propName + "-typeof" ] ) {
 						case "boolean":
-							if ( !!propValue || propValue === "vrai" || propValue === "yes" || propValue === "oui" ) {
+							// Test the textual value used the CSS Option
+							if ( propValue === "true" || propValue === "vrai" || propValue === "yes" || propValue === "oui" ) {
 								propValue = true;
-							} else if ( !propValue || propValue === "faux" || propValue === "no" || propValue === "non") {
+							} else if ( propValue === "false" || propValue === "faux" || propValue === "no" || propValue === "non") {
 								propValue =  false;
 							} else {
 								propValue = undefined;
@@ -743,10 +744,6 @@ var wet_boew_charts,
 		if ( options.parsedirection === "y" ) {
 			reverseTblParsing = true;
 		}
-
-
-
-// TODO: Fix the reversing table logic for bar, area, line charts (support already added for pie charts)
 
 
 		rowDefaultOptions = {
