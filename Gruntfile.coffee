@@ -347,14 +347,6 @@ module.exports = (grunt) ->
 				css: "src/plugins/share/_sprites.scss"
 				map: "src/plugins/assets/sprites_share.png"
 				output: "scss"
-			tables:
-				src: [
-					"src/plugins/tables/sprites/*.png"
-					"!src/plugins/tables/sprites/sprites_*.png"
-				]
-				css: "src/plugins/tables/_sprites.scss"
-				map: "src/plugins/assets/sprites_tables.png"
-				output: "scss"
 
 		# Compiles the Sass files
 		sass:
