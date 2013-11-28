@@ -1,5 +1,26 @@
-{{#startsWith "en" language }}
-{{>footer-en}}
- {{else}}
- {{>footer-fr}}
-{{/startsWith}}
+<section class="col-sm-3">
+	<h3>{{#i18n "tmpl-about"}}{{/i18n}}</h3>
+	<ul class="list-unstyled">
+		<li><a href="{{rooturl}}/index-{{language}}.html#{{#i18n "tmpl-about-anchor"}}{{/i18n}}">{{#i18n "tmpl-about-wet"}}{{/i18n}}</a></li>
+		<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-{{#isnt language "fr"}}eng{{else}}fra{{/isnt}}.asp">{{#i18n "tmpl-about-web-standards"}}{{/i18n}}</a></li>
+	</ul>
+</section>
+<section class="col-sm-3">
+	<h3>{{#i18n "tmpl-contact-us"}}{{/i18n}}</h3>
+	<ul class="list-unstyled">
+		<li><a href="https://github.com/wet-boew/wet-boew/issues/new">{{#i18n "tmpl-questions-comments"}}{{/i18n}}</a></li>
+	</ul>
+</section>
+<section class="col-sm-3">
+	<h3>{{#i18n "tmpl-news"}}{{/i18n}}</h3>
+	<ul class="list-unstyled">
+		<li><a href="https://github.com/wet-boew/wet-boew/pulse">{{#i18n "tmpl-recent-project-activity"}}{{/i18n}}</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/graphs">{{#i18n "tmpl-project-stats"}}{{/i18n}}</a></li>
+	</ul>
+</section>
+<section class="col-sm-3">
+	<h3>{{#i18n "tmpl-stay-connected"}}{{/i18n}}</h3>
+	<ul class="list-unstyled">
+		<li><a href="https://twitter.com/{{#i18n "tmpl-wet-twitter"}}{{/i18n}}">Twitter</a></li>
+	</ul>
+</section>
