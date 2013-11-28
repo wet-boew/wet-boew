@@ -42,6 +42,7 @@ module.exports = (grunt) ->
 			"assets"
 			"js"
 			"css"
+			"pngmin"
 		]
 	)
 
@@ -114,7 +115,6 @@ module.exports = (grunt) ->
 			"autoprefixer"
 			"concat:css"
 			"cssmin"
-			"copy:sprites"
 		]
 	)
 
@@ -595,6 +595,7 @@ module.exports = (grunt) ->
 					"!**/*.scss"
 					"!**/*.hbs"
 					"!**/assets/*"
+					"!**/sprites/*"
 				]
 				dest: "dist/unmin/demos"
 				expand: true
@@ -656,13 +657,6 @@ module.exports = (grunt) ->
 				dest: "dist/unmin/demos/"
 				expand: true
 
-			sprites:
-				cwd: "src/assets/"
-				src: "*.*"
-				dest: "dist/unmin/assets"
-				expand: true
-				flatten: true
-
 			themeAssets:
 				cwd: "theme/"
 				src: "**/assets/*.*"
@@ -688,6 +682,7 @@ module.exports = (grunt) ->
 					"!**/*.scss"
 					"!**/*.hbs"
 					"!**/assets/*"
+					"!**/sprites/*"
 				]
 				dest: "dist/demos"
 				expand: true
@@ -699,6 +694,10 @@ module.exports = (grunt) ->
 				]
 				dest: "dist"
 				expand: true
+
+		pngmin:
+			src: 'dist/unmin/assets/*.png'
+			dest: 'dist'
 
 		clean:
 			dist: ["dist", "src/base/partials/*sprites*"]
