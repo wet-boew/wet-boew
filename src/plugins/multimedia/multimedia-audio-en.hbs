@@ -1,19 +1,23 @@
 ---
 {
-	"title": "Multimedia Player",
+	"title": "Multimedia Player - Audio-only",
 	"language": "en",
 	"category": "Plugin",
-	"description": "Provides a media player for embedding accessible video and audio into web pages.",
+	"description": "Provides an accessible audio player for embedding audio into web pages.",
 	"tag": "multimedia",
 	"fr": "multimedia-audio"
 }
 ---
 <div class="row">
+	<div class="col-md-12">
+		<p>For audio-only, the multimedia player leverages the native HTML5 audio tag and relies on Flash as a fallback mechanism when the HTML5 audio tag is not implemented.</p>
+		<p>The multimedia player's timeline relies on the HTML5 progress element and uses a polyfill when the element is not supported.</p>
+		<p>The MP3 format (H264 codec) is the minimum requirement for the player because the Flash fallback relies on it and MP3 is a widely supported format on many mobile devices. An optional but highly recommended format, OGG Vorbis, should be added as well to allow some browsers such as Firefox that do not include native support for MP3 to leverage the HTML5 native performance gains.</p>
+	</div>
+</div>
+
+<div class="row">
 	<section class="wb-mltmd col-md-12">
-		<h3 class="wb-inv">Audio</h3>
-		<audio title="Audio Example">
-			<source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3" />
-			<source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.ogg" type="audio/ogg" />
-		</audio>
+		<h2>Example (Ride of the Valkyries)</h2 avec sous-titres de HTML
 	</section>
 </div>

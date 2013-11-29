@@ -1,6 +1,6 @@
 ---
 {
-	"title": "Lecteur média",
+	"title": "Lecteur multimédia - Audio seulement",
 	"language": "fr",
 	"category": "Plugiciel",
 	"description": "Un lecteur média accessible permettant d'intégrer des contenus vidéo et audio sur les pages Web.",
@@ -9,9 +9,17 @@
 }
 ---
 <div class="row">
+	<div class="col-md-12">
+		<p>Pour l'audio seulement, le lecteur multimédia s'appuie sur la balise audio HTML5 natif et s'appuie sur Flash comme un mécanisme de secours lorsque la balise audio HTML5 n'est pas implémentée.</p>
+		<p>Le scénario du lecteur multimédia repose sur l'élément de progrès HTML5 et utilise un polyfill lorsque l'élément n'est pas pris en charge.</p>
+		<p lang="en">The MP3 format (H264 codec) is the minimum requirement for the player because the Flash fallback relies on it and MP3 is a widely supported format on many mobile devices. An optional but highly recommended format, OGG Vorbis, should be added as well to allow some browsers such as Firefox that do not include native support for MP3 to leverage the HTML5 native performance gains.</p>
+	</div>
+</div>
+
+<div class="row">
 	<section class="wb-mltmd col-md-12">
-		<h3 class="wb-inv">Audio</h3>
-		<audio title="Exemple Audio">
+		<h2>Exemple (Chevauchée des Walkyries)</h3>
+		<audio title="Exemple audio (Chevauchée des Walkyries)">
 			<source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3" />
 			<source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.ogg" type="audio/ogg" />
 		</audio>
