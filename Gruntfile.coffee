@@ -163,9 +163,10 @@ module.exports = (grunt) ->
 
 		# Metadata.
 		pkg: grunt.file.readJSON("package.json")
-		banner: "/*! Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\nwet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
-				" - v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n*/\n"
+		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
+				" * v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n *\n */"
 		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
+		glyphiconsBanner: "/*!\n * GLYPHICONS Halflings for Twitter Bootstrap by GLYPHICONS.com | Licensed under http://www.apache.org/licenses/LICENSE-2.0\n */"
 
 		# Task configuration.
 		concat:
@@ -250,7 +251,7 @@ module.exports = (grunt) ->
 
 			css:
 				options:
-					banner: ""
+					banner: "@charset \"utf-8\";\n<%= banner %><%= glyphiconsBanner %>"
 				files:
 					"dist/unmin/css/wet-boew.css": [
 						"lib/bootstrap/dist/css/bootstrap.css"
@@ -513,7 +514,7 @@ module.exports = (grunt) ->
 
 		cssmin:
 			options:
-				banner: "@charset \"utf-8\";\n<%= banner %>"
+				banner: ""
 			dist:
 				expand: true
 				cwd: "dist/unmin/css"
