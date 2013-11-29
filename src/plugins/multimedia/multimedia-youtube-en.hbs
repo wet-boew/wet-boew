@@ -1,17 +1,23 @@
 ---
 {
-	"title": "YouTube Player",
+	"title": "Multimedia Player - YouTube",
 	"language": "en",
 	"category": "Plugin",
-	"description": "Provides an accessible video player using the YouTube chromeless player.",
+	"description": "Provides an accessible multimedia player for embedding YouTube video into web pages.",
 	"tag": "multimedia, youtube",
 	"fr": "multimedia-youtube"
 }
 ---
 <div class="row">
+	<div class="col-md-12">
+		<p>For YouTube videos, the multimedia player integrates the YouTube chromeless player which leverages the native HTML5 video tag and relies on Flash as a fallback mechanism when the HTML5 video tag is not implemented.</p>
+		<p>The multimedia player's timeline relies on the HTML5 progress element and uses a polyfill when the element is not supported.</p>
+	</div>
+</div>
+<div class="row">
 	<section class="wb-mltmd col-md-6">
-		<h3 class="wb-inv">YouTube</h3>
-		<video title="Video Example">
+		<h2>Example</h2>
+		<video title="YouTube video Example">
 			<source type="video/youtube" src="https://www.youtube.com/watch?v=pUWYvrZ6BeY"></source>
 		</video>
 	</section>
