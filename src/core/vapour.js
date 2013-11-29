@@ -268,7 +268,7 @@ window._timer = {
 
 	}
 };
- 
+
 /*-----------------------------
  * Modernizr Polyfill Loading
  *-----------------------------*/
@@ -297,14 +297,9 @@ Modernizr.load([
 			"plyfll!slider.min.js",
 			"plyfll!slider.min.css"
 		],
-		callback: function() {
-
-			// If the slider file has loaded then fire the onDomReady event
-			if ( "fdSlider" in window && typeof ( window.fdSlider.onDomReady ) !== "undefined" ) {
-				try {
-					window.fdSlider.onDomReady();
-				} catch( err ) {
-				}
+		callback: function( url ) {
+			if ( url === "slider.min.js" ) {
+				window.fdSlider.onDomReady();
 			}
 		}
 	}, {
