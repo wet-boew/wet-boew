@@ -4,346 +4,294 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
- (function( $, window, vapour ) {
- "use strict";
+(function( $, window, vapour ) {
+"use strict";
 
- /*
-  * Variable and function definitions.
-  * These are global to the plugin - meaning that they will be initialized once per page,
-  * not once per instance of plugin on the page. So, this is a good place to define
-  * variables that are common to all instances of the plugin on a page.
-  */
- var selector = ".wb-tabs",
+/*
+ * Variable and function definitions.
+ * These are global to the plugin - meaning that they will be initialized once per page,
+ * not once per instance of plugin on the page. So, this is a good place to define
+ * variables that are common to all instances of the plugin on a page.
+ */
+var selector = ".wb-tabs",
 	$document = vapour.doc,
-	i18n, i18nText,
-	controls = selector + " [role=tablist] a",
-
+	tablistProps = { role: "tablist", class: "btn-group", "aria-live": "off" },
+	panelProps = { role: "tabpanel" },
+	mobileWidth = 767,
+	mobile = {
+		summaryProps: { "aria-hidden": false, role: "button", tabindex: 0 },
+		tabProps: { tabindex: -1 }
+	},
+	desktop = {
+		summaryProps: { "aria-hidden": true, role: "presentation", tabindex: -1 },
+		tabProps: { tabindex: -1 }
+	},
+	// vapour.pageUrlParts.hash is a string - empty or otherwise.
+	// hash.match will return null if hash is empty or if no match is found.
+	hash = vapour.pageUrlParts.hash.match( /#t(\d+)-p(\d+)/ ),
+	
+	// boolean to disable hashchange event listener on tab click,
+	// but re-enable it for any other case
+	ignoreHashChange = false,
+	
 	/*
-	 * @method onTimerPoke
+	 * @method init
 	 * @param {jQuery DOM element} $elm The plugin element
 	 */
-	onTimerPoke = function( $elm ) {
-		var dataDelay = $elm.data( "delay" ),
-			setting, delay;
-
-		if ( !dataDelay ) {
-			$elm.trigger( "init.wb-carousel" );
+	init = function( $elm ) {
+		var $tablist = $( "<div/>", tablistProps ),
+			$tab,
+			$tabs,
+			$panels = $elm.children( "details" ),
+			isMobile = $document.width() < mobileWidth,
+			$open,
+			classes = $elm.data( "btnClass" ) || "";
+		
+		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+		window._timer.remove( selector );
+		
+		if ( !$panels.length ) {
 			return false;
 		}
 
-		// State playing
-		if ( !$elm.hasClass( "playing" ) ) {
-			return false;
-		}
+		// Transform each details/summary into tab/panel.
+		$panels
+			.each(function() {
+				var $summary = $( this ).children( "summary" );
+				$tab = $( "<button/>", { type: "button", class: classes, tabindex: -1 } )
+					.text( $summary.text() )
+					.on( "click vclick", { elm: $elm }, onClick )
+					.on( "keydown", { elm: $elm }, onBtnKeyDown);
+				$tablist.append( $tab );
+				$summary
+					.attr( isMobile ? mobile.summaryProps : desktop.summaryProps )
+					.on( "click", { tab: $tab }, function( event ) {
+						event.data.tab.trigger({
+							type: "click",
+							elm: "$elm"
+						});
+						event.preventDefault();
+					})
+					.on( "keydown",
+						{ tabs: $summary.add( $summary.parent().siblings( "details" ).children( "summary" ) ) },
+						onBtnKeyDown );
+			})
+			.attr( panelProps );
+		$elm.prepend( $tablist );
+		$tabs = $tablist.children();
 
-		// Add settings and counter
-		setting = parseFloat( dataDelay );
-		delay = parseFloat( $elm.data( "ctime" ) ) + 0.5;
-
-		// Check if we need
-		if ( setting < delay ) {
-			$elm.trigger( "shift.wb-carousel" );
-			delay = 0;
-		}
-		$elm.data( "ctime", delay );
-	},
-
-	/*
-	 * @method createControls
-	 * @param {jQuery DOM element} $tablist The plugin element
-	 */
-	createControls = function( $tablist ) {
-		var $sldr = $tablist.parents( selector ),
-			prevText = i18nText.prev,
-			nextText = i18nText.next,
-			spaceText = i18nText.space,
-			isPlaying = $sldr.hasClass( "playing" ),
-			state = isPlaying ? i18nText.pause : i18nText.play,
-			hidden = isPlaying ? i18nText.rotStop : i18nText.rotStart,
-			glyphiconStart = "<span class='glyphicon glyphicon-",
-			wbInvStart = "<span class='wb-inv'>",
-			tabsToggleStart = "<li class='tabs-toggle ",
-			btnMiddle = "' href='javascript:;' role='button' title='",
-			btnEnd = "</span></a></li> ",
-			iconState = glyphiconStart + ( isPlaying ? "pause" : "play" ) + "'></span>",
-			controls = tabsToggleStart + "prv'><a class='prv" + btnMiddle +
-				prevText + "'>" + glyphiconStart + "chevron-left'></span>" +
-				wbInvStart + prevText + btnEnd + tabsToggleStart +
-				"plypause'><a class='plypause" + btnMiddle + state + "'>" +
-				iconState + "<i>" + state + "</i>" + wbInvStart + spaceText +
-				i18nText.hyphen + spaceText + hidden + "</span></a></li> " +
-				tabsToggleStart + "nxt'><a class='nxt" + btnMiddle + nextText +
-				"'>" + glyphiconStart + "chevron-right'></span>" + wbInvStart +
-				nextText + btnEnd;
-
-		$tablist.append( controls );
-		$sldr.addClass( "inited" );
-	},
-
-	/*
-	 * @method drizzleAria
-	 * @param {2 jQuery DOM element} $tabs for the tabpanel grouping, and $tablist for the pointers to the groupings
-	 */
-	drizzleAria = function( $tabs, $tabList ) {
-
-		// lets process the elements for aria
-		var tabs = $tabs.get(),
-			tabCounter = tabs.length - 1,
-			listItems = $tabList.children().get(),
-			listCounter = listItems.length - 1,
-			isActive, item, link;
-
-
-		for ( ; tabCounter !== -1; tabCounter -= 1 ) {
-			item = tabs[ tabCounter ];
-			isActive = item.className.indexOf( "in" ) !== -1;
-			
-			item.tabIndex = isActive ? "0" : "-1";
-			item.setAttribute( "aria-hidden", isActive ? "false" : "true" );
-			item.setAttribute( "aria-expanded", isActive ? "true" : "false" );
-			item.setAttribute( "aria-labelledby", item.id + "-lnk" );
-		}
-
-		for ( ; listCounter !== -1; listCounter -= 1 ) {
-			item = listItems[ listCounter ];
-			item.setAttribute( "role", "presentation" );
-			isActive = item.className.indexOf( "active" ) !== -1;
-
-			link = item.getElementsByTagName( "a" )[ 0 ];
-			link.tabIndex = isActive ? "0" : "-1";
-			link.setAttribute( "role", "tab" );
-			link.setAttribute( "aria-selected", isActive ? "true" : "false" );
-			link.setAttribute( "aria-controls", link.getAttribute( "href" ).substring( 1 ) + "-lnk" );
-		}
-		$tabList.attr( "aria-live", "off" );
-	},
-
-	/*
-	 * @method onInit
-	 * @param {jQuery DOM element} $elm The plugin element
-	 */
-	onInit = function( $elm ) {
-		var interval = 6,
-			$tabs = $elm.find( "[role=tabpanel]" ),
-			$tablist = $elm.find( "[role=tablist]" );
-
-		// Only initialize the i18nText once
-		if ( !i18nText ) {
-			i18n = window.i18n;
-			i18nText = {
-				prev: i18n( "prv" ),
-				next: i18n( "nxt" ),
-				play: i18n( "play" ),
-				rotStart: i18n( "tab-rot" ).on,
-				rotStop: i18n( "tab-rot" ).off,
-				space: i18n( "space" ),
-				hyphen: i18n( "hyphen" ),
-				pause: i18n( "pause" )
-			};
-		}
-
-		if ( $elm.hasClass( "slow" ) ) {
-			interval = 9;
-		} else if ( $elm.hasClass( "fast" ) ) {
-			interval = 3;
-		}
-
-		$tabs.filter( ":not(.in)" )
-			.addClass( "out" );
-		$elm.data({
-			"delay": interval,
-			"ctime": 0
-		});
-
-		drizzleAria( $tabs, $tablist );
-		createControls( $tablist );
-
+		// Make sure other events have access to this plugin instance's tabs and panels.
+		// $elm will be passed as event data when triggering events.
 		$elm.data({
 			"tabs": $tabs,
-			"tablist": $tablist
+			"panels": $panels
 		});
+		
+		// Check if the developer set a details element to open by default.
+		// If they set more than one to open, pick the first one only.
+		$open = $panels.filter( "[open]" ).eq( 0 );
+		
+		// Default panel to show. Order of precedence is: 1. hash 2. open attribute 3. first panel.
+		if ( hash ) {
+			// 1. hash
+			if ( $( selector ).index( $elm ) === hash[ 1 ] - 1 ) {
+				$tabs.eq( hash[ 2 ] - 1 ).trigger({
+					type: "click",
+					elm: "$elm"
+				});
+			}
+		} else if ( $open.length ) {
+			// 2. open attribute
+			$tabs.eq( $panels.index( $open ) ).trigger({
+				type: "click",
+				elm: "$elm"
+			});
+		} else {
+			// 3. first panel
+			$tabs.eq( 0 ).trigger({
+				type: "click",
+				elm: "$elm"
+			});
+		}
 	},
-
-	/*
-	 * @method onShift
-	 * @param {jQuery DOM element} $sldr The plugin element
-	 * @param {jQuery DOM element} $elm The selected link from the tablist
-	 */
-	onPick = function( $sldr, $elm ) {
-		var $items = $sldr.data( "tabs" ),
-			$controls =  $sldr.data( "tablist" );
-
-		$items.filter( ".in" )
-			.removeClass( "in" )
-			.addClass( "out" )
-			.attr({
-				"aria-hidden": "true",
-				"aria-expanded": "false",
-				tabindex: "-1"
-			});
-
-		$items.filter( "[aria-labelledby=" + $elm.attr( "aria-controls" ) + "]" )
-			.removeClass( "out" )
-			.addClass( "in" )
-			.attr({
-				"aria-hidden": "false",
-				"aria-expanded": "true",
-				tabindex: "0"
-			});
-
-		$controls.find( ".active" )
-			.removeClass( "active" )
-			.children( "a" )
-				.attr({
-					"aria-selected": "false",
-					tabindex: "-1"
-				})
-			.end()
-				.find( $elm )
-					.attr({
-						"aria-selected": "true",
-						tabindex: "0"
-					})
-					.parent()
-						.addClass( "active" );
+	
+	onClick = function( event ) {
+		var $elm = event.data.elm,
+			$tab = $( event.target ),
+			$tabs = $elm.data( "tabs" ),
+			$panels = $elm.data( "panels" ),
+			$panel = $panels.eq( $tabs.index( $tab ) ),
+			width,
+			classes = $elm.data( "btnClass" ) || "";
+		$tabs.not( $tab ).attr( { class: classes, tabindex: -1 } );
+		$tab.attr( { class: classes + " active", tabindex: 0 } );
+		$panels.not( $panel ).attr( "open", false );
+		$panel.attr( "open", true );
+		
+		// don't trigger onHashChange
+		ignoreHashChange = true;
+		window.location.hash = "#t" +
+			( 1 + $( selector ).index( $tab.parent().parent() ) ) +
+			"-p" +
+			( 1+ $tabs.index( $tab ) );
+		
+		// handle equalizing panel heights
+		width = $document.width();
+		if ( width > mobileWidth && $elm.hasClass( "equalize" ) ) {
+			$panels.height( getMaxHeight( $panels ) );
+		} else if ( width <= mobileWidth && $elm.hasClass( "equalize" ) ) {
+			$panels.height( "auto" );
+		}
+		event.preventDefault();
 	},
-
-	/*
-	 * @method onShift
-	 * @param {jQuery DOM element} $elm The plugin element
-	 */
-	onShift = function( $elm, event ) {
-		var $items = $elm.data( "tabs" ),
-			$controls = $elm.data( "tablist" ),
-			len = $items.length,
-			current = $elm.find( ".in" ).prevAll( "[role=tabpanel]" ).length,
-			shiftto = event.shiftto ? event.shiftto : 1,
-			next = current > len ? 0 : current + shiftto,
-			$next;
-
-		next = ( next > len - 1 ) ? 0 : ( next < 0 ) ? len - 1 : next;
-
-		$next = $items.eq( next );
-
-		$items.eq( current )
-			.removeClass( "in" )
-			.addClass( "out" )
-			.attr({
-				"aria-hidden": "true",
-				"aria-expanded": "false"
-			});
-		$next.removeClass( "out" )
-			.addClass( "in" )
-			.attr({
-				"aria-hidden": "false",
-				"aria-expanded": "true"
-			});
-		$controls.find( ".active" )
-			.removeClass( "active" )
-			.attr( "aria-selected", "false" )
-			.end()
-				.find( "[href=#" + $next.attr( "id" ) + "]" )
-					.parent()
-						.addClass( "active" )
-						.attr( "aria-selected", "true" );
+	
+	onBtnKeyDown = function( event ) {
+		var next, $tab, $tabs, $panels,
+			key = event.which;
+		$tab = $( event.target );
+		$tabs = event.data.elm ? event.data.elm.data( "tabs" ) : event.data.tabs;
+		$panels = event.data.elm ? event.data.elm.data( "panels" ) : event.data.tabs.parent();
+		switch (key) {
+		case 37: // left
+		case 38: // up
+			next = $tabs.eq( ( $tabs.index( $tab ) - 1 ) % $tabs.length );
+			next.trigger({
+				type: "click",
+				elm: "$elm"
+			}).trigger( "setfocus.wb" );
+			event.preventDefault();
+			break;
+		case 39: // right
+		case 40: // down
+			next = $tabs.eq( ( $tabs.index( $tab ) + 1 ) % $tabs.length );
+			next.trigger({
+				type: "click",
+				elm: "$elm"
+			}).trigger( "setfocus.wb" );
+			event.preventDefault();
+			break;
+		case 13: // enter
+		case 32: // space
+			$panels.eq( $tabs.index( $tab ) ).trigger( "setfocus.wb" );
+			event.preventDefault();
+			break;
+		}
 	},
-
-	/*
-	 * @method onShift
-	 * @param {jQuery DOM element} $elm The plugin element
-	 * @param {integer} shifto The item to shift to
-	 */
-	onCycle = function( $elm, shifto ) {
-		$elm.trigger({
-			type: "shift.wb-carousel",
-			shiftto: shifto
+	
+	onHashChange = function( event ) {
+		var pluginNum, panelNum, $plugin, $tab;
+		hash = window.location.hash.match( /#t(\d+)-p(\d+)/ );
+		// Use a virtual hash of the form #wb-tabs2-panel4 to figure out which panel to open.
+		// Only use hash to click if click didn't trigger hash change. Ignore otherwise.
+		if ( !ignoreHashChange && hash ) {
+			pluginNum = hash[ 1 ];
+			panelNum = hash[ 2 ];
+			// There can be multiple instance of the plugin on the page.
+			$plugin = $( selector ).eq( pluginNum - 1 );
+			$tab = $plugin
+				.children( "[role=tablist]" )
+					.children( "button" )
+						.eq( panelNum - 1 );
+			$tab.trigger({
+				type: "click",
+				elm: "$elm"
+			});
+		}
+		// make sure listener is re-enabled
+		ignoreHashChange = false;
+		event.preventDefault();
+	},
+	
+	onResize = function( event, $elms ) {
+		var eventType = event.type,
+			width = $document.width(),
+			$summaries = $(),
+			$tabs = $();
+		
+		$elms.each(function() {
+			$summaries = $summaries.add( $( this ).data( "panels" ).children( "summary" ) );
+			$tabs = $tabs.add( $( this ).data( "tabs" ) );
 		});
+		switch( eventType ) {
+		case "xxsmallview":
+		case "xsmallview":
+		case "smallview":
+			// width === movileWidth seems to be ignored/skipped by the resize plugin, so < > suffices.
+			if ( width < mobileWidth ) {
+				// switch to mobile view
+				$summaries.attr( mobile.summaryProps );
+				$tabs.attr( mobile.tabProps );
+				$summaries.parent().height( "auto" );
+			}
+			break;
+		case "mediumview":
+		case "largeview":
+		case "xlargeview":
+			if ( width > mobileWidth ) {
+				// switch to desktop view
+				$summaries.attr( desktop.summaryProps );
+				$tabs.attr( desktop.tabProps );
+				$tabs.filter( ".active" ).attr( "tabindex", 0 );
+			}
+			break;
+		}
+	},
+	
+	getHeight = function( elm ) {
+		var s = elm.style,
+			o = elm.open,
+			v = s.visibility,
+			p = s.position,
+			d = s.display,
+			h;
+		s.visibility = "hidden";
+		s.position = "absolute";
+		s.display = "block";
+		elm.open = true;
+		h = $( elm ).height();
+		elm.open = o;
+		s.display = d;
+		s.position = p;
+		s.visibility = v;
+		return h;
+	},
+	
+	getMaxHeight = function( elms ) {
+		var i, h,
+			m = null;
+		for ( i = 0; i < elms.length; i++ ) {
+		    h = getHeight( elms[ i ] );
+		    m = ( h > m ) ? h : m;
+		}
+		return m;
 	};
 
- // Bind the init event of the plugin
- $document.on( "timerpoke.wb init.wb-carousel shift.wb-carousel", selector, function( event ) {
+// Bind the init event of the plugin
+$document.on( "timerpoke.wb", selector, function( event ) {
 	var eventType = event.type,
-
 		// "this" is cached for all events to utilize
 		$elm = $( this );
 
-	switch ( eventType ) {
+	switch( eventType ) {
 	case "timerpoke":
-		onTimerPoke( $elm );
-		break;
-
-	/*
-	 * Init
-	 */
-	case "init":
-		onInit( $elm );
-		break;
-
-	/*
-	 * Change Slides
-	 */
-	case "shift":
-		onShift( $elm, event );
-		break;
-	}
-
-	/*
-	 * Since we are working with events we want to ensure that we are being passive about our control,
-	 * so returning true allows for events to always continue
-	 */
-	return true;
- });
-
- /*
-  * Next / Prev
-  */
- $document.on( "click vclick keydown", controls, function( event ) {
-	var which = event.which,
-		elm = event.currentTarget,
-		className = elm.className,
-		rotStopText = i18nText.rotStop,
-		playText = i18nText.play,
-		$elm, text, inv, $sldr;
-
-	// Ignore middle and right mouse buttons
-	if ( !which || which === 1 || which === 32 || ( which > 36 && which < 41 ) ) {
-		event.preventDefault();
-		$elm = $( elm );
-		$sldr = $elm
-			.parents( ".wb-tabs" )
-			.attr( "data-ctime", 0 );
-			
-		// Spacebar
-		if ( which > 36 ) {
-			onCycle( $elm, which < 39 ? -1 : 1 );
-			$sldr.find( ".active a" ).trigger( "setfocus.wb" );
-		} else {
-			if ( elm.getAttribute( "role" ) === "tab" ) {
-				onPick( $sldr, $elm );
-				$( elm.getAttribute( "href" ) ).trigger( "setfocus.wb" );
-			} else if ( className.indexOf( "plypause" ) !== -1 ) {
-				$elm.find( ".glyphicon" ).toggleClass( "glyphicon-play glyphicon-pause" );
-				$sldr.toggleClass( "playing" );
-
-				text = elm.getElementsByTagName( "i" )[ 0 ];
-				text.innerHTML = text.innerHTML === playText ? i18nText.pause : playText;
-				
-				inv = $elm.find( ".wb-inv" )[ 0 ];
-				inv.innerHTML = inv.innerHTML === rotStopText ? i18nText.rotStart : rotStopText;
-			} else {
-				onCycle( $elm, className.indexOf( "prv" ) !== -1 ? -1 : 1 );
-			}
+		// Filter out any events triggered by descendants (nested plugins)
+		if ( event.currentTarget === event.target ) {
+			init( $elm );
 		}
+		break;
 	}
+});
 
-	/*
-	 * Since we are working with events we want to ensure that we are being passive about our control,
-	 * so returning true allows for events to always continue
-	 */
+//These events only fire at the document level
+$document.on( "xxsmallview.wb xsmallview.wb smallview.wb mediumview.wb largeview.wb xlargeview.wb", function( event ) {
+	onResize( event, $document.find( selector ) );
 	return true;
- });
+});
+ 
+//This event only fires on the window
+$( window ).on( "hashchange", onHashChange);
+ 
+// Add the timer poke to initialize the plugin
+window._timer.add( selector );
 
- // Add the timer poke to initialize the plugin
- window._timer.add( ".wb-tabs" );
-
- })( jQuery, window, vapour );
+})( jQuery, window, vapour );
