@@ -6,6 +6,7 @@
 /*
  Plugins
  */
+@import "../plugins/overlay/overlay-ie8";
  
 /*
  Polyfills
@@ -14,5 +15,5 @@
 
 /* Print view */
 @media print {
-	@import "../plugins/footnotes/footnotes-ie-printView";
+	@import "../plugins/footnotes/footnotes-ie8-printView";
 }
