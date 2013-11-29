@@ -717,7 +717,10 @@ module.exports = (grunt) ->
 				tasks: "jshint:lib_test"
 
 			source:
-				files: "src/**.*"
+				files: [
+					"src/**/*.*"
+					"!src/**/*sprites*"
+				]
 				tasks: "dist"
 				options:
 					interval: 5007
