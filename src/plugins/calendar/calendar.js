@@ -116,8 +116,8 @@ var $document = vapour.doc,
 		$daysList = $days.find( "td:not(.cal-empty)" );
 
 		$objCalendar.append( $days );
-				
-		// Trigger the displayed.wb-cal Event
+
+		// Trigger the displayed.wb-cal event
 		$calendar.trigger( "displayed.wb-cal", [ year, month, $daysList, day ] );
 	},
 
@@ -481,10 +481,8 @@ var $document = vapour.doc,
 
 		if ( time < minDate.getTime() ) {
 			targetDate = minDate;
-			targetDate.setDate( targetDate.getDate() + 1 );
 		} else if ( time > maxDate.getTime() ) {
 			targetDate = maxDate;
-			targetDate.setDate( targetDate.getDate() + 1 );
 		}
 
 		if ( targetDate.getMonth() !== month || targetDate.getFullYear() !== year ) {
@@ -508,8 +506,9 @@ $document.on( "create.wb-cal" , create );
 $document.on( "keydown", ".cal-days a", function ( event ) {
 	var elm = event.target,
 		$elm = $( elm ),
-		$container = $elm.closest( ".cal-cnt" ),
-		calendarId = $container.parent().attr( "id" ),
+		$monthContainer = $elm.closest( ".cal-cnt" ),
+		$container = $monthContainer.parent().closest( ".cal-cnt" ),
+		calendarId = $container.attr( "id" ),
 		fieldId = $container.attr( "aria-controls" ),
 		which = event.which,
 		fromDateISO = vapour.date.fromDateISO,
@@ -517,7 +516,7 @@ $document.on( "keydown", ".cal-days a", function ( event ) {
 		currYear = date.getFullYear(),
 		currMonth = date.getMonth(),
 		currDay = date.getDate(),
-		days = elm.parentNode.parentNode.getElementsByTagName( "a" ),
+		days = $monthContainer.find( "td > a" ).get(),
 		maxDay = days.length,
 		field, minDate, maxDate, modifier;
 
@@ -533,7 +532,7 @@ $document.on( "keydown", ".cal-days a", function ( event ) {
 	minDate = fromDateISO( ( minDate ? minDate : "1800-01-01" ) );
 	maxDate = fromDateISO( ( maxDate ? maxDate : "2100-01-01" ) );
 	
-	if ( !( event.ctrlKey || event.altKey || event.metaKey ) ) {
+	if ( !event.altKey && !event.metaKey && which > 31 && which < 41 ) {
 		switch ( which ) {
 
 		// spacebar
@@ -583,22 +582,22 @@ $document.on( "keydown", ".cal-days a", function ( event ) {
 			date.setDate( currDay + 7 );
 			break;
 		}
-	}
 
-	// Move focus to the new date
-	if ( currYear !== date.getFullYear() || currMonth !== date.getMonth() ) {
-		$document.trigger( "setFocus.wb-cal", [
-				calendarId,
-				currYear,
-				currMonth,
-				minDate,
-				maxDate,
-				date
-			]
-		);
-		return false;
-	} else if ( currDay !== date.getDate() ) {
-		$( days[ date.getDate() - 1 ] ).trigger( "setfocus.wb" );
+		// Move focus to the new date
+		if ( currYear !== date.getFullYear() || currMonth !== date.getMonth() ) {
+			$document.trigger( "setFocus.wb-cal", [
+					calendarId,
+					currYear,
+					currMonth,
+					minDate,
+					maxDate,
+					date
+				]
+			);
+		} else if ( currDay !== date.getDate() ) {
+			$( days[ date.getDate() - 1 ] ).trigger( "setfocus.wb" );
+		}
+
 		return false;
 	}
 });
