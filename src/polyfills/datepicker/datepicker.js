@@ -100,7 +100,7 @@ var selector = "input[type=date]",
 			len = $days.length,
 			// $parent = $days.parent(),
 			focusDay = ( targetDay ? targetDay - 1 : 0 ),
-			lowLimit, highLimit, minDay, maxDay, index, day, links;
+			lowLimit, highLimit, minDay, maxDay, index, day;
 
 		minDate = fromDateISO( ( minDate ? minDate : "1800-01-01" ) );
 		minDay = minDate.getDate() - 1;
@@ -124,8 +124,7 @@ var selector = "input[type=date]",
 		// $parent.append( $days );
 
 		if ( targetDay ) {
-			links = $days.find( "a" );
-			( targetDay === 1 ? links.first() : links.last() ).trigger( "setfocus.wb" );
+			$days.eq( targetDay - 1 ).find( "a" ).trigger( "setfocus.wb" );
 		}
 	},
 
