@@ -587,6 +587,7 @@ module.exports = (grunt) ->
 			tests: [
 				"elem_details"
 				"elem_progress_meter"
+				"mathml"
 			]
 			parseFiles: false
 			matchCommunityTests: false
