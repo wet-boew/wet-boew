@@ -303,6 +303,17 @@ Modernizr.load([
 			"plyfll!progress.min.css"
 		]
 	}, {
+		test: Modernizr.mathml,
+		nope: "plyfll!mathml.min.js",
+
+		// Cleanup elements that Modernizr.mathml test leaves behind.
+		complete: function() {
+			var math = document.getElementsByTagName( "math" );
+			if ( math.length ) {
+				document.body.removeChild( math[ math.length - 1 ].parentNode );
+			}
+		}
+	}, {
 		test: Modernizr.meter,
 		nope: [
 			"plyfll!meter.min.js",
