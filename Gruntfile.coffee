@@ -86,6 +86,14 @@ module.exports = (grunt) ->
 		]
 	)
 
+	@registerTask(
+		"server"
+		"Run the Connect web server for local repo"
+		[
+			"connect:server:keepalive"
+		]
+	)
+
 	#Internal task groups
 	@registerTask(
 		"js"
