@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -14,7 +14,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-formvalid",
-	$document = vapour.doc,
+	$document = wb.doc,
 	i18n, i18nText,
 
 	/*
@@ -31,11 +31,11 @@ var selector = ".wb-formvalid",
 		if ( event.currentTarget === eventTarget ) {
 
 			// read the selector node for parameters
-			modeJS = vapour.getMode() + ".js";
+			modeJS = wb.getMode() + ".js";
 			$elm = $( eventTarget );
 
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
+			wb.remove( selector );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
@@ -87,7 +87,7 @@ var selector = ".wb-formvalid",
 
 					// Change form attributes and values that interfere with validation in IE7/8
 					// TODO: Need better way of dealing with this rather than browser sniffing
-					if ( vapour.ieVersion > 0 && vapour.ieVersion < 9 ) {
+					if ( wb.ieVersion > 0 && wb.ieVersion < 9 ) {
 						len = $required.length;
 						$required.removeAttr( "required" );
 						for ( i = 0; i !== len; i += 1) {
@@ -285,6 +285,6 @@ $document.on( "click vclick", selector + " .errCnt a", function( event ) {
 });
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, document, vapour );
+})( jQuery, window, document, wb );

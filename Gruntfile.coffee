@@ -186,7 +186,7 @@ module.exports = (grunt) ->
 					stripBanners: false
 				src: [
 					"lib/modernizr/modernizr-custom.js"
-					"src/core/vapour.js"
+					"src/core/wb.js"
 					"src/core/helpers.js"
 					"src/plugins/**/*.js"
 					"!src/plugins/**/test.js"
@@ -204,7 +204,7 @@ module.exports = (grunt) ->
 					"lib/excanvas/excanvas.js"
 					"lib/html5shiv/dist/html5shiv.js"
 					"lib/selectivizr/selectivizr.js"
-					"src/core/vapour.js"
+					"src/core/wb.js"
 					"!src/plugins/**/test.js"
 					"!src/plugins/**/assets/*.js"
 					"!src/plugins/**/demo/*.js"
@@ -241,7 +241,7 @@ module.exports = (grunt) ->
 						methods = if grunt.file.exists methodsPath then grunt.file.read( methodsPath ) else ""
 
 						if methods != "" or messages != ""
-							src += "\nvapour.doc.one( \"formLanguages.wb\", function() {\n"
+							src += "\nwb.doc.one( \"formLanguages.wb\", function() {\n"
 							src += messages
 							src += "\n"
 							src += methods
@@ -815,7 +815,7 @@ module.exports = (grunt) ->
 								testHtml += "<script src='/" + path.dirname( path.relative(__dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon.js'></script>"
 								testHtml += "<!--[if lt IE 9]><script src='/" + path.dirname( path.relative(__dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon-ie.js'></script><![endif]-->"
 
-								testHtml += "<script>mocha.setup( 'bdd' ); vapour.doc.on( 'ready', function() { mocha.run(); } );</script>"
+								testHtml += "<script>mocha.setup( 'bdd' ); wb.doc.on( 'ready', function() { mocha.run(); } );</script>"
 
 								testHtml += "<script src='/" + testFile + "'></script>"
 

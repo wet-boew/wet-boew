@@ -52,7 +52,7 @@ var getUrlParts = function( url ) {
 
 	/*
 	 * @variable $src
-	 * @return {jQuery Element} of vapour script element
+	 * @return {jQuery Element} of wb script element
 	 */
 	$src = $( "script[src$='wet-boew.js'],script[src$='wet-boew.min.js']" )
 		.last(),
@@ -118,44 +118,6 @@ var getUrlParts = function( url ) {
 		return ( typeof disabled === "string" ) ? ( disabled.toLowerCase() === "true" ) : Boolean( disabled );
 	}()),
 
-	/*-----------------------------
-	 * Vapour Core Object
-	 *-----------------------------*/
-	vapour = {
-		"/": $homepath,
-		"/assets": "" + $homepath + "/../assets",
-		"/templates": "" + $homepath + "/assets/templates",
-		"/deps": "" + $homepath + "/deps",
-		mode: $mode,
-		doc: $( document ),
-		win: $( window ),
-		html: $( "html" ),
-		pageUrlParts: currentpage,
-		getUrlParts: getUrlParts,
-		isDisabled : disabled,
-
-		getPath: function( property ) {
-			return this.hasOwnProperty( property ) ? this[ property ] : undef;
-		},
-
-		getMode: function() {
-			return this.mode;
-		},
-
-		// Lets load some variables into vapour for IE detection
-		other:  !oldie,
-		desktop: ( window.orientation === undefined ),
-		ie:     !!oldie,
-		ie6:    ( oldie === 6 ),
-		ie7:    ( oldie === 7 ),
-		ie8:    ( oldie === 8 ),
-		ie9:    ( oldie === 9 ),
-		ielt7:  ( oldie < 7 ),
-		ielt8:  ( oldie < 8 ),
-		ielt9:  ( oldie < 9 ),
-		ielt10: ( oldie < 10 )
-	},
-
 	i18n = function( key, state, mixin ) {
 		var truthiness,
 			ind = window.i18nObj;
@@ -177,10 +139,80 @@ var getUrlParts = function( url ) {
 			default:
 				return "";
 		}
+	},
+	/*-----------------------------
+	 * Core Library Object
+	 *-----------------------------
+	 */
+	wb = {
+		"/": $homepath,
+		"/assets": "" + $homepath + "/../assets",
+		"/templates": "" + $homepath + "/assets/templates",
+		"/deps": "" + $homepath + "/deps",
+		mode: $mode,
+		doc: $( document ),
+		win: $( window ),
+		html: $( "html" ),
+		pageUrlParts: currentpage,
+		getUrlParts: getUrlParts,
+		isDisabled : disabled,
+
+		getPath: function( property ) {
+			return this.hasOwnProperty( property ) ? this[ property ] : undef;
+		},
+
+		getMode: function() {
+			return this.mode;
+		},
+
+		// Lets load some variables into wb for IE detection
+		other:  !oldie,
+		desktop: ( window.orientation === undefined ),
+		ie:     !!oldie,
+		ie6:    ( oldie === 6 ),
+		ie7:    ( oldie === 7 ),
+		ie8:    ( oldie === 8 ),
+		ie9:    ( oldie === 9 ),
+		ielt7:  ( oldie < 7 ),
+		ielt8:  ( oldie < 8 ),
+		ielt9:  ( oldie < 9 ),
+		ielt10: ( oldie < 10 ),
+
+		nodes: $(),
+
+		add: function( selector ) {
+
+			// Lets ensure we are not running if things are disabled
+			if ( this.isDisabled && selector !== "#wb-tphp" ) {
+				return 0;
+			}
+
+			this.nodes = this.nodes.add( selector );
+		},
+
+		// Remove nodes referenced by the selector
+		remove: function( selector ) {
+			this.nodes = this.nodes.not( selector );
+		},
+
+		start: function() {
+
+			/* Lets start our clock right away. We we need to test to ensure that there will not be any
+			 * instances on Mobile were the DOM is not ready before the timer starts. That is why 0.5 seconds
+			 * was used as a buffer.
+			 */
+			this.nodes.trigger( "timerpoke.wb" );
+
+			// lets keep it ticking after
+			setInterval(function() {
+				wb.nodes.trigger( "timerpoke.wb" );
+			}, 500 );
+
+		}
 	};
 
 window.i18n = i18n;
-window.vapour = vapour;
+window.wb = wb;
 
 /*-----------------------------
  * Yepnope Prefixes
@@ -230,44 +262,6 @@ yepnope.addPrefix( "i18n", function( resourceObj ) {
 	resourceObj.url = $homepath + "/" + resourceObj.url + lang + $mode + ".js";
 	return resourceObj;
 });
-
-/*-----------------------------
- * Base Timer
- *-----------------------------*/
-window._timer = {
-
-	nodes: $(),
-
-	add: function( selector ) {
-
-		// Lets ensure we are not running if things are disabled
-		if ( vapour.isDisabled && selector !== "#wb-tphp" ) {
-			return 0;
-		}
-
-		this.nodes = this.nodes.add( selector );
-	},
-
-	// Remove nodes referenced by the selector
-	remove: function( selector ) {
-		this.nodes = this.nodes.not( selector );
-	},
-
-	start: function() {
-
-		/* Lets start our clock right away. We we need to test to ensure that there will not be any
-		 * instances on Mobile were the DOM is not ready before the timer starts. That is why 0.5 seconds
-		 * was used as a buffer.
-		 */
-		this.nodes.trigger( "timerpoke.wb" );
-
-		// lets keep it ticking after
-		setInterval(function() {
-			window._timer.nodes.trigger( "timerpoke.wb" );
-		}, 500 );
-
-	}
-};
 
 /*-----------------------------
  * Modernizr Polyfill Loading
@@ -323,7 +317,7 @@ Modernizr.load([
 	}, {
 		load: "i18n!i18n/",
 		complete: function() {
-			window._timer.start();
+			wb.start();
 		}
 	}
 ]);

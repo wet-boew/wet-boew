@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -14,7 +14,7 @@
  * place to define variables that are common to all instances of the plugin on a
  * page.
  */
-var $document = vapour.doc,
+var $document = wb.doc,
 	i18n, i18nText,
 
 	/*
@@ -25,7 +25,7 @@ var $document = vapour.doc,
 		var calendar = document.getElementById( calendarId ),
 			$calendar = $( calendar ),
 			objCalendarId = "#cal-" + calendarId + "-cnt",
-			fromDateISO = vapour.date.fromDateISO,
+			fromDateISO = wb.date.fromDateISO,
 			$objCalendar, $calendarHeader, $oldCalendarHeader, $days, $daysList,
 			maxDateYear, maxDateMonth, minDateYear, minDateMonth;
 
@@ -98,7 +98,7 @@ var $document = vapour.doc,
 		if ( shownav ) {
 			$calendarHeader.append( createMonthNav( calendarId, year, month, mindate, maxdate, minDateYear, maxDateYear ) );
 		}
-		
+
 		$oldCalendarHeader = $objCalendar.prev( ".cal-hd" );
 		if ( $oldCalendarHeader.length === 0 ) {
 			$objCalendar.before( $calendarHeader );
@@ -144,7 +144,7 @@ var $document = vapour.doc,
 		if ( $monthNav.length === 0 ) {
 			$monthNav = $( "<div id='cal-" + calendarId + "-mnthnav'></div>" );
 		}
-		
+
 		// Create the go to form if one doesn't already exist
 		if ( $( "#" + calendarId + " .cal-goto" ).length === 0 ) {
 			$monthNav.append( createGoToForm( calendarId, year, month, minDate, maxDate ) );
@@ -170,7 +170,7 @@ var $document = vapour.doc,
 			);
 			alt = buttonSpec[ 2 ] + monthNames[ newMonth ] + " " + newYear;
 			$btn = $monthNav.find( ".cal-" + buttonClass );
-			
+
 			if ( $btn.length !== 0 ) {
 				$btn
 					.off()
@@ -208,7 +208,7 @@ var $document = vapour.doc,
 
 		// Ignore middle/right mouse buttons
 		if ( !which || which === 1 ) {
-		
+
 			if ( typeof eventData !== "undefined" ) {
 				$document.trigger( "create.wb-cal", [
 					eventData.calID,
@@ -296,7 +296,7 @@ var $document = vapour.doc,
 
 		// Update the list of available months when changing the year
 		$yearField.on( "change", {minDate: minDate, maxDate: maxDate, $monthField: $monthField}, yearChanged );
-		
+
 		// Populate initial month list
 		$yearField.trigger( "change" );
 
@@ -380,11 +380,11 @@ var $document = vapour.doc,
 		for ( week = 1; week < 7; week += 1 ) {
 			cells += "<tr>";
 			for ( day = 0; day < 7; day += 1 ) {
-				
+
 				id = "cal-" + calendarId + "-w" + week + "d" + ( day + 1 );
 				className = ( day === 0 || day === 6 ? "cal-we " : "" ) +
 					"cal-w" + week + "d" + ( day + 1 ) + " cal-index-" + ( dayCount + 1 );
-				
+
 				if ( ( week === 1 && day < firstDay ) || ( dayCount > lastDay ) ) {
 
 					// Creates empty cells | Cree les cellules vides
@@ -400,7 +400,7 @@ var $document = vapour.doc,
 						( frenchLang ? ( " </span>" + dayCount + "<span class='wb-inv'> " + textMonthNames[ month ].toLowerCase() + " " ) :
 						( " " + textMonthNames[ month ] + " </span>" + dayCount + "<span class='wb-inv'> " ) ) + year +
 						( isCurrentDate ?  textCurrentDay : "" ) + "</span></time></div></td>";
-						
+
 					if ( dayCount > lastDay ) {
 						breakAtEnd = true;
 					}
@@ -475,7 +475,7 @@ var $document = vapour.doc,
 				.trigger( "setfocus.wb" );
 		}
 	},
-	
+
 	setFocus = function( event, calendarId, year, month, minDate, maxDate, targetDate ) {
 		var time = targetDate.getTime();
 
@@ -511,7 +511,7 @@ $document.on( "keydown", ".cal-days a", function ( event ) {
 		calendarId = $container.attr( "id" ),
 		fieldId = $container.attr( "aria-controls" ),
 		which = event.which,
-		fromDateISO = vapour.date.fromDateISO,
+		fromDateISO = wb.date.fromDateISO,
 		date = fromDateISO( elm.getElementsByTagName( "time" )[ 0 ].getAttribute( "datetime" ) ),
 		currYear = date.getFullYear(),
 		currMonth = date.getMonth(),
@@ -531,7 +531,7 @@ $document.on( "keydown", ".cal-days a", function ( event ) {
 
 	minDate = fromDateISO( ( minDate ? minDate : "1800-01-01" ) );
 	maxDate = fromDateISO( ( maxDate ? maxDate : "2100-01-01" ) );
-	
+
 	if ( !event.altKey && !event.metaKey && which > 31 && which < 41 ) {
 		switch ( which ) {
 
@@ -608,4 +608,4 @@ $document.on( "setFocus.wb-cal", setFocus );
 
 $document.on( "click", ".cal-prvmnth, .cal-nxtmnth", changeMonth );
 
-})( jQuery, window, document, vapour );
+})( jQuery, window, document, wb );

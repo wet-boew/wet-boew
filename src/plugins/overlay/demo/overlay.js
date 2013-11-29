@@ -3,13 +3,13 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 /*jshint unused: false*/
-(function( $, vapour ) {
+(function( $, wb ) {
 "use strict";
 
-vapour.doc.on( "click vclick", ".modal-close", function( event ) {
+wb.doc.on( "click vclick", ".modal-close", function( event ) {
 	$( event.currentTarget )
 			.closest( ".wb-overlay" )
 				.trigger( "close.wb-overlay" );
 });
 
-})( jQuery, vapour );
+})( jQuery, wb );

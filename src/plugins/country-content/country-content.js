@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @nschonni
  */
-(function( $, window, vapour ) {
+(function( $, window, wb ) {
 "use strict";
 
 /*
@@ -14,7 +14,7 @@
  * place to define variables that are common to all instances of the plugin on a
  * page.
  */
-var $document = vapour.doc,
+var $document = wb.doc,
 	selector = "[data-country-content]",
 
 	/**
@@ -30,7 +30,7 @@ var $document = vapour.doc,
 
 		// All plugins need to remove their reference from the timer in the init
 		// sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
+		wb.remove( selector );
 
 		$.when( getCountry() ).then( function( countryCode ) {
 
@@ -97,6 +97,6 @@ $document.on( "timerpoke.wb", selector, function( event ) {
 } );
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );

@@ -5,7 +5,7 @@
  * @author WET community
  */
 
-(function( $, window, document, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -15,7 +15,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-menu",
-	$document = vapour.doc,
+	$document = wb.doc,
 	breadcrumb = document.getElementById( "wb-bc" ),
 
 	// Used for half second delay on showing/hiding menus because of mouse hover
@@ -47,7 +47,7 @@ var selector = ".wb-menu",
 
 		// All plugins need to remove their reference from the timer in the init
 		// sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
+		wb.remove( selector );
 
 		// Ensure the container has an id attribute
 		if ( !$elm.attr( "id" ) ) {
@@ -538,6 +538,6 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 });
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, document, vapour );
+})( jQuery, window, document, wb );
