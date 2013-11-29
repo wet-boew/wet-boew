@@ -6,17 +6,19 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  *
  */
+
 @import "../../src/_variables";
 @import "defaults";
-@import "parts/skipLinks";
-@import "parts/language";
 @import "parts/banner";
+@import "parts/breadcrumb";
+@import "parts/fonts";
+@import "parts/language";
+@import "parts/main";
 @import "parts/search";
 @import "parts/secMenu";
 @import "parts/siteInfo";
 @import "parts/siteMenu";
-@import "parts/breadcrumb";
-@import "parts/main";
+@import "parts/skipLinks";
 
 /*
  Views
@@ -25,12 +27,12 @@
 @media screen {
 	@import "views/allScreenViews";
 }
- 
+
 /* Extra-small view and under */
 @media screen and (max-width: $xSmallViewMax) {
 	@import "views/xSmallViewUnder";
 }
- 
+
 /* Small view and under */
 @media screen and (max-width: $smallViewMax) {
 	@import "views/smallViewUnder";
@@ -67,12 +69,12 @@
 @media screen and (min-width: $largeViewMin) {
 	@import "views/largeViewOver";
 }
- 
+
 /* Extra-extra-small view */
 @media screen and (max-width: $xxSmallViewMax) {
 	@import "views/xxSmallView";
 }
- 
+
 /* Extra-small view */
 @media screen and (min-width: $xSmallViewMin) and (max-width: $xSmallViewMax) {
 	@import "views/xSmallView";
