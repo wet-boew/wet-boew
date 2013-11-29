@@ -66,30 +66,32 @@ var id = "wb-resize",
 	},
 
 	viewChange = function ( viewportWidth ) {
-		var breakpoint;
+		var breakpoint, viewName;
 
 		// Check for a change between views
 		for ( breakpoint in breakpoints ) {
 
 			// Determine the current view
 			if ( viewportWidth < breakpoints[ breakpoint ] ) {
-
-				// Determine if the current view is different the previous view
-				if ( breakpoint !== currentView ) {
-
-					// Change the breakpoint class on the html element
-					vapour.html
-						.removeClass( currentView )
-						.addClass( breakpoint );
-
-					// Update the current breakpoint
-					currentView = breakpoint;
-
-					// Trigger the breakpoint event
-					$document.trigger( breakpoint + ".wb" );
-				}
 				break;
+			} else {
+				viewName = breakpoint;
 			}
+		}
+
+		// Determine if the current view is different than the previous view
+		if ( viewName !== currentView ) {
+
+			// Change the breakpoint class on the html element
+			vapour.html
+				.removeClass( currentView )
+				.addClass( viewName );
+
+			// Update the current view
+			currentView = viewName;
+
+			// Trigger the view event
+			$document.trigger( viewName + ".wb" );
 		}
 	},
 
