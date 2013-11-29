@@ -29,26 +29,33 @@
 		<section>
 			<h2 id="simple">Exemple simple</h2>
 
-			<div class="row">
-				<div class="col-md-1"><span class="glyphicon glyphicon-adjust"></span></div>
-				<div class="col-md-1"><span class="glyphicon glyphicon-align-center"></span></div>
-				<div class="col-md-1"><span class="glyphicon glyphicon-align-justify"></span></div>
-				<div class="col-md-1"><span class="glyphicon glyphicon-align-left"></span></div>
-				<div class="col-md-1"><span class="glyphicon glyphicon-align-right"></span></div>
-				<div class="col-md-1"><span class="glyphicon glyphicon-arrow-down wb-toggle"></span></div>
-				<div class="col-md-1"><span class="glyphicon glyphicon-arrow-left"></span></div>
-				<div class="col-md-1"><span class="glyphicon glyphicon-tower"></span></div>
-			</div>
-
 			<div class="btn-group">
 				<button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": ".glyphicon"}'>Basculer</button>
 				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": ".glyphicon", "type": "on"}'>Activer</button>
 				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": ".glyphicon", "type": "off"}'>Désactiver</button>
 			</div>
+
+			<div class="mrgn-tp-lg mrgn-bttm-lg">
+				<span class="glyphicon glyphicon-adjust mrgn-rght-lg"></span>
+				<span class="glyphicon glyphicon-align-center mrgn-rght-lg"></span>
+				<span class="glyphicon glyphicon-align-justify mrgn-rght-lg"></span>
+				<span class="glyphicon glyphicon-align-left mrgn-rght-lg"></span>
+				<span class="glyphicon glyphicon-align-right mrgn-rght-lg"></span>
+				<span class="glyphicon glyphicon-arrow-down wb-toggle mrgn-rght-lg"></span>
+				<span class="glyphicon glyphicon-arrow-left mrgn-rght-lg"></span>
+				<span class="glyphicon glyphicon-tower mrgn-rght-lg"></span>
+			</div>
+
 		</section>
 
 		<section>
 			<h2 id="details">Details</h2>
+
+			<div class="btn-group">
+				<button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": "details"}'>Basculer</button>
+				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "type": "on"}'>Activer</button>
+				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "type": "off"}'>Désactiver</button>
+			</div>
 
 			<div class="row">
 				<details class="col-sm-4">
@@ -142,18 +149,18 @@
 				</details>
 			</div>
 
-			<div class="btn-group">
-				<button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": "details"}'>Basculer</button>
-				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "type": "on"}'>Activer</button>
-				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "type": "off"}'>Désactiver</button>
-			</div>
-
 		</section>
 		<section>
 			<h2 id="grouped">Basculer groupe</h2>
 			<p>
 				Cette paramètre <code> group </code> restreint bascule groupées d'avoir un seul des éléments actifs à un moment un peu comme le comportement de case à cocher groupées.
 			</p>
+			
+			<div class="btn-group">
+				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "#toggle1", "group": ".grouped", "type": "on" }'>Exemple 1</button>
+				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "#toggle2", "group": ".grouped", "type": "on" }'>Exemple 2</button>
+				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "#toggle3", "group": ".grouped", "type": "on" }'>Exemple 3</button>
+			</div>			
 
 			<div class="row">
 				<details id="toggle1" class="col-sm-4 grouped">
@@ -246,12 +253,7 @@
 					</table>
 				</details>
 			</div>
-
-			<div class="btn-group">
-				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "#toggle1", "group": ".grouped", "type": "on" }'>Exemple 1</button>
-				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "#toggle2", "group": ".grouped", "type": "on" }'>Exemple 2</button>
-				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "#toggle3", "group": ".grouped", "type": "on" }'>Exemple 3</button>
-			</div>
+			
 		</section>
 
 		<section>
