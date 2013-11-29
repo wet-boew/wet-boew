@@ -147,7 +147,7 @@ var selector = ".wb-share",
 			panel = "<section id='shr-pg' class='shr-pg wb-overlay modal-content overlay-def wb-panel-" +
 				( vapour.html.attr( "dir" ) === "rtl" ? "l" : "r" ) +
 				"'><header class='modal-header'><" + heading + " class='modal-title'>" +
-				i18nText.shareText + "</" + heading + "></header><ul class='colcount-xs-2 colcount-sm-3'>";
+				i18nText.shareText + "</" + heading + "></header><ul class='colcount-xs-2'>";
 
 			for ( site in sites ) {
 				siteProperties = sites[ site ];
