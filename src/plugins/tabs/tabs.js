@@ -26,7 +26,7 @@ var selector = ".wb-tabs",
 		summaryProps: { "aria-hidden": true, role: "presentation", tabindex: -1 },
 		tabProps: { tabindex: -1 }
 	},
-	// vapour.pageUrlParts.hash is a string - empty or otherwise.
+	// wb.pageUrlParts.hash is a string - empty or otherwise.
 	// hash.match will return null if hash is empty or if no match is found.
 	hash = wb.pageUrlParts.hash.match( /#t(\d+)-p(\d+)/ ),
 	
