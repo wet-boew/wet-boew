@@ -94,10 +94,7 @@ module.exports = (grunt) ->
 		"js"
 		"INTERNAL: Copies all third party JS to the dist folder"
 		[
-			"copy:polyfills"
-			"copy:other"
-			"copy:deps"
-			"copy:jsAssets"
+			"copy:js"
 			"i18n"
 			"concat:core"
 			"concat:coreIE8"
@@ -602,44 +599,43 @@ module.exports = (grunt) ->
 				expand: true
 				flatten: true
 
-			polyfills:
-				cwd: "src/polyfills"
-				src: "**/*.js"
-				dest: "dist/unmin/js/polyfills"
-				expand: true
-				flatten: true
-
-			other:
-				cwd: "src/other"
-				src: "**/*.js"
-				dest: "dist/unmin/js/other"
-				expand: true
-				flatten: true
-
-			deps:
-				cwd: "lib"
-				src: [
-					"jquery-pjax/jquery.pjax.js"
-					"jquery.validation/jquery.validate.js"
-					"jquery.validation/additional-methods.js"
-					"magnific-popup/dist/jquery.magnific-popup.js"
-					"google-code-prettify/src/*.js"
-					"DataTables/media/js/jquery.dataTables.js"
+			js:
+				files: [
+					cwd: "src/polyfills"
+					src: "**/*.js"
+					dest: "dist/unmin/js/polyfills"
+					expand: true
+					flatten: true
+				,
+					cwd: "src/other"
+					src: "**/*.js"
+					dest: "dist/unmin/js/other"
+					expand: true
+					flatten: true
+				,
+					cwd: "lib"
+					src: [
+						"jquery-pjax/jquery.pjax.js"
+						"jquery.validation/jquery.validate.js"
+						"jquery.validation/additional-methods.js"
+						"magnific-popup/dist/jquery.magnific-popup.js"
+						"google-code-prettify/src/*.js"
+						"DataTables/media/js/jquery.dataTables.js"
+					]
+					dest: "dist/unmin/js/deps"
+					expand: true
+					flatten: true
+				,
+					cwd: "src"
+					src: [
+						"plugins/**/assets/*"
+						"polyfills/**/assets/*"
+						"other/**/assets/*"
+					]
+					dest: "dist/unmin/assets"
+					expand: true
+					flatten: true
 				]
-				dest: "dist/unmin/js/deps"
-				expand: true
-				flatten: true
-
-			jsAssets:
-				cwd: "src"
-				src: [
-					"plugins/**/assets/*"
-					"polyfills/**/assets/*"
-					"other/**/assets/*"
-				]
-				dest: "dist/unmin/assets"
-				expand: true
-				flatten: true
 
 			demos:
 				files: [
