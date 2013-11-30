@@ -116,11 +116,11 @@ div#gcwu-headlines ul li,div#gcwu-headlines ul{
 init = function() {
 	var cssClass, cssClasses, i, len, $pre,
 		$elm = $( this ),
-		modeJS = vapour.getMode() + ".js",
+		modeJS = wb.getMode() + ".js",
 		deps = [ "site!deps/prettify" + modeJS ],
 		settings = $.extend( {}, defaults, $elm.data() );
 
-	window._timer.remove( selector );
+	wb.remove( selector );
 
 	// Check the element for `lang-*` syntax CSS classes
 	cssClasses = typeof $elm[0].className === "string" ? $elm[0].className.split( " " ) : [];
@@ -150,7 +150,7 @@ init = function() {
 	Modernizr.load({
 		load: deps,
 		complete: function() {
-			vapour.doc.trigger( "prettyprint.wb-prettify" );
+			wb.doc.trigger( "prettyprint.wb-prettify" );
 		}
 	});
 }</code></pre>

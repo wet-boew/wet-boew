@@ -5,7 +5,7 @@
  * @author WET community
  */
 
-(function( $, window, document, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -15,7 +15,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-menu",
-	$document = vapour.doc,
+	$document = wb.doc,
 	breadcrumb = document.getElementById( "wb-bc" ),
 
 	// Used for half second delay on showing/hiding menus because of mouse hover
@@ -47,7 +47,7 @@ var selector = ".wb-menu",
 
 		// All plugins need to remove their reference from the timer in the init
 		// sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
+		wb.remove( selector );
 
 		// Ensure the container has an id attribute
 		if ( !$elm.attr( "id" ) ) {
@@ -112,19 +112,34 @@ var selector = ".wb-menu",
 	 */
 	onAjaxLoaded = function( $elm, $ajaxed ) {
 		var $menu = $ajaxed.find( "[role='menubar'] .item" ),
-			$wbsec = $( "#wb-sec" ),
-			$panel;
 
-		// lets see if we need to add a dynamic navigation section ( secondary nav )
-		if ( $wbsec.length !== 0 ) {
+			// Optimized the code block to look to see if we need to import anything instead
+			// of just doing a query with which could result in no result
+			imports = $elm.data( "import" ) ? $elm.data( "import" ).split( " " ) : 0,
+			$panel, i, classList, $iElement;
 
-			// Trigger the navcurrent plugin
-			$wbsec.trigger( "navcurrent.wb", breadcrumb );
-		
+		// lets see if there is anything to import into our panel
+		if ( imports !== 0 ) {
 			$panel = $ajaxed.find( ".pnl-strt" );
-			$panel.before( "<section id='dyn-nvgtn' class='" +
-				$panel.siblings( ".wb-info" ).eq( 0 ).attr( "class" ) +
-				"'>" + $wbsec.html() + "</section>" );
+			classList = $panel.siblings( ".wb-info" ).eq( 0 ).attr( "class" );
+
+			for ( i = imports.length - 1; i >= 0; i-- ) {
+				$iElement = $( "#" + imports[ i ] );
+
+				// lets only deal with elements that exist since there are possibilites where templates
+				// could add into a header and footer and the content areas change depending on levels
+				// in the site
+				if ( $iElement.length === 0 ) {
+					continue;
+				}
+
+				// Lets DomInsert since we are complete all our safeguards and pre-processing
+				// ** note we need to ensure our content is ID safe since this will invalidate the DOM
+				$panel.before( "<section id='wb-imprt-" + i + "' class='" +
+					classList + "'>" +
+					$iElement.html().replace( /\b(id|for)="([^"]+)"/g , "$1='$2-imprt'" ) +
+				"</section>" );
+			}
 		}
 
 		$ajaxed.find( ":discoverable" )
@@ -165,7 +180,7 @@ var selector = ".wb-menu",
 		var $goto = event.goto,
 			special = event.special;
 
-		$goto.trigger( "focus.wb" );
+		$goto.trigger( "setfocus.wb" );
 		if ( special || ( $goto.hasClass( "item" ) && !$goto.attr( "aria-haspopup" ) ) ) {
 			onReset( $goto.parents( selector ), true, special );
 		}
@@ -523,6 +538,6 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 });
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, document, vapour );
+})( jQuery, window, document, wb );

@@ -3,6 +3,12 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 
+%lightbox-button-outline {
+	outline: 1px dotted;
+	outline-offset: -2px;
+	outline-color: #fff;
+}
+
 .lb-hide-gal {
 	li {
 		list-style-type: none;
@@ -10,5 +16,33 @@
 		&:first-child {
 			display: block;
 		}
+	}
+}
+
+.mfp-close {
+	font-weight: 700;
+	/* Should fix upstream rather than overriding in WET */
+	&:focus {
+		@extend %lightbox-button-outline;
+	}
+}
+
+.mfp-arrow {
+	/* Should fix upstream rather than overriding in WET */
+	&:focus {
+		@extend %lightbox-button-outline;
+	}
+}
+
+/* Should fix upstream rather than overriding in WET */
+.mfp-bottom-bar {
+	.mfp-title {
+		width: 75%;
+		padding-right: 5px;
+	}
+	.mfp-counter {
+		font-size: 1em;
+		width: 25%;
+		text-align: right;
 	}
 }

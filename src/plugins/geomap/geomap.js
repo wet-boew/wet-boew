@@ -5,11 +5,11 @@
  * @author @pjackson28
  */
 /*global wet_boew_geomap: false, OpenLayers: false, proj4: false*/
-(function( $, window, vapour ) {
+(function( $, window, wb ) {
 "use strict";
 
 var selector = ".wb-geomap",
-	$document = vapour.doc,
+	$document = wb.doc,
 	overlayTimeout = 2000, // timeout for overlay loading in milliseconds
 	uniqueId = 0,
 	mapArray = [],
@@ -54,14 +54,14 @@ var selector = ".wb-geomap",
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === elm ) {
 			$elm = $( elm );
-			modeJS = vapour.getMode() + ".js";
+			modeJS = wb.getMode() + ".js";
 
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
+			wb.remove( selector );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
-				i18n = window.i18n;
+				i18n = wb.i18n;
 				i18nText = {
 					close: i18n( "%close" ),
 					colon: i18n( "%colon" ),
@@ -98,7 +98,7 @@ var selector = ".wb-geomap",
 
 			// Merge default settings with overrides from the selected plugin element.
 			// There may be more than one, so don't override defaults globally!
-			$.extend( settings, defaults, overrides, vapour.getData( $elm, "wet-boew" ) );
+			$.extend( settings, defaults, overrides, wb.getData( $elm, "wet-boew" ) );
 
 			// Bind the merged settings to the element node for faster access in other events.
 			$elm.data({ settings: settings });
@@ -118,7 +118,7 @@ var selector = ".wb-geomap",
 					OpenLayers.Lang.setCode( document.documentElement.lang );
 
 					// Set the image path for OpenLayers
-					OpenLayers.ImgPath = vapour.getPath( "/assets" ) + "/";
+					OpenLayers.ImgPath = wb.getPath( "/assets" ) + "/";
 
 					// Add projection for default base map
 					proj4.defs[ "EPSG:3978" ] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
@@ -1234,7 +1234,7 @@ var selector = ".wb-geomap",
 										if ( typeof data === "string") {
 										
 											// With IE we cant use DOMParser
-											if ( vapour.ie ) {
+											if ( wb.ie ) {
 												xmlDocument = new window.ActiveXObject( "Microsoft.XMLDOM" );
 												xmlDocument.async = false;
 												xmlDocument.loadXML( data );
@@ -1896,6 +1896,6 @@ var selector = ".wb-geomap",
 $document.on( "timerpoke.wb", selector, init );
 				
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );

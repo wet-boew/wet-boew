@@ -4,18 +4,18 @@
  */
 @import "sprites";
 
-%icons {
+%share_icons {
 	content: " ";
-	display: block;
-	float: left;
+	display: inline-block;
 	height: 32px;
 	width: 32px;
-	margin-right: 42px;
+	margin-right: 12px;
+	vertical-align: middle;
 }
 
 .wb-share {
 	.shr-lnk {
-		display: block;
+		width: 100%;
 		min-height: 32px;
 		line-height: 32px;
 		margin-bottom: 8px;
@@ -29,150 +29,128 @@
 	*/
 	.bitly {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include bitly;
 		}
 	}
 	.blogger {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include blogger;
 		}
 	}
 	.delicious {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include delicious;
 		}
 	}
 	.digg {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include digg;
 		}
 	}
 	.diigo {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include diigo;
 		}
 	}
 	.dzone {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include dzone;
 		}
 	}
 	.facebook {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include facebook;
 		}
 	}
 	.fark {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include fark;
 		}
 	}
 	.feed {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include feed;
 		}
 	}
 	.googleplus {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include googleplus;
 		}
 	}
 	.linkedin {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include linkedin;
 		}
 	}
 	.myspace {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include myspace;
 		}
 	}
 	.netvibes {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include netvibes;
 		}
 	}
 	.newsvine {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include newsvine;
 		}
 	}
 	.pinterest {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include pinterest;
 		}
 	}
 	.reddit {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include reddit;
 		}
 	}
 	.stumbleupon {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include stumbleupon;
 		}
 	}
 	.technorati {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include technorati;
 		}
 	}
 	.tumblr {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include tumblr;
 		}
 	}
 	.twitter {
 		&:before {
-			@extend %icons;
+			@extend %share_icons;
 			@include twitter;
 		}
 	}
 
 	ul {
 		list-style-type: none;
-		padding-left: 0;
-	}
-}
-
-#shr-pg {
-	//	@todo	Move this to the overlays plugin
-	background-color: #fff;
-	//	@todo	Automate the setting of the width
-	width: 250px;
-}
-
-//	@todo	Move this to the overlays plugin
-.wb-overlay {
-	z-index: 999;
-}
-
-[dir=rtl] {
-	.wb-share {
-		.shr-lnk {
-			padding-left: 12px;
-			padding-right: 42px;
-			background-position: 97% center;
-			text-align: right;
-		}
+		padding: 0;
+		margin: 10px;
 	}
 }
