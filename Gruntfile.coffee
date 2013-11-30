@@ -21,7 +21,6 @@ module.exports = (grunt) ->
 			"assets-dist"
 			"demos"
 			"demos-dist"
-			"imagemin:min"
 		]
 	)
 
@@ -42,7 +41,7 @@ module.exports = (grunt) ->
 			"assets"
 			"js"
 			"css"
-			"imagemin:unmin"
+			"imagemin"
 		]
 	)
 
@@ -704,15 +703,10 @@ module.exports = (grunt) ->
 				expand: true
 
 		imagemin:
-			unmin:
-				cwd: "dist/unmin/assets"
-				src: "*.png"
-				dest: "dist"
-				expand: true
-			min:
-				cwd: "dist/assets"
-				src: "*.png"
-				dest: "dist"
+			all:
+				cwd: "dist/unmin"
+				src: "**/*.png"
+				dest: "dist/unmin"
 				expand: true
 
 		clean:
