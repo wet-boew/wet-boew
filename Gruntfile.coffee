@@ -349,72 +349,68 @@ module.exports = (grunt) ->
 		# Compiles the Sass files
 		sass:
 			all:
-				expand: true
-				cwd: "src/base"
-				src: [
-					"**/*.scss"
-					"!**/_*.scss"
-					"!**/demo/*.scss"
+				files: [
+					expand: true
+					cwd: "src/base"
+					src: [
+						"**/*.scss"
+						"!**/_*.scss"
+						"!**/demo/*.scss"
+					]
+					dest: "dist/unmin/css/"
+					ext: ".css"
+				,
+					expand: true
+					cwd: "theme/sass"
+					src: [
+						"**/*.scss"
+						"!**/_*.scss"
+					]
+					dest: "dist/unmin/css/"
+					ext: ".css"
+				,
+					expand: true
+					cwd: "src/polyfills"
+					src: [
+						"**/*.scss"
+						"!**/*-base.scss"
+						"!**/*-ie8.scss"
+						"!**/*-noscript.scss"
+						"!**/demo/*.scss"
+					]
+					dest: "dist/unmin/css/polyfills/"
+					ext: ".css"
+					flatten: true
+				,
+					expand: true
+					cwd: "src/other"
+					src: [
+						"**/*.scss"
+						"!**/*base.scss"
+						"!**/demo/*.scss"
+					]
+					dest: "dist/unmin/css/other/"
+					ext: ".css"
+					flatten: true
+				,
+					expand: true
+					cwd: "src/plugins"
+					src: "**/demo/*.scss"
+					dest: "dist/unmin/demos/"
+					ext: ".css"
+				,
+					expand: true
+					cwd: "src/polyfills"
+					src: "**/demo/*.scss"
+					dest: "dist/unmin/demos/"
+					ext: ".css"
+				,
+					expand: true
+					cwd: "src/other"
+					src: "**/demo/*.scss"
+					dest: "dist/unmin/demos/"
+					ext: ".css"
 				]
-				dest: "dist/unmin/css/"
-				ext: ".css"
-
-			theme:
-				expand: true
-				cwd: "theme/sass"
-				src: [
-					"**/*.scss"
-					"!**/_*.scss"
-				]
-				dest: "dist/unmin/css/"
-				ext: ".css"
-
-			polyfills:
-				expand: true
-				cwd: "src/polyfills"
-				src: [
-					"**/*.scss"
-					"!**/*-base.scss"
-					"!**/*-ie8.scss"
-					"!**/*-noscript.scss"
-					"!**/demo/*.scss"
-				]
-				dest: "dist/unmin/css/polyfills/"
-				ext: ".css"
-				flatten: true
-
-			other:
-				expand: true
-				cwd: "src/other"
-				src: [
-					"**/*.scss"
-					"!**/*base.scss"
-					"!**/demo/*.scss"
-				]
-				dest: "dist/unmin/css/other/"
-				ext: ".css"
-				flatten: true
-
-			demo_plugins:
-				expand: true
-				cwd: "src/plugins"
-				src: "**/demo/*.scss"
-				dest: "dist/unmin/demos/"
-				ext: ".css"
-
-			demo_polyfills:
-				expand: true
-				cwd: "src/polyfills"
-				src: "**/demo/*.scss"
-				dest: "dist/unmin/demos/"
-				ext: ".css"
-
-			demo_other:
-				expand: true
-				cwd: "src/other"
-				src: "**/demo/*.scss"
-				dest: "dist/unmin/demos/"
-				ext: ".css"
 
 		autoprefixer:
 			options:
@@ -429,34 +425,34 @@ module.exports = (grunt) ->
 				]
 
 			all:
-				cwd: "dist/unmin/css"
-				src: [
-					"**/*.css"
-					"!**/polyfills/**/*.css"
-					"!**/other/**/*.css"
-					"!**/*.min.css"
+				files: [
+					cwd: "dist/unmin/css"
+					src: [
+						"**/*.css"
+						"!**/polyfills/**/*.css"
+						"!**/other/**/*.css"
+						"!**/*.min.css"
+					]
+					dest: "dist/unmin/css"
+					expand: true
+					flatten: true
+				,
+					cwd: "dist/unmin/css/polyfills"
+					src: [
+						"**/*.css"
+						"!**/*.min.css"
+					]
+					dest: "dist/unmin/css/polyfills/"
+					expand: true
+				,
+					cwd: "dist/unmin/css/other"
+					src: [
+						"**/*.css"
+						"!**/*.min.css"
+					]
+					dest: "dist/unmin/css/other/"
+					expand: true
 				]
-				dest: "dist/unmin/css"
-				expand: true
-				flatten: true
-
-			polyfills:
-				cwd: "dist/unmin/css/polyfills"
-				src: [
-					"**/*.css"
-					"!**/*.min.css"
-				]
-				dest: "dist/unmin/css/polyfills/"
-				expand: true
-
-			other:
-				cwd: "dist/unmin/css/other"
-				src: [
-					"**/*.css"
-					"!**/*.min.css"
-				]
-				dest: "dist/unmin/css/other/"
-				expand: true
 
 		# Minify
 		uglify:
