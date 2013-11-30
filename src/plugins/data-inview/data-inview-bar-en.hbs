@@ -1,31 +1,38 @@
 ---
 {
-	"title": "Data Inview: Banner",
+	"title": "Data Inview: Bar",
 	"language": "en",
 	"category": "Plugin",
-	"description": "Displays a panel when a section moves out of the viewport.",
+	"description": "Displays a bar when a section moves out of the viewport.",
 	"tag": "data-inview",
-	"fr": "data-inview-banner",
-	"css": "demo/data-inview-banner"
+	"fr": "data-inview-bar",
+	"css": "demo/data-inview-bar"
 }
 ---
 <section>
 	<h2>Example</h2>
 
-	<section class="wb-inview banner-demo" data-inview="top-bar">
-		<h3 class="no-gutter">Section with a conditional top bar</h3>
-		<p class="col-md-12">A bar will be displayed at the top when this section is out of the viewport.</p>
-	</section>
-
-	<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
-	<p>Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
-	
-	<section class="wb-inview banner-demo" data-inview="bottom-bar">
+	<section class="wb-inview bar-demo" data-inview="bottom-bar">
 		<h3 class="no-gutter">Section with a conditional bottom bar</h3>
-		<p class="col-md-12">A bar will be displayed at the bottom when this section is out of the viewport.</p>
+		<div class="col-md-12">
+			<p>A bar will be displayed at the bottom when this section is <strong>partially out</strong> of the viewport.</p>
+			<hr />
+			<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>			
+		</div>
 	</section>
 
-	<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+	<p>Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
+	<p>Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text.</p>
+	
+	<section class="wb-inview show-none bar-demo" data-inview="top-bar">
+		<h3 class="no-gutter">Section with a conditional top bar</h3>
+		<div class="col-md-12">
+			<p>A bar will be displayed at the top when this section is <strong>fully out</strong> of the viewport (<code>class="show-none"</code>).</p>
+			<hr />
+			<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+		</div>
+	</section>
+
 	<p>Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
 	<p>Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text.</p>
 	<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>

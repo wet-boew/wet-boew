@@ -56,10 +56,14 @@ var selector = ".wb-inview",
 			// partial - part of the element is in the viewport
 			// none - no part of the element is in the viewport
 			viewState = ( scrollBottom > y2 && scrollTop < y1 ) ? "all" : inView ? "none" : "partial",
-			$dataInView;
+			$dataInView, show;
 
 		// Only if the view state has changed
 		if ( viewState !== oldViewState ) {
+
+			// Show on "partial"/"none" (default) or just "none" (requires "show-none" class)
+			show = inView || ( $elm.hasClass( "show-none" ) ? false : viewState === "partial" );
+
 			$elm.attr( "data-inviewstate", viewState );
 			$dataInView = $( "#" + $elm.attr( "data-inview" ) );
 
@@ -70,13 +74,13 @@ var selector = ".wb-inview",
 						$dataInView.addClass( "outside-off" );
 					}
 					$dataInView.trigger(
-						( inView ? "open" : "close" ) + ".wb-overlay"
+						( show ? "open" : "close" ) + ".wb-overlay"
 					);
 				} else {
 					$dataInView
-						.attr( "aria-hidden", !inView )
-						.toggleClass( "in", !inView )
-						.toggleClass( "out", inView );
+						.attr( "aria-hidden", !show )
+						.toggleClass( "in", !show )
+						.toggleClass( "out", show );
 				}
 			}
 		}

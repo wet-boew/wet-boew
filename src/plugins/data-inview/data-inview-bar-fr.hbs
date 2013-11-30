@@ -1,32 +1,38 @@
 ---
 {
-	"title": "Data Inview : Bannière",
+	"title": "Data Inview : Barre",
 	"language": "fr",
 	"category": "Plugiciel",
-	"description": "Affiche une bannière quand une section se déplace hors de la clôture.",
+	"description": "Affiche une barre quand une section se déplace hors de la clôture.",
 	"tag": "data-inview",
-	"en": "data-inview-banner",
-	"css": "demo/data-inview-banner"
+	"en": "data-inview-bar",
+	"css": "demo/data-inview-bar"
 }
 ---
 <section>
 	<h2>Exemple</h2>
 
-	<section class="wb-inview banner-demo" data-inview="barre-haut">
-		<h3 class="no-gutter">Section avec une barre en haut conditionnelle</h3>
-		<p class="col-md-12">Une barre sera affichée en haut lors de cette section est hors de la clôture.</p>
+	<section class="wb-inview bar-demo" data-inview="barre-bas">
+		<h3 class="no-gutter">Section avec une barre en bas conditionnelle</h3>
+		<div class="col-md-12">
+			<p>Une barre sera affichée en bas lors de cette section est <strong>partiellement hors</strong> de la clôture.</p>
+			<hr />
+			<p>Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.</p>
+		</div>
 	</section>
 
-	<p>Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.</p>
 	<p>Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent.</p>
 	<p>Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte.</p>
 
-	<section class="wb-inview banner-demo" data-inview="barre-bas">
-		<h3 class="no-gutter">Section avec une barre en bas conditionnelle</h3>
-		<p class="col-md-12">Une barre sera affichée en bas lors de cette section est hors de la clôture.</p>
+	<section class="wb-inview show-none bar-demo" data-inview="barre-haut">
+		<h3 class="no-gutter">Section avec une barre en haut conditionnelle</h3>
+		<div class="col-md-12">
+			<p>Une barre sera affichée en haut lors de cette section est <strong>entièrement hors</strong> de la clôture (<code>class="show-none"</code>).</p>
+			<hr />
+			<p>Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.</p>
+		</div>
 	</section>
 
-	<p>Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.</p>
 	<p>Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent.</p>
 	<p>Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte. Autre exemple de texte.</p>
 	<p>Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.</p>
