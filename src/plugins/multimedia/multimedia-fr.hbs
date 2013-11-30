@@ -1,56 +1,56 @@
 ---
 {
-	"title": "Lecteur média",
+	"title": "Lecteur multimédia - Vidéo",
 	"language": "fr",
+	"category": "Plugiciel",
+	"description": "Un lecteur multimédia accessible permettant d'intégrer des contenus vidéo sur les pages Web.",
+	"tag": "multimedia",
 	"en": "multimedia"
 }
 ---
 <div class="row">
 	<div class="col-md-12">
 		<p>Pour la vidéo, le lecteur multimédia s'appuie sur la balise video HTML5 natif et s'appuie sur Flash comme un mécanisme de secours lorsque la balise video HTML5 n'est pas implémentée. Le format MPEG-4 (codec H264) est le minimum requis pour la vidéo parce que le repli flash s'appuie sur elle et H264 est le format vidéo standard sur de nombreux appareils mobiles. Un WebM facultative mais fortement recommandée (VP8 codec) devrait être ajouté aussi bien pour permettre à certains navigateurs tels que Firefox qui ne comprennent pas un support natif pour H264 de tirer parti des gains de performance HTML5 indigènes.</p>
-
-		<p>Pour l'audio seulement, le lecteur multimédia s'appuie sur la balise audio HTML5 natif et s'appuie sur Flash comme un mécanisme de secours lorsque la balise audio HTML5 n'est pas implémentée.</p>
-
-		<p>Pour la vidéo et l'audio seulement, le scénario du lecteur multimédia repose sur l'élément de progrès HTML5 et utilise un polyfill lorsque l'élément n'est pas pris en charge.</p>
-
-		<h2>Exemples</h2>
-		<p>Les deux premiers exemples vidéo et le seul exemple audio utilisent la vidéo HTML5 natif ou audio sur la plupart des navigateurs modernes, y compris Firefox 6 +, Google Chrome 3 + et IE9. Le troisième exemple de vidéo fonctionne nativement dans certains navigateurs, mais s'appuie sur le repli Flash pour Firefox. Pour tous les exemples, le repli flash est utilisé pour IE 7 et 8, ainsi que les anciennes versions de Firefox.</p>
-
+		<p>Le scénario du lecteur multimédia repose sur l'élément de progrès HTML5 et utilise un polyfill lorsque l'élément n'est pas pris en charge.</p>
 	</div>
 </div>
-<div class="row">
-	<section class="wb-mltmd col-md-6">
-		<h3 class="wb-inv">MPEG4 (H264 + AAC) and WebM(VP8) source and HTML captions</h3>
-		<video poster="http://www.servicecanada.gc.ca/fra/video/images/te-lj-fra.jpg" title="Video Example">
-			<source type="video/webm" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.webm"></source>
-			<source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.mp4"></source>
-			<track src="cpts-lg-fr.html" kind="captions" data-type="text/html" srclang="en" label="Français" />
-			</video>
-			<p><a href="http://www.servicecanada.gc.ca/fra/video/lj.shtml">Transcript</a></p>
-	</section>
-	<section class="wb-mltmd col-md-6">
-		<h3 class="wb-inv">MPEG4 (H264 + AAC) and WebM(VP8) source and HTML captions</h3>
-		<video poster="http://www.servicecanada.gc.ca/fra/video/images/te-lj-fra.jpg" title="Video Example">
-			<source type="video/webm" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.webm"></source>
-			<source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.mp4"></source>
-			<track src="cpts-lg-fr.html" kind="captions" data-type="text/html" srclang="en" label="Français" />
-			</video>
-			<p><a href="http://www.servicecanada.gc.ca/fra/video/lj.shtml">Transcript</a></p>
-	</section>
 
-</div>
-<div class="row">
-	<div class="col-md-12">
-		<h3>MPEG4 (H264 + AAC) Source avec inline légendes HTML</h3>
-		<p lang="en">Cet exemple illustre l'utilisation d'un relevé de notes en ligne pour fournir des légendes. Cet exemple peut également démontrer le mécanisme de secours dans les navigateurs Web qui ne supporte pas les vidéos HTML5.</p>
+<section>
+	<div class="row">
+		<div class="col-md-12">
+			<h2>Exemples</h2>
+			<p>Les deux premiers exemples vidéo utilisent la vidéo HTML5 natif sur la plupart des navigateurs modernes, y compris Firefox 6 +, Google Chrome 3 + et IE9. Le troisième exemple de vidéo fonctionne nativement dans certains navigateurs, mais s'appuie sur le repli Flash pour Firefox. Pour tous les exemples, le repli flash est utilisé pour IE 7 et 8, ainsi que les anciennes versions de Firefox.</p>
+		</div>
 	</div>
-		<section class="wb-mltmd col-md-12">
 
+	<div class="row">
+		<section class="wb-mltmd col-md-6">
+			<h3 class="wb-inv">MPEG4 (H264 + AAC) et WebM (VP8) avec les sous-titres au HTML</h3>
 			<video poster="http://www.servicecanada.gc.ca/fra/video/images/te-lj-fra.jpg" title="Video Example">
 				<source type="video/webm" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.webm"></source>
 				<source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.mp4"></source>
-				<track src="#inline-captions" kind="captions" data-type="text/html" srclang="en" label="Français" />
+				<track src="cpts-lg-fr.html" kind="captions" data-type="text/html" srclang="fr" label="Français" />
 				</video>
+				<p><a href="http://www.servicecanada.gc.ca/fra/video/te.shtml">Transcription</a></p>
+		</section>
+		<section class="wb-mltmd col-md-6">
+			<h3 class="wb-inv">MPEG4 (H264 + AAC) et WebM (VP8) avec les sous-titres au HTML</h3>
+			<video poster="http://www.servicecanada.gc.ca/fra/video/images/dc-td-fra.jpg" title="Video Example">
+				<source type="video/webm" src="http://video2.servicecanada.gc.ca/video/boew-wet/dc-td-fra.webm"></source>
+				<source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/dc-td-fra.mp4"></source>
+				<track src="cpts-lg2-fr.html" kind="captions" data-type="text/html" srclang="fr" label="Français" />
+				</video>
+				<p><a href="http://www.servicecanada.gc.ca/fra/video/dc.shtml">Transcription</a></p>
+		</section>
+	</div>
+	<div class="row">
+		<section class="wb-mltmd col-md-12">
+			<h3>MPEG4 (H264 + AAC) Source avec sous-titre intégré au HTML</h3>
+			<p>Cet exemple illustre l'utilisation d'un relevé de notes en ligne pour fournir des légendes. Cet exemple peut également démontrer le mécanisme de secours dans les navigateurs Web qui ne supporte pas les vidéos HTML5.</p>
+			<video poster="http://www.servicecanada.gc.ca/fra/video/images/te-lj-fra.jpg" title="Video Example">
+				<source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.mp4"></source>
+				<track src="#inline-captions" kind="captions" data-type="text/html" srclang="en" label="Français" />
+			</video>
 			<details id="inline-captions">
 				<summary>Lignes directrices pour les passagers de petits avions - Transcription et Sous-Titres HTML5</summary>
 				<p class="wet-boew-vd"><strong>(La vidéo débute par une image de l&#39;animatrice s&#39;avançant vers la caméra. Un trait rouge suit le texte «&#160;Trouver un emploi&#160;».)</strong></p>
@@ -117,4 +117,5 @@
 				<p class="wet-boew-vd"><strong>(L&#39;écran devient noir.)</strong></p>
 			</details>
 		</section>
-</div>
+	</div>
+</server>

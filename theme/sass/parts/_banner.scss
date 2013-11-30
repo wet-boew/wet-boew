@@ -1,12 +1,40 @@
+/*
+ Banner
+ */
 #wb-bnr {
 	background: #114F7A;
 	background: linear-gradient(#176CA7, #114F7A);
 }
 
+#wb-bar {
+	background: #474747;
+	color: #fff;
+	border-bottom: 1px solid #fff;
+	z-index: 1;
+	min-height: 2.2em;
+	a {
+		color: #fff;
+		text-decoration: none;
+	}
+	ul {
+		float: right;
+		margin: 0;
+		li {
+			border-left: 1px solid #777;
+			list-style-type: none;
+			float: left;
+			padding: 6px 10px;
+			&:first-child {
+				border-left: none;
+			}
+		}
+	}
+}
+	
 #wb-sttl {
 	a {
 		color: #FFF;
-		font-size: 2.1em;
+		font-size: 1.9em;
 		line-height: normal;
 		text-shadow: 1px 1px 1px #333;
 		text-decoration: none;
@@ -20,10 +48,24 @@
 		display: block;
 		font-size: 0.4em;
 	}
-	object {
+	object, img {
 		height: 65px;
 		margin: 9px 15px 9px 0;
 		width: 141px;
 		float: left;
+	}
+}
+
+[dir=rtl] {
+	#wb-bar {
+		ul {
+			float: left;
+		}
+	}
+	#wb-sttl {
+		float: right;
+		object {
+			margin: 9px 0 9px 15px;
+		}
 	}
 }

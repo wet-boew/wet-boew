@@ -6,9 +6,8 @@
  * @author @duboisp
  *
  */
-(function ( $, window, vapour ) {
+(function ( $, window, wb ) {
 "use strict";
-
 
 /*
  * Variable and function definitions. 
@@ -18,64 +17,37 @@
  */
 var wet_boew_charts,
 	selector = ".wb-charts",
-    $document = vapour.doc,
+    $document = wb.doc,
     
     /*
      * Main Entry function to create the charts
      * @method createCharts
      * @param {jQuery DOM element} $elm table element use to create the chart  
      */
-	createCharts = function ($elm) {
+	createCharts = function ( $elm ) {
 		var options = {},
-			i18n = window.i18n,
 			self = $elm,
 			srcTbl = self,
-			smallestHorizontalFlotDelta,
-			smallestVerticalFlotDelta,
 			tblMultiplier = [],
 			calcTick = [],
-			UseHeadRow,
-			uniformCumul,
-			RowDefaultOptions,
-			parsedData,
-			horizontalCalcTick,
-			verticalCalcTick,
 			allSeries = [],
-			isPieChart,
 			dataSeries = [],
 			valueCumul = 0,
-			header,
-			rIndex,
-			i,
-			j,
-			figCaptionElem,
-			tblCaptionHTML,
-			$placeHolder,
-			tblSrcContainer,
-			tblSrcContainerSummary,
-			cellValue,
-			pieLabelFormater,
-			mainFigureElem,
-			_graphclasslen,
-			tblCaptionText,
-			dataGroup,
-			tdOptions,
-			$subFigureElem,
-			$subfigCaptionElem,
-			pieOptions,
 			nbBarChart = 0,
-			barDelta,
-			rowOptions,
-			datacolgroupfound,
-			valuePoint,
-			figureElem,
-			_graphclasslen2,
-			plotParameter,
 			pieChartLabelText = "",
-			$imgContainer;
+			smallestHorizontalFlotDelta, smallestVerticalFlotDelta, useHeadRow,
+			uniformCumul, rowDefaultOptions, parsedData, horizontalCalcTick,
+			verticalCalcTick, isPieChart, header, rIndex, i, j, figCaptionElem,
+			tblCaptionHTML, $placeHolder, tblSrcContainer, tblSrcContainerSummary,
+			cellValue, pieLabelFormater, mainFigureElem, graphClassLen,
+			graphClassLen2, tblCaptionText, dataGroup, tdOptions,
+			$subFigureElem, $subfigCaptionElem, pieOptions, barDelta, rowOptions,
+			dataColGroupFound, valuePoint, figureElem, plotParameter,
+			$imgContainer, i18n, i18nText;
 
 		function colourNameToHex( colour ) {
 			var colours = {
+
 				// HTML colors
 				aliceblue: "#f0f8ff",
 				antiquewhite: "#faebd7",
@@ -246,26 +218,15 @@ var wet_boew_charts,
 			var separatorNS = "",
 				separator = "",
 				autoCreate = false,
-				detectedNamespace,
-				_lenDetectedNamespace,
-				arrClass,
-				parameter,
-				arrParameters,
-				arrParameter,
-				propName,
-				i, _ilen,
-				j,
-				m, _mlen,
-				valIsNext,
-				isVal,
-				arrValue,
 				arrayOverwrite = false,
 				autoCreateMe = false,
-				jsonString,
-				val;
+				detectedNamespace, lenDetectedNamespace, arrClass, parameter,
+				arrParameters, arrParameter, propName, i, iLen, j, m, mLen,
+				valIsNext, isVal, arrValue, jsonString, val;
 
 			// Test: optSource
 			if ( typeof sourceOptions !== "object" ) {
+
 				// Empty source
 				return {};
 			}
@@ -274,15 +235,18 @@ var wet_boew_charts,
 
 			// Test: strClass
 			if ( typeof strClass !== "string" || strClass.length === 0 ) {
+
 				// no string class;
 				return sourceOptions;
 			}
 			// Test: namespace
 			if ( typeof namespace !== "string" || namespace.length === 0 ) {
+
 				// Try to get the default namespace
 				if ( sourceOptions[ "default-namespace" ] && ( typeof sourceOptions[ "default-namespace" ] === "string" || $.isArray( sourceOptions[ "default-namespace" ] ) ) ) {
 					namespace = sourceOptions[ "default-namespace" ];
 				} else {
+
 					// This a not a valid namespace (no namespace)
 					return sourceOptions;
 				}
@@ -293,53 +257,60 @@ var wet_boew_charts,
 			// Get the option separator if defined (optional)
 			separator = ( sourceOptions[ "default-separator" ] && typeof sourceOptions[ "default-separator" ] === "string" ) ? sourceOptions[ "default-separator" ] : " ";
 
-			// Check if the the Auto Json option creation are authorized from class
-			autoCreate = sourceOptions[ "default-autocreate" ]; // Espected returning value True | False
+			// Check if the the Auto JSON option creation are authorized from class
+			// Expected returning value True | False
+			autoCreate = sourceOptions[ "default-autocreate" ];
 			
 			arrClass = strClass.split( separator ); // Get each defined class
-			for ( m = 0, _mlen = arrClass.length; m < _mlen; m +=1 ) {
+			for ( m = 0, mLen = arrClass.length; m < mLen; m +=1 ) {
 				parameter = arrClass[m];
 
 				// Detect the namespace used
-				if ( _lenDetectedNamespace === undefined ) {
+				if ( lenDetectedNamespace === undefined ) {
 					if ( $.isArray( namespace ) ) {
-						for ( i = 0, _ilen = namespace.length; i < _ilen; i += 1 ) {
+						for ( i = 0, iLen = namespace.length; i < iLen; i += 1 ) {
 							detectedNamespace = namespace[i] + separatorNS;
 							if ( parameter.slice( 0, detectedNamespace.length ) ===  detectedNamespace ) {
-								_lenDetectedNamespace = detectedNamespace.length;
+								lenDetectedNamespace = detectedNamespace.length;
 								break;
 							}
 						}
 					} else if ( parameter.slice( 0, namespace.length + separatorNS.length ) ===  namespace + separatorNS ) {
 						detectedNamespace = namespace + separatorNS;
-						_lenDetectedNamespace = detectedNamespace.length;
+						lenDetectedNamespace = detectedNamespace.length;
 					} else if ( namespace === "" ) {
 						detectedNamespace = "";
-						_lenDetectedNamespace = 0;
+						lenDetectedNamespace = 0;
 					}
 				}
 				// Get the parameter without the namespace
-				arrParameters = ( _lenDetectedNamespace !== undefined ) ? parameter.slice( _lenDetectedNamespace ).split( separatorNS ) : [];
+				arrParameters = ( lenDetectedNamespace !== undefined ) ? parameter.slice( lenDetectedNamespace ).split( separatorNS ) : [];
+
 				// Convert the parameter in a controled JSON object
-				if ( arrParameters.length > 0 && parameter.slice( 0, _lenDetectedNamespace ) ===  detectedNamespace ) {
+				if ( arrParameters.length > 0 && parameter.slice( 0, lenDetectedNamespace ) ===  detectedNamespace ) {
+
 					// Get all defined parameter
-					for ( i = 0, _ilen = arrParameters.length; i < _ilen; i += 1 ) {
+					for ( i = 0, iLen = arrParameters.length; i < iLen; i += 1 ) {
 						arrParameter = arrParameters[ i ];
-						valIsNext = i + 2 === _ilen;
-						isVal = i + 1 === _ilen;
+						valIsNext = i + 2 === iLen;
+						isVal = i + 1 === iLen;
+
 						// Check if that is the default value and make a reset to the parameter name if applicable
-						if ( isVal && _ilen ) {
+						if ( isVal && iLen ) {
 							if ( sourceOptions[ arrParameter + "-autocreate" ] || ( sourceOptions[ arrParameter ] &&  sourceOptions[ arrParameter + "-typeof" ] && sourceOptions[ arrParameter + "-typeof" ] === "boolean" ) ) {
+
 								// 1. If match an existing option and that option is boolean
 								arrParameter.push( "true" );
 								propName = arrParameter;
 								i += 1;
-								_ilen = arrParameter.length;
+								iLen = arrParameter.length;
 							} else if ( sourceOptions.preset && sourceOptions.preset[ arrParameter ]) {
+
 								// 2. It match a preset, overide the current setting
 								sourceOptions = jQuery.extend( true, sourceOptions, sourceOptions.preset[ arrParameter ] );
 								break;
-							} else if ( _ilen === 1 ) {
+							} else if ( iLen === 1 ) {
+
 								// 3. Use the Default set
 								propName = sourceOptions[ "default-option" ] ? sourceOptions[ "default-option" ] : undefined;
 							} else {
@@ -348,16 +319,18 @@ var wet_boew_charts,
 						} else if ( !isVal ) {
 							propName = arrParameter;
 						}
+
 						// Get the type of the current option (if available)
 						// (Note: an invalid value are defined by "undefined" value)
 						// Check if the type are defined
 						if  (sourceOptions[ propName + "-typeof" ] ) {
+
 							// Repair the value if needed
 							arrValue = [];
-							for ( j = ( i + 1 ); j < _ilen; j += 1 ) {
+							for ( j = ( i + 1 ); j < iLen; j += 1 ) {
 								arrValue.push( arrParameter[ j ] );
 							}
-							if (i < _ilen - 1) {
+							if (i < iLen - 1) {
 								arrParameter = arrParameters[ i ] = arrValue.join( separatorNS );
 							}
 							valIsNext = false;
@@ -387,23 +360,28 @@ var wet_boew_charts,
 								arrParameter = arrParameters[ i ] = undefined;
 								break;
 							default:
+
 								// that include the case "object"
 								break;
 							}
 						}
+
 						// Get the type of overwritting, default are replacing the value
 						if (sourceOptions[ propName + "-overwrite-array-mode" ] ) {
 							arrayOverwrite = true;
 						}
+
 						// Check if this unique option can be autocreated
 						if ( sourceOptions[ propName + "-autocreate" ] ) {
 							autoCreateMe = true;
 						}
 						if ( valIsNext && arrParameter !== undefined ) {
+
 							// Keep the Property Name
 							propName = arrParameter;
 						} else if ( isVal && arrParameter !== undefined ) {
 							if ( sourceOptions[propName] && arrayOverwrite ) {
+
 								// Already one object defined and array overwriting authorized
 								if ( $.isArray( sourceOptions[ propName ] ) ) {
 									sourceOptions[ propName ].push( arrParameter );
@@ -414,6 +392,7 @@ var wet_boew_charts,
 									sourceOptions[ propName ].push( arrParameter );
 								}
 							} else if ( sourceOptions[ propName ] || autoCreate || autoCreateMe || sourceOptions[ propName ] === 0 || sourceOptions[ propName ] === false) {
+
 								// Set the value by extending the options
 								jsonString = "";
 								if ( typeof arrParameter === "boolean" || typeof arrParameter === "number" ) {
@@ -423,10 +402,14 @@ var wet_boew_charts,
 								}
 								sourceOptions = jQuery.extend(true, sourceOptions, jQuery.parseJSON(jsonString));
 							}
-							i = _ilen; // Make sur we don't iterate again
+
+							// Make sure we don't iterate again
+							i = iLen;
 						} else {
+
 							// Create a sub object
 							if ( arrParameter !== undefined && sourceOptions[ arrParameter ] ) {
+
 								// The object or property already exist, just get the reference of it
 								sourceOptions = sourceOptions[ arrParameter ];
 								propName = arrParameter;
@@ -435,8 +418,10 @@ var wet_boew_charts,
 								sourceOptions = jQuery.extend( true, sourceOptions, jQuery.parseJSON( jsonString ) );
 								sourceOptions = sourceOptions[ arrParameter ];
 							} else {
+
 								// This configuration are rejected
-								i = _ilen; // We don't iterate again
+								// We don't iterate again
+								i = iLen;
 							}
 						}
 					}
@@ -446,10 +431,13 @@ var wet_boew_charts,
 		}
 
 		if ( !window.chartsGraphOpts ){
+
 			// 1. Charts Default Setting
 			options = {
 				"default-namespace": ["wb-charts", "wb-chart", "wb-graph"],
-				"graphclass-autocreate": true, // This add the ability to set custom css class to the figure container.
+
+				// This add the ability to set custom css class to the figure container.
+				"graphclass-autocreate": true,
 				"graphclass-overwrite-array-mode": true,
 				"graphclass-typeof": "string",
 				"noencapsulation-autocreate": true,
@@ -481,6 +469,7 @@ var wet_boew_charts,
 				"bottomvalue-typeof": "number",
 				"bottomvaluenegative-autocreate": true,
 				"bottomvaluenegative-typeof": "boolean",
+
 				// Ticks => Number of ticks for the y-axis
 				"ticks-autocreate": true,
 				"ticks-typeof": "number",
@@ -489,42 +478,75 @@ var wet_boew_charts,
 				// set a decimal precision
 				"decimal-autocreate": true,
 				"decimal-typeof": "number",
-				"pieradius": 100, // Pie radius
+
+				// Pie radius
+				"pieradius": 100,
 				"pieradius-typeof": "number",
-				"pielblradius": 100, // Pie label radius
+
+				// Pie label radius
+				"pielblradius": 100,
 				"pielblradius-typeof": "number",
-				"piethreshold-autocreate": true, // Hides the labels of any pie slice that is smaller than the specified percentage (ranging from 0 to 100)
+
+				// Hides the labels of any pie slice that is smaller than
+				// the specified percentage (ranging from 0 to 100)
+				"piethreshold-autocreate": true,
 				"piethreshold-typeof": "number",
-				"pietilt-autocreate": true, // Percentage of tilt ranging from 0 and 100, where 100 has no change (fully vertical) and 0 is completely flat (fully horizontal -- in which case nothing actually gets drawn)
+				
+				// Percentage of tilt ranging from 0 and 100, where 100 has
+				// no change (fully vertical) and 0 is completely flat
+				// (fully horizontal -- in which case nothing actually gets drawn)
+				"pietilt-autocreate": true, 
 				"pietilt-typeof": "number",
-				"pieinnerradius-autocreate": true, // Sets the radius of the donut hole. If value is between 0 and 100 (inclusive) then it will use that as a percentage of the radius, otherwise it will use the value as a direct pixel length.
+
+				// Sets the radius of the donut hole. If value is between
+				// 0 and 100 (inclusive) then it will use that as a percentage of
+				// the radius, otherwise it will use the value as a direct pixel length.
+				"pieinnerradius-autocreate": true,
 				"pieinnerradius-typeof": "number",
-				"piestartangle-autocreate": true, // Factor of PI used for the starting angle (in radians) It can range between 0 and 200 (where 0 and 200 have the same result).
+
+				// Factor of PI used for the starting angle (in radians) It can range
+				// between 0 and 200 (where 0 and 200 have the same result).
+				"piestartangle-autocreate": true,
 				"piestartangle-typeof": "number",
-				"piehighlight-autocreate": true, //  Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
+
+				// Opacity of the highlight overlay on top of the current pie slice.
+				// (Range from 0 to 100) Currently this just uses a white overlay,
+				// but support for changing the color of the overlay will also be
+				// added at a later date.
+				"piehighlight-autocreate": true,
 				"piehighlight-typeof": "number",
 				"piehoverable-autocreate": true, // Hoverable pie slice
 				"piehoverable-typeof": "boolean",
 
 				// General option
-				"default-option": "type", // Default CSS Options
+				// Default CSS Options
+				"default-option": "type",
+
 				// Graph Type
-				type: "bar", // this be one of or an array of: area, pie, line, bar, stacked
+				// this be one of or an array of: area, pie, line, bar, stacked
+				type: "bar",
 				"type-autocreate": true,
+
 				//
 				// Graph Layout
 				//
-				width: $elm.width(), // width of canvas - defaults to table height
+				// width of canvas - defaults to table height
+				width: $elm.width(),
 				"width-typeof": "number",
-				height: $elm.height(), // height of canvas - defaults to table height
+
+				// height of canvas - defaults to table height
+				height: $elm.height(),
 				"height-typeof": "number",
+
 				//
 				// Data Table and Graph Orientation
 				//
-				parsedirection: "x", // which direction to parse the table data
+				// which direction to parse the table data
+				parsedirection: "x",
 				"parsedirection-typeof": "string",
 				"parsedirection-autocreate": true,
 				getcellvalue: function( elem ) {
+
 					// Parameter: elem = HTML DOM node (td element)
 					//
 					// If this function return an array, it would be assume that the first item correspond at the cell numbered value and the second item correspond at the cell unit
@@ -543,7 +565,8 @@ var wet_boew_charts,
 				},
 				preset: {
 					donnut: {
-						// Donnut setting
+
+						// Donut setting
 						type: "pie",
 						height: 250,
 						percentlegend: true,
@@ -572,19 +595,24 @@ var wet_boew_charts,
 
 			// 2. Global "setting.js"
 			if ( typeof wet_boew_charts !== "undefined" ) {
+
 				// a. if exisit copy and take care of preset separatly (Move away before extending)
 				if ( wet_boew_charts.preset ) {
 					window.chartsGraphOpts = jQuery.extend( true, {}, wet_boew_charts.preset );
 					delete wet_boew_charts.preset;
 				}
+
 				// b. Overwrite the chart default setting
 				$.extend( true, options, wet_boew_charts );
+
 				// c. Separatly extend the preset to at the current chart default seting
 				if ( window.chartsGraphOpts ) {
 					$.extend( true, options.preset, window.chartsGraphOpts );
 				}
 			}
-			window.chartsGraphOpts = options; // ---- Save the setting here in a case of a second graphic on the same page
+
+			// ---- Save the setting here in a case of a second graphic on the same page
+			window.chartsGraphOpts = options;
 		}
 		options = window.chartsGraphOpts;
 		options.height = $elm.height();
@@ -594,11 +622,13 @@ var wet_boew_charts,
 		options.width = options.width | 250;
 		options.height = options.height | 250;
 
-		// 3. [Table element] CSS Overwrite - [Keep a list of required plugin "defaultnamespace-plugin" eg. wb-charts-donnut]
+		// 3. [Table element] CSS Overwrite - [Keep a list of required plugin
+		// "defaultnamespace-plugin" eg. wb-charts-donnut]
 		options = setClassOptions( options, ( self.attr( "class" ) !== undefined ? self.attr( "class" ) : "" ) );
 
 		// 4. [Table element] HTML5 Data Overwrite property
 		for ( i in self.data() ){
+
 			// Check if the prefix "wbcharts" is used
 			if ( i.slice( 0, 8 ) === "wbcharts" ) {
 				options[ i.slice( 8 ) ] = self.data()[ i ];
@@ -613,16 +643,9 @@ var wet_boew_charts,
 		// Add headers information to the table parsed data structure
 		// Similar sample of code as the HTML Table validator
 		function addTblHeaders( tblparser ) {
-			var i, j, k, m, currRow, currCell,
-				rowheadersgroup,
-				rowheaders,
-				currrowheader,
-				ongoingRowHeader,
-				coldataheader,
-				currCol,
-				colheaders,
-				colheadersgroup,
-				childLength;
+			var i, j, k, m, currRow, currCell, rowHeadersGroup, rowHeaders,
+				currRowHeader, ongoingRowHeader, colDataHeader, currCol,
+				colHeaders, colHeadersgroup, childLength;
 
 			// Set ID and Header for the table head
 			for ( i = 0; i < tblparser.theadRowStack.length; i += 1 ) {
@@ -636,17 +659,21 @@ var wet_boew_charts,
 							!( i > 0 && currCell.uid === tblparser.theadRowStack[ i - 1 ].cell[ j ].uid )
 						) ) {
 
-						// Imediate header
+						// Immediate header
 						currCell.header = currCell.header || [];
+
 						// all the headers
 						currCell.headers = currCell.headers || [];
+
 						// Imediate sub cell
 						currCell.child = currCell.child || [];
+
 						// All the sub cell
 						currCell.childs = currCell.childs || [];
 
 						// Set the header of the current cell if required
 						if ( i > 0 ) {
+
 							// All the header cells
 							for ( k = 0; k < tblparser.theadRowStack[ i - 1 ].cell[ j ].header.length; k += 1 ) {
 								currCell.headers.push( tblparser.theadRowStack[ i - 1 ].cell[ j ].header[ k ]);
@@ -658,46 +685,43 @@ var wet_boew_charts,
 							tblparser.theadRowStack[ i - 1 ].cell[ j ].child.push( currCell );
 						}
 
-
 						// Set the header on his descriptive cell if any
 						if ( currCell.descCell ) {
 							currCell.descCell.header = currCell;
 							currCell.descCell.headers = currCell;
 						}
 					}
-
 				}
-
 			}
 
 			// Set Id/headers for header cell and data cell in the table.
 			for ( i = 0; i < tblparser.row.length; i += 1 ) {
 				currRow = tblparser.row[ i ];
-				rowheadersgroup = [];
-				rowheaders = [];
-				currrowheader = [];
+				rowHeadersGroup = [];
+				rowHeaders = [];
+				currRowHeader = [];
 				ongoingRowHeader = [];
-				coldataheader = [];
+				colDataHeader = [];
 
 				// Get or Generate a unique ID for each header in this row
 				if ( currRow.headerset && !currRow.idsheaderset ) {
 					for ( j = 0; j < currRow.headerset.length; j += 1 ) {
-						rowheadersgroup = rowheadersgroup.concat( currRow.headerset[ j ] );
+						rowHeadersGroup = rowHeadersGroup.concat( currRow.headerset[ j ] );
 					}
-					currRow.idsheaderset = rowheadersgroup;
+					currRow.idsheaderset = rowHeadersGroup;
 				}
 
 				if ( currRow.header ) {
 					for ( j = 0; j < currRow.header.length; j += 1 ) {
-						rowheaders = rowheaders.concat( currRow.header[ j ] );
+						rowHeaders = rowHeaders.concat( currRow.header[ j ] );
 					}
 				}
-				rowheaders = currRow.idsheaderset.concat( rowheaders );
+				rowHeaders = currRow.idsheaderset.concat( rowHeaders );
 				for (j = 0; j < currRow.cell.length; j += 1) {
 
 					if ( ( j === 0 ) || ( j > 0 && currRow.cell[ j ].uid !== currRow.cell[ ( j - 1 ) ].uid ) ){
 						currCell = currRow.cell[ j ];
-						coldataheader = [];
+						colDataHeader = [];
 
 						if ( !currCell.header ) { // Imediate header
 							currCell.header = [];
@@ -709,16 +733,16 @@ var wet_boew_charts,
 
 						if ( currCell.col && !currCell.col.dataheader ) {
 							currCol = currCell.col;
-							colheaders = [];
-							colheadersgroup = [];
+							colHeaders = [];
+							colHeadersgroup = [];
 							if ( currCol.headerLevel ) {
 								for ( m = 0; m < currCol.headerLevel.length; m += 1 ) {
-									colheadersgroup = colheadersgroup.concat( currCol.headerLevel[ m ] );
+									colHeadersgroup = colHeadersgroup.concat( currCol.headerLevel[ m ] );
 								}
 							}
 							if ( currCol.header ) {
 								for ( m = 0; m < currCol.header.length; m += 1 ) {
-									colheaders = colheaders.concat( currCol.header[ m ] );
+									colHeaders = colHeaders.concat( currCol.header[ m ] );
 								}
 							}
 
@@ -726,12 +750,12 @@ var wet_boew_charts,
 								currCol.dataheader = [];
 							}
 
-							currCol.dataheader = currCol.dataheader.concat( colheadersgroup );
-							currCol.dataheader = currCol.dataheader.concat( colheaders );
+							currCol.dataheader = currCol.dataheader.concat( colHeadersgroup );
+							currCol.dataheader = currCol.dataheader.concat( colHeaders );
 						}
 
 						if ( currCell.col && currCell.col.dataheader ) {
-							coldataheader = currCell.col.dataheader;
+							colDataHeader = currCell.col.dataheader;
 						}
 
 
@@ -763,7 +787,7 @@ var wet_boew_charts,
 
 							currCell.header = currCell.header.concat( ongoingRowHeader );
 
-							currCell.headers = currCell.headers.concat( coldataheader );
+							currCell.headers = currCell.headers.concat( colDataHeader );
 							currCell.headers = currCell.headers.concat( currRow.idsheaderset );
 							currCell.headers = currCell.headers.concat( ongoingRowHeader );
 
@@ -774,22 +798,22 @@ var wet_boew_charts,
 						if ( currCell.type === 2 || currCell.type === 3 ) {
 
 							// Get Current Column Headers
-							currrowheader = rowheaders;
+							currRowHeader = rowHeaders;
 
-							if ( currCell.addcolheaders ) {
-								for ( m = 0; m < currCell.addcolheaders.length; m += 1 ) {
-									coldataheader = coldataheader.concat( currCell.addcolheaders[m] );
+							if ( currCell.addcolHeaders ) {
+								for ( m = 0; m < currCell.addcolHeaders.length; m += 1 ) {
+									colDataHeader = colDataHeader.concat( currCell.addcolHeaders[m] );
 								}
 							}
 
-							if ( currCell.addrowheaders ) {
-								for ( m = 0; m < currCell.addrowheaders.length; m += 1 ) {
-									currrowheader = currrowheader.concat( currCell.addrowheaders[ m ] );
+							if ( currCell.addrowHeaders ) {
+								for ( m = 0; m < currCell.addrowHeaders.length; m += 1 ) {
+									currRowHeader = currRowHeader.concat( currCell.addrowHeaders[ m ] );
 								}
 							}
 
-							currCell.headers = currCell.headers.concat( coldataheader );
-							currCell.headers = currCell.headers.concat( currrowheader );
+							currCell.headers = currCell.headers.concat( colDataHeader );
+							currCell.headers = currCell.headers.concat( currRowHeader );
 
 							currCell.header = currCell.headers;
 						}
@@ -830,7 +854,7 @@ var wet_boew_charts,
 				internalCumul = internalCumul + flotDelta;
 				parsedDataCell.child[ kIndex ].flotValue = internalCumul;
 
-				if (headerlevel === UseHeadRow) {
+				if (headerlevel === useHeadRow) {
 					calcTick.push( [ ( parsedDataCell.child[ kIndex ].flotValue - flotDelta ), $( parsedDataCell.child[ kIndex ].elem ).text() ] );
 				}
 				if ( parsedDataCell.child[ kIndex ].child.length > 0 ){
@@ -887,13 +911,14 @@ var wet_boew_charts,
 			// Get the tick
 			//
 			// From an option that would choose the appropriate row.
-			// UseHeadRow get a number that represent the row to use to draw the label
+			// useHeadRow get a number that represent the row to use to draw the label
 
-			UseHeadRow = parsedData.colgrouphead.col.length - 1;
+			useHeadRow = parsedData.colgrouphead.col.length - 1;
 
 			calcTick = [];
 
 			headerlevel = 0;
+
 			// Set the associate tick value along with the headers
 			for ( i = 0; i < parsedData.colgrouphead.col[ 0 ].cell.length; i += 1 ) {
 
@@ -918,9 +943,9 @@ var wet_boew_charts,
 						cumulFlotValue += parsedDataCell.flotDelta;
 
 						parsedDataCell.flotValue = cumulFlotValue;
-						if (headerlevel === UseHeadRow ||
+						if (headerlevel === useHeadRow ||
 
-							( ( parsedDataCell.colpos - 1 ) < UseHeadRow && UseHeadRow <= ( ( parsedDataCell.colpos - 1 ) + ( parsedDataCell.width - 1 ) ) ) ){
+							( ( parsedDataCell.colpos - 1 ) < useHeadRow && useHeadRow <= ( ( parsedDataCell.colpos - 1 ) + ( parsedDataCell.width - 1 ) ) ) ){
 							calcTick.push( [ ( parsedDataCell.flotValue - parsedDataCell.flotDelta ), $( parsedDataCell.elem ).text() ] );
 						}
 
@@ -965,7 +990,7 @@ var wet_boew_charts,
 			for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
 				parsedDataCell.child[ kIndex ].flotDelta = flotDelta;
 
-				if ( headerlevel === UseHeadRow ) {
+				if ( headerlevel === useHeadRow ) {
 					calcTick.push( [ !options.uniformtick ? internalCumul : uniformCumul, $( parsedDataCell.child[ kIndex ].elem ).text() ] );
 				}
 
@@ -987,6 +1012,7 @@ var wet_boew_charts,
 
 		// Determine an appropriate tick for the rowgroup head (thead)
 		function calculateHorisontalTick( parsedData ) {
+
 			// Find the range of the first data colgroup
 			var dataColgroupStart = -1,
 				dataColgroupEnd = -1,
@@ -1016,6 +1042,7 @@ var wet_boew_charts,
 				parsedDataCell = $( parsedData.theadRowStack[ 0 ].elem.cells[ i ] ).data().tblparser;
 
 				if ( parsedDataCell.colgroup && parsedDataCell.colgroup.type === 3 ) {
+
 					// We only process the first column data group
 					break;
 				}
@@ -1040,21 +1067,23 @@ var wet_boew_charts,
 			// Get the tick
 			//
 			// From an option that would choose the appropriate row.
-			// UseHeadRow get a number that represent the row to use to draw the label
+			// useHeadRow get a number that represent the row to use to draw the label
 
-			UseHeadRow = ( !options.labelposition || ( options.labelposition && options.labelposition > parsedData.theadRowStack.length ) ? parsedData.theadRowStack.length : options.labelposition ) - 1;
+			useHeadRow = ( !options.labelposition || ( options.labelposition && options.labelposition > parsedData.theadRowStack.length ) ? parsedData.theadRowStack.length : options.labelposition ) - 1;
 
 			calcTick = [];
 
 			uniformCumul = 0;
 
 			headerlevel = 0;
+
 			// Set the associate tick value along with the headers
 			for ( i = 0; i < parsedData.theadRowStack[ 0 ].elem.cells.length; i += 1 ) {
 
 				parsedDataCell = $( parsedData.theadRowStack[ 0 ].elem.cells[ i ]).data().tblparser;
 
 				if ( parsedDataCell.colgroup && parsedDataCell.colgroup.type === 3 ) {
+
 					// We only process the first column data group
 					break;
 				}
@@ -1069,7 +1098,7 @@ var wet_boew_charts,
 					}
 					parsedDataCell.flotValue = cumulFlotValue;
 
-					if ( headerlevel === UseHeadRow || ( ( parsedDataCell.rowpos - 1 ) < UseHeadRow && UseHeadRow <= ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) ) {
+					if ( headerlevel === useHeadRow || ( ( parsedDataCell.rowpos - 1 ) < useHeadRow && useHeadRow <= ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) ) {
 						calcTick.push( [ ( !options.uniformtick ? cumulFlotValue : uniformCumul ), $( parsedDataCell.elem ).text() ] );
 					}
 
@@ -1095,23 +1124,18 @@ var wet_boew_charts,
 
 		// Function to switch the series order, like make it as vertical series to horizontal series (see Task #2997)
 		function swapTable() {
+
 			// function swapTable for request #2799, transforming horizontal table to virtical table;
 			// Government of Canada. Contact Qibo or Pierre for algorithm info and bug-fixing;
 			// important table element: id or class, th;
 			var sMatrix = [],
 				i = 0,
-				_ilen,
 				j = 0,
 				capVal = "Table caption tag is missing",
 				maxRowCol = 10, //basic;
 				s = 0,
-				t,
 				tMatrix = [],
-				swappedTable,
-				html2,
-				headStr,
-				arr,
-				tr;
+				iLen, t, swappedTable, html2, headStr, arr, tr;
 			capVal =  $( "caption", srcTbl ).text();
 			$( "tr ", srcTbl ).each( function () {
 				maxRowCol += 1;
@@ -1122,11 +1146,13 @@ var wet_boew_charts,
 							$this.attr( "colspan", 1 );
 						}
 						maxRowCol += Number( $this.attr( "colspan" ) );
+
 						// block change, 20120118 fix for defect #3226, jquery 1.4 problem about colspan attribute, qibo;
 					});
 				}
 				s += 1;
 			} );
+
 			// prepare the place holding matrix;
 			for ( s = 0; s < maxRowCol; s += 1 ) {
 				tMatrix[ s ] = [];
@@ -1166,15 +1192,22 @@ var wet_boew_charts,
 						stopCol = j + attrCol - 1;
 						for ( jj = j; jj <= stopCol; jj += 1 ) {
 							for ( ii = i; ii <= stopRow; ii += 1 ) {
-								tMatrix[ ii ][ jj ] = 3; //random number as place marker;
+
+								// random number as place marker;
+								tMatrix[ ii ][ jj ] = 3;
 							}
 						}
 					} else if ( attrRow > 1 ) {
 						for ( ii = i; ii <= stopRow; ii += 1 ) {
-							tMatrix[ ii ][ j ] = 3; // place holder;
+
+							// placeholder;
+							tMatrix[ ii ][ j ] = 3;
 						}
 					}
-					ss1 = $this.clone(); // have a copy of it, not destroying the look of the original table;
+
+					// have a copy of it, not destroying the look of the original table;
+					ss1 = $this.clone();
+
 					// transforming rows and cols and their properties;
 					ss1.attr( "colspan", attrRow );
 					ss1.attr( "rowspan", attrCol );
@@ -1183,6 +1216,7 @@ var wet_boew_charts,
 				} );
 				i += 1;
 			} );
+
 			// now creating the swapped table from the transformed matrix;
 			swappedTable = $( "<table>" );
 			$.each( sMatrix, function ( s ) {
@@ -1192,6 +1226,7 @@ var wet_boew_charts,
 					oneRow.append( val );
 				} );
 			} );
+
 			// now adding the missing thead;
 			html2 = swappedTable.html();
 			headStr = "<table id=\"swappedGraph\">" + "<caption>" + capVal + " (Horizontal to Vertical)</caption><thead>";
@@ -1200,7 +1235,7 @@ var wet_boew_charts,
 			html2 = html2.replace( /\n/g, "" );
 			html2 = html2.replace( /<tr/gi, "\n<tr" );
 			arr = html2.split( "\n" );
-			for ( i = 0, _ilen = arr.length; i < _ilen; i += 1 ) {
+			for ( i = 0, iLen = arr.length; i < iLen; i += 1 ) {
 				tr = arr[ i ];
 				if ( tr.match( /<td/i ) !== null ) {
 					arr[ i ] = "</thead><tbody>" + tr;
@@ -1208,7 +1243,9 @@ var wet_boew_charts,
 				}
 			}
 			html2 = arr.join( "\n" );
-			$( html2 ).insertAfter( srcTbl ); // .hide(); //visible, for debugging and checking;
+
+			// .hide(); //visible, for debugging and checking;
+			$( html2 ).insertAfter( srcTbl );
 			return $( html2 );
 		}
 
@@ -1221,7 +1258,7 @@ var wet_boew_charts,
 				.removeClass( "wb-charts-parsedirection-y" );
 			
 			// Re-lunch the parsing
-			vapour.doc.trigger( {
+			wb.doc.trigger( {
 				type: "pasiveparse.wb-table.wb",
 				pointer: $( self )
 			} );
@@ -1238,7 +1275,7 @@ var wet_boew_charts,
 */
 
 
-		RowDefaultOptions = {
+		rowDefaultOptions = {
 			"default-option": "type", // Default CSS Options
 			"default-namespace": ["wb-charts", "wb-chart", "wb-graph"],
 			"type-autocreate": true,
@@ -1265,6 +1302,7 @@ var wet_boew_charts,
 		calcTick = horizontalCalcTick;
 
 		if ( options.type === "pie" ) {
+
 			// Use Reverse table axes
 			// Create a chart/ place holder, by series
 			mainFigureElem = $( "<figure />" ).insertAfter( srcTbl );
@@ -1278,16 +1316,18 @@ var wet_boew_charts,
 					textlabel = textlabel / Math.pow( 10, options.decimal );
 				}
 				if ( options.nolegend ) {
+
 					// Add the series label
-					textlabel = label + "<br/>" + textlabel;
+					textlabel = label + "<br />" + textlabel;
 				}
 				return textlabel + "%";
 			};
+
 			// Default
 			mainFigureElem.addClass("wb-charts");
 			if ( options.graphclass ) {
 				if ( $.isArray( options.graphclass ) ) {
-					for ( i = 0, _graphclasslen = options.graphclass.length; i < _graphclasslen; i += 1 ) {
+					for ( i = 0, graphClassLen = options.graphclass.length; i < graphClassLen; i += 1 ) {
 						mainFigureElem.addClass( options.graphclass[ i ] );
 					}
 				} else {
@@ -1314,12 +1354,11 @@ var wet_boew_charts,
 					// For each cells
 					for( j = 0; j < dataGroup.col[i].cell.length; j += 1 ){
 
-
 						if( dataGroup.col[ i ].cell[ j ].rowgroup.type !== 2 || ( j > 0 && dataGroup.col[ i ].cell[ j -1 ].rowgroup.uid !== dataGroup.col[ i ].cell[ j ].rowgroup.uid ) ) {
 							break;
 						}
 
-						// Get"s the value
+						// Gets the value
 						header = dataGroup.col[ i ].cell[ j ].row.header;
 
 						cellValue = options.getcellvalue( dataGroup.col[ i ].cell[ rIndex ].elem );
@@ -1334,7 +1373,7 @@ var wet_boew_charts,
 
 						break;
 					}
-					tdOptions = setClassOptions( RowDefaultOptions,
+					tdOptions = setClassOptions( rowDefaultOptions,
 						( $( dataGroup.col[ i ].cell[ rIndex ].elem ).attr( "class" ) !== undefined ?
 							$( dataGroup.col[ i ].cell[ rIndex ].elem ).attr( "class" ) :
 							""
@@ -1366,6 +1405,7 @@ var wet_boew_charts,
 					$(mainFigureElem).append($imgContainer);
 
 				} else {
+
 					// Use a sub container
 					$subFigureElem = $( "<figure />" ).appendTo( mainFigureElem );
 					$subfigCaptionElem = $( "<figcaption />" );
@@ -1388,8 +1428,9 @@ var wet_boew_charts,
 
 
 				$imgContainer.attr( "role", "img" );
+
 				// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
-				$imgContainer.attr( "aria-label", pieChartLabelText + " " + i18n( "%table-following" ) ); // "Chart. Details in table following."
+				$imgContainer.attr( "aria-label", pieChartLabelText + " " + i18n( "%table-following" ) );
 
 				//
 				// Pie Charts Options
@@ -1401,10 +1442,12 @@ var wet_boew_charts,
 						}
 					}
 				};
+
 				// Hide the legend,
 				if ( options.nolegend ) {
 					pieOptions.legend = { show: false };
 				}
+
 				// Add pie chart percentage label on slice
 				if ( options.percentlegend ) {
 					pieOptions.series.pie.radius = options.pieradius / 100;
@@ -1413,27 +1456,33 @@ var wet_boew_charts,
 						radius: options.pielblradius / 100,
 						formatter: pieLabelFormater
 					};
+
 					// Hides the labels of any pie slice that is smaller than the specified percentage (ranging from 0 to 100)
 					if ( options.piethreshold ) {
 						pieOptions.series.pie.label.threshold = options.piethreshold / 100;
 					}
 				}
+
 				// Percentage of tilt ranging from 0 and 100, where 100 has no change (fully vertical) and 0 is completely flat (fully horizontal -- in which case nothing actually gets drawn)
 				if ( options.pietilt ) {
 					pieOptions.series.pie.tilt = options.pietilt / 100;
 				}
+
 				// Sets the radius of the donut hole. If value is between 0 and 100 (inclusive) then it will use that as a percentage of the radius, otherwise it will use the value as a direct pixel length.
 				if ( options.pieinnerradius ) {
 					pieOptions.series.pie.innerRadius = options.pieinnerradius / 100;
 				}
+
 				// Factor of PI used for the starting angle (in radians) It can range between 0 and 200 (where 0 and 200 have the same result).
 				if ( options.piestartangle ) {
 					pieOptions.series.pie.startAngle = options.piestartangle / 100;
 				}
+
 				//	Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
 				if ( options.piehighlight ) {
 					pieOptions.series.pie.highlight = options.piehighlight / 100;
 				}
+
 				// hoverable
 				if ( options.piehoverable ) {
 					pieOptions.grid = {
@@ -1445,6 +1494,7 @@ var wet_boew_charts,
 				$.plot( $placeHolder, allSeries, pieOptions );
 
 				if ( !options.legendinline ) {
+
 					// Move the legend under the graphic
 					$( ".legend > div", $placeHolder ).remove();
 					$( ".legend > table", $placeHolder ).removeAttr( "style" ).addClass( "font-small" );
@@ -1457,13 +1507,16 @@ var wet_boew_charts,
 				allSeries = [];
 			}
 
-			if ( !options.noencapsulation ) { // eg of use:	wb-charts-noencapsulation-true
+			// eg of use:	wb-charts-noencapsulation-true
+			if ( !options.noencapsulation ) {
+
 				// Use a details/summary to encapsulate the table
 				// Add a aria label to the table element, build from his caption prepend the word " Table"
 				// For the details summary, use the table caption prefixed with Table.
 				tblSrcContainer = $( "<details />" );
 				tblSrcContainerSummary = $( "<summary />" );
 				$( tblSrcContainer ).appendTo( mainFigureElem );
+
 				// set the title for the ability to show or hide the table as a data source
 				$( tblSrcContainerSummary ).text( tblCaptionHTML + " " + i18n( "%table-mention" ) )
 					.appendTo( tblSrcContainer )
@@ -1471,6 +1524,7 @@ var wet_boew_charts,
 
 
 			} else {
+
 				// Move the table inside the figure element
 				$( srcTbl ).appendTo( mainFigureElem );
 			}
@@ -1484,7 +1538,7 @@ var wet_boew_charts,
 
 		// Count nbBarChart,
 		for ( i = 0; i < parsedData.lstrowgroup[ 0 ].row.length; i++ ) {
-			rowOptions = setClassOptions( RowDefaultOptions,
+			rowOptions = setClassOptions( rowDefaultOptions,
 			( $ ( parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].elem ).attr( "class" ) !== undefined ?
 			$( parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].elem ).attr( "class" ) : "" ) );
 
@@ -1505,7 +1559,7 @@ var wet_boew_charts,
 		// For all row....
 		for ( i = 0; i < parsedData.lstrowgroup[ 0 ].row.length; i++ ) {
 			dataSeries = [];
-			datacolgroupfound = 0;
+			dataColGroupFound = 0;
 			valueCumul = 0;
 
 			rowOptions = parsedData.lstrowgroup[ 0 ].row[ i ].header[ parsedData.lstrowgroup[ 0 ].row[ i ].header.length - 1 ].chartOption;
@@ -1513,7 +1567,7 @@ var wet_boew_charts,
 			// For each cells
 			for( j = 0; j < parsedData.lstrowgroup[ 0 ].row[ i ].cell.length; j++ ){
 
-				if( datacolgroupfound > 1 && parsedData.lstrowgroup[ 0 ].row[ i ].cell[ j ].col.groupstruct.type !== 2 ){
+				if( dataColGroupFound > 1 && parsedData.lstrowgroup[ 0 ].row[ i ].cell[ j ].col.groupstruct.type !== 2 ){
 					break;
 				}
 
@@ -1525,13 +1579,13 @@ var wet_boew_charts,
 
 					// Bar chart case, re-evaluate the calculated point
 					if ( barDelta && rowOptions.chartBarOption ) {
+
 						// Position bar
 						valuePoint = valueCumul - ( smallestHorizontalFlotDelta / 2 )  + ( smallestHorizontalFlotDelta / nbBarChart * ( rowOptions.chartBarOption - 1) );
 
 						if ( nbBarChart === 1 ) {
 							valuePoint = valueCumul;
 						}
-
 					}
 
 					cellValue = options.getcellvalue( parsedData.lstrowgroup[ 0 ].row[ i ].cell[ j ].elem);
@@ -1544,14 +1598,13 @@ var wet_boew_charts,
 						]
 					);
 					valueCumul += header[ header.length - 1 ].flotDelta;
-					datacolgroupfound++;
+					dataColGroupFound++;
 				}
 			}
 
 
 
 			// Get the graph type
-
 			if ( !rowOptions.type ) {
 				rowOptions.type = options.type;
 			}
@@ -1583,7 +1636,6 @@ var wet_boew_charts,
 						align: "center"
 					}
 				} );
-
 			} else if ( rowOptions.type === "stacked" ) {
 				allSeries.push( {
 					data: dataSeries,
@@ -1610,10 +1662,11 @@ var wet_boew_charts,
 
 		figureElem = $( "<figure />" ).insertAfter( srcTbl );
 
-		figureElem.addClass( "wb-charts" ); // Default
+		// Default
+		figureElem.addClass( "wb-charts" );
 		if ( options.graphclass ) {
 			if ( $.isArray( options.graphclass ) ) {
-				for ( i = 0, _graphclasslen2 = options.graphclass.length; i < _graphclasslen2; i += 1 ) {
+				for ( i = 0, graphClassLen2 = options.graphclass.length; i < graphClassLen2; i += 1 ) {
 					figureElem.addClass( options.graphclass[ i ] );
 				}
 			} else {
@@ -1637,23 +1690,27 @@ var wet_boew_charts,
 
 
 		$placeHolder.attr( "role", "img" );
+
 		// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
 		$placeHolder.attr( "aria-label", $( "caption", srcTbl ).text() + " " + i18n( "%table-following" ) ); // "Chart. Details in table following."
 
+		// eg of use:	wb-charts-noencapsulation-true
+		if ( !options.noencapsulation ) {
 
-		if ( !options.noencapsulation ) { // eg of use:	wb-charts-noencapsulation-true
 			// Use a details/summary to encapsulate the table
 			// Add a aria label to the table element, build from his caption prepend the word " Table"
 			// For the details summary, use the table caption prefixed with Table.
 			tblSrcContainer = $( "<details />" );
 			tblSrcContainerSummary = $( "<summary />" );
 			$( tblSrcContainer ).appendTo( figureElem );
+
 			// set the title for the ability to show or hide the table as a data source
 			$( tblSrcContainerSummary ).text( tblCaptionHTML + " " + i18n( "%table-mention" ) )
 				.appendTo( tblSrcContainer )
 				.after( srcTbl );
 
 		} else {
+
 			// Move the table inside the figure element
 			$( srcTbl ).appendTo( figureElem );
 		}
@@ -1693,12 +1750,14 @@ var wet_boew_charts,
 
 
 		if ( !options.legendinline ) {
+
 			// Move the legend under the graphic
 			$( ".legend > div", $placeHolder ).remove();
 			$( ".legend > table", $placeHolder ).removeAttr( "style" ).addClass( "font-small" );
 			$placeHolder.css( "height", "auto" );
 		}
 		if ( options.nolegend ) {
+
 			// Remove the legend
 			$( ".legend", $placeHolder ).remove();
 		}
@@ -1719,9 +1778,9 @@ var wet_boew_charts,
      * @param {jQuery DOM element} $elm The plugin element being initialized
      */
 	init = function( $elm ) {
-		window._timer.remove( selector );
+		wb.remove( selector );
 		
-		var modeJS = vapour.getMode() + ".js";
+		var modeJS = wb.getMode() + ".js";
 			
 		// Load the required dependencies and prettify the code once finished
 		window.Modernizr.load({
@@ -1767,6 +1826,6 @@ $document.on( "timerpoke.wb parsecomplete.wb-table.wb", selector, function( even
 });
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );

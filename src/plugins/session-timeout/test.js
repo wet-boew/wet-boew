@@ -7,7 +7,7 @@
  */
 /* global jQuery, describe, it, expect, before, after, sinon */
 /* jshint unused:vars */
-(function( $, vapour ) {
+(function( $, wb ) {
 
 /*
  * Create a suite of related test cases using `describe`. Test suites can also be
@@ -46,7 +46,7 @@ describe( "Session Timeout test suite", function() {
 				done();
 			});
 
-		vapour.doc.on( "show.wb-modal", function() {
+		wb.doc.on( "show.wb-modal", function() {
 			$( ".wb-session-timeout-confirm.btn-primary" ).trigger( "click" );
 		});
 	});
@@ -144,7 +144,7 @@ describe( "Session Timeout test suite", function() {
 
 		it( "should trigger keepalive.wb-session-timeout on document click", function() {
 			clock.tick( 42010 );
-			vapour.doc.trigger( "click" );
+			wb.doc.trigger( "click" );
 			expect( spies.trigger.calledWith( "keepalive.wb-session-timeout" ) ).to.equal( true );
 		});
 
@@ -159,7 +159,7 @@ describe( "Session Timeout test suite", function() {
 		it( "should not trigger keepalive.wb-session-timeout on document click (refresh limit prevents)", function() {
 			spies.trigger.reset();
 
-			vapour.doc.trigger( "click" );
+			wb.doc.trigger( "click" );
 			expect( spies.trigger.calledWith( "keepalive.wb-session-timeout" ) ).to.equal( false );
 		});
 
@@ -167,7 +167,7 @@ describe( "Session Timeout test suite", function() {
 			spies.trigger.reset();
 			clock.tick( 42010 );
 
-			vapour.doc.trigger( "click" );
+			wb.doc.trigger( "click" );
 			expect( spies.trigger.calledWith( "keepalive.wb-session-timeout" ) ).to.equal( true );
 		});
 	});
@@ -210,4 +210,4 @@ describe( "Session Timeout test suite", function() {
 
 });
 
-}( jQuery, vapour ));
+}( jQuery, wb ));

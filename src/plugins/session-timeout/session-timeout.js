@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-(function( $, window, document, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -14,7 +14,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-session-timeout",
-	$document = vapour.doc,
+	$document = wb.doc,
 	i18n, i18nText,
 
 	/*
@@ -41,7 +41,7 @@ var selector = ".wb-session-timeout",
 	init = function( event ) {
 		var elm = event.target,
 			$elm, settings;
-	
+
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === elm ) {
 			$elm = $( elm );
@@ -50,19 +50,19 @@ var selector = ".wb-session-timeout",
 			settings = $.extend( {}, defaults, $elm.data( "wet-boew" ) );
 
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
+			wb.remove( selector );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
-				i18n = window.i18n;
+				i18n = wb.i18n;
 				i18nText = {
-					buttonContinue: i18n( "%st-btn-cont" ),
-					buttonEnd: i18n( "%st-btn-end" ),
-					buttonSignin: i18n( "%tmpl-signin" ),
-					timeoutBegin: i18n( "%st-to-msg-bgn" ),
-					timeoutEnd: i18n( "%st-to-msg-end" ),
-					timeoutTitle: i18n( "%st-msgbx-ttl" ),
-					timeoutAlready: i18n( "%st-alrdy-to-msg" )
+					buttonContinue: i18n( "st-btn-cont" ),
+					buttonEnd: i18n( "st-btn-end" ),
+					buttonSignin: i18n( "tmpl-signin" ),
+					timeoutBegin: i18n( "st-to-msg-bgn" ),
+					timeoutEnd: i18n( "st-to-msg-end" ),
+					timeoutTitle: i18n( "st-msgbx-ttl" ),
+					timeoutAlready: i18n( "st-alrdy-to-msg" )
 				};
 			}
 
@@ -233,7 +233,7 @@ var selector = ".wb-session-timeout",
 						clearInterval( countdownInterval );
 
 						// Assign focus to activeElement
-						$( activeElement ).trigger( "focus.wb" );
+						$( activeElement ).trigger( "setfocus.wb" );
 					}
 				}
 			});
@@ -406,6 +406,6 @@ $document.on( "timerpoke.wb keepalive.wb-session-timeout inactivity.wb-session-t
 $document.on( "click", ".wb-session-timeout-confirm", confirm );
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, document, vapour );
+})( jQuery, window, document, wb );

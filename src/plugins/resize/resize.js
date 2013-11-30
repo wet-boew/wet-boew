@@ -4,49 +4,95 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
 var id = "wb-resize",
 	selector = "#" + id,
-	$window = vapour.win,
-	$document = vapour.doc,
-	sizes= [],
+	$window = wb.win,
+	$document = wb.doc,
+	sizes = [],
 	events = [
 		"text-resize.wb",
 		"window-resize-width.wb",
 		"window-resize-height.wb"
 	],
-	eventsAll, resizeTest,
+
+	// Breakpoint names and lower pixel limits
+	breakpoints = {
+		xxsmallview: 0,
+		xsmallview: 480,
+		smallview: 768,
+		mediumview: 992,
+		largeview: 1200,
+		xlargeview: 1600
+	},
+	initialized = false,
+	eventsAll, resizeTest, currentView,
 
 	/*
-	 * Init runs once per plugin element on the page. There may be multiple elements. 
+	 * Init runs once
 	 * @method init
 	 */
 	init = function() {
-		var _resizeTest = document.createElement( "span" );
+		var localResizeTest = document.createElement( "span" );
 
 		// Set up the DOM element used for resize testing
-		_resizeTest.innerHTML = "&#160;";
-		_resizeTest.setAttribute( "id", id );
-		document.body.appendChild( _resizeTest );
-		resizeTest = _resizeTest;
+		localResizeTest.innerHTML = "&#160;";
+		localResizeTest.setAttribute( "id", id );
+		document.body.appendChild( localResizeTest );
+		resizeTest = localResizeTest;
 
 		// Get a snapshot of the current sizes
 		sizes = [
-			_resizeTest.offsetHeight,
+			localResizeTest.offsetHeight,
 			$window.width(),
 			$window.height()
 		];
 
 		// Create a string containing all the events
 		eventsAll = events.join( " " );
+
+		// Determine the current view
+		viewChange( sizes[ 1 ] );
+
+		initialized = true;
+	},
+
+	viewChange = function ( viewportWidth ) {
+		var breakpoint, viewName;
+
+		// Check for a change between views
+		for ( breakpoint in breakpoints ) {
+
+			// Determine the current view
+			if ( viewportWidth < breakpoints[ breakpoint ] ) {
+				break;
+			} else {
+				viewName = breakpoint;
+			}
+		}
+
+		// Determine if the current view is different than the previous view
+		if ( viewName !== currentView ) {
+
+			// Change the breakpoint class on the html element
+			wb.html
+				.removeClass( currentView )
+				.addClass( viewName );
+
+			// Update the current view
+			currentView = viewName;
+
+			// Trigger the view event
+			$document.trigger( viewName + ".wb" );
+		}
 	},
 
 	/*
@@ -54,30 +100,38 @@ var id = "wb-resize",
 	 * @method test
 	 */
 	test = function() {
-		var currentSizes = [
-				resizeTest.offsetHeight,
-				$window.width(),
-				$window.height()
-			],
-			i,
-			len = currentSizes.length;
+		if ( initialized ) {
+			var currentSizes = [
+					resizeTest.offsetHeight,
+					$window.width(),
+					$window.height()
+				],
+				len = currentSizes.length,
+				i;
 
-		for ( i = 0; i !== len; i += 1 ) {
-			if ( currentSizes[ i ] !== sizes[ i ] ) {
-				$document.trigger( events[ i ], currentSizes );
+			// Check for a viewport or text size change
+			for ( i = 0; i !== len; i += 1 ) {
+				if ( currentSizes[ i ] !== sizes[ i ] ) {
+
+					// Change detected so trigger related event
+					$document.trigger( events[ i ], currentSizes );
+
+					// Check for a view change
+					viewChange( currentSizes[ 1 ] );
+				}
 			}
+			sizes = currentSizes;
+			return;
 		}
-		sizes = currentSizes;
-		return;
 	};
 
-// Initialize the handler resources
-init();
-	
 // Re-test on each timerpoke
 $document.on( "timerpoke.wb", selector, test );
 
-// Add the timer poke to initialize the plugin
-window._timer.add( selector );
+// Initialize the resources
+init();
 
-})( jQuery, window, document, vapour );
+// Add the timer poke to initialize the plugin
+wb.add( selector );
+
+})( jQuery, window, document, wb );

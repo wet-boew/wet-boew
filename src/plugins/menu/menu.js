@@ -5,7 +5,7 @@
  * @author WET community
  */
 
-(function( $, window, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -15,235 +15,356 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-menu",
-	$document = vapour.doc,
+	$document = wb.doc,
+	breadcrumb = document.getElementById( "wb-bc" ),
 
-/*
- * Lets leverage JS assigment deconstruction to reduce the code output
- * @method expand
- * @param {DOM element} element The plugin element
- * @param {boolean} scopeitems ***Description needed***
- */
-expand = function( element, scopeitems ) {
-	var $elm = $( element ),
-		_elm = $elm.hasClass( "wb-menu" ) ? $elm.data() : $elm.parents( ".wb-menu" )
-			.first()
-			.data(),
-		_items = scopeitems ? _elm.items.has( element ) : _elm.items;
-	return [ _elm.self, _elm.menu, _items, $elm ];
-},
+	// Used for half second delay on showing/hiding menus because of mouse hover
+	hoverDelay = 500,
+	menuCount = 0,
+	globalTimeout = {},
 
-/*
- * Lets set some aria states and attributes
- * @method onInit
- * @param {jQuery DOM element} element The plugin element
- */
-onInit = function( $elm ) {
+	/*
+	 * Lets leverage JS assigment deconstruction to reduce the code output
+	 * @method expand
+	 * @param {DOM element} element The plugin element
+	 * @param {boolean} scopeitems ***Description needed***
+	 */
+	expand = function( element, scopeitems ) {
+		var $elm = $( element ),
+			elm = $elm.hasClass( "wb-menu" ) ? $elm.data() : $elm.parents( ".wb-menu" )
+				.first()
+				.data(),
+			items = scopeitems ? elm.items.has( element ) : elm.items;
+		return [ elm.self, elm.menu, items, $elm ];
+	},
 
-	// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-	window._timer.remove( selector );
+	/*
+	 * Lets set some aria states and attributes
+	 * @method onInit
+	 * @param {jQuery DOM element} element The plugin element
+	 */
+	onInit = function( $elm ) {
 
-	// Lets test to see if we have any
-	if ( $elm.data( "ajax-fetch" ) ) {
-		$document.trigger({
-			type: "ajax-fetch.wb",
-			element: $elm,
-			fetch: $elm.data( "ajax-fetch" )
-		});
-	}
+		// All plugins need to remove their reference from the timer in the init
+		// sequence unless they have a requirement to be poked every 0.5 seconds
+		wb.remove( selector );
 
-	//anything else
-},
-/*
- * Lets set some aria states and attributes
- * @method drizzleAria
- * @param {jQuery DOM elements} collection of elements
- */
-drizzleAria = function( $elements ){
-	var length = $elements.length,
-		elm, subMenu, i;
+		// Ensure the container has an id attribute
+		if ( !$elm.attr( "id" ) ) {
+			$elm.attr( "id", "wb-menu-" + menuCount );
+		}
+		menuCount += 1;
 
-	// lets tweak for aria
-	for ( i = 0; i <= length; i++ ) {
-		elm = $elements.eq( i );
-		subMenu = elm.siblings( ".sm" );
+		// Lets test to see if we have any
+		if ( $elm.data( "ajax-fetch" ) ) {
+			$document.trigger({
+				type: "ajax-fetch.wb",
+				element: $elm,
+				fetch: $elm.data( "ajax-fetch" )
+			});
+		} else {
 
-		elm.attr({
-			"aria-posinset": ( i + 1 ),
-			"aria-setsize": length,
-			"role": "menuitem"
-		});
+			// Trigger the navcurrent plugin
+			$elm.trigger( "navcurrent.wb", breadcrumb );
+			$( "#wb-sec" ).trigger( "navcurrent.wb", breadcrumb );
+		}
+	},
 
-		// if there is a submenu lets put in the aria for it
-		if ( subMenu.length > 0 ) {
+	/*
+	 * Lets set some aria states and attributes
+	 * @method drizzleAria
+	 * @param {jQuery DOM elements} collection of elements
+	 */
+	drizzleAria = function( $elements ) {
+		var length = $elements.length,
+			$elm, $subMenu, i;
 
-			elm.attr({
-				"aria-haspopup": "true"
+		// Lets tweak for aria
+		for ( i = 0; i !== length; i += 1 ) {
+			$elm = $elements.eq( i );
+			$subMenu = $elm.siblings( ".sm" );
+
+			$elm.attr({
+				"aria-posinset": ( i + 1 ),
+				"aria-setsize": length,
+				"role": "menuitem"
 			});
 
-			subMenu.attr({
-				"aria-expanded": "false",
-				"aria-hidden": "true"
-			});
+			// if there is a submenu lets put in the aria for it
+			if ( $subMenu.length !== 0 ) {
 
-			// recurse into submenu
-			drizzleAria( subMenu.find( ":discoverable" ) );
+				$elm.attr( "aria-haspopup", "true" );
+
+				$subMenu.attr({
+					"aria-expanded": "false",
+					"aria-hidden": "true"
+				});
+
+				// recurse into submenu
+				drizzleAria( $subMenu.find( ":discoverable" ) );
+			}
 		}
-	}
-},
-/*
- * @method onAjaxLoaded
- * @param {jQuery DOM elements} element The plugin element
- */
-onAjaxLoaded = function( $elm, $ajaxed ) {
+	},
 
-	//Some hooks for post transformation
-	// - @data-post-remove : removes the space delimited class for the element. This is more a feature to fight the FOUC
-	var $menu = $ajaxed.find( "[role='menubar'] .item" );
+	/*
+	 * @method onAjaxLoaded
+	 * @param {jQuery DOM elements} element The plugin element
+	 */
+	onAjaxLoaded = function( $elm, $ajaxed ) {
+		var $menu = $ajaxed.find( "[role='menubar'] .item" ),
 
-	$ajaxed.find( ":discoverable" )
-		.attr( "tabindex", "-1" );
+			// Optimized the code block to look to see if we need to import anything instead
+			// of just doing a query with which could result in no result
+			imports = $elm.data( "import" ) ? $elm.data( "import" ).split( " " ) : 0,
+			$panel, i, classList, $iElement;
 
-	$menu.eq(0).attr( "tabindex", "0" );
-	$menu.filter( "[href^=#]" )
-		.append( "<span class='expicon'></span>" );
+		// lets see if there is anything to import into our panel
+		if ( imports !== 0 ) {
+			$panel = $ajaxed.find( ".pnl-strt" );
+			classList = $panel.siblings( ".wb-info" ).eq( 0 ).attr( "class" );
 
-	drizzleAria( $menu );
+			for ( i = imports.length - 1; i >= 0; i-- ) {
+				$iElement = $( "#" + imports[ i ] );
 
-	// Now lets replace the html since we were working off canvas for performance
-	if ( $elm.has( "[data-post-remove]" ) ) {
-		$elm.removeClass( $elm.data( "post-remove" ) )
-			.removeAttr( "data-post-remove" );
-	}
+				// lets only deal with elements that exist since there are possibilites where templates
+				// could add into a header and footer and the content areas change depending on levels
+				// in the site
+				if ( $iElement.length === 0 ) {
+					continue;
+				}
 
-	// replace elements
-	$elm.html( $ajaxed.html() );
-
-	// recalibrate context
-	$elm.data({
-		self: $elm,
-		menu: $elm.find( "[role=menubar] .item" ),
-		items: $elm.find( ".sm" )
-	});
-
-},
-
-/*
- * @method onSelect
- * @param {jQuery event} event The current event
- */
-onSelect = function( event ) {
-
-	setTimeout(function () {
-		event.goto.focus();
-		if ( event.special ) {
-			onReset( event.goto.parents( selector ) );
+				// Lets DomInsert since we are complete all our safeguards and pre-processing
+				// ** note we need to ensure our content is ID safe since this will invalidate the DOM
+				$panel.before( "<section id='wb-imprt-" + i + "' class='" +
+					classList + "'>" +
+					$iElement.html().replace( /\b(id|for)="([^"]+)"/g , "$1='$2-imprt'" ) +
+				"</section>" );
+			}
 		}
-	}, 0 );
 
-},
+		$ajaxed.find( ":discoverable" )
+			.attr( "tabindex", "-1" );
 
-/*
- * @method onIncrement
- * @param {jQuery DOM element} element The plugin element
- * @param {jQuery event} event The current event
- */
-onIncrement = function( $elm, event ) {
-	var $links = event.cnode,
-		$next = event.current + event.increment,
-		$index = $next;
+		$menu.eq( 0 ).attr( "tabindex", "0" );
+		$menu.filter( "[href^=#]" )
+			.append( "<span class='expicon'></span>" );
 
-	if ( $next >= $links.length ) {
-		$index = 0;
-	} else if ( $next < 0 ) {
-		$index = $links.length - 1;
-	}
+		drizzleAria( $menu );
 
-	$elm.trigger({
-		type: "select.wb-menu",
-		goto: $links.eq( $index )
-	});
-},
+		// Now lets replace the html since we were working off canvas for performance
+		if ( $elm.has( "[data-post-remove]" ) ) {
+			$elm.removeClass( $elm.data( "post-remove" ) )
+				.removeAttr( "data-post-remove" );
+		}
 
-/*
- * @method onReset
- * @param {jQuery DOM element} element The plugin element
- */
-onReset = function( $elm ) {
-	$elm.find( ".open, .active" ).removeClass( "open active" );
-},
+		// Replace elements
+		$elm.html( $ajaxed.html() );
 
-/*
- * @method onDisplay
- * @param {jQuery DOM element} element The plugin element
- * @param {jQuery event} event The current event
- */
-onDisplay = function( $elm, event ) {
-	var $item = event.ident;
-
-	// lets reset the menus to ensure no overlap
-	$elm.trigger({
-		type: "reset.wb-menu"
-	});
-	// add the open state classes
-	$item.addClass( "active" )
-		.find( ".sm" )
-		.addClass( "open" );
-},
-
-/*
- * @method onHoverFocus
- * @param {jQuery event} event The current event
- */
-onHoverFocus = function( event ) {
-	var ref = expand( event.target ),
-		$container = ref[ 0 ],
-		$elm = ref[ 3 ];
-
-		$container.trigger({
-			type: "display.wb-menu",
-			ident: $elm.parent()
+		// Recalibrate context
+		$elm.data({
+			self: $elm,
+			menu: $elm.find( "[role=menubar] .item" ),
+			items: $elm.find( ".sm" )
 		});
-};
+
+		// Trigger the navcurrent plugin
+		$elm.trigger( "navcurrent.wb", breadcrumb );
+	},
+
+
+	/*
+	 * @method onSelect
+	 * @param {jQuery event} event The current event
+	 */
+	onSelect = function( event ) {
+		var $goto = event.goto,
+			special = event.special;
+
+		$goto.trigger( "setfocus.wb" );
+		if ( special || ( $goto.hasClass( "item" ) && !$goto.attr( "aria-haspopup" ) ) ) {
+			onReset( $goto.parents( selector ), true, special );
+		}
+
+	},
+
+	/*
+	 * @method onIncrement
+	 * @param {jQuery DOM element} element The plugin element
+	 * @param {jQuery event} event The current event
+	 */
+	onIncrement = function( $elm, event ) {
+		var $links = event.cnode,
+			next = event.current + event.increment,
+			index = next >= $links.length ? 0 : next < 0 ? $links.length - 1 : next;
+
+		$elm.trigger({
+			type: "select.wb-menu",
+			goto: $links.eq( index )
+		});
+	},
+
+	/*
+	 * @method onReset
+	 * @param {jQuery DOM element} $elm The plugin element
+	 * @param {boolean} cancelDelay Whether or not to delay the closing of the menus (false by default)
+	 * @param {boolean} keeptActive Whether or not to leave the active class alone (false by default)
+	 */
+	onReset = function( $elm, cancelDelay, keepActive ) {
+		var id = $elm.attr( "id" ),
+			$openActive = $elm.find( ".open, .active" );
+
+		// Clear any timeouts for open/closing menus
+		clearTimeout( globalTimeout[ id ] );
+
+		if ( cancelDelay ) {
+			$openActive.removeClass( "open sm-open" );
+			if ( !keepActive ) {
+				$openActive.removeClass( "active" );
+			}
+		} else {
+
+			// Delay the closing of the menus
+			globalTimeout[ id ] = setTimeout( function() {
+					$openActive.removeClass( "open sm-open active" );
+			}, hoverDelay );
+		}
+	},
+
+	/*
+	 * @method onDisplay
+	 * @param {jQuery DOM element} $elm The plugin element
+	 * @param {jQuery event} event The current event
+
+	 */
+	onDisplay = function( $elm, event ) {
+		var menuItem = event.ident,
+			menuLink = menuItem.children( "a" );
+
+		// Lets reset the menus with no delay to ensure no overlap
+		$elm.find( ".open, .active" ).removeClass( "open sm-open active" );
+
+		// Ignore if doesn't have a submenu
+		if ( menuLink.attr( "aria-haspopup" ) === "true" ) {
+
+			// Add the open state classes
+			menuItem
+				.addClass( "active sm-open" )
+				.find( ".sm" )
+				.addClass( "open" );
+		}
+	},
+
+	/*
+	 * @method onHoverFocus
+	 * @param {jQuery event} event The current event
+	 */
+	onHoverFocus = function( event ) {
+		var ref = expand( event.target ),
+			$container = ref[ 0 ],
+			$elm = ref[ 3 ];
+
+		if ( $container ) {
+
+			// Clear any timeouts for open/closing menus
+			clearTimeout( globalTimeout[ $container.attr( "id" ) ] );
+
+			$container.trigger({
+				type: "display.wb-menu",
+				ident: $elm.parent(),
+				cancelDelay: event.type === "focusin"
+			});
+		}
+	},
+
+	/*
+	 * Causes clicks on panel menu items to open and close submenus (except for mouse)
+	 * @method onPanelClick
+	 * @param {jQuery event} event The current event
+	 */
+	onPanelClick = function( event ) {
+		var which = event.which,
+			$this;
+
+		if ( which === 1 ) {
+			event.preventDefault();
+		} else if ( !which ) {
+			event.preventDefault();
+			$this = $( this );
+			if ( $( "#wb-sm" ).find( ".nav-close" ).is( ":visible" ) ) {
+				$this.trigger( "focusin" );
+			} else if ( !which ) {
+				event.preventDefault();
+				onReset( $this, true );
+			}
+		}
+	},
+
+	/*
+	 * Searches for the next link that has link text starting with a specific letter
+	 * @method selectByLetter
+	 * @param {integer} charCode The charCode of the letter to search for
+	 * @param {DOM elements} links Collection of links to search
+	 * @param {jQuery DOM element} $container Plugin element
+	 */
+	selectByLetter = function( charCode, links, $container ) {
+		var len = links.length,
+			keyChar = String.fromCharCode( charCode ),
+			link, i;
+
+		for ( i = 0; i !== len; i += 1 ) {
+			link = links[ i ];
+			if ( link.innerHTML.charAt( 0 ) === keyChar ) {
+				$container.trigger({
+					type: "select.wb-menu",
+					goto: $( link )
+				});
+				return true;
+			}
+		}
+
+		return false;
+	};
 
 // Bind the events of the plugin
-$document.on( "timerpoke.wb mouseleave select.wb-menu ajax-fetched.wb increment.wb-menu reset.wb-menu display.wb-menu", selector, function( event ) {
+$document.on( "timerpoke.wb select.wb-menu ajax-fetched.wb increment.wb-menu display.wb-menu", selector, function( event ) {
 	var elm = event.target,
 		eventType = event.type,
-		$elm;
-
-	// Filter out any events triggered by descendants
-	if ( event.currentTarget === elm ) {
 		$elm = $( elm );
-	
-		switch ( eventType ) {
-		case "ajax-fetched":
+
+	switch ( eventType ) {
+	case "ajax-fetched":
+
+		// Filter out any events triggered by descendants
+		if ( event.currentTarget === elm ) {
 			onAjaxLoaded( $elm, event.pointer );
-			return false;
-
-		case "select":
-			onSelect( event );
-			break;
-
-		case "timerpoke":
-			onInit( $elm );
-			break;
-
-		case "increment":
-			onIncrement( $elm, event );
-			break;
-
-		case "mouseleave":
-			onReset( $elm );
-			break;
-
-		case "reset":
-			onReset( $elm );
-			break;
-
-		case "display":
-			onDisplay( $elm, event );
-			break;
 		}
+		return false;
+
+	case "select":
+		onSelect( event );
+		break;
+
+	case "timerpoke":
+
+		// Filter out any events triggered by descendants
+		if ( event.currentTarget === elm ) {
+			onInit( $elm );
+		}
+		break;
+
+	case "increment":
+		onIncrement( $elm, event );
+		break;
+
+	case "display":
+		if ( event.cancelDelay ) {
+			onDisplay( $elm, event );
+		} else {
+			globalTimeout[ $elm.attr( "id" ) ] = setTimeout( function() {
+				onDisplay( $elm, event );
+			}, hoverDelay );
+		}
+		break;
 	}
 
 	/*
@@ -253,6 +374,13 @@ $document.on( "timerpoke.wb mouseleave select.wb-menu ajax-fetched.wb increment.
 	return true;
 });
 
+$document.on( "mouseleave", selector + " .menu", function( event ) {
+	onReset( $( event.target ).closest( ".wb-menu" ) );
+});
+
+
+// Panel clicks on menu items should open submenus
+$document.on( "click vclick", selector + " .item[aria-haspopup]", onPanelClick );
 
 /*
  * Menu Keyboard bindings
@@ -266,51 +394,64 @@ $document.on( "keydown", selector + " .item", function( event ) {
 		$container = ref[ 0 ],
 		$menu = ref[ 1 ],
 		$elm = ref[ 3 ],
-		$index = $menu.index( $elm[ 0 ] ),
-		$goto;
+		$parent, $subMenu;
 
 	switch ( which ) {
+
+	// Enter key, up/down arrow
 	case 13:
+	case 38:
 	case 40:
-		if ( $elm.find( ".expicon" ).length > 0 ) {
+		if ( $elm.find( ".expicon" ).length !== 0 ) {
 			event.preventDefault();
-			$goto = $elm.closest( "li" ).find( ".sm [role=menuitem]" ).first();
+			$parent = $elm.parent();
+			$subMenu = $parent.find( ".sm" );
+
+			// Open the submenu if it is not already open
+			if ( !$subMenu.hasClass( "open" ) ) {
+				$container.trigger({
+					type: "display.wb-menu",
+					ident: $parent,
+					cancelDelay: true
+				});
+			}
 
 			$container.trigger({
-				type: "increment.wb-menu",
-				cnode: $menu,
-				increment: 0,
-				current: $index
-			}).trigger({
-					type: "select.wb-menu",
-					goto: $goto
-				});
+				type: "select.wb-menu",
+				goto: $subMenu.find( "a" ).first()
+			});
 		}
 		break;
 
+	// Tab/escape key
 	case 9:
-		onReset( $container );
+	case 27:
+		onReset( $container, true, ( which === 27 ) );
 		break;
 
+	// Left/right arrow
 	case 37:
-		event.preventDefault();
-		$container.trigger({
-			type: "increment.wb-menu",
-			cnode: $menu,
-			increment: -1,
-			current: $index
-		});
-		break;
-
 	case 39:
 		event.preventDefault();
 		$container.trigger({
 			type: "increment.wb-menu",
 			cnode: $menu,
-			increment: 1,
-			current: $index
+			increment: ( which === 37 ? -1 : 1 ),
+			current: $menu.index( $elm )
 		});
 		break;
+
+	default:
+
+		// Letters only
+		if ( which > 64 && which < 91 ) {
+			event.preventDefault();
+			selectByLetter(
+				which,
+				$elm.parent().find( "ul a" ).get(),
+				$container
+			);
+		}
 	}
 });
 
@@ -326,48 +467,77 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 		$items = ref[ 2 ],
 		$elm = ref[ 3 ],
 		$links = $items.find( ":focusable" ),
-		$index = $links.index( $elm[ 0 ] ),
-		$goto;
+		selector = "[href=#" + $items.attr( "id" ) + "]",
+		$parent, result;
 
 	switch ( which ) {
+
+	// Escape key/left arrow
 	case 27:
-	case 37:
 		event.preventDefault();
-		$goto = $menu.filter( "[href=#" + $items.attr( "id" ) + "]" );
 		$container.trigger({
 			type: "select.wb-menu",
-			goto: $goto,
+			goto: $menu.filter( selector ),
 			special: "reset"
 		});
 		break;
 
-	case 38:
+	// Left/right arrow
+	case 37:
+	case 39:
 		event.preventDefault();
 		$container.trigger({
 			type: "increment.wb-menu",
-			cnode: $links,
-			increment: -1,
-			current: $index
+			cnode: $menu,
+			increment: ( which === 37 ? -1 : 1 ),
+			current: $menu.index( $menu.filter( selector ) )
 		});
 		break;
 
-	case 9:
-		onReset( $container );
-		break;
-
+	// Up/down arrow
+	case 38:
 	case 40:
 		event.preventDefault();
 		$container.trigger({
 			type: "increment.wb-menu",
 			cnode: $links,
-			increment: 1,
-			current: $index
+			increment: ( which === 38 ? -1 : 1 ),
+			current: $links.index( $elm )
 		});
 		break;
+
+	// Tab key
+	case 9:
+		onReset( $container, true );
+		break;
+
+	default:
+
+		// Letters only
+		if ( which > 64 && which < 91 ) {
+			event.preventDefault();
+			$parent = $elm.parent();
+
+			// Try to find a match in the next siblings
+			result = selectByLetter(
+				which,
+				$parent.nextAll().find( "a" ).get(),
+				$container
+			);
+
+			// If couldn't find a match, try the previous siblings
+			if ( !result ) {
+				result = selectByLetter(
+					which,
+					$parent.prevAll().find( "a" ).get(),
+					$container
+				);
+			}
+		}
 	}
 });
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, document, wb );

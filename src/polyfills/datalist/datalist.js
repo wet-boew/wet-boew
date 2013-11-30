@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -12,7 +12,7 @@
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
 var selector = "input[list]",
-	$document = vapour.doc,
+	$document = wb.doc,
 	initialized = false,
 
 	/*
@@ -33,9 +33,9 @@ var selector = "input[list]",
 			datalist = document.getElementById( input.getAttribute( "list" ) );
 			options = datalist.getElementsByTagName( "option" );
 			len = options.length;
-		
+
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
+			wb.remove( selector );
 
 			input.setAttribute( "autocomplete", "off" );
 			input.setAttribute( "role", "textbox" );
@@ -168,7 +168,7 @@ var selector = "input[list]",
 			input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
 
 			// Assign focus to dest
-			$( dest ).trigger( "focus.wb" );
+			$( dest ).trigger( "setfocus.wb" );
 
 			return false;
 		}
@@ -200,7 +200,7 @@ var selector = "input[list]",
 			( which > 187 && which < 223 ) ) {
 
 			input.value += String.fromCharCode( which );
-			$input.trigger( "focus.wb" );
+			$input.trigger( "setfocus.wb" );
 			showOptions( input, input.value );
 
 			return false;
@@ -216,7 +216,7 @@ var selector = "input[list]",
 				showOptions( input, input.value );
 			}
 
-			$input.trigger( "focus.wb" );
+			$input.trigger( "setfocus.wb" );
 
 			return false;
 		}
@@ -235,7 +235,7 @@ var selector = "input[list]",
 			}
 
 			input.value = value;
-			$input.trigger( "focus.wb" );
+			$input.trigger( "setfocus.wb" );
 			closeOptions( input );
 
 			return false;
@@ -243,7 +243,7 @@ var selector = "input[list]",
 
 		// Tab or Escape key
 		else if ( which === 9 || which === 27 ) {
-			$input.trigger( "focus.wb" );
+			$input.trigger( "setfocus.wb" );
 			closeOptions( input );
 
 			return false;
@@ -271,7 +271,7 @@ var selector = "input[list]",
 			dest = dest.getElementsByTagName( "a" )[ 0 ];
 
 			input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
-			$( dest ).trigger( "focus.wb" );
+			$( dest ).trigger( "setfocus.wb" );
 
 			return false;
 		}
@@ -303,7 +303,7 @@ var selector = "input[list]",
 		}
 
 		input.value = value;
-		$input.trigger( "focus.wb" );
+		$input.trigger( "setfocus.wb" );
 		closeOptions( input );
 
 		return false;
@@ -396,6 +396,6 @@ $document.on( "focusin text-resize.wb window-resize-width.wb window-resize-heigh
 });
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, document, vapour );
+})( jQuery, window, document, wb );

@@ -4,17 +4,18 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-share",
-	$document = vapour.doc,
+	shareLink = "shr-lnk",
+	$document = wb.doc,
 	i18n, i18nText,
 
 	/*
@@ -23,6 +24,7 @@ var selector = ".wb-share",
 	 * For example, adding the attribute data-option1="false", will override option1 for that plugin instance.
 	 */
 	defaults = {
+		heading: "h2",
 		sites: {
 
 			// The definitions of the available bookmarking sites, in URL use
@@ -49,7 +51,7 @@ var selector = ".wb-share",
 			},
 			dzone: {
 				name: "DZone",
-				url: "http://www.dzone.com/links/add.html?url={u}&amp;title={t}"
+				url: "http://www.dzone.com/link/add.html?url={u}&amp;title={t}"
 			},
 			facebook: {
 				name: "Facebook",
@@ -107,22 +109,23 @@ var selector = ".wb-share",
 	},
 
 	/*
-	* Init runs once per plugin element on the page. There may be multiple elements. 
+	* Init runs once per plugin element on the page. There may be multiple elements.
 	* It will run more than once per plugin if you don't remove the selector from the timer.
 	* @method init
 	* @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
 	*/
 	init = function( event ) {
 		var elm = event.target,
-			sites = defaults.sites,
-			links = "<ul>",
-			$elm, pageHref, pageTitle, pageImage, pageDescription,
-			site, siteProperties, url;
+			sites, heading, settings, panel, link, $share, $elm, pageHref,
+			pageTitle, pageImage, pageDescription, site, siteProperties, url;
 
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === elm ) {
 			$elm = $( elm );
-			pageHref = vapour.pageUrlParts.href;
+			settings = $.extend( true, defaults, wb.getData( $elm, "wet-boew" ) );
+			sites = settings.sites;
+			heading = settings.heading;
+			pageHref = wb.pageUrlParts.href;
 			pageTitle = encodeURIComponent( document.title || $document.find( "h1:first" ).text() );
 
 			// Placeholders until source(s) can be determined and implemented
@@ -130,16 +133,22 @@ var selector = ".wb-share",
 			pageDescription = encodeURIComponent( "" );
 
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
+			wb.remove( selector );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
-				i18n = window.i18n;
+				i18n = wb.i18n;
 				i18nText = {
-					disclaimer: i18n( "%shr-disc" )
+					shareText: i18n( "shr-txt" ),
+					disclaimer: i18n( "shr-disc" )
 				};
 			}
-			
+
+			panel = "<section id='shr-pg' class='shr-pg wb-overlay modal-content overlay-def wb-panel-" +
+				( wb.html.attr( "dir" ) === "rtl" ? "l" : "r" ) +
+				"'><header class='modal-header'><" + heading + " class='modal-title'>" +
+				i18nText.shareText + "</" + heading + "></header><ul class='colcount-xs-2'>";
+
 			for ( site in sites ) {
 				siteProperties = sites[ site ];
 				url = siteProperties.url
@@ -147,19 +156,36 @@ var selector = ".wb-share",
 						.replace( /\{t\}/, pageTitle )
 						.replace( /\{i\}/, pageImage )
 						.replace( /\{d\}/, pageDescription );
-				links += "<li><a href='" + url + "' class='shr-lnk " + site + " btn btn-default'>" + siteProperties.name + "</a></li>";
+				panel += "<li><a href='" + url + "' class='" + shareLink + " " + site + " btn btn-default' target='_blank'>" + siteProperties.name + "</a></li>";
 			}
 
-			links += "</ul><p>" + i18nText.disclaimer + "</p>";
+			panel += "</ul><div class='clearfix'></div><p class='col-sm-12'>" + i18nText.disclaimer + "</p></section>";
+			link = "<a href='#shr-pg' aria-controls='shr-pg' class='shr-opn overlay-lnk'><span class='glyphicon glyphicon-share'></span> " +
+				i18nText.shareText + "</a>";
 
-			$elm.append( links );
+			$share = $( panel + link );
+
+			$elm.append( $share );
+
+			$share.trigger( "timerpoke" );
 		}
 	};
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb", selector, init );
 
-// Add the timer poke to initialize the plugin
-window._timer.add( selector );
+$document.on( "click vclick", "." + shareLink, function( event) {
+	var which = event.which;
 
-})( jQuery, window, document, vapour );
+	// Ignore middle and right mouse buttons
+	if ( !which || which === 1 ) {
+
+		// Close the overlay
+		$( event.target ).trigger( "close.wb-overlay" );
+	}
+});
+
+// Add the timer poke to initialize the plugin
+wb.add( selector );
+
+})( jQuery, window, document, wb );

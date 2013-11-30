@@ -4,20 +4,20 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @thomasgohard
  */
-(function( $, window, vapour ) {
+(function( $, window, wb ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-equalheight",
-	$document = vapour.doc,
+	$document = wb.doc,
 
 	/*
-	 * Init runs once per plugin element on the page. There may be multiple elements. 
+	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
 	 * @param {jQuery Event} event Event that triggered this handler
@@ -26,10 +26,10 @@ var selector = ".wb-equalheight",
 
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === event.target ) {
-		
+
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
-			
+			wb.remove( selector );
+
 			// Remove the event handler since only want init fired once per page (not per element)
 			$document.off( "timerpoke.wb", selector );
 
@@ -58,6 +58,9 @@ var selector = ".wb-equalheight",
 			// Ensure all children that are on the same baseline have the same 'top' value.
 			currentChild.style.verticalAlign = "top";
 
+			// Remove any previously set min height
+			currentChild.style.minHeight = 0;
+
 			currentChildTop = currentChild.offsetTop;
 			currentChildHeight = currentChild.offsetHeight;
 
@@ -85,7 +88,7 @@ var selector = ".wb-equalheight",
 	 */
 	setRowHeight = function( row, height ) {
 		for ( var i = row.length - 1; i >= 0; i-- ) {
-			row[ i ].style.height = height + "px";
+			row[ i ].style.minHeight = height + "px";
 		}
 		row.length = 0;
 	};
@@ -94,9 +97,9 @@ var selector = ".wb-equalheight",
 $document.on( "timerpoke.wb", selector, init );
 
 // Handle text and window resizing
-$document.on( "text-resize.wb window-resize-width.wb window-resize-height.wb", onResize );
+$document.on( "text-resize.wb window-resize-width.wb window-resize-height.wb tables-draw.wb", onResize );
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );
