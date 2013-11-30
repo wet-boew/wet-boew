@@ -209,7 +209,6 @@ module.exports = (grunt) ->
 					"lib/respond/respond.src.js"
 					"lib/excanvas/excanvas.js"
 					"lib/html5shiv/dist/html5shiv.js"
-					"lib/selectivizr/selectivizr.js"
 					"src/core/wb.js"
 					"!src/plugins/**/test.js"
 					"!src/plugins/**/assets/*.js"
