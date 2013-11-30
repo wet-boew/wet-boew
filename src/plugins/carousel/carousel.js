@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
- (function( $, window, vapour ) {
+ (function( $, window, wb ) {
  "use strict";
 
  /*
@@ -14,7 +14,7 @@
   * variables that are common to all instances of the plugin on a page.
   */
  var selector = ".wb-carousel",
-	$document = vapour.doc,
+	$document = wb.doc,
 	i18n, i18nText,
 	controls = selector + " [role=tablist] a",
 
@@ -129,7 +129,7 @@
 
 		// Only initialize the i18nText once
 		if ( !i18nText ) {
-			i18n = window.i18n;
+			i18n = wb.i18n;
 			i18nText = {
 				prev: i18n( "prv" ),
 				next: i18n( "nxt" ),
@@ -344,6 +344,6 @@
  });
 
  // Add the timer poke to initialize the plugin
- window._timer.add( selector );
+ wb.add( selector );
 
- })( jQuery, window, vapour );
+ })( jQuery, window, wb );

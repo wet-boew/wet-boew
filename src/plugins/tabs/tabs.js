@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
-(function( $, window, vapour ) {
+(function( $, window, wb ) {
 "use strict";
 
 /*
@@ -14,7 +14,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-tabs",
-	$document = vapour.doc,
+	$document = wb.doc,
 	tablistProps = { role: "tablist", class: "btn-group", "aria-live": "off" },
 	panelProps = { role: "tabpanel" },
 	mobileWidth = 767,
@@ -28,7 +28,7 @@ var selector = ".wb-tabs",
 	},
 	// vapour.pageUrlParts.hash is a string - empty or otherwise.
 	// hash.match will return null if hash is empty or if no match is found.
-	hash = vapour.pageUrlParts.hash.match( /#t(\d+)-p(\d+)/ ),
+	hash = wb.pageUrlParts.hash.match( /#t(\d+)-p(\d+)/ ),
 	
 	// boolean to disable hashchange event listener on tab click,
 	// but re-enable it for any other case
@@ -45,10 +45,10 @@ var selector = ".wb-tabs",
 			$panels = $elm.children( "details" ),
 			isMobile = $document.width() < mobileWidth,
 			$open,
-			classes = $elm.data( "btnClass" ) || "";
+			classes = $elm.data( "btnClass" ) || "btn btn-default";
 		
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
+		wb.remove( selector );
 		
 		if ( !$panels.length ) {
 			return false;
@@ -122,7 +122,7 @@ var selector = ".wb-tabs",
 			$panels = $elm.data( "panels" ),
 			$panel = $panels.eq( $tabs.index( $tab ) ),
 			width,
-			classes = $elm.data( "btnClass" ) || "";
+			classes = $elm.data( "btnClass" ) || "btn btn-default";
 		$tabs.not( $tab ).attr( { class: classes, tabindex: -1 } );
 		$tab.attr( { class: classes + " active", tabindex: 0 } );
 		$panels.not( $panel ).attr( "open", false );
@@ -292,6 +292,6 @@ $document.on( "xxsmallview.wb xsmallview.wb smallview.wb mediumview.wb largeview
 $( window ).on( "hashchange", onHashChange);
  
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );
