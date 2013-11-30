@@ -156,13 +156,15 @@
 	.tline {
 		@extend %pnl;
 		.textonly {
-			p {
+			.wb-mm-tmln-crrnt, .wb-mm-tmln-ttl {
 				display: inline !important;
-				float: left;
 				margin:0;
-				&:last-child {
-					float:right;
-				}
+			}
+			.wb-mm-tmln-crrnt {
+				float: left;
+			}
+			.wb-mm-tmln-ttl {
+				float:right;
 			}
 		}
 	}
