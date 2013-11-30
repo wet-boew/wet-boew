@@ -19,10 +19,9 @@ module.exports = (grunt) ->
 			"test"
 			"build"
 			"assets-dist"
-			"assemble:demos"
-			"assemble:demos_min"
+			"demos"
+			"demos-dist"
 			"imagemin:min"
-			"htmlcompressor"
 		]
 	)
 
@@ -31,7 +30,7 @@ module.exports = (grunt) ->
 		"Produces unminified files"
 		[
 			"build"
-			"assemble:demos"
+			"demos"
 		]
 	)
 
@@ -52,9 +51,6 @@ module.exports = (grunt) ->
 		"Build and deploy artifacts to wet-boew-dist"
 		[
 			"dist"
-			"assemble:demos"
-			"assemble:demos_min"
-			"htmlcompressor"
 			"copy:deploy"
 			"gh-pages"
 		]
@@ -103,9 +99,6 @@ module.exports = (grunt) ->
 			"copy:other"
 			"copy:deps"
 			"copy:jsAssets"
-			"copy:jsDemoPlugins"
-			"copy:jsDemoPolyfills"
-			"copy:jsDemoOther"
 			"i18n"
 			"concat:core"
 			"concat:coreIE8"
@@ -132,7 +125,25 @@ module.exports = (grunt) ->
 		"INTERNAL: Process non-CSS/JS assets to dist"
 		[
 			"copy:assets_min"
-			"copy:misc_min"
+		]
+	)
+
+	@registerTask(
+		"demos"
+		"INTERNAL: Create unminified demos"
+		[
+			"copy:demos"
+			"assemble:demos"
+		]
+	)
+
+	@registerTask(
+		"demos-dist"
+		"INTERNAL: Create minified demos"
+		[
+			"copy:demos_min"
+			"assemble:demos_min"
+			"htmlcompressor"
 		]
 	)
 
@@ -140,7 +151,6 @@ module.exports = (grunt) ->
 		"assets"
 		"INTERNAL: Process non-CSS/JS assets to dist"
 		[
-			"copy:misc"
 			"copy:themeAssets"
 			"copy:bootstrap"
 		]
@@ -593,19 +603,6 @@ module.exports = (grunt) ->
 				expand: true
 				flatten: true
 
-			misc:
-				cwd: "src/plugins"
-				src: [
-					"**/*.*"
-					"!**/*.js"
-					"!**/*.scss"
-					"!**/*.hbs"
-					"!**/assets/*"
-					"!**/sprites/*"
-				]
-				dest: "dist/unmin/demos"
-				expand: true
-
 			polyfills:
 				cwd: "src/polyfills"
 				src: "**/*.js"
@@ -645,27 +642,33 @@ module.exports = (grunt) ->
 				expand: true
 				flatten: true
 
-			jsDemoPlugins:
-				cwd: "src/plugins"
-				src: "**/demo/*.js"
-				dest: "dist/unmin/demos/"
-				expand: true
-
-			jsDemoPolyfills:
-				cwd: "src/polyfills"
-				src: "**/demo/*.js"
-				dest: "dist/unmin/demos/"
-				expand: true
-
-			jsDemoOther:
-				cwd: "src/other"
-				src: "**/demo/*.js"
-				dest: "dist/unmin/demos/"
-				expand: true
+			demos:
+				files: [
+					cwd: "src/plugins"
+					src: [
+						"**/*.{jpg,html,xml}"
+						"**/demo/*.*"
+						"**/ajax/*.*"
+						"**/img/*.*"
+						"!**/assets/*.*"
+					]
+					dest: "dist/unmin/demos/"
+					expand: true
+				,
+					cwd: "src/polyfills"
+					src: "**/demo/*.js"
+					dest: "dist/unmin/demos/"
+					expand: true
+				,
+					cwd: "src/other"
+					src: "**/demo/*.js"
+					dest: "dist/unmin/demos/"
+					expand: true
+				]
 
 			themeAssets:
 				cwd: "theme/"
-				src: "**/assets/*.*"
+				src: "assets/*.*"
 				dest: "dist/unmin"
 				expand: true
 
@@ -680,17 +683,16 @@ module.exports = (grunt) ->
 				dest: "dist"
 				expand: true
 
-			misc_min:
-				cwd: "src/plugins"
+			demos_min:
+				cwd: "dist/unmin"
 				src: [
-					"**/*.*"
-					"!**/*.js"
-					"!**/*.scss"
-					"!**/*.hbs"
-					"!**/assets/*"
-					"!**/sprites/*"
+					"**/*.{jpg,html,xml}"
+					"**/demo/*.*"
+					"**/ajax/*.*"
+					"**/img/*.*"
+					"!**/assets/*.*"
 				]
-				dest: "dist/demos"
+				dest: "dist/demos/"
 				expand: true
 
 			deploy:
