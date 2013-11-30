@@ -6,7 +6,7 @@
  */
 /* global jQuery, describe, it, expect, before, after, sinon */
 /* jshint unused:vars */
-(function( $, vapour ) {
+(function( $, wb ) {
 
 /*
  * Create a suite of related test cases using `describe`. Test suites can also be
@@ -25,7 +25,7 @@ describe( "Prettify test suite", function() {
 
 		// Start the tests once the plugin has been initialized
 		$( ".wb-prettify" ).removeClass( "all-pre" );
-		vapour.doc.on( "prettyprint.wb-prettify", function() {
+		wb.doc.on( "prettyprint.wb-prettify", function() {
 			done();
 		});
 	});
@@ -107,7 +107,7 @@ describe( "Prettify test suite", function() {
 				.addClass("all-pre")
 				.addClass("linenums")
 				.trigger("timerpoke.wb");
-			vapour.doc.on( "prettyprint.wb-prettify", function() {
+			wb.doc.on( "prettyprint.wb-prettify", function() {
 				done();
 			});
 		});
@@ -143,7 +143,7 @@ describe( "Prettify test suite", function() {
 					"linenums": true
 				})
 				.trigger("timerpoke.wb");
-			vapour.doc.on( "prettyprint.wb-prettify", function() {
+			wb.doc.on( "prettyprint.wb-prettify", function() {
 				done();
 			});
 		});
@@ -162,4 +162,4 @@ describe( "Prettify test suite", function() {
 	});
 });
 
-}( jQuery, vapour ));
+}( jQuery, wb ));

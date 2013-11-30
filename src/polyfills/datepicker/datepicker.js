@@ -5,7 +5,7 @@
  * @author @pjackson28
  */
 
-(function( $, window, document, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -13,7 +13,7 @@
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
 var selector = "input[type=date]",
-	$document = vapour.doc,
+	$document = wb.doc,
 	date = new Date(),
 	month = date.getMonth(),
 	year = date.getFullYear(),
@@ -35,7 +35,7 @@ var selector = "input[type=date]",
 		if ( event.currentTarget === elm ) {
 
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
+			wb.remove( selector );
 
 			if ( elm.className.indexOf( "picker-field" ) !== -1 ) {
 				return;
@@ -43,7 +43,7 @@ var selector = "input[type=date]",
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
-				i18n = window.i18n;
+				i18n = wb.i18n;
 				i18nText = {
 					show: i18n( "date-show" ) + i18n( "space" ),
 					hide: i18n( "date-hide" ),
@@ -96,7 +96,7 @@ var selector = "input[type=date]",
 		var field = document.getElementById( fieldId ),
 			minDate = field.getAttribute( "min" ),
 			maxDate = field.getAttribute( "max" ),
-			fromDateISO = vapour.date.fromDateISO,
+			fromDateISO = wb.date.fromDateISO,
 			len = $days.length,
 			// $parent = $days.parent(),
 			focusDay = ( targetDay ? targetDay - 1 : 0 ),
@@ -161,7 +161,7 @@ var selector = "input[type=date]",
 			$field = $( field ),
 			minDate = field.getAttribute( "min" ),
 			maxDate = field.getAttribute( "max" ),
-			fromDateISO = vapour.date.fromDateISO,
+			fromDateISO = wb.date.fromDateISO,
 			targetDate = fromDateISO( field.value );
 
 		if ( !minDate ) {
@@ -247,7 +247,7 @@ var selector = "input[type=date]",
 	},
 
 	formatDate = function( year, month, day, format ) {
-		var pad = vapour.string.pad;
+		var pad = wb.string.pad;
 		return format
 			.replace( "DD", pad( day, 2 ) )
 			.replace( "D", day)
@@ -336,7 +336,7 @@ $document.on( "click", ".cal-days a", function ( event ) {
 	if ( !which || which === 1 ) {
 		fieldId = document.getElementById( "wb-picker" )
 			.getAttribute( "aria-controls" );
-		date = vapour.date.fromDateISO( this.getElementsByTagName( "time" )[ 0 ]
+		date = wb.date.fromDateISO( this.getElementsByTagName( "time" )[ 0 ]
 			.getAttribute( "datetime" ) );
 		year = date.getFullYear();
 		month = date.getMonth();
@@ -355,6 +355,6 @@ $document.on( "click", ".cal-days a", function ( event ) {
 });
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, document, vapour );
+})( jQuery, window, document, wb );

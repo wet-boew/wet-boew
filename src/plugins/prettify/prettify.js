@@ -30,7 +30,7 @@
  *    - lang-xq
  *    - lang-yaml
  */
-(function( $, window, vapour ) {
+(function( $, window, wb ) {
 "use strict";
 
 /*
@@ -40,7 +40,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-prettify",
-	$document = vapour.doc,
+	$document = wb.doc,
 
 	/*
 	 * Plugin users can override these defaults by setting attributes on the html elements that the
@@ -59,7 +59,7 @@ var selector = ".wb-prettify",
 	 */
 	init = function( event ) {
 		var elm = event.target,
-			modeJS = vapour.getMode() + ".js",
+			modeJS = wb.getMode() + ".js",
 			deps = [ "site!deps/prettify" + modeJS ],
 			$elm, classes, settings, i, len, $pre;
 
@@ -67,12 +67,12 @@ var selector = ".wb-prettify",
 		if ( event.currentTarget === elm ) {
 			$elm = $( elm );
 			classes = elm.className.split( " " );
-	
+
 			// Merge default settings with overrides from the selected plugin element. There may be more than one, so don't override defaults globally!
 			settings = $.extend( {}, defaults, $elm.data() );
 
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
+			wb.remove( selector );
 
 			// Check the element for `lang-*` syntax CSS classes
 			for ( i = 0, len = classes.length; i !== len; i += 1 ) {
@@ -122,6 +122,6 @@ $document
 	.on( "prettyprint.wb-prettify", prettyprint );
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );

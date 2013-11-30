@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @thomasgohard
  */
-(function( $, window, vapour ) {
+(function( $, window, wb ) {
 "use strict";
 
 /*
@@ -14,7 +14,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-equalheight",
-	$document = vapour.doc,
+	$document = wb.doc,
 
 	/*
 	 * Init runs once per plugin element on the page. There may be multiple elements.
@@ -28,7 +28,7 @@ var selector = ".wb-equalheight",
 		if ( event.currentTarget === event.target ) {
 
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
+			wb.remove( selector );
 
 			// Remove the event handler since only want init fired once per page (not per element)
 			$document.off( "timerpoke.wb", selector );
@@ -100,6 +100,6 @@ $document.on( "timerpoke.wb", selector, init );
 $document.on( "text-resize.wb window-resize-width.wb window-resize-height.wb tables-draw.wb", onResize );
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );

@@ -4,19 +4,19 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
 var id = "wb-resize",
 	selector = "#" + id,
-	$window = vapour.win,
-	$document = vapour.doc,
+	$window = wb.win,
+	$document = wb.doc,
 	sizes = [],
 	events = [
 		"text-resize.wb",
@@ -83,7 +83,7 @@ var id = "wb-resize",
 		if ( viewName !== currentView ) {
 
 			// Change the breakpoint class on the html element
-			vapour.html
+			wb.html
 				.removeClass( currentView )
 				.addClass( viewName );
 
@@ -124,7 +124,7 @@ var id = "wb-resize",
 			return;
 		}
 	};
-	
+
 // Re-test on each timerpoke
 $document.on( "timerpoke.wb", selector, test );
 
@@ -132,6 +132,6 @@ $document.on( "timerpoke.wb", selector, test );
 init();
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, document, vapour );
+})( jQuery, window, document, wb );

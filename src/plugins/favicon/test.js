@@ -7,7 +7,7 @@
  */
 /* global jQuery, describe, it, expect, before, after, sinon */
 /* jshint unused:vars */
-(function( $, vapour ) {
+(function( $, wb ) {
 
 /*
  * Create a suite of related test cases using `describe`. Test suites can also be
@@ -25,7 +25,7 @@ describe( "Favicon test suite", function() {
 		// Spy on jQuery's trigger methods
 		spies.trigger = sinon.spy( $.prototype, "trigger" );
 
-		vapour.doc.on( "mobile.wb-favicon", "link[rel='shortcut icon']", function() {
+		wb.doc.on( "mobile.wb-favicon", "link[rel='shortcut icon']", function() {
 			done();
 		});
 	});
@@ -103,7 +103,7 @@ describe( "Favicon test suite", function() {
 		before(function( done ) {
 			$( ".wb-favicon" ).remove();
 
-			vapour.doc.on( "mobile.wb-favicon", "link[rel='shortcut icon']", function() {
+			wb.doc.on( "mobile.wb-favicon", "link[rel='shortcut icon']", function() {
 				$faviconMobile = $( ".wb-favicon" );
 				done();
 			});
@@ -161,4 +161,4 @@ describe( "Favicon test suite", function() {
 	});
 });
 
-}( jQuery, vapour ));
+}( jQuery, wb ));

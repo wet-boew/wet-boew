@@ -52,7 +52,7 @@ var getUrlParts = function( url ) {
 
 	/*
 	 * @variable $src
-	 * @return {jQuery Element} of vapour script element
+	 * @return {jQuery Element} of wb script element
 	 */
 	$src = $( "script[src$='wet-boew.js'],script[src$='wet-boew.min.js']" )
 		.last(),
@@ -119,9 +119,10 @@ var getUrlParts = function( url ) {
 	}()),
 
 	/*-----------------------------
-	 * Vapour Core Object
-	 *-----------------------------*/
-	vapour = {
+	 * Core Library Object
+	 *-----------------------------
+	 */
+	wb = {
 		"/": $homepath,
 		"/assets": "" + $homepath + "/../assets",
 		"/templates": "" + $homepath + "/assets/templates",
@@ -142,7 +143,7 @@ var getUrlParts = function( url ) {
 			return this.mode;
 		},
 
-		// Lets load some variables into vapour for IE detection
+		// Lets load some variables into wb for IE detection
 		other:  !oldie,
 		desktop: ( window.orientation === undefined ),
 		ie:     !!oldie,
@@ -153,34 +154,65 @@ var getUrlParts = function( url ) {
 		ielt7:  ( oldie < 7 ),
 		ielt8:  ( oldie < 8 ),
 		ielt9:  ( oldie < 9 ),
-		ielt10: ( oldie < 10 )
-	},
+		ielt10: ( oldie < 10 ),
 
-	i18n = function( key, state, mixin ) {
-		var truthiness,
-			ind = window.i18nObj;
+		nodes: $(),
 
-		truthiness = ( typeof key === "string" && key !== "" ) | // eg. 000 or 001 ie. 0 or 1
-		( typeof state === "string" && state !== "" ) << 1 | // eg. 000 or 010 ie. 0 or 2
-		( typeof mixin === "string" && mixin !== "" ) << 2; // eg. 000 or 100 ie. 0 or 4
+		add: function( selector ) {
 
-		switch ( truthiness ) {
-			case 1:
-				// only key was provided
-				return ind[ key ];
-			case 3:
-				// key and state were provided
-				return ind[ key ][ state ];
-			case 7:
-				// key, state, and mixin were provided
-				return ind[ key ][ state ].replace( "[MIXIN]", mixin );
-			default:
-				return "";
+			// Lets ensure we are not running if things are disabled
+			if ( this.isDisabled && selector !== "#wb-tphp" ) {
+				return 0;
+			}
+
+			this.nodes = this.nodes.add( selector );
+		},
+
+		// Remove nodes referenced by the selector
+		remove: function( selector ) {
+			this.nodes = this.nodes.not( selector );
+		},
+
+		start: function() {
+
+			/* Lets start our clock right away. We we need to test to ensure that there will not be any
+			 * instances on Mobile were the DOM is not ready before the timer starts. That is why 0.5 seconds
+			 * was used as a buffer.
+			 */
+			this.nodes.trigger( "timerpoke.wb" );
+
+			// lets keep it ticking after
+			setInterval(function() {
+				wb.nodes.trigger( "timerpoke.wb" );
+			}, 500 );
+
+		},
+		i18nDict: {},
+		i18n: function( key, state, mixin ) {
+			var truthiness,
+				dictionary = wb.i18nDict;
+
+			truthiness = ( typeof key === "string" && key !== "" ) | // eg. 000 or 001 ie. 0 or 1
+			( typeof state === "string" && state !== "" ) << 1 | // eg. 000 or 010 ie. 0 or 2
+			( typeof mixin === "string" && mixin !== "" ) << 2; // eg. 000 or 100 ie. 0 or 4
+
+			switch ( truthiness ) {
+				case 1:
+					// only key was provided
+					return dictionary[ key ];
+				case 3:
+					// key and state were provided
+					return dictionary[ key ][ state ];
+				case 7:
+					// key, state, and mixin were provided
+					return dictionary[ key ][ state ].replace( "[MIXIN]", mixin );
+				default:
+					return "";
+			}
 		}
 	};
 
-window.i18n = i18n;
-window.vapour = vapour;
+window.wb = wb;
 
 /*-----------------------------
  * Yepnope Prefixes
@@ -230,44 +262,6 @@ yepnope.addPrefix( "i18n", function( resourceObj ) {
 	resourceObj.url = $homepath + "/" + resourceObj.url + lang + $mode + ".js";
 	return resourceObj;
 });
-
-/*-----------------------------
- * Base Timer
- *-----------------------------*/
-window._timer = {
-
-	nodes: $(),
-
-	add: function( selector ) {
-
-		// Lets ensure we are not running if things are disabled
-		if ( vapour.isDisabled && selector !== "#wb-tphp" ) {
-			return 0;
-		}
-
-		this.nodes = this.nodes.add( selector );
-	},
-
-	// Remove nodes referenced by the selector
-	remove: function( selector ) {
-		this.nodes = this.nodes.not( selector );
-	},
-
-	start: function() {
-
-		/* Lets start our clock right away. We we need to test to ensure that there will not be any
-		 * instances on Mobile were the DOM is not ready before the timer starts. That is why 0.5 seconds
-		 * was used as a buffer.
-		 */
-		this.nodes.trigger( "timerpoke.wb" );
-
-		// lets keep it ticking after
-		setInterval(function() {
-			window._timer.nodes.trigger( "timerpoke.wb" );
-		}, 500 );
-
-	}
-};
 
 /*-----------------------------
  * Modernizr Polyfill Loading
@@ -323,7 +317,7 @@ Modernizr.load([
 	}, {
 		load: "i18n!i18n/",
 		complete: function() {
-			window._timer.start();
+			wb.start();
 		}
 	}
 ]);

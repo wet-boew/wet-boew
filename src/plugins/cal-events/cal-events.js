@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
-(function( $, window, vapour ) {
+(function( $, window, wb ) {
 "use strict";
 
 /*
@@ -14,15 +14,15 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-cal-evt",
-	$document = vapour.doc,
+	$document = wb.doc,
 	i18n, i18nText,
 
 	init = function( $elm ) {
-		window._timer.remove( selector );
+		wb.remove( selector );
 
 		// Only initialize the i18nText once
 		if ( !i18nText ) {
-			i18n = window.i18n;
+			i18n = wb.i18n;
 			i18nText = {
 				monthNames: i18n( "calendar-monthNames" ),
 				calendar: i18n( "calendar" )
@@ -99,8 +99,8 @@ var selector = ".wb-cal-evt",
 
 	daysBetween = function ( dateLow, dateHigh ) {
 		// Simplified conversion to date object
-		var date1 = vapour.date.convert( dateLow ),
-			date2 = vapour.date.convert( dateHigh ),
+		var date1 = wb.date.convert( dateLow ),
+			date2 = wb.date.convert( dateHigh ),
 			dstAdjust = 0,
 			oneMinute = 1000 * 60,
 			oneDay = oneMinute * 60 * 24,
@@ -168,7 +168,7 @@ var selector = ".wb-cal-evt",
 					 * Fixes IE tabbing error:
 					 * http://www.earthchronicle.com/ECv1point8/Accessibility01IEAnchoredKeyboardNavigation.aspx
 					 */
-					if ( vapour.ie ) {
+					if ( wb.ie ) {
 						event.attr( "tabindex", "-1" );
 					}
 					link = "#" + linkId;
@@ -215,7 +215,7 @@ var selector = ".wb-cal-evt",
 						date = new Date( date.setDate( date.getDate() + 1 ) );
 
 						// Add a viewfilter
-						className = "filter-" + ( date.getFullYear() ) + "-" + vapour.string.pad( date.getMonth() + 1, 2 );
+						className = "filter-" + ( date.getFullYear() ) + "-" + wb.string.pad( date.getMonth() + 1, 2 );
 						if ( !objTitle.hasClass( className ) ) {
 							objTitle.addClass( className );
 						}
@@ -236,7 +236,7 @@ var selector = ".wb-cal-evt",
 					events.list[ events.iCount ] = {"title" : title, "date" : date, "href" : link};
 
 					// Add a viewfilter
-					className = "filter-" + ( date.getFullYear() ) + "-" + vapour.string.pad( date.getMonth() + 1, 2 );
+					className = "filter-" + ( date.getFullYear() ) + "-" + wb.string.pad( date.getMonth() + 1, 2 );
 					if ( !objTitle.hasClass( className ) ) {
 						objTitle.addClass( className );
 					}
@@ -444,7 +444,7 @@ var selector = ".wb-cal-evt",
 		$( "." + calendarId + " li.calendar-display-onshow" )
 			.addClass( "wb-inv" )
 			.has( ":header[class*=filter-" + year + "-" +
-				vapour.string.pad( parseInt( month, 10 ) + 1, 2 ) + "]" )
+				wb.string.pad( parseInt( month, 10 ) + 1, 2 ) + "]" )
 			.removeClass( "wb-inv" );
 	};
 
@@ -460,7 +460,7 @@ $document.on( "timerpoke.wb", selector, function() {
 });
 
 // Add the timer poke to initialize the plugin
-window._timer.add( ".wb-cal-evt" );
+wb.add( ".wb-cal-evt" );
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );
 

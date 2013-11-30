@@ -4,22 +4,22 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, vapour ) {
+(function( $, window, wb ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var $document = vapour.doc,
+var $document = wb.doc,
 	breadcrumbLinksArray, breadcrumbLinksUrlArray,
 	navClass = "wb-navcurr",
 
 	/*
 	 * We start the logic for what the plugin truly does
-	 * For demonstration purposes lets display some text with an alert 
+	 * For demonstration purposes lets display some text with an alert
 	 * @method otherEvent
 	 * @param {jQuery Event} event The event that triggered this method call
 	 * @param {jQuery DOM element | DOM element} breadcrumb Optional breadcrumb element
@@ -76,7 +76,7 @@ var $document = vapour.doc,
 						localBreadcrumbLinksUrlArray.push( link.hostname + link.pathname.replace( /^([^\/])/, "/$1" ) );
 					}
 				}
-				
+
 				// Cache the data in case of more than one execution (e.g., site menu + secondary navigation)
 				breadcrumbLinksArray = localBreadcrumbLinksArray;
 				breadcrumbLinksUrlArray = localBreadcrumbLinksUrlArray;
@@ -86,7 +86,7 @@ var $document = vapour.doc,
 				localBreadcrumbLinksArray = breadcrumbLinksArray;
 				localBreadcrumbLinksUrlArray = breadcrumbLinksUrlArray;
 			}
-		
+
 			// Try to match each breadcrumb link
 			len = menuLinksArray.length;
 			for ( j = localBreadcrumbLinksArray.length - 1; j !== -1; j -= 1 ) {
@@ -121,4 +121,4 @@ var $document = vapour.doc,
 // Bind the navcurrent event of the plugin
 $document.on( "navcurrent.wb", navCurrent );
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );

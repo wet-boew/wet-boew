@@ -4,11 +4,11 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, vapour ) {
+(function( $, wb ) {
 "use strict";
 
-var $document = vapour.doc,
-	hash = vapour.pageUrlParts.hash,
+var $document = wb.doc,
+	hash = wb.pageUrlParts.hash,
 	clickEvents = "click.wb-focus vclick.wb-focus",
 	linkSelector = "a[href]",
 	$linkTarget;
@@ -34,7 +34,7 @@ $document.on( "setfocus.wb", function ( event ) {
 if ( hash && ( $linkTarget = $( hash ) ).length !== 0 ) {
 	$linkTarget.trigger( "setfocus.wb" );
 }
-	
+
 // Helper for browsers that can't change keyboard and/or event focus on a same page link click
 $document.on( clickEvents, linkSelector, function( event ) {
 	var testHref = event.currentTarget.getAttribute( "href" );
@@ -45,4 +45,4 @@ $document.on( clickEvents, linkSelector, function( event ) {
 	}
 });
 
-})( jQuery, vapour );
+})( jQuery, wb );

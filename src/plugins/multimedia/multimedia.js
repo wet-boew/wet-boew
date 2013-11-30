@@ -5,11 +5,11 @@
  * @author WET Community
  */
 /* globals YT */
-(function( $, window, vapour, undef ) {
+(function( $, window, wb, undef ) {
 "use strict";
 
 /* Local scoped variables*/
-var $document = vapour.doc,
+var $document = wb.doc,
 	selector = ".wb-mltmd",
 	seed = 0,
 	templatetriggered = false,
@@ -401,11 +401,11 @@ youTubeEvents = function ( event ) {
 
 
 $document.on( "timerpoke.wb", selector, function() {
-	window._timer.remove( selector );
+	wb.remove( selector );
 
 	// Only initialize the i18nText once
 	if ( !i18nText ) {
-		i18n = window.i18n;
+		i18n = wb.i18n;
 		i18nText = {
 			rewind: i18n( "rew" ),
 			ff: i18n( "ffwd" ),
@@ -426,7 +426,7 @@ $document.on( "timerpoke.wb", selector, function() {
 		$document.trigger({
 			type: "ajax-fetch.wb",
 			element: $( selector ),
-			fetch: vapour.getPath( "/assets" ) + "/mediacontrols.html"
+			fetch: wb.getPath( "/assets" ) + "/mediacontrols.html"
 		});
 	}
 });
@@ -470,7 +470,7 @@ $document.on( "init.multimedia.wb", selector, function() {
 
 	if ( $media.find( "[type='video/youtube']" ).length > 0 ){
 		// lets tweak some variables and start the load sequence
-		url = vapour.getUrlParts( $this.find( "[type='video/youtube']").attr( "src") );
+		url = wb.getUrlParts( $this.find( "[type='video/youtube']").attr( "src") );
 
 		// lets set the flag for the call back
 		$this.data( "youtube", url.params.v );
@@ -513,17 +513,17 @@ $document.on( "fallback.multimedia.wb", selector, function() {
 
 
 	$data.flashvars = "id=" + $data.mId;
-	$playerresource = vapour.getPath( "/assets" ) + "/multimedia.swf?" + $data.flashvars;
+	$playerresource = wb.getPath( "/assets" ) + "/multimedia.swf?" + $data.flashvars;
 	$data.poster = "";
 	if ( $data.type === "video" ) {
 		$data.poster = "<img src='" + $poster + " class='img-responsive' height='" +
 			$data.height + "' width='" + $data.width + "' alt='" + $media.attr( "title" ) + "'/>";
 		$data.flashvars += "&height=" + $media.height() + "&width=" +
 			$media.width() + "&posterimg=" +
-			encodeURI( vapour.getUrlParts( $poster ).absolute ) + "&media=" +
-			encodeURI( vapour.getUrlParts( $source.filter( "[type='video/mp4']" ).attr( "src" ) ).absolute );
+			encodeURI( wb.getUrlParts( $poster ).absolute ) + "&media=" +
+			encodeURI( wb.getUrlParts( $source.filter( "[type='video/mp4']" ).attr( "src" ) ).absolute );
 	} else {
-		$data.flashvars += "&media=" + encodeURI( vapour.getUrlParts( $source.filter( "[type='audio/mp3']" ).attr( "src" ) ).absolute );
+		$data.flashvars += "&media=" + encodeURI( wb.getUrlParts( $source.filter( "[type='audio/mp3']" ).attr( "src" ) ).absolute );
 	}
 	$this.find( "video, audio" ).replaceWith( "<object id='" + $data.mId + "' width='" + $data.width +
 		"' height='" + $data.height + "' class='" + $data.type +
@@ -557,7 +557,7 @@ $document.on( "youtube.multimedia.wb", selector, function() {
 		playerVars: {
 			autoplay: 0,
 			controls: 0,
-			origin: vapour.pageUrlParts.host,
+			origin: wb.pageUrlParts.host,
 			modestbranding: 1,
 			rel: 0,
 			showinfo: 0
@@ -616,8 +616,8 @@ $document.on( "renderui.multimedia.wb", selector, function( event, type ) {
 		$this = ref[ 0 ],
 		$data = ref[ 1 ],
 		$player,
-		captionsUrl = vapour.getUrlParts( $data.captions ),
-		currentUrl = vapour.getUrlParts( window.location.href ),
+		captionsUrl = wb.getUrlParts( $data.captions ),
+		currentUrl = wb.getUrlParts( window.location.href ),
 		media = $this.find( "video, audio, iframe, object" );
 
 	media.after( window.tmpl( $this.data( "template" ), $data ) );
@@ -858,6 +858,6 @@ $document.on( "durationchange play pause ended volumechange timeupdate captionsl
 	}
 });
 
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );

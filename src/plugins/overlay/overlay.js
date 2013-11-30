@@ -4,11 +4,11 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @thomasgohard, @pjackson28
  */
-(function ( $, window, document, vapour ) {
+(function ( $, window, document, wb ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
@@ -18,7 +18,7 @@ var selector = ".wb-overlay",
 	linkClass = "overlay-lnk",
 	ignoreOutsideClass = "outside-off",
 	sourceLinks = {},
-	$document = vapour.doc,
+	$document = wb.doc,
 	i18n, i18nText,
 
 	/*
@@ -35,11 +35,11 @@ var selector = ".wb-overlay",
 		if ( event.currentTarget === event.target ) {
 
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
+			wb.remove( selector );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
-				i18n = window.i18n;
+				i18n = wb.i18n;
 				i18nText = {
 					close: i18n( "overlay-close" ) + i18n( "space" ) + i18n( "esc-key" )
 				};
@@ -199,6 +199,6 @@ $document.on( "click vclick touchstart focusin", "body", function ( event ) {
 });
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, document, vapour );
+})( jQuery, window, document, wb );

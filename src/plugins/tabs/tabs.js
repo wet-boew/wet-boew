@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
- (function( $, window, vapour ) {
+ (function( $, window, wb ) {
  "use strict";
 
  /*
@@ -14,7 +14,7 @@
   * variables that are common to all instances of the plugin on a page.
   */
  var selector = ".wb-tabs",
-	$document = vapour.doc,
+	$document = wb.doc,
 	i18n, i18nText,
 	controls = selector + " [role=tablist] a",
 
@@ -97,7 +97,7 @@
 		for ( ; tabCounter !== -1; tabCounter -= 1 ) {
 			item = tabs[ tabCounter ];
 			isActive = item.className.indexOf( "in" ) !== -1;
-			
+
 			item.tabIndex = isActive ? "0" : "-1";
 			item.setAttribute( "aria-hidden", isActive ? "false" : "true" );
 			item.setAttribute( "aria-expanded", isActive ? "true" : "false" );
@@ -129,7 +129,7 @@
 
 		// Only initialize the i18nText once
 		if ( !i18nText ) {
-			i18n = window.i18n;
+			i18n = wb.i18n;
 			i18nText = {
 				prev: i18n( "prv" ),
 				next: i18n( "nxt" ),
@@ -312,7 +312,7 @@
 		$sldr = $elm
 			.parents( ".wb-tabs" )
 			.attr( "data-ctime", 0 );
-			
+
 		// Spacebar
 		if ( which > 36 ) {
 			onCycle( $elm, which < 39 ? -1 : 1 );
@@ -327,7 +327,7 @@
 
 				text = elm.getElementsByTagName( "i" )[ 0 ];
 				text.innerHTML = text.innerHTML === playText ? i18nText.pause : playText;
-				
+
 				inv = $elm.find( ".wb-inv" )[ 0 ];
 				inv.innerHTML = inv.innerHTML === rotStopText ? i18nText.rotStart : rotStopText;
 			} else {
@@ -344,6 +344,6 @@
  });
 
  // Add the timer poke to initialize the plugin
- window._timer.add( ".wb-tabs" );
+ wb.add( ".wb-tabs" );
 
- })( jQuery, window, vapour );
+ })( jQuery, window, wb );

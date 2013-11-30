@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -14,7 +14,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-lightbox",
-	$document = vapour.doc,
+	$document = wb.doc,
 	i18n, i18nText,
 	extendedGlobal = false,
 
@@ -32,15 +32,15 @@ var selector = ".wb-lightbox",
 		if ( event.currentTarget === elm ) {
 
 			// read the selector node for parameters
-			modeJS = vapour.getMode() + ".js";
+			modeJS = wb.getMode() + ".js";
 			$elm = $( elm );
 
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
+			wb.remove( selector );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
-				i18n = window.i18n;
+				i18n = wb.i18n;
 				i18nText = {
 					tClose: i18n( "overlay-close" ) + i18n( "space" ) + i18n( "esc-key" ),
 					tLoading: i18n( "load" ),
@@ -158,17 +158,17 @@ var selector = ".wb-lightbox",
 					} else {
 						settings.type = "image";
 					}
-					
+
 					if ( elm.className.indexOf( "lb-modal" ) !== -1 ) {
 						settings.modal = true;
 					}
 
-					// Extend the settings with data-wet-boew then 
+					// Extend the settings with data-wet-boew then
 					$elm.magnificPopup(
 						$.extend(
 							true,
 							settings,
-							vapour.getData( $elm, "wet-boew" )
+							wb.getData( $elm, "wet-boew" )
 						)
 					);
 				}
@@ -211,6 +211,6 @@ $(document).on( "click", ".popup-modal-dismiss", function ( event ) {
 });
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, document, vapour );
+})( jQuery, window, document, wb );

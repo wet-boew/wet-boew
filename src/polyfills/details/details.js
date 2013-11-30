@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( window, vapour ) {
+(function( window, wb ) {
 "use strict";
 
 /*
@@ -12,7 +12,7 @@
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
 var selector = "details",
-	$document = vapour.doc,
+	$document = wb.doc,
 
 	/*
 	 * Init runs once per polyfill element on the page. There may be multiple elements.
@@ -24,7 +24,7 @@ var selector = "details",
 		var summary;
 
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
+		wb.remove( selector );
 
 		_elm.setAttribute( "aria-expanded", ( _elm.getAttribute( "open" ) === null ) );
 		summary = _elm.getElementsByTagName( "summary" );
@@ -72,6 +72,6 @@ $document.on( "click vclick touchstart keydown toggle.wb-details", selector + " 
 });
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( window, vapour );
+})( window, wb );
