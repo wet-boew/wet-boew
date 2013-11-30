@@ -1,0 +1,15 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+.glyphicon {
+	&.on {
+		color: #d9534f !important;
+	}
+	&.off {
+		color: inherit;
+	}
+}
+details, .btn-group {
+	margin: 10px 0;
+}

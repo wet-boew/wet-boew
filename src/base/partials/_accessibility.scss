@@ -3,7 +3,7 @@
   @title: Accessibility Additions to WET-BOEW
  */
 
-.wb-invisible, .wb-inv, #wb-resize {
+.wb-invisible, .wb-inv {
 	@extend %accessible-invisible;
 }
  
@@ -26,6 +26,12 @@
 	padding: 5px;
 	&:focus {
 		@extend %accessible-invisible-show;
+	}
+}
+
+#wb-glb-mn {
+	h2 {
+		@extend %accessible-invisible;
 	}
 }
 
@@ -62,11 +68,16 @@ footer {
 	}
 }
 
-
 .wb-mnavbar a, a + .wb-st-nav h2, .wb-sttng h2, .wb-org-nav .wb-ft h3 {
 	@extend %accessible-invisible;
 }
 
 .wb-mnavbar a:focus {
 	@extend %accessible-invisible-show;
+}
+
+q {
+	&:before, &:after {
+		content: "";
+	}
 }

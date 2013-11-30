@@ -1,0 +1,19 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+
+/*
+ Plugins
+ */
+@import "../plugins/overlay/overlay-ie8";
+ 
+/*
+ Polyfills
+ */
+@import "../polyfills/details/details-ie8";
+
+/* Print view */
+@media print {
+	@import "../plugins/footnotes/footnotes-ie8-printView";
+}

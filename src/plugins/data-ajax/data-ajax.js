@@ -1,14 +1,12 @@
 /*
  * @title WET-BOEW Data Ajax [data-ajax-after], [data-ajax-append],
  * [data-ajax-before], [data-ajax-prepend] and [data-ajax-replace]
- * @overview A basic AjaxLoader wrapper that inserts AJAXed in content
+ * @overview A basic AjaxLoader wrapper that inserts AJAXed-in content
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
-(function( $, window, vapour ) {
+(function( $, window, wb ) {
 "use strict";
-
-$.ajaxSettings.cache = false;
 
 /*
  * Variable and function definitions.
@@ -17,7 +15,7 @@ $.ajaxSettings.cache = false;
  * place to define variables that are common to all instances of the plugin on a
  * page.
  */
-var $document = vapour.doc,
+var $document = wb.doc,
 	selector = "[data-ajax-after], [data-ajax-append], [data-ajax-before], " +
 		"[data-ajax-prepend], [data-ajax-replace]",
 
@@ -35,7 +33,7 @@ var $document = vapour.doc,
 
 		// All plugins need to remove their reference from the timer in the init
 		// sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
+		wb.remove( selector );
 
 		$document.trigger({
 			type: "ajax-fetch.wb",
@@ -96,6 +94,6 @@ $document.on( "timerpoke.wb ajax-fetched.wb", selector, function( event ) {
 } );
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );

@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -14,7 +14,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-lightbox",
-	$document = vapour.doc,
+	$document = wb.doc,
 	i18n, i18nText,
 	extendedGlobal = false,
 
@@ -32,28 +32,28 @@ var selector = ".wb-lightbox",
 		if ( event.currentTarget === elm ) {
 
 			// read the selector node for parameters
-			modeJS = vapour.getMode() + ".js";
+			modeJS = wb.getMode() + ".js";
 			$elm = $( elm );
 
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
+			wb.remove( selector );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
-				i18n = window.i18n;
+				i18n = wb.i18n;
 				i18nText = {
-					tClose: i18n( "%close-esc" ),
-					tLoading: i18n( "%load" ),
+					tClose: i18n( "overlay-close" ) + i18n( "space" ) + i18n( "esc-key" ),
+					tLoading: i18n( "load" ),
 					gallery: {
-						tPrev: i18n( "%prv-l" ),
-						tNext: i18n( "%nxt-r" ),
-						tCounter: i18n( "%lb-curr" )
+						tPrev: i18n( "prv-l" ),
+						tNext: i18n( "nxt-r" ),
+						tCounter: i18n( "lb-curr" )
 					},
 					image: {
-						tError: i18n( "%lb-img-err" ) + " (<a href=\"%url%\">)"
+						tError: i18n( "lb-img-err" ) + " (<a href=\"url%\">)"
 					},
 					ajax: {
-						tError: i18n( "%lb-xhr-err" ) + " (<a href=\"%url%\">)"
+						tError: i18n( "lb-xhr-err" ) + " (<a href=\"url%\">)"
 					}
 				};
 			}
@@ -71,11 +71,7 @@ var selector = ".wb-lightbox",
 						extendedGlobal = true;
 					}
 
-					// TODO: How to support other options available in Magnific Popup
-					// TODO: Fix AJAX support (works fine with "grunt connect watch" but not locally)
-					// TODO: Fix visible focus and hidden text for buttons
 					// TODO: Add swipe support
-					// TODO: Should support be added for multiple non-gallery items of possibly mixed content? Would come at a performance code.
 
 					settings.callbacks = {
 						open: function() {
@@ -143,7 +139,6 @@ var selector = ".wb-lightbox",
 						firstLink = elm.getElementsByTagName( "a" )[0];
 
 						// Is the element a gallery?
-						// TODO: Should we support mixed content galleries? Could come at a performance cost and not very usable unless a hidden gallery (since always goes to first item).
 						if ( elm.className.indexOf( "-gallery" ) !== -1 ) {
 							settings.gallery = {
 								enabled: true,
@@ -164,7 +159,18 @@ var selector = ".wb-lightbox",
 						settings.type = "image";
 					}
 
-					$elm.magnificPopup( settings );
+					if ( elm.className.indexOf( "lb-modal" ) !== -1 ) {
+						settings.modal = true;
+					}
+
+					// Extend the settings with data-wet-boew then
+					$elm.magnificPopup(
+						$.extend(
+							true,
+							settings,
+							wb.getData( $elm, "wet-boew" )
+						)
+					);
 				}
 			});
 		}
@@ -174,24 +180,21 @@ var selector = ".wb-lightbox",
 $document.on( "timerpoke.wb", selector, init );
 
 $document.on( "keydown", ".mfp-wrap", function( event ) {
-	var eventTarget = event.target,
-		$elm;
+	var $elm, $focusable, index, length;
 
 	// If the tab key is used and filter out any events triggered by descendants
 	if ( extendedGlobal && event.which === 9 ) {
+		event.preventDefault();
 		$elm = $( this );
-
-		if ( event.shiftKey ) {
-			if ( event.currentTarget === eventTarget ) {
-				$elm.find( ":focusable" ).last().trigger( "focus.wb" );
-				return false;
-			}
-		} else {
-			if ( $elm.find( ":focusable" ).last()[ 0 ] === eventTarget ) {
-				$elm.trigger( "focus.wb" );
-				return false;
-			}
+		$focusable = $elm.find( ":focusable" );
+		length = $focusable.length;
+		index = $focusable.index( event.target ) + ( event.shiftKey ? -1 : 1 );
+		if ( index === -1 ) {
+			index = length - 1;
+		} else if ( index === length ) {
+			index = 0;
 		}
+		$focusable.eq( index ).trigger( "setfocus.wb" );
 	}
 
 	/*
@@ -201,7 +204,13 @@ $document.on( "keydown", ".mfp-wrap", function( event ) {
 	return true;
 });
 
-// Add the timer poke to initialize the plugin
-window._timer.add( selector );
+// Event handler for closing a modal popup
+$(document).on( "click", ".popup-modal-dismiss", function ( event ) {
+	event.preventDefault();
+	$.magnificPopup.close();
+});
 
-})( jQuery, window, document, vapour );
+// Add the timer poke to initialize the plugin
+wb.add( selector );
+
+})( jQuery, window, document, wb );

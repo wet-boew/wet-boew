@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-(function( $, window, document, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -14,7 +14,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-modal",
-	$document = vapour.doc,
+	$document = wb.doc,
 
 	/*
 	 * Plugin users can override these defaults by setting attributes on the html elements that the
@@ -39,11 +39,11 @@ var selector = ".wb-modal",
 		if ( event.currentTarget === event.target ) {
 
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
+			wb.remove( selector );
 
 			// Load the magnific popup dependency
 			Modernizr.load({
-				load: "site!deps/jquery.magnific-popup" + vapour.getMode() + ".js",
+				load: "site!deps/jquery.magnific-popup" + wb.getMode() + ".js",
 				complete: function() {
 					$document.trigger( "ready.wb-modal" );
 				}
@@ -79,9 +79,8 @@ var selector = ".wb-modal",
 	 */
 	build = function( event, settings ) {
 		// TODO: Add random serial to `id` attribute to prevent collisions
-		var $modal = $(	"<div class='modal-dialog'><article class='modal-content'>" +
-			"<div class='modal-body' id='lb-desc'>" + settings.content + "</div></article></div>" ),
-			$content = $modal.find( ".modal-content" );
+		var $modal = $(	"<section class='modal-dialog modal-content overlay-def'>" +
+			"<div class='modal-body' id='lb-desc'>" + settings.content + "</div></section>" );
 
 		// Add modal's ID if it exists
 		if ( settings.id != null ) {
@@ -90,14 +89,17 @@ var selector = ".wb-modal",
 
 		// Add modal's title if it exists
 		if ( settings.title != null ) {
-			$content.prepend( "<header class='modal-header'><h1 class='modal-title'>" + settings.title + "</h1></header>" );
-			$modal.attr( "aria-labelledby", "lb-title" );
+			$modal
+				.prepend( "<header class='modal-header'><h2 class='modal-title'>" + settings.title + "</h2></header>" )
+				.attr( "aria-labelledby", "lb-title" );
 		}
 
 		// Add the buttons
 		if ( settings.buttons != null ) {
-			$content.append( "<div class='modal-footer'>" );
-			$content.find( ".modal-footer" ).append( settings.buttons );
+			$modal
+				.append( "<div class='modal-footer'>" )
+				.find( ".modal-footer" )
+					.append( settings.buttons );
 		}
 
 		// Set modal's accessibility attributes
@@ -139,6 +141,6 @@ $document
 	});
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, document, vapour );
+})( jQuery, window, document, wb );

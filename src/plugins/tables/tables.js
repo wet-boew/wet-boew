@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @jeresiv
  */
-(function( $, window, vapour ) {
+(function( $, window, wb ) {
 "use strict";
 
 /*
@@ -14,7 +14,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-tables",
-	$document = vapour.doc,
+	$document = wb.doc,
 	i18n, i18nText, defaults,
 
 	/*
@@ -32,45 +32,53 @@ var selector = ".wb-tables",
 			$elm = $( elm );
 
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
+			wb.remove( selector );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
-				i18n = window.i18n;
+				i18n = wb.i18n;
 				i18nText = {
 					oAria: {
-						sSortAscending: i18n( "%sortAsc" ),
-						sSortDescending: i18n( "%sortDesc" )
+						sSortAscending: i18n( "sortAsc" ),
+						sSortDescending: i18n( "sortDesc" )
 					},
 					oPaginate: {
-						sFirst: i18n( "%first" ),
-						sLast: i18n( "%last" ),
-						sNext: i18n( "%nxt" ),
-						sPrevious: i18n( "%prv" )
+						sFirst: i18n( "first" ),
+						sLast: i18n( "last" ),
+						sNext: i18n( "nxt" ),
+						sPrevious: i18n( "prv" )
 					},
-					sEmptyTable: i18n( "%emptyTbl" ),
-					sInfo: i18n( "%infoEntr" ),
-					sInfoEmpty: i18n( "%infoEmpty" ),
-					sInfoFiltered: i18n( "%infoFilt" ),
-					sInfoThousands: i18n( "%info1000" ),
-					sLengthMenu: i18n( "%lenMenu" ),
-					sLoadingRecords: i18n( "%load" ),
-					sProcessing: i18n( "%process" ),
-					sSearch: i18n( "%srch" ),
-					sZeroRecords: i18n( "%infoEmpty" )
+					sEmptyTable: i18n( "emptyTbl" ),
+					sInfo: i18n( "infoEntr" ),
+					sInfoEmpty: i18n( "infoEmpty" ),
+					sInfoFiltered: i18n( "infoFilt" ),
+					sInfoThousands: i18n( "info1000" ),
+					sLengthMenu: i18n( "lenMenu" ),
+					sLoadingRecords: i18n( "load" ),
+					sProcessing: i18n( "process" ),
+					sSearch: i18n( "srch" ),
+					sZeroRecords: i18n( "infoEmpty" )
 				};
 			}
 
 			defaults = {
 				asStripeClasses : [],
-				oLanguage: i18nText
+				oLanguage: i18nText,
+				fnDrawCallback: function() {
+
+					if ( $elm.data( "inviewstate" ) === "partial" ){
+						$( "html, body" ).scrollTop( $elm.prev().offset().top );
+					}
+
+					$elm.trigger( "tables-draw.wb" );
+				}
 			};
 
 
 			Modernizr.load([{
-				load: [ "site!deps/jquery.dataTables" + vapour.getMode() + ".js" ],
+				load: [ "site!deps/jquery.dataTables" + wb.getMode() + ".js" ],
 				complete: function() {
-					$elm.dataTable( $.extend( true, defaults, vapour.getData( $elm, "wet-boew" ) ) );
+					$elm.dataTable( $.extend( true, defaults, wb.getData( $elm, "wet-boew" ) ) );
 				}
 			}]);
 		}
@@ -80,6 +88,6 @@ var selector = ".wb-tables",
 $document.on( "timerpoke.wb", selector, init );
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );

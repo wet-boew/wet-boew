@@ -1,0 +1,155 @@
+/*!
+
+/*! WET-BOEW Core and Plugins */
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+/*
+ * GLYPHICONS Halflings for Twitter Bootstrap by GLYPHICONS.com | Licensed under http://www.apache.org/licenses/LICENSE-2.0
+ */
+@import "../_variables";
+
+/*
+ Global placeholder
+ */
+%accessible-invisible {
+	height: 1px;
+	width: 1px;
+	clip: rect(1px, 1px, 1px, 1px);
+	overflow: hidden;
+	position: absolute;
+	margin: 0;
+}
+
+%accessible-invisible-show {
+	height: inherit;
+	width: inherit;
+	clip: rect(auto, auto, auto, auto);
+	overflow: inherit;
+	position: static;
+	margin: inherit;
+}
+
+@import "partials/accessibility";
+@import "partials/bootstrap-overrides";
+@import "partials/language-selector";
+@import "partials/transitions";
+@import "partials/proximity";
+
+/*
+ Plugins
+ */
+@import "../plugins/menu/menu";
+@import "../plugins/multimedia/multimedia";
+@import "../plugins/formvalid/formvalid";
+@import "../plugins/lightbox/lightbox";
+@import "../plugins/feedback/feedback";
+@import "../plugins/texthighlight/texthighlight";
+@import "../plugins/prettify/prettify";
+@import "../plugins/footnotes/footnotes";
+@import "../plugins/modal/modal";
+@import "../plugins/tables/tables";
+@import "../plugins/overlay/overlay";
+@import "../plugins/share/share";
+@import "../plugins/calendar/calendar-base";
+@import "../plugins/calendar/calendar-theme";
+@import '../plugins/cal-events/cal-events.scss';
+@import "../plugins/tabs/tabs";
+@import "../plugins/resize/resize";
+
+/*
+ Polyfills
+ */
+@import "../polyfills/datalist/datalist-base";
+@import "../polyfills/details/details-base";
+@import "../polyfills/datepicker/datepicker-base";
+
+/*
+ Views
+ */
+/* All screen views */
+@media screen {
+	@import "views/allScreenViews";
+	@import "../plugins/prettify/prettify-allScreenViews";
+}
+
+/* Extra-small view and under */
+@media screen and (max-width: $xSmallViewMax) {
+	@import "views/xSmallViewUnder";
+	@import "../plugins/tabs/tabs-xSmallViewUnder";
+}
+
+/* Small view and under */
+@media screen and (max-width: $smallViewMax) {
+	@import "views/smallViewUnder";
+	@import "../plugins/menu/menu-smallViewUnder";
+}
+
+/* Medium view and under */
+@media screen and (max-width: $mediumViewMax) {
+	@import "views/mediumViewUnder";
+}
+
+/* Large view and under */
+@media screen and (max-width: $largeViewMax) {
+	@import "views/largeViewUnder";
+}
+
+/* Extra-small view and over */
+@media screen and (min-width: $xSmallViewMin) {
+	@import "views/xSmallViewOver";
+}
+
+/* Small view and over */
+@media screen and (min-width: $smallViewMin) {
+	@import "views/smallViewOver";
+	@import "partials/bootstrap-overrides-smallViewOver";
+}
+
+/* Medium view and over */
+@media screen and (min-width: $mediumViewMin) {
+	@import "views/mediumViewOver";
+}
+
+/* Large view and over */
+@media screen and (min-width: $largeViewMin) {
+	@import "views/largeViewOver";
+}
+
+/* Extra-extra-small view */
+@media screen and (max-width: $xxSmallViewMax) {
+	@import "views/xxSmallView";
+}
+
+/* Extra-small view */
+@media screen and (min-width: $xSmallViewMin) and (max-width: $xSmallViewMax) {
+	@import "views/xSmallView";
+}
+
+/* Small view */
+@media screen and (min-width: $smallViewMin) and (max-width: $smallViewMax) {
+	@import "views/smallView";
+}
+
+/* Medium view */
+@media screen and (min-width: $mediumViewMin) and (max-width: $mediumViewMax) {
+	@import "views/mediumView";
+}
+
+/* Large view */
+@media screen and (min-width: $largeViewMin) and (max-width: $largeViewMax) {
+	@import "views/largeView";
+}
+
+/* Extra-large view */
+@media screen and (min-width: $xLargeViewMin) {
+	@import "views/xLargeView";
+}
+
+/* Print view */
+@media print {
+	@import "views/printView";
+	@import "../plugins/footnotes/footnotes-printView";
+	@import "../plugins/prettify/prettify-printView";
+}

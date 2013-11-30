@@ -5,26 +5,6 @@
 
 /* Progress polyfill */
 
-%progress-bar {
-	height: 1em;
-	width: 100%;
-	padding: 2px;
-	border: 1px solid black;
-}
-
-progress {
+progress{
 	display: inline-block;
-	.outer {
-		@extend %progress-bar;
-		background-color: #fff;
-	}
-	.undef {
-		@extend %progress-bar;
-		background-color: #f99;
-	}
-	.inner {
-		height: 100%;
-		border: none;
-		background-color: #090;
-	}
 }

@@ -1,32 +1,31 @@
-/*
+/**
  * @title WET-BOEW Multimedia PLayer
  * @overview An accessible multimedia player for <audio> and <video> tags, including a Flash fallback
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
-
-(function( $, window, document, vapour, undef ) {
+/* globals YT */
+(function( $, window, wb, undef ) {
 "use strict";
 
 /* Local scoped variables*/
-var $document = $(document),
-	$selector = ".wb-mltmd",
-	$seed = 0,
-	$templatetriggered = false,
-	formatTime, parseTime, expand, loadCaptionsExternal, loadCaptionsInternal,
-	parseHtml, parseXml, playerApi, updateCaptions,
-	i18n, i18nText;
+var $document = wb.doc,
+	selector = ".wb-mltmd",
+	seed = 0,
+	templatetriggered = false,
+	i18n, i18nText,
 
 /* helper functions*/
 
-/*
-@method formatTime
-@description format a number of seconds to SMTPE Timecode format (HH:MM:SS.FF)
-@param {Float} time The time to format
-@returns {String} the formatted time
-*/
+/**
+ * @method formatTime
+ * @description format a number of seconds to SMTPE Timecode format (HH:MM:SS.FF)
+ * @param {Float} time The time to format
+ * @returns {String} the formatted time
+ */
 formatTime = function( time ) {
-	var index = 2, timecode = "",
+	var index = 2,
+		timecode = "",
 		secondsIn, current, pad;
 
 	pad = function( number, digits ) {
@@ -36,8 +35,9 @@ formatTime = function( time ) {
 	time = Math.floor( time );
 
 	//Loop to extract hours, minutes and seconds
-	while (index >= 0) {
-		secondsIn = Math.pow( 60, index ); //Get the number of seconds for the current iteration (hour, minute or second)
+	while ( index >= 0 ) {
+		//Get the number of seconds for the current iteration (hour, minute or second)
+		secondsIn = Math.pow( 60, index );
 		current = Math.floor( time / secondsIn );
 
 		if ( timecode !== "" ) {
@@ -49,16 +49,16 @@ formatTime = function( time ) {
 		index -= 1;
 	}
 	return timecode;
-};
+},
 
-/*
-@method parseTime
-@description parse an SMTPE Timecode string (HH:MM:SS.FF) or duration (45s) and returns the number of seconds for the timecode
-@param {String} time The timecode or duration string to parse
-@returns {Float} the number of seconds in time
-*/
+/**
+ * @method parseTime
+ * @description parse an SMTPE Timecode string (HH:MM:SS.FF) or duration (45s) and returns the number of seconds for the timecode
+ * @param {String} time The timecode or duration string to parse
+ * @returns {Float} the number of seconds in time
+ */
 parseTime = function( time ) {
-	var p, parts, timeStringPortion, partLength, seconds;
+	var i, parts, timeStringPortion, partLength, seconds;
 
 	if ( time !== undef ) {
 		if ( time.charAt( time.length - 1 ) === "s" ) {
@@ -69,17 +69,17 @@ parseTime = function( time ) {
 			parts = time.split( ":" ).reverse();
 			seconds = 0;
 
-			for (p = 0, partLength = parts.length; p < partLength; p += 1 ) {
-				timeStringPortion = p === 0 ?
-					parseFloat( parts[ p ] ) :
-					parseInt( parts[ p ], 10 );
-				seconds += timeStringPortion * Math.pow( 60, p );
+			for ( i = 0, partLength = parts.length; i < partLength; i += 1 ) {
+				timeStringPortion = i === 0 ?
+					parseFloat( parts[ i ] ) :
+					parseInt( parts[ i ], 10 );
+				seconds += timeStringPortion * Math.pow( 60, i );
 			}
 			return seconds;
 		}
 	}
 	return -1;
-};
+},
 
 // TODO: Document this function
 expand = function( elm, withPlayer ) {
@@ -89,15 +89,14 @@ expand = function( elm, withPlayer ) {
 	return withPlayer !== undef ?
 		 [ $this, $data, $data.player ] :
 		 [ $this, $data ];
-};
+},
 
-
-/*
-@method parseHtml
-@description parse an HTML fragment and extract embed captions
-@param {String} content The HTML fragment containing the captions
-@returns {Array} An array of captions objects (ex: {text: "Caption", begin: 0, end :10})
-*/
+/**
+ * @method parseHtml
+ * @description parse an HTML fragment and extract embed captions
+ * @param {String} content The HTML fragment containing the captions
+ * @returns {Array} An array of captions objects (ex: {text: "Caption", begin: 0, end :10})
+ */
 parseHtml = function( content ) {
 	var captions = [],
 		captionSelector = ".wb-tmtxt",
@@ -110,42 +109,41 @@ parseHtml = function( content ) {
 		begin = -1;
 		end = -1;
 
-		if ( captionElement.attr("data-begin") !== undef ) {
+		if ( captionElement.attr( "data-begin" ) !== undef ) {
 			begin = parseTime( captionElement.attr( "data-begin" ) );
 			end = captionElement.attr( "data-end" ) !== undef ?
 				parseTime( captionElement.attr( "data-end" ) ) :
 				parseTime( captionElement.attr( "data-dur" ) ) + begin;
-		} else if (captionElement.attr("data") !== undef) {
-			json = captionElement.attr("data")
+		} else if ( captionElement.attr( "data" ) !== undef ) {
+			json = captionElement.attr( "data" )
 				.replace( /(begin|dur|end)/g, "\"$1\"" )
 				.replace( /'/g, "\"" );
-			json = $.parseJSON(json);
+			json = $.parseJSON( json );
 			begin = parseTime( json.begin );
-			end = json.end !== undefined ?
+			end = json.end !== undef ?
 				parseTime( json.end ) :
 				parseTime( json.dur ) + begin;
 		}
 
 		//Removes nested captions if an
 		captionElement = captionElement.clone();
-		captionElement.find(captionSelector).detach();
+		captionElement.find( captionSelector ).detach();
 
 		captions[ captions.length ] = {
-				text: captionElement.html(),
-				begin: begin,
-				end: end
+			text: captionElement.html(),
+			begin: begin,
+			end: end
 		};
 	}
-
 	return captions;
-};
+},
 
-/*
-@method parseXml
-@description parse an TTML (Xml) document and extract captions
-@param {String} content The TTML fragment containing the captions
-@returns {Array} An array of captions objects (ex: {text: "Caption", begin: 0, end :10})
-*/
+/**
+ * @method parseXml
+ * @description parse an TTML (Xml) document and extract captions
+ * @param {String} content The TTML fragment containing the captions
+ * @returns {Array} An array of captions objects (ex: {text: "Caption", begin: 0, end :10})
+ */
 parseXml = function( content ) {
 	var captions = [],
 		captionSelector = "[begin]",
@@ -156,9 +154,9 @@ parseXml = function( content ) {
 	for ( i = 0; i !== len; i += 1 ) {
 		captionElement = $( captionElements[ i ] );
 		begin = parseTime( captionElement.attr( "begin" ) );
-		end = captionElement.attr("end") !== undef ?
-			parseTime(captionElement.attr("end")) :
-			parseTime(captionElement.attr("dur")) + begin;
+		end = captionElement.attr( "end" ) !== undef ?
+			parseTime( captionElement.attr( "end" ) ) :
+			parseTime( captionElement.attr( "dur" ) ) + begin;
 
 
 		captionElement = captionElement.clone();
@@ -171,22 +169,22 @@ parseXml = function( content ) {
 		};
 	}
 	return captions;
-};
+},
 
-/*
-@method loadCaptionsExternal
-@description Loads captions from an external source (HTML embed or TTML)
-@param {Object} elm The jQuery object for the multimedia player loading the captions
-@param {String} url The url for the captions resource to load
-@fires captionsloaded.multimedia.wb
-@fires captionsloadfailed.multimedia.wb
-*/
+/**
+ * @method loadCaptionsExternal
+ * @description Loads captions from an external source (HTML embed or TTML)
+ * @param {Object} elm The jQuery object for the multimedia player loading the captions
+ * @param {String} url The url for the captions resource to load
+ * @fires captionsloaded.multimedia.wb
+ * @fires captionsloadfailed.multimedia.wb
+ */
 loadCaptionsExternal = function( elm, url ) {
 	$.ajax({
 		url: url,
 		dataType: "html",
+		//Filters out images and objects from the content to avoid loading them
 		dataFilter: function( data ) {
-			//Filters out images and objects from the content to avoid loading them
 			return data.replace( /<img|object [^>]*>/g, "" );
 		},
 		success: function( data ) {
@@ -204,200 +202,330 @@ loadCaptionsExternal = function( elm, url ) {
 			});
 		}
 	});
-};
+},
 
-/*
-@method loadCaptionsInternal
-@description Loads same page captions emebed in HTML
-@param {Object} elm The jQuery object for the multimedia player loading the captions
-@param {Object} obj The jQUery object containing the captions
-@fires captionsloaded.multimedia.wb
-*/
+/**
+ * @method loadCaptionsInternal
+ * @description Loads same page captions emebed in HTML
+ * @param {Object} elm The jQuery object for the multimedia player loading the captions
+ * @param {Object} obj The jQUery object containing the captions
+ * @fires captionsloaded.multimedia.wb
+ */
 loadCaptionsInternal = function( elm, obj ) {
 	elm.trigger({
 		type: "captionsloaded.multimedia.wb",
 		captions: parseHtml( obj )
 	});
-};
+},
 
-/*
-@method updateCaptions
-@description Update the captions for a multimedia player (called from the timeupdate event of the HTML5 media API)
-@param {Object} area The jQuery object for the element where captions are displayed
-@param {Float} seconds The current time of the media (use to sync the captions)
-@param {Object} captions The JavaScript object containing the captions
-*/
+/**
+ * @method updateCaptions
+ * @description Update the captions for a multimedia player (called from the timeupdate event of the HTML5 media API)
+ * @param {Object} area The jQuery object for the element where captions are displayed
+ * @param {Float} seconds The current time of the media (use to sync the captions)
+ * @param {Object} captions The JavaScript object containing the captions
+ */
 updateCaptions = function( area, seconds, captions ) {
-	var caption, _c,
-		_clen = captions.length;
+	var caption, i,
+		captionsLength = captions.length;
 
-	area.empty();
+	// lets not waste cycles in updating if captions are not visible
+	// and remove any text if there was some there before.
+	if ( !area.hasClass( "on" ) ) {
+		return area.is( "empty" ) ? 1 : area.empty();
+	}
 
-	for ( _c = 0; _c < _clen; _c += 1 ) {
-		caption = captions[ _c ];
+	// added &nbsp; to prevent caption space from collapsing
+	// Used .html() instead of .append for performance purposes
+	// http://jsperf.com/jquery-append-vs-html-list-performance/2
+	area.html( "&nbsp;" );
+
+	for ( i = 0; i < captionsLength; i += 1 ) {
+		caption = captions[ i ];
 		if ( seconds >= caption.begin && seconds <= caption.end ) {
-			area.append( $( "<div>" + caption.text + "</div>" ) );
+			area.html( $( "<div>" + caption.text + "</div>" ) );
 		}
 	}
-};
+},
 
-/*
-@method playerApi
-@description Normalizes the calls to the HTML5 media API and Flash Fallback
-@param {String} fn The function to call
-@param {} Args The arguments to send to the function call
-*/
+/**
+ * @method playerApi
+ * @description Normalizes the calls to the HTML5 media API and Flash Fallback
+ * @param {String} fn The function to call
+ * @param {} Args The arguments to send to the function call
+ */
 playerApi = function( fn, args ) {
 	var $this, captionsArea, method;
 
 	switch ( fn ) {
-		case "play":
-			try {
-				return this.object.play();
-			} catch ( ex ) {
-				return this.object.doPlay();
-			}
-			break;
-		case "pause":
-			try {
-				return this.object.pause();
-			} catch ( ex ) {
-				return this.object.doPause();
-			}
-			break;
-		case "getCaptionsVisible":
-			return $( this ).find( ".wb-mm-cc" ).hasClass( "on" );
-		case "setCaptionsVisible":
-			$this = $( this );
-			captionsArea = $this.find( ".wb-mm-cc" );
-			if ( args ) {
-				captionsArea.addClass("on");
-			} else {
-				captionsArea.removeClass("on");
-			}
-			return $this.trigger( "captionsvisiblechange.multimedia.wb" );
-		case "setPreviousTime":
-			return this.object.previousTime = args;
-		case "setBuffering":
-			return this.object.buffering = args;
-		default:
-			method = fn.charAt( 3 ).toLowerCase() + fn.substr( 4 );
-			switch ( fn.substr( 0, 3 ) ) {
-			case "get":
-				return typeof this.object[ method ] !== "function" ?
-					this.object[ method ] :
-					this.object[ method ]();
-			case "set":
-				return typeof this.object[ method ] !== "function" ?
-					this.object[ method ] = args :
-					this.object[ fn ]( args );
-			}
+	case "play":
+		try {
+			this.object.play();
+		} catch ( ex ) {
+			this.object.doPlay();
+		}
+		break;
+	case "pause":
+		try {
+			this.object.pause();
+		} catch ( ex ) {
+			this.object.doPause();
+		}
+		break;
+	case "getCaptionsVisible":
+		return $( this ).find( ".wb-mm-cc" ).hasClass( "on" );
+	case "setCaptionsVisible":
+		$this = $( this );
+		captionsArea = $this.find( ".wb-mm-cc" );
+		if ( args ) {
+			captionsArea.addClass( "on" );
+		} else {
+			captionsArea.removeClass( "on" );
+		}
+		$this.trigger( "captionsvisiblechange.multimedia.wb" );
+		break;
+	case "setPreviousTime":
+		this.object.previousTime = args;
+		break;
+	case "getBuffering":
+		return this.object.buffering || false;
+	case "setBuffering":
+		this.object.buffering = args;
+		break;
+	case "getPreviousTime":
+		return this.object.previousTime;
+	case "setPreviousTime":
+		this.object.previousTime = args;
+		break;
+	default:
+		method = fn.charAt( 3 ).toLowerCase() + fn.substr( 4 );
+		switch ( fn.substr( 0, 3 ) ) {
+		case "get":
+			return typeof this.object[ method ] !== "function" ?
+				this.object[ method ] :
+				this.object[ method ]();
+		case "set":
+			typeof this.object[ method ] !== "function" ?
+				this.object[ method ] = args :
+				this.object[ fn ]( args );
+		}
+	}
+},
+
+/**
+ * @method youTubeApi
+ * @description Normalizes the calls to the YouTube API
+ * @param {String} fn The function to call
+ * @param {object} Args The arguments to send to the function call
+ */
+youTubeApi = function( fn, args ) {
+	var $this = $( this.object.a ),
+		state;
+
+	switch ( fn ) {
+	case "play":
+		return this.object.playVideo();
+	case "pause":
+		return this.object.pauseVideo();
+	case "getPaused":
+		state = this.object.getPlayerState();
+		return state === -1 || state === 0 || state === 2;
+	case "getPlayed":
+		return this.object.getPlayerState() > -1;
+	case "getEnded":
+		return this.object.getPlayerState() === 0;
+	case "getDuration":
+		return this.object.getDuration();
+	case "getCurrentTime":
+		return this.object.getCurrentTime();
+	case "setCurrentTime":
+		return this.object.seekTo( args, true );
+	case "getMuted":
+		return this.object.isMuted();
+	case "setMuted":
+		if ( args === true ) {
+			this.object.mute();
+		} else {
+			this.object.unMute();
+		}
+		setTimeout( function() {
+			$this.trigger( "volumechange" );
+		}, 50 );
+		break;
+	case "getVolume":
+		return this.object.getVolume() / 100;
+	case "setVolume":
+		this.object.setVolume( args * 100 );
+		setTimeout( function(){
+			$this.trigger( "volumechange" );
+		}, 50 );
+
+	}
+},
+
+/**
+ * @method youTubeEvennts
+ * @description Youtube API event manager
+ * @param {} event The event object fior the triggered event
+ */
+youTubeEvents = function ( event ) {
+	var target = event.target.a,
+		$target = $( event.target.a ),
+		timeline = function () {
+			$target.trigger( "timeupdate" );
+		};
+
+	switch ( event.data ) {
+	case null:
+		$target.trigger( "durationchange" );
+		$target.trigger( "canplay" );
+		break;
+	case 0:
+		$target.trigger( "ended" );
+		target.timeline = clearInterval( target.timeline );
+		break;
+	case 1:
+		$target.trigger( "play" );
+		target.timeline = setInterval( timeline, 250 );
+		break;
+	case 2:
+		$target.trigger( "pause" );
+		target.timeline = clearInterval( target.timeline );
+		break;
+	case 3:
+		$target.trigger( "waiting" );
+		target.timeline = clearInterval( target.timeline );
+		break;
 	}
 };
 
-$document.on( "timerpoke.wb", $selector, function() {
-	window._timer.remove( $selector );
+
+$document.on( "timerpoke.wb", selector, function() {
+	wb.remove( selector );
 
 	// Only initialize the i18nText once
 	if ( !i18nText ) {
-		i18n = window.i18n;
+		i18n = wb.i18n;
 		i18nText = {
-			rewind: i18n( "%rew" ),
-			ff: i18n( "%ffwd" ),
-			play: i18n( "%play" ),
-			pause: i18n( "%pause" ),
-			cc_on: i18n( "%cc", "on" ),
-			cc_off: i18n( "%cc", "off"),
-			cc_error: i18n ( "%cc-err" ),
-			mute_on: i18n( "%mute", "on"),
-			mute_off: i18n( "%mute", "off"),
-			duration: i18n( "%dur"),
-			position: i18n( "%pos")
+			rewind: i18n( "rew" ),
+			ff: i18n( "ffwd" ),
+			play: i18n( "play" ),
+			pause: i18n( "pause" ),
+			cc_on: i18n( "cc", "on" ),
+			cc_off: i18n( "cc", "off" ),
+			cc_error: i18n ( "cc-err" ),
+			mute_on: i18n( "mute", "on" ),
+			mute_off: i18n( "mute", "off" ),
+			duration: i18n( "dur" ),
+			position: i18n( "pos" )
 		};
 	}
 
-	if ( !$templatetriggered ) {
-		$templatetriggered = true;
-		return $document.trigger({
+	if ( !templatetriggered ) {
+		templatetriggered = true;
+		$document.trigger({
 			type: "ajax-fetch.wb",
-			element: $( $selector ),
-			fetch: "" + vapour.getPath( "/assets" ) + "/mediacontrols.html"
+			element: $( selector ),
+			fetch: wb.getPath( "/assets" ) + "/mediacontrols.html"
 		});
 	}
 });
 
-$document.on( "ajax-fetched.wb", $selector, function( event ) {
+$document.on( "ajax-fetched.wb", selector, function( event ) {
 	var $this = $( this ),
 		$template = event.pointer.html();
 
 	$this.data( "template", $template );
-	return $this.trigger({
+	$this.trigger({
 		type: "init.multimedia.wb"
 	});
 });
 
-$document.on( "init.multimedia.wb", $selector, function() {
-
+$document.on( "init.multimedia.wb", selector, function() {
 	var $this = $( this ),
-		$id = $this.attr( "id" ) !== undef ? $this.attr( "id" ) : "wb-mediaplayer-" + ( $seed++ ),
 		$media = $this.children( "audio, video" ).eq( 0 ),
-		$m_id = $media.attr( "id" ) !== undef ? $media.attr( "id" ) : "" + $id + "-media",
-		$type = $media.is( "video" ) ? "video" : "audio",
-		$width = $type === "video" ? $media.attr( "width" ) : "0",
-		$height = $type === "video" ? $media.attr( "height" ) : "0",
-		$captions = $media.children("track[kind='captions']") ? $media.children("track[kind='captions']").attr("src") : undef,
+		$captions = $media.children( "track[kind='captions']" ) ? $media.children( "track[kind='captions']" ).attr( "src" ) : undef,
+		id = $this.attr( "id" ) !== undef ? $this.attr( "id" ) : "wb-mm-" + ( seed++ ),
+		mId = $media.attr( "id" ) !== undef ? $media.attr( "id" ) : "" + id + "-md",
+		type = $media.is( "video" ) ? "video" : "audio",
+		width = type === "video" ? $media.attr( "width" ) : "0",
+		height = type === "video" ? $media.attr( "height" ) : "0",
 		data = $.extend({
-			id: $id,
 			media: $media,
-			m_id: $m_id,
-			type: $type,
-			height: $height,
-			width: $width,
 			captions: $captions,
-			object: ""
-		}, i18nText);
+			id: id,
+			mId: mId,
+			type: type,
+			height: height,
+			width: width
+		}, i18nText),
+		media = $media.get( 0 ),
+		url;
 
 	if ( $media.attr( "id" ) === undef ) {
-		$media.attr( "id", $m_id );
+		$media.attr( "id", mId );
 	}
 
 	$this.data( "properties", data );
 
-	if ( $media.get( 0 ).error === null && $media.get( 0 ).currentSrc !== "" && $media.get( 0 ).currentSrc !== undef ) {
-		return $this.trigger( "" + $type + ".multimedia.wb" );
-	} else {
-		return $this.trigger( "fallback.multimedia.wb" );
-	}
+	if ( $media.find( "[type='video/youtube']" ).length > 0 ){
+		// lets tweak some variables and start the load sequence
+		url = wb.getUrlParts( $this.find( "[type='video/youtube']").attr( "src") );
 
-	// FIXME: This is unreachable
-	// Where does this come from?
-	return $.error( "[web-boew] Mediaplayer :: error - mp003 :: Cannot play listed media" );
+		// lets set the flag for the call back
+		$this.data( "youtube", url.params.v );
+
+		if ( window.needsYoutube === undefined ) {
+			// lets create an empty set to store our elements
+			window.needsYoutube = $([]);
+		}
+
+		// Method called the the YouTUbe API when ready
+		if ( window.onYouTubeIframeAPIReady === undefined ) {
+
+			// lets bind youtubes global function
+			window.onYouTubeIframeAPIReady = function() {
+				  $this.trigger( "youtube.multimedia.wb" );
+			};
+		}
+
+		// finally lets load safely
+		return Modernizr.load( {
+			load: "https://www.youtube.com/iframe_api"
+		} );
+
+
+	} else if ( media.error === null && media.currentSrc !== "" && media.currentSrc !== undef ) {
+		$this.trigger( type + ".multimedia.wb" );
+	} else {
+		$this.trigger( "fallback.multimedia.wb" );
+	}
 });
 
-$document.on( "fallback.multimedia.wb", $selector, function() {
-	var _ref = expand( this ),
-		$this = _ref[ 0 ],
-		$data = _ref[ 1 ],
+$document.on( "fallback.multimedia.wb", selector, function() {
+	var ref = expand( this ),
+		$this = ref[ 0 ],
+		$data = ref[ 1 ],
 		$media = $data.media,
 		$poster = $media.attr( "poster" ),
 		$source = $data.media.find( "source" ),
 		$playerresource;
 
 
-	$data.flashvars = "id=" + $data.id;
-	$playerresource = vapour.getPath( "/assets" ) + "/multimedia.swf?" + $data.flashvars;
+	$data.flashvars = "id=" + $data.mId;
+	$playerresource = wb.getPath( "/assets" ) + "/multimedia.swf?" + $data.flashvars;
 	$data.poster = "";
 	if ( $data.type === "video" ) {
 		$data.poster = "<img src='" + $poster + " class='img-responsive' height='" +
 			$data.height + "' width='" + $data.width + "' alt='" + $media.attr( "title" ) + "'/>";
-		$data.flashvars = "&height=" + $media.height() + "&width=" +
+		$data.flashvars += "&height=" + $media.height() + "&width=" +
 			$media.width() + "&posterimg=" +
-			encodeURI( vapour.getUrlParts( $poster ).absolute ) + "&media=" +
-			encodeURI( vapour.getUrlParts( $source.filter( "[type='video/mp4']" ).attr( "src" ) ).absolute );
+			encodeURI( wb.getUrlParts( $poster ).absolute ) + "&media=" +
+			encodeURI( wb.getUrlParts( $source.filter( "[type='video/mp4']" ).attr( "src" ) ).absolute );
 	} else {
-		$data.flashvars = "&media=" + encodeURI( vapour.getUrlParts( $source.filter( "[type='audio/mp3']" ).attr( "src" ) ).absolute );
+		$data.flashvars += "&media=" + encodeURI( wb.getUrlParts( $source.filter( "[type='audio/mp3']" ).attr( "src" ) ).absolute );
 	}
-	$data.sObject = "<object id='" + $data.m_id + "' width='" + $data.width +
+	$this.find( "video, audio" ).replaceWith( "<object id='" + $data.mId + "' width='" + $data.width +
 		"' height='" + $data.height + "' class='" + $data.type +
 		"' type='application/x-shockwave-flash' data='" +
 		$playerresource + "' tabindex='-1'>" +
@@ -406,101 +534,155 @@ $document.on( "fallback.multimedia.wb", $selector, function() {
 		"<param name='allowScriptAccess' value='always'/>" +
 		"<param name='bgcolor' value='#000000'/>" +
 		"<param name='wmode' value='opaque'/>" +
-		$data.poster + "</object>";
+		$data.poster + "</object>" );
 	$this.data( "properties", $data );
 
-	return $this.trigger( "renderui.multimedia.wb" );
+	$this.trigger( "renderui.multimedia.wb" );
 });
 
-$document.on( "video.multimedia.wb", $selector, function() {
-	var _ref = expand( this ),
-		$this = _ref[ 0 ],
-		$data = _ref[ 1 ];
+/*
+ *  Youtube Video mode Event
+ */
+$document.on( "youtube.multimedia.wb", selector, function() {
+	var ref = expand( this ),
+		ytPlayer,
+		$this = ref[ 0 ],
+		media = $this.find( "video:eq(0)" ),
+		id = media.get( 0 ).id,
+		$data = ref[ 1 ];
 
-	$data.sObject = $data.media.wrap( "<div />" ).parent().html();
+	media.replaceWith( "<div id=" + id + "/>" );
+	ytPlayer = new YT.Player( id, {
+		videoId: $this.data( "youtube" ),
+		playerVars: {
+			autoplay: 0,
+			controls: 0,
+			origin: wb.pageUrlParts.host,
+			modestbranding: 1,
+			rel: 0,
+			showinfo: 0
+		},
+		events: {
+			"onReady": youTubeEvents,
+			"onStateChange": youTubeEvents
+		}
+	});
+
+	$this.find( "iframe" ).attr( "tabindex", -1 );
+
+	$data.poster = "<img src='" + $data.media.attr( "poster" ) +
+		"' class='img-responsive' height='" + $data.height +
+		"' width='" + $data.width + "' alt='" + $data.media.attr( "title" ) + "'/>";
+	$data.ytPlayer = ytPlayer;
+
+	$this.data( "properties", $data );
+	$this.trigger( "renderui.multimedia.wb", "video" );
+});
+
+/*
+ *  Native Video mode Event
+ */
+$document.on( "video.multimedia.wb", selector, function() {
+	var ref = expand( this ),
+		$this = ref[ 0 ],
+		$data = ref[ 1 ];
+
 	$data.poster = "<img src='" + $data.media.attr( "poster" ) +
 		"' class='img-responsive' height='" + $data.height +
 		"' width='" + $data.width + "' alt='" + $data.media.attr( "title" ) + "'/>";
 
 	$this.data( "properties", $data );
 
-	return $this.trigger( "renderui.multimedia.wb" );
+	$this.trigger( "renderui.multimedia.wb", "video" );
 });
 
-$document.on("audio.multimedia.wb", $selector, function() {
-	// Implement audio player
-	var $data, $this, _ref;
-	return _ref = expand(this), $this = _ref[0], $data = _ref[1], _ref;
+/*
+ *  Native Audio mode Event
+ */
+$document.on( "audio.multimedia.wb", selector, function() {
+	var ref = expand (this ),
+		$this = ref[ 0 ],
+		$data = ref[ 1 ];
+
+	$data.poster = "";
+
+	$this.data( "properties", $data );
+
+	$this.trigger( "renderui.multimedia.wb", "audio" );
 });
 
-$document.on("renderui.multimedia.wb", $selector, function() {
-	var _ref = expand( this ),
-		$this = _ref[ 0 ],
-		$data = _ref[ 1 ],
+$document.on( "renderui.multimedia.wb", selector, function( event, type ) {
+	var ref = expand( this ),
+		$this = ref[ 0 ],
+		$data = ref[ 1 ],
 		$player,
-		captionsUrl = vapour.getUrlParts( $data.captions ).absolute;
+		captionsUrl = wb.getUrlParts( $data.captions ),
+		currentUrl = wb.getUrlParts( window.location.href ),
+		media = $this.find( "video, audio, iframe, object" );
 
+	media.after( window.tmpl( $this.data( "template" ), $data ) );
+	if ( type === "video" ) {
+		media.next( ".display" ).append( media );
+	} else {
+		media.next( ".display" ).remove();
+	}
 
-	$this.html( window.tmpl( $this.data( "template" ), $data ) );
-	$player = $( "#" + $data.m_id );
-	$data.player = $player.is( "object") ? $player.children( ":first-child" ) : $player.load();
+	$player = $( "#" + $data.mId );
+	$data.player = $player.is( "object" ) ? $player.children( ":first-child" ) : $player.load();
 
 	// Create an adapter for the event management
 	$data.player.on( "durationchange play pause ended volumechange timeupdate captionsloaded captionsloadfailed captionsvisiblechange waiting canplay progress", function( event ) {
 		$this.trigger( event );
 	});
 
-	this.object = $player.get( 0 );
-	this.player = playerApi;
+	this.object = $data.ytPlayer || $player.get( 0 );
+	this.player = ( $data.ytPlayer ) ? youTubeApi : playerApi;
 	$this.data( "properties", $data );
 
-	if ( $data.captions === undefined ) {
+	if ( $data.captions === undef ) {
 		return 1;
 	}
 
-	if ( captionsUrl !== window.location.href ) {
-		loadCaptionsExternal( $player, captionsUrl );
+	if ( currentUrl.absolute.replace( currentUrl.hash, "" ) !== captionsUrl.absolute.replace( captionsUrl.hash, "" ) ) {
+		loadCaptionsExternal( $player, captionsUrl.absolute );
 	} else {
-		loadCaptionsInternal( $player, captionsUrl );
+		loadCaptionsInternal( $player, $( captionsUrl.hash ) );
 	}
 });
 
 /*
-UI Bindings
-*/
+ * UI Bindings
+ */
 
-$document.on( "click", $selector, function( event ) {
-	var eventTarget = event.target,
-		playerTarget = event.currentTarget,
-		which = event.which,
-		className = eventTarget.className,
-		$target;
+$document.on( "click", selector, function( event ) {
+	var $target = $( event.target ),
+		className = $target.attr( "class" ) || "";
 
 	// Ignore middle and right mouse buttons
-	if ( !which || which === 1 ) {
-		$target = $( eventTarget );
-
-		if ( className.match( /playpause|-(play|pause)|wb-mm-ovrly/ ) ) {
-			playerTarget.player( playerTarget.player( "getPaused" ) ? "play" : "pause" );
-		} else if ( className.match( /\bcc\b|-subtitles/ )  ) {
-			playerTarget.player( "setCaptionsVisible", !playerTarget.player( "getCaptionsVisible" ) );
-		} else if ( className.match( /\bmute\b|-volume-(up|off)/ ) ) {
-			playerTarget.player( "setMuted", !playerTarget.player( "getMuted" ) );
-		} else if ( $target.is( "progress" ) || className.indexOf( "wb-progress-inner") !== -1 || className.indexOf( "wb-progress-outer" ) !== -1 ) {
-			playerTarget.player( "setCurrentTime", playerTarget.player( "getDuration" ) * ( ( event.pageX - $target.offset().left ) / $target.width() ) );
-		} else if ( className.match( /\brewind\b|-backwards/ ) ) {
-			playerTarget.player( "setCurrentTime", playerTarget.player( "getCurrentTime" ) - playerTarget.player( "getDuration" ) * 0.05 );
-		} else if ( className.match( /\bfastforward\b|-forward/ ) ) {
-			playerTarget.player( "setCurrentTime", playerTarget.player( "getCurrentTime" ) + playerTarget.player( "getDuration" ) * 0.05 );
-		}
-
-		return false;
+	if ( event.which === 2 || event.which === 3 ) {
+		return true;
 	}
 
-	return true;
+
+	// Opitmized multiple class tests to include child glyphicon because Safari was reporting the click event
+	// from the child span not the parent button, forcing us to have to check for both elements
+	// JSPerf for multiple class matching http://jsperf.com/hasclass-vs-is-stackoverflow/7
+	if ( className.match( /playpause|-play|-pause|wb-mm-overlay/ ) || $target.is( "object" ) ) {
+		this.player( "getPaused" ) ? this.player( "play") : this.player( "pause");
+	} else if ( className.match( /\bcc\b|-subtitles/ )  ) {
+		this.player( "setCaptionsVisible", !this.player( "getCaptionsVisible") );
+	} else if ( className.match( /\bmute\b|-volume-(up|off)/ ) ) {
+		this.player( "setMuted", !this.player( "getMuted" ) );
+	} else if ( $target.is( "progress" ) || $target.hasClass( "wb-progress-inner") || $target.hasClass( "wb-progress-outer" ) ) {
+		this.player( "setCurrentTime", this.player( "getDuration" ) * ( ( event.pageX - $target.offset().left ) / $target.width() ) );
+	} else if ( className.match( /\brewind\b|-backwards/ ) ) {
+		this.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05);
+	} else if ( className.match( /\bfastforward\b|-forward/ ) ) {
+		this.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05);
+	}
 });
 
-$document.on( "keydown", $selector, function( event ) {
+$document.on( "keydown", selector, function( event ) {
 	var playerTarget = event.currentTarget,
 		which = event.which,
 		ctrls = ".wb-mm-ctrls",
@@ -514,7 +696,7 @@ $document.on( "keydown", $selector, function( event ) {
 		break;
 
 	case 37:
-		$this.find( ctrls + " .rewind ").trigger( "click" );
+		$this.find( ctrls + " .rewind" ).trigger( "click" );
 		break;
 
 	case 39:
@@ -528,7 +710,7 @@ $document.on( "keydown", $selector, function( event ) {
 
 	case 40:
 		volume = Math.round( playerTarget.player( "getVolume" ) * 10 ) / 10 - 0.1;
-		playerTarget.player( "setVolume",  volume > 0 ? volume : 0 );
+		playerTarget.player( "setVolume", volume > 0 ? volume : 0 );
 		break;
 
 	default:
@@ -537,14 +719,14 @@ $document.on( "keydown", $selector, function( event ) {
 	return false;
 });
 
-$document.on( "keyup", $selector, function( event ) {
+$document.on( "keyup", selector, function( event ) {
 	if ( event.which === 32 ) {
 		//Allows the spacebar to be used for play/pause without double triggering
 		return false;
 	}
 });
 
-$document.on( "durationchange play pause ended volumechange timeupdate captionsloaded.multimedia.wb captionsloadfailed.multimedia.wb captionsvisiblechange waiting canplay progress", $selector, function( event ) {
+$document.on( "durationchange play pause ended volumechange timeupdate captionsloaded.multimedia.wb captionsloadfailed.multimedia.wb captionsvisiblechange waiting canplay progress", selector, function( event ) {
 	var eventTarget = event.currentTarget,
 		eventType = event.type,
 		$this = $( eventTarget ),
@@ -611,7 +793,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate captionsl
 				Math.round( currentTime / eventTarget.player( "getDuration" ) * 1000 ) / 10
 			);
 
-		$this.find( ".wb-mm-tline-current span" )
+		$this.find( ".wb-mm-tmln-crrnt span" )
 			.text( formatTime( currentTime ) );
 
 		if ( $.data( eventTarget, "captions" ) !== undef ) {
@@ -623,16 +805,21 @@ $document.on( "durationchange play pause ended volumechange timeupdate captionsl
 		}
 		break;
 
+	case "durationchange":
+		$this.find( ".wb-mm-tmln-ttl span" )
+			.text( formatTime( eventTarget.player( "getDuration" ) ) );
+		break;
+
 	case "captionsloaded":
 		$.data( eventTarget, "captions", event.captions );
 		break;
 
 	case "captionsloadfailed":
 		$this.find( ".wb-mm-cc" )
-		.append( "<p class='errmsg'><span>" + i18nText.cc_error + "</span></p>" )
-		.end()
-		.find( ".cc" )
-		.attr( "disabled", "" );
+			.append( "<p class='errmsg'><span>" + i18nText.cc_error + "</span></p>" )
+			.end()
+			.find( ".cc" )
+			.attr( "disabled", "" );
 		break;
 
 	case "captionsvisiblechange":
@@ -645,9 +832,32 @@ $document.on( "durationchange play pause ended volumechange timeupdate captionsl
 			button.attr( "title", button.data( "state-off" ) )
 				.css( "opacity", ".5" );
 		}
+		break;
+
+	case "waiting":
+		$this.find( ".display" ).addClass( "waiting" );
+		break;
+
+	case "canplay":
+		$this.find( ".display" ).removeClass( "waiting" );
+		break;
+
+	// Fallback for browsers that don't implement the waiting events
+	case "progress":
+		// Waiting detected, display the loading icon
+		if ( this.player( "getPaused" ) === false && this.player( "getCurrentTime" ) === this.player( "getPreviousTime" ) && eventTarget.player( "getBuffering" ) === false ) {
+			eventTarget.player( "setBuffering", true );
+			$this.trigger( "waiting" );
+		// Waiting has ended, but icon is still visible - remove it.
+		} else if ( eventTarget.player( "getBuffering" ) === true ) {
+			eventTarget.player( "setBuffering", false );
+			$this.trigger( "canplay" );
+		}
+		eventTarget.player( "setPreviousTime", eventTarget.player( "getCurrentTime" ) );
+		break;
 	}
 });
 
-window._timer.add( $selector );
+wb.add( selector );
 
-})( jQuery, window, document, vapour, undefined );
+})( jQuery, window, wb );

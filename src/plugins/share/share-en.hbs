@@ -2,12 +2,30 @@
 {
 	"title": "Share widget",
 	"language": "en",
+	"category": "Plugin",
+	"description": "Facilitates sharing Web content on social media platforms.",
+	"tag": "share",
 	"fr": "share"
 }
 ---
 
-<a href="#shr-pg">Share this page</a>
-<section id="shr-pg" class="wb-overlay panel panel-right">
-	<h2>Share this page</h2>
-	<div class="wb-share"></div>
-</section>
+<div class="wb-share"></div>
+<p class="text-right">
+	<strong>Add a second link:</strong>
+	<a href="#shr-pg" aria-controls="shr-pg" class="shr-opn overlay-lnk" role="button">
+		<span class="glyphicon glyphicon-share"></span> Share this page
+	</a>
+</p>
+
+<details>
+	<summary>View code</summary>
+	<pre class="wb-prettify">
+		<code>&lt;div class="wb-share"&gt;&lt;/div&gt;
+&lt;p&gt;
+	&lt;strong&gt;Add a second link:&lt;/strong&gt;
+	&lt;a href="#shr-pg" aria-controls="shr-pg" class="shr-opn overlay-lnk" role="button"&gt;
+		&lt;span class="glyphicon glyphicon-share"&gt;&lt;/span&gt; Share this page
+	&lt;/a&gt;
+&lt;/p&gt;</code>
+	</pre>
+</details>

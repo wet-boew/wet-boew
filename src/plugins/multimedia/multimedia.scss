@@ -2,8 +2,29 @@
   Multimedia Player Code
  */
 
+ @keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform:rotate(360deg);
+	}
+}
+
+%multimedia_loading {
+	content: " ";
+	height: 100px;
+	width: 100px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+}
+
 .wb-mltmd {
-	color: #fff;
 	// lets fight the FOUC
 	// base state
 	display: block;
@@ -17,7 +38,6 @@
 		background: transparent;
 		border: 0;
 		color: #fff;
-
 	}
 	progress, .btn {
 		&:focus { 
@@ -38,6 +58,25 @@
 			width: 100%;
 			height: 100%;
 		}
+
+		&.waiting {
+			&:after{
+				@extend %multimedia_loading;
+				background: url(../assets/loading.png) center center no-repeat;
+				animation-name: spin;
+				animation-duration: 1000ms;
+				animation-iteration-count: infinite;
+				animation-timing-function: linear;
+				z-index:2;
+			} 
+
+			&:before {
+				@extend %multimedia_loading;
+				background: rgba( 0, 0, 0, 0.7 );
+				border-radius: 10px;
+				z-index:1;
+			}
+		}
 	}
 	.wb-mm-ovrly {
 		background: transparent;
@@ -55,26 +94,6 @@
 				display: none;
 			}
 		}
-		// Lets make sure error messages are more prominant
-		.errmsg {
-			position: absolute;
-			z-index: 105;
-			top: 0;
-			left: 0;
-			bottom: 0;
-			right: 0;
-			background-color: rgba( 0, 0, 0, 0.7 );
-			margin-bottom: 0;
-
-			span {
-				color: #fff;
-				display: block;
-				top: 45%;
-				text-indent: 0;
-				position: relative;
-			}
-		}
-
 	}
 
 	&[data-youtube] {
@@ -86,15 +105,16 @@
 	  Light Skinning of mediacontrols
 	 */
 	&.skn-lt {
-		color: #000 !important;
+		color: #000;
 		border-bottom: 1px solid #ddd;
 		.wb-mm-ctrls {
 			background: #fff;
+			color: #000;
 		}
 		.btn {
 			background: #fff;
+			color: #000;
 			border: 0;
-			color: #000 !important;
 		}
 	}
 }
@@ -115,51 +135,52 @@
 .wb-mm-ctrls {
 	display: table;
 	background: #000;
+	color: #fff;
 	position: relative;
 	width: 100%;
-	.frstpnl {
-		width: 10em;
-		vertical-align: top;
+
+	%pnl {
+		vertical-align: middle;
 		display: table-cell;
+	}
+
+	.frstpnl {
+		@extend %pnl;
+		width: 6em;
 	}
 	.lastpnl {
+		@extend %pnl;
 		text-align: right;
-		width: 7em;
-		display: table-cell;
-		vertical-align: top;
+		width: 4em;
 	}
 	.tline {
-		display: table-cell;
-		vertical-align: top;
-		padding-top: 0.55em;
+		@extend %pnl;
 		.textonly {
 			p {
 				display: inline !important;
 				float: left;
-			}
-		}
-		/* Progress Bar */
-		progress {
-			width: 100%;
-			height: 14px;
-			display: block;
-			/* Important Thing */
-			-webkit-appearance: none;
-			border: none;
-			&::-webkit-progress-bar, &::-moz-progress-bar {
-				background: #fff;
-			}
-			/* Now the value part */
-			&::-webkit-progress-value {
-				background: #176CA7;
+				margin:0;
+				&:last-child {
+					float:right;
+				}
 			}
 		}
 	}
 
-}
-
-@media print {
-	.wb-mm-ctrls, .wb-mm-ovrly {
-		display: none;
+	/* Progress Bar */
+	progress {
+		width: 100%;
+		height: 14px;
+		display: block;
+		/* Important Thing */
+		-webkit-appearance: none;
+		border: none;
+		&::-webkit-progress-bar, &::-moz-progress-bar {
+			background: #fff;
+		}
+		/* Now the value part */
+		&::-webkit-progress-value {
+			background: #176CA7;
+		}
 	}
 }

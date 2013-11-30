@@ -1,0 +1,29 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+
+/**
+ * Mobile-friendly styles
+ */
+.wb-tabs {
+	&.tabs-s1, &.tabs-s2 {
+		[role="tabpanel"] {
+			figure {
+				figcaption {
+					position: relative;
+					top: auto;
+					right: 0;
+					bottom: 0;
+					left: 0;
+				}
+			}
+		}
+	}
+	&.tabs-s1 {
+		[role="tablist"] {
+			bottom: auto;
+			top: 1em;
+		}
+	}
+}

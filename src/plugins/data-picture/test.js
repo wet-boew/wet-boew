@@ -6,7 +6,7 @@
  */
 /* global jQuery, describe, it, expect, before, after, sinon */
 /* jshint unused:vars */
-(function( $, vapour ) {
+(function( $, wb ) {
 
 /*
  * Create a suite of related test cases using `describe`. Test suites can also be
@@ -63,17 +63,17 @@ describe( "[data-picture] test suite", function() {
 	describe( "resize events", function() {
 
 		it( "should have text-resize.wb event handler", function() {
-			vapour.doc.trigger( "text-resize.wb" );
+			wb.doc.trigger( "text-resize.wb" );
 			expect( spy.calledWith( "picturefill.wb-data-picture" ) ).to.equal( true );
 		});
 
 		it( "should have window-resize-width.wb event handler", function() {
-			vapour.doc.trigger( "window-resize-width.wb" );
+			wb.doc.trigger( "window-resize-width.wb" );
 			expect( spy.calledWith( "picturefill.wb-data-picture" ) ).to.equal( true );
 		});
 
 		it( "should have window-resize-height.wb event handler", function() {
-			vapour.doc.trigger( "window-resize-height.wb" );
+			wb.doc.trigger( "window-resize-height.wb" );
 			expect( spy.calledWith( "picturefill.wb-data-picture" ) ).to.equal( true );
 		});
 	});
@@ -107,7 +107,7 @@ describe( "[data-picture] test suite", function() {
 					"<span data-picture data-alt='foo' class='test'>" +
 					"<span data-src='bar.jpg'></span>" +
 					"</span>" );
-				$img = $img.appendTo( vapour.doc.find( "body" ) );
+				$img = $img.appendTo( wb.doc.find( "body" ) );
 
 			// Sanity check
 			expect( $img.find( "img" ) ).to.have.length( 0 );
@@ -123,7 +123,7 @@ describe( "[data-picture] test suite", function() {
 					"<span data-src='baz.jpg' data-media='screen'></span>" +
 					"<span data-src='bar.jpg' data-media='print'></span>" +
 					"</span>" );
-				$img = $img.appendTo( vapour.doc.find( "body" ) );
+				$img = $img.appendTo( wb.doc.find( "body" ) );
 
 			$img.trigger( "picturefill.wb-data-picture" );
 			expect( $img.find( "img" ) ).to.have.length( 1 );
@@ -135,7 +135,7 @@ describe( "[data-picture] test suite", function() {
 					"<span data-picture data-alt='foo' class='test'>" +
 					"<span data-src='bar.jpg' data-media='print'></span>" +
 					"</span>" );
-				$img = $img.appendTo( vapour.doc.find( "body" ) );
+				$img = $img.appendTo( wb.doc.find( "body" ) );
 
 			$img.trigger( "picturefill.wb-data-picture" );
 			expect( $img.find( "img" ) ).to.have.length( 0 );
@@ -143,7 +143,7 @@ describe( "[data-picture] test suite", function() {
 
 		it( "should not create a responsive image when no span[data-src]", function() {
 			var $img = $( "<span data-picture data-alt='foo' class='test'>" );
-				$img = $img.appendTo( vapour.doc.find( "body" ) );
+				$img = $img.appendTo( wb.doc.find( "body" ) );
 
 			$img.trigger( "picturefill.wb-data-picture" );
 			expect( $img.find( "img" ) ).to.have.length( 0 );
@@ -152,4 +152,4 @@ describe( "[data-picture] test suite", function() {
 
 });
 
-}( jQuery, vapour ));
+}( jQuery, wb ));
