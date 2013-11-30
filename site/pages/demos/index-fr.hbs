@@ -5,7 +5,7 @@
 	"en": "index"
 }
 ---
-<table id="components" class="wb-prettify wb-tables table table-striped table-hover wb-inview" data-wet-boew='{"aoColumnDefs": [ { "bVisible": false, "aTargets": [ 3 ] } ], "aLengthMenu": [[10, 25, -1], [10, 25, "All"]], "iDisplayLength": -1, "aaSorting": [[ 0, "asc" ]]}'>
+<table id="components" class="wb-prettify wb-tables table table-striped table-hover wb-inview" data-wet-boew='{"aoColumnDefs": [ { "bVisible": false, "aTargets": [ 3 ] } ], "aLengthMenu": [[10, 25, -1], [10, 25, "All"]], "iDisplayLength": -1 }'>
 	<thead>
 		<tr>
 			<th>Nom</th>
@@ -15,7 +15,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		{{#each pages}}
+		{{#withSort pages "data.title"}}
 			{{#is data.language "fr"}}
 				{{#if data.category}}
 					<tr>
@@ -26,6 +26,6 @@
 					</tr>
 				{{/if}}
 			{{/is}}
-		{{/each}}
+		{{/withSort}}
 	</tbody>
 </table>
