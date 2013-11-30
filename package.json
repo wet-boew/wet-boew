@@ -49,6 +49,10 @@
     "grunt-modernizr": "~0.4.0",
     "grunt-sass": "~0.8.0",
     "grunt-saucelabs": "~4.1.2",
+    "grunt-svg2ttf": "~0.1.0",
+    "grunt-svgicons2svgfont": "~0.1.1",
+    "grunt-ttf2eot": "~0.1.0",
+    "grunt-ttf2woff": "~0.1.0",
     "mocha": "~1.13.0",
     "sinon": "~1.7.3"
   }

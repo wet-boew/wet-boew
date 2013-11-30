@@ -43,6 +43,7 @@ module.exports = (grunt) ->
 			"assets"
 			"js"
 			"css"
+			"fonts"
 			"imagemin:unmin"
 		]
 	)
@@ -124,6 +125,17 @@ module.exports = (grunt) ->
 			"autoprefixer"
 			"concat:css"
 			"cssmin"
+		]
+	)
+
+	@registerTask(
+		"fonts"
+		"INTERNAL: Compiles fonts from SVG icons"
+		[
+			"svgicons2svgfont"
+			"svg2ttf"
+			"ttf2eot"
+			"ttf2woff"
 		]
 	)
 
@@ -669,7 +681,7 @@ module.exports = (grunt) ->
 
 			themeAssets:
 				cwd: "theme/"
-				src: "**/assets/*.*"
+				src: "assets/*.*"
 				dest: "dist/unmin"
 				expand: true
 
@@ -899,6 +911,27 @@ module.exports = (grunt) ->
 				"**/*.*"
 			]
 
+		svgicons2svgfont:
+			theme:
+				options:
+					font: "wet-boew"
+				src: "theme/assets/*.svg"
+				dest: "dist/unmin/fonts/"
+
+		svg2ttf:
+			theme:
+				src: "dist/unmin/fonts/wet-boew.svg"
+				dest: "dist/unmin/fonts/"
+
+		ttf2eot:
+			theme:
+				src: "dist/unmin/fonts/wet-boew.ttf"
+				dest: "dist/unmin/fonts/"
+
+		ttf2woff:
+			theme:
+				src: "dist/unmin/fonts/wet-boew.ttf"
+				dest: "dist/unmin/fonts/"
 
 	# These plugins provide necessary tasks.
 	@loadNpmTasks "assemble"
@@ -919,6 +952,10 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-modernizr"
 	@loadNpmTasks "grunt-sass"
 	@loadNpmTasks "grunt-saucelabs"
+	@loadNpmTasks "grunt-svgicons2svgfont"
+	@loadNpmTasks "grunt-svg2ttf"
+	@loadNpmTasks "grunt-ttf2eot"
+	@loadNpmTasks "grunt-ttf2woff"
 
 	# Load custom grunt tasks form the tasks directory
 	@loadTasks "tasks"
