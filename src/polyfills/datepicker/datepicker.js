@@ -5,7 +5,7 @@
  * @author @pjackson28
  */
 
-(function( $, window, document, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -13,7 +13,7 @@
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
 var selector = "input[type=date]",
-	$document = vapour.doc,
+	$document = wb.doc,
 	date = new Date(),
 	month = date.getMonth(),
 	year = date.getFullYear(),
@@ -35,7 +35,7 @@ var selector = "input[type=date]",
 		if ( event.currentTarget === elm ) {
 
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
+			wb.remove( selector );
 
 			if ( elm.className.indexOf( "picker-field" ) !== -1 ) {
 				return;
@@ -43,11 +43,12 @@ var selector = "input[type=date]",
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
-				i18n = window.i18n;
+				i18n = wb.i18n;
 				i18nText = {
-					datepickerShow: i18n( "date-show" ) + i18n( "space" ),
-					datepickerHide: i18n( "date-hide" ),
-					datepickerSelected: i18n( "date-sel" )
+					show: i18n( "date-show" ) + i18n( "space" ),
+					hide: i18n( "date-hide" ),
+					selected: i18n( "date-sel" ),
+					close: i18n( "overlay-close" ) + i18n( "space" ) + i18n( "esc-key" )
 				};
 			}
 
@@ -57,8 +58,7 @@ var selector = "input[type=date]",
 				$container = $( "<div id='wb-picker' class='picker-overlay' role='dialog' aria-hidden='true'></div>" );
 
 				// Close button
-				$( "<a class='picker-close' role='button' href='javascript:;'><img src='" +
-						vapour.getPath( "/assets" ) + "/cross-button.png' alt='" + i18nText.datepickerHide + "' /></a>" )
+				$( "<button class='picker-close mfp-close overlay-close' title='" + i18nText.close + "'>×</button>" )
 					.appendTo( $container )
 					.on( "click", function( event ) {
 						var which = event.which;
@@ -85,8 +85,8 @@ var selector = "input[type=date]",
 
 	createToggleIcon = function( fieldId ) {
 		var fieldLabel = $( "label[for=" + fieldId + "]" ).text(),
-			objToggle = "<a id='" + fieldId + "-picker-toggle' class='picker-toggle' href='javascript:;'><img src='" +
-				vapour.getPath( "/assets" ) + "/calendar-month.png' alt='" + i18nText.datepickerShow + fieldLabel + "'/></a>";
+			objToggle = "<button id='" + fieldId + "-picker-toggle' class='picker-toggle' href='javascript:;' title='" +
+				i18nText.show + fieldLabel + "'><span class='glyphicon glyphicon-calendar'></span></button>";
 
 		$( "#" + fieldId ).after( objToggle );
 		$container.slideUp( 0 );
@@ -96,11 +96,11 @@ var selector = "input[type=date]",
 		var field = document.getElementById( fieldId ),
 			minDate = field.getAttribute( "min" ),
 			maxDate = field.getAttribute( "max" ),
-			fromDateISO = vapour.date.fromDateISO,
+			fromDateISO = wb.date.fromDateISO,
 			len = $days.length,
 			// $parent = $days.parent(),
 			focusDay = ( targetDay ? targetDay - 1 : 0 ),
-			lowLimit, highLimit, minDay, maxDay, index, day, links;
+			lowLimit, highLimit, minDay, maxDay, index, day;
 
 		minDate = fromDateISO( ( minDate ? minDate : "1800-01-01" ) );
 		minDay = minDate.getDate() - 1;
@@ -124,8 +124,7 @@ var selector = "input[type=date]",
 		// $parent.append( $days );
 
 		if ( targetDay ) {
-			links = $days.find( "a" );
-			( targetDay === 1 ? links.first() : links.last() ).trigger( "focus.wb" );
+			$days.eq( targetDay - 1 ).find( "a" ).trigger( "setfocus.wb" );
 		}
 	},
 
@@ -150,7 +149,7 @@ var selector = "input[type=date]",
 						.children( "a" )
 						.attr( "aria-selected", "true" )
 						.append( "<span class='wb-inv datepicker-selected-text'> [" +
-							i18nText.datepickerSelected + "]</span>" );
+							i18nText.selected + "]</span>" );
 				}
 			}
 		} catch ( error ) {
@@ -162,9 +161,8 @@ var selector = "input[type=date]",
 			$field = $( field ),
 			minDate = field.getAttribute( "min" ),
 			maxDate = field.getAttribute( "max" ),
-			fromDateISO = vapour.date.fromDateISO,
-			targetDate = fromDateISO( field.value ),
-			$prevMonthLink, $nextMonthLink;
+			fromDateISO = wb.date.fromDateISO,
+			targetDate = fromDateISO( field.value );
 
 		if ( !minDate ) {
 			minDate = "1800-01-01";
@@ -203,9 +201,9 @@ var selector = "input[type=date]",
 			$( "#" + fieldId + "-picker-toggle" )
 				.children( "a" )
 					.children( "span" )
-						.text( i18nText.datepickerHide );
+						.text( i18nText.hide );
 
-			if (targetDate !== null) {
+			if ( targetDate !== null ) {
 				$document.trigger( "setFocus.wb-cal", [
 						"wb-picker",
 						year,
@@ -216,21 +214,11 @@ var selector = "input[type=date]",
 					]
 				);
 			} else {
-				$prevMonthLink = $container.find( ".cal-prvmnth" );
-				if ( $prevMonthLink.hasClass( "wb-inv" ) ) {
-					$nextMonthLink = $container.find( ".cal-nxtmnth" );
-					if ( $nextMonthLink.hasClass( "wb-inv" ) ) {
-						$container.find( ".cal-goto a" ).trigger( "focus.wb" );
-					} else {
-						$nextMonthLink.trigger( "focus.wb" );
-					}
-				} else {
-					$prevMonthLink.trigger( "focus.wb" );
-				}
+				$( "#wb-picker" ).trigger( "setfocus.wb" );
 			}
 		} else {
 			hide( fieldId );
-			$field.trigger( "focus.wb" );
+			$field.trigger( "setfocus.wb" );
 		}
 	},
 
@@ -255,11 +243,11 @@ var selector = "input[type=date]",
 			.slideUp( "fast" )
 			.attr( "aria-hidden", "true" )
 			.trigger( "hideGoToFrm.wb-cal" );
-		toggle.children( "a" ).children( "span" ).text( i18nText.datepickerShow + fieldLabel );
+		toggle.children( "a" ).children( "span" ).text( i18nText.show + fieldLabel );
 	},
 
 	formatDate = function( year, month, day, format ) {
-		var pad = vapour.string.pad;
+		var pad = wb.string.pad;
 		return format
 			.replace( "DD", pad( day, 2 ) )
 			.replace( "D", day)
@@ -272,14 +260,17 @@ var selector = "input[type=date]",
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb", selector, init );
 
-$document.on( "click vclick touchstart focusin", function ( event ) {
+$document.on( "click vclick touchstart focusin", "body", function ( event ) {
 	var which = event.which,
 		container;
 
 	// Ignore middle/right mouse buttons
 	if ( initialized && ( !which || which === 1 ) ) {
 		container = document.getElementById( "wb-picker" );
-		if ( container.getAttribute( "aria-hidden" ) === "false" && !$.contains( container, event.target ) ) {
+		if ( container.getAttribute( "aria-hidden" ) === "false" &&
+			event.target.id !== container.id &&
+			!$.contains( container, event.target ) ) {
+
 			hide( container.getAttribute( "aria-controls") );
 			return false;
 		}
@@ -298,7 +289,7 @@ $document.on( "keydown displayed.wb-cal", "#wb-picker", function ( event, year, 
 		// Escape key to close overlay
 		if ( which === 27 ) {
 			hideAll();
-			$( "#" + fieldId ).trigger( "focus.wb" );
+			$( "#" + fieldId ).trigger( "setfocus.wb" );
 		}
 		break;
 
@@ -345,7 +336,7 @@ $document.on( "click", ".cal-days a", function ( event ) {
 	if ( !which || which === 1 ) {
 		fieldId = document.getElementById( "wb-picker" )
 			.getAttribute( "aria-controls" );
-		date = vapour.date.fromDateISO( this.getElementsByTagName( "time" )[ 0 ]
+		date = wb.date.fromDateISO( this.getElementsByTagName( "time" )[ 0 ]
 			.getAttribute( "datetime" ) );
 		year = date.getFullYear();
 		month = date.getMonth();
@@ -364,6 +355,6 @@ $document.on( "click", ".cal-days a", function ( event ) {
 });
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, document, vapour );
+})( jQuery, window, document, wb );

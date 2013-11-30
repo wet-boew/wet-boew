@@ -13,9 +13,6 @@
 		@extend %datepicker-display-inline;
 	}
 }
-%datepicker-margin-0 {
-	margin: 0;
-}
  
 .cal-cnt {
 	&.picker-overlay {
@@ -26,12 +23,7 @@
 }
 
 .picker-close {
-	position: absolute;
-	right: 0.3em;
-	top: 10px;
-	img {
-		@extend %datepicker-margin-0;
-	}
+	font-size: 1.7em;
 }
 
 .picker-field {
@@ -39,14 +31,16 @@
 }
 
 .picker-toggle {
-	padding: 10px;
-	img {
-		@extend %datepicker-margin-0;
-		vertical-align: middle;
-		width: auto;
+	margin: 0;
+	background: none;
+	border: none;
+	vertical-align: middle;
+	&:focus {
+		outline: 1px dotted;
+		outline-offset: -2px;
 	}
-	a {
-		margin-left: 0.5em;
+	span {
+		font-size: 1.3em;
 	}
 }
 

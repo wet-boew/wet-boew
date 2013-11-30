@@ -4,11 +4,11 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, vapour ) {
+(function( $, wb ) {
 "use strict";
 
 var mapSample,
-	$document = vapour.doc;
+	$document = wb.doc;
 
 	/*zoomFeature = function() {
 		var layer = mapSample.getLayersByName( "cities" )[ 0 ],
@@ -38,4 +38,4 @@ $document.on( "ready.geomap", function( event ) {
 	}
 });
 
-})( jQuery, vapour );
+})( jQuery, wb );

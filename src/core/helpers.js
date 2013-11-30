@@ -5,8 +5,8 @@
  * @author WET Community
  * Credits: http://kaibun.net/blog/2013/04/19/a-fully-fledged-coffeescript-boilerplate-for-jquery-plugins/
  */
-(function( $, vapour ) {
-	vapour.getData = function( element, dataName ) {
+(function( $, wb ) {
+	wb.getData = function( element, dataName ) {
 		var elm = !element.jquery ? element : element[ 0 ],
 			dataAttr = elm.getAttribute( "data-" + dataName ),
 			dataObj;
@@ -22,24 +22,24 @@
 		$.data( elm, dataName, dataObj );
 		return dataObj;
 	};
-})( jQuery, vapour );
+})( jQuery, wb );
 
-(function( vapour ) {
+(function( wb ) {
 	"use strict";
 
 	// Escapes the characters in a string for use in a jQuery selector
 	// Based on http://totaldev.com/content/escaping-characters-get-valid-jquery-id
-	vapour.jqEscape = function( selector ) {
+	wb.jqEscape = function( selector ) {
 		return selector.replace( /([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, "\\$1" );
 	};
 
 	/*
-	 * @namespace vapour.string
+	 * @namespace wb.string
 	 */
-	vapour.string = {
+	wb.string = {
 		/*
 		 * Left-pads a number with zeros.
-		 * @memberof vapour.string
+		 * @memberof wb.string
 		 * @param {number} number The original number to pad.
 		 * @param {number} length The width of the resulting padded number, not the number of zeros to add to the front of the string.
 		 * @return {string} The padded string
@@ -57,9 +57,9 @@
 
 	/*
 	 * A suite of date related functions for easier parsing of dates
-	 * @namespace vapour.date
+	 * @namespace wb.date
 	 */
-	vapour.date = {
+	wb.date = {
 		/*
 		 * Converts the date to a date-object. The input can be:
 		 * <ul>
@@ -69,7 +69,7 @@
 		 * <li>a string: Any format supported by the javascript engine, like 'YYYY/MM/DD', 'MM/DD/YYYY', 'Jan 31 2009' etc.</li>
 		 * <li>an object: Interpreted as an object with year, month and date attributes. **NOTE** month is 0-11.</li>
 		 * </ul>
-		 * @memberof vapour.date
+		 * @memberof wb.date
 		 * @param {Date | number[] | number | string | object} dateValue
 		 * @return {Date | NaN}
 		 */
@@ -91,7 +91,7 @@
 
 		/*
 		 * Compares two dates (input can be any type supported by the convert function).
-		 * @memberof vapour.date
+		 * @memberof wb.date
 		 * @param {Date | number[] | number | string | object} dateValue1
 		 * @param {Date | number[] | number | string | object} dateValue2
 		 * @return {number | NaN}
@@ -102,7 +102,7 @@
 		 * NaN if dateValue1 or dateValue2 is an illegal date
 		 */
 		compare: function( dateValue1, dateValue2 ) {
-			var convert = vapour.date.convert;
+			var convert = wb.date.convert;
 
 			if ( isFinite( dateValue1 = convert( dateValue1 ).valueOf() ) && isFinite( dateValue2 = convert( dateValue2 ).valueOf() ) ) {
 				return ( dateValue1 > dateValue2 ) - ( dateValue1 < dateValue2 );
@@ -112,7 +112,7 @@
 
 		/*
 		 * Cross-browser safe way of translating a date to ISO format
-		 * @memberof vapour.date
+		 * @memberof wb.date
 		 * @param {Date | number[] | number | string | object} dateValue
 		 * @param {boolean} withTime Optional. Whether to include the time in the result, or just the date. False if blank.
 		 * @return {string}
@@ -123,8 +123,8 @@
 		 * returns "2012-04-27 13:46"
 		 */
 		toDateISO: function( dateValue, withTime ) {
-			var date = vapour.date.convert( dateValue ),
-				pad = vapour.string.pad;
+			var date = wb.date.convert( dateValue ),
+				pad = wb.string.pad;
 
 			return date.getFullYear() + "-" + pad( date.getMonth() + 1, 2, "0" ) + "-" + pad( date.getDate(), 2, "0" ) +
 				( withTime ? " " + pad( date.getHours(), 2, "0" ) + ":" + pad( date.getMinutes(), 2, "0" ) : "" );
@@ -132,7 +132,7 @@
 
 		/*
 		 * Cross-browser safe way of creating a date object from a date string in ISO format
-		 * @memberof vapour.date
+		 * @memberof wb.date
 		 * @param {string} dateISO Date string in ISO format
 		 * @return {Date}
 		 */
@@ -147,9 +147,9 @@
 		}
 	};
 
-})( vapour );
+})( wb );
 
-(function( $ ) {
+(function( $, undef ) {
 	"use strict";
 
 	var methods,
@@ -161,6 +161,27 @@
 
 		init: function( options ) {
 			return $.extend( _settings, options || {} );
+		},
+
+		show: function( onlyAria ) {
+			$( this ).each( function() {
+				var $elm = $( this );
+				$elm.attr( "aria-hidden", "false" );
+				if ( onlyAria === undef ) {
+					$elm.removeClass( "wb-inv" );
+				}
+			} );
+		},
+
+		hide: function( onlyAria ) {
+			$( this )
+				.each( function() {
+					var $elm = $( this );
+					$elm.attr( "aria-hidden", "true" );
+					if ( onlyAria === undef ) {
+						return $elm.addClass( "wb-inv" );
+					}
+				} );
 		},
 
 		toggle: function( to, from ) {
@@ -274,7 +295,7 @@ Peformant micro templater
 					len = path.length,
 					lookup = data,
 					i = 0;
-				for ( ; i < len; i++ ) {
+				for ( ; i < len; i += 1 ) {
 					lookup = lookup[ path[ i ] ];
 					// Property not found
 					if ( lookup === undef ) {

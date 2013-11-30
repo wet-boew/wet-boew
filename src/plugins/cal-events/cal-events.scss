@@ -36,11 +36,9 @@ tbody {
 					width: 100%;
 					list-style-type: none !important;
 					a {
-						&, &:link {
-							color: #000;
-							width: auto;
-						}
-						@include pseudo-focus {
+						color: #000;
+						width: auto;
+						&:hover, &:focus {
 							@extend %events-calendar-color-fff-important;
 						}
 					}
@@ -49,10 +47,8 @@ tbody {
 		}
 		a {
 			&.cal-event {
-				&, &:link {
-					@extend %events-calendar-color-fff-important;
-					background: #176ca7;
-				}
+				@extend %events-calendar-color-fff-important;
+				background: #176ca7;
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--[if lt IE 9]><html class="no-js lt-ie9" lang="{{language}}"><![endif]-->
 <!--[if gt IE 8]><!-->
-<html lang="{{language}}">
+<html class="no-js" lang="{{language}}">
 <!--<![endif]-->
 	<head>
 		<meta charset="utf-8" />
@@ -31,11 +31,12 @@
 		</ul>
 		<header role="banner">
 			<div id="wb-bnr">
-				<div id="wb-bar" data-ajax-append="{{assets}}/ajax/mobmenu-{{language}}.html">
+				<div id="wb-bar">
 					<section id="wb-lng" class="visible-md visible-lg">
 						<h2>{{#i18n "tmpl-lang-select"}}{{/i18n}}</h2>
 						{{>languagetoggle}}
 					</section>
+					{{>mobimenu}}
 				</div>
 
 				<div class="container">
@@ -54,7 +55,7 @@
 				</div>
 			</div>
 
-			<nav role="navigation" id="wb-sm" data-ajax-fetch="{{assets}}/ajax/sitemenu-{{language}}.html" data-post-remove="remove after init" class="wb-menu remove after init" typeof="SiteNavigationElement">
+			<nav role="navigation" id="wb-sm" data-ajax-fetch="{{assets}}/ajax/sitemenu-{{language}}.html" data-import="wb-sec wb-srch" data-post-remove="remove after init" class="wb-menu remove after init" typeof="SiteNavigationElement">
 				{{>sitemenu}}
 			</nav>
 {{#unless_eq assets compare="."}}
@@ -79,7 +80,7 @@
 		<!-- Secondary Menu
 		<nav role="navigation" id="wb-sec" typeof="SiteNavigationElement">
 			<h2>{{#i18n "tmpl-sec-menu"}}{{/i18n}}</h2>
-			{{>supporting}}
+			{{>secondarymenu}}
 		</nav>
 		[optional] -->
 

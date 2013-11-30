@@ -14,7 +14,7 @@
 	"unused": true,
 
 	"globals": {
-		"vapour": true,
+		"wb": true,
 		"Modernizr": true,
 		"yepnope": true
 	},

@@ -5,10 +5,10 @@
 /*
 ----- @lang-en@ dictionary (il8n) ---
  */
-( function( window ) {
+( function( wb ) {
 "use strict";
 /* main index */
-var ind = {
+wb.i18nDict = {
 	"lang-code": "@lang-code@",
 	"lang-nat": "@lang-nat@",
 	"all": "@all@",
@@ -52,7 +52,9 @@ var ind = {
 	"prv-l": "@prv-l@",
 	"first": "@first@",
 	"last": "@last@",
-	"close-esc": "@close-esc@",
+	"menu-close": "@menu-close@",
+	"overlay-close": "@overlay-close@",
+	"esc-key": "@esc-key@",
 	"show": "@show@",
 
 	/* Tabbed interface */
@@ -166,6 +168,4 @@ var ind = {
 	"tmpl-signin": "@tmpl-signin@"
 };
 
-window.i18nObj = ind;
-
-})( window );
+})( wb );

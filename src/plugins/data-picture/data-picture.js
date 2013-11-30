@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-(function( $, window, vapour ) {
+(function( $, window, wb ) {
 "use strict";
 
 /*
@@ -14,7 +14,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = "[data-picture]",
-	$document = vapour.doc,
+	$document = wb.doc,
 
 	/*
 	 * Init runs once per plugin element on the page. There may be multiple elements.
@@ -25,7 +25,7 @@ var selector = "[data-picture]",
 	init = function( $elm ) {
 
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
+		wb.remove( selector );
 
 		$elm.trigger( "picturefill.wb-data-picture" );
 	},
@@ -70,7 +70,7 @@ var selector = "[data-picture]",
 $document.on( "timerpoke.wb picturefill.wb-data-picture", selector, function( event ) {
 	var eventTarget = event.target,
 		eventType = event.type;
-		
+
 	// Filter out any events triggered by descendants
 	if ( event.currentTarget === eventTarget ) {
 		switch ( eventType ) {
@@ -90,6 +90,6 @@ $document.on( "text-resize.wb window-resize-width.wb window-resize-height.wb", f
 });
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );

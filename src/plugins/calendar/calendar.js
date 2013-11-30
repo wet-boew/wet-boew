@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -14,7 +14,7 @@
  * place to define variables that are common to all instances of the plugin on a
  * page.
  */
-var $document = vapour.doc,
+var $document = wb.doc,
 	i18n, i18nText,
 
 	/*
@@ -25,13 +25,13 @@ var $document = vapour.doc,
 		var calendar = document.getElementById( calendarId ),
 			$calendar = $( calendar ),
 			objCalendarId = "#cal-" + calendarId + "-cnt",
-			fromDateISO = vapour.date.fromDateISO,
-			$objCalendar, $calendarHeader, $days, $daysList,
+			fromDateISO = wb.date.fromDateISO,
+			$objCalendar, $calendarHeader, $oldCalendarHeader, $days, $daysList,
 			maxDateYear, maxDateMonth, minDateYear, minDateMonth;
 
 		// Only initialize the i18nText once
 		if ( !i18nText ) {
-			i18n = window.i18n;
+			i18n = wb.i18n;
 			i18nText = {
 				monthNames: i18n( "mnths" ),
 				prevMonth: i18n( "prvMnth" ),
@@ -91,20 +91,20 @@ var $document = vapour.doc,
 		}
 
 		// Creates the calendar header
-		$calendarHeader = $objCalendar.children( ".cal-hd" );
-		if ( $calendarHeader.length === 0 ) {
-			$calendarHeader = $( "<caption class='cal-hd'></caption>" );
-		}
+		$calendarHeader = $( "<div class='cal-hd'><div class='cal-mnth'>" +
+			i18nText.monthNames[ month ] + " " + year + "</div></div>" );
 
-		$calendarHeader.prepend( "<div class='cal-mnth'>" + i18nText.monthNames[ month ] + " " + year + "</div>" );
-
+		// Create the month navigation
 		if ( shownav ) {
-			// Create the month navigation
-			if ( document.getElementById( "#cal-" + calendarId + "-mnthnav" ) === null ) {
-				$calendarHeader.append( createMonthNav( calendarId, year, month, mindate, maxdate, minDateYear, maxDateYear ) );
-			}
+			$calendarHeader.append( createMonthNav( calendarId, year, month, mindate, maxdate, minDateYear, maxDateYear ) );
 		}
-		$objCalendar.append( $calendarHeader );
+
+		$oldCalendarHeader = $objCalendar.prev( ".cal-hd" );
+		if ( $oldCalendarHeader.length === 0 ) {
+			$objCalendar.before( $calendarHeader );
+		} else {
+			$oldCalendarHeader.replaceWith( $calendarHeader );
+		}
 
 		// Create the calendar body
 
@@ -116,16 +116,15 @@ var $document = vapour.doc,
 		$daysList = $days.find( "td:not(.cal-empty)" );
 
 		$objCalendar.append( $days );
-				
-		// Trigger the displayed.wb-cal Event
+
+		// Trigger the displayed.wb-cal event
 		$calendar.trigger( "displayed.wb-cal", [ year, month, $daysList, day ] );
 	},
 
 	createMonthNav = function( calendarId, year, month, minDate, maxDate, minDateYear, maxDateYear ) {
 		var monthNames = i18nText.monthNames,
 			$monthNav = $( "#cal-" + calendarId + "-mnthnav" ),
-			assetsPath = vapour.getPath( "/assets" ),
-			buttonStart = "<a href='javascript:;' role='button' class='cal-",
+			buttonStart = "<button class='cal-",
 			buttonSpecs = [
 				[
 					"prvmnth",
@@ -145,7 +144,7 @@ var $document = vapour.doc,
 		if ( $monthNav.length === 0 ) {
 			$monthNav = $( "<div id='cal-" + calendarId + "-mnthnav'></div>" );
 		}
-		
+
 		// Create the go to form if one doesn't already exist
 		if ( $( "#" + calendarId + " .cal-goto" ).length === 0 ) {
 			$monthNav.append( createGoToForm( calendarId, year, month, minDate, maxDate ) );
@@ -171,16 +170,18 @@ var $document = vapour.doc,
 			);
 			alt = buttonSpec[ 2 ] + monthNames[ newMonth ] + " " + newYear;
 			$btn = $monthNav.find( ".cal-" + buttonClass );
-			
+
 			if ( $btn.length !== 0 ) {
 				$btn
 					.off()
-					.children( "img" )
-						.attr( "alt", alt );
+					.attr( "title", alt );
 			} else {
-				$btn = $( buttonStart + buttonClass + "'><img src='" + assetsPath + "/" + buttonClass.charAt( 0 ) + ".png' alt='" + alt + "' /></a>" );
+				$btn = $( buttonStart + buttonClass + "' title='" + alt +
+					"'><span class='glyphicon glyphicon-arrow-" +
+					( buttonSpec[ 0 ] === "prvmnth" ? "left" : "right" ) + "'></span></button>" );
 				$monthNav[ buttonSpec[ 3 ] ]( $btn );
 			}
+
 			$btn
 				.toggleClass( "hide", hideButton )
 				.attr( "aria-hidden", hideButton );
@@ -207,19 +208,22 @@ var $document = vapour.doc,
 
 		// Ignore middle/right mouse buttons
 		if ( !which || which === 1 ) {
-			$document.trigger( "create.wb-cal", [
-				eventData.calID,
-				eventData.year,
-				eventData.month,
-				true,
-				eventData.mindate,
-				eventData.maxdate
-			]);
+
+			if ( typeof eventData !== "undefined" ) {
+				$document.trigger( "create.wb-cal", [
+					eventData.calID,
+					eventData.year,
+					eventData.month,
+					true,
+					eventData.mindate,
+					eventData.maxdate
+				]);
+			}
 
 			if ( $btn.hasClass( "wb-inv" ) ) {
-				$container.find( ".cal-goto-lnk a" ).trigger( "focus.wb" );
+				$container.find( ".cal-goto-lnk a" ).trigger( "setfocus.wb" );
 			} else {
-				$btn.trigger( "focus.wb" );
+				$btn.trigger( "setfocus.wb" );
 			}
 		}
 	},
@@ -229,7 +233,7 @@ var $document = vapour.doc,
 			eventData = event.data,
 			minDate = eventData.minDate,
 			maxDate = eventData.maxDate,
-			monthField = eventData.monthField,
+			$monthField = eventData.$monthField,
 			minMonth = 0,
 			maxMonth = 11,
 			monthNames = i18nText.monthNames,
@@ -243,63 +247,67 @@ var $document = vapour.doc,
 			maxMonth = maxDate.getMonth();
 		}
 
-		month = monthField.val();
+		month = $monthField.val();
 
-		// Can't use monthField.empty() or .html("") on <select> in IE
+		// Can't use $monthField.empty() or .html("") on <select> in IE
 		// http://stackoverflow.com/questions/3252382/why-does-dynamically-populating-a-select-drop-down-list-element-using-javascript
-		for ( i = monthField.length - 1 ; i !== -1; i -= 1 ) {
-			monthField[ i ].remove( i );
+		for ( i = $monthField.length - 1 ; i !== -1; i -= 1 ) {
+			$monthField[ i ].remove( i );
 		}
 
 		for ( i = minMonth; i !== maxMonth; i += 1 ) {
-			monthField.append( "<option value='" + i + "'" + ( (i === month ) ? " selected='selected'" : "" ) +
+			$monthField.append( "<option value='" + i + "'" + ( (i === month ) ? " selected='selected'" : "" ) +
 				">" + monthNames[ i ] + "</option>" );
 		}
 	},
 
 	createGoToForm = function( calendarId, year, month, minDate, maxDate ) {
-		var goToForm = $( "<div class='cal-goto'></div>" ),
-			form = $( "<form id='cal-" + calendarId + "-goto' role='form' style='display:none;' action=''><fieldset><legend>" +
+		var $goToForm = $( "<div class='cal-goto'></div>" ),
+			$form = $( "<form id='cal-" + calendarId + "-goto' role='form' style='display:none;' action=''><fieldset><legend>" +
 				i18nText.goToTitle + "</legend></fieldset></form>" ),
-			fieldset, yearContainer, yearField, y, _ylen, monthContainer, monthField, buttonContainer,
-			button, buttonCancelContainer, buttonCancel, goToLinkContainer, goToLink;
+			$fieldset, $yearContainer, $yearField, y, ylen, $monthContainer, $monthField, $buttonContainer,
+			$button, $buttonCancelContainer, $buttonCancel, $goToLinkContainer, $goToLink;
 
-		form.on( "submit", function( event ) {
+		$form.on( "submit", function( event ) {
 			event.preventDefault();
 			onGoTo( calendarId, minDate, maxDate );
 			return false;
 		});
-		fieldset = form.children( "fieldset" );
+		$fieldset = $form.children( "fieldset" );
 
 		// Create the year field
-		yearContainer = $( "<div class='cal-goto-yr'></div>" );
-		yearField = $( "<select title='" + i18nText.goToYear + "' id='cal-" + calendarId + "-goto-year'></select>" );
-		for ( y = minDate.getFullYear(), _ylen = maxDate.getFullYear(); y <= _ylen; y += 1 ) {
-			yearField.append( $( "<option value='" + y + "'" + (y === year ? " selected='selected'" : "" ) + ">" + y + "</option>" ) );
+		$yearContainer = $( "<div class='cal-goto-yr'></div>" );
+		$yearField = $( "<select title='" + i18nText.goToYear + "' id='cal-" + calendarId + "-goto-year'></select>" );
+		for ( y = minDate.getFullYear(), ylen = maxDate.getFullYear(); y <= ylen; y += 1 ) {
+			$yearField.append( $( "<option value='" + y + "'" + (y === year ? " selected='selected'" : "" ) + ">" + y + "</option>" ) );
 		}
 
-		yearContainer.append( yearField );
-		fieldset.append( yearContainer );
+		$yearContainer.append( $yearField );
+		$fieldset.append( $yearContainer );
 
 		// Create the list of month field
-		monthContainer = $( "<div class='cal-goto-mnth'></div>" );
-		monthField = $( "<select title='" + i18nText.goToMonth + "' id='cal-" + calendarId + "-goto-month'></select>" );
+		$monthContainer = $( "<div class='cal-goto-mnth'></div>" );
+		$monthField = $( "<select title='" + i18nText.goToMonth + "' id='cal-" + calendarId + "-goto-month'></select>" );
 
-		monthContainer.append(monthField);
-		fieldset.append(monthContainer);
+		$monthContainer.append( $monthField );
+		$fieldset
+			.append( $monthContainer )
+			.append( "<span class='clearfix'></span>" );
 
 		// Update the list of available months when changing the year
-		yearField.bind("change", {minDate: minDate, maxDate: maxDate, monthField: monthField}, yearChanged);
-		yearField.change(); // Populate initial month list		
+		$yearField.on( "change", {minDate: minDate, maxDate: maxDate, $monthField: $monthField}, yearChanged );
 
-		buttonContainer = $( "<div class='cal-goto-btn'></div>" );
-		button = $( "<input type='submit' class='btn btn-primary' value='" + i18nText.goToBtn + "' />" );
-		buttonContainer.append(button);
-		fieldset.append(buttonContainer);
+		// Populate initial month list
+		$yearField.trigger( "change" );
 
-		buttonCancelContainer = $( "<div class='cal-goto-btn'></div>" );
-		buttonCancel = $( "<input type='button' class='btn btn-default' value='" + i18nText.cancelBtn + "' />" );
-		buttonCancel.on("click", function( event ) {
+		$buttonContainer = $( "<div class='cal-goto-btn'></div>" );
+		$button = $( "<input type='submit' class='btn btn-primary' value='" + i18nText.goToBtn + "' />" );
+		$buttonContainer.append( $button );
+		$fieldset.append( $buttonContainer );
+
+		$buttonCancelContainer = $( "<div class='cal-goto-btn'></div>" );
+		$buttonCancel = $( "<input type='button' class='btn btn-default' value='" + i18nText.cancelBtn + "' />" );
+		$buttonCancel.on( "click", function( event ) {
 			var which = event.which;
 
 			// Ignore middle/right mouse buttons
@@ -307,13 +315,13 @@ var $document = vapour.doc,
 				$( "#" + calendarId ).trigger( "hideGoToFrm.wb-cal" );
 			}
 		});
-		buttonCancelContainer.append(buttonCancel);
-		fieldset.append(buttonCancelContainer);
+		$buttonCancelContainer.append( $buttonCancel );
+		$fieldset.append( $buttonCancelContainer );
 
-		goToLinkContainer = $( "<p class='cal-goto-lnk' id='cal-" + calendarId + "-goto-lnk'></p>" );
-		goToLink = $( "<a href='javascript:;' role='button' aria-controls='cal-" +
+		$goToLinkContainer = $( "<p class='cal-goto-lnk' id='cal-" + calendarId + "-goto-lnk'></p>" );
+		$goToLink = $( "<a href='javascript:;' role='button' aria-controls='cal-" +
 			calendarId + "-goto' aria-expanded='false'>" + i18nText.goToLink + "</a>" );
-		goToLink.on( "click", function( event ) {
+		$goToLink.on( "click", function( event ) {
 			var which = event.which;
 
 			// Ignore middle/right mouse buttons
@@ -321,12 +329,12 @@ var $document = vapour.doc,
 				showGoToForm( calendarId );
 			}
 		} );
-		goToLinkContainer.append( goToLink );
+		$goToLinkContainer.append( $goToLink );
 
-		goToForm.append( goToLinkContainer );
-		goToForm.append( form );
+		$goToForm.append( $goToLinkContainer );
+		$goToForm.append( $form );
 
-		return goToForm;
+		return $goToForm;
 	},
 
 	createWeekdays = function( calendarId ) {
@@ -372,11 +380,11 @@ var $document = vapour.doc,
 		for ( week = 1; week < 7; week += 1 ) {
 			cells += "<tr>";
 			for ( day = 0; day < 7; day += 1 ) {
-				
+
 				id = "cal-" + calendarId + "-w" + week + "d" + ( day + 1 );
 				className = ( day === 0 || day === 6 ? "cal-we " : "" ) +
 					"cal-w" + week + "d" + ( day + 1 ) + " cal-index-" + ( dayCount + 1 );
-				
+
 				if ( ( week === 1 && day < firstDay ) || ( dayCount > lastDay ) ) {
 
 					// Creates empty cells | Cree les cellules vides
@@ -392,7 +400,7 @@ var $document = vapour.doc,
 						( frenchLang ? ( " </span>" + dayCount + "<span class='wb-inv'> " + textMonthNames[ month ].toLowerCase() + " " ) :
 						( " " + textMonthNames[ month ] + " </span>" + dayCount + "<span class='wb-inv'> " ) ) + year +
 						( isCurrentDate ?  textCurrentDay : "" ) + "</span></time></div></td>";
-						
+
 					if ( dayCount > lastDay ) {
 						breakAtEnd = true;
 					}
@@ -409,22 +417,16 @@ var $document = vapour.doc,
 	},
 
 	showGoToForm = function( calendarId ) {
-		var link = $("#cal-" + calendarId + "-goto-lnk"),
-			form = $("#cal-" + calendarId + "-goto");
-
-		// Hide the month navigation
-		$( "#cal-" + calendarId +  "-mnthnav" )
-			.children( ".cal-prvmnth, .cal-nxtmnth" )
-				.addClass( "hide" )
-				.attr( "aria-hidden", "true" );
+		var gotoId = "#cal-" + calendarId + "-goto",
+			$link = $( gotoId + "-lnk" ),
+			$form = $( gotoId );
 
 		// TODO: Replace with CSS animation
-		link.stop().slideUp( 0 );
-		form.stop().slideDown( 0 ).queue(function() {
-			$( this ).find( ":input:eq(0)" ).trigger( "focus.wb" );
+		$link.stop().slideUp( 0 );
+		$form.stop().slideDown( 0 ).queue(function() {
+			$( this ).find( ":input:eq(0)" ).trigger( "setfocus.wb" );
 		});
-
-		link
+		$link
 			.children( "a" )
 				.attr({
 					"aria-hidden": "true",
@@ -434,17 +436,12 @@ var $document = vapour.doc,
 
 	hideGoToFrm = function( event ) {
 		var calendarId = event.target.id,
-			$link = $( "#cal-" + calendarId + "-goto-lnk" ),
-			$form = $( "#cal-" + calendarId + "-goto" );
+			gotoId = "#cal-" + calendarId + "-goto",
+			$link = $( gotoId + "-lnk" ),
+			$form = $( gotoId );
 
 		// TODO: Replace with CSS animation
-		$form.stop().slideUp( 0 ).queue(function () {
-			// Show the month navigation
-			$( "#cal-" + calendarId +  "-mnthnav" )
-				.children( ".cal-prvmnth, .cal-nxtmnth" )
-					.removeClass( "wb-inv" )
-					.attr( "aria-hidden", "false" );
-		});
+		$form.stop().slideUp( 0 );
 		$link
 			.stop()
 			.slideDown( 0 )
@@ -475,19 +472,17 @@ var $document = vapour.doc,
 			// Go to the first day to avoid having to tab over the navigation again.
 			$( "#cal-" + calendarId + "-days a" )
 				.eq( 0 )
-				.trigger( "focus.wb" );
+				.trigger( "setfocus.wb" );
 		}
 	},
-	
+
 	setFocus = function( event, calendarId, year, month, minDate, maxDate, targetDate ) {
 		var time = targetDate.getTime();
 
 		if ( time < minDate.getTime() ) {
 			targetDate = minDate;
-			targetDate.setDate( targetDate.getDate() + 1 );
 		} else if ( time > maxDate.getTime() ) {
 			targetDate = maxDate;
-			targetDate.setDate( targetDate.getDate() + 1 );
 		}
 
 		if ( targetDate.getMonth() !== month || targetDate.getFullYear() !== year ) {
@@ -511,16 +506,17 @@ $document.on( "create.wb-cal" , create );
 $document.on( "keydown", ".cal-days a", function ( event ) {
 	var elm = event.target,
 		$elm = $( elm ),
-		$container = $elm.closest( ".cal-cnt" ),
-		calendarId = $container.parent().attr( "id" ),
+		$monthContainer = $elm.closest( ".cal-cnt" ),
+		$container = $monthContainer.parent().closest( ".cal-cnt" ),
+		calendarId = $container.attr( "id" ),
 		fieldId = $container.attr( "aria-controls" ),
 		which = event.which,
-		fromDateISO = vapour.date.fromDateISO,
+		fromDateISO = wb.date.fromDateISO,
 		date = fromDateISO( elm.getElementsByTagName( "time" )[ 0 ].getAttribute( "datetime" ) ),
 		currYear = date.getFullYear(),
 		currMonth = date.getMonth(),
 		currDay = date.getDate(),
-		days = elm.parentNode.parentNode.getElementsByTagName( "a" ),
+		days = $monthContainer.find( "td > a" ).get(),
 		maxDay = days.length,
 		field, minDate, maxDate, modifier;
 
@@ -535,8 +531,8 @@ $document.on( "keydown", ".cal-days a", function ( event ) {
 
 	minDate = fromDateISO( ( minDate ? minDate : "1800-01-01" ) );
 	maxDate = fromDateISO( ( maxDate ? maxDate : "2100-01-01" ) );
-	
-	if ( !( event.ctrlKey || event.altKey || event.metaKey ) ) {
+
+	if ( !event.altKey && !event.metaKey && which > 31 && which < 41 ) {
 		switch ( which ) {
 
 		// spacebar
@@ -586,22 +582,22 @@ $document.on( "keydown", ".cal-days a", function ( event ) {
 			date.setDate( currDay + 7 );
 			break;
 		}
-	}
 
-	// Move focus to the new date
-	if ( currYear !== date.getFullYear() || currMonth !== date.getMonth() ) {
-		$document.trigger( "setFocus.wb-cal", [
-				calendarId,
-				currYear,
-				currMonth,
-				minDate,
-				maxDate,
-				date
-			]
-		);
-		return false;
-	} else if ( currDay !== date.getDate() ) {
-		$( days[ date.getDate() - 1 ] ).trigger( "focus.wb" );
+		// Move focus to the new date
+		if ( currYear !== date.getFullYear() || currMonth !== date.getMonth() ) {
+			$document.trigger( "setFocus.wb-cal", [
+					calendarId,
+					currYear,
+					currMonth,
+					minDate,
+					maxDate,
+					date
+				]
+			);
+		} else if ( currDay !== date.getDate() ) {
+			$( days[ date.getDate() - 1 ] ).trigger( "setfocus.wb" );
+		}
+
 		return false;
 	}
 });
@@ -612,4 +608,4 @@ $document.on( "setFocus.wb-cal", setFocus );
 
 $document.on( "click", ".cal-prvmnth, .cal-nxtmnth", changeMonth );
 
-})( jQuery, window, document, vapour );
+})( jQuery, window, document, wb );

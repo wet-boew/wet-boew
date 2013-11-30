@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, vapour ) {
+(function( $, window, wb ) {
 "use strict";
 
 /*
@@ -14,7 +14,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var selector = ".wb-twitter",
-	$document = vapour.doc,
+	$document = wb.doc,
 
 	/*
 	 * Init runs once per plugin element on the page. There may be multiple elements.
@@ -26,10 +26,10 @@ var selector = ".wb-twitter",
 
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === event.target ) {
-			var protocol = vapour.pageUrlParts.protocol;
+			var protocol = wb.pageUrlParts.protocol;
 
 			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
+			wb.remove( selector );
 
 			Modernizr.load( {
 				load: ( protocol.indexOf( "http" ) === -1 ? "http:" : protocol ) + "//platform.twitter.com/widgets.js"
@@ -40,6 +40,6 @@ var selector = ".wb-twitter",
 $document.on( "timerpoke.wb", selector, init );
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );

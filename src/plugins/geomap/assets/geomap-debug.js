@@ -4,10 +4,10 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, vapour ) {
+(function( $, window, wb ) {
 "use strict";
 
-var	$document = vapour.doc,
+var	$document = wb.doc,
 	$wbMainIn, warningStart, errorStart, msgEnd, messages,
 	debugMessages = {
 		en: {
@@ -102,4 +102,4 @@ $document.on( "debug.wb-geomap overlayLoad.wb-geomap overlayNotLoad.wb-geomap ov
 	}
 });
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );

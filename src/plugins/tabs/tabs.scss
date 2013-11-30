@@ -4,6 +4,27 @@
  */
 .wb-tabs {
 	/**
+	 * Shared variables
+	 */
+	$drabBlue: #243850;
+	$lightGray: #eee;
+	$medGray: #ccc;
+	@mixin grayFilterOn() {
+		/* Firefox 10+, Firefox on Android */
+		filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+		/* IE6-9 */
+		filter: gray;
+		/* Chrome 19+, Safari 6+, Safari 6+ iOS */
+		-webkit-filter: unquote('grayscale(100%)');
+	}
+	@mixin grayFilterOff() {
+		/* Firefox 10+, Firefox on Android */
+		filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+		/* Chrome 19+, Safari 6+, Safari 6+ iOS */
+		-webkit-filter: unquote('grayscale(0%)');
+	}
+	
+	/**
 	 * Default, minimal, shared style
 	 */
 	position: relative;
@@ -15,26 +36,27 @@
 		li {
 			display: inline-block;
 			cursor: pointer;
-			// changed padding and margin from em to px to fix web-kit layout issue
-			padding: 7px;
 			margin: 0 1px 0 0;
 			color: #000;
-			background: #eee;
-			background: rgba(238, 238, 238, 0.9);
-			border: 1px solid #ccc;
+			background: $lightGray;
+			background: transparentize($lightGray, 0.1);
+			border: 1px solid $medGray;
 			text-align: center;
 			position: relative;
 			a {
 				text-decoration: none;
 				color: #000;
+				display: inline-block;
+				// changed padding and margin from em to px to fix web-kit layout issue
+				padding: 7px;
 			}
 			&:focus, &:hover {
-				background: #ccc;
-				background: rgba(204, 204, 204, 0.9);
+				background: $medGray;
+				background: transparentize($medGray, 0.1);
 			}
 			&.active {
-				background: #ccc;
-				background: rgba(204, 204, 204, 0.9);
+				background: $medGray;
+				background: transparentize($medGray, 0.1);
 				cursor: default;
 				a {
 					cursor: default;
@@ -76,8 +98,8 @@
 					top: 3em;
 					right: 1em;
 					color: #fff;
-					background: #243850;
-					background: rgba(36, 56, 80, 0.9);
+					background: $drabBlue;
+					background: transparentize($drabBlue, 0.1);
 					padding: 1em;
 					a {
 						color: #fff;
@@ -91,6 +113,8 @@
 	 * Style 2 - Slider-like carousel style
 	 */
 	&.tabs-s2 {
+		$thumbHeight: 50px;
+		margin-bottom: $thumbHeight + 10px;
 		[role="tablist"] {
 			position: absolute;
 			width: 100%;
@@ -101,20 +125,37 @@
 				border: none;
 				visibility: visible;
 				&:not( .tabs-toggle ) {
+					padding: 4px;
+					top: 100%;
+					background: $lightGray;
+					background: transparentize($lightGray, .1);
 					&.active, &:focus, &:hover {
-						top: 1px;
+						box-shadow: 0 0 4px $drabBlue;
+					}
+					&.active {
+						a {
+							img {
+								@include grayFilterOff;
+							}
+						}
+					}
+					a {
+						img {
+							box-shadow: none;
+							@include grayFilterOn;
+							max-height: $thumbHeight;
+						}
 					}
 				}
 				&.tabs-toggle {
 					position: absolute;
+					top: 0;
+					bottom: 0;
 					&.prv {
 						left: 0;
 					}
 					&.nxt {
 						right: 0;
-					}
-					&.plypause {
-						display: none;
 					}
 					&.prv, &.nxt {
 						height: 100%;
@@ -128,11 +169,10 @@
 							bottom: 0;
 							left: 0;
 							width: 100%;
-							color: #243850;
-							text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+							color: $drabBlue;
 							border: none;
 							&.prv {
-								background-image: linear-gradient(to right, rgba(255,255,255,0.25) 0%,rgba(255,255,255,0) 100%);
+								background-image: linear-gradient(to right, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
 								.glyphicon {
 									left: .25em;
 									padding-top: 1px;
@@ -140,13 +180,19 @@
 								}
 							}
 							&.nxt {
-								background-image: linear-gradient(to left, rgba(255,255,255,0.25) 0%,rgba(255,255,255,0) 100%);
+								background-image: linear-gradient(to left, rgba(255, 255 ,255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
 								.glyphicon {
 									right: .25em;
 								}
 							}
 							&:focus, &:hover {
-								background: #fff;
+								background: transparent;
+								&.prv {
+									background-image: linear-gradient(to right, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 100%);
+								}
+								&.nxt {
+									background-image: linear-gradient(to left, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 100%);
+								}
 								.glyphicon {
 									box-shadow: none;
 								}
@@ -163,13 +209,26 @@
 								text-align: center;
 								background: #fff;
 								border-radius: 999px;
-								box-shadow: 0 0 4px #243850;
+								box-shadow: 0 0 4px $drabBlue;
 								&:focus, &:hover {
 									box-shadow: none;
 								}
 							}
 						}
 					}
+					&.plypause {
+                        background: none;
+                        border: none;
+                        display: inline-block !important;
+                        font-size: 0.75em;
+                        top: 100%;
+                        right: 0;
+                        padding: 2px 10px;
+                        i {
+                            color: #000 !important;
+                            font-style: normal;
+                        }
+                    }
 				}
 			}
 		}
@@ -186,8 +245,8 @@
 					bottom: 1em;
 					left: 3em;
 					color: #fff;
-					background: #243850;
-					background: rgba(36, 56, 80, 0.9);
+					background: $drabBlue;
+					background: transparentize($drabBlue, 0.1);
 					padding: 1em;
 					a {
 						color: #fff;
@@ -195,17 +254,6 @@
 				}
 			}
 		}
-	}
-
-}
-
-@media (max-width: 768px) {
-	figcaption {
-		position: relative !important;
-		top: 0 !important;
-		right: 0 !important;
-		bottom: 0 !important;
-		left: 0 !important;
 	}
 }
 

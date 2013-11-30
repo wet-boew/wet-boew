@@ -1,10 +1,10 @@
 /*
- * @title Tabbed Interface Plugin
- * @overview Explain the plug-in or any third party lib that it is inspired by
+ * @title Tabbed Interface
+ * @overview Dynamically stacks multiple sections of content, transforming them into a tabbed interface
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- * @author @YOU or WET Community
+ * @author WET Community
  */
- (function( $, window, vapour ) {
+ (function( $, window, wb ) {
  "use strict";
 
  /*
@@ -14,7 +14,7 @@
   * variables that are common to all instances of the plugin on a page.
   */
  var selector = ".wb-tabs",
-	$document = vapour.doc,
+	$document = wb.doc,
 	i18n, i18nText,
 	controls = selector + " [role=tablist] a",
 
@@ -23,26 +23,24 @@
 	 * @param {jQuery DOM element} $elm The plugin element
 	 */
 	onTimerPoke = function( $elm ) {
-		var setting,
-			dataDelay = $elm.data( "delay" ),
-			delay;
+		var dataDelay = $elm.data( "delay" ),
+			setting, delay;
 
 		if ( !dataDelay ) {
 			$elm.trigger( "init.wb-carousel" );
 			return false;
 		}
 
-		/* state stopped*/
-		if ( $elm.hasClass( "stopped" ) ) {
+		// State playing
+		if ( !$elm.hasClass( "playing" ) ) {
 			return false;
 		}
-		/* continue;*/
 
-		/* add settings and counter*/
+		// Add settings and counter
 		setting = parseFloat( dataDelay );
 		delay = parseFloat( $elm.data( "ctime" ) ) + 0.5;
 
-		/* check if we need*/
+		// Check if we need
 		if ( setting < delay ) {
 			$elm.trigger( "shift.wb-carousel" );
 			delay = 0;
@@ -56,23 +54,27 @@
 	 */
 	createControls = function( $tablist ) {
 		var $sldr = $tablist.parents( selector ),
-			state = $sldr.hasClass( "stopped" ) ? i18nText.play :  i18nText.pause,
-			hidden = $sldr.hasClass( "stopped" ) ? i18nText.rotStart  :  i18nText.rotStop,
-			controls = "<li class='tabs-toggle prv'><a class='prv' href='javascript:;' role='button'>" +
-						"<span class='glyphicon glyphicon-chevron-left'></span>" +
-						"<span class='wb-inv'>" +
-						i18nText.prev +
-						"</span></a></li> " +
-						"<li class='tabs-toggle nxt'><a class='nxt' href='javascript:;' role='button'>" +
-						"<span class='glyphicon glyphicon-chevron-right'></span>" +
-						"<span class='wb-inv'>" +
-						i18nText.next +
-						"</span></a></li> " +
-						"<li class='tabs-toggle plypause'><a class='plypause' href='javascript:;' role='button'><i>" +
-						state +
-						"</i><span class='wb-inv'>" +
-						i18nText.space + i18nText.hyphen + i18nText.space + hidden +
-						"</span></a></li>";
+			prevText = i18nText.prev,
+			nextText = i18nText.next,
+			spaceText = i18nText.space,
+			isPlaying = $sldr.hasClass( "playing" ),
+			state = isPlaying ? i18nText.pause : i18nText.play,
+			hidden = isPlaying ? i18nText.rotStop : i18nText.rotStart,
+			glyphiconStart = "<span class='glyphicon glyphicon-",
+			wbInvStart = "<span class='wb-inv'>",
+			tabsToggleStart = "<li class='tabs-toggle ",
+			btnMiddle = "' href='javascript:;' role='button' title='",
+			btnEnd = "</span></a></li> ",
+			iconState = glyphiconStart + ( isPlaying ? "pause" : "play" ) + "'></span>",
+			controls = tabsToggleStart + "prv'><a class='prv" + btnMiddle +
+				prevText + "'>" + glyphiconStart + "chevron-left'></span>" +
+				wbInvStart + prevText + btnEnd + tabsToggleStart +
+				"plypause'><a class='plypause" + btnMiddle + state + "'>" +
+				iconState + "<i>" + state + "</i>" + wbInvStart + spaceText +
+				i18nText.hyphen + spaceText + hidden + "</span></a></li> " +
+				tabsToggleStart + "nxt'><a class='nxt" + btnMiddle + nextText +
+				"'>" + glyphiconStart + "chevron-right'></span>" + wbInvStart +
+				nextText + btnEnd;
 
 		$tablist.append( controls );
 		$sldr.addClass( "inited" );
@@ -82,38 +84,40 @@
 	 * @method drizzleAria
 	 * @param {2 jQuery DOM element} $tabs for the tabpanel grouping, and $tablist for the pointers to the groupings
 	 */
-	drizzleAria = function( $tabs, $tabslist ) {
+	drizzleAria = function( $tabs, $tabList ) {
 
 		// lets process the elements for aria
-		var tabscounter = $tabs.length - 1,
-			$listitems = $tabslist.children(),
-			listcounter = $listitems.length - 1,
-			$item;
+		var tabs = $tabs.get(),
+			tabCounter = tabs.length - 1,
+			listItems = $tabList.children().get(),
+			listCounter = listItems.length - 1,
+			isActive, item, link;
 
 
-		for ( tabscounter; tabscounter >= 0; tabscounter-- ) {
-			$item = $tabs.eq( tabscounter );
-			$item.attr({
-				tabindex: "-1",
-				"aria-hidden": "true",
-				"aria-expanded": "false",
-				"aria-labelledby": $item.attr( "id" ) + "-lnk"
-			});
-		 }
+		for ( ; tabCounter !== -1; tabCounter -= 1 ) {
+			item = tabs[ tabCounter ];
+			isActive = item.className.indexOf( "in" ) !== -1;
 
-		 for ( listcounter; listcounter >= 0; listcounter-- ) {
-			$item = $listitems.eq( listcounter ).find( "a" );
-			$item.attr({
-				tabindex: "0",
-				"aria-selected": "false",
-				"aria-controls": $item.attr( "href" ).replace( "#", "" ) + "-lnk",
-			});
-			$item.parent().attr( "role", "presentation" );
-		  }
+			item.tabIndex = isActive ? "0" : "-1";
+			item.setAttribute( "aria-hidden", isActive ? "false" : "true" );
+			item.setAttribute( "aria-expanded", isActive ? "true" : "false" );
+			item.setAttribute( "aria-labelledby", item.id + "-lnk" );
+		}
 
-		 $tabslist.attr( "aria-live", "off" );
+		for ( ; listCounter !== -1; listCounter -= 1 ) {
+			item = listItems[ listCounter ];
+			item.setAttribute( "role", "presentation" );
+			isActive = item.className.indexOf( "active" ) !== -1;
 
+			link = item.getElementsByTagName( "a" )[ 0 ];
+			link.tabIndex = isActive ? "0" : "-1";
+			link.setAttribute( "role", "tab" );
+			link.setAttribute( "aria-selected", isActive ? "true" : "false" );
+			link.setAttribute( "aria-controls", link.getAttribute( "href" ).substring( 1 ) + "-lnk" );
+		}
+		$tabList.attr( "aria-live", "off" );
 	},
+
 	/*
 	 * @method onInit
 	 * @param {jQuery DOM element} $elm The plugin element
@@ -125,17 +129,17 @@
 
 		// Only initialize the i18nText once
 		if ( !i18nText ) {
-			   i18n = window.i18n;
-			   i18nText = {
-					   prev: i18n( "prv" ),
-					   next: i18n( "nxt" ),
-					   play: i18n( "play" ),
-					   rotStart: i18n( "tab-rot" ).on,
-					   rotStop: i18n( "tab-rot" ).off,
-					   space: i18n( "space" ),
-					   hyphen: i18n( "hyphen" ),
-					   pause: i18n( "pause" )
-			   };
+			i18n = wb.i18n;
+			i18nText = {
+				prev: i18n( "prv" ),
+				next: i18n( "nxt" ),
+				play: i18n( "play" ),
+				rotStart: i18n( "tab-rot" ).on,
+				rotStop: i18n( "tab-rot" ).off,
+				space: i18n( "space" ),
+				hyphen: i18n( "hyphen" ),
+				pause: i18n( "pause" )
+			};
 		}
 
 		if ( $elm.hasClass( "slow" ) ) {
@@ -146,7 +150,7 @@
 
 		$tabs.filter( ":not(.in)" )
 			.addClass( "out" );
-		$elm.data( {
+		$elm.data({
 			"delay": interval,
 			"ctime": 0
 		});
@@ -174,24 +178,34 @@
 			.addClass( "out" )
 			.attr({
 				"aria-hidden": "true",
-				"aria-expanded": "false"
+				"aria-expanded": "false",
+				tabindex: "-1"
 			});
 
-		$items.filter( "[aria-labelledby=" + $elm.attr( "aria-controls" ) + "]" ).removeClass( "out" )
+		$items.filter( "[aria-labelledby=" + $elm.attr( "aria-controls" ) + "]" )
+			.removeClass( "out" )
 			.addClass( "in" )
 			.attr({
 				"aria-hidden": "false",
-				"aria-expanded": "true"
+				"aria-expanded": "true",
+				tabindex: "0"
 			});
 
 		$controls.find( ".active" )
 			.removeClass( "active" )
-			.attr( "aria-selected", "false" )
+			.children( "a" )
+				.attr({
+					"aria-selected": "false",
+					tabindex: "-1"
+				})
 			.end()
-			.find( $elm )
-			.parent()
-			.addClass( "active" )
-			.attr( "aria-selected", "true" );
+				.find( $elm )
+					.attr({
+						"aria-selected": "true",
+						tabindex: "0"
+					})
+					.parent()
+						.addClass( "active" );
 	},
 
 	/*
@@ -203,7 +217,7 @@
 			$controls = $elm.data( "tablist" ),
 			len = $items.length,
 			current = $elm.find( ".in" ).prevAll( "[role=tabpanel]" ).length,
-			shiftto = ( event.shiftto ) ? event.shiftto : 1,
+			shiftto = event.shiftto ? event.shiftto : 1,
 			next = current > len ? 0 : current + shiftto,
 			$next;
 
@@ -228,10 +242,10 @@
 			.removeClass( "active" )
 			.attr( "aria-selected", "false" )
 			.end()
-			.find( "[href=#" + $next.attr( "id" ) + "]" )
-			.parent()
-			.addClass( "active" )
-			.attr( "aria-selected", "true" );
+				.find( "[href=#" + $next.attr( "id" ) + "]" )
+					.parent()
+						.addClass( "active" )
+						.attr( "aria-selected", "true" );
 	},
 
 	/*
@@ -240,7 +254,7 @@
 	 * @param {integer} shifto The item to shift to
 	 */
 	onCycle = function( $elm, shifto ) {
-		$elm.trigger( {
+		$elm.trigger({
 			type: "shift.wb-carousel",
 			shiftto: shifto
 		});
@@ -283,38 +297,44 @@
  /*
   * Next / Prev
   */
- $document.on( "click", controls, function( event ) {
-	event.preventDefault();
-	var $elm = $( this ),
-		$text, $inv,
-		$sldr = $elm.parents( ".wb-tabs" ),
-		action = $elm.hasClass( "prv" ) ? "prv" :
-					$elm.hasClass( "nxt" ) ? "nxt" :
-					$elm.attr( "href" ).indexOf( "#" ) > -1 ? "select" :
-					"0";
+ $document.on( "click vclick keydown", controls, function( event ) {
+	var which = event.which,
+		elm = event.currentTarget,
+		className = elm.className,
+		rotStopText = i18nText.rotStop,
+		playText = i18nText.play,
+		$elm, text, inv, $sldr;
 
-	switch ( action ) {
-	case "prv":
-		onCycle( $elm, -1 );
-		break;
-	case "nxt":
-		onCycle( $elm, 1 );
-		break;
-	case "select":
-		onPick( $sldr, $elm );
-		break;
-	default:
-		$text = $elm.find("i");
-		$inv = $elm.find(".wb-inv");
-		$text.text(
-			($text.text() === i18nText.play ) ? i18nText.pause : i18nText.play
-		);
-		$inv.text(
-			($inv.text() === i18nText.rotStop ) ? i18nText.rotStart : i18nText.rotStop
-		);
-		$sldr.toggleClass( "stopped" );
+	// Ignore middle and right mouse buttons
+	if ( !which || which === 1 || which === 32 || ( which > 36 && which < 41 ) ) {
+		event.preventDefault();
+		$elm = $( elm );
+		$sldr = $elm
+			.parents( ".wb-tabs" )
+			.attr( "data-ctime", 0 );
+
+		// Spacebar
+		if ( which > 36 ) {
+			onCycle( $elm, which < 39 ? -1 : 1 );
+			$sldr.find( ".active a" ).trigger( "setfocus.wb" );
+		} else {
+			if ( elm.getAttribute( "role" ) === "tab" ) {
+				onPick( $sldr, $elm );
+				$( elm.getAttribute( "href" ) ).trigger( "setfocus.wb" );
+			} else if ( className.indexOf( "plypause" ) !== -1 ) {
+				$elm.find( ".glyphicon" ).toggleClass( "glyphicon-play glyphicon-pause" );
+				$sldr.toggleClass( "playing" );
+
+				text = elm.getElementsByTagName( "i" )[ 0 ];
+				text.innerHTML = text.innerHTML === playText ? i18nText.pause : playText;
+
+				inv = $elm.find( ".wb-inv" )[ 0 ];
+				inv.innerHTML = inv.innerHTML === rotStopText ? i18nText.rotStart : rotStopText;
+			} else {
+				onCycle( $elm, className.indexOf( "prv" ) !== -1 ? -1 : 1 );
+			}
+		}
 	}
-	$sldr.attr( "data-ctime", 0 );
 
 	/*
 	 * Since we are working with events we want to ensure that we are being passive about our control,
@@ -324,6 +344,6 @@
  });
 
  // Add the timer poke to initialize the plugin
- window._timer.add( ".wb-tabs" );
+ wb.add( ".wb-tabs" );
 
- })( jQuery, window, vapour );
+ })( jQuery, window, wb );

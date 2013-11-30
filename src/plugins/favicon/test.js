@@ -7,7 +7,7 @@
  */
 /* global jQuery, describe, it, expect, before, after, sinon */
 /* jshint unused:vars */
-(function( $, vapour ) {
+(function( $, wb ) {
 
 /*
  * Create a suite of related test cases using `describe`. Test suites can also be
@@ -25,7 +25,7 @@ describe( "Favicon test suite", function() {
 		// Spy on jQuery's trigger methods
 		spies.trigger = sinon.spy( $.prototype, "trigger" );
 
-		vapour.doc.on( "mobile.wb-favicon", "link[rel='shortcut icon']", function() {
+		wb.doc.on( "mobile.wb-favicon", "link[rel='shortcut icon']", function() {
 			done();
 		});
 	});
@@ -52,10 +52,10 @@ describe( "Favicon test suite", function() {
 				isSelector = false;
 
 			// Loop over calls made on the trigger() spy
-			for ( i = 0, lenCalls = spies.trigger.callCount; !isSelector && i < lenCalls; i++ ) {
+			for ( i = 0, lenCalls = spies.trigger.callCount; !isSelector && i < lenCalls; i += 1 ) {
 				call = spies.trigger.getCall( i );
 				// There may be multiple `this` objects for each call
-				for ( j = 0, lenElms = call.thisValue.length; !isSelector && j < lenElms; j++ ) {
+				for ( j = 0, lenElms = call.thisValue.length; !isSelector && j < lenElms; j += 1 ) {
 					isSelector =  call.thisValue[ j ].nodeName === "LINK" && call.thisValue[ j ].rel === "shortcut icon";
 				}
 			}
@@ -103,7 +103,7 @@ describe( "Favicon test suite", function() {
 		before(function( done ) {
 			$( ".wb-favicon" ).remove();
 
-			vapour.doc.on( "mobile.wb-favicon", "link[rel='shortcut icon']", function() {
+			wb.doc.on( "mobile.wb-favicon", "link[rel='shortcut icon']", function() {
 				$faviconMobile = $( ".wb-favicon" );
 				done();
 			});
@@ -161,4 +161,4 @@ describe( "Favicon test suite", function() {
 	});
 });
 
-}( jQuery, vapour ));
+}( jQuery, wb ));

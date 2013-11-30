@@ -14,6 +14,13 @@ $clrMedium: #CCC;
 $clrDark: #555;
 
 // Views
-$mobile: 991px;
-$desktop: 992px;
-$largescreen: 1200px;
+$xxSmallViewMax: 479px;
+$xSmallViewMin: 480px;
+$xSmallViewMax: 767px;
+$smallViewMin: 768px;
+$smallViewMax: 991px;
+$mediumViewMin: 992px;
+$mediumViewMax: 1199px;
+$largeViewMin: 1200px;
+$largeViewMax: 1599px;
+$xLargeViewMin: 1600px;
