@@ -19,10 +19,8 @@ module.exports = (grunt) ->
 			"test"
 			"build"
 			"assets-dist"
-			"assemble:demos"
-			"assemble:demos_min"
-			"imagemin:min"
-			"htmlcompressor"
+			"demos"
+			"demos-dist"
 		]
 	)
 
@@ -31,7 +29,7 @@ module.exports = (grunt) ->
 		"Produces unminified files"
 		[
 			"build"
-			"assemble:demos"
+			"demos"
 		]
 	)
 
@@ -43,7 +41,7 @@ module.exports = (grunt) ->
 			"assets"
 			"js"
 			"css"
-			"imagemin:unmin"
+			"imagemin"
 		]
 	)
 
@@ -52,9 +50,6 @@ module.exports = (grunt) ->
 		"Build and deploy artifacts to wet-boew-dist"
 		[
 			"dist"
-			"assemble:demos"
-			"assemble:demos_min"
-			"htmlcompressor"
 			"copy:deploy"
 			"gh-pages"
 		]
@@ -99,13 +94,7 @@ module.exports = (grunt) ->
 		"js"
 		"INTERNAL: Copies all third party JS to the dist folder"
 		[
-			"copy:polyfills"
-			"copy:other"
-			"copy:deps"
-			"copy:jsAssets"
-			"copy:jsDemoPlugins"
-			"copy:jsDemoPolyfills"
-			"copy:jsDemoOther"
+			"copy:js"
 			"i18n"
 			"concat:core"
 			"concat:coreIE8"
@@ -132,7 +121,25 @@ module.exports = (grunt) ->
 		"INTERNAL: Process non-CSS/JS assets to dist"
 		[
 			"copy:assets_min"
-			"copy:misc_min"
+		]
+	)
+
+	@registerTask(
+		"demos"
+		"INTERNAL: Create unminified demos"
+		[
+			"copy:demos"
+			"assemble:demos"
+		]
+	)
+
+	@registerTask(
+		"demos-dist"
+		"INTERNAL: Create minified demos"
+		[
+			"copy:demos_min"
+			"assemble:demos_min"
+			"htmlcompressor"
 		]
 	)
 
@@ -140,7 +147,6 @@ module.exports = (grunt) ->
 		"assets"
 		"INTERNAL: Process non-CSS/JS assets to dist"
 		[
-			"copy:misc"
 			"copy:themeAssets"
 			"copy:bootstrap"
 		]
@@ -349,72 +355,68 @@ module.exports = (grunt) ->
 		# Compiles the Sass files
 		sass:
 			all:
-				expand: true
-				cwd: "src/base"
-				src: [
-					"**/*.scss"
-					"!**/_*.scss"
-					"!**/demo/*.scss"
+				files: [
+					expand: true
+					cwd: "src/base"
+					src: [
+						"**/*.scss"
+						"!**/_*.scss"
+						"!**/demo/*.scss"
+					]
+					dest: "dist/unmin/css/"
+					ext: ".css"
+				,
+					expand: true
+					cwd: "theme/sass"
+					src: [
+						"**/*.scss"
+						"!**/_*.scss"
+					]
+					dest: "dist/unmin/css/"
+					ext: ".css"
+				,
+					expand: true
+					cwd: "src/polyfills"
+					src: [
+						"**/*.scss"
+						"!**/*-base.scss"
+						"!**/*-ie8.scss"
+						"!**/*-noscript.scss"
+						"!**/demo/*.scss"
+					]
+					dest: "dist/unmin/css/polyfills/"
+					ext: ".css"
+					flatten: true
+				,
+					expand: true
+					cwd: "src/other"
+					src: [
+						"**/*.scss"
+						"!**/*base.scss"
+						"!**/demo/*.scss"
+					]
+					dest: "dist/unmin/css/other/"
+					ext: ".css"
+					flatten: true
+				,
+					expand: true
+					cwd: "src/plugins"
+					src: "**/demo/*.scss"
+					dest: "dist/unmin/demos/"
+					ext: ".css"
+				,
+					expand: true
+					cwd: "src/polyfills"
+					src: "**/demo/*.scss"
+					dest: "dist/unmin/demos/"
+					ext: ".css"
+				,
+					expand: true
+					cwd: "src/other"
+					src: "**/demo/*.scss"
+					dest: "dist/unmin/demos/"
+					ext: ".css"
 				]
-				dest: "dist/unmin/css/"
-				ext: ".css"
-
-			theme:
-				expand: true
-				cwd: "theme/sass"
-				src: [
-					"**/*.scss"
-					"!**/_*.scss"
-				]
-				dest: "dist/unmin/css/"
-				ext: ".css"
-
-			polyfills:
-				expand: true
-				cwd: "src/polyfills"
-				src: [
-					"**/*.scss"
-					"!**/*-base.scss"
-					"!**/*-ie8.scss"
-					"!**/*-noscript.scss"
-					"!**/demo/*.scss"
-				]
-				dest: "dist/unmin/css/polyfills/"
-				ext: ".css"
-				flatten: true
-
-			other:
-				expand: true
-				cwd: "src/other"
-				src: [
-					"**/*.scss"
-					"!**/*base.scss"
-					"!**/demo/*.scss"
-				]
-				dest: "dist/unmin/css/other/"
-				ext: ".css"
-				flatten: true
-
-			demo_plugins:
-				expand: true
-				cwd: "src/plugins"
-				src: "**/demo/*.scss"
-				dest: "dist/unmin/demos/"
-				ext: ".css"
-
-			demo_polyfills:
-				expand: true
-				cwd: "src/polyfills"
-				src: "**/demo/*.scss"
-				dest: "dist/unmin/demos/"
-				ext: ".css"
-
-			demo_other:
-				expand: true
-				cwd: "src/other"
-				src: "**/demo/*.scss"
-				dest: "dist/unmin/demos/"
-				ext: ".css"
 
 		autoprefixer:
 			options:
@@ -429,34 +431,34 @@ module.exports = (grunt) ->
 				]
 
 			all:
-				cwd: "dist/unmin/css"
-				src: [
-					"**/*.css"
-					"!**/polyfills/**/*.css"
-					"!**/other/**/*.css"
-					"!**/*.min.css"
+				files: [
+					cwd: "dist/unmin/css"
+					src: [
+						"**/*.css"
+						"!**/polyfills/**/*.css"
+						"!**/other/**/*.css"
+						"!**/*.min.css"
+					]
+					dest: "dist/unmin/css"
+					expand: true
+					flatten: true
+				,
+					cwd: "dist/unmin/css/polyfills"
+					src: [
+						"**/*.css"
+						"!**/*.min.css"
+					]
+					dest: "dist/unmin/css/polyfills/"
+					expand: true
+				,
+					cwd: "dist/unmin/css/other"
+					src: [
+						"**/*.css"
+						"!**/*.min.css"
+					]
+					dest: "dist/unmin/css/other/"
+					expand: true
 				]
-				dest: "dist/unmin/css"
-				expand: true
-				flatten: true
-
-			polyfills:
-				cwd: "dist/unmin/css/polyfills"
-				src: [
-					"**/*.css"
-					"!**/*.min.css"
-				]
-				dest: "dist/unmin/css/polyfills/"
-				expand: true
-
-			other:
-				cwd: "dist/unmin/css/other"
-				src: [
-					"**/*.css"
-					"!**/*.min.css"
-				]
-				dest: "dist/unmin/css/other/"
-				expand: true
 
 		# Minify
 		uglify:
@@ -597,79 +599,71 @@ module.exports = (grunt) ->
 				expand: true
 				flatten: true
 
-			misc:
-				cwd: "src/plugins"
-				src: [
-					"**/*.*"
-					"!**/*.js"
-					"!**/*.scss"
-					"!**/*.hbs"
-					"!**/assets/*"
-					"!**/sprites/*"
+			js:
+				files: [
+					cwd: "src/polyfills"
+					src: "**/*.js"
+					dest: "dist/unmin/js/polyfills"
+					expand: true
+					flatten: true
+				,
+					cwd: "src/other"
+					src: "**/*.js"
+					dest: "dist/unmin/js/other"
+					expand: true
+					flatten: true
+				,
+					cwd: "lib"
+					src: [
+						"jquery-pjax/jquery.pjax.js"
+						"jquery.validation/jquery.validate.js"
+						"jquery.validation/additional-methods.js"
+						"magnific-popup/dist/jquery.magnific-popup.js"
+						"google-code-prettify/src/*.js"
+						"DataTables/media/js/jquery.dataTables.js"
+					]
+					dest: "dist/unmin/js/deps"
+					expand: true
+					flatten: true
+				,
+					cwd: "src"
+					src: [
+						"plugins/**/assets/*"
+						"polyfills/**/assets/*"
+						"other/**/assets/*"
+					]
+					dest: "dist/unmin/assets"
+					expand: true
+					flatten: true
 				]
-				dest: "dist/unmin/demos"
-				expand: true
 
-			polyfills:
-				cwd: "src/polyfills"
-				src: "**/*.js"
-				dest: "dist/unmin/js/polyfills"
-				expand: true
-				flatten: true
-
-			other:
-				cwd: "src/other"
-				src: "**/*.js"
-				dest: "dist/unmin/js/other"
-				expand: true
-				flatten: true
-
-			deps:
-				cwd: "lib"
-				src: [
-					"jquery-pjax/jquery.pjax.js"
-					"jquery.validation/jquery.validate.js"
-					"jquery.validation/additional-methods.js"
-					"magnific-popup/dist/jquery.magnific-popup.js"
-					"google-code-prettify/src/*.js"
-					"DataTables/media/js/jquery.dataTables.js"
+			demos:
+				files: [
+					cwd: "src/plugins"
+					src: [
+						"**/*.{jpg,html,xml}"
+						"**/demo/*.*"
+						"**/ajax/*.*"
+						"**/img/*.*"
+						"!**/assets/*.*"
+					]
+					dest: "dist/unmin/demos/"
+					expand: true
+				,
+					cwd: "src/polyfills"
+					src: "**/demo/*.js"
+					dest: "dist/unmin/demos/"
+					expand: true
+				,
+					cwd: "src/other"
+					src: "**/demo/*.js"
+					dest: "dist/unmin/demos/"
+					expand: true
 				]
-				dest: "dist/unmin/js/deps"
-				expand: true
-				flatten: true
-
-			jsAssets:
-				cwd: "src"
-				src: [
-					"plugins/**/assets/*"
-					"polyfills/**/assets/*"
-					"other/**/assets/*"
-				]
-				dest: "dist/unmin/assets"
-				expand: true
-				flatten: true
-
-			jsDemoPlugins:
-				cwd: "src/plugins"
-				src: "**/demo/*.js"
-				dest: "dist/unmin/demos/"
-				expand: true
-
-			jsDemoPolyfills:
-				cwd: "src/polyfills"
-				src: "**/demo/*.js"
-				dest: "dist/unmin/demos/"
-				expand: true
-
-			jsDemoOther:
-				cwd: "src/other"
-				src: "**/demo/*.js"
-				dest: "dist/unmin/demos/"
-				expand: true
 
 			themeAssets:
 				cwd: "theme/"
-				src: "**/assets/*.*"
+				src: "assets/*.*"
 				dest: "dist/unmin"
 				expand: true
 
@@ -684,17 +678,16 @@ module.exports = (grunt) ->
 				dest: "dist"
 				expand: true
 
-			misc_min:
-				cwd: "src/plugins"
+			demos_min:
+				cwd: "dist/unmin"
 				src: [
-					"**/*.*"
-					"!**/*.js"
-					"!**/*.scss"
-					"!**/*.hbs"
-					"!**/assets/*"
-					"!**/sprites/*"
+					"**/*.{jpg,html,xml}"
+					"**/demo/*.*"
+					"**/ajax/*.*"
+					"**/img/*.*"
+					"!**/assets/*.*"
 				]
-				dest: "dist/demos"
+				dest: "dist/demos/"
 				expand: true
 
 			deploy:
@@ -706,15 +699,10 @@ module.exports = (grunt) ->
 				expand: true
 
 		imagemin:
-			unmin:
-				cwd: "dist/unmin/assets"
-				src: "*.png"
-				dest: "dist"
-				expand: true
-			min:
-				cwd: "dist/assets"
-				src: "*.png"
-				dest: "dist"
+			all:
+				cwd: "dist/unmin"
+				src: "**/*.png"
+				dest: "dist/unmin"
 				expand: true
 
 		clean:
