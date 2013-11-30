@@ -118,28 +118,6 @@ var getUrlParts = function( url ) {
 		return ( typeof disabled === "string" ) ? ( disabled.toLowerCase() === "true" ) : Boolean( disabled );
 	}()),
 
-	i18n = function( key, state, mixin ) {
-		var truthiness,
-			ind = window.i18nObj;
-
-		truthiness = ( typeof key === "string" && key !== "" ) | // eg. 000 or 001 ie. 0 or 1
-		( typeof state === "string" && state !== "" ) << 1 | // eg. 000 or 010 ie. 0 or 2
-		( typeof mixin === "string" && mixin !== "" ) << 2; // eg. 000 or 100 ie. 0 or 4
-
-		switch ( truthiness ) {
-			case 1:
-				// only key was provided
-				return ind[ key ];
-			case 3:
-				// key and state were provided
-				return ind[ key ][ state ];
-			case 7:
-				// key, state, and mixin were provided
-				return ind[ key ][ state ].replace( "[MIXIN]", mixin );
-			default:
-				return "";
-		}
-	},
 	/*-----------------------------
 	 * Core Library Object
 	 *-----------------------------
@@ -208,10 +186,32 @@ var getUrlParts = function( url ) {
 				wb.nodes.trigger( "timerpoke.wb" );
 			}, 500 );
 
+		},
+		i18nDict: {},
+		i18n: function( key, state, mixin ) {
+			var truthiness,
+				dictionary = wb.i18nDict;
+
+			truthiness = ( typeof key === "string" && key !== "" ) | // eg. 000 or 001 ie. 0 or 1
+			( typeof state === "string" && state !== "" ) << 1 | // eg. 000 or 010 ie. 0 or 2
+			( typeof mixin === "string" && mixin !== "" ) << 2; // eg. 000 or 100 ie. 0 or 4
+
+			switch ( truthiness ) {
+				case 1:
+					// only key was provided
+					return dictionary[ key ];
+				case 3:
+					// key and state were provided
+					return dictionary[ key ][ state ];
+				case 7:
+					// key, state, and mixin were provided
+					return dictionary[ key ][ state ].replace( "[MIXIN]", mixin );
+				default:
+					return "";
+			}
 		}
 	};
 
-window.i18n = i18n;
 window.wb = wb;
 
 /*-----------------------------

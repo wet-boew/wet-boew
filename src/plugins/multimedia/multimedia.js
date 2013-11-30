@@ -405,7 +405,7 @@ $document.on( "timerpoke.wb", selector, function() {
 
 	// Only initialize the i18nText once
 	if ( !i18nText ) {
-		i18n = window.i18n;
+		i18n = wb.i18n;
 		i18nText = {
 			rewind: i18n( "rew" ),
 			ff: i18n( "ffwd" ),

@@ -54,7 +54,7 @@ var selector = ".wb-session-timeout",
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
-				i18n = window.i18n;
+				i18n = wb.i18n;
 				i18nText = {
 					buttonContinue: i18n( "st-btn-cont" ),
 					buttonEnd: i18n( "st-btn-end" ),

@@ -43,7 +43,7 @@ var selector = "input[type=date]",
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
-				i18n = window.i18n;
+				i18n = wb.i18n;
 				i18nText = {
 					show: i18n( "date-show" ) + i18n( "space" ),
 					hide: i18n( "date-hide" ),

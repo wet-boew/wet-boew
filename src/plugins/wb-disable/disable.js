@@ -24,7 +24,7 @@ var selector = "#wb-tphp",
 		var elm = event.target,
 			nQuery = "?",
 			$html = wb.html,
-			i18n = window.i18n,
+			i18n = wb.i18n,
 			pageUrl = wb.pageUrlParts,
 			li, param;
 

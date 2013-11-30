@@ -31,7 +31,7 @@ var $document = wb.doc,
 
 		// Only initialize the i18nText once
 		if ( !i18nText ) {
-			i18n = window.i18n;
+			i18n = wb.i18n;
 			i18nText = {
 				monthNames: i18n( "mnths" ),
 				prevMonth: i18n( "prvMnth" ),
