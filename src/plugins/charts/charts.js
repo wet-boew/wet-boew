@@ -18,6 +18,7 @@
 var wet_boew_charts,
 	selector = ".wb-charts",
     $document = wb.doc,
+	i18n, i18nText,
     
     /*
      * Main Entry function to create the charts
@@ -43,7 +44,7 @@ var wet_boew_charts,
 			graphClassLen2, tblCaptionText, dataGroup, tdOptions,
 			$subFigureElem, $subfigCaptionElem, pieOptions, barDelta, rowOptions,
 			dataColGroupFound, valuePoint, figureElem, plotParameter,
-			$imgContainer, i18n, i18nText;
+			$imgContainer;
 
 		function colourNameToHex( colour ) {
 			var colours = {
@@ -495,7 +496,7 @@ var wet_boew_charts,
 				// Percentage of tilt ranging from 0 and 100, where 100 has
 				// no change (fully vertical) and 0 is completely flat
 				// (fully horizontal -- in which case nothing actually gets drawn)
-				"pietilt-autocreate": true, 
+				"pietilt-autocreate": true,
 				"pietilt-typeof": "number",
 
 				// Sets the radius of the donut hole. If value is between
@@ -1430,7 +1431,7 @@ var wet_boew_charts,
 				$imgContainer.attr( "role", "img" );
 
 				// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
-				$imgContainer.attr( "aria-label", pieChartLabelText + " " + i18n( "%table-following" ) );
+				$imgContainer.attr( "aria-label", pieChartLabelText + " " + i18nText.tableFollowing );
 
 				//
 				// Pie Charts Options
@@ -1518,7 +1519,7 @@ var wet_boew_charts,
 				$( tblSrcContainer ).appendTo( mainFigureElem );
 
 				// set the title for the ability to show or hide the table as a data source
-				$( tblSrcContainerSummary ).text( tblCaptionHTML + " " + i18n( "%table-mention" ) )
+				$( tblSrcContainerSummary ).text( tblCaptionHTML + " " + i18nText.tableMention )
 					.appendTo( tblSrcContainer )
 					.after( srcTbl );
 
@@ -1692,7 +1693,7 @@ var wet_boew_charts,
 		$placeHolder.attr( "role", "img" );
 
 		// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
-		$placeHolder.attr( "aria-label", $( "caption", srcTbl ).text() + " " + i18n( "%table-following" ) ); // "Chart. Details in table following."
+		$placeHolder.attr( "aria-label", $( "caption", srcTbl ).text() + " " + i18nText.tableFollowing );
 
 		// eg of use:	wb-charts-noencapsulation-true
 		if ( !options.noencapsulation ) {
@@ -1705,7 +1706,7 @@ var wet_boew_charts,
 			$( tblSrcContainer ).appendTo( figureElem );
 
 			// set the title for the ability to show or hide the table as a data source
-			$( tblSrcContainerSummary ).text( tblCaptionHTML + " " + i18n( "%table-mention" ) )
+			$( tblSrcContainerSummary ).text( tblCaptionHTML + " " + i18nText.tableMention )
 				.appendTo( tblSrcContainer )
 				.after( srcTbl );
 
@@ -1781,6 +1782,15 @@ var wet_boew_charts,
 		wb.remove( selector );
 		
 		var modeJS = wb.getMode() + ".js";
+		
+		// Only initialize the i18nText once
+		if ( !i18nText ) {
+			i18n = wb.i18n;
+			i18nText = {
+				tableFollowing: i18n( "table-following" ),
+				tableMention: i18n( "table-mention" )
+			};
+		}
 			
 		// Load the required dependencies and prettify the code once finished
 		window.Modernizr.load({
