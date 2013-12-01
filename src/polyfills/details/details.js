@@ -18,16 +18,17 @@ var selector = "details",
 	 * Init runs once per polyfill element on the page. There may be multiple elements.
 	 * It will run more than once if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {DOM element} _input The input field to be polyfilled
+	 * @param {DOM element} elm The details element to be polyfilled
 	 */
-	init = function( _elm ) {
+	init = function( elm ) {
 		var summary;
 
-		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+		// All plugins need to remove their reference from the timer in the init
+		// sequence unless they have a requirement to be poked every 0.5 seconds
 		wb.remove( selector );
 
-		_elm.setAttribute( "aria-expanded", ( _elm.getAttribute( "open" ) === null ) );
-		summary = _elm.getElementsByTagName( "summary" );
+		elm.setAttribute( "aria-expanded", ( elm.getAttribute( "open" ) !== null ) );
+		summary = elm.getElementsByTagName( "summary" );
 		if ( summary.length !== 0 ) {
 			summary[ 0 ].setAttribute( "tabindex", "0" );
 		}
