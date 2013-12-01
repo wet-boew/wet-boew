@@ -124,7 +124,7 @@
 			li {
 				border: none;
 				visibility: visible;
-				&:not( .control ) {
+				&[role="presentation"] {
 					padding: 4px;
 					top: 100%;
 					background: $lightGray;
