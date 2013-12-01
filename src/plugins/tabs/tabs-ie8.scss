@@ -1,0 +1,23 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+@import "../../variables";
+
+.wb-tabs {
+	// Shared variables
+	// adding 16px in order to match resize's smallview (obtained via $(document).width()).
+	$smallScreen: $smallViewMin + 16px;
+
+	/*
+	 * Large screen styles
+	 */
+	@media (min-width: $smallScreen + 1px) {
+		> details {
+			display: none;
+			&[open], &.in {
+				display: block;
+			}
+		}
+	}
+}
