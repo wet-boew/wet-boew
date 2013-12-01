@@ -6,8 +6,8 @@
 /**
  * Mobile-friendly styles
  */
-.wb-tabs {
-	&.tabs-s1, &.tabs-s2 {
+.wb-carousel {
+	&.carousel-s1, &.carousel-s2 {
 		[role="tabpanel"] {
 			figure {
 				figcaption {
@@ -20,10 +20,17 @@
 			}
 		}
 	}
-	&.tabs-s1 {
+	&.carousel-s1 {
 		[role="tablist"] {
 			bottom: auto;
 			top: 1em;
+		}
+	}
+	&.carousel-s2 {
+		[role="tablist"] {
+			li:not( .control ) {
+				display: none;
+			}
 		}
 	}
 }
