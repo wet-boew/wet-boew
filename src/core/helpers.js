@@ -195,11 +195,9 @@
 
 		if ( methods[ method ] ) {
 			methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ) );
-		}
-		else if ( typeof method === "object" || !method ) {
+		} else if ( typeof method === "object" || !method ) {
 			methods.init.apply( this, arguments );
-		}
-		else {
+		} else {
 			$.error( "Method " + method + " does not exist on jquery.wb" );
 		}
 	};
@@ -231,8 +229,7 @@
 				isTabIndexNotNaN ) &&
 			// the element and all of its ancestors must be visible
 			visible( element );
-		}
-		else {
+		} else {
 			return ( /input|select|textarea|button|object/.test( nodeName ) ? !element.disabled :
 				"a" === nodeName ?
 				element.href || isTabIndexNotNaN :

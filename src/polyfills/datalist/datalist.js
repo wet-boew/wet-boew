@@ -144,20 +144,18 @@ var selector = "input[list]",
 			if ( !event.altKey ) {
 				showOptions( input, input.value + String.fromCharCode( which ) );
 			}
-		}
 
 		// Backspace
-		else if ( which === 8 && !event.altKey ) {
+		} else if ( which === 8 && !event.altKey ) {
 			value = input.value;
 			len = value.length;
 
 			if ( len !== 0 ) {
 				showOptions( input, value.substring( 0, len - 1 ) );
 			}
-		}
 
 		// Up / down arrow
-		else if ( ( which === 38 || which === 40) && input.getAttribute( "aria-activedescendent" ) === "" ) {
+		} else if ( ( which === 38 || which === 40) && input.getAttribute( "aria-activedescendent" ) === "" ) {
 			if ( _alHide ) {
 				showOptions( input );
 			}
@@ -171,9 +169,7 @@ var selector = "input[list]",
 			$( dest ).trigger( "setfocus.wb" );
 
 			return false;
-		}
-
-		else if ( !_alHide ) {
+		} else if ( !_alHide ) {
 
 			// Tab or Escape key
 			if ( ( which === 9 || which === 27 ) || ( which === 27 && !event.altKey ) ) {
@@ -189,7 +185,7 @@ var selector = "input[list]",
 	 * @param {DOM element} link Link element that is the target of the event
 	 */
 	keyboardHandlerAutolist = function( which, link ) {
-		var	_autolist = link.parentNode.parentNode,
+		var _autolist = link.parentNode.parentNode,
 			input = _autolist.previousSibling,
 			$input = $( input ),
 			_span, dest, value, len, children;
@@ -204,10 +200,9 @@ var selector = "input[list]",
 			showOptions( input, input.value );
 
 			return false;
-		}
 
 		// Backspace
-		else if ( which === 8 ) {
+		} else if ( which === 8 ) {
 			value = input.value;
 			len = value.length;
 
@@ -219,10 +214,9 @@ var selector = "input[list]",
 			$input.trigger( "setfocus.wb" );
 
 			return false;
-		}
 
 		// Enter key
-		else if ( which === 13) {
+		} else if ( which === 13) {
 			_span = link.getElementsByTagName( "span" );
 
 			// .al-val
@@ -239,18 +233,16 @@ var selector = "input[list]",
 			closeOptions( input );
 
 			return false;
-		}
 
 		// Tab or Escape key
-		else if ( which === 9 || which === 27 ) {
+		} else if ( which === 9 || which === 27 ) {
 			$input.trigger( "setfocus.wb" );
 			closeOptions( input );
 
 			return false;
-		}
 
 		// Up or down arrow
-		else if ( which === 38 || which === 40 ) {
+		} else if ( which === 38 || which === 40 ) {
 
 			// Up arrow
 			if ( which === 38 ) {
@@ -259,10 +251,9 @@ var selector = "input[list]",
 					children = _autolist.getElementsByTagName( "li" );
 					dest = children[ children.length - 1 ];
 				}
-			}
 
 			// Down arrow
-			else {
+			} else {
 				dest = link.parentNode.nextSibling;
 				if ( !dest ) {
 					dest = _autolist.getElementsByTagName( "li" )[ 0 ];
