@@ -69,7 +69,7 @@ var $document = wb.doc,
 
 					dfd.resolve( countryCode );
 				},
-				error: function(){
+				error: function() {
 					dfd.reject( "" );
 				}
 			});

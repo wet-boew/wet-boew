@@ -136,7 +136,7 @@ describe( "Session Timeout test suite", function() {
 
 	describe( "refresh onclick", function() {
 
-		before(function(){
+		before(function() {
 			// Reset the state of the spies
 			spies.trigger.reset();
 			spies.post.reset();
@@ -174,7 +174,7 @@ describe( "Session Timeout test suite", function() {
 
 	describe( "refreshCallbackUrl", function() {
 
-		before(function( done ){
+		before(function( done ) {
 			// Setup the fake server response for all POST requests to foo.html
 			server.respondWith( "POST", "foo.html", "true" );
 

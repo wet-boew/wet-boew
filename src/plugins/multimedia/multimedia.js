@@ -356,7 +356,7 @@ youTubeApi = function( fn, args ) {
 		return this.object.getVolume() / 100;
 	case "setVolume":
 		this.object.setVolume( args * 100 );
-		setTimeout( function(){
+		setTimeout( function() {
 			$this.trigger( "volumechange" );
 		}, 50 );
 
