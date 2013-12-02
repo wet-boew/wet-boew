@@ -24,9 +24,7 @@
 		font-size: 115%;
 	}
 
-	/*
-		TODO: Convert @include to @extend when libsass supports nested extends
-	*/
+	//TODO: Convert @include to @extend when libsass supports nested extends
 	.bitly {
 		&:before {
 			@extend %share_icons;
