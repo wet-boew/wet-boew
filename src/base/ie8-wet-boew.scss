@@ -9,11 +9,6 @@
 @import "../plugins/overlay/overlay-ie8";
 @import "../plugins/tabs/tabs-ie8";
  
-/*
- Polyfills
- */
-@import "../polyfills/details/details-ie8";
-
 /* Print view */
 @media print {
 	@import "../plugins/footnotes/footnotes-ie8-printView";
