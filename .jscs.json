@@ -59,6 +59,9 @@
 	"requireLeftStickedOperators": [
 		","
 	],
+	"disallowKeywords": [
+		"with"
+	],
 	"requireLineFeedAtFileEnd": true,
 	"validateJSDoc": {
 		"checkParamNames": true,
