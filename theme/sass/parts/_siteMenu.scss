@@ -20,7 +20,10 @@
 							text-decoration: underline;
 						}
 						&.wb-navcurr {
-							background: #0b3048
+							&:link {
+								background: #0b3048;
+								color: #fff;
+							}
 						}
 					}
 				}
