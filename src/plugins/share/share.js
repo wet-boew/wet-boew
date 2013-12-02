@@ -63,7 +63,7 @@ var selector = ".wb-share",
 			},
 			googleplus: {
 				name: "Google+",
-				url: "https://plus.google.com/share?url={u}&amp;hl=" + document.documentElement.lang,
+				url: "https://plus.google.com/share?url={u}&amp;hl=" + document.documentElement.lang
 			},
 			linkedin: {
 				name: "LinkedIn",

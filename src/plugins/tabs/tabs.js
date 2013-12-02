@@ -16,7 +16,7 @@
 var selector = ".wb-tabs",
 	$document = wb.doc,
 	$window = wb.win,
-	tablistProps = { role: "tablist", class: "btn-group", "aria-live": "off" },
+	tablistProps = { role: "tablist", "class": "btn-group", "aria-live": "off" },
 	panelProps = { role: "tabpanel" },
 
 	// Includes "xsmallview" and "xxsmallview"
@@ -59,7 +59,7 @@ var selector = ".wb-tabs",
 		$panels
 			.each(function() {
 				var $summary = $( this ).children( "summary" );
-				$tab = $( "<button/>", { type: "button", role: "tab", class: classes, tabindex: -1 } )
+				$tab = $( "<button/>", { type: "button", role: "tab", "class": classes, tabindex: -1 } )
 					.text( $summary.text() );
 				$tablist.append( $tab );
 				$summary.attr( isMobile ? mobile.summaryProps : desktop.summaryProps );
@@ -71,8 +71,8 @@ var selector = ".wb-tabs",
 		// Make sure other events have access to this plugin instance's tabs and panels.
 		// $elm will be passed as event data when triggering events.
 		$elm.data({
-			"tabs": $tabs,
-			"panels": $panels
+			tabs: $tabs,
+			panels: $panels
 		});
 
 		// Check if the developer set a details element to open by default.
@@ -114,11 +114,11 @@ var selector = ".wb-tabs",
 			hasEqualize = $elm.hasClass( "equalize" );
 
 		$tabs.not( $tab ).attr({
-			class: classes,
+			"class": classes,
 			tabindex: -1
 		});
 		$tab.attr({
-			class: classes + " active",
+			"class": classes + " active",
 			tabindex: 0
 		});
 

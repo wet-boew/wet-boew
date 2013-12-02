@@ -82,9 +82,9 @@ var selector = ".wb-lightbox",
 								$bottomBar;
 
 							this.wrap.attr({
-								"role": "dialog",
+								role: "dialog",
 								"aria-live": "polite",
-								"aria-labelledby": "lb-title",
+								"aria-labelledby": "lb-title"
 							});
 
 							if ( $item.type === "image" ) {
@@ -141,7 +141,7 @@ var selector = ".wb-lightbox",
 						// Is the element a gallery?
 						if ( elm.className.indexOf( "-gallery" ) !== -1 ) {
 							settings.gallery = {
-								enabled: true,
+								enabled: true
 							};
 						}
 					} else {

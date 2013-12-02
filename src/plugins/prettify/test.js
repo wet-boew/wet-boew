@@ -139,8 +139,8 @@ describe( "Prettify test suite", function() {
 			$( "body" ).append( "<pre class='test'>" );
 			$(".wb-prettify")
 				.data({
-					"allpre": true,
-					"linenums": true
+					allpre: true,
+					linenums: true
 				})
 				.trigger("timerpoke.wb");
 			wb.doc.on( "prettyprint.wb-prettify", function() {

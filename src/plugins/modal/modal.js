@@ -102,7 +102,7 @@ var selector = ".wb-modal",
 		// Set modal's accessibility attributes
 		// TODO: Better if dealt with upstream by Magnific popup
 		$modal.attr({
-			"role": "dialog",
+			role: "dialog",
 			"aria-live": "polite",
 			"aria-describedby": "lb-desc"
 		});

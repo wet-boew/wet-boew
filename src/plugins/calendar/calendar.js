@@ -137,7 +137,7 @@ var $document = wb.doc,
 					1,
 					i18nText.nextMonth,
 					"append"
-				],
+				]
 			],
 			alt, $btn, buttonSpec, buttonClass, newMonth, newYear, hideButton, index;
 

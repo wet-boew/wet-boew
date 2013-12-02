@@ -120,8 +120,8 @@ var selector = "input[list]",
 			$autolist = $elm.next();
 
 		$autolist.css({
-			"width": $elm.outerWidth(),
-			"left": $elm.position().left
+			width: $elm.outerWidth(),
+			left: $elm.position().left
 		});
 	},
 

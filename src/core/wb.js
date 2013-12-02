@@ -319,7 +319,7 @@ Modernizr.load([
 		]
 	}, {
 		test: Modernizr.touch,
-		yep: "plyfll!mobile.min.js",
+		yep: "plyfll!mobile.min.js"
 	}, {
 		test: Modernizr.svg,
 		nope: "plyfll!svg.min.js"

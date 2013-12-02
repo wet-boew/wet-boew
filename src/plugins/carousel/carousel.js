@@ -152,16 +152,16 @@ var selector = ".wb-carousel",
 		$tabs.filter( ":not(.in)" )
 			.addClass( "out" );
 		$elm.data({
-			"delay": interval,
-			"ctime": 0
+			delay: interval,
+			ctime: 0
 		});
 
 		drizzleAria( $tabs, $tablist );
 		createControls( $tablist );
 
 		$elm.data({
-			"tabs": $tabs,
-			"tablist": $tablist
+			tabs: $tabs,
+			tablist: $tablist
 		});
 	},
 

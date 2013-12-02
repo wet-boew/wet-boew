@@ -563,8 +563,8 @@ $document.on( "youtube.multimedia.wb", selector, function() {
 			showinfo: 0
 		},
 		events: {
-			"onReady": youTubeEvents,
-			"onStateChange": youTubeEvents
+			onReady: youTubeEvents,
+			onStateChange: youTubeEvents
 		}
 	});
 

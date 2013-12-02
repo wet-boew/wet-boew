@@ -316,13 +316,13 @@ var selector = ".wb-session-timeout",
 	parseTime = function( value ) {
 		var result, num, mult,
 			powers = {
-				"ms": 1,
-				"cs": 10,
-				"ds": 100,
-				"s": 1000,
-				"das": 10000,
-				"hs": 100000,
-				"ks": 1000000
+				ms: 1,
+				cs: 10,
+				ds: 100,
+				s: 1000,
+				das: 10000,
+				hs: 100000,
+				ks: 1000000
 			};
 
 		if ( value == null ) {

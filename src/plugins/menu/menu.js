@@ -87,7 +87,7 @@ var selector = ".wb-menu",
 			$elm.attr({
 				"aria-posinset": ( i + 1 ),
 				"aria-setsize": length,
-				"role": "menuitem"
+				role: "menuitem"
 			});
 
 			// if there is a submenu lets put in the aria for it
@@ -178,12 +178,12 @@ var selector = ".wb-menu",
 	 * @param {jQuery event} event The current event
 	 */
 	onSelect = function( event ) {
-		var $goto = event.goto,
+		var $goTo = event.goTo,
 			special = event.special;
 
-		$goto.trigger( "setfocus.wb" );
-		if ( special || ( $goto.hasClass( "item" ) && !$goto.attr( "aria-haspopup" ) ) ) {
-			onReset( $goto.parents( selector ), true, special );
+		$goTo.trigger( "setfocus.wb" );
+		if ( special || ( $goTo.hasClass( "item" ) && !$goTo.attr( "aria-haspopup" ) ) ) {
+			onReset( $goTo.parents( selector ), true, special );
 		}
 
 	},
@@ -200,7 +200,7 @@ var selector = ".wb-menu",
 
 		$elm.trigger({
 			type: "select.wb-menu",
-			goto: $links.eq( index )
+			goTo: $links.eq( index )
 		});
 	},
 
@@ -317,7 +317,7 @@ var selector = ".wb-menu",
 			if ( link.innerHTML.charAt( 0 ) === keyChar ) {
 				$container.trigger({
 					type: "select.wb-menu",
-					goto: $( link )
+					goTo: $( link )
 				});
 				return true;
 			}
@@ -419,7 +419,7 @@ $document.on( "keydown", selector + " .item", function( event ) {
 
 			$container.trigger({
 				type: "select.wb-menu",
-				goto: $subMenu.find( "a" ).first()
+				goTo: $subMenu.find( "a" ).first()
 			});
 		}
 		break;
@@ -478,7 +478,7 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 		event.preventDefault();
 		$container.trigger({
 			type: "select.wb-menu",
-			goto: $menu.filter( selector ),
+			goTo: $menu.filter( selector ),
 			special: "reset"
 		});
 		break;
