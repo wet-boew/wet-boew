@@ -47,7 +47,7 @@ module.exports = function(grunt) {
 							grunt.log.write("Creating i18n dictionary files\n");
 							for (i = 2; i < len; i += 1) {
 								var filename = options.dest + row[i] + ".js";
-								wetLanguages[i-2] = row[i];
+								wetLanguages[i - 2] = row[i];
 								langFiles[i] = basei18n;
 								outputNames[i] = filename;
 							}

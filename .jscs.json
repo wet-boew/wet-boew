@@ -23,6 +23,21 @@
 	"disallowSpacesInFunctionExpression": {
 		"beforeOpeningRoundBrace": true
 	},
+	"disallowLeftStickedOperators": [
+		"?",
+		"-",
+		"/",
+		"*",
+		"=",
+		"==",
+		"===",
+		"!=",
+		"!==",
+		">",
+		">=",
+		"<",
+		"<="
+	],
 	"requireLineFeedAtFileEnd": true,
 	"validateJSDoc": {
 		"checkParamNames": true,
