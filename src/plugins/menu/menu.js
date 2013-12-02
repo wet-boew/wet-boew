@@ -138,7 +138,7 @@ var selector = ".wb-menu",
 				// ** note we need to ensure our content is ID safe since this will invalidate the DOM
 				$panel.before( "<section id='wb-imprt-" + i + "' class='" +
 					classList + "'>" +
-					$iElement.html().replace( /\b(id|for)="([^"]+)"/g , "$1='$2-imprt'" ) +
+					$iElement.html().replace( /\b(id|for)="([^"]+)"/g, "$1='$2-imprt'" ) +
 				"</section>" );
 			}
 		}

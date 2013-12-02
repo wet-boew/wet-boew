@@ -59,7 +59,7 @@ module.exports = function(grunt) {
 							//TODO: Normalize quoting once translations can be changed in terms of escape character
 							replacement = replacement.replace(/"/g, "\\\"");
 							replacement = replacement.replace(/\\'/g, "'");
-							langFiles[i] = langFiles[i].replace(match , replacement);
+							langFiles[i] = langFiles[i].replace(match, replacement);
 						}
 					}
 				}

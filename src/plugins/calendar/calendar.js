@@ -500,7 +500,7 @@ var $document = wb.doc,
 	};
 
 // Event binding
-$document.on( "create.wb-cal" , create );
+$document.on( "create.wb-cal", create );
 
 // Keyboard nav
 $document.on( "keydown", ".cal-days a", function( event ) {

@@ -776,7 +776,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate captionsl
 				.addClass( "glyphicon-volume-off" )
 				.parent();
 
-			button.attr( "title" , button.data( "state-off" ) );
+			button.attr( "title", button.data( "state-off" ) );
 		} else {
 			button = button.removeClass( "glyphicon-volume-off" )
 				.addClass( "glyphicon-volume-up" )
