@@ -3,10 +3,10 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 %events-calendar-background-color-fff {
-	background-color: #FFF
+	background-color: $body-bg
 }
 %events-calendar-color-fff-important {
-	color: #FFF !important;
+	color: $body-bg !important;
 }
 
 ul {
@@ -14,7 +14,7 @@ ul {
 		padding: 0;
 		position: absolute;
 		z-index: 5;
-		border: 1px solid #333;
+		border: 1px solid $gray-dark;
 		width: 10em;
 		margin: 0;
 		margin-top: -0.5em;

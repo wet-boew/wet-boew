@@ -2,6 +2,9 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
+
+@import "../../variables";
+
 %slider-gradient-left-89A5BD-165C91 {
 	background-image: linear-gradient(left, #89A5BD, #165c91);
 }
@@ -221,18 +224,18 @@ body {
 	.fd-slider-bar {
 		cursor: auto !important;
 		border: 1px solid #888;
-		border-bottom: 1px solid #999;
-		border-right: 1px solid #999;
+		border-bottom: 1px solid $gray-light;
+		border-right: 1px solid $gray-light;
 		border: 1px solid rgba(136, 136, 136, .8);
 		border-bottom: 1px solid rgba(153, 153, 153, .8);
 		border-right: 1px solid rgba(153, 153, 153, .8);
-		background-color: #555;
-		background-image: linear-gradient(left, #666, #333);
+		background-color: $gray;
+		background-image: linear-gradient(left, #666, $gray-dark);
 	}
 	.fd-slider-range {
 		cursor: auto !important;
-		background-color: #222;
-		background-image: linear-gradient(left, #222, #000);
+		background-color: $gray-darker;
+		background-image: linear-gradient(left, $gray-darker, #000);
 	}
 }
 
@@ -248,7 +251,7 @@ keyframes fd-pulse {
 #fd-slider-describedby {
 	padding: 1em;
 	border: 3px solid #a84444;
-	background: #fff;
+	background: $body-bg;
 	border-radius: 8px;
 }
 input {

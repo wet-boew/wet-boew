@@ -45,11 +45,11 @@
 		border-top-left-radius: 0 !important;
 		background: transparent;
 		border: 0;
-		color: #fff;
+		color: $body-bg;
 	}
 	progress, .btn {
-		&:focus { 
-			outline: #fff thin dotted; 
+		&:focus {
+			outline: $body-bg thin dotted;
 		}
 	}
 
@@ -76,7 +76,7 @@
 				animation-iteration-count: infinite;
 				animation-timing-function: linear;
 				z-index:2;
-			} 
+			}
 
 			&:before {
 				@extend %multimedia_loading;
@@ -105,7 +105,7 @@
 	}
 
 	&[data-youtube] {
-		.wb-mm-ovrly { 
+		.wb-mm-ovrly {
 			visibility: hidden;
 		}
 	}
@@ -116,11 +116,11 @@
 		color: #000;
 		border-bottom: 1px solid #ddd;
 		.wb-mm-ctrls {
-			background: #fff;
+			background: $body-bg;
 			color: #000;
 		}
 		.btn {
-			background: #fff;
+			background: $body-bg;
 			color: #000;
 			border: 0;
 		}
@@ -129,7 +129,7 @@
 
 .wb-mm-cc {
 	background-color: #000;
-	color: #FFF;
+	color: $body-bg;
 	text-align: center;
 	padding: 0;
 	max-height: 0;
@@ -143,7 +143,7 @@
 .wb-mm-ctrls {
 	display: table;
 	background: #000;
-	color: #fff;
+	color: $body-bg;
 	position: relative;
 	width: 100%;
 
@@ -188,7 +188,7 @@
 		-webkit-appearance: none;
 		border: none;
 		&::-webkit-progress-bar, &::-moz-progress-bar {
-			background: #fff;
+			background: $body-bg;
 		}
 		/* Now the value part */
 		&::-webkit-progress-value {

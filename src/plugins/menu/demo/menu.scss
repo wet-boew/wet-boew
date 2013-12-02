@@ -13,7 +13,7 @@
 			margin: 0;
 			padding: 0;
 			> a {
-				color: #fff;
+				color: $body-bg;
 				padding: 1em;
 				border-right: 2px ridge #284468;
 			}
@@ -79,7 +79,7 @@
 				a {
 					&:hover, &:focus {
 						background: #243850;
-						color: #fff;
+						color: $body-bg;
 					}
 				}
 			}
@@ -109,7 +109,7 @@
 				a {
 					&:hover, &:focus {
 						background: #335075;
-						color: #fff;
+						color: $body-bg;
 					}
 				}
 			}
@@ -125,7 +125,7 @@
 			background: none repeat scroll 0 0 #305277;
 			height: 44px;
 			margin-top: 20px;
-			color: #fff;
+			color: $body-bg;
 			text-decoration: none;
 			vertical-align: middle;
 			margin-left: -20px;
@@ -142,9 +142,9 @@
 		}
 		.menu {
 			text-transform: none;
-			color: #fff;
+			color: $body-bg;
 			a {
-				color: #fff;
+				color: $body-bg;
 			}
 			li a {
 				&:hover, &:focus, &:active {
@@ -161,30 +161,30 @@
 			ul li {
 				background: transparent !important;
 				border: none !important;
-				color: #fff !important;
+				color: $body-bg !important;
 			}
 			.active {
 				background: transparent !important;
 				border: none !important;
-				color: #fff !important;
+				color: $body-bg !important;
 				&:hover {
 					background: transparent !important;
 					border: none !important;
-					color: #fff !important;
+					color: $body-bg !important;
 				}
 			}
 			> li a {
 				padding-left: 25px;
-				color: #fff;
+				color: $body-bg;
 			}
 			> li.active {
 				> a {
 					background: transparent !important;
 					border: none !important;
-					color: #fff !important;
+					color: $body-bg !important;
 				}
 				.expicon {
-					border-top-color: #fff !important;
+					border-top-color: $body-bg !important;
 					/* note the !important is there to override the !important being used in base.css */
 					border-left-color: transparent;
 					top: 1.1em;
@@ -196,7 +196,7 @@
 					border: 0;
 					li a {
 						padding-left: 35px;
-						color: #fff;
+						color: $body-bg;
 					}
 				}
 			}
@@ -213,7 +213,7 @@
 			}
 			a {
 				padding: 5px 5px 5px 10px;
-				color: #fff;
+				color: $body-bg;
 				text-decoration: none;
 				display: block;
 			}
@@ -221,12 +221,12 @@
 		.wb-info {
 			.list-unstyled {
 				li {
-					color: #fff;
+					color: $body-bg;
 					a {
-						color: #fff;
+						color: $body-bg;
 					}
 					ul li {
-						color: #eee;
+						color: $gray-lighter;
 					}
 				}
 			}

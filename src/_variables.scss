@@ -8,10 +8,46 @@ $spacing: .375em;
 $ddRtnWidth: 2.75em;
 
 // Colours
-$clrWhite: #FFF;
-$clrLight: #EEE;
-$clrMedium: #CCC;
-$clrDark: #555;
+$body-bg: #fff;
+
+/*
+Bootstrap LESS versions
+@gray-darker:            lighten(#000, 13.5%); // #222
+@gray-dark:              lighten(#000, 20%);   // #333
+@gray:                   lighten(#000, 33.5%); // #555
+@gray-light:             lighten(#000, 60%);   // #999
+@gray-lighter:           lighten(#000, 93.5%); // #eee
+*/
+
+$gray-lighter: #eee;
+$gray-light: #999;
+$gray: #555;
+$gray-dark: #333;
+$gray-darker: #222;
+
+// Carousel
+$carousel-tablist-colour: #000;
+$carousel-tablist-link-colour: #000;
+$carousel-tablist-bg: $gray-lighter;
+$carousel-tablist-border-colour: #ccc;
+$carousel-tablist-hover-bg: #ccc;
+$carousel-tablist-active-bg: #ccc;
+
+$carousel-s1-tabpanel-figcaption-bg: #243850;
+$carousel-s1-tabpanel-figcaption-link-colour: #fff;
+
+$carousel-s2-tablist-presentation-bg: $gray-lighter;
+$carousel-s2-tablist-presentation-active-shadow-colour: #243850;
+$carousel-s2-tablist-control-link-colour: #243850;
+$carousel-s2-tablist-control-link-glyphicon-bg: #fff;
+$carousel-s2-tablist-control-link-glyphicon-box-shadow-colour: #243850;
+$carousel-s2-tablist-control-play-pause-colour: #000;
+$carousel-s2-tabpanel-figcaption-bg: #243850;
+$carousel-s2-tabpanel-figcaption-link-colour: #fff;
+
+// Tabs
+$tabs-details-border-colour: $gray-light;
+$tabs-tablist-button-focus-outline-colour: #5e9ed6;
 
 // Views
 $xxSmallViewMax: 479px;

@@ -5,14 +5,9 @@
 @import "../../variables";
 
 .wb-tabs {
-	// Shared variables
-	$drabBlue: #243850;
-	$lightGray: #eee;
-	$medGray: #ccc;
-	$darkGray: #adadad;
 	// adding 16px in order to match resize's smallview (obtained via $(document).width()).
 	$smallScreen: $smallViewMin + 16px;
-	$focusColour: #5e9ed6;
+
 	> details {
 		padding: 6px 12px;
 	}
@@ -22,7 +17,7 @@
 	 */
 	@media (min-width: $smallScreen + 1px) {
 		> details {
-			border: 1px solid $darkGray;
+			border: 1px solid $tabs-details-border-colour;
 			border-bottom-left-radius: 4px;
 			border-bottom-right-radius: 4px;
 			box-shadow: inset 0 -3px 5px rgba(0, 0, 0, 0.125);
@@ -42,7 +37,7 @@
 					font-weight: bold;
 				}
 				&:focus {
-					outline: 1px solid $focusColour;
+					outline: 1px solid $tabs-tablist-button-focus-outline-colour;
 				}
 			}
 		}
@@ -52,7 +47,7 @@
 	 */
 	@media (max-width: $smallScreen) {
 		> details {
-			border: 1px solid $darkGray;
+			border: 1px solid $tabs-details-border-colour;
 			border-radius: 4px;
 			margin-bottom: .5em;
 		}

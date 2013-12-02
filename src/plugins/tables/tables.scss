@@ -2,6 +2,9 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  */
+
+@import "../../variables";
+
 %table_icons {
 	content: " ";
 	display: inline-block;
@@ -93,7 +96,7 @@ table {
 				}
 			}
 			&.even {
-				background-color: #FFF;
+				background-color: $body-bg;
 				td {
 					&.sorting_1 {
 						background-color: #E8F6F6;
@@ -193,7 +196,7 @@ table {
 	padding: 2px 5px;
 	margin: 0 3px;
 	cursor: pointer;
-	color: #333 !important;
+	color: $gray-dark !important;
 }
 
 .paging_full_numbers {
@@ -236,9 +239,9 @@ table {
 	padding: 14px 0 2px 0;
 	border: 1px solid #ddd;
 	text-align: center;
-	color: #999;
+	color: $gray-light;
 	font-size: 14px;
-	background-color: #fff;
+	background-color: $body-bg;
 }
 
 /*
