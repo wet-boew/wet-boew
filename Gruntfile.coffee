@@ -157,6 +157,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Runs testing tasks except for SauceLabs testing"
 		[
 			"jshint"
+			"jscs"
 		]
 	)
 
@@ -745,6 +746,15 @@ module.exports = (grunt) ->
 					"test/**/*.js"
 					"tasks/*.js"
 				]
+		jscs:
+			all:
+				src: [
+					"src/**/*.js"
+					"theme/**/*.js"
+					"test/**/*.js"
+					"tasks/*.js"
+				]
+
 
 		connect:
 			options:
@@ -903,6 +913,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-gh-pages"
 	@loadNpmTasks "grunt-htmlcompressor"
 	@loadNpmTasks "grunt-imagine"
+	@loadNpmTasks "grunt-jscs-checker"
 	@loadNpmTasks "grunt-mocha"
 	@loadNpmTasks "grunt-modernizr"
 	@loadNpmTasks "grunt-sass"
