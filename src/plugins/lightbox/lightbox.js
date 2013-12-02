@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Lightbox
  * @overview Helps build a photo gallery on a web page.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -18,7 +18,7 @@ var selector = ".wb-lightbox",
 	i18n, i18nText,
 	extendedGlobal = false,
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init

@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Calendar library
  * @overview A library for building calendar interfaces
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -17,7 +17,7 @@
 var $document = wb.doc,
 	i18n, i18nText,
 
-	/*
+	/**
 	 * Creates a calendar instance
 	 * @method create
 	 */
@@ -399,7 +399,7 @@ var $document = wb.doc,
 						( month < 9 ? "0" : "" ) + ( month + 1 ) + "-" + ( dayCount < 10 ? "0" : "" ) + dayCount + "'><span class='wb-inv'>" + textWeekDayNames[ day ] +
 						( frenchLang ? ( " </span>" + dayCount + "<span class='wb-inv'> " + textMonthNames[ month ].toLowerCase() + " " ) :
 						( " " + textMonthNames[ month ] + " </span>" + dayCount + "<span class='wb-inv'> " ) ) + year +
-						( isCurrentDate ?  textCurrentDay : "" ) + "</span></time></div></td>";
+						( isCurrentDate ? textCurrentDay : "" ) + "</span></time></div></td>";
 
 					if ( dayCount > lastDay ) {
 						breakAtEnd = true;

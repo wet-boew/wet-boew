@@ -1,6 +1,6 @@
-/*
- * @title WET-BOEW Calendar library
- * @overview A library for building calendar interfaces
+/**
+ * @title WET-BOEW Datepicker
+ * @overview Polyfills for the HTML5 input type="date" in browsers without built in calendar style date pickers.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
@@ -21,7 +21,7 @@ var selector = "input[type=date]",
 	initialized = false,
 	i18n, i18nText, $container,
 
-	/*
+	/**
 	 * Init runs once per polyfill element on the page. There may be multiple elements.
 	 * It will run more than once if you don't remove the selector from the timer.
 	 * @method init

@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Progress polyfill
  * @overview The <progress> element displays the progress of a task.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -14,7 +14,7 @@
 var selector = "progress",
 	$document = wb.doc,
 
-	/*
+	/**
 	 * Init runs once per polyfill element on the page. There may be multiple elements.
 	 * It will run more than once if you don't remove the selector from the timer.
 	 * @method init

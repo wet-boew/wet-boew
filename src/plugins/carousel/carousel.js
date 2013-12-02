@@ -1,4 +1,4 @@
-/*
+/**
  * @title Carousel
  * @overview Dynamically stacks multiple images and captions into a carousel (or slider) widget.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -13,12 +13,12 @@
   * not once per instance of plugin on the page. So, this is a good place to define
   * variables that are common to all instances of the plugin on a page.
   */
- var selector = ".wb-carousel",
+var selector = ".wb-carousel",
 	$document = wb.doc,
 	i18n, i18nText,
 	controls = selector + " [role=tablist] a",
 
-	/*
+	/**
 	 * @method onTimerPoke
 	 * @param {jQuery DOM element} $elm The plugin element
 	 */
@@ -48,7 +48,7 @@
 		$elm.data( "ctime", delay );
 	},
 
-	/*
+	/**
 	 * @method createControls
 	 * @param {jQuery DOM element} $tablist The plugin element
 	 */
@@ -80,9 +80,10 @@
 		$sldr.addClass( "inited" );
 	},
 
-	/*
+	/**
 	 * @method drizzleAria
-	 * @param {2 jQuery DOM element} $tabs for the tabpanel grouping, and $tablist for the pointers to the groupings
+	 * @param {jQuery DOM element} $tabs The tabpanel grouping
+	 * @param {jQuery DOM element} $tabList The pointers to the groupings
 	 */
 	drizzleAria = function( $tabs, $tabList ) {
 
@@ -97,7 +98,7 @@
 		for ( ; tabCounter !== -1; tabCounter -= 1 ) {
 			item = tabs[ tabCounter ];
 			isActive = item.className.indexOf( "in" ) !== -1;
-			
+
 			item.tabIndex = isActive ? "0" : "-1";
 			item.setAttribute( "aria-hidden", isActive ? "false" : "true" );
 			item.setAttribute( "aria-expanded", isActive ? "true" : "false" );
@@ -118,7 +119,7 @@
 		$tabList.attr( "aria-live", "off" );
 	},
 
-	/*
+	/**
 	 * @method onInit
 	 * @param {jQuery DOM element} $elm The plugin element
 	 */
@@ -164,14 +165,14 @@
 		});
 	},
 
-	/*
+	/**
 	 * @method onShift
 	 * @param {jQuery DOM element} $sldr The plugin element
 	 * @param {jQuery DOM element} $elm The selected link from the tablist
 	 */
 	onPick = function( $sldr, $elm ) {
 		var $items = $sldr.data( "tabs" ),
-			$controls =  $sldr.data( "tablist" );
+			$controls = $sldr.data( "tablist" );
 
 		$items.filter( ".in" )
 			.removeClass( "in" )
@@ -208,7 +209,7 @@
 						.addClass( "active" );
 	},
 
-	/*
+	/**
 	 * @method onShift
 	 * @param {jQuery DOM element} $elm The plugin element
 	 */
@@ -248,7 +249,7 @@
 						.attr( "aria-selected", "true" );
 	},
 
-	/*
+	/**
 	 * @method onShift
 	 * @param {jQuery DOM element} $elm The plugin element
 	 * @param {integer} shifto The item to shift to
@@ -312,7 +313,7 @@
 		$sldr = $elm
 			.parents( selector )
 			.attr( "data-ctime", 0 );
-			
+
 		// Spacebar
 		if ( which > 36 ) {
 			onCycle( $elm, which < 39 ? -1 : 1 );
@@ -327,7 +328,7 @@
 
 				text = elm.getElementsByTagName( "i" )[ 0 ];
 				text.innerHTML = text.innerHTML === playText ? i18nText.pause : playText;
-				
+
 				inv = $elm.find( ".wb-inv" )[ 0 ];
 				inv.innerHTML = inv.innerHTML === rotStopText ? i18nText.rotStart : rotStopText;
 			} else {

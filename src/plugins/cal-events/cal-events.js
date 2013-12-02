@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Events Calendar
  * @overview Dynamically generates a calendar interface for navigating a list of events.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html

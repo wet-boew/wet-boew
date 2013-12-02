@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Datalist polyfill
  * @overview Adds auto-complete functionality to specific text input fields by dynamically displaying a list of words that match the user's input.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -15,7 +15,7 @@ var selector = "input[list]",
 	$document = wb.doc,
 	initialized = false,
 
-	/*
+	/**
 	 * Init runs once per polyfill element on the page. There may be multiple elements.
 	 * It will run more than once if you don't remove the selector from the timer.
 	 * @method init
@@ -60,7 +60,7 @@ var selector = "input[list]",
 		}
 	},
 
-	/*
+	/**
 	 * Shows/hides the available options based upon the input in the polyfilled input field.
 	 * @method showOptions
 	 * @param {DOM element} input The polyfilled input field
@@ -95,7 +95,7 @@ var selector = "input[list]",
 		}
 	},
 
-	/*
+	/**
 	 * Hides all the options
 	 * @method closeOptions
 	 * @param {DOM element} input The polyfilled input field
@@ -110,13 +110,13 @@ var selector = "input[list]",
 		input.setAttribute( "aria-activedescendent", "" );
 	},
 
-	/*
+	/**
 	 * Corrects the width of the autolist for the polyfilled input field
 	 * @method correctWidth
 	 * @param {DOM element} input The polyfilled input field
 	 */
-	correctWidth = function( _elm ) {
-		var $elm = $( _elm ),
+	correctWidth = function( input ) {
+		var $elm = $( input ),
 			$autolist = $elm.next();
 
 		$autolist.css({
@@ -125,7 +125,7 @@ var selector = "input[list]",
 		});
 	},
 
-	/*
+	/**
 	 * Keyboard event handler for the polyfilled input field
 	 * @method correctWidth
 	 * @param {integer} which Value for event.which
@@ -182,7 +182,7 @@ var selector = "input[list]",
 		}
 	},
 
-	/*
+	/**
 	 * Keyboard event handler for the autolist of the polyfilled input field
 	 * @method correctWidth
 	 * @param {integer} which Value for event.which
@@ -277,29 +277,26 @@ var selector = "input[list]",
 		}
 	},
 
-	/*
+	/**
 	 * Click / Touch event handler for the autolist of the polyfilled input field
 	 * @method correctWidth
 	 * @param {integer} eventTarget Value for event.target
-	 * @param {jQuery Event} event The event that triggered this method call
 	 */
 	clickHandlerAutolist = function( eventTarget ) {
-		var	nodeName = eventTarget.nodeName.toLowerCase(),
-			link = ( nodeName === "a" ? eventTarget : eventTarget.parentNode ),
-			_autolist = link.parentNode.parentNode,
-			input = _autolist.previousSibling,
+		var nodeName = eventTarget.nodeName.toLowerCase(),
+			link = nodeName === "a" ? eventTarget : eventTarget.parentNode,
+			autolist = link.parentNode.parentNode,
+			input = autolist.previousSibling,
 			$input = $( input ),
-			_span, value;
+			span = link.getElementsByTagName( "span" ),
 
-		_span = link.getElementsByTagName( "span" );
-
-		// .al-val
-		value = _span[ 0 ].innerHTML;
+			// .al-val
+			value = span[ 0 ].innerHTML;
 
 		if ( value.length === 0 ) {
 
 			// .al-lbl
-			value = _span[ 1 ].innerHTML;
+			value = span[ 1 ].innerHTML;
 		}
 
 		input.value = value;

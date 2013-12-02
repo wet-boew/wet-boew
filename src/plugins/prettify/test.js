@@ -1,4 +1,4 @@
-/*
+/**
  * @title Prettify Plugin Unit Tests
  * @overview Test the Prettify plugin behaviour
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html

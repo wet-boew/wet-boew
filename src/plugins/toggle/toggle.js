@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Toggle
  * @overview Plugin that allows a link to toggle elements between on and off states.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -22,7 +22,7 @@ var selector = ".wb-toggle",
 		stateOff: "off"
 	},
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
@@ -48,20 +48,20 @@ var selector = ".wb-toggle",
 		}
 	},
 
-	/*
-	* Sets the aria attribute for a given toggle element
-	* @param {jQuery Event} event The event that triggered this invocation
-	* @param {Object} data Simple key/value data object passed when the event was triggered
-	*/
+	/**
+	 * Sets the aria attribute for a given toggle element
+	 * @param {jQuery Event} event The event that triggered this invocation
+	 * @param {Object} data Simple key/value data object passed when the event was triggered
+	 */
 	setAria = function( event, data ) {
 		var i, len, $elm, $parent, $tab,
 			ariaControls = "",
 			link = event.target,
 			prefix = "wb-" + new Date().getTime(),
-			$elms =  getElements( link, data );
+			$elms = getElements( link, data );
 
 		// Group toggle elements with a parent are assumed to be a tablist
-		if ( data.group != null &&  data.parent != null ) {
+		if ( data.group != null && data.parent != null ) {
 			$parent = $( data.parent );
 
 			// Check that the group toggle widget hasn't already been initialized
@@ -76,7 +76,7 @@ var selector = ".wb-toggle",
 					$elm = $elms.eq( i );
 					$tab = $elm.find( ".tab" );
 					if ( !$tab.attr( "id" ) ) {
-						$tab.attr( "id", prefix + i  );
+						$tab.attr( "id", prefix + i );
 					}
 					$elm.find( ".panel" ).attr( "aria-labelledby", $tab.attr( "id" ) );
 				}
@@ -90,7 +90,7 @@ var selector = ".wb-toggle",
 			for ( i = 0, len = $elms.length; i !== len; i += 1 ) {
 				$elm = $elms.eq( i );
 				if ( !$elm.attr( "id" ) ) {
-					$elm.attr( "id", prefix + i  );
+					$elm.attr( "id", prefix + i );
 				}
 				ariaControls += $elm.attr( "id" ) + " ";
 			}
@@ -98,7 +98,7 @@ var selector = ".wb-toggle",
 		}
 	},
 
-	/*
+	/**
 	 * Click handler for the toggle links
 	 * @param {jQuery Event} event The event that triggered this invocation
 	 * @param {DOM element} link The toggle link that was clicked
@@ -113,7 +113,7 @@ var selector = ".wb-toggle",
 		$link.trigger( "setfocus.wb" );
 	},
 
-	/*
+	/**
 	 * Toggles the elements a link controls between the on and off states.
 	 * @param {jQuery Event} event The event that triggered this invocation
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
@@ -155,8 +155,8 @@ var selector = ".wb-toggle",
 		});
 	},
 
-	/*
-	 * Executed once the toggle has been completed.  Used to set the aria
+	/**
+	 * Executed once the toggle has been completed. Used to set the aria
 	 * attributes and ensure opened group toggle element is visisble.
 	 * @param {jQuery Event} event The event that triggered this invocation
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
@@ -185,7 +185,7 @@ var selector = ".wb-toggle",
 		}
 	},
 
-	/*
+	/**
 	 * Sets the required property and attribute for toggling open/closed a details element
 	 * @param {jQuery Event} event The event that triggered this invocation
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
@@ -204,7 +204,7 @@ var selector = ".wb-toggle",
 		}
 	},
 
-	/*
+	/**
 	 * Returns the elements a given toggle element controls.
 	 * @param {DOM element} link Toggle element that was clicked
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
@@ -217,7 +217,7 @@ var selector = ".wb-toggle",
 		return parent !== null ? $( parent ).find( selector ) : $( selector );
 	},
 
-	/*
+	/**
 	 * Gets the current toggle state of elements controlled by the given link.
 	 * @param {DOM element} link Toggle link that was clicked
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
@@ -244,7 +244,7 @@ var selector = ".wb-toggle",
 		return type === data.stateOn ? data.stateOff : data.stateOn;
 	},
 
-	/*
+	/**
 	 * Sets the current toggle state of elements controlled by the given link.
 	 * @param {DOM element} link Toggle link that was clicked
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
@@ -281,12 +281,12 @@ var selector = ".wb-toggle",
 			}
 		}
 
-		// Store the state on the elements as well.  This allows a link to toggle itself.
+		// Store the state on the elements as well. This allows a link to toggle itself.
 		$elms.data( "state", state );
 	};
 
 // Bind the plugin's events
-$document.on( "timerpoke.wb aria.wb-toggle toggle.wb-toggle toggled.wb-toggle click",	selector, function( event, data ) {
+$document.on( "timerpoke.wb aria.wb-toggle toggle.wb-toggle toggled.wb-toggle click", selector, function( event, data ) {
 	var eventType = event.type;
 
 	switch ( eventType ) {

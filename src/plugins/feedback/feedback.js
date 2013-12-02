@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Feedback form
  * @overview Allows users to submit feedback for a specific Web page or Web site.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -17,7 +17,7 @@ var selector = ".wb-fdbck",
 	$document = wb.doc,
 	fbrsn, fbaxs, fbcntc1, fbcntc2, $fbweb, $fbmob, $fbcomp, $fbinfo,
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
@@ -67,7 +67,7 @@ var selector = ".wb-fdbck",
 		}
 	},
 
-	/*
+	/**
 	 * @method showHide
 	 * @param {DOM element} elm The element triggering the show/hide
 	 */

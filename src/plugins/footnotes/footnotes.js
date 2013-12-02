@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Footnotes
  * @overview Provides a consistent, accessible way of handling footnotes across websites.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -16,7 +16,7 @@
 var selector = ".wb-fnote",
 	$document = wb.doc,
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init

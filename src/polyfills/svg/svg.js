@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW SVG image replacer
  * @overview Replaces SVG images with PNG images where SVG support is absent
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html

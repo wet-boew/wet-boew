@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Data Picture
  * @overview Event driven port of the Picturefill library: https://github.com/scottjehl/picturefill
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -16,7 +16,7 @@
 var selector = "[data-picture]",
 	$document = wb.doc,
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
@@ -30,7 +30,7 @@ var selector = "[data-picture]",
 		$elm.trigger( "picturefill.wb-data-picture" );
 	},
 
-	/*
+	/**
 	 * Updates the image displayed according to media queries.
 	 * This is the logic ported from Picturefill.
 	 * @method picturefill

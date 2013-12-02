@@ -252,7 +252,7 @@ updateCaptions = function( area, seconds, captions ) {
  * @method playerApi
  * @description Normalizes the calls to the HTML5 media API and Flash Fallback
  * @param {String} fn The function to call
- * @param {} Args The arguments to send to the function call
+ * @param {object} args The arguments to send to the function call
  */
 playerApi = function( fn, args ) {
 	var $this, captionsArea, method;
@@ -316,7 +316,7 @@ playerApi = function( fn, args ) {
  * @method youTubeApi
  * @description Normalizes the calls to the YouTube API
  * @param {String} fn The function to call
- * @param {object} Args The arguments to send to the function call
+ * @param {object} args The arguments to send to the function call
  */
 youTubeApi = function( fn, args ) {
 	var $this = $( this.object.a ),
@@ -366,7 +366,7 @@ youTubeApi = function( fn, args ) {
 /**
  * @method youTubeEvennts
  * @description Youtube API event manager
- * @param {} event The event object fior the triggered event
+ * @param {object} event The event object fior the triggered event
  */
 youTubeEvents = function ( event ) {
 	var target = event.target.a,

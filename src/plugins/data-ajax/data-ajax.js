@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Data Ajax [data-ajax-after], [data-ajax-append],
  * [data-ajax-before], [data-ajax-prepend] and [data-ajax-replace]
  * @overview A basic AjaxLoader wrapper that inserts AJAXed-in content
@@ -19,7 +19,7 @@ var $document = wb.doc,
 	selector = "[data-ajax-after], [data-ajax-append], [data-ajax-before], " +
 		"[data-ajax-prepend], [data-ajax-replace]",
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple
 	 * elements. It will run more than once per plugin if you don't remove the
 	 * selector from the timer.

@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW JQuery Helper Methods
  * @overview Helper methods for WET
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -33,7 +33,7 @@
 		return selector.replace( /([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, "\\$1" );
 	};
 
-	/*
+	/**
 	 * @namespace wb.string
 	 */
 	wb.string = {

@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Resize
  * @overview Text and window resizing event handler
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -36,7 +36,7 @@ var id = "wb-resize",
 	initialized = false,
 	eventsAll, resizeTest, currentView,
 
-	/*
+	/**
 	 * Init runs once
 	 * @method init
 	 */
@@ -95,7 +95,7 @@ var id = "wb-resize",
 		}
 	},
 
-	/*
+	/**
 	 * Tests for text size, window width and window height changes and triggers an event when a change is found
 	 * @method test
 	 */
