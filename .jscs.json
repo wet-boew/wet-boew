@@ -67,6 +67,10 @@
 		"else"
 	],
 	"disallowSpaceAfterObjectKeys": true,
+	"disallowSpaceBeforePostfixUnaryOperators": [
+		"++",
+		"--"
+	],
 	"requireLineFeedAtFileEnd": true,
 	"validateJSDoc": {
 		"checkParamNames": true,
