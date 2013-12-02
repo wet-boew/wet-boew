@@ -242,9 +242,9 @@ var selector = ".wb-cal-evt",
 						events.maxDate = date;
 					}
 					events.list[ events.iCount ] = {
-						title : title,
-						date : date,
-						href : link
+						title: title,
+						date: date,
+						href: link
 					};
 
 					// Add a viewfilter

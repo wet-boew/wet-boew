@@ -62,7 +62,7 @@ var selector = ".wb-tables",
 			}
 
 			defaults = {
-				asStripeClasses : [],
+				asStripeClasses: [],
 				oLanguage: i18nText,
 				fnDrawCallback: function() {
 

@@ -190,7 +190,7 @@ var $document = wb.doc,
 				$btn.on( "click", {
 					calID: calendarId,
 					year: newYear,
-					month : newMonth,
+					month: newMonth,
 					mindate: minDate,
 					maxdate: maxDate
 				}, changeMonth );

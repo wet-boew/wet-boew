@@ -130,7 +130,7 @@ var getUrlParts = function( url ) {
 		html: $( "html" ),
 		pageUrlParts: currentpage,
 		getUrlParts: getUrlParts,
-		isDisabled : disabled,
+		isDisabled: disabled,
 
 		getPath: function( property ) {
 			return this.hasOwnProperty( property ) ? this[ property ] : undef;
