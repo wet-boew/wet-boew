@@ -270,8 +270,7 @@
 		tabbable: function( element ) {
 			var tabIndex = $.attr( element, "tabindex" ),
 				isTabIndexNaN = isNaN( tabIndex );
-			return ( isTabIndexNaN || tabIndex >= 0 ) && focusable( element, !
-				isTabIndexNaN );
+			return ( isTabIndexNaN || tabIndex >= 0 ) && focusable( element, !isTabIndexNaN );
 		}
 	});
 
