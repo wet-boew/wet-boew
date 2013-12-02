@@ -12,7 +12,8 @@
 	margin-right: 0;
 }
 %formvalid-error {
-	//TODO: Convert back to placeholder when libsass supports nested placeholders 
+	//TODO: Convert back to placeholder when libsass supports nested placeholders
+	display: block;
 	font-weight: 700;
 	color: #c00;
 }
