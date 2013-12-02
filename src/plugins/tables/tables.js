@@ -75,12 +75,12 @@ var selector = ".wb-tables",
 			};
 
 
-			Modernizr.load([{
+			Modernizr.load({
 				load: [ "site!deps/jquery.dataTables" + wb.getMode() + ".js" ],
 				complete: function() {
 					$elm.dataTable( $.extend( true, defaults, wb.getData( $elm, "wet-boew" ) ) );
 				}
-			}]);
+			});
 		}
 	};
 

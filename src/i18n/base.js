@@ -101,8 +101,8 @@ wb.i18nDict = {
 	"date-show": "@date-show@",
 	"date-sel": "@date-sel@",
 	/* Calendar */
-	"days": ["@days-1@", "@days-2@", "@days-3@", "@days-4@", "@days-5@", "@days-6@", "@days-7@"],
-	"mnths": ["@mnths-1@", "@mnths-2@", "@mnths-3@", "@mnths-4@", "@mnths-5@", "@mnths-6@", "@mnths-7@", "@mnths-8@", "@mnths-9@", "@mnths-10@", "@mnths-11@", "@mnths-12@"],
+	"days": [ "@days-1@", "@days-2@", "@days-3@", "@days-4@", "@days-5@", "@days-6@", "@days-7@" ],
+	"mnths": [ "@mnths-1@", "@mnths-2@", "@mnths-3@", "@mnths-4@", "@mnths-5@", "@mnths-6@", "@mnths-7@", "@mnths-8@", "@mnths-9@", "@mnths-10@", "@mnths-11@", "@mnths-12@" ],
 	"cal": "@cal@",
 	"currDay": "@currDay@",
 	"cal-goToLnk": "@cal-goToLnk@",

@@ -19,6 +19,7 @@
 		"beforeOpeningCurlyBrace": true
 	},
 	"requireSpacesInsideObjectBrackets": "all",
+	"requireSpacesInsideArrayBrackets": "all",
 	"requireLineFeedAtFileEnd": true,
 	"validateJSDoc": {
 		"checkParamNames": true,
