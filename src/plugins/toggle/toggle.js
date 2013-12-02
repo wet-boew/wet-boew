@@ -229,7 +229,7 @@ var selector = ".wb-toggle",
 
 		// No toggle type: get the current on/off state of the elements specified by the selector and parent
 		if ( !type ) {
-			if( !selector ) {
+			if ( !selector ) {
 				return $( link ).data( "state" ) || data.stateOff;
 
 			} else if ( states.hasOwnProperty( selector ) ) {

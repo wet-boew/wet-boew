@@ -225,7 +225,7 @@ var selector = ".wb-tabs",
 			$tabs = $tabs.add( $elm.data( "tabs" ) );
 		}
 
-		switch( eventType ) {
+		switch ( eventType ) {
 		case "xxsmallview":
 		case "xsmallview":
 

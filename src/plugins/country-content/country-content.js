@@ -62,7 +62,7 @@ var $document = wb.doc,
 				cache: true,
 				jsonp: "callback",
 				success: function( data ) {
-					if( data ) {
+					if ( data ) {
 						countryCode = data.country_code;
 						localStorage.setItem( "countryCode", countryCode );
 					}

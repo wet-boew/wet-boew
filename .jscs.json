@@ -6,10 +6,25 @@
 		"while",
 		"do"
 	],
+	"requireSpaceAfterKeywords": [
+		"if",
+		"else",
+		"for",
+		"while",
+		"do",
+		"switch",
+		"return"
+	],
 	"requireLineFeedAtFileEnd": true,
 	"validateJSDoc": {
 		"checkParamNames": true,
 		"checkRedundantParams": true,
 		"requireParamTypes": true
-	}
+	},
+	"excludeFiles": [
+		"node_modules/**",
+		"dist/**",
+		"lib/**",
+		"src/polyfills/slider/slider.js"
+	]
 }
