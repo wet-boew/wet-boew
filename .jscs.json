@@ -38,6 +38,21 @@
 		"<",
 		"<="
 	],
+	"disallowRightStickedOperators": [
+		"?",
+		"/",
+		"*",
+		":",
+		"=",
+		"==",
+		"===",
+		"!=",
+		"!==",
+		">",
+		">=",
+		"<",
+		"<="
+	],
 	"requireLineFeedAtFileEnd": true,
 	"validateJSDoc": {
 		"checkParamNames": true,
