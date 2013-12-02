@@ -14,7 +14,7 @@ var $document = wb.doc,
 	$linkTarget;
 
 // Bind the setfocus event
-$document.on( "setfocus.wb", function ( event ) {
+$document.on( "setfocus.wb", function( event ) {
 	var $elm = $( event.target );
 
 	// Set the tabindex to -1 (as needed) to ensure the element is focusable
@@ -23,7 +23,7 @@ $document.on( "setfocus.wb", function ( event ) {
 			.attr( "tabindex", "-1" );
 
 	// Assigns focus to an element (delay allows for revealing of hidden content)
-	setTimeout(function () {
+	setTimeout(function() {
 		return $elm.focus();
 	}, 1 );
 });

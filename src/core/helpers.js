@@ -136,7 +136,7 @@
 		 * @param {string} dateISO Date string in ISO format
 		 * @return {Date}
 		 */
-		fromDateISO: function ( dateISO ) {
+		fromDateISO: function( dateISO ) {
 			var date = null;
 
 			if ( dateISO && dateISO.match( /\d{4}-\d{2}-\d{2}/ ) ) {
@@ -209,7 +209,7 @@
 /*
 :focusable and :tabable jQuery helper expressions - https://github.com/jquery/jquery-ui/blob/24756a978a977d7abbef5e5bce403837a01d964f/ui/jquery.ui.core.js
 */
-(function ( $ ) {
+(function( $ ) {
 	"use strict";
 
 	function focusable( element, isTabIndexNotNaN, visibility ) {
@@ -281,9 +281,9 @@ Peformant micro templater
 @credit: https://github.com/premasagar/tim/blob/master/tinytim.js
 @todo: caching
 */
-(function ( window, undef ) {
+(function( window, undef ) {
 	"use strict";
-	var tmpl = (function () {
+	var tmpl = (function() {
 		var start = "{{",
 			end = "}}",
 			path = "[a-z0-9_$][\\.a-z0-9_]*", // e.g. config.person.name

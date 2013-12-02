@@ -205,7 +205,7 @@ $document.on( "keydown", ".mfp-wrap", function( event ) {
 });
 
 // Event handler for closing a modal popup
-$(document).on( "click", ".popup-modal-dismiss", function ( event ) {
+$(document).on( "click", ".popup-modal-dismiss", function( event ) {
 	event.preventDefault();
 	$.magnificPopup.close();
 });

@@ -20,6 +20,9 @@
 	},
 	"requireSpacesInsideObjectBrackets": "all",
 	"requireSpacesInsideArrayBrackets": "all",
+	"disallowSpacesInFunctionExpression": {
+		"beforeOpeningRoundBrace": true
+	},
 	"requireLineFeedAtFileEnd": true,
 	"validateJSDoc": {
 		"checkParamNames": true,
@@ -30,6 +33,7 @@
 		"node_modules/**",
 		"dist/**",
 		"lib/**",
-		"src/polyfills/slider/slider.js"
+		"src/polyfills/slider/slider.js",
+		"src/polyfills/events/mobile.js"
 	]
 }

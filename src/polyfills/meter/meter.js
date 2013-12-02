@@ -29,7 +29,7 @@ var selector = "meter",
 	},
 
 	// create polyfill
-	meter = function ( elm ) {
+	meter = function( elm ) {
 		var $elm = $( elm ),
 			min = parseFloat( $elm.attr( "min" ) || 0 ),
 			max = parseFloat( $elm.attr( "max" ) || 1 ),

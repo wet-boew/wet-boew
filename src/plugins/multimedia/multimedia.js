@@ -368,10 +368,10 @@ youTubeApi = function( fn, args ) {
  * @description Youtube API event manager
  * @param {object} event The event object fior the triggered event
  */
-youTubeEvents = function ( event ) {
+youTubeEvents = function( event ) {
 	var target = event.target.a,
 		$target = $( event.target.a ),
-		timeline = function () {
+		timeline = function() {
 			$target.trigger( "timeupdate" );
 		};
 

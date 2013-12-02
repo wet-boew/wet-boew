@@ -503,7 +503,7 @@ var $document = wb.doc,
 $document.on( "create.wb-cal" , create );
 
 // Keyboard nav
-$document.on( "keydown", ".cal-days a", function ( event ) {
+$document.on( "keydown", ".cal-days a", function( event ) {
 	var elm = event.target,
 		$elm = $( elm ),
 		$monthContainer = $elm.closest( ".cal-cnt" ),

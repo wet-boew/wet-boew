@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @thomasgohard, @pjackson28
  */
-(function ( $, window, document, wb ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -175,7 +175,7 @@ $document.on( "click vclick", "." + linkClass, function( event ) {
 });
 
 // Outside activity detection
-$document.on( "click vclick touchstart focusin", "body", function ( event ) {
+$document.on( "click vclick touchstart focusin", "body", function( event ) {
 	var eventTarget = event.target,
 		which = event.which,
 		overlayId, overlay;

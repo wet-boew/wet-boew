@@ -65,7 +65,7 @@ var id = "wb-resize",
 		initialized = true;
 	},
 
-	viewChange = function ( viewportWidth ) {
+	viewChange = function( viewportWidth ) {
 		var breakpoint, viewName;
 
 		// Check for a change between views

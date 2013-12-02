@@ -260,7 +260,7 @@ var selector = "input[type=date]",
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb", selector, init );
 
-$document.on( "click vclick touchstart focusin", "body", function ( event ) {
+$document.on( "click vclick touchstart focusin", "body", function( event ) {
 	var which = event.which,
 		container;
 
@@ -277,7 +277,7 @@ $document.on( "click vclick touchstart focusin", "body", function ( event ) {
 	}
 });
 
-$document.on( "keydown displayed.wb-cal", "#wb-picker", function ( event, year, month, $days, day ) {
+$document.on( "keydown displayed.wb-cal", "#wb-picker", function( event, year, month, $days, day ) {
 	var $container = $( this ),
 		eventType = event.type,
 		which = event.which,
@@ -316,7 +316,7 @@ $document.on( "keydown displayed.wb-cal", "#wb-picker", function ( event, year, 
 	}
 });
 
-$document.on( "click", ".picker-toggle", function ( event ) {
+$document.on( "click", ".picker-toggle", function( event ) {
 	var which = event.which,
 		pickerId;
 
@@ -328,7 +328,7 @@ $document.on( "click", ".picker-toggle", function ( event ) {
 	}
 });
 
-$document.on( "click", ".cal-days a", function ( event ) {
+$document.on( "click", ".cal-days a", function( event ) {
 	var which = event.which,
 		fieldId, date, year, month, day, $field;
 
