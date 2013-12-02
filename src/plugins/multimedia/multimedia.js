@@ -158,7 +158,6 @@ parseXml = function( content ) {
 			parseTime( captionElement.attr( "end" ) ) :
 			parseTime( captionElement.attr( "dur" ) ) + begin;
 
-
 		captionElement = captionElement.clone();
 		captionElement.find( captionSelector ).detach();
 
@@ -399,7 +398,6 @@ youTubeEvents = function( event ) {
 	}
 };
 
-
 $document.on( "timerpoke.wb", selector, function() {
 	wb.remove( selector );
 
@@ -494,7 +492,6 @@ $document.on( "init.multimedia.wb", selector, function() {
 			load: "https://www.youtube.com/iframe_api"
 		} );
 
-
 	} else if ( media.error === null && media.currentSrc !== "" && media.currentSrc !== undef ) {
 		$this.trigger( type + ".multimedia.wb" );
 	} else {
@@ -510,7 +507,6 @@ $document.on( "fallback.multimedia.wb", selector, function() {
 		$poster = $media.attr( "poster" ),
 		$source = $data.media.find( "source" ),
 		$playerresource;
-
 
 	$data.flashvars = "id=" + $data.mId;
 	$playerresource = wb.getPath( "/assets" ) + "/multimedia.swf?" + $data.flashvars;
@@ -662,7 +658,6 @@ $document.on( "click", selector, function( event ) {
 	if ( event.which === 2 || event.which === 3 ) {
 		return true;
 	}
-
 
 	// Opitmized multiple class tests to include child glyphicon because Safari was reporting the click event
 	// from the child span not the parent button, forcing us to have to check for both elements

@@ -94,7 +94,6 @@ var selector = ".wb-carousel",
 			listCounter = listItems.length - 1,
 			isActive, item, link;
 
-
 		for ( ; tabCounter !== -1; tabCounter -= 1 ) {
 			item = tabs[ tabCounter ];
 			isActive = item.className.indexOf( "in" ) !== -1;

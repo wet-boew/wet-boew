@@ -148,7 +148,6 @@ var selector = ".wb-lightbox",
 						firstLink = elm;
 					}
 
-
 					if ( firstLink.getAttribute( "href" ).charAt( 0 ) === "#" ) {
 						settings.type = "inline";
 					} else if ( firstLink.className.indexOf( "lb-iframe" ) !== -1 ) {

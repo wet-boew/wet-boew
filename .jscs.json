@@ -62,6 +62,7 @@
 	"disallowKeywords": [
 		"with"
 	],
+	"disallowMultipleLineBreaks": true,
 	"requireLineFeedAtFileEnd": true,
 	"validateJSDoc": {
 		"checkParamNames": true,

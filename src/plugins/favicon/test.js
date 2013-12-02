@@ -116,7 +116,6 @@ describe( "Favicon test suite", function() {
 				filename: "bar"
 			}).trigger( "timerpoke.wb" );
 
-
 		});
 
 		it( "should have created a mobile favicon", function() {

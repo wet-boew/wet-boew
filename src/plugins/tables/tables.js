@@ -74,7 +74,6 @@ var selector = ".wb-tables",
 				}
 			};
 
-
 			Modernizr.load({
 				load: [ "site!deps/jquery.dataTables" + wb.getMode() + ".js" ],
 				complete: function() {

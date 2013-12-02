@@ -475,4 +475,3 @@ $document.on( "timerpoke.wb", selector, function() {
 wb.add( ".wb-cal-evt" );
 
 })( jQuery, window, wb );
-

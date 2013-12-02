@@ -172,7 +172,6 @@ var selector = ".wb-menu",
 		$elm.trigger( "navcurrent.wb", breadcrumb );
 	},
 
-
 	/**
 	 * @method onSelect
 	 * @param {jQuery event} event The current event
@@ -378,7 +377,6 @@ $document.on( "timerpoke.wb select.wb-menu ajax-fetched.wb increment.wb-menu dis
 $document.on( "mouseleave", selector + " .menu", function( event ) {
 	onReset( $( event.target ).closest( ".wb-menu" ) );
 });
-
 
 // Panel clicks on menu items should open submenus
 $document.on( "click vclick", selector + " .item[aria-haspopup]", onPanelClick );

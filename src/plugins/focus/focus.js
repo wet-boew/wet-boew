@@ -28,7 +28,6 @@ $document.on( "setfocus.wb", function( event ) {
 	}, 1 );
 });
 
-
 // Set focus to the target of a deep link from a different page
 // (helps browsers that can't set the focus on their own)
 if ( hash && ( $linkTarget = $( hash ) ).length !== 0 ) {
