@@ -15,11 +15,11 @@
 			> a {
 				color: #fff;
 				padding: 1em;
-				border-left: 2px ridge #284468;
+				border-right: 2px ridge #284468;
 			}
-			&:last-child {
+			&:first-child {
 				a {
-					border-right: 2px ridge #284468;
+					border-left: 2px ridge #284468;
 				}
 			}
 		}
