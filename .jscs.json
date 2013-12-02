@@ -1,4 +1,11 @@
 {
+	"requireCurlyBraces": [
+		"if",
+		"else",
+		"for",
+		"while",
+		"do"
+	],
 	"requireLineFeedAtFileEnd": true,
 	"validateJSDoc": {
 		"checkParamNames": true,
