@@ -94,7 +94,7 @@ var selector = ".wb-cal-evt",
 				events.maxDate
 			]
 		);
-		$containerId.attr({"role": "application", "aria-label": i18nText.calendar});
+		$containerId.attr({ "role": "application", "aria-label": i18nText.calendar });
 	},
 
 	daysBetween = function ( dateLow, dateHigh ) {
@@ -233,7 +233,7 @@ var selector = ".wb-cal-evt",
 					if ( events.maxDate === null || date > events.maxDate ) {
 						events.maxDate = date;
 					}
-					events.list[ events.iCount ] = {"title" : title, "date" : date, "href" : link};
+					events.list[ events.iCount ] = { "title" : title, "date" : date, "href" : link };
 
 					// Add a viewfilter
 					className = "filter-" + ( date.getFullYear() ) + "-" + wb.string.pad( date.getMonth() + 1, 2 );

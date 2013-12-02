@@ -295,7 +295,7 @@ var $document = wb.doc,
 			.append( "<span class='clearfix'></span>" );
 
 		// Update the list of available months when changing the year
-		$yearField.on( "change", {minDate: minDate, maxDate: maxDate, $monthField: $monthField}, yearChanged );
+		$yearField.on( "change", { minDate: minDate, maxDate: maxDate, $monthField: $monthField }, yearChanged );
 
 		// Populate initial month list
 		$yearField.trigger( "change" );

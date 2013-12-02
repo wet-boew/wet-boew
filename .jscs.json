@@ -18,6 +18,7 @@
 	"requireSpacesInFunctionExpression": {
 		"beforeOpeningCurlyBrace": true
 	},
+	"requireSpacesInsideObjectBrackets": "all",
 	"requireLineFeedAtFileEnd": true,
 	"validateJSDoc": {
 		"checkParamNames": true,
