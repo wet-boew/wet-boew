@@ -56,7 +56,6 @@
 @import "../plugins/calendar/calendar-theme";
 @import '../plugins/cal-events/cal-events.scss';
 @import "../plugins/tabs/tabs";
-@import "../plugins/carousel/carousel";
 @import "../plugins/resize/resize";
 
 /*
@@ -78,7 +77,7 @@
 /* Extra-small view and under */
 @media screen and (max-width: $xSmallViewMax) {
 	@import "views/xSmallViewUnder";
-	@import "../plugins/carousel/carousel-xSmallViewUnder";
+	@import "../plugins/tabs/tabs-xSmallViewUnder";
 }
 
 /* Small view and under */
@@ -106,6 +105,7 @@
 @media screen and (min-width: $smallViewMin) {
 	@import "views/smallViewOver";
 	@import "partials/bootstrap-overrides-smallViewOver";
+	@import "../plugins/tabs/tabs-smallViewOver";
 }
 
 /* Medium view and over */

@@ -11,7 +11,7 @@
  * Variable and function definitions.
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
-var selector = "details",
+var selector = "summary",
 	$document = wb.doc,
 
 	/**
@@ -21,22 +21,19 @@ var selector = "details",
 	 * @param {DOM element} elm The details element to be polyfilled
 	 */
 	init = function( elm ) {
-		var summary;
+		var details = elm.parentNode;
 
 		// All plugins need to remove their reference from the timer in the init
 		// sequence unless they have a requirement to be poked every 0.5 seconds
 		wb.remove( selector );
 
-		elm.setAttribute( "aria-expanded", ( elm.getAttribute( "open" ) !== null ) );
-		summary = elm.getElementsByTagName( "summary" );
-		if ( summary.length !== 0 ) {
-			summary[ 0 ].setAttribute( "tabindex", "0" );
-		}
+		details.setAttribute( "aria-expanded", ( details.getAttribute( "open" ) !== null ) );
+		elm.setAttribute( "tabindex", "0" );
 	};
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb", selector, function( event ) {
-	init( event.target );
+	init( event.currentTarget );
 
 	/*
 	 * Since we are working with events we want to ensure that we are being passive about our control,
@@ -46,13 +43,16 @@ $document.on( "timerpoke.wb", selector, function( event ) {
 });
 
 // Bind the init event of the plugin
-$document.on( "click vclick touchstart keydown toggle.wb-details", selector + " summary", function( event ) {
+$document.on( "click vclick touchstart keydown toggle.wb-details", selector, function( event ) {
 	var which = event.which,
+		currentTarget = event.currentTarget,
 		details, isClosed;
 
-	// Ignore middle/right mouse buttons
-	if ( !which || which === 1 || which === 13 || which === 32 ) {
-		details = event.currentTarget.parentNode;
+	// Ignore middle/right mouse buttons and wb-toggle enhanced summary elements (except for toggle)
+	if ( ( !which || which === 1 ) &&
+		( currentTarget.className.indexOf( "wb-toggle" ) === -1 || event.type === "toggle" ) ) {
+
+		details = currentTarget.parentNode;
 		isClosed = ( details.getAttribute( "open" ) === null );
 
 		if ( isClosed ) {
@@ -63,6 +63,9 @@ $document.on( "click vclick touchstart keydown toggle.wb-details", selector + " 
 			details.className = details.className.replace( " open", "" );
 		}
 		details.setAttribute( "aria-expanded", isClosed );
+	} else if ( which === 13 || which === 32 ) {
+		event.preventDefault();
+		$( currentTarget ).trigger( "click" );
 	}
 
 	/*

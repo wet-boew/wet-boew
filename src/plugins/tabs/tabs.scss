@@ -3,74 +3,278 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 @import "../../variables";
-
 .wb-tabs {
-	// Shared variables
+	/**
+	 * Shared variables
+	 */
 	$drabBlue: #243850;
 	$lightGray: #eee;
 	$medGray: #ccc;
-	$darkGray: #adadad;
-	// adding 16px in order to match resize's smallview (obtained via $(document).width()).
-	$smallScreen: $smallViewMin + 16px;
-	$focusColour: #5e9ed6;
-	> details {
-		padding: 6px 12px;
+
+	@mixin grayFilterOn() {
+		/* Firefox 10+, Firefox on Android */
+		filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+		/* IE6-9 */
+		filter: gray;
+		/* Chrome 19+, Safari 6+, Safari 6+ iOS */
+		-webkit-filter: unquote('grayscale(100%)');
+	}
+	@mixin grayFilterOff() {
+		/* Firefox 10+, Firefox on Android */
+		filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+		/* Chrome 19+, Safari 6+, Safari 6+ iOS */
+		-webkit-filter: unquote('grayscale(0%)');
+	}
+	
+	/**
+	 * Default, minimal, shared style
+	 */
+	position: relative;
+	[role ="tablist"] {
+		position : relative;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		li {
+			display: inline-block;
+			cursor: pointer;
+			margin: 0 1px 0 0;
+			color: #000;
+			background: $lightGray;
+			background: transparentize($lightGray, 0.1);
+			border: 1px solid $medGray;
+			text-align: center;
+			position: relative;
+			a {
+				text-decoration: none;
+				color: #000;
+				display: inline-block;
+				// changed padding and margin from em to px to fix web-kit layout issue
+				padding: 7px;
+			}
+			&:focus, &:hover {
+				background: $medGray;
+				background: transparentize($medGray, 0.1);
+			}
+			&.active {
+				background: $medGray;
+				background: transparentize($medGray, 0.1);
+				cursor: default;
+				a {
+					cursor: default;
+				}
+			}
+		}
+	}
+	[role="tabpanel"] {
+		&.out {
+			display: none;
+		}
+	}
+	
+	/**
+	 * Style 1 - Basic carousel style
+	 */
+	&.carousel-s1 {
+		[role="tablist"] {
+			position: absolute;
+			bottom: 1em;
+			left: 1em;
+			z-index: 100;
+			li {
+				&.active, &:focus, &:hover {
+					top: 1px;
+				}
+			}
+		}
+		[role="tabpanel"] {
+			z-index: 1;
+			figure {
+			 	position: relative;
+				img {
+					width: 100%;
+					height: auto;
+				}
+				figcaption {
+					position: absolute;
+					top: 3em;
+					right: 1em;
+					color: #fff;
+					background: $drabBlue;
+					background: transparentize($drabBlue, 0.1);
+					padding: 1em;
+					a {
+						color: #fff;
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Style 2 - Slider-like carousel style
+	 */
+	&.carousel-s2 {
+		$thumbHeight: 50px;
+		margin-bottom: $thumbHeight + 10px;
+		[role="tablist"] {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			z-index: 100;
+			visibility: hidden;
+			li {
+				border: none;
+				visibility: visible;
+				&[role="presentation"] {
+					padding: 4px;
+					top: 100%;
+					background: $lightGray;
+					background: transparentize($lightGray, .1);
+					&.active, &:focus, &:hover {
+						box-shadow: 0 0 4px $drabBlue;
+					}
+					&.active {
+						a {
+							img {
+								@include grayFilterOff;
+							}
+						}
+					}
+					a {
+						img {
+							box-shadow: none;
+							@include grayFilterOn;
+							max-height: $thumbHeight;
+						}
+					}
+				}
+				&.control {
+					position: absolute;
+					top: 0;
+					bottom: 0;
+					&.prv {
+						left: 0;
+					}
+					&.nxt {
+						right: 0;
+					}
+					&.prv, &.nxt {
+						height: 100%;
+						width: 3em;
+						background: none;
+						margin: 0;
+						padding: 0;
+						a {
+							position: absolute;
+							top: 0;
+							bottom: 0;
+							left: 0;
+							width: 100%;
+							color: $drabBlue;
+							border: none;
+							&.prv {
+								background-image: linear-gradient(to right, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+								.glyphicon {
+									left: .25em;
+									padding-top: 1px;
+									padding-right: 2px;
+								}
+							}
+							&.nxt {
+								background-image: linear-gradient(to left, rgba(255, 255 ,255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+								.glyphicon {
+									right: .25em;
+								}
+							}
+							&:focus, &:hover {
+								background: transparent;
+								&.prv {
+									background-image: linear-gradient(to right, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 100%);
+								}
+								&.nxt {
+									background-image: linear-gradient(to left, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 100%);
+								}
+								.glyphicon {
+									box-shadow: none;
+								}
+							}
+							.glyphicon {
+								position: absolute;
+								top: 0;
+								bottom: 0;
+								margin: auto 0;
+								height: 1.75em;
+								width: 1.75em;
+								font-size: 1.75em;
+								line-height: 1.75em;
+								text-align: center;
+								background: #fff;
+								border-radius: 999px;
+								box-shadow: 0 0 4px $drabBlue;
+								&:focus, &:hover {
+									box-shadow: none;
+								}
+							}
+						}
+					}
+					&.plypause {
+                        background: none;
+                        border: none;
+                        display: inline-block !important;
+                        top: 100%;
+                        right: 0;
+                        padding: 2px 10px;
+                        i {
+                            color: #000 !important;
+                            font-style: normal;
+                        }
+                    }
+				}
+			}
+		}
+		[role="tabpanel"] {
+			z-index: 1;
+			figure {
+			 	position: relative;
+				img {
+					width: 100%;
+					height: auto;
+				}
+				figcaption {
+					position: absolute;
+					bottom: 1em;
+					left: 3em;
+					color: #fff;
+					background: $drabBlue;
+					background: transparentize($drabBlue, 0.1);
+					padding: 1em;
+					a {
+						color: #fff;
+					}
+				}
+			}
+		}
 	}
 
-	/*
-	 * Large screen styles
-	 */
-	@media (min-width: $smallScreen + 1px) {
-		> details {
-			border: 1px solid $darkGray;
-			border-bottom-left-radius: 4px;
-			border-bottom-right-radius: 4px;
-			box-shadow: inset 0 -3px 5px rgba(0, 0, 0, 0.125);
-			margin-top: -1px;
-			&[aria-expanded="false"], &.out {
-				display: none;
-			}
-			> summary {
-				font-size: 0;
-			}
-		}
-		> [role=tablist] {
-			> button {
-				border-bottom-left-radius: 0px;
-				border-bottom-right-radius: 0px;
-				&.active {
-					font-weight: bold;
-				}
-				&:focus {
-					outline: 1px solid $focusColour;
+	%tabs-details-padding-6-12 {
+		padding: 6px 12px;
+	}
+	> {
+		details {
+			@extend %tabs-details-padding-6-12;
+			> {
+				summary {
+					margin: -6px -12px;
+					@extend %tabs-details-padding-6-12;
 				}
 			}
-		}
-	}
-	/**
-	 * Mobile-friendly styles
-	 */
-	@media (max-width: $smallScreen) {
-		> details {
-			border: 1px solid $darkGray;
-			border-radius: 4px;
-			margin-bottom: .5em;
-		}
-		> [role=tablist] {
-			> button {
-				display: none;
-			}
-		}
-	}
-}
-/**
- * Javascript disabled styles
- */
-.no-js {
-	.wb-tabs {
-		> details {
-			> summary {
-				font-size: 1em;
+			&[open] {
+				> {
+					summary {
+						margin-bottom: 0;
+					}
+				}
 			}
 		}
 	}

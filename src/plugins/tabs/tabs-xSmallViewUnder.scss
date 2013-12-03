@@ -6,7 +6,11 @@
 /**
  * Mobile-friendly styles
  */
-.wb-carousel {
+%tabs-xsmallview-display-none {
+	display: none;
+}
+
+.wb-tabs {
 	&.carousel-s1, &.carousel-s2 {
 		[role="tabpanel"] {
 			figure {
@@ -29,7 +33,24 @@
 	&.carousel-s2 {
 		[role="tablist"] {
 			li[role="presentation"] {
-				display: none;
+				@extend %tabs-xsmallview-display-none;
+			}
+		}
+	}
+	&.tabs-acc {
+		> {
+			ul {
+				@extend %tabs-xsmallview-display-none;
+			}
+		}
+	}
+	> {
+		details {
+			border: 1px solid #adadad;
+			border-radius: 4px;
+			margin-bottom: .5em;
+			&[style] {
+				min-height: 0 !important;
 			}
 		}
 	}
