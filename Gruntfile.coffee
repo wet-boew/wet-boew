@@ -482,7 +482,6 @@ module.exports = (grunt) ->
 				"overqualified-elements": false
 				"qualified-headings": false
 				"regex-selectors": false
-				"text-indent": false
 				"unique-headings": false
 				"universal-selector": false
 				"unqualified-attributes": false

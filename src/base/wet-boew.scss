@@ -40,23 +40,24 @@
 /*
  Plugins
  */
-@import "../plugins/menu/menu";
-@import "../plugins/multimedia/multimedia";
-@import "../plugins/formvalid/formvalid";
-@import "../plugins/lightbox/lightbox";
-@import "../plugins/feedback/feedback";
-@import "../plugins/texthighlight/texthighlight";
-@import "../plugins/prettify/prettify";
-@import "../plugins/footnotes/footnotes";
-@import "../plugins/modal/modal";
-@import "../plugins/tables/tables";
-@import "../plugins/overlay/overlay";
-@import "../plugins/share/share";
+@import "../plugins/cal-events/cal-events";
 @import "../plugins/calendar/calendar-base";
 @import "../plugins/calendar/calendar-theme";
-@import '../plugins/cal-events/cal-events.scss';
-@import "../plugins/tabs/tabs";
+@import "../plugins/feedback/feedback";
+@import "../plugins/footnotes/footnotes";
+@import "../plugins/formvalid/formvalid";
+@import "../plugins/lightbox/lightbox";
+@import "../plugins/menu/menu";
+@import "../plugins/modal/modal";
+@import "../plugins/multimedia/multimedia";
+@import "../plugins/overlay/overlay";
+@import "../plugins/prettify/prettify";
 @import "../plugins/resize/resize";
+@import "../plugins/share/share";
+@import "../plugins/tables/tables";
+@import "../plugins/tabs/tabs";
+@import "../plugins/twitter/twitter";
+@import "../plugins/texthighlight/texthighlight";
 
 /*
  Polyfills
