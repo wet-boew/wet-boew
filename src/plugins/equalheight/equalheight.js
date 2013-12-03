@@ -52,6 +52,12 @@ var selector = ".wb-equalheight",
 			tallestHeight = -1,
 			i;
 
+		if ( $elm.data( "imagecheck" ) && $elm.length !== 0 && !areImagesLoaded( $elm[ 0 ] ) ) {
+			window._timer.add( selector );
+
+			return;
+		}
+
 		for ( i = $children.length - 1; i >= 0; i-- ) {
 			currentChild = $children[ i ];
 
@@ -91,6 +97,52 @@ var selector = ".wb-equalheight",
 			row[ i ].style.minHeight = height + "px";
 		}
 		row.length = 0;
+	},
+
+	/*
+	 * @method areImagesLoaded
+	 * @param {HTMLElement} container The container to verify
+	 */
+	areImagesLoaded = function( container ) {
+		var nodes = [],
+			currNode, currNodeChildren, i;
+
+		nodes = Array.prototype.slice.call( container.children );
+
+		while ( nodes.length !== 0 ) {
+			currNode = nodes.pop();
+			currNodeChildren = currNode.children;
+
+			if ( isImage( currNode ) && !isImageLoaded( currNode ) ) {
+				return false;
+			} else {
+				for ( i = currNodeChildren.length - 1; i >= 0; i--) {
+					nodes.push( currNodeChildren[i] );
+				}
+			}
+		}
+
+		return true;
+	},
+
+	/*
+	 * @method IsImage
+	 * @param {HTMLElement} node The node to verify
+	 */
+	isImage = function( node ) {
+		return node instanceof HTMLImageElement;
+	},
+
+	/*
+	 * @method isImageLoaded
+	 * @param {HTMLImageElement} img The image to verify
+	 */
+	isImageLoaded = function( img ) {
+		if ( !img.complete || img.naturalWidth === 0 ) {
+			return false;
+		}
+
+		return true;
 	};
 
 // Bind the init event of the plugin
