@@ -689,6 +689,7 @@ module.exports = (grunt) ->
 						"**/ajax/*.*"
 						"**/img/*.*"
 						"!**/assets/*.*"
+						"!**/*.scss"
 					]
 					dest: "dist/unmin/demos/"
 					expand: true
@@ -722,13 +723,12 @@ module.exports = (grunt) ->
 				expand: true
 
 			demos_min:
-				cwd: "dist/unmin"
+				cwd: "dist/unmin/demos"
 				src: [
 					"**/*.{jpg,html,xml}"
 					"**/demo/*.*"
 					"**/ajax/*.*"
 					"**/img/*.*"
-					"!**/assets/*.*"
 				]
 				dest: "dist/demos/"
 				expand: true
