@@ -48,8 +48,8 @@
 		color: #fff;
 	}
 	progress, .btn {
-		&:focus { 
-			outline: #fff thin dotted; 
+		&:focus {
+			outline: #fff thin dotted;
 		}
 	}
 
@@ -76,7 +76,7 @@
 				animation-iteration-count: infinite;
 				animation-timing-function: linear;
 				z-index:2;
-			} 
+			}
 
 			&:before {
 				@extend %multimedia_loading;
@@ -88,6 +88,7 @@
 	}
 	.wb-mm-ovrly {
 		background: transparent;
+		direction: ltr;
 		text-indent: -9999px;
 		border: 0;
 		padding: 0;
@@ -105,7 +106,7 @@
 	}
 
 	&[data-youtube] {
-		.wb-mm-ovrly { 
+		.wb-mm-ovrly {
 			visibility: hidden;
 		}
 	}
@@ -165,13 +166,8 @@
 		@extend %pnl;
 		.wb-mm-tmln-crrnt, .wb-mm-tmln-ttl {
 			display: inline !important;
-			margin:0;
-		}
-		.wb-mm-tmln-crrnt {
-			float: left;
-		}
-		.wb-mm-tmln-ttl {
-			float:right;
+			margin-right: 0;
+			margin-left: 0;
 		}
 	}
 

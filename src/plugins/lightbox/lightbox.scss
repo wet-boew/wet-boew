@@ -27,8 +27,8 @@
 	}
 }
 
+/* Should fix upstream rather than overriding in WET */
 .mfp-arrow {
-	/* Should fix upstream rather than overriding in WET */
 	&:focus {
 		@extend %lightbox-button-outline;
 	}
