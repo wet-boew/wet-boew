@@ -54,7 +54,7 @@ var selector = ".wb-toggle",
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 */
 	setAria = function( event, data ) {
-		var i, len, $elm, $parent, $tab,
+		var i, len, elm, $elm, $parent, $tab,
 			ariaControls = "",
 			link = event.target,
 			prefix = "wb-" + new Date().getTime(),
@@ -66,9 +66,13 @@ var selector = ".wb-toggle",
 
 			// Check that the group toggle widget hasn't already been initialized
 			if ( !$parent.data( "init" ) ) {
-				$parent.attr( "role", "tablist" );
-				$parent.find( ".tab" ).attr( "role", "tab" );
-				$parent.find( ".panel" ).attr( "role", "panel" );
+				$parent
+					.attr( "role", "tablist" )
+					.find( ".tab" )
+						.attr( "role", "tab" );
+				$parent
+					.find( ".panel" )
+						.attr( "role", "panel" );
 
 				// Create the tab/panel relationships
 				$elms = $parent.find( data.group );
@@ -88,11 +92,11 @@ var selector = ".wb-toggle",
 		// Set the elements this link controls
 		} else {
 			for ( i = 0, len = $elms.length; i !== len; i += 1 ) {
-				$elm = $elms.eq( i );
-				if ( !$elm.attr( "id" ) ) {
-					$elm.attr( "id", prefix + i );
+				elm = $elms[ i ];
+				if ( !elm.id ) {
+					elm.id = prefix + i;
 				}
-				ariaControls += $elm.attr( "id" ) + " ";
+				ariaControls += elm.id + " ";
 			}
 			link.setAttribute( "aria-controls", ariaControls.slice( 0, -1 ) );
 		}
@@ -136,7 +140,7 @@ var selector = ".wb-toggle",
 			$elmsGroup = getElements( link, dataGroup );
 
 			// Toggle all grouped elements to "off"
-			setState( link, dataGroup, data.stateOff );
+			setState( $elmsGroup, dataGroup, data.stateOff );
 			$elmsGroup.wb( "toggle", data.stateOff, data.stateOn );
 			$elmsGroup.trigger( "toggled.wb-toggle", {
 				isOn: false,
@@ -146,7 +150,7 @@ var selector = ".wb-toggle",
 		}
 
 		// Toggle all elements identified by data.selector to the requested state
-		setState( link, data, stateTo );
+		setState( $elms, data, stateTo );
 		$elms.wb( "toggle", stateTo, stateFrom );
 		$elms.trigger( "toggled.wb-toggle", {
 			isOn: isToggleOn,
@@ -155,11 +159,9 @@ var selector = ".wb-toggle",
 		});
 	},
 
-	/**
+	/*
 	 * Executed once the toggle has been completed. Used to set the aria
-	 * attributes and ensure opened group toggle element is visisble.
-	 * @param {jQuery Event} event The event that triggered this invocation
-	 * @param {Object} data Simple key/value data object passed when the event was triggered
+	 * attributes and ensure opened group toggle element is visible.
 	 */
 	toggled = function( event, data ) {
 		var top,
@@ -225,37 +227,48 @@ var selector = ".wb-toggle",
 	getState = function( link, data ) {
 		var parent = data.parent,
 			selector = data.selector,
-			type = data.type;
+			type = data.type,
+			$link, state;
 
-		// No toggle type: get the current on/off state of the elements specified by the selector and parent
+		// No toggle type: get the current on/off state of the elements
+		// specified by the selector and parent
 		if ( !type ) {
 			if ( !selector ) {
-				return $( link ).data( "state" ) || data.stateOff;
+				$link = $( link );
+				if ( link.nodeName.toLowerCase() === "summary" ) {
+					state = !$link.parent().attr( "open" ) ?
+						data.stateOff : data.stateOn;
+				} else {
+					state = $link.data( "state" );
+				}
+
+				return state || data.stateOff;
 
 			} else if ( states.hasOwnProperty( selector ) ) {
 				return states[ selector ].hasOwnProperty( parent ) ?
 					states[ selector ][ parent ] :
 					states[ selector ].all;
 			}
+
 			return data.stateOff;
 		}
 
-		// Type: get opposite state of the type. Toggle reverses this to the requested state.
+		// Type: get opposite state of the type. Toggle reverses this
+		// to the requested state.
 		return type === data.stateOn ? data.stateOff : data.stateOn;
 	},
 
-	/**
+	/*
 	 * Sets the current toggle state of elements controlled by the given link.
 	 * @param {DOM element} link Toggle link that was clicked
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 * @param {String} state The current state of the elements: "on" or "off"
 	 */
-	setState = function( link, data, state ) {
+	setState = function( $elms, data, state ) {
 		var prop,
 			parent = data.parent,
 			selector = data.selector,
-			elmsState = states[ selector ],
-			$elms = getElements( link, data );
+			elmsState = states[ selector ];
 
 		if ( selector ) {
 
@@ -286,7 +299,7 @@ var selector = ".wb-toggle",
 	};
 
 // Bind the plugin's events
-$document.on( "timerpoke.wb aria.wb-toggle toggle.wb-toggle toggled.wb-toggle click", selector, function( event, data ) {
+$document.on( "timerpoke.wb init.wb-toggle aria.wb-toggle toggle.wb-toggle toggled.wb-toggle click", selector, function( event, data ) {
 	var eventType = event.type;
 
 	switch ( eventType ) {
@@ -303,6 +316,7 @@ $document.on( "timerpoke.wb aria.wb-toggle toggle.wb-toggle toggled.wb-toggle cl
 		setAria( event, data );
 		break;
 	case "timerpoke":
+	case "init":
 		init( event );
 		break;
 	}
