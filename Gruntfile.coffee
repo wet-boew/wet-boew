@@ -485,7 +485,6 @@ module.exports = (grunt) ->
 				"unique-headings": false
 				"universal-selector": false
 				"unqualified-attributes": false
-				"zero-units": false
 
 			unmin:
 				options:
