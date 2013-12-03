@@ -113,7 +113,7 @@ module.exports = (grunt) ->
 			"autoprefixer"
 			"csslint:unmin"
 			"concat:css"
-			"cssmin"
+			"cssmin:dist"
 		]
 	)
 
@@ -140,6 +140,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Create minified demos"
 		[
 			"copy:demos_min"
+			"cssmin:demos_min"
 			"assemble:demos_min"
 			"htmlcompressor"
 		]
@@ -572,17 +573,15 @@ module.exports = (grunt) ->
 				cwd: "dist/unmin/css"
 				src: [
 					"**/*.css"
-					"!**/*.min.css"
 				]
 				dest: "dist/css"
 				ext: ".min.css"
 
-			demo:
+			demos_min:
 				expand: true
 				cwd: "dist/unmin/demos/"
 				src: [
 					"**/demo/*.css"
-					"!**/demo/*.min.css"
 				]
 				dest: "dist/demos/"
 				ext: ".min.css"
@@ -717,7 +716,6 @@ module.exports = (grunt) ->
 					"assets/*"
 					"fonts/*"
 					"js/assets/*"
-					"!**/assets/*.js"
 				]
 				dest: "dist"
 				expand: true
@@ -729,6 +727,8 @@ module.exports = (grunt) ->
 					"**/demo/*.*"
 					"**/ajax/*.*"
 					"**/img/*.*"
+					# CSS is copied by the cssmin:demos_min task
+					"!**/*.css"
 				]
 				dest: "dist/demos/"
 				expand: true
