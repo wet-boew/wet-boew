@@ -37,10 +37,10 @@ describe( "Session Timeout test suite", function() {
 		// Wait for the reset event from the plugin's init method before beginning the test
 		$( ".wb-session-timeout" )
 			.data( "wet-boew", {
-				"inactivity": 10000,
-				"sessionalive": 10000,
-				"refreshOnClick": true,
-				"refreshLimit": 42000
+				inactivity: 10000,
+				sessionalive: 10000,
+				refreshOnClick: true,
+				refreshLimit: 42000
 			})
 			.on( "reset.wb-session-timeout", function() {
 				done();
@@ -136,7 +136,7 @@ describe( "Session Timeout test suite", function() {
 
 	describe( "refresh onclick", function() {
 
-		before(function(){
+		before(function() {
 			// Reset the state of the spies
 			spies.trigger.reset();
 			spies.post.reset();
@@ -174,14 +174,14 @@ describe( "Session Timeout test suite", function() {
 
 	describe( "refreshCallbackUrl", function() {
 
-		before(function( done ){
+		before(function( done ) {
 			// Setup the fake server response for all POST requests to foo.html
 			server.respondWith( "POST", "foo.html", "true" );
 
 			$( ".wb-session-timeout" )
 				.data( "wet-boew", {
-					"sessionalive": 5000,
-					"refreshCallbackUrl": "foo.html"
+					sessionalive: 5000,
+					refreshCallbackUrl: "foo.html"
 				})
 				.on( "reset.wb-session-timeout", function() {
 					done();

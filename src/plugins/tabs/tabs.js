@@ -1,4 +1,4 @@
-/*
+/**
  * @title Tabbed Interface
  * @overview Dynamically stacks multiple sections of content, transforming them into a tabbed interface
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -16,7 +16,7 @@
 var selector = ".wb-tabs",
 	$document = wb.doc,
 	$window = wb.win,
-	tablistProps = { role: "tablist", class: "btn-group", "aria-live": "off" },
+	tablistProps = { role: "tablist", "class": "btn-group", "aria-live": "off" },
 	panelProps = { role: "tabpanel" },
 
 	// Includes "xsmallview" and "xxsmallview"
@@ -32,12 +32,12 @@ var selector = ".wb-tabs",
 	// wb.pageUrlParts.hash is a string - empty or otherwise.
 	// hash.match will return null if hash is empty or if no match is found.
 	hash = wb.pageUrlParts.hash.match( /#t(\d+)-p(\d+)/ ),
-	
+
 	// boolean to disable hashchange event listener on tab click,
 	// but re-enable it for any other case
 	ignoreHashChange = false,
-	
-	/*
+
+	/**
 	 * @method init
 	 * @param {jQuery DOM element} $elm The plugin element
 	 */
@@ -47,10 +47,10 @@ var selector = ".wb-tabs",
 			isMobile = document.documentElement.className.indexOf( mobileViewPattern ) !== -1,
 			classes = $elm.data( "btnClass" ) || "btn btn-default",
 			$tab, $tabs, $open;
-		
+
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 		wb.remove( selector );
-		
+
 		if ( !$panels.length ) {
 			return false;
 		}
@@ -59,7 +59,7 @@ var selector = ".wb-tabs",
 		$panels
 			.each(function() {
 				var $summary = $( this ).children( "summary" );
-				$tab = $( "<button/>", { type: "button", role: "tab", class: classes, tabindex: -1 } )
+				$tab = $( "<button/>", { type: "button", role: "tab", "class": classes, tabindex: -1 } )
 					.text( $summary.text() );
 				$tablist.append( $tab );
 				$summary.attr( isMobile ? mobile.summaryProps : desktop.summaryProps );
@@ -71,14 +71,14 @@ var selector = ".wb-tabs",
 		// Make sure other events have access to this plugin instance's tabs and panels.
 		// $elm will be passed as event data when triggering events.
 		$elm.data({
-			"tabs": $tabs,
-			"panels": $panels
+			tabs: $tabs,
+			panels: $panels
 		});
-		
+
 		// Check if the developer set a details element to open by default.
 		// If they set more than one to open, pick the first one only.
 		$open = $panels.filter( "[open]" ).eq( 0 );
-		
+
 		// Default panel to show. Order of precedence is: 1. hash 2. open attribute 3. first panel.
 		if ( hash ) {
 
@@ -101,7 +101,7 @@ var selector = ".wb-tabs",
 			elm: "$elm"
 		});
 	},
-	
+
 	onClick = function( event ) {
 		var $tab = $( event.currentTarget ),
 			$elm = $tab.parent().parent(),
@@ -114,11 +114,11 @@ var selector = ".wb-tabs",
 			hasEqualize = $elm.hasClass( "equalize" );
 
 		$tabs.not( $tab ).attr({
-			class: classes,
+			"class": classes,
 			tabindex: -1
 		});
 		$tab.attr({
-			class: classes + " active",
+			"class": classes + " active",
 			tabindex: 0
 		});
 
@@ -131,14 +131,14 @@ var selector = ".wb-tabs",
 					.attr( "open", false );
 			$panel.attr( "open", true );
 		}
-		
+
 		// Don't trigger onHashChange
 		ignoreHashChange = true;
 		window.location.hash = "#t" +
 			( 1 + $( selector ).index( $tab.parent().parent() ) ) +
 			"-p" +
 			( 1 + tabsIndex );
-		
+
 		// Handle equalizing panel heights
 		if ( !isMobile && hasEqualize ) {
 			$panels.height( getMaxHeight( $panels ) );
@@ -147,7 +147,7 @@ var selector = ".wb-tabs",
 		}
 		event.preventDefault();
 	},
-	
+
 	onBtnKeyDown = function( event ) {
 		var which = event.which,
 			$tab = $( event.currentTarget ),
@@ -157,13 +157,13 @@ var selector = ".wb-tabs",
 			next;
 
 		switch ( which ) {
-		
+
 		// Left / up / right / down
 		case 37:
 		case 38:
 		case 39:
 		case 40:
-			
+
 			next = $tabs.eq( ( tabsIndex + ( which < 39 ? -1 : 1 ) ) % tabsLength );
 			next
 				.trigger( "click" )
@@ -184,7 +184,7 @@ var selector = ".wb-tabs",
 			break;
 		}
 	},
-	
+
 	onHashChange = function( event ) {
 		var pluginNum, panelNum;
 		hash = window.location.hash.match( /#t(\d+)-p(\d+)/ );
@@ -210,7 +210,7 @@ var selector = ".wb-tabs",
 		ignoreHashChange = false;
 		event.preventDefault();
 	},
-	
+
 	onResize = function( event ) {
 		var eventType = event.type,
 			$elms = $document.find( selector ),
@@ -225,7 +225,7 @@ var selector = ".wb-tabs",
 			$tabs = $tabs.add( $elm.data( "tabs" ) );
 		}
 
-		switch( eventType ) {
+		switch ( eventType ) {
 		case "xxsmallview":
 		case "xsmallview":
 
@@ -251,7 +251,7 @@ var selector = ".wb-tabs",
 			break;
 		}
 	},
-	
+
 	getHeight = function( elm ) {
 		var style = elm.style,
 			open = elm.open,
@@ -270,14 +270,14 @@ var selector = ".wb-tabs",
 		style.visibility = visibility;
 		return height;
 	},
-	
+
 	getMaxHeight = function( elms ) {
 		var i, height,
 			len = elms.length,
 			maxHeight = null;
 		for ( i = 0; i !== len; i += 1 ) {
 		    height = getHeight( elms[ i ] );
-		    maxHeight =  height > maxHeight ? height : maxHeight;
+		    maxHeight = height > maxHeight ? height : maxHeight;
 		}
 		return maxHeight;
 	};
@@ -299,10 +299,10 @@ $document.on( "click vclick keydown", selector + " [role=tab]", function( event 
 
 // These events only fire at the document level
 $document.on( "xxsmallview.wb xsmallview.wb smallview.wb mediumview.wb largeview.wb xlargeview.wb", onResize );
- 
+
 // This event only fires on the window
 $window.on( "hashchange", onHashChange );
- 
+
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 

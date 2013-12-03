@@ -1,10 +1,10 @@
-/*
+/**
  * @title Responsive overlay
  * @overview Provides multiple styles of overlays such as panels and pop-ups
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @thomasgohard, @pjackson28
  */
-(function ( $, window, document, wb ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -21,7 +21,7 @@ var selector = ".wb-overlay",
 	$document = wb.doc,
 	i18n, i18nText,
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
@@ -175,7 +175,7 @@ $document.on( "click vclick", "." + linkClass, function( event ) {
 });
 
 // Outside activity detection
-$document.on( "click vclick touchstart focusin", "body", function ( event ) {
+$document.on( "click vclick touchstart focusin", "body", function( event ) {
 	var eventTarget = event.target,
 		which = event.which,
 		overlayId, overlay;

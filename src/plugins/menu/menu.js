@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Menu plugin
  * @overview A Menu plugin for WET
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -23,7 +23,7 @@ var selector = ".wb-menu",
 	menuCount = 0,
 	globalTimeout = {},
 
-	/*
+	/**
 	 * Lets leverage JS assigment deconstruction to reduce the code output
 	 * @method expand
 	 * @param {DOM element} element The plugin element
@@ -38,10 +38,10 @@ var selector = ".wb-menu",
 		return [ elm.self, elm.menu, items, $elm ];
 	},
 
-	/*
+	/**
 	 * Lets set some aria states and attributes
 	 * @method onInit
-	 * @param {jQuery DOM element} element The plugin element
+	 * @param {jQuery DOM element} $elm The plugin element
 	 */
 	onInit = function( $elm ) {
 
@@ -70,10 +70,10 @@ var selector = ".wb-menu",
 		}
 	},
 
-	/*
+	/**
 	 * Lets set some aria states and attributes
 	 * @method drizzleAria
-	 * @param {jQuery DOM elements} collection of elements
+	 * @param {jQuery DOM elements} $elements The collection of elements
 	 */
 	drizzleAria = function( $elements ) {
 		var length = $elements.length,
@@ -87,7 +87,7 @@ var selector = ".wb-menu",
 			$elm.attr({
 				"aria-posinset": ( i + 1 ),
 				"aria-setsize": length,
-				"role": "menuitem"
+				role: "menuitem"
 			});
 
 			// if there is a submenu lets put in the aria for it
@@ -106,9 +106,10 @@ var selector = ".wb-menu",
 		}
 	},
 
-	/*
+	/**
 	 * @method onAjaxLoaded
-	 * @param {jQuery DOM elements} element The plugin element
+	 * @param {jQuery DOM element} $elm The plugin element
+	 * @param {jQuery DOM element} $ajaxed The AJAX'd in menu content to import
 	 */
 	onAjaxLoaded = function( $elm, $ajaxed ) {
 		var $menu = $ajaxed.find( "[role='menubar'] .item" ),
@@ -137,7 +138,7 @@ var selector = ".wb-menu",
 				// ** note we need to ensure our content is ID safe since this will invalidate the DOM
 				$panel.before( "<section id='wb-imprt-" + i + "' class='" +
 					classList + "'>" +
-					$iElement.html().replace( /\b(id|for)="([^"]+)"/g , "$1='$2-imprt'" ) +
+					$iElement.html().replace( /\b(id|for)="([^"]+)"/g, "$1='$2-imprt'" ) +
 				"</section>" );
 			}
 		}
@@ -171,25 +172,24 @@ var selector = ".wb-menu",
 		$elm.trigger( "navcurrent.wb", breadcrumb );
 	},
 
-
-	/*
+	/**
 	 * @method onSelect
 	 * @param {jQuery event} event The current event
 	 */
 	onSelect = function( event ) {
-		var $goto = event.goto,
+		var $goTo = event.goTo,
 			special = event.special;
 
-		$goto.trigger( "setfocus.wb" );
-		if ( special || ( $goto.hasClass( "item" ) && !$goto.attr( "aria-haspopup" ) ) ) {
-			onReset( $goto.parents( selector ), true, special );
+		$goTo.trigger( "setfocus.wb" );
+		if ( special || ( $goTo.hasClass( "item" ) && !$goTo.attr( "aria-haspopup" ) ) ) {
+			onReset( $goTo.parents( selector ), true, special );
 		}
 
 	},
 
-	/*
+	/**
 	 * @method onIncrement
-	 * @param {jQuery DOM element} element The plugin element
+	 * @param {jQuery DOM element} $elm The plugin element
 	 * @param {jQuery event} event The current event
 	 */
 	onIncrement = function( $elm, event ) {
@@ -199,15 +199,15 @@ var selector = ".wb-menu",
 
 		$elm.trigger({
 			type: "select.wb-menu",
-			goto: $links.eq( index )
+			goTo: $links.eq( index )
 		});
 	},
 
-	/*
+	/**
 	 * @method onReset
 	 * @param {jQuery DOM element} $elm The plugin element
 	 * @param {boolean} cancelDelay Whether or not to delay the closing of the menus (false by default)
-	 * @param {boolean} keeptActive Whether or not to leave the active class alone (false by default)
+	 * @param {boolean} keepActive Whether or not to leave the active class alone (false by default)
 	 */
 	onReset = function( $elm, cancelDelay, keepActive ) {
 		var id = $elm.attr( "id" ),
@@ -230,7 +230,7 @@ var selector = ".wb-menu",
 		}
 	},
 
-	/*
+	/**
 	 * @method onDisplay
 	 * @param {jQuery DOM element} $elm The plugin element
 	 * @param {jQuery event} event The current event
@@ -254,7 +254,7 @@ var selector = ".wb-menu",
 		}
 	},
 
-	/*
+	/**
 	 * @method onHoverFocus
 	 * @param {jQuery event} event The current event
 	 */
@@ -276,7 +276,7 @@ var selector = ".wb-menu",
 		}
 	},
 
-	/*
+	/**
 	 * Causes clicks on panel menu items to open and close submenus (except for mouse)
 	 * @method onPanelClick
 	 * @param {jQuery event} event The current event
@@ -299,7 +299,7 @@ var selector = ".wb-menu",
 		}
 	},
 
-	/*
+	/**
 	 * Searches for the next link that has link text starting with a specific letter
 	 * @method selectByLetter
 	 * @param {integer} charCode The charCode of the letter to search for
@@ -316,7 +316,7 @@ var selector = ".wb-menu",
 			if ( link.innerHTML.charAt( 0 ) === keyChar ) {
 				$container.trigger({
 					type: "select.wb-menu",
-					goto: $( link )
+					goTo: $( link )
 				});
 				return true;
 			}
@@ -378,7 +378,6 @@ $document.on( "mouseleave", selector + " .menu", function( event ) {
 	onReset( $( event.target ).closest( ".wb-menu" ) );
 });
 
-
 // Panel clicks on menu items should open submenus
 $document.on( "click vclick", selector + " .item[aria-haspopup]", onPanelClick );
 
@@ -418,7 +417,7 @@ $document.on( "keydown", selector + " .item", function( event ) {
 
 			$container.trigger({
 				type: "select.wb-menu",
-				goto: $subMenu.find( "a" ).first()
+				goTo: $subMenu.find( "a" ).first()
 			});
 		}
 		break;
@@ -477,7 +476,7 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 		event.preventDefault();
 		$container.trigger({
 			type: "select.wb-menu",
-			goto: $menu.filter( selector ),
+			goTo: $menu.filter( selector ),
 			special: "reset"
 		});
 		break;

@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Tables
  * @overview Integrates the DataTables plugin into WET providing searching, sorting, filtering, pagination and other advanced features for tables.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -17,7 +17,7 @@ var selector = ".wb-tables",
 	$document = wb.doc,
 	i18n, i18nText, defaults,
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
@@ -62,7 +62,7 @@ var selector = ".wb-tables",
 			}
 
 			defaults = {
-				asStripeClasses : [],
+				asStripeClasses: [],
 				oLanguage: i18nText,
 				fnDrawCallback: function() {
 
@@ -74,13 +74,12 @@ var selector = ".wb-tables",
 				}
 			};
 
-
-			Modernizr.load([{
+			Modernizr.load({
 				load: [ "site!deps/jquery.dataTables" + wb.getMode() + ".js" ],
 				complete: function() {
 					$elm.dataTable( $.extend( true, defaults, wb.getData( $elm, "wet-boew" ) ) );
 				}
-			}]);
+			});
 		}
 	};
 

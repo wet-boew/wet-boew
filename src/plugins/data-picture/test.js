@@ -1,4 +1,4 @@
-/*
+/**
  * @title data-picture Plugin Unit Tests
  * @overview Test the data-picture plugin behaviour
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html

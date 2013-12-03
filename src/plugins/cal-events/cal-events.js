@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Events Calendar
  * @overview Dynamically generates a calendar interface for navigating a list of events.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -34,7 +34,7 @@ var selector = ".wb-cal-evt",
 			.always( function() { processEvents( $elm ); } );
 	},
 
-	getAjax = function ( ajaxContainer ) {
+	getAjax = function( ajaxContainer ) {
 		var $ajaxContainer = $( ajaxContainer ),
 			urls = $ajaxContainer.attr( "data-cal-events" ).split(/\s+/),
 			dfd = $.Deferred(),
@@ -42,7 +42,7 @@ var selector = ".wb-cal-evt",
 			promises = [],
 			i, appendData;
 
-		appendData = function ( data ) {
+		appendData = function( data ) {
 			$ajaxContainer.append( $.trim( data ) );
 		};
 
@@ -57,7 +57,7 @@ var selector = ".wb-cal-evt",
 		return dfd.promise();
 	},
 
-	processEvents = function ( $elm ) {
+	processEvents = function( $elm ) {
 		var date = new Date(),
 			year = date.getFullYear(),
 			month = date.getMonth(),
@@ -81,7 +81,7 @@ var selector = ".wb-cal-evt",
 			$containerId.css( "margin-left", "10px" );
 		}
 
-		$document.on( "displayed.wb-cal", "#" + containerId, function ( event, year, month, days ) {
+		$document.on( "displayed.wb-cal", "#" + containerId, function( event, year, month, days ) {
 			addEvents(year, month, days, containerId, events.list);
 			showOnlyEventsFor(year, month, containerId);
 		});
@@ -94,10 +94,13 @@ var selector = ".wb-cal-evt",
 				events.maxDate
 			]
 		);
-		$containerId.attr({"role": "application", "aria-label": i18nText.calendar});
+		$containerId.attr({
+			role: "application",
+			"aria-label": i18nText.calendar
+		});
 	},
 
-	daysBetween = function ( dateLow, dateHigh ) {
+	daysBetween = function( dateLow, dateHigh ) {
 		// Simplified conversion to date object
 		var date1 = wb.date.convert( dateLow ),
 			date2 = wb.date.convert( dateHigh ),
@@ -124,7 +127,7 @@ var selector = ".wb-cal-evt",
 		return Math.ceil( diff / oneDay );
 	},
 
-	getEvents = function ( obj ) {
+	getEvents = function( obj ) {
 		var directLinking = !( $( obj ).hasClass( "event-anchoring" ) ),
 			events = {
 				minDate: null,
@@ -211,7 +214,12 @@ var selector = ".wb-cal-evt",
 							events.maxDate = date;
 						}
 
-						events.list[ events.iCount ] = { "title": title, "date": new Date( date.getTime() ), "href": link };
+						events.list[ events.iCount ] = {
+							title: title,
+							date: new Date( date.getTime() ),
+							href: link
+						};
+
 						date = new Date( date.setDate( date.getDate() + 1 ) );
 
 						// Add a viewfilter
@@ -233,7 +241,11 @@ var selector = ".wb-cal-evt",
 					if ( events.maxDate === null || date > events.maxDate ) {
 						events.maxDate = date;
 					}
-					events.list[ events.iCount ] = {"title" : title, "date" : date, "href" : link};
+					events.list[ events.iCount ] = {
+						title: title,
+						date: date,
+						href: link
+					};
 
 					// Add a viewfilter
 					className = "filter-" + ( date.getFullYear() ) + "-" + wb.string.pad( date.getMonth() + 1, 2 );
@@ -251,7 +263,7 @@ var selector = ".wb-cal-evt",
 		return events;
 	},
 
-	randomId = function ( sInt ) {
+	randomId = function( sInt ) {
 		var s = "",
 			randomChar, n;
 
@@ -277,7 +289,7 @@ var selector = ".wb-cal-evt",
 		return "id" + s;
 	},
 
-	keyboardNavEvents = function ( event ) {
+	keyboardNavEvents = function( event ) {
 		var $this = $( this ),
 			length, $children;
 
@@ -320,13 +332,13 @@ var selector = ".wb-cal-evt",
 		}
 	},
 
-	mouseOnDay = function ( dayEvents ) {
+	mouseOnDay = function( dayEvents ) {
 		dayEvents.dequeue()
 			.removeClass( "wb-inv" )
 			.addClass( "ev-details" );
 	},
 
-	mouseOutDay = function ( dayEvents ) {
+	mouseOutDay = function( dayEvents ) {
 		dayEvents.delay( 100 ).queue(function() {
 			$( this ).removeClass( "ev-details" )
 				.addClass( "wb-inv" )
@@ -334,12 +346,12 @@ var selector = ".wb-cal-evt",
 		});
 	},
 
-	focus = function ( dayEvents ) {
+	focus = function( dayEvents ) {
 		dayEvents.removeClass( "wb-inv" )
 			.addClass( "ev-details" );
 	},
 
-	blur = function ( dayEvents ) {
+	blur = function( dayEvents ) {
 		setTimeout(function() {
 			var $elm = dayEvents;
 
@@ -350,7 +362,7 @@ var selector = ".wb-cal-evt",
 		}, 5);
 	},
 
-	keyboardEvents = function ( event ) {
+	keyboardEvents = function( event ) {
 		var eventType = event.type,
 			dayEvents = event.data.details;
 
@@ -369,7 +381,7 @@ var selector = ".wb-cal-evt",
 		}
 	},
 
-	mouseEvents = function ( event ) {
+	mouseEvents = function( event ) {
 		var eventType = event.type,
 			dayEvents = event.data.details;
 
@@ -384,11 +396,11 @@ var selector = ".wb-cal-evt",
 		}
 	},
 
-	addEvents = function ( year, month, days, containerId, eventsList ) {
+	addEvents = function( year, month, days, containerId, eventsList ) {
 		var i, eLen, date, day, content, dayEvents, link, eventDetails, itemLink;
 
 		// Fix required to make up with the IE z-index behavior mismatch
-		days.each(function ( index, day ) {
+		days.each(function( index, day ) {
 			$( day ).css( "z-index", 31 - index );
 		});
 
@@ -429,7 +441,7 @@ var selector = ".wb-cal-evt",
 					dayEvents = day.find( "ul.wb-inv" );
 				}
 
-				eventDetails = $( "<li><a tabindex='-1' href='" + eventsList[ i ].href +  "'>" + eventsList[ i ].title + "</a></li>" );
+				eventDetails = $( "<li><a tabindex='-1' href='" + eventsList[ i ].href + "'>" + eventsList[ i ].title + "</a></li>" );
 
 				dayEvents.append( eventDetails );
 
@@ -440,7 +452,7 @@ var selector = ".wb-cal-evt",
 		}
 	},
 
-	showOnlyEventsFor = function ( year, month, calendarId ) {
+	showOnlyEventsFor = function( year, month, calendarId ) {
 		$( "." + calendarId + " li.calendar-display-onshow" )
 			.addClass( "wb-inv" )
 			.has( ":header[class*=filter-" + year + "-" +
@@ -463,4 +475,3 @@ $document.on( "timerpoke.wb", selector, function() {
 wb.add( ".wb-cal-evt" );
 
 })( jQuery, window, wb );
-

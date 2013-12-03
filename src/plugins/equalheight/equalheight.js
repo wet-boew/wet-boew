@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Responsive equal height
  * @overview Sets the same height for all elements in a container that are rendered on the same baseline (row). Adapted from http://codepen.io/micahgodbolt/pen/FgqLc.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -16,7 +16,7 @@
 var selector = ".wb-equalheight",
 	$document = wb.doc,
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
@@ -37,7 +37,7 @@ var selector = ".wb-equalheight",
 		}
 	},
 
-	/*
+	/**
 	 * Re-equalise any time the window/document or a child element of 'selector' is resized.
 	 * @method onResize
 	 */
@@ -81,7 +81,7 @@ var selector = ".wb-equalheight",
 		}
 	},
 
-	/*
+	/**
 	 * @method setRowHeight
 	 * @param {array} row The rows to be updated
 	 * @param {integer} height The new row height

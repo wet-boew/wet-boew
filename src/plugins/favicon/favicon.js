@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Favicon Plugin
  * @overview Provides the ability to add and update a page's favicons
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -41,7 +41,7 @@ var selector = "link[rel='shortcut icon']",
 		sizes: "57x57 72x72 114x114 144x144 150x150"
 	},
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
@@ -57,7 +57,7 @@ var selector = "link[rel='shortcut icon']",
 		$favicon.trigger( "mobile.wb-favicon", settings );
 	},
 
-	/*
+	/**
 	 * Adds, or updates, the mobile favicon on a page. Mobile favicons are identified by the
 	 * `apple` prefix in the `<link>` elements rel attribute.
 	 * @method mobile
@@ -86,7 +86,7 @@ var selector = "link[rel='shortcut icon']",
 		}
 	},
 
-	/*
+	/**
 	 * Updates the the page's shortcut icon
 	 * @method icon
 	 * @param {DOM element} favicon Favicon element
@@ -98,7 +98,7 @@ var selector = "link[rel='shortcut icon']",
 		favicon.setAttribute( "href", faviconPath + data.filename );
 	},
 
-	/*
+	/**
 	 * Given a full file path, returns the path without the filename
 	 * @method getPath
 	 * @param {string} filepath The full path to file, including filename

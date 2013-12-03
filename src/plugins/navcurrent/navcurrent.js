@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW NavCurrent
  * @overview Identify URL in a navigation system that matches current page URL or a URL in the breadcrumb trail. Call by applying .trigger( "navcurrent.wb", breadcrumb ) where the breadcrumb parameter is an optional object (DOM or jQuery)
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -17,7 +17,7 @@ var $document = wb.doc,
 	breadcrumbLinksArray, breadcrumbLinksUrlArray,
 	navClass = "wb-navcurr",
 
-	/*
+	/**
 	 * We start the logic for what the plugin truly does
 	 * For demonstration purposes lets display some text with an alert
 	 * @method otherEvent

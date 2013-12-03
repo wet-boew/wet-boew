@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Calendar library
  * @overview A library for building calendar interfaces
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -17,7 +17,7 @@
 var $document = wb.doc,
 	i18n, i18nText,
 
-	/*
+	/**
 	 * Creates a calendar instance
 	 * @method create
 	 */
@@ -137,7 +137,7 @@ var $document = wb.doc,
 					1,
 					i18nText.nextMonth,
 					"append"
-				],
+				]
 			],
 			alt, $btn, buttonSpec, buttonClass, newMonth, newYear, hideButton, index;
 
@@ -190,7 +190,7 @@ var $document = wb.doc,
 				$btn.on( "click", {
 					calID: calendarId,
 					year: newYear,
-					month : newMonth,
+					month: newMonth,
 					mindate: minDate,
 					maxdate: maxDate
 				}, changeMonth );
@@ -295,7 +295,7 @@ var $document = wb.doc,
 			.append( "<span class='clearfix'></span>" );
 
 		// Update the list of available months when changing the year
-		$yearField.on( "change", {minDate: minDate, maxDate: maxDate, $monthField: $monthField}, yearChanged );
+		$yearField.on( "change", { minDate: minDate, maxDate: maxDate, $monthField: $monthField }, yearChanged );
 
 		// Populate initial month list
 		$yearField.trigger( "change" );
@@ -399,7 +399,7 @@ var $document = wb.doc,
 						( month < 9 ? "0" : "" ) + ( month + 1 ) + "-" + ( dayCount < 10 ? "0" : "" ) + dayCount + "'><span class='wb-inv'>" + textWeekDayNames[ day ] +
 						( frenchLang ? ( " </span>" + dayCount + "<span class='wb-inv'> " + textMonthNames[ month ].toLowerCase() + " " ) :
 						( " " + textMonthNames[ month ] + " </span>" + dayCount + "<span class='wb-inv'> " ) ) + year +
-						( isCurrentDate ?  textCurrentDay : "" ) + "</span></time></div></td>";
+						( isCurrentDate ? textCurrentDay : "" ) + "</span></time></div></td>";
 
 					if ( dayCount > lastDay ) {
 						breakAtEnd = true;
@@ -500,10 +500,10 @@ var $document = wb.doc,
 	};
 
 // Event binding
-$document.on( "create.wb-cal" , create );
+$document.on( "create.wb-cal", create );
 
 // Keyboard nav
-$document.on( "keydown", ".cal-days a", function ( event ) {
+$document.on( "keydown", ".cal-days a", function( event ) {
 	var elm = event.target,
 		$elm = $( elm ),
 		$monthContainer = $elm.closest( ".cal-cnt" ),

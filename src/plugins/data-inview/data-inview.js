@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Data InView
  * @overview A simplified data-attribute driven plugin that responds to moving in and out of the viewport.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -18,7 +18,7 @@ var selector = ".wb-inview",
 	$document = wb.doc,
 	$window = wb.win,
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
@@ -32,10 +32,9 @@ var selector = ".wb-inview",
 		$elm.trigger( "scroll.wb-inview" );
 	},
 
-	/*
+	/**
 	 * @method onInView
 	 * @param {jQuery DOM element} $elm The plugin element
-	 * @param {jQuery Event} event The event that triggered this method call
 	 */
 	onInView = function( $elm ) {
 		var elementWidth = $elm.outerWidth(),

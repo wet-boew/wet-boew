@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Feeds
  * @overview Aggregates and displays entries from one or more Web feeds.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -16,7 +16,7 @@
 var selector = ".wb-feeds",
 	$document = wb.doc,
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
@@ -74,7 +74,7 @@ var selector = ".wb-feeds",
 		}
 	},
 
-	/*
+	/**
 	 * Returns a class-based set limit on plugin instances
 	 * @method getLimit
 	 * @param {DOM object} elm The element to search for a class of the form blimit-5
@@ -88,7 +88,7 @@ var selector = ".wb-feeds",
 		return Number( count[ 0 ].replace( /limit-/i, "" ) );
 	},
 
-	/*
+	/**
 	 * Builds the URL for the JSON request
 	 * @method jsonRequest
 	 * @param {url} url URL of the feed.
@@ -105,7 +105,7 @@ var selector = ".wb-feeds",
 		return requestURL;
 	},
 
-	/*
+	/**
 	 * Parses the results from a JSON request and appends to an element
 	 * @method parseEntries
 	 * @param {object} entries Results from a JSON request.

@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Modal
  * @overview Uses the Magnific Popup library to create a modal dialog
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -27,7 +27,7 @@ var selector = ".wb-modal",
 		removalDelay: 0		// Number of milliseconds to wait before removing modal element from DOM (use with closing animations)
 	},
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @function init
@@ -51,35 +51,32 @@ var selector = ".wb-modal",
 		}
 	},
 
-	/*
+	/**
 	 * Opens a popup defined by the settings object
 	 * @function show
-	 * @param {jQuery Event} event `modal.wb-session-timeout` event that triggered the function call
 	 * @param {Object} settings Key-value object
 	 */
-	show = function( event, settings ) {
+	show = function( settings ) {
 		$.magnificPopup.open( $.extend( {}, defaults, settings ) );
 	},
 
-	/*
-	 * Closes a popup defined by the settings object
+	/**
+	 * Closes a popup
 	 * @function hide
-	 * @param {jQuery Event} event `modal.wb-session-timeout` event that triggered the function call
-	 * @param {Object} settings Key-value object
 	 */
 	hide = function() {
 		$.magnificPopup.close();
 	},
 
-	/*
+	/**
 	 * Creates a modal dialog for use with the Magnific Popup library.
 	 * @function build
 	 * @param {Object} settings Key-value object used to build the modal dialog
 	 * @returns {jQuery Object} The modal jQuery DOM object
 	 */
-	build = function( event, settings ) {
+	build = function( settings ) {
 		// TODO: Add random serial to `id` attribute to prevent collisions
-		var $modal = $(	"<section class='modal-dialog modal-content overlay-def'>" +
+		var $modal = $( "<section class='modal-dialog modal-content overlay-def'>" +
 			"<div class='modal-body' id='lb-desc'>" + settings.content + "</div></section>" );
 
 		// Add modal's ID if it exists
@@ -105,7 +102,7 @@ var selector = ".wb-modal",
 		// Set modal's accessibility attributes
 		// TODO: Better if dealt with upstream by Magnific popup
 		$modal.attr({
-			"role": "dialog",
+			role: "dialog",
 			"aria-live": "polite",
 			"aria-describedby": "lb-desc"
 		});
@@ -128,13 +125,13 @@ $document
 		if ( event.currentTarget === event.target ) {
 			switch ( eventType ) {
 			case "build":
-				build( event, settings );
+				build( settings );
 				break;
 			case "show":
-				show( event, settings );
+				show( settings );
 				break;
 			case "hide":
-				hide( event, settings );
+				hide();
 				break;
 			}
 		}

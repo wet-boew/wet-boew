@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Share widget
  * @overview Facilitates sharing Web content on social media platforms.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -63,7 +63,7 @@ var selector = ".wb-share",
 			},
 			googleplus: {
 				name: "Google+",
-				url: "https://plus.google.com/share?url={u}&amp;hl=" + document.documentElement.lang,
+				url: "https://plus.google.com/share?url={u}&amp;hl=" + document.documentElement.lang
 			},
 			linkedin: {
 				name: "LinkedIn",
@@ -108,12 +108,12 @@ var selector = ".wb-share",
 		}
 	},
 
-	/*
-	* Init runs once per plugin element on the page. There may be multiple elements.
-	* It will run more than once per plugin if you don't remove the selector from the timer.
-	* @method init
-	* @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
-	*/
+	/**
+	 * Init runs once per plugin element on the page. There may be multiple elements.
+	 * It will run more than once per plugin if you don't remove the selector from the timer.
+	 * @method init
+	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
+	 */
 	init = function( event ) {
 		var elm = event.target,
 			sites, heading, settings, panel, link, $share, $elm, pageHref,

@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Focus
  * @overview User agent safe way of assigning focus to an element
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -14,7 +14,7 @@ var $document = wb.doc,
 	$linkTarget;
 
 // Bind the setfocus event
-$document.on( "setfocus.wb", function ( event ) {
+$document.on( "setfocus.wb", function( event ) {
 	var $elm = $( event.target );
 
 	// Set the tabindex to -1 (as needed) to ensure the element is focusable
@@ -23,11 +23,10 @@ $document.on( "setfocus.wb", function ( event ) {
 			.attr( "tabindex", "-1" );
 
 	// Assigns focus to an element (delay allows for revealing of hidden content)
-	setTimeout(function () {
+	setTimeout(function() {
 		return $elm.focus();
 	}, 1 );
 });
-
 
 // Set focus to the target of a deep link from a different page
 // (helps browsers that can't set the focus on their own)

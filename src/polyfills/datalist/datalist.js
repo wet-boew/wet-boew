@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Datalist polyfill
  * @overview Adds auto-complete functionality to specific text input fields by dynamically displaying a list of words that match the user's input.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -15,7 +15,7 @@ var selector = "input[list]",
 	$document = wb.doc,
 	initialized = false,
 
-	/*
+	/**
 	 * Init runs once per polyfill element on the page. There may be multiple elements.
 	 * It will run more than once if you don't remove the selector from the timer.
 	 * @method init
@@ -60,7 +60,7 @@ var selector = "input[list]",
 		}
 	},
 
-	/*
+	/**
 	 * Shows/hides the available options based upon the input in the polyfilled input field.
 	 * @method showOptions
 	 * @param {DOM element} input The polyfilled input field
@@ -95,7 +95,7 @@ var selector = "input[list]",
 		}
 	},
 
-	/*
+	/**
 	 * Hides all the options
 	 * @method closeOptions
 	 * @param {DOM element} input The polyfilled input field
@@ -110,22 +110,22 @@ var selector = "input[list]",
 		input.setAttribute( "aria-activedescendent", "" );
 	},
 
-	/*
+	/**
 	 * Corrects the width of the autolist for the polyfilled input field
 	 * @method correctWidth
 	 * @param {DOM element} input The polyfilled input field
 	 */
-	correctWidth = function( _elm ) {
-		var $elm = $( _elm ),
+	correctWidth = function( input ) {
+		var $elm = $( input ),
 			$autolist = $elm.next();
 
 		$autolist.css({
-			"width": $elm.outerWidth(),
-			"left": $elm.position().left
+			width: $elm.outerWidth(),
+			left: $elm.position().left
 		});
 	},
 
-	/*
+	/**
 	 * Keyboard event handler for the polyfilled input field
 	 * @method correctWidth
 	 * @param {integer} which Value for event.which
@@ -144,20 +144,18 @@ var selector = "input[list]",
 			if ( !event.altKey ) {
 				showOptions( input, input.value + String.fromCharCode( which ) );
 			}
-		}
 
 		// Backspace
-		else if ( which === 8 && !event.altKey ) {
+		} else if ( which === 8 && !event.altKey ) {
 			value = input.value;
 			len = value.length;
 
 			if ( len !== 0 ) {
 				showOptions( input, value.substring( 0, len - 1 ) );
 			}
-		}
 
 		// Up / down arrow
-		else if ( ( which === 38 || which === 40) && input.getAttribute( "aria-activedescendent" ) === "" ) {
+		} else if ( ( which === 38 || which === 40) && input.getAttribute( "aria-activedescendent" ) === "" ) {
 			if ( _alHide ) {
 				showOptions( input );
 			}
@@ -171,9 +169,7 @@ var selector = "input[list]",
 			$( dest ).trigger( "setfocus.wb" );
 
 			return false;
-		}
-
-		else if ( !_alHide ) {
+		} else if ( !_alHide ) {
 
 			// Tab or Escape key
 			if ( ( which === 9 || which === 27 ) || ( which === 27 && !event.altKey ) ) {
@@ -182,14 +178,14 @@ var selector = "input[list]",
 		}
 	},
 
-	/*
+	/**
 	 * Keyboard event handler for the autolist of the polyfilled input field
 	 * @method correctWidth
 	 * @param {integer} which Value for event.which
 	 * @param {DOM element} link Link element that is the target of the event
 	 */
 	keyboardHandlerAutolist = function( which, link ) {
-		var	_autolist = link.parentNode.parentNode,
+		var _autolist = link.parentNode.parentNode,
 			input = _autolist.previousSibling,
 			$input = $( input ),
 			_span, dest, value, len, children;
@@ -204,10 +200,9 @@ var selector = "input[list]",
 			showOptions( input, input.value );
 
 			return false;
-		}
 
 		// Backspace
-		else if ( which === 8 ) {
+		} else if ( which === 8 ) {
 			value = input.value;
 			len = value.length;
 
@@ -219,10 +214,9 @@ var selector = "input[list]",
 			$input.trigger( "setfocus.wb" );
 
 			return false;
-		}
 
 		// Enter key
-		else if ( which === 13) {
+		} else if ( which === 13) {
 			_span = link.getElementsByTagName( "span" );
 
 			// .al-val
@@ -239,18 +233,16 @@ var selector = "input[list]",
 			closeOptions( input );
 
 			return false;
-		}
 
 		// Tab or Escape key
-		else if ( which === 9 || which === 27 ) {
+		} else if ( which === 9 || which === 27 ) {
 			$input.trigger( "setfocus.wb" );
 			closeOptions( input );
 
 			return false;
-		}
 
 		// Up or down arrow
-		else if ( which === 38 || which === 40 ) {
+		} else if ( which === 38 || which === 40 ) {
 
 			// Up arrow
 			if ( which === 38 ) {
@@ -259,10 +251,9 @@ var selector = "input[list]",
 					children = _autolist.getElementsByTagName( "li" );
 					dest = children[ children.length - 1 ];
 				}
-			}
 
 			// Down arrow
-			else {
+			} else {
 				dest = link.parentNode.nextSibling;
 				if ( !dest ) {
 					dest = _autolist.getElementsByTagName( "li" )[ 0 ];
@@ -277,29 +268,26 @@ var selector = "input[list]",
 		}
 	},
 
-	/*
+	/**
 	 * Click / Touch event handler for the autolist of the polyfilled input field
 	 * @method correctWidth
 	 * @param {integer} eventTarget Value for event.target
-	 * @param {jQuery Event} event The event that triggered this method call
 	 */
 	clickHandlerAutolist = function( eventTarget ) {
-		var	nodeName = eventTarget.nodeName.toLowerCase(),
-			link = ( nodeName === "a" ? eventTarget : eventTarget.parentNode ),
-			_autolist = link.parentNode.parentNode,
-			input = _autolist.previousSibling,
+		var nodeName = eventTarget.nodeName.toLowerCase(),
+			link = nodeName === "a" ? eventTarget : eventTarget.parentNode,
+			autolist = link.parentNode.parentNode,
+			input = autolist.previousSibling,
 			$input = $( input ),
-			_span, value;
+			span = link.getElementsByTagName( "span" ),
 
-		_span = link.getElementsByTagName( "span" );
-
-		// .al-val
-		value = _span[ 0 ].innerHTML;
+			// .al-val
+			value = span[ 0 ].innerHTML;
 
 		if ( value.length === 0 ) {
 
 			// .al-lbl
-			value = _span[ 1 ].innerHTML;
+			value = span[ 1 ].innerHTML;
 		}
 
 		input.value = value;

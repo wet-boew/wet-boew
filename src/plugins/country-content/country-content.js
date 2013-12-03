@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Country Content
  * @overview A basic AjaxLoader wrapper that inserts AJAXed in content based on a visitors country as resolved by http://freegeoip.net
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -62,14 +62,14 @@ var $document = wb.doc,
 				cache: true,
 				jsonp: "callback",
 				success: function( data ) {
-					if( data ) {
+					if ( data ) {
 						countryCode = data.country_code;
 						localStorage.setItem( "countryCode", countryCode );
 					}
 
 					dfd.resolve( countryCode );
 				},
-				error: function(){
+				error: function() {
 					dfd.reject( "" );
 				}
 			});

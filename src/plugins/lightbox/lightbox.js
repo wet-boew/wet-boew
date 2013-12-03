@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Lightbox
  * @overview Helps build a photo gallery on a web page.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -18,7 +18,7 @@ var selector = ".wb-lightbox",
 	i18n, i18nText,
 	extendedGlobal = false,
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
@@ -82,9 +82,9 @@ var selector = ".wb-lightbox",
 								$bottomBar;
 
 							this.wrap.attr({
-								"role": "dialog",
+								role: "dialog",
 								"aria-live": "polite",
-								"aria-labelledby": "lb-title",
+								"aria-labelledby": "lb-title"
 							});
 
 							if ( $item.type === "image" ) {
@@ -141,13 +141,12 @@ var selector = ".wb-lightbox",
 						// Is the element a gallery?
 						if ( elm.className.indexOf( "-gallery" ) !== -1 ) {
 							settings.gallery = {
-								enabled: true,
+								enabled: true
 							};
 						}
 					} else {
 						firstLink = elm;
 					}
-
 
 					if ( firstLink.getAttribute( "href" ).charAt( 0 ) === "#" ) {
 						settings.type = "inline";
@@ -205,7 +204,7 @@ $document.on( "keydown", ".mfp-wrap", function( event ) {
 });
 
 // Event handler for closing a modal popup
-$(document).on( "click", ".popup-modal-dismiss", function ( event ) {
+$(document).on( "click", ".popup-modal-dismiss", function( event ) {
 	event.preventDefault();
 	$.magnificPopup.close();
 });

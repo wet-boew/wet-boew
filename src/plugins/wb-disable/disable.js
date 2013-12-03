@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Disable Event
  * @overview Event creates the active offer for users that have disabled the event.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -15,7 +15,7 @@
 var selector = "#wb-tphp",
 	$document = wb.doc,
 
-	/*
+	/**
 	 * createOffer runs once per plugin element on the page.
 	 * @method createOffer
 	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call

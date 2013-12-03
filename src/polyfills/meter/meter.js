@@ -1,5 +1,5 @@
-/*
- * @title WET-BOEW Progress polyfill
+/**
+ * @title WET-BOEW Meter polyfill
  * @overview The <meter> element displays a gauge. Based on code from https://gist.github.com/667320
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @nschonni
@@ -14,7 +14,7 @@
 var selector = "meter",
 	$document = wb.doc,
 
-	/*
+	/**
 	 * Init runs once per polyfill element on the page. There may be multiple elements.
 	 * It will run more than once if you don't remove the selector from the timer.
 	 * @method init
@@ -29,7 +29,7 @@ var selector = "meter",
 	},
 
 	// create polyfill
-	meter = function ( elm ) {
+	meter = function( elm ) {
 		var $elm = $( elm ),
 			min = parseFloat( $elm.attr( "min" ) || 0 ),
 			max = parseFloat( $elm.attr( "max" ) || 1 ),
