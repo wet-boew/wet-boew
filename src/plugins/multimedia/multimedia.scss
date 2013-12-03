@@ -166,13 +166,8 @@
 		@extend %pnl;
 		.wb-mm-tmln-crrnt, .wb-mm-tmln-ttl {
 			display: inline !important;
-			margin:0;
-		}
-		.wb-mm-tmln-crrnt {
-			float: left;
-		}
-		.wb-mm-tmln-ttl {
-			float:right;
+			margin-right: 0;
+			margin-left: 0;
 		}
 	}
 

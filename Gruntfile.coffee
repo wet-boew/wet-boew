@@ -468,7 +468,6 @@ module.exports = (grunt) ->
 				"box-model": false
 				"box-sizing": false
 				"compatible-vendor-prefixes": false
-				"display-property-grouping": false
 				"duplicate-background-images": false
 				# Can be turned off after https://github.com/dimsemenov/Magnific-Popup/pull/303 lands
 				"empty-rules": false
