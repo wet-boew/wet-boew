@@ -111,6 +111,7 @@ module.exports = (grunt) ->
 			"sprites"
 			"sass"
 			"autoprefixer"
+			"csslint:unmin"
 			"concat:css"
 			"cssmin"
 		]
@@ -129,6 +130,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Create unminified demos"
 		[
 			"copy:demos"
+			"csslint:demos"
 			"assemble:demos"
 		]
 	)
@@ -459,6 +461,49 @@ module.exports = (grunt) ->
 					dest: "dist/unmin/css/other/"
 					expand: true
 				]
+
+		csslint:
+			options:
+				"adjoining-classes": false
+				"box-model": false
+				"box-sizing": false
+				"compatible-vendor-prefixes": false
+				"display-property-grouping": false
+				"duplicate-background-images": false
+				"empty-rules": false
+				"fallback-colors": false
+				"font-sizes": false
+				"gradients": false
+				"headings": false
+				"ids": false
+				"important": false
+				"outline-none": false
+				"overqualified-elements": false
+				"qualified-headings": false
+				"regex-selectors": false
+				"text-indent": false
+				"unique-headings": false
+				"universal-selector": false
+				"unqualified-attributes": false
+				"zero-units": false
+
+			unmin:
+				options:
+					absoluteFilePathsForFormatters: true
+					formatters: [
+						id: "csslint-xml"
+						dest: "csslint-unmin.log"
+					]
+				src: "dist/unmin/css/*.css"
+
+			demos:
+				options:
+					absoluteFilePathsForFormatters: true
+					formatters: [
+						id: "csslint-xml"
+						dest: "csslint-demos.log"
+					]
+				src: "dist/unmin/demos/**/*.css"
 
 		# Minify
 		uglify:
@@ -905,6 +950,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-contrib-concat"
 	@loadNpmTasks "grunt-contrib-connect"
 	@loadNpmTasks "grunt-contrib-copy"
+	@loadNpmTasks "grunt-contrib-csslint"
 	@loadNpmTasks "grunt-contrib-cssmin"
 	@loadNpmTasks "grunt-contrib-imagemin"
 	@loadNpmTasks "grunt-contrib-jshint"
