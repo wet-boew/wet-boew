@@ -133,7 +133,7 @@ var selector = ".wb-feeds",
 		return $elm.empty().append( result );
 	};
 
-$document.on( "timerpoke.wb", selector, init );
+$document.on( "timerpoke.wb init.wb-feeds", selector, init );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );

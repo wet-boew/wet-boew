@@ -258,7 +258,7 @@ var selector = "input[type=date]",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb", selector, init );
+$document.on( "timerpoke.wb init.wb-datepicker", selector, init );
 
 $document.on( "click vclick touchstart focusin", "body", function( event ) {
 	var which = event.which,

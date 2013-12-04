@@ -42,7 +42,7 @@ var $document = wb.doc,
 		});
 	};
 
-$document.on( "timerpoke.wb ajax-fetched.wb", selector, function( event ) {
+$document.on( "timerpoke.wb init.wb-data-ajax ajax-fetched.wb", selector, function( event ) {
 	var eventTarget = event.target,
 		eventType = event.type,
 		ajaxTypes = [
@@ -66,9 +66,14 @@ $document.on( "timerpoke.wb ajax-fetched.wb", selector, function( event ) {
 			}
 		}
 
-		if ( eventType === "timerpoke" ) {
+		switch ( eventType ) {
+
+		case "timerpoke":
+		case "init":
 			init( $elm, ajaxType );
-		} else {
+			break;
+
+		default:
 
 			// ajax-fetched event
 			content = event.pointer.html();

@@ -78,7 +78,7 @@ var selector = "progress",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb", selector, init );
+$document.on( "timerpoke.wb init.wb-progress", selector, init );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );

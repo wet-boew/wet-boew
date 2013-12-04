@@ -167,12 +167,12 @@ var selector = ".wb-share",
 
 			$elm.append( $share );
 
-			$share.trigger( "timerpoke" );
+			$share.trigger( "init.wb-share" );
 		}
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb", selector, init );
+$document.on( "timerpoke.wb init.wb-share", selector, init );
 
 $document.on( "click vclick", "." + shareLink, function( event) {
 	var which = event.which;

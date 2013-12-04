@@ -17,6 +17,7 @@ var selector = ".wb-inview",
 	$elms = $( selector ),
 	$document = wb.doc,
 	$window = wb.win,
+	scrollEvent = "scroll.wb-inview",
 
 	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
@@ -29,7 +30,7 @@ var selector = ".wb-inview",
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 		wb.remove( selector );
 
-		$elm.trigger( "scroll.wb-inview" );
+		$elm.trigger( scrollEvent );
 	},
 
 	/**
@@ -86,7 +87,7 @@ var selector = ".wb-inview",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb scroll.wb-inview", selector, function( event ) {
+$document.on( "timerpoke.wb init.wb-inview " + scrollEvent, selector, function( event ) {
 	var eventTarget = event.target,
 		eventType = event.type,
 		$elm;
@@ -97,6 +98,7 @@ $document.on( "timerpoke.wb scroll.wb-inview", selector, function( event ) {
 
 		switch ( eventType ) {
 		case "timerpoke":
+		case "init":
 			init( $elm );
 			break;
 		case "scroll":
@@ -113,11 +115,11 @@ $document.on( "timerpoke.wb scroll.wb-inview", selector, function( event ) {
 });
 
 $window.on( "scroll scrollstop", function() {
-	$elms.trigger( "scroll.wb-inview" );
+	$elms.trigger( scrollEvent );
 });
 
 $document.on( "text-resize.wb window-resize-width.wb window-resize-height.wb", function() {
-	$elms.trigger( "scroll.wb-inview" );
+	$elms.trigger( scrollEvent );
 });
 
 // Add the timer poke to initialize the plugin

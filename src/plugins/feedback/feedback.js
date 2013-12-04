@@ -117,7 +117,7 @@ var selector = ".wb-fdbck",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb", selector, init );
+$document.on( "timerpoke.wb init.wb-fdbck", selector, init );
 
 // Show/hide form areas when certain form fields are changed
 $document.on( "keydown click change", "#fbrsn, #fbaxs, #fbcntc1, #fbcntc2", function( event ) {

@@ -28,7 +28,7 @@ var selector = "math",
 	};
 
 // Bind the init event of the plugin
-wb.doc.on( "timerpoke.wb", selector, init );
+wb.doc.on( "timerpoke.wb init.wb-math", selector, init );
 wb.add( selector );
 
 })( wb );

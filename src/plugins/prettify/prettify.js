@@ -118,7 +118,7 @@ var selector = ".wb-prettify",
 
 // Bind the plugin events
 $document
-	.on( "timerpoke.wb", selector, init )
+	.on( "timerpoke.wb init.wb-prettify", selector, init )
 	.on( "prettyprint.wb-prettify", prettyprint );
 
 // Add the timer poke to initialize the plugin
