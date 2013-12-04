@@ -106,7 +106,7 @@ describe( "Prettify test suite", function() {
 				.addClass("lang-sql")
 				.addClass("all-pre")
 				.addClass("linenums")
-				.trigger("timerpoke.wb");
+				.trigger( "init.wb-prettify" );
 			wb.doc.on( "prettyprint.wb-prettify", function() {
 				done();
 			});
@@ -137,12 +137,12 @@ describe( "Prettify test suite", function() {
 		before(function( done ) {
 
 			$( "body" ).append( "<pre class='test'>" );
-			$(".wb-prettify")
+			$( ".wb-prettify" )
 				.data({
 					allpre: true,
 					linenums: true
 				})
-				.trigger("timerpoke.wb");
+				.trigger( "init.wb-prettify" );
 			wb.doc.on( "prettyprint.wb-prettify", function() {
 				done();
 			});
