@@ -326,7 +326,7 @@ var selector = ".wb-menu",
 	};
 
 // Bind the events of the plugin
-$document.on( "timerpoke.wb select.wb-menu ajax-fetched.wb increment.wb-menu display.wb-menu", selector, function( event ) {
+$document.on( "timerpoke.wb init.wb-menu select.wb-menu ajax-fetched.wb increment.wb-menu display.wb-menu", selector, function( event ) {
 	var elm = event.target,
 		eventType = event.type,
 		$elm = $( elm );
@@ -345,6 +345,7 @@ $document.on( "timerpoke.wb select.wb-menu ajax-fetched.wb increment.wb-menu dis
 		break;
 
 	case "timerpoke":
+	case "init":
 
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === elm ) {

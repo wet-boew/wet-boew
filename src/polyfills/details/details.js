@@ -32,7 +32,7 @@ var selector = "summary",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb", selector, function( event ) {
+$document.on( "timerpoke.wb init.wb-details", selector, function( event ) {
 	init( event.currentTarget );
 
 	/*

@@ -80,7 +80,7 @@ var $document = wb.doc,
 		return dfd.promise();
 	};
 
-$document.on( "timerpoke.wb", selector, function( event ) {
+$document.on( "timerpoke.wb init.wb-country-content", selector, function( event ) {
 	var eventTarget = event.target;
 
 	// Filter out any events triggered by descendants

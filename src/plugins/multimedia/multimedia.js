@@ -398,7 +398,7 @@ youTubeEvents = function( event ) {
 	}
 };
 
-$document.on( "timerpoke.wb", selector, function() {
+$document.on( "timerpoke.wb init.wb-mltmd", selector, function() {
 	wb.remove( selector );
 
 	// Only initialize the i18nText once

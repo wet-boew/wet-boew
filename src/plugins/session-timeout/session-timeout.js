@@ -381,11 +381,12 @@ var selector = ".wb-session-timeout",
 	};
 
 // Bind the plugin events
-$document.on( "timerpoke.wb keepalive.wb-session-timeout inactivity.wb-session-timeout reset.wb-session-timeout", selector, function( event, settings ) {
+$document.on( "timerpoke.wb init.wb-session-timeout keepalive.wb-session-timeout inactivity.wb-session-timeout reset.wb-session-timeout", selector, function( event, settings ) {
 	var eventType = event.type;
 
 	switch ( eventType ) {
 	case "timerpoke":
+	case "init":
 		init( event );
 		break;
 

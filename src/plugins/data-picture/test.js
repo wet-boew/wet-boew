@@ -24,7 +24,7 @@ describe( "[data-picture] test suite", function() {
 		spy = sinon.spy( $.prototype, "trigger" );
 
 		// Trigger the plugin's initialization
-		$( "[data-picture]" ).trigger( "timerpoke.wb" );
+		$( "[data-picture]" ).trigger( "init.wb-data-picture" );
 	});
 
 	/*

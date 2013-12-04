@@ -298,13 +298,14 @@ var selector = "input[list]",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb keydown click vclick touchstart", selector, function( event ) {
+$document.on( "timerpoke.wb init.wb-datalist keydown click vclick touchstart", selector, function( event ) {
 	var input = event.target,
 		eventType = event.type,
 		which = event.which;
 
 	switch ( eventType ) {
 	case "timerpoke":
+	case "init":
 		init( event );
 		break;
 	case "keydown":

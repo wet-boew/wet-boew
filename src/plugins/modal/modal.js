@@ -117,7 +117,7 @@ var selector = ".wb-modal",
 
 // Bind the plugin events
 $document
-	.on( "timerpoke.wb", selector, init )
+	.on( "timerpoke.wb init.wb-modal", selector, init )
 	.on( "build.wb-modal show.wb-modal hide.wb-modal", function( event, settings ) {
 		var eventType = event.type;
 

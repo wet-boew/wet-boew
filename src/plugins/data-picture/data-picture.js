@@ -15,6 +15,7 @@
  */
 var selector = "[data-picture]",
 	$document = wb.doc,
+	picturefillEvent = "picturefill.wb-data-picture",
 
 	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
@@ -27,7 +28,7 @@ var selector = "[data-picture]",
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 		wb.remove( selector );
 
-		$elm.trigger( "picturefill.wb-data-picture" );
+		$elm.trigger( picturefillEvent );
 	},
 
 	/**
@@ -67,7 +68,7 @@ var selector = "[data-picture]",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb picturefill.wb-data-picture", selector, function( event ) {
+$document.on( "timerpoke.wb init.wb-data-picture " + picturefillEvent, selector, function( event ) {
 	var eventTarget = event.target,
 		eventType = event.type;
 
@@ -75,6 +76,7 @@ $document.on( "timerpoke.wb picturefill.wb-data-picture", selector, function( ev
 	if ( event.currentTarget === eventTarget ) {
 		switch ( eventType ) {
 		case "timerpoke":
+		case "init":
 			init( $( eventTarget ) );
 			break;
 		case "picturefill":
@@ -86,7 +88,7 @@ $document.on( "timerpoke.wb picturefill.wb-data-picture", selector, function( ev
 
 // Handles window resize so images can be updated as new media queries match
 $document.on( "text-resize.wb window-resize-width.wb window-resize-height.wb", function() {
-	$( selector ).trigger( "picturefill.wb-data-picture" );
+	$( selector ).trigger( picturefillEvent );
 });
 
 // Add the timer poke to initialize the plugin

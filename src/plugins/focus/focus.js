@@ -10,11 +10,12 @@
 var $document = wb.doc,
 	hash = wb.pageUrlParts.hash,
 	clickEvents = "click.wb-focus vclick.wb-focus",
+	setFocusEvent = "setfocus.wb",
 	linkSelector = "a[href]",
 	$linkTarget;
 
 // Bind the setfocus event
-$document.on( "setfocus.wb", function( event ) {
+$document.on( setFocusEvent, function( event ) {
 	var $elm = $( event.target );
 
 	// Set the tabindex to -1 (as needed) to ensure the element is focusable
@@ -31,7 +32,7 @@ $document.on( "setfocus.wb", function( event ) {
 // Set focus to the target of a deep link from a different page
 // (helps browsers that can't set the focus on their own)
 if ( hash && ( $linkTarget = $( hash ) ).length !== 0 ) {
-	$linkTarget.trigger( "setfocus.wb" );
+	$linkTarget.trigger( setFocusEvent );
 }
 
 // Helper for browsers that can't change keyboard and/or event focus on a same page link click
@@ -40,7 +41,7 @@ $document.on( clickEvents, linkSelector, function( event ) {
 
 	// Same page links only
 	if ( testHref.charAt( 0 ) === "#" && ( $linkTarget = $( testHref ) ).length !== 0 ) {
-		$linkTarget.trigger( "setfocus.wb" );
+		$linkTarget.trigger( setFocusEvent );
 	}
 });
 
