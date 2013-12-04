@@ -16,6 +16,9 @@
 var selector = ".wb-toggle",
 	$document = wb.doc,
 	$window = wb.win,
+	ariaEvent = "aria" + selector,
+	toggleEvent = "toggle" + selector,
+	toggledEvent = "toggled" + selector,
 	states = {},
 	defaults = {
 		stateOn: "on",
@@ -44,7 +47,7 @@ var selector = ".wb-toggle",
 			$link.data( "toggle", data );
 
 			// Initialize the aria-controls attribute of the link
-			$link.trigger( "aria.wb-toggle", data );
+			$link.trigger( ariaEvent, data );
 		}
 	},
 
@@ -110,7 +113,7 @@ var selector = ".wb-toggle",
 	click = function( event, link ) {
 		var $link = $( link );
 
-		$link.trigger( "toggle.wb-toggle", $link.data( "toggle" ) );
+		$link.trigger( toggleEvent, $link.data( "toggle" ) );
 		event.preventDefault();
 
 		// Assign focus to eventTarget
@@ -142,7 +145,7 @@ var selector = ".wb-toggle",
 			// Toggle all grouped elements to "off"
 			setState( $elmsGroup, dataGroup, data.stateOff );
 			$elmsGroup.wb( "toggle", data.stateOff, data.stateOn );
-			$elmsGroup.trigger( "toggled.wb-toggle", {
+			$elmsGroup.trigger( toggledEvent, {
 				isOn: false,
 				isTablist: isTablist,
 				elms: $elmsGroup
@@ -152,7 +155,7 @@ var selector = ".wb-toggle",
 		// Toggle all elements identified by data.selector to the requested state
 		setState( $elms, data, stateTo );
 		$elms.wb( "toggle", stateTo, stateFrom );
-		$elms.trigger( "toggled.wb-toggle", {
+		$elms.trigger( toggledEvent, {
 			isOn: isToggleOn,
 			isTablist: isTablist,
 			elms: $elms
@@ -299,7 +302,9 @@ var selector = ".wb-toggle",
 	};
 
 // Bind the plugin's events
-$document.on( "timerpoke.wb init.wb-toggle aria.wb-toggle toggle.wb-toggle toggled.wb-toggle click", selector, function( event, data ) {
+$document.on( "timerpoke.wb wb-init" + selector + " " + ariaEvent + " " + toggleEvent +
+	" " + toggledEvent + " click", selector, function( event, data ) {
+
 	var eventType = event.type;
 
 	switch ( eventType ) {
@@ -316,12 +321,12 @@ $document.on( "timerpoke.wb init.wb-toggle aria.wb-toggle toggle.wb-toggle toggl
 		setAria( event, data );
 		break;
 	case "timerpoke":
-	case "init":
+	case "wb-init":
 		init( event );
 		break;
 	}
 });
-$document.on( "toggled.wb-toggle", "details", toggleDetails );
+$document.on( toggledEvent, "details", toggleDetails );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );

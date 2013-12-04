@@ -22,6 +22,11 @@
 	initialized = false,
 	equalHeightClass = "wb-equalheight",
 	equalHeightOffClass = equalHeightClass + "-off",
+	initEvent = "wb-init" + selector,
+	shiftEvent = "shift" + selector,
+	ariaExpanded = "aria-expanded",
+	ariaHidden = "aria-hidden",
+	ariaSelected = "aria-selected",
 
 	// Includes "xsmallview" and "xxsmallview"
 	smallViewPattern = "xsmallview",
@@ -101,7 +106,7 @@
 				.addClass( "wb-toggle" )
 				.attr( "data-toggle", "{\"parent\": \"." + accordionClass +
 					"\", \"group\": \"details\"}" )
-				.trigger( "init.wb-toggle" );
+				.trigger( "wb-init.wb-toggle" );
 
 			for ( i = 0; i !== len; i += 1 ) {
 				$panel = $panels.eq( i );
@@ -119,8 +124,8 @@
 						$panel
 							.toggleClass( "open", !isOpen )
 							.attr({
-								"aria-expanded": !isOpen,
-								"aria-hidden": isOpen
+								ariaExpanded: !isOpen,
+								ariaHidden: isOpen
 							});
 					}
 				} else {
@@ -170,7 +175,7 @@
 			setting, delay;
 
 		if ( !dataDelay ) {
-			$elm.trigger( "init.wb-tabs" );
+			$elm.trigger( initEvent );
 			return false;
 		}
 
@@ -185,7 +190,7 @@
 
 		// Check if we need
 		if ( setting < delay ) {
-			$elm.trigger( "shift.wb-tabs" );
+			$elm.trigger( shiftEvent );
 			delay = 0;
 		}
 		$elm.data( "ctime", delay );
@@ -245,8 +250,8 @@
 			isActive = item.className.indexOf( "in" ) !== -1;
 
 			if ( !isDetails ) {
-				item.setAttribute( "aria-hidden", isActive ? "false" : "true" );
-				item.setAttribute( "aria-expanded", isActive ? "true" : "false" );
+				item.setAttribute( ariaHidden, isActive ? "false" : "true" );
+				item.setAttribute( ariaExpanded, isActive ? "true" : "false" );
 			}
 			item.setAttribute( "aria-labelledby", item.id + "-lnk" );
 		}
@@ -259,7 +264,7 @@
 			link = item.getElementsByTagName( "a" )[ 0 ];
 			link.tabIndex = isActive ? "0" : "-1";
 			link.setAttribute( "role", "tab" );
-			link.setAttribute( "aria-selected", isActive ? "true" : "false" );
+			link.setAttribute( ariaSelected, isActive ? "true" : "false" );
 			link.setAttribute( "aria-controls", link.getAttribute( "href" ).substring( 1 ) );
 		}
 		$tabList.attr( "aria-live", "off" );
@@ -273,16 +278,16 @@
 				.removeClass( "in" )
 				.addClass( "out" )
 				.attr({
-					"aria-hidden": "true",
-					"aria-expanded": "false"
+					ariaHidden: "true",
+					ariaExpanded: "false"
 				});
 
 		$next
 			.removeClass( "out" )
 			.addClass( "in" )
 			.attr({
-				"aria-hidden": "false",
-				"aria-expanded": "true"
+				ariaHidden: "false",
+				ariaExpanded: "true"
 			});
 			
 		$controls
@@ -290,13 +295,13 @@
 				.removeClass( "active" )
 				.children( "a" )
 					.attr({
-						"aria-selected": "false",
+						ariaSelected: "false",
 						tabindex: "-1"
 					});
 
 		$control
 			.attr({
-				"aria-selected": "true",
+				ariaSelected: "true",
 				tabindex: "0"
 			})
 			.parent()
@@ -349,7 +354,7 @@
 	 */
 	onCycle = function( $elm, shifto ) {
 		$elm.trigger({
-			type: "shift.wb-tabs",
+			type: shiftEvent,
 			shiftto: shifto
 		});
 	},
@@ -406,12 +411,12 @@
 				if ( !Modernizr.details ) {
 					$nonOpenDetails
 						.attr({
-							"aria-expanded": "false",
-							"aria-hidden": "true"
+							ariaExpanded: "false",
+							ariaHidden: "true"
 						});
 					$openDetails.attr({
-						"aria-expanded": "true",
-						"aria-hidden": "false"
+						ariaExpanded: "true",
+						ariaHidden: "false"
 					});
 				}
 			} else {
@@ -437,12 +442,12 @@
 							.trigger( "click" );
 			}
 
-			$tablist.attr( "aria-hidden", isSmallView );
+			$tablist.attr( ariaHidden, isSmallView );
 		}
 	};
 
  // Bind the init event of the plugin
- $document.on( "timerpoke.wb init.wb-tabs shift.wb-tabs", selector, function( event ) {
+ $document.on( "timerpoke.wb " + initEvent + " " + shiftEvent, selector, function( event ) {
 	var eventType = event.type,
 
 		// "this" is cached for all events to utilize
@@ -456,7 +461,7 @@
 	/*
 	 * Init
 	 */
-	case "init":
+	case "wb-init":
 		onInit( $elm );
 		break;
 
@@ -495,7 +500,7 @@
 			.attr( "data-ctime", 0 );
 
 		// Stop the slider from playing unless it is already stopped and the play button is activated
-		if ( $sldr.hasClass( "playing" ) || which < 37 ) {
+		if ( $sldr.hasClass( "playing" ) || ( which < 37 && className.indexOf( "plypause" ) !== -1 ) ) {
 			$plypause = $sldr.find( "a.plypause" );
 			$plypause.find( ".glyphicon" ).toggleClass( "glyphicon-play glyphicon-pause" );
 			$sldr.toggleClass( "playing" );

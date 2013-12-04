@@ -52,7 +52,7 @@ var selector = ".wb-fnote",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb init.wb-fnote", selector, init );
+$document.on( "timerpoke.wb wb-init.wb-fnote", selector, init );
 
 // Listen for footnote reference links that get clicked
 $document.on( "click vclick", "main :not(" + selector + ") sup a.fn-lnk", function( event ) {

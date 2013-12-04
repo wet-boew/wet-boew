@@ -102,11 +102,11 @@ describe( "Prettify test suite", function() {
 		before(function( done ) {
 
 			$( "body" ).append( "<pre class='test'>" );
-			$(".wb-prettify")
-				.addClass("lang-sql")
-				.addClass("all-pre")
-				.addClass("linenums")
-				.trigger( "init.wb-prettify" );
+			$( ".wb-prettify" )
+				.addClass( "lang-sql" )
+				.addClass( "all-pre" )
+				.addClass( "linenums" )
+				.trigger( "wb-init.wb-prettify" );
 			wb.doc.on( "prettyprint.wb-prettify", function() {
 				done();
 			});
@@ -142,7 +142,7 @@ describe( "Prettify test suite", function() {
 					allpre: true,
 					linenums: true
 				})
-				.trigger( "init.wb-prettify" );
+				.trigger( "wb-init.wb-prettify" );
 			wb.doc.on( "prettyprint.wb-prettify", function() {
 				done();
 			});

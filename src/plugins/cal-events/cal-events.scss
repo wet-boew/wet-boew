@@ -46,7 +46,7 @@ tbody {
 			}
 		}
 		a {
-			&.cal-event {
+			&.cal-evt {
 				@extend %events-calendar-color-fff-important;
 				background: #176ca7;
 			}

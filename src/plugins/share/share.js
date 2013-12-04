@@ -15,6 +15,7 @@
  */
 var selector = ".wb-share",
 	shareLink = "shr-lnk",
+	initEvent = "wb-init" + selector,
 	$document = wb.doc,
 	i18n, i18nText,
 
@@ -167,12 +168,12 @@ var selector = ".wb-share",
 
 			$elm.append( $share );
 
-			$share.trigger( "init.wb-share" );
+			$share.trigger( initEvent );
 		}
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb init.wb-share", selector, init );
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 $document.on( "click vclick", "." + shareLink, function( event) {
 	var which = event.which;

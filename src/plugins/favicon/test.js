@@ -114,7 +114,7 @@ describe( "Favicon test suite", function() {
 				sizes: "57x57",
 				path: "foo/",
 				filename: "bar"
-			}).trigger( "init.wb-favicon" );
+			}).trigger( "wb-init.wb-favicon" );
 
 		});
 

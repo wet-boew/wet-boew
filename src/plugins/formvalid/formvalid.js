@@ -258,7 +258,7 @@ var selector = ".wb-formvalid",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb init.wb-formvalid", selector, init );
+$document.on( "timerpoke.wb wb-init.wb-formvalid", selector, init );
 
 // Move the focus to the associated input when an error message link is clicked
 // and scroll to the top of the label or legend that contains the error

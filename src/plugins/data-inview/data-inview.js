@@ -87,7 +87,7 @@ var selector = ".wb-inview",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb init.wb-inview " + scrollEvent, selector, function( event ) {
+$document.on( "timerpoke.wb wb-init.wb-inview " + scrollEvent, selector, function( event ) {
 	var eventTarget = event.target,
 		eventType = event.type,
 		$elm;
@@ -98,7 +98,7 @@ $document.on( "timerpoke.wb init.wb-inview " + scrollEvent, selector, function( 
 
 		switch ( eventType ) {
 		case "timerpoke":
-		case "init":
+		case "wb-init":
 			init( $elm );
 			break;
 		case "scroll":
@@ -118,12 +118,11 @@ $window.on( "scroll scrollstop", function() {
 	$elms.trigger( scrollEvent );
 });
 
-$document.on( "text-resize.wb window-resize-width.wb window-resize-height.wb", function() {
+$document.on( "txt-rsz.wb win-rsz-width.wb win-rsz-height.wb", function() {
 	$elms.trigger( scrollEvent );
 });
 
 // Add the timer poke to initialize the plugin
-
 wb.add( selector );
 
 })( jQuery, window, wb );

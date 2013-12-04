@@ -84,7 +84,7 @@ var selector = ".wb-tables",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb init.wb-tables", selector, init );
+$document.on( "timerpoke.wb wb-init.wb-tables", selector, init );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );

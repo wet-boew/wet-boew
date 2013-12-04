@@ -9,7 +9,7 @@
 
 var $document = wb.doc,
 	hash = wb.pageUrlParts.hash,
-	clickEvents = "click.wb-focus vclick.wb-focus",
+	clickEvents = "click vclick",
 	setFocusEvent = "setfocus.wb",
 	linkSelector = "a[href]",
 	$linkTarget;

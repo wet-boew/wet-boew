@@ -13,15 +13,15 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var id = "wb-resize",
+var id = "wb-rsz",
 	selector = "#" + id,
 	$window = wb.win,
 	$document = wb.doc,
 	sizes = [],
 	events = [
-		"text-resize.wb",
-		"window-resize-width.wb",
-		"window-resize-height.wb"
+		"txt-rsz.wb",
+		"win-rsz-width.wb",
+		"win-rsz-height.wb"
 	],
 
 	// Breakpoint names and lower pixel limits

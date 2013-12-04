@@ -98,6 +98,7 @@ var selector = "input[type=date]",
 			maxDate = field.getAttribute( "max" ),
 			fromDateISO = wb.date.fromDateISO,
 			len = $days.length,
+
 			// $parent = $days.parent(),
 			focusDay = ( targetDay ? targetDay - 1 : 0 ),
 			lowLimit, highLimit, minDay, maxDay, index, day;
@@ -133,8 +134,8 @@ var selector = "input[type=date]",
 
 		// Reset selection state
 		$( days )
-			.removeClass( "datepicker-selected" )
-			.find( ".datepicker-selected-text" )
+			.removeClass( "picker-sel" )
+			.find( ".picker-sel-text" )
 				.detach();
 
 		// Get the date from the field
@@ -145,10 +146,10 @@ var selector = "input[type=date]",
 				cpntDate = new Date( date );
 				if ( cpntDate.getUTCFullYear() === year && cpntDate.getUTCMonth() === month ) {
 					$( days[ cpntDate.getUTCDate() - 1 ] )
-						.addClass( "datepicker-selected" )
+						.addClass( "picker-sel" )
 						.children( "a" )
 						.attr( "aria-selected", "true" )
-						.append( "<span class='wb-inv datepicker-selected-text'> [" +
+						.append( "<span class='wb-inv picker-sel-text'> [" +
 							i18nText.selected + "]</span>" );
 				}
 			}
@@ -258,7 +259,7 @@ var selector = "input[type=date]",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb init.wb-datepicker", selector, init );
+$document.on( "timerpoke.wb wb-init.wb-datepicker", selector, init );
 
 $document.on( "click vclick touchstart focusin", "body", function( event ) {
 	var which = event.which,
