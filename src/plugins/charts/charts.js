@@ -1260,7 +1260,7 @@ var wet_boew_charts,
 			
 			// Re-lunch the parsing
 			wb.doc.trigger( {
-				type: "pasiveparse.wb-table.wb",
+				type: "passiveparse.wb-parsing",
 				pointer: $( self )
 			} );
 			return;
@@ -1803,13 +1803,13 @@ var wet_boew_charts,
             ],
 			complete: function() {
 				// Let parse the table
-				$elm.trigger( "pasiveparse.wb-table.wb" );
+				$elm.trigger( "passiveparse.wb-parsing" );
 			}
 		});
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb parsecomplete.wb-table.wb", selector, function( event ) {
+$document.on( "timerpoke.wb init.wb-charts parsecomplete.wb-parsing", selector, function( event ) {
     var eventTarget = event.target,
         eventType = event.type,
         $elm;
@@ -1820,6 +1820,7 @@ $document.on( "timerpoke.wb parsecomplete.wb-table.wb", selector, function( even
 
         switch ( eventType ) {
         case "timerpoke":
+		case "init":
             init( $elm );
             break;
         case "parsecomplete":

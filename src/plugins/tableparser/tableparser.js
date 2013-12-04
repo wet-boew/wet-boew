@@ -18,7 +18,7 @@
 var selector = ".wb-parsing",
     $document = wb.doc,
 	warningEvent = warningEvent,
-	passiveParseEvent = passiveParseEvent,
+	passiveParseEvent = "passiveparse.wb-parsing",
 	errorEvent = errorEvent,
 	
 	/*
@@ -2072,12 +2072,12 @@ var selector = ".wb-parsing",
 		groupZero.colgrouplevel = groupZero.colgrp;
 		delete groupZero.colgrp;
 
-		$obj.trigger( "parsecomplete.wb-table" );
+		$obj.trigger( "parsecomplete.wb-parsing" );
 					
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb " + passiveParseEvent, selector, function( event ) {
+$document.on( "timerpoke.wb init.wb-parsing " + passiveParseEvent, selector, function( event ) {
     var eventTarget = event.target,
         eventType = event.type,
         $elm;
@@ -2088,6 +2088,7 @@ $document.on( "timerpoke.wb " + passiveParseEvent, selector, function( event ) {
 
         switch ( eventType ) {
         case "timerpoke":
+		case "init":
             init( $elm );
             break;
         }
