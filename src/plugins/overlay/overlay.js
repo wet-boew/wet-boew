@@ -88,7 +88,7 @@ var selector = ".wb-overlay",
 		}
 	};
 
-$document.on( "timerpoke.wb init.wb-overlay keydown open.wb-overlay close.wb-overlay", selector, function( event ) {
+$document.on( "timerpoke.wb wb-init.wb-overlay keydown open.wb-overlay close.wb-overlay", selector, function( event ) {
 	var eventType = event.type,
 		which = event.which,
 		overlayId = event.currentTarget.id,
@@ -96,7 +96,7 @@ $document.on( "timerpoke.wb init.wb-overlay keydown open.wb-overlay close.wb-ove
 
 	switch ( eventType ) {
 	case "timerpoke":
-	case "init":
+	case "wb-init":
 		init( event );
 		break;
 

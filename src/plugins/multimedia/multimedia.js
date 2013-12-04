@@ -14,6 +14,13 @@ var $document = wb.doc,
 	seed = 0,
 	templatetriggered = false,
 	i18n, i18nText,
+	captionsLoadedEvent = "ccloaded" + selector,
+	captionsLoadFailedEvent = "ccloadfail" + selector,
+	captionsVisibleChangeEvent = "ccvischange" + selector,
+	renderUIEvent = "renderui" + selector,
+	initializedEvent = "inited" + selector,
+	fallbackEvent = "fallback" + selector,
+	youtubeEvent = "youtube" + selector,
 
 /* helper functions*/
 
@@ -175,8 +182,8 @@ parseXml = function( content ) {
  * @description Loads captions from an external source (HTML embed or TTML)
  * @param {Object} elm The jQuery object for the multimedia player loading the captions
  * @param {String} url The url for the captions resource to load
- * @fires captionsloaded.multimedia.wb
- * @fires captionsloadfailed.multimedia.wb
+ * @fires ccloaded.wb-mltmd
+ * @fires ccloadfail.wb-mltmd
  */
 loadCaptionsExternal = function( elm, url ) {
 	$.ajax({
@@ -188,7 +195,7 @@ loadCaptionsExternal = function( elm, url ) {
 		},
 		success: function( data ) {
 			elm.trigger({
-				type: "captionsloaded.multimedia.wb",
+				type: captionsLoadedEvent,
 				captions: data.indexOf( "<html" ) !== -1 ?
 					parseHtml( $( data ) ) :
 					parseXml( $( data ) )
@@ -196,7 +203,7 @@ loadCaptionsExternal = function( elm, url ) {
 		},
 		error: function( response, textStatus, errorThrown ) {
 			elm.trigger({
-				type: "captionsloadfailed.multimedia.wb",
+				type: captionsLoadFailedEvent,
 				error: errorThrown
 			});
 		}
@@ -208,11 +215,11 @@ loadCaptionsExternal = function( elm, url ) {
  * @description Loads same page captions emebed in HTML
  * @param {Object} elm The jQuery object for the multimedia player loading the captions
  * @param {Object} obj The jQUery object containing the captions
- * @fires captionsloaded.multimedia.wb
+ * @fires ccloaded.wb-mltmd
  */
 loadCaptionsInternal = function( elm, obj ) {
 	elm.trigger({
-		type: "captionsloaded.multimedia.wb",
+		type: captionsLoadedEvent,
 		captions: parseHtml( obj )
 	});
 },
@@ -281,7 +288,7 @@ playerApi = function( fn, args ) {
 		} else {
 			captionsArea.removeClass( "on" );
 		}
-		$this.trigger( "captionsvisiblechange.multimedia.wb" );
+		$this.trigger( captionsVisibleChangeEvent );
 		break;
 	case "setPreviousTime":
 		this.object.previousTime = args;
@@ -398,7 +405,7 @@ youTubeEvents = function( event ) {
 	}
 };
 
-$document.on( "timerpoke.wb init.wb-mltmd", selector, function() {
+$document.on( "timerpoke.wb wb-init" + selector, selector, function() {
 	wb.remove( selector );
 
 	// Only initialize the i18nText once
@@ -435,11 +442,11 @@ $document.on( "ajax-fetched.wb", selector, function( event ) {
 
 	$this.data( "template", $template );
 	$this.trigger({
-		type: "init.multimedia.wb"
+		type: initializedEvent
 	});
 });
 
-$document.on( "init.multimedia.wb", selector, function() {
+$document.on( initializedEvent, selector, function() {
 	var $this = $( this ),
 		$media = $this.children( "audio, video" ).eq( 0 ),
 		$captions = $media.children( "track[kind='captions']" ) ? $media.children( "track[kind='captions']" ).attr( "src" ) : undef,
@@ -483,7 +490,7 @@ $document.on( "init.multimedia.wb", selector, function() {
 
 			// lets bind youtubes global function
 			window.onYouTubeIframeAPIReady = function() {
-				  $this.trigger( "youtube.multimedia.wb" );
+				  $this.trigger( youtubeEvent );
 			};
 		}
 
@@ -493,13 +500,13 @@ $document.on( "init.multimedia.wb", selector, function() {
 		} );
 
 	} else if ( media.error === null && media.currentSrc !== "" && media.currentSrc !== undef ) {
-		$this.trigger( type + ".multimedia.wb" );
+		$this.trigger( type + selector );
 	} else {
-		$this.trigger( "fallback.multimedia.wb" );
+		$this.trigger( fallbackEvent );
 	}
 });
 
-$document.on( "fallback.multimedia.wb", selector, function() {
+$document.on( fallbackEvent, selector, function() {
 	var ref = expand( this ),
 		$this = ref[ 0 ],
 		$data = ref[ 1 ],
@@ -533,13 +540,13 @@ $document.on( "fallback.multimedia.wb", selector, function() {
 		$data.poster + "</object>" );
 	$this.data( "properties", $data );
 
-	$this.trigger( "renderui.multimedia.wb" );
+	$this.trigger( renderUIEvent );
 });
 
 /*
  *  Youtube Video mode Event
  */
-$document.on( "youtube.multimedia.wb", selector, function() {
+$document.on( youtubeEvent, selector, function() {
 	var ref = expand( this ),
 		ytPlayer,
 		$this = ref[ 0 ],
@@ -572,13 +579,13 @@ $document.on( "youtube.multimedia.wb", selector, function() {
 	$data.ytPlayer = ytPlayer;
 
 	$this.data( "properties", $data );
-	$this.trigger( "renderui.multimedia.wb", "video" );
+	$this.trigger( renderUIEvent, "video" );
 });
 
 /*
  *  Native Video mode Event
  */
-$document.on( "video.multimedia.wb", selector, function() {
+$document.on( "video.wb-mltmd", selector, function() {
 	var ref = expand( this ),
 		$this = ref[ 0 ],
 		$data = ref[ 1 ];
@@ -589,13 +596,13 @@ $document.on( "video.multimedia.wb", selector, function() {
 
 	$this.data( "properties", $data );
 
-	$this.trigger( "renderui.multimedia.wb", "video" );
+	$this.trigger( renderUIEvent, "video" );
 });
 
 /*
  *  Native Audio mode Event
  */
-$document.on( "audio.multimedia.wb", selector, function() {
+$document.on( "audio.wb-mltmd", selector, function() {
 	var ref = expand (this ),
 		$this = ref[ 0 ],
 		$data = ref[ 1 ];
@@ -604,10 +611,10 @@ $document.on( "audio.multimedia.wb", selector, function() {
 
 	$this.data( "properties", $data );
 
-	$this.trigger( "renderui.multimedia.wb", "audio" );
+	$this.trigger( renderUIEvent, "audio" );
 });
 
-$document.on( "renderui.multimedia.wb", selector, function( event, type ) {
+$document.on( renderUIEvent, selector, function( event, type ) {
 	var ref = expand( this ),
 		$this = ref[ 0 ],
 		$data = ref[ 1 ],
@@ -627,7 +634,10 @@ $document.on( "renderui.multimedia.wb", selector, function( event, type ) {
 	$data.player = $player.is( "object" ) ? $player.children( ":first-child" ) : $player.load();
 
 	// Create an adapter for the event management
-	$data.player.on( "durationchange play pause ended volumechange timeupdate captionsloaded captionsloadfailed captionsvisiblechange waiting canplay progress", function( event ) {
+	$data.player.on( "durationchange play pause ended volumechange timeupdate " +
+		captionsLoadedEvent + " " + captionsLoadFailedEvent + " " +
+		captionsVisibleChangeEvent + " waiting canplay progress", function( event ) {
+
 		$this.trigger( event );
 	});
 
@@ -663,12 +673,12 @@ $document.on( "click", selector, function( event ) {
 	// from the child span not the parent button, forcing us to have to check for both elements
 	// JSPerf for multiple class matching http://jsperf.com/hasclass-vs-is-stackoverflow/7
 	if ( className.match( /playpause|-play|-pause|wb-mm-overlay/ ) || $target.is( "object" ) ) {
-		this.player( "getPaused" ) ? this.player( "play") : this.player( "pause");
+		this.player( "getPaused" ) ? this.player( "play" ) : this.player( "pause" );
 	} else if ( className.match( /\bcc\b|-subtitles/ )  ) {
-		this.player( "setCaptionsVisible", !this.player( "getCaptionsVisible") );
+		this.player( "setCaptionsVisible", !this.player( "getCaptionsVisible" ) );
 	} else if ( className.match( /\bmute\b|-volume-(up|off)/ ) ) {
 		this.player( "setMuted", !this.player( "getMuted" ) );
-	} else if ( $target.is( "progress" ) || $target.hasClass( "wb-progress-inner") || $target.hasClass( "wb-progress-outer" ) ) {
+	} else if ( $target.is( "progress" ) || $target.hasClass( "wb-progress-inner" ) || $target.hasClass( "wb-progress-outer" ) ) {
 		this.player( "setCurrentTime", this.player( "getDuration" ) * ( ( event.pageX - $target.offset().left ) / $target.width() ) );
 	} else if ( className.match( /\brewind\b|-backwards/ ) ) {
 		this.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05);
@@ -716,12 +726,16 @@ $document.on( "keydown", selector, function( event ) {
 
 $document.on( "keyup", selector, function( event ) {
 	if ( event.which === 32 ) {
-		//Allows the spacebar to be used for play/pause without double triggering
+		// Allows the spacebar to be used for play/pause without double triggering
 		return false;
 	}
 });
 
-$document.on( "durationchange play pause ended volumechange timeupdate captionsloaded.multimedia.wb captionsloadfailed.multimedia.wb captionsvisiblechange waiting canplay progress", selector, function( event ) {
+$document.on( "durationchange play pause ended volumechange timeupdate " +
+	captionsLoadedEvent + " " + captionsLoadFailedEvent + " " +
+	captionsVisibleChangeEvent +
+	" waiting canplay progress", selector, function( event ) {
+
 	var eventTarget = event.currentTarget,
 		eventType = event.type,
 		$this = $( eventTarget ),
@@ -806,11 +820,11 @@ $document.on( "durationchange play pause ended volumechange timeupdate captionsl
 			.text( formatTime( eventTarget.player( "getDuration" ) ) );
 		break;
 
-	case "captionsloaded":
+	case "ccloaded":
 		$.data( eventTarget, "captions", event.captions );
 		break;
 
-	case "captionsloadfailed":
+	case "ccloadfail":
 		$this.find( ".wb-mm-cc" )
 			.append( "<p class='errmsg'><span>" + i18nText.cc_error + "</span></p>" )
 			.end()
@@ -818,7 +832,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate captionsl
 			.attr( "disabled", "" );
 		break;
 
-	case "captionsvisiblechange":
+	case "ccvischange":
 		// TODO: Think can be optimized for the minifier with some ternarie
 		button = $this.find( ".cc" );
 		if ( eventTarget.player( "getCaptionsVisible" ) ) {

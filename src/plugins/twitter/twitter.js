@@ -37,7 +37,7 @@ var selector = ".wb-twitter",
 		}
 	};
 
-$document.on( "timerpoke.wb init.wb-twitter", selector, init );
+$document.on( "timerpoke.wb wb-init" + selector, selector, init );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );

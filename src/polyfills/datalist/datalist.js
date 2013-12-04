@@ -14,6 +14,9 @@
 var selector = "input[list]",
 	$document = wb.doc,
 	initialized = false,
+	ariaActiveDescendent = "aria-activedescendent",
+	ariaExpanded = "aria-expanded",
+	ariaHidden = "aria-hidden",
 
 	/**
 	 * Init runs once per polyfill element on the page. There may be multiple elements.
@@ -42,7 +45,7 @@ var selector = "input[list]",
 			input.setAttribute( "aria-haspopup", "true" );
 			input.setAttribute( "aria-autocomplete", "list" );
 			input.setAttribute( "aria-owns", "wb-al-" + inputId );
-			input.setAttribute( "aria-activedescendent", "" );
+			input.setAttribute( ariaActiveDescendent, "" );
 
 			autolist += "<ul id='wb-al-" + input.id + "-src' class='wb-al-src hide' aria-hidden='true'>";
 			for ( i = 0; i !== len; i += 1 ) {
@@ -52,7 +55,10 @@ var selector = "input[list]",
 				if ( !value ) {
 					value = option.innerHTML;
 				}
-				autolist += "<li id='al-opt-" + inputId + "-" + i + "'><a href='javascript:;' tabindex='-1'><span class='al-val'>" + ( !value ? "" : value ) + "</span><span class='al-lbl'>" + ( !label || label === value ? "" : label ) + "</span></a></li>";
+				autolist += "<li id='al-opt-" + inputId + "-" + i +
+					"'><a href='javascript:;' tabindex='-1'><span class='al-val'>" +
+					( !value ? "" : value ) + "</span><span class='al-lbl'>" +
+					( !label || label === value ? "" : label ) + "</span></a></li>";
 			}
 			$input.after( autolist + "</ul>" );
 
@@ -87,11 +93,11 @@ var selector = "input[list]",
 
 		if ( $options.length !== 0 ) {
 			correctWidth( input );
-			$autolist.removeClass( "hide" ).attr( "aria-hidden", "false" );
-			input.setAttribute( "aria-expanded", "true" );
+			$autolist.removeClass( "hide" ).attr( ariaHidden, "false" );
+			input.setAttribute( ariaExpanded, "true" );
 		} else {
-			$autolist.addClass( "hide" ).attr( "aria-hidden", "true" );
-			input.setAttribute( "aria-expanded", "false" );
+			$autolist.addClass( "hide" ).attr( ariaHidden, "true" );
+			input.setAttribute( ariaExpanded, "false" );
 		}
 	},
 
@@ -105,9 +111,9 @@ var selector = "input[list]",
 
 		_autolist.className += " hide";
 		_autolist.innerHTML = "";
-		_autolist.setAttribute( "aria-hidden", "true" );
-		input.setAttribute( "aria-expanded", "false" );
-		input.setAttribute( "aria-activedescendent", "" );
+		_autolist.setAttribute( ariaHidden, "true" );
+		input.setAttribute( ariaExpanded, "false" );
+		input.setAttribute( ariaActiveDescendent, "" );
 	},
 
 	/**
@@ -155,7 +161,7 @@ var selector = "input[list]",
 			}
 
 		// Up / down arrow
-		} else if ( ( which === 38 || which === 40) && input.getAttribute( "aria-activedescendent" ) === "" ) {
+		} else if ( ( which === 38 || which === 40) && input.getAttribute( ariaActiveDescendent ) === "" ) {
 			if ( _alHide ) {
 				showOptions( input );
 			}
@@ -163,7 +169,7 @@ var selector = "input[list]",
 			options = _autolist.getElementsByTagName( "a" );
 			dest = options[ ( which === 38 ? options.length - 1 : 0 ) ];
 
-			input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
+			input.setAttribute( ariaActiveDescendent, dest.parentNode.getAttribute( "id" ) );
 
 			// Assign focus to dest
 			$( dest ).trigger( "setfocus.wb" );
@@ -261,7 +267,7 @@ var selector = "input[list]",
 			}
 			dest = dest.getElementsByTagName( "a" )[ 0 ];
 
-			input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
+			input.setAttribute( ariaActiveDescendent, dest.parentNode.getAttribute( "id" ) );
 			$( dest ).trigger( "setfocus.wb" );
 
 			return false;
@@ -298,14 +304,14 @@ var selector = "input[list]",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb init.wb-datalist keydown click vclick touchstart", selector, function( event ) {
+$document.on( "timerpoke.wb wb-init.wb-datalist keydown click vclick touchstart", selector, function( event ) {
 	var input = event.target,
 		eventType = event.type,
 		which = event.which;
 
 	switch ( eventType ) {
 	case "timerpoke":
-	case "init":
+	case "wb-init":
 		init( event );
 		break;
 	case "keydown":
@@ -360,7 +366,7 @@ $document.on( "keydown click vclick touchstart", ".wb-al a, .wb-al span", functi
 });
 
 // Handle focus and resize events
-$document.on( "focusin text-resize.wb window-resize-width.wb window-resize-height.wb", function( event ) {
+$document.on( "focusin txt-rsz.wb win-rsz-width.wb win-rsz-height.wb", function( event ) {
 	var focusEvent = ( event.type === "focusin" ),
 		eventTarget = event.target,
 		eventTargetId = ( eventTarget ? eventTarget.id : null ),
@@ -374,7 +380,10 @@ $document.on( "focusin text-resize.wb window-resize-width.wb window-resize-heigh
 			input = inputs[ i ];
 			if ( focusEvent ) {
 				_autolist = input.nextSibling;
-				if ( _autolist.className.indexOf( "hide" ) === -1 && eventTargetId !== input.id && eventTargetId !== _autolist.id && !$.contains( _autolist, eventTarget ) ) {
+				if ( _autolist.className.indexOf( "hide" ) === -1 &&
+					eventTargetId !== input.id && eventTargetId !== _autolist.id &&
+					!$.contains( _autolist, eventTarget ) ) {
+
 					closeOptions( input );
 				}
 			} else {

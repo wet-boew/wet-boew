@@ -13,9 +13,14 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-session-timeout",
+var pluginName = "wb-session-timeout",
+	selector = "." + pluginName,
 	$document = wb.doc,
 	i18n, i18nText,
+	resetEvent = "reset" + selector,
+	keepaliveEvent = "keepalive" + selector,
+	inactivityEvent = "inactivity" + selector,
+	confirmSelector = pluginName + "-confirm",
 
 	/*
 	 * Plugin users can override these defaults by setting attributes on the html elements that the
@@ -69,10 +74,10 @@ var selector = ".wb-session-timeout",
 			// Setup the modal dialog behaviour
 			$elm
 				.addClass( "wb-modal" )
-				.trigger( "init.wb-modal" );
+				.trigger( "wb-init.wb-modal" );
 			$document.one( "ready.wb-modal", function() {
 				// Initialize the keepalive and inactive timeouts of the plugin
-				$elm.trigger( "reset.wb-session-timeout", settings );
+				$elm.trigger( resetEvent, settings );
 
 				// Setup the refresh on click behaviour
 				initRefreshOnClick( $elm, settings );
@@ -94,8 +99,8 @@ var selector = ".wb-session-timeout",
 					currentTime = getCurrentTime();
 				if ( !lastActivity || ( currentTime - lastActivity ) > settings.refreshLimit ) {
 					$elm
-						.trigger( "reset.wb-session-timeout", settings )
-						.trigger( "keepalive.wb-session-timeout", settings );
+						.trigger( resetEvent, settings )
+						.trigger( keepaliveEvent, settings );
 				}
 				$elm.data( "lastActivity", currentTime );
 			});
@@ -115,12 +120,14 @@ var selector = ".wb-session-timeout",
 			$.post( settings.refreshCallbackUrl, function( response ) {
 				// Session is valid
 				if ( response && response.replace( /\s/g, "" ) === "true" ) {
-					$elm.trigger( "reset.wb-session-timeout", settings );
+					$elm.trigger( resetEvent, settings );
 
 				// Session has timed out - let the user know they need to sign in again
 				} else {
 					building = $.Deferred();
-					$buttonSignin = $( "<button type='button' class='wb-session-timeout-confirm btn btn-primary'>" + i18nText.buttonSignin + "</button>" );
+					$buttonSignin = $( "<button type='button' class='" +
+						confirmSelector + " btn btn-primary'>" +
+						i18nText.buttonSignin + "</button>" );
 					$buttonSignin.data( "logouturl", settings.logouturl );
 
 					// Build the modal dialog
@@ -132,8 +139,8 @@ var selector = ".wb-session-timeout",
 
 					building.done( function( $modal ) {
 						// End the inactivity timeouts since the session is already kaput
-						clearTimeout( $elm.data( "inactivity.wb-session-timeout" ) );
-						clearTimeout( $elm.data( "keepalive.wb-session-timeout" ) );
+						clearTimeout( $elm.data( inactivityEvent ) );
+						clearTimeout( $elm.data( keepaliveEvent ) );
 
 						// Let the user know their session is dead
 						setTimeout(function() {
@@ -164,14 +171,16 @@ var selector = ".wb-session-timeout",
 			timeoutBegin = i18nText.timeoutBegin
 				.replace( "#min#", "<span class='min'>" + time.minutes + "</span>" )
 				.replace( "#sec#", "<span class='sec'>" + time.seconds + "</span>" ),
-			$modal = $( "#wb-session-modal" );
+			$modal = $( "#wb-session-modal" ),
+			buttonStart = "<button type='button' class='",
+			buttonEnd = "</button>";
 
 		// Modal does not exists: build it
 		if ( $modal.length === 0 ) {
-			$buttonContinue = $( "<button type='button' class='wb-session-timeout-confirm btn btn-primary'>" +
-				i18nText.buttonContinue + "</button>" );
-			$buttonEnd = $( "<button type='button' class='wb-session-timeout-confirm btn btn-default'>" +
-				i18nText.buttonEnd + "</button>" );
+			$buttonContinue = $( buttonStart + confirmSelector + " btn btn-primary'>" +
+				i18nText.buttonContinue + buttonEnd );
+			$buttonEnd = $( buttonStart + confirmSelector + " btn btn-default'>" +
+				i18nText.buttonEnd + buttonEnd );
 
 			// Build the modal
 			$document.trigger( "build.wb-modal", {
@@ -252,9 +261,9 @@ var selector = ".wb-session-timeout",
 	reset = function( event, settings ) {
 		var $elm = $( event.target );
 
-		initEventTimeout( $elm, "inactivity.wb-session-timeout", settings.inactivity, settings );
+		initEventTimeout( $elm, inactivityEvent, settings.inactivity, settings );
 		if ( settings.refreshCallbackUrl !== null ) {
-			initEventTimeout( $elm, "keepalive.wb-session-timeout", settings.sessionalive, settings );
+			initEventTimeout( $elm, keepaliveEvent, settings.sessionalive, settings );
 		}
 	},
 
@@ -274,8 +283,8 @@ var selector = ".wb-session-timeout",
 		// User wants their session maintained
 		if ( settings.start !== undefined && ( getCurrentTime() - settings.start ) <= settings.reactionTime ) {
 			$( selector )
-				.trigger( "reset.wb-session-timeout", settings )
-				.trigger( "keepalive.wb-session-timeout", settings );
+				.trigger( resetEvent, settings )
+				.trigger( keepaliveEvent, settings );
 
 		// Negative confirmation or the user took too long; logout
 		} else {
@@ -384,12 +393,14 @@ var selector = ".wb-session-timeout",
 	};
 
 // Bind the plugin events
-$document.on( "timerpoke.wb init.wb-session-timeout keepalive.wb-session-timeout inactivity.wb-session-timeout reset.wb-session-timeout", selector, function( event, settings ) {
+$document.on( "timerpoke.wb wb-init" + selector + " " + keepaliveEvent + " " +
+	inactivityEvent + " " + resetEvent, selector, function( event, settings ) {
+
 	var eventType = event.type;
 
 	switch ( eventType ) {
 	case "timerpoke":
-	case "init":
+	case "wb-init":
 		init( event );
 		break;
 
@@ -407,7 +418,7 @@ $document.on( "timerpoke.wb init.wb-session-timeout keepalive.wb-session-timeout
 	}
 });
 
-$document.on( "click", ".wb-session-timeout-confirm", confirm );
+$document.on( "click", "." + confirmSelector, confirm );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );

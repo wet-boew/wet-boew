@@ -17,6 +17,10 @@
 var selector = ".wb-menu",
 	$document = wb.doc,
 	breadcrumb = document.getElementById( "wb-bc" ),
+	selectEvent = "sel.wb-menu",
+	incrementEvent = "inc.wb-menu",
+	displayEvent = "disp.wb-menu",
+	navCurrentEvent = "navcurr.wb",
 
 	// Used for half second delay on showing/hiding menus because of mouse hover
 	hoverDelay = 500,
@@ -65,8 +69,8 @@ var selector = ".wb-menu",
 		} else {
 
 			// Trigger the navcurrent plugin
-			$elm.trigger( "navcurrent.wb", breadcrumb );
-			$( "#wb-sec" ).trigger( "navcurrent.wb", breadcrumb );
+			$elm.trigger( navCurrentEvent, breadcrumb );
+			$( "#wb-sec" ).trigger( navCurrentEvent, breadcrumb );
 		}
 	},
 
@@ -169,7 +173,7 @@ var selector = ".wb-menu",
 		});
 
 		// Trigger the navcurrent plugin
-		$elm.trigger( "navcurrent.wb", breadcrumb );
+		$elm.trigger( navCurrentEvent, breadcrumb );
 	},
 
 	/**
@@ -198,7 +202,7 @@ var selector = ".wb-menu",
 			index = next >= $links.length ? 0 : next < 0 ? $links.length - 1 : next;
 
 		$elm.trigger({
-			type: "select.wb-menu",
+			type: selectEvent,
 			goTo: $links.eq( index )
 		});
 	},
@@ -269,7 +273,7 @@ var selector = ".wb-menu",
 			clearTimeout( globalTimeout[ $container.attr( "id" ) ] );
 
 			$container.trigger({
-				type: "display.wb-menu",
+				type: displayEvent,
 				ident: $elm.parent(),
 				cancelDelay: event.type === "focusin"
 			});
@@ -315,7 +319,7 @@ var selector = ".wb-menu",
 			link = links[ i ];
 			if ( link.innerHTML.charAt( 0 ) === keyChar ) {
 				$container.trigger({
-					type: "select.wb-menu",
+					type: selectEvent,
 					goTo: $( link )
 				});
 				return true;
@@ -326,7 +330,7 @@ var selector = ".wb-menu",
 	};
 
 // Bind the events of the plugin
-$document.on( "timerpoke.wb init.wb-menu select.wb-menu ajax-fetched.wb increment.wb-menu display.wb-menu", selector, function( event ) {
+$document.on( "timerpoke.wb wb-init.wb-menu " + selectEvent + " ajax-fetched.wb " + incrementEvent + " " + displayEvent, selector, function( event ) {
 	var elm = event.target,
 		eventType = event.type,
 		$elm = $( elm );
@@ -340,7 +344,7 @@ $document.on( "timerpoke.wb init.wb-menu select.wb-menu ajax-fetched.wb incremen
 		}
 		return false;
 
-	case "select":
+	case "sel":
 		onSelect( event );
 		break;
 
@@ -353,11 +357,11 @@ $document.on( "timerpoke.wb init.wb-menu select.wb-menu ajax-fetched.wb incremen
 		}
 		break;
 
-	case "increment":
+	case "inc":
 		onIncrement( $elm, event );
 		break;
 
-	case "display":
+	case "disp":
 		if ( event.cancelDelay ) {
 			onDisplay( $elm, event );
 		} else {
@@ -410,14 +414,14 @@ $document.on( "keydown", selector + " .item", function( event ) {
 			// Open the submenu if it is not already open
 			if ( !$subMenu.hasClass( "open" ) ) {
 				$container.trigger({
-					type: "display.wb-menu",
+					type: displayEvent,
 					ident: $parent,
 					cancelDelay: true
 				});
 			}
 
 			$container.trigger({
-				type: "select.wb-menu",
+				type: selectEvent,
 				goTo: $subMenu.find( "a" ).first()
 			});
 		}
@@ -434,7 +438,7 @@ $document.on( "keydown", selector + " .item", function( event ) {
 	case 39:
 		event.preventDefault();
 		$container.trigger({
-			type: "increment.wb-menu",
+			type: incrementEvent,
 			cnode: $menu,
 			increment: ( which === 37 ? -1 : 1 ),
 			current: $menu.index( $elm )
@@ -476,7 +480,7 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 	case 27:
 		event.preventDefault();
 		$container.trigger({
-			type: "select.wb-menu",
+			type: selectEvent,
 			goTo: $menu.filter( selector ),
 			special: "reset"
 		});
@@ -487,7 +491,7 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 	case 39:
 		event.preventDefault();
 		$container.trigger({
-			type: "increment.wb-menu",
+			type: incrementEvent,
 			cnode: $menu,
 			increment: ( which === 37 ? -1 : 1 ),
 			current: $menu.index( $menu.filter( selector ) )
@@ -499,7 +503,7 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 	case 40:
 		event.preventDefault();
 		$container.trigger({
-			type: "increment.wb-menu",
+			type: incrementEvent,
 			cnode: $links,
 			increment: ( which === 38 ? -1 : 1 ),
 			current: $links.index( $elm )

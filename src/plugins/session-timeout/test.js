@@ -186,7 +186,7 @@ describe( "Session Timeout test suite", function() {
 				.on( "reset.wb-session-timeout", function() {
 					done();
 				})
-				.trigger( "init.wb-session-timeout" );
+				.trigger( "wb-init.wb-session-timeout" );
 		});
 
 		it( "should trigger keepalive.wb-session-timeout after 5000ms", function() {

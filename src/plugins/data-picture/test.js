@@ -24,7 +24,7 @@ describe( "[data-picture] test suite", function() {
 		spy = sinon.spy( $.prototype, "trigger" );
 
 		// Trigger the plugin's initialization
-		$( "[data-picture]" ).trigger( "init.wb-data-picture" );
+		$( "[data-picture]" ).trigger( "wb-init.wb-data-pic" );
 	});
 
 	/*
@@ -43,8 +43,8 @@ describe( "[data-picture] test suite", function() {
 	 */
 	describe( "init events", function() {
 
-		it( "should have a picturefill.wb-data-picture event", function() {
-			expect( spy.calledWith( "picturefill.wb-data-picture" ) ).to.equal( true );
+		it( "should have a picfill.wb-data-pic event", function() {
+			expect( spy.calledWith( "picfill.wb-data-pic" ) ).to.equal( true );
 		});
 
 		it( "should have been triggered on a [data-picture] element", function() {
@@ -62,19 +62,19 @@ describe( "[data-picture] test suite", function() {
 	 */
 	describe( "resize events", function() {
 
-		it( "should have text-resize.wb event handler", function() {
-			wb.doc.trigger( "text-resize.wb" );
-			expect( spy.calledWith( "picturefill.wb-data-picture" ) ).to.equal( true );
+		it( "should have txt-rsz.wb event handler", function() {
+			wb.doc.trigger( "txt-rsz.wb" );
+			expect( spy.calledWith( "picfill.wb-data-pic" ) ).to.equal( true );
 		});
 
-		it( "should have window-resize-width.wb event handler", function() {
-			wb.doc.trigger( "window-resize-width.wb" );
-			expect( spy.calledWith( "picturefill.wb-data-picture" ) ).to.equal( true );
+		it( "should have win-rsz-width.wb event handler", function() {
+			wb.doc.trigger( "win-rsz-width.wb" );
+			expect( spy.calledWith( "picfill.wb-data-pic" ) ).to.equal( true );
 		});
 
-		it( "should have window-resize-height.wb event handler", function() {
-			wb.doc.trigger( "window-resize-height.wb" );
-			expect( spy.calledWith( "picturefill.wb-data-picture" ) ).to.equal( true );
+		it( "should have win-rsz-height.wb event handler", function() {
+			wb.doc.trigger( "win-rsz-height.wb" );
+			expect( spy.calledWith( "picfill.wb-data-pic" ) ).to.equal( true );
 		});
 	});
 
@@ -102,7 +102,7 @@ describe( "[data-picture] test suite", function() {
 			});
 		});
 
-		it( "should create a responsive image after the picturefill.wb-data-picture event", function() {
+		it( "should create a responsive image after the picfill.wb-data-pic event", function() {
 			var $img = $(
 					"<span data-picture data-alt='foo' class='test'>" +
 					"<span data-src='bar.jpg'></span>" +
@@ -113,7 +113,7 @@ describe( "[data-picture] test suite", function() {
 			expect( $img.find( "img" ) ).to.have.length( 0 );
 
 			// Confirm image was created
-			$img.trigger( "picturefill.wb-data-picture" );
+			$img.trigger( "picfill.wb-data-pic" );
 			expect( $img.find( "img" ) ).to.have.length( 1 );
 		});
 
@@ -125,7 +125,7 @@ describe( "[data-picture] test suite", function() {
 					"</span>" );
 				$img = $img.appendTo( wb.doc.find( "body" ) );
 
-			$img.trigger( "picturefill.wb-data-picture" );
+			$img.trigger( "picfill.wb-data-pic" );
 			expect( $img.find( "img" ) ).to.have.length( 1 );
 			expect( $img.find( "img" ).attr( "src" ) ).to.equal( "baz.jpg" );
 		});
@@ -137,7 +137,7 @@ describe( "[data-picture] test suite", function() {
 					"</span>" );
 				$img = $img.appendTo( wb.doc.find( "body" ) );
 
-			$img.trigger( "picturefill.wb-data-picture" );
+			$img.trigger( "picfill.wb-data-pic" );
 			expect( $img.find( "img" ) ).to.have.length( 0 );
 		});
 
@@ -145,7 +145,7 @@ describe( "[data-picture] test suite", function() {
 			var $img = $( "<span data-picture data-alt='foo' class='test'>" );
 				$img = $img.appendTo( wb.doc.find( "body" ) );
 
-			$img.trigger( "picturefill.wb-data-picture" );
+			$img.trigger( "picfill.wb-data-pic" );
 			expect( $img.find( "img" ) ).to.have.length( 0 );
 		});
 	});

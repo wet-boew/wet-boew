@@ -41,6 +41,7 @@
  */
 var selector = ".wb-prettify",
 	$document = wb.doc,
+	prettyPrintEvent = "prettyprint" + selector,
 
 	/*
 	 * Plugin users can override these defaults by setting attributes on the html elements that the
@@ -100,7 +101,7 @@ var selector = ".wb-prettify",
 			Modernizr.load({
 				load: deps,
 				complete: function() {
-					$document.trigger( "prettyprint.wb-prettify" );
+					$document.trigger( prettyPrintEvent );
 				}
 			});
 		}
@@ -118,8 +119,8 @@ var selector = ".wb-prettify",
 
 // Bind the plugin events
 $document
-	.on( "timerpoke.wb init.wb-prettify", selector, init )
-	.on( "prettyprint.wb-prettify", prettyprint );
+	.on( "timerpoke.wb wb-init" + selector, selector, init )
+	.on( prettyPrintEvent, prettyprint );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
