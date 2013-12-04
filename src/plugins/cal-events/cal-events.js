@@ -461,8 +461,7 @@ var selector = ".wb-cal-evt",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb init.wb-cal-evt", selector, function( event ) {
-window.console.log( event.type + ", " + event.namespace );
+$document.on( "timerpoke.wb init.wb-cal-evt", selector, function() {
 	init( $( this ) );
 
 	/*
