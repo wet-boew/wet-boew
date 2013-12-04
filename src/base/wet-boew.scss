@@ -78,13 +78,13 @@
 /* Extra-small view and under */
 @media screen and (max-width: $xSmallViewMax) {
 	@import "views/xSmallViewUnder";
-	@import "../plugins/tabs/tabs-xSmallViewUnder";
 }
 
 /* Small view and under */
 @media screen and (max-width: $smallViewMax) {
 	@import "views/smallViewUnder";
 	@import "../plugins/menu/menu-smallViewUnder";
+	@import "../plugins/tabs/tabs-smallViewUnder";
 }
 
 /* Medium view and under */
