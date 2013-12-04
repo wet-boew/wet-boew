@@ -10,7 +10,9 @@
 
 var selector = ".wb-geomap",
 	$document = wb.doc,
-	overlayTimeout = 2000, // timeout for overlay loading in milliseconds
+
+	// timeout for overlay loading in milliseconds
+	overlayTimeout = 2000,
 	uniqueId = 0,
 	mapArray = [],
 	debug = false,
@@ -1893,7 +1895,7 @@ var selector = ".wb-geomap",
 	};
 
 // Bind the init function to the timerpoke event
-$document.on( "timerpoke.wb", selector, init );
+$document.on( "timerpoke.wb init.wb-geomap", selector, init );
 				
 // Add the timer poke to initialize the plugin
 wb.add( selector );
