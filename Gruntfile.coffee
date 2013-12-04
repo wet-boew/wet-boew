@@ -170,7 +170,8 @@ module.exports = (grunt) ->
 		[
 			"build"
 			"assets-dist"
-			"assemble:demos_min"
+			"demos"
+			"demos-dist"
 			"connect:test"
 		]
 	)
