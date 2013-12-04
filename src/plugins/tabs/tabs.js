@@ -500,7 +500,7 @@
 			$plypause.find( ".glyphicon" ).toggleClass( "glyphicon-play glyphicon-pause" );
 			$sldr.toggleClass( "playing" );
 			
-			text = $plypause.find( "i" )[0];
+			text = $plypause[ 0 ].getElementsByTagName( "i" )[ 0 ];
 			text.innerHTML = text.innerHTML === playText ? i18nText.pause : playText;
 				
 			inv = $plypause.find( ".wb-inv" )[ 0 ];
