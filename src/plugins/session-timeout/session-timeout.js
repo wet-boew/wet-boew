@@ -67,6 +67,9 @@ var selector = ".wb-session-timeout",
 			}
 
 			// Setup the modal dialog behaviour
+			$elm
+				.addClass( "wb-modal" )
+				.trigger( "init.wb-modal" );
 			$document.one( "ready.wb-modal", function() {
 				// Initialize the keepalive and inactive timeouts of the plugin
 				$elm.trigger( "reset.wb-session-timeout", settings );
