@@ -18,16 +18,16 @@
 var selector = ".wb-parsing",
     $document = wb.doc,
 	warningEvent = warningEvent,
-	passiveParseEvent = passiveParseEvent,
+	passiveParseEvent = "passiveparse.wb-parsing",
 	errorEvent = errorEvent,
-
+	
 	/*
-	* Init runs once per plugin element on the page. There may be multiple elements. 
-	* It will run more than once per plugin if you don't remove the selector from the timer.
-	* @method init
-	* @param {jQuery DOM element} $elm The plugin element being initialized
-	*/
-	init = function( obj ) {
+     * Init runs once per plugin element on the page. There may be multiple elements. 
+     * It will run more than once per plugin if you don't remove the selector from the timer.
+     * @method init
+     * @param {jQuery DOM element} $elm The plugin element being initialized
+     */
+    init = function( obj ) {
 
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
         wb.remove( selector );
@@ -1942,195 +1942,6 @@ var selector = ".wb-parsing",
 			delete row.colgroup;
 		} // End processRow function
 
-		// Add headers information to the table parsed data structure
-		// Similar sample of code as the HTML Table validator
-		function addHeaders( tblparser ) {
-			var headStackLength = tblparser.theadRowStack.length,
-				addColHeadersLength, addRowHeadersLength,
-				cellHeaderLength, cellLength, childLength, coldataheader,
-				colheaders, colheadersgroup, currCell, currCol, currRow,
-				currrowheader, headerLength, headerLevelLength, i, j, k, m, ongoingRowHeader, ongoingRowHeaderLength,
-				rowheaders,
-				rowheadersgroup, rowLength;
-
-			// Set ID and Header for the table head
-			for ( i = 0; i < headStackLength; i += 1 ) {
-				currRow = tblparser.theadRowStack[ i ];
-
-				for ( j = 0, cellLength = currRow.cell.length; j < cellLength; j += 1 ) {
-					currCell = currRow.cell[ j ];
-
-					if ( ( currCell.type === 1 || currCell.type === 7 ) && (
-							!( j > 0 && currCell.uid === currRow.cell[ j - 1 ].uid ) &&
-							!( i > 0 && currCell.uid === tblparser.theadRowStack[ i - 1 ].cell[ j ].uid )
-						) ) {
-
-						// Imediate header
-						currCell.header = currCell.header || [];
-
-						// all the headers
-						currCell.headers = currCell.headers || [];
-
-						// Imediate sub cell
-						currCell.child = currCell.child || [];
-
-						// All the sub cell
-						currCell.childs = currCell.childs || [];
-
-						// Set the header of the current cell if required
-						if ( i > 0 ) {
-
-							// All the header cells
-							for ( k = 0, cellHeaderLength = tblparser.theadRowStack[ i - 1 ].cell[ j ].header.length; k < cellHeaderLength; k += 1 ) {
-								currCell.headers.push( tblparser.theadRowStack[ i - 1 ].cell[ j ].header[ k ]);
-								tblparser.theadRowStack[ i - 1 ].cell[ j ].header[ k ].childs.push( currCell );
-							}
-
-							// Imediate header cell
-							currCell.headers.push( tblparser.theadRowStack[ i - 1 ].cell[ j ] );
-							currCell.header.push( tblparser.theadRowStack[ i - 1 ].cell[ j ]);
-							tblparser.theadRowStack[ i - 1 ].cell[ j ].child.push( currCell );
-						}
-
-
-						// Set the header on his descriptive cell if any
-						if ( currCell.descCell ) {
-							currCell.descCell.header = currCell;
-							currCell.descCell.headers = currCell;
-						}
-					}
-
-				}
-
-			}
-
-			// Set Id/headers for header cell and data cell in the table.
-			for ( i = 0, rowLength = tblparser.row.length; i < rowLength; i += 1 ) {
-				currRow = tblparser.row[ i ];
-				rowheadersgroup = [];
-				rowheaders = [];
-				currrowheader = [];
-				ongoingRowHeader = [];
-				coldataheader = [];
-
-				// Get or Generate a unique ID for each header in this row
-				if ( currRow.headerset && !currRow.idsheaderset ) {
-					for ( j = 0; j < currRow.headerset.length; j += 1 ) {
-						rowheadersgroup = rowheadersgroup.concat( currRow.headerset[ j ] );
-					}
-					currRow.idsheaderset = rowheadersgroup;
-				}
-
-				if ( currRow.header ) {
-					for ( j = 0; j < currRow.header.length; j += 1 ) {
-						rowheaders = rowheaders.concat( currRow.header[ j ] );
-					}
-				}
-				rowheaders = currRow.idsheaderset.concat( rowheaders );
-				for (j = 0; j < currRow.cell.length; j += 1) {
-
-					if ( j === 0 || ( j > 0 && currRow.cell[ j ].uid !== currRow.cell[ ( j - 1 ) ].uid ) ) {
-						currCell = currRow.cell[ j ];
-						coldataheader = [];
-
-						// Imediate header
-						currCell.header = currCell.header || [];
-
-						// all the headers
-						currCell.headers = currCell.headers || [];
-
-						if ( currCell.col && !currCell.col.dataheader ) {
-							currCol = currCell.col;
-							colheaders = [];
-							colheadersgroup = [];
-							if ( currCol.headerLevel ) {
-								for ( m = 0, headerLevelLength = currCol.headerLevel.length; m < headerLevelLength; m += 1 ) {
-									colheadersgroup = colheadersgroup.concat( currCol.headerLevel[ m ] );
-								}
-							}
-							if ( currCol.header ) {
-								for ( m = 0, headerLength = currCol.header.length; m < headerLength; m += 1 ) {
-									colheaders = colheaders.concat( currCol.header[ m ] );
-								}
-							}
-
-							if( !currCol.dataheader ) {
-								currCol.dataheader = [];
-							}
-
-							currCol.dataheader = currCol.dataheader.concat( colheadersgroup );
-							currCol.dataheader = currCol.dataheader.concat( colheaders );
-						}
-
-						if ( currCell.col && currCell.col.dataheader ) {
-							coldataheader = currCell.col.dataheader;
-						}
-
-
-						if ( currCell.type === 1 ) {
-
-							// Imediate sub cell
-							currCell.child = currCell.child || [];
-
-							// All the sub cell
-							currCell.childs = currCell.childs || [];
-
-							for ( m = 0, ongoingRowHeaderLength = ongoingRowHeader.length; m < ongoingRowHeaderLength; m += 1 ) {
-
-								if ( currCell.colpos === ( ongoingRowHeader[ m ].colpos + ongoingRowHeader[ m ].width) ) {
-									childLength = ongoingRowHeader[ m ].child.length;
-									if( childLength === 0 || ( childLength > 0 && ongoingRowHeader[ m ].child[ childLength - 1 ].uid !== currCell.uid ) ) {
-										ongoingRowHeader[ m ].child.push( currCell );
-									}
-								}
-								ongoingRowHeader[ m ].childs.push( currCell );
-							}
-
-							for ( m = 0; m < currRow.idsheaderset.length; m += 1 ) {
-
-								// All the sub cell
-								if ( !currRow.idsheaderset[m].childs ) {
-									currRow.idsheaderset[ m ].childs = [];
-								}
-								currRow.idsheaderset[m].childs.push( currCell );
-							}
-
-							currCell.header = currCell.header.concat( ongoingRowHeader );
-
-							currCell.headers = currCell.headers.concat( coldataheader )
-								.concat( currRow.idsheaderset )
-								.concat( ongoingRowHeader );
-
-							ongoingRowHeader = ongoingRowHeader.concat( currCell );
-						}
-
-
-						if ( currCell.type === 2 || currCell.type === 3 ) {
-
-							// Get Current Column Headers
-							currrowheader = rowheaders;
-
-							if ( currCell.addcolheaders ) {
-								for ( m = 0, addColHeadersLength = currCell.addcolheaders.length; m < addColHeadersLength; m += 1 ) {
-									coldataheader = coldataheader.concat( currCell.addcolheaders[m] );
-								}
-							}
-
-							if ( currCell.addrowheaders ) {
-								for ( m = 0, addRowHeadersLength = currCell.addrowheaders.length; m < addRowHeadersLength; m += 1 ) {
-									currrowheader = currrowheader.concat( currCell.addrowheaders[ m ] );
-								}
-							}
-
-							currCell.headers = currCell.headers.concat( coldataheader )
-								.concat( currrowheader );
-
-							currCell.header = currCell.headers;
-						}
-					}
-				}
-			}
-		} // END addHeaders function
 
 		//
 		// Main Entry For The Table Parsing
@@ -2261,46 +2072,47 @@ var selector = ".wb-parsing",
 		groupZero.colgrouplevel = groupZero.colgrp;
 		delete groupZero.colgrp;
 
-		addHeaders( groupZero );
-		
+		$obj.trigger( "parsecomplete.wb-parsing" );
+					
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb " + passiveParseEvent, selector, function( event ) {
-	var eventTarget = event.target,
-		eventType = event.type,
-		$elm;
+$document.on( "timerpoke.wb init.wb-parsing " + passiveParseEvent, selector, function( event ) {
+    var eventTarget = event.target,
+        eventType = event.type,
+        $elm;
 
-	// Filter out any events triggered by descendants
-	if ( event.currentTarget === eventTarget ) {
-		$elm = $( eventTarget );
+    // Filter out any events triggered by descendants
+    if ( event.currentTarget === eventTarget ) {
+        $elm = $( eventTarget );
 
-		switch ( eventType ) {
-		case "timerpoke":
-			init( $elm );
-			break;
-		}
-	}
+        switch ( eventType ) {
+        case "timerpoke":
+		case "init":
+            init( $elm );
+            break;
+        }
+    }
 
-	/*
-	* Since we are working with events we want to ensure that we are being passive about our control, 
-	* so returning true allows for events to always continue
-	*/
-	return true;
+    /*
+     * Since we are working with events we want to ensure that we are being passive about our control, 
+     * so returning true allows for events to always continue
+     */
+    return true;
 });
 
 // Bind the init event of the plugin on passive table parsing request 
 $document.on( passiveParseEvent, function( event ) {
-	var eventTarget = event.target,
-		$elm = $( eventTarget );
+    var eventTarget = event.target,
+        $elm = $( eventTarget );
 	
-	init( $elm );
+    init( $elm );
 
-	/*
-	* Since we are working with events we want to ensure that we are being passive about our control, 
-	* so returning true allows for events to always continue
-	*/
-	return true;
+    /*
+     * Since we are working with events we want to ensure that we are being passive about our control, 
+     * so returning true allows for events to always continue
+     */
+    return true;
 });
 
 
