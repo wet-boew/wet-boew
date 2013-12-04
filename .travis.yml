@@ -12,7 +12,7 @@ before_install:
   - ./script/setup
 
 script:
-  - grunt jshint test-mocha && ./script/travis_artifacts.sh
+  - grunt test test-mocha && ./script/travis_artifacts.sh
 
 after_success:
   - ./script/travis_saucelabs.sh
