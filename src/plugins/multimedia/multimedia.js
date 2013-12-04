@@ -473,8 +473,8 @@ $document.on( initializedEvent, selector, function() {
 		id = $this.attr( "id" ) !== undef ? $this.attr( "id" ) : "wb-mm-" + ( seed++ ),
 		mId = $media.attr( "id" ) !== undef ? $media.attr( "id" ) : "" + id + "-md",
 		type = $media.is( "video" ) ? "video" : "audio",
-		width = type === "video" ? $media.attr( "width" ) : "0",
-		height = type === "video" ? $media.attr( "height" ) : "0",
+		width = type === "video" ? $media.attr( "width" ) ?  $media.attr( "width" ) : $media.width() : "0",
+		height = type === "video" ? $media.attr( "height" ) ? $media.attr( "height" ) : $media.height() : "0",
 		data = $.extend({
 			media: $media,
 			captions: $captions,
@@ -531,29 +531,30 @@ $document.on( fallbackEvent, selector, function() {
 		$this = ref[ 0 ],
 		$data = ref[ 1 ],
 		$media = $data.media,
-		$poster = $media.attr( "poster" ),
 		$source = $data.media.find( "source" ),
-		$playerresource;
+		poster = $media.attr( "poster" ),
+		flashvars = "id=" + $data.mId,
+		playerresource = wb.getPath( "/assets" ) + "/multimedia.swf?" + flashvars;
 
-	$data.flashvars = "id=" + $data.mId;
-	$playerresource = wb.getPath( "/assets" ) + "/multimedia.swf?" + $data.flashvars;
 	$data.poster = "";
 	if ( $data.type === "video" ) {
-		$data.poster = "<img src='" + $poster + " class='img-responsive' height='" +
+		$data.poster = "<img src='" + poster + "' class='img-responsive' height='" +
 			$data.height + "' width='" + $data.width + "' alt='" + $media.attr( "title" ) + "'/>";
-		$data.flashvars += "&height=" + $media.height() + "&width=" +
-			$media.width() + "&posterimg=" +
-			encodeURI( wb.getUrlParts( $poster ).absolute ) + "&media=" +
+
+		flashvars += "&amp;height=" + $data.height + "&amp;width=" +
+			$data.width + "&amp;posterimg=" +
+			encodeURI( wb.getUrlParts( poster ).absolute ) + "&amp;media=" +
 			encodeURI( wb.getUrlParts( $source.filter( "[type='video/mp4']" ).attr( "src" ) ).absolute );
 	} else {
-		$data.flashvars += "&media=" + encodeURI( wb.getUrlParts( $source.filter( "[type='audio/mp3']" ).attr( "src" ) ).absolute );
+		flashvars += "&amp;media=" + encodeURI( wb.getUrlParts( $source.filter( "[type='audio/mp3']" ).attr( "src" ) ).absolute );
 	}
+
 	$this.find( "video, audio" ).replaceWith( "<object id='" + $data.mId + "' width='" + $data.width +
 		"' height='" + $data.height + "' class='" + $data.type +
 		"' type='application/x-shockwave-flash' data='" +
-		$playerresource + "' tabindex='-1'>" +
-		"<param name='movie' value='" + $playerresource + "'/>" +
-		"<param name='flashvars' value='" + $data.flashvars + "'/>" +
+		playerresource + "' tabindex='-1'>" +
+		"<param name='movie' value='" + playerresource + "'/>" +
+		"<param name='flashvars' value='" + flashvars + "'/>" +
 		"<param name='allowScriptAccess' value='always'/>" +
 		"<param name='bgcolor' value='#000000'/>" +
 		"<param name='wmode' value='opaque'/>" +
