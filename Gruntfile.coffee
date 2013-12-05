@@ -213,7 +213,7 @@ module.exports = (grunt) ->
 					"lib/modernizr/modernizr-custom.js"
 					"lib/respond/respond.src.js"
 					"lib/excanvas/excanvas.js"
-					"lib/html5shiv/dist/html5shiv.js"
+					"lib/html5shiv/dist/html5shiv-printshiv.js"
 					"src/core/wb.js"
 					"!src/plugins/**/test.js"
 					"!src/plugins/**/assets/*.js"
