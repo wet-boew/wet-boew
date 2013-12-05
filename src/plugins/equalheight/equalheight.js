@@ -74,9 +74,7 @@ var selector = ".wb-equalheight",
 			row.push( currentChild );
 		}
 
-		if ( row.length !== 0 ) {
-			setRowHeight( row, tallestHeight );
-		}
+		setRowHeight( row, tallestHeight );
 	},
 
 	/**
@@ -85,8 +83,11 @@ var selector = ".wb-equalheight",
 	 * @param {integer} height The new row height
 	 */
 	setRowHeight = function( row, height ) {
-		for ( var i = row.length - 1; i >= 0; i-- ) {
-			row[ i ].style.minHeight = height + "px";
+		// only set a height if more than one element exists in the row
+		if ( row.length > 1 ) {
+			for ( var i = row.length - 1; i >= 0; i-- ) {
+				row[ i ].style.minHeight = height + "px";
+			}
 		}
 		row.length = 0;
 	};
