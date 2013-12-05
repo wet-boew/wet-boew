@@ -58,7 +58,7 @@ var selector = "input[type=date]",
 				$container = $( "<div id='wb-picker' class='picker-overlay' role='dialog' aria-hidden='true'></div>" );
 
 				// Close button
-				$( "<button class='picker-close mfp-close overlay-close' title='" + i18nText.close + "'>×</button>" )
+				$( "<button type='button' class='picker-close mfp-close overlay-close' title='" + i18nText.close + "'>×</button>" )
 					.appendTo( $container )
 					.on( "click", function( event ) {
 						var which = event.which;
