@@ -11,7 +11,10 @@
  * Variable and function definitions.
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
-var selector = "summary",
+var pluginName = "wb-details",
+	selector = "summary",
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init." + pluginName,
 	$document = wb.doc,
 
 	/**
@@ -23,16 +26,21 @@ var selector = "summary",
 	init = function( elm ) {
 		var details = elm.parentNode;
 
-		// All plugins need to remove their reference from the timer in the init
-		// sequence unless they have a requirement to be poked every 0.5 seconds
-		wb.remove( selector );
+		// Filter out any events triggered by descendants
+		// and only initialize the element once
+		if ( event.currentTarget === details &&
+			details.className.indexOf( initedClass ) === -1 ) {
 
-		details.setAttribute( "aria-expanded", ( details.getAttribute( "open" ) !== null ) );
-		elm.setAttribute( "tabindex", "0" );
+			wb.remove( selector );
+			details.className += " " + initedClass;
+
+			details.setAttribute( "aria-expanded", ( details.getAttribute( "open" ) !== null ) );
+			elm.setAttribute( "tabindex", "0" );
+		}
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb wb-init.wb-details", selector, function( event ) {
+$document.on( "timerpoke.wb " + initEvent, selector, function( event ) {
 	init( event.currentTarget );
 
 	/*

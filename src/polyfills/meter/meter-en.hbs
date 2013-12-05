@@ -5,7 +5,9 @@
 	"category": "Polyfill",
 	"description": "The <meter> element displays a scalar measurement in a known range.",
 	"tag": "meter",
-	"fr": "meter"
+	"fr": "meter",
+	"css": "demo/meter",
+	"js": "demo/meter"
 }
 ---
 <p>Description that is included in HTML5:</p>
@@ -58,6 +60,11 @@ The meter element also does not represent a scalar value of arbitrary range — 
 				<td>200</td>
 				<td>180</td>
 				<td><meter min="100" low="120" value="115" max="200" high="180">15% (too low)</meter></td>
+			</tr>
+			<tr>
+				<td colspan="3"><input type="button" id="decreaseMeter" value="Decrease" /></td>
+				<td colspan="3"><input type="button" id="increaseMeter" value="Increase" /></td>
+				<td><meter id="updateTest" min="100" low="120" value="150" max="200" high="180"><span class="wb-inv">150</span></meter>
 			</tr>
 		</tbody>
 	</table>

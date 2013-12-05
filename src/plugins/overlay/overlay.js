@@ -1,5 +1,5 @@
 /**
- * @title Responsive overlay
+ * @title WET-BOEW Overlay
  * @overview Provides multiple styles of overlays such as panels and pop-ups
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @thomasgohard, @pjackson28
@@ -13,11 +13,16 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-overlay",
+var pluginName = "wb-overlay",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
 	closeClass = "overlay-close",
 	linkClass = "overlay-lnk",
 	ignoreOutsideClass = "outside-off",
+	ariaHidden = "aria-hidden",
 	sourceLinks = {},
+	setFocusEvent = "setfocus.wb",
 	$document = wb.doc,
 	i18n, i18nText,
 
@@ -32,16 +37,18 @@ var selector = ".wb-overlay",
 			overlayClose;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === event.target ) {
+		// and only initialize the element once
+		if ( event.currentTarget === elm &&
+			elm.className.indexOf( initedClass ) === -1 ) {
 
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 			wb.remove( selector );
+			elm.className += " " + initedClass;
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
 				i18n = wb.i18n;
 				i18nText = {
-					close: i18n( "overlay-close" ) + i18n( "space" ) + i18n( "esc-key" )
+					close: i18n( closeClass ) + i18n( "space" ) + i18n( "esc-key" )
 				};
 			}
 
@@ -50,7 +57,7 @@ var selector = ".wb-overlay",
 				"' title='" + i18nText.close + "'>×</button>";
 
 			elm.appendChild( $( overlayClose )[ 0 ] );
-			elm.setAttribute( "aria-hidden", "true" );
+			elm.setAttribute( ariaHidden, "true" );
 		}
 	},
 
@@ -59,10 +66,10 @@ var selector = ".wb-overlay",
 
 		$overlay
 			.addClass( "open" )
-			.attr( "aria-hidden", "false" );
+			.attr( ariaHidden, "false" );
 
 		if ( !noFocus ) {
-			$overlay.trigger( "setfocus.wb" );
+			$overlay.trigger( setFocusEvent );
 		}
 	},
 
@@ -72,7 +79,7 @@ var selector = ".wb-overlay",
 
 		$overlay
 			.removeClass( "open" )
-			.attr( "aria-hidden", "true" );
+			.attr( ariaHidden, "true" );
 
 		if ( userClosed ) {
 			$overlay.addClass( "user-closed" );
@@ -81,14 +88,16 @@ var selector = ".wb-overlay",
 		if ( !noFocus && sourceLink ) {
 
 			// Returns focus to the source link for the overlay
-			$( sourceLink ).trigger( "setfocus.wb" );
+			$( sourceLink ).trigger( setFocusEvent );
 
 			// Delete the source link reference
 			delete sourceLinks[ overlayId ];
 		}
 	};
 
-$document.on( "timerpoke.wb wb-init.wb-overlay keydown open.wb-overlay close.wb-overlay", selector, function( event ) {
+$document.on( "timerpoke.wb " + initEvent + " keydown open" + selector +
+	" close" + selector, selector, function( event ) {
+
 	var eventType = event.type,
 		which = event.which,
 		overlayId = event.currentTarget.id,
@@ -127,7 +136,7 @@ $document.on( "timerpoke.wb wb-init.wb-overlay keydown open.wb-overlay close.wb-
 				} else if ( index === length ) {
 					index = 0;
 				}
-				$focusable.eq( index ).trigger( "setfocus.wb" );
+				$focusable.eq( index ).trigger( setFocusEvent );
 			}
 			break;
 
@@ -146,7 +155,7 @@ $document.on( "click vclick", "." + closeClass, function( event ) {
 	// Ignore middle/right mouse buttons
 	if ( !which || which === 1 ) {
 		closeOverlay(
-			$( event.currentTarget ).closest( ".wb-overlay" ).attr( "id" ),
+			$( event.currentTarget ).closest( selector ).attr( "id" ),
 			false,
 			true
 		);
@@ -187,7 +196,7 @@ $document.on( "click vclick touchstart focusin", "body", function( event ) {
 		// Close any overlays with outside activity
 		for ( overlayId in sourceLinks ) {
 			overlay = document.getElementById( overlayId );
-			if ( overlay.getAttribute( "aria-hidden" ) === "false" &&
+			if ( overlay.getAttribute( ariaHidden ) === "false" &&
 				eventTarget.id !== overlayId &&
 				overlay.className.indexOf( ignoreOutsideClass ) === -1 &&
 				!$.contains( overlay, eventTarget ) ) {

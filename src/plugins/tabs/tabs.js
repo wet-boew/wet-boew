@@ -1,32 +1,35 @@
-/*
- * @title Tabbed interface
+/**
+ * @title WET-BOEW Tabbed interface
  * @overview Dynamically stacks multiple sections of content, transforming them into a tabbed interface.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
- (function( $, window, wb ) {
- "use strict";
+(function( $, window, wb ) {
+"use strict";
 
- /*
-  * Variable and function definitions.
-  * These are global to the plugin - meaning that they will be initialized once per page,
-  * not once per instance of plugin on the page. So, this is a good place to define
-  * variables that are common to all instances of the plugin on a page.
-  */
- var selector = ".wb-tabs",
-	$document = wb.doc,
-	$window = wb.win,
-	i18n, i18nText,
+/*
+ * Variable and function definitions.
+ * These are global to the plugin - meaning that they will be initialized once per page,
+ * not once per instance of plugin on the page. So, this is a good place to define
+ * variables that are common to all instances of the plugin on a page.
+ */
+var pluginName = "wb-tabs",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
+	shiftEvent = "shift" + selector,
+	setFocusEvent = "setfocus.wb",
 	controls = selector + " [role=tablist] a",
 	uniqueCount = 0,
 	initialized = false,
 	equalHeightClass = "wb-equalheight",
 	equalHeightOffClass = equalHeightClass + "-off",
-	initEvent = "wb-init" + selector,
-	shiftEvent = "shift" + selector,
 	ariaExpanded = "aria-expanded",
 	ariaHidden = "aria-hidden",
 	ariaSelected = "aria-selected",
+	$document = wb.doc,
+	$window = wb.win,
+	i18n, i18nText,
 
 	// Includes "xsmallview" and "xxsmallview"
 	smallViewPattern = "xsmallview",
@@ -42,128 +45,135 @@
 	ignoreHashChange = false,
 
 	/*
-	 * @method onInit
+	 * @method init
 	 * @param {jQuery DOM element} $elm The plugin element
 	 */
-	onInit = function( $elm ) {
-		var interval = $elm.hasClass( "slow" ) ? 9 : $elm.hasClass( "fast" ) ? 3 : 6,
-			$panels = $elm.find( "[role=tabpanel]" ),
-			$tablist = $elm.find( "[role=tablist]" ),
-			addControls = defaults.addControls,
-			excludePlay = defaults.excludePlay,
-			hashId = wb.pageUrlParts.hash.substring( 1 ),
-			$panel, $openPanel, i, len, tablist, isOpen, newId, $summaries,
-			summary, accordionClass;
+	init = function( $elm ) {
 
-		// Determine the current view
-		isSmallView = document.documentElement.className.indexOf( smallViewPattern ) !== -1;
-			
-		// Only initialize the i18nText once
-		if ( !i18nText ) {
-			i18n = wb.i18n;
-			i18nText = {
-				prev: i18n( "prv" ),
-				next: i18n( "nxt" ),
-				play: i18n( "play" ),
-				rotStart: i18n( "tab-rot" ).on,
-				rotStop: i18n( "tab-rot" ).off,
-				space: i18n( "space" ),
-				hyphen: i18n( "hyphen" ),
-				pause: i18n( "pause" )
-			};
-		}
+		// Only initialize the element once
+		if ( !$elm.hasClass( initedClass ) ) {
+			wb.remove( selector );
+			$elm.addClass( initedClass );
 
-		// Build the tablist and enhance the panels as needed for details/summary
-		if ( $tablist.length === 0 ) {
-			addControls = false;
-			accordionClass = "tabs-acc-" + uniqueCount;
-			$elm.addClass( "tabs-acc " + accordionClass );
-			uniqueCount += 1;
-			$panels = $elm.children();
-			$summaries = $panels.children( "summary" );
-			len = $panels.length;
+			var interval = $elm.hasClass( "slow" ) ? 9 : $elm.hasClass( "fast" ) ? 3 : 6,
+				$panels = $elm.find( "[role=tabpanel]" ),
+				$tablist = $elm.find( "[role=tablist]" ),
+				addControls = defaults.addControls,
+				excludePlay = defaults.excludePlay,
+				hashId = wb.pageUrlParts.hash.substring( 1 ),
+				$panel, $openPanel, i, len, tablist, isOpen, newId, $summaries,
+				summary, accordionClass;
 
-			// Ensure there is only one panel open
-			// Order of priority is hash, open property, first details
-			if ( hashId.length !== 0 ) {
-				$openPanel = $panels.filter( "#" + hashId );
+			// Determine the current view
+			isSmallView = document.documentElement.className.indexOf( smallViewPattern ) !== -1;
+				
+			// Only initialize the i18nText once
+			if ( !i18nText ) {
+				i18n = wb.i18n;
+				i18nText = {
+					prev: i18n( "prv" ),
+					next: i18n( "nxt" ),
+					play: i18n( "play" ),
+					rotStart: i18n( "tab-rot" ).on,
+					rotStop: i18n( "tab-rot" ).off,
+					space: i18n( "space" ),
+					hyphen: i18n( "hyphen" ),
+					pause: i18n( "pause" )
+				};
 			}
-			if ( !$openPanel || $openPanel.length === 0 ) {
-				$openPanel = $panels.filter( "[open]" ).first();
-				if ( $openPanel.length === 0 ) {
-					$openPanel = $panels.eq( 0 );
+
+			// Build the tablist and enhance the panels as needed for details/summary
+			if ( $tablist.length === 0 ) {
+				addControls = false;
+				accordionClass = "tabs-acc-" + uniqueCount;
+				$elm.addClass( "tabs-acc " + accordionClass );
+				uniqueCount += 1;
+				$panels = $elm.children();
+				$summaries = $panels.children( "summary" );
+				len = $panels.length;
+
+				// Ensure there is only one panel open
+				// Order of priority is hash, open property, first details
+				if ( hashId.length !== 0 ) {
+					$openPanel = $panels.filter( "#" + hashId );
 				}
-			}
-			$panels.removeAttr( "open" );
-			$openPanel.attr( "open", "open" );
-
-			// Hide the tablist in small view and the summary elements in large view
-			tablist = "<ul role='tablist' aria-live='off'>";
-			if ( isSmallView && $elm.hasClass( equalHeightClass ) ) {
-				$elm.toggleClass( equalHeightClass + " " + equalHeightOffClass );
-			}
-			$summaries
-				.addClass( "wb-toggle" )
-				.attr( "data-toggle", "{\"parent\": \"." + accordionClass +
-					"\", \"group\": \"details\"}" )
-				.trigger( "wb-init.wb-toggle" );
-
-			for ( i = 0; i !== len; i += 1 ) {
-				$panel = $panels.eq( i );
-				summary = $summaries[ i ];
-				newId = $panel.attr( "id" );
-				if ( !newId ) {
-					newId = "tabpanel" + uniqueCount;
-					uniqueCount += 1;
-					$panel.attr( "id", newId );
-				}
-				isOpen = !!$panel.attr( "open" );
-
-				if ( isSmallView ) {
-					if ( !Modernizr.details ) {
-						$panel
-							.toggleClass( "open", !isOpen )
-							.attr({
-								ariaExpanded: !isOpen,
-								ariaHidden: isOpen
-							});
+				if ( !$openPanel || $openPanel.length === 0 ) {
+					$openPanel = $panels.filter( "[open]" ).first();
+					if ( $openPanel.length === 0 ) {
+						$openPanel = $panels.eq( 0 );
 					}
-				} else {
-					$panel.attr({
-						"role": "tabpanel",
-						"open": "open"
-					});
-					$panel.addClass( ( Modernizr.details ? "" :  "open " ) +
-						"fade " + ( isOpen ? "in" : "out" ) );
 				}
+				$panels.removeAttr( "open" );
+				$openPanel.attr( "open", "open" );
 
-				tablist += "<li" + ( isOpen ? " class='active'" : "" ) +
-					"><a id='" + newId + "-lnk' href='#" + newId + "'>" +
-					summary.innerHTML + "</a></li>";
+				// Hide the tablist in small view and the summary elements in large view
+				tablist = "<ul role='tablist' aria-live='off'>";
+				if ( isSmallView && $elm.hasClass( equalHeightClass ) ) {
+					$elm.toggleClass( equalHeightClass + " " + equalHeightOffClass );
+				}
+				$summaries
+					.addClass( "wb-toggle" )
+					.attr( "data-toggle", "{\"parent\": \"." + accordionClass +
+						"\", \"group\": \"details\"}" )
+					.trigger( "wb-init.wb-toggle" );
+
+				for ( i = 0; i !== len; i += 1 ) {
+					$panel = $panels.eq( i );
+					summary = $summaries[ i ];
+					newId = $panel.attr( "id" );
+					if ( !newId ) {
+						newId = "tabpanel" + uniqueCount;
+						uniqueCount += 1;
+						$panel.attr( "id", newId );
+					}
+					isOpen = !!$panel.attr( "open" );
+
+					if ( isSmallView ) {
+						if ( !Modernizr.details ) {
+							$panel
+								.toggleClass( "open", !isOpen )
+								.attr({
+									ariaExpanded: !isOpen,
+									ariaHidden: isOpen
+								});
+						}
+					} else {
+						$panel.attr({
+							"role": "tabpanel",
+							"open": "open"
+						});
+						$panel.addClass( ( Modernizr.details ? "" :  "open " ) +
+							"fade " + ( isOpen ? "in" : "out" ) );
+					}
+
+					tablist += "<li" + ( isOpen ? " class='active'" : "" ) +
+						"><a id='" + newId + "-lnk' href='#" + newId + "'>" +
+						summary.innerHTML + "</a></li>";
+				}
+				$tablist = $( tablist + "</ul>" );
+				$elm.prepend( $tablist );
+			} else {
+				$panels.filter( ":not(.in)" )
+					.addClass( "out" );
 			}
-			$tablist = $( tablist + "</ul>" );
-			$elm.prepend( $tablist );
-		} else {
-			$panels.filter( ":not(.in)" )
-				.addClass( "out" );
+
+			drizzleAria( $panels, $tablist );
+
+			if ( addControls ) {
+				createControls( $tablist, excludePlay );
+			}
+
+			$elm
+				.addClass( "inited" )
+				.data({
+					"panels": $panels,
+					"tablist": $tablist,
+					"delay": interval,
+					"ctime": 0
+				});
+
+			initialized = true;
 		}
-
-		drizzleAria( $panels, $tablist );
-
-		if ( addControls ) {
-			createControls( $tablist, excludePlay );
-		}
-
-		$elm
-			.addClass( "inited" )
-			.data({
-				"panels": $panels,
-				"tablist": $tablist,
-				"delay": interval,
-				"ctime": 0
-			});
-
-		initialized = true;
 	},
 
 	/*
@@ -462,7 +472,7 @@
 	 * Init
 	 */
 	case "wb-init":
-		onInit( $elm );
+		init( $elm );
 		break;
 
 	/*
@@ -514,11 +524,11 @@
 			
 		if ( which > 36 ) {
 			onCycle( $elm, which < 39 ? -1 : 1 );
-			$sldr.find( ".active a" ).trigger( "setfocus.wb" );
+			$sldr.find( ".active a" ).trigger( setFocusEvent );
 		} else {
 			if ( elm.getAttribute( "role" ) === "tab" ) {
 				onPick( $sldr, $elm );
-				$( elm.getAttribute( "href" ) ).trigger( "setfocus.wb" );
+				$( elm.getAttribute( "href" ) ).trigger( setFocusEvent );
 			} else if ( !$sldr.hasClass( "playing" ) ) {
 				onCycle( $elm, className.indexOf( "prv" ) !== -1 ? -1 : 1 );
 			}
@@ -554,4 +564,4 @@ $document.on( "click vclick keydown", selector + " > details > summary", functio
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
- })( jQuery, window, wb );
+})( jQuery, window, wb );

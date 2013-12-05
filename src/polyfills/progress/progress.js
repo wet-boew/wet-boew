@@ -11,7 +11,10 @@
  * Variable and function definitions.
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
-var selector = "progress",
+var pluginName = "wb-progress",
+	selector = "progress",
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init." + pluginName,
 	$document = wb.doc,
 
 	/**
@@ -21,11 +24,18 @@ var selector = "progress",
 	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
 	 */
 	init = function( event ) {
+		var eventTarget = event.target;
 
-		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		wb.remove( selector );
+		// Filter out any events triggered by descendants
+		// and only initialize the element once
+		if ( event.currentTarget === eventTarget &&
+			eventTarget.className.indexOf( initedClass ) === -1 ) {
 
-		progress( event.target );
+			wb.remove( selector );
+			eventTarget.className += " " + initedClass;
+
+			progress( eventTarget );
+		}
 	},
 
 	progress = function( elm ) {
@@ -78,7 +88,7 @@ var selector = "progress",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb wb-init.wb-progress", selector, init );
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );

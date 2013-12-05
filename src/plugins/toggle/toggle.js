@@ -13,13 +13,17 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-toggle",
-	$document = wb.doc,
-	$window = wb.win,
+var pluginName = "wb-toggle",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
 	ariaEvent = "aria" + selector,
 	toggleEvent = "toggle" + selector,
 	toggledEvent = "toggled" + selector,
 	states = {},
+	$document = wb.doc,
+	$window = wb.win,
+
 	defaults = {
 		stateOn: "on",
 		stateOff: "off"
@@ -36,10 +40,12 @@ var selector = ".wb-toggle",
 			link = event.target;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === link ) {
+		// and only initialize the element once
+		if ( event.currentTarget === link &&
+			link.className.indexOf( initedClass ) === -1 ) {
 
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 			wb.remove( selector );
+			link.className += " " + initedClass;
 
 			// Merge the elements settings with the defaults
 			$link = $( link );
@@ -302,7 +308,7 @@ var selector = ".wb-toggle",
 	};
 
 // Bind the plugin's events
-$document.on( "timerpoke.wb wb-init" + selector + " " + ariaEvent + " " + toggleEvent +
+$document.on( "timerpoke.wb " + initEvent + " " + ariaEvent + " " + toggleEvent +
 	" " + toggledEvent + " click", selector, function( event, data ) {
 
 	var eventType = event.type;

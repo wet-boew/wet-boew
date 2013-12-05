@@ -13,9 +13,11 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-share",
-	shareLink = "shr-lnk",
+var pluginName = "wb-share",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
+	shareLink = "shr-lnk",
 	$document = wb.doc,
 	i18n, i18nText,
 
@@ -121,7 +123,13 @@ var selector = ".wb-share",
 			pageTitle, pageImage, pageDescription, site, siteProperties, url;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === elm ) {
+		// and only initialize the element once
+		if ( event.currentTarget === elm &&
+			elm.className.indexOf( initedClass ) === -1 ) {
+
+			wb.remove( selector );
+			elm.className += " " + initedClass;
+
 			$elm = $( elm );
 			settings = $.extend( true, defaults, wb.getData( $elm, "wet-boew" ) );
 			sites = settings.sites;
@@ -132,9 +140,6 @@ var selector = ".wb-share",
 			// Placeholders until source(s) can be determined and implemented
 			pageImage = encodeURIComponent( "" ),
 			pageDescription = encodeURIComponent( "" );
-
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			wb.remove( selector );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {

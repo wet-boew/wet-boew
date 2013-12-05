@@ -13,7 +13,14 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-modal",
+var pluginName = "wb-modal",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
+	buildEvent = "build" + selector,
+	showEvent = "show" + selector,
+	hideEvent = "hide" + selector,
+	readyEvent = "ready" + selector,
 	$document = wb.doc,
 
 	/*
@@ -34,18 +41,21 @@ var selector = ".wb-modal",
 	 * @param {jQuery Event} event Event that triggered this handler
 	 */
 	init = function( event ) {
+		var eventTarget = event.target;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === event.target ) {
+		// and only initialize the element once
+		if ( event.currentTarget === eventTarget &&
+			eventTarget.className.indexOf( initedClass ) === -1 ) {
 
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 			wb.remove( selector );
+			eventTarget.className += " " + initedClass;
 
 			// Load the magnific popup dependency
 			Modernizr.load({
 				load: "site!deps/jquery.magnific-popup" + wb.getMode() + ".js",
 				complete: function() {
-					$document.trigger( "ready.wb-modal" );
+					$document.trigger( readyEvent );
 				}
 			});
 		}
@@ -117,8 +127,8 @@ var selector = ".wb-modal",
 
 // Bind the plugin events
 $document
-	.on( "timerpoke.wb wb-init.wb-modal", selector, init )
-	.on( "build.wb-modal show.wb-modal hide.wb-modal", function( event, settings ) {
+	.on( "timerpoke.wb " + initEvent, selector, init )
+	.on( buildEvent + " " + showEvent + " " + hideEvent, function( event, settings ) {
 		var eventType = event.type;
 
 		// Filter out any events triggered by descendants

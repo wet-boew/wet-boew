@@ -13,7 +13,10 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-feeds",
+var pluginName = "wb-feeds",
+	selector = "." + "wb-feeds",
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
 	$document = wb.doc,
 
 	/**
@@ -23,42 +26,45 @@ var selector = ".wb-feeds",
 	 * @param {jQuery Event} event Event that triggered this handler
 	 */
 	init = function( event ) {
+		var elm = event.target,
+			entries = [],
+			results = [],
+			deferred = [],
+			processEntries = function( data ) {
+				var k, len;
+
+				data = data.responseData.feed.entries;
+				len = data.length;
+				for ( k = 0; k !== len; k += 1 ) {
+					entries.push( data[ k ] );
+				}
+				if ( !last ) {
+					parseEntries( entries, limit, $content );
+				}
+
+				last -= 1;
+				return last;
+			},
+			finalize = function() {
+
+				// TODO: Use CSS instead
+				$content.find( "li" ).show();
+			},
+			$content, limit, feeds, last, i;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === event.target ) {
+		// and only initialize the element once
+		if ( event.currentTarget === elm &&
+			elm.className.indexOf( initedClass ) === -1 ) {
 
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 			wb.remove( selector );
+			elm.className += " " + initedClass;
 
-			var elm = event.target,
-				$content = $( elm ).find( ".feeds-cont" ),
-				limit = getLimit( elm ),
-				feeds = elm.getElementsByTagName( "a" ),
-				last = feeds.length - 1,
-				i = last,
-				entries = [],
-				_results = [],
-				deferred = [],
-				processEntries = function( data ) {
-					var k, len;
-
-					data = data.responseData.feed.entries;
-					len = data.length;
-					for ( k = 0; k !== len; k += 1 ) {
-						entries.push( data[ k ] );
-					}
-					if ( !last ) {
-						parseEntries( entries, limit, $content );
-					}
-
-					last -= 1;
-					return last;
-				},
-				finalize = function() {
-
-					// TODO: Use CSS instead
-					$content.find( "li" ).show();
-				};
+			$content = $( elm ).find( ".feeds-cont" );
+			limit = getLimit( elm );
+			feeds = elm.getElementsByTagName( "a" );
+			last = feeds.length - 1;
+			i = last;
 
 			while ( i >= 0 ) {
 				deferred[ i ] = $.ajax({
@@ -66,11 +72,11 @@ var selector = ".wb-feeds",
 					dataType: "json",
 					timeout: 1000
 				}).done( processEntries );
-				_results.push( i -= 1 );
+				results.push( i -= 1 );
 			}
 			$.when.apply( null, deferred ).always( finalize );
 
-			$.extend( {}, _results );
+			$.extend( {}, results );
 		}
 	},
 
@@ -133,7 +139,7 @@ var selector = ".wb-feeds",
 		return $elm.empty().append( result );
 	};
 
-$document.on( "timerpoke.wb wb-init.wb-feeds", selector, init );
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );

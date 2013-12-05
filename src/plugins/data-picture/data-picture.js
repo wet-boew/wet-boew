@@ -13,9 +13,12 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = "[data-picture]",
+var pluginName = "wb-pic",
+	selector = "[data-picture]",
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init." + pluginName,
+	picturefillEvent = "picfill." + pluginName,
 	$document = wb.doc,
-	picturefillEvent = "picfill.wb-data-pic",
 
 	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
@@ -25,10 +28,13 @@ var selector = "[data-picture]",
 	 */
 	init = function( $elm ) {
 
-		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		wb.remove( selector );
+		// Only initialize the element once
+		if ( !$elm.hasClass( initedClass ) ) {
+			wb.remove( selector );
+			$elm.addClass( initedClass );
 
-		$elm.trigger( picturefillEvent );
+			$elm.trigger( picturefillEvent );
+		}
 	},
 
 	/**
@@ -68,7 +74,7 @@ var selector = "[data-picture]",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb wb-init.wb-data-pic " + picturefillEvent, selector, function( event ) {
+$document.on( "timerpoke.wb " + initEvent + " " + picturefillEvent, selector, function( event ) {
 	var eventTarget = event.target,
 		eventType = event.type;
 

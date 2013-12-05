@@ -13,11 +13,14 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-inview",
+var pluginName = "wb-inview",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
+	scrollEvent = "scroll" + selector,
 	$elms = $( selector ),
 	$document = wb.doc,
 	$window = wb.win,
-	scrollEvent = "scroll.wb-inview",
 
 	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
@@ -27,10 +30,13 @@ var selector = ".wb-inview",
 	 */
 	init = function( $elm ) {
 
-		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		wb.remove( selector );
+		// Only initialize the element once
+		if ( !$elm.hasClass( initedClass ) ) {
+			wb.remove( selector );
+			$elm.addClass( initedClass );
 
-		$elm.trigger( scrollEvent );
+			$elm.trigger( scrollEvent );
+		}
 	},
 
 	/**
@@ -87,7 +93,7 @@ var selector = ".wb-inview",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb wb-init.wb-inview " + scrollEvent, selector, function( event ) {
+$document.on( "timerpoke.wb " + initEvent + " " + scrollEvent, selector, function( event ) {
 	var eventTarget = event.target,
 		eventType = event.type,
 		$elm;

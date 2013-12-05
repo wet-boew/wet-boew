@@ -1,10 +1,10 @@
-/*
- * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
- * @title Prettify Plugin
+/**
+ * @title WET-BOEW Prettify Plugin
  * @overview Wrapper for Google Code Prettify library: https://code.google.com/p/google-code-prettify/
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
- *
+ */
+/*
  * Syntax highlighting of source code snippets in an html page using [google-code-prettify](http://code.google.com/p/google-code-prettify/).
  *
  * 1. Apply `class="prettyprint"` to a `pre` or `code` element to apply syntax highlighting. Alternatively use `class="all-pre"` to apply syntax highlighting to all `pre` elements on the page.
@@ -39,9 +39,12 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-prettify",
-	$document = wb.doc,
+var pluginName = "wb-prettify",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
 	prettyPrintEvent = "prettyprint" + selector,
+	$document = wb.doc,
 
 	/*
 	 * Plugin users can override these defaults by setting attributes on the html elements that the
@@ -65,15 +68,18 @@ var selector = ".wb-prettify",
 			$elm, classes, settings, i, len, $pre;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === elm ) {
+		// and only initialize the element once
+		if ( event.currentTarget === elm &&
+			elm.className.indexOf( initedClass ) === -1 ) {
+
+			wb.remove( selector );
+			elm.className += " " + initedClass;
+
 			$elm = $( elm );
 			classes = elm.className.split( " " );
 
 			// Merge default settings with overrides from the selected plugin element. There may be more than one, so don't override defaults globally!
 			settings = $.extend( {}, defaults, $elm.data() );
-
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			wb.remove( selector );
 
 			// Check the element for `lang-*` syntax CSS classes
 			for ( i = 0, len = classes.length; i !== len; i += 1 ) {
@@ -119,7 +125,7 @@ var selector = ".wb-prettify",
 
 // Bind the plugin events
 $document
-	.on( "timerpoke.wb wb-init" + selector, selector, init )
+	.on( "timerpoke.wb " + initEvent, selector, init )
 	.on( prettyPrintEvent, prettyprint );
 
 // Add the timer poke to initialize the plugin
