@@ -150,8 +150,7 @@ var pluginName = "wb-share",
 				};
 			}
 
-			panel = "<section id='shr-pg' class='shr-pg wb-overlay modal-content overlay-def wb-panel-" +
-				( wb.html.attr( "dir" ) === "rtl" ? "l" : "r" ) +
+			panel = "<section id='shr-pg' class='shr-pg wb-overlay modal-content overlay-def wb-panel-r" +
 				"'><header class='modal-header'><" + heading + " class='modal-title'>" +
 				i18nText.shareText + "</" + heading + "></header><ul class='colcount-xs-2'>";
 
