@@ -13,7 +13,7 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-lightbox",
+var pluginName = "wb-lb",
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
@@ -144,7 +144,7 @@ var pluginName = "wb-lightbox",
 						firstLink = elm.getElementsByTagName( "a" )[0];
 
 						// Is the element a gallery?
-						if ( elm.className.indexOf( "-gallery" ) !== -1 ) {
+						if ( elm.className.indexOf( "-gal" ) !== -1 ) {
 							settings.gallery = {
 								enabled: true
 							};

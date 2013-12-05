@@ -14,8 +14,8 @@
  * place to define variables that are common to all instances of the plugin on a
  * page.
  */
-var pluginName = "wb-ctry-cnt",
-	selector = "[data-country-content]",
+var pluginName = "wb-ctrycnt",
+	selector = "[data-ctrycnt]",
 	initEvent = "wb-init." + pluginName,
 	initedClass = pluginName + "-inited",
 	$document = wb.doc,
@@ -34,7 +34,7 @@ var pluginName = "wb-ctry-cnt",
 			wb.remove( selector );
 			$elm.addClass( initedClass );
 
-			var url = $elm.data( "countryContent" );
+			var url = $elm.data( "ctrycnt" );
 
 			// All plugins need to remove their reference from the timer in the init
 			// sequence unless they have a requirement to be poked every 0.5 seconds
@@ -51,7 +51,7 @@ var pluginName = "wb-ctry-cnt",
 
 				url = url.replace( "{country}", countryCode.toLowerCase() );
 
-				$elm.removeAttr( "data-country-content" );
+				$elm.removeAttr( "data-ctrycnt" );
 
 				$elm.load(url);
 			});

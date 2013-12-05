@@ -13,7 +13,7 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-texthighlight",
+var pluginName = "wb-txthl",
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
@@ -37,7 +37,7 @@ var pluginName = "wb-texthighlight",
 			wb.remove( selector );
 			elm.className += " " + initedClass;
 
-			searchCriteria = wb.pageUrlParts.params.texthighlight;
+			searchCriteria = wb.pageUrlParts.params.txthl;
 
 			if ( searchCriteria ) {
 				// clean up the search criteria and OR each value
@@ -48,7 +48,7 @@ var pluginName = "wb-texthighlight",
 				searchCriteria = "(?=([^>]*<))([\\s'])?(" + searchCriteria + ")(?!>)";
 
 				newText = elm.innerHTML.replace( new RegExp( searchCriteria, "gi" ), function( match, group1, group2, group3 ) {
-					return ( !group2 ? "" : group2 ) + "<span class='txthlt'><mark>" + group3 + "</mark></span>";
+					return ( !group2 ? "" : group2 ) + "<span class='txthl'><mark>" + group3 + "</mark></span>";
 				});
 				elm.innerHTML = newText;
 			}

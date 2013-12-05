@@ -14,7 +14,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var pluginName = "wb-pic",
-	selector = "[data-picture]",
+	selector = "[data-pic]",
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init." + pluginName,
 	picturefillEvent = "picfill." + pluginName,
