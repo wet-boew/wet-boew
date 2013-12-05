@@ -528,7 +528,6 @@ var pluginName = "wb-tabs",
 		} else {
 			if ( elm.getAttribute( "role" ) === "tab" ) {
 				onPick( $sldr, $elm );
-				$( elm.getAttribute( "href" ) ).trigger( setFocusEvent );
 			} else if ( !$sldr.hasClass( "playing" ) ) {
 				onCycle( $elm, className.indexOf( "prv" ) !== -1 ? -1 : 1 );
 			}
