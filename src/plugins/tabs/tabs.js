@@ -31,8 +31,8 @@ var pluginName = "wb-tabs",
 	$window = wb.win,
 	i18n, i18nText,
 
-	// Includes "xsmallview" and "xxsmallview"
-	smallViewPattern = "xsmallview",
+	// Includes "smallview", "xsmallview" and "xxsmallview"
+	smallViewPattern = "smallview",
 	isSmallView,
 
 	defaults = {
