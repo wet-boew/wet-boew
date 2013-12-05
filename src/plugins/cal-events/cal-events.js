@@ -13,7 +13,7 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-cal-evt",
+var pluginName = "wb-calevt",
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
@@ -43,7 +43,7 @@ var pluginName = "wb-cal-evt",
 			}
 
 			// Load ajax content
-			$.when.apply($, $.map( $elm.find( "[data-calEvt]" ), getAjax))
+			$.when.apply($, $.map( $elm.find( "[data-calevt]" ), getAjax))
 				.always( function() {
 					processEvents( $elm );
 				});
@@ -52,7 +52,7 @@ var pluginName = "wb-cal-evt",
 
 	getAjax = function( ajaxContainer ) {
 		var $ajaxContainer = $( ajaxContainer ),
-			urls = $ajaxContainer.data( "calEvt" ).split(/\s+/),
+			urls = $ajaxContainer.data( "calevt" ).split(/\s+/),
 			dfd = $.Deferred(),
 			len = urls.length,
 			promises = [],
