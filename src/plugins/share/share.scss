@@ -4,15 +4,6 @@
  */
 @import "sprites";
 
-%share_icons {
-	content: " ";
-	display: inline-block;
-	height: 32px;
-	width: 32px;
-	margin-right: 12px;
-	vertical-align: middle;
-}
-
 .wb-share {
 	.shr-lnk {
 		width: 100%;
@@ -22,133 +13,138 @@
 		text-align: left;
 		text-decoration: none;
 		font-size: 115%;
+		&:before {
+			content: " ";
+			display: inline-block;
+			height: 32px;
+			width: 32px;
+			margin-right: 12px;
+			vertical-align: middle;
+		}
 	}
 
-	//TODO: Convert @include to @extend when libsass supports nested extends
+	// TODO: Convert @include to @extend when libsass supports nested extends
 	.bitly {
 		&:before {
-			@extend %share_icons;
 			@include bitly;
 		}
 	}
 	.blogger {
 		&:before {
-			@extend %share_icons;
 			@include blogger;
 		}
 	}
 	.delicious {
 		&:before {
-			@extend %share_icons;
 			@include delicious;
 		}
 	}
 	.digg {
 		&:before {
-			@extend %share_icons;
 			@include digg;
 		}
 	}
 	.diigo {
 		&:before {
-			@extend %share_icons;
 			@include diigo;
 		}
 	}
 	.dzone {
 		&:before {
-			@extend %share_icons;
 			@include dzone;
 		}
 	}
 	.facebook {
 		&:before {
-			@extend %share_icons;
 			@include facebook;
 		}
 	}
 	.fark {
 		&:before {
-			@extend %share_icons;
 			@include fark;
 		}
 	}
 	.feed {
 		&:before {
-			@extend %share_icons;
 			@include feed;
 		}
 	}
 	.googleplus {
 		&:before {
-			@extend %share_icons;
 			@include googleplus;
 		}
 	}
 	.linkedin {
 		&:before {
-			@extend %share_icons;
 			@include linkedin;
 		}
 	}
 	.myspace {
 		&:before {
-			@extend %share_icons;
 			@include myspace;
 		}
 	}
 	.netvibes {
 		&:before {
-			@extend %share_icons;
 			@include netvibes;
 		}
 	}
 	.newsvine {
 		&:before {
-			@extend %share_icons;
 			@include newsvine;
 		}
 	}
 	.pinterest {
 		&:before {
-			@extend %share_icons;
 			@include pinterest;
 		}
 	}
 	.reddit {
 		&:before {
-			@extend %share_icons;
 			@include reddit;
 		}
 	}
 	.stumbleupon {
 		&:before {
-			@extend %share_icons;
 			@include stumbleupon;
 		}
 	}
 	.technorati {
 		&:before {
-			@extend %share_icons;
 			@include technorati;
 		}
 	}
 	.tumblr {
 		&:before {
-			@extend %share_icons;
 			@include tumblr;
 		}
 	}
 	.twitter {
 		&:before {
-			@extend %share_icons;
 			@include twitter;
 		}
 	}
-
+	.shr-pg {
+		text-align: left;
+	}
 	ul {
 		list-style-type: none;
 		padding: 0;
 		margin: 10px;
+	}
+}
+
+[dir=rtl] {
+	.wb-share {
+		.shr-lnk {
+			text-align: right;
+			&:before {
+				margin-right: auto;
+				margin-left: 12px;
+			}
+		}
+		.shr-pg {
+			text-align: right;
+		}
 	}
 }
