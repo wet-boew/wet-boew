@@ -21,34 +21,27 @@ var pluginName = "wb-details",
 	 * Init runs once per polyfill element on the page. There may be multiple elements.
 	 * It will run more than once if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {DOM element} elm The details element to be polyfilled
+	 * @param {jQuery event} event The event that triggered init
 	 */
-	init = function( elm ) {
-		var details = elm.parentNode;
+	init = function( event ) {
+		var summary = event.currentTarget,
+			details = summary.parentNode;
 
 		// Filter out any events triggered by descendants
 		// and only initialize the element once
-		if ( event.currentTarget === details &&
+		if ( summary === event.target &&
 			details.className.indexOf( initedClass ) === -1 ) {
 
 			wb.remove( selector );
 			details.className += " " + initedClass;
 
 			details.setAttribute( "aria-expanded", ( details.getAttribute( "open" ) !== null ) );
-			elm.setAttribute( "tabindex", "0" );
+			summary.setAttribute( "tabindex", "0" );
 		}
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb " + initEvent, selector, function( event ) {
-	init( event.currentTarget );
-
-	/*
-	 * Since we are working with events we want to ensure that we are being passive about our control,
-	 * so returning true allows for events to always continue
-	 */
-	return true;
-});
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 // Bind the init event of the plugin
 $document.on( "click vclick touchstart keydown toggle.wb-details", selector, function( event ) {
