@@ -632,14 +632,14 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 		data = ref[ 1 ],
 		captionsUrl = wb.getUrlParts( data.captions ),
 		currentUrl = wb.getUrlParts( window.location.href ),
-		media = $this.find( "video, audio, iframe, object" ),
+		$media = $this.find( "video, audio, iframe, object" ),
 		$player;
 
-	media.after( window.tmpl( $this.data( "template" ), data ) );
+	$media.after( window.tmpl( $this.data( "template" ), data ) );
 	if ( type === "video" ) {
-		media.next( ".display" ).append( media );
+		$media.next( ".display" ).append( $media );
 	} else {
-		media.next( ".display" ).remove();
+		$media.next( ".display" ).remove();
 	}
 
 	$player = $( "#" + data.mId );
@@ -655,6 +655,9 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 	this.object = data.ytPlayer || $player.get( 0 );
 	this.player = ( data.ytPlayer ) ? youTubeApi : playerApi;
 	$this.data( "properties", data );
+
+	//Load the progress polyfill if needed
+	$this.find( "progress" ).trigger( "wb-init.wb-progress" );
 
 	if ( data.captions === undef ) {
 		return 1;
@@ -689,7 +692,7 @@ $document.on( "click", selector, function( event ) {
 		this.player( "setCaptionsVisible", !this.player( "getCaptionsVisible" ) );
 	} else if ( className.match( /\bmute\b|-volume-(up|off)/ ) ) {
 		this.player( "setMuted", !this.player( "getMuted" ) );
-	} else if ( $target.is( "progress" ) || $target.hasClass( "wb-progress-inner" ) || $target.hasClass( "wb-progress-outer" ) ) {
+	} else if ( $target.is( "progress" ) || $target.hasClass( "progress" ) || $target.hasClass( "progress-bar" ) ) {
 		this.player( "setCurrentTime", this.player( "getDuration" ) * ( ( event.pageX - $target.offset().left ) / $target.width() ) );
 	} else if ( className.match( /\brewind\b|-backwards/ ) ) {
 		this.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05);
