@@ -100,7 +100,10 @@ module.exports = (grunt) ->
 			"concat:coreIE8"
 			"concat:pluginsIE8"
 			"concat:i18n"
-			"uglify"
+			"uglify:polyfills"
+			"uglify:core"
+			"uglify:i18n"
+			"uglify:deps"
 		]
 	)
 
@@ -141,6 +144,7 @@ module.exports = (grunt) ->
 		[
 			"copy:demos_min"
 			"cssmin:demos_min"
+			"uglify:demos"
 			"assemble:demos_min"
 			"htmlcompressor"
 		]
@@ -516,17 +520,7 @@ module.exports = (grunt) ->
 				dest: "dist/js/polyfills/"
 				ext: ".min.js"
 
-			other:
-				options:
-					preserveComments: (uglify,comment) ->
-						return comment.value.match(/^!/i)
-				expand: true
-				cwd: "dist/unmin/js/other/"
-				src: ["*.js"]
-				dest: "dist/js/other/"
-				ext: ".min.js"
-
-			demo:
+			demos:
 				options:
 					banner: "<%= banner %>"
 					preserveComments: (uglify,comment) ->
@@ -730,6 +724,8 @@ module.exports = (grunt) ->
 					"**/img/*.*"
 					# CSS is copied by the cssmin:demos_min task
 					"!**/*.css"
+					# CSS is copied by the uglify:demos task
+					"!**/*.js"
 				]
 				dest: "dist/demos/"
 				expand: true
