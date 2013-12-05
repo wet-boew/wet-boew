@@ -168,7 +168,9 @@ var selector = ".wb-share",
 
 			$elm.append( $share );
 
-			$share.trigger( initEvent );
+			$share
+				.trigger( initEvent )
+				.trigger( "wb-init.wb-overlay" );
 		}
 	};
 
