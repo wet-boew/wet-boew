@@ -13,25 +13,41 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-cal-evt",
+var pluginName = "wb-cal-evt",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
+	setFocusEvent = "setfocus.wb",
+	evDetails = "ev-details",
 	$document = wb.doc,
 	i18n, i18nText,
 
+	/**
+	 * @method init
+	 * @param {jQuery DOM element} $elm The plugin element
+	 */
 	init = function( $elm ) {
-		wb.remove( selector );
 
-		// Only initialize the i18nText once
-		if ( !i18nText ) {
-			i18n = wb.i18n;
-			i18nText = {
-				monthNames: i18n( "mnths" ),
-				calendar: i18n( "cal" )
-			};
+		// Only initialize the element once
+		if ( !$elm.hasClass( initedClass ) ) {
+			wb.remove( selector );
+			$elm.addClass( initedClass );
+
+			// Only initialize the i18nText once
+			if ( !i18nText ) {
+				i18n = wb.i18n;
+				i18nText = {
+					monthNames: i18n( "mnths" ),
+					calendar: i18n( "cal" )
+				};
+			}
+
+			// Load ajax content
+			$.when.apply($, $.map( $elm.find( "[data-calEvt]" ), getAjax))
+				.always( function() {
+					processEvents( $elm );
+				});
 		}
-
-		// Load ajax content
-		$.when.apply($, $.map( $elm.find( "[data-calEvt]" ), getAjax))
-			.always( function() { processEvents( $elm ); } );
 	},
 
 	getAjax = function( ajaxContainer ) {
@@ -302,7 +318,7 @@ var selector = ".wb-cal-evt",
 			$children = $this.closest( "ul" ).children( "li" );
 			length = $children.length;
 			$children.eq( ( $this.closest( "li" ).index() - 1 ) % length )
-				.children( "a" ).trigger( "setfocus.wb" );
+				.children( "a" ).trigger( setFocusEvent );
 			return false;
 
 		// Down arrow
@@ -310,26 +326,26 @@ var selector = ".wb-cal-evt",
 			$children = $this.closest( "ul" ).children( "li" );
 			length = $children.length;
 			$children.eq( ( $this.closest( "li" ).index() + 1 ) % length )
-				.children( "a" ).trigger( "setfocus.wb" );
+				.children( "a" ).trigger( setFocusEvent );
 			return false;
 
 		// Left arrow
 		case 37:
 			$this.closest( "ol" )
 				.children( "li:lt(" + $this.closest( "li[id^=cal-]" ).index() + ")" )
-				.children( "a" ).last().trigger( "setfocus.wb" );
+				.children( "a" ).last().trigger( setFocusEvent );
 			return false;
 
 		// Right arrow
 		case 39:
 			$this.closest( "ol" )
 				.children( "li:gt(" + $this.closest( "li[id^=cal-]" ).index() + ")" )
-				.children( "a" ).first().trigger( "setfocus.wb" );
+				.children( "a" ).first().trigger( setFocusEvent );
 			return false;
 
 		// Escape
 		case 27:
-			$this.closest( "li[id^=cal-]" ).children( ".cal-evt" ).trigger( "setfocus.wb" );
+			$this.closest( "li[id^=cal-]" ).children( ".cal-evt" ).trigger( setFocusEvent );
 			return false;
 		}
 	},
@@ -337,12 +353,12 @@ var selector = ".wb-cal-evt",
 	mouseOnDay = function( dayEvents ) {
 		dayEvents.dequeue()
 			.removeClass( "wb-inv" )
-			.addClass( "ev-details" );
+			.addClass( evDetails );
 	},
 
 	mouseOutDay = function( dayEvents ) {
 		dayEvents.delay( 100 ).queue(function() {
-			$( this ).removeClass( "ev-details" )
+			$( this ).removeClass( evDetails )
 				.addClass( "wb-inv" )
 				.dequeue();
 		});
@@ -350,7 +366,7 @@ var selector = ".wb-cal-evt",
 
 	focus = function( dayEvents ) {
 		dayEvents.removeClass( "wb-inv" )
-			.addClass( "ev-details" );
+			.addClass( evDetails );
 	},
 
 	blur = function( dayEvents ) {
@@ -358,7 +374,7 @@ var selector = ".wb-cal-evt",
 			var $elm = dayEvents;
 
 			if ( $elm.find( "a:focus" ).length === 0 ) {
-				$elm.removeClass( "ev-details" )
+				$elm.removeClass( evDetails )
 					.addClass( "wb-inv" );
 			}
 		}, 5);
@@ -463,7 +479,7 @@ var selector = ".wb-cal-evt",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb wb-init.wb-cal-evt", selector, function() {
+$document.on( "timerpoke.wb " + initEvent, selector, function() {
 	init( $( this ) );
 
 	/*

@@ -17,7 +17,7 @@ describe( "Prettify test suite", function() {
 	var spy;
 
 	/*
-	 * Before begining the test suite, this function is exectued once.
+	 * Before beginning the test suite, this function is executed once.
 	 */
 	before(function(done) {
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
@@ -31,7 +31,7 @@ describe( "Prettify test suite", function() {
 	});
 
 	/*
-	 * After finishing the test suite, this function is exectued once.
+	 * After finishing the test suite, this function is executed once.
 	 */
 	after(function() {
 		// Restore the original behaviour of trigger once the tests are finished
@@ -103,6 +103,7 @@ describe( "Prettify test suite", function() {
 
 			$( "body" ).append( "<pre class='test'>" );
 			$( ".wb-prettify" )
+				.removeClass( "wb-prettify-inited" )
 				.addClass( "lang-sql" )
 				.addClass( "all-pre" )
 				.addClass( "linenums" )
@@ -138,6 +139,7 @@ describe( "Prettify test suite", function() {
 
 			$( "body" ).append( "<pre class='test'>" );
 			$( ".wb-prettify" )
+				.removeClass( "wb-prettify-inited" )
 				.data({
 					allpre: true,
 					linenums: true

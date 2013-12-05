@@ -6,15 +6,18 @@
 (function( $, wb ) {
 "use strict";
 
-wb.doc.on( "click vclick", "#updateProgress", function() {
+wb.doc.on( "click vclick", "#increaseMeter, #decreaseMeter", function( event ) {
 	var $elm = $( "#updateTest" ),
+		increase = event.currentTarget.id === "increaseMeter",
 		valuenow = parseInt( $elm.attr( "value" ), 10 ),
-		newValue = valuenow === parseInt( $elm.attr( "max" ), 10 ) ? 0 : valuenow + 1;
+		limit = parseInt( $elm.attr( increase ? "max" : "min" ), 10 ),
+		change = increase ? 1 : -1,
+		newValue = valuenow === limit ? 0 : valuenow + change;
 
 	$elm
 		.attr( "value", newValue )
 		.find( "span" )
-			.text( newValue + "%" );
+			.text( newValue );
 });
 
 })( jQuery, wb );

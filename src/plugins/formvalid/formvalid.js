@@ -13,7 +13,11 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-formvalid",
+var pluginName = "wb-formvalid",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
+	setFocusEvent = "setfocus.wb",
 	$document = wb.doc,
 	i18n, i18nText,
 
@@ -28,14 +32,16 @@ var selector = ".wb-formvalid",
 			modeJS, $elm;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === eventTarget ) {
+		// and only initialize the element once
+		if ( event.currentTarget === eventTarget &&
+			eventTarget.className.indexOf( initedClass ) === -1 ) {
 
-			// read the selector node for parameters
+			wb.remove( selector );
+			eventTarget.className += " " + initedClass;
+			
+			// Read the selector node for parameters
 			modeJS = wb.getMode() + ".js";
 			$elm = $( eventTarget );
-
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			wb.remove( selector );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
@@ -186,7 +192,7 @@ var selector = ".wb-formvalid",
 								if ( submitted ) {
 
 									// Assign focus to $summaryContainer
-									$summaryContainer.trigger( "setfocus.wb" );
+									$summaryContainer.trigger( setFocusEvent );
 								} else {
 
 									// Update the aria-live region as necessary
@@ -258,7 +264,7 @@ var selector = ".wb-formvalid",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb wb-init.wb-formvalid", selector, init );
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 // Move the focus to the associated input when an error message link is clicked
 // and scroll to the top of the label or legend that contains the error
@@ -275,7 +281,7 @@ $document.on( "click vclick", selector + " .errCnt a", function( event ) {
 		errorTop = $label.length !== 0 ? $label.offset().top : ( $legend.length !== 0 ? $legend.offset().top : -1 );
 
 		// Assign focus to $input
-		$input.trigger( "setfocus.wb" );
+		$input.trigger( setFocusEvent );
 
 		if ( errorTop !== -1 ) {
 			window.scroll( 0, errorTop );

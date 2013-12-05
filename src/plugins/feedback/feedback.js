@@ -13,7 +13,10 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-fdbck",
+var pluginName = "wb-fdbck",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
 	$document = wb.doc,
 	fbrsn, fbaxs, fbcntc1, fbcntc2, $fbweb, $fbmob, $fbcomp, $fbinfo,
 
@@ -29,7 +32,13 @@ var selector = ".wb-fdbck",
 			$elm, $fbrsn, urlParams;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === eventTarget ) {
+		// and only initialize the element once
+		if ( event.currentTarget === eventTarget &&
+			eventTarget.className.indexOf( initedClass ) === -1 ) {
+
+			wb.remove( selector );
+			eventTarget.className += " " + initedClass;
+
 			$elm = $( eventTarget );
 			$fbrsn = $elm.find( "#fbrsn" );
 			urlParams = wb.pageUrlParts.params;
@@ -43,9 +52,6 @@ var selector = ".wb-fdbck",
 			$fbmob = $fbweb.find( "#fbmob" );
 			$fbcomp = $fbweb.find( "#fbcomp" );
 			$fbinfo = $elm.find( "#fbinfo" );
-
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			wb.remove( selector );
 
 			// Set the initial value for the fbrsn field based on the query string
 			if ( !urlParams.submit && urlParams.fbrsn ) {
@@ -117,7 +123,7 @@ var selector = ".wb-fdbck",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb wb-init.wb-fdbck", selector, init );
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 // Show/hide form areas when certain form fields are changed
 $document.on( "keydown click change", "#fbrsn, #fbaxs, #fbcntc1, #fbcntc2", function( event ) {

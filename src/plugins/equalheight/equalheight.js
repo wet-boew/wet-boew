@@ -26,8 +26,6 @@ var selector = ".wb-equalheight",
 
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === event.target ) {
-
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 			wb.remove( selector );
 
 			// Remove the event handler since only want init fired once per page (not per element)
@@ -94,7 +92,7 @@ var selector = ".wb-equalheight",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb wb-init.wb-equalheight", selector, init );
+$document.on( "timerpoke.wb", selector, init );
 
 // Handle text and window resizing
 $document.on( "txt-rsz.wb win-rsz-width.wb win-rsz-height.wb tables-draw.wb", onResize );

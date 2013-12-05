@@ -4,7 +4,6 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET community
  */
-
 (function( $, window, document, wb ) {
 "use strict";
 
@@ -14,18 +13,55 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-menu",
-	$document = wb.doc,
+var pluginName = "wb-menu",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
 	breadcrumb = document.getElementById( "wb-bc" ),
-	selectEvent = "sel.wb-menu",
-	incrementEvent = "inc.wb-menu",
-	displayEvent = "disp.wb-menu",
+	selectEvent = "sel" + selector,
+	incrementEvent = "inc" + selector,
+	displayEvent = "disp" + selector,
 	navCurrentEvent = "navcurr.wb",
+	$document = wb.doc,
 
 	// Used for half second delay on showing/hiding menus because of mouse hover
 	hoverDelay = 500,
 	menuCount = 0,
 	globalTimeout = {},
+
+	/**
+	 * Lets set some aria states and attributes
+	 * @method init
+	 * @param {jQuery DOM element} $elm The plugin element
+	 */
+	init = function( $elm ) {
+
+		// Only initialize the element once
+		if ( !$elm.hasClass( initedClass ) ) {
+			wb.remove( selector );
+			$elm.addClass( initedClass );
+
+			// Ensure the container has an id attribute
+			if ( !$elm.attr( "id" ) ) {
+				$elm.attr( "id", pluginName + "-" + menuCount );
+			}
+			menuCount += 1;
+
+			// Lets test to see if we have any
+			if ( $elm.data( "ajax-fetch" ) ) {
+				$document.trigger({
+					type: "ajax-fetch.wb",
+					element: $elm,
+					fetch: $elm.data( "ajax-fetch" )
+				});
+			} else {
+
+				// Trigger the navcurrent plugin
+				$elm.trigger( navCurrentEvent, breadcrumb );
+				$( "#wb-sec" ).trigger( navCurrentEvent, breadcrumb );
+			}
+		}
+	},
 
 	/**
 	 * Lets leverage JS assigment deconstruction to reduce the code output
@@ -35,43 +71,11 @@ var selector = ".wb-menu",
 	 */
 	expand = function( element, scopeitems ) {
 		var $elm = $( element ),
-			elm = $elm.hasClass( "wb-menu" ) ? $elm.data() : $elm.parents( ".wb-menu" )
+			elm = $elm.hasClass( pluginName ) ? $elm.data() : $elm.parents( selector )
 				.first()
 				.data(),
 			items = scopeitems ? elm.items.has( element ) : elm.items;
 		return [ elm.self, elm.menu, items, $elm ];
-	},
-
-	/**
-	 * Lets set some aria states and attributes
-	 * @method onInit
-	 * @param {jQuery DOM element} $elm The plugin element
-	 */
-	onInit = function( $elm ) {
-
-		// All plugins need to remove their reference from the timer in the init
-		// sequence unless they have a requirement to be poked every 0.5 seconds
-		wb.remove( selector );
-
-		// Ensure the container has an id attribute
-		if ( !$elm.attr( "id" ) ) {
-			$elm.attr( "id", "wb-menu-" + menuCount );
-		}
-		menuCount += 1;
-
-		// Lets test to see if we have any
-		if ( $elm.data( "ajax-fetch" ) ) {
-			$document.trigger({
-				type: "ajax-fetch.wb",
-				element: $elm,
-				fetch: $elm.data( "ajax-fetch" )
-			});
-		} else {
-
-			// Trigger the navcurrent plugin
-			$elm.trigger( navCurrentEvent, breadcrumb );
-			$( "#wb-sec" ).trigger( navCurrentEvent, breadcrumb );
-		}
 	},
 
 	/**
@@ -330,7 +334,7 @@ var selector = ".wb-menu",
 	};
 
 // Bind the events of the plugin
-$document.on( "timerpoke.wb wb-init.wb-menu " + selectEvent + " ajax-fetched.wb " + incrementEvent + " " + displayEvent, selector, function( event ) {
+$document.on( "timerpoke.wb " + initEvent  + " " + selectEvent + " ajax-fetched.wb " + incrementEvent + " " + displayEvent, selector, function( event ) {
 	var elm = event.target,
 		eventType = event.type,
 		$elm = $( elm );
@@ -349,11 +353,11 @@ $document.on( "timerpoke.wb wb-init.wb-menu " + selectEvent + " ajax-fetched.wb 
 		break;
 
 	case "timerpoke":
-	case "init":
+	case "wb-init":
 
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === elm ) {
-			onInit( $elm );
+			init( $elm );
 		}
 		break;
 

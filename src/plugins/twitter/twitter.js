@@ -13,7 +13,10 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-twitter",
+var pluginName = "wb-twitter",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
 	$document = wb.doc,
 
 	/**
@@ -23,13 +26,16 @@ var selector = ".wb-twitter",
 	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
 	 */
 	init = function( event ) {
-
+		var eventTarget = event.target,
+			protocol = wb.pageUrlParts.protocol;
+	
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === event.target ) {
-			var protocol = wb.pageUrlParts.protocol;
+		// and only initialize the element once
+		if ( event.currentTarget === eventTarget &&
+			eventTarget.className.indexOf( initedClass ) === -1 ) {
 
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 			wb.remove( selector );
+			eventTarget.className += " " + initedClass;
 
 			Modernizr.load( {
 				load: ( protocol.indexOf( "http" ) === -1 ? "http:" : protocol ) + "//platform.twitter.com/widgets.js"
@@ -37,7 +43,7 @@ var selector = ".wb-twitter",
 		}
 	};
 
-$document.on( "timerpoke.wb wb-init" + selector, selector, init );
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );

@@ -12,13 +12,17 @@
  * Variable and function definitions.
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
-var selector = "input[type=date]",
-	$document = wb.doc,
+var pluginName = "wb-date",
+	selector = "input[type=date]",
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init." + pluginName,
+	setFocusEvent = "setfocus.wb",
 	date = new Date(),
 	month = date.getMonth(),
 	year = date.getFullYear(),
 	format = "YYYY-MM-DD",
 	initialized = false,
+	$document = wb.doc,
 	i18n, i18nText, $container,
 
 	/**
@@ -32,10 +36,12 @@ var selector = "input[type=date]",
 			elmId = elm.id;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === elm ) {
+		// and only initialize the element once
+		if ( event.currentTarget === elm &&
+			elm.className.indexOf( initedClass ) === -1 ) {
 
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 			wb.remove( selector );
+			elm.className += " " + initedClass;
 
 			if ( elm.className.indexOf( "picker-field" ) !== -1 ) {
 				return;
@@ -125,7 +131,7 @@ var selector = "input[type=date]",
 		// $parent.append( $days );
 
 		if ( targetDay ) {
-			$days.eq( targetDay - 1 ).find( "a" ).trigger( "setfocus.wb" );
+			$days.eq( targetDay - 1 ).find( "a" ).trigger( setFocusEvent );
 		}
 	},
 
@@ -215,11 +221,11 @@ var selector = "input[type=date]",
 					]
 				);
 			} else {
-				$( "#wb-picker" ).trigger( "setfocus.wb" );
+				$( "#wb-picker" ).trigger( setFocusEvent );
 			}
 		} else {
 			hide( fieldId );
-			$field.trigger( "setfocus.wb" );
+			$field.trigger( setFocusEvent );
 		}
 	},
 
@@ -259,7 +265,7 @@ var selector = "input[type=date]",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb wb-init.wb-datepicker", selector, init );
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 $document.on( "click vclick touchstart focusin", "body", function( event ) {
 	var which = event.which,
@@ -290,7 +296,7 @@ $document.on( "keydown displayed.wb-cal", "#wb-picker", function( event, year, m
 		// Escape key to close overlay
 		if ( which === 27 ) {
 			hideAll();
-			$( "#" + fieldId ).trigger( "setfocus.wb" );
+			$( "#" + fieldId ).trigger( setFocusEvent );
 		}
 		break;
 

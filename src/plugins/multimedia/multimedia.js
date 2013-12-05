@@ -9,8 +9,10 @@
 "use strict";
 
 /* Local scoped variables*/
-var $document = wb.doc,
-	selector = ".wb-mltmd",
+var pluginName = "wb-mltmd",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
 	seed = 0,
 	templatetriggered = false,
 	i18n, i18nText,
@@ -21,420 +23,438 @@ var $document = wb.doc,
 	initializedEvent = "inited" + selector,
 	fallbackEvent = "fallback" + selector,
 	youtubeEvent = "youtube" + selector,
+	$document = wb.doc,
 
-/* helper functions*/
+	/**
+	 * Init runs once per plugin element on the page. There may be multiple elements.
+	 * It will run more than once per plugin if you don't remove the selector from the timer.
+	 * @function init
+	 * @param {jQuery Event} event Event that triggered this handler
+	 */
+	init = function( event ) {
+		var eventTarget = event.target;
 
-/**
- * @method formatTime
- * @description format a number of seconds to SMTPE Timecode format (HH:MM:SS.FF)
- * @param {Float} time The time to format
- * @returns {String} the formatted time
- */
-formatTime = function( time ) {
-	var index = 2,
-		timecode = "",
-		secondsIn, current, pad;
+		// Filter out any events triggered by descendants
+		// and only initialize the element once
+		if ( event.currentTarget === eventTarget &&
+			eventTarget.className.indexOf( initedClass ) === -1 ) {
 
-	pad = function( number, digits ) {
-		return new Array( Math.max( digits - String( number ).length + 1, 0 ) ).join( 0 ) + number;
+			wb.remove( selector );
+			eventTarget.className += " " + initedClass;
+
+			// Only initialize the i18nText once
+			if ( !i18nText ) {
+				i18n = wb.i18n;
+				i18nText = {
+					rewind: i18n( "rew" ),
+					ff: i18n( "ffwd" ),
+					play: i18n( "play" ),
+					pause: i18n( "pause" ),
+					cc_on: i18n( "cc", "on" ),
+					cc_off: i18n( "cc", "off" ),
+					cc_error: i18n ( "cc-err" ),
+					mute_on: i18n( "mute", "on" ),
+					mute_off: i18n( "mute", "off" ),
+					duration: i18n( "dur" ),
+					position: i18n( "pos" )
+				};
+			}
+
+			if ( !templatetriggered ) {
+				templatetriggered = true;
+				$document.trigger({
+					type: "ajax-fetch.wb",
+					element: $( selector ),
+					fetch: wb.getPath( "/assets" ) + "/mediacontrols.html"
+				});
+			}
+		}
+	},
+
+	/* helper functions*/
+
+	/**
+	 * @method formatTime
+	 * @description format a number of seconds to SMTPE Timecode format (HH:MM:SS.FF)
+	 * @param {Float} time The time to format
+	 * @returns {String} the formatted time
+	 */
+	formatTime = function( time ) {
+		var index = 2,
+			timecode = "",
+			secondsIn, current, pad;
+
+		pad = function( number, digits ) {
+			return new Array( Math.max( digits - String( number ).length + 1, 0 ) ).join( 0 ) + number;
+		};
+
+		time = Math.floor( time );
+
+		//Loop to extract hours, minutes and seconds
+		while ( index >= 0 ) {
+			//Get the number of seconds for the current iteration (hour, minute or second)
+			secondsIn = Math.pow( 60, index );
+			current = Math.floor( time / secondsIn );
+
+			if ( timecode !== "" ) {
+				timecode += ":";
+			}
+
+			timecode += pad( current, 2 );
+			time -= secondsIn * current;
+			index -= 1;
+		}
+		return timecode;
+	},
+
+	/**
+	 * @method parseTime
+	 * @description parse an SMTPE Timecode string (HH:MM:SS.FF) or duration (45s) and returns the number of seconds for the timecode
+	 * @param {String} time The timecode or duration string to parse
+	 * @returns {Float} the number of seconds in time
+	 */
+	parseTime = function( time ) {
+		var i, parts, timeStringPortion, partLength, seconds;
+
+		if ( time !== undef ) {
+			if ( time.charAt( time.length - 1 ) === "s" ) {
+				//Duration parsing
+				return parseFloat( time.substring( 0, time.length - 1 ) );
+			} else {
+				//SMTPE Timecode Parsing
+				parts = time.split( ":" ).reverse();
+				seconds = 0;
+
+				for ( i = 0, partLength = parts.length; i < partLength; i += 1 ) {
+					timeStringPortion = i === 0 ?
+						parseFloat( parts[ i ] ) :
+						parseInt( parts[ i ], 10 );
+					seconds += timeStringPortion * Math.pow( 60, i );
+				}
+				return seconds;
+			}
+		}
+		return -1;
+	},
+
+	// TODO: Document this function
+	expand = function( elm, withPlayer ) {
+		var $this = $( elm ),
+			$data = $this.data( "properties" );
+
+		return withPlayer !== undef ?
+			 [ $this, $data, $data.player ] :
+			 [ $this, $data ];
+	},
+
+	/**
+	 * @method parseHtml
+	 * @description parse an HTML fragment and extract embed captions
+	 * @param {String} content The HTML fragment containing the captions
+	 * @returns {Array} An array of captions objects (ex: {text: "Caption", begin: 0, end :10})
+	 */
+	parseHtml = function( content ) {
+		var captions = [],
+			captionSelector = ".wb-tmtxt",
+			captionElements = content.find( captionSelector ),
+			len = captionElements.length,
+			i, captionElement, json, begin, end;
+
+		for ( i = 0; i !== len; i += 1 ) {
+			captionElement = $( captionElements[ i ] );
+			begin = -1;
+			end = -1;
+
+			if ( captionElement.attr( "data-begin" ) !== undef ) {
+				begin = parseTime( captionElement.attr( "data-begin" ) );
+				end = captionElement.attr( "data-end" ) !== undef ?
+					parseTime( captionElement.attr( "data-end" ) ) :
+					parseTime( captionElement.attr( "data-dur" ) ) + begin;
+			} else if ( captionElement.attr( "data" ) !== undef ) {
+				json = captionElement.attr( "data" )
+					.replace( /(begin|dur|end)/g, "\"$1\"" )
+					.replace( /'/g, "\"" );
+				json = $.parseJSON( json );
+				begin = parseTime( json.begin );
+				end = json.end !== undef ?
+					parseTime( json.end ) :
+					parseTime( json.dur ) + begin;
+			}
+
+			//Removes nested captions if an
+			captionElement = captionElement.clone();
+			captionElement.find( captionSelector ).detach();
+
+			captions[ captions.length ] = {
+				text: captionElement.html(),
+				begin: begin,
+				end: end
+			};
+		}
+		return captions;
+	},
+
+	/**
+	 * @method parseXml
+	 * @description parse an TTML (Xml) document and extract captions
+	 * @param {String} content The TTML fragment containing the captions
+	 * @returns {Array} An array of captions objects (ex: {text: "Caption", begin: 0, end :10})
+	 */
+	parseXml = function( content ) {
+		var captions = [],
+			captionSelector = "[begin]",
+			captionElements = content.find( captionSelector ),
+			len = captionElements.length,
+			i, captionElement, begin, end;
+
+		for ( i = 0; i !== len; i += 1 ) {
+			captionElement = $( captionElements[ i ] );
+			begin = parseTime( captionElement.attr( "begin" ) );
+			end = captionElement.attr( "end" ) !== undef ?
+				parseTime( captionElement.attr( "end" ) ) :
+				parseTime( captionElement.attr( "dur" ) ) + begin;
+
+			captionElement = captionElement.clone();
+			captionElement.find( captionSelector ).detach();
+
+			captions[ captions.length ] = {
+				text: captionElement.html(),
+				begin: begin,
+				end: end
+			};
+		}
+		return captions;
+	},
+
+	/**
+	 * @method loadCaptionsExternal
+	 * @description Loads captions from an external source (HTML embed or TTML)
+	 * @param {Object} elm The jQuery object for the multimedia player loading the captions
+	 * @param {String} url The url for the captions resource to load
+	 * @fires ccloaded.wb-mltmd
+	 * @fires ccloadfail.wb-mltmd
+	 */
+	loadCaptionsExternal = function( elm, url ) {
+		$.ajax({
+			url: url,
+			dataType: "html",
+			//Filters out images and objects from the content to avoid loading them
+			dataFilter: function( data ) {
+				return data.replace( /<img|object [^>]*>/g, "" );
+			},
+			success: function( data ) {
+				elm.trigger({
+					type: captionsLoadedEvent,
+					captions: data.indexOf( "<html" ) !== -1 ?
+						parseHtml( $( data ) ) :
+						parseXml( $( data ) )
+				});
+			},
+			error: function( response, textStatus, errorThrown ) {
+				elm.trigger({
+					type: captionsLoadFailedEvent,
+					error: errorThrown
+				});
+			}
+		});
+	},
+
+	/**
+	 * @method loadCaptionsInternal
+	 * @description Loads same page captions emebed in HTML
+	 * @param {Object} elm The jQuery object for the multimedia player loading the captions
+	 * @param {Object} obj The jQUery object containing the captions
+	 * @fires ccloaded.wb-mltmd
+	 */
+	loadCaptionsInternal = function( elm, obj ) {
+		elm.trigger({
+			type: captionsLoadedEvent,
+			captions: parseHtml( obj )
+		});
+	},
+
+	/**
+	 * @method updateCaptions
+	 * @description Update the captions for a multimedia player (called from the timeupdate event of the HTML5 media API)
+	 * @param {Object} area The jQuery object for the element where captions are displayed
+	 * @param {Float} seconds The current time of the media (use to sync the captions)
+	 * @param {Object} captions The JavaScript object containing the captions
+	 */
+	updateCaptions = function( area, seconds, captions ) {
+		var caption, i,
+			captionsLength = captions.length;
+
+		// lets not waste cycles in updating if captions are not visible
+		// and remove any text if there was some there before.
+		if ( !area.hasClass( "on" ) ) {
+			return area.is( "empty" ) ? 1 : area.empty();
+		}
+
+		// added &nbsp; to prevent caption space from collapsing
+		// Used .html() instead of .append for performance purposes
+		// http://jsperf.com/jquery-append-vs-html-list-performance/2
+		area.html( "&nbsp;" );
+
+		for ( i = 0; i < captionsLength; i += 1 ) {
+			caption = captions[ i ];
+			if ( seconds >= caption.begin && seconds <= caption.end ) {
+				area.html( $( "<div>" + caption.text + "</div>" ) );
+			}
+		}
+	},
+
+	/**
+	 * @method playerApi
+	 * @description Normalizes the calls to the HTML5 media API and Flash Fallback
+	 * @param {String} fn The function to call
+	 * @param {object} args The arguments to send to the function call
+	 */
+	playerApi = function( fn, args ) {
+		var $this, captionsArea, method;
+
+		switch ( fn ) {
+		case "play":
+			try {
+				this.object.play();
+			} catch ( ex ) {
+				this.object.doPlay();
+			}
+			break;
+		case "pause":
+			try {
+				this.object.pause();
+			} catch ( ex ) {
+				this.object.doPause();
+			}
+			break;
+		case "getCaptionsVisible":
+			return $( this ).find( ".wb-mm-cc" ).hasClass( "on" );
+		case "setCaptionsVisible":
+			$this = $( this );
+			captionsArea = $this.find( ".wb-mm-cc" );
+			if ( args ) {
+				captionsArea.addClass( "on" );
+			} else {
+				captionsArea.removeClass( "on" );
+			}
+			$this.trigger( captionsVisibleChangeEvent );
+			break;
+		case "setPreviousTime":
+			this.object.previousTime = args;
+			break;
+		case "getBuffering":
+			return this.object.buffering || false;
+		case "setBuffering":
+			this.object.buffering = args;
+			break;
+		case "getPreviousTime":
+			return this.object.previousTime;
+		case "setPreviousTime":
+			this.object.previousTime = args;
+			break;
+		default:
+			method = fn.charAt( 3 ).toLowerCase() + fn.substr( 4 );
+			switch ( fn.substr( 0, 3 ) ) {
+			case "get":
+				return typeof this.object[ method ] !== "function" ?
+					this.object[ method ] :
+					this.object[ method ]();
+			case "set":
+				typeof this.object[ method ] !== "function" ?
+					this.object[ method ] = args :
+					this.object[ fn ]( args );
+			}
+		}
+	},
+
+	/**
+	 * @method youTubeApi
+	 * @description Normalizes the calls to the YouTube API
+	 * @param {String} fn The function to call
+	 * @param {object} args The arguments to send to the function call
+	 */
+	youTubeApi = function( fn, args ) {
+		var $this = $( this.object.a ),
+			state;
+
+		switch ( fn ) {
+		case "play":
+			return this.object.playVideo();
+		case "pause":
+			return this.object.pauseVideo();
+		case "getPaused":
+			state = this.object.getPlayerState();
+			return state === -1 || state === 0 || state === 2;
+		case "getPlayed":
+			return this.object.getPlayerState() > -1;
+		case "getEnded":
+			return this.object.getPlayerState() === 0;
+		case "getDuration":
+			return this.object.getDuration();
+		case "getCurrentTime":
+			return this.object.getCurrentTime();
+		case "setCurrentTime":
+			return this.object.seekTo( args, true );
+		case "getMuted":
+			return this.object.isMuted();
+		case "setMuted":
+			if ( args === true ) {
+				this.object.mute();
+			} else {
+				this.object.unMute();
+			}
+			setTimeout( function() {
+				$this.trigger( "volumechange" );
+			}, 50 );
+			break;
+		case "getVolume":
+			return this.object.getVolume() / 100;
+		case "setVolume":
+			this.object.setVolume( args * 100 );
+			setTimeout( function() {
+				$this.trigger( "volumechange" );
+			}, 50 );
+
+		}
+	},
+
+	/**
+	 * @method youTubeEvennts
+	 * @description Youtube API event manager
+	 * @param {object} event The event object fior the triggered event
+	 */
+	youTubeEvents = function( event ) {
+		var target = event.target.a,
+			$target = $( event.target.a ),
+			timeline = function() {
+				$target.trigger( "timeupdate" );
+			};
+
+		switch ( event.data ) {
+		case null:
+			$target.trigger( "durationchange" );
+			$target.trigger( "canplay" );
+			break;
+		case 0:
+			$target.trigger( "ended" );
+			target.timeline = clearInterval( target.timeline );
+			break;
+		case 1:
+			$target.trigger( "play" );
+			target.timeline = setInterval( timeline, 250 );
+			break;
+		case 2:
+			$target.trigger( "pause" );
+			target.timeline = clearInterval( target.timeline );
+			break;
+		case 3:
+			$target.trigger( "waiting" );
+			target.timeline = clearInterval( target.timeline );
+			break;
+		}
 	};
 
-	time = Math.floor( time );
-
-	//Loop to extract hours, minutes and seconds
-	while ( index >= 0 ) {
-		//Get the number of seconds for the current iteration (hour, minute or second)
-		secondsIn = Math.pow( 60, index );
-		current = Math.floor( time / secondsIn );
-
-		if ( timecode !== "" ) {
-			timecode += ":";
-		}
-
-		timecode += pad( current, 2 );
-		time -= secondsIn * current;
-		index -= 1;
-	}
-	return timecode;
-},
-
-/**
- * @method parseTime
- * @description parse an SMTPE Timecode string (HH:MM:SS.FF) or duration (45s) and returns the number of seconds for the timecode
- * @param {String} time The timecode or duration string to parse
- * @returns {Float} the number of seconds in time
- */
-parseTime = function( time ) {
-	var i, parts, timeStringPortion, partLength, seconds;
-
-	if ( time !== undef ) {
-		if ( time.charAt( time.length - 1 ) === "s" ) {
-			//Duration parsing
-			return parseFloat( time.substring( 0, time.length - 1 ) );
-		} else {
-			//SMTPE Timecode Parsing
-			parts = time.split( ":" ).reverse();
-			seconds = 0;
-
-			for ( i = 0, partLength = parts.length; i < partLength; i += 1 ) {
-				timeStringPortion = i === 0 ?
-					parseFloat( parts[ i ] ) :
-					parseInt( parts[ i ], 10 );
-				seconds += timeStringPortion * Math.pow( 60, i );
-			}
-			return seconds;
-		}
-	}
-	return -1;
-},
-
-// TODO: Document this function
-expand = function( elm, withPlayer ) {
-	var $this = $( elm ),
-		$data = $this.data( "properties" );
-
-	return withPlayer !== undef ?
-		 [ $this, $data, $data.player ] :
-		 [ $this, $data ];
-},
-
-/**
- * @method parseHtml
- * @description parse an HTML fragment and extract embed captions
- * @param {String} content The HTML fragment containing the captions
- * @returns {Array} An array of captions objects (ex: {text: "Caption", begin: 0, end :10})
- */
-parseHtml = function( content ) {
-	var captions = [],
-		captionSelector = ".wb-tmtxt",
-		captionElements = content.find( captionSelector ),
-		len = captionElements.length,
-		i, captionElement, json, begin, end;
-
-	for ( i = 0; i !== len; i += 1 ) {
-		captionElement = $( captionElements[ i ] );
-		begin = -1;
-		end = -1;
-
-		if ( captionElement.attr( "data-begin" ) !== undef ) {
-			begin = parseTime( captionElement.attr( "data-begin" ) );
-			end = captionElement.attr( "data-end" ) !== undef ?
-				parseTime( captionElement.attr( "data-end" ) ) :
-				parseTime( captionElement.attr( "data-dur" ) ) + begin;
-		} else if ( captionElement.attr( "data" ) !== undef ) {
-			json = captionElement.attr( "data" )
-				.replace( /(begin|dur|end)/g, "\"$1\"" )
-				.replace( /'/g, "\"" );
-			json = $.parseJSON( json );
-			begin = parseTime( json.begin );
-			end = json.end !== undef ?
-				parseTime( json.end ) :
-				parseTime( json.dur ) + begin;
-		}
-
-		//Removes nested captions if an
-		captionElement = captionElement.clone();
-		captionElement.find( captionSelector ).detach();
-
-		captions[ captions.length ] = {
-			text: captionElement.html(),
-			begin: begin,
-			end: end
-		};
-	}
-	return captions;
-},
-
-/**
- * @method parseXml
- * @description parse an TTML (Xml) document and extract captions
- * @param {String} content The TTML fragment containing the captions
- * @returns {Array} An array of captions objects (ex: {text: "Caption", begin: 0, end :10})
- */
-parseXml = function( content ) {
-	var captions = [],
-		captionSelector = "[begin]",
-		captionElements = content.find( captionSelector ),
-		len = captionElements.length,
-		i, captionElement, begin, end;
-
-	for ( i = 0; i !== len; i += 1 ) {
-		captionElement = $( captionElements[ i ] );
-		begin = parseTime( captionElement.attr( "begin" ) );
-		end = captionElement.attr( "end" ) !== undef ?
-			parseTime( captionElement.attr( "end" ) ) :
-			parseTime( captionElement.attr( "dur" ) ) + begin;
-
-		captionElement = captionElement.clone();
-		captionElement.find( captionSelector ).detach();
-
-		captions[ captions.length ] = {
-			text: captionElement.html(),
-			begin: begin,
-			end: end
-		};
-	}
-	return captions;
-},
-
-/**
- * @method loadCaptionsExternal
- * @description Loads captions from an external source (HTML embed or TTML)
- * @param {Object} elm The jQuery object for the multimedia player loading the captions
- * @param {String} url The url for the captions resource to load
- * @fires ccloaded.wb-mltmd
- * @fires ccloadfail.wb-mltmd
- */
-loadCaptionsExternal = function( elm, url ) {
-	$.ajax({
-		url: url,
-		dataType: "html",
-		//Filters out images and objects from the content to avoid loading them
-		dataFilter: function( data ) {
-			return data.replace( /<img|object [^>]*>/g, "" );
-		},
-		success: function( data ) {
-			elm.trigger({
-				type: captionsLoadedEvent,
-				captions: data.indexOf( "<html" ) !== -1 ?
-					parseHtml( $( data ) ) :
-					parseXml( $( data ) )
-			});
-		},
-		error: function( response, textStatus, errorThrown ) {
-			elm.trigger({
-				type: captionsLoadFailedEvent,
-				error: errorThrown
-			});
-		}
-	});
-},
-
-/**
- * @method loadCaptionsInternal
- * @description Loads same page captions emebed in HTML
- * @param {Object} elm The jQuery object for the multimedia player loading the captions
- * @param {Object} obj The jQUery object containing the captions
- * @fires ccloaded.wb-mltmd
- */
-loadCaptionsInternal = function( elm, obj ) {
-	elm.trigger({
-		type: captionsLoadedEvent,
-		captions: parseHtml( obj )
-	});
-},
-
-/**
- * @method updateCaptions
- * @description Update the captions for a multimedia player (called from the timeupdate event of the HTML5 media API)
- * @param {Object} area The jQuery object for the element where captions are displayed
- * @param {Float} seconds The current time of the media (use to sync the captions)
- * @param {Object} captions The JavaScript object containing the captions
- */
-updateCaptions = function( area, seconds, captions ) {
-	var caption, i,
-		captionsLength = captions.length;
-
-	// lets not waste cycles in updating if captions are not visible
-	// and remove any text if there was some there before.
-	if ( !area.hasClass( "on" ) ) {
-		return area.is( "empty" ) ? 1 : area.empty();
-	}
-
-	// added &nbsp; to prevent caption space from collapsing
-	// Used .html() instead of .append for performance purposes
-	// http://jsperf.com/jquery-append-vs-html-list-performance/2
-	area.html( "&nbsp;" );
-
-	for ( i = 0; i < captionsLength; i += 1 ) {
-		caption = captions[ i ];
-		if ( seconds >= caption.begin && seconds <= caption.end ) {
-			area.html( $( "<div>" + caption.text + "</div>" ) );
-		}
-	}
-},
-
-/**
- * @method playerApi
- * @description Normalizes the calls to the HTML5 media API and Flash Fallback
- * @param {String} fn The function to call
- * @param {object} args The arguments to send to the function call
- */
-playerApi = function( fn, args ) {
-	var $this, captionsArea, method;
-
-	switch ( fn ) {
-	case "play":
-		try {
-			this.object.play();
-		} catch ( ex ) {
-			this.object.doPlay();
-		}
-		break;
-	case "pause":
-		try {
-			this.object.pause();
-		} catch ( ex ) {
-			this.object.doPause();
-		}
-		break;
-	case "getCaptionsVisible":
-		return $( this ).find( ".wb-mm-cc" ).hasClass( "on" );
-	case "setCaptionsVisible":
-		$this = $( this );
-		captionsArea = $this.find( ".wb-mm-cc" );
-		if ( args ) {
-			captionsArea.addClass( "on" );
-		} else {
-			captionsArea.removeClass( "on" );
-		}
-		$this.trigger( captionsVisibleChangeEvent );
-		break;
-	case "setPreviousTime":
-		this.object.previousTime = args;
-		break;
-	case "getBuffering":
-		return this.object.buffering || false;
-	case "setBuffering":
-		this.object.buffering = args;
-		break;
-	case "getPreviousTime":
-		return this.object.previousTime;
-	case "setPreviousTime":
-		this.object.previousTime = args;
-		break;
-	default:
-		method = fn.charAt( 3 ).toLowerCase() + fn.substr( 4 );
-		switch ( fn.substr( 0, 3 ) ) {
-		case "get":
-			return typeof this.object[ method ] !== "function" ?
-				this.object[ method ] :
-				this.object[ method ]();
-		case "set":
-			typeof this.object[ method ] !== "function" ?
-				this.object[ method ] = args :
-				this.object[ fn ]( args );
-		}
-	}
-},
-
-/**
- * @method youTubeApi
- * @description Normalizes the calls to the YouTube API
- * @param {String} fn The function to call
- * @param {object} args The arguments to send to the function call
- */
-youTubeApi = function( fn, args ) {
-	var $this = $( this.object.a ),
-		state;
-
-	switch ( fn ) {
-	case "play":
-		return this.object.playVideo();
-	case "pause":
-		return this.object.pauseVideo();
-	case "getPaused":
-		state = this.object.getPlayerState();
-		return state === -1 || state === 0 || state === 2;
-	case "getPlayed":
-		return this.object.getPlayerState() > -1;
-	case "getEnded":
-		return this.object.getPlayerState() === 0;
-	case "getDuration":
-		return this.object.getDuration();
-	case "getCurrentTime":
-		return this.object.getCurrentTime();
-	case "setCurrentTime":
-		return this.object.seekTo( args, true );
-	case "getMuted":
-		return this.object.isMuted();
-	case "setMuted":
-		if ( args === true ) {
-			this.object.mute();
-		} else {
-			this.object.unMute();
-		}
-		setTimeout( function() {
-			$this.trigger( "volumechange" );
-		}, 50 );
-		break;
-	case "getVolume":
-		return this.object.getVolume() / 100;
-	case "setVolume":
-		this.object.setVolume( args * 100 );
-		setTimeout( function() {
-			$this.trigger( "volumechange" );
-		}, 50 );
-
-	}
-},
-
-/**
- * @method youTubeEvennts
- * @description Youtube API event manager
- * @param {object} event The event object fior the triggered event
- */
-youTubeEvents = function( event ) {
-	var target = event.target.a,
-		$target = $( event.target.a ),
-		timeline = function() {
-			$target.trigger( "timeupdate" );
-		};
-
-	switch ( event.data ) {
-	case null:
-		$target.trigger( "durationchange" );
-		$target.trigger( "canplay" );
-		break;
-	case 0:
-		$target.trigger( "ended" );
-		target.timeline = clearInterval( target.timeline );
-		break;
-	case 1:
-		$target.trigger( "play" );
-		target.timeline = setInterval( timeline, 250 );
-		break;
-	case 2:
-		$target.trigger( "pause" );
-		target.timeline = clearInterval( target.timeline );
-		break;
-	case 3:
-		$target.trigger( "waiting" );
-		target.timeline = clearInterval( target.timeline );
-		break;
-	}
-};
-
-$document.on( "timerpoke.wb wb-init" + selector, selector, function() {
-	wb.remove( selector );
-
-	// Only initialize the i18nText once
-	if ( !i18nText ) {
-		i18n = wb.i18n;
-		i18nText = {
-			rewind: i18n( "rew" ),
-			ff: i18n( "ffwd" ),
-			play: i18n( "play" ),
-			pause: i18n( "pause" ),
-			cc_on: i18n( "cc", "on" ),
-			cc_off: i18n( "cc", "off" ),
-			cc_error: i18n ( "cc-err" ),
-			mute_on: i18n( "mute", "on" ),
-			mute_off: i18n( "mute", "off" ),
-			duration: i18n( "dur" ),
-			position: i18n( "pos" )
-		};
-	}
-
-	if ( !templatetriggered ) {
-		templatetriggered = true;
-		$document.trigger({
-			type: "ajax-fetch.wb",
-			element: $( selector ),
-			fetch: wb.getPath( "/assets" ) + "/mediacontrols.html"
-		});
-	}
-});
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 $document.on( "ajax-fetched.wb", selector, function( event ) {
 	var $this = $( this ),

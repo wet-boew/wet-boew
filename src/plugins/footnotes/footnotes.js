@@ -13,7 +13,11 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-fnote",
+var pluginName = "wb-fnote",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
+	setFocusEvent = "setfocus.wb",
 	$document = wb.doc,
 
 	/**
@@ -27,7 +31,13 @@ var selector = ".wb-fnote",
 			$elm, footnoteDd, footnoteDt, i, len, dd, dt, dtId, $returnLinks;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === elm ) {
+		// and only initialize the element once
+		if ( event.currentTarget === elm &&
+			elm.className.indexOf( initedClass ) === -1 ) {
+
+			wb.remove( selector );
+			elm.className += " " + initedClass;
+			
 			$elm = $( elm );
 			footnoteDd = elm.getElementsByTagName( "dd" );
 			footnoteDt = elm.getElementsByTagName( "dt" );
@@ -52,7 +62,7 @@ var selector = ".wb-fnote",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb wb-init.wb-fnote", selector, init );
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 // Listen for footnote reference links that get clicked
 $document.on( "click vclick", "main :not(" + selector + ") sup a.fn-lnk", function( event ) {
@@ -69,7 +79,7 @@ $document.on( "click vclick", "main :not(" + selector + ") sup a.fn-lnk", functi
 					.attr( "href", "#" + eventTarget.parentNode.id );
 
 		// Assign focus to $refLinkDest
-		$refLinkDest.trigger( "setfocus.wb" );
+		$refLinkDest.trigger( setFocusEvent );
 		return false;
 	}
 } );
@@ -84,7 +94,7 @@ $document.on( "click vclick", selector + " dd p.fn-rtn a", function( event ) {
 		refId = "#" + wb.jqEscape( event.target.getAttribute( "href" ).substring( 1 ) );
 
 		// Assign focus to the link
-		$document.find( refId + " a" ).trigger( "setfocus.wb" );
+		$document.find( refId + " a" ).trigger( setFocusEvent );
 		return false;
 	}
 });

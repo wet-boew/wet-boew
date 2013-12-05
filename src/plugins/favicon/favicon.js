@@ -26,7 +26,11 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = "link[rel='shortcut icon']",
+var pluginName = "wb-favicon",
+	selector = "link[rel='shortcut icon']",
+	initEvent = "wb-init." + pluginName,
+	mobileEvent = "mobile." + pluginName,
+	iconEvent = "icon." + pluginName,
 	$document = wb.doc,
 
 	/*
@@ -48,13 +52,14 @@ var selector = "link[rel='shortcut icon']",
 	 * @param {jQuery DOM element} $favicon The plugin element being initialized
 	 */
 	init = function( $favicon ) {
-		// Merge default settings with overrides from the selected plugin element. There may be more than one, so don't override defaults globally!
+
+		// Merge default settings with overrides from the selected plugin element.
 		var settings = $.extend( {}, defaults, $favicon.data() );
 
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 		wb.remove( selector );
 
-		$favicon.trigger( "mobile.wb-favicon", settings );
+		$favicon.trigger( mobileEvent, settings );
 	},
 
 	/**
@@ -72,11 +77,11 @@ var selector = "link[rel='shortcut icon']",
 
 		// Create the mobile favicon if it doesn't exist
 		if ( !isFaviconMobile ) {
-			faviconMobile = $( "<link rel='" + data.rel + "' sizes='" + data.sizes + "' class='wb-favicon'>" );
+			faviconMobile = $( "<link rel='" + data.rel + "' sizes='" + data.sizes + "' class='" + pluginName + "'>" );
 		}
 
 		// Only add/update a mobile favicon that was created by the plugin
-		if ( faviconMobile.hasClass( "wb-favicon" ) ) {
+		if ( faviconMobile.hasClass( pluginName ) ) {
 			faviconPath = data.path !== null ? data.path : getPath( favicon.getAttribute( "href" ) );
 			faviconMobile.attr( "href", faviconPath + data.filename );
 
@@ -109,7 +114,8 @@ var selector = "link[rel='shortcut icon']",
 	};
 
 // Bind the plugin events
-$document.on( "timerpoke.wb wb-init.wb-favicon mobile.wb-favicon icon.wb-favicon", selector, function( event, data ) {
+$document.on( "timerpoke.wb " + initEvent + " " + mobileEvent + " " + iconEvent, selector, function( event, data ) {
+
 	var eventTarget = event.target;
 
 	// Filter out any events triggered by descendants

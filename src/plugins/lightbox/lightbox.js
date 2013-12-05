@@ -13,10 +13,13 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-lightbox",
+var pluginName = "wb-lightbox",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
+	extendedGlobal = false,
 	$document = wb.doc,
 	i18n, i18nText,
-	extendedGlobal = false,
 
 	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
@@ -29,14 +32,16 @@ var selector = ".wb-lightbox",
 			$elm, modeJS;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === elm ) {
+		// and only initialize the element once
+		if ( event.currentTarget === elm &&
+			elm.className.indexOf( initedClass ) === -1 ) {
+
+			wb.remove( selector );
+			elm.className += " " + initedClass;
 
 			// read the selector node for parameters
 			modeJS = wb.getMode() + ".js";
 			$elm = $( elm );
-
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			wb.remove( selector );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
@@ -176,7 +181,7 @@ var selector = ".wb-lightbox",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb wb-init.wb-lightbox", selector, init );
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 $document.on( "keydown", ".mfp-wrap", function( event ) {
 	var $elm, $focusable, index, length;

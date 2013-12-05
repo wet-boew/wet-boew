@@ -21,7 +21,7 @@ describe( "Session Timeout test suite", function() {
 		spies = {};
 
 	/*
-	 * Before begining the test suite, this function is exectued once.
+	 * Before beginning the test suite, this function is executed once.
 	 */
 	before(function( done ) {
 		// Spy on jQuery's trigger and post methods
@@ -52,7 +52,7 @@ describe( "Session Timeout test suite", function() {
 	});
 
 	/*
-	 * After finishing the test suite, this function is exectued once.
+	 * After finishing the test suite, this function is executed once.
 	 */
 	after(function() {
 		// Restore the original behaviour of trigger and post once the tests are finished
@@ -175,10 +175,13 @@ describe( "Session Timeout test suite", function() {
 	describe( "refreshCallbackUrl", function() {
 
 		before(function( done ) {
+
 			// Setup the fake server response for all POST requests to foo.html
 			server.respondWith( "POST", "foo.html", "true" );
 
 			$( ".wb-session-timeout" )
+				.removeClass( "wb-session-timeout-inited" )
+				.removeClass( "wb-modal-inited" )
 				.data( "wet-boew", {
 					sessionalive: 5000,
 					refreshCallbackUrl: "foo.html"

@@ -20,15 +20,18 @@ var selector = "math",
 	 */
 	init = function() {
 
-		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
+		// All plugins need to remove their reference from the timer in the
+		// init sequence unless they have a requirement to be poked every 0.5 seconds
 		wb.remove( selector );
 
-		// Load the MathML dependency. Since the polyfill is only loaded when !Modernizr.mathml, we can skip the test here.
+		// Load the MathML dependency. Since the polyfill is only loaded
+		// when !Modernizr.mathml, we can skip the test here.
 		Modernizr.load( "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible" );
 	};
 
 // Bind the init event of the plugin
-wb.doc.on( "timerpoke.wb wb-init.wb-math", selector, init );
+wb.doc.on( "timerpoke.wb", selector, init );
+
 wb.add( selector );
 
 })( wb );

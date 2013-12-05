@@ -15,12 +15,14 @@
  */
 var pluginName = "wb-session-timeout",
 	selector = "." + pluginName,
-	$document = wb.doc,
-	i18n, i18nText,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
 	resetEvent = "reset" + selector,
 	keepaliveEvent = "keepalive" + selector,
 	inactivityEvent = "inactivity" + selector,
 	confirmSelector = pluginName + "-confirm",
+	$document = wb.doc,
+	i18n, i18nText,
 
 	/*
 	 * Plugin users can override these defaults by setting attributes on the html elements that the
@@ -48,14 +50,17 @@ var pluginName = "wb-session-timeout",
 			$elm, settings;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === elm ) {
+		// and only initialize the element once
+		if ( event.currentTarget === elm &&
+			elm.className.indexOf( initedClass ) === -1 ) {
+
+			wb.remove( selector );
+			elm.className += " " + initedClass;
+
 			$elm = $( elm );
 
 			// Merge default settings with overrides from the selected plugin element. There may be more than one, so don't override defaults globally!
 			settings = $.extend( {}, defaults, $elm.data( "wet-boew" ) );
-
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			wb.remove( selector );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
@@ -75,7 +80,9 @@ var pluginName = "wb-session-timeout",
 			$elm
 				.addClass( "wb-modal" )
 				.trigger( "wb-init.wb-modal" );
+
 			$document.one( "ready.wb-modal", function() {
+
 				// Initialize the keepalive and inactive timeouts of the plugin
 				$elm.trigger( resetEvent, settings );
 
@@ -393,7 +400,7 @@ var pluginName = "wb-session-timeout",
 	};
 
 // Bind the plugin events
-$document.on( "timerpoke.wb wb-init" + selector + " " + keepaliveEvent + " " +
+$document.on( "timerpoke.wb " + initEvent + " " + keepaliveEvent + " " +
 	inactivityEvent + " " + resetEvent, selector, function( event, settings ) {
 
 	var eventType = event.type;

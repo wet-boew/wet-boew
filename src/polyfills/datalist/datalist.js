@@ -11,12 +11,16 @@
  * Variable and function definitions.
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
-var selector = "input[list]",
-	$document = wb.doc,
+var pluginName = "wb-datalist",
+	selector = "input[list]",
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init." + pluginName,
+	setFocusEvent = "setfocus.wb",
 	initialized = false,
 	ariaActiveDescendent = "aria-activedescendent",
 	ariaExpanded = "aria-expanded",
 	ariaHidden = "aria-hidden",
+	$document = wb.doc,
 
 	/**
 	 * Init runs once per polyfill element on the page. There may be multiple elements.
@@ -30,15 +34,18 @@ var selector = "input[list]",
 			$input, autolist, datalist, options, len, option, value, label, i;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === input ) {
+		// and only initialize the element once
+		if ( event.currentTarget === input &&
+			input.className.indexOf( initedClass ) === -1 ) {
+
+			wb.remove( selector );
+			input.className += " " + initedClass;
+
 			$input = $( input );
 			autolist = "<ul role='listbox' id='wb-al-" + input.id + "' class='wb-al hide' aria-hidden='true' aria-live='polite'></ul>";
 			datalist = document.getElementById( input.getAttribute( "list" ) );
 			options = datalist.getElementsByTagName( "option" );
 			len = options.length;
-
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			wb.remove( selector );
 
 			input.setAttribute( "autocomplete", "off" );
 			input.setAttribute( "role", "textbox" );
@@ -172,7 +179,7 @@ var selector = "input[list]",
 			input.setAttribute( ariaActiveDescendent, dest.parentNode.getAttribute( "id" ) );
 
 			// Assign focus to dest
-			$( dest ).trigger( "setfocus.wb" );
+			$( dest ).trigger( setFocusEvent );
 
 			return false;
 		} else if ( !_alHide ) {
@@ -202,7 +209,7 @@ var selector = "input[list]",
 			( which > 187 && which < 223 ) ) {
 
 			input.value += String.fromCharCode( which );
-			$input.trigger( "setfocus.wb" );
+			$input.trigger( setFocusEvent );
 			showOptions( input, input.value );
 
 			return false;
@@ -217,7 +224,7 @@ var selector = "input[list]",
 				showOptions( input, input.value );
 			}
 
-			$input.trigger( "setfocus.wb" );
+			$input.trigger( setFocusEvent );
 
 			return false;
 
@@ -235,14 +242,14 @@ var selector = "input[list]",
 			}
 
 			input.value = value;
-			$input.trigger( "setfocus.wb" );
+			$input.trigger( setFocusEvent );
 			closeOptions( input );
 
 			return false;
 
 		// Tab or Escape key
 		} else if ( which === 9 || which === 27 ) {
-			$input.trigger( "setfocus.wb" );
+			$input.trigger( setFocusEvent );
 			closeOptions( input );
 
 			return false;
@@ -268,7 +275,7 @@ var selector = "input[list]",
 			dest = dest.getElementsByTagName( "a" )[ 0 ];
 
 			input.setAttribute( ariaActiveDescendent, dest.parentNode.getAttribute( "id" ) );
-			$( dest ).trigger( "setfocus.wb" );
+			$( dest ).trigger( setFocusEvent );
 
 			return false;
 		}
@@ -297,14 +304,14 @@ var selector = "input[list]",
 		}
 
 		input.value = value;
-		$input.trigger( "setfocus.wb" );
+		$input.trigger( setFocusEvent );
 		closeOptions( input );
 
 		return false;
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb wb-init.wb-datalist keydown click vclick touchstart", selector, function( event ) {
+$document.on( "timerpoke.wb " + initEvent + " keydown click vclick touchstart", selector, function( event ) {
 	var input = event.target,
 		eventType = event.type,
 		which = event.which;
