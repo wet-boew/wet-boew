@@ -2,6 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
+
 /* ---- IE7 fixes ---- */
 .ie7 {
 	@extend %grid-fix-ie-all-versions;
@@ -18,12 +19,18 @@
 		word-wrap: break-word;
 	}
 }
+
+/* ---- IE8 fixes ---- */
 .ie8 {
 	@extend %grid-fix-ie-all-versions;
 	.module-alert, .module-attention, .module-note, .module-info, .module-question, .module-answer, .module-tool, .module-inprogress, .module-refer, .module-summary, .module-archive {
 		border: none;
 	}
+	[rel="external"] {
+		padding-left: 0;
+	}
 }
+
 //Common fixes for IE7 and IE8
 %grid-fix-ie-all-versions {
 	.module-billboard {
