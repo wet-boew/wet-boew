@@ -455,7 +455,7 @@ var selector = ".wb-cal-evt",
 	},
 
 	showOnlyEventsFor = function( year, month, calendarId ) {
-		$( "." + calendarId + " li.calendar-display-onshow" )
+		$( "." + calendarId + " li.cal-disp-onshow" )
 			.addClass( "wb-inv" )
 			.has( ":header[class*=filter-" + year + "-" +
 				wb.string.pad( parseInt( month, 10 ) + 1, 2 ) + "]" )
