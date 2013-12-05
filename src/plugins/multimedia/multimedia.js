@@ -414,7 +414,16 @@ var pluginName = "wb-mltmd",
 			setTimeout( function() {
 				$this.trigger( "volumechange" );
 			}, 50 );
-
+			break;
+		case "getCaptionsVisible":
+			return this.object.cc || false;
+		case "setCaptionsVisible":
+			this.object.cc = args;
+			if ( args === true ) {
+				this.object.setOption( "cc", "reload", true );
+			} else {
+				this.object.setOption( "cc", "track", {} );
+			}
 		}
 	},
 
@@ -440,6 +449,7 @@ var pluginName = "wb-mltmd",
 			target.timeline = clearInterval( target.timeline );
 			break;
 		case 1:
+			$target.trigger( "canplay" );
 			$target.trigger( "play" );
 			target.timeline = setInterval( timeline, 250 );
 			break;
@@ -575,11 +585,15 @@ $document.on( youtubeEvent, selector, function() {
 			origin: wb.pageUrlParts.host,
 			modestbranding: 1,
 			rel: 0,
-			showinfo: 0
+			showinfo: 0,
+			cc_load_policy: 1
 		},
 		events: {
 			onReady: youTubeEvents,
-			onStateChange: youTubeEvents
+			onStateChange: youTubeEvents,
+			onApiChange: function( event ) {
+				event.target.setOption( "cc", "track", {} );
+			}
 		}
 	});
 
