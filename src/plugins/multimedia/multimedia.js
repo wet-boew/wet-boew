@@ -140,11 +140,11 @@ var pluginName = "wb-mltmd",
 	// TODO: Document this function
 	expand = function( elm, withPlayer ) {
 		var $this = $( elm ),
-			$data = $this.data( "properties" );
+			data = $this.data( "properties" );
 
 		return withPlayer !== undef ?
-			 [ $this, $data, $data.player ] :
-			 [ $this, $data ];
+			 [ $this, data, data.player ] :
+			 [ $this, data ];
 	},
 
 	/**
@@ -458,9 +458,9 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 
 $document.on( "ajax-fetched.wb", selector, function( event ) {
 	var $this = $( this ),
-		$template = event.pointer.html();
+		template = event.pointer.html();
 
-	$this.data( "template", $template );
+	$this.data( "template", template );
 	$this.trigger({
 		type: initializedEvent
 	});
@@ -469,15 +469,15 @@ $document.on( "ajax-fetched.wb", selector, function( event ) {
 $document.on( initializedEvent, selector, function() {
 	var $this = $( this ),
 		$media = $this.children( "audio, video" ).eq( 0 ),
-		$captions = $media.children( "track[kind='captions']" ) ? $media.children( "track[kind='captions']" ).attr( "src" ) : undef,
-		id = $this.attr( "id" ) !== undef ? $this.attr( "id" ) : "wb-mm-" + ( seed++ ),
-		mId = $media.attr( "id" ) !== undef ? $media.attr( "id" ) : "" + id + "-md",
+		captions = $media.children( "track[kind='captions']" ).attr( "src" ) || undef,
+		id = $this.attr( "id" ) || "wb-mm-" + ( seed++ ),
+		mId = $media.attr( "id" ) || id + "-md",
 		type = $media.is( "video" ) ? "video" : "audio",
-		width = type === "video" ? $media.attr( "width" ) ?  $media.attr( "width" ) : $media.width() : "0",
-		height = type === "video" ? $media.attr( "height" ) ? $media.attr( "height" ) : $media.height() : "0",
+		width = type === "video" ? $media.attr( "width" ) || $media.width() : 0,
+		height = type === "video" ? $media.attr( "height" ) || $media.height() : 0,
 		data = $.extend({
 			media: $media,
-			captions: $captions,
+			captions: captions,
 			id: id,
 			mId: mId,
 			type: type,
@@ -499,11 +499,6 @@ $document.on( initializedEvent, selector, function() {
 
 		// lets set the flag for the call back
 		$this.data( "youtube", url.params.v );
-
-		if ( window.needsYoutube === undefined ) {
-			// lets create an empty set to store our elements
-			window.needsYoutube = $([]);
-		}
 
 		// Method called the the YouTUbe API when ready
 		if ( window.onYouTubeIframeAPIReady === undefined ) {
@@ -529,37 +524,33 @@ $document.on( initializedEvent, selector, function() {
 $document.on( fallbackEvent, selector, function() {
 	var ref = expand( this ),
 		$this = ref[ 0 ],
-		$data = ref[ 1 ],
-		$media = $data.media,
-		$source = $data.media.find( "source" ),
+		data = ref[ 1 ],
+		$media = data.media,
+		source = $media.find( "source" + ( data.type === "video" ) ? "[type='video/mp4']" : "[type='audio/mp3']" ).attr( "src" ),
 		poster = $media.attr( "poster" ),
-		flashvars = "id=" + $data.mId,
+		flashvars = "id=" + data.mId,
 		playerresource = wb.getPath( "/assets" ) + "/multimedia.swf?" + flashvars;
 
-	$data.poster = "";
-	if ( $data.type === "video" ) {
-		$data.poster = "<img src='" + poster + "' class='img-responsive' height='" +
-			$data.height + "' width='" + $data.width + "' alt='" + $media.attr( "title" ) + "'/>";
+	flashvars += "&amp;media=" + encodeURI( wb.getUrlParts( source ).absolute );
+	if ( data.type === "video" ) {
+		data.poster = "<img src='" + poster + "' class='img-responsive' height='" +
+			data.height + "' width='" + data.width + "' alt='" + $media.attr( "title" ) + "'/>";
 
-		flashvars += "&amp;height=" + $data.height + "&amp;width=" +
-			$data.width + "&amp;posterimg=" +
-			encodeURI( wb.getUrlParts( poster ).absolute ) + "&amp;media=" +
-			encodeURI( wb.getUrlParts( $source.filter( "[type='video/mp4']" ).attr( "src" ) ).absolute );
-	} else {
-		flashvars += "&amp;media=" + encodeURI( wb.getUrlParts( $source.filter( "[type='audio/mp3']" ).attr( "src" ) ).absolute );
+		flashvars += "&amp;height=" + data.height + "&amp;width=" +
+			data.width + "&amp;posterimg=" + encodeURI( wb.getUrlParts( poster ).absolute );
 	}
 
-	$this.find( "video, audio" ).replaceWith( "<object id='" + $data.mId + "' width='" + $data.width +
-		"' height='" + $data.height + "' class='" + $data.type +
-		"' type='application/x-shockwave-flash' data='" +
+	$this.find( "video, audio" ).replaceWith( "<object id='" + data.mId + "' width='" + data.width +
+		"' height='" + data.height + "' class='" + data.type +
+		"' type='application/x-shokwave-flash' data='" +
 		playerresource + "' tabindex='-1'>" +
 		"<param name='movie' value='" + playerresource + "'/>" +
 		"<param name='flashvars' value='" + flashvars + "'/>" +
 		"<param name='allowScriptAccess' value='always'/>" +
 		"<param name='bgcolor' value='#000000'/>" +
 		"<param name='wmode' value='opaque'/>" +
-		$data.poster + "</object>" );
-	$this.data( "properties", $data );
+		data.poster + "</object>" );
+	$this.data( "properties", data );
 
 	$this.trigger( renderUIEvent );
 });
@@ -571,11 +562,11 @@ $document.on( youtubeEvent, selector, function() {
 	var ref = expand( this ),
 		ytPlayer,
 		$this = ref[ 0 ],
-		media = $this.find( "video:eq(0)" ),
-		id = media.get( 0 ).id,
-		$data = ref[ 1 ];
+		data = ref[ 1 ],
+		$media = data.media,
+		id = $media.get( 0 ).id;
 
-	media.replaceWith( "<div id=" + id + "/>" );
+	$media.replaceWith( "<div id=" + id + "/>" );
 	ytPlayer = new YT.Player( id, {
 		videoId: $this.data( "youtube" ),
 		playerVars: {
@@ -594,12 +585,12 @@ $document.on( youtubeEvent, selector, function() {
 
 	$this.find( "iframe" ).attr( "tabindex", -1 );
 
-	$data.poster = "<img src='" + $data.media.attr( "poster" ) +
-		"' class='img-responsive' height='" + $data.height +
-		"' width='" + $data.width + "' alt='" + $data.media.attr( "title" ) + "'/>";
-	$data.ytPlayer = ytPlayer;
+	data.poster = "<img src='" + $media.attr( "poster" ) +
+		"' class='img-responsive' height='" + data.height +
+		"' width='" + data.width + "' alt='" + data.media.attr( "title" ) + "'/>";
+	data.ytPlayer = ytPlayer;
 
-	$this.data( "properties", $data );
+	$this.data( "properties", data );
 	$this.trigger( renderUIEvent, "video" );
 });
 
@@ -609,13 +600,13 @@ $document.on( youtubeEvent, selector, function() {
 $document.on( "video.wb-mltmd", selector, function() {
 	var ref = expand( this ),
 		$this = ref[ 0 ],
-		$data = ref[ 1 ];
+		data = ref[ 1 ];
 
-	$data.poster = "<img src='" + $data.media.attr( "poster" ) +
-		"' class='img-responsive' height='" + $data.height +
-		"' width='" + $data.width + "' alt='" + $data.media.attr( "title" ) + "'/>";
+	data.poster = "<img src='" + data.media.attr( "poster" ) +
+		"' class='img-responsive' height='" + data.height +
+		"' width='" + data.width + "' alt='" + data.media.attr( "title" ) + "'/>";
 
-	$this.data( "properties", $data );
+	$this.data( "properties", data );
 
 	$this.trigger( renderUIEvent, "video" );
 });
@@ -626,11 +617,11 @@ $document.on( "video.wb-mltmd", selector, function() {
 $document.on( "audio.wb-mltmd", selector, function() {
 	var ref = expand (this ),
 		$this = ref[ 0 ],
-		$data = ref[ 1 ];
+		data = ref[ 1 ];
 
-	$data.poster = "";
+	data.poster = "";
 
-	$this.data( "properties", $data );
+	$this.data( "properties", data );
 
 	$this.trigger( renderUIEvent, "audio" );
 });
@@ -638,35 +629,34 @@ $document.on( "audio.wb-mltmd", selector, function() {
 $document.on( renderUIEvent, selector, function( event, type ) {
 	var ref = expand( this ),
 		$this = ref[ 0 ],
-		$data = ref[ 1 ],
-		$player,
-		captionsUrl = wb.getUrlParts( $data.captions ),
+		data = ref[ 1 ],
+		captionsUrl = wb.getUrlParts( data.captions ),
 		currentUrl = wb.getUrlParts( window.location.href ),
-		media = $this.find( "video, audio, iframe, object" );
+		media = $this.find( "video, audio, iframe, object" ),
+		$player;
 
-	media.after( window.tmpl( $this.data( "template" ), $data ) );
+	media.after( window.tmpl( $this.data( "template" ), data ) );
 	if ( type === "video" ) {
 		media.next( ".display" ).append( media );
 	} else {
 		media.next( ".display" ).remove();
 	}
 
-	$player = $( "#" + $data.mId );
-	$data.player = $player.is( "object" ) ? $player.children( ":first-child" ) : $player.load();
+	$player = $( "#" + data.mId );
+	data.player = $player.is( "object" ) ? $player.children( ":first-child" ) : $player.load();
 
 	// Create an adapter for the event management
-	$data.player.on( "durationchange play pause ended volumechange timeupdate " +
+	data.player.on( "durationchange play pause ended volumechange timeupdate " +
 		captionsLoadedEvent + " " + captionsLoadFailedEvent + " " +
 		captionsVisibleChangeEvent + " waiting canplay progress", function( event ) {
-
 		$this.trigger( event );
 	});
 
-	this.object = $data.ytPlayer || $player.get( 0 );
-	this.player = ( $data.ytPlayer ) ? youTubeApi : playerApi;
-	$this.data( "properties", $data );
+	this.object = data.ytPlayer || $player.get( 0 );
+	this.player = ( data.ytPlayer ) ? youTubeApi : playerApi;
+	$this.data( "properties", data );
 
-	if ( $data.captions === undef ) {
+	if ( data.captions === undef ) {
 		return 1;
 	}
 
