@@ -106,12 +106,12 @@
 @media screen and (min-width: $smallViewMin) {
 	@import "views/smallViewOver";
 	@import "partials/bootstrap-overrides-smallViewOver";
-	@import "../plugins/tabs/tabs-smallViewOver";
 }
 
 /* Medium view and over */
 @media screen and (min-width: $mediumViewMin) {
 	@import "views/mediumViewOver";
+	@import "../plugins/tabs/tabs-mediumViewOver";
 }
 
 /* Large view and over */
