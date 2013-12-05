@@ -9,6 +9,7 @@
 .wb-tabs {
 	> {
 		details {
+			display: none;
 			border: 1px solid #adadad;
 			border-bottom-left-radius: 4px;
 			border-bottom-right-radius: 4px;
@@ -18,6 +19,9 @@
 				summary {
 					display: none !important;
 				}
+			}
+			&[open] {
+				display: block;
 			}
 		}
 	}

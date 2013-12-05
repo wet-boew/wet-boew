@@ -256,26 +256,9 @@
 			}
 		}
 	}
-
-	%tabs-details-padding-6-12 {
-		padding: 6px 12px;
-	}
 	> {
 		details {
-			@extend %tabs-details-padding-6-12;
-			> {
-				summary {
-					margin: -6px -12px;
-					@extend %tabs-details-padding-6-12;
-				}
-			}
-			&[open] {
-				> {
-					summary {
-						margin-bottom: 0;
-					}
-				}
-			}
+			padding: 6px 12px;
 		}
 	}
 }
