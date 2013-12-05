@@ -40,8 +40,8 @@ var selector = ".wb-equalheight",
 	 * @method onResize
 	 */
 	onResize = function() {
-		var $elm = $( selector ),
-			$children = $elm.children(),
+		var $elms = $( selector ),
+			$children,
 			row = [ ],
 			rowTop = -1,
 			currentChild,
@@ -50,31 +50,35 @@ var selector = ".wb-equalheight",
 			tallestHeight = -1,
 			i;
 
-		for ( i = $children.length - 1; i >= 0; i-- ) {
-			currentChild = $children[ i ];
+		$elms.each( function() {
+			$children = $( this ).children();
 
-			// Ensure all children that are on the same baseline have the same 'top' value.
-			currentChild.style.verticalAlign = "top";
+			for ( i = $children.length - 1; i >= 0; i-- ) {
+				currentChild = $children[ i ];
 
-			// Remove any previously set min height
-			currentChild.style.minHeight = 0;
+				// Ensure all children that are on the same baseline have the same 'top' value.
+				currentChild.style.verticalAlign = "top";
 
-			currentChildTop = currentChild.offsetTop;
-			currentChildHeight = currentChild.offsetHeight;
+				// Remove any previously set min height
+				currentChild.style.minHeight = 0;
 
-			if ( currentChildTop !== rowTop ) {
-				setRowHeight( row, tallestHeight );
+				currentChildTop = currentChild.offsetTop;
+				currentChildHeight = currentChild.offsetHeight;
 
-				rowTop = currentChildTop;
-				tallestHeight = currentChildHeight;
-			} else {
-				tallestHeight = (currentChildHeight > tallestHeight) ? currentChildHeight : tallestHeight;
+				if ( currentChildTop !== rowTop ) {
+					setRowHeight( row, tallestHeight );
+
+					rowTop = currentChildTop;
+					tallestHeight = currentChildHeight;
+				} else {
+					tallestHeight = (currentChildHeight > tallestHeight) ? currentChildHeight : tallestHeight;
+				}
+
+				row.push( currentChild );
 			}
 
-			row.push( currentChild );
-		}
-
-		setRowHeight( row, tallestHeight );
+			setRowHeight( row, tallestHeight );
+		} );
 	},
 
 	/**
