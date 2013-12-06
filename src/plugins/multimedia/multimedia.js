@@ -285,12 +285,6 @@ var pluginName = "wb-mltmd",
 		var caption, i,
 			captionsLength = captions.length;
 
-		// lets not waste cycles in updating if captions are not visible
-		// and remove any text if there was some there before.
-		if ( !area.hasClass( "on" ) ) {
-			return area.is( "empty" ) ? 1 : area.empty();
-		}
-
 		// added &nbsp; to prevent caption space from collapsing
 		// Used .html() instead of .append for performance purposes
 		// http://jsperf.com/jquery-append-vs-html-list-performance/2
@@ -821,7 +815,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		$this.find( ".wb-mm-tmln-crrnt span" )
 			.text( formatTime( currentTime ) );
 
-		if ( $.data( eventTarget, "captions" ) !== undef ) {
+		if ( $this.hasClass( captionClass ) && $.data( eventTarget, "captions" ) !== undef ) {
 			updateCaptions(
 				$this.find( ".wb-mm-cc" ),
 				currentTime,
