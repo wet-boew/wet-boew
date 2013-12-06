@@ -23,6 +23,7 @@ var pluginName = "wb-mltmd",
 	initializedEvent = "inited" + selector,
 	fallbackEvent = "fallback" + selector,
 	youtubeEvent = "youtube" + selector,
+	captionClass = "cc_on",
 	$document = wb.doc,
 
 	/**
@@ -310,7 +311,7 @@ var pluginName = "wb-mltmd",
 	 * @param {object} args The arguments to send to the function call
 	 */
 	playerApi = function( fn, args ) {
-		var $this, captionsArea, method;
+		var $this, method;
 
 		switch ( fn ) {
 		case "play":
@@ -328,14 +329,13 @@ var pluginName = "wb-mltmd",
 			}
 			break;
 		case "getCaptionsVisible":
-			return $( this ).find( ".wb-mm-cc" ).hasClass( "on" );
+			return $( this ).hasClass( captionClass );
 		case "setCaptionsVisible":
 			$this = $( this );
-			captionsArea = $this.find( ".wb-mm-cc" );
 			if ( args ) {
-				captionsArea.addClass( "on" );
+				$this.addClass( captionClass );
 			} else {
-				captionsArea.removeClass( "on" );
+				$this.removeClass( captionClass );
 			}
 			$this.trigger( captionsVisibleChangeEvent );
 			break;
@@ -374,7 +374,7 @@ var pluginName = "wb-mltmd",
 	 * @param {object} args The arguments to send to the function call
 	 */
 	youTubeApi = function( fn, args ) {
-		var $this = $( this.object.a ),
+		var $player = $( this.object.a ),
 			state;
 
 		switch ( fn ) {
@@ -398,13 +398,13 @@ var pluginName = "wb-mltmd",
 		case "getMuted":
 			return this.object.isMuted();
 		case "setMuted":
-			if ( args === true ) {
+			if ( args ) {
 				this.object.mute();
 			} else {
 				this.object.unMute();
 			}
 			setTimeout( function() {
-				$this.trigger( "volumechange" );
+				$player.trigger( "volumechange" );
 			}, 50 );
 			break;
 		case "getVolume":
@@ -412,18 +412,20 @@ var pluginName = "wb-mltmd",
 		case "setVolume":
 			this.object.setVolume( args * 100 );
 			setTimeout( function() {
-				$this.trigger( "volumechange" );
+				$player.trigger( "volumechange" );
 			}, 50 );
 			break;
 		case "getCaptionsVisible":
-			return this.object.cc || false;
+			return $( this ).hasClass( captionClass );
 		case "setCaptionsVisible":
-			this.object.cc = args;
-			if ( args === true ) {
+			if ( args ) {
+				$( this).addClass( captionClass );
 				this.object.setOption( "cc", "reload", true );
 			} else {
+				$( this ).removeClass( captionClass );
 				this.object.setOption( "cc", "track", {} );
 			}
+			$player.trigger( "ccvischange" );
 		}
 	},
 
@@ -597,6 +599,7 @@ $document.on( youtubeEvent, selector, function() {
 		}
 	});
 
+	$this.addClass( "youtube" );
 	$this.find( "iframe" ).attr( "tabindex", -1 );
 
 	data.poster = "<img src='" + $media.attr( "poster" ) +
@@ -769,7 +772,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		$this = $( eventTarget ),
 		invStart = "<span class='wb-inv'>",
 		invEnd = "</span>",
-		currentTime, $button, buttonData, isPlay, getMuted, ccVis;
+		currentTime, $button, buttonData, isPlay, getMuted;
 
 	switch ( eventType ) {
 	case "play":
@@ -843,14 +846,9 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		break;
 
 	case "ccvischange":
-		ccVis = eventTarget.player( "getCaptionsVisible" );
 		$button = $this.find( ".cc" );
-		buttonData = $button.data( "state-" + ( ccVis ? "off" : "on" ) );
-		$button
-			.attr( "title", buttonData )
-			.css( "opacity", ccVis ? "1" : ".5" )
-			.children( "span" )
-				.html( invStart + buttonData + invEnd );
+		buttonData = $button.data( "state-" + ( eventTarget.player( "getCaptionsVisible" ) ? "off" : "on" ) );
+		$button.attr( "title", buttonData ).children( "span" ).html( invStart + buttonData + invEnd );
 		break;
 
 	case "waiting":
