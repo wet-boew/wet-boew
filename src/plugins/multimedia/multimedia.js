@@ -285,12 +285,6 @@ var pluginName = "wb-mltmd",
 		var caption, i,
 			captionsLength = captions.length;
 
-		// lets not waste cycles in updating if captions are not visible
-		// and remove any text if there was some there before.
-		if ( !area.hasClass( "on" ) ) {
-			return area.is( "empty" ) ? 1 : area.empty();
-		}
-
 		// added &nbsp; to prevent caption space from collapsing
 		// Used .html() instead of .append for performance purposes
 		// http://jsperf.com/jquery-append-vs-html-list-performance/2
@@ -541,21 +535,23 @@ $document.on( fallbackEvent, selector, function() {
 		source = $media.find( "source" + ( data.type === "video" ) ? "[type='video/mp4']" : "[type='audio/mp3']" ).attr( "src" ),
 		poster = $media.attr( "poster" ),
 		flashvars = "id=" + data.mId,
+		width = data.width,
+		height = data.height > 0 ? data.height : Math.round( data.width / 1.777 ),
 		playerresource = wb.getPath( "/assets" ) + "/multimedia.swf?" + flashvars;
 
 	flashvars += "&amp;media=" + encodeURI( wb.getUrlParts( source ).absolute );
 	if ( data.type === "video" ) {
 		data.poster = "<img src='" + poster + "' class='img-responsive' height='" +
-			data.height + "' width='" + data.width + "' alt='" + $media.attr( "title" ) + "'/>";
+			height + "' width='" + width + "' alt='" + $media.attr( "title" ) + "'/>";
 
-		flashvars += "&amp;height=" + data.height + "&amp;width=" +
-			data.width + "&amp;posterimg=" + encodeURI( wb.getUrlParts( poster ).absolute );
+		flashvars += "&amp;height=" + height + "&amp;width=" +
+			width + "&amp;posterimg=" + encodeURI( wb.getUrlParts( poster ).absolute );
 	}
 
-	$this.find( "video, audio" ).replaceWith( "<object id='" + data.mId + "' width='" + data.width +
-		"' height='" + data.height + "' class='" + data.type +
-		"' type='application/x-shokwave-flash' data='" +
-		playerresource + "' tabindex='-1'>" +
+	$this.find( "video, audio" ).replaceWith( "<object id='" + data.mId + "' width='" + width +
+		"' height='" + height + "' class='" + data.type +
+		"' type='application/x-shockwave-flash' data='" +
+		playerresource + "' tabindex='-1' play='' pause=''>" +
 		"<param name='movie' value='" + playerresource + "'/>" +
 		"<param name='flashvars' value='" + flashvars + "'/>" +
 		"<param name='allowScriptAccess' value='always'/>" +
@@ -819,7 +815,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		$this.find( ".wb-mm-tmln-crrnt span" )
 			.text( formatTime( currentTime ) );
 
-		if ( $.data( eventTarget, "captions" ) !== undef ) {
+		if ( $this.hasClass( captionClass ) && $.data( eventTarget, "captions" ) !== undef ) {
 			updateCaptions(
 				$this.find( ".wb-mm-cc" ),
 				currentTime,

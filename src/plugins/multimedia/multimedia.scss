@@ -32,6 +32,11 @@
 	margin: auto;
 }
 
+%captions_hidden {
+	padding: 0;
+	max-height: 0;
+}
+
 .wb-mltmd {
 	// lets fight the FOUC
 	// base state
@@ -106,14 +111,18 @@
 	}
 
 	&.cc_on {
+		.wb-mm-cc {
+			padding: 0.5em;
+			max-height: 999em;
+		}
+
 		.cc {
 			opacity: 1;
 		}
 
-		&:not(.youtube) {
+		&.youtube {
 			.wb-mm-cc {
-				padding: 0.5em;
-				max-height: 999em;
+				@extend %captions_hidden;
 			}
 		}
 	}
@@ -138,11 +147,10 @@
 }
 
 .wb-mm-cc {
+	@extend %captions_hidden;
 	background-color: #000;
 	color: #FFF;
 	text-align: center;
-	padding: 0;
-	max-height: 0;
 	transition: all 0.26s ease;
 }
 
