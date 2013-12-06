@@ -178,7 +178,8 @@ var $document = wb.doc,
 			} else {
 				$btn = $( buttonStart + buttonClass + "' title='" + alt +
 					"'><span class='glyphicon glyphicon-arrow-" +
-					( buttonSpec[ 0 ] === "prvmnth" ? "left" : "right" ) + "'></span></button>" );
+					( buttonSpec[ 0 ] === "prvmnth" ? "left" : "right" ) +
+					"'></span><span class='wb-inv'>" + alt + "</button>" );
 				$monthNav[ buttonSpec[ 3 ] ]( $btn );
 			}
 

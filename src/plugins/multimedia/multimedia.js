@@ -767,60 +767,42 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 	var eventTarget = event.currentTarget,
 		eventType = event.type,
 		$this = $( eventTarget ),
-		currentTime,
-		button;
+		invStart = "<span class='wb-inv'>",
+		invEnd = "</span>",
+		currentTime, $button, buttonData, isPlay, getMuted, ccVis;
 
 	switch ( eventType ) {
 	case "play":
-		button = $this.find( ".playpause .glyphicon" )
-			.removeClass( "glyphicon-play" )
-			.addClass( "glyphicon-pause" )
-			.parent();
-
-		button.attr( "title", button.data( "state-off" ) );
-
-		$this.find( ".wb-mm-ovrly" ).addClass( "playing" );
-
-		$this.find( ".progress" ).addClass( "active" );
-		break;
-
 	case "pause":
-		button = $this.find( ".playpause .glyphicon" )
-			.removeClass( "glyphicon-pause" )
-			.addClass( "glyphicon-play" )
-			.parent();
-
-		button.attr( "title", button.data( "state-on" ) );
-
-		$this.find( ".progress" ).removeClass( "active" );
-		break;
-
 	case "ended":
-		this.loading = clearTimeout( this.loading );
-		button = $this.find( ".playpause .glyphicon" )
-			.removeClass( "glyphicon-pause" )
-			.addClass( "glyphicon-play" )
-			.parent();
-
-		button.attr( "title", button.data( "state-on" ) );
-		$this.find( ".wb-mm-ovrly" ).removeClass( "playing" );
+		isPlay = eventType === "play";
+		$button = $this.find( ".playpause" );
+		buttonData = $button.data( "state-" + ( isPlay ? "off" : "on" ) );
+		if ( isPlay ) {
+			$this.find( ".wb-mm-ovrly" ).addClass( "playing" );
+			$this.find( ".progress" ).addClass( "active" );
+		} else if ( eventType === "ended" ) {
+			this.loading = clearTimeout( this.loading );
+			$this.find( ".wb-mm-ovrly" ).removeClass( "playing" );
+		}
+		$button
+			.attr( "title", buttonData )
+			.children( "span" )
+				.toggleClass( "glyphicon-play", !isPlay )
+				.toggleClass( "glyphicon-pause", isPlay )
+				.html( invStart + buttonData + invEnd );
 		break;
 
 	case "volumechange":
-		// TODO: Think can be optimized for the minifier with some ternaries
-		button = $this.find( ".mute .glyphicon" );
-		if ( eventTarget.player( "getMuted" ) ) {
-			button = button.removeClass( "glyphicon-volume-up" )
-				.addClass( "glyphicon-volume-off" )
-				.parent();
-
-			button.attr( "title", button.data( "state-off" ) );
-		} else {
-			button = button.removeClass( "glyphicon-volume-off" )
-				.addClass( "glyphicon-volume-up" )
-				.parent();
-			button.attr( "title", button.data( "state-on" ) );
-		}
+		getMuted = eventTarget.player( "getMuted" );
+		$button = $this.find( ".mute" );
+		buttonData = $button.data( "state-" + ( getMuted ? "off" : "on" ) );
+		$button
+			.attr( "title", buttonData )
+			.children( "span" )
+				.toggleClass( "glyphicon-volume-up", !getMuted )
+				.toggleClass( "glyphicon-volume-off", getMuted )
+				.html( invStart + buttonData + invEnd );
 		break;
 
 	case "timeupdate":
@@ -861,15 +843,14 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		break;
 
 	case "ccvischange":
-		// TODO: Think can be optimized for the minifier with some ternarie
-		button = $this.find( ".cc" );
-		if ( eventTarget.player( "getCaptionsVisible" ) ) {
-			button.attr( "title", button.data( "state-on" ) )
-				.css( "opacity", "1" );
-		} else {
-			button.attr( "title", button.data( "state-off" ) )
-				.css( "opacity", ".5" );
-		}
+		ccVis = eventTarget.player( "getCaptionsVisible" );
+		$button = $this.find( ".cc" );
+		buttonData = $button.data( "state-" + ( ccVis ? "off" : "on" ) );
+		$button
+			.attr( "title", buttonData )
+			.css( "opacity", ccVis ? "1" : ".5" )
+			.children( "span" )
+				.html( invStart + buttonData + invEnd );
 		break;
 
 	case "waiting":
@@ -885,10 +866,15 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 
 	// Fallback for browsers that don't implement the waiting events
 	case "progress":
+
 		// Waiting detected, display the loading icon
-		if ( this.player( "getPaused" ) === false && this.player( "getCurrentTime" ) === this.player( "getPreviousTime" ) && eventTarget.player( "getBuffering" ) === false ) {
+		if ( this.player( "getPaused" ) === false &&
+			this.player( "getCurrentTime" ) === this.player( "getPreviousTime" ) &&
+			eventTarget.player( "getBuffering" ) === false ) {
+
 			eventTarget.player( "setBuffering", true );
 			$this.trigger( "waiting" );
+
 		// Waiting has ended, but icon is still visible - remove it.
 		} else if ( eventTarget.player( "getBuffering" ) === true ) {
 			eventTarget.player( "setBuffering", false );

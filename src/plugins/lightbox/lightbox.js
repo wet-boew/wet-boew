@@ -84,13 +84,14 @@ var pluginName = "wb-lbx",
 							// TODO: Better if dealt with upstream by Magnific popup
 							var $item = this.currItem,
 								$content = this.contentContainer,
-								$bottomBar;
+								$buttons = this.wrap.find( ".mfp-close, .mfp-arrow" ),
+								len = $buttons.length,
+								i, button, $bottomBar;
 
-							this.wrap.attr({
-								role: "dialog",
-								"aria-live": "polite",
-								"aria-labelledby": "lbx-title"
-							});
+							for ( i = 0; i !== len; i += 1 ) {
+								button = $buttons[ i ];
+								button.innerHTML += "<span class='wb-inv'>" + button.title + "</span>";
+							}
 
 							if ( $item.type === "image" ) {
 								$bottomBar = $content.find( ".mfp-bottom-bar" ).attr( "id", "lbx-title" );
@@ -101,9 +102,9 @@ var pluginName = "wb-lbx",
 						change: function() {
 							var $item = this.currItem,
 								$content = this.contentContainer,
-								$el, $bottomBar, $source, $target, description, altTitleId, altTitle;
+								$el, $bottomBar, $source, $target,
+								description, altTitleId, altTitle;
 
-							// TODO: Better if dealt with upstream by Magnific Popup
 							if ( $item.type === "image" ) {
 								$el = $item.el;
 								$source = $el.find( "img" );
