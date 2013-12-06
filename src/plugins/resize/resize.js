@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, wb ) {
+(function( $, document, wb ) {
 "use strict";
 
 /*
@@ -15,7 +15,6 @@
  */
 var id = "wb-rsz",
 	selector = "#" + id,
-	$window = wb.win,
 	$document = wb.doc,
 	sizes = [],
 	events = [
@@ -41,7 +40,8 @@ var id = "wb-rsz",
 	 * @method init
 	 */
 	init = function() {
-		var localResizeTest = document.createElement( "span" );
+		var localResizeTest = document.createElement( "span" ),
+			docElm = document.documentElement;
 
 		// Set up the DOM element used for resize testing
 		localResizeTest.innerHTML = "&#160;";
@@ -52,8 +52,8 @@ var id = "wb-rsz",
 		// Get a snapshot of the current sizes
 		sizes = [
 			localResizeTest.offsetHeight,
-			$window.width(),
-			$window.height()
+			docElm.clientWidth,
+			docElm.clientHeight
 		];
 
 		// Create a string containing all the events
@@ -101,10 +101,11 @@ var id = "wb-rsz",
 	 */
 	test = function() {
 		if ( initialized ) {
-			var currentSizes = [
+			var docElm = document.documentElement,
+				currentSizes = [
 					resizeTest.offsetHeight,
-					$window.width(),
-					$window.height()
+					docElm.clientWidth,
+					docElm.clientHeight
 				],
 				len = currentSizes.length,
 				i;
@@ -134,4 +135,4 @@ init();
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, document, wb );
+})( jQuery, document, wb );

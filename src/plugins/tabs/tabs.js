@@ -393,18 +393,18 @@ var pluginName = "wb-tabs",
 
 	onResize = function() {
 		var oldIsSmallView = isSmallView,
-			$details, $parent, $tablist, $openDetails, $nonOpenDetails, $active;
+			$elm, $details, $tablist, $openDetails, $nonOpenDetails, $active;
 
 		isSmallView = document.documentElement.className.indexOf( smallViewPattern ) !== -1;
 
 		if ( initialized && isSmallView !== oldIsSmallView ) {
-			$details = $( selector + " details" );
-			$parent = $details.parent();
-			$tablist = $parent.children( "ul" );
+			$elm = $( selector );
+			$details = $elm.children( "details" );
+			$tablist = $elm.children( "ul" );
 			
 			// Disable equal heights for small view and enable for large view
-			if ( $parent.attr( "class" ).indexOf( equalHeightClass ) !== -1 ) {
-				$parent.toggleClass( equalHeightClass + " " + equalHeightOffClass );
+			if ( $elm.attr( "class" ).indexOf( equalHeightClass ) !== -1 ) {
+				$elm.toggleClass( equalHeightClass + " " + equalHeightOffClass );
 			}
 
 			if ( isSmallView ) {
