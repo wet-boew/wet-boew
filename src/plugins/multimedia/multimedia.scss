@@ -47,6 +47,11 @@
 		border: 0;
 		color: #fff;
 	}
+	progress, .btn {
+		&:focus {
+			outline: #fff thin dotted;
+		}
+	}
 
 	.display {
 		position: relative;
