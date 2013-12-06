@@ -90,7 +90,7 @@ var pluginName = "wb-lbx",
 
 							for ( i = 0; i !== len; i += 1 ) {
 								button = $buttons[ i ];
-								button.innerHTML += "<span class='wb-inv'>" + button.title + "</span>";
+								button.innerHTML += "<span class='wb-inv'> " + button.title + "</span>";
 							}
 
 							if ( $item.type === "image" ) {

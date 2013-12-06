@@ -65,7 +65,7 @@ var pluginName = "wb-date",
 
 				// Close button
 				$( "<button type='button' class='picker-close mfp-close overlay-close' title='" +
-					i18nText.close + "'>×<span class='wb-inv'>" + i18nText.close + "</span></button>" )
+					i18nText.close + "'>×<span class='wb-inv'> " + i18nText.close + "</span></button>" )
 					.appendTo( $container )
 					.on( "click", function( event ) {
 						var which = event.which;
@@ -91,10 +91,10 @@ var pluginName = "wb-date",
 	},
 
 	createToggleIcon = function( fieldId ) {
-		var showfieldLabel = i18nText.show + $( "label[for=" + fieldId + "]" ).text(),
+		var showFieldLabel = i18nText.show + $( "label[for=" + fieldId + "]" ).text(),
 			objToggle = "<button id='" + fieldId + "-picker-toggle' class='picker-toggle' href='javascript:;' title='" +
-				showfieldLabel + "'><span class='glyphicon glyphicon-calendar'></span><span class='wb-inv'>" +
-				showfieldLabel + "</span></button>";
+				showFieldLabel + "'><span class='glyphicon glyphicon-calendar'></span><span class='wb-inv'>" +
+				showFieldLabel + "</span></button>";
 
 		$( "#" + fieldId ).after( objToggle );
 		$container.slideUp( 0 );

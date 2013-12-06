@@ -54,7 +54,7 @@ var pluginName = "wb-overlay",
 
 			// Add close button
 			overlayClose = "<button class='mfp-close " + closeClass +
-				"' title='" + i18nText.close + "'>×<span class='wb-inv'>" + i18nText.close + "</span></button>";
+				"' title='" + i18nText.close + "'>×<span class='wb-inv'> " + i18nText.close + "</span></button>";
 
 			elm.appendChild( $( overlayClose )[ 0 ] );
 			elm.setAttribute( ariaHidden, "true" );
