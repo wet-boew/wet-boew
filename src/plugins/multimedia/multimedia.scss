@@ -105,11 +105,19 @@
 		}
 	}
 
-	&[data-youtube] {
-		.wb-mm-ovrly {
-			visibility: hidden;
+	&.cc_on {
+		.cc {
+			opacity: 1;
+		}
+
+		&:not(.youtube) {
+			.wb-mm-cc {
+				padding: 0.5em;
+				max-height: 999em;
+			}
 		}
 	}
+
 	/*
 	  Light Skinning of mediacontrols
 	 */
@@ -126,6 +134,7 @@
 			border: 0;
 		}
 	}
+
 }
 
 .wb-mm-cc {
@@ -135,10 +144,6 @@
 	padding: 0;
 	max-height: 0;
 	transition: all 0.26s ease;
-	&.on {
-		padding: 0.5em;
-		max-height: 999em;
-	}
 }
 
 .wb-mm-ctrls {
@@ -169,6 +174,10 @@
 			margin-right: 0;
 			margin-left: 0;
 		}
+	}
+
+	.cc {
+		opacity: .5;
 	}
 
 	.wb-mm-txtonly {
