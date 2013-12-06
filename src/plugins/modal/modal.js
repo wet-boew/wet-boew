@@ -87,7 +87,7 @@ var pluginName = "wb-modal",
 	build = function( settings ) {
 		// TODO: Add random serial to `id` attribute to prevent collisions
 		var $modal = $( "<section class='modal-dialog modal-content overlay-def'>" +
-			"<div class='modal-body' id='lb-desc'>" + settings.content + "</div></section>" );
+			"<div class='modal-body' id='lbx-desc'>" + settings.content + "</div></section>" );
 
 		// Add modal's ID if it exists
 		if ( settings.id != null ) {
@@ -98,7 +98,7 @@ var pluginName = "wb-modal",
 		if ( settings.title != null ) {
 			$modal
 				.prepend( "<header class='modal-header'><h2 class='modal-title'>" + settings.title + "</h2></header>" )
-				.attr( "aria-labelledby", "lb-title" );
+				.attr( "aria-labelledby", "lbx-title" );
 		}
 
 		// Add the buttons
@@ -114,7 +114,7 @@ var pluginName = "wb-modal",
 		$modal.attr({
 			role: "dialog",
 			"aria-live": "polite",
-			"aria-describedby": "lb-desc"
+			"aria-describedby": "lbx-desc"
 		});
 
 		// Let the triggering process know that the modal has been built

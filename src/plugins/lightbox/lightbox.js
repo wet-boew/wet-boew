@@ -13,7 +13,7 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-lb",
+var pluginName = "wb-lbx",
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
@@ -89,11 +89,11 @@ var pluginName = "wb-lb",
 							this.wrap.attr({
 								role: "dialog",
 								"aria-live": "polite",
-								"aria-labelledby": "lb-title"
+								"aria-labelledby": "lbx-title"
 							});
 
 							if ( $item.type === "image" ) {
-								$bottomBar = $content.find( ".mfp-bottom-bar" ).attr( "id", "lb-title" );
+								$bottomBar = $content.find( ".mfp-bottom-bar" ).attr( "id", "lbx-title" );
 							} else {
 								$content.attr( "role", "document" );
 							}
@@ -134,7 +134,7 @@ var pluginName = "wb-lb",
 								$content
 									.find( ".modal-title, h1" )
 									.first()
-									.attr( "id", "lb-title" );
+									.attr( "id", "lbx-title" );
 							}
 						}
 					};
@@ -155,7 +155,7 @@ var pluginName = "wb-lb",
 
 					if ( firstLink.getAttribute( "href" ).charAt( 0 ) === "#" ) {
 						settings.type = "inline";
-					} else if ( firstLink.className.indexOf( "lb-iframe" ) !== -1 ) {
+					} else if ( firstLink.className.indexOf( "lbx-iframe" ) !== -1 ) {
 						settings.type = "iframe";
 					} else if ( firstLink.getElementsByTagName( "img" ).length === 0 ) {
 						settings.type = "ajax";
@@ -163,7 +163,7 @@ var pluginName = "wb-lb",
 						settings.type = "image";
 					}
 
-					if ( elm.className.indexOf( "lb-modal" ) !== -1 ) {
+					if ( elm.className.indexOf( "lbx-modal" ) !== -1 ) {
 						settings.modal = true;
 					}
 
