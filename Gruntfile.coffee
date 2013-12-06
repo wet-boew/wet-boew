@@ -215,7 +215,7 @@ module.exports = (grunt) ->
 					stripBanners: false
 				src: [
 					"lib/modernizr/modernizr-custom.js"
-					"lib/respond/respond.src.js"
+					"lib/respond/src/respond.js"
 					"lib/excanvas/excanvas.js"
 					"lib/html5shiv/dist/html5shiv-printshiv.js"
 					"src/core/wb.js"
