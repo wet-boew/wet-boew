@@ -630,7 +630,7 @@ module.exports = (grunt) ->
 
 		copy:
 			bootstrap:
-				cwd: "lib/bootstrap/fonts"
+				cwd: "lib/bootstrap/dist/fonts"
 				src: "*.*"
 				dest: "dist/unmin/fonts"
 				expand: true
