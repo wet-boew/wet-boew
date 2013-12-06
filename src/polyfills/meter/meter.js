@@ -12,7 +12,7 @@
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
 var pluginName = "wb-meter",
-	selector = "progress",
+	selector = "meter",
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init." + pluginName,
 	$document = wb.doc,
