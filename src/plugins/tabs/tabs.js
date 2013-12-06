@@ -52,7 +52,6 @@ var pluginName = "wb-tabs",
 
 		// Only initialize the element once
 		if ( !$elm.hasClass( initedClass ) ) {
-			wb.remove( selector );
 			$elm.addClass( initedClass );
 
 			var interval = $elm.hasClass( "slow" ) ? 9 : $elm.hasClass( "fast" ) ? 3 : 6,
