@@ -14,7 +14,7 @@
         <h3>Direct Linking</h3>
         <p>In this method, the calendar links to the first link in each event (usually in the event heading).</p>
         <div id="calendar1"></div>
-        <div class="wb-calevt calendar1">
+        <div class="wb-calevt" data-calevtsrc="calendar1">
             <ol>
                 <li>
                     <section>
@@ -37,7 +37,7 @@
         <h3>Details Linking</h3>
         <p>In this method, the calendar links to the details of the event. This is used when an event has multiple links.</p>
         <div id="calendar2"></div>
-        <div class="wb-calevt evt-anchor calendar2">
+        <div class="wb-calevt evt-anchor" data-calevtsrc="calendar2">
             <ol>
                 <li>
                     <section>
@@ -70,7 +70,7 @@
         <h3>Ajax Events</h3>
         <p>In this method, events are pulled from a remote source.</p>
         <div id="cal-ajax"></div>
-        <div class="wb-calevt evt-anchor cal-ajax">
+        <div class="wb-calevt evt-anchor" data-calevtsrc="cal-ajax">
             <ol data-calevt="ajax/cal-include1-en.html ajax/cal-include2-en.html ajax/cal-include3-en.html"></ol>
         </div>
     </section>
@@ -83,7 +83,7 @@
         <p>Events that do not have the <em>cal-disp-onshow</em> class will always be visible.</p>
         <div id="calendar3"></div>
 
-        <div class="wb-calevt evt-anchor calendar3">
+        <div class="wb-calevt evt-anchor" data-calevtsrc="calendar3">
             <section>
                 <h4>Events List 1</h4>
                 <ol>
