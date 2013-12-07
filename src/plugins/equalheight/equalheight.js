@@ -61,7 +61,7 @@ var selector = ".wb-equalheight",
 			i;
 
 		$elms.each( function() {
-			var $detachedChildren;
+			var $detachedChildren, minHeight;
 
 			$children = $( this ).children();
 
@@ -95,31 +95,41 @@ var selector = ".wb-equalheight",
 				currentChildHeight = currentChild.offsetHeight;
 
 				if ( currentChildTop !== rowTop ) {
-					setRowHeight( row, tallestHeight );
+					recordRowHeight( row, tallestHeight );
 
 					rowTop = currentChildTop;
 					tallestHeight = currentChildHeight;
 				} else {
-					tallestHeight = (currentChildHeight > tallestHeight) ? currentChildHeight : tallestHeight;
+					tallestHeight = ( currentChildHeight > tallestHeight ) ? currentChildHeight : tallestHeight;
 				}
 
-				row.push( currentChild );
+				row.push( $children.eq( i ) );
 			}
+			recordRowHeight( row, tallestHeight );
 
-			setRowHeight( row, tallestHeight );
+			$detachedChildren = $children.detach();
+			for ( i = $detachedChildren.length - 1; i >= 0; i-- ) {
+				minHeight = $detachedChildren.eq( i ).data( "min-height" );
+
+				if ( minHeight ) {
+					$detachedChildren[ i ].style.minHeight = minHeight;
+				}
+			}
+			$detachedChildren.appendTo( $(this) );
 		} );
 	},
 
 	/**
-	 * @method setRowHeight
-	 * @param {array} row The rows to be updated
-	 * @param {integer} height The new row height
+	 * @method recordRowHeight
+	 * @param {array} row The elements for which to record the height
+	 * @param {integer} height The height to record
 	 */
-	setRowHeight = function( row, height ) {
+	recordRowHeight = function( row, height ) {
+
 		// only set a height if more than one element exists in the row
 		if ( row.length > 1 ) {
 			for ( var i = row.length - 1; i >= 0; i-- ) {
-				row[ i ].style.minHeight = height + "px";
+				row[ i ].data( "min-height", height + "px" );
 			}
 		}
 		row.length = 0;
