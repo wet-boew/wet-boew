@@ -15,6 +15,15 @@
  */
 var selector = ".wb-equalheight",
 	$document = wb.doc,
+	vAlignCSS = "vertical-align",
+	vAlignDefault = "top",
+	minHeightCSS = "min-height",
+	minHeightDefault = "0",
+	cssValueSeparator = ":",
+	cssPropertySeparator = ";",
+	regexCSSValue = " ?[^;]+",
+	regexVAlign = new RegExp( vAlignCSS + cssValueSeparator + regexCSSValue + cssPropertySeparator ),
+	regexMinHeight = new RegExp( minHeightCSS + cssValueSeparator + regexCSSValue + cssPropertySeparator ),
 
 	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
@@ -45,6 +54,7 @@ var selector = ".wb-equalheight",
 			row = [ ],
 			rowTop = -1,
 			currentChild,
+			childCSS,
 			currentChildTop = -1,
 			currentChildHeight = -1,
 			tallestHeight = -1,
@@ -55,12 +65,23 @@ var selector = ".wb-equalheight",
 
 			for ( i = $children.length - 1; i >= 0; i-- ) {
 				currentChild = $children[ i ];
+				childCSS = currentChild.style.cssText;
 
 				// Ensure all children that are on the same baseline have the same 'top' value.
-				currentChild.style.verticalAlign = "top";
+				if ( childCSS.indexOf( vAlignCSS ) !== -1 ) {
+					childCSS = childCSS.replace( regexVAlign, vAlignCSS + cssValueSeparator + vAlignDefault + cssPropertySeparator );
+				} else {
+					childCSS += " " + vAlignCSS + cssValueSeparator + vAlignDefault + cssPropertySeparator;
+				}
 
 				// Remove any previously set min height
-				currentChild.style.minHeight = 0;
+				if ( childCSS.indexOf( minHeightCSS ) !== -1 ) {
+					childCSS = childCSS.replace( regexMinHeight, minHeightCSS + cssValueSeparator + minHeightDefault + cssPropertySeparator );
+				} else {
+					childCSS += " " + minHeightCSS + cssValueSeparator + minHeightDefault + cssPropertySeparator;
+				}
+
+				currentChild.style.cssText = childCSS;
 
 				currentChildTop = currentChild.offsetTop;
 				currentChildHeight = currentChild.offsetHeight;
