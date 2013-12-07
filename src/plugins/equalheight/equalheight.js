@@ -61,10 +61,13 @@ var selector = ".wb-equalheight",
 			i;
 
 		$elms.each( function() {
+			var $detachedChildren;
+
 			$children = $( this ).children();
 
-			for ( i = $children.length - 1; i >= 0; i-- ) {
-				currentChild = $children[ i ];
+			$detachedChildren = $children.detach();
+			for ( i = $detachedChildren.length - 1; i >= 0; i-- ) {
+				currentChild = $detachedChildren[ i ];
 				childCSS = currentChild.style.cssText;
 
 				// Ensure all children that are on the same baseline have the same 'top' value.
@@ -82,6 +85,11 @@ var selector = ".wb-equalheight",
 				}
 
 				currentChild.style.cssText = childCSS;
+			}
+			$detachedChildren.appendTo( $(this) );
+
+			for ( i = $children.length - 1; i >= 0; i-- ) {
+				currentChild = $children[ i ];
 
 				currentChildTop = currentChild.offsetTop;
 				currentChildHeight = currentChild.offsetHeight;
