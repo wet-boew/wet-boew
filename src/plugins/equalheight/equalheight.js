@@ -57,9 +57,10 @@ var selector = ".wb-equalheight",
 				rowTop = -1,
 				currentChildTop = -1,
 				currentChildHeight = -1,
-				tallestHeight = -1;
+				tallestHeight = -1,
+				$this = $( this );
 
-			$children = $( this ).children();
+			$children = $this.children();
 
 			$detachedChildren = $children.detach();
 			for ( i = $detachedChildren.length - 1; i >= 0; i-- ) {
@@ -82,7 +83,7 @@ var selector = ".wb-equalheight",
 
 				currentChild.style.cssText = childCSS;
 			}
-			$detachedChildren.appendTo( $(this) );
+			$detachedChildren.appendTo( $this );
 
 			for ( i = $children.length - 1; i >= 0; i-- ) {
 				currentChild = $children[ i ];
@@ -111,7 +112,7 @@ var selector = ".wb-equalheight",
 					$detachedChildren[ i ].style.minHeight = minHeight;
 				}
 			}
-			$detachedChildren.appendTo( $(this) );
+			$detachedChildren.appendTo( $this );
 		} );
 	},
 
