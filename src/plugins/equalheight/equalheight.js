@@ -63,7 +63,7 @@ var selector = ".wb-equalheight",
 			$children = $this.children();
 
 			$detachedChildren = $children.detach();
-			for ( i = $detachedChildren.length - 1; i >= 0; i-- ) {
+			for ( i = $detachedChildren.length - 1; i !== -1; i -= 1 ) {
 				currentChild = $detachedChildren[ i ];
 				childCSS = currentChild.style.cssText;
 
@@ -85,7 +85,7 @@ var selector = ".wb-equalheight",
 			}
 			$detachedChildren.appendTo( $this );
 
-			for ( i = $children.length - 1; i >= 0; i-- ) {
+			for ( i = $children.length - 1; i !== -1; i -= 1 ) {
 				currentChild = $children[ i ];
 
 				currentChildTop = currentChild.offsetTop;
@@ -105,7 +105,7 @@ var selector = ".wb-equalheight",
 			recordRowHeight( row, tallestHeight );
 
 			$detachedChildren = $children.detach();
-			for ( i = $detachedChildren.length - 1; i >= 0; i-- ) {
+			for ( i = $detachedChildren.length - 1; i !== -1; i -= 1 ) {
 				minHeight = $detachedChildren.eq( i ).data( "min-height" );
 
 				if ( minHeight ) {
@@ -125,7 +125,7 @@ var selector = ".wb-equalheight",
 
 		// only set a height if more than one element exists in the row
 		if ( row.length > 1 ) {
-			for ( var i = row.length - 1; i >= 0; i-- ) {
+			for ( var i = row.length - 1; i !== -1; i -= 1 ) {
 				row[ i ].data( "min-height", height + "px" );
 			}
 		}
