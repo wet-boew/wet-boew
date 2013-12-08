@@ -49,19 +49,15 @@ var selector = ".wb-equalheight",
 	 * @method onResize
 	 */
 	onResize = function() {
-		var $elms = $( selector ),
-			$children,
-			row = [ ],
-			rowTop = -1,
-			currentChild,
-			childCSS,
-			currentChildTop = -1,
-			currentChildHeight = -1,
-			tallestHeight = -1,
-			i;
+		var $elms = $( selector );
 
 		$elms.each( function() {
-			var $detachedChildren, minHeight;
+			var $children, $detachedChildren, currentChild, childCSS, minHeight, i,
+				row = [ ],
+				rowTop = -1,
+				currentChildTop = -1,
+				currentChildHeight = -1,
+				tallestHeight = -1;
 
 			$children = $( this ).children();
 
