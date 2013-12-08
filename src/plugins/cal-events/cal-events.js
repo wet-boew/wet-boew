@@ -15,6 +15,7 @@
  */
 var pluginName = "wb-calevt",
 	selector = "." + pluginName,
+	calendarSelector = selector + "-cal",
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
 	setFocusEvent = "setfocus.wb",
@@ -82,6 +83,7 @@ var pluginName = "wb-calevt",
 			events, containerId, $containerId;
 
 		if ( elmYear.length > 0 && elmMonth.length > 0 ) {
+
 			// We are going to assume this is always a number.
 			year = elmYear.text();
 
@@ -89,12 +91,15 @@ var pluginName = "wb-calevt",
 		}
 
 		events = getEvents( $elm );
-		containerId = $elm.data( "calevtsrc" );
-		$containerId = $( "#" + containerId );
+		containerId = $elm.data( "calevtSrc" );
+		$containerId = $( "#" + containerId ).addClass( calendarSelector );
 
-		$document.on( "displayed.wb-cal", "#" + containerId, function( event, year, month, days ) {
-			addEvents(year, month, days, containerId, events.list);
-			showOnlyEventsFor(year, month, containerId);
+		$document.on( "displayed.wb-cal", "#" + containerId, function( event, year, month, days, day ) {
+			addEvents( year, month, days, containerId, events.list );
+			showOnlyEventsFor( year, month, containerId );
+			$( event.currentTarget )
+				.find( ".cal-evt" + ( day === 1 ? ":first" : ":last" ) )
+					.trigger( "setfocus.wb" );
 		});
 		$document.trigger( "create.wb-cal", [
 				containerId,
@@ -487,6 +492,10 @@ $document.on( "timerpoke.wb " + initEvent, selector, function() {
 	 * so returning true allows for events to always continue
 	 */
 	return true;
+});
+
+$document.on( "displayed.wb-cal", calendarSelector, function( event, year, month, $days, day ) {
+	$( event.currentTarget ).find( ".cal-index-" + day ).trigger( "setfocus.wb" );
 });
 
 // Add the timer poke to initialize the plugin

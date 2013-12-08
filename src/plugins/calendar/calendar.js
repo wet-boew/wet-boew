@@ -108,10 +108,10 @@ var $document = wb.doc,
 
 		// Create the calendar body
 
-		// Creates weekdays | Cree les jours de la semaines
+		// Creates weekdays
 		$objCalendar.append( createWeekdays( calendarId ) );
 
-		// Creates the rest of the calendar | Cree le reste du calendrier
+		// Creates the rest of the calendar
 		$days = createDays( calendarId, year, month );
 		$daysList = $days.find( "td:not(.cal-empty)" );
 
@@ -383,8 +383,8 @@ var $document = wb.doc,
 			for ( day = 0; day < 7; day += 1 ) {
 
 				id = "cal-" + calendarId + "-w" + week + "d" + ( day + 1 );
-				className = ( day === 0 || day === 6 ? "cal-we " : "" ) +
-					"cal-w" + week + "d" + ( day + 1 ) + " cal-index-" + ( dayCount + 1 );
+				className = ( day === 0 || day === 6 ? "cal-we" : "" ) +
+					"cal-w" + week + "d" + ( day + 1 );
 
 				if ( ( week === 1 && day < firstDay ) || ( dayCount > lastDay ) ) {
 
@@ -394,9 +394,10 @@ var $document = wb.doc,
 
 					// Creates date cells | Cree les cellules de date
 					dayCount += 1;
+					className += " cal-index-" + dayCount;
 					isCurrentDate = ( dayCount === currDay && month === currMonth && year === currYear );
 
-					cells += "<td id='" + id + "' class='" + ( isCurrentDate ? "cal-currday " : "" ) + className + "'><div><time datetime='" + currYear + "-" +
+					cells += "<td id='" + id + "' class='" + ( isCurrentDate ? "cal-currday " : "" ) + className + "'><div><time datetime='" + year + "-" +
 						( month < 9 ? "0" : "" ) + ( month + 1 ) + "-" + ( dayCount < 10 ? "0" : "" ) + dayCount + "'><span class='wb-inv'>" + textWeekDayNames[ day ] +
 						( frenchLang ? ( " </span>" + dayCount + "<span class='wb-inv'> " + textMonthNames[ month ].toLowerCase() + " " ) :
 						( " " + textMonthNames[ month ] + " </span>" + dayCount + "<span class='wb-inv'> " ) ) + year +
