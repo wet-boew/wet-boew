@@ -40,10 +40,6 @@ var pluginName = "wb-tabs",
 		excludePlay: false
 	},
 
-	// boolean to disable hashchange event listener on tab click,
-	// but re-enable it for any other case
-	ignoreHashChange = false,
-
 	/*
 	 * @method init
 	 * @param {jQuery DOM element} $elm The plugin element
@@ -60,7 +56,8 @@ var pluginName = "wb-tabs",
 				addControls = defaults.addControls,
 				excludePlay = defaults.excludePlay,
 				hashId = wb.pageUrlParts.hash.substring( 1 ),
-				$panel, $openPanel, i, len, tablist, isOpen, newId, $summaries,
+				$openPanel = hashId.length !== 0 ? $panels.filter( "#" + hashId ) : undefined,
+				$panel, i, len, tablist, isOpen, newId, $summaries,
 				summary, accordionClass;
 
 			// Determine the current view
@@ -93,9 +90,6 @@ var pluginName = "wb-tabs",
 
 				// Ensure there is only one panel open
 				// Order of priority is hash, open property, first details
-				if ( hashId.length !== 0 ) {
-					$openPanel = $panels.filter( "#" + hashId );
-				}
 				if ( !$openPanel || $openPanel.length === 0 ) {
 					$openPanel = $panels.filter( "[open]" ).first();
 					if ( $openPanel.length === 0 ) {
@@ -151,9 +145,19 @@ var pluginName = "wb-tabs",
 				}
 				$tablist = $( tablist + "</ul>" );
 				$elm.prepend( $tablist );
-			} else {
-				$panels.filter( ":not(.in)" )
-					.addClass( "out" );
+			} else if ( $openPanel && $openPanel.length !== 0 ) {
+				$panels.filter( ".in" )
+					.addClass( "out" )
+					.removeClass( "in" );
+				$openPanel
+					.addClass( "in" )
+					.removeClass( "out" );
+				$tablist.find( ".active" )
+					.removeClass( "active" );
+				$tablist.find( "a" )
+					.filter( "[href$='" + hashId + "']" )
+					.parent()
+						.addClass( "active" );
 			}
 
 			drizzleAria( $panels, $tablist );
@@ -280,8 +284,6 @@ var pluginName = "wb-tabs",
 	},
 
 	updateNodes = function( $panels, $controls, $next, $control ) {
-		var nextId = $next.attr( "id" );
-
 		$panels
 			.filter( ".in" )
 				.removeClass( "in" )
@@ -315,12 +317,6 @@ var pluginName = "wb-tabs",
 			})
 			.parent()
 				.addClass( "active" );
-
-		// Update the hash with the current open tab panel id
-		if ( nextId !== window.location.hash.substring( 1 ) ) {
-			ignoreHashChange = true;
-			window.location.hash = nextId;
-		}
 	},
 	
 	/*
@@ -370,9 +366,10 @@ var pluginName = "wb-tabs",
 
 	onHashChange = function( event ) {
 		if ( initialized ) {
-			var $hashTarget;
+			var hash = window.location.hash,
+				$hashTarget = $( hash );
 
-			if ( !ignoreHashChange && ( $hashTarget =  $( window.location.hash ) ).length !== 0 ) {
+			if ( $hashTarget.length !== 0 ) {
 				event.preventDefault();
 				if ( isSmallView ) {
 					$hashTarget
@@ -381,13 +378,10 @@ var pluginName = "wb-tabs",
 				} else {
 					$hashTarget
 						.parent()
-							.find( "> ul [href$='" + window.location.hash + "']" )
+							.find( "> ul [href$='" + hash + "']" )
 								.trigger( "click" );
 				}
 			}
-
-			// Make sure listener is re-enabled
-			ignoreHashChange = false;
 		}
 	},
 
@@ -490,7 +484,7 @@ var pluginName = "wb-tabs",
  });
 
  /*
-  * Next / Prev
+  * Tabs, next, previous and play/pause
   */
  $document.on( "click vclick keydown", controls, function( event ) {
 	var which = event.which,
@@ -501,7 +495,7 @@ var pluginName = "wb-tabs",
 		$elm, text, inv, $sldr, $plypause;
 
 	// Ignore middle and right mouse buttons
-	if ( !which || which === 1 || which === 32 || ( which > 36 && which < 41 ) ) {
+	if ( !which || which === 1 || which === 13 || which === 32 || ( which > 36 && which < 41 ) ) {
 		event.preventDefault();
 		$elm = $( elm );
 		$sldr = $elm
@@ -527,10 +521,14 @@ var pluginName = "wb-tabs",
 		} else {
 			if ( elm.getAttribute( "role" ) === "tab" ) {
 				onPick( $sldr, $elm );
+				if ( which > 1 ) {
+					$sldr.find( $elm.attr( "href" ) ).trigger( "setfocus.wb" );
+				}
 			} else if ( !$sldr.hasClass( "playing" ) ) {
 				onCycle( $elm, className.indexOf( "prv" ) !== -1 ? -1 : 1 );
 			}
 		}
+		return false;
 	}
 
 	/*
@@ -545,19 +543,6 @@ $document.on( "xxsmallview.wb xsmallview.wb smallview.wb mediumview.wb largeview
 
 // This event only fires on the window
 $window.on( "hashchange", onHashChange );
-
-// Update the hash with the current open details/tab panel id
-$document.on( "click vclick keydown", selector + " > details > summary", function( event ) {
-	var which = event.which,
-		detailsId = event.currentTarget.parentNode.id;
-
-	if ( !which || which === 1 || which === 13 || which === 32 ) {
-		if ( detailsId !== window.location.hash.substring( 1 ) ) {
-			ignoreHashChange = true;
-			window.location.hash = detailsId;
-		}
-	}
-});
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
