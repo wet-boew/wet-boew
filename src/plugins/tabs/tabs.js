@@ -27,6 +27,7 @@ var pluginName = "wb-tabs",
 	ariaExpanded = "aria-expanded",
 	ariaHidden = "aria-hidden",
 	ariaSelected = "aria-selected",
+	activePanel = "-activePanel",
 	$document = wb.doc,
 	$window = wb.win,
 	i18n, i18nText,
@@ -51,14 +52,40 @@ var pluginName = "wb-tabs",
 			$elm.addClass( initedClass );
 
 			var interval = $elm.hasClass( "slow" ) ? 9 : $elm.hasClass( "fast" ) ? 3 : 6,
-				$panels = $elm.find( "[role=tabpanel]" ),
-				$tablist = $elm.find( "[role=tablist]" ),
+				$panels = $elm.children( "[role=tabpanel], details" ),
+				$tablist = $elm.children( "[role=tablist]" ),
 				addControls = defaults.addControls,
 				excludePlay = defaults.excludePlay,
-				hashId = wb.pageUrlParts.hash.substring( 1 ),
-				$openPanel = hashId.length !== 0 ? $panels.filter( "#" + hashId ) : undefined,
-				$panel, i, len, tablist, isOpen, newId, $summaries,
-				summary, accordionClass;
+				activeId = wb.pageUrlParts.hash.substring( 1 ),
+				$openPanel = activeId.length !== 0 ? $panels.filter( "#" + activeId ) : undefined,
+				elmId = $elm.attr( "id" ),
+				$panel, i, len, tablist, isOpen, newId, $summaries, summary;
+
+			// Ensure there is an id on the element
+			if ( !elmId ) {
+				elmId = "tabs-cnt-" + uniqueCount;
+				$elm.attr( "id", elmId );
+				uniqueCount += 1;
+			}
+
+			// If the panel was not set by URL hash, then attempt to
+			// retrieve from sessionStorage
+			if ( !$openPanel || $openPanel.length === 0 ) {
+				try {
+					activeId = sessionStorage.getItem( elmId + activePanel );
+					if ( activeId ) {
+						$openPanel = $panels.filter( "#" + activeId );
+					}
+				} catch ( error ) {
+				}
+
+			// If the panel was set by URL hash, then store in sessionStorage
+			} else {
+				try {
+					sessionStorage.setItem( elmId + activePanel, activeId );
+				} catch ( error ) {
+				}
+			}
 
 			// Determine the current view
 			isSmallView = document.documentElement.className.indexOf( smallViewPattern ) !== -1;
@@ -80,10 +107,8 @@ var pluginName = "wb-tabs",
 
 			// Build the tablist and enhance the panels as needed for details/summary
 			if ( $tablist.length === 0 ) {
+				$elm.addClass( "tabs-acc" );
 				addControls = false;
-				accordionClass = "tabs-acc-" + uniqueCount;
-				$elm.addClass( "tabs-acc " + accordionClass );
-				uniqueCount += 1;
 				$panels = $elm.children();
 				$summaries = $panels.children( "summary" );
 				len = $panels.length;
@@ -106,7 +131,7 @@ var pluginName = "wb-tabs",
 				}
 				$summaries
 					.addClass( "wb-toggle" )
-					.attr( "data-toggle", "{\"parent\": \"." + accordionClass +
+					.attr( "data-toggle", "{\"parent\": \"#" + elmId +
 						"\", \"group\": \"details\"}" )
 					.trigger( "wb-init.wb-toggle" );
 
@@ -155,7 +180,7 @@ var pluginName = "wb-tabs",
 				$tablist.find( ".active" )
 					.removeClass( "active" );
 				$tablist.find( "a" )
-					.filter( "[href$='" + hashId + "']" )
+					.filter( "[href$='" + activeId + "']" )
 					.parent()
 						.addClass( "active" );
 			}
@@ -166,14 +191,12 @@ var pluginName = "wb-tabs",
 				createControls( $tablist, excludePlay );
 			}
 
-			$elm
-				.addClass( "inited" )
-				.data({
-					"panels": $panels,
-					"tablist": $tablist,
-					"delay": interval,
-					"ctime": 0
-				});
+			$elm.data({
+				"panels": $panels,
+				"tablist": $tablist,
+				"delay": interval,
+				"ctime": 0
+			});
 
 			initialized = true;
 		}
@@ -317,6 +340,15 @@ var pluginName = "wb-tabs",
 			})
 			.parent()
 				.addClass( "active" );
+
+		// Update sessionStorage with the current active panel
+		try {
+			sessionStorage.setItem(
+				$next.parent().attr( "id" ) + activePanel,
+				$next.attr( "id" )
+			);
+		} catch ( error ) {
+		}
 	},
 	
 	/*
@@ -371,7 +403,7 @@ var pluginName = "wb-tabs",
 
 			if ( $hashTarget.length !== 0 ) {
 				event.preventDefault();
-				if ( isSmallView ) {
+				if ( isSmallView && $hashTarget[ 0 ].nodeName.toLowerCase() === "details" ) {
 					$hashTarget
 						.children( "summary" )
 							.trigger( "click" );
@@ -543,6 +575,25 @@ $document.on( "xxsmallview.wb xsmallview.wb smallview.wb mediumview.wb largeview
 
 // This event only fires on the window
 $window.on( "hashchange", onHashChange );
+
+-// Update the hash with the current open details/tab panel id
+
+$document.on( "click vclick keydown", selector + " > details > summary", function( event ) {
+	var which = event.which,
+		details = event.currentTarget.parentNode;
+
+	if ( !which || which === 1 || which === 13 || which === 32 ) {
+
+		// Update sessionStorage with the current active panel
+		try {
+			sessionStorage.setItem(
+				details.parentNode.id + activePanel,
+				details.id
+			);
+		} catch ( error ) {
+		}
+	}
+});
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
