@@ -36,6 +36,9 @@
 				@extend %tabs-xsmallview-display-none;
 			}
 		}
+		figcaption {
+			padding: 1em 60px;
+		}
 	}
 	&.tabs-acc {
 		> {
