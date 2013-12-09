@@ -25,18 +25,7 @@
 		font-size: 110%;
 	}
 	.cal-goto {
-		fieldset {
-			margin-bottom: 34px;
-			border-bottom: 1px solid #fff;
-		}
-		legend {
-			margin-bottom: 10px;
-			@extend %cal-position-relative;
-		}
-	}
-	.cal-goto-lnk {
-		margin: 0 0 0.5em 0;
-		padding: 0 !important;
+		display: inline-block;
 	}
 	%cal-goto-btns {
 		display: inline-block;
@@ -66,25 +55,15 @@
 }
 
 .cal-nxtmnth, .cal-prvmnth {
-	display: block;
+	display: inline-block;
 	background: none;
 	border: none;
 	&:focus {
 		outline: 1px dotted;
 		outline-offset: -2px;
 	}
-	position: absolute;
-	bottom: 0;
-	width: 44px;
-	height: 44px;
-}
-
-.cal-prvmnth {
-	left: 0;
-}
-
-.cal-nxtmnth {
-	right: 0;
+	width: 2.5em;
+	height: 2.5em;
 }
 
 .cal-wd {

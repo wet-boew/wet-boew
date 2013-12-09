@@ -91,13 +91,13 @@ var $document = wb.doc,
 		}
 
 		// Creates the calendar header
-		$calendarHeader = $( "<div class='cal-hd'><div class='cal-mnth'>" +
-			i18nText.monthNames[ month ] + " " + year + "</div></div>" );
+		$calendarHeader = $( "<div class='cal-hd'></div>" );
 
 		// Create the month navigation
-		if ( shownav ) {
-			$calendarHeader.append( createMonthNav( calendarId, year, month, mindate, maxdate, minDateYear, maxDateYear ) );
-		}
+		$calendarHeader.append( shownav ?
+			createMonthNav( calendarId, year, month, mindate, maxdate, minDateYear, maxDateYear, $calendarHeader ) :
+			"<div class='cal-mnth'>" + i18nText.monthNames[ month ] + " " + year + "</div>"
+		);
 
 		$oldCalendarHeader = $objCalendar.prev( ".cal-hd" );
 		if ( $oldCalendarHeader.length === 0 ) {
@@ -183,18 +183,22 @@ var $document = wb.doc,
 				$monthNav[ buttonSpec[ 3 ] ]( $btn );
 			}
 
-			$btn
-				.toggleClass( "hide", hideButton )
-				.attr( "aria-hidden", hideButton );
-
+			$btn.toggleClass( "active", !hideButton );
+			
 			if ( !hideButton ) {
-				$btn.on( "click", {
-					calID: calendarId,
-					year: newYear,
-					month: newMonth,
-					mindate: minDate,
-					maxdate: maxDate
-				}, changeMonth );
+				$btn
+					.removeAttr( "disabled" )
+					.on( "click", {
+						calID: calendarId,
+						year: newYear,
+						month: newMonth,
+						mindate: minDate,
+						maxdate: maxDate
+					}, changeMonth );
+			} else {
+				$btn
+					.attr( "disabled", "disabled" )
+					.off( "click" );
 			}
 		}
 
@@ -202,6 +206,8 @@ var $document = wb.doc,
 	},
 
 	changeMonth = function( event ) {
+		event.preventDefault();
+
 		var which = event.which,
 			$btn = $( event.target ),
 			eventData = event.data,
@@ -264,17 +270,15 @@ var $document = wb.doc,
 
 	createGoToForm = function( calendarId, year, month, minDate, maxDate ) {
 		var $goToForm = $( "<div class='cal-goto'></div>" ),
-			$form = $( "<form id='cal-" + calendarId + "-goto' role='form' style='display:none;' action=''><fieldset><legend>" +
-				i18nText.goToTitle + "</legend></fieldset></form>" ),
-			$fieldset, $yearContainer, $yearField, y, ylen, $monthContainer, $monthField, $buttonContainer,
-			$button, $buttonCancelContainer, $buttonCancel, $goToLinkContainer, $goToLink;
+			$form = $( "<form id='cal-" + calendarId + "-goto' role='form' style='display:none;' action=''></form>" ),
+			$yearContainer, $yearField, y, ylen, $monthContainer, $monthField, $buttonSubmit,
+			$buttonCancel, $goToLink;
 
 		$form.on( "submit", function( event ) {
 			event.preventDefault();
 			onGoTo( calendarId, minDate, maxDate );
 			return false;
 		});
-		$fieldset = $form.children( "fieldset" );
 
 		// Create the year field
 		$yearContainer = $( "<div class='cal-goto-yr'></div>" );
@@ -283,17 +287,14 @@ var $document = wb.doc,
 			$yearField.append( $( "<option value='" + y + "'" + (y === year ? " selected='selected'" : "" ) + ">" + y + "</option>" ) );
 		}
 
-		$yearContainer.append( $yearField );
-		$fieldset.append( $yearContainer );
-
-		// Create the list of month field
+		// Create the month field
 		$monthContainer = $( "<div class='cal-goto-mnth'></div>" );
 		$monthField = $( "<select title='" + i18nText.goToMonth + "' id='cal-" + calendarId + "-goto-month'></select>" );
 
 		$monthContainer.append( $monthField );
-		$fieldset
-			.append( $monthContainer )
-			.append( "<span class='clearfix'></span>" );
+
+		// Create the year field
+		$yearContainer.append( $yearField );
 
 		// Update the list of available months when changing the year
 		$yearField.on( "change", { minDate: minDate, maxDate: maxDate, $monthField: $monthField }, yearChanged );
@@ -301,14 +302,12 @@ var $document = wb.doc,
 		// Populate initial month list
 		$yearField.trigger( "change" );
 
-		$buttonContainer = $( "<div class='cal-goto-btn'></div>" );
-		$button = $( "<input type='submit' class='btn btn-primary' value='" + i18nText.goToBtn + "' />" );
-		$buttonContainer.append( $button );
-		$fieldset.append( $buttonContainer );
+		$buttonSubmit = $( "<div class='cal-goto-btn'><input type='submit' class='btn btn-primary' value='" +
+			i18nText.goToBtn + "' /></div>" );
 
-		$buttonCancelContainer = $( "<div class='cal-goto-btn'></div>" );
-		$buttonCancel = $( "<input type='button' class='btn btn-default' value='" + i18nText.cancelBtn + "' />" );
-		$buttonCancel.on( "click", function( event ) {
+		$buttonCancel = $( "<div class='cal-goto-btn'><input type='button' class='btn btn-default' value='" +
+			i18nText.cancelBtn + "' /></div>" );
+		$buttonCancel.on( "click", "input", function( event ) {
 			var which = event.which;
 
 			// Ignore middle/right mouse buttons
@@ -316,13 +315,21 @@ var $document = wb.doc,
 				$( "#" + calendarId ).trigger( "hideGoToFrm.wb-cal" );
 			}
 		});
-		$buttonCancelContainer.append( $buttonCancel );
-		$fieldset.append( $buttonCancelContainer );
 
-		$goToLinkContainer = $( "<p class='cal-goto-lnk' id='cal-" + calendarId + "-goto-lnk'></p>" );
-		$goToLink = $( "<a href='javascript:;' role='button' aria-controls='cal-" +
-			calendarId + "-goto' aria-expanded='false'>" + i18nText.goToLink + "</a>" );
-		$goToLink.on( "click", function( event ) {
+		$form
+			.append( $monthContainer )
+			.append( $yearContainer )
+			.append( "<span class='clearfix'></span>" )
+			.append( $buttonSubmit )
+			.append( $buttonCancel );
+
+		$goToLink = $( "<div id='cal-" +
+			calendarId + "-goto-lnk'><a href='javascript:;' role='button' aria-controls='cal-" +
+			calendarId + "-goto' class='cal-goto-lnk' aria-expanded='false'>" +
+			i18nText.monthNames[ month ] + " " + year + "</div>" + "</a></div>" );
+		$goToLink.on( "click", "a", function( event ) {
+			event.preventDefault();
+
 			var which = event.which;
 
 			// Ignore middle/right mouse buttons
@@ -330,10 +337,10 @@ var $document = wb.doc,
 				showGoToForm( calendarId );
 			}
 		} );
-		$goToLinkContainer.append( $goToLink );
 
-		$goToForm.append( $goToLinkContainer );
-		$goToForm.append( $form );
+		$goToForm
+			.append( $goToLink )
+			.append( $form );
 
 		return $goToForm;
 	},
@@ -420,38 +427,35 @@ var $document = wb.doc,
 
 	showGoToForm = function( calendarId ) {
 		var gotoId = "#cal-" + calendarId + "-goto",
-			$link = $( gotoId + "-lnk" ),
-			$form = $( gotoId );
+			$form = $( gotoId ),
+			$buttons = $( "#" + calendarId ).find( gotoId + "-lnk, .cal-prvmnth, .cal-nxtmnth" );
+
+		$buttons
+			.addClass( "hide" )
+			.attr( "aria-hidden", "true" )
+			.filter( "a" )
+				.attr( "aria-expanded", "true" );
 
 		// TODO: Replace with CSS animation
-		$link.stop().slideUp( 0 );
 		$form.stop().slideDown( 0 ).queue(function() {
 			$( this ).find( ":input:eq(0)" ).trigger( "setfocus.wb" );
 		});
-		$link
-			.children( "a" )
-				.attr({
-					"aria-hidden": "true",
-					"aria-expanded": "true"
-				});
 	},
 
 	hideGoToFrm = function( event ) {
 		var calendarId = event.target.id,
 			gotoId = "#cal-" + calendarId + "-goto",
-			$link = $( gotoId + "-lnk" ),
-			$form = $( gotoId );
+			$form = $( gotoId ),
+			$buttons = $( "#" + calendarId ).find( gotoId + "-lnk, .cal-prvmnth, .cal-nxtmnth" );
+
+		$buttons
+			.removeClass( "hide" )
+			.attr( "aria-hidden", "false" )
+			.filter( "a" )
+				.attr( "aria-expanded", "false" );
 
 		// TODO: Replace with CSS animation
 		$form.stop().slideUp( 0 );
-		$link
-			.stop()
-			.slideDown( 0 )
-			.children( "a" )
-				.attr({
-					"aria-hidden": "false",
-					"aria-expanded": "false"
-				});
 	},
 
 	onGoTo = function( calendarId, minDate, maxDate ) {

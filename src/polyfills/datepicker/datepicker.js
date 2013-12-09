@@ -326,6 +326,8 @@ $document.on( "keydown displayed.wb-cal", "#wb-picker", function( event, year, m
 });
 
 $document.on( "click", ".picker-toggle", function( event ) {
+	event.preventDefault();
+
 	var which = event.which,
 		pickerId;
 

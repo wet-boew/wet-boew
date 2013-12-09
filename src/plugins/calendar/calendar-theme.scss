@@ -26,23 +26,15 @@
 		font-weight: 700;
 	}
 	.cal-nxtmnth, .cal-prvmnth {
-		color: #ccc;
-		&:hover, &:focus {
-			@extend %cal-color-fff;
-		}
-	}
-	.cal-goto-lnk {
-		a {
-			@extend %cal-color-fff-important;
-			&:focus {
-				outline-offset: 0;
+		&.active {
+			color: #ccc;
+			&:hover, &:focus {
+				@extend %cal-color-fff;
 			}
 		}
 	}
-	.cal-goto {
-		legend {
-			@extend %cal-color-fff;
-		}
+	.cal-goto-lnk {
+		@extend %cal-color-fff-important;
 	}
 }
 
