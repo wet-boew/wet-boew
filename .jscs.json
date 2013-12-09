@@ -94,6 +94,7 @@
 		"!=="
 	],
 	"disallowQuotedKeysInObjects": "allButReserved",
+	"disallowYodaConditions": true,
 	"requireLineFeedAtFileEnd": true,
 	"validateJSDoc": {
 		"checkParamNames": true,
