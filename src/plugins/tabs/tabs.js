@@ -59,7 +59,9 @@ var pluginName = "wb-tabs",
 				activeId = wb.pageUrlParts.hash.substring( 1 ),
 				$openPanel = activeId.length !== 0 ? $panels.filter( "#" + activeId ) : undefined,
 				elmId = $elm.attr( "id" ),
-				$panel, i, len, tablist, isOpen, newId, $summaries, summary;
+				hashFocus = false,
+				$panel, i, len, tablist, isOpen, newId,
+				$summaries, summary, positionY;
 
 			// Ensure there is an id on the element
 			if ( !elmId ) {
@@ -68,23 +70,22 @@ var pluginName = "wb-tabs",
 				uniqueCount += 1;
 			}
 
-			// If the panel was not set by URL hash, then attempt to
-			// retrieve from sessionStorage
-			if ( !$openPanel || $openPanel.length === 0 ) {
-				try {
+			try {
+
+				// If the panel was not set by URL hash, then attempt to
+				// retrieve from sessionStorage
+				if ( !$openPanel || $openPanel.length === 0 ) {
 					activeId = sessionStorage.getItem( elmId + activePanel );
 					if ( activeId ) {
 						$openPanel = $panels.filter( "#" + activeId );
 					}
-				} catch ( error ) {
-				}
 
-			// If the panel was set by URL hash, then store in sessionStorage
-			} else {
-				try {
+				// If the panel was set by URL hash, then store in sessionStorage
+				} else {
+					hashFocus = true;
 					sessionStorage.setItem( elmId + activePanel, activeId );
-				} catch ( error ) {
 				}
+			} catch ( error ) {
 			}
 
 			// Determine the current view
@@ -189,6 +190,19 @@ var pluginName = "wb-tabs",
 
 			if ( addControls ) {
 				createControls( $tablist, excludePlay );
+			}
+
+			// If focus is being set by the URL hash, then ensure the tabs are
+			// not above the top of the viewport
+			if ( hashFocus ) {
+
+				// Need a slight delay to allow for the reflow
+				setTimeout(function() {
+					positionY = $tablist.offset().top;
+					if ( positionY < document.body.scrollTop ) {
+						document.body.scrollTop = positionY;
+					}
+				}, 1 );
 			}
 
 			$elm.data({
