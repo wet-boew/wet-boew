@@ -121,9 +121,9 @@ var getUrlParts = function( url ) {
 	 */
 	wb = {
 		"/": $homepath,
-		"/assets": "" + $homepath + "/../assets",
-		"/templates": "" + $homepath + "/assets/templates",
-		"/deps": "" + $homepath + "/deps",
+		"/assets": $homepath + "/../assets",
+		"/templates": $homepath + "/assets/templates",
+		"/deps": $homepath + "/deps",
 		mode: $mode,
 		doc: $( document ),
 		win: $( window ),
