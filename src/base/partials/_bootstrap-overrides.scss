@@ -48,17 +48,60 @@ $font-size-base: 16px;
 $font-size-large: ceil($font-size-base * 1.25);
 $font-size-small: ceil($font-size-base * 0.85);
 
+$font-size-h1: floor($font-size-base * 2.6);
+$font-size-h2: floor($font-size-base * 2.15);
+$font-size-h3: ceil($font-size-base * 1.7);
+$font-size-h4: ceil($font-size-base * 1.25);
+$font-size-h5: $font-size-base;
+$font-size-h6: ceil($font-size-base * 0.85);
+
+$line-height-base: 1.4375; // 20/14 -> 23/16 on the basis of ceil((20/14)*16) = 23
+$line-height-computed: floor($font-size-base * $line-height-base);
+
+// all these need new values based on the 16px font size
+// the calculations used to obtain these values are not documented in bootstrap
+$padding-base-vertical: 6px;
+$padding-base-horizontal: 12px;
+
 $padding-large-vertical: 10px;
 $padding-large-horizontal: 16px;
-$line-height-large: 1.33;
-$border-radius-large: 6px;
-$input-height-large: (floor($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2);
 
 $padding-small-vertical: 5px;
 $padding-small-horizontal: 10px;
+
+$padding-xs-vertical: 1px;
+$padding-xs-horizontal: 5px;
+
+$line-height-large: 1.33;
 $line-height-small: 1.5;
+
+$border-radius-base: 4px;
+$border-radius-large: 6px;
 $border-radius-small: 3px;
+// End: all these need new values based on the 16px font size
+
+$input-height-base: ($line-height-computed + ($padding-base-vertical * 2) + 2);
+$input-height-large: (ceil($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2);
 $input-height-small: (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2);
+
+$screen-sm: 768px;
+$screen-sm-min: $screen-sm;
+
+$screen-xs-max: $screen-sm-min - 1;
+
+$grid-gutter-width: 30px;
+
+$grid-float-breakpoint: $screen-sm-min;
+$grid-float-breakpoint-max: $grid-float-breakpoint - 1;
+
+$navbar-height: 50px;
+$navbar-margin-bottom: $line-height-computed;
+$navbar-padding-horizontal: floor($grid-gutter-width / 2);
+$navbar-padding-vertical: (($navbar-height - $line-height-computed) / 2);
+
+$jumbotron-font-size: ceil($font-size-base * 1.5);
+
+$modal-title-line-height: $line-height-base;
 
 
 // mixins.less
@@ -95,6 +138,12 @@ $input-height-small: (floor($font-size-small * $line-height-small) + ($padding-s
 	}*/
 }
 
+@mixin navbar-vertical-align($element-height) {
+	margin-top: (($navbar-height - $element-height) / 2);
+	margin-bottom: (($navbar-height - $element-height) / 2);
+}
+
+
 @mixin pagination-size($padding-vertical, $padding-horizontal, $font-size, $border-radius) {
 	> {
 		li {
@@ -122,6 +171,17 @@ $input-height-small: (floor($font-size-small * $line-height-small) + ($padding-s
 	}
 }
 
+// alerts.less
+.alert {
+	margin-bottom: $line-height-computed;
+}
+
+
+// breadcrumbs.less
+.breadcrumb {
+	margin-bottom: $line-height-computed;
+}
+
 
 // badges.less
 .badge {
@@ -129,17 +189,21 @@ $input-height-small: (floor($font-size-small * $line-height-small) + ($padding-s
 }
 
 
-// button.less
+// buttons.less
 .btn {
-	font-size: $font-size-base;
+	@include button-size($padding-base-vertical, $padding-base-horizontal, $font-size-base, $line-height-base, $border-radius-base);
 }
 
 .btn-lg {
 	@include button-size($padding-large-vertical, $padding-large-horizontal, $font-size-large, $line-height-large, $border-radius-large);
 }
 
-.btn-sm, .btn-xs {
+.btn-sm {
 	@include button-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $border-radius-small);
+}
+
+.btn-xs {
+	@include button-size($padding-xs-vertical, $padding-xs-horizontal, $font-size-small, $line-height-small, $border-radius-small);
 }
 
 
@@ -151,27 +215,47 @@ $input-height-small: (floor($font-size-small * $line-height-small) + ($padding-s
 
 // code.less
 pre {
+	padding: ($line-height-computed - 1) / 2;
+	margin: 0 0 ($line-height-computed / 2);
 	font-size: ($font-size-base - 1);
+	line-height: $line-height-base;
 }
 
 
-// dropdown.less
+// dropdowns.less
 .dropdown-menu {
 	font-size: $font-size-base;
+	> li > a {
+		line-height: $line-height-base;
+	}
 }
 
 .dropdown-header {
 	font-size: $font-size-small;
+	line-height: $line-height-base;
 }
 
 
 // forms.less
 legend {
+	margin-bottom: $line-height-computed;
 	font-size: ($font-size-base * 1.5);
 }
 
-.form-control {
+output {
 	font-size: $font-size-base;
+	line-height: $line-height-base;
+}
+
+.form-control {
+	height: $input-height-base;
+	font-size: $font-size-base;
+	padding: $padding-base-vertical $padding-base-horizontal;
+	line-height: $line-height-base;
+}
+
+.radio, .checkbox {
+	min-height: $line-height-computed;
 }
 
 .input-sm {
@@ -200,6 +284,13 @@ textarea.input-lg {
 	height: auto;
 }
 
+.form-horizontal {
+	.radio, .checkbox {
+		min-height: $line-height-computed + ($padding-base-vertical + 1);
+	}
+
+}
+
 
 // input-groups.less
 .input-group-addon {
@@ -219,16 +310,98 @@ textarea.input-lg {
 
 // jumbotron.less
 .jumbotron {
-	font-size: ($font-size-base * 1.5);
+	font-size: $jumbotron-font-size;
+	line-height: ($line-height-base * 1.5);
+	@media screen and (min-width: $screen-sm-min) {
+		h1, .h1 {
+			font-size: ($font-size-base * 4.5);
+		}
+	}
 }
 
+
+// modals.less
+.modal-title {
+	line-height: $modal-title-line-height;
+}
+
+
 // navbar.less
+.navbar {
+	margin-bottom: $navbar-margin-bottom;
+}
+
 .navbar-brand {
+	padding: $navbar-padding-vertical $navbar-padding-horizontal; 
 	font-size: $font-size-large;
+	line-height: $line-height-computed;
+}
+
+.navbar-nav {
+	margin: ($navbar-padding-vertical / 2) - $navbar-padding-horizontal;
+	> li > a {
+		line-height: $line-height-computed;
+	}
+	@media (max-width: $grid-float-breakpoint-max) {
+		.open .dropdown-menu {
+			> li > a {
+				line-height: $line-height-computed;
+			}
+		}
+	}
+	@media (min-width: $grid-float-breakpoint) {
+		> li {
+			> a {
+				padding-top: $navbar-padding-vertical;
+				padding-bottom: $navbar-padding-vertical;
+			}
+		}
+	}
+}
+
+.navbar-form {
+	@include navbar-vertical-align($input-height-base);
+}
+
+.navbar-btn {
+	@include navbar-vertical-align($input-height-base);
+	&.btn-sm {
+		@include navbar-vertical-align($input-height-small);
+	}
+}
+
+.navbar-text {
+	@include navbar-vertical-align($line-height-computed);
+}
+
+
+// navs.less
+.nav-tabs {
+	> li {
+		> a {
+			line-height: $line-height-base;
+		}
+	}
+}
+
+// pager
+.pager {
+	margin: $line-height-computed 0;
 }
 
 
 // pagination.less
+.pagination {
+	margin: $line-height-computed 0;
+	> li {
+		> {
+			a, span {
+				line-height: $line-height-base;
+			}
+		}
+	}
+}
+
 .pagination-lg {
 	@include pagination-size($padding-large-vertical, $padding-large-horizontal, $font-size-large, $border-radius-large);
 }
@@ -239,6 +412,10 @@ textarea.input-lg {
 
 
 // panels.less
+.panel {
+	margin-bottom: $line-height-computed;
+}
+
 .panel-title {
 	font-size: ceil($font-size-base * 1.125);
 }
@@ -251,14 +428,60 @@ textarea.input-lg {
 
 
 // progress-bars.less
+.progress {
+	height: $line-height-computed;
+	margin-bottom: $line-height-computed;
+}
+
 .progress-bar {
 	font-size: $font-size-small;
+	line-height: $line-height-computed;
 }
 
 
 // scaffolding.less
 body {
 	font-size: $font-size-base;
+	line-height: $line-height-base;
+}
+
+.img-thumbnail {
+	line-height: $line-height-base;
+}
+
+hr {
+	margin-top: $line-height-computed;
+	margin-bottom: $line-height-computed;
+}
+
+
+// tables.less
+.table {
+	margin-bottom: $line-height-computed;
+	> {
+		thead, tbody, tfoot {
+			> tr {
+				> {
+					th, td {
+						line-height: $line-height-base;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: $screen-xs-max) {
+	.table-responsive {
+		margin-bottom: ($line-height-computed * 0.75);
+	}
+}
+
+
+// thumbnails.less
+.thumbnail {
+	margin-bottom: $line-height-computed;
+	line-height: $line-height-base;
 }
 
 
@@ -269,52 +492,85 @@ body {
 
 
 // type.less
-.lead {
-	font-size: ($font-size-base * 1.15);
+h1, h2, h3 {
+	margin-top: $line-height-computed;
+	margin-bottom: ($line-height-computed / 2);
+}
+
+h4, h5, h6 {
+	margin-top: ($line-height-computed / 2);
+	margin-bottom: ($line-height-computed / 2);
 }
 
 h1, .h1 {
-	font-size: floor($font-size-base * 2.60);
+	font-size: $font-size-h1;
 }
 
 h2, .h2 {
-	font-size: floor($font-size-base * 2.15);
+	font-size: $font-size-h2;
 }
 
 h3, .h3 {
-	font-size: ceil($font-size-base * 1.70);
+	font-size: $font-size-h3;
 }
 
 h4, .h4 {
-	font-size: ceil($font-size-base * 1.25);
+	font-size: $font-size-h4;
 }
 
 h5, .h5 {
-	font-size: $font-size-base;
+	font-size: $font-size-h5;
 }
 
 h6, .h6 {
-	font-size: ceil($font-size-base * 0.85);
+	font-size: $font-size-h6;
 }
 
-h1 small, .h1 small {
-	font-size: ceil($font-size-base * 1.70);
+p {
+	margin: 0 0 ($line-height-computed / 2);
 }
 
-h2 small, .h2 small {
-	font-size: ceil($font-size-base * 1.25);
+.lead {
+	margin-bottom: $line-height-computed;
+	font-size: floor($font-size-base * 1.15);
+	@media (min-width: $screen-sm-min) {
+		font-size: ($font-size-base * 1.5);
+	}
 }
 
-h3 small, .h3 small,
-h4 small, .h4 small {
-	font-size: $font-size-base;
+.page-header {
+	padding-bottom: (($line-height-computed / 2) - 1);
+	margin: ($line-height-computed * 2) 0 $line-height-computed;
+}
+
+ul, ol {
+	margin-bottom: ($line-height-computed / 2);
+}
+
+dl {
+	margin-bottom: $line-height-computed;
+}
+
+dt, dd {
+	line-height: $line-height-base;
 }
 
 blockquote {
+	padding: ($line-height-computed / 2) $line-height-computed;
+	margin: 0 0 $line-height-computed;
 	p {
 		font-size: ($font-size-base * 1.25);
 	}
+	small, .small {
+		line-height: $line-height-base;
+	}
 }
+
+address {
+	margin-bottom: $line-height-computed;
+	line-height: $line-height-base;
+}
+
 
 /*
  *	Links
