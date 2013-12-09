@@ -150,25 +150,28 @@ var pluginName = "wb-share",
 				};
 			}
 
-			panel = "<section id='shr-pg' class='shr-pg wb-overlay modal-content overlay-def wb-panel-r" +
-				"'><header class='modal-header'><" + heading + " class='modal-title'>" +
-				i18nText.shareText + "</" + heading + "></header><ul class='colcount-xs-2'>";
+			// Don't create the panel for the second link (class="link-only")
+			if ( elm.className.indexOf( "link-only" ) === -1 ) {
+				panel = "<section id='shr-pg' class='shr-pg wb-overlay modal-content overlay-def wb-panel-r" +
+					"'><header class='modal-header'><" + heading + " class='modal-title'>" +
+					i18nText.shareText + "</" + heading + "></header><ul class='colcount-xs-2'>";
 
-			for ( site in sites ) {
-				siteProperties = sites[ site ];
-				url = siteProperties.url
-						.replace( /\{u\}/, pageHref )
-						.replace( /\{t\}/, pageTitle )
-						.replace( /\{i\}/, pageImage )
-						.replace( /\{d\}/, pageDescription );
-				panel += "<li><a href='" + url + "' class='" + shareLink + " " + site + " btn btn-default' target='_blank'>" + siteProperties.name + "</a></li>";
+				for ( site in sites ) {
+					siteProperties = sites[ site ];
+					url = siteProperties.url
+							.replace( /\{u\}/, pageHref )
+							.replace( /\{t\}/, pageTitle )
+							.replace( /\{i\}/, pageImage )
+							.replace( /\{d\}/, pageDescription );
+					panel += "<li><a href='" + url + "' class='" + shareLink + " " + site + " btn btn-default' target='_blank'>" + siteProperties.name + "</a></li>";
+				}
+
+				panel += "</ul><div class='clearfix'></div><p class='col-sm-12'>" + i18nText.disclaimer + "</p></section>";
 			}
-
-			panel += "</ul><div class='clearfix'></div><p class='col-sm-12'>" + i18nText.disclaimer + "</p></section>";
 			link = "<a href='#shr-pg' aria-controls='shr-pg' class='shr-opn overlay-lnk'><span class='glyphicon glyphicon-share'></span> " +
 				i18nText.shareText + "</a>";
 
-			$share = $( panel + link );
+			$share = $( ( panel ? panel : "" ) + link );
 
 			$elm.append( $share );
 
