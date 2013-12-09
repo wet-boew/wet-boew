@@ -116,6 +116,7 @@ module.exports = (grunt) ->
 			"autoprefixer"
 			"csslint:unmin"
 			"concat:css"
+			"concat:css_addBanners"
 			"cssmin:dist"
 		]
 	)
@@ -279,6 +280,14 @@ module.exports = (grunt) ->
 						"lib/bootstrap/dist/css/bootstrap.css"
 						"dist/unmin/css/wet-boew.css"
 					]
+
+			css_addBanners:
+				options:
+					banner: "@charset \"utf-8\";\n<%= banner %>"
+				files:
+					"dist/unmin/css/ie8-wet-boew.css": "dist/unmin/css/ie8-wet-boew.css"
+					"dist/unmin/css/noscript.css": "dist/unmin/css/noscript.css"
+					"dist/unmin/css/theme.css": "dist/unmin/css/theme.css"
 
 		# Builds the demos
 		assemble:
