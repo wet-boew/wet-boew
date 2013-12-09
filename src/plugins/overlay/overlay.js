@@ -165,7 +165,7 @@ $document.on( "click vclick", "." + closeClass, function( event ) {
 // Handler for clicking on a source link for the overlay
 $document.on( "click vclick", "." + linkClass, function( event ) {
 	var which = event.which,
-		sourceLink = event.target,
+		sourceLink = event.currentTarget,
 		overlayId = sourceLink.hash.substring( 1 );
 
 	// Ignore middle/right mouse buttons
