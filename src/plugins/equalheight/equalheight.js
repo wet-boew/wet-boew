@@ -15,6 +15,15 @@
  */
 var selector = ".wb-eqht",
 	$document = wb.doc,
+	vAlignCSS = "vertical-align",
+	vAlignDefault = "top",
+	minHeightCSS = "min-height",
+	minHeightDefault = "0",
+	cssValueSeparator = ":",
+	cssPropertySeparator = ";",
+	regexCSSValue = " ?[^;]+",
+	regexVAlign = new RegExp( vAlignCSS + cssValueSeparator + regexCSSValue + cssPropertySeparator ),
+	regexMinHeight = new RegExp( minHeightCSS + cssValueSeparator + regexCSSValue + cssPropertySeparator ),
 
 	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
@@ -40,53 +49,85 @@ var selector = ".wb-eqht",
 	 * @method onResize
 	 */
 	onResize = function() {
-		var $elm = $( selector ),
-			$children = $elm.children(),
-			row = [ ],
-			rowTop = -1,
-			currentChild,
-			currentChildTop = -1,
-			currentChildHeight = -1,
-			tallestHeight = -1,
-			i;
+		var $elms = $( selector );
 
-		for ( i = $children.length - 1; i >= 0; i-- ) {
-			currentChild = $children[ i ];
+		$elms.each( function() {
+			var $children, $detachedChildren, currentChild, childCSS, minHeight, i,
+				row = [ ],
+				rowTop = -1,
+				currentChildTop = -1,
+				currentChildHeight = -1,
+				tallestHeight = -1,
+				$this = $( this );
 
-			// Ensure all children that are on the same baseline have the same 'top' value.
-			currentChild.style.verticalAlign = "top";
+			$children = $this.children();
 
-			// Remove any previously set min height
-			currentChild.style.minHeight = 0;
+			$detachedChildren = $children.detach();
+			for ( i = $detachedChildren.length - 1; i !== -1; i -= 1 ) {
+				currentChild = $detachedChildren[ i ];
+				childCSS = currentChild.style.cssText;
 
-			currentChildTop = currentChild.offsetTop;
-			currentChildHeight = currentChild.offsetHeight;
+				// Ensure all children that are on the same baseline have the same 'top' value.
+				if ( childCSS.indexOf( vAlignCSS ) !== -1 ) {
+					childCSS = childCSS.replace( regexVAlign, vAlignCSS + cssValueSeparator + vAlignDefault + cssPropertySeparator );
+				} else {
+					childCSS += " " + vAlignCSS + cssValueSeparator + vAlignDefault + cssPropertySeparator;
+				}
 
-			if ( currentChildTop !== rowTop ) {
-				setRowHeight( row, tallestHeight );
+				// Remove any previously set min height
+				if ( childCSS.indexOf( minHeightCSS ) !== -1 ) {
+					childCSS = childCSS.replace( regexMinHeight, minHeightCSS + cssValueSeparator + minHeightDefault + cssPropertySeparator );
+				} else {
+					childCSS += " " + minHeightCSS + cssValueSeparator + minHeightDefault + cssPropertySeparator;
+				}
 
-				rowTop = currentChildTop;
-				tallestHeight = currentChildHeight;
-			} else {
-				tallestHeight = (currentChildHeight > tallestHeight) ? currentChildHeight : tallestHeight;
+				currentChild.style.cssText = childCSS;
 			}
+			$detachedChildren.appendTo( $this );
 
-			row.push( currentChild );
-		}
+			for ( i = $children.length - 1; i !== -1; i -= 1 ) {
+				currentChild = $children[ i ];
 
-		if ( row.length !== 0 ) {
-			setRowHeight( row, tallestHeight );
-		}
+				currentChildTop = currentChild.offsetTop;
+				currentChildHeight = currentChild.offsetHeight;
+
+				if ( currentChildTop !== rowTop ) {
+					recordRowHeight( row, tallestHeight );
+
+					rowTop = currentChildTop;
+					tallestHeight = currentChildHeight;
+				} else {
+					tallestHeight = ( currentChildHeight > tallestHeight ) ? currentChildHeight : tallestHeight;
+				}
+
+				row.push( $children.eq( i ) );
+			}
+			recordRowHeight( row, tallestHeight );
+
+			$detachedChildren = $children.detach();
+			for ( i = $detachedChildren.length - 1; i !== -1; i -= 1 ) {
+				minHeight = $detachedChildren.eq( i ).data( "min-height" );
+
+				if ( minHeight ) {
+					$detachedChildren[ i ].style.minHeight = minHeight;
+				}
+			}
+			$detachedChildren.appendTo( $this );
+		} );
 	},
 
 	/**
-	 * @method setRowHeight
-	 * @param {array} row The rows to be updated
-	 * @param {integer} height The new row height
+	 * @method recordRowHeight
+	 * @param {array} row The elements for which to record the height
+	 * @param {integer} height The height to record
 	 */
-	setRowHeight = function( row, height ) {
-		for ( var i = row.length - 1; i >= 0; i-- ) {
-			row[ i ].style.minHeight = height + "px";
+	recordRowHeight = function( row, height ) {
+
+		// only set a height if more than one element exists in the row
+		if ( row.length > 1 ) {
+			for ( var i = row.length - 1; i !== -1; i -= 1 ) {
+				row[ i ].data( "min-height", height + "px" );
+			}
 		}
 		row.length = 0;
 	};
