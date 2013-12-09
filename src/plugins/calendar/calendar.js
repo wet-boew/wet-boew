@@ -95,7 +95,7 @@ var $document = wb.doc,
 
 		// Create the month navigation
 		$calendarHeader.append( shownav ?
-			createMonthNav( calendarId, year, month, mindate, maxdate, minDateYear, maxDateYear, $calendarHeader ) :
+			createMonthNav( calendarId, year, month, mindate, maxdate, minDateYear, maxDateYear ) :
 			"<div class='cal-mnth'>" + i18nText.monthNames[ month ] + " " + year + "</div>"
 		);
 
@@ -123,7 +123,7 @@ var $document = wb.doc,
 
 	createMonthNav = function( calendarId, year, month, minDate, maxDate, minDateYear, maxDateYear ) {
 		var monthNames = i18nText.monthNames,
-			$monthNav = $( "#cal-" + calendarId + "-mnthnav" ),
+			$monthNav = $( "<div id='cal-" + calendarId + "-mnthnav'></div>" ),
 			buttonStart = "<button type='button' class='cal-",
 			buttonSpecs = [
 				[
@@ -141,14 +141,8 @@ var $document = wb.doc,
 			],
 			alt, $btn, buttonSpec, buttonClass, newMonth, newYear, hideButton, index;
 
-		if ( $monthNav.length === 0 ) {
-			$monthNav = $( "<div id='cal-" + calendarId + "-mnthnav'></div>" );
-		}
-
-		// Create the go to form if one doesn't already exist
-		if ( $( "#" + calendarId + " .cal-goto" ).length === 0 ) {
-			$monthNav.append( createGoToForm( calendarId, year, month, minDate, maxDate ) );
-		}
+		// Create the go to form
+		$monthNav.append( createGoToForm( calendarId, year, month, minDate, maxDate ) );
 
 		for ( index = 0; index !== 2; index += 1 ) {
 			buttonSpec = buttonSpecs[ index ];
@@ -171,17 +165,11 @@ var $document = wb.doc,
 			alt = buttonSpec[ 2 ] + monthNames[ newMonth ] + " " + newYear;
 			$btn = $monthNav.find( ".cal-" + buttonClass );
 
-			if ( $btn.length !== 0 ) {
-				$btn
-					.off()
-					.attr( "title", alt );
-			} else {
-				$btn = $( buttonStart + buttonClass + "' title='" + alt +
-					"'><span class='glyphicon glyphicon-arrow-" +
-					( buttonSpec[ 0 ] === "prvmnth" ? "left" : "right" ) +
-					"'></span><span class='wb-inv'>" + alt + "</button>" );
-				$monthNav[ buttonSpec[ 3 ] ]( $btn );
-			}
+			$btn = $( buttonStart + buttonClass + "' title='" + alt +
+				"'><span class='glyphicon glyphicon-arrow-" +
+				( buttonSpec[ 0 ] === "prvmnth" ? "left" : "right" ) +
+				"'></span><span class='wb-inv'>" + alt + "</button>" );
+			$monthNav[ buttonSpec[ 3 ] ]( $btn );
 
 			$btn.toggleClass( "active", !hideButton );
 			
