@@ -118,6 +118,7 @@ module.exports = (grunt) ->
 			"concat:css"
 			"concat:css_addBanners"
 			"cssmin:dist"
+			"copy:cssIE8"
 		]
 	)
 
@@ -279,6 +280,10 @@ module.exports = (grunt) ->
 					"dist/unmin/css/wet-boew.css": [
 						"lib/bootstrap/dist/css/bootstrap.css"
 						"dist/unmin/css/wet-boew.css"
+					]
+					"dist/unmin/css/ie8-wet-boew.css": [
+						"dist/unmin/css/wet-boew.css"
+						"dist/unmin/css/ie8-wet-boew.css"
 					]
 
 			css_addBanners:
@@ -577,6 +582,7 @@ module.exports = (grunt) ->
 				cwd: "dist/unmin/css"
 				src: [
 					"**/*.css"
+					"!**/ie8*.css"
 				]
 				dest: "dist/css"
 				ext: ".min.css"
@@ -707,6 +713,12 @@ module.exports = (grunt) ->
 					dest: "dist/unmin/demos/"
 					expand: true
 				]
+
+			cssIE8:
+				cwd: "dist/unmin/css/"
+				src: "ie8-wet-boew.css"
+				dest: "dist/css"
+				expand: true
 
 			themeAssets:
 				cwd: "theme/"
