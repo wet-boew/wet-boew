@@ -20,7 +20,6 @@ var pluginName = "wb-overlay",
 	closeClass = "overlay-close",
 	linkClass = "overlay-lnk",
 	ignoreOutsideClass = "outside-off",
-	ariaHidden = "aria-hidden",
 	sourceLinks = {},
 	setFocusEvent = "setfocus.wb",
 	$document = wb.doc,
@@ -57,7 +56,7 @@ var pluginName = "wb-overlay",
 				"' title='" + i18nText.close + "'>×<span class='wb-inv'> " + i18nText.close + "</span></button>";
 
 			elm.appendChild( $( overlayClose )[ 0 ] );
-			elm.setAttribute( ariaHidden, "true" );
+			elm.setAttribute( "aria-hidden", "true" );
 		}
 	},
 
@@ -66,7 +65,7 @@ var pluginName = "wb-overlay",
 
 		$overlay
 			.addClass( "open" )
-			.attr( ariaHidden, "false" );
+			.attr( "aria-hidden", "false" );
 
 		if ( !noFocus ) {
 			$overlay.trigger( setFocusEvent );
@@ -79,7 +78,7 @@ var pluginName = "wb-overlay",
 
 		$overlay
 			.removeClass( "open" )
-			.attr( ariaHidden, "true" );
+			.attr( "aria-hidden", "true" );
 
 		if ( userClosed ) {
 			$overlay.addClass( "user-closed" );
@@ -196,7 +195,7 @@ $document.on( "click vclick touchstart focusin", "body", function( event ) {
 		// Close any overlays with outside activity
 		for ( overlayId in sourceLinks ) {
 			overlay = document.getElementById( overlayId );
-			if ( overlay.getAttribute( ariaHidden ) === "false" &&
+			if ( overlay.getAttribute( "aria-hidden" ) === "false" &&
 				eventTarget.id !== overlayId &&
 				overlay.className.indexOf( ignoreOutsideClass ) === -1 &&
 				!$.contains( overlay, eventTarget ) ) {
