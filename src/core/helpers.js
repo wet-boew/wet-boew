@@ -213,7 +213,7 @@
 	function focusable( element, isTabIndexNotNaN, visibility ) {
 		var map, mapName, img,
 			nodeName = element.nodeName.toLowerCase( );
-		if ( "area" === nodeName ) {
+		if ( nodeName === "area" ) {
 			map = element.parentNode;
 			mapName = map.name;
 			if ( !element.href || !mapName || map.nodeName.toLowerCase( ) !== "map" ) {
@@ -224,14 +224,14 @@
 		}
 		if ( visibility ) {
 			return ( /input|select|textarea|button|object/.test( nodeName ) ? !element.disabled :
-				"a" === nodeName ?
+				nodeName === "a" ?
 				element.href || isTabIndexNotNaN :
 				isTabIndexNotNaN ) &&
 			// the element and all of its ancestors must be visible
 			visible( element );
 		} else {
 			return ( /input|select|textarea|button|object/.test( nodeName ) ? !element.disabled :
-				"a" === nodeName ?
+				nodeName === "a" ?
 				element.href || isTabIndexNotNaN :
 				isTabIndexNotNaN );
 		}
