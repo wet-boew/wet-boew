@@ -36,9 +36,8 @@ var wet_boew_charts,
 			pieChartLabelText = "",
 			self = $elm,
 			smallestHorizontalFlotDelta,
-			smallestVerticalFlotDelta,
+			// smallestVerticalFlotDelta,
 			srcTbl = self,
-			tblMultiplier = [],
 			valueCumul = 0,
 			$imgContainer, $placeHolder, $subfigCaptionElem, $subFigureElem,
 			graphClassLength, graphClassLength2, barDelta, cellValue,
@@ -447,16 +446,19 @@ var wet_boew_charts,
 		
 
 		// Get The column group header hiearchy partern
-		function getColumnGroupHeaderHierarchyPatern( colGroupHead ){
+		function getColumnGroupHeaderCalculateSteps( colGroupHead, referenceValuePosition ){
 			// Get the appropriate ticks
-			var dataCell, i,
-				cellsCount = 0,
-				headerLevel = 0,
-				tblHierarchyPatern = [];
+			var dataCell, i, _ilen,
+				calcStep = 1;
+				
+				
+			if (!colGroupHead) {
+				return; // There is an error, may be each series do not have an header
+			}
 
-			for ( i = 0; i < colGroupHead.col[ 0 ].cell.length; i += 1 ) {
+			for ( i = 0, _ilen = colGroupHead.col[ referenceValuePosition ].cell.length; i < _ilen; i += 1 ) {
 
-				dataCell = colGroupHead.col[ 0 ].cell[ i ];
+				dataCell = colGroupHead.col[ referenceValuePosition ].cell[ i ];
 
 				if ( i === 0 || ( i > 0 && colGroupHead.col[ 0 ].cell[ i - 1 ].uid !== dataCell.uid ) ) {
 
@@ -466,23 +468,17 @@ var wet_boew_charts,
 					}
 
 					if ( dataCell.type === 1 || dataCell.type === 7 ) {
-						cellsCount += 1;
-
 						if ( dataCell.child.length > 0 ) {
-							tblHierarchyPatern = tblHierarchyPatern.concat( groupHeaderHierarchyPaternChild( dataCell, headerLevel ) );
+							calcStep = calcStep * groupHeaderHierarchyPaternChild( dataCell, 1 );
 						}
 					}
 				}
 			}
 
-			tblHierarchyPatern.push([
-				cellsCount,
-				headerLevel
-			]);
-			
-			return tblHierarchyPatern;
+			return calcStep;
 		}
 
+/*
 		// Get The row group header hiearchy partern
 		function getRowGroupHeaderHierarchyPatern(rowGroupHead, dataColgroupStart){
 			// Find the range of the first data colgroup
@@ -508,7 +504,7 @@ var wet_boew_charts,
 			tblHierarchyPatern.push( [ cellsCount, headerLevel ] );
 			
 			return tblHierarchyPatern;
-		}
+		}*/
 
 		// Recursive function for getting the header hiearchy partern
 		function groupHeaderHierarchyPaternChild( dataCell, headerLevel ) {
@@ -530,27 +526,17 @@ var wet_boew_charts,
 			}
 			return tblHierarchyPatern;
 		}
-
-		function getlabelsVectorPosition(arrVectorHeaders) {
-			return ( !options.labelposition || ( options.labelposition && options.labelposition > arrVectorHeaders.length ) ? parsedData.theadRowStack.length : options.labelposition ) - 1;
-		}
-			
 		
-		function getPositionSteps(rowGroupHead, dataColgroupStart, stepsValue, labelsVectorPosition) {
+		
+		// Get The row group header hiearchy partern
+		function getRowGroupHeaderCalculateSteps(rowGroupHead, referenceValuePosition, dataColgroupStart){
+			// Find the range of the first data colgroup
 			var dataCell, i, _ilen,
-				cumulFlotValue = 0,
-				headerlevel = 0,
-				calcTick = [],
-				dataCellRowPos,
-				dataCellHeight,
-				rowGroupHeadLen = rowGroupHead.length - 1;
-			
-			uniformCumul = 0;
-			
-			// Set the associate tick value along with the headers
-			for ( i = 0, _ilen = rowGroupHead[ 0 ].elem.cells.length; i < _ilen; i += 1 ) {
+				calcStep = 1;
 
-				dataCell = $( rowGroupHead[ 0 ].elem.cells[ i ]).data().tblparser;
+			for ( i = 0, _ilen = rowGroupHead[ referenceValuePosition ].elem.cells.length; i < _ilen; i += 1 ) {
+
+				dataCell = $( rowGroupHead[ referenceValuePosition ].elem.cells[ i ] ).data().tblparser;
 
 				if ( dataCell.colgroup && dataCell.colgroup.type === 3 ) {
 					// We only process the first column data group
@@ -558,48 +544,184 @@ var wet_boew_charts,
 				}
 
 				if ( dataCell.colpos >= dataColgroupStart && ( dataCell.type === 1 || dataCell.type === 7 ) ) {
-
-					dataCell.flotDelta = stepsValue; // Set the step of that header cell
-					dataCell.flotValue = cumulFlotValue; // Set the value
-
-					dataCellRowPos = dataCell.rowpos - 1;
-					dataCellHeight = dataCell.height - 1;
-					
-
-					// Used for bar charts
-					if ( !smallestHorizontalFlotDelta || stepsValue < smallestHorizontalFlotDelta ){
-						smallestHorizontalFlotDelta = stepsValue;
-					}
-
-					// Add the label
-					if ( headerlevel === labelsVectorPosition || ( ( dataCellRowPos ) < labelsVectorPosition && labelsVectorPosition <= ( ( dataCellRowPos ) + ( dataCell.height - 1 ) ) ) ) {
-						// Add the value with the labels.
-						calcTick.push( [ ( !options.uniformtick ? cumulFlotValue : uniformCumul ), $( dataCell.elem ).text() ] );
-					}
-
-					// cumulatif value counter
-					if ( headerlevel === ( rowGroupHeadLen ) ||
-
-						( ( dataCellRowPos ) < ( rowGroupHeadLen ) &&
-						( rowGroupHeadLen ) <= ( ( dataCellRowPos ) + ( dataCellHeight ) ) ) ||
-
-						( rowGroupHeadLen ) === ( ( dataCellRowPos ) + ( dataCellHeight ) ) ){
-
-						uniformCumul += stepsValue;
-
-					}
-
-					cumulFlotValue += stepsValue;
-					
 					if ( dataCell.child.length > 0 ) {
-						calcTick = calcTick.concat( getPositionStepsChild( dataCell, headerlevel, labelsVectorPosition, rowGroupHeadLen ) );
+						calcStep = calcStep * dataCell.child.length;
+						calcStep = calcStep * groupHeaderHierarchyCalculateSteps( dataCell,  1);
+						
 					}
 				}
 			}
 			
-			return calcTick;
+			return calcStep;
+		}
+
+		// Recursive function for getting the header hiearchy partern
+		function groupHeaderHierarchyCalculateSteps( dataCell, refValue ) {
+			var childLength = dataCell.child.length,
+				kIndex,
+				//tblHierarchyPatern = [],
+				subRefValue,
+				calcStep = 1;
+
+
+			if (childLength === 0) {
+				return calcStep;
+			}
+					
+			subRefValue = childLength * refValue;
+			
+			calcStep = calcStep * subRefValue;
+
+			//tblHierarchyPatern.push(subRefValue);
+			
+			for ( kIndex = 0; kIndex < childLength; kIndex += 1 ) {
+				if ( dataCell.child[ kIndex ].child.length > 0 ){
+					// tblHierarchyPatern = tblHierarchyPatern.concat( groupHeaderHierarchyPaternChild( dataCell.child[ kIndex ], subRefValue ) );
+					calcStep = calcStep * groupHeaderHierarchyCalculateSteps( dataCell.child[ kIndex ], subRefValue );
+				}
+			}
+			return calcStep;
 		}
 		
+		
+		function setInnerStepValues( vectorHead, headerLevel, stepsValue, referenceValue) {
+			var i,
+				dataCell,
+				cumulativeValue = 0;
+			
+			for ( i = 0; i < vectorHead.cell.length; i += 1 ) {
+
+				dataCell = vectorHead.cell[ i ];
+
+				if (i > 0 && dataCell.uid === vectorHead.cell[ i - 1 ].uid){
+					continue;
+				}
+
+				// Only process the first data group
+				if (!reverseTblParsing) {
+					if ( dataCell.colgroup && dataCell.colgroup.type === 3 ) {
+						break;
+					}
+				} else {
+					if ( dataCell.rowgroup && dataCell.rowgroup.type === 3 ) {
+						break;
+					}
+				}
+				
+				if (dataCell.child > 0 && headerLevel < referenceValue) {
+					dataCell.flotDelta = stepsValue * dataCell.child.length;
+				} else {
+					dataCell.flotDelta = stepsValue;
+				}
+				if ( dataCell.type === 1 || dataCell.type === 7 ) {
+
+					if ( !smallestHorizontalFlotDelta || dataCell.flotDelta < smallestHorizontalFlotDelta ){
+						smallestHorizontalFlotDelta = dataCell.flotDelta;
+					}
+					dataCell.flotValue = cumulativeValue;
+					
+					cumulativeValue = cumulativeValue + stepsValue;
+					
+					if ( dataCell.child.length > 0 ) {
+						setInnerStepValuesChild( dataCell, headerLevel, stepsValue, referenceValue );
+					}
+				}
+			}
+		}
+		
+		function setInnerStepValuesChild( dataCell, headerLevel, stepsValue, referenceValue ) {
+			var i,
+				flotDelta,
+				cumulativeValue = 0,
+				currentDataCellChild;
+
+			headerLevel += 1;
+			cumulativeValue = dataCell.flotValue;
+			flotDelta = stepsValue / dataCell.child.length;
+
+			// Use to calculate the largest width for a bar in a bar chart
+			if ( !smallestHorizontalFlotDelta || flotDelta < smallestHorizontalFlotDelta ) {
+				smallestHorizontalFlotDelta = flotDelta;
+			}
+
+			for ( i = 0; i < dataCell.child.length; i += 1 ) {
+				currentDataCellChild = dataCell.child[ i ];
+				if (headerLevel < referenceValue) {
+					currentDataCellChild.flotDelta = flotDelta * currentDataCellChild.child.length;
+				} else {
+					currentDataCellChild.flotDelta = flotDelta;
+				}
+				currentDataCellChild.flotValue = cumulativeValue;
+				if ( currentDataCellChild.child.length > 0 ) {
+					setInnerStepValuesChild( currentDataCellChild, headerLevel, flotDelta, referenceValue );
+				}
+				cumulativeValue = cumulativeValue + flotDelta;
+			}
+		}
+
+		function setUpperStepValues( vectorHead, referenceValue) {
+			var i, k, m, _klen, _mlen,
+				cumulativeValue,
+				currentCell,
+				currentCellChild;
+			
+			// Calculate upper-step for cells that are less preceise than the reference value vector
+			for ( i = referenceValue - 1; i >= 0; i -= 1 ){
+				
+				for ( k = 0, _klen = vectorHead[ i ].cell.length; k < _klen; k += 1 ) {
+					currentCell = vectorHead[ i ].cell[ k ];
+					
+					if (currentCell.flotDelta || k > 0 && currentCell.uid === vectorHead[ i ].cell[ k - 1 ].uid){
+						continue;
+					}
+
+					if (! (currentCell.type === 1 || currentCell.type === 7 ))  {
+						continue;
+					}
+
+					cumulativeValue = 0;
+					for ( m = 0, _mlen = currentCell.child.length; m < _mlen; m += 1) {
+						currentCellChild = currentCell.child[ m ];
+						
+						cumulativeValue = currentCellChild.flotDelta;
+						if (currentCell.flotValue === undefined) {
+							currentCell.flotValue = currentCellChild.flotValue;
+						}
+					}
+					currentCell.flotDelta = cumulativeValue;
+					
+				}
+			}
+		}
+
+		function getLabels(labelVector) {
+			var i, _ilen,
+				labels = [];
+
+			for ( i = 0, _ilen = labelVector.cell.length; i < _ilen; i += 1 ) {
+				
+				if ( i > 0 && labelVector.cell[ i ].uid === labelVector.cell[ i - 1 ].uid){
+					continue;
+				}
+				
+				if (! (labelVector.cell[ i ].type === 1 || labelVector.cell[ i ].type === 7 ))  {
+					continue;
+				}
+				
+				labels.push( [ labelVector.cell[ i ].flotValue,
+							$( labelVector.cell[ i ].elem ).text()]
+				);
+				
+			}
+			
+			return labels;
+		}
+
+		function getlabelsVectorPosition(arrVectorHeaders) {
+			return ( !options.labelposition || ( options.labelposition && options.labelposition > arrVectorHeaders.length ) ? parsedData.theadRowStack.length : options.labelposition ) - 1;
+		}
+		
+		/*
 		function getPositionStepsChild( dataCell, headerlevel, labelsVectorPosition, groupHeadLen ) {
 			var i, _ilen,
 				flotDelta,
@@ -654,19 +776,22 @@ var wet_boew_charts,
 				calcTick = calcTick.concat( getPositionStepsChild( currDataCell, headerlevel, labelsVectorPosition, groupHeadLen ));
 			}
 			return calcTick;
-		}
+		}*/
 
 		function calculateVerticalTick( parsedData ) {
 
 			// Get the appropriate ticks
-			var parsedDataCell, i, totalValue,
-				nbCells = 0,
+			var // parsedDataCell,
+				// i,
+				// totalValue,
+				// nbCells = 0,
 				headerlevel = 0,
-				cumulFlotValue = 0,
+				// cumulFlotValue = 0,
 				labelsVectorPosition,
-				stepsValue;
+				stepsValue,
+				columnReferenceValue;
 
-			
+			/*
 			tblMultiplier = getColumnGroupHeaderHierarchyPatern(parsedData.colgrouphead);
 
 			nbCells = tblMultiplier[tblMultiplier.length - 1][0];
@@ -678,8 +803,16 @@ var wet_boew_charts,
 					totalValue = totalValue * tblMultiplier[ i ][ 0 ];
 				}
 			}
+			*/
+			if(!reverseTblParsing || (reverseTblParsing && options.referencevalue === undefined) ) {
+				columnReferenceValue = parsedData.colgrouphead.col.length;
+			} else {
+				columnReferenceValue = options.referencevalue;
+			}
 			
-			stepsValue = !options.uniformtick ? ( totalValue / nbCells ) : 1;
+			columnReferenceValue = columnReferenceValue - 1;
+			
+			stepsValue = getColumnGroupHeaderCalculateSteps(parsedData.colgrouphead, columnReferenceValue);
 
 
 			//
@@ -696,7 +829,18 @@ var wet_boew_charts,
 
 			calcTick = [];
 
-			headerlevel = 0;
+			headerlevel = columnReferenceValue;
+			
+			// Calculate inner-step for cells that are more precise than the reference value vector 
+			setInnerStepValues( parsedData.colgrouphead.col[ columnReferenceValue ], headerlevel, stepsValue, columnReferenceValue);
+			
+			// Calculate upper-step for cells that are less preceise than the reference value vector
+			setUpperStepValues( parsedData.colgrouphead.col, columnReferenceValue);
+						
+			// Get the labeling
+			calcTick = getLabels(parsedData.colgrouphead.col[ labelsVectorPosition ]);
+			
+			/*
 			// Set the associate tick value along with the headers
 			for ( i = 0; i < parsedData.colgrouphead.col[ 0 ].cell.length; i += 1 ) {
 
@@ -736,55 +880,29 @@ var wet_boew_charts,
 						}
 					}
 				}
-			}
+			}*/
 			/*
 			console.log("V");
 			console.log(calcTick);
 			*/
 			return calcTick;
-/*
-			function helper2CalcVTick( parsedDataCell, headerlevel ) {
-				var internalCumul = parsedDataCell.flotValue - parsedDataCell.flotDelta,
-					kIndex, flotDelta,
-					calcTick = [];
 
-				headerlevel += 1;
-
-				flotDelta = parsedDataCell.flotDelta / parsedDataCell.child.length;
-				if ( !smallestVerticalFlotDelta || flotDelta < smallestVerticalFlotDelta ) {
-					smallestVerticalFlotDelta = flotDelta;
-				}
-				for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
-					parsedDataCell.child[ kIndex ].flotDelta = flotDelta;
-					internalCumul = internalCumul + flotDelta;
-					parsedDataCell.child[ kIndex ].flotValue = internalCumul;
-
-					if ( headerlevel === labelsVectorPosition ) {
-						calcTick.push([
-							parsedDataCell.child[ kIndex ].flotValue - flotDelta,
-							$( parsedDataCell.child[ kIndex ].elem ).text()
-						]);
-					}
-					if ( parsedDataCell.child[ kIndex ].child.length > 0 ){
-						calcTick = calcTick.concat( helper2CalcVTick( parsedDataCell.child[ kIndex ], headerlevel ) );
-					}
-				}
-				return calcTick;
-			}*/
 		}
+
+
 
 		// Determine an appropriate tick for the rowgroup head (thead)
 		function calculateHorisontalTick( parsedData ) {
 			// Find the range of the first data colgroup
 			var dataColgroupStart = -1,
-				nbCells = 0,
-				parsedDataCell,
+				// nbCells = 0,
+				// parsedDataCell,
 				headerlevel = 0,
-				cumulFlotValue = 0,
-				i, totalValue,
+				//cumulFlotValue = 0,
+				i,// k, m,
 				labelsVectorPosition,
 				stepsValue,
-				tmpDelete;
+				rowReferenceValue;
 
 			if ( !parsedData.theadRowStack ) {
 				return;
@@ -798,24 +916,22 @@ var wet_boew_charts,
 			}
 
 
-			tblMultiplier = getRowGroupHeaderHierarchyPatern(parsedData.theadRowStack, dataColgroupStart);
-
-			nbCells = tblMultiplier[tblMultiplier.length - 1][0];
-
-			// The Total Value depend of the referenceValue Vector Position
-			totalValue = 1;
-			for ( i = 0; i < tblMultiplier.length; i += 1 ){
-				if (!options.referencevalue || options.referencevalue >= tblMultiplier[ i ][ 1 ]) {
-					totalValue = totalValue * tblMultiplier[ i ][ 0 ];
-				}
+			if((!reverseTblParsing && options.referencevalue === undefined) || reverseTblParsing) {
+				rowReferenceValue = parsedData.theadRowStack.length;
+			} else {
+				rowReferenceValue = options.referencevalue;
 			}
+			
 
-			stepsValue = !options.uniformtick ? ( totalValue / nbCells ) : 1;
 
 
-			/*
-			console.log(totalValue);
-			*/
+			rowReferenceValue = rowReferenceValue - 1;
+			
+			//options.referencevalue = 1;
+
+
+			stepsValue = getRowGroupHeaderCalculateSteps(parsedData.theadRowStack, rowReferenceValue, dataColgroupStart);
+
 
 			if (!reverseTblParsing) {
 				labelsVectorPosition = getlabelsVectorPosition(parsedData.theadRowStack);
@@ -829,51 +945,19 @@ var wet_boew_charts,
 
 			uniformCumul = 0;
 
-			headerlevel = 0;
+			headerlevel = rowReferenceValue;
 			
-			// Set the associate tick value along with the headers
-			for ( i = 0; i < parsedData.theadRowStack[ 0 ].elem.cells.length; i += 1 ) {
-
-				parsedDataCell = $( parsedData.theadRowStack[ 0 ].elem.cells[ i ]).data().tblparser;
-
-				if ( parsedDataCell.colgroup && parsedDataCell.colgroup.type === 3 ) {
-					// We only process the first column data group
-					break;
-				}
-
-				if ( parsedDataCell.colpos >= dataColgroupStart && ( parsedDataCell.type === 1 || parsedDataCell.type === 7 ) ) {
-
-					parsedDataCell.flotDelta = stepsValue;
-
-
-					if ( !smallestHorizontalFlotDelta || parsedDataCell.flotDelta < smallestHorizontalFlotDelta ){
-						smallestHorizontalFlotDelta = parsedDataCell.flotDelta;
-					}
-					parsedDataCell.flotValue = cumulFlotValue;
-
-					if ( headerlevel === labelsVectorPosition || ( ( parsedDataCell.rowpos - 1 ) < labelsVectorPosition && labelsVectorPosition <= ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) ) {
-						calcTick.push( [ ( !options.uniformtick ? cumulFlotValue : uniformCumul ), $( parsedDataCell.elem ).text() ] );
-					}
-
-					if ( headerlevel === ( parsedData.theadRowStack.length - 1 ) ||
-
-						( ( parsedDataCell.rowpos - 1 ) < ( parsedData.theadRowStack.length - 1 ) &&
-						( parsedData.theadRowStack.length - 1 ) <= ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) ||
-
-						( parsedData.theadRowStack.length - 1 ) === ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ){
-
-						uniformCumul += parsedDataCell.flotDelta;
-
-					}
-
-					cumulFlotValue += parsedDataCell.flotDelta;
-
-					calcTick = calcTick.concat( helper2CalcHTick( parsedDataCell, headerlevel ) );
-				}
-			}
+			// Calculate inner-step for cells that are more precise than the reference value vector 
+			setInnerStepValues( parsedData.theadRowStack[ rowReferenceValue ], headerlevel, stepsValue, rowReferenceValue);
 			
+			// Calculate upper-step for cells that are less preceise than the reference value vector
+			setUpperStepValues( parsedData.theadRowStack, rowReferenceValue);
+						
+			// Get the labeling
+			calcTick = getLabels(parsedData.theadRowStack[ labelsVectorPosition ]);
+
 			
-			tmpDelete = getPositionSteps(parsedData.theadRowStack, dataColgroupStart, stepsValue, labelsVectorPosition);
+			// tmpDelete = getPositionSteps(parsedData.theadRowStack, dataColgroupStart, stepsValue, labelsVectorPosition);
 			
 			/*
 			console.log('Go...');
@@ -891,50 +975,7 @@ var wet_boew_charts,
 			
 			return calcTick;
 
-			function helper2CalcHTick( parsedDataCell, headerlevel ) {
-				var kIndex, flotDelta,
-					internalCumul = 0,
-					theadRowStackLength = parsedDataCell.groupZero.theadRowStack.length - 1,
-					calcTick = [];
-					
-				if ( parsedDataCell.child.length === 0 ) {
-					return [];
-				}
-				headerlevel += 1;
-
-				internalCumul = parsedDataCell.flotValue;
-
-				flotDelta = !options.uniformtick ? ( parsedDataCell.flotDelta / parsedDataCell.child.length ) : 1;
-				if ( !smallestHorizontalFlotDelta || flotDelta < smallestHorizontalFlotDelta ) {
-					smallestHorizontalFlotDelta = flotDelta;
-				}
-				for ( kIndex = 0; kIndex < parsedDataCell.child.length; kIndex += 1 ) {
-					parsedDataCell.child[ kIndex ].flotDelta = flotDelta;
-
-					if ( headerlevel === labelsVectorPosition ) {
-						calcTick.push([
-							!options.uniformtick ?
-								internalCumul :
-								uniformCumul,
-							$( parsedDataCell.child[ kIndex ].elem ).text()
-						]);
-					}
-
-					if ( headerlevel === theadRowStackLength ||
-						( ( parsedDataCell.rowpos - 1 ) < theadRowStackLength &&
-						theadRowStackLength <= ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) ||
-						theadRowStackLength === ( ( parsedDataCell.rowpos - 1 ) + ( parsedDataCell.height - 1 ) ) ) {
-
-						uniformCumul += flotDelta;
-					}
-
-					parsedDataCell.child[ kIndex ].flotValue = internalCumul;
-					internalCumul = internalCumul + flotDelta;
-
-					calcTick = calcTick.concat( helper2CalcHTick( parsedDataCell.child[ kIndex ], headerlevel ));
-				}
-				return calcTick;
-			}
+			
 		}
 
 		// Retrieve the parsed data
