@@ -93,6 +93,7 @@
 		"!=",
 		"!=="
 	],
+	"disallowQuotedKeysInObjects": "allButReserved",
 	"requireLineFeedAtFileEnd": true,
 	"validateJSDoc": {
 		"checkParamNames": true,

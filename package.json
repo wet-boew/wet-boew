@@ -46,7 +46,7 @@
     "grunt-gh-pages": "~0.8.0",
     "grunt-htmlcompressor": "~0.1.9",
     "grunt-imagine": "http://github.com/LaurentGoderre/grunt-imagine/tarball/custom",
-    "grunt-jscs-checker": "~0.2.5",
+    "grunt-jscs-checker": "~0.2.6",
     "grunt-mocha": "~0.4.1",
     "grunt-modernizr": "~0.4.0",
     "grunt-sass": "~0.8.0",
