@@ -17,9 +17,6 @@ var pluginName = "wb-datalist",
 	initEvent = "wb-init." + pluginName,
 	setFocusEvent = "setfocus.wb",
 	initialized = false,
-	ariaActiveDescendent = "aria-activedescendent",
-	ariaExpanded = "aria-expanded",
-	ariaHidden = "aria-hidden",
 	$document = wb.doc,
 
 	/**
@@ -52,7 +49,7 @@ var pluginName = "wb-datalist",
 			input.setAttribute( "aria-haspopup", "true" );
 			input.setAttribute( "aria-autocomplete", "list" );
 			input.setAttribute( "aria-owns", "wb-al-" + inputId );
-			input.setAttribute( ariaActiveDescendent, "" );
+			input.setAttribute( "aria-activedescendent", "" );
 
 			autolist += "<ul id='wb-al-" + input.id + "-src' class='wb-al-src hide' aria-hidden='true'>";
 			for ( i = 0; i !== len; i += 1 ) {
@@ -100,11 +97,11 @@ var pluginName = "wb-datalist",
 
 		if ( $options.length !== 0 ) {
 			correctWidth( input );
-			$autolist.removeClass( "hide" ).attr( ariaHidden, "false" );
-			input.setAttribute( ariaExpanded, "true" );
+			$autolist.removeClass( "hide" ).attr( "aria-hidden", "false" );
+			input.setAttribute( "aria-expanded", "true" );
 		} else {
-			$autolist.addClass( "hide" ).attr( ariaHidden, "true" );
-			input.setAttribute( ariaExpanded, "false" );
+			$autolist.addClass( "hide" ).attr( "aria-hidden", "true" );
+			input.setAttribute( "aria-expanded", "false" );
 		}
 	},
 
@@ -118,9 +115,9 @@ var pluginName = "wb-datalist",
 
 		_autolist.className += " hide";
 		_autolist.innerHTML = "";
-		_autolist.setAttribute( ariaHidden, "true" );
-		input.setAttribute( ariaExpanded, "false" );
-		input.setAttribute( ariaActiveDescendent, "" );
+		_autolist.setAttribute( "aria-hidden", "true" );
+		input.setAttribute( "aria-expanded", "false" );
+		input.setAttribute( "aria-activedescendent", "" );
 	},
 
 	/**
@@ -168,7 +165,7 @@ var pluginName = "wb-datalist",
 			}
 
 		// Up / down arrow
-		} else if ( ( which === 38 || which === 40) && input.getAttribute( ariaActiveDescendent ) === "" ) {
+		} else if ( ( which === 38 || which === 40) && input.getAttribute( "aria-activedescendent" ) === "" ) {
 			if ( _alHide ) {
 				showOptions( input );
 			}
@@ -176,7 +173,7 @@ var pluginName = "wb-datalist",
 			options = _autolist.getElementsByTagName( "a" );
 			dest = options[ ( which === 38 ? options.length - 1 : 0 ) ];
 
-			input.setAttribute( ariaActiveDescendent, dest.parentNode.getAttribute( "id" ) );
+			input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
 
 			// Assign focus to dest
 			$( dest ).trigger( setFocusEvent );
@@ -274,7 +271,7 @@ var pluginName = "wb-datalist",
 			}
 			dest = dest.getElementsByTagName( "a" )[ 0 ];
 
-			input.setAttribute( ariaActiveDescendent, dest.parentNode.getAttribute( "id" ) );
+			input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
 			$( dest ).trigger( setFocusEvent );
 
 			return false;
