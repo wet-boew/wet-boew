@@ -40,7 +40,9 @@ $document.on( clickEvents, linkSelector, function( event ) {
 	var testHref = event.currentTarget.getAttribute( "href" );
 
 	// Same page links only
-	if ( testHref.charAt( 0 ) === "#" && ( $linkTarget = $( testHref ) ).length !== 0 ) {
+	if ( testHref.charAt( 0 ) === "#" && !event.isDefaultPrevented() &&
+		( $linkTarget = $( testHref ) ).length !== 0 ) {
+
 		$linkTarget.trigger( setFocusEvent );
 	}
 });
