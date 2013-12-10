@@ -52,6 +52,7 @@ wb.i18nDict = {
 	"prv-l": "@prv-l@",
 	first: "@first@",
 	last: "@last@",
+	menu: "@menu@",
 	"menu-close": "@menu-close@",
 	"overlay-close": "@overlay-close@",
 	"esc-key": "@esc-key@",
