@@ -120,11 +120,11 @@
 			width: 100%;
 			height: 100%;
 			z-index: 100;
-			visibility: hidden;
 			li {
+				display: none;
 				border: none;
-				visibility: visible;
 				&[role="presentation"] {
+					display: inline-block;
 					padding: 4px;
 					top: 100%;
 					background: $lightGray;
@@ -148,6 +148,7 @@
 					}
 				}
 				&.control {
+					display: inline-block;
 					position: absolute;
 					top: 0;
 					bottom: 0;
