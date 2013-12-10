@@ -251,7 +251,7 @@ var $document = wb.doc,
 		}
 
 		if ( year === maxDate.getFullYear() ) {
-			maxMonth = maxDate.getMonth();
+			maxMonth = maxDate.getMonth() + 1;
 		}
 
 		month = $monthField.val();
@@ -460,9 +460,9 @@ var $document = wb.doc,
 
 	onGoTo = function( calendarId, minDate, maxDate ) {
 		var $container = $( "#" + calendarId ),
-			fieldset = $container.find( "fieldset" ),
-			month = parseInt( fieldset.find( ".cal-goto-mnth select option:selected" ).val(), 10 ),
-			year = parseInt( fieldset.find( ".cal-goto-yr select" ).val(), 10 );
+			$form = $container.find( "#cal-" + calendarId + "-goto" ),
+			month = parseInt( $form.find( ".cal-goto-mnth select option:selected" ).val(), 10 ),
+			year = parseInt( $form.find( ".cal-goto-yr select" ).val(), 10 );
 
 		if (!(month < minDate.getMonth() && year <= minDate.getFullYear()) && !(month > maxDate.getMonth() && year >= maxDate.getFullYear())) {
 			$document.trigger( "create.wb-cal", [
