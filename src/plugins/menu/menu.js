@@ -22,7 +22,6 @@ var pluginName = "wb-menu",
 	incrementEvent = "inc" + selector,
 	displayEvent = "disp" + selector,
 	navCurrentEvent = "navcurr.wb",
-	closeClass = "overlay-close",
 	i18n, i18nText,
 	$document = wb.doc,
 
@@ -53,8 +52,7 @@ var pluginName = "wb-menu",
 			if ( !i18nText ) {
 				i18n = wb.i18n;
 				i18nText = {
-					close: i18n( closeClass ) + i18n( "space" ) + i18n( "esc-key" ),
-					closeText: i18n( "close" )
+					menu: i18n( "menu" )
 				};
 			}
 
@@ -164,9 +162,7 @@ var pluginName = "wb-menu",
 
 		// Lets create the DOM Element
 		 $panel = $( "<section id='" + targetto + "' class='wb-overlay modal-content overlay-def wb-panel-r'>" +
-				"<header class='modal-header'><h2 class='modal-title'>" + i18nText.closeText  + " Menu</h2>" +
-				//"<button class='mfp-close " + closeClass +
-				//"' title='" + i18nText.close + "'>×<span class='wb-inv'> " + i18nText.close + "</span></button>" +
+				"<header class='modal-header'><h2 class='modal-title'>" + i18nText.menu  + "</h2>" +
 				"</header><div class='modal-body'>" +
 				$panel +
 				"</div>" +
