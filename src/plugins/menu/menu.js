@@ -22,6 +22,8 @@ var pluginName = "wb-menu",
 	incrementEvent = "inc" + selector,
 	displayEvent = "disp" + selector,
 	navCurrentEvent = "navcurr.wb",
+	closeClass = "overlay-close",
+	i18n, i18nText,
 	$document = wb.doc,
 
 	// Used for half second delay on showing/hiding menus because of mouse hover
@@ -46,6 +48,15 @@ var pluginName = "wb-menu",
 				$elm.attr( "id", pluginName + "-" + menuCount );
 			}
 			menuCount += 1;
+
+			// Only initialize the i18nText once
+			if ( !i18nText ) {
+				i18n = wb.i18n;
+				i18nText = {
+					close: i18n( closeClass ) + i18n( "space" ) + i18n( "esc-key" ),
+					closeText: i18n( "close" )
+				};
+			}
 
 			// Lets test to see if we have any
 			if ( $elm.data( "ajax-fetch" ) ) {
@@ -124,32 +135,66 @@ var pluginName = "wb-menu",
 
 			// Optimized the code block to look to see if we need to import anything instead
 			// of just doing a query with which could result in no result
-			imports = $elm.data( "import" ) ? $elm.data( "import" ).split( " " ) : 0,
-			$panel, i, classList, $iElement;
+			targetto = $elm.data( "targetto" ),
+			$secnav = $( "#wb-sec" ),
+			$language = $( "#wb-lng li:not(.curr)" ),
+			$search = $("#wb-srch"),
+			$panel = $ajaxed.html(),
+			$onlypnl, state, elm;
 
-		// lets see if there is anything to import into our panel
-		if ( imports !== 0 ) {
-			$panel = $ajaxed.find( ".pnl-strt" );
-			classList = $panel.siblings( ".wb-info" ).eq( 0 ).attr( "class" );
+		// lets start building our panel in reverse order
 
-			for ( i = imports.length - 1; i >= 0; i-- ) {
-				$iElement = $( "#" + imports[ i ] );
+		// if secondary navigation
+		if ( $secnav.length > 0 ){
+			$panel =  "<section class='secnav-pnl'>" + $secnav.html() + "</section>" + $panel;
+		}
 
-				// lets only deal with elements that exist since there are possibilites where templates
-				// could add into a header and footer and the content areas change depending on levels
-				// in the site
-				if ( $iElement.length === 0 ) {
-					continue;
+		// clean up some extra markup
+		$panel = $panel.replace( /\bclass="([^"]+)"/gi, "" );
+
+		// add active language offer
+		$panel =  "<p class='lng-ofr'>" + $language.html() + "</p>" + $panel;
+
+		// add search
+		$panel =  "<section class='srch-pnl'>" + $search.html() + "</section>" + $panel;
+
+		// sanitize the DOM
+		$panel = $panel.replace( /(for|id)="([^"]+)"/gi, "$1=\"$2-imprt\"" )
+			.replace( /href="#([^"]+)"/gi, "href=\"#$1-imprt\"" );
+
+		// Lets create the DOM Element
+		 $panel = $( "<section id='" + targetto + "' class='wb-overlay modal-content overlay-def wb-panel-r'>" +
+				"<header class='modal-header'><h2 class='modal-title'>" + i18nText.closeText  + " Menu</h2>" +
+				//"<button class='mfp-close " + closeClass +
+				//"' title='" + i18nText.close + "'>×<span class='wb-inv'> " + i18nText.close + "</span></button>" +
+				"</header><div class='modal-body'>" +
+				$panel +
+				"</div>" +
+				"</section>" );
+
+		// Lets now populate the DOM since we have done all the work in a documentFragment
+		$( "#" + targetto ).replaceWith( $panel );
+
+		// Lets add some features
+		$panel.find( "[href^='#']" )
+			.prepend( "<span class='expicon'></span>" );
+
+		// Lets set some events on click
+		$panel.on( "click vclick", "a[href^=#]", function() {
+				elm = $( this );
+				state = elm.parent().hasClass( "active" );
+
+				$panel.find( ".open, .active" )
+				.removeClass( "open active" );
+
+				if ( !state ){
+					$panel.find( $( this ).attr( "href" ) ).addClass( "open" ).parent().addClass( "active" );
 				}
 
-				// Lets DomInsert since we are complete all our safeguards and pre-processing
-				// ** note we need to ensure our content is ID safe since this will invalidate the DOM
-				$panel.before( "<section id='wb-imprt-" + i + "' class='" +
-					classList + "'>" +
-					$iElement.html().replace( /\b(id|for)="([^"]+)"/g, "$1='$2-imprt'" ) +
-				"</section>" );
-			}
-		}
+				return false;
+		});
+
+		$panel.trigger( "wb-init.wb-overlay" );
 
 		$ajaxed.find( ":discoverable" )
 			.attr( "tabindex", "-1" );
@@ -160,12 +205,11 @@ var pluginName = "wb-menu",
 
 		drizzleAria( $menu );
 
-		// Now lets replace the html since we were working off canvas for performance
-		if ( $elm.has( "[data-post-remove]" ) ) {
-			$elm.removeClass( $elm.data( "post-remove" ) )
-				.removeAttr( "data-post-remove" );
+		$onlypnl = $ajaxed.find( ".only-pnl" );
+		// Lets ensure that we are only adding the navigation at this point
+		if ( $onlypnl.length > 0 ){
+			$onlypnl.remove();
 		}
-
 		// Replace elements
 		$elm.html( $ajaxed.html() );
 

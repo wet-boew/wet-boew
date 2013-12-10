@@ -96,3 +96,39 @@
 		margin-left: 0.35em;
 	}
 }
+
+#mb-pnl {
+	a{
+		position: relative;
+		.expicon {
+			position: absolute;
+			top: 0.5em;
+			left: -1em;
+			transform: rotate(270deg);
+		}
+	}
+	.active {
+		a {
+			.expicon {
+				transform: none;
+			}
+		}
+	}
+	ul {
+		float: none !important;
+		padding-left: 0;
+		li {
+			float: none !important;
+			border: none !important;
+			ul {
+				display: none;
+				&.open {
+					display: block;
+				}
+			}
+		}
+	}
+}
+
+
+
