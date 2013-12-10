@@ -18,6 +18,9 @@
 			content: "\e092";
 		}
 		white-space: nowrap;
+		max-width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
 		&:first-child {
 			&:before {
 				content: "";
