@@ -31,8 +31,7 @@
 				timeParse,
 				getExpireTime,
 				alreadyTimeoutMsg = _pe.dic.get('%st-already-timeout-msg'),
-				timeoutMsgBegin = _pe.dic.get('%st-timeout-msg-bgn'),
-				timeoutMsgEnd = _pe.dic.get('%st-timeout-msg-end'),
+				timeoutMsg = _pe.dic.get('%st-timeout-msg'),
 				lastActivity,
 				lastAjaxCall = 0;
 
@@ -90,13 +89,11 @@
 
 			// code to display the alert message
 			displayTimeoutMessage = function () {
-				var expireTime = getExpireTime(opts.reactionTime),
-					timeoutMsg = timeoutMsgBegin.replace('#min#', expireTime.minutes).replace('#sec#', expireTime.seconds) + ' ' + timeoutMsgEnd,
-					$where_was_i = document.activeElement, // Grab where the focus in the page was BEFORE the modal dialog appears
+				var $where_was_i = document.activeElement, // Grab where the focus in the page was BEFORE the modal dialog appears
 					result;
 
 				$(document.body).append(overLay);
-				result = confirm(timeoutMsg);
+				result = confirm(timeoutMsg.replace('#expireTime#', getExpireTime()));
 				$where_was_i.focus();
 				$('.jqmOverlay').detach();
 				return result;
@@ -146,20 +143,24 @@
 				}
 			};
 
-			/*
-			 * Converts a millisecond value into minutes and seconds
-			 * @function getExpireTime
-			 * @param {integer} milliseconds The time value in milliseconds
-			 * @returns {Object} An object with a seconds and minutes property
-			 */
-			getExpireTime = function( milliseconds ) {
-				var time = { minutes: "", seconds: "" };
+			getExpireTime = function () {
+				var expire = new Date(getCurrentTimeMs() + opts.reactionTime),
+					hours = expire.getHours(),
+					minutes = expire.getMinutes(),
+					seconds = expire.getSeconds(),
+					timeformat = hours < 12 ? ' AM' : ' PM';
 
-				if ( milliseconds != null ) {
-					time.minutes = parseInt( ( milliseconds / ( 1000 * 60 ) ) % 60, 10 );
-					time.seconds = parseInt( ( milliseconds / 1000 ) % 60, 10 );
+				hours = hours % 12;
+				if (hours === 0) {
+					hours = 12;
 				}
-				return time;
+
+				// Add a zero if needed in the time
+				hours = hours < 10 ? '0' + hours : hours;
+				minutes = minutes < 10 ? '0' + minutes : minutes;
+				seconds = seconds < 10 ? '0' + seconds : seconds;
+
+				return hours + ':' + minutes + ':' + seconds + timeformat;
 			};
 
 			start_liveTimeout();
