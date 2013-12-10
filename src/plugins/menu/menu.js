@@ -589,6 +589,14 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 	}
 });
 
+// Close the mobile menu if switching to medium, large or extra large view
+$document.on( "mediumview.wb largeview.wb xlargeview.wb", function() {
+	var mobilePanel = document.getElementById( "mb-pnl" );
+	if ( mobilePanel && mobilePanel.getAttribute( "aria-hidden" ) === "false" ) {
+		$( mobilePanel ).trigger( "close.wb-overlay" );
+	}
+});
+
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
