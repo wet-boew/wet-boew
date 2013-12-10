@@ -27,27 +27,24 @@ var wet_boew_charts,
 	 */
 	createCharts = function ( $elm ) {
 		var allSeries = [],
-			calcTick = [],
+			chartslabels = [],
 			dataSeries = [],
 			i18n = window.i18n,
-			isPieChart,
 			nbBarChart = 0,
 			options = {},
 			pieChartLabelText = "",
-			self = $elm,
-			smallestHorizontalFlotDelta,
-			srcTbl = self,
+			lowestFlotDelta,
 			valueCumul = 0,
 			$imgContainer, $placeHolder, $subfigCaptionElem, $subFigureElem,
 			graphClassLength, graphClassLength2, barDelta, cellValue,
 			datacolgroupfound, dataGroup, figCaptionElem, figureElem, header,
-			horizontalCalcTick, i, j, mainFigureElem, parsedData,
-			pieLabelFormater, pieOptions, plotParameter, rIndex,
-			rowDefaultOptions, rowOptions, tblCaptionHTML, tblCaptionText,
-			tblSrcContainer, tblSrcContainerSummary, tdOptions, uniformCumul,
-			valuePoint, verticalCalcTick,
-			currentRowGroup, currentRowGroupRow, reverseTblParsing, dataGroupVector,
-			dataCell;
+			i, j, mainFigureElem, parsedData,
+			pieLabelFormater, plotParameter, rIndex,
+			currVectorOptions, tblCaptionHTML, tblCaptionText,
+			tdOptions,
+			valuePoint,
+			currentRowGroup, reverseTblParsing, dataGroupVector,
+			dataCell, currDataVector, currVectorSeries;
 
 		// Function to Convert Class instance to JSON
 		function setClassOptions ( sourceOptions, strClass, namespace ) {
@@ -347,6 +344,14 @@ var wet_boew_charts,
 				"parsedirection-typeof": "string",
 				"parsedirection-autocreate": true,
 
+				vectorOptions: {
+					"default-option": "type", // Default CSS Options
+					"default-namespace": "wb-charts",
+					"type-autocreate": true,
+					"color-typeof": "color",
+					"color-autocreate": true
+				},
+				
 				// Parameter: elem = HTML DOM node (td element)
 				//
 				// If this function return an array, it would be assume that the first item correspond at the cell numbered value and the second item correspond at the cell unit
@@ -421,20 +426,15 @@ var wet_boew_charts,
 		options.height = options.height | 250;
 
 		// 3. [Table element] CSS Overwrite - [Keep a list of required plugin "defaultnamespace-plugin" eg. wb-charts-donnut]
-		options = setClassOptions( options, self.attr( "class" ) || "" );
+		options = setClassOptions( options, $elm.attr( "class" ) || "" );
 
 		// 4. [Table element] HTML5 Data Overwrite property
-		for ( i in self.data() ) {
+		for ( i in $elm.data() ) {
 			// Check if the prefix "wbcharts" is used
 			if ( i.slice( 0, 8 ) === "wbcharts" ) {
-				options[ i.slice( 8 ) ] = self.data()[ i ];
+				options[ i.slice( 8 ) ] = $elm.data()[ i ];
 			}
 		}
-
-		// 5. Load the requested preset
-		// a. If the preset are a string => Use that as an url where it could find the setting
-		// ---- Keep the url and his content for future reference for example second chart.
-		// b. If the preset are an object => Overwrite the default.
 
 		// Get The column group header hiearchy partern
 		function getColumnGroupHeaderCalculateSteps( colGroupHead, referenceValuePosition ){
@@ -540,6 +540,7 @@ var wet_boew_charts,
 			return calcStep;
 		}
 
+		// Set the step value for the inner, vector that are divisor or the referenceValue Vector
 		function setInnerStepValues( vectorHead, headerLevel, stepsValue, referenceValue) {
 			var i,
 				dataCell,
@@ -567,8 +568,8 @@ var wet_boew_charts,
 				}
 				if ( dataCell.type === 1 || dataCell.type === 7 ) {
 
-					if ( !smallestHorizontalFlotDelta || dataCell.flotDelta < smallestHorizontalFlotDelta ){
-						smallestHorizontalFlotDelta = dataCell.flotDelta;
+					if ( !lowestFlotDelta || dataCell.flotDelta < lowestFlotDelta ){
+						lowestFlotDelta = dataCell.flotDelta;
 					}
 					dataCell.flotValue = cumulativeValue;
 					
@@ -581,6 +582,7 @@ var wet_boew_charts,
 			}
 		}
 		
+		// Recursive, set the step value for the inner, vector that are divisor or the referenceValue Vector
 		function setInnerStepValuesChild( dataCell, headerLevel, stepsValue, referenceValue ) {
 			var i,
 				flotDelta,
@@ -592,8 +594,8 @@ var wet_boew_charts,
 			flotDelta = stepsValue / dataCell.child.length;
 
 			// Use to calculate the largest width for a bar in a bar chart
-			if ( !smallestHorizontalFlotDelta || flotDelta < smallestHorizontalFlotDelta ) {
-				smallestHorizontalFlotDelta = flotDelta;
+			if ( !lowestFlotDelta || flotDelta < lowestFlotDelta ) {
+				lowestFlotDelta = flotDelta;
 			}
 
 			for ( i = 0; i < dataCell.child.length; i += 1 ) {
@@ -611,6 +613,7 @@ var wet_boew_charts,
 			}
 		}
 
+		// Set the step value for the upper, vector that are represent a set of item in the referenceValue Vector
 		function setUpperStepValues( vectorHead, referenceValue) {
 			var i, k, m, _klen, _mlen,
 				cumulativeValue,
@@ -646,6 +649,7 @@ var wet_boew_charts,
 			}
 		}
 
+		// Get the labels with the associated value
 		function getLabels(labelVector) {
 			var i, _ilen,
 				labels = [];
@@ -672,8 +676,9 @@ var wet_boew_charts,
 		function getlabelsVectorPosition(arrVectorHeaders) {
 			return ( !options.labelposition || ( options.labelposition && options.labelposition > arrVectorHeaders.length ) ? parsedData.theadRowStack.length : options.labelposition ) - 1;
 		}
-		
-		function calculateVerticalTick( parsedData ) {
+
+		// Set the value of labels and Obtain the label for on the column header group 
+		function verticalLabels( parsedData ) {
 
 			// Get the appropriate ticks
 			var headerlevel = 0,
@@ -697,8 +702,6 @@ var wet_boew_charts,
 				labelsVectorPosition = getlabelsVectorPosition(parsedData.colgrouphead.col);
 			}
 
-			calcTick = [];
-
 			headerlevel = columnReferenceValue;
 			
 			// Calculate inner-step for cells that are more precise than the reference value vector 
@@ -708,16 +711,13 @@ var wet_boew_charts,
 			setUpperStepValues( parsedData.colgrouphead.col, columnReferenceValue);
 						
 			// Get the labeling
-			calcTick = getLabels(parsedData.colgrouphead.col[ labelsVectorPosition ]);
+			return getLabels(parsedData.colgrouphead.col[ labelsVectorPosition ]);
 
-			return calcTick;
 
 		}
 
-
-
-		// Determine an appropriate tick for the rowgroup head (thead)
-		function calculateHorisontalTick( parsedData ) {
+		// Set the value of labels and Obtain the label for on the row header group 
+		function horizontalLabels( parsedData ) {
 			// Find the range of the first data colgroup
 			var dataColgroupStart = -1,
 				headerlevel = 0,
@@ -756,11 +756,6 @@ var wet_boew_charts,
 				labelsVectorPosition = parsedData.theadRowStack.length - 1;
 			}
 
-
-			calcTick = [];
-
-			uniformCumul = 0;
-
 			headerlevel = rowReferenceValue;
 			
 			// Calculate inner-step for cells that are more precise than the reference value vector 
@@ -770,45 +765,36 @@ var wet_boew_charts,
 			setUpperStepValues( parsedData.theadRowStack, rowReferenceValue);
 						
 			// Get the labeling
-			calcTick = getLabels(parsedData.theadRowStack[ labelsVectorPosition ]);
-
-			return calcTick;
+			return getLabels(parsedData.theadRowStack[ labelsVectorPosition ]);
 
 			
 		}
 
+		// Use a details/summary to encapsulate the table and to hide it once the charts is loaded
+		function wrapTableIntoDetails ($figElement, tableCaptionHTML) {
+			var $details, $summary;
+			$details = $( "<details />" );
+			$summary = $( "<summary />" );
+			$details.appendTo( $figElement );
+			// set the title for the ability to show or hide the table as a data source
+			$summary.text( tableCaptionHTML + " " + i18n( "%table-mention" ) )
+				.appendTo( $details )
+				.after( $elm );
+		}
+		
 		// Retrieve the parsed data
-		parsedData = $( self ).data().tblparser;
+		parsedData = $( $elm ).data().tblparser;
 
 		if ( options.parsedirection === "y" ) {
 			reverseTblParsing = true;
 		}
-
-
-		rowDefaultOptions = {
-			"default-option": "type", // Default CSS Options
-			"default-namespace": "wb-charts",
-			"type-autocreate": true,
-			"color-typeof": "color",
-			"color-autocreate": true
-		};
-
-		//
-		// Calculate the tick for a table where x is horizontal
-		//
-		horizontalCalcTick = calculateHorisontalTick( parsedData );
-
-		//
-		// Reverse the axis for the data table
-		//
-		verticalCalcTick = calculateVerticalTick( parsedData );
 
 		currentRowGroup = parsedData.lstrowgroup[ 0 ];
 
 		if ( options.type === "pie" ) {
 			// Use Reverse table axes
 			// Create a chart/ place holder, by series
-			mainFigureElem = $( "<figure />" ).insertAfter( srcTbl );
+			mainFigureElem = $( "<figure />" ).insertAfter( $elm );
 
 			pieLabelFormater = function ( label, series ) {
 				var textlabel;
@@ -839,8 +825,8 @@ var wet_boew_charts,
 			figCaptionElem = $( "<figcaption />" );
 
 			$( mainFigureElem ).append( figCaptionElem );
-			tblCaptionHTML = $( "caption", srcTbl ).html();
-			tblCaptionText = $( "caption", srcTbl ).text();
+			tblCaptionHTML = $( "caption", $elm ).html();
+			tblCaptionText = $( "caption", $elm ).text();
 			$( figCaptionElem ).append( tblCaptionHTML );
 
 			if ( !reverseTblParsing ) {
@@ -900,14 +886,16 @@ var wet_boew_charts,
 						break;
 					}
 					if ( !reverseTblParsing ) {
-						tdOptions = setClassOptions( rowDefaultOptions,
+						// here it's about the "cell" attribute
+						tdOptions = setClassOptions( options.vectorOptions,
 							( $( dataGroupVector[ i ].cell[ rIndex ].elem ).attr( "class" ) !== undefined ?
 								$( dataGroupVector[ i ].cell[ rIndex ].elem ).attr( "class" ) :
 								""
 							)
 						);
 					} else {
-						tdOptions = setClassOptions( rowDefaultOptions,
+						// here it's about the "datacell" attribute
+						tdOptions = setClassOptions( options.vectorOptions,
 							( $( dataGroupVector[ i ].datacell[ rIndex ].elem ).attr( "class" ) !== undefined ?
 								$( dataGroupVector[ i ].datacell[ rIndex ].elem ).attr( "class" ) :
 								""
@@ -968,7 +956,7 @@ var wet_boew_charts,
 				//
 				// Pie Charts Options
 				//
-				pieOptions = {
+				plotParameter = {
 					series: {
 						pie: {
 							show: true
@@ -977,46 +965,46 @@ var wet_boew_charts,
 				};
 				// Hide the legend,
 				if ( options.nolegend ) {
-					pieOptions.legend = { show: false };
+					plotParameter.legend = { show: false };
 				}
 				// Add pie chart percentage label on slice
 				if ( options.percentlegend ) {
-					pieOptions.series.pie.radius = options.pieradius / 100;
-					pieOptions.series.pie.label = {
+					plotParameter.series.pie.radius = options.pieradius / 100;
+					plotParameter.series.pie.label = {
 						show: true,
 						radius: options.pielblradius / 100,
 						formatter: pieLabelFormater
 					};
 					// Hides the labels of any pie slice that is smaller than the specified percentage (ranging from 0 to 100)
 					if ( options.piethreshold ) {
-						pieOptions.series.pie.label.threshold = options.piethreshold / 100;
+						plotParameter.series.pie.label.threshold = options.piethreshold / 100;
 					}
 				}
 				// Percentage of tilt ranging from 0 and 100, where 100 has no change (fully vertical) and 0 is completely flat (fully horizontal -- in which case nothing actually gets drawn)
 				if ( options.pietilt ) {
-					pieOptions.series.pie.tilt = options.pietilt / 100;
+					plotParameter.series.pie.tilt = options.pietilt / 100;
 				}
 				// Sets the radius of the donut hole. If value is between 0 and 100 (inclusive) then it will use that as a percentage of the radius, otherwise it will use the value as a direct pixel length.
 				if ( options.pieinnerradius ) {
-					pieOptions.series.pie.innerRadius = options.pieinnerradius / 100;
+					plotParameter.series.pie.innerRadius = options.pieinnerradius / 100;
 				}
 				// Factor of PI used for the starting angle (in radians) It can range between 0 and 200 (where 0 and 200 have the same result).
 				if ( options.piestartangle ) {
-					pieOptions.series.pie.startAngle = options.piestartangle / 100;
+					plotParameter.series.pie.startAngle = options.piestartangle / 100;
 				}
 				//	Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
 				if ( options.piehighlight ) {
-					pieOptions.series.pie.highlight = options.piehighlight / 100;
+					plotParameter.series.pie.highlight = options.piehighlight / 100;
 				}
 				// hoverable
 				if ( options.piehoverable ) {
-					pieOptions.grid = {
+					plotParameter.grid = {
 						hoverable: true
 					};
 				}
 
 				// Create the graphic
-				$.plot( $placeHolder, allSeries, pieOptions );
+				$.plot( $placeHolder, allSeries, plotParameter );
 
 				if ( !options.legendinline ) {
 					// Move the legend under the graphic
@@ -1031,22 +1019,11 @@ var wet_boew_charts,
 				allSeries = [];
 			}
 
-			if ( !options.noencapsulation ) { // eg of use:	wb-charts-noencapsulation-true
-				// Use a details/summary to encapsulate the table
-				// Add a aria label to the table element, build from his caption prepend the word " Table"
-				// For the details summary, use the table caption prefixed with Table.
-				tblSrcContainer = $( "<details />" );
-				tblSrcContainerSummary = $( "<summary />" );
-				$( tblSrcContainer ).appendTo( mainFigureElem );
-				// set the title for the ability to show or hide the table as a data source
-				$( tblSrcContainerSummary ).text( tblCaptionHTML + " " + i18n( "%table-mention" ) )
-					.appendTo( tblSrcContainer )
-					.after( srcTbl );
-
-
+			if ( !options.noencapsulation ) {
+				wrapTableIntoDetails(mainFigureElem, tblCaptionHTML);
 			} else {
 				// Move the table inside the figure element
-				$( srcTbl ).appendTo( mainFigureElem );
+				$( $elm ).appendTo( mainFigureElem );
 			}
 			return;
 		}
@@ -1057,34 +1034,34 @@ var wet_boew_charts,
 			// If normal parsing
 			dataGroup = currentRowGroup;
 			rIndex = (parsedData.colgroup[ 0 ].type === 1 ? parsedData.colgroup[ 1 ].col.length : parsedData.colgroup[ 0 ].col.length) - 1;
-			calcTick = horizontalCalcTick;
+			chartslabels = horizontalLabels( parsedData );
 		} else {
 			// If reverse parsing
 			dataGroup = parsedData.colgroup[ 0 ].type === 1 ? parsedData.colgroup[ 1 ] : parsedData.colgroup[ 0 ];
 			rIndex = currentRowGroup.row.length - 1;
-			calcTick = verticalCalcTick;
+			chartslabels = verticalLabels( parsedData );
 		}
 
 		dataGroupVector = !reverseTblParsing ? dataGroup.row : dataGroup.col;
 
 		// Count the number of bar charts,
 		for ( i = 0; i < dataGroupVector.length; i++ ) {
-			currentRowGroupRow = dataGroupVector[ i ];
+			currDataVector = dataGroupVector[ i ];
 			
-			rowOptions = setClassOptions( rowDefaultOptions,
-			( $ ( currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].elem ).attr( "class" ) !== undefined ?
-			$( currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].elem ).attr( "class" ) : "" ) );
+			currVectorOptions = setClassOptions( options.vectorOptions,
+			( $ ( currDataVector.header[ currDataVector.header.length - 1 ].elem ).attr( "class" ) !== undefined ?
+			$( currDataVector.header[ currDataVector.header.length - 1 ].elem ).attr( "class" ) : "" ) );
 
-			if ( ( !rowOptions.type && ( options.type === "bar" || options.type === "stacked" ) ) || ( rowOptions.type && ( rowOptions.type === "bar" || rowOptions.type === "stacked" ) ) ) {
+			if ( ( !currVectorOptions.type && ( options.type === "bar" || options.type === "stacked" ) ) || ( currVectorOptions.type && ( currVectorOptions.type === "bar" || currVectorOptions.type === "stacked" ) ) ) {
 				nbBarChart += 1;
-				rowOptions.chartBarOption = nbBarChart;
-				if ( !barDelta && ( ( rowOptions.type && rowOptions.type === "bar" ) || ( !rowOptions.type && options.type === "bar" ) ) ) {
+				currVectorOptions.chartBarOption = nbBarChart;
+				if ( !barDelta && ( ( currVectorOptions.type && currVectorOptions.type === "bar" ) || ( !currVectorOptions.type && options.type === "bar" ) ) ) {
 					barDelta = true;
 				}
 			}
 
 
-			currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].chartOption = rowOptions;
+			currDataVector.header[ currDataVector.header.length - 1 ].chartOption = currVectorOptions;
 		}
 
 		// First rowgroup assume is a data row group.
@@ -1093,14 +1070,14 @@ var wet_boew_charts,
 			dataSeries = [];
 			datacolgroupfound = 0;
 			valueCumul = 0;
-			currentRowGroupRow = dataGroupVector[ i ];
+			currDataVector = dataGroupVector[ i ];
 
-			rowOptions = currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].chartOption;
+			currVectorOptions = currDataVector.header[ currDataVector.header.length - 1 ].chartOption;
 
 			// For each cells
-			for( j = 0; j < currentRowGroupRow.cell.length; j++ ){
+			for( j = 0; j < currDataVector.cell.length; j++ ){
 
-				dataCell = currentRowGroupRow.cell[ j ];
+				dataCell = currDataVector.cell[ j ];
 				
 				if( datacolgroupfound > 1 && dataCell.col.groupstruct.type !== 2 ){
 					break;
@@ -1114,9 +1091,9 @@ var wet_boew_charts,
 					valuePoint = valueCumul;
 
 					// Bar chart case, re-evaluate the calculated point
-					if ( barDelta && rowOptions.chartBarOption ) {
+					if ( barDelta && currVectorOptions.chartBarOption ) {
 						// Position bar
-						valuePoint = valueCumul - ( smallestHorizontalFlotDelta / 2 ) + ( smallestHorizontalFlotDelta / nbBarChart * ( rowOptions.chartBarOption - 1) );
+						valuePoint = valueCumul - ( lowestFlotDelta / 2 ) + ( lowestFlotDelta / nbBarChart * ( currVectorOptions.chartBarOption - 1) );
 
 						if ( nbBarChart === 1 ) {
 							valuePoint = valueCumul;
@@ -1142,63 +1119,42 @@ var wet_boew_charts,
 
 			// Get the graph type
 
-			if ( !rowOptions.type ) {
-				rowOptions.type = options.type;
+			if ( !currVectorOptions.type ) {
+				currVectorOptions.type = options.type;
 			}
+			
+			currVectorSeries = {
+				data: dataSeries,
+				label: $( currDataVector.header[ currDataVector.header.length - 1 ].elem ).text(),
+				color: (!currVectorOptions.color ? options.colors[ i ] : currVectorOptions.color)
+			};
 
-			if ( rowOptions.type === "line" ) {
-				allSeries.push( {
-					data: dataSeries,
-					label: $( currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].elem ).text(),
-					color: (!rowOptions.color ? options.colors[ i ] : rowOptions.color)
-				} );
-			} else if ( rowOptions.type === "area" ) {
-				allSeries.push( {
-					data: dataSeries,
-					label: $( currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].elem ).text(),
-					color: (!rowOptions.color ? options.colors[ i ] : rowOptions.color),
-					lines: {
-						show: true,
-						fill: true
-					}
-				});
-			} else if ( rowOptions.type === "bar" || ( barDelta && rowOptions.type === "stacked" ) ) {
-				allSeries.push( {
-					data: dataSeries,
-					label: $( currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].elem ).text(),
-					color: (!rowOptions.color ? options.colors[ i ] : rowOptions.color),
-					bars: {
-						show: true,
-						barWidth: ( 1 / nbBarChart * 0.9 ),
-						align: "center"
-					}
-				} );
-
-			} else if ( rowOptions.type === "stacked" ) {
-				allSeries.push( {
-					data: dataSeries,
-					label: $( currentRowGroupRow.header[ currentRowGroupRow.header.length - 1 ].elem ).text(),
-					color: (!rowOptions.color ? options.colors[ i ] : rowOptions.color),
-					bars: {
-						show: true,
-						barWidth: 0.9,
-						align: "center"
-					}
-				} );
-			} else if ( rowOptions.type === "pie" ) {
-
-				allSeries.push( {
-					data: dataSeries,
-					label: $(currentRowGroupRow.header[currentRowGroupRow.header.length - 1].elem).text(),
-					color: (!rowOptions.color ? options.colors[ i ] : rowOptions.color)
-				} );
-
-				isPieChart = true;
+			// Set Special parameter per kind of series
+			// FYI ( currVectorOptions.type === "line" ) was intentionnally omited because the it's about the default parameter set
+			if ( currVectorOptions.type === "area" ) {
+				currVectorSeries.lines = {
+					show: true,
+					fill: true
+				};
+			} else if ( currVectorOptions.type === "bar" || ( barDelta && currVectorOptions.type === "stacked" ) ) {
+				currVectorSeries.bars = {
+					show: true,
+					barWidth: ( 1 / nbBarChart * 0.9 ),
+					align: "center"
+				};
+			} else if ( currVectorOptions.type === "stacked" ) {
+				currVectorSeries.bars = {
+					show: true,
+					barWidth: lowestFlotDelta * 0.9,
+					align: "center"
+				};
 			}
+			allSeries.push( currVectorSeries );
+
 		}
 
 
-		figureElem = $( "<figure />" ).insertAfter( srcTbl );
+		figureElem = $( "<figure />" ).insertAfter( $elm );
 
 		figureElem.addClass( "wb-charts" ); // Default
 		if ( options.graphclass ) {
@@ -1214,7 +1170,7 @@ var wet_boew_charts,
 		figCaptionElem = $( "<figcaption />" );
 
 		$( figureElem ).append( figCaptionElem );
-		tblCaptionHTML = $( "caption", srcTbl ).html();
+		tblCaptionHTML = $( "caption", $elm ).html();
 		$( figCaptionElem ).append( tblCaptionHTML );
 
 		// Create the placeholder
@@ -1228,30 +1184,20 @@ var wet_boew_charts,
 
 		$placeHolder.attr( "role", "img" );
 		// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
-		$placeHolder.attr( "aria-label", $( "caption", srcTbl ).text() + " " + i18n( "%table-following" ) ); // "Chart. Details in table following."
+		$placeHolder.attr( "aria-label", $( "caption", $elm ).text() + " " + i18n( "%table-following" ) ); // "Chart. Details in table following."
 
 
-		if ( !options.noencapsulation ) { // eg of use:	wb-charts-noencapsulation-true
-			// Use a details/summary to encapsulate the table
-			// Add a aria label to the table element, build from his caption prepend the word " Table"
-			// For the details summary, use the table caption prefixed with Table.
-			tblSrcContainer = $( "<details />" );
-			tblSrcContainerSummary = $( "<summary />" );
-			$( tblSrcContainer ).appendTo( figureElem );
-			// set the title for the ability to show or hide the table as a data source
-			$( tblSrcContainerSummary ).text( tblCaptionHTML + " " + i18n( "%table-mention" ) )
-				.appendTo( tblSrcContainer )
-				.after( srcTbl );
-
+		if ( !options.noencapsulation ) {
+			wrapTableIntoDetails(figureElem, tblCaptionHTML);
 		} else {
 			// Move the table inside the figure element
-			$( srcTbl ).appendTo( figureElem );
+			$( $elm ).appendTo( figureElem );
 		}
 
 		// Create the graphic
 		plotParameter = {
 			canvas: true,
-			xaxis: ( calcTick.length > 0 ? { ticks: calcTick } : {} )
+			xaxis: ( chartslabels.length > 0 ? { ticks: chartslabels } : {} )
 		};
 
 		if ( options.topvalue ) {
