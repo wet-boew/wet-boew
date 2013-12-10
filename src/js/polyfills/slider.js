@@ -367,13 +367,13 @@ var fdSlider = (function() {
 			if(!useDOMAttrModEvt || tagName == "select") {
 				return;
 			}
-			
+
 			var defs = getInputAttributes(inp);
 
 			if(defs.min == min && defs.max == max && defs.step == step) {
 				return;
 			}
-			
+
 			min		= +defs.min;
 			max		= +defs.max;
 			rMin		= min;
@@ -385,7 +385,7 @@ var fdSlider = (function() {
 			userSet	= false;
 			setSliderRange(min, max);
 		}
-		
+
 		function disableSlider(noCallback) {
 			if(disabled && !noCallback) {
 				return;
@@ -1042,7 +1042,6 @@ var fdSlider = (function() {
 				} catch (err) {}
 			} else {
 				if(val !== "" && !userInput) {
-				console.log("val:" + val + ", min:" + min + ", max:" + max + ", step:" + step);
 					val = (min + (Math.round((+val - min) / step) * step)).toFixed(precision);
 				}
 				if(inp.value === val) {
@@ -1165,7 +1164,7 @@ var fdSlider = (function() {
 				inp.setAttribute("fd-range-enabled", 1);
 				inp.stepUp	 = function(n) { increment(n||1); };
 				inp.stepDown = function(n) { increment(n||-1); };
-				
+
 				if(useDOMAttrModEvt) {
 					addEvent(inp, typeof(inp.onpropertychange) == "object" ? "propertychange" : "DOMAttrModified", rescanAttrs);
 				}

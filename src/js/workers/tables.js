@@ -85,6 +85,13 @@
 					}
 				}
 			});
+
+			// Disable role="dialog" on table wrapper since it is
+			// causing issues with screen readers and is also
+			// implemented incorrectly
+			// TODO: Remove role="grid" upstream
+			elm.parent().removeAttr('role');
+
 		} // end of exec
 	};
 	window.pe = _pe;
