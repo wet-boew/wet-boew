@@ -9,7 +9,7 @@
 	outline-color: #fff;
 }
 
-.lb-hide-gal {
+.lbx-hide-gal {
 	li {
 		list-style-type: none;
 		display: none;
@@ -21,20 +21,20 @@
 
 .mfp-close {
 	font-weight: 700;
-	/* Should fix upstream rather than overriding in WET */
+	/* Should fix upstream in Magnific Popup rather than overriding in WET */
 	&:focus {
 		@extend %lightbox-button-outline;
 	}
 }
 
+/* Should fix upstream in Magnific Popup rather than overriding in WET */
 .mfp-arrow {
-	/* Should fix upstream rather than overriding in WET */
 	&:focus {
 		@extend %lightbox-button-outline;
 	}
 }
 
-/* Should fix upstream rather than overriding in WET */
+/* Should fix upstream in Magnific Popup rather than overriding in WET */
 .mfp-bottom-bar {
 	.mfp-title {
 		width: 75%;

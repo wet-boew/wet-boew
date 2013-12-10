@@ -9,6 +9,7 @@
 	"css": "demo/toggle"
 }
 ---
+
 <div class="alert alert-info">
 	<strong>Purpose:</strong> create an element that toggles elements between on and off states.
 </div>
@@ -81,24 +82,22 @@
 			<p>This simple example shows:</p>
 			<ul>
 				<li>a group of buttons that control the toggle state of multiple elements, and</li>
-				<li>a single element that controls its own toggle state (the down arrow).</li>
+				<li>a single element that controls its own toggle state (the last box).</li>
 			</ul>
 
 			<div class="btn-group">
-				<button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": ".glyphicon"}'>Toggle</button>
-				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": ".glyphicon", "type": "on"}'>On</button>
-				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": ".glyphicon", "type": "off"}'>Off</button>
+				<button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": ".box"}'>Toggle</button>
+				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": ".box", "type": "on"}'>On</button>
+				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": ".box", "type": "off"}'>Off</button>
 			</div>
 
 			<div class="mrgn-tp-lg mrgn-bttm-lg">
-				<span class="glyphicon glyphicon-adjust mrgn-rght-lg"></span>
-				<span class="glyphicon glyphicon-align-center mrgn-rght-lg"></span>
-				<span class="glyphicon glyphicon-align-justify mrgn-rght-lg"></span>
-				<span class="glyphicon glyphicon-align-left mrgn-rght-lg"></span>
-				<span class="glyphicon glyphicon-align-right mrgn-rght-lg"></span>
-				<span class="glyphicon glyphicon-arrow-down wb-toggle mrgn-rght-lg"></span>
-				<span class="glyphicon glyphicon-arrow-left mrgn-rght-lg"></span>
-				<span class="glyphicon glyphicon-tower mrgn-rght-lg"></span>
+				<span class="box"></span>
+				<span class="box"></span>
+				<span class="box"></span>
+				<span class="box"></span>
+				<span class="box"></span>
+				<span class="box wb-toggle"></span>
 			</div>
 
 		</section>
@@ -318,8 +317,8 @@
 			<h3>Example</h3>
 			<div class="accordion">
 
-				<details class="wb-toggle" data-toggle='{"parent": ".accordion", "group": "details"}'>
-					<summary class="tab">Example 1</summary>
+				<details>
+					<summary class="wb-toggle tab" data-toggle='{"parent": ".accordion", "group": "details"}'>Example 1</summary>
 					<div class="panel">
 						<p>Example content that provides more details.</p>
 						<table>
@@ -350,8 +349,8 @@
 					</div>
 				</details>
 
-				<details class="wb-toggle" data-toggle='{"parent": ".accordion", "group": "details"}'>
-					<summary class="tab">Example 2</summary>
+				<details>
+					<summary class="wb-toggle tab" data-toggle='{"parent": ".accordion", "group": "details"}'>Example 2</summary>
 					<div class="panel">
 						<p>Example content that provides more details.</p>
 						<table>
@@ -382,8 +381,8 @@
 					</div>
 				</details>
 
-				<details class="wb-toggle" data-toggle='{"parent": ".accordion", "group": "details"}'>
-					<summary class="tab">Example 3</summary>
+				<details>
+					<summary class="wb-toggle tab" data-toggle='{"parent": ".accordion", "group": "details"}'>Example 3</summary>
 					<div class="panel">
 						<p>Example content that provides more details.</p>
 						<table>
@@ -433,16 +432,16 @@
 <pre class="lang-html"><code>&lt;div class="accordion"&gt;
 
    &lt;!-- Accordion section 1 --&gt;
-   &lt;details class="wb-toggle" data-toggle='{"parent": ".accordion", "group": "details"}'&gt;
-      &lt;summary class="tab"&gt;Section 1's heading&lt;/summary&gt;
+   &lt;details&gt;
+      &lt;summary class="wb-toggle tab" data-toggle='{"parent": ".accordion", "group": "details"}'&gt;Section 1's heading&lt;/summary&gt;
       &lt;div class="panel"&gt;
          &lt;!-- Section 1's content --&gt;
       &lt;/div&gt;
    &lt;/details&gt;
 
    &lt;!-- Accordion section 2 --&gt;
-   &lt;details class="wb-toggle" data-toggle='{"parent": ".accordion", "group": "details"}'&gt;
-      &lt;summary class="tab"&gt;Section 2's heading&lt;/summary&gt;
+   &lt;details&gt;
+      &lt;summary class="wb-toggle tab" data-toggle='{"parent": ".accordion", "group": "details"}'&gt;Section 2's heading&lt;/summary&gt;
       &lt;div class="panel"&gt;
          &lt;!-- Section 2's content --&gt;
       &lt;/div&gt;

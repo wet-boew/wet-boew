@@ -169,11 +169,11 @@
 }
 
 .mrgn-lft-md {
-	margin-left: 10px;
+	margin-left: 15px;
 }
 
 .mrgn-lft-lg {
-	margin-left: 20px;
+	margin-left: 25px;
 }
 
 .mrgn-lft-xlg {
@@ -189,15 +189,19 @@
 }
 
 .mrgn-bttm-md {
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 }
 
 .mrgn-bttm-lg {
-	margin-bottom: 20px;
+	margin-bottom: 25px;
 }
 
 .mrgn-bttm-xlg {
 	margin-bottom: 50px;
+}
+
+.mrgn-tp-0 {
+	margin-top: 0;
 }
 
 .mrgn-tp-sm {
@@ -205,11 +209,11 @@
 }
 
 .mrgn-tp-md {
-	margin-top: 10px;
+	margin-top: 15px;
 }
 
 .mrgn-tp-lg {
-	margin-top: 20px;
+	margin-top: 25px;
 }
 
 .mrgn-tp-xlg {
@@ -225,33 +229,37 @@
 }
 
 .mrgn-rght-md {
-	margin-right: 10px;
+	margin-right: 15px;
 }
 
 .mrgn-rght-lg {
-	margin-right: 20px;
+	margin-right: 25px;
 }
 
 .mrgn-rght-xlg {
 	margin-right: 50px;
 }
 
-[class*=brdr] {
+%proximity-border-base {
 	border: solid 0 #ccc;
 }
 
 .brdr-lft {
+	@extend %proximity-border-base;
 	border-left-width: 1px;
 }
 
 .brdr-rght {
+	@extend %proximity-border-base;
 	border-right-width: 1px;
 }
 
 .brdr-tp {
+	@extend %proximity-border-base;
 	border-top-width: 1px;
 }
 
 .brdr-bttm {
+	@extend %proximity-border-base;
 	border-bottom-width: 1px;
 }

@@ -1,0 +1,12 @@
+.wb-equalheight {
+	section {
+		display: inline-block;
+		width: 100%;
+		@media (min-width: 768px) {
+			width: 49%;
+		}
+		@media (min-width: 1200px) {
+			width: 33%;
+		}
+	}
+}

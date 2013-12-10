@@ -1,10 +1,9 @@
-/*
+/**
  * @title WET-BOEW Menu plugin
  * @overview A Menu plugin for WET
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET community
  */
-
 (function( $, window, document, wb ) {
 "use strict";
 
@@ -14,16 +13,57 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-menu",
-	$document = wb.doc,
+var pluginName = "wb-menu",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
 	breadcrumb = document.getElementById( "wb-bc" ),
+	selectEvent = "sel" + selector,
+	incrementEvent = "inc" + selector,
+	displayEvent = "disp" + selector,
+	navCurrentEvent = "navcurr.wb",
+	$document = wb.doc,
 
 	// Used for half second delay on showing/hiding menus because of mouse hover
 	hoverDelay = 500,
 	menuCount = 0,
 	globalTimeout = {},
 
-	/*
+	/**
+	 * Lets set some aria states and attributes
+	 * @method init
+	 * @param {jQuery DOM element} $elm The plugin element
+	 */
+	init = function( $elm ) {
+
+		// Only initialize the element once
+		if ( !$elm.hasClass( initedClass ) ) {
+			wb.remove( selector );
+			$elm.addClass( initedClass );
+
+			// Ensure the container has an id attribute
+			if ( !$elm.attr( "id" ) ) {
+				$elm.attr( "id", pluginName + "-" + menuCount );
+			}
+			menuCount += 1;
+
+			// Lets test to see if we have any
+			if ( $elm.data( "ajax-fetch" ) ) {
+				$document.trigger({
+					type: "ajax-fetch.wb",
+					element: $elm,
+					fetch: $elm.data( "ajax-fetch" )
+				});
+			} else {
+
+				// Trigger the navcurrent plugin
+				$elm.trigger( navCurrentEvent, breadcrumb );
+				$( "#wb-sec" ).trigger( navCurrentEvent, breadcrumb );
+			}
+		}
+	},
+
+	/**
 	 * Lets leverage JS assigment deconstruction to reduce the code output
 	 * @method expand
 	 * @param {DOM element} element The plugin element
@@ -31,49 +71,17 @@ var selector = ".wb-menu",
 	 */
 	expand = function( element, scopeitems ) {
 		var $elm = $( element ),
-			elm = $elm.hasClass( "wb-menu" ) ? $elm.data() : $elm.parents( ".wb-menu" )
+			elm = $elm.hasClass( pluginName ) ? $elm.data() : $elm.parents( selector )
 				.first()
 				.data(),
 			items = scopeitems ? elm.items.has( element ) : elm.items;
 		return [ elm.self, elm.menu, items, $elm ];
 	},
 
-	/*
-	 * Lets set some aria states and attributes
-	 * @method onInit
-	 * @param {jQuery DOM element} element The plugin element
-	 */
-	onInit = function( $elm ) {
-
-		// All plugins need to remove their reference from the timer in the init
-		// sequence unless they have a requirement to be poked every 0.5 seconds
-		wb.remove( selector );
-
-		// Ensure the container has an id attribute
-		if ( !$elm.attr( "id" ) ) {
-			$elm.attr( "id", "wb-menu-" + menuCount );
-		}
-		menuCount += 1;
-
-		// Lets test to see if we have any
-		if ( $elm.data( "ajax-fetch" ) ) {
-			$document.trigger({
-				type: "ajax-fetch.wb",
-				element: $elm,
-				fetch: $elm.data( "ajax-fetch" )
-			});
-		} else {
-
-			// Trigger the navcurrent plugin
-			$elm.trigger( "navcurrent.wb", breadcrumb );
-			$( "#wb-sec" ).trigger( "navcurrent.wb", breadcrumb );
-		}
-	},
-
-	/*
+	/**
 	 * Lets set some aria states and attributes
 	 * @method drizzleAria
-	 * @param {jQuery DOM elements} collection of elements
+	 * @param {jQuery DOM elements} $elements The collection of elements
 	 */
 	drizzleAria = function( $elements ) {
 		var length = $elements.length,
@@ -87,7 +95,7 @@ var selector = ".wb-menu",
 			$elm.attr({
 				"aria-posinset": ( i + 1 ),
 				"aria-setsize": length,
-				"role": "menuitem"
+				role: "menuitem"
 			});
 
 			// if there is a submenu lets put in the aria for it
@@ -106,9 +114,10 @@ var selector = ".wb-menu",
 		}
 	},
 
-	/*
+	/**
 	 * @method onAjaxLoaded
-	 * @param {jQuery DOM elements} element The plugin element
+	 * @param {jQuery DOM element} $elm The plugin element
+	 * @param {jQuery DOM element} $ajaxed The AJAX'd in menu content to import
 	 */
 	onAjaxLoaded = function( $elm, $ajaxed ) {
 		var $menu = $ajaxed.find( "[role='menubar'] .item" ),
@@ -137,7 +146,7 @@ var selector = ".wb-menu",
 				// ** note we need to ensure our content is ID safe since this will invalidate the DOM
 				$panel.before( "<section id='wb-imprt-" + i + "' class='" +
 					classList + "'>" +
-					$iElement.html().replace( /\b(id|for)="([^"]+)"/g , "$1='$2-imprt'" ) +
+					$iElement.html().replace( /\b(id|for)="([^"]+)"/g, "$1='$2-imprt'" ) +
 				"</section>" );
 			}
 		}
@@ -168,28 +177,27 @@ var selector = ".wb-menu",
 		});
 
 		// Trigger the navcurrent plugin
-		$elm.trigger( "navcurrent.wb", breadcrumb );
+		$elm.trigger( navCurrentEvent, breadcrumb );
 	},
 
-
-	/*
+	/**
 	 * @method onSelect
 	 * @param {jQuery event} event The current event
 	 */
 	onSelect = function( event ) {
-		var $goto = event.goto,
+		var $goTo = event.goTo,
 			special = event.special;
 
-		$goto.trigger( "setfocus.wb" );
-		if ( special || ( $goto.hasClass( "item" ) && !$goto.attr( "aria-haspopup" ) ) ) {
-			onReset( $goto.parents( selector ), true, special );
+		$goTo.trigger( "setfocus.wb" );
+		if ( special || ( $goTo.hasClass( "item" ) && !$goTo.attr( "aria-haspopup" ) ) ) {
+			onReset( $goTo.parents( selector ), true, special );
 		}
 
 	},
 
-	/*
+	/**
 	 * @method onIncrement
-	 * @param {jQuery DOM element} element The plugin element
+	 * @param {jQuery DOM element} $elm The plugin element
 	 * @param {jQuery event} event The current event
 	 */
 	onIncrement = function( $elm, event ) {
@@ -198,16 +206,16 @@ var selector = ".wb-menu",
 			index = next >= $links.length ? 0 : next < 0 ? $links.length - 1 : next;
 
 		$elm.trigger({
-			type: "select.wb-menu",
-			goto: $links.eq( index )
+			type: selectEvent,
+			goTo: $links.eq( index )
 		});
 	},
 
-	/*
+	/**
 	 * @method onReset
 	 * @param {jQuery DOM element} $elm The plugin element
 	 * @param {boolean} cancelDelay Whether or not to delay the closing of the menus (false by default)
-	 * @param {boolean} keeptActive Whether or not to leave the active class alone (false by default)
+	 * @param {boolean} keepActive Whether or not to leave the active class alone (false by default)
 	 */
 	onReset = function( $elm, cancelDelay, keepActive ) {
 		var id = $elm.attr( "id" ),
@@ -230,7 +238,7 @@ var selector = ".wb-menu",
 		}
 	},
 
-	/*
+	/**
 	 * @method onDisplay
 	 * @param {jQuery DOM element} $elm The plugin element
 	 * @param {jQuery event} event The current event
@@ -254,7 +262,7 @@ var selector = ".wb-menu",
 		}
 	},
 
-	/*
+	/**
 	 * @method onHoverFocus
 	 * @param {jQuery event} event The current event
 	 */
@@ -269,14 +277,14 @@ var selector = ".wb-menu",
 			clearTimeout( globalTimeout[ $container.attr( "id" ) ] );
 
 			$container.trigger({
-				type: "display.wb-menu",
+				type: displayEvent,
 				ident: $elm.parent(),
 				cancelDelay: event.type === "focusin"
 			});
 		}
 	},
 
-	/*
+	/**
 	 * Causes clicks on panel menu items to open and close submenus (except for mouse)
 	 * @method onPanelClick
 	 * @param {jQuery event} event The current event
@@ -299,7 +307,7 @@ var selector = ".wb-menu",
 		}
 	},
 
-	/*
+	/**
 	 * Searches for the next link that has link text starting with a specific letter
 	 * @method selectByLetter
 	 * @param {integer} charCode The charCode of the letter to search for
@@ -315,8 +323,8 @@ var selector = ".wb-menu",
 			link = links[ i ];
 			if ( link.innerHTML.charAt( 0 ) === keyChar ) {
 				$container.trigger({
-					type: "select.wb-menu",
-					goto: $( link )
+					type: selectEvent,
+					goTo: $( link )
 				});
 				return true;
 			}
@@ -326,7 +334,7 @@ var selector = ".wb-menu",
 	};
 
 // Bind the events of the plugin
-$document.on( "timerpoke.wb select.wb-menu ajax-fetched.wb increment.wb-menu display.wb-menu", selector, function( event ) {
+$document.on( "timerpoke.wb " + initEvent  + " " + selectEvent + " ajax-fetched.wb " + incrementEvent + " " + displayEvent, selector, function( event ) {
 	var elm = event.target,
 		eventType = event.type,
 		$elm = $( elm );
@@ -340,23 +348,24 @@ $document.on( "timerpoke.wb select.wb-menu ajax-fetched.wb increment.wb-menu dis
 		}
 		return false;
 
-	case "select":
+	case "sel":
 		onSelect( event );
 		break;
 
 	case "timerpoke":
+	case "wb-init":
 
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === elm ) {
-			onInit( $elm );
+			init( $elm );
 		}
 		break;
 
-	case "increment":
+	case "inc":
 		onIncrement( $elm, event );
 		break;
 
-	case "display":
+	case "disp":
 		if ( event.cancelDelay ) {
 			onDisplay( $elm, event );
 		} else {
@@ -377,7 +386,6 @@ $document.on( "timerpoke.wb select.wb-menu ajax-fetched.wb increment.wb-menu dis
 $document.on( "mouseleave", selector + " .menu", function( event ) {
 	onReset( $( event.target ).closest( ".wb-menu" ) );
 });
-
 
 // Panel clicks on menu items should open submenus
 $document.on( "click vclick", selector + " .item[aria-haspopup]", onPanelClick );
@@ -410,15 +418,15 @@ $document.on( "keydown", selector + " .item", function( event ) {
 			// Open the submenu if it is not already open
 			if ( !$subMenu.hasClass( "open" ) ) {
 				$container.trigger({
-					type: "display.wb-menu",
+					type: displayEvent,
 					ident: $parent,
 					cancelDelay: true
 				});
 			}
 
 			$container.trigger({
-				type: "select.wb-menu",
-				goto: $subMenu.find( "a" ).first()
+				type: selectEvent,
+				goTo: $subMenu.find( "a" ).first()
 			});
 		}
 		break;
@@ -434,7 +442,7 @@ $document.on( "keydown", selector + " .item", function( event ) {
 	case 39:
 		event.preventDefault();
 		$container.trigger({
-			type: "increment.wb-menu",
+			type: incrementEvent,
 			cnode: $menu,
 			increment: ( which === 37 ? -1 : 1 ),
 			current: $menu.index( $elm )
@@ -476,8 +484,8 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 	case 27:
 		event.preventDefault();
 		$container.trigger({
-			type: "select.wb-menu",
-			goto: $menu.filter( selector ),
+			type: selectEvent,
+			goTo: $menu.filter( selector ),
 			special: "reset"
 		});
 		break;
@@ -487,7 +495,7 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 	case 39:
 		event.preventDefault();
 		$container.trigger({
-			type: "increment.wb-menu",
+			type: incrementEvent,
 			cnode: $menu,
 			increment: ( which === 37 ? -1 : 1 ),
 			current: $menu.index( $menu.filter( selector ) )
@@ -499,7 +507,7 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 	case 40:
 		event.preventDefault();
 		$container.trigger({
-			type: "increment.wb-menu",
+			type: incrementEvent,
 			cnode: $links,
 			increment: ( which === 38 ? -1 : 1 ),
 			current: $links.index( $elm )

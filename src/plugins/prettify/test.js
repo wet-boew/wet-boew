@@ -1,4 +1,4 @@
-/*
+/**
  * @title Prettify Plugin Unit Tests
  * @overview Test the Prettify plugin behaviour
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -17,7 +17,7 @@ describe( "Prettify test suite", function() {
 	var spy;
 
 	/*
-	 * Before begining the test suite, this function is exectued once.
+	 * Before beginning the test suite, this function is executed once.
 	 */
 	before(function(done) {
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
@@ -31,7 +31,7 @@ describe( "Prettify test suite", function() {
 	});
 
 	/*
-	 * After finishing the test suite, this function is exectued once.
+	 * After finishing the test suite, this function is executed once.
 	 */
 	after(function() {
 		// Restore the original behaviour of trigger once the tests are finished
@@ -102,11 +102,12 @@ describe( "Prettify test suite", function() {
 		before(function( done ) {
 
 			$( "body" ).append( "<pre class='test'>" );
-			$(".wb-prettify")
-				.addClass("lang-sql")
-				.addClass("all-pre")
-				.addClass("linenums")
-				.trigger("timerpoke.wb");
+			$( ".wb-prettify" )
+				.removeClass( "wb-prettify-inited" )
+				.addClass( "lang-sql" )
+				.addClass( "all-pre" )
+				.addClass( "linenums" )
+				.trigger( "wb-init.wb-prettify" );
 			wb.doc.on( "prettyprint.wb-prettify", function() {
 				done();
 			});
@@ -137,12 +138,13 @@ describe( "Prettify test suite", function() {
 		before(function( done ) {
 
 			$( "body" ).append( "<pre class='test'>" );
-			$(".wb-prettify")
+			$( ".wb-prettify" )
+				.removeClass( "wb-prettify-inited" )
 				.data({
-					"allpre": true,
-					"linenums": true
+					allpre: true,
+					linenums: true
 				})
-				.trigger("timerpoke.wb");
+				.trigger( "wb-init.wb-prettify" );
 			wb.doc.on( "prettyprint.wb-prettify", function() {
 				done();
 			});

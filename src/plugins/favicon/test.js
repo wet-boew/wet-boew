@@ -19,7 +19,7 @@ describe( "Favicon test suite", function() {
 	var spies = {};
 
 	/*
-	 * Before begining the test suite, this function is exectued once.
+	 * Before beginning the test suite, this function is executed once.
 	 */
 	before(function( done ) {
 		// Spy on jQuery's trigger methods
@@ -31,7 +31,7 @@ describe( "Favicon test suite", function() {
 	});
 
 	/*
-	 * After finishing the test suite, this function is exectued once.
+	 * After finishing the test suite, this function is executed once.
 	 */
 	after(function() {
 		// Restore the original behaviour of trigger once the tests are finished
@@ -114,8 +114,7 @@ describe( "Favicon test suite", function() {
 				sizes: "57x57",
 				path: "foo/",
 				filename: "bar"
-			}).trigger( "timerpoke.wb" );
-
+			}).trigger( "wb-init.wb-favicon" );
 
 		});
 

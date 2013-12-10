@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW JQuery Helper Methods
  * @overview Helper methods for WET
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -33,7 +33,7 @@
 		return selector.replace( /([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, "\\$1" );
 	};
 
-	/*
+	/**
 	 * @namespace wb.string
 	 */
 	wb.string = {
@@ -136,7 +136,7 @@
 		 * @param {string} dateISO Date string in ISO format
 		 * @return {Date}
 		 */
-		fromDateISO: function ( dateISO ) {
+		fromDateISO: function( dateISO ) {
 			var date = null;
 
 			if ( dateISO && dateISO.match( /\d{4}-\d{2}-\d{2}/ ) ) {
@@ -195,11 +195,9 @@
 
 		if ( methods[ method ] ) {
 			methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ) );
-		}
-		else if ( typeof method === "object" || !method ) {
+		} else if ( typeof method === "object" || !method ) {
 			methods.init.apply( this, arguments );
-		}
-		else {
+		} else {
 			$.error( "Method " + method + " does not exist on jquery.wb" );
 		}
 	};
@@ -209,13 +207,13 @@
 /*
 :focusable and :tabable jQuery helper expressions - https://github.com/jquery/jquery-ui/blob/24756a978a977d7abbef5e5bce403837a01d964f/ui/jquery.ui.core.js
 */
-(function ( $ ) {
+(function( $ ) {
 	"use strict";
 
 	function focusable( element, isTabIndexNotNaN, visibility ) {
 		var map, mapName, img,
 			nodeName = element.nodeName.toLowerCase( );
-		if ( "area" === nodeName ) {
+		if ( nodeName === "area" ) {
 			map = element.parentNode;
 			mapName = map.name;
 			if ( !element.href || !mapName || map.nodeName.toLowerCase( ) !== "map" ) {
@@ -226,15 +224,14 @@
 		}
 		if ( visibility ) {
 			return ( /input|select|textarea|button|object/.test( nodeName ) ? !element.disabled :
-				"a" === nodeName ?
+				nodeName === "a" ?
 				element.href || isTabIndexNotNaN :
 				isTabIndexNotNaN ) &&
 			// the element and all of its ancestors must be visible
 			visible( element );
-		}
-		else {
+		} else {
 			return ( /input|select|textarea|button|object/.test( nodeName ) ? !element.disabled :
-				"a" === nodeName ?
+				nodeName === "a" ?
 				element.href || isTabIndexNotNaN :
 				isTabIndexNotNaN );
 		}
@@ -270,8 +267,7 @@
 		tabbable: function( element ) {
 			var tabIndex = $.attr( element, "tabindex" ),
 				isTabIndexNaN = isNaN( tabIndex );
-			return ( isTabIndexNaN || tabIndex >= 0 ) && focusable( element, !
-				isTabIndexNaN );
+			return ( isTabIndexNaN || tabIndex >= 0 ) && focusable( element, !isTabIndexNaN );
 		}
 	});
 
@@ -281,9 +277,9 @@ Peformant micro templater
 @credit: https://github.com/premasagar/tim/blob/master/tinytim.js
 @todo: caching
 */
-(function ( window, undef ) {
+(function( window, undef ) {
 	"use strict";
-	var tmpl = (function () {
+	var tmpl = (function() {
 		var start = "{{",
 			end = "}}",
 			path = "[a-z0-9_$][\\.a-z0-9_]*", // e.g. config.person.name

@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Data Picture
  * @overview Event driven port of the Picturefill library: https://github.com/scottjehl/picturefill
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -13,10 +13,14 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = "[data-picture]",
+var pluginName = "wb-pic",
+	selector = "[data-pic]",
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init." + pluginName,
+	picturefillEvent = "picfill." + pluginName,
 	$document = wb.doc,
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
@@ -24,13 +28,16 @@ var selector = "[data-picture]",
 	 */
 	init = function( $elm ) {
 
-		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		wb.remove( selector );
+		// Only initialize the element once
+		if ( !$elm.hasClass( initedClass ) ) {
+			wb.remove( selector );
+			$elm.addClass( initedClass );
 
-		$elm.trigger( "picturefill.wb-data-picture" );
+			$elm.trigger( picturefillEvent );
+		}
 	},
 
-	/*
+	/**
 	 * Updates the image displayed according to media queries.
 	 * This is the logic ported from Picturefill.
 	 * @method picturefill
@@ -67,7 +74,7 @@ var selector = "[data-picture]",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb picturefill.wb-data-picture", selector, function( event ) {
+$document.on( "timerpoke.wb " + initEvent + " " + picturefillEvent, selector, function( event ) {
 	var eventTarget = event.target,
 		eventType = event.type;
 
@@ -75,9 +82,10 @@ $document.on( "timerpoke.wb picturefill.wb-data-picture", selector, function( ev
 	if ( event.currentTarget === eventTarget ) {
 		switch ( eventType ) {
 		case "timerpoke":
+		case "wb-init":
 			init( $( eventTarget ) );
 			break;
-		case "picturefill":
+		case "picfill":
 			picturefill( eventTarget );
 			break;
 		}
@@ -85,8 +93,8 @@ $document.on( "timerpoke.wb picturefill.wb-data-picture", selector, function( ev
 });
 
 // Handles window resize so images can be updated as new media queries match
-$document.on( "text-resize.wb window-resize-width.wb window-resize-height.wb", function() {
-	$( selector ).trigger( "picturefill.wb-data-picture" );
+$document.on( "txt-rsz.wb win-rsz-width.wb win-rsz-height.wb", function() {
+	$( selector ).trigger( picturefillEvent );
 });
 
 // Add the timer poke to initialize the plugin

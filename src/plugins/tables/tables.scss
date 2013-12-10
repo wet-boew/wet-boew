@@ -147,9 +147,6 @@ table {
 	float: left;
 	cursor: pointer;
 	color: #111 !important;
-	&:hover, &:focus {
-		text-decoration: none !important;
-	}
 
 	&:active {
 		@extend %tables-outline-none;
@@ -203,10 +200,6 @@ table {
 		&:active {
 			@extend %tables-outline-none;
 		}
-		&:hover, &:focus {
-			text-decoration: none;
-		}
-
 		&.paginate_button {
 			@extend %tables-paginate-button-active;
 			background-color: #ddd;

@@ -6,24 +6,23 @@
 /**
  * Mobile-friendly styles
  */
-.wb-tabs {
-	&.tabs-s1, &.tabs-s2 {
+.no-js {
+	.wb-tabs {
+		[role="tablist"] {
+			display: none;
+		}
 		[role="tabpanel"] {
-			figure {
-				figcaption {
-					position: relative;
-					top: auto;
-					right: 0;
-					bottom: 0;
-					left: 0;
+			display: block;
+			opacity: 1;
+		}
+		> {
+			details {
+				> {
+					summary {
+						display: block !important;
+					}
 				}
 			}
-		}
-	}
-	&.tabs-s1 {
-		[role="tablist"] {
-			bottom: auto;
-			top: 1em;
 		}
 	}
 }

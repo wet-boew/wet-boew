@@ -14,7 +14,7 @@
         <h3>Liaison directe</h3>
         <p>Dans cette méthode, le calendrier lien avec le premier lien dans chaque événement (se trouve dans l'en-tête de l'événement dans la plupart des cas).</p>
         <div id="calendar1"></div>
-        <div class="wb-cal-evt calendar1">
+        <div class="wb-calevt" data-calevt-src="calendar1">
             <ol>
                 <li>
                     <section>
@@ -37,7 +37,7 @@
         <h3>Liaison aux détails</h3>
         <p>Dans cette méthode, le calendrier lien avec les détails de l'événement. Ceci est utilisé quand un événement a des liens multiples.</p>
         <div id="calendar2"></div>
-        <div class="wb-cal-evt event-anchoring calendar2">
+        <div class="wb-calevt evt-anchor" data-calevt-src="calendar2">
             <ol>
                 <li>
                     <section>
@@ -69,9 +69,9 @@
     <section>
 		<h3>Événement Ajax</h3>
 		<p>Dans cette méthode, les événements sont récupérées à partir d'une source externe.</p>
-		<div id="calendar-ajax"></div>
-		<div class="wb-cal-evt event-anchoring calendar-ajax">
-			<ol data-cal-events="ajax/cal-include1-fr.html ajax/cal-include2-fr.html ajax/cal-include3-fr.html"></ol>
+		<div id="cal-ajax"></div>
+		<div class="wb-calevt evt-anchor" data-calevt-src="cal-ajax">
+			<ol data-calevt="ajax/cal-include1-fr.html ajax/cal-include2-fr.html ajax/cal-include3-fr.html"></ol>
 		</div>
     </section>
 </section>
@@ -80,26 +80,26 @@
     <section>
         <h3>Filtrage de liste</h3>
         <p>Cette option filtre des événements de la liste qui ne sont pas pour le mois actuel. Rendre capable cette option en ajoutant la classe <code>calender-display-onshow</code> à chaque événement qui devrait être filtré par le mois.</p>
-        <p>Les événements qui n'ont pas la classe <code>calendar-display-onshow</code> seront visible toujours.</p>
+        <p>Les événements qui n'ont pas la classe <code>cal-disp-onshow</code> seront visible toujours.</p>
         <div id="calendar3"></div>
 
-        <div class="wb-cal-evt event-anchoring calendar3">
+        <div class="wb-calevt evt-anchor" data-calevt-src="calendar3">
             <section>
                 <h4>Événements - Liste 1</h4>
                 <ol>
-                    <li class="calendar-display-onshow">
+                    <li class="cal-disp-onshow">
                         <section>
                             <h5><a href="http://www.ec.gc.ca" rel="external">Événement 1</a></h5>
                             <p><time datetime="2012-03-11">11 mars 2012</time></p>
                         </section>
                     </li>
-                    <li class="calendar-display-onshow">
+                    <li class="cal-disp-onshow">
                         <section>
                             <h5><a href="http://canada.gc.ca" rel="external">Événement 2</a></h5>
                             <p><time datetime="2012-03-11">11 mars 2012</time></p>
                         </section>
                     </li>
-                    <li class="calendar-display-onshow">
+                    <li class="cal-disp-onshow">
                         <section>
                             <h5>Expo 2010 Shanghai</h5>
                             <p>Le <time datetime="2012-03-22">22 mars 2012</time> au <time datetime="2012-04-26">26 avril 2012</time></p>
@@ -107,25 +107,25 @@
                             <p>Pour obtenir de plus amples renseignements, visitez le site Web de Canada à Expo 2010 Shanghai à l’adresse suivante&#160;: <a href="http://www.expo2010canada.gc.ca/index-fra.cfm" rel="external">www.expo2010canada.gc.ca/index-fra.cfm</a></p>
                         </section>
                     </li>
-                    <li class="calendar-display-onshow">
+                    <li class="cal-disp-onshow">
                         <section>
                             <h5><a href="http://www.ic.gc.ca" rel="external">Événement 4</a></h5>
                             <p><time datetime="2012-03-24">24 mars 2012</time></p>
                         </section>
                     </li>
-                    <li class="calendar-display-onshow">
+                    <li class="cal-disp-onshow">
                         <section>
                             <h5><a href="http://www.ec.gc.ca" rel="external">Événement 6</a></h5>
                             <p><time datetime="2012-04-11">4 avril 2012</time></p>
                         </section>
                     </li>
-                    <li class="calendar-display-onshow">
+                    <li class="cal-disp-onshow">
                         <section>
                             <h5><a href="http://canada.gc.ca" rel="external">Événement 7</a></h5>
                             <p><time datetime="2012-04-23">23 avril 2012</time></p>
                         </section>
                     </li>
-                    <li class="calendar-display-onshow">
+                    <li class="cal-disp-onshow">
                         <section>
                             <h5><a href="http://canada.gc.ca" rel="external">Événement 17</a></h5>
                             <p><time datetime="2012-04-23">23 avril 2012</time></p>

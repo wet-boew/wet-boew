@@ -100,7 +100,10 @@ module.exports = (grunt) ->
 			"concat:coreIE8"
 			"concat:pluginsIE8"
 			"concat:i18n"
-			"uglify"
+			"uglify:polyfills"
+			"uglify:core"
+			"uglify:i18n"
+			"uglify:deps"
 		]
 	)
 
@@ -111,8 +114,11 @@ module.exports = (grunt) ->
 			"sprites"
 			"sass"
 			"autoprefixer"
+			"csslint:unmin"
 			"concat:css"
-			"cssmin"
+			"concat:css_addBanners"
+			"cssmin:dist"
+			"copy:cssIE8"
 		]
 	)
 
@@ -129,6 +135,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Create unminified demos"
 		[
 			"copy:demos"
+			"csslint:demos"
 			"assemble:demos"
 		]
 	)
@@ -138,6 +145,8 @@ module.exports = (grunt) ->
 		"INTERNAL: Create minified demos"
 		[
 			"copy:demos_min"
+			"cssmin:demos_min"
+			"uglify:demos"
 			"assemble:demos_min"
 			"htmlcompressor"
 		]
@@ -157,6 +166,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Runs testing tasks except for SauceLabs testing"
 		[
 			"jshint"
+			"jscs"
 		]
 	)
 
@@ -166,7 +176,8 @@ module.exports = (grunt) ->
 		[
 			"build"
 			"assets-dist"
-			"assemble:demos_min"
+			"demos"
+			"demos-dist"
 			"connect:test"
 		]
 	)
@@ -206,10 +217,9 @@ module.exports = (grunt) ->
 					stripBanners: false
 				src: [
 					"lib/modernizr/modernizr-custom.js"
-					"lib/respond/respond.src.js"
+					"lib/respond/src/respond.js"
 					"lib/excanvas/excanvas.js"
-					"lib/html5shiv/dist/html5shiv.js"
-					"lib/selectivizr/selectivizr.js"
+					"lib/html5shiv/dist/html5shiv-printshiv.js"
 					"src/core/wb.js"
 					"!src/plugins/**/test.js"
 					"!src/plugins/**/assets/*.js"
@@ -271,6 +281,18 @@ module.exports = (grunt) ->
 						"lib/bootstrap/dist/css/bootstrap.css"
 						"dist/unmin/css/wet-boew.css"
 					]
+					"dist/unmin/css/ie8-wet-boew.css": [
+						"dist/unmin/css/wet-boew.css"
+						"dist/unmin/css/ie8-wet-boew.css"
+					]
+
+			css_addBanners:
+				options:
+					banner: "@charset \"utf-8\";\n<%= banner %>"
+				files:
+					"dist/unmin/css/ie8-wet-boew.css": "dist/unmin/css/ie8-wet-boew.css"
+					"dist/unmin/css/noscript.css": "dist/unmin/css/noscript.css"
+					"dist/unmin/css/theme.css": "dist/unmin/css/theme.css"
 
 		# Builds the demos
 		assemble:
@@ -460,6 +482,46 @@ module.exports = (grunt) ->
 					expand: true
 				]
 
+		csslint:
+			options:
+				"adjoining-classes": false
+				"box-model": false
+				"box-sizing": false
+				"compatible-vendor-prefixes": false
+				"duplicate-background-images": false
+				# Can be turned off after https://github.com/dimsemenov/Magnific-Popup/pull/303 lands
+				"empty-rules": false
+				"fallback-colors": false
+				"font-sizes": false
+				"gradients": false
+				"headings": false
+				"ids": false
+				"important": false
+				"outline-none": false
+				"overqualified-elements": false
+				"qualified-headings": false
+				"unique-headings": false
+				"universal-selector": false
+				"unqualified-attributes": false
+
+			unmin:
+				options:
+					absoluteFilePathsForFormatters: true
+					formatters: [
+						id: "csslint-xml"
+						dest: "csslint-unmin.log"
+					]
+				src: "dist/unmin/css/*.css"
+
+			demos:
+				options:
+					absoluteFilePathsForFormatters: true
+					formatters: [
+						id: "csslint-xml"
+						dest: "csslint-demos.log"
+					]
+				src: "dist/unmin/demos/**/*.css"
+
 		# Minify
 		uglify:
 			polyfills:
@@ -472,17 +534,7 @@ module.exports = (grunt) ->
 				dest: "dist/js/polyfills/"
 				ext: ".min.js"
 
-			other:
-				options:
-					preserveComments: (uglify,comment) ->
-						return comment.value.match(/^!/i)
-				expand: true
-				cwd: "dist/unmin/js/other/"
-				src: ["*.js"]
-				dest: "dist/js/other/"
-				ext: ".min.js"
-
-			demo:
+			demos:
 				options:
 					banner: "<%= banner %>"
 					preserveComments: (uglify,comment) ->
@@ -530,17 +582,16 @@ module.exports = (grunt) ->
 				cwd: "dist/unmin/css"
 				src: [
 					"**/*.css"
-					"!**/*.min.css"
+					"!**/ie8*.css"
 				]
 				dest: "dist/css"
 				ext: ".min.css"
 
-			demo:
+			demos_min:
 				expand: true
 				cwd: "dist/unmin/demos/"
 				src: [
 					"**/demo/*.css"
-					"!**/demo/*.min.css"
 				]
 				dest: "dist/demos/"
 				ext: ".min.css"
@@ -587,13 +638,14 @@ module.exports = (grunt) ->
 			tests: [
 				"elem_details"
 				"elem_progress_meter"
+				"mathml"
 			]
 			parseFiles: false
 			matchCommunityTests: false
 
 		copy:
 			bootstrap:
-				cwd: "lib/bootstrap/fonts"
+				cwd: "lib/bootstrap/dist/fonts"
 				src: "*.*"
 				dest: "dist/unmin/fonts"
 				expand: true
@@ -649,6 +701,7 @@ module.exports = (grunt) ->
 						"**/ajax/*.*"
 						"**/img/*.*"
 						"!**/assets/*.*"
+						"!**/*.scss"
 					]
 					dest: "dist/unmin/demos/"
 					expand: true
@@ -664,6 +717,12 @@ module.exports = (grunt) ->
 					expand: true
 				]
 
+			cssIE8:
+				cwd: "dist/unmin/css/"
+				src: "ie8-wet-boew.css"
+				dest: "dist/css"
+				expand: true
+
 			themeAssets:
 				cwd: "theme/"
 				src: "assets/*.*"
@@ -676,19 +735,21 @@ module.exports = (grunt) ->
 					"assets/*"
 					"fonts/*"
 					"js/assets/*"
-					"!**/assets/*.js"
 				]
 				dest: "dist"
 				expand: true
 
 			demos_min:
-				cwd: "dist/unmin"
+				cwd: "dist/unmin/demos"
 				src: [
 					"**/*.{jpg,html,xml}"
 					"**/demo/*.*"
 					"**/ajax/*.*"
 					"**/img/*.*"
-					"!**/assets/*.*"
+					# CSS is copied by the cssmin:demos_min task
+					"!**/*.css"
+					# CSS is copied by the uglify:demos task
+					"!**/*.js"
 				]
 				dest: "dist/demos/"
 				expand: true
@@ -748,6 +809,15 @@ module.exports = (grunt) ->
 					"test/**/*.js"
 					"tasks/*.js"
 				]
+		jscs:
+			all:
+				src: [
+					"src/**/*.js"
+					"theme/**/*.js"
+					"test/**/*.js"
+					"tasks/*.js"
+				]
+
 
 		connect:
 			options:
@@ -898,6 +968,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-contrib-concat"
 	@loadNpmTasks "grunt-contrib-connect"
 	@loadNpmTasks "grunt-contrib-copy"
+	@loadNpmTasks "grunt-contrib-csslint"
 	@loadNpmTasks "grunt-contrib-cssmin"
 	@loadNpmTasks "grunt-contrib-imagemin"
 	@loadNpmTasks "grunt-contrib-jshint"
@@ -906,6 +977,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-gh-pages"
 	@loadNpmTasks "grunt-htmlcompressor"
 	@loadNpmTasks "grunt-imagine"
+	@loadNpmTasks "grunt-jscs-checker"
 	@loadNpmTasks "grunt-mocha"
 	@loadNpmTasks "grunt-modernizr"
 	@loadNpmTasks "grunt-sass"

@@ -11,83 +11,83 @@
 wb.i18nDict = {
 	"lang-code": "@lang-code@",
 	"lang-nat": "@lang-nat@",
-	"all": "@all@",
-	"tphp": "@tphp@",
-	"load": "@load@",
-	"process": "@process@",
-	"srch": "@srch@",
+	all: "@all@",
+	tphp: "@tphp@",
+	load: "@load@",
+	process: "@process@",
+	srch: "@srch@",
 	"no-match": "@no-match@",
-	"matches": {
-		"mixin": "@matches@"
+	matches: {
+		mixin: "@matches@"
 	},
-	"curr": "@curr@",
-	"hide": "@hide@",
-	"err": "@err@",
-	"colon": "@colon@",
-	"hyphen": "@hyphen@",
+	curr: "@curr@",
+	hide: "@hide@",
+	err: "@err@",
+	colon: "@colon@",
+	hyphen: "@hyphen@",
 	"full-stop": "@full-stop@",
 	"comma-space": "@comma-space@",
-	"space": "@space@",
-	"start": "@start@",
-	"stop": "@stop@",
-	"back": "@back@",
-	"cancel": "@cancel@",
+	space: "@space@",
+	start: "@start@",
+	stop: "@stop@",
+	back: "@back@",
+	cancel: "@cancel@",
 	"min-ago": "@min-ago@",
 	"coup-mins": "@coup-mins@",
 	"mins-ago": {
-		"mixin": "@mins-ago@"
+		mixin: "@mins-ago@"
 	},
 	"hour-ago": "@hour-ago@",
 	"hours-ago": {
-		"mixin": "@hours-ago@"
+		mixin: "@hours-ago@"
 	},
 	"days-ago": {
-		"mixin": "@days-ago@"
+		mixin: "@days-ago@"
 	},
-	"yesterday": "@yesterday@",
+	yesterday: "@yesterday@",
 
-	"nxt": "@nxt@",
+	nxt: "@nxt@",
 	"nxt-r": "@nxt-r@",
-	"prv": "@prv@",
+	prv: "@prv@",
 	"prv-l": "@prv-l@",
-	"first": "@first@",
-	"last": "@last@",
+	first: "@first@",
+	last: "@last@",
 	"menu-close": "@menu-close@",
 	"overlay-close": "@overlay-close@",
 	"esc-key": "@esc-key@",
-	"show": "@show@",
+	show: "@show@",
 
 	/* Tabbed interface */
 	"tab-rot": {
-		"off": "@tab-rot-off@",
-		"on": "@tab-rot-on@"
+		off: "@tab-rot-off@",
+		on: "@tab-rot-on@"
 	},
 	"tab-list": "@tab-list@",
 	"tab-pnl-end1": "@tab-pnl-end1@",
 	"tab-pnl-end2": "@tab-pnl-end2@",
 	"tab-pnl-end3": "@tab-pnl-end3@",
 	/* Multimedia player */
-	"play": "@play@",
-	"pause": "@pause@",
-	"open": "@open@",
-	"close": "@close@",
-	"rew": "@rew@",
-	"ffwd": "@ffwd@",
-	"mute": {
-		"on": "@mute-on@",
-		"off": "@mute-off@"
+	play: "@play@",
+	pause: "@pause@",
+	open: "@open@",
+	close: "@close@",
+	rew: "@rew@",
+	ffwd: "@ffwd@",
+	mute: {
+		on: "@mute-on@",
+		off: "@mute-off@"
 	},
-	"cc": {
-		"off": "@cc-off@",
-		"on": "@cc-on@"
+	cc: {
+		off: "@cc-off@",
+		on: "@cc-on@"
 	},
 	"cc-err": "@cc-err@",
-	"adesc": {
-		"on": "@adesc-on@",
-		"off": "@adesc-off@"
+	adesc: {
+		on: "@adesc-on@",
+		off: "@adesc-off@"
 	},
-	"pos": "@pos@",
-	"dur": "@dur@",
+	pos: "@pos@",
+	dur: "@dur@",
 	/* Share widget */
 	"shr-txt": "@shr-txt@",
 	"shr-hnt": "@shr-hnt@",
@@ -101,17 +101,38 @@ wb.i18nDict = {
 	"date-show": "@date-show@",
 	"date-sel": "@date-sel@",
 	/* Calendar */
-	"days": ["@days-1@", "@days-2@", "@days-3@", "@days-4@", "@days-5@", "@days-6@", "@days-7@"],
-	"mnths": ["@mnths-1@", "@mnths-2@", "@mnths-3@", "@mnths-4@", "@mnths-5@", "@mnths-6@", "@mnths-7@", "@mnths-8@", "@mnths-9@", "@mnths-10@", "@mnths-11@", "@mnths-12@"],
-	"cal": "@cal@",
-	"currDay": "@currDay@",
+	days: [
+		"@days-1@",
+		"@days-2@",
+		"@days-3@",
+		"@days-4@",
+		"@days-5@",
+		"@days-6@",
+		"@days-7@"
+	],
+	mnths: [
+		"@mnths-1@",
+		"@mnths-2@",
+		"@mnths-3@",
+		"@mnths-4@",
+		"@mnths-5@",
+		"@mnths-6@",
+		"@mnths-7@",
+		"@mnths-8@",
+		"@mnths-9@",
+		"@mnths-10@",
+		"@mnths-11@",
+		"@mnths-12@"
+	],
+	cal: "@cal@",
+	currDay: "@currDay@",
 	"cal-goToLnk": "@cal-goToLnk@",
 	"cal-goToTtl": "@cal-goToTtl@",
 	"cal-goToMnth": "@cal-goToMnth@",
 	"cal-goToYr": "@cal-goToYr@",
 	"cal-goToBtn": "@cal-goToBtn@",
-	"prvMnth": "@prvMnth@",
-	"nxtMnth": "@nxtMnth@",
+	prvMnth: "@prvMnth@",
+	nxtMnth: "@nxtMnth@",
 	/* Lightbox */
 	"lb-curr": "@lb-curr@",
 	"lb-xhr-err": "@lb-xhr-err@",
@@ -133,14 +154,14 @@ wb.i18nDict = {
 	"td-ttl-open": "@td-ttl-open@",
 	"td-ttl-close": "@td-ttl-close@",
 	/* Table enhancement */
-	"sortAsc": "@sortAsc@",
-	"sortDesc": "@sortDesc@",
-	"emptyTbl": "@emptyTbl@",
-	"infoEntr": "@infoEntr@",
-	"infoEmpty": "@infoEmpty@",
-	"infoFilt": "@infoFilt@",
-	"info1000": "@info1000@",
-	"lenMenu": "@lenMenu@",
+	sortAsc: "@sortAsc@",
+	sortDesc: "@sortDesc@",
+	emptyTbl: "@emptyTbl@",
+	infoEntr: "@infoEntr@",
+	infoEmpty: "@infoEmpty@",
+	infoFilt: "@infoFilt@",
+	info1000: "@info1000@",
+	lenMenu: "@lenMenu@",
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",
 	"geo-zmin": "@geo-zmin@",

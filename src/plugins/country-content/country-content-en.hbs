@@ -14,7 +14,7 @@
 	<h2>Replaces an element's content based upon the user's country</h2>
 	<section>
 		<h3>Example</h3>
-		<div data-country-content="ajax/country-content-{country}.html">
+		<div data-ctrycnt="ajax/country-content-{country}-en.html">
 			<section>
 				<h4>Hello World</h4>
 				<p>I'm the content that is shown when the country can't be resolved or the country that is returned does not have additional content.</p>
@@ -22,7 +22,7 @@
 		</div>
 		<details>
 			<summary>View code</summary>
-			<pre><code>&lt;div data-country-content="ajax/country-content-{country}.html"&gt;
+			<pre><code>&lt;div data-ctrycnt="ajax/country-content-{country}.html"&gt;
 	&lt;h4&gt;Hello World&lt;/h4&gt;
 	&lt;p&gt;I'm the content that is shown when the country can't be resolved or the country that is returned does not have additional content.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
@@ -33,7 +33,7 @@
 <section>
 	<h2>Simulate different countries (Demo only)</h2>
 	<p><strong>Note:</strong> the page must be refreshed to see the changes from resetting or changing the country code. This will impact all examples on this page.</p>
-	<p>Override the country used for the replacement content. Try setting the value to "us" to simulate a user comming in from the United States or "ca" for Canada.</p>
+	<p>Override the country used for the replacement content. Try setting the value to "us" to simulate a user coming in from the United States or "ca" for Canada.</p>
 
 	<label for="country">Please enter a 2 character country code to override the lookup</label>
 	<input type="text" id="country" maxlength="2" />

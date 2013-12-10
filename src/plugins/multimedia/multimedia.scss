@@ -2,6 +2,14 @@
   Multimedia Player Code
  */
 
+ %multimedia-display-none {
+    display: none;
+}
+
+%multimedia-display-block {
+    display: block;
+}
+
  @keyframes spin {
 	from {
 		transform: rotate(0deg);
@@ -24,6 +32,11 @@
 	margin: auto;
 }
 
+%captions_hidden {
+	padding: 0;
+	max-height: 0;
+}
+
 .wb-mltmd {
 	// lets fight the FOUC
 	// base state
@@ -40,8 +53,8 @@
 		color: #fff;
 	}
 	progress, .btn {
-		&:focus { 
-			outline: #fff thin dotted; 
+		&:focus {
+			outline: #fff thin dotted;
 		}
 	}
 
@@ -68,7 +81,7 @@
 				animation-iteration-count: infinite;
 				animation-timing-function: linear;
 				z-index:2;
-			} 
+			}
 
 			&:before {
 				@extend %multimedia_loading;
@@ -80,6 +93,7 @@
 	}
 	.wb-mm-ovrly {
 		background: transparent;
+		direction: ltr;
 		text-indent: -9999px;
 		border: 0;
 		padding: 0;
@@ -96,11 +110,23 @@
 		}
 	}
 
-	&[data-youtube] {
-		.wb-mm-ovrly { 
-			visibility: hidden;
+	&.cc_on {
+		.wb-mm-cc {
+			padding: 0.5em;
+			max-height: 999em;
+		}
+
+		.cc {
+			opacity: 1;
+		}
+
+		&.youtube {
+			.wb-mm-cc {
+				@extend %captions_hidden;
+			}
 		}
 	}
+
 	/*
 	  Light Skinning of mediacontrols
 	 */
@@ -117,19 +143,15 @@
 			border: 0;
 		}
 	}
+
 }
 
 .wb-mm-cc {
+	@extend %captions_hidden;
 	background-color: #000;
 	color: #FFF;
 	text-align: center;
-	padding: 0;
-	max-height: 0;
 	transition: all 0.26s ease;
-	&.on {
-		padding: 0.5em;
-		max-height: 999em;
-	}
 }
 
 .wb-mm-ctrls {
@@ -155,16 +177,19 @@
 	}
 	.tline {
 		@extend %pnl;
-		.textonly {
-			p {
-				display: inline !important;
-				float: left;
-				margin:0;
-				&:last-child {
-					float:right;
-				}
-			}
+		.wb-mm-tmln-crrnt, .wb-mm-tmln-ttl {
+			display: inline !important;
+			margin-right: 0;
+			margin-left: 0;
 		}
+	}
+
+	.cc {
+		opacity: .5;
+	}
+
+	.wb-mm-txtonly {
+		@extend %multimedia-display-none;
 	}
 
 	/* Progress Bar */
@@ -183,4 +208,27 @@
 			background: #176CA7;
 		}
 	}
+}
+
+//TODO: Cleanup placeholders when libsass supports nested selectors
+.xxsmallview {
+    .wb-mm-txtonly {
+        @extend %multimedia-display-block;
+    }
+
+    .wb-mm-prgrss {
+        @extend %multimedia-display-none;
+    }
+}
+
+.mediumview, .largeview, .xlargeview, .xxlargeview {
+    .col-md-1, .col-md-2, .col-md-3 {
+        .wb-mm-txtonly {
+            @extend %multimedia-display-block;
+        }
+
+        .wb-mm-prgrss {
+            @extend %multimedia-display-none;
+        }
+    }
 }

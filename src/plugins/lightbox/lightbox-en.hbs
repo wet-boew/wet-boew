@@ -45,18 +45,18 @@
 			<h3 id="examples1">Single items</h3>
 			<section>
 				<h4>Example</h4>
-				<div class="inline-lst" class="lb-default-popup">
+				<div class="inline-lst">
 					<ul>
 						<li>
-							<a class="wb-lightbox" href="demo/1_b.jpg" title="Image 1">
+							<a class="wb-lbx" href="demo/1_b.jpg" title="Image 1">
 								<img src="demo/1_s.jpg" alt="Image 1" />
 							</a>
 						</li>
 						<li class="box">
-							<a class="wb-lightbox" title="AJAX - Example 1 of AJAX content" href="ajax/ajax1-en.html">AJAX - Example 1</a>
+							<a class="wb-lbx" title="AJAX - Example 1 of AJAX content" href="ajax/ajax1-en.html">AJAX - Example 1</a>
 						</li>
 						<li class="box">
-							<a class="wb-lightbox" title="Example of inline content" href="#inline_content">Inline content</a>
+							<a class="wb-lbx" title="Example of inline content" href="#inline_content">Inline content</a>
 							<section id="inline_content" class="mfp-hide modal-dialog modal-content overlay-def">
 								<header class="modal-header">
 									<h2 class="modal-title">Title</h2>
@@ -81,7 +81,7 @@
 							</section>
 						</li>
 						<li class="box">
-							<a class="wb-lightbox lb-modal" title="Example of a modal popup" href="#inline_content_modal">Modal popup</a>
+							<a class="wb-lbx lbx-modal" title="Example of a modal popup" href="#inline_content_modal">Modal popup</a>
 							<section id="inline_content_modal" class="mfp-hide modal-dialog modal-content overlay-def">
 								<header class="modal-header">
 									<h2 class="modal-title">Title</h2>
@@ -111,15 +111,15 @@
 					<summary>View code</summary>
 					<pre><code>&lt;ul&gt;
 	&lt;li&gt;
-		&lt;a class="wb-lightbox" href="demo/1_b.jpg" title="Image 1"&gt;
+		&lt;a class="wb-lbx" href="demo/1_b.jpg" title="Image 1"&gt;
 			&lt;img src="demo/1_s.jpg" alt="Image 1" /&gt;
 		&lt;/a&gt;
 	&lt;/li&gt;
 	&lt;li&gt;
-		&lt;a class="wb-lightbox" title="AJAX - Example 1 of AJAX content" href="ajax/ajax-en.html"&gt;AJAX - Example 1&lt;/a&gt;
+		&lt;a class="wb-lbx" title="AJAX - Example 1 of AJAX content" href="ajax/ajax-en.html"&gt;AJAX - Example 1&lt;/a&gt;
 	&lt;/li&gt;
 	&lt;li&gt;
-		&lt;a class="wb-lightbox" title="Example of inline content" href="#inline_content"&gt;Inline content&lt;/a&gt;
+		&lt;a class="wb-lbx" title="Example of inline content" href="#inline_content"&gt;Inline content&lt;/a&gt;
 		&lt;section id="inline_content" class="mfp-hide modal-dialog modal-content overlay-def"&gt;
 			&lt;header class="modal-header"&gt;
 				&lt;h2 class="modal-title"&gt;Title&lt;/h2&gt;
@@ -144,7 +144,7 @@
 		&lt;/section&gt;
 	&lt;/li&gt;
 	&lt;li class="box"&gt;
-		&lt;a class="wb-lightbox lb-modal" title="Example of a modal popup" href="#inline_content_modal"&gt;Modal popup&lt;/a&gt;
+		&lt;a class="wb-lbx lbx-modal" title="Example of a modal popup" href="#inline_content_modal"&gt;Modal popup&lt;/a&gt;
 		&lt;section id="inline_content_modal" class="mfp-hide modal-dialog modal-content overlay-def"&gt;
 			&lt;header class="modal-header"&gt;
 				&lt;h2 class="modal-title"&gt;Title&lt;/h2&gt;
@@ -177,7 +177,7 @@
 			<h3 id="examples2">Galleries</h3>
 			<section>
 				<h4>Examples</h4>
-				<section class="wb-lightbox lb-gallery inline-lst">
+				<section class="wb-lbx lbx-gal inline-lst">
 					<h5>Image gallery</h5>
 					<ul>
 						<li>
@@ -202,7 +202,7 @@
 						</li>
 					</ul>
 				</section>
-				<section class="wb-lightbox lb-gallery inline-lst">
+				<section class="wb-lbx lbx-gal inline-lst">
 					<h5>AJAX gallery</h5>
 					<ul>
 						<li class="box">
@@ -218,7 +218,7 @@
 				</section>
 				<details>
 					<summary>View code</summary>
-					<pre><code>&lt;section class="wb-lightbox lb-gallery inline-lst"&gt;
+					<pre><code>&lt;section class="wb-lbx lbx-gal inline-lst"&gt;
 	&lt;h5&gt;Image gallery&lt;/h5&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
@@ -243,7 +243,7 @@
 		&lt;/li&gt;
 	&lt;/ul&gt;
 &lt;/section&gt;
-&lt;section class="wb-lightbox lb-gallery inline-lst"&gt;
+&lt;section class="wb-lbx lbx-gal inline-lst"&gt;
 	&lt;h5&gt;AJAX gallery&lt;/h5&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
@@ -265,7 +265,7 @@
 			<h3 id="examples3">Hidden image galleries</h3>
 			<section>
 				<h4>Examples</h4>
-				<section class="wb-lightbox lb-hide-gal">
+				<section class="wb-lbx lbx-hide-gal">
 					<h5>Image gallery</h5>
 					<ul>
 						<li>
@@ -290,7 +290,7 @@
 						</li>
 					</ul>
 				</section>
-				<section class="wb-lightbox lb-hide-gal">
+				<section class="wb-lbx lbx-hide-gal">
 					<h5>AJAX gallery</h5>
 					<ul>
 						<li class="box">
@@ -306,7 +306,7 @@
 				</section>
 				<details>
 					<summary>View code</summary>
-					<pre><code>&lt;section class="wb-lightbox lb-hide-gal"&gt;
+					<pre><code>&lt;section class="wb-lbx lbx-hide-gal"&gt;
 	&lt;h5&gt;Image gallery&lt;/h5&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
@@ -331,7 +331,7 @@
 		&lt;/li&gt;
 	&lt;/ul&gt;
 &lt;/section&gt;
-&lt;section class="wb-lightbox lb-hide-gal"&gt;
+&lt;section class="wb-lbx lbx-hide-gal"&gt;
 	&lt;h5&gt;AJAX gallery&lt;/h5&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
@@ -354,7 +354,7 @@
 			<h3 id="examples4">Alternative image title</h3>
 			<section>
 				<h4>Example</h4>
-				<div class="wb-lightbox lb-gallery inline-lst">
+				<div class="wb-lbx lbx-gal inline-lst">
 					<ul>
 						<li>
 							<a href="demo/1_b.jpg" title="Image 1" data-title="image_1_b">
@@ -374,7 +374,7 @@
 
 				<details>
 					<summary>View code</summary>
-					<pre><code>&lt;div class="wb-lightbox lb-gallery inline-lst"&gt;
+					<pre><code>&lt;div class="wb-lbx lbx-gal inline-lst"&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
 			&lt;a href="demo/1_b.jpg" title="Image 1" data-title="image_1_b"&gt;

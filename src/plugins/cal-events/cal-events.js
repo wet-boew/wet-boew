@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Events Calendar
  * @overview Dynamically generates a calendar interface for navigating a list of events.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -13,36 +13,53 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-cal-evt",
+var pluginName = "wb-calevt",
+	selector = "." + pluginName,
+	calendarSelector = selector + "-cal",
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
+	setFocusEvent = "setfocus.wb",
+	evDetails = "ev-details",
 	$document = wb.doc,
 	i18n, i18nText,
 
+	/**
+	 * @method init
+	 * @param {jQuery DOM element} $elm The plugin element
+	 */
 	init = function( $elm ) {
-		wb.remove( selector );
 
-		// Only initialize the i18nText once
-		if ( !i18nText ) {
-			i18n = wb.i18n;
-			i18nText = {
-				monthNames: i18n( "calendar-monthNames" ),
-				calendar: i18n( "calendar" )
-			};
+		// Only initialize the element once
+		if ( !$elm.hasClass( initedClass ) ) {
+			wb.remove( selector );
+			$elm.addClass( initedClass );
+
+			// Only initialize the i18nText once
+			if ( !i18nText ) {
+				i18n = wb.i18n;
+				i18nText = {
+					monthNames: i18n( "mnths" ),
+					calendar: i18n( "cal" )
+				};
+			}
+
+			// Load ajax content
+			$.when.apply($, $.map( $elm.find( "[data-calevt]" ), getAjax))
+				.always( function() {
+					processEvents( $elm );
+				});
 		}
-
-		// Load ajax content
-		$.when.apply($, $.map( $elm.find( "[data-cal-events]" ), getAjax))
-			.always( function() { processEvents( $elm ); } );
 	},
 
-	getAjax = function ( ajaxContainer ) {
+	getAjax = function( ajaxContainer ) {
 		var $ajaxContainer = $( ajaxContainer ),
-			urls = $ajaxContainer.attr( "data-cal-events" ).split(/\s+/),
+			urls = $ajaxContainer.data( "calevt" ).split( /\s+/ ),
 			dfd = $.Deferred(),
 			len = urls.length,
 			promises = [],
 			i, appendData;
 
-		appendData = function ( data ) {
+		appendData = function( data ) {
 			$ajaxContainer.append( $.trim( data ) );
 		};
 
@@ -57,7 +74,7 @@ var selector = ".wb-cal-evt",
 		return dfd.promise();
 	},
 
-	processEvents = function ( $elm ) {
+	processEvents = function( $elm ) {
 		var date = new Date(),
 			year = date.getFullYear(),
 			month = date.getMonth(),
@@ -66,6 +83,7 @@ var selector = ".wb-cal-evt",
 			events, containerId, $containerId;
 
 		if ( elmYear.length > 0 && elmMonth.length > 0 ) {
+
 			// We are going to assume this is always a number.
 			year = elmYear.text();
 
@@ -73,17 +91,15 @@ var selector = ".wb-cal-evt",
 		}
 
 		events = getEvents( $elm );
-		containerId = $elm.attr( "class" ).split( " " ).slice( -1 );
-		$containerId = $( "#" + containerId );
+		containerId = $elm.data( "calevtSrc" );
+		$containerId = $( "#" + containerId ).addClass( calendarSelector );
 
-		// jQuery returns 0px even if no units specified in CSS "padding-left: 0;"
-		if ( $( "#wb-main-in" ).css( "padding-left" ) === "0px" ) {
-			$containerId.css( "margin-left", "10px" );
-		}
-
-		$document.on( "displayed.wb-cal", "#" + containerId, function ( event, year, month, days ) {
-			addEvents(year, month, days, containerId, events.list);
-			showOnlyEventsFor(year, month, containerId);
+		$document.on( "displayed.wb-cal", "#" + containerId, function( event, year, month, days, day ) {
+			addEvents( year, month, days, containerId, events.list );
+			showOnlyEventsFor( year, month, containerId );
+			$( event.currentTarget )
+				.find( ".cal-evt" + ( day === 1 ? ":first" : ":last" ) )
+					.trigger( "setfocus.wb" );
 		});
 		$document.trigger( "create.wb-cal", [
 				containerId,
@@ -94,10 +110,14 @@ var selector = ".wb-cal-evt",
 				events.maxDate
 			]
 		);
-		$containerId.attr({"role": "application", "aria-label": i18nText.calendar});
+		$containerId.attr({
+			role: "application",
+			"aria-label": i18nText.calendar
+		});
 	},
 
-	daysBetween = function ( dateLow, dateHigh ) {
+	daysBetween = function( dateLow, dateHigh ) {
+
 		// Simplified conversion to date object
 		var date1 = wb.date.convert( dateLow ),
 			date2 = wb.date.convert( dateHigh ),
@@ -124,8 +144,8 @@ var selector = ".wb-cal-evt",
 		return Math.ceil( diff / oneDay );
 	},
 
-	getEvents = function ( obj ) {
-		var directLinking = !( $( obj ).hasClass( "event-anchoring" ) ),
+	getEvents = function( obj ) {
+		var directLinking = !( $( obj ).hasClass( "evt-anchor" ) ),
 			events = {
 				minDate: null,
 				maxDate: null,
@@ -151,14 +171,14 @@ var selector = ".wb-cal-evt",
 					title = objTitle.text(),
 					origLink = event.find( "a" ).first(),
 					link = origLink.attr( "href" ),
-					linkId, date, tCollection, $tCollection, strDate1,
-					strDate2, strDate, z, zLen, className;
+					linkId, date, tCollection, $tCollection, tCollectionTemp,
+					strDate1, strDate2, strDate, z, zLen, className;
 
 				/*
 				 * Modification direct-linking or page-linking
 				 *	- added the ability  to have class set the behaviour of the links
 				 *	- default is to use the link of the item as the event link in the calendar
-				 *	- 'event-anchoring' class dynamically generates page anchors on the links it maps to the event
+				 *	- 'evt-anchor' class dynamically generates page anchors on the links it maps to the event
 				 */
 				if ( !directLinking ) {
 					linkId = event.attr( "id" ) || randomId( 6 );
@@ -187,14 +207,17 @@ var selector = ".wb-cal-evt",
 				 *     the process is see how many time nodes are in the event. 2 nodes will trigger a span
 				 */
 				if ( tCollection.length > 1 ) {
-					// This is a spanning event
-					strDate1 = ( $( tCollection[ 0 ] ).get( 0 ).nodeName.toLowerCase() === "time" ) ?
-						$( tCollection[ 0 ] ).attr( "datetime" ).substr( 0, 10 ).split( "-" ) :
-						$( tCollection[ 0 ] ).attr( "class" ).match(/datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/)[ 1 ].substr( 0, 10 ).split( "-" );
 
-					strDate2 = ( $( tCollection[ 1 ] ).get( 0 ).nodeName.toLowerCase() === "time" ) ?
-						$( tCollection[ 1 ] ).attr( "datetime" ).substr( 0, 10 ).split( "-" ) :
-						$( tCollection[ 1 ] ).attr( "class" ).match(/datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/)[ 1 ].substr( 0, 10 ).split( "-" );
+					// This is a spanning event
+					tCollectionTemp = tCollection[ 0 ];
+					strDate1 = tCollectionTemp.nodeName.toLowerCase() === "time" ?
+						$( tCollectionTemp ).attr( "datetime" ).substr( 0, 10 ).split( "-" ) :
+						$( tCollectionTemp ).attr( "class" ).match( /datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/ )[ 1 ].substr( 0, 10 ).split( "-" );
+
+					tCollectionTemp = tCollection[ 1 ];
+					strDate2 = tCollectionTemp.nodeName.toLowerCase() === "time" ?
+						$( tCollectionTemp ).attr( "datetime" ).substr( 0, 10 ).split( "-" ) :
+						$( tCollectionTemp ).attr( "class" ).match( /datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/ )[ 1 ].substr( 0, 10 ).split( "-" );
 
 					// Convert to zero-base month
 					strDate1[ 1 ] = strDate1[ 1 ] - 1;
@@ -211,11 +234,17 @@ var selector = ".wb-cal-evt",
 							events.maxDate = date;
 						}
 
-						events.list[ events.iCount ] = { "title": title, "date": new Date( date.getTime() ), "href": link };
+						events.list[ events.iCount ] = {
+							title: title,
+							date: new Date( date.getTime() ),
+							href: link
+						};
+
 						date = new Date( date.setDate( date.getDate() + 1 ) );
 
 						// Add a viewfilter
-						className = "filter-" + ( date.getFullYear() ) + "-" + wb.string.pad( date.getMonth() + 1, 2 );
+						className = "filter-" + ( date.getFullYear() ) + "-" +
+							wb.string.pad( date.getMonth() + 1, 2 );
 						if ( !objTitle.hasClass( className ) ) {
 							objTitle.addClass( className );
 						}
@@ -223,7 +252,9 @@ var selector = ".wb-cal-evt",
 					}
 				} else if ( tCollection.length === 1 ) {
 					$tCollection = $( tCollection[ 0 ] );
-					strDate = ( $tCollection.get( 0 ).nodeName.toLowerCase() === "time" ) ? $tCollection.attr( "datetime" ).substr( 0, 10 ).split( "-" ) : $tCollection.attr( "class" ).match(/datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/)[ 1 ].substr( 0, 10 ).split( "-" );
+					strDate = ( $tCollection.get( 0 ).nodeName.toLowerCase() === "time" ) ?
+						$tCollection.attr( "datetime" ).substr( 0, 10 ).split( "-" ) :
+						$tCollection.attr( "class" ).match(/datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/)[ 1 ].substr( 0, 10 ).split( "-" );
 
 					date.setFullYear( strDate[ 0 ], strDate[ 1 ] - 1, strDate[ 2 ] );
 
@@ -233,7 +264,11 @@ var selector = ".wb-cal-evt",
 					if ( events.maxDate === null || date > events.maxDate ) {
 						events.maxDate = date;
 					}
-					events.list[ events.iCount ] = {"title" : title, "date" : date, "href" : link};
+					events.list[ events.iCount ] = {
+						title: title,
+						date: date,
+						href: link
+					};
 
 					// Add a viewfilter
 					className = "filter-" + ( date.getFullYear() ) + "-" + wb.string.pad( date.getMonth() + 1, 2 );
@@ -251,7 +286,7 @@ var selector = ".wb-cal-evt",
 		return events;
 	},
 
-	randomId = function ( sInt ) {
+	randomId = function( sInt ) {
 		var s = "",
 			randomChar, n;
 
@@ -277,7 +312,7 @@ var selector = ".wb-cal-evt",
 		return "id" + s;
 	},
 
-	keyboardNavEvents = function ( event ) {
+	keyboardNavEvents = function( event ) {
 		var $this = $( this ),
 			length, $children;
 
@@ -288,7 +323,7 @@ var selector = ".wb-cal-evt",
 			$children = $this.closest( "ul" ).children( "li" );
 			length = $children.length;
 			$children.eq( ( $this.closest( "li" ).index() - 1 ) % length )
-				.children( "a" ).trigger( "setfocus.wb" );
+				.children( "a" ).trigger( setFocusEvent );
 			return false;
 
 		// Down arrow
@@ -296,61 +331,61 @@ var selector = ".wb-cal-evt",
 			$children = $this.closest( "ul" ).children( "li" );
 			length = $children.length;
 			$children.eq( ( $this.closest( "li" ).index() + 1 ) % length )
-				.children( "a" ).trigger( "setfocus.wb" );
+				.children( "a" ).trigger( setFocusEvent );
 			return false;
 
 		// Left arrow
 		case 37:
 			$this.closest( "ol" )
 				.children( "li:lt(" + $this.closest( "li[id^=cal-]" ).index() + ")" )
-				.children( "a" ).last().trigger( "setfocus.wb" );
+				.children( "a" ).last().trigger( setFocusEvent );
 			return false;
 
 		// Right arrow
 		case 39:
 			$this.closest( "ol" )
 				.children( "li:gt(" + $this.closest( "li[id^=cal-]" ).index() + ")" )
-				.children( "a" ).first().trigger( "setfocus.wb" );
+				.children( "a" ).first().trigger( setFocusEvent );
 			return false;
 
 		// Escape
 		case 27:
-			$this.closest( "li[id^=cal-]" ).children( ".cal-event" ).trigger( "setfocus.wb" );
+			$this.closest( "li[id^=cal-]" ).children( ".cal-evt" ).trigger( setFocusEvent );
 			return false;
 		}
 	},
 
-	mouseOnDay = function ( dayEvents ) {
+	mouseOnDay = function( dayEvents ) {
 		dayEvents.dequeue()
 			.removeClass( "wb-inv" )
-			.addClass( "ev-details" );
+			.addClass( evDetails );
 	},
 
-	mouseOutDay = function ( dayEvents ) {
+	mouseOutDay = function( dayEvents ) {
 		dayEvents.delay( 100 ).queue(function() {
-			$( this ).removeClass( "ev-details" )
+			$( this ).removeClass( evDetails )
 				.addClass( "wb-inv" )
 				.dequeue();
 		});
 	},
 
-	focus = function ( dayEvents ) {
+	focus = function( dayEvents ) {
 		dayEvents.removeClass( "wb-inv" )
-			.addClass( "ev-details" );
+			.addClass( evDetails );
 	},
 
-	blur = function ( dayEvents ) {
+	blur = function( dayEvents ) {
 		setTimeout(function() {
 			var $elm = dayEvents;
 
 			if ( $elm.find( "a:focus" ).length === 0 ) {
-				$elm.removeClass( "ev-details" )
+				$elm.removeClass( evDetails )
 					.addClass( "wb-inv" );
 			}
 		}, 5);
 	},
 
-	keyboardEvents = function ( event ) {
+	keyboardEvents = function( event ) {
 		var eventType = event.type,
 			dayEvents = event.data.details;
 
@@ -369,7 +404,7 @@ var selector = ".wb-cal-evt",
 		}
 	},
 
-	mouseEvents = function ( event ) {
+	mouseEvents = function( event ) {
 		var eventType = event.type,
 			dayEvents = event.data.details;
 
@@ -384,11 +419,11 @@ var selector = ".wb-cal-evt",
 		}
 	},
 
-	addEvents = function ( year, month, days, containerId, eventsList ) {
+	addEvents = function( year, month, days, containerId, eventsList ) {
 		var i, eLen, date, day, content, dayEvents, link, eventDetails, itemLink;
 
 		// Fix required to make up with the IE z-index behavior mismatch
-		days.each(function ( index, day ) {
+		days.each(function( index, day ) {
 			$( day ).css( "z-index", 31 - index );
 		});
 
@@ -411,7 +446,7 @@ var selector = ".wb-cal-evt",
 				// Lets see if the cell is empty is so lets create the cell
 				if ( day.children( "a" ).length < 1 ) {
 					day.empty();
-					link = $( "<a href='#ev-" + day.attr( "id" ) + "' class='cal-event'>" + content + "</a>" );
+					link = $( "<a href='#ev-" + day.attr( "id" ) + "' class='cal-evt'>" + content + "</a>" );
 					day.append( link );
 					dayEvents = $( "<ul class='wb-inv'></ul>" );
 
@@ -429,7 +464,7 @@ var selector = ".wb-cal-evt",
 					dayEvents = day.find( "ul.wb-inv" );
 				}
 
-				eventDetails = $( "<li><a tabindex='-1' href='" + eventsList[ i ].href +  "'>" + eventsList[ i ].title + "</a></li>" );
+				eventDetails = $( "<li><a tabindex='-1' href='" + eventsList[ i ].href + "'>" + eventsList[ i ].title + "</a></li>" );
 
 				dayEvents.append( eventDetails );
 
@@ -440,8 +475,8 @@ var selector = ".wb-cal-evt",
 		}
 	},
 
-	showOnlyEventsFor = function ( year, month, calendarId ) {
-		$( "." + calendarId + " li.calendar-display-onshow" )
+	showOnlyEventsFor = function( year, month, calendarId ) {
+		$( "." + calendarId + " li.cal-disp-onshow" )
 			.addClass( "wb-inv" )
 			.has( ":header[class*=filter-" + year + "-" +
 				wb.string.pad( parseInt( month, 10 ) + 1, 2 ) + "]" )
@@ -449,7 +484,7 @@ var selector = ".wb-cal-evt",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb", selector, function() {
+$document.on( "timerpoke.wb " + initEvent, selector, function() {
 	init( $( this ) );
 
 	/*
@@ -459,8 +494,11 @@ $document.on( "timerpoke.wb", selector, function() {
 	return true;
 });
 
+$document.on( "displayed.wb-cal", calendarSelector, function( event, year, month, $days, day ) {
+	$( event.currentTarget ).find( ".cal-index-" + day ).trigger( "setfocus.wb" );
+});
+
 // Add the timer poke to initialize the plugin
-wb.add( ".wb-cal-evt" );
+wb.add( selector );
 
 })( jQuery, window, wb );
-
