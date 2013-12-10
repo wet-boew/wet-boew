@@ -4,8 +4,8 @@
  */
 
 /*
- Menu Sass
-*/
+ * Menu Sass
+ */
 .expicon {
 	width: 0;
 	height: 0;
@@ -94,13 +94,16 @@
 }
 
 #mb-pnl {
-	a{
+	a {
 		position: relative;
 		.expicon {
 			position: absolute;
 			top: 0.5em;
 			left: -1em;
 			transform: rotate(270deg);
+		}
+		&:focus {
+			outline-offset: 0;
 		}
 	}
 	.active {
@@ -125,8 +128,19 @@
 		}
 	}
 	.srch-pnl {
+		form {
+			white-space: nowrap;
+		}
 		label {
 			@extend %accessible-invisible;
+		}
+		.form-group, button {
+			margin-bottom: 5px;
+		}
+	}
+	.modal-body {
+		h2 {
+			@extend %global-display-none;
 		}
 	}
 }

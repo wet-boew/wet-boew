@@ -133,58 +133,62 @@ var pluginName = "wb-menu",
 
 			// Optimized the code block to look to see if we need to import anything instead
 			// of just doing a query with which could result in no result
-			targetto = $elm.data( "targetto" ),
-			$secnav = $( "#wb-sec" ),
+			target = $elm.data( "trgt" ),
+			secnav = document.getElementById( "wb-sec" ),
 			$language = $( "#wb-lng li:not(.curr)" ),
-			$search = $("#wb-srch"),
-			$panel = $ajaxed.html(),
-			$onlypnl, state, elm;
+			search = document.getElementById( "wb-srch" ),
+			panel = $ajaxed.html(),
+			$onlypnl, $panel;
 
-		// lets start building our panel in reverse order
+		// Let's start building our panel in reverse order
 
-		// if secondary navigation
-		if ( $secnav.length > 0 ){
-			$panel =  "<section class='secnav-pnl'>" + $secnav.html() + "</section>" + $panel;
+		// If secondary navigation exists
+		if ( secnav !== null ){
+			panel =  "<section class='secnav-pnl'>" + secnav.innerHTML + "</section>" + panel;
 		}
 
-		// clean up some extra markup
-		$panel = $panel.replace( /\bclass="([^"]+)"/gi, "" );
+		// Clean up some extra markup
+		panel = panel.replace( /\bclass="([^"]+)"/gi, "" );
 
-		// add active language offer
-		$panel =  "<p class='lng-ofr'>" + $language.html() + "</p>" + $panel;
+		// Add search
+		panel = "<section class='srch-pnl'>" + search.innerHTML + "</section>" +
 
-		// add search
-		$panel =  "<section class='srch-pnl'>" + $search.html() + "</section>" + $panel;
+			// Add active language offer
+			"<div class='lng-ofr'>" + $language.html() + "</div>" + panel;
 
-		// sanitize the DOM
-		$panel = $panel.replace( /(for|id)="([^"]+)"/gi, "$1=\"$2-imprt\"" )
-			.replace( /href="#([^"]+)"/gi, "href=\"#$1-imprt\"" );
+		// Sanitize the DOM
+		panel = panel.replace( /(for|id)="([^"]+)"/gi, "$1=\"$2-imprt\"" )
+			.replace( /href="#([^"]+)"/gi, "href=\"#$1-imprt\"" )
+			.replace( /role="menu([^"]+)"/gi, "" );
 
-		// Lets create the DOM Element
-		 $panel = $( "<section id='" + targetto + "' class='wb-overlay modal-content overlay-def wb-panel-r'>" +
-				"<header class='modal-header'><h2 class='modal-title'>" + i18nText.menu  + "</h2>" +
-				"</header><div class='modal-body'>" +
-				$panel +
-				"</div>" +
-				"</section>" );
+		// Let's create the DOM Element
+		$panel = $( "<section id='" + target +
+				"' class='wb-overlay modal-content overlay-def wb-panel-r'>" +
+				"<header class='modal-header'><h2 class='modal-title'>" +
+				i18nText.menu  + "</h2>" + "</header><div class='modal-body'>" +
+				panel + "</div>" + "</section>" );
 
-		// Lets now populate the DOM since we have done all the work in a documentFragment
-		$( "#" + targetto ).replaceWith( $panel );
-
-		// Lets add some features
+		// Let's add some features
 		$panel.find( "[href^='#']" )
 			.prepend( "<span class='expicon'></span>" );
 
-		// Lets set some events on click
+		// Let's now populate the DOM since we have done all the work in a documentFragment
+		$( "#" + target ).replaceWith( $panel );
+
+		// Let's set some events on click
 		$panel.on( "click vclick", "a[href^=#]", function() {
-				elm = $( this );
-				state = elm.parent().hasClass( "active" );
+				var $elm = $( this ),
+					state = $elm.parent().hasClass( "active" );
 
 				$panel.find( ".open, .active" )
-				.removeClass( "open active" );
+					.removeClass( "open active" );
 
 				if ( !state ){
-					$panel.find( $( this ).attr( "href" ) ).addClass( "open" ).parent().addClass( "active" );
+					$panel
+						.find( $elm.attr( "href" ) )
+							.addClass( "open" )
+							.parent()
+								.addClass( "active" );
 				}
 
 				return false;
@@ -192,18 +196,21 @@ var pluginName = "wb-menu",
 
 		$panel.trigger( "wb-init.wb-overlay" );
 
-		$ajaxed.find( ":discoverable" )
-			.attr( "tabindex", "-1" );
+		$ajaxed
+			.find( ":discoverable" )
+				.attr( "tabindex", "-1" );
 
-		$menu.eq( 0 ).attr( "tabindex", "0" );
-		$menu.filter( "[href^=#]" )
-			.append( "<span class='expicon'></span>" );
+		$menu[ 0 ].setAttribute( "tabindex", "0" );
+		$menu
+			.filter( "[href^=#]" )
+				.append( "<span class='expicon'></span>" );
 
 		drizzleAria( $menu );
 
 		$onlypnl = $ajaxed.find( ".only-pnl" );
+
 		// Lets ensure that we are only adding the navigation at this point
-		if ( $onlypnl.length > 0 ){
+		if ( $onlypnl.length !== 0 ){
 			$onlypnl.remove();
 		}
 		// Replace elements
