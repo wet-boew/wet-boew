@@ -114,10 +114,9 @@ var pluginName = "wb-toggle",
 	/**
 	 * Click handler for the toggle links
 	 * @param {jQuery Event} event The event that triggered this invocation
-	 * @param {DOM element} link The toggle link that was clicked
 	 */
-	click = function( event, link ) {
-		var $link = $( link );
+	click = function( event ) {
+		var $link = $( event.target );
 
 		$link.trigger( toggleEvent, $link.data( "toggle" ) );
 		event.preventDefault();
@@ -133,13 +132,14 @@ var pluginName = "wb-toggle",
 	 */
 	toggle = function( event, data ) {
 		var dataGroup, $elmsGroup,
-			link = event.target,
-			$elms = getElements( link, data ),
-			stateFrom = getState( link, data ),
 			isGroup = !!data.group,
 			isTablist = isGroup && !!data.parent,
+			link = event.target,
+			$link = $( link ),
+			stateFrom = getState( $link, data ),
 			isToggleOn = stateFrom === data.stateOff,
-			stateTo = isToggleOn ? data.stateOn : data.stateOff;
+			stateTo = isToggleOn ? data.stateOn : data.stateOff,
+			$elms = isTablist ?	$link.parent( data.group ) : getElements( link, data );
 
 		// Group toggle behaviour: only one element in the group open at a time.
 		if ( isGroup ) {
@@ -148,8 +148,11 @@ var pluginName = "wb-toggle",
 			dataGroup = $.extend( {}, data, { selector: data.group } );
 			$elmsGroup = getElements( link, dataGroup );
 
+			// Set the toggle state to "off".  For tab lists, this is stored on the tab element
+			setState( isTablist ? $( data.parent ).find( ".tab" ) : $elmsGroup,
+				dataGroup, data.stateOff );
+
 			// Toggle all grouped elements to "off"
-			setState( $elmsGroup, dataGroup, data.stateOff );
 			$elmsGroup.wb( "toggle", data.stateOff, data.stateOn );
 			$elmsGroup.trigger( toggledEvent, {
 				isOn: false,
@@ -158,8 +161,10 @@ var pluginName = "wb-toggle",
 			});
 		}
 
-		// Toggle all elements identified by data.selector to the requested state
-		setState( $elms, data, stateTo );
+		// Set the toggle state.  For tab lists, this is set on the tab element
+		setState( isTablist ? $link : $elms, data, stateTo );
+
+		// Toggle all elements to the requested state
 		$elms.wb( "toggle", stateTo, stateFrom );
 		$elms.trigger( toggledEvent, {
 			isOn: isToggleOn,
@@ -168,14 +173,26 @@ var pluginName = "wb-toggle",
 		});
 	},
 
-	/*
-	 * Executed once the toggle has been completed. Used to set the aria
-	 * attributes and ensure opened group toggle element is visible.
+	/**
+	 * Sets the required property and attribute for toggling open/closed a details element
+	 * @param {jQuery Event} event The event that triggered this invocation
+	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 */
-	toggled = function( event, data ) {
+	toggleDetails = function( event, data ) {
 		var top,
 			isOn = data.isOn,
-			$elms = data.elms;
+			$elms = data.elms,
+			$detail = $( this );
+
+		// Native details support
+		$detail.prop( "open", isOn );
+
+		// Polyfill details support
+		if ( !Modernizr.details ) {
+			$detail
+				.attr( "open", isOn ? null : "open" )
+				.find( "summary" ).trigger( "toggle.wb-details" );
+		}
 
 		if ( data.isTablist ) {
 
@@ -197,61 +214,33 @@ var pluginName = "wb-toggle",
 	},
 
 	/**
-	 * Sets the required property and attribute for toggling open/closed a details element
-	 * @param {jQuery Event} event The event that triggered this invocation
-	 * @param {Object} data Simple key/value data object passed when the event was triggered
-	 */
-	toggleDetails = function( event, data ) {
-		var isOn = data.isOn,
-			$detail = $( this );
-
-		// Native details support
-		$detail.prop( "open", isOn );
-
-		// Polyfill details support
-		if ( !Modernizr.details ) {
-			$detail.attr( "open", isOn ? null : "open" );
-			$detail.find( "summary" ).trigger( "toggle.wb-details" );
-		}
-	},
-
-	/**
 	 * Returns the elements a given toggle element controls.
 	 * @param {DOM element} link Toggle element that was clicked
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 * @returns {jQuery Object} DOM elements the toggle link controls
 	 */
 	getElements = function( link, data ) {
-		var selector = data.selector !== undefined ? data.selector : link,
-			parent = data.parent !== undefined ? data.parent : null;
+		var selector = data.selector || link,
+			parent = data.parent || null;
 
 		return parent !== null ? $( parent ).find( selector ) : $( selector );
 	},
 
 	/**
 	 * Gets the current toggle state of elements controlled by the given link.
-	 * @param {DOM element} link Toggle link that was clicked
+	 * @param {jQuery Object} $link Toggle link that was clicked
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 */
-	getState = function( link, data ) {
+	getState = function( $link, data ) {
 		var parent = data.parent,
 			selector = data.selector,
-			type = data.type,
-			$link, state;
+			type = data.type;
 
 		// No toggle type: get the current on/off state of the elements
 		// specified by the selector and parent
 		if ( !type ) {
 			if ( !selector ) {
-				$link = $( link );
-				if ( link.nodeName.toLowerCase() === "summary" ) {
-					state = !$link.parent().attr( "open" ) ?
-						data.stateOff : data.stateOn;
-				} else {
-					state = $link.data( "state" );
-				}
-
-				return state || data.stateOff;
+				return $link.data( "state" ) || data.stateOff;
 
 			} else if ( states.hasOwnProperty( selector ) ) {
 				return states[ selector ].hasOwnProperty( parent ) ?
@@ -309,19 +298,16 @@ var pluginName = "wb-toggle",
 
 // Bind the plugin's events
 $document.on( "timerpoke.wb " + initEvent + " " + ariaEvent + " " + toggleEvent +
-	" " + toggledEvent + " click", selector, function( event, data ) {
+	" click", selector, function( event, data ) {
 
 	var eventType = event.type;
 
 	switch ( eventType ) {
 	case "click":
-		click( event, this );
+		click( event );
 		break;
 	case "toggle":
 		toggle( event, data );
-		break;
-	case "toggled":
-		toggled( event, data );
 		break;
 	case "aria":
 		setAria( event, data );
