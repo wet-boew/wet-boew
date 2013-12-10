@@ -31,9 +31,13 @@ var $document = wb.doc,
 
 	onLargeView = function() {
 		return;
+	},
+
+	onXLargeView = function() {
+		return;
 	};
 
-$document.on( "xxsmallview.wb xsmallview.wb smallview.wb mediumview.wb largeview.wb", function( event ) {
+$document.on( "xxsmallview.wb xsmallview.wb smallview.wb mediumview.wb largeview.wb xlargeview.wb", function( event ) {
 	var eventType = event.type;
 
 	switch ( eventType ) {
@@ -56,6 +60,10 @@ $document.on( "xxsmallview.wb xsmallview.wb smallview.wb mediumview.wb largeview
 
 	case "largeview":
 		onLargeView();
+		break;
+
+	case "xlargeview":
+		onXLargeView();
 		break;
 	}
 });
