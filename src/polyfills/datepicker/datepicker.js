@@ -91,7 +91,14 @@ var pluginName = "wb-date",
 	},
 
 	createToggleIcon = function( fieldId ) {
-		var showFieldLabel = i18nText.show + $( "label[for=" + fieldId + "]" ).text(),
+			var fieldLabel = $( "label" )
+					.filter( "[for='" + fieldId + "']" )
+						.clone()
+						.find( ".datepicker-format" )
+							.remove()
+							.end()
+						.text(),
+			showFieldLabel = i18nText.show + fieldLabel,
 			objToggle = "<button id='" + fieldId + "-picker-toggle' class='picker-toggle' href='javascript:;' title='" +
 				showFieldLabel + "'><span class='glyphicon glyphicon-calendar'></span><span class='wb-inv'>" +
 				showFieldLabel + "</span></button>";
