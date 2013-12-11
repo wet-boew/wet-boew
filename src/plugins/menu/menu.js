@@ -159,7 +159,8 @@ var pluginName = "wb-menu",
 		// Sanitize the DOM
 		panel = panel.replace( /(for|id)="([^"]+)"/gi, "$1=\"$2-imprt\"" )
 			.replace( /href="#([^"]+)"/gi, "href=\"#$1-imprt\"" )
-			.replace( /role="menu([^"]+)"/gi, "" );
+			.replace( /role="menu([^"]+)"/gi, "" )
+			.replace( /h2>/gi, "h3>" );
 
 		// Let's create the DOM Element
 		$panel = $( "<section id='" + target +
@@ -177,21 +178,21 @@ var pluginName = "wb-menu",
 
 		// Let's set some events on click
 		$panel.on( "click vclick", "a[href^=#]", function() {
-				var $elm = $( this ),
-					state = $elm.parent().hasClass( "active" );
+			var $elm = $( this ),
+				state = $elm.parent().hasClass( "active" );
 
-				$panel.find( ".open, .active" )
-					.removeClass( "open active" );
+			$panel.find( ".open, .active" )
+				.removeClass( "open active" );
 
-				if ( !state ){
-					$panel
-						.find( $elm.attr( "href" ) )
-							.addClass( "open" )
-							.parent()
-								.addClass( "active" );
-				}
+			if ( !state ){
+				$panel
+					.find( $elm.attr( "href" ) )
+						.addClass( "open" )
+						.parent()
+							.addClass( "active" );
+			}
 
-				return false;
+			return false;
 		});
 
 		$panel.trigger( "wb-init.wb-overlay" );
@@ -200,7 +201,7 @@ var pluginName = "wb-menu",
 			.find( ":discoverable" )
 				.attr( "tabindex", "-1" );
 
-		$menu[ 0 ].setAttribute( "tabindex", "0" );
+		$menu.eq( 0 ).attr( "tabindex", "0" );
 		$menu
 			.filter( "[href^=#]" )
 				.append( "<span class='expicon'></span>" );
