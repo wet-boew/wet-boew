@@ -14,14 +14,15 @@
  * teardown `after()` for more than one test suite (as is the case below.)
  */
 describe( "Prettify test suite", function() {
-	var spy;
+	var spy,
+		sandbox = sinon.sandbox.create();
 
 	/*
 	 * Before beginning the test suite, this function is executed once.
 	 */
 	before(function(done) {
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
-		spy = sinon.spy( $.prototype, "trigger" );
+		spy = sandbox.spy( $.prototype, "trigger" );
 
 		// Start the tests once the plugin has been initialized
 		$( ".wb-prettify" ).removeClass( "all-pre" );
@@ -35,7 +36,7 @@ describe( "Prettify test suite", function() {
 	 */
 	after(function() {
 		// Restore the original behaviour of trigger once the tests are finished
-		$.prototype.trigger.restore();
+		sandbox.restore();
 
 		// Remove test data from the page
 		$( "pre.test" ).remove();

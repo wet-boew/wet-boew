@@ -14,14 +14,15 @@
  * teardown `after()` for more than one test suite (as is the case below.)
  */
 describe( "Toggle test suite", function() {
-	var spy;
+	var spy,
+		sandbox = sinon.sandbox.create();
 
 	/*
 	 * Before begining the test suite, this function is exectued once.
 	 */
 	before(function() {
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
-		spy = sinon.spy( $.prototype, "trigger" );
+		spy = sandbox.spy( $.prototype, "trigger" );
 
 		$( ".wb-toggle" )
 			.removeClass( "wb-toggle-inited" )
@@ -33,7 +34,7 @@ describe( "Toggle test suite", function() {
 	 */
 	after(function() {
 		// Restore the original behaviour of trigger once the tests are finished
-		$.prototype.trigger.restore();
+		sandbox.restore();
 	});
 
 	/*
