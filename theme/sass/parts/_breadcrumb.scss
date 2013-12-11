@@ -23,7 +23,7 @@
 		text-overflow: ellipsis;
 		&:first-child {
 			&:before {
-				content: "";
+				content: " ";
 			}
 		}
 	}
