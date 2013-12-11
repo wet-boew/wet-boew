@@ -135,16 +135,19 @@ var pluginName = "wb-menu",
 			// of just doing a query with which could result in no result
 			target = $elm.data( "trgt" ),
 			secnav = document.getElementById( "wb-sec" ),
-			$language = $( "#wb-lng li:not(.curr)" ),
+			$language = $( "#wb-lng" ),
 			search = document.getElementById( "wb-srch" ),
 			panel = $ajaxed.html(),
+			navOpen = "<nav role='navigation' typeof='SiteNavigationElement'",
+			navClose = "</nav>",
 			$onlypnl, $panel;
 
 		// Let's start building our panel in reverse order
 
 		// If secondary navigation exists
 		if ( secnav !== null ){
-			panel =  "<section class='secnav-pnl'>" + secnav.innerHTML + "</section>" + panel;
+			panel = navOpen + " class='secnav-pnl'>" + secnav.innerHTML +
+				navClose + panel;
 		}
 
 		// Clean up some extra markup
@@ -154,7 +157,10 @@ var pluginName = "wb-menu",
 		panel = "<section class='srch-pnl'>" + search.innerHTML + "</section>" +
 
 			// Add active language offer
-			"<div class='lng-ofr'>" + $language.html() + "</div>" + panel;
+			"<section class='lng-ofr'>" +
+			"<h3>" + $language.children( "h2" ).html() + "</h3>" +
+			$language.find( "li:not(.curr)" ).html() +
+			"</section>" + panel;
 
 		// Sanitize the DOM
 		panel = panel.replace( /(for|id)="([^"]+)"/gi, "$1=\"$2-imprt\"" )
