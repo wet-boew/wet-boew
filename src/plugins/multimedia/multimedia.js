@@ -23,8 +23,10 @@ var pluginName = "wb-mltmd",
 	initializedEvent = "inited" + selector,
 	fallbackEvent = "fallback" + selector,
 	youtubeEvent = "youtube" + selector,
+	resizeEvent = "resize" + selector,
 	captionClass = "cc_on",
 	$document = wb.doc,
+	$window = wb.win,
 
 	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
@@ -458,6 +460,10 @@ var pluginName = "wb-mltmd",
 			target.timeline = clearInterval( target.timeline );
 			break;
 		}
+	},
+
+	onResize = function() {
+		$( selector + " object, " + selector + " iframe" ).trigger( resizeEvent );
 	};
 
 $document.on( "timerpoke.wb " + initEvent, selector, init );
@@ -532,7 +538,8 @@ $document.on( fallbackEvent, selector, function() {
 		$this = ref[ 0 ],
 		data = ref[ 1 ],
 		$media = data.media,
-		source = $media.find( "source" + ( data.type === "video" ) ? "[type='video/mp4']" : "[type='audio/mp3']" ).attr( "src" ),
+		type = data.type,
+		source = $media.find( "source" + data.type === "video"  ? "[type='video/mp4']" : "[type='audio/mp3']" ).attr( "src" ),
 		poster = $media.attr( "poster" ),
 		flashvars = "id=" + data.mId,
 		width = data.width,
@@ -540,7 +547,7 @@ $document.on( fallbackEvent, selector, function() {
 		playerresource = wb.getPath( "/assets" ) + "/multimedia.swf?" + flashvars;
 
 	flashvars += "&amp;media=" + encodeURI( wb.getUrlParts( source ).absolute );
-	if ( data.type === "video" ) {
+	if ( type === "video" ) {
 		data.poster = "<img src='" + poster + "' class='img-responsive' height='" +
 			height + "' width='" + width + "' alt='" + $media.attr( "title" ) + "'/>";
 
@@ -549,7 +556,7 @@ $document.on( fallbackEvent, selector, function() {
 	}
 
 	$this.find( "video, audio" ).replaceWith( "<object id='" + data.mId + "' width='" + width +
-		"' height='" + height + "' class='" + data.type +
+		"' height='" + height + "' class='" + type +
 		"' type='application/x-shockwave-flash' data='" +
 		playerresource + "' tabindex='-1' play='' pause=''>" +
 		"<param name='movie' value='" + playerresource + "'/>" +
@@ -559,8 +566,8 @@ $document.on( fallbackEvent, selector, function() {
 		"<param name='wmode' value='opaque'/>" +
 		data.poster + "</object>" );
 	$this.data( "properties", data );
-
-	$this.trigger( renderUIEvent );
+	$window.on( "resize", onResize );
+	$this.trigger( renderUIEvent, type );
 });
 
 /*
@@ -587,7 +594,10 @@ $document.on( youtubeEvent, selector, function() {
 			cc_load_policy: 1
 		},
 		events: {
-			onReady: youTubeEvents,
+			onReady: function( event ) {
+				onResize();
+				youTubeEvents( event );
+			},
 			onStateChange: youTubeEvents,
 			onApiChange: function( event ) {
 				event.target.setOption( "cc", "track", {} );
@@ -596,6 +606,7 @@ $document.on( youtubeEvent, selector, function() {
 	});
 
 	$this.addClass( "youtube" );
+
 	$this.find( "iframe" ).attr( "tabindex", -1 );
 
 	data.poster = "<img src='" + $media.attr( "poster" ) +
@@ -604,6 +615,7 @@ $document.on( youtubeEvent, selector, function() {
 	data.ytPlayer = ytPlayer;
 
 	$this.data( "properties", data );
+	$window.on( "resize", onResize );
 	$this.trigger( renderUIEvent, "video" );
 });
 
@@ -699,7 +711,7 @@ $document.on( "click", selector, function( event ) {
 	// Opitmized multiple class tests to include child glyphicon because Safari was reporting the click event
 	// from the child span not the parent button, forcing us to have to check for both elements
 	// JSPerf for multiple class matching http://jsperf.com/hasclass-vs-is-stackoverflow/7
-	if ( className.match( /playpause|-play|-pause|wb-mm-overlay/ ) || $target.is( "object" ) ) {
+	if ( className.match( /playpause|-play|-pause|wb-mm-ovrly/ ) || $target.is( "object" ) ) {
 		this.player( "getPaused" ) ? this.player( "play" ) : this.player( "pause" );
 	} else if ( className.match( /\bcc\b|-subtitles/ )  ) {
 		this.player( "setCaptionsVisible", !this.player( "getCaptionsVisible" ) );
@@ -877,6 +889,13 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		eventTarget.player( "setPreviousTime", eventTarget.player( "getCurrentTime" ) );
 		break;
 	}
+});
+
+$document.on( resizeEvent, selector, function( event ) {
+	var $player = $( event.target ),
+		height = $player.attr( "height" ),
+		width = $player.attr( "width" );
+	$player.attr( "style", "height:" + Math.round( $player.width() * height / width ) + "px" );
 });
 
 wb.add( selector );
