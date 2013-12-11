@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Favicon Plugin
  * @overview Provides the ability to add and update a page's favicons
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -17,17 +17,21 @@
  *
  *     <link href="favion.ico" rel="shortcut icon" data-rel="apple-touch-icon-precomposed" data-filename="my-mobile-favicon.ico">
  */
-(function( $, window, vapour ) {
+(function( $, window, wb ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = "link[rel='shortcut icon']",
-	$document = vapour.doc,
+var pluginName = "wb-favicon",
+	selector = "link[rel='shortcut icon']",
+	initEvent = "wb-init." + pluginName,
+	mobileEvent = "mobile." + pluginName,
+	iconEvent = "icon." + pluginName,
+	$document = wb.doc,
 
 	/*
 	 * Plugin users can override these defaults by setting attributes on the html elements that the
@@ -41,23 +45,24 @@ var selector = "link[rel='shortcut icon']",
 		sizes: "57x57 72x72 114x114 144x144 150x150"
 	},
 
-	/*
-	 * Init runs once per plugin element on the page. There may be multiple elements. 
+	/**
+	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
 	 * @param {jQuery DOM element} $favicon The plugin element being initialized
 	 */
 	init = function( $favicon ) {
-		// Merge default settings with overrides from the selected plugin element. There may be more than one, so don't override defaults globally!
+
+		// Merge default settings with overrides from the selected plugin element.
 		var settings = $.extend( {}, defaults, $favicon.data() );
 
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
+		wb.remove( selector );
 
-		$favicon.trigger( "mobile.wb-favicon", settings );
+		$favicon.trigger( mobileEvent, settings );
 	},
 
-	/*
+	/**
 	 * Adds, or updates, the mobile favicon on a page. Mobile favicons are identified by the
 	 * `apple` prefix in the `<link>` elements rel attribute.
 	 * @method mobile
@@ -72,11 +77,11 @@ var selector = "link[rel='shortcut icon']",
 
 		// Create the mobile favicon if it doesn't exist
 		if ( !isFaviconMobile ) {
-			faviconMobile = $( "<link rel='" + data.rel + "' sizes='" + data.sizes + "' class='wb-favicon'>" );
+			faviconMobile = $( "<link rel='" + data.rel + "' sizes='" + data.sizes + "' class='" + pluginName + "'>" );
 		}
 
 		// Only add/update a mobile favicon that was created by the plugin
-		if ( faviconMobile.hasClass( "wb-favicon" ) ) {
+		if ( faviconMobile.hasClass( pluginName ) ) {
 			faviconPath = data.path !== null ? data.path : getPath( favicon.getAttribute( "href" ) );
 			faviconMobile.attr( "href", faviconPath + data.filename );
 
@@ -86,7 +91,7 @@ var selector = "link[rel='shortcut icon']",
 		}
 	},
 
-	/*
+	/**
 	 * Updates the the page's shortcut icon
 	 * @method icon
 	 * @param {DOM element} favicon Favicon element
@@ -98,7 +103,7 @@ var selector = "link[rel='shortcut icon']",
 		favicon.setAttribute( "href", faviconPath + data.filename );
 	},
 
-	/*
+	/**
 	 * Given a full file path, returns the path without the filename
 	 * @method getPath
 	 * @param {string} filepath The full path to file, including filename
@@ -109,13 +114,15 @@ var selector = "link[rel='shortcut icon']",
 	};
 
 // Bind the plugin events
-$document.on( "timerpoke.wb mobile.wb-favicon icon.wb-favicon", selector, function( event, data ) {
+$document.on( "timerpoke.wb " + initEvent + " " + mobileEvent + " " + iconEvent, selector, function( event, data ) {
+
 	var eventTarget = event.target;
-	
+
 	// Filter out any events triggered by descendants
 	if ( event.currentTarget === eventTarget ) {
 		switch ( event.type ) {
 		case "timerpoke":
+		case "wb-init":
 			init( $( eventTarget ) );
 			break;
 		case "mobile":
@@ -128,13 +135,13 @@ $document.on( "timerpoke.wb mobile.wb-favicon icon.wb-favicon", selector, functi
 	}
 
 	/*
-	 * Since we are working with events we want to ensure that we are being passive about our control, 
+	 * Since we are working with events we want to ensure that we are being passive about our control,
 	 * so returning true allows for events to always continue
 	 */
 	return true;
 });
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );

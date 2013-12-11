@@ -2,20 +2,19 @@
 {
 	"title": "Progress polyfill (progress bar)",
 	"language": "en",
-	"fr": "progress"
+	"category": "Polyfill",
+	"description": "The <progress> element displays the progress of a task.",
+	"tag": "progress",
+	"fr": "progress",
+	"css": "demo/progress",
+	"js": "demo/progress"
 }
 ---
-<style>
-progress {
-	width: 10em;
-}
-</style>
-
 <p>The HTML5 <code>progress</code> elements is used to provide a progress bar. This component adds support for this elements in browsers that do not already have native support.</p>
 
 <section>
 	<h2>Examples</h2>
-	<table>
+	<table class="table table-striped">
 		<thead>
 			<tr>
 				<th scope="col">Value</th>
@@ -38,6 +37,10 @@ progress {
 				<td>500</td>
 				<td>500</td>
 				<td><progress value="500" max="500"><span class="wb-inv">100%</span></progress></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="button" id="updateProgress" value="Update" /></td>
+				<td><progress id="updateTest" value="82" max="100"><span class="wb-inv">82%</span></progress></td>
 			</tr>
 		</tbody>
 	</table>

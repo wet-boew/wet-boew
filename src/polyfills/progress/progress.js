@@ -1,45 +1,56 @@
-/*
+/**
  * @title WET-BOEW Progress polyfill
  * @overview The <progress> element displays the progress of a task.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, vapour ) {
+(function( $, window, wb ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
-var selector = "progress",
-	$document = vapour.doc,
+var pluginName = "wb-progress",
+	selector = "progress",
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init." + pluginName,
+	$document = wb.doc,
 
-	/*
-	 * Init runs once per polyfill element on the page. There may be multiple elements. 
+	/**
+	 * Init runs once per polyfill element on the page. There may be multiple elements.
 	 * It will run more than once if you don't remove the selector from the timer.
 	 * @method init
 	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
 	 */
 	init = function( event ) {
+		var eventTarget = event.target;
 
-		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
+		// Filter out any events triggered by descendants
+		// and only initialize the element once
+		if ( event.currentTarget === eventTarget &&
+			eventTarget.className.indexOf( initedClass ) === -1 ) {
 
-		progress( event.target );
+			wb.remove( selector );
+			eventTarget.className += " " + initedClass;
+
+			progress( eventTarget );
+		}
 	},
 
 	progress = function( elm ) {
 		var $elm = $( elm ),
-			$progress = $elm.children( ".outer, .undef" ),
+			$progress = $elm.children( ".progress, .undef" ),
+			$span = $elm.children(".wb-inv"),
 			ariaValueMax = 1.0,
-			ariaValueNow;
+			ariaValueNow,
+			$progressbar;
 
 		$elm.off( "DOMAttrModified propertychange" );
-		elm.setAttribute( "role", "progressbar" );
 
 		if ( elm.getAttribute( "value" ) !== null ) {
 			if ( $progress.length === 0 ) {
-				$progress = $( "<div class='outer'><div class='inner'/></div>" );
+				$progress = $( "<div class='progress'><div class='progress-bar' role='progressbar' /></div>" );
 				$elm.append( $progress );
 			}
 
@@ -53,16 +64,23 @@ var selector = "progress",
 				ariaValueNow = ariaValueMax;
 			}
 
-			$progress.children( ".inner" ).css( "width", ( ( ariaValueNow / ariaValueMax ) * 100 ) + "%" );
+			$progressbar = $progress.children( ".progress-bar" );
 
-			elm.setAttribute( "aria-valuemin", 0 );
-			elm.setAttribute( "aria-valuemax", ariaValueMax );
-			elm.setAttribute( "aria-valuenow", ariaValueNow );
+			$progressbar.css( "width", ( ( ariaValueNow / ariaValueMax ) * 100 ) + "%" )
+				.attr({
+					"aria-valuemin": 0,
+					"aria-valuemax": ariaValueMax,
+					"aria-valuenow": ariaValueNow
+				});
+
+			$span.detach();
+			$span.appendTo( $progressbar );
+
 		} else if ( $progress.length === 0 ) {
 			$elm.append( "<div class='undef'/>" );
 		}
 
-		setTimeout(function () {
+		setTimeout( function() {
 			$elm.on( "DOMAttrModified propertychange", function() {
 				progress( this );
 			});
@@ -70,9 +88,9 @@ var selector = "progress",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb", selector, init );
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );

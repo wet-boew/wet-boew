@@ -1,4 +1,5 @@
 path = require("path")
+fs = require("fs")
 
 module.exports = (grunt) ->
 
@@ -18,9 +19,8 @@ module.exports = (grunt) ->
 			"test"
 			"build"
 			"assets-dist"
-			"assemble:demos"
-			"assemble:demos_min"
-			"htmlcompressor"
+			"demos"
+			"demos-dist"
 		]
 	)
 
@@ -29,7 +29,7 @@ module.exports = (grunt) ->
 		"Produces unminified files"
 		[
 			"build"
-			"assemble:demos"
+			"demos"
 		]
 	)
 
@@ -41,6 +41,7 @@ module.exports = (grunt) ->
 			"assets"
 			"js"
 			"css"
+			"imagemin"
 		]
 	)
 
@@ -49,8 +50,6 @@ module.exports = (grunt) ->
 		"Build and deploy artifacts to wet-boew-dist"
 		[
 			"dist"
-			"assemble:demos"
-			"assemble:demos_min"
 			"copy:deploy"
 			"gh-pages"
 		]
@@ -70,7 +69,6 @@ module.exports = (grunt) ->
 		"Full build for running tests on SauceLabs. Currently only for Travis builds"
 		[
 			"pre-mocha"
-			"connect"
 			"saucelabs-mocha"
 		]
 	)
@@ -83,22 +81,29 @@ module.exports = (grunt) ->
 		]
 	)
 
+	@registerTask(
+		"server"
+		"Run the Connect web server for local repo"
+		[
+			"connect:server:keepalive"
+		]
+	)
+
 	#Internal task groups
 	@registerTask(
 		"js"
 		"INTERNAL: Copies all third party JS to the dist folder"
 		[
-			"copy:jquery"
-			"copy:polyfills"
-			"copy:other"
-			"copy:deps"
-			"copy:jsAssets"
+			"copy:js"
 			"i18n"
 			"concat:core"
 			"concat:coreIE8"
-			"concat:plugins"
+			"concat:pluginsIE8"
 			"concat:i18n"
-			"uglify"
+			"uglify:polyfills"
+			"uglify:core"
+			"uglify:i18n"
+			"uglify:deps"
 		]
 	)
 
@@ -106,10 +111,14 @@ module.exports = (grunt) ->
 		"css"
 		"INTERNAL: Compiles Sass and copies third party CSS to the dist folder"
 		[
+			"sprites"
 			"sass"
 			"autoprefixer"
+			"csslint:unmin"
 			"concat:css"
-			"cssmin"
+			"concat:css_addBanners"
+			"cssmin:dist"
+			"copy:cssIE8"
 		]
 	)
 
@@ -117,9 +126,29 @@ module.exports = (grunt) ->
 		"assets-dist"
 		"INTERNAL: Process non-CSS/JS assets to dist"
 		[
-			"copy:jquery_min"
 			"copy:assets_min"
-			"copy:misc_min"
+		]
+	)
+
+	@registerTask(
+		"demos"
+		"INTERNAL: Create unminified demos"
+		[
+			"copy:demos"
+			"csslint:demos"
+			"assemble:demos"
+		]
+	)
+
+	@registerTask(
+		"demos-dist"
+		"INTERNAL: Create minified demos"
+		[
+			"copy:demos_min"
+			"cssmin:demos_min"
+			"uglify:demos"
+			"assemble:demos_min"
+			"htmlcompressor"
 		]
 	)
 
@@ -127,7 +156,6 @@ module.exports = (grunt) ->
 		"assets"
 		"INTERNAL: Process non-CSS/JS assets to dist"
 		[
-			"copy:misc"
 			"copy:themeAssets"
 			"copy:bootstrap"
 		]
@@ -138,6 +166,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Runs testing tasks except for SauceLabs testing"
 		[
 			"jshint"
+			"jscs"
 		]
 	)
 
@@ -146,8 +175,10 @@ module.exports = (grunt) ->
 		"INTERNAL: prepare for running Mocha unit tests"
 		[
 			"build"
-			"copy:tests"
-			"assemble:tests"
+			"assets-dist"
+			"demos"
+			"demos-dist"
+			"connect:test"
 		]
 	)
 
@@ -157,53 +188,62 @@ module.exports = (grunt) ->
 
 		# Metadata.
 		pkg: grunt.file.readJSON("package.json")
-		banner: "/*! Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
-				" - v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n*/\n"
+		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
+				" * v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n *\n */"
+		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
+		glyphiconsBanner: "/*!\n * GLYPHICONS Halflings for Twitter Bootstrap by GLYPHICONS.com | Licensed under http://www.apache.org/licenses/LICENSE-2.0\n */"
 
 		# Task configuration.
 		concat:
 			options:
-				banner: "<%= banner %>"
-
-			plugins:
-				options:
-					stripBanners: true
-				src: [
-					"src/core/helpers.js"
-					"dist/js/wet-boew.js"
-					"src/plugins/**/*.js"
-					"!src/plugins/**/test.js"
-				]
-				dest: "dist/unmin/js/wet-boew.js"
+				banner: "<%= banner %><%= modernizrBanner %>"
 
 			core:
 				options:
 					stripBanners: false
 				src: [
 					"lib/modernizr/modernizr-custom.js"
-					"src/core/vapour.js"
+					"src/core/wb.js"
+					"src/core/helpers.js"
+					"src/plugins/**/*.js"
+					"!src/plugins/**/test.js"
+					"!src/plugins/**/assets/*.js"
+					"!src/plugins/**/demo/*.js"
 				]
-				dest: "dist/unmin/js/vapour.js"
+				dest: "dist/unmin/js/wet-boew.js"
 
 			coreIE8:
 				options:
 					stripBanners: false
 				src: [
-					"lib/jquery-ie/jquery.js"
-					"lib/respond/respond.src.js"
-					"lib/excanvas/excanvas.js"
-					"lib/html5shiv/dist/html5shiv.js"
-					"lib/selectivizr/selectivizr.js"
-					"src/polyfills/localstorage/localstorage.js"
 					"lib/modernizr/modernizr-custom.js"
-					"src/core/vapour.js"
+					"lib/respond/src/respond.js"
+					"lib/excanvas/excanvas.js"
+					"lib/html5shiv/dist/html5shiv-printshiv.js"
+					"src/core/wb.js"
+					"!src/plugins/**/test.js"
+					"!src/plugins/**/assets/*.js"
+					"!src/plugins/**/demo/*.js"
 				]
-				dest: "dist/unmin/js/ie8-vapour.js"
+				dest: "dist/unmin/js/ie8-wet-boew.js"
+
+			pluginsIE8:
+				options:
+					banner: "<%= banner %>"
+					stripBanners: false
+				src: [
+					"src/core/helpers.js"
+					"src/plugins/**/*.js"
+					"!src/plugins/**/test.js"
+					"!src/plugins/**/assets/*.js"
+					"!src/plugins/**/demo/*.js"
+				]
+				dest: "dist/unmin/js/ie8-wet-boew2.js"
 
 			i18n:
 				options:
 					process: ( src, filepath ) ->
-						lang = filepath.replace "dist/js/unmin/i18n/", ""
+						lang = filepath.replace "dist/unmin/js/i18n/", ""
 						# jQuery validation uses an underscore for locals
 						lang = lang.replace "_", "-"
 						validationPath = "lib/jquery.validation/localization/"
@@ -217,7 +257,7 @@ module.exports = (grunt) ->
 						methods = if grunt.file.exists methodsPath then grunt.file.read( methodsPath ) else ""
 
 						if methods != "" or messages != ""
-							src += "\nvapour.doc.one( \"formLanguages.wb\", function() {\n"
+							src += "\nwb.doc.one( \"formLanguages.wb\", function() {\n"
 							src += messages
 							src += "\n"
 							src += methods
@@ -235,12 +275,24 @@ module.exports = (grunt) ->
 
 			css:
 				options:
-					banner: ""
+					banner: "@charset \"utf-8\";\n<%= banner %><%= glyphiconsBanner %>"
 				files:
-					"dist/unmin/css/base.css": [
+					"dist/unmin/css/wet-boew.css": [
 						"lib/bootstrap/dist/css/bootstrap.css"
-						"dist/unmin/css/base.css"
+						"dist/unmin/css/wet-boew.css"
 					]
+					"dist/unmin/css/ie8-wet-boew.css": [
+						"dist/unmin/css/wet-boew.css"
+						"dist/unmin/css/ie8-wet-boew.css"
+					]
+
+			css_addBanners:
+				options:
+					banner: "@charset \"utf-8\";\n<%= banner %>"
+				files:
+					"dist/unmin/css/ie8-wet-boew.css": "dist/unmin/css/ie8-wet-boew.css"
+					"dist/unmin/css/noscript.css": "dist/unmin/css/noscript.css"
+					"dist/unmin/css/theme.css": "dist/unmin/css/theme.css"
 
 		# Builds the demos
 		assemble:
@@ -258,133 +310,135 @@ module.exports = (grunt) ->
 
 			demos:
 				options:
+					environment:
+						root: "/v4.0-ci/unmin"
 					assets: "dist/unmin"
 				files: [
-					{
-						expand: true
-						cwd: "src"
-						src: "*.hbs"
-						dest: "dist/unmin"
-					}
-					{
 						expand: true
 						cwd: "src/plugins"
 						src: "**/*.hbs"
 						dest: "dist/unmin/demos"
-					}
-					{
+					,
 						expand: true
 						cwd: "src/polyfills"
 						src: "**/*.hbs"
 						dest: "dist/unmin/demos"
-					}
-					{
+					,
 						expand: true
 						cwd: "src/other"
 						src: "**/*.hbs"
 						dest: "dist/unmin/demos"
-					}
-					{
-						cwd: "site/pages/ajax"
-						src: "*.hbs"
-						dest: "dist/unmin/ajax"
+					,
+						cwd: "site/pages"
+						src: "**/*.hbs"
+						dest: "dist/unmin"
 						expand: true
-						flatten: true
-					}
 				]
 
 			demos_min:
 				options:
 					environment:
 						suffix: ".min"
+						root: "/v4.0-ci"
 					assets: "dist"
 				files: [
-					{
-						expand: true
-						cwd: "src"
-						src: "*.hbs"
-						dest: "dist"
-					}
-					{
 						expand: true
 						cwd: "src/plugins"
 						src: "**/*.hbs"
 						dest: "dist/demos"
-					}
-					{
+					,
 						expand: true
 						cwd: "src/polyfills"
 						src: "**/*.hbs"
 						dest: "dist/demos"
-					}
-					{
+					,
 						expand: true
 						cwd: "src/other"
 						src: "**/*.hbs"
 						dest: "dist/demos"
-					}
-					{
-						cwd: "site/pages/ajax"
-						src: "*.hbs"
-						dest: "dist/ajax"
+					,
+						cwd: "site/pages"
+						src: "**/*.hbs"
+						dest: "dist"
 						expand: true
-						flatten: true
-					}
 				]
 
-			tests:
-				options:
-					environment:
-						suffix: ".min"
-						test: true
-				expand: true
-				cwd: "src/plugins"
-				src: ["**/*.hbs"]
-				dest: "dist/demos"
+		#Generate the sprites include stylesheets
+		sprites:
+			share:
+				src: [
+					"src/plugins/share/sprites/*.png"
+					"!src/plugins/share/sprites/sprites_*.png"
+				]
+				css: "src/plugins/share/_sprites.scss"
+				map: "src/plugins/assets/sprites_share.png"
+				output: "scss"
 
 		# Compiles the Sass files
 		sass:
 			all:
-				expand: true
-				cwd: "src/base"
-				src: [
-					"**/*.scss"
-					"!**/_*.scss"
+				files: [
+					expand: true
+					cwd: "src/base"
+					src: [
+						"**/*.scss"
+						"!**/_*.scss"
+						"!**/demo/*.scss"
+					]
+					dest: "dist/unmin/css/"
+					ext: ".css"
+				,
+					expand: true
+					cwd: "theme/sass"
+					src: [
+						"**/*.scss"
+						"!**/_*.scss"
+					]
+					dest: "dist/unmin/css/"
+					ext: ".css"
+				,
+					expand: true
+					cwd: "src/polyfills"
+					src: [
+						"**/*.scss"
+						"!**/*-base.scss"
+						"!**/*-ie8.scss"
+						"!**/*-noscript.scss"
+						"!**/demo/*.scss"
+					]
+					dest: "dist/unmin/css/polyfills/"
+					ext: ".css"
+					flatten: true
+				,
+					expand: true
+					cwd: "src/other"
+					src: [
+						"**/*.scss"
+						"!**/*base.scss"
+						"!**/demo/*.scss"
+					]
+					dest: "dist/unmin/css/other/"
+					ext: ".css"
+					flatten: true
+				,
+					expand: true
+					cwd: "src/plugins"
+					src: "**/demo/*.scss"
+					dest: "dist/unmin/demos/"
+					ext: ".css"
+				,
+					expand: true
+					cwd: "src/polyfills"
+					src: "**/demo/*.scss"
+					dest: "dist/unmin/demos/"
+					ext: ".css"
+				,
+					expand: true
+					cwd: "src/other"
+					src: "**/demo/*.scss"
+					dest: "dist/unmin/demos/"
+					ext: ".css"
 				]
-				dest: "dist/unmin/css/"
-				ext: ".css"
-
-			theme:
-				expand: true
-				cwd: "theme/sass"
-				src: [
-					"**/*.scss"
-					"!**/_*.scss"
-				]
-				dest: "dist/unmin/css/"
-				ext: ".css"
-
-			polyfills:
-				expand: true
-				cwd: "src/polyfills"
-				src: [
-					"**/*.scss"
-					"!**/base.scss"
-				]
-				dest: "dist/unmin/css/polyfills/"
-				ext: ".css"
-				flatten: true
-
-			other:
-				expand: true
-				cwd: "other"
-				src: [
-					"**/*.scss"
-					"!**/base.scss"
-				]
-				dest: "dist/unmin/css/other/"
-				ext: ".css"
-				flatten: true
 
 		autoprefixer:
 			options:
@@ -399,69 +453,107 @@ module.exports = (grunt) ->
 				]
 
 			all:
-				cwd: "dist/unmin/css"
-				src: [
-					"**/*.css"
-					"!**/polyfills/**/*.css"
-					"!**/other/**/*.css"
-					"!**/*.min.css"
+				files: [
+					cwd: "dist/unmin/css"
+					src: [
+						"**/*.css"
+						"!**/polyfills/**/*.css"
+						"!**/other/**/*.css"
+						"!**/*.min.css"
+					]
+					dest: "dist/unmin/css"
+					expand: true
+					flatten: true
+				,
+					cwd: "dist/unmin/css/polyfills"
+					src: [
+						"**/*.css"
+						"!**/*.min.css"
+					]
+					dest: "dist/unmin/css/polyfills/"
+					expand: true
+				,
+					cwd: "dist/unmin/css/other"
+					src: [
+						"**/*.css"
+						"!**/*.min.css"
+					]
+					dest: "dist/unmin/css/other/"
+					expand: true
 				]
-				dest: "dist/unmin/css"
-				expand: true
-				flatten: true
 
-			polyfills:
-				cwd: "dist/unmin/css/polyfills"
-				src: [
-					"**/*.css"
-					"!**/*.min.css"
-				]
-				dest: "dist/unmin/css/polyfills/"
-				expand: true
+		csslint:
+			options:
+				"adjoining-classes": false
+				"box-model": false
+				"box-sizing": false
+				"compatible-vendor-prefixes": false
+				"duplicate-background-images": false
+				# Can be turned off after https://github.com/dimsemenov/Magnific-Popup/pull/303 lands
+				"empty-rules": false
+				"fallback-colors": false
+				"font-sizes": false
+				"gradients": false
+				"headings": false
+				"ids": false
+				"important": false
+				"outline-none": false
+				"overqualified-elements": false
+				"qualified-headings": false
+				"unique-headings": false
+				"universal-selector": false
+				"unqualified-attributes": false
 
-			other:
-				cwd: "dist/unmin/css/other"
-				src: [
-					"**/*.css"
-					"!**/*.min.css"
-				]
-				dest: "dist/unmin/css/other/"
-				expand: true
+			unmin:
+				options:
+					absoluteFilePathsForFormatters: true
+					formatters: [
+						id: "csslint-xml"
+						dest: "csslint-unmin.log"
+					]
+				src: "dist/unmin/css/*.css"
+
+			demos:
+				options:
+					absoluteFilePathsForFormatters: true
+					formatters: [
+						id: "csslint-xml"
+						dest: "csslint-demos.log"
+					]
+				src: "dist/unmin/demos/**/*.css"
 
 		# Minify
 		uglify:
 			polyfills:
 				options:
-					preserveComments: "some"
+					preserveComments: (uglify,comment) ->
+						return comment.value.match(/^!/i)
 				expand: true
 				cwd: "dist/unmin/js/polyfills/"
 				src: ["*.js"]
 				dest: "dist/js/polyfills/"
 				ext: ".min.js"
 
-			other:
+			demos:
 				options:
-					preserveComments: "some"
+					banner: "<%= banner %>"
+					preserveComments: (uglify,comment) ->
+						return comment.value.match(/^!/i)
 				expand: true
-				cwd: "dist/unmin/js/other/"
-				src: ["*.js"]
-				dest: "dist/js/other/"
-				ext: "<%= min_suffix %>.js"
+				cwd: "dist/unmin/demos/"
+				src: ["**/demo/*.js"]
+				dest: "dist/demos/"
+				ext: ".min.js"
 
 			core:
 				options:
-					preserveComments: "some"
+					preserveComments: (uglify,comment) ->
+						return comment.value.match(/^!/i)
 				cwd: "dist/unmin/js/"
-				src: [ "*vapour.js" ]
+				src: [ "*wet-boew*.js" ]
 				dest: "dist/js/"
 				ext: ".min.js"
 				expand: true
-
-			plugins:
-				options:
-					banner: "<%= banner %>"
-				files:
-					"dist/js/wet-boew.min.js": "dist/unmin/js/wet-boew.js"
 
 			i18n:
 				options:
@@ -484,15 +576,24 @@ module.exports = (grunt) ->
 
 		cssmin:
 			options:
-				banner: "@charset \"utf-8\";\n<%= banner %>"
+				banner: ""
 			dist:
 				expand: true
 				cwd: "dist/unmin/css"
 				src: [
 					"**/*.css"
-					"!**/*.min.css"
+					"!**/ie8*.css"
 				]
 				dest: "dist/css"
+				ext: ".min.css"
+
+			demos_min:
+				expand: true
+				cwd: "dist/unmin/demos/"
+				src: [
+					"**/demo/*.css"
+				]
+				dest: "dist/demos/"
 				ext: ".min.css"
 
 		htmlcompressor:
@@ -518,6 +619,7 @@ module.exports = (grunt) ->
 				css3: true
 				input: true
 				inputtypes: true
+				svg: true
 				html5: false
 				cssclasses: true
 				csstransitions: true
@@ -533,99 +635,95 @@ module.exports = (grunt) ->
 				hasevents: true
 				prefixes: true
 				domprefixes: true
-			tests: ["elem_details"]
+			tests: [
+				"elem_details"
+				"elem_progress_meter"
+				"mathml"
+			]
 			parseFiles: false
 			matchCommunityTests: false
 
 		copy:
-			jquery:
-				cwd: "lib/jquery"
-				src: "jquery.js"
-				dest: "dist/unmin/js"
-				expand: true
-
 			bootstrap:
-				cwd: "lib/bootstrap/fonts"
+				cwd: "lib/bootstrap/dist/fonts"
 				src: "*.*"
 				dest: "dist/unmin/fonts"
 				expand: true
 				flatten: true
 
-			misc:
-				cwd: "src/plugins"
-				src: [
-					"**/*.*"
-					"!**/*.js"
-					"!**/*.scss"
-					"!**/*.hbs"
-					"!**/assets/*"
+			js:
+				files: [
+					cwd: "src/polyfills"
+					src: "**/*.js"
+					dest: "dist/unmin/js/polyfills"
+					expand: true
+					flatten: true
+				,
+					cwd: "src/other"
+					src: "**/*.js"
+					dest: "dist/unmin/js/other"
+					expand: true
+					flatten: true
+				,
+					cwd: "lib"
+					src: [
+						"jquery-pjax/jquery.pjax.js"
+						"jquery.validation/jquery.validate.js"
+						"jquery.validation/additional-methods.js"
+						"magnific-popup/dist/jquery.magnific-popup.js"
+						"google-code-prettify/src/*.js"
+						"DataTables/media/js/jquery.dataTables.js"
+					]
+					dest: "dist/unmin/js/deps"
+					expand: true
+					flatten: true
+				,
+					cwd: "src"
+					src: [
+						"plugins/**/assets/*"
+						"polyfills/**/assets/*"
+						"other/**/assets/*"
+					]
+					dest: "dist/unmin/assets"
+					expand: true
+					flatten: true
 				]
-				dest: "dist/unmin/demos"
-				expand: true
 
-			tests:
-				cwd: "src/plugins"
-				src: [
-					"**/test.js"
+			demos:
+				files: [
+					cwd: "src/plugins"
+					src: [
+						"**/*.{jpg,html,xml}"
+						"**/demo/*.*"
+						"**/ajax/*.*"
+						"**/img/*.*"
+						"!**/assets/*.*"
+						"!**/*.scss"
+					]
+					dest: "dist/unmin/demos/"
+					expand: true
+				,
+					cwd: "src/polyfills"
+					src: "**/demo/*.js"
+					dest: "dist/unmin/demos/"
+					expand: true
+				,
+					cwd: "src/other"
+					src: "**/demo/*.js"
+					dest: "dist/unmin/demos/"
+					expand: true
 				]
-				dest: "dist/demos"
-				expand: true
 
-			polyfills:
-				cwd: "src/polyfills"
-				src: "**/*.js"
-				dest: "dist/unmin/js/polyfills"
+			cssIE8:
+				cwd: "dist/unmin/css/"
+				src: "ie8-wet-boew.css"
+				dest: "dist/css"
 				expand: true
-				flatten: true
-
-			other:
-				cwd: "src/other"
-				src: "**/*.js"
-				dest: "dist/unmin/js/other"
-				expand: true
-				flatten: true
-
-			deps:
-				cwd: "lib"
-				src: [
-					"jquery-pjax/jquery.pjax.js"
-					"flot/jquery.flot.js"
-					"flot/jquery.flot.pie.js"
-					"flot/jquery.flot.canvas.js"
-					"jquery.validation/jquery.validate.js"
-					"jquery.validation/additional-methods.js"
-					"magnific-popup/dist/jquery.magnific-popup.js"
-					"google-code-prettify/src/*.js"
-					"DataTables/media/js/jquery.dataTables.js"
-				]
-				dest: "dist/unmin/js/deps"
-				expand: true
-				flatten: true
-
-			jsAssets:
-				cwd: "src"
-				src: [
-					"plugins/**/assets/*"
-					"polyfills/**/assets/*"
-					"other/**/assets/*"
-				]
-				dest: "dist/unmin/js/assets"
-				expand: true
-				flatten: true
 
 			themeAssets:
 				cwd: "theme/"
-				src: "**/assets/*.*"
+				src: "assets/*.*"
 				dest: "dist/unmin"
-				expand: true
-
-			jquery_min:
-				cwd: "lib/jquery"
-				src: [
-					"jquery.min.js"
-					"jquery.min.map"
-				]
-				dest: "dist/js"
 				expand: true
 
 			assets_min:
@@ -638,16 +736,19 @@ module.exports = (grunt) ->
 				dest: "dist"
 				expand: true
 
-			misc_min:
-				cwd: "src/plugins"
+			demos_min:
+				cwd: "dist/unmin/demos"
 				src: [
-					"**/*.*"
+					"**/*.{jpg,html,xml}"
+					"**/demo/*.*"
+					"**/ajax/*.*"
+					"**/img/*.*"
+					# CSS is copied by the cssmin:demos_min task
+					"!**/*.css"
+					# CSS is copied by the uglify:demos task
 					"!**/*.js"
-					"!**/*.scss"
-					"!**/*.hbs"
-					"!**/assets/*"
 				]
-				dest: "dist/demos"
+				dest: "dist/demos/"
 				expand: true
 
 			deploy:
@@ -658,18 +759,38 @@ module.exports = (grunt) ->
 				dest: "dist"
 				expand: true
 
+		imagemin:
+			all:
+				cwd: "dist/unmin"
+				src: "**/*.png"
+				dest: "dist/unmin"
+				expand: true
+
 		clean:
-			dist: "dist"
-			tests: ["dist/demos/**/test.js"]
+			dist: ["dist", "src/base/partials/*sprites*"]
 
 		watch:
 			lib_test:
 				files: "<%= jshint.lib_test.src %>"
-				tasks: ["jshint:lib_test", "qunit"]
+				tasks: "jshint:lib_test"
 
 			source:
-				files: "<%= jshint.lib_test.src %>"
-				tasks: ["dist"]
+				files: [
+					"src/**/*.*"
+					"!src/**/*sprites*"
+				]
+				tasks: "dist"
+				options:
+					interval: 5007
+					livereload: true
+
+			demos:
+				files: [
+					"**/*.hbs"
+				]
+				tasks: [
+					"assemble"
+				]
 				options:
 					interval: 5007
 					livereload: true
@@ -685,12 +806,92 @@ module.exports = (grunt) ->
 					"test/**/*.js"
 					"tasks/*.js"
 				]
+		jscs:
+			all:
+				src: [
+					"src/**/*.js"
+					"theme/**/*.js"
+					"test/**/*.js"
+					"tasks/*.js"
+				]
+
 
 		connect:
+			options:
+				port: 8000
+
 			server:
 				options:
-					port: 8000
+					base: "dist"
+					middleware: (connect, options) ->
+						middlewares = []
+						middlewares.push(connect.compress(
+							filter: (req, res) ->
+								/json|text|javascript|dart|image\/svg\+xml|application\/x-font-ttf|application\/vnd\.ms-opentype|application\/vnd\.ms-fontobject/.test(res.getHeader('Content-Type'))
+						))
+						middlewares.push(connect.static(options.base));
+						middlewares
+
+			test:
+				options:
 					base: "."
+					middleware: (connect, options) ->
+						middlewares = []
+
+						mochascript = (req, res, next) ->
+							url = req._parsedUrl.pathname
+
+							# Skip to the static middleware if it's an index file or not HTML
+							if /index|mobmenu[-]?\w*\.html/.test( url ) or not /\.html/.test( url )
+								return next()
+
+							dir = url.substring( 0, url.lastIndexOf( "/" ) + 1 )
+
+							# Test to see if the plugin or polyfill has a test file
+							plugins = dir.replace("/dist/demos/", "src/plugins/") + "test.js"
+
+							polyfills = dir.replace("/dist/demos/", "src/polyfills/") + "test.js"
+
+							testFile = if fs.existsSync( plugins ) then plugins else if fs.existsSync( polyfills ) then polyfills else ""
+
+							if testFile != ""
+
+								result = fs.readFileSync( __dirname + url, { encoding: "utf-8" } )
+
+								# Append mocha content to the response above the footer
+								result = result.replace( "</main>", "<div class='row' id='mocha'></div></main>" )
+
+								mochaPath = path.dirname( require.resolve( "mocha" ) )
+
+								testHtml = "<link src='/" + path.relative(__dirname, mochaPath) + "/mocha.css' />"
+								testHtml += "<script src='/" + path.relative(__dirname, mochaPath) + "/mocha.js'></script>"
+
+								# Append ExpectJS script
+								testHtml += "<script src='/" + path.relative(__dirname, require.resolve( "expect.js" ) ) + "'></script>"
+
+								# Append Sinon scripts
+								testHtml += "<script src='/" + path.dirname( path.relative(__dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon.js'></script>"
+								testHtml += "<!--[if lt IE 9]><script src='/" + path.dirname( path.relative(__dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon-ie.js'></script><![endif]-->"
+
+								testHtml += "<script>mocha.setup( 'bdd' ); wb.doc.on( 'ready', function() { mocha.run(); } );</script>"
+
+								testHtml += "<script src='/" + testFile + "'></script>"
+
+								testHtml += "</body>"
+
+								result = result.replace( "</body>", testHtml )
+
+								res.end( result )
+							else
+								# No test files found, skipping
+								return next()
+
+						middlewares.push mochascript
+
+						# Serve static files.
+						middlewares.push connect.static( options.base )
+
+						middlewares
 
 		i18n:
 			options:
@@ -700,20 +901,40 @@ module.exports = (grunt) ->
 
 		mocha:
 			all:
-				grunt.file.expand
-					filter: (src) ->
-						grunt.file.exists src.substring(0, src.lastIndexOf(path.sep) + 1) + "test.js"
-				, "dist/demos/**/*.html"
+				options:
+					reporter: "Spec"
+					urls: grunt.file.expand(
+						filter: ( src ) ->
+							src = path.dirname( src ).replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
+							return fs.existsSync( src + "/test.js" )
+						"src/plugins/**/*.hbs"
+						"src/polyfills/**/*.hbs"
+					).map( ( src ) ->
+						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
+						src = src.replace( "src/", "dist/")
+						src = src.replace( "plugins/", "demos/" )
+						src = src.replace( "polyfills/", "demos/" )
+						src = src.replace( ".hbs", ".html" )
+						return "http://localhost:8000/" + src
+					)
 
 		"saucelabs-mocha":
 			all:
 				options:
-					urls:
-						grunt.file.expandMapping("dist/demos/**/*.html", "http://127.0.0.1:8000/",
-							filter: (src) ->
-								grunt.file.exists src.substring(0, src.lastIndexOf(path.sep) + 1) + "test.js"
-						).map (paths) ->
-							paths.dest
+					urls: grunt.file.expand(
+						filter: ( src ) ->
+							src = path.dirname( src ).replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
+							return fs.existsSync( src + "/test.js" )
+						"src/plugins/**/*.hbs"
+						"src/polyfills/**/*.hbs"
+					).map( ( src ) ->
+						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
+						src = src.replace( "src/", "dist/")
+						src = src.replace( "plugins/", "demos/" )
+						src = src.replace( "polyfills/", "demos/" )
+						src = src.replace( ".hbs", ".html" )
+						return "http://localhost:8000/" + src
+					)
 					tunnelTimeout: 5
 					build: process.env.TRAVIS_BUILD_NUMBER
 					concurrency: 3
@@ -744,12 +965,16 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-contrib-concat"
 	@loadNpmTasks "grunt-contrib-connect"
 	@loadNpmTasks "grunt-contrib-copy"
+	@loadNpmTasks "grunt-contrib-csslint"
 	@loadNpmTasks "grunt-contrib-cssmin"
+	@loadNpmTasks "grunt-contrib-imagemin"
 	@loadNpmTasks "grunt-contrib-jshint"
 	@loadNpmTasks "grunt-contrib-uglify"
 	@loadNpmTasks "grunt-contrib-watch"
 	@loadNpmTasks "grunt-gh-pages"
 	@loadNpmTasks "grunt-htmlcompressor"
+	@loadNpmTasks "grunt-imagine"
+	@loadNpmTasks "grunt-jscs-checker"
 	@loadNpmTasks "grunt-mocha"
 	@loadNpmTasks "grunt-modernizr"
 	@loadNpmTasks "grunt-sass"

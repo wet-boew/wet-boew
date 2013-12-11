@@ -2,22 +2,13 @@
 {
 	"title": "Data Ajax",
 	"language": "en",
-	"fr": "data-ajax"
+	"category": "Plugin",
+	"description": "A basic AjaxLoader wrapper that inserts AJAXed-in content.",
+	"tag": "data-ajax",
+	"fr": "data-ajax",
+	"css": "demo/data-ajax"
 }
 ---
-<style>
-.original {
-	background: #ccc;
-}
-.ajaxed-in {
-	background: #fff;
-}
-.original, .ajaxed-in {
-	padding: 5px;
-	border: 1px solid #000;
-}
-</style>
-
 <p>A basic AjaxLoader wrapper that inserts AJAXed in content.</p>
 
 <section class="wb-prettify all-pre">
@@ -25,22 +16,22 @@
 	<section>
 		<h3>Example</h3>
 		<section data-ajax-after="ajax/data-ajax-extra-en.html" class="original">
-			<h4 id="anchor1">Hello World</h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+			<h4>Hello World</h4>
+			<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
 		</section>
 		<section data-ajax-after="ajax/data-ajax-extra-2-en.html" class="original">
-			<h4 id="anchor1">Hello World - Part 2</h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+			<h4>Hello World - Part 2</h4>
+			<p>Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
 		</section>
 		<details>
 			<summary>View code</summary>
 			<pre><code>&lt;section data-ajax-after="ajax/data-ajax-extra-en.html" class="original"&gt;
-	&lt;h4 id="anchor1"&gt;Hello World&lt;/h4&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+	&lt;h4&gt;Hello World&lt;/h4&gt;
+	&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section data-ajax-after="ajax/data-ajax-extra-2-en.html" class="original"&gt;
-	&lt;h4 id="anchor1"&gt;Hello World - Part 2&lt;/h4&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+	&lt;h4&gt;Hello World - Part 2&lt;/h4&gt;
+	&lt;p&gt;Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.&lt;/p&gt;
 &lt;/section&gt;</code></pre>
 		</details>
 	</section>
@@ -51,18 +42,18 @@
 	<section>
 		<h3>Example</h3>
 		<div data-ajax-append="ajax/data-ajax-extra-en.html" class="original">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+			<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
 		</div>
 		<div data-ajax-append="ajax/data-ajax-extra-2-en.html" class="original">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+			<p>Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
 		</div>
 		<details>
 			<summary>View code</summary>
 			<pre><code>&lt;div data-ajax-append="ajax/data-ajax-extra-en.html" class="original"&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+	&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div data-ajax-append="ajax/data-ajax-extra-2-en.html" class="original"&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+	&lt;p&gt;Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 		</details>
 	</section>
@@ -73,22 +64,22 @@
 	<section>
 		<h3>Example</h3>
 		<section data-ajax-before="ajax/data-ajax-extra-en.html" class="original">
-			<h4 id="anchor1">Hello World</h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+			<h4>Hello World</h4>
+			<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
 		</section>
 		<section data-ajax-before="ajax/data-ajax-extra-2-en.html" class="original">
-			<h4 id="anchor1">Hello World - Part 2</h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+			<h4>Hello World - Part 2</h4>
+			<p>Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
 		</section>
 		<details>
 			<summary>View code</summary>
 			<pre><code>&lt;section data-ajax-before="ajax/data-ajax-extra-en.html" class="original"&gt;
-	&lt;h4 id="anchor1"&gt;Hello World&lt;/h4&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+	&lt;h4&gt;Hello World&lt;/h4&gt;
+	&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section data-ajax-before="ajax/data-ajax-extra-2-en.html" class="original"&gt;
-	&lt;h4 id="anchor1"&gt;Hello World - Part 2&lt;/h4&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+	&lt;h4&gt;Hello World - Part 2&lt;/h4&gt;
+	&lt;p&gt;Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.&lt;/p&gt;
 &lt;/section&gt;</code></pre>
 		</details>
 	</section>
@@ -99,18 +90,18 @@
 	<section>
 		<h3>Example</h3>
 		<div data-ajax-prepend="ajax/data-ajax-extra-en.html" class="original">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+			<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
 		</div>
 		<div data-ajax-prepend="ajax/data-ajax-extra-2-en.html" class="original">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+			<p>Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
 		</div>
 		<details>
 			<summary>View code</summary>
 			<pre><code>&lt;div data-ajax-prepend="ajax/data-ajax-extra-en.html" class="original"&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+	&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div data-ajax-prepend="ajax/data-ajax-extra-2-en.html" class="original"&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+	&lt;p&gt;Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 		</details>
 	</section>
@@ -122,28 +113,28 @@
 		<h3>Example</h3>
 		<div data-ajax-replace="ajax/data-ajax-extra-en.html" class="original">
 			<section>
-				<h4 id="anchor1">Hello World</h4>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+				<h4>Hello World</h4>
+				<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
 			</section>
 		</div>
 		<div data-ajax-replace="ajax/data-ajax-extra-2-en.html" class="original">
 			<section>
-				<h4 id="anchor1">Hello World - Part 2</h4>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+				<h4>Hello World - Part 2</h4>
+				<p>Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
 			</section>
 		</div>
 		<details>
 			<summary>View code</summary>
 			<pre><code>&lt;div data-ajax-replace="ajax/data-ajax-extra-en.html" class="original"&gt;
 	&lt;section&gt;
-		&lt;h4 id="anchor1"&gt;Hello World&lt;/h4&gt;
-		&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+		&lt;h4&gt;Hello World&lt;/h4&gt;
+		&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
 	&lt;/section&gt;
 &lt;/div&gt;
 &lt;div data-ajax-replace="ajax/data-ajax-extra-2-en.html" class="original"&gt;
 	&lt;section&gt;
-		&lt;h4 id="anchor1"&gt;Hello World - Part 2&lt;/h4&gt;
-		&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+		&lt;h4&gt;Hello World - Part 2&lt;/h4&gt;
+		&lt;p&gt;Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.&lt;/p&gt;
 	&lt;/section&gt;
 &lt;/div&gt;</code></pre>
 		</details>

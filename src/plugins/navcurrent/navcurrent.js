@@ -1,31 +1,32 @@
-/*
+/**
  * @title WET-BOEW NavCurrent
- * @overview Identify URL in a navigation system that matches current page URL or a URL in the breadcrumb trail. Call by applying .trigger( "navcurrent.wb", breadcrumb ) where the breadcrumb parameter is an optional object (DOM or jQuery)
+ * @overview Identify URL in a navigation system that matches current page URL or a URL in the breadcrumb trail. Call by applying .trigger( "navcurr.wb", breadcrumb ) where the breadcrumb parameter is an optional object (DOM or jQuery)
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, vapour ) {
+(function( $, window, wb ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var $document = vapour.doc,
+var $document = wb.doc,
 	breadcrumbLinksArray, breadcrumbLinksUrlArray,
-	navClass = "wb-navcurrent",
+	navClass = "wb-navcurr",
 
-	/*
+	/**
 	 * We start the logic for what the plugin truly does
-	 * For demonstration purposes lets display some text with an alert 
+	 * For demonstration purposes lets display some text with an alert
 	 * @method otherEvent
 	 * @param {jQuery Event} event The event that triggered this method call
 	 * @param {jQuery DOM element | DOM element} breadcrumb Optional breadcrumb element
 	 */
 	navCurrent = function( event, breadcrumb ) {
-		var menuLinks = event.target.getElementsByTagName( "a" ),
+		var menu = event.target,
+			menuLinks = menu.getElementsByTagName( "a" ),
 			menuLinksArray = [],
 			menuLinksUrlArray = [],
 			windowLocation = window.location,
@@ -33,15 +34,16 @@ var $document = vapour.doc,
 			pageUrlQuery = windowLocation.search,
 			match = false,
 			len = menuLinks.length,
-			i, j, link, linkHref, linkUrl, linkUrlLen, linkQuery, linkQueryLen,
-			_breadcrumbLinks, _breadcrumbLinksArray, _breadcrumbLinksUrlArray;
+			i, j, link, linkHref, linkUrl, linkQuery, linkQueryLen,
+			localBreadcrumbLinks, localBreadcrumbLinksArray, localBreadcrumbLinksUrlArray,
+			localBreadcrumbQuery, localBreadcrumbLinkUrl;
 
 		// Try to find a match with the page Url and cache link + Url for later if no match found
 		for ( i = 0; i !== len; i += 1 ) {
 			link = menuLinks[ i ];
 			linkHref = link.getAttribute( "href" );
 			if ( linkHref !== null ) {
-				if ( linkHref.length !== 0 && linkHref.slice( 0, 1 ) !== "#" ) {
+				if ( linkHref.length !== 0 && linkHref.charAt( 0 ) !== "#" ) {
 					linkUrl = link.hostname + link.pathname.replace( /^([^\/])/, "/$1" );
 					linkQuery = link.search;
 					linkQueryLen = linkQuery.length;
@@ -57,42 +59,47 @@ var $document = vapour.doc,
 
 		// No page Url match found, try a breadcrumb link match instead
 		if ( !match && breadcrumb ) {
+
 			// Check to see if the data has been cached already
-			if ( !_breadcrumbLinksArray ) {
+			if ( !localBreadcrumbLinksArray ) {
+
 				// Pre-process the breadcrumb links
-				_breadcrumbLinksArray = [];
-				_breadcrumbLinksUrlArray = [];
-				_breadcrumbLinks = ( !breadcrumb.jquery ? breadcrumb[ 0 ] : breadcrumb ).getElementsByTagName( "a" );
-				len = _breadcrumbLinks.length;
+				localBreadcrumbLinksArray = [];
+				localBreadcrumbLinksUrlArray = [];
+				localBreadcrumbLinks = ( breadcrumb.jquery ? breadcrumb[ 0 ] : breadcrumb ).getElementsByTagName( "a" );
+				len = localBreadcrumbLinks.length;
 				for ( i = 0; i !== len; i += 1) {
-					link = _breadcrumbLinks[ i ];
+					link = localBreadcrumbLinks[ i ];
 					linkHref = link.getAttribute( "href" );
-					if ( linkHref.length !== 0 && linkHref.slice( 0, 1 ) !== "#" ) {
-						_breadcrumbLinksArray.push( link );
-						_breadcrumbLinksUrlArray.push( link.hostname + link.pathname.replace( /^([^\/])/, "/$1" ) );
+					if ( linkHref.length !== 0 && linkHref.charAt( 0 ) !== "#" ) {
+						localBreadcrumbLinksArray.push( link );
+						localBreadcrumbLinksUrlArray.push( link.hostname + link.pathname.replace( /^([^\/])/, "/$1" ) );
 					}
 				}
-				
+
 				// Cache the data in case of more than one execution (e.g., site menu + secondary navigation)
-				breadcrumbLinksArray = _breadcrumbLinksArray;
-				breadcrumbLinksUrlArray = _breadcrumbLinksUrlArray;
+				breadcrumbLinksArray = localBreadcrumbLinksArray;
+				breadcrumbLinksUrlArray = localBreadcrumbLinksUrlArray;
 			} else {
+
 				// Retrieve the cached data
-				_breadcrumbLinksArray = breadcrumbLinksArray;
-				_breadcrumbLinksUrlArray = breadcrumbLinksUrlArray;
+				localBreadcrumbLinksArray = breadcrumbLinksArray;
+				localBreadcrumbLinksUrlArray = breadcrumbLinksUrlArray;
 			}
-		
+
 			// Try to match each breadcrumb link
 			len = menuLinksArray.length;
-			for ( i = 0; i !== len; i += 1 ) {
-				link = menuLinksArray[ i ];
-				linkUrl = menuLinksUrlArray[ i ];
-				linkUrlLen = linkUrl.length;
-				linkQuery = link.search;
-				linkQueryLen = linkQuery.length;
-				j = _breadcrumbLinksArray.length - 1;
-				for ( j = _breadcrumbLinksArray.length - 1; j !== -1; j -= 1 ) {
-					if ( _breadcrumbLinksUrlArray[ j ].slice( -linkUrlLen ) === linkUrl && ( linkQueryLen === 0 || _breadcrumbLinksArray[ j ].search.slice( -linkQueryLen ) === linkQuery ) ) {
+			for ( j = localBreadcrumbLinksArray.length - 1; j !== -1; j -= 1 ) {
+				localBreadcrumbLinkUrl = localBreadcrumbLinksUrlArray[ j ];
+				localBreadcrumbQuery = localBreadcrumbLinksArray[ j ].search;
+
+				for ( i = 0; i !== len; i += 1 ) {
+					link = menuLinksArray[ i ];
+					linkUrl = menuLinksUrlArray[ i ];
+					linkQuery = link.search;
+					linkQueryLen = linkQuery.length;
+
+					if ( localBreadcrumbLinkUrl.slice( -linkUrl.length ) === linkUrl && ( linkQueryLen === 0 || localBreadcrumbQuery.slice( -linkQueryLen ) === linkQuery ) ) {
 						match = true;
 						break;
 					}
@@ -105,10 +112,13 @@ var $document = vapour.doc,
 
 		if ( match ) {
 			link.className += " " + navClass;
+			if ( menu.className.indexOf( "wb-menu" ) !== -1 && link.className.indexOf( "item" ) === -1 ) {
+				link.parentNode.parentNode.parentNode.getElementsByTagName( "a" )[ 0 ].className += " " + navClass;
+			}
 		}
 	};
 
 // Bind the navcurrent event of the plugin
-$document.on( "navcurrent.wb", navCurrent );
+$document.on( "navcurr.wb", navCurrent );
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );

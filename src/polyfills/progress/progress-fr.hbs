@@ -1,21 +1,20 @@
 ---
 {
-	"title": "Correctif «&#160;progress#160;» (barred de progression)",
+	"title": "Correctif « progress » (barred de progression)",
 	"language": "fr",
-	"en": "progress"
+	"category": "Correctif",
+	"description": "Émule l’élément « progress » pour les navigateurs qui ne le supportent pas.",
+	"tag": "progress",
+	"en": "progress",
+	"css": "demo/progress",
+	"js": "demo/progress"
 }
 ---
-<style>
-progress {
-	width: 10em;
-}
-</style>
-
 <p>L'élément HTML5 «&#160;<code lang="en">progress</code>&#160;» est utilisé pour fournir une barre de progression. Ce composant ajoute le soutien pour cet élément dans les navigateurs qui n'ont pas déjà la prise en charge native.</p>
 
 <section>
 	<h2>Exemples</h2>
-	<table>
+	<table class="table table-striped">
 		<thead>
 			<tr>
 				<th scope="col">Valeur</th>
@@ -38,6 +37,10 @@ progress {
 				<td>500</td>
 				<td>500</td>
 				<td><progress value="500" max="500"><span class="wb-inv">100 %</span></progress></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="button" id="updateProgress" value="Réactualiser" /></td>
+				<td><progress id="updateTest" value="82" max="100"><span class="wb-inv">82%</span></progress></td>
 			</tr>
 		</tbody>
 	</table>

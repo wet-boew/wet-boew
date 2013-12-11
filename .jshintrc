@@ -14,10 +14,11 @@
 	"unused": true,
 
 	"globals": {
-		"vapour": true,
+		"wb": true,
 		"Modernizr": true,
 		"yepnope": true
 	},
 	"jquery": true,
-	"browser": true
+	"browser": true,
+	"es3": true
 }

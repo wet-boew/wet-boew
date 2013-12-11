@@ -1,0 +1,134 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+
+/*
+ *	Overlay base
+ */
+.wb-overlay {
+	background-color: #fff;
+	display: none;
+	border-radius: 0;
+	border: none;
+	background-clip: border-box;
+	z-index: 1050;
+	&.wb-inview {
+		display: block;
+	}
+	&.open {
+		position: fixed;
+		display: inline-block;
+	}
+}
+
+%overlay-panel {
+	top: 0;
+	height: 100%;
+	max-width: 90%;
+}
+
+%overlay-bar {
+	max-height: 90%;
+	min-width: 100%;
+	left: 0;
+	border-bottom: none;
+}
+
+%overlay-popup {
+	max-height: 90%;
+	max-width: 90%;
+}
+
+/*
+ *	Overlay styles
+ */
+.wb-panel-l {
+	@extend %overlay-panel;
+	left: 0;
+}
+
+.wb-panel-r {
+	@extend %overlay-panel;
+	right: 0;
+}
+
+.wb-bar-t {
+	@extend %overlay-bar;
+	top: 0;
+}
+
+.wb-bar-b {
+	@extend %overlay-bar;
+	bottom: 0;
+}
+
+.wb-popup-mid {
+	@extend %overlay-popup;
+	border-radius: 6px;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.wb-popup-full {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+/*
+ *	Overlay parts
+ */
+.overlay-def {
+	overflow-y: auto;
+	header {
+		background-color: #000;
+		color: #fff;
+		display: block;
+		padding: 0 44px 0 1em;
+		h1, h2, h3, h4 {
+			font-size: 1.15em;
+			padding: 10px 0;
+		}
+	}
+	&.wb-bar-t, &.wb-bar-b {
+		background-color: #000;
+	}
+	.mfp-close {
+		color: #fff;
+	}
+}
+
+.hidden-hd {
+	.overlay-close {
+		background-color: #000;
+		border-radius: 999px;
+		height: 1em;
+		width: 1em;
+		line-height: 1em;
+	}
+}
+
+[dir=rtl] {
+	.mfp-close {
+		right: auto;
+		left: 0;
+	}
+	.wb-panel-l {
+		left: auto;
+		right: 0;
+	}
+	.wb-panel-r {
+		right: auto;
+		left: 0;
+	}
+	.overlay-def {
+		header {
+			padding: 0 1em 0 44px;
+		}
+	}
+}

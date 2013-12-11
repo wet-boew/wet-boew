@@ -1,5 +1,10 @@
-{{#startsWith "en" language }}
-{{>sitemenu-en}}
- {{else}}
- {{>sitemenu-fr}}
-{{/startsWith}}
+<div class="container visible-md visible-lg nvbar">
+	<h2>{{#i18n "tmpl-site-menu"}}{{/i18n}}</h2>
+    <div class="row">
+        <ul class="list-inline menu">
+			<li><a href="{{assets}}/index-{{language}}.html">{{#i18n "tmpl-wet-project"}}{{/i18n}}</a></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/wiki/{{#i18n "tmpl-implement-wet-wiki"}}{{/i18n}}">{{#i18n "tmpl-implement-wet"}}{{/i18n}}</a></li>
+			<li><a href="https://github.com/wet-boew/wet-boew/wiki/{{#i18n "tmpl-contribute-wet-wiki"}}{{/i18n}}">{{#i18n "tmpl-contribute-wet"}}{{/i18n}}</a></li>
+        </ul>
+    </div>
+</div>

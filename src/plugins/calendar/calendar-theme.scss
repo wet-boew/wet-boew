@@ -26,29 +26,15 @@
 		font-weight: 700;
 	}
 	.cal-nxtmnth, .cal-prvmnth {
-		&:link, &:visited {
-			border: 1px solid #333;
-		}
-		&:hover, &:focus {
-			@extend %cal-color-fff;
-			border: 1px solid #FFF;
+		&.active {
+			color: #ccc;
+			&:hover, &:focus {
+				@extend %cal-color-fff;
+			}
 		}
 	}
 	.cal-goto-lnk {
-		a {
-			&:link, &:visited {
-				@extend %cal-color-fff-important;
-			}
-			&:focus, &:hover {
-				color: #36C !important;
-				background-color: #FFF;
-			}
-		}
-	}
-	.cal-goto {
-		legend {
-			@extend %cal-color-fff;
-		}
+		@extend %cal-color-fff-important;
 	}
 }
 

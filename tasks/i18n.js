@@ -45,28 +45,28 @@ module.exports = function(grunt) {
 						// Copy and load the files on the line with the ISO 639-1 code
 						if (index === 1) {
 							grunt.log.write("Creating i18n dictionary files\n");
-							for (i = 2; i < len; i++) {
+							for (i = 2; i < len; i += 1) {
 								var filename = options.dest + row[i] + ".js";
-								wetLanguages[i-2] = row[i];
+								wetLanguages[i - 2] = row[i];
 								langFiles[i] = basei18n;
 								outputNames[i] = filename;
 							}
 						}
 						//Replace the language strings with a fallback to the English if the token is missing
-						for (i = 2; i < len; i++) {
+						for (i = 2; i < len; i += 1) {
 							var match = new RegExp("@" + row[1] + "@", "g");
 							var replacement = row[i] === "" ? row[2] : row[i];
 							//TODO: Normalize quoting once translations can be changed in terms of escape character
 							replacement = replacement.replace(/"/g, "\\\"");
 							replacement = replacement.replace(/\\'/g, "'");
-							langFiles[i] = langFiles[i].replace(match , replacement);
+							langFiles[i] = langFiles[i].replace(match, replacement);
 						}
 					}
 				}
 			).on(
 				"end",
 				function() {
-					for (var i = 2, len = langFiles.length; i < len; i++) {
+					for (var i = 2, len = langFiles.length; i < len; i += 1) {
 						grunt.file.write(outputNames[i], langFiles[i]);
 					}
 

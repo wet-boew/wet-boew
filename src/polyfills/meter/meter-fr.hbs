@@ -1,8 +1,13 @@
 ---
 {
-	"title": "Correctif «&#160;meter&#160;» (compteur)",
+	"title": "Correctif « meter » (compteur)",
 	"language": "fr",
-	"en": "meter"
+	"category": "Correctif",
+	"description": "Émule l’élément « meter » pour les navigateurs qui ne le supportent pas.",
+	"tag": "meter",
+	"en": "meter",
+	"css": "demo/meter",
+	"js": "demo/meter"
 }
 ---
 <p>La description qui est inclus dans HTML5&#160;:</p>
@@ -16,7 +21,7 @@ The meter element also does not represent a scalar value of arbitrary range — 
 <section>
 	<h2>Exemples</h2>
 
-	<table>
+	<table class="table table-striped">
 		<thead>
 			<tr>
 				<th scope="col">Description</th>
@@ -55,6 +60,11 @@ The meter element also does not represent a scalar value of arbitrary range — 
 				<td>200</td>
 				<td>180</td>
 				<td><meter min="100" low="120" value="115" max="200" high="180">15 % (trop bas)</meter></td>
+			</tr>
+			<tr>
+				<td colspan="3"><input type="button" id="decreaseMeter" value="Diminuer" /></td>
+				<td colspan="3"><input type="button" id="increaseMeter" value="Augmenter" /></td>
+				<td><meter id="updateTest" min="100" low="120" value="150" max="200" high="180"><span class="wb-inv">150</span></meter>
 			</tr>
 		</tbody>
 	</table>

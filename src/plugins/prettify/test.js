@@ -1,4 +1,4 @@
-/*
+/**
  * @title Prettify Plugin Unit Tests
  * @overview Test the Prettify plugin behaviour
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -6,7 +6,7 @@
  */
 /* global jQuery, describe, it, expect, before, after, sinon */
 /* jshint unused:vars */
-(function( $, vapour ) {
+(function( $, wb ) {
 
 /*
  * Create a suite of related test cases using `describe`. Test suites can also be
@@ -17,7 +17,7 @@ describe( "Prettify test suite", function() {
 	var spy;
 
 	/*
-	 * Before begining the test suite, this function is exectued once.
+	 * Before beginning the test suite, this function is executed once.
 	 */
 	before(function(done) {
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
@@ -25,13 +25,13 @@ describe( "Prettify test suite", function() {
 
 		// Start the tests once the plugin has been initialized
 		$( ".wb-prettify" ).removeClass( "all-pre" );
-		vapour.doc.on( "prettyprint.wb-prettify", function() {
+		wb.doc.on( "prettyprint.wb-prettify", function() {
 			done();
 		});
 	});
 
 	/*
-	 * After finishing the test suite, this function is exectued once.
+	 * After finishing the test suite, this function is executed once.
 	 */
 	after(function() {
 		// Restore the original behaviour of trigger once the tests are finished
@@ -51,10 +51,16 @@ describe( "Prettify test suite", function() {
 		});
 
 		it( "should have been triggered on a .wb-prettify element", function() {
-			var len = spy.thisValues.length,
+			var call, i, j, lenCalls, lenElms,
 				isSelector = false;
-			while ( !isSelector && len-- ) {
-				isSelector = spy.thisValues[len].selector === ".wb-prettify";
+
+			// Loop over calls made on the trigger() spy
+			for ( i = 0, lenCalls = spy.callCount; !isSelector && i < lenCalls; i += 1 ) {
+				call = spy.getCall( i );
+				// There may be multiple `this` objects for each call
+				for ( j = 0, lenElms = call.thisValue.length; !isSelector && j < lenElms; j += 1 ) {
+					isSelector = call.thisValue[ j ].className.indexOf( "wb-prettify" ) > -1;
+				}
 			}
 			expect( isSelector ).to.equal( true );
 		});
@@ -76,7 +82,7 @@ describe( "Prettify test suite", function() {
 	describe( "dependency loading", function() {
 
 		it( "should have loaded prettify.js file", function() {
-			expect( $("script[src*='/prettify']") ).to.have.length( 1 );
+			expect( $("script[src*='deps/prettify']") ).to.have.length( 1 );
 		});
 
 		it( "should have loaded lang-css.js syntax file", function() {
@@ -96,12 +102,13 @@ describe( "Prettify test suite", function() {
 		before(function( done ) {
 
 			$( "body" ).append( "<pre class='test'>" );
-			$(".wb-prettify")
-				.addClass("lang-sql")
-				.addClass("all-pre")
-				.addClass("linenums")
-				.trigger("timerpoke.wb");
-			vapour.doc.on( "prettyprint.wb-prettify", function() {
+			$( ".wb-prettify" )
+				.removeClass( "wb-prettify-inited" )
+				.addClass( "lang-sql" )
+				.addClass( "all-pre" )
+				.addClass( "linenums" )
+				.trigger( "wb-init.wb-prettify" );
+			wb.doc.on( "prettyprint.wb-prettify", function() {
 				done();
 			});
 		});
@@ -131,13 +138,14 @@ describe( "Prettify test suite", function() {
 		before(function( done ) {
 
 			$( "body" ).append( "<pre class='test'>" );
-			$(".wb-prettify")
+			$( ".wb-prettify" )
+				.removeClass( "wb-prettify-inited" )
 				.data({
-					"allpre": true,
-					"linenums": true
+					allpre: true,
+					linenums: true
 				})
-				.trigger("timerpoke.wb");
-			vapour.doc.on( "prettyprint.wb-prettify", function() {
+				.trigger( "wb-init.wb-prettify" );
+			wb.doc.on( "prettyprint.wb-prettify", function() {
 				done();
 			});
 		});
@@ -156,4 +164,4 @@ describe( "Prettify test suite", function() {
 	});
 });
 
-}( jQuery, vapour ));
+}( jQuery, wb ));

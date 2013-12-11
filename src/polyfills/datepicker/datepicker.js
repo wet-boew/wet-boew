@@ -1,27 +1,31 @@
-/*
- * @title WET-BOEW Calendar library
- * @overview A library for building calendar interfaces
+/**
+ * @title WET-BOEW Datepicker
+ * @overview Polyfills for the HTML5 input type="date" in browsers without built in calendar style date pickers.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
 
-(function( $, window, document, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 /*
  * Variable and function definitions.
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
-var selector = "input[type=date]",
-	$document = vapour.doc,
+var pluginName = "wb-date",
+	selector = "input[type=date]",
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init." + pluginName,
+	setFocusEvent = "setfocus.wb",
 	date = new Date(),
 	month = date.getMonth(),
 	year = date.getFullYear(),
 	format = "YYYY-MM-DD",
 	initialized = false,
+	$document = wb.doc,
 	i18n, i18nText, $container,
 
-	/*
+	/**
 	 * Init runs once per polyfill element on the page. There may be multiple elements.
 	 * It will run more than once if you don't remove the selector from the timer.
 	 * @method init
@@ -32,10 +36,12 @@ var selector = "input[type=date]",
 			elmId = elm.id;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === elm ) {
+		// and only initialize the element once
+		if ( event.currentTarget === elm &&
+			elm.className.indexOf( initedClass ) === -1 ) {
 
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
+			wb.remove( selector );
+			elm.className += " " + initedClass;
 
 			if ( elm.className.indexOf( "picker-field" ) !== -1 ) {
 				return;
@@ -43,11 +49,12 @@ var selector = "input[type=date]",
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
-				i18n = window.i18n;
+				i18n = wb.i18n;
 				i18nText = {
-					datepickerShow: i18n( "%date-show" ) + i18n( "%space" ),
-					datepickerHide: i18n( "%date-hide" ),
-					datepickerSelected: i18n( "%date-sel" )
+					show: i18n( "date-show" ) + i18n( "space" ),
+					hide: i18n( "date-hide" ),
+					selected: i18n( "date-sel" ),
+					close: i18n( "overlay-close" ) + i18n( "space" ) + i18n( "esc-key" )
 				};
 			}
 
@@ -57,8 +64,8 @@ var selector = "input[type=date]",
 				$container = $( "<div id='wb-picker' class='picker-overlay' role='dialog' aria-hidden='true'></div>" );
 
 				// Close button
-				$( "<a class='picker-close' role='button' href='javascript:;'><img src='" +
-						vapour.getPath( "/assets" ) + "/cross-button.png' alt='" + i18nText.datepickerHide + "' /></a>" )
+				$( "<button type='button' class='picker-close mfp-close overlay-close' title='" +
+					i18nText.close + "'>×<span class='wb-inv'> " + i18nText.close + "</span></button>" )
 					.appendTo( $container )
 					.on( "click", function( event ) {
 						var which = event.which;
@@ -84,9 +91,17 @@ var selector = "input[type=date]",
 	},
 
 	createToggleIcon = function( fieldId ) {
-		var fieldLabel = $( "label[for=" + fieldId + "]" ).text(),
-			objToggle = "<a id='" + fieldId + "-picker-toggle' class='picker-toggle' href='javascript:;'><img src='" +
-				vapour.getPath( "/assets" ) + "/calendar-month.png' alt='" + i18nText.datepickerShow + fieldLabel + "'/></a>";
+			var fieldLabel = $( "label" )
+					.filter( "[for='" + fieldId + "']" )
+						.clone()
+						.find( ".datepicker-format" )
+							.remove()
+							.end()
+						.text(),
+			showFieldLabel = i18nText.show + fieldLabel,
+			objToggle = "<button id='" + fieldId + "-picker-toggle' class='picker-toggle' href='javascript:;' title='" +
+				showFieldLabel + "'><span class='glyphicon glyphicon-calendar'></span><span class='wb-inv'>" +
+				showFieldLabel + "</span></button>";
 
 		$( "#" + fieldId ).after( objToggle );
 		$container.slideUp( 0 );
@@ -96,11 +111,12 @@ var selector = "input[type=date]",
 		var field = document.getElementById( fieldId ),
 			minDate = field.getAttribute( "min" ),
 			maxDate = field.getAttribute( "max" ),
-			fromDateISO = vapour.date.fromDateISO,
+			fromDateISO = wb.date.fromDateISO,
 			len = $days.length,
+
 			// $parent = $days.parent(),
 			focusDay = ( targetDay ? targetDay - 1 : 0 ),
-			lowLimit, highLimit, minDay, maxDay, index, day, links;
+			lowLimit, highLimit, minDay, maxDay, index, day;
 
 		minDate = fromDateISO( ( minDate ? minDate : "1800-01-01" ) );
 		minDay = minDate.getDate() - 1;
@@ -124,8 +140,7 @@ var selector = "input[type=date]",
 		// $parent.append( $days );
 
 		if ( targetDay ) {
-			links = $days.find( "a" );
-			( targetDay === 1 ? links.first() : links.last() ).trigger( "focus.wb" );
+			$days.eq( targetDay - 1 ).find( "a" ).trigger( setFocusEvent );
 		}
 	},
 
@@ -134,8 +149,8 @@ var selector = "input[type=date]",
 
 		// Reset selection state
 		$( days )
-			.removeClass( "datepicker-selected" )
-			.find( ".datepicker-selected-text" )
+			.removeClass( "picker-sel" )
+			.find( ".picker-sel-text" )
 				.detach();
 
 		// Get the date from the field
@@ -146,11 +161,11 @@ var selector = "input[type=date]",
 				cpntDate = new Date( date );
 				if ( cpntDate.getUTCFullYear() === year && cpntDate.getUTCMonth() === month ) {
 					$( days[ cpntDate.getUTCDate() - 1 ] )
-						.addClass( "datepicker-selected" )
+						.addClass( "picker-sel" )
 						.children( "a" )
 						.attr( "aria-selected", "true" )
-						.append( "<span class='wb-inv datepicker-selected-text'> [" +
-							i18nText.datepickerSelected + "]</span>" );
+						.append( "<span class='wb-inv picker-sel-text'> [" +
+							i18nText.selected + "]</span>" );
 				}
 			}
 		} catch ( error ) {
@@ -162,9 +177,8 @@ var selector = "input[type=date]",
 			$field = $( field ),
 			minDate = field.getAttribute( "min" ),
 			maxDate = field.getAttribute( "max" ),
-			fromDateISO = vapour.date.fromDateISO,
-			targetDate = fromDateISO( field.value ),
-			$prevMonthLink, $nextMonthLink;
+			fromDateISO = wb.date.fromDateISO,
+			targetDate = fromDateISO( field.value );
 
 		if ( !minDate ) {
 			minDate = "1800-01-01";
@@ -203,9 +217,9 @@ var selector = "input[type=date]",
 			$( "#" + fieldId + "-picker-toggle" )
 				.children( "a" )
 					.children( "span" )
-						.text( i18nText.datepickerHide );
+						.text( i18nText.hide );
 
-			if (targetDate !== null) {
+			if ( targetDate !== null ) {
 				$document.trigger( "setFocus.wb-cal", [
 						"wb-picker",
 						year,
@@ -216,21 +230,11 @@ var selector = "input[type=date]",
 					]
 				);
 			} else {
-				$prevMonthLink = $container.find( ".cal-prvmnth" );
-				if ( $prevMonthLink.hasClass( "wb-inv" ) ) {
-					$nextMonthLink = $container.find( ".cal-nxtmnth" );
-					if ( $nextMonthLink.hasClass( "wb-inv" ) ) {
-						$container.find( ".cal-goto a" ).trigger( "focus.wb" );
-					} else {
-						$nextMonthLink.trigger( "focus.wb" );
-					}
-				} else {
-					$prevMonthLink.trigger( "focus.wb" );
-				}
+				$( "#wb-picker" ).trigger( setFocusEvent );
 			}
 		} else {
 			hide( fieldId );
-			$field.trigger( "focus.wb" );
+			$field.trigger( setFocusEvent );
 		}
 	},
 
@@ -255,11 +259,11 @@ var selector = "input[type=date]",
 			.slideUp( "fast" )
 			.attr( "aria-hidden", "true" )
 			.trigger( "hideGoToFrm.wb-cal" );
-		toggle.children( "a" ).children( "span" ).text( i18nText.datepickerShow + fieldLabel );
+		toggle.children( "a" ).children( "span" ).text( i18nText.show + fieldLabel );
 	},
 
 	formatDate = function( year, month, day, format ) {
-		var pad = vapour.string.pad;
+		var pad = wb.string.pad;
 		return format
 			.replace( "DD", pad( day, 2 ) )
 			.replace( "D", day)
@@ -270,23 +274,26 @@ var selector = "input[type=date]",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb", selector, init );
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
-$document.on( "click vclick touchstart focusin", function ( event ) {
+$document.on( "click vclick touchstart focusin", "body", function( event ) {
 	var which = event.which,
 		container;
 
 	// Ignore middle/right mouse buttons
 	if ( initialized && ( !which || which === 1 ) ) {
 		container = document.getElementById( "wb-picker" );
-		if ( container.getAttribute( "aria-hidden" ) === "false" && !$.contains( container, event.target ) ) {
+		if ( container.getAttribute( "aria-hidden" ) === "false" &&
+			event.target.id !== container.id &&
+			!$.contains( container, event.target ) ) {
+
 			hide( container.getAttribute( "aria-controls") );
 			return false;
 		}
 	}
 });
 
-$document.on( "keydown displayed.wb-cal", "#wb-picker", function ( event, year, month, $days, day ) {
+$document.on( "keydown displayed.wb-cal", "#wb-picker", function( event, year, month, $days, day ) {
 	var $container = $( this ),
 		eventType = event.type,
 		which = event.which,
@@ -298,7 +305,7 @@ $document.on( "keydown displayed.wb-cal", "#wb-picker", function ( event, year, 
 		// Escape key to close overlay
 		if ( which === 27 ) {
 			hideAll();
-			$( "#" + fieldId ).trigger( "focus.wb" );
+			$( "#" + fieldId ).trigger( setFocusEvent );
 		}
 		break;
 
@@ -325,7 +332,9 @@ $document.on( "keydown displayed.wb-cal", "#wb-picker", function ( event, year, 
 	}
 });
 
-$document.on( "click", ".picker-toggle", function ( event ) {
+$document.on( "click", ".picker-toggle", function( event ) {
+	event.preventDefault();
+
 	var which = event.which,
 		pickerId;
 
@@ -337,7 +346,7 @@ $document.on( "click", ".picker-toggle", function ( event ) {
 	}
 });
 
-$document.on( "click", ".cal-days a", function ( event ) {
+$document.on( "click", ".cal-days a", function( event ) {
 	var which = event.which,
 		fieldId, date, year, month, day, $field;
 
@@ -345,7 +354,7 @@ $document.on( "click", ".cal-days a", function ( event ) {
 	if ( !which || which === 1 ) {
 		fieldId = document.getElementById( "wb-picker" )
 			.getAttribute( "aria-controls" );
-		date = vapour.date.fromDateISO( this.getElementsByTagName( "time" )[ 0 ]
+		date = wb.date.fromDateISO( this.getElementsByTagName( "time" )[ 0 ]
 			.getAttribute( "datetime" ) );
 		year = date.getFullYear();
 		month = date.getMonth();
@@ -364,6 +373,6 @@ $document.on( "click", ".cal-days a", function ( event ) {
 });
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, document, vapour );
+})( jQuery, window, document, wb );

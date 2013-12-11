@@ -2,22 +2,13 @@
 {
 	"title": "Data Ajax",
 	"language": "fr",
-	"en": "data-ajax"
+	"category": "Plugiciel",
+	"description": "Un enveloppeur simple pour AjaxLoader qui insère de contenu télécharger via AJAX.",
+	"tag": "data-ajax",
+	"en": "data-ajax",
+	"css": "demo/data-ajax"
 }
 ---
-<style>
-.original {
-	background: #ccc;
-}
-.ajaxed-in {
-	background: #fff;
-}
-.original, .ajaxed-in {
-	padding: 5px;
-	border: 1px solid #000;
-}
-</style>
-
 <p>Un enveloppeur simple pour AjaxLoader qui insère de contenu télécharger via AJAX.</p>
 
 <section class="wb-prettify all-pre">
@@ -25,22 +16,22 @@
 	<section>
 		<h3>Exemple</h3>
 		<section data-ajax-after="ajax/data-ajax-extra-fr.html" class="original">
-			<h4 id="anchor1">Bonjour tout le monde</h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+			<h4>Bonjour tout le monde</h4>
+			<p>Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.</p>
 		</section>
 		<section data-ajax-after="ajax/data-ajax-extra-2-fr.html" class="original">
-			<h4 id="anchor1">Bonjour tout le monde - partie 2</h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+			<h4>Bonjour tout le monde - partie 2</h4>
+			<p>Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent.</p>
 		</section>
 		<details>
 			<summary>Visualiser le code</summary>
 			<pre><code>&lt;section data-ajax-after="ajax/data-ajax-extra-fr.html" class="original"&gt;
-	&lt;h4 id="anchor1"&gt;Bonjour tout le monde&lt;/h4&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+	&lt;h4&gt;Bonjour tout le monde&lt;/h4&gt;
+	&lt;p&gt;Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section data-ajax-after="ajax/data-ajax-extra-2-fr.html" class="original"&gt;
-	&lt;h4 id="anchor1"&gt;Bonjour tout le monde - partie 2&lt;/h4&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+	&lt;h4&gt;Bonjour tout le monde - partie 2&lt;/h4&gt;
+	&lt;p&gt;Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent.&lt;/p&gt;
 &lt;/section&gt;</code></pre>
 		</details>
 	</section>
@@ -51,18 +42,18 @@
 	<section>
 		<h3>Exemple</h3>
 		<div data-ajax-append="ajax/data-ajax-extra-fr.html" class="original">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+			<p>Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.</p>
 		</div>
 		<div data-ajax-append="ajax/data-ajax-extra-2-fr.html" class="original">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+			<p>Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent.</p>
 		</div>
 		<details>
 			<summary>Visualiser le code</summary>
 			<pre><code>&lt;div data-ajax-append="ajax/data-ajax-extra-fr.html" class="original"&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+	&lt;p&gt;Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div data-ajax-append="ajax/data-ajax-extra-2-fr.html" class="original"&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+	&lt;p&gt;Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 		</details>
 	</section>
@@ -73,22 +64,22 @@
 	<section>
 		<h3>Exemple</h3>
 		<section data-ajax-before="ajax/data-ajax-extra-fr.html" class="original">
-			<h4 id="anchor1">Bonjour tout le monde</h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+			<h4>Bonjour tout le monde</h4>
+			<p>Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.</p>
 		</section>
 		<section data-ajax-before="ajax/data-ajax-extra-2-fr.html" class="original">
-			<h4 id="anchor1">Bonjour tout le monde - partie 2</h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+			<h4>Bonjour tout le monde - partie 2</h4>
+			<p>Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent.</p>
 		</section>
 		<details>
 			<summary>Visualiser le code</summary>
 			<pre><code>&lt;section data-ajax-before="ajax/data-ajax-extra-fr.html" class="original"&gt;
-	&lt;h4 id="anchor1"&gt;Bonjour tout le monde&lt;/h4&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+	&lt;h4&gt;Bonjour tout le monde&lt;/h4&gt;
+	&lt;p&gt;Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section data-ajax-before="ajax/data-ajax-extra-2-fr.html" class="original"&gt;
-	&lt;h4 id="anchor1"&gt;Bonjour tout le monde - partie 2&lt;/h4&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+	&lt;h4&gt;Bonjour tout le monde - partie 2&lt;/h4&gt;
+	&lt;p&gt;Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent.&lt;/p&gt;
 &lt;/section&gt;</code></pre>
 		</details>
 	</section>
@@ -99,18 +90,18 @@
 	<section>
 		<h3>Exemple</h3>
 		<div data-ajax-prepend="ajax/data-ajax-extra-fr.html" class="original">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+			<p>Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.</p>
 		</div>
 		<div data-ajax-prepend="ajax/data-ajax-extra-2-fr.html" class="original">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+			<p>Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent.</p>
 		</div>
 		<details>
 			<summary>Visualiser le code</summary>
 			<pre><code>&lt;div data-ajax-prepend="ajax/data-ajax-extra-fr.html" class="original"&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+	&lt;p&gt;Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div data-ajax-prepend="ajax/data-ajax-extra-2-fr.html" class="original"&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+	&lt;p&gt;Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 		</details>
 	</section>
@@ -122,28 +113,28 @@
 		<h3>Exemple</h3>
 		<div data-ajax-replace="ajax/data-ajax-extra-fr.html" class="original">
 			<section>
-				<h4 id="anchor1">Bonjour tout le monde</h4>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+				<h4>Bonjour tout le monde</h4>
+				<p>Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.</p>
 			</section>
 		</div>
 		<div data-ajax-replace="ajax/data-ajax-extra-2-fr.html" class="original">
 			<section>
-				<h4 id="anchor1">Bonjour tout le monde - partie 2</h4>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.</p>
+				<h4>Bonjour tout le monde - partie 2</h4>
+				<p>Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent.</p>
 			</section>
 		</div>
 		<details>
 			<summary>Visualiser le code</summary>
 			<pre><code>&lt;div data-ajax-replace="ajax/data-ajax-extra-fr.html" class="original"&gt;
 	&lt;section&gt;
-		&lt;h4 id="anchor1"&gt;Bonjour tout le monde&lt;/h4&gt;
-		&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+		&lt;h4&gt;Bonjour tout le monde&lt;/h4&gt;
+		&lt;p&gt;Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte. Exemple de texte.&lt;/p&gt;
 	&lt;/section&gt;
 &lt;/div&gt;
 &lt;div data-ajax-replace="ajax/data-ajax-extra-2-fr.html" class="original"&gt;
 	&lt;section&gt;
-		&lt;h4 id="anchor1"&gt;Bonjour tout le monde - partie 2&lt;/h4&gt;
-		&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, dolorem explicabo perferendis vitae magnam.&lt;/p&gt;
+		&lt;h4&gt;Bonjour tout le monde - partie 2&lt;/h4&gt;
+		&lt;p&gt;Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent.&lt;/p&gt;
 	&lt;/section&gt;
 &lt;/div&gt;</code></pre>
 		</details>

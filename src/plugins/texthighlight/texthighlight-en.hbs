@@ -2,6 +2,10 @@
 {
 	"title": "Text highlighting",
 	"language": "en",
+	"category": "Plugin",
+	"description": "Automatically highlights certain words on a Web page. The highlighted words can be selected via the query string.",
+	"querystring": "txthl=avian%20influenza+world+cook+flu-like%20symptoms+Don't%20Forget...+causes%20sickness%20in%20birds,%20it%20can%20also%20infect%20people.",
+	"tag": "texthighlight",
 	"fr": "texthighlight"
 }
 ---
@@ -11,8 +15,8 @@
 <section>
 	<h2>How Do I Use It?</h2>
 	<ol>
-		<li>Define your search area. Add the "<code>wb-texthighlight</code>" class to the tag whose contents you want to search in.</li>
-		<li>Specify the search criteria in a URL query string. Add "<code>texthighlight=&lt;text_1&gt;+&lt;text_2&gt;+&lt;text_3&gt;</code>" to the query string.<br /><strong>Note:</strong> HTML markup validation requires all spaces in links to be replaced by <code>%20</code>.</li>
+		<li>Define your search area. Add the "<code>wb-txthl</code>" class to the tag whose contents you want to search in.</li>
+		<li>Specify the search criteria in a URL query string. Add "<code>txthl=&lt;text_1&gt;+&lt;text_2&gt;+&lt;text_3&gt;</code>" to the query string.<br /><strong>Note:</strong> HTML markup validation requires all spaces in links to be replaced by <code>%20</code>.</li>
 	</ol>
 </section>
 
@@ -29,12 +33,12 @@
 			<li>causes sickness in birds, it can also infect people.</li>
 		</ul>
 
-		<p><strong>Query string:</strong> <code>?texthighlight=avian%20influenza+world+cook+flu-like%20symptoms+Don't%20Forget...+causes%20sickness%20in%20birds,%20it%20can%20also%20infect%20people.</code></p>
+		<p><strong>Query string:</strong> <code>?txthl=avian%20influenza+world+cook+flu-like%20symptoms+Don't%20Forget...+causes%20sickness%20in%20birds,%20it%20can%20also%20infect%20people.</code></p>
 
-		<p><a href="?texthighlight=avian%20influenza+world+cook+flu-like%20symptoms+Don't%20Forget...+causes%20sickness%20in%20birds,%20it%20can%20also%20infect%20people.#example">Highlight example text that meets the search criteria</a></p>
+		<p><a href="?txthl=avian%20influenza+world+cook+flu-like%20symptoms+Don't%20Forget...+causes%20sickness%20in%20birds,%20it%20can%20also%20infect%20people.#example">Highlight example text that meets the search criteria</a></p>
 	</section>
 
-	<section id="example" class="wb-texthighlight">
+	<section id="example" class="wb-txthl">
 		<h3>Avian Influenza (H5N1) Worldwide</h3>
 		<p><strong>Updated: March 17, 2010</strong></p>
 		<ul>

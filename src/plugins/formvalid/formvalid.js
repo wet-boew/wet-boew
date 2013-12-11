@@ -1,10 +1,10 @@
-/*
+/**
  * @title WET-BOEW Form validation
  * @overview Provides generic validation and error message handling for Web forms.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -13,11 +13,15 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-formvalid",
-	$document = vapour.doc,
+var pluginName = "wb-frmvld",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
+	setFocusEvent = "setfocus.wb",
+	$document = wb.doc,
 	i18n, i18nText,
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
@@ -28,25 +32,27 @@ var selector = ".wb-formvalid",
 			modeJS, $elm;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === eventTarget ) {
+		// and only initialize the element once
+		if ( event.currentTarget === eventTarget &&
+			eventTarget.className.indexOf( initedClass ) === -1 ) {
 
-			// read the selector node for parameters
-			modeJS = vapour.getMode() + ".js";
+			wb.remove( selector );
+			eventTarget.className += " " + initedClass;
+			
+			// Read the selector node for parameters
+			modeJS = wb.getMode() + ".js";
 			$elm = $( eventTarget );
-
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
-				i18n = window.i18n;
+				i18n = wb.i18n;
 				i18nText = {
-					colon: i18n( "%colon" ),
-					hyphen: i18n( "%hyphen" ),
-					error: i18n( "%err" ),
-					errorFound: i18n( "%err-fnd" ),
-					errorsFound: i18n( "%errs-fnd" ),
-					formNotSubmitted: i18n( "%frm-nosubmit" )
+					colon: i18n( "colon" ),
+					hyphen: i18n( "hyphen" ),
+					error: i18n( "err" ),
+					errorFound: i18n( "err-fnd" ),
+					errorsFound: i18n( "errs-fnd" ),
+					formNotSubmitted: i18n( "frm-nosubmit" )
 				};
 			}
 
@@ -87,7 +93,7 @@ var selector = ".wb-formvalid",
 
 					// Change form attributes and values that interfere with validation in IE7/8
 					// TODO: Need better way of dealing with this rather than browser sniffing
-					if ( vapour.ieVersion > 0 && vapour.ieVersion < 9 ) {
+					if ( wb.ieVersion > 0 && wb.ieVersion < 9 ) {
 						len = $required.length;
 						$required.removeAttr( "required" );
 						for ( i = 0; i !== len; i += 1) {
@@ -186,7 +192,7 @@ var selector = ".wb-formvalid",
 								if ( submitted ) {
 
 									// Assign focus to $summaryContainer
-									$summaryContainer.trigger( "focus.wb" );
+									$summaryContainer.trigger( setFocusEvent );
 								} else {
 
 									// Update the aria-live region as necessary
@@ -258,7 +264,7 @@ var selector = ".wb-formvalid",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb", selector, init );
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 // Move the focus to the associated input when an error message link is clicked
 // and scroll to the top of the label or legend that contains the error
@@ -275,7 +281,7 @@ $document.on( "click vclick", selector + " .errCnt a", function( event ) {
 		errorTop = $label.length !== 0 ? $label.offset().top : ( $legend.length !== 0 ? $legend.offset().top : -1 );
 
 		// Assign focus to $input
-		$input.trigger( "focus.wb" );
+		$input.trigger( setFocusEvent );
 
 		if ( errorTop !== -1 ) {
 			window.scroll( 0, errorTop );
@@ -285,6 +291,6 @@ $document.on( "click vclick", selector + " .errCnt a", function( event ) {
 });
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, document, vapour );
+})( jQuery, window, document, wb );

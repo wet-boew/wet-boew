@@ -2,9 +2,11 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
+%cal-position-relative {
+	position: relative;
+}
 .cal-cnt {
 	width: 18em;
-	margin-top: 0.5em;
 	text-shadow: none;
 }
 
@@ -17,44 +19,32 @@
 		overflow: hidden;
 		padding: 0.5em 4px;
 		text-align: center;
+		position: relative;
 	}
 	.cal-mnth {
 		font-size: 110%;
 	}
 	.cal-goto {
-		margin-left: 16px;
-		p {
-			float: left;
-			width: 15.2em;
-		}
-		fieldset {
-			> {
-				* {
-					margin: 0;
-				}
-			}
-		}
+		display: inline-block;
 	}
-	.cal-goto-lnk {
-		margin: 0 0 0.5em 0;
-		padding: 0 !important;
-	}
-	.cal-goto legend, .cal-goto-mnth, .cal-goto-yr, .cal-goto-btn {
-		position: relative;
+	%cal-goto-btns {
+		display: inline-block;
+		margin: 10px 5px;
 	}
 	.cal-goto-mnth {
-		width: 60%;
-		float: right;
+		@extend %cal-goto-btns;
+		@extend %cal-position-relative;
 	}
 	.cal-goto-yr {
-		width: 39%;
-		float: left;
+		@extend %cal-goto-btns;
+		@extend %cal-position-relative;
 	}
 	.cal-goto-btn {
-		margin: 0 10px 0 5px;
-		float: left;
+		@extend %cal-goto-btns;
+		@extend %cal-position-relative;
 		input {
 			padding: 0.1em 0.2em;
+			min-width: 5em;
 		}
 	}
 	td {
@@ -64,23 +54,16 @@
 	}
 }
 
-.cal-nxtmnth , .cal-prvmnth {
-	margin-bottom: -15px;
-	display: block;
-	img {
-		margin: 0;
-		vertical-align: middle;
+.cal-nxtmnth, .cal-prvmnth {
+	display: inline-block;
+	background: none;
+	border: none;
+	&:focus {
+		outline: 1px dotted;
+		outline-offset: -2px;
 	}
-}
-
-.cal-prvmnth {
-	float: left;
-	text-align: left;
-}
-
-.cal-nxtmnth {
-	float: right;
-	text-align: right;
+	width: 2.5em;
+	height: 2.5em;
 }
 
 .cal-wd {

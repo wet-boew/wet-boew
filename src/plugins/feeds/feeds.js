@@ -1,66 +1,70 @@
-/*
+/**
  * @title WET-BOEW Feeds
  * @overview Aggregates and displays entries from one or more Web feeds.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, vapour ) {
+(function( $, window, wb ) {
 "use strict";
 
-$.ajaxSettings.cache = false;
-
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-feeds",
-	$document = vapour.doc,
+var pluginName = "wb-feeds",
+	selector = "." + "wb-feeds",
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
+	$document = wb.doc,
 
-	/*
-	 * Init runs once per plugin element on the page. There may be multiple elements. 
+	/**
+	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
 	 * @param {jQuery Event} event Event that triggered this handler
 	 */
 	init = function( event ) {
+		var elm = event.target,
+			entries = [],
+			results = [],
+			deferred = [],
+			processEntries = function( data ) {
+				var k, len;
+
+				data = data.responseData.feed.entries;
+				len = data.length;
+				for ( k = 0; k !== len; k += 1 ) {
+					entries.push( data[ k ] );
+				}
+				if ( !last ) {
+					parseEntries( entries, limit, $content );
+				}
+
+				last -= 1;
+				return last;
+			},
+			finalize = function() {
+
+				// TODO: Use CSS instead
+				$content.find( "li" ).show();
+			},
+			$content, limit, feeds, last, i;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === event.target ) {
+		// and only initialize the element once
+		if ( event.currentTarget === elm &&
+			elm.className.indexOf( initedClass ) === -1 ) {
 
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
+			wb.remove( selector );
+			elm.className += " " + initedClass;
 
-			var elm = event.target,
-				$content = $( elm ).find( ".feeds-cont" ),
-				limit = getLimit( elm ),
-				feeds = elm.getElementsByTagName( "a" ),
-				last = feeds.length - 1,
-				i = last,
-				entries = [],
-				_results = [],
-				deferred = [],
-				processEntries = function( data ) {
-					var k, len;
-
-					data = data.responseData.feed.entries;
-					len = data.length;
-					for ( k = 0; k !== len; k += 1 ) {
-						entries.push( data[ k ] );
-					}
-					if ( !last ) {
-						parseEntries( entries, limit, $content );
-					}
-
-					last -= 1;
-					return last;
-				},
-				finalize = function() {
-
-					// TODO: Use CSS instead
-					$content.find( "li" ).show();
-				};
+			$content = $( elm ).find( ".feeds-cont" );
+			limit = getLimit( elm );
+			feeds = elm.getElementsByTagName( "a" );
+			last = feeds.length - 1;
+			i = last;
 
 			while ( i >= 0 ) {
 				deferred[ i ] = $.ajax({
@@ -68,15 +72,15 @@ var selector = ".wb-feeds",
 					dataType: "json",
 					timeout: 1000
 				}).done( processEntries );
-				_results.push( i -= 1 );
+				results.push( i -= 1 );
 			}
 			$.when.apply( null, deferred ).always( finalize );
 
-			$.extend( {}, _results );
+			$.extend( {}, results );
 		}
 	},
 
-	/*
+	/**
 	 * Returns a class-based set limit on plugin instances
 	 * @method getLimit
 	 * @param {DOM object} elm The element to search for a class of the form blimit-5
@@ -89,8 +93,8 @@ var selector = ".wb-feeds",
 		}
 		return Number( count[ 0 ].replace( /limit-/i, "" ) );
 	},
-	
-	/*
+
+	/**
 	 * Builds the URL for the JSON request
 	 * @method jsonRequest
 	 * @param {url} url URL of the feed.
@@ -99,7 +103,7 @@ var selector = ".wb-feeds",
 	 */
 	jsonRequest = function( url, limit ) {
 		var requestURL = "http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q=" + encodeURIComponent( decodeURIComponent( url ) );
-		
+
 		// API returns a maximum of 4 entries by default so only override if more entries should be returned
 		if ( limit > 4 ) {
 			requestURL += "&num=" + limit;
@@ -107,7 +111,7 @@ var selector = ".wb-feeds",
 		return requestURL;
 	},
 
-	/*
+	/**
 	 * Parses the results from a JSON request and appends to an element
 	 * @method parseEntries
 	 * @param {object} entries Results from a JSON request.
@@ -118,10 +122,10 @@ var selector = ".wb-feeds",
 	parseEntries = function( entries, limit, $elm ) {
 		var cap = ( limit > 0 && limit < entries.length ? limit : entries.length ),
 			result = "",
-			toDateISO = vapour.date.toDateISO,
-			compare = vapour.date.compare,
+			toDateISO = wb.date.toDateISO,
+			compare = wb.date.compare,
 			i, sorted, sortedEntry;
-		
+
 		sorted = entries.sort( function( a, b ) {
 			return compare( b.publishedDate, a.publishedDate );
 		});
@@ -135,9 +139,9 @@ var selector = ".wb-feeds",
 		return $elm.empty().append( result );
 	};
 
-$document.on( "timerpoke.wb", selector, init );
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );

@@ -1,13 +1,21 @@
 /*
- Menu Sass
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 
+/*
+ * Menu Sass
+ */
 .expicon {
 	width: 0;
 	height: 0;
-	border-left: 5px solid transparent;
-	border-right: 5px solid transparent;
-	border-top: 5px solid #fff;
+	border-left: 0.35em solid transparent;
+	border-right: 0.35em solid transparent;
+	border-top: 0.35em solid #fff;
+	position: relative;
+	left: 0.75em;
+	top: 0.75em;
+	margin-right: 0.35em;
 }
 
 .wb-menu {
@@ -16,9 +24,126 @@
 		position: relative;
 		max-height: 0;
 		overflow: hidden;
-		&.open{
-			display: block;
+		&.open {
 			max-height: 1000px;
+			display: inline;
+			position: absolute;
+			z-index: 100;
+			text-transform: none;
+			top: auto;
+			li {
+				@extend %global-display-block;
+				a {
+					text-align: left;
+				}
+			}
+		}
+	}
+	.menu {
+		display: table;
+		position: relative;
+		> {
+			li {
+				position: relative;
+				display: table-cell;
+				a {
+					text-align: center;
+					display: block;
+					&:hover, &:focus {
+						@extend %global-text-decoration-none;
+					}
+				}
+			}
+		}
+	}
+	.active {
+		> {
+			a {
+				@extend %global-text-decoration-none;
+			}
+		}
+	}
+	.sm-open {
+		.expicon {
+			border-color: transparent !important;
 		}
 	}
 }
+
+[dir=rtl] {
+	.wb-menu {
+		.menu {
+			padding-right: 0;
+		}
+		.sm {
+			&.open {
+				li {
+					a {
+						text-align: right;
+					}
+				}
+			}
+		}
+	}
+	.expicon {
+		left: auto;
+		right: 0.75em;
+		margin-right: 0;
+		margin-left: 0.35em;
+	}
+}
+
+#mb-pnl {
+	a {
+		position: relative;
+		.expicon {
+			position: absolute;
+			top: 0.5em;
+			left: -1em;
+			transform: rotate(270deg);
+		}
+		&:focus {
+			outline-offset: 0;
+		}
+	}
+	.active {
+		a {
+			.expicon {
+				transform: none;
+			}
+		}
+	}
+	ul {
+		float: none !important;
+		padding-left: 0;
+		li {
+			float: none !important;
+			border: none !important;
+			ul {
+				@extend %global-display-none;
+				&.open {
+					@extend %global-display-block;
+				}
+			}
+		}
+	}
+	.srch-pnl {
+		form {
+			white-space: nowrap;
+		}
+		label {
+			@extend %accessible-invisible;
+		}
+		.form-group, button {
+			margin-bottom: 5px;
+		}
+	}
+	.modal-body {
+		h2 {
+			@extend %global-display-none;
+		}
+	}
+}
+
+
+

@@ -18,14 +18,14 @@
 	border: 1px solid $clrMedium;
 	padding: 0 4px 1px;
 	white-space: nowrap;
-	&:hover, &:focus {
-		@extend %fnote-link-highlight;
-	}
 }
 sup {
 	a {
 		&.fn-lnk {
 			@extend %fnote-link-background-light-border-medium-padding-whitespace;
+			&:hover, &:focus {
+				@extend %fnote-link-highlight;
+			}
 		}
 	}
 }
@@ -77,6 +77,9 @@ sup {
 						@extend %fnote-link-background-light-border-medium-padding-whitespace;
 						display: inline-block;
 						padding-bottom: 0;
+						&:hover, &:focus {
+							@extend %fnote-link-highlight;
+						}
 					}
 				}
 			}
@@ -97,49 +100,6 @@ sup {
 					&.fn-rtn {
 						margin-right: 0;
 						padding-right: 0;
-					}
-				}
-			}
-		}
-	}
-}
-
-/*Print SCSS*/
-@media print {
-	%fnote-link-background-transparent {
-		background-color: transparent;
-	}
-	%fnote-print-link-background-transparent-border-0-padding-0 {
-		background-color: transparent;
-		border: 0;
-		padding: 0;
-	}
-	sup {
-		a {
-			&.fn-lnk {
-				@extend %fnote-print-link-background-transparent-border-0-padding-0;
-			}
-		}
-	}
-	.wb-fnote {
-		border {
-			left: 0;
-			right: 0;
-		}
-		margin-left: 0;
-		margin-right: 0;
-		margin-bottom: 1em;
-		dl {
-			dd {
-				border: 0;
-				width: 100%;
-				display: inline-block;
-				p {
-					&.fn-rtn {
-						overflow: visible;
-						a {
-							@extend %fnote-print-link-background-transparent-border-0-padding-0;
-						}
 					}
 				}
 			}

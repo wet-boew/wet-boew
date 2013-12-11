@@ -2,94 +2,149 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
+@import "sprites";
+
 .wb-share {
 	.shr-lnk {
-		display: block;
-		padding-left: 42px;
+		width: 100%;
 		min-height: 32px;
 		line-height: 32px;
-		background-repeat: no-repeat;
-		background-position: 5px center;
 		margin-bottom: 8px;
 		text-align: left;
 		text-decoration: none;
 		font-size: 115%;
+		&:before {
+			content: " ";
+			display: inline-block;
+			height: 32px;
+			width: 32px;
+			margin-right: 12px;
+			vertical-align: middle;
+		}
 	}
+
+	// TODO: Convert @include to @extend when libsass supports nested extends
 	.bitly {
-		background-image: url(../js/assets/bitly.png);
+		&:before {
+			@include bitly;
+		}
 	}
 	.blogger {
-		background-image: url(../js/assets/blogger.png);
+		&:before {
+			@include blogger;
+		}
 	}
 	.delicious {
-		background-image: url(../js/assets/delicious.png);
+		&:before {
+			@include delicious;
+		}
 	}
 	.digg {
-		background-image: url(../js/assets/digg.png);
+		&:before {
+			@include digg;
+		}
 	}
 	.diigo {
-		background-image: url(../js/assets/diigo.png);
+		&:before {
+			@include diigo;
+		}
 	}
 	.dzone {
-		background-image: url(../js/assets/dzone.png);
+		&:before {
+			@include dzone;
+		}
 	}
 	.facebook {
-		background-image: url(../js/assets/facebook.png);
+		&:before {
+			@include facebook;
+		}
 	}
 	.fark {
-		background-image: url(../js/assets/fark.png);
+		&:before {
+			@include fark;
+		}
 	}
 	.feed {
-		background-image: url(../js/assets/feed.png);
+		&:before {
+			@include feed;
+		}
 	}
 	.googleplus {
-		background-image: url(../js/assets/googleplus.png);
+		&:before {
+			@include googleplus;
+		}
 	}
 	.linkedin {
-		background-image: url(../js/assets/linkedin.png);
+		&:before {
+			@include linkedin;
+		}
 	}
 	.myspace {
-		background-image: url(../js/assets/myspace.png);
+		&:before {
+			@include myspace;
+		}
 	}
 	.netvibes {
-		background-image: url(../js/assets/netvibes.png);
+		&:before {
+			@include netvibes;
+		}
 	}
 	.newsvine {
-		background-image: url(../js/assets/newsvine.png);
+		&:before {
+			@include newsvine;
+		}
 	}
 	.pinterest {
-		background-image: url(../js/assets/pinterest.png);
+		&:before {
+			@include pinterest;
+		}
 	}
 	.reddit {
-		background-image: url(../js/assets/reddit.png);
+		&:before {
+			@include reddit;
+		}
 	}
 	.stumbleupon {
-		background-image: url(../js/assets/stumbleupon.png);
+		&:before {
+			@include stumbleupon;
+		}
 	}
 	.technorati {
-		background-image: url(../js/assets/technorati.png);
+		&:before {
+			@include technorati;
+		}
 	}
 	.tumblr {
-		background-image: url(../js/assets/tumblr.png);
+		&:before {
+			@include tumblr;
+		}
 	}
 	.twitter {
-		background-image: url(../js/assets/twitter.png);
+		&:before {
+			@include twitter;
+		}
+	}
+	.shr-pg {
+		text-align: left;
 	}
 	ul {
 		list-style-type: none;
-		padding-left: 0;
+		padding: 0;
+		margin: 10px;
 	}
 }
 
-#shr-pg {
-	//	@todo	Move this to the overlays plugin
-	background-color: #fff;
-	//	@todo	Automate the setting of the width
-	width: 250px;
+[dir=rtl] {
+	.wb-share {
+		.shr-lnk {
+			text-align: right;
+			&:before {
+				margin-right: auto;
+				margin-left: 12px;
+			}
+		}
+		.shr-pg {
+			text-align: right;
+		}
+	}
 }
-
-//	@todo	Move this to the overlays plugin
-.wb-overlay {
-	z-index: 999;
-}
-

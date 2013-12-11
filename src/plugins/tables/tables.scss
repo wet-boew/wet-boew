@@ -2,7 +2,12 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  */
-
+%table_icons {
+	content: " ";
+	display: inline-block;
+	font-family: 'Glyphicons Halflings';
+	font-size: 0.9em;
+}
 
 %tables-clear-both {
 	clear: both;
@@ -16,6 +21,11 @@
 	float: left;
 }
 
+%tables-float-right {
+	float: right;
+	margin-right:-20px;
+}
+
 %tables-text-align-center {
 	text-align: center;
 }
@@ -25,26 +35,14 @@
 	text-align: right;
 }
 
-%tables-border-bottom-1px-solid-black-font-weight-700 {
+%tables-border-bottom-1px-solid-black-font-weight-700-padding-right-15em {
 	border-bottom: 1px solid black;
 	font-weight: 700;
+	padding-right: 1.5em;
 }
 
 %tables-cursor-pointer {
 	cursor: pointer;
-}
-
-@mixin pseudo-focus($hover: true) {
-	@if $hover {
-		&:hover, &:focus {
-			@content;
-		}
-	}
-	@else {
-		&:focus {
-			@content;
-		}
-	}
 }
 
 // Table
@@ -55,8 +53,7 @@ table {
 		width: 100% !important;
 		thead {
 			th {
-				@extend %tables-border-bottom-1px-solid-black-font-weight-700;
-				@extend %tables-cursor-pointer;
+				@extend %tables-border-bottom-1px-solid-black-font-weight-700-padding-right-15em;
 				&:active {
 					@extend %tables-outline-none;
 				}
@@ -69,7 +66,7 @@ table {
 		}
 		tfoot {
 			th {
-				@extend %tables-border-bottom-1px-solid-black-font-weight-700;
+				@extend %tables-border-bottom-1px-solid-black-font-weight-700-padding-right-15em;
 			}
 		}
 		td {
@@ -150,51 +147,41 @@ table {
 	float: left;
 	cursor: pointer;
 	color: #111 !important;
-	@include pseudo-focus {
-		text-decoration: none !important;
-	}
 
 	&:active {
 		@extend %tables-outline-none;
 	}
 }
 
+%table-icon-disabled {
+	color: #757575 !important;
+	text-decoration: none;
+	cursor: default;
+}
+
 .paginate_disabled_previous,
 .paginate_disabled_next {
-	color: #666 !important;
+	@extend %table-icon-disabled;
 }
 
 .paginate_disabled_previous,
 .paginate_enabled_previous {
-	padding-left: 23px;
+	padding-right: 5px;
+	&:before {
+		@extend %table_icons;
+		margin-right: 5px;
+		content: "\e091";
+	}
 }
 
 .paginate_disabled_next,
 .paginate_enabled_next {
-	padding-right: 23px;
-	margin-left: 10px;
-}
-
-.paginate_enabled_previous {
-	background: url('../js/assets/back_enabled.png') no-repeat top left;
-	@include pseudo-focus {
-		background: url('../js/assets/back_enabled_hover.png') no-repeat top left;
+	padding-left: 5px;
+	&:after {
+		@extend %table_icons;
+		margin-left: 5px;
+		content: "\e092";
 	}
-}
-
-.paginate_disabled_previous {
-	background: url('../js/assets/back_disabled.png') no-repeat top left;
-}
-
-.paginate_enabled_next {
-	background: url('../js/assets/forward_enabled.png') no-repeat top right;
-	@include pseudo-focus {
-		background: url('../js/assets/forward_enabled_hover.png') no-repeat top right;
-	}
-}
-
-.paginate_disabled_next {
-	background: url('../js/assets/forward_disabled.png') no-repeat top right;
 }
 
 /* Full number pagination */
@@ -213,14 +200,10 @@ table {
 		&:active {
 			@extend %tables-outline-none;
 		}
-		@include pseudo-focus {
-			text-decoration: none;
-		}
-
 		&.paginate_button {
 			@extend %tables-paginate-button-active;
 			background-color: #ddd;
-			@include pseudo-focus {
+			&:hover, &:focus {
 				background-color: #ccc;
 				text-decoration: none !important;
 			}
@@ -254,24 +237,41 @@ table {
 /*
  * Sorting
  */
+%tables-sorting-margin-left-5-position-absolute {
+	margin-left: 5px;
+	position: absolute;
+}
 .sorting {
-	background: url("../js/assets/sort_both.png") no-repeat center right;
+	@extend %tables-cursor-pointer;
+	&:after {
+		@extend %table_icons;
+		@extend %tables-sorting-margin-left-5-position-absolute;
+		content: "\e150";
+		color: #757575;
+	}
 }
 
 .sorting_asc {
-	background: url("../js/assets/sort_asc.png") no-repeat center right;
+	@extend %tables-cursor-pointer;
+	&:after {
+		@extend %table_icons;
+		@extend %tables-sorting-margin-left-5-position-absolute;
+		content: "\e093";
+	}
 }
 
 .sorting_desc {
-	background: url("../js/assets/sort_desc.png") no-repeat center right;
+	@extend %tables-cursor-pointer;
+	&:after {
+		@extend %table_icons;
+		@extend %tables-sorting-margin-left-5-position-absolute;
+		content: "\e094";
+	}
 }
 
-.sorting_asc_disabled {
-	background: url("../js/assets/sort_asc_disabled.png") no-repeat center right;
-}
-
+.sorting_asc_disabled,
 .sorting_desc_disabled {
-	background: url("../js/assets/sort_desc_disabled.png") no-repeat center right;
+	@extend %table-icon-disabled;
 }
 
 /*

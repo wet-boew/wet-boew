@@ -1,14 +1,12 @@
-/*
+/**
  * @title WET-BOEW Data Ajax [data-ajax-after], [data-ajax-append],
  * [data-ajax-before], [data-ajax-prepend] and [data-ajax-replace]
- * @overview A basic AjaxLoader wrapper that inserts AJAXed in content
+ * @overview A basic AjaxLoader wrapper that inserts AJAXed-in content
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
-(function( $, window, vapour ) {
+(function( $, window, wb ) {
 "use strict";
-
-$.ajaxSettings.cache = false;
 
 /*
  * Variable and function definitions.
@@ -17,11 +15,14 @@ $.ajaxSettings.cache = false;
  * place to define variables that are common to all instances of the plugin on a
  * page.
  */
-var $document = vapour.doc,
+var pluginName = "wb-ajax",
 	selector = "[data-ajax-after], [data-ajax-append], [data-ajax-before], " +
 		"[data-ajax-prepend], [data-ajax-replace]",
+	inited = "-inited",
+	initEvent = "wb-init." + pluginName,
+	$document = wb.doc,
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple
 	 * elements. It will run more than once per plugin if you don't remove the
 	 * selector from the timer.
@@ -30,21 +31,23 @@ var $document = vapour.doc,
 	 * @param {string} ajaxType The type of AJAX operation, either after, append, before or replace
 	 */
 	init = function( $elm, ajaxType ) {
+		var url = $elm.data( "ajax-" + ajaxType ),
+			initedClass = pluginName + ajaxType + inited;
+	
+		// Only initialize the element once for the ajaxType
+		if ( !$elm.hasClass( initedClass ) ) {
+			wb.remove( selector );
+			$elm.addClass( initedClass );
 
-		var _url = $elm.data( "ajax-" + ajaxType );
-
-		// All plugins need to remove their reference from the timer in the init
-		// sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
-
-		$document.trigger({
-			type: "ajax-fetch.wb",
-			element: $elm,
-			fetch: _url
-		});
+			$document.trigger({
+				type: "ajax-fetch.wb",
+				element: $elm,
+				fetch: url
+			});
+		}
 	};
 
-$document.on( "timerpoke.wb ajax-fetched.wb", selector, function( event ) {
+$document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, function( event ) {
 	var eventTarget = event.target,
 		eventType = event.type,
 		ajaxTypes = [
@@ -68,9 +71,14 @@ $document.on( "timerpoke.wb ajax-fetched.wb", selector, function( event ) {
 			}
 		}
 
-		if ( eventType === "timerpoke" ) {
+		switch ( eventType ) {
+
+		case "timerpoke":
+		case "wb-init":
 			init( $elm, ajaxType );
-		} else {
+			break;
+
+		default:
 
 			// ajax-fetched event
 			content = event.pointer.html();
@@ -96,6 +104,6 @@ $document.on( "timerpoke.wb ajax-fetched.wb", selector, function( event ) {
 } );
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, wb );

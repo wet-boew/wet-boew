@@ -1,10 +1,10 @@
-/*
+/**
  * @title WET-BOEW Lightbox
  * @overview Helps build a photo gallery on a web page.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -13,12 +13,15 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-lightbox",
-	$document = vapour.doc,
-	i18n, i18nText,
+var pluginName = "wb-lbx",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
 	extendedGlobal = false,
+	$document = wb.doc,
+	i18n, i18nText,
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
@@ -29,31 +32,33 @@ var selector = ".wb-lightbox",
 			$elm, modeJS;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === elm ) {
+		// and only initialize the element once
+		if ( event.currentTarget === elm &&
+			elm.className.indexOf( initedClass ) === -1 ) {
+
+			wb.remove( selector );
+			elm.className += " " + initedClass;
 
 			// read the selector node for parameters
-			modeJS = vapour.getMode() + ".js";
+			modeJS = wb.getMode() + ".js";
 			$elm = $( elm );
-
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			window._timer.remove( selector );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
-				i18n = window.i18n;
+				i18n = wb.i18n;
 				i18nText = {
-					tClose: i18n( "%close-esc" ),
-					tLoading: i18n( "%load" ),
+					tClose: i18n( "overlay-close" ) + i18n( "space" ) + i18n( "esc-key" ),
+					tLoading: i18n( "load" ),
 					gallery: {
-						tPrev: i18n( "%prv-l" ),
-						tNext: i18n( "%nxt-r" ),
-						tCounter: i18n( "%lb-curr" )
+						tPrev: i18n( "prv-l" ),
+						tNext: i18n( "nxt-r" ),
+						tCounter: i18n( "lb-curr" )
 					},
 					image: {
-						tError: i18n( "%lb-img-err" ) + " (<a href=\"%url%\">)"
+						tError: i18n( "lb-img-err" ) + " (<a href=\"url%\">)"
 					},
 					ajax: {
-						tError: i18n( "%lb-xhr-err" ) + " (<a href=\"%url%\">)"
+						tError: i18n( "lb-xhr-err" ) + " (<a href=\"url%\">)"
 					}
 				};
 			}
@@ -71,11 +76,7 @@ var selector = ".wb-lightbox",
 						extendedGlobal = true;
 					}
 
-					// TODO: How to support other options available in Magnific Popup
-					// TODO: Fix AJAX support (works fine with "grunt connect watch" but not locally)
-					// TODO: Fix visible focus and hidden text for buttons
 					// TODO: Add swipe support
-					// TODO: Should support be added for multiple non-gallery items of possibly mixed content? Would come at a performance code.
 
 					settings.callbacks = {
 						open: function() {
@@ -83,16 +84,17 @@ var selector = ".wb-lightbox",
 							// TODO: Better if dealt with upstream by Magnific popup
 							var $item = this.currItem,
 								$content = this.contentContainer,
-								$bottomBar;
+								$buttons = this.wrap.find( ".mfp-close, .mfp-arrow" ),
+								len = $buttons.length,
+								i, button, $bottomBar;
 
-							this.wrap.attr({
-								"role": "dialog",
-								"aria-live": "polite",
-								"aria-labelledby": "lb-title",
-							});
+							for ( i = 0; i !== len; i += 1 ) {
+								button = $buttons[ i ];
+								button.innerHTML += "<span class='wb-inv'> " + button.title + "</span>";
+							}
 
 							if ( $item.type === "image" ) {
-								$bottomBar = $content.find( ".mfp-bottom-bar" ).attr( "id", "lb-title" );
+								$bottomBar = $content.find( ".mfp-bottom-bar" ).attr( "id", "lbx-title" );
 							} else {
 								$content.attr( "role", "document" );
 							}
@@ -100,9 +102,9 @@ var selector = ".wb-lightbox",
 						change: function() {
 							var $item = this.currItem,
 								$content = this.contentContainer,
-								$el, $bottomBar, $source, $target, description, altTitleId, altTitle;
+								$el, $bottomBar, $source, $target,
+								description, altTitleId, altTitle;
 
-							// TODO: Better if dealt with upstream by Magnific Popup
 							if ( $item.type === "image" ) {
 								$el = $item.el;
 								$source = $el.find( "img" );
@@ -133,7 +135,7 @@ var selector = ".wb-lightbox",
 								$content
 									.find( ".modal-title, h1" )
 									.first()
-									.attr( "id", "lb-title" );
+									.attr( "id", "lbx-title" );
 							}
 						}
 					};
@@ -143,20 +145,18 @@ var selector = ".wb-lightbox",
 						firstLink = elm.getElementsByTagName( "a" )[0];
 
 						// Is the element a gallery?
-						// TODO: Should we support mixed content galleries? Could come at a performance cost and not very usable unless a hidden gallery (since always goes to first item).
-						if ( elm.className.indexOf( "-gallery" ) !== -1 ) {
+						if ( elm.className.indexOf( "-gal" ) !== -1 ) {
 							settings.gallery = {
-								enabled: true,
+								enabled: true
 							};
 						}
 					} else {
 						firstLink = elm;
 					}
 
-
 					if ( firstLink.getAttribute( "href" ).charAt( 0 ) === "#" ) {
 						settings.type = "inline";
-					} else if ( firstLink.className.indexOf( "lb-iframe" ) !== -1 ) {
+					} else if ( firstLink.className.indexOf( "lbx-iframe" ) !== -1 ) {
 						settings.type = "iframe";
 					} else if ( firstLink.getElementsByTagName( "img" ).length === 0 ) {
 						settings.type = "ajax";
@@ -164,34 +164,42 @@ var selector = ".wb-lightbox",
 						settings.type = "image";
 					}
 
-					$elm.magnificPopup( settings );
+					if ( elm.className.indexOf( "lbx-modal" ) !== -1 ) {
+						settings.modal = true;
+					}
+
+					// Extend the settings with data-wet-boew then
+					$elm.magnificPopup(
+						$.extend(
+							true,
+							settings,
+							wb.getData( $elm, "wet-boew" )
+						)
+					);
 				}
 			});
 		}
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb", selector, init );
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 $document.on( "keydown", ".mfp-wrap", function( event ) {
-	var eventTarget = event.target,
-		$elm;
+	var $elm, $focusable, index, length;
 
 	// If the tab key is used and filter out any events triggered by descendants
 	if ( extendedGlobal && event.which === 9 ) {
+		event.preventDefault();
 		$elm = $( this );
-
-		if ( event.shiftKey ) {
-			if ( event.currentTarget === eventTarget ) {
-				$elm.find( ":focusable" ).last().trigger( "focus.wb" );
-				return false;
-			}
-		} else {
-			if ( $elm.find( ":focusable" ).last()[ 0 ] === eventTarget ) {
-				$elm.trigger( "focus.wb" );
-				return false;
-			}
+		$focusable = $elm.find( ":focusable" );
+		length = $focusable.length;
+		index = $focusable.index( event.target ) + ( event.shiftKey ? -1 : 1 );
+		if ( index === -1 ) {
+			index = length - 1;
+		} else if ( index === length ) {
+			index = 0;
 		}
+		$focusable.eq( index ).trigger( "setfocus.wb" );
 	}
 
 	/*
@@ -201,7 +209,13 @@ $document.on( "keydown", ".mfp-wrap", function( event ) {
 	return true;
 });
 
-// Add the timer poke to initialize the plugin
-window._timer.add( selector );
+// Event handler for closing a modal popup
+$(document).on( "click", ".popup-modal-dismiss", function( event ) {
+	event.preventDefault();
+	$.magnificPopup.close();
+});
 
-})( jQuery, window, document, vapour );
+// Add the timer poke to initialize the plugin
+wb.add( selector );
+
+})( jQuery, window, document, wb );
