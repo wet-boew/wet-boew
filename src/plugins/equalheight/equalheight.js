@@ -49,21 +49,21 @@ var selector = ".wb-eqht",
 	 * @method onResize
 	 */
 	onResize = function() {
-		var $elms = $( selector );
+		var $elm, $children, $anchor, currentChild, childCSS, minHeight, i, j,
+			$elms = $( selector ),
+			row = [],
+			rowTop = -1,
+			currentChildTop = -1,
+			currentChildHeight = -1,
+			tallestHeight = -1;
 
-		$elms.each( function() {
-			var currentChild, childCSS, minHeight, i,
-				row = [ ],
-				rowTop = -1,
-				currentChildTop = -1,
-				currentChildHeight = -1,
-				tallestHeight = -1,
-				$this = $( this ),
-				$children = $this.children(),
-				$anchor = detachElement( $this );
+		for ( i = $elms.length; i !== -1; i -= 1 ) {
+			$elm = $elms.eq( i );
+			$children = $elm.children();
 
-			for ( i = $children.length - 1; i !== -1; i -= 1 ) {
-				currentChild = $children[ i ];
+			$anchor = detachElement( $elm );
+			for ( j = $children.length - 1; j !== -1; j -= 1 ) {
+				currentChild = $children[ j ];
 				childCSS = currentChild.style.cssText;
 
 				// Ensure all children that are on the same baseline have the same 'top' value.
@@ -82,10 +82,10 @@ var selector = ".wb-eqht",
 
 				currentChild.style.cssText = childCSS;
 			}
-			$this = reattachElement( $anchor );
+			$elm = reattachElement( $anchor );
 
-			for ( i = $children.length - 1; i !== -1; i -= 1 ) {
-				currentChild = $children[ i ];
+			for ( j = $children.length - 1; j !== -1; j -= 1 ) {
+				currentChild = $children[ j ];
 
 				currentChildTop = currentChild.offsetTop;
 				currentChildHeight = currentChild.offsetHeight;
@@ -99,20 +99,20 @@ var selector = ".wb-eqht",
 					tallestHeight = ( currentChildHeight > tallestHeight ) ? currentChildHeight : tallestHeight;
 				}
 
-				row.push( $children.eq( i ) );
+				row.push( $children.eq( j ) );
 			}
 			recordRowHeight( row, tallestHeight );
 
-			$anchor = detachElement( $this );
-			for ( i = $children.length - 1; i !== -1; i -= 1 ) {
-				minHeight = $children.eq( i ).data( "min-height" );
+			$anchor = detachElement( $elm );
+			for ( j = $children.length - 1; j !== -1; j -= 1 ) {
+				minHeight = $children.eq( j ).data( "min-height" );
 
 				if ( minHeight ) {
-					$children[ i ].style.minHeight = minHeight;
+					$children[ j ].style.minHeight = minHeight;
 				}
 			}
-			$this = reattachElement( $anchor );
-		} );
+			$elm = reattachElement( $anchor );
+		}
 	},
 
 	/**
