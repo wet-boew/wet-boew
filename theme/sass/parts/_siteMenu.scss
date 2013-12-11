@@ -1,6 +1,6 @@
 /*
- Site menu
-*/
+ * Site menu
+ */
 #wb-sm {
 	background: #0E4164;
 	.menu {
@@ -27,8 +27,10 @@
 						}
 					}
 				}
-				&:last-child a {
-					border-right: 1px solid #135480;
+				&:last-child {
+					a {
+						border-right: 1px solid #135480;
+					}
 				}
 				&.active {
 					> {
@@ -78,5 +80,19 @@
 	}
 	#wb-sec-p {
 		display: none;
+	}
+}
+
+#mb-pnl {
+	background: #0E4164;
+	.modal-header {
+		text-align: left;
+		border: none;
+		box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.3), 3px 3px 3px -2px rgba(0, 0, 0, 0.3), -3px 3px 3px -2px rgba(0, 0, 0, 0.3);
+		color: #fff;
+		background: #2e5274;
+	}
+	.lng-ofr {
+		text-align: right;
 	}
 }

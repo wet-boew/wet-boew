@@ -22,6 +22,7 @@ var pluginName = "wb-menu",
 	incrementEvent = "inc" + selector,
 	displayEvent = "disp" + selector,
 	navCurrentEvent = "navcurr.wb",
+	i18n, i18nText,
 	$document = wb.doc,
 
 	// Used for half second delay on showing/hiding menus because of mouse hover
@@ -46,6 +47,14 @@ var pluginName = "wb-menu",
 				$elm.attr( "id", pluginName + "-" + menuCount );
 			}
 			menuCount += 1;
+
+			// Only initialize the i18nText once
+			if ( !i18nText ) {
+				i18n = wb.i18n;
+				i18nText = {
+					menu: i18n( "menu" )
+				};
+			}
 
 			// Lets test to see if we have any
 			if ( $elm.data( "ajax-fetch" ) ) {
@@ -124,48 +133,86 @@ var pluginName = "wb-menu",
 
 			// Optimized the code block to look to see if we need to import anything instead
 			// of just doing a query with which could result in no result
-			imports = $elm.data( "import" ) ? $elm.data( "import" ).split( " " ) : 0,
-			$panel, i, classList, $iElement;
+			target = $elm.data( "trgt" ),
+			secnav = document.getElementById( "wb-sec" ),
+			$language = $( "#wb-lng li:not(.curr)" ),
+			search = document.getElementById( "wb-srch" ),
+			panel = $ajaxed.html(),
+			$onlypnl, $panel;
 
-		// lets see if there is anything to import into our panel
-		if ( imports !== 0 ) {
-			$panel = $ajaxed.find( ".pnl-strt" );
-			classList = $panel.siblings( ".wb-info" ).eq( 0 ).attr( "class" );
+		// Let's start building our panel in reverse order
 
-			for ( i = imports.length - 1; i >= 0; i-- ) {
-				$iElement = $( "#" + imports[ i ] );
-
-				// lets only deal with elements that exist since there are possibilites where templates
-				// could add into a header and footer and the content areas change depending on levels
-				// in the site
-				if ( $iElement.length === 0 ) {
-					continue;
-				}
-
-				// Lets DomInsert since we are complete all our safeguards and pre-processing
-				// ** note we need to ensure our content is ID safe since this will invalidate the DOM
-				$panel.before( "<section id='wb-imprt-" + i + "' class='" +
-					classList + "'>" +
-					$iElement.html().replace( /\b(id|for)="([^"]+)"/g, "$1='$2-imprt'" ) +
-				"</section>" );
-			}
+		// If secondary navigation exists
+		if ( secnav !== null ){
+			panel =  "<section class='secnav-pnl'>" + secnav.innerHTML + "</section>" + panel;
 		}
 
-		$ajaxed.find( ":discoverable" )
-			.attr( "tabindex", "-1" );
+		// Clean up some extra markup
+		panel = panel.replace( /\bclass="([^"]+)"/gi, "" );
 
-		$menu.eq( 0 ).attr( "tabindex", "0" );
-		$menu.filter( "[href^=#]" )
-			.append( "<span class='expicon'></span>" );
+		// Add search
+		panel = "<section class='srch-pnl'>" + search.innerHTML + "</section>" +
+
+			// Add active language offer
+			"<div class='lng-ofr'>" + $language.html() + "</div>" + panel;
+
+		// Sanitize the DOM
+		panel = panel.replace( /(for|id)="([^"]+)"/gi, "$1=\"$2-imprt\"" )
+			.replace( /href="#([^"]+)"/gi, "href=\"#$1-imprt\"" )
+			.replace( /role="menu([^"]+)"/gi, "" );
+
+		// Let's create the DOM Element
+		$panel = $( "<section id='" + target +
+				"' class='wb-overlay modal-content overlay-def wb-panel-r'>" +
+				"<header class='modal-header'><h2 class='modal-title'>" +
+				i18nText.menu  + "</h2>" + "</header><div class='modal-body'>" +
+				panel + "</div>" + "</section>" );
+
+		// Let's add some features
+		$panel.find( "[href^='#']" )
+			.prepend( "<span class='expicon'></span>" );
+
+		// Let's now populate the DOM since we have done all the work in a documentFragment
+		$( "#" + target ).replaceWith( $panel );
+
+		// Let's set some events on click
+		$panel.on( "click vclick", "a[href^=#]", function() {
+				var $elm = $( this ),
+					state = $elm.parent().hasClass( "active" );
+
+				$panel.find( ".open, .active" )
+					.removeClass( "open active" );
+
+				if ( !state ){
+					$panel
+						.find( $elm.attr( "href" ) )
+							.addClass( "open" )
+							.parent()
+								.addClass( "active" );
+				}
+
+				return false;
+		});
+
+		$panel.trigger( "wb-init.wb-overlay" );
+
+		$ajaxed
+			.find( ":discoverable" )
+				.attr( "tabindex", "-1" );
+
+		$menu[ 0 ].setAttribute( "tabindex", "0" );
+		$menu
+			.filter( "[href^=#]" )
+				.append( "<span class='expicon'></span>" );
 
 		drizzleAria( $menu );
 
-		// Now lets replace the html since we were working off canvas for performance
-		if ( $elm.has( "[data-post-remove]" ) ) {
-			$elm.removeClass( $elm.data( "post-remove" ) )
-				.removeAttr( "data-post-remove" );
-		}
+		$onlypnl = $ajaxed.find( ".only-pnl" );
 
+		// Lets ensure that we are only adding the navigation at this point
+		if ( $onlypnl.length !== 0 ){
+			$onlypnl.remove();
+		}
 		// Replace elements
 		$elm.html( $ajaxed.html() );
 
@@ -542,6 +589,14 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 				);
 			}
 		}
+	}
+});
+
+// Close the mobile menu if switching to medium, large or extra large view
+$document.on( "mediumview.wb largeview.wb xlargeview.wb", function() {
+	var mobilePanel = document.getElementById( "mb-pnl" );
+	if ( mobilePanel && mobilePanel.getAttribute( "aria-hidden" ) === "false" ) {
+		$( mobilePanel ).trigger( "close.wb-overlay" );
 	}
 });
 
