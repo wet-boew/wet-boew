@@ -52,19 +52,18 @@ var selector = ".wb-eqht",
 		var $elms = $( selector );
 
 		$elms.each( function() {
-			var $children, $detachedChildren, currentChild, childCSS, minHeight, i,
+			var currentChild, childCSS, minHeight, i,
 				row = [ ],
 				rowTop = -1,
 				currentChildTop = -1,
 				currentChildHeight = -1,
 				tallestHeight = -1,
-				$this = $( this );
+				$this = $( this ),
+				$children = $this.children(),
+				$anchor = detachElement( $this );
 
-			$children = $this.children();
-
-			$detachedChildren = $children.detach();
-			for ( i = $detachedChildren.length - 1; i !== -1; i -= 1 ) {
-				currentChild = $detachedChildren[ i ];
+			for ( i = $children.length - 1; i !== -1; i -= 1 ) {
+				currentChild = $children[ i ];
 				childCSS = currentChild.style.cssText;
 
 				// Ensure all children that are on the same baseline have the same 'top' value.
@@ -83,7 +82,7 @@ var selector = ".wb-eqht",
 
 				currentChild.style.cssText = childCSS;
 			}
-			$detachedChildren.appendTo( $this );
+			$this = reattachElement( $anchor );
 
 			for ( i = $children.length - 1; i !== -1; i -= 1 ) {
 				currentChild = $children[ i ];
@@ -104,16 +103,61 @@ var selector = ".wb-eqht",
 			}
 			recordRowHeight( row, tallestHeight );
 
-			$detachedChildren = $children.detach();
-			for ( i = $detachedChildren.length - 1; i !== -1; i -= 1 ) {
-				minHeight = $detachedChildren.eq( i ).data( "min-height" );
+			$anchor = detachElement( $this );
+			for ( i = $children.length - 1; i !== -1; i -= 1 ) {
+				minHeight = $children.eq( i ).data( "min-height" );
 
 				if ( minHeight ) {
-					$detachedChildren[ i ].style.minHeight = minHeight;
+					$children[ i ].style.minHeight = minHeight;
 				}
 			}
-			$detachedChildren.appendTo( $this );
+			$this = reattachElement( $anchor );
 		} );
+	},
+
+	/**
+	 * @method detachElement
+	 * @param {jQuery object} $elm The element to detach
+	 * @returns {object} The detached element
+	 */
+	detachElement = function( $elm ) {
+		var $prev = $elm.prev(),
+			$next = $elm.next(),
+			$parent = $elm.parent();
+
+		if ( $prev.length ) {
+			$elm.data( { anchor: $prev, anchorRel: "prev" } );
+		} else if ( $next.length ) {
+			$elm.data( { anchor: $next, anchorRel: "next" } );
+		} else if ( $parent.length ) {
+			$elm.data( { anchor: $parent, anchorRel: "parent" } );
+		}
+		
+		return $elm.detach();
+	},
+
+	/**
+	 * @method reattachElement
+	 * @param {jQuery object} $elm The element to reattach
+	 * @returns {object} The reattached element
+	 */
+	reattachElement = function( $elm ) {
+		var $anchor = $elm.data( "anchor" ),
+			anchorRel = $elm.data( "anchorRel" );
+
+		switch ( anchorRel ) {
+		case "prev":
+			$anchor.after( $elm );
+			break;
+		case "next":
+			$anchor.before( $elm );
+			break;
+		case "parent":
+			$anchor.append( $elm );
+			break;
+		}
+
+		return $elm;
 	},
 
 	/**
