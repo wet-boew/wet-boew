@@ -3,21 +3,27 @@ title: Chart and Graph - Number Formating working example
 language: en
 ---
 
+
 <ul>
 	<li><a href="simple-en.html">Simple</a></li>
 	<li><a href="complex-en.html">Complex</a></li>
 	<li><a href="labels-en.html">Labels</a></li>
+	<li><a href="labelsandreferencevalue-en.html">Labels and Reference Value</a></li>
+	<li><a href="labelsreversetable-en.html">Labels with and without a reversed table</a></li>
 	<li><a href="numberformat-en.html">Number Format</a></li>
 	<li><a href="pie-en.html">Pie</a></li>
 	<li><a href="simpleCustomized-en.html">Simple Customized</a></li>
+	<li><a href="pieparsevertical-en.html">Pie Chart Parse Direction Vertical</a></li>
+	<li><a href="linearparsevertical-en.html">Linear Chart Parse Direction Vertical</a></li>
 </ul>
 <hr />
+
 
 
 <h2>Default without any chart preset</h2>
 
 <h3>Space thousand separator</h3>
-<table class="wb-charts wb-charts-line wb-charts-parsedirectionremoved-y span-4">
+<table class="wb-charts wb-charts-line wb-charts-parsedirection-y span-4">
 	<caption>WET Contribution from May 5 2012 to May 4 2013</caption>
 	<thead>
 		<tr>
@@ -69,7 +75,7 @@ language: en
 <div class="clear"></div>
 
 <h3>Comma thousand separator</h3>
-<table class="wb-charts wb-charts-line wb-charts-parsedirectionremoved-y span-4">
+<table class="wb-charts wb-charts-line wb-charts-parsedirection-y span-4">
 	<caption>WET Contribution from May 5 2012 to May 4 2013</caption>
 	<thead>
 		<tr>
@@ -121,7 +127,7 @@ language: en
 <div class="clear"></div>
 
 <h3>Dot thousand separator</h3>
-<table class="wb-charts wb-charts-line wb-charts-parsedirectionremoved-y span-4">
+<table class="wb-charts wb-charts-line wb-charts-parsedirection-y span-4">
 	<caption>WET Contribution from May 5 2012 to May 4 2013</caption>
 	<thead>
 		<tr>
@@ -177,7 +183,7 @@ language: en
 <h2>Using Preset</h2>
 
 <h3>Comma thousand separator (<code>wb-charts-usnumber</code>)</h3>
-<table class="wb-charts wb-charts-usnumber wb-charts-line wb-charts-parsedirectionremoved-y span-4">
+<table class="wb-charts wb-charts-usnumber wb-charts-line wb-charts-parsedirection-y span-4">
 	<caption>WET Contribution from May 5 2012 to May 4 2013</caption>
 	<thead>
 		<tr>
@@ -230,7 +236,7 @@ language: en
 
 
 <h3>Dot thousand separator (<code>wb-charts-germannumber</code>)</h3>
-<table class="wb-charts wb-charts-germannumber wb-charts-line wb-charts-parsedirectionremoved-y span-4">
+<table class="wb-charts wb-charts-germannumber wb-charts-line wb-charts-parsedirection-y span-4">
 	<caption>WET Contribution from May 5 2012 to May 4 2013</caption>
 	<thead>
 		<tr>
@@ -279,11 +285,27 @@ language: en
 		</tr>	
 	</tbody>
 </table>
-<div class="clear"></div>
 
 
-<h3>Custom thousand separator (<code>wb-charts-specialthousandseparator</code>)</h3>
-<table class="wb-charts wb-charts-specialthousandseparator wb-charts-line wb-charts-parsedirectionremoved-y span-4">
+<h3>Custom preset specific to a page</h3>
+<p>This following example create a new preset named <code>specialthousandseparator</code> in order to use the custom thousand separator "N".</p>
+
+<pre class="wb-prettify prettyprint linenums lang-javascript"><code>// Declared somewhere in the current webpage
+var wet_boew_charts = {
+	preset: {
+		specialthousandseparator: {
+			getcellvalue: function(elem){
+				var raw = $(elem).text().replace(/\s\s+/g, ' ').replace(/^\s+|\s+$/g, '').replace(/N/g, '');
+				return [parseFloat(raw.match(/[\+\-0-9]+[0-9,\. ]*/)), raw.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
+			}
+		}
+	}
+}
+// FYI - This technique also work for others charts parameter, see the "donut" preset in the "Pie" working example 
+</code></pre>
+
+
+<table class="wb-charts wb-charts-specialthousandseparator wb-charts-line wb-charts-parsedirection-y span-4">
 	<caption>WET Contribution from May 5 2012 to May 4 2013</caption>
 	<thead>
 		<tr>
@@ -332,11 +354,8 @@ language: en
 		</tr>	
 	</tbody>
 </table>
-<div class="clear"></div>
 
-<details>
-	<summary>Special thousand separator javascript</summary>
-<pre class="wet-boew-prettify prettyprint linenums lang-javascript"><code>// Chart and graph - Declared in the current webpage
+<script>
 var wet_boew_charts = {
 	preset: {
 		specialthousandseparator: {
@@ -347,4 +366,4 @@ var wet_boew_charts = {
 		}
 	}
 }
-</code></pre>
+</script>
