@@ -18,21 +18,22 @@ describe( "Session Timeout test suite", function() {
 
 	var clock,
 		server,
-		spies = {};
+		spies = {},
+		sandbox = sinon.sandbox.create();
 
 	/*
 	 * Before beginning the test suite, this function is executed once.
 	 */
 	before(function( done ) {
 		// Spy on jQuery's trigger and post methods
-		spies.trigger = sinon.spy( $.prototype, "trigger" );
-		spies.post = sinon.spy( $, "post" );
+		spies.trigger = sandbox.spy( $.prototype, "trigger" );
+		spies.post = sandbox.spy( $, "post" );
 
 		// Fake server to test POST requests
-		server = sinon.fakeServer.create();
+		server = sandbox.useFakeServer();
 
 		// Use a fake timer (allows for easy testing of setTimeout calls)
-		clock = sinon.useFakeTimers();
+		clock = sandbox.useFakeTimers();
 
 		// Wait for the reset event from the plugin's init method before beginning the test
 		$( ".wb-sessto" )
@@ -55,15 +56,8 @@ describe( "Session Timeout test suite", function() {
 	 * After finishing the test suite, this function is executed once.
 	 */
 	after(function() {
-		// Restore the original behaviour of trigger and post once the tests are finished
-		$.prototype.trigger.restore();
-		$.post.restore();
-
-		// Restore server
-		server.restore();
-
-		// Restore the global clock
-		clock.restore();
+		// Restore the original behaviour of spies, server and timer
+		sandbox.restore();
 	});
 
 	/*
