@@ -49,7 +49,7 @@
     "grunt-jscs-checker": "~0.2.5",
     "grunt-mocha": "~0.4.1",
     "grunt-modernizr": "~0.4.0",
-    "grunt-sass": "~0.8.0",
+    "grunt-sass": "~0.9.0",
     "grunt-saucelabs": "~4.1.2",
     "mocha": "~1.13.0",
     "sinon": "~1.7.3"
