@@ -155,6 +155,8 @@ var getUrlParts = function( url ) {
 
 		nodes: $(),
 
+		resizeEvents: "xxsmallview.wb xsmallview.wb smallview.wb mediumview.wb largeview.wb xlargeview.wb",
+
 		add: function( selector ) {
 
 			// Lets ensure we are not running if things are disabled
