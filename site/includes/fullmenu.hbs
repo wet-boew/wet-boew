@@ -49,6 +49,21 @@
 					{{/withSort}}
 				</ul>
 			</li>
+			<li><a href="#plugins" class="item">{{#i18n "tmpl-polyfills"}}{{/i18n}}</a>
+				<ul class="sm list-unstyled" id="plugins" role="menu">
+					{{#withSort pages "data.title"}}
+						{{#is language "data.language"}}
+							{{#is data.category "Correctif"}}
+								<li><a href="{{environment.root}}/demos/{{relative dirname dest}}{{#if data.querystring}}?{{data.querystring}}{{/if}}">{{data.title}}</a></li>
+							{{/is}}
+						{{else}}
+							{{#is data.category "Polyfill"}}
+								<li><a href="{{environment.root}}/demos/{{relative dirname dest}}{{#if data.querystring}}?{{data.querystring}}{{/if}}">{{data.title}}</a></li>
+							{{/is}}
+						{{/is}}
+					{{/withSort}}
+				</ul>
+			</li>
 		</ul>
 	</div>
 </div>
