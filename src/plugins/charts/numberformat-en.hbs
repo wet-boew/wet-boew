@@ -286,3 +286,84 @@ language: en
 	</tbody>
 </table>
 
+
+<h3>Custom preset specific to a page</h3>
+<p>This following example create a new preset named <code>specialthousandseparator</code> in order to use the custom thousand separator "N".</p>
+
+<pre class="wb-prettify prettyprint linenums lang-javascript"><code>// Declared somewhere in the current webpage
+var wet_boew_charts = {
+	preset: {
+		specialthousandseparator: {
+			getcellvalue: function(elem){
+				var raw = $(elem).text().replace(/\s\s+/g, ' ').replace(/^\s+|\s+$/g, '').replace(/N/g, '');
+				return [parseFloat(raw.match(/[\+\-0-9]+[0-9,\. ]*/)), raw.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
+			}
+		}
+	}
+}
+// FYI - This technique also work for others charts parameter, see the "donut" preset in the "Pie" working example 
+</code></pre>
+
+
+<table class="wb-charts wb-charts-specialthousandseparator wb-charts-line wb-charts-parsedirection-y span-4">
+	<caption>WET Contribution from May 5 2012 to May 4 2013</caption>
+	<thead>
+		<tr>
+			<th>Contributor</th>
+			<th>Commits</th>
+			<th>Additions</th>
+			<th>Deletions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>pjackson28</th>
+			<td>1N713</td>
+			<td>1N483N907</td>
+			<td>928N648</td>
+		</tr>
+		<tr>
+			<th>nschonni</th>
+			<td>506</td>
+			<td>90N412</td>
+			<td>72N797</td>
+		</tr>
+		<tr>
+			<th>LaurentGoderre</th>
+			<td>398</td>
+			<td>52N983</td>
+			<td>29N957</td>
+		</tr>
+		<tr>
+			<th>duboisp</th>
+			<td>289</td>
+			<td>168N976</td>
+			<td>106N100</td>
+		</tr>	
+		<tr>
+			<th>patheard</th>
+			<td>135</td>
+			<td>6N820</td>
+			<td>3N639</td>
+		</tr>
+		<tr>
+			<th>cfarquharson</th>
+			<td>85</td>
+			<td>18N572</td>
+			<td>3N518</td>
+		</tr>	
+	</tbody>
+</table>
+
+<script>
+var wet_boew_charts = {
+	preset: {
+		specialthousandseparator: {
+			getcellvalue: function(elem){
+				var raw = $(elem).text().replace(/\s\s+/g, ' ').replace(/^\s+|\s+$/g, '').replace(/N/g, '');
+				return [parseFloat(raw.match(/[\+\-0-9]+[0-9,\. ]*/)), raw.match(/[^\+\-\.\, 0-9]+[^\-\+0-9]*/)];
+			}
+		}
+	}
+}
+</script>

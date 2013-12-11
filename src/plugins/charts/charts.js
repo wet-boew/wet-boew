@@ -1,14 +1,13 @@
 /**
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * @title Charts and Graph
- * @overview Draw charts
+ * @overview Draw charts from an html simple and complex data table 
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @duboisp
  *
  */
-(function ( $, window, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
-
 
 /*
  * Variable and function definitions.
@@ -16,20 +15,24 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var wet_boew_charts,
-	selector = ".wb-charts",
-	$document = vapour.doc,
-
+ var pluginName = "wb-charts",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
+	$document = wb.doc,
+	tableParsingEvent = "pasiveparse.wb-table.wb",
+	tableParsingCompleteEvent = "parsecomplete.wb-table.wb",
+	
 	/*
 	 * Main Entry function to create the charts
 	 * @method createCharts
 	 * @param {jQuery DOM element} $elm table element use to create the chart
 	 */
-	createCharts = function ( $elm ) {
+	createCharts = function( $elm ) {
 		var allSeries = [],
 			chartslabels = [],
 			dataSeries = [],
-			i18n = window.i18n,
+			i18n = wb.i18n,
 			nbBarChart = 0,
 			options = {},
 			pieChartLabelText = "",
@@ -44,10 +47,18 @@ var wet_boew_charts,
 			tdOptions,
 			valuePoint,
 			currentRowGroup, reverseTblParsing, dataGroupVector,
-			dataCell, currDataVector, currVectorSeries;
+			dataCell, previousDataCell, currDataVector, currVectorSeries;
 
+		/**
+		 * Scoped convertion of CSS Options/Parameter into a JSON object
+		 * 
+		 * @method setClassOptions
+		 * @param {json object} sourceOptions - Baseline object for override
+		 * @param {string} strClass - Value of class attribute of a DOM element
+		 * @param {string=} namespace - Prefix to be use in order to extract the parameter/options 
+		 */
 		// Function to Convert Class instance to JSON
-		function setClassOptions ( sourceOptions, strClass, namespace ) {
+		function setClassOptions( sourceOptions, strClass, namespace ) {
 			var autoCreate = false,
 				arrayOverwrite = false,
 				autoCreateMe = false,
@@ -117,7 +128,7 @@ var wet_boew_charts,
 					// Apply a predefined preset
 					sourceOptions = $.extend( true, sourceOptions, sourceOptions.preset[ propName ] );
 					continue;
-				} else if (iLength === 1) {
+				} else if (iLength === 1 && (!sourceOptions[ propName + "-typeof" ] || sourceOptions[ propName + "-typeof" ] !== "locked")) {
 					// Use the default option
 					arrParameters.push(propName);
 					arrParameters[ 0 ] = sourceOptions[ "default-option" ];
@@ -230,11 +241,11 @@ var wet_boew_charts,
 			return sourceOptions;
 		}
 
-
 		if ( !window.chartsGraphOpts ){
 			// 1. Charts Default Setting
 			options = {
 				"default-namespace": "wb-charts",
+				"inited-typeof": "locked",
 
 				// This adds the ability to set custom css class to the figure container.
 				"graphclass-autocreate": true,
@@ -246,7 +257,7 @@ var wet_boew_charts,
 				// Colors - Accent Profile (Defaults)
 				"colors-typeof": "color",
 				"colors-array-mode": true,
-				"colors": ["#8d201c",
+				colors: [ "#8d201c",
 						"#EE8310",
 						"#2a7da6",
 						"#5a306b",
@@ -258,7 +269,7 @@ var wet_boew_charts,
 						"#418541",
 						"#87aec9",
 						"#23447e",
-						"#999999"],
+						"#999999" ],
 
 				// Force to have an uniform tick
 				uniformtick: true,
@@ -299,9 +310,9 @@ var wet_boew_charts,
 				// set a decimal precision
 				"decimal-autocreate": true,
 				"decimal-typeof": "number",
-				"pieradius": 100, // Pie radius
+				pieradius: 100, // Pie radius
 				"pieradius-typeof": "number",
-				"pielblradius": 100, // Pie label radius
+				pielblradius: 100, // Pie label radius
 				"pielblradius-typeof": "number",
 				"piethreshold-autocreate": true, // Hides the labels of any pie slice that is smaller than the specified percentage (ranging from 0 to 100)
 				"piethreshold-typeof": "number",
@@ -368,7 +379,7 @@ var wet_boew_charts,
 					return [ parseFloat( cellRawValue.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), cellRawValue.match (/[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
 				},
 				preset: {
-					donnut: {
+					donut: {
 						// Donnut setting
 						type: "pie",
 						height: 250,
@@ -397,16 +408,16 @@ var wet_boew_charts,
 			};
 
 			// 2. Global "setting.js"
-			if ( wet_boew_charts !== undefined ) {
+			if ( window.wet_boew_charts !== undefined ) {
 
 				// a. if exisit copy and take care of preset separatly (Move away before extending)
-				if ( wet_boew_charts.preset ) {
-					window.chartsGraphOpts = $.extend( true, {}, wet_boew_charts.preset );
-					delete wet_boew_charts.preset;
+				if ( window.wet_boew_charts.preset ) {
+					window.chartsGraphOpts = $.extend( true, {}, window.wet_boew_charts.preset );
+					delete window.wet_boew_charts.preset;
 				}
 
 				// b. Overwrite the chart default setting
-				$.extend( true, options, wet_boew_charts );
+				$.extend( true, options, window.wet_boew_charts );
 
 				// c. Separatly extend the preset to at the current chart default seting
 				if ( window.chartsGraphOpts ) {
@@ -436,10 +447,14 @@ var wet_boew_charts,
 			}
 		}
 
-		// Get The column group header hiearchy partern
-		function getColumnGroupHeaderCalculateSteps( colGroupHead, referenceValuePosition ){
+		/** 
+		 * @method getColumnGroupHeaderCalculateSteps
+		 * @param {object} colGroupHead - Column Group Header Object from the table parser
+		 * @param {number} referenceValuePosition - Vector position use as reference for defining the steps, zero based position
+		 */
+		function getColumnGroupHeaderCalculateSteps( colGroupHead, referenceValuePosition ) {
 			// Get the appropriate ticks
-			var dataCell, i, _ilen,
+			var headerCell, i, _ilen,
 				calcStep = 1;
 				
 				
@@ -449,18 +464,18 @@ var wet_boew_charts,
 
 			for ( i = 0, _ilen = colGroupHead.col[ referenceValuePosition ].cell.length; i < _ilen; i += 1 ) {
 
-				dataCell = colGroupHead.col[ referenceValuePosition ].cell[ i ];
+				headerCell = colGroupHead.col[ referenceValuePosition ].cell[ i ];
 
-				if ( i === 0 || ( i > 0 && colGroupHead.col[ 0 ].cell[ i - 1 ].uid !== dataCell.uid ) ) {
+				if ( i === 0 || ( i > 0 && colGroupHead.col[ 0 ].cell[ i - 1 ].uid !== headerCell.uid ) ) {
 
-					if ( dataCell.rowgroup && dataCell.rowgroup.type === 3 ) {
+					if ( headerCell.rowgroup && headerCell.rowgroup.type === 3 ) {
 						// We only process the first column data group
 						break;
 					}
 
-					if ( dataCell.type === 1 || dataCell.type === 7 ) {
-						if ( dataCell.child.length > 0 ) {
-							calcStep = calcStep * groupHeaderHierarchyPaternChild( dataCell, 1 );
+					if ( headerCell.type === 1 || headerCell.type === 7 ) {
+						if ( headerCell.child.length > 0 ) {
+							calcStep = calcStep * groupHeaderCalculateStepsRecursive( headerCell, 1 );
 						}
 					}
 				}
@@ -469,46 +484,30 @@ var wet_boew_charts,
 			return calcStep;
 		}
 
-		// Recursive function for getting the header hiearchy partern
-		function groupHeaderHierarchyPaternChild( dataCell, headerLevel ) {
-			var childLength = dataCell.child.length,
-				kIndex,
-				tblHierarchyPatern = [];
-			
-			if (childLength === 0) {
-				return tblHierarchyPatern;
-			}
-
-			headerLevel += 1;
-			tblHierarchyPatern.push( [ childLength, headerLevel ] );
-			
-			for ( kIndex = 0; kIndex < childLength; kIndex += 1 ) {
-				if ( dataCell.child[ kIndex ].child.length > 0 ){
-					tblHierarchyPatern = tblHierarchyPatern.concat( groupHeaderHierarchyPaternChild( dataCell.child[ kIndex ], headerLevel ) );
-				}
-			}
-			return tblHierarchyPatern;
-		}
-
-		// Get The row group header hiearchy partern
-		function getRowGroupHeaderCalculateSteps(rowGroupHead, referenceValuePosition, dataColgroupStart){
+		/** 
+		 * @method getRowGroupHeaderCalculateSteps
+		 * @param {object} rowGroupHead - Row Group Header Object from the table parser
+		 * @param {number} referenceValuePosition - Vector position use as reference for defining the steps, zero based position
+		 * @param {number} dataColgroupStart - Column position where the column data group start 
+		 */
+		function getRowGroupHeaderCalculateSteps(rowGroupHead, referenceValuePosition, dataColgroupStart) {
 			// Find the range of the first data colgroup
-			var dataCell, i, _ilen,
+			var headerCell, i, _ilen,
 				calcStep = 1;
 
 			for ( i = 0, _ilen = rowGroupHead[ referenceValuePosition ].elem.cells.length; i < _ilen; i += 1 ) {
 
-				dataCell = $( rowGroupHead[ referenceValuePosition ].elem.cells[ i ] ).data().tblparser;
+				headerCell = $( rowGroupHead[ referenceValuePosition ].elem.cells[ i ] ).data().tblparser;
 
-				if ( dataCell.colgroup && dataCell.colgroup.type === 3 ) {
+				if ( headerCell.colgroup && headerCell.colgroup.type === 3 ) {
 					// We only process the first column data group
 					break;
 				}
 
-				if ( dataCell.colpos >= dataColgroupStart && ( dataCell.type === 1 || dataCell.type === 7 ) ) {
-					if ( dataCell.child.length > 0 ) {
-						calcStep = calcStep * dataCell.child.length;
-						calcStep = calcStep * groupHeaderHierarchyCalculateSteps( dataCell,  1);
+				if ( headerCell.colpos >= dataColgroupStart && ( headerCell.type === 1 || headerCell.type === 7 ) ) {
+					if ( headerCell.child.length > 0 ) {
+						calcStep = calcStep * headerCell.child.length;
+						calcStep = calcStep * groupHeaderCalculateStepsRecursive( headerCell,  1);
 						
 					}
 				}
@@ -517,9 +516,13 @@ var wet_boew_charts,
 			return calcStep;
 		}
 
-		// Recursive function for getting the header hiearchy partern
-		function groupHeaderHierarchyCalculateSteps( dataCell, refValue ) {
-			var childLength = dataCell.child.length,
+		/**
+		 * @method groupHeaderCalculateStepsRecursive
+		 * @param {object} headerCell- Header cell object from the table parser
+		 * @param {number} refValue - Reference Value (Dénominateur) of headerCell
+		 */
+		function groupHeaderCalculateStepsRecursive( headerCell, refValue ) {
+			var childLength = headerCell.child.length,
 				kIndex,
 				subRefValue,
 				calcStep = 1;
@@ -533,22 +536,22 @@ var wet_boew_charts,
 			calcStep = calcStep * subRefValue;
 
 			for ( kIndex = 0; kIndex < childLength; kIndex += 1 ) {
-				if ( dataCell.child[ kIndex ].child.length > 0 ){
-					calcStep = calcStep * groupHeaderHierarchyCalculateSteps( dataCell.child[ kIndex ], subRefValue );
+				if ( headerCell.child[ kIndex ].child.length > 0 ){
+					calcStep = calcStep * groupHeaderCalculateStepsRecursive( headerCell.child[ kIndex ], subRefValue );
 				}
 			}
 			return calcStep;
 		}
 
 		// Set the step value for the inner, vector that are divisor or the referenceValue Vector
-		function setInnerStepValues( vectorHead, headerLevel, stepsValue, referenceValue) {
+		function setInnerStepValues( vectorHead, headerLevel, stepsValue, referenceValue, dataColgroupStart) {
 			var i,
 				dataCell,
 				cumulativeValue = 0;
 
 			for ( i = 0; i < vectorHead.cell.length; i += 1 ) {
 				dataCell = vectorHead.cell[ i ];
-				if (i > 0 && dataCell.uid === vectorHead.cell[ i - 1 ].uid){
+				if (i > 0 && dataCell.uid === vectorHead.cell[ i - 1 ].uid || (dataColgroupStart && dataCell.colpos < dataColgroupStart) ) {
 					continue;
 				}
 				// Only process the first data group
@@ -566,7 +569,7 @@ var wet_boew_charts,
 				} else {
 					dataCell.flotDelta = stepsValue;
 				}
-				if ( dataCell.type === 1 || dataCell.type === 7 ) {
+				if ( dataCell.type === 1 || dataCell.type === 7  ) {
 
 					if ( !lowestFlotDelta || dataCell.flotDelta < lowestFlotDelta ){
 						lowestFlotDelta = dataCell.flotDelta;
@@ -630,7 +633,7 @@ var wet_boew_charts,
 						continue;
 					}
 
-					if (! (currentCell.type === 1 || currentCell.type === 7 ))  {
+					if (!(currentCell.type === 1 || currentCell.type === 7 ))  {
 						continue;
 					}
 
@@ -650,26 +653,22 @@ var wet_boew_charts,
 		}
 
 		// Get the labels with the associated value
-		function getLabels(labelVector) {
+		function getLabels(labelVector, dataColgroupStart) {
 			var i, _ilen,
-				labels = [];
+				labels = [],
+				currentCell;
 
 			for ( i = 0, _ilen = labelVector.cell.length; i < _ilen; i += 1 ) {
-
-				if ( i > 0 && labelVector.cell[ i ].uid === labelVector.cell[ i - 1 ].uid){
-					continue;
-				}
-
-				if (! (labelVector.cell[ i ].type === 1 || labelVector.cell[ i ].type === 7 ))  {
-					continue;
-				}
-
-				labels.push( [ labelVector.cell[ i ].flotValue,
-							$( labelVector.cell[ i ].elem ).text()]
-				);
+				currentCell = labelVector.cell[ i ];
 				
+				if ( ( i > 0 && currentCell.uid === labelVector.cell[ i - 1 ].uid) ||
+						( !( currentCell.type === 1 || currentCell.type === 7 ) ) ||
+						( dataColgroupStart && currentCell.colpos < dataColgroupStart ) ) {
+					continue;
+				}
+
+				labels.push( [ currentCell.flotValue, $( currentCell.elem ).text() ] );
 			}
-			
 			return labels;
 		}
 
@@ -686,7 +685,7 @@ var wet_boew_charts,
 				stepsValue,
 				columnReferenceValue;
 
-			if(!reverseTblParsing || (reverseTblParsing && options.referencevalue === undefined) ) {
+			if (!reverseTblParsing || (reverseTblParsing && options.referencevalue === undefined) ) {
 				columnReferenceValue = parsedData.colgrouphead.col.length;
 			} else {
 				columnReferenceValue = options.referencevalue;
@@ -712,8 +711,6 @@ var wet_boew_charts,
 						
 			// Get the labeling
 			return getLabels(parsedData.colgrouphead.col[ labelsVectorPosition ]);
-
-
 		}
 
 		// Set the value of labels and Obtain the label for on the row header group 
@@ -737,8 +734,7 @@ var wet_boew_charts,
 				}
 			}
 
-
-			if((!reverseTblParsing && options.referencevalue === undefined) || reverseTblParsing) {
+			if ((!reverseTblParsing && options.referencevalue === undefined) || reverseTblParsing) {
 				rowReferenceValue = parsedData.theadRowStack.length;
 			} else {
 				rowReferenceValue = options.referencevalue;
@@ -747,7 +743,6 @@ var wet_boew_charts,
 			rowReferenceValue = rowReferenceValue - 1;
 
 			stepsValue = getRowGroupHeaderCalculateSteps(parsedData.theadRowStack, rowReferenceValue, dataColgroupStart);
-
 
 			if (!reverseTblParsing) {
 				labelsVectorPosition = getlabelsVectorPosition(parsedData.theadRowStack);
@@ -759,19 +754,18 @@ var wet_boew_charts,
 			headerlevel = rowReferenceValue;
 			
 			// Calculate inner-step for cells that are more precise than the reference value vector 
-			setInnerStepValues( parsedData.theadRowStack[ rowReferenceValue ], headerlevel, stepsValue, rowReferenceValue);
+			setInnerStepValues( parsedData.theadRowStack[ rowReferenceValue ], headerlevel, stepsValue, rowReferenceValue, dataColgroupStart);
 			
 			// Calculate upper-step for cells that are less preceise than the reference value vector
 			setUpperStepValues( parsedData.theadRowStack, rowReferenceValue);
 						
 			// Get the labeling
-			return getLabels(parsedData.theadRowStack[ labelsVectorPosition ]);
-
+			return getLabels(parsedData.theadRowStack[ labelsVectorPosition ], dataColgroupStart);
 			
 		}
 
 		// Use a details/summary to encapsulate the table and to hide it once the charts is loaded
-		function wrapTableIntoDetails ($figElement, tableCaptionHTML) {
+		function wrapTableIntoDetails($figElement, tableCaptionHTML) {
 			var $details, $summary;
 			$details = $( "<details />" );
 			$summary = $( "<summary />" );
@@ -796,7 +790,7 @@ var wet_boew_charts,
 			// Create a chart/ place holder, by series
 			mainFigureElem = $( "<figure />" ).insertAfter( $elm );
 
-			pieLabelFormater = function ( label, series ) {
+			pieLabelFormater = function( label, series ) {
 				var textlabel;
 				if ( !options.decimal ) {
 					textlabel = Math.round( series.percent );
@@ -850,7 +844,7 @@ var wet_boew_charts,
 					valueCumul = 0;
 
 					// For each cells
-					for( j = 0; j < dataGroupVector[ i ].cell.length; j += 1 ){
+					for ( j = 0; j < dataGroupVector[ i ].cell.length; j += 1 ){
 						
 						dataCell = dataGroupVector[ i ].cell[ j ];
 						
@@ -859,14 +853,18 @@ var wet_boew_charts,
 							continue;
 						}
 
+						previousDataCell = undefined;
+						if (j > 0) {
+							previousDataCell = dataGroupVector[ i ].cell[ j - 1 ];
+						}
+
 						// Verify if the selected cell still in the scope of a data group in his another axes (eg. row/col)
 						// Verify if we are still in the same datagroup as the previous data cell
-						if ( !reverseTblParsing && ( dataCell.row.type !==2  || ( j > 0 &&
-								dataGroupVector[ i ].cell[ j -1 ].rowgroup.uid !== dataCell.rowgroup.uid ) ) ) {
-							break;
-						} else if (reverseTblParsing && ( dataCell.col.type !== 2 ) || ( j > 0 &&
-								dataGroupVector[ i ].cell[ j -1 ].col.type !== 1 &&
-								dataGroupVector[ i ].cell[ j -1 ].col.groupstruct.uid !== dataCell.col.groupstruct.uid ) ) {
+						if (( !reverseTblParsing && ( dataCell.row.type !== 2  || ( previousDataCell &&
+								previousDataCell.rowgroup.uid !== dataCell.rowgroup.uid ) ) ) ||
+								(reverseTblParsing && ( dataCell.col.type !== 2 ) || ( previousDataCell &&
+								previousDataCell.col.type !== 1 &&
+								previousDataCell.col.groupstruct.uid !== dataCell.col.groupstruct.uid ) )) {
 							break;
 						}
 
@@ -910,8 +908,6 @@ var wet_boew_charts,
 					} );
 				}
 
-
-
 				// Create the Canvas
 				$placeHolder = $( "<div />" );
 
@@ -946,8 +942,6 @@ var wet_boew_charts,
 
 				// Canvas Size
 				$placeHolder.css( "height", options.height ).css( "width", options.width );
-
-
 
 				$imgContainer.attr( "role", "img" );
 				// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
@@ -1028,8 +1022,6 @@ var wet_boew_charts,
 			return;
 		}
 
-
-
 		if ( !reverseTblParsing ) {
 			// If normal parsing
 			dataGroup = currentRowGroup;
@@ -1060,7 +1052,6 @@ var wet_boew_charts,
 				}
 			}
 
-
 			currDataVector.header[ currDataVector.header.length - 1 ].chartOption = currVectorOptions;
 		}
 
@@ -1075,11 +1066,11 @@ var wet_boew_charts,
 			currVectorOptions = currDataVector.header[ currDataVector.header.length - 1 ].chartOption;
 
 			// For each cells
-			for( j = 0; j < currDataVector.cell.length; j++ ){
+			for ( j = 0; j < currDataVector.cell.length; j++ ){
 
 				dataCell = currDataVector.cell[ j ];
 				
-				if( datacolgroupfound > 1 && dataCell.col.groupstruct.type !== 2 ){
+				if ( datacolgroupfound > 1 && dataCell.col.groupstruct.type !== 2 ){
 					break;
 				}
 
@@ -1114,8 +1105,6 @@ var wet_boew_charts,
 					datacolgroupfound++;
 				}
 			}
-
-
 
 			// Get the graph type
 
@@ -1153,7 +1142,6 @@ var wet_boew_charts,
 
 		}
 
-
 		figureElem = $( "<figure />" ).insertAfter( $elm );
 
 		figureElem.addClass( "wb-charts" ); // Default
@@ -1181,11 +1169,9 @@ var wet_boew_charts,
 		// Canvas Size
 		$placeHolder.css( "height", options.height ).css( "width", "100%" );
 
-
 		$placeHolder.attr( "role", "img" );
 		// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
 		$placeHolder.attr( "aria-label", $( "caption", $elm ).text() + " " + i18n( "%table-following" ) ); // "Chart. Details in table following."
-
 
 		if ( !options.noencapsulation ) {
 			wrapTableIntoDetails(figureElem, tblCaptionHTML);
@@ -1227,7 +1213,6 @@ var wet_boew_charts,
 
 		$.plot( $placeHolder, allSeries, plotParameter );
 
-
 		if ( !options.legendinline ) {
 			// Move the legend under the graphic
 			$( ".legend > div", $placeHolder ).remove();
@@ -1250,45 +1235,59 @@ var wet_boew_charts,
 	 * @method init
 	 * @param {jQuery DOM element} $elm The plugin element being initialized
 	 */
-	init = function( $elm ) {
-		window._timer.remove( selector );
-
-		var modeJS = vapour.getMode() + ".js";
-
-		// Load the required dependencies and prettify the code once finished
-		Modernizr.load({
-
-			// For loading multiple dependencies
-			both: [
+	init = function( elm, $elm ) {
+		var modeJS = wb.getMode() + ".js",
+			deps = [
 				"site!deps/jquery.flot" + modeJS,
 				"site!deps/jquery.flot.pie" + modeJS,
 				"site!deps/jquery.flot.canvas" + modeJS
-			],
-			complete: function() {
-				// Let parse the table
-				$elm.trigger( "pasiveparse.wb-table.wb" );
-			}
-		});
+			];
+	
+		if (elm.className.indexOf( initedClass ) === -1 ) {
+				
+			wb.remove( selector );
+
+			elm.className += " " + initedClass;
+
+			// Load the required dependencies and prettify the code once finished
+			Modernizr.load({
+
+				// For loading multiple dependencies
+				load: deps,
+				complete: function() {
+					// Let parse the table
+					$elm.trigger( tableParsingEvent );
+				}
+			});
+		}
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb parsecomplete.wb-table.wb", selector, function( event ) {
-	var eventTarget = event.target,
-		eventType = event.type,
-		$elm;
+$document.on( "timerpoke.wb " + initEvent + " " + tableParsingCompleteEvent, selector, function( event ) {
+	var eventType = event.type,
+		elm = event.target,
+		// "this" is cached for all events to utilize
+		$elm = $( this );
+	
+	if (event.currentTarget !== elm) {
+		return true;
+	}
+	
+	switch ( eventType ) {
 
-	// Filter out any events triggered by descendants
-	if ( event.currentTarget === eventTarget ) {
-		$elm = $( eventTarget );
-
-		switch ( eventType ) {
-		case "timerpoke":
-			init( $elm );
-			break;
-		case "parsecomplete":
-			createCharts( $elm );
-			break;
-		}
+	/*
+	 * Init
+	 */
+	case "timerpoke":
+		init(elm, $elm);
+		break;
+	
+	/*
+	 * Data Table Parsed
+	 */
+	case "parsecomplete":
+		createCharts( $elm );
+		break;
 	}
 
 	/*
@@ -1299,6 +1298,6 @@ $document.on( "timerpoke.wb parsecomplete.wb-table.wb", selector, function( even
 });
 
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, document, wb );
