@@ -133,21 +133,44 @@ var pluginName = "wb-menu",
 
 			// Optimized the code block to look to see if we need to import anything instead
 			// of just doing a query with which could result in no result
+			sectionPrefix = "mb-pnl-id-",
 			target = $elm.data( "trgt" ),
+			info = document.getElementById( "wb-info" ),
 			secnav = document.getElementById( "wb-sec" ),
 			$language = $( "#wb-lng" ),
 			search = document.getElementById( "wb-srch" ),
 			panel = $ajaxed.html(),
-			navOpen = "<nav role='navigation' typeof='SiteNavigationElement'",
+			navOpen = "<nav role='navigation'",
+			siteNavElement = " typeof='SiteNavigationElement'",
 			navClose = "</nav>",
-			$onlypnl, $panel;
+			infoHtml = "",
+			$onlypnl, $panel, sectionId, infoSections, i, len;
+
+		// Integrate the site information
+		if ( info !== null ) {
+			infoSections = info.getElementsByTagName( "section" );
+			len = infoSections.length;
+			for ( i = 0; i !== len; i += 1 ) {
+				sectionId = sectionPrefix + i;
+				infoHtml += "<li>" +
+					infoSections[ i ].innerHTML
+						.replace( /<h3.*?>/, "<a href='#" + sectionId + "' class='item'>" )
+						.replace( /<ul/, "<ul id='" + sectionId + "'" )
+						.replace( /<\/h3>/, "</a>" ) +
+					"</li>";
+			}
+
+			panel += navOpen + " class='info-pnl'>" +
+				"<h3>" + info.getElementsByTagName( "h2" )[ 0 ].innerHTML + "</h3>" +
+				"<ul class='list-unstyled menu'>" + infoHtml + "</ul>" + navClose;
+		}
 
 		// Let's start building our panel in reverse order
 
 		// If secondary navigation exists
-		if ( secnav !== null ){
-			panel = navOpen + " class='secnav-pnl'>" + secnav.innerHTML +
-				navClose + panel;
+		if ( secnav !== null ) {
+			panel = navOpen + siteNavElement + " class='secnav-pnl'>" +
+				secnav.innerHTML + navClose + panel;
 		}
 
 		// Clean up some extra markup
@@ -163,9 +186,9 @@ var pluginName = "wb-menu",
 			"</section>" + panel;
 
 		// Sanitize the DOM
-		panel = panel.replace( /(for|id)="([^"]+)"/gi, "$1=\"$2-imprt\"" )
-			.replace( /href="#([^"]+)"/gi, "href=\"#$1-imprt\"" )
-			.replace( /role="menu([^"]+)"/gi, "" )
+		panel = panel.replace( /(for|id)="([^"]+)"/gi, "$1='$2-imprt'" )
+			.replace( /href="#([^"]+)"/gi, "href='#$1-imprt'" )
+			.replace( /\srole="menu.*"/gi, "" )
 			.replace( /h2>/gi, "h3>" );
 
 		// Let's create the DOM Element
