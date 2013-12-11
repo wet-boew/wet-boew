@@ -81,6 +81,7 @@ var selector = ".wb-eqht",
 				}
 
 				currentChild.style.cssText = childCSS;
+				$children.eq( j ).data( minHeightCSS, minHeightDefault );
 			}
 			$elm = reattachElement( $anchor );
 
@@ -105,10 +106,10 @@ var selector = ".wb-eqht",
 
 			$anchor = detachElement( $elm );
 			for ( j = $children.length - 1; j !== -1; j -= 1 ) {
-				minHeight = $children.eq( j ).data( "min-height" );
+				minHeight = $children.eq( j ).data( minHeightCSS );
 
 				if ( minHeight ) {
-					$children[ j ].style.minHeight = minHeight;
+					$children[ j ].style.minHeight = minHeight + "px";
 				}
 			}
 			$elm = reattachElement( $anchor );
@@ -170,7 +171,7 @@ var selector = ".wb-eqht",
 		// only set a height if more than one element exists in the row
 		if ( row.length > 1 ) {
 			for ( var i = row.length - 1; i !== -1; i -= 1 ) {
-				row[ i ].data( "min-height", height + "px" );
+				row[ i ].data( minHeightCSS, height );
 			}
 		}
 		row.length = 0;
