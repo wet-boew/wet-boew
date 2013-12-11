@@ -381,7 +381,6 @@ module.exports = (grunt) ->
 					cwd: "src/base"
 					src: [
 						"**/*.scss"
-						"!**/_*.scss"
 						"!**/demo/*.scss"
 					]
 					dest: "dist/unmin/css/"
@@ -391,7 +390,6 @@ module.exports = (grunt) ->
 					cwd: "theme/sass"
 					src: [
 						"**/*.scss"
-						"!**/_*.scss"
 					]
 					dest: "dist/unmin/css/"
 					ext: ".css"
