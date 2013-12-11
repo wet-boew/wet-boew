@@ -6,7 +6,7 @@
  * @author @duboisp
  *
  */
-(function ( $, window, vapour ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 /* 
@@ -15,9 +15,11 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-parsing",
-	$document = vapour.doc,
-
+var pluginName = "wb-tableparser",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
+	$document = wb.doc,
 
 	/*
 	* Init runs once per plugin element on the page. There may be multiple elements. 
@@ -25,13 +27,13 @@ var selector = ".wb-parsing",
 	* @method init
 	* @param {jQuery DOM element} $elm The plugin element being initialized
 	*/
-	init = function( obj ) {
+	init = function( $obj ) {
 
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		window._timer.remove( selector );
+		wb.remove( selector );
+		$obj.get(0).className += " " + initedClass;
 
-		var $obj = obj,
-			groupZero = {
+		var groupZero = {
 				allParserObj: [],
 				nbDescriptionRow: 0 // To remove ??
 			},
@@ -109,7 +111,7 @@ var selector = ".wb-parsing",
 		if (!groupZero.lstrowgroup) {
 			groupZero.lstrowgroup = lstRowGroup;
 		}
-		groupZero.elem = obj;
+		groupZero.elem = $obj;
 		groupZero.uid = uidElem;
 		uidElem += 1; // Set the uid for the groupZero
 		groupZero.colcaption = {}; // Group Cell Header at level 0, scope=col
@@ -146,7 +148,7 @@ var selector = ".wb-parsing",
 			//	Use a simple paragraph
 			if ($(elem).children().length > 0) {
 				// Use the contents function to retreive the caption
-				$(elem).contents().filter(function () {
+				$(elem).contents().filter(function() {
 					if (!caption && this.nodeType === 3) { // Text Node
 						// Doesn't matter what it is, but this will be considerated as the caption
 						// if is not empty
@@ -164,7 +166,7 @@ var selector = ".wb-parsing",
 					}
 				});
 				// Use the children function to retreive the description
-				$(elem).children().filter(function () {
+				$(elem).children().filter(function() {
 					// if the caption are an element, we should ignore the first one
 					if (captionFound) {
 						description.push(this);
@@ -219,7 +221,7 @@ var selector = ".wb-parsing",
 
 			// Add any exist structural col element
 			if (elem) {
-				$("col", elem).each(function () {
+				$("col", elem).each(function() {
 					var $this = $(this),
 						width = $this.attr("span") !== undefined ? parseInt($this.attr("span"), 10) : 1,
 						col = {
@@ -557,7 +559,7 @@ var selector = ".wb-parsing",
 				colFrmId = 0;
 				bigTotalColgroupFound = false;
 
-				$.each(colgroupFrame, function () {
+				$.each(colgroupFrame, function() {
 					var curColgroupFrame = this,
 						groupLevel,
 						cgrp,
@@ -575,7 +577,7 @@ var selector = ".wb-parsing",
 						return;
 					}
 
-					$.each(curColgroupFrame.col, function () {
+					$.each(curColgroupFrame.col, function() {
 						var column = this;
 						if (!groupZero.col) {
 							groupZero.col = [];
@@ -654,7 +656,6 @@ var selector = ".wb-parsing",
 							}
 						}
 					}
-
 
 					// Add virtual colgroup Based on the top header
 					for (i = currColgroupStructure.length, _ilen = (groupLevel - 1); i < _ilen; i += 1) {
@@ -792,7 +793,7 @@ var selector = ".wb-parsing",
 						groupZero.col = [];
 					}
 
-					$.each(curColgroupFrame.col, function () {
+					$.each(curColgroupFrame.col, function() {
 						var column = this;
 
 						column.type = curColgroupFrame.type;
@@ -825,7 +826,7 @@ var selector = ".wb-parsing",
 					groupZero.virtualColgroup = [];
 				}
 				// Set the Virtual Group Header Cell, if any
-				$.each(groupZero.virtualColgroup, function () {
+				$.each(groupZero.virtualColgroup, function() {
 					var vGroupHeaderCell = this;
 
 					// Set the headerLevel at the appropriate column
@@ -852,7 +853,6 @@ var selector = ".wb-parsing",
 				// Colgroup Setup,
 				rowgroupSetup();
 			}
-
 
 			// If the current row group are a data group, check each row if we can found a pattern about to increment the data level for this row group
 			// Update, if needed, each row and cell to take in consideration the new row group level
@@ -935,8 +935,6 @@ var selector = ".wb-parsing",
 				currentRowGroup.type = 2;
 				currentRowGroup.level = lstRowGroup[lstRowGroup.length - 1].level;
 			}
-
-
 
 			// Set the Data Level for this row group
 			// Calculate the appropriate row group level based on the previous rowgroup 
@@ -1065,7 +1063,7 @@ var selector = ".wb-parsing",
 			uidElem += 1;
 			groupZero.allParserObj.push(colgroup);
 
-			fnPreProcessGroupHeaderCell = function (headerCell) {
+			fnPreProcessGroupHeaderCell = function(headerCell) {
 				if (!colgroup.type) {
 					colgroup.type = 1;
 				}
@@ -1086,7 +1084,7 @@ var selector = ".wb-parsing",
 				lastHeadingColPos = headerCell.colpos + headerCell.width - 1;
 			};
 
-			fnPreProcessGroupDataCell = function (dataCell) {
+			fnPreProcessGroupDataCell = function(dataCell) {
 				if (!colgroup.type) {
 					colgroup.type = 2;
 				}
@@ -1109,7 +1107,7 @@ var selector = ".wb-parsing",
 				colgroup.cell.push(dataCell);
 			};
 
-			fnParseSpannedRowCell = function () {
+			fnParseSpannedRowCell = function() {
 				var j,
 					currCell;
 
@@ -1153,7 +1151,7 @@ var selector = ".wb-parsing",
 			};
 
 			// Read the row
-			$.each(cells, function () {
+			$.each(cells, function() {
 				var $this = $(this),
 					width = $this.attr("colspan") !== undefined ? parseInt($this.attr("colspan"), 10) : 1,
 					height = $this.attr("rowspan") !== undefined ? parseInt($this.attr("rowspan"), 10) : 1,
@@ -1393,7 +1391,6 @@ var selector = ".wb-parsing",
 				row.type = currentRowGroup.type;
 				row.level = currentRowGroup.level;
 
-
 				if (colgroupFrame[0] && lastHeadingColPos && colgroupFrame[0].end !== lastHeadingColPos && colgroupFrame[0].end === (lastHeadingColPos + 1)) {
 					lastHeadingColPos += 1; // Adjust if required, the lastHeadingColPos if colgroup are present, that would be the first colgroup
 				}
@@ -1406,13 +1403,12 @@ var selector = ".wb-parsing",
 				}
 				row.rowgroup = currentRowGroup;
 
-
 				if (currentRowGroup.lastHeadingColPos !== lastHeadingColPos) {
 					if ((!lastHeadingSummaryColPos && currentRowGroup.lastHeadingColPos < lastHeadingColPos) || (lastHeadingSummaryColPos && lastHeadingSummaryColPos === lastHeadingColPos)) {
 						// This is a virtual summary row group
 
 						// Check for residual rowspan, there can not have cell that overflow on two or more rowgroup
-						$.each(spannedRow, function () {
+						$.each(spannedRow, function() {
 							if (this && this.spanHeight > 0) {
 								// That row are spanned in 2 different row group
 								$obj.trigger( {
@@ -1440,7 +1436,7 @@ var selector = ".wb-parsing",
 						// This is a virtual data row group
 
 						// Check for residual rowspan, there can not have cell that overflow on two or more rowgroup
-						$.each(spannedRow, function () {
+						$.each(spannedRow, function() {
 							if (this && this.spanHeight > 0) {
 								// That row are spanned in 2 different row group
 								$obj.trigger( {
@@ -1485,8 +1481,6 @@ var selector = ".wb-parsing",
 				if (currentRowGroup.type === 3 && !lastHeadingSummaryColPos) {
 					lastHeadingSummaryColPos = lastHeadingColPos;
 				}
-
-
 
 				// Build the initial colgroup structure
 				// If an cell header exist in that row....
@@ -1580,7 +1574,6 @@ var selector = ".wb-parsing",
 									}
 									groupZero.keycell.push(colKeyCell[j]);
 
-
 									if (!colKeyCell[j].describe) {
 										colKeyCell[j].describe = [];
 									}
@@ -1591,7 +1584,7 @@ var selector = ".wb-parsing",
 					}
 
 					// All the cell that have no "type" in the colKeyCell collection are problematic cells
-					$.each(colKeyCell, function () {
+					$.each(colKeyCell, function() {
 						if (!(this.type)) {
 							$obj.trigger( {
 								type: "warning.wb-table.wb",
@@ -1616,8 +1609,6 @@ var selector = ".wb-parsing",
 					}
 				}
 
-
-
 				//
 				// Process the table row heading and colgroup if required
 				//
@@ -1631,7 +1622,6 @@ var selector = ".wb-parsing",
 
 				//
 				// Associate the data cell type with the colgroup if any, 
-
 				// Process the data cell. There are a need to have at least one data cell per data row.
 				if (!row.datacell) {
 					row.datacell = [];
@@ -1669,7 +1659,6 @@ var selector = ".wb-parsing",
 						row.datacell.push(row.cell[i]);
 					}
 
-
 					// Add row header when the cell is span into more than one row
 					if (row.cell[i].rowpos < currentRowPos) {
 						if (!row.cell[i].addrowheaders) {
@@ -1689,8 +1678,6 @@ var selector = ".wb-parsing",
 				if (colgroupFrame.length === 0) {
 					createGenericColgroup = false;
 				}
-
-
 
 				// Add the cell in his appropriate column
 				if (!groupZero.col) {
@@ -1808,7 +1795,6 @@ var selector = ".wb-parsing",
 							tblparser.theadRowStack[ i - 1 ].cell[ j ].child.push( currCell );
 						}
 
-
 						// Set the header on his descriptive cell if any
 						if ( currCell.descCell ) {
 							currCell.descCell.header = currCell;
@@ -1870,7 +1856,7 @@ var selector = ".wb-parsing",
 								}
 							}
 
-							if( !currCol.dataheader ) {
+							if ( !currCol.dataheader ) {
 								currCol.dataheader = [];
 							}
 
@@ -1881,7 +1867,6 @@ var selector = ".wb-parsing",
 						if ( currCell.col && currCell.col.dataheader ) {
 							coldataheader = currCell.col.dataheader;
 						}
-
 
 						if ( currCell.type === 1 ) {
 
@@ -1895,7 +1880,7 @@ var selector = ".wb-parsing",
 
 								if ( currCell.colpos === ( ongoingRowHeader[ m ].colpos + ongoingRowHeader[ m ].width) ) {
 									childLength = ongoingRowHeader[ m ].child.length;
-									if( childLength === 0 || ( childLength > 0 && ongoingRowHeader[ m ].child[ childLength - 1 ].uid !== currCell.uid ) ) {
+									if ( childLength === 0 || ( childLength > 0 && ongoingRowHeader[ m ].child[ childLength - 1 ].uid !== currCell.uid ) ) {
 										ongoingRowHeader[ m ].child.push( currCell );
 									}
 								}
@@ -1919,7 +1904,6 @@ var selector = ".wb-parsing",
 
 							ongoingRowHeader = ongoingRowHeader.concat( currCell );
 						}
-
 
 						if ( currCell.type === 2 || currCell.type === 3 ) {
 
@@ -1953,9 +1937,9 @@ var selector = ".wb-parsing",
 		//
 		if (hasTfoot) {
 			// If there is a tfoot element, be sure to add it at the end of all the tbody. FYI - HTML 5 spec allow now tfoot to be at the end
-			$("tfoot", obj).appendTo($("tbody:last", obj).parent());
+			$("tfoot", $obj).appendTo($("tbody:last", $obj).parent());
 		}
-		$obj.children().each(function () {
+		$obj.children().each( function() {
 			var $this = $(this),
 				nodeName = this.nodeName.toLowerCase();
 
@@ -1978,7 +1962,7 @@ var selector = ".wb-parsing",
 				stackRowHeader = true;
 
 				// This is the rowgroup header, Colgroup type can not be defined here
-				$(this).children().each(function () {
+				$(this).children().each(function() {
 					if (this.nodeName.toLowerCase() !== "tr") {
 						// ERROR
 						$obj.trigger( {
@@ -2016,7 +2000,7 @@ var selector = ".wb-parsing",
 				*/
 
 				// New row group					
-				$this.children().each(function () {
+				$this.children().each( function() {
 					if (this.nodeName.toLowerCase() !== "tr") {
 						// ERROR
 						$obj.trigger( {
@@ -2032,7 +2016,7 @@ var selector = ".wb-parsing",
 				finalizeRowGroup();
 
 				// Check for residual rowspan, there can not have cell that overflow on two or more rowgroup
-				$.each(spannedRow, function () {
+				$.each(spannedRow, function() {
 					if (this && this.spanHeigh && this.spanHeight > 0) {
 						// That row are spanned in 2 different row group
 						$obj.trigger( {
@@ -2073,22 +2057,17 @@ var selector = ".wb-parsing",
 					
 	};
 
-
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb pasiveparse.wb-table.wb", selector, function( event ) {
-	var eventTarget = event.target,
-		eventType = event.type,
-		$elm;
+$document.on( "timerpoke.wb " + initEvent, selector, function( event ) {
+	var eventType = event.type,
 
-	// Filter out any events triggered by descendants
-	if ( event.currentTarget === eventTarget ) {
-		$elm = $( eventTarget );
+		// "this" is cached for all events to utilize
+		$elm = $( this );
 
-		switch ( eventType ) {
-		case "timerpoke":
-			init( $elm );
-			break;
-		}
+	switch ( eventType ) {
+	case "wb-init":
+		init( $elm );
+		break;
 	}
 
 	/*
@@ -2112,8 +2091,7 @@ $document.on( "pasiveparse.wb-table.wb", function( event ) {
 	return true;
 });
 
-
 // Add the timer poke to initialize the plugin
-window._timer.add( selector );
+wb.add( selector );
 
-})( jQuery, window, vapour );
+})( jQuery, window, document, wb );
