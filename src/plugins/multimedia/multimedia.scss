@@ -2,12 +2,8 @@
   Multimedia Player Code
  */
 
- %multimedia-display-none {
-    display: none;
-}
-
-%multimedia-display-block {
-    display: block;
+%multimedia-display-none {
+	display: none;
 }
 
 @keyframes spin {
@@ -177,9 +173,12 @@
 	.tline {
 		@extend %pnl;
 		.wb-mm-tmln-crrnt, .wb-mm-tmln-ttl {
-			display: inline !important;
-			margin-right: 0;
-			margin-left: 0;
+			margin: 0;
+			float: left;
+		}
+
+		.wb-mm-tmln-ttl{
+			float: right
 		}
 	}
 
@@ -188,7 +187,9 @@
 	}
 
 	.wb-mm-txtonly {
-		@extend %multimedia-display-none;
+		span {
+			@extend %accessible-invisible;
+		}
 	}
 
 	/* Progress Bar */
@@ -207,27 +208,43 @@
 			background: #176CA7;
 		}
 	}
+
+	.progress {
+		height: 14px;
+	}
 }
 
 //TODO: Cleanup placeholders when libsass supports nested selectors
 .xxsmallview {
-    .wb-mm-txtonly {
-        @extend %multimedia-display-block;
-    }
+	.wb-mm-txtonly {
+		span {
+			~ {
+				span {
+					@extend %accessible-invisible-show;
+				}
+			}
+		}
+	}
 
-    .wb-mm-prgrss {
-        @extend %multimedia-display-none;
-    }
+	.wb-mm-prgrss {
+		@extend %multimedia-display-none;
+	}
 }
 
 .mediumview, .largeview, .xlargeview, .xxlargeview {
-    .col-md-1, .col-md-2, .col-md-3 {
-        .wb-mm-txtonly {
-            @extend %multimedia-display-block;
-        }
+	.col-md-1, .col-md-2, .col-md-3 {
+		.wb-mm-txtonly {
+			span {
+				~ {
+					span {
+						@extend %accessible-invisible-show;
+					}
+				}
+			}
+		}
 
-        .wb-mm-prgrss {
-            @extend %multimedia-display-none;
-        }
-    }
+		.wb-mm-prgrss {
+			@extend %multimedia-display-none;
+		}
+	}
 }
