@@ -112,7 +112,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Compiles Sass and copies third party CSS to the dist folder"
 		[
 			"sprites"
-			"sass"
+			"sass:all"
 			"autoprefixer"
 			"csslint:unmin"
 			"concat:css"
@@ -135,6 +135,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Create unminified demos"
 		[
 			"copy:demos"
+			"autoprefixer:demos"
 			"csslint:demos"
 			"assemble:demos"
 		]
@@ -408,17 +409,6 @@ module.exports = (grunt) ->
 					flatten: true
 				,
 					expand: true
-					cwd: "src/other"
-					src: [
-						"**/*.scss"
-						"!**/*base.scss"
-						"!**/demo/*.scss"
-					]
-					dest: "dist/unmin/css/other/"
-					ext: ".css"
-					flatten: true
-				,
-					expand: true
 					cwd: "src/plugins"
 					src: "**/demo/*.scss"
 					dest: "dist/unmin/demos/"
@@ -455,7 +445,6 @@ module.exports = (grunt) ->
 					src: [
 						"**/*.css"
 						"!**/polyfills/**/*.css"
-						"!**/other/**/*.css"
 						"!**/*.min.css"
 					]
 					dest: "dist/unmin/css"
@@ -469,15 +458,13 @@ module.exports = (grunt) ->
 					]
 					dest: "dist/unmin/css/polyfills/"
 					expand: true
-				,
-					cwd: "dist/unmin/css/other"
-					src: [
-						"**/*.css"
-						"!**/*.min.css"
-					]
-					dest: "dist/unmin/css/other/"
-					expand: true
 				]
+
+			demos:
+				cwd: "dist/unmin/demos"
+				src: "**/*.css"
+				dest: "dist/unmin/demos/"
+				expand: true
 
 		csslint:
 			options:
@@ -656,12 +643,6 @@ module.exports = (grunt) ->
 					expand: true
 					flatten: true
 				,
-					cwd: "src/other"
-					src: "**/*.js"
-					dest: "dist/unmin/js/other"
-					expand: true
-					flatten: true
-				,
 					cwd: "lib"
 					src: [
 						"jquery-pjax/jquery.pjax.js"
@@ -679,7 +660,6 @@ module.exports = (grunt) ->
 					src: [
 						"plugins/**/assets/*"
 						"polyfills/**/assets/*"
-						"other/**/assets/*"
 					]
 					dest: "dist/unmin/assets"
 					expand: true
@@ -701,11 +681,6 @@ module.exports = (grunt) ->
 					expand: true
 				,
 					cwd: "src/polyfills"
-					src: "**/demo/*.js"
-					dest: "dist/unmin/demos/"
-					expand: true
-				,
-					cwd: "src/other"
 					src: "**/demo/*.js"
 					dest: "dist/unmin/demos/"
 					expand: true
