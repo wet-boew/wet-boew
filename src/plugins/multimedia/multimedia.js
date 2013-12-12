@@ -539,7 +539,7 @@ $document.on( fallbackEvent, selector, function() {
 		data = ref[ 1 ],
 		$media = data.media,
 		type = data.type,
-		source = $media.find( "source" + data.type === "video"  ? "[type='video/mp4']" : "[type='audio/mp3']" ).attr( "src" ),
+		source = $media.find( ( type === "video"  ? "[type='video/mp4']" : "[type='audio/mp3']" ) ).attr( "src" ),
 		poster = $media.attr( "poster" ),
 		flashvars = "id=" + data.mId,
 		width = data.width,
