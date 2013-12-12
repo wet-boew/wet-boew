@@ -44,9 +44,6 @@
 			var current = pe.menu.navcurrent(wet_boew_theme.menubar, wet_boew_theme.bcrumb),
 				submenu = current.parents('div.mb-sm');
 
-			// Instruct jQuery Mobile to leave certain form elements alone
-			$( ".button-group input, .button-group button, input[type=search]" ).attr( "data-role", "none" );
-
 			// If the link with class="nav-current" is in the submenu, then move the class up to the associated menu bar link
 			if (submenu.length !== 0) {
 				submenu.prev().children('a').addClass('nav-current-nocss');
@@ -183,6 +180,9 @@
 				pe.footer[0].getElementsByTagName('footer')[0].appendChild(node.cloneNode(true));
 				node.parentNode.removeChild(node);
 			}
+
+			// Instruct jQuery Mobile to leave certain form elements alone
+			$('.button-group input, .button-group button, input[type=search]').attr('data-role', 'none');
 
 			// jQuery mobile has loaded
 			$document.on('pagecreate', function () {
