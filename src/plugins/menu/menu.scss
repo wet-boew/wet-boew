@@ -112,7 +112,7 @@
 	.active {
 		a {
 			.expicon {
-				transform: none;
+				transform: none !important;
 			}
 		}
 	}
@@ -144,6 +144,18 @@
 	.modal-body {
 		h2 {
 			@extend %global-display-none;
+		}
+	}
+}
+
+[dir=rtl] {
+	#mb-pnl {
+		a {
+			.expicon {
+				left: auto;
+				right: -1em;
+				transform: rotate(90deg);
+			}
 		}
 	}
 }
