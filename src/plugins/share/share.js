@@ -60,16 +60,12 @@ var pluginName = "wb-share",
 				name: "Facebook",
 				url: "http://www.facebook.com/sharer.php?u={u}&amp;t={t}"
 			},
-			fark: {
-				name: "Fark",
-				url: "http://cgi.fark.com/cgi/fark/submit.pl?new_url={u}&amp;new_comment={t}"
-			},
 			googleplus: {
 				name: "Google+",
 				url: "https://plus.google.com/share?url={u}&amp;hl=" + document.documentElement.lang
 			},
 			linkedin: {
-				name: "LinkedIn",
+				name: "LinkedIn®",
 				url: "http://www.linkedin.com/shareArticle?mini=true&amp;url={u}&amp;title={t}&amp;ro=false&amp;summary={d}&amp;source="
 			},
 			myspace: {
@@ -79,10 +75,6 @@ var pluginName = "wb-share",
 			netvibes: {
 				name: "Netvibes",
 				url: "http://www.netvibes.com/share?url={u}&amp;title={t}"
-			},
-			newsvine: {
-				name: "Newsvine",
-				url: "http://www.newsvine.com/_wine/save?u={u}&amp;h={t}"
 			},
 			pinterest: {
 				name: "Pinterest",
