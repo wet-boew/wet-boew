@@ -25,6 +25,10 @@ describe( "Session Timeout test suite", function() {
 	 * Before beginning the test suite, this function is executed once.
 	 */
 	before(function( done ) {
+
+		// Give the magnificPopup dependency a chance to load
+		setTimeout( done, 1000 );
+
 		// Spy on jQuery's trigger and post methods
 		spies.trigger = sandbox.spy( $.prototype, "trigger" );
 		spies.post = sandbox.spy( $, "post" );
@@ -35,19 +39,16 @@ describe( "Session Timeout test suite", function() {
 		// Use a fake timer (allows for easy testing of setTimeout calls)
 		clock = sandbox.useFakeTimers();
 
-		// Wait for the reset event from the plugin's init method before beginning the test
+		// Initialize the test data
 		$( ".wb-sessto" )
 			.data( "wet-boew", {
 				inactivity: 10000,
 				sessionalive: 10000,
 				refreshOnClick: true,
 				refreshLimit: 42000
-			})
-			.on( "reset.wb-sessto", function() {
-				done();
 			});
 
-		wb.doc.on( "show.wb-modal", function() {
+		wb.doc.on( "inactivity.wb-sessto", function() {
 			$( ".wb-sessto-confirm.btn-primary" ).trigger( "click" );
 		});
 	});
@@ -70,10 +71,12 @@ describe( "Session Timeout test suite", function() {
 		});
 
 		it( "should have been triggered on a .wb-sessto element", function() {
-			var len = spies.trigger.thisValues.length,
-				isSelector = false;
+			var elm,
+				isSelector = false,
+				len = spies.trigger.thisValues.length;
 			while ( !isSelector && len-- ) {
-				isSelector = spies.trigger.thisValues[len][0].className.indexOf( "wb-sessto" ) > -1;
+				elm = spies.trigger.thisValues[len][0];
+				isSelector = elm && elm.className && elm.className.indexOf( "wb-sessto" ) > -1;
 			}
 			expect( isSelector ).to.equal( true );
 		});
@@ -96,14 +99,6 @@ describe( "Session Timeout test suite", function() {
 
 		it( "should trigger reset.wb-sessto event after 10000ms", function() {
 			expect( spies.trigger.calledWith( "reset.wb-sessto" ) ).to.equal( true );
-		});
-
-		it( "should trigger build.wb-modal event after 10000ms", function() {
-			expect( spies.trigger.calledWith( "build.wb-modal" ) ).to.equal( true );
-		});
-
-		it( "should trigger show.wb-modal event after 10000ms", function() {
-			expect( spies.trigger.calledWith( "show.wb-modal" ) ).to.equal( true );
 		});
 
 		it( "should not have triggered inactivity events 19950ms", function() {
@@ -175,7 +170,6 @@ describe( "Session Timeout test suite", function() {
 
 			$( ".wb-sessto" )
 				.removeClass( "wb-sessto-inited" )
-				.removeClass( "wb-modal-inited" )
 				.data( "wet-boew", {
 					sessionalive: 5000,
 					refreshCallbackUrl: "foo.html"

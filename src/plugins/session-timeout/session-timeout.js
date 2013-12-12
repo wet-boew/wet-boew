@@ -13,16 +13,16 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-sessto",
+var $modal, $modalLink, countdownInterval, i18n, i18nText,
+	$document = wb.doc,
+	pluginName = "wb-sessto",
 	selector = "." + pluginName,
+	confirmClass = pluginName + "-confirm",
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
 	resetEvent = "reset" + selector,
 	keepaliveEvent = "keepalive" + selector,
 	inactivityEvent = "inactivity" + selector,
-	confirmSelector = pluginName + "-confirm",
-	$document = wb.doc,
-	i18n, i18nText,
 
 	/*
 	 * Plugin users can override these defaults by setting attributes on the html elements that the
@@ -76,20 +76,62 @@ var pluginName = "wb-sessto",
 				};
 			}
 
-			// Setup the modal dialog behaviour
-			$elm
-				.addClass( "wb-modal" )
-				.trigger( "wb-init.wb-modal" );
+			// Create the modal dialog
+			initModalDialog();
 
-			$document.one( "ready.wb-modal", function() {
+			// Setup the refresh on click behaviour
+			initRefreshOnClick( $elm, settings );
 
-				// Initialize the keepalive and inactive timeouts of the plugin
-				$elm.trigger( resetEvent, settings );
-
-				// Setup the refresh on click behaviour
-				initRefreshOnClick( $elm, settings );
-			});
+			// Initialize the keepalive and inactive timeouts of the plugin
+			$elm.trigger( resetEvent, settings );
 		}
+	},
+
+	/**
+	 * Initializes a timeout that triggers an event
+	 * @function initEventTimeout
+	 * @param {jQuery DOM Element} $elm Element to trigger the event on
+	 * @param {string} eventName Name of the event to trigger on setTimeout
+	 * @param {mixed} time Time to wait before triggering the event
+	 * @param {Object} settings Key-value object
+	 */
+	initEventTimeout = function( $elm, eventName, time, settings ) {
+		// Clear any existing timeout for the event
+		clearTimeout( $elm.data( eventName ) );
+
+		// Create the new timeout that will trigger the event
+		$elm.data( eventName, setTimeout(function() {
+			$elm.trigger( eventName, settings );
+		}, parseTime( time ) ) );
+	},
+
+	/**
+	 * Creates the modal dialog element, appends to the <body> and initializes the lightbox plugin
+	 * that is used to create the dialog behaviour.
+	 * @function initModalDialog
+	 */
+	initModalDialog = function() {
+		var child,
+			modal = document.createDocumentFragment(),
+			temp = document.createElement( "div" );
+
+		// Create the modal dialog.  A temp <div> element is used so that its innerHTML can be set as a string.
+		temp.innerHTML = "<a class='wb-lbx lbx-modal mfp-hide' href='#" + pluginName + "-modal'></a>" +
+			"<section id='" + pluginName + "-modal' class='mfp-hide modal-dialog modal-content overlay-def'>" +
+			"<header class='modal-header'><h2 class='modal-title'>" + i18nText.timeoutTitle + "</h2></header>" +
+			"<div class='modal-body'></div>" +
+			"<div class='modal-footer'></div>" +
+			"</section>";
+
+		// Get the temporary <div>'s top level children and append to the fragment
+		while ( child = temp.firstChild ) {
+			modal.appendChild( child );
+		}
+		document.body.appendChild( modal );
+
+		// Get object references to the modal and its triggering link
+		$modal = $document.find( "#" + pluginName + "-modal" );
+		$modalLink = $modal.prev().trigger( "wb-init.wb-lbx" );
 	},
 
 	/**
@@ -121,8 +163,7 @@ var pluginName = "wb-sessto",
 	 * @param {Object} settings Key-value object
 	 */
 	keepalive = function( event, settings ) {
-		var $buttonSignin, building,
-			$elm = $( event.target );
+		var $elm = $( event.target );
 		if ( settings.refreshCallbackUrl !== null ) {
 			$.post( settings.refreshCallbackUrl, function( response ) {
 				// Session is valid
@@ -131,33 +172,16 @@ var pluginName = "wb-sessto",
 
 				// Session has timed out - let the user know they need to sign in again
 				} else {
-					building = $.Deferred();
-					$buttonSignin = $( "<button type='button' class='" +
-						confirmSelector + " btn btn-primary'>" +
-						i18nText.buttonSignin + "</button>" );
-					$buttonSignin.data( "logouturl", settings.logouturl );
 
-					// Build the modal dialog
-					$document.trigger( "build.wb-modal", {
-						content: "<p>" + i18nText.timeoutAlready + "</p>",
-						buttons: $buttonSignin,
-						deferred: building
-					});
+					// End the inactivity timeouts since the session is already kaput
+					clearTimeout( $elm.data( inactivityEvent ) );
+					clearTimeout( $elm.data( keepaliveEvent ) );
 
-					building.done( function( $modal ) {
-						// End the inactivity timeouts since the session is already kaput
-						clearTimeout( $elm.data( inactivityEvent ) );
-						clearTimeout( $elm.data( keepaliveEvent ) );
-
-						// Let the user know their session is dead
-						setTimeout(function() {
-							// Open the popup
-							$document.trigger( "show.wb-modal", {
-								modal: true,
-								mainClass: "mfp-zoom-in",
-								items: { src: $modal, type: "inline" }
-							});
-						}, Modernizr.csstransitions ? 500 : 0 );
+					openModal({
+						body: "<p>" + i18nText.timeoutAlready + "</p>",
+						buttons: $( "<button type='button' class='" + confirmClass +
+							" btn btn-primary'>" + i18nText.buttonSignin + "</button>" )
+								.data( "logouturl", settings.logouturl )
 					});
 				}
 			});
@@ -171,91 +195,39 @@ var pluginName = "wb-sessto",
 	 * @param {Object} settings Key-value object
 	 */
 	inactivity = function( event, settings ) {
-		var $buttonContinue, $buttonEnd, countdownInterval,
-			activeElement = $document[ 0 ].activeElement,
-			building = $.Deferred(),
+		var $buttonContinue, $buttonEnd,
 			time = getTime( settings.reactionTime ),
 			timeoutBegin = i18nText.timeoutBegin
 				.replace( "#min#", "<span class='min'>" + time.minutes + "</span>" )
 				.replace( "#sec#", "<span class='sec'>" + time.seconds + "</span>" ),
-			$modal = $( "#wb-session-modal" ),
 			buttonStart = "<button type='button' class='",
 			buttonEnd = "</button>";
 
-		// Modal does not exists: build it
-		if ( $modal.length === 0 ) {
-			$buttonContinue = $( buttonStart + confirmSelector + " btn btn-primary'>" +
-				i18nText.buttonContinue + buttonEnd );
-			$buttonEnd = $( buttonStart + confirmSelector + " btn btn-default'>" +
-				i18nText.buttonEnd + buttonEnd );
-
-			// Build the modal
-			$document.trigger( "build.wb-modal", {
-				id: "wb-session-modal",
-				title: i18nText.timeoutTitle,
-				content: "<p class='content'>" + timeoutBegin + "<br />" + i18nText.timeoutEnd + "</p>",
-				buttons: [ $buttonContinue, $buttonEnd ],
-				deferred: building
-			});
-
-		// Modal already exists: get element references and resolve the deferred object (causes the modal to be displayed)
-		} else {
-			$buttonContinue = $modal.find( ".btn-primary" );
-			$buttonEnd = $modal.find( ".btn-default" );
-			$modal.find( ".content" ).html( timeoutBegin + "<br />" + i18nText.timeoutEnd );
-
-			// Trigger the deferred object's done callback by resolving it
-			building.resolve( $modal );
-		}
-
-		// Display the modal when it's finished being built
-		building.done( function( $modal, isNew ) {
-
-			if ( isNew === true ) {
-				$document.find( "body" ).append( $modal );
-			}
-
-			// Add the session timeout settings to the buttons
-			$buttonEnd.data( "logouturl", settings.logouturl );
-			$buttonContinue
+		$buttonContinue = $( buttonStart + confirmClass +
+			" btn btn-primary'>" + i18nText.buttonContinue + buttonEnd )
 				.data( settings )
 				.data( "start", getCurrentTime() );
+		$buttonEnd = $( buttonStart + confirmClass + " btn btn-default'>" +
+			i18nText.buttonEnd + buttonEnd )
+				.data( "logouturl", settings.logouturl );
 
-			// Open the modal dialog
-			$document.trigger( "show.wb-modal", {
-				modal: true,
-				mainClass: "mfp-zoom-in",
-				removalDelay: Modernizr.csstransitions ? 500 : 0,
-				items: {
-					src: $modal,
-					type: "inline"
-				},
-				callbacks: {
-					// Start the time countdown when the popup opens
-					open: function() {
-						var $minutes = $modal.find( ".min" ),
-							$seconds = $modal.find( ".sec" );
-						countdownInterval = setInterval(function() {
-							if ( countdown( $minutes, $seconds ) ) {
-								clearInterval( countdownInterval );
-
-								// Let the user know their session has timed out
-								$modal.find( ".content" ).text( i18nText.timeoutAlready );
-								$buttonContinue.text( i18nText.buttonSignin );
-								$buttonEnd.hide();
-							}
-						}, 1000 );
-					},
-
-					// Stop the countdown and restore focus to the original active element
-					afterClose: function() {
+		openModal({
+			body: "<p>" + timeoutBegin + "<br />" + i18nText.timeoutEnd + "</p>",
+			buttons: [ $buttonContinue, $buttonEnd ],
+			open: function() {
+				var $minutes = $modal.find( ".min" ),
+					$seconds = $modal.find( ".sec" );
+				countdownInterval = setInterval(function() {
+					if ( countdown( $minutes, $seconds ) ) {
 						clearInterval( countdownInterval );
 
-						// Assign focus to activeElement
-						$( activeElement ).trigger( "setfocus.wb" );
+						// Let the user know their session has timed out
+						$modal.find( "p" ).text( i18nText.timeoutAlready );
+						$buttonContinue.text( i18nText.buttonSignin );
+						$buttonEnd.hide();
 					}
-				}
-			});
+				}, 1000 );
+			}
 		});
 	},
 
@@ -286,6 +258,7 @@ var pluginName = "wb-sessto",
 
 		event.preventDefault();
 		$.magnificPopup.close();
+		clearInterval( countdownInterval );
 
 		// User wants their session maintained
 		if ( settings.start !== undefined && ( getCurrentTime() - settings.start ) <= settings.reactionTime ) {
@@ -300,21 +273,25 @@ var pluginName = "wb-sessto",
 	},
 
 	/**
-	 * Initializes a timeout that triggers an event
-	 * @function initEventTimeout
-	 * @param {jQuery DOM Element} $elm Element to trigger the event on
-	 * @param {string} eventName Name of the event to trigger on setTimeout
-	 * @param {mixed} time Time to wait before triggering the event
-	 * @param {Object} settings Key-value object
+	 * Add the modal dialog's content and display it to the user
+	 * @function openModal
+	 * @param {Object} data Key-value object
 	 */
-	initEventTimeout = function( $elm, eventName, time, settings ) {
-		// Clear any existing timeout for the event
-		clearTimeout( $elm.data( eventName ) );
+	openModal = function( data ) {
 
-		// Create the new timeout that will trigger the event
-		$elm.data( eventName, setTimeout(function() {
-			$elm.trigger( eventName, settings );
-		}, parseTime( time ) ) );
+		// Detach the modal to prevent reflows while updating the element
+		$modal = $modal.detach();
+		$modal.find( ".modal-body" ).html( data.body );
+		$modal.find( ".modal-footer" ).empty().append( data.buttons );
+
+		// Re-attach the modal and open the dialog
+		$modal = $modal.insertAfter( $modalLink );
+		$modalLink.magnificPopup( "open" );
+
+		// Execute the open callback if it exists
+		if ( data.open ) {
+			data.open();
+		}
 	},
 
 	/**
@@ -425,7 +402,7 @@ $document.on( "timerpoke.wb " + initEvent + " " + keepaliveEvent + " " +
 	}
 });
 
-$document.on( "click", "." + confirmSelector, confirm );
+$document.on( "click", "." + confirmClass, confirm );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
