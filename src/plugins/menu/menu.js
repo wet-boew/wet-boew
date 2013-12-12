@@ -124,6 +124,13 @@ var pluginName = "wb-menu",
 	},
 
 	/**
+	 * @method imageListify
+	 */
+	imageListify = function( match, p1, p2 ) {
+		return "<a href='" + p2.match(/href="([^"]+)"/)[1] + "'>" + p1 + "</a>";
+	},
+
+	/**
 	 * @method onAjaxLoaded
 	 * @param {jQuery DOM element} $elm The plugin element
 	 * @param {jQuery DOM element} $ajaxed The AJAX'd in menu content to import
@@ -155,7 +162,7 @@ var pluginName = "wb-menu",
 		if ( search !== null ) {
 			panel += "<section class='srch-pnl'>" + search.innerHTML + "</section>";
 		}
-		
+
 		// Add active language offer
 		if ( $language.length !== 0 ) {
 			panel += "<section class='lng-ofr'>" +
@@ -172,6 +179,7 @@ var pluginName = "wb-menu",
 
 		// Add the site menu
 		if ( $menubar.length !== 0 ) {
+
 			panel += navOpen + siteNavElement + " class='sm-pnl'>" +
 				"<h3>" + $ajaxed.find( "h2" ).html() + "</h3>" +
 				"<ul class='list-unstyled menu'>" +
@@ -189,12 +197,24 @@ var pluginName = "wb-menu",
 			len = infoSections.length;
 			for ( i = 0; i !== len; i += 1 ) {
 				sectionId = sectionPrefix + i;
-				infoHtml += "<li>" +
-					infoSections[ i ].innerHTML
-						.replace( /<h3.*?>/, "<a href='#" + sectionId + "' class='item'>" )
-						.replace( /<ul/, "<ul id='" + sectionId + "'" )
-						.replace( /<\/h3>/, "</a>" ) +
-					"</li>";
+				infoHtml += "<li>";
+
+				// Lets check for other types of treatments in the section ( currently only supporting image and ul )
+				if ( infoSections[ i ].innerHTML.indexOf( "<ul" ) > -1 ){
+
+					// We have an unordered list
+					infoHtml += infoSections[ i ].innerHTML
+						.replace( /<h3.*?>(.*?)<\/h3>/i, "<a href='#" + sectionId + "' class='item'>$1</a>" )
+						.replace( /<ul/, "<ul id='" + sectionId + "'" );
+
+				} else {
+
+					// We have another sort of treatment
+					infoHtml += infoSections[ i ].innerHTML
+						.replace( /<h3[^>]*?>(.*?)<\/h3>([\s\S]*)$/i, imageListify );
+				}
+
+				infoHtml +=	"</li>";
 			}
 
 			panel += navOpen + " class='info-pnl'>" +
@@ -206,7 +226,7 @@ var pluginName = "wb-menu",
 		panel = panel
 			.replace( /(for|id)="([^"]+)"/gi, "$1='$2-imprt'" )
 			.replace( /href="#([^"]+)"/gi, "href='#$1-imprt'" )
-			.replace( /\srole="menu.*"/gi, "" )
+			.replace( /\srole="menu([^"]*)"/gi, "" )
 			.replace( /h2>/gi, "h3>" );
 
 		// Let's create the DOM Element
@@ -225,7 +245,6 @@ var pluginName = "wb-menu",
 
 		$panel.trigger( "wb-init.wb-overlay" );
 
-		
 		/*
 		 * Build the regular mega menu
 		 */
@@ -654,7 +673,7 @@ $document.on( "mediumview.wb largeview.wb xlargeview.wb", function() {
 });
 
 // Handle clicks in the mobile panel
-$document.on( "click vclick", "#mb-pnl a[href^=#]", function() {
+$document.on( "click vclick", "#mb-pnl a[href^='#']", function() {
 	var $elm = $( this ),
 		$parent = $elm.parent(),
 		$panel = $parent.closest( "#mb-pnl" ),
