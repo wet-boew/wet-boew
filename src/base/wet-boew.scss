@@ -119,7 +119,6 @@
 /* Medium view and over */
 @media screen and (min-width: $mediumViewMin) {
 	@import "views/mediumViewOver";
-	@import "../plugins/menu/menu-mediumViewOver";
 	@import "../plugins/tabs/tabs-mediumViewOver";
 }
 
