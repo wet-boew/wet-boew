@@ -333,6 +333,9 @@
 
 				// Append all the popups to the body
 				pe.bodydiv.append(bodyAppend + settings_popup);
+
+				// Instruct jQuery Mobile to leave certain form elements alone
+				$('.button-group input, .button-group button, input[type=search]').attr('data-role', 'none');
 			}
 
 			// jQuery mobile has loaded

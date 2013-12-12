@@ -92,8 +92,6 @@
 				}
 			}
 
-			$( ".button-group input, .button-group button, input[type=search]" ).attr( "data-role", "none" );
-
 			// If the link with class="nav-current" is in the submenu, then move the class up to the associated menu bar link
 			if (submenu.length !== 0) {
 				submenu.prev().children('a').addClass('nav-current');
@@ -375,6 +373,9 @@
 
 				// Append all the popups to the body
 				pe.bodydiv.append(bodyAppend + settings_popup);
+
+				// Instruct jQuery Mobile to leave certain form elements alone
+				$('.button-group input, .button-group button, input[type=search]').attr('data-role', 'none');
 			} else {
 				// Handling for splash page language buttons
 				lang_links = document.getElementById('gcwu-lang');
