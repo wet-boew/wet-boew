@@ -59,11 +59,6 @@
 			@include facebook;
 		}
 	}
-	.fark {
-		&:before {
-			@include fark;
-		}
-	}
 	.feed {
 		&:before {
 			@include feed;
@@ -87,11 +82,6 @@
 	.netvibes {
 		&:before {
 			@include netvibes;
-		}
-	}
-	.newsvine {
-		&:before {
-			@include newsvine;
 		}
 	}
 	.pinterest {
