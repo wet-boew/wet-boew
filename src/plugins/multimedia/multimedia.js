@@ -824,7 +824,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 				Math.round( currentTime / eventTarget.player( "getDuration" ) * 1000 ) / 10
 			);
 
-		$this.find( ".wb-mm-tmln-crrnt span" )
+		$this.find( ".wb-mm-tmln-crrnt span:nth-child(2)" )
 			.text( formatTime( currentTime ) );
 
 		if ( $this.hasClass( captionClass ) && $.data( eventTarget, "captions" ) !== undef ) {
@@ -837,7 +837,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		break;
 
 	case "durationchange":
-		$this.find( ".wb-mm-tmln-ttl span" )
+		$this.find( ".wb-mm-tmln-ttl span:nth-child(2)" )
 			.text( formatTime( eventTarget.player( "getDuration" ) ) );
 		break;
 
