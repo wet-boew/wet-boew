@@ -92,7 +92,6 @@
 /* Small view and under */
 @media screen and (max-width: $smallViewMax) {
 	@import "views/smallViewUnder";
-	@import "../plugins/menu/menu-smallViewUnder";
 	@import "../plugins/tabs/tabs-smallViewUnder";
 }
 
@@ -120,6 +119,7 @@
 /* Medium view and over */
 @media screen and (min-width: $mediumViewMin) {
 	@import "views/mediumViewOver";
+	@import "../plugins/menu/menu-mediumViewOver";
 	@import "../plugins/tabs/tabs-mediumViewOver";
 }
 

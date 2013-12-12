@@ -129,7 +129,8 @@ var pluginName = "wb-menu",
 	 * @param {jQuery DOM element} $ajaxed The AJAX'd in menu content to import
 	 */
 	onAjaxLoaded = function( $elm, $ajaxed ) {
-		var $menu = $ajaxed.find( "[role='menubar'] .item" ),
+		var $menubar = $ajaxed.find( "[role='menubar']" ),
+			$menu = $menubar.find( ".item" ),
 
 			// Optimized the code block to look to see if we need to import anything instead
 			// of just doing a query with which could result in no result
@@ -139,14 +140,50 @@ var pluginName = "wb-menu",
 			secnav = document.getElementById( "wb-sec" ),
 			$language = $( "#wb-lng" ),
 			search = document.getElementById( "wb-srch" ),
-			panel = $ajaxed.html(),
+			panel = "",
 			navOpen = "<nav role='navigation'",
 			siteNavElement = " typeof='SiteNavigationElement'",
 			navClose = "</nav>",
 			infoHtml = "",
 			$onlypnl, $panel, sectionId, infoSections, i, len;
 
-		// Integrate the site information
+		/*
+		 * Build the mobile panel
+		 */
+
+		// Add search
+		if ( search !== null ) {
+			panel += "<section class='srch-pnl'>" + search.innerHTML + "</section>";
+		}
+		
+		// Add active language offer
+		if ( $language.length !== 0 ) {
+			panel += "<section class='lng-ofr'>" +
+				"<h3>" + $language.children( "h2" ).html() + "</h3>" +
+				$language.find( "li:not(.curr)" ).html() +
+				"</section>";
+		}
+
+		// Add the secondary navigation
+		if ( secnav !== null ) {
+			panel += navOpen + siteNavElement + " class='sec-pnl'>" +
+				secnav.innerHTML + navClose;
+		}
+
+		// Add the site menu
+		if ( $menubar.length !== 0 ) {
+			panel += navOpen + siteNavElement + " class='sm-pnl'>" +
+				"<h3>" + $ajaxed.find( "h2" ).html() + "</h3>" +
+				"<ul class='list-unstyled menu'>" +
+				$menubar.html()
+					.replace(
+						/(id="|href="#)([^"]+)"/gi,
+						"$1" + sectionPrefix + "$2\""
+					) +
+				"</ul>" + navClose;
+		}
+
+		// Add the site information
 		if ( info !== null ) {
 			infoSections = info.getElementsByTagName( "section" );
 			len = infoSections.length;
@@ -165,28 +202,12 @@ var pluginName = "wb-menu",
 				"<ul class='list-unstyled menu'>" + infoHtml + "</ul>" + navClose;
 		}
 
-		// Let's start building our panel in reverse order
-
-		// If secondary navigation exists
-		if ( secnav !== null ) {
-			panel = navOpen + siteNavElement + " class='secnav-pnl'>" +
-				secnav.innerHTML + navClose + panel;
-		}
-
 		// Clean up some extra markup
-		panel = panel.replace( /\bclass="([^"]+)"/gi, "" );
-
-		// Add search
-		panel = "<section class='srch-pnl'>" + search.innerHTML + "</section>" +
-
-			// Add active language offer
-			"<section class='lng-ofr'>" +
-			"<h3>" + $language.children( "h2" ).html() + "</h3>" +
-			$language.find( "li:not(.curr)" ).html() +
-			"</section>" + panel;
+		//panel = panel.replace( /\bclass="([^"]+)"/gi, "" );
 
 		// Sanitize the DOM
-		panel = panel.replace( /(for|id)="([^"]+)"/gi, "$1='$2-imprt'" )
+		panel = panel
+			.replace( /(for|id)="([^"]+)"/gi, "$1='$2-imprt'" )
 			.replace( /href="#([^"]+)"/gi, "href='#$1-imprt'" )
 			.replace( /\srole="menu.*"/gi, "" )
 			.replace( /h2>/gi, "h3>" );
@@ -205,27 +226,12 @@ var pluginName = "wb-menu",
 		// Let's now populate the DOM since we have done all the work in a documentFragment
 		$( "#" + target ).replaceWith( $panel );
 
-		// Let's set some events on click
-		$panel.on( "click vclick", "a[href^=#]", function() {
-			var $elm = $( this ),
-				state = $elm.parent().hasClass( "active" );
-
-			$panel.find( ".open, .active" )
-				.removeClass( "open active" );
-
-			if ( !state ){
-				$panel
-					.find( $elm.attr( "href" ) )
-						.addClass( "open" )
-						.parent()
-							.addClass( "active" );
-			}
-
-			return false;
-		});
-
 		$panel.trigger( "wb-init.wb-overlay" );
 
+		
+		/*
+		 * Build the regular mega menu
+		 */
 		$ajaxed
 			.find( ":discoverable" )
 				.attr( "tabindex", "-1" );
@@ -296,22 +302,39 @@ var pluginName = "wb-menu",
 	 */
 	onReset = function( $elm, cancelDelay, keepActive ) {
 		var id = $elm.attr( "id" ),
-			$openActive = $elm.find( ".open, .active" );
+			$active = $elm.find( ".active" );
 
 		// Clear any timeouts for open/closing menus
 		clearTimeout( globalTimeout[ id ] );
 
 		if ( cancelDelay ) {
-			$openActive.removeClass( "open sm-open" );
-			if ( !keepActive ) {
-				$openActive.removeClass( "active" );
-			}
+			onClose( $active, !keepActive );
 		} else {
 
 			// Delay the closing of the menus
 			globalTimeout[ id ] = setTimeout( function() {
-					$openActive.removeClass( "open sm-open active" );
+				onClose( $active, true );
 			}, hoverDelay );
+		}
+	},
+
+	/**
+	 * @method onClose
+	 * @param {jQuery DOM element} $elm Parent of the element to close
+	 * @param {boolean} removeActive Whether or not to keep the active class
+	 */
+	onClose = function( $elm, removeActive ) {
+		$elm
+			.removeClass( "sm-open" )
+			.children( ".open" )
+				.removeClass( "open" )
+				.attr({
+					"aria-hidden": "true",
+					"aria-expanded": "false"
+				});
+
+		if ( removeActive ) {
+			$elm.removeClass( "active" );
 		}
 	},
 
@@ -319,14 +342,13 @@ var pluginName = "wb-menu",
 	 * @method onDisplay
 	 * @param {jQuery DOM element} $elm The plugin element
 	 * @param {jQuery event} event The current event
-
 	 */
 	onDisplay = function( $elm, event ) {
 		var menuItem = event.ident,
 			menuLink = menuItem.children( "a" );
 
 		// Lets reset the menus with no delay to ensure no overlap
-		$elm.find( ".open, .active" ).removeClass( "open sm-open active" );
+		onClose( $elm.find( ".active" ), true );
 
 		// Ignore if doesn't have a submenu
 		if ( menuLink.attr( "aria-haspopup" ) === "true" ) {
@@ -335,7 +357,11 @@ var pluginName = "wb-menu",
 			menuItem
 				.addClass( "active sm-open" )
 				.find( ".sm" )
-				.addClass( "open" );
+					.addClass( "open" )
+					.attr({
+						"aria-hidden": "false",
+						"aria-expanded": "true"
+					});
 		}
 	},
 
@@ -622,12 +648,36 @@ $document.on( "keydown", selector + " [role=menu]", function( event ) {
 	}
 });
 
-// Close the mobile menu if switching to medium, large or extra large view
+// Close the mobile panel if switching to medium, large or extra large view
 $document.on( "mediumview.wb largeview.wb xlargeview.wb", function() {
 	var mobilePanel = document.getElementById( "mb-pnl" );
 	if ( mobilePanel && mobilePanel.getAttribute( "aria-hidden" ) === "false" ) {
 		$( mobilePanel ).trigger( "close.wb-overlay" );
 	}
+});
+
+// Handle clicks in the mobile panel
+$document.on( "click vclick", "#mb-pnl a[href^=#]", function() {
+	var $elm = $( this ),
+		$parent = $elm.parent(),
+		$panel = $parent.closest( "#mb-pnl" ),
+		state = $parent.hasClass( "active" );
+
+	onClose( $panel.find( ".active" ), true );
+
+	if ( !state ) {
+		$panel
+			.find( $elm.attr( "href" ) )
+				.addClass( "open" )
+				.attr({
+					"aria-hidden": "false",
+					"aria-expanded": "true"
+				})
+				.parent()
+					.addClass( "active" );
+	}
+
+	return false;
 });
 
 // Add the timer poke to initialize the plugin

@@ -62,6 +62,9 @@
 				@extend %global-text-decoration-none;
 			}
 		}
+		.expicon {
+			border-top-color: #000;
+		}
 	}
 	.sm-open {
 		.expicon {
@@ -144,6 +147,3 @@
 		}
 	}
 }
-
-
-
