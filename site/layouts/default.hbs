@@ -55,7 +55,7 @@
 				</div>
 			</div>
 
-			<nav role="navigation" id="wb-sm" data-ajax-fetch="{{assets}}/ajax/sitemenu-{{language}}.html" data-import="wb-sec wb-srch" data-trgt="mb-pnl" class="wb-menu" typeof="SiteNavigationElement">
+			<nav role="navigation" id="wb-sm" data-ajax-fetch="{{assets}}/ajax/sitemenu-{{language}}.html" data-import="wb-sec wb-srch" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
 				{{>sitemenu}}
 			</nav>
 {{#unless_eq assets compare="."}}
@@ -73,12 +73,15 @@
 					<h1 id="wb-cont" property="name">{{title}}</h1>
 					{{>body}}
 				</div>
-
 			</div>
 		</main>
 
 		<!-- Secondary Menu
-		<nav role="navigation" id="wb-sec" typeof="SiteNavigationElement">
+		<main role="main" property="mainContentOfPage" class="col-md-9 col-md-push-3">
+			<h1 id="wb-cont" property="name">{{title}}</h1>
+		</main>
+
+		<nav role="navigation" id="wb-sec" typeof="SiteNavigationElement" class="col-md-3 col-md-pull-9 visible-md visible-lg">
 			<h2>{{#i18n "tmpl-sec-menu"}}{{/i18n}}</h2>
 			{{>secondarymenu}}
 		</nav>
