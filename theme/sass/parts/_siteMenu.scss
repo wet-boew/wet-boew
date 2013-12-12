@@ -94,6 +94,16 @@
 	.lng-ofr {
 		text-align: right;
 	}
+	summary {
+		&:hover, &:focus {
+			background: transparent;
+			color: #fff;
+		}
+	}
+	a {
+		color: #fff;
+		text-decoration: none;
+	}
 }
 
 [dir=rtl] {

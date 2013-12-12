@@ -1,23 +1,19 @@
-<div class="container">
-	<div class="row text-right">
-		<ul>
+<ul class="text-right">
 {{#if_eq language compare="en"}}
 	{{#if page.fr}}
-			<li>
-				<a lang="fr" href="{{page.fr}}-fr.html">Français</a>
-			</li>
+	<li>
+		<a lang="fr" href="{{page.fr}}-fr.html">Français</a>
+	</li>
 	{{/if}}
 {{/if_eq}}
-			<li class="curr">
-				{{#i18n "lang-native"}}{{/i18n}}{{#i18n "space"}}{{/i18n}}<span>{{#i18n "current"}}{{/i18n}}</span>
-			</li>
+	<li class="curr">
+		{{#i18n "lang-native"}}{{/i18n}}{{#i18n "space"}}{{/i18n}}<span>{{#i18n "current"}}{{/i18n}}</span>
+	</li>
 {{#unless_eq language compare="en"}}
 	{{#if page.en}}
-			<li>
-				<a lang="en" href="{{page.en}}-en.html">English</a>
-			</li>
+	<li>
+		<a lang="en" href="{{page.en}}-en.html">English</a>
+	</li>
 	{{/if}}
 {{/unless_eq}}
-		</ul>
-	</div>
-</div>
+</ul>

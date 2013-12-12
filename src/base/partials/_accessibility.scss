@@ -29,6 +29,12 @@
 	}
 }
 
+#wb-lng {
+	h2 {
+		@extend %accessible-invisible;
+	}
+}
+
 #wb-glb-mn {
 	h2 {
 		@extend %accessible-invisible;

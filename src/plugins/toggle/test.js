@@ -110,15 +110,15 @@ describe( "Toggle test suite", function() {
 					expect( $parent.attr( "role" ) ).to.equal( "tablist" );
 					expect( $parent.data( "init" ) ).to.equal( true );
 
-					$parent.find( ".tab" ).each( function() {
+					$parent.find( ".tgl-tab" ).each( function() {
 						expect( this.getAttribute( "role" ) ).to.equal( "tab" );
 					});
-					$parent.find( ".panel" ).each( function() {
-						expect( this.getAttribute( "role" ) ).to.equal( "panel" );
+					$parent.find( ".tgl-panel" ).each( function() {
+						expect( this.getAttribute( "role" ) ).to.equal( "tabpanel" );
 					});
 					$parent.find( data.group ).each( function() {
 						$panel = $( this );
-						expect( $panel.find( ".panel" ).attr( "aria-labelledby" )  ).to.equal( $panel.find( ".tab" ).attr( "id" ) );
+						expect( $panel.find( ".tgl-panel" ).attr( "aria-labelledby" )  ).to.equal( $panel.find( ".tgl-tab" ).attr( "id" ) );
 					});
 				}
 			});
@@ -367,8 +367,8 @@ describe( "Toggle test suite", function() {
 		before(function() {
 			$accordion = $( ".accordion" );
 			$details = $accordion.find( "details" );
-			$panels = $accordion.find( ".panel" );
-			$tabs = $accordion.find( ".tab" );
+			$panels = $accordion.find( ".tgl-panel" );
+			$tabs = $accordion.find( ".tgl-tab" );
 		});
 
 		it( "should open the first accordion panel", function() {

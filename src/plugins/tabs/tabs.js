@@ -59,8 +59,7 @@ var pluginName = "wb-tabs",
 				elmId = $elm.attr( "id" ),
 				hashFocus = false,
 				open = "open",
-				$panel, i, len, tablist, isOpen, newId,
-				$summaries, summary, positionY;
+				$panel, i, len, tablist, isOpen, newId, positionY;
 
 			// Ensure there is an id on the element
 			if ( !elmId ) {
@@ -110,7 +109,6 @@ var pluginName = "wb-tabs",
 				$elm.addClass( "tabs-acc" );
 				addControls = false;
 				$panels = $elm.children();
-				$summaries = $panels.children( "summary" );
 				len = $panels.length;
 
 				// Ensure there is only one panel open
@@ -129,15 +127,15 @@ var pluginName = "wb-tabs",
 				if ( isSmallView && $elm.hasClass( equalHeightClass ) ) {
 					$elm.toggleClass( equalHeightClass + " " + equalHeightOffClass );
 				}
-				$summaries
-					.addClass( "wb-toggle" )
-					.attr( "data-toggle", "{\"parent\": \"#" + elmId +
-						"\", \"group\": \"details\"}" )
-					.trigger( "wb-init.wb-toggle" );
 
 				for ( i = 0; i !== len; i += 1 ) {
 					$panel = $panels.eq( i );
-					summary = $summaries[ i ];
+					$panel.html(
+						$panel.html()
+							.replace( /(<\/summary>)/i, "$1<div class='tgl-panel'>" ) +
+						"</div>"
+					);
+
 					newId = $panel.attr( "id" );
 					if ( !newId ) {
 						newId = "tabpanel" + uniqueCount;
@@ -148,12 +146,7 @@ var pluginName = "wb-tabs",
 
 					if ( isSmallView ) {
 						if ( !Modernizr.details ) {
-							$panel
-								.toggleClass( "open", !isOpen )
-								.attr({
-									"aria-expanded": !isOpen,
-									"aria-hidden": isOpen
-								});
+							$panel.toggleClass( "open", !isOpen );
 						}
 					} else {
 						$panel.attr({
@@ -166,10 +159,17 @@ var pluginName = "wb-tabs",
 
 					tablist += "<li" + ( isOpen ? " class='active'" : "" ) +
 						"><a id='" + newId + "-lnk' href='#" + newId + "'>" +
-						summary.innerHTML + "</a></li>";
+						$panel.children( "summary" ).html() + "</a></li>";
 				}
+
 				$tablist = $( tablist + "</ul>" );
-				$elm.prepend( $tablist );
+				$elm
+					.prepend( $tablist )
+					.find( "summary" )
+					.addClass( "wb-toggle tgl-tab" )
+					.attr( "data-toggle", "{\"parent\": \"#" + elmId +
+						"\", \"group\": \"details\"}" )
+					.trigger( "wb-init.wb-toggle" );
 			} else if ( $openPanel && $openPanel.length !== 0 ) {
 				$panels.filter( ".in" )
 					.addClass( "out" )

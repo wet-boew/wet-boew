@@ -127,7 +127,7 @@ var pluginName = "wb-menu",
 	 * @method imageListify
 	 */
 	imageListify = function( match, p1, p2 ) {
-		return "<a href='" + p2.match(/href="([^"]+)"/)[1] + "'>" + p1 + "</a>";
+		return "<a href='" + p2.match( /href="([^"]+)"/ )[ 1 ] + "'>" + p1 + "</a>";
 	},
 
 	/**
@@ -141,18 +141,26 @@ var pluginName = "wb-menu",
 
 			// Optimized the code block to look to see if we need to import anything instead
 			// of just doing a query with which could result in no result
-			sectionPrefix = "mb-pnl-id-",
 			target = $elm.data( "trgt" ),
 			info = document.getElementById( "wb-info" ),
-			secnav = document.getElementById( "wb-sec" ),
+			$secnav = $( "#wb-sec" ),
 			$language = $( "#wb-lng" ),
 			search = document.getElementById( "wb-srch" ),
 			panel = "",
 			navOpen = "<nav role='navigation'",
 			siteNavElement = " typeof='SiteNavigationElement'",
 			navClose = "</nav>",
-			infoHtml = "",
-			$onlypnl, $panel, sectionId, infoSections, i, len;
+			sectionUlOpen = "<ul class='list-unstyled'>",
+			sectionUlClose = "</ul>",
+			detailsOpen = "<li><details>",
+			detailsClose = "</details></li>",
+			summaryOpen = "<summary class='wb-toggle tgl-tab' data-toggle='{\"parent\": \"#mb-pnl\", \"group\": \"details\"}'>",
+			summaryClose = "</summary>",
+			panelOpen = "<div class='tgl-panel'>",
+			panelClose = "</div>",
+			allProperties = [],
+			sectionHtml, $onlypnl, $panel, sections, section,
+			properties, originalHtml, i, j, len, len2;
 
 		/*
 		 * Build the mobile panel
@@ -160,7 +168,11 @@ var pluginName = "wb-menu",
 
 		// Add search
 		if ( search !== null ) {
-			panel += "<section class='srch-pnl'>" + search.innerHTML + "</section>";
+			panel += "<section class='srch-pnl'>" +
+				search.innerHTML
+					.replace( /h2>/i, "h3>" )
+					.replace( /(for|id)="([^"]+)"/gi, "$1='$2-imprt'" ) +
+				"</section>";
 		}
 
 		// Add active language offer
@@ -171,63 +183,85 @@ var pluginName = "wb-menu",
 				"</section>";
 		}
 
-		// Add the secondary navigation
-		if ( secnav !== null ) {
-			panel += navOpen + siteNavElement + " class='sec-pnl'>" +
-				secnav.innerHTML.replace( /list-group-item/gi, "" ) + navClose;
+		// Add the secondary menu
+		if ( $secnav.length !== 0 ) {
+			allProperties.push([
+				$secnav.find( "> ul > li > a" ).get(),
+				"sec-pnl",
+				$secnav.find( "h2" ).html()
+			]);
 		}
 
 		// Add the site menu
 		if ( $menubar.length !== 0 ) {
-
-			panel += navOpen + siteNavElement + " class='sm-pnl'>" +
-				"<h3>" + $ajaxed.find( "h2" ).html() + "</h3>" +
-				"<ul class='list-unstyled menu'>" +
-				$menubar.html()
-					.replace(
-						/(id="|href="#)([^"]+)"/gi,
-						"$1" + sectionPrefix + "$2\""
-					) +
-				"</ul>" + navClose;
+			allProperties.push([
+				$menu.get(),
+				"sm-pnl",
+				$ajaxed.find( "h2" ).html()
+			]);
 		}
+
+		// Process the secondary and site menus
+		len = allProperties.length;
+		for ( i = 0; i !== len; i += 1 ) {
+			properties = allProperties[ i ];
+			sectionHtml = "";
+			sections = properties[ 0 ];
+			len2 = sections.length;
+			for ( j = 0; j !== len2; j += 1 ) {
+				section = sections[ j ];
+				if ( section.getAttribute( "href" ).charAt( 0 ) === "#" ) {
+					sectionHtml += detailsOpen +
+						summaryOpen + section.innerHTML + summaryClose +
+						panelOpen + sectionUlOpen +
+						section.parentNode.getElementsByTagName( "ul" )[ 0 ].innerHTML +
+						sectionUlClose + panelClose + detailsClose;
+				} else {
+					sectionHtml += "<li class='no-sect'>" + section.innerHTML + "</li>";
+				}
+			}
+			panel += navOpen + siteNavElement + " class='" + properties[ 1 ] + "'>" +
+				"<h3>" + properties[ 2 ] + "</h3>" +
+				sectionUlOpen + sectionHtml + sectionUlClose + navClose;
+		}
+		panel = panel
+			.replace( /list-group-item/gi, "" )
+			.replace( /\srole="menu([^"]*)"/gi, "" );
 
 		// Add the site information
 		if ( info !== null ) {
-			infoSections = info.getElementsByTagName( "section" );
-			len = infoSections.length;
+			sectionHtml = "";
+			sections = info.getElementsByTagName( "section" );
+			len = sections.length;
 			for ( i = 0; i !== len; i += 1 ) {
-				sectionId = sectionPrefix + i;
-				infoHtml += "<li>";
+				section = sections[ i ];
+				originalHtml = section.innerHTML;
 
-				// Lets check for other types of treatments in the section ( currently only supporting image and ul )
-				if ( infoSections[ i ].innerHTML.indexOf( "<ul" ) > -1 ){
+				// Let's check for other types of treatments in the section
+				// (currently only supporting image and ul)
+				if ( originalHtml.indexOf( "<ul" ) !== -1 ) {
 
 					// We have an unordered list
-					infoHtml += infoSections[ i ].innerHTML
-						.replace( /<h3.*?>(.*?)<\/h3>/i, "<a href='#" + sectionId + "' class='item'>$1</a>" )
-						.replace( /<ul/, "<ul id='" + sectionId + "'" );
-
+					sectionHtml += detailsOpen +
+							originalHtml
+								.replace(
+									/<h3.*?>(.*?)<\/h3>/i,
+									summaryOpen + "$1" + summaryClose + panelOpen
+								) + panelClose + detailsClose;
 				} else {
 
 					// We have another sort of treatment
-					infoHtml += infoSections[ i ].innerHTML
-						.replace( /<h3[^>]*?>(.*?)<\/h3>([\s\S]*)$/i, imageListify );
+					sectionHtml += "<li class='no-sect'>" + originalHtml.replace(
+							/<h3[^>]*?>(.*?)<\/h3>([\s\S]*)$/i,
+							imageListify
+						) + "</li>";
 				}
-
-				infoHtml +=	"</li>";
 			}
 
 			panel += navOpen + " class='info-pnl'>" +
 				"<h3>" + info.getElementsByTagName( "h2" )[ 0 ].innerHTML + "</h3>" +
-				"<ul class='list-unstyled menu'>" + infoHtml + "</ul>" + navClose;
+				sectionUlOpen + sectionHtml + sectionUlClose + navClose;
 		}
-
-		// Sanitize the DOM
-		panel = panel
-			.replace( /(for|id)="([^"]+)"/gi, "$1='$2-imprt'" )
-			.replace( /href="#([^"]+)"/gi, "href='#$1-imprt'" )
-			.replace( /\srole="menu([^"]*)"/gi, "" )
-			.replace( /h2>/gi, "h3>" );
 
 		// Let's create the DOM Element
 		$panel = $( "<div id='" + target +
@@ -236,14 +270,13 @@ var pluginName = "wb-menu",
 				i18nText.menu  + "</div>" + "</header><div class='modal-body'>" +
 				panel + "</div>" + "</div>" );
 
-		// Let's add some features
-		$panel.find( "[href^='#']" )
-			.prepend( "<span class='expicon'></span>" );
-
 		// Let's now populate the DOM since we have done all the work in a documentFragment
 		$( "#" + target ).replaceWith( $panel );
 
-		$panel.trigger( "wb-init.wb-overlay" );
+		$panel
+			.trigger( "wb-init.wb-overlay" )
+			.find( ".wb-toggle" )
+				.trigger( "wb-init.wb-toggle" );
 
 		/*
 		 * Build the regular mega menu
@@ -670,30 +703,6 @@ $document.on( "mediumview.wb largeview.wb xlargeview.wb", function() {
 	if ( mobilePanel && mobilePanel.getAttribute( "aria-hidden" ) === "false" ) {
 		$( mobilePanel ).trigger( "close.wb-overlay" );
 	}
-});
-
-// Handle clicks in the mobile panel
-$document.on( "click vclick", "#mb-pnl a[href^='#']", function() {
-	var $elm = $( this ),
-		$parent = $elm.parent(),
-		$panel = $parent.closest( "#mb-pnl" ),
-		state = $parent.hasClass( "active" );
-
-	onClose( $panel.find( ".active" ), true );
-
-	if ( !state ) {
-		$panel
-			.find( $elm.attr( "href" ) )
-				.addClass( "open" )
-				.attr({
-					"aria-hidden": "false",
-					"aria-expanded": "true"
-				})
-				.parent()
-					.addClass( "active" );
-	}
-
-	return false;
 });
 
 // Add the timer poke to initialize the plugin
