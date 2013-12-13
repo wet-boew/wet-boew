@@ -104,12 +104,27 @@
 		color: #fff;
 		text-decoration: none;
 	}
+	.srch-pnl {
+		.form-group {
+			float: left;
+			margin-right: 5px;
+			width: 75%;
+		}
+	}
 }
 
 [dir=rtl] {
 	#mb-pnl {
 		.lng-ofr {
 			text-align: left;
+		}
+		.srch-pnl {
+			.form-group {
+				float: right;
+				margin-right: auto;
+				margin-left: 5px;
+				width: 75%;
+			}
 		}
 	}
 }
