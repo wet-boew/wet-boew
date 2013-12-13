@@ -51,6 +51,14 @@
 		text-shadow: 1px 1px 1px #333;
 		text-decoration: none;
 		display: table-row;
+		&:after {
+			content: "";
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+		}
 	}
 	span {
 			display: table-cell;
@@ -61,9 +69,9 @@
 		font-size: 0.4em;
 	}
 	object, img {
-		height: 65px;
+		height: 1.5em;
 		margin: 9px 15px 9px 0;
-		width: 141px;
+		width: 3.25em;
 		float: left;
 	}
 }
