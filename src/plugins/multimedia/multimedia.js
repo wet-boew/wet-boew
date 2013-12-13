@@ -773,7 +773,7 @@ $document.on( "keyup", selector, function( event ) {
 $document.on( "durationchange play pause ended volumechange timeupdate " +
 	captionsLoadedEvent + " " + captionsLoadFailedEvent + " " +
 	captionsVisibleChangeEvent +
-	" waiting canplay progress", selector, function( event ) {
+	" waiting canplay", selector, function( event, simulated ) {
 
 	var eventTarget = event.currentTarget,
 		eventType = event.type,
@@ -781,7 +781,6 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		invStart = "<span class='wb-inv'>",
 		invEnd = "</span>",
 		currentTime, $button, buttonData, isPlay, getMuted;
-
 	switch ( eventType ) {
 	case "play":
 	case "pause":
@@ -860,6 +859,9 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		break;
 
 	case "waiting":
+		if ( !simulated ) {
+			$document.off( "progress", selector );
+		}
 		this.loading = setTimeout( function() {
 			$this.find( ".display" ).addClass( "waiting" );
 		}, 500 );
@@ -869,26 +871,27 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		this.loading = clearTimeout( this.loading );
 		$this.find( ".display" ).removeClass( "waiting" );
 		break;
-
-	// Fallback for browsers that don't implement the waiting events
-	case "progress":
-
-		// Waiting detected, display the loading icon
-		if ( this.player( "getPaused" ) === false &&
-			this.player( "getCurrentTime" ) === this.player( "getPreviousTime" ) &&
-			eventTarget.player( "getBuffering" ) === false ) {
-
-			eventTarget.player( "setBuffering", true );
-			$this.trigger( "waiting" );
-
-		// Waiting has ended, but icon is still visible - remove it.
-		} else if ( eventTarget.player( "getBuffering" ) === true ) {
-			eventTarget.player( "setBuffering", false );
-			$this.trigger( "canplay" );
-		}
-		eventTarget.player( "setPreviousTime", eventTarget.player( "getCurrentTime" ) );
-		break;
 	}
+});
+
+// Fallback for browsers that don't implement the waiting events
+$document.on( "progress", selector, function( event ) {
+	var eventTarget = event.currentTarget,
+		$this = $( eventTarget );
+
+	// Waiting detected
+	if ( this.player( "getPaused" ) === false && this.player( "getCurrentTime" ) === this.player( "getPreviousTime" ) ) {
+		if ( eventTarget.player( "getBuffering" ) === false ) {
+			eventTarget.player( "setBuffering", true );
+			$this.trigger( "waiting", true );
+		}
+
+	// Waiting has ended
+	} else if ( eventTarget.player( "getBuffering" ) === true ) {
+		eventTarget.player( "setBuffering", false );
+		$this.trigger( "canplay", true );
+	}
+	eventTarget.player( "setPreviousTime", eventTarget.player( "getCurrentTime" ) );
 });
 
 $document.on( resizeEvent, selector, function( event ) {
