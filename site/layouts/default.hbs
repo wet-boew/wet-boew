@@ -32,11 +32,21 @@
 		<header role="banner">
 			<div id="wb-bnr">
 				<div id="wb-bar">
-					<section id="wb-lng" class="visible-md visible-lg">
-						<h2>{{#i18n "tmpl-lang-select"}}{{/i18n}}</h2>
-						{{>languagetoggle}}
-					</section>
-					{{>mobimenu}}
+					<div class="container">
+						<div class="row">
+
+							<section id="wb-lng" class="visible-md visible-lg">
+								<h2>{{#i18n "tmpl-lang-select"}}{{/i18n}}</h2>
+								{{>languagetoggle}}
+							</section>
+
+							<section class="wb-mb-links col-xs-12 visible-sm visible-xs" id="wb-glb-mn">
+								<h2>{{#i18n "menu"}}{{/i18n}}</h2>
+								{{>mobimenu}}
+							</section>
+
+						</div>
+					</div>
 				</div>
 
 				<div class="container">

@@ -63,7 +63,7 @@ var pluginName = "wb-toggle",
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 */
 	setAria = function( event, data ) {
-		var i, len, elm, $elm, $parent, $tab,
+		var i, len, elm, $elm, $parent, $tab, isOpen,
 			ariaControls = "",
 			link = event.target,
 			prefix = "wb-" + new Date().getTime(),
@@ -77,21 +77,32 @@ var pluginName = "wb-toggle",
 			if ( !$parent.data( "init" ) ) {
 				$parent
 					.attr( "role", "tablist" )
-					.find( ".tab" )
+					.find( ".tgl-tab" )
 						.attr( "role", "tab" );
 				$parent
-					.find( ".panel" )
-						.attr( "role", "panel" );
+					.find( ".tgl-panel" )
+						.attr( "role", "tabpanel" );
 
 				// Create the tab/panel relationships
 				$elms = $parent.find( data.group );
 				for ( i = 0, len = $elms.length; i !== len; i += 1 ) {
 					$elm = $elms.eq( i );
-					$tab = $elm.find( ".tab" );
+					$tab = $elm.find( ".tgl-tab" );
 					if ( !$tab.attr( "id" ) ) {
 						$tab.attr( "id", prefix + i );
 					}
-					$elm.find( ".panel" ).attr( "aria-labelledby", $tab.attr( "id" ) );
+
+					isOpen = $elm[ 0 ].nodeName.toLowerCase() === "details" ?
+						!!$elm.attr( "open" ) :
+						$tab.hasClass( "on" );
+
+					$tab.attr( "aria-selected", isOpen );
+					$elm.find( ".tgl-panel" )
+						.attr({
+							"aria-labelledby": $tab.attr( "id" ),
+							"aria-expanded": isOpen,
+							"aria-hidden": !isOpen
+						});
 				}
 
 				// Mark this group toggle widget as initialized
@@ -134,7 +145,7 @@ var pluginName = "wb-toggle",
 		var dataGroup, $elmsGroup,
 			isGroup = !!data.group,
 			isTablist = isGroup && !!data.parent,
-			link = event.target,
+			link = event.currentTarget,
 			$link = $( link ),
 			stateFrom = getState( $link, data ),
 			isToggleOn = stateFrom === data.stateOff,
@@ -149,7 +160,7 @@ var pluginName = "wb-toggle",
 			$elmsGroup = getElements( link, dataGroup );
 
 			// Set the toggle state to "off".  For tab lists, this is stored on the tab element
-			setState( isTablist ? $( data.parent ).find( ".tab" ) : $elmsGroup,
+			setState( isTablist ? $( data.parent ).find( ".tgl-tab" ) : $elmsGroup,
 				dataGroup, data.stateOff );
 
 			// Toggle all grouped elements to "off"
@@ -161,7 +172,7 @@ var pluginName = "wb-toggle",
 			});
 		}
 
-		// Set the toggle state.  For tab lists, this is set on the tab element
+		// Set the toggle state. For tab lists, this is set on the tab element
 		setState( isTablist ? $link : $elms, data, stateTo );
 
 		// Toggle all elements to the requested state
@@ -197,8 +208,8 @@ var pluginName = "wb-toggle",
 		if ( data.isTablist ) {
 
 			// Set the required aria attributes
-			$elms.find( ".tab" ).attr( "aria-selected", isOn );
-			$elms.find( ".panel" ).attr({
+			$elms.find( ".tgl-tab" ).attr( "aria-selected", isOn );
+			$elms.find( ".tgl-panel" ).attr({
 				"aria-hidden": !isOn,
 				"aria-expanded": isOn
 			});
@@ -236,24 +247,31 @@ var pluginName = "wb-toggle",
 			selector = data.selector,
 			type = data.type;
 
-		// No toggle type: get the current on/off state of the elements
-		// specified by the selector and parent
-		if ( !type ) {
-			if ( !selector ) {
-				return $link.data( "state" ) || data.stateOff;
+		if ( $link[ 0 ].nodeName.toLowerCase() === "summary" ) {
 
-			} else if ( states.hasOwnProperty( selector ) ) {
-				return states[ selector ].hasOwnProperty( parent ) ?
-					states[ selector ][ parent ] :
-					states[ selector ].all;
+			// Use the open attribute to determine state
+			return $link.parent().attr( "open" ) ? data.stateOn : data.stateOff;
+		} else {
+
+			// No toggle type: get the current on/off state of the elements
+			// specified by the selector and parent
+			if ( !type ) {
+				if ( !selector ) {
+					return $link.data( "state" ) || data.stateOff;
+
+				} else if ( states.hasOwnProperty( selector ) ) {
+					return states[ selector ].hasOwnProperty( parent ) ?
+						states[ selector ][ parent ] :
+						states[ selector ].all;
+				}
+
+				return data.stateOff;
 			}
 
-			return data.stateOff;
+			// Type: get opposite state of the type. Toggle reverses this
+			// to the requested state.
+			return type === data.stateOn ? data.stateOff : data.stateOn;
 		}
-
-		// Type: get opposite state of the type. Toggle reverses this
-		// to the requested state.
-		return type === data.stateOn ? data.stateOff : data.stateOn;
 	},
 
 	/*
