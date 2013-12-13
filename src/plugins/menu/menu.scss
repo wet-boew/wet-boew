@@ -122,19 +122,6 @@
 		label {
 			@extend %accessible-invisible;
 		}
-		.form-group {
-			display: inline-block;
-			margin-bottom: 0;
-			vertical-align: auto;
-		}
-		input {
-			display: inline-block;
-			width: auto;
-			@extend %menu-mb-pnl-margin-bottom-5px;
-		}
-		button {
-			@extend %menu-mb-pnl-margin-bottom-5px;
-		}
 	}
 	.modal-body {
 		h2 {
