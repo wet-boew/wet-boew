@@ -217,7 +217,7 @@ var pluginName = "wb-menu",
 						section.parentNode.getElementsByTagName( "ul" )[ 0 ].innerHTML +
 						sectionUlClose + panelClose + detailsClose;
 				} else {
-					sectionHtml += "<li class='no-sect'>" + section.innerHTML + "</li>";
+					sectionHtml += "<li class='no-sect'>" + section.parentNode.innerHTML + "</li>";
 				}
 			}
 			panel += navOpen + siteNavElement + " class='" + properties[ 1 ] + "'>" +
