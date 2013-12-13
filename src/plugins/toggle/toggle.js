@@ -156,8 +156,9 @@ var pluginName = "wb-toggle",
 		if ( isGroup ) {
 
 			// Get the grouped elements using data.group as the CSS selector
+			// and filter to only retrieve currently open grouped elements
 			dataGroup = $.extend( {}, data, { selector: data.group } );
-			$elmsGroup = getElements( link, dataGroup );
+			$elmsGroup = getElements( link, dataGroup ).filter( "." + data.stateOn + ", [open]" );
 
 			// Set the toggle state to "off".  For tab lists, this is stored on the tab element
 			setState( isTablist ? $( data.parent ).find( ".tgl-tab" ) : $elmsGroup,
