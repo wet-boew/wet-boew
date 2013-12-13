@@ -544,7 +544,7 @@ $document.on( fallbackEvent, selector, function() {
 		flashvars = "id=" + data.mId,
 		width = data.width,
 		height = data.height > 0 ? data.height : Math.round( data.width / 1.777 ),
-		playerresource = wb.getPath( "/assets" ) + "/multimedia.swf?" + flashvars;
+		playerresource = wb.getPath( "/assets" ) + "/multimedia.swf?" + new Date().getTime();
 
 	flashvars += "&amp;media=" + encodeURI( wb.getUrlParts( source ).absolute );
 	if ( type === "video" ) {
