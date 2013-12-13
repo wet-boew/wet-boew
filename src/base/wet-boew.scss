@@ -112,7 +112,6 @@
 /* Small view and over */
 @media screen and (min-width: $smallViewMin) {
 	@import "views/smallViewOver";
-	@import "partials/bootstrap-overrides-smallViewOver";
 }
 
 /* Medium view and over */
