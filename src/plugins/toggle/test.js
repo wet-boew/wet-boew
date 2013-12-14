@@ -108,7 +108,6 @@ describe( "Toggle test suite", function() {
 				if ( isTablist ) {
 					$parent = $( data.parent );
 					expect( $parent.attr( "role" ) ).to.equal( "tablist" );
-					expect( $parent.data( "init" ) ).to.equal( true );
 
 					$parent.find( ".tgl-tab" ).each( function() {
 						expect( this.getAttribute( "role" ) ).to.equal( "tab" );
