@@ -42,10 +42,6 @@ describe( "Toggle test suite", function() {
 	 */
 	describe( "init events", function() {
 
-		it( "should have a aria.wb-toggle event", function() {
-			expect( spy.calledWith( "aria.wb-toggle" ) ).to.equal( true );
-		});
-
 		it( "should have been triggered on a .wb-toggle element", function() {
 			var call, i, j, lenCalls, lenElms,
 				isSelector = false;
