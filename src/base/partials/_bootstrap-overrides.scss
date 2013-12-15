@@ -577,6 +577,9 @@ address {
  */
 a {
 	text-decoration: underline;		// re-enable underlining
+	&.btn {
+		text-decoration: none;		// except for buttons
+	}
 }
 
 /*
