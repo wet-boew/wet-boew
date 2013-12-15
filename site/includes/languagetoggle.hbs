@@ -1,19 +1,19 @@
 <ul class="text-right">
-{{#if_eq language compare="en"}}
+{{#is language "en"}}
 	{{#if page.fr}}
 	<li>
 		<a lang="fr" href="{{page.fr}}-fr.html">Français</a>
 	</li>
 	{{/if}}
-{{/if_eq}}
+{{/is}}
 	<li class="curr">
 		{{#i18n "lang-native"}}{{/i18n}}{{#i18n "space"}}{{/i18n}}<span>{{#i18n "current"}}{{/i18n}}</span>
 	</li>
-{{#unless_eq language compare="en"}}
+{{#isnt language "en"}}
 	{{#if page.en}}
 	<li>
 		<a lang="en" href="{{page.en}}-en.html">English</a>
 	</li>
 	{{/if}}
-{{/unless_eq}}
+{{/isnt}}
 </ul>
