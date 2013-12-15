@@ -56,7 +56,7 @@ var pluginName = "wb-menu",
 				};
 			}
 
-			// Lets test to see if we have any
+			// Lets test to see if we have any menus to fetch
 			if ( $elm.data( "ajax-fetch" ) ) {
 				$document.trigger({
 					type: "ajax-fetch.wb",
@@ -66,8 +66,13 @@ var pluginName = "wb-menu",
 			} else {
 
 				// Trigger the navcurrent plugin
-				$elm.trigger( navCurrentEvent, breadcrumb );
+				$elm
+					.trigger( navCurrentEvent, breadcrumb )
+					.find( ".menu" )
+						.attr( "role", "menubar" );
 				$( "#wb-sec" ).trigger( navCurrentEvent, breadcrumb );
+				
+				onAjaxLoaded( $elm, $elm );
 			}
 		}
 	},
@@ -136,8 +141,8 @@ var pluginName = "wb-menu",
 	 * @param {jQuery DOM element} $ajaxed The AJAX'd in menu content to import
 	 */
 	onAjaxLoaded = function( $elm, $ajaxed ) {
-		var $menubar = $ajaxed.find( "[role='menubar']" ),
-			$menu = $menubar.find( ".item" ),
+		var $menubar = $ajaxed.find( ".menu" ),
+			$menu = $menubar.find( "> li > a" ),
 
 			// Optimized the code block to look to see if we need to import anything instead
 			// of just doing a query with which could result in no result
@@ -306,7 +311,7 @@ var pluginName = "wb-menu",
 		// Recalibrate context
 		$elm.data({
 			self: $elm,
-			menu: $elm.find( "[role=menubar] .item" ),
+			menu: $elm.find( ".menu > li > a" ),
 			items: $elm.find( ".sm" )
 		});
 
@@ -549,7 +554,7 @@ $document.on( "click vclick", selector + " .item[aria-haspopup]", onPanelClick )
  */
 $document.on( "mouseover focusin", selector + " .item", onHoverFocus );
 
-$document.on( "keydown", selector + " .item", function( event ) {
+$document.on( "keydown", selector + " .menu > li > a", function( event ) {
 	var elm = event.target,
 		which = event.which,
 		ref = expand( elm ),
