@@ -78,23 +78,23 @@
 		</header>
 
 		<main role="main" property="mainContentOfPage" class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<h1 id="wb-cont" property="name">{{title}}</h1>
-					{{>body}}
-				</div>
-			</div>
+			<h1 id="wb-cont" property="name">{{title}}</h1>
+			{{>body}}
 		</main>
 
 		<!-- Secondary Menu
-		<main role="main" property="mainContentOfPage" class="col-md-9 col-md-push-3">
-			<h1 id="wb-cont" property="name">{{title}}</h1>
-		</main>
+		<div class="container">
+			<div class="row">
+				<main role="main" property="mainContentOfPage" class="col-md-9 col-md-push-3">
+					<h1 id="wb-cont" property="name">{{title}}</h1>
+				</main>
 
-		<nav role="navigation" id="wb-sec" typeof="SiteNavigationElement" class="col-md-3 col-md-pull-9 visible-md visible-lg">
-			<h2>{{#i18n "tmpl-sec-menu"}}{{/i18n}}</h2>
-			{{>secondarymenu}}
-		</nav>
+				<nav role="navigation" id="wb-sec" typeof="SiteNavigationElement" class="col-md-3 col-md-pull-9 visible-md visible-lg">
+					<h2>{{#i18n "tmpl-sec-menu"}}{{/i18n}}</h2>
+					{{>secondarymenu}}
+				</nav>
+			</div>
+		</div>
 		[optional] -->
 
 		<footer role="contentinfo" id="wb-info" class="container visible-md visible-lg">
