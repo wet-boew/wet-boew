@@ -179,8 +179,10 @@ var pluginName = "wb-menu",
 		if ( $language.length !== 0 ) {
 			panel += "<section class='lng-ofr'>" +
 				"<h3>" + $language.children( "h2" ).html() + "</h3>" +
-				$language.find( "li:not(.curr)" ).html() +
-				"</section>";
+				"<ul class='list-inline'>" +
+				$language.find( "li:not(.curr)" ).html()
+					.replace( /(<a\s.*<\/a>?)/, "<li>$1</li>" ) +
+				"</ul></section>";
 		}
 
 		// Add the secondary menu
