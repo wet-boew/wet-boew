@@ -83,6 +83,7 @@ $border-radius-small: 3px;
 $input-height-base: ($line-height-computed + ($padding-base-vertical * 2) + 2);
 $input-height-large: (ceil($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2);
 $input-height-small: (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2);
+$input-height-xs: (floor($font-size-small * $line-height-small) + ($padding-xs-vertical * 2) + 2);
 
 $screen-sm: 768px;
 $screen-sm-min: $screen-sm;
@@ -590,5 +591,21 @@ code {
 [dir=rtl] {
 	.list-unstyled {
 		padding-right: 0;
+	}
+}
+
+/*
+ *	Firefox-safe line height on input[type="reset|button|submit"]
+ */
+input[type="reset"], input[type="button"], input[type="submit"] {
+	height: $input-height-base;
+	&.btn-lg, &.input-lg {
+		height: $input-height-large;
+	}
+	&.btn-sm, &.input-sm {
+		height: $input-height-small;
+	}
+	&.btn-xs {
+		height: $input-height-xs;
 	}
 }
