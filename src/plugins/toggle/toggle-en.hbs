@@ -317,8 +317,8 @@
 			<h3>Example</h3>
 			<div class="accordion">
 
-				<details>
-					<summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": "details"}'>Example 1</summary>
+				<details class="acc-group">
+					<summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'>Example 1</summary>
 					<div class="tgl-panel">
 						<p>Example content that provides more details.</p>
 						<table>
@@ -349,8 +349,8 @@
 					</div>
 				</details>
 
-				<details>
-					<summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": "details"}'>Example 2</summary>
+				<details class="acc-group">
+					<summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'>Example 2</summary>
 					<div class="tgl-panel">
 						<p>Example content that provides more details.</p>
 						<table>
@@ -381,8 +381,8 @@
 					</div>
 				</details>
 
-				<details>
-					<summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": "details"}'>Example 3</summary>
+				<details class="acc-group">
+					<summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'>Example 3</summary>
 					<div class="tgl-panel">
 						<p>Example content that provides more details.</p>
 						<table>
@@ -432,16 +432,16 @@
 <pre class="lang-html"><code>&lt;div class="accordion"&gt;
 
    &lt;!-- Accordion section 1 --&gt;
-   &lt;details&gt;
-      &lt;summary class="wb-toggle tab" data-toggle='{"parent": ".accordion", "group": "details"}'&gt;Section 1's heading&lt;/summary&gt;
+   &lt;details class="acc-group"&gt;
+      &lt;summary class="wb-toggle tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'&gt;Section 1's heading&lt;/summary&gt;
       &lt;div class="panel"&gt;
          &lt;!-- Section 1's content --&gt;
       &lt;/div&gt;
    &lt;/details&gt;
 
    &lt;!-- Accordion section 2 --&gt;
-   &lt;details&gt;
-      &lt;summary class="wb-toggle tab" data-toggle='{"parent": ".accordion", "group": "details"}'&gt;Section 2's heading&lt;/summary&gt;
+   &lt;details class="acc-group"&gt;
+      &lt;summary class="wb-toggle tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'&gt;Section 2's heading&lt;/summary&gt;
       &lt;div class="panel"&gt;
          &lt;!-- Section 2's content --&gt;
       &lt;/div&gt;
