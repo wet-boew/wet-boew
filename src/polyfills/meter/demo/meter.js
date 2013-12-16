@@ -18,6 +18,9 @@ wb.doc.on( "click vclick", "#increaseMeter, #decreaseMeter", function( event ) {
 		.attr( "value", newValue )
 		.find( "span" )
 			.text( newValue );
+
+	// Update the visuals
+	$elm.trigger( "wb-update.wb-meter" );
 });
 
 })( jQuery, wb );
