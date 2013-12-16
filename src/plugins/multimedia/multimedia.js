@@ -821,7 +821,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 			.attr(
 				"value",
 				Math.round( currentTime / eventTarget.player( "getDuration" ) * 1000 ) / 10
-			);
+			).trigger( "wb-update.wb-progress" );
 
 		$this.find( ".wb-mm-tmln-crrnt span:nth-child(2)" )
 			.text( formatTime( currentTime ) );
