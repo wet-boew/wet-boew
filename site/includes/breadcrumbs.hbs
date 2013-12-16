@@ -9,6 +9,11 @@
 				<a href="{{assets}}/demos/index-{{language}}.html">{{#i18n "tmpl-work-examples"}}{{/i18n}}</a>
 			</li>
 {{/isnt}}
+{{#is breadcrumb3 "true"}}
+			<li>
+				<a href="{{assets}}/demos/{{tag}}/index-{{language}}.html">{{breadcrumb3-title}}</a>
+			</li>
+{{/is}}
 			<li>{{title}}</li>
 		</ol>
 	</div>
