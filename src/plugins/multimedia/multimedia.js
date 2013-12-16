@@ -499,6 +499,10 @@ $document.on( initializedEvent, selector, function() {
 		media = $media.get( 0 ),
 		url;
 
+	if ( !$this.attr( "id" ) ) {
+		$this.attr( "id", id );
+	}
+
 	if ( $media.attr( "id" ) === undef ) {
 		$media.attr( "id", mId );
 	}
@@ -681,7 +685,7 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 	this.player = ( data.ytPlayer ) ? youTubeApi : playerApi;
 	$this.data( "properties", data );
 
-	//Load the progress polyfill if needed
+	// Load the progress polyfill if needed
 	$this.find( "progress" ).trigger( "wb-init.wb-progress" );
 
 	if ( data.captions === undef ) {
@@ -780,7 +784,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		$this = $( eventTarget ),
 		invStart = "<span class='wb-inv'>",
 		invEnd = "</span>",
-		currentTime, $button, buttonData, isPlay, getMuted;
+		currentTime, $button, buttonData, isPlay, getMuted, ref, skipTo;
 	switch ( eventType ) {
 	case "play":
 	case "pause":
@@ -838,6 +842,14 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 	case "durationchange":
 		$this.find( ".wb-mm-tmln-ttl span:nth-child(2)" )
 			.text( formatTime( eventTarget.player( "getDuration" ) ) );
+
+		// Skip to pointer from the querystring
+		ref = expand( this );
+		skipTo = wb.pageUrlParts.params[ ref[ 1 ].id ];
+		if ( skipTo ) {
+				skipTo = parseTime( skipTo );
+				eventTarget.player( "setCurrentTime", skipTo );
+		}
 		break;
 
 	case "ccloaded":
