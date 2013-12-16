@@ -44,6 +44,7 @@ var polyfillName = "wb-meter",
 			low = parseFloat( $elm.attr( "low" ) ),
 			optimum = parseFloat( $elm.attr( "optimum" ) ),
 			value = $elm.attr( "value" ) !== null ? parseFloat( $elm.attr( "value" ) ) : ( elm.textContent ? elm.textContent : elm.innerText ),
+			children = elm.children,
 			indicator, width;
 
 		if ( elm.textContent ) {
@@ -83,11 +84,11 @@ var polyfillName = "wb-meter",
 
 		width = elm.offsetWidth * ( ( value - min ) / ( max - min ) );
 
-		indicator = elm.children.length === 0 ? document.createElement( "div" ) : elm.children[ 0 ];
+		indicator = children.length === 0 ? document.createElement( "div" ) : children[ 0 ];
 		indicator.style.width = Math.ceil( width ) + "px";
 
-		if (elm.children.length === 0) {
-			elm.appendChild(indicator);
+		if ( children.length === 0 ) {
+			elm.appendChild( indicator );
 		}
 
 		if ( high && value >= high ) {
@@ -119,11 +120,11 @@ $document.on( "timerpoke.wb " + initEvent + " "  + updateEvent, selector, functi
 
 	if ( event.currentTarget === eventTarget ) {
 		if ( event.type === "wb-update" ) {
-			meter( event.currentTarget );
+			meter( eventTarget );
 
 		// Only initialize the element once
 		} else if ( eventTarget.className.indexOf( initedClass ) === -1 ) {
-			init( event );
+			init( eventTarget );
 		}
 	}
 });
