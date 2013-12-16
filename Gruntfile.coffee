@@ -278,20 +278,20 @@ module.exports = (grunt) ->
 				options:
 					banner: "@charset \"utf-8\";\n<%= banner %><%= glyphiconsBanner %>"
 				files:
+					"dist/unmin/css/ie8-wet-boew.css": [
+						"lib/bootstrap/dist/css/bootstrap.css"
+						"dist/unmin/css/wet-boew.css"
+						"dist/unmin/css/ie8-wet-boew.css"
+					]
 					"dist/unmin/css/wet-boew.css": [
 						"lib/bootstrap/dist/css/bootstrap.css"
 						"dist/unmin/css/wet-boew.css"
-					]
-					"dist/unmin/css/ie8-wet-boew.css": [
-						"dist/unmin/css/wet-boew.css"
-						"dist/unmin/css/ie8-wet-boew.css"
 					]
 
 			css_addBanners:
 				options:
 					banner: "@charset \"utf-8\";\n<%= banner %>"
 				files:
-					"dist/unmin/css/ie8-wet-boew.css": "dist/unmin/css/ie8-wet-boew.css"
 					"dist/unmin/css/noscript.css": "dist/unmin/css/noscript.css"
 					"dist/unmin/css/theme.css": "dist/unmin/css/theme.css"
 
