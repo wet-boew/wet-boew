@@ -49,7 +49,7 @@ var pluginName = "wb-meter",
 			value = $elm.attr( "value" ) !== null ? parseFloat( $elm.attr( "value" ) ) : ( elm.textContent ? elm.textContent : elm.innerText ),
 			indicator, width;
 
-		$elm.off( "DOMAttrModified propertychange" );
+		$elm.off( "DOMSubtreeModified DOMAttrModified propertychange" );
 
 		if ( elm.textContent ) {
 			elm.textContent = "";
@@ -118,7 +118,7 @@ var pluginName = "wb-meter",
 		});
 		
 		setTimeout( function() {
-			$elm.on( "DOMAttrModified propertychange", function() {
+			$elm.on( "DOMSubtreeModified DOMAttrModified propertychange", function() {
 				meter( this );
 			});
 		}, 0 );
