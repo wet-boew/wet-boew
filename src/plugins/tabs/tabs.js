@@ -586,13 +586,25 @@ var pluginName = "wb-tabs",
 	return true;
 });
 
+$document.on( "keydown", selector + " [role=tabpanel]", function( event ) {
+	var currentTarget = event.currentTarget;
+
+	// Ctrl + Up arrow
+	if ( event.ctrlKey && event.which === 38 ) {
+
+		// Move focus to the summary element
+		$( currentTarget )
+			.parents( selector )
+				.find( "[href$='#" + currentTarget.id + "']" )
+					.trigger( "setfocus.wb" );
+	}
+});
+
 // These events only fire at the document level
 $document.on( wb.resizeEvents, onResize );
 
 // This event only fires on the window
 $window.on( "hashchange", onHashChange );
-
--// Update the hash with the current open details/tab panel id
 
 $document.on( activateEvent, selector + " > details > summary", function( event ) {
 	var which = event.which,
