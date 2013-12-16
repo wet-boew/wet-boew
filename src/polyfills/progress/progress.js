@@ -11,33 +11,31 @@
  * Variable and function definitions.
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
-var pluginName = "wb-progress",
+var polyfillName = "wb-progress",
 	selector = "progress",
-	initedClass = pluginName + "-inited",
-	initEvent = "wb-init." + pluginName,
+	initedClass = polyfillName + "-inited",
+	initEvent = "wb-init." + polyfillName,
+	updateEvent = "wb-update." + polyfillName,
 	$document = wb.doc,
 
 	/**
 	 * Init runs once per polyfill element on the page. There may be multiple elements.
 	 * It will run more than once if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
+	 * @param {DOM element} elm Element to be polyfilled
 	 */
-	init = function( event ) {
-		var eventTarget = event.target;
+	init = function( elm ) {
+		wb.remove( selector );
+		elm.className += " " + initedClass;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === eventTarget &&
-			eventTarget.className.indexOf( initedClass ) === -1 ) {
-
-			wb.remove( selector );
-			eventTarget.className += " " + initedClass;
-
-			progress( eventTarget );
-		}
+		progress( elm );
 	},
 
+	/**
+	 * Create and update the progress visuals
+	 * @method meter
+	 * @param {DOM element} elm Element to be polyfilled
+	 */
 	progress = function( elm ) {
 		var $elm = $( elm ),
 			$progress = $elm.children( ".progress, .undef" ),
@@ -45,8 +43,6 @@ var pluginName = "wb-progress",
 			ariaValueMax = 1.0,
 			ariaValueNow,
 			$progressbar;
-
-		$elm.off( "DOMSubtreeModified DOMAttrModified propertychange" );
 
 		if ( elm.getAttribute( "value" ) !== null ) {
 			if ( $progress.length === 0 ) {
@@ -79,18 +75,24 @@ var pluginName = "wb-progress",
 		} else if ( $progress.length === 0 ) {
 			$elm.append( "<div class='undef'/>" );
 		}
-
-		setTimeout( function() {
-			$elm.on( "DOMSubtreeModified DOMAttrModified propertychange", function() {
-				progress( this );
-			});
-		}, 0 );
 	};
 
-// Bind the init event of the plugin
-$document.on( "timerpoke.wb " + initEvent, selector, init );
+// Bind the events of the polyfill
+$document.on( "timerpoke.wb " + initEvent + " "  + updateEvent, selector, function( event ) {
+	var eventTarget = event.target;
 
-// Add the timer poke to initialize the plugin
+	if ( event.currentTarget === eventTarget ) {
+		if ( event.type === "wb-update" ) {
+			progress( eventTarget );
+			
+		// Only initialize the element once
+		} else if ( eventTarget.className.indexOf( initedClass ) === -1 ) {
+			init( eventTarget );
+		}
+	}
+});
+
+// Add the timer poke to initialize the polyfill
 wb.add( selector );
 
 })( jQuery, window, wb );

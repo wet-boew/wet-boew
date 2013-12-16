@@ -11,34 +11,31 @@
  * Variable and function definitions.
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
-var pluginName = "wb-meter",
+var polyfillName = "wb-meter",
 	selector = "meter",
-	initedClass = pluginName + "-inited",
-	initEvent = "wb-init." + pluginName,
+	initedClass = polyfillName + "-inited",
+	initEvent = "wb-init." + polyfillName,
+	updateEvent = "wb-update." + polyfillName,
 	$document = wb.doc,
 
 	/**
 	 * Init runs once per polyfill element on the page. There may be multiple elements.
 	 * It will run more than once if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
+	 * @param {DOM element} elm Element to be polyfilled
 	 */
-	init = function( event ) {
-		var eventTarget = event.target;
+	init = function( elm ) {
+		wb.remove( selector );
+		elm.className += " " + initedClass;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === eventTarget &&
-			eventTarget.className.indexOf( initedClass ) === -1 ) {
-
-			wb.remove( selector );
-			eventTarget.className += " " + initedClass;
-
-			meter( eventTarget );
-		}
+		meter( elm );
 	},
 
-	// create polyfill
+	/**
+	 * Create and update the meter visuals
+	 * @method meter
+	 * @param {DOM element} elm Element to be polyfilled
+	 */
 	meter = function( elm ) {
 		var $elm = $( elm ),
 			min = parseFloat( $elm.attr( "min" ) || 0 ),
@@ -48,8 +45,6 @@ var pluginName = "wb-meter",
 			optimum = parseFloat( $elm.attr( "optimum" ) ),
 			value = $elm.attr( "value" ) !== null ? parseFloat( $elm.attr( "value" ) ) : ( elm.textContent ? elm.textContent : elm.innerText ),
 			indicator, width;
-
-		$elm.off( "DOMSubtreeModified DOMAttrModified propertychange" );
 
 		if ( elm.textContent ) {
 			elm.textContent = "";
@@ -116,18 +111,24 @@ var pluginName = "wb-meter",
 			value: value,
 			title: $elm.attr( "title" ) || value
 		});
-		
-		setTimeout( function() {
-			$elm.on( "DOMSubtreeModified DOMAttrModified propertychange", function() {
-				meter( this );
-			});
-		}, 0 );
 	};
 
-// Bind the init event of the plugin
-$document.on( "timerpoke.wb " + initEvent, selector, init );
+// Bind the events of the polyfill
+$document.on( "timerpoke.wb " + initEvent + " "  + updateEvent, selector, function( event ) {
+	var eventTarget = event.target;
 
-// Add the timer poke to initialize the plugin
+	if ( event.currentTarget === eventTarget ) {
+		if ( event.type === "wb-update" ) {
+			meter( event.currentTarget );
+
+		// Only initialize the element once
+		} else if ( eventTarget.className.indexOf( initedClass ) === -1 ) {
+			init( event );
+		}
+	}
+});
+
+// Add the timer poke to initialize the polyfill
 wb.add( selector );
 
 })( jQuery, window, wb );
