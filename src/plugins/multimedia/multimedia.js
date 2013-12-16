@@ -719,7 +719,7 @@ $document.on( "click", selector, function( event ) {
 		this.player( "setMuted", !this.player( "getMuted" ) );
 	} else if ( $target.is( "progress" ) || $target.hasClass( "progress" ) || $target.hasClass( "progress-bar" ) ) {
 		this.player( "setCurrentTime", this.player( "getDuration" ) * ( ( event.pageX - $target.offset().left ) / $target.width() ) );
-	} else if ( className.match( /\brewind\b|-backwards/ ) ) {
+	} else if ( className.match( /\brewind\b|-backward/ ) ) {
 		this.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05);
 	} else if ( className.match( /\bfastforward\b|-forward/ ) ) {
 		this.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05);
@@ -821,7 +821,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 			.attr(
 				"value",
 				Math.round( currentTime / eventTarget.player( "getDuration" ) * 1000 ) / 10
-			);
+			).trigger( "wb-update.wb-progress" );
 
 		$this.find( ".wb-mm-tmln-crrnt span:nth-child(2)" )
 			.text( formatTime( currentTime ) );
