@@ -46,7 +46,7 @@ var pluginName = "wb-progress",
 			ariaValueNow,
 			$progressbar;
 
-		$elm.off( "DOMAttrModified propertychange" );
+		$elm.off( "DOMSubtreeModified DOMAttrModified propertychange" );
 
 		if ( elm.getAttribute( "value" ) !== null ) {
 			if ( $progress.length === 0 ) {
@@ -81,7 +81,7 @@ var pluginName = "wb-progress",
 		}
 
 		setTimeout( function() {
-			$elm.on( "DOMAttrModified propertychange", function() {
+			$elm.on( "DOMSubtreeModified DOMAttrModified propertychange", function() {
 				progress( this );
 			});
 		}, 0 );
