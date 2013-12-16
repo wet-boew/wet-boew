@@ -292,6 +292,12 @@ module.exports = (grunt) ->
 				options:
 					banner: "@charset \"utf-8\";\n<%= banner %>"
 				files:
+					"dist/unmin/css/polyfills/datalist.css": "dist/unmin/css/polyfills/datalist.css"
+					"dist/unmin/css/polyfills/datepicker.css": "dist/unmin/css/polyfills/datepicker.css"
+					"dist/unmin/css/polyfills/details.css": "dist/unmin/css/polyfills/details.css"
+					"dist/unmin/css/polyfills/meter.css": "dist/unmin/css/polyfills/meter.css"
+					"dist/unmin/css/polyfills/progress.css": "dist/unmin/css/polyfills/progress.css"
+					"dist/unmin/css/polyfills/slider.css": "dist/unmin/css/polyfills/slider.css"
 					"dist/unmin/css/noscript.css": "dist/unmin/css/noscript.css"
 					"dist/unmin/css/theme.css": "dist/unmin/css/theme.css"
 
@@ -510,6 +516,7 @@ module.exports = (grunt) ->
 		uglify:
 			polyfills:
 				options:
+					banner: "<%= banner %>"
 					preserveComments: (uglify,comment) ->
 						return comment.value.match(/^!/i)
 				expand: true
@@ -562,6 +569,8 @@ module.exports = (grunt) ->
 			options:
 				banner: ""
 			dist:
+				options:
+					banner: ""
 				expand: true
 				cwd: "dist/unmin/css"
 				src: [
@@ -572,6 +581,9 @@ module.exports = (grunt) ->
 				ext: ".min.css"
 
 			demos_min:
+				options:
+					banner: "@charset \"utf-8\";\n/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
+						" * v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n *\n */"
 				expand: true
 				cwd: "dist/unmin/demos/"
 				src: [
