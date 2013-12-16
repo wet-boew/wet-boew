@@ -119,7 +119,7 @@
 ## Version history
 
 ### v4.0
-* **WET v4.0.0 Beta 1 was released on December 16, 2014** ([v4.0.0 Beta 1 release notes](https://github.com/wet-boew/wet-boew/wiki/v4.0.0-Beta-1-release-notes))
+* **WET v4.0.0 Beta 1 was released on December 16, 2013** ([v4.0.0 Beta 1 release notes](https://github.com/wet-boew/wet-boew/wiki/v4.0.0-Beta-1-release-notes))
 
 ### v3.1
 
@@ -266,7 +266,7 @@
 ## Historique des versions
 
 ### v4.0
-* **La version 4.0.0 Bêta 1 de la BOEW a été lancée le 16 décembre 2014** ([v4.0.0 Bêta 1 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v4.0.0-Beta-1-release-notes))
+* **La version 4.0.0 Bêta 1 de la BOEW a été lancée le 16 décembre 2013** ([v4.0.0 Bêta 1 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v4.0.0-Beta-1-release-notes))
 
 ### Version 3.1
 
