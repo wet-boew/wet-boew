@@ -3,9 +3,27 @@
   @title: Proximity CSS
  */
 
-%pstn {
+@import "../../_variables";
+
+@mixin pstn {
 	position: absolute;
 	margin: 0;
+}
+
+@mixin pstn-lft {
+	left: 0;
+}
+
+@mixin pstn-rght {
+	right: 0;
+}
+
+@mixin pstn-tp {
+	top: 0;
+}
+
+@mixin pstn-bttm {
+	bottom: 0;
 }
 
 .opct-100 {
@@ -61,103 +79,111 @@
 }
 
 .pstn-lft {
-	@extend %pstn;
-	left: 0;
-}
-
-.pstn-lft-sm {
-	@extend %pstn;
-	left: 10px;
-}
-
-.pstn-lft-md {
-	@extend %pstn;
-	left: 20px;
-}
-
-.pstn-lft-lg {
-	@extend %pstn;
-	left: 50px;
-}
-
-.pstn-lft-xl {
-	@extend %pstn;
-	left: 100px;
+	@include pstn;
+	@include pstn-lft;
 }
 
 .pstn-rght {
-	@extend %pstn;
-	right: 0;
-}
-
-.pstn-rght-sm {
-	@extend %pstn;
-	right: 10px;
-}
-
-.pstn-rght-md {
-	@extend %pstn;
-	right: 20px;
-}
-
-.pstn-rght-lg {
-	@extend %pstn;
-	right: 50px;
-}
-
-.pstn-rght-xl {
-	@extend %pstn;
-	right: 100px;
+	@include pstn;
+	@include pstn-rght;
 }
 
 .pstn-tp {
-	@extend %pstn;
-	top: 0;
-}
-
-.pstn-tp-sm {
-	@extend %pstn;
-	top: 10px;
-}
-
-.pstn-tp-md {
-	@extend %pstn;
-	top: 20px;
-}
-
-.pstn-tp-lg {
-	@extend %pstn;
-	top: 50px;
-}
-
-.pstn-tp-xl {
-	@extend %pstn;
-	top: 100px;
+	@include pstn;
+	@include pstn-tp;
 }
 
 .pstn-bttm {
-	@extend %pstn;
-	bottom: 0;
+	@include pstn;
+	@include pstn-bttm;
 }
 
-.pstn-bttm-sm {
-	@extend %pstn;
-	bottom: 10px;
+@media screen and (max-width: $smallViewMax) {
+	.pstn-lft-sm {
+		@include pstn;
+		@include pstn-lft;
+	}
+
+	.pstn-rght-sm {
+		@include pstn;
+		@include pstn-rght;
+	}
+
+	.pstn-tp-sm {
+		@include pstn;
+		@include pstn-tp;
+	}
+
+	.pstn-bttm-sm {
+		@include pstn;
+		@include pstn-bttm;
+	}
 }
 
-.pstn-bttm-md {
-	@extend %pstn;
-	bottom: 20px;
+@media screen and (min-width: $mediumViewMin) and (max-width: $mediumViewMax) {
+	.pstn-lft-md {
+		@include pstn;
+		@include pstn-lft;
+	}
+
+	.pstn-rght-md {
+		@include pstn;
+		@include pstn-rght;
+	}
+
+	.pstn-tp-md {
+		@include pstn;
+		@include pstn-tp;
+	}
+
+	.pstn-bttm-md {
+		@include pstn;
+		@include pstn-bttm;
+	}
 }
 
-.pstn-bttm-lg {
-	@extend %pstn;
-	bottom: 50px;
+@media screen and (min-width: $largeViewMin) and (max-width: $largeViewMax) {
+	.pstn-lft-lg {
+		@include pstn;
+		@include pstn-lft;
+	}
+
+	.pstn-rght-lg {
+		@include pstn;
+		@include pstn-rght;
+	}
+
+	.pstn-tp-lg {
+		@include pstn;
+		@include pstn-tp;
+	}
+
+	.pstn-bttm-lg {
+		@include pstn;
+		@include pstn-bttm;
+	}
 }
 
-.pstn-bttm-xl {
-	@extend %pstn;
-	bottom: 100px;
+@media screen and (min-width: $xLargeViewMin) {
+	.pstn-lft-xl {
+		@include pstn;
+		@include pstn-lft;
+	}
+
+	.pstn-rght-xl {
+		@include pstn;
+		@include pstn-rght;
+	}
+
+	.pstn-tp-xl {
+		@include pstn;
+		@include pstn-tp;
+	}
+
+	.pstn-bttm-xl {
+		@include pstn;
+		@include pstn-bttm;
+	}
 }
 
 .mrgn-lft-0 {
