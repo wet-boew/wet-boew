@@ -126,22 +126,23 @@ $document.on( "timerpoke.wb " + initEvent + " keydown open" + selector +
 
 			// No special tab handling when ignoring outside activity
 			if ( overlay.className.indexOf( ignoreOutsideClass ) === -1 ) {
-				event.preventDefault();
-				$focusable = $( overlay ).find( ":focusable" );
+				$focusable = $( overlay ).find( ":focusable:not([tabindex='-1'])" );
 				length = $focusable.length;
 				index = $focusable.index( event.target ) + ( event.shiftKey ? -1 : 1 );
-				if ( index === -1 ) {
-					index = length - 1;
-				} else if ( index === length ) {
-					index = 0;
+
+				if ( index === -1 || index === length ) {
+					event.preventDefault();
+					$focusable.eq( index === -1 ? length - 1 : 0 )
+						.trigger( setFocusEvent );
 				}
-				$focusable.eq( index ).trigger( setFocusEvent );
 			}
 			break;
 
 		// Escape key
 		case 27:
-			closeOverlay( overlayId, false, true );
+			if ( !event.isDefaultPrevented() ) {
+				closeOverlay( overlayId, false, true );
+			}
 			break;
 		}
 	}
