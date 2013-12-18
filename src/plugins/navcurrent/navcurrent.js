@@ -112,10 +112,8 @@ var $document = wb.doc,
 
 		if ( match ) {
 			link.className += " " + navClass;
-			if ( menu.id === "mb-pnl" ) {
-				link.parentNode.parentNode.parentNode.parentNode.getElementsByTagName( "summary" )[ 0 ].className += " " + navClass;
-			} else if ( menu.className.indexOf( "wb-menu" ) !== -1 && link.className.indexOf( "item" ) === -1 ) {
-				link.parentNode.parentNode.parentNode.getElementsByTagName( "a" )[ 0 ].className += " " + navClass;
+			if ( menu.className.indexOf( "wb-menu" ) !== -1 && link.className.indexOf( "item" ) === -1 ) {
+				$( link ).closest( ".sm" ).parent().children( "a" ).addClass( navClass );
 			}
 		}
 	};

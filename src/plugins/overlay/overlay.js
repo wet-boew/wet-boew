@@ -140,7 +140,9 @@ $document.on( "timerpoke.wb " + initEvent + " keydown open" + selector +
 
 		// Escape key
 		case 27:
-			closeOverlay( overlayId, false, true );
+			if ( !event.isDefaultPrevented() ) {
+				closeOverlay( overlayId, false, true );
+			}
 			break;
 		}
 	}
