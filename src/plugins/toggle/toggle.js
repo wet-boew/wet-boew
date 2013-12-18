@@ -103,6 +103,8 @@ var pluginName = "wb-toggle",
 					tab.setAttribute( "role", "tab" );
 					tab.setAttribute( "aria-selected", isOpen );
 					tab.setAttribute( "tabindex", isOpen ? "0" : "-1" );
+					tab.setAttribute( "aria-posinset", i + 1 );
+					tab.setAttribute( "aria-setsize", len );
 					
 					panel.setAttribute( "role", "tabpanel" );
 					panel.setAttribute( "aria-labelledby", tab.getAttribute( "id" ) );
