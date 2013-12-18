@@ -163,6 +163,7 @@ wb.i18nDict = {
 	infoFilt: "@infoFilt@",
 	info1000: "@info1000@",
 	lenMenu: "@lenMenu@",
+	filter: "@filter@",
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",
 	"geo-zmin": "@geo-zmin@",
