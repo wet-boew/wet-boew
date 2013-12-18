@@ -108,6 +108,7 @@
 /* Extra-small view and over */
 @media screen and (min-width: $xSmallViewMin) {
 	@import "views/xSmallViewOver";
+	@import "../plugins/menu/menu-xSmallViewOver";
 }
 
 /* Small view and over */
@@ -129,6 +130,7 @@
 /* Extra-extra-small view */
 @media screen and (max-width: $xxSmallViewMax) {
 	@import "views/xxSmallView";
+	@import "../plugins/menu/menu-xxSmallView";
 }
 
 /* Extra-small view */
