@@ -21,7 +21,9 @@ var $document = wb.doc,
 	 * Creates a calendar instance
 	 * @method create
 	 */
-	create = function( event, calendarId, year, month, shownav, mindate, maxdate, day ) {
+	create = function( event, calendarId, year, month, shownav, mindate,
+		maxdate, day, ariaControls, ariaLabelledBy ) {
+
 		var calendar = document.getElementById( calendarId ),
 			$calendar = $( calendar ),
 			objCalendarId = "#cal-" + calendarId + "-cnt",
@@ -47,7 +49,16 @@ var $document = wb.doc,
 			};
 		}
 
-		$calendar.addClass( "cal-cnt" );
+		$calendar
+			.addClass( "cal-cnt" )
+			.attr( "id", calendarId );
+
+		if ( ariaLabelledBy ) {
+			$calendar.attr({
+				"aria-controls": ariaControls,
+				"aria-labelledby": ariaLabelledBy
+			});
+		}
 
 		// Converts min and max date from string to date objects
 		if ( typeof mindate === "string" ) {
