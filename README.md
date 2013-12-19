@@ -118,10 +118,6 @@
 
 ## Version history
 
-### v4.0
-* [v4.0 changelog](https://github.com/wet-boew/wet-boew/wiki/v4.0-changelog)
-* **WET v4.0.0 Beta 1 was released on December 16, 2013** ([v4.0.0 Beta 1 release notes](https://github.com/wet-boew/wet-boew/wiki/v4.0.0-Beta-1-release-notes))
-
 ### v3.1
 
 * [v3.1 changelog](https://github.com/wet-boew/wet-boew/wiki/v3.1-changelog)
@@ -199,7 +195,7 @@
 
 * Approche centrée sur le [HTML5](http://www.w3.org/TR/html5/) (s'appuyant sur le soutien HTML5 natif et puis les &laquo;correctifs&raquo; pour résoudre les problèmes de soutien)
 * Soutien pour plusieurs navigateurs (IE, Firefox, Chrome, Safari, Opera)
-* Soutien en développement pour les données HTML ([RDFa 1.1 Lite](http://www.w3.org/TR/rdfa-lite/), [Schema.org](http://http://www.schema.org/))
+* Soutien en développement pour les données HTML ([RDFa 1.1 Lite](http://www.w3.org/TR/rdfa-lite/), [Schema.org](http://www.schema.org/))
 
 ### Conception optimisée pour les appareils mobiles et réactive
 
@@ -271,10 +267,6 @@
 * Processus d'examen sur plusieurs niveaux pour les contributions pour assurer l'intégrité du code (combinaison d'évaluations automatisées et manuelles)
 
 ## Historique des versions
-
-### Version 4.0
-* [ChangeLog de la version 4.0](https://github.com/wet-boew/wet-boew/wiki/v4.0-changelog)
-* **La version 4.0.0 Bêta 1 de la BOEW a été lancée le 16 décembre 2013** ([v4.0.0 Bêta 1 - notes d'utilisation](https://github.com/wet-boew/wet-boew/wiki/v4.0.0-Beta-1-release-notes))
 
 ### Version 3.1
 
