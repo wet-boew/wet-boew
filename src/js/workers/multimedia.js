@@ -115,7 +115,7 @@
 			}
 
 			if (canPlay) {
-				evtmgr = media.is('object') ? media.children(':first-child') : media.load();
+				evtmgr = media.is('object') ? media.children(':first-child') : media;
 
 				//Add the interface
 				$.extend(e, {object: media.get(0), evtmgr: evtmgr}, _pe.fn.multimedia._intf);
@@ -228,7 +228,6 @@
 									this.setCurrentTime(s);
 								}
 							}
-							evtmgr.off('durationchange');
 							break;
 						case 'play':
 							b = $w.find('.playpause');
@@ -274,9 +273,19 @@
 						case 'captionsloaded':
 							//Store the captions
 							$.data(e.target, 'captions', e.captions);
+
+							//For cases where the durationchange is triggered before the plugin is initialized
+							if (!isNaN(this.getDuration())) {
+								evtmgr.trigger("durationchange");
+							}
 							break;
 						case 'captionsloadfailed':
 							$w.find('.wb-mm-captionsarea').append('<p>' + _pe.dic.get('%closed-caption-error') + '</p>');
+
+							//For cases where the durationchange is triggered before the plugin is initialized
+							if (!isNaN(this.getDuration())) {
+								evtmgr.trigger("durationchange");
+							}
 							break;
 						case 'captionsvisiblechange':
 							b = $w.find('.cc').empty();
