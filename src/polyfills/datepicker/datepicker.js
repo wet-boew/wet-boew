@@ -17,6 +17,7 @@ var pluginName = "wb-date",
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init." + pluginName,
 	setFocusEvent = "setfocus.wb",
+	containerName = "wb-picker",
 	date = new Date(),
 	month = date.getMonth(),
 	year = date.getFullYear(),
@@ -60,8 +61,8 @@ var pluginName = "wb-date",
 
 			elm.className += " picker-field";
 
-			if ( !$container) {
-				$container = $( "<div id='wb-picker' class='picker-overlay' role='dialog' aria-hidden='true'></div>" );
+			if ( !$container ) {
+				$container = $( "<div id='" + containerName + "' class='picker-overlay' role='dialog' aria-hidden='true'></div>" );
 
 				// Close button
 				$( "<button type='button' class='picker-close mfp-close overlay-close' title='" +
@@ -72,14 +73,14 @@ var pluginName = "wb-date",
 
 						// Ignore middle/right mouse buttons
 						if ( !which || which === 1 ) {
-							toggle( $container.attr( "aria-controls") );
+							toggle( $container.attr( "aria-controls" ) );
 						}
 					});
 
 				// Disable the tabbing of all the links when calendar is hidden
 				$container.find( "a" ).attr( "tabindex", "-1" );
 
-				$( "body > main > div" ).after( $container );
+				$( "body > main" ).after( $container );
 			}
 
 			if ( elmId ) {
@@ -188,20 +189,19 @@ var pluginName = "wb-date",
 			maxDate = "2100-01-01";
 		}
 
-		$container.attr({
-			"aria-labelledby": fieldId + "-picker-toggle",
-			"aria-controls": fieldId
-		});
-
 		$document.trigger( "create.wb-cal", [
-				"wb-picker",
+				containerName,
 				year,
 				month,
 				true,
 				minDate,
-				maxDate
+				maxDate,
+				undefined,
+				fieldId,
+				fieldId + "-picker-toggle"
 			]
 		);
+
 		$field.after( $container );
 
 		if ( $container.attr( "aria-hidden" ) !== "false" ) {
@@ -221,7 +221,7 @@ var pluginName = "wb-date",
 
 			if ( targetDate !== null ) {
 				$document.trigger( "setFocus.wb-cal", [
-						"wb-picker",
+						containerName,
 						year,
 						month,
 						fromDateISO( minDate ),
@@ -230,7 +230,7 @@ var pluginName = "wb-date",
 					]
 				);
 			} else {
-				$( "#wb-picker" ).trigger( setFocusEvent );
+				$( "#" + containerName ).trigger( setFocusEvent );
 			}
 		} else {
 			hide( fieldId );
@@ -252,7 +252,7 @@ var pluginName = "wb-date",
 	},
 
 	hide = function( fieldId ) {
-		var toggle = $("#" + fieldId + "-picker-toggle"),
+		var toggle = $( "#" + fieldId + "-picker-toggle" ),
 			fieldLabel = $( "label[for=" + fieldId + "]" ).text();
 
 		$container
@@ -276,14 +276,16 @@ var pluginName = "wb-date",
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb " + initEvent, selector, init );
 
-$document.on( "click vclick touchstart focusin", "body", function( event ) {
+$document.on( "click vclick touchstart focusin", function( event ) {
 	var which = event.which,
 		container;
 
 	// Ignore middle/right mouse buttons
 	if ( initialized && ( !which || which === 1 ) ) {
-		container = document.getElementById( "wb-picker" );
-		if ( container.getAttribute( "aria-hidden" ) === "false" &&
+		container = document.getElementById( containerName );
+
+		if ( container !== null &&
+			container.getAttribute( "aria-hidden" ) === "false" &&
 			event.target.id !== container.id &&
 			!$.contains( container, event.target ) ) {
 
@@ -293,7 +295,7 @@ $document.on( "click vclick touchstart focusin", "body", function( event ) {
 	}
 });
 
-$document.on( "keydown displayed.wb-cal", "#wb-picker", function( event, year, month, $days, day ) {
+$document.on( "keydown displayed.wb-cal", "#" + containerName, function( event, year, month, $days, day ) {
 	var $container = $( this ),
 		eventType = event.type,
 		which = event.which,
@@ -339,7 +341,7 @@ $document.on( "click", ".picker-toggle", function( event ) {
 		pickerId;
 
 	// Ignore middle/right mouse buttons
-	if ( !which || which === 1 ) {
+	if ( which === 1 ) {
 		pickerId = this.id;
 		toggle( pickerId.substring( 0, pickerId.indexOf( "-picker-toggle" ) ) );
 		return false;
@@ -352,7 +354,7 @@ $document.on( "click", ".cal-days a", function( event ) {
 
 	// Ignore middle/right mouse buttons
 	if ( !which || which === 1 ) {
-		fieldId = document.getElementById( "wb-picker" )
+		fieldId = document.getElementById( containerName )
 			.getAttribute( "aria-controls" );
 		date = wb.date.fromDateISO( this.getElementsByTagName( "time" )[ 0 ]
 			.getAttribute( "datetime" ) );

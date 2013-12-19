@@ -94,12 +94,9 @@ var pluginName = "wb-calevt",
 		containerId = $elm.data( "calevtSrc" );
 		$containerId = $( "#" + containerId ).addClass( calendarSelector );
 
-		$document.on( "displayed.wb-cal", "#" + containerId, function( event, year, month, days, day ) {
+		$document.on( "displayed.wb-cal", "#" + containerId, function( event, year, month, days ) {
 			addEvents( year, month, days, containerId, events.list );
 			showOnlyEventsFor( year, month, containerId );
-			$( event.currentTarget )
-				.find( ".cal-evt" + ( day === 1 ? ":first" : ":last" ) )
-					.trigger( "setfocus.wb" );
 		});
 		$document.trigger( "create.wb-cal", [
 				containerId,
@@ -492,10 +489,6 @@ $document.on( "timerpoke.wb " + initEvent, selector, function() {
 	 * so returning true allows for events to always continue
 	 */
 	return true;
-});
-
-$document.on( "displayed.wb-cal", calendarSelector, function( event, year, month, $days, day ) {
-	$( event.currentTarget ).find( ".cal-index-" + day ).trigger( "setfocus.wb" );
 });
 
 // Add the timer poke to initialize the plugin
