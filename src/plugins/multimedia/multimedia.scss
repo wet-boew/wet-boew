@@ -122,6 +122,14 @@
 		}
 	}
 
+	//TODO: Remove this when captions works in chromeless api with controls
+	&.youtube {
+		.wb-mm-ctrls{
+			margin-top: -35px;
+			border-bottom: 10px solid #fff;
+		}
+	}
+
 	/*
 	  Light Skinning of mediacontrols
 	 */
