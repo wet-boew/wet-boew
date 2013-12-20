@@ -50,7 +50,7 @@
 ### Mobile friendly responsive design
 
 * Adapts to different screen sizes and device capabilities
-* Touchscreen support ([jQuery Mobile](http://www.jquerymobile.com))
+* Touchscreen support
 * Optimized for performance
 * Building support for device-based mobile applications
 
@@ -198,7 +198,7 @@
 ### Conception optimisée pour les appareils mobiles et réactive
 
 * S'adapte à différentes tailles d'écran et capacités d'appareil
-* Soutien pour les écrans tactiles ([jQuery Mobile](http://www.jquerymobile.com))
+* Soutien pour les écrans tactiles
 * Optimisé pour les performances
 * Soutien en développement pour les applications s’installant sur un appareil mobile
 
