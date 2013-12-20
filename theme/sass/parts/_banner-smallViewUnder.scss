@@ -1,0 +1,20 @@
+/*
+ Banner
+ */
+#wb-sttl {
+	object, img {
+		position: absolute;
+		height: 1em;
+		margin: 0;
+		width: 2.17em;
+		top: -1.1em;
+	}
+}
+
+[dir=rtl] {
+	#wb-sttl {
+		object, img {
+			margin: 0;
+		}
+	}
+}
