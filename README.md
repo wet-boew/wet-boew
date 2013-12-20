@@ -199,7 +199,7 @@
 
 * Approche centrée sur le [HTML5](http://www.w3.org/TR/html5/) (s'appuyant sur le soutien HTML5 natif et puis les &laquo;correctifs&raquo; pour résoudre les problèmes de soutien)
 * Soutien pour plusieurs navigateurs (IE, Firefox, Chrome, Safari, Opera)
-* Soutien en développement pour les données HTML ([RDFa 1.1 Lite](http://www.w3.org/TR/rdfa-lite/), [Schema.org](http://http://www.schema.org/))
+* Soutien en développement pour les données HTML ([RDFa 1.1 Lite](http://www.w3.org/TR/rdfa-lite/), [Schema.org](http://www.schema.org/))
 
 ### Conception optimisée pour les appareils mobiles et réactive
 
