@@ -495,8 +495,21 @@ $document.on( "touchstart click", selector + " .item[aria-haspopup=true]", funct
 
 // Click on menu items with submenus should open and close those submenus
 $document.on( "click", selector + " [role=menu] [aria-haspopup=true]", function( event ) {
-	var submenu = event.currentTarget.parentNode.getElementsByTagName( "ul" )[ 0 ],
+	var elm = event.currentTarget,
+		parent = elm.parentNode,
+		submenu = parent.getElementsByTagName( "ul" )[ 0 ],
 		isOpen = submenu.getAttribute( "aria-hidden" ) === "false";
+
+		// Close any other open menus
+		if ( !isOpen ) {
+			$( parent )
+				.closest( "[role^='menu']" )
+					.find( "[aria-hidden=false]" )
+						.parent()
+							.find( "[aria-haspopup=true]" )
+								.not( elm )
+									.trigger( "click" );
+		}
 
 	submenu.setAttribute( "aria-expanded", !isOpen );
 	submenu.setAttribute( "aria-hidden", isOpen );
@@ -615,6 +628,17 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 			// If the menu item is a summary element
 			if ( elm.nodeName.toLowerCase( "summary" ) ) {
 				isOpen = !!$parent.attr( "open" );
+
+				// Close any other open menus
+				if ( !isOpen ) {
+					$( parent )
+						.closest( "[role^='menu']" )
+							.find( "[aria-hidden=false]" )
+								.parent()
+									.find( "[aria-haspopup=true]" )
+										.not( elm )
+											.trigger( "click" );
+				}
 
 				// Ensure the menu is opened or stays open
 				if ( ( !isOpen && which === 39 ) || ( isOpen && which === 13 ) ) {
