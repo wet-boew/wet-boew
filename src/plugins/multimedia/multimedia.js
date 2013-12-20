@@ -680,7 +680,7 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 	}
 
 	$player = $( "#" + data.mId );
-	data.player = $player.is( "object" ) ? $player.children( ":first-child" ) : $player.load();
+	data.player = $player.is( "object" ) ? $player.children( ":first-child" ) : $player;
 
 	// Create an adapter for the event management
 	data.player.on( "durationchange play pause ended volumechange timeupdate " +
@@ -692,6 +692,11 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 	this.object = data.ytPlayer || $player.get( 0 );
 	this.player = ( data.ytPlayer ) ? youTubeApi : playerApi;
 	$this.data( "properties", data );
+
+	// Trigger the duration change for cases where the event was called before the event binding
+	if ( !isNaN( this.player( "getDuration" ) ) ) {
+		data.player.trigger( "durationchange" );
+	}
 
 	// Load the progress polyfill if needed
 	$this.find( "progress" ).trigger( "wb-init.wb-progress" );
