@@ -472,7 +472,7 @@ $document.on( "mouseleave", selector + " .menu", function( event ) {
 });
 
 // Touchscreen "touches" on menubar items should close the submenu if it is open
-$document.on( "touchstart click", selector + " .items[aria-haspopup=true]", function( event ) {
+$document.on( "touchstart click", selector + " .item[aria-haspopup=true]", function( event ) {
 	var isTouchstart = event.type === "touchstart",
 		$this, $parent;
 
