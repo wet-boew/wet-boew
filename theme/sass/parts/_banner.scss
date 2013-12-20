@@ -67,6 +67,7 @@
 	small {
 		display: block;
 		font-size: 0.4em;
+		margin-bottom: 4px;
 	}
 	object, img {
 		height: 1.5em;
@@ -86,7 +87,7 @@
 	}
 	#wb-sttl {
 		float: right;
-		object {
+		object, img {
 			margin: 9px 0 9px 15px;
 		}
 	}
