@@ -272,3 +272,24 @@ $medGray: #ccc;
 		}
 	}
 }
+
+.wb-disable {
+	.wb-tabs {
+		[role="tablist"] {
+			display: none;
+		}
+		[role="tabpanel"] {
+			display: block;
+			opacity: 1;
+		}
+		> {
+			details {
+				> {
+					summary {
+						display: block !important;
+					}
+				}
+			}
+		}
+	}
+}

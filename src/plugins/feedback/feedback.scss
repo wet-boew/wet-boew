@@ -30,3 +30,16 @@
 		}
 	}
 }
+
+.wb-fdbck-off {
+	@extend %wb-fdbck-display-none;
+}
+
+.wb-disable {
+	.wb-fdbck {
+		@extend %wb-fdbck-display-none;
+	}
+	.wb-fdbck-off {
+		display: block;
+	}
+}
