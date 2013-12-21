@@ -694,7 +694,7 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 	$this.data( "properties", data );
 
 	// Trigger the duration change for cases where the event was called before the event binding
-	if ( !isNaN( this.player( "getDuration" ) ) ) {
+	if ( !isNaN( this.player( "getDuration" ) ) && type !== "youtube" ) {
 		data.player.trigger( "durationchange" );
 	}
 
