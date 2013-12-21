@@ -12,16 +12,12 @@
 
 .wb-tabs {
 	&.carousel-s1, &.carousel-s2 {
-		[role="tabpanel"] {
-			figure {
-				figcaption {
-					position: relative;
-					top: auto;
-					right: 0;
-					bottom: 0;
-					left: 0;
-				}
-			}
+		figcaption {
+			position: relative;
+			top: auto;
+			right: 0;
+			bottom: 0;
+			left: 0;
 		}
 	}
 	&.carousel-s1 {
@@ -37,7 +33,7 @@
 			}
 		}
 		figcaption {
-			padding: 1em 60px;
+			margin: 1em 3.5em;
 		}
 	}
 	&.tabs-acc {

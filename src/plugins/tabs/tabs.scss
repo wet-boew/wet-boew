@@ -21,6 +21,11 @@ $medGray: #ccc;
 	z-index: 100;
 }
 
+%carouselDrabBlueBackground {
+	background: $drabBlue;
+	background: transparentize($drabBlue, 0.1);
+}
+
 %carouselFigure {
 	position: relative;
 }
@@ -34,8 +39,6 @@ $medGray: #ccc;
 %carouselFigureCaptions {
 	position: absolute;
 	color: #fff;
-	background: $drabBlue;
-	background: transparentize($drabBlue, 0.1);
 	padding: 1em;
 	z-index: 101;
 }
@@ -107,6 +110,7 @@ $medGray: #ccc;
 		}
 		figure {
 			@extend %carouselFigure;
+			@extend %carouselDrabBlueBackground;
 			img {
 				@extend %carouselFigureImage;
 			}
@@ -253,6 +257,7 @@ $medGray: #ccc;
 		}
 		figure {
 			@extend %carouselFigure;
+			@extend %carouselDrabBlueBackground;
 			img {
 				@extend %carouselFigureImage;
 			}
