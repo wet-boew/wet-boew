@@ -89,13 +89,13 @@
 	padding: 10px 20px;
 }
 #mb-pnl {
-	background: #193451;
 	.modal-header {
 		border: none;
 		border-bottom: 1px solid #072337;
 		box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.3), 3px 3px 3px -2px rgba(0, 0, 0, 0.3), -3px 3px 3px -2px rgba(0, 0, 0, 0.3);
 	}
 	.modal-body {
+		background: #193451;
 		padding: 0;
 		li {
 			line-height: 2em;
