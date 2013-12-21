@@ -6,7 +6,7 @@
 /**
  * Mobile-friendly styles
  */
-%tabs-xsmallview-display-none {
+%tabs-smallview-display-none {
 	display: none;
 }
 
@@ -22,14 +22,16 @@
 	}
 	&.carousel-s1 {
 		[role="tablist"] {
-			bottom: auto;
-			top: 1em;
+			position: static;
+		}
+		li[role="presentation"] {
+			@extend %tabs-smallview-display-none;
 		}
 	}
 	&.carousel-s2 {
 		[role="tablist"] {
 			li[role="presentation"] {
-				@extend %tabs-xsmallview-display-none;
+				@extend %tabs-smallview-display-none;
 			}
 		}
 		figcaption {
@@ -39,7 +41,7 @@
 	&.tabs-acc {
 		> {
 			ul {
-				@extend %tabs-xsmallview-display-none;
+				@extend %tabs-smallview-display-none;
 			}
 		}
 	}
