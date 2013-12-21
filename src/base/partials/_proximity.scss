@@ -94,24 +94,54 @@
 	column-count: 4;
 }
 
-.pstn-lft {
+.pstn-lft-xxs {
 	@include pstn;
 	@include pstn-lft;
+	@include pstn-rght-rst;
 }
 
-.pstn-rght {
+.pstn-rght-xxs {
 	@include pstn;
 	@include pstn-rght;
+	@include pstn-lft-rst;
 }
 
-.pstn-tp {
+.pstn-tp-xxs {
 	@include pstn;
 	@include pstn-tp;
+	@include pstn-bttm-rst;
 }
 
-.pstn-bttm {
+.pstn-bttm-xxs {
 	@include pstn;
 	@include pstn-bttm;
+	@include pstn-tp-rst;
+}
+
+@media screen and (min-width: $xSmallViewMin) {
+	.pstn-lft-xs {
+		@include pstn;
+		@include pstn-lft;
+		@include pstn-rght-rst;
+	}
+
+	.pstn-rght-xs {
+		@include pstn;
+		@include pstn-rght;
+		@include pstn-lft-rst;
+	}
+
+	.pstn-tp-xs {
+		@include pstn;
+		@include pstn-tp;
+		@include pstn-bttm-rst;
+	}
+
+	.pstn-bttm-xs {
+		@include pstn;
+		@include pstn-bttm;
+		@include pstn-tp-rst;
+	}
 }
 
 @media screen and (min-width: $smallViewMin) {
