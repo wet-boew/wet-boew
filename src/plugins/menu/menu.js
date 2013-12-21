@@ -495,10 +495,11 @@ $document.on( "touchstart click", selector + " .item[aria-haspopup=true]", funct
 
 // Click on menu items with submenus should open and close those submenus
 $document.on( "click", selector + " [role=menu] [aria-haspopup=true]", function( event ) {
-	var elm = event.currentTarget,
-		parent = elm.parentNode,
+	var menuItem = event.currentTarget,
+		parent = menuItem.parentNode,
 		submenu = parent.getElementsByTagName( "ul" )[ 0 ],
-		isOpen = submenu.getAttribute( "aria-hidden" ) === "false";
+		isOpen = submenu.getAttribute( "aria-hidden" ) === "false",
+		menuItemOffsetTop, menuContainer;
 
 		// Close any other open menus
 		if ( !isOpen ) {
@@ -507,8 +508,17 @@ $document.on( "click", selector + " [role=menu] [aria-haspopup=true]", function(
 					.find( "[aria-hidden=false]" )
 						.parent()
 							.find( "[aria-haspopup=true]" )
-								.not( elm )
+								.not( menuItem )
 									.trigger( "click" );
+
+			// Ensure the opened menu is in view if in a mobile panel
+			menuContainer = document.getElementById( "mb-pnl" );
+			menuItemOffsetTop = menuItem.offsetTop;
+			if ( $.contains( menuContainer, menuItem ) &&
+				menuItemOffsetTop < menuContainer.scrollTop ) {
+
+				menuContainer.scrollTop = menuItemOffsetTop;
+			}
 		}
 
 	submenu.setAttribute( "aria-expanded", !isOpen );
@@ -551,14 +561,14 @@ $document.on( "mouseover focusin", selector + " .item", function(event) {
  * Keyboard bindings
  */
 $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
-	var elm = event.currentTarget,
+	var menuItem = event.currentTarget,
 		which = event.which,
-		$elm = $( elm ),
-		hasPopup = $elm.attr( "aria-haspopup" ) === "true",
-		$menu = $elm.parent().closest( "[role^='menu']" ),
+		$menuItem = $( menuItem ),
+		hasPopup = $menuItem.attr( "aria-haspopup" ) === "true",
+		$menu = $menuItem.parent().closest( "[role^='menu']" ),
 		inMenuBar = $menu.attr( "role" ) === "menubar",
 		$menuLink, $parentMenu, $parent, $subMenu, result,
-		menuitemSelector, isOpen;
+		menuitemSelector, isOpen, menuItemOffsetTop, menuContainer;
 
 	// Tab key = Hide all sub-menus
 	if ( which === 9 ) {
@@ -572,14 +582,14 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 			event.preventDefault();
 			menuIncrement(
 				$menu.find( "> li > a" ),
-				$elm,
+				$menuItem,
 				which === 37 ? -1 : 1
 			);
 
 		// Enter sub-menu
 		} else if ( hasPopup && ( which === 13 || which === 38 || which === 40 ) ) {
 			event.preventDefault();
-			$parent = $elm.parent();
+			$parent = $menuItem.parent();
 			$subMenu = $parent.find( ".sm" );
 
 			// Open the submenu if it is not already open
@@ -600,7 +610,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 			event.preventDefault();
 			selectByLetter(
 				which,
-				$elm.parent().find( "> ul > li > a" ).get()
+				$menuItem.parent().find( "> ul > li > a" ).get()
 			);
 		}
 
@@ -613,20 +623,20 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 			event.preventDefault();
 			menuIncrement(
 				$menu.children( "li" ).find( menuitemSelector ),
-				$elm,
+				$menuItem,
 				which === 38 ? -1 : 1
 			);
 
 		// Enter or right arrow with a submenu
 		} else if ( hasPopup && ( which === 13 || which === 39 ) ) {
-			$parent = $elm.parent();
+			$parent = $menuItem.parent();
 
 			if ( which === 39 ) {
 				event.preventDefault();
 			}
 
 			// If the menu item is a summary element
-			if ( elm.nodeName.toLowerCase( "summary" ) ) {
+			if ( menuItem.nodeName.toLowerCase( "summary" ) ) {
 				isOpen = !!$parent.attr( "open" );
 
 				// Close any other open menus
@@ -636,13 +646,22 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 							.find( "[aria-hidden=false]" )
 								.parent()
 									.find( "[aria-haspopup=true]" )
-										.not( elm )
+										.not( menuItem )
 											.trigger( "click" );
+
+					// Ensure the opened menu is in view if in a mobile panel
+					menuContainer = document.getElementById( "mb-pnl" );
+					menuItemOffsetTop = menuItem.offsetTop;
+					if ( $.contains( menuContainer, menuItem ) &&
+						menuItemOffsetTop < menuContainer.scrollTop ) {
+
+						menuContainer.scrollTop = menuItemOffsetTop;
+					}
 				}
 
 				// Ensure the menu is opened or stays open
 				if ( ( !isOpen && which === 39 ) || ( isOpen && which === 13 ) ) {
-					$elm.trigger( "click" );
+					$menuItem.trigger( "click" );
 				}
 
 				// Update the WAI-ARIA states and move focus to
@@ -690,7 +709,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 			// Escape or left arrow: Go up a level if there is a higher-level
 			// menu or close the current submenu if there isn't
 			} else if ( which !== 39 ) {
-				$subMenu = $parentMenu.length !== 0 ? $menu : $elm;
+				$subMenu = $parentMenu.length !== 0 ? $menu : $menuItem;
 
 				// There is a higher-level menu
 				if ( $parentMenu.length !== 0 ) {
@@ -701,9 +720,9 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 							.trigger( "setfocus.wb" );
 
 				// No higher-level menu but the current submenu is open
-				} else if ( $elm.parent().children( "ul" ).attr( "aria-hidden" ) === "false" ) {
+				} else if ( $menuItem.parent().children( "ul" ).attr( "aria-hidden" ) === "false" ) {
 					event.preventDefault();
-					$elm
+					$menuItem
 						.trigger( "click" )
 						.trigger( "setfocus.wb" );
 				}
@@ -712,7 +731,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 		// Select a menu item in the current menu by the first letter
 		} else if ( which > 64 && which < 91 ) {
 			event.preventDefault();
-			$parent = $elm.closest( "li" );
+			$parent = $menuItem.closest( "li" );
 
 			// Try to find a match in the next siblings
 			result = selectByLetter(
