@@ -648,7 +648,14 @@
 		*/
 		focus: function (elm) {
 			setTimeout(function () {
-				return (typeof elm.jquery !== 'undefined' ? elm.focus() : $(elm).focus());
+				var $elm = typeof elm.jquery !== 'undefined' ? elm.focus() : $(elm).focus(),
+					$archivedVisible = $( ".archived[aria-hidden=false]" );
+				
+				// Ensure the archived overlay does not conceal the focus target
+				if ( $archivedVisible.length !== 0 ) {
+					document.documentElement.scrollTop -= $archivedVisible.outerHeight();
+				}
+				return $elm;
 			}, 0);
 			return elm;
 		},
