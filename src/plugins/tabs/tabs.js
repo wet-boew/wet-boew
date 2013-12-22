@@ -81,7 +81,10 @@ var pluginName = "wb-tabs",
 				// If the panel was set by URL hash, then store in sessionStorage
 				} else {
 					hashFocus = true;
-					sessionStorage.setItem( elmId + activePanel, activeId );
+					try {
+						sessionStorage.setItem( elmId + activePanel, activeId );
+					} catch ( error ) {
+					}
 				}
 			} catch ( error ) {
 			}
