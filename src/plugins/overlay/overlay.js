@@ -109,11 +109,11 @@ $document.on( "timerpoke.wb " + initEvent + " keydown open" + selector +
 		break;
 
 	case "open":
-		openOverlay( overlayId );
+		openOverlay( overlayId, event.noFocus );
 		break;
 
 	case "close":
-		closeOverlay( overlayId );
+		closeOverlay( overlayId, event.noFocus );
 		break;
 
 	default:

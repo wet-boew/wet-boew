@@ -25,7 +25,16 @@ $document.on( setFocusEvent, function( event ) {
 
 	// Assigns focus to an element (delay allows for revealing of hidden content)
 	setTimeout(function() {
-		return $elm.focus();
+		var $topBar = $( ".wb-bar-t[aria-hidden=false]" );
+
+		$elm.trigger( "focus" );
+
+		// Ensure the top bar overlay does not conceal the focus target
+		if ( $topBar.length !== 0 ) {
+			document.documentElement.scrollTop -= $topBar.outerHeight();
+		}
+
+		return $elm;
 	}, 1 );
 });
 
