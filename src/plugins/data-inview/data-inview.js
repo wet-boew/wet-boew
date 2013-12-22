@@ -35,7 +35,10 @@ var pluginName = "wb-inview",
 			wb.remove( selector );
 			$elm.addClass( initedClass );
 
-			$elm.trigger( scrollEvent );
+			// Allow other plugins to run first
+			setTimeout(function() {
+				$elm.trigger( scrollEvent );
+			}, 1 );
 		}
 	},
 
@@ -79,9 +82,11 @@ var pluginName = "wb-inview",
 					if ( !oldViewState ) {
 						$dataInView.addClass( "outside-off" );
 					}
-					$dataInView.trigger(
-						( show ? "open" : "close" ) + ".wb-overlay"
-					);
+					$dataInView.trigger({
+						type: ( show ? "open" : "close" ),
+						namespace: "wb-overlay",
+						noFocus: true
+					});
 				} else {
 					$dataInView
 						.attr( "aria-hidden", !show )
