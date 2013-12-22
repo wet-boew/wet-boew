@@ -25,9 +25,9 @@ $document.on( setFocusEvent, function( event ) {
 
 	// Assigns focus to an element (delay allows for revealing of hidden content)
 	setTimeout(function() {
-		var $topBar = $( ".wb-bar-t[aria-hidden=false]" );
-
 		$elm.trigger( "focus" );
+
+		var $topBar = $( ".wb-bar-t[aria-hidden=false]" );
 
 		// Ensure the top bar overlay does not conceal the focus target
 		if ( $topBar.length !== 0 ) {
