@@ -1011,21 +1011,24 @@
 					}
 				}
 
-				if (disable === 'true' || ((pe.preIE7 || $html.hasClass('bb-pre6')) && disable !== 'false')) {
-					$html.addClass('no-js pe-disable');
-					if (lsenabled) {
-						localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
+				try {
+					if (disable === 'true' || ((pe.preIE7 || $html.hasClass('bb-pre6')) && disable !== 'false')) {
+						$html.addClass('no-js pe-disable');
+						if (lsenabled) {
+							localStorage.setItem('pedisable', 'true'); // Set PE to be disable in localStorage
+						}
+						// Append the Standard version link version unless explicitly disabled in settings.js
+						if (pedisable_link) {
+							li.innerHTML = '<a href="' + newquery + 'pedisable=false">' + pe.dic.get('%pe-enable') + '</a>';
+							tphp.appendChild(li); // Add link to re-enable PE
+						}
+						return true;
+					} else if (disable === 'false' || disablels !== null) {
+						if (lsenabled) {
+							localStorage.setItem('pedisable', 'false'); // Set PE to be enabled in localStorage
+						}
 					}
-					// Append the Standard version link version unless explicitly disabled in settings.js
-					if (pedisable_link) {
-						li.innerHTML = '<a href="' + newquery + 'pedisable=false">' + pe.dic.get('%pe-enable') + '</a>';
-						tphp.appendChild(li); // Add link to re-enable PE
-					}
-					return true;
-				} else if (disable === 'false' || disablels !== null) {
-					if (lsenabled) {
-						localStorage.setItem('pedisable', 'false'); // Set PE to be enabled in localStorage
-					}
+				} catch (error) {
 				}
 
 				// Append the Basic HTML version link version unless explicitly disabled in settings.js

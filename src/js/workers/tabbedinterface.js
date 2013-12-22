@@ -444,7 +444,10 @@
 		 */
 		_set_active_panel : function(id, tabListIdx) {
 			if (typeof window.sessionStorage !== 'undefined') {
-				window.sessionStorage.setItem('activePanel-' + tabListIdx, id);
+				try {
+					window.sessionStorage.setItem('activePanel-' + tabListIdx, id);
+				} catch (error) {
+				}
 			}
 		},
 
