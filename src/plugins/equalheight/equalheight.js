@@ -23,8 +23,8 @@ var selector = ".wb-eqht",
 	cssValueSeparator = ":",
 	cssPropertySeparator = ";",
 	regexCSSValue = " ?[^;]+",
-	regexVAlign = new RegExp( vAlignCSS + cssValueSeparator + regexCSSValue + cssPropertySeparator ),
-	regexMinHeight = new RegExp( minHeightCSS + cssValueSeparator + regexCSSValue + cssPropertySeparator ),
+	regexVAlign = new RegExp( vAlignCSS + cssValueSeparator + " ?" + regexCSSValue + cssPropertySeparator + "?", "i" ),
+	regexMinHeight = new RegExp( minHeightCSS + cssValueSeparator + " ?" + regexCSSValue + cssPropertySeparator + "?", "i" ),
 
 	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
@@ -65,7 +65,7 @@ var selector = ".wb-eqht",
 			$anchor = detachElement( $elm );
 			for ( j = $children.length - 1; j !== -1; j -= 1 ) {
 				currentChild = $children[ j ];
-				childCSS = currentChild.style.cssText;
+				childCSS = currentChild.style.cssText.toLowerCase();
 
 				// Ensure all children that are on the same baseline have the same 'top' value.
 				if ( childCSS.indexOf( vAlignCSS ) !== -1 ) {
