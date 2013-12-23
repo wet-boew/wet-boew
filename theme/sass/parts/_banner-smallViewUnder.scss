@@ -2,12 +2,16 @@
  Banner
  */
 #wb-sttl {
+	a {
+		position: relative;
+		padding-top: 1.125em;
+	}
 	object, img {
 		position: absolute;
+		top: 0;
 		height: 1em;
 		margin: 0;
 		width: 2.17em;
-		top: -1.125em;
 	}
 }
 
