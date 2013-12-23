@@ -28,7 +28,7 @@
 
 	<div class="col-md-9">
 		<section>
-			<h2 id="setup">Plugin Setup</h2>
+			<h2 id="setup" class="mrgn-tp-0">Plugin Setup</h2>
 			<p>Adding the <code>.wb-toggle</code> CSS class to any element will turn it into a toggle element.  The behaviour of this toggle element is then controlled by the <code>data-toggle</code> attribute which takes a JavaScript object of properties:</p>
 
 			<table class="table">
@@ -52,6 +52,16 @@
 						<td>CSS selector that groups multiple toggle elements together and only allows one of the elements to be open at a time.</td>
 					</tr>
 					<tr>
+						<td><code>print</code></td>
+						<td>
+							Causes a toggle element to turn the elements it controls on or off when the page is printed.  Supports the following two values:
+							<ul>
+								<li>on: elements will be set to "on" toggle state for printing.</li>
+								<li>off: elements will be set to "off" toggle state for printing.</li>
+							</ul>  
+						</td>
+					</tr>					
+					<tr>
 						<td><code>type</code></td>
 						<td>
 							Causes a toggle element to only turn the elements it controls on or off.  Supports the following two values:
@@ -72,9 +82,9 @@
 				</tbody>
 			</table>
 
-			<p>For example, the following toggle element that would only toggle on elements with the <code>.foo</code> CSS class that were contained in a parent with the <code>.bar</code> CSS class:</p>
+			<p>For example, the following element will always toggle on elements with the <code>.foo</code> CSS class that are contained in a parent with the <code>.bar</code> CSS class.  In addition, the elements it controls will be toggled on when the page is printed.</p>
 
-			<pre class="lang-css"><code>&lt;button type="button" class="wb-toggle" data-toggle='{"type": "on", "selector": ".foo", "parent": ".bar"}'&gt;Turn on&lt;/button&gt;</code></pre>
+			<pre class="lang-css"><code>&lt;button type="button" class="wb-toggle" data-toggle='{"type": "on", "selector": ".foo", "parent": ".bar", "print": "on"}'&gt;Turn on&lt;/button&gt;</code></pre>
 		</section>
 
 		<section class="wb-prettify all-pre linenums">
@@ -104,10 +114,10 @@
 
 		<section>
 			<h2 id="details">Details Elements</h2>
-			<p>The toggle plugin can be used to open/close multiple <code>&lt;details&gt;</code> elements:</p>
+			<p>The toggle plugin can be used to open/close multiple <code>&lt;details&gt;</code> elements.  By adding the <code>"print": "on"</code> setting to the first toggle element, the plugin will also open all details elements when the page is printed.</p>
 
 			<div class="btn-group">
-				<button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": "details"}'>Toggle</button>
+				<button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": "details", "print": "on"}'>Toggle</button>
 				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "type": "on"}'>On</button>
 				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "type": "off"}'>Off</button>
 			</div>
