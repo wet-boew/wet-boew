@@ -16,19 +16,18 @@
  */
 describe( "Favicon test suite", function() {
 
-	var spy,
+	var $faviconMobile, spy,
+		$favicon = $( "link[rel='shortcut icon']" ),
 		sandbox = sinon.sandbox.create();
 
 	/*
 	 * Before beginning the test suite, this function is executed once.
 	 */
-	before(function( done ) {
+	before(function() {
 		// Spy on jQuery's trigger methods
 		spy = sandbox.spy( $.prototype, "trigger" );
 
-		wb.doc.on( "mobile.wb-favicon", "link[rel='shortcut icon']", function() {
-			done();
-		});
+		$favicon.trigger( "wb-init.wb-favicon" );
 	});
 
 	/*
@@ -70,9 +69,8 @@ describe( "Favicon test suite", function() {
 	 */
 	describe( "create default mobile favicon", function() {
 
-		var $favicon, $faviconMobile, href, path;
+		var href, path;
 		before(function() {
-			$favicon = $( "link[rel='shortcut icon']" );
 			$faviconMobile = $( ".wb-favicon" );
 			href = $favicon.attr( "href" );
 			path = href.substring( 0, href.lastIndexOf( "/" ) + 1 );
@@ -100,22 +98,20 @@ describe( "Favicon test suite", function() {
 	 */
 	describe( "create custom mobile favicon", function() {
 
-		var $favicon, $faviconMobile;
 		before(function( done ) {
-			$( ".wb-favicon" ).remove();
+			$faviconMobile.remove();
 
-			wb.doc.on( "mobile.wb-favicon", "link[rel='shortcut icon']", function() {
-				$faviconMobile = $( ".wb-favicon" );
-				done();
-			});
-
-			$favicon = $( "link[rel='shortcut icon']" );
 			$favicon.data({
 				rel: "apple-touch-icon-precompossed",
 				sizes: "57x57",
 				path: "foo/",
 				filename: "bar"
 			}).trigger( "wb-init.wb-favicon" );
+
+			setTimeout( function() {
+				$faviconMobile = $( ".wb-favicon" );
+				done();
+			}, 1);
 
 		});
 
@@ -141,10 +137,8 @@ describe( "Favicon test suite", function() {
 	 */
 	describe( "update favicon", function() {
 
-		var $favicon;
 		before(function() {
-			$( ".wb-favicon" ).remove();
-			$favicon = $( "link[rel='shortcut icon']" );
+			$faviconMobile.remove();
 			$favicon.trigger( "icon.wb-favicon", {
 				path: "foobar/",
 				filename: "baz"
