@@ -30,9 +30,9 @@ describe( "data-inview test suite", function() {
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
 		spy = sandbox.spy( $.prototype, "trigger" );
 
-		$( ".wb-inview" ).on( "scroll.wb-inview", function() {
-			done();
-		});
+		// Init the plugin and give it 1ms before starting the tests
+		$( ".wb-inview" ).trigger( "wb-init.wb-inview" );
+		setTimeout( done, 1 );
 	});
 
 	/*
