@@ -61,6 +61,7 @@
 /* Medium view and over */
 @media screen and (min-width: $mediumViewMin) {
 	@import "views/mediumViewOver";
+	@import "parts/banner-mediumViewOver";
 }
 
 /* Large view and over */
