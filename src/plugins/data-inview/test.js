@@ -48,10 +48,6 @@ describe( "data-inview test suite", function() {
 	 */
 	describe( "init events", function() {
 
-		it( "should trigger a scroll.wb-inview event", function() {
-			expect( spy.calledWith( "scroll.wb-inview" ) ).to.equal( true );
-		});
-
 		it( "should have been triggered on a .wb-inview element", function() {
 			var elm,
 				isSelector = false,
@@ -61,12 +57,6 @@ describe( "data-inview test suite", function() {
 				isSelector = elm && elm.className && elm.className.indexOf( "wb-inview" ) > -1;
 			}
 			expect( isSelector ).to.equal( true );
-		});
-
-		it( "should not reinitialize .wb-inview elements", function() {
-			spy.reset();
-			$( ".wb-inview" ).trigger( "init.wb-inview" );
-			expect( spy.calledWith( "scroll.wb-inview" ) ).to.equal( false );
 		});
 	});
 
