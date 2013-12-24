@@ -89,6 +89,9 @@
 	padding: 10px 20px;
 }
 #mb-pnl {
+	&.modal-content {
+		background: #193451;
+	}
 	.modal-header {
 		border: none;
 		border-bottom: 1px solid #072337;
