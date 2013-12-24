@@ -211,10 +211,10 @@ describe( "Toggle test suite", function() {
 
 		before(function() {
 			// Create the toggle elements and start testing once it has been initialized
-			$togglerOn = $( "<button type='button' class='wb-toggle test' data-toggle='{\"type\": \"open\", \"stateOn\": \"open\"}'/>" ).appendTo( wb.doc.find( "body" ) );
+			$togglerOn = $( "<button type='button' class='wb-toggle test' data-toggle='{\"type\": \"on\", \"stateOn\": \"open\"}'/>" ).appendTo( wb.doc.find( "body" ) );
 			$togglerOn.trigger( "wb-init.wb-toggle" );
 
-			$togglerOff = $( "<button type='button' class='wb-toggle test' data-toggle='{\"type\": \"close\", \"stateOff\": \"close\"}'/>" ).appendTo( wb.doc.find( "body" ) );
+			$togglerOff = $( "<button type='button' class='wb-toggle test' data-toggle='{\"type\": \"off\", \"stateOff\": \"close\"}'/>" ).appendTo( wb.doc.find( "body" ) );
 			$togglerOff.trigger( "wb-init.wb-toggle" );
 		});
 
@@ -385,6 +385,43 @@ describe( "Toggle test suite", function() {
 			testAccordionClosed( 0 );
 			testAccordionClosed( 1 );
 			testAccordionClosed( 2 );
+		});
+	});
+
+	/*
+	 * Test onbeforeprint behaviour
+	 */
+	describe( "Printing toggle elements", function() {
+		var $detailsOn, $detailsOff;
+
+		before(function() {
+			spy.reset();
+
+			$detailsOn = $( "<details class=\"wb-toggle\" data-toggle='{\"print\": \"on\"}'><summary></summary></details>" )
+				.appendTo( wb.doc.find( "body" ) )
+				.trigger( "wb-init.wb-toggle" );
+			$detailsOff = $( "<details class=\"wb-toggle\" data-toggle='{\"print\": \"off\"}'><summary></summary></details>" )
+				.appendTo( wb.doc.find( "body" ) )
+				.trigger( "wb-init.wb-toggle" );
+
+			wb.win.trigger( "beforeprint" );
+		});
+
+		after(function() {
+			$detailsOn.remove();
+			$detailsOff.remove();
+		});
+
+		it( "should trigger toggle.wb-toggle", function() {
+			expect( spy.calledWith( "toggle.wb-toggle" ) ).to.equal( true );
+		});
+
+		it( "should toggle on the $detailsOn element", function() {
+			expect( $detailsOn.hasClass( "on" ) ).to.equal( true );
+		});
+
+		it( "should toggle off the $detailsOff element", function() {
+			expect( $detailsOff.hasClass( "off" ) ).to.equal( true );
 		});
 	});
 });
