@@ -94,54 +94,28 @@
 	column-count: 4;
 }
 
-.pstn-lft-xxs {
+.pstn-lft-xs {
 	@include pstn;
 	@include pstn-lft;
 	@include pstn-rght-rst;
 }
 
-.pstn-rght-xxs {
+.pstn-rght-xs {
 	@include pstn;
 	@include pstn-rght;
 	@include pstn-lft-rst;
 }
 
-.pstn-tp-xxs {
+.pstn-tp-xs {
 	@include pstn;
 	@include pstn-tp;
 	@include pstn-bttm-rst;
 }
 
-.pstn-bttm-xxs {
+.pstn-bttm-xs {
 	@include pstn;
 	@include pstn-bttm;
 	@include pstn-tp-rst;
-}
-
-@media screen and (min-width: $xSmallViewMin) {
-	.pstn-lft-xs {
-		@include pstn;
-		@include pstn-lft;
-		@include pstn-rght-rst;
-	}
-
-	.pstn-rght-xs {
-		@include pstn;
-		@include pstn-rght;
-		@include pstn-lft-rst;
-	}
-
-	.pstn-tp-xs {
-		@include pstn;
-		@include pstn-tp;
-		@include pstn-bttm-rst;
-	}
-
-	.pstn-bttm-xs {
-		@include pstn;
-		@include pstn-bttm;
-		@include pstn-tp-rst;
-	}
 }
 
 @media screen and (min-width: $smallViewMin) {
@@ -216,32 +190,6 @@
 	}
 
 	.pstn-bttm-lg {
-		@include pstn;
-		@include pstn-bttm;
-		@include pstn-tp-rst;
-	}
-}
-
-@media screen and (min-width: $xLargeViewMin) {
-	.pstn-lft-xl {
-		@include pstn;
-		@include pstn-lft;
-		@include pstn-rght-rst;
-	}
-
-	.pstn-rght-xl {
-		@include pstn;
-		@include pstn-rght;
-		@include pstn-lft-rst;
-	}
-
-	.pstn-tp-xl {
-		@include pstn;
-		@include pstn-tp;
-		@include pstn-bttm-rst;
-	}
-
-	.pstn-bttm-xl {
 		@include pstn;
 		@include pstn-bttm;
 		@include pstn-tp-rst;
