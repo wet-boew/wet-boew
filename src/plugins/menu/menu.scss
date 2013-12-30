@@ -40,12 +40,10 @@
 		}
 	}
 	.menu {
-		display: table;
 		position: relative;
 		> {
 			li {
 				position: relative;
-				display: table-cell;
 				a {
 					text-align: center;
 					display: block;
