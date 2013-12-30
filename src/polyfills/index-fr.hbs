@@ -1,0 +1,29 @@
+---
+{
+	"title": "Exemples pratiques",
+	"language": "fr",
+	"en": "index"
+}
+---
+<table id="components" class="wb-tables table table-striped table-hover" data-wet-boew='{"aoColumnDefs": [ { "bVisible": false, "aTargets": [ 3 ] } ], "aLengthMenu": [[10, 25, -1], [10, 25, "All"]], "iDisplayLength": -1 }'>
+	<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Description</th>
+			<th>Mots clés</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#withSort pages "data.title"}}
+			{{#is data.language "fr"}}
+				{{#is data.category "Correctif"}}
+					<tr>
+						<td><a href="{{relative dirname dest}}{{#if data.querystring}}?{{data.querystring}}{{/if}}">{{data.title}}</a></td>
+						<td>{{data.description}}</td>
+						<td>{{data.tag}}</td>
+					</tr>
+				{{/is}}
+			{{/is}}
+		{{/withSort}}
+	</tbody>
+</table>

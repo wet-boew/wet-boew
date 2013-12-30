@@ -9,7 +9,6 @@
 	<thead>
 		<tr>
 			<th>Nom</th>
-			<th>Catégorie</th>
 			<th>Description</th>
 			<th>Mots clés</th>
 		</tr>
@@ -17,14 +16,13 @@
 	<tbody>
 		{{#withSort pages "data.title"}}
 			{{#is data.language "fr"}}
-				{{#if data.category}}
+				{{#is data.category "Autre"}}
 					<tr>
 						<td><a href="{{relative dirname dest}}{{#if data.querystring}}?{{data.querystring}}{{/if}}">{{data.title}}</a></td>
-						<td>{{data.category}}</td>
 						<td>{{data.description}}</td>
 						<td>{{data.tag}}</td>
 					</tr>
-				{{/if}}
+				{{/is}}
 			{{/is}}
 		{{/withSort}}
 	</tbody>
