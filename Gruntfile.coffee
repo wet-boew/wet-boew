@@ -322,19 +322,13 @@ module.exports = (grunt) ->
 					assets: "dist/unmin"
 				files: [
 						expand: true
-						cwd: "src/plugins"
-						src: "**/*.hbs"
-						dest: "dist/unmin/demos"
-					,
-						expand: true
-						cwd: "src/polyfills"
-						src: "**/*.hbs"
-						dest: "dist/unmin/demos"
-					,
-						expand: true
-						cwd: "src/other"
-						src: "**/*.hbs"
-						dest: "dist/unmin/demos"
+						cwd: "src"
+						src: [
+							"plugins/**/*.hbs"
+							"polyfills/**/*.hbs"
+							"other/**/*.hbs"
+						]
+						dest: "dist/unmin"
 					,
 						cwd: "site/pages"
 						src: "**/*.hbs"
@@ -350,19 +344,13 @@ module.exports = (grunt) ->
 					assets: "dist"
 				files: [
 						expand: true
-						cwd: "src/plugins"
-						src: "**/*.hbs"
-						dest: "dist/demos"
-					,
-						expand: true
-						cwd: "src/polyfills"
-						src: "**/*.hbs"
-						dest: "dist/demos"
-					,
-						expand: true
-						cwd: "src/other"
-						src: "**/*.hbs"
-						dest: "dist/demos"
+						cwd: "src"
+						src: [
+							"plugins/**/*.hbs"
+							"polyfills/**/*.hbs"
+							"other/**/*.hbs"
+						]
+						dest: "dist"
 					,
 						cwd: "site/pages"
 						src: "**/*.hbs"
@@ -415,21 +403,13 @@ module.exports = (grunt) ->
 					flatten: true
 				,
 					expand: true
-					cwd: "src/plugins"
-					src: "**/demo/*.scss"
-					dest: "dist/unmin/demos/"
-					ext: ".css"
-				,
-					expand: true
-					cwd: "src/polyfills"
-					src: "**/demo/*.scss"
-					dest: "dist/unmin/demos/"
-					ext: ".css"
-				,
-					expand: true
-					cwd: "src/other"
-					src: "**/demo/*.scss"
-					dest: "dist/unmin/demos/"
+					cwd: "src"
+					src: [
+							"plugins/**/demo/*.scss"
+							"polyfills/**/demo/*.scss"
+							"other/**/demo/*.scss"
+						]
+					dest: "dist/unmin/"
 					ext: ".css"
 				]
 
@@ -679,24 +659,18 @@ module.exports = (grunt) ->
 				]
 
 			demos:
-				files: [
-					cwd: "src/plugins"
-					src: [
-						"**/*.{jpg,html,xml}"
-						"**/demo/*.*"
-						"**/ajax/*.*"
-						"**/img/*.*"
-						"!**/assets/*.*"
-						"!**/*.scss"
-					]
-					dest: "dist/unmin/demos/"
-					expand: true
-				,
-					cwd: "src/polyfills"
-					src: "**/demo/*.js"
-					dest: "dist/unmin/demos/"
-					expand: true
+				cwd: "src"
+				src: [
+					"plugins**/*.{jpg,html,xml}"
+					"plugins**/demo/*.*"
+					"plugins**/ajax/*.*"
+					"plugins**/img/*.*"
+					"polyfills/**/demo/*.js"
+					"!**/assets/*.*"
+					"!**/*.scss"
 				]
+				dest: "dist/unmin/"
+				expand: true
 
 			cssIE8:
 				cwd: "dist/unmin/css/"
