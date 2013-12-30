@@ -33,6 +33,60 @@
 					<li><a href="https://github.com/wet-boew/wet-boew/wiki/{{#i18n "tmpl-contribute-docs-wiki"}}{{/i18n}}">{{#i18n "tmpl-contribute-docs"}}{{/i18n}}</a></li>
 				</ul>
 			</li>
+			<li><a href="#plugins" class="item">{{#i18n "tmpl-plugins"}}{{/i18n}}</a>
+				<ul class="sm list-unstyled" id="plugins" role="menu">
+					{{#is language "fr"}}
+						{{#withSort pages "data.title"}}
+							{{#is data.category "Plugiciel"}}
+								<li><a href="{{environment.root}}/plugins/{{relative dirname dest}}{{#if data.querystring}}?{{data.querystring}}{{/if}}">{{data.title}}</a></li>
+							{{/is}}
+						{{/withSort}}
+					{{/is}}
+					{{#is language "en"}}
+						{{#withSort pages "data.title"}}
+							{{#is data.category "Plugin"}}
+								<li><a href="{{environment.root}}/plugins/{{relative dirname dest}}{{#if data.querystring}}?{{data.querystring}}{{/if}}">{{data.title}}</a></li>
+							{{/is}}
+						{{/withSort}}
+					{{/is}}
+				</ul>
+			</li>
+			<li><a href="#polyfills" class="item">{{#i18n "tmpl-polyfills"}}{{/i18n}}</a>
+				<ul class="sm list-unstyled" id="polyfills" role="menu">
+					{{#is language "fr"}}
+						{{#withSort pages "data.title"}}
+							{{#is data.category "Correctif"}}
+								<li><a href="{{environment.root}}/polyfills/{{relative dirname dest}}{{#if data.querystring}}?{{data.querystring}}{{/if}}">{{data.title}}</a></li>
+							{{/is}}
+						{{/withSort}}
+					{{/is}}
+					{{#is language "en"}}
+						{{#withSort pages "data.title"}}
+							{{#is data.category "Polyfill"}}
+								<li><a href="{{environment.root}}/polyfills/{{relative dirname dest}}{{#if data.querystring}}?{{data.querystring}}{{/if}}">{{menulang}}{{data.title}}</a></li>
+							{{/is}}
+						{{/withSort}}
+					{{/is}}
+				</ul>
+			</li>
+			<li><a href="#others" class="item">{{#i18n "tmpl-others"}}{{/i18n}}</a>
+				<ul class="sm list-unstyled" id="others" role="menu">
+					{{#is language "fr"}}
+						{{#withSort pages "data.title"}}
+							{{#is data.category "Autre"}}
+								<li><a href="{{environment.root}}/other/{{relative dirname dest}}{{#if data.querystring}}?{{data.querystring}}{{/if}}">{{data.title}}</a></li>
+							{{/is}}
+						{{/withSort}}
+					{{/is}}
+					{{#is language "en"}}
+						{{#withSort pages "data.title"}}
+							{{#is data.category "Other"}}
+								<li><a href="{{environment.root}}/other/{{relative dirname dest}}{{#if data.querystring}}?{{data.querystring}}{{/if}}">{{data.title}}</a></li>
+							{{/is}}
+						{{/withSort}}
+					{{/is}}
+				</ul>
+			</li>
 		</ul>
 	</div>
 </div>
