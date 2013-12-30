@@ -47,7 +47,18 @@
 			tdOptions,
 			valuePoint,
 			currentRowGroup, reverseTblParsing, dataGroupVector,
-			dataCell, previousDataCell, currDataVector, currVectorSeries;
+			dataCell, previousDataCell, currDataVector, currVectorSeries,
+			defaultOptions,
+			// For debuging and documentation purpose
+			printObj = typeof JSON !== "undefined" ? JSON.stringify : function( obj ) {
+				var arr = [];
+				$.each( obj, function( key, val ) {
+					var next = key + ": ";
+					next += $.isPlainObject( val ) ? printObj( val ) : val;
+					arr.push( next );
+				});
+				return "{ " + arr.join( ", " ) + " }";
+			};
 
 		/**
 		 * Scoped convertion of CSS Options/Parameter into a JSON object
@@ -428,13 +439,123 @@
 			// ---- Save the setting here in a case of a second graphic on the same page
 			window.chartsGraphOpts = options;
 		}
-		options = window.chartsGraphOpts;
+		options = window.chartsGraphOpts; // Get defauts user defined charts options
 		options.height = $elm.height();
 		options.width = $elm.width();
 
 		// Fix default width and height in case the table is hidden.
 		options.width = options.width | 250;
 		options.height = options.height | 250;
+
+		/**
+		 * A little function to ease the web editor life
+		 * 
+		 * Apply preset defined by a set of space-separated tokens from a baseline json object
+		 * 
+		 * @method applyPreset
+		 * @param {json object} baseline - Base line json object that includes predefined and userdefined preset 
+		 * @param {jQuery} $elem - Element on which the class attribute will be taken for a set of space-separated tokens
+		 * @param {string=} prefix - Prefix espected to define a valid token. Can be useful in case of conflict token name.
+		 * @return {json object} - Return a new object build from the ```baseline``` or ```baseline.default``` object with the preset applied.
+		 */
+		function applyPreset( baseline, $elem, prefix ) {
+			
+			var config = $.extend( true, {}, baseline.defaults || baseline ),
+				tokens = $elm.attr( "class" ) || "",
+				tblTokens,
+				i, iLength,
+				token, tokenLength,
+				prefixLength = prefix.length;
+			
+			if ( tokens.length === 0 ) {
+				return config;
+			}
+
+			// split the set of space-separated tokens
+			tblTokens = tokens.split( " " );
+			
+			for ( i = 0, iLength = tblTokens.length; i < iLength; i += 1 ) {
+				
+				// Get the current token
+				token = tblTokens[i];
+				tokenLength = token.length;
+				
+				// Remove the token is used
+				if ( tokenLength <= prefixLength ) {
+					continue;
+				}
+				token = token.slice(prefixLength, tokenLength);
+				
+				// Apply the preset
+				if ( baseline[ token ] ) {
+					config = $.extend( true, config, baseline[ token ] );
+				}
+				
+			}
+			
+			return config;
+		}
+
+		function showOutput(obj) {
+			
+			var $container = $( "#log" ),
+				$subContainer = $( "<p>" );
+			if ($container.length === 0) {
+				$container = $("<div id='log' />").prependTo(".col-md-12");
+			
+			}
+			
+			$container.append( $subContainer.append( printObj( obj) ) );
+			
+		}
+
+		defaultOptions = {
+			
+			defaults: {
+				lines: {
+					show: true,
+					fill: true
+				},
+				bars: {
+					show: true,
+					barWidth: ( 1 / nbBarChart * 0.9 ),
+					align: "center"
+				},
+				staked: {
+					show: true,
+					barWidth: lowestFlotDelta * 0.9,
+					align: "center"
+				}
+			}
+			
+		};
+		
+		/*
+		
+		if ( currVectorOptions.type === "area" ) {
+				currVectorSeries.lines = {
+					show: true,
+					fill: true
+				};
+			} else if ( currVectorOptions.type === "bar" || ( barDelta && currVectorOptions.type === "stacked" ) ) {
+				currVectorSeries.bars = {
+					show: true,
+					barWidth: ( 1 / nbBarChart * 0.9 ),
+					align: "center"
+				};
+			} else if ( currVectorOptions.type === "stacked" ) {
+				currVectorSeries.bars = {
+					show: true,
+					barWidth: lowestFlotDelta * 0.9,
+					align: "center"
+				};
+			}*/
+
+		// Apply any preset
+		applyPreset( options, $elm, options.prefix || "" );
+		
+		// $elm.dataTable( $.extend( true, defaults, wb.getData( $elm, "wet-boew" ) ) );
+		// options
 
 		// 3. [Table element] CSS Overwrite - [Keep a list of required plugin "defaultnamespace-plugin" eg. wb-charts-donnut]
 		options = setClassOptions( options, $elm.attr( "class" ) || "" );
@@ -1052,6 +1173,10 @@
 				// Create the graphic
 				$.plot( $placeHolder, allSeries, plotParameter );
 
+				// For DEBUGING
+				showOutput(allSeries);
+				showOutput(plotParameter);
+
 				if ( !options.legendinline ) {
 					// Move the legend under the graphic
 					$( ".legend > div", $placeHolder ).remove();
@@ -1262,6 +1387,10 @@
 			}
 			plotParameter.yaxis.ticks = options.steps;
 		}
+
+		// For DEBUGING
+		showOutput(allSeries);
+		showOutput(plotParameter);
 
 		$.plot( $placeHolder, allSeries, plotParameter );
 
