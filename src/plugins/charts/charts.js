@@ -48,7 +48,7 @@
 			valuePoint,
 			currentRowGroup, reverseTblParsing, dataGroupVector,
 			dataCell, previousDataCell, currDataVector, currVectorSeries,
-			defaultOptions,
+			optionsGlobal, optionsSeries, optionCurrent = {}, optionsTick,
 			// For debuging and documentation purpose
 			printObj = typeof JSON !== "undefined" ? JSON.stringify : function( obj ) {
 				var arr = [];
@@ -509,51 +509,83 @@
 			
 		}
 
-		defaultOptions = {
-			
+		optionsGlobal = {
+			prefix: "wb-charts-",
 			defaults: {
+				colors: [ "#8d201c",
+						"#EE8310",
+						"#2a7da6",
+						"#5a306b",
+						"#285228",
+						"#154055",
+						"#555555",
+						"#f6d200",
+						"#d73d38",
+						"#418541",
+						"#87aec9",
+						"#23447e",
+						"#999999" ],
+				canvas: true
+			},
+			line: { },
+			area: { },
+			bar: { },
+			pie: {
+				series: {
+					pie: {
+						show: true
+					}
+				}
+			},
+			donut: {
+				series: {
+					pie: {
+						show: true,
+						radius: 1,
+						label: {
+							show: true,
+							radius: 1,
+							threshold: 0.08
+						},
+						tilt: 0.5,
+						innerRadius: 0.45,
+						startAngle: 1
+					}
+				},
+				grid: {
+					hoverable: true
+				}
+			}
+		};
+
+		optionsSeries = {
+			prefix: "wb-charts-",
+			defaults: { },
+			line: { },
+			area: {
 				lines: {
 					show: true,
 					fill: true
-				},
+				}
+			},
+			bar: {
 				bars: {
 					show: true,
-					barWidth: ( 1 / nbBarChart * 0.9 ),
-					align: "center"
-				},
-				staked: {
-					show: true,
-					barWidth: lowestFlotDelta * 0.9,
+					barWidth: 1,
 					align: "center"
 				}
 			}
-			
 		};
-		
-		/*
-		
-		if ( currVectorOptions.type === "area" ) {
-				currVectorSeries.lines = {
-					show: true,
-					fill: true
-				};
-			} else if ( currVectorOptions.type === "bar" || ( barDelta && currVectorOptions.type === "stacked" ) ) {
-				currVectorSeries.bars = {
-					show: true,
-					barWidth: ( 1 / nbBarChart * 0.9 ),
-					align: "center"
-				};
-			} else if ( currVectorOptions.type === "stacked" ) {
-				currVectorSeries.bars = {
-					show: true,
-					barWidth: lowestFlotDelta * 0.9,
-					align: "center"
-				};
-			}*/
 
 		// Apply any preset
-		applyPreset( options, $elm, options.prefix || "" );
+		optionCurrent = applyPreset( optionsGlobal, $elm, optionsGlobal.prefix || "" );
 		
+		// Extend config from @data-wet-boew attribute
+		optionCurrent = $.extend( true, optionCurrent, wb.getData( $elm, "wet-boew" ) );
+		
+		// Build the option "xaxis:{tick:[[0, "col1"]]},.....
+
+		//showOutput(optionCurrent);
 		// $elm.dataTable( $.extend( true, defaults, wb.getData( $elm, "wet-boew" ) ) );
 		// options
 
@@ -977,6 +1009,12 @@
 				}
 				return textlabel + "%";
 			};
+			
+			// Inject the pie label formater function
+			if (optionCurrent.series.pie.label) {
+				optionCurrent.series.pie.label.formatter = pieLabelFormater;
+			}
+					
 			// Default
 			mainFigureElem.addClass( "wb-charts" );
 			if ( options.graphclass ) {
@@ -1171,11 +1209,12 @@
 				}
 
 				// Create the graphic
-				$.plot( $placeHolder, allSeries, plotParameter );
+				$.plot( $placeHolder, allSeries, optionCurrent );
 
 				// For DEBUGING
 				showOutput(allSeries);
 				showOutput(plotParameter);
+				showOutput(optionCurrent);
 
 				if ( !options.legendinline ) {
 					// Move the legend under the graphic
@@ -1210,6 +1249,15 @@
 			rIndex = currentRowGroup.row.length - 1;
 			chartslabels = verticalLabels( parsedData );
 		}
+
+		// Set the Global Options => xaxis => tick options
+		optionsTick = {
+			xaxis: {
+				ticks: chartslabels
+			}
+		};
+		
+		optionCurrent = $.extend( true, optionCurrent, optionsTick);
 
 		dataGroupVector = !reverseTblParsing ? dataGroup.row : dataGroup.col;
 
@@ -1391,8 +1439,9 @@
 		// For DEBUGING
 		showOutput(allSeries);
 		showOutput(plotParameter);
+		showOutput(optionCurrent);
 
-		$.plot( $placeHolder, allSeries, plotParameter );
+		$.plot( $placeHolder, allSeries, optionCurrent );
 
 		if ( !options.legendinline ) {
 			// Move the legend under the graphic

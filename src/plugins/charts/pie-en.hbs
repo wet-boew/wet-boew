@@ -35,19 +35,23 @@
 
 // In the global settings.js
 var wet_boew_charts = {
-	preset: {
-		donut: {
-			// Donut setting
-			type: 'pie',
-			height: 250,
-			percentlegend: true,
-			pieinnerradius: 45,
-			pietilt: 50,
-			piehoverable: true,
-			decimal: 1,
-			piethreshold: 8,
-			legendinline: true,
-			piestartangle: 100
+	donut: {
+		series: {
+			pie: {
+				show: true,
+				radius: 1,
+				label: {
+					show: true,
+					radius: 1,
+					threshold: 0.08
+				},
+				tilt: 0.5,
+				innerRadius: 0.45,
+				startAngle: 1
+			}
+		},
+		grid: {
+			hoverable: true
 		}
 	}
 }
@@ -91,13 +95,10 @@ var wet_boew_charts = {
 <h2>Defaults</h2>
 
 <p>Options Added</p>
-<ul>
-	<li><strong>wb-charts</strong>: Activate the charts and graph plugin</li>
-	<li><strong>wb-charts-pie</strong>: Generate a pie charts</li>
-	<li><strong>wb-charts-height-250</strong>: Force an height of 250 pixels.</li>
-</ul>
+<pre><code>{ }
+</code></pre>
 
-<table class="wb-charts wb-charts-pie wb-charts-height-250">
+<table class="wb-charts wb-charts-pie">
 	<caption>Defaults</caption>
 	<thead>
 		<tr>
@@ -131,15 +132,22 @@ var wet_boew_charts = {
 
 <h2>Sectors labeling</h2>
 
-<p>Options added</p>
-<ul>
-	<li><strong>wb-charts-percentlegend-true</strong>: Show the percent label on the sector</li>
-	<li><strong>wb-chart-nolegend-true</strong>: Hide the legend. The legend text will be added over their sector</li>
-</ul>
+<p>Json Parameter</p>
+<pre><code>{
+	"series": {
+		"pie": {
+			"radius": 1,
+			"label": {
+				"show": true,
+				"radius": 1
+			}
+		}
+	}
+}
+</code></pre>
 
-
-
-<table class="wb-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-chart-nolegend-true">
+<pre><code>&lt;table class="wb-charts wb-charts-pie" data-wet-boew='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true } } } }'&gt;</code></pre>
+<table class="wb-charts wb-charts-pie" data-wet-boew='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true } } } }'>
 	<caption>Sectors labeling</caption>
 	<thead>
 		<tr>
@@ -173,13 +181,23 @@ var wet_boew_charts = {
 
 <h2>Donut hole</h2>
 
-<p>Options Added</p>
-<ul>
-	<li><strong>wb-charts-pieinnerradius-45</strong>: Percentage of the donut hole size.</li>
-</ul>
+<p>Json Parameter</p>
+<pre><code>{
+	"series": {
+		"pie": {
+			"radius": 1,
+			"label": {
+				"show": true,
+				"radius": 1
+			},
+			"innerRadius": 0.45
+		}
+	}
+}
+</code></pre>
 
-
-<table class="wb-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-chart-nolegend-true wb-charts-pieinnerradius-45">
+<pre><code>&lt;table class="wb-charts wb-charts-pie" data-wet-boew='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true }, "innerRadius": 0.45 } } }'&gt;</code></pre>
+<table class="wb-charts wb-charts-pie" data-wet-boew='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true }, "innerRadius": 0.45 } } }'>
 	<caption>Donut hole</caption>
 	<thead>
 		<tr>
@@ -214,12 +232,24 @@ var wet_boew_charts = {
 <h2>Tilted pie</h2>
 
 
-<p>Options Added</p>
-<ul>
-	<li><strong>wb-charts-pietilt-50</strong>: Percentage of tilt.</li>
-</ul>
+<p>Json Parameter</p>
+<pre><code>{
+	"series": {
+		"pie": {
+			"radius": 1,
+			"label": {
+				"show": true,
+				"radius": 1
+			},
+			"innerRadius": 0.45,
+			"tilt": 0.5
+		}
+	}
+}
+</code></pre>
 
-<table class="wb-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-chart-nolegend-true wb-charts-pieinnerradius-45 wb-charts-pietilt-50">
+<pre><code>&lt;table class="wb-charts wb-charts-pie" data-wet-boew='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true }, "innerRadius": 0.45, "tilt": 0.5 } } }'&gt;</code></pre>
+<table class="wb-charts wb-charts-pie" data-wet-boew='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true }, "innerRadius": 0.45, "tilt": 0.5  } } }'>
 	<caption>Tilted pie</caption>
 	<thead>
 		<tr>
@@ -255,14 +285,25 @@ var wet_boew_charts = {
 <h2>Rectangular pie</h2>
 
 
-<p>Options Added</p>
-<ul>
-	<li><strong>wb-charts-pieradius-500000</strong>: Size of the drawed pie in pixels. The real pixel value is the number set divided by 100.</li>
-</ul>
 
+<p>Json Parameter</p>
+<pre><code>{
+	"series": {
+		"pie": {
+			"radius": 5000,
+			"label": {
+				"show": true,
+				"radius": 1
+			},
+			"innerRadius": 0.45,
+			"tilt": 0.5
+		}
+	}
+}
+</code></pre>
 
-
-<table class="wb-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-chart-nolegend-true wb-charts-pieinnerradius-45 wb-charts-pietilt-50 wb-charts-pieradius-500000">
+<pre><code>&lt;table class="wb-charts wb-charts-pie" data-wet-boew='{"series": { "pie": { "radius": 5000,"label": { "radius": 1,"show": true }, "innerRadius": 0.45, "tilt": 0.5 } } }'&gt;</code></pre>
+<table class="wb-charts wb-charts-pie" data-wet-boew='{"series": { "pie": { "radius": 5000,"label": { "radius": 1,"show": true }, "innerRadius": 0.45, "tilt": 0.5  } } }'>
 	<caption>Rectangular pie</caption>
 	<thead>
 		<tr>
@@ -297,17 +338,28 @@ var wet_boew_charts = {
 
 <h2>Hovering Effect</h2>
 
-<p>Options Added</p>
-<ul>
-	<li><strong>wb-charts-piehoverable-true</strong>: Add a visual effect to the slice when hovered with the mouse.</li>
-</ul>
 
-<p>Options Removed</p>
-<ul>
-	<li>wb-charts-pieradius-500000</li>
-</ul>
+<p>Json Parameter</p>
+<pre><code>{
+	"series": {
+		"pie": {
+			"radius": 1,
+			"label": {
+				"show": true,
+				"radius": 1
+			},
+			"innerRadius": 0.45,
+			"tilt": 0.5
+		}
+	},
+	"grid": {
+		"hoverable": true
+	}
+}
+</code></pre>
 
-<table class="wb-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-chart-nolegend-true wb-charts-pieinnerradius-45 wb-charts-pietilt-50 wb-charts-piehoverable-true">
+<pre><code>&lt;table class="wb-charts wb-charts-pie" data-wet-boew='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true }, "innerRadius": 0.45, "tilt": 0.5 } }, "grid": { "hoverable": true } }'&gt;</code></pre>
+<table class="wb-charts wb-charts-pie" data-wet-boew='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true }, "innerRadius": 0.45, "tilt": 0.5  } }, "grid": { "hoverable": true } }'>
 	<caption>Hovering Effect</caption>
 	<thead>
 		<tr>
@@ -341,13 +393,34 @@ var wet_boew_charts = {
 
 <h2>Decimal precision</h2>
 
+<p><strong>Need to be revised and re-thinked</strong> because decimal precision are used in the pie label formater. See issue: <a href="https://github.com/duboisp/wet-boew-charts-workingdocs/issues/1">Ensure a way on how a function can be $extended</a> for more info</p>
 
-<p>Options Added</p>
-<ul>
-	<li><strong>wb-charts-decimal-1</strong>: Indicate the number of decimal show in the percentage labels</li>
-</ul>
 
-<table class="wb-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-chart-nolegend-true wb-charts-pieinnerradius-45 wb-charts-pietilt-50 wb-charts-piehoverable-true wb-charts-decimal-1">
+<p>Css Option</p>
+<pre><code>wb-charts-decimal-1</code></pre>
+
+
+<p>Json Parameter</p>
+<pre><code>{
+	"series": {
+		"pie": {
+			"radius": 1,
+			"label": {
+				"show": true,
+				"radius": 1
+			},
+			"innerRadius": 0.45,
+			"tilt": 0.5
+		}
+	},
+	"grid": {
+		"hoverable": true
+	}
+}
+</code></pre>
+
+<pre><code>&lt;table class="wb-charts wb-charts-pie" data-wet-boew='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true }, "innerRadius": 0.45, "tilt": 0.5 } }, "grid": { "hoverable": true } }'&gt;</code></pre>
+<table class="wb-charts wb-charts-pie wb-charts-decimal-1" data-wet-boew='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true }, "innerRadius": 0.45, "tilt": 0.5  } }, "grid": { "hoverable": true } }'>
 	<caption>Decimal precision</caption>
 	<thead>
 		<tr>
@@ -380,23 +453,35 @@ var wet_boew_charts = {
 </table>
 
 
+
+
 <h2>Labeling threshold</h2>
 
+<p>Css Option</p>
+<pre><code>wb-charts-legendinline, wb-charts-decimal-1</code></pre>
 
-<p>Options Added</p>
-<ul>
-	<li><strong>wb-charts-piethreshold-8</strong>: Hides the labels of any pie slice that is smaller than the specified percentage</li>
-	<li><strong>wb-charts-legendinline-true</strong>: Indicate that the labels will be show inline</li>
-</ul>
+<p>Json Parameter</p>
+<pre><code>{
+	"series": {
+		"pie": {
+			"radius": 1,
+			"label": {
+				"show": true,
+				"radius": 1,
+				"threshold": 0.08
+			},
+			"innerRadius": 0.45,
+			"tilt": 0.5
+		}
+	},
+	"grid": {
+		"hoverable": true
+	}
+}
+</code></pre>
 
-<p>Options Removed</p>
-<ul>
-	<li>wb-chart-nolegend-true</li>
-</ul>
-
-
-
-<table class="wb-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-charts-pieinnerradius-45 wb-charts-pietilt-50 wb-charts-piehoverable-true wb-charts-decimal-1 wb-charts-piethreshold-8 wb-charts-legendinline-true">
+<pre><code>&lt;table class="wb-charts wb-charts-pie" data-wet-boew='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true, "threshold": 0.08 }, "innerRadius": 0.45, "tilt": 0.5 } }, "grid": { "hoverable": true } }'&gt;</code></pre>
+<table class="wb-charts wb-charts-pie wb-charts-decimal-1 wb-charts-legendinline" data-wet-boew='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true, "threshold": 0.08 }, "innerRadius": 0.45, "tilt": 0.5  } }, "grid": { "hoverable": true } }'>
 	<caption>Labeling threshold</caption>
 	<thead>
 		<tr>
@@ -431,13 +516,32 @@ var wet_boew_charts = {
 <div class="clear"></div>
 <h2>Start Angle</h2>
 
+<p>Css Option</p>
+<pre><code>wb-charts-legendinline, wb-charts-decimal-1</code></pre>
 
-<p>Options Added</p>
-<ul>
-	<li><strong> wb-charts-piestartangle-100</strong>: Factor of PI, multiplied by 100, used for the starting angle (in radians). For your reference the default value is <em>150</em>.</li>
-</ul>
+<p>Json Parameter</p>
+<pre><code>{
+	"series": {
+		"pie": {
+			"radius": 1,
+			"label": {
+				"show": true,
+				"radius": 1,
+				"threshold": 0.08
+			},
+			"innerRadius": 0.45,
+			"tilt": 0.5,
+			"startAngle": 1
+		}
+	},
+	"grid": {
+		"hoverable": true
+	}
+}
+</code></pre>
 
-<table class="wb-charts wb-charts-pie wb-charts-height-250 wb-charts-percentlegend-true wb-charts-pieinnerradius-45 wb-charts-pietilt-50 wb-charts-piehoverable-true wb-charts-decimal-1 wb-charts-piethreshold-8  wb-charts-legendinline-true wb-charts-piestartangle-100">
+<pre><code>&lt;table class="wb-charts wb-charts-pie" data-wet-boew='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true, "threshold": 0.08 }, "innerRadius": 0.45, "tilt": 0.5, "startAngle": 1 } }, "grid": { "hoverable": true } }'&gt;</code></pre>
+<table class="wb-charts wb-charts-pie wb-charts-decimal-1 wb-charts-legendinline" data-wet-boew='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true, "threshold": 0.08 }, "innerRadius": 0.45, "tilt": 0.5, "startAngle": 1 } }, "grid": { "hoverable": true } }'>
 	<caption>Start Angle</caption>
 	<thead>
 		<tr>
