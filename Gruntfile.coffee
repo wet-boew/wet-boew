@@ -821,16 +821,10 @@ module.exports = (grunt) ->
 							if /index|mobmenu[-]?\w*\.html/.test( url ) or not /\.html/.test( url )
 								return next()
 
-							dir = url.substring( 0, url.lastIndexOf( "/" ) + 1 )
+							testFile = url.substring( 0, url.lastIndexOf( "/" ) + 1 ).replace( "/dist/", "src/" ) + "test.js"
 
 							# Test to see if the plugin or polyfill has a test file
-							plugins = dir.replace("/dist/demos/", "src/plugins/") + "test.js"
-
-							polyfills = dir.replace("/dist/demos/", "src/polyfills/") + "test.js"
-
-							testFile = if fs.existsSync( plugins ) then plugins else if fs.existsSync( polyfills ) then polyfills else ""
-
-							if testFile != ""
+							if fs.existsSync( testFile )
 
 								result = fs.readFileSync( __dirname + url, { encoding: "utf-8" } )
 
@@ -839,15 +833,15 @@ module.exports = (grunt) ->
 
 								mochaPath = path.dirname( require.resolve( "mocha" ) )
 
-								testHtml = "<link src='/" + path.relative(__dirname, mochaPath) + "/mocha.css' />"
-								testHtml += "<script src='/" + path.relative(__dirname, mochaPath) + "/mocha.js'></script>"
+								testHtml = "<link src='/" + path.relative( __dirname, mochaPath ) + "/mocha.css' />"
+								testHtml += "<script src='/" + path.relative( __dirname, mochaPath ) + "/mocha.js'></script>"
 
 								# Append ExpectJS script
-								testHtml += "<script src='/" + path.relative(__dirname, require.resolve( "expect.js" ) ) + "'></script>"
+								testHtml += "<script src='/" + path.relative( __dirname, require.resolve( "expect.js" ) ) + "'></script>"
 
 								# Append Sinon scripts
-								testHtml += "<script src='/" + path.dirname( path.relative(__dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon.js'></script>"
-								testHtml += "<!--[if lt IE 9]><script src='/" + path.dirname( path.relative(__dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon-ie.js'></script><![endif]-->"
+								testHtml += "<script src='/" + path.dirname( path.relative( __dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon.js'></script>"
+								testHtml += "<!--[if lt IE 9]><script src='/" + path.dirname( path.relative( __dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon-ie.js'></script><![endif]-->"
 
 								testHtml += "<script>mocha.setup( 'bdd' ); wb.doc.on( 'ready', function() { mocha.run(); } );</script>"
 
@@ -888,8 +882,6 @@ module.exports = (grunt) ->
 					).map( ( src ) ->
 						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
 						src = src.replace( "src/", "dist/")
-						src = src.replace( "plugins/", "demos/" )
-						src = src.replace( "polyfills/", "demos/" )
 						src = src.replace( ".hbs", ".html" )
 						return "http://localhost:8000/" + src
 					)
@@ -906,8 +898,6 @@ module.exports = (grunt) ->
 					).map( ( src ) ->
 						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
 						src = src.replace( "src/", "dist/")
-						src = src.replace( "plugins/", "demos/" )
-						src = src.replace( "polyfills/", "demos/" )
 						src = src.replace( ".hbs", ".html" )
 						return "http://localhost:8000/" + src
 					)
