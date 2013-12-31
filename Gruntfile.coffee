@@ -51,7 +51,7 @@ module.exports = (grunt) ->
 		[
 			"dist"
 			"copy:deploy"
-			"gh-pages"
+			"gh-pages:travis"
 		]
 	)
 
@@ -931,15 +931,24 @@ module.exports = (grunt) ->
 
 		"gh-pages":
 			options:
-				repo: "https://" + process.env.GH_TOKEN + "@github.com/wet-boew/wet-boew-dist.git"
-				branch: process.env.build_branch
 				clone: "wet-boew-dist"
-				message: "Travis build " + process.env.TRAVIS_BUILD_NUMBER
-				silent: true
 				base: "dist"
-			src: [
-				"**/*.*"
-			]
+
+			travis:
+				options:
+					repo: "https://" + process.env.GH_TOKEN + "@github.com/wet-boew/wet-boew-dist.git"
+					branch: process.env.build_branch
+					message: "Travis build " + process.env.TRAVIS_BUILD_NUMBER
+					silent: true
+				src: [
+					"**/*.*"
+				]
+
+			local:
+				src: [
+					"**/*.*"
+				]
+
 
 
 	# These plugins provide necessary tasks.
