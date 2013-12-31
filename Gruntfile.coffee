@@ -222,9 +222,9 @@ module.exports = (grunt) ->
 					"lib/excanvas/excanvas.js"
 					"lib/html5shiv/dist/html5shiv-printshiv.js"
 					"src/core/wb.js"
-					"!src/plugins/**/test.js"
-					"!src/plugins/**/assets/*.js"
-					"!src/plugins/**/demo/*.js"
+					"!src/{plugins,polyfills,other}/**/test.js"
+					"!src/{plugins,polyfills,other}/**/assets/*.js"
+					"!src/{plugins,polyfills,other}/**/demo/*.js"
 				]
 				dest: "dist/unmin/js/ie8-wet-boew.js"
 
@@ -323,11 +323,7 @@ module.exports = (grunt) ->
 				files: [
 						expand: true
 						cwd: "src"
-						src: [
-							"plugins/**/*.hbs"
-							"polyfills/**/*.hbs"
-							"other/**/*.hbs"
-						]
+						src: "{plugins,polyfills,other}/**/*.hbs"
 						dest: "dist/unmin"
 					,
 						cwd: "site/pages"
@@ -345,11 +341,7 @@ module.exports = (grunt) ->
 				files: [
 						expand: true
 						cwd: "src"
-						src: [
-							"plugins/**/*.hbs"
-							"polyfills/**/*.hbs"
-							"other/**/*.hbs"
-						]
+						src: "{plugins,polyfills,other}/**/*.hbs"
 						dest: "dist"
 					,
 						cwd: "site/pages"
@@ -404,11 +396,7 @@ module.exports = (grunt) ->
 				,
 					expand: true
 					cwd: "src"
-					src: [
-							"plugins/**/demo/*.scss"
-							"polyfills/**/demo/*.scss"
-							"other/**/demo/*.scss"
-						]
+					src: "{plugins,polyfills,other}/**/demo/*.scss"
 					dest: "dist/unmin/"
 					ext: ".css"
 				]
@@ -447,9 +435,9 @@ module.exports = (grunt) ->
 				]
 
 			demos:
-				cwd: "dist/unmin/demos"
+				cwd: "dist/unmin/"
 				src: "**/*.css"
-				dest: "dist/unmin/demos/"
+				dest: "dist/unmin/"
 				expand: true
 
 		csslint:
@@ -490,7 +478,7 @@ module.exports = (grunt) ->
 						id: "csslint-xml"
 						dest: "csslint-demos.log"
 					]
-				src: "dist/unmin/demos/**/*.css"
+				src: "dist/unmin/{plugins,polyfills,other}/**/*.css"
 
 		# Minify
 		uglify:
@@ -511,9 +499,9 @@ module.exports = (grunt) ->
 					preserveComments: (uglify,comment) ->
 						return comment.value.match(/^!/i)
 				expand: true
-				cwd: "dist/unmin/demos/"
+				cwd: "dist/unmin/"
 				src: ["**/demo/*.js"]
-				dest: "dist/demos/"
+				dest: "dist/"
 				ext: ".min.js"
 
 			core:
@@ -565,11 +553,11 @@ module.exports = (grunt) ->
 					banner: "@charset \"utf-8\";\n/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 						" * v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n *\n */"
 				expand: true
-				cwd: "dist/unmin/demos/"
+				cwd: "dist/unmin/"
 				src: [
 					"**/demo/*.css"
 				]
-				dest: "dist/demos/"
+				dest: "dist/"
 				ext: ".min.css"
 
 		htmlcompressor:
@@ -649,10 +637,7 @@ module.exports = (grunt) ->
 					flatten: true
 				,
 					cwd: "src"
-					src: [
-						"plugins/**/assets/*"
-						"polyfills/**/assets/*"
-					]
+					src: "{plugins,polyfills,other}/**/assets/*"
 					dest: "dist/unmin/assets"
 					expand: true
 					flatten: true
@@ -661,11 +646,10 @@ module.exports = (grunt) ->
 			demos:
 				cwd: "src"
 				src: [
-					"plugins**/*.{jpg,html,xml}"
-					"plugins**/demo/*.*"
-					"plugins**/ajax/*.*"
-					"plugins**/img/*.*"
-					"polyfills/**/demo/*.js"
+					"{plugins,polyfills,other}/**/*.{jpg,html,xml}"
+					"{plugins,polyfills,other}/**/demo/*.*"
+					"{plugins,polyfills,other}/**/ajax/*.*"
+					"{plugins,polyfills,other}/**/img/*.*"
 					"!**/assets/*.*"
 					"!**/*.scss"
 				]
@@ -695,18 +679,18 @@ module.exports = (grunt) ->
 				expand: true
 
 			demos_min:
-				cwd: "dist/unmin/demos"
+				cwd: "dist/unmin"
 				src: [
-					"**/*.{jpg,html,xml}"
-					"**/demo/*.*"
-					"**/ajax/*.*"
-					"**/img/*.*"
+					"{plugins,polyfills,other}/**/*.{jpg,html,xml}"
+					"{plugins,polyfills,other}/**/demo/*.*"
+					"{plugins,polyfills,other}/**/ajax/*.*"
+					"{plugins,polyfills,other}/**/img/*.*"
 					# CSS is copied by the cssmin:demos_min task
 					"!**/*.css"
 					# CSS is copied by the uglify:demos task
 					"!**/*.js"
 				]
-				dest: "dist/demos/"
+				dest: "dist/"
 				expand: true
 
 			deploy:
@@ -877,8 +861,7 @@ module.exports = (grunt) ->
 						filter: ( src ) ->
 							src = path.dirname( src ).replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
 							return fs.existsSync( src + "/test.js" )
-						"src/plugins/**/*.hbs"
-						"src/polyfills/**/*.hbs"
+						"src/{plugins,polyfills,other}/**/*.hbs"
 					).map( ( src ) ->
 						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
 						src = src.replace( "src/", "dist/")
@@ -893,8 +876,7 @@ module.exports = (grunt) ->
 						filter: ( src ) ->
 							src = path.dirname( src ).replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
 							return fs.existsSync( src + "/test.js" )
-						"src/plugins/**/*.hbs"
-						"src/polyfills/**/*.hbs"
+						"src/{plugins,polyfills,other}/**/*.hbs"
 					).map( ( src ) ->
 						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
 						src = src.replace( "src/", "dist/")
