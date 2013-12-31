@@ -814,6 +814,10 @@ module.exports = (grunt) ->
 								/json|text|javascript|dart|image\/svg\+xml|application\/x-font-ttf|application\/vnd\.ms-opentype|application\/vnd\.ms-fontobject/.test(res.getHeader('Content-Type'))
 						))
 
+						middlewares.push (req, res, next) ->
+							req.url = req.url.replace( "/v4.0-ci/", "/" )
+							next()
+
 						middlewares.push(connect.static(options.base));
 
 						# Serve the custom error page
