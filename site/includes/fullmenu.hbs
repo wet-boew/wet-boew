@@ -74,14 +74,14 @@
 					{{#is language "fr"}}
 						{{#withSort pages "data.title"}}
 							{{#is data.category "Autre"}}
-								<li><a href="{{environment.root}}/other/{{relative dirname dest}}{{#if data.querystring}}?{{data.querystring}}{{/if}}">{{data.title}}</a></li>
+								<li><a href="{{environment.root}}/others/{{relative dirname dest}}{{#if data.querystring}}?{{data.querystring}}{{/if}}">{{data.title}}</a></li>
 							{{/is}}
 						{{/withSort}}
 					{{/is}}
 					{{#is language "en"}}
 						{{#withSort pages "data.title"}}
 							{{#is data.category "Other"}}
-								<li><a href="{{environment.root}}/other/{{relative dirname dest}}{{#if data.querystring}}?{{data.querystring}}{{/if}}">{{data.title}}</a></li>
+								<li><a href="{{environment.root}}/others/{{relative dirname dest}}{{#if data.querystring}}?{{data.querystring}}{{/if}}">{{data.title}}</a></li>
 							{{/is}}
 						{{/withSort}}
 					{{/is}}
