@@ -208,7 +208,9 @@ var $document = wb.doc,
 		event.preventDefault();
 
 		var which = event.which,
-			$btn = $( event.target ),
+			btn = event.target,
+			$btn = $( btn ),
+			classes = btn.className,
 			eventData = event.data,
 			$container = $btn.closest( ".cal-cnt" );
 
@@ -226,11 +228,10 @@ var $document = wb.doc,
 				]);
 			}
 
-			if ( $btn.hasClass( "wb-inv" ) ) {
-				$container.find( ".cal-goto-lnk a" ).trigger( "setfocus.wb" );
-			} else {
-				$btn.trigger( "setfocus.wb" );
-			}
+			$container.find( classes.indexOf( "wb-inv" ) !== -1 ?
+				".cal-goto-lnk a" :
+				"." + classes.match( /cal-[a-z]*mnth/i )
+			).trigger( "setfocus.wb" );
 
 			return false;
 		}
@@ -612,7 +613,5 @@ $document.on( "keydown", ".cal-days a", function( event ) {
 $document.on( "hideGoToFrm.wb-cal", ".cal-cnt", hideGoToFrm );
 
 $document.on( "setFocus.wb-cal", setFocus );
-
-$document.on( "click", ".cal-prvmnth, .cal-nxtmnth", changeMonth );
 
 })( jQuery, window, document, wb );
