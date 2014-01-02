@@ -282,11 +282,6 @@
 						"#23447e",
 						"#999999" ],
 
-				// Force to have an uniform tick
-				uniformtick: true,
-				"uniformtick-typeof": "boolean",
-				"uniformtick-autocreate": true,
-
 				// Force to use which row in the thead for the label
 				"labelposition-typeof": "number",
 				"labelposition-autocreate": true,
@@ -300,8 +295,6 @@
 				"legendinline-autocreate": true,
 				"nolegend-typeof": "boolean",
 				"nolegend-autocreate": true,
-				"percentlegend-typeof": "boolean",
-				"percentlegend-autocreate": true,
 
 				// Force the Top and Bottom Value for a graph
 				"topvalue-autocreate": true,
@@ -321,22 +314,6 @@
 				// set a decimal precision
 				"decimal-autocreate": true,
 				"decimal-typeof": "number",
-				pieradius: 100, // Pie radius
-				"pieradius-typeof": "number",
-				pielblradius: 100, // Pie label radius
-				"pielblradius-typeof": "number",
-				"piethreshold-autocreate": true, // Hides the labels of any pie slice that is smaller than the specified percentage (ranging from 0 to 100)
-				"piethreshold-typeof": "number",
-				"pietilt-autocreate": true, // Percentage of tilt ranging from 0 and 100, where 100 has no change (fully vertical) and 0 is completely flat (fully horizontal -- in which case nothing actually gets drawn)
-				"pietilt-typeof": "number",
-				"pieinnerradius-autocreate": true, // Sets the radius of the donut hole. If value is between 0 and 100 (inclusive) then it will use that as a percentage of the radius, otherwise it will use the value as a direct pixel length.
-				"pieinnerradius-typeof": "number",
-				"piestartangle-autocreate": true, // Factor of PI used for the starting angle (in radians) It can range between 0 and 200 (where 0 and 200 have the same result).
-				"piestartangle-typeof": "number",
-				"piehighlight-autocreate": true, // Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
-				"piehighlight-typeof": "number",
-				"piehoverable-autocreate": true, // Hoverable pie slice
-				"piehoverable-typeof": "boolean",
 
 				// General option: Default CSS Options
 				"default-option": "type",
@@ -1003,6 +980,7 @@
 					textlabel = Math.round( series.percent * Math.pow( 10, options.decimal ) );
 					textlabel = textlabel / Math.pow( 10, options.decimal );
 				}
+
 				if ( options.nolegend ) {
 					// Add the series label
 					textlabel = label + "<br/>" + textlabel;
@@ -1158,64 +1136,18 @@
 				// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
 				$imgContainer.attr( "aria-label", pieChartLabelText + " " + i18n( "%table-following" ) ); // "Chart. Details in table following."
 
-				//
-				// Pie Charts Options
-				//
-				plotParameter = {
-					series: {
-						pie: {
-							show: true
-						}
-					}
-				};
-				// Hide the legend,
-				if ( options.nolegend ) {
-					plotParameter.legend = { show: false };
-				}
-				// Add pie chart percentage label on slice
-				if ( options.percentlegend ) {
-					plotParameter.series.pie.radius = options.pieradius / 100;
-					plotParameter.series.pie.label = {
-						show: true,
-						radius: options.pielblradius / 100,
-						formatter: pieLabelFormater
-					};
-					// Hides the labels of any pie slice that is smaller than the specified percentage (ranging from 0 to 100)
-					if ( options.piethreshold ) {
-						plotParameter.series.pie.label.threshold = options.piethreshold / 100;
-					}
-				}
-				// Percentage of tilt ranging from 0 and 100, where 100 has no change (fully vertical) and 0 is completely flat (fully horizontal -- in which case nothing actually gets drawn)
-				if ( options.pietilt ) {
-					plotParameter.series.pie.tilt = options.pietilt / 100;
-				}
-				// Sets the radius of the donut hole. If value is between 0 and 100 (inclusive) then it will use that as a percentage of the radius, otherwise it will use the value as a direct pixel length.
-				if ( options.pieinnerradius ) {
-					plotParameter.series.pie.innerRadius = options.pieinnerradius / 100;
-				}
-				// Factor of PI used for the starting angle (in radians) It can range between 0 and 200 (where 0 and 200 have the same result).
-				if ( options.piestartangle ) {
-					plotParameter.series.pie.startAngle = options.piestartangle / 100;
-				}
-				//	Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
-				if ( options.piehighlight ) {
-					plotParameter.series.pie.highlight = options.piehighlight / 100;
-				}
-				// hoverable
-				if ( options.piehoverable ) {
-					plotParameter.grid = {
-						hoverable: true
-					};
-				}
-
+				
 				// Create the graphic
 				$.plot( $placeHolder, allSeries, optionCurrent );
 
 				// For DEBUGING
 				showOutput(allSeries);
-				showOutput(plotParameter);
 				showOutput(optionCurrent);
 
+				if ( options.nolegend ) {
+					// Remove the legend
+					$( ".legend", $placeHolder ).remove();
+				}
 				if ( !options.legendinline ) {
 					// Move the legend under the graphic
 					$( ".legend > div", $placeHolder ).remove();
