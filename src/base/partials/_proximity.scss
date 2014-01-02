@@ -82,16 +82,58 @@
 	opacity: .1;
 }
 
-.clmn-2 {
+.clmn-2-xs {
 	column-count: 2;
 }
 
-.clmn-3 {
+.clmn-3-xs {
 	column-count: 3;
 }
 
-.clmn-4 {
+.clmn-4-xs {
 	column-count: 4;
+}
+
+@media screen and (min-width: $smallViewMin) {
+	.clmn-2-sm {
+		column-count: 2;
+	}
+
+	.clmn-3-sm {
+		column-count: 3;
+	}
+
+	.clmn-4-sm {
+		column-count: 4;
+	}
+}
+
+@media screen and (min-width: $mediumViewMin) {
+	.clmn-2-md {
+		column-count: 2;
+	}
+
+	.clmn-3-md {
+		column-count: 3;
+	}
+
+	.clmn-4-md {
+		column-count: 4;
+	}
+}
+
+@media screen and (min-width: $largeViewMin) {
+	.clmn-2-lg {
+		column-count: 2;
+	}
+
+	.clmn-3-lg {
+		column-count: 3;
+	}
+
+	.clmn-4-lg {
+		column-count: 4;
+	}
 }
 
 .pstn-lft-xs {
