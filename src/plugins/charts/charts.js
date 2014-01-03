@@ -42,12 +42,12 @@
 			graphClassLength, graphClassLength2, barDelta, cellValue,
 			datacolgroupfound, dataGroup, figCaptionElem, figureElem, header,
 			i, j, mainFigureElem, parsedData,
-			pieLabelFormater, plotParameter, rIndex,
+			pieLabelFormater, rIndex,
 			currVectorOptions, tblCaptionHTML, tblCaptionText,
 			tdOptions,
 			valuePoint,
 			currentRowGroup, reverseTblParsing, dataGroupVector,
-			dataCell, previousDataCell, currDataVector, currVectorSeries,
+			dataCell, previousDataCell, currDataVector,
 			optionsGlobal, optionsSeries, optionCurrent = {}, optionsTick,
 			// For debuging and documentation purpose
 			printObj = typeof JSON !== "undefined" ? JSON.stringify : function( obj ) {
@@ -296,31 +296,10 @@
 				"nolegend-typeof": "boolean",
 				"nolegend-autocreate": true,
 
-				// Force the Top and Bottom Value for a graph
-				"topvalue-autocreate": true,
-				"topvalue-typeof": "number",
-				"topvaluenegative-autocreate": true,
-				"topvaluenegative-typeof": "boolean",
-				"bottomvalue-autocreate": true,
-				"bottomvalue-typeof": "number",
-				"bottomvaluenegative-autocreate": true,
-				"bottomvaluenegative-typeof": "boolean",
-
-				// Ticks => Number of ticks for the y-axis
-				"ticks-autocreate": true,
-				"ticks-typeof": "number",
-
 				// Pie chart option
 				// set a decimal precision
 				"decimal-autocreate": true,
 				"decimal-typeof": "number",
-
-				// General option: Default CSS Options
-				"default-option": "type",
-
-				// Graph Type: this be one of or an array of: area, pie, line, bar, stacked
-				type: "bar",
-				"type-autocreate": true,
 
 				//
 				// Graph Layout
@@ -438,7 +417,7 @@
 		function applyPreset( baseline, $elem, prefix ) {
 			
 			var config = $.extend( true, {}, baseline.defaults || baseline ),
-				tokens = $elm.attr( "class" ) || "",
+				tokens = $elem.attr( "class" ) || "",
 				tblTokens,
 				i, iLength,
 				token, tokenLength,
@@ -505,8 +484,19 @@
 				canvas: true
 			},
 			line: { },
-			area: { },
-			bar: { },
+			area: {
+				lines: {
+					show: true,
+					fill: true
+				}
+			},
+			bar: {
+				bars: {
+					show: true,
+					barWidth: 1,
+					align: "center"
+				}
+			},
 			pie: {
 				series: {
 					pie: {
@@ -546,6 +536,13 @@
 				}
 			},
 			bar: {
+				bars: {
+					show: true,
+					barWidth: 1,
+					align: "center"
+				}
+			},
+			stacked: {
 				bars: {
 					show: true,
 					barWidth: 1,
@@ -967,7 +964,7 @@
 
 		currentRowGroup = parsedData.lstrowgroup[ 0 ];
 
-		if ( options.type === "pie" ) {
+		if ( optionCurrent.series && optionCurrent.series.pie ) {
 			// Use Reverse table axes
 			// Create a chart/ place holder, by series
 			mainFigureElem = $( "<figure />" ).insertAfter( $elm );
@@ -1195,21 +1192,23 @@
 
 		// Count the number of bar charts,
 		for ( i = 0; i < dataGroupVector.length; i++ ) {
-			currDataVector = dataGroupVector[ i ];
+			currDataVector = dataGroupVector[ i ].header[ dataGroupVector[ i ].header.length - 1 ];
 			
-			currVectorOptions = setClassOptions( options.vectorOptions,
-			( $ ( currDataVector.header[ currDataVector.header.length - 1 ].elem ).attr( "class" ) !== undefined ?
-			$( currDataVector.header[ currDataVector.header.length - 1 ].elem ).attr( "class" ) : "" ) );
+			
+			// Apply any preset
+			currVectorOptions = applyPreset( optionsSeries, $(currDataVector.elem), optionsSeries.prefix || "" );
+			
+			// Extend config from @data-wet-boew attribute
+			currVectorOptions = $.extend( true, currVectorOptions, wb.getData( $(currDataVector.elem), "wet-boew" ) );
+			
 
-			if ( ( !currVectorOptions.type && ( options.type === "bar" || options.type === "stacked" ) ) || ( currVectorOptions.type && ( currVectorOptions.type === "bar" || currVectorOptions.type === "stacked" ) ) ) {
+			if ( currVectorOptions.bars || ( optionCurrent.bars && !currVectorOptions.lines ) ) {
 				nbBarChart += 1;
-				currVectorOptions.chartBarOption = nbBarChart;
-				if ( !barDelta && ( ( currVectorOptions.type && currVectorOptions.type === "bar" ) || ( !currVectorOptions.type && options.type === "bar" ) ) ) {
-					barDelta = true;
-				}
+				currVectorOptions.barPos = nbBarChart;
+				barDelta = true;
 			}
 
-			currDataVector.header[ currDataVector.header.length - 1 ].chartOption = currVectorOptions;
+			currDataVector.chartOption = currVectorOptions;
 		}
 
 		// First rowgroup assume is a data row group.
@@ -1239,9 +1238,9 @@
 					valuePoint = valueCumul;
 
 					// Bar chart case, re-evaluate the calculated point
-					if ( barDelta && currVectorOptions.chartBarOption ) {
+					if ( barDelta && currVectorOptions.barPos ) {
 						// Position bar
-						valuePoint = valueCumul - ( lowestFlotDelta / 2 ) + ( lowestFlotDelta / nbBarChart * ( currVectorOptions.chartBarOption - 1 ) );
+						valuePoint = valueCumul - ( lowestFlotDelta / 2 ) + ( lowestFlotDelta / nbBarChart * ( currVectorOptions.barPos - 1 ) );
 
 						if ( nbBarChart === 1 ) {
 							valuePoint = valueCumul;
@@ -1263,40 +1262,19 @@
 				}
 			}
 
-			// Get the graph type
-
-			if ( !currVectorOptions.type ) {
-				currVectorOptions.type = options.type;
+			currVectorOptions.data = dataSeries;
+			currVectorOptions.label = $( currDataVector.header[ currDataVector.header.length - 1 ].elem ).text();
+			
+			if ( currVectorOptions.bars ) {
+				currVectorOptions.bars.barWidth = currVectorOptions.bars.barWidth * ( 1 / nbBarChart );
 			}
 			
-			currVectorSeries = {
-				data: dataSeries,
-				label: $( currDataVector.header[ currDataVector.header.length - 1 ].elem ).text(),
-				color: ( !currVectorOptions.color ? options.colors[ i ] : currVectorOptions.color )
-			};
+			allSeries.push( currVectorOptions );
 
-			// Set Special parameter per kind of series
-			// FYI ( currVectorOptions.type === "line" ) was intentionnally omited because the it's about the default parameter set
-			if ( currVectorOptions.type === "area" ) {
-				currVectorSeries.lines = {
-					show: true,
-					fill: true
-				};
-			} else if ( currVectorOptions.type === "bar" || ( barDelta && currVectorOptions.type === "stacked" ) ) {
-				currVectorSeries.bars = {
-					show: true,
-					barWidth: ( 1 / nbBarChart * 0.9 ),
-					align: "center"
-				};
-			} else if ( currVectorOptions.type === "stacked" ) {
-				currVectorSeries.bars = {
-					show: true,
-					barWidth: lowestFlotDelta * 0.9,
-					align: "center"
-				};
-			}
-			allSeries.push( currVectorSeries );
-
+		}
+		
+		if ( optionCurrent.bars ) {
+			optionCurrent.bars.barWidth = optionCurrent.bars.barWidth * ( 1 / nbBarChart );
 		}
 
 		figureElem = $( "<figure />" ).insertAfter( $elm );
@@ -1337,42 +1315,11 @@
 			$( $elm ).appendTo( figureElem );
 		}
 
-		// Create the graphic
-		plotParameter = {
-			canvas: true,
-			xaxis: ( chartslabels.length > 0 ? { ticks: chartslabels } : {} )
-		};
-
-		if ( options.topvalue ) {
-			if ( !plotParameter.yaxis ) {
-				plotParameter.yaxis = {};
-			}
-			if ( options.topvaluenegative ) {
-				options.topvalue *= -1;
-			}
-			plotParameter.yaxis.max = options.topvalue;
-		}
-		if ( options.bottomvalue ) {
-			if ( !plotParameter.yaxis ) {
-				plotParameter.yaxis = {};
-			}
-			if ( options.bottomvaluenegative ) {
-				options.bottomvalue *= -1;
-			}
-			plotParameter.yaxis.min = options.bottomvalue;
-		}
-		if ( options.steps ) {
-			if ( !plotParameter.yaxis ) {
-				plotParameter.yaxis = {};
-			}
-			plotParameter.yaxis.ticks = options.steps;
-		}
-
 		// For DEBUGING
 		showOutput(allSeries);
-		showOutput(plotParameter);
 		showOutput(optionCurrent);
 
+		// Create the graphic
 		$.plot( $placeHolder, allSeries, optionCurrent );
 
 		if ( !options.legendinline ) {
