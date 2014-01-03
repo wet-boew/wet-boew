@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-<title>Documentation - Boîte à outils de l’expérience Web (BOEW)</title>
+<title>Modèle de documentation - Documentation - Boîte à outils de l’expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../dist/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="Exemple pratiques de la Boîte à outils de l’expérience Web (BOEW)." />
@@ -54,7 +54,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-fra.html">Ministères</a></li>
-<li id="gcwu-gcnb-lang"><a href="index-en.html" lang="en">English</a></li>
+<li id="gcwu-gcnb-lang"><a href="docstemplate-en.html" lang="en">English</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -82,7 +82,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="gcwu-bc"><h2>Fil d'Ariane</h2><div id="gcwu-bc-in">
 <ol>
 <li><a href="../index-fr.html">Accueil</a></li>
-<li>Documentation</li>
+<li><a href="index-fr.html">Documentation</a></li>
+<li>Modèle de documentation</li>
 </ol></div></div>
 </nav>
 <!-- HeaderEnd -->
@@ -91,40 +92,109 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Documentation</h1>
+<h1 id="wb-cont">Modèle de documentation</h1>
 
-<p lang="en">WET operates on the principle of progressive enhancement, and implements well established techniques increasing the accessibility and usability of web content. If you are new to WET, please begin with our Getting Started section, which contains all the information anyone new requires to access, implement or contribute to the toolkit. Otherwise, see the Reference section.</p>
-<p>Voici quelques lignes directrices si vous désirez créer ou modifier de la documentation existante&#160;:</p>
-<ul>
-	<li>Verser tous les guides, les descriptions ou les directives pour la BOEW dans le répertoire de GitHub.</li>
-	<li>Suivre le <a href="docstemplate-fr.html">modèle de documentation</a>.</li>
-	<li>Fournir au moins un exemple pour chaque attribut, thème ou élément de la BOEW. D’autres exemples doivent être donnés pour chaque paramètre ou option. </li>
-</ul>
+<p>Description/introduction d’une ligne</p>
 
 <section>
-	<h2>Comment démarrer</h2>
+	<h2>Aperçu</h2>
+	<p>Description sur plusieurs lignes/dans un paragraphe</p>
+
+	<section>
+		<h3>Objet</h3>
+		<p>Description de l’objet de la fonctionnalité</p>
+	</section>
+
+	<section>
+		<h3>Raison d’être</h3>
+		<ul>
+			<li>Description du fonctionnement</li>
+			<li>Explication du besoin</li>
+			<li>Quand doit-on l'utiliser?</li>
+			<li>Quand ne pas l'utiliser?</li>
+		</ul>
+	</section>
+</section>
+
+<section>
+	<h2>Mise en œuvre</h2>
 	<ul>
-		<li>(TODO) <a href="#">Comment démarrer avec la BOEW</a>
+		<li>Description de la mise en œuvre pour l’utilisateur</li>
+		<li>Lien vers des exemples pratiques de base</li>
+	</ul>
+
+	<section>
+		<h3>Paramètres</h3>
+		<p>Introduction d’une ligne</p>
+
+		<section>
+			<h4>Premier paramètre</h4>
 			<ul>
-				<li>(TODO) <a href="#">Guide d'utilisation de GitHub pour la BOEW</a></li>
-				<li>(TODO) <a href="#">Mise en œuvre de la BOEW</a></li>
-				<li>(TODO) <a href="#">Développer pour la BOEW</a></li>
+				<li>Description du paramètre
+					<ul>
+						<li>Gamme des valeurs acceptables</li>
+						<li>Propriétés</li>
+						<li>Moment de l’utilisation du paramètre</li>
+						<li>etc.</li>
+					</ul>
+				</li>
+				<li>Lien vers un exemple pratique de l’utilisation du paramètre</li>
 			</ul>
-		</li>
+		</section>
+
+		<section>
+			<h4>Deuxième paramètre</h4>
+			<ul>
+				<li>Description du paramètre
+					<ul>
+						<li>Gamme des valeurs acceptables</li>
+						<li>Propriétés</li>
+						<li>Moment de l’utilisation du paramètre</li>
+						<li>etc.</li>
+					</ul>
+				</li>
+				<li>Lien vers un exemple pratique de l’utilisation du paramètre</li>
+			</ul>
+		</section>
+	</section>
+</section>
+
+<section>
+	<h2>Développement</h2>
+	<p>Ce que doivent savoir les développeurs</p>
+</section>
+
+<section>
+	<h2>Enjeux connus</h2>
+	<p>La liste des problèmes connus avec le plugiciel et si elles seront corrigées ou non.</p>
+</section>
+
+<section>
+	<h2>Avenir</h2>
+	<p>Les prochains plans
+	<ul>
+		<li>Modifications proposées</li>
+		<li>Nouveautés</li>
+		<li>etc.</li>
 	</ul>
 </section>
 
 <section>
-	<h2>Référence</h2>
+	<h2>Antécédents de la version</h2>
 	<ul>
-		<li><a href="reference/core-fr.html">Cadre fondamental</a></li>
-		<li><a href="reference/themesstyle-fr.html">Thèmes et style</a></li>
-		<li><a href="reference/plugins-fr.html">Plugiciels</a></li>
-		<li><a href="reference/polyfills-fr.html">Correctifs</a></li>
-		<li><a href="reference/variants-fr.html">Variants</a></li>
-		<li><a href="reference/other-fr.html">Autre composants</a></li>
-		<li>(TODO) <a href="#">Projets externes utilisés par la BOEW</a></li>
+		<li>Description</li>
+		<li>Lien vers la description des projets engagés</li>
 	</ul>
+</section>
+
+<section>
+	<h2>Pages connexes</h2>
+	<p>Autres pages connexes de la BOEW</p>
+</section>
+
+<section>
+	<h2>Références</h2>
+	<p>Liens externes pertinents</p>
 </section>
 
 <dl id="gcwu-date-mod" role="contentinfo">

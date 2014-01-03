@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-<title>Documentation - Web Experience Toolkit (WET)</title>
+<title>Documentation example template - Documentation - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../dist/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="Web Experience Toolkit (WET) working examples." />
@@ -54,7 +54,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="index-fr.html" lang="fr">Français</a></li>
+<li id="gcwu-gcnb-lang"><a href="docstemplate-fr.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -82,7 +82,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
 <ol>
 <li><a href="../index-en.html">Home</a></li>
-<li>Documentation</li>
+<li><a href="index-en.html">Documentation</a></li>
+<li>Documentation example template</li>
 </ol>
 </div></div>
 </nav>
@@ -92,40 +93,109 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Documentation</h1>
+<h1 id="wb-cont">Documentation example template</h1>
 
-<p>WET operates on the principle of progressive enhancement, and implements well established techniques increasing the accessibility and usability of web content. If you are new to WET, please begin with our Getting Started section, which contains all the information anyone new requires to access, implement or contribute to the toolkit. Otherwise, see the Reference section.</p>
-<p>The following are some guidelines if you wish to create or edit the existing documentation:</p>
-<ul>
-	<li>Any and all descriptions, guides, or instructions for WET should be included as HTML files in this repository.</li>
-	<li>Follow the <a href="docstemplate-en.html">documentation example template</a>.</li>
-	<li>At least one working example should be provided for each WET feature, theme or component. Additional examples should be provided for each parameter or option.</li>
-</ul>
+<p>Single-line description/intro</p>
 
 <section>
-	<h2>Getting Started</h2>
+	<h2>Overview</h2>
+	<p>Multi-line/paragraph description</p>
+
+	<section>
+		<h3>Purpose</h3>
+		<p>What is the purpose of this plugin?</p>
+	</section>
+
+	<section>
+		<h3>Rationale</h3>
+		<ul>
+			<li>Why does it work the way it does?</li>
+			<li>Why is it necessary?</li>
+			<li>When should we use it?</li>
+			<li>When should we not use it?</li>
+		</ul>
+	</section>
+</section>
+
+<section>
+	<h2>Implementation</h2>
 	<ul>
-		<li>(TODO) <a href="#">Getting Started with WET</a>
+		<li>How does a user implement this?</li>
+		<li>Link to a basic working example</li>
+	</ul>
+
+	<section>
+		<h3>Parameters</h3>
+		<p>Single-line introduction</p>
+
+		<section>
+			<h4>First parameter</h4>
 			<ul>
-				<li>(TODO) <a href="#">Using GitHub for WET</a></li>
-				<li>(TODO) <a href="#">Implementing WET</a></li>
-				<li>(TODO) <a href="#">Developing for WET</a></li>
+				<li>Description of parameter
+					<ul>
+						<li>Range of accepted values</li>
+						<li>Properties</li>
+						<li>When do we use this parameter</li>
+						<li>etc.</li>
+					</ul>
+				</li>
+				<li>Link to a working example using the parameter</li>
 			</ul>
-		</li>
+		</section>
+
+		<section>
+			<h4>Second parameter</h4>
+			<ul>
+				<li>description of parameter
+					<ul>
+						<li>Range of accepted values</li>
+						<li>Properties</li>
+						<li>When do we use this parameter</li>
+						<li>etc.</li>
+					</ul>
+				</li>
+				<li>Link to a working example using the parameter</li>
+			</ul>
+		</section>
+	</section>
+</section>
+
+<section>
+	<h2>Development</h2>
+	<p>What do developers need to know?</p>
+</section>
+
+<section>
+	<h2>Known issues</h2>
+	<p>List any known issues with the plugin here and whether or not they will be fixed.</p>
+</section>
+
+<section>
+	<h2>Future</h2>
+	<p>What are the plans for this plugin?
+	<ul>
+		<li>Proposed changes</li>
+		<li>What is under development</li>
+		<li>etc...</li>
 	</ul>
 </section>
 
 <section>
-	<h2>Reference</h2>
+	<h2>Version history</h2>
 	<ul>
-		<li><a href="reference/core-en.html">Core Framework</a></li>
-		<li><a href="reference/themesstyle-en.html">Themes and Style</a></li>
-		<li><a href="reference/plugins-en.html">Plugins</a></li>
-		<li><a href="reference/polyfills-en.html">Polyfills</a></li>
-		<li><a href="reference/variants-en.html">Variants</a></li>
-		<li><a href="reference/other-en.html">Other components</a></li>
-		<li>(TODO) <a href="#">External Projects used in WET</a></li>
+		<li>Description</li>
+		<li>Link to project commit descriptions</li>
 	</ul>
+</section>
+
+<section>
+	<h2>Related pages</h2>
+	<p>List related WET documentation</p>
+</section>
+
+<section>
+	<h2>References</h2>
+	<p>List related external pages</p>
 </section>
 
 <dl id="gcwu-date-mod" role="contentinfo">
