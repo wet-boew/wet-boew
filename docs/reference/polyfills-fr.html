@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-<title>Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+<title>Correctifs - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../dist/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="French description / Description en français" />
@@ -54,7 +54,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-fra.html">Ministères</a></li>
-<li id="gcwu-gcnb-lang"><a href="plugins-en.html" lang="en">English</a></li>
+<li id="gcwu-gcnb-lang"><a href="polyfills-en.html" lang="en">English</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -87,7 +87,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <ol>
 <li><a href="../../index-fr.html">Accueil</a></li>
 <li><a href="../index-fr.html">Documentation</a></li>
-<li>Plugiciels</li>
+<li>Correctifs</li>
 </ol></div></div>
 </nav>
 <!-- HeaderEnd -->
@@ -96,28 +96,18 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Plugiciels</h1>
+<h1 id="wb-cont">Correctifs</h1>
 
-<p lang="en"><strong>Needs translation</strong> A WET plugin provides various types of functionality useful to a website and provided by calling the function in the class attribute of an HTML tag. </p>
+<p lang="en"><strong>Needs translation</strong> The polyfills are JavaScript components that mimic the behaviour of HTML5 tags in browsers that do not recognized such tags. They provide backwards compatibility for HTML5 in browsers that do not support HTML5.</p>
+
 <ul>
-	<li>(TODO) <a href="#">Barre de menu</a> - Une barre de menu interactive comprenant des sous-menus optionnels pour le mégamenu.</li>
-	<li>(TODO) <a href="#">Calendrier d'événements</a> - Un calendrier servant à consulter une liste d'événements.</li>
-	<li><a href="archived/archived-fr.html">Contenu archivé</a> - Ajoute un avis d'archivage à une page Web.</li>
-	<li>(TODO) <a href="#">Expiration de la session</a> - Ferme la session de l'utilisateur après un certain délai.</li>
-	<li>(TODO) <a href="#">Fils de syndication</a> - Affiche les articles d’un ou plus fils de syndication.</li>
-	<li>(TODO) <a href="#">Formulaire de rétroaction</a> - Un formulaire normalisé pour soumettre une rétroaction au sujet d'une page ou d'un site Web particulier.</li>
-	<li>(TODO) <a href="#">Gadget de partage</a> - Permet à l'utilisateur de partager un contenu Web sur les plateformes de médias sociaux.</li>
-	<li>(TODO) <a href="#">Graphiques</a> - Génère des graphiques à partir de données d’un tableau.</li>
-	<li>(TODO) <a href="#">Interface à onglets</a> - Comprime plusieurs sections de contenu dans le même espace physique et fourni des onglets qui permettent à l'utilisateur de choisi la section de contenu à afficher.</li>
-	<li>(TODO) <a href="#">Lecteur multimédia</a> - Un lecteur multimédia accessible permettant d'intégrer des contenus vidéo et audio sur les pages Web.</li>
-	<li>(TODO) <a href="#">Lightbox</a> - Crée une galerie photo sur une page Web.</li>
-	<li>(TODO) <a href="#">Mise en surbrillance de texte</a> - Met en surbrillance sur une page Web les mots choisis.</li>
-	<li>(TODO) <a href="#">Notes de bas de page</a> - Une méthode accessible pour afficher des notes de bas de page.</li>
-	<li>(TODO) <a href="#">Onglet coulissant</a> - Masque une section de contenu et affiche un onglet à l'extrémité de la zone de contenu permettant de faire basculer l'état d'affichage de ce contenu.</li>
-	<li>(TODO) <a href="#">Prettify</a> - Affiche de la syntaxe des extraits de code source.</li>
-	<li>(TODO) <a href="#">Rayage du zèbre</a> - Ajoute des rayures aux listes et aux tableaux.</li>
-	<li>(TODO) <a href="#">Sélecteur de langue</a> - Automatise la création de liens vers les versions de la page actuelle dans différentes langues.</li>
-	<li>(TODO) <a href="#">Validation de formulaires</a> - Effectue la validation de formulaires Web selon un ensemble de règles de base avant qu'ils soient soumis.</li>
+	<li>(TODO) <a href="#">Affichage des formules mathématiques ou scientifiques</a> - Émule le <a href="http://www.w3.org/Math/">MathML (en anglais seulement)</a> pour les navigateurs qui ne le supportent pas.</li>
+	<li>(TODO) <a href="#">Barre coulissante</a> - Émule l’élément <code>&lt;input type="range" /&gt;</code> pour les navigateurs qui ne le supportent pas.</li>
+	<li>(TODO) <a href="#">Barre de progression</a> - Émule l’élément <code>&lt;progress&gt;</code> pour les navigateurs qui ne le supportent pas.</li>
+	<li>(TODO) <a href="#">Contenu affichable/masquable</a> - Émule les éléments <code>&lt;details&gt;</code> et <code>&lt;summary&gt;</code> pour les navigateurs qui ne le supportent pas.</li>
+	<li>(TODO) <a href="#">Mémoire persistante</a> - Émule l’objet Web Storage <strong lang="en">localStorage</strong> pour les navigateurs qui ne le supportent pas.</li>
+	<li>(TODO) <a href="#">Saisie automatique</a> - Émule l'attribut list de l'élément <code>&lt;input&gt;</code>, ainsi que l'élément <code>&lt;datalist&gt;</code>, pour les navigateurs qui ne les supportent pas.</li>
+	<li>(TODO) <a href="#">Sélecteur de date</a> - Émule l'élément <code>&lt;input type="date" /&gt;</code> pour les navigateurs qui ne le supportent pas.</li>
 </ul>
 	
 <dl id="gcwu-date-mod" role="contentinfo">
