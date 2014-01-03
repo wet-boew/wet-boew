@@ -19,6 +19,7 @@ if [ "$POST_BUILD" == "true" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$
 	mkdir $HOME/temp_wet-boew
 	cp -R dist $HOME/temp_wet-boew/dist
 	cp -R demos $HOME/temp_wet-boew/demos
+	cp -R docs $HOME/temp_wet-boew/docs
 	cp -R test $HOME/temp_wet-boew/test
 	cp *.htm* $HOME/temp_wet-boew
 	cp *.md $HOME/temp_wet-boew
@@ -37,12 +38,14 @@ if [ "$POST_BUILD" == "true" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$
 		#Replace the new dist and demo folders and root files with the new ones
 		git rm -qrf dist/*
 		git rm -qrf demos/*
+		git rm -qrf docs/*
 		git rm -qrf test/*
 		cp -Rf $HOME/temp_wet-boew/* .
 
 		#Commit the result
 		git add -f dist
 		git add -f demos
+		git add -f docs
 		git add -f test
 		git add -f *.*
 		git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER"
