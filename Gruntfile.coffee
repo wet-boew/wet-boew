@@ -595,6 +595,7 @@ module.exports = (grunt) ->
 		htmlcompressor:
 			options:
 				type: "html"
+				concurrentProcess: 5
 			all:
 				cwd: "dist"
 				src: [
