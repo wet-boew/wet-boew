@@ -12,10 +12,6 @@
 					a {
 						color: #fff;
 						border-left: 1px solid #0B3048;
-						text-decoration: none;
-						&:hover, &:focus {
-							text-decoration: underline;
-						}
 						&.wb-navcurr {
 							&:link {
 								background: #0b3048;
