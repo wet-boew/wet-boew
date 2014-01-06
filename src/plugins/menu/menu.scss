@@ -44,9 +44,13 @@
 		> {
 			li {
 				position: relative;
+				margin: 0;
+				padding: 0;
+				float: left;
 				a {
 					text-align: center;
 					display: block;
+					padding: 1em;
 					&:hover, &:focus {
 						@extend %global-text-decoration-none;
 					}
@@ -75,6 +79,11 @@
 	.wb-menu {
 		.menu {
 			padding-right: 0;
+			> {
+				li {
+					float: right;
+				}
+			}
 		}
 		.sm {
 			&.open {
