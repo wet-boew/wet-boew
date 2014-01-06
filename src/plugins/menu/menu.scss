@@ -51,8 +51,9 @@
 					text-align: center;
 					display: block;
 					padding: 1em;
+					text-decoration: none;
 					&:hover, &:focus {
-						@extend %global-text-decoration-none;
+						text-decoration: underline;
 					}
 				}
 			}
