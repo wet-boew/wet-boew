@@ -38,6 +38,6 @@
 	<label for="country">S'il vous plaît entrer un code de pays à 2 caractères à remplacer la consultation</label>
 	<input type="text" id="country" maxlength="2" />
 	<br />
-	<input type="button" onClick="localStorage.setItem( 'countryCode', $('#country').val() );" value="Remplacer la valeur de countryCode" />
-	<input type="button" onClick="localStorage.removeItem( 'countryCode' );" value="Réinitialiser la valeur de countryCode" />
+	<input class="btn btn-primary" type="button" onClick="localStorage.setItem( 'countryCode', $('#country').val() );" value="Remplacer la valeur de countryCode" />
+	<input class="btn btn-primary" type="button" onClick="localStorage.removeItem( 'countryCode' );" value="Réinitialiser la valeur de countryCode" />
 </section>

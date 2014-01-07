@@ -38,6 +38,6 @@
 	<label for="country">Please enter a 2 character country code to override the lookup</label>
 	<input type="text" id="country" maxlength="2" />
 	<br />
-	<input type="button" onClick="localStorage.setItem( 'countryCode', $('#country').val() );" value="Set localStorage countryCode" />
-	<input type="button" onClick="localStorage.removeItem( 'countryCode' );" value="Clear localStorage value for countryCode" />
+	<input class="btn btn-primary" type="button" onClick="localStorage.setItem( 'countryCode', $('#country').val() );" value="Set localStorage countryCode" />
+	<input class="btn btn-primary" type="button" onClick="localStorage.removeItem( 'countryCode' );" value="Clear localStorage value for countryCode" />
 </section>
