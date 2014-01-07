@@ -223,9 +223,9 @@ module.exports = (grunt) ->
 					"lib/excanvas/excanvas.js"
 					"lib/html5shiv/dist/html5shiv-printshiv.js"
 					"src/core/wb.js"
-					"!src/plugins/**/test.js"
-					"!src/plugins/**/assets/*.js"
-					"!src/plugins/**/demo/*.js"
+					"!src/{plugins,polyfills,others}/**/test.js"
+					"!src/{plugins,polyfills,others}/**/assets/*.js"
+					"!src/{plugins,polyfills,others}/**/demo/*.js"
 				]
 				dest: "dist/unmin/js/ie8-wet-boew.js"
 
@@ -323,19 +323,9 @@ module.exports = (grunt) ->
 					assets: "dist/unmin"
 				files: [
 						expand: true
-						cwd: "src/plugins"
-						src: "**/*.hbs"
-						dest: "dist/unmin/demos"
-					,
-						expand: true
-						cwd: "src/polyfills"
-						src: "**/*.hbs"
-						dest: "dist/unmin/demos"
-					,
-						expand: true
-						cwd: "src/other"
-						src: "**/*.hbs"
-						dest: "dist/unmin/demos"
+						cwd: "src"
+						src: "{plugins,polyfills,others}/**/*.hbs"
+						dest: "dist/unmin"
 					,
 						cwd: "site/pages"
 						src: "**/*.hbs"
@@ -351,19 +341,9 @@ module.exports = (grunt) ->
 					assets: "dist"
 				files: [
 						expand: true
-						cwd: "src/plugins"
-						src: "**/*.hbs"
-						dest: "dist/demos"
-					,
-						expand: true
-						cwd: "src/polyfills"
-						src: "**/*.hbs"
-						dest: "dist/demos"
-					,
-						expand: true
-						cwd: "src/other"
-						src: "**/*.hbs"
-						dest: "dist/demos"
+						cwd: "src"
+						src: "{plugins,polyfills,others}/**/*.hbs"
+						dest: "dist"
 					,
 						cwd: "site/pages"
 						src: "**/*.hbs"
@@ -416,21 +396,9 @@ module.exports = (grunt) ->
 					flatten: true
 				,
 					expand: true
-					cwd: "src/plugins"
-					src: "**/demo/*.scss"
-					dest: "dist/unmin/demos/"
-					ext: ".css"
-				,
-					expand: true
-					cwd: "src/polyfills"
-					src: "**/demo/*.scss"
-					dest: "dist/unmin/demos/"
-					ext: ".css"
-				,
-					expand: true
-					cwd: "src/other"
-					src: "**/demo/*.scss"
-					dest: "dist/unmin/demos/"
+					cwd: "src"
+					src: "{plugins,polyfills,others}/**/demo/*.scss"
+					dest: "dist/unmin/"
 					ext: ".css"
 				]
 
@@ -468,9 +436,9 @@ module.exports = (grunt) ->
 				]
 
 			demos:
-				cwd: "dist/unmin/demos"
+				cwd: "dist/unmin/"
 				src: "**/*.css"
-				dest: "dist/unmin/demos/"
+				dest: "dist/unmin/"
 				expand: true
 
 		csslint:
@@ -511,7 +479,7 @@ module.exports = (grunt) ->
 						id: "csslint-xml"
 						dest: "csslint-demos.log"
 					]
-				src: "dist/unmin/demos/**/*.css"
+				src: "dist/unmin/{plugins,polyfills,others}/**/*.css"
 
 		# Minify
 		uglify:
@@ -532,9 +500,9 @@ module.exports = (grunt) ->
 					preserveComments: (uglify,comment) ->
 						return comment.value.match(/^!/i)
 				expand: true
-				cwd: "dist/unmin/demos/"
+				cwd: "dist/unmin/"
 				src: ["**/demo/*.js"]
-				dest: "dist/demos/"
+				dest: "dist/"
 				ext: ".min.js"
 
 			core:
@@ -586,11 +554,11 @@ module.exports = (grunt) ->
 					banner: "@charset \"utf-8\";\n/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 						" * v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n *\n */"
 				expand: true
-				cwd: "dist/unmin/demos/"
+				cwd: "dist/unmin/"
 				src: [
 					"**/demo/*.css"
 				]
-				dest: "dist/demos/"
+				dest: "dist/"
 				ext: ".min.css"
 
 		htmlcompressor:
@@ -671,34 +639,24 @@ module.exports = (grunt) ->
 					flatten: true
 				,
 					cwd: "src"
-					src: [
-						"plugins/**/assets/*"
-						"polyfills/**/assets/*"
-					]
+					src: "{plugins,polyfills,others}/**/assets/*"
 					dest: "dist/unmin/assets"
 					expand: true
 					flatten: true
 				]
 
 			demos:
-				files: [
-					cwd: "src/plugins"
-					src: [
-						"**/*.{jpg,html,xml}"
-						"**/demo/*.*"
-						"**/ajax/*.*"
-						"**/img/*.*"
-						"!**/assets/*.*"
-						"!**/*.scss"
-					]
-					dest: "dist/unmin/demos/"
-					expand: true
-				,
-					cwd: "src/polyfills"
-					src: "**/demo/*.js"
-					dest: "dist/unmin/demos/"
-					expand: true
+				cwd: "src"
+				src: [
+					"{plugins,polyfills,others}/**/*.{jpg,html,xml}"
+					"{plugins,polyfills,others}/**/demo/*.*"
+					"{plugins,polyfills,others}/**/ajax/*.*"
+					"{plugins,polyfills,others}/**/img/*.*"
+					"!**/assets/*.*"
+					"!**/*.scss"
 				]
+				dest: "dist/unmin/"
+				expand: true
 
 			cssIE8:
 				cwd: "dist/unmin/css/"
@@ -723,18 +681,18 @@ module.exports = (grunt) ->
 				expand: true
 
 			demos_min:
-				cwd: "dist/unmin/demos"
+				cwd: "dist/unmin"
 				src: [
-					"**/*.{jpg,html,xml}"
-					"**/demo/*.*"
-					"**/ajax/*.*"
-					"**/img/*.*"
+					"{plugins,polyfills,others}/**/*.{jpg,html,xml}"
+					"{plugins,polyfills,others}/**/demo/*.*"
+					"{plugins,polyfills,others}/**/ajax/*.*"
+					"{plugins,polyfills,others}/**/img/*.*"
 					# CSS is copied by the cssmin:demos_min task
 					"!**/*.css"
 					# CSS is copied by the uglify:demos task
 					"!**/*.js"
 				]
-				dest: "dist/demos/"
+				dest: "dist/"
 				expand: true
 
 			deploy:
@@ -849,16 +807,10 @@ module.exports = (grunt) ->
 							if /index|mobmenu[-]?\w*\.html/.test( url ) or not /\.html/.test( url )
 								return next()
 
-							dir = url.substring( 0, url.lastIndexOf( "/" ) + 1 )
+							testFile = url.substring( 0, url.lastIndexOf( "/" ) + 1 ).replace( "/dist/", "src/" ) + "test.js"
 
 							# Test to see if the plugin or polyfill has a test file
-							plugins = dir.replace("/dist/demos/", "src/plugins/") + "test.js"
-
-							polyfills = dir.replace("/dist/demos/", "src/polyfills/") + "test.js"
-
-							testFile = if fs.existsSync( plugins ) then plugins else if fs.existsSync( polyfills ) then polyfills else ""
-
-							if testFile != ""
+							if fs.existsSync( testFile )
 
 								result = fs.readFileSync( __dirname + url, { encoding: "utf-8" } )
 
@@ -867,15 +819,15 @@ module.exports = (grunt) ->
 
 								mochaPath = path.dirname( require.resolve( "mocha" ) )
 
-								testHtml = "<link src='/" + path.relative(__dirname, mochaPath) + "/mocha.css' />"
-								testHtml += "<script src='/" + path.relative(__dirname, mochaPath) + "/mocha.js'></script>"
+								testHtml = "<link src='/" + path.relative( __dirname, mochaPath ) + "/mocha.css' />"
+								testHtml += "<script src='/" + path.relative( __dirname, mochaPath ) + "/mocha.js'></script>"
 
 								# Append ExpectJS script
-								testHtml += "<script src='/" + path.relative(__dirname, require.resolve( "expect.js" ) ) + "'></script>"
+								testHtml += "<script src='/" + path.relative( __dirname, require.resolve( "expect.js" ) ) + "'></script>"
 
 								# Append Sinon scripts
-								testHtml += "<script src='/" + path.dirname( path.relative(__dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon.js'></script>"
-								testHtml += "<!--[if lt IE 9]><script src='/" + path.dirname( path.relative(__dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon-ie.js'></script><![endif]-->"
+								testHtml += "<script src='/" + path.dirname( path.relative( __dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon.js'></script>"
+								testHtml += "<!--[if lt IE 9]><script src='/" + path.dirname( path.relative( __dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon-ie.js'></script><![endif]-->"
 
 								testHtml += "<script>mocha.setup( 'bdd' ); wb.doc.on( 'ready', function() { mocha.run(); } );</script>"
 
@@ -911,13 +863,10 @@ module.exports = (grunt) ->
 						filter: ( src ) ->
 							src = path.dirname( src ).replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
 							return fs.existsSync( src + "/test.js" )
-						"src/plugins/**/*.hbs"
-						"src/polyfills/**/*.hbs"
+						"src/{plugins,polyfills,others}/**/*.hbs"
 					).map( ( src ) ->
 						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
 						src = src.replace( "src/", "dist/")
-						src = src.replace( "plugins/", "demos/" )
-						src = src.replace( "polyfills/", "demos/" )
 						src = src.replace( ".hbs", ".html" )
 						return "http://localhost:8000/" + src
 					)
@@ -929,13 +878,10 @@ module.exports = (grunt) ->
 						filter: ( src ) ->
 							src = path.dirname( src ).replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
 							return fs.existsSync( src + "/test.js" )
-						"src/plugins/**/*.hbs"
-						"src/polyfills/**/*.hbs"
+						"src/{plugins,polyfills,others}/**/*.hbs"
 					).map( ( src ) ->
 						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
 						src = src.replace( "src/", "dist/")
-						src = src.replace( "plugins/", "demos/" )
-						src = src.replace( "polyfills/", "demos/" )
 						src = src.replace( ".hbs", ".html" )
 						return "http://localhost:8000/" + src
 					)

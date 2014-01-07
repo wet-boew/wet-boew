@@ -1,10 +1,13 @@
 <div class="container nvbar">
 	<h2>{{#i18n "tmpl-site-menu"}}{{/i18n}}</h2>
-    <div class="row">
-        <ul class="list-inline menu">
+	<div class="row">
+		<ul class="list-inline menu">
 			<li><a href="{{assets}}/index-{{language}}.html">{{#i18n "tmpl-wet-project"}}{{/i18n}}</a></li>
 			<li><a href="https://github.com/wet-boew/wet-boew/wiki/{{#i18n "tmpl-implement-wet-wiki"}}{{/i18n}}">{{#i18n "tmpl-implement-wet"}}{{/i18n}}</a></li>
 			<li><a href="https://github.com/wet-boew/wet-boew/wiki/{{#i18n "tmpl-contribute-wet-wiki"}}{{/i18n}}">{{#i18n "tmpl-contribute-wet"}}{{/i18n}}</a></li>
-        </ul>
-    </div>
+			<li><a href="{{environment.root}}/plugins/index-{{language}}.html">{{#i18n "tmpl-plugins"}}{{/i18n}}</a></li>
+			<li><a href="{{environment.root}}/polyfills/index-{{language}}.html">{{#i18n "tmpl-polyfills"}}{{/i18n}}</a></li>
+			<li><a href="{{environment.root}}/other/index-{{language}}.html">{{#i18n "tmpl-others"}}{{/i18n}}</a></li>
+		</ul>
+	</div>
 </div>
