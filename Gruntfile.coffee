@@ -16,6 +16,7 @@ module.exports = (grunt) ->
 		"dist"
 		"Produces the production files"
 		[
+			"checkDependencies"
 			"test"
 			"build"
 			"assets-dist"
@@ -968,11 +969,15 @@ module.exports = (grunt) ->
 					"**/*.*"
 				]
 
-
+		checkDependencies:
+			all:
+				options:
+					npmInstall: false
 
 	# These plugins provide necessary tasks.
 	@loadNpmTasks "assemble"
 	@loadNpmTasks "grunt-autoprefixer"
+	@loadNpmTasks "grunt-check-dependencies"
 	@loadNpmTasks "grunt-contrib-clean"
 	@loadNpmTasks "grunt-contrib-concat"
 	@loadNpmTasks "grunt-contrib-connect"
