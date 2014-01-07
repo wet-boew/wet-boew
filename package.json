@@ -33,6 +33,7 @@
     "expect.js": "~0.2.0",
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~0.4.0",
+    "grunt-check-dependencies": "~0.3.0",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-connect": "~0.5.0",
