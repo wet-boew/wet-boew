@@ -424,6 +424,131 @@ describe( "Toggle test suite", function() {
 			expect( $detailsOff.hasClass( "off" ) ).to.equal( true );
 		});
 	});
+
+	/*
+	 * Test persistence behaviour
+	 */
+	describe( "Persist toggle state: no saved state", function() {
+		var $detailsLocal, $detailsSession,
+			keyLocal = "wb-toggletest-local",
+			keySession = "wb-toggletest-session";
+
+		before(function() {
+			spy.reset();
+			localStorage.removeItem( keyLocal );
+			sessionStorage.removeItem( keySession );
+
+			$detailsLocal = $( "<details class=\"wb-toggle\" id=\"test-local\" data-toggle='{\"persist\": \"local\"}'><summary></summary></details>" )
+				.appendTo( wb.doc.find( "body" ) )
+				.trigger( "wb-init.wb-toggle" );
+
+			$detailsSession = $( "<details class=\"wb-toggle\" id=\"test-session\" data-toggle='{\"persist\": \"session\"}'><summary></summary></details>" )
+				.appendTo( wb.doc.find( "body" ) )
+				.trigger( "wb-init.wb-toggle" );
+		});
+
+		after(function() {
+			$detailsLocal.remove();
+			$detailsSession.remove();
+		});
+
+		it( "should not trigger toggle.wb-toggle when initialized", function() {
+			expect( spy.calledWith( "toggle.wb-toggle" ) ).to.equal( false );
+			expect( localStorage.getItem( keyLocal ) ).to.equal( null );
+			expect( sessionStorage.getItem( keySession ) ).to.equal( null );
+		});
+
+		it( "should save the toggle 'on' state in localStorage", function() {
+			$detailsLocal.trigger( "click" );
+			expect( localStorage.getItem( keyLocal ) ).to.equal( "on" );
+		});
+
+		it( "should save the toggle 'off' state in localStorage", function() {
+			$detailsLocal.trigger( "click" );
+			expect( localStorage.getItem( keyLocal ) ).to.equal( "off" );
+		});
+
+		it( "should save the toggle 'on' state in sessionStorage", function() {
+			$detailsSession.trigger( "click" );
+			expect( sessionStorage.getItem( keySession ) ).to.equal( "on" );
+		});
+
+		it( "should save the toggle 'off' state in sessionStorage", function() {
+			$detailsSession.trigger( "click" );
+			expect( sessionStorage.getItem( keySession ) ).to.equal( "off" );
+		});
+	});
+
+	describe( "Persist toggle state: saved state", function() {
+		var $details,
+			key = "wb-toggletest-session";
+
+		before(function() {
+			spy.reset();
+			sessionStorage.setItem( key, "on" );
+
+			$details = $( "<details class=\"wb-toggle\" id=\"test-session\" data-toggle='{\"persist\": \"session\"}'><summary></summary></details>" )
+				.appendTo( wb.doc.find( "body" ) )
+				.trigger( "wb-init.wb-toggle" );
+		});
+
+		after(function() {
+			$details.remove();
+		});
+
+		it( "should trigger toggle.wb-toggle when initialized", function() {
+			expect( spy.calledWith( "toggle.wb-toggle" ) ).to.equal( true );
+			expect( sessionStorage.getItem( key ) ).to.equal( "on" );
+		});
+
+		it( "should save the toggle 'off' state in sessionStorage", function() {
+			$details.trigger( "click" );
+			expect( sessionStorage.getItem( key ) ).to.equal( "off" );
+		});
+	});
+
+	describe( "Persist toggle state: group toggle", function() {
+		var $details1, $details2,
+			key1 = "wb-toggle.test-grouptest-1",
+			key2 = "wb-toggle.test-grouptest-2";
+
+		before(function() {
+			spy.reset();
+			sessionStorage.removeItem( key1 );
+			sessionStorage.removeItem( key2 );
+
+			$details1 = $( "<details class=\"wb-toggle test-group\" id=\"test-1\" data-toggle='{\"persist\": \"session\", \"group\": \".test-group\"}'><summary></summary></details>" )
+				.appendTo( wb.doc.find( "body" ) );
+			$details2 = $( "<details class=\"wb-toggle test-group\" id=\"test-2\" data-toggle='{\"persist\": \"session\", \"group\": \".test-group\"}'><summary></summary></details>" )
+				.appendTo( wb.doc.find( "body" ) );
+
+			$details1.trigger( "wb-init.wb-toggle" );
+			$details2.trigger( "wb-init.wb-toggle" );
+		});
+
+		after(function() {
+			$details1.remove();
+			$details2.remove();
+		});
+
+		it( "should save the 'on' state for $details1 and clear the state for $details2", function() {
+			$details1.trigger( "click" );
+			expect( sessionStorage.getItem( key1 ) ).to.equal( "on" );
+			expect( sessionStorage.getItem( key2 ) ).to.equal( null );
+		});
+
+		it( "should save the 'off' state for $details1 and clear the state for $details2", function() {
+			$details1.trigger( "click" );
+			expect( sessionStorage.getItem( key1 ) ).to.equal( "off" );
+			expect( sessionStorage.getItem( key2 ) ).to.equal( null );
+		});
+
+		it( "should clear the state for $details1 and save the 'on' state for $details2", function() {
+			$details2.trigger( "click" );
+			expect( sessionStorage.getItem( key1 ) ).to.equal( null );
+			expect( sessionStorage.getItem( key2 ) ).to.equal( "on" );
+		});
+	});
 });
 
 }( jQuery, wb ));
