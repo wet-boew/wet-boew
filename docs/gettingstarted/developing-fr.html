@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-<title>Cadre fondamental - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+<title>Guide d'utilisation de GitHub pour la BOEW - Comment démarrer - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../dist/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="French description / Description en français" />
@@ -54,7 +54,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-fra.html">Ministères</a></li>
-<li id="gcwu-gcnb-lang"><a href="core-en.html" lang="en">English</a></li>
+<li id="gcwu-gcnb-lang"><a href="developing-en.html" lang="en">English</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -87,7 +87,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <ol>
 <li><a href="../../index-fr.html">Accueil</a></li>
 <li><a href="../index-fr.html">Documentation</a></li>
-<li>Cadre fondamental</li>
+<li><a href="index-fr.html">Comment démarrer</a></li>
+<li>Guide d'utilisation de GitHub pour la BOEW</li>
 </ol></div></div>
 </nav>
 <!-- HeaderEnd -->
@@ -96,112 +97,62 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Cadre fondamental</h1>
+<h1 id="wb-cont">Guide d'utilisation de GitHub pour la BOEW</h1>
 
 <div lang="en">
 <p><strong>Needs translation</strong></p>
 
-<p>The core Framework binds the themes, plugins, polyfills and other components together into a seamless toolkit that promotes accessibility, usability and a mobile conscious design. </p>
-
 <section>
-	<h2>Overview</h2>
-	<p>The Web Experience Toolkit (WET) emerged out of CLF (Common Look and Feel), but its current incarnation is focused on promoting accessible and usable solutions for websites, by using best practices, meeting <a href="http://www.w3.org/TR/WCAG/">WCAG</a> requirements and following <a href="http://www.w3.org/TR/wai-aria/">WAI-ARIA</a> guidelines set by the <a href="http://www.w3.org">W3C</a>.</p>
-	<p>WET also provides a strong mobile experience, by maintaining a small footprint and implementing a responsive-design layout.</p>
-
-	<section>
-		<h3>Rationale</h3>
-		<p>There are many benefits to using WET, some of which include:</p>
-		<ul>
-			<li>Respects accessibility (WCAG 2.0 AA and WAI-ARIA), usability, and interoperability.</li>
-			<li>Reduces costs by consolidating Web tools and solutions.</li>
-			<li>Open source software that is free to use by departments and external Web communities.</li>
-		</ul>
-	</section>
-</section>
-
-<section>
-	<h2>Implementation</h2>
-	<p>To implement WET use the <strong>dist</strong>. The only necessary sub-folders are:</p>
+	<h2>Folder structure</h2>
 	<ul>
-		<li><strong>grids</strong> - the CSS grid system folder;</li>
-		<li><strong>js</strong> - the JavaScript folder; and</li>
-		<li>an appropriate <strong>theme</strong> folder (optional):
+		<li><strong>root:</strong> The most important file to note in the root is the build.xml file.  This is what you will run to build the project. See <a href="building-en.html">Building WET</a>.</li>
+		<li><strong>build:</strong> Contains the build scripts and build dependencies for WET.</li>
+		<li>
+			<strong>dist:</strong> This directory contains the resulting files/directories created using the WET 3.0 build process. This folder includes most of the code files that a web project using WET will need. (Such as the CSS and jQuery files). The original contents of build reside in the src folder.  This folder includes the components used to build a WET website.
 			<ul>
-				<li><strong>theme-gcwu-fegc</strong> - The Government of Canada Web Usability theme</li>
-				<li><strong>theme-gcwu-intranet</strong> - The Government of Canada Web Usability Intranet theme</li>
-				<li><strong>theme-clf2-nsi2</strong> - The CLF 2.0 theme</li>
+				<li><strong>grids:</strong> Includes CSS and images for Grid system. CSS files were originally coded in SASS, and then converted to CSS during the build process.</li>
+				<li><strong>js:</strong> Includes files for JQuery functionality and CSS to style them.
+				<li><strong>lib:</strong> Contains libraries used as part of the build process. This folder is not necessary for implementation; but is important for WET development.</li>
+				<li><strong>theme-gcwu-fegc:</strong> The GC Web Usability theme is currently the only theme supported in WET 3.0. Any files specific to this theme will be built here.</li>
+			</ul>
+		</li>
+		<li>
+			<strong>src:</strong> This folder includes the initial files and source code for the WET 3.0 project. The src folder is a structured tree of files with ant scripts used to build the project.   Although this folder is used by developers to create the final build folder, it is not used in the final website.
+			<ul>
+				<li><strong>base:</strong> Some base SASS files to format your website under certain conditions. (different browsers, mobile, etc)  These files are used for all pages, regardless of theme.</li>
+				<li><strong>grids:</strong> SASS files and images for Grid add-on. This add-on provides users with a series of css styles to use. The SASS is converted to CSS during the build process.  <a href="../../demos/grids/grid-utilities-en.html">View different ways to use the grid system here</a>.</li>
+				<li><strong>js:</strong> Contains the Javascript Framework which includes plugins, libraries and polyfills.</li>
+				<li><strong>theme-gcwu-fegc:</strong> This is where theme specific code is developed.  The GC web usability theme is made up of both CSS and jQuery.</li>
 			</ul>
 		</li>
 	</ul>
-	<p><strong>Note:</strong> Keep the folder names and hierarchy, as the files use relative paths to refer to each other. The other folders and files are created during the build process and are unnecessary to implementation.</p>
+</section>
 
-	<section>
-		<h3>Header</h3>
-		<p>WET requires that the following style sheets and jQuery be loaded in the header.</p>
+<section lang="fr">
+	<h2>Construire la BOEW</h2>
+	<p>Consultez <a href="building-fr.html">Construire la BOEW</a></p>
+</section>
 
-		<section>
-			<h4>Style sheets</h4>
-			<p>The style sheets are separated into two different sets, one for IE7 and another for all other browsers.</p>
-			<pre class="wet-boew-prettify">&lt;head&gt; 
-...
-&lt;--[if lte IE 8]&gt;
-&lt;script src="../../dist/js/polyfills/html5shiv-min.js"&gt;&lt;/script&gt;
-&lt;link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" /&gt;
-&lt;link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" /&gt;
-&lt;link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" /&gt;
-&lt;![endif]--&gt;
-&lt;--[if gt IE 8]&gt;&lt;--&gt;
-&lt;link rel="stylesheet" href="../../dist/grids/css/util-min.css"&gt;
-&lt;link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css"&gt;
-&lt;link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css"&gt;
-&lt;--&lt;![endif]--&gt;
-&lt;noscript&gt;&lt;link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css"&gt;&lt;/noscript&gt;
-...
-&lt;/head&gt;</pre>
-		</section>
+<section lang="fr">
+	<h2>Ajoutant de nouvelles fonctionnalités</h2>
+	<p>Consultez <a href="adding-fr.html">Ajoutant de nouvelles fonctionnalités</a></p>
+</section>
 
-		<section>
-			<h4>jQuery</h4>
-			<p>jQuery is the only JavaScript file that we recommend loading in the header.</p>
-			<pre class="wet-boew-prettify">&lt;head&gt;
-...
-&lt;script src="../../dist/js/jquery.min.js"&gt;&lt;/script&gt;
-...
-&lt;/head&gt;</pre>
-			<p><strong>Note:</strong> We recommend you use the jQuery file included in WET and not from a public CDN as this is the version used within the toolkit.</p>
-		</section>
-	</section>
+<section lang="fr">
+	<h2>Lignes directrices pour les contributeurs</h2>
+	<p>Consultez <a href="contributing-fr.html">Lignes directrices pour les contributeurs</a></p>
+</section>
 
-	<section>
-		<h3>Body</h3>
-		<p>We load the rest of the JavaScript files at the end of the body to decrease the load time of the page. This way the browser will load the content and run the JavaScript enhancements simultaneously.</p>
-		<p>Load the following files at the bottom of the body:</p>
-		<pre class="wet-boew-prettify">&lt;body&gt;
-...
-&lt;-- ScriptsStart --&gt;
-&lt;script src="../../build/theme-gcwu-fegc/js/theme-min.js"&gt;&lt;/script&gt;
-&lt;script src="../../build/js/settings.js"&gt;&lt;/script&gt;
-&lt;script src="../../build/js/pe-ap-min.js"&gt;&lt;/script&gt;
-&lt;-- ScriptsEnd --&gt;
-&lt;/body&gt;</pre>
-	</section>
-
-	<section>
-		<h3>Grid System</h3>
-		<p>The Grid System provides a layout grid for dividing up horizontal and vertical space. This helps to create visually appealing layouts by enabling consistent placement of content. The Grid System also enhances the appearance of standard Web page components and provides modules and other features building building and styling Web page content.</p>
-		<p><a href="../../demos/grids/grid-base-en.html">How to use the Grid System</a></p>
-	</section>
-
-	<section>
-		<h3>Plugins</h3>
-		<p>All plugin calls in WET are done via the class tags using the format: <code>class="wet-boew-<em>plugin-name parameter1 parameter2 etc</em>"</code></p>
-		<p>Here is an example using the Prettify plugin: <code>&lt;h2 id="examples" class="wet-boew-prettify all-pre" data-load="prettify"&gt;Examples&lt;/h2&gt;</code></p>
-		<p>In this example the <em>plugin-name</em> is "prettify" and there is only one <em>parameter</em> "all-pre" which is passed.</p>
-		<p>For more detailed instructions regarding plugins see the documentation regarding each individual <a href="plugins-en.html">plugin</a></p>
-	</section>
+<section>
+	<h2>Related pages</h2>
+	<ul>
+		<li><a href="index-fr.html" lang="fr">Comment démarrer</a></li>
+		<li><a href="github-fr.html" lang="fr">Guide d'utilisation de GitHub pour la BOEW</a></li>
+		<li><a href="implementing-fr.html" lang="fr">Mise en œuvre de la BOEW</a></li>
+	</ul>
 </section>
 </div>
-	
+
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date de modification&#160;:</dt><dd><span><time>2013-09-01</time></span></dd>
 </dl>
