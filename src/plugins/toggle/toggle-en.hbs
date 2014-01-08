@@ -23,10 +23,12 @@
 			<a href="#details" class="list-group-item">Details Elements</a>
 			<a href="#grouped" class="list-group-item">Grouped Toggle</a>
 			<a href="#accordion" class="list-group-item">Accordion</a>
+			<a href="#persist" class="list-group-item">Persist Toggle State</a>
 		</div>
 	</div>
 
 	<div class="col-md-9">
+	
 		<section>
 			<h2 id="setup" class="mrgn-tp-0">Plugin Setup</h2>
 			<p>Adding the <code>.wb-toggle</code> CSS class to any element will turn it into a toggle element.  The behaviour of this toggle element is then controlled by the <code>data-toggle</code> attribute which takes a JavaScript object of properties:</p>
@@ -52,22 +54,32 @@
 						<td>CSS selector that groups multiple toggle elements together and only allows one of the elements to be open at a time.</td>
 					</tr>
 					<tr>
+						<td><code>persist</code></td>
+						<td>
+							Causes a toggle element to remember its current state and re-apply it when the page reloads.  Supports the following values:
+							<ul>
+								<li><strong>session:</strong> toggle state will persist until the user closes their browser window or tab.</li>
+								<li><strong>local:</strong> toggle state will persist even after the browser window or tab is closed.</li>
+							</ul>
+						</td>
+					</tr>					
+					<tr>
 						<td><code>print</code></td>
 						<td>
-							Causes a toggle element to turn the elements it controls on or off when the page is printed.  Supports the following two values:
+							Causes a toggle element to turn the elements it controls on or off when the page is printed.  Supports the following values:
 							<ul>
-								<li>on: elements will be set to "on" toggle state for printing.</li>
-								<li>off: elements will be set to "off" toggle state for printing.</li>
+								<li><strong>on:</strong> elements will be set to "on" toggle state for printing.</li>
+								<li><strong>off:</strong> elements will be set to "off" toggle state for printing.</li>
 							</ul>  
 						</td>
 					</tr>					
 					<tr>
 						<td><code>type</code></td>
 						<td>
-							Causes a toggle element to only turn the elements it controls on or off.  Supports the following two values:
+							Causes a toggle element to only turn the elements it controls on or off.  Supports the following values:
 							<ul>
-								<li>on: toggle element will only turn elements to the "on" toggle state.</li>
-								<li>off: toggle element will only turn elements to the "off" toggle state.</li>
+								<li><strong>on:</strong> toggle element will only turn elements to the "on" toggle state.</li>
+								<li><strong>off:</strong> toggle element will only turn elements to the "off" toggle state.</li>
 							</ul>  
 						</td>
 					</tr>
@@ -460,5 +472,40 @@
 &lt;/div&gt;</code></pre>
 
 		</section>
+		
+		<section>
+			<h2 id="persist">Persist Toggle State</h2>
+			<p>The following <code>details</code> element will remember its toggle state as long as this browser window (or tab) remains open.</p>
+			<details>
+				<summary class="wb-toggle" data-toggle='{"persist": "session"}'>Example 1</summary>
+				<p>Example content that provides more details.</p>
+				<table>
+					<caption>Cups of coffee consumed by each delegate</caption>
+					<thead>
+						<tr>
+							<th scope="col">Name</th>
+							<th scope="col">Cups</th>
+							<th scope="col">Type of Coffee</th>
+							<th scope="col">Sugar?</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>T. Sexton</td>
+							<td>10</td>
+							<td>Espresso</td>
+							<td>No</td>
+						</tr>
+						<tr>
+							<td>J. Dinnen</td>
+							<td>5</td>
+							<td>Decaf</td>
+							<td>Yes</td>
+						</tr>
+					</tbody>
+				</table>
+			</details>
+
+		</section>		
 	</div>
 </div>
