@@ -48,17 +48,7 @@
 			valuePoint,
 			currentRowGroup, reverseTblParsing, dataGroupVector,
 			dataCell, previousDataCell, currDataVector,
-			optionsGlobal, optionsSeries, optionCurrent = {}, optionsTick,
-			// For debuging and documentation purpose
-			printObj = typeof JSON !== "undefined" ? JSON.stringify : function( obj ) {
-				var arr = [];
-				$.each( obj, function( key, val ) {
-					var next = key + ": ";
-					next += $.isPlainObject( val ) ? printObj( val ) : val;
-					arr.push( next );
-				});
-				return "{ " + arr.join( ", " ) + " }";
-			};
+			optionsGlobal, optionsSeries, optionCurrent = {}, optionsTick;
 
 		/**
 		 * Scoped convertion of CSS Options/Parameter into a JSON object
@@ -452,19 +442,6 @@
 			return config;
 		}
 
-		function showOutput(obj) {
-			
-			var $container = $( "#log" ),
-				$subContainer = $( "<p>" );
-			if ($container.length === 0) {
-				$container = $("<div id='log' />").prependTo(".col-md-12");
-			
-			}
-			
-			$container.append( $subContainer.append( printObj( obj) ) );
-			
-		}
-
 		optionsGlobal = {
 			prefix: "wb-charts-",
 			defaults: {
@@ -556,12 +533,6 @@
 		
 		// Extend config from @data-wet-boew attribute
 		optionCurrent = $.extend( true, optionCurrent, wb.getData( $elm, "wet-boew" ) );
-		
-		// Build the option "xaxis:{tick:[[0, "col1"]]},.....
-
-		//showOutput(optionCurrent);
-		// $elm.dataTable( $.extend( true, defaults, wb.getData( $elm, "wet-boew" ) ) );
-		// options
 
 		// 3. [Table element] CSS Overwrite - [Keep a list of required plugin "defaultnamespace-plugin" eg. wb-charts-donnut]
 		options = setClassOptions( options, $elm.attr( "class" ) || "" );
@@ -1137,10 +1108,6 @@
 				// Create the graphic
 				$.plot( $placeHolder, allSeries, optionCurrent );
 
-				// For DEBUGING
-				showOutput(allSeries);
-				showOutput(optionCurrent);
-
 				if ( options.nolegend ) {
 					// Remove the legend
 					$( ".legend", $placeHolder ).remove();
@@ -1314,10 +1281,6 @@
 			// Move the table inside the figure element
 			$( $elm ).appendTo( figureElem );
 		}
-
-		// For DEBUGING
-		showOutput(allSeries);
-		showOutput(optionCurrent);
 
 		// Create the graphic
 		$.plot( $placeHolder, allSeries, optionCurrent );
