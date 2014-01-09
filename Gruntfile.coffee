@@ -491,6 +491,7 @@ module.exports = (grunt) ->
 				"outline-none": false
 				"overqualified-elements": false
 				"qualified-headings": false
+				"regex-selectors": false
 				"unique-headings": false
 				"universal-selector": false
 				"unqualified-attributes": false
