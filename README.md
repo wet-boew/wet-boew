@@ -26,7 +26,7 @@
 * [Contributor guidelines](http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-en.html)
 * [Versioning](http://wet-boew.github.io/wet-boew/docs/versions/version-info-en.html)
 * [Version history](http://wet-boew.github.io/wet-boew/docs/versions/index-en.html)
-* [Roadmap](https://github.com/wet-boew/wet-boew/wiki/Roadmap)
+* [Roadmap](http://wet-boew.github.io/wet-boew/docs/versions/rdmp-en.html)
 
 ## Benefits
 
@@ -144,7 +144,7 @@
 * [Lignes directrices pour les contributeurs](http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-fr.html)
 * [Contrôle des versions](http://wet-boew.github.io/wet-boew/docs/versions/version-info-fr.html)
 * [Historique des versions](http://wet-boew.github.io/wet-boew/docs/versions/index-fr.html)
-* [Feuille de route](https://github.com/wet-boew/wet-boew/wiki/Feuille-de-route)
+* [Feuille de route](http://wet-boew.github.io/wet-boew/docs/versions/rdmp-fr.html)
 
 ## Avantages
 
