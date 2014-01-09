@@ -21,6 +21,7 @@ var pluginName = "wb-toggle",
 	initEvent = "wb-init" + selector,
 	toggleEvent = "toggle" + selector,
 	toggledEvent = "toggled" + selector,
+	elmIdx = 0,
 	states = {},
 	$document = wb.doc,
 	$window = wb.win,
@@ -47,16 +48,22 @@ var pluginName = "wb-toggle",
 
 			wb.remove( selector );
 			link.className += " " + initedClass;
+			elmIdx += 1;
 
 			// Merge the elements settings with the defaults
 			$link = $( link );
 			data = $.extend( {}, defaults, $link.data( "toggle" ) );
 			$link.data( "toggle", data );
 
-			// Initialize the aria attributes of the toggle element
+			// Add aria attributes of the toggle element
 			initAria( link, data );
 
-			// Initialize the toggle behaviour when the page is printed
+			// Persist toggle state across page loads
+			if ( data.persist ) {
+				initPersist( $link, data );
+			}
+
+			// Toggle behaviour when the page is printed
 			if ( data.print ) {
 				initPrint( $link, data );
 			}
@@ -72,7 +79,7 @@ var pluginName = "wb-toggle",
 		var i, len, elm, elms, parent, tabs, tab, panel, isOpen,
 			ariaControls = "",
 			hasOpen = false,
-			prefix = "wb-" + new Date().getTime();
+			prefix = "wb-" + elmIdx;
 
 		// Group toggle elements with a parent are assumed to be a tablist
 		if ( data.group != null && data.parent != null ) {
@@ -142,6 +149,32 @@ var pluginName = "wb-toggle",
 	 * @param {jQuery Object} $link The toggle element to initialize
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 */
+	initPersist = function( $link, data ) {
+		var state,
+			link = $link[ 0 ];
+
+		// Make sure the toggle link has an ID.
+		// This will be used as part of the unique storage key.
+		if ( !link.id ) {
+			link.id = "wb-" + elmIdx;
+		}
+
+		// Store the persistence type and key for later use
+		data.persist = data.persist === "session" ? sessionStorage : localStorage;
+		data.persistKey = pluginName + ( data.group ? data.group : "" ) + link.id;
+
+		// If there's a saved toggle state, trigger the change to that state
+		state = data.persist.getItem( data.persistKey );
+		if ( state ) {
+			$link.trigger( toggleEvent, $.extend( {}, data, { type: state } ) );
+		}
+	},
+
+	/**
+	 * Initialize open on print behaviour of the toggle element
+	 * @param {jQuery Object} $link The toggle element to initialize
+	 * @param {Object} data Simple key/value data object passed when the event was triggered
+	 */
 	initPrint = function( $link, data ) {
 		var mediaQuery,
 			printEvent = "beforeprint";
@@ -183,8 +216,9 @@ var pluginName = "wb-toggle",
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 */
 	toggle = function( event, data ) {
-		var dataGroup, $elmsGroup,
+		var dataGroup, key, $elmsGroup,
 			isGroup = !!data.group,
+			isPersist = !!data.persist,
 			isTablist = isGroup && !!data.parent,
 			link = event.currentTarget,
 			$link = $( link ),
@@ -212,6 +246,15 @@ var pluginName = "wb-toggle",
 				isTablist: isTablist,
 				elms: $elmsGroup
 			});
+
+			// Remove all grouped persistence keys
+			if ( isPersist ) {
+				for ( key in data.persist ) {
+					if ( key.indexOf( pluginName + data.group ) === 0 ) {
+						data.persist.removeItem( key );
+					}
+				}
+			}
 		}
 
 		// Set the toggle state. For tab lists, this is set on the tab element
@@ -224,6 +267,16 @@ var pluginName = "wb-toggle",
 			isTablist: isTablist,
 			elms: $elms
 		});
+
+		// Store the toggle link's current state if persistence is turned on.
+		// Try/catch is required to address exceptions thrown when using BB10 or
+		// private browsing in iOS.
+		if ( isPersist ) {
+			try {
+				data.persist.setItem( data.persistKey, stateTo );
+			} catch ( error ) {
+			}
+		}
 	},
 
 	/**
@@ -292,31 +345,26 @@ var pluginName = "wb-toggle",
 			selector = data.selector,
 			type = data.type;
 
-		if ( $link[ 0 ].nodeName.toLowerCase() === "summary" ) {
-
-			// Use the open attribute to determine state
-			return $link.parent().attr( "open" ) ? data.stateOn : data.stateOff;
-		} else {
-
-			// No toggle type: get the current on/off state of the elements
-			// specified by the selector and parent
-			if ( !type ) {
-				if ( !selector ) {
-					return $link.data( "state" ) || data.stateOff;
-
-				} else if ( states.hasOwnProperty( selector ) ) {
-					return states[ selector ].hasOwnProperty( parent ) ?
-						states[ selector ][ parent ] :
-						states[ selector ].all;
-				}
-
-				return data.stateOff;
-			}
-
-			// Type: get opposite state of the type. Toggle reverses this
-			// to the requested state.
+		// Get opposite state of the type. Toggle reverses this
+		// to the requested state.
+		if ( type ) {
 			return type === "on" ? data.stateOff : data.stateOn;
+
+		// <details> elements use the open attribute to determine state
+		} else if ( $link[ 0 ].nodeName.toLowerCase() === "summary" ) {
+			return $link.parent().attr( "open" ) ? data.stateOn : data.stateOff;
+
+		// When no selector, use the data attribute of the link
+		} else if ( !selector ) {
+			return $link.data( "state" ) || data.stateOff;
+
+		// Get the current on/off state of the elements specified by the selector and parent
+		} else if ( states.hasOwnProperty( selector ) ) {
+			return states[ selector ].hasOwnProperty( parent ) ?
+				states[ selector ][ parent ] :
+				states[ selector ].all;
 		}
+		return data.stateOff;
 	},
 
 	/*
