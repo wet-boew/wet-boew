@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-<title>Lignes directrices pour les contributeurs - Développer pour la BOEW - Comment démarrer - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+<title>Guide d'utilisation de GitHub pour la BOEW - Comment démarrer - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../dist/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="French description / Description en français" />
@@ -54,7 +54,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-fra.html">Ministères</a></li>
-<li id="gcwu-gcnb-lang"><a href="contributing-en.html" lang="en">English</a></li>
+<li id="gcwu-gcnb-lang"><a href="dev-en.html" lang="en">English</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -88,8 +88,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li><a href="../../index-fr.html">Accueil</a></li>
 <li><a href="../index-fr.html">Documentation</a></li>
 <li><a href="index-fr.html">Comment démarrer</a></li>
-<li><a href="developing-fr.html">Développer pour la BOEW</a></li>
-<li>Lignes directrices pour les contributeurs</li>
+<li>Guide d'utilisation de GitHub pour la BOEW</li>
 </ol></div></div>
 </nav>
 <!-- HeaderEnd -->
@@ -98,91 +97,61 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Lignes directrices pour les contributeurs</h1>
+<h1 id="wb-cont">Guide d'utilisation de GitHub pour la BOEW</h1>
+
+<div lang="en">
+<p><strong>Needs translation</strong></p>
 
 <section>
-	<h2>Rapporter un problème ou une anomalie</h2>
+	<h2>Folder structure</h2>
 	<ul>
-		<li>Quelle version de la BOEW est affectée (v3.0.0, v3.0.1, etc)? Si ce n'est pas la dernière version stable, est-ce que la dernière version a résolue le problème?</li>
-		<li>Le problème fut trouvé avec quel navigateur (IE8, FireFox 18, Chrome 24, ou une combinaison de navigateurs)?</li>
-		<li>Un lien vers une page pouvant être utilisée pour reproduire le problème (URL public ou démo). Si une page ne peut être fournie, une photo peut ête attachée montrant le problème (utilisez [[la capacité fichier joint de GitHub | https://github.com/blog/1347-issue-attachments]] à cet effet.)</li>
+		<li><strong>root:</strong> The most important file to note in the root is the build.xml file.  This is what you will run to build the project. See <a href="build-en.html">Building WET</a>.</li>
+		<li><strong>build:</strong> Contains the build scripts and build dependencies for WET.</li>
+		<li>
+			<strong>dist:</strong> This directory contains the resulting files/directories created using the WET 3.0 build process. This folder includes most of the code files that a web project using WET will need. (Such as the CSS and jQuery files). The original contents of build reside in the src folder.  This folder includes the components used to build a WET website.
+			<ul>
+				<li><strong>grids:</strong> Includes CSS and images for Grid system. CSS files were originally coded in SASS, and then converted to CSS during the build process.</li>
+				<li><strong>js:</strong> Includes files for JQuery functionality and CSS to style them.
+				<li><strong>lib:</strong> Contains libraries used as part of the build process. This folder is not necessary for implementation; but is important for WET development.</li>
+				<li><strong>theme-gcwu-fegc:</strong> The GC Web Usability theme is currently the only theme supported in WET 3.0. Any files specific to this theme will be built here.</li>
+			</ul>
+		</li>
+		<li>
+			<strong>src:</strong> This folder includes the initial files and source code for the WET 3.0 project. The src folder is a structured tree of files with ant scripts used to build the project.   Although this folder is used by developers to create the final build folder, it is not used in the final website.
+			<ul>
+				<li><strong>base:</strong> Some base SASS files to format your website under certain conditions. (different browsers, mobile, etc)  These files are used for all pages, regardless of theme.</li>
+				<li><strong>grids:</strong> SASS files and images for Grid add-on. This add-on provides users with a series of css styles to use. The SASS is converted to CSS during the build process.  <a href="../../demos/grids/grid-utilities-en.html">View different ways to use the grid system here</a>.</li>
+				<li><strong>js:</strong> Contains the Javascript Framework which includes plugins, libraries and polyfills.</li>
+				<li><strong>theme-gcwu-fegc:</strong> This is where theme specific code is developed.  The GC web usability theme is made up of both CSS and jQuery.</li>
+			</ul>
+		</li>
 	</ul>
 </section>
 
-<section>
-	<h2>Créér une demande de retrait</h2>
-	<p>Les demandes de retrait sont les bienvenues. Assurez-vous d'apporter les changements dans la dernière version du code et de limiter le champ de validation (commit range) seulement aux fichiers que vous aviez l’intention de modifier (pour éviter les conflits).</p>
-	<ul>
-		<li>Pour réduire la pollution du code de base avec chaque sauvegarde (commit) considérez <a rel="external" href="http://git-scm.com/book/en/Git-Branching-Rebasing">re-niveler (Rebasing)</a> vos sauvegardes avant de créér une demande de retrait sur la branche principale.</li>
-	</ul>
-
-	<section>
-		<h3>Nouveaux composants</h3>
-		<p>Les nouvelles composantes devraient être ajoutées dans un branchement de type feature-* (p. ex., feature-lightbox).</p>
-		<ul>
-			<li>Crééz une nouvelle branche de la principale de la façon suivante:
-				<ul>
-					<li><code>git fetch upstream</code></li>
-					<li><code>git checkout upstream/master</code></li>
-					<li><code>git checkout -b feature-nouvelle-composante</code></li>
-				</ul>
-			<li>Les licences de toutes les nouvelles composantes et du code afférent doivent être compatibles avec la licence MIT utilisée par la Boîte à outils de l’expérience Web (BOEW).</li>
-			<li>Les nouveaux modules d’extension devraient suivre le structure et format des plugiciels actuels.</li>
-			<li>Inclure le bloc de texte sur les conditions d’utilisation de la BOEW dans tous les fichiers sources textuels soumis aux droits d’auteur de la Couronne.</li>
-		</ul>
-	</section>
-
-	<section>
-		<h3>Résolution de bogues et rustines logicielles applicable à toutes les versions</h3>
-		<p>Devrait être soumise sur la branche v3.0.</p>
-		<ul>
-			<li>Créér une nouvelle branche à partir de v3.0 de la façon suivante:
-				<ul>
-					<li><code>git fetch upstream</code></li>
-					<li><code>git checkout upstream/v3.0</code></li>
-					<li><code>git checkout -b -description-ma-rustine</code></li>
-				</ul>
-			</li>
-		</ul>
-	</section>
-
-	<section>
-		<h3>Testez votre RP avant de le soumettre</h3>
-		<ul>
-			<li>
-				<a rel="external" href="http://validator.w3.org/nu/">Valider votre balisage HTML</a>. Le balisage devrait être en HTML5 bien formé.
-				<ul>
-					<li>Pour vérifier si le balisage est bien formé, valider à l’aide d’un préréglage XHTML5 et cocher la case «&#160;<span lang="en">Be lax about HTTP Content-Type</span>&#160;».</li>
-				</ul>
-			</li>
-			<li>
-				<a rel="external" href="http://jigsaw.w3.org/css-validator/validator.html.fr#validate_by_uri+with_options">Valider votre CSS</a> en apportant les changements suivants aux paramètres par défaut&#160;:
-				<ul>
-					<li><strong>Profil&#160;:</strong> CSS niveau 3</li>
-					<li><strong>Extensions Propriétaires&#160;:</strong> Avertissements</li>
-				</ul>
-			</li>
-			<li><a rel="external" href="http://www.jshint.com">Valider votre code JavaScript</a></li>
-			<li><a href="optimise-fr.html">Optimiser votre code JavaScript, CSS et HTML</a></li>
-			<li>
-				Recommandations quant au formatage&#160;:
-				<ul>
-					<li>Ajouter les tabulations en utilisant le <a rel="external" href="http://fr.wikipedia.org/wiki/Style_d%27indentation#Style_K.26R">style d'indentation K&amp;R</a></li>
-					<li>Utiliser les guillemets simples pour les chaînes de caractères en JavaScript (de façon à ce que les guillemets doubles non échappés (<span lang="en">unescaped</span>) puissent être utilisés pour les attributs dans les données de sortie HTML)</li>
-				</ul>
-			</li>
-			<li>
-				Mettre à l’essai les pages Web par rapport à la «&#160;base de référence des essais de navigateurs&#160;» (<span lang="en">browser test baseline</span>) qui suit&#160;:
-				<ul>
-					<li>la version majeure actuelle et précédente de chaque navigateur qui compte pour au moins 5&#160;% des visites au site Web;</li>
-					<li>toute version majeure d’un navigateur qui, à elle seule, compte pour au moins 5&#160;% des visites au site Web;</li>
-					<li>les versions actuelles et précédentes des navigateurs par défaut de chaque système d’exploitation mobile qui compte pour au moins 5&#160;% de la part de marché du système d’exploitation mobile à l’échelle du Canada ou à l’échelle mondiale.</li>
-				</ul>
-			</li>
-			<li>Les essais des RP sont effectués par <a rel="external" href="https://travis-ci.org/wet-boew/wet-boew">Travis-CI</a>, mais la même série d'essais peut être exécuté à l'aide de la commande locale "ant test" avant de soumettre,</li>
-		</ul>
-	</section>
+<section lang="fr">
+	<h2>Construire la BOEW</h2>
+	<p>Consultez <a href="build-fr.html">Construire la BOEW</a></p>
 </section>
+
+<section lang="fr">
+	<h2>Ajoutant de nouvelles fonctionnalités</h2>
+	<p>Consultez <a href="add-fr.html">Ajoutant de nouvelles fonctionnalités</a></p>
+</section>
+
+<section lang="fr">
+	<h2>Lignes directrices pour les contributeurs</h2>
+	<p>Consultez <a href="contrib-fr.html">Lignes directrices pour les contributeurs</a></p>
+</section>
+
+<section>
+	<h2>Related pages</h2>
+	<ul>
+		<li><a href="index-fr.html" lang="fr">Comment démarrer</a></li>
+		<li><a href="github-fr.html" lang="fr">Guide d'utilisation de GitHub pour la BOEW</a></li>
+		<li><a href="impl-fr.html" lang="fr">Mise en œuvre de la BOEW</a></li>
+	</ul>
+</section>
+</div>
 
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date de modification&#160;:</dt><dd><span><time>2013-09-01</time></span></dd>
