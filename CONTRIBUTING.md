@@ -1,12 +1,12 @@
 # Contributor guidelines - Web Experience Toolkit (WET)
 
-* [Developing for WET](https://github.com/wet-boew/wet-boew/wiki/Developing-for-WET)
-  * [Contributor guidelines](https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines)
+* [Developing for WET](http://wet-boew.github.io/wet-boew/docs/gettingstarted/developing-en.html)
+  * [Contributor guidelines](http://wet-boew.github.io/wet-boew/docs/gettingstarted/contributing-en.html)
 
 -------------------------------------------------------------------
 
 
 # Lignes directrices pour les contributeurs - Boîte à outils de l’expérience Web (BOEW)
 
-* [Développer pour la BOEW](https://github.com/wet-boew/wet-boew/wiki/Développer-pour-la-boew)
-  * [Lignes directrices pour les contributeurs](https://github.com/wet-boew/wet-boew/wiki/Lignes-directrices-pour-les-contributeurs)
+* [Développer pour la BOEW](http://wet-boew.github.io/wet-boew/docs/gettingstarted/developing-fr.html)
+  * [Lignes directrices pour les contributeurs](http://wet-boew.github.io/wet-boew/docs/gettingstarted/contributing-fr.html)
