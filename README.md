@@ -25,7 +25,7 @@
 * [Terms and conditions](http://wet-boew.github.io/wet-boew/License-en.html)
 * [Contributor guidelines](https://github.com/wet-boew/wet-boew/wiki/Contributor-guidelines)
 * [Versioning](https://github.com/wet-boew/wet-boew/wiki/Versioning)
-* [Version history](docs/versions/index-en.html)
+* [Version history](http://wet-boew.github.io/wet-boew/docs/versions/index-en.html)
 * [Roadmap](https://github.com/wet-boew/wet-boew/wiki/Roadmap)
 
 ## Benefits
@@ -143,7 +143,7 @@
 * [Conditions régissant l'utilisation](http://wet-boew.github.io/wet-boew/Licence-fr.html)
 * [Lignes directrices pour les contributeurs](https://github.com/wet-boew/wet-boew/wiki/Lignes-directrices-pour-les-contributeurs)
 * [Contrôle des versions](https://github.com/wet-boew/wet-boew/wiki/Contr%C3%B4le-des-versions)
-* [Historique des versions](docs/versions/index-fr.html)
+* [Historique des versions](http://wet-boew.github.io/wet-boew/docs/versions/index-fr.html)
 * [Feuille de route](https://github.com/wet-boew/wet-boew/wiki/Feuille-de-route)
 
 ## Avantages
