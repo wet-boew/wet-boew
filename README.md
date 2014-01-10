@@ -6,7 +6,7 @@
 ## What is the Web Experience Toolkit?
 
 * Collaborative open source project led by the Government of Canada
-* [Award-winning](https://github.com/wet-boew/wet-boew/wiki/Accolades#wiki-Awards) code library for building innovative websites that are:
+* [Award-winning](http://wet-boew.github.io/wet-boew/docs/ref/accolades-en.html#awards) code library for building innovative websites that are:
  * [Accessible](#accessibility), [usable](#usability) and [interoperable](#interoperability)
  * [Mobile friendly](#mobile-friendly-responsive-design)
  * [Multilingual](#multilingual)
@@ -19,11 +19,11 @@
  
 * [Benefits](#benefits)
 * [Working examples](http://wet-boew.github.io/wet-boew/demos/index-en.html)
-* [Documentation](https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation)
+* [Documentation](http://wet-boew.github.io/wet-boew/docs/index-en.html)
 * [Downloads](http://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html)
 * [Main project](https://github.com/wet-boew/wet-boew/)
 * [Terms and conditions](http://wet-boew.github.io/wet-boew/License-en.html)
-* [Contributor guidelines](http://wet-boew.github.io/wet-boew/docs/gettingstarted/contributing-en.html)
+* [Contributor guidelines](http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-en.html)
 * [Versioning](http://wet-boew.github.io/wet-boew/docs/versions/version-info-en.html)
 * [Version history](http://wet-boew.github.io/wet-boew/docs/versions/index-en.html)
 * [Roadmap](http://wet-boew.github.io/wet-boew/docs/versions/rdmp-en.html)
@@ -123,7 +123,7 @@
 ## Qu’est-ce que la Boîte à outils de l’expérience Web?
 
 * Un projet à source ouverte collaboratif dirigé par le Gouvernement du Canada
-* Une bibliothèque de code [primée](https://github.com/wet-boew/wet-boew/wiki/Distinctions#wiki-Primes) pour construire des sites Web innovants&#160;:
+* Une bibliothèque de code [primée](http://wet-boew.github.io/wet-boew/docs/ref/accolades-fr.html#primes) pour construire des sites Web innovants&#160;:
  * [Accessibles](#accessibilit), [faciles d'emploi](#facilit-demploi) et [interopérables](#interoprabilit)
  * [Optimisés pour les appareils mobiles](#conception-optimise-pour-les-appareils-mobiles-et-ractive)
  * [Multilingues](#multilingue)
@@ -136,11 +136,11 @@
  
 * [Avantages](#avantages)
 * [Exemples pratiques](http://wet-boew.github.io/wet-boew/demos/index-fr.html)
-* [Documentation](https://github.com/wet-boew/wet-boew/wiki/Accueil#wiki-Documentation)
+* [Documentation](http://wet-boew.github.io/wet-boew/docs/index-fr.html)
 * [Téléchargements](http://wet-boew.github.io/wet-boew/docs/versions/dwnld-fr.html)
 * [Projet principal](https://github.com/wet-boew/wet-boew/)
 * [Conditions régissant l'utilisation](http://wet-boew.github.io/wet-boew/Licence-fr.html)
-* [Lignes directrices pour les contributeurs](http://wet-boew.github.io/wet-boew/docs/gettingstarted/contributing-fr.html)
+* [Lignes directrices pour les contributeurs](http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-fr.html)
 * [Contrôle des versions](http://wet-boew.github.io/wet-boew/docs/versions/version-info-fr.html)
 * [Historique des versions](http://wet-boew.github.io/wet-boew/docs/versions/index-fr.html)
 * [Feuille de route](http://wet-boew.github.io/wet-boew/docs/versions/rdmp-fr.html)
