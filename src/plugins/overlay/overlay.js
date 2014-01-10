@@ -196,7 +196,7 @@ $document.on( "click vclick touchstart focusin", "body", function( event ) {
 		// Close any overlays with outside activity
 		for ( overlayId in sourceLinks ) {
 			overlay = document.getElementById( overlayId );
-			if ( overlay.getAttribute( "aria-hidden" ) === "false" &&
+			if ( overlay !== null && overlay.getAttribute( "aria-hidden" ) === "false" &&
 				eventTarget.id !== overlayId &&
 				overlay.className.indexOf( ignoreOutsideClass ) === -1 &&
 				!$.contains( overlay, eventTarget ) ) {
