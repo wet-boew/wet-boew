@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-<title>Saisie automatique - Correctifs - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+<title>Sélecteur de date - Correctifs - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
 <meta name="description" content="French description / Description en français" />
@@ -49,7 +49,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wet-fullhd-in">
 <ul>
 <li id="wet-fullhd-lang-current">Français</li>
-<li id="wet-fullhd-lang-2"><a href="datalist-en.html" lang="en">English</a></li>
+<li id="wet-fullhd-lang-2"><a href="datepicker-en.html" lang="en">English</a></li>
 </ul>
 </div>
 </div></section>
@@ -79,7 +79,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li><a href="../../../index-fr.html">Accueil</a></li>
 <li><a href="../../index-fr.html">Documentation</a></li>
 <li><a href="../polyfills-fr.html">Correctifs</a></li>
-<li>Saisie automatique</li>
+<li>Sélecteur de date</li>
 </ol>
 </div></div>
 </nav>
@@ -89,94 +89,74 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Saisie automatique</h1>
+<h1 id="wb-cont">Sélecteur de date</h1>
 
 <ul class="button-group">
-<li><a href="../../../demos/datalist/datalist-fr.html" class="button">Examples pratiques</a></li>
+<li><a href="../../../demos/datepicker/datepicker-fr.html" class="button">Examples pratiques</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
 </ul>
 
 <span class="wet-boew-prettify all-pre"></span>
-<p>The Standard on Web Usability requires an archived content notice to clearly inform users that the Web page has been archived on the Web.</p>
+<p>Ce composant permet de produire de façon dynamique une interface de calendrier pour sélectionner une date dans un formulaire.</p>
 
 <section>
 	<h2>Aperçu</h2>
-	<p><strong>Chef du projet :</strong> Eric Poirier (<a href="https://github.com/ericpoirier">@ericpoirier</a>)</p>
+	<p><strong>Chef du projet :</strong> Stéphane Bérubé (<a href="https://github.com/berubs">@berubs</a>)</p>
 
 	<section>
-		<h3>Description</h3>
-		<div lang="en">
-		<p><strong>Needs translation</strong></p>
-		<p>The HTML5 <code>input list</code> attribute and the <code>datalist</code> element add auto-complete functionality to specific text input fields by dynamically displaying a list of words that match the user’s input. Because some browsers do not support this functionality natively, this polyfill emulates the same functionality using generic HTML and WAI-ARIA. Browsers that do not support the <code>input list</code> attribute and the <code>datalist</code> element natively ignore the auto-complete functionality and therefore, the text input field behaves like it normally does.</p>
-		</div>
+		<h3>Objet</h3>
+		<p>Le but de cette fonctionnalité est de fournir une interface pour sélectionner une date dans un formulaire.</p>
 	</section>
 
 	<section>
-		<h3>Avantages</h3>
-		<div lang="en">
-		<p><strong>Needs translation</strong></p>
-		<ul>
-			<li>In cases where browser don't support the attribute and element, the polyfill is automatically loaded.</li>
-			<li>This polyfill ensures that the auto-complete functionality is added to the text input field and the necessary information is exposed to assistive technologies by adding WAI-ARIA.</li>
-		</ul>
-		</div>
-	</section>
-
-	<section>
-		<h3>Recommended usage</h3>
-		<p>To use the polyfill, the standard <code>input list</code> attribute and <code>datalist</code> element must be used.</p>
-	</section>
-
-	<section>
-		<h3>Coded d'exemple</h3>
-		<pre><code>&lt;label for="city"&gt;Ville&lt;/label&gt;
-&lt;input type="text" id="city" name="city" list="suggestions" /&gt;
-&lt;datalist id="suggestions"&gt;
-	&lt;!--[if lte IE 9]&gt;&lt;select&gt;&lt;![endif]--&gt;
-	&lt;option label="Barrie" value="Barrie"&gt;&lt;/option&gt;
-	&lt;option label="Calgary" value="Calgary"&gt;&lt;/option&gt;
-	&lt;option label="Charlottetown" value="Charlottetown"&gt;&lt;/option&gt;
-	&lt;option label="Chibougamau" value="Chibougamau"&gt;&lt;/option&gt;
-	&lt;option label="Chilliwack" value="Chilliwack"&gt;&lt;/option&gt;
-	&lt;option label="Cold Lake" value="Cold Lake"&gt;&lt;/option&gt;
-	&lt;option label="Dorval" value="Dorval"&gt;&lt;/option&gt;
-	&lt;option label="Edmonton" value="Edmonton"&gt;&lt;/option&gt;
-	&lt;option label="Flin Flon" value="Flin Flon"&gt;&lt;/option&gt;
-	&lt;option label="Hamilton" value="Hamilton"&gt;&lt;/option&gt;
-	&lt;option label="Iqualuit" value="Iqualuit"&gt;&lt;/option&gt;
-	&lt;option label="Ottawa" value="Ottawa"&gt;&lt;/option&gt;
-	&lt;option label="Miramichi" value="Miramichi"&gt;&lt;/option&gt;
-	&lt;option label="Montréal" value="Montréal"&gt;&lt;/option&gt;
-	&lt;option label="Red Deer" value="Red Deer"&gt;&lt;/option&gt;
-	&lt;option label="St. John" value="St. John"&gt;&lt;/option&gt;
-	&lt;option label="St. John's" value="St. John's"&gt;&lt;/option&gt;
-	&lt;option label="Toronto" value="Toronto"&gt;&lt;/option&gt;
-	&lt;option label="Vancouver" value="Vancouver"&gt;&lt;/option&gt;
-	&lt;option label="Whitehorse" value="Whitehorse"&gt;&lt;/option&gt;
-	&lt;option label="Winnipeg" value="Winnipeg"&gt;&lt;/option&gt;
-	&lt;option label="Yellowknife" value="Yellowknife"&gt;&lt;/option&gt;
-	&lt;!--[if lte IE 9]&gt;&lt;/select&gt;&lt;![endif]--&gt;
-&lt;/datalist&gt;</code></pre>
-
-		<p><a href="../../../demos/datalist/datalist-fr.html">Exemple pratique</a></p>
+		<h3>Raison d’être</h3>
+		<p>Cette fonctionnalité offre un autre moyen de sélectionner une date dans un formulaire.</p>
 	</section>
 </section>
 
 <section>
-	<h2>Examples</h2>
+	<h2>Mise en œuvre</h2>
+	<ol>
+		<li>Ajouter un champ de saisie de texte pour chaque date qui sera demandée. Chaque champ de saisie de texte doit implémenter le type <code>date</code>.</li>
+		<li><strong>Facultatif :</strong> Enrouler le format de date avec <code>&lt;span class="datepicker-format"&gt;&lt;/span&gt;</code> pour le cacher lorsque le correctif ne charge (à cause du soutien natif).</li>
+		<li><strong>Facultatif :</strong> Modifier la valeur de <code>max</code> pour indiquer la date la plus éloignée que peut sélectionner l’utilisateur.</li>
+		<li><strong>Facultatif :</strong> Modifier la valeur de <code>min</code> pour indiquer la date la plus proche que peut sélectionner l’utilisateur.</li>
+	</ol>
+
+	<section>
+		<h3>Code d'exemple</h3>
+		<pre><code>&lt;div&gt;
+	&lt;label for="startdate"&gt;Date de début&lt;span class="datepicker-format"&gt; (&lt;abbr title="Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour"&gt;AAAA-MM-JJ&lt;/abbr&gt;)&lt;/span&gt;&#160;:&lt;/label&gt;
+	&lt;input type="date" id="startdate" name="startdate" min="2013-03-27" max="2013-05-07" /&gt;
+&lt;/div&gt;
+&lt;div&gt;
+	&lt;label for="enddate"&gt;Date de fin&lt;span class="datepicker-format"&gt; (&lt;abbr title="Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour"&gt;AAAA-MM-JJ&lt;/abbr&gt;)&lt;/span&gt;&#160;:&lt;/label&gt;
+	&lt;input type="date" id="enddate" name="enddate" min="2013-03-27" max="2016-05-07" /&gt;
+&lt;/div&gt;</code></pre>
+
+		<p><a href="../../../demos/datepicker/datepicker-fr.html">Exemple pratique</a></p>
+	</section>
+</section>
+
+<section>
+	<h2>Exemples</h2>
 	<ul>
-		<li><a href="../../../demos/datalist/datalist-en.html">Exemple en anglais</a></li>
-		<li><a href="../../../demos/datalist/datalist-fr.html">Exemple en français</a></li>
+		<li><a href="../../../demos/datepicker/datepicker-en.html">Exemple en anglais</a></li>
+		<li><a href="../../../demos/datepicker/datepicker-fr.html">Exemple en français</a></li>
 	</ul>
 </section>
 
 <section>
 	<h2>Développement</h2>
-	<p>La remplissage automatique est dépendent sur le soutien natif pour l'attribute <code>input list</code> et l'élément <code>datalist</code> de HTML5 et le correctif pour la remplissage automatique.</p>
+	<p>Le sélecteur de date est dépendent sur le soutien natif pour l'élément <code>input type="date"</code> de HTML5, le correctif de sélecteur de date, et la bibliothèque <strong lang="en">calendar</strong>.</p>
 	<ul>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/polyfills/datalist.js">js/polyfills/datalist.js</a> - contient le code JavaScript pour le correctif saisie automatique</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_datalist.scss">js/sass/includes/_datalist.scss</a> - contient le CSS pour le correctif saisie automatique</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_datalist-ie.scss">js/sass/includes/_datalist-ie.scss</a> - contient le CSS pré-IE9 pour le correctif saisie automatique</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/polyfills/datepicker.js">js/polyfills/datepicker.js</a> - contient le code JavaScript pour le correctif de sélecteur de date</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_datalist.scss">js/sass/includes/_datepciker.scss</a> - contient le SCSS pour le correctif de sélecteur de date</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/images/datepicker/">js/images/datepicker/</a> - contient les images CSS pour le correctif de sélecteur de date</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/dependencies/calendar.js">js/dependencies/calendar.js</a> - le fichier script du bibliothèque <strong lang="en">calendar</strong></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_calendar-base.scss">js/sass/includes/_calendar-base.scss</a> - le SCSS de base du bibliothèque <strong lang="en">calendar</strong></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_calendar-theme.scss">js/sass/includes/_calendar-theme.scss</a> - le SCSS de thème du bibiliothèque <strong lang="en">calendar</strong></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/images/calendar/">js/images/calendar/</a> - les images du bibiliothèque <strong lang="en">calendar</strong></li>
 	</ul>
 </section>
 
@@ -188,17 +168,26 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Historique des versions</h2>
 	<ul>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/polyfills/datalist.js">datalist.js</a></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_datalist.scss">_datalist.scss</a></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_datalist-ie.scss">_datalist-ie.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/polyfills/datepicker.js">datepicker.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/sass/includes/_datepicker.scss">_datepicker.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/dependencies/calendar.js">calendar.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_calendar-base.scss">_calendar-base.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_calendar-theme.scss">_calendar-theme.js</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Pages connexes</h2>
+	<ul>
+		<li><a href="../eventscalendar/eventscalendar-fr.html">Calendrier d'événements (interface du calendrier)</a><li>
 	</ul>
 </section>
 
 <section>
 	<h2>Références</h2>
 	<ul>
-		<li><a href="http://www.w3.org/TR/html5/forms.html#the-list-attribute">Attribut list de HTML5</a><li>
-		<li><a href="http://www.w3.org/TR/html5/forms.html#the-datalist-element">Élément datalist de HTML5</a></li>
+		<li><a href="http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-state-type-date">Élément input type="date" de HTML5</a><li>
+		<li><a href="http://www.w3.org/TR/wai-aria-practices/#datepicker" lang="en">WAI-ARIA 1.0 Authoring Practices - Date Picker (widget)</a></li>
 	</ul>
 </section>
 
