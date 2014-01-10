@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-<title>Sélecteur de date - Correctifs - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+<title>Contenu affichable/masquable - Correctifs - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../../dist/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="French description / Description en français" />
@@ -54,7 +54,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-fra.html">Ministères</a></li>
-<li id="gcwu-gcnb-lang"><a href="datepicker-en.html" lang="en">English</a></li>
+<li id="gcwu-gcnb-lang"><a href="details-en.html" lang="en">English</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -88,7 +88,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li><a href="../../../index-fr.html">Accueil</a></li>
 <li><a href="../../index-fr.html">Documentation</a></li>
 <li><a href="../polyfills-fr.html">Correctifs</a></li>
-<li>Sélecteur de date</li>
+<li>Contenu affichable/masquable</li>
 </ol></div></div>
 </nav>
 <!-- HeaderEnd -->
@@ -97,107 +97,109 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Sélecteur de date</h1>
+<h1 id="wb-cont">Contenu affichable/masquable</h1>
 
 <ul class="button-group">
-<li><a href="../../../demos/datepicker/datepicker-fr.html" class="button">Examples pratiques</a></li>
+<li><a href="../../../demos/details/details-fr.html" class="button">Examples pratiques</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
 </ul>
 
+<div lang="en">
+<p><strong>Needs translation</strong></p>
+
 <span class="wet-boew-prettify all-pre"></span>
-<p>Ce composant permet de produire de façon dynamique une interface de calendrier pour sélectionner une date dans un formulaire.</p>
-
 <section>
-	<h2>Aperçu</h2>
-	<p><strong>Chef du projet :</strong> Stéphane Bérubé (<a href="https://github.com/berubs">@berubs</a>)</p>
+	<h2>Overview</h2>
+	<p><strong>Project lead:</strong> Alexander Canas (<a href="https://github.com/canasa">@canasa</a>)</p>
 
 	<section>
-		<h3>Objet</h3>
-		<p>Le but de cette fonctionnalité est de fournir une interface pour sélectionner une date dans un formulaire.</p>
+		<h3>Purpose</h3>
+		<p>The HTML5 <code>details</code> and <code>summary</code> elements allows content to be expanded and collapsed. Because some browsers do not support this functionality natively, this polyfill emulates the same functionality using generic HTML and WAI-ARIA.</p>
 	</section>
 
 	<section>
-		<h3>Raison d’être</h3>
-		<p>Cette fonctionnalité offre un autre moyen de sélectionner une date dans un formulaire.</p>
+		<h3>Rationale</h3>
+		<p>Browsers that do not support the <code>details</code> and <code>summary</code> elements natively ignore the expand/collapse functionality and therefore, content is displayed in full. This polyfill ensures that content can be expanded/collapsed and the necessary information is exposed to assistive technologies by adding ARIA. </p>
 	</section>
 </section>
 
 <section>
-	<h2>Mise en œuvre</h2>
-	<ol>
-		<li>Ajouter un champ de saisie de texte pour chaque date qui sera demandée. Chaque champ de saisie de texte doit implémenter le type <code>date</code>.</li>
-		<li><strong>Facultatif :</strong> Enrouler le format de date avec <code>&lt;span class="datepicker-format"&gt;&lt;/span&gt;</code> pour le cacher lorsque le correctif ne charge (à cause du soutien natif).</li>
-		<li><strong>Facultatif :</strong> Modifier la valeur de <code>max</code> pour indiquer la date la plus éloignée que peut sélectionner l’utilisateur.</li>
-		<li><strong>Facultatif :</strong> Modifier la valeur de <code>min</code> pour indiquer la date la plus proche que peut sélectionner l’utilisateur.</li>
-	</ol>
+	<h2>Implementation</h2>
+	<p>To use the polyfill, standard <code>details</code> and <code>summary</code> elements must be used. In cases where browser don't support these elements, the polyfill is automatically loaded.</p>
 
 	<section>
-		<h3>Code d'exemple</h3>
-		<pre><code>&lt;div&gt;
-	&lt;label for="startdate"&gt;Date de début&lt;span class="datepicker-format"&gt; (&lt;abbr title="Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour"&gt;AAAA-MM-JJ&lt;/abbr&gt;)&lt;/span&gt;&#160;:&lt;/label&gt;
-	&lt;input type="date" id="startdate" name="startdate" min="2013-03-27" max="2013-05-07" /&gt;
-&lt;/div&gt;
-&lt;div&gt;
-	&lt;label for="enddate"&gt;Date de fin&lt;span class="datepicker-format"&gt; (&lt;abbr title="Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour"&gt;AAAA-MM-JJ&lt;/abbr&gt;)&lt;/span&gt;&#160;:&lt;/label&gt;
-	&lt;input type="date" id="enddate" name="enddate" min="2013-03-27" max="2016-05-07" /&gt;
-&lt;/div&gt;</code></pre>
+		<h3>Parameters/Options</h3>
+		<p>The expandable/collapsible content polyfill accepts one parameter: <code>open</code>. This parameter is automatically added/removed when content is expanded/collapsed.</p>
 
-		<p><a href="../../../demos/datepicker/datepicker-fr.html">Exemple pratique</a></p>
+		<section>
+			<h4>Open parameter</h4>
+			<p>This parameter represent the state of the expansion/collapse of the <code>details</code> element. If the <code>open</code> parameter is present, the content of <code>details</code> is expanded. If the <code>open</code> parameter is absent, the content of <code>details</code> is collapsed.</p>
+		</section>
+	</section>
+
+	<section>
+		<h3>Example code</h3>
+		
+		<section>
+			<h4>Expanded details element</h4>
+			<pre><code>&lt;details open="open"&gt;
+	&lt;summary&gt;View source code&lt;/summary&gt;
+... Source code ...
+&lt;/details&gt;</code></pre>
+		</section>
+
+		<section>
+			<h4> Collapsed details element </h4>
+			<pre><code>&lt;details&gt;
+	&lt;summary&gt;View source code&lt;/summary&gt;
+... Source code ...
+&lt;/details&gt;</code></pre>
+		</section>
+
+		<p><a href="../../../demos/details/details-en.html">Working example</a></p>
 	</section>
 </section>
 
 <section>
-	<h2>Exemples</h2>
+	<h2>Examples</h2>
 	<ul>
-		<li><a href="../../../demos/datepicker/datepicker-en.html">Exemple en anglais</a></li>
-		<li><a href="../../../demos/datepicker/datepicker-fr.html">Exemple en français</a></li>
+		<li><a href="../../../demos/details/details-en.html">English example</a></li>
+		<li><a href="../../../demos/details/details-fr.html">French example</a></li>
 	</ul>
 </section>
 
 <section>
-	<h2>Développement</h2>
-	<p>Le sélecteur de date est dépendent sur le soutien natif pour l'élément <code>input type="date"</code> de HTML5, le correctif de sélecteur de date, et la bibliothèque <strong lang="en">calendar</strong>.</p>
+	<h2>Development</h2>
+	<p>The date picker is dependent upon native support for the HTML5 <code>input type="date"</code>, the date picker polyfill and the calendar library.</p>
 	<ul>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/polyfills/datepicker.js">js/polyfills/datepicker.js</a> - contient le code JavaScript pour le correctif de sélecteur de date</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_datepicker.scss">js/sass/includes/_datepicker.scss</a> - contient le SCSS pour le correctif de sélecteur de date</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/images/datepicker/">js/images/datepicker/</a> - contient les images CSS pour le correctif de sélecteur de date</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/dependencies/calendar.js">js/dependencies/calendar.js</a> - le fichier script du bibliothèque <strong lang="en">calendar</strong></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_calendar-base.scss">js/sass/includes/_calendar-base.scss</a> - le SCSS de base du bibliothèque <strong lang="en">calendar</strong></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_calendar-theme.scss">js/sass/includes/_calendar-theme.scss</a> - le SCSS de thème du bibiliothèque <strong lang="en">calendar</strong></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/images/calendar/">js/images/calendar/</a> - les images du bibiliothèque <strong lang="en">calendar</strong></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/polyfills/details.js">js/polyfills/details.js</a> - contains the JavaScript code for the expandable/collapsible polyfill</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_details.scss">js/sass/includes/_details.scss</a> - contains the SCSS for the expandable/collapsible polyfill</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_details-ie.scss">js/sass/includes/_details-ie.scss</a> - contains the pre-IE9 SCSS for the expandable/collapsible polyfill</li>
 	</ul>
 </section>
 
 <section>
-	<h2>Problèmes connus</h2>
-	<p>Il n’existe actuellement aucun problème connu.</p>
+	<h2>Known issues</h2>
+	<p>There are no known issues at this point in time.</p>
 </section>
 
 <section>
-	<h2>Historique des versions</h2>
+	<h2>Version history</h2>
 	<ul>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/polyfills/datepicker.js">datepicker.js</a></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/sass/includes/_datepicker.scss">_datepicker.scss</a></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/dependencies/calendar.js">calendar.js</a></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_calendar-base.scss">_calendar-base.js</a></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_calendar-theme.scss">_calendar-theme.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/polyfills/details.js">datepicker.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/sass/includes/_details.scss">_details.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/sass/includes/_details-ie.scss">_details-ie.scss</a></li>
 	</ul>
 </section>
 
 <section>
-	<h2>Pages connexes</h2>
+	<h2>References</h2>
 	<ul>
-		<li><a href="../eventscalendar/eventscalendar-fr.html">Calendrier d'événements (interface du calendrier)</a><li>
+		<li><a href="http://www.w3.org/TR/html5/interactive-elements.html#the-details-element">HTML5 details element</a><li>
+		<li><a href="http://www.w3.org/TR/html5/interactive-elements.html#the-summary-element">HTML5 summary element</a></li>
 	</ul>
 </section>
-
-<section>
-	<h2>Références</h2>
-	<ul>
-		<li><a href="http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-state-type-date">Élément input type="date" de HTML5</a><li>
-		<li><a href="http://www.w3.org/TR/wai-aria-practices/#datepicker" lang="en">WAI-ARIA 1.0 Authoring Practices - Date Picker (widget)</a></li>
-	</ul>
-</section>
+</div>
 
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date de modification&#160;:</dt><dd><span><time>2013-09-01</time></span></dd>
