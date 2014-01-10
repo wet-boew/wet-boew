@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-<title>Contenu archivé - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+<title>Saisie automatique - Correctifs- Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../../dist/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="French description / Description en français" />
@@ -54,7 +54,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-fra.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-fra.html">Ministères</a></li>
-<li id="gcwu-gcnb-lang"><a href="archived-en.html" lang="en">English</a></li>
+<li id="gcwu-gcnb-lang"><a href="datalist-en.html" lang="en">English</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -87,8 +87,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <ol>
 <li><a href="../../../index-fr.html">Accueil</a></li>
 <li><a href="../../index-fr.html">Documentation</a></li>
-<li><a href="../plugins-fr.html">Plugiciels</a></li>
-<li>Contenu archivé</li>
+<li><a href="../polyfills-fr.html">Correctifs</a></li>
+<li>Saisie automatique</li>
 </ol></div></div>
 </nav>
 <!-- HeaderEnd -->
@@ -97,149 +97,116 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Contenu archivé</h1>
+<h1 id="wb-cont">Saisie automatique</h1>
 
 <ul class="button-group">
-<li><a href="../../../demos/archived/archived-fr.html" class="button">Examples pratiques</a></li>
+<li><a href="../../../demos/datalist/datalist-fr.html" class="button">Examples pratiques</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
 </ul>
 
 <span class="wet-boew-prettify all-pre"></span>
-<p>La Norme sur la facilité d’emploi du Web nécessite un avis de contenu archivé pour clairement aviser les utilisateurs que la page a été archivée sur le Web. </p>
+<p>The Standard on Web Usability requires an archived content notice to clearly inform users that the Web page has been archived on the Web.</p>
 
 <section>
 	<h2>Aperçu</h2>
-	<p><strong>Responsable du projet :</strong> Stephane Berube (<a href="https://github.com/pjackson28">@berubs</a>)</p>
+	<p><strong>Chef du projet :</strong> Eric Poirier (<a href="https://github.com/ericpoirier">@ericpoirier</a>)</p>
 
 	<section>
 		<h3>Description</h3>
-		<p>Ajoute un avis d'archivage à une page Web.</p>
-
-		<p><a href="../../../demos/archived/archived-fr.html">Modèle de page web archivée</a></p>
+		<div lang="en">
+		<p><strong>Needs translation</strong></p>
+		<p>The HTML5 <code>input list</code> attribute and the <code>datalist</code> element add auto-complete functionality to specific text input fields by dynamically displaying a list of words that match the user’s input. Because some browsers do not support this functionality natively, this polyfill emulates the same functionality using generic HTML and WAI-ARIA. Browsers that do not support the <code>input list</code> attribute and the <code>datalist</code> element natively ignore the auto-complete functionality and therefore, the text input field behaves like it normally does.</p>
+		</div>
 	</section>
 
 	<section>
 		<h3>Avantages</h3>
+		<div lang="en">
+		<p><strong>Needs translation</strong></p>
 		<ul>
-			<li>La convivialité de cette approche a fait l’objet d’essais auprès des utilisateurs</li>
-			<li>Respecte l’article 6.1.5 de la Norme sur la facilité d’emploi du Web</li>
-			<li>Permet aux utilisateurs d’identifier le contenu archivé lors de la consultation d’un site à partir d’un moteur de recherche en incluant le mot <strong>«&#160;ARCHIVÉ&#160;»</strong> dans la page titre (les éléments <code>&lt;h1&gt;</code> et <code>&lt;title&gt;</code>)</li>
-			<li>Une plus grande utilisation de cette tendance à l’échelle du gouvernement du Canada permettra aux utilisateurs d’apprendre à identifier le contenu archivé dans tout site du gouvernement du Canada</li>
-			<li>Comprend un lien vers le contenu de remplacement, le cas échéant</li>
-			<li>Permet aux utilisateurs d’établir que le contenu a été archivé lorsqu’ils arrivent à un lien ancré, et non au haut de la page, en incluant une amélioration progressive qui indique que la page Web a été archivée lorsque l’utilisateur fait dérouler la page.</li>
+			<li>In cases where browser don't support the attribute and element, the polyfill is automatically loaded.</li>
+			<li>This polyfill ensures that the auto-complete functionality is added to the text input field and the necessary information is exposed to assistive technologies by adding WAI-ARIA.</li>
 		</ul>
+		</div>
 	</section>
 
 	<section>
-		<h3>Quand l’utiliser</h3>
-		<p>Cette approche est obligatoire pour les pages Web du gouvernement du Canada qui ont été archivées en ligne.</p>
-
-		<p>Une page Web peut être archivée en ligne si :</p>
-		<ul>
-			<li>elle est conservée à des fins de référence, de recherche ou de tenue de documents</li>
-			<li>ne sera pas modifiée ou mise à jour après la date</li>
-			<li>est entreposée dans un référentiel numérique.</li>
-		</ul>
-
-		<p>Par exemple, une nouvelle politique qui en remplace une ancienne, les versions précédentes de rapports, des événements qui ont déjà eu lieu (comme des conférences) </p>
+		<h3>Recommended usage</h3>
+		<p>To use the polyfill, the standard <code>input list</code> attribute and <code>datalist</code> element must be used.</p>
 	</section>
 
 	<section>
-		<h3>Quand ne pas l’utiliser</h3>
-		<ul>
-			<li>La page Web comprend du contenu à jour</li>
-			<li>Plutôt que de supprimer le contenu redondant, insignifiant et dépassé (RID)</li>
-			<li>Plutôt que de ne pas changer la page Web pour respecter la nouvelle Norme sur la facilité d’emploi du Web (WCAG 2.0)</li>
-		</ul>
+		<h3>Coded d'exemple</h3>
+		<pre><code>&lt;label for="city"&gt;Ville&lt;/label&gt;
+&lt;input type="text" id="city" name="city" list="suggestions" /&gt;
+&lt;datalist id="suggestions"&gt;
+	&lt;!--[if lte IE 9]&gt;&lt;select&gt;&lt;![endif]--&gt;
+	&lt;option label="Barrie" value="Barrie"&gt;&lt;/option&gt;
+	&lt;option label="Calgary" value="Calgary"&gt;&lt;/option&gt;
+	&lt;option label="Charlottetown" value="Charlottetown"&gt;&lt;/option&gt;
+	&lt;option label="Chibougamau" value="Chibougamau"&gt;&lt;/option&gt;
+	&lt;option label="Chilliwack" value="Chilliwack"&gt;&lt;/option&gt;
+	&lt;option label="Cold Lake" value="Cold Lake"&gt;&lt;/option&gt;
+	&lt;option label="Dorval" value="Dorval"&gt;&lt;/option&gt;
+	&lt;option label="Edmonton" value="Edmonton"&gt;&lt;/option&gt;
+	&lt;option label="Flin Flon" value="Flin Flon"&gt;&lt;/option&gt;
+	&lt;option label="Hamilton" value="Hamilton"&gt;&lt;/option&gt;
+	&lt;option label="Iqualuit" value="Iqualuit"&gt;&lt;/option&gt;
+	&lt;option label="Ottawa" value="Ottawa"&gt;&lt;/option&gt;
+	&lt;option label="Miramichi" value="Miramichi"&gt;&lt;/option&gt;
+	&lt;option label="Montréal" value="Montréal"&gt;&lt;/option&gt;
+	&lt;option label="Red Deer" value="Red Deer"&gt;&lt;/option&gt;
+	&lt;option label="St. John" value="St. John"&gt;&lt;/option&gt;
+	&lt;option label="St. John's" value="St. John's"&gt;&lt;/option&gt;
+	&lt;option label="Toronto" value="Toronto"&gt;&lt;/option&gt;
+	&lt;option label="Vancouver" value="Vancouver"&gt;&lt;/option&gt;
+	&lt;option label="Whitehorse" value="Whitehorse"&gt;&lt;/option&gt;
+	&lt;option label="Winnipeg" value="Winnipeg"&gt;&lt;/option&gt;
+	&lt;option label="Yellowknife" value="Yellowknife"&gt;&lt;/option&gt;
+	&lt;!--[if lte IE 9]&gt;&lt;/select&gt;&lt;![endif]--&gt;
+&lt;/datalist&gt;</code></pre>
+
+		<p><a href="../../../demos/datalist/datalist-fr.html">Exemple pratique</a></p>
 	</section>
 </section>
 
 <section>
-	<h2>Mise en œuvre</h2>
-
-	<section>
-		<h3>Pages HTML</h3>
-		<ol>
-			<li>Ajoutez <strong>"ARCHIVED - " / "ARCHIVÉE -"</strong> à la page titre et à l’élément de contenu <code>&lt;h1&gt;</code>.</li>
-			<li>Ajoutez le code suivant après l’élément de contenu <code>&lt;h1&gt;</code> (corrigeant le cheminement de l’image et les catégories de classe grille au besoin et remplaçant le message d’accueil par du texte plus pertinent à la page archivée)
-				<ul>
-					<li>
-						<strong>Pages en anglais :</strong>
-						<pre lang="en"><code>
-&lt;p&gt;&lt;img src="/dist/js/images/archived/warning.gif" alt="Warning" title="Warning" class="image-actual margin-bottom-none" /&gt;The &lt;a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=24227"&gt;Standard on Web Usability&lt;/a&gt; replaces this content. This content is archived because Common Look and Feel 2.0 Standards have been rescinded.&lt;/p&gt;
-&lt;div id="archived" class="wet-boew-archived span-8"&gt;
-	&lt;section&gt;
-		&lt;h2&gt;Archived Content&lt;/h2&gt;
-		&lt;p&gt;Information identified as archived is provided for reference, research or record-keeping purposes. It is not subject to the Government of Canada Web Standards and has not been altered or updated since it was archived. Please contact us to request a format other than those available.&lt;/p&gt;
-	&lt;/section&gt;
-&lt;/div&gt;
-</code></pre>
-					</li>
-					<li>
-						<strong>Pages en français :</strong>
-						<pre lang="fr"><code>
-&lt;p&gt;&lt;img src="/dist/js/images/archived/warning.gif" alt="Avertissement" title="Avertissement" class="image-actual margin-bottom-none" /&gt;La  &lt;a href="http://www.tbs-sct.gc.ca/pol/doc-fra.aspx?id=24227"&gt;Norme sur la facilité d'emploi des sites Web&lt;/a&gt; remplace ce contenu. Cette page Web a été archivée parce que les Normes sur la normalisation des sites Internet 2.0 ont étés annulées.&lt;/p&gt;
-&lt;div id="archived" class="wet-boew-archived span-8"&gt;
-	&lt;section&gt;
-		&lt;h2&gt;Contenu archivé&lt;/h2&gt;
-		&lt;p&gt;L’information dont il est indiqué qu’elle est archivée est fournie à des fins de référence, de recherche ou de tenue de documents. Elle n’est pas assujettie aux normes Web du gouvernement du Canada et elle n’a pas été modifiée ou mise à jour depuis son archivage. Pour obtenir cette information dans un autre format, veuillez communiquer avec nous.&lt;/p&gt;
-	&lt;/section&gt;
-&lt;/div&gt;
-</code></pre>
-					</li>
-				</ul>
-			</li>
-		</ol>
-	</section>
-
-	<section>
-		<h3>Pages qui ne sont pas HTML</h3>
-		<p>Pour les pages archivées qui ne sont pas HTML (p. ex. PDF), ajouter une page interstitielle&#160;:</p>
-		<ul>
-			<li>HTML qui utilise cet élément (tel que décrit dans la section sur les pages HTML) et indiquer que le document que vous avez consulté a été archivé</li>
-			<li>Si vous pouvez modifier le document qui n’est pas en HTML, ajoutez également&#160;:
-				<ul>
-					<li>boîte d’avis d’archivage</li>
-					<li>« ARCHIVÉ » dans le titre et</li>
-					<li>ARCHIVÉ dans le lien</li>
-				</ul>
-			</li>
-		</ul>
-
-		<p><a href="../../../demos/archived/archived-fr.html">Exemple</a></p>
-	</section>
+	<h2>Examples</h2>
+	<ul>
+		<li><a href="../../../demos/datalist/datalist-en.html">Exemple en anglais</a></li>
+		<li><a href="../../../demos/datalist/datalist-fr.html">Exemple en français</a></li>
+	</ul>
 </section>
 
 <section>
 	<h2>Développement</h2>
-	<p>Le code pour archiver du contenu se trouve à différents endroits dans le dossier <strong>source</strong> de la BOEW&#160;:</p>
+	<p>La remplissage automatique est dépendent sur le soutien natif pour l'attribute <code>input list</code> et l'élément <code>datalist</code> de HTML5 et le correctif pour la remplissage automatique.</p>
 	<ul>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/workers/archived.js">js/workers/archived.js</a> - compris dans le code JavaScript pour archiver du contenu </li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_archived.scss">js/sass/includes/_archived.scss</a> - comprend la SCSS pour archiver du contenu</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/images/archived/">js/images/archived/</a> - comprend les images pour archiver du contenu</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/polyfills/datalist.js">js/polyfills/datalist.js</a> - contient le code JavaScript pour le correctif saisie automatique</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_datalist.scss">js/sass/includes/_datalist.scss</a> - contient le CSS pour le correctif saisie automatique</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_datalist-ie.scss">js/sass/includes/_datalist-ie.scss</a> - contient le CSS pré-IE9 pour le correctif saisie automatique</li>
 	</ul>
 </section>
 
 <section>
-	<h2>Enjeux connus</h2>
+	<h2>Problèmes connus</h2>
+	<p>Il n’existe actuellement aucun problème connu.</p>
+</section>
+
+<section>
+	<h2>Historique des versions</h2>
 	<ul>
-		<li>La solution décrite dans le <a href="http://www.tbs-sct.gc.ca/ws-nw/wa-aw/wa-aw-guid-fra.asp">Guide de mise en œuvre de la Norme sur l'accessibilité des sites Web</a> n’a pas été mise à jour pour tenir compte de l’approche ayant fait l’objet d’essais</li>
-		<li>Le lien de la page Réduire le contenu RID ne fonctionne plus depuis le retrait de la bibliothèque de modèles</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/polyfills/datalist.js">datalist.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/sass/includes/_datalist.scss">_datalist.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/sass/includes/_datalist-ie.scss">_datalist-ie.scss</a></li>
 	</ul>
 </section>
 
 <section>
-	<h2>Versions précédentes</h2>
+	<h2>Références</h2>
 	<ul>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/workers/archived.js">archived.js</a></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/sass/includes/_archived.scss">_archived.scss</a></li>
-	</ul>
-</section>
-
-<section>
-	<h2>Document connexe</h2>
-	<ul>
-		<li><a href="../../../demos/theme-gcwu-fegc/index-fr.html">Thème pour la facilité d'emploi du Web du GC</a></li>
+		<li><a href="http://www.w3.org/TR/html5/forms.html#the-list-attribute">Attribut list de HTML5</a><li>
+		<li><a href="http://www.w3.org/TR/html5/forms.html#the-datalist-element">Élément datalist de HTML5</a></li>
 	</ul>
 </section>
 
