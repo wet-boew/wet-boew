@@ -8,8 +8,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">Trang chính của dự án</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">Ví dụ hoạt động</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">Tài liệu</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/downloads">Tải hàng tuần</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/index-en.html">Tài liệu</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html">Tải hàng tuần</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/License-en.html">Điều khoản và điều kiện</a></li>
 </ul>
 </div>

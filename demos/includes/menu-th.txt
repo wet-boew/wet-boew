@@ -8,8 +8,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">หน้าโครงการหลัก</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">ตัวอย่างการใช้งาน</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">เอกสาร</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/downloads">ดาวน์โหลด</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/index-en.html">เอกสาร</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html">ดาวน์โหลด</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/License-en.html">ข้อกำหนดและเงื่อนไข</a></li>
 </ul>
 </div>

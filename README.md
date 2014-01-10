@@ -5,7 +5,7 @@
 ## What is the Web Experience Toolkit?
 
 * Collaborative open source project led by the Government of Canada
-* [Award-winning](https://github.com/wet-boew/wet-boew/wiki/Accolades#wiki-Awards) code library for building innovative websites that are:
+* [Award-winning](http://wet-boew.github.io/wet-boew/docs/ref/accolades-en.html#awards) code library for building innovative websites that are:
  * [Accessible](#accessibility), [usable](#usability) and [interoperable](#interoperability)
  * [Mobile friendly](#mobile-friendly-responsive-design)
  * [Multilingual](#multilingual)
@@ -15,11 +15,11 @@
  * [Developed openly by the community on GitHub](#collaborative-approach)
 
 ## Key resources
- 
+
 * [Benefits](#benefits)
 * [Working examples](http://wet-boew.github.io/wet-boew/demos/index-en.html)
 * [Working examples - v4.0](http://wet-boew.github.io/v4.0-ci/demos/index-en.html)
-* [Documentation](https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation)
+* [Documentation](http://wet-boew.github.io/wet-boew/docs/index-en.html)
 * [Downloads](http://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html)
 * [Main project](https://github.com/wet-boew/wet-boew/)
 * [Terms and conditions](http://wet-boew.github.io/wet-boew/License-en.html)
@@ -123,7 +123,7 @@
 ## Qu’est-ce que la Boîte à outils de l’expérience Web?
 
 * Un projet à source ouverte collaboratif dirigé par le Gouvernement du Canada
-* Une bibliothèque de code [primée](https://github.com/wet-boew/wet-boew/wiki/Distinctions#wiki-Primes) pour construire des sites Web innovants&#160;:
+* Une bibliothèque de code [primée](http://wet-boew.github.io/wet-boew/docs/ref/accolades-fr.html#primes) pour construire des sites Web innovants&#160;:
  * [Accessibles](#accessibilit), [faciles d'emploi](#facilit-demploi) et [interopérables](#interoprabilit)
  * [Optimisés pour les appareils mobiles](#conception-optimise-pour-les-appareils-mobiles-et-ractive)
  * [Multilingues](#multilingue)
@@ -137,7 +137,7 @@
 * [Avantages](#avantages)
 * [Exemples pratiques](http://wet-boew.github.io/wet-boew/demos/index-fr.html)
 * [Exemples pratiques - v4.0](http://wet-boew.github.io/v4.0-ci/demos/index-fr.html)
-* [Documentation](https://github.com/wet-boew/wet-boew/wiki/Accueil#wiki-Documentation)
+* [Documentation](http://wet-boew.github.io/wet-boew/docs/index-fr.html)
 * [Téléchargements](http://wet-boew.github.io/wet-boew/docs/versions/dwnld-fr.html)
 * [Projet principal](https://github.com/wet-boew/wet-boew/)
 * [Conditions régissant l'utilisation](http://wet-boew.github.io/wet-boew/Licence-fr.html)

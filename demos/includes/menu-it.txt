@@ -8,8 +8,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">Pagina principale del progetto</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">Esempi di lavoro</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">Documentazione</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/downloads">Scaricamenti</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/index-en.html">Documentazione</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html">Scaricamenti</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/License-en.html">Termini e condizioni</a></li>
 </ul>
 </div>

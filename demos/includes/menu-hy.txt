@@ -8,8 +8,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">Գլխավոր էջ Ծրագրի</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">Աշխատանքային օրինակներ</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">փաստաթղթերով հիմնավորում</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/downloads">Բեռնումներ</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/index-en.html">փաստաթղթերով հիմնավորում</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html">Բեռնումներ</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/License-en.html">Սահմանումներ եւ պայմաններ</a></li>
 </ul>
 </div>

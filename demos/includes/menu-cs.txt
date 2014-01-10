@@ -8,8 +8,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">Hlavní stránka projektu</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">Pracovní příklady</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">Dokumentace</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/downloads">Soubory ke stažení</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/index-en.html">Dokumentace</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html">Soubory ke stažení</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/License-en.html">Podmínky</a></li>
 </ul>
 </div>

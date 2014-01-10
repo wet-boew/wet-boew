@@ -8,8 +8,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">메인 프로젝트 페이지</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">작업 예제</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">문서</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/downloads">다운로드</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/index-en.html">문서</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html">다운로드</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/License-en.html">이용 약관</a></li>
 </ul>
 </div>

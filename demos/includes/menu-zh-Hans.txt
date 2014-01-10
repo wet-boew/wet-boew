@@ -8,8 +8,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">项目主页</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">工作实例</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">文档</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/downloads">下载</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/index-en.html">文档</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html">下载</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/License-en.html">限制性规定</a></li>
 </ul>
 </div>

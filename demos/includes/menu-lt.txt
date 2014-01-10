@@ -8,8 +8,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">Pagrindinis projekto puslapis</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">Darbo pavyzdžiai</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">Dokumentacija</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/downloads">Siuntiniai</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/index-en.html">Dokumentacija</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html">Siuntiniai</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/License-en.html">Terminai ir sąlygos</a></li>
 </ul>
 </div>

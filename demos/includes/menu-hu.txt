@@ -8,8 +8,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">Főoldal projekt oldal</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">Munka példák</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">Dokumentáció</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/downloads">Letöltések száma</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/index-en.html">Dokumentáció</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html">Letöltések száma</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/License-en.html">Felhasználási feltételek</a></li>
 </ul>
 </div>

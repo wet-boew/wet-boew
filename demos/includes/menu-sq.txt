@@ -8,8 +8,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">Faqja kryesore projektit</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">Shembuj pune</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">Dokumentim</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/downloads">Shkarkime</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/index-en.html">Dokumentim</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html">Shkarkime</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/License-en.html">Marrveshje dhe kushte</a></li>
 </ul>
 </div>

@@ -8,8 +8,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">プロジェクトのメインページ</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">作業例</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">ドキュメンテーション</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/downloads">ダウンロード</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/index-en.html">ドキュメンテーション</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html">ダウンロード</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/License-en.html">利用規約</a></li>
 </ul>
 </div>

@@ -8,8 +8,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">الرئيسية المشروع الصفحة</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">أمثلة العمل</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">توثيق</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/Downloads">التنزيلات</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/index-en.html">توثيق</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html">التنزيلات</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/License-en.html">الشروط والأحكام</a></li>
 </ul>
 </div>

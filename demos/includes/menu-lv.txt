@@ -8,8 +8,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">Galvenais projekta lapa</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">Darba piemēri</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki#wiki-Documentation">Dokumentācija</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/downloads">Lejupielādes</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/index-en.html">Dokumentācija</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html">Lejupielādes</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/License-en.html">Noteikumi</a></li>
 </ul>
 </div>
