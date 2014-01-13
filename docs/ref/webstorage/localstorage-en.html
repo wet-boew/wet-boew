@@ -8,9 +8,9 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-<title>Polyfills - Documentation - Web Experience Toolkit (WET)</title>
+<title>Persistent storage - Polyfills - Documentation - Web Experience Toolkit (WET)</title>
 
-<link rel="shortcut icon" href="../../dist/theme-gcwu-fegc/images/favicon.ico" />
+<link rel="shortcut icon" href="../../../dist/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="English description / Description en anglais" />
 <meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
 <meta name="dcterms.title" content="English title / Titre en anglais" />
@@ -20,19 +20,19 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<script src="../../dist/js/jquery.min.js"></script>
+<script src="../../../dist/js/jquery.min.js"></script>
 <!--[if lte IE 8]>
-<script src="../../dist/js/polyfills/html5shiv-min.js"></script>
-<link rel="stylesheet" href="../../dist/grids/css/util-ie-min.css" />
-<link rel="stylesheet" href="../../dist/js/css/pe-ap-ie-min.css" />
-<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
 <![endif]-->
 <!--[if gt IE 8]><!-->
-<link rel="stylesheet" href="../../dist/grids/css/util-min.css" />
-<link rel="stylesheet" href="../../dist/js/css/pe-ap-min.css" />
-<link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-min.css" />
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-gcwu-fegc/css/theme-min.css" />
 <!--<![endif]-->
-<noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+<noscript><link rel="stylesheet" href="../../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
 
 <!-- CustomScriptsCSSStart --> 
 <!-- CustomScriptsCSSEnd -->
@@ -49,18 +49,18 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-head"><div id="wb-head-in"><header>
 <!-- HeaderStart -->
 <nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
-<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/sig-en.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
+<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../../dist/theme-gcwu-fegc/images/sig-en.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
 <ul>
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.gc.ca/menu-eng.html">Canada.gc.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.gc.ca/aboutgov-ausujetgouv/depts/menu-eng.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="polyfills-fr.html" lang="fr">Français</a></li>
+<li id="gcwu-gcnb-lang"><a href="localstorage-fr.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
 
 <div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
-<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
-<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../index-en.html">Web Experience Toolkit&#160;(WET)</a></p></div>
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../../index-en.html">Web Experience Toolkit&#160;(WET)</a></p></div>
 
 <section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
 <form action="#" method="post"><div id="gcwu-srchbx-in">
@@ -72,7 +72,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 <nav role="navigation">
 <div id="gcwu-psnb"><h2><span>Site </span>menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
-<ul class="mb-menu" data-ajax-replace="../../demos/includes/menu-en.txt">
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/menu-en.txt">
 <li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
 <li><div><a href="section2/index-en.html">Section 2</a></div></li>
 <li><div><a href="#">Section 3</a></div></li>
@@ -85,9 +85,10 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 <div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
 <ol>
-<li><a href="../../index-en.html">Home</a></li>
-<li><a href="../index-en.html">Documentation</a></li>
-<li>Polyfills</li>
+<li><a href="../../../index-en.html">Home</a></li>
+<li><a href="../../index-en.html">Documentation</a></li>
+<li><a href="../polyfills-en.html">Polyfills</a></li>
+<li>Persistent storage</li>
 </ol>
 </div></div>
 </nav>
@@ -97,19 +98,70 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Polyfills</h1>
+<h1 id="wb-cont">Persistent storage</h1>
 
-<p>The polyfills are JavaScript components that mimic the behaviour of HTML5 tags in browsers that do not recognized such tags. They provide backwards compatibility for HTML5 in browsers that do not support HTML5.</p>
-
-<ul>
-	<li><a href="datalist/datalist-en.html">Auto-complete</a> - Adds auto-complete functionality to specific text input fields by dynamically displaying a list of words that match the user's input.</li>
-	<li><a href="datepicker/datepicker-en.html">Date picker</a> - Dynamically generates a calendar interface for selecting a date in a form.</li>
-	<li><a href="details/details-en.html">Expandable/collapsible content</a> - The <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> elements allows content to be expanded and collapsed.</li>
-	<li><a href="mathlib/mathlib-en.html">Mathematical/scientific formula display</a> - Emulates <a href="http://www.w3.org/Math/">MathML</a> support for browsers that do not have MathML support.</li>
-	<li><a href="webstorage/localstorage-en.html">Persistent storage</a> - The Web storage <strong>localStorage</strong> object is used to store data persistently (no expiration date).</li>
-	<li><a href="https://github.com/wet-boew/wet-boew/wiki/Progress-bar">Progress bar</a> - The <code>&lt;progress&gt;</code> element displays the progress of a task.</li>
-	<li><a href="https://github.com/wet-boew/wet-boew/wiki/Slider-Control">Slider Control</a> - The <code>&lt;input type="range" /&gt;</code> element displays a slider control bar.</li>
+<ul class="button-group">
+<li><a href="../../../demos/webstorage/localstorage-en.html" class="button">Working examples</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
 </ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+<section>
+	<h2>Overview</h2>
+	<p><strong>Project lead:</strong> Paul Jackson (<a href="https://github.com/pjackson28">@pjackson28</a>)</p>
+
+	<section>
+		<h3>Purpose</h3>
+		<p>The HTML5 Web Storage <code>localStorage</code> object is used to store data persistently (no expiration date). Because some browsers do not support this functionality natively, this polyfill emulates the same functionality.</p>
+	</section>
+</section>
+
+<section>
+	<h2>Implementation</h2>
+	<p>Use the polyfill, the <code>localStorage</code> to store data persistently. In cases where browsers don't support this object, the polyfill is automatically loaded.</p>
+
+	<section>
+		<h3>Example code</h3>		
+		<pre><code>value = localStorage.getItem('variable');
+localStorage.setItem('variable', value);</code></pre>
+	</section>
+</section>
+
+<section>
+	<h2>Examples</h2>
+	<ul>
+		<li><a href="../../../demos/webstorage/localstorage-en.html">English example</a></li>
+		<li><a href="../../../demos/webstorage/localstorage-fr.html">French example</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Development</h2>
+	<p>Persistent storage functionality is dependent upon native support for the HTML5 Web Storage <code>localStorage</code> object or the <strong>localStorage</strong> polyfill.</p>
+	<p>The code for the <strong>localStorage</strong> polyfill is located within the <strong>source</strong> folder of WET:</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/polyfills/localstorage.js">js/polyfills/localstorage.js</a> - contains the JavaScript code for the <strong>localStorage</strong> polyfill</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Known issues</h2>
+	<p>There are no known issues at this point in time.</p>
+</section>
+
+<section>
+	<h2>Version history</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/polyfills/localstorage.js">localstorage.js</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>References</h2>
+	<ul>
+		<li><a href="http://www.w3.org/TR/webstorage/#the-localstorage-attribute">HTML5 localStorage attribute</a><li>
+	</ul>
+</section>
 
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date modified:</dt><dd><span><time>2013-09-01</time></span></dd>
@@ -174,9 +226,9 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 </div></div></div>
 
 <!-- ScriptsStart -->
-<script src="../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
-<script src="../../dist/js/settings.js"></script>
-<script src="../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../../../dist/js/settings.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
 <!-- ScriptsEnd -->
 </body>
 </html>
