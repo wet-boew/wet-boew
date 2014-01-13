@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-<title>Affichage des formules mathématiques ou scientifiques - Correctifs - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+<title>Mémoire persistente - Correctifs - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
 <meta name="description" content="French description / Description en français" />
@@ -49,7 +49,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wet-fullhd-in">
 <ul>
 <li id="wet-fullhd-lang-current">Français</li>
-<li id="wet-fullhd-lang-2"><a href="mathlib-en.html" lang="en">English</a></li>
+<li id="wet-fullhd-lang-2"><a href="localstorage-en.html" lang="en">English</a></li>
 </ul>
 </div>
 </div></section>
@@ -79,7 +79,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li><a href="../../../index-fr.html">Accueil</a></li>
 <li><a href="../../index-fr.html">Documentation</a></li>
 <li><a href="../polyfills-fr.html">Correctifs</a></li>
-<li>Affichage des formules mathématiques ou scientifiques</li>
+<li>Mémoire persistente</li>
 </ol>
 </div></div>
 </nav>
@@ -89,56 +89,68 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Affichage des formules mathématiques ou scientifiques</h1>
+<h1 id="wb-cont">Mémoire persistente</h1>
 
 <ul class="button-group">
-<li><a href="../../../demos/mathlib/mathlib-fr.html" class="button">Examples pratiques</a></li>
+<li><a href="../../../demos/webstorage/localstorage-fr.html" class="button">Examples pratiques</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
 </ul>
 
 <span class="wet-boew-prettify all-pre"></span>
 <section>
 	<h2>Aperçu</h2>
-	<p><strong>Chef de projet :</strong> Thomas Gohard (<a href="https://github.com/thomasgohard">@thomasgohard</a>)</p>
+	<p><strong>Project lead:</strong> Paul Jackson (<a href="https://github.com/pjackson28">@pjackson28</a>)</p>
 
 	<section>
 		<h3>Objet</h3>
-		<p>Le correctif MathML émule le MathML dans les navigateurs ne supportant pas le MathML.</p>
-	</section>
-
-	<section>
-		<h3>Raison d'être</h3>
-		<p>Sauf Firefox, la plupart des navigateurs ne supportent pas le MathML. Ceci rend difficile l'ajout, de manière accessible, de formules mathématiques ou scientifiques sur le Web.</p>
+		<p>L'objet HTML5 <code>localStorage</code> est utilisé pour maintenir les données avec persistance (sans date d'expiration). Ce composant ajoute le soutien pour ces éléments dans les navigateurs qui n'ont pas déjà la prise en charge native.</p>
 	</section>
 </section>
 
 <section>
 	<h2>Mise en œuvre</h2>
-	<p>Coder quelconque formule à ajouter à une page Web en MathML et ajouter le code MathML dans le code HTML à l'aide de l'élément <code>&lt;math&gt;</code>. Le correctif est lancé automatiquement dans les navigateurs ne supportant pas le MathML.</p>
+	<p>Utiliser l'objet <code>localStorage</code> pour maintenir les données avec persistance. Dans les cas où les navigateurs ne supportent pas cet objet, le polyfill est automatiquement chargé.</p>
+
+	<section>
+		<h3>Code d'exemple</h3>		
+		<pre><code>value = localStorage.getItem('variable');
+localStorage.setItem('variable', value);</code></pre>
+	</section>
 </section>
 
 <section>
 	<h2>Exemples</h2>
 	<ul>
-		<li><a href="../../../demos/mathlib/mathlib-en.html">Exemple en anglais</a></li>
-		<li><a href="../../../demos/mathlib/mathlib-fr.html">Exemple en français</a></li>
+		<li><a href="../../../demos/webstorage/localstorage-en.html">Exemple en anglais</a></li>
+		<li><a href="../../../demos/webstorage/localstorage-fr.html">Exemple en français</a></li>
 	</ul>
 </section>
 
 <section>
 	<h2>Développement</h2>
-	<p>Le correctif MathML dépend de <a href="http://www.mathjax.org/">MathJax</a> (<a href="http://cdn.mathjax.org/mathjax/2.0-latest/LICENSE">licence Apache, version 2.0</a>), qui est téléchargé à partir du MathJax CDN.</p>
+	<p>Maintenir les données avec persistance est dépendent sur le soutien natif pour l'objet <code>localStorage</code> et le correctif pour <strong>localStorage</strong>.</p>
+	<p>Le code pour le correctif pour <strong>localStorage</strong> se trouve dans la répertoire <strong>source</strong> de la BOEW&#160;:</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/polyfills/localstorage.js">js/polyfills/localstorage.js</a> - contains the JavaScript code for the <strong>localStorage</strong> polyfill</li>
+	</ul>
 </section>
 
 <section>
-	<h2>Enjeux connus</h2>
-	<p>La performance sous certains fureteurs (Internet Explorer 8 en particulier) and sur certains appareils mobiles laisse à désirer. Les pages comprennent une grande quantité de formules peuvent prendre un certain temps à charger (jusqu'à quelques minutes).</p>
+	<h2>Problèmes connus</h2>
+	<p>Il n’existe actuellement aucun problème connu.</p>
+</section>
+
+<section>
+	<h2>Historique des versions</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/polyfills/localstorage.js">localstorage.js</a></li>
+	</ul>
 </section>
 
 <section>
 	<h2>Références</h2>
 	<ul>
-		<li><a href="http://www.mathjax.org/">MathJax</a><li>
+		<li><a href="http://www.w3.org/TR/webstorage/#the-localstorage-attribute">Attribut localStorage de HTML5</a><li>
 	</ul>
 </section>
 
