@@ -52,6 +52,9 @@
 .guidance-block .box-fra {
   width: 40%;
 }
+.guidance-block ol.wet-boew-zebra > li:before {
+  content: none;
+}
 
 .guidance-sub-block h2, .guidance-sub-block h3 {
   color: #000;
