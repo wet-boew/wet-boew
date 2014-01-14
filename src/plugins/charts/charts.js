@@ -97,34 +97,33 @@
 				prefixLength = prefix.length,
 				key, tblFn, localKey, currObj;
 			
-			if ( tokens.length === 0 ) {
-				return config;
+			if ( tokens.length ) {
+				// split the set of space-separated tokens
+				tblTokens = tokens.split( " " );
+				
+				for ( i = 0, iLength = tblTokens.length; i < iLength; i += 1 ) {
+					
+					// Get the current token
+					token = tblTokens[i];
+					tokenLength = token.length;
+					
+					// Remove the token is used
+					if ( tokenLength <= prefixLength ) {
+						continue;
+					}
+					token = token.slice(prefixLength, tokenLength);
+					
+					// Apply the preset
+					if ( baseline[ token ] ) {
+						config = $.extend( true, config, baseline[ token ] );
+						fn = $.extend( true, fn, baseline[ token ].fn || { } );
+					}
+				}
 			}
 
-			// split the set of space-separated tokens
-			tblTokens = tokens.split( " " );
-			
-			for ( i = 0, iLength = tblTokens.length; i < iLength; i += 1 ) {
-				
-				// Get the current token
-				token = tblTokens[i];
-				tokenLength = token.length;
-				
-				// Remove the token is used
-				if ( tokenLength <= prefixLength ) {
-					continue;
-				}
-				token = token.slice(prefixLength, tokenLength);
-				
-				// Apply the preset
-				if ( baseline[ token ] ) {
-					config = $.extend( true, config, baseline[ token ] );
-					fn = $.extend( true, fn, baseline[ token ].fn || { } );
-				}
-			}
 			
 			// Extend the config from the element @data attribute
-			config = $.extend( true, config, wb.getData( $elm, attribute ) );
+			config = $.extend( true, config, wb.getData( $elem, attribute ) );
 			
 			// Merge and Overide the function.
 			for ( key in fn ) {
@@ -234,11 +233,6 @@
 			}
 		};
 		
-		// TODO: Check for Global setting and merge it in optionsFlotGlobal, Series, Force the preset strategy
-		
-		// Apply any preset
-		optionCurrent = applyPreset( optionsFlotGlobal, $elm, optionsFlotGlobal.prefix || "", "flot" );
-
 		optionsCharts = {
 			prefix: "wb-charts-",
 			defaults: {
@@ -251,7 +245,7 @@
 				decimal: 0, // [number] Literal number of displayed decimal for a pie charts 
 				width: $elm.width(), // [number] Provide a default width for the charts that will be rendered
 				height: $elm.height(), // [number] Provide a default height for the charts that will be rendered
-				parsedirection: "x", // [enum {x | y}] Flag for defining if the data table should be read in reverse 
+				reversettblparsing: false, // [boolean] Flag for defining if the data table should be read in reverse compared to HTML spec
 				fn: {
 					"/getcellvalue": function( elem ) {
 						// Default Cell value extraction
@@ -283,6 +277,10 @@
 				}
 			}
 		};
+		// TODO: Check for Global setting and merge it in optionsFlotGlobal, Series, Force the preset strategy
+		
+		// Apply any preset
+		optionCurrent = applyPreset( optionsFlotGlobal, $elm, optionsFlotGlobal.prefix || "", "flot" );
 
 		// Apply any preset
 		options = applyPreset( optionsCharts, $elm, optionsCharts.prefix || "", "wet-boew" );
@@ -672,14 +670,9 @@
 				.after( $elm );
 		}
 		
-		// Retrieve the parsed data
-		parsedData = $( $elm ).data().tblparser;
-
-		if ( options.parsedirection === "y" ) {
-			reverseTblParsing = true;
-		}
-
-		currentRowGroup = parsedData.lstrowgroup[ 0 ];
+		parsedData = $( $elm ).data().tblparser; // Retrieve the parsed data
+		reverseTblParsing = options.reversettblparsing; // Reverse table parsing
+		currentRowGroup = parsedData.lstrowgroup[ 0 ]; // first data row group
 
 		if ( optionCurrent.series && optionCurrent.series.pie ) {
 			// Use Reverse table axes
