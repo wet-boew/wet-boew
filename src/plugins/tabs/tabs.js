@@ -32,7 +32,7 @@ var pluginName = "wb-tabs",
 
 	// Includes "smallview", "xsmallview" and "xxsmallview"
 	smallViewPattern = "smallview",
-	isSmallView,
+	isSmallView, oldIsSmallView,
 
 	defaults = {
 		addControls: true,
@@ -128,9 +128,6 @@ var pluginName = "wb-tabs",
 
 				// Hide the tablist in small view and the summary elements in large view
 				tablist = "<ul role='tablist' aria-live='off'>";
-				if ( isSmallView && $elm.hasClass( equalHeightClass ) ) {
-					$elm.toggleClass( equalHeightClass + " " + equalHeightOffClass );
-				}
 
 				for ( i = 0; i !== len; i += 1 ) {
 					$panel = $panels.eq( i );
@@ -218,6 +215,7 @@ var pluginName = "wb-tabs",
 			});
 
 			initialized = true;
+			onResize();
 		}
 	},
 
@@ -437,66 +435,78 @@ var pluginName = "wb-tabs",
 	},
 
 	onResize = function() {
-		var oldIsSmallView = isSmallView,
-			$elm, $details, $tablist, $openDetails, $nonOpenDetails, $active;
+		var $elm, $details, $tablist, $openDetails,
+			$nonOpenDetails, $active, $summary;
 
-		isSmallView = document.documentElement.className.indexOf( smallViewPattern ) !== -1;
-
-		if ( initialized && isSmallView !== oldIsSmallView ) {
+		if ( initialized ) {
+			isSmallView = document.documentElement.className.indexOf( smallViewPattern ) !== -1;
 			$elm = $( selector );
 			$details = $elm.children( "details" );
-			$tablist = $elm.children( "ul" );
+			if ( $details.length !== 0 ) {
+				if ( isSmallView !== oldIsSmallView ) {
+					$summary = $details.children( "summary" );
+					$tablist = $elm.children( "ul" );
 
-			// Disable equal heights for small view and enable for large view
-			if ( $elm.attr( "class" ).indexOf( equalHeightClass ) !== -1 ) {
-				$elm.toggleClass( equalHeightClass + " " + equalHeightOffClass );
-			}
+					// Disable equal heights for small view
+					if ( $elm.attr( "class" ).indexOf( equalHeightClass ) !== -1 ) {
+						$elm.toggleClass( equalHeightClass + " " + equalHeightOffClass );
+					}
 
-			if ( isSmallView ) {
+					if ( isSmallView ) {
 
-				// Switch to small view
-				$active = $tablist.find( ".active a" );
-				$openDetails = $details.filter( "#" + $active.attr( "href" ).substring( 1 ) );
-				$nonOpenDetails = $details
-					.removeAttr( "role" )
-					.removeClass( "fade out in" )
-					.not( $openDetails )
-						.removeAttr( "open" );
-				if ( !Modernizr.details ) {
-					$nonOpenDetails
-						.attr({
-							"aria-expanded": "false",
-							"aria-hidden": "true"
-						});
-					$openDetails.attr({
-						"aria-expanded": "true",
-						"aria-hidden": "false"
-					});
+						// Switch to small view
+						$active = $tablist.find( ".active a" );
+						$openDetails = $details.filter( "#" + $active.attr( "href" ).substring( 1 ) );
+						$nonOpenDetails = $details
+							.removeAttr( "role" )
+							.removeClass( "fade out in" )
+							.not( $openDetails )
+								.removeAttr( "open" );
+						if ( !Modernizr.details ) {
+							$nonOpenDetails
+								.attr({
+									"aria-expanded": "false",
+									"aria-hidden": "true"
+								});
+							$openDetails.attr({
+								"aria-expanded": "true",
+								"aria-hidden": "false"
+							});
+						}
+					} else {
+
+						// Switch to large view
+						$openDetails = $details.filter( "[open]" );
+						if ( $openDetails.length === 0 ) {
+							$openDetails = $details.eq( 0 );
+						}
+
+						$details
+							.attr({
+								role: "tabpanel",
+								open: "open"
+							})
+							.not( $openDetails )
+								.addClass( "fade out" );
+
+						$openDetails
+							.addClass( "fade in" )
+							.parent()
+								.find( "> ul [href$='" + $openDetails.attr( "id" ) + "']" )
+									.trigger( "click" );
+					}
+
+					$summary.attr( "aria-hidden", !isSmallView );
+					$tablist.attr( "aria-hidden", isSmallView );
+				} else {
+
+					// Enable equal heights for large view
+					if ( $elm.attr( "class" ).indexOf( equalHeightClass ) !== -1 ) {
+						$elm.toggleClass( equalHeightClass + " " + equalHeightOffClass );
+					}
 				}
-			} else {
-
-				// Switch to large view
-				$openDetails = $details.filter( "[open]" );
-				if ( $openDetails.length === 0 ) {
-					$openDetails = $details.eq( 0 );
-				}
-
-				$details
-					.attr({
-						role: "tabpanel",
-						open: "open"
-					})
-					.not( $openDetails )
-						.addClass( "fade out" );
-
-				$openDetails
-					.addClass( "fade in" )
-					.parent()
-						.find( "> ul [href$='" + $openDetails.attr( "id" ) + "']" )
-							.trigger( "click" );
+				oldIsSmallView = isSmallView;
 			}
-
-			$tablist.attr( "aria-hidden", isSmallView );
 		}
 	};
 
@@ -597,9 +607,31 @@ $document.on( "keydown", selector + " [role=tabpanel]", function( event ) {
 
 		// Move focus to the summary element
 		$( currentTarget )
-			.parents( selector )
+			.closest( selector )
 				.find( "[href$='#" + currentTarget.id + "']" )
 					.trigger( "setfocus.wb" );
+	}
+});
+
+// Handling for links to tabs from within a panel
+$document.on( "click", selector + " [role=tabpanel] a", function( event ) {
+	var currentTarget = event.currentTarget,
+		href = currentTarget.getAttribute( "href" ),
+		$container, $panel, $summary;
+
+	// Ignore middle and right mouse buttons
+	if ( event.which === 1 && href.charAt( 0 ) === "#" ) {
+		$container = $( currentTarget ).closest( selector );
+		$panel = $container.find( href );
+		if ( $panel.length !== 0 ) {
+			$summary = $panel.children( "summary" );
+			if ( $summary.length !== 0 && $summary.attr( "aria-hidden" ) !== "true" ) {
+				$summary.trigger( "click" );
+			} else {
+				$container.find( href + "-lnk" ).trigger( "click" );
+			}
+			return false;
+		}
 	}
 });
 
