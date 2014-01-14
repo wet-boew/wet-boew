@@ -208,23 +208,27 @@
 							}
 						}
 
-						// Move the focus to the associated input when error message link is triggered
-						// a simple href anchor link doesnt seem to place focus inside the input
-						if (_pe.preIE7) {
-							form.find('.errorContainer a').on('click vclick', function(e) {
-								var label_top,
-									button = e.button;
-								if (typeof button === 'undefined' || button === _pe.leftMouseButton) { // Ignore middle/right mouse buttons
-									label_top = _pe.focus($($(this).attr('href'))).prev().offset().top;
-									if (_pe.mobile) {
-										$.mobile.silentScroll(label_top);
-									} else {
-										_pe.document.scrollTop(label_top);
-									}
-									return false;
+						// Move the focus to the associated input when an error message link is clicked
+						// and scroll to the top of the label or legend that contains the error
+						form.find('.errorContainer a').on('click vclick', function(e) {
+							var hash = this.href.substring(this.href.indexOf('#')),
+								input = $(hash),
+								label = input.prev(),
+								legend = label.length === 0 ? input.closest('fieldset').find('legend') : [],
+								errorTop = label.length !== 0 ? label.offset().top : (legend.length !== 0 ? legend.offset().top : -1),
+								button = e.button;
+
+							// Ignore middle/right mouse buttons
+							if (typeof button === 'undefined' || button === _pe.leftMouseButton) {
+								_pe.focus(input);
+								if (_pe.mobile) {
+									$.mobile.silentScroll(errorTop);
+								} else {
+									_pe.document.scrollTop(errorTop);
 								}
-							});
-						}
+								return false;
+							}
+						});
 
 						submitted = false;
 					} else {
