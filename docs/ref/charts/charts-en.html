@@ -107,7 +107,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<p>WET v2.2 release and earlier. Initially the Charts and graphs component was an integration of the <a href="http://www.filamentgroup.com/lab/update_to_jquery_visualize_accessible_charts_with_html5_from_designing_with/">visualize project from Filament Group</a>.</p>
 		<p>WET v2.3 release. The Charts and graphs component was fully re-written. That version was including the first version of the complex table parser build in directly in the charts. The web drawing backend was changed from "Canvas" to "SVG/VML" with the RaphaelJS library. An implementation of customizing the chart directly with the CSS class assigned to the table markup was used.</p>
 		<p>WET v3.0 release. Almost the same as the previous version. The table parser was re-written and partially removed from the chart and graph. This version include an hybrid version of the previous and the current table parser. That decision was made from technical reason and deadline issue. Unfortunately this version of the chart do not full benefit of the current table parser and partially support complex table as defined per twelve new HTML Technique. This version are including more CSS option class to provide more charts customization.</p>
-		<p>WET v3.1 release (Current). The previous drawing backend supported with RaphaelJS library was removed in favour of <a href="https://github.com/duboisp/flot">Flot project</a>. The goal was to provide the full advantage of the current table parser with the chart customization provided in the WET 3.0 release.</p>
+		<p>WET v3.1 release (current). The previous drawing backend supported with RaphaelJS library was removed in favour of <a href="https://github.com/duboisp/flot">Flot project</a>. The goal was to provide the full advantage of the current table parser with the chart customization provided in the WET 3.0 release.</p>
 	</section>
 	
 	<section>
@@ -148,10 +148,10 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<li>Add the class "wet-boew-charts" in the table element.</li>
 		<li>Customize your charts by using the CSS Option Class (documented bellow)</li>
 	</ol>
-	<p><strong>Note:</strong> See the Technique for tables and the Know Issues section.</p>
+	<p><strong>Note:</strong> See the Technique for tables and the Known issues section.</p>
 	
 	<section>
-		<h3>Working Examples</h3>
+		<h3>Working examples</h3>
 		<ul>
 			<li><a href="../../demos/charts/simple-en.html">Charts - English examples</a></li>
 			<li><a href="../../demos/charts/pie-en.html">Pie chart - English examples (v3.1 only)</a></li>
@@ -162,12 +162,12 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	</section>		
 	
 	<section>
-		<h3>Parameters/Options</h3>
+		<h3>Parameters</h3>
 		<p>The options in the Charts and graphs component need to be prefixed with a namespace. The namespace used and default options can be overwritten by using the javascript setting file.</p>
 		
 		<section>
-			<h4>Required Namespace</h4>
-			<p><strong>wb-charts</strong>  Default required namespace for any parameters and options defined here.</p>
+			<h4>Required namespace</h4>
+			<p><strong>wb-charts</strong> Default required namespace for any parameters and options defined here.</p>
 		</section>
 		
 		<section>
@@ -268,7 +268,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<p>It is possible to overwrite all the default setting above by using the WET setting mechanism. The variable to use is "wet_boew_charts". However the default color can not be overwritten.</p>
 </section>
 <section>
-	<h2>Known Issues</h2>
+	<h2>Known issues</h2>
 	<ul>
 		<li>Row grouping tag is required (thead, tbody)</li>
 		<li>Only the first data row group (tbody) is use to create the charts.</li>
@@ -285,7 +285,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	</ul>
 </section>
 <section>
-	<h2>Version History</h2>
+	<h2>Version history</h2>
 	<ul>
 		<li><strong><em>2013-04-11</em> WET v3.1:</strong> Flot used for drawing chart, Changed and more flexibility for chart labelling strategy, More customization available for a pie chart (e.g., Donut chart)
 		<li><strong><em>2012-09-17</em> WET v3.0</strong></li>
@@ -301,7 +301,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<li><a href="../../demos/tableparser/validator-htmltable.html">HTML Table Validator</a></li>
 	</ul>
 	<section>
-		<h3>HTML Tables Techniques</h3>
+		<h3>HTML tables techniques</h3>
 		<ul>
 			<li><a href="../../demos/tableparser/keycell-techniques.html">Defining a Key Cell</a></li>
 			<li><a href="../../demos/tableparser/rowgrouping-techniques.html">Defining a Data Row Group</a></li>
@@ -318,7 +318,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		</ul>
 	</section>
 	<section>
-		<h3>Zebra Striping</h3>
+		<h3>Zebra striping</h3>
 		<ul>
 			<li><a href="../../demos/zebra/simple.html">Simple Table</a></li>
 			<li><a href="../../demos/zebra/simplegrouping.html">Simple Grouping Table</a></li>
@@ -329,14 +329,14 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		</ul>
 	</section>
 	<section>
-		<h3>Complex Data Table</h3>
+		<h3>Complex data table</h3>
 		<ul>
 			<li><a href="../../demos/tableparser/ExtendedDefinition.html">Extended definition of HTML 5 table elements</a></li>
 			<li><a href="../../demos/tableparser/About-the-Table-Usability-Concept.html">About the Table Usability Concept</a></li>
 		</ul>
 	</section>
 	<section>
-		<h3>Case Studies</h3>
+		<h3>Case studies</h3>
 		<ul>
 			<li><a href="../../demos/tableparser/Table-CaseStudies.html">Case Studies #1</a> </li>
 			<li><a href="../../demos/tableparser/Table-CaseStudies-2.html">Case Studies #2 - Nutrition Facts complex table</a></li>
