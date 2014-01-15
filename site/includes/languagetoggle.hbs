@@ -3,12 +3,12 @@
 	{{#isnt language "en"}}
 		<li class="curr">{{#i18n "lang-native"}}{{/i18n}}{{#i18n "space"}}{{/i18n}}<span>{{#i18n "current"}}{{/i18n}}</span></li>
 	{{/isnt}}
-	<li><a lang="fr" hreflang="fr" href="{{altLangPrefix}}-fr.html">{{#i18n "lang-native" language="fr"}}{{/i18n}}</li>
+	<li><a lang="fr" hreflang="fr" href="{{altLangPrefix}}-fr.html">{{#i18n "lang-native" language="fr"}}{{/i18n}}</a></li>
 {{else}}
 	<li class="curr">{{#i18n "lang-native"}}{{/i18n}}{{#i18n "space"}}{{/i18n}}<span>{{#i18n "current"}}{{/i18n}}</span></li>
 {{/isnt}}
 {{#isnt language "en"}}
-	<li><a lang="en" hreflang="en" href="{{altLangPrefix}}-en.html">{{#i18n "lang-native" language="en"}}{{/i18n}}</li>
+	<li><a lang="en" hreflang="en" href="{{altLangPrefix}}-en.html">{{#i18n "lang-native" language="en"}}{{/i18n}}</a></li>
 {{else}}
 	<li class="curr">{{#i18n "lang-native"}}{{/i18n}}{{#i18n "space"}}{{/i18n}}<span>{{#i18n "current"}}{{/i18n}}</span></li>
 {{/isnt}}
