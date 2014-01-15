@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Validation de formulaires - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-gcwu-fegc/images/favicon.ico" />
+<meta name="description" content="French description / Description en français" />
+<meta name="dcterms.creator" content="French name of the content author / Nom en français de l'auteur du contenu" />
+<meta name="dcterms.title" content="French title / Titre en français" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="French subject terms / Termes de sujet en français" />
+<meta name="dcterms.language" title="ISO639-2" content="fra" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script src="../../../dist/js/jquery.min.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-gcwu-fegc/css/theme-min.css" />
+<!--<![endif]-->
+<noscript><link rel="stylesheet" href="../../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+
+<!-- CustomScriptsCSSStart -->
+<!-- CustomScriptsCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Barre de navigation du gouvernement du Canada</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-fra" title="Gouvernement du Canada"><img src="../../../dist/theme-gcwu-fegc/images/sig-fr.gif" width="214" height="20" alt="Gouvernement du Canada" /></div></div></div>
+<ul>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.ca/fr/index.html">Canada.ca</a></li>
+<li id="gcwu-gcnb2"><a rel="external" href="http://www.canada.ca/fr/services/index.html">Services</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.ca/fr/gouv/min/index.html">Ministères</a></li>
+<li id="gcwu-gcnb-lang"><a href="formvalid-en.html" lang="en">English</a></li>
+</ul>
+</div></div></div></nav>
+
+<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbole du gouvernement du Canada"><img src="../../../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30"  alt="Symbole du gouvernement du Canada" /></div></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../../index-fr.html">Boîte à outils de l'expérience Web&#160;(BOEW)</a></p></div>
+
+<section role="search"><div id="gcwu-srchbx"><h2>Recherche</h2>
+<form action="#" method="post"><div id="gcwu-srchbx-in">
+<label for="gcwu-srch">Recherchez le site Web</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Recherche" data-icon="search" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="gcwu-psnb"><h2>Menu<span> du site</span></h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/menu-fr.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-fr.html">Projet de la BOEW</a></div></li>
+<li><div><a href="section2/index-fr.html">Section 2</a></div></li>
+<li><div><a href="#">Section 3</a></div></li>
+<li><div><a href="#">Section 4</a></div></li>
+<li><div><a href="#">Section 5</a></div></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="gcwu-bc"><h2>Fil d'Ariane</h2><div id="gcwu-bc-in">
+<ol>
+<li><a href="../../../index-fr.html">Accueil</a></li>
+<li><a href="../../index-fr.html">Documentation</a></li>
+<li><a href="../plugins-fr.html">Plugiciels</a></li>
+<li>Validation de formulaires</li>
+</ol></div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Validation de formulaires</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/formvalid/formvalid-fr.html" class="button">Examples pratiques</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<h2>Aperçu</h2>
+	<p><b>Chef du projet :</b> Paul Jackson (<a href="https://github.com/pjackson28">@pjackson28</a>)</p>
+
+	<section>
+		<h3>But</h3>
+		<p>Ce composant fournit la validation générique et le soutien de message d'erreur générique pour les formulaires Web.</p>
+	</section>
+
+	<section>
+		<h3>Avantages</h3>
+		<ul>
+			<li>Plusieurs méthodes de validation</li>
+			<li>Messages d'erreur personnalisés</li>
+			<li>Conformes à WCAG 2.0 AA</li>
+			<li>Recours aux WAI-ARIA pour accroître l'accessibilité</li>
+			<li>Approche d'amélioration progressive</li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Utilisation recommandée</h3>
+		<p>Formulaires Web</p>
+	</section>
+</section>
+
+<section>
+	<h2>Mise en œuvre</h2>
+	<ol>
+		<li>Ajouter <b>class="wet-boew-formvalid"</b> à l'élément <b>div</b> qui est à l'entour de lélément <b>form</b> <pre>&lt;div class="wet-boew-formvalid"&gt;&lt;form action="#" method="post"&gt;...&lt;/form&gt;&lt;/div&gt;</pre></li>
+		<li><b>Facultatif :</b> Entourer le nom de chaque champ de formulaire avec <code>&lt;span class="field-name"&gt;...&lt;/span&gt;</code>. Ceci spécifie le préfixe pour chaque message d'erreur. <pre>&lt;label for="fname"&gt;&lt;span class="field-name"&gt;Prénom&lt;/span&gt; &lt;strong&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;</pre></li>
+		<li>Ajouter <b>required="required"</b> à chaque champ de formulaire obligatoire <pre>&lt;input id="fname" name="fname" type="text" required="required" /&gt;</pre></li>
+		<li><b>Facultatif :</b> Pour les champs de saisie, ajouter la syntaxe suivante pour la validation spécializée :</li>
+	</ol>
+	<p><b>Note :</b> La syntaxe de validation spécialisée a changé en v3.0.6 et v3.1.0 de <code>class="{validate: {propriété: valeur}}"</code> à <code>data-rule-propriété="valeur"</code>. L'ancienne syntaxe est obsolète mais sera soutenue pour l'instant pour accommoder la transition vers la nouvelle syntaxe.</p>
+
+	<table>
+	<tr>
+		<th>Type de validation</th>
+		<th>Syntaxe (v3.0.6+ et v3.1.0+ de la BOEW)</th>
+		<th>Syntaxe (v3.0.0 à v3.0.5 de la BOEW)</th>
+	</tr>
+	<tr>
+		<td>Adresse de courriel</td>
+		<td>type="email"</td>
+		<td>type="email"</td>
+	</tr>
+	<tr>
+		<td>Alphanumérique</td>
+		<td>data-rule-alphanumeric:"true"</td>
+		<td>class="{validate:{alphanumeric:true}}"</td>
+	</tr>
+	<tr>
+		<td>Chiffres seulement</td>
+		<td>type="number"</td>
+		<td>type="number"</td>
+	</tr>
+	<tr>
+		<td>Date</td>
+		<td>type="date"</td>
+		<td>type="date"</td>
+	</tr>
+	<tr>
+		<td>Date (ISO)</td>
+		<td>type="date" data-rule-dateISO="true"</td>
+		<td>type="date" class="{validate:{dateISO:true}}"</td>
+	</tr>
+	<tr>
+		<td>Heure</td>
+		<td>type="time"</td>
+		<td>type="time"</td>
+	</tr>
+	<tr>
+		<td>Lettres et des signes de ponctuation simples seulement (ponctuation qui est permis : [.])</td>
+		<td>data-rule-letterswithbasicpunc="true"</td>
+		<td>class="{validate:{letterswithbasicpunc:true}}"</td>
+	</tr>
+	<tr>
+		<td>Lettres seulement</td>
+		<td>data-rule-lettersonly="true"</td>
+		<td>class="{validate:{lettersonly:true}}"</td>
+	</tr>
+	<tr>
+		<td>Longeur entre x et y</td>
+		<td>data-rule-rangelength="[x,y]"</td>
+		<td>class="{validate:{rangelength:[x,y]}}"</td>
+	</tr>
+	<tr>
+		<td>Longeur maximum de x</td>
+		<td>data-rule-maxlength="x"</td>
+		<td>class="{validate:{maxlength:x}}"</td>
+	</tr>
+	<tr>
+		<td>Longeur minimum de x</td>
+		<td>data-rule-minlength="x"</td>
+		<td>class="{validate:{minlength:x}}"</td>
+	</tr>
+	<tr>
+		<td>Nombre maximum de x</td>
+		<td>max="x"</td>
+		<td>max="x"</td>
+	</tr>
+	<tr>
+		<td>Nombre minimum x</td>
+		<td>min="x"</td>
+		<td>min="x"</td>
+	</tr>
+	<tr>
+		<td>Numéro de téléphone (É.-U.)</td>
+		<td>type="tel" data-rule-phoneUS="true"</td>
+		<td>type="tel" class="{validate:{phoneUS:true}}"</td>
+	</tr>
+	<tr>
+		<td>URL (IPv4)</td>
+		<td>type="url"</td>
+		<td>type="url"</td>
+	</tr>
+	<tr>
+		<td>URL (IPv6)</td>
+		<td>type="url" data-rule-ipv6="true"</td>
+		<td>type="url" class="{validate:{ipv6:true}}"</td>
+	</tr>
+	</table>
+	<p>Liser <a href="http://jqueryvalidation.org/documentation">jQuery Validation Plugin - Documentation (Anglais seulement)</a> pour des renseignements supplémentaires.</p>
+</section>
+
+<section>
+	<h2>Exemples</h2>
+	<ul>
+	<li><a href="../../../demos/formvalid/formvalid-en.html">Exemples en anglais</a></li>
+	<li><a href="../../../demos/formvalid/formvalid-fr.html">Exemples en français</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Développement</h2>
+	<p>La validation de formulaires est dépendent sur <a href="http://jqueryvalidation.org/">jQuery Validation (Anglais seulement)</a> (<a href="http://www.opensource.org/licenses/mit-license.php">licence MIT (Anglais seulement)</a>, <a href="http://www.gnu.org/licenses/gpl-3.0.fr.html">licence GPL</a>). Elle est aussi améliorer par le <a href="../datepicker/datepicker-fr.html">correctif de sélecteur de date</a> et le <a href="../../../demos/grids/grid-base-en.html">système de grille CSS</a>.</p>
+	<p>Le code pour la validation de formulaires est situé dans plusieurs endroits dans le dossier <b>source</b> de la BOEW :</p>
+
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/workers/formvalid.js">js/workers/formvalid.js</a> - contient le JavaScript pour la validation de formulaires</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_formvalid.scss">js/sass/includes/_formvalid.scss</a> - contient le CSS pour la validation de formulaires</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/dependencies/validate.js">js/dependencies/validate.js</a> - fichier de script principal de jQuery Validation</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/dependencies/validateAdditional.js">js/dependencies/validateAdditional.js</a> - méthodes de validation supplémentaires pour jQuery Validation</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/tree/v3.0/src/js/i18n/formvalid">js/i18n/formvalid/</a> - fichiers d'internalisation pour jQuery Validation</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Problèmes connus</h2>
+	<ul>
+		<li>Fournir seulement la validation de côté client pour les champs de formulaire peut permettre des assauts malveillants sur le serveur</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Historique des versions</h2>
+	<ul>
+	<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/workers/formvalid.js">formvalid.js</a> </li>
+	<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/sass/includes/_formvalid.scss">_formvalid.scss</a> </li>
+	<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/dependencies/validate.js">validate.js</a></li>
+	<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/dependencies/validateAdditional.js">validateAdditional.js</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Pages reliés</h2>
+	<ul>
+		<li><a href="../datepicker/datepicker-fr.html">Sélecteur de date (correctif pour input type='date', interface du calendrier)</a></li>
+		<li><a href="../../../demos/grids/grid-base-en.html">Système de grille CSS</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Références</h2>
+	<ul>
+		<li><a href="http://jqueryvalidation.org/">jQuery Validation</a></li>
+	</ul>
+</section>
+
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2014-01-15</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="gcwu-sft"><h3>Pied de page du site</h3><div id="gcwu-sft-in">
+<div id="gcwu-tctr">
+<ul>
+<li class="gcwu-tc"><a href="#" rel="license">Avis</a></li>
+<li class="gcwu-tr"><a href="#">Transparence</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">À propos de nous</a></h4>
+<ul>
+<li><a href="#">Notre mandat</a></li>
+<li><a href="#">Le ministre</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Nouvelles</a></h4>
+<ul>
+<li><a href="#">Communiqués</a></li>
+<li><a href="#">Avix aux médias</a></li>
+<li><a href="#">Multimédia</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contactez-nous</a></h4>
+<address>
+<ul>
+<li><a href="#">Numéros de téléphone</a></li>
+<li><a href="#">Nos bureaux</a></li>
+</ul>
+</address>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Restez branchés</a></h4>
+<ul>
+<li><a rel="external" href="#">YouTube</a></li>
+<li><a rel="external" href="#">Twitter</a></li>
+<li><a href="#">Fils de nouvelles</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<nav role="navigation"><div id="gcwu-gcft"><h3>Pied de page du gouvernement du Canada</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
+<ul>
+<li><a rel="external" href="http://canadiensensante.gc.ca/index-fra.php"><span>Santé</span><br />canadiensensante.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-fra.asp"><span>Voyage</span><br />voyage.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.guichetemplois.gc.ca/Intro-fra.aspx"><span>Emplois</span><br />guichetemplois.gc.ca</a></li>
+<li><a rel="external" href="http://plandaction.gc.ca/fr"><span>Économie</span><br />plandaction.gc.ca</a></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.ca/fr/index.html">Canada.ca</a></div></li>
+</ul>
+</div></div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../../../dist/js/settings.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<!-- ScriptsEnd -->
+</body>
+</html>
