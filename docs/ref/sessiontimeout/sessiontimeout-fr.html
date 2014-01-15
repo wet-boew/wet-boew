@@ -108,7 +108,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 <section>
 	<h2>Aperçu</h2>
-	<p><b>Chef du projet :</b> Roch Lambert (<a href="https://github.com/rlambert27">@rlambert27</a>)</p>
+	<p><strong>Chef du projet :</strong> Roch Lambert (<a href="https://github.com/rlambert27">@rlambert27</a>)</p>
 
 	<section>
 		<h3>But</h3>
@@ -133,25 +133,25 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Mise en oeuvre</h2>
 	<p>Le code que vous êtes autorisés à modifier (dans la page) est :</p>
-	<pre>&lt;span class="wet-boew-sessiontimeout" data-wet-boew='{"ajaxLimiter": 200000, "inactivity": 1200000, "reactionTime": 30000, "sessionalive": 1200000, "logouturl": "./", "refreshOnClick": true, "refreshCallbackUrl": "./"}'&gt;&lt;/span&gt;</pre>
+	<pre><code>&lt;span class="wet-boew-sessiontimeout" data-wet-boew='{"ajaxLimiter": 200000, "inactivity": 1200000, "reactionTime": 30000, "sessionalive": 1200000, "logouturl": "./", "refreshOnClick": true, "refreshCallbackUrl": "./"}'&gt;&lt;/span&gt;</code></pre>
 
 	<p>Les paramètres suivants vous permettent de configurer la fonction :</p>
 	<ul>
-		<li><b>ajaxLimiter:</b> Ceci est le lapse de temps entre les requêtes AJAX pour actualiser la page de session côté serveur.</li>
-		<li><b>inactivity :</b> période de temps d'inactivité après laquelle la boîte de dialogue apparaîtra.</li>
-		<li><b>reactionTime :</b> période de temps dont dispose l'utilisateur pour faire un choix lorsque la boîte de dialogue apparaît.</li>
-		<li><b>sessionalive :</b> période de temps durant laquelle la session demeure active avant que la boîte de dialogue n’apparaisse.</li>
-		<li><b>logouturl :</b> adresse URL à laquelle l’utilisateur est acheminé lorsque la session a expiré.</li>
-		<li><b>refreshOnClick:</b> Mettre cette option à true ou false aura pour effet d'activer ou désactiver l'actualisation ajax à l'aide du paramètre refreshCallbackUrl.</li>
-		<li><b>refreshCallbackUrl :</b> Ceci est l'URL pour effectuer une actualisation ajax, doit retourner true/false.</li>
+		<li><strong>ajaxLimiter:</strong> Ceci est le lapse de temps entre les requêtes AJAX pour actualiser la page de session côté serveur.</li>
+		<li><strong>inactivity :</strong> période de temps d'inactivité après laquelle la boîte de dialogue apparaîtra.</li>
+		<li><strong>reactionTime :</strong> période de temps dont dispose l'utilisateur pour faire un choix lorsque la boîte de dialogue apparaît.</li>
+		<li><strong>sessionalive :</strong> période de temps durant laquelle la session demeure active avant que la boîte de dialogue n’apparaisse.</li>
+		<li><strong>logouturl :</strong> adresse URL à laquelle l’utilisateur est acheminé lorsque la session a expiré.</li>
+		<li><strong>refreshOnClick:</strong> Mettre cette option à true ou false aura pour effet d'activer ou désactiver l'actualisation ajax à l'aide du paramètre refreshCallbackUrl.</li>
+		<li><strong>refreshCallbackUrl :</strong> Ceci est l'URL pour effectuer une actualisation ajax, doit retourner true/false.</li>
 	</ul>
 
-	<p>Le seul paramètre requis est <b>logouturl</b>, tous les autres champs sont facultatifs. Le JavaScript par défaut serait :</p>
-	<pre>&lt;span class="wet-boew-sessiontimeout" data-wet-boew='{"logouturl": "./"'}'&gt;&lt;/span&gt;</pre>
+	<p>Le seul paramètre requis est <strong>logouturl</strong>, tous les autres champs sont facultatifs. Le JavaScript par défaut serait&#160;:</p>
+	<pre><code>&lt;span class="wet-boew-sessiontimeout" data-wet-boew='{"logouturl": "./"'}'&gt;&lt;/span&gt;</code></pre>
 
-	<p><b>NOTE IMPORTANTE :</b> Les paramètres <b>ajaxLimiter</b>, <b>inactivity</b>, <b>reactionTime</b> et <b>sessionAlive</b> sont mis en millisecondes. Le seule paramètre obligatoire est le <b>logouturl</b>. Les paramètres <b>inactivity</b> et <b>sessionalive</b> est fixé à 20 minutes par défaut avec un temps de 30 secondes pour la confirmation du message de dialogue. La requête Ajax se fera toutes les 2 minutes par défaut en utilisant le paramètre <b>refreshCallbackUrl</b>. Le paramètre <b>refreshCallbackUrl</b> ne doit pas être une page contenant la fonction d'expiration de la session de nouveau sinon une boucle sera créé, il devrait être tout simplement une page qui rafraîchit la session.</p>
+	<p><strong>NOTE IMPORTANTE :</strong> Les paramètres <strong>ajaxLimiter</strong>, <strong>inactivity</strong>, <strong>reactionTime</strong> et <strong>sessionAlive</strong> sont mis en millisecondes. Le seule paramètre obligatoire est le <strong>logouturl</strong>. Les paramètres <strong>inactivity</strong> et <strong>sessionalive</strong> est fixé à 20 minutes par défaut avec un temps de 30 secondes pour la confirmation du message de dialogue. La requête Ajax se fera toutes les 2 minutes par défaut en utilisant le paramètre <strong>refreshCallbackUrl</strong>. Le paramètre <strong>refreshCallbackUrl</strong> ne doit pas être une page contenant la fonction d'expiration de la session de nouveau sinon une boucle sera créé, il devrait être tout simplement une page qui rafraîchit la session.</p>
 	<p>Voici un outil qui vous aidera a convertir des minutes en millisecondes (anglais seulement) : <a href="http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm">http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm</a></p>
-	<p><b>NOTE IMPORTANTE :</b> Les paramètres <b>sessionalive</b> et <b>inactivity</b> devrait être égal à votre session sur le serveur web moins le temps de <b>reactionTime</b>. Si vous définissez paramètres <b>sessionalive</b> et <b>inactivity</b> avec le même temps que la session sur le serveur web, sans prendre en considération le temps <b>reactionTime</b>, alors la session sur le serveur sera fini dès que la fenêtre contextuelle apparaît pour prolonger la session.</p>
+	<p><strong>NOTE IMPORTANTE :</strong> Les paramètres <strong>sessionalive</strong> et <strong>inactivity</strong> devrait être égal à votre session sur le serveur web moins le temps de <strong>reactionTime</strong>. Si vous définissez paramètres <strong>sessionalive</strong> et <strong>inactivity</strong> avec le même temps que la session sur le serveur web, sans prendre en considération le temps <strong>reactionTime</strong>, alors la session sur le serveur sera fini dès que la fenêtre contextuelle apparaît pour prolonger la session.</p>
 </section>
 
 <section>
@@ -164,7 +164,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 <section>
 	<h2>Development</h2>
-	<p>Le code pour l'expiration de la session se trouve à plusieurs endroits dans le répertoire <b>source</b> de la BOEW :</p>
+	<p>Le code pour l'expiration de la session se trouve à plusieurs endroits dans le répertoire <strong>source</strong> de la BOEW :</p>
 	<ul>
 		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/workers/sessiontimeout.js">js/workers/sessiontimeout.js</a> - contient le code JavaScript pour l'expiration de la session</li>
 		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_sessiontimeout.scss">js/sass/includes/_sessiontimeout.scss</a> - contient le CSS pour l'expiration de la session</li>
@@ -191,7 +191,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 </section>
 
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date de modification&#160;:</dt><dd><span><time>2014-01-14</time></span></dd>
+<dt>Date de modification&#160;:</dt><dd><span><time>2013-09-01</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->

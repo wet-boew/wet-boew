@@ -109,7 +109,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 <section>
 	<h2>Overview</h2>
-	<p><b>Project lead:</b> Roch Lambert (<a href="https://github.com/rlambert27">@rlambert27</a>)</p>
+	<p><strong>Project lead:</strong> Roch Lambert (<a href="https://github.com/rlambert27">@rlambert27</a>)</p>
 
 	<section>
 		<h3>Purpose</h3>
@@ -135,25 +135,25 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<h2>Implementation</h2>
 
 	<p>The code you're allowed to edit is:</p>
-	<pre>&lt;span class="wet-boew-sessiontimeout" data-wet-boew='{"ajaxLimiter": 200000, "inactivity": 1200000, "reactionTime": 30000, "sessionalive": 1200000, "logouturl": "./", "refreshOnClick": true, "refreshCallbackUrl": "./"}'&gt;&lt;/span&gt;</pre>
+	<pre><code>&lt;span class="wet-boew-sessiontimeout" data-wet-boew='{"ajaxLimiter": 200000, "inactivity": 1200000, "reactionTime": 30000, "sessionalive": 1200000, "logouturl": "./", "refreshOnClick": true, "refreshCallbackUrl": "./"}'&gt;&lt;/span&gt;</code></pre>
 
 	<p>This allows you to configure the component:</p>
 	<ul>
-		<li><b>ajaxLimiter:</b> This is the amount of time between ajax requests to refresh the server side session page.</li>
-		<li><b>inactivity:</b> This is the inactivity period of time after which the dialog message will appear.</li>
-		<li><b>reactionTime:</b> This is the period of time the user has to perform an action with the dialog message.</li>
-		<li><b>sessionalive:</b> This is the period of time for the session to stay alive until the dialog message appears.</li>
-		<li><b>logouturl:</b> This is the URL that users are sent to when the session has expired.</li>
-		<li><b>refreshOnClick:</b> Setting this to true or false will enable or disable the ajax refresh using the refreshCallbackUrl parameter.</li>
-		<li><b>refreshCallbackUrl:</b> This is the URL to perform an ajax refresh, must return true/false.</li>
+		<li><strong>ajaxLimiter:</strong> This is the amount of time between ajax requests to refresh the server side session page.</li>
+		<li><strong>inactivity:</strong> This is the inactivity period of time after which the dialog message will appear.</li>
+		<li><strong>reactionTime:</strong> This is the period of time the user has to perform an action with the dialog message.</li>
+		<li><strong>sessionalive:</strong> This is the period of time for the session to stay alive until the dialog message appears.</li>
+		<li><strong>logouturl:</strong> This is the URL that users are sent to when the session has expired.</li>
+		<li><strong>refreshOnClick:</strong> Setting this to true or false will enable or disable the ajax refresh using the refreshCallbackUrl parameter.</li>
+		<li><strong>refreshCallbackUrl:</strong> This is the URL to perform an ajax refresh, must return true/false.</li>
 	</ul>
 
-	<p>The only required parameter is <b>logouturl</b>, all other fields are optional. The default code would be:</p>
-	<pre>&lt;span class="wet-boew-sessiontimeout" data-wet-boew='{"logouturl": "./"}'&gt;&lt;/span&gt;</pre>
+	<p>The only required parameter is <strong>logouturl</strong>, all other fields are optional. The default code would be:</p>
+	<pre><code>&lt;span class="wet-boew-sessiontimeout" data-wet-boew='{"logouturl": "./"}'&gt;&lt;/span&gt;</code></pre>
 
-	<p><b>IMPORTANT NOTE:</b> The <b>ajaxLimiter</b>, <b>inactivity</b>, <b>reactionTime</b> and <b>sessionalive</b> parameters are set in milliseconds. The only required parameter is the <b>logouturl</b>. The default <b>inactivity</b> and <b>sessionalive</b> is set to 20 minutes with a 30 second confirmation time with the dialog message. The ajax request will be done every 2 minutes by default using the <b>refreshCallbackUrl</b> parameter. The <b>refreshCallbackUrl</b> must not be a page containing the timeout function again as a loop will be created, it should be simply a viewless page that refreshes the session.</p>
+	<p><strong>IMPORTANT NOTE:</strong> The <strong>ajaxLimiter</strong>, <strong>inactivity</strong>, <strong>reactionTime</strong> and <strong>sessionalive</strong> parameters are set in milliseconds. The only required parameter is the <strong>logouturl</strong>. The default <strong>inactivity</strong> and <strong>sessionalive</strong> is set to 20 minutes with a 30 second confirmation time with the dialog message. The ajax request will be done every 2 minutes by default using the <strong>refreshCallbackUrl</strong> parameter. The <strong>refreshCallbackUrl</strong> must not be a page containing the timeout function again as a loop will be created, it should be simply a viewless page that refreshes the session.</p>
 	<p>Need help with the conversion? See: <a href="http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm">http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm</a></p>
-	<p><b>IMPORTANT NOTE:</b> Your <b>sessionalive</b> and <b>inactivity</b> parameters should be equal to your web server session alive time minus the <b>reactionTime</b> time. If you set your <b>sessionalive</b> time and <b>inactivity</b> time to the same as your web server without taking into consideration the <b>reactionTime</b> time then the session will have ended by the server as soon as the popup appears to extend the session.</p>
+	<p><strong>IMPORTANT NOTE:</strong> Your <strong>sessionalive</strong> and <strong>inactivity</strong> parameters should be equal to your web server session alive time minus the <strong>reactionTime</strong> time. If you set your <strong>sessionalive</strong> time and <strong>inactivity</strong> time to the same as your web server without taking into consideration the <strong>reactionTime</strong> time then the session will have ended by the server as soon as the popup appears to extend the session.</p>
 </section>
 
 <section>
@@ -166,7 +166,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 <section>
 	<h2>Development</h2>
-	<p>The code for the session timeout is located in several places within the <b>source</b> folder of WET:</p>
+	<p>The code for the session timeout is located in several places within the <strong>source</strong> folder of WET:</p>
 
 	<ul>
 		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/workers/sessiontimeout.js">js/workers/sessiontimeout.js</a> - contains the JavaScript code for the session timeout</li>
@@ -194,7 +194,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 </section>
 
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2014-01-14</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2013-09-01</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
