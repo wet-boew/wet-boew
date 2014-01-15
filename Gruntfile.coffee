@@ -337,6 +337,11 @@ module.exports = (grunt) ->
 						src: "**/*.hbs"
 						dest: "dist/unmin/demos"
 					,
+						expand: true
+						cwd: "src/themestyle"
+						src: "**/*.hbs"
+						dest: "dist/unmin/demos"
+					,
 						cwd: "site/pages"
 						src: "**/*.hbs"
 						dest: "dist/unmin"
@@ -362,6 +367,11 @@ module.exports = (grunt) ->
 					,
 						expand: true
 						cwd: "src/other"
+						src: "**/*.hbs"
+						dest: "dist/demos"
+					,
+						expand: true
+						cwd: "src/themestyle"
 						src: "**/*.hbs"
 						dest: "dist/demos"
 					,
@@ -429,6 +439,12 @@ module.exports = (grunt) ->
 				,
 					expand: true
 					cwd: "src/other"
+					src: "**/demo/*.scss"
+					dest: "dist/unmin/demos/"
+					ext: ".css"
+				,
+					expand: true
+					cwd: "src/themestyle"
 					src: "**/demo/*.scss"
 					dest: "dist/unmin/demos/"
 					ext: ".css"
@@ -696,7 +712,26 @@ module.exports = (grunt) ->
 					expand: true
 				,
 					cwd: "src/polyfills"
-					src: "**/demo/*.js"
+					src: [
+						"**/demo/*.*"
+						"!**/*.scss"
+					]
+					dest: "dist/unmin/demos/"
+					expand: true
+				,
+					cwd: "src/other"
+					src: [
+						"**/demo/*.*"
+						"!**/*.scss"
+					]
+					dest: "dist/unmin/demos/"
+					expand: true
+				,
+					cwd: "src/themestyle"
+					src: [
+						"**/demo/*.*"
+						"!**/*.scss"
+					]
 					dest: "dist/unmin/demos/"
 					expand: true
 				]

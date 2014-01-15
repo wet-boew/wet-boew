@@ -11,7 +11,7 @@
 		<link href="{{assets}}/assets/favicon.ico" rel="shortcut icon" />
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
 		<!-- Meta data -->
-		<meta name="description" content="{{#i18n "site.description"}}{{/i18n}}" />
+		<meta name="description" content="{{#if page.description }}{{page.description}}{{else}}{{#i18n "site.description"}}{{/i18n}}{{/if}}" />
 		<!-- Meta data-->
 		{{>headresources}}
 	</head>
