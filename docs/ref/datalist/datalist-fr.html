@@ -97,38 +97,30 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 </ul>
 
 <span class="wet-boew-prettify all-pre"></span>
-<p>The Standard on Web Usability requires an archived content notice to clearly inform users that the Web page has been archived on the Web.</p>
-
 <section>
 	<h2>Aperçu</h2>
 	<p><strong>Chef du projet :</strong> Eric Poirier (<a href="https://github.com/ericpoirier">@ericpoirier</a>)</p>
 
 	<section>
-		<h3>Description</h3>
-		<div lang="en">
-		<p><strong>Needs translation</strong></p>
-		<p>The HTML5 <code>input list</code> attribute and the <code>datalist</code> element add auto-complete functionality to specific text input fields by dynamically displaying a list of words that match the user’s input. Because some browsers do not support this functionality natively, this polyfill emulates the same functionality using generic HTML and WAI-ARIA. Browsers that do not support the <code>input list</code> attribute and the <code>datalist</code> element natively ignore the auto-complete functionality and therefore, the text input field behaves like it normally does.</p>
-		</div>
+		<h3>Objet</h3>
+		<p>L'attribut <code>input list</code> et l'élément <code>datalist</code> de HTML5 ajoutent des fonctionnalités de saisie automatique en affichant dynamiquement une liste de mots qui correspondent à l'entrée de l'utilisateur.  Étant donné que certains navigateurs ne prennent pas en charge cette fonctionnalité à l'origine, ce correctif émule la même fonctionnalité en utilisant HTML générique et WAI-ARIA.</p>
 	</section>
 
 	<section>
 		<h3>Avantages</h3>
-		<div lang="en">
-		<p><strong>Needs translation</strong></p>
 		<ul>
-			<li>In cases where browser don't support the attribute and element, the polyfill is automatically loaded.</li>
-			<li>This polyfill ensures that the auto-complete functionality is added to the text input field and the necessary information is exposed to assistive technologies by adding WAI-ARIA.</li>
+			<li>Dans les cas où le navigateur ne prend pas en charge l'attribut et l'élément, le correctif est automatiquement chargé.</li>
+			<li>Ce correctif assure que la fonctionnalité de saisie automatique est ajouté et les informations nécessaires sont exposées aux technologies d'assistance en ajoutant WAI-ARIA.</li>
 		</ul>
-		</div>
 	</section>
+</section>
+
+<section>
+	<h2>Mise en œuvre</h2>
+	<p>Pour utiliser le correctif, l'attribut <code>input list</code> et l'élément <code>datalist</code> doivent être utilisés. Dans les cas où le navigateur ne soutien pas l'attribut <code>input list</code> ou l'élément <code>datalist</code> le correctif est automatiquement chargé.</p>
 
 	<section>
-		<h3>Recommended usage</h3>
-		<p>To use the polyfill, the standard <code>input list</code> attribute and <code>datalist</code> element must be used.</p>
-	</section>
-
-	<section>
-		<h3>Coded d'exemple</h3>
+		<h3>Code d'exemple</h3>
 		<pre><code>&lt;label for="city"&gt;Ville&lt;/label&gt;
 &lt;input type="text" id="city" name="city" list="suggestions" /&gt;
 &lt;datalist id="suggestions"&gt;
@@ -237,7 +229,6 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 </ul>
 </div></section>
 </div></div></nav>
-
 <!-- FooterEnd -->
 </footer>
 </div></div></div>
