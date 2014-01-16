@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-<title>Saisie automatique - Correctifs - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+<title>Barre de progression - Correctifs - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../../dist/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="French description / Description en français" />
@@ -54,7 +54,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.ca/fr/index.html">Canada.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.canada.ca/fr/services/index.html">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.ca/fr/gouv/min/index.html">Ministères</a></li>
-<li id="gcwu-gcnb-lang"><a href="datalist-en.html" lang="en">English</a></li>
+<li id="gcwu-gcnb-lang"><a href="progress-en.html" lang="en">English</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -88,7 +88,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li><a href="../../../index-fr.html">Accueil</a></li>
 <li><a href="../../index-fr.html">Documentation</a></li>
 <li><a href="../polyfills-fr.html">Correctifs</a></li>
-<li>Saisie automatique</li>
+<li>Barre de progression</li>
 </ol></div></div>
 </nav>
 <!-- HeaderEnd -->
@@ -97,108 +97,99 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Saisie automatique</h1>
+<h1 id="wb-cont">Barre de progression</h1>
 
 <ul class="button-group">
-<li><a href="../../../demos/datalist/datalist-fr.html" class="button">Examples pratiques</a></li>
+<li><a href="../../../demos/progress/progress-fr.html" class="button">Examples pratiques</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
 </ul>
 
 <span class="wet-boew-prettify all-pre"></span>
 <section>
 	<h2>Aperçu</h2>
-	<p><strong>Chef du projet :</strong> Eric Poirier (<a href="https://github.com/ericpoirier">@ericpoirier</a>)</p>
+	<p><strong>Chef de projet :</strong> Laurent Goderre (<a href="https://github.com/LaurentGoderre">@LaurentGoderre</a>)</p>
 
 	<section>
 		<h3>Objet</h3>
-		<p>L'attribut <code>input list</code> et l'élément <code>datalist</code> de HTML5 ajoutent des fonctionnalités de saisie automatique en affichant dynamiquement une liste de mots qui correspondent à l'entrée de l'utilisateur.  Étant donné que certains navigateurs ne prennent pas en charge cette fonctionnalité à l'origine, ce correctif émule la même fonctionnalité en utilisant HTML générique et WAI-ARIA.</p>
+		<p>L'élément <code>progress</code> de HTML5 affiche la progression d'une tâche. Étant donné que certains navigateurs ne prennent pas en charge cette fonctionnalité à l'origine, ce correctif émule la même fonctionnalité à l'aide de HTML générique et WAI-ARIA.</p>
 	</section>
 
 	<section>
-		<h3>Avantages</h3>
-		<ul>
-			<li>Dans les cas où le navigateur ne prend pas en charge l'attribut et l'élément, le correctif est automatiquement chargé.</li>
-			<li>Ce correctif assure que la fonctionnalité de saisie automatique est ajouté et les informations nécessaires sont exposées aux technologies d'assistance en ajoutant WAI-ARIA.</li>
-		</ul>
+		<h3>Raison d’être</h3>
+		<p>Les navigateurs qui ne prennent pas en charge l'élément <code>progress</code> ignore l'élément. Par conséquent, rien est affiché et son contenu n'est pas exposé à des technologies d'assistance. Ce correctif assure que l'élément <code>progress</code> est visuellement convertie en une barre coulissante et exposé aux technologies d'assistance en ajoutant WAI-ARIA.</p>
 	</section>
 </section>
 
 <section>
 	<h2>Mise en œuvre</h2>
-	<p>Pour utiliser le correctif, l'attribut <code>input list</code> et l'élément <code>datalist</code> doivent être utilisés. Dans les cas où le navigateur ne soutien pas l'attribut <code>input list</code> ou l'élément <code>datalist</code> le correctif est automatiquement chargé.</p>
+	<p>Pour utiliser le correctif, un élément <code>progress</code> doit être utilisé. Dans les cas où le navigateur ne soutien pas l'élément <code>progress</code>, le correctif est automatiquement chargé.</p>
+	<section>
+		<h3>Paramètres</h3>
+		<p>Le correctif de l'élément <code>progress</code> accepte deux paramètres&#160;: <code>max</code> et <code>value</code>. Aucune de ces paramètres sont obligatoires.</p>
+		<section>
+			<h4>Paramètre <code>value</code></h4>
+			<p>This parameter represent the progress of the task and can be any decimal number between 0 and the <code>max</code> value. If <code>value</code> is omitted, the progress bar is considered to be indeterminate, which means that there is no indication on the actual progress of the task.</p>
+		</section>
+		<section>
+			<h4>Paramètre <code>max</code></h4>
+			<p>This parameter represent the maximum progress for the task. When the <code>value</code> parameter is set to the maximum value, the task is considered complete. The <code>max</code> parameter can be any positive decimal number. If the parameter is omitted, the default value of 1.0 is assumed.</p> 
+		</section>
+	</section>
 
 	<section>
 		<h3>Code d'exemple</h3>
-		<pre><code>&lt;label for="city"&gt;Ville&lt;/label&gt;
-&lt;input type="text" id="city" name="city" list="suggestions" /&gt;
-&lt;datalist id="suggestions"&gt;
-	&lt;!--[if lte IE 9]&gt;&lt;select&gt;&lt;![endif]--&gt;
-	&lt;option label="Barrie" value="Barrie"&gt;&lt;/option&gt;
-	&lt;option label="Calgary" value="Calgary"&gt;&lt;/option&gt;
-	&lt;option label="Charlottetown" value="Charlottetown"&gt;&lt;/option&gt;
-	&lt;option label="Chibougamau" value="Chibougamau"&gt;&lt;/option&gt;
-	&lt;option label="Chilliwack" value="Chilliwack"&gt;&lt;/option&gt;
-	&lt;option label="Cold Lake" value="Cold Lake"&gt;&lt;/option&gt;
-	&lt;option label="Dorval" value="Dorval"&gt;&lt;/option&gt;
-	&lt;option label="Edmonton" value="Edmonton"&gt;&lt;/option&gt;
-	&lt;option label="Flin Flon" value="Flin Flon"&gt;&lt;/option&gt;
-	&lt;option label="Hamilton" value="Hamilton"&gt;&lt;/option&gt;
-	&lt;option label="Iqualuit" value="Iqualuit"&gt;&lt;/option&gt;
-	&lt;option label="Ottawa" value="Ottawa"&gt;&lt;/option&gt;
-	&lt;option label="Miramichi" value="Miramichi"&gt;&lt;/option&gt;
-	&lt;option label="Montréal" value="Montréal"&gt;&lt;/option&gt;
-	&lt;option label="Red Deer" value="Red Deer"&gt;&lt;/option&gt;
-	&lt;option label="St. John" value="St. John"&gt;&lt;/option&gt;
-	&lt;option label="St. John's" value="St. John's"&gt;&lt;/option&gt;
-	&lt;option label="Toronto" value="Toronto"&gt;&lt;/option&gt;
-	&lt;option label="Vancouver" value="Vancouver"&gt;&lt;/option&gt;
-	&lt;option label="Whitehorse" value="Whitehorse"&gt;&lt;/option&gt;
-	&lt;option label="Winnipeg" value="Winnipeg"&gt;&lt;/option&gt;
-	&lt;option label="Yellowknife" value="Yellowknife"&gt;&lt;/option&gt;
-	&lt;!--[if lte IE 9]&gt;&lt;/select&gt;&lt;![endif]--&gt;
-&lt;/datalist&gt;</code></pre>
-
-		<p><a href="../../../demos/datalist/datalist-fr.html">Exemple pratique</a></p>
+		<section>
+			<h4>Tâche en cours</h4>
+			<pre><code>&lt;progress value="25" max="100" /&gt;</code></pre>
+		</section>
+		<section>
+			<h4>Tâche terminée</h4>
+			<pre><code>&lt;progress value="50" max="50" /&gt;</code></pre>
+		</section>
+		<section>
+			<h4>Tâche de progression indéterminée</h4>
+			<pre><code>&lt;progress /&gt;</code></pre>
+			<div>or</div>
+			<pre><code>&lt;progress max="50" /&gt;</code></pre>
+		</section>
 	</section>
 </section>
 
 <section>
-	<h2>Examples</h2>
+	<h2>Exemples</h2>
 	<ul>
-		<li><a href="../../../demos/datalist/datalist-en.html">Exemple en anglais</a></li>
-		<li><a href="../../../demos/datalist/datalist-fr.html">Exemple en français</a></li>
+		<li><a href="../../../demos/progress/progress-en.html">Exemples en anglais</a></li>
+		<li><a href="../../../demos/progress/progress-fr.html">Exemples en français</a></li>
 	</ul>
 </section>
 
 <section>
 	<h2>Développement</h2>
-	<p>La remplissage automatique est dépendent sur le soutien natif pour l'attribute <code>input list</code> et l'élément <code>datalist</code> de HTML5 et le correctif pour la remplissage automatique.</p>
+	<p>La barre de progression est dépendent sur le soutien natif pour l'élément <code>progress</code> de HTML5 et le correctif pour l'élément <code>progress</code>.</p>
 	<ul>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/polyfills/datalist.js">js/polyfills/datalist.js</a> - contient le code JavaScript pour le correctif saisie automatique</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_datalist.scss">js/sass/includes/_datalist.scss</a> - contient le CSS pour le correctif saisie automatique</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_datalist-ie.scss">js/sass/includes/_datalist-ie.scss</a> - contient le CSS pré-IE9 pour le correctif saisie automatique</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/polyfills/progress.js">js/polyfills/progress.js</a> - contient le code JavaScript pour le correctif pour l'élément <code>progress</code></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_progress.scss">js/sass/includes/_progress.scss</a> - contient le CSS pour le correctif pour l'élément <code>progress</code></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/images/progress/">js/images/progress/</a> - contient les images pour le correctif pour l'élément <code>progress</code></li>
 	</ul>
 </section>
 
 <section>
 	<h2>Problèmes connus</h2>
-	<p>Il n’existe actuellement aucun problème connu.</p>
+	<p>Il n’existe actuellement aucun problème connu. </p>
 </section>
 
 <section>
 	<h2>Historique des versions</h2>
 	<ul>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/polyfills/datalist.js">datalist.js</a></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/sass/includes/_datalist.scss">_datalist.scss</a></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/sass/includes/_datalist-ie.scss">_datalist-ie.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/polyfills/progress.js">progress.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/sass/includes/_progress.scss">_progress.scss</a></li>
 	</ul>
 </section>
 
 <section>
 	<h2>Références</h2>
 	<ul>
-		<li><a href="http://www.w3.org/TR/html5/forms.html#the-list-attribute">Attribut list de HTML5</a><li>
-		<li><a href="http://www.w3.org/TR/html5/forms.html#the-datalist-element">Élément datalist de HTML5</a></li>
+		<li><a href="http://www.w3.org/TR/html5/the-progress-element.html#the-progress-element">Élément progress - HTML5</a><li>
 	</ul>
 </section>
 

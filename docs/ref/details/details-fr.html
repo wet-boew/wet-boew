@@ -104,87 +104,84 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
 </ul>
 
-<div lang="en">
-<p><strong>Needs translation</strong></p>
-
 <span class="wet-boew-prettify all-pre"></span>
 <section>
-	<h2>Overview</h2>
-	<p><strong>Project lead:</strong> Alexander Canas (<a href="https://github.com/canasa">@canasa</a>)</p>
+	<h2>Aperçu</h2>
+	<p><strong>Chef de projet :</strong> Alexander Canas (<a href="https://github.com/canasa">@canasa</a>)</p>
 
 	<section>
-		<h3>Purpose</h3>
-		<p>The HTML5 <code>details</code> and <code>summary</code> elements allows content to be expanded and collapsed. Because some browsers do not support this functionality natively, this polyfill emulates the same functionality using generic HTML and WAI-ARIA.</p>
+		<h3>Objet</h3>
+		<p>Les éléments <code>details</code> et <code>summary</code> éléments permettent au contenu d'être affiché et masqué. Étant donné que certains navigateurs ne prennent pas en charge cette fonctionnalité à l'origine, ce correctif émule la même fonctionnalité à l'aide de HTML générique et WAI-ARIA.</p>
 	</section>
 
 	<section>
-		<h3>Rationale</h3>
-		<p>Browsers that do not support the <code>details</code> and <code>summary</code> elements natively ignore the expand/collapse functionality and therefore, content is displayed in full. This polyfill ensures that content can be expanded/collapsed and the necessary information is exposed to assistive technologies by adding WAI-ARIA.</p>
+		<h3>Raison d’être</h3>
+		<p>Les navigateurs qui ne prennent pas en charge les éléments <code>details</code> et <code>summary</code> ignore la fonctionnalité d'affichage et de masquage. Par conséquent, tout le contenu est affiché et est exposé à des technologies d'assistance. Ce correctif permet au contenu d'être affiché et masqué et est exposé aux technologies d'assistance en ajoutant WAI-ARIA.</p>
 	</section>
 </section>
 
 <section>
-	<h2>Implementation</h2>
-	<p>To use the polyfill, standard <code>details</code> and <code>summary</code> elements must be used. In cases where browser don't support these elements, the polyfill is automatically loaded.</p>
+	<h2>Mise en œuvre</h2>
+	<p>Pour utiliser le correctif, les éléments <code>details</code> et <code>summary</code> doivent être utilisés. Dans le cas où le navigateur ne supporte pas les éléments <code>details</code> et <code>summary</code>, le correctif est automatiquement chargé.</p>
 
 	<section>
-		<h3>Parameters/Options</h3>
-		<p>The expandable/collapsible content polyfill accepts one parameter: <code>open</code>. This parameter is automatically added/removed when content is expanded/collapsed.</p>
+		<h3>Paramètres</h3>
+		<p>Le correctif du contenu affichable/masquable accepte un paramètre&#160;: <code>open</code>. Ce paramètre est automatiquement ajouté/supprimé lorsque le contenu est affiché/masqué.</p>
 
 		<section>
-			<h4>Open parameter</h4>
-			<p>This parameter represent the state of the expansion/collapse of the <code>details</code> element. If the <code>open</code> parameter is present, the content of <code>details</code> is expanded. If the <code>open</code> parameter is absent, the content of <code>details</code> is collapsed.</p>
+			<h4>Paramètre <code>open</code></h4>
+			<p>Ce paramètre représente l'état d'affichage/masquage de l'élément <code>details</code>. Si le paramètre <code>open</code> est présent, le contenu de l'élément <code>details</code> est affiché. Si le paramètre <code>open</code> est absent, le contenu de l'élément <code>détails</code> et masqué.</p>
 		</section>
 	</section>
 
 	<section>
-		<h3>Example code</h3>
+		<h3>Code d'exemple</h3>
 		
 		<section>
-			<h4>Expanded details element</h4>
+			<h4>Élément <code>details</code> affiché</h4>
 			<pre><code>&lt;details open="open"&gt;
-	&lt;summary&gt;View source code&lt;/summary&gt;
+	&lt;summary&gt;Visualiser le code source&lt;/summary&gt;
 ... Source code ...
 &lt;/details&gt;</code></pre>
 		</section>
 
 		<section>
-			<h4> Collapsed details element </h4>
+			<h4>Élément <code>details</code> masqué</h4>
 			<pre><code>&lt;details&gt;
-	&lt;summary&gt;View source code&lt;/summary&gt;
+	&lt;summary&gt;Visualiser le code source&lt;/summary&gt;
 ... Source code ...
 &lt;/details&gt;</code></pre>
 		</section>
 
-		<p><a href="../../../demos/details/details-en.html">Working example</a></p>
+		<p><a href="../../../demos/details/details-en.html">Exemples pratiques</a></p>
 	</section>
 </section>
 
 <section>
-	<h2>Examples</h2>
+	<h2>Exemples</h2>
 	<ul>
-		<li><a href="../../../demos/details/details-en.html">English example</a></li>
-		<li><a href="../../../demos/details/details-fr.html">French example</a></li>
+		<li><a href="../../../demos/details/details-en.html">Exemples en anglais</a></li>
+		<li><a href="../../../demos/details/details-fr.html">Exemples en français</a></li>
 	</ul>
 </section>
 
 <section>
-	<h2>Development</h2>
-	<p>The date picker is dependent upon native support for the HTML5 <code>input type="date"</code>, the date picker polyfill and the calendar library.</p>
+	<h2>Développement</h2>
+	<p>Le contenu affichable/masquable est dépendent sur le soutien natif pour les éléments <code>details</code> et <code>summary</code> de HTML5 et le correctif du contenu affichable/masquable.</p>
 	<ul>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/polyfills/details.js">js/polyfills/details.js</a> - contains the JavaScript code for the expandable/collapsible polyfill</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_details.scss">js/sass/includes/_details.scss</a> - contains the SCSS for the expandable/collapsible polyfill</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_details-ie.scss">js/sass/includes/_details-ie.scss</a> - contains the pre-IE9 SCSS for the expandable/collapsible polyfill</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/polyfills/details.js">js/polyfills/details.js</a> - contient le code JavaScript pour le correctif du contenu affichable/masquable.</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_details.scss">js/sass/includes/_details.scss</a> - contient le SCSS pour le correctif du contenu affichable/masquable</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_details-ie.scss">js/sass/includes/_details-ie.scss</a> - contient le SCSS pré-IE9 pour le correctif du contenu affichable/masquable</li>
 	</ul>
 </section>
 
 <section>
-	<h2>Known issues</h2>
-	<p>There are no known issues at this point in time.</p>
+	<h2>Problèmes connus</h2>
+	<p>Il n’existe actuellement aucun problème connu.</p>
 </section>
 
 <section>
-	<h2>Version history</h2>
+	<h2>Historique des versions</h2>
 	<ul>
 		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/polyfills/details.js">datepicker.js</a></li>
 		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/sass/includes/_details.scss">_details.scss</a></li>
@@ -193,13 +190,12 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 </section>
 
 <section>
-	<h2>References</h2>
+	<h2>Références</h2>
 	<ul>
-		<li><a href="http://www.w3.org/TR/html5/interactive-elements.html#the-details-element">HTML5 details element</a><li>
-		<li><a href="http://www.w3.org/TR/html5/interactive-elements.html#the-summary-element">HTML5 summary element</a></li>
+		<li><a href="http://www.w3.org/TR/html5/interactive-elements.html#the-details-element">Élément <code>details</code> - HTML5</a><li>
+		<li><a href="http://www.w3.org/TR/html5/interactive-elements.html#the-summary-element">Élément <code>summary</code> - HTML5</a></li>
 	</ul>
 </section>
-</div>
 
 <dl id="gcwu-date-mod" role="contentinfo">
 <dt>Date de modification&#160;:</dt><dd><span><time>2013-09-01</time></span></dd>
@@ -253,7 +249,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <ul>
 <li><a rel="external" href="http://canadiensensante.gc.ca/index-fra.php"><span>Santé</span><br />canadiensensante.gc.ca</a></li>
 <li><a rel="external" href="http://www.voyage.gc.ca/index-fra.asp"><span>Voyage</span><br />voyage.gc.ca</a></li>
-<li><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml"><span>Service Canada</span><br />servicecanada.gc.ca
+<li><a rel="external" href="http://www.servicecanada.gc.ca/fra/accueil.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
 <li><a rel="external" href="http://www.guichetemplois.gc.ca/Intro-fra.aspx"><span>Emplois</span><br />guichetemplois.gc.ca</a></li>
 <li><a rel="external" href="http://plandaction.gc.ca/fr"><span>Économie</span><br />plandaction.gc.ca</a></li>
 <li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.ca/fr/index.html">Canada.ca</a></div></li>
