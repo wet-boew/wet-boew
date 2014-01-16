@@ -46,9 +46,141 @@
 			valuePoint = 0,
 			currentRowGroup, reverseTblParsing, dataGroupVector,
 			dataCell, previousDataCell, currDataVector,
-			optionsFlotGlobal, optionsFlotSeries, optionCurrent = {}, optionsTick,
 			pieQuaterFlotSeries,
-			optionsCharts;
+			optionFlot, optionsCharts,
+			defaultsOptions = {
+				// Flot Global Options
+				flot: {
+					prefix: "wb-charts-",
+					defaults: {
+						colors: [ "#8d201c",
+								"#EE8310",
+								"#2a7da6",
+								"#5a306b",
+								"#285228",
+								"#154055",
+								"#555555",
+								"#f6d200",
+								"#d73d38",
+								"#418541",
+								"#87aec9",
+								"#23447e",
+								"#999999" ],
+						canvas: true
+					},
+					line: { },
+					area: {
+						lines: {
+							show: true,
+							fill: true
+						}
+					},
+					bar: {
+						bars: {
+							show: true,
+							barWidth: 1,
+							align: "center"
+						}
+					},
+					pie: {
+						series: {
+							pie: {
+								show: true
+							}
+						}
+					},
+					donut: {
+						series: {
+							pie: {
+								show: true,
+								radius: 1,
+								label: {
+									show: true,
+									radius: 1,
+									threshold: 0.08
+								},
+								tilt: 0.5,
+								innerRadius: 0.45,
+								startAngle: 1
+							}
+						},
+						grid: {
+							hoverable: true
+						}
+					}
+				},
+				// Flot Series Options
+				series: {
+					prefix: "wb-charts-",
+					defaults: { },
+					line: { },
+					area: {
+						lines: {
+							show: true,
+							fill: true
+						}
+					},
+					bar: {
+						bars: {
+							show: true,
+							barWidth: 1,
+							align: "center"
+						}
+					},
+					stacked: {
+						bars: {
+							show: true,
+							barWidth: 1,
+							align: "center"
+						}
+					}
+				},
+				// Wet-boew Charts Options
+				charts: {
+					prefix: "wb-charts-",
+					defaults: {
+						graphclass: "wb-graph", // [string] Class name added at the figure element container
+						noencapsulation: false, // [boolean] Wrap or not the table in a details/summary elements
+						labelposition: false, // [number] false means the deepest vector will be used for labeling
+						referencevalue: false, // [number] false means the deepest vector will be used for calculate the reference
+						legendinline: false, // [boolean] false means to move the legend from inside the charts to next to it 
+						nolegend: false, // [boolean] true means that the legend will be destroyed and the label for pie chart will include the legend
+						decimal: 0, // [number] Literal number of displayed decimal for a pie charts 
+						width: $elm.width(), // [number] Provide a default width for the charts that will be rendered
+						height: $elm.height(), // [number] Provide a default height for the charts that will be rendered
+						reversettblparsing: false, // [boolean] Flag for defining if the data table should be read in reverse compared to HTML spec
+						fn: {
+							"/getcellvalue": function( elem ) {
+								// Default Cell value extraction
+								var cellRawValue = $.trim( $( elem ).text() ).replace( /\s/g, "" );
+
+								return [ parseFloat( cellRawValue.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), cellRawValue.match (/[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
+							}
+						}
+						
+					},
+					donut: {
+						decimal: 1
+					},
+					usnumber: {
+						fn: {
+							"/getcellvalue": function( elem ) {
+								var raw = $.trim( $( elem ).text() ).replace( /,/g, "" );
+								return [ parseFloat( raw.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), raw.match( /[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
+							}
+						}
+					},
+					
+					germannumber: {
+						fn: {
+							"/getcellvalue": function( elem ) {
+								var raw = $.trim( $( elem ).text() ).replace( /\./g, "" );
+								return [ parseFloat( raw.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), raw.match( /[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
+							}
+						}
+					}
+				}
+			};
 
 		if ( !window.chartsGraphOpts ){
 			
@@ -77,15 +209,15 @@
 		/**
 		 * A little function to ease the web editor life
 		 * 
-		 * Apply preset defined by a set of space-separated tokens from a baseline json object
+		 * Apply preset defined by a set of space-separated tokens from a baseline json object and at the same time extend the result by using the HTML5 data attribute
 		 * 
 		 * @method applyPreset
 		 * @param {json object} baseline - Base line json object that includes predefined and userdefined preset 
 		 * @param {jQuery} $elem - Element on which the class attribute will be taken for a set of space-separated tokens
-		 * @param {string=} prefix - Prefix espected to define a valid token. Can be useful in case of conflict token name.
+		 * @param {string} attribute - Name of the HTML5 data attribute for extending the object at the end
 		 * @return {json object} - Return a new object build from the ```baseline``` or ```baseline.default``` object with the preset applied.
 		 */
-		function applyPreset( baseline, $elem, prefix, attribute ) {
+		function applyPreset( baseline, $elem, attribute ) {
 			
 			var config = $.extend( true, {}, baseline.defaults || baseline ),
 				fn = $.extend( true, {}, baseline.defaults && baseline.defaults.fn || { } ),
@@ -93,10 +225,14 @@
 				tblTokens,
 				i, iLength,
 				token, tokenLength,
-				prefixLength = prefix.length,
+				prefix, prefixLength, // Prefix used in front of the token
 				key, tblFn, localKey, currObj;
 			
 			if ( tokens.length ) {
+				
+				prefix = ( baseline.prefix || "" );
+				prefixLength = prefix.length;
+				
 				// split the set of space-separated tokens
 				tblTokens = tokens.split( " " );
 				
@@ -107,7 +243,7 @@
 					tokenLength = token.length;
 					
 					// Remove the token is used
-					if ( tokenLength <= prefixLength ) {
+					if ( tokenLength <= prefixLength || token.slice(0, prefixLength) !== prefix ) {
 						continue;
 					}
 					token = token.slice(prefixLength, tokenLength);
@@ -146,147 +282,15 @@
 			return config;
 		}
 
-		optionsFlotGlobal = {
-			prefix: "wb-charts-",
-			defaults: {
-				colors: [ "#8d201c",
-						"#EE8310",
-						"#2a7da6",
-						"#5a306b",
-						"#285228",
-						"#154055",
-						"#555555",
-						"#f6d200",
-						"#d73d38",
-						"#418541",
-						"#87aec9",
-						"#23447e",
-						"#999999" ],
-				canvas: true
-			},
-			line: { },
-			area: {
-				lines: {
-					show: true,
-					fill: true
-				}
-			},
-			bar: {
-				bars: {
-					show: true,
-					barWidth: 1,
-					align: "center"
-				}
-			},
-			pie: {
-				series: {
-					pie: {
-						show: true
-					}
-				}
-			},
-			donut: {
-				series: {
-					pie: {
-						show: true,
-						radius: 1,
-						label: {
-							show: true,
-							radius: 1,
-							threshold: 0.08
-						},
-						tilt: 0.5,
-						innerRadius: 0.45,
-						startAngle: 1
-					}
-				},
-				grid: {
-					hoverable: true
-				}
-			}
-		};
-
-		optionsFlotSeries = {
-			prefix: "wb-charts-",
-			defaults: { },
-			line: { },
-			area: {
-				lines: {
-					show: true,
-					fill: true
-				}
-			},
-			bar: {
-				bars: {
-					show: true,
-					barWidth: 1,
-					align: "center"
-				}
-			},
-			stacked: {
-				bars: {
-					show: true,
-					barWidth: 1,
-					align: "center"
-				}
-			}
-		};
-		
-		optionsCharts = {
-			prefix: "wb-charts-",
-			defaults: {
-				graphclass: "wb-graph", // [string] Class name added at the figure element container
-				noencapsulation: false, // [boolean] Wrap or not the table in a details/summary elements
-				labelposition: false, // [number] false means the deepest vector will be used for labeling
-				referencevalue: false, // [number] false means the deepest vector will be used for calculate the reference
-				legendinline: false, // [boolean] false means to move the legend from inside the charts to next to it 
-				nolegend: false, // [boolean] true means that the legend will be destroyed and the label for pie chart will include the legend
-				decimal: 0, // [number] Literal number of displayed decimal for a pie charts 
-				width: $elm.width(), // [number] Provide a default width for the charts that will be rendered
-				height: $elm.height(), // [number] Provide a default height for the charts that will be rendered
-				reversettblparsing: false, // [boolean] Flag for defining if the data table should be read in reverse compared to HTML spec
-				fn: {
-					"/getcellvalue": function( elem ) {
-						// Default Cell value extraction
-						var cellRawValue = $.trim( $( elem ).text() ).replace( /\s/g, "" );
-
-						return [ parseFloat( cellRawValue.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), cellRawValue.match (/[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
-					}
-				}
-				
-			},
-			donut: {
-				decimal: 1
-			},
-			usnumber: {
-				fn: {
-					"/getcellvalue": function( elem ) {
-						var raw = $.trim( $( elem ).text() ).replace( /,/g, "" );
-						return [ parseFloat( raw.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), raw.match( /[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
-					}
-				}
-			},
-			
-			germannumber: {
-				fn: {
-					"/getcellvalue": function( elem ) {
-						var raw = $.trim( $( elem ).text() ).replace( /\./g, "" );
-						return [ parseFloat( raw.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), raw.match( /[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
-					}
-				}
-			}
-		};
-		// TODO: Check for Global setting and merge it in optionsFlotGlobal, Series, Force the preset strategy
-		
 		// Apply any preset
-		optionCurrent = applyPreset( optionsFlotGlobal, $elm, optionsFlotGlobal.prefix || "", "flot" );
+		optionFlot = applyPreset( defaultsOptions.flot, $elm, "flot" );
 
 		// Apply any preset
-		options = applyPreset( optionsCharts, $elm, optionsCharts.prefix || "", "wet-boew" );
+		optionsCharts = applyPreset( defaultsOptions.charts, $elm, "wet-boew" );
 
 		// Fix default width and height in case the table is hidden.
-		options.width = options.width | 250;
-		options.height = options.height | 250;
+		optionsCharts.width = optionsCharts.width | 250;
+		optionsCharts.height = optionsCharts.height | 250;
 
 		/** 
 		 * @method getColumnGroupHeaderCalculateSteps
@@ -550,7 +554,7 @@
 		 * @param {object[]} arrVectorHeaders - Collection of vector headers
 		 */
 		function getlabelsVectorPosition( arrVectorHeaders ) {
-			return ( !options.labelposition || ( options.labelposition && options.labelposition > arrVectorHeaders.length ) ? parsedData.theadRowStack.length : options.labelposition ) - 1;
+			return ( !optionsCharts.labelposition || ( optionsCharts.labelposition && optionsCharts.labelposition > arrVectorHeaders.length ) ? parsedData.theadRowStack.length : optionsCharts.labelposition ) - 1;
 		}
 
 		/**
@@ -567,10 +571,10 @@
 				stepsValue,
 				columnReferenceValue;
 
-			if ( !reverseTblParsing || ( reverseTblParsing && options.referencevalue === false ) ) {
+			if ( !reverseTblParsing || ( reverseTblParsing && optionsCharts.referencevalue === false ) ) {
 				columnReferenceValue = parsedData.colgrouphead.col.length;
 			} else {
-				columnReferenceValue = options.referencevalue;
+				columnReferenceValue = optionsCharts.referencevalue;
 			}
 			
 			columnReferenceValue = columnReferenceValue - 1;
@@ -621,10 +625,10 @@
 				}
 			}
 
-			if ( ( !reverseTblParsing && options.referencevalue === false ) || reverseTblParsing ) {
+			if ( ( !reverseTblParsing && optionsCharts.referencevalue === false ) || reverseTblParsing ) {
 				rowReferenceValue = parsedData.theadRowStack.length;
 			} else {
-				rowReferenceValue = options.referencevalue;
+				rowReferenceValue = optionsCharts.referencevalue;
 			}
 
 			rowReferenceValue = rowReferenceValue - 1;
@@ -670,24 +674,24 @@
 		}
 		
 		parsedData = $( $elm ).data().tblparser; // Retrieve the parsed data
-		reverseTblParsing = options.reversettblparsing; // Reverse table parsing
+		reverseTblParsing = optionsCharts.reversettblparsing; // Reverse table parsing
 		currentRowGroup = parsedData.lstrowgroup[ 0 ]; // first data row group
 
-		if ( optionCurrent.series && optionCurrent.series.pie ) {
+		if ( optionFlot.series && optionFlot.series.pie ) {
 			// Use Reverse table axes
 			// Create a chart/ place holder, by series
 			mainFigureElem = $( "<figure />" ).insertAfter( $elm );
 
 			pieLabelFormater = function( label, series ) {
 				var textlabel;
-				if ( !options.decimal ) {
+				if ( !optionsCharts.decimal ) {
 					textlabel = Math.round( series.percent );
 				} else {
-					textlabel = Math.round( series.percent * Math.pow( 10, options.decimal ) );
-					textlabel = textlabel / Math.pow( 10, options.decimal );
+					textlabel = Math.round( series.percent * Math.pow( 10, optionsCharts.decimal ) );
+					textlabel = textlabel / Math.pow( 10, optionsCharts.decimal );
 				}
 
-				if ( options.nolegend ) {
+				if ( optionsCharts.nolegend ) {
 					// Add the series label
 					textlabel = label + "<br/>" + textlabel;
 				}
@@ -695,14 +699,14 @@
 			};
 			
 			// Inject the pie label formater function
-			if (optionCurrent.series.pie.label) {
-				optionCurrent.series.pie.label.formatter = pieLabelFormater;
+			if (optionFlot.series.pie.label) {
+				optionFlot.series.pie.label.formatter = pieLabelFormater;
 			}
 					
 			// Default
 			mainFigureElem;
-			if ( options.graphclass ) {
-				mainFigureElem.addClass( options.graphclass );
+			if ( optionsCharts.graphclass ) {
+				mainFigureElem.addClass( optionsCharts.graphclass );
 			}
 
 			figCaptionElem = $( "<figcaption />" );
@@ -760,7 +764,7 @@
 						// Get"s the value
 						header = !reverseTblParsing ? dataCell.row.header : dataCell.col.header;
 
-						cellValue = options.getcellvalue( !reverseTblParsing ? dataGroupVector[ i ].cell[ rIndex ].elem : dataGroupVector[ i ].datacell[ rIndex ].elem );
+						cellValue = optionsCharts.getcellvalue( !reverseTblParsing ? dataGroupVector[ i ].cell[ rIndex ].elem : dataGroupVector[ i ].datacell[ rIndex ].elem );
 
 						dataSeries.push(
 							[
@@ -781,7 +785,7 @@
 					header = header[ header.length - 1 ];
 					
 					// Apply any preset
-					pieQuaterFlotSeries = applyPreset( optionsFlotSeries, $(header.elem), optionsFlotSeries.prefix || "", "flot" );
+					pieQuaterFlotSeries = applyPreset( defaultsOptions.series, $(header.elem), "flot" );
 					
 					// Set the data issue from the table
 					pieQuaterFlotSeries.data = dataSeries;
@@ -825,7 +829,7 @@
 				$imgContainer.append( $placeHolder );
 
 				// Canvas Size
-				$placeHolder.css( "height", options.height ).css( "width", options.width );
+				$placeHolder.css( "height", optionsCharts.height ).css( "width", optionsCharts.width );
 
 				$imgContainer.attr( "role", "img" );
 				// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
@@ -833,13 +837,13 @@
 
 				
 				// Create the graphic
-				$.plot( $placeHolder, allSeries, optionCurrent );
+				$.plot( $placeHolder, allSeries, optionFlot );
 
-				if ( options.nolegend ) {
+				if ( optionsCharts.nolegend ) {
 					// Remove the legend
 					$( ".legend", $placeHolder ).remove();
 				}
-				if ( !options.legendinline ) {
+				if ( !optionsCharts.legendinline ) {
 					// Move the legend under the graphic
 					$( ".legend > div", $placeHolder ).remove();
 					$( ".legend > table", $placeHolder ).removeAttr( "style" ).addClass( "font-small" );
@@ -852,7 +856,7 @@
 				allSeries = [];
 			}
 
-			if ( !options.noencapsulation ) {
+			if ( !optionsCharts.noencapsulation ) {
 				wrapTableIntoDetails( mainFigureElem, tblCaptionHTML );
 			} else {
 				// Move the table inside the figure element
@@ -873,14 +877,10 @@
 			chartslabels = verticalLabels( parsedData );
 		}
 
-		// Set the Global Options => xaxis => tick options
-		optionsTick = {
-			xaxis: {
-				ticks: chartslabels
-			}
+		// Add the labels at the Flot options
+		optionFlot.xaxis = {
+			ticks: chartslabels
 		};
-		
-		optionCurrent = $.extend( true, optionCurrent, optionsTick);
 
 		dataGroupVector = !reverseTblParsing ? dataGroup.row : dataGroup.col;
 
@@ -890,10 +890,10 @@
 			
 			
 			// Apply any preset
-			currVectorOptions = applyPreset( optionsFlotSeries, $(currDataVector.elem), optionsFlotSeries.prefix || "", "flot" );
+			currVectorOptions = applyPreset( defaultsOptions.series, $(currDataVector.elem), "flot" );
 			
 
-			if ( currVectorOptions.bars || ( optionCurrent.bars && !currVectorOptions.lines ) ) {
+			if ( currVectorOptions.bars || ( optionFlot.bars && !currVectorOptions.lines ) ) {
 				// Count number of bars, this number is use to calculate the bar width.
 				nbBarChart += 1;
 				
@@ -937,7 +937,7 @@
 					// Get's the value
 					header = !reverseTblParsing ? dataCell.col.header : dataCell.row.header;
 
-					cellValue = options.getcellvalue( dataCell.elem );
+					cellValue = optionsCharts.getcellvalue( dataCell.elem );
 
 					// Add the data point
 					dataSeries.push(
@@ -963,16 +963,16 @@
 
 		}
 	
-		if ( optionCurrent.bars ) {
+		if ( optionFlot.bars ) {
 			// Adjust the bars width
-			optionCurrent.bars.barWidth = optionCurrent.bars.barWidth * ( 1 / nbBarChart );
+			optionFlot.bars.barWidth = optionFlot.bars.barWidth * ( 1 / nbBarChart );
 		}
 
 		figureElem = $( "<figure />" ).insertAfter( $elm );
 
 		figureElem; // Default
-		if ( options.graphclass ) {
-			figureElem.addClass( options.graphclass );
+		if ( optionsCharts.graphclass ) {
+			figureElem.addClass( optionsCharts.graphclass );
 		}
 
 		figCaptionElem = $( "<figcaption />" );
@@ -987,13 +987,13 @@
 		$( figureElem ).append( $placeHolder );
 
 		// Canvas Size
-		$placeHolder.css( "height", options.height ).css( "width", "100%" );
+		$placeHolder.css( "height", optionsCharts.height ).css( "width", "100%" );
 
 		$placeHolder.attr( "role", "img" );
 		// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
 		$placeHolder.attr( "aria-label", $( "caption", $elm ).text() + " " + i18n( "%table-following" ) ); // "Chart. Details in table following."
 
-		if ( !options.noencapsulation ) {
+		if ( !optionsCharts.noencapsulation ) {
 			wrapTableIntoDetails( figureElem, tblCaptionHTML );
 		} else {
 			// Move the table inside the figure element
@@ -1001,15 +1001,15 @@
 		}
 
 		// Create the graphic
-		$.plot( $placeHolder, allSeries, optionCurrent );
+		$.plot( $placeHolder, allSeries, optionFlot );
 
-		if ( !options.legendinline ) {
+		if ( !optionsCharts.legendinline ) {
 			// Move the legend under the graphic
 			$( ".legend > div", $placeHolder ).remove();
 			$( ".legend > table", $placeHolder ).removeAttr( "style" ).addClass( "font-small" );
 			$placeHolder.css( "height", "auto" );
 		}
-		if ( options.nolegend ) {
+		if ( optionsCharts.nolegend ) {
 			// Remove the legend
 			$( ".legend", $placeHolder ).remove();
 		}
