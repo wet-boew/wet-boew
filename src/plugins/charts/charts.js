@@ -37,14 +37,13 @@
 			options = {},
 			pieChartLabelText = "",
 			lowestFlotDelta,
-			valueCumul = 0,
 			$imgContainer, $placeHolder, $subfigCaptionElem, $subFigureElem,
-			barDelta, cellValue,
+			cellValue,
 			datacolgroupfound, dataGroup, figCaptionElem, figureElem, header,
 			i, j, mainFigureElem, parsedData,
 			pieLabelFormater, rIndex,
 			currVectorOptions, tblCaptionHTML, tblCaptionText,
-			valuePoint,
+			valuePoint = 0,
 			currentRowGroup, reverseTblParsing, dataGroupVector,
 			dataCell, previousDataCell, currDataVector,
 			optionsFlotGlobal, optionsFlotSeries, optionCurrent = {}, optionsTick,
@@ -731,7 +730,7 @@
 				// For each row or column
 				for ( i = 0; i < dataGroupVector.length; i += 1 ) {
 					dataSeries = [];
-					valueCumul = 0;
+					valuePoint = 0;
 
 					// For each cells
 					for ( j = 0; j < dataGroupVector[ i ].cell.length; j += 1 ) {
@@ -765,11 +764,11 @@
 
 						dataSeries.push(
 							[
-								valueCumul,
+								valuePoint,
 								typeof cellValue === "object" ? cellValue[ 0 ] : cellValue
 							]);
 
-						valueCumul += header[ header.length - 1 ].flotDelta;
+						valuePoint += header[ header.length - 1 ].flotDelta;
 
 						break;
 					}
@@ -895,11 +894,21 @@
 			
 
 			if ( currVectorOptions.bars || ( optionCurrent.bars && !currVectorOptions.lines ) ) {
+				// Count number of bars, this number is use to calculate the bar width.
 				nbBarChart += 1;
-				currVectorOptions.barPos = nbBarChart;
-				barDelta = true;
+				
+				// Set a default setting specially for bar charts
+				if (!currVectorOptions.bars) {
+					currVectorOptions.bars = { show: true, barWidth: 0.9 };
+				}
+				
+				// Set a default order for orderBars flot plugin
+				if (!currVectorOptions.bars.order) {
+					currVectorOptions.bars.order = nbBarChart;
+				}
 			}
-
+			
+			// cache the compiled setting
 			currDataVector.chartOption = currVectorOptions;
 		}
 
@@ -908,7 +917,7 @@
 		for ( i = 0; i < dataGroupVector.length; i++ ) {
 			dataSeries = [];
 			datacolgroupfound = 0;
-			valueCumul = 0;
+			valuePoint = 0;
 			currDataVector = dataGroupVector[ i ];
 
 			currVectorOptions = currDataVector.header[ currDataVector.header.length - 1 ].chartOption;
@@ -927,18 +936,6 @@
 
 					// Get's the value
 					header = !reverseTblParsing ? dataCell.col.header : dataCell.row.header;
-					valuePoint = valueCumul;
-
-					// Bar chart case, re-evaluate the calculated point
-					if ( barDelta && currVectorOptions.barPos ) {
-						// Position bar
-						valuePoint = valueCumul - ( lowestFlotDelta / 2 ) + ( lowestFlotDelta / nbBarChart * ( currVectorOptions.barPos - 1 ) );
-
-						if ( nbBarChart === 1 ) {
-							valuePoint = valueCumul;
-						}
-
-					}
 
 					cellValue = options.getcellvalue( dataCell.elem );
 
@@ -949,7 +946,7 @@
 							typeof cellValue === "object" ? cellValue[ 0 ] : cellValue
 						]
 					);
-					valueCumul += header[ header.length - 1 ].flotDelta;
+					valuePoint += header[ header.length - 1 ].flotDelta;
 					datacolgroupfound++;
 				}
 			}
@@ -958,14 +955,16 @@
 			currVectorOptions.label = $( currDataVector.header[ currDataVector.header.length - 1 ].elem ).text();
 			
 			if ( currVectorOptions.bars ) {
+				// Adjust the bars width
 				currVectorOptions.bars.barWidth = currVectorOptions.bars.barWidth * ( 1 / nbBarChart );
 			}
 			
 			allSeries.push( currVectorOptions );
 
 		}
-		
+	
 		if ( optionCurrent.bars ) {
+			// Adjust the bars width
 			optionCurrent.bars.barWidth = optionCurrent.bars.barWidth * ( 1 / nbBarChart );
 		}
 
@@ -1032,7 +1031,8 @@
 			deps = [
 				"site!deps/jquery.flot" + modeJS,
 				"site!deps/jquery.flot.pie" + modeJS,
-				"site!deps/jquery.flot.canvas" + modeJS
+				"site!deps/jquery.flot.canvas" + modeJS,
+				"site!deps/jquery.flot.orderBars" + modeJS
 			];
 	
 		if ( elm.className.indexOf( initedClass ) === -1 ) {

@@ -671,6 +671,7 @@ module.exports = (grunt) ->
 						"flot/jquery.flot.js"
 						"flot/jquery.flot.pie.js"
 						"flot/jquery.flot.canvas.js"
+						"pkoltermann/SideBySideImproved/jquery.flot.orderBars.js"
 						"jquery.validation/jquery.validate.js"
 						"jquery.validation/additional-methods.js"
 						"magnific-popup/dist/jquery.magnific-popup.js"
