@@ -70,7 +70,7 @@ describe( "Feedback test suite", function() {
 	describe( "showHide Web", function() {
 
 		before(function() {
-			$reasonWeb.stop().hide();
+			$reasonWeb.hide();
 		});
 
 		it( "should hide the 'Web' section when reason is not 'web'", function() {
@@ -90,8 +90,8 @@ describe( "Feedback test suite", function() {
 	describe( "showHide Access", function() {
 
 		before(function() {
-			$accessComp.stop().hide();
-			$accessMobile.stop().hide();
+			$accessComp.hide();
+			$accessMobile.hide();
 		});
 
 		it( "should hide the 'Mobile' section when reason is not 'mobile'", function() {
@@ -112,7 +112,7 @@ describe( "Feedback test suite", function() {
 	describe( "showHide Info", function() {
 
 		before(function() {
-			$info.stop().hide();
+			$info.hide();
 		});
 
 		it( "should hide the 'Info' section when contacts are not checked", function() {
@@ -130,6 +130,27 @@ describe( "Feedback test suite", function() {
 			$contact1.prop( "checked", false ).trigger( "change" );
 			$contact2.prop( "checked", true ).trigger( "change" );
 			expectVisible( $info );
+		});
+	});
+
+	/*
+	 * Test reset button behaviour
+	 */
+	describe( "Reset button click", function() {
+
+		before(function() {
+			$reason.val( "web" );
+			$contact1.prop( "checked", true ).trigger( "change" );
+		});
+
+		it( "should hide all sections when reset is clicked", function() {
+			expectVisible( $info );
+			expectVisible( $reasonWeb );
+
+			$( "input[type='reset']" ).trigger( "click" );
+
+			expectHidden( $info );
+			expectHidden( $reasonWeb );
 		});
 	});
 });

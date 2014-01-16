@@ -20,7 +20,10 @@
 	}
 	#fbinfo {
 		@extend %wb-fdbck-display-none;
-	}	
+	}
+	#fbcntc {
+		margin-bottom: 15px;
+	}
 	#fbcmplt {
 		text-align: center;
 		p {

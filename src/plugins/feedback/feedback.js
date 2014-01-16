@@ -145,6 +145,11 @@ $document.on( "click", selector + " input[type=reset]", function( event ) {
 
 	// Ignore middle/right mouse buttons
 	if ( !which || which === 1 ) {
+
+		// Manually reset the form as this event handler can be triggered
+		// before the browser invokes the native form reset.
+		event.target.form.reset();
+
 		showHide( fbrsn );
 		showHide( fbaxs );
 		showHide( fbcntc1 );
