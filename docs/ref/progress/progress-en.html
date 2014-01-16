@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-<title>Expandable/collapsible content - Polyfills - Documentation - Web Experience Toolkit (WET)</title>
+<title>Progress bar - Polyfills - Documentation - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../../dist/theme-gcwu-fegc/images/favicon.ico" />
 <meta name="description" content="English description / Description en anglais" />
@@ -54,7 +54,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.ca/en/index.html">Canada.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.canada.ca/en/services/index.html">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.ca/en/gov/dept/index.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="details-fr.html" lang="fr">Français</a></li>
+<li id="gcwu-gcnb-lang"><a href="progress-fr.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -88,7 +88,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li><a href="../../../index-en.html">Home</a></li>
 <li><a href="../../index-en.html">Documentation</a></li>
 <li><a href="../polyfills-en.html">Polyfills</a></li>
-<li>Expandable/collapsible content</li>
+<li>Progress bar</li>
 </ol>
 </div></div>
 </nav>
@@ -98,81 +98,79 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Expandable/collapsible content</h1>
+<h1 id="wb-cont">Progress bar</h1>
 
 <ul class="button-group">
-<li><a href="../../../demos/details/details-en.html" class="button">Working examples</a></li>
+<li><a href="../../../demos/progress/progress-en.html" class="button">Working examples</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
 </ul>
 
 <span class="wet-boew-prettify all-pre"></span>
 <section>
 	<h2>Overview</h2>
-	<p><strong>Project lead:</strong> Alexander Canas (<a href="https://github.com/canasa">@canasa</a>)</p>
+	<p><strong>Project lead:</strong> Laurent Goderre (<a href="https://github.com/LaurentGoderre">@LaurentGoderre</a>)</p>
 
 	<section>
 		<h3>Purpose</h3>
-		<p>The HTML5 <code>details</code> and <code>summary</code> elements allows content to be expanded and collapsed. Because some browsers do not support this functionality natively, this polyfill emulates the same functionality using generic HTML and WAI-ARIA.</p>
+		<p>The HTML5 <code>progress</code> element displays the progress of a task. Because some browsers do not support this functionality natively, this polyfill emulates the same functionality using generic HTML and WAI-ARIA.</p>
 	</section>
 
 	<section>
 		<h3>Rationale</h3>
-		<p>Browsers that do not support the <code>details</code> and <code>summary</code> elements natively ignore the expand/collapse functionality and therefore, content is displayed in full. This polyfill ensures that content can be expanded/collapsed and the necessary information is exposed to assistive technologies by adding WAI-ARIA.</p>
+		<p>Browsers that do not support the progress element natively ignore the progress bar and therefore, nothing is displayed and its content is not exposed to assistive technologies. This polyfill ensures that the progress is visually conveyed through a progress bar and exposed to assistive technologies by adding WAI-ARIA.</p>
 	</section>
 </section>
 
 <section>
 	<h2>Implementation</h2>
-	<p>To use the polyfill, standard <code>details</code> and <code>summary</code> elements must be used. In cases where browser don't support these elements, the polyfill is automatically loaded.</p>
-
+	<p>To use the polyfill, a standard <code>progress</code> element must be used. In cases where browser don't support the <code>progress</code> element, the polyfill is automatically loaded.</p>
 	<section>
 		<h3>Parameters</h3>
-		<p>The expandable/collapsible content polyfill accepts one parameter: <code>open</code>. This parameter is automatically added/removed when content is expanded/collapsed.</p>
-
+		<p>The progress bar polyfill accepts two parameters: <code>max</code> and <code>value</code>. Neither of these parameters are required.</p>
 		<section>
-			<h4><code>Open</code> parameter</h4>
-			<p>This parameter represents the state of the expansion/collapse of the <code>details</code> element. If the <code>open</code> parameter is present, the content of <code>details</code> is expanded. If the <code>open</code> parameter is absent, the content of <code>details</code> is collapsed.</p>
+			<h4><code>Value</code> parameter</h4>
+			<p>This parameter represent the progress of the task and can be any decimal number between 0 and the <code>max</code> value. If <code>value</code> is omitted, the progress bar is considered to be indeterminate, which means that there is no indication on the actual progress of the task.</p>
+		</section>
+		<section>
+			<h4><code>Max</code> Parameter</h4>
+			<p>This parameter represent the maximum progress for the task. When the <code>value</code> parameter is set to the maximum value, the task is considered complete. The <code>max</code> parameter can be any positive decimal number. If the parameter is omitted, the default value of 1.0 is assumed.</p> 
 		</section>
 	</section>
 
 	<section>
 		<h3>Example code</h3>
-		
 		<section>
-			<h4>Expanded <code>details</code> element</h4>
-			<pre><code>&lt;details open="open"&gt;
-	&lt;summary&gt;View source code&lt;/summary&gt;
-... Source code ...
-&lt;/details&gt;</code></pre>
+			<h4>Task in progress</h4>
+			<pre><code>&lt;progress value="25" max="100" /&gt;</code></pre>
 		</section>
-
 		<section>
-			<h4>Collapsed <code>details</code> element</h4>
-			<pre><code>&lt;details&gt;
-	&lt;summary&gt;View source code&lt;/summary&gt;
-... Source code ...
-&lt;/details&gt;</code></pre>
+			<h4>Completed task</h4>
+			<pre><code>&lt;progress value="50" max="50" /&gt;</code></pre>
 		</section>
-
-		<p><a href="../../../demos/details/details-en.html">Working examples</a></p>
+		<section>
+			<h4>Task of indeterminate progress</h4>
+			<pre><code>&lt;progress /&gt;</code></pre>
+			<div>or</div>
+			<pre><code>&lt;progress max="50" /&gt;</code></pre>
+		</section>
 	</section>
 </section>
 
 <section>
 	<h2>Examples</h2>
 	<ul>
-		<li><a href="../../../demos/details/details-en.html">English examples</a></li>
-		<li><a href="../../../demos/details/details-fr.html">French examples</a></li>
+		<li><a href="../../../demos/progress/progress-en.html">English examples</a></li>
+		<li><a href="../../../demos/progress/progress-fr.html">French examples</a></li>
 	</ul>
 </section>
 
 <section>
 	<h2>Development</h2>
-	<p>The expandable/collapsible content is dependent upon native support for the HTML5 <code>details</code> and <code>summary</code> elements or the expandable/collapsible content polyfill.</p>
+	<p>The progress bar is dependent upon native support for the HTML5 <code>progress</code> element or the progress polyfill.</p>
 	<ul>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/polyfills/details.js">js/polyfills/details.js</a> - contains the JavaScript code for the expandable/collapsible polyfill</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_details.scss">js/sass/includes/_details.scss</a> - contains the SCSS for the expandable/collapsible polyfill</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_details-ie.scss">js/sass/includes/_details-ie.scss</a> - contains the pre-IE9 SCSS for the expandable/collapsible polyfill</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/polyfills/progress.js">js/polyfills/progress.js</a> - contains the JavaScript code for the progress polyfill</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_progress.scss">js/sass/includes/_progress.scss</a> - contains the SCSS for the progress polyfill</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/images/progress/">js/images/progress/</a> - contains the images for the progress polyfill</li>
 	</ul>
 </section>
 
@@ -184,17 +182,15 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Version history</h2>
 	<ul>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/polyfills/details.js">datepicker.js</a></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/sass/includes/_details.scss">_details.scss</a></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/sass/includes/_details-ie.scss">_details-ie.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/polyfills/progress.js">progress.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/sass/includes/_progress.scss">_progress.scss</a></li>
 	</ul>
 </section>
 
 <section>
 	<h2>References</h2>
 	<ul>
-		<li><a href="http://www.w3.org/TR/html5/interactive-elements.html#the-details-element">HTML5 details element</a><li>
-		<li><a href="http://www.w3.org/TR/html5/interactive-elements.html#the-summary-element">HTML5 summary element</a></li>
+		<li><a href="http://www.w3.org/TR/html5/the-progress-element.html#the-progress-element">HTML5 progress element</a><li>
 	</ul>
 </section>
 
