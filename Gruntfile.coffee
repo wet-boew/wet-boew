@@ -337,11 +337,6 @@ module.exports = (grunt) ->
 						src: "**/*.hbs"
 						dest: "dist/unmin/demos"
 					,
-						expand: true
-						cwd: "src/themestyle"
-						src: "**/*.hbs"
-						dest: "dist/unmin/demos"
-					,
 						cwd: "site/pages"
 						src: "**/*.hbs"
 						dest: "dist/unmin"
@@ -367,11 +362,6 @@ module.exports = (grunt) ->
 					,
 						expand: true
 						cwd: "src/other"
-						src: "**/*.hbs"
-						dest: "dist/demos"
-					,
-						expand: true
-						cwd: "src/themestyle"
 						src: "**/*.hbs"
 						dest: "dist/demos"
 					,
