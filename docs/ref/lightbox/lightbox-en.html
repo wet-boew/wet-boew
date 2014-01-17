@@ -173,6 +173,18 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	</section>
 
 	<section>
+		<h3>Alternative Image Title</h3>
+		<p>To implement an <b>alternative image title for a light box</b> use the light box link's <code>data-title</code> attribute to specify a page element by its ID:</p>
+		<pre>&lt;div class="wet-boew-lightbox"&gt;
+  &lt;a class="lb-item" href="image/image_source.jpg" title="Alt text for the image" data-title="element_id"&gt;
+    &lt;img src="image/image_source.jpg" alt="Alt text for the image"&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+&lt;p id="element_id"&gt;Alternative light box title for the image&lt;/p&gt;</pre>
+		<p><a href="../../../demos/lightbox/lightbox-en.html#examples4">Working Demo</a></p>
+	</section>
+
+	<section>
 		<h3>Styling</h3>
 		<p>By default, there are no additional classes used to style the gallery as it appears in the <a href="../../../demos/lightbox/lightbox-en.html">working demo</a>. In order to style the lightbox gallery to look like it does in the demo, some extra classes can be used to remove the bullets, indentation and resize the images:</p>
 		<pre>&lt;div class="wet-boew-lightbox"&gt;
