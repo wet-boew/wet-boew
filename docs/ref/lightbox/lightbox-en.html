@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Lightbox - Plugins - Documentation - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-gcwu-fegc/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title / Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
+<meta name="dcterms.language" title="ISO639-2" content="eng" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script src="../../../dist/js/jquery.min.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-gcwu-fegc/css/theme-min.css" />
+<!--<![endif]-->
+<noscript><link rel="stylesheet" href="../../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+
+<!-- CustomScriptsCSSStart -->
+<!-- CustomScriptsCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../../dist/theme-gcwu-fegc/images/sig-en.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
+<ul>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.ca/en/index.html">Canada.ca</a></li>
+<li id="gcwu-gcnb2"><a rel="external" href="http://www.canada.ca/en/services/index.html">Services</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.ca/en/gov/dept/index.html">Departments</a></li>
+<li id="gcwu-gcnb-lang"><a href="lightbox-fr.html" lang="fr">Français</a></li>
+</ul>
+</div></div></div></nav>
+
+<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../../index-en.html">Web Experience Toolkit&#160;(WET)</a></p></div>
+
+<section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="gcwu-srchbx-in">
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="gcwu-psnb"><h2><span>Site </span>menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/menu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="section2/index-en.html">Section 2</a></div></li>
+<li><div><a href="#">Section 3</a></div></li>
+<li><div><a href="#">Section 4</a></div></li>
+<li><div><a href="#">Section 5</a></div></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
+<ol>
+<li><a href="../../../index-en.html">Home</a></li>
+<li><a href="../../index-en.html">Documentation</a></li>
+<li><a href="../plugins-en.html">Plugins</a></li>
+<li>Lightbox</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Lightbox</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/lightbox/lightbox-en.html" class="button">Working examples</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<h2>Overview</h2>
+	<p><b>Project Lead:</b> Eric Poirier (<a href="https://github.com/ericpoirier">@ericpoirier</a>)</p>
+	<p>Light box is a jQuery plugin that helps you build photo gallery out of pictures on a web page.</p>
+
+	<section>
+		<h3>Purpose</h3>
+		<ul>
+			<li>Displays images and other content using the <a href="http://www.jacklmoore.com/colorbox">ColorBox plugin</a>.</li>
+			<li>Easy navigation in image galleries using mouse, touchscreen or keyboard.</li>
+		</ul>
+	</section>
+</section>
+
+<section>
+	<h2>Implementation</h2>
+	<p>Each picture gallery groups and single pictures must be inside its own <code>&lt;div&gt;</code> using the "<b>wet-boew-lightbox</b>" class. Also, every <code>&lt;img&gt;</code> elements must be inside its own <code>&lt;a&gt;</code>.</p>
+	<p>Example:</p>
+	<pre>&lt;div class="wet-boew-lightbox"&gt;
+  &lt;a class="lb-item" href="image/image_source.jpg" title="Alt text for the image"&gt;
+    &lt;img src="image/image_source.jpg" alt="Alt text for the image"&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</pre>
+	<p><b>Note:</b> The class "lb-item" is used here as an example. Bellow are the options to implement the Light box.</p>
+</section>
+
+<section>
+	<h2>Options</h2>
+
+	<section>
+		<h3>Single Items</h3>
+		<p>To implement Light box to a <b>single image/picture</b> on your page you need to use the class lb-item on the <code>&lt;a&gt;</code> tags.</p>
+		<pre>&lt;div class="wet-boew-lightbox"&gt;
+  &lt;a class="lb-item" href="images/image_source.jpg" title="Alt text for the image"&gt;
+    &lt;img src="images/image_source.jpg" alt="Alt text for the image" class="image-actual" /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</pre>
+		<p><a href="../../../demos/lightbox/lightbox-en.html#examples1">Working Demo</a></p>
+	</section>
+
+	<section>
+		<h3>Item Gallery</h3>
+		<p>To implement Light box to a <b>group of images/pictures</b> on your page you need to use this code:</p>
+		<pre>&lt;div class="wet-boew-lightbox"&gt;
+  &lt;ul class="lb-gallery"&gt;
+    &lt;li&gt;
+      &lt;a class="lb-item-gal" href="images/image_source.jpg" title="Alt text for the image"&gt;
+        &lt;img src="images/image_source.jpg" alt="Alt text for the image" class="image-actual" /&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;...&lt;/li&gt;
+    &lt;li&gt;...&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</pre>
+		<p><a href="../../../demos/lightbox/lightbox-en.html#examples2">Working Demo</a></p>
+	</section>
+
+	<section>
+		<h3>Hidden Item Gallery</h3>
+		<p>To implement Light box to a <b>group of hidden images/pictures</b> on your page you need to use this code:</p>
+		<pre>&lt;div class="wet-boew-lightbox"&gt;
+  &lt;ul class="lb-hidden-gallery"&gt;
+    &lt;li&gt;
+      &lt;a class="lb-item-gal" href="images/image_source.jpg" title="Alt text for the image"&gt;
+        &lt;img src="images/image_source.jpg" alt="Alt text for the image" class="image-actual" /&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;...&lt;/li&gt;
+    &lt;li&gt;...&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</pre>
+		<p><a href="../../../demos/lightbox/lightbox-en.html#examples3">Working Demo</a></p>
+	</section>
+
+	<section>
+		<h3>Styling</h3>
+		<p>By default, there are no additional classes used to style the gallery as it appears in the <a href="../../../demos/lightbox/lightbox-en.html">working demo</a>. In order to style the lightbox gallery to look like it does in the demo, some extra classes can be used to remove the bullets, indentation and resize the images:</p>
+		<pre>&lt;div class="wet-boew-lightbox"&gt;
+   &lt;ul class="lb-gallery equalize list-bullet-none indent-none"&gt;
+      &lt;li class="span-2 float-left margin-right-none" &gt;
+         &lt;a class="lb-item-gal" href="image1.jpg" title="Image 1 title"&gt;
+            &lt;img src="thumb_image1.jpg" alt="Image 1 title" /&gt;
+         &lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li class="span-2 float-left margin-right-none" &gt;
+         &lt;a class="lb-item-gal" href="image2.jpg" title="Image 2 title"&gt;
+            &lt;img src="thumb_image2.jpg" alt="Image 2 title" /&gt;
+         &lt;/a&gt;
+      &lt;/li&gt;
+[...]
+&lt;/ul&gt;&lt;/div&gt;</pre>
+	</section>
+
+	<section>
+		<h3>Force Photo Link</h3>
+		<p>Applying the <code>force-photo</code> class on the div containing <code>wet-boew-lightbox</code> forces Light Box to display a link as a photo. Use this when automatic photo detection fails (such as using a url like 'photo.php' or '&amp;photo=1234' instead of 'photo.jpg')</p>
+		<p>Example:</p>
+		<pre>&lt;div class="wet-boew-lightbox force-photo"&gt;
+  &lt;a class="lb-item" href="photo.php" title="Alt text for the image"&gt;
+    &lt;img src="image/image_source.jpg" alt="Alt text for the image"&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</pre>
+	</section>
+
+	<section>
+		<h3>Applying Additional Settings</h3>
+		<p>There are many behaviours for the Light Box plugin (based on the ColorBox project) which are documented <a href="http://www.jacklmoore.com/colorbox/">here</a>. To apply these additional settings, add a <i>data-wet-boew</i> attribute containing your additional settings like so:</p>
+		<pre>&lt;div class="wet-boew-lightbox" data-wet-boew="speed:5000,opacity:0.1"&gt;</pre>
+
+		<section>
+			<h4>Sending Additional data to AJAX content</h4>
+			<p>It is possible to send additional data to AJAX content via the POST HTTP method. The data is specified on individual lightbox items using the data-wet-boew-lightbox attribute and the postData parameter. The data assigned to the postData parameter must be a valid JSON object.</p>
+			<pre>&lt;div class="wet-boew-lightbox"&gt;
+	&lt;ul&gt;
+		&lt;li class="box"&gt;
+			&lt;a class="lb-item" title="Example of AJAX content" data-wet-boew-lightbox='{"postData": {"foo":"bar", "ping":"pong"}}' href="ajax/ajax-en.html"&gt;AJAX content&lt;/a&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;</pre>
+		</section>
+	</section>
+</section>
+
+<section>
+	<h2>Examples</h2>
+	<ul>
+		<li><a href="../../../demos/lightbox/lightbox-en.html">English examples</a></li>
+		<li><a href="../../../demos/lightbox/lightbox-fr.html">French examples</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Development</h2>
+	<p>Lightbox depends on <a href="http://www.jacklmoore.com/colorbox">ColorBox</a> (<a href="http://www.opensource.org/licenses/mit-license.php">MIT license</a>).</p>
+	<p>The code for Lightbox is located in several places within the <b>source</b> folder of WET:</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/workers/lightbox.js">js/workers/lightbox.js</a> - contains the JavaScript code for Lightbox</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_lightbox.scss">js/sass/lightbox.scss</a> - contains the CSS for Lightbox</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/images/lightbox/">js/images/lightbox</a> - contains the images for Lightbox</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/dependencies/colorbox.js">js/dependencies/colorbox.js</a> - script file for ColorBox</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Known Issues</h2>
+	<p>None at this time.</p>
+</section>
+
+<section>
+	<h2>Version History</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/workers/lightbox.js">lightbox.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/sass/includes/_lightbox.scss">_lightbox.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.0/src/js/dependencies/colorbox.js">colorbox.js</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>References</h2>
+	<ul>
+		<li><a href="http://www.jacklmoore.com/colorbox">ColorBox</a></li>
+	</ul>
+</section>
+
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2014-01-17</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="gcwu-sft"><h3>Site footer</h3><div id="gcwu-sft-in">
+<div id="gcwu-tctr">
+<ul>
+<li class="gcwu-tc"><a href="#" rel="license">Terms and conditions</a></li>
+<li class="gcwu-tr"><a href="#">Transparency</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">About us</a></h4>
+<ul>
+<li><a href="#">Our Mandate</a></li>
+<li><a href="#">Our Minister</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">News</a></h4>
+<ul>
+<li><a href="#">News releases</a></li>
+<li><a href="#">Media advisories</a></li>
+<li><a href="#">Multimedia</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contact us</a></h4>
+<address>
+<ul>
+<li><a href="#">Phone numbers</a></li>
+<li><a href="#">Office locations</a></li>
+</ul>
+</address>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Stay connected</a></h4>
+<ul>
+<li><a rel="external" href="#">YouTube</a></li>
+<li><a rel="external" href="#">Twitter</a></li>
+<li><a href="#">Feeds</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<nav role="navigation"><div id="gcwu-gcft"><h3>Government of Canada footer</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
+<ul>
+<li><a rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
+<li><a rel="external" href="http://actionplan.gc.ca/en"><span>Economy</span><br />actionplan.gc.ca</a></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.ca/en/index.html">Canada.ca</a></div></li>
+</ul>
+</div></div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../../../dist/js/settings.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<!-- ScriptsEnd -->
+</body>
+</html>
