@@ -34,7 +34,7 @@
 			dataSeries = [],
 			i18n = wb.i18n,
 			nbBarChart = 0,
-			options = {},
+			//options = {},
 			pieChartLabelText = "",
 			lowestFlotDelta,
 			$imgContainer, $placeHolder, $subfigCaptionElem, $subFigureElem,
@@ -181,31 +181,45 @@
 					}
 				}
 			};
-
-		if ( !window.chartsGraphOpts ){
+		
+		/**
+		 * A little function to ovewrite and add preset into the default options
+		 * 
+		 * @method overwriteDefaultsOptions
+		 * @param {string} scopekey - Key that represent the subject of the setting, [flot, charts, series,...] 
+		 * @param {json object} target - DefaultOptions that wiil be overwritten
+		 * @param {json object} object - User defined object for overwritting options
+		 * @return {json object} - Return the new object
+		 */
+		function overwriteDefaultsOptions( scopekey, target, object ) {
+			var cachedObj, key;
 			
-			// 2. Global "setting.js"
-			if ( window.wet_boew_charts !== undefined ) {
-
-				// a. if exisit copy and take care of preset separatly (Move away before extending)
-				if ( window.wet_boew_charts.preset ) {
-					window.chartsGraphOpts = $.extend( true, {}, window.wet_boew_charts.preset );
-					delete window.wet_boew_charts.preset;
-				}
-
-				// b. Overwrite the chart default setting
-				$.extend( true, options, window.wet_boew_charts );
-
-				// c. Separatly extend the preset to at the current chart default seting
-				if ( window.chartsGraphOpts ) {
-					$.extend( true, options.preset, window.chartsGraphOpts );
-				}
+			cachedObj = object[scopekey];
+			if (!cachedObj) {
+				return target;
 			}
-
-			// ---- Save the setting here in a case of a second graphic on the same page
-			window.chartsGraphOpts = options;
+			for ( key in cachedObj ) {
+				if ( !cachedObj.hasOwnProperty( key ) ) {
+					continue;
+				}
+				target[scopekey][key] = cachedObj[key];
+			}
+			return target;
 		}
-
+		
+		// User defined options 
+		if ( !window.chartsGraphOpts ){
+			// Global setting
+			if ( window.wet_boew_charts !== undefined ) {
+				overwriteDefaultsOptions( "flot", defaultsOptions, window.wet_boew_charts );
+				overwriteDefaultsOptions( "series", defaultsOptions, window.wet_boew_charts );
+				overwriteDefaultsOptions( "charts", defaultsOptions, window.wet_boew_charts );
+			}
+			// Save the setting here in a case of a second graphic on the same page
+			window.chartsGraphOpts = defaultsOptions;
+		}
+		defaultsOptions = window.chartsGraphOpts;
+		
 		/**
 		 * A little function to ease the web editor life
 		 * 
@@ -262,22 +276,23 @@
 			
 			// Merge and Overide the function.
 			for ( key in fn ) {
-				if ( fn.hasOwnProperty( key ) ) {
-					tblFn = key.split( "/" );
-					currObj = config;
-					for ( i = 0, iLength = tblFn.length; i < iLength - 1; i += 1 ) {
-						localKey = tblFn.shift();
-						if ( localKey === "" ) {
-							continue;
-						}
-						if ( !currObj[ localKey ] ) {
-							currObj[ localKey ] = { };
-						}
-						currObj = currObj[ localKey ];
-					}
-					localKey = tblFn.shift();
-					currObj[ localKey ] = fn[ key ];
+				if ( !fn.hasOwnProperty( key ) ) {
+					continue;
 				}
+				tblFn = key.split( "/" );
+				currObj = config;
+				for ( i = 0, iLength = tblFn.length; i < iLength - 1; i += 1 ) {
+					localKey = tblFn.shift();
+					if ( localKey === "" ) {
+						continue;
+					}
+					if ( !currObj[ localKey ] ) {
+						currObj[ localKey ] = { };
+					}
+					currObj = currObj[ localKey ];
+				}
+				localKey = tblFn.shift();
+				currObj[ localKey ] = fn[ key ];
 			}
 			return config;
 		}
