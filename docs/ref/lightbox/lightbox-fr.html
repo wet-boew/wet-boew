@@ -175,6 +175,18 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	</section>
 
 	<section>
+		<h3>Titre de l'image alternative</h3>
+		<p>Pour mettre en oeuvre <b>un titre d'image alternative pour Lightbox</b>, utilisez l'attribut de lien <code>data-title</code> pour spécifier l'element de la page par son ID :</p>
+		<pre>&lt;div class="wet-boew-lightbox"&gt;
+  &lt;a class="lb-item" href="images/image_source.jpg" title="Texte alternatif pour l'image" data-title="element_id"&gt;
+    &lt;img src="images/image_source.jpg" alt="Texte alternatif pour l'image" class="image-actual" /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+&lt;p id="element_id"&gt;Titre de l'image alternative&lt;/p&gt;</pre>
+		<p><a href="../../../demos/lightbox/lightbox-fr.html#examples4">Exemple</a></p>
+	</section>
+
+	<section>
 		<h3>Forcer un lien de photo</h3>
 		<p>Vous pouvez forcer un lien de photo en ajoutant la classe <code>force-photo</code> à l'élément div qui contient <code>wet-boew-lightbox</code>. Utilisez cette fonction lorsque la détection automatique des photos échoue (p.ex., un url comme 'photo.php' ou '&amp;photo=1234' au lieu de 'photo.jpg')</p>
 		<p>Example:</p>
