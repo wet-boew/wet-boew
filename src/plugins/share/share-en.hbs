@@ -8,20 +8,138 @@
 	"altLangPrefix": "share"
 }
 ---
+<section>
+	<h2>Share a page</h2>
 
-<div class="wb-share"></div>
-<p class="text-right">
-	<strong>Add a second link:</strong>
-	<div class="wb-share link-only text-right"></div>
-</p>
+	<div class="wb-share" data-wet-boew='{"pnlId": "pnl1"}'></div>
+	<p class="text-right">
+		<strong>Add a second link:</strong>
+		<div class="wb-share link-only text-right" data-wet-boew='{"pnlId": "pnl1"}'></div>
+	</p>
 
-<details>
-	<summary>View code</summary>
-	<pre class="wb-prettify">
-		<code>&lt;div class="wb-share"&gt;&lt;/div&gt;
+	<details>
+		<summary>View code</summary>
+		<pre class="wb-prettify"><code>&lt;div class="wb-share" data-wet-boew='{"pnlId": "pnl1"}'&gt;&lt;/div&gt;
 &lt;p&gt;
 	&lt;strong&gt;Add a second link:&lt;/strong&gt;
-	&lt;div class="wb-share link-only text-right"&gt;&lt;/div&gt;
-&lt;/p&gt;</code>
-	</pre>
-</details>
+	&lt;div class="wb-share link-only text-right" data-wet-boew='{"pnlId": "pnl1"}'&gt;&lt;/div&gt;
+&lt;/p&gt;</code></pre>
+	</details>
+</section>
+
+<hr />
+
+<section>
+	<h2>Share a video</h2>
+
+	<div class="wb-share" data-wet-boew='{"type": "video", "title": "Video title", "url": "http://video.url", "pnlId": "pnl2"}'></div>
+	<p class="text-right">
+		<strong>Add a second link:</strong>
+		<div class="wb-share link-only text-right" data-wet-boew='{"type": "video", "pnlId": "pnl2"}'></div>
+	</p>
+
+	<details>
+		<summary>View code</summary>
+		<pre class="wb-prettify"><code>&lt;div class="wb-share" data-wet-boew='{"type": "video", "title": "Video title", "url": "http://video.url", "pnlId": "pnl2"}'&gt;&lt;/div&gt;
+&lt;p class="text-right"&gt;
+	&lt;strong&gt;Add a second link:&lt;/strong&gt;
+	&lt;div class="wb-share link-only text-right" data-wet-boew='{"type": "video", "pnlId": "pnl2"}'&gt;&lt;/div&gt;
+&lt;/p&gt;</code></pre>
+	</details>
+</section>
+
+<hr />
+
+<section>
+	<h2>Share a custom type</h2>
+
+	<div class="wb-share" data-wet-boew='{"custType": " this comment", "title": "Comment title", "url": "http://comment.url", "pnlId": "pnl3"}'></div>
+	<p class="text-right">
+		<strong>Add a second link:</strong>
+		<div class="wb-share link-only text-right" data-wet-boew='{"type": "video", "pnlId": "pnl3"}'}'></div>
+	</p>
+
+	<details>
+		<summary>View code</summary>
+		<pre class="wb-prettify"><code>&lt;div class="wb-share" data-wet-boew='{"custType": " this comment", "title": "Comment title", "url": "http://comment.url", "pnlId": "pnl3"}'}'&gt;&lt;/div&gt;
+&lt;p class="text-right"&gt;
+	&lt;strong&gt;Add a second link:&lt;/strong&gt;
+	&lt;div class="wb-share link-only text-right" data-wet-boew='{"custType": " this comment", "pnlId": "pnl3"}'}'&gt;&lt;/div&gt;
+&lt;/p&gt;</code></pre>
+	</details>
+</section>
+
+<hr />
+
+<section>
+	<h2>Options</h2>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">Option</th>
+				<th scope="col">Values</th>
+				<th scope="col">Default value</th>
+				<th scope="col">Example</th>
+				<th scope="col">Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>link-only</td>
+				<td>Class name</td>
+				<td>n/a</td>
+				<td><code>class="wb-share link-only"</code></td>
+				<td>Used to specify additional links for an existing panel.</td>
+			</tr>
+			<tr>
+				<td>pnlId</td>
+				<td>String</td>
+				<td>n/a</td>
+				<td><code>data-wet-boew='{"pnlId": "pnl1"}'</code></td>
+				<td>Unique identifier for the panel. Only required if providing a second link for the same panel (needs to be specified on all <code>wb-share</code> calls for that panel).</td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>"<code>page</code>", "<code>video</code>"</td>
+				<td>"<code>page</code>"</td>
+				<td><code>data-wet-boew='{"type": "video"}'</code></td>
+				<td>Type of content to share.</td>
+			</tr>
+			<tr>
+				<td>custType</td>
+				<td>String</td>
+				<td>""</td>
+				<td><code>data-wet-boew='{"custType": "&#160;this comment"}'</code></td>
+				<td>Text to use after "Share" on the share button and the panel header (overrides the text associated to the type option).</td>
+			</tr>
+			<tr>
+				<td>title</td>
+				<td>String</td>
+				<td>Page title or the main <code>h1</code> text</td>
+				<td><code>data-wet-boew='{"title": "Page title"}'</code></td>
+				<td>Text to use instead of the page title or the main <code>h1</code> text. Recommended for the video type if the page title is not the title of the video.</td>
+			</tr>
+			<tr>
+				<td>url</td>
+				<td>URL</td>
+				<td>URL of the current page (excluding the hash and query string)</td>
+				<td><code>data-wet-boew='{"url": "http://page.url"}'</code></td>
+				<td>URL to use instead of the URL of the current page.</td>
+			</tr>
+			<tr>
+				<td>desc</td>
+				<td>String</td>
+				<td>""</td>
+				<td><code>data-wet-boew='{"desc": "Description of the page."}'</code></td>
+				<td>Optional description of the item to share. <strong>Note:</strong> A separate description is not supported by all social media sites.</td>
+			</tr>
+			<tr>
+				<td>img</td>
+				<td>URL</td>
+				<td>""</td>
+				<td><code>data-wet-boew='{"img": "http://img.url"}'</code></td>
+				<td>Optional image for the item to share (mainly for Pinterest). <strong>Note:</strong> Very few social media sites support specifying a separate image through a URL request.</td>
+			</tr>
+		</tbody>
+	</table>
+</section>

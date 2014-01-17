@@ -91,6 +91,8 @@ wb.i18nDict = {
 	dur: "@dur@",
 	/* Share widget */
 	"shr-txt": "@shr-txt@",
+	"shr-pg": "@shr-pg@",
+	"shr-vid": "@shr-vid@",
 	"shr-hnt": "@shr-hnt@",
 	"shr-disc": "@shr-disc@",
 	/* Form validation */
