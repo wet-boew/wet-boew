@@ -43,8 +43,8 @@ var pluginName = "wb-details",
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb " + initEvent, selector, init );
 
-// Bind the init event of the plugin
-$document.on( "click vclick touchstart keydown toggle.wb-details", selector, function( event ) {
+// Bind the the event handlers of the plugin
+$document.on( "click keydown toggle.wb-details", selector, function( event ) {
 	var which = event.which,
 		currentTarget = event.currentTarget,
 		details, isClosed;

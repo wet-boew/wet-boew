@@ -25,13 +25,14 @@ var pluginName = "wb-tabs",
 	equalHeightClass = "wb-eqht",
 	equalHeightOffClass = equalHeightClass + "-off",
 	activePanel = "-activePanel",
+	activateEvent = "click vclick keydown",
 	$document = wb.doc,
 	$window = wb.win,
 	i18n, i18nText,
 
 	// Includes "smallview", "xsmallview" and "xxsmallview"
 	smallViewPattern = "smallview",
-	isSmallView,
+	isSmallView, oldIsSmallView,
 
 	defaults = {
 		addControls: true,
@@ -57,8 +58,8 @@ var pluginName = "wb-tabs",
 				$openPanel = activeId.length !== 0 ? $panels.filter( "#" + activeId ) : undefined,
 				elmId = $elm.attr( "id" ),
 				hashFocus = false,
-				$panel, i, len, tablist, isOpen, newId,
-				$summaries, summary, positionY;
+				open = "open",
+				$panel, i, len, tablist, isOpen, newId, positionY, groupClass;
 
 			// Ensure there is an id on the element
 			if ( !elmId ) {
@@ -80,7 +81,10 @@ var pluginName = "wb-tabs",
 				// If the panel was set by URL hash, then store in sessionStorage
 				} else {
 					hashFocus = true;
-					sessionStorage.setItem( elmId + activePanel, activeId );
+					try {
+						sessionStorage.setItem( elmId + activePanel, activeId );
+					} catch ( error ) {
+					}
 				}
 			} catch ( error ) {
 			}
@@ -106,9 +110,9 @@ var pluginName = "wb-tabs",
 			// Build the tablist and enhance the panels as needed for details/summary
 			if ( $tablist.length === 0 ) {
 				$elm.addClass( "tabs-acc" );
+				groupClass = elmId + "-grp";
 				addControls = false;
 				$panels = $elm.children();
-				$summaries = $panels.children( "summary" );
 				len = $panels.length;
 
 				// Ensure there is only one panel open
@@ -119,55 +123,56 @@ var pluginName = "wb-tabs",
 						$openPanel = $panels.eq( 0 );
 					}
 				}
-				$panels.removeAttr( "open" );
-				$openPanel.attr( "open", "open" );
+				$panels.removeAttr( open );
+				$openPanel.attr( open, open );
 
 				// Hide the tablist in small view and the summary elements in large view
 				tablist = "<ul role='tablist' aria-live='off'>";
-				if ( isSmallView && $elm.hasClass( equalHeightClass ) ) {
-					$elm.toggleClass( equalHeightClass + " " + equalHeightOffClass );
-				}
-				$summaries
-					.addClass( "wb-toggle" )
-					.attr( "data-toggle", "{\"parent\": \"#" + elmId +
-						"\", \"group\": \"details\"}" )
-					.trigger( "wb-init.wb-toggle" );
 
 				for ( i = 0; i !== len; i += 1 ) {
 					$panel = $panels.eq( i );
-					summary = $summaries[ i ];
+					$panel
+						.addClass( groupClass )
+						.html(
+							$panel.html()
+								.replace( /(<\/summary>)/i, "$1<div class='tgl-panel'>" ) +
+							"</div>"
+						);
+
 					newId = $panel.attr( "id" );
 					if ( !newId ) {
 						newId = "tabpanel" + uniqueCount;
 						uniqueCount += 1;
 						$panel.attr( "id", newId );
 					}
-					isOpen = !!$panel.attr( "open" );
+					isOpen = !!$panel.attr( open );
 
 					if ( isSmallView ) {
 						if ( !Modernizr.details ) {
-							$panel
-								.toggleClass( "open", !isOpen )
-								.attr({
-									"aria-expanded": !isOpen,
-									"aria-hidden": isOpen
-								});
+							$panel.toggleClass( "open", !isOpen );
 						}
 					} else {
 						$panel.attr({
 							role: "tabpanel",
-							open: "open"
+							open: open
 						});
-						$panel.addClass( ( Modernizr.details ? "" :  "open " ) +
+						$panel.addClass( ( Modernizr.details ? "" :  open + " " ) +
 							"fade " + ( isOpen ? "in" : "out" ) );
 					}
 
 					tablist += "<li" + ( isOpen ? " class='active'" : "" ) +
 						"><a id='" + newId + "-lnk' href='#" + newId + "'>" +
-						summary.innerHTML + "</a></li>";
+						$panel.children( "summary" ).html() + "</a></li>";
 				}
+
 				$tablist = $( tablist + "</ul>" );
-				$elm.prepend( $tablist );
+				$elm
+					.prepend( $tablist )
+					.find( "> details > summary" )
+						.addClass( "wb-toggle tgl-tab" )
+						.attr( "data-toggle", "{\"parent\": \"#" + elmId +
+							"\", \"group\": \"." + groupClass + "\"}" )
+						.trigger( "wb-init.wb-toggle" );
 			} else if ( $openPanel && $openPanel.length !== 0 ) {
 				$panels.filter( ".in" )
 					.addClass( "out" )
@@ -210,6 +215,7 @@ var pluginName = "wb-tabs",
 			});
 
 			initialized = true;
+			onResize();
 		}
 	},
 
@@ -429,66 +435,78 @@ var pluginName = "wb-tabs",
 	},
 
 	onResize = function() {
-		var oldIsSmallView = isSmallView,
-			$elm, $details, $tablist, $openDetails, $nonOpenDetails, $active;
+		var $elm, $details, $tablist, $openDetails,
+			$nonOpenDetails, $active, $summary;
 
-		isSmallView = document.documentElement.className.indexOf( smallViewPattern ) !== -1;
-
-		if ( initialized && isSmallView !== oldIsSmallView ) {
+		if ( initialized ) {
+			isSmallView = document.documentElement.className.indexOf( smallViewPattern ) !== -1;
 			$elm = $( selector );
 			$details = $elm.children( "details" );
-			$tablist = $elm.children( "ul" );
+			if ( $details.length !== 0 ) {
+				if ( isSmallView !== oldIsSmallView ) {
+					$summary = $details.children( "summary" );
+					$tablist = $elm.children( "ul" );
 
-			// Disable equal heights for small view and enable for large view
-			if ( $elm.attr( "class" ).indexOf( equalHeightClass ) !== -1 ) {
-				$elm.toggleClass( equalHeightClass + " " + equalHeightOffClass );
-			}
+					// Disable equal heights for small view
+					if ( $elm.attr( "class" ).indexOf( equalHeightClass ) !== -1 ) {
+						$elm.toggleClass( equalHeightClass + " " + equalHeightOffClass );
+					}
 
-			if ( isSmallView ) {
+					if ( isSmallView ) {
 
-				// Switch to small view
-				$active = $tablist.find( ".active a" );
-				$openDetails = $details.filter( "#" + $active.attr( "href" ).substring( 1 ) );
-				$nonOpenDetails = $details
-					.removeAttr( "role" )
-					.removeClass( "fade out in" )
-					.not( $openDetails )
-						.removeAttr( "open" );
-				if ( !Modernizr.details ) {
-					$nonOpenDetails
-						.attr({
-							"aria-expanded": "false",
-							"aria-hidden": "true"
-						});
-					$openDetails.attr({
-						"aria-expanded": "true",
-						"aria-hidden": "false"
-					});
+						// Switch to small view
+						$active = $tablist.find( ".active a" );
+						$openDetails = $details.filter( "#" + $active.attr( "href" ).substring( 1 ) );
+						$nonOpenDetails = $details
+							.removeAttr( "role" )
+							.removeClass( "fade out in" )
+							.not( $openDetails )
+								.removeAttr( "open" );
+						if ( !Modernizr.details ) {
+							$nonOpenDetails
+								.attr({
+									"aria-expanded": "false",
+									"aria-hidden": "true"
+								});
+							$openDetails.attr({
+								"aria-expanded": "true",
+								"aria-hidden": "false"
+							});
+						}
+					} else {
+
+						// Switch to large view
+						$openDetails = $details.filter( "[open]" );
+						if ( $openDetails.length === 0 ) {
+							$openDetails = $details.eq( 0 );
+						}
+
+						$details
+							.attr({
+								role: "tabpanel",
+								open: "open"
+							})
+							.not( $openDetails )
+								.addClass( "fade out" );
+
+						$openDetails
+							.addClass( "fade in" )
+							.parent()
+								.find( "> ul [href$='" + $openDetails.attr( "id" ) + "']" )
+									.trigger( "click" );
+					}
+
+					$summary.attr( "aria-hidden", !isSmallView );
+					$tablist.attr( "aria-hidden", isSmallView );
+				} else {
+
+					// Enable equal heights for large view
+					if ( $elm.attr( "class" ).indexOf( equalHeightClass ) !== -1 ) {
+						$elm.toggleClass( equalHeightClass + " " + equalHeightOffClass );
+					}
 				}
-			} else {
-
-				// Switch to large view
-				$openDetails = $details.filter( "[open]" );
-				if ( $openDetails.length === 0 ) {
-					$openDetails = $details.eq( 0 );
-				}
-
-				$details
-					.attr({
-						role: "tabpanel",
-						open: "open"
-					})
-					.not( $openDetails )
-						.addClass( "fade out" );
-
-				$openDetails
-					.addClass( "fade in" )
-					.parent()
-						.find( "> ul [href$='" + $openDetails.attr( "id" ) + "']" )
-							.trigger( "click" );
+				oldIsSmallView = isSmallView;
 			}
-
-			$tablist.attr( "aria-hidden", isSmallView );
 		}
 	};
 
@@ -529,7 +547,7 @@ var pluginName = "wb-tabs",
  /*
   * Tabs, next, previous and play/pause
   */
- $document.on( "click vclick keydown", controls, function( event ) {
+ $document.on( activateEvent, controls, function( event ) {
 	var which = event.which,
 		elm = event.currentTarget,
 		className = elm.className,
@@ -581,15 +599,49 @@ var pluginName = "wb-tabs",
 	return true;
 });
 
+$document.on( "keydown", selector + " [role=tabpanel]", function( event ) {
+	var currentTarget = event.currentTarget;
+
+	// Ctrl + Up arrow
+	if ( event.ctrlKey && event.which === 38 ) {
+
+		// Move focus to the summary element
+		$( currentTarget )
+			.closest( selector )
+				.find( "[href$='#" + currentTarget.id + "']" )
+					.trigger( "setfocus.wb" );
+	}
+});
+
+// Handling for links to tabs from within a panel
+$document.on( "click", selector + " [role=tabpanel] a", function( event ) {
+	var currentTarget = event.currentTarget,
+		href = currentTarget.getAttribute( "href" ),
+		$container, $panel, $summary;
+
+	// Ignore middle and right mouse buttons
+	if ( event.which === 1 && href.charAt( 0 ) === "#" ) {
+		$container = $( currentTarget ).closest( selector );
+		$panel = $container.find( href );
+		if ( $panel.length !== 0 ) {
+			$summary = $panel.children( "summary" );
+			if ( $summary.length !== 0 && $summary.attr( "aria-hidden" ) !== "true" ) {
+				$summary.trigger( "click" );
+			} else {
+				$container.find( href + "-lnk" ).trigger( "click" );
+			}
+			return false;
+		}
+	}
+});
+
 // These events only fire at the document level
-$document.on( "xxsmallview.wb xsmallview.wb smallview.wb mediumview.wb largeview.wb xlargeview.wb", onResize );
+$document.on( wb.resizeEvents, onResize );
 
 // This event only fires on the window
 $window.on( "hashchange", onHashChange );
 
--// Update the hash with the current open details/tab panel id
-
-$document.on( "click vclick keydown", selector + " > details > summary", function( event ) {
+$document.on( activateEvent, selector + " > details > summary", function( event ) {
 	var which = event.which,
 		details = event.currentTarget.parentNode;
 

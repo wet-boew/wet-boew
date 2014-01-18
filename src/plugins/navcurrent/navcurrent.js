@@ -113,7 +113,7 @@ var $document = wb.doc,
 		if ( match ) {
 			link.className += " " + navClass;
 			if ( menu.className.indexOf( "wb-menu" ) !== -1 && link.className.indexOf( "item" ) === -1 ) {
-				link.parentNode.parentNode.parentNode.getElementsByTagName( "a" )[ 0 ].className += " " + navClass;
+				$( link ).closest( ".sm" ).parent().children( "a" ).addClass( navClass );
 			}
 		}
 	};

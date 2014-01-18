@@ -45,6 +45,7 @@
 @import "partials/language-selector";
 @import "partials/transitions";
 @import "partials/proximity";
+@import "partials/lists";
 
 /*
  Plugins
@@ -57,7 +58,6 @@
 @import "../plugins/formvalid/formvalid";
 @import "../plugins/lightbox/lightbox";
 @import "../plugins/menu/menu";
-@import "../plugins/modal/modal";
 @import "../plugins/multimedia/multimedia";
 @import "../plugins/overlay/overlay";
 @import "../plugins/prettify/prettify";
@@ -92,7 +92,6 @@
 /* Small view and under */
 @media screen and (max-width: $smallViewMax) {
 	@import "views/smallViewUnder";
-	@import "../plugins/menu/menu-smallViewUnder";
 	@import "../plugins/tabs/tabs-smallViewUnder";
 }
 
@@ -109,12 +108,12 @@
 /* Extra-small view and over */
 @media screen and (min-width: $xSmallViewMin) {
 	@import "views/xSmallViewOver";
+	@import "../plugins/menu/menu-xSmallViewOver";
 }
 
 /* Small view and over */
 @media screen and (min-width: $smallViewMin) {
 	@import "views/smallViewOver";
-	@import "partials/bootstrap-overrides-smallViewOver";
 }
 
 /* Medium view and over */
@@ -131,6 +130,7 @@
 /* Extra-extra-small view */
 @media screen and (max-width: $xxSmallViewMax) {
 	@import "views/xxSmallView";
+	@import "../plugins/menu/menu-xxSmallView";
 }
 
 /* Extra-small view */
@@ -163,4 +163,5 @@
 	@import "views/printView";
 	@import "../plugins/footnotes/footnotes-printView";
 	@import "../plugins/prettify/prettify-printView";
+	@import "../plugins/tabs/tabs-printView";
 }

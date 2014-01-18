@@ -4,11 +4,16 @@
 			<li>
 				<a href="{{assets}}/index-{{language}}.html">{{#i18n "tmpl-home"}}{{/i18n}}</a>
 			</li>
-{{#unless_eq assets compare=".."}}
+{{#isnt assets ".."}}
 			<li>
 				<a href="{{assets}}/demos/index-{{language}}.html">{{#i18n "tmpl-work-examples"}}{{/i18n}}</a>
 			</li>
-{{/unless_eq}}
+{{/isnt}}
+{{#is breadcrumb3 "true"}}
+			<li>
+				<a href="{{assets}}/demos/{{tag}}/index-{{language}}.html">{{breadcrumb3-title}}</a>
+			</li>
+{{/is}}
 			<li>{{title}}</li>
 		</ol>
 	</div>

@@ -16,6 +16,7 @@ module.exports = (grunt) ->
 		"dist"
 		"Produces the production files"
 		[
+			"checkDependencies"
 			"test"
 			"build"
 			"assets-dist"
@@ -51,7 +52,7 @@ module.exports = (grunt) ->
 		[
 			"dist"
 			"copy:deploy"
-			"gh-pages"
+			"gh-pages:travis"
 		]
 	)
 
@@ -112,7 +113,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Compiles Sass and copies third party CSS to the dist folder"
 		[
 			"sprites"
-			"sass"
+			"sass:all"
 			"autoprefixer"
 			"csslint:unmin"
 			"concat:css"
@@ -135,6 +136,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Create unminified demos"
 		[
 			"copy:demos"
+			"autoprefixer:demos"
 			"csslint:demos"
 			"assemble:demos"
 		]
@@ -277,20 +279,26 @@ module.exports = (grunt) ->
 				options:
 					banner: "@charset \"utf-8\";\n<%= banner %><%= glyphiconsBanner %>"
 				files:
+					"dist/unmin/css/ie8-wet-boew.css": [
+						"lib/bootstrap/dist/css/bootstrap.css"
+						"dist/unmin/css/wet-boew.css"
+						"dist/unmin/css/ie8-wet-boew.css"
+					]
 					"dist/unmin/css/wet-boew.css": [
 						"lib/bootstrap/dist/css/bootstrap.css"
 						"dist/unmin/css/wet-boew.css"
-					]
-					"dist/unmin/css/ie8-wet-boew.css": [
-						"dist/unmin/css/wet-boew.css"
-						"dist/unmin/css/ie8-wet-boew.css"
 					]
 
 			css_addBanners:
 				options:
 					banner: "@charset \"utf-8\";\n<%= banner %>"
 				files:
-					"dist/unmin/css/ie8-wet-boew.css": "dist/unmin/css/ie8-wet-boew.css"
+					"dist/unmin/css/polyfills/datalist.css": "dist/unmin/css/polyfills/datalist.css"
+					"dist/unmin/css/polyfills/datepicker.css": "dist/unmin/css/polyfills/datepicker.css"
+					"dist/unmin/css/polyfills/details.css": "dist/unmin/css/polyfills/details.css"
+					"dist/unmin/css/polyfills/meter.css": "dist/unmin/css/polyfills/meter.css"
+					"dist/unmin/css/polyfills/progress.css": "dist/unmin/css/polyfills/progress.css"
+					"dist/unmin/css/polyfills/slider.css": "dist/unmin/css/polyfills/slider.css"
 					"dist/unmin/css/noscript.css": "dist/unmin/css/noscript.css"
 					"dist/unmin/css/theme.css": "dist/unmin/css/theme.css"
 
@@ -368,10 +376,9 @@ module.exports = (grunt) ->
 			share:
 				src: [
 					"src/plugins/share/sprites/*.png"
-					"!src/plugins/share/sprites/sprites_*.png"
 				]
-				css: "src/plugins/share/_sprites.scss"
-				map: "src/plugins/assets/sprites_share.png"
+				css: "src/plugins/share/sprites/_sprites.scss"
+				map: "src/plugins/share/assets/sprites_share.png"
 				output: "scss"
 
 		# Compiles the Sass files
@@ -382,7 +389,6 @@ module.exports = (grunt) ->
 					cwd: "src/base"
 					src: [
 						"**/*.scss"
-						"!**/_*.scss"
 						"!**/demo/*.scss"
 					]
 					dest: "dist/unmin/css/"
@@ -392,7 +398,6 @@ module.exports = (grunt) ->
 					cwd: "theme/sass"
 					src: [
 						"**/*.scss"
-						"!**/_*.scss"
 					]
 					dest: "dist/unmin/css/"
 					ext: ".css"
@@ -411,17 +416,6 @@ module.exports = (grunt) ->
 					flatten: true
 				,
 					expand: true
-					cwd: "src/other"
-					src: [
-						"**/*.scss"
-						"!**/*base.scss"
-						"!**/demo/*.scss"
-					]
-					dest: "dist/unmin/css/other/"
-					ext: ".css"
-					flatten: true
-				,
-					expand: true
 					cwd: "src/plugins"
 					src: "**/demo/*.scss"
 					dest: "dist/unmin/demos/"
@@ -435,6 +429,12 @@ module.exports = (grunt) ->
 				,
 					expand: true
 					cwd: "src/other"
+					src: "**/demo/*.scss"
+					dest: "dist/unmin/demos/"
+					ext: ".css"
+				,
+					expand: true
+					cwd: "src/themestyle"
 					src: "**/demo/*.scss"
 					dest: "dist/unmin/demos/"
 					ext: ".css"
@@ -458,7 +458,6 @@ module.exports = (grunt) ->
 					src: [
 						"**/*.css"
 						"!**/polyfills/**/*.css"
-						"!**/other/**/*.css"
 						"!**/*.min.css"
 					]
 					dest: "dist/unmin/css"
@@ -472,15 +471,13 @@ module.exports = (grunt) ->
 					]
 					dest: "dist/unmin/css/polyfills/"
 					expand: true
-				,
-					cwd: "dist/unmin/css/other"
-					src: [
-						"**/*.css"
-						"!**/*.min.css"
-					]
-					dest: "dist/unmin/css/other/"
-					expand: true
 				]
+
+			demos:
+				cwd: "dist/unmin/demos"
+				src: "**/*.css"
+				dest: "dist/unmin/demos/"
+				expand: true
 
 		csslint:
 			options:
@@ -500,6 +497,7 @@ module.exports = (grunt) ->
 				"outline-none": false
 				"overqualified-elements": false
 				"qualified-headings": false
+				"regex-selectors": false
 				"unique-headings": false
 				"universal-selector": false
 				"unqualified-attributes": false
@@ -526,6 +524,7 @@ module.exports = (grunt) ->
 		uglify:
 			polyfills:
 				options:
+					banner: "<%= banner %>"
 					preserveComments: (uglify,comment) ->
 						return comment.value.match(/^!/i)
 				expand: true
@@ -578,6 +577,8 @@ module.exports = (grunt) ->
 			options:
 				banner: ""
 			dist:
+				options:
+					banner: ""
 				expand: true
 				cwd: "dist/unmin/css"
 				src: [
@@ -588,6 +589,9 @@ module.exports = (grunt) ->
 				ext: ".min.css"
 
 			demos_min:
+				options:
+					banner: "@charset \"utf-8\";\n/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
+						" * v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n *\n */"
 				expand: true
 				cwd: "dist/unmin/demos/"
 				src: [
@@ -599,6 +603,7 @@ module.exports = (grunt) ->
 		htmlcompressor:
 			options:
 				type: "html"
+				concurrentProcess: 5
 			all:
 				cwd: "dist"
 				src: [
@@ -659,12 +664,6 @@ module.exports = (grunt) ->
 					expand: true
 					flatten: true
 				,
-					cwd: "src/other"
-					src: "**/*.js"
-					dest: "dist/unmin/js/other"
-					expand: true
-					flatten: true
-				,
 					cwd: "lib"
 					src: [
 						"jquery-pjax/jquery.pjax.js"
@@ -686,7 +685,6 @@ module.exports = (grunt) ->
 					src: [
 						"plugins/**/assets/*"
 						"polyfills/**/assets/*"
-						"other/**/assets/*"
 					]
 					dest: "dist/unmin/assets"
 					expand: true
@@ -708,12 +706,26 @@ module.exports = (grunt) ->
 					expand: true
 				,
 					cwd: "src/polyfills"
-					src: "**/demo/*.js"
+					src: [
+						"**/demo/*.*"
+						"!**/*.scss"
+					]
 					dest: "dist/unmin/demos/"
 					expand: true
 				,
 					cwd: "src/other"
-					src: "**/demo/*.js"
+					src: [
+						"**/demo/*.*"
+						"!**/*.scss"
+					]
+					dest: "dist/unmin/demos/"
+					expand: true
+				,
+					cwd: "src/themestyle"
+					src: [
+						"**/demo/*.*"
+						"!**/*.scss"
+					]
 					dest: "dist/unmin/demos/"
 					expand: true
 				]
@@ -833,7 +845,25 @@ module.exports = (grunt) ->
 							filter: (req, res) ->
 								/json|text|javascript|dart|image\/svg\+xml|application\/x-font-ttf|application\/vnd\.ms-opentype|application\/vnd\.ms-fontobject/.test(res.getHeader('Content-Type'))
 						))
+
+						middlewares.push (req, res, next) ->
+							req.url = req.url.replace( "/v4.0-ci/", "/" )
+							next()
+
 						middlewares.push(connect.static(options.base));
+
+						# Serve the custom error page
+						middlewares.push (req, res) ->
+							filename = options.base + req.url
+
+							if not grunt.file.exists( filename )
+								filename = options.base + "/404.html"
+
+								# Set the status code manually
+								res.statusCode = 404
+
+							res.end( grunt.file.read( filename ) )
+
 						middlewares
 
 			test:
@@ -951,20 +981,33 @@ module.exports = (grunt) ->
 
 		"gh-pages":
 			options:
-				repo: "https://" + process.env.GH_TOKEN + "@github.com/wet-boew/wet-boew-dist.git"
-				branch: process.env.build_branch
 				clone: "wet-boew-dist"
-				message: "Travis build " + process.env.TRAVIS_BUILD_NUMBER
-				silent: true
 				base: "dist"
-			src: [
-				"**/*.*"
-			]
 
+			travis:
+				options:
+					repo: "https://" + process.env.GH_TOKEN + "@github.com/wet-boew/wet-boew-dist.git"
+					branch: process.env.build_branch
+					message: "Travis build " + process.env.TRAVIS_BUILD_NUMBER
+					silent: true
+				src: [
+					"**/*.*"
+				]
+
+			local:
+				src: [
+					"**/*.*"
+				]
+
+		checkDependencies:
+			all:
+				options:
+					npmInstall: false
 
 	# These plugins provide necessary tasks.
 	@loadNpmTasks "assemble"
 	@loadNpmTasks "grunt-autoprefixer"
+	@loadNpmTasks "grunt-check-dependencies"
 	@loadNpmTasks "grunt-contrib-clean"
 	@loadNpmTasks "grunt-contrib-concat"
 	@loadNpmTasks "grunt-contrib-connect"

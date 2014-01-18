@@ -15,6 +15,7 @@
  */
 var selector = ".wb-eqht",
 	$document = wb.doc,
+	eventTimerpoke = "timerpoke.wb",
 	vAlignCSS = "vertical-align",
 	vAlignDefault = "top",
 	minHeightCSS = "min-height",
@@ -22,8 +23,8 @@ var selector = ".wb-eqht",
 	cssValueSeparator = ":",
 	cssPropertySeparator = ";",
 	regexCSSValue = " ?[^;]+",
-	regexVAlign = new RegExp( vAlignCSS + cssValueSeparator + regexCSSValue + cssPropertySeparator ),
-	regexMinHeight = new RegExp( minHeightCSS + cssValueSeparator + regexCSSValue + cssPropertySeparator ),
+	regexVAlign = new RegExp( vAlignCSS + cssValueSeparator + " ?" + regexCSSValue + cssPropertySeparator + "?", "i" ),
+	regexMinHeight = new RegExp( minHeightCSS + cssValueSeparator + " ?" + regexCSSValue + cssPropertySeparator + "?", "i" ),
 
 	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
@@ -38,7 +39,7 @@ var selector = ".wb-eqht",
 			wb.remove( selector );
 
 			// Remove the event handler since only want init fired once per page (not per element)
-			$document.off( "timerpoke.wb", selector );
+			$document.off( eventTimerpoke, selector );
 
 			onResize();
 		}
@@ -49,23 +50,22 @@ var selector = ".wb-eqht",
 	 * @method onResize
 	 */
 	onResize = function() {
-		var $elms = $( selector );
+		var $elm, $children, $anchor, currentChild, childCSS, minHeight, i, j,
+			$elms = $( selector ),
+			row = [],
+			rowTop = -1,
+			currentChildTop = -1,
+			currentChildHeight = -1,
+			tallestHeight = -1;
 
-		$elms.each( function() {
-			var $children, $detachedChildren, currentChild, childCSS, minHeight, i,
-				row = [ ],
-				rowTop = -1,
-				currentChildTop = -1,
-				currentChildHeight = -1,
-				tallestHeight = -1,
-				$this = $( this );
+		for ( i = $elms.length - 1; i !== -1; i -= 1 ) {
+			$elm = $elms.eq( i );
+			$children = $elm.children();
 
-			$children = $this.children();
-
-			$detachedChildren = $children.detach();
-			for ( i = $detachedChildren.length - 1; i !== -1; i -= 1 ) {
-				currentChild = $detachedChildren[ i ];
-				childCSS = currentChild.style.cssText;
+			$anchor = detachElement( $elm );
+			for ( j = $children.length - 1; j !== -1; j -= 1 ) {
+				currentChild = $children[ j ];
+				childCSS = currentChild.style.cssText.toLowerCase();
 
 				// Ensure all children that are on the same baseline have the same 'top' value.
 				if ( childCSS.indexOf( vAlignCSS ) !== -1 ) {
@@ -82,11 +82,12 @@ var selector = ".wb-eqht",
 				}
 
 				currentChild.style.cssText = childCSS;
+				$children.eq( j ).data( minHeightCSS, minHeightDefault );
 			}
-			$detachedChildren.appendTo( $this );
+			$elm = reattachElement( $anchor );
 
-			for ( i = $children.length - 1; i !== -1; i -= 1 ) {
-				currentChild = $children[ i ];
+			for ( j = $children.length - 1; j !== -1; j -= 1 ) {
+				currentChild = $children[ j ];
 
 				currentChildTop = currentChild.offsetTop;
 				currentChildHeight = currentChild.offsetHeight;
@@ -100,20 +101,65 @@ var selector = ".wb-eqht",
 					tallestHeight = ( currentChildHeight > tallestHeight ) ? currentChildHeight : tallestHeight;
 				}
 
-				row.push( $children.eq( i ) );
+				row.push( $children.eq( j ) );
 			}
 			recordRowHeight( row, tallestHeight );
 
-			$detachedChildren = $children.detach();
-			for ( i = $detachedChildren.length - 1; i !== -1; i -= 1 ) {
-				minHeight = $detachedChildren.eq( i ).data( "min-height" );
+			$anchor = detachElement( $elm );
+			for ( j = $children.length - 1; j !== -1; j -= 1 ) {
+				minHeight = $children.eq( j ).data( minHeightCSS );
 
 				if ( minHeight ) {
-					$detachedChildren[ i ].style.minHeight = minHeight;
+					$children[ j ].style.minHeight = minHeight + "px";
 				}
 			}
-			$detachedChildren.appendTo( $this );
-		} );
+			$elm = reattachElement( $anchor );
+		}
+	},
+
+	/**
+	 * @method detachElement
+	 * @param {jQuery object} $elm The element to detach
+	 * @returns {object} The detached element
+	 */
+	detachElement = function( $elm ) {
+		var $prev = $elm.prev(),
+			$next = $elm.next(),
+			$parent = $elm.parent();
+
+		if ( $prev.length ) {
+			$elm.data( { anchor: $prev, anchorRel: "prev" } );
+		} else if ( $next.length ) {
+			$elm.data( { anchor: $next, anchorRel: "next" } );
+		} else if ( $parent.length ) {
+			$elm.data( { anchor: $parent, anchorRel: "parent" } );
+		}
+
+		return $elm.detach();
+	},
+
+	/**
+	 * @method reattachElement
+	 * @param {jQuery object} $elm The element to reattach
+	 * @returns {object} The reattached element
+	 */
+	reattachElement = function( $elm ) {
+		var $anchor = $elm.data( "anchor" ),
+			anchorRel = $elm.data( "anchorRel" );
+
+		switch ( anchorRel ) {
+		case "prev":
+			$anchor.after( $elm );
+			break;
+		case "next":
+			$anchor.before( $elm );
+			break;
+		case "parent":
+			$anchor.append( $elm );
+			break;
+		}
+
+		return $elm;
 	},
 
 	/**
@@ -122,18 +168,19 @@ var selector = ".wb-eqht",
 	 * @param {integer} height The height to record
 	 */
 	recordRowHeight = function( row, height ) {
+		var i = row.length - 1;
 
 		// only set a height if more than one element exists in the row
-		if ( row.length > 1 ) {
-			for ( var i = row.length - 1; i !== -1; i -= 1 ) {
-				row[ i ].data( "min-height", height + "px" );
+		if ( i ) {
+			for ( ; i !== -1; i -= 1 ) {
+				row[ i ].data( minHeightCSS, height );
 			}
 		}
 		row.length = 0;
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb", selector, init );
+$document.on( eventTimerpoke, selector, init );
 
 // Handle text and window resizing
 $document.on( "txt-rsz.wb win-rsz-width.wb win-rsz-height.wb tables-draw.wb", onResize );

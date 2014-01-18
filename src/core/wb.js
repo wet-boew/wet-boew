@@ -155,6 +155,8 @@ var getUrlParts = function( url ) {
 
 		nodes: $(),
 
+		resizeEvents: "xxsmallview.wb xsmallview.wb smallview.wb mediumview.wb largeview.wb xlargeview.wb",
+
 		add: function( selector ) {
 
 			// Lets ensure we are not running if things are disabled
@@ -302,13 +304,32 @@ Modernizr.load([
 		]
 	}, {
 		test: Modernizr.mathml,
-		nope: "plyfll!mathml.min.js",
 
-		// Cleanup elements that Modernizr.mathml test leaves behind.
+		// Cleanup Modernizr test and add selector to global timer
 		complete: function() {
-			var math = document.getElementsByTagName( "math" );
+			var selector = "math",
+				math = document.getElementsByTagName( selector );
+
+			// Cleanup elements that Modernizr.mathml test leaves behind.
 			if ( math.length ) {
 				document.body.removeChild( math[ math.length - 1 ].parentNode );
+			}
+
+			// Defer loading the polyfill till an element is detected due to the size
+			if ( !Modernizr.mathml ) {
+				// Bind the init event of the plugin
+				wb.doc.on( "timerpoke.wb", selector, function() {
+					// All plugins need to remove their reference from the timer in the
+					// init sequence unless they have a requirement to be poked every 0.5 seconds
+					wb.remove( selector );
+
+					// Load the MathML dependency. Since the polyfill is only loaded
+					// when !Modernizr.mathml, we can skip the test here.
+					Modernizr.load( "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible" );
+
+				});
+
+				wb.add( selector );
 			}
 		}
 	}, {

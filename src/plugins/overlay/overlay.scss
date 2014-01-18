@@ -90,10 +90,10 @@
 		color: #fff;
 		display: block;
 		padding: 0 44px 0 1em;
-		h1, h2, h3, h4 {
-			font-size: 1.15em;
-			padding: 10px 0;
-		}
+	}
+	.modal-title {
+		font-size: 1.15em;
+		padding: 10px 0;
 	}
 	&.wb-bar-t, &.wb-bar-b {
 		background-color: #000;
@@ -104,12 +104,17 @@
 }
 
 .hidden-hd {
+	.modal-body {
+		padding-top: 50px;
+	}
 	.overlay-close {
 		background-color: #000;
 		border-radius: 999px;
 		height: 1em;
 		width: 1em;
 		line-height: 1em;
+		margin-top: 10px;
+		margin-right: 20px;
 	}
 }
 

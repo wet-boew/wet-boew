@@ -8,17 +8,10 @@
 		margin-bottom: 0;
 		> {
 			li {
-				margin: 0;
-				padding: 0;
 				> {
 					a {
 						color: #fff;
-						padding: 0.8em;
 						border-left: 1px solid #0B3048;
-						text-decoration: none;
-						&:hover, &:focus {
-							text-decoration: underline;
-						}
 						&.wb-navcurr {
 							&:link {
 								background: #0b3048;
@@ -54,7 +47,6 @@
 			min-width: 200px;
 			li {
 				a {
-					font-size: 0.95em;
 					color: #444;
 					border-left: none;
 					border-right: none;
@@ -83,16 +75,93 @@
 	}
 }
 
+%wet-theme-site-menu-mb-pnl-bg-0e4164 {
+	background: #0e4164;
+}
+%wet-theme-site-menu-mb-pnl-padding-10-20 {
+	padding: 10px 20px;
+}
 #mb-pnl {
-	background: #0E4164;
+	&.modal-content {
+		background: #193451;
+	}
 	.modal-header {
-		text-align: left;
 		border: none;
+		border-bottom: 1px solid #072337;
 		box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.3), 3px 3px 3px -2px rgba(0, 0, 0, 0.3), -3px 3px 3px -2px rgba(0, 0, 0, 0.3);
-		color: #fff;
-		background: #2e5274;
+	}
+	.modal-body {
+		background: #193451;
+		padding: 0;
+		li {
+			line-height: 2em;
+		}
+		> {
+			:first-child {
+				padding-top: 20px;
+			}
+		}
 	}
 	.lng-ofr {
+		@extend %wet-theme-site-menu-mb-pnl-bg-0e4164;
+		padding: 5px 20px;
 		text-align: right;
+		li {
+			padding-left: 10px;
+			line-height: normal;				
+		}
+	}
+	summary {
+		&:hover, &:focus {
+			background: transparent;
+			color: #fff;
+		}
+	}
+	a {
+		color: #fff;
+		text-decoration: none;
+	}
+	.srch-pnl {
+		@extend %wet-theme-site-menu-mb-pnl-bg-0e4164;
+		@extend %wet-theme-site-menu-mb-pnl-padding-10-20;
+		.form-group {
+			float: left;
+			margin-right: 5px;
+			width: 75%;
+		}
+	}
+	.sec-pnl {
+		@extend %wet-theme-site-menu-mb-pnl-padding-10-20;
+		background: #cdd4da;
+		a, summary {
+			color: #2e5576;
+		}
+	}
+	.sm-pnl{
+		@extend %wet-theme-site-menu-mb-pnl-bg-0e4164;
+		@extend %wet-theme-site-menu-mb-pnl-padding-10-20;
+	}
+	.info-pnl {
+		@extend %wet-theme-site-menu-mb-pnl-padding-10-20;
+	}
+}
+
+[dir=rtl] {
+	#mb-pnl {
+		.lng-ofr {
+			text-align: left;
+			li {
+				padding-left: 0;
+				padding-right: 10px;
+			}
+		}
+		.srch-pnl {
+			.form-group {
+				float: right;
+				margin-right: auto;
+				margin-left: 5px;
+				width: 75%;
+			}
+		}
 	}
 }

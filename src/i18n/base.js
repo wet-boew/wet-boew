@@ -91,6 +91,8 @@ wb.i18nDict = {
 	dur: "@dur@",
 	/* Share widget */
 	"shr-txt": "@shr-txt@",
+	"shr-pg": "@shr-pg@",
+	"shr-vid": "@shr-vid@",
 	"shr-hnt": "@shr-hnt@",
 	"shr-disc": "@shr-disc@",
 	/* Form validation */
@@ -163,6 +165,7 @@ wb.i18nDict = {
 	infoFilt: "@infoFilt@",
 	info1000: "@info1000@",
 	lenMenu: "@lenMenu@",
+	filter: "@filter@",
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",
 	"geo-zmin": "@geo-zmin@",

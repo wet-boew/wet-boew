@@ -78,9 +78,11 @@ var pluginName = "wb-fdbck",
 	 * @param {DOM element} elm The element triggering the show/hide
 	 */
 	showHide = function( elm ) {
-		var targetId = elm.id,
-			$show,
-			$hide;
+		var $hide, $show,
+			classHide = "hide",
+			classShow = "show",
+			funcToggle = "toggle",
+			targetId = elm.id;
 
 		switch ( targetId ) {
 		case "fbrsn":
@@ -111,14 +113,16 @@ var pluginName = "wb-fdbck",
 
 		// Element to show
 		if ( $show ) {
-			// TODO: Use CSS transitions instead
-			$show.attr( "aria-hidden", "false" ).show( "slow" );
+			$show
+				.attr( "aria-hidden", "false" )
+				.wb( funcToggle, classShow, classHide );
 		}
 
 		// Element to hide
 		if ( $hide ) {
-			// TODO: Use CSS transitions instead
-			$hide.attr( "aria-hidden", "true" ).hide( "slow" );
+			$hide
+				.attr( "aria-hidden", "true" )
+				.wb( funcToggle, classHide, classShow );
 		}
 	};
 
@@ -141,6 +145,11 @@ $document.on( "click", selector + " input[type=reset]", function( event ) {
 
 	// Ignore middle/right mouse buttons
 	if ( !which || which === 1 ) {
+
+		// Manually reset the form as this event handler can be triggered
+		// before the browser invokes the native form reset.
+		event.target.form.reset();
+
 		showHide( fbrsn );
 		showHide( fbaxs );
 		showHide( fbcntc1 );

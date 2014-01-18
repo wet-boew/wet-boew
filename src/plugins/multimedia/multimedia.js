@@ -23,8 +23,10 @@ var pluginName = "wb-mltmd",
 	initializedEvent = "inited" + selector,
 	fallbackEvent = "fallback" + selector,
 	youtubeEvent = "youtube" + selector,
+	resizeEvent = "resize" + selector,
 	captionClass = "cc_on",
 	$document = wb.doc,
+	$window = wb.win,
 
 	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
@@ -147,6 +149,39 @@ var pluginName = "wb-mltmd",
 			 [ $this, data, data.player ] :
 			 [ $this, data ];
 	},
+
+	/*
+	 * Peformant micro templater
+	 * @credit: https://github.com/premasagar/tim/blob/master/tinytim.js
+	 * @todo: caching
+	 */
+	tmpl = (function() {
+		var start = "{{",
+			end = "}}",
+			// e.g. config.person.name
+			path = "[a-z0-9_$][\\.a-z0-9_]*",
+			pattern = new RegExp( start + "\\s*(" + path + ")\\s*" + end, "gi" );
+		return function( template, data ) {
+			// Merge data into the template string
+			return template.replace( pattern, function( tag, token ) {
+				var path = token.split( "." ),
+					len = path.length,
+					lookup = data,
+					i = 0;
+				for ( ; i < len; i += 1 ) {
+					lookup = lookup[ path[ i ] ];
+					// Property not found
+					if ( lookup === undef ) {
+						throw "tim: '" + path[ i ] + "' not found in " + tag;
+					}
+					// Return the required value
+					if ( i === len - 1 ) {
+						return lookup;
+					}
+				}
+			});
+		};
+	}()),
 
 	/**
 	 * @method parseHtml
@@ -378,7 +413,7 @@ var pluginName = "wb-mltmd",
 			return this.object.pauseVideo();
 		case "getPaused":
 			state = this.object.getPlayerState();
-			return state === -1 || state === 0 || state === 2;
+			return state === -1 || state === 0 || state === 2 || state === 5;
 		case "getPlayed":
 			return this.object.getPlayerState() > -1;
 		case "getEnded":
@@ -414,10 +449,14 @@ var pluginName = "wb-mltmd",
 		case "setCaptionsVisible":
 			if ( args ) {
 				$( this).addClass( captionClass );
-				this.object.setOption( "cc", "reload", true );
+				if ( this.object.getOptions().length > 0 ) {
+					this.object.setOption( "captions", "track", this.object.getOption( "captions", "tracklist" )[ 0 ] );
+				}
 			} else {
 				$( this ).removeClass( captionClass );
-				this.object.setOption( "cc", "track", {} );
+				if ( this.object.getOptions().length > 0 ) {
+					this.object.setOption( "captions", "track", {} );
+				}
 			}
 			$player.trigger( "ccvischange" );
 		}
@@ -437,8 +476,11 @@ var pluginName = "wb-mltmd",
 
 		switch ( event.data ) {
 		case null:
-			$target.trigger( "durationchange" );
 			$target.trigger( "canplay" );
+			break;
+		case -1:
+			event.target.unMute();
+			$target.trigger( "durationchange" );
 			break;
 		case 0:
 			$target.trigger( "ended" );
@@ -454,10 +496,13 @@ var pluginName = "wb-mltmd",
 			target.timeline = clearInterval( target.timeline );
 			break;
 		case 3:
-			$target.trigger( "waiting" );
 			target.timeline = clearInterval( target.timeline );
 			break;
 		}
+	},
+
+	onResize = function() {
+		$( selector + " object, " + selector + " iframe" ).trigger( resizeEvent );
 	};
 
 $document.on( "timerpoke.wb " + initEvent, selector, init );
@@ -492,6 +537,10 @@ $document.on( initializedEvent, selector, function() {
 		}, i18nText),
 		media = $media.get( 0 ),
 		url;
+
+	if ( !$this.attr( "id" ) ) {
+		$this.attr( "id", id );
+	}
 
 	if ( $media.attr( "id" ) === undef ) {
 		$media.attr( "id", mId );
@@ -532,15 +581,16 @@ $document.on( fallbackEvent, selector, function() {
 		$this = ref[ 0 ],
 		data = ref[ 1 ],
 		$media = data.media,
-		source = $media.find( "source" + ( data.type === "video" ) ? "[type='video/mp4']" : "[type='audio/mp3']" ).attr( "src" ),
+		type = data.type,
+		source = $media.find( ( type === "video"  ? "[type='video/mp4']" : "[type='audio/mp3']" ) ).attr( "src" ),
 		poster = $media.attr( "poster" ),
 		flashvars = "id=" + data.mId,
 		width = data.width,
 		height = data.height > 0 ? data.height : Math.round( data.width / 1.777 ),
-		playerresource = wb.getPath( "/assets" ) + "/multimedia.swf?" + flashvars;
+		playerresource = wb.getPath( "/assets" ) + "/multimedia.swf?" + new Date().getTime();
 
 	flashvars += "&amp;media=" + encodeURI( wb.getUrlParts( source ).absolute );
-	if ( data.type === "video" ) {
+	if ( type === "video" ) {
 		data.poster = "<img src='" + poster + "' class='img-responsive' height='" +
 			height + "' width='" + width + "' alt='" + $media.attr( "title" ) + "'/>";
 
@@ -549,7 +599,7 @@ $document.on( fallbackEvent, selector, function() {
 	}
 
 	$this.find( "video, audio" ).replaceWith( "<object id='" + data.mId + "' width='" + width +
-		"' height='" + height + "' class='" + data.type +
+		"' height='" + height + "' class='" + type +
 		"' type='application/x-shockwave-flash' data='" +
 		playerresource + "' tabindex='-1' play='' pause=''>" +
 		"<param name='movie' value='" + playerresource + "'/>" +
@@ -559,8 +609,8 @@ $document.on( fallbackEvent, selector, function() {
 		"<param name='wmode' value='opaque'/>" +
 		data.poster + "</object>" );
 	$this.data( "properties", data );
-
-	$this.trigger( renderUIEvent );
+	$window.on( "resize", onResize );
+	$this.trigger( renderUIEvent, type );
 });
 
 /*
@@ -579,23 +629,30 @@ $document.on( youtubeEvent, selector, function() {
 		videoId: $this.data( "youtube" ),
 		playerVars: {
 			autoplay: 0,
-			controls: 0,
+			controls: 1,
 			origin: wb.pageUrlParts.host,
 			modestbranding: 1,
 			rel: 0,
 			showinfo: 0,
+			html5: 1,
 			cc_load_policy: 1
 		},
 		events: {
-			onReady: youTubeEvents,
+			onReady: function( event ) {
+				onResize();
+				youTubeEvents( event );
+			},
 			onStateChange: youTubeEvents,
-			onApiChange: function( event ) {
-				event.target.setOption( "cc", "track", {} );
+			onApiChange: function() {
+				//If captions were enabled before the module was ready, re-enable them
+				var t = $this.get( 0 );
+				t.player( "setCaptionsVisible", t.player( "getCaptionsVisible" ) );
 			}
 		}
 	});
 
 	$this.addClass( "youtube" );
+
 	$this.find( "iframe" ).attr( "tabindex", -1 );
 
 	data.poster = "<img src='" + $media.attr( "poster" ) +
@@ -604,7 +661,8 @@ $document.on( youtubeEvent, selector, function() {
 	data.ytPlayer = ytPlayer;
 
 	$this.data( "properties", data );
-	$this.trigger( renderUIEvent, "video" );
+	$window.on( "resize", onResize );
+	$this.trigger( renderUIEvent, "youtube" );
 });
 
 /*
@@ -646,17 +704,16 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 		captionsUrl = wb.getUrlParts( data.captions ),
 		currentUrl = wb.getUrlParts( window.location.href ),
 		$media = $this.find( "video, audio, iframe, object" ),
-		$player;
+		$player, $overlay;
 
-	$media.after( window.tmpl( $this.data( "template" ), data ) );
-	if ( type === "video" ) {
-		$media.next( ".display" ).append( $media );
-	} else {
-		$media.next( ".display" ).remove();
+	$media.after( tmpl( $this.data( "template" ), data ) );
+	$overlay = $media.next().find( ".wb-mm-ovrly" ).after( $media );
+	if ( type !== "video" ) {
+		$overlay.remove();
 	}
 
 	$player = $( "#" + data.mId );
-	data.player = $player.is( "object" ) ? $player.children( ":first-child" ) : $player.load();
+	data.player = $player.is( "object" ) ? $player.children( ":first-child" ) : $player;
 
 	// Create an adapter for the event management
 	data.player.on( "durationchange play pause ended volumechange timeupdate " +
@@ -669,7 +726,12 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 	this.player = ( data.ytPlayer ) ? youTubeApi : playerApi;
 	$this.data( "properties", data );
 
-	//Load the progress polyfill if needed
+	// Trigger the duration change for cases where the event was called before the event binding
+	if ( !isNaN( this.player( "getDuration" ) ) && type !== "youtube" ) {
+		data.player.trigger( "durationchange" );
+	}
+
+	// Load the progress polyfill if needed
 	$this.find( "progress" ).trigger( "wb-init.wb-progress" );
 
 	if ( data.captions === undef ) {
@@ -699,7 +761,7 @@ $document.on( "click", selector, function( event ) {
 	// Opitmized multiple class tests to include child glyphicon because Safari was reporting the click event
 	// from the child span not the parent button, forcing us to have to check for both elements
 	// JSPerf for multiple class matching http://jsperf.com/hasclass-vs-is-stackoverflow/7
-	if ( className.match( /playpause|-play|-pause|wb-mm-overlay/ ) || $target.is( "object" ) ) {
+	if ( className.match( /playpause|-play|-pause|wb-mm-ovrly/ ) || $target.is( "object" ) ) {
 		this.player( "getPaused" ) ? this.player( "play" ) : this.player( "pause" );
 	} else if ( className.match( /\bcc\b|-subtitles/ )  ) {
 		this.player( "setCaptionsVisible", !this.player( "getCaptionsVisible" ) );
@@ -707,7 +769,7 @@ $document.on( "click", selector, function( event ) {
 		this.player( "setMuted", !this.player( "getMuted" ) );
 	} else if ( $target.is( "progress" ) || $target.hasClass( "progress" ) || $target.hasClass( "progress-bar" ) ) {
 		this.player( "setCurrentTime", this.player( "getDuration" ) * ( ( event.pageX - $target.offset().left ) / $target.width() ) );
-	} else if ( className.match( /\brewind\b|-backwards/ ) ) {
+	} else if ( className.match( /\brewind\b|-backward/ ) ) {
 		this.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05);
 	} else if ( className.match( /\bfastforward\b|-forward/ ) ) {
 		this.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05);
@@ -761,15 +823,14 @@ $document.on( "keyup", selector, function( event ) {
 $document.on( "durationchange play pause ended volumechange timeupdate " +
 	captionsLoadedEvent + " " + captionsLoadFailedEvent + " " +
 	captionsVisibleChangeEvent +
-	" waiting canplay progress", selector, function( event ) {
+	" waiting canplay", selector, function( event, simulated ) {
 
 	var eventTarget = event.currentTarget,
 		eventType = event.type,
 		$this = $( eventTarget ),
 		invStart = "<span class='wb-inv'>",
 		invEnd = "</span>",
-		currentTime, $button, buttonData, isPlay, getMuted;
-
+		currentTime, $button, buttonData, isPlay, getMuted, ref, skipTo;
 	switch ( eventType ) {
 	case "play":
 	case "pause":
@@ -810,9 +871,9 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 			.attr(
 				"value",
 				Math.round( currentTime / eventTarget.player( "getDuration" ) * 1000 ) / 10
-			);
+			).trigger( "wb-update.wb-progress" );
 
-		$this.find( ".wb-mm-tmln-crrnt span" )
+		$this.find( ".wb-mm-tmln-crrnt span:nth-child(2)" )
 			.text( formatTime( currentTime ) );
 
 		if ( $this.hasClass( captionClass ) && $.data( eventTarget, "captions" ) !== undef ) {
@@ -825,8 +886,16 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		break;
 
 	case "durationchange":
-		$this.find( ".wb-mm-tmln-ttl span" )
+		$this.find( ".wb-mm-tmln-ttl span:nth-child(2)" )
 			.text( formatTime( eventTarget.player( "getDuration" ) ) );
+
+		// Skip to pointer from the querystring
+		ref = expand( this );
+		skipTo = wb.pageUrlParts.params[ ref[ 1 ].id ];
+		if ( skipTo ) {
+				skipTo = parseTime( skipTo );
+				eventTarget.player( "setCurrentTime", skipTo );
+		}
 		break;
 
 	case "ccloaded":
@@ -848,6 +917,9 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		break;
 
 	case "waiting":
+		if ( !simulated ) {
+			$document.off( "progress", selector );
+		}
 		this.loading = setTimeout( function() {
 			$this.find( ".display" ).addClass( "waiting" );
 		}, 500 );
@@ -857,26 +929,40 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		this.loading = clearTimeout( this.loading );
 		$this.find( ".display" ).removeClass( "waiting" );
 		break;
-
-	// Fallback for browsers that don't implement the waiting events
-	case "progress":
-
-		// Waiting detected, display the loading icon
-		if ( this.player( "getPaused" ) === false &&
-			this.player( "getCurrentTime" ) === this.player( "getPreviousTime" ) &&
-			eventTarget.player( "getBuffering" ) === false ) {
-
-			eventTarget.player( "setBuffering", true );
-			$this.trigger( "waiting" );
-
-		// Waiting has ended, but icon is still visible - remove it.
-		} else if ( eventTarget.player( "getBuffering" ) === true ) {
-			eventTarget.player( "setBuffering", false );
-			$this.trigger( "canplay" );
-		}
-		eventTarget.player( "setPreviousTime", eventTarget.player( "getCurrentTime" ) );
-		break;
 	}
+});
+
+// Fallback for browsers that don't implement the waiting events
+$document.on( "progress", selector, function( event ) {
+	var eventTarget = event.currentTarget,
+		$this = $( eventTarget );
+
+	// Waiting detected
+	if ( this.player( "getPaused" ) === false && this.player( "getCurrentTime" ) === this.player( "getPreviousTime" ) ) {
+		if ( eventTarget.player( "getBuffering" ) === false ) {
+			eventTarget.player( "setBuffering", true );
+			$this.trigger( "waiting", true );
+		}
+
+	// Waiting has ended
+	} else if ( eventTarget.player( "getBuffering" ) === true ) {
+		eventTarget.player( "setBuffering", false );
+		$this.trigger( "canplay", true );
+	}
+	eventTarget.player( "setPreviousTime", eventTarget.player( "getCurrentTime" ) );
+});
+
+$document.on( resizeEvent, selector, function( event ) {
+	var $player = $( event.target ),
+		height = $player.attr( "height" ),
+		width = $player.attr( "width" ),
+		newHeight = Math.round( $player.width() * height / width );
+
+	//TODO: Remove this when captions works in chromeless api with controls
+	if ( $player.is( "iframe") ) {
+		newHeight += 30;
+	}
+	$player.attr( "style", "height:" + newHeight + "px" );
 });
 
 wb.add( selector );
