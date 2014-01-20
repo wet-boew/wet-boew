@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-<title>Saisie automatique - Correctifs - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+<title>Mémoire de session - Correctifs - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
 <meta name="description" content="French description / Description en français" />
@@ -49,7 +49,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wet-fullhd-in">
 <ul>
 <li id="wet-fullhd-lang-current">Français</li>
-<li id="wet-fullhd-lang-2"><a href="datalist-en.html" lang="en">English</a></li>
+<li id="wet-fullhd-lang-2"><a href="sessionstorage-en.html" lang="en">English</a></li>
 </ul>
 </div>
 </div></section>
@@ -79,7 +79,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li><a href="../../../index-fr.html">Accueil</a></li>
 <li><a href="../../index-fr.html">Documentation</a></li>
 <li><a href="../polyfills-fr.html">Correctifs</a></li>
-<li>Saisie automatique</li>
+<li>Mémoire de session</li>
 </ol>
 </div></div>
 </nav>
@@ -89,86 +89,57 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Saisie automatique</h1>
+<h1 id="wb-cont">Mémoire de session</h1>
 
 <ul class="button-group">
-<li><a href="../../../demos/datalist/datalist-fr.html" class="button">Examples pratiques</a></li>
+<li><a href="../../../demos/sessionstorage/sessionstorage-fr.html" class="button">Examples pratiques</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
 </ul>
 
 <span class="wet-boew-prettify all-pre"></span>
 <section>
 	<h2>Aperçu</h2>
-	<p><strong>Chef du projet :</strong> Eric Poirier (<a href="https://github.com/ericpoirier">@ericpoirier</a>)</p>
+	<p><strong>Chef du projet :</strong> Paul Jackson (<a href="https://github.com/pjackson28">@pjackson28</a>)</p>
 
 	<section>
 		<h3>Objet</h3>
-		<p>L'attribut <code>input list</code> et l'élément <code>datalist</code> de HTML5 ajoutent des fonctionnalités de saisie automatique en affichant dynamiquement une liste de mots qui correspondent à l'entrée de l'utilisateur.  Étant donné que certains navigateurs ne prennent pas en charge cette fonctionnalité à l'origine, ce correctif émule la même fonctionnalité en utilisant HTML générique et WAI-ARIA.</p>
+		<p>L'objet HTML5 <code>sessionStorage</code> est utilisé pour maintenir les données d'une session. Ce composant ajoute le soutien pour ces éléments dans les navigateurs qui n'ont pas déjà la prise en charge native.</p>
 	</section>
 
 	<section>
 		<h3>Avantages</h3>
 		<ul>
-			<li>Dans les cas où le navigateur ne prend pas en charge l'attribut et l'élément, le correctif est automatiquement chargé.</li>
-			<li>Ce correctif assure que la fonctionnalité de saisie automatique est ajouté et les informations nécessaires sont exposées aux technologies d'assistance en ajoutant WAI-ARIA.</li>
+			<li>Le correctif est lancé automatiquement dans les navigateurs ne supportant pas l'objet <code>sessionStorage</code>.</li>
 		</ul>
 	</section>
 </section>
 
 <section>
 	<h2>Mise en œuvre</h2>
-	<p>Pour utiliser le correctif, l'attribut <code>input list</code> et l'élément <code>datalist</code> doivent être utilisés. Dans les cas où le navigateur ne soutien pas l'attribut <code>input list</code> ou l'élément <code>datalist</code> le correctif est automatiquement chargé.</p>
+	<p>Pour utiliser le correctif, l'object <code>sessionStorage</code> doit être utilisés. Dans les cas où le navigateur ne soutien pas l'object <code>sessionStorage</code> le correctif est automatiquement chargé.</p>
 
 	<section>
 		<h3>Code d'exemple</h3>
-		<pre><code>&lt;label for="city"&gt;Ville&lt;/label&gt;
-&lt;input type="text" id="city" name="city" list="suggestions" /&gt;
-&lt;datalist id="suggestions"&gt;
-	&lt;!--[if lte IE 9]&gt;&lt;select&gt;&lt;![endif]--&gt;
-	&lt;option label="Barrie" value="Barrie"&gt;&lt;/option&gt;
-	&lt;option label="Calgary" value="Calgary"&gt;&lt;/option&gt;
-	&lt;option label="Charlottetown" value="Charlottetown"&gt;&lt;/option&gt;
-	&lt;option label="Chibougamau" value="Chibougamau"&gt;&lt;/option&gt;
-	&lt;option label="Chilliwack" value="Chilliwack"&gt;&lt;/option&gt;
-	&lt;option label="Cold Lake" value="Cold Lake"&gt;&lt;/option&gt;
-	&lt;option label="Dorval" value="Dorval"&gt;&lt;/option&gt;
-	&lt;option label="Edmonton" value="Edmonton"&gt;&lt;/option&gt;
-	&lt;option label="Flin Flon" value="Flin Flon"&gt;&lt;/option&gt;
-	&lt;option label="Hamilton" value="Hamilton"&gt;&lt;/option&gt;
-	&lt;option label="Iqualuit" value="Iqualuit"&gt;&lt;/option&gt;
-	&lt;option label="Ottawa" value="Ottawa"&gt;&lt;/option&gt;
-	&lt;option label="Miramichi" value="Miramichi"&gt;&lt;/option&gt;
-	&lt;option label="Montréal" value="Montréal"&gt;&lt;/option&gt;
-	&lt;option label="Red Deer" value="Red Deer"&gt;&lt;/option&gt;
-	&lt;option label="St. John" value="St. John"&gt;&lt;/option&gt;
-	&lt;option label="St. John's" value="St. John's"&gt;&lt;/option&gt;
-	&lt;option label="Toronto" value="Toronto"&gt;&lt;/option&gt;
-	&lt;option label="Vancouver" value="Vancouver"&gt;&lt;/option&gt;
-	&lt;option label="Whitehorse" value="Whitehorse"&gt;&lt;/option&gt;
-	&lt;option label="Winnipeg" value="Winnipeg"&gt;&lt;/option&gt;
-	&lt;option label="Yellowknife" value="Yellowknife"&gt;&lt;/option&gt;
-	&lt;!--[if lte IE 9]&gt;&lt;/select&gt;&lt;![endif]--&gt;
-&lt;/datalist&gt;</code></pre>
+		<pre><code>valeur = sessionStorage.getItem('variable');
+sessionStorage.setItem('variable', valeur);</code></pre>
 
-		<p><a href="../../../demos/datalist/datalist-fr.html">Exemple pratique</a></p>
+		<p><a href="../../../demos/webstorage/sessionstorage-fr.html">Exemple pratique</a></p>
 	</section>
 </section>
 
 <section>
 	<h2>Exemples</h2>
 	<ul>
-		<li><a href="../../../demos/datalist/datalist-en.html">Exemple en anglais</a></li>
-		<li><a href="../../../demos/datalist/datalist-fr.html">Exemple en français</a></li>
+		<li><a href="../../../demos/webstorage/sessionstorage-en.html">Exemple en anglais</a></li>
+		<li><a href="../../../demos/webstorage/sessionstorage-fr.html">Exemple en français</a></li>
 	</ul>
 </section>
 
 <section>
 	<h2>Développement</h2>
-	<p>La remplissage automatique est dépendent sur le soutien natif pour l'attribute <code>input list</code> et l'élément <code>datalist</code> de HTML5 et le correctif pour la remplissage automatique.</p>
+	<p>Le correctif pour <code>sessionStorage</code> est dépendent sur le soutien natif pour l'objet <code>sessionStorage</code> et le correctif pour <code>sessionStorage</code>.</p>
 	<ul>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/polyfills/datalist.js">js/polyfills/datalist.js</a> - contient le code JavaScript pour le correctif saisie automatique</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_datalist.scss">js/sass/includes/_datalist.scss</a> - contient le CSS pour le correctif saisie automatique</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_datalist-ie.scss">js/sass/includes/_datalist-ie.scss</a> - contient le CSS pré-IE9 pour le correctif saisie automatique</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/polyfills/sessionstorage.js">js/polyfills/sessionstorage.js</a> - contient le code JavaScript pour le correctif <code>sessionStorage</code></li>
 	</ul>
 </section>
 
@@ -180,17 +151,14 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Historique des versions</h2>
 	<ul>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/polyfills/datalist.js">datalist.js</a></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_datalist.scss">_datalist.scss</a></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_datalist-ie.scss">_datalist-ie.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/polyfills/sessionstorage.js">sessionstorage.js</a></li>
 	</ul>
 </section>
 
 <section>
 	<h2>Références</h2>
 	<ul>
-		<li><a href="http://www.w3.org/TR/html5/forms.html#the-list-attribute">Attribut list de HTML5</a><li>
-		<li><a href="http://www.w3.org/TR/html5/forms.html#the-datalist-element">Élément datalist de HTML5</a></li>
+		<li><a href="http://www.w3.org/TR/webstorage/#the-sessionstorage-attribute">Object sessionStorage de HTML5</a><li>
 	</ul>
 </section>
 
