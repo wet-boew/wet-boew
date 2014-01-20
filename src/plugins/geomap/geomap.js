@@ -35,7 +35,7 @@ var selector = ".wb-geomap",
 		tables: [],
 		useScaleLine: false,
 		useMousePosition: false,
-		debug: true,
+		debug: false,
 		useLegend: false,
 		useTab: false,
 		useMapControls: true
@@ -52,6 +52,8 @@ var selector = ".wb-geomap",
 			className = elm.className,
 			settings = {},
 			$elm, modeJS, overrides;
+		
+		console.log(elm.className);
 
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === elm ) {
@@ -65,26 +67,26 @@ var selector = ".wb-geomap",
 			if ( !i18nText ) {
 				i18n = wb.i18n;
 				i18nText = {
-					close: i18n( "%close" ),
-					colon: i18n( "%colon" ),
-					hiddenLayer: i18n( "%geo-hdnlyr" ),
-					toggleLayer: i18n( "%geo-tgllyr" ),
-					labelSelect: i18n( "%geo-lblsel" ),
-					select: i18n( "%geo-sel" ),
-					zoomFeature: i18n( "%geo-zmfeat" ),
-					zoomin: i18n( "%geo-zmin" ),
-					zoomout: i18n( "%geo-zmout" ),
-					zoomwrld: i18n( "%geo-zmwrld" ),
-					baseMapTitle: i18n( "%geo-bmapttl" ),
-					baseMapURL: i18n( "%geo-bmapurl" ),
-					baseMapURLTxt: i18n( "%geo-bmapurltxt" ),
-					scaleline: i18n( "%geo-sclln" ),
-					mouseposition: i18n( "%geo-msepos" ),
-					access: i18n( "%geo-ally" ),
-					accessTitle: i18n( "%geo-allyttl" ),
-					attribLink: i18n( "%geo-attrlnk" ),
-					attribTitle: i18n( "%geo-attrttl" ),
-					ariaMap: i18n( "%geo-ariamap")
+					close: i18n( "close" ),
+					colon: i18n( "colon" ),
+					hiddenLayer: i18n( "geo-hdnlyr" ),
+					toggleLayer: i18n( "geo-tgllyr" ),
+					labelSelect: i18n( "geo-lblsel" ),
+					select: i18n( "geo-sel" ),
+					zoomFeature: i18n( "geo-zmfeat" ),
+					zoomin: i18n( "geo-zmin" ),
+					zoomout: i18n( "geo-zmout" ),
+					zoomwrld: i18n( "geo-zmwrld" ),
+					baseMapTitle: i18n( "geo-bmapttl" ),
+					baseMapURL: i18n( "geo-bmapurl" ),
+					baseMapURLTxt: i18n( "geo-bmapurltxt" ),
+					scaleline: i18n( "geo-sclln" ),
+					mouseposition: i18n( "geo-msepos" ),
+					access: i18n( "geo-ally" ),
+					accessTitle: i18n( "geo-allyttl" ),
+					attribLink: i18n( "geo-attrlnk" ),
+					attribTitle: i18n( "geo-attrttl" ),
+					ariaMap: i18n( "geo-ariamap")
 				};
 			}
 
@@ -120,14 +122,14 @@ var selector = ".wb-geomap",
 					OpenLayers.Lang.setCode( document.documentElement.lang );
 
 					// Set the image path for OpenLayers
-					OpenLayers.ImgPath = wb.getPath( "/assets" ) + "/";
-
+					OpenLayers.ImgPath = wb.getPath( "/assets" ) + "/";					
+					
 					// Add projection for default base map
 					proj4.defs[ "EPSG:3978" ] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
-
+					
 					if ( debug ) {
 						Modernizr.load([{
-							load: "site!assets/geomap-debug" + modeJS
+							load: "site!../assets/geomap-debug" + modeJS
 						}]);
 						$document.trigger( "debug.wb-geomap" );
 					}
@@ -812,21 +814,21 @@ var selector = ".wb-geomap",
 
 				// Set the select style then the rules.
 				styleMap = new OpenLayers.StyleMap({
-					default: style,
-					select: select
+					'default': style,
+					'select': select
 				});
 			} else {
 
 				// Set the select style then the default.				
 				styleMap = new OpenLayers.StyleMap({
-					default: new OpenLayers.Style( elmStyle.init ),
-					select: select
+					'default': new OpenLayers.Style( elmStyle.init ),
+					'select': select
 				});
 			}
 		} else {
 			styleMap = new OpenLayers.StyleMap({
-				default: new OpenLayers.Style( defaultStyle ),
-				select: new OpenLayers.Style( selectStyle )
+				'default': new OpenLayers.Style( defaultStyle ),
+				'select': new OpenLayers.Style( selectStyle )
 			});
 		}
 
@@ -1065,7 +1067,6 @@ var selector = ".wb-geomap",
 		while (offset--) {
 			option.resolutions.shift();
 		}
-
 		// Add the Canada Transportation Base Map (CBMT) data and text
 		geomap.map.addLayer(new OpenLayers.Layer.WMTS({
 			name: i18nText.baseMapTitle,

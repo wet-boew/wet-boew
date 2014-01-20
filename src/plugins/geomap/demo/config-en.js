@@ -142,13 +142,13 @@ var wet_boew_geomap = {
 				init: {
 					"graphicWidth": 30,
 					"graphicHeight": 30,
-					"externalGraphic": "demo/icons/trafficcamera.png",
+					"externalGraphic": "demo/trafficcamera.png",
 					"graphicOpacity": 1.0
 				},
 				select: {
 					"graphicWidth": 20,
 					"graphicHeight": 20,
-					"externalGraphic": "demo/icons/trafficcamera_active.png",
+					"externalGraphic": "demo/trafficcamera_active.png",
 					"graphicOpacity": 0.5
 				}
 			}
