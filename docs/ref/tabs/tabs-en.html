@@ -187,6 +187,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<li><b>tabs-style-3:</b> Vertical news scroller design with links on the right </li>
 		<li><b>tabs-style-4:</b> Slideshow design with text-based links below </li>
 		<li><b>tabs-style-5:</b> Slideshow design without text-based links</li>
+		<li><b>tabs-style-6:</b> Horizontal image scroller design with text or image based links</li>
 	</ul>
 	<p><b>Note:</b> <b>tabs-style-2</b> and <b>tabs-style-3</b> have a news scroller design with no inner padding so images can have a full bleed. Paragraphs and other text-based content must be wrapped by <b>&lt;div class="tabs-panel"&gt;</b> to pad them in. For example:</p>
 	<p><b>Optional:</b> Specify which tab is selected by adding '''class="default"''' to that tab. For example:</p>
@@ -204,6 +205,9 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 	<p><b>Optional:</b> Add <b>class="animate-fast"</b>, <b>class="animate"</b> or <b>class="animate-slow"</b> to the tab container for a fast, medium or slow fade effect when transitioning between tab panels.</p>
 	<pre>&lt;div class="wet-boew-tabbedinterface animate"&gt;</pre>
+
+	<p><b>Optional:</b> Add <b>class="slide-horz"</b> or <b>class="slide-vert"</b> to the tab container for a sliding transition between tab panels.</p>
+	<pre>&lt;div class="wet-boew-tabbedinterface animate slide-horz"&gt;</pre>
 
 	<p><b>Optional:</b> Implement complex layouts within the tab containers. When creating parent/child grids, you must use <b>row-start</b> and <b>row-end</b>. There are rare times where this may not be desirable. For example with drag and drop widgets, each grid cell must be the same size so the addition of <b>row-start</b> or <b>row-end</b> on some of them may cause layout problems when the box is moved from one column to another. Therefore, you can use the class <b>embedded-grid</b>. This CSS acts as a container for the tabs and you do not need to put them in a grid cell. It also removes the borders so the full with of the space is available.</p>
 </section>
