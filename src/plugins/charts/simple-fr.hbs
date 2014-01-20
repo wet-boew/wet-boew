@@ -1,9 +1,9 @@
 ---
 {
-	"title": "Chart and Graph - Simple",
+	"title": "Graphique - Simple",
 	"language": "fr",
 	"category": "Plugin",
-	"description": "Dynamically generates a calendar interface for navigating a list of events.",
+	"description": "Création de graphique simplement a partir d'instruction facile sur le tableau de donnée",
 	"tag": "charts",
 	"altLangPrefix": "simple"
 }
@@ -24,214 +24,396 @@
 <hr />
 
 
+<h2>Par défaut</h2>
+
+<p><code>&lt;table class=&quot;wb-charts&quot;&gt;</code></p>
+
+<table class="wb-charts">
+	<caption>Nombre de page par objectif principaux et par audience</caption>
+	<tr>
+		<td></td>
+		<th>Éducative</th>
+		<th>Tâches</th>
+		<th>Navigation</th>
+		<th>Soutien</th>
+		<th>Information</th>
+		<th>Entreprise</th>
+	</tr>
+	<tr>
+		<th>Général</th>
+		<td>2</td>
+		<td>0</td>
+		<td>20</td>
+		<td>4</td>
+		<td>100</td>
+		<td>50</td>
+	</tr>
+	<tr>
+		<th>Étudiants</th>
+		<td>2</td>
+		<td>2</td>
+		<td>1</td>
+		<td>5</td>
+		<td>50</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<th>Entreprise</th>
+		<td>60</td>
+		<td>10</td>
+		<td>20</td>
+		<td>90</td>
+		<td>50</td>
+		<td>8</td>
+	</tr>
+	<tr>
+		<th>Professionnel</th>
+		<td>46</td>
+		<td>26</td>
+		<td>5</td>
+		<td>101</td>
+		<td>200</td>
+		<td>142</td>
+	</tr>
+
+	<tr>
+		<th>Avocat</th>
+		<td>0</td>
+		<td>2</td>
+		<td>4</td>
+		<td>0</td>
+		<td>300</td>
+		<td>300</td>
+	</tr>
+</table>
+
+
+
+<h2>Graphique en région</h2>
+
+<p><code>&lt;table class=&quot;wb-charts wb-charts-area&quot;&gt;</code></p>
+
 <table class="wb-charts wb-charts-area">
-	<caption>Some data</caption>
-	<thead>
-		<tr>
-			<th>Column heading for a row heading</th>
-			<th>col1</th>
-			<th>col2</th>
-			<th>col3</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<th>Row heading 1</th>
-			<td>50</td>
-			<td>100</td>
-			<td>150</td>
-		</tr>
-		<tr>
-			<th>Row heading 2</th>
-			<td>210</td>
-			<td>25</td>
-			<td>75</td>
-		</tr>
-		<tr>
-			<th>Row heading 3</th>
-			<td>1000</td>
-			<td>245</td>
-			<td>964</td>
-		</tr>
-	</tbody>
+	<caption>Nombre de page par objectif principaux et par audience</caption>
+	<tr>
+		<td></td>
+		<th>Éducative</th>
+		<th>Tâches</th>
+		<th>Navigation</th>
+		<th>Soutien</th>
+		<th>Information</th>
+		<th>Entreprise</th>
+	</tr>
+	<tr>
+		<th>Général</th>
+		<td>2</td>
+		<td>0</td>
+		<td>20</td>
+		<td>4</td>
+		<td>100</td>
+		<td>50</td>
+	</tr>
+	<tr>
+		<th>Étudiants</th>
+		<td>2</td>
+		<td>2</td>
+		<td>1</td>
+		<td>5</td>
+		<td>50</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<th>Entreprise</th>
+		<td>60</td>
+		<td>10</td>
+		<td>20</td>
+		<td>90</td>
+		<td>50</td>
+		<td>8</td>
+	</tr>
+	<tr>
+		<th>Professionnel</th>
+		<td>46</td>
+		<td>26</td>
+		<td>5</td>
+		<td>101</td>
+		<td>200</td>
+		<td>142</td>
+	</tr>
+
+	<tr>
+		<th>Avocat</th>
+		<td>0</td>
+		<td>2</td>
+		<td>4</td>
+		<td>0</td>
+		<td>300</td>
+		<td>300</td>
+	</tr>
 </table>
 
 
-<table class="wb-charts wb-charts-line">
-	<caption>Ventes individuelles par catégorie en 2009</caption>
-	<thead>
-		<tr>
-			<td></td>
-			<th>nourriture</th>
-			<th>auto</th>
-			<th>domestiques</th>
-			<th>meubles</th>
-			<th>cuisine</th>
-			<th>bain</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<th>Mary</th>
-			<td>300</td>
-			<td>160</td>
-			<td>40</td>
-			<td>120</td>
-			<td>100</td>
-			<td>70</td>
-		</tr>
-		<tr>
-			<th>Tom</th>
-			<td>3</td>
-			<td>40</td>
-			<td>30</td>
-			<td>45</td>
-			<td>35</td>
-			<td>49</td>
-		</tr>
-		<tr>
-			<th>Brad</th>
-			<td>10</td>
-			<td>180</td>
-			<td>10</td>
-			<td>85</td>
-			<td>70</td>
-			<td>79</td>
-		</tr>
-		<tr>
-			<th>Kate</th>
-			<td>40</td>
-			<td>80</td>
-			<td>90</td>
-			<td>25</td>
-			<td>15</td>
-			<td>119</td>
-		</tr>
-	</tbody>
-</table>
 
+<h2>Graphiques à barres</h2>
 
+<p><code>&lt;table class=&quot;wb-charts wb-charts-bar&quot;&gt;</code></p>
 
 <table class="wb-charts wb-charts-bar">
-	<caption>Ventes individuelles par catégorie en 2009</caption>
-	<thead>
-		<tr>
-			<td></td>
-			<th>nourriture</th>
-			<th>auto</th>
-			<th>domestiques</th>
-			<th>meubles</th>
-			<th>cuisine</th>
-			<th>bain</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<th>Mary</th>
-			<td>300</td>
-			<td>160</td>
-			<td>40</td>
-			<td>120</td>
-			<td>100</td>
-			<td>70</td>
-		</tr>
-		<tr>
-			<th>Tom</th>
-			<td>3</td>
-			<td>40</td>
-			<td>30</td>
-			<td>45</td>
-			<td>35</td>
-			<td>49</td>
-		</tr>
-		<tr>
-			<th>Brad</th>
-			<td>10</td>
-			<td>180</td>
-			<td>10</td>
-			<td>85</td>
-			<td>70</td>
-			<td>79</td>
-		</tr>
-		<tr>
-			<th>Kate</th>
-			<td>40</td>
-			<td>80</td>
-			<td>90</td>
-			<td>25</td>
-			<td>15</td>
-			<td>119</td>
-		</tr>
-	</tbody>
+	<caption>Nombre de page par objectif principaux et par audience</caption>
+	<tr>
+		<td></td>
+		<th>Éducative</th>
+		<th>Tâches</th>
+		<th>Navigation</th>
+		<th>Soutien</th>
+		<th>Information</th>
+		<th>Entreprise</th>
+	</tr>
+	<tr>
+		<th>Général</th>
+		<td>2</td>
+		<td>0</td>
+		<td>20</td>
+		<td>4</td>
+		<td>100</td>
+		<td>50</td>
+	</tr>
+	<tr>
+		<th>Étudiants</th>
+		<td>2</td>
+		<td>2</td>
+		<td>1</td>
+		<td>5</td>
+		<td>50</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<th>Entreprise</th>
+		<td>60</td>
+		<td>10</td>
+		<td>20</td>
+		<td>90</td>
+		<td>50</td>
+		<td>8</td>
+	</tr>
+	<tr>
+		<th>Professionnel</th>
+		<td>46</td>
+		<td>26</td>
+		<td>5</td>
+		<td>101</td>
+		<td>200</td>
+		<td>142</td>
+	</tr>
+
+	<tr>
+		<th>Avocat</th>
+		<td>0</td>
+		<td>2</td>
+		<td>4</td>
+		<td>0</td>
+		<td>300</td>
+		<td>300</td>
+	</tr>
 </table>
 
 
+
+
+<h2>Graphiques à secteurs</h2>
+
+<p><code>&lt;table class=&quot;wb-charts wb-charts-pie&quot;&gt;</code></p>
 
 <table class="wb-charts wb-charts-pie">
-	<caption>Ventes individuelles par catégorie en 2009</caption>
-	<thead>
-		<tr>
-			<td></td>
-			<th>nourriture</th>
-			<th>auto</th>
-			<th>domestiques</th>
-			<th>meubles</th>
-			<th>cuisine</th>
-			<th>bain</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<th>Mary</th>
-			<td>300</td>
-			<td>160</td>
-			<td>40</td>
-			<td>120</td>
-			<td>100</td>
-			<td>70</td>
-		</tr>
-		<tr>
-			<th>Tom</th>
-			<td>3</td>
-			<td>40</td>
-			<td>30</td>
-			<td>45</td>
-			<td>35</td>
-			<td>49</td>
-		</tr>
-		<tr>
-			<th>Brad</th>
-			<td>10</td>
-			<td>180</td>
-			<td>10</td>
-			<td>85</td>
-			<td>70</td>
-			<td>79</td>
-		</tr>
-		<tr>
-			<th>Kate</th>
-			<td>40</td>
-			<td>80</td>
-			<td>90</td>
-			<td>25</td>
-			<td>15</td>
-			<td>119</td>
-		</tr>
-	</tbody>
+	<caption>Nombre de page par objectif principaux et par audience</caption>
+	<tr>
+		<td></td>
+		<th>Éducative</th>
+		<th>Tâches</th>
+		<th>Navigation</th>
+		<th>Soutien</th>
+		<th>Information</th>
+		<th>Entreprise</th>
+	</tr>
+	<tr>
+		<th>Général</th>
+		<td>2</td>
+		<td>0</td>
+		<td>20</td>
+		<td>4</td>
+		<td>100</td>
+		<td>50</td>
+	</tr>
+	<tr>
+		<th>Étudiants</th>
+		<td>2</td>
+		<td>2</td>
+		<td>1</td>
+		<td>5</td>
+		<td>50</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<th>Entreprise</th>
+		<td>60</td>
+		<td>10</td>
+		<td>20</td>
+		<td>90</td>
+		<td>50</td>
+		<td>8</td>
+	</tr>
+	<tr>
+		<th>Professionnel</th>
+		<td>46</td>
+		<td>26</td>
+		<td>5</td>
+		<td>101</td>
+		<td>200</td>
+		<td>142</td>
+	</tr>
+
+	<tr>
+		<th>Avocat</th>
+		<td>0</td>
+		<td>2</td>
+		<td>4</td>
+		<td>0</td>
+		<td>300</td>
+		<td>300</td>
+	</tr>
 </table>
 
-<table class="wb-charts wb-charts-pie">
-	<caption>Tableau avec un item a 100%</caption>
-	<thead>
+<h2>Tableau de données utilisé</h2>
+
+<table>
+	<caption>Nombre de page par objectif principaux et par audience</caption>
+	<!--<thead>-->
 		<tr>
 			<td></td>
-			<th>Value</th>
+			<th>Éducative</th>
+			<th>Tâches</th>
+			<th>Navigation</th>
+			<th>Soutien</th>
+			<th>Information</th>
+			<th>Entreprise</th>
 		</tr>
-	</thead>
-	<tbody>
+		<!--
 		<tr>
-			<th>Mary</th>
+			<td>Enseigner à un utilisateur une tâche</td>
+			<td>Compléter une tâche par un utilisateur</td>
+			<td>Rediriger un utilisateur vers une tâche ou/et un sujet</td>
+			<td>Aider un utilisateur ou/et une tâche</td>
+			<td>Informer un utilisateur sur un sujet</td>
+			<td>Informer un utilisateur à propos de l'entreprise</td>
+		</tr>
+		
+	</thead>
+	<tbody>-->
+		<tr>
+			<th>Général</th>
+			<td>2</td>
+			<td>0</td>
+			<td>20</td>
+			<td>4</td>
+			<td>100</td>
+			<td>50</td>
+		</tr>
+		<tr>
+			<th>Étudiants</th>
+			<td>2</td>
+			<td>2</td>
+			<td>1</td>
+			<td>5</td>
+			<td>50</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<th>Entreprise</th>
+			<td>60</td>
+			<td>10</td>
+			<td>20</td>
+			<td>90</td>
+			<td>50</td>
+			<td>8</td>
+		</tr>
+		<tr>
+			<th>Professionnel</th>
+			<td>46</td>
+			<td>26</td>
+			<td>5</td>
+			<td>101</td>
+			<td>200</td>
+			<td>142</td>
+		</tr>
+
+		<tr>
+			<th>Avocat</th>
+			<td>0</td>
+			<td>2</td>
+			<td>4</td>
+			<td>0</td>
+			<td>300</td>
 			<td>300</td>
 		</tr>
-	</tbody>
+	<!--</tbody>-->
 </table>
+
+<pre><code>&lt;table&gt;
+	&lt;caption&gt;Nombre de page par objectif principaux et par audience&lt;/caption&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;th&gt;Éducative&lt;/th&gt;
+		&lt;th&gt;Tâches&lt;/th&gt;
+		&lt;th&gt;Navigation&lt;/th&gt;
+		&lt;th&gt;Soutien&lt;/th&gt;
+		&lt;th&gt;Information&lt;/th&gt;
+		&lt;th&gt;Entreprise&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Général&lt;/th&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;0&lt;/td&gt;
+		&lt;td&gt;20&lt;/td&gt;
+		&lt;td&gt;4&lt;/td&gt;
+		&lt;td&gt;100&lt;/td&gt;
+		&lt;td&gt;50&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Étudiants&lt;/th&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;1&lt;/td&gt;
+		&lt;td&gt;5&lt;/td&gt;
+		&lt;td&gt;50&lt;/td&gt;
+		&lt;td&gt;0&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Entreprise&lt;/th&gt;
+		&lt;td&gt;60&lt;/td&gt;
+		&lt;td&gt;10&lt;/td&gt;
+		&lt;td&gt;20&lt;/td&gt;
+		&lt;td&gt;90&lt;/td&gt;
+		&lt;td&gt;50&lt;/td&gt;
+		&lt;td&gt;8&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Professionnel&lt;/th&gt;
+		&lt;td&gt;46&lt;/td&gt;
+		&lt;td&gt;26&lt;/td&gt;
+		&lt;td&gt;5&lt;/td&gt;
+		&lt;td&gt;101&lt;/td&gt;
+		&lt;td&gt;200&lt;/td&gt;
+		&lt;td&gt;142&lt;/td&gt;
+	&lt;/tr&gt;
+
+	&lt;tr&gt;
+		&lt;th&gt;Avocat&lt;/th&gt;
+		&lt;td&gt;0&lt;/td&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;4&lt;/td&gt;
+		&lt;td&gt;0&lt;/td&gt;
+		&lt;td&gt;300&lt;/td&gt;
+		&lt;td&gt;300&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
