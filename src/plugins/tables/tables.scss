@@ -124,6 +124,17 @@ table {
 // Filter
 .dataTables_filter {
 	@extend %tables-float-right-text-align-right;
+	> {
+		label {
+			> {
+				input {
+					&::-ms-clear {
+						display: none;
+					}
+				}
+			}
+		}
+	}
 }
 
 // Table information
