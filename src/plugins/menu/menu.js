@@ -303,12 +303,14 @@ var pluginName = "wb-menu",
 			.find( ":discoverable" )
 				.attr( "tabindex", "-1" );
 
-		$menu[ 0 ].setAttribute( "tabindex", "0" );
-		$menu
-			.filter( "[href^=#]" )
-				.append( "<span class='expicon'></span>" );
+		if ( $menu.length !== 0 ) {
+			$menu[ 0 ].setAttribute( "tabindex", "0" );
+			$menu
+				.filter( "[href^=#]" )
+					.append( "<span class='expicon'></span>" );
 
-		drizzleAria( $menu );
+			drizzleAria( $menu );
+		}
 
 		// Replace elements
 		$elm.html( $ajaxed.html() );
