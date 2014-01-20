@@ -180,15 +180,16 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 	<p><b>Facultatif :</b> Pour modifier l’apparence par défaut d’un ensemble d’onglets, ajoutez l’une des trois classes suivantes au groupe d’onglets :</p>
 	<ul>
-		<li><b>tabs-style-1:</b> onglets horizontaux stylisés </li>
+		<li><b>tabs-style-1:</b> onglets horizontaux stylisés</li>
 		<li><b>tabs-style-2:</b> nouvelles déroulantes horizontales</li>
-		<li><b>tabs-style-3:</b> nouvelles déroulantes verticales avec les liens à droit </li>
-		<li><b>tabs-style-4:</b> diaporama avec des liens texte en dessous </li>
-		<li><b>tabs-style-5:</b> diaporama sans liens texte </li>
+		<li><b>tabs-style-3:</b> nouvelles déroulantes verticales avec les liens à droit</li>
+		<li><b>tabs-style-4:</b> diaporama avec des liens texte en dessous</li>
+		<li><b>tabs-style-5:</b> diaporama sans liens texte</li>
+		<li><b>tabs-style-6:</b> images déroulantes horizontales avec des liens texte ou des liens image en dessous</li>
 	</ul>
 
 	<p><b>Nota :</b> les classes <b>tabs-style-2</b> et <b>tabs-style-3</b> ont été conçues sans espacement interne; ainsi, les images peuvent remplir tout l’espace prévu. Vous devez donc utiliser la classe <b>&lt;div class="tabs-panel"&gt;</b> avec les paragraphes et tout autre contenu textuel afin d’ajouter les marges voulues. Par exemple :</p>
-	<p><b>Facultatif :</b> Spécifier l'onglet par défault par ajouter '''class="default"''' à l'onglet. Par exemple&amp;#160;:</p>
+	<p><b>Facultatif :</b> Spécifier l'onglet par défault par ajouter '''class="default"''' à l'onglet. Par exemple&#160;:</p>
 	<pre>&lt;ul class="tabs"&gt;
     &lt;li&gt;&lt;a href="#tab1"&gt;Événements nationaux&lt;/a&gt;&lt;/li&gt;
     &lt;li class="default"&gt;&lt;a href="#tab2"&gt;Événements régionaux&lt;/a&gt;&lt;/li&gt;
@@ -201,8 +202,11 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<p><b>Facultatif :</b> Ajouter <b>class="cycle-fast"</b>, <b>class="cycle"</b> ou <b>class="cycle-slow"</b> au groupe d'onglets pour ajouter les boutons "Jouer"/"Pause" ("Play"/"Pause") pour passer automatiquement d'un onglet à l'autre. Les onglets changent chaque 2 secondes pour <b> cycle-fast</b>, chaque 6 secondes pour <b>cycle</b> et chaque 8 secondes pour <b>cycle-slow</b>. Un délai de rotation différent peut être spécifié avec <b>data-wet-boew='{"cycle":10000}' </b> où la valeur pour <b>cycle</b> est le délai en millisecondes. Les onglets passent de l'un à l'autre automatiquement par défault sauf si <b>class="auto-play-none"</b> est ajouté au groupe d'onglets.</p>
 	<pre>&lt;div class="wet-boew-tabbedinterface cycle auto-play-none"&gt;</pre>
 
-	<p><b>Facultatif :</b> Ajouter <b>class="animate-fast"</b>, <b>class="animate"</b> ou <b>class="animate-slow"</b> au groupe d'onglets pour un effet palîr rapide, moyenne ou lent en passant d'un onglet à l'autre.</p>
+	<p><b>Facultatif :</b> Ajouter <b>class="animate-fast"</b>, <b>class="animate"</b> ou <b>class="animate-slow"</b> au groupe d'onglets pour obtenir un effet rapide, moyenne ou lent de pâlissement en passant d'un onglet à l'autre.</p>
 	<pre>&lt;div class="wet-boew-tabbedinterface animate"&gt;</pre>
+
+	<p><b>Facultatif :</b> Ajouter <b>class="slide-horz"</b> ou <b>class="slide-vert"</b> au groupe d'onglets pour obtenir un effet déroulant en passant d'un onglet à l'autre.</p>
+	<pre>&lt;div class="wet-boew-tabbedinterface animate slide-horz"&gt;</pre>
 
 	<p><b>Facultatif :</b> Lorsque vous créez des tableaux parents - enfants, vous devez utiliser les éléments <b>row-start</b> et <b>row-end</b>, sauf dans de rares cas où ça n'est pas souhaitable. Par exemple, si vous utilisez des widgets glisser-déplacer, toutes les cellules du tableau doivent avoir la même taille, car l'ajout de l'élément <b>row-start</b> ou <b>row-end</b> dans certaines d'entre elles peut causer quelques problèmes de mise en page lorsque vous déplacez une case d'une colonne à une autre. Dans cette situation, utilisez plutôt la classe <b>embedded-grid</b>. Cette feuille de style CSS agit comme un conteneur pour les onglets; vous n'avez donc pas à les placer dans une cellule du tableau. De plus, elle fait disparaître les bordures afin que l'espace soit disponible dans toute sa largeur.</p>
 </section>
