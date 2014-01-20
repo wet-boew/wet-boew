@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-<title>Saisie automatique - Correctifs - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+<title>Compteur - Correctifs - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
 <meta name="description" content="French description / Description en français" />
@@ -49,7 +49,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wet-fullhd-in">
 <ul>
 <li id="wet-fullhd-lang-current">Français</li>
-<li id="wet-fullhd-lang-2"><a href="datalist-en.html" lang="en">English</a></li>
+<li id="wet-fullhd-lang-2"><a href="meter-en.html" lang="en">English</a></li>
 </ul>
 </div>
 </div></section>
@@ -79,7 +79,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li><a href="../../../index-fr.html">Accueil</a></li>
 <li><a href="../../index-fr.html">Documentation</a></li>
 <li><a href="../polyfills-fr.html">Correctifs</a></li>
-<li>Saisie automatique</li>
+<li>Compteur</li>
 </ol>
 </div></div>
 </nav>
@@ -89,86 +89,65 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Saisie automatique</h1>
+<h1 id="wb-cont">Compteur</h1>
 
 <ul class="button-group">
-<li><a href="../../../demos/datalist/datalist-fr.html" class="button">Examples pratiques</a></li>
+<li><a href="../../../demos/meter/meter-fr.html" class="button">Examples pratiques</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
 </ul>
 
 <span class="wet-boew-prettify all-pre"></span>
 <section>
 	<h2>Aperçu</h2>
-	<p><strong>Chef du projet :</strong> Eric Poirier (<a href="https://github.com/ericpoirier">@ericpoirier</a>)</p>
+	<p><strong>Chef du projet :</strong> Paul Jackson (<a href="https://github.com/pjackson28">@pjackson28</a>)</p>
 
 	<section>
 		<h3>Objet</h3>
-		<p>L'attribut <code>input list</code> et l'élément <code>datalist</code> de HTML5 ajoutent des fonctionnalités de saisie automatique en affichant dynamiquement une liste de mots qui correspondent à l'entrée de l'utilisateur.  Étant donné que certains navigateurs ne prennent pas en charge cette fonctionnalité à l'origine, ce correctif émule la même fonctionnalité en utilisant HTML générique et WAI-ARIA.</p>
+		<p>L'élément <code>meter</code> de HTML5 affiche une mesure scalaire dans une gamme connue.  Étant donné que certains navigateurs ne prennent pas en charge cette fonctionnalité à l'origine, ce correctif émule la même fonctionnalité en utilisant HTML générique et WAI-ARIA.</p>
 	</section>
 
 	<section>
-		<h3>Avantages</h3>
-		<ul>
-			<li>Dans les cas où le navigateur ne prend pas en charge l'attribut et l'élément, le correctif est automatiquement chargé.</li>
-			<li>Ce correctif assure que la fonctionnalité de saisie automatique est ajouté et les informations nécessaires sont exposées aux technologies d'assistance en ajoutant WAI-ARIA.</li>
-		</ul>
+		<h3>Raison d’être</h3>
+		<p><p>Les navigateurs qui ne prennent pas en charge l'élément <code>progress</code> ignore l'élément. Par conséquent, rien est affiché et son contenu n'est pas exposé à des technologies d'assistance. Ce correctif assure que l'élément <code>meter</code> est visuellement convertie en une barre coulissante et exposé aux technologies d'assistance en ajoutant WAI-ARIA.</p>
 	</section>
 </section>
 
 <section>
 	<h2>Mise en œuvre</h2>
-	<p>Pour utiliser le correctif, l'attribut <code>input list</code> et l'élément <code>datalist</code> doivent être utilisés. Dans les cas où le navigateur ne soutien pas l'attribut <code>input list</code> ou l'élément <code>datalist</code> le correctif est automatiquement chargé.</p>
+	<p>Pour utiliser le correctif, l'élément <code>meter</code> doit être utilisé. Dans les cas où le navigateur ne soutien pas l'élément <code>meter</code> le correctif est automatiquement chargé.</p>
 
 	<section>
 		<h3>Code d'exemple</h3>
-		<pre><code>&lt;label for="city"&gt;Ville&lt;/label&gt;
-&lt;input type="text" id="city" name="city" list="suggestions" /&gt;
-&lt;datalist id="suggestions"&gt;
-	&lt;!--[if lte IE 9]&gt;&lt;select&gt;&lt;![endif]--&gt;
-	&lt;option label="Barrie" value="Barrie"&gt;&lt;/option&gt;
-	&lt;option label="Calgary" value="Calgary"&gt;&lt;/option&gt;
-	&lt;option label="Charlottetown" value="Charlottetown"&gt;&lt;/option&gt;
-	&lt;option label="Chibougamau" value="Chibougamau"&gt;&lt;/option&gt;
-	&lt;option label="Chilliwack" value="Chilliwack"&gt;&lt;/option&gt;
-	&lt;option label="Cold Lake" value="Cold Lake"&gt;&lt;/option&gt;
-	&lt;option label="Dorval" value="Dorval"&gt;&lt;/option&gt;
-	&lt;option label="Edmonton" value="Edmonton"&gt;&lt;/option&gt;
-	&lt;option label="Flin Flon" value="Flin Flon"&gt;&lt;/option&gt;
-	&lt;option label="Hamilton" value="Hamilton"&gt;&lt;/option&gt;
-	&lt;option label="Iqualuit" value="Iqualuit"&gt;&lt;/option&gt;
-	&lt;option label="Ottawa" value="Ottawa"&gt;&lt;/option&gt;
-	&lt;option label="Miramichi" value="Miramichi"&gt;&lt;/option&gt;
-	&lt;option label="Montréal" value="Montréal"&gt;&lt;/option&gt;
-	&lt;option label="Red Deer" value="Red Deer"&gt;&lt;/option&gt;
-	&lt;option label="St. John" value="St. John"&gt;&lt;/option&gt;
-	&lt;option label="St. John's" value="St. John's"&gt;&lt;/option&gt;
-	&lt;option label="Toronto" value="Toronto"&gt;&lt;/option&gt;
-	&lt;option label="Vancouver" value="Vancouver"&gt;&lt;/option&gt;
-	&lt;option label="Whitehorse" value="Whitehorse"&gt;&lt;/option&gt;
-	&lt;option label="Winnipeg" value="Winnipeg"&gt;&lt;/option&gt;
-	&lt;option label="Yellowknife" value="Yellowknife"&gt;&lt;/option&gt;
-	&lt;!--[if lte IE 9]&gt;&lt;/select&gt;&lt;![endif]--&gt;
-&lt;/datalist&gt;</code></pre>
-
-		<p><a href="../../../demos/datalist/datalist-fr.html">Exemple pratique</a></p>
+		<p><a href="../../../demos/meter/meter-fr.html">Exemples pratiques</a></p>
+		<section>
+			<h4>Normal</h4>
+			<pre><code>&lt;meter min="20" value="65" max="80"&gt;75 % (normal)&lt;/meter&gt;</code></pre>
+		</section>
+		<section>
+			<h4>Trop haut</h4>
+			<pre><code>&lt;meter min="0" value="90" max="100" high="80"&gt;90 % (trop haut)&lt;/meter&gt;</code></pre>
+		</section>
+		<section>
+			<h4>Trop bas</h4>
+			<pre><code>&lt;meter min="100" low="120" value="115" max="200" high="180"&gt;15 % (trop bas)&lt;/meter&gt;</code></pre>
+		</section>
 	</section>
 </section>
 
 <section>
 	<h2>Exemples</h2>
 	<ul>
-		<li><a href="../../../demos/datalist/datalist-en.html">Exemple en anglais</a></li>
-		<li><a href="../../../demos/datalist/datalist-fr.html">Exemple en français</a></li>
+		<li><a href="../../../demos/meter/meter-en.html">Exemple en anglais</a></li>
+		<li><a href="../../../demos/meter/meter-fr.html">Exemple en français</a></li>
 	</ul>
 </section>
 
 <section>
 	<h2>Développement</h2>
-	<p>La remplissage automatique est dépendent sur le soutien natif pour l'attribute <code>input list</code> et l'élément <code>datalist</code> de HTML5 et le correctif pour la remplissage automatique.</p>
+	<p>Le compteur est dépendent sur le soutien natif pour l'élément <code>meter</code> de HTML5 et le correctif pour meter.</p>
 	<ul>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/polyfills/datalist.js">js/polyfills/datalist.js</a> - contient le code JavaScript pour le correctif saisie automatique</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_datalist.scss">js/sass/includes/_datalist.scss</a> - contient le CSS pour le correctif saisie automatique</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_datalist-ie.scss">js/sass/includes/_datalist-ie.scss</a> - contient le CSS pré-IE9 pour le correctif saisie automatique</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/polyfills/meter.js">js/polyfills/datalist.js</a> - contient le code JavaScript pour le correctif pour meter</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_meter.scss">js/sass/includes/_datalist.scss</a> - contient le CSS pour le correctif pour meter</li>
 	</ul>
 </section>
 
@@ -180,17 +159,15 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Historique des versions</h2>
 	<ul>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/polyfills/datalist.js">datalist.js</a></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_datalist.scss">_datalist.scss</a></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_datalist-ie.scss">_datalist-ie.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/polyfills/meter.js">meter.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_meter.scss">_datalist.scss</a></li>
 	</ul>
 </section>
 
 <section>
 	<h2>Références</h2>
 	<ul>
-		<li><a href="http://www.w3.org/TR/html5/forms.html#the-list-attribute">Attribut list de HTML5</a><li>
-		<li><a href="http://www.w3.org/TR/html5/forms.html#the-datalist-element">Élément datalist de HTML5</a></li>
+		<li><a href="http://www.w3.org/TR/html5/interactive-elements.html#the-meter-element">Élément meter de HTML5</a><li>
 	</ul>
 </section>
 
