@@ -683,7 +683,7 @@
 			$summary = $( "<summary />" );
 			$details.appendTo( $figElement );
 			// set the title for the ability to show or hide the table as a data source
-			$summary.text( tableCaptionHTML + " " + i18n( "%table-mention" ) )
+			$summary.html( tableCaptionHTML + " " + i18n( "%table-mention" ) )
 				.appendTo( $details )
 				.after( $elm );
 		}
