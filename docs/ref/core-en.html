@@ -34,7 +34,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <!--<![endif]-->
 <noscript><link rel="stylesheet" href="../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
 
-<!-- CustomScriptsCSSStart --> 
+<!-- CustomScriptsCSSStart -->
 <!-- CustomScriptsCSSEnd -->
 </head>
 
@@ -99,6 +99,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <!-- MainContentStart -->
 <h1 id="wb-cont">Core framework</h1>
 
+<span class="wet-boew-prettify all-pre"></span>
+
 <p>The core Framework binds the themes, plugins, polyfills and other components together into a seamless toolkit that promotes accessibility, usability and a mobile conscious design. </p>
 
 <section>
@@ -140,7 +142,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<section>
 			<h4>Style sheets</h4>
 			<p>The style sheets are separated into two different sets, one for IE7 and another for all other browsers.</p>
-			<pre class="wet-boew-prettify">&lt;head&gt; 
+			<pre>&lt;head&gt;
 ...
 &lt;--[if lte IE 8]&gt;
 &lt;script src="../../dist/js/polyfills/html5shiv-min.js"&gt;&lt;/script&gt;
@@ -161,7 +163,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<section>
 			<h4>jQuery</h4>
 			<p>jQuery is the only JavaScript file that we recommend loading in the header.</p>
-			<pre class="wet-boew-prettify">&lt;head&gt;
+			<pre>&lt;head&gt;
 ...
 &lt;script src="../../dist/js/jquery.min.js"&gt;&lt;/script&gt;
 ...
@@ -174,7 +176,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<h3>Body</h3>
 		<p>We load the rest of the JavaScript files at the end of the body to decrease the load time of the page. This way the browser will load the content and run the JavaScript enhancements simultaneously.</p>
 		<p>Load the following files at the bottom of the body:</p>
-		<pre class="wet-boew-prettify">&lt;body&gt;
+		<pre>&lt;body&gt;
 ...
 &lt;-- ScriptsStart --&gt;
 &lt;script src="../../build/theme-gcwu-fegc/js/theme-min.js"&gt;&lt;/script&gt;
