@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Zebra striping - Plugins - Documentation - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-gcwu-fegc/images/favicon.ico" />
+<meta name="description" content="English description / Description en anglais" />
+<meta name="dcterms.creator" content="English name of the content author / Nom en anglais de l'auteur du contenu" />
+<meta name="dcterms.title" content="English title / Titre en anglais" />
+<meta name="dcterms.issued" title="W3CDTF" content="Date published (YYYY-MM-DD) / Date de publication (AAAA-MM-JJ)" />
+<meta name="dcterms.modified" title="W3CDTF" content="Date modified (YYYY-MM-DD) / Date de modification (AAAA-MM-JJ)" />
+<meta name="dcterms.subject" title="scheme" content="English subject terms / Termes de sujet en anglais" />
+<meta name="dcterms.language" title="ISO639-2" content="eng" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script src="../../../dist/js/jquery.min.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-gcwu-fegc/css/theme-ie-min.css" />
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-gcwu-fegc/css/theme-min.css" />
+<!--<![endif]-->
+<noscript><link rel="stylesheet" href="../../../dist/theme-gcwu-fegc/css/theme-ns-min.css" /></noscript>
+
+<!-- CustomScriptsCSSStart -->
+<!-- CustomScriptsCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<nav role="navigation"><div id="gcwu-gcnb"><h2>Government of Canada navigation bar</h2><div id="gcwu-gcnb-in"><div id="gcwu-gcnb-fip">
+<div id="gcwu-sig"><div id="gcwu-sig-in"><div id="gcwu-sig-eng" title="Government of Canada"><img src="../../../dist/theme-gcwu-fegc/images/sig-en.gif" width="214" height="20" alt="Government of Canada" /></div></div></div>
+<ul>
+<li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.ca/en/index.html">Canada.ca</a></li>
+<li id="gcwu-gcnb2"><a rel="external" href="http://www.canada.ca/en/services/index.html">Services</a></li>
+<li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.ca/en/gov/dept/index.html">Departments</a></li>
+<li id="gcwu-gcnb-lang"><a href="zebra-fr.html" lang="fr">Français</a></li>
+</ul>
+</div></div></div></nav>
+
+<div id="gcwu-bnr" role="banner"><div id="gcwu-bnr-in">
+<div id="gcwu-wmms"><div id="gcwu-wmms-in"><div id="gcwu-wmms-fip" title="Symbol of the Government of Canada"><img src="../../../dist/theme-gcwu-fegc/images/wmms.gif" width="126" height="30" alt="Symbol of the Government of Canada" /></div></div></div>
+<div id="gcwu-title"><p id="gcwu-title-in"><a href="../../../index-en.html">Web Experience Toolkit&#160;(WET)</a></p></div>
+
+<section role="search"><div id="gcwu-srchbx"><h2>Search</h2>
+<form action="#" method="post"><div id="gcwu-srchbx-in">
+<label for="gcwu-srch">Search website</label><input id="gcwu-srch" name="gcwu-srch" type="search" value="" size="27" maxlength="150" />
+<input id="gcwu-srch-submit" name="gcwu-srch-submit" type="submit" value="Search" data-icon="search" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="gcwu-psnb"><h2><span>Site </span>menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/menu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="section2/index-en.html">Section 2</a></div></li>
+<li><div><a href="#">Section 3</a></div></li>
+<li><div><a href="#">Section 4</a></div></li>
+<li><div><a href="#">Section 5</a></div></li>
+<li><div><a href="#">Section 6</a></div></li>
+<li><div><a href="#">Section 7</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="gcwu-bc"><h2>Breadcrumb trail</h2><div id="gcwu-bc-in">
+<ol>
+<li><a href="../../../index-en.html">Home</a></li>
+<li><a href="../../index-en.html">Documentation</a></li>
+<li><a href="../plugins-en.html">Plugins</a></li>
+<li>Zebra striping</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Zebra striping</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/zebra/zebra-en.html" class="button">Working examples</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<h2>Overview</h2>
+	<p><b>Project Lead: </b>Pierre Dubois (<a href="https://github.com/duboisp">@duboisp</a>)</p>
+
+	<section>
+		<h3>Purpose</h3>
+		<p>Adds zebra stripes to ordered list, unordered list, definition list, table rows, table columns and provide visual support for the complex data table relationship.</p>
+
+		<section>
+			<h4>Zebra striping for tables</h4>
+			<p>Table footnotes added in the tfoot row group in a table is <b>not supported</b> by the zebra stripping project. If you have table like that, you may have a WCAG 2.0 Faillure by mixing a layout table with a data table.</p>
+			<ul>
+				<li><a href="http://www.w3.org/TR/WCAG-TECHS/F46.html">F46: Failure of Success Criterion 1.3.1 due to using th elements, caption elements, or non-empty summary attributes in layout tables</a></li>
+				<li><a href="http://www.w3.org/html/wg/drafts/html/master/common-idioms.html#footnotes">4.13.5 Footnotes (Common idioms without dedicated elements)</a></li>
+			</ul>
+			<p>There are <b>three</b> kinds of zebra striping for tables:</p>
+			<ul>
+				<li>Zebra striping for <b>simple</b> tables
+					<ul>
+						<li>Generates alternating white and blue zebra striping</li>
+					</ul>
+				</li>
+				<li>Zebra striping for <b>complex</b> tables
+					<ul>
+						<li>Generates larger border between data group</li>
+						<li>Supports styling for key cell and description cell</li>
+					</ul>
+				</li>
+				<li>Zebra striping for <b>complex</b> table with the option "<b>hassum</b>"
+					<ul>
+						<li>Generates larger border between two or more consecutive data or summary groups</li>
+						<li>Changes the background colour for cells that are in a summary group</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h4>See the difference between ...</h4>
+			<ul>
+				<li>A simple table and a complex table
+					<ul>
+						<li><a href="../../../demos/zebra/simple.html">Simple Table</a></li>
+						<li><a href="../../../demos/zebra/simplegrouping.html">Simple Grouping Table</a></li>
+					</ul>
+				</li>
+				<li>A complex table and a complex table with the option "hassum"
+					<ul>
+						<li><a href="../../../demos/zebra/invoice.html">Invoice Table</a></li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h4>Simple Table definition</h4>
+			<ul>
+				<li>Zero or one row used to define column headers. That row is located at the top of the table.</li>
+				<li>Zero or one column used to define row headers. The row headers is the first cell for each row, excluding the first table row if it used for columns headers.</li>
+				<li>One data column group </li>
+				<li>Zero summary column group</li>
+				<li>One data row group,</li>
+				<li>Zero summary row group defined with a <i>tbody</i> element. </li>
+				<li>Zero or one summary row group defined with the <i>tfoot</i> element</li>
+				<li>If there is no table columns summaries (summary row group defined with a <i>tfoot</i> element), the row grouping elements <i>thead</i>, <i>tbody</i> can be omitted.</li>
+			</ul>
+		</section>
+	</section>
+</section>
+
+<section>
+	<h2>Implementation</h2>
+	<p>To implement this feature, add the class <code>wet-boew-zebra</code> to the top <code>ul</code>, <code>ol</code>, <code>dl</code> or <code>table</code> element.</p>
+	<pre>&lt;table class="wet-boew-zebra"&gt;
+	&lt;caption class="align-left"&gt;Example 1&lt;/caption&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;&lt;th id="tbl5"&gt;Header&lt;/th&gt;&lt;th id="tbl6"&gt;Header&lt;/th&gt;&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
+		&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
+		&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
+		&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
+		&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
+		&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</pre>
+
+	<section>
+		<h3>Parameters/Options for list object</h3>
+		<p>"list object" make reference to unordered list (ul), ordered list (ol) and definition list (dl)</p>
+
+		<section>
+			<h4>alterwg class</h4>
+			<p>Generates alternating white and gray stripes on list objects</p>
+		</section>
+
+		<section>
+			<h4>nohover class</h4>
+			<p>Disables the default hover effect on list objects</p>
+		</section>
+
+		<section>
+			<h4>nomargin class</h4>
+			<p>Removes the default left margin on list objects</p>
+		</section>
+	</section>
+
+	<section>
+		<h3>Parameters/Options for table object</h3>
+
+		<section>
+			<h4>hassum class</h4>
+			<p>This is a <b>table parser option</b> not related to the zebra striping. But this option may change the default zebra stilling on complex table.</p>
+			<p>That option is to let the table parser know if the table can contains summary group, by default each group is known as a data group. An example that show this new option is the <a href="../../../demos/zebra/invoice.html">Invoice Table Working Examples</a>. Please read the <a href="../../../demos/tableparser/index-en.html">HTML Table techniques issued from the WET Toolbox 3.0</a> documentation for more details.</p>
+		</section>
+
+		<section>
+			<h4>columnhighlight class</h4>
+			<p>Applies column base striping. To get it working, your table must contain the <code>col</code> element.</p>
+		</section>
+
+		<section>
+			<h4>norowheaderhighlight class</h4>
+			<p>Removes the row cell header highlight on data cell mouse hover.</p>
+		</section>
+
+		<section>
+			<h4>nocolheaderhighlight class</h4>
+			<p>Removes the column cell header highlight on data cell mouse hover.</p>
+		</section>
+
+		<section>
+			<h4>complextableparsing class</h4>
+			<p>Force the simple table to be analyzed with the table usability parser. This enables the header cell highlight on simple tables. To have the alternating blue and white row styling, use the <code>vectorstripe</code> option.</p>
+		</section>
+
+		<section>
+			<h4>vectorstripe class</h4>
+			<p>Force the alternate row styling, blue and white, even on complex table</p>
+		</section>
+	</section>
+</section>
+
+<section>
+	<h2>Examples</h2>
+	<ul>
+		<li><a href="../../../demos/zebra/zebra-en.html">English examples</a></li>
+		<li><a href="../../../demos/zebra/zebra-fr.html">French examples</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Development</h2>
+	<p>The zebra striping for tables use an advance table parser to auto detect the data cell relationship. The cell (th, td) relationship is determined based on their placement, size and which group (colgroup, col, thead, tbody, tfoot) they belong to.</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/workers/zebra.js">js/workers/zebra.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_zebra.scss">js/sass/_zebra.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_zebra-ie.scss">js/sass/_zebra-ie.scss</a></li>
+	</ul>
+
+</section>
+
+<section>
+	<h2>Known Issues</h2>
+	<p>None at this time.</p>
+</section>
+
+<section>
+	<h2>Future</h2>
+	<ul>
+		<li>Revise the zebra styling for complex multi-level table </li>
+		<li>SCSS - Use more significative @extends like  "%zebra-table-summary-background-color" instead of "%zebra-background-color-eee". That with the objective of ease future customization.</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Version History</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/workers/zebra.js">zebra.js</a> </li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_zebra.scss">_zebra.scss</a> </li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_zebra-ie.scss">_zebra-ie.scss</a> </li>
+	</ul>
+</section>
+
+<section>
+	<h2>References</h2>
+
+	<section>
+		<h3>Case Studies</h3>
+		<ul>
+			<li><a href="../../../demos/tableparser/Table-CaseStudies.html">Case Studies #1</a></li>
+			<li><a href="../../../demos/tableparser/Table-CaseStudies-2.html">Nutrition Facts table</a></li>
+			<li><a href="../../../demos/tableparser/Table-CaseStudies-3.html">Ottawa Senators vs. Buffalo Sabres - Game ID # 270519002</a></li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>HTML Table Validator</h3>
+		<ul>
+			<li><a href="../../../demos/tableparser/validator-htmltable.html">HTML Table Validator</a> <i>(With ids/headers/aria-describedby auto assignation)</i></li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Draft WCAG 2.0 Technique</h3>
+		<ol>
+			<li><a href="../../../demos/tableparser/keycell-techniques.html">Defining a Key Cell</a></li>
+			<li><a href="../../../demos/tableparser/rowgrouping-techniques.html">Defining a Data Row Group</a></li>
+			<li><a href="../../../demos/tableparser/summariesrowgroup-techniques.html">Summaries a Data Row Group</a></li>
+			<li><a href="../../../demos/tableparser/headerrowgroupstructure-techniques.html">Structuring the Header Row</a></li>
+			<li><a href="../../../demos/tableparser/rowheader-description-techniques.html">Describing a Row Header Cell</a></li>
+			<li><a href="../../../demos/tableparser/rowgroupheader-description-techniques.html">Describing a Row Group Header Cell</a></li>
+			<li><a href="../../../demos/tableparser/colgroupheader-techniques.html">Defining Column Group Header</a></li>
+			<li><a href="../../../demos/tableparser/headercolgroupstructure-techniques.html">Structuring the Header Column Cell</a></li>
+			<li><a href="../../../demos/tableparser/datacolgroup-techniques.html">Defining a Data Column Group</a></li>
+			<li><a href="../../../demos/tableparser/colgroupsummary-techniques.html">Summaries a Data Column Group</a></li>
+			<li><a href="../../../demos/tableparser/colheader-description-techniques.html">Describing a Column Header Cell</a></li>
+			<li><a href="../../../demos/tableparser/layoutcell-techniques.html">Defining a Layout Cell</a></li>
+		</ol>
+	</section>
+
+	<section>
+		<h3>WCAG 2.0 Technique</h3>
+		<ul>
+			<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H51">H51: Using table markup to present tabular information</a></li>
+			<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H39">H39: Using caption elements to associate data table captions with data tables</a></li>
+			<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H73">H73: Using the summary attribute of the table element to give an overview of data tables</a></li>
+			<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H63">H63: Using the scope attribute to associate header cells and data cells in data tables</a></li>
+			<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H43">H43: Using id and headers attributes to associate data cells with header cells in data tables</a></li>
+			<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H79">H79: Identifying the purpose of a link using link text combined with its enclosing table cell and associated table headings</a></li>
+			<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F34">F34: Failure of Success Criterion 1.3.1 and 1.3.2 due to using white space characters to format tables in plain text content</a></li>
+			<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F49">F49: Failure of Success Criterion 1.3.2 due to using an HTML layout table that does not make sense when linearized</a></li>
+			<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F46">F46: Failure of Success Criterion 1.3.1 due to using th elements, caption elements, or non-empty summary attributes in layout tables</a></li>
+			<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G57">G57: Ordering the content in a meaningful sequence</a></li>
+		</ul>
+	</section>
+</section>
+
+<dl id="gcwu-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2014-01-21</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="gcwu-sft"><h3>Site footer</h3><div id="gcwu-sft-in">
+<div id="gcwu-tctr">
+<ul>
+<li class="gcwu-tc"><a href="#" rel="license">Terms and conditions</a></li>
+<li class="gcwu-tr"><a href="#">Transparency</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">About us</a></h4>
+<ul>
+<li><a href="#">Our Mandate</a></li>
+<li><a href="#">Our Minister</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">News</a></h4>
+<ul>
+<li><a href="#">News releases</a></li>
+<li><a href="#">Media advisories</a></li>
+<li><a href="#">Multimedia</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Contact us</a></h4>
+<address>
+<ul>
+<li><a href="#">Phone numbers</a></li>
+<li><a href="#">Office locations</a></li>
+</ul>
+</address>
+</div></section>
+<section><div class="span-2"><h4 class="gcwu-col-head"><a href="#">Stay connected</a></h4>
+<ul>
+<li><a rel="external" href="#">YouTube</a></li>
+<li><a rel="external" href="#">Twitter</a></li>
+<li><a href="#">Feeds</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<nav role="navigation"><div id="gcwu-gcft"><h3>Government of Canada footer</h3><div id="gcwu-gcft-in"><div id="gcwu-gcft-fip">
+<ul>
+<li><a rel="external" href="http://healthycanadians.gc.ca/index-eng.php"><span>Health</span><br />healthycanadians.gc.ca</a></li>
+<li><a rel="external" href="http://www.voyage.gc.ca/index-eng.asp"><span>Travel</span><br />travel.gc.ca</a></li>
+<li><a rel="external" href="http://www.servicecanada.gc.ca/eng/home.shtml"><span>Service Canada</span><br />servicecanada.gc.ca</a></li>
+<li><a rel="external" href="http://www.jobbank.gc.ca/intro-eng.aspx"><span>Jobs</span><br />jobbank.gc.ca</a></li>
+<li><a rel="external" href="http://actionplan.gc.ca/en"><span>Economy</span><br />actionplan.gc.ca</a></li>
+<li id="gcwu-gcft-ca"><div><a rel="external" href="http://www.canada.ca/en/index.html">Canada.ca</a></div></li>
+</ul>
+</div></div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/theme-gcwu-fegc/js/theme-min.js"></script>
+<script src="../../../dist/js/settings.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<!-- ScriptsEnd -->
+</body>
+</html>
