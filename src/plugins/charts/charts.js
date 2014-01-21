@@ -683,7 +683,7 @@
 			$summary = $( "<summary />" );
 			$details.appendTo( $figElement );
 			// set the title for the ability to show or hide the table as a data source
-			$summary.html( tableCaptionHTML + " " + i18n( "%table-mention" ) )
+			$summary.html( tableCaptionHTML + " " + i18n( "table-mention" ) )
 				.appendTo( $details )
 				.after( $elm );
 		}
@@ -848,7 +848,7 @@
 
 				$imgContainer.attr( "role", "img" );
 				// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
-				$imgContainer.attr( "aria-label", pieChartLabelText + " " + i18n( "%table-following" ) ); // "Chart. Details in table following."
+				$imgContainer.attr( "aria-label", pieChartLabelText + " " + i18n( "table-following" ) ); // "Chart. Details in table following."
 
 				
 				// Create the graphic
@@ -1006,7 +1006,7 @@
 
 		$placeHolder.attr( "role", "img" );
 		// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
-		$placeHolder.attr( "aria-label", $( "caption", $elm ).text() + " " + i18n( "%table-following" ) ); // "Chart. Details in table following."
+		$placeHolder.attr( "aria-label", $( "caption", $elm ).text() + " " + i18n( "table-following" ) ); // "Chart. Details in table following."
 
 		if ( !optionsCharts.noencapsulation ) {
 			wrapTableIntoDetails( figureElem, tblCaptionHTML );
