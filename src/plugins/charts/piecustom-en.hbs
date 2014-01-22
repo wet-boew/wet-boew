@@ -1,57 +1,56 @@
 ---
 {
-	"title": "Chart and Graph - Pie",
+	"title": "Chart and Graph - Custom Pie",
 	"language": "en",
 	"category": "Plugin",
-	"description": "Dynamically generates a calendar interface for navigating a list of events.",
+	"description": "Working example that show how the donnut chart is an extension of a pie charts",
 	"tag": "charts",
-	"fr": "pie"
+	"altLangPrefix": "piecustom"
 }
 ---
 
 <ul>
-	<li><a href="simple-en.html">Simple</a></li>
-	<li><a href="complex-en.html">Complex</a></li>
-	<li><a href="labels-en.html">Labels</a></li>
-	<li><a href="labelsandreferencevalue-en.html">Labels and Reference Value</a></li>
-	<li><a href="labelsreversetable-en.html">Labels with and without a reversed table</a></li>
-	<li><a href="numberformat-en.html">Number Format</a></li>
-	<li><a href="pie-en.html">Pie</a></li>
-	<li><a href="simplecustomized-en.html">Simple Customized</a></li>
-	<li><a href="pieparsevertical-en.html">Pie Chart Parse Direction Vertical</a></li>
-	<li><a href="linearparsevertical-en.html">Linear Chart Parse Direction Vertical</a></li>
+	<li><a href="charts-en.html">Charts and Graph</a></li>
+	<li><a href="labelsandreferencevalue-en.html">Labeling options and reference value</a></li>
+	<li><a href="custom-en.html">Charts Personalisation, multi graph type and custom preset</a></li>
+	<li><a href="piecustom-en.html">Custom Pie Charts</a></li>
+	<li><a href="functionandnumbers-en.html">Number separator</a></li>
+	<li><a href="functionandnumbers-en.html#functionpreset">Using function in your custom preset</a></li>
+	<li><a href="testing-en.html">Specific use case</a></li>
 </ul>
 <hr />
 
 
-
 <h2>Donut preset <code>wb-charts-donut</code></h2>
 
-<p>New from WET 3.1.4 release. This preset could be emulated for prior version, WET 3.1.4, by combining setting.</p>
 <details>
-	<summary>Donut Preset Javascript Source Code</summary>
+	<summary>Donut Preset JSON Source Code</summary>
 <pre><code>
-// FYI - The "Donut" preset is already defined by default, this are just to show an example on how to create your own preset.
-
-// In the global settings.js
+// FYI - The "Donut" preset is already defined by default, this are just to show an example on you may reproduce it in your own preset.
 var wet_boew_charts = {
-	donut: {
-		series: {
-			pie: {
-				show: true,
-				radius: 1,
-				label: {
+	flot: {
+		donut: {
+			series: {
+				pie: {
 					show: true,
 					radius: 1,
-					threshold: 0.08
-				},
-				tilt: 0.5,
-				innerRadius: 0.45,
-				startAngle: 1
+					label: {
+						show: true,
+						radius: 1,
+						threshold: 0.08
+					},
+					tilt: 0.5,
+					innerRadius: 0.45,
+					startAngle: 1
+				}
+			},
+			grid: {
+				hoverable: true
 			}
 		},
-		grid: {
-			hoverable: true
+	charts: {
+		donut: {
+			decimal: 1
 		}
 	}
 }
@@ -95,8 +94,7 @@ var wet_boew_charts = {
 <h2>Defaults</h2>
 
 <p>Options Added</p>
-<pre><code>{ }
-</code></pre>
+<pre><code>data-flot = '{ }'</code></pre>
 
 <table class="wb-charts wb-charts-pie">
 	<caption>Defaults</caption>
@@ -133,7 +131,8 @@ var wet_boew_charts = {
 <h2>Sectors labeling</h2>
 
 <p>Json Parameter</p>
-<pre><code>{
+<pre><code>
+data-flot = '{
 	"series": {
 		"pie": {
 			"radius": 1,
@@ -143,7 +142,7 @@ var wet_boew_charts = {
 			}
 		}
 	}
-}
+}'
 </code></pre>
 
 <pre><code>&lt;table class="wb-charts wb-charts-pie" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true } } } }'&gt;</code></pre>
@@ -182,7 +181,7 @@ var wet_boew_charts = {
 <h2>Donut hole</h2>
 
 <p>Json Parameter</p>
-<pre><code>{
+<pre><code>data-flot = '{
 	"series": {
 		"pie": {
 			"radius": 1,
@@ -193,7 +192,7 @@ var wet_boew_charts = {
 			"innerRadius": 0.45
 		}
 	}
-}
+}'
 </code></pre>
 
 <pre><code>&lt;table class="wb-charts wb-charts-pie" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true }, "innerRadius": 0.45 } } }'&gt;</code></pre>
@@ -233,7 +232,7 @@ var wet_boew_charts = {
 
 
 <p>Json Parameter</p>
-<pre><code>{
+<pre><code>data-flot = '{
 	"series": {
 		"pie": {
 			"radius": 1,
@@ -245,7 +244,7 @@ var wet_boew_charts = {
 			"tilt": 0.5
 		}
 	}
-}
+}'
 </code></pre>
 
 <pre><code>&lt;table class="wb-charts wb-charts-pie" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true }, "innerRadius": 0.45, "tilt": 0.5 } } }'&gt;</code></pre>
@@ -284,10 +283,8 @@ var wet_boew_charts = {
 
 <h2>Rectangular pie</h2>
 
-<p>Css Options <code>wb-charts-nolegend</code></p>
-
 <p>Json Parameter</p>
-<pre><code>{
+<pre><code>data-flot = '{
 	"series": {
 		"pie": {
 			"radius": 5000,
@@ -299,7 +296,7 @@ var wet_boew_charts = {
 			"tilt": 0.5
 		}
 	}
-}
+}'
 </code></pre>
 
 <pre><code>&lt;table class="wb-charts wb-charts-pie wb-charts-nolegend" data-flot='{"series": { "pie": { "radius": 5000,"label": { "radius": 1,"show": true }, "innerRadius": 0.45, "tilt": 0.5 } } }'&gt;</code></pre>
@@ -340,7 +337,7 @@ var wet_boew_charts = {
 
 
 <p>Json Parameter</p>
-<pre><code>{
+<pre><code>data-flot = '{
 	"series": {
 		"pie": {
 			"radius": 1,
@@ -355,7 +352,7 @@ var wet_boew_charts = {
 	"grid": {
 		"hoverable": true
 	}
-}
+}'
 </code></pre>
 
 <pre><code>&lt;table class="wb-charts wb-charts-pie" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true }, "innerRadius": 0.45, "tilt": 0.5 } }, "grid": { "hoverable": true } }'&gt;</code></pre>
@@ -393,18 +390,16 @@ var wet_boew_charts = {
 
 <h2>Decimal precision</h2>
 
-<p><strong>Need to be revised and re-thinked</strong> because decimal precision are used in the pie label formater. See issue: <a href="https://github.com/duboisp/wet-boew-charts-workingdocs/issues/1">Ensure a way on how a function can be $extended</a> for more info</p>
-
 
 
 <p><code>data-wet-boew</code> Json Parameter</p>
-<pre><code>{
+<pre><code>data-wet-boew = '{
 	"decimal": 1
-}
+}'
 </code></pre>
 
 <p><code>data-flot</code> Json Parameter</p>
-<pre><code>{
+<pre><code>data-flot = '{
 	"series": {
 		"pie": {
 			"radius": 1,
@@ -419,7 +414,7 @@ var wet_boew_charts = {
 	"grid": {
 		"hoverable": true
 	}
-}
+}'
 </code></pre>
 
 
@@ -463,13 +458,13 @@ var wet_boew_charts = {
 <h2>Labeling threshold</h2>
 
 <p><code>data-wet-boew</code> Json Parameter</p>
-<pre><code>{
+<pre><code>data-wet-boew = '{
 	"decimal": 1
-}
+}'
 </code></pre>
 
 <p><code>data-flot</code> Json Parameter</p>
-<pre><code>{
+<pre><code>data-flot = '{
 	"series": {
 		"pie": {
 			"radius": 1,
@@ -485,7 +480,7 @@ var wet_boew_charts = {
 	"grid": {
 		"hoverable": true
 	}
-}
+}'
 </code></pre>
 
 <pre><code>&lt;table class="wb-charts wb-charts-pie" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true, "threshold": 0.08 }, "innerRadius": 0.45, "tilt": 0.5 } }, "grid": { "hoverable": true } }' data-wet-boew='{ "decimal": 1 }'&gt;</code></pre>
@@ -525,13 +520,13 @@ var wet_boew_charts = {
 <h2>Start Angle</h2>
 
 <p><code>data-wet-boew</code> Json Parameter</p>
-<pre><code>{
+<pre><code>data-wet-boew = '{
 	"decimal": 1
-}
+}'
 </code></pre>
 
 <p><code>data-flot</code> Json Parameter</p>
-<pre><code>{
+<pre><code>data-flot = '{
 	"series": {
 		"pie": {
 			"radius": 1,
@@ -548,7 +543,7 @@ var wet_boew_charts = {
 	"grid": {
 		"hoverable": true
 	}
-}
+}'
 </code></pre>
 
 <pre><code>&lt;table class="wb-charts wb-charts-pie" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true, "threshold": 0.08 }, "innerRadius": 0.45, "tilt": 0.5, "startAngle": 1 } }, "grid": { "hoverable": true } }' data-wet-boew='{ "decimal": 1 }'&gt;</code></pre>
