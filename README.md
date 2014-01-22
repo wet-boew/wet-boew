@@ -27,7 +27,7 @@
 * [Versioning](http://wet-boew.github.io/wet-boew/docs/versions/version-info-en.html)
 * [Version history](http://wet-boew.github.io/wet-boew/docs/versions/index-en.html)
 * [Roadmap](http://wet-boew.github.io/wet-boew/docs/versions/rdmp-en.html)
-* [Communications materials](http://wet-boew.github.io/wet-boew/docs/index-en.html#comms)
+* [Communications material](http://wet-boew.github.io/wet-boew/docs/index-en.html#comms)
 
 ## Benefits
 
