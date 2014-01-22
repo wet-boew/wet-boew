@@ -8,12 +8,12 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-<title>Graphiques et diagrammes - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+<title>Graphiques - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../../dist/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="description" content="Graphiques et diagrammes - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)" />
+<meta name="description" content="Génère des graphiques à partir de données d’un tableau." />
 <meta name="dcterms.creator" content="Projet de la Boîte à outils de l'expérience Web (BOEW)" />
-<meta name="dcterms.title" content="Graphiques et diagrammes - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)" />
+<meta name="dcterms.title" content="Graphiques - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)" />
 <meta name="dcterms.issued" title="W3CDTF" content="2014-01-21" />
 <meta name="dcterms.modified" title="W3CDTF" content="2014-01-21" />
 <meta name="dcterms.subject" title="gccore" content="Internet;Normes;Conception" />
@@ -88,8 +88,9 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li><a href="../../../index-fr.html">Accueil</a></li>
 <li><a href="../../index-fr.html">Documentation</a></li>
 <li><a href="../plugins-fr.html">Plugiciels</a></li>
-<li>Graphiques et diagrammes</li>
-</ol></div></div>
+<li>Graphiques</li>
+</ol>
+</div></div>
 </nav>
 <!-- HeaderEnd -->
 </header></div></div>
@@ -97,7 +98,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Graphiques et diagrammes</h1>
+<h1 id="wb-cont">Graphiques</h1>
 
 <ul class="button-group">
 <li><a href="../../../demos/charts/index-fr.html" class="button">Examples pratiques</a></li>
@@ -109,9 +110,9 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Aperçu</h2>
 	<p><strong>Chef de projet :</strong> Pierre Dubois (<a href="https://github.com/duboisp">@duboisp</a>)</p>
-	<p>Version 2.2 et versions antérieures de la BOEW. Au départ, le composant Graphiques et diagrammes était une intégration du <a href="http://www.filamentgroup.com/lab/update_to_jquery_visualize_accessible_charts_with_html5_from_designing_with/">projet de visualisation du groupe Filament</a>(en anglais seulement).</p>
-	<p>Version 2.3 de la BOEW. Le composant Graphiques et diagrammes a été entièrement réécrit. Cette version comprenait la première version de l’analyseur de tableaux complexes intégré directement dans les graphiques. Le système principal de dessin «&#160;Canvas&#160;» a été remplacé par «&#160;SVG/VML&#160;» dans la bibliothèque RaphaelJS. Il est maintenant possible de personnaliser le graphique directement en fonction de la catégorie CSS attribuée au balisage du graphique.</p>
-	<p>Version 3.0 de la BOEW (actuelle). Presque identique à la version précédente. L’analyseur de tableaux a été réécrit et partiellement retranché du composant Graphiques et diagrammes. Cette version comprend une version hybride des analyseurs de tableaux précédent et actuel. Cette décision a été prise pour des raisons techniques et de délais. Malheureusement, cette version n’intègre pas pleinement l’analyseur de tableaux actuel, et l’analyseur ne traite que partiellement les tableaux complexes définis par douze nouvelles techniques HTML. Cette version comprend plus de catégories d’options de CSS pour la personnalisation des graphiques.</p>
+	<p>Version 2.2 et versions antérieures de la BOEW. Au départ, le composant Graphiques était une intégration du <a href="http://www.filamentgroup.com/lab/update_to_jquery_visualize_accessible_charts_with_html5_from_designing_with/">projet de visualisation du groupe Filament</a>(anglais seulement).</p>
+	<p>Version 2.3 de la BOEW. Le composant Graphiques a été entièrement réécrit. Cette version comprenait la première version de l’analyseur de tableaux complexes intégré directement dans les graphiques. Le système principal de dessin «&#160;Canvas&#160;» a été remplacé par «&#160;SVG/VML&#160;» dans la bibliothèque RaphaelJS. Il est maintenant possible de personnaliser le graphique directement en fonction de la catégorie CSS attribuée au balisage du graphique.</p>
+	<p>Version 3.0 de la BOEW (actuelle). Presque identique à la version précédente. L’analyseur de tableaux a été réécrit et partiellement retranché du composant Graphiques. Cette version comprend une version hybride des analyseurs de tableaux précédent et actuel. Cette décision a été prise pour des raisons techniques et de délais. Malheureusement, cette version n’intègre pas pleinement l’analyseur de tableaux actuel, et l’analyseur ne traite que partiellement les tableaux complexes définis par douze nouvelles techniques HTML. Cette version comprend plus de catégories d’options de CSS pour la personnalisation des graphiques.</p>
 	<section>
 		<h3>Objectif</h3>
 		<p>Ce composant génère de façon dynamique des graphiques à partir de données tabulaires. Les données utilisées pour générer le graphique doivent avoir une structure définie dans les techniques d’élaboration de tableaux. Le graphique généré peut être facilement personnalisé en fonction de l’option CSS choisie pour les différents éléments des tableaux.</p>
@@ -127,12 +128,12 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	</section>
 	<section>
 		<h3>Justification</h3>
-		<p>Conformément à la <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv.html">Règle 1.1 des WCAG</a>(en anglais seulement), tout graphique doit avoir son équivalent de données tabulaires. Le composant Graphiques et diagrammes utilise la version équivalente (dans le cas présent l’élément tableau) pour générer le graphique. Les données du tableau fournissent une longue description au graphique. La légende du tableau et sa description donnent son titre et sa description au graphique.</p>
-		<p>Si vous n’utilisez pas le composant Graphiques et diagrammes pour créer votre tableau, n’oubliez pas d’ajouter une longue description. Règle 1.1 des WCAG : «&#160;Proposer des équivalents textuels à tout contenu non textuel qui pourra alors être présenté sous d'autres formes selon les besoins de l'utilisateur : grands caractères, braille, synthèse vocale, symboles ou langage simplifié.&#160;».</p>
+		<p>Conformément à la <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv.html">Règle 1.1 des WCAG</a>(anglais seulement), tout graphique doit avoir son équivalent de données tabulaires. Le composant Graphiques utilise la version équivalente (dans le cas présent l’élément tableau) pour générer le graphique. Les données du tableau fournissent une longue description au graphique. La légende du tableau et sa description donnent son titre et sa description au graphique.</p>
+		<p>Si vous n’utilisez pas le composant Graphiques pour créer votre tableau, n’oubliez pas d’ajouter une longue description. Règle 1.1 des WCAG : «&#160;Proposer des équivalents textuels à tout contenu non textuel qui pourra alors être présenté sous d'autres formes selon les besoins de l'utilisateur : grands caractères, braille, synthèse vocale, symboles ou langage simplifié.&#160;».</p>
 	</section>
 	<section>
 		<h3>Techniques pour créer des tableaux</h3>
-		<p>Le composant Graphiques et diagrammes permet l’utilisation des techniques suivantes.</p>
+		<p>Le composant Graphiques permet l’utilisation des techniques suivantes.</p>
 		<ul>
 			<li>Cellule de disposition(seulement celle qui est définie dans l’intersection du groupe d’en-têtes)</li>
 			<li>Structure de l’en-tête de ligne</li>
@@ -156,8 +157,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<li><a href="../../demos/charts/complex-fr.html">Graphiques complexes</a></li>
 	</ul>
 	<section>
-		<h3>Paramètres/options</h3>
-		<p>Les options contenues dans l’élément Graphiques et diagrammes doivent avoir un préfixe d’espace de nommage. Il est possible d’écraser les valeurs contenues dans l’espace de nommage et les options par défaut en éditant le fichier des paramètres JavaScript.</p>
+		<h3>Paramètres</h3>
+		<p>Les options contenues dans l’élément Graphiques doivent avoir un préfixe d’espace de nommage. Il est possible d’écraser les valeurs contenues dans l’espace de nommage et les options par défaut en éditant le fichier des paramètres JavaScript.</p>
 
 		<section>
 			<h4>Espaces de nommage requis</h4>
