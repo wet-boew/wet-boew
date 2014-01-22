@@ -11,7 +11,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <title>Persistent storage - Polyfills - Documentation - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
-<meta name="description" content="English description / Description en anglais" />
+<meta name="description" content="The Web storage localStorage object is used to store data persistently (no expiration date)." />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!--[if lte IE 8]>
@@ -58,9 +58,9 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wet-title"><p id="wet-title-in"><a href="../../../index-en.html" lang="en"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
 
 <section role="search"><div id="wet-srchbx"><h2>Search</h2>
-<form action="#" method="post"><div id="wet-srchbx-in">
-<label for="wet-srch">Search website</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
-<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
 </div></form>
 </div></section>
 </div></div>
@@ -112,7 +112,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<p>Use the polyfill, the <code>localStorage</code> to store data persistently. In cases where browsers don't support this object, the polyfill is automatically loaded.</p>
 
 	<section>
-		<h3>Example code</h3>		
+		<h3>Example code</h3>
 		<pre><code>value = localStorage.getItem('variable');
 localStorage.setItem('variable', value);</code></pre>
 	</section>
@@ -155,7 +155,7 @@ localStorage.setItem('variable', value);</code></pre>
 </section>
 
 <dl id="wet-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2013-09-01</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2014-01-21</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->

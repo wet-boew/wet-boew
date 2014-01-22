@@ -8,10 +8,10 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-<title>Graphiques et diagrammes - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+<title>Graphiques - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
-<meta name="description" content="French description / Description en français" />
+<meta name="description" content="Génère des graphiques à partir de données d’un tableau." />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!--[if lte IE 8]>
@@ -58,9 +58,9 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wet-title"><p id="wet-title-in"><a href="../../../index-fr.html" lang="fr"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
 
 <section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
-<form action="#" method="post"><div id="wet-srchbx-in">
-<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="wet-srch" type="search" value="" size="27" maxlength="150" />
-<input id="wet-srch-submit" name="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
 </div></form>
 </div></section>
 </div></div>
@@ -79,7 +79,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li><a href="../../../index-fr.html">Accueil</a></li>
 <li><a href="../../index-fr.html">Documentation</a></li>
 <li><a href="../plugins-fr.html">Plugiciels</a></li>
-<li>Graphiques et diagrammes</li>
+<li>Graphiques</li>
 </ol>
 </div></div>
 </nav>
@@ -89,7 +89,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Graphiques et diagrammes</h1>
+<h1 id="wb-cont">Graphiques</h1>
 
 <ul class="button-group">
 <li><a href="../../../demos/charts/index-fr.html" class="button">Examples pratiques</a></li>
@@ -120,12 +120,12 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	</section>
 	<section>
 		<h3>Justification</h3>
-		<p>Conformément à la <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv.html">Règle 1.1 des WCAG</a>(en anglais seulement), tout graphique doit avoir son équivalent de données tabulaires. Le composant Graphiques et diagrammes utilise la version équivalente (dans le cas présent l’élément tableau) pour générer le graphique. Les données du tableau fournissent une longue description au graphique. La légende du tableau et sa description donnent son titre et sa description au graphique.</p>
-		<p>Si vous n’utilisez pas le composant Graphiques et diagrammes pour créer votre tableau, n’oubliez pas d’ajouter une longue description. Règle 1.1 des WCAG : «&#160;Proposer des équivalents textuels à tout contenu non textuel qui pourra alors être présenté sous d'autres formes selon les besoins de l'utilisateur : grands caractères, braille, synthèse vocale, symboles ou langage simplifié.&#160;».</p>
+		<p>Conformément à la <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv.html">Règle 1.1 des WCAG</a>(anglais seulement), tout graphique doit avoir son équivalent de données tabulaires. Le composant Graphiques utilise la version équivalente (dans le cas présent l’élément tableau) pour générer le graphique. Les données du tableau fournissent une longue description au graphique. La légende du tableau et sa description donnent son titre et sa description au graphique.</p>
+		<p>Si vous n’utilisez pas le composant Graphiques pour créer votre tableau, n’oubliez pas d’ajouter une longue description. Règle 1.1 des WCAG : «&#160;Proposer des équivalents textuels à tout contenu non textuel qui pourra alors être présenté sous d'autres formes selon les besoins de l'utilisateur : grands caractères, braille, synthèse vocale, symboles ou langage simplifié.&#160;».</p>
 	</section>
 	<section>
 		<h3>Techniques pour créer des tableaux</h3>
-		<p>Le composant Graphiques et diagrammes permet l’utilisation des techniques suivantes.</p>
+		<p>Le composant Graphiques permet l’utilisation des techniques suivantes.</p>
 		<ul>
 			<li>Cellule de disposition(seulement celle qui est définie dans l’intersection du groupe d’en-têtes)</li>
 			<li>Structure de l’en-tête de ligne</li>
@@ -151,9 +151,9 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<li><a href="../../demos/charts/complex-fr.html">Graphiques complexes</a></li>
 	</ul>
 	<section>
-		<h3>Paramètres/options</h3>
-		<p>Les options contenues dans l’élément Graphiques et diagrammes doivent avoir un préfixe d’espace de nommage. Il est possible d’écraser les valeurs contenues dans l’espace de nommage et les options par défaut en éditant le fichier des paramètres JavaScript.</p>
-		
+		<h3>Paramètres</h3>
+		<p>Les options contenues dans l’élément Graphiques doivent avoir un préfixe d’espace de nommage. Il est possible d’écraser les valeurs contenues dans l’espace de nommage et les options par défaut en éditant le fichier des paramètres JavaScript.</p>
+
 		<section>
 			<h4>Espaces de nommage requis</h4>
 			<p><strong>wb-charts</strong> L’espace de nommage requis doit être inclus par défaut dans tous les paramètres et toutes les options définis ici.</p>
@@ -317,10 +317,10 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<li><a href="../../demos/tableparser/Table-CaseStudies-3.html">Ottawa Senators vs. Buffalo Sabres - Game ID # 270519002</a></li>
 		</ul>
 	</section>
-	
+
 </section>
 <dl id="wet-date-mod" role="contentinfo">
-<dt>Date de modification&#160;:</dt><dd><span><time>2013-09-01</time></span></dd>
+<dt>Date de modification&#160;:</dt><dd><span><time>2014-01-21</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->

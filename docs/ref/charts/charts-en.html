@@ -11,7 +11,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <title>Charts and graphs - Plugins - Documentation - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
-<meta name="description" content="English description / Description en anglais" />
+<meta name="description" content="Dynamically generates charts and graphs from table data." />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!--[if lte IE 8]>
@@ -109,7 +109,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<p>WET v3.0 release. Almost the same as the previous version. The table parser was re-written and partially removed from the chart and graph. This version include an hybrid version of the previous and the current table parser. That decision was made from technical reason and deadline issue. Unfortunately this version of the chart do not full benefit of the current table parser and partially support complex table as defined per twelve new HTML Technique. This version are including more CSS option class to provide more charts customization.</p>
 		<p>WET v3.1 release (current). The previous drawing backend supported with RaphaelJS library was removed in favour of <a href="https://github.com/duboisp/flot">Flot project</a>. The goal was to provide the full advantage of the current table parser with the chart customization provided in the WET 3.0 release.</p>
 	</section>
-	
+
 	<section>
 		<h3>Purpose</h3>
 		<p>This feature dynamically generates charts from table data. The table data used to generate the graphic need to have a structure as defined in the techniques for tables. The graphic generated can be easily customized by using the CSS Option set to the tables elements.</p>
@@ -123,13 +123,13 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<li>Supports Firefox, Opera, Safari, Chrome, and IE 8+</li>
 		</ul>
 	</section>
-	
+
 	<section>
 		<h3>Rationale</h3>
 		<p>As per the <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv.html">WCAG 2.0 Guideline 1.1</a> a chart need to have their tabular data equivalent. The chart and graph use the equivalent version (here the table element) to generate the graphic. The table data is used to provide a long description to the chart. The table caption and his description is present is used to provide the chart title and description.</p>
 		<p>If you do not use the chart and graph project to create your chart, please do not forget to include a long description. The WCAG 2.0 Guideline 1.1 is "Provide text alternatives for any non-text content so that it can be changed into other forms people need, such as large print, braille, speech, symbols or simpler language."</p>
 	</section>
-	
+
 	<section>
 		<h3>Technique for tables</h3>
 		<p>The following technique is supported by the chart and graph</p>
@@ -149,7 +149,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<li>Customize your charts by using the CSS Option Class (documented bellow)</li>
 	</ol>
 	<p><strong>Note:</strong> See the Technique for tables and the Known issues section.</p>
-	
+
 	<section>
 		<h3>Working examples</h3>
 		<ul>
@@ -159,17 +159,17 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<li><a href="../../demos/charts/simpleCustomized-en.html">Charts - Customized - English examples</a></li>
 			<li><a href="../../demos/charts/complex-en.html">Complex charts - English examples</a></li>
 		</ul>
-	</section>		
-	
+	</section>
+
 	<section>
 		<h3>Parameters</h3>
 		<p>The options in the Charts and graphs component need to be prefixed with a namespace. The namespace used and default options can be overwritten by using the javascript setting file.</p>
-		
+
 		<section>
 			<h4>Required namespace</h4>
 			<p><strong>wb-charts</strong> Default required namespace for any parameters and options defined here.</p>
 		</section>
-		
+
 		<section>
 			<h4><code>&lt;table&gt;</code> element</h4>
 			<ul>
@@ -188,7 +188,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 				<li><strong>uniformtick (v3.1 only):</strong> Boolean. 'True' by default. Determine how the colspan/rowspan could have an effect on the position of the label in the chart.</li>
 				<li><strong>ticks (v3.1 only):</strong> Number. Number of label for the y-axis. Used with "topvalue" and "bottomvalue" could simulate the unsupported "steps" parameter. eg. "wb-charts-ticks-10"
 			</ul>
-			
+
 			<p><strong>Removed</strong></p>
 			<ul>
 				<li><strong>hide:</strong> Boolean. This was replaced by a build in mechanism that use a details/summary element under the chart to provide an access to the tabular data.</li>
@@ -197,13 +197,13 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 				<li><strong>maxwidth</strong></li>
 				<li><strong>decimal</strong></li>
 			</ul>
-			
+
 			<p><strong>Technical cheat</strong></p>
 			<ul>
 				<li><strong>execdelay:</strong> Number. This set the amount of time (in milisecond) to wait before to create the second and subsequent charts. By default the value is set to 200 milisecond.</li>
 			</ul>
 		</section>
-		
+
 		<section>
 			<h4><code>&lt;tbody&gt;</code> element</h4>
 			<p><strong>Note:</strong> Only the first tbody is used to create the graphic, all the subsequent data group are currently just ignored.</p>
@@ -230,7 +230,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 				<li><strong>fillover:</strong> String. This allow you to set a custom mouseover background html color to this cell header once it's draw on the graphic. "wb-charts-fillover-[Any]" eg. "wb-charts-fillover-blue", "wb-charts-fillover-yellow"</li>
 			</ul>
 		</section>
-		
+
 		<section>
 			<h4><code>&lt;th&gt;</code> element (Defined in the first data row group, tbody)</h4>
 			<p><strong>Note:</strong> Only the type is available for a pie chart, all the other option is for an Line, Area, Bar and Stacked Chart.</p>
@@ -241,7 +241,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 				<li><strong>dasharray:</strong> String value. This allow you to set a partern stroke. eg. "wb-charts-dasharray-dashspacedot". Please see the section on dasharrary for example</li>
 			</ul>
 		</section>
-		
+
 		<section>
 			<h4>"dasharray" example</h4>
 			<ul>
@@ -254,7 +254,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 				<li><strong>wb-charts-dasharray-dashspacedot</strong> draw: "- . - . - . - . - . - . - . - . - . - . - . - . "</li>
 			</ul>
 		</section>
-		
+
 		<section>
 			<h4>Working example using parameter</h4>
 			<ul>
@@ -346,7 +346,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 </section>
 
 <dl id="wet-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2013-09-01</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2014-01-21</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
