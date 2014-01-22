@@ -3,34 +3,94 @@
 	"title": "Chart and Graph - Labels and Reference Value",
 	"language": "en",
 	"category": "Plugin",
-	"description": "Dynamically generates a calendar interface for navigating a list of events.",
+	"description": "Manage how the charts is labeled and Manage how the value for chart point will be calculated from a reference value row",
 	"tag": "charts",
 	"altLangPrefix": "labelsandreferencevalue"
 }
 ---
 
-
 <ul>
-	<li><a href="simple-en.html">Simple</a></li>
-	<li><a href="complex-en.html">Complex</a></li>
-	<li><a href="labels-en.html">Labels</a></li>
-	<li><a href="labelsandreferencevalue-en.html">Labels and Reference Value</a></li>
-	<li><a href="labelsreversetable-en.html">Labels with and without a reversed table</a></li>
-	<li><a href="numberformat-en.html">Number Format</a></li>
-	<li><a href="pie-en.html">Pie</a></li>
-	<li><a href="simplecustomized-en.html">Simple Customized</a></li>
-	<li><a href="pieparsevertical-en.html">Pie Chart Parse Direction Vertical</a></li>
-	<li><a href="linearparsevertical-en.html">Linear Chart Parse Direction Vertical</a></li>
+	<li><a href="charts-en.html">Charts and Graph</a></li>
+	<li><a href="labelsandreferencevalue-en.html">Labeling options and reference value</a></li>
+	<li><a href="custom-en.html">Charts Personalisation, multi graph type and custom preset</a></li>
+	<li><a href="piecustom-en.html">Custom Pie Charts</a></li>
+	<li><a href="functionandnumbers-en.html">Number separator</a></li>
+	<li><a href="functionandnumbers-en.html#functionpreset">Using function in your custom preset</a></li>
+	<li><a href="testing-en.html">Specific use case</a></li>
 </ul>
 <hr />
 
-<h2>Example 1 <code>labelposition-1</code> and <code>referencevalue-1</code></h2>
+<h2>Label and Reference Value: Defaults</h2>
 
-<pre><code>{
+<pre><code>data-wet-boew = '{
+	"noencapsulation": true 
+}'</code></pre>
+<table class="wb-charts wb-charts-line" data-wet-boew='{ "noencapsulation": true }'>
+
+	<thead>
+		<tr>
+			<th rowspan="3"></th>
+			<th colspan="6">Group A</th>
+			<th rowspan="3">Group B</th>
+			<th rowspan="3">Group C</th>
+		</tr>
+		<tr>
+			<th colspan="2">Subject</th>
+			<th colspan="4">Topic</th>
+		</tr>
+		<tr>
+			<th>Item I</th>
+			<th>Item II</th>
+			<th>Object I</th>
+			<th>Object II</th>
+			<th>Object III</th>
+			<th>Object IV</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Serie One</th>
+			<td>5</td>
+			<td>10</td>
+			<td>5</td>
+			<td>10</td>
+			<td>5</td>
+			<td>10</td>
+			<td>5</td>
+			<td>10</td>
+		</tr>
+		<tr>
+			<th>Serie Two</th>
+			<td>3</td>
+			<td>9</td>
+			<td>3</td>
+			<td>9</td>
+			<td>3</td>
+			<td>9</td>
+			<td>3</td>
+			<td>9</td>
+		</tr>
+		<tr>
+			<th>Serie Three</th>
+			<td>4</td>
+			<td>12</td>
+			<td>4</td>
+			<td>12</td>
+			<td>4</td>
+			<td>12</td>
+			<td>4</td>
+			<td>12</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Label and Reference Value: First Table Row</h2>
+
+<pre><code>data-wet-boew = '{
 	"referencevalue": 1,
 	"labelposition": 1,
 	"noencapsulation": true 
-}</code></pre>
+}'</code></pre>
 <table class="wb-charts wb-charts-line" data-wet-boew='{ "referencevalue": 1, "labelposition": 1, "noencapsulation": true }'>
 
 	<thead>
@@ -91,13 +151,13 @@
 </table>
 
 
-<h2>Example 1 <code>labelposition-1</code> and <code>referencevalue-2</code></h2>
+<h2>Label: First Table Row - Reference Value: Second Table Row</h2>
 
-<pre><code>{
+<pre><code>data-wet-boew = '{
 	"referencevalue": 2,
 	"labelposition": 1,
 	"noencapsulation": true 
-}</code></pre>
+}'</code></pre>
 <table class="wb-charts wb-charts-line" data-wet-boew='{ "referencevalue": 2, "labelposition": 1, "noencapsulation": true }'>
 
 	<thead>
@@ -157,13 +217,13 @@
 	</tbody>
 </table>
 
-<h2>Example 1 <code>labelposition-1</code> and <code>referencevalue-3</code></h2>
+<h2>Label: First Table Row - Reference Value: Third Table Row</h2>
 
-<pre><code>{
+<pre><code>data-wet-boew = '{
 	"referencevalue": 3,
 	"labelposition": 1,
 	"noencapsulation": true 
-}</code></pre>
+}'</code></pre>
 <table class="wb-charts wb-charts-line" data-wet-boew='{ "referencevalue": 3, "labelposition": 1, "noencapsulation": true }'>
 
 	<thead>
@@ -224,13 +284,13 @@
 </table>
 
 
-<h2>Example 1 <code>labelposition-2</code> and <code>referencevalue-3</code></h2>
+<h2>Label: Second Table Row - Reference Value: Third Table Row</h2>
 
-<pre><code>{
+<pre><code>data-wet-boew = '{
 	"referencevalue": 3,
 	"labelposition": 2,
 	"noencapsulation": true 
-}</code></pre>
+}'</code></pre>
 <table class="wb-charts wb-charts-line" data-wet-boew='{ "referencevalue": 3, "labelposition": 2, "noencapsulation": true }'>
 
 	<thead>
@@ -290,13 +350,13 @@
 	</tbody>
 </table>
 
-<h2>Example 1 <code>labelposition-3</code> and <code>referencevalue-3</code></h2>
+<h2>Label: Third Table Row - Reference Value: Third Table Row</h2>
 
-<pre><code>{
+<pre><code>data-wet-boew = '{
 	"referencevalue": 3,
 	"labelposition": 3,
 	"noencapsulation": true 
-}</code></pre>
+}'</code></pre>
 <table class="wb-charts wb-charts-line" data-wet-boew='{ "referencevalue": 3, "labelposition": 3, "noencapsulation": true }'>
 
 	<thead>

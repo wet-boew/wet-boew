@@ -162,7 +162,7 @@
 					donut: {
 						decimal: 1
 					},
-					usnumber: {
+					thousandcomma: {
 						fn: {
 							"/getcellvalue": function( elem ) {
 								var raw = $.trim( $( elem ).text() ).replace( /,/g, "" );
@@ -170,8 +170,7 @@
 							}
 						}
 					},
-					
-					germannumber: {
+					thousanddot: {
 						fn: {
 							"/getcellvalue": function( elem ) {
 								var raw = $.trim( $( elem ).text() ).replace( /\./g, "" );

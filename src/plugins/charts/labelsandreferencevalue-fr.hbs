@@ -1,61 +1,122 @@
 ---
 {
-	"title": "Chart and Graph - Labels and Reference Value",
+	"title": "Graphiques - Étiquettage et valeur de référence",
 	"language": "fr",
 	"category": "Plugin",
-	"description": "Dynamically generates a calendar interface for navigating a list of events.",
+	"description": "Comment contrôler l'étiquettage des graphiques et comment contrôler la valeur de référence pour déterminer la valeur des points",
 	"tag": "charts",
 	"altLangPrefix": "labelsandreferencevalue"
 }
 ---
 
-
 <ul>
-	<li><a href="simple-en.html">Simple</a></li>
-	<li><a href="complex-en.html">Complex</a></li>
-	<li><a href="labels-en.html">Labels</a></li>
-	<li><a href="labelsandreferencevalue-en.html">Labels and Reference Value</a></li>
-	<li><a href="labelsreversetable-en.html">Labels with and without a reversed table</a></li>
-	<li><a href="numberformat-en.html">Number Format</a></li>
-	<li><a href="pie-en.html">Pie</a></li>
-	<li><a href="simplecustomized-en.html">Simple Customized</a></li>
-	<li><a href="pieparsevertical-en.html">Pie Chart Parse Direction Vertical</a></li>
-	<li><a href="linearparsevertical-en.html">Linear Chart Parse Direction Vertical</a></li>
+	<li><a href="charts-fr.html">Graphiques</a></li>
+	<li><a href="labelsandreferencevalue-fr.html">Étiquettage et valeur de référence</a></li>
+	<li><a href="custom-fr.html">Personalisation de graphiques, multi-type de graphique and préréglages personalisé</a></li>
+	<li><a href="piecustom-fr.html">Personalisation de diagrame circulaire</a></li>
+	<li><a href="functionandnumbers-fr.html">Séparateur dans les nombres</a></li>
+	<li><a href="functionandnumbers-fr.html#functionpreset">Utilisation de fonction personalisé dans vos préréglages</a></li>
+	<li><a href="testing-fr.html">Cas utilisateur spéficique</a></li>
 </ul>
 <hr />
 
-<h2>Example 1 <code>labelposition-1</code> and <code>referencevalue-1</code></h2>
 
-<pre><code>{
+<h2>Étiquette et valeur de référence: Par défauts</h2>
+
+<pre><code>data-wet-boew = '{
+	"noencapsulation": true 
+}'</code></pre>
+<table class="wb-charts wb-charts-line" data-wet-boew='{ "noencapsulation": true }'>
+
+	<thead>
+		<tr>
+			<th rowspan="3"></th>
+			<th colspan="6">Groupe A</th>
+			<th rowspan="3">Groupe B</th>
+			<th rowspan="3">Groupe C</th>
+		</tr>
+		<tr>
+			<th colspan="2">Sujet</th>
+			<th colspan="4">Thème</th>
+		</tr>
+		<tr>
+			<th>Item I</th>
+			<th>Item II</th>
+			<th>Objet I</th>
+			<th>Objet II</th>
+			<th>Objet III</th>
+			<th>Objet IV</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Première Serie</th>
+			<td>5</td>
+			<td>10</td>
+			<td>5</td>
+			<td>10</td>
+			<td>5</td>
+			<td>10</td>
+			<td>5</td>
+			<td>10</td>
+		</tr>
+		<tr>
+			<th>Deuxième Serie</th>
+			<td>3</td>
+			<td>9</td>
+			<td>3</td>
+			<td>9</td>
+			<td>3</td>
+			<td>9</td>
+			<td>3</td>
+			<td>9</td>
+		</tr>
+		<tr>
+			<th>Troisième Serie</th>
+			<td>4</td>
+			<td>12</td>
+			<td>4</td>
+			<td>12</td>
+			<td>4</td>
+			<td>12</td>
+			<td>4</td>
+			<td>12</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Étiquette et valeur de référence définie à la première ligne du tableau</h2>
+
+<pre><code>data-wet-boew = '{
 	"referencevalue": 1,
 	"labelposition": 1,
 	"noencapsulation": true 
-}</code></pre>
+}'</code></pre>
 <table class="wb-charts wb-charts-line" data-wet-boew='{ "referencevalue": 1, "labelposition": 1, "noencapsulation": true }'>
 
 	<thead>
 		<tr>
 			<th rowspan="3"></th>
-			<th colspan="6">Group A</th>
-			<th rowspan="3">Group B</th>
-			<th rowspan="3">Group C</th>
+			<th colspan="6">Groupe A</th>
+			<th rowspan="3">Groupe B</th>
+			<th rowspan="3">Groupe C</th>
 		</tr>
 		<tr>
-			<th colspan="2">Subject</th>
-			<th colspan="4">Topic</th>
+			<th colspan="2">Sujet</th>
+			<th colspan="4">Thème</th>
 		</tr>
 		<tr>
 			<th>Item I</th>
 			<th>Item II</th>
-			<th>Object I</th>
-			<th>Object II</th>
-			<th>Object III</th>
-			<th>Object IV</th>
+			<th>Objet I</th>
+			<th>Objet II</th>
+			<th>Objet III</th>
+			<th>Objet IV</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<th>Serie One</th>
+			<th>Première Serie</th>
 			<td>5</td>
 			<td>10</td>
 			<td>5</td>
@@ -66,7 +127,7 @@
 			<td>10</td>
 		</tr>
 		<tr>
-			<th>Serie Two</th>
+			<th>Deuxième Serie</th>
 			<td>3</td>
 			<td>9</td>
 			<td>3</td>
@@ -77,7 +138,7 @@
 			<td>9</td>
 		</tr>
 		<tr>
-			<th>Serie Three</th>
+			<th>Troisième Serie</th>
 			<td>4</td>
 			<td>12</td>
 			<td>4</td>
@@ -91,38 +152,38 @@
 </table>
 
 
-<h2>Example 1 <code>labelposition-1</code> and <code>referencevalue-2</code></h2>
+<h2>Étiquette: Première ligne du tableau - Valeur de référence: Deuxième ligne du tableau</h2>
 
-<pre><code>{
+<pre><code>data-wet-boew = '{
 	"referencevalue": 2,
 	"labelposition": 1,
 	"noencapsulation": true 
-}</code></pre>
+}'</code></pre>
 <table class="wb-charts wb-charts-line" data-wet-boew='{ "referencevalue": 2, "labelposition": 1, "noencapsulation": true }'>
 
 	<thead>
 		<tr>
 			<th rowspan="3"></th>
-			<th colspan="6">Group A</th>
-			<th rowspan="3">Group B</th>
-			<th rowspan="3">Group C</th>
+			<th colspan="6">Groupe A</th>
+			<th rowspan="3">Groupe B</th>
+			<th rowspan="3">Groupe C</th>
 		</tr>
 		<tr>
-			<th colspan="2">Subject</th>
-			<th colspan="4">Topic</th>
+			<th colspan="2">Sujet</th>
+			<th colspan="4">Thème</th>
 		</tr>
 		<tr>
 			<th>Item I</th>
 			<th>Item II</th>
-			<th>Object I</th>
-			<th>Object II</th>
-			<th>Object III</th>
-			<th>Object IV</th>
+			<th>Objet I</th>
+			<th>Objet II</th>
+			<th>Objet III</th>
+			<th>Objet IV</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<th>Serie One</th>
+			<th>Première Serie</th>
 			<td>5</td>
 			<td>10</td>
 			<td>5</td>
@@ -133,7 +194,7 @@
 			<td>10</td>
 		</tr>
 		<tr>
-			<th>Serie Two</th>
+			<th>Deuxième Serie</th>
 			<td>3</td>
 			<td>9</td>
 			<td>3</td>
@@ -144,7 +205,7 @@
 			<td>9</td>
 		</tr>
 		<tr>
-			<th>Serie Three</th>
+			<th>Troisième Serie</th>
 			<td>4</td>
 			<td>12</td>
 			<td>4</td>
@@ -157,38 +218,38 @@
 	</tbody>
 </table>
 
-<h2>Example 1 <code>labelposition-1</code> and <code>referencevalue-3</code></h2>
+<h2>Étiquette: Première ligne du tableau - Valeur de référence: Troisième ligne du tableau</h2>
 
-<pre><code>{
+<pre><code>data-wet-boew = '{
 	"referencevalue": 3,
 	"labelposition": 1,
 	"noencapsulation": true 
-}</code></pre>
+}'</code></pre>
 <table class="wb-charts wb-charts-line" data-wet-boew='{ "referencevalue": 3, "labelposition": 1, "noencapsulation": true }'>
 
 	<thead>
 		<tr>
 			<th rowspan="3"></th>
-			<th colspan="6">Group A</th>
-			<th rowspan="3">Group B</th>
-			<th rowspan="3">Group C</th>
+			<th colspan="6">Groupe A</th>
+			<th rowspan="3">Groupe B</th>
+			<th rowspan="3">Groupe C</th>
 		</tr>
 		<tr>
-			<th colspan="2">Subject</th>
-			<th colspan="4">Topic</th>
+			<th colspan="2">Sujet</th>
+			<th colspan="4">Thème</th>
 		</tr>
 		<tr>
 			<th>Item I</th>
 			<th>Item II</th>
-			<th>Object I</th>
-			<th>Object II</th>
-			<th>Object III</th>
-			<th>Object IV</th>
+			<th>Objet I</th>
+			<th>Objet II</th>
+			<th>Objet III</th>
+			<th>Objet IV</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<th>Serie One</th>
+			<th>Première Serie</th>
 			<td>5</td>
 			<td>10</td>
 			<td>5</td>
@@ -199,7 +260,7 @@
 			<td>10</td>
 		</tr>
 		<tr>
-			<th>Serie Two</th>
+			<th>Deuxième Serie</th>
 			<td>3</td>
 			<td>9</td>
 			<td>3</td>
@@ -210,7 +271,7 @@
 			<td>9</td>
 		</tr>
 		<tr>
-			<th>Serie Three</th>
+			<th>Troisième Serie</th>
 			<td>4</td>
 			<td>12</td>
 			<td>4</td>
@@ -224,38 +285,38 @@
 </table>
 
 
-<h2>Example 1 <code>labelposition-2</code> and <code>referencevalue-3</code></h2>
+<h2>Étiquette: Deuxième ligne du tableau - Valeur de référence: Troisième ligne du tableau</h2>
 
-<pre><code>{
+<pre><code>data-wet-boew = '{
 	"referencevalue": 3,
 	"labelposition": 2,
 	"noencapsulation": true 
-}</code></pre>
+}'</code></pre>
 <table class="wb-charts wb-charts-line" data-wet-boew='{ "referencevalue": 3, "labelposition": 2, "noencapsulation": true }'>
 
 	<thead>
 		<tr>
 			<th rowspan="3"></th>
-			<th colspan="6">Group A</th>
-			<th rowspan="3">Group B</th>
-			<th rowspan="3">Group C</th>
+			<th colspan="6">Groupe A</th>
+			<th rowspan="3">Groupe B</th>
+			<th rowspan="3">Groupe C</th>
 		</tr>
 		<tr>
-			<th colspan="2">Subject</th>
-			<th colspan="4">Topic</th>
+			<th colspan="2">Sujet</th>
+			<th colspan="4">Thème</th>
 		</tr>
 		<tr>
 			<th>Item I</th>
 			<th>Item II</th>
-			<th>Object I</th>
-			<th>Object II</th>
-			<th>Object III</th>
-			<th>Object IV</th>
+			<th>Objet I</th>
+			<th>Objet II</th>
+			<th>Objet III</th>
+			<th>Objet IV</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<th>Serie One</th>
+			<th>Première Serie</th>
 			<td>5</td>
 			<td>10</td>
 			<td>5</td>
@@ -266,7 +327,7 @@
 			<td>10</td>
 		</tr>
 		<tr>
-			<th>Serie Two</th>
+			<th>Deuxième Serie</th>
 			<td>3</td>
 			<td>9</td>
 			<td>3</td>
@@ -277,7 +338,7 @@
 			<td>9</td>
 		</tr>
 		<tr>
-			<th>Serie Three</th>
+			<th>Troisième Serie</th>
 			<td>4</td>
 			<td>12</td>
 			<td>4</td>
@@ -290,38 +351,38 @@
 	</tbody>
 </table>
 
-<h2>Example 1 <code>labelposition-3</code> and <code>referencevalue-3</code></h2>
+<h2>Étiquette: Troisième ligne du tableau - Valeur de référence: Troisième ligne du tableau</h2>
 
-<pre><code>{
+<pre><code>data-wet-boew = '{
 	"referencevalue": 3,
 	"labelposition": 3,
 	"noencapsulation": true 
-}</code></pre>
+}'</code></pre>
 <table class="wb-charts wb-charts-line" data-wet-boew='{ "referencevalue": 3, "labelposition": 3, "noencapsulation": true }'>
 
 	<thead>
 		<tr>
 			<th rowspan="3"></th>
-			<th colspan="6">Group A</th>
-			<th rowspan="3">Group B</th>
-			<th rowspan="3">Group C</th>
+			<th colspan="6">Groupe A</th>
+			<th rowspan="3">Groupe B</th>
+			<th rowspan="3">Groupe C</th>
 		</tr>
 		<tr>
-			<th colspan="2">Subject</th>
-			<th colspan="4">Topic</th>
+			<th colspan="2">Sujet</th>
+			<th colspan="4">Thème</th>
 		</tr>
 		<tr>
 			<th>Item I</th>
 			<th>Item II</th>
-			<th>Object I</th>
-			<th>Object II</th>
-			<th>Object III</th>
-			<th>Object IV</th>
+			<th>Objet I</th>
+			<th>Objet II</th>
+			<th>Objet III</th>
+			<th>Objet IV</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<th>Serie One</th>
+			<th>Première Serie</th>
 			<td>5</td>
 			<td>10</td>
 			<td>5</td>
@@ -332,7 +393,7 @@
 			<td>10</td>
 		</tr>
 		<tr>
-			<th>Serie Two</th>
+			<th>Deuxième Serie</th>
 			<td>3</td>
 			<td>9</td>
 			<td>3</td>
@@ -343,7 +404,7 @@
 			<td>9</td>
 		</tr>
 		<tr>
-			<th>Serie Three</th>
+			<th>Troisième Serie</th>
 			<td>4</td>
 			<td>12</td>
 			<td>4</td>
