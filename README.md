@@ -27,6 +27,7 @@
 * [Versioning](http://wet-boew.github.io/wet-boew/docs/versions/version-info-en.html)
 * [Version history](http://wet-boew.github.io/wet-boew/docs/versions/index-en.html)
 * [Roadmap](http://wet-boew.github.io/wet-boew/docs/versions/rdmp-en.html)
+* [Communications material](http://wet-boew.github.io/wet-boew/docs/index-en.html#comms)
 
 ## Benefits
 
@@ -144,6 +145,7 @@
 * [Contrôle des versions](http://wet-boew.github.io/wet-boew/docs/versions/version-info-fr.html)
 * [Historique des versions](http://wet-boew.github.io/wet-boew/docs/versions/index-fr.html)
 * [Feuille de route](http://wet-boew.github.io/wet-boew/docs/versions/rdmp-fr.html)
+* [Matériel de communications](http://wet-boew.github.io/wet-boew/docs/index-fr.html#comms)
 
 ## Avantages
 
