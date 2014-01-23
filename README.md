@@ -18,7 +18,6 @@
 
 * [Benefits](#benefits)
 * [Working examples](http://wet-boew.github.io/wet-boew/demos/index-en.html)
-* [Working examples - v4.0](http://wet-boew.github.io/v4.0-ci/demos/index-en.html)
 * [Documentation](http://wet-boew.github.io/wet-boew/docs/index-en.html)
 * [Downloads](http://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html)
 * [Main project](https://github.com/wet-boew/wet-boew/)
@@ -105,7 +104,6 @@
  
 * [Avantages](#avantages)
 * [Exemples pratiques](http://wet-boew.github.io/wet-boew/demos/index-fr.html)
-* [Exemples pratiques - v4.0](http://wet-boew.github.io/v4.0-ci/demos/index-fr.html)
 * [Documentation](http://wet-boew.github.io/wet-boew/docs/index-fr.html)
 * [Téléchargements](http://wet-boew.github.io/wet-boew/docs/versions/dwnld-fr.html)
 * [Projet principal](https://github.com/wet-boew/wet-boew/)
