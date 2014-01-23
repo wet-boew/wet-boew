@@ -121,7 +121,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Implementation</h2>
 	<p>In your content, add a container with the <b>wet-boew-slideout</b> class:</p>
-	<pre>&lt;div class="wet-boew-slideout"&gt;
+	<pre><code>&lt;div class="wet-boew-slideout"&gt;
     &lt;h2&gt;Table of Contents&lt;/h2&gt;
     &lt;ul id="list"&gt;
         &lt;li&gt;&lt;a href="#"&gt;Context&lt;/a&gt;&lt;/li&gt;
@@ -133,7 +133,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
         &lt;li&gt;&lt;a href="#"&gt;Marketing&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href="#"&gt;Productivity&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</code></pre>
 
 	<p><a href="../../../demos/slideout/slideout-en.html">Working example</a></p>
 
@@ -154,7 +154,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 	<section>
 		<h3>Example</h3>
-		<pre>&lt;div class="wet-boew-slideout" data-wet-boew='{"txtShow": "Show table of contents", "txtHide": "Hide table of contents"}'&gt;
+		<pre><code>&lt;div class="wet-boew-slideout" data-wet-boew='{"txtShow": "Show table of contents", "txtHide": "Hide table of contents"}'&gt;
     &lt;h2&gt;Table of Contents&lt;/h2&gt;
     &lt;ul id="list"&gt;
         &lt;li&gt;&lt;a href="#"&gt;Context&lt;/a&gt;&lt;/li&gt;
@@ -166,18 +166,18 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
         &lt;li&gt;&lt;a href="#"&gt;Marketing&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href="#"&gt;Productivity&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</code></pre>
 	</section>
 
 	<section>
-		<h3>Migration from 3.0 to 3.1</h3>
+		<h3 id="v31migration">Migration from 3.0 to 3.1</h3>
 		<p>With version 3.1, the slideout tab now uses text instead of images.</p>
 		<p>The parameters to change the default tab content have been changed from "imgShow" and "imgHide" to "txtShow" and "txtHide" respectively.</p>
 		<p>For example, this "wet-boew-slideout" container from 3.0:</p>
-		<pre>&lt;div class="wet-boew-slideout" data-wet-boew='{"imgShow": {"src": "images/show-afficher.png", "height": 62, "width": 17, "alt": "Show the table of contents"}, "imgHide": {"src": "images/hide-cacher.png", "height": 62, "width": 17, "alt": "Hide the table of contents"} }'&gt;</pre>
+		<pre><code>&lt;div class="wet-boew-slideout" data-wet-boew='{"imgShow": {"src": "images/show-afficher.png", "height": 62, "width": 17, "alt": "Show the table of contents"}, "imgHide": {"src": "images/hide-cacher.png", "height": 62, "width": 17, "alt": "Hide the table of contents"} }'&gt;</code></pre>
 
 		<p>Should be replaced with the following in v3.1:</p>
-		<pre>&lt;div class="wet-boew-slideout" data-wet-boew='{"txtShow": "Show table of contents", "txtHide": "Hide table of contents"}'&gt;</pre>
+		<pre><code>&lt;div class="wet-boew-slideout" data-wet-boew='{"txtShow": "Show table of contents", "txtHide": "Hide table of contents"}'&gt;</code></pre>
 	</section>
 </section>
 
