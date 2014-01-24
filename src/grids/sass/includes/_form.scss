@@ -222,9 +222,9 @@
 
 		.form-addon {
 			@include inline-block;
-			min-height: 18px;
 			line-height: 18px;
 			min-width: 16px;
+			margin-top: 0;
 			@if $legacy-support-for-ie7 {
 				*min-width: auto;
 			}
