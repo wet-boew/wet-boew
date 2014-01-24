@@ -1045,8 +1045,8 @@
 				"site!deps/jquery.flot" + modeJS,
 				"site!deps/jquery.flot.pie" + modeJS,
 				"site!deps/jquery.flot.canvas" + modeJS,
-				"site!deps/jquery.flot.orderBars" + modeJS//,
-				// "site!/../assets/tableparser.js"
+				"site!deps/jquery.flot.orderBars" + modeJS,
+				"site!deps/tableparser" + modeJS
 			];
 	
 		if ( elm.className.indexOf( initedClass ) === -1 ) {
@@ -1055,7 +1055,7 @@
 
 			elm.className += " " + initedClass;
 
-			// Load the required dependencies and prettify the code once finished
+			// Load the required dependencies
 			Modernizr.load({
 
 				// For loading multiple dependencies
