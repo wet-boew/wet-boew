@@ -110,7 +110,11 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Overview</h2>
 	<p><b>Project lead:</b> Paul Jackson (<a href="https://www.github.com/pjackson28">@pjackson28</a>)</p>
-	<p>The text highlighting component highlights any text within a pre-defined area that matches case-insensitive search criteria specified through the URL's query string. Supports multi-word strings, including spaces and basic punctuation.</p>
+
+	<section>
+		<h3>Purpose</h3>
+		<p>The text highlighting component highlights any text within a pre-defined area that matches case-insensitive search criteria specified through the URL's query string. Supports multi-word strings, including spaces and basic punctuation.</p>
+	</section>
 
 	<section>
 		<h3>Benefits</h3>
@@ -137,8 +141,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Implementation</h2>
 	<ol>
-		<li>Define your search area. Add the <b>wet-boew-texthighlight</b> class to the tag whose contents you want to search in.</li>
-		<li>Specify the search criteria in a URL query string. Add <b>texthighlight=&lt;text_1&gt;&lt;/text_1&gt;+&lt;text_2&gt;&lt;/text_2&gt;+&lt;text_3&gt;&lt;/text_3&gt;</b> to the query string.</li>
+		<li>Define your search area. Add the <code>wet-boew-texthighlight</code> class to the tag whose contents you want to search in.</li>
+		<li>Specify the search criteria in a URL query string. Add <code>texthighlight=&lt;text_1&gt;&lt;/text_1&gt;+&lt;text_2&gt;&lt;/text_2&gt;+&lt;text_3&gt;&lt;/text_3&gt;</code> to the query string.</li>
 	</ol>
 	<p><b>Note 1:</b> Search criteria using special regex characters such as ", |, ?, +, ( or ) may be partially or fully excluded from the results.</p>
 	<p><b>Note 2:</b> HTML markup validation requires all spaces in links to be replaced by %20.</p>
@@ -155,10 +159,10 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<li>causes sickness in birds, it can also infect people.</li>
 		</ul>
 		<p><b>Query string:</b></p>
-		<pre>?texthighlight&amp;amp;amp&amp;#59;&amp;amp;&amp;#35;35&amp;#59;61&amp;amp;&amp;#35;59&amp;#59;avian%20influenza
+		<pre><code>?texthighlight&amp;amp;amp&amp;#59;&amp;amp;&amp;#35;35&amp;#59;61&amp;amp;&amp;#35;59&amp;#59;avian%20influenza
 +world+cook+flu&amp;amp;amp&amp;#59;&amp;amp;&amp;#35;35&amp;#59;45&amp;amp;&amp;#35;59&amp;#59;like%20symptoms
 +Don&amp;amp;amp&amp;#59;&amp;amp;&amp;#35;35&amp;#59;39&amp;amp;&amp;#35;59&amp;#59;t%20Forget...
-+causes%20sickness%20in%20birds,%20it%20can%20also%20infect%20people.</pre>
++causes%20sickness%20in%20birds,%20it%20can%20also%20infect%20people.</code></pre>
 		<p><a href="../../../demos/texthighlight/texthighlight-en.html?texthighlight=avian%20influenza+world+cook+flu-like%20symptoms+Don%27t%20Forget...+causes%20sickness%20in%20birds,%20it%20can%20also%20infect%20people.#example">Highlight example text that meets the search criteria</a></p>
 	</section>
 </section>

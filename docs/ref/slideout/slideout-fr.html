@@ -112,8 +112,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<p><b>Chef du projet :</b> Stephane Berube (<a href="https://github.com/berubs">@berubs</a>)</p>
 
 	<section>
-		<h3>But</h3>
-		<p>Le but de ce composant est d'ajouter un mécanisme pour afficher de contenu additional (p. ex. une table des matières) sans gaspiller d'espace valable sur la page.</p>
+		<h3>Objet</h3>
+		<p>L'objet de ce composant est d'ajouter un mécanisme pour afficher de contenu additional (p. ex. une table des matières) sans gaspiller d'espace valable sur la page.</p>
 	</section>
 
 	<section>
@@ -125,7 +125,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Mise en oeuvre</h2>
 	<p>Dans votre contenu, affichez un élément avec la classe <b>wet-boew-slideout</b> :</p>
-	<pre>&lt;div class="wet-boew-slideout"&gt;
+	<pre><code>&lt;div class="wet-boew-slideout"&gt;
     &lt;h2&gt;Table des matières&lt;/h2&gt;
     &lt;ul id="list"&gt;
         &lt;li&gt;&lt;a href="#"&gt;Contexte&lt;/a&gt;&lt;/li&gt;
@@ -137,24 +137,24 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
         &lt;li&gt;&lt;a href="#"&gt;Commercialisation&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href="#"&gt;Productivité&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</code></pre>
 	<p><a href="../../../demos/slideout/slideout-fr.html">Exemple pratique</a></p>
 
 	<section>
-		<h3>Paramètres/Options</h3>
-		<p>Utilisés les paramètres suivants dans l'attribut <b>data-wet-boew</b> pour changer l'image qui est utilsée par l'onglet coulissant.</p>
+		<h3>Paramètres</h3>
+		<p>Utilisés les paramètres suivants dans l'attribut <code>data-wet-boew</code> pour changer l'image qui est utilsée par l'onglet coulissant.</p>
 
 		<section>
-			<h4>txtShow</h4>
+			<h4><code>txtShow</code></h4>
 			<p>Contient le texte montré quand le panneau de l'onglet coulissant est fermé.</p>
 		</section>
 
 		<section>
-			<h4>txtHide</h4>
+			<h4><code>txtHide</code></h4>
 			<p>Contient le texte montré quand le panneau de l'onglet coulissant est ouvert.</p>
 
 			<h3>Exemple</h3>
-			<pre>&lt;div class="wet-boew-slideout" data-wet-boew='{"txtShow": "Afficher la table des matières", "txtHide": "Cacher la table des matières"} }'&gt;
+			<pre><code>&lt;div class="wet-boew-slideout" data-wet-boew='{"txtShow": "Afficher la table des matières", "txtHide": "Cacher la table des matières"} }'&gt;
     &lt;h2&gt;Table of Contents&lt;/h2&gt;
     &lt;ul id="list"&gt;
         &lt;li&gt;&lt;a href="#"&gt;Context&lt;/a&gt;&lt;/li&gt;
@@ -166,7 +166,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
         &lt;li&gt;&lt;a href="#"&gt;Marketing&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href="#"&gt;Productivity&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</code></pre>
 		</section>
 	</section>
 </section>

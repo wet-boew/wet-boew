@@ -112,7 +112,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<p><b>Responsable de projet :</b> Eric Poirier (<a href="https://github.com/ericpoirier">@ericpoirier</a>)</p>
 
 	<section>
-		<h3>But</h3>
+		<h3>Objet</h3>
 		<ul>
 			<li>Affiche les images et autres contenus en utilisant le plugin <a href="http://www.jacklmoore.com/colorbox">ColorBox</a>.</li>
 			<li>Navigation facile dans des galeries d'images à l'aide de la souris, un écran tactile ou d'un clavier.</li>
@@ -121,36 +121,34 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 </section>
 
 <section>
-	<h2>Exécution</h2>
-	<p>Chaque groupe de galerie de photos et des éléments seul doivent être à l'intérieur de son propre <code>&lt;div&gt;</code> en utilisant la classe <b>wet-boew-lightbox</b>. Aussi, chaque <code>&lt;img&gt;</code> éléments doivent être à l'intérieur de leur propre <code>&lt;a&gt;</code>.</p>
+	<h2>Mise en oeuvre</h2>
+	<p>Chaque groupe de galerie de photos et des éléments seul doivent être à l'intérieur de son propre <code>&lt;div&gt;</code> en utilisant la classe <code>wet-boew-lightbox</code>. Aussi, chaque <code>&lt;img&gt;</code> éléments doivent être à l'intérieur de leur propre <code>&lt;a&gt;</code>.</p>
 	<p><b>Exemple :</b></p>
-	<pre>&lt;div class="wet-boew-lightbox"&gt;
+	<pre><code>&lt;div class="wet-boew-lightbox"&gt;
   &lt;a class="lb-item" href="image/image_source.jpg" title="Texte alternatif pour l'image"&gt;
     &lt;img src="image/image_source.jpg" alt="Texte alternatif pour l'image"&gt;
   &lt;/a&gt;
-&lt;/div&gt;
-</pre>
-	<p><b>Remarque :</b> La classe <b>lb-item</b> est utilisé ici comme exemple. Ci-dessous sont les options pour mettre en œuvre le Lightbox.</p>
+&lt;/div&gt;</code></pre>
+	<p><b>Remarque :</b> La classe <code>lb-item</code> est utilisé ici comme exemple. Ci-dessous sont les options pour mettre en œuvre le Lightbox.</p>
 </section>
 
 <section>
 	<h2>Options</h2>
 	<section>
 		<h3>Éléments seul</h3>
-		<p>Pour mettre en œuvre Lightbox à une seule image/photo sur votre page, vous devez utiliser la classe lb-item sur les éléments <code>&lt;a&gt;</code>.</p>
-		<pre>&lt;div class="wet-boew-lightbox"&gt;
+		<p>Pour mettre en œuvre Lightbox à une seule image/photo sur votre page, vous devez utiliser la classe <code>lb-item</code> sur les éléments <code>&lt;a&gt;</code>.</p>
+		<pre><code>&lt;div class="wet-boew-lightbox"&gt;
   &lt;a class="lb-item" href="images/image_source.jpg" title="Texte alternatif pour l'image"&gt;
     &lt;img src="images/image_source.jpg" alt="Texte alternatif pour l'image" class="image-actual" /&gt;
   &lt;/a&gt;
-&lt;/div&gt;
-</pre>
+&lt;/div&gt;</code></pre>
 		<p><a href="../../../demos/lightbox/lightbox-fr.html#examples1">Exemple</a></p>
 	</section>
 
 	<section>
 		<h3>Gallerie de photos</h3>
-		<p>Pour mettre en œuvre Lightbox à un <b>groupe d'images ou de photos</b> sur votre page, vous devez utiliser la classe <b>lb-item-gal</b> sur l'élément <code>&lt;a&gt;</code> ainsi que la classe <b>lb-gallery</b> sur l'élément <code>&lt;ul&gt;</code> :</p>
-		<pre>&lt;div class="wet-boew-lightbox"&gt;
+		<p>Pour mettre en œuvre Lightbox à un <b>groupe d'images ou de photos</b> sur votre page, vous devez utiliser la classe <code>lb-item-gal</code> sur l'élément <code>&lt;a&gt;</code> ainsi que la classe <code>lb-gallery</code> sur l'élément <code>&lt;ul&gt;</code>&#160;:</p>
+		<pre><code>&lt;div class="wet-boew-lightbox"&gt;
   &lt;ul class="lb-gallery"&gt;
     &lt;li&gt;
       &lt;a class="lb-item-gal" href="images/image_source.jpg" title="Texte alternatif pour l'image"&gt;
@@ -160,15 +158,14 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
     &lt;li&gt;...&lt;/li&gt;
     &lt;li&gt;...&lt;/li&gt;
   &lt;/ul&gt;
-&lt;/div&gt;
-</pre>
+&lt;/div&gt;</code></pre>
 		<p><a href="../../../demos/lightbox/lightbox-fr.html#examples2">Exemple</a></p>
 	</section>
 
 	<section>
 		<h3>Gallerie de photos cachée</h3>
-		<p>Pour mettre en œuvre Lightbox à un <b>groupe d'images ou de photos cachées</b> sur votre page vous devez utiliser la classe <b>lb-item-gal</b> sur l'élément <code>&lt;a&gt;</code> ainsi que la classe <b>lb-gallery-hidden</b> sur l'élément <code>&lt;ul&gt;</code> :</p>
-		<pre>&lt;div class="wet-boew-lightbox"&gt;
+		<p>Pour mettre en œuvre Lightbox à un <b>groupe d'images ou de photos cachées</b> sur votre page vous devez utiliser la classe <code>lb-item-gal</code> sur l'élément <code>&lt;a&gt;</code> ainsi que la classe <code>lb-gallery-hidden</code> sur l'élément <code>&lt;ul&gt;</code> :</p>
+		<pre><code>&lt;div class="wet-boew-lightbox"&gt;
   &lt;ul class="lb-gallery-hidden"&gt;
     &lt;li&gt;
       &lt;a class="lb-item-gal" href="images/image_source.jpg" title="Texte alternatif pour l'image"&gt;
@@ -178,21 +175,19 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
     &lt;li&gt;...&lt;/li&gt;
     &lt;li&gt;...&lt;/li&gt;
   &lt;/ul&gt;
-&lt;/div&gt;
-</pre>
+&lt;/div&gt;</code></pre>
 		<p><a href="../../../demos/lightbox/lightbox-fr.html#examples3">Exemple</a></p>
 	</section>
 
 	<section>
 		<h3>Forcer un lien de photo</h3>
-		<p>Vous pouvez forcer un lien de photo en ajoutant la classe <code>force-photo</code> à l'élément div qui contient <code>wet-boew-lightbox</code>. Utilisez cette fonction lorsque la détection automatique des photos échoue (p.ex., un url comme 'photo.php' ou '&amp;photo=1234' au lieu de 'photo.jpg')</p>
-		<p>Example:</p>
-		<pre>&lt;div class="wet-boew-lightbox force-photo"&gt;
+		<p>Vous pouvez forcer un lien de photo en ajoutant la classe <code>force-photo</code> à l'élément div qui contient <code>wet-boew-lightbox</code>. Utilisez cette fonction lorsque la détection automatique des photos échoue (p.ex., un url comme <code>photo.php</code> ou <code>&amp;photo=1234</code> au lieu de <code>photo.jpg</code>)</p>
+		<p>Exemple&#160;:</p>
+		<pre><code>&lt;div class="wet-boew-lightbox force-photo"&gt;
   &lt;a class="lb-item" href="photo.php" title="Texte alternatif pour l'image"&gt;
     &lt;img src="image/image_source.jpg" alt="Texte alternatif pour l'image"&gt;
   &lt;/a&gt;
-&lt;/div&gt;
-</pre>
+&lt;/div&gt;</code></pre>
 	</section>
 </section>
 

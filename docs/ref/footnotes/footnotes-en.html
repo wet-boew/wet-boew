@@ -145,20 +145,20 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<section>
 			<h4>Link to Footnotes Section</h4>
 			<p>Use the following code to link to a footnotes section.</p>
-			<pre>&lt;a href="#fnb"&gt;Footnotes&lt;/a&gt;</pre>
+			<pre><code>&lt;a href="#fnb"&gt;Footnotes&lt;/a&gt;</code></pre>
 		</section>
 
 		<section>
 			<h4>Link to a Footnote</h4>
 			<p>Use the following code as a basis to link to a particular footnote.</p>
-			<pre>&lt;sup id="fnb1-ref"&gt;&lt;a class="footnote-link" href="#fnb1"&gt;&lt;span class="wb-invisible"&gt;Footnote &lt;/span&gt;1&lt;/a&gt;&lt;/sup&gt;</pre>
+			<pre><code>&lt;sup id="fnb1-ref"&gt;&lt;a class="footnote-link" href="#fnb1"&gt;&lt;span class="wb-invisible"&gt;Footnote &lt;/span&gt;1&lt;/a&gt;&lt;/sup&gt;</code></pre>
 			<p><b>Note:</b> The ID attributes of links to a multi-referenced footnote should contain an alphabetically-ordered letter just after the number (e.g. <code>id="fnb2a-ref"</code>,  <code>id="fnb2b-ref"</code>, <code>id="fnb2c-ref"</code>, etc) to make it possible to programmatically distinguish one referrer link from another.</p>
 		</section>
 
 		<section>
 			<h4>Link to Multiple Footnotes</h4>
 			<p>Use the following code as a basis to consecutively link to multiple footnotes.</p>
-			<pre>&lt;sup id="fnb2-ref"&gt;&lt;a class="footnote-link" href="#fnb2"&gt;&lt;span class="wb-invisible"&gt;Footnote &lt;/span&gt;2&lt;/a&gt;&lt;/sup&gt;&#160;&lt;sup id="fnb3-ref"&gt;&lt;a class="footnote-link" href="#fnb3"&gt;&lt;span class="wb-invisible"&gt;Footnote &lt;/span&gt;3&lt;/a&gt;&lt;/sup&gt;</pre>
+			<pre><code>&lt;sup id="fnb2-ref"&gt;&lt;a class="footnote-link" href="#fnb2"&gt;&lt;span class="wb-invisible"&gt;Footnote &lt;/span&gt;2&lt;/a&gt;&lt;/sup&gt;&#160;&lt;sup id="fnb3-ref"&gt;&lt;a class="footnote-link" href="#fnb3"&gt;&lt;span class="wb-invisible"&gt;Footnote &lt;/span&gt;3&lt;/a&gt;&lt;/sup&gt;</code></pre>
 			<p><b>Note:</b> Non-breaking spaces (i.e. <code>&amp;#160;</code>) should be used to separate each link.</p>
 		</section>
 	</section>
@@ -167,14 +167,14 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<h3>Footnotes Section</h3>
 		<p>This section explains how to set-up a dedicated footnotes section.</p>
 		<p>Use the following code as a basis to create the section:</p>
-<pre>&lt;div class="wet-boew-footnotes" role="note"&gt;
+<pre><code>&lt;div class="wet-boew-footnotes" role="note"&gt;
 	&lt;section&gt;
 		&lt;h2 id="fnb" class="wb-invisible"&gt;Footnotes&lt;/h2&gt;
 		&lt;dl&gt;
 			&lt;!--PLACE FOOTNOTES HERE--&gt;
 		&lt;/dl&gt;
 	&lt;/section&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</code></pre>
 	</section>
 
 	<section>
@@ -185,22 +185,22 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<h4>Standard Footnote</h4>
 			<p>This is a footnote that is referenced only once within a given page's content.</p>
 			<p>Use the following code as a basis to create a standard footnote:</p>
-<pre>&lt;dt&gt;Footnote 1&lt;/dt&gt;
+<pre><code>&lt;dt&gt;Footnote 1&lt;/dt&gt;
 &lt;dd id="fnb1"&gt;
 	&lt;p&gt;Example of a standard footnote.&lt;/p&gt;
 	&lt;p class="footnote-return"&gt;&lt;a href="#fnb1-ref"&gt;&lt;span class="wb-invisible"&gt;Return to footnote &lt;/span&gt;1&lt;span class="wb-invisible"&gt; referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/dd&gt;</pre>
+&lt;/dd&gt;</code></pre>
 		</section>
 
 		<section>
 			<h4>Multi-referenced Footnote</h4>
 			<p>This is a footnote that is referenced two or more times within a given page's content. By default, its return link should point to (and explicitly identify) the first reference to the footnote. If JavaScript support is available, a supporting plugin will automatically remove the explicit identifier in the return link text, in addition to managing the return link's destination when the footnote is accessed via a different reference from the content.</p>
 			<p>Use the following code as a basis to create a footnote that can be referenced by multiple pieces of content:</p>
-<pre>&lt;dt&gt;Footnote 2&lt;/dt&gt;
+<pre><code>&lt;dt&gt;Footnote 2&lt;/dt&gt;
 &lt;dd id="fnb2"&gt;
 	&lt;p&gt;Example of a footnote being referenced by multiple pieces of content.&lt;/p&gt;
 	&lt;p class="footnote-return"&gt;&lt;a href="#fnb2a-ref"&gt;&lt;span class="wb-invisible"&gt;Return to &lt;span&gt;first&lt;/span&gt; footnote &lt;/span&gt;2&lt;span class="wb-invisible"&gt; referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/dd&gt;</pre>
+&lt;/dd&gt;</code></pre>
 
 			<p><b>Note 1:</b> The <code>href</code> attributes of return links in multi-referenced footnotes should always contain an "a" after the footnote number (e.g. <code>href="#fnb2a-ref"</code>).</p>
 			<p><b>Note 2:</b> The return link text of multi-referenced footnotes should always contain <code>&lt;span&gt;first&lt;/span&gt;</code>, to specifically denote their default destinations when JavaScript support isn't present.</p>
@@ -210,13 +210,13 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<h4>Multi-paragraph Footnote</h4>
 			<p>Footnotes containing two or more paragraphs are supported. They can take the form of either a standard or multi-referenced footnote.</p>
 			<p>Use the following code as a basis to create a footnote containing multiple paragraphs:</p>
-<pre>&lt;dt&gt;Footnote 3&lt;/dt&gt;
+<pre><code>&lt;dt&gt;Footnote 3&lt;/dt&gt;
 &lt;dd id="fnb3"&gt;
 	&lt;p&gt;Example of a footnote containing multiple paragraphs (first paragraph).&lt;/p&gt;
 	&lt;p&gt;Example of a footnote containing multiple paragraphs (second paragraph).&lt;/p&gt;
 	&lt;p&gt;Example of a footnote containing multiple paragraphs (third paragraph).&lt;/p&gt;
 	&lt;p class="footnote-return"&gt;&lt;a href="#fnb3-ref"&gt;&lt;span class="wb-invisible"&gt;Return to footnote &lt;/span&gt;3&lt;span class="wb-invisible"&gt; referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/dd&gt;</pre>
+&lt;/dd&gt;</code></pre>
 		</section>
 	</section>
 
