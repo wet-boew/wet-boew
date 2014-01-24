@@ -1046,7 +1046,7 @@
 				"site!deps/jquery.flot.pie" + modeJS,
 				"site!deps/jquery.flot.canvas" + modeJS,
 				"site!deps/jquery.flot.orderBars" + modeJS,
-				"site!../assets/" + "tableparser.js"
+				"site!deps/tableparser" + modeJS
 			];
 	
 		if ( elm.className.indexOf( initedClass ) === -1 ) {
