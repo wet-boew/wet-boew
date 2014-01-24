@@ -146,13 +146,13 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<section>
 		<h4>Lien vers la section des notes de bas de page</h4>
 		<p>Utiliser le code suivant pour rechercher le lien vers la section des notes de bas de page.</p>
-		<pre>&lt;a href="#fnb"&gt;Notes de bas de page&lt;/a&gt;</pre>
+		<pre><code>&lt;a href="#fnb"&gt;Notes de bas de page&lt;/a&gt;</code></pre>
 	</section>
 
 	<section>
 		<h4>Lien vers une note de bas de page</h4>
 		<p>Utiliser le code suivant pour rechercher le lien vers une note de bas de page particulière.</p>
-		<pre>&lt;sup id="fnb1-ref"&gt;&lt;a class="footnote-link" href="#fnb1"&gt;&lt;span class="wb-invisible"&gt;Note de bas de page &lt;/span&gt;1&lt;/a&gt;&lt;/sup&gt;</pre>
+		<pre><code>&lt;sup id="fnb1-ref"&gt;&lt;a class="footnote-link" href="#fnb1"&gt;&lt;span class="wb-invisible"&gt;Note de bas de page &lt;/span&gt;1&lt;/a&gt;&lt;/sup&gt;</code></pre>
 
 		<p><b>Remarque :</b> Les attributs ID des liens vers une note de bas de page multiréférentielle devraient contenir une lettre classée par ordre alphabétique placée juste après le nombre (par exemple : <code>id="fnb2a-ref"</code>, <code>id="fnb2b-ref"</code>, <code>id="fnb2c-ref"</code>, etc.) afin de pouvoir faire, à l’aide d’un programme, la distinction entre les liens de référence.</p>
 	</section>
@@ -160,7 +160,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<section>
 		<h4>Link to Multiple Footnotes</h4>
 		<p>Use the following code as a basis to consecutively link to multiple footnotes.</p>
-		<pre>&lt;sup id="fnb2-ref"&gt;&lt;a class="footnote-link" href="#fnb2"&gt;&lt;span class="wb-invisible"&gt;Note de bas de page &lt;/span&gt;2&lt;/a&gt;&lt;/sup&gt;&#160;&lt;sup id="fnb3-ref"&gt;&lt;a class="footnote-link" href="#fnb3"&gt;&lt;span class="wb-invisible"&gt;Note de bas de page &lt;/span&gt;3&lt;/a&gt;&lt;/sup&gt;</pre>
+		<pre><code>&lt;sup id="fnb2-ref"&gt;&lt;a class="footnote-link" href="#fnb2"&gt;&lt;span class="wb-invisible"&gt;Note de bas de page &lt;/span&gt;2&lt;/a&gt;&lt;/sup&gt;&#160;&lt;sup id="fnb3-ref"&gt;&lt;a class="footnote-link" href="#fnb3"&gt;&lt;span class="wb-invisible"&gt;Note de bas de page &lt;/span&gt;3&lt;/a&gt;&lt;/sup&gt;</code></pre>
 
 		<p><b>Note:</b> Non-breaking spaces (i.e. <code>&amp;#160;</code>) should be used to separate each link.</p>
 	</section>
@@ -169,14 +169,14 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<h3>Section des notes de bas de page</h3>
 		<p>Cette section explique comment créer une section réservée aux notes de bas de page.</p>
 		<p>Utiliser le code suivant pour créer la section:</p>
-		<pre>&lt;div class="wet-boew-footnotes" role="note"&gt;
+		<pre><code>&lt;div class="wet-boew-footnotes" role="note"&gt;
 	&lt;section&gt;
 		&lt;h2 id="fnb" class="wb-invisible"&gt;Notes de bas de page&lt;/h2&gt;
 		&lt;dl&gt;
 			&lt;!--INSÉRER LES NOTES DE BAS DE PAGE ICI--&gt;
 		&lt;/dl&gt;
 	&lt;/section&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</code></pre>
 	</section>
 
 	<section>
@@ -187,22 +187,22 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<h4>Notes de bas de page normales</h4>
 			<p>Il s’agit d’une note de bas de page mentionnée qu’une seule fois dans une page donnée.</p>
 			<p>Utiliser le code suivant pour créer une note de bas de page normale :</p>
-			<pre>&lt;dt&gt;Note de bas de page 1&lt;/dt&gt;
+			<pre><code>&lt;dt&gt;Note de bas de page 1&lt;/dt&gt;
 &lt;dd id="fnb1"&gt;
 	&lt;p&gt;Exemple de note de bas de page standard.&lt;/p&gt;
 	&lt;p class="footnote-return"&gt;&lt;a href="#fnb1-ref"&gt;&lt;span class="wb-invisible"&gt;Retour à la référence de la note de bas de page &lt;/span&gt;1&lt;/a&gt;&lt;/p&gt;
-&lt;/dd&gt;</pre>
+&lt;/dd&gt;</code></pre>
 		</section>
 
 		<section>
 			<h4>Note de bas de page multiréférentielle</h4>
 			<p>Il s’agit d’une note de bas de page mentionnée deux fois ou plus dans une page donnée. Par défaut, son lien retour devrait indiquer (et identifier explicitement) le premier renvoi à la note de bas de page. Si la prise en charge de JavaScript est disponible, un plugiciel d’appui supprimera automatiquement l’identificateur explicite dans le texte du lien retour, en plus de gérer la destination du lien retour lorsque l’accès à la note de bas de page se fait par une référence différente à partir du contenu.</p>
 			<p>Utiliser le code suivant pour créer une note de bas de page qui peut être mentionnée par plusieurs éléments du contenu:</p>
-			<pre>&lt;dt&gt;Note de bas de page 2&lt;/dt&gt;
+			<pre><code>&lt;dt&gt;Note de bas de page 2&lt;/dt&gt;
 &lt;dd id="fnb2"&gt;
 	&lt;p&gt;Exemple de note de bas de page qui comporte de nombreux liens.&lt;/p&gt;
 	&lt;p class="footnote-return"&gt;&lt;a href="#fnb2a-ref"&gt;&lt;span class="wb-invisible"&gt;Retour à la &lt;span&gt;première&lt;/span&gt; référence de la note de bas de page &lt;/span&gt;2&lt;/a&gt;&lt;/p&gt;
-&lt;/dd&gt;</pre>
+&lt;/dd&gt;</code></pre>
 
 			<p><b>Remarque :</b> Les attributs <code>href</code> des liens retour dans des notes de bas de page multiréférentielles devraient toujours contenir un « a » après le numéro de la note de bas de page (p. ex. <code>href="#fnb2a-ref"</code>).</p>
 			<p><b>Remarque 2 :</b> Le texte du lien retour de notes de bas de page multiréférentielles devrait toujours contenir, pour désigner spécifiquement leurs destinations par défaut quand il n’y a pas de prise en charge de JavaScript.</p>
@@ -212,13 +212,13 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<h4>Note de bas de page de plusieurs paragraphes</h4>
 			<p>Les notes de bas de page contenant deux ou plusieurs paragraphes sont prises en charge. Elles peuvent se présenter sous forme de notes de bas de page normale ou multiréférentielle.</p>
 			<p>Utiliser le code suivant pour créer une note de bas de page contenant plusieurs paragraphes :</p>
-			<pre>&lt;dt&gt;Note de bas de page 3&lt;/dt&gt;
+			<pre><code>&lt;dt&gt;Note de bas de page 3&lt;/dt&gt;
 &lt;dd id="fnb3"&gt;
 	&lt;p&gt;Exemple de note de bas de page qui compte plusieurs paragraphes (premier paragraphe).&lt;/p&gt;
 	&lt;p&gt;Exemple de note de bas de page qui compte plusieurs paragraphes (deuxième paragraphe).&lt;/p&gt;
 	&lt;p&gt;Exemple de note de bas de page qui compte plusieurs paragraphes (troisième paragraphe).&lt;/p&gt;
 	&lt;p class="footnote-return"&gt;&lt;a href="#fnb3-ref"&gt;&lt;span class="wb-invisible"&gt;Retour à la référence de la note de bas de page &lt;/span&gt;3&lt;/a&gt;&lt;/p&gt;
-&lt;/dd&gt;</pre>
+&lt;/dd&gt;</code></pre>
 		</section>
 	</section>
 

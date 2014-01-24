@@ -110,11 +110,16 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Aperçu</h2>
 	<p><strong>Chef de projet :</strong> Pierre Dubois (<a href="https://github.com/duboisp">@duboisp</a>)</p>
-	<p>Version 2.2 et versions antérieures de la BOEW. Au départ, le composant Graphiques était une intégration du <a href="http://www.filamentgroup.com/lab/update_to_jquery_visualize_accessible_charts_with_html5_from_designing_with/">projet de visualisation du groupe Filament</a>(anglais seulement).</p>
-	<p>Version 2.3 de la BOEW. Le composant Graphiques a été entièrement réécrit. Cette version comprenait la première version de l’analyseur de tableaux complexes intégré directement dans les graphiques. Le système principal de dessin «&#160;Canvas&#160;» a été remplacé par «&#160;SVG/VML&#160;» dans la bibliothèque RaphaelJS. Il est maintenant possible de personnaliser le graphique directement en fonction de la catégorie CSS attribuée au balisage du graphique.</p>
-	<p>Version 3.0 de la BOEW (actuelle). Presque identique à la version précédente. L’analyseur de tableaux a été réécrit et partiellement retranché du composant Graphiques. Cette version comprend une version hybride des analyseurs de tableaux précédent et actuel. Cette décision a été prise pour des raisons techniques et de délais. Malheureusement, cette version n’intègre pas pleinement l’analyseur de tableaux actuel, et l’analyseur ne traite que partiellement les tableaux complexes définis par douze nouvelles techniques HTML. Cette version comprend plus de catégories d’options de CSS pour la personnalisation des graphiques.</p>
+
 	<section>
-		<h3>Objectif</h3>
+		<h3>Description</h3>
+		<p>Version 2.2 et versions antérieures de la BOEW. Au départ, le composant Graphiques était une intégration du <a href="http://www.filamentgroup.com/lab/update_to_jquery_visualize_accessible_charts_with_html5_from_designing_with/">projet de visualisation du groupe Filament</a>(anglais seulement).</p>
+		<p>Version 2.3 de la BOEW. Le composant Graphiques a été entièrement réécrit. Cette version comprenait la première version de l’analyseur de tableaux complexes intégré directement dans les graphiques. Le système principal de dessin «&#160;Canvas&#160;» a été remplacé par «&#160;SVG/VML&#160;» dans la bibliothèque RaphaelJS. Il est maintenant possible de personnaliser le graphique directement en fonction de la catégorie CSS attribuée au balisage du graphique.</p>
+		<p>Version 3.0 de la BOEW (actuelle). Presque identique à la version précédente. L’analyseur de tableaux a été réécrit et partiellement retranché du composant Graphiques. Cette version comprend une version hybride des analyseurs de tableaux précédent et actuel. Cette décision a été prise pour des raisons techniques et de délais. Malheureusement, cette version n’intègre pas pleinement l’analyseur de tableaux actuel, et l’analyseur ne traite que partiellement les tableaux complexes définis par douze nouvelles techniques HTML. Cette version comprend plus de catégories d’options de CSS pour la personnalisation des graphiques.</p>
+	</section>
+
+	<section>
+		<h3>Objet</h3>
 		<p>Ce composant génère de façon dynamique des graphiques à partir de données tabulaires. Les données utilisées pour générer le graphique doivent avoir une structure définie dans les techniques d’élaboration de tableaux. Le graphique généré peut être facilement personnalisé en fonction de l’option CSS choisie pour les différents éléments des tableaux.</p>
 		<ul>
 			<li>Il est plus facile à mettre à jour et à maintenir que les composants qui servent à créer des graphiques et des diagrammes à images.</li>
@@ -127,9 +132,9 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		</ul>
 	</section>
 	<section>
-		<h3>Justification</h3>
+		<h3>Raison d'être</h3>
 		<p>Conformément à la <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv.html">Règle 1.1 des WCAG</a>(anglais seulement), tout graphique doit avoir son équivalent de données tabulaires. Le composant Graphiques utilise la version équivalente (dans le cas présent l’élément tableau) pour générer le graphique. Les données du tableau fournissent une longue description au graphique. La légende du tableau et sa description donnent son titre et sa description au graphique.</p>
-		<p>Si vous n’utilisez pas le composant Graphiques pour créer votre tableau, n’oubliez pas d’ajouter une longue description. Règle 1.1 des WCAG : «&#160;Proposer des équivalents textuels à tout contenu non textuel qui pourra alors être présenté sous d'autres formes selon les besoins de l'utilisateur : grands caractères, braille, synthèse vocale, symboles ou langage simplifié.&#160;».</p>
+		<p>Si vous n’utilisez pas le composant Graphiques pour créer votre tableau, n’oubliez pas d’ajouter une longue description. Règle 1.1 des WCAG : «&#160;Proposer des équivalents textuels à tout contenu non textuel qui pourra alors être présenté sous d'autres formes selon les besoins de l'utilisateur&#160;: grands caractères, braille, synthèse vocale, symboles ou langage simplifié.&#160;».</p>
 	</section>
 	<section>
 		<h3>Techniques pour créer des tableaux</h3>
@@ -139,14 +144,14 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<li>Structure de l’en-tête de ligne</li>
 			<li>Structure de l’en-tête de colonne</li>
 		</ul>
-		<p>Vous devez utiliser les éléments de regroupement des tableaux thead et tbody. Seul le premier groupe de lignes de données peut être représenté dans un graphique.</p>
+		<p>Vous devez utiliser les éléments de regroupement des tableaux <code>thead</code> et <code>tbody</code>. Seul le premier groupe de lignes de données peut être représenté dans un graphique.</p>
 	</section>
 </section>
 <section>
 	<h2>Mise en œuvre</h2>
 	<ol>
 		<li>Validez votre tableau HTML à l’aide du Validateur de tableaux HTML issu du projet des Outils optimaux de contenu. À titre informatif, vos identificateurs/en-têtes seront automatiquement corrigés par le valideur de tableau.</li>
-		<li>Ajoutez la catégorie «&#160;wet-boew-charts&#160;» dans l’élément «&#160;table&#160;».</li>
+		<li>Ajoutez la catégorie «&#160;<code>wet-boew-charts</code>&#160;» dans l’élément «&#160;<code>table</code>&#160;».</li>
 		<li>Personnalisez vos graphiques avec la catégorie d’options CSS (dont il est question ci-après).</li>
 	</ol>
 	<p><strong>Nota :</strong> Consultez les sections Techniques pour créer des tableaux et Problèmes connus.</p>
@@ -167,23 +172,23 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<section>
 			<h4>Élément <code>&lt;table&gt;</code></h4>
 			<ul>
-				<li><strong>type par défaut :</strong> Énumération («&#160;line&#160;», «&#160;area&#160;», «&#160;bar&#160;», «&#160;stacked&#160;», «&#160;pie&#160;»). Définit le type de tableau par défaut. PVI «&#160;wb-charts-line&#160;» et «&#160;wb-charts-type-line&#160;» sont des équivalents.</li>
-				<li><strong>width :</strong> Nombre. Définit la largeur du graphique en pixels, p. ex., «&#160;wb-charts-width-300&#160;», «&#160;wb-charts-width-255&#160;».</li>
-				<li><strong>height :</strong> Nombre. Définit la hauteur du graphique en pixels, p. ex., «&#160;wb-charts-height-500&#160;», «&#160;wb-charts-height-715&#160;».</li>
-				<li><strong>graphclass :</strong> Chaîne. Permet d’attribuer une classe personnalisée à l’élément qui contient l’image générée par la création du graphique. Vous pouvez ainsi donner le style de votre choix au conteneur du graphique et à la légende. P. ex., Ajoutez la classe «&#160;bold&#160;» à un graphique après sa génération «&#160;wb-charts-graphclass-bold&#160;». Lorsque le graphique sera généré, la classe «&#160;bold&#160;» sera ajoutée à l’élément de l’image (<code>&lt;figure class="wb-charts bold"&gt;</code>) . Cette fonctionnalité peut être utile lorsque vous voulez donner un style particulier à la liste «&#160;ul&#160;» de la légende, comme un affichage en deux colonnes ou le masquage complet de la légende.</li>
-				<li><strong>topvalue :</strong> (nouveau) Nombre. Fixe la valeur maximale de l’axe des y du graphique.  P. ex., «&#160;wb-charts-topvalue-4000000&#160;», wb-charts-topvalue-10</li>
-				<li><strong>topvaluenegative :</strong> (nouveau) Paramètre booléen. Exprime à la forme négative l’ensemble des valeurs associées à «&#160;topvalue&#160;».</li>
-				<li><strong>bottomvalue :</strong> (nouveau) Nombre. Fixe la valeur minimale de l’axe des y du graphique. P. ex., «&#160;wb-charts-bottomvalue-0, wb-charts-bottomvalue-50&#160;».</li>
-				<li><strong>bottomvaluenegative :</strong> nouveau Paramètre booléen. Exprime à la forme négative l’ensemble des valeurs associées à «&#160;bottomvalue&#160;».</li>
-				<li><strong>nocutaxis :</strong> (nouveau) Paramètre booléen. Désactive la coupure automatique de l’axe. P. ex., «&#160;wb-charts-nocutaxis-true&#160;»</li>
-				<li><strong>steps :</strong> (nouveau) Nombre. Oblige à appliquer la valeur associée à steps pour dessiner le graphique. P. ex., «&#160;wb-charts-steps-5500&#160;»</li>
-				<li><strong>parseDirection :</strong> (nouveau) Énumération («&#160;y&#160;», «&#160;x&#160;»). Définit l’orientation de l’affichage des données dans le tableau. La valeur par défaut est «&#160;x&#160;»</li>
-				<li><strong>noencapsulation :</strong> (nouveau) Paramètre booléen. Empêche le déplacement du tableau html de la source des données vers un récapitulatif ou une description détaillée située sous les graphiques. P. ex., «&#160;wb-charts-noencapsulation-true&#160;»</li>
+				<li><strong>type par défaut :</strong> Énumération («&#160;<code>line</code>&#160;», «&#160;<code>area</code>&#160;», «&#160;<code>bar</code>&#160;», «&#160;<code>stacked</code>&#160;», «&#160;<code>pie</code>&#160;»). Définit le type de tableau par défaut. PVI «&#160;<code>wb-charts-line</code>&#160;» et «&#160;<code>wb-charts-type-line</code>&#160;» sont des équivalents.</li>
+				<li><strong>width :</strong> Nombre. Définit la largeur du graphique en pixels, p. ex., «&#160;<code>wb-charts-width-300</code>&#160;», «&#160;<code>wb-charts-width-255</code>&#160;».</li>
+				<li><strong>height :</strong> Nombre. Définit la hauteur du graphique en pixels, p. ex., «&#160;<code>wb-charts-height-500</code>&#160;», «&#160;<code>wb-charts-height-715</code>&#160;».</li>
+				<li><strong>graphclass :</strong> Chaîne. Permet d’attribuer une classe personnalisée à l’élément qui contient l’image générée par la création du graphique. Vous pouvez ainsi donner le style de votre choix au conteneur du graphique et à la légende. P. ex., Ajoutez la classe «&#160;<code>bold</code>&#160;» à un graphique après sa génération «&#160;<code>wb-charts-graphclass-bold</code>&#160;». Lorsque le graphique sera généré, la classe «&#160;<code>bold</code>&#160;» sera ajoutée à l’élément de l’image (<code>&lt;figure class="wb-charts bold"&gt;</code>) . Cette fonctionnalité peut être utile lorsque vous voulez donner un style particulier à la liste «&#160;<code>ul</code>&#160;» de la légende, comme un affichage en deux colonnes ou le masquage complet de la légende.</li>
+				<li><strong>topvalue :</strong> (nouveau) Nombre. Fixe la valeur maximale de l’axe des y du graphique.  P. ex., «&#160;<code>wb-charts-topvalue-4000000</code>&#160;», «&#160;<code>wb-charts-topvalue-10</code>&#160;»</li>
+				<li><strong>topvaluenegative :</strong> (nouveau) Paramètre booléen. Exprime à la forme négative l’ensemble des valeurs associées à «&#160;<code>topvalue</code>&#160;».</li>
+				<li><strong>bottomvalue :</strong> (nouveau) Nombre. Fixe la valeur minimale de l’axe des y du graphique. P. ex., «&#160;<code>wb-charts-bottomvalue-0</code>&#160;», «&#160;<code>wb-charts-bottomvalue-50</code>&#160;».</li>
+				<li><strong>bottomvaluenegative :</strong> nouveau Paramètre booléen. Exprime à la forme négative l’ensemble des valeurs associées à «&#160;<code>bottomvalue</code>&#160;».</li>
+				<li><strong>nocutaxis :</strong> (nouveau) Paramètre booléen. Désactive la coupure automatique de l’axe. P. ex., «&#160;<code>wb-charts-nocutaxis-true</code>&#160;»</li>
+				<li><strong>steps :</strong> (nouveau) Nombre. Oblige à appliquer la valeur associée à steps pour dessiner le graphique. P. ex., «&#160;<code>wb-charts-steps-5500</code>&#160;»</li>
+				<li><strong>parseDirection :</strong> (nouveau) Énumération («&#160;<code>y</code>&#160;», «&#160;<code>x</code>&#160;»). Définit l’orientation de l’affichage des données dans le tableau. La valeur par défaut est «&#160;<code>x</code>&#160;»</li>
+				<li><strong>noencapsulation :</strong> (nouveau) Paramètre booléen. Empêche le déplacement du tableau html de la source des données vers un récapitulatif ou une description détaillée située sous les graphiques. P. ex., «&#160;<code>wb-charts-noencapsulation-true</code>&#160;»</li>
 				<li><strong>maxwidth :</strong> (nouveau) Nombre. Fixe la largeur maximale des graphiques (en pixels).</li>
 			</ul>
 			<p><strong>Ne s’applique qu’aux diagrammes à secteurs</strong></p>
 			<ul>
-				<li><strong>decimal :</strong> (nouveau) Nombre. Établit la précision décimale. Par exemple, un secteur d’un diagramme à secteurs qui représente moins de  0.5 % ne peut pas s’afficher clairement. P. ex., «&#160;wb-charts-decimal-1, wb-charts-decimal-2&#160;»</li>
+				<li><strong>decimal :</strong> (nouveau) Nombre. Établit la précision décimale. Par exemple, un secteur d’un diagramme à secteurs qui représente moins de  0.5 % ne peut pas s’afficher clairement. P. ex., «&#160;<code>wb-charts-decimal-1</code>&#160;», «&#160;<code>wb-charts-decimal-2</code>&#160;»</li>
 			</ul>
 			<p><strong>Éléments supprimés</strong></p>
 			<ul>
@@ -198,15 +203,15 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<h4>Élément <code>&lt;tbody&gt;</code></h4>
 			<p><strong>Nota :</strong> Seul le premier tbody est utilisé pour créer le graphique, tous les autres groupes de données sont actuellement ignorés, tout simplement.</p>
 			<ul>
-				<li><strong>type par défaut :</strong> Énumeration («&#160;line&#160;», «&#160;area&#160;», «&#160;bar&#160;», «&#160;stacked&#160;», «&#160;pie&#160;»). Définit le type de tableau par défaut. PVI «&#160;wb-charts-line&#160;» et «&#160;wb-charts-type-line&#160;» sont des équivalents. Les valeurs par défaut écraseront toutes les valeurs spécifiques entrées pour le tableau.</li>
+				<li><strong>type par défaut :</strong> Énumeration («&#160;<code>line</code>&#160;», «&#160;<code>area</code>&#160;», «&#160;<code>bar</code>&#160;», «&#160;<code>stacked</code>&#160;», «&#160;<code>pie</code>&#160;»). Définit le type de tableau par défaut. PVI «&#160;<code>wb-charts-line</code>&#160;» et «&#160;<code>wb-charts-type-line</code>&#160;» sont des équivalents. Les valeurs par défaut écraseront toutes les valeurs spécifiques entrées pour le tableau.</li>
 			</ul>
 		</section>
 		<section>
 			<h4>Élément <code>&lt;td&gt;</code></h4>
 			<p><strong>Nota :</strong> Uniquement disponible pour le diagramme à secteurs.</p>
 			<ul>
-				<li><strong>couleur :</strong> Chaîne. Permet de choisir une couleur html personnalisée pour le secteur du diagramme correspondant. «&#160;wb-charts-color-[n’importe quelle couleur HTML]&#160;» P. ex., «&#160;wb-charts-color-blue&#160;», «&#160;wb-charts-color-yellow&#160;».</li>
-				<li><strong>overcolor :</strong> Chaîne. Permet de personnaliser la couleur html du pointage de la souris lorsqu’on veut pointer un secteur du diagramme en particulier. «&#160;wb-charts-overcolor-[n’importe quelle couleur HTML]&#160;» P. ex., «&#160;wb-charts-overcolor-red&#160;», «&#160;wb-charts-overcolor-orangered&#160;»</li>
+				<li><strong>couleur :</strong> Chaîne. Permet de choisir une couleur html personnalisée pour le secteur du diagramme correspondant. «&#160;<code>wb-charts-color-[n’importe quelle couleur HTML]</code>&#160;» P. ex., «&#160;<code>wb-charts-color-blue</code>&#160;», «&#160;<code>wb-charts-color-yellow</code>&#160;».</li>
+				<li><strong>overcolor :</strong> Chaîne. Permet de personnaliser la couleur html du pointage de la souris lorsqu’on veut pointer un secteur du diagramme en particulier. «&#160;<code>wb-charts-overcolor-[n’importe quelle couleur HTML]</code>&#160;» P. ex., «&#160;<code>wb-charts-overcolor-red</code>&#160;», «&#160;<code>wb-charts-overcolor-orangered</code>&#160;»</li>
 			</ul>
 			<p>Pour en voir un exemple concret, veuillez regarder le diagramme à secteurs présenté dans l’exemple pratique sur les graphiques complexes.</p>
 		</section>
@@ -214,22 +219,22 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<h4>Élément <code>&lt;th&gt;</code> (défini dans le groupe de cellules d’en-tête thead)</h4>
 			<p><strong>Nota :</strong> Uniquement disponible pour le graphique linéaire simple, le graphique à deux dimensions, le diagramme en barres et le graphique à échelles multiples superposées.</p>
 			<ul>
-				<li><strong>fill :</strong> Chaîne. Permet de personnaliser la couleur html de l’arrière-plan des cellules d’en-tête lorsqu’elles sont ajoutées au graphique. «&#160;wb-charts-fill-[n’importe quelle couleur HTML]&#160;» P. ex., «&#160;wb-charts-fill-red&#160;», «&#160;wb-charts-fill-orangered&#160;»</li>
-				<li><strong>fillover :</strong> Chaîne. Permet de personnaliser la couleur html de l’effet de survol des cellules d’en-tête lorsqu’elles sont ajoutées au graphique. «&#160;wb-charts-fillover-[n’importe quelle couleur HTML]&#160;» P. ex., «&#160;wb-charts-fillover-blue&#160;», «&#160;wb-charts-fillover-yellow&#160;».</li>
+				<li><strong>fill :</strong> Chaîne. Permet de personnaliser la couleur html de l’arrière-plan des cellules d’en-tête lorsqu’elles sont ajoutées au graphique. «&#160;<code>wb-charts-fill-[n’importe quelle couleur HTML]</code>&#160;» P. ex., «&#160;<code>wb-charts-fill-red</code>&#160;», «&#160;<code>wb-charts-fill-orangered</code>&#160;»</li>
+				<li><strong>fillover :</strong> Chaîne. Permet de personnaliser la couleur html de l’effet de survol des cellules d’en-tête lorsqu’elles sont ajoutées au graphique. «&#160;<code>wb-charts-fillover-[n’importe quelle couleur HTML]</code>&#160;» P. ex., «&#160;<code>wb-charts-fillover-blue</code>&#160;», «&#160;<code>wb-charts-fillover-yellow</code>&#160;».</li>
 			</ul>
 		</section>
 		<section>
 			<h4>Élément <code>&lt;th&gt;</code> (défini dans le premier groupe de lignes de données, tbody)</h4>
 			<p><strong>Nota :</strong> Ce type n’est disponible que pour les diagrammes à secteurs, toutes les autres options se rapportent aux graphiques linéaires simples, aux graphiques à deux dimensions, aux diagrammes en barres et aux graphiques à échelles multiples superposées.</p>
 			<ul>
-				<li><strong>type par défaut :</strong> Énumération («&#160;line&#160;», «&#160;area&#160;», «&#160;bar&#160;», «&#160;stacked&#160;», «&#160;pie&#160;»). Définit le type de diagramme par défaut. PVI «&#160;wb-charts-line&#160;» et «&#160;wb-charts-type-line&#160;» sont équivalents. Écrasera toute valeur saisie pour le groupe de lignes (tbody) et l’élément parent du tableau.</li>
-				<li><strong>couleur :</strong> Chaîne. Permet de personnaliser la couleur html des barres, des échelles, des dimensions ou des lignes.  «&#160;wb-charts-color-[n’importe quelle couleur HTML]&#160;» P. ex., «&#160;wb-charts-color-blue&#160;», «&#160;wb-charts-color-yellow&#160;»</li>
-				<li><strong>fillopacity :</strong> Nombre (entre 0 et 100). Permet de déterminer le degré d’opacité d’un objet barre, échelle ou dimension. «&#160;wb-charts-fillopacity-[n’importe quel nombre entre 0 et 100]&#160;» P. ex.. «&#160;wb-charts-fillopacity-20&#160;», «&#160;wb-charts-fillopacity-50&#160;»</li>
-				<li><strong>dasharray :</strong> Valeur de la chaîne. Permet de préciser le type de trait. P. ex., «&#160;wb-charts-dasharray-dashspacedot&#160;». Voir la section sur les «&#160;dasharray&#160;» pour obtenir des exemples.</li>
+				<li><strong>type par défaut :</strong> Énumération («&#160;<code>line</code>&#160;», «&#160;<code>area</code>&#160;», «&#160;<code>bar</code>&#160;», «&#160;<code>stacked</code>&#160;», «&#160;<code>pie</code>&#160;»). Définit le type de diagramme par défaut. PVI «&#160;<code>wb-charts-line</code>&#160;» et «&#160;<code>wb-charts-type-line</code>&#160;» sont équivalents. Écrasera toute valeur saisie pour le groupe de lignes (tbody) et l’élément parent du tableau.</li>
+				<li><strong>couleur :</strong> Chaîne. Permet de personnaliser la couleur html des barres, des échelles, des dimensions ou des lignes.  «&#160;<code>wb-charts-color-[n’importe quelle couleur HTML]</code>&#160;» P. ex., «&#160;<code>wb-charts-color-blue</code>&#160;», «&#160;<code>wb-charts-color-yellow</code>&#160;»</li>
+				<li><strong>fillopacity :</strong> Nombre (entre 0 et 100). Permet de déterminer le degré d’opacité d’un objet barre, échelle ou dimension. «&#160;<code>wb-charts-fillopacity-[n’importe quel nombre entre 0 et 100]</code>&#160;» P. ex.. «&#160;<code>wb-charts-fillopacity-20</code>&#160;», «&#160;<code>wb-charts-fillopacity-50</code>&#160;»</li>
+				<li><strong>dasharray :</strong> Valeur de la chaîne. Permet de préciser le type de trait. P. ex., «&#160;<code>wb-charts-dasharray-dashspacedot</code>&#160;». Voir la section sur les «&#160;<code>dasharray</code>&#160;» pour obtenir des exemples.</li>
 			</ul>
 		</section>
 		<section>
-			<h4>Exemples de «&#160;dasharray&#160;»</h4>
+			<h4>Exemples de «&#160;<code>dasharray</code>&#160;»</h4>
 			<ul>
 				<li><strong>wb-charts-dasharray-none</strong> tracer une ligne continue, c’est la commande par défaut.</li>
 				<li><strong>wb-charts-dasharray-dash</strong> tracer : ------------</li>
@@ -250,7 +255,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 </section>
 <section>
 	<h2>Développement</h2>
-	<p>Il est possible d’écraser les valeurs de tous les paramètres par défaut susmentionnés en utilisant le mécanisme de réglage des paramètres de la BOEW. Il faut utiliser la variable «&#160;wet_boew_charts&#160;». Cependant, il est impossible de modifier par écrasé la valeur de la couleur par défaut.</p>
+	<p>Il est possible d’écraser les valeurs de tous les paramètres par défaut susmentionnés en utilisant le mécanisme de réglage des paramètres de la BOEW. Il faut utiliser la variable «&#160;<code>wet_boew_charts</code>&#160;». Cependant, il est impossible de modifier par écrasé la valeur de la couleur par défaut.</p>
 </section>
 <section>
 	<h2>Problèmes connus</h2>

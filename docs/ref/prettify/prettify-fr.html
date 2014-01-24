@@ -110,15 +110,19 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Aperçu</h2>
 	<p><b>Responsable de projet :</b> Paul Jackson (<a href="https://www.github.com/pjackson28">@pjackson28</a>)</p>
+	<section>
+		<h3>Object</h3>
+		<p>Affiche de la syntaxe des extraits de code source.</p>
+	</section>
 </section>
 
 <section>
 	<h2>Mise en oeuvre</h2>
 	<ol>
-		<li>Appliquer <b>class="wet-boew-prettify"</b> à un élément sur la page pour charger le composant (une fois par page).</li>
-		<li>Appliquer <b>class="prettyprint"</b> à un élément pre ou code pour appliquer la mise en surbrillance de syntaxe. Comme alternative utiliser <b>class="wet-boew-prettify all-pre"</b> pour appliquer la mise en surbrillance de syntaxe à tous les éléments pre sur la page.</li>
-		<li>Appliquer <b>class="linenums"</b> à un élément pre ou code pour ajouter les nombres de ligne. Comme alternative utiliser <b>class="wet-boew-prettify linenums"</b> à tous les éléments pre applicables. Spécifier le nombre commençant en ajoutant <b>linenums:#</b> avant <b>linenums</b>.</li>
-		<li>Ajouter le soutien supplémentaire de langage de programmation avec <b>class="wet-boew-prettify lang-*"</b> (p. ex., <b>class="wet-boew-prettify lang-css"</b>) et en ajoutant <b>class="lang-*"</b> à chaque élément <b>pre</b> ou <b>code</b> applicable.</li>
+		<li>Appliquer <code>class="wet-boew-prettify"</code> à un élément sur la page pour charger le composant (une fois par page).</li>
+		<li>Appliquer <code>class="prettyprint"</code> à un élément pre ou code pour appliquer la mise en surbrillance de syntaxe. Comme alternative utiliser <code>class="wet-boew-prettify all-pre"</code> pour appliquer la mise en surbrillance de syntaxe à tous les éléments pre sur la page.</li>
+		<li>Appliquer <code>class="linenums"</code> à un élément pre ou code pour ajouter les nombres de ligne. Comme alternative utiliser <code>class="wet-boew-prettify linenums"</code> à tous les éléments pre applicables. Spécifier le nombre commençant en ajoutant <code>linenums:#</code> avant <code>linenums</code>.</li>
+		<li>Ajouter le soutien supplémentaire de langage de programmation avec <code>class="wet-boew-prettify lang-*"</code> (p. ex., <code>class="wet-boew-prettify lang-css"</code>) et en ajoutant <code>class="lang-*"</code> à chaque élément <code>pre</code> ou <code>code</code> applicable.</li>
 	</ol>
 </section>
 
@@ -133,7 +137,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Développement</h2>
 	<p>Prettify est dépendent sur <a href="http://code.google.com/p/google-code-prettify/">google-code-prettify</a> (<a href="http://www.apache.org/licenses/LICENSE-2.0">licence Apache 2.0</a>).</p>
-	<p>Le code pour prettify se trouve à plusieurs endroits dans le répertoire <b>source</b> de la BOEW :</p>
+	<p>Le code pour prettify se trouve à plusieurs endroits dans le répertoire <b>source</b> de la BOEW&#160;:</p>
 	<ul>
 		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/workers/prettify.js">js/workers/prettify.js</a> - contient le code JavaScript pour prettify</li>
 		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.0/src/js/sass/includes/_prettify.scss">js/sass/prettify.scss</a> - contient le CSS pour prettify</li>
