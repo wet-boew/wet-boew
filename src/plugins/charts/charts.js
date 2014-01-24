@@ -41,7 +41,8 @@
 			cellValue,
 			datacolgroupfound, dataGroup, figCaptionElem, figureElem, header,
 			i, j, mainFigureElem, parsedData,
-			pieLabelFormater, rIndex,
+			//pieLabelFormater, 
+			rIndex,
 			currVectorOptions, tblCaptionHTML, tblCaptionText,
 			valuePoint = 0,
 			currentRowGroup, reverseTblParsing, dataGroupVector,
@@ -87,12 +88,29 @@
 							pie: {
 								show: true
 							}
+						},
+						fn: {
+							"/series/pie/label/formatter": function( label, series ) {
+								var textlabel;
+								if ( !optionsCharts.decimal ) {
+									textlabel = Math.round( series.percent );
+								} else {
+									textlabel = Math.round( series.percent * Math.pow( 10, optionsCharts.decimal ) );
+									textlabel = textlabel / Math.pow( 10, optionsCharts.decimal );
+								}
+
+								if ( optionsCharts.nolegend ) {
+									// Add the series label
+									textlabel = label + "<br/>" + textlabel;
+								}
+								return textlabel + "%";
+							}
 						}
 					},
 					donut: {
+						base: "pie",
 						series: {
 							pie: {
-								show: true,
 								radius: 1,
 								label: {
 									show: true,
@@ -128,11 +146,7 @@
 						}
 					},
 					stacked: {
-						bars: {
-							show: true,
-							barWidth: 1,
-							align: "center"
-						}
+						base: "bar"
 					}
 				},
 				// Wet-boew Charts Options
@@ -239,6 +253,7 @@
 				i, iLength,
 				token, tokenLength,
 				prefix, prefixLength, // Prefix used in front of the token
+				preset,
 				key, tblFn, localKey, currObj;
 			
 			if ( tokens.length ) {
@@ -261,10 +276,16 @@
 					}
 					token = token.slice(prefixLength, tokenLength);
 					
+					preset = baseline[ token ];
 					// Apply the preset
-					if ( baseline[ token ] ) {
-						config = $.extend( true, config, baseline[ token ] );
-						fn = $.extend( true, fn, baseline[ token ].fn || { } );
+					if ( preset ) {
+						if ( preset.base ) {
+							// Like setting herited from a parent config
+							config = $.extend( true, config, baseline[ preset.base ] );
+							fn = $.extend( true, fn, baseline[ preset.base ].fn || { } );
+						}
+						config = $.extend( true, config, preset );
+						fn = $.extend( true, fn, preset.fn || { } );
 					}
 				}
 			}
@@ -696,29 +717,7 @@
 			// Create a chart/ place holder, by series
 			mainFigureElem = $( "<figure />" ).insertAfter( $elm );
 
-			pieLabelFormater = function( label, series ) {
-				var textlabel;
-				if ( !optionsCharts.decimal ) {
-					textlabel = Math.round( series.percent );
-				} else {
-					textlabel = Math.round( series.percent * Math.pow( 10, optionsCharts.decimal ) );
-					textlabel = textlabel / Math.pow( 10, optionsCharts.decimal );
-				}
-
-				if ( optionsCharts.nolegend ) {
-					// Add the series label
-					textlabel = label + "<br/>" + textlabel;
-				}
-				return textlabel + "%";
-			};
-			
-			// Inject the pie label formater function
-			if (optionFlot.series.pie.label) {
-				optionFlot.series.pie.label.formatter = pieLabelFormater;
-			}
-					
 			// Default
-			mainFigureElem;
 			if ( optionsCharts.graphclass ) {
 				mainFigureElem.addClass( optionsCharts.graphclass );
 			}
