@@ -100,14 +100,14 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 <section>
 	<h2>Aperçu</h2>
-	<p><b>Responsable de projet :</b> Paul Jackson (<a href="https://www.github.com/pjackson28">@pjackson28</a>)</p>
+	<p><b>Chef de projet :</b> Paul Jackson (<a href="https://www.github.com/pjackson28">@pjackson28</a>)</p>
 	<p>Le composant de mise en subrillance de texte met en surbrillance n'importe quel texte dans un secteur pré-défini qui satisfait des critères de recherche. Les critères de recherche sont insensibles à la casse et sont spécifiés par la chaîne d'interrogation d'une addresse URL. Les chaînes avec plusieurs mots sont supportées, y compris les espaces et la ponctuation fondamentale.</p>
 
 	<section>
 		<h3>Avantages</h3>
 		<ul>
-			<li>Aide les utilisateurs à trouver certains mots sur une page Web </li>
-			<li>Approche pour mettre les mots en surbrillance par défaut à travers la chaîne d'interrogation </li>
+			<li>Aide les utilisateurs à trouver certains mots sur une page Web</li>
+			<li>Approche pour mettre les mots en surbrillance par défaut à travers la chaîne d'interrogation</li>
 			<li>Les chaînes avec plusieurs mots sont supportées, y compris les espaces et la ponctuation fondamentale</li>
 			<li>Conformes à WCAG 2.0 AA</li>
 			<li>Recours aux WAI-ARIA pour accroître l'accessibilité</li>
@@ -118,9 +118,9 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<section>
 		<h3>Utilisation recommandée</h3>
 		<ul>
-			<li>Mettre en surbrillance les termes de recherche dans une page de résultats de recherche </li>
-			<li>Mettre en surbrillance des mots clés dans une page Web </li>
-			<li>Aider l'utilisateur à retrouver toutes les occurrences d'un ou de plusieurs mots dans une page Web </li>
+			<li>Mettre en surbrillance les termes de recherche dans une page de résultats de recherche</li>
+			<li>Mettre en surbrillance des mots clés dans une page Web</li>
+			<li>Aider l'utilisateur à retrouver toutes les occurrences d'un ou de plusieurs mots dans une page Web</li>
 		</ul>
 	</section>
 </section>
@@ -128,11 +128,11 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Mise en oeuvre</h2>
 	<ol>
-		<li>Définir votre zone de recherche. Ajouter la classe <b>wet-boew-texthighlight</b> à l'étiquette dont vous voulez chercher.</li>
-		<li>Spécifier les critères de recherche dans la chaîne d'interrogation de l'addresse URL. Ajouter <b>texthighlight=&lt;texte_1&gt;&lt;/texte_1&gt;+&lt;texte_2&gt;&lt;/texte_2&gt;+&lt;texte_3&gt;&lt;/texte_3&gt;</b> à la chaîne d'interrogation.</li>
+		<li>Définir votre zone de recherche. Ajouter la classe <code>wet-boew-texthighlight</code> à l'étiquette dont vous voulez chercher.</li>
+		<li>Spécifier les critères de recherche dans la chaîne d'interrogation de l'addresse URL. Ajouter <code>texthighlight=&lt;texte_1&gt;&lt;/texte_1&gt;+&lt;texte_2&gt;&lt;/texte_2&gt;+&lt;texte_3&gt;&lt;/texte_3&gt;</code> à la chaîne d'interrogation.</li>
 	</ol>
-	<p><b>Nota 1 :</b> Les critères de recherche regroupant des caractères spéciaux d'expression régulière (« regex », p.ex., « " », « | », « ? », « + », « ( » ou « ) ») peuvent être partiellement ou entièrement exclus des résultats.</p>
-	<p><b>Nota 2 :</b> La validation des balises HTML exige que tous les espaces dans les liens soit remplacés par « %20 ».</p>
+	<p><b>Nota 1 :</b> Les critères de recherche regroupant des caractères spéciaux d'expression régulière («&#160;regex&#160;», p.ex., «&#160;"&#160;», «&#160;|&#160;», «&#160;?&#160;», «&#160;+&#160;», «&#160;(&#160;» ou «&#160;)&#160;») peuvent être partiellement ou entièrement exclus des résultats.</p>
+	<p><b>Nota 2 :</b> La validation des balises HTML exige que tous les espaces dans les liens soit remplacés par «&#160;%20&#160;».</p>
 
 	<section>
 		<h3>Exemple</h3>
@@ -146,9 +146,9 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<li>À de rares occasions, des humains ont été infectés par ce virus.</li>
 		</ul>
 		<p><b>La chaîne d'interrogation :</b></p>
-		<pre>?texthighlight&amp;amp;amp&amp;#59;&amp;amp;&amp;#35;35&amp;#59;61&amp;amp;&amp;#35;59&amp;#59;influenza%20aviaire
+		<pre><code>?texthighlight&amp;amp;amp&amp;#59;&amp;amp;&amp;#35;35&amp;#59;61&amp;amp;&amp;#35;59&amp;#59;influenza%20aviaire
 +monde+suffis+symptômes%20semblables%20à%20ceux%20de%20l&amp;amp;amp&amp;#59;&amp;amp;&amp;#35;35&amp;#59;39&amp;amp;&amp;#35;59&amp;#59;influenza
-+À%20titre%20de%20rappel...+À%20de%20rares%20occasions,%20des%20humains%20ont%20été%20infectés%20par%20ce%20virus.</pre>
++À%20titre%20de%20rappel...+À%20de%20rares%20occasions,%20des%20humains%20ont%20été%20infectés%20par%20ce%20virus.</code></pre>
 
 		<p><a href="../../../demos/texthighlight/texthighlight-fr.html?texthighlight=influenza%20aviaire+monde+suffis+sympt%C3%B4mes%20semblables%20%C3%A0%20ceux%20de%20l%27influenza+%C3%80%20titre%20de%20rappel...+%C3%80%20de%20rares%20occasions,%20des%20humains%20ont%20%C3%A9t%C3%A9%20infect%C3%A9s%20par%20ce%20virus.#exemple">Mise en surbrillance le texte qui satisfait les critères de recherche</a></p>
 	</section>
@@ -175,7 +175,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Problèmes connus</h2>
 	<ul>
-		<li>N'aide pas l'utilisateur à accéder aux mots mis en surbrillance évidence </li>
+		<li>N'aide pas l'utilisateur à accéder aux mots mis en surbrillance évidence</li>
 	</ul>
 </section>
 

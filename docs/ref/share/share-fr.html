@@ -140,20 +140,20 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<ol>
 		<li>Ajouter <code>&lt;div class="wet-boew-share"&gt;&lt;/div&gt;</code> à une page Web.</li>
 		<li>Specifier la largeur du gadget (p. ex., <code>class="span-5 margin-bottom-none"</code>)</li>
-		<li>Configurer les options globales ou uniques à chaque page. Configurer les options globales en ajoutant <code>var wet_boew_share = { ... options ...};</code> à <b>settings.js</b>. Configurer les options uniques à chaque page en ajoutant à l'élément du gadget les classes de configuration ou <b>data_wet_boew_share='{"option1": valeur1, "option2": "valeur2" ...}' </b>.</li>
+		<li>Configurer les options globales ou uniques à chaque page. Configurer les options globales en ajoutant <code>var wet_boew_share = { ... options ...};</code> à <b>settings.js</b>. Configurer les options uniques à chaque page en ajoutant à l'élément du gadget les classes de configuration ou <code>data_wet_boew_share='{"option1": valeur1, "option2": "valeur2" ...}'</code>.</li>
 	</ol>
 
 	<section>
 		<h3>Exemple d'une configuration globale :</h3>
-		<pre>var wet_boew_share = {
+		<pre><code>var wet_boew_share = {
    "sites" : ["del.icio.us", "digg", "facebook", "google", "linkedin", "reddit", "stumbleupon", "twitter", "yahoobuzz"]
-};</pre>
+};</code></pre>
 		<p><a href="../../../demos/share/share-filtered-fr.html">Exemple d'une configuration globale</a></p>
 	</section>
 
 	<section>
 		<h3>Exemple d'une configuration unique à une page :</h3>
-		<pre>&lt;div class="wet-boew-share" data-wet-boew='{"sites":["digg","facebook","twitter"]}'&gt;&lt;/div&gt;</pre>
+		<pre><code>&lt;div class="wet-boew-share" data-wet-boew='{"sites":["digg","facebook","twitter"]}'&gt;&lt;/div&gt;</code></pre>
 	</section>
 
 	<div lang="en">
@@ -161,11 +161,11 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<section>
 			<h3>Adding additional social media sites</h3>
 			<p>If a social media site is not in the list of supported sites, there are two ways to add your own starting in v3.0.8 and v3.1.2.</p>
-			<p>In settings.js (using the form 'id': {display, icon, lang, category, url}):</p>
-			<pre>var wet_boew_share = {"addSites": {"pinterest": {"display": "Pinterest", "icon": "/img/pinterest.jpg", "lang": "en", "category": "other", "url": "http://pinterest.com/pin/create/button/?url={u}&amp;title={t}"}}};</pre>
+			<p>In settings.js (using the form <code>'id': {display, icon, lang, category, url}</code>):</p>
+			<pre><code>var wet_boew_share = {"addSites": {"pinterest": {"display": "Pinterest", "icon": "/img/pinterest.jpg", "lang": "en", "category": "other", "url": "http://pinterest.com/pin/create/button/?url={u}&amp;title={t}"}}};</code></pre>
 
 			<p>Using data-wet-boew:</p>
-			<pre>data_wet_boew='{"addSites": {"pinterest": {"display": "Pinterest", "icon": "/img/pinterest.jpg", "lang": "en", "category": "other", "url": "http://pinterest.com/pin/create/button/?url={u}&amp;title={t}"}}}'</pre>
+			<pre><code>data_wet_boew='{"addSites": {"pinterest": {"display": "Pinterest", "icon": "/img/pinterest.jpg", "lang": "en", "category": "other", "url": "http://pinterest.com/pin/create/button/?url={u}&amp;title={t}"}}}'</code></pre>
 		</section>
 	</div>
 
@@ -180,77 +180,77 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<th>Description</th>
 		</tr>
 		<tr>
-			<td>addEmail</td>
+			<td><code>addEmail</code></td>
 			<td>Booléen</td>
-			<td>False</td>
-			<td>email (même que addEmail:true)</td>
-			<td>Contrôole l'affichage du lien de courriel. C'est relié aux paramètres <b>emailSubject</b> et <b>emailBody</b>.</td>
+			<td><code>false</code></td>
+			<td><code>email</code> (même que <code>addEmail:true</code>)</td>
+			<td>Contrôle l'affichage du lien de courriel. C'est relié aux paramètres <code>emailSubject</code> et <code>emailBody</code>.</td>
 		</tr>
 		<tr>
-			<td>addAnalytics</td>
+			<td><code>addAnalytics</code></td>
 			<td>Boolean</td>
-			<td>False</td>
-			<td>analytics (même que addAnalytics:true)</td>
-			<td>Contrôle l'activation de Google Analytics pour les liens. C'est relié au paramètre <b>analyticsName</b>.</td>
+			<td><code>false</code></td>
+			<td><code>analytics</code> (même que <code>addAnalytics:true</code>)</td>
+			<td>Contrôle l'activation de Google Analytics pour les liens. C'est relié au paramètre <code>analyticsName</code>.</td>
 		</tr>
 		<tr>
-			<td>addFavorite</td>
+			<td><code>addFavorite</code></td>
 			<td>Booléen</td>
-			<td>False</td>
-			<td>favourite (même que addFavorite:true)</td>
+			<td><code>false</code></td>
+			<td><code>favourite</code> (même que <code>addFavorite:true</code>)</td>
 			<td>Contrôle l'affichage du lien préféré.</td>
 		</tr>
 		<tr>
-			<td>analyticsName</td>
+			<td><code>analyticsName</code></td>
 			<td>String</td>
-			<td>'/share/{r}/{s}' où '{s}' est le code du site, '{n}' est le nom du site, '{u}' est l'URL complet, '{r}' est l'URL relatif et '{t}' est le titre</td>
+			<td>'<code>/share/{r}/{s}</code>' où '<code>{s}</code>' est le code du site, '<code>{n}</code>' est le nom du site, '<code>{u}</code>' est l'URL complet, '<code>{r}</code>' est l'URL relatif et '<code>{t}</code>' est le titre</td>
 			<td>s/o</td>
 			<td>L'URL qui est renvoyé à Google Analytics.</td>
 		</tr>
 		<tr>
-			<td>description</td>
+			<td><code>description</code></td>
 			<td>Chaîne</td>
 			<td></td>
 			<td>s/o</td>
-			<td>Description de la page ou du site. Il remplace <b>{d}</b> dans le texte généré.</td>
+			<td>Description de la page ou du site. Il remplace <code>{d}</code> dans le texte généré.</td>
 		</tr>
 		<tr>
-			<td>emailBody</td>
+			<td><code>emailBody</code></td>
 			<td>Chaîne</td>
-			<td>"I thought you might find this page interesting:\n{t} ({u})" / "J'espère que cette page vous intéresse :\n{t} ({u})"</td>
+			<td>"<code>I thought you might find this page interesting:\n{t} ({u})</code>" / "<code>J'espère que cette page vous intéresse :\n{t} ({u})</code>"</td>
 			<td>s/o</td>
-			<td>Le contenu du courriel généré par le lien de courriel. <b>{t}</b>est remplacé par let titre de la page, <b>{u}</b> est remplacé par le URL de la page et <b>{d}</b> est remplacé par la description de la page (où elle existe). Utiliser <b>\n</b> pour les nouvelles lignes. C'est relié aux paramètres <b>addEmail</b> et <b>emailSubject</b>.</td>
+			<td>Le contenu du courriel généré par le lien de courriel. <code>{t}</code> est remplacé par let titre de la page, <code>{u}</code> est remplacé par le URL de la page et <code>{d}</code> est remplacé par la description de la page (où elle existe). Utiliser <code>\n</code> pour les nouvelles lignes. C'est relié aux paramètres <code>addEmail</code> et <code>emailSubject</code>.</td>
 		</tr>
 		<tr>
-			<td>emailSubject</td>
+			<td><code>emailSubject</code></td>
 			<td>Chaîne</td>
-			<td>"Interesting page" / "Page qui est intéressante"</td>
+			<td>"<code>Interesting page</code>" / "<code>Page qui est intéressante</code>"</td>
 			<td>s/o</td>
-			<td>Sujet du courriel généré par le lien de courriel. C'est relié aux paramètres <b>addEmail</b> et <b>emailBody</b>.</td>
+			<td>Sujet du courriel généré par le lien de courriel. C'est relié aux paramètres <code>addEmail</code> et <code>emailBody</code>.</td>
 		</tr>
 		<tr>
-			<td>sites</td>
+			<td><code>sites</code></td>
 			<td>Tableau</td>
-			<td>[]</td>
+			<td><code>[]</code></td>
 			<td>s/o</td>
-			<td>Liste des sites Web de médias sociaux à inclure dans le gadget (p. ex., <b>sites:['digg','facebook','twitter']</b>). Laisser vide pour inclure tous les sites Web de médias sociaux qui sont soutenus par ce gadget.</td>
+			<td>Liste des sites Web de médias sociaux à inclure dans le gadget (p. ex., <code>sites:['digg','facebook','twitter']</code>). Laisser vide pour inclure tous les sites Web de médias sociaux qui sont soutenus par ce gadget.</td>
 		</tr>
 		<tr>
-			<td>sourceTag</td>
+			<td><code>sourceTag</code></td>
 			<td>Chaîne</td>
 			<td></td>
 			<td>s/o</td>
 			<td>Balise supplémentaire a ajouté a l'URL pour indiquer le source du lien partagé.</td>
 		</tr>
 		<tr>
-			<td>title</td>
+			<td><code>title</code></td>
 			<td>Chaîne</td>
 			<td></td>
 			<td>s/o</td>
 			<td>Titre à partager. Laisser vide pour utiliser le titre de la page actuelle.</td>
 		</tr>
 		<tr>
-			<td>url</td>
+			<td><code>url</code></td>
 			<td>Chaîne</td>
 			<td></td>
 			<td>s/o</td>
@@ -262,9 +262,9 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<div lang="en">
 		<p><strong>Needs translation</strong></p>
 		<section>
-			<h3>Configuring emailBody and emailSubject text</h3>
+			<h3>Configuring <code>emailBody</code> and <code>emailSubject</code> text</h3>
 			<p>Add the following to settings.js:</p>
-			<pre>var wet_boew_share;
+			<pre><code>var wet_boew_share;
 if ($('html').attr('lang') === 'fr')
     wet_boew_share = {
         'emailSubject': 'French subject of the email',
@@ -275,11 +275,9 @@ else {
         'emailSubject': 'English subject of the email',
         'emailBody': 'English body of the email. Use {t} for the page title, {u} for the page URL and {d} for the page description.'
     };
-}</pre>
+}</code></pre>
 		</section>
 	</div>
-
-
 </section>
 
 <section>

@@ -130,21 +130,21 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 	<p>This allows you to configure the component:</p>
 	<ul>
-		<li><strong>ajaxLimiter:</strong> This is the amount of time between ajax requests to refresh the server side session page.</li>
-		<li><strong>inactivity:</strong> This is the inactivity period of time after which the dialog message will appear.</li>
-		<li><strong>reactionTime:</strong> This is the period of time the user has to perform an action with the dialog message.</li>
-		<li><strong>sessionalive:</strong> This is the period of time for the session to stay alive until the dialog message appears.</li>
-		<li><strong>logouturl:</strong> This is the URL that users are sent to when the session has expired.</li>
-		<li><strong>refreshOnClick:</strong> Setting this to true or false will enable or disable the ajax refresh using the refreshCallbackUrl parameter.</li>
-		<li><strong>refreshCallbackUrl:</strong> This is the URL to perform an ajax refresh, must return true/false.</li>
+		<li><strong><code>ajaxLimiter</code>:</strong> This is the amount of time between ajax requests to refresh the server side session page.</li>
+		<li><strong><code>inactivity</code>:</strong> This is the inactivity period of time after which the dialog message will appear.</li>
+		<li><strong><code>reactionTime</code>:</strong> This is the period of time the user has to perform an action with the dialog message.</li>
+		<li><strong><code>sessionalive</code>:</strong> This is the period of time for the session to stay alive until the dialog message appears.</li>
+		<li><strong><code>logouturl</code>:</strong> This is the URL that users are sent to when the session has expired.</li>
+		<li><strong><code>refreshOnClick</code>:</strong> Setting this to true or false will enable or disable the ajax refresh using the <code>refreshCallbackUrl</code> parameter.</li>
+		<li><strong><code>refreshCallbackUrl</code>:</strong> This is the URL to perform an ajax refresh, must return true/false.</li>
 	</ul>
 
 	<p>The only required parameter is <strong>logouturl</strong>, all other fields are optional. The default code would be:</p>
 	<pre><code>&lt;span class="wet-boew-sessiontimeout" data-wet-boew='{"logouturl": "./"}'&gt;&lt;/span&gt;</code></pre>
 
-	<p><strong>IMPORTANT NOTE:</strong> The <strong>ajaxLimiter</strong>, <strong>inactivity</strong>, <strong>reactionTime</strong> and <strong>sessionalive</strong> parameters are set in milliseconds. The only required parameter is the <strong>logouturl</strong>. The default <strong>inactivity</strong> and <strong>sessionalive</strong> is set to 20 minutes with a 30 second confirmation time with the dialog message. The ajax request will be done every 2 minutes by default using the <strong>refreshCallbackUrl</strong> parameter. The <strong>refreshCallbackUrl</strong> must not be a page containing the timeout function again as a loop will be created, it should be simply a viewless page that refreshes the session.</p>
+	<p><strong>IMPORTANT NOTE:</strong> The <code>ajaxLimiter</code>, <code>inactivity</code>, <code>reactionTime</code> and <code>sessionalive</code> parameters are set in milliseconds. The only required parameter is the <code>logouturl</code> default <code>inactivity</code> and <code>sessionalive</code> is set to 20 minutes with a 30 second confirmation time with the dialog message. The ajax request will be done every 2 minutes by default using the <code>refreshCallbackUrl</code> parameter. The <code>refreshCallbackUrl</code> must not be a page containing the timeout function again as a loop will be created, it should be simply a viewless page that refreshes the session.</p>
 	<p>Need help with the conversion? See: <a href="http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm">http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm</a></p>
-	<p><strong>IMPORTANT NOTE:</strong> Your <strong>sessionalive</strong> and <strong>inactivity</strong> parameters should be equal to your web server session alive time minus the <strong>reactionTime</strong> time. If you set your <strong>sessionalive</strong> time and <strong>inactivity</strong> time to the same as your web server without taking into consideration the <strong>reactionTime</strong> time then the session will have ended by the server as soon as the popup appears to extend the session.</p>
+	<p><strong>IMPORTANT NOTE:</strong> Your <code>sessionalive</code> and <code>inactivity</code> parameters should be equal to your web server session alive time minus the <code>reactionTime</code> time. If you set your <code>sessionalive</code> time and <code>inactivity</code> time to the same as your web server without taking into consideration the <code>reactionTime</code> time then the session will have ended by the server as soon as the popup appears to extend the session.</p>
 </section>
 
 <section>

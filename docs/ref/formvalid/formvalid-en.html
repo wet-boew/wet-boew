@@ -127,9 +127,9 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Implementation</h2>
 	<ol>
-		<li>Add <b>class="wet-boew-formvalid"</b> to a <b>div</b> element surrounding the *form* element <pre>&lt;div class="wet-boew-formvalid"&gt;&lt;form action="#" method="post"&gt;...&lt;/form&gt;&lt;/div&gt;</pre></li>
-		<li><b>Optional:</b> Wrap each form field name with <code>&lt;span class="field-name"&gt;...&lt;/span&gt;</code>. This specifies the prefix to use for the error message summary. <pre>&lt;label for="fname"&gt;&lt;span class="field-name"&gt;First Name&lt;/span&gt; &lt;strong&gt;(required)&lt;/strong&gt;&lt;/label&gt;</pre></li>
-		<li>Add <b>required="required"</b> to each mandatory form field <pre>&lt;input id="fname" name="fname" type="text" required="required" /&gt;</pre></li>
+		<li>Add <code>class="wet-boew-formvalid"</code> to a <code>div</code> element surrounding the *form* element <pre><code>&lt;div class="wet-boew-formvalid"&gt;&lt;form action="#" method="post"&gt;...&lt;/form&gt;&lt;/div&gt;</code></pre></li>
+		<li><b>Optional:</b> Wrap each form field name with <code>&lt;span class="field-name"&gt;...&lt;/span&gt;</code>. This specifies the prefix to use for the error message summary. <pre><code>&lt;label for="fname"&gt;&lt;span class="field-name"&gt;First Name&lt;/span&gt; &lt;strong&gt;(required)&lt;/strong&gt;&lt;/label&gt;</code></pre></li>
+		<li>Add <code>required="required"</code> to each mandatory form field <pre><code>&lt;input id="fname" name="fname" type="text" required="required" /&gt;</code></pre></li>
 		<li><b>Optional:</b> For input fields, add one of the following syntax for specialized validation:</li>
 	</ol>
 	<p><b>Note:</b> The specialized validation syntax has changed in v3.0.6 and v3.1.0 from <code>class="{validate:{rulename:value}}"</code> to <code>data-rule-rulename="value"</code>. This data syntax can also be used to add custom messages in the format <code>data-msg-rulename="Your message"</code>.The old syntax is obsolete but will be supported for the time being to accommodate the transition to the new syntax.</p>
@@ -140,67 +140,67 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	</tr>
 	<tr>
 		<td>Alphanumeric</td>
-		<td>data-rule-alphanumeric="true"</td>
+		<td><code>data-rule-alphanumeric="true"</code></td>
 	</tr>
 	<tr>
 		<td>Date</td>
-		<td>type="date"</td>
+		<td><code>type="date"</code></td>
 	</tr>
 	<tr>
 		<td>Date (ISO)</td>
-		<td>type="date" data-rule-dateISO="true"</td>
+		<td><code>type="date" data-rule-dateISO="true"</code></td>
 	</tr>
 	<tr>
 		<td>Digits only</td>
-		<td>type="number"</td>
+		<td><code>type="number"</code></td>
 	</tr>
 	<tr>
 		<td>Letters only</td>
-		<td>data-rule-lettersonly="true"</td>
+		<td><code>data-rule-lettersonly="true"</code></td>
 	</tr>
 	<tr>
 		<td>Letters and basic punctuation only (allowed punctuation: [.])</td>
-		<td>data-rule-letterswithbasicpunc="true"</td>
+		<td><code>data-rule-letterswithbasicpunc="true"</code></td>
 	</tr>
 	<tr>
 		<td>Maximum length of x</td>
-		<td>data-rule-maxlength="x"</td>
+		<td><code>data-rule-maxlength="x"</code></td>
 	</tr>
 	<tr>
 		<td>Maximum number x</td>
-		<td>max="x"</td>
+		<td><code>max="x"</code></td>
 	</tr>
 	<tr>
 		<td>Minimum length of x</td>
-		<td>data-rule-minlength="x"</td>
+		<td><code>data-rule-minlength="x"</code></td>
 	</tr>
 	<tr>
 		<td>Minimum number x</td>
-		<td>min="x"</td>
+		<td><code>min="x"</code></td>
 	</tr>
 	<tr>
 		<td>Email</td>
-		<td>type="email"</td>
+		<td><code>type="email"</code></td>
 	</tr>
 	<tr>
 		<td>Range length x to y</td>
-		<td>data-rule-rangelength="[x,y]"</td>
+		<td><code>data-rule-rangelength="[x,y]"</code></td>
 	</tr>
 	<tr>
 		<td>Telephone number (US)</td>
-		<td>type="tel" data-rule-phoneUS="true"</td>
+		<td><code>type="tel" data-rule-phoneUS="true"</code></td>
 	</tr>
 	<tr>
 		<td>Time</td>
-		<td>type="time"</td>
+		<td><code>type="time"</code></td>
 	</tr>
 	<tr>
 		<td>URL (IPv4)</td>
-		<td>type="url"</td>
+		<td><code>type="url"</code></td>
 	</tr>
 	<tr>
 		<td>URL (IPv6)</td>
-		<td>type="url" data-rule-ipv6="true"</td>
+		<td><code>type="url" data-rule-ipv6="true"</code></td>
 	</tr>
 	</table>
 	<p>See <a href="http://jqueryvalidation.org/documentation/">jQuery Validation Plugin - Documentation</a> for more details.</p>

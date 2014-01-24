@@ -103,6 +103,11 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<p><b>Project lead:</b> Jeff Gordon (<a href="https://github.com/jeffdavidgordon">@jeffdavidgordon</a>)</p>
 
 	<section>
+		<h3>Purpose</h3>
+		<p>Provides ASP, Javascript, Perl, and PHP appraoches for automatically linking to different language versions of the current page.</p>
+	</section>
+
+	<section>
 		<h3>Benefits</h3>
 		<ul>
 			<li>Simplifies Web page maintenance by eliminating the need to hard code language links</li>
@@ -122,13 +127,13 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 	<section>
 		<h3>Client Side Implementation (Javascript/Jquery)</h3>
-		<p>To enable secondary jQuery support, add <b>class="wet-boew-langselect"</b> to the language link.</p>
-		<pre>&lt;li id="gcwu-gcnb-lang"&gt;&lt;a class="wet-boew-langselect" href="langselect/lang.php" lang="fr"&gt;Français&lt;/a&gt;&lt;/li&gt;</pre>
+		<p>To enable secondary jQuery support, add <code>class="wet-boew-langselect"</code> to the language link.</p>
+		<pre><code>&lt;li id="gcwu-gcnb-lang"&gt;&lt;a class="wet-boew-langselect" href="langselect/lang.php" lang="fr"&gt;Français&lt;/a&gt;&lt;/li&gt;</code></pre>
 	</section>
 
 	<section>
 		<h3>Server Side Implementation (PHP, Perl, ASP)</h3>
-		<p>Modify the language link on your web page so that its URL points to the location of this project's server-side script (e.g. /demos/langselect/lang.php).   The language selector scripts rely on the HTTP_REFERER value but you can append the current URL to the query string when calling the script to improve accuracy:</p>
+		<p>Modify the language link on your web page so that its URL points to the location of this project's server-side script (e.g. /demos/langselect/lang.php).   The language selector scripts rely on the <code>HTTP_REFERER</code> value but you can append the current URL to the query string when calling the script to improve accuracy:</p>
 		<pre>http://www.gc.ca/cgi-bin/lang?http://www.gc.ca/index-eng.htm</pre>
 	</section>
 

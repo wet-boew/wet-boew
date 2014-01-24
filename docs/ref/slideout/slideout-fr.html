@@ -103,8 +103,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<p><b>Chef du projet :</b> Stephane Berube (<a href="https://github.com/berubs">@berubs</a>)</p>
 
 	<section>
-		<h3>But</h3>
-		<p>Le but de ce composant est d'ajouter un mécanisme pour afficher de contenu additional (p. ex. une table des matières) sans gaspiller d'espace valable sur la page.</p>
+		<h3>Objet</h3>
+		<p>L'objet de ce composant est d'ajouter un mécanisme pour afficher de contenu additional (p. ex. une table des matières) sans gaspiller d'espace valable sur la page.</p>
 	</section>
 
 	<section>
@@ -132,16 +132,16 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<p><a href="../../../demos/slideout/slideout-fr.html">Exemple pratique</a></p>
 
 	<section>
-		<h3>Paramètres/Options</h3>
-		<p>Utilisés les paramètres suivants dans l'attribut <b>data-wet-boew</b> pour changer l'image qui est utilsée par l'onglet coulissant.</p>
+		<h3>Paramètres</h3>
+		<p>Utilisés les paramètres suivants dans l'attribut <code>data-wet-boew</code> pour changer l'image qui est utilsée par l'onglet coulissant.</p>
 
 		<section>
-			<h4>txtShow</h4>
+			<h4><code>txtShow</code></h4>
 			<p>Contient le texte montré quand le panneau de l'onglet coulissant est fermé.</p>
 		</section>
 
 		<section>
-			<h4>txtHide</h4>
+			<h4><code>txtHide</code></h4>
 			<p>Contient le texte montré quand le panneau de l'onglet coulissant est ouvert.</p>
 
 			<h3>Exemple</h3>
@@ -164,11 +164,11 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<section>
 		<h3 id="v31migration">Migration de 3.0 à 3.1</h3>
 		<p>Avec la version 3.1, l'onglet coulissant utilise maintenant du texte plutôt que des images.</p>
-		<p>Les paramètres pour modifier le contenu de l'onglet ont été changés de "imgShow et "imgHide" à "txtShow" et "txtHide" respectivement.</p>
-		<p>Par exemple, cette boîte "wet-boew-slideout" version 3.0 :</p>
+		<p>Les paramètres pour modifier le contenu de l'onglet ont été changés de <code>imgShow</code> et <code>imgHide</code> à <code>txtShow</code> et <code>txtHide</code> respectivement.</p>
+		<p>Par exemple, cette boîte "wet-boew-slideout" version 3.0&#160;:</p>
 		<pre><code>&lt;div class="wet-boew-slideout" data-wet-boew='{"imgShow": {"src": "images/show-afficher.png", "height": 62, "width": 17, "alt": "Afficher la table des matières"}, "imgHide": {"src": "images/hide-cacher.png", "height": 62, "width": 17, "alt": "Cacher la table des matières"} }'&gt;</code></pre>
 
-		<p>Devrait être remplacé par ce qui suit dans v3.1 :</p>
+		<p>Devrait être remplacé par ce qui suit dans v3.1&#160;:</p>
 		<pre><code>&lt;div class="wet-boew-slideout" data-wet-boew='{"txtShow": "Afficher la table des matières", "txtHide": "Cacher la table des matières"} }'&gt;</code></pre>
 	</section>
 </section>

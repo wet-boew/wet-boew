@@ -103,7 +103,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<p><b>Chef du projet :</b> Paul Jackson (<a href="https://github.com/pjackson28">@pjackson28</a>)</p>
 
 	<section>
-		<h3>But</h3>
+		<h3>Objet</h3>
 		<p>Ce composant fournit la validation générique et le soutien de message d'erreur générique pour les formulaires Web.</p>
 	</section>
 
@@ -127,9 +127,9 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Mise en œuvre</h2>
 	<ol>
-		<li>Ajouter <b>class="wet-boew-formvalid"</b> à l'élément <b>div</b> qui est à l'entour de lélément <b>form</b> <pre>&lt;div class="wet-boew-formvalid"&gt;&lt;form action="#" method="post"&gt;...&lt;/form&gt;&lt;/div&gt;</pre></li>
-		<li><b>Facultatif :</b> Entourer le nom de chaque champ de formulaire avec <code>&lt;span class="field-name"&gt;...&lt;/span&gt;</code>. Ceci spécifie le préfixe pour chaque message d'erreur. <pre>&lt;label for="fname"&gt;&lt;span class="field-name"&gt;Prénom&lt;/span&gt; &lt;strong&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;</pre></li>
-		<li>Ajouter <b>required="required"</b> à chaque champ de formulaire obligatoire <pre>&lt;input id="fname" name="fname" type="text" required="required" /&gt;</pre></li>
+		<li>Ajouter <code>class="wet-boew-formvalid"</code> à l'élément <code>div</code> qui est à l'entour de lélément <code>form</code> <pre><code>&lt;div class="wet-boew-formvalid"&gt;&lt;form action="#" method="post"&gt;...&lt;/form&gt;&lt;/div&gt;</code></pre></li>
+		<li><b>Facultatif :</b> Entourer le nom de chaque champ de formulaire avec <code>&lt;span class="field-name"&gt;...&lt;/span&gt;</code>. Ceci spécifie le préfixe pour chaque message d'erreur. <pre><code>&lt;label for="fname"&gt;&lt;span class="field-name"&gt;Prénom&lt;/span&gt; &lt;strong&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;</code></pre></li>
+		<li>Ajouter <code>required="required"</code> à chaque champ de formulaire obligatoire <pre><code>&lt;input id="fname" name="fname" type="text" required="required" /&gt;</code></pre></li>
 		<li><b>Facultatif :</b> Pour les champs de saisie, ajouter la syntaxe suivante pour la validation spécializée :</li>
 	</ol>
 	<p><b>Note :</b> La syntaxe de validation spécialisée a changé en v3.0.6 et v3.1.0 de <code>class="{validate: {propriété: valeur}}"</code> à <code>data-rule-propriété="valeur"</code>. L'ancienne syntaxe est obsolète mais sera soutenue pour l'instant pour accommoder la transition vers la nouvelle syntaxe.</p>
@@ -141,67 +141,67 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	</tr>
 	<tr>
 		<td>Adresse de courriel</td>
-		<td>type="email"</td>
+		<td><code>type="email"</code></td>
 	</tr>
 	<tr>
 		<td>Alphanumérique</td>
-		<td>data-rule-alphanumeric:"true"</td>
+		<td><code>data-rule-alphanumeric:"true"</code></td>
 	</tr>
 	<tr>
 		<td>Chiffres seulement</td>
-		<td>type="number"</td>
+		<td><code>type="number"</code></td>
 	</tr>
 	<tr>
 		<td>Date</td>
-		<td>type="date"</td>
+		<td><code>type="date"</code></td>
 	</tr>
 	<tr>
 		<td>Date (ISO)</td>
-		<td>type="date" data-rule-dateISO="true"</td>
+		<td><code>type="date" data-rule-dateISO="true"</code></td>
 	</tr>
 	<tr>
 		<td>Heure</td>
-		<td>type="time"</td>
+		<td><code>type="time"</code></td>
 	</tr>
 	<tr>
 		<td>Lettres et des signes de ponctuation simples seulement (ponctuation qui est permis : [.])</td>
-		<td>data-rule-letterswithbasicpunc="true"</td>
+		<td><code>data-rule-letterswithbasicpunc="true"</code></td>
 	</tr>
 	<tr>
 		<td>Lettres seulement</td>
-		<td>data-rule-lettersonly="true"</td>
+		<td><code>data-rule-lettersonly="true"</code></td>
 	</tr>
 	<tr>
 		<td>Longeur entre x et y</td>
-		<td>data-rule-rangelength="[x,y]"</td>
+		<td><code>data-rule-rangelength="[x,y]"</code></td>
 	</tr>
 	<tr>
 		<td>Longeur maximum de x</td>
-		<td>data-rule-maxlength="x"</td>
+		<td><code>data-rule-maxlength="x"</code></td>
 	</tr>
 	<tr>
 		<td>Longeur minimum de x</td>
-		<td>data-rule-minlength="x"</td>
+		<td><code>data-rule-minlength="x"</code></td>
 	</tr>
 	<tr>
 		<td>Nombre maximum de x</td>
-		<td>max="x"</td>
+		<td><code>max="x"</code></td>
 	</tr>
 	<tr>
 		<td>Nombre minimum x</td>
-		<td>min="x"</td>
+		<td><code>min="x"</code></td>
 	</tr>
 	<tr>
 		<td>Numéro de téléphone (É.-U.)</td>
-		<td>type="tel" data-rule-phoneUS="true"</td>
+		<td><code>type="tel" data-rule-phoneUS="true"</code></td>
 	</tr>
 	<tr>
 		<td>URL (IPv4)</td>
-		<td>type="url"</td>
+		<td><code>type="url"</code></td>
 	</tr>
 	<tr>
 		<td>URL (IPv6)</td>
-		<td>type="url" data-rule-ipv6="true"</td>
+		<td><code>type="url" data-rule-ipv6="true"</code></td>
 	</tr>
 	</table>
 	<p>Liser <a href="http://jqueryvalidation.org/documentation">jQuery Validation Plugin - Documentation (Anglais seulement)</a> pour des renseignements supplémentaires.</p>

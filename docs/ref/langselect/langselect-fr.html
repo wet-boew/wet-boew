@@ -103,6 +103,11 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<p><b>Chef du projet :</b> Jeff Gordon (<a href="https://github.com/jeffdavidgordon">@jeffdavidgordon</a>)</p>
 
 	<section>
+		<h3>Objet</h3>
+		<p>Automatise la création de liens vers les versions de la page actuelle dans différentes langues.</p>
+	</section>
+
+	<section>
 		<h3>Avantages</h3>
 		<ul>
 			<li>Simplifie la maintenance de la page Web en éliminant la nécessité de coder laborieusement les liens vers les autres langues.</li>
@@ -118,10 +123,10 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 <section>
 	<h2>Mise en oeuvre</h2>
-	<p>Afin de permettre la prise en charge de jQuery secondaires, ajoutez <b>class="wet-boew-langselect"</b> au lien de langue :</p>
-	<pre>&lt;li id="gcwu-gcnb-lang"&gt;&lt;a class="wet-boew-langselect" href="langselect/lang.php" lang="en"&gt;English&lt;/a&gt;&lt;/li&gt;</pre>
+	<p>Afin de permettre la prise en charge de jQuery secondaires, ajoutez <code>class="wet-boew-langselect"</code> au lien de langue&#160;:</p>
+	<pre><code>&lt;li id="gcwu-gcnb-lang"&gt;&lt;a class="wet-boew-langselect" href="langselect/lang.php" lang="en"&gt;English&lt;/a&gt;&lt;/li&gt;</code></pre>
 
-	<p>Modifier le lien de la langue de sorte qu’il cible le script côté serveur. Les scripts de sélection de la langue utilisent la valeur <b>HTTP_REFERER</b>, mais vous pouvez ajouter l’adresse URL courante à la chaîne d’interrogation lorsque vous faites appel au script pour accroître l’exactitude :</p>
+	<p>Modifier le lien de la langue de sorte qu’il cible le script côté serveur. Les scripts de sélection de la langue utilisent la valeur <code>HTTP_REFERER</code>, mais vous pouvez ajouter l’adresse URL courante à la chaîne d’interrogation lorsque vous faites appel au script pour accroître l’exactitude&#160;:</p>
 	<pre>http://www.gc.ca/cgi-bin/lang?http://www.gc.ca/index-fra.htm</pre>
 </section>
 

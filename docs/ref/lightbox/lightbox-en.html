@@ -116,12 +116,12 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<h2>Implementation</h2>
 	<p>Each picture gallery groups and single pictures must be inside its own <code>&lt;div&gt;</code> using the "<b>wet-boew-lightbox</b>" class. Also, every <code>&lt;img&gt;</code> elements must be inside its own <code>&lt;a&gt;</code>.</p>
 	<p>Example:</p>
-	<pre>&lt;div class="wet-boew-lightbox"&gt;
+	<pre><code>&lt;div class="wet-boew-lightbox"&gt;
   &lt;a class="lb-item" href="image/image_source.jpg" title="Alt text for the image"&gt;
     &lt;img src="image/image_source.jpg" alt="Alt text for the image"&gt;
   &lt;/a&gt;
-&lt;/div&gt;</pre>
-	<p><b>Note:</b> The class "lb-item" is used here as an example. Bellow are the options to implement the Light box.</p>
+&lt;/div&gt;</code></pre>
+	<p><b>Note:</b> The class "<code>lb-item</code>" is used here as an example. Bellow are the options to implement the Lightbox.</p>
 </section>
 
 <section>
@@ -129,19 +129,19 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 	<section>
 		<h3>Single Items</h3>
-		<p>To implement Light box to a <b>single image/picture</b> on your page you need to use the class lb-item on the <code>&lt;a&gt;</code> tags.</p>
-		<pre>&lt;div class="wet-boew-lightbox"&gt;
+		<p>To implement Light box to a <b>single image/picture</b> on your page you need to use the class <code>lb-item</code> on the <code>&lt;a&gt;</code> tags.</p>
+		<pre><code>&lt;div class="wet-boew-lightbox"&gt;
   &lt;a class="lb-item" href="images/image_source.jpg" title="Alt text for the image"&gt;
     &lt;img src="images/image_source.jpg" alt="Alt text for the image" class="image-actual" /&gt;
   &lt;/a&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</code></pre>
 		<p><a href="../../../demos/lightbox/lightbox-en.html#examples1">Working Demo</a></p>
 	</section>
 
 	<section>
 		<h3>Item Gallery</h3>
 		<p>To implement Light box to a <b>group of images/pictures</b> on your page you need to use this code:</p>
-		<pre>&lt;div class="wet-boew-lightbox"&gt;
+		<pre><code>&lt;div class="wet-boew-lightbox"&gt;
   &lt;ul class="lb-gallery"&gt;
     &lt;li&gt;
       &lt;a class="lb-item-gal" href="images/image_source.jpg" title="Alt text for the image"&gt;
@@ -151,14 +151,14 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
     &lt;li&gt;...&lt;/li&gt;
     &lt;li&gt;...&lt;/li&gt;
   &lt;/ul&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</code></pre>
 		<p><a href="../../../demos/lightbox/lightbox-en.html#examples2">Working Demo</a></p>
 	</section>
 
 	<section>
 		<h3>Hidden Item Gallery</h3>
 		<p>To implement Light box to a <b>group of hidden images/pictures</b> on your page you need to use this code:</p>
-		<pre>&lt;div class="wet-boew-lightbox"&gt;
+		<pre><code>&lt;div class="wet-boew-lightbox"&gt;
   &lt;ul class="lb-hidden-gallery"&gt;
     &lt;li&gt;
       &lt;a class="lb-item-gal" href="images/image_source.jpg" title="Alt text for the image"&gt;
@@ -168,7 +168,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
     &lt;li&gt;...&lt;/li&gt;
     &lt;li&gt;...&lt;/li&gt;
   &lt;/ul&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</code></pre>
 		<p><a href="../../../demos/lightbox/lightbox-en.html#examples3">Working Demo</a></p>
 	</section>
 
@@ -187,7 +187,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<section>
 		<h3>Styling</h3>
 		<p>By default, there are no additional classes used to style the gallery as it appears in the <a href="../../../demos/lightbox/lightbox-en.html">working demo</a>. In order to style the lightbox gallery to look like it does in the demo, some extra classes can be used to remove the bullets, indentation and resize the images:</p>
-		<pre>&lt;div class="wet-boew-lightbox"&gt;
+		<pre><code>&lt;div class="wet-boew-lightbox"&gt;
    &lt;ul class="lb-gallery equalize list-bullet-none indent-none"&gt;
       &lt;li class="span-2 float-left margin-right-none" &gt;
          &lt;a class="lb-item-gal" href="image1.jpg" title="Image 1 title"&gt;
@@ -200,35 +200,35 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
          &lt;/a&gt;
       &lt;/li&gt;
 [...]
-&lt;/ul&gt;&lt;/div&gt;</pre>
+&lt;/ul&gt;&lt;/div&gt;</code></pre>
 	</section>
 
 	<section>
 		<h3>Force Photo Link</h3>
-		<p>Applying the <code>force-photo</code> class on the div containing <code>wet-boew-lightbox</code> forces Light Box to display a link as a photo. Use this when automatic photo detection fails (such as using a url like 'photo.php' or '&amp;photo=1234' instead of 'photo.jpg')</p>
+		<p>Applying the <code>force-photo</code> class on the div containing <code>wet-boew-lightbox</code> forces Light Box to display a link as a photo. Use this when automatic photo detection fails (such as using a url like <code>photo.php</code> or <code>&amp;photo=1234</code> instead of <code>photo.jpg</code>)</p>
 		<p>Example:</p>
-		<pre>&lt;div class="wet-boew-lightbox force-photo"&gt;
+		<pre><code>&lt;div class="wet-boew-lightbox force-photo"&gt;
   &lt;a class="lb-item" href="photo.php" title="Alt text for the image"&gt;
     &lt;img src="image/image_source.jpg" alt="Alt text for the image"&gt;
   &lt;/a&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</code></pre>
 	</section>
 
 	<section>
 		<h3>Applying Additional Settings</h3>
-		<p>There are many behaviours for the Light Box plugin (based on the ColorBox project) which are documented <a href="http://www.jacklmoore.com/colorbox/">here</a>. To apply these additional settings, add a <i>data-wet-boew</i> attribute containing your additional settings like so:</p>
-		<pre>&lt;div class="wet-boew-lightbox" data-wet-boew="speed:5000,opacity:0.1"&gt;</pre>
+		<p>There are many behaviours for the Light Box plugin (based on the ColorBox project) which are documented <a href="http://www.jacklmoore.com/colorbox/">here</a>. To apply these additional settings, add a <code>data-wet-boew</code> attribute containing your additional settings like so:</p>
+		<pre><code>&lt;div class="wet-boew-lightbox" data-wet-boew="speed:5000,opacity:0.1"&gt;</code></pre>
 
 		<section>
 			<h4>Sending Additional data to AJAX content</h4>
 			<p>It is possible to send additional data to AJAX content via the POST HTTP method. The data is specified on individual lightbox items using the data-wet-boew-lightbox attribute and the postData parameter. The data assigned to the postData parameter must be a valid JSON object.</p>
-			<pre>&lt;div class="wet-boew-lightbox"&gt;
+			<pre><code>&lt;div class="wet-boew-lightbox"&gt;
 	&lt;ul&gt;
 		&lt;li class="box"&gt;
 			&lt;a class="lb-item" title="Example of AJAX content" data-wet-boew-lightbox='{"postData": {"foo":"bar", "ping":"pong"}}' href="ajax/ajax-en.html"&gt;AJAX content&lt;/a&gt;
 		&lt;/li&gt;
 	&lt;/ul&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</code></pre>
 		</section>
 	</section>
 </section>

@@ -110,25 +110,24 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<section>
 		<h3>Benefits</h3>
 		<ul>
-			<li>Supports multiple tabs on the same page. </li>
-			<li>Supports multiple design options. </li>
-			<li>Supports setting the default tab </li>
-			<li>Supports automatic tab rotation and allows the rotation speed to be configured </li>
-			<li>Allows tab panels to be forced to the same height (height of the tallest tab panel) </li>
-			<li>Compatible with the CSS Grid System </li>
-			<li>Conforms to WCAG 2.0 AA </li>
-			<li>Uses WAI-ARIA to enhance accessibility </li>
+			<li>Supports multiple tabs on the same page.</li>
+			<li>Supports multiple design options.</li>
+			<li>Supports setting the default tab</li>
+			<li>Supports automatic tab rotation and allows the rotation speed to be configured</li>
+			<li>Allows tab panels to be forced to the same height (height of the tallest tab panel)</li>
+			<li>Compatible with the CSS Grid System</li>
+			<li>Conforms to WCAG 2.0 AA</li>
+			<li>Uses WAI-ARIA to enhance accessibility</li>
 			<li>Progressive enhancement approach</li>
 		</ul>
 	</section>
 
 	<section>
 		<h3>Recommended usage</h3>
-
 		<section>
 			<h4>Use When</h4>
 			<ul>
-				<li>To display multiple pieces of content with the same format. </li>
+				<li>To display multiple pieces of content with the same format.</li>
 				<li>The tabbed interface can be used as a slideshow to display images.</li>
 			</ul>
 		</section>
@@ -155,10 +154,10 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Implementation</h2>
 	<ul>
-		<li>Create a tab container for each set of tabs using <code>&lt;div class="wet-boew-tabbedinterface"&gt;&lt;/div&gt;</code>. </li>
-		<li>Add <code>&lt;div class="tabs-panel"&gt;</code> to each tab container and include <code>&lt;div id...&gt;</code> for each tab panel. The <b>id</b> for each tab panel must match the <b>href</b> for the associated tab (following the "#" symbol). For example: </li>
+		<li>Create a tab container for each set of tabs using <code>&lt;div class="wet-boew-tabbedinterface"&gt;&lt;/div&gt;</code>.</li>
+		<li>Add <code>&lt;div class="tabs-panel"&gt;</code> to each tab container and include <code>&lt;div id...&gt;</code> for each tab panel. The <b>id</b> for each tab panel must match the <b>href</b> for the associated tab (following the "#" symbol). For example:</li>
 	</ul>
-	<pre>&lt;div class="wet-boew-tabbedinterface"&gt;
+	<pre><code>&lt;div class="wet-boew-tabbedinterface"&gt;
     &lt;ul class="tabs"&gt;
         &lt;li&gt;&lt;a href="#tab1"&gt;National events&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href="#tab2"&gt;Regional events&lt;/a&gt;&lt;/li&gt;
@@ -178,38 +177,38 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
             &lt;p&gt;&lt;a href="#"&gt;fake link&lt;/a&gt;&lt;/p&gt;
         &lt;/div&gt;
     &lt;/div&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</code></pre>
 
 	<p><b>Optional:</b> Change the default appearance of a tab set by adding one of the following classes to the tab container:</p>
 	<ul>
-		<li><b>tabs-style-1:</b> Stylized horizontal tabs design </li>
-		<li><b>tabs-style-2:</b> Horizontal news scroller design</li>
-		<li><b>tabs-style-3:</b> Vertical news scroller design with links on the right </li>
-		<li><b>tabs-style-4:</b> Slideshow design with text-based links below </li>
-		<li><b>tabs-style-5:</b> Slideshow design without text-based links</li>
-		<li><b>tabs-style-6:</b> Horizontal image scroller design with text or image based links</li>
+		<li><b><code>tabs-style-1</code>:</b> Stylized horizontal tabs design </li>
+		<li><b><code>tabs-style-2:</code></b> Horizontal news scroller design</li>
+		<li><b><code>tabs-style-3:</code></b> Vertical news scroller design with links on the right </li>
+		<li><b><code>tabs-style-4:</code></b> Slideshow design with text-based links below </li>
+		<li><b><code>tabs-style-5:</code></b> Slideshow design without text-based links</li>
+		<li><b><code>tabs-style-6:</code></b> Horizontal image scroller design with text or image based links</li>
 	</ul>
-	<p><b>Note:</b> <b>tabs-style-2</b> and <b>tabs-style-3</b> have a news scroller design with no inner padding so images can have a full bleed. Paragraphs and other text-based content must be wrapped by <b>&lt;div class="tabs-panel"&gt;</b> to pad them in. For example:</p>
-	<p><b>Optional:</b> Specify which tab is selected by adding '''class="default"''' to that tab. For example:</p>
-	<pre>&lt;ul class="tabs"&gt;
+	<p><b>Note:</b> <code>tabs-style-2</code> and <code>tabs-style-3</code> have a news scroller design with no inner padding so images can have a full bleed. Paragraphs and other text-based content must be wrapped by <code>&lt;div class="tabs-panel"&gt;</code> to pad them in. For example:</p>
+	<p><b>Optional:</b> Specify which tab is selected by adding <code>class="default"</code> to that tab. For example:</p>
+	<pre><code>&lt;ul class="tabs"&gt;
     &lt;li&gt;&lt;a href="#tab1"&gt;National events&lt;/a&gt;&lt;/li&gt;
     &lt;li class="default"&gt;&lt;a href="#tab2"&gt;Regional events&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href="#tab3"&gt;Local events&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</pre>
+&lt;/ul&gt;</code></pre>
 
-	<p><b>Optional:</b> Add <b>class="auto-height-none"</b> to the tab container to disable forcing all tab panels to be the same height:</p>
-	<pre>&lt;div class="wet-boew-tabbedinterface auto-height-none"&gt;</pre>
+	<p><b>Optional:</b> Add <code>class="auto-height-none"</code> to the tab container to disable forcing all tab panels to be the same height:</p>
+	<pre><code>&lt;div class="wet-boew-tabbedinterface auto-height-none"&gt;</code></pre>
 
-	<p><b>Optional:</b> Add <b>class="cycle-fast"</b>, <b>class="cycle"</b> or <b>class="cycle-slow"</b> to the tab container to add a "Play"/"Pause" ("Jouer"/"Pause") button for automatically rotating the tabs. The tabs rotate every 2 seconds for <b>cycle-fast</b>, every 6 seconds for <b>cycle</b> and every 8 seconds for <b>cycle-slow</b>. A different rotation delay can be specified using <b>data-wet-boew='{"cycle":10000}' </b> where the value for <b>cycle</b> is the delay in milliseconds. The tabs will automatically rotate by default unless <b>class="auto-play-none"</b> is added to the tab container.</p>
-	<pre>&lt;div class="wet-boew-tabbedinterface cycle auto-play-none"&gt;</pre>
+	<p><b>Optional:</b> Add <code>class="cycle-fast"</code>, <code>class="cycle"</code> or <code>class="cycle-slow"</code> to the tab container to add a "Play"/"Pause" (<span lang="fr">"Jouer"/"Pause"</span>) button for automatically rotating the tabs. The tabs rotate every 2 seconds for <code>cycle-fast</code>, every 6 seconds for <code>cycle</code> and every 8 seconds for <code>cycle-slow</code>. A different rotation delay can be specified using <code>data-wet-boew='{"cycle":10000}'</code> where the value for <code>cycle</code> is the delay in milliseconds. The tabs will automatically rotate by default unless <code>class="auto-play-none"</code> is added to the tab container.</p>
+	<pre><code>&lt;div class="wet-boew-tabbedinterface cycle auto-play-none"&gt;</code></pre>
 
-	<p><b>Optional:</b> Add <b>class="animate-fast"</b>, <b>class="animate"</b> or <b>class="animate-slow"</b> to the tab container for a fast, medium or slow fade effect when transitioning between tab panels.</p>
-	<pre>&lt;div class="wet-boew-tabbedinterface animate"&gt;</pre>
+	<p><b>Optional:</b> Add <code>class="animate-fast"</code>, <code>class="animate"</code> or <code>class="animate-slow"</code> to the tab container for a fast, medium or slow fade effect when transitioning between tab panels.</p>
+	<pre><code>&lt;div class="wet-boew-tabbedinterface animate"&gt;</code></pre>
 
-	<p><b>Optional:</b> Add <b>class="slide-horz"</b> or <b>class="slide-vert"</b> to the tab container for a sliding transition between tab panels.</p>
-	<pre>&lt;div class="wet-boew-tabbedinterface animate slide-horz"&gt;</pre>
+	<p><b>Optional:</b> Add <code>class="slide-horz"</code> or <code>class="slide-vert"</code> to the tab container for a sliding transition between tab panels.</p>
+	<pre><code>&lt;div class="wet-boew-tabbedinterface animate slide-horz"&gt;</code></pre>
 
-	<p><b>Optional:</b> Implement complex layouts within the tab containers. When creating parent/child grids, you must use <b>row-start</b> and <b>row-end</b>. There are rare times where this may not be desirable. For example with drag and drop widgets, each grid cell must be the same size so the addition of <b>row-start</b> or <b>row-end</b> on some of them may cause layout problems when the box is moved from one column to another. Therefore, you can use the class <b>embedded-grid</b>. This CSS acts as a container for the tabs and you do not need to put them in a grid cell. It also removes the borders so the full with of the space is available.</p>
+	<p><b>Optional:</b> Implement complex layouts within the tab containers. When creating parent/child grids, you must use <code>row-start<code> and <code>row-end</code>. There are rare times where this may not be desirable. For example with drag and drop widgets, each grid cell must be the same size so the addition of <code>row-start</code> or <code>row-end</code> on some of them may cause layout problems when the box is moved from one column to another. Therefore, you can use the class <code>embedded-grid</code>. This CSS acts as a container for the tabs and you do not need to put them in a grid cell. It also removes the borders so the full with of the space is available.</p>
 </section>
 
 <section>
@@ -238,15 +237,15 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Known Issues</h2>
 	<ul>
-		<li>Content that is hidden by default can be missed by users </li>
-		<li>Extra user effort is required to view all the content </li>
-		<li>A large page load may initially show all the tab content prior to the feature restyling it. </li>
-		<li>Tab headings may have accessibility issues if they are not descriptive enough (e.g., using "1", "2", and "3" for the the news slider). Use the <b>wb-invisible</b> class to make tab headings more descriptive without affecting the appearance. For example:
-	<pre>1&lt;span class="wb-invisible"&gt; Top news today&lt;/span&gt;
-2&lt;span class="wb-invisible"&gt; Did you know?&lt;/span&gt;</pre>
+		<li>Content that is hidden by default can be missed by users</li>
+		<li>Extra user effort is required to view all the content</li>
+		<li>A large page load may initially show all the tab content prior to the feature restyling it.</li>
+		<li>Tab headings may have accessibility issues if they are not descriptive enough (e.g., using "1", "2", and "3" for the the news slider). Use the <code>wb-invisible</code> class to make tab headings more descriptive without affecting the appearance. For example:
+	<pre><code>1&lt;span class="wb-invisible"&gt; Top news today&lt;/span&gt;
+2&lt;span class="wb-invisible"&gt; Did you know?&lt;/span&gt;</code></pre>
 		</li>
-		<li>Adding transition effects to the tabs (e.g., elegant fade in/out) creates the risk of a user selecting two tabs in a row before the transition effect for the first tab can complete. In such a situation, the second tab will be selected but the first tab panel will be displayed. Because of this risk, this feature does not demonstrate, nor recommend adjusting the animate setting (currently set to "false"). </li>
-		<li>Usability testing revealed critical issues with the tabbed interface when used with text. Users expect that when they select text, they will be taken to a new page. </li>
+		<li>Adding transition effects to the tabs (e.g., elegant fade in/out) creates the risk of a user selecting two tabs in a row before the transition effect for the first tab can complete. In such a situation, the second tab will be selected but the first tab panel will be displayed. Because of this risk, this feature does not demonstrate, nor recommend adjusting the animate setting (currently set to "<code>false</code>").</li>
+		<li>Usability testing revealed critical issues with the tabbed interface when used with text. Users expect that when they select text, they will be taken to a new page.</li>
 	</ul>
 </section>
 

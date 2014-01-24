@@ -162,9 +162,9 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 					<li>One data column group </li>
 					<li>Zero summary column group</li>
 					<li>One data row group,</li>
-					<li>Zero summary row group defined with a <i>tbody</i> element. </li>
-					<li>Zero or one summary row group defined with the <i>tfoot</i> element</li>
-					<li>If there is no table columns summaries (summary row group defined with a <i>tfoot</i> element), the row grouping elements <i>thead</i>, <i>tbody</i> can be omitted.</li>
+					<li>Zero summary row group defined with a <code>tbody</code> element. </li>
+					<li>Zero or one summary row group defined with the <code>tfoot</code> element</li>
+					<li>If there is no table columns summaries (summary row group defined with a <code>tfoot</code> element), the row grouping elements <code>thead</code>, <code>tbody</code> can be omitted.</li>
 				</ul>
 			</section>
 		</section>
@@ -173,57 +173,57 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<section>
 		<h2>Implementation</h2>
 		<p>To implement this feature, add the class <code>wet-boew-zebra</code> to the top <code>ul</code>, <code>ol</code>, <code>dl</code> or <code>table</code> element.</p>
-		<pre>&lt;table class="wet-boew-zebra"&gt;
-	&lt;caption class="align-left"&gt;Example 1&lt;/caption&gt;
-	&lt;thead&gt;
-		&lt;tr&gt;&lt;th id="tbl5"&gt;Header&lt;/th&gt;&lt;th id="tbl6"&gt;Header&lt;/th&gt;&lt;/tr&gt;
-	&lt;/thead&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
-		&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
-		&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
-		&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
-		&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
-		&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;</pre>
+		<pre><code>&lt;table class="wet-boew-zebra"&gt;
+		&lt;caption class="align-left"&gt;Example 1&lt;/caption&gt;
+		&lt;thead&gt;
+			&lt;tr&gt;&lt;th id="tbl5"&gt;Header&lt;/th&gt;&lt;th id="tbl6"&gt;Header&lt;/th&gt;&lt;/tr&gt;
+		&lt;/thead&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
+			&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
+			&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
+			&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
+			&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
+			&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;</code></pre>
 
 		<section>
-			<h3>Parameters/Options for list object</h3>
-			<p>"list object" make reference to unordered list (ul), ordered list (ol) and definition list (dl)</p>
+			<h3>Parameters for list objects</h3>
+			<p>List objects are unordered lists (<code>ul</code>), ordered list (<code>ol</code>) and definition list (<code>dl</code>).</p>
 
 			<section>
-				<h4>alterwg class</h4>
-				<p>Generates alternating white and gray stripes on list objects</p>
+				<h4><code>alterwg</code> class</h4>
+				<p>Generates alternating white and gray stripes on list objects.</p>
 			</section>
 
 			<section>
-				<h4>nohover class</h4>
-				<p>Disables the default hover effect on list objects</p>
+				<h4><code>nohover</code> class</h4>
+				<p>Disables the default hover effect on list objects.</p>
 			</section>
 
 			<section>
-				<h4>nomargin class</h4>
-				<p>Removes the default left margin on list objects</p>
+				<h4><code>nomargin</code> class</h4>
+				<p>Removes the default left margin on list objects.</p>
 			</section>
 		</section>
 
 		<section>
-			<h3>Parameters/Options for table object</h3>
+			<h3>Parameters for table objects</h3>
 
 			<section>
-				<h4>hassum class</h4>
+				<h4><code>hassum</code> class</h4>
 				<p>This is a <b>table parser option</b> not related to the zebra striping. But this option may change the default zebra stilling on complex table.</p>
 				<p>That option is to let the table parser know if the table can contains summary group, by default each group is known as a data group. An example that show this new option is the <a href="../../../demos/zebra/invoice.html">Invoice Table Working Examples</a>. Please read the <a href="../../../demos/tableparser/index-en.html">HTML Table techniques issued from the WET Toolbox 3.0</a> documentation for more details.</p>
 			</section>
 
 			<section>
-				<h4>columnhighlight class</h4>
+				<h4><code>columnhighlight</code> class</h4>
 				<p>Applies column base striping. To get it working, your table must contain the <code>col</code> element.</p>
 			</section>
 
 			<section>
-				<h4>norowheaderhighlight class</h4>
+				<h4><code>norowheaderhighlight</code> class</h4>
 				<p>Removes the row cell header highlight on data cell mouse hover.</p>
 			</section>
 
@@ -233,12 +233,12 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			</section>
 
 			<section>
-				<h4>complextableparsing class</h4>
+				<h4><code>complextableparsing</code> class</h4>
 				<p>Force the simple table to be analyzed with the table usability parser. This enables the header cell highlight on simple tables. To have the alternating blue and white row styling, use the <code>vectorstripe</code> option.</p>
 			</section>
 
 			<section>
-				<h4>vectorstripe class</h4>
+				<h4><code>vectorstripe</code> class</h4>
 				<p>Force the alternate row styling, blue and white, even on complex table</p>
 			</section>
 		</section>

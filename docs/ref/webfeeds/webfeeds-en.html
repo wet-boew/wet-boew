@@ -139,17 +139,17 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<section>
 		<h3>Getting Started</h3>
 		<ol>
-			<li>For each Web feed, create a <b>div</b> element with 'class="wet-boew-webwidget' with an inner <b>div</b> element with <b>class="widget-container"</b></li>
-			<li>Inside the inner <b>div</b> created in the previous step add a <b>section</b> element</li>
-			<li>Inside the <b>section</b> element add a heading (h1-h6) with one of the following classes: <b>widget-title-attention</b>, <b>widget-title-dark</b> or <b>widget-title-attention</b></li>
-			<li>Add an unordered list (<b>ul</b>) after the heading with the <b>widget-content</b> class.</li>
-			<li>For every Web feed source to display add a list element containing a link to the feed: <pre>&lt;li&gt;&lt;a href="http://canada.gc.ca/sample.atom"&gt;Sample Atom Feed&lt;/a&gt;</pre></li>
+			<li>For each Web feed, create a <code>div</code>element with <code>class="wet-boew-webwidget</code> with an inner <code>div</code> element with <code>class="widget-container"</code></li>
+			<li>Inside the inner <code>div</code> created in the previous step add a <code>section</code> element</li>
+			<li>Inside the <code>section</code> element add a heading (h1-h6) with one of the following classes: <code>widget-title-attention</code>, <code>widget-title-dark</code> or <code>widget-title-attention</code></li>
+			<li>Add an unordered list (<code>ul</code>) after the heading with the <code>widget-content</code> class.</li>
+			<li>For every Web feed source to display add a list element containing a link to the feed: <pre><code>&lt;li&gt;&lt;a href="http://canada.gc.ca/sample.atom"&gt;Sample Atom Feed&lt;/a&gt;</code></pre></li>
 		</ol>
 	</section>
 
 	<section>
 		<h3>Example Code</h3>
-		<pre>&lt;div class="wet-boew-webwidget limit-5 span-4"&gt;&lt;div class="widget-container"&gt;
+		<pre><code>&lt;div class="wet-boew-webwidget limit-5 span-4"&gt;&lt;div class="widget-container"&gt;
 	&lt;section&gt;
 	&lt;h3 class="widget-title-dark"&gt;RSS Feed&lt;/h3&gt;
 		&lt;ul class="widget-content"&gt;
@@ -157,16 +157,16 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			&lt;li&gt;&lt;a href="http://wwwapps.tc.gc.ca/Saf-Sec-Sur/7/VRDB-BDRV/Search/Rss-Search.aspx"&gt;Road Safety Recalls&lt;/a&gt;&lt;/li&gt;
 		&lt;/ul&gt;
 	&lt;/section&gt;
-&lt;/div&gt;&lt;/div&gt;</pre>
+&lt;/div&gt;&lt;/div&gt;</code></pre>
 	</section>
 
 	<section>
-		<h3>Parameters/Options</h3>
-		<p>The web feeds widget accept the following parameter: <b>limit</b></p>
+		<h3>Parameters</h3>
+		<p>The web feeds widget accept the following parameter: <code>limit</code></p>
 
 		<section>
-			<h4>Limit Parameter/Option</h4>
-			<p>Each feed widget can specify a limit of element to display. To use this parameter add a class to the parent element (the div with the <b>wet-boew-webwidget</b> class) that start with "limit" followed by a dash then followed by the number of elements to limit the feed too. For a 5 items limit, use the following class: <b>class="limit-5"</b>. If no class is provided then no limit is set.</p>
+			<h4>Limit Parameter</h4>
+			<p>Each feed widget can specify a limit of element to display. To use this parameter add a class to the parent element (the <code>div</code> with the <code>wet-boew-webwidget</code> class) that start with "<code>limit</code>" followed by a dash then followed by the number of elements to limit the feed too. For a 5 items limit, use the following class: <code>class="limit-5"</code>. If no class is provided then no limit is set.</p>
 		</section>
 	</section>
 </section>
@@ -194,8 +194,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Known Issues</h2>
 	<ul>
-		<li>Default refresh period is set to 5 minutes which could create a noticeable delay before the widget posts a Web feed update </li>
-		<li>Potential for slowdowns when there is a lot of traffic on the server </li>
+		<li>Default refresh period is set to 5 minutes which could create a noticeable delay before the widget posts a Web feed update.</li>
+		<li>Potential for slowdowns when there is a lot of traffic on the server.</li>
 	</ul>
 </section>
 

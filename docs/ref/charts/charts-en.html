@@ -163,44 +163,44 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 	<section>
 		<h3>Parameters</h3>
-		<p>The options in the Charts and graphs component need to be prefixed with a namespace. The namespace used and default options can be overwritten by using the javascript setting file.</p>
+		<p>The options in the Charts and graphs component need to be prefixed with a namespace. The namespace used and default options can be overwritten by using the JavaScript setting file.</p>
 
 		<section>
 			<h4>Required namespace</h4>
-			<p><strong>wb-charts</strong> Default required namespace for any parameters and options defined here.</p>
+			<p><strong><code>wb-charts</code></strong> Default required namespace for any parameters and options defined here.</p>
 		</section>
 
 		<section>
 			<h4><code>&lt;table&gt;</code> element</h4>
 			<ul>
-				<li><strong>type <em>default</em>:</strong> Enumeration ("line", "area", "bar", "stacked", "pie"). This define the default type of chart. FYI "wb-charts-line" and "wb-charts-type-line" are equivalent.</li>
-				<li><strong>width:</strong> Number. This set the width of the graphic in pixel. eg. "wb-charts-width-300", "wb-charts-width-255".</li>
-				<li><strong>height:</strong> Number. This set the height of the graphic in pixel. eg. "wb-charts-height-500", "wb-charts-height-715".</li>
-				<li><strong>graphclass:</strong> String. This allow you to set custom class to the figure container element generated during the creation of the chart. With this you can set your own style to the chart container and legend. eg. Add the "bold" class to the graphic once generated "wb-charts-graphclass-bold". Once the charts is generated that will produce the action of adding the class "bold" to the figure element (<code>&lt;figure class="wb-charts bold"&gt;</code>). This can be useful when you want to set specific style to the legend "ul" list, like by forcing 2 column rendering or completly hide the legend.</li>
-				<li><strong>topvalue:</strong> Number. This set the top value used for y-axis in the chart. eg. "wb-charts-topvalue-4000000", wb-charts-topvalue-10</li>
-				<li><strong>topvaluenegative:</strong> Boolean. This set the value set with "topvalue" to be in his negative form.</li>
-				<li><strong>bottomvalue:</strong> Number. This set the bottom value used for the y-axis in the chart. eg "wb-charts-bottomvalue-0, wb-charts-bottomvalue-50".</li>
-				<li><strong>bottomvaluenegative:</strong> Boolean. This set the value set with "bottomvalue" to be in his negative form.</li>
-				<li><strong>steps:</strong> Number. This force the step value to be taken to draw the chart. eg. "wb-charts-steps-5500"</li>
-				<li><strong>parseDirection:</strong> Enumeration ("y", "x"). This define the direction on how the data table should be read. By default the value is "x".</li>
-				<li><strong>noencapsulation:</strong> Boolean. This disable the moving of the data source html table inside a details/summary below the charts. eg. "wb-charts-noencapsulation-true"</li>
-				<li><strong>labelposition (v3.1 only):</strong> Number. Specify wich row or column that would be use to label the charts.</li>
-				<li><strong>uniformtick (v3.1 only):</strong> Boolean. 'True' by default. Determine how the colspan/rowspan could have an effect on the position of the label in the chart.</li>
-				<li><strong>ticks (v3.1 only):</strong> Number. Number of label for the y-axis. Used with "topvalue" and "bottomvalue" could simulate the unsupported "steps" parameter. eg. "wb-charts-ticks-10"
+				<li><strong><code>type</code> <em>default</em>:</strong> Enumeration  ("<code>line</code>", "<code>area</code>", "<code>bar</code>", "<code>stacked</code>", "<code>pie</code>"). This define the default type of chart. FYI "<code>wb-charts-line</code>" and "<code>wb-charts-type-line</code>" are equivalent.</li>
+				<li><strong><code>width</code>:</strong> Number. This sets the width of the graphic in pixel. e.g., "<code>wb-charts-width-300</code>", "<code>wb-charts-width-255</code>".</li>
+				<li><strong><code>height</code>:</strong> Number. This sets the height of the graphic in pixel. e.g., "<code>wb-charts-height-500</code>", "<code>wb-charts-height-715</code>".</li>
+				<li><strong><code>graphclass</code>:</strong> String. This allows you to set custom class to the figure container element generated during the creation of the chart. With this you can set your own style to the chart container and legend. e.g., Add the "bold" class to the graphic once generated "wb-charts-graphclass-bold". Once the charts is generated that will produce the action of adding the class "bold" to the figure element (<code>&lt;figure class="wb-charts bold"&gt;</code>). This can be useful when you want to set specific style to the legend."ul" list, like by forcing 2 column rendering or completly hide the legend.</li>
+				<li><strong><code>topvalue</code>:</strong> Number. This sets the top value used for y-axis in the chart. e.g., "<code>wb-charts-topvalue-4000000</code>", "<code>wb-charts-topvalue-10</code>"</li>
+				<li><strong><code>topvaluenegative</code>:</strong> Boolean. This sets the value set with "<code>topvalue</code>" to be in his negative form.</li>
+				<li><strong><code>bottomvalue</code>:</strong> Number. This sets the bottom value used for the y-axis in the chart. e.g.,"<code>wb-charts-bottomvalue-0</code>", "<code>wb-charts-bottomvalue-50</code>".</li>
+				<li><strong><code>bottomvaluenegative</code>:</strong> Boolean. This sets the value set with "<code>bottomvalue</code>" to be in its negative form.</li>
+				<li><strong><code>steps</code>:</strong> Number. This forces the step value to be taken to draw the chart. e.g., "<code>wb-charts-steps-5500</code>"</li>
+				<li><strong><code>parseDirection</code>:</strong> Enumeration ("y", "x"). This define the direction on how the data table should be read. By default the value is "x".</li>
+				<li><strong><code>noencapsulation</code>:</strong> Boolean. This disables the moving of the data source html table inside a <code>details</code>/<code>summary</code> below the charts. e.g., "<code>wb-charts-noencapsulation-true</code>"</li>
+				<li><strong><code>labelposition</code> (v3.1 only):</strong> Number. Specify wich row or column that would be use to label the charts.</li>
+				<li><strong><code>uniformtick</code> (v3.1 only):</strong> Boolean. <code>true</code> by default. Determine how the <code>colspan</code>/<code>rowspan</code> could have an effect on the position of the label in the chart.</li>
+				<li><strong><code>ticks</code> (v3.1 only):</strong> Number. Number of label for the y-axis. Used with "<code>topvalue</code>" and "<code>bottomvalue</code>" could simulate the unsupported "<code>steps</code>" parameter. eg. "<code>wb-charts-ticks-10</code>"</li>
 			</ul>
 
 			<p><strong>Removed</strong></p>
 			<ul>
-				<li><strong>hide:</strong> Boolean. This was replaced by a build in mechanism that use a details/summary element under the chart to provide an access to the tabular data.</li>
-				<li><strong>nocutaxis</strong></li>
-				<li><strong>steps</strong></li>
-				<li><strong>maxwidth</strong></li>
-				<li><strong>decimal</strong></li>
+				<li><strong><code>hide</code>:</strong> Boolean. This was replaced by a build in mechanism that use a <code>details</code>/<code>summary</code> element under the chart to provide an access to the tabular data.</li>
+				<li><strong><code>nocutaxis</code></strong></li>
+				<li><strong><code>steps</code></strong></li>
+				<li><strong><code>maxwidth</code></strong></li>
+				<li><strong><code>decimal</code></strong></li>
 			</ul>
 
 			<p><strong>Technical cheat</strong></p>
 			<ul>
-				<li><strong>execdelay:</strong> Number. This set the amount of time (in milisecond) to wait before to create the second and subsequent charts. By default the value is set to 200 milisecond.</li>
+				<li><strong><code>execdelay</code>:</strong> Number. This sets the amount of time (in milisecond) to wait before to create the second and subsequent charts. By default the value is set to 200 milisecond.</li>
 			</ul>
 		</section>
 
@@ -208,7 +208,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<h4><code>&lt;tbody&gt;</code> element</h4>
 			<p><strong>Note:</strong> Only the first tbody is used to create the graphic, all the subsequent data group are currently just ignored.</p>
 			<ul>
-				<li><strong>type</strong> <em>default</em>: Enumeration  ("line", "area", "bar", "stacked", "pie"). This define the default type of chart. FYI "wb-charts-line" and "wb-charts-type-line" are equivalent. This will overwrite any value set for the table element</li>
+				<li><strong><code>type</code> <em>default</em>:</strong> Enumeration  ("<code>line</code>", "<code>area</code>", "<code>bar</code>", "<code>stacked</code>", "<code>pie</code>"). This define the default type of chart. FYI "<code>wb-charts-line</code>" and "<code>wb-charts-type-line</code>" are equivalent. This will overwrite any value set for the <code>table</code> element.</li>
 			</ul>
 		</section>
 
@@ -216,42 +216,42 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<h4><code>&lt;td&gt;</code> element</h4>
 			<p><strong>Note:</strong> Only available for the pie chart.</p>
 			<ul>
-				<li><strong>color:</strong> String. This allow you to set a custom html color to the pie quarter associated. "wb-charts-color-[Any]" eg. "wb-charts-color-blue", "wb-charts-color-yellow"</li>
-				<li><strong>overcolor:</strong> String. This allow you to set a custom mouse hover html color to the pie quarter associated. "wb-charts-overcolor-[Any]" eg. "wb-charts-overcolor-red", "wb-charts-overcolor-orangered"</li>
+				<li><strong><code>color</code>:</strong> String. This allow you to set a custom html color to the pie quarter associated. "<code>wb-charts-color-[Any]</code>" e.g., "<code>wb-charts-color-blue", "wb-charts-color-yellow</code>"</li>
+				<li><strong><code>overcolor</code>:</strong> String. This allow you to set a custom mouse hover html color to the pie quarter associated. "<code>wb-charts-overcolor-[Any]</code>" e.g., "<code>wb-charts-overcolor-red</code>", "<code>wb-charts-overcolor-orangered</code>"</li>
 			</ul>
 			<p>For an implementation example, please take a look at the pie chart in the complex charts working example.</p>
 		</section>
 
 		<section>
-			<h4><code>&lt;th&gt;</code> element (Defined in the header row group, thead)</h4>
+			<h4><code>&lt;th&gt;</code> element (Defined in the header row group, <code>thead</code>)</h4>
 			<p><strong>Note:</strong> Only available for the Line, Area, Bar and Stacked Chart.</p>
 			<ul>
-				<li><strong>fill:</strong> String. This allow you to set a custom background html color to this cell header once it's draw on the graphic. "wb-charts-fill-[Any]" eg. "wb-charts-fill-red", "wb-charts-fill-orangered"</li>
-				<li><strong>fillover:</strong> String. This allow you to set a custom mouseover background html color to this cell header once it's draw on the graphic. "wb-charts-fillover-[Any]" eg. "wb-charts-fillover-blue", "wb-charts-fillover-yellow"</li>
+				<li><strong><code>fill</code>:</strong> String. This allow you to set a custom background html color to this cell header once it's draw on the graphic. "<code>wb-charts-fill-[Any]</code>" e.g., "<code>wb-charts-fill-red</code>", "<code>wb-charts-fill-orangered</code>"</li>
+				<li><strong><code>fillover</code>:</strong> String. This allow you to set a custom <code>mouseover</code> background html color to this cell header once it's draw on the graphic. "<code>wb-charts-fillover-[Any]</code>" e.g., "<code>wb-charts-fillover-blue</code>", "<code>wb-charts-fillover-yellow</code>"</li>
 			</ul>
 		</section>
 
 		<section>
 			<h4><code>&lt;th&gt;</code> element (Defined in the first data row group, tbody)</h4>
-			<p><strong>Note:</strong> Only the type is available for a pie chart, all the other option is for an Line, Area, Bar and Stacked Chart.</p>
+			<p><strong>Note:</strong> Only the type is available for a pie chart, all the other option is for a Line, Area, Bar and Stacked Chart.</p>
 			<ul>
-				<li><strong>type</strong> <em>default</em>: Enumeration  ("line", "area", "bar", "stacked", "pie"). This define the default type of chart. FYI "wb-charts-line" and "wb-charts-type-line" are equivalent. This will overwrite any value set on row group (tbody) and table parent element.</li>
-				<li><strong>color:</strong> String. This allow you to set a custom html color for the bar, stacked, area or line. "wb-charts-color-[Any]" eg. "wb-charts-color-blue", "wb-charts-color-yellow"</li>
-				<li><strong>fillopacity:</strong> Number (between 0 and 100). This allow you to set the opacity for an bar, stacked and area object. "wb-charts-fillopacity-[Any]" eg. "wb-charts-fillopacity-20", "wb-charts-fillopacity-50"</li>
-				<li><strong>dasharray:</strong> String value. This allow you to set a partern stroke. eg. "wb-charts-dasharray-dashspacedot". Please see the section on dasharrary for example</li>
+				<li><strong><code>type</code> <em>default</em>:</strong> Enumeration  ("<code>line</code>", "<code>area</code>", "<code>bar</code>", "<code>stacked</code>", "<code>pie</code>"). This define the default type of chart. FYI "<code>wb-charts-line</code>" and "<code>wb-charts-type-line</code>" are equivalent. This will overwrite any value set on row group (<code>tbody</code>) and <code>table</code> parent element.</li>
+				<li><strong><code>color</code>:</strong> String. This allow you to set a custom html color for the bar, stacked, area or line. "<code>wb-charts-color-[Any]</code>" e.g., "<code>wb-charts-color-blue</code>", "<code>wb-charts-color-yellow</code>"</li>
+				<li><strong><code>fillopacity</code>:</strong> Number (between 0 and 100). This allow you to set the opacity for a bar, stacked and area object. "<code>wb-charts-fillopacity-[Any]</code>" e.g., "<code>wb-charts-fillopacity-20</code>", "<code>wb-charts-fillopacity-50</code>"</li>
+				<li><strong><code>dasharray</code>:</strong> String value. This allow you to set a pattern stroke. e.g., "<code>wb-charts-dasharray-dashspacedot</code>". Please see the section on <code>dasharrary</code> for example</li>
 			</ul>
 		</section>
 
 		<section>
-			<h4>"dasharray" example</h4>
+			<h4>"<code>dasharray</code>" example</h4>
 			<ul>
-				<li><strong>wb-charts-dasharray-none</strong> draw a continuous line, <em>this is the default</em></li>
-				<li><strong>wb-charts-dasharray-dash</strong> draw: "------------"</li>
-				<li><strong>wb-charts-dasharray-dashdot</strong> draw: "-.-.-.-.-.-."</li>
-				<li><strong>wb-charts-dasharray-dot</strong> draw: "............"</li>
-				<li><strong>wb-charts-dasharray-dotspace</strong> draw: ". . . . . . . . . . . . "</li>
-				<li><strong>wb-charts-dasharray-dashspace</strong> draw: "- - - - - - - - - - - - "</li>
-				<li><strong>wb-charts-dasharray-dashspacedot</strong> draw: "- . - . - . - . - . - . - . - . - . - . - . - . "</li>
+				<li><strong><code>wb-charts-dasharray-none</code></strong> draw a continuous line, <em>this is the default</em></li>
+				<li><strong><code>wb-charts-dasharray-dash</code></strong> draw: "------------"</li>
+				<li><strong><code>wb-charts-dasharray-dashdot</code></strong> draw: "-.-.-.-.-.-."</li>
+				<li><strong><code>wb-charts-dasharray-dot</code></strong> draw: "............"</li>
+				<li><strong><code>wb-charts-dasharray-dotspace</code></strong> draw: ". . . . . . . . . . . . "</li>
+				<li><strong><code>wb-charts-dasharray-dashspace</code></strong> draw: "- - - - - - - - - - - - "</li>
+				<li><strong><code>wb-charts-dasharray-dashspacedot</code></strong> draw: "- . - . - . - . - . - . - . - . - . - . - . - . "</li>
 			</ul>
 		</section>
 
@@ -265,13 +265,13 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 </section>
 <section>
 	<h2>Development</h2>
-	<p>It is possible to overwrite all the default setting above by using the WET setting mechanism. The variable to use is "wet_boew_charts". However the default color can not be overwritten.</p>
+	<p>It is possible to overwrite all the default setting above by using the WET setting mechanism. The variable to use is "<code>wet_boew_charts</code>". However the default color can not be overwritten.</p>
 </section>
 <section>
 	<h2>Known issues</h2>
 	<ul>
-		<li>Row grouping tag is required (thead, tbody)</li>
-		<li>Only the first data row group (tbody) is use to create the charts.</li>
+		<li>Row grouping tag is required (<code>thead</code>, <code>tbody</code>)</li>
+		<li>Only the first data row group (<code>tbody</code>) is use to create the charts.</li>
 		<li>The column group summaries technique is not supported.</li>
 		<li>Key cell and description cell for a row is not supported.</li>
 	</ul>

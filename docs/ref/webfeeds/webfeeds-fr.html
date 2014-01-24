@@ -123,15 +123,15 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Mettre en oeuvre</h2>
 	<ol>
-		<li>Ajouter un élément <b>div;</b> avec <b>class="wet-boew-webwidget" </b>dans la page Web. À l'intérieur de cet élément <b>div</b>, ajouter un autre élément <b>div</b> avec <b>class="widget-container"</b></li>
-		<li>À l'intérieur de l'élément <b>div</b> avec <b>class="widget-container"</b>, ajouter un élément <b>section</b></li>
-		<li>À l'intérieur de l'élément <b>section</b>, ajouter un élément d'en-tête (h1-h6) avec une des classes suivantes : <b>widget-title-attention</b>, <b>widget-title-dark</b> ou <b>widget-title-attention</b></li>
+		<li>Ajouter un élément <code>div</code> avec <code>class="wet-boew-webwidget"</code> dans la page Web. À l'intérieur de cet élément <code>div</code>, ajouter un autre élément <code>div</code> avec <code>class="widget-container"</code></li>
+		<li>À l'intérieur de l'élément <code>div</code> avec <code>class="widget-container"</code>, ajouter un élément <code>section</code></li>
+		<li>À l'intérieur de l'élément <code>section</code>, ajouter un élément d'en-tête (<code>h1</code> - <code>h6</code>) avec une des classes suivantes&#160;: <code>widget-title-attention</code>, <code>widget-title-dark</code> ou <code>widget-title-attention</code></li>
 		<li>Ajouter une liste non ordonnée (<b>ul</b>) après l'élément d'en-tête de l'étape suivante.</li>
-		<li>Pour chaque fil de syndication, ajouter un élément de liste avec un lien au fil de syndication : <pre>&lt;li&gt;&lt;a href="http://canada.gc.ca/exemple.atom"&gt;Exemple d'un fils d'Atom&lt;/a&gt;</pre></li>
+		<li>Pour chaque fil de syndication, ajouter un élément de liste avec un lien au fil de syndication&#160;: <pre><code>&lt;li&gt;&lt;a href="http://canada.gc.ca/exemple.atom"&gt;Exemple d'un fils d'Atom&lt;/a&gt;</code></pre></li>
 	</ol>
 	<section>
 		<h3>Code d'exemple</h3>
-		<pre>&lt;div class="wet-boew-webwidget limit-5 span-4"&gt;&lt;div class="widget-container"&gt;
+		<pre><code>&lt;div class="wet-boew-webwidget limit-5 span-4"&gt;&lt;div class="widget-container"&gt;
 	&lt;section&gt;
 	&lt;h3 class="widget-title-dark"&gt;Fil de RSS&lt;/h3&gt;
 		&lt;ul class="widget-content"&gt;
@@ -139,16 +139,16 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			&lt;li&gt;&lt;a href="http://wwwapps.tc.gc.ca/Saf-Sec-Sur/7/VRDB-BDRV/Search/Rss-Search.aspx?lang=fra"&gt;Rappels de la Sécurité Routière&lt;/a&gt;&lt;/li&gt;
 		&lt;/ul&gt;
 	&lt;/section&gt;
-&lt;/div&gt;&lt;/div&gt;</pre>
+&lt;/div&gt;&lt;/div&gt;</code></pre>
 	</section>
 
 	<section>
-		<h3>Paramètres/Options</h3>
-		<p>Le gadget des fils de syndication soutien le paramètre suivant : <b>limit</b></p>
+		<h3>Paramètres</h3>
+		<p>Le gadget des fils de syndication soutien le paramètre suivant&#160;: <code>limit</code></p>
 
 		<section>
-			<h4>Paramètre/Option - Limit</h4>
-			<p>Chaque gadget des fils de syndication peut limité les éléments à afficher. Utiliser ce paramètre en ajoutant un classe limite a l'élément supérieur (l'élément <b>div</b> avec <b>class="wet-boew-webwidget"</b>). La classe doit commencé avec <b>limit</b>, puis un trait d'union et finalement le nombre d'éléments de limite. Pour une limite de 5 éléments, utiliser la class <b>limit-5</b>. Il n'y aura pas une limite si une classe limite n'est pas utilisée.</p>
+			<h4>Paramètre - <code>limit</code></h4>
+			<p>Chaque gadget des fils de syndication peut limité les éléments à afficher. Utiliser ce paramètre en ajoutant un classe limite a l'élément supérieur (l'élément <code>div</code> avec <code>class="wet-boew-webwidget"</code>). La classe doit commencé avec <code>limit</code>, puis un trait d'union et finalement le nombre d'éléments de limite. Pour une limite de 5 éléments, utiliser la class <code>limit-5</code>. Il n'y aura pas une limite si une classe limite n'est pas utilisée.</p>
 		</section>
 	</section>
 </section>
@@ -164,7 +164,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Développement</h2>
 	<p>Le gadget des fils de syndication est dépendent sur <a href="http://code.google.com/apis/feed/">Google Feed API</a> (<a href="http://code.google.com/apis/feed/terms.html">Conditions de service</a>).</p>
-	<p>Le code pour le gadget des fils de syndication se trouve à plusieurs endroits dans le répertoire <b>source</b> de la BOEW :</p>
+	<p>Le code pour le gadget des fils de syndication se trouve à plusieurs endroits dans le répertoire <b>source</b> de la BOEW&#160;:</p>
 
 	<ul>
 		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/workers/webwidget.js">js/workers/webwidget.js</a> - contient le code JavaScript pour le gadget des fils de syndication</li>
