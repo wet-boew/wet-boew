@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Geomap - Plugins - Documentation - Web Experience Toolkit (WET)</title>
+
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<meta name="description" content="Displays a dynamic map over which information from additional sources can be overlaid." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="geomap-fr.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-en.html" lang="en"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/impl-en.html">Implement WET</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-en.html">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-en.html">Home</a></li>
+<li><a href="../../index-en.html">Documentation</a></li>
+<li><a href="../plugins-en.html">Plugins</a></li>
+<li>Geomap</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Geomap</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/feedback/feedback-en.html" class="button">Working examples</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
+</ul>
+
+<section>
+	<h2>Overview</h2>
+	<p><b>Project Lead:</b> Joost van Ulden (<a href="https://github.com/jvanulde">@jvanulde</a>)</p>
+
+	<section>
+		<h3>Purpose</h3>
+		<p>Displays a dynamic map over which information from additional sources can be overlaid.</p>
+	</section>
+
+	<section>
+		<h3>Benefits</h3>
+		<ul>
+			<li>Displays dynamic maps on any Web page</li>
+			<li>Configurable layout</li>
+			<li>Displays overlays from a variety open machine-readable formats hosted locally or remotely:
+				<ul>
+					<li>JSON/GeoJSON</li>
+					<li>ATOM/GeoRSS</li>
+					<li>KML</li>
+					<li>Inline HTML table</li>
+				</ul>
+			</li>
+			<li>Provides HTML table representation of overlay features and links them to the map</li>
+			<li>Supports WMS for base map</li>
+			<li>Conforms to WCAG 2.0 AA</li>
+			<li>Progressive enhancement approach</li>
+			<li>Uses WAI-ARIA to enhance accessibility</li>
+			<li>Supports Firefox, Opera, Safari, Chrome, and IE8+</li>
+		</ul>
+	</section>
+</section>
+
+<span class="wet-boew-prettify all-pre"></span>
+<section>
+	<h2>Implementation</h2>
+	<p><strong>NOTE:</strong> If you are implementing the working example on your development environment you may need to add the necessary support for the mime-types required by the various formats demonstrated (e.g. <code>".kml" "application/vnd.google-earth.kml+xml"</code>) to your web server.</p>
+	<ol>
+		<li>Add <code>&lt;div id="mygeomap" class="wet-boew-geomap"&gt;&lt;/div&gt;</code> to the Web page. Note that since version 3.1.1 each instance of Geomap requires an id that is unique to the page.</li>
+		<li>Specify a width for the widget (e.g., <code>class="span-5 margin-bottom-none"</code>)</li>
+		<li>Add <code>&lt;div class="wet-boew-geomap-map"&gt;&lt;/div&gt;</code> to the <code>div</code> created in step 1 where you want the map to be rendered.</li>
+		<li>Add <code>&lt;div class="wet-boew-geomap-layers"&gt;&lt;/div&gt;</code> to the <code>div</code> created in step 1 where you want the layer(s) listing to be rendered.</li>
+		<li>If a legend is required add <code>&lt;div class="wet-boew-geomap-legend"&gt;&lt;/div&gt;</code> to the <code>div</code> created in step 1 where you want it to be rendered.</li>
+		<li>Configure the options either globally or on a page-by-page basis. Options are configured globally by adding <code>var wet_boew_geomap = { ... options ...};</code> to <b>settings.js</b>. On a page-by-page approach a combination of applying configuration classes and/or using <code>data_wet_boew_geomap='{"option1": value1, "option2": "value2", ...}'</code> of the widget element can be used.</li>
+		<li>Overlays containing features to be added to the map can be configured by adding an array of overlay configurations (i.e. <code>overlays: [...]</code>) to <code>var wet_boew_geomap = { ... options ...};</code> in <b>settings.js</b> or a layers file referenced in the <code>data_wet_boew_geomap='{"layersFile": "data/config-en.js", ...}'</code> widget element.</li>
+	</ol>
+
+	<section>
+		<h3>Global (settings.js) or file based (e.g. config-en.js) configuration example</h3>
+		<pre><code>var wet_boew_geomap = {
+    basemap : {
+        title: 'CBMT',
+        type: 'wms',
+	url: 'http://geogratis.gc.ca/maps/CBMT',
+	layers: 'CBMT',
+	format: 'image/png',
+	version: '1.1.1'
+    },
+    overlays : [		
+        {
+            title: 'KML Demo EN',
+            caption: 'This is a sample KML file loaded locally by Geomap.',
+	    type: 'kml',
+	    url: 'data/sample.kml',		
+	    visible: true
+        },
+        { 
+            ... 
+        }
+    ]
+};</code></pre>
+	</section>
+
+	<section>
+		<h3>Page configuration example</h3>
+		<section>
+			<h4>Adding features from an inline HTML table</h4>
+			<p>Note that specific element attributes must be present the row (i.e. <code>&lt;tr&gt;</code>) for Geomap to render the features. See below for configuration.</p>
+			<pre><code>&lt;div id="mygeomap" class="wet-boew-geomap" data-wet-boew='{ "tables": [ { "id": "myTable", "style": { ... } } ] }'&gt; 
+    &lt;div class="wet-boew-geomap-map"&gt;&lt;/div&gt;    
+    &lt;div class="wet-boew-geomap-legend"&gt;&lt;/div&gt;       
+    &lt;div class="wet-boew-geomap-layers"&gt;&lt;/div&gt;       
+&lt;/div&gt;</code></pre>
+		</section>
+
+		<section>
+			<h4>Adding features from local and remote data sources via a configuration file</h4>
+			<pre><code>&lt;div id="mygeomap" class="wet-boew-geomap" data-wet-boew='{ "layersFile": "data/config-en.js" }'&gt; 
+    &lt;div class="wet-boew-geomap-map"&gt;&lt;/div&gt;    
+    &lt;div class="wet-boew-geomap-legend"&gt;&lt;/div&gt;       
+    &lt;div class="wet-boew-geomap-layers"&gt;&lt;/div&gt;       
+&lt;/div&gt;</code></pre>
+		</section>
+	</section>
+
+	<section>
+		<h3>Plugin configuration options</h3>
+		<p>Note: all plugin configuration parameters are optional.</p>
+		<section>
+			<h4><code>data-wet-boew</code></h4>
+			<table>
+				<thead>
+					<tr>
+						<th scope="col">Parameter</th>
+						<th scope="col">Value</th>
+						<th scope="col">Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>tables</code></td>
+						<td>Array</td>
+						<td>An array if inline HTML table id's from which map features are to be loaded and their configurations.</td>
+					</tr>
+					<tr>
+						<td><code>layersFile</code></td>
+						<td>String</td>
+						<td>Path to local or remote JavaScript configuration file that lists feature layers that are to be added to the map.</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+
+		<section>
+			<h4>Global and configuration file</h4>
+			<table>
+				<thead>
+					<tr>
+						<th scope="col">Parameter</th>
+						<th scope="col">Value</th>
+						<th scope="col">Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>basemap</code></td>
+						<td>JavaScript Object</td>
+						<td>A base map configuration that includes map settings (e.g., maximum and default extents, units, projection, etc.) and connection specifics for a WMS base map service.</td>
+					</tr>
+					<tr>
+						<td><code>overlays</code></td>
+						<td>Array</td>
+						<td>A list of layers to be added to the map with associated configurations.</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+
+		<section>
+			<h4>Configuration class</h4>
+			<table>
+				<thead>
+					<tr>
+						<th scope="col">Class</th>
+						<th scope="col">Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>position</code></td>
+						<td>If present, the mouse position control will be shown in the lower right corner of the map.</td>
+					</tr>
+					<tr>
+						<td><code>scaleline</code></td>
+						<td>If present, the scale line control will be shown in the lower left corner of the map.</td>
+					</tr>
+					<tr>
+						<td><code>static</code></td>
+						<td>If present, the controls (pan, zoom, select, etc.) will not be added to the map. This is useful for scenarios where a simple map with one or more features is required to communicate some value or idea (e.g. an extent map for a data product).</td>
+					</tr>
+					<tr>
+						<td><code>tab</code></td>
+						<td>If present, a tab control will be added to the page where feature tables can be added. Note that an overlay configuration would need to specify that it is to be placed in a tab control.</td>
+					</tr>
+				</tbody>
+			</table>
+			<p><strong>Configuration class example:</strong></p>
+			<pre><code>&lt;div id="mygeomap" class="wet-boew-geomap position scaleline"&gt; ... &lt;/div&gt;</code></pre>
+		</section>
+	</section>
+
+	<section>
+		<h3>Basemap configuration options</h3>
+		<p>Note: Geomap does not require a base map configuration. A default base map will be provided if none is configured.</p>
+		<table>
+			<thead>
+				<tr>
+					<th scope="col">Parameter</th>
+					<th scope="col">Required</th>
+					<th scope="col">Value</th>
+					<th scope="col">Default</th>
+					<th scope="col">Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>title</code></td>
+					<td>Yes</td>
+					<td>String</td>
+					<td>''</td>
+					<td>The title of the base layer (not displayed)</td>
+				</tr>
+				<tr>
+					<td><code>type</code></td>
+					<td>Yes</td>
+					<td>String</td>
+					<td>''</td>
+					<td>The type of data source. Note that this must be 'wms'.</td>
+				</tr>
+				<tr>
+					<td><code>url</code></td>
+					<td>Yes</td>
+					<td>String</td>
+					<td>''</td>
+					<td>The url of the WMS service providing the base map. For example 'http://geogratis.gc.ca/maps/CBMT'.</td>
+				</tr>
+				<tr>
+					<td><code>layers</code></td>
+					<td>No</td>
+					<td>String</td>
+					<td>''</td>
+					<td>A comma delimited string of layer ids to be requested from the WMS service.</td>
+				</tr>
+				<tr>
+					<td><code>format</code></td>
+					<td>Yes</td>
+					<td>String</td>
+					<td>''</td>
+					<td>The mime-type of the format to be requested of the WMS service.</td>
+				</tr>
+				<tr>
+					<td><code>version</code></td>
+					<td>Yes</td>
+					<td>String</td>
+					<td>''</td>
+					<td>The version of the WMS service being requested.</td>
+				</tr>
+				<tr>
+					<td><code>options</code></td>
+					<td>No</td>
+					<td>Array</td>
+					<td>''</td>
+					<td>A comma delimitated array of OpenLayers options for WMS layer types.</td>
+				</tr>
+				<tr>
+					<td><code>mapOptions</code></td>
+					<td>No</td>
+					<td>Array</td>
+					<td>''</td>
+					<td>An array of OpenLayers map configuration options.</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<section>
+			<h4>Basemap configuration example</h4>
+			<pre><code>basemap : {
+    title: 'CBMT',
+    type: 'wms',
+    url: 'http://geogratis.gc.ca/maps/CBMT',
+    layers: 'CBMT',
+    format: 'image/png',
+    version: '1.1.1',
+    options: { singleTile: true, ratio: 1.0, projection: 'EPSG:3978', fractionalZoom: true },
+    mapOptions: {
+        maxExtent: '-3000000.0, -800000.0, 4000000.0, 3900000.0',			
+        maxResolution: 'auto',
+        projection: 'EPSG:3978',
+        restrictedExtent: '-3000000.0, -800000.0, 4000000.0, 3900000.0',
+        units: 'm',
+        displayProjection: 'EPSG:4269',
+        numZoomLevels: 12
+    }
+}</code></pre>
+		</section>
+	</section>
+
+	<section>
+		<h3>Overlay configuration options</h3>
+		<table>
+			<thead>
+				<tr>
+					<th scope="col">Parameter</th>
+					<th scope="col">Required</th>
+					<th scope="col">Value</th>
+					<th scope="col">Default</th>
+					<th scope="col">Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>title</code></td>
+					<td>Yes</td>
+					<td>String</td>
+					<td>''</td>
+					<td>The title of the overlay to be displayed in the legend, tabs (if configured) and/or the page.</td>
+				</tr>
+				<tr>
+					<td><code>caption</code></td>
+					<td>Yes</td>
+					<td>String</td>
+					<td>''</td>
+					<td>The description of the overlay to be displayed in the table caption of the page.</td>
+				</tr>
+				<tr>
+					<td><code>datatable</code></td>
+					<td>No</td>
+					<td>Boolean</td>
+					<td>''</td>
+					<td>If true the feature table will be enhanced using the Tables plugin which provides sorting, paging and searching functions.</td>
+				</tr>
+				<tr>
+					<td><code>type</code></td>
+					<td>Yes</td>
+					<td>String</td>
+					<td>''</td>
+					<td>The type of datasource for the overlay. Must be one of: atom, kml, json, geojson, georss.</td>
+				</tr>
+				<tr>
+					<td><code>url</code></td>
+					<td>Yes</td>
+					<td>String</td>
+					<td>''</td>
+					<td>The url of the data source. For example 'http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst'.</td>
+				</tr>
+				<tr>
+					<td><code>params</code></td>
+					<td>No</td>
+					<td>Array</td>
+					<td>''</td>
+					<td>An array of parameters to send to the datasource/service. For example: <code>params: { 'alt': 'json', 'q': 'alluvial' }</code>. These will be added to the request URI.</td>
+				</tr>
+				<tr>
+					<td><code>visible</code></td>
+					<td>No</td>
+					<td>Boolean</td>
+					<td><code>false</code></td>
+					<td>Controls the visibility of the overlay. Note that without a legend the visibility of an overlay can't be changed.</td>
+				</tr>
+				<tr>
+					<td><code>root</code></td>
+					<td>No</td>
+					<td>Boolean</td>
+					<td>''</td>
+					<td>Name of the root element that contains the array of objects that contain the features to be rendered.</td>
+				</tr>
+				<tr>
+					<td><code>style</code></td>
+					<td>No</td>
+					<td>Array</td>
+					<td>''</td>
+					<td>An OpenLayers style object. Unique and rule based styles are supported. Note that Geomap will assign a default style if none is provided. However, the default color combination may not have the contrast required to meet WCAG guidelines. Therefore, a style should be configured before going into production.</td>
+				</tr>
+				<tr>
+					<td><code>tab</code></td>
+					<td>Yes</td>
+					<td>Boolean</td>
+					<td>''</td>
+					<td>If true, the feature table will be rendered in a tab control.</td>
+				</tr>
+				<tr>
+					<td><code>attributes</code></td>
+					<td>No</td>
+					<td>Array</td>
+					<td>''</td>
+					<td>An array of feature attributes to be displayed in the table with their aliases. For example: <code>attributes: { location_desc: 'Location', longitude: 'Latitude', latitude: 'Longitude', updated_at: 'Last updated' }</code>.</td>
+				</tr>
+				<tr>
+					<td><code>zoom</code></td>
+					<td>No</td>
+					<td>Boolean</td>
+					<td>''</td>
+					<td>If true a "Zoom to feature" button will be added to each row in the feature table.</td>
+				</tr>
+				<tr>
+					<td><code>popups</code>
+					<td>No</td>
+					<td>Boolean</td>
+					<td>''</td>
+					<td>If true popups for features will be enabled. Note that the "<code>popupsInfo</code>" parameter allows for customization of the popup and its content.</td>
+				</tr>
+				<tr>
+					<td><code>popupsInfo</code></td>
+					<td>No</td>
+					<td>String</td>
+					<td>''</td>
+					<td>Allows for customization of popup content. Has several configuration options: "<code>height</code>" in pixels, "<code>width</code>" in pixels, "<code>close</code>" which if set to <code>true</code> will result in a close button being rendered, and "content" which can contain any HTML markup desired.</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<section>
+			<h4>Overylay configuration example</h4>
+			<pre><code>{
+    title: 'Traffic Cameras',
+    caption: 'Traffic cameras in the city of Ottawa.',
+    type: 'geojson',					
+    url: 'http://stephenott.cartodb.com/api/v2/sql',
+    params: {
+        'format': 'GeoJSON',
+	'q': 'SELECT * FROM traffic_cameras LIMIT 25'
+    },
+    attributes: {				
+        location_desc: 'Location',
+	longitude: 'Latitude',
+	latitude: 'Longitude',				
+	updated_at: 'Last updated'
+    },
+    visible: true,	
+    zoom:  true,
+    datatable: true,
+    tab: true,
+    style: { ... }
+}</code></pre>
+		</section>
+
+		<section>
+			<h4>Inline HTML table configuration</h4>
+			<p>Geomap can create features from HTML markup in the page. Geomap requires a <code>data-geometry</code> attribute with feature geometry encoded in <strong>Well Known Text (WKT)</strong> or as a bounding box extent with lower left  and upper right coordinate pairs, and a <code>data-type</code> attribute that specifies the encoding as either <code>wkt</code> or <code>bbox</code>.</p>
+			<section>
+				<h5>WKT examples</h5>
+				<pre><code>&lt;tr data-geometry="POINT (-114.05879, 51.04668)" data-type="wkt"&gt; ... &lt;/tr&gt;</code></pre>
+				<pre><code>&lt;tr data-geometry="LINESTRING (30 10, 10 30, 40 40)" data-type="wkt"&gt; ... &lt;/tr&gt;</code></pre>
+				<pre><code>&lt;tr data-geometry="POLYGON ((30 10, 10 20, 20 40, 40 40, 30 10))" data-type="wkt"&gt; ... &lt;/tr&gt;</code></pre>
+				<p>Other geometry types are supported. See [http://en.wikipedia.org/wiki/Well-known_text Well-Known-Text] for more examples.</p>
+			</section>
+
+			<section>
+				<h5>Bbox example</h5>
+				<pre><code>&lt;tr data-geometry="-136, 61, -118, 70" data-type="bbox"&gt; ... &lt;/tr&gt;</code></pre>
+			</section>
+
+			<section>
+				<h5>Inline HTML table configuration example</h5>
+				<pre><code>&lt;table id="cities" class="table-simplify width-100" aria-label="Cities"&gt;
+    &lt;caption&gt;Major cities in Canada.&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Rank&lt;/th&gt;
+            &lt;th&gt;Census subdivision&lt;/th&gt;                            
+            &lt;th&gt;Population 2011&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr data-geometry="POINT (-79.3847, 43.6476)" data-type="wkt"&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td class="select"&gt;
+                &lt;a href="../Toronto" title="Toronto"&gt;Toronto&lt;/a&gt; 
+            &lt;/td&gt;
+            &lt;td&gt;2615060&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr data-geometry="POINT (-73.56123, 45.52927)" data-type="wkt"&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td class="select"&gt;
+                &lt;a href="../Montreal" title="Montreal"&gt;Montreal&lt;/a&gt;
+            &lt;/td&gt;
+            &lt;td&gt;1649519&lt;/td&gt;
+        &lt;/tr&gt;
+        ...
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        ...
+    &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+			</section>
+			<p>Note that attribute names for features rendered from an inline HTML table are taken from the table header. In the preceding example the table header would result in attributes named "Rank", "Census subdivision", and "Population 2011".</p>
+		</section>
+
+		<section>
+			<h4>Style configuration options</h4>
+			<section>
+				<h5>Basic style example - all features using the same style</h5>
+				<pre><code>style: { 
+    'strokeColor': '#ff0000',
+    'fillColor': '#ff0000',
+    'fillOpacity': '0.4' 
+}</code></pre>
+			</section>
+
+			<section>
+				<h5>Style example with override for selected feature</h5>
+				<pre><code>style: {
+    type: 'symbol',
+    init: { 'pointRadius': '15', 'externalGraphic': '../icon.png' },
+    select: { 'pointRadius': '15', 'externalGraphic': '../icon_selected.png' }
+}</code></pre>
+			</section>
+
+			<section>
+				<h5>Rule based example - features are styled according to specified rules</h5>
+				<pre><code>style: {
+    type: 'rule',
+    rule: [
+        {
+            field: 'Population2011',
+            value: [ 1000000 ],
+            filter: 'LESS_THAN',
+            init: { strokeColor: '#0083f5', fillColor: '#57a8f0', pointRadius: '6' }
+        },
+        {
+            field: 'Population2011',
+            value: [ 1000000, 2000000 ],
+            filter: 'BETWEEN',
+            init: { strokeColor: '#F90', fillColor: '#F90', pointRadius: '8' }
+        },
+        {
+            field: 'Population2011',
+            value: [ 2000000 ],
+            filter: 'GREATER_THAN',
+            init: { strokeColor: '#F00', fillColor: '#F00', pointRadius: '10' }
+         }
+    ]
+}</code></pre>
+			</section>
+
+			<section>
+				<h5>Unique style example - features have unique style based on an attribute</h5>
+				<pre><code>style: {
+    type: 'unique',
+    field: 'Location',
+    init: {
+        // using the value from the 'Location' attribute, create a unique style for each feature
+        'Bayshore & Richmond': { 'fillColor': '#000099' },
+        'Baseline & Greenbank': { 'fillColor': '#009900'}
+    },
+    // specify a style for selected features (optional). Note here we are adding a label when 
+    // a feature is selected.
+    select: {'fillColor': '#990000', 'label': '${Location}' }
+}</code></pre>
+			</section>
+		</section>
+
+		<section>
+			<h4>Popup Configuration Options</h4>
+			<p>To add popup with no customization simply add <code>"popups": true</code>. By default popups contain the same information as that is displayed in the corresponding table row for the feature.</p>
+			<p>If you need more control over your popups, you can customize them by passing a configuration through the "<code>popupsInfo</code>" parameter. The "<code>popupsInfo</code>" "<code>content</code>" parameter can contain any HTML markup you desire. Where feature attributes are required to be rendered simply add the attribute name with an underscore at the beginning. For example, if you have a feature attribute named "Census subdivision" you would reference it in your popup content as "_Census subdivision".</p>
+			<p>The following example shows all available configuration options:</p>
+			<pre><code>...
+"popups": true,
+"popupsInfo": {
+    "id": "citiesPopup",
+    "height": 200,
+    "width": 300,
+    "close": true,
+    "content": "&lt;h4&gt;_Census subdivision&lt;/h4&gt;&lt;p&gt;_Population 2011&lt;/p&gt;"
+},
+...</code></pre>
+		</section>
+	</section>
+
+	<section>
+		<h3>Advanced Configuration</h3>
+		<p>Geomap provides developers with a hook to access the OpenLayers Map object. This can be useful if you have specific functionality that Geomap does not support out of the box. Geomap fires an event when it has loaded called '<code>geomap-ready</code>' that you can attach a listener to as follows:</p>
+		<pre><code>pe.document.on('geomap-ready', function() {
+    // do something
+});</code></pre>
+		<p>Once Geomap has loaded, the OpenLayers Map object can be requested using the <code>getMap</code> function as follows:</p>
+		<pre><code>var myMap = pe.fn.geomap.getMap('mygeomap');</code></pre>
+		<p>Note that the <code>id</code> of the <code>div</code> that contains the instance of Geomap you are accessing must be passed into the <code>getMap</code> function.</p>
+		<p>For example if you want Geomap to zoom to the extent of a specified layer once the document is loaded simply add the following to your markup:</p>
+		<pre><code>&lt;script&gt;
+    pe.document.on('geomap-ready', function() {
+        var myMap = pe.fn.geomap.getMap('mygeomap');
+        var myExtent = myMap.getLayer('table#bbox').getExtent(); 
+        myMap.zoomToExtent(myExtent, true);    
+    });
+&lt;/script&gt;</code></pre>
+	</section>
+</section>
+
+<section>
+	<h2>Examples</h2>
+	<ul>
+		<li><a href="../../../demos/geomap/geomap-en.html">English example</a></li>
+		<li><a href="../../../demos/geomap/geomap-fr.html">French example</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Migrating from 3.1.0</h2>
+	<p>Starting with version 3.1.1 multiple Geomap instances are supported in a page. As a result a minor markup update is required:</p>
+	<section>
+		<h3>In 3.1.0 (DEPRECATED)</h3>
+		<pre><code>&lt;div class="wet-boew-geomap" data-wet-boew='{ ... }'&gt;&lt;/div&gt;</code></pre>
+	</section>
+
+	<section>
+		<h3>Starting with version 3.1.2</h3>
+		<p>All Geomap components are nested in a <code>div</code> with the <code>wet-boew-geomap</code> class which <strong>must</strong> include an <code>id</code>.</p>
+		<pre><code>&lt;div id="mygeomap" class="wet-boew-geomap" data-wet-boew='{ ... }'&gt; 
+    &lt;div class="wet-boew-geomap-map"&gt;&lt;/div&gt;    
+    &lt;div class="wet-boew-geomap-legend"&gt;&lt;/div&gt;       
+    &lt;div class="wet-boew-geomap-layers"&gt;&lt;/div&gt;       
+&lt;/div&gt;</code></pre>
+	</section>
+</section>
+
+<section>
+	<h2>Development</h2>
+	<p>Geomap is dependent upon <a href="http://openlayers.org/">OpenLayers</a> (<a href="http://svn.openlayers.org/trunk/openlayers/license.txt">Clear BSD License</a>) and <a href="http://trac.osgeo.org/proj4js/">Proj4js</a> (<a href="http://www.gnu.org/copyleft/lesser.html">LGPL license</a>).</p>
+	<p>The code Geomap is located in several places within the <b>source</b> folder of WET:</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/workers/geomap.js">js/workers/geomap.js</a>  - contains the JavaScript code for Geomap</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/sass/includes/_geomap.scss">js/sass/includes/_geomap.scss</a> - contains the CSS for Geomap</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/images/geomap/">js/images/geomap/</a> - contains the images for Geomap</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/openlayers.js">js/dependencies/openlayers.js</a> - OpenLayers script file</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/master/src/js/dependencies/proj4js.js">js/dependencies/proj4js.js</a> - proj4js script file</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Known Issues</h2>
+	<p>There are no known technical issues at this point in time. If you find one, please contribute by filing an issue.</p>
+</section>
+
+<section>
+	<h2>Version History</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/workers/geomap.js">geomap.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/master/src/js/sass/includes/_geomap.scss">_geomap.scss</a></li>
+	</ul>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2014-01-26</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>
