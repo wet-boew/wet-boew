@@ -655,7 +655,7 @@
 		_set_active_panel : function(id, tabListIdx) {
 			if (typeof window.sessionStorage !== 'undefined') {
 				try {
-					window.sessionStorage.setItem('activePanel-' + tabListIdx, id);
+					window.sessionStorage.setItem('activePanel-' + _pe.urlpage.path + tabListIdx, id);
 				} catch (error) {
 				}
 			}
@@ -663,7 +663,7 @@
 
 		_get_active_panel : function(tabListIdx) {
 			if (typeof window.sessionStorage !== 'undefined') {
-				return window.sessionStorage.getItem('activePanel-' + tabListIdx);
+				return window.sessionStorage.getItem('activePanel-' + _pe.urlpage.path + tabListIdx);
 			}
 			return null;
 		},
