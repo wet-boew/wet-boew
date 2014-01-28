@@ -8,14 +8,14 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-<title>Java &amp; Maven variant - Variants - Documentation - Web Experience Toolkit (WET)</title>
+<title>WordPress variant - Variants - Documentation - Web Experience Toolkit (WET)</title>
 
 <link rel="shortcut icon" href="../../../dist/theme-gcwu-fegc/images/favicon.ico" />
-<meta name="description" content="Bundles the Web Experience Toolkit (WET) as a Maven module." />
+<meta name="description" content="Adapts WET for use with WordPress." />
 <meta name="dcterms.creator" content="Web Experience Toolkit (WET) project" />
-<meta name="dcterms.title" content="Java &amp; Maven variant - Variants - Documentation - Web Experience Toolkit (WET)" />
-<meta name="dcterms.issued" title="W3CDTF" content="2014-01-27" />
-<meta name="dcterms.modified" title="W3CDTF" content="2014-01-27" />
+<meta name="dcterms.title" content="WordPress variant - Variants - Documentation - Web Experience Toolkit (WET)" />
+<meta name="dcterms.issued" title="W3CDTF" content="2014-01-28" />
+<meta name="dcterms.modified" title="W3CDTF" content="2014-01-28" />
 <meta name="dcterms.subject" title="gccore" content="Internet;Standards;Design" />
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -54,7 +54,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li id="gcwu-gcnb1"><a rel="external" href="http://www.canada.ca/en/index.html">Canada.ca</a></li>
 <li id="gcwu-gcnb2"><a rel="external" href="http://www.canada.ca/en/services/index.html">Services</a></li>
 <li id="gcwu-gcnb3"><a rel="external" href="http://www.canada.ca/en/gov/dept/index.html">Departments</a></li>
-<li id="gcwu-gcnb-lang"><a href="javamaven-fr.html" lang="fr">Français</a></li>
+<li id="gcwu-gcnb-lang"><a href="wordpress-fr.html" lang="fr">Français</a></li>
 </ul>
 </div></div></div></nav>
 
@@ -88,7 +88,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li><a href="../../../index-en.html">Home</a></li>
 <li><a href="../../index-en.html">Documentation</a></li>
 <li><a href="../variants-en.html">Variants</a></li>
-<li>Java &amp; Maven variant</li>
+<li>WordPress variant</li>
 </ol>
 </div></div>
 </nav>
@@ -98,102 +98,100 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">Java &amp; Maven variant</h1>
+<h1 id="wb-cont">WordPress variant</h1>
 
 <ul class="button-group">
+<li><a href="http://www.lostprototype.com/wet-boew3/" class="button">Working examples</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
 </ul>
 
-<span class="wet-boew-prettify all-pre"></span>
-
 <section>
 	<h2>Overview</h2>
-	<p><strong>Project lead:</strong> Eric Ehret (<a href="https://github.com/eehret">@eehret</a>)</p>
+	<p><strong>Project lead:</strong> Jobe Roberts (<a href="https://github.com/Joberrr">@Joberrr</a>)</p>
 	<section>
 		<h3>Purpose</h3>
-		<p>The Java &amp; Maven variant is essentially a bundling of WET as a Maven module called a 'WAR overlay'.  There is a WAR overlay for each available WET theme.</p>
-		<p>Providing WET for Java Web applications in this fashion provides the following main benefits:</p>
-		<ul>
-			<li>Makes adoption of WET simpler, for anyone already using Maven</li>
-			<li>Specific version of WET can be clearly identified in your project metadata</li>
-			<li>Updates to WET are made easier; in some cases if the changes are minor it may be as simple as incrementing the version number and rebuilding your application</li>
-		</ul>
+		<p>Adapts WET for use with WordPress.</p>
 	</section>
 
 	<section>
-		<h3>Background on Maven</h3>
-		<p>For those unfamiliar with Maven, it is a tool similar to Ant in some respects, but with many other capabilities that help developers with things like dependency management, project structure consistency, quality control, and code modularity and reuse.</p>
-		<p>With Maven, a project is described by metadata, contained within a Project Object Model (POM) file.  This metadata provides lots of useful information about the project, both technical and non-technical, including:</p>
+		<h3>Benefits</h3>
 		<ul>
-			<li>Project description</li>
-			<li>Main contact information</li>
-			<li>Location of source code (GitHub or SVN coordinates, for example)</li>
-			<li>Location of continuous integration server</li>
-			<li>List of developers and contributors</li>
-			<li>Dependencies required to build the project</li>
-			<li>and more...</li>
+			<li>Easy to install like any other WordPress theme</li>
+			<li>Supports English and French in a single WordPress instance</li>
+			<li>Conforms to WCAG 2.0 AA</li>
+			<li>Uses WAI-ARIA to enhance accessibility</li>
 		</ul>
-		<p>Maven integrates with many different tools and technologies, and can provide powerful benefits in terms of configuration management of a project.  With Maven, you can specify exactly which versions of different Java libraries your project depends on.  Since this metadata is typically captured within your VCS, and tagged along with your releases, you will have the confidence of being able to rebuild your project any time with the correct libraries that you used at that point in time.</p>
-		<p>A lot of projects use Maven, and just about any Java open source component can be found online in the Maven Central repository. Maven is increasing in popularity, as indicated by <a href="http://www.google.com/trends/?q=java+ant,+java+maven">Google Trends</a>.</p>
-		<p>For more information about Maven, please see the official site, located at <a href="http://maven.apache.org">maven.apache.org</a>.</p>
 	</section>
 </section>
 
 <section>
 	<h2>Implementation</h2>
-	<p>If you use Maven, this means that you can include WET as a Maven dependency simply by providing the appropriate dependency information in the <code>&lt;dependencies&gt;</code> section of your POM file, like so:</p>
-	<pre><code>&lt;dependency&gt;
-    &lt;groupId&gt;com.github.wet-boew&lt;/groupid&gt;
-    &lt;artifactId&gt;wet-gcwu-intranet-theme-overlay&lt;/artifactid&gt;
-    &lt;version&gt;3.0.3&lt;/version&gt;
-    &lt;type&gt;war&lt;/type&gt;
-    &lt;scope&gt;runtime&lt;/scope&gt;
-&lt;/dependency&gt;</code></pre>
-
-	<p>In this case we've specified the GC Web Usability Intranet theme from WET as a dependency.  That's fine, but doing this alone will not affect the <code>WEB-INF</code> folder of your Java web application. What you probably want to do is "overlay" this dependency onto your project, hence the term 'WAR overlay'. What you can do is tell Maven to take the WET theme overlay you've specified as a dependency, extract it, and combine it with the code from your own project.  This is done like so:</p>
-	<pre><code>&lt;build&gt;
-...
-    &lt;pluginManagement&gt;
-        &lt;plugins&gt;
-
-            &lt;plugin&gt;
-                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupid&gt;
-                &lt;artifactId&gt;maven-war-plugin&lt;/artifactid&gt;
-                &lt;configuration&gt;
-                    &lt;overlays&gt;
-                        &lt;overlay&gt;
-                            &lt;groupId&gt;com.github.wet-boew&lt;/groupid&gt;
-                            &lt;artifactId&gt;wet-gcwu-intranet-theme-overlay&lt;/artifactid&gt;
-                            &lt;targetPath&gt;static/WET&lt;/targetpath&gt;
-                        &lt;/overlay&gt;
-                    &lt;/overlays&gt;
-                &lt;/configuration&gt;
-            &lt;/plugin&gt;
-        &lt;/plugins&gt;
-    &lt;/pluginmanagement&gt;
-...
-&lt;/build&gt;</code></pre>
-
-	<p>Notice above that within the <code>&lt;overlay&gt;</code> section, a <code>&lt;targetPath&gt;</code> is specified.  If a <code>&lt;targetPath&gt;</code> is specified, then instead of the WAR contents being extracted under <code>WEB-INF</code>, they will be extracted under <code>WEB-INF/&lt;targetPath&gt;</code>. This is recommended so that you can maintain a clean separation between your own code and WET.  Furthermore, having a dedicated folder under <code>WEB-INF</code> for static content will allow you to configure a caching strategy very easily, enhancing the performance of your application.</p>
-	<p>When you build your application, you should now find the folder indicated by <code>&lt;targetPath&gt;</code> in your WAR file, containing WET.</p>
-	<p>Be aware that if you happen to have some other content in your project, in the same location as the content from WET (e.g. <code>/static/WET</code>), by default the content from your project will override the content from the overlay.  When the WET overlay is applied, those files will be skipped.  This default behaviour can be changed, but requires additional configuration of the maven-war-plugin, which is beyond the scope of these instructions.</p>
-	<p>For more information, please read the <a href="http://maven.apache.org/plugins/maven-war-plugin/overlays.html">Maven documentation on overlays</a>.</p>
-</section>
-
-<section>
-	<h2>Artifacts at the Maven Central Repository</h2>
 	<section>
-		<h3>Overlays</h3>
+		<h3>How to implement the required plugins</h3>
+		<ol>
+			<li>
+				<a href="http://wordpress.org/extend/plugins/qtranslate/">qTranslate</a>: Enables support for multiple languages
+				<ol>
+					<li>Log into the WordPress instance as admin.</li>
+					<li>Select <strong>Languages</strong> in the <strong>Settings</strong> menu</li>
+					<li>Enable support for French and disable support for other languages that are not required</li>
+				</ol>
+			</li>
+			<li>
+				<a href="http://wordpress.org/extend/plugins/qtranslate-meta/">qTranslate meta</a>: Extends qTranslate support to metadata
+				<ol>
+					<li>When editing pages or posts, English and French tabs will be available when adding new metadata tags.</li>
+					<li>Date metadata tags are automatically handled by WordPress. Other metatags will need to be set once across the site. This can be done by editing lines 25 to 30 in <strong>header.php</strong>.</li>
+				</ol>
+			</li>
+			<li>
+				<a href="http://wordpress.org/extend/plugins/breadcrumb-navxt/">Breadcrumb NavXT</a>: Enables support for breadcrumbs
+				<ol>
+					<li>Select <strong>Breadcrumb NavXT</strong> in the <strong>Settings</strong> menu</li>
+					<li>Select the <strong>General</strong> tab</li>
+					<li>Change <strong>blog</strong> to the Web site name under <strong>Main Site Breadcrumb: Main Site Home</strong>
+				</ol>
+			</li>
+		</ol>
+	</section>
+
+	<section>
+		<h3>Optional WordPress settings</h3>
+		<section>
+			<h4>Settings - General</h4>
+			<ol>
+				<li>Set the title in both English and French by adding the following to the <strong>Site Title</strong> field: <code>[:en]English Title[:fr]<span lang="fr">Titre en Français</span></code>.</li>
+				<li>Set the time zone</li>
+			</ol>
+		</section>
+		<section>
+			<h4>Settings - Discussion</h4>
+			<ol>
+				<li>Select the <strong>An administrator must always approve the comment</strong> checkbox for <strong>Before a comment appears</strong>.</li>
+			</ol>
+		</section>
+		<section>
+			<h4>Settings - Permalink</h4>
+			<p>The default setting is to use page numbers for permalinks. To use clean URLs (URLs with words) choose <strong>Day and Name</strong> or <strong>Month and Name</strong>. <a href="http://www.helicontech.com/isapi_rewrite/">ISAPI Rewrite</a> must be installed if your site is running on MS IIS.</p>
+		</section>
+	</section>
+
+	<section>
+		<h3>Optional plugins</h3>
 		<ul>
-			<li><a href="http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22wet-clf2-theme-overlay%22">wet-clf2-theme-overlay</a></li>
-			<li><a href="http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22wet-gcwu-theme-overlay%22">wet-gcwu-theme-overlay</a></li>
-			<li><a href="http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22wet-gcwu-intranet-theme-overlay%22">wet-gcwu-intranet-theme-overlay</a></li>
+			<li><a href="http://wordpress.org/extend/plugins/broken-link-checker/">Broken Link Checker</a></li>
+			<li><a href="http://wordpress.org/extend/plugins/google-sitemap-generator/">Google XML Sitemap generator</a></li>
+			<li><a href="http://wordpress.org/extend/plugins/simple-javascript-management/">Simple Javascript Management</a> (allows different scripts on each page)</li>
+			<li><a href="http://wordpress.org/extend/plugins/wptouch/">WPtouch</a> (mobile-enabled site layout)</li>
+			<li><a href="http://wordpress.org/extend/plugins/search-unleashed/">Search Unleashed</a> (improves the search features)</li>
+			<li><a href="http://wordpress.org/extend/plugins/per-page-sidebars/">Per Page Sidebars</a></li>
+			<li><a href="http://wordpress.org/extend/plugins/contact-form-7/">Contact Form 7</a></li>
 		</ul>
 	</section>
 </section>
 
 <dl id="gcwu-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2014-01-27</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2014-01-28</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
