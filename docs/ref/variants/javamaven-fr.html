@@ -99,13 +99,17 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 <section>
 	<h2>Aperçu</h2>
-	<p>La variante pour Java et Maven est essentiellement un regroupement d’éléments de la Boîte à outils de l’expérience Web (BOEW, en anglais « WET ») dans un module Maven, appelé un « WAR overlay » (segment de recouvrement WAR). Il y a un WAR overlay pour chaque thème de la BOEW disponible.</p>
-	<p>Le fait de rendre disponibles de cette manière les éléments de la BOEW pour les applications Web en Java comporte les principaux avantages suivants :</p>
-	<ul>
-		<li>L’adoption de la BOEW est rendue plus simple pour toute personne qui utilise déjà Maven.</li>
-		<li>La version précise de la BOEW peut être indiquée clairement dans les métadonnées de votre projet.</li>
-		<li>Il est plus facile d’apporter des mises à jour à la BOEW; dans certains cas où les changements sont mineurs, cela peut être aussi simple que de changer le numéro de version pour celui de la version la plus récente et de reconstruire votre application.</li>
-	</ul>
+	<p><strong>Chef de projet :</strong> Eric Ehret (<a href="https://github.com/eehret">@eehret</a>)</p>
+	<section>
+		<h3>Objet</h3>
+		<p>La variante pour Java et Maven est essentiellement un regroupement d’éléments de la Boîte à outils de l’expérience Web (BOEW, en anglais « WET ») dans un module Maven, appelé un « WAR overlay » (segment de recouvrement WAR). Il y a un WAR overlay pour chaque thème de la BOEW disponible.</p>
+		<p>Le fait de rendre disponibles de cette manière les éléments de la BOEW pour les applications Web en Java comporte les principaux avantages suivants :</p>
+		<ul>
+			<li>L’adoption de la BOEW est rendue plus simple pour toute personne qui utilise déjà Maven.</li>
+			<li>La version précise de la BOEW peut être indiquée clairement dans les métadonnées de votre projet.</li>
+			<li>Il est plus facile d’apporter des mises à jour à la BOEW; dans certains cas où les changements sont mineurs, cela peut être aussi simple que de changer le numéro de version pour celui de la version la plus récente et de reconstruire votre application.</li>
+		</ul>
+	</section>
 
 	<section>
 		<h3>Renseignements de base sur Maven</h3>
@@ -127,18 +131,18 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 </section>
 
 <section>
-	<h2>Comment s’en servir</h2>
+	<h2>Mise en œuvre</h2>
 	<p>Si vous utilisez Maven, cela signifie que vous pouvez inclure la BOEW en tant que dépendance Maven en inscrivant simplement l’information appropriée sur la dépendance dans la section <code>&lt;dependencies&gt;</code> de votre fichier POM, comme suit :</p>
-	<pre>&lt;dependency&gt;
+	<pre><code>&lt;dependency&gt;
     &lt;groupId&gt;com.github.wet-boew&lt;/groupid&gt;
     &lt;artifactId&gt;wet-gcwu-intranet-theme-overlay&lt;/artifactid&gt;
     &lt;version&gt;3.0.3&lt;/version&gt;
     &lt;type&gt;war&lt;/type&gt;
     &lt;scope&gt;runtime&lt;/scope&gt;
-&lt;/dependency&gt;</pre>
+&lt;/dependency&gt;</code></pre>
 
 	<p>Dans ce cas-ci, nous avons précisé que le Thème d’intranet de la facilité d’emploi Web GC tiré de la BOEW est une dépendance. C’est bien, mais ne faire que cela n’aura pas d’incidence sur le fichier <code>WEB-INF</code> de votre application Web en Java. Ce que vous voulez probablement faire c’est de superposer (« overlay ») cette dépendance sur votre projet, d’où l’utilisation du terme « WAR overlay ». Ce que vous pouvez faire c’est de dire à Maven de prendre l’overlay (segment de recouvrement) comprenant le thème de la BOEW que vous avez désigné comme dépendance, l’extraire et le combiner avec le code de votre projet. On procèdera comme suit :</p>
-	<pre>&lt;build&gt;
+	<pre><code>&lt;build&gt;
 ...
     &lt;pluginManagement&gt;
         &lt;plugins&gt;
@@ -159,7 +163,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
         &lt;/plugins&gt;
     &lt;/pluginmanagement&gt;
 ...
-&lt;/build&gt;</pre>
+&lt;/build&gt;</code></pre>
 
 	<p>Notez que ci-dessus on précise un <code>&lt;targetPath&gt;</code> (chemin d’accès cible) dans la section <code>&lt;overlay&gt;</code>. Si un <code>&lt;targetPath&gt;</code> est précisé, les contenus WAR, plutôt que d’être extraits sous <code>WEB-INF</code>, seront alors extraits sous <code>WEB-INF/&lt;targetPath&gt;</code>. On recommande de procéder ainsi de façon à maintenir une séparation nette entre votre propre code et la BOEW. De plus, le fait d’avoir un fichier dédié sous <code>WEB-INF</code> pour le contenu statique vous permettra de configurer très facilement une stratégie de mise en cache, ce qui améliorera le rendement de votre application.</p>
 	<p>Lors de la construction de votre application, vous devriez maintenant trouver le fichier désigné par le <code>&lt;targetPath&gt;</code> dans votre fichier WAR, qui comprendra la BOEW.</p>

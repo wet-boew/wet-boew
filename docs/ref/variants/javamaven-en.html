@@ -99,13 +99,17 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 <section>
 	<h2>Overview</h2>
-	<p>The Java &amp; Maven variant is essentially a bundling of WET as a Maven module called a 'WAR overlay'.  There is a WAR overlay for each available WET theme.</p>
-	<p>Providing WET for Java Web applications in this fashion provides the following main benefits:</p>
-	<ul>
-		<li>Makes adoption of WET simpler, for anyone already using Maven</li>
-		<li>Specific version of WET can be clearly identified in your project metadata</li>
-		<li>Updates to WET are made easier; in some cases if the changes are minor it may be as simple as incrementing the version number and rebuilding your application</li>
-	</ul>
+	<p><strong>Project lead:</strong> Eric Ehret (<a href="https://github.com/eehret">@eehret</a>)</p>
+	<section>
+		<h3>Purpose</h3>
+		<p>The Java &amp; Maven variant is essentially a bundling of WET as a Maven module called a 'WAR overlay'.  There is a WAR overlay for each available WET theme.</p>
+		<p>Providing WET for Java Web applications in this fashion provides the following main benefits:</p>
+		<ul>
+			<li>Makes adoption of WET simpler, for anyone already using Maven</li>
+			<li>Specific version of WET can be clearly identified in your project metadata</li>
+			<li>Updates to WET are made easier; in some cases if the changes are minor it may be as simple as incrementing the version number and rebuilding your application</li>
+		</ul>
+	</section>
 
 	<section>
 		<h3>Background on Maven</h3>
@@ -127,18 +131,18 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 </section>
 
 <section>
-	<h2>How to use it</h2>
+	<h2>Implementation</h2>
 	<p>If you use Maven, this means that you can include WET as a Maven dependency simply by providing the appropriate dependency information in the <code>&lt;dependencies&gt;</code> section of your POM file, like so:</p>
-	<pre>&lt;dependency&gt;
+	<pre><code>&lt;dependency&gt;
     &lt;groupId&gt;com.github.wet-boew&lt;/groupid&gt;
     &lt;artifactId&gt;wet-gcwu-intranet-theme-overlay&lt;/artifactid&gt;
     &lt;version&gt;3.0.3&lt;/version&gt;
     &lt;type&gt;war&lt;/type&gt;
     &lt;scope&gt;runtime&lt;/scope&gt;
-&lt;/dependency&gt;</pre>
+&lt;/dependency&gt;</code></pre>
 
 	<p>In this case we've specified the GC Web Usability Intranet theme from WET as a dependency.  That's fine, but doing this alone will not affect the <code>WEB-INF</code> folder of your Java web application. What you probably want to do is "overlay" this dependency onto your project, hence the term 'WAR overlay'. What you can do is tell Maven to take the WET theme overlay you've specified as a dependency, extract it, and combine it with the code from your own project.  This is done like so:</p>
-	<pre>&lt;build&gt;
+	<pre><code>&lt;build&gt;
 ...
     &lt;pluginManagement&gt;
         &lt;plugins&gt;
@@ -159,7 +163,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
         &lt;/plugins&gt;
     &lt;/pluginmanagement&gt;
 ...
-&lt;/build&gt;</pre>
+&lt;/build&gt;</code></pre>
 
 	<p>Notice above that within the <code>&lt;overlay&gt;</code> section, a <code>&lt;targetPath&gt;</code> is specified.  If a <code>&lt;targetPath&gt;</code> is specified, then instead of the WAR contents being extracted under <code>WEB-INF</code>, they will be extracted under <code>WEB-INF/&lt;targetPath&gt;</code>. This is recommended so that you can maintain a clean separation between your own code and WET.  Furthermore, having a dedicated folder under <code>WEB-INF</code> for static content will allow you to configure a caching strategy very easily, enhancing the performance of your application.</p>
 	<p>When you build your application, you should now find the folder indicated by <code>&lt;targetPath&gt;</code> in your WAR file, containing WET.</p>
