@@ -20,8 +20,8 @@
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
-	tableParsingEvent = "pasiveparse.wb-table.wb",
-	tableParsingCompleteEvent = "parsecomplete.wb-table.wb",
+	tableParsingEvent = "pasiveparse.wb-tableparser.wb",
+	tableParsingCompleteEvent = "parsecomplete.wb-tableparser.wb",
 	
 	/**
 	 * Main Entry function to create the charts
