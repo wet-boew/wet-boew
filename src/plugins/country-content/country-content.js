@@ -73,7 +73,10 @@ var pluginName = "wb-ctrycnt",
 				success: function( data ) {
 					if ( data ) {
 						countryCode = data.country_code;
-						localStorage.setItem( "countryCode", countryCode );
+						try {
+							localStorage.setItem( "countryCode", countryCode );
+						} catch ( error ) {
+						}
 					}
 
 					dfd.resolve( countryCode );

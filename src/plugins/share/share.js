@@ -18,6 +18,7 @@ var pluginName = "wb-share",
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
 	shareLink = "shr-lnk",
+	panelCount = 0,
 	$document = wb.doc,
 	i18n, i18nText,
 
@@ -27,7 +28,22 @@ var pluginName = "wb-share",
 	 * For example, adding the attribute data-option1="false", will override option1 for that plugin instance.
 	 */
 	defaults = {
-		heading: "h2",
+		hdLvl: "h2",
+
+		// Supported types are: "page" and "video"
+		type: "page",
+		
+		// For custom types
+		// custType = " this comment" results in "Share this comment"
+		custType: "",
+
+		url: wb.pageUrlParts.href,
+		title: document.title || $document.find( "h1:first" ).text(),
+
+		pnlId: "",
+		img: "",
+		desc: "",
+
 		sites: {
 
 			// The definitions of the available bookmarking sites, in URL use
@@ -60,16 +76,12 @@ var pluginName = "wb-share",
 				name: "Facebook",
 				url: "http://www.facebook.com/sharer.php?u={u}&amp;t={t}"
 			},
-			fark: {
-				name: "Fark",
-				url: "http://cgi.fark.com/cgi/fark/submit.pl?new_url={u}&amp;new_comment={t}"
-			},
 			googleplus: {
 				name: "Google+",
 				url: "https://plus.google.com/share?url={u}&amp;hl=" + document.documentElement.lang
 			},
 			linkedin: {
-				name: "LinkedIn",
+				name: "LinkedIn®",
 				url: "http://www.linkedin.com/shareArticle?mini=true&amp;url={u}&amp;title={t}&amp;ro=false&amp;summary={d}&amp;source="
 			},
 			myspace: {
@@ -79,10 +91,6 @@ var pluginName = "wb-share",
 			netvibes: {
 				name: "Netvibes",
 				url: "http://www.netvibes.com/share?url={u}&amp;title={t}"
-			},
-			newsvine: {
-				name: "Newsvine",
-				url: "http://www.newsvine.com/_wine/save?u={u}&amp;h={t}"
 			},
 			pinterest: {
 				name: "Pinterest",
@@ -119,8 +127,9 @@ var pluginName = "wb-share",
 	 */
 	init = function( event ) {
 		var elm = event.target,
-			sites, heading, settings, panel, link, $share, $elm, pageHref,
-			pageTitle, pageImage, pageDescription, site, siteProperties, url;
+			sites, heading, settings, panel, link, $share, $elm,
+			pageHref, pageTitle, pageImage, pageDescription, site,
+			siteProperties, url, shareText, id, pnlId;
 
 		// Filter out any events triggered by descendants
 		// and only initialize the element once
@@ -130,31 +139,35 @@ var pluginName = "wb-share",
 			wb.remove( selector );
 			elm.className += " " + initedClass;
 
-			$elm = $( elm );
-			settings = $.extend( true, defaults, wb.getData( $elm, "wet-boew" ) );
-			sites = settings.sites;
-			heading = settings.heading;
-			pageHref = wb.pageUrlParts.href;
-			pageTitle = encodeURIComponent( document.title || $document.find( "h1:first" ).text() );
-
-			// Placeholders until source(s) can be determined and implemented
-			pageImage = encodeURIComponent( "" ),
-			pageDescription = encodeURIComponent( "" );
-
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
 				i18n = wb.i18n;
 				i18nText = {
 					shareText: i18n( "shr-txt" ),
+					page: i18n( "shr-pg" ),
+					video: i18n( "shr-vid" ),
 					disclaimer: i18n( "shr-disc" )
 				};
 			}
 
+			$elm = $( elm );
+			settings = $.extend( true, defaults, wb.getData( $elm, "wet-boew" ) );
+			sites = settings.sites;
+			heading = settings.hdLvl;
+			
+			shareText = i18nText.shareText + ( settings.custType.length !== 0 ? settings.custType : i18nText[ settings.type ] );
+			pnlId = settings.pnlId;
+			id = "shr-pg" + ( pnlId.length !== 0 ? "-" + pnlId : panelCount );
+			pageHref = settings.url;
+			pageTitle = encodeURIComponent( settings.title );
+			pageImage = encodeURIComponent( settings.img );
+			pageDescription = encodeURIComponent( settings.desc );
+
 			// Don't create the panel for the second link (class="link-only")
 			if ( elm.className.indexOf( "link-only" ) === -1 ) {
-				panel = "<section id='shr-pg' class='shr-pg wb-overlay modal-content overlay-def wb-panel-r" +
+				panel = "<section id='" + id  + "' class='shr-pg wb-overlay modal-content overlay-def wb-panel-r" +
 					"'><header class='modal-header'><" + heading + " class='modal-title'>" +
-					i18nText.shareText + "</" + heading + "></header><ul class='colcount-xs-2'>";
+					shareText + "</" + heading + "></header><ul class='colcount-xs-2'>";
 
 				for ( site in sites ) {
 					siteProperties = sites[ site ];
@@ -167,9 +180,10 @@ var pluginName = "wb-share",
 				}
 
 				panel += "</ul><div class='clearfix'></div><p class='col-sm-12'>" + i18nText.disclaimer + "</p></section>";
+				panelCount += 1;
 			}
-			link = "<a href='#shr-pg' aria-controls='shr-pg' class='shr-opn overlay-lnk'><span class='glyphicon glyphicon-share'></span> " +
-				i18nText.shareText + "</a>";
+			link = "<a href='#" + id + "' aria-controls='" + id + "' class='shr-opn overlay-lnk'><span class='glyphicon glyphicon-share'></span> " +
+				shareText + "</a>";
 
 			$share = $( ( panel ? panel : "" ) + link );
 

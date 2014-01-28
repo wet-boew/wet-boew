@@ -1,6 +1,6 @@
 {
 	"name": "wet-boew",
-	"version": "v4.0-a1-development",
+	"version": "v4.0.0-b2-development",
 	"homepage": "https://github.com/wet-boew/wet-boew",
 	"authors": [
 		"WET-BOEW Team"
@@ -34,7 +34,8 @@
 		"respond": "1.4.0",
 		"selectivizr": "1.0.2",
 		"excanvas": "*",
-		"google-code-prettify": "1.0.0"
+		"google-code-prettify": "1.0.0",
+		"SideBySideImproved": "https://github.com/pkoltermann/SideBySideImproved.git"
 	},
 	"resolutions": {
 		"jquery": ">= 1.9.0"

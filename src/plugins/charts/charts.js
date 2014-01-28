@@ -20,8 +20,8 @@
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
-	tableParsingEvent = "pasiveparse.wb-table.wb",
-	tableParsingCompleteEvent = "parsecomplete.wb-table.wb",
+	tableParsingEvent = "pasiveparse.wb-tableparser.wb",
+	tableParsingCompleteEvent = "parsecomplete.wb-tableparser.wb",
 	
 	/**
 	 * Main Entry function to create the charts
@@ -34,418 +34,298 @@
 			dataSeries = [],
 			i18n = wb.i18n,
 			nbBarChart = 0,
-			options = {},
+			//options = {},
 			pieChartLabelText = "",
 			lowestFlotDelta,
-			valueCumul = 0,
 			$imgContainer, $placeHolder, $subfigCaptionElem, $subFigureElem,
-			graphClassLength, graphClassLength2, barDelta, cellValue,
+			cellValue,
 			datacolgroupfound, dataGroup, figCaptionElem, figureElem, header,
 			i, j, mainFigureElem, parsedData,
-			pieLabelFormater, plotParameter, rIndex,
+			//pieLabelFormater, 
+			rIndex,
 			currVectorOptions, tblCaptionHTML, tblCaptionText,
-			tdOptions,
-			valuePoint,
+			valuePoint = 0,
 			currentRowGroup, reverseTblParsing, dataGroupVector,
-			dataCell, previousDataCell, currDataVector, currVectorSeries;
-
-		/**
-		 * Scoped convertion of CSS Options/Parameter into a JSON object
-		 * 
-		 * @method setClassOptions
-		 * @param {json object} sourceOptions - Baseline object for override
-		 * @param {string} strClass - Value of class attribute of a DOM element
-		 * @param {string=} namespace - Prefix to be use in order to extract the parameter/options 
-		 */
-		// Function to Convert Class instance to JSON
-		function setClassOptions( sourceOptions, strClass, namespace ) {
-			var autoCreate = false,
-				arrayOverwrite = false,
-				autoCreateMe = false,
-				detectedNamespaceLength, arrClass, arrParameter, arrParameters,
-				arrValue, i, iLength, j, jsonString,
-				m, mLength, parameter, val, propName, propValue;
-				
-			// Test: optSource
-			if ( typeof sourceOptions !== "object" ) {
-
-				// Empty source
-				return {};
-			}
-
-			// Get a working copy for the sourceOptions
-			sourceOptions = $.extend( true, {}, sourceOptions );
-
-			// Test: strClass
-			if ( typeof strClass !== "string" || strClass.length === 0 ) {
-				// no string class;
-				return sourceOptions;
-			} else if ( typeof namespace !== "string" || namespace.length === 0 ) {
-
-				// Try to get the default namespace
-				if ( sourceOptions[ "default-namespace" ] &&
-					( typeof sourceOptions[ "default-namespace" ] === "string" ) ) {
-					namespace = sourceOptions[ "default-namespace" ];
-				} else {
-					// This a not a valid namespace (no namespace)
-					return sourceOptions;
-				}
-			}
-
-			if ( namespace.length > 0 ) {
-				namespace = namespace + "-";
-			}
-			detectedNamespaceLength = namespace.length;
-
-			// Check if the the Auto Json option creation are authorized from class
-			// Espected returning value True | False
-			autoCreate = !!sourceOptions[ "default-autocreate" ];
-
-			arrClass = strClass.split( " " ); // Get each defined class
-			for ( m = 0, mLength = arrClass.length; m < mLength; m +=1 ) {
-				parameter = arrClass[m];
-
-				// Get the parameter without the namespace
-				arrParameters = parameter.slice( detectedNamespaceLength ).split( "-" );
-
-				// Is the parameter are in scope, if not just skip me
-				if ( !arrParameters.length || parameter.slice( 0, detectedNamespaceLength ) !== namespace ) {
-					continue;
-				}
-
-				// Get the name of the parameter
-				propName = arrParameters[ 0 ];
-				iLength = arrParameters.length;
-
-				// If only One parameter
-				if ( iLength === 1 && (sourceOptions[ propName + "-autocreate" ] ||
-								( sourceOptions[ propName ] &&
-								sourceOptions[ propName + "-typeof" ] &&
-								sourceOptions[ propName + "-typeof" ] === "boolean" ) ) ) {
-					// The parameter is boolean value
-					arrParameters.push( "true" );
-				} else if ( iLength === 1 && ( sourceOptions.preset && sourceOptions.preset[ propName ] ) ) {
-					// Apply a predefined preset
-					sourceOptions = $.extend( true, sourceOptions, sourceOptions.preset[ propName ] );
-					continue;
-				} else if ( iLength === 1 && ( !sourceOptions[ propName + "-typeof" ] || sourceOptions[ propName + "-typeof" ] !== "locked" ) ) {
-					// Use the default option
-					arrParameters.push( propName );
-					arrParameters[ 0 ] = sourceOptions[ "default-option" ];
-				}
-
-				// two parameter & more
-				if ( arrParameters.length === 2 ) {
-
-					propName = arrParameters[ 0 ];
-					propValue = arrParameters[ 1 ];
-
-					// test the kind of value that propName is
-					if ( sourceOptions[ propName + "-typeof" ] ) {
-
-						switch ( sourceOptions[ propName + "-typeof" ] ) {
-						case "boolean":
-							// Test the textual value used the CSS Option
-							if ( propValue === "true" || propValue === "vrai" || propValue === "yes" || propValue === "oui" ) {
-								propValue = true;
-							} else if ( propValue === "false" || propValue === "faux" || propValue === "no" || propValue === "non" ) {
-								propValue =  false;
-							} else {
-								propValue = undefined;
+			dataCell, previousDataCell, currDataVector,
+			pieQuaterFlotSeries,
+			optionFlot, optionsCharts,
+			defaultsOptions = {
+				// Flot Global Options
+				flot: {
+					prefix: "wb-charts-",
+					defaults: {
+						colors: [ "#8d201c",
+								"#EE8310",
+								"#2a7da6",
+								"#5a306b",
+								"#285228",
+								"#154055",
+								"#555555",
+								"#f6d200",
+								"#d73d38",
+								"#418541",
+								"#87aec9",
+								"#23447e",
+								"#999999" ],
+						canvas: true
+					},
+					line: { },
+					area: {
+						lines: {
+							show: true,
+							fill: true
+						}
+					},
+					bar: {
+						bars: {
+							show: true,
+							barWidth: 1,
+							align: "center"
+						}
+					},
+					pie: {
+						series: {
+							pie: {
+								show: true
 							}
-							break;
-						case "number":
-							if ( !isNaN( parseInt( propValue, 10 ) ) ) {
-								propValue = parseInt( propValue, 10 );
-							} else {
-								propValue = undefined;
-							}
-							break;
-						case "string":
-							// Repair the value if needed
-							if ( i < iLength - 1 ) {
-								arrValue = [];
-								for ( j = i + 1; j < iLength; j += 1 ) {
-									arrValue.push( arrParameters[ j ] );
+						},
+						fn: {
+							"/series/pie/label/formatter": function( label, series ) {
+								var textlabel;
+								if ( !optionsCharts.decimal ) {
+									textlabel = Math.round( series.percent );
+								} else {
+									textlabel = Math.round( series.percent * Math.pow( 10, optionsCharts.decimal ) );
+									textlabel = textlabel / Math.pow( 10, optionsCharts.decimal );
 								}
-								propValue = arrValue.join( "-" );
+
+								if ( optionsCharts.nolegend ) {
+									// Add the series label
+									textlabel = label + "<br/>" + textlabel;
+								}
+								return textlabel + "%";
 							}
-							break;
-						case "color":
-							if ( !isNaN( parseInt( propValue, 16 ) ) ) {
-								propValue = "#" + propValue; // Add the pound sign for 0x number
-							}
-							break;
-						case "undefined":
-						case "function":
-						case "locked":
-							propValue = undefined;
-							break;
 						}
-					}
-					
-					// We do not overwrite any option when there is no value
-					if ( propValue === undefined ) {
-						break;
-					}
-					
-					// Get the type of overwritting, default are replacing the value
-					arrayOverwrite = !!sourceOptions[ propName + "-array-mode" ];
-
-					// Check if this unique option can be autocreated
-					autoCreateMe = !!sourceOptions[ propName + "-autocreate" ];
-					
-					// Overwride the value
-					if ( sourceOptions[ propName ] && arrayOverwrite ) {
-						// Already one object defined and array overwriting authorized
-						if ( $.isArray( sourceOptions[ propName ] ) ) {
-							sourceOptions[ propName ].push( arrParameter );
-						} else {
-							val = sourceOptions[ propName ];
-							sourceOptions[ propName ] = [];
-							sourceOptions[ propName ].push( val );
-							sourceOptions[ propName ].push( arrParameter );
-						}
-					} else if ( sourceOptions[ propName ] || autoCreate || autoCreateMe ) {
-
-						// Set the value by extending the options
-						jsonString = "";
-						if ( typeof propValue === "boolean" || typeof propValue === "number" ) {
-							jsonString = "{\"" + propName + "\": " + propValue + "}";
-						} else {
-							jsonString = "{\"" + propName + "\": \"" + propValue + "\"}";
-						}
-						sourceOptions = $.extend( true, sourceOptions, $.parseJSON( jsonString ) );
-					}
-				} else {
-					for ( i = 1; i < iLength; i += 1 ) {
-						
-						// Create a sub object
-						if ( arrParameter !== undefined && sourceOptions[ arrParameter ] ) {
-							// The object or property already exist, just get the reference of it
-							sourceOptions = sourceOptions[ arrParameter ];
-							propName = arrParameter;
-						} else if ( ( autoCreate || autoCreateMe ) && arrParameter !== undefined ) {
-							jsonString = "{\"" + arrParameter[i] + "\": {}}";
-							sourceOptions = $.extend( true, sourceOptions, $.parseJSON( jsonString ) );
-							sourceOptions = sourceOptions[ arrParameter ];
-						} else {
-							// This configuration are rejected
-							// We don't iterate again
-							i = iLength;
-						}
-
-					}
-				}
-			}
-			return sourceOptions;
-		}
-
-		if ( !window.chartsGraphOpts ){
-			// 1. Charts Default Setting
-			options = {
-				"default-namespace": "wb-charts",
-				"inited-typeof": "locked",
-
-				// This adds the ability to set custom css class to the figure container.
-				"graphclass-autocreate": true,
-				"graphclass-array-mode": true,
-				"graphclass-typeof": "string",
-				"noencapsulation-autocreate": true,
-				"noencapsulation-typeof": "boolean",
-
-				// Colors - Accent Profile (Defaults)
-				"colors-typeof": "color",
-				"colors-array-mode": true,
-				colors: [ "#8d201c",
-						"#EE8310",
-						"#2a7da6",
-						"#5a306b",
-						"#285228",
-						"#154055",
-						"#555555",
-						"#f6d200",
-						"#d73d38",
-						"#418541",
-						"#87aec9",
-						"#23447e",
-						"#999999" ],
-
-				// Force to have an uniform tick
-				uniformtick: true,
-				"uniformtick-typeof": "boolean",
-				"uniformtick-autocreate": true,
-
-				// Force to use which row in the thead for the label
-				"labelposition-typeof": "number",
-				"labelposition-autocreate": true,
-
-				// Reference Value Vector Position for label position placement
-				"referencevalue-typeof": "number",
-				"referencevalue-autocreate": true,
-
-				// Legend Management
-				"legendinline-typeof": "boolean",
-				"legendinline-autocreate": true,
-				"nolegend-typeof": "boolean",
-				"nolegend-autocreate": true,
-				"percentlegend-typeof": "boolean",
-				"percentlegend-autocreate": true,
-
-				// Force the Top and Bottom Value for a graph
-				"topvalue-autocreate": true,
-				"topvalue-typeof": "number",
-				"topvaluenegative-autocreate": true,
-				"topvaluenegative-typeof": "boolean",
-				"bottomvalue-autocreate": true,
-				"bottomvalue-typeof": "number",
-				"bottomvaluenegative-autocreate": true,
-				"bottomvaluenegative-typeof": "boolean",
-
-				// Ticks => Number of ticks for the y-axis
-				"ticks-autocreate": true,
-				"ticks-typeof": "number",
-
-				// Pie chart option
-				// set a decimal precision
-				"decimal-autocreate": true,
-				"decimal-typeof": "number",
-				pieradius: 100, // Pie radius
-				"pieradius-typeof": "number",
-				pielblradius: 100, // Pie label radius
-				"pielblradius-typeof": "number",
-				"piethreshold-autocreate": true, // Hides the labels of any pie slice that is smaller than the specified percentage (ranging from 0 to 100)
-				"piethreshold-typeof": "number",
-				"pietilt-autocreate": true, // Percentage of tilt ranging from 0 and 100, where 100 has no change (fully vertical) and 0 is completely flat (fully horizontal -- in which case nothing actually gets drawn)
-				"pietilt-typeof": "number",
-				"pieinnerradius-autocreate": true, // Sets the radius of the donut hole. If value is between 0 and 100 (inclusive) then it will use that as a percentage of the radius, otherwise it will use the value as a direct pixel length.
-				"pieinnerradius-typeof": "number",
-				"piestartangle-autocreate": true, // Factor of PI used for the starting angle (in radians) It can range between 0 and 200 (where 0 and 200 have the same result).
-				"piestartangle-typeof": "number",
-				"piehighlight-autocreate": true, // Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
-				"piehighlight-typeof": "number",
-				"piehoverable-autocreate": true, // Hoverable pie slice
-				"piehoverable-typeof": "boolean",
-
-				// General option: Default CSS Options
-				"default-option": "type",
-
-				// Graph Type: this be one of or an array of: area, pie, line, bar, stacked
-				type: "bar",
-				"type-autocreate": true,
-
-				//
-				// Graph Layout
-				//
-
-				// width of canvas - defaults to table height
-				width: $elm.width(),
-				"width-typeof": "number",
-
-				// height of canvas - defaults to table height
-				height: $elm.height(),
-				"height-typeof": "number",
-
-				//
-				// Data Table and Graph Orientation
-				//
-
-				// which direction to parse the table data
-				parsedirection: "x",
-				"parsedirection-typeof": "string",
-				"parsedirection-autocreate": true,
-
-				vectorOptions: {
-					"default-option": "type", // Default CSS Options
-					"default-namespace": "wb-charts",
-					"type-autocreate": true,
-					"color-typeof": "color",
-					"color-autocreate": true
-				},
-				
-				// Parameter: elem = HTML DOM node (td element)
-				//
-				// If this function return an array, it would be assume that the first item correspond at the cell numbered value and the second item correspond at the cell unit
-				// Example
-				// return 25.14
-				// return 44
-				// return [44, "%"]
-				// return [5.1, "g"]
-				getcellvalue: function( elem ) {
-
-					// Default Cell value extraction
-					var cellRawValue = $.trim( $( elem ).text() ).replace( /\s/g, "" );
-
-					return [ parseFloat( cellRawValue.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), cellRawValue.match (/[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
-				},
-				preset: {
+					},
 					donut: {
-						// Donnut setting
-						type: "pie",
-						height: 250,
-						percentlegend: true,
-						pieinnerradius: 45,
-						pietilt: 50,
-						piehoverable: true,
-						decimal: 1,
-						piethreshold: 8,
-						legendinline: true,
-						piestartangle: 100
-					},
-					usnumber: {
-						getcellvalue: function( elem ) {
-							var raw = $.trim( $( elem ).text() ).replace( /,/g, "" );
-							return [ parseFloat( raw.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), raw.match( /[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
+						base: "pie",
+						series: {
+							pie: {
+								radius: 1,
+								label: {
+									show: true,
+									radius: 1,
+									threshold: 0.08
+								},
+								tilt: 0.5,
+								innerRadius: 0.45,
+								startAngle: 1
+							}
+						},
+						grid: {
+							hoverable: true
+						}
+					}
+				},
+				// Flot Series Options
+				series: {
+					prefix: "wb-charts-",
+					defaults: { },
+					line: { },
+					area: {
+						lines: {
+							show: true,
+							fill: true
 						}
 					},
-					germannumber: {
-						getcellvalue: function( elem ) {
-							var raw = $.trim( $( elem ).text() ).replace( /\./g, "" );
-							return [ parseFloat( raw.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), raw.match( /[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
+					bar: {
+						bars: {
+							show: true,
+							barWidth: 1,
+							align: "center"
+						}
+					},
+					stacked: {
+						base: "bar"
+					}
+				},
+				// Wet-boew Charts Options
+				charts: {
+					prefix: "wb-charts-",
+					defaults: {
+						graphclass: "wb-graph", // [string] Class name added at the figure element container
+						noencapsulation: false, // [boolean] Wrap or not the table in a details/summary elements
+						labelposition: false, // [number] false means the deepest vector will be used for labeling
+						referencevalue: false, // [number] false means the deepest vector will be used for calculate the reference
+						legendinline: false, // [boolean] false means to move the legend from inside the charts to next to it 
+						nolegend: false, // [boolean] true means that the legend will be destroyed and the label for pie chart will include the legend
+						decimal: 0, // [number] Literal number of displayed decimal for a pie charts 
+						width: $elm.width(), // [number] Provide a default width for the charts that will be rendered
+						height: $elm.height(), // [number] Provide a default height for the charts that will be rendered
+						reversettblparsing: false, // [boolean] Flag for defining if the data table should be read in reverse compared to HTML spec
+						fn: {
+							"/getcellvalue": function( elem ) {
+								// Default Cell value extraction
+								var cellRawValue = $.trim( $( elem ).text() ).replace( /\s/g, "" );
+
+								return [ parseFloat( cellRawValue.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), cellRawValue.match (/[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
+							}
+						}
+						
+					},
+					donut: {
+						decimal: 1
+					},
+					thousandcomma: {
+						fn: {
+							"/getcellvalue": function( elem ) {
+								var raw = $.trim( $( elem ).text() ).replace( /,/g, "" );
+								return [ parseFloat( raw.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), raw.match( /[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
+							}
+						}
+					},
+					thousanddot: {
+						fn: {
+							"/getcellvalue": function( elem ) {
+								var raw = $.trim( $( elem ).text() ).replace( /\./g, "" );
+								return [ parseFloat( raw.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), raw.match( /[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
+							}
 						}
 					}
 				}
 			};
-
-			// 2. Global "setting.js"
-			if ( window.wet_boew_charts !== undefined ) {
-
-				// a. if exisit copy and take care of preset separatly (Move away before extending)
-				if ( window.wet_boew_charts.preset ) {
-					window.chartsGraphOpts = $.extend( true, {}, window.wet_boew_charts.preset );
-					delete window.wet_boew_charts.preset;
+		
+		/**
+		 * A little function to ovewrite and add preset into the default options
+		 * 
+		 * @method overwriteDefaultsOptions
+		 * @param {string} scopekey - Key that represent the subject of the setting, [flot, charts, series,...] 
+		 * @param {json object} target - DefaultOptions that wiil be overwritten
+		 * @param {json object} object - User defined object for overwritting options
+		 * @return {json object} - Return the new object
+		 */
+		function overwriteDefaultsOptions( scopekey, target, object ) {
+			var cachedObj, key;
+			
+			cachedObj = object[scopekey];
+			if (!cachedObj) {
+				return target;
+			}
+			for ( key in cachedObj ) {
+				if ( !cachedObj.hasOwnProperty( key ) ) {
+					continue;
 				}
-
-				// b. Overwrite the chart default setting
-				$.extend( true, options, window.wet_boew_charts );
-
-				// c. Separatly extend the preset to at the current chart default seting
-				if ( window.chartsGraphOpts ) {
-					$.extend( true, options.preset, window.chartsGraphOpts );
+				target[scopekey][key] = cachedObj[key];
+			}
+			return target;
+		}
+		
+		// User defined options 
+		if ( !window.chartsGraphOpts ){
+			// Global setting
+			if ( window.wet_boew_charts !== undefined ) {
+				overwriteDefaultsOptions( "flot", defaultsOptions, window.wet_boew_charts );
+				overwriteDefaultsOptions( "series", defaultsOptions, window.wet_boew_charts );
+				overwriteDefaultsOptions( "charts", defaultsOptions, window.wet_boew_charts );
+			}
+			// Save the setting here in a case of a second graphic on the same page
+			window.chartsGraphOpts = defaultsOptions;
+		}
+		defaultsOptions = window.chartsGraphOpts;
+		
+		/**
+		 * A little function to ease the web editor life
+		 * 
+		 * Apply preset defined by a set of space-separated tokens from a baseline json object and at the same time extend the result by using the HTML5 data attribute
+		 * 
+		 * @method applyPreset
+		 * @param {json object} baseline - Base line json object that includes predefined and userdefined preset 
+		 * @param {jQuery} $elem - Element on which the class attribute will be taken for a set of space-separated tokens
+		 * @param {string} attribute - Name of the HTML5 data attribute for extending the object at the end
+		 * @return {json object} - Return a new object build from the ```baseline``` or ```baseline.default``` object with the preset applied.
+		 */
+		function applyPreset( baseline, $elem, attribute ) {
+			
+			var config = $.extend( true, {}, baseline.defaults || baseline ),
+				fn = $.extend( true, {}, baseline.defaults && baseline.defaults.fn || { } ),
+				tokens = $elem.attr( "class" ) || "",
+				tblTokens,
+				i, iLength,
+				token, tokenLength,
+				prefix, prefixLength, // Prefix used in front of the token
+				preset,
+				key, tblFn, localKey, currObj;
+			
+			if ( tokens.length ) {
+				
+				prefix = ( baseline.prefix || "" );
+				prefixLength = prefix.length;
+				
+				// split the set of space-separated tokens
+				tblTokens = tokens.split( " " );
+				
+				for ( i = 0, iLength = tblTokens.length; i < iLength; i += 1 ) {
+					
+					// Get the current token
+					token = tblTokens[i];
+					tokenLength = token.length;
+					
+					// Remove the token is used
+					if ( tokenLength <= prefixLength || token.slice(0, prefixLength) !== prefix ) {
+						continue;
+					}
+					token = token.slice(prefixLength, tokenLength);
+					
+					preset = baseline[ token ];
+					// Apply the preset
+					if ( preset ) {
+						if ( preset.base ) {
+							// Like setting herited from a parent config
+							config = $.extend( true, config, baseline[ preset.base ] );
+							fn = $.extend( true, fn, baseline[ preset.base ].fn || { } );
+						}
+						config = $.extend( true, config, preset );
+						fn = $.extend( true, fn, preset.fn || { } );
+					}
 				}
 			}
 
-			// ---- Save the setting here in a case of a second graphic on the same page
-			window.chartsGraphOpts = options;
+			
+			// Extend the config from the element @data attribute
+			config = $.extend( true, config, wb.getData( $elem, attribute ) );
+			
+			// Merge and Overide the function.
+			for ( key in fn ) {
+				if ( !fn.hasOwnProperty( key ) ) {
+					continue;
+				}
+				tblFn = key.split( "/" );
+				currObj = config;
+				for ( i = 0, iLength = tblFn.length; i < iLength - 1; i += 1 ) {
+					localKey = tblFn.shift();
+					if ( localKey === "" ) {
+						continue;
+					}
+					if ( !currObj[ localKey ] ) {
+						currObj[ localKey ] = { };
+					}
+					currObj = currObj[ localKey ];
+				}
+				localKey = tblFn.shift();
+				currObj[ localKey ] = fn[ key ];
+			}
+			return config;
 		}
-		options = window.chartsGraphOpts;
-		options.height = $elm.height();
-		options.width = $elm.width();
+
+		// Apply any preset
+		optionFlot = applyPreset( defaultsOptions.flot, $elm, "flot" );
+
+		// Apply any preset
+		optionsCharts = applyPreset( defaultsOptions.charts, $elm, "wet-boew" );
 
 		// Fix default width and height in case the table is hidden.
-		options.width = options.width | 250;
-		options.height = options.height | 250;
-
-		// 3. [Table element] CSS Overwrite - [Keep a list of required plugin "defaultnamespace-plugin" eg. wb-charts-donnut]
-		options = setClassOptions( options, $elm.attr( "class" ) || "" );
-
-		// 4. [Table element] HTML5 Data Overwrite property
-		for ( i in $elm.data() ) {
-			// Check if the prefix "wbcharts" is used
-			if ( i.slice( 0, 8 ) === "wbcharts" ) {
-				options[ i.slice( 8 ) ] = $elm.data()[ i ];
-			}
-		}
+		optionsCharts.width = optionsCharts.width | 250;
+		optionsCharts.height = optionsCharts.height | 250;
 
 		/** 
 		 * @method getColumnGroupHeaderCalculateSteps
@@ -709,7 +589,7 @@
 		 * @param {object[]} arrVectorHeaders - Collection of vector headers
 		 */
 		function getlabelsVectorPosition( arrVectorHeaders ) {
-			return ( !options.labelposition || ( options.labelposition && options.labelposition > arrVectorHeaders.length ) ? parsedData.theadRowStack.length : options.labelposition ) - 1;
+			return ( !optionsCharts.labelposition || ( optionsCharts.labelposition && optionsCharts.labelposition > arrVectorHeaders.length ) ? parsedData.theadRowStack.length : optionsCharts.labelposition ) - 1;
 		}
 
 		/**
@@ -726,10 +606,10 @@
 				stepsValue,
 				columnReferenceValue;
 
-			if ( !reverseTblParsing || ( reverseTblParsing && options.referencevalue === undefined ) ) {
+			if ( !reverseTblParsing || ( reverseTblParsing && optionsCharts.referencevalue === false ) ) {
 				columnReferenceValue = parsedData.colgrouphead.col.length;
 			} else {
-				columnReferenceValue = options.referencevalue;
+				columnReferenceValue = optionsCharts.referencevalue;
 			}
 			
 			columnReferenceValue = columnReferenceValue - 1;
@@ -780,10 +660,10 @@
 				}
 			}
 
-			if ( ( !reverseTblParsing && options.referencevalue === undefined ) || reverseTblParsing ) {
+			if ( ( !reverseTblParsing && optionsCharts.referencevalue === false ) || reverseTblParsing ) {
 				rowReferenceValue = parsedData.theadRowStack.length;
 			} else {
-				rowReferenceValue = options.referencevalue;
+				rowReferenceValue = optionsCharts.referencevalue;
 			}
 
 			rowReferenceValue = rowReferenceValue - 1;
@@ -823,49 +703,23 @@
 			$summary = $( "<summary />" );
 			$details.appendTo( $figElement );
 			// set the title for the ability to show or hide the table as a data source
-			$summary.text( tableCaptionHTML + " " + i18n( "%table-mention" ) )
+			$summary.html( tableCaptionHTML + " " + i18n( "table-mention" ) )
 				.appendTo( $details )
 				.after( $elm );
 		}
 		
-		// Retrieve the parsed data
-		parsedData = $( $elm ).data().tblparser;
+		parsedData = $( $elm ).data().tblparser; // Retrieve the parsed data
+		reverseTblParsing = optionsCharts.reversettblparsing; // Reverse table parsing
+		currentRowGroup = parsedData.lstrowgroup[ 0 ]; // first data row group
 
-		if ( options.parsedirection === "y" ) {
-			reverseTblParsing = true;
-		}
-
-		currentRowGroup = parsedData.lstrowgroup[ 0 ];
-
-		if ( options.type === "pie" ) {
+		if ( optionFlot.series && optionFlot.series.pie ) {
 			// Use Reverse table axes
 			// Create a chart/ place holder, by series
 			mainFigureElem = $( "<figure />" ).insertAfter( $elm );
 
-			pieLabelFormater = function( label, series ) {
-				var textlabel;
-				if ( !options.decimal ) {
-					textlabel = Math.round( series.percent );
-				} else {
-					textlabel = Math.round( series.percent * Math.pow( 10, options.decimal ) );
-					textlabel = textlabel / Math.pow( 10, options.decimal );
-				}
-				if ( options.nolegend ) {
-					// Add the series label
-					textlabel = label + "<br/>" + textlabel;
-				}
-				return textlabel + "%";
-			};
 			// Default
-			mainFigureElem.addClass( "wb-charts" );
-			if ( options.graphclass ) {
-				if ( $.isArray( options.graphclass ) ) {
-					for ( i = 0, graphClassLength = options.graphclass.length; i < graphClassLength; i += 1 ) {
-						mainFigureElem.addClass( options.graphclass[ i ] );
-					}
-				} else {
-					mainFigureElem.addClass( options.graphclass );
-				}
+			if ( optionsCharts.graphclass ) {
+				mainFigureElem.addClass( optionsCharts.graphclass );
 			}
 
 			figCaptionElem = $( "<figcaption />" );
@@ -893,7 +747,7 @@
 				// For each row or column
 				for ( i = 0; i < dataGroupVector.length; i += 1 ) {
 					dataSeries = [];
-					valueCumul = 0;
+					valuePoint = 0;
 
 					// For each cells
 					for ( j = 0; j < dataGroupVector[ i ].cell.length; j += 1 ) {
@@ -923,41 +777,36 @@
 						// Get"s the value
 						header = !reverseTblParsing ? dataCell.row.header : dataCell.col.header;
 
-						cellValue = options.getcellvalue( !reverseTblParsing ? dataGroupVector[ i ].cell[ rIndex ].elem : dataGroupVector[ i ].datacell[ rIndex ].elem );
+						cellValue = optionsCharts.getcellvalue( !reverseTblParsing ? dataGroupVector[ i ].cell[ rIndex ].elem : dataGroupVector[ i ].datacell[ rIndex ].elem );
 
 						dataSeries.push(
 							[
-								valueCumul,
+								valuePoint,
 								typeof cellValue === "object" ? cellValue[ 0 ] : cellValue
 							]);
 
-						valueCumul += header[ header.length - 1 ].flotDelta;
+						valuePoint += header[ header.length - 1 ].flotDelta;
 
 						break;
 					}
-					if ( !reverseTblParsing ) {
-						// here it's about the "cell" attribute
-						tdOptions = setClassOptions( options.vectorOptions,
-							( $( dataGroupVector[ i ].cell[ rIndex ].elem ).attr( "class" ) !== undefined ?
-								$( dataGroupVector[ i ].cell[ rIndex ].elem ).attr( "class" ) :
-								""
-							)
-						);
-					} else {
-						// here it's about the "datacell" attribute
-						tdOptions = setClassOptions( options.vectorOptions,
-							( $( dataGroupVector[ i ].datacell[ rIndex ].elem ).attr( "class" ) !== undefined ?
-								$( dataGroupVector[ i ].datacell[ rIndex ].elem ).attr( "class" ) :
-								""
-							)
-						);
-					}
-					allSeries.push({
-						data: dataSeries,
-						label: ( !reverseTblParsing ? $( dataGroupVector[ i ].dataheader[ dataGroupVector[ i ].dataheader.length - 1 ].elem ).text() :
-								$( dataGroupVector[ i ].header[ dataGroupVector[ i ].header.length - 1 ].elem ).text() ),
-						color: ( !tdOptions.color ? options.colors[ i ] : tdOptions.color )
-					});
+					
+					pieQuaterFlotSeries = { };
+					
+					// Get the setting from the associative cell header
+					dataCell =  !reverseTblParsing ? dataGroupVector[ i ].cell[ rIndex ] : dataGroupVector[ i ].datacell[ rIndex ];
+					header = !reverseTblParsing ? dataCell.col.header : dataCell.row.header;
+					header = header[ header.length - 1 ];
+					
+					// Apply any preset
+					pieQuaterFlotSeries = applyPreset( defaultsOptions.series, $(header.elem), "flot" );
+					
+					// Set the data issue from the table
+					pieQuaterFlotSeries.data = dataSeries;
+					pieQuaterFlotSeries.label = ( !reverseTblParsing ? $( dataGroupVector[ i ].dataheader[ dataGroupVector[ i ].dataheader.length - 1 ].elem ).text() :
+								$( dataGroupVector[ i ].header[ dataGroupVector[ i ].header.length - 1 ].elem ).text() );
+					
+					// Add the series
+					allSeries.push(pieQuaterFlotSeries);
 				}
 
 				// Create the Canvas
@@ -993,66 +842,21 @@
 				$imgContainer.append( $placeHolder );
 
 				// Canvas Size
-				$placeHolder.css( "height", options.height ).css( "width", options.width );
+				$placeHolder.css( "height", optionsCharts.height ).css( "width", optionsCharts.width );
 
 				$imgContainer.attr( "role", "img" );
 				// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
-				$imgContainer.attr( "aria-label", pieChartLabelText + " " + i18n( "%table-following" ) ); // "Chart. Details in table following."
+				$imgContainer.attr( "aria-label", pieChartLabelText + " " + i18n( "table-following" ) ); // "Chart. Details in table following."
 
-				//
-				// Pie Charts Options
-				//
-				plotParameter = {
-					series: {
-						pie: {
-							show: true
-						}
-					}
-				};
-				// Hide the legend,
-				if ( options.nolegend ) {
-					plotParameter.legend = { show: false };
-				}
-				// Add pie chart percentage label on slice
-				if ( options.percentlegend ) {
-					plotParameter.series.pie.radius = options.pieradius / 100;
-					plotParameter.series.pie.label = {
-						show: true,
-						radius: options.pielblradius / 100,
-						formatter: pieLabelFormater
-					};
-					// Hides the labels of any pie slice that is smaller than the specified percentage (ranging from 0 to 100)
-					if ( options.piethreshold ) {
-						plotParameter.series.pie.label.threshold = options.piethreshold / 100;
-					}
-				}
-				// Percentage of tilt ranging from 0 and 100, where 100 has no change (fully vertical) and 0 is completely flat (fully horizontal -- in which case nothing actually gets drawn)
-				if ( options.pietilt ) {
-					plotParameter.series.pie.tilt = options.pietilt / 100;
-				}
-				// Sets the radius of the donut hole. If value is between 0 and 100 (inclusive) then it will use that as a percentage of the radius, otherwise it will use the value as a direct pixel length.
-				if ( options.pieinnerradius ) {
-					plotParameter.series.pie.innerRadius = options.pieinnerradius / 100;
-				}
-				// Factor of PI used for the starting angle (in radians) It can range between 0 and 200 (where 0 and 200 have the same result).
-				if ( options.piestartangle ) {
-					plotParameter.series.pie.startAngle = options.piestartangle / 100;
-				}
-				//	Opacity of the highlight overlay on top of the current pie slice. (Range from 0 to 100) Currently this just uses a white overlay, but support for changing the color of the overlay will also be added at a later date.
-				if ( options.piehighlight ) {
-					plotParameter.series.pie.highlight = options.piehighlight / 100;
-				}
-				// hoverable
-				if ( options.piehoverable ) {
-					plotParameter.grid = {
-						hoverable: true
-					};
-				}
-
+				
 				// Create the graphic
-				$.plot( $placeHolder, allSeries, plotParameter );
+				$.plot( $placeHolder, allSeries, optionFlot );
 
-				if ( !options.legendinline ) {
+				if ( optionsCharts.nolegend ) {
+					// Remove the legend
+					$( ".legend", $placeHolder ).remove();
+				}
+				if ( !optionsCharts.legendinline ) {
 					// Move the legend under the graphic
 					$( ".legend > div", $placeHolder ).remove();
 					$( ".legend > table", $placeHolder ).removeAttr( "style" ).addClass( "font-small" );
@@ -1065,7 +869,7 @@
 				allSeries = [];
 			}
 
-			if ( !options.noencapsulation ) {
+			if ( !optionsCharts.noencapsulation ) {
 				wrapTableIntoDetails( mainFigureElem, tblCaptionHTML );
 			} else {
 				// Move the table inside the figure element
@@ -1086,25 +890,39 @@
 			chartslabels = verticalLabels( parsedData );
 		}
 
+		// Add the labels at the Flot options
+		optionFlot.xaxis = {
+			ticks: chartslabels
+		};
+
 		dataGroupVector = !reverseTblParsing ? dataGroup.row : dataGroup.col;
 
 		// Count the number of bar charts,
 		for ( i = 0; i < dataGroupVector.length; i++ ) {
-			currDataVector = dataGroupVector[ i ];
+			currDataVector = dataGroupVector[ i ].header[ dataGroupVector[ i ].header.length - 1 ];
 			
-			currVectorOptions = setClassOptions( options.vectorOptions,
-			( $ ( currDataVector.header[ currDataVector.header.length - 1 ].elem ).attr( "class" ) !== undefined ?
-			$( currDataVector.header[ currDataVector.header.length - 1 ].elem ).attr( "class" ) : "" ) );
+			
+			// Apply any preset
+			currVectorOptions = applyPreset( defaultsOptions.series, $(currDataVector.elem), "flot" );
+			
 
-			if ( ( !currVectorOptions.type && ( options.type === "bar" || options.type === "stacked" ) ) || ( currVectorOptions.type && ( currVectorOptions.type === "bar" || currVectorOptions.type === "stacked" ) ) ) {
+			if ( currVectorOptions.bars || ( optionFlot.bars && !currVectorOptions.lines ) ) {
+				// Count number of bars, this number is use to calculate the bar width.
 				nbBarChart += 1;
-				currVectorOptions.chartBarOption = nbBarChart;
-				if ( !barDelta && ( ( currVectorOptions.type && currVectorOptions.type === "bar" ) || ( !currVectorOptions.type && options.type === "bar" ) ) ) {
-					barDelta = true;
+				
+				// Set a default setting specially for bar charts
+				if (!currVectorOptions.bars) {
+					currVectorOptions.bars = { show: true, barWidth: 0.9 };
+				}
+				
+				// Set a default order for orderBars flot plugin
+				if (!currVectorOptions.bars.order) {
+					currVectorOptions.bars.order = nbBarChart;
 				}
 			}
-
-			currDataVector.header[ currDataVector.header.length - 1 ].chartOption = currVectorOptions;
+			
+			// cache the compiled setting
+			currDataVector.chartOption = currVectorOptions;
 		}
 
 		// First rowgroup assume is a data row group.
@@ -1112,7 +930,7 @@
 		for ( i = 0; i < dataGroupVector.length; i++ ) {
 			dataSeries = [];
 			datacolgroupfound = 0;
-			valueCumul = 0;
+			valuePoint = 0;
 			currDataVector = dataGroupVector[ i ];
 
 			currVectorOptions = currDataVector.header[ currDataVector.header.length - 1 ].chartOption;
@@ -1131,20 +949,8 @@
 
 					// Get's the value
 					header = !reverseTblParsing ? dataCell.col.header : dataCell.row.header;
-					valuePoint = valueCumul;
 
-					// Bar chart case, re-evaluate the calculated point
-					if ( barDelta && currVectorOptions.chartBarOption ) {
-						// Position bar
-						valuePoint = valueCumul - ( lowestFlotDelta / 2 ) + ( lowestFlotDelta / nbBarChart * ( currVectorOptions.chartBarOption - 1 ) );
-
-						if ( nbBarChart === 1 ) {
-							valuePoint = valueCumul;
-						}
-
-					}
-
-					cellValue = options.getcellvalue( dataCell.elem );
+					cellValue = optionsCharts.getcellvalue( dataCell.elem );
 
 					// Add the data point
 					dataSeries.push(
@@ -1153,58 +959,33 @@
 							typeof cellValue === "object" ? cellValue[ 0 ] : cellValue
 						]
 					);
-					valueCumul += header[ header.length - 1 ].flotDelta;
+					valuePoint += header[ header.length - 1 ].flotDelta;
 					datacolgroupfound++;
 				}
 			}
 
-			// Get the graph type
-
-			if ( !currVectorOptions.type ) {
-				currVectorOptions.type = options.type;
+			currVectorOptions.data = dataSeries;
+			currVectorOptions.label = $( currDataVector.header[ currDataVector.header.length - 1 ].elem ).text();
+			
+			if ( currVectorOptions.bars ) {
+				// Adjust the bars width
+				currVectorOptions.bars.barWidth = currVectorOptions.bars.barWidth * ( 1 / nbBarChart );
 			}
 			
-			currVectorSeries = {
-				data: dataSeries,
-				label: $( currDataVector.header[ currDataVector.header.length - 1 ].elem ).text(),
-				color: ( !currVectorOptions.color ? options.colors[ i ] : currVectorOptions.color )
-			};
+			allSeries.push( currVectorOptions );
 
-			// Set Special parameter per kind of series
-			// FYI ( currVectorOptions.type === "line" ) was intentionnally omited because the it's about the default parameter set
-			if ( currVectorOptions.type === "area" ) {
-				currVectorSeries.lines = {
-					show: true,
-					fill: true
-				};
-			} else if ( currVectorOptions.type === "bar" || ( barDelta && currVectorOptions.type === "stacked" ) ) {
-				currVectorSeries.bars = {
-					show: true,
-					barWidth: ( 1 / nbBarChart * 0.9 ),
-					align: "center"
-				};
-			} else if ( currVectorOptions.type === "stacked" ) {
-				currVectorSeries.bars = {
-					show: true,
-					barWidth: lowestFlotDelta * 0.9,
-					align: "center"
-				};
-			}
-			allSeries.push( currVectorSeries );
-
+		}
+	
+		if ( optionFlot.bars ) {
+			// Adjust the bars width
+			optionFlot.bars.barWidth = optionFlot.bars.barWidth * ( 1 / nbBarChart );
 		}
 
 		figureElem = $( "<figure />" ).insertAfter( $elm );
 
-		figureElem.addClass( "wb-charts" ); // Default
-		if ( options.graphclass ) {
-			if ( $.isArray( options.graphclass ) ) {
-				for ( i = 0, graphClassLength2 = options.graphclass.length; i < graphClassLength2; i += 1 ) {
-					figureElem.addClass( options.graphclass[ i ] );
-				}
-			} else {
-				figureElem.addClass( options.graphclass );
-			}
+		figureElem; // Default
+		if ( optionsCharts.graphclass ) {
+			figureElem.addClass( optionsCharts.graphclass );
 		}
 
 		figCaptionElem = $( "<figcaption />" );
@@ -1219,13 +1000,13 @@
 		$( figureElem ).append( $placeHolder );
 
 		// Canvas Size
-		$placeHolder.css( "height", options.height ).css( "width", "100%" );
+		$placeHolder.css( "height", optionsCharts.height ).css( "width", "100%" );
 
 		$placeHolder.attr( "role", "img" );
 		// Add a aria label to the svg build from the table caption with the following text prepends " Chart. Details in table following."
-		$placeHolder.attr( "aria-label", $( "caption", $elm ).text() + " " + i18n( "%table-following" ) ); // "Chart. Details in table following."
+		$placeHolder.attr( "aria-label", $( "caption", $elm ).text() + " " + i18n( "table-following" ) ); // "Chart. Details in table following."
 
-		if ( !options.noencapsulation ) {
+		if ( !optionsCharts.noencapsulation ) {
 			wrapTableIntoDetails( figureElem, tblCaptionHTML );
 		} else {
 			// Move the table inside the figure element
@@ -1233,45 +1014,15 @@
 		}
 
 		// Create the graphic
-		plotParameter = {
-			canvas: true,
-			xaxis: ( chartslabels.length > 0 ? { ticks: chartslabels } : {} )
-		};
+		$.plot( $placeHolder, allSeries, optionFlot );
 
-		if ( options.topvalue ) {
-			if ( !plotParameter.yaxis ) {
-				plotParameter.yaxis = {};
-			}
-			if ( options.topvaluenegative ) {
-				options.topvalue *= -1;
-			}
-			plotParameter.yaxis.max = options.topvalue;
-		}
-		if ( options.bottomvalue ) {
-			if ( !plotParameter.yaxis ) {
-				plotParameter.yaxis = {};
-			}
-			if ( options.bottomvaluenegative ) {
-				options.bottomvalue *= -1;
-			}
-			plotParameter.yaxis.min = options.bottomvalue;
-		}
-		if ( options.steps ) {
-			if ( !plotParameter.yaxis ) {
-				plotParameter.yaxis = {};
-			}
-			plotParameter.yaxis.ticks = options.steps;
-		}
-
-		$.plot( $placeHolder, allSeries, plotParameter );
-
-		if ( !options.legendinline ) {
+		if ( !optionsCharts.legendinline ) {
 			// Move the legend under the graphic
 			$( ".legend > div", $placeHolder ).remove();
 			$( ".legend > table", $placeHolder ).removeAttr( "style" ).addClass( "font-small" );
 			$placeHolder.css( "height", "auto" );
 		}
-		if ( options.nolegend ) {
+		if ( optionsCharts.nolegend ) {
 			// Remove the legend
 			$( ".legend", $placeHolder ).remove();
 		}
@@ -1293,7 +1044,9 @@
 			deps = [
 				"site!deps/jquery.flot" + modeJS,
 				"site!deps/jquery.flot.pie" + modeJS,
-				"site!deps/jquery.flot.canvas" + modeJS
+				"site!deps/jquery.flot.canvas" + modeJS,
+				"site!deps/jquery.flot.orderBars" + modeJS,
+				"site!deps/tableparser" + modeJS
 			];
 	
 		if ( elm.className.indexOf( initedClass ) === -1 ) {
@@ -1302,7 +1055,7 @@
 
 			elm.className += " " + initedClass;
 
-			// Load the required dependencies and prettify the code once finished
+			// Load the required dependencies
 			Modernizr.load({
 
 				// For loading multiple dependencies

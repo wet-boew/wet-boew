@@ -3,6 +3,9 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 
+@import "../../variables";
+@import "../../../lib/magnific-popup/src/css/main";
+
 %lightbox-button-outline {
 	outline: 1px dotted;
 	outline-offset: -2px;
@@ -17,6 +20,20 @@
 			display: block;
 		}
 	}
+}
+
+.modal-dialog {
+	padding: 0;
+	position: relative;
+	left: auto;
+}
+
+.modal-content {
+	background: transparent;
+}
+
+.modal-body {
+	background: $clrWhite;
 }
 
 .mfp-close {

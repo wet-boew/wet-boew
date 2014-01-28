@@ -6,21 +6,19 @@
 /**
  * Mobile-friendly styles
  */
-.no-js {
-	.wb-tabs {
-		[role="tablist"] {
-			display: none;
-		}
-		[role="tabpanel"] {
-			display: block;
-			opacity: 1;
-		}
-		> {
-			details {
-				> {
-					summary {
-						display: block !important;
-					}
+.wb-tabs {
+	[role="tablist"] {
+		display: none;
+	}
+	[role="tabpanel"] {
+		display: block;
+		opacity: 1;
+	}
+	> {
+		details {
+			> {
+				summary {
+					display: block !important;
 				}
 			}
 		}

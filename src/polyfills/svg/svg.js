@@ -10,13 +10,14 @@
 var $svgObjects = $( "object[data$='.svg']" ),
 	$svgImages = $( "img[src$='.svg']" ),
 	len = $svgObjects.length,
-	i, alt, $svg;
+	i, alt, id, $svg;
 
 for ( i = 0; i !== len; i += 1 ) {
 	$svg = $svgObjects.eq( i );
 	alt = $svg.attr( "aria-label" );
+	id = $svg.attr( "id" );
 	$svg.replaceWith( "<img src='" + $svg.attr( "data" ).replace( ".svg", ".png" ) +
-		"' alt='" + ( !alt ? "" : alt ) + "' />" );
+		"' alt='" + ( !alt ? "" : alt ) + "'" + ( !id ? "" :  "id='" + id + "'" ) +  "/>" );
 }
 
 len = $svgImages.length;

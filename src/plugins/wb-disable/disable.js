@@ -44,24 +44,27 @@ var selector = "#wb-tphp",
 				}
 			}
 
-			if ( wb.isDisabled || ( wb.ie && wb.ielt7 ) ) {
-				$html.addClass( "no-js wb-disable" );
-				if ( localStorage ) {
+			try {
+				if ( wb.isDisabled || ( wb.ie && wb.ielt7 ) ) {
+					$html.addClass( "no-js wb-disable" );
+					if ( localStorage ) {
 
-					// Store preference for WET plugins and polyfills to be disabled in localStorage
-					localStorage.setItem( "wbdisable", "true");
+						// Store preference for WET plugins and polyfills to be disabled in localStorage
+						localStorage.setItem( "wbdisable", "true");
+					}
+
+					// Append the Standard version link
+					li.innerHTML = "<a class='wb-sl' href='" + nQuery + "wbdisable=false'>" + i18n( "wb-enable" ) + "</a>";
+
+					// Add link to re-enable WET plugins and polyfills
+					elm.appendChild( li );
+					return true;
+				} else if ( localStorage ) {
+
+					// Store preference for WET plugins and polyfills to be enabled in localStorage
+					localStorage.setItem( "wbdisable", "false" );
 				}
-
-				// Append the Standard version link
-				li.innerHTML = "<a class='wb-sl' href='" + nQuery + "wbdisable=false'>" + i18n( "wb-enable" ) + "</a>";
-
-				// Add link to re-enable WET plugins and polyfills
-				elm.appendChild( li );
-				return true;
-			} else if ( localStorage ) {
-
-				// Store preference for WET plugins and polyfills to be enabled in localStorage
-				localStorage.setItem( "wbdisable", "false" );
+			} catch ( error ) {
 			}
 
 			// Append the Basic HTML version link version

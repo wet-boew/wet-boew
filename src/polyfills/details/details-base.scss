@@ -17,3 +17,13 @@ details {
 		}
 	}
 }
+
+.wb-disable {
+	details {
+		> {
+			* {
+				display: block !important;
+			}
+		}
+	}
+}

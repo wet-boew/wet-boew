@@ -5,7 +5,7 @@
 	"category": "Plugiciel",
 	"description": "Plugiciel qui permet un lien à basculer des éléments entre les états activé et désactivé.",
 	"tag": "toggle",
-	"en": "toggle",
+	"altLangPrefix": "toggle",
 	"css": "demo/toggle"
 }
 ---
@@ -22,12 +22,13 @@
 			<a href="#details" class="list-group-item">Details</a>
 			<a href="#grouped" class="list-group-item">Basculer groupe</a>
 			<a href="#accordion" class="list-group-item">Accordion</a>
+			<a href="#persist" class="list-group-item">Conserver l'état de bascule</a>
 		</div>
 	</div>
 
 	<div class="col-md-9">
 		<section>
-			<h2 id="simple">Exemple simple</h2>
+			<h2 id="simple" class="mrgn-tp-0">Exemple simple</h2>
 
 			<div class="btn-group">
 				<button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": ".box"}'>Basculer</button>
@@ -50,7 +51,7 @@
 			<h2 id="details">Details</h2>
 
 			<div class="btn-group">
-				<button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": "details"}'>Basculer</button>
+				<button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": "details", "print": "on"}'>Basculer</button>
 				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "type": "on"}'>Activer</button>
 				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "type": "off"}'>Désactiver</button>
 			</div>
@@ -260,9 +261,9 @@
 
 			<div class="accordion">
 
-				<details>
-					<summary class="wb-toggle tab" data-toggle='{"parent": ".accordion", "group": "details"}'>Example 1</summary>
-					<div class="panel">
+				<details class="acc-group">
+					<summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'>Example 1</summary>
+					<div class="tgl-panel">
 						<p>Le contenu d'exemple qui fournit plus de détails.</p>
 						<table>
 							<caption>Tasses de café bues par chaque député</caption>
@@ -292,9 +293,9 @@
 					</div>
 				</details>
 
-				<details>
-					<summary class="wb-toggle tab" data-toggle='{"parent": ".accordion", "group": "details"}'>Example 2</summary>
-					<div class="panel">
+				<details class="acc-group">
+					<summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'>Example 2</summary>
+					<div class="tgl-panel">
 						<p>Le contenu d'exemple qui fournit plus de détails.</p>
 						<table>
 							<caption>Tasses de café bues par chaque député</caption>
@@ -324,9 +325,9 @@
 					</div>
 				</details>
 
-				<details>
-					<summary class="wb-toggle tab" data-toggle='{"parent": ".accordion", "group": "details"}'>Exemple 3</summary>
-					<div class="panel">
+				<details class="acc-group">
+					<summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'>Exemple 3</summary>
+					<div class="tgl-panel">
 						<p>Le contenu d'exemple qui fournit plus de détails.</p>
 						<table>
 							<caption>Tasses de café bues par chaque député</caption>
@@ -359,5 +360,39 @@
 			</div>
 
 		</section>
+		
+		<section>
+			<h2 id="persist">Conserver l'état de bascule</h2>
+			<p>L'état de bascule de l'élément <code>details</code> ci-desous persistra tant que le fureteur (ou onglet) demeure ouvert.</p>
+			<details>
+				<summary class="wb-toggle" data-toggle='{"persist": "session"}'>Exemple 1</summary>
+				<p>Le contenu d'exemple qui fournit plus de détails.</p>
+				<table>
+					<caption>Tasses de café bues par chaque député</caption>
+					<thead>
+					<tr>
+						<th scope="col">Nom</th>
+						<th scope="col">Tasses</th>
+						<th scope="col">Type de café</th>
+						<th scope="col">Sucre?</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>T. Sexton</td>
+							<td>10</td>
+							<td>Expresso</td>
+							<td>Non</td>
+						</tr>
+						<tr>
+							<td>J. Dinnen</td>
+							<td>5</td>
+							<td>Déca</td>
+							<td>Oui</td>
+						</tr>
+					</tbody>
+				</table>
+			</details>			
+		</section>		
 	</div>
 </div>

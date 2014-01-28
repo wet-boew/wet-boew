@@ -35,7 +35,7 @@
 @media screen and (max-width: $smallViewMax) {
 	@import "views/smallViewUnder";
 	@import "parts/secMenu-smallViewUnder";
-	@import "parts/siteMenu-smallViewUnder";
+	@import "parts/banner-smallViewUnder";
 }
 
 /* Medium view and under */
@@ -61,6 +61,7 @@
 /* Medium view and over */
 @media screen and (min-width: $mediumViewMin) {
 	@import "views/mediumViewOver";
+	@import "parts/banner-mediumViewOver";
 }
 
 /* Large view and over */
