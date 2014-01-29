@@ -670,6 +670,10 @@ module.exports = (grunt) ->
 					cwd: "lib"
 					src: [
 						"jquery-pjax/jquery.pjax.js"
+						"flot/jquery.flot.js"
+						"flot/jquery.flot.pie.js"
+						"flot/jquery.flot.canvas.js"
+						"SideBySideImproved/jquery.flot.orderBars.js"
 						"jquery.validation/jquery.validate.js"
 						"jquery.validation/additional-methods.js"
 						"magnific-popup/dist/jquery.magnific-popup.js"

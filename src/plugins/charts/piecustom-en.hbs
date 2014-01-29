@@ -1,0 +1,580 @@
+---
+{
+	"title": "Chart and Graph - Custom Pie",
+	"language": "en",
+	"category": "Plugin",
+	"description": "Working example that show how the donnut chart is an extension of a pie charts",
+	"tag": "charts",
+	"altLangPrefix": "piecustom"
+}
+---
+
+<ul>
+	<li><a href="charts-en.html">Charts and Graph</a></li>
+	<li><a href="labelsandreferencevalue-en.html">Labeling options and reference value</a></li>
+	<li><a href="custom-en.html">Charts Personalisation, multi graph type and custom preset</a></li>
+	<li><a href="piecustom-en.html">Custom Pie Charts</a></li>
+	<li><a href="functionandnumbers-en.html">Number separator</a></li>
+	<li><a href="functionandnumbers-en.html#functionpreset">Using function in your custom preset</a></li>
+	<li><a href="testing-en.html">Specific use case</a></li>
+</ul>
+<hr />
+
+
+<h2>Donut preset <code>wb-charts-donut</code></h2>
+
+<details>
+	<summary>Donut Preset JSON Source Code</summary>
+<pre><code>
+// FYI - The "Donut" preset is already defined by default, this are just to show an example on you may reproduce it in your own preset.
+var wet_boew_charts = {
+	flot: {
+		donut: {
+			series: {
+				pie: {
+					show: true,
+					radius: 1,
+					label: {
+						show: true,
+						radius: 1,
+						threshold: 0.08
+					},
+					tilt: 0.5,
+					innerRadius: 0.45,
+					startAngle: 1
+				}
+			},
+			grid: {
+				hoverable: true
+			}
+		},
+	charts: {
+		donut: {
+			decimal: 1
+		}
+	}
+}
+</code></pre>
+</details>
+
+<table class="wb-charts wb-charts-donut">
+	<caption>Donut preset <code>wb-charts-donut</code></caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7.7</td>
+			<td>10.10</td>
+			<td>4.4</td>
+			<td>14.14</td>
+			<td>15.15</td>
+			<td>7.7</td>
+			<td>23.23</td>
+			<td>8.8</td>
+			<td>12.12</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="clear"></div>
+
+<h2>Defaults</h2>
+
+<p>Options Added</p>
+<pre><code>data-flot = '{ }'</code></pre>
+
+<table class="wb-charts wb-charts-pie">
+	<caption>Defaults</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7</td>
+			<td>10</td>
+			<td>4</td>
+			<td>14</td>
+			<td>15</td>
+			<td>7</td>
+			<td>23</td>
+			<td>8</td>
+			<td>13</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Sectors labeling</h2>
+
+<p>Json Parameter</p>
+<pre><code>
+data-flot = '{
+	"series": {
+		"pie": {
+			"radius": 1,
+			"label": {
+				"show": true,
+				"radius": 1
+			}
+		}
+	}
+}'
+</code></pre>
+
+<pre><code>&lt;table class="wb-charts wb-charts-pie" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true } } } }'&gt;</code></pre>
+<table class="wb-charts wb-charts-pie" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true } } } }'>
+	<caption>Sectors labeling</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7</td>
+			<td>10</td>
+			<td>4</td>
+			<td>14</td>
+			<td>15</td>
+			<td>7</td>
+			<td>23</td>
+			<td>8</td>
+			<td>13</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Donut hole</h2>
+
+<p>Json Parameter</p>
+<pre><code>data-flot = '{
+	"series": {
+		"pie": {
+			"radius": 1,
+			"label": {
+				"show": true,
+				"radius": 1
+			},
+			"innerRadius": 0.45
+		}
+	}
+}'
+</code></pre>
+
+<pre><code>&lt;table class="wb-charts wb-charts-pie" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true }, "innerRadius": 0.45 } } }'&gt;</code></pre>
+<table class="wb-charts wb-charts-pie" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true }, "innerRadius": 0.45 } } }'>
+	<caption>Donut hole</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7</td>
+			<td>10</td>
+			<td>4</td>
+			<td>14</td>
+			<td>15</td>
+			<td>7</td>
+			<td>23</td>
+			<td>8</td>
+			<td>13</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Tilted pie</h2>
+
+
+<p>Json Parameter</p>
+<pre><code>data-flot = '{
+	"series": {
+		"pie": {
+			"radius": 1,
+			"label": {
+				"show": true,
+				"radius": 1
+			},
+			"innerRadius": 0.45,
+			"tilt": 0.5
+		}
+	}
+}'
+</code></pre>
+
+<pre><code>&lt;table class="wb-charts wb-charts-pie" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true }, "innerRadius": 0.45, "tilt": 0.5 } } }'&gt;</code></pre>
+<table class="wb-charts wb-charts-pie" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true }, "innerRadius": 0.45, "tilt": 0.5  } } }'>
+	<caption>Tilted pie</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7</td>
+			<td>10</td>
+			<td>4</td>
+			<td>14</td>
+			<td>15</td>
+			<td>7</td>
+			<td>23</td>
+			<td>8</td>
+			<td>13</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>Rectangular pie</h2>
+
+<p>Json Parameter</p>
+<pre><code>data-flot = '{
+	"series": {
+		"pie": {
+			"radius": 5000,
+			"label": {
+				"show": true,
+				"radius": 1
+			},
+			"innerRadius": 0.45,
+			"tilt": 0.5
+		}
+	}
+}'
+</code></pre>
+
+<pre><code>&lt;table class="wb-charts wb-charts-pie wb-charts-nolegend" data-flot='{"series": { "pie": { "radius": 5000,"label": { "radius": 1,"show": true }, "innerRadius": 0.45, "tilt": 0.5 } } }'&gt;</code></pre>
+<table class="wb-charts wb-charts-pie wb-charts-nolegend" data-flot='{"series": { "pie": { "radius": 5000,"label": { "radius": 1,"show": true }, "innerRadius": 0.45, "tilt": 0.5  } } }'>
+	<caption>Rectangular pie</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7</td>
+			<td>10</td>
+			<td>4</td>
+			<td>14</td>
+			<td>15</td>
+			<td>7</td>
+			<td>23</td>
+			<td>8</td>
+			<td>13</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>Hovering Effect</h2>
+
+
+<p>Json Parameter</p>
+<pre><code>data-flot = '{
+	"series": {
+		"pie": {
+			"radius": 1,
+			"label": {
+				"show": true,
+				"radius": 1
+			},
+			"innerRadius": 0.45,
+			"tilt": 0.5
+		}
+	},
+	"grid": {
+		"hoverable": true
+	}
+}'
+</code></pre>
+
+<pre><code>&lt;table class="wb-charts wb-charts-pie" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true }, "innerRadius": 0.45, "tilt": 0.5 } }, "grid": { "hoverable": true } }'&gt;</code></pre>
+<table class="wb-charts wb-charts-pie" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true }, "innerRadius": 0.45, "tilt": 0.5  } }, "grid": { "hoverable": true } }'>
+	<caption>Hovering Effect</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7.7</td>
+			<td>10.10</td>
+			<td>4.4</td>
+			<td>14.14</td>
+			<td>15.15</td>
+			<td>7.7</td>
+			<td>23.23</td>
+			<td>8.8</td>
+			<td>12.12</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Decimal precision</h2>
+
+
+
+<p><code>data-wet-boew</code> Json Parameter</p>
+<pre><code>data-wet-boew = '{
+	"decimal": 1
+}'
+</code></pre>
+
+<p><code>data-flot</code> Json Parameter</p>
+<pre><code>data-flot = '{
+	"series": {
+		"pie": {
+			"radius": 1,
+			"label": {
+				"show": true,
+				"radius": 1
+			},
+			"innerRadius": 0.45,
+			"tilt": 0.5
+		}
+	},
+	"grid": {
+		"hoverable": true
+	}
+}'
+</code></pre>
+
+
+
+<pre><code>&lt;table class="wb-charts wb-charts-pie" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true }, "innerRadius": 0.45, "tilt": 0.5 } }, "grid": { "hoverable": true } }' data-wet-boew='{ "decimal": 1 }'&gt;</code></pre>
+<table class="wb-charts wb-charts-pie wb-charts-decimal-1" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true }, "innerRadius": 0.45, "tilt": 0.5  } }, "grid": { "hoverable": true } }' data-wet-boew='{ "decimal": 1 }'>
+	<caption>Decimal precision</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7.7</td>
+			<td>10.10</td>
+			<td>4.4</td>
+			<td>14.14</td>
+			<td>15.15</td>
+			<td>7.7</td>
+			<td>23.23</td>
+			<td>8.8</td>
+			<td>12.12</td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+
+<h2>Labeling threshold</h2>
+
+<p><code>data-wet-boew</code> Json Parameter</p>
+<pre><code>data-wet-boew = '{
+	"decimal": 1
+}'
+</code></pre>
+
+<p><code>data-flot</code> Json Parameter</p>
+<pre><code>data-flot = '{
+	"series": {
+		"pie": {
+			"radius": 1,
+			"label": {
+				"show": true,
+				"radius": 1,
+				"threshold": 0.08
+			},
+			"innerRadius": 0.45,
+			"tilt": 0.5
+		}
+	},
+	"grid": {
+		"hoverable": true
+	}
+}'
+</code></pre>
+
+<pre><code>&lt;table class="wb-charts wb-charts-pie" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true, "threshold": 0.08 }, "innerRadius": 0.45, "tilt": 0.5 } }, "grid": { "hoverable": true } }' data-wet-boew='{ "decimal": 1 }'&gt;</code></pre>
+<table class="wb-charts wb-charts-pie wb-charts-decimal-1 wb-charts-legendinline" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true, "threshold": 0.08 }, "innerRadius": 0.45, "tilt": 0.5  } }, "grid": { "hoverable": true } }' data-wet-boew='{ "decimal": 1 }'>
+	<caption>Labeling threshold</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7.7</td>
+			<td>10.10</td>
+			<td>4.4</td>
+			<td>14.14</td>
+			<td>15.15</td>
+			<td>7.7</td>
+			<td>23.23</td>
+			<td>8.8</td>
+			<td>12.12</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="clear"></div>
+<h2>Start Angle</h2>
+
+<p><code>data-wet-boew</code> Json Parameter</p>
+<pre><code>data-wet-boew = '{
+	"decimal": 1
+}'
+</code></pre>
+
+<p><code>data-flot</code> Json Parameter</p>
+<pre><code>data-flot = '{
+	"series": {
+		"pie": {
+			"radius": 1,
+			"label": {
+				"show": true,
+				"radius": 1,
+				"threshold": 0.08
+			},
+			"innerRadius": 0.45,
+			"tilt": 0.5,
+			"startAngle": 1
+		}
+	},
+	"grid": {
+		"hoverable": true
+	}
+}'
+</code></pre>
+
+<pre><code>&lt;table class="wb-charts wb-charts-pie" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true, "threshold": 0.08 }, "innerRadius": 0.45, "tilt": 0.5, "startAngle": 1 } }, "grid": { "hoverable": true } }' data-wet-boew='{ "decimal": 1 }'&gt;</code></pre>
+<table class="wb-charts wb-charts-pie wb-charts-decimal-1 wb-charts-legendinline" data-flot='{"series": { "pie": { "radius": 1,"label": { "radius": 1,"show": true, "threshold": 0.08 }, "innerRadius": 0.45, "tilt": 0.5, "startAngle": 1 } }, "grid": { "hoverable": true } }' data-wet-boew='{ "decimal": 1 }'>
+	<caption>Start Angle</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Series 1</th>
+			<th>Series 2</th>
+			<th>Series 3</th>
+			<th>Series 4</th>
+			<th>Series 5</th>
+			<th>Series 6</th>
+			<th>Series 7</th>
+			<th>Series 8</th>
+			<th>Series 9</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>Default</th>
+			<td>7.7</td>
+			<td>10.10</td>
+			<td>4.4</td>
+			<td>14.14</td>
+			<td>15.15</td>
+			<td>7.7</td>
+			<td>23.23</td>
+			<td>8.8</td>
+			<td>12.12</td>
+		</tr>
+	</tbody>
+</table>
