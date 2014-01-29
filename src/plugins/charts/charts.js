@@ -34,39 +34,36 @@
 			chartslabels = [],
 			dataSeries = [],
 			nbBarChart = 0,
-			lowestFlotDelta,
-			$imgContainer, $placeHolder,
-			$WETChartContainer, htmlPlaceHolder, figurehtml,
 			$caption = $( "caption", $elm ),
 			captionHtml = $caption.html(),
-			cellValue,
-			datacolgroupfound, dataGroup, header,
-			i, iLength, j, jLength, parsedData,
-			rIndex,
-			currVectorOptions,
 			valuePoint = 0,
+			lowestFlotDelta, $imgContainer, $placeHolder,
+			$wetChartContainer, htmlPlaceHolder, figurehtml,
+			cellValue, datacolgroupfound, dataGroup, header,
+			i, iLength, j, jLength, parsedData, rIndex, currVectorOptions,
 			currentRowGroup, reverseTblParsing, dataGroupVector,
 			dataCell, previousDataCell, currDataVector,
-			pieQuaterFlotSeries,
-			optionFlot, optionsCharts,
+			pieQuaterFlotSeries, optionFlot, optionsCharts,
 			defaultsOptions = {
 				// Flot Global Options
 				flot: {
 					prefix: "wb-charts-",
 					defaults: {
-						colors: [ "#8d201c",
-								"#EE8310",
-								"#2a7da6",
-								"#5a306b",
-								"#285228",
-								"#154055",
-								"#555555",
-								"#f6d200",
-								"#d73d38",
-								"#418541",
-								"#87aec9",
-								"#23447e",
-								"#999999" ],
+						colors: [
+							"#8d201c",
+							"#EE8310",
+							"#2a7da6",
+							"#5a306b",
+							"#285228",
+							"#154055",
+							"#555555",
+							"#f6d200",
+							"#d73d38",
+							"#418541",
+							"#87aec9",
+							"#23447e",
+							"#999999"
+						],
 						canvas: true
 					},
 					line: { },
@@ -127,6 +124,7 @@
 						}
 					}
 				},
+
 				// Flot Series Options
 				series: {
 					prefix: "wb-charts-",
@@ -149,26 +147,51 @@
 						base: "bar"
 					}
 				},
+
 				// Wet-boew Charts Options
 				charts: {
 					prefix: "wb-charts-",
 					defaults: {
-						graphclass: "wb-graph", // [string] Class name added at the figure element container
-						noencapsulation: false, // [boolean] Wrap or not the table in a details/summary elements
-						labelposition: false, // [number] false means the deepest vector will be used for labeling
-						referencevalue: false, // [number] false means the deepest vector will be used for calculate the reference
-						legendinline: false, // [boolean] false means to move the legend from inside the charts to next to it 
-						nolegend: false, // [boolean] true means that the legend will be destroyed and the label for pie chart will include the legend
-						decimal: 0, // [number] Literal number of displayed decimal for a pie charts 
-						width: $elm.width(), // [number] Provide a default width for the charts that will be rendered
-						height: $elm.height(), // [number] Provide a default height for the charts that will be rendered
-						reversettblparsing: false, // [boolean] Flag for defining if the data table should be read in reverse compared to HTML spec
+
+						// [string] Class name added at the figure element container
+						graphclass: "wb-graph",
+
+						// [boolean] Wrap or not the table in a details/summary elements
+						noencapsulation: false,
+
+						// [number] false means the deepest vector will be used for labelling
+						labelposition: false,
+
+						// [number] false means the deepest vector will be used for calculate the reference
+						referencevalue: false,
+
+						// [boolean] false means to move the legend from inside the charts to next to it
+						legendinline: false,
+
+						// [boolean] true means that the legend will be destroyed and the label for pie chart will include the legend
+						nolegend: false,
+
+						// [number] Literal number of displayed decimal for a pie charts 
+						decimal: 0,
+
+						// [number] Provide a default width for the charts that will be rendered
+						width: $elm.width(),
+
+						// [number] Provide a default height for the charts that will be rendered
+						height: $elm.height(),
+
+						// [boolean] Flag for defining if the data table should be read in reverse compared to HTML spec
+						reversettblparsing: false,
 						fn: {
 							"/getcellvalue": function( elem ) {
+
 								// Default Cell value extraction
 								var cellRawValue = $.trim( $( elem ).text() ).replace( /\s/g, "" );
 
-								return [ parseFloat( cellRawValue.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), cellRawValue.match (/[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
+								return [
+									parseFloat( cellRawValue.match( /[\+\-0-9]+[0-9,\. ]*/ ) ),
+									cellRawValue.match (/[^\+\-\.\, 0-9]+[^\-\+0-9]*/ )
+								];
 							}
 						}
 						
@@ -180,7 +203,10 @@
 						fn: {
 							"/getcellvalue": function( elem ) {
 								var raw = $.trim( $( elem ).text() ).replace( /,/g, "" );
-								return [ parseFloat( raw.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), raw.match( /[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
+								return [
+									parseFloat( raw.match( /[\+\-0-9]+[0-9,\. ]*/ ) ),
+									raw.match( /[^\+\-\.\, 0-9]+[^\-\+0-9]*/ )
+								];
 							}
 						}
 					},
@@ -188,7 +214,10 @@
 						fn: {
 							"/getcellvalue": function( elem ) {
 								var raw = $.trim( $( elem ).text() ).replace( /\./g, "" );
-								return [ parseFloat( raw.match( /[\+\-0-9]+[0-9,\. ]*/ ) ), raw.match( /[^\+\-\.\, 0-9]+[^\-\+0-9]*/ ) ];
+								return [
+									parseFloat( raw.match( /[\+\-0-9]+[0-9,\. ]*/ ) ),
+									raw.match( /[^\+\-\.\, 0-9]+[^\-\+0-9]*/ )
+								];
 							}
 						}
 					}
@@ -207,15 +236,15 @@
 		function overwriteDefaultsOptions( scopekey, target, object ) {
 			var cachedObj, key;
 			
-			cachedObj = object[scopekey];
-			if (!cachedObj) {
+			cachedObj = object[ scopekey ];
+			if ( !cachedObj ) {
 				return target;
 			}
 			for ( key in cachedObj ) {
 				if ( !cachedObj.hasOwnProperty( key ) ) {
 					continue;
 				}
-				target[scopekey][key] = cachedObj[key];
+				target[ scopekey ][ key ] = cachedObj[ key ];
 			}
 			return target;
 		}
@@ -249,12 +278,11 @@
 			var config = $.extend( true, {}, baseline.defaults || baseline ),
 				fn = $.extend( true, {}, baseline.defaults && baseline.defaults.fn || { } ),
 				tokens = $elem.attr( "class" ) || "",
-				tblTokens,
-				i, iLength,
-				token, tokenLength,
-				prefix, prefixLength, // Prefix used in front of the token
-				preset,
-				key, tblFn, localKey, currObj;
+				tblTokens, i, iLength, token, tokenLength,
+
+				// Prefix used in front of the token
+				prefix, prefixLength,
+				preset, key, tblFn, localKey, currObj;
 			
 			if ( tokens.length ) {
 				
@@ -267,19 +295,21 @@
 				for ( i = 0, iLength = tblTokens.length; i !== iLength; i += 1 ) {
 					
 					// Get the current token
-					token = tblTokens[i];
+					token = tblTokens[ i ];
 					tokenLength = token.length;
 					
 					// Remove the token is used
-					if ( tokenLength <= prefixLength || token.slice(0, prefixLength) !== prefix ) {
+					if ( tokenLength <= prefixLength || token.slice( 0, prefixLength ) !== prefix ) {
 						continue;
 					}
-					token = token.slice(prefixLength, tokenLength);
+					token = token.slice( prefixLength, tokenLength );
 					
 					preset = baseline[ token ];
+
 					// Apply the preset
 					if ( preset ) {
 						if ( preset.base ) {
+
 							// Like setting herited from a parent config
 							config = $.extend( true, config, baseline[ preset.base ] );
 							fn = $.extend( true, fn, baseline[ preset.base ].fn || { } );
@@ -333,32 +363,36 @@
 		 * @param {number} referenceValuePosition - Vector position use as reference for defining the steps, zero based position
 		 */
 		function getColumnGroupHeaderCalculateSteps( colGroupHead, referenceValuePosition ) {
+
 			// Get the appropriate ticks
-			var headerCell, i, _ilen,
+			var headerCell, i, iLen,
 				calcStep = 1,
 				colRefValue, colCurent;
 				
 				
 			if ( !colGroupHead ) {
-				return; // There is an error, may be each series do not have an header
+
+				// There is an error. Possibly the series are missing a header.
+				return;
 			}
 			
 			colRefValue = colGroupHead.col[ referenceValuePosition ];
 			colCurent = colGroupHead.col[ 0 ];
 
-			for ( i = 0, _ilen = colRefValue.cell.length; i !== _ilen; i += 1 ) {
+			for ( i = 0, iLen = colRefValue.cell.length; i !== iLen; i += 1 ) {
 
 				headerCell = colRefValue.cell[ i ];
 
 				if ( i === 0 || ( i > 0 && colCurent.cell[ i - 1 ].uid !== headerCell.uid ) ) {
 
 					if ( headerCell.rowgroup && headerCell.rowgroup.type === 3 ) {
+
 						// We only process the first column data group
 						break;
 					}
 
 					if ( headerCell.type === 1 || headerCell.type === 7 ) {
-						if ( headerCell.child.length > 0 ) {
+						if ( headerCell.child.length !== 0 ) {
 							calcStep = calcStep * groupHeaderCalculateStepsRecursive( headerCell, 1 );
 						}
 					}
@@ -375,12 +409,13 @@
 		 * @param {number} dataColgroupStart - Column position where the column data group start 
 		 */
 		function getRowGroupHeaderCalculateSteps( rowGroupHead, referenceValuePosition, dataColgroupStart ) {
+
 			// Find the range of the first data colgroup
-			var headerCell, i, _ilen,
+			var headerCell, i, iLen,
 				calcStep = 1,
 				rowRefValueCells = rowGroupHead[ referenceValuePosition ].elem.cells;
 
-			for ( i = 0, _ilen = rowRefValueCells.length; i !== _ilen; i += 1 ) {
+			for ( i = 0, iLen = rowRefValueCells.length; i !== iLen; i += 1 ) {
 
 				headerCell = $( rowRefValueCells[ i ] ).data().tblparser;
 
@@ -390,7 +425,7 @@
 				}
 
 				if ( headerCell.colpos >= dataColgroupStart && ( headerCell.type === 1 || headerCell.type === 7 ) ) {
-					if ( headerCell.child.length > 0 ) {
+					if ( headerCell.child.length !== 0 ) {
 						calcStep = calcStep * headerCell.child.length * groupHeaderCalculateStepsRecursive( headerCell, 1 );
 						
 					}
@@ -407,22 +442,20 @@
 		 */
 		function groupHeaderCalculateStepsRecursive( headerCell, refValue ) {
 			var childLength = headerCell.child.length,
-				kIndex,
-				subRefValue,
 				calcStep = 1,
-				headerCellChild;
+				kIndex, subRefValue, headerCellChild;
 
 			if ( childLength === 0 ) {
 				return calcStep;
 			}
 					
 			subRefValue = childLength * refValue;
-			
+
 			calcStep = calcStep * subRefValue;
 
 			for ( kIndex = 0; kIndex !== childLength; kIndex += 1 ) {
 				headerCellChild = headerCell.child[ kIndex ];
-				if ( headerCellChild.child.length > 0 ) {
+				if ( headerCellChild.child.length !== 0 ) {
 					calcStep = calcStep * groupHeaderCalculateStepsRecursive( headerCellChild, subRefValue );
 				}
 			}
@@ -447,9 +480,10 @@
 
 			for ( i = 0, iLength = vectorHead.cell.length; i !== iLength; i += 1 ) {
 				headerCell = vectorHead.cell[ i ];
-				if ( i > 0 && headerCell.uid === vectorHead.cell[ i - 1 ].uid || ( dataColgroupStart && headerCell.colpos < dataColgroupStart ) ) {
+				if ( i !== 0 && headerCell.uid === vectorHead.cell[ i - 1 ].uid || ( dataColgroupStart && headerCell.colpos < dataColgroupStart ) ) {
 					continue;
 				}
+
 				// Only process the first data group
 				if ( !reverseTblParsing ) {
 					if ( headerCell.colgroup && headerCell.colgroup.type === 3 ) {
@@ -491,10 +525,11 @@
 		 * @param {number} referenceValue - Reference Value Vector ID
 		 */
 		function setInnerStepValuesChildRecursive( headerCell, headerLevel, stepsValue, referenceValue ) {
-			var i, iLength,
-				flotDelta, // Step Values for childs header in headerCell
-				cumulativeValue = 0,
-				currentHeaderCellChild;
+			var cumulativeValue = 0,
+
+				// Step Values for childs header in headerCell
+				flotDelta,
+				i, iLength,	currentHeaderCellChild;
 
 			headerLevel += 1;
 			cumulativeValue = headerCell.flotValue;
@@ -528,18 +563,21 @@
 		 * @param {number} referenceValue - Reference Value Vector ID
 		 */
 		function setUpperStepValues( vectorHead, referenceValue ) {
-			var i, k, m, _klen, _mlen,
+			var i, k, m, kLen, mLen,
 				cumulativeValue,
 				currentCell,
 				currentCellChild;
 			
-			// Calculate upper-step for cells that are less preceise than the reference value vector
+			// Calculate upper-step for cells that are
+			// less precise than the reference value vector
 			for ( i = referenceValue - 1; i !== -1; i -= 1 ){
 				
-				for ( k = 0, _klen = vectorHead[ i ].cell.length; k !== _klen; k += 1 ) {
+				for ( k = 0, kLen = vectorHead[ i ].cell.length; k !== kLen; k += 1 ) {
 					currentCell = vectorHead[ i ].cell[ k ];
 					
-					if ( currentCell.flotDelta || k > 0 && currentCell.uid === vectorHead[ i ].cell[ k - 1 ].uid ){
+					if ( currentCell.flotDelta || k > 0 &&
+						currentCell.uid === vectorHead[ i ].cell[ k - 1 ].uid ){
+
 						continue;
 					}
 
@@ -548,36 +586,34 @@
 					}
 
 					cumulativeValue = 0;
-					for ( m = 0, _mlen = currentCell.child.length; m !== _mlen; m += 1 ) {
+					for ( m = 0, mLen = currentCell.child.length; m !== mLen; m += 1 ) {
 						currentCellChild = currentCell.child[ m ];
 						
 						cumulativeValue = currentCellChild.flotDelta;
-						if ( currentCell.flotValue === undefined ) {
+						if ( !currentCell.flotValue ) {
 							currentCell.flotValue = currentCellChild.flotValue;
 						}
 					}
 					currentCell.flotDelta = cumulativeValue;
-					
 				}
 			}
 		}
 
 		/**
-		 * Get lebels for a specific vector
+		 * Get labels for a specific vector
 		 * 
 		 * @method getLabels
 		 * @param {object} labelVector - Vector Header Object from the table parser
 		 * @param {number} dataColgroupStart - Column position where the column data group start 
 		 */
 		function getLabels( labelVector, dataColgroupStart ) {
-			var i, _ilen,
-				labels = [],
-				currentCell;
+			var labels = [],
+				i, iLen, currentCell;
 
-			for ( i = 0, _ilen = labelVector.cell.length; i !== _ilen; i += 1 ) {
+			for ( i = 0, iLen = labelVector.cell.length; i !== iLen; i += 1 ) {
 				currentCell = labelVector.cell[ i ];
 				
-				if ( ( i > 0 && currentCell.uid === labelVector.cell[ i - 1 ].uid ) ||
+				if ( ( i !== 0 && currentCell.uid === labelVector.cell[ i - 1 ].uid ) ||
 						( !( currentCell.type === 1 || currentCell.type === 7 ) ) ||
 						( dataColgroupStart && currentCell.colpos < dataColgroupStart ) ) {
 					continue;
@@ -589,7 +625,7 @@
 		}
 
 		/**
-		 * Get the vector that would be used for labeling x-axis
+		 * Get the vector that would be used for labelling x-axis
 		 * 
 		 * @method getlabelsVectorPosition
 		 * @param {object[]} arrVectorHeaders - Collection of vector headers
@@ -608,9 +644,7 @@
 
 			// Get the appropriate ticks
 			var headerlevel = 0,
-				labelsVectorPosition,
-				stepsValue,
-				columnReferenceValue;
+				labelsVectorPosition, stepsValue, columnReferenceValue;
 
 			if ( !reverseTblParsing || ( reverseTblParsing && optionsCharts.referencevalue === false ) ) {
 				columnReferenceValue = parsedData.colgrouphead.col.length;
@@ -633,10 +667,10 @@
 			// Calculate inner-step for cells that are more precise than the reference value vector 
 			setInnerStepValues( parsedData.colgrouphead.col[ columnReferenceValue ], headerlevel, stepsValue, columnReferenceValue );
 			
-			// Calculate upper-step for cells that are less preceise than the reference value vector
+			// Calculate upper-step for cells that are less precise than the reference value vector
 			setUpperStepValues( parsedData.colgrouphead.col, columnReferenceValue );
 
-			// Get the labeling
+			// Get the labelling
 			return getLabels( parsedData.colgrouphead.col[ labelsVectorPosition ] );
 		}
 
@@ -650,10 +684,8 @@
 			// Find the range of the first data colgroup
 			var dataColgroupStart = -1,
 				headerlevel = 0,
-				i, iLength,
-				labelsVectorPosition,
-				stepsValue,
-				rowReferenceValue;
+				i, iLength, labelsVectorPosition,
+				stepsValue, rowReferenceValue;
 
 			if ( !parsedData.theadRowStack ) {
 				return;
@@ -678,7 +710,6 @@
 
 			if ( !reverseTblParsing ) {
 				labelsVectorPosition = getlabelsVectorPosition( parsedData.theadRowStack );
-				
 			} else {
 				labelsVectorPosition = parsedData.theadRowStack.length - 1;
 			}
@@ -688,10 +719,10 @@
 			// Calculate inner-step for cells that are more precise than the reference value vector 
 			setInnerStepValues( parsedData.theadRowStack[ rowReferenceValue ], headerlevel, stepsValue, rowReferenceValue, dataColgroupStart );
 
-			// Calculate upper-step for cells that are less preceise than the reference value vector
+			// Calculate upper-step for cells that are less precise than the reference value vector
 			setUpperStepValues( parsedData.theadRowStack, rowReferenceValue );
 
-			// Get the labeling
+			// Get the labelling
 			return getLabels( parsedData.theadRowStack[ labelsVectorPosition ], dataColgroupStart );
 			
 		}
@@ -702,50 +733,64 @@
 		 * @method wrapTableIntoDetails
 		 */
 		function wrapTableIntoDetails() {
-			var $details = $("<details><summary>" +
+			var $details = $( "<details><summary>" +
 				captionHtml + i18nText.tableMention +
-				"</summary></details>");
+				"</summary></details>" );
 			
 			$elm.after( $details );
-			$details.append($elm);
-			
+			$details.append( $elm );
 		}
 
 		function createContainer(withDimension) {
 			
-			var $container = $("<figure class='" + optionsCharts.graphclass + "'><figcaption>" +
-				captionHtml + // Copy to the inner table caption
-				"</figcaption><div role='img' aria-label='" + $caption.text() + i18nText.tableFollowing + "'" +
-				(withDimension ? "style='height:" + optionsCharts.height + "px; width:" + optionsCharts.width + "px'": "") +
+			var $container = $( "<figure class='" + optionsCharts.graphclass +
+
+				// Copy to the inner table caption
+				"'><figcaption>" + captionHtml +
+				"</figcaption><div role='img' aria-label='" +
+				$caption.text() + i18nText.tableFollowing + "'" +
+				(withDimension ? "style='height:" + optionsCharts.height +
+				"px; width:" + optionsCharts.width + "px'": "") +
 				"></div></figure>");
-			
+
 			$container.insertBefore( $elm ).append( $elm );
 			
-			return $("div:eq(0)", $container);
-			
+			return $( "div:eq(0)", $container );
 		}
 		
-		
-		parsedData = $elm.data().tblparser; // Retrieve the parsed data
-		reverseTblParsing = optionsCharts.reversettblparsing; // Reverse table parsing
-		currentRowGroup = parsedData.lstrowgroup[ 0 ]; // first data row group
+		// Retrieve the parsed data
+		parsedData = $elm.data().tblparser;
+
+		// Reverse table parsing
+		reverseTblParsing = optionsCharts.reversettblparsing;
+
+		// first data row group
+		currentRowGroup = parsedData.lstrowgroup[ 0 ];
 
 		if ( optionFlot.series && optionFlot.series.pie ) {
 
-			// WET Charts Placeholder
-			$WETChartContainer = createContainer(false);
-			// Flot pie chart Placeholder
-			htmlPlaceHolder = "<div style='height:" + optionsCharts.height + "px; width:" + optionsCharts.width + "px'></div>";
+			// WET Charts placeholder
+			$wetChartContainer = createContainer( false );
+
+			// Flot pie chart placeholder
+			htmlPlaceHolder = "<div style='height:" + optionsCharts.height +
+				"px; width:" + optionsCharts.width + "px'></div>";
 
 			if ( !reverseTblParsing ) {
+
 				// If normal parsing
-				dataGroup = parsedData.colgroup[ 0 ].type === 1 ? parsedData.colgroup[ 1 ] : parsedData.colgroup[ 0 ];
+				dataGroup = parsedData.colgroup[ 0 ].type === 1 ?
+					parsedData.colgroup[ 1 ] :
+					parsedData.colgroup[ 0 ];
 
 				rIndex = currentRowGroup.row.length - 1;
 			} else {
+
 				// If reverse parsing
 				dataGroup = currentRowGroup;
-				rIndex = ( parsedData.colgroup[ 0 ].type === 1 ? parsedData.colgroup[ 1 ].col.length : parsedData.colgroup[ 0 ].col.length ) - 1;
+				rIndex = ( parsedData.colgroup[ 0 ].type === 1 ?
+					parsedData.colgroup[ 1 ].col.length :
+					parsedData.colgroup[ 0 ].col.length ) - 1;
 			}
 
 			for ( rIndex; rIndex >= 0; rIndex -= 1 ) {
@@ -768,7 +813,7 @@
 						}
 
 						previousDataCell = undefined;
-						if ( j > 0 ) {
+						if ( j !== 0 ) {
 							previousDataCell = dataGroupVector[ i ].cell[ j - 1 ];
 						}
 
@@ -782,15 +827,19 @@
 							break;
 						}
 
-						// Get"s the value
+						// Gets the value
 						header = !reverseTblParsing ? dataCell.row.header : dataCell.col.header;
 
-						cellValue = optionsCharts.getcellvalue( !reverseTblParsing ? dataGroupVector[ i ].cell[ rIndex ].elem : dataGroupVector[ i ].datacell[ rIndex ].elem );
+						cellValue = optionsCharts.getcellvalue( !reverseTblParsing ?
+							dataGroupVector[ i ].cell[ rIndex ].elem :
+							dataGroupVector[ i ].datacell[ rIndex ].elem );
 
 						dataSeries.push(
 							[
 								valuePoint,
-								typeof cellValue === "object" ? cellValue[ 0 ] : cellValue
+								typeof cellValue === "object" ?
+									cellValue[ 0 ] :
+									cellValue
 							]);
 
 						valuePoint += header[ header.length - 1 ].flotDelta;
@@ -801,17 +850,22 @@
 					pieQuaterFlotSeries = { };
 					
 					// Get the setting from the associative cell header
-					dataCell =  !reverseTblParsing ? dataGroupVector[ i ].cell[ rIndex ] : dataGroupVector[ i ].datacell[ rIndex ];
-					header = !reverseTblParsing ? dataCell.col.header : dataCell.row.header;
+					dataCell =  !reverseTblParsing ?
+						dataGroupVector[ i ].cell[ rIndex ] :
+						dataGroupVector[ i ].datacell[ rIndex ];
+					header = !reverseTblParsing ?
+						dataCell.col.header :
+						dataCell.row.header;
 					header = header[ header.length - 1 ];
 					
 					// Apply any preset
-					pieQuaterFlotSeries = applyPreset( defaultsOptions.series, $(header.elem), "flot" );
+					pieQuaterFlotSeries = applyPreset( defaultsOptions.series, $( header.elem ), "flot" );
 					
 					// Set the data issue from the table
 					pieQuaterFlotSeries.data = dataSeries;
-					pieQuaterFlotSeries.label = ( !reverseTblParsing ? $( dataGroupVector[ i ].dataheader[ dataGroupVector[ i ].dataheader.length - 1 ].elem ).text() :
-								$( dataGroupVector[ i ].header[ dataGroupVector[ i ].header.length - 1 ].elem ).text() );
+					pieQuaterFlotSeries.label = ( !reverseTblParsing ?
+						$( dataGroupVector[ i ].dataheader[ dataGroupVector[ i ].dataheader.length - 1 ].elem ).text() :
+						$( dataGroupVector[ i ].header[ dataGroupVector[ i ].header.length - 1 ].elem ).text() );
 					
 					// Add the series
 					allSeries.push(pieQuaterFlotSeries);
@@ -819,43 +873,50 @@
 
 				// Create a sub Figure or use the main one
 				if ( currentRowGroup.row.length === 1 &&
-					( $( currentRowGroup.row[ 0 ].header[ 0 ].elem ).html() === captionHtml ||
+					( currentRowGroup.row[ 0 ].header[ 0 ].elem.innerHTML === captionHtml ||
 					currentRowGroup.row[ 0 ].header.length === 0 ) ) {
 
-					$placeHolder = $WETChartContainer;
-					$placeHolder.css( { height: optionsCharts.height, width: optionsCharts.width } );
+					$placeHolder = $wetChartContainer;
+					$placeHolder.css({
+						height: optionsCharts.height,
+						width: optionsCharts.width
+					});
 
 				} else {
 
 					header = currentRowGroup.row[ rIndex ].header;
 
-					figurehtml = "<figure><figcaption>" + $( header[ header.length - 1 ].elem ).html() +
-							"</figcaption>" + htmlPlaceHolder + "</figure>";
-					
-					$WETChartContainer.append($(figurehtml));
-					
-					$placeHolder = $("div:last()", $WETChartContainer);
+					figurehtml = "<figure><figcaption>" +
+						header[ header.length - 1 ].elem.innerHTML +
+						"</figcaption>" + htmlPlaceHolder + "</figure>";
+
+					$wetChartContainer.append( $( figurehtml ) );
+
+					$placeHolder = $( "div:last()", $wetChartContainer );
 				}
-				
+
 				// Create the graphic
 				$.plot( $placeHolder, allSeries, optionFlot );
 
 				if ( !optionsCharts.legendinline ) {
+
 					// Move the legend under the graphic
-					$( ".legend", $placeHolder ).appendTo( $WETChartContainer );
+					$( ".legend", $placeHolder ).appendTo( $wetChartContainer );
 				}
-				
+		
 				allSeries = [];
 			}
 
 			if ( optionsCharts.nolegend ) {
+
 				// Remove the legend
-				$( ".legend", $WETChartContainer ).remove();
+				$( ".legend", $wetChartContainer ).remove();
 			}
 			if ( !optionsCharts.legendinline ) {
+
 				// Fix the legend that appear under the graphic
-				$( ".legend > div", $WETChartContainer ).remove();
-				$( ".legend > table", $WETChartContainer ).removeAttr( "style" ).addClass( "font-small" );
+				$( ".legend > div", $wetChartContainer ).remove();
+				$( ".legend > table", $wetChartContainer ).removeAttr( "style" ).addClass( "font-small" );
 				$( ".legend", $placeHolder ).appendTo( $imgContainer );
 			}
 
@@ -865,17 +926,22 @@
 			if ( !optionsCharts.noencapsulation ) {
 				wrapTableIntoDetails();
 			}
+
 			return;
 		}
 
 		if ( !reverseTblParsing ) {
 			// If normal parsing
 			dataGroup = currentRowGroup;
-			rIndex = ( parsedData.colgroup[ 0 ].type === 1 ? parsedData.colgroup[ 1 ].col.length : parsedData.colgroup[ 0 ].col.length ) - 1;
+			rIndex = ( parsedData.colgroup[ 0 ].type === 1 ?
+				parsedData.colgroup[ 1 ].col.length :
+				parsedData.colgroup[ 0 ].col.length ) - 1;
 			chartslabels = horizontalLabels( parsedData );
 		} else {
 			// If reverse parsing
-			dataGroup = parsedData.colgroup[ 0 ].type === 1 ? parsedData.colgroup[ 1 ] : parsedData.colgroup[ 0 ];
+			dataGroup = parsedData.colgroup[ 0 ].type === 1 ?
+				parsedData.colgroup[ 1 ] :
+				parsedData.colgroup[ 0 ];
 			rIndex = currentRowGroup.row.length - 1;
 			chartslabels = verticalLabels( parsedData );
 		}
@@ -888,13 +954,14 @@
 		dataGroupVector = !reverseTblParsing ? dataGroup.row : dataGroup.col;
 
 		// Count the number of bar charts,
-		for ( i = 0; i !== dataGroupVector.length; i++ ) {
+		for ( i = 0, iLength = dataGroupVector.length; i !== iLength; i += 1 ) {
 			currDataVector = dataGroupVector[ i ].header[ dataGroupVector[ i ].header.length - 1 ];
 
 			// Apply any preset
 			currVectorOptions = applyPreset( defaultsOptions.series, $(currDataVector.elem), "flot" );
 
 			if ( currVectorOptions.bars || ( optionFlot.bars && !currVectorOptions.lines ) ) {
+
 				// Count number of bars, this number is use to calculate the bar width.
 				nbBarChart += 1;
 
@@ -924,7 +991,7 @@
 			currVectorOptions = currDataVector.header[ currDataVector.header.length - 1 ].chartOption;
 
 			// For each cells
-			for ( j = 0, jLength = currDataVector.cell.length; j !== jLength; j++ ) {
+			for ( j = 0, jLength = currDataVector.cell.length; j !== jLength; j += 1 ) {
 
 				dataCell = currDataVector.cell[ j ];
 				
@@ -935,7 +1002,7 @@
 				if ( ( !reverseTblParsing && dataCell.col.groupstruct.type === 2 ) ||
 						( reverseTblParsing && dataCell.row.rowgroup.type === 2 ) ) {
 
-					// Get's the value
+					// Gets the value
 					header = !reverseTblParsing ? dataCell.col.header : dataCell.row.header;
 
 					cellValue = optionsCharts.getcellvalue( dataCell.elem );
@@ -944,7 +1011,9 @@
 					dataSeries.push(
 						[
 							valuePoint,
-							typeof cellValue === "object" ? cellValue[ 0 ] : cellValue
+							typeof cellValue === "object" ?
+								cellValue[ 0 ] :
+								cellValue
 						]
 					);
 					valuePoint += header[ header.length - 1 ].flotDelta;
@@ -956,6 +1025,7 @@
 			currVectorOptions.label = $( currDataVector.header[ currDataVector.header.length - 1 ].elem ).text();
 			
 			if ( currVectorOptions.bars ) {
+
 				// Adjust the bars width
 				currVectorOptions.bars.barWidth = currVectorOptions.bars.barWidth * ( 1 / nbBarChart );
 			}
@@ -965,26 +1035,29 @@
 		}
 	
 		if ( optionFlot.bars ) {
+
 			// Adjust the bars width
 			optionFlot.bars.barWidth = optionFlot.bars.barWidth * ( 1 / nbBarChart );
 		}
 
 		// WET Charts Placeholder
-		$placeHolder = createContainer(true);
-		
-		// Maximum widh
+		$placeHolder = createContainer( true );
+
+		// Maximum width
 		$placeHolder.css( "width", "100%" );
 
 		// Create the graphic
 		$.plot( $placeHolder, allSeries, optionFlot );
 
 		if ( !optionsCharts.legendinline ) {
+
 			// Move the legend under the graphic
 			$( ".legend > div", $placeHolder ).remove();
 			$( ".legend > table", $placeHolder ).removeAttr( "style" ).addClass( "font-small" );
 			$placeHolder.css( "height", "auto" );
 		}
 		if ( optionsCharts.nolegend ) {
+
 			// Remove the legend
 			$( ".legend", $placeHolder ).remove();
 		}
@@ -1047,6 +1120,7 @@
 $document.on( "timerpoke.wb " + initEvent + " " + tableParsingCompleteEvent, selector, function( event ) {
 	var eventType = event.type,
 		elm = event.target,
+
 		// "this" is cached for all events to utilize
 		$elm = $( this );
 	
@@ -1064,7 +1138,7 @@ $document.on( "timerpoke.wb " + initEvent + " " + tableParsingCompleteEvent, sel
 		break;
 	
 	/*
-	 * Data Table Parsed
+	 * Data table parsed
 	 */
 	case "parsecomplete":
 		createCharts( $elm );
