@@ -22,7 +22,7 @@ describe( "Country Content test suite", function() {
 	before(function( done ) {
 
 		// Increase test timeout to allow http://freegeoip.net time to respond
-		this.timeout( 5000 );
+		this.timeout( 6000 );
 
 		// Lookup the country code for this test run.  Lookup times out before the test
 		// to prevent a failed lookup from throwing a test error.
