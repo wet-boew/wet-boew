@@ -19,9 +19,10 @@
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
-	$document = wb.doc,
 	tableParsingEvent = "pasiveparse.wb-tableparser.wb",
 	tableParsingCompleteEvent = "parsecomplete.wb-tableparser.wb",
+	$document = wb.doc,
+	i18n, i18nText,
 	
 	/**
 	 * Main Entry function to create the charts
@@ -32,7 +33,6 @@
 		var allSeries = [],
 			chartslabels = [],
 			dataSeries = [],
-			i18n = wb.i18n,
 			nbBarChart = 0,
 			lowestFlotDelta,
 			$imgContainer, $placeHolder,
@@ -703,7 +703,7 @@
 		 */
 		function wrapTableIntoDetails() {
 			var $details = $("<details><summary>" +
-				captionHtml + " " + i18n( "table-mention" ) +
+				captionHtml + i18nText.tableMention +
 				"</summary></details>");
 			
 			$elm.after( $details );
@@ -715,7 +715,7 @@
 			
 			var $container = $("<figure class='" + optionsCharts.graphclass + "'><figcaption>" +
 				captionHtml + // Copy to the inner table caption
-				"</figcaption><div role='img' aria-label='" + $caption.text()  + " " + i18n( "table-following" ) + "'" +
+				"</figcaption><div role='img' aria-label='" + $caption.text() + i18nText.tableFollowing + "'" +
 				(withDimension ? "style='height:" + optionsCharts.height + "px; width:" + optionsCharts.width + "px'": "") +
 				"></div></figure>");
 			
@@ -1020,6 +1020,15 @@
 			wb.remove( selector );
 
 			elm.className += " " + initedClass;
+
+			// Only initialize the i18nText once
+			if ( !i18nText ) {
+				i18n = wb.i18n;
+				i18nText = {
+					tableMention: i18n( "hyphen" ) + i18n( "tbl-txt" ),
+					tableFollowing: i18n( "hyphen" ) + i18n( "tbl-dtls" )
+				};
+			}
 
 			// Load the required dependencies
 			Modernizr.load({

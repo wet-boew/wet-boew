@@ -141,8 +141,8 @@ wb.i18nDict = {
 	"lb-xhr-err": "@lb-xhr-err@",
 	"lb-img-err": "@lb-img-err@",
 	/* Charts widget */
-	"table-mention": "@table-mention@",
-	"table-following": "@table-following@",
+	"tbl-txt": "@tbl-txt@",
+	"tbl-dtls": "@tbl-dtls@",
 	/* Session timeout */
 	"st-to-msg-bgn": "@st-to-msg-bgn@",
 	"st-to-msg-end": "@st-to-msg-end@",
