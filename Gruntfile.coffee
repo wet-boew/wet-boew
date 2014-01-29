@@ -211,6 +211,7 @@ module.exports = (grunt) ->
 					"!src/plugins/**/test.js"
 					"!src/plugins/**/assets/*.js"
 					"!src/plugins/**/demo/*.js"
+					"!src/plugins/**/deps/*.*"
 				]
 				dest: "dist/unmin/js/wet-boew.js"
 
@@ -226,6 +227,7 @@ module.exports = (grunt) ->
 					"!src/plugins/**/test.js"
 					"!src/plugins/**/assets/*.js"
 					"!src/plugins/**/demo/*.js"
+					"!src/plugins/**/deps/*.*"
 				]
 				dest: "dist/unmin/js/ie8-wet-boew.js"
 
@@ -239,6 +241,7 @@ module.exports = (grunt) ->
 					"!src/plugins/**/test.js"
 					"!src/plugins/**/assets/*.js"
 					"!src/plugins/**/demo/*.js"
+					"!src/plugins/**/deps/*.*"
 				]
 				dest: "dist/unmin/js/ie8-wet-boew2.js"
 
@@ -667,6 +670,10 @@ module.exports = (grunt) ->
 					cwd: "lib"
 					src: [
 						"jquery-pjax/jquery.pjax.js"
+						"flot/jquery.flot.js"
+						"flot/jquery.flot.pie.js"
+						"flot/jquery.flot.canvas.js"
+						"SideBySideImproved/jquery.flot.orderBars.js"
 						"jquery.validation/jquery.validate.js"
 						"jquery.validation/additional-methods.js"
 						"magnific-popup/dist/jquery.magnific-popup.js"
@@ -685,6 +692,14 @@ module.exports = (grunt) ->
 					dest: "dist/unmin/assets"
 					expand: true
 					flatten: true
+				,
+					cwd: "src/plugins"
+					src: [
+						"**/deps/*.js"
+					]
+					dest: "dist/unmin/js/deps"
+					expand: true
+					flatten: true
 				]
 
 			demos:
@@ -696,6 +711,7 @@ module.exports = (grunt) ->
 						"**/ajax/*.*"
 						"**/img/*.*"
 						"!**/assets/*.*"
+						"!**/deps/*.*"
 						"!**/*.scss"
 					]
 					dest: "dist/unmin/demos/"
