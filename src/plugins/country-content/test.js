@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-/* global jQuery, describe, it, expect, before */
+/* global jQuery, describe, it, expect, sinon, before, after */
 /* jshint unused:vars */
 (function( $, wb ) {
 
@@ -14,59 +14,62 @@
  * teardown `after()` for more than one test suite (as is the case below.)
  */
 describe( "Country Content test suite", function() {
-	var country;
 
 	/*
-	 * Before beginning the test suite, this function is executed once.
-	 */
-	before(function( done ) {
-
-		// Increase test timeout to allow http://freegeoip.net time to respond
-		this.timeout( 5000 );
-
-		// Lookup the country code for this test run.  Lookup times out before the test
-		// to prevent a failed lookup from throwing a test error.
-		$.ajax({
-			url: "http://freegeoip.net/json/",
-			dataType: "json",
-			cache: true,
-			timeout: 5000
-		})
-			.done(function( data ) {
-				country = data && data.country_code ? data.country_code.toLowerCase() : "";
-			})
-			.always(function() {
-				done();
-			});
-	});
-
-	/*
-	 * Test the initialization of the plugin
+	 * Test the initialization and default behaviour of the plugin
 	 */
 	describe( "init behaviour", function() {
-		var $elm;
+		var $elm,
+			stubs = {},
+			sandbox = sinon.sandbox.create();
 
-		before(function( done) {
+		before(function() {
+
+			// Stub the $.ajax method to return data.country_code = "CA" on success.
+			// This must be used instead of Sinon's fakeServer because the plugin uses
+			// JSON-P for the request: http://sinonjs.org/docs/#json-p
+			stubs.ajax = sandbox.stub( $, "ajax" ).yieldsTo( "success", { country_code: "CA" } );
+			stubs.load = sandbox.stub( $.prototype, "load" );
+
 			// Clear out any previously saved country code
 			localStorage.removeItem( "countryCode" );
 
-			// Trigger plugin init and give it time to load the content
+			// Trigger plugin init
 			$elm = $( "<div data-ctrycnt='ajax/country-content-{country}-en.html'>" )
 				.appendTo( wb.doc.find( "body" ) )
 				.trigger( "wb-init.wb-ctrycnt" );
-			setTimeout( done, 500 );
+		});
+
+		after(function() {
+			// Restore original behaviour of $.ajax
+			sandbox.restore();
+			$elm.remove();
 		});
 
 		it( "should have added the wb-ctrycnt-inited CSS class", function() {
 			expect( $elm.hasClass( "wb-ctrycnt-inited" ) ).to.equal( true );
 		});
 
-		it( "should have loaded the country specific content (or left it unchanged if no country match)", function() {
-			if ( country === "ca" || country === "us" ) {
-				expect( $elm.find( ".ajaxed-in" ).hasClass( country ) ).to.equal( true );
-			} else {
-				expect( $elm.find( ".ajaxed-in" ).length ).to.equal( 0 );
+		it( "should have performed a geo IP lookup", function() {
+			var i = 0,
+				args = stubs.ajax.args,
+				len = args.length,
+				isLookup = false;
+
+			for ( ; i !== len && !isLookup; i += 1 ) {
+				if ( args[ i ] instanceof Array ) {
+					isLookup = args[ i ].length && args[ i ][ 0 ].url === "http://freegeoip.net/json/";
+				}
 			}
+			expect( isLookup ).to.equal( true );
+		});
+
+		it( "should have loaded the country specific content", function() {
+			expect( stubs.load.calledWith( "ajax/country-content-ca-en.html" ) ).to.equal( true );
+		});
+
+		it( "should have saved the country code", function() {
+			expect( localStorage.getItem( "countryCode" ) ).to.equal( "CA" );
 		});
 	});
 
@@ -76,31 +79,29 @@ describe( "Country Content test suite", function() {
 	describe( "load specific country content from localStorage", function() {
 		var $elm;
 
-		before(function( done) {
-
+		before(function( done ) {
 			// Load the US content
-			localStorage.setItem( "countryCode", "us" );
+			localStorage.setItem( "countryCode", "US" );
 
-			// Trigger plugin init and give it time to load the content
+			// Trigger plugin init
 			$elm = $( "<div data-ctrycnt='ajax/country-content-{country}-en.html'>" )
 				.appendTo( wb.doc.find( "body" ) )
 				.trigger( "wb-init.wb-ctrycnt" );
-			setTimeout( done, 500 );
+
+			// Give the content time to load
+			setTimeout( done, 100 );
 		});
 
-		before(function( done ) {
-			localStorage.setItem( "countryCode", "us" );
-
-			// Trigger plugin init and give it time to load the content
-			$elm
-				.attr( "data-ctrycnt", "ajax/country-content-{country}-en.html" )
-				.removeClass( "wb-ctrycnt-inited" )
-				.trigger( "wb-init.wb-ctrycnt" );
-			setTimeout( done, 500 );
+		after(function() {
+			$elm.remove();
 		});
 
 		it( "should have loaded the US content", function() {
 			expect( $elm.find( ".ajaxed-in" ).hasClass( "us" ) ).to.equal( true );
+		});
+
+		it( "should have saved the country code", function() {
+			expect( localStorage.getItem( "countryCode" ) ).to.equal( "US" );
 		});
 	});
 });
