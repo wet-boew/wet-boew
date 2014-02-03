@@ -14,7 +14,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var pluginName = "wb-feeds",
-	selector = "." + "wb-feeds",
+	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
