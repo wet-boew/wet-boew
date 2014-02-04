@@ -8,10 +8,10 @@
 <meta charset="utf-8" />
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-<title>v3.1.7 - Notes d'utilisation - Historique des versions - Boîte à outils de l'expérience Web (BOEW)</title>
+<title>v4.0.0 Bêta 1 - Notes d'utilisation - Historique des versions - Boîte à outils de l'expérience Web (BOEW)</title>
 
 <link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
-<meta name="description" content="v3.1.7 - Notes d'utilisation - Historique des versions - Boîte à outils de l'expérience Web (BOEW)" />
+<meta name="description" content="v4.0.0 Bêta 1 - Notes d'utilisation - Historique des versions - Boîte à outils de l'expérience Web (BOEW)" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!--[if lte IE 8]>
@@ -49,7 +49,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wet-fullhd-in">
 <ul>
 <li id="wet-fullhd-lang-current">Français</li>
-<li id="wet-fullhd-lang-2"><a href="v3.1.7-en.html" lang="en">English</a></li>
+<li id="wet-fullhd-lang-2"><a href="v4.0.0-b1-en.html" lang="en">English</a></li>
 </ul>
 </div>
 </div></section>
@@ -78,7 +78,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <ol>
 <li><a href="../../../index-fr.html">Accueil</a></li>
 <li><a href="../index-fr.html">Historique des versions</a></li>
-<li>v3.1.7 - Notes d'utilisation</li>
+<li>v4.0.0 Bêta 1 - Notes d'utilisation</li>
 </ol>
 </div></div>
 </nav>
@@ -88,35 +88,32 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div id="wb-core"><div id="wb-core-in" class="equalize">
 <div id="wb-main" role="main"><div id="wb-main-in">
 <!-- MainContentStart -->
-<h1 id="wb-cont">v3.1.7 - Notes d'utilisation</h1>
-
-<ul>
-	<li><strong>Date de lancement&#160;:</strong> 2013-12-14</li>
-	<li><strong>Téléchargements</strong>
-		<ul>
-			<li><a href="https://github.com/wet-boew/wet-boew/archive/v3.1.7.zip">Code source</a> (<strong>Répertoire&#160;:</strong> wet-boew, <strong>Étiquette git&#160;:</strong> v3.1.7)</li>
-			<li><a href="https://github.com/wet-boew/wet-boew-dist/archive/v3.1.7.zip">Fichiers de production</a> (<strong>Répertoire&#160;:</strong> wet-boew-dist, <strong>Étiquette git&#160;:</strong> v3.1.7)</li>
-		</ul>
-	</li>
-</ul>
+	<h2>v4.0.0 Bêta 1 - Notes d'utilisation</h2>
+	<ul>
+		<li><strong>Date de lancement&#160;:</strong> 2013-12-16 (<a href="v4.0.0-b1-fr.html">v4.0.0 Bêta 1 - Notes d'utilisation</a>)</li>
+		<li><strong>Téléchargements</strong>
+			<ul>
+				<li><a href="https://github.com/wet-boew/wet-boew/archive/v4.0.0-b1.zip">Code source</a> (<strong>Répertoire&#160;:</strong> wet-boew, <strong>Étiquette git&#160;:</strong> v4.0.7)</li>
+				<li><a href="https://github.com/wet-boew/wet-boew-dist/archive/v4.0.0-b1.zip">Fichiers de production</a> (<strong>Répertoire&#160;:</strong> wet-boew-dist, <strong>Étiquette git&#160;:</strong> v4.0.7)</li>
+			</ul>
+		</li>
+	</ul>
 
 <section>
 	<h2>Quoi de neuf?</h2>
 	<div lang="en">
 	<p><strong>Needs translation</strong></p>
 	<ul>
-		<li>Session timeout: Reverted back to displaying the time that the session will expire</li>
-		<li>Session timeout: Added missing language translations</li>
-		<li>Multimedia player: Reverted back to the pseudo-streaming functionality for the Flash fallback</li>
-		<li>Tabbed interface: Fixed tabs roller issue with tabs-style-2 in IE8</li>
-		<li>Table enhancement: Prevented overlapping of text and sorting buttons for narrow columns</li>
-		<li>Datepicker: Enhanced date format example for screen reader users and removed from the toggle button alt text</li>
-		<li>Events Calendar: Fixed off-by-one error in multi-day events</li>
-		<li>Grids: Added line height classes to print CSS</li>
-		<li>GC Web Usability theme: Fixed theme.js to consider Coat of Arms as well as the standard FIP signature</li>
-		<li>Fixed left padding issue in dual icon scenarios</li>
-		<li>Fixed legend element font sizing</li>
-		<li>Fixed jQuery Mobile bugs with certain form fields (.data-group input, .data-group button, input[search])</li>
+		<li>New plugin framework based upon JavaScript Event Programming (JEP)</li>
+		<li>Major reduction in total page sizes, page load times and page paint times (approximately an 80% decrease)</li>
+		<li>Replaced grid system with Twitter Bootstrap</li>
+		<li>Ported most v3.1 plugins and polyfills and optimized for touchscreen mobile devices</li>
+		<li>Replaced mobile popups with a mobile panel, reducing the number of buttons for mobile to one</li>
+		<li>Increased font size and spacing between touch targets to better support touchscreen devices</li>
+		<li>New plugins: Data AJAX, Data-Inview, Equal height, Overlay, Toggle and Twitter Embedded Timeline</li>
+		<li>Removed dependency on jQuery Mobile</li>
+		<li>Page no longer refreshes when transitioning between views</li>
+		<li>Replaced custom Ant build system with a build system based on Node.js, Grunt.js, Bower, Assemble and other well-supported build components</li>
 	</ul>
 	</div>
 </section>
