@@ -153,57 +153,99 @@ var getUrlParts = function( url ) {
 		ielt9:  ( oldie < 9 ),
 		ielt10: ( oldie < 10 ),
 
-		nodes: $(),
+		selectors: [],
 
 		resizeEvents: "xxsmallview.wb xsmallview.wb smallview.wb mediumview.wb largeview.wb xlargeview.wb",
 
+		// Add a selector to be targeted by timerpoke
 		add: function( selector ) {
-
+			var exists = false,
+				i, len;
+		
 			// Lets ensure we are not running if things are disabled
-			if ( this.isDisabled && selector !== "#wb-tphp" ) {
+			if ( wb.isDisabled && selector !== "#wb-tphp" ) {
 				return 0;
 			}
 
-			this.nodes = this.nodes.add( selector );
+			// Check to see if the selector is already targeted
+			len = wb.selectors.length;
+			for ( i = 0; i !== len; i += 1 ) {
+				if ( wb.selectors[ i ] === selector ) {
+					exists = true;
+					break;
+				}
+			}
+
+			// Add the selector if it isn't already targeted
+			if ( !exists ) {
+				wb.selectors.push( selector );
+			}
 		},
 
-		// Remove nodes referenced by the selector
+		// Remove a selector targeted by timerpoke
 		remove: function( selector ) {
-			this.nodes = this.nodes.not( selector );
+			var i, len;
+
+			len = wb.selectors.length;
+			for ( i = 0; i !== len; i += 1 ) {
+				if ( wb.selectors[ i ] === selector ) {
+					wb.selectors.splice( i, 1 );
+					break;
+				}
+			}
 		},
 
 		start: function() {
+			var selectorsLocal = wb.selectors,
+				len = selectorsLocal.length,
+				i;
 
 			/*
-			 * Lets start our clock right away. We we need to test to ensure that there will not be any
-			 * instances on Mobile were the DOM is not ready before the timer starts. That is why 0.5 seconds
-			 * was used as a buffer.
+			 * Lets start our clock right away. We we need to test to ensure
+			 * that there will not be any instances on Mobile were the DOM is
+			 * not ready before the timer starts. That is why 0.5 seconds was
+			 * used as a buffer.
 			 */
-			this.nodes.trigger( "timerpoke.wb" );
+			for ( i = 0; i !== len; i += 1 ) {
+				$( selectorsLocal[ i ] ).trigger( "timerpoke.wb" );
+			}
 
 			// lets keep it ticking after
 			setInterval(function() {
-				wb.nodes.trigger( "timerpoke.wb" );
+				selectorsLocal = wb.selectors;
+				len = selectorsLocal.length;
+				for ( i = 0; i !== len; i += 1 ) {
+					$( selectorsLocal[ i ] ).trigger( "timerpoke.wb" );
+				}
 			}, 500 );
 
 		},
 		i18nDict: {},
 		i18n: function( key, state, mixin ) {
-			var truthiness,
-				dictionary = wb.i18nDict;
+			var dictionary = wb.i18nDict,
 
-			truthiness = ( typeof key === "string" && key !== "" ) | // eg. 000 or 001 ie. 0 or 1
-			( typeof state === "string" && state !== "" ) << 1 | // eg. 000 or 010 ie. 0 or 2
-			( typeof mixin === "string" && mixin !== "" ) << 2; // eg. 000 or 100 ie. 0 or 4
+				// eg. 000 or 001 ie. 0 or 1
+				truthiness = ( typeof key === "string" && key !== "" ) |
+
+					// eg. 000 or 010 ie. 0 or 2
+					( typeof state === "string" && state !== "" ) << 1 |
+
+					// eg. 000 or 100 ie. 0 or 4
+					( typeof mixin === "string" && mixin !== "" ) << 2;
 
 			switch ( truthiness ) {
 				case 1:
+
 					// only key was provided
 					return dictionary[ key ];
+
 				case 3:
+
 					// key and state were provided
 					return dictionary[ key ][ state ];
+
 				case 7:
+
 					// key, state, and mixin were provided
 					return dictionary[ key ][ state ].replace( "[MIXIN]", mixin );
 				default:
@@ -218,9 +260,12 @@ window.wb = wb;
  * Yepnope Prefixes
  *-----------------------------*/
 /*
- * Establish the base path to be more flexible in terms of WCMS where JS can reside in theme folders and not in the root of sites
- * @TODO: For modularity the prefixes where written independently as we are flushing out some use cases on better grouping and optimization of polyfills.
- * Once this more hashed out, we could optimize the prefixes down to one or two prefixes "site" and "disabled" to thin out the codeblock a bit more
+ * Establish the base path to be more flexible in terms of WCMS where JS can
+ * reside in theme folders and not in the root of sites
+ * @TODO: For modularity the prefixes where written independently as we are
+ * flushing out some use cases on better grouping and optimization of polyfills.
+ * Once this more hashed out, we could optimize the prefixes down to one or two
+ * prefixes "site" and "disabled" to thin out the codeblock a bit more
  * increase performance due to redundant chaining of the prefixes.
  */
 

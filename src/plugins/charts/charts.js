@@ -22,8 +22,9 @@
 	tableParsingEvent = "pasiveparse.wb-tableparser.wb",
 	tableParsingCompleteEvent = "parsecomplete.wb-tableparser.wb",
 	$document = wb.doc,
+	idCount = 0,
 	i18n, i18nText,
-	
+
 	/**
 	 * Main Entry function to create the charts
 	 * @method createCharts
@@ -45,6 +46,7 @@
 			dataCell, previousDataCell, currDataVector,
 			pieQuaterFlotSeries, optionFlot, optionsCharts,
 			defaultsOptions = {
+
 				// Flot Global Options
 				flot: {
 					prefix: "wb-charts-",
@@ -97,6 +99,7 @@
 								}
 
 								if ( optionsCharts.nolegend ) {
+
 									// Add the series label
 									textlabel = label + "<br/>" + textlabel;
 								}
@@ -1076,10 +1079,10 @@
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
 	 * @param {DOM element} elm The plugin element being initialized
-	 * @param {jQuery DOM element} $elm The plugin element being initialized
 	 */
-	init = function( elm, $elm ) {
-		var modeJS = wb.getMode() + ".js",
+	init = function( elm ) {
+		var elmId = elm.id,
+			modeJS = wb.getMode() + ".js",
 			deps = [
 				"site!deps/jquery.flot" + modeJS,
 				"site!deps/jquery.flot.pie" + modeJS,
@@ -1089,10 +1092,16 @@
 			];
 	
 		if ( elm.className.indexOf( initedClass ) === -1 ) {
-				
 			wb.remove( selector );
 
 			elm.className += " " + initedClass;
+
+			// Ensure there is a unique id on the element
+			if ( !elmId ) {
+				elmId = pluginName + "-id-" + idCount;
+				idCount += 1;
+				elm.id = elmId;
+			}
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
@@ -1109,8 +1118,9 @@
 				// For loading multiple dependencies
 				load: deps,
 				complete: function() {
-					// Let parse the table
-					$elm.trigger( tableParsingEvent );
+
+					// Let's parse the table
+					$( "#" + elmId ).trigger( tableParsingEvent );
 				}
 			});
 		}
@@ -1119,10 +1129,7 @@
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb " + initEvent + " " + tableParsingCompleteEvent, selector, function( event ) {
 	var eventType = event.type,
-		elm = event.target,
-
-		// "this" is cached for all events to utilize
-		$elm = $( this );
+		elm = event.target;
 	
 	if ( event.currentTarget !== elm ) {
 		return true;
@@ -1134,14 +1141,14 @@ $document.on( "timerpoke.wb " + initEvent + " " + tableParsingCompleteEvent, sel
 	 * Init
 	 */
 	case "timerpoke":
-		init( elm, $elm );
+		init( elm );
 		break;
 	
 	/*
 	 * Data table parsed
 	 */
 	case "parsecomplete":
-		createCharts( $elm );
+		createCharts( $( elm ) );
 		break;
 	}
 
