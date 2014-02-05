@@ -556,24 +556,35 @@ var pluginName = "wb-tabs",
 		$elm, text, inv, $sldr, $plypause;
 
 	// Ignore middle and right mouse buttons
-	if ( !which || which === 1 || which === 13 || which === 32 || ( which > 36 && which < 41 ) ) {
+	if ( !which || which === 1 || which === 13 || which === 32 ||
+		( which > 36 && which < 41 ) ) {
+
 		event.preventDefault();
 		$elm = $( elm );
 		$sldr = $elm
 			.parents( selector )
 			.attr( "data-ctime", 0 );
 
-		// Stop the slider from playing unless it is already stopped and the play button is activated
-		if ( $sldr.hasClass( "playing" ) || ( which < 37 && className.indexOf( "plypause" ) !== -1 ) ) {
+		// Stop the slider from playing unless it is already stopped
+		// and the play button is activated
+		if ( $sldr.hasClass( "playing" ) ||
+			( which < 37 && className.indexOf( "plypause" ) !== -1 ) ) {
+
 			$plypause = $sldr.find( "a.plypause" );
-			$plypause.find( ".glyphicon" ).toggleClass( "glyphicon-play glyphicon-pause" );
+			$plypause
+				.find( ".glyphicon" )
+					.toggleClass( "glyphicon-play glyphicon-pause" );
 			$sldr.toggleClass( "playing" );
 
 			text = $plypause[ 0 ].getElementsByTagName( "i" )[ 0 ];
-			text.innerHTML = text.innerHTML === playText ? i18nText.pause : playText;
+			text.innerHTML = text.innerHTML === playText ?
+				i18nText.pause :
+				playText;
 
 			inv = $plypause.find( ".wb-inv" )[ 0 ];
-			inv.innerHTML = inv.innerHTML === rotStopText ? i18nText.rotStart : rotStopText;
+			inv.innerHTML = inv.innerHTML === rotStopText ?
+				i18nText.rotStart :
+				rotStopText;
 		}
 
 		if ( which > 36 ) {
@@ -585,7 +596,9 @@ var pluginName = "wb-tabs",
 				if ( which > 1 ) {
 					$sldr.find( $elm.attr( "href" ) ).trigger( "setfocus.wb" );
 				}
-			} else if ( !$sldr.hasClass( "playing" ) ) {
+			} else if ( !$sldr.hasClass( "playing" ) &&
+				className.indexOf( "plypause" ) === -1 ) {
+
 				onCycle( $elm, className.indexOf( "prv" ) !== -1 ? -1 : 1 );
 			}
 		}
