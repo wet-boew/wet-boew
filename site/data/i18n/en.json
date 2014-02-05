@@ -165,5 +165,6 @@
 	"tmpl-wet-theme": "WET theme",
 	"tmpl-wet-twitter": "WebExpToolkit",
 	"tmpl-work-examples": "Working examples",
-	"you-are-here": "You are here:"
+	"you-are-here": "You are here:",
+	"hyphen": " - "
 }
