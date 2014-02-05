@@ -5,6 +5,7 @@
 	"cont-dept" : "Ministères et agences",
 	"cont-news" : "Nouvelles",
 	"cont-pub": "Publications et données",
+	"cont-service" : "Services et information",
 	"current": "(courant)",
 	"dlg-close": "Fermez la boîte de dialogue",
 	"esc-key": "(touche d'échappement)",
@@ -165,5 +166,5 @@
 	"tmpl-wet-twitter": "BoiteExpWeb",
 	"tmpl-work-examples": "Exemples pratiques",
 	"you-are-here": "Vous êtes dans :",
-  	"cont-service" : "Services et information"
+	"hyphen": " - "
 }

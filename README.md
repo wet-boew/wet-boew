@@ -6,28 +6,28 @@
 ## What is the Web Experience Toolkit?
 
 * Collaborative open source project led by the Government of Canada
-* [Award-winning](http://wet-boew.github.io/wet-boew/docs/ref/accolades-en.html#awards) code library for building innovative websites that are:
+* [Award-winning](http://wet-boew.github.io/v4.0-ci/docs/ref/accolades-en.html#awards) code library for building innovative websites that are:
  * [Accessible](#accessibility), [usable](#usability) and [interoperable](#interoperability)
  * [Mobile friendly](#mobile-friendly-responsive-design)
  * [Multilingual](#multilingual)
 * [Flexible and themeable templates and reusable components](#themeable-and-reusable)
 * Open source software
- * Free to use for commercial and non-commercial purposes (MIT license - [Terms and conditions](http://wet-boew.github.io/wet-boew/License-en.html))
+ * Free to use for commercial and non-commercial purposes (MIT license - [Terms and conditions](http://wet-boew.github.io/v4.0-ci/License-en.html))
  * [Developed openly by the community on GitHub](#collaborative-approach)
 
 ## Key resources
  
 * [Benefits](#benefits)
-* [Working examples](http://wet-boew.github.io/wet-boew/demos/index-en.html)
-* [Documentation](http://wet-boew.github.io/wet-boew/docs/index-en.html)
-* [Downloads](http://wet-boew.github.io/wet-boew/docs/versions/dwnld-en.html)
+* [Working examples](http://wet-boew.github.io/v4.0-ci/demos/index-en.html)
+* [Documentation](http://wet-boew.github.io/v4.0-ci/docs/index-en.html)
+* [Downloads](http://wet-boew.github.io/v4.0-ci/docs/versions/dwnld-en.html)
 * [Main project](https://github.com/wet-boew/wet-boew/)
-* [Terms and conditions](http://wet-boew.github.io/wet-boew/License-en.html)
+* [Terms and conditions](http://wet-boew.github.io/v4.0-ci/License-en.html)
 * [Contributor guidelines](http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-en.html)
-* [Versioning](http://wet-boew.github.io/wet-boew/docs/versions/version-info-en.html)
-* [Version history](http://wet-boew.github.io/wet-boew/docs/versions/index-en.html)
-* [Roadmap](http://wet-boew.github.io/wet-boew/docs/versions/rdmp-en.html)
-* [Communications material](http://wet-boew.github.io/wet-boew/docs/index-en.html#comms)
+* [Versioning](http://wet-boew.github.io/v4.0-ci/docs/versions/version-info-en.html)
+* [Version history](http://wet-boew.github.io/v4.0-ci/docs/versions/index-en.html)
+* [Roadmap](http://wet-boew.github.io/v4.0-ci/docs/versions/rdmp-en.html)
+* [Communications material](http://wet-boew.github.io/v4.0-ci/docs/index-en.html#comms)
 
 ## Benefits
 
@@ -124,28 +124,28 @@
 ## Qu’est-ce que la Boîte à outils de l’expérience Web?
 
 * Un projet à source ouverte collaboratif dirigé par le Gouvernement du Canada
-* Une bibliothèque de code [primée](http://wet-boew.github.io/wet-boew/docs/ref/accolades-fr.html#primes) pour construire des sites Web innovants&#160;:
+* Une bibliothèque de code [primée](http://wet-boew.github.io/v4.0-ci/docs/ref/accolades-fr.html#primes) pour construire des sites Web innovants&#160;:
  * [Accessibles](#accessibilit), [faciles d'emploi](#facilit-demploi) et [interopérables](#interoprabilit)
  * [Optimisés pour les appareils mobiles](#conception-optimise-pour-les-appareils-mobiles-et-ractive)
  * [Multilingues](#multilingue)
 * [Des modèles, ainsi que des composants réutilisables, qui sont flexibles et personnalisables](#personnalisable-et-rutilisable)
 * Un logiciel libre
- * Libre d'utilisation à des fins commerciales et non commerciales (licence MIT - [Conditions régissant l'utilisation](http://wet-boew.github.io/wet-boew/License-fr.html))
+ * Libre d'utilisation à des fins commerciales et non commerciales (licence MIT - [Conditions régissant l'utilisation](http://wet-boew.github.io/v4.0-ci/License-fr.html))
  * [Développé ouvertement sur GitHub par la communauté](#approche-collaborative)
 
 ## Ressources clés
  
 * [Avantages](#avantages)
-* [Exemples pratiques](http://wet-boew.github.io/wet-boew/demos/index-fr.html)
-* [Documentation](http://wet-boew.github.io/wet-boew/docs/index-fr.html)
-* [Téléchargements](http://wet-boew.github.io/wet-boew/docs/versions/dwnld-fr.html)
+* [Exemples pratiques](http://wet-boew.github.io/v4.0-ci/demos/index-fr.html)
+* [Documentation](http://wet-boew.github.io/v4.0-ci/docs/index-fr.html)
+* [Téléchargements](http://wet-boew.github.io/v4.0-ci/docs/versions/dwnld-fr.html)
 * [Projet principal](https://github.com/wet-boew/wet-boew/)
-* [Conditions régissant l'utilisation](http://wet-boew.github.io/wet-boew/Licence-fr.html)
+* [Conditions régissant l'utilisation](http://wet-boew.github.io/v4.0-ci/Licence-fr.html)
 * [Lignes directrices pour les contributeurs](http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-fr.html)
-* [Contrôle des versions](http://wet-boew.github.io/wet-boew/docs/versions/version-info-fr.html)
-* [Historique des versions](http://wet-boew.github.io/wet-boew/docs/versions/index-fr.html)
-* [Feuille de route](http://wet-boew.github.io/wet-boew/docs/versions/rdmp-fr.html)
-* [Matériel de communications](http://wet-boew.github.io/wet-boew/docs/index-fr.html#comms)
+* [Contrôle des versions](http://wet-boew.github.io/v4.0-ci/docs/versions/version-info-fr.html)
+* [Historique des versions](http://wet-boew.github.io/v4.0-ci/docs/versions/index-fr.html)
+* [Feuille de route](http://wet-boew.github.io/v4.0-ci/docs/versions/rdmp-fr.html)
+* [Matériel de communications](http://wet-boew.github.io/v4.0-ci/docs/index-fr.html#comms)
 
 ## Avantages
 
