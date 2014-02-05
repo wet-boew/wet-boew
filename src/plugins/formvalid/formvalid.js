@@ -19,6 +19,7 @@ var pluginName = "wb-frmvld",
 	initEvent = "wb-init" + selector,
 	setFocusEvent = "setfocus.wb",
 	$document = wb.doc,
+	idCount = 0,
 	i18n, i18nText,
 
 	/**
@@ -29,7 +30,8 @@ var pluginName = "wb-frmvld",
 	 */
 	init = function( event ) {
 		var eventTarget = event.target,
-			modeJS, $elm;
+			elmId = eventTarget.id,
+			modeJS;
 
 		// Filter out any events triggered by descendants
 		// and only initialize the element once
@@ -38,10 +40,16 @@ var pluginName = "wb-frmvld",
 
 			wb.remove( selector );
 			eventTarget.className += " " + initedClass;
-			
+
+			// Ensure there is a unique id on the element
+			if ( !elmId ) {
+				elmId = pluginName + "-id-" + idCount;
+				idCount += 1;
+				eventTarget.id = elmId;
+			}
+
 			// Read the selector node for parameters
 			modeJS = wb.getMode() + ".js";
-			$elm = $( eventTarget );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
@@ -57,13 +65,15 @@ var pluginName = "wb-frmvld",
 			}
 
 			Modernizr.load({
+
 				// For loading multiple dependencies
 				both: [
 					"site!deps/jquery.validate" + modeJS,
 					"site!deps/additional-methods" + modeJS
 				],
 				complete: function() {
-					var $form = $elm.find( "form" ),
+					var $elm = $( "#" + elmId ),
+						$form = $elm.find( "form" ),
 						formDOM = $form.get( 0 ),
 						formId = $form.attr( "id" ),
 						labels = formDOM.getElementsByTagName( "label" ),

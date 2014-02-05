@@ -19,6 +19,7 @@ var pluginName = "wb-lbx",
 	initEvent = "wb-init" + selector,
 	extendedGlobal = false,
 	$document = wb.doc,
+	idCount = 0,
 	i18n, i18nText,
 
 	/**
@@ -29,7 +30,8 @@ var pluginName = "wb-lbx",
 	 */
 	init = function( event ) {
 		var elm = event.target,
-			$elm, modeJS;
+			elmId = elm.id,
+			modeJS;
 
 		// Filter out any events triggered by descendants
 		// and only initialize the element once
@@ -39,9 +41,15 @@ var pluginName = "wb-lbx",
 			wb.remove( selector );
 			elm.className += " " + initedClass;
 
+			// Ensure there is a unique id on the element
+			if ( !elmId ) {
+				elmId = pluginName + "-id-" + idCount;
+				idCount += 1;
+				elm.id = elmId;
+			}
+
 			// read the selector node for parameters
 			modeJS = wb.getMode() + ".js";
-			$elm = $( elm );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
@@ -67,7 +75,9 @@ var pluginName = "wb-lbx",
 			Modernizr.load({
 				load: "site!deps/jquery.magnific-popup" + modeJS,
 				complete: function() {
-					var settings = {},
+					var elm = document.getElementById( elmId ),
+						$elm = $( elm ),
+						settings = {},
 						firstLink;
 
 					// Set the dependency i18nText only once

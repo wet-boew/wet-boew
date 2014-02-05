@@ -18,6 +18,7 @@ var pluginName = "wb-tables",
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
+	idCount = 0,
 	i18n, i18nText, defaults,
 
 	/**
@@ -28,7 +29,7 @@ var pluginName = "wb-tables",
 	 */
 	init = function( event ) {
 		var elm = event.target,
-			$elm;
+			elmId = elm.id;
 
 		// Filter out any events triggered by descendants
 		// and only initialize the element once
@@ -38,7 +39,12 @@ var pluginName = "wb-tables",
 			wb.remove( selector );
 			elm.className += " " + initedClass;
 
-			$elm = $( elm );
+			// Ensure there is a unique id on the element
+			if ( !elmId ) {
+				elmId = pluginName + "-id-" + idCount;
+				idCount += 1;
+				elm.id = elmId;
+			}
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
@@ -71,13 +77,14 @@ var pluginName = "wb-tables",
 				asStripeClasses: [],
 				oLanguage: i18nText,
 				fnDrawCallback: function() {
-					$elm.trigger( "tables-draw.wb" );
+					$( "#" + elmId ).trigger( "tables-draw.wb" );
 				}
 			};
 
 			Modernizr.load({
 				load: [ "site!deps/jquery.dataTables" + wb.getMode() + ".js" ],
 				complete: function() {
+					var $elm = $( "#" + elmId );
 					$elm.dataTable( $.extend( true, defaults, wb.getData( $elm, "wet-boew" ) ) );
 				}
 			});
