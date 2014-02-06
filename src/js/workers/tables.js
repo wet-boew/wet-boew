@@ -15,7 +15,13 @@
 		type: 'plugin',
 		depends: ['datatables'],
 		_exec: function (elm) {
-			var opts,
+			var i18nSortAscend = function( x, y ) {
+					return _pe.string.normalizeDiacritics( x ).localeCompare( _pe.string.normalizeDiacritics( y ) );
+				},
+				i18nSortDescend = function( x, y ) {
+					return _pe.string.normalizeDiacritics( y ).localeCompare( _pe.string.normalizeDiacritics( x ) );
+				},
+				opts,
 				overrides;
 
 			//Defaults
@@ -40,6 +46,12 @@
 
 			// Extend the defaults with settings passed through settings.js (wet_boew_tables), class-based overrides and the data-wet-boew attribute
 			$.extend(opts, (typeof wet_boew_tables !== 'undefined' ? wet_boew_tables : {}), overrides, _pe.data.getData(elm, 'wet-boew'));
+
+			// Enable internationalization support in the sorting
+			$.fn.dataTableExt.oSort['html-asc'] = i18nSortAscend;
+			$.fn.dataTableExt.oSort['html-desc'] = i18nSortDescend;
+			$.fn.dataTableExt.oSort['string-case-asc'] = i18nSortAscend;
+			$.fn.dataTableExt.oSort['string-case-desc'] = i18nSortDescend;
 
 			elm.dataTable({
 				'aaSorting': opts.aaSorting,
