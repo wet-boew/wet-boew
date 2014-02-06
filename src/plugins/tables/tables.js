@@ -84,7 +84,20 @@ var pluginName = "wb-tables",
 			Modernizr.load({
 				load: [ "site!deps/jquery.dataTables" + wb.getMode() + ".js" ],
 				complete: function() {
-					var $elm = $( "#" + elmId );
+					var $elm = $( "#" + elmId ),
+						i18nSortAscend = function( x, y ) {
+							return wb.normalizeDiacritics( x ).localeCompare( wb.normalizeDiacritics( y ) );
+						},
+						i18nSortDescend = function( x, y ) {
+							return wb.normalizeDiacritics( y ).localeCompare( wb.normalizeDiacritics( x ) );
+						};
+
+					// Enable internationalization support in the sorting
+					$.fn.dataTableExt.oSort[ "html-asc" ] = i18nSortAscend;
+					$.fn.dataTableExt.oSort[ "html-desc" ] = i18nSortDescend;
+					$.fn.dataTableExt.oSort[ "string-case-asc" ] = i18nSortAscend;
+					$.fn.dataTableExt.oSort[ "string-case-desc" ] = i18nSortDescend;
+
 					$elm.dataTable( $.extend( true, defaults, wb.getData( $elm, "wet-boew" ) ) );
 				}
 			});
