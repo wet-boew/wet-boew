@@ -10,12 +10,14 @@ env:
 
 before_install:
   - ./script/setup
+  - npm install -g phantomas
 
 script:
   - travis_retry grunt test test-mocha && ./script/travis_artifacts.sh
 
 after_success:
   - ./script/travis_saucelabs.sh
+  - ./script/travis_phantomas.sh
 
 notifications:
   irc:
