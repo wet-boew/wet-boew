@@ -142,9 +142,11 @@
 [class*=clmn-] {
 	padding-left: 1.3em;
 	list-style: outside;
-}
-[class*=clmn-] > li {
-	margin-left: 1.3em;
+	> {
+		li {
+			margin-left: 1.3em;
+		}
+	}
 }
 
 .pstn-lft-xs {
