@@ -51,8 +51,8 @@ describe( "Prettify test suite", function() {
 			expect( spy.calledWith( "prettyprint.wb-prettify" ) ).to.equal( true );
 		});
 
-	/*	it( "should have been triggered on a .wb-prettify element", function() {
-			var call, i, j, lenCalls, lenElms,
+		it( "should have been triggered on a .wb-prettify element", function() {
+			var call, elm, i, j, lenCalls, lenElms,
 				isSelector = false;
 
 			// Loop over calls made on the trigger() spy
@@ -60,11 +60,12 @@ describe( "Prettify test suite", function() {
 				call = spy.getCall( i );
 				// There may be multiple `this` objects for each call
 				for ( j = 0, lenElms = call.thisValue.length; !isSelector && j < lenElms; j += 1 ) {
-					isSelector = call.thisValue[ j ].className.indexOf( "wb-prettify" ) > -1;
+					elm = call.thisValue[ j ];
+					isSelector = elm.className && elm.className.indexOf( "wb-prettify" ) > -1;
 				}
 			}
 			expect( isSelector ).to.equal( true );
-		});*/
+		});
 
 		it( "should have created a window.prettyPrint function", function() {
 			expect( typeof window.prettyPrint ).to.equal( "function" );

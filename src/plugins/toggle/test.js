@@ -43,7 +43,7 @@ describe( "Toggle test suite", function() {
 	describe( "init events", function() {
 
 		it( "should have been triggered on a .wb-toggle element", function() {
-			var call, i, j, lenCalls, lenElms,
+			var call, elm, i, j, lenCalls, lenElms,
 				isSelector = false;
 
 			// Loop over calls made on the trigger() spy
@@ -51,7 +51,8 @@ describe( "Toggle test suite", function() {
 				call = spy.getCall( i );
 				// There may be multiple `this` objects for each call
 				for ( j = 0, lenElms = call.thisValue.length; !isSelector && j < lenElms; j++ ) {
-					isSelector = call.thisValue[ j ].className.indexOf( "wb-toggle" ) > -1;
+					elm = call.thisValue[ j ];
+					isSelector = elm.className && elm.className.indexOf( "wb-toggle" ) > -1;
 				}
 			}
 			expect( isSelector ).to.equal( true );
