@@ -9,450 +9,526 @@
 "use strict";
 
 /* Local scoped variables*/
-var $document = wb.doc,
-	selector = ".wb-mltmd",
+var pluginName = "wb-mltmd",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
 	seed = 0,
 	templatetriggered = false,
 	i18n, i18nText,
+	captionsLoadedEvent = "ccloaded" + selector,
+	captionsLoadFailedEvent = "ccloadfail" + selector,
+	captionsVisibleChangeEvent = "ccvischange" + selector,
+	renderUIEvent = "renderui" + selector,
+	initializedEvent = "inited" + selector,
+	fallbackEvent = "fallback" + selector,
+	youtubeEvent = "youtube" + selector,
+	resizeEvent = "resize" + selector,
+	captionClass = "cc_on",
+	$document = wb.doc,
+	$window = wb.win,
 
-/* helper functions*/
+	/**
+	 * Init runs once per plugin element on the page. There may be multiple elements.
+	 * It will run more than once per plugin if you don't remove the selector from the timer.
+	 * @function init
+	 * @param {jQuery Event} event Event that triggered this handler
+	 */
+	init = function( event ) {
+		var eventTarget = event.target;
 
-/**
- * @method formatTime
- * @description format a number of seconds to SMTPE Timecode format (HH:MM:SS.FF)
- * @param {Float} time The time to format
- * @returns {String} the formatted time
- */
-formatTime = function( time ) {
-	var index = 2,
-		timecode = "",
-		secondsIn, current, pad;
+		// Filter out any events triggered by descendants
+		// and only initialize the element once
+		if ( event.currentTarget === eventTarget &&
+			eventTarget.className.indexOf( initedClass ) === -1 ) {
 
-	pad = function( number, digits ) {
-		return new Array( Math.max( digits - String( number ).length + 1, 0 ) ).join( 0 ) + number;
+			wb.remove( selector );
+			eventTarget.className += " " + initedClass;
+
+			// Only initialize the i18nText once
+			if ( !i18nText ) {
+				i18n = wb.i18n;
+				i18nText = {
+					rewind: i18n( "rew" ),
+					ff: i18n( "ffwd" ),
+					play: i18n( "play" ),
+					pause: i18n( "pause" ),
+					cc_on: i18n( "cc", "on" ),
+					cc_off: i18n( "cc", "off" ),
+					cc_error: i18n ( "cc-err" ),
+					mute_on: i18n( "mute", "on" ),
+					mute_off: i18n( "mute", "off" ),
+					duration: i18n( "dur" ),
+					position: i18n( "pos" )
+				};
+			}
+
+			if ( !templatetriggered ) {
+				templatetriggered = true;
+				$document.trigger({
+					type: "ajax-fetch.wb",
+					element: $( selector ),
+					fetch: wb.getPath( "/assets" ) + "/mediacontrols.html"
+				});
+			}
+		}
+	},
+
+	/* helper functions*/
+
+	/**
+	 * @method formatTime
+	 * @description format a number of seconds to SMTPE Timecode format (HH:MM:SS.FF)
+	 * @param {Float} time The time to format
+	 * @returns {String} the formatted time
+	 */
+	formatTime = function( time ) {
+		var index = 2,
+			timecode = "",
+			secondsIn, current, pad;
+
+		pad = function( number, digits ) {
+			return new Array( Math.max( digits - String( number ).length + 1, 0 ) ).join( 0 ) + number;
+		};
+
+		time = Math.floor( time );
+
+		//Loop to extract hours, minutes and seconds
+		while ( index >= 0 ) {
+			//Get the number of seconds for the current iteration (hour, minute or second)
+			secondsIn = Math.pow( 60, index );
+			current = Math.floor( time / secondsIn );
+
+			if ( timecode !== "" ) {
+				timecode += ":";
+			}
+
+			timecode += pad( current, 2 );
+			time -= secondsIn * current;
+			index -= 1;
+		}
+		return timecode;
+	},
+
+	/**
+	 * @method parseTime
+	 * @description parse an SMTPE Timecode string (HH:MM:SS.FF) or duration (45s) and returns the number of seconds for the timecode
+	 * @param {String} time The timecode or duration string to parse
+	 * @returns {Float} the number of seconds in time
+	 */
+	parseTime = function( time ) {
+		var i, parts, timeStringPortion, partLength, seconds;
+
+		if ( time !== undef ) {
+			if ( time.charAt( time.length - 1 ) === "s" ) {
+				//Duration parsing
+				return parseFloat( time.substring( 0, time.length - 1 ) );
+			} else {
+				//SMTPE Timecode Parsing
+				parts = time.split( ":" ).reverse();
+				seconds = 0;
+
+				for ( i = 0, partLength = parts.length; i < partLength; i += 1 ) {
+					timeStringPortion = i === 0 ?
+						parseFloat( parts[ i ] ) :
+						parseInt( parts[ i ], 10 );
+					seconds += timeStringPortion * Math.pow( 60, i );
+				}
+				return seconds;
+			}
+		}
+		return -1;
+	},
+
+	// TODO: Document this function
+	expand = function( elm, withPlayer ) {
+		var $this = $( elm ),
+			data = $this.data( "properties" );
+
+		return withPlayer !== undef ?
+			 [ $this, data, data.player ] :
+			 [ $this, data ];
+	},
+
+	/*
+	 * Peformant micro templater
+	 * @credit: https://github.com/premasagar/tim/blob/master/tinytim.js
+	 * @todo: caching
+	 */
+	tmpl = (function() {
+		var start = "{{",
+			end = "}}",
+			// e.g. config.person.name
+			path = "[a-z0-9_$][\\.a-z0-9_]*",
+			pattern = new RegExp( start + "\\s*(" + path + ")\\s*" + end, "gi" );
+		return function( template, data ) {
+			// Merge data into the template string
+			return template.replace( pattern, function( tag, token ) {
+				var path = token.split( "." ),
+					len = path.length,
+					lookup = data,
+					i = 0;
+				for ( ; i < len; i += 1 ) {
+					lookup = lookup[ path[ i ] ];
+					// Property not found
+					if ( lookup === undef ) {
+						throw "tim: '" + path[ i ] + "' not found in " + tag;
+					}
+					// Return the required value
+					if ( i === len - 1 ) {
+						return lookup;
+					}
+				}
+			});
+		};
+	}()),
+
+	/**
+	 * @method parseHtml
+	 * @description parse an HTML fragment and extract embed captions
+	 * @param {String} content The HTML fragment containing the captions
+	 * @returns {Array} An array of captions objects (ex: {text: "Caption", begin: 0, end :10})
+	 */
+	parseHtml = function( content ) {
+		var captions = [],
+			captionSelector = ".wb-tmtxt",
+			captionElements = content.find( captionSelector ),
+			len = captionElements.length,
+			i, captionElement, json, begin, end;
+
+		for ( i = 0; i !== len; i += 1 ) {
+			captionElement = $( captionElements[ i ] );
+			begin = -1;
+			end = -1;
+
+			if ( captionElement.attr( "data-begin" ) !== undef ) {
+				begin = parseTime( captionElement.attr( "data-begin" ) );
+				end = captionElement.attr( "data-end" ) !== undef ?
+					parseTime( captionElement.attr( "data-end" ) ) :
+					parseTime( captionElement.attr( "data-dur" ) ) + begin;
+			} else if ( captionElement.attr( "data" ) !== undef ) {
+				json = captionElement.attr( "data" )
+					.replace( /(begin|dur|end)/g, "\"$1\"" )
+					.replace( /'/g, "\"" );
+				json = $.parseJSON( json );
+				begin = parseTime( json.begin );
+				end = json.end !== undef ?
+					parseTime( json.end ) :
+					parseTime( json.dur ) + begin;
+			}
+
+			//Removes nested captions if an
+			captionElement = captionElement.clone();
+			captionElement.find( captionSelector ).detach();
+
+			captions[ captions.length ] = {
+				text: captionElement.html(),
+				begin: begin,
+				end: end
+			};
+		}
+		return captions;
+	},
+
+	/**
+	 * @method parseXml
+	 * @description parse an TTML (Xml) document and extract captions
+	 * @param {String} content The TTML fragment containing the captions
+	 * @returns {Array} An array of captions objects (ex: {text: "Caption", begin: 0, end :10})
+	 */
+	parseXml = function( content ) {
+		var captions = [],
+			captionSelector = "[begin]",
+			captionElements = content.find( captionSelector ),
+			len = captionElements.length,
+			i, captionElement, begin, end;
+
+		for ( i = 0; i !== len; i += 1 ) {
+			captionElement = $( captionElements[ i ] );
+			begin = parseTime( captionElement.attr( "begin" ) );
+			end = captionElement.attr( "end" ) !== undef ?
+				parseTime( captionElement.attr( "end" ) ) :
+				parseTime( captionElement.attr( "dur" ) ) + begin;
+
+			captionElement = captionElement.clone();
+			captionElement.find( captionSelector ).detach();
+
+			captions[ captions.length ] = {
+				text: captionElement.html(),
+				begin: begin,
+				end: end
+			};
+		}
+		return captions;
+	},
+
+	/**
+	 * @method loadCaptionsExternal
+	 * @description Loads captions from an external source (HTML embed or TTML)
+	 * @param {Object} elm The jQuery object for the multimedia player loading the captions
+	 * @param {String} url The url for the captions resource to load
+	 * @fires ccloaded.wb-mltmd
+	 * @fires ccloadfail.wb-mltmd
+	 */
+	loadCaptionsExternal = function( elm, url ) {
+		$.ajax({
+			url: url,
+			dataType: "html",
+			//Filters out images and objects from the content to avoid loading them
+			dataFilter: function( data ) {
+				return data.replace( /<img|object [^>]*>/g, "" );
+			},
+			success: function( data ) {
+				elm.trigger({
+					type: captionsLoadedEvent,
+					captions: data.indexOf( "<html" ) !== -1 ?
+						parseHtml( $( data ) ) :
+						parseXml( $( data ) )
+				});
+			},
+			error: function( response, textStatus, errorThrown ) {
+				elm.trigger({
+					type: captionsLoadFailedEvent,
+					error: errorThrown
+				});
+			}
+		});
+	},
+
+	/**
+	 * @method loadCaptionsInternal
+	 * @description Loads same page captions emebed in HTML
+	 * @param {Object} elm The jQuery object for the multimedia player loading the captions
+	 * @param {Object} obj The jQUery object containing the captions
+	 * @fires ccloaded.wb-mltmd
+	 */
+	loadCaptionsInternal = function( elm, obj ) {
+		elm.trigger({
+			type: captionsLoadedEvent,
+			captions: parseHtml( obj )
+		});
+	},
+
+	/**
+	 * @method updateCaptions
+	 * @description Update the captions for a multimedia player (called from the timeupdate event of the HTML5 media API)
+	 * @param {Object} area The jQuery object for the element where captions are displayed
+	 * @param {Float} seconds The current time of the media (use to sync the captions)
+	 * @param {Object} captions The JavaScript object containing the captions
+	 */
+	updateCaptions = function( area, seconds, captions ) {
+		var caption, i,
+			captionsLength = captions.length;
+
+		// added &nbsp; to prevent caption space from collapsing
+		// Used .html() instead of .append for performance purposes
+		// http://jsperf.com/jquery-append-vs-html-list-performance/2
+		area.html( "&nbsp;" );
+
+		for ( i = 0; i < captionsLength; i += 1 ) {
+			caption = captions[ i ];
+			if ( seconds >= caption.begin && seconds <= caption.end ) {
+				area.html( $( "<div>" + caption.text + "</div>" ) );
+			}
+		}
+	},
+
+	/**
+	 * @method playerApi
+	 * @description Normalizes the calls to the HTML5 media API and Flash Fallback
+	 * @param {String} fn The function to call
+	 * @param {object} args The arguments to send to the function call
+	 */
+	playerApi = function( fn, args ) {
+		var $this, method;
+
+		switch ( fn ) {
+		case "play":
+			try {
+				this.object.play();
+			} catch ( ex ) {
+				this.object.doPlay();
+			}
+			break;
+		case "pause":
+			try {
+				this.object.pause();
+			} catch ( ex ) {
+				this.object.doPause();
+			}
+			break;
+		case "getCaptionsVisible":
+			return $( this ).hasClass( captionClass );
+		case "setCaptionsVisible":
+			$this = $( this );
+			if ( args ) {
+				$this.addClass( captionClass );
+			} else {
+				$this.removeClass( captionClass );
+			}
+			$this.trigger( captionsVisibleChangeEvent );
+			break;
+		case "setPreviousTime":
+			this.object.previousTime = args;
+			break;
+		case "getBuffering":
+			return this.object.buffering || false;
+		case "setBuffering":
+			this.object.buffering = args;
+			break;
+		case "getPreviousTime":
+			return this.object.previousTime;
+		case "setPreviousTime":
+			this.object.previousTime = args;
+			break;
+		default:
+			method = fn.charAt( 3 ).toLowerCase() + fn.substr( 4 );
+			switch ( fn.substr( 0, 3 ) ) {
+			case "get":
+				return typeof this.object[ method ] !== "function" ?
+					this.object[ method ] :
+					this.object[ method ]();
+			case "set":
+				typeof this.object[ method ] !== "function" ?
+					this.object[ method ] = args :
+					this.object[ fn ]( args );
+			}
+		}
+	},
+
+	/**
+	 * @method youTubeApi
+	 * @description Normalizes the calls to the YouTube API
+	 * @param {String} fn The function to call
+	 * @param {object} args The arguments to send to the function call
+	 */
+	youTubeApi = function( fn, args ) {
+		var $player = $( this.object.a ),
+			state;
+
+		switch ( fn ) {
+		case "play":
+			return this.object.playVideo();
+		case "pause":
+			return this.object.pauseVideo();
+		case "getPaused":
+			state = this.object.getPlayerState();
+			return state === -1 || state === 0 || state === 2 || state === 5;
+		case "getPlayed":
+			return this.object.getPlayerState() > -1;
+		case "getEnded":
+			return this.object.getPlayerState() === 0;
+		case "getDuration":
+			return this.object.getDuration();
+		case "getCurrentTime":
+			return this.object.getCurrentTime();
+		case "setCurrentTime":
+			return this.object.seekTo( args, true );
+		case "getMuted":
+			return this.object.isMuted();
+		case "setMuted":
+			if ( args ) {
+				this.object.mute();
+			} else {
+				this.object.unMute();
+			}
+			setTimeout( function() {
+				$player.trigger( "volumechange" );
+			}, 50 );
+			break;
+		case "getVolume":
+			return this.object.getVolume() / 100;
+		case "setVolume":
+			this.object.setVolume( args * 100 );
+			setTimeout( function() {
+				$player.trigger( "volumechange" );
+			}, 50 );
+			break;
+		case "getCaptionsVisible":
+			return $( this ).hasClass( captionClass );
+		case "setCaptionsVisible":
+			if ( args ) {
+				$( this).addClass( captionClass );
+				if ( this.object.getOptions().length > 0 ) {
+					this.object.setOption( "captions", "track", this.object.getOption( "captions", "tracklist" )[ 0 ] );
+				}
+			} else {
+				$( this ).removeClass( captionClass );
+				if ( this.object.getOptions().length > 0 ) {
+					this.object.setOption( "captions", "track", {} );
+				}
+			}
+			$player.trigger( "ccvischange" );
+		}
+	},
+
+	/**
+	 * @method youTubeEvennts
+	 * @description Youtube API event manager
+	 * @param {object} event The event object fior the triggered event
+	 */
+	youTubeEvents = function( event ) {
+		var target = event.target.a,
+			$target = $( event.target.a ),
+			timeline = function() {
+				$target.trigger( "timeupdate" );
+			};
+
+		switch ( event.data ) {
+		case null:
+			$target.trigger( "canplay" );
+			break;
+		case -1:
+			event.target.unMute();
+			$target.trigger( "durationchange" );
+			break;
+		case 0:
+			$target.trigger( "ended" );
+			target.timeline = clearInterval( target.timeline );
+			break;
+		case 1:
+			$target.trigger( "canplay" );
+			$target.trigger( "play" );
+			target.timeline = setInterval( timeline, 250 );
+			break;
+		case 2:
+			$target.trigger( "pause" );
+			target.timeline = clearInterval( target.timeline );
+			break;
+		case 3:
+			target.timeline = clearInterval( target.timeline );
+			break;
+		}
+	},
+
+	onResize = function() {
+		$( selector + " object, " + selector + " iframe" ).trigger( resizeEvent );
 	};
 
-	time = Math.floor( time );
-
-	//Loop to extract hours, minutes and seconds
-	while ( index >= 0 ) {
-		//Get the number of seconds for the current iteration (hour, minute or second)
-		secondsIn = Math.pow( 60, index );
-		current = Math.floor( time / secondsIn );
-
-		if ( timecode !== "" ) {
-			timecode += ":";
-		}
-
-		timecode += pad( current, 2 );
-		time -= secondsIn * current;
-		index -= 1;
-	}
-	return timecode;
-},
-
-/**
- * @method parseTime
- * @description parse an SMTPE Timecode string (HH:MM:SS.FF) or duration (45s) and returns the number of seconds for the timecode
- * @param {String} time The timecode or duration string to parse
- * @returns {Float} the number of seconds in time
- */
-parseTime = function( time ) {
-	var i, parts, timeStringPortion, partLength, seconds;
-
-	if ( time !== undef ) {
-		if ( time.charAt( time.length - 1 ) === "s" ) {
-			//Duration parsing
-			return parseFloat( time.substring( 0, time.length - 1 ) );
-		} else {
-			//SMTPE Timecode Parsing
-			parts = time.split( ":" ).reverse();
-			seconds = 0;
-
-			for ( i = 0, partLength = parts.length; i < partLength; i += 1 ) {
-				timeStringPortion = i === 0 ?
-					parseFloat( parts[ i ] ) :
-					parseInt( parts[ i ], 10 );
-				seconds += timeStringPortion * Math.pow( 60, i );
-			}
-			return seconds;
-		}
-	}
-	return -1;
-},
-
-// TODO: Document this function
-expand = function( elm, withPlayer ) {
-	var $this = $( elm ),
-		$data = $this.data( "properties" );
-
-	return withPlayer !== undef ?
-		 [ $this, $data, $data.player ] :
-		 [ $this, $data ];
-},
-
-/**
- * @method parseHtml
- * @description parse an HTML fragment and extract embed captions
- * @param {String} content The HTML fragment containing the captions
- * @returns {Array} An array of captions objects (ex: {text: "Caption", begin: 0, end :10})
- */
-parseHtml = function( content ) {
-	var captions = [],
-		captionSelector = ".wb-tmtxt",
-		captionElements = content.find( captionSelector ),
-		len = captionElements.length,
-		i, captionElement, json, begin, end;
-
-	for ( i = 0; i !== len; i += 1 ) {
-		captionElement = $( captionElements[ i ] );
-		begin = -1;
-		end = -1;
-
-		if ( captionElement.attr( "data-begin" ) !== undef ) {
-			begin = parseTime( captionElement.attr( "data-begin" ) );
-			end = captionElement.attr( "data-end" ) !== undef ?
-				parseTime( captionElement.attr( "data-end" ) ) :
-				parseTime( captionElement.attr( "data-dur" ) ) + begin;
-		} else if ( captionElement.attr( "data" ) !== undef ) {
-			json = captionElement.attr( "data" )
-				.replace( /(begin|dur|end)/g, "\"$1\"" )
-				.replace( /'/g, "\"" );
-			json = $.parseJSON( json );
-			begin = parseTime( json.begin );
-			end = json.end !== undef ?
-				parseTime( json.end ) :
-				parseTime( json.dur ) + begin;
-		}
-
-		//Removes nested captions if an
-		captionElement = captionElement.clone();
-		captionElement.find( captionSelector ).detach();
-
-		captions[ captions.length ] = {
-			text: captionElement.html(),
-			begin: begin,
-			end: end
-		};
-	}
-	return captions;
-},
-
-/**
- * @method parseXml
- * @description parse an TTML (Xml) document and extract captions
- * @param {String} content The TTML fragment containing the captions
- * @returns {Array} An array of captions objects (ex: {text: "Caption", begin: 0, end :10})
- */
-parseXml = function( content ) {
-	var captions = [],
-		captionSelector = "[begin]",
-		captionElements = content.find( captionSelector ),
-		len = captionElements.length,
-		i, captionElement, begin, end;
-
-	for ( i = 0; i !== len; i += 1 ) {
-		captionElement = $( captionElements[ i ] );
-		begin = parseTime( captionElement.attr( "begin" ) );
-		end = captionElement.attr( "end" ) !== undef ?
-			parseTime( captionElement.attr( "end" ) ) :
-			parseTime( captionElement.attr( "dur" ) ) + begin;
-
-
-		captionElement = captionElement.clone();
-		captionElement.find( captionSelector ).detach();
-
-		captions[ captions.length ] = {
-			text: captionElement.html(),
-			begin: begin,
-			end: end
-		};
-	}
-	return captions;
-},
-
-/**
- * @method loadCaptionsExternal
- * @description Loads captions from an external source (HTML embed or TTML)
- * @param {Object} elm The jQuery object for the multimedia player loading the captions
- * @param {String} url The url for the captions resource to load
- * @fires captionsloaded.multimedia.wb
- * @fires captionsloadfailed.multimedia.wb
- */
-loadCaptionsExternal = function( elm, url ) {
-	$.ajax({
-		url: url,
-		dataType: "html",
-		//Filters out images and objects from the content to avoid loading them
-		dataFilter: function( data ) {
-			return data.replace( /<img|object [^>]*>/g, "" );
-		},
-		success: function( data ) {
-			elm.trigger({
-				type: "captionsloaded.multimedia.wb",
-				captions: data.indexOf( "<html" ) !== -1 ?
-					parseHtml( $( data ) ) :
-					parseXml( $( data ) )
-			});
-		},
-		error: function( response, textStatus, errorThrown ) {
-			elm.trigger({
-				type: "captionsloadfailed.multimedia.wb",
-				error: errorThrown
-			});
-		}
-	});
-},
-
-/**
- * @method loadCaptionsInternal
- * @description Loads same page captions emebed in HTML
- * @param {Object} elm The jQuery object for the multimedia player loading the captions
- * @param {Object} obj The jQUery object containing the captions
- * @fires captionsloaded.multimedia.wb
- */
-loadCaptionsInternal = function( elm, obj ) {
-	elm.trigger({
-		type: "captionsloaded.multimedia.wb",
-		captions: parseHtml( obj )
-	});
-},
-
-/**
- * @method updateCaptions
- * @description Update the captions for a multimedia player (called from the timeupdate event of the HTML5 media API)
- * @param {Object} area The jQuery object for the element where captions are displayed
- * @param {Float} seconds The current time of the media (use to sync the captions)
- * @param {Object} captions The JavaScript object containing the captions
- */
-updateCaptions = function( area, seconds, captions ) {
-	var caption, i,
-		captionsLength = captions.length;
-
-	// lets not waste cycles in updating if captions are not visible
-	// and remove any text if there was some there before.
-	if ( !area.hasClass( "on" ) ) {
-		return area.is( "empty" ) ? 1 : area.empty();
-	}
-
-	// added &nbsp; to prevent caption space from collapsing
-	// Used .html() instead of .append for performance purposes
-	// http://jsperf.com/jquery-append-vs-html-list-performance/2
-	area.html( "&nbsp;" );
-
-	for ( i = 0; i < captionsLength; i += 1 ) {
-		caption = captions[ i ];
-		if ( seconds >= caption.begin && seconds <= caption.end ) {
-			area.html( $( "<div>" + caption.text + "</div>" ) );
-		}
-	}
-},
-
-/**
- * @method playerApi
- * @description Normalizes the calls to the HTML5 media API and Flash Fallback
- * @param {String} fn The function to call
- * @param {} Args The arguments to send to the function call
- */
-playerApi = function( fn, args ) {
-	var $this, captionsArea, method;
-
-	switch ( fn ) {
-	case "play":
-		try {
-			this.object.play();
-		} catch ( ex ) {
-			this.object.doPlay();
-		}
-		break;
-	case "pause":
-		try {
-			this.object.pause();
-		} catch ( ex ) {
-			this.object.doPause();
-		}
-		break;
-	case "getCaptionsVisible":
-		return $( this ).find( ".wb-mm-cc" ).hasClass( "on" );
-	case "setCaptionsVisible":
-		$this = $( this );
-		captionsArea = $this.find( ".wb-mm-cc" );
-		if ( args ) {
-			captionsArea.addClass( "on" );
-		} else {
-			captionsArea.removeClass( "on" );
-		}
-		$this.trigger( "captionsvisiblechange.multimedia.wb" );
-		break;
-	case "setPreviousTime":
-		this.object.previousTime = args;
-		break;
-	case "getBuffering":
-		return this.object.buffering || false;
-	case "setBuffering":
-		this.object.buffering = args;
-		break;
-	case "getPreviousTime":
-		return this.object.previousTime;
-	case "setPreviousTime":
-		this.object.previousTime = args;
-		break;
-	default:
-		method = fn.charAt( 3 ).toLowerCase() + fn.substr( 4 );
-		switch ( fn.substr( 0, 3 ) ) {
-		case "get":
-			return typeof this.object[ method ] !== "function" ?
-				this.object[ method ] :
-				this.object[ method ]();
-		case "set":
-			typeof this.object[ method ] !== "function" ?
-				this.object[ method ] = args :
-				this.object[ fn ]( args );
-		}
-	}
-},
-
-/**
- * @method youTubeApi
- * @description Normalizes the calls to the YouTube API
- * @param {String} fn The function to call
- * @param {object} Args The arguments to send to the function call
- */
-youTubeApi = function( fn, args ) {
-	var $this = $( this.object.a ),
-		state;
-
-	switch ( fn ) {
-	case "play":
-		return this.object.playVideo();
-	case "pause":
-		return this.object.pauseVideo();
-	case "getPaused":
-		state = this.object.getPlayerState();
-		return state === -1 || state === 0 || state === 2;
-	case "getPlayed":
-		return this.object.getPlayerState() > -1;
-	case "getEnded":
-		return this.object.getPlayerState() === 0;
-	case "getDuration":
-		return this.object.getDuration();
-	case "getCurrentTime":
-		return this.object.getCurrentTime();
-	case "setCurrentTime":
-		return this.object.seekTo( args, true );
-	case "getMuted":
-		return this.object.isMuted();
-	case "setMuted":
-		if ( args === true ) {
-			this.object.mute();
-		} else {
-			this.object.unMute();
-		}
-		setTimeout( function() {
-			$this.trigger( "volumechange" );
-		}, 50 );
-		break;
-	case "getVolume":
-		return this.object.getVolume() / 100;
-	case "setVolume":
-		this.object.setVolume( args * 100 );
-		setTimeout( function(){
-			$this.trigger( "volumechange" );
-		}, 50 );
-
-	}
-},
-
-/**
- * @method youTubeEvennts
- * @description Youtube API event manager
- * @param {} event The event object fior the triggered event
- */
-youTubeEvents = function ( event ) {
-	var target = event.target.a,
-		$target = $( event.target.a ),
-		timeline = function () {
-			$target.trigger( "timeupdate" );
-		};
-
-	switch ( event.data ) {
-	case null:
-		$target.trigger( "durationchange" );
-		$target.trigger( "canplay" );
-		break;
-	case 0:
-		$target.trigger( "ended" );
-		target.timeline = clearInterval( target.timeline );
-		break;
-	case 1:
-		$target.trigger( "play" );
-		target.timeline = setInterval( timeline, 250 );
-		break;
-	case 2:
-		$target.trigger( "pause" );
-		target.timeline = clearInterval( target.timeline );
-		break;
-	case 3:
-		$target.trigger( "waiting" );
-		target.timeline = clearInterval( target.timeline );
-		break;
-	}
-};
-
-
-$document.on( "timerpoke.wb", selector, function() {
-	wb.remove( selector );
-
-	// Only initialize the i18nText once
-	if ( !i18nText ) {
-		i18n = wb.i18n;
-		i18nText = {
-			rewind: i18n( "rew" ),
-			ff: i18n( "ffwd" ),
-			play: i18n( "play" ),
-			pause: i18n( "pause" ),
-			cc_on: i18n( "cc", "on" ),
-			cc_off: i18n( "cc", "off" ),
-			cc_error: i18n ( "cc-err" ),
-			mute_on: i18n( "mute", "on" ),
-			mute_off: i18n( "mute", "off" ),
-			duration: i18n( "dur" ),
-			position: i18n( "pos" )
-		};
-	}
-
-	if ( !templatetriggered ) {
-		templatetriggered = true;
-		$document.trigger({
-			type: "ajax-fetch.wb",
-			element: $( selector ),
-			fetch: wb.getPath( "/assets" ) + "/mediacontrols.html"
-		});
-	}
-});
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 $document.on( "ajax-fetched.wb", selector, function( event ) {
 	var $this = $( this ),
-		$template = event.pointer.html();
+		template = event.pointer.html();
 
-	$this.data( "template", $template );
+	$this.data( "template", template );
 	$this.trigger({
-		type: "init.multimedia.wb"
+		type: initializedEvent
 	});
 });
 
-$document.on( "init.multimedia.wb", selector, function() {
+$document.on( initializedEvent, selector, function() {
 	var $this = $( this ),
 		$media = $this.children( "audio, video" ).eq( 0 ),
-		$captions = $media.children( "track[kind='captions']" ) ? $media.children( "track[kind='captions']" ).attr( "src" ) : undef,
-		id = $this.attr( "id" ) !== undef ? $this.attr( "id" ) : "wb-mm-" + ( seed++ ),
-		mId = $media.attr( "id" ) !== undef ? $media.attr( "id" ) : "" + id + "-md",
+		captions = $media.children( "track[kind='captions']" ).attr( "src" ) || undef,
+		id = $this.attr( "id" ) || "wb-mm-" + ( seed++ ),
+		mId = $media.attr( "id" ) || id + "-md",
 		type = $media.is( "video" ) ? "video" : "audio",
-		width = type === "video" ? $media.attr( "width" ) : "0",
-		height = type === "video" ? $media.attr( "height" ) : "0",
+		width = type === "video" ? $media.attr( "width" ) || $media.width() : 0,
+		height = type === "video" ? $media.attr( "height" ) || $media.height() : 0,
 		data = $.extend({
 			media: $media,
-			captions: $captions,
+			captions: captions,
 			id: id,
 			mId: mId,
 			type: type,
@@ -461,6 +537,10 @@ $document.on( "init.multimedia.wb", selector, function() {
 		}, i18nText),
 		media = $media.get( 0 ),
 		url;
+
+	if ( !$this.attr( "id" ) ) {
+		$this.attr( "id", id );
+	}
 
 	if ( $media.attr( "id" ) === undef ) {
 		$media.attr( "id", mId );
@@ -475,17 +555,12 @@ $document.on( "init.multimedia.wb", selector, function() {
 		// lets set the flag for the call back
 		$this.data( "youtube", url.params.v );
 
-		if ( window.needsYoutube === undefined ) {
-			// lets create an empty set to store our elements
-			window.needsYoutube = $([]);
-		}
-
 		// Method called the the YouTUbe API when ready
 		if ( window.onYouTubeIframeAPIReady === undefined ) {
 
 			// lets bind youtubes global function
 			window.onYouTubeIframeAPIReady = function() {
-				  $this.trigger( "youtube.multimedia.wb" );
+				  $this.trigger( youtubeEvent );
 			};
 		}
 
@@ -494,152 +569,172 @@ $document.on( "init.multimedia.wb", selector, function() {
 			load: "https://www.youtube.com/iframe_api"
 		} );
 
-
 	} else if ( media.error === null && media.currentSrc !== "" && media.currentSrc !== undef ) {
-		$this.trigger( type + ".multimedia.wb" );
+		$this.trigger( type + selector );
 	} else {
-		$this.trigger( "fallback.multimedia.wb" );
+		$this.trigger( fallbackEvent );
 	}
 });
 
-$document.on( "fallback.multimedia.wb", selector, function() {
+$document.on( fallbackEvent, selector, function() {
 	var ref = expand( this ),
 		$this = ref[ 0 ],
-		$data = ref[ 1 ],
-		$media = $data.media,
-		$poster = $media.attr( "poster" ),
-		$source = $data.media.find( "source" ),
-		$playerresource;
+		data = ref[ 1 ],
+		$media = data.media,
+		type = data.type,
+		source = $media.find( ( type === "video"  ? "[type='video/mp4']" : "[type='audio/mp3']" ) ).attr( "src" ),
+		poster = $media.attr( "poster" ),
+		flashvars = "id=" + data.mId,
+		width = data.width,
+		height = data.height > 0 ? data.height : Math.round( data.width / 1.777 ),
+		playerresource = wb.getPath( "/assets" ) + "/multimedia.swf?" + new Date().getTime();
 
+	flashvars += "&amp;media=" + encodeURI( wb.getUrlParts( source ).absolute );
+	if ( type === "video" ) {
+		data.poster = "<img src='" + poster + "' class='img-responsive' height='" +
+			height + "' width='" + width + "' alt='" + $media.attr( "title" ) + "'/>";
 
-	$data.flashvars = "id=" + $data.mId;
-	$playerresource = wb.getPath( "/assets" ) + "/multimedia.swf?" + $data.flashvars;
-	$data.poster = "";
-	if ( $data.type === "video" ) {
-		$data.poster = "<img src='" + $poster + " class='img-responsive' height='" +
-			$data.height + "' width='" + $data.width + "' alt='" + $media.attr( "title" ) + "'/>";
-		$data.flashvars += "&height=" + $media.height() + "&width=" +
-			$media.width() + "&posterimg=" +
-			encodeURI( wb.getUrlParts( $poster ).absolute ) + "&media=" +
-			encodeURI( wb.getUrlParts( $source.filter( "[type='video/mp4']" ).attr( "src" ) ).absolute );
-	} else {
-		$data.flashvars += "&media=" + encodeURI( wb.getUrlParts( $source.filter( "[type='audio/mp3']" ).attr( "src" ) ).absolute );
+		flashvars += "&amp;height=" + height + "&amp;width=" +
+			width + "&amp;posterimg=" + encodeURI( wb.getUrlParts( poster ).absolute );
 	}
-	$this.find( "video, audio" ).replaceWith( "<object id='" + $data.mId + "' width='" + $data.width +
-		"' height='" + $data.height + "' class='" + $data.type +
+
+	$this.find( "video, audio" ).replaceWith( "<object id='" + data.mId + "' width='" + width +
+		"' height='" + height + "' class='" + type +
 		"' type='application/x-shockwave-flash' data='" +
-		$playerresource + "' tabindex='-1'>" +
-		"<param name='movie' value='" + $playerresource + "'/>" +
-		"<param name='flashvars' value='" + $data.flashvars + "'/>" +
+		playerresource + "' tabindex='-1' play='' pause=''>" +
+		"<param name='movie' value='" + playerresource + "'/>" +
+		"<param name='flashvars' value='" + flashvars + "'/>" +
 		"<param name='allowScriptAccess' value='always'/>" +
 		"<param name='bgcolor' value='#000000'/>" +
 		"<param name='wmode' value='opaque'/>" +
-		$data.poster + "</object>" );
-	$this.data( "properties", $data );
-
-	$this.trigger( "renderui.multimedia.wb" );
+		data.poster + "</object>" );
+	$this.data( "properties", data );
+	$window.on( "resize", onResize );
+	$this.trigger( renderUIEvent, type );
 });
 
 /*
  *  Youtube Video mode Event
  */
-$document.on( "youtube.multimedia.wb", selector, function() {
+$document.on( youtubeEvent, selector, function() {
 	var ref = expand( this ),
 		ytPlayer,
 		$this = ref[ 0 ],
-		media = $this.find( "video:eq(0)" ),
-		id = media.get( 0 ).id,
-		$data = ref[ 1 ];
+		data = ref[ 1 ],
+		$media = data.media,
+		id = $media.get( 0 ).id;
 
-	media.replaceWith( "<div id=" + id + "/>" );
+	$media.replaceWith( "<div id=" + id + "/>" );
 	ytPlayer = new YT.Player( id, {
 		videoId: $this.data( "youtube" ),
 		playerVars: {
 			autoplay: 0,
-			controls: 0,
+			controls: 1,
 			origin: wb.pageUrlParts.host,
 			modestbranding: 1,
 			rel: 0,
-			showinfo: 0
+			showinfo: 0,
+			html5: 1,
+			cc_load_policy: 1
 		},
 		events: {
-			"onReady": youTubeEvents,
-			"onStateChange": youTubeEvents
+			onReady: function( event ) {
+				onResize();
+				youTubeEvents( event );
+			},
+			onStateChange: youTubeEvents,
+			onApiChange: function() {
+				//If captions were enabled before the module was ready, re-enable them
+				var t = $this.get( 0 );
+				t.player( "setCaptionsVisible", t.player( "getCaptionsVisible" ) );
+			}
 		}
 	});
 
+	$this.addClass( "youtube" );
+
 	$this.find( "iframe" ).attr( "tabindex", -1 );
 
-	$data.poster = "<img src='" + $data.media.attr( "poster" ) +
-		"' class='img-responsive' height='" + $data.height +
-		"' width='" + $data.width + "' alt='" + $data.media.attr( "title" ) + "'/>";
-	$data.ytPlayer = ytPlayer;
+	data.poster = "<img src='" + $media.attr( "poster" ) +
+		"' class='img-responsive' height='" + data.height +
+		"' width='" + data.width + "' alt='" + data.media.attr( "title" ) + "'/>";
+	data.ytPlayer = ytPlayer;
 
-	$this.data( "properties", $data );
-	$this.trigger( "renderui.multimedia.wb", "video" );
+	$this.data( "properties", data );
+	$window.on( "resize", onResize );
+	$this.trigger( renderUIEvent, "youtube" );
 });
 
 /*
  *  Native Video mode Event
  */
-$document.on( "video.multimedia.wb", selector, function() {
+$document.on( "video.wb-mltmd", selector, function() {
 	var ref = expand( this ),
 		$this = ref[ 0 ],
-		$data = ref[ 1 ];
+		data = ref[ 1 ];
 
-	$data.poster = "<img src='" + $data.media.attr( "poster" ) +
-		"' class='img-responsive' height='" + $data.height +
-		"' width='" + $data.width + "' alt='" + $data.media.attr( "title" ) + "'/>";
+	data.poster = "<img src='" + data.media.attr( "poster" ) +
+		"' class='img-responsive' height='" + data.height +
+		"' width='" + data.width + "' alt='" + data.media.attr( "title" ) + "'/>";
 
-	$this.data( "properties", $data );
+	$this.data( "properties", data );
 
-	$this.trigger( "renderui.multimedia.wb", "video" );
+	$this.trigger( renderUIEvent, "video" );
 });
 
 /*
  *  Native Audio mode Event
  */
-$document.on( "audio.multimedia.wb", selector, function() {
+$document.on( "audio.wb-mltmd", selector, function() {
 	var ref = expand (this ),
 		$this = ref[ 0 ],
-		$data = ref[ 1 ];
+		data = ref[ 1 ];
 
-	$data.poster = "";
+	data.poster = "";
 
-	$this.data( "properties", $data );
+	$this.data( "properties", data );
 
-	$this.trigger( "renderui.multimedia.wb", "audio" );
+	$this.trigger( renderUIEvent, "audio" );
 });
 
-$document.on( "renderui.multimedia.wb", selector, function( event, type ) {
+$document.on( renderUIEvent, selector, function( event, type ) {
 	var ref = expand( this ),
 		$this = ref[ 0 ],
-		$data = ref[ 1 ],
-		$player,
-		captionsUrl = wb.getUrlParts( $data.captions ),
+		data = ref[ 1 ],
+		captionsUrl = wb.getUrlParts( data.captions ),
 		currentUrl = wb.getUrlParts( window.location.href ),
-		media = $this.find( "video, audio, iframe, object" );
+		$media = $this.find( "video, audio, iframe, object" ),
+		$player, $overlay;
 
-	media.after( window.tmpl( $this.data( "template" ), $data ) );
-	if ( type === "video" ) {
-		media.next( ".display" ).append( media );
-	} else {
-		media.next( ".display" ).remove();
+	$media.after( tmpl( $this.data( "template" ), data ) );
+	$overlay = $media.next().find( ".wb-mm-ovrly" ).after( $media );
+	if ( type !== "video" ) {
+		$overlay.remove();
 	}
 
-	$player = $( "#" + $data.mId );
-	$data.player = $player.is( "object" ) ? $player.children( ":first-child" ) : $player.load();
+	$player = $( "#" + data.mId );
+	data.player = $player.is( "object" ) ? $player.children( ":first-child" ) : $player;
 
 	// Create an adapter for the event management
-	$data.player.on( "durationchange play pause ended volumechange timeupdate captionsloaded captionsloadfailed captionsvisiblechange waiting canplay progress", function( event ) {
+	data.player.on( "durationchange play pause ended volumechange timeupdate " +
+		captionsLoadedEvent + " " + captionsLoadFailedEvent + " " +
+		captionsVisibleChangeEvent + " waiting canplay progress", function( event ) {
 		$this.trigger( event );
 	});
 
-	this.object = $data.ytPlayer || $player.get( 0 );
-	this.player = ( $data.ytPlayer ) ? youTubeApi : playerApi;
-	$this.data( "properties", $data );
+	this.object = data.ytPlayer || $player.get( 0 );
+	this.player = ( data.ytPlayer ) ? youTubeApi : playerApi;
+	$this.data( "properties", data );
 
-	if ( $data.captions === undef ) {
+	// Trigger the duration change for cases where the event was called before the event binding
+	if ( !isNaN( this.player( "getDuration" ) ) && type !== "youtube" ) {
+		data.player.trigger( "durationchange" );
+	}
+
+	// Load the progress polyfill if needed
+	$this.find( "progress" ).trigger( "wb-init.wb-progress" );
+
+	if ( data.captions === undef ) {
 		return 1;
 	}
 
@@ -663,19 +758,18 @@ $document.on( "click", selector, function( event ) {
 		return true;
 	}
 
-
 	// Opitmized multiple class tests to include child glyphicon because Safari was reporting the click event
 	// from the child span not the parent button, forcing us to have to check for both elements
 	// JSPerf for multiple class matching http://jsperf.com/hasclass-vs-is-stackoverflow/7
-	if ( className.match( /playpause|-play|-pause|wb-mm-overlay/ ) || $target.is( "object" ) ) {
-		this.player( "getPaused" ) ? this.player( "play") : this.player( "pause");
+	if ( className.match( /playpause|-play|-pause|wb-mm-ovrly/ ) || $target.is( "object" ) ) {
+		this.player( "getPaused" ) ? this.player( "play" ) : this.player( "pause" );
 	} else if ( className.match( /\bcc\b|-subtitles/ )  ) {
-		this.player( "setCaptionsVisible", !this.player( "getCaptionsVisible") );
+		this.player( "setCaptionsVisible", !this.player( "getCaptionsVisible" ) );
 	} else if ( className.match( /\bmute\b|-volume-(up|off)/ ) ) {
 		this.player( "setMuted", !this.player( "getMuted" ) );
-	} else if ( $target.is( "progress" ) || $target.hasClass( "wb-progress-inner") || $target.hasClass( "wb-progress-outer" ) ) {
+	} else if ( $target.is( "progress" ) || $target.hasClass( "progress" ) || $target.hasClass( "progress-bar" ) ) {
 		this.player( "setCurrentTime", this.player( "getDuration" ) * ( ( event.pageX - $target.offset().left ) / $target.width() ) );
-	} else if ( className.match( /\brewind\b|-backwards/ ) ) {
+	} else if ( className.match( /\brewind\b|-backward/ ) ) {
 		this.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05);
 	} else if ( className.match( /\bfastforward\b|-forward/ ) ) {
 		this.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05);
@@ -721,68 +815,54 @@ $document.on( "keydown", selector, function( event ) {
 
 $document.on( "keyup", selector, function( event ) {
 	if ( event.which === 32 ) {
-		//Allows the spacebar to be used for play/pause without double triggering
+		// Allows the spacebar to be used for play/pause without double triggering
 		return false;
 	}
 });
 
-$document.on( "durationchange play pause ended volumechange timeupdate captionsloaded.multimedia.wb captionsloadfailed.multimedia.wb captionsvisiblechange waiting canplay progress", selector, function( event ) {
+$document.on( "durationchange play pause ended volumechange timeupdate " +
+	captionsLoadedEvent + " " + captionsLoadFailedEvent + " " +
+	captionsVisibleChangeEvent +
+	" waiting canplay", selector, function( event, simulated ) {
+
 	var eventTarget = event.currentTarget,
 		eventType = event.type,
 		$this = $( eventTarget ),
-		currentTime,
-		button;
-
+		invStart = "<span class='wb-inv'>",
+		invEnd = "</span>",
+		currentTime, $button, buttonData, isPlay, getMuted, ref, skipTo;
 	switch ( eventType ) {
 	case "play":
-		button = $this.find( ".playpause .glyphicon" )
-			.removeClass( "glyphicon-play" )
-			.addClass( "glyphicon-pause" )
-			.parent();
-
-		button.attr( "title", button.data( "state-off" ) );
-
-		$this.find( ".wb-mm-ovrly" ).addClass( "playing" );
-
-		$this.find( ".progress" ).addClass( "active" );
-		break;
-
 	case "pause":
-		button = $this.find( ".playpause .glyphicon" )
-			.removeClass( "glyphicon-pause" )
-			.addClass( "glyphicon-play" )
-			.parent();
-
-		button.attr( "title", button.data( "state-on" ) );
-
-		$this.find( ".progress" ).removeClass( "active" );
-		break;
-
 	case "ended":
-		button = $this.find( ".playpause .glyphicon" )
-			.removeClass( "glyphicon-pause" )
-			.addClass( "glyphicon-play" )
-			.parent();
-
-		button.attr( "title", button.data( "state-on" ) );
-		$this.find( ".wb-mm-ovrly" ).removeClass( "playing" );
+		isPlay = eventType === "play";
+		$button = $this.find( ".playpause" );
+		buttonData = $button.data( "state-" + ( isPlay ? "off" : "on" ) );
+		if ( isPlay ) {
+			$this.find( ".wb-mm-ovrly" ).addClass( "playing" );
+			$this.find( ".progress" ).addClass( "active" );
+		} else if ( eventType === "ended" ) {
+			this.loading = clearTimeout( this.loading );
+			$this.find( ".wb-mm-ovrly" ).removeClass( "playing" );
+		}
+		$button
+			.attr( "title", buttonData )
+			.children( "span" )
+				.toggleClass( "glyphicon-play", !isPlay )
+				.toggleClass( "glyphicon-pause", isPlay )
+				.html( invStart + buttonData + invEnd );
 		break;
 
 	case "volumechange":
-		// TODO: Think can be optimized for the minifier with some ternaries
-		button = $this.find( ".mute .glyphicon" );
-		if ( eventTarget.player( "getMuted" ) ) {
-			button = button.removeClass( "glyphicon-volume-up" )
-				.addClass( "glyphicon-volume-off" )
-				.parent();
-
-			button.attr( "title" , button.data( "state-off" ) );
-		} else {
-			button = button.removeClass( "glyphicon-volume-off" )
-				.addClass( "glyphicon-volume-up" )
-				.parent();
-			button.attr( "title", button.data( "state-on" ) );
-		}
+		getMuted = eventTarget.player( "getMuted" );
+		$button = $this.find( ".mute" );
+		buttonData = $button.data( "state-" + ( getMuted ? "off" : "on" ) );
+		$button
+			.attr( "title", buttonData )
+			.children( "span" )
+				.toggleClass( "glyphicon-volume-up", !getMuted )
+				.toggleClass( "glyphicon-volume-off", getMuted )
+				.html( invStart + buttonData + invEnd );
 		break;
 
 	case "timeupdate":
@@ -791,12 +871,12 @@ $document.on( "durationchange play pause ended volumechange timeupdate captionsl
 			.attr(
 				"value",
 				Math.round( currentTime / eventTarget.player( "getDuration" ) * 1000 ) / 10
-			);
+			).trigger( "wb-update.wb-progress" );
 
-		$this.find( ".wb-mm-tmln-crrnt span" )
+		$this.find( ".wb-mm-tmln-crrnt span:nth-child(2)" )
 			.text( formatTime( currentTime ) );
 
-		if ( $.data( eventTarget, "captions" ) !== undef ) {
+		if ( $this.hasClass( captionClass ) && $.data( eventTarget, "captions" ) !== undef ) {
 			updateCaptions(
 				$this.find( ".wb-mm-cc" ),
 				currentTime,
@@ -806,15 +886,23 @@ $document.on( "durationchange play pause ended volumechange timeupdate captionsl
 		break;
 
 	case "durationchange":
-		$this.find( ".wb-mm-tmln-ttl span" )
+		$this.find( ".wb-mm-tmln-ttl span:nth-child(2)" )
 			.text( formatTime( eventTarget.player( "getDuration" ) ) );
+
+		// Skip to pointer from the querystring
+		ref = expand( this );
+		skipTo = wb.pageUrlParts.params[ ref[ 1 ].id ];
+		if ( skipTo ) {
+				skipTo = parseTime( skipTo );
+				eventTarget.player( "setCurrentTime", skipTo );
+		}
 		break;
 
-	case "captionsloaded":
+	case "ccloaded":
 		$.data( eventTarget, "captions", event.captions );
 		break;
 
-	case "captionsloadfailed":
+	case "ccloadfail":
 		$this.find( ".wb-mm-cc" )
 			.append( "<p class='errmsg'><span>" + i18nText.cc_error + "</span></p>" )
 			.end()
@@ -822,40 +910,59 @@ $document.on( "durationchange play pause ended volumechange timeupdate captionsl
 			.attr( "disabled", "" );
 		break;
 
-	case "captionsvisiblechange":
-		// TODO: Think can be optimized for the minifier with some ternarie
-		button = $this.find( ".cc" );
-		if ( eventTarget.player( "getCaptionsVisible" ) ) {
-			button.attr( "title", button.data( "state-on" ) )
-				.css( "opacity", "1" );
-		} else {
-			button.attr( "title", button.data( "state-off" ) )
-				.css( "opacity", ".5" );
-		}
+	case "ccvischange":
+		$button = $this.find( ".cc" );
+		buttonData = $button.data( "state-" + ( eventTarget.player( "getCaptionsVisible" ) ? "off" : "on" ) );
+		$button.attr( "title", buttonData ).children( "span" ).html( invStart + buttonData + invEnd );
 		break;
 
 	case "waiting":
-		$this.find( ".display" ).addClass( "waiting" );
+		if ( !simulated ) {
+			$document.off( "progress", selector );
+		}
+		this.loading = setTimeout( function() {
+			$this.find( ".display" ).addClass( "waiting" );
+		}, 500 );
 		break;
 
 	case "canplay":
+		this.loading = clearTimeout( this.loading );
 		$this.find( ".display" ).removeClass( "waiting" );
 		break;
-
-	// Fallback for browsers that don't implement the waiting events
-	case "progress":
-		// Waiting detected, display the loading icon
-		if ( this.player( "getPaused" ) === false && this.player( "getCurrentTime" ) === this.player( "getPreviousTime" ) && eventTarget.player( "getBuffering" ) === false ) {
-			eventTarget.player( "setBuffering", true );
-			$this.trigger( "waiting" );
-		// Waiting has ended, but icon is still visible - remove it.
-		} else if ( eventTarget.player( "getBuffering" ) === true ) {
-			eventTarget.player( "setBuffering", false );
-			$this.trigger( "canplay" );
-		}
-		eventTarget.player( "setPreviousTime", eventTarget.player( "getCurrentTime" ) );
-		break;
 	}
+});
+
+// Fallback for browsers that don't implement the waiting events
+$document.on( "progress", selector, function( event ) {
+	var eventTarget = event.currentTarget,
+		$this = $( eventTarget );
+
+	// Waiting detected
+	if ( this.player( "getPaused" ) === false && this.player( "getCurrentTime" ) === this.player( "getPreviousTime" ) ) {
+		if ( eventTarget.player( "getBuffering" ) === false ) {
+			eventTarget.player( "setBuffering", true );
+			$this.trigger( "waiting", true );
+		}
+
+	// Waiting has ended
+	} else if ( eventTarget.player( "getBuffering" ) === true ) {
+		eventTarget.player( "setBuffering", false );
+		$this.trigger( "canplay", true );
+	}
+	eventTarget.player( "setPreviousTime", eventTarget.player( "getCurrentTime" ) );
+});
+
+$document.on( resizeEvent, selector, function( event ) {
+	var $player = $( event.target ),
+		height = $player.attr( "height" ),
+		width = $player.attr( "width" ),
+		newHeight = Math.round( $player.width() * height / width );
+
+	//TODO: Remove this when captions works in chromeless api with controls
+	if ( $player.is( "iframe") ) {
+		newHeight += 30;
+	}
+	$player.attr( "style", "height:" + newHeight + "px" );
 });
 
 wb.add( selector );

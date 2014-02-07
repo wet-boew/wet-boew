@@ -5,7 +5,7 @@
 	"category": "Plugin",
 	"description": "Provides a consistent, accessible way of handling footnotes across websites.",
 	"tag": "footnotes",
-	"fr": "footnotes"
+	"altLangPrefix": "footnotes"
 }
 ---
 <section>
@@ -16,11 +16,11 @@
 <section>
 	<h2>Benefits</h2>
 	<ul>
-		<li>Conforms to WCAG 2.0 AA<sup id="fn2a-rf"><a class="fn-lnk" href="#fn2"><span class="wb-inv">Footnote </span>2</a></sup></li>
+		<li>Conforms to WCAG 2.0 AA<sup id="fn2-1-rf"><a class="fn-lnk" href="#fn2"><span class="wb-inv">Footnote </span>2</a></sup></li>
 		<li>Progressive enhancement approach</li>
-		<li>Support for Firefox, Opera, Safari, Chrome, and IE 7+<sup id="fn2b-rf"><a class="fn-lnk" href="#fn2"><span class="wb-inv">Footnote </span>2</a></sup></li>
+		<li>Support for Firefox, Opera, Safari, Chrome, and IE 7+<sup id="fn2-2-rf"><a class="fn-lnk" href="#fn2"><span class="wb-inv">Footnote </span>2</a></sup></li>
 		<li>Support for English and French</li>
-		<li>Configurable layout and design<sup id="fn2c-rf"><a class="fn-lnk" href="#fn2"><span class="wb-inv">Footnote </span>2</a></sup>&#160;<sup id="fn3-rf"><a class="fn-lnk" href="#fn3"><span class="wb-inv">Footnote </span>3</a></sup></li>
+		<li>Configurable layout and design<sup id="fn2-3-rf"><a class="fn-lnk" href="#fn2"><span class="wb-inv">Footnote </span>2</a></sup>&#160;<sup id="fn3-rf"><a class="fn-lnk" href="#fn3"><span class="wb-inv">Footnote </span>3</a></sup></li>
 	</ul>
 </section>
 
@@ -31,40 +31,38 @@
 	</ul>
 </section>
 
-<div class="wb-fnote" role="note">
-	<section>
-		<h2 id="fn" class="wb-inv">Footnotes</h2>
-		<dl>
-			<dt>Footnote 1</dt>
-			<dd id="fn1">
-				<p>Example of a standard footnote.</p>
-				<p class="fn-rtn">
-					<a href="#fn1-rf"><span class="wb-inv">Return to footnote </span>1<span class="wb-inv"> referrer</span></a>
-				</p>
-			</dd>
-			<dt>Footnote 2</dt>
-			<dd id="fn2">
-				<p>Example of a footnote being referenced by multiple pieces of content.</p>
-				<p class="fn-rtn">
-					<a href="#fn2a-rf"><span class="wb-inv">Return to <span>first</span> footnote </span>2<span class="wb-inv"> referrer</span></a>
-				</p>
-			</dd>
-			<dt>Footnote 3</dt>
-			<dd id="fn3">
-				<p>Example of a footnote containing multiple paragraphs (first paragraph).</p>
-				<p>Example of a footnote containing multiple paragraphs (second paragraph).</p>
-				<p>Example of a footnote containing multiple paragraphs (third paragraph).</p>
-				<p class="fn-rtn">
-					<a href="#fn3-rf"><span class="wb-inv">Return to footnote </span>3<span class="wb-inv"> referrer</span></a>
-				</p>
-			</dd>
-			<dt>Footnote *</dt>
-			<dd id="fn*">
-				<p>Example of a standard footnote, denoted by a symbol.</p>
-				<p class="fn-rtn">
-					<a href="#fn*-rf"><span class="wb-inv">Return to footnote </span>*<span class="wb-inv"> referrer</span></a>
-				</p>
-			</dd>
-		</dl>
-	</section>
-</div>
+<section class="wb-fnote" role="note">
+	<h2 id="fn">Footnotes</h2>
+	<dl>
+		<dt>Footnote 1</dt>
+		<dd id="fn1">
+			<p>Example of a standard footnote.</p>
+			<p class="fn-rtn">
+				<a href="#fn1-rf"><span class="wb-inv">Return to footnote </span>1<span class="wb-inv"> referrer</span></a>
+			</p>
+		</dd>
+		<dt>Footnote 2</dt>
+		<dd id="fn2">
+			<p>Example of a footnote being referenced by multiple pieces of content.</p>
+			<p class="fn-rtn">
+				<a href="#fn2-1-rf"><span class="wb-inv">Return to <span>first</span> footnote </span>2<span class="wb-inv"> referrer</span></a>
+			</p>
+		</dd>
+		<dt>Footnote 3</dt>
+		<dd id="fn3">
+			<p>Example of a footnote containing multiple paragraphs (first paragraph).</p>
+			<p>Example of a footnote containing multiple paragraphs (second paragraph).</p>
+			<p>Example of a footnote containing multiple paragraphs (third paragraph).</p>
+			<p class="fn-rtn">
+				<a href="#fn3-rf"><span class="wb-inv">Return to footnote </span>3<span class="wb-inv"> referrer</span></a>
+			</p>
+		</dd>
+		<dt>Footnote *</dt>
+		<dd id="fn*">
+			<p>Example of a standard footnote, denoted by a symbol.</p>
+			<p class="fn-rtn">
+				<a href="#fn*-rf"><span class="wb-inv">Return to footnote </span>*<span class="wb-inv"> referrer</span></a>
+			</p>
+		</dd>
+	</dl>
+</section>

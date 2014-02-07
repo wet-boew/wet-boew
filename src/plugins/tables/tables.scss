@@ -124,6 +124,11 @@ table {
 // Filter
 .dataTables_filter {
 	@extend %tables-float-right-text-align-right;
+	input {
+		&::-ms-clear {
+			display: none;
+		}
+	}
 }
 
 // Table information
@@ -147,9 +152,6 @@ table {
 	float: left;
 	cursor: pointer;
 	color: #111 !important;
-	&:hover, &:focus {
-		text-decoration: none !important;
-	}
 
 	&:active {
 		@extend %tables-outline-none;
@@ -203,10 +205,6 @@ table {
 		&:active {
 			@extend %tables-outline-none;
 		}
-		&:hover, &:focus {
-			text-decoration: none;
-		}
-
 		&.paginate_button {
 			@extend %tables-paginate-button-active;
 			background-color: #ddd;
@@ -290,4 +288,53 @@ table {
 
 .dataTables_scrollBody {
 	-webkit-overflow-scrolling: touch;
+}
+
+%tables-sorting-text-align-right {
+	text-align: right;
+}
+%tables-sorting-margin-left-0-margin-right-5 {
+	margin-left: 0;
+	margin-right: 5px;
+}
+%tables-th-padding-right-8-padding-left-15em {
+	padding-right: 8px;
+	padding-left: 15em;
+}
+[dir=rtl] {
+	.sorting {
+		@extend %tables-sorting-text-align-right;
+		&:after {
+			@extend %tables-sorting-margin-left-0-margin-right-5;
+		}
+	}
+
+	.sorting_asc {
+		@extend %tables-sorting-text-align-right;
+		&:after {
+			@extend %tables-sorting-margin-left-0-margin-right-5;
+		}
+	}
+
+	.sorting_desc {
+		@extend %tables-sorting-text-align-right;
+		&:after {
+			@extend %tables-sorting-margin-left-0-margin-right-5;
+		}
+	}
+
+	table {
+		&.dataTable {
+			thead {
+				th {
+					@extend %tables-th-padding-right-8-padding-left-15em;
+				}
+			}
+			tfoot {
+				th {
+					@extend %tables-th-padding-right-8-padding-left-15em;
+				}
+			}
+		}
+	}
 }

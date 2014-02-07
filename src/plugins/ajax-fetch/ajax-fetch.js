@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Ajax Fetch [ ajax-fetch ]
  * @overview A basic AjaxLoader wrapper for WET-BOEW
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -15,9 +15,9 @@
  */
 var $document = wb.doc,
 
-	/*
+	/**
 	 * @method generateSerial
-	 * @param {integer} Length of the random string to be generated
+	 * @param {integer} len Length of the random string to be generated
 	 */
 	generateSerial = function( len ) {
 		var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz",

@@ -2,10 +2,36 @@
 {
 	"title": "Exemples pratiques",
 	"language": "fr",
-	"en": "index"
+	"altLangPrefix": "index",
+	"themes": [
+		{
+			"tag": "theme-wet-boew",
+			"title": "Thème de la BOEW",
+			"description": "Un exemple de thème conçu à partir du thème de base.",
+			"href": "../theme/index-fr.html"
+		},
+		{
+			"tag": "theme-gcwu-fegc",
+			"title": "Thème de la facilité d’emploi Web du gouvernement du Canada",
+			"description": "Ce thème met en place la mise en page et la mise en forme exigés par la <a href=\"http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=24227\" rel=\"external\">Norme sur la facilité des sites Web</a>. Il est recommandé de se servir de ce thème sur les sites Web du gouvernement du Canada (sauf Canada.ca).",
+			"href": "/themes-dist/theme-gcwu-fegc/index-fr.html"
+		},
+		{
+			"tag": "theme-gc-intranet",
+			"title": "Thème du gouvernement du Canada pour les sites intranet",
+			"description": "Une version du thème de la facilité d'emploi des sites Web du gouvernement du Canada pour les sites intranet.",
+			"href": "/themes-dist/theme-gc-intranet/index-fr.html"
+		},
+		{
+			"tag": "GCWeb",
+			"title": "Thème Canada.ca",
+			"description": "Ce thème met en place la mise en page et la mise en forme exigés pour le site Canada.ca.",
+			"href": "/GCWeb/dist/index-fr.html"
+		}
+	]
 }
 ---
-<table id="components" class="wb-prettify wb-tables table table-striped table-hover wb-inview" data-wet-boew='{"aoColumnDefs": [ { "bVisible": false, "aTargets": [ 3 ] } ], "aLengthMenu": [[10, 25, -1], [10, 25, "All"]], "iDisplayLength": -1 }'>
+<table id="components" class="wb-tables table table-striped table-hover" data-wet-boew='{"aoColumnDefs": [ { "bVisible": false, "aTargets": [ 3 ] } ], "aLengthMenu": [[10, 25, -1], [10, 25, "Toutes les"]], "iDisplayLength": -1 }'>
 	<thead>
 		<tr>
 			<th>Nom</th>
@@ -26,6 +52,14 @@
 					</tr>
 				{{/if}}
 			{{/is}}
+		{{/withSort}}
+		{{#withSort themes "title"}}
+			<tr>
+				<td><a href="{{href}}">{{title}}</a></td>
+				<td>Theme and style</td>
+				<td>{{{description}}}</td>
+				<td>{{tag}}</td>
+			</tr>
 		{{/withSort}}
 	</tbody>
 </table>

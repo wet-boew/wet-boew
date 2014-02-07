@@ -15,11 +15,11 @@
 			> a {
 				color: #fff;
 				padding: 1em;
-				border-left: 2px ridge #284468;
+				border-right: 2px ridge #284468;
 			}
-			&:last-child {
+			&:first-child {
 				a {
-					border-right: 2px ridge #284468;
+					border-left: 2px ridge #284468;
 				}
 			}
 		}
@@ -200,14 +200,14 @@
 					}
 				}
 			}
-			&:target .wb-nav {
+			&:target .wb-info {
 				background: #1b3452;
 				padding: 20px 0;
 				font-size: 14px;
 				color: #90a4b4;
 			}
 		}
-		.wb-nav {
+		.wb-info {
 			> ul > li {
 				padding: 0 10px 0 25px;
 			}

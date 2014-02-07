@@ -18,52 +18,47 @@ describe( "Session Timeout test suite", function() {
 
 	var clock,
 		server,
-		spies = {};
+		spies = {},
+		sandbox = sinon.sandbox.create();
 
 	/*
-	 * Before begining the test suite, this function is exectued once.
+	 * Before beginning the test suite, this function is executed once.
 	 */
 	before(function( done ) {
+
+		// Give the magnificPopup dependency a chance to load
+		setTimeout( done, 1000 );
+
 		// Spy on jQuery's trigger and post methods
-		spies.trigger = sinon.spy( $.prototype, "trigger" );
-		spies.post = sinon.spy( $, "post" );
+		spies.trigger = sandbox.spy( $.prototype, "trigger" );
+		spies.post = sandbox.spy( $, "post" );
 
 		// Fake server to test POST requests
-		server = sinon.fakeServer.create();
+		server = sandbox.useFakeServer();
 
 		// Use a fake timer (allows for easy testing of setTimeout calls)
-		clock = sinon.useFakeTimers();
+		clock = sandbox.useFakeTimers();
 
-		// Wait for the reset event from the plugin's init method before beginning the test
-		$( ".wb-session-timeout" )
+		// Initialize the test data
+		$( ".wb-sessto" )
 			.data( "wet-boew", {
-				"inactivity": 10000,
-				"sessionalive": 10000,
-				"refreshOnClick": true,
-				"refreshLimit": 42000
-			})
-			.on( "reset.wb-session-timeout", function() {
-				done();
+				inactivity: 10000,
+				sessionalive: 10000,
+				refreshOnClick: true,
+				refreshLimit: 42000
 			});
 
-		wb.doc.on( "show.wb-modal", function() {
-			$( ".wb-session-timeout-confirm.btn-primary" ).trigger( "click" );
+		wb.doc.on( "inactivity.wb-sessto", function() {
+			$( ".wb-sessto-confirm.btn-primary" ).trigger( "click" );
 		});
 	});
 
 	/*
-	 * After finishing the test suite, this function is exectued once.
+	 * After finishing the test suite, this function is executed once.
 	 */
 	after(function() {
-		// Restore the original behaviour of trigger and post once the tests are finished
-		$.prototype.trigger.restore();
-		$.post.restore();
-
-		// Restore server
-		server.restore();
-
-		// Restore the global clock
-		clock.restore();
+		// Restore the original behaviour of spies, server and timer
+		sandbox.restore();
 	});
 
 	/*
@@ -71,15 +66,17 @@ describe( "Session Timeout test suite", function() {
 	 */
 	describe( "init events", function() {
 
-		it( "should trigger reset.wb-session-timeout event", function() {
-			expect( spies.trigger.calledWith( "reset.wb-session-timeout" ) ).to.equal( true );
+		it( "should trigger reset.wb-sessto event", function() {
+			expect( spies.trigger.calledWith( "reset.wb-sessto" ) ).to.equal( true );
 		});
 
-		it( "should have been triggered on a .wb-session-timeout element", function() {
-			var len = spies.trigger.thisValues.length,
-				isSelector = false;
+		it( "should have been triggered on a .wb-sessto element", function() {
+			var elm,
+				isSelector = false,
+				len = spies.trigger.thisValues.length;
 			while ( !isSelector && len-- ) {
-				isSelector = spies.trigger.thisValues[len][0].className.indexOf( "wb-session-timeout" ) > -1;
+				elm = spies.trigger.thisValues[len][0];
+				isSelector = elm && elm.className && elm.className.indexOf( "wb-sessto" ) > -1;
 			}
 			expect( isSelector ).to.equal( true );
 		});
@@ -91,41 +88,33 @@ describe( "Session Timeout test suite", function() {
 			spies.trigger.reset();
 		});
 
-		it( "should trigger inactivity.wb-session-timeout after 10000ms", function() {
+		it( "should trigger inactivity.wb-sessto after 10000ms", function() {
 			clock.tick( 10010 );
-			expect( spies.trigger.calledWith( "inactivity.wb-session-timeout" ) ).to.equal( true );
+			expect( spies.trigger.calledWith( "inactivity.wb-sessto" ) ).to.equal( true );
 		});
 
-		it( "should trigger keepalive.wb-session-timeout event after 10000ms", function() {
-			expect( spies.trigger.calledWith( "keepalive.wb-session-timeout" ) ).to.equal( true );
+		it( "should trigger keepalive.wb-sessto event after 10000ms", function() {
+			expect( spies.trigger.calledWith( "keepalive.wb-sessto" ) ).to.equal( true );
 		});
 
-		it( "should trigger reset.wb-session-timeout event after 10000ms", function() {
-			expect( spies.trigger.calledWith( "reset.wb-session-timeout" ) ).to.equal( true );
-		});
-
-		it( "should trigger build.wb-modal event after 10000ms", function() {
-			expect( spies.trigger.calledWith( "build.wb-modal" ) ).to.equal( true );
-		});
-
-		it( "should trigger show.wb-modal event after 10000ms", function() {
-			expect( spies.trigger.calledWith( "show.wb-modal" ) ).to.equal( true );
+		it( "should trigger reset.wb-sessto event after 10000ms", function() {
+			expect( spies.trigger.calledWith( "reset.wb-sessto" ) ).to.equal( true );
 		});
 
 		it( "should not have triggered inactivity events 19950ms", function() {
 			spies.trigger.reset();
 			clock.tick( 9940 );
-			expect( spies.trigger.calledWith( "inactivity.wb-session-timeout" ) ).to.equal( false );
-			expect( spies.trigger.calledWith( "keepalive.wb-session-timeout" ) ).to.equal( false );
-			expect( spies.trigger.calledWith( "reset.wb-session-timeout" ) ).to.equal( false );
+			expect( spies.trigger.calledWith( "inactivity.wb-sessto" ) ).to.equal( false );
+			expect( spies.trigger.calledWith( "keepalive.wb-sessto" ) ).to.equal( false );
+			expect( spies.trigger.calledWith( "reset.wb-sessto" ) ).to.equal( false );
 		});
 
 		it( "should have triggered inactivity events after 20000ms", function() {
 			spies.trigger.reset();
 			clock.tick( 100 );
-			expect( spies.trigger.calledWith( "inactivity.wb-session-timeout" ) ).to.equal( true );
-			expect( spies.trigger.calledWith( "keepalive.wb-session-timeout" ) ).to.equal( true );
-			expect( spies.trigger.calledWith( "reset.wb-session-timeout" ) ).to.equal( true );
+			expect( spies.trigger.calledWith( "inactivity.wb-sessto" ) ).to.equal( true );
+			expect( spies.trigger.calledWith( "keepalive.wb-sessto" ) ).to.equal( true );
+			expect( spies.trigger.calledWith( "reset.wb-sessto" ) ).to.equal( true );
 		});
 
 		it( "has no refreshCallbackUrl so should not call $.post", function() {
@@ -136,65 +125,67 @@ describe( "Session Timeout test suite", function() {
 
 	describe( "refresh onclick", function() {
 
-		before(function(){
+		before(function() {
 			// Reset the state of the spies
 			spies.trigger.reset();
 			spies.post.reset();
 		});
 
-		it( "should trigger keepalive.wb-session-timeout on document click", function() {
+		it( "should trigger keepalive.wb-sessto on document click", function() {
 			clock.tick( 42010 );
 			wb.doc.trigger( "click" );
-			expect( spies.trigger.calledWith( "keepalive.wb-session-timeout" ) ).to.equal( true );
+			expect( spies.trigger.calledWith( "keepalive.wb-sessto" ) ).to.equal( true );
 		});
 
-		it( "should trigger reset.wb-session-timeout on document click", function() {
-			expect( spies.trigger.calledWith( "reset.wb-session-timeout" ) ).to.equal( true );
+		it( "should trigger reset.wb-sessto on document click", function() {
+			expect( spies.trigger.calledWith( "reset.wb-sessto" ) ).to.equal( true );
 		});
 
 		it( "has no refreshCallbackUrl so should not call $.post", function() {
 			expect( spies.post.called ).to.equal( false );
 		});
 
-		it( "should not trigger keepalive.wb-session-timeout on document click (refresh limit prevents)", function() {
+		it( "should not trigger keepalive.wb-sessto on document click (refresh limit prevents)", function() {
 			spies.trigger.reset();
 
 			wb.doc.trigger( "click" );
-			expect( spies.trigger.calledWith( "keepalive.wb-session-timeout" ) ).to.equal( false );
+			expect( spies.trigger.calledWith( "keepalive.wb-sessto" ) ).to.equal( false );
 		});
 
-		it( "should trigger keepalive.wb-session-timeout on document click (refresh limit allows)", function() {
+		it( "should trigger keepalive.wb-sessto on document click (refresh limit allows)", function() {
 			spies.trigger.reset();
 			clock.tick( 42010 );
 
 			wb.doc.trigger( "click" );
-			expect( spies.trigger.calledWith( "keepalive.wb-session-timeout" ) ).to.equal( true );
+			expect( spies.trigger.calledWith( "keepalive.wb-sessto" ) ).to.equal( true );
 		});
 	});
 
 	describe( "refreshCallbackUrl", function() {
 
-		before(function( done ){
+		before(function( done ) {
+
 			// Setup the fake server response for all POST requests to foo.html
 			server.respondWith( "POST", "foo.html", "true" );
 
-			$( ".wb-session-timeout" )
+			$( ".wb-sessto" )
+				.removeClass( "wb-sessto-inited" )
 				.data( "wet-boew", {
-					"sessionalive": 5000,
-					"refreshCallbackUrl": "foo.html"
+					sessionalive: 5000,
+					refreshCallbackUrl: "foo.html"
 				})
-				.on( "reset.wb-session-timeout", function() {
+				.on( "reset.wb-sessto", function() {
 					done();
 				})
-				.trigger( "timerpoke.wb" );
+				.trigger( "wb-init.wb-sessto" );
 		});
 
-		it( "should trigger keepalive.wb-session-timeout after 5000ms", function() {
+		it( "should trigger keepalive.wb-sessto after 5000ms", function() {
 			spies.trigger.reset();
 			spies.post.reset();
 
 			clock.tick( 5010 );
-			expect( spies.trigger.calledWith( "keepalive.wb-session-timeout" ) ).to.equal( true );
+			expect( spies.trigger.calledWith( "keepalive.wb-sessto" ) ).to.equal( true );
 		});
 
 		it( "has refreshCallbackUrl so should call $.post", function() {
@@ -202,9 +193,9 @@ describe( "Session Timeout test suite", function() {
 			expect( spies.post.calledWith( "foo.html" ) ).to.equal( true );
 		});
 
-		it( "successful response triggers reset.wb-session-timeout event", function() {
+		it( "successful response triggers reset.wb-sessto event", function() {
 			server.respond();
-			expect( spies.trigger.calledWith( "reset.wb-session-timeout" ) ).to.equal( true );
+			expect( spies.trigger.calledWith( "reset.wb-sessto" ) ).to.equal( true );
 		});
 	});
 

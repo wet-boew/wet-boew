@@ -5,36 +5,58 @@
 	"category": "Plugin",
 	"description": "Helps Web asset owners to provide session timeout and inactivity timeout functionality.",
 	"tag": "session-timeout",
-	"fr": "session-timeout"
+	"altLangPrefix": "session-timeout"
 }
 ---
 
-<span class="wb-session-timeout wb-modal" data-wet-boew='{"inactivity": 30000, "logouturl": "../index-en.html"}'></span>
-<section>
-	<h2>Overview</h2>
-	<p>This sub project will help web asset owners provide session timeout and inactivity timeout functionality. When a user requests a page with this plugin implemented their session will begin. After the specified session period, they will be notified that their session is about to timeout. At this point, they will have the option to remain logged in by clicking "OK", or logging out by clicking "Cancel". At anytime during the session, if the user remains idle for a specified amount of time, they will be notified that they're session is about to time out. In either case, if the user does not respond to the timeout notification within a specified amount of time, once they click either "OK" or "Cancel" they will be automatically redirected to the log out page.</p>
-	<p>The code you're allowed to edit (within the page) is:</p>
-	<p><code>&lt;span class="wb-session-timeout wb-modal" data-wet-boew='{"inactivity": 1200000, "reactionTime": 30000, "sessionalive": 1200000, "logouturl": "./", "refreshCallbackUrl": "./"}'&gt;&lt;/span&gt;</code></p>
-	<p>This allows you to configure the plugin:</p>
-	<ul>
-		<li><strong>inactivity:</strong> This is the inactivity period of time after which the dialog message will appear.</li>
-		<li><strong>reactionTime:</strong> This is the period of time the user has to perform an action with the dialog message.</li>
-		<li><strong>sessionalive:</strong> This is the period of time for the session to stay alive until the dialog message appears.</li>
-		<li><strong>logouturl:</strong> This is the URL that users are sent to when the session has expired.</li>
-		<li><strong>refreshCallbackUrl:</strong> This is the URL to perform an ajax refresh, must return true/false.</li>
-	</ul>
-	<p>The only required parameter is logouturl, all other fields are optional. The default code would be:</p>
-	<p><code>&lt;span class="wb-session-timeout wb-modal"&gt; data-wet-boew='{logouturl: "./"}'&gt;&lt;/span&gt;</code></p>
-	<p><strong>IMPORTANT NOTE:</strong> The inactivity, reactionTime and sessionalive parameters are set in milliseconds. The only required parameter is the logouturl. The default inactivity and sessionalive is set to 20 minutes with a 30 second confirmation time with the dialog message. The refreshCallbackUrl must not be a page containing the timeout function again as a loop will be created, it should be simply a viewless page that refreshes the session.</p>
-	<p>Need help with the conversion? See: <a href="http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm" rel="external">http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm</a></p>
-	<p><strong>IMPORTANT NOTE</strong>: Your sessionalive and inactivity parameters should be equal to your web server session alive time minus the reactionTime time. If you set your sessionalive time and inactivity time to the same as your web server without taking into consideration the reactionTime time then the session will have ended by the server as soon as the popup appears to extend the session.</p>
-</section>
-<section>
-	<h2>How do I use it?</h2>
-	<p>Add the following to the page:</p>
-	<p><code>&lt;span class="wb-session-timeout wb-modal" data-wet-boew='{logouturl: "./"}'&gt;&lt;/span&gt;</code></p>
-</section>
-<section>
-	<h2>Try it out!</h2>
-	<p>This page has a 30 seconds inactivity timeout period. You also have 30 seconds to confirm if you want to keep the session alive. Please wait for the prompt to appear.</p>
-</section>
+<span class="wb-sessto" data-wet-boew='{"inactivity": 30000, "logouturl": "../index-en.html"}'></span>
+
+<div class="alert alert-info">
+	<strong>Purpose:</strong> create an inactivity timeout that warns users when their session is about to expire.
+</div>
+
+<div class="row">
+
+	<div class="col-md-3">
+		<div class="list-group">
+			<a href="#overview" class="list-group-item">Overview</a>
+			<a href="#how" class="list-group-item">How do I use it?</a>
+			<a href="#try" class="list-group-item">Try it out!</a>
+		</div>
+	</div>
+
+	<div class="col-md-9">
+
+		<section class="wb-prettify all-pre">
+			<h2 id="overview" class="mrgn-tp-0">Overview</h2>
+			<p>This plugin helps web page owners by providing session timeout and inactivity timeout functionality. When a user requests a page with this plugin implemented their session will begin. After the specified session period, they will be notified that their session is about to timeout. At this point, they will have the option to remain logged in by clicking "Continue session", or signing out by clicking "End session now".</p>
+			<p>At anytime during the session, if the user remains idle for a specified amount of time, they will be notified that they're session is about to timeout. In either case, if the user does not respond to the timeout notification within a specified amount of time, once they click either "Continue session" or "End session now" they will be automatically redirected to the sign out page.</p>
+			<p>The plugin is setup using the following HTML:</p>
+			
+			<pre><code>&lt;span class="wb-sessto" data-wet-boew='{"inactivity": 1200000, "reactionTime": 30000, "sessionalive": 1200000, "logouturl": "./", "refreshCallbackUrl": "./"}'&gt;&lt;/span&gt;</code></pre>
+
+			<p>This allows you to configure the plugin:</p>
+			<ul>
+				<li><strong>inactivity:</strong> inactivity period of time after which the modal dialog will appear (default 20 minutes).</li>
+				<li><strong>reactionTime:</strong> period of time the user has to perform an action once the modal dialog is displayed (default 3 minutes).</li>
+				<li><strong>sessionalive:</strong> period of time for the session to stay alive until the modal dialog appears (default 20 minutes).</li>
+				<li><strong>logouturl:</strong> URL that users are sent to when the session has expired.</li>
+				<li><strong>refreshCallbackUrl:</strong> URL used to perform an ajax refresh. Must be a viewless page that returns "true" to indicate session is still valid.</li>
+			</ul>
+			<p>The only required parameter is logouturl, all other fields are optional. The default plugin code is:</p>
+			<pre><code>&lt;span class="wb-sessto" data-wet-boew='{logouturl: "./"}'&gt;&lt;/span&gt;</code></pre>
+			<p><strong>Note:</strong> The inactivity, reactionTime and sessionalive parameters are set in milliseconds.  For help with the time values, use this <a href="http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm" rel="external">time converter</a>.</p>
+			<p><strong>Note:</strong> Your sessionalive and inactivity parameters should be equal to your web server session alive time minus the reactionTime time. If you set your sessionalive time and inactivity time to the same as your web server without taking into consideration the reactionTime time then the session will have ended by the server as soon as the popup appears to extend the session.</p>
+		</section>
+		<section>
+			<h2 id="how">How do I use it?</h2>
+			<p>Add the following to the page:</p>
+			<pre><code>&lt;span class="wb-sessto" data-wet-boew='{logouturl: "./"}'&gt;&lt;/span&gt;</code></pre>
+		</section>
+		<section>
+			<h2 id="try">Try it out!</h2>
+			<p>This page has a 30 seconds inactivity timeout period. You also have 30 seconds to confirm if you want to keep the session alive. Please wait for the prompt to appear.</p>
+		</section>
+
+	</div>
+</div>

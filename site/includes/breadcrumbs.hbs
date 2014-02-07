@@ -4,11 +4,45 @@
 			<li>
 				<a href="{{assets}}/index-{{language}}.html">{{#i18n "tmpl-home"}}{{/i18n}}</a>
 			</li>
-{{#unless_eq assets compare=".."}}
+{{#isnt assets ".."}}
+	{{#contains page.src "/demos/"}}
 			<li>
 				<a href="{{assets}}/demos/index-{{language}}.html">{{#i18n "tmpl-work-examples"}}{{/i18n}}</a>
 			</li>
-{{/unless_eq}}
+		{{#is breadcrumb3 "true"}}
+			<li>
+				<a href="{{assets}}/demos/{{tag}}/index-{{language}}.html">{{breadcrumb3-title}}</a>
+			</li>
+		{{/is}}
+	{{/contains}}
+	{{#contains page.src "/docs/versions/"}}
+		{{#contains page.src "/index"}}
+		{{else}}
+			<li>
+				<a href="{{assets}}/docs/versions/index-{{language}}.html">{{#i18n "tmpl-version-history"}}{{/i18n}}</a>
+			</li>
+		{{/contains}}
+	{{else}}
+		{{#contains page.src "/docs/"}}
+			<li>
+				<a href="{{assets}}/docs/index-{{language}}.html">{{#i18n "tmpl-documentation"}}{{/i18n}}</a>
+			</li>
+			{{#contains page.src "/gs-cd/"}}
+				{{#contains page.src "/index"}}
+				{{else}}
+			<li>
+				<a href="{{assets}}/docs/gs-cd/index-{{language}}.html">{{#i18n "tmpl-getting-started"}}{{/i18n}}</a>
+			</li>
+				{{/contains}}
+			{{/contains}}
+			{{#if page.componentType}}
+			<li>
+				<a href="{{assets}}/docs/{{page.componentType}}-{{language}}.html">{{#i18n "tmpl-#{page.componentType}"}}{{/i18n}}</a>
+			</li>
+			{{/if}}
+		{{/contains}}
+	{{/contains}}
+{{/isnt}}
 			<li>{{title}}</li>
 		</ol>
 	</div>

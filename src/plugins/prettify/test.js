@@ -1,4 +1,4 @@
-/*
+/**
  * @title Prettify Plugin Unit Tests
  * @overview Test the Prettify plugin behaviour
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -14,14 +14,15 @@
  * teardown `after()` for more than one test suite (as is the case below.)
  */
 describe( "Prettify test suite", function() {
-	var spy;
+	var spy,
+		sandbox = sinon.sandbox.create();
 
 	/*
-	 * Before begining the test suite, this function is exectued once.
+	 * Before beginning the test suite, this function is executed once.
 	 */
 	before(function(done) {
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
-		spy = sinon.spy( $.prototype, "trigger" );
+		spy = sandbox.spy( $.prototype, "trigger" );
 
 		// Start the tests once the plugin has been initialized
 		$( ".wb-prettify" ).removeClass( "all-pre" );
@@ -31,11 +32,11 @@ describe( "Prettify test suite", function() {
 	});
 
 	/*
-	 * After finishing the test suite, this function is exectued once.
+	 * After finishing the test suite, this function is executed once.
 	 */
 	after(function() {
 		// Restore the original behaviour of trigger once the tests are finished
-		$.prototype.trigger.restore();
+		sandbox.restore();
 
 		// Remove test data from the page
 		$( "pre.test" ).remove();
@@ -51,7 +52,7 @@ describe( "Prettify test suite", function() {
 		});
 
 		it( "should have been triggered on a .wb-prettify element", function() {
-			var call, i, j, lenCalls, lenElms,
+			var call, elm, i, j, lenCalls, lenElms,
 				isSelector = false;
 
 			// Loop over calls made on the trigger() spy
@@ -59,7 +60,8 @@ describe( "Prettify test suite", function() {
 				call = spy.getCall( i );
 				// There may be multiple `this` objects for each call
 				for ( j = 0, lenElms = call.thisValue.length; !isSelector && j < lenElms; j += 1 ) {
-					isSelector = call.thisValue[ j ].className.indexOf( "wb-prettify" ) > -1;
+					elm = call.thisValue[ j ];
+					isSelector = elm.className && elm.className.indexOf( "wb-prettify" ) > -1;
 				}
 			}
 			expect( isSelector ).to.equal( true );
@@ -102,11 +104,12 @@ describe( "Prettify test suite", function() {
 		before(function( done ) {
 
 			$( "body" ).append( "<pre class='test'>" );
-			$(".wb-prettify")
-				.addClass("lang-sql")
-				.addClass("all-pre")
-				.addClass("linenums")
-				.trigger("timerpoke.wb");
+			$( ".wb-prettify" )
+				.removeClass( "wb-prettify-inited" )
+				.addClass( "lang-sql" )
+				.addClass( "all-pre" )
+				.addClass( "linenums" )
+				.trigger( "wb-init.wb-prettify" );
 			wb.doc.on( "prettyprint.wb-prettify", function() {
 				done();
 			});
@@ -137,12 +140,13 @@ describe( "Prettify test suite", function() {
 		before(function( done ) {
 
 			$( "body" ).append( "<pre class='test'>" );
-			$(".wb-prettify")
+			$( ".wb-prettify" )
+				.removeClass( "wb-prettify-inited" )
 				.data({
-					"allpre": true,
-					"linenums": true
+					allpre: true,
+					linenums: true
 				})
-				.trigger("timerpoke.wb");
+				.trigger( "wb-init.wb-prettify" );
 			wb.doc.on( "prettyprint.wb-prettify", function() {
 				done();
 			});

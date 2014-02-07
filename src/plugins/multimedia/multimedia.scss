@@ -2,7 +2,11 @@
   Multimedia Player Code
  */
 
- @keyframes spin {
+%multimedia-display-none {
+	display: none;
+}
+
+@keyframes spin {
 	from {
 		transform: rotate(0deg);
 	}
@@ -24,6 +28,11 @@
 	margin: auto;
 }
 
+%captions_hidden {
+	padding: 0;
+	max-height: 0;
+}
+
 .wb-mltmd {
 	// lets fight the FOUC
 	// base state
@@ -40,25 +49,24 @@
 		color: #fff;
 	}
 	progress, .btn {
-		&:focus { 
-			outline: #fff thin dotted; 
+		&:focus {
+			outline: #fff thin dotted;
 		}
 	}
 
 	.display {
 		position: relative;
-		padding-bottom: 52.25%;
-		padding-top: 22px;
 		background: #000;
-		height: 0;
-		iframe, video, object, embed, .wb-mm-ovrly {
+		.wb-mm-ovrly {
 			position: absolute;
-			top: 0;
-			left: 0;
 			width: 100%;
 			height: 100%;
+			z-index: 1;
 		}
-
+		video, object, iframe {
+			width: 100%;
+			margin-bottom: -7px;
+		}
 		&.waiting {
 			&:after{
 				@extend %multimedia_loading;
@@ -68,7 +76,7 @@
 				animation-iteration-count: infinite;
 				animation-timing-function: linear;
 				z-index:2;
-			} 
+			}
 
 			&:before {
 				@extend %multimedia_loading;
@@ -80,6 +88,7 @@
 	}
 	.wb-mm-ovrly {
 		background: transparent;
+		direction: ltr;
 		text-indent: -9999px;
 		border: 0;
 		padding: 0;
@@ -96,11 +105,31 @@
 		}
 	}
 
-	&[data-youtube] {
-		.wb-mm-ovrly { 
-			visibility: hidden;
+	&.cc_on {
+		.wb-mm-cc {
+			padding: 0.5em;
+			max-height: 999em;
+		}
+
+		.cc {
+			opacity: 1;
+		}
+
+		&.youtube {
+			.wb-mm-cc {
+				@extend %captions_hidden;
+			}
 		}
 	}
+
+	//TODO: Remove this when captions works in chromeless api with controls
+	&.youtube {
+		.wb-mm-ctrls{
+			margin-top: -35px;
+			border-bottom: 10px solid #fff;
+		}
+	}
+
 	/*
 	  Light Skinning of mediacontrols
 	 */
@@ -117,19 +146,15 @@
 			border: 0;
 		}
 	}
+
 }
 
 .wb-mm-cc {
+	@extend %captions_hidden;
 	background-color: #000;
 	color: #FFF;
 	text-align: center;
-	padding: 0;
-	max-height: 0;
 	transition: all 0.26s ease;
-	&.on {
-		padding: 0.5em;
-		max-height: 999em;
-	}
 }
 
 .wb-mm-ctrls {
@@ -155,15 +180,23 @@
 	}
 	.tline {
 		@extend %pnl;
-		.textonly {
-			p {
-				display: inline !important;
-				float: left;
-				margin:0;
-				&:last-child {
-					float:right;
-				}
-			}
+		.wb-mm-tmln-crrnt, .wb-mm-tmln-ttl {
+			margin: 0;
+			float: left;
+		}
+
+		.wb-mm-tmln-ttl{
+			float: right
+		}
+	}
+
+	.cc {
+		opacity: .5;
+	}
+
+	.wb-mm-txtonly {
+		span {
+			@extend %accessible-invisible;
 		}
 	}
 
@@ -181,6 +214,45 @@
 		/* Now the value part */
 		&::-webkit-progress-value {
 			background: #176CA7;
+		}
+	}
+
+	.progress {
+		height: 14px;
+	}
+}
+
+//TODO: Cleanup placeholders when libsass supports nested selectors
+.xxsmallview {
+	.wb-mm-txtonly {
+		span {
+			~ {
+				span {
+					@extend %accessible-invisible-show;
+				}
+			}
+		}
+	}
+
+	.wb-mm-prgrss {
+		@extend %multimedia-display-none;
+	}
+}
+
+.mediumview, .largeview, .xlargeview, .xxlargeview {
+	.col-md-1, .col-md-2, .col-md-3 {
+		.wb-mm-txtonly {
+			span {
+				~ {
+					span {
+						@extend %accessible-invisible-show;
+					}
+				}
+			}
+		}
+
+		.wb-mm-prgrss {
+			@extend %multimedia-display-none;
 		}
 	}
 }
