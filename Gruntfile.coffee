@@ -948,6 +948,7 @@ module.exports = (grunt) ->
 		mocha:
 			all:
 				options:
+					run: true
 					reporter: "Spec"
 					urls: grunt.file.expand(
 						filter: ( src ) ->
