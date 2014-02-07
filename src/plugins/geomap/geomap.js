@@ -65,26 +65,26 @@ var selector = ".wb-geomap",
 			if ( !i18nText ) {
 				i18n = wb.i18n;
 				i18nText = {
-					close: i18n( "%close" ),
-					colon: i18n( "%colon" ),
-					hiddenLayer: i18n( "%geo-hdnlyr" ),
-					toggleLayer: i18n( "%geo-tgllyr" ),
-					labelSelect: i18n( "%geo-lblsel" ),
-					select: i18n( "%geo-sel" ),
-					zoomFeature: i18n( "%geo-zmfeat" ),
-					zoomin: i18n( "%geo-zmin" ),
-					zoomout: i18n( "%geo-zmout" ),
-					zoomwrld: i18n( "%geo-zmwrld" ),
-					baseMapTitle: i18n( "%geo-bmapttl" ),
-					baseMapURL: i18n( "%geo-bmapurl" ),
-					baseMapURLTxt: i18n( "%geo-bmapurltxt" ),
-					scaleline: i18n( "%geo-sclln" ),
-					mouseposition: i18n( "%geo-msepos" ),
-					access: i18n( "%geo-ally" ),
-					accessTitle: i18n( "%geo-allyttl" ),
-					attribLink: i18n( "%geo-attrlnk" ),
-					attribTitle: i18n( "%geo-attrttl" ),
-					ariaMap: i18n( "%geo-ariamap")
+					close: i18n( "close" ),
+					colon: i18n( "colon" ),
+					hiddenLayer: i18n( "geo-hdnlyr" ),
+					toggleLayer: i18n( "geo-tgllyr" ),
+					labelSelect: i18n( "geo-lblsel" ),
+					select: i18n( "geo-sel" ),
+					zoomFeature: i18n( "geo-zmfeat" ),
+					zoomin: i18n( "geo-zmin" ),
+					zoomout: i18n( "geo-zmout" ),
+					zoomwrld: i18n( "geo-zmwrld" ),
+					baseMapTitle: i18n( "geo-bmapttl" ),
+					baseMapURL: i18n( "geo-bmapurl" ),
+					baseMapURLTxt: i18n( "geo-bmapurltxt" ),
+					scaleline: i18n( "geo-sclln" ),
+					mouseposition: i18n( "geo-msepos" ),
+					access: i18n( "geo-ally" ),
+					accessTitle: i18n( "geo-allyttl" ),
+					attribLink: i18n( "geo-attrlnk" ),
+					attribTitle: i18n( "geo-attrttl" ),
+					ariaMap: i18n( "geo-ariamap")
 				};
 			}
 
@@ -108,14 +108,20 @@ var selector = ".wb-geomap",
 			// Store the debug setting globally
 			debug = settings.debug;
 
-			Modernizr.load([{
+			Modernizr.load([ {
 				// For loading multiple dependencies
 				both: [
-					"site!deps/openlayers" + modeJS,
-					"site!deps/proj4" + modeJS
+					"site!deps/proj4" + modeJS,
+					"site!deps/openlayers" + modeJS
 				],
 				complete: function() {
 
+					// Set the proj4 dependency name to match OpenLayers
+					window.Proj4js = { Proj: function(code) { return proj4( Proj4js.defs[ code ]); },
+										defs: proj4.defs,
+										transform: proj4
+					};
+					
 					// Set the language for OpenLayers
 					OpenLayers.Lang.setCode( document.documentElement.lang );
 
@@ -123,12 +129,12 @@ var selector = ".wb-geomap",
 					OpenLayers.ImgPath = wb.getPath( "/assets" ) + "/";
 
 					// Add projection for default base map
-					proj4.defs[ "EPSG:3978" ] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
+					proj4.defs( "EPSG:3978", "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs");
 
 					if ( debug ) {
-						Modernizr.load([{
-							load: "site!assets/geomap-debug" + modeJS
-						}]);
+						Modernizr.load([ {
+							load: "site!../assets/geomap-debug" + modeJS
+						} ]);
 						$document.trigger( "debug.wb-geomap" );
 					}
 
@@ -171,7 +177,7 @@ var selector = ".wb-geomap",
 						refreshPlugins( geomap );
 					}
 				}
-			}]);
+			} ]);
 		}
 	},
 			
@@ -445,8 +451,8 @@ var selector = ".wb-geomap",
 
 				$tabs
 					.attr({
-					"class": "wb-tabbedinterface auto-height-none",
-					"id": "geomap-tabs-" + uniqueId
+						"class": "wb-tabbedinterface auto-height-none",
+						id: "geomap-tabs-" + uniqueId
 					})
 					.append( "<ul class='tabs'></ul><div class='tabs-panel'></div>" );
 
@@ -578,9 +584,9 @@ var selector = ".wb-geomap",
 				$parent.css( "display", ( visibility ? "table" : "none" ) );
 			});
 
-			$label = $( "<label>" , {
+			$label = $( "<label>", {
 				"for": "cb_" + featureTableId,
-				"html": $featureTable.attr( "aria-label" ),
+				html: $featureTable.attr( "aria-label" ),
 				"class": "form-checkbox"
 			}).append( $chkBox, "<div id='sb_" + featureTableId + "'></div>" );
 
@@ -812,20 +818,20 @@ var selector = ".wb-geomap",
 
 				// Set the select style then the rules.
 				styleMap = new OpenLayers.StyleMap({
-					default: style,
+					"default": style,
 					select: select
 				});
 			} else {
 
 				// Set the select style then the default.				
 				styleMap = new OpenLayers.StyleMap({
-					default: new OpenLayers.Style( elmStyle.init ),
+					"default": new OpenLayers.Style( elmStyle.init ),
 					select: select
 				});
 			}
 		} else {
 			styleMap = new OpenLayers.StyleMap({
-				default: new OpenLayers.Style( defaultStyle ),
+				"default": new OpenLayers.Style( defaultStyle ),
 				select: new OpenLayers.Style( selectStyle )
 			});
 		}
@@ -1117,7 +1123,8 @@ var selector = ".wb-geomap",
 			// Only used by specific controls (i.e. MousePosition)
 			displayProjection: new OpenLayers.Projection( "EPSG:4269" ),
 			aspectRatio: 0.8,
-			fractionalZoom: false
+			fractionalZoom: false,
+			tileManager: null
 		};
 
 		return mapOptions;
@@ -1148,6 +1155,7 @@ var selector = ".wb-geomap",
 					mapOptions.displayProjection = new OpenLayers.Projection( mapOpts.displayProjection );
 					mapOptions.numZoomLevels = mapOpts.numZoomLevels;
 					mapOptions.aspectRatio = mapOpts.aspectRatio;
+					mapOptions.tileManager = null;
 				} catch ( error ) {
 					if ( opts.debug ) {
 						$document.trigger( "baseMapMapOptionsLoadError.wb-geomap" );
@@ -1697,7 +1705,7 @@ var selector = ".wb-geomap",
 	/*
 	 *	Load controls
 	 */
-	loadControls = function( geomap, opts ){
+	loadControls = function( geomap, opts ) {
 		var $mapDiv = geomap.gmap,
 			map = geomap.map,
 			i18nMousePosition = i18nText.mouseposition,
@@ -1823,6 +1831,8 @@ var selector = ".wb-geomap",
 		var projLatLon = new OpenLayers.Projection( "EPSG:4326" ),
 			projMap = geomap.map.getProjectionObject();
 
+		var a = new OpenLayers.LonLat(-100, 54).transform(new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913"));
+		
 		if ( opts.debug ) {
 			$document.trigger( "projection.wb-geomap", projMap.getCode() );
 		}
@@ -1849,7 +1859,7 @@ var selector = ".wb-geomap",
 
 		// Add WCAG element for the map div
 		geomap.gmap.attr({
-			"role": "dialog",
+			role: "dialog",
 			"aria-label": i18nText.ariaMap
 		});
 	},
@@ -1880,10 +1890,10 @@ var selector = ".wb-geomap",
 				$( ".olTileImage" ).attr( "alt", "" );
 			}, 2000 );
 
-			geomap.map.events.on({ "moveend": function() {
+			geomap.map.events.on({ moveend: function() {
 				// Every time we zoom/pan we need to put back the alt for OpenLayers tiles
 				$( ".olTileImage" ).attr( "alt", "" );
-			}});
+			} });
 
 			$document.trigger({
 				type: "ready",

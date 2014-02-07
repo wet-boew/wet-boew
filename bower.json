@@ -35,7 +35,8 @@
 		"selectivizr": "1.0.2",
 		"excanvas": "*",
 		"google-code-prettify": "1.0.0",
-		"proj4": "1.5.0-dev.5"
+		"proj4": "2.1.0",
+		"openlayers": "git://github.com/openlayers/openlayers.git",
 		"SideBySideImproved": "https://github.com/pkoltermann/SideBySideImproved.git"
 	},
 	"resolutions": {
