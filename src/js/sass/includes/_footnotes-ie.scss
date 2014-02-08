@@ -56,9 +56,9 @@ $clrDark: #555;
 			}
 			p {
 				@include inline-block;
-				&.footnote-return {
-					display: block;
-				}
+			}
+			.footnote-return {
+				display: block;
 			}
 		}
 	}
