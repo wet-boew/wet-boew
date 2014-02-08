@@ -1,0 +1,13 @@
+{{#contains page.src "src/"}}
+<p>
+	<a class="btn btn-primary" href="../../docs/ref/{{altLangPrefix}}/{{altLangPrefix}}-{{language}}.html">{{#i18n "tmpl-documentation"}}{{/i18n}}</a>
+	<a class="btn btn-primary" href="https://github.com/wet-boew/wet-boew/issues/new?title={{title}}{{#i18n "colon"}}{{/i18n}} {{#i18n "tmpl-add-desc"}}{{/i18n}}">{{#i18n "tmpl-questions-comments"}}{{/i18n}}</a>
+</p>
+{{/contains}}
+{{#contains page.src "/docs/ref/"}}
+	{{#isnt assets "../.."}}
+<p>
+	<a class="btn btn-primary" href="https://github.com/wet-boew/wet-boew/issues/new?title={{title}}{{#i18n "colon"}}{{/i18n}} {{#i18n "tmpl-add-desc"}}{{/i18n}}">{{#i18n "tmpl-questions-comments"}}{{/i18n}}</a>
+</p>
+	{{/isnt}}
+{{/contains}}

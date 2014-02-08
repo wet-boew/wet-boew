@@ -166,5 +166,9 @@
 	"tmpl-wet-twitter": "WebExpToolkit",
 	"tmpl-work-examples": "Working examples",
 	"you-are-here": "You are here:",
-	"hyphen": " - "
+	"hyphen": " - ",
+	"colon": ":",
+	"tmpl-documentation": "Documentation",
+	"tmpl-questions-comments": "Questions or comments?",
+	"tmpl-add-desc": "Please add a brief description."
 }
