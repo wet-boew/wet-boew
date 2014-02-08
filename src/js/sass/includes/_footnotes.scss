@@ -118,22 +118,18 @@ table {
 	}
 }
 
-/* Right to left (RTL) CSS */
+/* Right to left (RTL) SCSS */
 [dir="rtl"] {
 	.wet-boew-footnotes {
-		dl {
-			dd {
-				p {
-					margin-left: 0;
-					margin-right: 3.125em;
-					padding-left: 0;
-					padding-right: 0.375em;
-					&.footnote-return {
-						margin-right: 0;
-						padding-right: 0;
-					}
-				}
-			}
+		p {
+			margin-left: 0;
+			margin-right: 3.125em;
+			padding-left: 0;
+			padding-right: 0.375em;
+		}
+		.footnote-return {
+			margin-right: 0;
+			padding-right: 0;
 		}
 	}
 }
