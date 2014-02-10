@@ -549,6 +549,8 @@ module.exports = (grunt) ->
 
 			core:
 				options:
+					beautify:
+						quote_keys: true
 					preserveComments: (uglify,comment) ->
 						return comment.value.match(/^!/i)
 				cwd: "dist/unmin/js/"
@@ -948,7 +950,6 @@ module.exports = (grunt) ->
 		mocha:
 			all:
 				options:
-					run: true
 					reporter: "Spec"
 					urls: grunt.file.expand(
 						filter: ( src ) ->
