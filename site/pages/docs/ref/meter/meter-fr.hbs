@@ -8,102 +8,60 @@
 ---	
 <span class="wb-prettify all-pre hide"></span>
 
+<section>
+	<h2>But</h2>
+	<p>L'élément meter de HTML5 affiche une mesure scalaire dans une gamme connue. Étant donné que certains navigateurs ne prennent pas en charge cette fonctionnalité à l'origine, ce correctif émule la même fonctionnalité en utilisant HTML générique et WAI-ARIA.</p>
+</section>
+
 <div lang="en">
 <p><strong>Needs translation</strong></p>
 <section>
-	<h2>Purpose</h2>
-	<p>A brief description of the component.</p>
-</section>
-
-<section>
 	<h2>Use when</h2>
 	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
+		<li>Displaying a scalar measurement within a known range</li>
 	</ul>
 </section>
 
 <section>
 	<h2>Do not use when</h2>
 	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
+		<li>Displaying the progress of a task</li>
 	</ul>
 </section>
 
 <section>
 	<h2>Working example</h2>
-	<p><a href="#">Link to a working example</a></p>
+	<section>
+		<h3>Normal</h3>
+		<pre><code>&lt;meter min="20" value="65" max="80"&gt;75% (normal)&lt;/meter&gt;</code></pre>
+	</section>
+	<section>
+		<h3>Too high</h3>
+		<pre><code>&lt;meter min="0" value="90" max="100" high="80"&gt;90% (too high)&lt;/meter&gt;</code></pre>
+	</section>
+	<section>
+		<h3>Too low</h3>
+		<pre><code>&lt;meter min="100" low="120" value="115" max="200" high="180"&gt;15% (too low)&lt;/meter&gt;</code></pre>
+	</section>
+	
+	<ul>
+		<li><a href="../../../demos/meter/meter-en.html">English examples</a></li>
+		<li><a href="../../../demos/meter/meter-fr.html">French examples</a></li>
+	</ul>
 </section>
 
 <section>
 	<h2>How to implement</h2>
-	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
-		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
-		</li>
-		<li>Step 4</li>
-	</ol>
+	<p>To use the polyfill, a standard <code>progress</code> element must be used. In cases where a browser doesn't support the <code>progress</code> element, the polyfill is automatically loaded.</p>
 </section>
 
 <section>
 	<h2>Configuration options</h2>
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Option</th>
-				<th>Description</th>
-				<th>How to configure</th>
-				<th>Values</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
-			</tr>
-			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+	<p><a href="http://www.w3.org/TR/html5/forms.html#the-meter-element">Configuration options available for the <code>meter</code> element (HTML5 specification)</a></p>
 </section>
 
 <section>
 	<h2>Events</h2>
-	<p>Document the public events that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -114,14 +72,9 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Event 1</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
-			</tr>
-			<tr>
-				<td>Event 2</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td>wb-init.wb-meter</td>
+				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb.wb-meter" );</code>).</td>
+				<td>Used to manually initialize the meter polyfill. <strong>Note:</strong> The meter polyfill will be initialized automatically unless the <code>meter</code> element is added after the page has already loaded.</td>
 			</tr>
 		</tbody>
 	</table>
@@ -129,6 +82,6 @@ Example of multi-line code</code></pre>
 
 <section>
 	<h2>Source code</h2>
-	<p><a href="#">Link to the folder on GitHub containing the files for the component</a></p>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/v4.0/src/polyfills/meter">Meter polyfill source code on GitHub</a></p>Ù
 </section>
 </div>

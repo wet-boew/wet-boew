@@ -22,6 +22,21 @@
 
 <section>
 	<h2>Working example</h2>
+	<section>
+		<h3>Task in progress</h3>
+		<pre><code>&lt;progress value="25" max="100" /&gt;</code></pre>
+	</section>
+	<section>
+		<h3>Completed task</h3>
+		<pre><code>&lt;progress value="50" max="50" /&gt;</code></pre>
+	</section>
+	<section>
+		<h3>Task of indeterminate progress</h3>
+		<pre><code>&lt;progress /&gt;</code></pre>
+		or
+		<pre><code>&lt;progress max="50" /&gt;</code></pre>
+	</section>
+
 	<ul>
 		<li><a href="../../../demos/progress/progress-en.html">English examples</a></li>
 		<li><a href="../../../demos/progress/progress-fr.html">French examples</a></li>
@@ -35,29 +50,7 @@
 
 <section>
 	<h2>Configuration options</h2>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Option</th>
-				<th>Description</th>
-				<th>How to configure</th>
-				<th>Values</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><code>value</code></td>
-				<td>Represents the progress of the task.</td>
-				<td>Add the <code>value</code> attribute to the progress element. If <code>value</code> is omitted, the progress bar is considered to be indeterminate, which means that there is no indication on the actual progress of the task.</td>
-				<td>
-					<dl>
-						<dt>Decimal number:</dt>
-						<dd>Current progress of the task. Must be a decimal number between 0 and the <code>max</code> value.</dd>
-					</dl>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+	<p><a href="http://www.w3.org/TR/html5/forms.html#the-progress-element">Configuration options available for the <code>progress</code> element (HTML5 specification)</a></p>
 </section>
 
 <section>
@@ -74,7 +67,7 @@
 			<tr>
 				<td>wb-init.wb-progress</td>
 				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb.wb-progress" );</code>).</td>
-				<td>Used to manually initialize the progress polyfill. <strong>Note:</strong> The progress polyfill will be initialized automatically unless the progress element is added after the page has already loaded.</td>
+				<td>Used to manually initialize the progress polyfill. <strong>Note:</strong> The progress polyfill will be initialized automatically unless the <code>progress</code> element is added after the page has already loaded.</td>
 			</tr>
 		</tbody>
 	</table>
