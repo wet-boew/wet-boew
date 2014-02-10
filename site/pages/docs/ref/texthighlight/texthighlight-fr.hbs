@@ -8,36 +8,42 @@
 ---	
 <span class="wb-prettify all-pre hide"></span>
 
+<section>
+	<h2>But</h2>
+	<p>Le composant de mise en subrillance de texte met en surbrillance n'importe quel texte dans un secteur pré-défini qui satisfait des critères de recherche. Les critères de recherche sont insensibles à la casse et sont spécifiés par la chaîne d'interrogation d'une addresse URL. Les chaînes avec plusieurs mots sont supportées, y compris les espaces et la ponctuation fondamentale.</p>
+	<p><strong>Nota&#160;:</strong> Les critères de recherche regroupant des caractères spéciaux d'expression régulière («&#160;regex&#160;», <abbr title="par exemple">p.ex.</abbr>, «&#160;<code>"</code>&#160;», «&#160;<code>|</code>&#160;», «&#160;<code>?</code>&#160;», «&#160;<code>+</code>&#160;», «&#160;<code>(</code>&#160;» ou «&#160;<code>)</code>&#160;») peuvent être partiellement ou entièrement exclus des résultats.</p>
+</section>
+
+<section>
+	<h2>Utiliser lorsque</h2>
+	<ul>
+		<li>Mettre en surbrillance les termes de recherche dans une page de résultats de recherche</li>
+		<li>Mettre en surbrillance des mots clés dans une page Web</li>
+		<li>Aider l'utilisateur à retrouver toutes les occurrences d'un ou de plusieurs mots dans une page Web</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Exemple pratique</h2>
+	<section>
+		<h3>Critères de recherche - Exemple</h3>
+		<ul>
+			<li>influenza aviaire</li>
+			<li>monde</li>
+			<li>suffis</li>
+			<li>symptômes semblables à ceux de l'influenza</li>
+			<li>À titre de rappel</li>
+			<li>À de rares occasions, des humains ont été infectés par ce virus.</li>
+		</ul>
+
+		<p><strong>La chaîne d'interrogation&#160;:</strong> <code>?<span lang="en">txthl</span>=influenza%20aviaire+monde+suffis+symptômes%20semblables%20à%20ceux%20de%20l'influenza<br />+À%20titre%20de%20rappel...+À%20de%20rares%20occasions,%20des%20humains%20ont%20été%20infectés%20par%20ce%20virus.</code></p>
+
+		<p><a href="../../../demos/texthighlight/texthighlight-en.html?txthl=influenza%20aviaire+monde+suffis+sympt%C3%B4mes%20semblables%20%C3%A0%20ceux%20de%20l'influenza+%C3%80%20titre%20de%20rappel...+%C3%80%20de%20rares%20occasions,%20des%20humains%20ont%20%C3%A9t%C3%A9%20infect%C3%A9s%20par%20ce%20virus.#exemple">Mise en surbrillance le texte qui satisfait les critères de recherche</a></p>
+	</section>
+</section>
+
 <div lang="en">
-<p><strong>Needs translation</strong></p>
-<section>
-	<h2>Purpose</h2>
-	<p>A brief description of the component.</p>
-</section>
-
-<section>
-	<h2>Use when</h2>
-	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
-	</ul>
-</section>
-
-<section>
-	<h2>Do not use when</h2>
-	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
-	</ul>
-</section>
-
-<section>
-	<h2>Working example</h2>
-	<p><a href="#">Link to a working example</a></p>
-</section>
-
+<strong>Needs translation</strong>
 <section>
 	<h2>How to implement</h2>
 	<ol>
@@ -56,7 +62,6 @@ Example of multi-line code</code></pre>
 
 <section>
 	<h2>Configuration options</h2>
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -68,34 +73,10 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
-			</tr>
-			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
+				<td><code>txthl</code></td>
+				<td>Query string parameter that specifies the search criteria for the text to highlight.</td>
+				<td>Add <code>txthl=&lt;text_1&gt;+&lt;text_2&gt;+&lt;text_3&gt;</code> to the query string.<br /><strong>Note:</strong> HTML markup validation requires all spaces in links to be replaced by <code>%20</code>.</td>
+				<td>Strings separated by + characters.</td>
 			</tr>
 		</tbody>
 	</table>
@@ -114,14 +95,9 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Event 1</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
-			</tr>
-			<tr>
-				<td>Event 2</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td>wb-init.wb-txthl</td>
+				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-txthl" );</code>).</td>
+				<td>Used to manually enhance an element with the Text highlighting plugin</td>
 			</tr>
 		</tbody>
 	</table>
@@ -129,6 +105,6 @@ Example of multi-line code</code></pre>
 
 <section>
 	<h2>Source code</h2>
-	<p><a href="#">Link to the folder on GitHub containing the files for the component</a></p>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/v4.0/src/plugins/texthighlight">Text highlighting source code on GitHub</a></p>
 </section>
 </div>
