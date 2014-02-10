@@ -8,55 +8,31 @@
 ---	
 <span class="wb-prettify all-pre hide"></span>
 
+<section>
+	<h2>But</h2>
+	<p>L'élément <code>progress</code> de HTML5 affiche la progression d'une tâche. Étant donné que certains navigateurs ne prennent pas en charge cette fonctionnalité à l'origine, ce correctif émule la même fonctionnalité à l'aide de HTML générique et WAI-ARIA.</p>
+</section>
+
 <div lang="en">
 <p><strong>Needs translation</strong></p>
-<section>
-	<h2>Purpose</h2>
-	<p>A brief description of the component.</p>
-</section>
 
 <section>
 	<h2>Use when</h2>
 	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
-	</ul>
-</section>
-
-<section>
-	<h2>Do not use when</h2>
-	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
+		<li>Displaying the progress of a task</li>
 	</ul>
 </section>
 
 <section>
 	<h2>Working example</h2>
-	<p><a href="#">Link to a working example</a></p>
-</section>
-
-<section>
-	<h2>How to implement</h2>
-	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
-		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
-		</li>
-		<li>Step 4</li>
-	</ol>
+    <ul>
+		<li><a href="../../../demos/progress/progress-en.html">English examples</a></li>
+		<li><a href="../../../demos/progress/progress-fr.html">French examples</a></li>
+	</ul>
 </section>
 
 <section>
 	<h2>Configuration options</h2>
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -68,32 +44,13 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
+				<td><code>value</code></td>
+				<td>Represents the progress of the task.</td>
+				<td>Add the <code>value</code> attribute to the progress element. If <code>value</code> is omitted, the progress bar is considered to be indeterminate, which means that there is no indication on the actual progress of the task.</td>
 				<td>
 					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
-			</tr>
-			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
+						<dt>Decimal number:</dt>
+						<dd>Current progress of the task. Must be a decimal number between 0 and the <code>max</code> value.</dd>
 					</dl>
 				</td>
 			</tr>
@@ -103,7 +60,6 @@ Example of multi-line code</code></pre>
 
 <section>
 	<h2>Events</h2>
-	<p>Document the public events that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -114,14 +70,9 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Event 1</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
-			</tr>
-			<tr>
-				<td>Event 2</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td>wb-init.wb-progress</td>
+				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb.wb-progress" );</code>).</td>
+				<td>Used to manually initialize the progress polyfill. <strong>Note:</strong> The progress polyfill will be initialized automatically unless the progress element is added after the page has already loaded.</td>
 			</tr>
 		</tbody>
 	</table>
@@ -129,6 +80,6 @@ Example of multi-line code</code></pre>
 
 <section>
 	<h2>Source code</h2>
-	<p><a href="#">Link to the folder on GitHub containing the files for the component</a></p>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/v4.0/src/polyfills/progress">Progress polyfill source code on GitHub</a></p>Ù
 </section>
 </div>
