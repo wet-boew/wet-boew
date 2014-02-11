@@ -2,7 +2,7 @@
 {
 	"title": "Favicon",
 	"language": "en",
-	"description": "This plugin provides the ability to add and update the favicon's on a web page.",
+	"description": "This plugin provides the ability to add and update a web page's favicon.",
 	"altLangPrefix": "favicon"
 }
 ---
@@ -10,51 +10,60 @@
 
 <section>
 	<h2>Purpose</h2>
-	<p>A brief description of the component.</p>
+	<p>This plugin provides the ability to add and update a web page's favicon.</p>
 </section>
 
 <section>
 	<h2>Use when</h2>
 	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
-	</ul>
-</section>
-
-<section>
-	<h2>Do not use when</h2>
-	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
+		<li>Adding a mobile favicon to a web page.</li>
+		<li>Dynamically updating the favicon of a web page.</li>
 	</ul>
 </section>
 
 <section>
 	<h2>Working example</h2>
-	<p><a href="#">Link to a working example</a></p>
+	<p><a href="../../../demos/favicon/favicon-en.html">English example</a></p>
+	<p><a href="../../../demos/favicon/favicon-fr.html">French example</a></p>
 </section>
 
 <section>
 	<h2>How to implement</h2>
-	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
-		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
-		</li>
-		<li>Step 4</li>
-	</ol>
+	
+	<section>
+		<h3>Add a mobile favicon:</h3>
+		<ol>
+			<li>Add a favicon to the web page using a link element: 
+				<pre><code>&lt;link href="favion.ico" rel="shortcut icon"&gt;</code></pre>
+			</li>
+			<li>Optionally specify the mobile favion's filename, path, rel attribute and sizes attribute:
+				<pre><code>&lt;link href="favion.ico" rel="shortcut icon" 
+	data-filename="my-mobile-favicon.ico" 
+	data-path="/path/to/favicon/"
+	data-rel="apple-touch-icon-precomposed"
+	data-sizes="57x57"&gt;</code></pre>
+			</li>
+		</ol>
+	</section>
+	
+	<section>
+		<h3>Update an existing favicon's href attribute:</h3>
+		<ol>
+			<li>Using JavaScript, get a reference to the favicon's link element: 
+				<pre><code>var $favicon = $( "link[rel='shortcut icon']" );</code></pre>
+			</li>
+			<li>Trigger the <code>icon.wb-favicon</code> event on the favicon element:
+				<pre><code>$favicon.trigger( "icon.wb-favicon" );</code></pre>
+				<b>Note:</b> the update of the favicon's href attribute will be based on its data-path and data-filename attributes. 
+			</li>
+		</ol>		
+	</section>
 </section>
 
 <section>
 	<h2>Configuration options</h2>
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
+	<p>All configuration options of the plugin are controlled with data attributes:</p>
+
 	<table class="table">
 		<thead>
 			<tr>
@@ -66,32 +75,54 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
+				<td><code>data-filename</code></td>
+				<td>Filename of the mobile favicon.  It is appended to the favicon's path (specified by data-path).</td>
+				<td>Set to the filename of the mobile favicon.</td>
 				<td>
 					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
+						<dt>None (default):</dt>
+						<dd>If not specified, defaults to "favicon-mobile.png"</dd>
+						<dt>String (favicon filename):</dt>
+						<dd>Custom mobile favicon filename.</dd>
 					</dl>
 				</td>
 			</tr>
 			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
+				<td><code>data-path</code></td>
+				<td>Full path to the mobile favicon.</td>
+				<td>Set to the full path of the mobile favicon.</td>
 				<td>
 					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
+						<dt>None (default):</dt>
+						<dd>If not specified, defaults to the same path as the <code>&lt;link&gt;</code> shortcut icon</dd>
+						<dt>String (favicon path):</dt>
+						<dd>Custom mobile favicon path.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>data-rel</code></td>
+				<td>Favicon rel attribute.</td>
+				<td>Set to the desired rel attribute value of the favicon.</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>If not specified, defaults to "apple-touch-icon"</dd>
+						<dt>String (favicon rel attribute):</dt>
+						<dd>Custom mobile favicon <a href="http://en.wikipedia.org/wiki/Favicon#How_to_use">rel attribute</a>.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>data-sizes</code></td>
+				<td>Favicon sizes attribute.</td>
+				<td>Set to the desired sizes attribute value of the favicon.</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>If not specified, defaults to "57x57 72x72 114x114 144x144 150x150"</dd>
+						<dt>String (favicon sizes attribute):</dt>
+						<dd>Custom mobile favicon sizes attribute.</dd>
 					</dl>
 				</td>
 			</tr>
@@ -112,20 +143,25 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Event 1</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td><code>wb-init.wb-favicon</code></td>
+				<td>Triggered manually.</td>
+				<td>Initializes the plugin and creates a mobile favicon if it doesn't already exist. <b>Note: </b> the favicon plugin will be initialized automatically unless the link element is added after the page has already loaded.</td>
 			</tr>
 			<tr>
-				<td>Event 2</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td><code>mobile.wb-favicon</code></td>
+				<td>Triggered manually and during plugin initialization.</td>
+				<td>Adds or updates the mobile favicon on the web page.  This will only update a mobile favicon that was added by the plugin.</td>
 			</tr>
+			<tr>
+				<td><code>icon.wb-favicon</code></td>
+				<td>Triggered manually.</td>
+				<td>Updates the favicon's href attribute based on its data-filename and data-path attributes.</td>
+			</tr>			
 		</tbody>
 	</table>
 </section>
 
 <section>
 	<h2>Source code</h2>
-	<p><a href="#">Link to the folder on GitHub containing the files for the component</a></p>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/v4.0/src/plugins/favicon">Favicon source code on GitHub</a></p>
 </section>
