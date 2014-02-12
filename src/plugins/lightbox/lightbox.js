@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Lightbox
  * @overview Helps build a photo gallery on a web page.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -13,12 +13,16 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-lightbox",
-	$document = wb.doc,
-	i18n, i18nText,
+var pluginName = "wb-lbx",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
 	extendedGlobal = false,
+	$document = wb.doc,
+	idCount = 0,
+	i18n, i18nText,
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
@@ -26,17 +30,26 @@ var selector = ".wb-lightbox",
 	 */
 	init = function( event ) {
 		var elm = event.target,
-			$elm, modeJS;
+			elmId = elm.id,
+			modeJS;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === elm ) {
+		// and only initialize the element once
+		if ( event.currentTarget === elm &&
+			elm.className.indexOf( initedClass ) === -1 ) {
+
+			wb.remove( selector );
+			elm.className += " " + initedClass;
+
+			// Ensure there is a unique id on the element
+			if ( !elmId ) {
+				elmId = pluginName + "-id-" + idCount;
+				idCount += 1;
+				elm.id = elmId;
+			}
 
 			// read the selector node for parameters
 			modeJS = wb.getMode() + ".js";
-			$elm = $( elm );
-
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			wb.remove( selector );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
@@ -62,7 +75,9 @@ var selector = ".wb-lightbox",
 			Modernizr.load({
 				load: "site!deps/jquery.magnific-popup" + modeJS,
 				complete: function() {
-					var settings = {},
+					var elm = document.getElementById( elmId ),
+						$elm = $( elm ),
+						settings = {},
 						firstLink;
 
 					// Set the dependency i18nText only once
@@ -79,16 +94,17 @@ var selector = ".wb-lightbox",
 							// TODO: Better if dealt with upstream by Magnific popup
 							var $item = this.currItem,
 								$content = this.contentContainer,
-								$bottomBar;
+								$buttons = this.wrap.find( ".mfp-close, .mfp-arrow" ),
+								len = $buttons.length,
+								i, button, $bottomBar;
 
-							this.wrap.attr({
-								"role": "dialog",
-								"aria-live": "polite",
-								"aria-labelledby": "lb-title",
-							});
+							for ( i = 0; i !== len; i += 1 ) {
+								button = $buttons[ i ];
+								button.innerHTML += "<span class='wb-inv'> " + button.title + "</span>";
+							}
 
 							if ( $item.type === "image" ) {
-								$bottomBar = $content.find( ".mfp-bottom-bar" ).attr( "id", "lb-title" );
+								$bottomBar = $content.find( ".mfp-bottom-bar" ).attr( "id", "lbx-title" );
 							} else {
 								$content.attr( "role", "document" );
 							}
@@ -96,9 +112,9 @@ var selector = ".wb-lightbox",
 						change: function() {
 							var $item = this.currItem,
 								$content = this.contentContainer,
-								$el, $bottomBar, $source, $target, description, altTitleId, altTitle;
+								$el, $bottomBar, $source, $target,
+								description, altTitleId, altTitle;
 
-							// TODO: Better if dealt with upstream by Magnific Popup
 							if ( $item.type === "image" ) {
 								$el = $item.el;
 								$source = $el.find( "img" );
@@ -129,7 +145,7 @@ var selector = ".wb-lightbox",
 								$content
 									.find( ".modal-title, h1" )
 									.first()
-									.attr( "id", "lb-title" );
+									.attr( "id", "lbx-title" );
 							}
 						}
 					};
@@ -139,19 +155,18 @@ var selector = ".wb-lightbox",
 						firstLink = elm.getElementsByTagName( "a" )[0];
 
 						// Is the element a gallery?
-						if ( elm.className.indexOf( "-gallery" ) !== -1 ) {
+						if ( elm.className.indexOf( "-gal" ) !== -1 ) {
 							settings.gallery = {
-								enabled: true,
+								enabled: true
 							};
 						}
 					} else {
 						firstLink = elm;
 					}
 
-
 					if ( firstLink.getAttribute( "href" ).charAt( 0 ) === "#" ) {
 						settings.type = "inline";
-					} else if ( firstLink.className.indexOf( "lb-iframe" ) !== -1 ) {
+					} else if ( firstLink.className.indexOf( "lbx-iframe" ) !== -1 ) {
 						settings.type = "iframe";
 					} else if ( firstLink.getElementsByTagName( "img" ).length === 0 ) {
 						settings.type = "ajax";
@@ -159,7 +174,7 @@ var selector = ".wb-lightbox",
 						settings.type = "image";
 					}
 
-					if ( elm.className.indexOf( "lb-modal" ) !== -1 ) {
+					if ( elm.className.indexOf( "lbx-modal" ) !== -1 ) {
 						settings.modal = true;
 					}
 
@@ -177,7 +192,7 @@ var selector = ".wb-lightbox",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb", selector, init );
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 $document.on( "keydown", ".mfp-wrap", function( event ) {
 	var $elm, $focusable, index, length;
@@ -205,7 +220,7 @@ $document.on( "keydown", ".mfp-wrap", function( event ) {
 });
 
 // Event handler for closing a modal popup
-$(document).on( "click", ".popup-modal-dismiss", function ( event ) {
+$(document).on( "click", ".popup-modal-dismiss", function( event ) {
 	event.preventDefault();
 	$.magnificPopup.close();
 });

@@ -3,13 +3,16 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 
+@import "../../variables";
+@import "../../../lib/magnific-popup/src/css/main";
+
 %lightbox-button-outline {
 	outline: 1px dotted;
 	outline-offset: -2px;
 	outline-color: #fff;
 }
 
-.lb-hide-gal {
+.lbx-hide-gal {
 	li {
 		list-style-type: none;
 		display: none;
@@ -19,22 +22,36 @@
 	}
 }
 
+.modal-dialog {
+	padding: 0;
+	position: relative;
+	left: auto;
+}
+
+.modal-content {
+	background: transparent;
+}
+
+.modal-body {
+	background: $clrWhite;
+}
+
 .mfp-close {
 	font-weight: 700;
-	/* Should fix upstream rather than overriding in WET */
+	/* Should fix upstream in Magnific Popup rather than overriding in WET */
 	&:focus {
 		@extend %lightbox-button-outline;
 	}
 }
 
+/* Should fix upstream in Magnific Popup rather than overriding in WET */
 .mfp-arrow {
-	/* Should fix upstream rather than overriding in WET */
 	&:focus {
 		@extend %lightbox-button-outline;
 	}
 }
 
-/* Should fix upstream rather than overriding in WET */
+/* Should fix upstream in Magnific Popup rather than overriding in WET */
 .mfp-bottom-bar {
 	.mfp-title {
 		width: 75%;

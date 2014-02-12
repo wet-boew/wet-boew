@@ -22,7 +22,7 @@
 		left: 0;
 		top: 0;
 		height: 25px;
-		width: 25px; 
+		width: 25px;
 		float: left;
 		margin: 0;
 	}
@@ -54,7 +54,7 @@
 }
 
 div {
-	&.olMap {	
+	&.olMap {
 		z-index: 0;
 		cursor: default;
 	}
@@ -62,8 +62,9 @@ div {
 		text-align: left;
 	}
 	&.olLayerDiv {
-		-moz-user-select: none;
-		-khtml-user-select: none; 
+		// -moz-user-select: none;
+		// -khtml-user-select: none;
+    user-select: none;
 		img {
 			max-width: none !important;
 		}
@@ -193,8 +194,9 @@ div {
 
 
 .olControlNoSelect {
-	-moz-user-select: none;
-	-khtml-user-select: none;
+	// -moz-user-select: none;
+	// -khtml-user-select: none;
+	user-select: none;
 }
 
 .olImageLoadError {
@@ -223,7 +225,8 @@ div {
 .olControlDragFeatureActive {
 	&.olControlDragFeatureOver {
 		&.olDragDown {
-			cursor: -moz-grabbing;
+			// cursor: -moz-grabbing;
+			cursor: grabbing;
 		}
 	}
 }
@@ -245,7 +248,7 @@ div {
     display: block;
   }
 }
-  
+
 /**
  * GeoMap
  */
@@ -264,12 +267,12 @@ div {
 }
 
 .geomap-legend-chk {
-	float: left;
+	// float: left;
 }
 
 .geomap-legend-item {
-	float: left;
-	padding-left: 10px;
+	// float: left;
+	// padding-left: 10px;
 }
 
 .geomap-legend-detail {

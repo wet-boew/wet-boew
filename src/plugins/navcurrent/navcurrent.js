@@ -1,6 +1,6 @@
-/*
+/**
  * @title WET-BOEW NavCurrent
- * @overview Identify URL in a navigation system that matches current page URL or a URL in the breadcrumb trail. Call by applying .trigger( "navcurrent.wb", breadcrumb ) where the breadcrumb parameter is an optional object (DOM or jQuery)
+ * @overview Identify URL in a navigation system that matches current page URL or a URL in the breadcrumb trail. Call by applying .trigger( "navcurr.wb", breadcrumb ) where the breadcrumb parameter is an optional object (DOM or jQuery)
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
@@ -17,7 +17,7 @@ var $document = wb.doc,
 	breadcrumbLinksArray, breadcrumbLinksUrlArray,
 	navClass = "wb-navcurr",
 
-	/*
+	/**
 	 * We start the logic for what the plugin truly does
 	 * For demonstration purposes lets display some text with an alert
 	 * @method otherEvent
@@ -113,12 +113,12 @@ var $document = wb.doc,
 		if ( match ) {
 			link.className += " " + navClass;
 			if ( menu.className.indexOf( "wb-menu" ) !== -1 && link.className.indexOf( "item" ) === -1 ) {
-				link.parentNode.parentNode.parentNode.getElementsByTagName( "a" )[ 0 ].className += " " + navClass;
+				$( link ).closest( ".sm" ).parent().children( "a" ).addClass( navClass );
 			}
 		}
 	};
 
 // Bind the navcurrent event of the plugin
-$document.on( "navcurrent.wb", navCurrent );
+$document.on( "navcurr.wb", navCurrent );
 
 })( jQuery, window, wb );

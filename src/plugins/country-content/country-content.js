@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Country Content
  * @overview A basic AjaxLoader wrapper that inserts AJAXed in content based on a visitors country as resolved by http://freegeoip.net
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -14,8 +14,11 @@
  * place to define variables that are common to all instances of the plugin on a
  * page.
  */
-var $document = wb.doc,
-	selector = "[data-country-content]",
+var pluginName = "wb-ctrycnt",
+	selector = "[data-ctrycnt]",
+	initEvent = "wb-init." + pluginName,
+	initedClass = pluginName + "-inited",
+	$document = wb.doc,
 
 	/**
 	 * Init runs once per plugin element on the page. There may be multiple
@@ -26,27 +29,33 @@ var $document = wb.doc,
 	 */
 	init = function( $elm ) {
 
-		var url = $elm.data( "countryContent" );
+		// Only initialize the element once
+		if ( !$elm.hasClass( initedClass ) ) {
+			wb.remove( selector );
+			$elm.addClass( initedClass );
 
-		// All plugins need to remove their reference from the timer in the init
-		// sequence unless they have a requirement to be poked every 0.5 seconds
-		wb.remove( selector );
+			var url = $elm.data( "ctrycnt" );
 
-		$.when( getCountry() ).then( function( countryCode ) {
+			// All plugins need to remove their reference from the timer in the init
+			// sequence unless they have a requirement to be poked every 0.5 seconds
+			wb.remove( selector );
 
-			if ( countryCode === "") {
-				// Leave default content since we couldn"t find the country
-				return;
-			} else {
-				// @TODO: Handle bad country values or any whitelist of countries.
-			}
+			$.when( getCountry() ).then( function( countryCode ) {
 
-			url = url.replace( "{country}", countryCode.toLowerCase() );
+				if ( countryCode === "") {
+					// Leave default content since we couldn"t find the country
+					return;
+				} else {
+					// @TODO: Handle bad country values or any whitelist of countries.
+				}
 
-			$elm.removeAttr( "data-country-content" );
+				url = url.replace( "{country}", countryCode.toLowerCase() );
 
-			$elm.load(url);
-		});
+				$elm.removeAttr( "data-ctrycnt" );
+
+				$elm.load(url);
+			});
+		}
 	},
 	getCountry = function() {
 		var dfd = $.Deferred(),
@@ -62,14 +71,17 @@ var $document = wb.doc,
 				cache: true,
 				jsonp: "callback",
 				success: function( data ) {
-					if( data ) {
+					if ( data ) {
 						countryCode = data.country_code;
-						localStorage.setItem( "countryCode", countryCode );
+						try {
+							localStorage.setItem( "countryCode", countryCode );
+						} catch ( error ) {
+						}
 					}
 
 					dfd.resolve( countryCode );
 				},
-				error: function(){
+				error: function() {
 					dfd.reject( "" );
 				}
 			});
@@ -80,7 +92,7 @@ var $document = wb.doc,
 		return dfd.promise();
 	};
 
-$document.on( "timerpoke.wb", selector, function( event ) {
+$document.on( "timerpoke.wb " + initEvent, selector, function( event ) {
 	var eventTarget = event.target;
 
 	// Filter out any events triggered by descendants

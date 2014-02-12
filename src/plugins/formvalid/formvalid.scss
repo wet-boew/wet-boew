@@ -12,12 +12,13 @@
 	margin-right: 0;
 }
 %formvalid-error {
-	@extend %formvalid-display-block;
-	@extend %formvalid-font-weight-700;
+	//TODO: Convert back to placeholder when libsass supports nested placeholders
+	display: block;
+	font-weight: 700;
 	color: #c00;
 }
 
-.wb-formvalid {
+.wb-frmvld {
 	label {
 		@extend %formvalid-display-block;
 		strong {
@@ -36,7 +37,6 @@
 			+ {
 				label {
 					display: inline;
-					margin-top: 0;
 				}
 			}
 		}

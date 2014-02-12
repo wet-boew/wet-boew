@@ -3,9 +3,43 @@
   @title: Proximity CSS
  */
 
-%pstn {
+@import "../../_variables";
+
+@mixin pstn {
 	position: absolute;
 	margin: 0;
+}
+
+@mixin pstn-lft {
+	left: 0;
+}
+
+@mixin pstn-rght {
+	right: 0;
+}
+
+@mixin pstn-tp {
+	top: 0;
+}
+
+@mixin pstn-bttm {
+	bottom: 0;
+}
+
+@mixin pstn-lft-rst {
+	left: auto;
+}
+
+@mixin pstn-rght-rst {
+	right: auto;
+}
+
+@mixin pstn-tp-rst {
+	top: auto;
+}
+
+@mixin pstn-bttm-rst {
+	bottom: auto;
 }
 
 .opct-100 {
@@ -48,116 +82,173 @@
 	opacity: .1;
 }
 
-.clmn-2 {
+.clmn-2-xs {
 	column-count: 2;
 }
 
-.clmn-3 {
+.clmn-3-xs {
 	column-count: 3;
 }
 
-.clmn-4 {
+.clmn-4-xs {
 	column-count: 4;
 }
 
-.pstn-lft {
-	@extend %pstn;
-	left: 0;
+@media screen and (min-width: $smallViewMin) {
+	.clmn-2-sm {
+		column-count: 2;
+	}
+
+	.clmn-3-sm {
+		column-count: 3;
+	}
+
+	.clmn-4-sm {
+		column-count: 4;
+	}
 }
 
-.pstn-lft-sm {
-	@extend %pstn;
-	left: 10px;
+@media screen and (min-width: $mediumViewMin) {
+	.clmn-2-md {
+		column-count: 2;
+	}
+
+	.clmn-3-md {
+		column-count: 3;
+	}
+
+	.clmn-4-md {
+		column-count: 4;
+	}
 }
 
-.pstn-lft-md {
-	@extend %pstn;
-	left: 20px;
+@media screen and (min-width: $largeViewMin) {
+	.clmn-2-lg {
+		column-count: 2;
+	}
+
+	.clmn-3-lg {
+		column-count: 3;
+	}
+
+	.clmn-4-lg {
+		column-count: 4;
+	}
 }
 
-.pstn-lft-lg {
-	@extend %pstn;
-	left: 50px;
+/*
+ *	Fix for missing bullets in Chrome and Safari
+ */
+[class*=clmn-] {
+	padding-left: 1.3em;
+	list-style: outside;
+	> {
+		li {
+			margin-left: 1.3em;
+		}
+	}
 }
 
-.pstn-lft-xlg {
-	@extend %pstn;
-	left: 100px;
+.pstn-lft-xs {
+	@include pstn;
+	@include pstn-lft;
+	@include pstn-rght-rst;
 }
 
-.pstn-rght {
-	@extend %pstn;
-	right: 0;
+.pstn-rght-xs {
+	@include pstn;
+	@include pstn-rght;
+	@include pstn-lft-rst;
 }
 
-.pstn-rght-sm {
-	@extend %pstn;
-	right: 10px;
+.pstn-tp-xs {
+	@include pstn;
+	@include pstn-tp;
+	@include pstn-bttm-rst;
 }
 
-.pstn-rght-md {
-	@extend %pstn;
-	right: 20px;
+.pstn-bttm-xs {
+	@include pstn;
+	@include pstn-bttm;
+	@include pstn-tp-rst;
 }
 
-.pstn-rght-lg {
-	@extend %pstn;
-	right: 50px;
+@media screen and (min-width: $smallViewMin) {
+	.pstn-lft-sm {
+		@include pstn;
+		@include pstn-lft;
+		@include pstn-rght-rst;
+	}
+
+	.pstn-rght-sm {
+		@include pstn;
+		@include pstn-rght;
+		@include pstn-lft-rst;
+	}
+
+	.pstn-tp-sm {
+		@include pstn;
+		@include pstn-tp;
+		@include pstn-bttm-rst;
+	}
+
+	.pstn-bttm-sm {
+		@include pstn;
+		@include pstn-bttm;
+		@include pstn-tp-rst;
+	}
 }
 
-.pstn-rght-xlg {
-	@extend %pstn;
-	right: 100px;
+@media screen and (min-width: $mediumViewMin) {
+	.pstn-lft-md {
+		@include pstn;
+		@include pstn-lft;
+		@include pstn-rght-rst;
+	}
+
+	.pstn-rght-md {
+		@include pstn;
+		@include pstn-rght;
+		@include pstn-lft-rst;
+	}
+
+	.pstn-tp-md {
+		@include pstn;
+		@include pstn-tp;
+		@include pstn-bttm-rst;
+	}
+
+	.pstn-bttm-md {
+		@include pstn;
+		@include pstn-bttm;
+		@include pstn-tp-rst;
+	}
 }
 
-.pstn-tp {
-	@extend %pstn;
-	top: 0;
-}
+@media screen and (min-width: $largeViewMin) {
+	.pstn-lft-lg {
+		@include pstn;
+		@include pstn-lft;
+		@include pstn-rght-rst;
+	}
 
-.pstn-tp-sm {
-	@extend %pstn;
-	top: 10px;
-}
+	.pstn-rght-lg {
+		@include pstn;
+		@include pstn-rght;
+		@include pstn-lft-rst;
+	}
 
-.pstn-tp-md {
-	@extend %pstn;
-	top: 20px;
-}
+	.pstn-tp-lg {
+		@include pstn;
+		@include pstn-tp;
+		@include pstn-bttm-rst;
+	}
 
-.pstn-tp-lg {
-	@extend %pstn;
-	top: 50px;
-}
-
-.pstn-tp-xlg {
-	@extend %pstn;
-	top: 100px;
-}
-
-.pstn-bttm {
-	@extend %pstn;
-	bottom: 0;
-}
-
-.pstn-bttm-sm {
-	@extend %pstn;
-	bottom: 10px;
-}
-
-.pstn-bttm-md {
-	@extend %pstn;
-	bottom: 20px;
-}
-
-.pstn-bttm-lg {
-	@extend %pstn;
-	bottom: 50px;
-}
-
-.pstn-bttm-xlg {
-	@extend %pstn;
-	bottom: 100px;
+	.pstn-bttm-lg {
+		@include pstn;
+		@include pstn-bttm;
+		@include pstn-tp-rst;
+	}
 }
 
 .mrgn-lft-0 {
@@ -169,14 +260,14 @@
 }
 
 .mrgn-lft-md {
-	margin-left: 10px;
+	margin-left: 15px;
 }
 
 .mrgn-lft-lg {
-	margin-left: 20px;
+	margin-left: 25px;
 }
 
-.mrgn-lft-xlg {
+.mrgn-lft-xl {
 	margin-left: 50px;
 }
 
@@ -189,15 +280,19 @@
 }
 
 .mrgn-bttm-md {
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 }
 
 .mrgn-bttm-lg {
-	margin-bottom: 20px;
+	margin-bottom: 25px;
 }
 
-.mrgn-bttm-xlg {
+.mrgn-bttm-xl {
 	margin-bottom: 50px;
+}
+
+.mrgn-tp-0 {
+	margin-top: 0;
 }
 
 .mrgn-tp-sm {
@@ -205,14 +300,14 @@
 }
 
 .mrgn-tp-md {
-	margin-top: 10px;
+	margin-top: 15px;
 }
 
 .mrgn-tp-lg {
-	margin-top: 20px;
+	margin-top: 25px;
 }
 
-.mrgn-tp-xlg {
+.mrgn-tp-xl {
 	margin-top: 50px;
 }
 
@@ -225,33 +320,41 @@
 }
 
 .mrgn-rght-md {
-	margin-right: 10px;
+	margin-right: 15px;
 }
 
 .mrgn-rght-lg {
-	margin-right: 20px;
+	margin-right: 25px;
 }
 
-.mrgn-rght-xlg {
+.mrgn-rght-xl {
 	margin-right: 50px;
 }
 
-[class*=brdr] {
+%proximity-border-base {
 	border: solid 0 #ccc;
 }
 
 .brdr-lft {
+	@extend %proximity-border-base;
 	border-left-width: 1px;
 }
 
 .brdr-rght {
+	@extend %proximity-border-base;
 	border-right-width: 1px;
 }
 
 .brdr-tp {
+	@extend %proximity-border-base;
 	border-top-width: 1px;
 }
 
 .brdr-bttm {
+	@extend %proximity-border-base;
 	border-bottom-width: 1px;
+}
+
+.brdr-rds-0 {
+	border-radius: 0;
 }

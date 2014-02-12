@@ -1,0 +1,75 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+
+/**
+ * Mobile-friendly styles
+ */
+%tabs-smallview-display-none {
+	display: none;
+}
+
+.wb-tabs {
+	&.carousel-s1, &.carousel-s2 {
+		figcaption {
+			position: relative;
+			top: auto;
+			right: 0;
+			bottom: 0;
+			left: 0;
+		}
+	}
+	&.carousel-s1 {
+		[role="tablist"] {
+			position: static;
+		}
+		li[role="presentation"] {
+			@extend %tabs-smallview-display-none;
+		}
+	}
+	&.carousel-s2 {
+		[role="tablist"] {
+			li[role="presentation"] {
+				@extend %tabs-smallview-display-none;
+			}
+		}
+		figcaption {
+			margin: 1em 3.5em;
+		}
+	}
+	&.tabs-acc {
+		> {
+			ul {
+				@extend %tabs-smallview-display-none;
+			}
+		}
+	}
+	%tabs-details-padding-6-12 {
+		padding: 6px 12px;
+	}
+	> {
+		details {
+			@extend %tabs-details-padding-6-12;
+			border: 1px solid #adadad;
+			border-radius: 4px;
+			margin-bottom: .5em;
+			&[style] {
+				min-height: 0 !important;
+			}
+			> {
+				summary {
+					margin: -6px -12px;
+					padding: 6px 12px;
+				}
+			}
+			&[open] {
+				> {
+					summary {
+						margin-bottom: 0;
+					}
+				}
+			}
+		}
+	}
+}

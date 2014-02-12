@@ -5,14 +5,6 @@
 %datepicker-color-fff-important {
 	color: #FFF !important;
 }
-%datepicker-display-inline {
-	display: inline;
-}
-%datepicker-img-display-inline {
-	img {
-		@extend %datepicker-display-inline;
-	}
-}
  
 .cal-cnt {
 	&.picker-overlay {
@@ -65,5 +57,5 @@
 }
 
 .datepicker-format {
-	@extend %datepicker-display-inline;
+	display: inline !important;
 }

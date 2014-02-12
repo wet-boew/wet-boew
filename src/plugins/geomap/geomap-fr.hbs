@@ -5,17 +5,16 @@
 	"category": "Plugiciel",
 	"description": "Affiche une carte dynamique sur laquelle des informations de sources supplémentaires peuvent être superposées.",
 	"tag": "geomap",
-	"en": "geomap",
-	"js": "demo/popup_function"
+    "altLangPrefix": "geomap"
 }
 ---
 <!-- GeomapStart -->
 <div id="sample_map"
-	class="wb-geomap position scaleline tab" 
-	data-wet-boew='{ 
+	class="wb-geomap position scaleline tab"
+	data-wet-boew='{
 		"layersFile": "demo/config-fr{{environment.suffix}}.js",
-		"tables": [{ 
-			"id": "cities", 
+		"tables": [{
+			"id": "cities",
 			"zoom": [
 				true,
 				{
@@ -32,70 +31,70 @@
 				"close": true,
 				"content": "<div style=\"white-space:nowrap;\"><p><strong>Subdivision de recensement: </strong>_Subdivision de recensement<div><a href=\"#\" class=\"button\" role=\"button\" title=\"Zoom à la ville\" aria-label=\"Zoom à la ville\" onclick=\"zoomFeature()\">Zoom à la ville</a></div></div>"
 			},
-			"style": { 
-				"type": "rule", 
+			"style": {
+				"type": "rule",
 				"rule": [
 				{
 					"field": "Population de 2011",
 					"value": [1000000],
-					"filter": "LESS_THAN", 
+					"filter": "LESS_THAN",
 					"init": {
-						"strokeColor": "#0083f5", 
-						"fillColor": "#57a8f0", 
-						"pointRadius": "6", 
-						"fillOpacity": 0.80, 
+						"strokeColor": "#0083f5",
+						"fillColor": "#57a8f0",
+						"pointRadius": "6",
+						"fillOpacity": 0.80,
 						"strokeWidth": 1.0
 					}
 				},
 				{
 					"field": "Population de 2011",
 					"value": [1000000, 2000000],
-					"filter": "BETWEEN", 
+					"filter": "BETWEEN",
 					"init": {
-						"strokeColor": "#F90", 
-						"fillColor": "#F90", 
-						"pointRadius": "8", 
-						"fillOpacity": 0.80, 
+						"strokeColor": "#F90",
+						"fillColor": "#F90",
+						"pointRadius": "8",
+						"fillOpacity": 0.80,
 						"strokeWidth": 1.0
 					}
 				},
 				{
 					"field": "Population de 2011",
 					"value": [2000000],
-					"filter": "GREATER_THAN", 
+					"filter": "GREATER_THAN",
 					"init": {
-						"strokeColor": "#F00", 
-						"fillColor": "#F00", 
-						"pointRadius": "10", 
-						"fillOpacity": 0.80, 
+						"strokeColor": "#F00",
+						"fillColor": "#F00",
+						"pointRadius": "10",
+						"fillOpacity": 0.80,
 						"strokeWidth": 1.0
 					}
-				}					        
+				}
 			]}
 		},
 		{
-			"id": "bbox", 
+			"id": "bbox",
 			"tab": true,
 			"zoom": [true, {"type": "image"}],
 			"popups": true
-		}] 
+		}]
 	}'>
 
 	<!-- Insert Map Start (mandatory) -->
 	<div class="wb-geomap-map col-sm-9"></div>
 	<!-- Insert Map End -->
-	
-	<!-- Insert Legend Start (optional) --> 
+
+	<!-- Insert Legend Start (optional) -->
 	<section>
 		<div class="wb-geomap-legend col-sm-3">
 			<h2>Légende</h2>
 		</div>
 	</section>
 	<!-- Insert Legend End -->
-	
+
 	<!-- Insert Layer Data Start (mandatory) -->
 	<div class="wb-geomap-layers col-sm-12">
-		<section>    
+		<section>
 			<h2>Couches de la carte</h2>
 			<div class="col-md-12">
 				<section>
@@ -105,7 +104,7 @@
 						<thead>
 							<tr>
 								<th>Rang</th>
-								<th>Subdivision de recensement</th>                            
+								<th>Subdivision de recensement</th>
 								<th>Population de 2011</th>
 							</tr>
 						</thead>
@@ -164,7 +163,7 @@
 						<tfoot>
 							<tr>
 								<th>Rang</th>
-								<th>Subdivision de recensement</th>                            
+								<th>Subdivision de recensement</th>
 								<th>Population de 2011</th>
 							</tr>
 						</tfoot>
@@ -177,7 +176,7 @@
 				<caption class="wb-invisible">Tableau des résultats de la recherche contenant la géométries des étendues des éléments.</caption>
 				<thead>
 					<tr>
-						<th></th>                        
+						<th></th>
 						<th>Titre</th>
 						<th>Géometrie</th>
 					</tr>
@@ -191,12 +190,12 @@
 					<tr data-geometry="-92.5, 72.75, -79, 75.5" data-type="bbox">
 						<td>2</td>
 						<td>Dinokystes du Crétacé supérieur-inférieur tertiaire, îles de Bylot et Devon, archipel arctique</td>
-						<td>-92.5, 72.75, -79, 75.5</td>                                           
+						<td>-92.5, 72.75, -79, 75.5</td>
 					</tr>
 				</tbody>
 				<tfoot>
 					<tr>
-						<th></th>                        
+						<th></th>
 						<th>Titre</th>
 						<th>Géometrie</th>
 					</tr>
@@ -205,7 +204,7 @@
 		</section>
 	</div>
 	<!-- Insert Layer Data End-->
-	
+
 </div>
 <!-- GeomapEnd -->
 
@@ -213,24 +212,24 @@
 
 <!-- GeomapStart -->
 <div id="location_map"
-	class="wb-geomap static" 
-	data-wet-boew='{ 
+	class="wb-geomap static"
+	data-wet-boew='{
 		"tables": [{
 			"id": "addNRCan"
-		}] 
+		}]
 	}'>
-	
+
 	<!-- Insert Map Start (mandatory) -->
 	<div class="wb-geomap-map  span-3"></div>
 	<!-- Insert Map End -->
-	
+
 	<!-- Insert Layer Data Start (mandatory) -->
-	<div class="wb-geomap-layers span-3"><section>  
+	<div class="wb-geomap-layers span-3"><section>
 	<h2 class="wb-invisible">Adresse du bureaux de ressources naturelles Canada, Ottawa</h2>
 		<table id="addNRCan" class="table-simplify width-100" aria-label="Adresse du bureaux de RNCan Ottawa">
 			<caption class="wb-invisible">Adresse du bureaux de ressources naturelles Canada, Ottawa</caption>
 			<thead>
-				<tr>                    
+				<tr>
 					<th>Adresse</th>
 				</tr>
 			</thead>
@@ -242,7 +241,7 @@
 		</table>
 	</section>
 	</div>
-	<!-- Insert Layer Data End -->  
+	<!-- Insert Layer Data End -->
 </div>
 <!-- GeomapEnd -->
 

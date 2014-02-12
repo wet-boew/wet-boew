@@ -20,7 +20,10 @@
 	}
 	#fbinfo {
 		@extend %wb-fdbck-display-none;
-	}	
+	}
+	#fbcntc {
+		margin-bottom: 15px;
+	}
 	#fbcmplt {
 		text-align: center;
 		p {
@@ -28,5 +31,18 @@
 				font-size: 110%;
 			}
 		}
+	}
+}
+
+.wb-fdbck-off {
+	@extend %wb-fdbck-display-none;
+}
+
+.wb-disable {
+	.wb-fdbck {
+		@extend %wb-fdbck-display-none;
+	}
+	.wb-fdbck-off {
+		display: block;
 	}
 }

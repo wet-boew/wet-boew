@@ -52,8 +52,6 @@ var selector = ".wb-geomap",
 			className = elm.className,
 			settings = {},
 			$elm, modeJS, overrides;
-		
-		console.log(elm.className);
 
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === elm ) {
@@ -113,20 +111,28 @@ var selector = ".wb-geomap",
 			Modernizr.load([{
 				// For loading multiple dependencies
 				both: [
-					"site!deps/openlayers" + modeJS,
-					"site!deps/proj4" + modeJS
+				    "site!deps/proj4" + modeJS,
+					"site!deps/openlayers" + modeJS
+					
 				],
 				complete: function() {
+					
+					// Set the proj4 dependency name to match OpenLayers
+					window.Proj4js = { Proj: function(code) { return proj4( Proj4js.defs[ code ]); },
+							defs: proj4.defs,
+							transform: proj4
+				 	};
 
 					// Set the language for OpenLayers
 					OpenLayers.Lang.setCode( document.documentElement.lang );
 
 					// Set the image path for OpenLayers
-					OpenLayers.ImgPath = wb.getPath( "/assets" ) + "/";					
+					OpenLayers.ImgPath = wb.getPath( "/assets" ) + "/";
 					
 					// Add projection for default base map
-					proj4.defs[ "EPSG:3978" ] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
-					
+					//proj4.defs[ "EPSG:3978" ] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
+					proj4.defs( "EPSG:3978", "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs");
+					  
 					if ( debug ) {
 						Modernizr.load([{
 							load: "site!../assets/geomap-debug" + modeJS
@@ -580,7 +586,7 @@ var selector = ".wb-geomap",
 				$parent.css( "display", ( visibility ? "table" : "none" ) );
 			});
 
-			$label = $( "<label>" , {
+			$label = $( "<label>", {
 				"for": "cb_" + featureTableId,
 				"html": $featureTable.attr( "aria-label" ),
 				"class": "form-checkbox"
@@ -814,21 +820,21 @@ var selector = ".wb-geomap",
 
 				// Set the select style then the rules.
 				styleMap = new OpenLayers.StyleMap({
-					'default': style,
-					'select': select
+					"default": style,
+					"select": select
 				});
 			} else {
 
 				// Set the select style then the default.				
 				styleMap = new OpenLayers.StyleMap({
-					'default': new OpenLayers.Style( elmStyle.init ),
-					'select': select
+					"default": new OpenLayers.Style( elmStyle.init ),
+					"select": select
 				});
 			}
 		} else {
 			styleMap = new OpenLayers.StyleMap({
-				'default': new OpenLayers.Style( defaultStyle ),
-				'select': new OpenLayers.Style( selectStyle )
+				"default": new OpenLayers.Style( defaultStyle ),
+				"select": new OpenLayers.Style( selectStyle )
 			});
 		}
 
@@ -1149,6 +1155,7 @@ var selector = ".wb-geomap",
 					mapOptions.displayProjection = new OpenLayers.Projection( mapOpts.displayProjection );
 					mapOptions.numZoomLevels = mapOpts.numZoomLevels;
 					mapOptions.aspectRatio = mapOpts.aspectRatio;
+					mapOptions.tileManager = null;
 				} catch ( error ) {
 					if ( opts.debug ) {
 						$document.trigger( "baseMapMapOptionsLoadError.wb-geomap" );
@@ -1823,7 +1830,7 @@ var selector = ".wb-geomap",
 		// Create projection objects
 		var projLatLon = new OpenLayers.Projection( "EPSG:4326" ),
 			projMap = geomap.map.getProjectionObject();
-
+		
 		if ( opts.debug ) {
 			$document.trigger( "projection.wb-geomap", projMap.getCode() );
 		}

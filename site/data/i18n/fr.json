@@ -1,9 +1,11 @@
 {
+	"lang-code-iso-639-2" : "fra",
 	"comma-space": ", ",
 	"cont-canada" : "À propos de Canada",
 	"cont-dept" : "Ministères et agences",
 	"cont-news" : "Nouvelles",
 	"cont-pub": "Publications et données",
+	"cont-service" : "Services et information",
 	"current": "(courant)",
 	"dlg-close": "Fermez la boîte de dialogue",
 	"esc-key": "(touche d'échappement)",
@@ -59,7 +61,7 @@
 	"tmpl-foot": "Pied de page",
 	"tmpl-footer-bar": "Barre de pied de page",
 	"tmpl-form": "Formulaire",
-	"tmpl-gc-ca": "Canada.gc.ca",
+	"tmpl-gc-ca": "Canada.ca",
 	"tmpl-gc-foot": "Pied de page du gouvernement du Canada",
 	"tmpl-gc-navbar": "Barre de navigation du gouvernement du Canada",
 	"tmpl-gc-sig": "Gouvernement du Canada",
@@ -164,5 +166,9 @@
 	"tmpl-wet-twitter": "BoiteExpWeb",
 	"tmpl-work-examples": "Exemples pratiques",
 	"you-are-here": "Vous êtes dans :",
-  	"cont-service" : "Services et information"
+	"hyphen": " - ",
+	"colon": "&#160;:",
+	"tmpl-documentation": "Documentation",
+	"tmpl-questions-comments": "Questions ou commentaires?",
+	"tmpl-add-desc": "S'il vous plaît ajouter une brève description."
 }

@@ -16,26 +16,26 @@
  */
 describe( "Favicon test suite", function() {
 
-	var spies = {};
+	var $faviconMobile, spy,
+		$favicon = $( "link[rel='shortcut icon']" ),
+		sandbox = sinon.sandbox.create();
 
 	/*
-	 * Before begining the test suite, this function is exectued once.
+	 * Before beginning the test suite, this function is executed once.
 	 */
-	before(function( done ) {
+	before(function() {
 		// Spy on jQuery's trigger methods
-		spies.trigger = sinon.spy( $.prototype, "trigger" );
+		spy = sandbox.spy( $.prototype, "trigger" );
 
-		wb.doc.on( "mobile.wb-favicon", "link[rel='shortcut icon']", function() {
-			done();
-		});
+		$favicon.trigger( "wb-init.wb-favicon" );
 	});
 
 	/*
-	 * After finishing the test suite, this function is exectued once.
+	 * After finishing the test suite, this function is executed once.
 	 */
 	after(function() {
 		// Restore the original behaviour of trigger once the tests are finished
-		$.prototype.trigger.restore();
+		sandbox.restore();
 	});
 
 	/*
@@ -44,7 +44,7 @@ describe( "Favicon test suite", function() {
 	describe( "init events", function() {
 
 		it( "should trigger mobile.wb-favicon event", function() {
-			expect( spies.trigger.calledWith( "mobile.wb-favicon" ) ).to.equal( true );
+			expect( spy.calledWith( "mobile.wb-favicon" ) ).to.equal( true );
 		});
 
 		it( "should have been triggered on a link[rel='shortcut icon'] element", function() {
@@ -52,8 +52,8 @@ describe( "Favicon test suite", function() {
 				isSelector = false;
 
 			// Loop over calls made on the trigger() spy
-			for ( i = 0, lenCalls = spies.trigger.callCount; !isSelector && i < lenCalls; i += 1 ) {
-				call = spies.trigger.getCall( i );
+			for ( i = 0, lenCalls = spy.callCount; !isSelector && i < lenCalls; i += 1 ) {
+				call = spy.getCall( i );
 				// There may be multiple `this` objects for each call
 				for ( j = 0, lenElms = call.thisValue.length; !isSelector && j < lenElms; j += 1 ) {
 					isSelector =  call.thisValue[ j ].nodeName === "LINK" && call.thisValue[ j ].rel === "shortcut icon";
@@ -69,9 +69,8 @@ describe( "Favicon test suite", function() {
 	 */
 	describe( "create default mobile favicon", function() {
 
-		var $favicon, $faviconMobile, href, path;
+		var href, path;
 		before(function() {
-			$favicon = $( "link[rel='shortcut icon']" );
 			$faviconMobile = $( ".wb-favicon" );
 			href = $favicon.attr( "href" );
 			path = href.substring( 0, href.lastIndexOf( "/" ) + 1 );
@@ -99,23 +98,20 @@ describe( "Favicon test suite", function() {
 	 */
 	describe( "create custom mobile favicon", function() {
 
-		var $favicon, $faviconMobile;
 		before(function( done ) {
-			$( ".wb-favicon" ).remove();
+			$faviconMobile.remove();
 
-			wb.doc.on( "mobile.wb-favicon", "link[rel='shortcut icon']", function() {
-				$faviconMobile = $( ".wb-favicon" );
-				done();
-			});
-
-			$favicon = $( "link[rel='shortcut icon']" );
 			$favicon.data({
 				rel: "apple-touch-icon-precompossed",
 				sizes: "57x57",
 				path: "foo/",
 				filename: "bar"
-			}).trigger( "timerpoke.wb" );
+			}).trigger( "wb-init.wb-favicon" );
 
+			setTimeout( function() {
+				$faviconMobile = $( ".wb-favicon" );
+				done();
+			}, 1);
 
 		});
 
@@ -141,10 +137,8 @@ describe( "Favicon test suite", function() {
 	 */
 	describe( "update favicon", function() {
 
-		var $favicon;
 		before(function() {
-			$( ".wb-favicon" ).remove();
-			$favicon = $( "link[rel='shortcut icon']" );
+			$faviconMobile.remove();
 			$favicon.trigger( "icon.wb-favicon", {
 				path: "foobar/",
 				filename: "baz"

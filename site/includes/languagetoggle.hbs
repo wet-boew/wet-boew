@@ -1,23 +1,15 @@
-<div class="container">
-	<div class="row text-right">
-		<ul>
-{{#if_eq language compare="en"}}
-	{{#if page.fr}}
-			<li>
-				<a lang="fr" href="{{page.fr}}-fr.html">Français</a>
-			</li>
-	{{/if}}
-{{/if_eq}}
-			<li class="curr">
-				{{#i18n "lang-native"}}{{/i18n}}{{#i18n "space"}}{{/i18n}}<span>{{#i18n "current"}}{{/i18n}}</span>
-			</li>
-{{#unless_eq language compare="en"}}
-	{{#if page.en}}
-			<li>
-				<a lang="en" href="{{page.en}}-en.html">English</a>
-			</li>
-	{{/if}}
-{{/unless_eq}}
-		</ul>
-	</div>
-</div>
+<ul class="text-right">
+{{#isnt language "fr"}}
+	{{#isnt language "en"}}
+		<li class="curr">{{#i18n "lang-native"}}{{/i18n}}{{#i18n "space"}}{{/i18n}}<span>{{#i18n "current"}}{{/i18n}}</span></li>
+	{{/isnt}}
+	<li><a lang="fr" hreflang="fr" href="{{altLangPrefix}}-fr.html">{{#i18n "lang-native" language="fr"}}{{/i18n}}</a></li>
+{{else}}
+	<li class="curr">{{#i18n "lang-native"}}{{/i18n}}{{#i18n "space"}}{{/i18n}}<span>{{#i18n "current"}}{{/i18n}}</span></li>
+{{/isnt}}
+{{#isnt language "en"}}
+	<li><a lang="en" hreflang="en" href="{{altLangPrefix}}-en.html">{{#i18n "lang-native" language="en"}}{{/i18n}}</a></li>
+{{else}}
+	<li class="curr">{{#i18n "lang-native"}}{{/i18n}}{{#i18n "space"}}{{/i18n}}<span>{{#i18n "current"}}{{/i18n}}</span></li>
+{{/isnt}}
+</ul>
