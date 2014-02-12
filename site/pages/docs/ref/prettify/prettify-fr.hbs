@@ -8,127 +8,147 @@
 ---	
 <span class="wb-prettify all-pre hide"></span>
 
+<section>
+	<h2>But</h2>
+	<p>Affiche de la syntaxe des extraits de code source.</p>
+</section>
+
 <div lang="en">
-<p><strong>Needs translation</strong></p>
+	<p><strong>Needs translation</strong></p>	
+	<section>
+		<h2>Use when</h2>
+		<ul>
+			<li>Applying syntax highlighting to source code snippets on a web page.</li>
+		</ul>
+	</section>
+</div>
+	
 <section>
-	<h2>Purpose</h2>
-	<p>A brief description of the component.</p>
+	<h2>Exemple pratique</h2>
+	<p><a href="../../../demos/prettify/prettify-en.html">Exemple en anglais</a></p>
+	<p><a href="../../../demos/prettify/prettify-fr.html">Exemple en français</a></p>
 </section>
 
 <section>
-	<h2>Use when</h2>
-	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
-	</ul>
-</section>
-
-<section>
-	<h2>Do not use when</h2>
-	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
-	</ul>
-</section>
-
-<section>
-	<h2>Working example</h2>
-	<p><a href="#">Link to a working example</a></p>
-</section>
-
-<section>
-	<h2>How to implement</h2>
+	<h2>Comment mettre en œuvre</h2>
 	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
+		<li>
+			Appliquer <b>class="wb-prettify"</b> à un élément sur la page pour charger le composant (une fois par page) :
+			<pre><code>&lt;span class="wb-prettify"&gt;&lt;/span&gt;</code></pre>
 		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
+		<li>
+			Appliquer <b>class="prettyprint"</b> à un élément pre ou code pour appliquer la mise en surbrillance de syntaxe. Comme alternative utiliser <b>class="wb-prettify all-pre"</b> pour appliquer la mise en surbrillance de syntaxe à tous les éléments pre sur la page :
+			<pre><code>&lt;pre class="prettyprint"&gt;
+		
+&lt;!-- Appliquer la mise en surbrillance de syntaxe à tous les éléments pre sur la page --&gt;	
+&lt;span class="wb-prettify all-pre"&gt;&lt;/span&gt;</code></pre>
 		</li>
-		<li>Step 4</li>
+		<li>
+			Appliquer <b>class="linenums"</b> à un élément pre ou code pour ajouter les nombres de ligne. Comme alternative utiliser <b>class="wb-prettify linenums"</b>pour ajouter les nombres de ligne à tous les éléments pre applicables. Spécifier le nombre commençant en ajoutant <b>linenums:#</b> avant linenums :
+			<pre><code>&lt;pre class="prettyprint linenums"&gt;
+
+&lt;!-- Spécifier le nombre commençant --&gt;	 
+&lt;pre class="prettyprint linenums:50 linenums"&gt;
+
+&lt;!-- Ajouter les nombres de ligne à tous les éléments pre applicables --&gt;	
+&lt;span class="wb-prettify linenums"&gt;&lt;/span&gt;</code></pre>
+		</li>
+		<li>Ajouter le soutien supplémentaire de langage de programmation avec <b>class="wb-prettify lang-*"</b> et en ajoutant <b>class="lang-*"</b> à chaque élément pre ou code applicable : 
+			<pre><code>&lt;span class="wb-prettify lang-css"&gt;&lt;/span&gt;
+&lt;pre class="prettyprint lang-css"&gt;</code></pre>
+
+			Les formats supportés sont ci-dessous :
+			<ul>
+				<li>lang-apollo</li>
+				<li>lang-clj</li>
+				<li>lang-css</li>
+				<li>lang-dart</li>
+				<li>lang-go</li>
+				<li>lang-hs</li>
+				<li>lang-lisp</li>
+				<li>lang-lua</li>
+				<li>lang-ml</li>
+				<li>lang-n</li>
+				<li>lang-proto</li>
+				<li>lang-scala</li>
+				<li>lang-sql</li>
+				<li>lang-tex</li>
+				<li>lang-vb</li>
+				<li>lang-vhdl</li>
+				<li>lang-wiki</li>
+				<li>lang-xq</li>
+				<li>lang-yaml</li>
+			</ul>
+		</li>
 	</ol>
 </section>
-
-<section>
-	<h2>Configuration options</h2>
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Option</th>
-				<th>Description</th>
-				<th>How to configure</th>
-				<th>Values</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
-			</tr>
-			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</section>
-
-<section>
-	<h2>Events</h2>
-	<p>Document the public events that can be used by implementers or developers.</p>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Event</th>
-				<th>Trigger</th>
-				<th>What it does</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Event 1</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
-			</tr>
-			<tr>
-				<td>Event 2</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
-			</tr>
-		</tbody>
-	</table>
-</section>
-
-<section>
-	<h2>Source code</h2>
-	<p><a href="#">Link to the folder on GitHub containing the files for the component</a></p>
-</section>
+	
+<div lang="en">
+	<p><strong>Needs translation</strong></p>		
+	<section>
+		<h2>Configuration options</h2>
+		<p>All configuration options of the plugin are controlled with CSS classes.</p>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Option</th>
+					<th>Description</th>
+					<th>How to configure</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>all-pre</code></td>
+					<td>Applies syntax highlighting to all pre elements on the page.</td>
+					<td>Add all-pre CSS class to the wb-prettify element.</td>
+				</tr>
+				<tr>
+					<td><code>linenums</code></td>
+					<td>Adds line numbers to the syntax highlighting.</td>
+					<td>Add linenums CSS class to the wb-prettify or prettyprint element.</td>
+				</tr>
+				<tr>
+					<td><code>linenums:#</code></td>
+					<td>Specifies the starting line number (e.g. linenums:20 starts the line numbers at 20).  Must be added along with the linenums CSS class.</td>
+					<td>Add linenums:# CSS class to a prettyprint element, before the linenums CSS class</td>
+				</tr>
+				<tr>
+					<td><code>lang-*</code></td>
+					<td>Specifies language specific syntax highlighting.</td>
+					<td>Add lang-* CSS class to the wb-prettify and prettyprint elements.</td>
+				</tr>					
+			</tbody>
+		</table>
+	</section>
+	
+	<section>
+		<h2>Events</h2>
+		<p>Document the public events that can be used by implementers or developers.</p>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Event</th>
+					<th>Trigger</th>
+					<th>What it does</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>wb-init.wb-prettify</code></td>
+					<td>Triggered manually.</td>
+					<td>Initializes the plugin and applies syntax highlighting to the web page's pre and code elements. <b>Note: </b> the prettify plugin will be initialized automatically unless the element is added after the page has already loaded.</td>
+				</tr>
+				<tr>
+					<td><code>prettyprint.wb-prettify</code></td>
+					<td>Triggered manually and during plugin initialization.</td>
+					<td>Applies syntax highlighting to the web page's pre and code elements.</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	
+	<section>
+		<h2>Source code</h2>
+		<p><a href="https://github.com/wet-boew/wet-boew/tree/v4.0/src/plugins/prettify">Prettify source code on GitHub</a></p>
+	</section>
 </div>
