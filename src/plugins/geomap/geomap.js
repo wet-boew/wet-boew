@@ -1660,13 +1660,19 @@ var selector = ".wb-geomap",
 				if ( geomType !== null ) {
 					if ( geomType === "bbox" ) {
 						bbox = trElmsInd.getAttribute( "data-geometry" ).split( "," );
-						wktFeature = "POLYGON((" +
-							bbox[ 0 ] + " " + bbox[ 1 ] + ", " +
-							bbox[ 0 ] + " " + bbox[ 3 ] + ", " +
-							bbox[ 2 ] + " " + bbox[ 3 ] + ", " +
-							bbox[ 2 ] + " " + bbox[ 1 ] + ", " +
-							bbox[ 0 ] + " " + bbox[ 1 ] +
-						"))";
+						
+						var feat = densifyBBox(bbox[0], bbox[1], bbox[2], bbox[3]), 
+						vertices = "";
+					
+						$.each(feat, function(index, f) { 
+							vertices += f.x + ' ' + f.y + ', ';
+						});
+						
+						// add the closing coordinate
+						vertices += feat[0].x + ' ' + feat[0].y;
+					
+						wktFeature = 'POLYGON((' + vertices + '))';
+						
 					} else if ( geomType === "wkt" ) {
 						wktFeature = trElmsInd.getAttribute( "data-geometry" );
 					}
@@ -1817,6 +1823,51 @@ var selector = ".wb-geomap",
 			map.updateSize();
 			map.zoomToMaxExtent();
 		});
+	},
+	
+	/**
+	 * Construct a polygon and densify the latitudes to show the curvature
+	 * 
+	 * @param minx
+	 * @param miny
+	 * @param maxx
+	 * @param maxy
+	 * @returns Array of OpenLayers.Point
+	 */
+	densifyBBox = function(minx, miny, maxx, maxy) {
+		
+		var left = parseFloat(minx),
+			bottom = parseFloat(miny),
+			right = parseFloat(maxx),
+			top = parseFloat(maxy);
+		
+		if(left.length === 0 || bottom.length === 0 || right.length === 0 || top.length === 0) { return false; }
+	
+		// If default BBOX, make it fit in view showing Canada and not the world.
+		if (left == -180.0) left=-179.9;
+		if (right == 180.0) right=-5.0;
+		if (top == 90.0) top=87.0;
+		if (bottom == -90.0) bottom=35.0;			
+		
+		var newbounds = [ ];
+		var newPoint = new OpenLayers.Geometry.Point(j, bottom);
+		for (var j = left; j < right; j=j+0.5) {
+			newPoint = new OpenLayers.Geometry.Point(j, bottom);
+			newbounds.push(newPoint);
+		}
+		newPoint = new OpenLayers.Geometry.Point(right, bottom);
+		newbounds.push(newPoint);
+		for (var j = right; j > left; j=j-0.5) {
+			newPoint = new OpenLayers.Geometry.Point(j, top);
+			newbounds.push(newPoint);
+		}
+		newPoint = new OpenLayers.Geometry.Point(left, top);
+		newbounds.push(newPoint);
+		newPoint = new OpenLayers.Geometry.Point(left, bottom);
+		newbounds.push(newPoint);		
+		
+		return newbounds;
+		
 	},
 
 	/*
