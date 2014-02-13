@@ -334,7 +334,6 @@ $document.on( "timerpoke.wb " + initEvent + " keydown click vclick touchstart", 
 			} else {
 				showOptions( input, input.value );
 			}
-			return false;
 		}
 		break;
 	}
