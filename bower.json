@@ -36,7 +36,7 @@
 		"excanvas": "*",
 		"google-code-prettify": "1.0.0",
 		"proj4": "2.1.0",
-		"openlayers": "git://github.com/openlayers/openlayers.git",
+		"openlayers": "http://openlayers.org/download/OpenLayers-2.13.1.tar.gz",
 		"SideBySideImproved": "https://github.com/pkoltermann/SideBySideImproved.git"
 	},
 	"resolutions": {
