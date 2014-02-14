@@ -90,6 +90,7 @@
 {{/is}}
 		<main role="main" property="mainContentOfPage" class="{{#is secondarymenu "true"}}col-md-9 col-md-push-3{{else}}container{{/is}}">
 			<h1 id="wb-cont" property="name">{{title}}</h1>
+			{{>contentbuttons}}
 			{{>body}}
 		</main>
 {{#is secondarymenu "true"}}

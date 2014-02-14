@@ -62,8 +62,7 @@ div {
 		text-align: left;
 	}
 	&.olLayerDiv {
-		-moz-user-select: none;
-		-khtml-user-select: none; 
+		user-select: none;
 		img {
 			max-width: none !important;
 		}
@@ -193,8 +192,7 @@ div {
 
 
 .olControlNoSelect {
-	-moz-user-select: none;
-	-khtml-user-select: none;
+	user-select: none;
 }
 
 .olImageLoadError {

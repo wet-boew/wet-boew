@@ -117,9 +117,12 @@ var selector = ".wb-geomap",
 				complete: function() {
 
 					// Set the proj4 dependency name to match OpenLayers
-					window.Proj4js = { Proj: function(code) { return proj4( Proj4js.defs[ code ]); },
-										defs: proj4.defs,
-										transform: proj4
+					window.Proj4js = {
+						Proj: function( code ) {
+							return proj4( window.Proj4js.defs[ code ] );
+						},
+						defs: proj4.defs,
+						transform: proj4
 					};
 					
 					// Set the language for OpenLayers
@@ -472,7 +475,7 @@ var selector = ".wb-geomap",
 	 */
 	createTable = function( index, title, caption, datatable ) {
 
-		return $( "<table class='table-simplify" + ( datatable ? " wb-tables" : "" ) +
+		return $( "<table class='table" + ( datatable ? " wb-tables" : "" ) +
 			"' aria-label='" + title + "' id='overlay_" + index + "'>" + "<caption>" +
 			caption + "</caption><thead></thead><tbody></tbody>" +
 			(datatable ? "<tfoot></tfoot></table><div class='clear'></div>" : "</table>" ));
@@ -546,7 +549,7 @@ var selector = ".wb-geomap",
 			// If no legend or fieldset add them
 			$fieldset = geomap.glegend.find( "fieldset" );
 			if ($fieldset.length === 0 ) {
-				$fieldset = $( "<fieldset name='legend' data-role='controlgroup'><legend class='wb-inv'>" +
+				$fieldset = $( "<fieldset name='legend'><legend class='wb-inv'>" +
 					i18nText.toggleLayer + "</legend></fieldset>" ).appendTo( geomap.glegend );
 			}
 
@@ -1783,7 +1786,13 @@ var selector = ".wb-geomap",
 			addPanZoomBar( geomap );
 
 			// Fix for the defect #3204 http://tbs-sct.ircan-rican.gc.ca/issues/3204
-			$mapDiv.before( "<details id='geomap-details-" + geomap.uniqueId + "' class='wb-geomap-detail' style='width:" + ( $mapDiv.width() - 10 ) + "px;'><summary>" + i18nText.accessTitle + "</summary><p>" + i18nText.access + "</p></details>" );
+			$mapDiv.before(
+				"<details id='geomap-details-" + geomap.uniqueId +
+				"' class='wb-geomap-detail' style='width:" +
+				( $mapDiv.width() - 10 ) + "px;'><summary>" +
+				i18nText.accessTitle + "</summary><p>" + i18nText.access +
+				"</p></details>"
+			);
 			$( "#geomap-details-" + geomap.uniqueId ).trigger( "timerpoke.wb" );
 		}
 
@@ -1820,7 +1829,7 @@ var selector = ".wb-geomap",
 	},
 
 	/*
-	 *	Create the map after we load the config file.
+	 * Create the map after we load the config file.
 	 */
 	createMap = function( geomap, opts ) {
 
@@ -1830,8 +1839,6 @@ var selector = ".wb-geomap",
 		// Create projection objects
 		var projLatLon = new OpenLayers.Projection( "EPSG:4326" ),
 			projMap = geomap.map.getProjectionObject();
-
-		var a = new OpenLayers.LonLat(-100, 54).transform(new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913"));
 		
 		if ( opts.debug ) {
 			$document.trigger( "projection.wb-geomap", projMap.getCode() );
@@ -1879,12 +1886,16 @@ var selector = ".wb-geomap",
 		mapArray.push( geomap.map );
 
 		// If all geomap instance are loaded, trigger ready.wb-geomap
-		if ( mapArray.length === $( ".wb-geomap").length ) {
+		if ( mapArray.length === $( ".wb-geomap" ).length ) {
 
-			// Set the alt attributes for images to fix the missing alt attribute. Need to do it after zoom because each zoom brings new tiles.
-			// to solve this modifications needs to be done to OpenLayers core code OpenLayers.Util.createImage and OpenLayers.Util.createAlphaImageDiv
-			// TODO: fix no alt attribute on tile image in OpenLayers rather than use this override
-			// wait 2 seconds for all tile to be loaded in the page
+			// Set the alt attributes for images to fix the missing alt
+			// attribute. Need to do it after zoom because each zoom brings
+			// new tiles to solve this modifications needs to be done to
+			// OpenLayers core code OpenLayers.Util.createImage and
+			// OpenLayers.Util.createAlphaImageDiv
+			// TODO: fix no alt attribute on tile image in OpenLayers rather
+			// than use this override wait 2 seconds for all tile to be loaded
+			// in the page
 			setTimeout(function() {
 				geomap.gmap.find( "img" ).attr( "alt", "" );
 				$( ".olTileImage" ).attr( "alt", "" );

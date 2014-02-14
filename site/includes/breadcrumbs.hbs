@@ -5,7 +5,7 @@
 				<a href="{{assets}}/index-{{language}}.html">{{#i18n "tmpl-home"}}{{/i18n}}</a>
 			</li>
 {{#isnt assets ".."}}
-	{{#contains page.src "/demos/"}}
+	{{#contains page.src "src/"}}
 			<li>
 				<a href="{{assets}}/demos/index-{{language}}.html">{{#i18n "tmpl-work-examples"}}{{/i18n}}</a>
 			</li>

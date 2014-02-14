@@ -166,5 +166,9 @@
 	"tmpl-wet-twitter": "BoiteExpWeb",
 	"tmpl-work-examples": "Exemples pratiques",
 	"you-are-here": "Vous êtes dans :",
-	"hyphen": " - "
+	"hyphen": " - ",
+	"colon": "&#160;:",
+	"tmpl-documentation": "Documentation",
+	"tmpl-questions-comments": "Questions ou commentaires?",
+	"tmpl-add-desc": "S'il vous plaît ajouter une brève description."
 }
