@@ -497,19 +497,19 @@ var selector = ".wb-geomap",
 	 * Add layer data
 	 */
 	addLayerData = function( geomap, featureTable, enabled, olLayerId, tab ) {
-
+		
 		// Add layer to legend
 		if ( geomap.glegend.length !== 0 ) {
 			addToLegend( geomap, featureTable, enabled, olLayerId );
 		}
 
 		var $divLayer = geomap.glayers,
-			featureTableId = featureTable.id,
+			featureTableId = featureTable[0].id,
 			$layerTab = $( "<div id='tabs_" + featureTableId + "'>" ),
 			title = featureTable[ 0 ].attributes[ "aria-label" ].value,
 			$layerTitle = $( "<h3 class='background-light'>" + title + "</h3>" ),
 			$alert = $( "<div id='msg_" + featureTableId + "' class='module-attention module-simplify margin-top-medium margin-bottom-medium'><p>" +
-				i18nText.hiddenLayer + "</p></div>" );
+				i18nText.hiddenLayer + "</p></div>" );		
 
 		if ( debug && ( $divLayer.length === 0 ) ) {
 			$document.trigger( "layersNotSpecify.wb-geomap" );
@@ -518,11 +518,10 @@ var selector = ".wb-geomap",
 		// If tabs are specified
 		if ( tab && $( ".wb-geomap-tabs" ).length !== 0 ) {
 			addToTabs( geomap, featureTable, enabled, olLayerId );
-
 		// Tabs are not specified
 		} else {
 			$layerTab.append( $layerTitle, featureTable );
-
+			$divLayer.append('<div class="col-md-12">' + $layerTab.html() + '</div>', '<div class="clear"></div>');
 			// if layer visibility is false, add the hidden layer message and hide the table data
 			if ( !enabled ) {
 				$layerTab.append( $alert );
@@ -538,10 +537,13 @@ var selector = ".wb-geomap",
 	/*
 	 * Create Legend
 	 */
-	addToLegend = function( geomap, featureTable, enabled, olLayerId ) {
-		var $featureTable = $( featureTable),
-			featureTableId = featureTable.i,
-			$fieldset, $ul, $checked, $chkBox, $label;
+	addToLegend = function( geomap, featureTable, enabled, olLayerId ) {	
+		
+		var $featureTable = $(featureTable),
+			featureTableId = featureTable[0].id,
+			$fieldset, $ul, $checked, $chkBox, $label, $li;
+		
+		//console.log($featureTable);
 
 		if ( typeof geomap.glegend !== "undefined" ) {
 
@@ -559,11 +561,10 @@ var selector = ".wb-geomap",
 				$ul = $( "<ul class='list-unstyled'></ul>" ).appendTo( $fieldset );
 			}
 
-			$chkBox = $( "<input type='checkbox' id='cb_" + featureTableId +
-				"' value='" + featureTableId + "' " + $checked + " />" )
-				.appendTo( "<div class='geomap-legend-chk'></div>" );
-
-			$chkBox.on( "change", function() {
+			$chkBox = $( "<input type='checkbox' id='cb_" + featureTableId + "' value='" + featureTableId + "' " + $checked + " />" ); //.appendTo( '<div class="geomap-legend-chk"></div>' );
+			
+			$chkBox.on( "change", function() { 
+				
 				var layer = geomap.map.getLayer( olLayerId ),
 					visibility = geomap.glegend.find( "#cb_" + featureTableId ).prop( "checked" ) ? true : false,
 					$table = geomap.glayers.find( "#" + featureTableId ),
@@ -574,8 +575,8 @@ var selector = ".wb-geomap",
 				if ( !$parent.hasClass( "dataTables_wrapper" ) ) {
 					$parent = $table;
 				}
-
-				$alert = $( "#msg_" + featureTableId );
+				
+				$alert = $('#msg_' + featureTableId);
 
 				if ( $alert.length !== 0 ) {
 					$alert.fadeToggle();
@@ -585,14 +586,16 @@ var selector = ".wb-geomap",
 
 				$parent.css( "display", ( visibility ? "table" : "none" ) );
 			});
-
-			$label = $( "<label>", {
+				
+			$label = $( '<label>', {
 				"for": "cb_" + featureTableId,
 				"html": $featureTable.attr( "aria-label" ),
 				"class": "form-checkbox"
-			}).append( $chkBox, "<div id='sb_" + featureTableId + "'></div>" );
-
-			$ul.append( "<li>" + $label.html() + "</li>" );
+			}).prepend( $chkBox );
+			
+			$li = $('<li>').append($label, '<div id="sb_' + featureTableId + '"></div>');
+			
+			$ul.append( $li );
 		}
 	},
 
@@ -604,7 +607,7 @@ var selector = ".wb-geomap",
 			colon = i18nText.colon,
 			ruleLen, $symbol, symbolText, layer, style, styleDefault,
 			filter, filterType, symbolizer, i, j;
-
+		
 		for ( i = 0; i !== len; i += 1 ) {
 			layer = geomap.map.layers[ i ];
 			if ( !layer.isBaseLayer ) {
@@ -619,9 +622,10 @@ var selector = ".wb-geomap",
 					if ( ruleLen ) {
 						symbolText += "<ul class='list-unstyled'>";
 						for ( j = 0; j !== ruleLen; j += 1 ) {
-							filter = style.rules[ ruleLen ].filter;
+							
+							filter = style.rules[ j ].filter;
 							filterType = filter.type;
-							symbolizer = style.rules[ ruleLen ].symbolizer;
+							symbolizer = style.rules[ j ].symbolizer;
 
 							if ( filterType === "==" ) {
 								filterType = colon;
@@ -651,7 +655,7 @@ var selector = ".wb-geomap",
 	/*
 	 * Get the div object with the proper style
 	 */
-	getLegendSymbol = function( style ) {
+	getLegendSymbol = function( style ) {		
 		var symbolStyle = "",
 			fillColor = style.fillColor,
 			strokeColor = style.strokeColor,
@@ -702,7 +706,7 @@ var selector = ".wb-geomap",
 		var $div = geomap.glayers.find( ".wb-geomap-tabs" ),
 			$tabs = $div.find( "ul.tabs" ),
 			$tabsPanel = $div.find( "div.tabs-panel" ),
-			featureTableId = featureTable.id,
+			featureTableId = featureTable[0].id,
 			$featureTable = $( featureTable ),
 			$layerTab;
 
@@ -1459,7 +1463,16 @@ var selector = ".wb-geomap",
 										for ( i = 0, len = items.length; i !== len; i += 1 ) {
 											row = items[ i ];
 											feature = new OpenLayers.Feature.Vector();
-											feature.geometry = this.parseGeometry( row.geometry );
+											
+											// if we have a bounding box polygon, densify the coordinates
+											if(row.geometry.type === "Polygon" && row.geometry.coordinates[0].length === 5) {												
+												var bnds = densifyBBox(row.geometry.coordinates[0][1][0], row.geometry.coordinates[0][1][1], row.geometry.coordinates[0][3][0], row.geometry.coordinates[0][3][1]), 
+													ring = new OpenLayers.Geometry.LinearRing( bnds ),
+													geom = new OpenLayers.Geometry.Polygon( ring );
+												feature.geometry = geom;
+											} else {
+												feature.geometry = this.parseGeometry( row.geometry );
+											}											
 
 											// Parse and store the attributes
 											// TODO: test on nested attributes
