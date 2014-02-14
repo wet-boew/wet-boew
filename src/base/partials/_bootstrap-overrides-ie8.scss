@@ -1,0 +1,15 @@
+/*
+  WET-BOEW
+  @title: Bootstrap IE8-specific overrides for WET-BOEW
+ */
+@media print {
+	.lt-ie9 {
+		abbr {
+			&[title] {
+				&:after {
+					content: "";
+				}
+			}
+		}
+	}
+}
