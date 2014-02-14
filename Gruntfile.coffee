@@ -383,7 +383,6 @@ module.exports = (grunt) ->
 				css: "src/plugins/share/sprites/_sprites.scss"
 				map: "src/plugins/share/assets/sprites_share.png"
 				output: "scss"
-
 		# Compiles the Sass files
 		sass:
 			all:
@@ -681,6 +680,8 @@ module.exports = (grunt) ->
 						"magnific-popup/dist/jquery.magnific-popup.js"
 						"google-code-prettify/src/*.js"
 						"DataTables/media/js/jquery.dataTables.js"
+						"proj4/dist/proj4.js"
+						"openlayers/dist/openlayers.js"
 					]
 					dest: "dist/unmin/js/deps"
 					expand: true
@@ -780,7 +781,6 @@ module.exports = (grunt) ->
 				]
 				dest: "dist/demos/"
 				expand: true
-
 			deploy:
 				src: [
 					"*.txt"
