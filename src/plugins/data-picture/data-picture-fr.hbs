@@ -5,11 +5,13 @@
 	"category": "Plugiciel",
 	"description": "Conversion de Picturefill guidé par l'événement.",
 	"tag": "data-picture",
-	"en": "data-picture"
+	"altLangPrefix": "data-picture"
 }
 ---
 
-<p>Conversion de <a href="https://github.com/scottjehl/picturefill">Picturefill</a> guidé par l'événement.</p>
+<div class="alert alert-info">
+	<strong>Intention :</strong> Conversion de <a href="https://github.com/scottjehl/picturefill">Picturefill</a> guidé par l'événement.
+</div>
 
 <section>
 	<h2>Features</h2>
@@ -18,7 +20,7 @@
 		<p>Cet exemple utilise <a href="http://www.w3.org/TR/css3-mediaqueries/#width">min-width</a> afin de déterminer l'image à afficher. Redimensionner la fenêtre de navigateur pour voir les différentes images qui chargent.</p>
 
 		<figure>
-			<span data-picture data-alt="Colline du Parlement">
+			<span data-pic="data-pic" data-alt="Colline du Parlement">
 				<!-- Image par défault : l'élément <div [data-src]> sans attribut data-media est affiché quand :
 					1. Aucun des autres requêtes médias <div [data-src]> correspond.
 					2. Le navigateur ne supporte pas les requêtes médias CSS -->
@@ -26,8 +28,8 @@
 
 				<!-- Images pour les navigateurs qui supportent les requêtes médias CSS -->
 				<span data-src="img/parliament-hill-small.jpg" data-media="(min-width: 0px)"></span>
-				<span data-src="img/parliament-hill-medium.jpg" data-media="(min-width: 500px)"></span>
-				<span data-src="img/parliament-hill-large.jpg" data-media="(min-width: 960px)"></span>
+				<span data-src="img/parliament-hill-medium.jpg" data-media="(min-width: 768px)"></span>
+				<span data-src="img/parliament-hill-large.jpg" data-media="(min-width: 992px)"></span>
 				<span data-src="img/parliament-hill-extralarge.jpg" data-media="(min-width: 1200px)"></span>
 
 				<!-- Contenu alternatif pour les navigateurs non-JS. -->
@@ -41,7 +43,7 @@
 		<details class="wb-prettify all-pre linenums">
 			<summary>Visualiser le code</summary>
 			<pre><code>&lt;figure&gt;
-	&lt;span data-picture data-alt="Colline du Parlement"&gt;
+	&lt;span data-pic="data-pic" data-alt="Colline du Parlement"&gt;
 		&lt;!-- Image par défault : l'élément &lt;div [data-src]&gt; sans attribut data-media est affiché quand&#160;:
 				1. Aucun des autres requêtes médias &lt;div [data-src]&gt; correspond.
 				2. Le navigateur ne supporte pas les requêtes médias CSS --&gt;
@@ -67,7 +69,7 @@
 		<p>Cet exemple utilise <a href="http://www.w3.org/blog/CSS/2012/06/14/unprefix-webkit-device-pixel-ratio/" title="Lisez à propos des requêtes médias à haute résolution">deux requêtes médias</a> pour servir des images à haute résolution à des appareils qui en bénéficieront (p.ex. écrans Retina).</p>
 
 		<figure>
-			<span data-picture data-alt="False Kiva dans les Canyonlands">
+			<span data-pic="data-pic" data-alt="False Kiva dans les Canyonlands">
 				<!-- Images pour différentes résolutions de l'appareil -->
 				<span data-src="img/cave-low-res.jpg"></span>
 				<span data-src="img/cave-high-res.jpg" data-media="(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)"></span>
@@ -83,7 +85,7 @@
 		<details>
 			<summary>Visualiser le code</summary>
 			<pre><code>&lt;figure&gt;
-	&lt;span data-picture data-alt="False Kiva dans les Canyonlands"&gt;
+	&lt;span data-pic="data-pic" data-alt="False Kiva dans les Canyonlands"&gt;
 		&lt;!-- Images pour différentes résolutions de l'appareil --&gt;
 		&lt;span data-src="img/cave-low-res.jpg"&gt;&lt;/span&gt;
 		&lt;span data-src="img/cave-high-res.jpg" data-media="(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)"&gt;&lt;/span&gt;

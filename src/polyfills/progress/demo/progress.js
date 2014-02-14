@@ -9,10 +9,15 @@
 wb.doc.on( "click vclick", "#updateProgress", function() {
 	var $elm = $( "#updateTest" ),
 		valuenow = parseInt( $elm.attr( "value" ), 10 ),
-		newValue = valuenow === parseInt( $elm.attr( "max" ) ) ? 0 : valuenow + 1;
+		newValue = valuenow === parseInt( $elm.attr( "max" ), 10 ) ? 0 : valuenow + 1;
 
-	$elm.attr( "value", newValue );
-	$elm.find( "span" ).text( newValue + "%" );
+	$elm
+		.attr( "value", newValue )
+		.find( "span" )
+			.text( newValue + "%" );
+
+	// Update the visuals
+	$elm.trigger( "wb-update.wb-progress" );
 });
 
 })( jQuery, wb );

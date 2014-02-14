@@ -7,7 +7,38 @@
  *	Overlay base
  */
 .ie8 {
-	.wb-overlay {
-		border: 1px solid #ccc;
+	%overlay-ie8-border-left-999 {
+		border-left: 1px solid #999;
+	}
+	
+	%overlay-ie8-border-right-999 {
+		border-left: 1px solid #999;
+	}
+
+	.wb-panel-l {
+		@extend %overlay-ie8-border-right-999;
+	}
+
+	.wb-panel-r {
+		@extend %overlay-ie8-border-left-999;
+	}
+
+	.wb-bar-t {
+		border-bottom: 1px solid #999;
+	}
+
+	.wb-bar-b {
+		border-top: 1px solid #999;
+	}
+	&[dir=rtl] {
+		.wb-panel-l {
+			border-right: none;
+			@extend %overlay-ie8-border-left-999;
+		}
+
+		.wb-panel-r {
+			border-left: none;
+			@extend %overlay-ie8-border-right-999;
+		}
 	}
 }

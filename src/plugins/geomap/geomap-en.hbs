@@ -5,7 +5,7 @@
 	"category": "Plugin",
 	"description": "Displays a dynamic map over which information from additional sources can be overlaid.",
 	"tag": "geomap",
-	"fr": "geomap",
+	"altLangPrefix": "geomap",
 	"js": "demo/popup_function"
 }
 ---
@@ -13,7 +13,7 @@
 <div id="sample_map"
 	class="wb-geomap position scaleline tab" 
 	data-wet-boew='{ 
-		"layersFile": "demo/config-en{{environment.suffix}}.js", 
+		"layersFile": "",
 		"tables": [{ 
 			"id": "cities", 
 			"zoom": [
@@ -203,42 +203,5 @@
 		</section>
 	</div>
 	<!-- Insert Layer Data End -->
-</div>
-<!-- GeomapEnd -->
-
-<div style="height: 10px;"></div>
-
-<!-- GeomapStart -->
-<div id="location_map"
-	class="wb-geomap static" 
-	data-wet-boew='{ 
-		"tables": [{
-			"id": "addNRCan"
-		}] 
-	}'>
-	
-	<!-- Insert Map Start (mandatory) -->
-	<div class="wb-geomap-map col-sm-4"></div>
-	<!-- Insert Map End -->
-	
-	<!-- Insert Layer Data Start (mandatory) -->
-	<div class="wb-geomap-layers col-sm-4"><section>  
-		<h2 class="wb-inv">Natural Resources Canada Ottawa office adress</h2>
-		<table id="addNRCan" class="table-simplify width-100" aria-label="NRCan Ottawa office adress">
-			<caption class="wb-invisible">Natural Resources Canada Ottawa office adress</caption>
-			<thead>
-				<tr>                    
-					<th>Adress</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr data-geometry="POINT (-75.70535, 45.3995)" data-type="wkt">
-					<td>615 Booth St.,<br />Ottawa (ON),<br />Canada,<br />K1A 0E8</td>
-				</tr>
-			</tbody>
-		</table>
-	</section>
-	</div>
-	<!-- Insert Layer Data End -->  
 </div>
 <!-- GeomapEnd -->

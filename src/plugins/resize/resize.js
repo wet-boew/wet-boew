@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Resize
  * @overview Text and window resizing event handler
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -13,15 +13,14 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var id = "wb-resize",
+var id = "wb-rsz",
 	selector = "#" + id,
-	$window = wb.win,
 	$document = wb.doc,
 	sizes = [],
 	events = [
-		"text-resize.wb",
-		"window-resize-width.wb",
-		"window-resize-height.wb"
+		"txt-rsz.wb",
+		"win-rsz-width.wb",
+		"win-rsz-height.wb"
 	],
 
 	// Breakpoint names and lower pixel limits
@@ -36,7 +35,7 @@ var id = "wb-resize",
 	initialized = false,
 	eventsAll, resizeTest, currentView,
 
-	/*
+	/**
 	 * Init runs once
 	 * @method init
 	 */
@@ -52,8 +51,8 @@ var id = "wb-resize",
 		// Get a snapshot of the current sizes
 		sizes = [
 			localResizeTest.offsetHeight,
-			$window.width(),
-			$window.height()
+			window.innerWidth || $document.width(),
+			window.innerHeight || $document.height()
 		];
 
 		// Create a string containing all the events
@@ -65,7 +64,7 @@ var id = "wb-resize",
 		initialized = true;
 	},
 
-	viewChange = function ( viewportWidth ) {
+	viewChange = function( viewportWidth ) {
 		var breakpoint, viewName;
 
 		// Check for a change between views
@@ -95,7 +94,7 @@ var id = "wb-resize",
 		}
 	},
 
-	/*
+	/**
 	 * Tests for text size, window width and window height changes and triggers an event when a change is found
 	 * @method test
 	 */
@@ -103,8 +102,8 @@ var id = "wb-resize",
 		if ( initialized ) {
 			var currentSizes = [
 					resizeTest.offsetHeight,
-					$window.width(),
-					$window.height()
+					window.innerWidth || $document.width(),
+					window.innerHeight || $document.height()
 				],
 				len = currentSizes.length,
 				i;

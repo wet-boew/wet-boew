@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Tables
  * @overview Integrates the DataTables plugin into WET providing searching, sorting, filtering, pagination and other advanced features for tables.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -13,11 +13,15 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-tables",
+var pluginName = "wb-tables",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
 	$document = wb.doc,
+	idCount = 0,
 	i18n, i18nText, defaults,
 
-	/*
+	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
@@ -25,14 +29,22 @@ var selector = ".wb-tables",
 	 */
 	init = function( event ) {
 		var elm = event.target,
-			$elm;
+			elmId = elm.id;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === elm ) {
-			$elm = $( elm );
+		// and only initialize the element once
+		if ( event.currentTarget === elm &&
+			elm.className.indexOf( initedClass ) === -1 ) {
 
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 			wb.remove( selector );
+			elm.className += " " + initedClass;
+
+			// Ensure there is a unique id on the element
+			if ( !elmId ) {
+				elmId = pluginName + "-id-" + idCount;
+				idCount += 1;
+				elm.id = elmId;
+			}
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
@@ -56,36 +68,44 @@ var selector = ".wb-tables",
 					sLengthMenu: i18n( "lenMenu" ),
 					sLoadingRecords: i18n( "load" ),
 					sProcessing: i18n( "process" ),
-					sSearch: i18n( "srch" ),
+					sSearch: i18n( "filter" ),
 					sZeroRecords: i18n( "infoEmpty" )
 				};
 			}
 
 			defaults = {
-				asStripeClasses : [],
+				asStripeClasses: [],
 				oLanguage: i18nText,
 				fnDrawCallback: function() {
-
-					if ( $elm.data( "inviewstate" ) === "partial" ){
-						$( "html, body" ).scrollTop( $elm.prev().offset().top );
-					}
-
-					$elm.trigger( "tables-draw.wb" );
+					$( "#" + elmId ).trigger( "tables-draw.wb" );
 				}
 			};
 
-
-			Modernizr.load([{
+			Modernizr.load({
 				load: [ "site!deps/jquery.dataTables" + wb.getMode() + ".js" ],
 				complete: function() {
+					var $elm = $( "#" + elmId ),
+						i18nSortAscend = function( x, y ) {
+							return wb.normalizeDiacritics( x ).localeCompare( wb.normalizeDiacritics( y ) );
+						},
+						i18nSortDescend = function( x, y ) {
+							return wb.normalizeDiacritics( y ).localeCompare( wb.normalizeDiacritics( x ) );
+						};
+
+					// Enable internationalization support in the sorting
+					$.fn.dataTableExt.oSort[ "html-asc" ] = i18nSortAscend;
+					$.fn.dataTableExt.oSort[ "html-desc" ] = i18nSortDescend;
+					$.fn.dataTableExt.oSort[ "string-case-asc" ] = i18nSortAscend;
+					$.fn.dataTableExt.oSort[ "string-case-desc" ] = i18nSortDescend;
+
 					$elm.dataTable( $.extend( true, defaults, wb.getData( $elm, "wet-boew" ) ) );
 				}
-			}]);
+			});
 		}
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb", selector, init );
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );

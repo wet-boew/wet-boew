@@ -5,7 +5,7 @@
 	"category": "Plugiciel",
 	"description": "Crée une galerie photo sur une page Web.",
 	"tag": "lightbox",
-	"en": "lightbox",
+	"altLangPrefix": "lightbox",
 	"css": "demo/lightbox"
 }
 ---
@@ -32,7 +32,7 @@
 	</ul>
 </section>
 
-<div class="wb-prettify all-pre">
+<div class="wb-prettify all-pre wb-lbx-demo">
 	<section>
 		<h2 id="examples">Exemples</h2>
 
@@ -45,83 +45,81 @@
 			<h3 id="examples1">Articles seules</h3>
 			<section>
 				<h4>Exemple</h4>
-				<div class="inline-lst" class="lb-default-popup">
-					<ul>
-						<li>
-							<a class="wb-lightbox" href="demo/1_b.jpg" title="Image 1">
-								<img src="demo/1_s.jpg" alt="Image 1" />
-							</a>
-						</li>
-						<li class="box">
-							<a class="wb-lightbox" title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html">AJAX - Exemple 1</a>
-						</li>
-						<li class="box">
-							<a class="wb-lightbox" title="Exemple de contenu incorporé" href="#inline_content">Contenu incorporé</a>
-							<section id="inline_content" class="mfp-hide modal-dialog modal-content overlay-def">
-								<header class="modal-header">
-									<h2 class="modal-title">Titre</h2>
-								</header>
-								<div class="modal-body">
-									<ol>
-										<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
-										<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
-											<ol>
-												<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
-												<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
-													<ol>
-														<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-														<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-													</ol>
-												</li>
-											</ol>
-										</li>
-									</ol>
-									<p><a href="#">Lien - apparence par défaut</a></p>
-								</div>
-							</section>
-						</li>
-						<li class="box">
-							<a class="wb-lightbox lb-modal" title="Exemple de contenu superposé modal" href="#inline_content_modal">Contenu superposé modal</a>
-							<section id="inline_content_modal" class="mfp-hide modal-dialog modal-content overlay-def">
-								<header class="modal-header">
-									<h2 class="modal-title">Titre</h2>
-								</header>
-								<div class="modal-body">
-									<ol>
-										<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
-										<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
-											<ol>
-												<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
-												<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
-													<ol>
-														<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-														<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-													</ol>
-												</li>
-											</ol>
-										</li>
-									</ol>
-									<p><a href="#">Lien - apparence par défaut</a></p>
-									<button class="btn btn-primary popup-modal-dismiss">Fermer le contenu superposé modal</button>
-								</div>
-							</section>
-						</li>
-					</ul>
-				</div>
+				<ul class="list-inline">
+					<li>
+						<a class="wb-lbx" href="demo/1_b.jpg" title="Image 1">
+							<img src="demo/1_s.jpg" alt="Image 1" />
+						</a>
+					</li>
+					<li class="box">
+						<a class="wb-lbx" title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html">AJAX - Exemple 1</a>
+					</li>
+					<li class="box">
+						<a class="wb-lbx" title="Exemple de contenu incorporé" href="#inline_content">Contenu incorporé</a>
+						<section id="inline_content" class="mfp-hide modal-dialog modal-content overlay-def">
+							<header class="modal-header">
+								<h2 class="modal-title">Titre</h2>
+							</header>
+							<div class="modal-body">
+								<ol>
+									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+										<ol>
+											<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+											<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
+												<ol>
+													<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+													<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+												</ol>
+											</li>
+										</ol>
+									</li>
+								</ol>
+								<p><a href="#">Lien - apparence par défaut</a></p>
+							</div>
+						</section>
+					</li>
+					<li class="box">
+						<a class="wb-lbx lbx-modal" title="Exemple de contenu superposé modal" href="#inline_content_modal">Contenu superposé modal</a>
+						<section id="inline_content_modal" class="mfp-hide modal-dialog modal-content overlay-def">
+							<header class="modal-header">
+								<h2 class="modal-title">Titre</h2>
+							</header>
+							<div class="modal-body">
+								<ol>
+									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+										<ol>
+											<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+											<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
+												<ol>
+													<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+													<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+												</ol>
+											</li>
+										</ol>
+									</li>
+								</ol>
+								<p><a href="#">Lien - apparence par défaut</a></p>
+								<button class="btn btn-primary popup-modal-dismiss">Fermer le contenu superposé modal</button>
+							</div>
+						</section>
+					</li>
+				</ul>
 
 				<details>
 					<summary>Visualiser le code</summary>
-					<pre><code>&lt;ul&gt;
+					<pre><code>&lt;ul class="list-inline"&gt;
 	&lt;li&gt;
-		&lt;a class="wb-lightbox" href="demo/1_b.jpg" title="Image 1"&gt;
+		&lt;a class="wb-lbx" href="demo/1_b.jpg" title="Image 1"&gt;
 			&lt;img src="demo/1_s.jpg" alt="Image 1" /&gt;
 		&lt;/a&gt;
 	&lt;/li&gt;
 	&lt;li&gt;
-		&lt;a class="wb-lightbox" title="Exemple de contenu AJAX" href="ajax/ajax-en.html"&gt;Contenu AJAX&lt;/a&gt;
+		&lt;a class="wb-lbx" title="Exemple de contenu AJAX" href="ajax/ajax-en.html"&gt;Contenu AJAX&lt;/a&gt;
 	&lt;/li&gt;
 	&lt;li&gt;
-		&lt;a class="wb-lightbox" title="Exemple de contenu incorporé" href="#inline_content"&gt;Contenu incorporé&lt;/a&gt;
+		&lt;a class="wb-lbx" title="Exemple de contenu incorporé" href="#inline_content"&gt;Contenu incorporé&lt;/a&gt;
 		&lt;div id="inline_content" class="mfp-hide modal-dialog modal-content overlay-def"&gt;
 			&lt;section class="modal-content"&gt;
 				&lt;header class="modal-header overlay-hd"&gt;
@@ -148,7 +146,7 @@
 		&lt;/div&gt;
 	&lt;/li&gt;
 	&lt;li&gt;
-		&lt;a class="wb-lightbox lb-modal" title="Exemple de contenu superposé modal" href="#inline_content_modal"&gt;Contenu superposé modal&lt;/a&gt;
+		&lt;a class="wb-lbx lbx-modal" title="Exemple de contenu superposé modal" href="#inline_content_modal"&gt;Contenu superposé modal&lt;/a&gt;
 		&lt;div id="inline_content_modal" class="mfp-hide modal-dialog modal-content overlay-def"&gt;
 			&lt;section class="modal-content"&gt;
 				&lt;header class="modal-header overlay-hd"&gt;
@@ -183,9 +181,9 @@
 			<h3 id="examples2">Galeries</h3>
 			<section>
 				<h4>Exemples</h4>
-				<section class="wb-lightbox lb-gallery inline-lst">
+				<section class="wb-lbx lbx-gal">
 					<h5>Galerie d'images</h5>
-					<ul>
+					<ul class="list-inline">
 						<li>
 							<a href="demo/1_b.jpg" title="Image 1">
 								<img src="demo/1_s.jpg" alt="Image 1" />
@@ -208,9 +206,9 @@
 						</li>
 					</ul>
 				</section>
-				<section class="wb-lightbox lb-gallery inline-lst">
+				<section class="wb-lbx lbx-gal">
 					<h5>Galerie d'AJAX</h5>
-					<ul>
+					<ul class="list-inline">
 						<li class="box">
 							<a title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html">AJAX - Exemple 1</a>
 						</li>
@@ -224,9 +222,9 @@
 				</section>
 				<details>
 					<summary>Visualier le code</summary>
-					<pre><code>&lt;section class="wb-lightbox lb-gallery inline-lst"&gt;
+					<pre><code>&lt;section class="wb-lbx lbx-gal inline-lst"&gt;
 	&lt;h5&gt;Galerie d'images&lt;/h5&gt;
-	&lt;ul&gt;
+	&lt;ul class="list-inline"&gt;
 		&lt;li&gt;
 			&lt;a href="demo/1_b.jpg" title="Image 1"&gt;
 				&lt;img src="demo/1_s.jpg" alt="Image 1" /&gt;
@@ -249,9 +247,9 @@
 		&lt;/li&gt;
 	&lt;/ul&gt;
 &lt;/section&gt;
-&lt;section class="wb-lightbox lb-gallery inline-lst"&gt;
+&lt;section class="wb-lbx lbx-gal inline-lst"&gt;
 	&lt;h5&gt;Galerie d'AJAX&lt;/h5&gt;
-	&lt;ul&gt;
+	&lt;ul class="list-inline"&gt;
 		&lt;li&gt;
 			&lt;a title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html"&gt;AJAX - Exemple 1&lt;/a&gt;
 		&lt;/li&gt;
@@ -271,9 +269,9 @@
 			<h3 id="examples3">Galeries cachés</h3>
 			<section>
 				<h4>Exemples</h4>
-				<section class="wb-lightbox lb-hide-gal">
+				<section class="wb-lbx lbx-hide-gal">
 					<h5>Galerie d'images</h5>
-					<ul>
+					<ul class="list-inline">
 						<li>
 							<a href="demo/1_b.jpg" title="Image 1">
 								<img src="demo/1_s.jpg" alt="Image 1" />
@@ -296,9 +294,9 @@
 						</li>
 					</ul>
 				</section>
-				<section class="wb-lightbox lb-hide-gal">
+				<section class="wb-lbx lbx-hide-gal">
 					<h5>Galerie d'AJAX</h5>
-					<ul>
+					<ul class="list-inline">
 						<li class="box">
 							<a title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html">AJAX - Exemple 1</a>
 						</li>
@@ -313,9 +311,9 @@
 
 				<details>
 					<summary>Visualiser le code</summary>
-					<pre><code>&lt;section class="wb-lightbox lb-hide-gal"&gt;
+					<pre><code>&lt;section class="wb-lbx lbx-hide-gal"&gt;
 	&lt;h5&gt;Galerie d'images&lt;/h5&gt;
-	&lt;ul&gt;
+	&lt;ul class="list-inline"&gt;
 		&lt;li&gt;
 			&lt;a href="demo/1_b.jpg" title="Image 1"&gt;
 				&lt;img src="demo/1_s.jpg" alt="Image 1" /&gt;
@@ -338,9 +336,9 @@
 		&lt;/li&gt;
 	&lt;/ul&gt;
 &lt;/section&gt;
-&lt;section class="wb-lightbox lb-hide-gal"&gt;
+&lt;section class="wb-lbx lbx-hide-gal"&gt;
 	&lt;h5&gt;Galerie d'AJAX&lt;/h5&gt;
-	&lt;ul&gt;
+	&lt;ul class="list-inline"&gt;
 		&lt;li&gt;
 			&lt;a title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html"&gt;AJAX - Exemple 1&lt;/a&gt;
 		&lt;/li&gt;
@@ -360,7 +358,7 @@
 			<h3 id="examples4">Titre de l'image alternative</h3>
 			<section>
 				<h4>Example</h4>
-				<div class="wb-lightbox lb-gallery inline-lst">
+				<div class="wb-lbx lbx-gal inline-lst">
 					<ul>
 						<li>
 							<a href="demo/1_b.jpg" title="Image 1" data-title="image_1_b">
@@ -380,7 +378,7 @@
 
 				<details>
 					<summary>Visualiser le code</summary>
-					<pre><code>&lt;div class="wb-lightbox lb-gallery inline-lst"&gt;
+					<pre><code>&lt;div class="wb-lbx lbx-gal inline-lst"&gt;
 	&lt;ul&gt;
 		&lt;li&gt;
 			&lt;a href="demo/1_b.jpg" title="Image 1" data-title="image_1_b"&gt;

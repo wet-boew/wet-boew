@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Calendar library
  * @overview A library for building calendar interfaces
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -17,11 +17,13 @@
 var $document = wb.doc,
 	i18n, i18nText,
 
-	/*
+	/**
 	 * Creates a calendar instance
 	 * @method create
 	 */
-	create = function( event, calendarId, year, month, shownav, mindate, maxdate, day ) {
+	create = function( event, calendarId, year, month, shownav, mindate,
+		maxdate, day, ariaControls, ariaLabelledBy ) {
+
 		var calendar = document.getElementById( calendarId ),
 			$calendar = $( calendar ),
 			objCalendarId = "#cal-" + calendarId + "-cnt",
@@ -47,7 +49,16 @@ var $document = wb.doc,
 			};
 		}
 
-		$calendar.addClass( "cal-cnt" );
+		$calendar
+			.addClass( "cal-cnt" )
+			.attr( "id", calendarId );
+
+		if ( ariaLabelledBy ) {
+			$calendar.attr({
+				"aria-controls": ariaControls,
+				"aria-labelledby": ariaLabelledBy
+			});
+		}
 
 		// Converts min and max date from string to date objects
 		if ( typeof mindate === "string" ) {
@@ -91,13 +102,13 @@ var $document = wb.doc,
 		}
 
 		// Creates the calendar header
-		$calendarHeader = $( "<div class='cal-hd'><div class='cal-mnth'>" +
-			i18nText.monthNames[ month ] + " " + year + "</div></div>" );
+		$calendarHeader = $( "<div class='cal-hd'></div>" );
 
 		// Create the month navigation
-		if ( shownav ) {
-			$calendarHeader.append( createMonthNav( calendarId, year, month, mindate, maxdate, minDateYear, maxDateYear ) );
-		}
+		$calendarHeader.append( shownav ?
+			createMonthNav( calendarId, year, month, mindate, maxdate, minDateYear, maxDateYear ) :
+			"<div class='cal-mnth'>" + i18nText.monthNames[ month ] + " " + year + "</div>"
+		);
 
 		$oldCalendarHeader = $objCalendar.prev( ".cal-hd" );
 		if ( $oldCalendarHeader.length === 0 ) {
@@ -108,10 +119,10 @@ var $document = wb.doc,
 
 		// Create the calendar body
 
-		// Creates weekdays | Cree les jours de la semaines
+		// Creates weekdays
 		$objCalendar.append( createWeekdays( calendarId ) );
 
-		// Creates the rest of the calendar | Cree le reste du calendrier
+		// Creates the rest of the calendar
 		$days = createDays( calendarId, year, month );
 		$daysList = $days.find( "td:not(.cal-empty)" );
 
@@ -123,8 +134,8 @@ var $document = wb.doc,
 
 	createMonthNav = function( calendarId, year, month, minDate, maxDate, minDateYear, maxDateYear ) {
 		var monthNames = i18nText.monthNames,
-			$monthNav = $( "#cal-" + calendarId + "-mnthnav" ),
-			buttonStart = "<button class='cal-",
+			$monthNav = $( "<div id='cal-" + calendarId + "-mnthnav'></div>" ),
+			buttonStart = "<button type='button' class='cal-",
 			buttonSpecs = [
 				[
 					"prvmnth",
@@ -137,18 +148,12 @@ var $document = wb.doc,
 					1,
 					i18nText.nextMonth,
 					"append"
-				],
+				]
 			],
 			alt, $btn, buttonSpec, buttonClass, newMonth, newYear, hideButton, index;
 
-		if ( $monthNav.length === 0 ) {
-			$monthNav = $( "<div id='cal-" + calendarId + "-mnthnav'></div>" );
-		}
-
-		// Create the go to form if one doesn't already exist
-		if ( $( "#" + calendarId + " .cal-goto" ).length === 0 ) {
-			$monthNav.append( createGoToForm( calendarId, year, month, minDate, maxDate ) );
-		}
+		// Create the go to form
+		$monthNav.append( createGoToForm( calendarId, year, month, minDate, maxDate ) );
 
 		for ( index = 0; index !== 2; index += 1 ) {
 			buttonSpec = buttonSpecs[ index ];
@@ -171,29 +176,28 @@ var $document = wb.doc,
 			alt = buttonSpec[ 2 ] + monthNames[ newMonth ] + " " + newYear;
 			$btn = $monthNav.find( ".cal-" + buttonClass );
 
-			if ( $btn.length !== 0 ) {
-				$btn
-					.off()
-					.attr( "title", alt );
-			} else {
-				$btn = $( buttonStart + buttonClass + "' title='" + alt +
-					"'><span class='glyphicon glyphicon-arrow-" +
-					( buttonSpec[ 0 ] === "prvmnth" ? "left" : "right" ) + "'></span></button>" );
-				$monthNav[ buttonSpec[ 3 ] ]( $btn );
-			}
+			$btn = $( buttonStart + buttonClass + "' title='" + alt +
+				"'><span class='glyphicon glyphicon-arrow-" +
+				( buttonSpec[ 0 ] === "prvmnth" ? "left" : "right" ) +
+				"'></span><span class='wb-inv'>" + alt + "</button>" );
+			$monthNav[ buttonSpec[ 3 ] ]( $btn );
 
-			$btn
-				.toggleClass( "hide", hideButton )
-				.attr( "aria-hidden", hideButton );
-
+			$btn.toggleClass( "active", !hideButton );
+			
 			if ( !hideButton ) {
-				$btn.on( "click", {
-					calID: calendarId,
-					year: newYear,
-					month : newMonth,
-					mindate: minDate,
-					maxdate: maxDate
-				}, changeMonth );
+				$btn
+					.removeAttr( "disabled" )
+					.on( "click", {
+						calID: calendarId,
+						year: newYear,
+						month: newMonth,
+						mindate: minDate,
+						maxdate: maxDate
+					}, changeMonth );
+			} else {
+				$btn
+					.attr( "disabled", "disabled" )
+					.off( "click" );
 			}
 		}
 
@@ -201,8 +205,12 @@ var $document = wb.doc,
 	},
 
 	changeMonth = function( event ) {
+		event.preventDefault();
+
 		var which = event.which,
-			$btn = $( event.target ),
+			btn = event.target,
+			$btn = $( btn ),
+			classes = btn.className,
 			eventData = event.data,
 			$container = $btn.closest( ".cal-cnt" );
 
@@ -220,11 +228,12 @@ var $document = wb.doc,
 				]);
 			}
 
-			if ( $btn.hasClass( "wb-inv" ) ) {
-				$container.find( ".cal-goto-lnk a" ).trigger( "setfocus.wb" );
-			} else {
-				$btn.trigger( "setfocus.wb" );
-			}
+			$container.find( classes.indexOf( "wb-inv" ) !== -1 ?
+				".cal-goto-lnk a" :
+				"." + classes.match( /cal-[a-z]*mnth/i )
+			).trigger( "setfocus.wb" );
+
+			return false;
 		}
 	},
 
@@ -244,7 +253,7 @@ var $document = wb.doc,
 		}
 
 		if ( year === maxDate.getFullYear() ) {
-			maxMonth = maxDate.getMonth();
+			maxMonth = maxDate.getMonth() + 1;
 		}
 
 		month = $monthField.val();
@@ -263,17 +272,15 @@ var $document = wb.doc,
 
 	createGoToForm = function( calendarId, year, month, minDate, maxDate ) {
 		var $goToForm = $( "<div class='cal-goto'></div>" ),
-			$form = $( "<form id='cal-" + calendarId + "-goto' role='form' style='display:none;' action=''><fieldset><legend>" +
-				i18nText.goToTitle + "</legend></fieldset></form>" ),
-			$fieldset, $yearContainer, $yearField, y, ylen, $monthContainer, $monthField, $buttonContainer,
-			$button, $buttonCancelContainer, $buttonCancel, $goToLinkContainer, $goToLink;
+			$form = $( "<form id='cal-" + calendarId + "-goto' role='form' style='display:none;' action=''></form>" ),
+			$yearContainer, $yearField, y, ylen, $monthContainer, $monthField, $buttonSubmit,
+			$buttonCancel, $goToLink;
 
 		$form.on( "submit", function( event ) {
 			event.preventDefault();
 			onGoTo( calendarId, minDate, maxDate );
 			return false;
 		});
-		$fieldset = $form.children( "fieldset" );
 
 		// Create the year field
 		$yearContainer = $( "<div class='cal-goto-yr'></div>" );
@@ -282,32 +289,27 @@ var $document = wb.doc,
 			$yearField.append( $( "<option value='" + y + "'" + (y === year ? " selected='selected'" : "" ) + ">" + y + "</option>" ) );
 		}
 
-		$yearContainer.append( $yearField );
-		$fieldset.append( $yearContainer );
-
-		// Create the list of month field
+		// Create the month field
 		$monthContainer = $( "<div class='cal-goto-mnth'></div>" );
 		$monthField = $( "<select title='" + i18nText.goToMonth + "' id='cal-" + calendarId + "-goto-month'></select>" );
 
 		$monthContainer.append( $monthField );
-		$fieldset
-			.append( $monthContainer )
-			.append( "<span class='clearfix'></span>" );
+
+		// Create the year field
+		$yearContainer.append( $yearField );
 
 		// Update the list of available months when changing the year
-		$yearField.on( "change", {minDate: minDate, maxDate: maxDate, $monthField: $monthField}, yearChanged );
+		$yearField.on( "change", { minDate: minDate, maxDate: maxDate, $monthField: $monthField }, yearChanged );
 
 		// Populate initial month list
 		$yearField.trigger( "change" );
 
-		$buttonContainer = $( "<div class='cal-goto-btn'></div>" );
-		$button = $( "<input type='submit' class='btn btn-primary' value='" + i18nText.goToBtn + "' />" );
-		$buttonContainer.append( $button );
-		$fieldset.append( $buttonContainer );
+		$buttonSubmit = $( "<div class='cal-goto-btn'><input type='submit' class='btn btn-primary' value='" +
+			i18nText.goToBtn + "' /></div>" );
 
-		$buttonCancelContainer = $( "<div class='cal-goto-btn'></div>" );
-		$buttonCancel = $( "<input type='button' class='btn btn-default' value='" + i18nText.cancelBtn + "' />" );
-		$buttonCancel.on( "click", function( event ) {
+		$buttonCancel = $( "<div class='cal-goto-btn'><input type='button' class='btn btn-default' value='" +
+			i18nText.cancelBtn + "' /></div>" );
+		$buttonCancel.on( "click", "input", function( event ) {
 			var which = event.which;
 
 			// Ignore middle/right mouse buttons
@@ -315,13 +317,21 @@ var $document = wb.doc,
 				$( "#" + calendarId ).trigger( "hideGoToFrm.wb-cal" );
 			}
 		});
-		$buttonCancelContainer.append( $buttonCancel );
-		$fieldset.append( $buttonCancelContainer );
 
-		$goToLinkContainer = $( "<p class='cal-goto-lnk' id='cal-" + calendarId + "-goto-lnk'></p>" );
-		$goToLink = $( "<a href='javascript:;' role='button' aria-controls='cal-" +
-			calendarId + "-goto' aria-expanded='false'>" + i18nText.goToLink + "</a>" );
-		$goToLink.on( "click", function( event ) {
+		$form
+			.append( $monthContainer )
+			.append( $yearContainer )
+			.append( "<span class='clearfix'></span>" )
+			.append( $buttonSubmit )
+			.append( $buttonCancel );
+
+		$goToLink = $( "<div id='cal-" +
+			calendarId + "-goto-lnk'><a href='javascript:;' role='button' aria-controls='cal-" +
+			calendarId + "-goto' class='cal-goto-lnk' aria-expanded='false'>" +
+			i18nText.monthNames[ month ] + " " + year + "</div>" + "</a></div>" );
+		$goToLink.on( "click", "a", function( event ) {
+			event.preventDefault();
+
 			var which = event.which;
 
 			// Ignore middle/right mouse buttons
@@ -329,10 +339,10 @@ var $document = wb.doc,
 				showGoToForm( calendarId );
 			}
 		} );
-		$goToLinkContainer.append( $goToLink );
 
-		$goToForm.append( $goToLinkContainer );
-		$goToForm.append( $form );
+		$goToForm
+			.append( $goToLink )
+			.append( $form );
 
 		return $goToForm;
 	},
@@ -382,8 +392,8 @@ var $document = wb.doc,
 			for ( day = 0; day < 7; day += 1 ) {
 
 				id = "cal-" + calendarId + "-w" + week + "d" + ( day + 1 );
-				className = ( day === 0 || day === 6 ? "cal-we " : "" ) +
-					"cal-w" + week + "d" + ( day + 1 ) + " cal-index-" + ( dayCount + 1 );
+				className = ( day === 0 || day === 6 ? "cal-we" : "" ) +
+					"cal-w" + week + "d" + ( day + 1 );
 
 				if ( ( week === 1 && day < firstDay ) || ( dayCount > lastDay ) ) {
 
@@ -393,13 +403,14 @@ var $document = wb.doc,
 
 					// Creates date cells | Cree les cellules de date
 					dayCount += 1;
+					className += " cal-index-" + dayCount;
 					isCurrentDate = ( dayCount === currDay && month === currMonth && year === currYear );
 
-					cells += "<td id='" + id + "' class='" + ( isCurrentDate ? "cal-currday " : "" ) + className + "'><div><time datetime='" + currYear + "-" +
+					cells += "<td id='" + id + "' class='" + ( isCurrentDate ? "cal-currday " : "" ) + className + "'><div><time datetime='" + year + "-" +
 						( month < 9 ? "0" : "" ) + ( month + 1 ) + "-" + ( dayCount < 10 ? "0" : "" ) + dayCount + "'><span class='wb-inv'>" + textWeekDayNames[ day ] +
 						( frenchLang ? ( " </span>" + dayCount + "<span class='wb-inv'> " + textMonthNames[ month ].toLowerCase() + " " ) :
 						( " " + textMonthNames[ month ] + " </span>" + dayCount + "<span class='wb-inv'> " ) ) + year +
-						( isCurrentDate ?  textCurrentDay : "" ) + "</span></time></div></td>";
+						( isCurrentDate ? textCurrentDay : "" ) + "</span></time></div></td>";
 
 					if ( dayCount > lastDay ) {
 						breakAtEnd = true;
@@ -418,45 +429,42 @@ var $document = wb.doc,
 
 	showGoToForm = function( calendarId ) {
 		var gotoId = "#cal-" + calendarId + "-goto",
-			$link = $( gotoId + "-lnk" ),
-			$form = $( gotoId );
+			$form = $( gotoId ),
+			$buttons = $( "#" + calendarId ).find( gotoId + "-lnk, .cal-prvmnth, .cal-nxtmnth" );
+
+		$buttons
+			.addClass( "hide" )
+			.attr( "aria-hidden", "true" )
+			.filter( "a" )
+				.attr( "aria-expanded", "true" );
 
 		// TODO: Replace with CSS animation
-		$link.stop().slideUp( 0 );
 		$form.stop().slideDown( 0 ).queue(function() {
 			$( this ).find( ":input:eq(0)" ).trigger( "setfocus.wb" );
 		});
-		$link
-			.children( "a" )
-				.attr({
-					"aria-hidden": "true",
-					"aria-expanded": "true"
-				});
 	},
 
 	hideGoToFrm = function( event ) {
 		var calendarId = event.target.id,
 			gotoId = "#cal-" + calendarId + "-goto",
-			$link = $( gotoId + "-lnk" ),
-			$form = $( gotoId );
+			$form = $( gotoId ),
+			$buttons = $( "#" + calendarId ).find( gotoId + "-lnk, .cal-prvmnth, .cal-nxtmnth" );
+
+		$buttons
+			.removeClass( "hide" )
+			.attr( "aria-hidden", "false" )
+			.filter( "a" )
+				.attr( "aria-expanded", "false" );
 
 		// TODO: Replace with CSS animation
 		$form.stop().slideUp( 0 );
-		$link
-			.stop()
-			.slideDown( 0 )
-			.children( "a" )
-				.attr({
-					"aria-hidden": "false",
-					"aria-expanded": "false"
-				});
 	},
 
 	onGoTo = function( calendarId, minDate, maxDate ) {
 		var $container = $( "#" + calendarId ),
-			fieldset = $container.find( "fieldset" ),
-			month = parseInt( fieldset.find( ".cal-goto-mnth select option:selected" ).val(), 10 ),
-			year = parseInt( fieldset.find( ".cal-goto-yr select" ).val(), 10 );
+			$form = $container.find( "#cal-" + calendarId + "-goto" ),
+			month = parseInt( $form.find( ".cal-goto-mnth select option:selected" ).val(), 10 ),
+			year = parseInt( $form.find( ".cal-goto-yr select" ).val(), 10 );
 
 		if (!(month < minDate.getMonth() && year <= minDate.getFullYear()) && !(month > maxDate.getMonth() && year >= maxDate.getFullYear())) {
 			$document.trigger( "create.wb-cal", [
@@ -500,10 +508,10 @@ var $document = wb.doc,
 	};
 
 // Event binding
-$document.on( "create.wb-cal" , create );
+$document.on( "create.wb-cal", create );
 
 // Keyboard nav
-$document.on( "keydown", ".cal-days a", function ( event ) {
+$document.on( "keydown", ".cal-days a", function( event ) {
 	var elm = event.target,
 		$elm = $( elm ),
 		$monthContainer = $elm.closest( ".cal-cnt" ),
@@ -605,7 +613,5 @@ $document.on( "keydown", ".cal-days a", function ( event ) {
 $document.on( "hideGoToFrm.wb-cal", ".cal-cnt", hideGoToFrm );
 
 $document.on( "setFocus.wb-cal", setFocus );
-
-$document.on( "click", ".cal-prvmnth, .cal-nxtmnth", changeMonth );
 
 })( jQuery, window, document, wb );

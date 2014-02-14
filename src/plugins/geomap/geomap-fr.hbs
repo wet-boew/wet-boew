@@ -5,7 +5,7 @@
 	"category": "Plugiciel",
 	"description": "Affiche une carte dynamique sur laquelle des informations de sources supplémentaires peuvent être superposées.",
 	"tag": "geomap",
-	"en": "geomap",
+	"altLangPrefix": "geomap",
 	"js": "demo/popup_function"
 }
 ---
@@ -13,7 +13,7 @@
 <div id="sample_map"
 	class="wb-geomap position scaleline tab" 
 	data-wet-boew='{ 
-		"layersFile": "demo/config-fr{{environment.suffix}}.js",
+		"layersFile": "demo/config-en{{environment.suffix}}.js",
 		"tables": [{ 
 			"id": "cities", 
 			"zoom": [
@@ -221,22 +221,22 @@
 	}'>
 	
 	<!-- Insert Map Start (mandatory) -->
-	<div class="wb-geomap-map  span-3"></div>
+	<div class="wb-geomap-map col-sm-4"></div>
 	<!-- Insert Map End -->
 	
 	<!-- Insert Layer Data Start (mandatory) -->
-	<div class="wb-geomap-layers span-3"><section>  
-	<h2 class="wb-invisible">Adresse du bureaux de ressources naturelles Canada, Ottawa</h2>
-		<table id="addNRCan" class="table-simplify width-100" aria-label="Adresse du bureaux de RNCan Ottawa">
-			<caption class="wb-invisible">Adresse du bureaux de ressources naturelles Canada, Ottawa</caption>
+	<div class="wb-geomap-layers col-sm-4"><section>  
+		<h2 class="wb-inv">Natural Resources Canada Ottawa office adress</h2>
+		<table id="addNRCan" class="table-simplify width-100" aria-label="NRCan Ottawa office adress">
+			<caption class="wb-invisible">Natural Resources Canada Ottawa office adress</caption>
 			<thead>
 				<tr>                    
-					<th>Adresse</th>
+					<th>Adress</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr data-geometry="POINT (-75.70535, 45.3995)" data-type="wkt">
-					<td>615, rue Booth,<br />Ottawa (ON),<br />Canada,<br />K1A 0E8</td>
+					<td>615 Booth St.,<br />Ottawa (ON),<br />Canada,<br />K1A 0E8</td>
 				</tr>
 			</tbody>
 		</table>
@@ -244,6 +244,7 @@
 	</div>
 	<!-- Insert Layer Data End -->  
 </div>
+
 <!-- GeomapEnd -->
 
 <script src="demo/popup_function{{environment.suffix}}.js"></script>

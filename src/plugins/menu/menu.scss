@@ -4,12 +4,8 @@
  */
 
 /*
- Menu Sass
-*/
-%menu-text-decoration-none {
-	text-decoration: none;
-}
-
+ * Menu Sass
+ */
 .expicon {
 	width: 0;
 	height: 0;
@@ -32,11 +28,11 @@
 			max-height: 1000px;
 			display: inline;
 			position: absolute;
-			z-index: 100;
+			z-index: 500;
 			text-transform: none;
 			top: auto;
 			li {
-				display: block;
+				@extend %global-display-block;
 				a {
 					text-align: left;
 				}
@@ -44,17 +40,19 @@
 		}
 	}
 	.menu {
-		display: table;
 		position: relative;
 		> {
 			li {
-				position: relative;
-				display: table-cell;
+				margin: 0;
+				padding: 0;
+				float: left;
 				a {
 					text-align: center;
 					display: block;
+					padding: 1em;
+					text-decoration: none;
 					&:hover, &:focus {
-						@extend %menu-text-decoration-none;
+						text-decoration: underline;
 					}
 				}
 			}
@@ -63,8 +61,11 @@
 	.active {
 		> {
 			a {
-				@extend %menu-text-decoration-none;
+				@extend %global-text-decoration-none;
 			}
+		}
+		.expicon {
+			border-top-color: #000;
 		}
 	}
 	.sm-open {
@@ -78,6 +79,11 @@
 	.wb-menu {
 		.menu {
 			padding-right: 0;
+			> {
+				li {
+					float: right;
+				}
+			}
 		}
 		.sm {
 			&.open {
@@ -94,5 +100,76 @@
 		right: 0.75em;
 		margin-right: 0;
 		margin-left: 0.35em;
+	}
+}
+
+#mb-pnl {
+	ul {
+		margin-bottom: 0;
+		li {
+			padding: 6px 0;
+			&.no-sect {
+				padding-left: 1.27em;
+			}
+		}
+	}
+	details {
+		ul {
+			padding-left: 2em;
+		}
+	}
+
+	%menu-mb-pnl-margin-bottom-5px {
+		margin-bottom: 5px;
+	}
+	.srch-pnl {
+		form {
+			white-space: nowrap;
+		}
+		label {
+			@extend %accessible-invisible;
+		}
+	}
+	.modal-body {
+		h2 {
+			@extend %global-display-none;
+		}
+	}
+}
+
+[dir=rtl] {
+	#mb-pnl {
+		details {
+			ul {
+				padding-left: 0;
+				padding-right: 2em;
+			}
+		}
+	}
+}
+
+.wb-disable {
+	%menu-noscript-display-block-important {
+		display: block !important;
+	}
+
+	#wb-glb-mn {
+		display: none !important;
+	}
+
+	#wb-srch {
+		@extend %menu-noscript-display-block-important;
+	}
+
+	#wb-sm {
+		@extend %menu-noscript-display-block-important;
+	}
+
+	#wb-sec {
+		@extend %menu-noscript-display-block-important;
+	}
+
+	#wb-info {
+		@extend %menu-noscript-display-block-important;
 	}
 }

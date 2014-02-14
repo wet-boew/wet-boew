@@ -1,0 +1,31 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+%carouselDrabBlueBackground-mediumViewOver {
+	background: $drabBlue;
+	background: transparentize($drabBlue, 0.1);
+}
+
+.wb-tabs {
+	&.carousel-s1, &.carousel-s2 {
+		figcaption {
+			@extend %carouselDrabBlueBackground-mediumViewOver;
+		}
+	}
+	> {
+		details {
+			display: none;
+			border: 1px solid #ccc;
+			margin-top: -1px;
+			&[open] {
+				display: block;
+				> {
+					summary {
+						display: none !important;
+					}
+				}
+			}
+		}
+	}
+}

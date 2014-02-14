@@ -29,6 +29,12 @@
 	}
 }
 
+#wb-lng {
+	h2 {
+		@extend %accessible-invisible;
+	}
+}
+
 #wb-glb-mn {
 	h2 {
 		@extend %accessible-invisible;
@@ -62,18 +68,16 @@
 	}
 }
 
-footer {
+#wb-info {
 	h2 {
 		@extend %accessible-invisible;
 	}
 }
 
-.wb-mnavbar a, a + .wb-st-nav h2, .wb-sttng h2, .wb-org-nav .wb-ft h3 {
-	@extend %accessible-invisible;
-}
-
-.wb-mnavbar a:focus {
-	@extend %accessible-invisible-show;
+#mb-pnl {
+	h3 {
+		@extend %accessible-invisible;
+	}
 }
 
 q {

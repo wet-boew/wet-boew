@@ -16,6 +16,7 @@ module.exports = (grunt) ->
 		"dist"
 		"Produces the production files"
 		[
+			"checkDependencies"
 			"test"
 			"build"
 			"assets-dist"
@@ -51,7 +52,7 @@ module.exports = (grunt) ->
 		[
 			"dist"
 			"copy:deploy"
-			"gh-pages"
+			"gh-pages:travis"
 		]
 	)
 
@@ -100,7 +101,10 @@ module.exports = (grunt) ->
 			"concat:coreIE8"
 			"concat:pluginsIE8"
 			"concat:i18n"
-			"uglify"
+			"uglify:polyfills"
+			"uglify:core"
+			"uglify:i18n"
+			"uglify:deps"
 		]
 	)
 
@@ -109,10 +113,13 @@ module.exports = (grunt) ->
 		"INTERNAL: Compiles Sass and copies third party CSS to the dist folder"
 		[
 			"sprites"
-			"sass"
+			"sass:all"
 			"autoprefixer"
+			"csslint:unmin"
 			"concat:css"
-			"cssmin"
+			"concat:css_addBanners"
+			"cssmin:dist"
+			"copy:cssIE8"
 		]
 	)
 
@@ -129,6 +136,8 @@ module.exports = (grunt) ->
 		"INTERNAL: Create unminified demos"
 		[
 			"copy:demos"
+			"autoprefixer:demos"
+			"csslint:demos"
 			"assemble:demos"
 		]
 	)
@@ -138,6 +147,8 @@ module.exports = (grunt) ->
 		"INTERNAL: Create minified demos"
 		[
 			"copy:demos_min"
+			"cssmin:demos_min"
+			"uglify:demos"
 			"assemble:demos_min"
 			"htmlcompressor"
 		]
@@ -157,6 +168,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Runs testing tasks except for SauceLabs testing"
 		[
 			"jshint"
+			"jscs"
 		]
 	)
 
@@ -166,7 +178,8 @@ module.exports = (grunt) ->
 		[
 			"build"
 			"assets-dist"
-			"assemble:demos_min"
+			"demos"
+			"demos-dist"
 			"connect:test"
 		]
 	)
@@ -198,6 +211,7 @@ module.exports = (grunt) ->
 					"!src/plugins/**/test.js"
 					"!src/plugins/**/assets/*.js"
 					"!src/plugins/**/demo/*.js"
+					"!src/plugins/**/deps/*.*"
 				]
 				dest: "dist/unmin/js/wet-boew.js"
 
@@ -206,14 +220,14 @@ module.exports = (grunt) ->
 					stripBanners: false
 				src: [
 					"lib/modernizr/modernizr-custom.js"
-					"lib/respond/respond.src.js"
+					"lib/respond/src/respond.js"
 					"lib/excanvas/excanvas.js"
-					"lib/html5shiv/dist/html5shiv.js"
-					"lib/selectivizr/selectivizr.js"
+					"lib/html5shiv/dist/html5shiv-printshiv.js"
 					"src/core/wb.js"
 					"!src/plugins/**/test.js"
 					"!src/plugins/**/assets/*.js"
 					"!src/plugins/**/demo/*.js"
+					"!src/plugins/**/deps/*.*"
 				]
 				dest: "dist/unmin/js/ie8-wet-boew.js"
 
@@ -227,6 +241,7 @@ module.exports = (grunt) ->
 					"!src/plugins/**/test.js"
 					"!src/plugins/**/assets/*.js"
 					"!src/plugins/**/demo/*.js"
+					"!src/plugins/**/deps/*.*"
 				]
 				dest: "dist/unmin/js/ie8-wet-boew2.js"
 
@@ -267,10 +282,28 @@ module.exports = (grunt) ->
 				options:
 					banner: "@charset \"utf-8\";\n<%= banner %><%= glyphiconsBanner %>"
 				files:
+					"dist/unmin/css/ie8-wet-boew.css": [
+						"lib/bootstrap/dist/css/bootstrap.css"
+						"dist/unmin/css/wet-boew.css"
+						"dist/unmin/css/ie8-wet-boew.css"
+					]
 					"dist/unmin/css/wet-boew.css": [
 						"lib/bootstrap/dist/css/bootstrap.css"
 						"dist/unmin/css/wet-boew.css"
 					]
+
+			css_addBanners:
+				options:
+					banner: "@charset \"utf-8\";\n<%= banner %>"
+				files:
+					"dist/unmin/css/polyfills/datalist.css": "dist/unmin/css/polyfills/datalist.css"
+					"dist/unmin/css/polyfills/datepicker.css": "dist/unmin/css/polyfills/datepicker.css"
+					"dist/unmin/css/polyfills/details.css": "dist/unmin/css/polyfills/details.css"
+					"dist/unmin/css/polyfills/meter.css": "dist/unmin/css/polyfills/meter.css"
+					"dist/unmin/css/polyfills/progress.css": "dist/unmin/css/polyfills/progress.css"
+					"dist/unmin/css/polyfills/slider.css": "dist/unmin/css/polyfills/slider.css"
+					"dist/unmin/css/noscript.css": "dist/unmin/css/noscript.css"
+					"dist/unmin/css/theme.css": "dist/unmin/css/theme.css"
 
 		# Builds the demos
 		assemble:
@@ -346,10 +379,9 @@ module.exports = (grunt) ->
 			share:
 				src: [
 					"src/plugins/share/sprites/*.png"
-					"!src/plugins/share/sprites/sprites_*.png"
 				]
-				css: "src/plugins/share/_sprites.scss"
-				map: "src/plugins/assets/sprites_share.png"
+				css: "src/plugins/share/sprites/_sprites.scss"
+				map: "src/plugins/share/assets/sprites_share.png"
 				output: "scss"
 		# Compiles the Sass files
 		sass:
@@ -359,7 +391,6 @@ module.exports = (grunt) ->
 					cwd: "src/base"
 					src: [
 						"**/*.scss"
-						"!**/_*.scss"
 						"!**/demo/*.scss"
 					]
 					dest: "dist/unmin/css/"
@@ -369,7 +400,6 @@ module.exports = (grunt) ->
 					cwd: "theme/sass"
 					src: [
 						"**/*.scss"
-						"!**/_*.scss"
 					]
 					dest: "dist/unmin/css/"
 					ext: ".css"
@@ -388,17 +418,6 @@ module.exports = (grunt) ->
 					flatten: true
 				,
 					expand: true
-					cwd: "src/other"
-					src: [
-						"**/*.scss"
-						"!**/*base.scss"
-						"!**/demo/*.scss"
-					]
-					dest: "dist/unmin/css/other/"
-					ext: ".css"
-					flatten: true
-				,
-					expand: true
 					cwd: "src/plugins"
 					src: "**/demo/*.scss"
 					dest: "dist/unmin/demos/"
@@ -412,6 +431,12 @@ module.exports = (grunt) ->
 				,
 					expand: true
 					cwd: "src/other"
+					src: "**/demo/*.scss"
+					dest: "dist/unmin/demos/"
+					ext: ".css"
+				,
+					expand: true
+					cwd: "src/themestyle"
 					src: "**/demo/*.scss"
 					dest: "dist/unmin/demos/"
 					ext: ".css"
@@ -435,7 +460,6 @@ module.exports = (grunt) ->
 					src: [
 						"**/*.css"
 						"!**/polyfills/**/*.css"
-						"!**/other/**/*.css"
 						"!**/*.min.css"
 					]
 					dest: "dist/unmin/css"
@@ -449,20 +473,60 @@ module.exports = (grunt) ->
 					]
 					dest: "dist/unmin/css/polyfills/"
 					expand: true
-				,
-					cwd: "dist/unmin/css/other"
-					src: [
-						"**/*.css"
-						"!**/*.min.css"
-					]
-					dest: "dist/unmin/css/other/"
-					expand: true
 				]
+
+			demos:
+				cwd: "dist/unmin/demos"
+				src: "**/*.css"
+				dest: "dist/unmin/demos/"
+				expand: true
+
+		csslint:
+			options:
+				"adjoining-classes": false
+				"box-model": false
+				"box-sizing": false
+				"compatible-vendor-prefixes": false
+				"duplicate-background-images": false
+				# Can be turned off after https://github.com/dimsemenov/Magnific-Popup/pull/303 lands
+				"empty-rules": false
+				"fallback-colors": false
+				"font-sizes": false
+				"gradients": false
+				"headings": false
+				"ids": false
+				"important": false
+				"outline-none": false
+				"overqualified-elements": false
+				"qualified-headings": false
+				"regex-selectors": false
+				"unique-headings": false
+				"universal-selector": false
+				"unqualified-attributes": false
+
+			unmin:
+				options:
+					absoluteFilePathsForFormatters: true
+					formatters: [
+						id: "csslint-xml"
+						dest: "csslint-unmin.log"
+					]
+				src: "dist/unmin/css/*.css"
+
+			demos:
+				options:
+					absoluteFilePathsForFormatters: true
+					formatters: [
+						id: "csslint-xml"
+						dest: "csslint-demos.log"
+					]
+				src: "dist/unmin/demos/**/*.css"
 
 		# Minify
 		uglify:
 			polyfills:
 				options:
+					banner: "<%= banner %>"
 					preserveComments: (uglify,comment) ->
 						return comment.value.match(/^!/i)
 				expand: true
@@ -471,17 +535,7 @@ module.exports = (grunt) ->
 				dest: "dist/js/polyfills/"
 				ext: ".min.js"
 
-			other:
-				options:
-					preserveComments: (uglify,comment) ->
-						return comment.value.match(/^!/i)
-				expand: true
-				cwd: "dist/unmin/js/other/"
-				src: ["*.js"]
-				dest: "dist/js/other/"
-				ext: ".min.js"
-
-			demo:
+			demos:
 				options:
 					banner: "<%= banner %>"
 					preserveComments: (uglify,comment) ->
@@ -525,21 +579,25 @@ module.exports = (grunt) ->
 			options:
 				banner: ""
 			dist:
+				options:
+					banner: ""
 				expand: true
 				cwd: "dist/unmin/css"
 				src: [
 					"**/*.css"
-					"!**/*.min.css"
+					"!**/ie8*.css"
 				]
 				dest: "dist/css"
 				ext: ".min.css"
 
-			demo:
+			demos_min:
+				options:
+					banner: "@charset \"utf-8\";\n/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
+						" * v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n *\n */"
 				expand: true
 				cwd: "dist/unmin/demos/"
 				src: [
 					"**/demo/*.css"
-					"!**/demo/*.min.css"
 				]
 				dest: "dist/demos/"
 				ext: ".min.css"
@@ -547,6 +605,7 @@ module.exports = (grunt) ->
 		htmlcompressor:
 			options:
 				type: "html"
+				concurrentProcess: 5
 			all:
 				cwd: "dist"
 				src: [
@@ -586,13 +645,14 @@ module.exports = (grunt) ->
 			tests: [
 				"elem_details"
 				"elem_progress_meter"
+				"mathml"
 			]
 			parseFiles: false
 			matchCommunityTests: false
 
 		copy:
 			bootstrap:
-				cwd: "lib/bootstrap/fonts"
+				cwd: "lib/bootstrap/dist/fonts"
 				src: "*.*"
 				dest: "dist/unmin/fonts"
 				expand: true
@@ -606,22 +666,20 @@ module.exports = (grunt) ->
 					expand: true
 					flatten: true
 				,
-					cwd: "src/other"
-					src: "**/*.js"
-					dest: "dist/unmin/js/other"
-					expand: true
-					flatten: true
-				,
 					cwd: "lib"
 					src: [
 						"jquery-pjax/jquery.pjax.js"
+						"flot/jquery.flot.js"
+						"flot/jquery.flot.pie.js"
+						"flot/jquery.flot.canvas.js"
+						"SideBySideImproved/jquery.flot.orderBars.js"
 						"jquery.validation/jquery.validate.js"
 						"jquery.validation/additional-methods.js"
 						"magnific-popup/dist/jquery.magnific-popup.js"
 						"google-code-prettify/src/*.js"
 						"DataTables/media/js/jquery.dataTables.js"
-						"../src/plugins/geomap/deps/openlayers.js"
 						"proj4/dist/proj4.js"
+						"openlayers/dist/openlayers.js"
 					]
 					dest: "dist/unmin/js/deps"
 					expand: true
@@ -631,9 +689,16 @@ module.exports = (grunt) ->
 					src: [
 						"plugins/**/assets/*"
 						"polyfills/**/assets/*"
-						"other/**/assets/*"
 					]
 					dest: "dist/unmin/assets"
+					expand: true
+					flatten: true
+				,
+					cwd: "src/plugins"
+					src: [
+						"**/deps/*.js"
+					]
+					dest: "dist/unmin/js/deps"
 					expand: true
 					flatten: true
 				]
@@ -647,20 +712,42 @@ module.exports = (grunt) ->
 						"**/ajax/*.*"
 						"**/img/*.*"
 						"!**/assets/*.*"
+						"!**/deps/*.*"
+						"!**/*.scss"
 					]
 					dest: "dist/unmin/demos/"
 					expand: true
 				,
 					cwd: "src/polyfills"
-					src: "**/demo/*.js"
+					src: [
+						"**/demo/*.*"
+						"!**/*.scss"
+					]
 					dest: "dist/unmin/demos/"
 					expand: true
 				,
 					cwd: "src/other"
-					src: "**/demo/*.js"
+					src: [
+						"**/demo/*.*"
+						"!**/*.scss"
+					]
+					dest: "dist/unmin/demos/"
+					expand: true
+				,
+					cwd: "src/themestyle"
+					src: [
+						"**/demo/*.*"
+						"!**/*.scss"
+					]
 					dest: "dist/unmin/demos/"
 					expand: true
 				]
+
+			cssIE8:
+				cwd: "dist/unmin/css/"
+				src: "ie8-wet-boew.css"
+				dest: "dist/css"
+				expand: true
 
 			themeAssets:
 				cwd: "theme/"
@@ -674,19 +761,21 @@ module.exports = (grunt) ->
 					"assets/*"
 					"fonts/*"
 					"js/assets/*"
-					"!**/assets/*.js"
 				]
 				dest: "dist"
 				expand: true
 
 			demos_min:
-				cwd: "dist/unmin"
+				cwd: "dist/unmin/demos"
 				src: [
 					"**/*.{jpg,html,xml}"
 					"**/demo/*.*"
 					"**/ajax/*.*"
 					"**/img/*.*"
-					"!**/assets/*.*"
+					# CSS is copied by the cssmin:demos_min task
+					"!**/*.css"
+					# CSS is copied by the uglify:demos task
+					"!**/*.js"
 				]
 				dest: "dist/demos/"
 				expand: true
@@ -745,6 +834,15 @@ module.exports = (grunt) ->
 					"test/**/*.js"
 					"tasks/*.js"
 				]
+		jscs:
+			all:
+				src: [
+					"src/**/*.js"
+					"theme/**/*.js"
+					"test/**/*.js"
+					"tasks/*.js"
+				]
+
 
 		connect:
 			options:
@@ -759,7 +857,25 @@ module.exports = (grunt) ->
 							filter: (req, res) ->
 								/json|text|javascript|dart|image\/svg\+xml|application\/x-font-ttf|application\/vnd\.ms-opentype|application\/vnd\.ms-fontobject/.test(res.getHeader('Content-Type'))
 						))
+
+						middlewares.push (req, res, next) ->
+							req.url = req.url.replace( "/v4.0-ci/", "/" )
+							next()
+
 						middlewares.push(connect.static(options.base));
+
+						# Serve the custom error page
+						middlewares.push (req, res) ->
+							filename = options.base + req.url
+
+							if not grunt.file.exists( filename )
+								filename = options.base + "/404.html"
+
+								# Set the status code manually
+								res.statusCode = 404
+
+							res.end( grunt.file.read( filename ) )
+
 						middlewares
 
 			test:
@@ -877,24 +993,38 @@ module.exports = (grunt) ->
 
 		"gh-pages":
 			options:
-				repo: "https://" + process.env.GH_TOKEN + "@github.com/wet-boew/wet-boew-dist.git"
-				branch: process.env.build_branch
 				clone: "wet-boew-dist"
-				message: "Travis build " + process.env.TRAVIS_BUILD_NUMBER
-				silent: true
 				base: "dist"
-			src: [
-				"**/*.*"
-			]
 
+			travis:
+				options:
+					repo: "https://" + process.env.GH_TOKEN + "@github.com/wet-boew/wet-boew-dist.git"
+					branch: process.env.build_branch
+					message: "Travis build " + process.env.TRAVIS_BUILD_NUMBER
+					silent: true
+				src: [
+					"**/*.*"
+				]
+
+			local:
+				src: [
+					"**/*.*"
+				]
+
+		checkDependencies:
+			all:
+				options:
+					npmInstall: false
 
 	# These plugins provide necessary tasks.
 	@loadNpmTasks "assemble"
 	@loadNpmTasks "grunt-autoprefixer"
+	@loadNpmTasks "grunt-check-dependencies"
 	@loadNpmTasks "grunt-contrib-clean"
 	@loadNpmTasks "grunt-contrib-concat"
 	@loadNpmTasks "grunt-contrib-connect"
 	@loadNpmTasks "grunt-contrib-copy"
+	@loadNpmTasks "grunt-contrib-csslint"
 	@loadNpmTasks "grunt-contrib-cssmin"
 	@loadNpmTasks "grunt-contrib-imagemin"
 	@loadNpmTasks "grunt-contrib-jshint"
@@ -903,6 +1033,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-gh-pages"
 	@loadNpmTasks "grunt-htmlcompressor"
 	@loadNpmTasks "grunt-imagine"
+	@loadNpmTasks "grunt-jscs-checker"
 	@loadNpmTasks "grunt-mocha"
 	@loadNpmTasks "grunt-modernizr"
 	@loadNpmTasks "grunt-sass"

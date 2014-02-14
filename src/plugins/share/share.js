@@ -1,4 +1,4 @@
-/*
+/**
  * @title WET-BOEW Share widget
  * @overview Facilitates sharing Web content on social media platforms.
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -13,8 +13,12 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-share",
+var pluginName = "wb-share",
+	selector = "." + pluginName,
+	initedClass = pluginName + "-inited",
+	initEvent = "wb-init" + selector,
 	shareLink = "shr-lnk",
+	panelCount = 0,
 	$document = wb.doc,
 	i18n, i18nText,
 
@@ -24,7 +28,22 @@ var selector = ".wb-share",
 	 * For example, adding the attribute data-option1="false", will override option1 for that plugin instance.
 	 */
 	defaults = {
-		heading: "h2",
+		hdLvl: "h2",
+
+		// Supported types are: "page" and "video"
+		type: "page",
+		
+		// For custom types
+		// custType = " this comment" results in "Share this comment"
+		custType: "",
+
+		url: wb.pageUrlParts.href,
+		title: document.title || $document.find( "h1:first" ).text(),
+
+		pnlId: "",
+		img: "",
+		desc: "",
+
 		sites: {
 
 			// The definitions of the available bookmarking sites, in URL use
@@ -57,16 +76,12 @@ var selector = ".wb-share",
 				name: "Facebook",
 				url: "http://www.facebook.com/sharer.php?u={u}&amp;t={t}"
 			},
-			fark: {
-				name: "Fark",
-				url: "http://cgi.fark.com/cgi/fark/submit.pl?new_url={u}&amp;new_comment={t}"
-			},
 			googleplus: {
 				name: "Google+",
-				url: "https://plus.google.com/share?url={u}&amp;hl=" + document.documentElement.lang,
+				url: "https://plus.google.com/share?url={u}&amp;hl=" + document.documentElement.lang
 			},
 			linkedin: {
-				name: "LinkedIn",
+				name: "LinkedIn®",
 				url: "http://www.linkedin.com/shareArticle?mini=true&amp;url={u}&amp;title={t}&amp;ro=false&amp;summary={d}&amp;source="
 			},
 			myspace: {
@@ -76,10 +91,6 @@ var selector = ".wb-share",
 			netvibes: {
 				name: "Netvibes",
 				url: "http://www.netvibes.com/share?url={u}&amp;title={t}"
-			},
-			newsvine: {
-				name: "Newsvine",
-				url: "http://www.newsvine.com/_wine/save?u={u}&amp;h={t}"
 			},
 			pinterest: {
 				name: "Pinterest",
@@ -108,71 +119,84 @@ var selector = ".wb-share",
 		}
 	},
 
-	/*
-	* Init runs once per plugin element on the page. There may be multiple elements.
-	* It will run more than once per plugin if you don't remove the selector from the timer.
-	* @method init
-	* @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
-	*/
+	/**
+	 * Init runs once per plugin element on the page. There may be multiple elements.
+	 * It will run more than once per plugin if you don't remove the selector from the timer.
+	 * @method init
+	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
+	 */
 	init = function( event ) {
 		var elm = event.target,
-			sites, heading, settings, panel, link, $share, $elm, pageHref,
-			pageTitle, pageImage, pageDescription, site, siteProperties, url;
+			sites, heading, settings, panel, link, $share, $elm,
+			pageHref, pageTitle, pageImage, pageDescription, site,
+			siteProperties, url, shareText, id, pnlId;
 
 		// Filter out any events triggered by descendants
-		if ( event.currentTarget === elm ) {
-			$elm = $( elm );
-			settings = $.extend( true, defaults, wb.getData( $elm, "wet-boew" ) );
-			sites = settings.sites;
-			heading = settings.heading;
-			pageHref = wb.pageUrlParts.href;
-			pageTitle = encodeURIComponent( document.title || $document.find( "h1:first" ).text() );
+		// and only initialize the element once
+		if ( event.currentTarget === elm &&
+			elm.className.indexOf( initedClass ) === -1 ) {
 
-			// Placeholders until source(s) can be determined and implemented
-			pageImage = encodeURIComponent( "" ),
-			pageDescription = encodeURIComponent( "" );
-
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 			wb.remove( selector );
+			elm.className += " " + initedClass;
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
 				i18n = wb.i18n;
 				i18nText = {
 					shareText: i18n( "shr-txt" ),
+					page: i18n( "shr-pg" ),
+					video: i18n( "shr-vid" ),
 					disclaimer: i18n( "shr-disc" )
 				};
 			}
 
-			panel = "<section id='shr-pg' class='shr-pg wb-overlay modal-content overlay-def wb-panel-" +
-				( wb.html.attr( "dir" ) === "rtl" ? "l" : "r" ) +
-				"'><header class='modal-header'><" + heading + " class='modal-title'>" +
-				i18nText.shareText + "</" + heading + "></header><ul class='colcount-xs-2'>";
+			$elm = $( elm );
+			settings = $.extend( true, defaults, wb.getData( $elm, "wet-boew" ) );
+			sites = settings.sites;
+			heading = settings.hdLvl;
+			
+			shareText = i18nText.shareText + ( settings.custType.length !== 0 ? settings.custType : i18nText[ settings.type ] );
+			pnlId = settings.pnlId;
+			id = "shr-pg" + ( pnlId.length !== 0 ? "-" + pnlId : panelCount );
+			pageHref = settings.url;
+			pageTitle = encodeURIComponent( settings.title );
+			pageImage = encodeURIComponent( settings.img );
+			pageDescription = encodeURIComponent( settings.desc );
 
-			for ( site in sites ) {
-				siteProperties = sites[ site ];
-				url = siteProperties.url
-						.replace( /\{u\}/, pageHref )
-						.replace( /\{t\}/, pageTitle )
-						.replace( /\{i\}/, pageImage )
-						.replace( /\{d\}/, pageDescription );
-				panel += "<li><a href='" + url + "' class='" + shareLink + " " + site + " btn btn-default' target='_blank'>" + siteProperties.name + "</a></li>";
+			// Don't create the panel for the second link (class="link-only")
+			if ( elm.className.indexOf( "link-only" ) === -1 ) {
+				panel = "<section id='" + id  + "' class='shr-pg wb-overlay modal-content overlay-def wb-panel-r" +
+					"'><header class='modal-header'><" + heading + " class='modal-title'>" +
+					shareText + "</" + heading + "></header><ul class='colcount-xs-2'>";
+
+				for ( site in sites ) {
+					siteProperties = sites[ site ];
+					url = siteProperties.url
+							.replace( /\{u\}/, pageHref )
+							.replace( /\{t\}/, pageTitle )
+							.replace( /\{i\}/, pageImage )
+							.replace( /\{d\}/, pageDescription );
+					panel += "<li><a href='" + url + "' class='" + shareLink + " " + site + " btn btn-default' target='_blank'>" + siteProperties.name + "</a></li>";
+				}
+
+				panel += "</ul><div class='clearfix'></div><p class='col-sm-12'>" + i18nText.disclaimer + "</p></section>";
+				panelCount += 1;
 			}
+			link = "<a href='#" + id + "' aria-controls='" + id + "' class='shr-opn overlay-lnk'><span class='glyphicon glyphicon-share'></span> " +
+				shareText + "</a>";
 
-			panel += "</ul><div class='clearfix'></div><p class='col-sm-12'>" + i18nText.disclaimer + "</p></section>";
-			link = "<a href='#shr-pg' aria-controls='shr-pg' class='shr-opn overlay-lnk'><span class='glyphicon glyphicon-share'></span> " +
-				i18nText.shareText + "</a>";
-
-			$share = $( panel + link );
+			$share = $( ( panel ? panel : "" ) + link );
 
 			$elm.append( $share );
 
-			$share.trigger( "timerpoke" );
+			$share
+				.trigger( initEvent )
+				.trigger( "wb-init.wb-overlay" );
 		}
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb", selector, init );
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 $document.on( "click vclick", "." + shareLink, function( event) {
 	var which = event.which;

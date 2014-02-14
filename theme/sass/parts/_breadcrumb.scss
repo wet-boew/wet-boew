@@ -18,9 +18,12 @@
 			content: "\e092";
 		}
 		white-space: nowrap;
+		max-width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
 		&:first-child {
 			&:before {
-				content: "";
+				display: none;
 			}
 		}
 	}
@@ -34,7 +37,7 @@
 				padding: 0;
 			}
 			&:after {
-				content: "\e079";
+				content: "\e091";
 				padding: 0 5px;
 			}
 			&:first-child {

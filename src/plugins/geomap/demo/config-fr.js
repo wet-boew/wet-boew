@@ -50,7 +50,7 @@ var wet_boew_geomap = {
 		layers: "basic"
 	},
 	*/
-	overlays : [
+	overlays: [
 		{
 			title: "KML Demo FR",
 			caption: "Ceci est un exemple de fichier KML chargé localement par Géocarte.",
@@ -98,8 +98,8 @@ var wet_boew_geomap = {
 			type: "json",
 			url: "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst",
 			params: {
-				"alt": "json",
-				"q": "alluvial"
+				alt: "json",
+				q: "alluvial"
 			},
 			visible: false,
 			datatable: false,
@@ -118,8 +118,8 @@ var wet_boew_geomap = {
 			type: "geojson",
 			url: "http://stephenott.cartodb.com/api/v2/sql",
 			params: {
-				"format": "GeoJSON",
-				"q": "SELECT * FROM traffic_cameras LIMIT 25"
+				format: "GeoJSON",
+				q: "SELECT * FROM traffic_cameras LIMIT 25"
 			},
 			attributes: {
 				location_desc: "Emplacement",
@@ -143,13 +143,13 @@ var wet_boew_geomap = {
 				init: {
 					graphicWidth: 30,
 					graphicHeight: 30,
-					externalGraphic: "demo/icons/trafficcamera.png",
+					externalGraphic: "demo/trafficcamera.png",
 					graphicOpacity: 1.0
 				},
 				select: {
 					graphicWidth: 20,
 					graphicHeight: 20,
-					externalGraphic: "demo/icons/trafficcamera_active.png",
+					externalGraphic: "demo/trafficcamera_active.png",
 					graphicOpacity: 0.5
 				}
 			}

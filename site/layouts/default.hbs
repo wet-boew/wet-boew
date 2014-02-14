@@ -7,11 +7,11 @@
 		<meta charset="utf-8" />
 		<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 		wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-		<title>{{title}} - {{#i18n "site.title"}}{{/i18n}}</title>
+		<title>{{>pagetitle}}</title>
 		<link href="{{assets}}/assets/favicon.ico" rel="shortcut icon" />
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
 		<!-- Meta data -->
-		<meta name="description" content="{{#i18n "site.description"}}{{/i18n}}" />
+		<meta name="description" content="{{#if page.description }}{{page.description}}{{else}}{{#i18n "site.description"}}{{/i18n}}{{/if}}" />
 		<!-- Meta data-->
 		{{>headresources}}
 	</head>
@@ -20,23 +20,36 @@
 			<li class="wb-slc">
 				<a class="wb-sl" href="#wb-cont">{{#i18n "tmpl-skip-cont"}}{{/i18n}}</a>
 			</li>
+{{#isnt footer "false"}}
 			<li class="wb-slc visible-md visible-lg">
 				<a class="wb-sl" href="#wb-info">{{#i18n "tmpl-skip-info"}}{{/i18n}}</a>
 			</li>
-			<!-- Secondary Menu
+{{/isnt}}
+{{#is secondarymenu "true"}}
 			<li class="wb-slc visible-md visible-lg">
 				<a class="wb-sl" href="#wb-sec">{{#i18n "tmpl-skip-sec"}}{{/i18n}}</a>
 			</li>
-			[optional] -->
+{{/is}}
 		</ul>
 		<header role="banner">
 			<div id="wb-bnr">
 				<div id="wb-bar">
-					<section id="wb-lng" class="visible-md visible-lg">
-						<h2>{{#i18n "tmpl-lang-select"}}{{/i18n}}</h2>
-						{{>languagetoggle}}
-					</section>
-					{{>mobimenu}}
+					<div class="container">
+						<div class="row">
+{{#isnt languagetoggle "false"}}
+							<section id="wb-lng" class="visible-md visible-lg">
+								<h2>{{#i18n "tmpl-lang-select"}}{{/i18n}}</h2>
+								{{>languagetoggle}}
+							</section>
+{{/isnt}}
+{{#isnt mobimenu "false"}}
+							<section class="wb-mb-links col-xs-12 visible-sm visible-xs" id="wb-glb-mn">
+								<h2>{{#i18n "menu"}}{{/i18n}}</h2>
+								{{>mobimenu}}
+							</section>
+{{/isnt}}
+						</div>
+					</div>
 				</div>
 
 				<div class="container">
@@ -45,52 +58,57 @@
 						<div id="wb-sttl" class="col-md-8">
 							{{>brand}}
 						</div>
-
+{{#isnt sitesearch "false"}}
 						<section id="wb-srch" class="col-md-4 visible-md visible-lg">
 							<h2>{{#i18n "tmpl-search"}}{{/i18n}}</h2>
 							{{>sitesearch}}
 						</section>
-
+{{/isnt}}
 					</div>
 				</div>
 			</div>
-
-			<nav role="navigation" id="wb-sm" data-ajax-fetch="{{assets}}/ajax/sitemenu-{{language}}.html" data-import="wb-sec wb-srch" data-post-remove="remove after init" class="wb-menu remove after init" typeof="SiteNavigationElement">
+{{#isnt sitemenu "false"}}
+			<nav role="navigation" id="wb-sm" data-ajax-fetch="{{assets}}/ajax/sitemenu-{{language}}.html" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
 				{{>sitemenu}}
 			</nav>
-{{#unless_eq assets compare="."}}
-
+{{else}}
+			<span data-trgt="mb-pnl" class="wb-menu hide"></span>
+{{/isnt}}
+{{#isnt breadcrumb "false"}}
+	{{#isnt assets "."}}
 			<nav role="navigation" id="wb-bc" property="breadcrumb">
 				<h2>{{#i18n "you-are-here"}}{{/i18n}}</h2>
 				{{>breadcrumbs}}
 			</nav>
-{{/unless_eq}}
+	{{/isnt}}
+{{/isnt}}
 		</header>
 
-		<main role="main" property="mainContentOfPage" class="container">
+{{#is secondarymenu "true"}}
+		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
-					<h1 id="wb-cont" property="name">{{title}}</h1>
-					{{>body}}
-				</div>
-
-			</div>
+{{/is}}
+		<main role="main" property="mainContentOfPage" class="{{#is secondarymenu "true"}}col-md-9 col-md-push-3{{else}}container{{/is}}">
+			<h1 id="wb-cont" property="name">{{title}}</h1>
+			{{>body}}
 		</main>
+{{#is secondarymenu "true"}}
+				<nav role="navigation" id="wb-sec" typeof="SiteNavigationElement" class="col-md-3 col-md-pull-9 visible-md visible-lg">
+					<h2>{{#i18n "tmpl-sec-menu"}}{{/i18n}}</h2>
+					{{>secondarymenu}}
+				</nav>
+			</div>
+		</div>
+{{/is}}
 
-		<!-- Secondary Menu
-		<nav role="navigation" id="wb-sec" typeof="SiteNavigationElement">
-			<h2>{{#i18n "tmpl-sec-menu"}}{{/i18n}}</h2>
-			{{>secondarymenu}}
-		</nav>
-		[optional] -->
-
+{{#isnt footer "false"}}
 		<footer role="contentinfo" id="wb-info" class="container visible-md visible-lg">
 			<nav role="navigation" class="row">
 				<h2>{{#i18n "tmpl-site-info"}}{{/i18n}}</h2>
 				{{>footer}}
 			</nav>
 		</footer>
+{{/isnt}}
 		{{>footerresources}}
-		{{#if environment.test}}{{>test}}{{/if}}
 	</body>
 </html>
