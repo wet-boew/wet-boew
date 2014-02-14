@@ -492,6 +492,7 @@ module.exports = (grunt) ->
 				# Can be turned off after https://github.com/dimsemenov/Magnific-Popup/pull/303 lands
 				"empty-rules": false
 				"fallback-colors": false
+				"float": false
 				"font-sizes": false
 				"gradients": false
 				"headings": false
