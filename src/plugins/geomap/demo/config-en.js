@@ -43,15 +43,23 @@ var wet_boew_geomap = {
 		}
 	},
 	*/
-	/*
-	basemap : {
+	
+	/*basemap : {
 		title: "WMS Demo",
 		type: "wms",
 		url: "http://vmap0.tiles.osgeo.org/wms/vmap0",
-		layers: "basic"
-	},
-	*/
-	overlays : [
+		layers: "basic",
+		mapOptions: {
+			maxExtent: "-180, -90, 180, 90",			
+			maxResolution: "auto",
+			projection: "EPSG:4326",
+			restrictedExtent: "-180, -90, 180, 90",
+			units: "m",
+			displayProjection: "EPSG:4326",
+			tileManager: null
+		}
+	},*/
+	overlays: [
 		{
 			title: "KML Demo EN",
 			caption: "This is a sample KML file loaded locally by Geomap.",
@@ -98,8 +106,8 @@ var wet_boew_geomap = {
 			type: "json",
 			url: "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst",
 			params: {
-				"alt": "json",
-				"q": "alluvial"
+				alt: "json",
+				q: "alluvial"
 			},
 			visible: true,
 			root: "products",
@@ -117,8 +125,8 @@ var wet_boew_geomap = {
 			type: "geojson",
 			url: "http://stephenott.cartodb.com/api/v2/sql",
 			params: {
-				"format": "GeoJSON",
-				"q": "SELECT * FROM traffic_cameras LIMIT 25"
+				format: "GeoJSON",
+				q: "SELECT * FROM traffic_cameras LIMIT 25"
 			},
 			attributes: {
 				location_desc: "Location",

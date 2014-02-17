@@ -108,12 +108,11 @@ var selector = ".wb-geomap",
 			// Store the debug setting globally
 			debug = settings.debug;
 
-			Modernizr.load([{
+			Modernizr.load([ {
 				// For loading multiple dependencies
 				both: [
 				    "site!deps/proj4" + modeJS,
 					"site!deps/openlayers" + modeJS
-					
 				],
 				complete: function() {
 					
@@ -123,6 +122,15 @@ var selector = ".wb-geomap",
 							transform: proj4
 				 	};
 
+					// Set the proj4 dependency name to match OpenLayers
+					window.Proj4js = {
+						Proj: function( code ) {
+							return proj4( window.Proj4js.defs[ code ] );
+						},
+						defs: proj4.defs,
+						transform: proj4
+					};
+					
 					// Set the language for OpenLayers
 					OpenLayers.Lang.setCode( document.documentElement.lang );
 
@@ -130,13 +138,13 @@ var selector = ".wb-geomap",
 					OpenLayers.ImgPath = wb.getPath( "/assets" ) + "/";
 					
 					// Add projection for default base map
-					//proj4.defs[ "EPSG:3978" ] = "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs";
 					proj4.defs( "EPSG:3978", "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs");
 					  
 					if ( debug ) {
 						Modernizr.load([{
 							load: "site!../assets/geomap-debug" + modeJS
 						}]);
+
 						$document.trigger( "debug.wb-geomap" );
 					}
 
@@ -179,7 +187,7 @@ var selector = ".wb-geomap",
 						refreshPlugins( geomap );
 					}
 				}
-			}]);
+			} ]);
 		}
 	},
 			
@@ -453,8 +461,8 @@ var selector = ".wb-geomap",
 
 				$tabs
 					.attr({
-					"class": "wb-tabbedinterface auto-height-none",
-					"id": "geomap-tabs-" + uniqueId
+						"class": "wb-tabbedinterface auto-height-none",
+						id: "geomap-tabs-" + uniqueId
 					})
 					.append( "<ul class='tabs'></ul><div class='tabs-panel'></div>" );
 
@@ -474,7 +482,7 @@ var selector = ".wb-geomap",
 	 */
 	createTable = function( index, title, caption, datatable ) {
 
-		return $( "<table class='table-simplify" + ( datatable ? " wb-tables" : "" ) +
+		return $( "<table class='table" + ( datatable ? " wb-tables" : "" ) +
 			"' aria-label='" + title + "' id='overlay_" + index + "'>" + "<caption>" +
 			caption + "</caption><thead></thead><tbody></tbody>" +
 			(datatable ? "<tfoot></tfoot></table><div class='clear'></div>" : "</table>" ));
@@ -550,7 +558,7 @@ var selector = ".wb-geomap",
 			// If no legend or fieldset add them
 			$fieldset = geomap.glegend.find( "fieldset" );
 			if ($fieldset.length === 0 ) {
-				$fieldset = $( "<fieldset name='legend' data-role='controlgroup'><legend class='wb-inv'>" +
+				$fieldset = $( "<fieldset name='legend'><legend class='wb-inv'>" +
 					i18nText.toggleLayer + "</legend></fieldset>" ).appendTo( geomap.glegend );
 			}
 
@@ -1127,7 +1135,8 @@ var selector = ".wb-geomap",
 			// Only used by specific controls (i.e. MousePosition)
 			displayProjection: new OpenLayers.Projection( "EPSG:4269" ),
 			aspectRatio: 0.8,
-			fractionalZoom: false
+			fractionalZoom: false,
+			tileManager: null
 		};
 
 		return mapOptions;
@@ -1762,7 +1771,7 @@ var selector = ".wb-geomap",
 	/*
 	 *	Load controls
 	 */
-	loadControls = function( geomap, opts ){
+	loadControls = function( geomap, opts ) {
 		var $mapDiv = geomap.gmap,
 			map = geomap.map,
 			i18nMousePosition = i18nText.mouseposition,
@@ -1840,7 +1849,13 @@ var selector = ".wb-geomap",
 			addPanZoomBar( geomap );
 
 			// Fix for the defect #3204 http://tbs-sct.ircan-rican.gc.ca/issues/3204
-			$mapDiv.before( "<details id='geomap-details-" + geomap.uniqueId + "' class='wb-geomap-detail' style='width:" + ( $mapDiv.width() - 10 ) + "px;'><summary>" + i18nText.accessTitle + "</summary><p>" + i18nText.access + "</p></details>" );
+			$mapDiv.before(
+				"<details id='geomap-details-" + geomap.uniqueId +
+				"' class='wb-geomap-detail' style='width:" +
+				( $mapDiv.width() - 10 ) + "px;'><summary>" +
+				i18nText.accessTitle + "</summary><p>" + i18nText.access +
+				"</p></details>"
+			);
 			$( "#geomap-details-" + geomap.uniqueId ).trigger( "timerpoke.wb" );
 		}
 
@@ -1922,7 +1937,7 @@ var selector = ".wb-geomap",
 	},
 
 	/*
-	 *	Create the map after we load the config file.
+	 * Create the map after we load the config file.
 	 */
 	createMap = function( geomap, opts ) {
 
@@ -1959,7 +1974,7 @@ var selector = ".wb-geomap",
 
 		// Add WCAG element for the map div
 		geomap.gmap.attr({
-			"role": "dialog",
+			role: "dialog",
 			"aria-label": i18nText.ariaMap
 		});
 	},
@@ -1979,21 +1994,25 @@ var selector = ".wb-geomap",
 		mapArray.push( geomap.map );
 
 		// If all geomap instance are loaded, trigger ready.wb-geomap
-		if ( mapArray.length === $( ".wb-geomap").length ) {
+		if ( mapArray.length === $( ".wb-geomap" ).length ) {
 
-			// Set the alt attributes for images to fix the missing alt attribute. Need to do it after zoom because each zoom brings new tiles.
-			// to solve this modifications needs to be done to OpenLayers core code OpenLayers.Util.createImage and OpenLayers.Util.createAlphaImageDiv
-			// TODO: fix no alt attribute on tile image in OpenLayers rather than use this override
-			// wait 2 seconds for all tile to be loaded in the page
+			// Set the alt attributes for images to fix the missing alt
+			// attribute. Need to do it after zoom because each zoom brings
+			// new tiles to solve this modifications needs to be done to
+			// OpenLayers core code OpenLayers.Util.createImage and
+			// OpenLayers.Util.createAlphaImageDiv
+			// TODO: fix no alt attribute on tile image in OpenLayers rather
+			// than use this override wait 2 seconds for all tile to be loaded
+			// in the page
 			setTimeout(function() {
 				geomap.gmap.find( "img" ).attr( "alt", "" );
 				$( ".olTileImage" ).attr( "alt", "" );
 			}, 2000 );
 
-			geomap.map.events.on({ "moveend": function() {
+			geomap.map.events.on({ moveend: function() {
 				// Every time we zoom/pan we need to put back the alt for OpenLayers tiles
 				$( ".olTileImage" ).attr( "alt", "" );
-			}});
+			} });
 
 			$document.trigger({
 				type: "ready",

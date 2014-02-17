@@ -5,7 +5,8 @@
 	"category": "Plugiciel",
 	"description": "Affiche une carte dynamique sur laquelle des informations de sources supplémentaires peuvent être superposées.",
 	"tag": "geomap",
-    "altLangPrefix": "geomap"
+    "altLangPrefix": "geomap",
+	"js": "demo/popup_function"
 }
 ---
 <!-- GeomapStart -->
@@ -99,7 +100,7 @@
 			<div class="col-md-12">
 				<section>
 					<h3>Villes</h3>
-					<table id="cities" class="table-simplify" aria-label="Villes">
+					<table id="cities" class="table" aria-label="Villes">
 						<caption>Ceci est un exemple créé à partir d'une table dans le présent document. Un attribut <em>data-geometry</em> contient la géometry et un attribut <em>data-type</em> contient le type (wkt ou bbox) ont été ajoutés à la colone.</caption>
 						<thead>
 							<tr>
@@ -172,7 +173,7 @@
 			</div>
 
 			<h2 class="wb-invisible">Résultats de la recherche</h2>
-			<table id="bbox" class="table-simplify" aria-label="Résultats de la recherche">
+			<table id="bbox" class="table" aria-label="Résultats de la recherche">
 				<caption class="wb-invisible">Tableau des résultats de la recherche contenant la géométries des étendues des éléments.</caption>
 				<thead>
 					<tr>
@@ -220,22 +221,22 @@
 	}'>
 
 	<!-- Insert Map Start (mandatory) -->
-	<div class="wb-geomap-map  span-3"></div>
+	<div class="wb-geomap-map col-sm-4"></div>
 	<!-- Insert Map End -->
 
 	<!-- Insert Layer Data Start (mandatory) -->
-	<div class="wb-geomap-layers span-3"><section>
-	<h2 class="wb-invisible">Adresse du bureaux de ressources naturelles Canada, Ottawa</h2>
-		<table id="addNRCan" class="table-simplify width-100" aria-label="Adresse du bureaux de RNCan Ottawa">
-			<caption class="wb-invisible">Adresse du bureaux de ressources naturelles Canada, Ottawa</caption>
+	<div class="wb-geomap-layers col-sm-4"><section>
+		<h2 class="wb-inv">Natural Resources Canada Ottawa office adress</h2>
+		<table id="addNRCan" class="table" aria-label="NRCan Ottawa office adress">
+			<caption class="wb-invisible">Natural Resources Canada Ottawa office adress</caption>
 			<thead>
 				<tr>
-					<th>Adresse</th>
+					<th>Adress</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr data-geometry="POINT (-75.70535, 45.3995)" data-type="wkt">
-					<td>615, rue Booth,<br />Ottawa (ON),<br />Canada,<br />K1A 0E8</td>
+					<td>615 Booth St.,<br />Ottawa (ON),<br />Canada,<br />K1A 0E8</td>
 				</tr>
 			</tbody>
 		</table>
@@ -243,6 +244,7 @@
 	</div>
 	<!-- Insert Layer Data End -->
 </div>
+
 <!-- GeomapEnd -->
 
 <script src="demo/popup_function{{environment.suffix}}.js"></script>
