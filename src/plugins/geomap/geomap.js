@@ -457,8 +457,7 @@ var selector = ".wb-geomap",
 					.attr({
 						"class": "wb-tabbedinterface auto-height-none",
 						id: "geomap-tabs-" + uniqueId
-					})
-					.append( "<ul></ul>" );
+					});
 
 			// User hasn't specified where they want the tabs
 			} else {
@@ -705,12 +704,8 @@ var selector = ".wb-geomap",
 		var $div = geomap.glayers.find( ".wb-geomap-tabs" ),
 			$tabs = $div.find( "ul" ),
 			featureTableId = featureTable[0].id,
-			$featureTable = $( featureTable ),
-			$layerTab, $details,
+			$featureTable = $( featureTable ), $details,
 			title = $featureTable.attr( "aria-label" );
-		
-		console.log($tabs);
-
 		
 		$details = $("<details>", {
 			id: "details-" + featureTableId
