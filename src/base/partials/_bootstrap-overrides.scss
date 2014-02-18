@@ -573,9 +573,6 @@ dt, dd {
 blockquote {
 	padding: ($line-height-computed / 2) $line-height-computed;
 	margin: 0 0 $line-height-computed;
-	p {
-		font-size: ($font-size-base * 1.25);
-	}
 	small, .small {
 		line-height: $line-height-base;
 	}
@@ -653,4 +650,11 @@ input[type="reset"], input[type="button"], input[type="submit"] {
 			float: none !important;
 		}
 	}
+}
+
+/*
+ *	Blockquote font size
+ */
+blockquote {
+	font-size: $font-size-base;
 }
