@@ -97,7 +97,7 @@ var wet_boew_geomap = {
 				link: "More Info"
 			},
 			visible: true,
-			datatable: false,
+			datatable: false,			
 			tab: true
 		},
 		{

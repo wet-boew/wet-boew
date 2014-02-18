@@ -491,6 +491,7 @@ module.exports = (grunt) ->
 				# Can be turned off after https://github.com/dimsemenov/Magnific-Popup/pull/303 lands
 				"empty-rules": false
 				"fallback-colors": false
+				"floats": false
 				"font-sizes": false
 				"gradients": false
 				"headings": false
@@ -681,7 +682,7 @@ module.exports = (grunt) ->
 						"google-code-prettify/src/*.js"
 						"DataTables/media/js/jquery.dataTables.js"
 						"proj4/dist/proj4.js"
-						"openlayers/dist/openlayers.js"
+						"openlayers/OpenLayers.js"
 					]
 					dest: "dist/unmin/js/deps"
 					expand: true

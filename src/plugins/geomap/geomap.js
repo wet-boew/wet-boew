@@ -111,16 +111,10 @@ var selector = ".wb-geomap",
 			Modernizr.load([ {
 				// For loading multiple dependencies
 				both: [
-				    "site!deps/proj4" + modeJS,
+					"site!deps/proj4" + modeJS,
 					"site!deps/openlayers" + modeJS
 				],
 				complete: function() {
-					
-					// Set the proj4 dependency name to match OpenLayers
-					window.Proj4js = { Proj: function(code) { return proj4( Proj4js.defs[ code ]); },
-						defs: proj4.defs,
-						transform: proj4
-					};
 
 					// Set the proj4 dependency name to match OpenLayers
 					window.Proj4js = {
@@ -591,7 +585,7 @@ var selector = ".wb-geomap",
 
 				$parent.css( "display", ( visibility ? "table" : "none" ) );
 			});
-				
+
 			$label = $( "<label>", {
 				"for": "cb_" + featureTableId,
 				text: $featureTable.attr( "aria-label" )
@@ -600,6 +594,7 @@ var selector = ".wb-geomap",
 			$li = $( "<li class='checkbox'>").append($label, "<div id='sb_" + featureTableId + "'></div>" );
 			
 			$ul.append( $li );
+
 		}
 	},
 
@@ -2026,12 +2021,13 @@ var selector = ".wb-geomap",
 				$( ".olTileImage" ).attr( "alt", "" );
 			} });
 
-//			$document.trigger({
-//				type: "ready",
-//				namespace: "wb-geomap",
-//				sampleMap: getMap( "sample_map" ),
-//				locationMap: getMap( "location_map" )
-//			});
+			$document.trigger({
+				type: "ready",
+				namespace: "wb-geomap",
+				sampleMap: getMap( "sample_map" ),
+				locationMap: getMap( "location_map" )
+			});
+			
 		}
 	};
 
