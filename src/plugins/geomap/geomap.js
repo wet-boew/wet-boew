@@ -458,7 +458,7 @@ var selector = ".wb-geomap",
 						"class": "wb-tabbedinterface auto-height-none",
 						id: "geomap-tabs-" + uniqueId
 					})
-					.append( "<ul class='tabs'></ul><div class='tabs-panel'></div>" );
+					.append( "<ul></ul>" );
 
 			// User hasn't specified where they want the tabs
 			} else {
@@ -466,7 +466,7 @@ var selector = ".wb-geomap",
 					.glayers
 						.attr( "id", "geomap-tabs-" + uniqueId )
 						.append( "<div class='clear'></div><div class='wb-geomap-tabs wb-tabs auto-height-none' style='width: " +
-							geomap.glayers.width() + "px;'><ul class='tabs'></ul><div class='tabs-panel'></div></div><div class='clear'></div>" );
+							geomap.glayers.width() + "px;'>" );
 			}
 		}
 	},
@@ -703,18 +703,24 @@ var selector = ".wb-geomap",
 	 */
 	addToTabs = function( geomap, featureTable, enabled ) {
 		var $div = geomap.glayers.find( ".wb-geomap-tabs" ),
-			$tabs = $div.find( "ul.tabs" ),
-			$tabsPanel = $div.find( "div.tabs-panel" ),
+			$tabs = $div.find( "ul" ),
 			featureTableId = featureTable[0].id,
 			$featureTable = $( featureTable ),
-			$layerTab;
+			$layerTab, $details,
+			title = $featureTable.attr( "aria-label" );
+		
+		console.log($tabs);
 
-		$tabs.append( "<li><a href='#tabs_" + featureTableId + "'>" +
-			$featureTable.attr( "aria-label" ) + "</a></li>" );
-		$layerTab = $( "<div id='tabs_" + featureTableId + "'>" ).append( featureTable );
-		$tabsPanel.append( $layerTab );
+		
+		$details = $("<details>", {
+			id: "details-" + featureTableId
+		}).append("<summary>" + title + "</summary>", featureTable);
+
+		$tabs.append( "<li><a href='#tabs_" + featureTableId + "'>" + title + "</a></li>" );
+		
+		$div.append( $details );
 		if ( !enabled ) {
-			$layerTab.append( "<div id='msg_" + featureTableId + "'><p>" +
+			$details.append( "<div id='msg_" + featureTableId + "'><p>" +
 				i18nText.hiddenLayer + "</p></div>" );
 			featureTable.fadeOut();
 		}
