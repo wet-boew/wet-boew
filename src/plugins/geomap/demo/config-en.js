@@ -97,7 +97,7 @@ var wet_boew_geomap = {
 				link: "More Info"
 			},
 			visible: true,
-			datable:false,
+			datatable: false,
 			tab: true
 		},
 		{
@@ -148,16 +148,16 @@ var wet_boew_geomap = {
 			style: {
 				type: "symbol",
 				init: {
-					"graphicWidth": 30,
-					"graphicHeight": 30,
-					"externalGraphic": "demo/trafficcamera.png",
-					"graphicOpacity": 1.0
+					graphicWidth: 30,
+					graphicHeight: 30,
+					externalGraphic: "demo/trafficcamera.png",
+					graphicOpacity: 1.0
 				},
 				select: {
-					"graphicWidth": 20,
-					"graphicHeight": 20,
-					"externalGraphic": "demo/trafficcamera_active.png",
-					"graphicOpacity": 0.5
+					graphicWidth: 20,
+					graphicHeight: 20,
+					externalGraphic: "demo/trafficcamera_active.png",
+					graphicOpacity: 0.5
 				}
 			}
 

@@ -680,8 +680,8 @@ module.exports = (grunt) ->
 						"magnific-popup/dist/jquery.magnific-popup.js"
 						"google-code-prettify/src/*.js"
 						"DataTables/media/js/jquery.dataTables.js"
-						"openlayers/dist/openlayers.js"
 						"proj4/dist/proj4.js"
+						"openlayers/dist/openlayers.js"
 					]
 					dest: "dist/unmin/js/deps"
 					expand: true
