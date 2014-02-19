@@ -74,7 +74,7 @@ describe( "Toggle test suite", function() {
 		});
 
 		it( "should have aria-controls attribute set if not a tablist", function() {
-			var $elm, ariaControls, data, isTablist, selector;
+			var $elm, $elms, ariaControls, data, isTablist, selector, parent;
 			$( ".wb-toggle" ).each( function() {
 				$elm = $( this );
 				data = $elm.data( "toggle" );
@@ -82,9 +82,11 @@ describe( "Toggle test suite", function() {
 
 				if ( !isTablist ) {
 					selector = data.selector;
+					parent = data.parent;
 					if ( selector ) {
 						ariaControls = "";
-						$( selector ).each( function() {
+						$elms = parent ? $( parent ).find( selector ) : $( selector );
+						$elms.each( function() {
 							ariaControls += this.id + " ";
 						});
 						expect( $elm.attr( "aria-controls" ) ).to.equal( $.trim( ariaControls ) );
