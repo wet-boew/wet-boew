@@ -66,7 +66,7 @@ var wet_boew_geomap = {
 			type: "kml",
 			url: "demo/sample.kml",
 			visible: true,
-			datatable: true,
+			datatable: false,
 			tab: true,
 			popups: true,
 			attributes: {
@@ -84,7 +84,7 @@ var wet_boew_geomap = {
 				title: "Title",
 				summary: "About this dataset"
 			},
-			visible: false
+			visible: true
 		},
 		{
 			title: "GeoRSS Demo EN",
@@ -96,8 +96,8 @@ var wet_boew_geomap = {
 				description: "Description",
 				link: "More Info"
 			},
-			visible: false,
-			datable: false,
+			visible: true,
+			datatable: false,
 			tab: true
 		},
 		{
@@ -109,7 +109,7 @@ var wet_boew_geomap = {
 				alt: "json",
 				q: "alluvial"
 			},
-			visible: false,
+			visible: true,
 			root: "products",
 			popups: true,
 			tab: true,
@@ -141,7 +141,7 @@ var wet_boew_geomap = {
 					type: "text"
 				}
 			],
-			datatable: true,
+			datatable: false,
 			tab: true,
 			
 			// default style			

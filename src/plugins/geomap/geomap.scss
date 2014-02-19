@@ -22,7 +22,7 @@
 		left: 0;
 		top: 0;
 		height: 25px;
-		width: 25px; 
+		width: 25px;
 		float: left;
 		margin: 0;
 	}
@@ -54,7 +54,7 @@
 }
 
 div {
-	&.olMap {	
+	&.olMap {
 		z-index: 0;
 		cursor: default;
 	}
@@ -221,7 +221,8 @@ div {
 .olControlDragFeatureActive {
 	&.olControlDragFeatureOver {
 		&.olDragDown {
-			cursor: -moz-grabbing;
+			// cursor: -moz-grabbing;
+			cursor: grabbing;
 		}
 	}
 }
@@ -243,12 +244,12 @@ div {
     display: block;
   }
 }
-  
+
 /**
  * GeoMap
  */
 .wb-geomap-map {
-	width: 100%;
+	/*width: 100%;*/
 	position: relative;
 	outline: 1px solid #CCC;
 	&.active {
@@ -262,12 +263,12 @@ div {
 }
 
 .geomap-legend-chk {
-	float: left;
+	// float: left;
 }
 
 .geomap-legend-item {
-	float: left;
-	padding-left: 10px;
+	// float: left;
+	// padding-left: 10px;
 }
 
 .geomap-legend-detail {
