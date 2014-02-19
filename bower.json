@@ -25,7 +25,7 @@
 	],
 	"dependencies": {
 		"jquery.validation": "1.11.1",
-		"bootstrap": "3.1.0",
+		"bootstrap": "3.0.3",
 		"flot": "0.8.1",
 		"DataTables": "1.9.4",
 		"magnific-popup": "0.9.8",
