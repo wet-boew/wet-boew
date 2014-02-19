@@ -92,6 +92,9 @@
 			<h1 id="wb-cont" property="name">{{title}}</h1>
 			{{>contentbuttons}}
 			{{>body}}
+{{#if page.dateModified}}
+			{{>datemodified}}
+{{/if}}
 		</main>
 {{#is secondarymenu "true"}}
 				<nav role="navigation" id="wb-sec" typeof="SiteNavigationElement" class="col-md-3 col-md-pull-9 visible-md visible-lg">
