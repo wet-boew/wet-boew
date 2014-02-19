@@ -33,9 +33,33 @@
 			li[role="presentation"] {
 				@extend %tabs-smallview-display-none;
 			}
+			li.prv, li.nxt {
+				a {
+					.glyphicon {
+						bottom: -2em;
+						top: auto;
+					}
+				}
+			}
+			li.nxt {
+				a {
+					.glyphicon {
+						right: auto;
+						left: 0;
+					}
+				}
+			}
+			li.plypause {
+				right: auto;
+				text-align: center;
+				width: 100%;
+				font-size: 1.5em;
+				margin-top: 0.3em;
+			}
 		}
 		figcaption {
-			margin: 1em 3.5em;
+			position: relative;
+			margin: auto;
 		}
 	}
 	&.tabs-acc {
