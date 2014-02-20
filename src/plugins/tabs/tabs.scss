@@ -132,7 +132,8 @@ $medGray: #ccc;
 	 */
 	&.carousel-s2 {
 		$thumbHeight: 50px;
-		margin-bottom: $thumbHeight + 10px;
+		// 44px = 2 x 10px for anchor padding + 2 x 4px for list item padding + 16px for carousel bottom margin
+		margin-bottom: $thumbHeight + 44px;
 		[role="tablist"] {
 			@extend %carouselTabs;
 			width: 100%;
