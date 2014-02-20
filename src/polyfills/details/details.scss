@@ -26,7 +26,7 @@ details {
 		> {
 			summary {
 				&:before { /* Add the opened pointer */
-					content: "\25BC\a0";
+					content: "\25BC\a0" !important;
 				}
 			}
 		}
