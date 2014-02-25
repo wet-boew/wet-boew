@@ -376,3 +376,12 @@
 .brdr-rds-0 {
 	border-radius: 0;
 }
+
+.tbl-gridify {
+	thead, tfoot {
+		display: none;
+	}
+	tbody, td, td {
+		display: block;
+	}
+}
