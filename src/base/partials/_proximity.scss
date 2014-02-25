@@ -7,7 +7,6 @@
 
 @mixin pstn {
 	position: absolute;
-	margin: 0;
 }
 
 @mixin pstn-lft {
@@ -165,46 +164,54 @@
 .pstn-bttm-sm,
 .pstn-bttm-md,
 .pstn-bttm-lg {
-	@include pstn;
+	margin: 0;
 }
 
 .pstn-lft-xs {
+	@include pstn;
 	@include pstn-lft;
 	@include pstn-rght-rst;
 }
 
 .pstn-rght-xs {
+	@include pstn;
 	@include pstn-rght;
 	@include pstn-lft-rst;
 }
 
 .pstn-tp-xs {
+	@include pstn;
 	@include pstn-tp;
 	@include pstn-bttm-rst;
 }
 
 .pstn-bttm-xs {
+	@include pstn;
 	@include pstn-bttm;
 	@include pstn-tp-rst;
 }
 
 @media screen and (min-width: $smallViewMin) {
 	.pstn-lft-sm {
+		@include pstn;
 		@include pstn-lft;
 		@include pstn-rght-rst;
 	}
 
 	.pstn-rght-sm {
+		@include pstn;
 		@include pstn-rght;
 		@include pstn-lft-rst;
 	}
 
 	.pstn-tp-sm {
+		@include pstn;
 		@include pstn-tp;
 		@include pstn-bttm-rst;
 	}
 
 	.pstn-bttm-sm {
+		@include pstn;
 		@include pstn-bttm;
 		@include pstn-tp-rst;
 	}
@@ -212,21 +219,25 @@
 
 @media screen and (min-width: $mediumViewMin) {
 	.pstn-lft-md {
+		@include pstn;
 		@include pstn-lft;
 		@include pstn-rght-rst;
 	}
 
 	.pstn-rght-md {
+		@include pstn;
 		@include pstn-rght;
 		@include pstn-lft-rst;
 	}
 
 	.pstn-tp-md {
+		@include pstn;
 		@include pstn-tp;
 		@include pstn-bttm-rst;
 	}
 
 	.pstn-bttm-md {
+		@include pstn;
 		@include pstn-bttm;
 		@include pstn-tp-rst;
 	}
@@ -234,21 +245,25 @@
 
 @media screen and (min-width: $largeViewMin) {
 	.pstn-lft-lg {
+		@include pstn;
 		@include pstn-lft;
 		@include pstn-rght-rst;
 	}
 
 	.pstn-rght-lg {
+		@include pstn;
 		@include pstn-rght;
 		@include pstn-lft-rst;
 	}
 
 	.pstn-tp-lg {
+		@include pstn;
 		@include pstn-tp;
 		@include pstn-bttm-rst;
 	}
 
 	.pstn-bttm-lg {
+		@include pstn;
 		@include pstn-bttm;
 		@include pstn-tp-rst;
 	}
