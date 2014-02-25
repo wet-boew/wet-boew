@@ -106,6 +106,67 @@
 </section>
 
 <section>
+	<h2>Preset configuration options</h2>
+	<p>The following is the build in preset available configuration options is specific to wet-charts plugins.</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Preset</th>
+				<th>Inherit</th>
+				<th>What it does</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>defaults</td>
+				<td></td>
+				<td>Sets minimal defaults options for the charts. It contains the instruction to activate the Flot Canvas plugin, the defaults colors array for charting, the defaults function to parse the data content of a table cells.</td>
+			</tr>
+			<tr>
+				<td>wb-charts-line</td>
+				<td></td>
+				<td>Do nothing, here for conviniance and to add more clarity on the charts generated from the data table.</td>
+			</tr>
+			<tr>
+				<td>wb-charts-area</td>
+				<td></td>
+				<td>Customization of a Flot line charts. It's fill the area under the line.</td>
+			</tr>
+			<tr>
+				<td>wb-charts-bar</td>
+				<td></td>
+				<td>Configuration defaults options to create a bars charts. This preset, when detected, will activate the orderbar Flot plugin and set the associated configuration requirement.</td>
+			</tr>
+			<tr>
+				<td>wb-charts-pie</td>
+				<td></td>
+				<td>Default options and activation of the Flot pie chart plugin. It set a default label formater function for the pie chart labels.</td>
+			</tr>
+			<tr>
+				<td>wb-charts-donut</td>
+				<td>wb-charts-pie</td>
+				<td>Build on pie charts preset. It set default options that will transform the pie chart into a donut charts. Also set the pie label formater to use only one decimal precision</td>
+			</tr>
+			<tr>
+				<td>wb-charts-stacked</td>
+				<td>wb-charts-bar</td>
+				<td>Only for series. Avoid to be cought and have no impact on how the orderbar plugin will be configured.</td>
+			</tr>
+			<tr>
+				<td>wb-charts-thousandcomma</td>
+				<td></td>
+				<td>Replace the function to parse the data content of a table cells in order to support thousand comma separator numbers</td>
+			</tr>
+			<tr>
+				<td>wb-charts-thousanddot</td>
+				<td></td>
+				<td>Replace the function to parse the data content of a table cells in order to support thousand dot separator numbers</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
 	<h2>Configuration options</h2>
 	<p>For any configuration options related to Flot, please look at the <a href="https://github.com/flot/flot/blob/master/API.md">Flot Reference</a> documentation or/and the <a href="http://www.flotcharts.org/flot/examples/series-pie/index.html">pie charts options</a>.</p>
 	<p>The following configuration options is specific to wet-charts plugins.</p>
