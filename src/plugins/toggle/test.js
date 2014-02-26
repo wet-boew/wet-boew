@@ -23,10 +23,6 @@ describe( "Toggle test suite", function() {
 	before(function() {
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
 		spy = sandbox.spy( $.prototype, "trigger" );
-
-		$( ".wb-toggle" )
-			.removeClass( "wb-toggle-inited" )
-			.trigger( "wb-init.wb-toggle" );
 	});
 
 	/*
@@ -38,87 +34,93 @@ describe( "Toggle test suite", function() {
 	});
 
 	/*
-	 * Test the initialization events of the plugin
+	 * Test initialization of the plugin
 	 */
-	describe( "init events", function() {
+	describe( "initialization", function() {
+		var $test, $toggleSelf, $toggleOthers, $accordion, $toggleTabs;
 
-		it( "should have been triggered on a .wb-toggle element", function() {
-			var call, elm, i, j, lenCalls, lenElms,
-				isSelector = false;
+		before(function() {
+			// Create test element
+			$test = $( "<div class='test'>" )
+				.appendTo( wb.doc.find( "body" ) );
 
-			// Loop over calls made on the trigger() spy
-			for ( i = 0, lenCalls = spy.callCount; !isSelector && i < lenCalls; i++ ) {
-				call = spy.getCall( i );
-				// There may be multiple `this` objects for each call
-				for ( j = 0, lenElms = call.thisValue.length; !isSelector && j < lenElms; j++ ) {
-					elm = call.thisValue[ j ];
-					isSelector = elm.className && elm.className.indexOf( "wb-toggle" ) > -1;
-				}
-			}
-			expect( isSelector ).to.equal( true );
+			// Create toggle elements and trigger plugin init
+			$toggleSelf = $( "<div class='wb-toggle'>" )
+				.appendTo( wb.doc.find( "body" ) )
+				.trigger( "wb-init.wb-toggle" );
+
+			$toggleOthers = $( "<div class='wb-toggle' data-toggle='{\"selector\": \".test\"}'>" )
+				.appendTo( wb.doc.find( "body" ) )
+				.trigger( "wb-init.wb-toggle" );
+
+			$accordion = $( "<div class='test-accordion'>" +
+					"<details class='test-acc'>" +
+						"<summary class='wb-toggle tgl-tab' data-toggle='{\"parent\": \".test-accordion\", \"group\": \".test-acc\"}'></summary>" +
+						"<div class='tgl-panel'></div>" +
+					"</details>" +
+					"<details class='test-acc'>" +
+						"<summary class='wb-toggle tgl-tab' data-toggle='{\"parent\": \".test-accordion\", \"group\": \".test-acc\"}'></summary>" +
+						"<div class='tgl-panel'></div>" +
+					"</details>" +
+				"</div>")
+				.appendTo( wb.doc.find( "body" ) );
+			$toggleTabs = $accordion.find( ".wb-toggle" )
+				.trigger( "wb-init.wb-toggle" );
 		});
-	});
 
-	/*
-	 * Test default initialization of the plugin
-	 */
-	describe( "init elements", function() {
+		after(function() {
+			$test.remove();
+			$toggleSelf.remove();
+			$toggleOthers.remove();
+			$accordion.remove();
+		});
 
-		it( "should have merged default settings with .wb-toggle element's data", function() {
-			var data;
-			$( ".wb-toggle" ).each( function() {
-				data = $( this ).data( "toggle" );
-				expect( data.stateOn ).to.equal( "on" );
-				expect( data.stateOff ).to.equal( "off" );
+		it( "should have been marked toggle elements as initialized", function() {
+			expect( $toggleSelf.hasClass( "wb-toggle-inited" ) ).to.equal( true );
+			expect( $toggleOthers.hasClass( "wb-toggle-inited" ) ).to.equal( true );
+			$toggleTabs.each( function() {
+				expect( $( this ).hasClass( "wb-toggle-inited" ) ).to.equal( true );
 			});
 		});
 
-		it( "should have aria-controls attribute set if not a tablist", function() {
-			var $elm, $elms, ariaControls, data, isTablist, selector, parent;
-			$( ".wb-toggle" ).each( function() {
-				$elm = $( this );
-				data = $elm.data( "toggle" );
-				isTablist = data.group && data.parent;
+		it( "should have merged default settings with toggle element's data", function() {
+			var data = $toggleSelf.data( "toggle" );
+			expect( data.stateOn ).to.equal( "on" );
+			expect( data.stateOff ).to.equal( "off" );
+		});
 
-				if ( !isTablist ) {
-					selector = data.selector;
-					parent = data.parent;
-					if ( selector ) {
-						ariaControls = "";
-						$elms = parent ? $( parent ).find( selector ) : $( selector );
-						$elms.each( function() {
-							ariaControls += this.id + " ";
-						});
-						expect( $elm.attr( "aria-controls" ) ).to.equal( $.trim( ariaControls ) );
-					} else {
-						expect( $elm.attr( "aria-controls" ) ).to.equal( $elm.attr( "id" ) );
-					}
-				}
-			});
+		it( "$toggleSelf should have aria-controls attribute set to own ID", function() {
+			expect( $toggleSelf.attr( "aria-controls" ) ).to.equal( $toggleSelf.attr( "id" ) );
+		});
+
+		it( "$toggleOthers should have aria-controls attribute set to controlled elements", function() {
+			var ariaControls = "",
+				selector = $toggleOthers.data( "toggle" ).selector;
+
+				$( selector ).each( function() {
+					ariaControls += this.id + " ";
+				});
+				expect( $toggleOthers.attr( "aria-controls" ) ).to.equal( $.trim( ariaControls ) );
 		});
 
 		it( "should have aria tablist attributes if a tablist", function() {
-			var $elm, $panel, $parent, data, isTablist;
-			$( ".wb-toggle" ).each( function() {
-				$elm = $( this );
-				data = $elm.data( "toggle" );
-				isTablist = data.group && data.parent;
+			var data, $panel, $parent;
 
-				if ( isTablist ) {
-					$parent = $( data.parent );
-					expect( $parent.attr( "role" ) ).to.equal( "tablist" );
+			$toggleTabs.each( function() {
+				data = $( this ).data( "toggle" );
+				$parent = $( data.parent );
+				expect( $parent.attr( "role" ) ).to.equal( "tablist" );
 
-					$parent.find( ".tgl-tab" ).each( function() {
-						expect( this.getAttribute( "role" ) ).to.equal( "tab" );
-					});
-					$parent.find( ".tgl-panel" ).each( function() {
-						expect( this.getAttribute( "role" ) ).to.equal( "tabpanel" );
-					});
-					$parent.find( data.group ).each( function() {
-						$panel = $( this );
-						expect( $panel.find( ".tgl-panel" ).attr( "aria-labelledby" )  ).to.equal( $panel.find( ".tgl-tab" ).attr( "id" ) );
-					});
-				}
+				$parent.find( ".tgl-tab" ).each( function() {
+					expect( this.getAttribute( "role" ) ).to.equal( "tab" );
+				});
+				$parent.find( ".tgl-panel" ).each( function() {
+					expect( this.getAttribute( "role" ) ).to.equal( "tabpanel" );
+				});
+				$parent.find( data.group ).each( function() {
+					$panel = $( this );
+					expect( $panel.find( ".tgl-panel" ).attr( "aria-labelledby" )  ).to.equal( $panel.find( ".tgl-tab" ).attr( "id" ) );
+				});
 			});
 		});
 	});
@@ -127,10 +129,20 @@ describe( "Toggle test suite", function() {
 	 * Test plugin click event
 	 */
 	describe( "click event", function() {
+		var $toggle;
 
 		before(function() {
 			spy.reset();
-			$( ".wb-toggle" ).trigger( "click" );
+
+			// Create toggle element and trigger plugin init
+			$toggle = $( "<div class='wb-toggle'>" )
+				.appendTo( wb.doc.find( "body" ) )
+				.trigger( "wb-init.wb-toggle" )
+				.trigger( "click" );
+		});
+
+		after(function() {
+			$toggle.remove();
 		});
 
 		it( "should trigger toggle.wb-toggle", function() {
@@ -144,7 +156,6 @@ describe( "Toggle test suite", function() {
 		it( "should trigger focus.wb", function() {
 			expect( spy.calledWith( "setfocus.wb" ) ).to.equal( true );
 		});
-
 	});
 
 	/*
@@ -258,13 +269,13 @@ describe( "Toggle test suite", function() {
 
 		before(function() {
 			// Create the toggle elements and start testing once it has been initialized
-			$toggler1 = $( "<button type='button' class='wb-toggle test' data-toggle='{\"selector\": \"#toggle1\", \"group\": \".grouped\", \"type\": \"on\"}'/>" ).appendTo( wb.doc.find( "body" ) );
-			$toggler2 = $( "<button type='button' class='wb-toggle test' data-toggle='{\"selector\": \"#toggle2\", \"group\": \".grouped\", \"type\": \"on\"}'/>" ).appendTo( wb.doc.find( "body" ) );
-			$toggler3 = $( "<button type='button' class='wb-toggle test' data-toggle='{\"selector\": \"#toggle3\", \"group\": \".grouped\", \"type\": \"on\"}'/>" ).appendTo( wb.doc.find( "body" ) );
+			$toggler1 = $( "<button type='button' class='wb-toggle' data-toggle='{\"selector\": \"#test-toggle1\", \"group\": \".grouped\", \"type\": \"on\"}'/>" ).appendTo( wb.doc.find( "body" ) );
+			$toggler2 = $( "<button type='button' class='wb-toggle' data-toggle='{\"selector\": \"#test-toggle2\", \"group\": \".grouped\", \"type\": \"on\"}'/>" ).appendTo( wb.doc.find( "body" ) );
+			$toggler3 = $( "<button type='button' class='wb-toggle' data-toggle='{\"selector\": \"#test-toggle3\", \"group\": \".grouped\", \"type\": \"on\"}'/>" ).appendTo( wb.doc.find( "body" ) );
 
-			$toggle1 = $( "#toggle1" );
-			$toggle2 = $( "#toggle2" );
-			$toggle3 = $( "#toggle3" );
+			$toggle1 = $( "<div id='test-toggle1' class='grouped'>" ).appendTo( wb.doc.find( "body" ) );
+			$toggle2 = $( "<div id='test-toggle2' class='grouped'>" ).appendTo( wb.doc.find( "body" ) );
+			$toggle3 = $( "<div id='test-toggle3' class='grouped'>" ).appendTo( wb.doc.find( "body" ) );
 
 			$toggler1.trigger( "wb-init.wb-toggle" );
 			$toggler2.trigger( "wb-init.wb-toggle" );
@@ -272,27 +283,33 @@ describe( "Toggle test suite", function() {
 		});
 
 		after(function() {
-			$( ".wb-toggle.test" ).remove();
+			$toggler1.remove();
+			$toggler2.remove();
+			$toggler3.remove();
+
+			$toggle1.remove();
+			$toggle2.remove();
+			$toggle3.remove();
 		});
 
 		it( "should open the first example only", function() {
 			$toggler1.trigger( "click" );
 			expect( $toggle1.hasClass( "on" ) ).to.equal( true );
-			expect( $toggle2.hasClass( "off" ) ).to.equal( true );
-			expect( $toggle3.hasClass( "off" ) ).to.equal( true );
+			expect( $toggle2.hasClass( "on" ) ).to.equal( false );
+			expect( $toggle3.hasClass( "on" ) ).to.equal( false );
 		});
 
 		it( "should open the second example only", function() {
 			$toggler2.trigger( "click" );
-			expect( $toggle1.hasClass( "off" ) ).to.equal( true );
+			expect( $toggle1.hasClass( "on" ) ).to.equal( false );
 			expect( $toggle2.hasClass( "on" ) ).to.equal( true );
-			expect( $toggle3.hasClass( "off" ) ).to.equal( true );
+			expect( $toggle3.hasClass( "on" ) ).to.equal( false );
 		});
 
 		it( "should open the third example only", function() {
 			$toggler3.trigger( "click" );
-			expect( $toggle1.hasClass( "off" ) ).to.equal( true );
-			expect( $toggle2.hasClass( "off" ) ).to.equal( true );
+			expect( $toggle1.hasClass( "on" ) ).to.equal( false );
+			expect( $toggle2.hasClass( "on" ) ).to.equal( false );
 			expect( $toggle3.hasClass( "on" ) ).to.equal( true );
 		});
 	});
@@ -350,7 +367,7 @@ describe( "Toggle test suite", function() {
 	describe( "Accordion", function() {
 		var $accordion, $details, $panels, $tabs,
 			testAccordionClosed = function( idx ) {
-				expect( $details.eq( idx ).hasClass( "off" ) ).to.equal( true );
+				expect( $details.eq( idx ).hasClass( "on" ) ).to.equal( false );
 				expect( $tabs.eq( idx ).attr( "aria-selected" ) ).to.equal( "false" );
 				expect( $panels.eq( idx ).attr( "aria-expanded" ) ).to.equal( "false" );
 				expect( $panels.eq( idx ).attr( "aria-hidden" ) ).to.equal( "true" );
@@ -363,31 +380,44 @@ describe( "Toggle test suite", function() {
 			};
 
 		before(function() {
-			$accordion = $( ".accordion" );
+			$accordion = $( "<div class='test-accordion'>" +
+					"<details class='test-acc'>" +
+						"<summary class='wb-toggle tgl-tab' data-toggle='{\"parent\": \".test-accordion\", \"group\": \".test-acc\"}'></summary>" +
+						"<div class='tgl-panel'></div>" +
+					"</details>" +
+					"<details class='test-acc'>" +
+						"<summary class='wb-toggle tgl-tab' data-toggle='{\"parent\": \".test-accordion\", \"group\": \".test-acc\"}'></summary>" +
+						"<div class='tgl-panel'></div>" +
+					"</details>" +
+				"</div>")
+				.appendTo( wb.doc.find( "body" ) );
+
 			$details = $accordion.find( "details" );
 			$panels = $accordion.find( ".tgl-panel" );
-			$tabs = $accordion.find( ".tgl-tab" );
+			$tabs = $accordion.find( ".tgl-tab" )
+				.trigger( "wb-init.wb-toggle" );
+		});
+
+		after(function() {
+			$accordion.remove();
 		});
 
 		it( "should open the first accordion panel", function() {
 			$tabs.eq( 0 ).trigger( "click" );
 			testAccordionOpen( 0 );
 			testAccordionClosed( 1 );
-			testAccordionClosed( 2 );
 		});
 
 		it( "should open the second accordion panel", function() {
 			$tabs.eq( 1 ).trigger( "click" );
 			testAccordionOpen( 1 );
 			testAccordionClosed( 0 );
-			testAccordionClosed( 2 );
 		});
 
 		it( "should close the second accordion panel", function() {
 			$tabs.eq( 1 ).trigger( "click" );
 			testAccordionClosed( 0 );
 			testAccordionClosed( 1 );
-			testAccordionClosed( 2 );
 		});
 	});
 
