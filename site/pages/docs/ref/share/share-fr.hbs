@@ -4,7 +4,7 @@
 	"language": "fr",
 	"description": "Permet à l'utilisateur de partager un contenu Web sur les plateformes de médias sociaux.",
 	"altLangPrefix": "share",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-02-26"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -13,50 +13,48 @@
 <p><strong>Needs translation</strong></p>
 <section>
 	<h2>Purpose</h2>
-	<p>A brief description of the component.</p>
+	<p>Having a share widget on your site enables users to quickly share content with their networks, hence increasing the reach of your website. This increase in reach comes at very minimal cost as all it requires is the inclusion of a share widget somewhere on your page.</p>	
 </section>
 
 <section>
 	<h2>Use when</h2>
-	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
-	</ul>
+	<p>Use on specific content that you want users to share or that users would find useful to share with others via their social media outlets. Use the filtered version if you want to target certain platforms, for example, if your research indicates that your target audience tends to use one or a few platforms over others.</p>
+	<p>Rather than automatically including the share button on every page of your site, think about users and when and where they may want to take a call to action to digg, share, tweet or follow. A well designed site will facilitate a 'frictionless' experience for the user where they would otherwise have to copy and paste.</p>
 </section>
 
 <section>
 	<h2>Do not use when</h2>
 	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
+		<li>The page does not contain useful content (e.g., splash pages)</li>
+		<li>The page does not have a unique URL. Sharing the page would send people to a different page if users clicked on the shared link.</li>
+		<li>Automatically on every page.</li>
 	</ul>
 </section>
 
 <section>
 	<h2>Working example</h2>
-	<p><a href="#">Link to a working example</a></p>
+	<ul>
+		<li><a href="../../../demos/share/share-en.html">English working examples</a></li>
+		<li><a href="../../../demos/share/share-fr.html">French working examples</a></li>
+	</ul>
 </section>
 
 <section>
 	<h2>How to implement</h2>
 	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
+		<li>Add <code>&lt;div class="wb-share"&gt;&lt;/div&gt;</code> to the Web page.</li>
+		<li>Add a unique id for the share panel.
+			<pre><code>&lt;div class="wb-share" data-wet-boew='{"pnlId": "pnl1"}'&gt;&lt;/div&gt;</code></pre>
 		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
+		<li><strong>Optional:</strong> Override the default settings using the <a href="#config">configuration options</a>.</li></li>
+		<li><strong>Optional:</strong> Add additional links using the <code>link-only</code> class.
+			<pre><code>&lt;div class="wb-share link-only" data-wet-boew='{"pnlId": "pnl1"}'&gt;&lt;/div&gt;</code></pre>
 		</li>
-		<li>Step 4</li>
 	</ol>
 </section>
 
 <section>
-	<h2>Configuration options</h2>
+	<h2 id="config">Configuration options</h2>
 	<p>Document the public configuration options that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
@@ -69,32 +67,81 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
+				<td><code>pnlId</code></td>
+				<td>Unique identifier for the panel. Only required if providing a second link for the same panel (needs to be specified on all <code>wb-share</code> calls for that panel).</td>
+				<td>Add <code>"pnlId": "uniqueId"</code> to the <code>data-wet-boew</code> attribute where <code>uniqueId</code> is a valid unique id.</td>
 				<td>
 					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
+						<dt><code>uniqueId</code>:</dt>
+						<dd>Valid unique id (e.g., <code>pnl1</code>)</dd>
 					</dl>
 				</td>
 			</tr>
 			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
+				<td><code>type</code></td>
+				<td>Type of content to share.</td>
+				<td>Add <code>"type": "value"</code> to the <code>data-wet-boew</code> attribute.</td>
 				<td>
 					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
+						<dt><code>page</code> (default):</dt>
+						<dd>Shares the current page</dd>
+						<dt><code>video</code>:</dt>
+						<dd>Shares the specified video</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>custType</code></td>
+				<td>Text to use after "Share" on the share button and the panel header (overrides the text associated to the type option).</td>
+				<td>Add <code>"custType": "string"</code> to the <code>data-wet-boew</code> attribute.</td>
+				<td>
+					<dl>
+						<dt><code> this page</code> or <code> this video</code> (default):</dt>
+						<dd>Default text used for the page and video share types.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>title</code></td>
+				<td>Text to use instead of the page title or the main h1 text. Recommended for the video type if the page title is not the title of the video.</td>
+				<td>Add <code>"title": "Page title"</code> to the <code>data-wet-boew</code> attribute.</td>
+				<td>
+					<dl>
+						<dt>Page title or the main h1 text (default):</dt>
+						<dd>The title of the current page is shared by default.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>url</code></td>
+				<td>URL to use instead of the URL of the current page.</td>
+				<td>Add <code>"url": "newURL"</code> to the <code>data-wet-boew</code> attribute.</td>
+				<td>
+					<dl>
+						<dt>Page URL (default):</dt>
+						<dd>The URL of the current page is shared by default.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>desc</code></td>
+				<td>Optional description of the item to share. <strong>Note:</strong> A separate description is not supported by all social media sites.</td>
+				<td>Add <code>"desc": "description"</code> to the <code>data-wet-boew</code> attribute.</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>A separate description is not shared by default.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>img</code></td>
+				<td>Optional image for the item to share (mainly for Pinterest). <strong>Note:</strong> Very few social media sites support specifying a separate image through a URL request.</td>
+				<td>Add <code>"img": "imageURL"</code> to the <code>data-wet-boew</code> attribute.</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>A separate image is not shared by default.</dd>
 					</dl>
 				</td>
 			</tr>
@@ -104,7 +151,6 @@ Example of multi-line code</code></pre>
 
 <section>
 	<h2>Events</h2>
-	<p>Document the public events that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -115,14 +161,9 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Event 1</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
-			</tr>
-			<tr>
-				<td>Event 2</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td>wb-init.wb-share</td>
+				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-share" );</code>).</td>
+				<td>Used to manually initialize the share widget. <strong>Note:</strong> The share widget will be initialized automatically unless it is added after the page has already loaded.</td>
 			</tr>
 		</tbody>
 	</table>
@@ -130,6 +171,6 @@ Example of multi-line code</code></pre>
 
 <section>
 	<h2>Source code</h2>
-	<p><a href="#">Link to the folder on GitHub containing the files for the component</a></p>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/v4.0/src/plugins/share">Share widget source code on GitHub</a></p>
 </section>
 </div>
