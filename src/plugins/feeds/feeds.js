@@ -75,7 +75,7 @@ var pluginName = "wb-feeds",
 	/**
 	 * Returns a class-based set limit on plugin instances
 	 * @method getLimit
-	 * @param {DOM object} elm The element to search for a class of the form blimit-5
+	 * @param {DOM object} elm The element to search for a class of the form limit-5
 	 * @return {number} 0 if none found, which means the plugin default
 	 */
 	getLimit = function( elm ) {
