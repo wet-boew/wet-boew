@@ -35,7 +35,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_REPO_SLUG" == "wet-boew/w
 	fi
 
 	echo -e "Updating submodule '$submodule_name'"
-	git submodule update --remote --init > /dev/null 2>&1 || error_exit "Error updating submodules"
+	git submodule update --remote --init "$submodule_name" > /dev/null 2>&1 || error_exit "Error updating submodules"
 	git add .
 	git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER"
 	git push -fq origin master > /dev/null 2>&1 || error_exit "Error uploading the working examples"
