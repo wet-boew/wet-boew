@@ -35,13 +35,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_REPO_SLUG" == "wet-boew/w
 	fi
 
 	echo -e "Updating submodule '$submodule_name'"
-	#Use the existing local repo for initializing the submodule
-	git submodule update --reference ../wet-boew/wet-boew-dist --init "$submodule_name"
-
-	cd "$submodule_name"
-	#Checkout dist branch to move forward submodule HEAD pointer
-	git checkout $build_branch
-	cd ..
+	git submodule update --remote --init > /dev/null 2>&1 || error_exit "Error updating submodules"
 	git add .
 	git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER"
 	git push -fq origin master > /dev/null 2>&1 || error_exit "Error uploading the working examples"
