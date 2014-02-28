@@ -2,16 +2,17 @@
 {
 	"title": "Feedback form",
 	"language": "en",
-	"category": "Plugin",
+	"category": "Other",
 	"description": "Allows users to submit feedback for a specific Web page or Web site.",
 	"tag": "feedback",
 	"altLangPrefix": "feedback",
 	"css": "demo/feedback",
-	"dateModified": "2014-02-19"
+	"js": "demo/feedback",
+	"dateModified": "2014-02-28"
 }
 ---
-<div class="wb-formvalid wb-fdbck">
-	<p>If you have difficulty with the following form, you can use any of our <a href="#osc-avs">other service channels</a> to contact us. Please read the <a href="#pics-ecrp">Personal Information Collection Statement</a> before completing this form.</p>
+<div class="wb-formvalid wb-fdbck nojs-hide">
+	<p>If you have difficulty with the following form, you can use any of our <a href="#osc-avs">other service channels</a> to contact us.</p>
 	<form action="#" method="get" id="fdbck-frm">
 		<input type="hidden" name="language" value="en" />
 		<div id="type">
@@ -117,36 +118,23 @@
 	</form>
 
 	<section>
-		<h2 id="pics-ecrp">Personal Information Collection Statement</h2>
-		<p>All personal information created, held or collected by this department is protected under the <a href="http://laws-lois.justice.gc.ca/eng/acts/P-21/index.html" rel="external"><em>Privacy Act</em></a>. This means that you will be informed of the purpose for which it is being collected and how to exercise your right of access to that information. You will be asked for your consent where appropriate.</p>
-		<section>
-			<h3 id="pc-cp">Public Communications</h3>
-			<p>Provision of the information requested on this form is voluntary. The personal information you include in an inquiry may be used to prepare a reply. The personal information is collected pursuant to the <em class="highlight">[appropriate provision in department’s enabling statute]</em>. Such information may be used for statistical, evaluation and reporting purposes. The information is included in the personal information bank <em class="highlight">[<abbr title="personal information bank">PIB</abbr> Number - <abbr title="personal information bank">PIB</abbr> Title]</em>. The information may be shared with programs and activities of <em class="highlight">[Applied Title of the Department]</em> should your inquiry pertain to a specific program or activity of the department. In such cases, the information is included in the personal information bank of the program or activity.</p>
-			<p>The transmission of this information is not secure so sensitive personal information, such as your Social Insurance Number, should not be included in your message.</p>
-			<p>If after reading this statement, you prefer not to submit your inquiry via the Internet, you may use one of the following methods:</p>
-			<address>
-				<dl id="osc-avs">
-					<dt><strong>By Telephone:</strong></dt>
-					<dd><em>[telephone number]</em></dd>
-					<dt><strong>By Mail:</strong></dt>
-					<dd><em>[mailing address]</em></dd>
-					<dt><strong>In Person at:</strong></dt>
-					<dd><em>[building address]</em></dd>
-					<dt><strong>Teletypewriter:</strong></dt>
-					<dd><em>[teletypewriter number]</em></dd>
-				</dl>
-			</address>
-		</section>
-		<section>
-			<h3 id="pi-divp">Privacy inquiry</h3>
-			<p>Any questions, comments, concerns or complaints regarding the administration of the <em><a href="http://laws-lois.justice.gc.ca/eng/acts/P-21/index.html" rel="external">Privacy Act</a></em> and privacy policies may be directed to the departmental Privacy Coordinator by email to <em class="highlight">[Privacy Coordinator email]</em>, by calling <em class="highlight">[Privacy Coordinator phone number]</em> or writing to:</p>
-			<p><em class="highlight">[Privacy Coordinator mailing address]</em></p>
-			<p>If you are not satisfied with our response to your privacy concern, you may wish to contact the <a href="http://www.priv.gc.ca/index_e.cfm" rel="external">Office of the Privacy Commissioner</a> by e-mail at <a href="mailto:info@priv.gc.ca">info@priv.gc.ca</a> or by telephone at 1-800-282-1376.</p>
-		</section>
+		<h2 id="osc-avs">Other service channels</h2>
+		<address>
+			<dl id="osc-avs">
+				<dt><strong>By Telephone:</strong></dt>
+				<dd><em>[telephone number]</em></dd>
+				<dt><strong>By Mail:</strong></dt>
+				<dd><em>[mailing address]</em></dd>
+				<dt><strong>In Person at:</strong></dt>
+				<dd><em>[building address]</em></dd>
+				<dt><strong>Teletypewriter:</strong></dt>
+				<dd><em>[teletypewriter number]</em></dd>
+			</dl>
+		</address>
 	</section>
 </div>
 
-<div class="wb-fdbck-off">
+<div class="nojs-show">
 	<p>You may use one of the following methods to contact us:</p>
 	<address>
 		<dl>
