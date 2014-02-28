@@ -6,7 +6,8 @@
 	"description": "Plugiciel qui permet un lien à basculer des éléments entre les états activé et désactivé.",
 	"tag": "toggle",
 	"altLangPrefix": "toggle",
-	"css": "demo/toggle"
+	"css": "demo/toggle",
+	"dateModified": "2014-02-19"
 }
 ---
 
@@ -47,13 +48,13 @@
 
 		</section>
 
-		<section>
+		<section id="details-elements">
 			<h2 id="details">Details</h2>
 
 			<div class="btn-group">
-				<button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": "details", "print": "on"}'>Basculer</button>
-				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "type": "on"}'>Activer</button>
-				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "type": "off"}'>Désactiver</button>
+				<button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": "details", "parent": "#details-elements", "print": "on"}'>Basculer</button>
+				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "parent": "#details-elements", "type": "on"}'>Activer</button>
+				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "parent": "#details-elements", "type": "off"}'>Désactiver</button>
 			</div>
 
 			<div class="row">

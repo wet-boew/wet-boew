@@ -3,53 +3,64 @@
 	"title": "Feeds",
 	"language": "en",
 	"description": "Aggregates and displays entries from one or more Web feeds.",
-	"altLangPrefix": "feeds"
+	"altLangPrefix": "feeds",
+	"dateModified": "2014-02-19"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
 
 <section>
 	<h2>Purpose</h2>
-	<p>A brief description of the component.</p>
+	<p>The purpose of this feature is to provides a widget for aggregating and displaying the entries from one or more Web feeds on a Web page. Supported Web feed formats are Atom, RSS, and Media RSS.</p>
 </section>
 
 <section>
 	<h2>Use when</h2>
 	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
-	</ul>
-</section>
-
-<section>
-	<h2>Do not use when</h2>
-	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
+		<li>Promoting and sharing information from Web feeds on a Web page </li>
 	</ul>
 </section>
 
 <section>
 	<h2>Working example</h2>
-	<p><a href="#">Link to a working example</a></p>
+	<ul>
+		<li><a href="../../../demos/feeds/feeds-en.html">English working examples</a></li>
+		<li><a href="../../../demos/feeds/feeds-fr.html">French working examples</a></li>
+	</ul>
 </section>
 
 <section>
 	<h2>How to implement</h2>
 	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
+		<li>For each Web feed, create a <code>div</code> element with <code>class="wb-feeds"</code>.
+			<pre><code>&lt;div class="wb-feeds"&gt;&lt;/div&gt;</code></pre>
 		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
+		<li>Inside the <code>div</code> element created in the previous step add a <code>section</code> element.</li>
+		<li>Inside the <code>section</code> element add a heading (<code>h1</code> - <code>h6</code>).</li>
+		<li>Add an unordered list (<code>ul</code>) after the heading with the <code>feeds-cont</code> class.</li>
+		<li>For every Web feed source to display, add a list element containing a link to the feed:
+			<pre><code>&lt;li&gt;
+	&lt;a href="http://canada.ca/sample.atom"&gt;Sample Atom Feed&lt;/a&gt;
+&lt;/li&gt;</code></pre>
 		</li>
-		<li>Step 4</li>
 	</ol>
+
+	<section>
+		<h3>Example code</h3>
+		<pre><code>&lt;div class="wb-feeds limit-5"&gt;
+	&lt;section&gt;
+		&lt;h3&gt;Road News Releases and Safety Recalls&lt;/h3&gt;
+		&lt;ul class="feeds-cont"&gt;
+			&lt;li&gt;
+				&lt;a href="http://www.tc.gc.ca/mediaroom/rss/road.xml" rel="external"&gt;Road News Releases (All)&lt;/a&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;a href="http://wwwapps.tc.gc.ca/Saf-Sec-Sur/7/VRDB-BDRV/Search/Rss-Search.aspx" rel="external"&gt;Road Safety Recalls&lt;/a&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
+	</section>
 </section>
 
 <section>
@@ -66,32 +77,13 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
+				<td><code>limit-x</code></td>
+				<td>Controls the amount of items the Web feeds widget will display.</td>
+				<td>Add the <code>limit-x</code> class after the <code>wb-feeds</code> class and replace <code>x</code> with an integer.</td>
 				<td>
 					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
-			</tr>
-			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
+						<dt><code>limit-4</code> (default):</dt>
+						<dd>Limits display to four items.</dd>
 					</dl>
 				</td>
 			</tr>
@@ -112,14 +104,9 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Event 1</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
-			</tr>
-			<tr>
-				<td>Event 2</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td>wb-init.wb-feeds</td>
+				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-feeds" );</code>).</td>
+				<td>Used to manually initialize the Feeds widget. <strong>Note:</strong> The Feeds widget will be initialized automatically unless it is added after the page has already loaded.</td>
 			</tr>
 		</tbody>
 	</table>
@@ -127,5 +114,5 @@ Example of multi-line code</code></pre>
 
 <section>
 	<h2>Source code</h2>
-	<p><a href="#">Link to the folder on GitHub containing the files for the component</a></p>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/v4.0/src/plugins/feeds">Feeds widget source code on GitHub</a></p>
 </section>

@@ -2,3 +2,15 @@
   WET-BOEW
   @title: All screen views
  */
+#wb-dtmd {
+	margin: 2em 0 0 0;
+	dt, dd {
+		display: inline;
+		font-weight: normal;
+		margin-right: 0;
+	}
+}
+
+.nowrap {
+	white-space: nowrap;
+}

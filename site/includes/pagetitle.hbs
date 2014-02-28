@@ -1,18 +1,13 @@
-{{title}}{{#isnt assets ".."}}
-	{{#contains page.src "src/"}}
-		{{#i18n "hyphen"}}{{/i18n}}{{#i18n "tmpl-work-examples"}}{{/i18n}}
-		{{#is breadcrumb3 "true"}}
-			{{#i18n "hyphen"}}{{/i18n}}{{breadcrumb3-title}}
-		{{/is}}
-	{{/contains}}
-	{{#contains page.src "/docs/versions/"}}
-		{{#contains page.src "/index"}}
+{{title}}
+{{#contains page.src "/demos/index"}}
+{{else}}
+	{{#contains page.src "/docs/"}}
+		{{#contains page.src "/versions/"}}
+			{{#contains page.src "/index"}}
+			{{else}}
+				{{#i18n "hyphen"}}{{/i18n}}{{#i18n "tmpl-version-history"}}{{/i18n}}
+			{{/contains}}
 		{{else}}
-			{{#i18n "hyphen"}}{{/i18n}}{{#i18n "tmpl-version-history"}}{{/i18n}}
-		{{/contains}}
-	{{else}}
-		{{#contains page.src "/docs/"}}
-			{{#i18n "hyphen"}}{{/i18n}}{{#i18n "tmpl-documentation"}}{{/i18n}}
 			{{#contains page.src "/gs-cd/"}}
 				{{#contains page.src "/index"}}
 				{{else}}
@@ -22,6 +17,13 @@
 			{{#if page.componentType}}
 				{{#i18n "hyphen"}}{{/i18n}}{{page.componentType}}
 			{{/if}}
+			{{#i18n "hyphen"}}{{/i18n}}{{#i18n "tmpl-documentation"}}{{/i18n}}
 		{{/contains}}
+	{{else}}
+		{{#is breadcrumb3 "true"}}
+			{{#i18n "hyphen"}}{{/i18n}}{{breadcrumb3-title}}
+		{{/is}}
+		{{#i18n "hyphen"}}{{/i18n}}{{#i18n "tmpl-work-examples"}}{{/i18n}}
 	{{/contains}}
-{{/isnt}}{{#i18n "hyphen"}}{{/i18n}}{{#i18n "site.title"}}{{/i18n}}
+{{/contains}}
+{{#i18n "hyphen"}}{{/i18n}}{{#i18n "site.title"}}{{/i18n}}

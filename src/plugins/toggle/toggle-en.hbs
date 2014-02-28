@@ -6,7 +6,8 @@
 	"description": "Allows a link to toggle elements between on and off states.",
 	"tag": "toggle",
 	"altLangPrefix": "toggle",
-	"css": "demo/toggle"
+	"css": "demo/toggle",
+	"dateModified": "2014-02-19"
 }
 ---
 
@@ -124,14 +125,15 @@
 
 		</section>
 
-		<section>
+		<section id="details-elements">
 			<h2 id="details">Details Elements</h2>
 			<p>The toggle plugin can be used to open/close multiple <code>&lt;details&gt;</code> elements.  By adding the <code>"print": "on"</code> setting to the first toggle element, the plugin will also open all details elements when the page is printed.</p>
-
+			<p><b>Note: </b> this example uses the <code>parent</code> configuration option to restrict the toggle of details elements to those that are contained in a specified parent element (<code>#details-element</code>).  By doing this, the grouped toggle and accordion examples below aren't affected by the toggle.</p>
+						
 			<div class="btn-group">
-				<button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": "details", "print": "on"}'>Toggle</button>
-				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "type": "on"}'>On</button>
-				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "type": "off"}'>Off</button>
+				<button type="button" class="btn btn-primary wb-toggle" data-toggle='{"selector": "details", "parent": "#details-elements", "print": "on"}'>Toggle</button>
+				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "parent": "#details-elements", "type": "on"}'>On</button>
+				<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "parent": "#details-elements", "type": "off"}'>Off</button>
 			</div>
 
 			<div class="row">

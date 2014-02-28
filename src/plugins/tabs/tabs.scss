@@ -39,7 +39,7 @@ $medGray: #ccc;
 %carouselFigureCaptions {
 	position: absolute;
 	color: #fff;
-	padding: 1em;
+	padding: 0.5em 1em;
 	z-index: 101;
 }
 
@@ -132,7 +132,8 @@ $medGray: #ccc;
 	 */
 	&.carousel-s2 {
 		$thumbHeight: 50px;
-		margin-bottom: $thumbHeight + 10px;
+		// 44px = 2 x 10px for anchor padding + 2 x 4px for list item padding + 16px for carousel bottom margin
+		margin-bottom: $thumbHeight + 44px;
 		[role="tablist"] {
 			@extend %carouselTabs;
 			width: 100%;
@@ -266,10 +267,14 @@ $medGray: #ccc;
 		}
 		figcaption {
 			@extend %carouselFigureCaptions;
-			bottom: 1em;
-			left: 3em;
+			bottom: 0;
+			left: 0;
+			right: 0;
 			a {
 				@extend %carouselFigureCaptionsLinks;
+			}
+			p {
+				margin-bottom: 0;
 			}
 		}
 	}

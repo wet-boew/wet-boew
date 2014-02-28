@@ -7,7 +7,6 @@
 
 @mixin pstn {
 	position: absolute;
-	margin: 0;
 }
 
 @mixin pstn-lft {
@@ -147,6 +146,25 @@
 			margin-left: 1.3em;
 		}
 	}
+}
+
+.pstn-lft-xs,
+.pstn-lft-sm,
+.pstn-lft-md,
+.pstn-lft-lg,
+.pstn-rght-xs,
+.pstn-rght-sm,
+.pstn-rght-md,
+.pstn-rght-lg,
+.pstn-tp-xs,
+.pstn-tp-sm,
+.pstn-tp-md,
+.pstn-tp-lg,
+.pstn-bttm-xs,
+.pstn-bttm-sm,
+.pstn-bttm-md,
+.pstn-bttm-lg {
+	margin: 0;
 }
 
 .pstn-lft-xs {
@@ -357,4 +375,13 @@
 
 .brdr-rds-0 {
 	border-radius: 0;
+}
+
+.tbl-gridify {
+	thead, tfoot {
+		display: none;
+	}
+	tbody, td, td {
+		display: block;
+	}
 }

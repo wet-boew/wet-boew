@@ -21,7 +21,7 @@
 		border-left: 1px solid #777;
 		list-style-type: none;
 		float: left;
-		padding: 6px 10px;
+		padding: 6px 15px;
 		&:first-child {
 			border-left: none;
 		}
@@ -79,6 +79,11 @@
 			ul {
 				float: left;
 			}
+		}
+	}
+	#wb-glb-mn {
+		.pnl-btn {
+			text-align: left;
 		}
 	}
 	#wb-sttl {

@@ -50,7 +50,6 @@ module.exports = (grunt) ->
 		"deploy"
 		"Build and deploy artifacts to wet-boew-dist"
 		[
-			"dist"
 			"copy:deploy"
 			"gh-pages:travis"
 		]
@@ -491,7 +490,7 @@ module.exports = (grunt) ->
 				# Can be turned off after https://github.com/dimsemenov/Magnific-Popup/pull/303 lands
 				"empty-rules": false
 				"fallback-colors": false
-				"floats": false
+				"float": false
 				"font-sizes": false
 				"gradients": false
 				"headings": false
