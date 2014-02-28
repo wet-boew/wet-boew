@@ -16,21 +16,15 @@
 		"layersFile": "demo/config-en{{environment.suffix}}.js",
 		"tables": [{
 			"id": "cities",
-			"zoom": [
-				true,
-				{
-					"type": "all"
-				}
-			],
+			"zoom": true,
 			"tab": false,
-			"datatable": true,
 			"popups": true,
 			"popupsInfo": {
 				"id": "citiesPopup",
 				"height": 200,
 				"width": 300,
 				"close": true,
-				"content": "<div style=\"white-space:nowrap;\"><p><strong>Census subdivision: </strong>_Census subdivision<div><a href=\"#\" class=\"button\" role=\"button\" title=\"Zoom to city\" aria-label=\"Zoom to city\" onclick=\"zoomFeature()\">Zoom to city</a></div></div>"
+				"content": "<div style=\"white-space:nowrap;\"><p><strong>Census subdivision: </strong>_Census subdivision<div><a href=\"#\" class=\"button\" role=\"button\" title=\"Zoom to city\" aria-label=\"Zoom to city\" onclick=\"wb.doc.zoomFeature()\">Zoom to city</a></div></div>"
  			},
 			"style": {
 				"type": "rule",
@@ -75,13 +69,8 @@
 		},
 		{
 			"id": "bbox",
-			"tab": false,
-			"zoom": [
-				true,
-				{
-					"type": "image"
-				}
-			],
+			"tab": true,
+			"zoom": true,
 			"popups": true
 		}]
 	}'>
@@ -101,15 +90,19 @@
     </div>
 
 	<!-- Insert Layer Data Start (mandatory) -->
+	<div class="col-md-12">
+		<h2>Example - Remote &amp; File-based Layer Data</h2>
+		<p>Layers are created from file-based formats, feeds, and web API's.</p>
+	</div>
 	<div class="wb-geomap-layers row">
         <div class="col-md-12">
 			<h2>Example - Inline Layer Data</h2>
 			<p>Layers are created from the following tables. An attribute <em>data-geometry</em> to hold the geometry and an attribute <em>data-type</em> to hold the geometry type (wkt or bbox) are required for each row.</p>
             <h3>Points</h3>
-            <table id="cities" aria-label="Points">
-                <caption>
-                    Table of point geometries.
-                </caption>
+            <caption>
+				Table of point geometries.
+            </caption>
+            <table id="cities" aria-label="Cities" class="table wb-tables">
                 <thead>
                     <tr>
                         <th>Rank</th>
@@ -180,7 +173,7 @@
         </div>
         <div class="col-md-12">
             <h3>Bounding Boxes</h3>
-            <table id="bbox" aria-label="Bounding Boxes">
+            <table id="bbox" aria-label="Search Results" class="table table-condensed">
                 <caption>
                     Table of bounding box geometries.
                 </caption>
@@ -201,10 +194,6 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-        <div class="col-md-12">
-            <h2>Example - Remote &amp; File-based Layer Data</h2>
-            <p>Layers are created from file-based formats, feeds, and web API's.</p>
         </div>
 	</div>
 	<!-- Insert Layer Data End -->
@@ -229,7 +218,7 @@
 
         	<!-- Insert Layer Data Start (mandatory) -->
         	<div class="wb-geomap-layers col-md-4">
-        		<table id="addNRCan" aria-label="NRCan Ottawa office adress">
+        		<table id="addNRCan" aria-label="NRCan Ottawa office adress" class="table">
         			<caption class="wb-inv">Natural Resources Canada Ottawa office adress</caption>
         			<thead>
         				<tr>

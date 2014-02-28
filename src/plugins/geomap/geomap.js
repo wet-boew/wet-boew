@@ -16,7 +16,7 @@ var selector = ".wb-geomap",
 	uniqueId = 0,
 	mapArray = [],
 	debug = false,
-	/*mapSample, */selectedFeature, geomap, i18n, i18nText,
+	selectedFeature, geomap, i18n, i18nText,
 
 	/*
 	 * Plugin users can override these defaults by setting attributes on the html elements that the
@@ -112,7 +112,7 @@ var selector = ".wb-geomap",
 				// For loading multiple dependencies
 				both: [
 					"site!deps/proj4" + modeJS,
-					"site!deps/openlayers" + modeJS
+					"site!deps/OpenLayers" + modeJS //TODO remettre OpenLayers.min
 				],
 				complete: function() {
 
@@ -414,23 +414,6 @@ var selector = ".wb-geomap",
 	},
 
 	/*
-	 * Get the OpenLayers map object
-	 */
-	getMap = function( id ) {
-		var map, mapArrayItem, i;
-
-		for ( i = mapArray.length - 1; i !== -1; i -= 1 ) {
-			mapArrayItem = mapArray[ i ];
-			if ( mapArrayItem.id === id ) {
-				map = mapArrayItem;
-				break;
-			}
-		}
-
-		return map;
-	},
-
-	/*
 	 *	Create legend
 	 */
 	createLegend = function() {
@@ -455,7 +438,7 @@ var selector = ".wb-geomap",
 
 				$tabs
 					.attr({
-						"class": "wb-tabbedinterface auto-height-none",
+						"class": "wb-tabs auto-height-none",
 						id: "geomap-tabs-" + uniqueId
 					});
 
@@ -463,8 +446,8 @@ var selector = ".wb-geomap",
 			} else {
 				geomap
 					.glayers
-						.attr( "id", "geomap-tabs-" + uniqueId )
-						.append( "<div class='clear'></div><div class='wb-geomap-tabs wb-tabs auto-height-none' style='width: " +
+						.prepend( "<div class='clear'></div><div id='geomap-tabs-" + uniqueId +
+							"' class='wb-geomap-tabs wb-tabs auto-height-none' style='width: " +
 							geomap.glayers.width() + "px;'>" );
 			}
 		}
@@ -475,7 +458,7 @@ var selector = ".wb-geomap",
 	 */
 	createTable = function( index, title, caption, datatable ) {
 
-		return $( "<table class='table" + ( datatable ? " wb-tables" : "" ) +
+		return $( "<table class='table " + ( datatable ? " wb-tables" : " table-condensed" ) +
 			"' aria-label='" + title + "' id='overlay_" + index + "'>" + "<caption>" +
 			caption + "</caption><thead></thead><tbody></tbody>" +
 			(datatable ? "<tfoot></tfoot></table><div class='clear'></div>" : "</table>" ));
@@ -935,10 +918,6 @@ var selector = ".wb-geomap",
 			};
 			$targetTableBody.append( createRow( geomap, context, zoom ) );
 		});
-
-		if ( datatable ) {
-			$targetTable.addClass( "createDatatable" );
-		}
 	},
 
 	/*
@@ -994,17 +973,11 @@ var selector = ".wb-geomap",
 	 *	Add the zoom to column
 	 *
 	 */
-	addZoomTo = function( geomap, row, feature, zoom ) {
-		var val = "<td><a href='javascript:;' class='button' title='" +  i18nText.zoomFeature + "'>",
-			$ref;
+	addZoomTo = function( geomap, row, feature ) {
+		var $val = $("<td><a href='javascript:;' class='btn btn-default btn-sm' title='" +  i18nText.zoomFeature + "'>" +
+                     i18nText.zoomFeature + "</a></td>");
 
-		if ( zoom[ 1 ].type === "text" ) {
-			$ref = $( val + i18nText.zoomFeature + "</a></td>" );
-		} else {
-			$ref = $( val + "<span class='wb-icon-target'></span></a></td>" );
-		}
-
-		$ref.on( "click", "a", function( event ) {
+		$val.on( "click", "a", function( event ) {
 			var which = event.which;
 
 			// Ignore middle/right mouse buttons
@@ -1015,13 +988,13 @@ var selector = ".wb-geomap",
 			}
 		});
 
-		return $ref;
+		return $val;
 	},
 
 	/*
 	 *	Set the default basemap
 	 */
-	setDefaultBaseMap = function( geomap, opts ) {
+	setDefaultBaseMap = function( geomap ) {
 		var mapWidth = geomap.gmap.width(),
 			offset,
 			option = {
@@ -1056,7 +1029,7 @@ var selector = ".wb-geomap",
 				]
 			};
 
-		if ( opts.debug ) {
+		if ( debug ) {
 			$document.trigger( "basemapDefault.wb-geomap" );
 		}
 
@@ -1162,7 +1135,7 @@ var selector = ".wb-geomap",
 					mapOptions.aspectRatio = mapOpts.aspectRatio;
 					mapOptions.tileManager = null;
 				} catch ( error ) {
-					if ( opts.debug ) {
+					if ( debug ) {
 						$document.trigger( "baseMapMapOptionsLoadError.wb-geomap" );
 					}
 				}
@@ -1175,6 +1148,9 @@ var selector = ".wb-geomap",
 
 		geomap.map = new OpenLayers.Map( geomap.gmap.attr( "id" ), $.extend( opts.config, mapOptions ) );
 
+		// Initialize control to []. If not, all maps share the same set of controls. This maybe a OpenLayers bug
+		geomap.map.controls = [];
+		
 		// Check to see if a base map has been configured. If not add the
 		// default base map (the Canada Transportation Base Map (CBMT))
 		if ( hasBasemap ) {
@@ -1206,7 +1182,7 @@ var selector = ".wb-geomap",
 				);
 			}
 		} else {
-			setDefaultBaseMap( geomap, opts );
+			setDefaultBaseMap( geomap );
 			geomap.showAttribNRCan = true;
 		}
 	},
@@ -1667,14 +1643,14 @@ var selector = ".wb-geomap",
 		var $table, table, openLayersTable, attr, thead_tfoot_tr, tableLayer, thElms, thlen,
 			trElms, trlen, useMapControls, attrMap, trElmsInd, geomType,
 			vectorFeatures, features, len, feature, script, bbox, wktFeature,
+			feat, vertices, vertlen,
 			thZoom = "<th>" + i18nText.zoomFeature + "</th>",
 			thSelect = "<th>" + i18nText.select + "</th>",
 			wktParser = new OpenLayers.Format.WKT({
 				internalProjection: projMap,
 				externalProjection: projLatLon
 			}),
-			lenTable = opts.tables.length,
-			feat, vertices, f;
+			lenTable = opts.tables.length;
 
 		while (lenTable--) {
 			table = document.getElementById( opts.tables[ lenTable ].id );
@@ -1734,15 +1710,14 @@ var selector = ".wb-geomap",
 						
 						feat = densifyBBox( bbox[ 0 ], bbox[ 1 ], bbox[ 2 ], bbox[ 3 ] );
 						vertices = "";
-					
-						for ( f in feat ) {
-							vertices += f.x + " " + f.y + ", ";
-						}
+						vertlen = feat.length;
 						
-						// add the closing coordinate
-						vertices += feat[ 0 ].x + " " + feat[ 0 ].y;
+						while (vertlen--) {
+							vertices += feat[vertlen].x + " " + feat[vertlen].y + ", ";
+						}
 					
-						wktFeature = "POLYGON((' + vertices + '))";
+						vertices = vertices.slice(0, -2);
+						wktFeature = "POLYGON ((" + vertices + "))";
 						
 					} else if ( geomType === "wkt" ) {
 						wktFeature = trElmsInd.getAttribute( "data-geometry" );
@@ -1772,10 +1747,6 @@ var selector = ".wb-geomap",
 			} else if ( geomap.glegend ) {
 				addToLegend( geomap, $table, true, tableLayer.id );
 			}
-
-			if ( openLayersTable.datatable ) {
-				$table.addClass( "wb-tables" );
-			}
 		}
 	},
 
@@ -1798,8 +1769,10 @@ var selector = ".wb-geomap",
 				clickFeature: onFeatureClick
 			}
 		);
+		map.addControl( geomap.selectControl );
+		geomap.selectControl.activate();
 
-		// Add the select control to every tabular feature. We need to this now because the select control needs to be set.
+		// Add the select control to every tabular feature. We need to do this now because the select control needs to be set.
 		$.each( opts.tables, function( indexT, table ) {
 				var tableId = "#" + table.id;
 			$.each( geomap.queryLayers, function( index, layer ) {
@@ -1809,16 +1782,9 @@ var selector = ".wb-geomap",
 					});
 				}
 			});
-
-			if ( table.datatable ) {
-				$( tableId ).addClass( "createDatatable" );
-			}
 		});
 
 		if ( opts.useMapControls ) {
-
-			map.addControl( geomap.selectControl );
-			geomap.selectControl.activate();
 
 			if ( opts.useMousePosition ) {
 				map.addControl( new OpenLayers.Control.MousePosition() );
@@ -1867,7 +1833,6 @@ var selector = ".wb-geomap",
 				i18nText.accessTitle + "</summary><p>" + i18nText.access +
 				"</p></details>"
 			);
-			$( "#geomap-details-" + geomap.uniqueId ).trigger( "timerpoke.wb" );
 		}
 
 		// Add attribution
@@ -1956,7 +1921,7 @@ var selector = ".wb-geomap",
 		var projLatLon = new OpenLayers.Projection( "EPSG:4326" ),
 			projMap = geomap.map.getProjectionObject();
 		
-		if ( opts.debug ) {
+		if ( debug ) {
 			$document.trigger( "projection.wb-geomap", projMap.getCode() );
 		}
 
@@ -1987,15 +1952,29 @@ var selector = ".wb-geomap",
 		});
 	},
 
+	/*
+	 * Get the OpenLayers map object
+	 */
+	getMap = function() {
+		var mapArrayItem,
+			map = {},
+			len = mapArray.length;
+
+		while (len--) {
+			mapArrayItem = mapArray[len];
+			map[ mapArrayItem.id ] = mapArrayItem;
+		}
+		
+		return map;
+	},
+
 	refreshPlugins = function( geomap ) {
 
+		geomap.glayers.find( ".wb-tables" ).trigger( "wb-init.wb-tables");
+		geomap.glayers.find( ".wb-geomap-tabs" ).trigger( "wb-init.wb-tabs");
+		
 		// Symbolize legend
 		symbolizeLegend( geomap );
-
-		// Trigger tabbed interface, data tables and details/summary enhancement
-		geomap.glayers.find( ".wb-geomap-tabs" ).trigger( "timerpoke.wb" );
-		geomap.glayers.find( ".createDatatable" ).trigger( "timerpoke.wb" );
-		$( ".geomap-legend" + geomap.uniqueId ).trigger( "timerpoke.wb" );
 
 		// Set map id to be able to access by getMap.
 		geomap.map.id = geomap.mapid;
@@ -2021,14 +2000,8 @@ var selector = ".wb-geomap",
 				// Every time we zoom/pan we need to put back the alt for OpenLayers tiles
 				$( ".olTileImage" ).attr( "alt", "" );
 			} });
-
-			$document.trigger({
-				type: "ready",
-				namespace: "wb-geomap",
-				sampleMap: getMap( "sample_map" ),
-				locationMap: getMap( "location_map" )
-			});
 			
+			wb.doc.trigger( "geomap.ready", [ getMap() ]);
 		}
 	};
 
