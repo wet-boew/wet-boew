@@ -2,16 +2,17 @@
 {
 	"title": "Formulaire de rétroaction",
 	"language": "fr",
-	"category": "Plugiciel",
+	"category": "Autre",
 	"description": "Un formulaire normalisé pour soumettre une rétroaction au sujet d'une page ou d'un site Web particulier.",
 	"tag": "feedback",
 	"altLangPrefix": "feedback",
 	"css": "demo/feedback",
-	"dateModified": "2014-02-19"
+	"js": "demo/feedback",
+	"dateModified": "2014-02-28"
 }
 ---
-<div class="wb-formvalid wb-fdbck">
-	<p>Si vous avez des problèmes avec le formulaire suivant, vous pouvez utiliser une des <a href="#osc-avs">autres voies de service</a> pour communiquer avec nous. S'il vous plaît lire l'<a href="#pics-ecrp">énoncé de collecte de renseignements personnels</a> avant de compléter ce formulaire.</p>
+<div class="wb-formvalid wb-fdbck nojs-hide">
+	<p>Si vous avez des problèmes avec le formulaire suivant, vous pouvez utiliser une des <a href="#osc-avs">autres voies de service</a> pour communiquer avec nous.</p>
 	<form action="#" method="get" id="fdbck-frm">
 		<input type="hidden" name="language" value="fr" />
 		<div id="type">
@@ -117,37 +118,23 @@
 	</form>
 
 	<section>
-		<h2 id="pics-ecrp">Énoncé de collecte de renseignements personnels</h2>
-		<p>Tous les renseignements personnels créés, recueillis ou conservés par le ministère sont protégés par la <em><a href="http://laws-lois.justice.gc.ca/fra/lois/P-21/index.html" rel="external">Loi sur la protection des renseignements personnels</a></em>. Cela signifie qu’on vous informera des fins auxquelles ces renseignements sont recueillis et de la façon dont vous pouvez exercer votre droit d'accès à ces renseignements. Le cas échéant, on vous demandera d’exprimer votre consentement par rapport à ces renseignements.</p>
-		<section>
-			<h3 id="pc-cp">Communications publiques</h3>
-			<p>Les renseignements personnels que vous fournissez dans une demande d’informations peuvent être utilisés pour préparer une réponse. Ces renseignements personnels sont recueillis conformément à la <em class="highlight">[disposition pertinente de la loi habilitante du ministère]</em>. Ces renseignements peuvent être utilisés à des fins d’évaluation, de compilation de statistiques et d’établissement de rapports. Ces informations sont versées dans le fichier de renseignements personnels <em class="highlight">[Numéro du <abbr title="fichier de renseignements personnels">FRP</abbr> - Titre du <abbr title="fichier de renseignements personnels">FRP</abbr>]</em>. Il se peut que ces renseignements soient communiqués aux services responsables des programmes et des activités de <em class="highlight">[Titre d’usage du ministère]</em> si votre demande porte sur les programmes ou les activités de ce ministère. Dans ces cas, ces renseignements sont compris dans le fichier de renseignements personnels du service responsable du programme ou de l’activité.</p>
-			<p>La transmission de ces renseignements n'est pas protégée. Vous ne devriez donc pas inclure de renseignements personnels de nature délicate, comme votre numéro d'assurance sociale, dans votre message.</p>
-			<p>Si, après avoir lu cet avis, vous préférez ne pas présenter votre demande d'information par Internet, veuillez utiliser l’une des autres méthodes précisées ci-dessous.</p>
-			<address>
-				<dl id="osc-avs">
-					<dt><strong>Par téléphone&#160;:</strong></dt>
-					<dd><em class="highlight">[numéro de téléphone]</em></dd>
-					<dt><strong>Par la poste&#160;:</strong></dt>
-					<dd><em class="highlight">[adresse postale]</em></dd>
-					<dt><strong>En personne&#160;:</strong></dt>
-					<dd><em class="highlight">[adresse de l'édifice]</em></dd>
-					<dt><strong>Téléimprimeur&#160;:</strong></dt>
-					<dd><em class="highlight">[numéro de téléimprimeur]</em></dd>
-				</dl>
-			</address>
-		</section>
-
-		<section>
-			<h3 id="pi-divp">Demande d’informations sur la vie privée</h3>
-			<p>Si vous avez une question, un commentaire, une préoccupation ou une plainte au sujet de l’application de la <em><a href="http://laws-lois.justice.gc.ca/fra/lois/P-21/index.html" rel="external">Loi sur la protection des renseignements personnels</a></em> et des politiques connexes, veuillez communiquer avec le coordonnateur ministériel de la protection des renseignements personnels par courriel, à <em class="highlight">[Courriel du coordonnateur de la protection des renseignements personnels]</em> par téléphone, au <em class="highlight">[Numéro de téléphone du coordonnateur de la protection des renseignements personnels]</em> ou en écrivant à&#160;:</p>
-			<p><em class="highlight">[Adresse postale du coordonnateur de la protection des renseignements personnels]</em>.</p>
-			<p>Si vous n'êtes pas satisfait(e) de notre réponse à l'égard de vos préoccupations au sujet de la protection de vos renseignements personnels, vous pouvez communiquer le <a href="http://www.priv.gc.ca/index_f.cfm" rel="external">Commissariat à la protection de la vie privée du Canada</a> par courriel, à&#160;: <a href="mailto:info@priv.gc.ca">info@priv.gc.ca</a> ou par téléphone, au 1-800-282-1376.</p>
-		</section>
+		<h2 id="osc-avs">Autres voies de service</h2>
+		<address>
+			<dl id="osc-avs">
+				<dt><strong>Par téléphone&#160;:</strong></dt>
+				<dd><em class="highlight">[numéro de téléphone]</em></dd>
+				<dt><strong>Par la poste&#160;:</strong></dt>
+				<dd><em class="highlight">[adresse postale]</em></dd>
+				<dt><strong>En personne&#160;:</strong></dt>
+				<dd><em class="highlight">[adresse de l'édifice]</em></dd>
+				<dt><strong>Téléimprimeur&#160;:</strong></dt>
+				<dd><em class="highlight">[numéro de téléimprimeur]</em></dd>
+			</dl>
+		</address>
 	</section>
 </div>
 
-<div class="wb-fdbck-off">
+<div class="nojs-show">
 	<p>Veuillez utiliser une des méthodes précisées ci-dessous pour communiquer avec nous&#160;:</p>
 	<address>
 		<dl>
