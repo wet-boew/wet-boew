@@ -40,8 +40,8 @@ module.exports = (grunt) ->
 		[
 			"clean:dist"
 			"assets"
-			"js"
 			"css"
+			"js"
 			"imagemin"
 		]
 	)
@@ -373,14 +373,14 @@ module.exports = (grunt) ->
 						expand: true
 				]
 
-		#Generate the sprites include stylesheets
+		#Generate the sprites including the stylesheet
 		sprites:
 			share:
 				src: [
 					"src/plugins/share/sprites/*.png"
 				]
 				css: "src/plugins/share/sprites/_sprites.scss"
-				map: "dist/unmin/assets/sprites_share.png"
+				map: "src/plugins/share/assets/sprites_share.png"
 				output: "scss"
 
 		# Compiles the Sass files
