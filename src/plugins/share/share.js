@@ -158,10 +158,12 @@ var pluginName = "wb-share",
 			shareText = i18nText.shareText + ( settings.custType.length !== 0 ? settings.custType : i18nText[ settings.type ] );
 			pnlId = settings.pnlId;
 			id = "shr-pg" + ( pnlId.length !== 0 ? "-" + pnlId : panelCount );
-			pageHref = settings.url;
-			pageTitle = encodeURIComponent( settings.title );
+			pageHref = encodeURIComponent( settings.url );
+			pageTitle = encodeURIComponent( settings.title )
+							.replace( /\'|&#39;|&apos;/, "%27" );
 			pageImage = encodeURIComponent( settings.img );
-			pageDescription = encodeURIComponent( settings.desc );
+			pageDescription = encodeURIComponent( settings.desc )
+								.replace( /\'|&#39;|&apos;/, "%27" );
 
 			// Don't create the panel for the second link (class="link-only")
 			if ( elm.className.indexOf( "link-only" ) === -1 ) {
