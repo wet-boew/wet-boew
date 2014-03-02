@@ -132,6 +132,10 @@ h6 {
 	@extend %wb-clip-hidden;
 }
 
+.wb-inv {
+	@extend %wb-clip-hidden;
+}
+
 #wb-sec, #wb-sup, #wb-foot {
 	h2 {
 		@extend %wb-clip-hidden;
