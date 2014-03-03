@@ -109,6 +109,7 @@ var selector = ".wb-geomap",
 			debug = settings.debug;
 
 			Modernizr.load([ {
+
 				// For loading multiple dependencies
 				both: [
 					"site!deps/proj4" + modeJS,
@@ -446,7 +447,7 @@ var selector = ".wb-geomap",
 			} else {
 				geomap
 					.glayers
-						.prepend( "<div class='clear'></div><div id='geomap-tabs-" + uniqueId +
+						.prepend( "<div id='geomap-tabs-" + uniqueId +
 							"' class='wb-geomap-tabs wb-tabs auto-height-none' style='width: " +
 							geomap.glayers.width() + "px;'>" );
 			}
@@ -461,7 +462,7 @@ var selector = ".wb-geomap",
 		return $( "<table class='table " + ( datatable ? " wb-tables" : " table-condensed" ) +
 			"' aria-label='" + title + "' id='overlay_" + index + "'>" + "<caption>" +
 			caption + "</caption><thead></thead><tbody></tbody>" +
-			(datatable ? "<tfoot></tfoot></table><div class='clear'></div>" : "</table>" ));
+			( datatable ? "<tfoot></tfoot></table>" : "</table>" ));
 	},
 
 	/*
@@ -488,7 +489,7 @@ var selector = ".wb-geomap",
 		}
 
 		var $divLayer = geomap.glayers,
-			featureTableId = featureTable[0].id,
+			featureTableId = featureTable[ 0 ].id,
 			$layerTab = $( "<div id='tabs_" + featureTableId + "'>" ),
 			title = featureTable[ 0 ].attributes[ "aria-label" ].value,
 			$layerTitle = $( "<h3 class='background-light'>" + title + "</h3>" ),
@@ -505,7 +506,7 @@ var selector = ".wb-geomap",
 		// Tabs are not specified
 		} else {
 			$layerTab.append( $layerTitle, featureTable );
-			$divLayer.append("<div class='col-md-12'>" + $layerTab.html() + "</div>", "<div class='clear'></div>");
+			$divLayer.append( "<div class='col-md-12'>" + $layerTab.html() + "</div>" );
 			// if layer visibility is false, add the hidden layer message and hide the table data
 			if ( !enabled ) {
 				$layerTab.append( $alert );
@@ -523,8 +524,8 @@ var selector = ".wb-geomap",
 	 */
 	addToLegend = function( geomap, featureTable, enabled, olLayerId ) {
 		
-		var $featureTable = $(featureTable),
-			featureTableId = featureTable[0].id,
+		var $featureTable = $( featureTable ),
+			featureTableId = featureTable[ 0 ].id,
 			$fieldset, $ul, $checked, $chkBox, $label, $li;
 		
 		if ( typeof geomap.glegend !== "undefined" ) {
@@ -543,7 +544,9 @@ var selector = ".wb-geomap",
 				$ul = $( "<ul class='list-unstyled'></ul>" ).appendTo( $fieldset );
 			}
 
-			$chkBox = $( "<input type='checkbox' id='cb_" + featureTableId + "' value='" + featureTableId + "' " + $checked + " />" ); //.appendTo( '<div class="geomap-legend-chk"></div>' );
+			// .appendTo( '<div class="geomap-legend-chk"></div>' );
+			$chkBox = $( "<input type='checkbox' id='cb_" + featureTableId +
+				"' value='" + featureTableId + "' " + $checked + " />" );
 			
 			$chkBox.on( "change", function() {
 				var layer = geomap.map.getLayer( olLayerId ),
@@ -573,10 +576,9 @@ var selector = ".wb-geomap",
 				text: $featureTable.attr( "aria-label" )
 			}).prepend( $chkBox );
 			
-			$li = $( "<li class='checkbox'>").append($label, "<div id='sb_" + featureTableId + "'></div>" );
-			
-			$ul.append( $li );
+			$li = $( "<li class='checkbox'>" ).append( $label, "<div id='sb_" + featureTableId + "'></div>" );
 
+			$ul.append( $li );
 		}
 	},
 
@@ -587,7 +589,7 @@ var selector = ".wb-geomap",
 		var len = geomap.map.layers.length,
 			colon = i18nText.colon,
 			ruleLen, $symbol, symbolText, layer, style, styleDefault,
-			filter, filterType, symbolizer, i, j;
+			filter, filterType, symbolizer, i, j, rule;
 		
 		for ( i = 0; i !== len; i += 1 ) {
 			layer = geomap.map.layers[ i ];
@@ -603,27 +605,27 @@ var selector = ".wb-geomap",
 					if ( ruleLen ) {
 						symbolText += "<ul class='list-unstyled'>";
 						for ( j = 0; j !== ruleLen; j += 1 ) {
-							
-							filter = style.rules[ j ].filter;
+							rule = style.rules[ j ];
+							filter = rule.filter;
 							filterType = filter.type;
-							symbolizer = style.rules[ j ].symbolizer;
+							symbolizer = rule.symbolizer;
 
 							if ( filterType === "==" ) {
 								filterType = colon;
 							}
 
-							symbolText += "<li class='margin-bottom-medium'>" + filter.property + " ";
-							if ( filter.value !== null ) {
-								symbolText += ( filterType + " " + filter.value + getLegendSymbol( symbolizer ) + "</li>" );
-							} else {
-								symbolText += ( filter.lowerBoundary + " " + filterType + " " + filter.upperBoundary + "</label>" +
-									getLegendSymbol(symbolizer) + "</li>" );
-							}
+							symbolText += "<li class='margin-bottom-medium'>" +
+								filter.property + " " + (
+									filter.value !== null ?
+										filterType + " " + filter.value :
+										filter.lowerBoundary + " " + filterType +
+											" " + filter.upperBoundary + "</label>"
+								) + getLegendSymbol( symbolizer ) + "</li>";
 						}
 						symbolText += "</ul>";
-					} else if ( typeof styleDefault.fillColor !== "undefined" ) {
+					} else if ( styleDefault.fillColor ) {
 						symbolText += getLegendSymbol( styleDefault );
-					} else if ( typeof styleDefault.externalGraphic !== "undefined" ) {
+					} else if ( styleDefault.externalGraphic ) {
 						symbolText += getLegendGraphic( styleDefault );
 					}
 
@@ -642,15 +644,15 @@ var selector = ".wb-geomap",
 			strokeColor = style.strokeColor,
 			fillOpacity = style.fillOpacity;
 
-		if ( typeof fillColor !== "undefined" ) {
+		if ( fillColor ) {
 			symbolStyle += "background-color: " + fillColor + ";";
 		}
 
-		if ( typeof strokeColor !== "undefined" ) {
+		if ( strokeColor ) {
 			symbolStyle += "border-style: solid; border-width: 2px; border-color: " + strokeColor + ";";
 		}
 
-		if (typeof fillOpacity !== "undefined") {
+		if ( fillOpacity ) {
 			symbolStyle += "opacity: " + fillOpacity + ";";
 		}
 
@@ -660,19 +662,19 @@ var selector = ".wb-geomap",
 
 	getLegendGraphic = function( style, alt ) {
 		var symbolStyle = "",
-			altText = typeof alt !== "undefined" ? alt : "",
+			altText = alt ? alt : "",
 			graphicOpacity = style.graphicOpacity,
 			pointRadius = style.pointRadius,
 			graphicHeight = style.graphicHeight,
 			graphicWidth = style.graphicWidth;
 
-		if ( typeof graphicOpacity !== "undefined" ) {
+		if ( graphicOpacity ) {
 			symbolStyle += "opacity: " + graphicOpacity + ";";
 		}
 
-		if ( typeof pointRadius !== "undefined" ) {
+		if ( pointRadius ) {
 			symbolStyle += "height: " + pointRadius + "px; width: " + pointRadius + "px;";
-		} else if ( ( typeof graphicHeight !== "undefined" ) && ( typeof graphicWidth !== "undefined" ) ) {
+		} else if ( graphicHeight && graphicWidth ) {
 			symbolStyle += "height: " + graphicHeight + "px; width: " + graphicWidth + "px;";
 		}
 
@@ -686,13 +688,13 @@ var selector = ".wb-geomap",
 	addToTabs = function( geomap, featureTable, enabled ) {
 		var $div = geomap.glayers.find( ".wb-geomap-tabs" ),
 			$tabs = $div.find( "ul" ),
-			featureTableId = featureTable[0].id,
+			featureTableId = featureTable[ 0 ].id,
 			$featureTable = $( featureTable ), $details,
 			title = $featureTable.attr( "aria-label" );
 		
-		$details = $("<details>", {
+		$details = $( "<details>", {
 			id: "details-" + featureTableId
-		}).append("<summary>" + title + "</summary>", featureTable);
+		}).append( "<summary>" + title + "</summary>", featureTable );
 
 		$tabs.append( "<li><a href='#tabs_" + featureTableId + "'>" + title + "</a></li>" );
 		
@@ -708,8 +710,8 @@ var selector = ".wb-geomap",
 	 * Generate StyleMap
 	 */
 	getStyleMap = function( elm ) {
-		var styleMap, filter, select, rules, rule, i, len, style, styleType,
-			styleRule, styleSelect, ruleFilter, comparison,
+		var styleMap, filterPrefs, rules, rule, i, len, style, styleType,
+			stylePrefs, styleRule, styleSelect, ruleFilter,
 			strokeColor = randomColor(),
 			fillColor = strokeColor,
 			defaultStyle = {
@@ -728,20 +730,15 @@ var selector = ".wb-geomap",
 			elmStyle = elm.style;
 
 		// If style is supplied, create it. If not, create the default one.
-		if ( typeof elmStyle !== "undefined" ) {
+		if ( elmStyle ) {
 
 			// Check the style type (by default, no type are supplied).
 			styleType = elmStyle.type;
 			styleSelect = elmStyle.select;
-			select = new OpenLayers.Style( ( typeof styleSelect !== "undefined" ? styleSelect : selectStyle ) );
-			if ( styleType === "unique" ) {
-
-				// Set the select style then the unique value.
-				styleMap = new OpenLayers.StyleMap({
-					select: select
-				});
-				styleMap.addUniqueValueRules( "default", elmStyle.field, elmStyle.init );
-			} else if ( styleType === "rule" ) {
+			stylePrefs = {
+				select: new OpenLayers.Style( styleSelect ? styleSelect : selectStyle )
+			};
+			if ( styleType === "rule" ) {
 
 				// set the rules and add to the style
 				rules = [];
@@ -753,76 +750,39 @@ var selector = ".wb-geomap",
 					// Set the filter
 					rule = styleRule[ i ];
 					ruleFilter = rule.filter;
-					comparison = OpenLayers.Filter.Comparison;
-
-					switch ( ruleFilter ) {
-					case "LESS_THAN":
-						filter = comparison.LESS_THAN;
-						break;
-					case "LESS_THAN_OR_EQUAL_TO":
-						filter = comparison.LESS_THAN_OR_EQUAL_TO;
-						break;
-					case "GREATER_THAN_OR_EQUAL_TO":
-						filter = comparison.GREATER_THAN_OR_EQUAL_TO;
-						break;
-					case "GREATER_THAN":
-						filter = comparison.GREATER_THAN;
-						break;
-					case "BETWEEN":
-						filter = comparison.BETWEEN;
-						break;
-					case "EQUAL_TO":
-						filter = comparison.EQUAL_TO;
-						break;
-					case "NOT_EQUAL_TO":
-						filter = comparison.NOT_EQUAL_TO;
-						break;
-					case "LIKE":
-						filter = comparison.LIKE;
-						break;
-					}
+					filterPrefs = {
+						type: OpenLayers.Filter.Comparison[ ruleFilter ],
+						property: rule.field
+					};
 
 					if ( ruleFilter !== "BETWEEN" ) {
-						rules.push( new OpenLayers.Rule({
-							filter: new OpenLayers.Filter.Comparison({
-								type: filter,
-								property: rule.field,
-								value: rule.value[ 0 ]
-							}),
-							symbolizer: rule.init
-						}));
+						filterPrefs.value = rule.value[ 0 ];
 					} else {
-						rules.push( new OpenLayers.Rule({
-							filter: new OpenLayers.Filter.Comparison({
-								type: filter,
-								property: rule.field,
-								lowerBoundary: rule.value[ 0 ],
-								upperBoundary: rule.value[ 1 ]
-							}),
-							symbolizer: rule.init
-						}));
+						filterPrefs.lowerBoundary = rule.value[ 0 ];
+						filterPrefs.upperBoundary = rule.value[ 1 ];
 					}
+
+					rules.push(
+						new OpenLayers.Rule({
+							filter: new OpenLayers.Filter.Comparison( filterPrefs ),
+							symbolizer: rule.init
+						})
+					);
 				}
-				style.addRules( rules );
-
-				// Set the select style then the rules.
-				styleMap = new OpenLayers.StyleMap({
-					"default": style,
-					select: select
-				});
-			} else {
-
-				// Set the select style then the default.				
-				styleMap = new OpenLayers.StyleMap({
-					"default": new OpenLayers.Style( elmStyle.init ),
-					select: select
-				});
+				stylePrefs[ "default" ] = style.addRules( rules );
+			} else if ( styleType !== "unique" ) {
+				stylePrefs[ "default" ] = new OpenLayers.Style( elmStyle.init );
 			}
 		} else {
-			styleMap = new OpenLayers.StyleMap({
+			stylePrefs = {
 				"default": new OpenLayers.Style( defaultStyle ),
 				select: new OpenLayers.Style( selectStyle )
-			});
+			};
+		}
+
+		styleMap = new OpenLayers.StyleMap( stylePrefs );
+		if ( elmStyle && styleType === "unique" ) {
+			styleMap.addUniqueValueRules( "default", elmStyle.field, elmStyle.init );
 		}
 
 		return styleMap;
@@ -845,7 +805,9 @@ var selector = ".wb-geomap",
 		// Replace periods with underscores for jQuery!
 		if ( context.type !== "head" ) {
 			$row.attr( "id", featureId );
-			$chkBox = $( "<td><label class='wb-inv' for='cb_" + featureId + "'>" + i18nText.labelSelect + "</label><input type='checkbox' id='cb_" + featureId + "'/></td>" );
+			$chkBox = $( "<td><label class='wb-inv' for='cb_" + featureId + "'>" +
+				i18nText.labelSelect + "</label><input type='checkbox' id='cb_" +
+				featureId + "'/></td>" );
 			cols.push( $chkBox );
 		}
 
@@ -890,8 +852,8 @@ var selector = ".wb-geomap",
 			},
 			$head = createRow( geomap, rowObj ),
 			$foot = createRow( geomap, rowObj ),
-			thSelect = ( "<th>" + i18nText.select + "</th>" ),
-			$targetTable = $( "table#" + $table.attr( "id" ) ),
+			thSelect = "<th>" + i18nText.select + "</th>",
+			$targetTable = $( "#" + $table.attr( "id" ) ),
 			$targetTableBody = $targetTable.find( "tbody" ),
 			thZoom;
 		if ( mapControl && zoom ) {
@@ -974,8 +936,8 @@ var selector = ".wb-geomap",
 	 *
 	 */
 	addZoomTo = function( geomap, row, feature ) {
-		var $val = $("<td><a href='javascript:;' class='btn btn-default btn-sm' title='" +  i18nText.zoomFeature + "'>" +
-                     i18nText.zoomFeature + "</a></td>");
+		var $val = $( "<td><a href='javascript:;' class='btn btn-default btn-sm' title='" +
+			i18nText.zoomFeature + "'>" + i18nText.zoomFeature + "</a></td>" );
 
 		$val.on( "click", "a", function( event ) {
 			var which = event.which;
@@ -998,6 +960,9 @@ var selector = ".wb-geomap",
 		var mapWidth = geomap.gmap.width(),
 			offset,
 			option = {
+				name: i18nText.baseMapTitle,
+				url: i18nText.baseMapURL,
+				layer: i18nText.baseMapTitle,
 				matrixSet: "nativeTileMatrixSet",
 				tileSize: new OpenLayers.Size( 256, 256 ),
 				format: "image/jpg",
@@ -1006,7 +971,7 @@ var selector = ".wb-geomap",
 				isBaseLayer: true,
 				isSingleTile: false,
 				tileOrigin: new OpenLayers.LonLat( -3.46558E7, 3.931E7 ),
-				zoomOffset: 0,
+				zoomOffset: 5,
 				resolutions: [
 					38364.660062653464,
 					22489.62831258996,
@@ -1026,7 +991,8 @@ var selector = ".wb-geomap",
 					13.229193125052918,
 					7.9375158750317505,
 					4.6302175937685215
-				]
+				],
+				transitionEffect: "resize"
 			};
 
 		if ( debug ) {
@@ -1042,47 +1008,20 @@ var selector = ".wb-geomap",
 			option.zoomOffset = 3;
 		} else if ( mapWidth > 1175 && mapWidth <= 2300 ) {
 			option.zoomOffset = 4;
-		} else {
-			option.zoomOffset = 5;
 		}
 
 		offset = option.zoomOffset;
-		while (offset--) {
+		while ( offset-- ) {
 			option.resolutions.shift();
 		}
-		// Add the Canada Transportation Base Map (CBMT) data and text
-		geomap.map.addLayer(new OpenLayers.Layer.WMTS({
-			name: i18nText.baseMapTitle,
-			url: i18nText.baseMapURL,
-			layer: i18nText.baseMapTitle,
-			matrixSet: "nativeTileMatrixSet",
-			tileSize: option.tileSize,
-			format: option.format,
-			style: option.style,
-			requestEncoding: option.requestEncoding,
-			isBaseLayer: option.isBaseLayer,
-			isSingleTile: option.isSingleTile,
-			tileOrigin: option.tileOrigin,
-			zoomOffset: option.zoomOffset,
-			resolutions: option.resolutions,
-			transitionEffect: "resize"
-		}));
 
-		geomap.map.addLayer(new OpenLayers.Layer.WMTS({
-			name: i18nText.baseMapTitle,
-			url: i18nText.baseMapURLTxt,
-			layer: i18nText.baseMapTitle,
-			matrixSet: "nativeTileMatrixSet",
-			tileSize: option.tileSize,
-			format: option.format,
-			style: option.style,
-			requestEncoding: option.requestEncoding,
-			isBaseLayer: false,
-			isSingleTile: option.isSingleTile,
-			tileOrigin: option.tileOrigin,
-			zoomOffset: option.zoomOffset,
-			resolutions: option.resolutions
-		}));
+		// Add the Canada Transportation Base Map (CBMT) data and text
+		geomap.map.addLayer( new OpenLayers.Layer.WMTS( option ) );
+
+		option.url = i18nText.baseMapURLTxt;
+		option.isBaseLayer = false;
+		delete option.transitionEffect;
+		geomap.map.addLayer( new OpenLayers.Layer.WMTS( option ) );
 	},
 
 	/*
@@ -1114,21 +1053,20 @@ var selector = ".wb-geomap",
 	addBasemapData = function( geomap, opts ) {
 		var mapOptions = {},
 			mapOpts,
-			hasBasemap = ( typeof opts.basemap !== "undefined" && opts.basemap.length !== 0 ),
-			basemap;
+			basemap = opts.basemap,
+			hasBasemap = basemap && basemap.length !== 0;
 
 		// set aspect ratio
 		geomap.gmap.height( geomap.gmap.width() * mapOptions.aspectRatio );
 
 		if ( hasBasemap ) {
-			basemap = opts.basemap;
-			if (basemap.mapOptions) {
-				mapOpts = basemap.mapOptions;
+			mapOpts = basemap.mapOptions;
+			if ( mapOpts ) {
 				try {
-					mapOptions.maxExtent = new OpenLayers.Bounds( mapOpts.maxExtent.split( ",") );
+					mapOptions.maxExtent = new OpenLayers.Bounds( mapOpts.maxExtent.split( "," ) );
 					mapOptions.maxResolution = mapOpts.maxResolution;
 					mapOptions.projection = mapOpts.projection;
-					mapOptions.restrictedExtent = new OpenLayers.Bounds (mapOpts.restrictedExtent.split( "," ) );
+					mapOptions.restrictedExtent = new OpenLayers.Bounds( mapOpts.restrictedExtent.split( "," ) );
 					mapOptions.units = mapOpts.units;
 					mapOptions.displayProjection = new OpenLayers.Projection( mapOpts.displayProjection );
 					mapOptions.numZoomLevels = mapOpts.numZoomLevels;
@@ -1298,7 +1236,7 @@ var selector = ".wb-geomap",
 										var items = this.getElementsByTagNameNS( data, "*", "entry" ),
 											row, $row, i, len, feature, atts, bnds, ring, geom, geomProj,
 											features = [], layerAttributes = layer.attributes,
-											name, g, projLatLon = new OpenLayers.Projection("EPSG:4326"),
+											name, g, projLatLon = new OpenLayers.Projection( "EPSG:4326" ),
 											projMap = geomap.map.getProjectionObject();
 
 										for ( i = 0, len = items.length; i !== len; i += 1 ) {
@@ -1308,7 +1246,9 @@ var selector = ".wb-geomap",
 											feature = new OpenLayers.Feature.Vector();
 											
 											// if we have a bounding box polygon, densify the coordinates
-											if (g.geometry.CLASS_NAME === "OpenLayers.Geometry.Polygon" && g.geometry.components[ 0 ].components.length === 5) {
+											if ( g.geometry.CLASS_NAME === "OpenLayers.Geometry.Polygon" &&
+												g.geometry.components[ 0 ].components.length === 5 ) {
+
 												bnds = densifyBBox(
 													g.geometry.components[ 0 ].components[ 1 ].x,
 													g.geometry.components[ 0 ].components[ 1 ].y,
@@ -1329,7 +1269,7 @@ var selector = ".wb-geomap",
 											// TODO: test on nested attributes
 											atts = {};
 											for ( name in layerAttributes ) {
-												if (layerAttributes.hasOwnProperty( name ) ) {
+												if ( layerAttributes.hasOwnProperty( name ) ) {
 													atts[ layerAttributes[ name ] ] = $row.find ( name ).text();
 												}
 											}
@@ -1391,7 +1331,9 @@ var selector = ".wb-geomap",
 											feature = new OpenLayers.Feature.Vector();
 											
 											// if we have a bounding box polygon, densify the coordinates
-											if (g.geometry.CLASS_NAME === "OpenLayers.Geometry.Polygon" && g.geometry.components[ 0 ].components.length === 5) {
+											if ( g.geometry.CLASS_NAME === "OpenLayers.Geometry.Polygon" &&
+												g.geometry.components[ 0 ].components.length === 5 ) {
+
 												bnds = densifyBBox(
 													g.geometry.components[ 0 ].components[ 1 ].x,
 													g.geometry.components[ 0 ].components[ 1 ].y,
@@ -1475,7 +1417,9 @@ var selector = ".wb-geomap",
 											feature = new OpenLayers.Feature.Vector();
 											
 											// if we have a bounding box polygon, densify the coordinates
-											if (row.geometry.type === "Polygon" && row.geometry.coordinates[ 0 ].length === 5) {
+											if ( row.geometry.type === "Polygon" &&
+												row.geometry.coordinates[ 0 ].length === 5 ) {
+
 												bnds = densifyBBox(
 													row.geometry.coordinates[ 0 ][ 1 ][ 0 ],
 													row.geometry.coordinates[ 0 ][ 1 ][ 1 ],
@@ -1551,17 +1495,20 @@ var selector = ".wb-geomap",
 									externalProjection: new OpenLayers.Projection( "EPSG:4269" ),
 									read: function( data ) {
 										var items = data.features,
-											i, len, row, feature, atts, name, bnds, geom, ring, geomProj,
-											features = [], layerAttributes = layer.attributes,
+											features = [],
+											layerAttributes = layer.attributes,
 											projLatLon = new OpenLayers.Projection( "EPSG:4326" ),
-											projMap = geomap.map.getProjectionObject();
+											projMap = geomap.map.getProjectionObject(),
+											i, len, row, feature, atts, name, bnds, geom, ring, geomProj;
 
 										for ( i = 0, len = items.length; i !== len; i += 1 ) {
 											row = items[ i ];
 											feature = new OpenLayers.Feature.Vector();
 											
 											// if we have a bounding box polygon, densify the coordinates
-											if (row.geometry.type === "Polygon" && row.geometry.coordinates[0].length === 5) {
+											if ( row.geometry.type === "Polygon" &&
+												row.geometry.coordinates[ 0 ].length === 5 ) {
+
 												bnds = densifyBBox(
 													row.geometry.coordinates[ 0 ][ 1 ][ 0 ],
 													row.geometry.coordinates[ 0 ][ 1 ][ 1 ],
@@ -1640,7 +1587,7 @@ var selector = ".wb-geomap",
 	*	]
 	*/
 	addTabularData = function( geomap, opts, projLatLon, projMap ) {
-		var $table, table, openLayersTable, attr, thead_tfoot_tr, tableLayer, thElms, thlen,
+		var $table, table, openLayersTable, attr, theadTfootTr, tableLayer, thElms, thlen,
 			trElms, trlen, useMapControls, attrMap, trElmsInd, geomType,
 			vectorFeatures, features, len, feature, script, bbox, wktFeature,
 			feat, vertices, vertlen,
@@ -1650,9 +1597,10 @@ var selector = ".wb-geomap",
 				internalProjection: projMap,
 				externalProjection: projLatLon
 			}),
-			lenTable = opts.tables.length;
+			lenTable = opts.tables.length,
+			thRegex = /<\/?[^>]+>/gi;
 
-		while (lenTable--) {
+		while ( lenTable-- ) {
 			table = document.getElementById( opts.tables[ lenTable ].id );
 			$table = $( table );
 			openLayersTable = opts.tables[ lenTable ];
@@ -1667,18 +1615,18 @@ var selector = ".wb-geomap",
 			useMapControls = opts.useMapControls;
 
 			// Get the attributes from table header
-			while (thlen--) {
-				attr[ thlen ] = thElms[ thlen ].innerHTML.replace( /<\/?[^>]+>/gi, "" );
+			while ( thlen-- ) {
+				attr[ thlen ] = thElms[ thlen ].innerHTML.replace( thRegex, "" );
 			}
 
 			// If zoomTo add the header and footer column headers
-			thead_tfoot_tr = $table.find( "thead tr, tfoot tr" );
+			theadTfootTr = $table.find( "thead tr, tfoot tr" );
 			if ( openLayersTable.zoom && useMapControls ) {
-				thead_tfoot_tr.append( thZoom );
+				theadTfootTr.append( thZoom );
 			}
 
 			// Add select checkbox
-			thead_tfoot_tr.prepend( thSelect );
+			theadTfootTr.prepend( thSelect );
 
 			// Loop through each row
 			while ( trlen-- ) {
@@ -1698,7 +1646,7 @@ var selector = ".wb-geomap",
 					// remove script tag from the attribute
 					feature = features[ len ];
 					script = feature.getElementsByTagName( "script" )[ 0 ];
-					if ( typeof script !== "undefined" ) {
+					if ( script ) {
 						script.parentNode.removeChild( script );
 					}
 					attrMap[ attr[ len ] ] = feature.innerHTML;
@@ -1707,16 +1655,21 @@ var selector = ".wb-geomap",
 				if ( geomType !== null ) {
 					if ( geomType === "bbox" ) {
 						bbox = trElmsInd.getAttribute( "data-geometry" ).split( "," );
-						
-						feat = densifyBBox( bbox[ 0 ], bbox[ 1 ], bbox[ 2 ], bbox[ 3 ] );
+
+						feat = densifyBBox(
+							bbox[ 0 ],
+							bbox[ 1 ],
+							bbox[ 2 ],
+							bbox[ 3 ]
+						);
 						vertices = "";
 						vertlen = feat.length;
 						
-						while (vertlen--) {
-							vertices += feat[vertlen].x + " " + feat[vertlen].y + ", ";
+						while ( vertlen-- ) {
+							vertices += feat[ vertlen ].x + " " + feat[ vertlen ].y + ", ";
 						}
 					
-						vertices = vertices.slice(0, -2);
+						vertices = vertices.slice( 0, -2 );
 						wktFeature = "POLYGON ((" + vertices + "))";
 						
 					} else if ( geomType === "wkt" ) {
@@ -1778,7 +1731,12 @@ var selector = ".wb-geomap",
 			$.each( geomap.queryLayers, function( index, layer ) {
 				if ( layer.id === tableId ) {
 					$.each( layer.features, function( index, feature ) {
-						onTabularFeaturesAdded( geomap, feature, opts.tables[ indexT ].zoom, opts.useMapControls );
+						onTabularFeaturesAdded(
+							geomap,
+							feature,
+							opts.tables[ indexT ].zoom,
+							opts.useMapControls
+						);
 					});
 				}
 			});
@@ -1845,7 +1803,7 @@ var selector = ".wb-geomap",
 				attribTxt = "\u00A9" + i18nText.attribTitle;
 			} else if ( opts.attribution.href ) {
 				attribHref = document.createElement( "a" );
-				attribHref.setAttribute( "href", opts.attribution.href);
+				attribHref.setAttribute( "href", opts.attribution.href );
 				attribTxt = opts.attribution.text;
 			} else {
 				attribHref = document.createElement( "p" );
@@ -1868,21 +1826,33 @@ var selector = ".wb-geomap",
 	},
 	
 	// Construct a polygon and densify the latitudes to show the curvature	
-	densifyBBox = function(minx, miny, maxx, maxy) {
+	densifyBBox = function( minx, miny, maxx, maxy ) {
 		
-		var left = parseFloat(minx),
-			bottom = parseFloat(miny),
-			right = parseFloat(maxx),
-			top = parseFloat(maxy),
+		var left = parseFloat( minx ),
+			bottom = parseFloat( miny ),
+			right = parseFloat( maxx ),
+			top = parseFloat( maxy ),
 			newbounds = [ ], newPoint, j;
 		
-		if (left.length === 0 || bottom.length === 0 || right.length === 0 || top.length === 0) { return false; }
+		if ( left.length === 0 || bottom.length === 0 ||
+			right.length === 0 || top.length === 0 ) {
+
+			return false;
+		}
 	
 		// If default BBOX, make it fit in view showing Canada and not the world.
-		if (left === -180.0) { left = -179.9; }
-		if (right === 180.0) { right = -5.0; }
-		if (top === 90.0) { top = 87.0; }
-		if (bottom === -90.0) { bottom = 35.0; }
+		if ( left === -180.0 ) {
+			left = -179.9;
+		}
+		if ( right === 180.0 ) {
+			right = -5.0;
+		}
+		if ( top === 90.0 ) {
+			top = 87.0;
+		}
+		if ( bottom === -90.0 ) {
+			bottom = 35.0;
+		}
 		
 		newbounds = [ ];
 		newPoint = new OpenLayers.Geometry.Point( j, bottom );
