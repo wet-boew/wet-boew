@@ -196,7 +196,7 @@ div {
 }
 
 .olImageLoadError {
-  display: none !important;
+	display: none !important;
 }
 
 /**
@@ -237,12 +237,12 @@ div {
 }
 
 .medium-screen {
-  .wb-geomap-legend {
-    width: 100% !important;
-  }
-  .form-checkbox {
-    display: block;
-  }
+	.wb-geomap-legend {
+		width: 100% !important;
+	}
+	.form-checkbox {
+		display: block;
+	}
 }
 
 /**
@@ -260,8 +260,8 @@ div {
 }
 
 .wb-geomap-detail {
-  margin-top: 10px;
-  margin-bottom: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .geomap-legend-chk {
