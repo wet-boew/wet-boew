@@ -134,6 +134,7 @@ module.exports = (grunt) ->
 		"demos"
 		"INTERNAL: Create unminified demos"
 		[
+			"i18n_gspreadsheet"
 			"copy:demos"
 			"autoprefixer:demos"
 			"csslint:demos"
@@ -947,6 +948,15 @@ module.exports = (grunt) ->
 				csv: "src/i18n/i18n.csv"
 				dest: "dist/unmin/js/i18n/"
 
+		i18n_gspreadsheet:
+			all:
+				options:
+					key_column: 'lang-code',
+					output_dir: 'site/data/i18n',
+					ext: '.json'
+					document_key: '0AqLc8VEIumBwdDNud1M2Wi1tb0RUSXJxSGp4eXI0ZXc',
+					worksheet: 2
+
 		mocha:
 			all:
 				options:
@@ -1038,6 +1048,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-contrib-watch"
 	@loadNpmTasks "grunt-gh-pages"
 	@loadNpmTasks "grunt-htmlcompressor"
+	@loadNpmTasks "grunt-i18n-gspreadsheet"
 	@loadNpmTasks "grunt-imagine"
 	@loadNpmTasks "grunt-jscs-checker"
 	@loadNpmTasks "grunt-mocha"
