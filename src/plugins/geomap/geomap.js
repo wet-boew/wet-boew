@@ -140,7 +140,7 @@ var selector = ".wb-geomap",
 							load: "site!../assets/geomap-debug" + modeJS
 						} ] );
 
-						$document.trigger( "debug.wb-geomap" );
+						$document.trigger( "debug" + selector );
 					}
 
 					// Set the Geomap object
@@ -161,19 +161,19 @@ var selector = ".wb-geomap",
 
 								createMap( geomap, settings );
 								if ( debug ) {
-									$document.trigger( "overlayLoad.wb-geomap" );
+									$document.trigger( "overlayLoad" + selector );
 								}
 							},
 							error: function() {
 								if ( debug ) {
-									$document.trigger( "overlayNotLoad.wb-geomap" );
+									$document.trigger( "overlayNotLoad" + selector );
 								}
 							}
 						});
 					} else {
 						createMap( geomap, settings );
 						if ( debug ) {
-							$document.trigger( "overlayNotSpecify.wb-geomap" );
+							$document.trigger( "overlayNotSpecify" + selector );
 						}
 					}
 
@@ -199,21 +199,15 @@ var selector = ".wb-geomap",
 				queryLayers: [],
 				overlays: 0,
 				overlaysLoaded: 0,
-				overlaysLoading: {} // status of overlayLoading (true = still loading)
+
+				// status of overlayLoading (true = still loading)
+				overlaysLoading: {}
 			},
 			$elmMap = $elm.find( ".wb-geomap-map" );
 
-		// Test to see if wb-geomap-map class exist. If not, we need to set the object differently.
-		// this other method has been deprecated in version v3.1.2
-		if ( $elmMap.length !== 0 ) {
-			geomap.gmap = $elmMap.attr( "id", "geomap-map-" + uniqueId ).height( $elmMap.width() * 0.8 );
-			geomap.glegend = $elm.find( ".wb-geomap-legend" ).attr( "id", "geomap-legend-" + uniqueId );
-			geomap.glayers = $elm.find( ".wb-geomap-layers" ).attr( "id", "geomap-layers-" + uniqueId );
-		} else {
-			geomap.gmap = $elm.attr( "id", "geomap-map-" + uniqueId ).height( $elm.width() * 0.8 ).addClass( "wb-geomap-map" );
-			geomap.glegend = $( ".wb-geomap-legend" ).attr( "id", "geomap-legend-" + uniqueId );
-			geomap.glayers = $( ".wb-geomap-layers" ).attr( "id", "geomap-layers-" + uniqueId );
-		}
+		geomap.gmap = $elmMap.attr( "id", "geomap-map-" + uniqueId ).height( $elmMap.width() * 0.8 );
+		geomap.glegend = $elm.find( ".wb-geomap-legend" ).attr( "id", "geomap-legend-" + uniqueId );
+		geomap.glayers = $elm.find( ".wb-geomap-layers" ).attr( "id", "geomap-layers-" + uniqueId );
 
 		return geomap;
 	},
@@ -291,16 +285,18 @@ var selector = ".wb-geomap",
 	 * Map feature select
 	 */
 	onFeatureSelect = function( feature ) {
-		$( "#" + feature.id.replace( /\W/g, "_" ) ).addClass( "background-highlight" );
-		$( "#cb_" + feature.id.replace( /\W/g, "_" ) ).prop( "checked", true );
+		var featureId = feature.id.replace( /\W/g, "_" );
+		$( "#" + featureId ).addClass( "background-highlight" );
+		$( "#cb_" + featureId ).prop( "checked", true );
 	},
 
 	/*
 	 *	Map feature unselect
 	 */
 	onFeatureUnselect = function( feature ) {
-		$( "#" + feature.id.replace( /\W/g, "_" ) ).removeClass( "background-highlight" );
-		$( "#cb_" + feature.id.replace( /\W/g, "_" ) ).prop( "checked", false );
+		var featureId = feature.id.replace( /\W/g, "_" );
+		$( "#" + featureId ).removeClass( "background-highlight" );
+		$( "#cb_" + featureId ).prop( "checked", false );
 
 		// If there is a popup attached, hide it.
 		if ( feature.popup && feature.popup.visible() ) {
@@ -314,15 +310,15 @@ var selector = ".wb-geomap",
 	onFeatureClick = function( feature ) {
 		var selectControl = feature.layer.map.getControlsByClass( "OpenLayers.Control.SelectFeature" )[ 0 ];
 
-		if ( typeof feature._lastHighlighter !== "undefined" ) {
-			selectControl.unselect(feature);
+		if ( feature._lastHighlighter ) {
+			selectControl.unselect( feature );
 		} else {
-			selectControl.select(feature);
+			selectControl.select( feature );
 
-			if ( feature.layer.popups !== undefined ) {
+			if ( feature.layer.popups ) {
 
 				// If a popup is already shown, hide it
-				if ( selectedFeature !== undefined && selectedFeature.popup !== null && selectedFeature.popup.visible() ) {
+				if ( selectedFeature && selectedFeature.popup !== null && selectedFeature.popup.visible() ) {
 					selectedFeature.popup.hide();
 				}
 
@@ -348,13 +344,17 @@ var selector = ".wb-geomap",
 			colon = i18nText.colon,
 			mapSize = feature.layer.map.size,
 			content = "<h3>" + document.getElementById( feature.layer.name ).getAttribute( "aria-label" ) + "</h3>",
-			id, height, width, close, name, popup, icon, regex;
+			id, height, width, close, name, popup, icon, regex,
+			popupsInfoId, popupsInfoWidth, popupsInfoHeight;
 
 		if ( popupsInfo ) {
-			id = ( typeof popupsInfo.id !== "undefined" ? popupsInfo.id : "popup_" ) + "_" + featureid;
-			height = typeof popupsInfo.height !== "undefined" ? popupsInfo.height : mapSize.size.h / 2;
-			width = typeof popupsInfo.width !== "undefined" ? popupsInfo.width : mapSize.size.w / 2;
-			close = typeof popupsInfo.width !== "undefined" ? popupsInfo.close : true;
+			popupsInfoId = popupsInfo.id;
+			popupsInfoWidth = popupsInfo.width;
+			popupsInfoHeight = popupsInfo.height;
+			id = ( popupsInfoId ? popupsInfoId : "popup_" ) + "_" + featureid;
+			height = popupsInfoHeight ? popupsInfoHeight : mapSize.h / 2;
+			width = popupsInfoWidth ? popupsInfoWidth : mapSize.w / 2;
+			close = popupsInfoWidth ? popupsInfo.close : true;
 			content += popupsInfo.content;
 
 			// update content from feature
@@ -398,14 +398,14 @@ var selector = ".wb-geomap",
 		icon.className = "glyphicon glyphicon-remove-circle close_" + featureid;
 		icon.setAttribute( "aria-label", buttonText );
 		icon.setAttribute( "title", buttonText );
-		icon.setAttribute( "role", "button");
+		icon.setAttribute( "role", "button" );
 		icon.setAttribute( "tabindex", "0" );
 		feature.popup.closeDiv.appendChild( icon );
 
-		$( ".close_" + featureid).on( "keydown click", function( event ) {
+		$( ".close_" + featureid ).on( "keydown click", function( event ) {
 			var which = event.which;
 			if ( event.type === "keydown" ) {
-				if ( which === 13) {
+				if ( which === 13 ) {
 					feature.popup.hide();
 				}
 			} else if ( !which || which === 1 ) {
@@ -421,7 +421,7 @@ var selector = ".wb-geomap",
 
 		// Create legend div if not there
 		if ( debug && !( $( ".wb-geomap-legend" ).length ) ) {
-			$document.trigger( "warningLegend.wb-geomap" );
+			$document.trigger( "warningLegend" + selector );
 		}
 	},
 
@@ -472,7 +472,7 @@ var selector = ".wb-geomap",
 		var letters = "0123456789ABCDEF".split( "" ),
 			color = "#",
 			i;
-		for (i = 0; i !== 6; i += 1 ) {
+		for ( i = 0; i !== 6; i += 1 ) {
 			color += letters[ Math.round( Math.random() * 15 ) ];
 		}
 		return color;
@@ -492,21 +492,23 @@ var selector = ".wb-geomap",
 			featureTableId = featureTable[ 0 ].id,
 			$layerTab = $( "<div id='tabs_" + featureTableId + "'>" ),
 			title = featureTable[ 0 ].attributes[ "aria-label" ].value,
-			$layerTitle = $( "<h3 class='background-light'>" + title + "</h3>" ),
-			$alert = $( "<div id='msg_" + featureTableId + "' class='module-attention module-simplify margin-top-medium margin-bottom-medium'><p>" +
+			$layerTitle = $( "<h3>" + title + "</h3>" ),
+			$alert = $( "<div id='msg_" + featureTableId + "' class='alert alert-warning'><p>" +
 				i18nText.hiddenLayer + "</p></div>" );
 
 		if ( debug && ( $divLayer.length === 0 ) ) {
-			$document.trigger( "layersNotSpecify.wb-geomap" );
+			$document.trigger( "layersNotSpecify" + selector );
 		}
 
 		// If tabs are specified
 		if ( tab && $( ".wb-geomap-tabs" ).length !== 0 ) {
 			addToTabs( geomap, featureTable, enabled, olLayerId );
+
 		// Tabs are not specified
 		} else {
 			$layerTab.append( $layerTitle, featureTable );
 			$divLayer.append( "<div class='col-md-12'>" + $layerTab.html() + "</div>" );
+
 			// if layer visibility is false, add the hidden layer message and hide the table data
 			if ( !enabled ) {
 				$layerTab.append( $alert );
@@ -515,7 +517,7 @@ var selector = ".wb-geomap",
 		}
 
 		if ( debug && tab && $( ".wb-geomap-tabs" ).length === 0 ) {
-			$document.trigger( "warningTab.wb-geomap" );
+			$document.trigger( "warningTab" + selector );
 		}
 	},
 
@@ -528,7 +530,7 @@ var selector = ".wb-geomap",
 			featureTableId = featureTable[ 0 ].id,
 			$fieldset, $ul, $checked, $chkBox, $label, $li;
 		
-		if ( typeof geomap.glegend !== "undefined" ) {
+		if ( geomap.glegend ) {
 
 			// If no legend or fieldset add them
 			$fieldset = geomap.glegend.find( "fieldset" );
@@ -560,12 +562,13 @@ var selector = ".wb-geomap",
 					$parent = $table;
 				}
 				
-				$alert = $("#msg_" + featureTableId);
+				$alert = $( "#msg_" + featureTableId );
 
 				if ( $alert.length !== 0 ) {
 					$alert.fadeToggle();
 				} else {
-					$parent.after( "<div id='msg_" + featureTableId + "'><p>" + i18nText.hiddenLayer + "</p></div>" );
+					$parent.after( "<div id='msg_" + featureTableId + "'><p>" +
+									i18nText.hiddenLayer + "</p></div>" );
 				}
 
 				$parent.css( "display", ( visibility ? "table" : "none" ) );
@@ -576,7 +579,8 @@ var selector = ".wb-geomap",
 				text: $featureTable.attr( "aria-label" )
 			}).prepend( $chkBox );
 			
-			$li = $( "<li class='checkbox'>" ).append( $label, "<div id='sb_" + featureTableId + "'></div>" );
+			$li = $( "<li class='checkbox'>" )
+					.append( $label, "<div id='sb_" + featureTableId + "'></div>" );
 
 			$ul.append( $li );
 		}
@@ -656,8 +660,11 @@ var selector = ".wb-geomap",
 			symbolStyle += "opacity: " + fillOpacity + ";";
 		}
 
-		return "<div class='geomap-legend-symbol'" + ( symbolStyle !== "" ? " style='" +
-			symbolStyle + "'/>" : "/>" );
+		return "<div class='geomap-legend-symbol'" +
+			( symbolStyle !== "" ?
+				" style='" + symbolStyle + "'/>" :
+				"/>"
+			);
 	},
 
 	getLegendGraphic = function( style, alt ) {
@@ -923,7 +930,7 @@ var selector = ".wb-geomap",
 		}
 
 		$chkBox.on( "change", function() {
-			if ( !$( "#cb_" + featureId ).prop( "checked") ) {
+			if ( !$( "#cb_" + featureId ).prop( "checked" ) ) {
 				geomap.selectControl.unselect( feature );
 			} else {
 				onFeatureClick( feature );
@@ -996,7 +1003,7 @@ var selector = ".wb-geomap",
 			};
 
 		if ( debug ) {
-			$document.trigger( "basemapDefault.wb-geomap" );
+			$document.trigger( "basemapDefault" + selector );
 		}
 
 		// In function of map width size, set the proper resolution and zoom offset
@@ -1010,8 +1017,7 @@ var selector = ".wb-geomap",
 			option.zoomOffset = 4;
 		}
 
-		offset = option.zoomOffset;
-		while ( offset-- ) {
+		for ( offset = option.zoomOffset - 1; offset !== -1; offset -= 1 ) {
 			option.resolutions.shift();
 		}
 
@@ -1051,30 +1057,29 @@ var selector = ".wb-geomap",
 	 *	Add baseMap data
 	 */
 	addBasemapData = function( geomap, opts ) {
-		var mapOptions = {},
-			mapOpts,
+		var mapOptions, mapOpts,
 			basemap = opts.basemap,
 			hasBasemap = basemap && basemap.length !== 0;
-
-		// set aspect ratio
-		geomap.gmap.height( geomap.gmap.width() * mapOptions.aspectRatio );
 
 		if ( hasBasemap ) {
 			mapOpts = basemap.mapOptions;
 			if ( mapOpts ) {
 				try {
-					mapOptions.maxExtent = new OpenLayers.Bounds( mapOpts.maxExtent.split( "," ) );
-					mapOptions.maxResolution = mapOpts.maxResolution;
-					mapOptions.projection = mapOpts.projection;
-					mapOptions.restrictedExtent = new OpenLayers.Bounds( mapOpts.restrictedExtent.split( "," ) );
-					mapOptions.units = mapOpts.units;
-					mapOptions.displayProjection = new OpenLayers.Projection( mapOpts.displayProjection );
-					mapOptions.numZoomLevels = mapOpts.numZoomLevels;
-					mapOptions.aspectRatio = mapOpts.aspectRatio;
-					mapOptions.tileManager = null;
+					mapOptions = {
+						maxExtent: new OpenLayers.Bounds( mapOpts.maxExtent.split( "," ) ),
+						maxResolution: mapOpts.maxResolution,
+						projection: mapOpts.projection,
+						restrictedExtent: new OpenLayers.Bounds( mapOpts.restrictedExtent.split( "," ) ),
+						units: mapOpts.units,
+						displayProjection: new OpenLayers.Projection( mapOpts.displayProjection ),
+						numZoomLevels: mapOpts.numZoomLevels,
+						aspectRatio: mapOpts.aspectRatio,
+						tileManager: null
+					};
 				} catch ( error ) {
+					mapOptions = {};
 					if ( debug ) {
-						$document.trigger( "baseMapMapOptionsLoadError.wb-geomap" );
+						$document.trigger( "baseMapMapOptionsLoadError" + selector );
 					}
 				}
 			}
@@ -1084,9 +1089,13 @@ var selector = ".wb-geomap",
 			mapOptions = setDefaultMapOptions();
 		}
 
+		// set aspect ratio
+		geomap.gmap.height( geomap.gmap.width() * mapOptions.aspectRatio );
+
 		geomap.map = new OpenLayers.Map( geomap.gmap.attr( "id" ), $.extend( opts.config, mapOptions ) );
 
-		// Initialize control to []. If not, all maps share the same set of controls. This maybe a OpenLayers bug
+		// Initialize control to []. If not, all maps share the same
+		// set of controls. This maybe a OpenLayers bug
 		geomap.map.controls = [];
 		
 		// Check to see if a base map has been configured. If not add the
@@ -1134,11 +1143,11 @@ var selector = ".wb-geomap",
 		if ( overlayData.length !== 0 ) {
 			geomap.overlays = overlayData.length;
 			$.each( overlayData, function( index, layer ) {
-				var $table = createTable( index, layer.title, layer.caption, layer.datatable ),
-					layerType = layer.type,
+				var layerType = layer.type,
 					layerTitle = layer.title,
 					layerVisible = layer.visible,
-					layerURL = layer.url;
+					layerURL = layer.url,
+					$table = createTable( index, layerTitle, layer.caption, layer.datatable );
 
 				if ( layerType === "kml" ) {
 					olLayer = new OpenLayers.Layer.Vector(
@@ -1160,7 +1169,7 @@ var selector = ".wb-geomap",
 											name;
 
 										// When read from server, data is string instead of #document
-										if ( typeof data === "string") {
+										if ( typeof data === "string" ) {
 										
 											// With IE we cant use DOMParser
 											if ( wb.ie ) {
@@ -1234,9 +1243,12 @@ var selector = ".wb-geomap",
 								format: new OpenLayers.Format.Atom({
 									read: function( data ) {
 										var items = this.getElementsByTagNameNS( data, "*", "entry" ),
-											row, $row, i, len, feature, atts, bnds, ring, geom, geomProj,
-											features = [], layerAttributes = layer.attributes,
-											name, g, projLatLon = new OpenLayers.Projection( "EPSG:4326" ),
+											row, $row, i, len, feature, atts,
+											bnds, ring, geom, geomProj,
+											firstComponent, name, g,
+											features = [],
+											layerAttributes = layer.attributes,
+											projLatLon = new OpenLayers.Projection( "EPSG:4326" ),
 											projMap = geomap.map.getProjectionObject();
 
 										for ( i = 0, len = items.length; i !== len; i += 1 ) {
@@ -1244,16 +1256,17 @@ var selector = ".wb-geomap",
 											$row = $( row );
 											g = this.parseFeature( row );
 											feature = new OpenLayers.Feature.Vector();
+											firstComponent = g.geometry.components[ 0 ];
 											
 											// if we have a bounding box polygon, densify the coordinates
 											if ( g.geometry.CLASS_NAME === "OpenLayers.Geometry.Polygon" &&
-												g.geometry.components[ 0 ].components.length === 5 ) {
+												firstComponent.components.length === 5 ) {
 
 												bnds = densifyBBox(
-													g.geometry.components[ 0 ].components[ 1 ].x,
-													g.geometry.components[ 0 ].components[ 1 ].y,
-													g.geometry.components[ 0 ].components[ 3 ].x,
-													g.geometry.components[ 0 ].components[ 3 ].y
+													firstComponent.components[ 1 ].x,
+													firstComponent.components[ 1 ].y,
+													firstComponent.components[ 3 ].x,
+													firstComponent.components[ 3 ].y
 												);
 													
 												ring = new OpenLayers.Geometry.LinearRing( bnds );
@@ -1282,7 +1295,14 @@ var selector = ".wb-geomap",
 							}),
 							eventListeners: {
 								featuresadded: function( evt ) {
-									onFeaturesAdded( geomap, $table, evt, layer.zoom, layer.datatable, opts.useMapControls );
+									onFeaturesAdded(
+										geomap,
+										$table,
+										evt,
+										layer.zoom,
+										layer.datatable,
+										opts.useMapControls
+									);
 									if ( geomap.overlaysLoading[ layerTitle ] ) {
 										onLoadEnd( geomap );
 									}
@@ -1319,9 +1339,12 @@ var selector = ".wb-geomap",
 								format: new OpenLayers.Format.GeoRSS( {
 									read: function( data ) {
 										var items = this.getElementsByTagNameNS( data, "*", "item" ),
-											row, $row, i, len, bnds, ring, geom, geomProj, feature, atts,
-											features = [], layerAttributes = layer.attributes,
-											name, g, projLatLon = new OpenLayers.Projection( "EPSG:4326" ),
+											row, $row, i, len, bnds, ring,
+											geom, geomProj, feature, atts,
+											firstComponent, name, g,
+											features = [],
+											layerAttributes = layer.attributes,
+											projLatLon = new OpenLayers.Projection( "EPSG:4326" ),
 											projMap = geomap.map.getProjectionObject();
 
 										for ( i = 0, len = items.length; i !== len; i += 1 ) {
@@ -1329,21 +1352,22 @@ var selector = ".wb-geomap",
 											$row = $( row );
 											g = this.createFeatureFromItem( row );
 											feature = new OpenLayers.Feature.Vector();
+											firstComponent = g.geometry.components[ 0 ];
 											
 											// if we have a bounding box polygon, densify the coordinates
 											if ( g.geometry.CLASS_NAME === "OpenLayers.Geometry.Polygon" &&
-												g.geometry.components[ 0 ].components.length === 5 ) {
+												firstComponent.components.length === 5 ) {
 
 												bnds = densifyBBox(
-													g.geometry.components[ 0 ].components[ 1 ].x,
-													g.geometry.components[ 0 ].components[ 1 ].y,
-													g.geometry.components[ 0 ].components[ 3 ].x,
-													g.geometry.components[ 0 ].components[ 3 ].y
+													firstComponent.components[ 1 ].x,
+													firstComponent.components[ 1 ].y,
+													firstComponent.components[ 3 ].x,
+													firstComponent.components[ 3 ].y
 												);
 												
 												ring = new OpenLayers.Geometry.LinearRing( bnds );
 												geom = new OpenLayers.Geometry.Polygon( ring );
-												geomProj = geom.transform(projLatLon, projMap);
+												geomProj = geom.transform(projLatLon, projMap );
 												feature.geometry = geomProj;
 											} else {
 												feature.geometry = this.parseFeature( row ).geometry.transform( projLatLon, projMap );
@@ -1372,7 +1396,7 @@ var selector = ".wb-geomap",
 									}
 								},
 								loadstart: function() {
-									geomap.overlaysLoading[ layerTitle] = true;
+									geomap.overlaysLoading[ layerTitle ] = true;
 									setTimeout(function() {
 										if ( geomap.overlaysLoading[ layerTitle ] ) {
 											onLoadEnd( geomap );
@@ -1407,24 +1431,28 @@ var selector = ".wb-geomap",
 									read: function( data ) {
 										var layerRoot = layer.root,
 											items = data[ layerRoot ] ? data[ layerRoot ] : data,
-											row, i, len, feature, atts, name, bnds, ring, geom, geomProj,
-											features = [], layerAttributes = layer.attributes,
+											row, i, len, feature, atts, name,
+											bnds, ring, geom, geomProj,
+											firstComponent,
+											features = [],
+											layerAttributes = layer.attributes,
 											projLatLon = new OpenLayers.Projection( "EPSG:4326" ),
 											projMap = geomap.map.getProjectionObject();
 
 										for ( i = 0, len = items.length; i !== len; i += 1 ) {
 											row = items[ i ];
 											feature = new OpenLayers.Feature.Vector();
+											firstComponent = row.geometry.coordinates[ 0 ];
 											
 											// if we have a bounding box polygon, densify the coordinates
 											if ( row.geometry.type === "Polygon" &&
-												row.geometry.coordinates[ 0 ].length === 5 ) {
+												firstComponent.length === 5 ) {
 
 												bnds = densifyBBox(
-													row.geometry.coordinates[ 0 ][ 1 ][ 0 ],
-													row.geometry.coordinates[ 0 ][ 1 ][ 1 ],
-													row.geometry.coordinates[ 0 ][ 3 ][ 0 ],
-													row.geometry.coordinates[ 0 ][ 3 ][ 1 ]
+													firstComponent[ 1 ][ 0 ],
+													firstComponent[ 1 ][ 1 ],
+													firstComponent[ 3 ][ 0 ],
+													firstComponent[ 3 ][ 1 ]
 												);
 												ring = new OpenLayers.Geometry.LinearRing( bnds );
 												geom = new OpenLayers.Geometry.Polygon( ring );
@@ -1499,21 +1527,24 @@ var selector = ".wb-geomap",
 											layerAttributes = layer.attributes,
 											projLatLon = new OpenLayers.Projection( "EPSG:4326" ),
 											projMap = geomap.map.getProjectionObject(),
-											i, len, row, feature, atts, name, bnds, geom, ring, geomProj;
+											i, len, row, feature, atts, name,
+											bnds, geom, ring, geomProj,
+											firstComponent;
 
 										for ( i = 0, len = items.length; i !== len; i += 1 ) {
 											row = items[ i ];
 											feature = new OpenLayers.Feature.Vector();
+											firstComponent = row.geometry.coordinates[ 0 ];
 											
 											// if we have a bounding box polygon, densify the coordinates
 											if ( row.geometry.type === "Polygon" &&
-												row.geometry.coordinates[ 0 ].length === 5 ) {
+												firstComponent.length === 5 ) {
 
 												bnds = densifyBBox(
-													row.geometry.coordinates[ 0 ][ 1 ][ 0 ],
-													row.geometry.coordinates[ 0 ][ 1 ][ 1 ],
-													row.geometry.coordinates[ 0 ][ 3 ][ 0 ],
-													row.geometry.coordinates[ 0 ][ 3 ][ 1 ]
+													firstComponent[ 1 ][ 0 ],
+													firstComponent[ 1 ][ 1 ],
+													firstComponent[ 3 ][ 0 ],
+													firstComponent[ 3 ][ 1 ]
 												);
 												ring = new OpenLayers.Geometry.LinearRing( bnds );
 												geom = new OpenLayers.Geometry.Polygon( ring );
@@ -1587,20 +1618,20 @@ var selector = ".wb-geomap",
 	*	]
 	*/
 	addTabularData = function( geomap, opts, projLatLon, projMap ) {
-		var $table, table, openLayersTable, attr, theadTfootTr, tableLayer, thElms, thlen,
-			trElms, trlen, useMapControls, attrMap, trElmsInd, geomType,
+		var $table, table, openLayersTable, attr, theadTfootTr, tableLayer, thElms, thLen,
+			trElms, trLen, useMapControls, attrMap, trElmsInd, geomType,
 			vectorFeatures, features, len, feature, script, bbox, wktFeature,
-			feat, vertices, vertlen,
+			feat, vertices, vertLen, lenTable,
 			thZoom = "<th>" + i18nText.zoomFeature + "</th>",
 			thSelect = "<th>" + i18nText.select + "</th>",
 			wktParser = new OpenLayers.Format.WKT({
 				internalProjection: projMap,
 				externalProjection: projLatLon
 			}),
-			lenTable = opts.tables.length,
-			thRegex = /<\/?[^>]+>/gi;
+			thRegex = /<\/?[^>]+>/gi,
+			vectRegex = /\W/g;
 
-		while ( lenTable-- ) {
+		for ( lenTable = opts.tables.length - 1; lenTable !== -1; lenTable -= 1 ) {
 			table = document.getElementById( opts.tables[ lenTable ].id );
 			$table = $( table );
 			openLayersTable = opts.tables[ lenTable ];
@@ -1609,14 +1640,13 @@ var selector = ".wb-geomap",
 				styleMap: getStyleMap( openLayersTable )
 			});
 			thElms = table.getElementsByTagName( "th" );
-			thlen = thElms.length;
 			trElms = table.getElementsByTagName( "tr" );
-			trlen = trElms.length;
+			trLen = trElms.length;
 			useMapControls = opts.useMapControls;
 
 			// Get the attributes from table header
-			while ( thlen-- ) {
-				attr[ thlen ] = thElms[ thlen ].innerHTML.replace( thRegex, "" );
+			for ( thLen = thElms.length - 1; thLen !== -1; thLen -= 1 ) {
+				attr[ thLen ] = thElms[ thLen ].innerHTML.replace( thRegex, "" );
 			}
 
 			// If zoomTo add the header and footer column headers
@@ -1629,18 +1659,17 @@ var selector = ".wb-geomap",
 			theadTfootTr.prepend( thSelect );
 
 			// Loop through each row
-			while ( trlen-- ) {
+			for ( trLen = trElms.length - 1; trLen !== -1; trLen -= 1 ) {
 
 				// Create an array of attributes: value
 				attrMap = {};
-				trElmsInd = trElms[ trlen ];
+				trElmsInd = trElms[ trLen ];
 
 				// Get the geometry type
 				geomType = trElmsInd.getAttribute( "data-type" );
 				features = trElmsInd.getElementsByTagName( "td" );
-				len = features.length;
 
-				while ( len-- ) {
+				for ( len = features.length - 1; len !== -1; len -= 1 ) {
 
 					// Use innerHTML instead of innerText or textContent because they react differently in different browser
 					// remove script tag from the attribute
@@ -1663,10 +1692,9 @@ var selector = ".wb-geomap",
 							bbox[ 3 ]
 						);
 						vertices = "";
-						vertlen = feat.length;
 						
-						while ( vertlen-- ) {
-							vertices += feat[ vertlen ].x + " " + feat[ vertlen ].y + ", ";
+						for ( vertLen = feat.length - 1; vertLen !== -1; vertLen -= 1 ) {
+							vertices += feat[ vertLen ].x + " " + feat[ vertLen ].y + ", ";
 						}
 					
 						vertices = vertices.slice( 0, -2 );
@@ -1679,7 +1707,7 @@ var selector = ".wb-geomap",
 					vectorFeatures = wktParser.read( wktFeature );
 
 					// Set the table row id
-					trElmsInd.setAttribute( "id", vectorFeatures.id.replace( /\W/g, "_" ) );
+					trElmsInd.setAttribute( "id", vectorFeatures.id.replace( vectRegex, "_" ) );
 
 					// Add the attributes to the feature then add it to the map
 					vectorFeatures.attributes = attrMap;
@@ -1725,7 +1753,8 @@ var selector = ".wb-geomap",
 		map.addControl( geomap.selectControl );
 		geomap.selectControl.activate();
 
-		// Add the select control to every tabular feature. We need to do this now because the select control needs to be set.
+		// Add the select control to every tabular feature.
+		// We need to do this now because the select control needs to be set.
 		$.each( opts.tables, function( indexT, table ) {
 				var tableId = "#" + table.id;
 			$.each( geomap.queryLayers, function( index, layer ) {
@@ -1783,7 +1812,6 @@ var selector = ".wb-geomap",
 			// Add pan zoom bar
 			addPanZoomBar( geomap );
 
-			// Fix for the defect #3204 http://tbs-sct.ircan-rican.gc.ca/issues/3204
 			$mapDiv.before(
 				"<details id='geomap-details-" + geomap.uniqueId +
 				"' class='wb-geomap-detail' style='width:" +
@@ -1832,7 +1860,8 @@ var selector = ".wb-geomap",
 			bottom = parseFloat( miny ),
 			right = parseFloat( maxx ),
 			top = parseFloat( maxy ),
-			newbounds = [ ], newPoint, j;
+			newbounds = [ ],
+			j;
 		
 		if ( left.length === 0 || bottom.length === 0 ||
 			right.length === 0 || top.length === 0 ) {
@@ -1853,30 +1882,21 @@ var selector = ".wb-geomap",
 		if ( bottom === -90.0 ) {
 			bottom = 35.0;
 		}
-		
-		newbounds = [ ];
-		newPoint = new OpenLayers.Geometry.Point( j, bottom );
-		
-		for ( j = left; j < right; j = j + 0.5) {
-			newPoint = new OpenLayers.Geometry.Point( j, bottom );
-			newbounds.push( newPoint );
+
+		for ( j = left; j < right; j += 0.5 ) {
+			newbounds.push( new OpenLayers.Geometry.Point( j, bottom ) );
 		}
 		
-		newPoint = new OpenLayers.Geometry.Point( right, bottom );
-		newbounds.push( newPoint );
+		newbounds.push( new OpenLayers.Geometry.Point( right, bottom ) );
 		
-		for ( j = right; j > left; j = j - 0.5 ) {
-			newPoint = new OpenLayers.Geometry.Point( j, top );
-			newbounds.push( newPoint );
+		for ( j = right; j > left; j -= 0.5 ) {
+			newbounds.push( new OpenLayers.Geometry.Point( j, top ) );
 		}
 		
-		newPoint = new OpenLayers.Geometry.Point( left, top );
-		newbounds.push( newPoint );
-		newPoint = new OpenLayers.Geometry.Point( left, bottom );
-		newbounds.push( newPoint );
+		newbounds.push( new OpenLayers.Geometry.Point( left, top ) );
+		newbounds.push( new OpenLayers.Geometry.Point( left, bottom ) );
 		
 		return newbounds;
-		
 	},
 
 	/*
@@ -1892,7 +1912,7 @@ var selector = ".wb-geomap",
 			projMap = geomap.map.getProjectionObject();
 		
 		if ( debug ) {
-			$document.trigger( "projection.wb-geomap", projMap.getCode() );
+			$document.trigger( "projection" + selector, projMap.getCode() );
 		}
 
 		// Global variable
@@ -1928,10 +1948,10 @@ var selector = ".wb-geomap",
 	getMap = function() {
 		var mapArrayItem,
 			map = {},
-			len = mapArray.length;
+			len;
 
-		while (len--) {
-			mapArrayItem = mapArray[len];
+		for ( len = mapArray.length - 1; len !== -1; len -= 1 ) {
+			mapArrayItem = mapArray[ len ];
 			map[ mapArrayItem.id ] = mapArrayItem;
 		}
 		
@@ -1940,8 +1960,8 @@ var selector = ".wb-geomap",
 
 	refreshPlugins = function( geomap ) {
 
-		geomap.glayers.find( ".wb-tables" ).trigger( "wb-init.wb-tables");
-		geomap.glayers.find( ".wb-geomap-tabs" ).trigger( "wb-init.wb-tabs");
+		geomap.glayers.find( ".wb-tables" ).trigger( "wb-init.wb-tables" );
+		geomap.glayers.find( ".wb-geomap-tabs" ).trigger( "wb-init.wb-tabs" );
 		
 		// Symbolize legend
 		symbolizeLegend( geomap );
@@ -1951,7 +1971,7 @@ var selector = ".wb-geomap",
 		mapArray.push( geomap.map );
 
 		// If all geomap instance are loaded, trigger ready.wb-geomap
-		if ( mapArray.length === $( ".wb-geomap" ).length ) {
+		if ( mapArray.length === $( selector ).length ) {
 
 			// Set the alt attributes for images to fix the missing alt
 			// attribute. Need to do it after zoom because each zoom brings
@@ -1967,6 +1987,7 @@ var selector = ".wb-geomap",
 			}, 2000 );
 
 			geomap.map.events.on({ moveend: function() {
+
 				// Every time we zoom/pan we need to put back the alt for OpenLayers tiles
 				$( ".olTileImage" ).attr( "alt", "" );
 			} });
@@ -1976,7 +1997,7 @@ var selector = ".wb-geomap",
 	};
 
 // Bind the init function to the timerpoke event
-$document.on( "timerpoke.wb init.wb-geomap", selector, init );
+$document.on( "timerpoke.wb init" + selector, selector, init );
 				
 // Add the timer poke to initialize the plugin
 wb.add( selector );
