@@ -1,0 +1,388 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:os="http://a9.com/-/spec/opensearch/1.1/"
+ xmlns:as="http://atomserver.org/namespaces/1.0/" xmlns:georss="http://www.georss.org/georss"
+ xmlns:gml="http://www.opengis.net/gml" xml:base="http://geogratis.gc.ca">
+ <as:endIndex>917313</as:endIndex>
+ <os:totalResults>766</os:totalResults>
+ <os:startIndex>0</os:startIndex>
+ <os:itemsPerPage>5</os:itemsPerPage>
+ <link href="/api/en/nrcan-rncan/ess-sst?start-index=917313&amp;max-results=5&amp;q=Moraine"
+  rel="next"/>
+ <link href="/api/en/nrcan-rncan/ess-sst?alt=osdx" rel="search"
+  type="application/opensearchdescription+xml" hreflang="en" title="GeoGratis Product Search"/>
+ <link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine" rel="self"/>
+ <link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=atom" rel="alternate"
+  type="application/atom+xml"/>
+ <link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=html" rel="alternate"
+  type="text/html"/>
+ <link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=phtml" rel="alternate"
+  type="text/phtml"/>
+ <link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=csv" rel="alternate"
+  type="text/csv"/>
+ <link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=xml" rel="alternate"
+  type="application/xml"/>
+ <link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=rss" rel="alternate"
+  type="application/rss+xml"/>
+ <link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=json" rel="alternate"
+  type="application/json"/>
+ <link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=kml" rel="alternate"
+  type="application/vnd.google-earth.kml+xml"/>
+ <link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=nap" rel="alternate"
+  type="application/nap+xml"/>
+ <link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=gcod" rel="alternate"
+  type="application/gcod+xml"/>
+ <link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine&amp;alt=map" rel="alternate"
+  type="application/sitemap+xml"/>
+ <link href="/api/en/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine" rel="alternate" hreflang="en"/>
+ <link href="/api/fr/nrcan-rncan/ess-sst?max-results=5&amp;q=Moraine" rel="alternate" hreflang="fr"/>
+ <author>
+  <name>Natural Resources Canada</name>
+ </author>
+ <title type="text">GeoGratis Product Selection</title>
+ <updated>2012-11-15T23:45:25.000Z</updated>
+ <id>tag:osg.nrcan.gc.ca,2011:v1:ess-sst</id> 
+ <entry>
+  <id>urn:uuid:cd6ed785-763a-58a8-848c-3d78c0a9c3c8</id>
+  <link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml" rel="self"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml/2" rel="edit"/>
+  <as:entryId>cd6ed785-763a-58a8-848c-3d78c0a9c3c8</as:entryId>
+  <as:updateIndex>928625</as:updateIndex>
+  <as:revision>1</as:revision>
+  <updated>2012-11-22T23:45:05.000Z</updated>
+  <published>2012-11-14T06:00:35.796Z</published>
+  <title type="text">Surficial geology of north-central Manitoba</title>
+  <author>
+   <name>Klassen, R W</name>
+  </author>
+  <summary type="text">Abstract not available. These are comprehensive final reports on the geology
+   of specific geographic areas.</summary>
+  <as:locale>en_CA</as:locale>
+  <category scheme="urn:atom:author" term="klassen-r-w" label="Klassen, R W"/>
+  <category scheme="urn:gc:subject" term="permafrost" label="permafrost"/>
+  <category scheme="urn:gc:subject" term="fossils" label="fossils"/>
+  <category scheme="urn:gc:subject" term="stratigraphy" label="stratigraphy"/>
+  <category scheme="urn:gc:subject" term="earth-sciences" label="earth sciences"/>
+  <category scheme="urn:iso:format" term="zip" label="ZIP"/>
+  <category scheme="urn:iso:place" term="manitoba" label="Manitoba"/>
+  <category scheme="urn:iso:place" term="canadian-shield" label="Canadian Shield"/>
+  <category scheme="urn:iso:place" term="hudson-bay-lowlands" label="Hudson Bay Lowlands"/>
+  <category scheme="urn:iso:series" term="geological-survey-of-canada-memoir"
+   label="Geological Survey of Canada, Memoir"/>
+  <category scheme="urn:iso:type" term="documentdigital-documentnumerique"
+   label="documentDigital; documentNumérique"/>
+  <georss:where>
+   <gml:Polygon srsName="EPSG:4326">
+    <gml:exterior>
+     <gml:LinearRing>
+      <gml:posList>52 -102 60 -102 60 -90 52 -90 52 -102</gml:posList>
+     </gml:LinearRing>
+    </gml:exterior>
+   </gml:Polygon>
+  </georss:where>
+  <spatialSort xmlns="georss">
+   <area>0.0</area>
+   <intersectionArea>0.0</intersectionArea>
+   <queryArea>0.0</queryArea>
+   <sortValue>0.0</sortValue>
+  </spatialSort>
+  <link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.atom" rel="alternate"
+   type="application/atom+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.html" rel="alternate"
+   type="text/html"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.phtml"
+   rel="alternate" type="text/phtml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.csv" rel="alternate"
+   type="text/csv"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml" rel="alternate"
+   type="application/xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.rss" rel="alternate"
+   type="application/rss+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.json" rel="alternate"
+   type="application/json"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.kml" rel="alternate"
+   type="application/vnd.google-earth.kml+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.nap" rel="alternate"
+   type="application/nap+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.gcod" rel="alternate"
+   type="application/gcod+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.map" rel="alternate"
+   type="application/sitemap+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml" rel="alternate"
+   hreflang="en"/>
+  <link href="/api/fr/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml" rel="alternate"
+   hreflang="fr"/>
+  <link href="/api/en/nrcan-rncan/ess-sst?alt=osdx" rel="search"
+   type="application/opensearchdescription+xml" title="GeoGratis Product Search"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cd6ed785-763a-58a8-848c-3d78c0a9c3c8.xml" rel="alternate"
+  />
+ </entry>
+ <entry>
+  <id>urn:uuid:c9724666-50b6-5981-a775-c92b144f803a</id>
+  <link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml" rel="self"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml/7" rel="edit"/>
+  <as:entryId>c9724666-50b6-5981-a775-c92b144f803a</as:entryId>
+  <as:updateIndex>928618</as:updateIndex>
+  <as:revision>6</as:revision>
+  <updated>2012-11-21T23:45:08.000Z</updated>
+  <published>2012-01-06T02:24:06.030Z</published>
+  <title type="text">Structural model of the Greater Toronto and Oak Ridges Moraine areas, southern
+   Ontario: Halton Till</title>
+  <author>
+   <name>Russell, H A J; Sharpe, D R; Logan, C</name>
+  </author>
+  <summary type="text">Abstract not available. This series is produced to expedite the release of
+   information by making unedited manuscript material available to the public in advance of formal
+   publication, and to act as a repository for relevant supporting data that are referred to in
+   published reports. Open Files can be maps; reports; voluminous data sets resulting from
+   multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted
+   field and laboratory results. They are all critically reviewed by one specialist. The series is
+   geared towards specialists (mining industry, land-use planning, geoscience students) rather than
+   the general public.</summary>
+  <as:locale>en_CA</as:locale>
+  <category scheme="urn:atom:author" term="russell-h-a-j" label="Russell, H A J"/>
+  <category scheme="urn:atom:author" term="sharpe-d-r" label="Sharpe, D R"/>
+  <category scheme="urn:atom:author" term="logan-c" label="Logan, C"/>
+  <category scheme="urn:gc:subject" term="earth-sciences" label="earth sciences"/>
+  <category scheme="urn:gc:subject" term="topography" label="topography"/>
+  <category scheme="urn:gc:subject" term="groundwater" label="groundwater"/>
+  <category scheme="urn:gc:subject" term="stratigraphy" label="stratigraphy"/>
+  <category scheme="urn:iso:format" term="pdf" label="PDF"/>
+  <category scheme="urn:iso:format" term="jpeg-2000" label="JPEG 2000"/>
+  <category scheme="urn:iso:place" term="ontario" label="Ontario"/>
+  <category scheme="urn:iso:place" term="toronto" label="Toronto"/>
+  <category scheme="urn:iso:place" term="hamilton" label="Hamilton"/>
+  <category scheme="urn:iso:place" term="brampton" label="Brampton"/>
+  <category scheme="urn:iso:place" term="bolton" label="Bolton"/>
+  <category scheme="urn:iso:place" term="markham" label="Markham"/>
+  <category scheme="urn:iso:place" term="oshawa" label="Oshawa"/>
+  <category scheme="urn:iso:place" term="port-hope" label="Port Hope"/>
+  <category scheme="urn:iso:place" term="alliston" label="Alliston"/>
+  <category scheme="urn:iso:place" term="scugog" label="Scugog"/>
+  <category scheme="urn:iso:place" term="new-market" label="New Market"/>
+  <category scheme="urn:iso:place" term="rice-lake" label="Rice Lake"/>
+  <category scheme="urn:iso:place" term="guelph" label="Guelph"/>
+  <category scheme="urn:iso:place" term="beaverton" label="Beaverton"/>
+  <category scheme="urn:iso:place" term="orangeville" label="Orangeville"/>
+  <category scheme="urn:iso:place" term="trenton" label="Trenton"/>
+  <category scheme="urn:iso:series" term="geological-survey-of-canada-open-file"
+   label="Geological Survey of Canada, Open File"/>
+  <category scheme="urn:iso:type" term="mapdigital-cartenumerique"
+   label="mapDigital; carteNumérique"/>
+  <georss:where>
+   <gml:Polygon srsName="EPSG:4326">
+    <gml:exterior>
+     <gml:LinearRing>
+      <gml:posList>43.25 -80 44.5 -80 44.5 -78 43.25 -78 43.25 -80</gml:posList>
+     </gml:LinearRing>
+    </gml:exterior>
+   </gml:Polygon>
+  </georss:where>
+  <spatialSort xmlns="georss">
+   <area>0.0</area>
+   <intersectionArea>0.0</intersectionArea>
+   <queryArea>0.0</queryArea>
+   <sortValue>0.0</sortValue>
+  </spatialSort>
+  <link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.atom" rel="alternate"
+   type="application/atom+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.html" rel="alternate"
+   type="text/html"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.phtml"
+   rel="alternate" type="text/phtml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.csv" rel="alternate"
+   type="text/csv"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml" rel="alternate"
+   type="application/xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.rss" rel="alternate"
+   type="application/rss+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.json" rel="alternate"
+   type="application/json"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.kml" rel="alternate"
+   type="application/vnd.google-earth.kml+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.nap" rel="alternate"
+   type="application/nap+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.gcod" rel="alternate"
+   type="application/gcod+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.map" rel="alternate"
+   type="application/sitemap+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml" rel="alternate"
+   hreflang="en"/>
+  <link href="/api/fr/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml" rel="alternate"
+   hreflang="fr"/>
+  <link href="/api/en/nrcan-rncan/ess-sst?alt=osdx" rel="search"
+   type="application/opensearchdescription+xml" title="GeoGratis Product Search"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/c9724666-50b6-5981-a775-c92b144f803a.xml" rel="alternate"
+  />
+ </entry>
+ <entry>
+  <id>urn:uuid:4e2d8e51-b46a-5f67-baab-f96c84abf7df</id>
+  <link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.xml" rel="self"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.xml/4" rel="edit"/>
+  <as:entryId>4e2d8e51-b46a-5f67-baab-f96c84abf7df</as:entryId>
+  <as:updateIndex>917315</as:updateIndex>
+  <as:revision>3</as:revision>
+  <updated>2012-11-15T23:45:20.000Z</updated>
+  <published>2012-06-01T05:00:42.127Z</published>
+  <title type="text">Eskers around the Keewatin Ice Divide: Northwest Territories and
+   Nunavut</title>
+  <author>
+   <name>Aylsworth, J M; Shilts, W W; Russell, H A J; Pyne, D M</name>
+  </author>
+  <summary type="text">Major esker ridges as mapped by line symbology have been captured digitally
+   for 113 1:250,000 scale NTS map sheets in the Northwest Territories and western mainland Nunavut,
+   formally the districts of Mackenzie and Keewatin. The complete dataset has only been available in
+   a generalized form via the 1:1,000,000 hardcopy release of Aylsworth and Shilts (1989). It is now
+   available in a digital vector format with basic line segment attribution at the original
+   1:250,000 scale. Basic data validation indicates that there are only minor registration issues as
+   compared against 1:250,000 topographic base data from CanVec and NTDB datasets. Comparison of the
+   esker network against more recent, higher resolution esker mapping at 1:125,000 and 1:250,000
+   scale indicates that the esker network captured here represents the long dendritic and
+   subparallel esker classes of Brennand (2000) relatively well, but underestimates the number of
+   isolated short esker segments. The utility of the digital dataset has been demonstrated in its
+   use as a training dataset for a quantitative esker mapping algorithm (Broscoe et al., 2011). It
+   is a comparable dataset to other synoptic digital glacial landform datasets generated in recent
+   years, for example Storrar &amp; Stokes (2007); with the exception that this dataset focuses on
+   one landform element, eskers.</summary>
+  <as:locale>en_CA</as:locale>
+  <category scheme="urn:atom:author" term="aylsworth-j-m" label="Aylsworth, J M"/>
+  <category scheme="urn:atom:author" term="shilts-w-w" label="Shilts, W W"/>
+  <category scheme="urn:atom:author" term="russell-h-a-j" label="Russell, H A J"/>
+  <category scheme="urn:atom:author" term="pyne-d-m" label="Pyne, D M"/>
+  <category scheme="urn:gc:subject" term="earth-sciences" label="earth sciences"/>
+  <category scheme="urn:iso:format" term="zip" label="ZIP"/>
+  <category scheme="urn:iso:place" term="northwest-territories" label="Northwest Territories"/>
+  <category scheme="urn:iso:place" term="nunavut" label="Nunavut"/>
+  <category scheme="urn:iso:series" term="geological-survey-of-canada-open-file"
+   label="Geological Survey of Canada, Open File"/>
+  <category scheme="urn:iso:type" term="documentdigital-documentnumerique"
+   label="documentDigital; documentNumérique"/>
+  <georss:where>
+   <gml:Polygon srsName="EPSG:4326">
+    <gml:exterior>
+     <gml:LinearRing>
+      <gml:posList>60 -121 68 -121 68 -88 60 -88 60 -121</gml:posList>
+     </gml:LinearRing>
+    </gml:exterior>
+   </gml:Polygon>
+  </georss:where>
+  <spatialSort xmlns="georss">
+   <area>0.0</area>
+   <intersectionArea>0.0</intersectionArea>
+   <queryArea>0.0</queryArea>
+   <sortValue>0.0</sortValue>
+  </spatialSort>
+  <link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.atom" rel="alternate"
+   type="application/atom+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.html" rel="alternate"
+   type="text/html"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.phtml"
+   rel="alternate" type="text/phtml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.csv" rel="alternate"
+   type="text/csv"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.xml" rel="alternate"
+   type="application/xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.rss" rel="alternate"
+   type="application/rss+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.json" rel="alternate"
+   type="application/json"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.kml" rel="alternate"
+   type="application/vnd.google-earth.kml+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.nap" rel="alternate"
+   type="application/nap+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.gcod" rel="alternate"
+   type="application/gcod+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.map" rel="alternate"
+   type="application/sitemap+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.xml" rel="alternate"
+   hreflang="en"/>
+  <link href="/api/fr/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.xml" rel="alternate"
+   hreflang="fr"/>
+  <link href="/api/en/nrcan-rncan/ess-sst?alt=osdx" rel="search"
+   type="application/opensearchdescription+xml" title="GeoGratis Product Search"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/4e2d8e51-b46a-5f67-baab-f96c84abf7df.xml" rel="alternate"
+  />
+ </entry>
+ <entry>
+  <id>urn:uuid:cdc35051-64de-5dd6-a371-327aceb8865b</id>
+  <link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.xml" rel="self"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.xml/2" rel="edit"/>
+  <as:entryId>cdc35051-64de-5dd6-a371-327aceb8865b</as:entryId>
+  <as:updateIndex>917313</as:updateIndex>
+  <as:revision>1</as:revision>
+  <updated>2012-11-15T23:45:25.000Z</updated>
+  <published>2012-11-06T06:00:30.827Z</published>
+  <title type="text">Seascapes, Bay of Fundy, offshore Nova Scotia/New Brunswick</title>
+  <author>
+   <name>Shaw, J; Todd, B J; Li, M Z</name>
+  </author>
+  <summary type="text">Abstract not available. This series is produced to expedite the release of
+   information by making unedited manuscript material available to the public in advance of formal
+   publication, and to act as a repository for relevant supporting data that are referred to in
+   published reports. Open Files can be maps; reports; voluminous data sets resulting from
+   multiparameter geophysical and geochemical surveys; consultants' reports; preliminary, unvetted
+   field and laboratory results. They are all critically reviewed by one specialist. The series is
+   geared towards specialists (mining industry, land-use planning, geoscience students) rather than
+   the general public.</summary>
+  <as:locale>en_CA</as:locale>
+  <category scheme="urn:atom:author" term="shaw-j" label="Shaw, J"/>
+  <category scheme="urn:atom:author" term="li-m-z" label="Li, M Z"/>
+  <category scheme="urn:atom:author" term="todd-b-j" label="Todd, B J"/>
+  <category scheme="urn:gc:subject" term="earth-sciences" label="earth sciences"/>
+  <category scheme="urn:gc:subject" term="geophysics" label="geophysics"/>
+  <category scheme="urn:gc:subject" term="ecosystems" label="ecosystems"/>
+  <category scheme="urn:iso:format" term="pdf" label="PDF"/>
+  <category scheme="urn:iso:format" term="jpeg-2000" label="JPEG 2000"/>
+  <category scheme="urn:iso:place" term="eastern-offshore-region" label="Eastern offshore region"/>
+  <category scheme="urn:iso:place" term="bay-of-fundy" label="Bay of Fundy"/>
+  <category scheme="urn:iso:series" term="geological-survey-of-canada-open-file"
+   label="Geological Survey of Canada, Open File"/>
+  <category scheme="urn:iso:type" term="mapdigital-cartenumerique"
+   label="mapDigital; carteNumérique"/>
+  <georss:where>
+   <gml:Polygon srsName="EPSG:4326">
+    <gml:exterior>
+     <gml:LinearRing>
+      <gml:posList>44 -67.25 45.75 -67.25 45.75 -64.083299999999994 44 -64.083299999999994 44
+       -67.25</gml:posList>
+     </gml:LinearRing>
+    </gml:exterior>
+   </gml:Polygon>
+  </georss:where>
+  <spatialSort xmlns="georss">
+   <area>0.0</area>
+   <intersectionArea>0.0</intersectionArea>
+   <queryArea>0.0</queryArea>
+   <sortValue>0.0</sortValue>
+  </spatialSort>
+  <link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.atom" rel="alternate"
+   type="application/atom+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.html" rel="alternate"
+   type="text/html"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.phtml"
+   rel="alternate" type="text/phtml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.csv" rel="alternate"
+   type="text/csv"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.xml" rel="alternate"
+   type="application/xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.rss" rel="alternate"
+   type="application/rss+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.json" rel="alternate"
+   type="application/json"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.kml" rel="alternate"
+   type="application/vnd.google-earth.kml+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.nap" rel="alternate"
+   type="application/nap+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.gcod" rel="alternate"
+   type="application/gcod+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.map" rel="alternate"
+   type="application/sitemap+xml"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.xml" rel="alternate"
+   hreflang="en"/>
+  <link href="/api/fr/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.xml" rel="alternate"
+   hreflang="fr"/>
+  <link href="/api/en/nrcan-rncan/ess-sst?alt=osdx" rel="search"
+   type="application/opensearchdescription+xml" title="GeoGratis Product Search"/>
+  <link href="/api/en/nrcan-rncan/ess-sst/cdc35051-64de-5dd6-a371-327aceb8865b.xml" rel="alternate"
+  />
+ </entry>
+</feed>
