@@ -28,7 +28,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "assemble": "~0.4.7",
+    "assemble": "~0.4.10",
+    "assemble-contrib-i18n": "https://github.com/assemble/assemble-contrib-i18n/tarball/master",
     "csv": "~0.3.6",
     "expect.js": "~0.2.0",
     "grunt": "~0.4.1",
