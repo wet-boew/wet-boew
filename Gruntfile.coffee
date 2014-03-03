@@ -897,10 +897,10 @@ module.exports = (grunt) ->
 
 							# Test to see if the plugin or polyfill has a test file
 							plugins = dir.replace("/dist/demos/", "src/plugins/") + "test.js"
+							polyfills = dir.replace("/dist/demos/", "src/polyfills/") + "test.js"							
+							other = dir.replace("/dist/demos/", "src/other/") + "test.js"
 
-							polyfills = dir.replace("/dist/demos/", "src/polyfills/") + "test.js"
-
-							testFile = if fs.existsSync( plugins ) then plugins else if fs.existsSync( polyfills ) then polyfills else ""
+							testFile = if fs.existsSync( plugins ) then plugins else if fs.existsSync( polyfills ) then polyfills else if fs.existsSync( other ) then other else ""
 
 							if testFile != ""
 
@@ -957,11 +957,13 @@ module.exports = (grunt) ->
 							return fs.existsSync( src + "/test.js" )
 						"src/plugins/**/*.hbs"
 						"src/polyfills/**/*.hbs"
+						"src/other/**/*.hbs"
 					).map( ( src ) ->
 						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
 						src = src.replace( "src/", "dist/")
 						src = src.replace( "plugins/", "demos/" )
 						src = src.replace( "polyfills/", "demos/" )
+						src = src.replace( "other/", "demos/" )
 						src = src.replace( ".hbs", ".html" )
 						return "http://localhost:8000/" + src
 					)
@@ -975,11 +977,13 @@ module.exports = (grunt) ->
 							return fs.existsSync( src + "/test.js" )
 						"src/plugins/**/*.hbs"
 						"src/polyfills/**/*.hbs"
+						"src/other/**/*.hbs"
 					).map( ( src ) ->
 						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
 						src = src.replace( "src/", "dist/")
 						src = src.replace( "plugins/", "demos/" )
 						src = src.replace( "polyfills/", "demos/" )
+						src = src.replace( "other/", "demos/" )
 						src = src.replace( ".hbs", ".html" )
 						return "http://localhost:8000/" + src
 					)
