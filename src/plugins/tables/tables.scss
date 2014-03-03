@@ -17,8 +17,8 @@
 	outline: none;
 }
 
-%tables-float-left {
-	float: left;
+%tables-display-inline-block {
+	display: inline-block;
 }
 
 %tables-float-right {
@@ -118,7 +118,7 @@ table {
 
 // Page length menu
 .dataTables_length {
-	@extend %tables-float-left;
+	@extend %tables-display-inline-block;
 }
 
 // Filter
@@ -134,7 +134,7 @@ table {
 // Table information
 .dataTables_info {
 	@extend %tables-clear-both;
-	@extend %tables-float-left;
+	@extend %tables-display-inline-block;
 }
 
 // Pagination
@@ -148,11 +148,8 @@ table {
 .paginate_enabled_previous,
 .paginate_disabled_next,
 .paginate_enabled_next {
-	height: 19px;
-	float: left;
 	cursor: pointer;
 	color: #111 !important;
-
 	&:active {
 		@extend %tables-outline-none;
 	}
