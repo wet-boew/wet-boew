@@ -14,7 +14,8 @@
  * teardown `after()` for more than one test suite (as is the case below.)
  */
 describe( "Prettify test suite", function() {
-	var spy,
+	var spy, $prettify,
+		$body = wb.doc.find( "body" ),
 		sandbox = sinon.sandbox.create();
 
 	/*
@@ -25,10 +26,17 @@ describe( "Prettify test suite", function() {
 		spy = sandbox.spy( $.prototype, "trigger" );
 
 		// Start the tests once the plugin has been initialized
-		$( ".wb-prettify" ).removeClass( "all-pre" );
 		wb.doc.on( "prettyprint.wb-prettify", function() {
 			done();
 		});
+
+		// Add the test elements
+		$prettify = $( "<span class='wb-prettify lang-css'>" )
+			.appendTo( $body )
+			.trigger( "wb-init.wb-prettify" );
+
+		$body.append( "<pre class='test prettyprint'>" );
+		$body.append( "<pre class='test noprettify'>" );
 	});
 
 	/*
@@ -38,7 +46,8 @@ describe( "Prettify test suite", function() {
 		// Restore the original behaviour of trigger once the tests are finished
 		sandbox.restore();
 
-		// Remove test data from the page
+		// Remove test elements from the page
+		$prettify.remove();
 		$( "pre.test" ).remove();
 	});
 
@@ -47,24 +56,8 @@ describe( "Prettify test suite", function() {
 	 */
 	describe( "init events", function() {
 
-		it( "should have a prettyprint.wb-prettify event", function() {
-			expect( spy.calledWith( "prettyprint.wb-prettify" ) ).to.equal( true );
-		});
-
-		it( "should have been triggered on a .wb-prettify element", function() {
-			var call, elm, i, j, lenCalls, lenElms,
-				isSelector = false;
-
-			// Loop over calls made on the trigger() spy
-			for ( i = 0, lenCalls = spy.callCount; !isSelector && i < lenCalls; i += 1 ) {
-				call = spy.getCall( i );
-				// There may be multiple `this` objects for each call
-				for ( j = 0, lenElms = call.thisValue.length; !isSelector && j < lenElms; j += 1 ) {
-					elm = call.thisValue[ j ];
-					isSelector = elm.className && elm.className.indexOf( "wb-prettify" ) > -1;
-				}
-			}
-			expect( isSelector ).to.equal( true );
+		it( "should have marked the element as initialized", function() {
+			expect( $prettify.hasClass( "wb-prettify-inited" ) ).to.equal( true );
 		});
 
 		it( "should have created a window.prettyPrint function", function() {
@@ -74,6 +67,12 @@ describe( "Prettify test suite", function() {
 		it( "should have added a .prettyprinted CSS class to pre.prettyprint elements", function() {
 			$( "pre.prettyprint" ).each(function() {
 				expect( this.className.indexOf( "prettyprinted" ) ).to.be.greaterThan( -1 );
+			});
+		});
+
+		it( "should not have added a .prettyprinted CSS class to pre elements without a .prettyprint class", function() {
+			$( "pre.noprettify" ).each(function() {
+				expect( this.className.indexOf( "prettyprinted" ) ).to.equal( -1 );
 			});
 		});
 	});
@@ -103,8 +102,8 @@ describe( "Prettify test suite", function() {
 
 		before(function( done ) {
 
-			$( "body" ).append( "<pre class='test'>" );
-			$( ".wb-prettify" )
+			$body.append( "<pre class='test'>" );
+			$prettify
 				.removeClass( "wb-prettify-inited" )
 				.addClass( "lang-sql" )
 				.addClass( "all-pre" )
@@ -139,8 +138,8 @@ describe( "Prettify test suite", function() {
 
 		before(function( done ) {
 
-			$( "body" ).append( "<pre class='test'>" );
-			$( ".wb-prettify" )
+			$body.append( "<pre class='test'>" );
+			$prettify
 				.removeClass( "wb-prettify-inited" )
 				.data({
 					allpre: true,
