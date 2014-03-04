@@ -330,7 +330,10 @@ module.exports = (grunt) ->
 					plugins: ['assemble-contrib-i18n']
 					i18n:
 						languages: "<%= i18n_gspreadsheet.data.locales %>"
-						templates: ['site/pages/theme/*.hbs']
+						templates: [
+							'site/pages/theme/*.hbs',
+							"!site/pages/theme/splashpage*.hbs"
+						]
 				dest:  "dist/unmin/theme/"
 				src: "!*.*"
 			demos:
@@ -358,6 +361,7 @@ module.exports = (grunt) ->
 						src: [
 							"**/*.hbs",
 							"!theme/**/*.hbs"
+							"theme/splashpage*.hbs"
 						]
 						dest: "dist/unmin"
 						expand: true
@@ -373,7 +377,10 @@ module.exports = (grunt) ->
 					plugins: ['assemble-contrib-i18n']
 					i18n:
 						languages: "<%= i18n_gspreadsheet.data.locales %>"
-						templates: ['site/pages/theme/*.hbs']
+						templates: [
+							'site/pages/theme/*.hbs',
+							"!site/pages/theme/splashpage*.hbs"
+						]
 				dest:  "dist/theme/"
 				src: "!*.*"
 
@@ -403,6 +410,7 @@ module.exports = (grunt) ->
 						src: [
 							"**/*.hbs",
 							"!theme/**/*.hbs"
+							"theme/splashpage*.hbs"
 						]
 						dest: "dist"
 						expand: true
