@@ -461,8 +461,7 @@ var selector = ".wb-geomap",
 
 		return $( "<table class='table " + ( datatable ? " wb-tables" : " table-condensed" ) +
 			"' aria-label='" + title + "' id='overlay_" + index + "'>" + "<caption>" +
-			caption + "</caption><thead></thead><tbody></tbody>" +
-			( datatable ? "<tfoot></tfoot></table>" : "</table>" ));
+			caption + "</caption><thead></thead><tbody></tbody>" + "</table>" );
 	},
 
 	/*
@@ -805,11 +804,12 @@ var selector = ".wb-geomap",
 		// Add a row for each feature
 		var $row = $( "<tr>" ),
 			cols = [],
-			$chkBox,
 			attributes = context.feature.attributes,
+			$chkBox, $col, key,
+
+			// Replace periods with underscores for jQuery!
 			featureId = context.feature.id.replace( /\W/g, "_" );
 
-		// Replace periods with underscores for jQuery!
 		if ( context.type !== "head" ) {
 			$row.attr( "id", featureId );
 			$chkBox = $( "<td><label class='wb-inv' for='cb_" + featureId + "'>" +
@@ -818,17 +818,18 @@ var selector = ".wb-geomap",
 			cols.push( $chkBox );
 		}
 
-		$.each( attributes, function( key, value ) {
-			var $col;
+		for ( key in attributes ) {
+			if ( attributes.hasOwnProperty( key ) ) {
 
-			// TODO: add regex to replace text links with hrefs.
-			if ( context.type === "head" ) {
-				$col = $( "<th>" + key + "</th>" );
-			} else {
-				$col = $( "<td>" + value + "</td>" );
+				// TODO: add regex to replace text links with hrefs.
+				if ( context.type === "head" ) {
+					$col = $( "<th>" + key + "</th>" );
+				} else {
+					$col = $( "<td>" + attributes[ key ] + "</td>" );
+				}
+				cols.push( $col );
 			}
-			cols.push( $col );
-		});
+		}
 
 		if ( zoom ) {
 			cols.push( addZoomTo( geomap, context.feature ) );
@@ -857,36 +858,37 @@ var selector = ".wb-geomap",
 				type: "head",
 				feature: evt.features[ 0 ]
 			},
-			$head = createRow( geomap, rowObj ),
-			$foot = createRow( geomap, rowObj ),
-			thSelect = "<th>" + i18nText.select + "</th>",
+			$head = createRow( geomap, rowObj )
+				.prepend( "<th>" + i18nText.select + "</th>" ),
 			$targetTable = $( "#" + $table.attr( "id" ) ),
 			$targetTableBody = $targetTable.find( "tbody" ),
-			thZoom;
-		if ( mapControl && zoom ) {
-			thZoom = "<th>" + i18nText.zoomFeature + "</th>";
-			$head.append( thZoom );
-			$foot.append( thZoom );
-		}
+			features = evt.features,
+			len = features.length,
+			feature, i;
 
-		$head.prepend( thSelect );
-		$foot.prepend( thSelect );
+		if ( mapControl && zoom ) {
+			$head.append( "<th>" + i18nText.zoomFeature + "</th>" );
+		}
 
 		$targetTable
 			.find( "thead" )
 				.append( $head );
-		$targetTable
-			.find( "tfoot" )
-				.append( $foot );
-		$.each( evt.features, function( index, feature ) {
-			var context = {
-				type: "body",
-				id: feature.id.replace( /\W/g, "_" ),
-				feature: feature,
-				selectControl: geomap.selectControl
-			};
-			$targetTableBody.append( createRow( geomap, context, zoom ) );
-		});
+
+		for ( i = 0; i !== len; i += 1 ) {
+			feature = features[ i ];
+			$targetTableBody.append(
+				createRow(
+					geomap,
+					{
+						type: "body",
+						id: feature.id.replace( /\W/g, "_" ),
+						feature: feature,
+						selectControl: geomap.selectControl
+					},
+					zoom
+				)
+			);
+		}
 	},
 
 	/*
@@ -916,7 +918,7 @@ var selector = ".wb-geomap",
 
 		// Find the row
 		var featureId = feature.id.replace( /\W/g, "_" ),
-			$tr = geomap.glayers.find( "tr#" + featureId ),
+			$tr = geomap.glayers.find( "#" + featureId ),
 			$chkBox;
 
 		// Add select checkbox
@@ -1127,9 +1129,10 @@ var selector = ".wb-geomap",
 	 */
 	addOverlayData = function( geomap, opts ) {
 		var overlayData = opts.overlays,
+			overlayDataLen = overlayData.length,
 			olLayer;
-		if ( overlayData.length !== 0 ) {
-			geomap.overlays = overlayData.length;
+		if ( overlayDataLen !== 0 ) {
+			geomap.overlays = overlayDataLen;
 			$.each( overlayData, function( index, layer ) {
 				var layerType = layer.type,
 					layerTitle = layer.title,
@@ -1202,7 +1205,7 @@ var selector = ".wb-geomap",
 								loadstart: function() {
 									geomap.overlaysLoading[ layerTitle ] = true;
 									setTimeout(function() {
-										if (geomap.overlaysLoading[ layerTitle ] ) {
+										if ( geomap.overlaysLoading[ layerTitle ] ) {
 											onLoadEnd( geomap );
 										}
 									}, overlayTimeout );
@@ -1606,7 +1609,7 @@ var selector = ".wb-geomap",
 	*	]
 	*/
 	addTabularData = function( geomap, opts, projLatLon, projMap ) {
-		var $table, table, openLayersTable, attr, theadTfootTr, tableLayer, thElms, thLen,
+		var $table, table, openLayersTable, attr, theadTr, tableLayer, thElms, thLen,
 			trElms, trLen, useMapControls, attrMap, trElmsInd, geomType,
 			vectorFeatures, features, len, feature, script, bbox, wktFeature,
 			feat, vertices, vertLen, lenTable,
@@ -1637,14 +1640,14 @@ var selector = ".wb-geomap",
 				attr[ thLen ] = thElms[ thLen ].innerHTML.replace( thRegex, "" );
 			}
 
-			// If zoomTo add the header and footer column headers
-			theadTfootTr = $table.find( "thead tr, tfoot tr" );
+			// If zoomTo add the header column headers
+			theadTr = $table.find( "thead tr" );
 			if ( openLayersTable.zoom && useMapControls ) {
-				theadTfootTr.append( thZoom );
+				theadTr.append( thZoom );
 			}
 
 			// Add select checkbox
-			theadTfootTr.prepend( thSelect );
+			theadTr.prepend( thSelect );
 
 			// Loop through each row
 			for ( trLen = trElms.length - 1; trLen !== -1; trLen -= 1 ) {
@@ -1727,7 +1730,14 @@ var selector = ".wb-geomap",
 			map = geomap.map,
 			i18nMousePosition = i18nText.mouseposition,
 			i18nScaleLine = i18nText.scaleline,
-			mousePositionDiv, scaleLineDiv, attribHref, attribTxt;
+			useMapControls = opts.useMapControls,
+			tables = opts.tables,
+			tablesLen = tables.length,
+			layers = geomap.queryLayers,
+			layersLen = layers.length,
+			mousePositionDiv, scaleLineDiv, attribHref, attribTxt,
+			table, tableId, layer, features, featuresLen,
+			zoom, i, j, k;
 
 		// TODO: Ensure WCAG compliance before enabling
 		geomap.selectControl = new OpenLayers.Control.SelectFeature(
@@ -1743,23 +1753,28 @@ var selector = ".wb-geomap",
 
 		// Add the select control to every tabular feature.
 		// We need to do this now because the select control needs to be set.
-		$.each( opts.tables, function( indexT, table ) {
-				var tableId = "#" + table.id;
-			$.each( geomap.queryLayers, function( index, layer ) {
+		for ( i = 0; i !== tablesLen; i += 1 ) {
+			table = tables[ i ];
+			tableId = "#" + table.id;
+			zoom = table.zoom;
+			for ( j = 0; j !== layersLen; j += 1 ) {
+				layer = layers[ j ];
 				if ( layer.id === tableId ) {
-					$.each( layer.features, function( index, feature ) {
+					features = layer.features;
+					featuresLen = features.length;
+					for ( k = 0; k !== featuresLen; k += 1 ) {
 						onTabularFeaturesAdded(
 							geomap,
-							feature,
-							opts.tables[ indexT ].zoom,
-							opts.useMapControls
+							features[ k ],
+							zoom,
+							useMapControls
 						);
-					});
+					}
 				}
-			});
-		});
+			}
+		}
 
-		if ( opts.useMapControls ) {
+		if ( useMapControls ) {
 
 			if ( opts.useMousePosition ) {
 				map.addControl( new OpenLayers.Control.MousePosition() );
@@ -1959,9 +1974,10 @@ var selector = ".wb-geomap",
 	},
 
 	refreshPlugins = function( geomap ) {
+		var glayers = geomap.glayers;
 
-		geomap.glayers.find( ".wb-tables" ).trigger( "wb-init.wb-tables" );
-		geomap.glayers.find( ".wb-geomap-tabs" ).trigger( "wb-init.wb-tabs" );
+		glayers.find( ".wb-tables" ).trigger( "wb-init.wb-tables" );
+		glayers.find( ".wb-geomap-tabs" ).trigger( "wb-init.wb-tabs" );
 		
 		// Symbolize legend
 		symbolizeLegend( geomap );
