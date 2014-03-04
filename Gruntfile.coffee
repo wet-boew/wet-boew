@@ -134,9 +134,11 @@ module.exports = (grunt) ->
 		"demos"
 		"INTERNAL: Create unminified demos"
 		[
+			"i18n_gspreadsheet"
 			"copy:demos"
 			"autoprefixer:demos"
 			"csslint:demos"
+			"assemble:theme"
 			"assemble:demos"
 		]
 	)
@@ -148,6 +150,7 @@ module.exports = (grunt) ->
 			"copy:demos_min"
 			"cssmin:demos_min"
 			"uglify:demos"
+			"assemble:theme_min"
 			"assemble:demos_min"
 			"htmlcompressor"
 		]
@@ -318,6 +321,21 @@ module.exports = (grunt) ->
 				partials: "site/includes/**/*.hbs"
 				layout: "default.hbs"
 
+			theme:
+				options:
+					environment:
+						root: "/v4.0-ci/unmin"
+					assets: "dist/unmin"
+					flatten: true,
+					plugins: ['assemble-contrib-i18n']
+					i18n:
+						languages: "<%= i18n_gspreadsheet.data.locales %>"
+						templates: [
+							'site/pages/theme/*.hbs',
+							"!site/pages/theme/splashpage*.hbs"
+						]
+				dest:  "dist/unmin/theme/"
+				src: "!*.*"
 			demos:
 				options:
 					environment:
@@ -340,10 +358,31 @@ module.exports = (grunt) ->
 						dest: "dist/unmin/demos"
 					,
 						cwd: "site/pages"
-						src: "**/*.hbs"
+						src: [
+							"**/*.hbs",
+							"!theme/**/*.hbs"
+							"theme/splashpage*.hbs"
+						]
 						dest: "dist/unmin"
 						expand: true
 				]
+
+			theme_min:
+				options:
+					environment:
+						suffix: ".min"
+						root: "/v4.0-ci"
+					assets: "dist"
+					flatten: true,
+					plugins: ['assemble-contrib-i18n']
+					i18n:
+						languages: "<%= i18n_gspreadsheet.data.locales %>"
+						templates: [
+							'site/pages/theme/*.hbs',
+							"!site/pages/theme/splashpage*.hbs"
+						]
+				dest:  "dist/theme/"
+				src: "!*.*"
 
 			demos_min:
 				options:
@@ -368,7 +407,11 @@ module.exports = (grunt) ->
 						dest: "dist/demos"
 					,
 						cwd: "site/pages"
-						src: "**/*.hbs"
+						src: [
+							"**/*.hbs",
+							"!theme/**/*.hbs"
+							"theme/splashpage*.hbs"
+						]
 						dest: "dist"
 						expand: true
 				]
@@ -947,6 +990,17 @@ module.exports = (grunt) ->
 				csv: "src/i18n/i18n.csv"
 				dest: "dist/unmin/js/i18n/"
 
+		i18n_gspreadsheet:
+			all:
+				options:
+					key_column: 'lang-code'
+					sort_keys: false
+					use_default_on_missing: true
+					output_dir: 'site/data/i18n'
+					ext: '.json'
+					document_key: '0AqLc8VEIumBwdDNud1M2Wi1tb0RUSXJxSGp4eXI0ZXc'
+					worksheet: 2
+
 		mocha:
 			all:
 				options:
@@ -1038,6 +1092,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-contrib-watch"
 	@loadNpmTasks "grunt-gh-pages"
 	@loadNpmTasks "grunt-htmlcompressor"
+	@loadNpmTasks "grunt-i18n-gspreadsheet"
 	@loadNpmTasks "grunt-imagine"
 	@loadNpmTasks "grunt-jscs-checker"
 	@loadNpmTasks "grunt-mocha"
