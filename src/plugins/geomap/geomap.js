@@ -831,7 +831,7 @@ var selector = ".wb-geomap",
 		});
 
 		if ( zoom ) {
-			cols.push( addZoomTo( geomap, $row, context.feature, zoom ) );
+			cols.push( addZoomTo( geomap, context.feature ) );
 		}
 
 		if ( context.type !== "head" ) {
@@ -926,7 +926,7 @@ var selector = ".wb-geomap",
 
 		// Add zoom column
 		if ( mapControl && zoom ) {
-			$tr.append( addZoomTo( geomap, $tr, feature, zoom ) );
+			$tr.append( addZoomTo( geomap, feature ) );
 		}
 
 		$chkBox.on( "change", function() {
@@ -942,22 +942,10 @@ var selector = ".wb-geomap",
 	 *	Add the zoom to column
 	 *
 	 */
-	addZoomTo = function( geomap, row, feature ) {
-		var $val = $( "<td><a href='javascript:;' class='btn btn-default btn-sm' title='" +
-			i18nText.zoomFeature + "'>" + i18nText.zoomFeature + "</a></td>" );
-
-		$val.on( "click", "a", function( event ) {
-			var which = event.which;
-
-			// Ignore middle/right mouse buttons
-			if ( !which || which === 1 ) {
-				event.preventDefault();
-				geomap.map.zoomToExtent( feature.geometry.bounds );
-				geomap.gmap.trigger( "focus.wb" );
-			}
-		});
-
-		return $val;
+	addZoomTo = function( geomap, feature ) {
+		return $( "<td><a href='javascript:;' data-map='" + geomap.mapid +
+			"' data-layer='" + feature.layer.id + "' data-feature='" + feature.id +
+			"' class='btn btn-default btn-sm geomap-zoomto'>" + i18nText.zoomFeature + "</a></td>" );
 	},
 
 	/*
@@ -1958,6 +1946,18 @@ var selector = ".wb-geomap",
 		return map;
 	},
 
+	getMapById = function( mapId ) {
+		var mapArrayItem, len;
+
+		for ( len = mapArray.length - 1; len !== -1; len -= 1 ) {
+			mapArrayItem = mapArray[ len ];
+			if ( mapArrayItem.id === mapId ) {
+				return mapArrayItem;
+			}
+		}
+		return;
+	},
+
 	refreshPlugins = function( geomap ) {
 
 		geomap.glayers.find( ".wb-tables" ).trigger( "wb-init.wb-tables" );
@@ -1998,6 +1998,25 @@ var selector = ".wb-geomap",
 
 // Bind the init function to the timerpoke event
 $document.on( "timerpoke.wb init" + selector, selector, init );
+
+$document.on( "click", ".geomap-zoomto", function( event ) {
+	var which = event.which,
+		target = event.target,
+		mapId, map;
+
+	// Ignore middle/right mouse buttons
+	if ( !which || which === 1 ) {
+		event.preventDefault();
+		mapId = target.getAttribute( "data-map" );
+		map = getMapById( mapId );
+		map.zoomToExtent(
+			map.getLayersBy( "id", target.getAttribute( "data-layer" ) )[ 0 ]
+					.getFeatureById( target.getAttribute( "data-feature" ) )
+						.geometry.bounds
+		);
+		$( "#" + mapId + " .wb-geomap-map" ).trigger( "setfocus.wb" );
+	}
+});
 				
 // Add the timer poke to initialize the plugin
 wb.add( selector );
