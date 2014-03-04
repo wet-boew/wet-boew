@@ -138,6 +138,7 @@ module.exports = (grunt) ->
 			"copy:demos"
 			"autoprefixer:demos"
 			"csslint:demos"
+			"assemble:theme"
 			"assemble:demos"
 		]
 	)
@@ -149,6 +150,7 @@ module.exports = (grunt) ->
 			"copy:demos_min"
 			"cssmin:demos_min"
 			"uglify:demos"
+			"assemble:theme_min"
 			"assemble:demos_min"
 			"htmlcompressor"
 		]
@@ -319,6 +321,18 @@ module.exports = (grunt) ->
 				partials: "site/includes/**/*.hbs"
 				layout: "default.hbs"
 
+			theme:
+				options:
+					environment:
+						root: "/v4.0-ci/unmin"
+					assets: "dist/unmin"
+					flatten: true,
+					plugins: ['assemble-contrib-i18n']
+					i18n:
+						languages: "<%= i18n_gspreadsheet.data.locales %>"
+						templates: ['site/pages/theme/*.hbs']
+				dest:  "dist/unmin/theme/"
+				src: "!*.*"
 			demos:
 				options:
 					environment:
@@ -341,10 +355,27 @@ module.exports = (grunt) ->
 						dest: "dist/unmin/demos"
 					,
 						cwd: "site/pages"
-						src: "**/*.hbs"
+						src: [
+							"**/*.hbs",
+							"!theme/**/*.hbs"
+						]
 						dest: "dist/unmin"
 						expand: true
 				]
+
+			theme_min:
+				options:
+					environment:
+						suffix: ".min"
+						root: "/v4.0-ci"
+					assets: "dist"
+					flatten: true,
+					plugins: ['assemble-contrib-i18n']
+					i18n:
+						languages: "<%= i18n_gspreadsheet.data.locales %>"
+						templates: ['site/pages/theme/*.hbs']
+				dest:  "dist/theme/"
+				src: "!*.*"
 
 			demos_min:
 				options:
@@ -369,7 +400,10 @@ module.exports = (grunt) ->
 						dest: "dist/demos"
 					,
 						cwd: "site/pages"
-						src: "**/*.hbs"
+						src: [
+							"**/*.hbs",
+							"!theme/**/*.hbs"
+						]
 						dest: "dist"
 						expand: true
 				]
@@ -951,10 +985,12 @@ module.exports = (grunt) ->
 		i18n_gspreadsheet:
 			all:
 				options:
-					key_column: 'lang-code',
-					output_dir: 'site/data/i18n',
+					key_column: 'lang-code'
+					sort_keys: false
+					use_default_on_missing: true
+					output_dir: 'site/data/i18n'
 					ext: '.json'
-					document_key: '0AqLc8VEIumBwdDNud1M2Wi1tb0RUSXJxSGp4eXI0ZXc',
+					document_key: '0AqLc8VEIumBwdDNud1M2Wi1tb0RUSXJxSGp4eXI0ZXc'
 					worksheet: 2
 
 		mocha:
