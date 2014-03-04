@@ -5,7 +5,7 @@
  * @author @pjackson28
  */
 /*global wet_boew_geomap: false, OpenLayers: false, proj4: false*/
-(function( $, window, wb ) {
+(function( $, window, document, wb ) {
 "use strict";
 
 var selector = ".wb-geomap",
@@ -527,51 +527,30 @@ var selector = ".wb-geomap",
 		
 		var $featureTable = $( featureTable ),
 			featureTableId = featureTable[ 0 ].id,
-			$fieldset, $ul, $checked, $chkBox, $label, $li;
+			glegend = geomap.glegend,
+			$fieldset, $ul, checked, $chkBox, $label, $li;
 		
 		if ( geomap.glegend ) {
 
 			// If no legend or fieldset add them
-			$fieldset = geomap.glegend.find( "fieldset" );
-			if ($fieldset.length === 0 ) {
-				$fieldset = $( "<fieldset name='legend'><legend class='wb-inv'>" +
-					i18nText.toggleLayer + "</legend></fieldset>" ).appendTo( geomap.glegend );
+			$fieldset = glegend.find( "fieldset" );
+			if ( $fieldset.length === 0 ) {
+				$fieldset = glegend.append( "<fieldset name='legend'><legend class='wb-inv'>" +
+					i18nText.toggleLayer + "</legend></fieldset>" );
 			}
 
-			$checked = enabled ? "checked='checked'" : "";
+			checked = enabled ? "checked='checked'" : "";
 
-			$ul = geomap.glegend.find( "ul" );
+			$ul = glegend.find( "ul" );
 			if ( $ul.length === 0 ) {
 				$ul = $( "<ul class='list-unstyled'></ul>" ).appendTo( $fieldset );
 			}
 
 			// .appendTo( '<div class="geomap-legend-chk"></div>' );
 			$chkBox = $( "<input type='checkbox' id='cb_" + featureTableId +
-				"' value='" + featureTableId + "' " + $checked + " />" );
-			
-			$chkBox.on( "change", function() {
-				var layer = geomap.map.getLayer( olLayerId ),
-					visibility = geomap.glegend.find( "#cb_" + featureTableId ).prop( "checked" ) ? true : false,
-					$table = geomap.glayers.find( "#" + featureTableId ),
-					$parent = $table.parent(),
-					$alert;
-				layer.setVisibility( visibility );
-
-				if ( !$parent.hasClass( "dataTables_wrapper" ) ) {
-					$parent = $table;
-				}
-				
-				$alert = $( "#msg_" + featureTableId );
-
-				if ( $alert.length !== 0 ) {
-					$alert.fadeToggle();
-				} else {
-					$parent.after( "<div id='msg_" + featureTableId + "'><p>" +
-									i18nText.hiddenLayer + "</p></div>" );
-				}
-
-				$parent.css( "display", ( visibility ? "table" : "none" ) );
-			});
+				"' class='geomap-lgnd-cbx' value='" + featureTableId +
+				"' " + checked + " data-map='" + geomap.mapid +
+					"' data-layer='" + olLayerId + "' />" );
 
 			$label = $( "<label>", {
 				"for": "cb_" + featureTableId,
@@ -799,54 +778,44 @@ var selector = ".wb-geomap",
 	 *
 	 * TODO: provide for an array of configured table columns.
 	 */
-	createRow = function( geomap, context, zoom ) {
+	createRow = function( geomap, context, zoom, mapControl ) {
 
 		// Add a row for each feature
-		var $row = $( "<tr>" ),
-			cols = [],
-			attributes = context.feature.attributes,
-			$chkBox, $col, key,
+		var feature = context.feature,
+			attributes = feature.attributes,
+			isHead = context.type === "head",
+			row, key,
 
 			// Replace periods with underscores for jQuery!
-			featureId = context.feature.id.replace( /\W/g, "_" );
+			featureId = feature.id.replace( /\W/g, "_" );
 
-		if ( context.type !== "head" ) {
-			$row.attr( "id", featureId );
-			$chkBox = $( "<td><label class='wb-inv' for='cb_" + featureId + "'>" +
-				i18nText.labelSelect + "</label><input type='checkbox' id='cb_" +
-				featureId + "'/></td>" );
-			cols.push( $chkBox );
+		if ( isHead ) {
+			row = "<tr><th>" + i18nText.select + "</th>";
+		} else {
+			row = "<tr id='featureId'>" + addChkBox( geomap, feature, featureId );
 		}
 
 		for ( key in attributes ) {
 			if ( attributes.hasOwnProperty( key ) ) {
 
 				// TODO: add regex to replace text links with hrefs.
-				if ( context.type === "head" ) {
-					$col = $( "<th>" + key + "</th>" );
+				if ( isHead ) {
+					row += "<th>" + key + "</th>";
 				} else {
-					$col = $( "<td>" + attributes[ key ] + "</td>" );
+					row += "<td>" + attributes[ key ] + "</td>";
 				}
-				cols.push( $col );
 			}
 		}
 
 		if ( zoom ) {
-			cols.push( addZoomTo( geomap, context.feature ) );
+			if ( !isHead ) {
+				row += addZoomTo( geomap, context.feature );
+			} else if ( mapControl ) {
+				row += "<th>" + i18nText.zoomFeature + "</th>";
+			}
 		}
 
-		if ( context.type !== "head" ) {
-			$chkBox.on( "change", function() {
-				if ( !$( "#cb_" + featureId ).prop( "checked" ) ) {
-					geomap.selectControl.unselect( context.feature );
-				} else {
-					onFeatureClick( context.feature );
-				}
-			});
-		}
-		$row.append( cols );
-
-		return $row;
+		return row + "</tr>";
 	},
 
 	/*
@@ -858,35 +827,30 @@ var selector = ".wb-geomap",
 				type: "head",
 				feature: evt.features[ 0 ]
 			},
-			$head = createRow( geomap, rowObj )
-				.prepend( "<th>" + i18nText.select + "</th>" ),
-			$targetTable = $( "#" + $table.attr( "id" ) ),
-			$targetTableBody = $targetTable.find( "tbody" ),
+			targetTable = document.getElementById( $table.attr( "id" ) ),
+			targetTableBody = targetTable.getElementsByTagName( "tbody" )[ 0 ],
+			selectControl = geomap.selectControl,
 			features = evt.features,
 			len = features.length,
+			geoRegex = /\W/g,
 			feature, i;
 
-		if ( mapControl && zoom ) {
-			$head.append( "<th>" + i18nText.zoomFeature + "</th>" );
-		}
-
-		$targetTable
-			.find( "thead" )
-				.append( $head );
+		targetTable
+			.getElementsByTagName( "thead" )[ 0 ]
+				.innerHTML = createRow( geomap, rowObj, zoom, mapControl );
 
 		for ( i = 0; i !== len; i += 1 ) {
 			feature = features[ i ];
-			$targetTableBody.append(
-				createRow(
-					geomap,
-					{
-						type: "body",
-						id: feature.id.replace( /\W/g, "_" ),
-						feature: feature,
-						selectControl: geomap.selectControl
-					},
-					zoom
-				)
+			targetTableBody.innerHTML += createRow(
+				geomap,
+				{
+					type: "body",
+					id: feature.id.replace( geoRegex, "_" ),
+					feature: feature,
+					selectControl: selectControl
+				},
+				zoom,
+				mapControl
 			);
 		}
 	},
@@ -918,36 +882,33 @@ var selector = ".wb-geomap",
 
 		// Find the row
 		var featureId = feature.id.replace( /\W/g, "_" ),
-			$tr = geomap.glayers.find( "#" + featureId ),
-			$chkBox;
+			tr = document.getElementById( featureId );
 
-		// Add select checkbox
-		$chkBox = $( "<td><label class='wb-inv' for='cb_" + featureId + "'>" + i18nText.labelSelect +
-			"</label><input type='checkbox' id='cb_" + featureId + "'/></td>" );
-		$tr.prepend( $chkBox );
-
-		// Add zoom column
-		if ( mapControl && zoom ) {
-			$tr.append( addZoomTo( geomap, feature ) );
-		}
-
-		$chkBox.on( "change", function() {
-			if ( !$( "#cb_" + featureId ).prop( "checked" ) ) {
-				geomap.selectControl.unselect( feature );
-			} else {
-				onFeatureClick( feature );
-			}
-		});
+		// Add select checkbox and zoom column
+		tr.innerHTML = addChkBox( geomap, feature, featureId ) + tr.innerHTML +
+				( mapControl && zoom ? addZoomTo( geomap, feature ) : "" );
 	},
 
 	/*
-	 *	Add the zoom to column
+	 *	Add the checkbox to the column
+	 *
+	 */
+	 addChkBox = function( geomap, feature, featureId ) {
+		return "<td><label class='wb-inv' for='cb_" + featureId + "'>" +
+					i18nText.labelSelect + "</label><input type='checkbox' id='cb_" +
+					featureId + "' class='geomap-cbx' data-map='" + geomap.mapid +
+					"' data-layer='" + feature.layer.id + "' data-feature='" +
+					feature.id + "' /></td>";
+	 },
+	
+	/*
+	 *	Add the zoom to the column
 	 *
 	 */
 	addZoomTo = function( geomap, feature ) {
-		return $( "<td><a href='javascript:;' data-map='" + geomap.mapid +
+		return "<td><a href='javascript:;' data-map='" + geomap.mapid +
 			"' data-layer='" + feature.layer.id + "' data-feature='" + feature.id +
-			"' class='btn btn-default btn-sm geomap-zoomto'>" + i18nText.zoomFeature + "</a></td>" );
+			"' class='btn btn-default btn-sm geomap-zoomto'>" + i18nText.zoomFeature + "</a></td>";
 	},
 
 	/*
@@ -1847,13 +1808,6 @@ var selector = ".wb-geomap",
 
 		// Zoom to the maximum extent specified
 		map.zoomToMaxExtent();
-
-		// Update the map when the window is resized
-		$document.on( "window-resize-width.wb window-resize-height.wb", function() {
-			$mapDiv.height( $mapDiv.width() * 0.8 );
-			map.updateSize();
-			map.zoomToMaxExtent();
-		});
 	},
 	
 	// Construct a polygon and densify the latitudes to show the curvature	
@@ -2015,6 +1969,7 @@ var selector = ".wb-geomap",
 // Bind the init function to the timerpoke event
 $document.on( "timerpoke.wb init" + selector, selector, init );
 
+// Handle the Zoom to button events
 $document.on( "click", ".geomap-zoomto", function( event ) {
 	var which = event.which,
 		target = event.target,
@@ -2026,15 +1981,73 @@ $document.on( "click", ".geomap-zoomto", function( event ) {
 		mapId = target.getAttribute( "data-map" );
 		map = getMapById( mapId );
 		map.zoomToExtent(
-			map.getLayersBy( "id", target.getAttribute( "data-layer" ) )[ 0 ]
+			map.getLayer( target.getAttribute( "data-layer" ) )
 					.getFeatureById( target.getAttribute( "data-feature" ) )
 						.geometry.bounds
 		);
 		$( "#" + mapId + " .wb-geomap-map" ).trigger( "setfocus.wb" );
 	}
 });
+
+// Update the map when the window is resized
+$document.on( "window-resize-width.wb window-resize-height.wb", function() {
+	var maps = getMap(),
+		len = maps.length,
+		$mapDiv, map, i;
+
+	for ( i = 0; i !== len; i += 1 ) {
+		map = maps[ i ];
+		$mapDiv = $( map.div );
+		$mapDiv.height( $mapDiv.width() * 0.8 );
+		map.updateSize();
+		map.zoomToMaxExtent();
+	}
+});
+
+// Handle clicking of checkboxes within the tables
+$document.on( "change", ".geomap-cbx", function( event ) {
+	var target = event.target,
+		map = getMapById( target.getAttribute( "data-map" ) ),
+		feature = map.getLayer( target.getAttribute( "data-layer" ) )
+					.getFeatureById( target.getAttribute( "data-feature" ) );
+
+	if ( target.checked ) {
+		onFeatureClick( feature );
+	} else {
+		geomap.selectControl.unselect( feature );
+	}
+});
+
+// Handle clicks to the legend checkboxes
+$document.on( "change", ".geomap-lgnd-cbx", function( event ) {
+	var target = event.target,
+		map = getMapById( target.getAttribute( "data-map" ) ),
+		layer = map.getLayer( target.getAttribute( "data-layer" ) ),
+		featureTableId = target.value,
+		visibility = document.getElementById( "cb_" + featureTableId ).checked,
+		$table = geomap.glayers.find( "#" + featureTableId ),
+		$parent = $table.parent(),
+		$alert;
+
+	layer.setVisibility( visibility );
+
+	if ( !$parent.hasClass( "dataTables_wrapper" ) ) {
+		$parent = $table;
+	}
+	
+	$alert = $( "#msg_" + featureTableId );
+
+	if ( $alert.length !== 0 ) {
+		$alert.fadeToggle();
+	} else {
+		$parent.after( "<div id='msg_" + featureTableId + "'><p>" +
+							i18nText.hiddenLayer + "</p></div>" );
+	}
+
+	$parent.css( "display", ( visibility ? "table" : "none" ) );
+});
 				
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+})( jQuery, window, document, wb );
