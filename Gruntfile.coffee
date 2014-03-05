@@ -78,6 +78,7 @@ module.exports = (grunt) ->
 		"Only needed when the repo is first cloned"
 		[
 			"modernizr"
+			"i18n_gspreadsheet"
 		]
 	)
 
@@ -135,7 +136,6 @@ module.exports = (grunt) ->
 		"demos"
 		"INTERNAL: Create unminified demos"
 		[
-			"i18n_gspreadsheet"
 			"copy:demos"
 			"autoprefixer:demos"
 			"csslint:demos"
@@ -197,6 +197,15 @@ module.exports = (grunt) ->
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n *\n */"
 		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
 		glyphiconsBanner: "/*!\n * GLYPHICONS Halflings for Twitter Bootstrap by GLYPHICONS.com | Licensed under http://www.apache.org/licenses/LICENSE-2.0\n */"
+
+		locales: grunt.file.expand(
+					filter: ( src ) ->
+						return true
+					"site/data/i18n/*.json"
+					).map( ( src ) ->
+						src = src.replace( "site/data/i18n/", "")
+						return src.replace( ".json", "" )
+					)
 
 		# Task configuration.
 		concat:
@@ -328,15 +337,16 @@ module.exports = (grunt) ->
 						root: "/v4.0-ci/unmin"
 					assets: "dist/unmin"
 					flatten: true,
-					plugins: ['assemble-contrib-i18n']
+					plugins: ["assemble-contrib-i18n"]
 					i18n:
-						languages: "<%= i18n_gspreadsheet.data.locales %>"
+						languages: "<%= locales %>"
 						templates: [
-							'site/pages/theme/*.hbs',
+							"site/pages/theme/*.hbs"
 							"!site/pages/theme/splashpage*.hbs"
 						]
-				dest:  "dist/unmin/theme/"
+				dest: "dist/unmin/theme/"
 				src: "!*.*"
+
 			demos:
 				options:
 					environment:
@@ -377,7 +387,7 @@ module.exports = (grunt) ->
 					flatten: true,
 					plugins: ['assemble-contrib-i18n']
 					i18n:
-						languages: "<%= i18n_gspreadsheet.data.locales %>"
+						languages: "<%= locales %>"
 						templates: [
 							'site/pages/theme/*.hbs',
 							"!site/pages/theme/splashpage*.hbs"
