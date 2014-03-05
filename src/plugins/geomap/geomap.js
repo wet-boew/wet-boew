@@ -14,6 +14,7 @@ var selector = ".wb-geomap",
 	// timeout for overlay loading in milliseconds
 	overlayTimeout = 2000,
 	uniqueId = 0,
+	colourIndex = 0,
 	mapArray = [],
 	debug = false,
 	selectedFeature, geomap, i18n, i18nText,
@@ -457,19 +458,6 @@ var selector = ".wb-geomap",
 	},
 
 	/*
-	 * Random Color Generator
-	 */
-	randomColor = function() {
-		var letters = "0123456789ABCDEF".split( "" ),
-			color = "#",
-			i;
-		for ( i = 0; i !== 6; i += 1 ) {
-			color += letters[ Math.round( Math.random() * 15 ) ];
-		}
-		return color;
-	},
-
-	/*
 	 * Add layer data
 	 */
 	addLayerData = function( geomap, featureTable, enabled, olLayerId, tab ) {
@@ -538,7 +526,6 @@ var selector = ".wb-geomap",
 				$ul = $( "<ul class='list-unstyled'></ul>" ).appendTo( $fieldset );
 			}
 
-			// .appendTo( '<div class="geomap-legend-chk"></div>' );
 			$chkBox = $( "<input type='checkbox' id='cb_" + featureTableId +
 				"' class='geomap-lgnd-cbx' value='" + featureTableId +
 				"' " + checked + " data-map='" + geomap.mapid +
@@ -688,7 +675,7 @@ var selector = ".wb-geomap",
 	getStyleMap = function( elm ) {
 		var styleMap, filterPrefs, rules, rule, i, len, style, styleType,
 			stylePrefs, styleRule, styleSelect, ruleFilter,
-			strokeColor = randomColor(),
+			strokeColor = wb.drawColours[ colourIndex ],
 			fillColor = strokeColor,
 			defaultStyle = {
 				strokeColor: strokeColor,
@@ -704,6 +691,12 @@ var selector = ".wb-geomap",
 				strokeWidth: 2.0
 			},
 			elmStyle = elm.style;
+
+		// Increment the colour index
+		colourIndex += 1;
+		if ( colourIndex === wb.drawColours.length ) {
+			colourIndex = 0;
+		}
 
 		// If style is supplied, create it. If not, create the default one.
 		if ( elmStyle ) {
@@ -1789,12 +1782,12 @@ var selector = ".wb-geomap",
 	},
 	
 	// Construct a polygon and densify the latitudes to show the curvature	
-	densifyBBox = function( minx, miny, maxx, maxy ) {
+	densifyBBox = function( minX, minY, maxX, maxY ) {
 		
-		var left = parseFloat( minx ),
-			bottom = parseFloat( miny ),
-			right = parseFloat( maxx ),
-			top = parseFloat( maxy ),
+		var left = parseFloat( minX ),
+			bottom = parseFloat( minY ),
+			right = parseFloat( maxX ),
+			top = parseFloat( maxY ),
 			newbounds = [ ],
 			j;
 		
@@ -1806,13 +1799,13 @@ var selector = ".wb-geomap",
 	
 		// If default BBOX, make it fit in view showing Canada and not the world.
 		if ( left === -180.0 ) {
-			left = -179.9;
+			left += 0.1;
 		}
 		if ( right === 180.0 ) {
 			right = -5.0;
 		}
 		if ( top === 90.0 ) {
-			top = 87.0;
+			top -= 3;
 		}
 		if ( bottom === -90.0 ) {
 			bottom = 35.0;
@@ -2015,15 +2008,13 @@ $document.on( "change", ".geomap-lgnd-cbx", function( event ) {
 		visibility = document.getElementById( "cb_" + featureTableId ).checked,
 		$table = geomap.glayers.find( "#" + featureTableId ),
 		$parent = $table.parent(),
-		$alert;
+		$alert = $( "#msg_" + featureTableId );
 
 	layer.setVisibility( visibility );
 
 	if ( !$parent.hasClass( "dataTables_wrapper" ) ) {
 		$parent = $table;
 	}
-	
-	$alert = $( "#msg_" + featureTableId );
 
 	if ( $alert.length !== 0 ) {
 		$alert.fadeToggle();
