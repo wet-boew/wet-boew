@@ -157,6 +157,23 @@ var getUrlParts = function( url ) {
 
 		resizeEvents: "xxsmallview.wb xsmallview.wb smallview.wb mediumview.wb largeview.wb xlargeview.wb",
 
+		// For Charts and Geomap
+		drawColours: [
+			"#8d201c",
+			"#EE8310",
+			"#2a7da6",
+			"#5a306b",
+			"#285228",
+			"#154055",
+			"#555555",
+			"#f6d200",
+			"#d73d38",
+			"#418541",
+			"#87aec9",
+			"#23447e",
+			"#999999"
+		],
+
 		// Add a selector to be targeted by timerpoke
 		add: function( selector ) {
 			var exists = false,

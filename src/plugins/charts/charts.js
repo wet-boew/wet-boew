@@ -51,21 +51,7 @@
 				flot: {
 					prefix: "wb-charts-",
 					defaults: {
-						colors: [
-							"#8d201c",
-							"#EE8310",
-							"#2a7da6",
-							"#5a306b",
-							"#285228",
-							"#154055",
-							"#555555",
-							"#f6d200",
-							"#d73d38",
-							"#418541",
-							"#87aec9",
-							"#23447e",
-							"#999999"
-						],
+						colors: wb.drawColours,
 						canvas: true
 					},
 					line: { },
