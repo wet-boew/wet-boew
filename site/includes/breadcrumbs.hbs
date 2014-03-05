@@ -37,9 +37,15 @@
 				<a href="{{assets}}/demos/index-{{language}}.html">{{#i18n "tmpl-work-examples"}}{{/i18n}}</a>
 			</li>
 		{{#is breadcrumb3 "true"}}
-			<li>
-				<a href="{{assets}}/demos/{{tag}}/index-{{language}}.html">{{breadcrumb3-title}}</a>
-			</li>
+			{{#contains tag "theme-wet-boew"}}
+				<li>
+					<a href="{{assets}}/theme/index-{{language}}.html">{{breadcrumb3-title}}</a>
+				</li>
+			{{else}}
+				<li>
+					<a href="{{assets}}/demos/{{tag}}/index-{{language}}.html">{{breadcrumb3-title}}</a>
+				</li>
+			{{/contains}}
 		{{/is}}
 	{{/contains}}
 {{/contains}}
