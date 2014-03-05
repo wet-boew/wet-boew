@@ -294,13 +294,14 @@ var selector = ".wb-geomap",
 	 *	Map feature unselect
 	 */
 	onFeatureUnselect = function( feature ) {
-		var featureId = feature.id.replace( /\W/g, "_" );
+		var featureId = feature.id.replace( /\W/g, "_" ),
+			popup = feature.popup;
 		$( "#" + featureId ).removeClass( "background-highlight" );
 		$( "#cb_" + featureId ).prop( "checked", false );
 
 		// If there is a popup attached, hide it.
-		if ( feature.popup && feature.popup.visible() ) {
-			feature.popup.hide();
+		if ( popup && popup.visible() ) {
+			popup.hide();
 		}
 	},
 
@@ -318,13 +319,12 @@ var selector = ".wb-geomap",
 			if ( feature.layer.popups ) {
 
 				// If a popup is already shown, hide it
-				if ( selectedFeature && selectedFeature.popup !== null && selectedFeature.popup.visible() ) {
+				if ( selectedFeature && selectedFeature.popup && selectedFeature.popup.visible() ) {
 					selectedFeature.popup.hide();
 				}
 
 				// If no popup, create it, otherwise show it.
-				selectedFeature = feature;
-				if ( feature.popup === null ) {
+				if ( !feature.popup ) {
 					createPopup( feature );
 				} else {
 					feature.popup.toggle();
@@ -396,22 +396,14 @@ var selector = ".wb-geomap",
 		// add wb-icon class
 		icon = document.createElement( "span" );
 		icon.className = "glyphicon glyphicon-remove-circle close_" + featureid;
+		icon.setAttribute( "data-map", geomap.mapid );
+		icon.setAttribute( "data-layer", feature.layer.id );
+		icon.setAttribute( "data-feature", feature.id );
 		icon.setAttribute( "aria-label", buttonText );
 		icon.setAttribute( "title", buttonText );
 		icon.setAttribute( "role", "button" );
 		icon.setAttribute( "tabindex", "0" );
 		feature.popup.closeDiv.appendChild( icon );
-
-		$( ".close_" + featureid ).on( "keydown click", function( event ) {
-			var which = event.which;
-			if ( event.type === "keydown" ) {
-				if ( which === 13 ) {
-					feature.popup.hide();
-				}
-			} else if ( !which || which === 1 ) {
-				feature.layer.map.getControlsByClass( "OpenLayers.Control.SelectFeature" )[ 0 ].unselect( selectedFeature );
-			}
-		});
 	},
 
 	/*
@@ -590,11 +582,10 @@ var selector = ".wb-geomap",
 							rule = style.rules[ j ];
 							filter = rule.filter;
 							filterType = filter.type;
-							symbolizer = rule.symbolizer;
-
 							if ( filterType === "==" ) {
 								filterType = colon;
 							}
+							symbolizer = rule.symbolizer;
 
 							symbolText += "<li class='margin-bottom-medium'>" +
 								filter.property + " " + (
@@ -1754,23 +1745,10 @@ var selector = ".wb-geomap",
 			map.addControl( new OpenLayers.Control.KeyboardDefaults() );
 			map.getControlsByClass( "OpenLayers.Control.KeyboardDefaults" )[ 0 ].deactivate();
 
-			// Enable the keyboard navigation when map div has focus. Disable when blur
-			// Enable the wheel zoom only on hover
-			$mapDiv.attr( "tabindex", "0" ).on( "mouseenter mouseleave focusin focusout", function( event ) {
-				var type = event.type,
-					keyboardDefaults = "OpenLayers.Control.KeyboardDefaults",
-					navigation = "OpenLayers.Control.Navigation";
-				if ( type === "mouseenter" || type === "focusin" ) {
-					if ( this.className.indexOf( "active" ) === -1 ) {
-						map.getControlsByClass( keyboardDefaults )[ 0 ].activate();
-						map.getControlsByClass( navigation )[ 0 ].activate();
-						$( this ).addClass( "active" );
-					}
-				} else if ( this.className.indexOf( "active" ) !== -1 ) {
-					map.getControlsByClass( navigation )[ 0 ].deactivate();
-					map.getControlsByClass( keyboardDefaults )[ 0 ].deactivate();
-					$( this ).removeClass( "active" );
-				}
+			// Add the map div to the tabbing order
+			$mapDiv.attr({
+				tabindex: "0",
+				"data-map": geomap.mapid
 			});
 
 			// Add pan zoom bar
@@ -1956,14 +1934,27 @@ var selector = ".wb-geomap",
 				$( ".olTileImage" ).attr( "alt", "" );
 			}, 2000 );
 
-			geomap.map.events.on({ moveend: function() {
+			geomap.map.events.on({
+				moveend: function() {
 
-				// Every time we zoom/pan we need to put back the alt for OpenLayers tiles
-				$( ".olTileImage" ).attr( "alt", "" );
-			} });
+					// Every time we zoom/pan we need to put back the alt for OpenLayers tiles
+					$( ".olTileImage" ).attr( "alt", "" );
+				}
+			});
 			
 			wb.doc.trigger( "geomap.ready", [ getMap() ]);
 		}
+	},
+
+	// Retrieve the map, layer and feature using data attributes on an element
+	getMapLayerFeature = function( elm ) {
+		var map = getMapById( elm.getAttribute( "data-map" ) ),
+			layer = map.getLayer( elm.getAttribute( "data-layer" ) );
+		return [
+			map,
+			layer,
+			layer.getFeatureById( elm.getAttribute( "data-feature" ) )
+		];
 	};
 
 // Bind the init function to the timerpoke event
@@ -1973,43 +1964,41 @@ $document.on( "timerpoke.wb init" + selector, selector, init );
 $document.on( "click", ".geomap-zoomto", function( event ) {
 	var which = event.which,
 		target = event.target,
-		mapId, map;
+		mapId, mapLayerFeature;
 
 	// Ignore middle/right mouse buttons
 	if ( !which || which === 1 ) {
 		event.preventDefault();
 		mapId = target.getAttribute( "data-map" );
-		map = getMapById( mapId );
-		map.zoomToExtent(
-			map.getLayer( target.getAttribute( "data-layer" ) )
-					.getFeatureById( target.getAttribute( "data-feature" ) )
-						.geometry.bounds
+		mapLayerFeature = getMapLayerFeature( target );
+		mapLayerFeature[ 0 ].zoomToExtent(
+			mapLayerFeature[ 2 ].geometry.bounds
 		);
 		$( "#" + mapId + " .wb-geomap-map" ).trigger( "setfocus.wb" );
 	}
 });
 
 // Update the map when the window is resized
-$document.on( "window-resize-width.wb window-resize-height.wb", function() {
-	var maps = getMap(),
-		len = maps.length,
-		$mapDiv, map, i;
-
-	for ( i = 0; i !== len; i += 1 ) {
-		map = maps[ i ];
-		$mapDiv = $( map.div );
-		$mapDiv.height( $mapDiv.width() * 0.8 );
-		map.updateSize();
-		map.zoomToMaxExtent();
+$document.on( wb.resizeEvents, function() {
+	if ( mapArray.length !== 0 ) {
+		var maps = getMap(),
+			mapId, map, $mapDiv;
+		for ( mapId in maps ) {
+			if ( maps.hasOwnProperty( mapId ) ) {
+				map = maps[ mapId ];
+				$mapDiv = $( map.div );
+				$mapDiv.height( $mapDiv.width() * 0.8 );
+				map.updateSize();
+				map.zoomToMaxExtent();
+			}
+		}
 	}
 });
 
 // Handle clicking of checkboxes within the tables
 $document.on( "change", ".geomap-cbx", function( event ) {
 	var target = event.target,
-		map = getMapById( target.getAttribute( "data-map" ) ),
-		feature = map.getLayer( target.getAttribute( "data-layer" ) )
-					.getFeatureById( target.getAttribute( "data-feature" ) );
+		feature = getMapLayerFeature( target )[ 2 ];
 
 	if ( target.checked ) {
 		onFeatureClick( feature );
@@ -2021,8 +2010,7 @@ $document.on( "change", ".geomap-cbx", function( event ) {
 // Handle clicks to the legend checkboxes
 $document.on( "change", ".geomap-lgnd-cbx", function( event ) {
 	var target = event.target,
-		map = getMapById( target.getAttribute( "data-map" ) ),
-		layer = map.getLayer( target.getAttribute( "data-layer" ) ),
+		layer = getMapLayerFeature( target )[ 1 ],
 		featureTableId = target.value,
 		visibility = document.getElementById( "cb_" + featureTableId ).checked,
 		$table = geomap.glayers.find( "#" + featureTableId ),
@@ -2045,6 +2033,46 @@ $document.on( "change", ".geomap-lgnd-cbx", function( event ) {
 	}
 
 	$parent.css( "display", ( visibility ? "table" : "none" ) );
+});
+
+// Enable the keyboard navigation when map div has focus. Disable when blur
+// Enable the wheel zoom only on hover
+$document.on( "mouseenter mouseleave focusin focusout", ".wb-geomap-map", function( event ) {
+	var type = event.type,
+		target = event.currentTarget,
+		map = getMapById( target.getAttribute( "data-map" ) ),
+		keyboardDefaults = "OpenLayers.Control.KeyboardDefaults",
+		navigation = "OpenLayers.Control.Navigation",
+		isActive;
+
+	if ( map ) {
+		isActive = target.className.indexOf( "active" );
+		if ( type === "mouseenter" || type === "focusin" ) {
+			if ( !isActive ) {
+				map.getControlsByClass( keyboardDefaults )[ 0 ].activate();
+				map.getControlsByClass( navigation )[ 0 ].activate();
+				$( target ).addClass( "active" );
+			}
+		} else if ( isActive ) {
+			map.getControlsByClass( navigation )[ 0 ].deactivate();
+			map.getControlsByClass( keyboardDefaults )[ 0 ].deactivate();
+			$( target ).removeClass( "active" );
+		}
+	}
+});
+
+$document.on( "keydown click", ".olPopupCloseBox span", function( event ) {
+	var which = event.which,
+		target = event.currentTarget;
+	if ( event.type === "keydown" ) {
+		if ( which === 13 ) {
+			getMapLayerFeature( target )[ 2 ].popup.hide();
+		}
+	} else if ( !which || which === 1 ) {
+		getMapById( target.getAttribute( "data-map" ) )
+			.getControlsByClass( "OpenLayers.Control.SelectFeature" )[ 0 ]
+				.unselect( selectedFeature );
+	}
 });
 				
 // Add the timer poke to initialize the plugin
