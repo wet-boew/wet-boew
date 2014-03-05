@@ -102,6 +102,7 @@ module.exports = (grunt) ->
 			"concat:i18n"
 			"uglify:polyfills"
 			"uglify:core"
+			"uglify:coreIE8"
 			"uglify:i18n"
 			"uglify:deps"
 		]
@@ -597,10 +598,27 @@ module.exports = (grunt) ->
 					preserveComments: (uglify,comment) ->
 						return comment.value.match(/^!/i)
 				cwd: "dist/unmin/js/"
-				src: [ "*wet-boew*.js" ]
+				src: [
+					"*wet-boew*.js"
+					"!ie*.js"
+				]
 				dest: "dist/js/"
 				ext: ".min.js"
 				expand: true
+
+			coreIE8:
+				options:
+					beautify:
+						quote_keys: true
+						ascii_only: true
+					preserveComments: (uglify,comment) ->
+						return comment.value.match(/^!/i)
+				cwd: "dist/unmin/js/"
+				src: [ "ie8*.js" ]
+				dest: "dist/js/"
+				ext: ".min.js"
+				expand: true
+
 
 			i18n:
 				options:
@@ -940,7 +958,7 @@ module.exports = (grunt) ->
 
 							# Test to see if the plugin or polyfill has a test file
 							plugins = dir.replace("/dist/demos/", "src/plugins/") + "test.js"
-							polyfills = dir.replace("/dist/demos/", "src/polyfills/") + "test.js"							
+							polyfills = dir.replace("/dist/demos/", "src/polyfills/") + "test.js"
 							other = dir.replace("/dist/demos/", "src/other/") + "test.js"
 
 							testFile = if fs.existsSync( plugins ) then plugins else if fs.existsSync( polyfills ) then polyfills else if fs.existsSync( other ) then other else ""
