@@ -212,9 +212,9 @@ var selector = ".wb-geomap",
 		return geomap;
 	},
 
-	addPanZoomBar = function( geomap ) {
-		var panZoomBar = new OpenLayers.Control.PanZoomBar();
-		OpenLayers.Util.extend(panZoomBar, {
+	addPanZoom = function( geomap ) {
+		var panZoom = new OpenLayers.Control.PanZoom();
+		OpenLayers.Util.extend( panZoom, {
 			draw: function() {
 
 				// Initialize our internal div
@@ -245,22 +245,22 @@ var selector = ".wb-geomap",
 			}
 		});
 
-		geomap.map.addControl( panZoomBar );
-		setPanZoomBar( geomap );
+		geomap.map.addControl( panZoom );
+		setPanZoom( geomap );
 	},
 
-	setPanZoomBar = function( geomap ) {
+	setPanZoom = function( geomap ) {
 
 		/*
 		 * Add alt text to map controls and make tab-able
 		 * TODO: Fix in OpenLayers so alt text loaded there rather than overriden here (needs to be i18n)
 		 */
-		var controlBar = geomap.gmap.find( ".olControlPanZoomBar" )[ 0 ],
-			controls = controlBar.getElementsByTagName( "div" ),
+		var panZoom = geomap.gmap.find( ".olControlPanZoom" )[ 0 ],
+			controls = panZoom.getElementsByTagName( "div" ),
 			len = controls.length,
 			i, control, img, altTxt, actn;
 
-		controlBar.setAttribute("role", "toolbar");
+		panZoom.setAttribute( "role", "toolbar" );
 		for ( i = 0; i !== len; i += 1 ) {
 			control = controls[ i ];
 			img = control.getElementsByTagName( "img" )[ 0 ];
@@ -1751,8 +1751,8 @@ var selector = ".wb-geomap",
 				"data-map": geomap.mapid
 			});
 
-			// Add pan zoom bar
-			addPanZoomBar( geomap );
+			// Add pan zoom
+			addPanZoom( geomap );
 
 			$mapDiv.before(
 				"<details id='geomap-details-" + geomap.uniqueId +
