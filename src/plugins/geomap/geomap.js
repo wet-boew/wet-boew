@@ -40,7 +40,8 @@ var selector = ".wb-geomap",
 		debug: false,
 		useLegend: false,
 		useTab: false,
-		useMapControls: true
+		useMapControls: true,
+		useGeolocation: false
 	},
 
 	/*
