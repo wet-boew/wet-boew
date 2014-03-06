@@ -25,18 +25,35 @@ $screen-md-max:              ($screen-lg-min - 1);
 /*
  *	Links colour and decoration
  */
+
 a {
 	color: #295376;
 	&:focus, &:hover {
 		color: #0535D2;
 	}
-	&:visited {
-		color: #7834BC;
-	}
-
+	
 	text-decoration: underline;		// re-enable underlining
 	&.btn {
 		text-decoration: none;		// except for buttons
+	}
+}
+main {
+	:not(.dropdown) {
+		&:not(.btn-group) {
+			&:not(.nav) {
+				&:not(.navbar) {
+					&:not(.badge) {
+						a {
+							&:not(.btn) {
+								&:visited {
+									color: #7834BC;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
 
