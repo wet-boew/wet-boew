@@ -50,7 +50,7 @@ var pluginName = "wb-share",
 			// '{u}' for the page URL, '{t}' for the page title, {i} for the image, and '{d}' for the description
 			bitly: {
 				name: "bitly",
-				url: "http://bitly.com/?url={u}"
+				url: "https://bitly.com/a/bitmarklet?u={u}"
 			},
 			blogger: {
 				name: "Blogger",
@@ -70,7 +70,7 @@ var pluginName = "wb-share",
 			},
 			dzone: {
 				name: "DZone",
-				url: "http://www.dzone.com/link/add.html?url={u}&amp;title={t}"
+				url: "http://www.dzone.com/links/add.html?url={u}&amp;title={t}"
 			},
 			facebook: {
 				name: "Facebook",
@@ -88,13 +88,9 @@ var pluginName = "wb-share",
 				name: "MySpace",
 				url: "http://www.myspace.com/Modules/PostTo/Pages/?u={u}&amp;t={t}"
 			},
-			netvibes: {
-				name: "Netvibes",
-				url: "http://www.netvibes.com/share?url={u}&amp;title={t}"
-			},
 			pinterest: {
 				name: "Pinterest",
-				url: "http://www.pinterest.com/pin/create/button/?url={u}&amp;media={i}&amp;description={d}"
+				url: "http://www.pinterest.com/pin/create/link/?url={u}&amp;media={i}&amp;description={t}"
 			},
 			reddit: {
 				name: "reddit",
@@ -110,7 +106,7 @@ var pluginName = "wb-share",
 			},
 			tumblr: {
 				name: "tumblr",
-				url: "http://www.tumblr.com/share?v=3&amp;u={u}&amp;t={t}"
+				url: "http://www.tumblr.com/share/link?url={u}&amp;name={t}&amp;description={d}"
 			},
 			twitter: {
 				name: "Twitter",
