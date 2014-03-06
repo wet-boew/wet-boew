@@ -35,7 +35,8 @@ var pluginName = "wb-details",
 			wb.remove( selector );
 			details.className += " " + initedClass;
 
-			details.setAttribute( "aria-expanded", ( details.getAttribute( "open" ) !== null ) );
+			summary.setAttribute( "aria-expanded", ( details.getAttribute( "open" ) !== null ) );
+			summary.setAttribute( "role", "button" );
 			summary.setAttribute( "tabindex", "0" );
 		}
 	};
@@ -54,7 +55,7 @@ $document.on( "click keydown toggle.wb-details", selector, function( event ) {
 		( currentTarget.className.indexOf( "wb-toggle" ) === -1 || event.type === "toggle" ) ) {
 
 		details = currentTarget.parentNode;
-		isClosed = ( details.getAttribute( "open" ) === null );
+		isClosed = details.getAttribute( "open" ) === null ;
 
 		if ( isClosed ) {
 			details.setAttribute( "open", "open" );
@@ -63,7 +64,7 @@ $document.on( "click keydown toggle.wb-details", selector, function( event ) {
 			details.removeAttribute( "open" );
 			details.className = details.className.replace( " open", "" );
 		}
-		details.setAttribute( "aria-expanded", isClosed );
+		currentTarget.setAttribute( "aria-expanded", isClosed );
 	} else if ( which === 13 || which === 32 ) {
 		event.preventDefault();
 		$( currentTarget ).trigger( "click" );
