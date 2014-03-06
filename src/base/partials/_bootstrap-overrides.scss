@@ -45,8 +45,10 @@ main {
 					&:not(.badge) {
 						a {
 							&:not(.btn) {
-								&:visited {
-									color: #7834BC;
+								&:not([role=tab]) {
+									&:visited {
+										color: #7834BC;
+									}
 								}
 							}
 						}
