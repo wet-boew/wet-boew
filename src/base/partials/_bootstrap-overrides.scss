@@ -23,10 +23,21 @@ $screen-sm-max:              ($screen-md-min - 1);
 $screen-md-max:              ($screen-lg-min - 1);
 
 /*
- *	Anchor outline and colour
+ *	Links colour and decoration
  */
 a {
 	color: #295376;
+	&:focus, &:hover {
+		color: #0535D2;
+	}
+	&:visited {
+		color: #7834BC;
+	}
+
+	text-decoration: underline;		// re-enable underlining
+	&.btn {
+		text-decoration: none;		// except for buttons
+	}
 }
 
 /*
@@ -583,16 +594,6 @@ address {
 	line-height: $line-height-base;
 }
 
-
-/*
- *	Links
- */
-a {
-	text-decoration: underline;		// re-enable underlining
-	&.btn {
-		text-decoration: none;		// except for buttons
-	}
-}
 
 /*
  * Code
