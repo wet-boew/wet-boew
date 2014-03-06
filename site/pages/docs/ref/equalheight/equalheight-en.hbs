@@ -3,105 +3,48 @@
 	"title": "Equal height",
 	"language": "en",
 	"description": "A plugin for responsive equal height.",
-	"altLangPrefix": "equalheight"
+	"altLangPrefix": "equalheight",
+	"dateModified": "2014-02-19"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
 
 <section>
 	<h2>Purpose</h2>
-	<p>A brief description of the component.</p>
+	<p>Equalises the height of elements that are on the same baseline.</p>
 </section>
 
 <section>
 	<h2>Use when</h2>
 	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
+		<li>Elements of varying heights are displayed on the same baseline.</li>
 	</ul>
 </section>
 
 <section>
 	<h2>Do not use when</h2>
-	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
-	</ul>
+	<p>No known use cases when this plugin should not be used.</p>
 </section>
 
 <section>
 	<h2>Working example</h2>
-	<p><a href="#">Link to a working example</a></p>
+	<p><a href="../../../demos/equalheight/equalheight-en.html">Working example of the equal height plugin</a></p>
 </section>
 
 <section>
 	<h2>How to implement</h2>
 	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
-		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
-		</li>
-		<li>Step 4</li>
+		<li>Add the class <code>wb-eqht</code> to the element that contains the elements for which you want the height to be equal.</li>
 	</ol>
 </section>
 
 <section>
 	<h2>Configuration options</h2>
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Option</th>
-				<th>Description</th>
-				<th>How to configure</th>
-				<th>Values</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
-			</tr>
-			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+	<p>There are no configuration options.</p>
 </section>
 
 <section>
 	<h2>Events</h2>
-	<p>Document the public events that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -112,14 +55,21 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Event 1</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td><code>txt-rsz.wb</code></td>
+				<td>The font size was changed.</td>
+				<td rowspan="4">Re-equalises the heights of all elements contained in a <code>wb-eqht</code> container.</td>
 			</tr>
 			<tr>
-				<td>Event 2</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td><code>win-rsz-width.wb</code></td>
+				<td>The width of the browser window was changed.</td>
+			</tr>
+			<tr>
+				<td><code>win-rsz-height.wb</code></td>
+				<td>The height of the browser window was changed.</td>
+			</tr>
+			<tr>
+				<td><code>tables-draw.wb</code></td>
+				<td>A <a href="../tables/tables-en.html">table</a> was drawn.</td>
 			</tr>
 		</tbody>
 	</table>
@@ -127,5 +77,5 @@ Example of multi-line code</code></pre>
 
 <section>
 	<h2>Source code</h2>
-	<p><a href="#">Link to the folder on GitHub containing the files for the component</a></p>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/v4.0/src/plugins/equalheight">Source code for the equal height plugin on GitHub</a></p>
 </section>

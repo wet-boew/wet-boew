@@ -1,0 +1,124 @@
+{
+	"requireCurlyBraces": [
+		"if",
+		"else",
+		"for",
+		"while",
+		"do"
+	],
+	"requireSpaceAfterKeywords": [
+		"if",
+		"else",
+		"for",
+		"while",
+		"do",
+		"switch",
+		"return"
+	],
+	"requireSpacesInFunctionExpression": {
+		"beforeOpeningCurlyBrace": true
+	},
+	"disallowSpacesInNamedFunctionExpression": {
+		"beforeOpeningRoundBrace": true
+	},
+	"requireSpacesInsideObjectBrackets": "all",
+	"requireSpacesInsideArrayBrackets": "all",
+	"disallowSpacesInFunctionExpression": {
+		"beforeOpeningRoundBrace": true
+	},
+	"disallowLeftStickedOperators": [
+		"?"
+	],
+	"requireSpaceBeforeBinaryOperators": [
+		"-",
+		"/",
+		"*",
+		"=",
+		"==",
+		"===",
+		"!=",
+		"!==",
+		">",
+		">=",
+		"<",
+		"<="
+	],
+	"disallowRightStickedOperators": [
+		"?"
+	],
+	"requireSpaceBeforeBinaryOperators": [
+		"/",
+		"*",
+		":",
+		"=",
+		"==",
+		"===",
+		"!=",
+		"!==",
+		">",
+		">=",
+		"<",
+		"<="
+	],
+	"requireRightStickedOperators": [
+		"!"
+	],
+	"requireLeftStickedOperators": [
+		","
+	],
+	"disallowKeywords": [
+		"with"
+	],
+	"disallowMultipleLineBreaks": true,
+	"disallowKeywordsOnNewLine": [
+		"else"
+	],
+	"disallowSpaceAfterObjectKeys": true,
+	"disallowSpaceBeforePostfixUnaryOperators": [
+		"++",
+		"--"
+	],
+	"requireSpaceAfterBinaryOperators": [
+		"+",
+		"-",
+		"/",
+		"*",
+		"=",
+		"==",
+		"===",
+		"!=",
+		"!=="
+	],
+	"requireSpaceBeforeBinaryOperators": [
+		"+",
+		"-",
+		"/",
+		"*",
+		"=",
+		"==",
+		"===",
+		"!=",
+		"!=="
+	],
+	"disallowQuotedKeysInObjects": "allButReserved",
+	"disallowYodaConditions": true,
+	"requireLineFeedAtFileEnd": true,
+	"requireParenthesesAroundIIFE": true,
+	"disallowMultipleLineStrings": true,
+	"validateQuoteMarks": "\"",
+	"disallowMixedSpacesAndTabs": true,
+	"disallowTrailingWhitespace": true,
+	"requireDotNotation": true,
+	"validateJSDoc": {
+		"checkParamNames": true,
+		"checkRedundantParams": true,
+		"requireParamTypes": true
+	},
+	"excludeFiles": [
+		"node_modules/**",
+		"dist/**",
+		"lib/**",
+		"src/polyfills/slider/slider.js",
+		"src/polyfills/events/mobile.js"
+	]
+}

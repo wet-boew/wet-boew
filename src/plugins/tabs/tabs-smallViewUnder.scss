@@ -10,6 +10,14 @@
 	display: none;
 }
 
+%tabs-smallview-font-size-15-em {
+	font-size: 1.5em;
+}
+
+%tabs-details-padding-6-12 {
+	padding: 6px 12px;
+}
+
 .wb-tabs {
 	&.carousel-s1, &.carousel-s2 {
 		figcaption {
@@ -23,19 +31,73 @@
 	&.carousel-s1 {
 		[role="tablist"] {
 			position: static;
-		}
-		li[role="presentation"] {
-			@extend %tabs-smallview-display-none;
+			li {
+				&[role="presentation"] {
+					@extend %tabs-smallview-display-none;
+				}
+				&.tab-count {
+					background: none;
+					border: none;
+					.curr-count {
+						display: inline;
+					}
+					&.active, &:focus, &:hover {
+						top: 0;
+						cursor: default;
+					}
+				}
+			}
 		}
 	}
 	&.carousel-s2 {
+		$smallViewToolbarSize: 4.375em;
+		margin-bottom: auto;
+		padding-bottom: $smallViewToolbarSize;
+		background: #eee;
 		[role="tablist"] {
-			li[role="presentation"] {
-				@extend %tabs-smallview-display-none;
+			margin-top: -$smallViewToolbarSize;
+			li {
+				&[role="presentation"] {
+					@extend %tabs-smallview-display-none;
+				}
+				&.control {
+					top: 100%;
+				}
+				&.prv {
+					a {
+						padding-left: 1em;
+					}
+				}
+				&.tab-count {
+					line-height: normal;
+					> {
+						div {
+							position: relative;
+							top: 0.4em;
+						}
+					}
+					.curr-count {
+						@extend %tabs-smallview-font-size-15-em;
+					}
+					&:focus, &:hover {
+						background: transparent;
+						cursor: default;
+					}
+				}
+				&.plypause {
+					float: right;
+					margin-right: 0;
+					padding-right: 1em;
+					a {
+						@extend %tabs-smallview-font-size-15-em;
+						margin-top: 0.3em;
+						padding-right: 0;
+					}
+				}
 			}
 		}
 		figcaption {
-			margin: 1em 3.5em;
+			margin: auto;
 		}
 	}
 	&.tabs-acc {
@@ -44,9 +106,6 @@
 				@extend %tabs-smallview-display-none;
 			}
 		}
-	}
-	%tabs-details-padding-6-12 {
-		padding: 6px 12px;
 	}
 	> {
 		details {

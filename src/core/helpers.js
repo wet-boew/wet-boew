@@ -1069,14 +1069,14 @@
 	"use strict";
 
 	var methods,
-		_settings = {
+		settings = {
 			"default": "wet-boew"
 		};
 
 	methods = {
 
 		init: function( options ) {
-			return $.extend( _settings, options || {} );
+			return $.extend( settings, options || {} );
 		},
 
 		show: function( onlyAria ) {

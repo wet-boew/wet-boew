@@ -6,7 +6,6 @@
 /*
  Plugins
  */
-@import "../plugins/feedback/feedback-noscript";
 @import "../plugins/tabs/tabs-noscript";
 @import "../plugins/menu/menu-noscript";
 
@@ -15,3 +14,11 @@
  */
 @import "../polyfills/details/details-noscript";
 @import "../polyfills/datepicker/datepicker-noscript";
+
+.nojs-show {
+	display: block !important;
+}
+
+.nojs-hide {
+	display: none !important;
+}

@@ -16,8 +16,7 @@
  */
 describe( "Session Timeout test suite", function() {
 
-	var clock,
-		server,
+	var clock, server, $session,
 		spies = {},
 		sandbox = sinon.sandbox.create();
 
@@ -26,27 +25,25 @@ describe( "Session Timeout test suite", function() {
 	 */
 	before(function( done ) {
 
-		// Give the magnificPopup dependency a chance to load
-		setTimeout( done, 1000 );
-
 		// Spy on jQuery's trigger and post methods
 		spies.trigger = sandbox.spy( $.prototype, "trigger" );
 		spies.post = sandbox.spy( $, "post" );
 
-		// Fake server to test POST requests
-		server = sandbox.useFakeServer();
-
-		// Use a fake timer (allows for easy testing of setTimeout calls)
-		clock = sandbox.useFakeTimers();
-
-		// Initialize the test data
-		$( ".wb-sessto" )
-			.data( "wet-boew", {
-				inactivity: 10000,
-				sessionalive: 10000,
-				refreshOnClick: true,
-				refreshLimit: 42000
-			});
+		// Inject the test element after the Modernizr.load calls in wb.js
+		// have finished.  This is required because the session timeout
+		// plugin relies on the i18n libraries being loaded.
+		setTimeout(function() {
+			$session = $( "<span class='wb-sessto'>" )
+				.data( "wet-boew", {
+					inactivity: 10000,
+					sessionalive: 10000,
+					refreshLimit: 42000,
+					refreshOnClick: true
+				})
+				.appendTo( wb.doc.find( "body" ) )
+				.trigger( "wb-init.wb-sessto" );
+			done();
+		}, 500 );
 
 		wb.doc.on( "inactivity.wb-sessto", function() {
 			$( ".wb-sessto-confirm.btn-primary" ).trigger( "click" );
@@ -57,35 +54,42 @@ describe( "Session Timeout test suite", function() {
 	 * After finishing the test suite, this function is executed once.
 	 */
 	after(function() {
+		// Cleanup the test element
+		$session.remove();
+
 		// Restore the original behaviour of spies, server and timer
 		sandbox.restore();
 	});
 
 	/*
-	 * Test the initialization events of the plugin
+	 * Test initialization of the plugin
 	 */
-	describe( "init events", function() {
-
+	describe( "init plugin", function() {
 		it( "should trigger reset.wb-sessto event", function() {
 			expect( spies.trigger.calledWith( "reset.wb-sessto" ) ).to.equal( true );
 		});
 
-		it( "should have been triggered on a .wb-sessto element", function() {
-			var elm,
-				isSelector = false,
-				len = spies.trigger.thisValues.length;
-			while ( !isSelector && len-- ) {
-				elm = spies.trigger.thisValues[len][0];
-				isSelector = elm && elm.className && elm.className.indexOf( "wb-sessto" ) > -1;
-			}
-			expect( isSelector ).to.equal( true );
+		it( "should have marked the element as initialized", function() {
+			expect( $session.hasClass( "wb-sessto-inited" ) ).to.equal( true );
 		});
 	});
 
 	describe( "inactivity", function() {
 
-		before(function() {
-			spies.trigger.reset();
+		before(function( done ) {
+
+			// Allow time for magnificPopup dependency to load
+			setTimeout( function() {
+
+				// Use a fake timer (allows for easy testing of setTimeout calls)
+				clock = sandbox.useFakeTimers();
+
+				// Reset the plugin timeouts and the trigger spy (prevents false positives from previous tests)
+				$session.trigger( "reset.wb-sessto", $session.data( "wet-boew" ) );
+				spies.trigger.reset();
+
+				done();
+			}, 500 );
 		});
 
 		it( "should trigger inactivity.wb-sessto after 10000ms", function() {
@@ -163,20 +167,18 @@ describe( "Session Timeout test suite", function() {
 
 	describe( "refreshCallbackUrl", function() {
 
-		before(function( done ) {
-
+		before(function() {
 			// Setup the fake server response for all POST requests to foo.html
+			server = sandbox.useFakeServer();
 			server.respondWith( "POST", "foo.html", "true" );
 
-			$( ".wb-sessto" )
-				.removeClass( "wb-sessto-inited" )
+			// Add the session timeout element and trigger it's init'
+			$session = $( ".wb-sessto" )
 				.data( "wet-boew", {
 					sessionalive: 5000,
 					refreshCallbackUrl: "foo.html"
 				})
-				.on( "reset.wb-sessto", function() {
-					done();
-				})
+				.removeClass( "wb-sessto-inited" )
 				.trigger( "wb-init.wb-sessto" );
 		});
 

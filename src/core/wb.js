@@ -157,18 +157,35 @@ var getUrlParts = function( url ) {
 
 		resizeEvents: "xxsmallview.wb xsmallview.wb smallview.wb mediumview.wb largeview.wb xlargeview.wb",
 
+		// For Charts and Geomap
+		drawColours: [
+			"#8d201c",
+			"#EE8310",
+			"#2a7da6",
+			"#5a306b",
+			"#285228",
+			"#154055",
+			"#555555",
+			"#f6d200",
+			"#d73d38",
+			"#418541",
+			"#87aec9",
+			"#23447e",
+			"#999999"
+		],
+
 		// Add a selector to be targeted by timerpoke
 		add: function( selector ) {
 			var exists = false,
-				i, len;
-		
+				len = wb.selectors.length,
+				i;
+
 			// Lets ensure we are not running if things are disabled
 			if ( wb.isDisabled && selector !== "#wb-tphp" ) {
 				return 0;
 			}
 
 			// Check to see if the selector is already targeted
-			len = wb.selectors.length;
 			for ( i = 0; i !== len; i += 1 ) {
 				if ( wb.selectors[ i ] === selector ) {
 					exists = true;
@@ -184,9 +201,9 @@ var getUrlParts = function( url ) {
 
 		// Remove a selector targeted by timerpoke
 		remove: function( selector ) {
-			var i, len;
+			var len = wb.selectors.length,
+				i;
 
-			len = wb.selectors.length;
 			for ( i = 0; i !== len; i += 1 ) {
 				if ( wb.selectors[ i ] === selector ) {
 					wb.selectors.splice( i, 1 );
@@ -195,31 +212,36 @@ var getUrlParts = function( url ) {
 			}
 		},
 
-		start: function() {
-			var selectorsLocal = wb.selectors,
+		// Handles triggering of timerpoke events
+		timerpoke: function() {
+			var selectorsLocal = wb.selectors.slice( 0 ),
 				len = selectorsLocal.length,
-				i;
+				selector, $elms, i;
 
-			/*
-			 * Lets start our clock right away. We we need to test to ensure
-			 * that there will not be any instances on Mobile were the DOM is
-			 * not ready before the timer starts. That is why 0.5 seconds was
-			 * used as a buffer.
-			 */
 			for ( i = 0; i !== len; i += 1 ) {
-				$( selectorsLocal[ i ] ).trigger( "timerpoke.wb" );
-			}
+				selector = selectorsLocal[ i ];
+				$elms = $( selector );
 
-			// lets keep it ticking after
-			setInterval(function() {
-				selectorsLocal = wb.selectors;
-				len = selectorsLocal.length;
-				for ( i = 0; i !== len; i += 1 ) {
-					$( selectorsLocal[ i ] ).trigger( "timerpoke.wb" );
+				// If the selector returns elements, trigger a timerpoke event
+				if ( $elms.length !== 0 ) {
+					$elms.trigger( "timerpoke.wb" );
+
+				// If the selector returns no elements, remove the selector
+				} else {
+					wb.remove( selector );
 				}
-			}, 500 );
-
+			}
 		},
+
+		start: function() {
+
+			// Initiate timerpoke events right way
+			wb.timerpoke();
+
+			// Initiate timerpoke events again every half second
+			setInterval( wb.timerpoke, 500 );
+		},
+
 		i18nDict: {},
 		i18n: function( key, state, mixin ) {
 			var dictionary = wb.i18nDict,

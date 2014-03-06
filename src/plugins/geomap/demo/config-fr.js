@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
- 
+
 /*
  * Les composantes individuelles seront substituées par les compasantes globales
  *
@@ -19,40 +19,15 @@ var wet_boew_geomap = {
 	// OPTIONNEL: Géomap va fournir une carte de base par défaut si aucune carte de base n"est spécifié ici.
 	/*
 	basemap : {
-		title: "CBMT",
-		type: "wms",
-		url: "http://geogratis.gc.ca/maps/CBMT",
-		layers: "CBMT",
-		format: "image/png",
-		version: "1.1.1",
-		options: {
-			singleTile: false,
-			ratio: 1.0,
-			projection: "EPSG:3978",
-			fractionalZoom: true
-		},
-		mapOptions: {
-			maxExtent: "-3000000.0, -800000.0, 4000000.0, 3900000.0",			
-			maxResolution: "auto",
-			projection: "EPSG:3978",
-			restrictedExtent: "-3000000.0, -800000.0, 4000000.0, 3900000.0",
-			units: "m",
-			displayProjection: "EPSG:4269",
-			numZoomLevels: 12
-		}
-	},
-	*/
-	/*
-	basemap : {
 		title: "WMS Demo",
-		type: "wms",	
+		type: "wms",
 		url: "http://vmap0.tiles.osgeo.org/wms/vmap0",
 		layers: "basic"
 	},
 	*/
 	overlays: [
 		{
-			title: "KML Demo FR",
+			title: "Fichier KML",
 			caption: "Ceci est un exemple de fichier KML chargé localement par Géocarte.",
 			type: "kml",
 			url: "demo/sample_fr.kml",
@@ -66,7 +41,7 @@ var wet_boew_geomap = {
 			}
 		},
 		{
-			title: "ATOM Demo FR",
+			title: "ATOM Feed",
 			caption: "Ceci est un exemple de fil ATOM chargé localement par Géocarte.",
 			type: "atom",
 			url: "demo/sample_fr.atom",
@@ -79,7 +54,7 @@ var wet_boew_geomap = {
 			tab: true
 		},
 		{
-			title: "GeoRSS Demo FR",
+			title: "GeoRSS Feed",
 			caption: "Ceci est un exemple de fil GeoRSS chargé localement par Géocarte.",
 			type: "georss",
 			url: "demo/sample_fr.rss",
@@ -93,7 +68,7 @@ var wet_boew_geomap = {
 			tab: true
 		},
 		{
-			title: "JSON (GeoGratis) FR",
+			title: "JSON (GeoGratis)",
 			caption: "Ceci est un exemple d'un jeu de données JSON chargé à partir d'un site externe, dans ce cas-ci Géogratis.",
 			type: "json",
 			url: "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst",
@@ -113,7 +88,7 @@ var wet_boew_geomap = {
 			}
 		},
 		{
-			title: "GeoJSON (CartoDB) FR",
+			title: "GeoJSON (CartoDB)",
 			caption: "Ceci est un exemple d'un jeu de données JSON chargé à partir d'un site externe, dans ce cas-ci les caméras de circulation de la ville d'Ottawa à partir du site Carto DB.",
 			type: "geojson",
 			url: "http://stephenott.cartodb.com/api/v2/sql",
@@ -128,16 +103,11 @@ var wet_boew_geomap = {
 				updated_at: "Dernière mise à jour"
 			},
 			visible: true,
-			zoom: [
-				true,
-				{
-					type: "text"
-				}
-			],
+			zoom: true,
 			datatable: true,
 			tab: true,
-			
-			// default style			
+
+			// default style
 			style: {
 				type: "symbol",
 				init: {
@@ -153,7 +123,7 @@ var wet_boew_geomap = {
 					graphicOpacity: 0.5
 				}
 			}
-			
+
 			// unique value style
 			/*style: {
 				type: "unique",
@@ -177,7 +147,7 @@ var wet_boew_geomap = {
 					fillOpacity: 0.90
 				}
 			}
-			
+
 			// rule style
 			style: {
 				type: "rule",

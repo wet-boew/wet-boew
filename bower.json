@@ -1,6 +1,6 @@
 {
 	"name": "wet-boew",
-	"version": "v4.0.0-b2-development",
+	"version": "v4.0.0-rc1-development",
 	"homepage": "https://github.com/wet-boew/wet-boew",
 	"authors": [
 		"WET-BOEW Team"
@@ -24,19 +24,19 @@
 		"tests"
 	],
 	"dependencies": {
-		"jquery.validation": "1.11.1",
-		"bootstrap": "3.1.0",
-		"flot": "0.8.1",
+		"bootstrap-sass-official": "3.1.1",
 		"DataTables": "1.9.4",
-		"magnific-popup": "0.9.8",
-		"jquery-pjax": "1.7.3",
+		"excanvas": "*",
+		"flot": "0.8.1",
+		"google-code-prettify": "1.0.0",
 		"html5shiv": "3.7.0",
+		"jquery-pjax": "1.7.3",
+		"jquery.validation": "1.11.1",
+		"magnific-popup": "0.9.8",
+		"openlayers": "http://openlayers.org/download/OpenLayers-2.13.1.tar.gz",
+		"proj4": "2.1.0",
 		"respond": "1.4.0",
 		"selectivizr": "1.0.2",
-		"excanvas": "*",
-		"google-code-prettify": "1.0.0",
-		"proj4": "2.1.0",
-		"openlayers": "http://openlayers.org/download/OpenLayers-2.13.1.tar.gz",
 		"SideBySideImproved": "https://github.com/pkoltermann/SideBySideImproved.git"
 	},
 	"resolutions": {

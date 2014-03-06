@@ -157,17 +157,17 @@
 	transition: all 0.26s ease;
 }
 
+%pnl {
+	vertical-align: middle;
+	display: table-cell;
+}
+
 .wb-mm-ctrls {
 	display: table;
 	background: #000;
 	color: #fff;
 	position: relative;
 	width: 100%;
-
-	%pnl {
-		vertical-align: middle;
-		display: table-cell;
-	}
 
 	.frstpnl {
 		@extend %pnl;

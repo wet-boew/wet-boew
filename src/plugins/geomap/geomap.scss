@@ -43,6 +43,33 @@
 	top: 72px;
 }
 
+.olPanelGeolocate {
+  left: 20px;
+  top: 110px;
+  button {
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.olButtonGeolocateItemActive {
+  background: #DDD url('../assets/locate.png') no-repeat;
+  background-position: -63px -2px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.olButtonGeolocateItemInactive {
+  background: #DDD url('../assets/locate.png') no-repeat;
+  background-position: -3px -2px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
 /*
  * When a potential text is bigger than the image it move the image
  * with some headers (closes #3154)
@@ -53,54 +80,26 @@
   }
 }
 
-div {
-	&.olMap {
-		z-index: 0;
-		cursor: default;
+.olMap {
+	z-index: 0;
+	cursor: default;
+}
+.olMapViewport {
+	text-align: left;
+}
+.olLayerDiv {
+	user-select: none;
+	img {
+		max-width: none !important;
 	}
-	&.olMapViewport {
-		text-align: left;
-	}
-	&.olLayerDiv {
-		user-select: none;
-		img {
-			max-width: none !important;
-		}
-	}
-	&.olControlMousePosition {
-		bottom: 5px;
-		left: 100px;
-		display: block;
-		position: absolute;
-		font-family: Arial;
-		font-size: smaller;
-	}
-	&.olControlZoom {
-		position: absolute;
-		top: 8px;
-		left: 8px;
-		background: rgba(255,255,255,0.4);
-		border-radius: 4px;
-		padding: 2px;
-		a {
-			display: block;
-			margin: 1px;
-			padding: 0;
-			color: #fff;
-			font-size: 18px;
-			font-family: 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
-			font-weight: 700;
-			text-decoration: none;
-			text-align: center;
-			height: 22px;
-			width: 22px;
-			line-height: 19px;
-			background: rgba(0, 60, 136, 0.5);
-			&:hover, &:focus {
-				background: rgba(0, 60, 136, 0.7);
-			}
-		}
-	}
+}
+.olControlMousePosition {
+	bottom: 5px;
+	left: 100px;
+	display: block;
+	position: absolute;
+	font-family: Arial;
+	font-size: smaller;
 }
 
 .olControlScale {
@@ -196,7 +195,7 @@ div {
 }
 
 .olImageLoadError {
-  display: none !important;
+	display: none !important;
 }
 
 /**
@@ -221,7 +220,6 @@ div {
 .olControlDragFeatureActive {
 	&.olControlDragFeatureOver {
 		&.olDragDown {
-			// cursor: -moz-grabbing;
 			cursor: grabbing;
 		}
 	}
@@ -236,39 +234,22 @@ div {
 	}
 }
 
-.medium-screen {
-  .wb-geomap-legend {
-    width: 100% !important;
-  }
-  .form-checkbox {
-    display: block;
-  }
-}
-
 /**
  * GeoMap
  */
 .wb-geomap-map {
-	/*width: 100%;*/
 	position: relative;
-	outline: 1px solid #CCC;
-	&.active {
-		outline-color: #07F;
+	border: 1px solid #CCC;
+	margin-bottom: 30px;
+
+	&.focus {
+		border-color: #07F;
 	}
 }
 
 .wb-geomap-detail {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.geomap-legend-chk {
-	// float: left;
-}
-
-.geomap-legend-item {
-	// float: left;
-	// padding-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .geomap-legend-detail {
@@ -278,6 +259,7 @@ div {
 .geomap-legend-symbol {
 	height: 18px;
 	width: 18px;
+	margin: 5px;
 }
 
 .geomap-clear-format {
@@ -288,18 +270,15 @@ div {
 	display: inline;
 }
 
-@media print {
-	%geomap-print-visibility-hidden {
-		visibility: hidden;
-	}
+.geomap-geoloc label {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
 
-	.wb-geomap-detail {
-		@extend %geomap-print-visibility-hidden;
-	}
-	.olControlMousePosition {
-		@extend %geomap-print-visibility-hidden;
-	}
-	.olControlPanZoomBar {
-		@extend %geomap-print-visibility-hidden;
-	}
+.geomap-geoloc {
+  margin-bottom: 3px;
+}
+
+.geomap-aoi input[type="number"] {
+  width: 110px;
 }

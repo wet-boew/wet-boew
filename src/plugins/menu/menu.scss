@@ -41,6 +41,7 @@
 	}
 	.menu {
 		position: relative;
+		margin-left: 0;
 		> {
 			li {
 				margin: 0;
@@ -103,6 +104,9 @@
 	}
 }
 
+%menu-mb-pnl-margin-bottom-5px {
+	margin-bottom: 5px;
+}
 #mb-pnl {
 	ul {
 		margin-bottom: 0;
@@ -119,9 +123,6 @@
 		}
 	}
 
-	%menu-mb-pnl-margin-bottom-5px {
-		margin-bottom: 5px;
-	}
 	.srch-pnl {
 		form {
 			white-space: nowrap;
@@ -148,11 +149,10 @@
 	}
 }
 
+%menu-noscript-display-block-important {
+	display: block !important;
+}
 .wb-disable {
-	%menu-noscript-display-block-important {
-		display: block !important;
-	}
-
 	#wb-glb-mn {
 		display: none !important;
 	}

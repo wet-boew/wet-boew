@@ -3,96 +3,81 @@
 	"title": "Input type=\"date\" polyfill (date picker)",
 	"language": "en",
 	"description": "The <input type=\"date\"> element dynamically generates a calendar interface for selecting a date in a form.",
-	"altLangPrefix": "datepicker"
+	"altLangPrefix": "datepicker",
+	"dateModified": "2014-03-10"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
 
 <section>
 	<h2>Purpose</h2>
-	<p>A brief description of the component.</p>
+	<p>Provide an interface for selecting a date in a form.</p>
 </section>
 
 <section>
 	<h2>Use when</h2>
-	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
-	</ul>
-</section>
-
-<section>
-	<h2>Do not use when</h2>
-	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
-	</ul>
+	<p>This feature can be used on any page where selecting a date in a form is required.</p>
 </section>
 
 <section>
 	<h2>Working example</h2>
-	<p><a href="#">Link to a working example</a></p>
+	<p><a href="../../../demos/datepicker/datepicker-en.html">Working example</a></p>
 </section>
 
 <section>
 	<h2>How to implement</h2>
 	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
-		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
-		</li>
-		<li>Step 4</li>
+		<li>Add a text input field for each date that will be requested. Each text input field must have the <code>date</code> type applied to it.</li>
+		<li><strong>Optional:</strong> Wrap the date format in the label with <code>&lt;span class="datepicker-format"&gt;&lt;/span&gt;</code> to hide it when the polyfill doesn't load (due to native support).</li>
+		<li><strong>Optional:</strong> Add a <code>min</code> attribute containing the earliest date that can be selected by the user.</li>
+		<li><strong>Optional:</strong> Add a <code>max</code> attribute containing the latest date that can be selected by the user.</li>
 	</ol>
+
+	<h3>Example Code</h3>
+	<pre><code>&lt;div&gt;
+	&lt;label for="startdate"&gt;Start Date&lt;span class="datepicker-format"&gt; (&lt;abbr title="Four digits year, dash, two digits month, dash, two digits day"&gt;YYYY-MM-DD&lt;/abbr&gt;)&lt;/span&gt;&lt;/label&gt;
+	&lt;input type="date" id="startdate" name="startdate" min="2013-03-27" max="2013-05-07" /&gt;
+&lt;/div&gt;
+&lt;div&gt;
+	&lt;label for="enddate"&gt;End Date&lt;span class="datepicker-format"&gt; (&lt;abbr title="Four digits year, dash, two digits month, dash, two digits day"&gt;YYYY-MM-DD&lt;/abbr&gt;)&lt;/span&gt;&lt;/label&gt;
+	&lt;input type="date" id="enddate" name="enddate" min="2013-03-27" max="2016-05-07" /&gt;
+&lt;/div&gt;</code></pre>
 </section>
 
 <section>
 	<h2>Configuration options</h2>
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Option</th>
 				<th>Description</th>
 				<th>How to configure</th>
-				<th>Values</th>
+				<th>Example</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
+				<td>Hide Date Format</td>
+				<td>Hide the date format when the polyfill doesn't load (due to native support)</td>
+				<td>Wrap the date format in the label with: <pre><code>&lt;span class="datepicker-format"&gt;&lt;/span&gt;</code></pre></td>
 				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
+					<pre><code>&lt;label for="startdate"&gt;Start Date&lt;span class="datepicker-format"&gt; (&lt;abbr title="Four digits year, dash, two digits month, dash, two digits day"&gt;YYYY-MM-DD&lt;/abbr&gt;)&lt;/span&gt;&lt;/label&gt;</code></pre>
 				</td>
 			</tr>
 			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
+				<td>Min Date</td>
+				<td>The earliest date that can be selected by the user.</td>
+				<td>Add a "min" attribute to the input field with a <abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr> date as the value.</td>
 				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
+					<pre><code>&lt;input type="date" id="startdate" name="startdate" min="2013-03-27" /&gt;</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td>Max Date</td>
+				<td>The latest date that can be selected by the user.</td>
+				<td>Add a "max" attribute to the input field with a <abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr> date as the value.</td>
+				<td>
+					<pre><code>&lt;input type="date" id="startdate" name="startdate" max="2013-05-07" /&gt;</code></pre>
 				</td>
 			</tr>
 		</tbody>
@@ -101,7 +86,6 @@ Example of multi-line code</code></pre>
 
 <section>
 	<h2>Events</h2>
-	<p>Document the public events that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -112,14 +96,19 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Event 1</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td>create.wb-cal</td>
+				<td>Before the calendar interface becomes visible.</td>
+				<td>Creates the calendar interface.</td>
 			</tr>
 			<tr>
-				<td>Event 2</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td>setFocus.wb-cal</td>
+				<td>After the calendar interface is displayed.</td>
+				<td>Sets focus on the date in the input field, if defined.</td>
+			</tr>
+			<tr>
+				<td>hideGoToFrm.wb-cal</td>
+				<td>Before the calendar interface is hidden.</td>
+				<td>Hides the "Go To" form in the calendar interface.</td>
 			</tr>
 		</tbody>
 	</table>
@@ -127,5 +116,5 @@ Example of multi-line code</code></pre>
 
 <section>
 	<h2>Source code</h2>
-	<p><a href="#">Link to the folder on GitHub containing the files for the component</a></p>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/v4.0/src/polyfills/datepicker">Source code</a></p>
 </section>

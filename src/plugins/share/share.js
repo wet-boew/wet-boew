@@ -32,7 +32,7 @@ var pluginName = "wb-share",
 
 		// Supported types are: "page" and "video"
 		type: "page",
-		
+
 		// For custom types
 		// custType = " this comment" results in "Share this comment"
 		custType: "",
@@ -44,13 +44,19 @@ var pluginName = "wb-share",
 		img: "",
 		desc: "",
 
+		// For filtering the sites that area displayed and controlling the order
+		// they are displayed. Empty array displays all sites in the default order.
+		// Otherwise, it displays the sites in the order in the array using the
+		// keys used by the sites object.
+		filter: [],
+
 		sites: {
 
 			// The definitions of the available bookmarking sites, in URL use
 			// '{u}' for the page URL, '{t}' for the page title, {i} for the image, and '{d}' for the description
 			bitly: {
 				name: "bitly",
-				url: "http://bitly.com/?url={u}"
+				url: "https://bitly.com/a/bitmarklet?u={u}"
 			},
 			blogger: {
 				name: "Blogger",
@@ -70,11 +76,15 @@ var pluginName = "wb-share",
 			},
 			dzone: {
 				name: "DZone",
-				url: "http://www.dzone.com/link/add.html?url={u}&amp;title={t}"
+				url: "http://www.dzone.com/links/add.html?url={u}&amp;title={t}"
 			},
 			facebook: {
 				name: "Facebook",
 				url: "http://www.facebook.com/sharer.php?u={u}&amp;t={t}"
+			},
+			gmail: {
+				name: "Gmail",
+				url: "https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su={t}&body={u}%0A{d}"
 			},
 			googleplus: {
 				name: "Google+",
@@ -88,13 +98,9 @@ var pluginName = "wb-share",
 				name: "MySpace",
 				url: "http://www.myspace.com/Modules/PostTo/Pages/?u={u}&amp;t={t}"
 			},
-			netvibes: {
-				name: "Netvibes",
-				url: "http://www.netvibes.com/share?url={u}&amp;title={t}"
-			},
 			pinterest: {
 				name: "Pinterest",
-				url: "http://www.pinterest.com/pin/create/button/?url={u}&amp;media={i}&amp;description={d}"
+				url: "http://www.pinterest.com/pin/create/link/?url={u}&amp;media={i}&amp;description={t}"
 			},
 			reddit: {
 				name: "reddit",
@@ -110,11 +116,15 @@ var pluginName = "wb-share",
 			},
 			tumblr: {
 				name: "tumblr",
-				url: "http://www.tumblr.com/share?v=3&amp;u={u}&amp;t={t}"
+				url: "http://www.tumblr.com/share/link?url={u}&amp;name={t}&amp;description={d}"
 			},
 			twitter: {
 				name: "Twitter",
 				url: "http://twitter.com/home?status={t}%20{u}"
+			},
+			yahoomail: {
+				name: "Yahoo! Mail",
+				url: "http://compose.mail.yahoo.com/?to=&subject={t}&body={u}%0A{d}"
 			}
 		}
 	},
@@ -128,8 +138,9 @@ var pluginName = "wb-share",
 	init = function( event ) {
 		var elm = event.target,
 			sites, heading, settings, panel, link, $share, $elm,
-			pageHref, pageTitle, pageImage, pageDescription, site,
-			siteProperties, url, shareText, id, pnlId;
+			pageHref, pageTitle, pageImage, pageDescription,
+			siteProperties, url, shareText, id, pnlId, regex,
+			filter, i, len, keys, key;
 
 		// Filter out any events triggered by descendants
 		// and only initialize the element once
@@ -146,22 +157,35 @@ var pluginName = "wb-share",
 					shareText: i18n( "shr-txt" ),
 					page: i18n( "shr-pg" ),
 					video: i18n( "shr-vid" ),
-					disclaimer: i18n( "shr-disc" )
+					disclaimer: i18n( "shr-disc" ),
+					email: i18n( "email" )
+				};
+
+				// Add an email mailto option
+				defaults.sites[ i18nText.email ] = {
+					name: i18nText.email,
+					url: "mailto:?to=&subject={t}&body={u}%0A{d}",
+					isMailto: true
 				};
 			}
 
 			$elm = $( elm );
-			settings = $.extend( true, defaults, wb.getData( $elm, "wet-boew" ) );
+			settings = $.extend( true, {}, defaults, wb.getData( $elm, "wet-boew" ) );
 			sites = settings.sites;
+			filter = settings.filter;
 			heading = settings.hdLvl;
-			
+
 			shareText = i18nText.shareText + ( settings.custType.length !== 0 ? settings.custType : i18nText[ settings.type ] );
 			pnlId = settings.pnlId;
 			id = "shr-pg" + ( pnlId.length !== 0 ? "-" + pnlId : panelCount );
-			pageHref = settings.url;
-			pageTitle = encodeURIComponent( settings.title );
+			pageHref = encodeURIComponent( settings.url );
+
+			regex = /\'|&#39;|&apos;/;
+			pageTitle = encodeURIComponent( settings.title )
+							.replace( regex, "%27" );
 			pageImage = encodeURIComponent( settings.img );
-			pageDescription = encodeURIComponent( settings.desc );
+			pageDescription = encodeURIComponent( settings.desc )
+								.replace( regex, "%27" );
 
 			// Don't create the panel for the second link (class="link-only")
 			if ( elm.className.indexOf( "link-only" ) === -1 ) {
@@ -169,14 +193,37 @@ var pluginName = "wb-share",
 					"'><header class='modal-header'><" + heading + " class='modal-title'>" +
 					shareText + "</" + heading + "></header><ul class='colcount-xs-2'>";
 
-				for ( site in sites ) {
-					siteProperties = sites[ site ];
+				// If there is no filter array of site keys, then generate an array of site keys
+				if ( !filter || filter.length === 0 ) {
+					keys = [];
+					for ( key in sites ) {
+						if ( sites.hasOwnProperty( key ) ) {
+							keys.push( key );
+						}
+					}
+				} else {
+					keys = filter;
+				}
+
+				// i18n-friendly sort of the site keys
+				keys.sort(function( x, y ) {
+					return wb.normalizeDiacritics( x ).localeCompare( wb.normalizeDiacritics( y ) );
+				});
+				len = keys.length;
+
+				// Generate the panel
+				for ( i = 0; i !== len; i += 1 ) {
+					key = keys[ i ];
+					siteProperties = sites[ key ];
 					url = siteProperties.url
 							.replace( /\{u\}/, pageHref )
 							.replace( /\{t\}/, pageTitle )
 							.replace( /\{i\}/, pageImage )
 							.replace( /\{d\}/, pageDescription );
-					panel += "<li><a href='" + url + "' class='" + shareLink + " " + site + " btn btn-default' target='_blank'>" + siteProperties.name + "</a></li>";
+					panel += "<li><a href='" + url + "' class='" + shareLink +
+						" " + ( siteProperties.isMailto ? "email" : key ) +
+						" btn btn-default' target='_blank'>" +
+						siteProperties.name + "</a></li>";
 				}
 
 				panel += "</ul><div class='clearfix'></div><p class='col-sm-12'>" + i18nText.disclaimer + "</p></section>";

@@ -2,6 +2,9 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
+@import "wet-boew";
+
+@import "partials/bootstrap-overrides-ie8";
 
 /*
  Plugins
@@ -12,7 +15,7 @@
  Polyfills
  */
 @import "../polyfills/details/details-ie8";
- 
+
 /* Print view */
 @media print {
 	@import "../plugins/footnotes/footnotes-ie8-printView";

@@ -4,15 +4,6 @@
  */
 
 /* Details/summary polyfill */
-
-summary {
-	cursor: pointer; /* Apply a pointer cursor upon hover to indicate it’s a clickable element. These styles can be applied regardless of whether the fallback is needed */
-	&:hover, &:focus { /* Add focus styles (for keyboard accessibility) */
-		color: #000;
-		background: #ddd;
-	}
-}
-
 details {
 	> {
 		summary {
@@ -26,7 +17,7 @@ details {
 		> {
 			summary {
 				&:before { /* Add the opened pointer */
-					content: "\25BC\a0";
+					content: "\25BC\a0" !important;
 				}
 			}
 		}

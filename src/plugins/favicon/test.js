@@ -16,8 +16,7 @@
  */
 describe( "Favicon test suite", function() {
 
-	var $faviconMobile, spy,
-		$favicon = $( "link[rel='shortcut icon']" ),
+	var $favicon, $faviconMobile, spy,
 		sandbox = sinon.sandbox.create();
 
 	/*
@@ -27,7 +26,9 @@ describe( "Favicon test suite", function() {
 		// Spy on jQuery's trigger methods
 		spy = sandbox.spy( $.prototype, "trigger" );
 
-		$favicon.trigger( "wb-init.wb-favicon" );
+		$favicon = $( "<link href='test/path/favicon.ico' rel='shortcut icon'>" )
+			.appendTo( wb.doc.find( "head" ) )
+			.trigger( "wb-init.wb-favicon" );
 	});
 
 	/*
@@ -36,31 +37,18 @@ describe( "Favicon test suite", function() {
 	after(function() {
 		// Restore the original behaviour of trigger once the tests are finished
 		sandbox.restore();
+
+		// Remove the test elements
+		$favicon.remove();
+		$faviconMobile.remove();
 	});
 
 	/*
 	 * Test the initialization events of the plugin
 	 */
 	describe( "init events", function() {
-
 		it( "should trigger mobile.wb-favicon event", function() {
 			expect( spy.calledWith( "mobile.wb-favicon" ) ).to.equal( true );
-		});
-
-		it( "should have been triggered on a link[rel='shortcut icon'] element", function() {
-			var call, i, j, lenCalls, lenElms,
-				isSelector = false;
-
-			// Loop over calls made on the trigger() spy
-			for ( i = 0, lenCalls = spy.callCount; !isSelector && i < lenCalls; i += 1 ) {
-				call = spy.getCall( i );
-				// There may be multiple `this` objects for each call
-				for ( j = 0, lenElms = call.thisValue.length; !isSelector && j < lenElms; j += 1 ) {
-					isSelector =  call.thisValue[ j ].nodeName === "LINK" && call.thisValue[ j ].rel === "shortcut icon";
-				}
-			}
-
-			expect( isSelector ).to.equal( true );
 		});
 	});
 

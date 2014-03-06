@@ -5,7 +5,9 @@
 	"category": "Correctif",
 	"description": "Émule l'attribut list de l'élément <inputs>, ainsi que l'élément <datalist>, pour les navigateurs qui ne les supportent pas.",
 	"tag": "datalist",
-	"altLangPrefix": "datalist"
+	"parentdir": "datalist",
+	"altLangPrefix": "datalist",
+	"dateModified": "2014-02-19"
 }
 ---
 <p>La balise <code lang="en">datalist</code> spécifie une liste d'options pré-définis pour un élément <code lang="en">input</code>.</p>
@@ -13,8 +15,10 @@
 <section>
 	<h2>Exemple</h2>
 	<form action="#" method="get">
-		<label for="city">Ville</label>
-		<input type="text" id="city" name="city" list="suggestions">
+		<div class="form-group">
+			<label for="city">Ville</label>
+			<input class="form-control" type="text" id="city" name="city" list="suggestions">
+		</div>
 		<datalist id="suggestions">
 			<!--[if lte IE 9]><select><![endif]-->
 			<option label="Barrie" value="Barrie"></option>

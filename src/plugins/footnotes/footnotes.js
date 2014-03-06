@@ -37,7 +37,7 @@ var pluginName = "wb-fnote",
 
 			wb.remove( selector );
 			elm.className += " " + initedClass;
-			
+
 			$elm = $( elm );
 			footnoteDd = elm.getElementsByTagName( "dd" );
 			footnoteDt = elm.getElementsByTagName( "dt" );

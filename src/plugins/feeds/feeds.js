@@ -75,7 +75,7 @@ var pluginName = "wb-feeds",
 	/**
 	 * Returns a class-based set limit on plugin instances
 	 * @method getLimit
-	 * @param {DOM object} elm The element to search for a class of the form blimit-5
+	 * @param {DOM object} elm The element to search for a class of the form limit-5
 	 * @return {number} 0 if none found, which means the plugin default
 	 */
 	getLimit = function( elm ) {
@@ -94,7 +94,7 @@ var pluginName = "wb-feeds",
 	 * @return {url} The URL for the JSON request
 	 */
 	jsonRequest = function( url, limit ) {
-		var requestURL = "http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q=" + encodeURIComponent( decodeURIComponent( url ) );
+		var requestURL = wb.pageUrlParts.protocol + "//ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q=" + encodeURIComponent( decodeURIComponent( url ) );
 
 		// API returns a maximum of 4 entries by default so only override if more entries should be returned
 		if ( limit > 4 ) {

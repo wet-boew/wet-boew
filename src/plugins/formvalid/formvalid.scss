@@ -2,59 +2,30 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
-%formvalid-font-weight-700 {
-	font-weight: 700;
-}
-%formvalid-display-block {
-	display: block;
-}
-%formvalid-margin-right-0 {
-	margin-right: 0;
-}
 %formvalid-error {
-	//TODO: Convert back to placeholder when libsass supports nested placeholders
-	display: block;
-	font-weight: 700;
-	color: #c00;
+	display: inline-block;
+	width: 100%;
+}
+%formvalid-error-label {
+	font-size: 100%;
 }
 
 .wb-frmvld {
 	label {
-		@extend %formvalid-display-block;
 		strong {
 			&.error {
 				@extend %formvalid-error;
+				.label {
+					@extend %formvalid-error-label;
+				}
 			}
 		}
 	}
 	legend {
 		.error {
 			@extend %formvalid-error;
-		}
-	}
-	input {
-		&[type=checkbox] {
-			+ {
-				label {
-					display: inline;
-				}
-			}
-		}
-	}
-}
-
-div {
-	&.errCnt {
-		p {
-			margin-left: 0;
-			@extend %formvalid-margin-right-0;
-			@extend %formvalid-font-weight-700;
-		}
-		ul {
-			margin-left: 30px;
-			@extend %formvalid-margin-right-0;
-			li {
-				margin-bottom: 5px;
+			.label {
+				@extend %formvalid-error-label;
 			}
 		}
 	}

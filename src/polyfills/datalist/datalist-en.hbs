@@ -5,7 +5,9 @@
 	"category": "Polyfill",
 	"description": "Adds auto-complete functionality to specific <input> fields by dynamically displaying a list of words that match the <datalist>.",
 	"tag": "datalist",
-	"altLangPrefix": "datalist"
+	"parentdir": "datalist",
+	"altLangPrefix": "datalist",
+	"dateModified": "2014-02-19"
 }
 ---
 <p>The <code>datalist</code> tag specifies a list of pre-defined options for an <code>input</code> element.</p>
@@ -14,8 +16,10 @@
 <section>
 	<h2>Example</h2>
 	<form action="#" method="get">
-		<label for="city">City</label>
-		<input type="text" id="city" name="city" list="suggestions" />
+		<div class="form-group">
+			<label for="city">City</label>
+			<input class="form-control" type="text" id="city" name="city" list="suggestions" />
+		</div>
 		<datalist id="suggestions">
 			<!--[if lte IE 9]><select><![endif]-->
 			<option label="Barrie" value="Barrie"></option>

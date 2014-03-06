@@ -13,10 +13,8 @@
 						color: #fff;
 						border-left: 1px solid #0B3048;
 						&.wb-navcurr {
-							&:link {
-								background: #0b3048;
-								color: #fff;
-							}
+							background: #0b3048;
+							color: #fff;
 						}
 					}
 				}
@@ -160,6 +158,14 @@
 				margin-right: auto;
 				margin-left: 5px;
 				width: 75%;
+			}
+		}
+		ul {
+			li {
+				&.no-sect {
+					padding-left: 0;
+					padding-right: 1.27em
+				}
 			}
 		}
 	}

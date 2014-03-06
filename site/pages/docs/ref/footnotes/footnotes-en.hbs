@@ -3,53 +3,127 @@
 	"title": "Footnotes",
 	"language": "en",
 	"description": "Provides a consistent, accessible way of handling footnotes across websites.",
-	"altLangPrefix": "footnotes"
+	"altLangPrefix": "footnotes",
+	"dateModified": "2014-03-05"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
 
 <section>
 	<h2>Purpose</h2>
-	<p>A brief description of the component.</p>
+	<p>This component allows developers to easily embed footnotes into their Web pages, and helps to achieve WCAG 2.0 compliance when providing such footnotes.</p>
 </section>
 
 <section>
 	<h2>Use when</h2>
 	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
+		<li>The end of a page's content contains a footnotes section.</li>
 	</ul>
 </section>
 
 <section>
 	<h2>Do not use when</h2>
 	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
+		<li>A page's content contains multiple footnotes sections (e.g. table notes... scenarios where table-specific footnotes directly follow every table).</li>
+		<li>A page is entirely dedicated to footnotes</li>
 	</ul>
 </section>
 
 <section>
 	<h2>Working example</h2>
-	<p><a href="#">Link to a working example</a></p>
+		<ul>
+			<li><a href="../../../demos/footnotes/footnotes-en.html">English examples</a></li>
+			<li><a href="../../../demos/footnotes/footnotes-fr.html">French examples</a></li>
+		</ul>
 </section>
 
 <section>
 	<h2>How to implement</h2>
-	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
-		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
-		</li>
-		<li>Step 4</li>
-	</ol>
+	<section>
+	<h3>Footnote Indicators</h3>
+	<p>Footnotes are generally denoted by numbers, but may also be represented by other kinds of indicators, such as single letters or symbols.</p>
+	<p>The numbers used throughout this documentation's footnote examples (including numbers within IDs) can be safely subsituted with alternate kinds of indicators.</p>
+	</section>
+
+	<section>
+		<h3>Linking to Footnotes</h3>
+		<p>This section discusses how to link to footnotes.</p>
+
+		<section>
+			<h4>Link to Footnotes Section</h4>
+			<p>Use the following code to link to a footnotes section.</p>
+			<pre><code>&lt;a href="#fn"&gt;Footnotes&lt;/a&gt;</code></pre>
+		</section>
+
+		<section>
+			<h4>Link to a Footnote</h4>
+			<p>Use the following code as a basis to link to a particular footnote.</p>
+			<pre><code>&lt;sup id="fn1-rf"&gt;&lt;a class="fn-lnk" href="#fn1"&gt;&lt;span class="wb-inv"&gt;Footnote &lt;/span&gt;1&lt;/a&gt;&lt;/sup&gt;</code></pre>
+			<p><b>Note:</b> The ID attributes of links to a multi-referenced footnote should contain an alphabetically-ordered letter just after the number (e.g. <code>id="fn2a-rf"</code>, <code>id="fn2b-rf"</code>, <code>id="fn2c-rf"</code>, etc) to make it possible to programmatically distinguish one referrer link from another.</p>
+		</section>
+
+		<section>
+			<h4>Link to Multiple Footnotes</h4>
+			<p>Use the following code as a basis to consecutively link to multiple footnotes.</p>
+			<pre><code>&lt;sup id="fn2-rf"&gt;&lt;a class="fn-lnk" href="#fn2"&gt;&lt;span class="wb-inv"&gt;Footnote &lt;/span&gt;2&lt;/a&gt;&lt;/sup&gt;&#160;&lt;sup id="fn3-rf"&gt;&lt;a class="fn-lnk" href="#fn3"&gt;&lt;span class="wb-inv"&gt;Footnote &lt;/span&gt;3&lt;/a&gt;&lt;/sup&gt;</code></pre>
+			<p><b>Note:</b> Non-breaking spaces (i.e. <code>&amp;#160;</code>) should be used to separate each link.</p>
+		</section>
+	</section>
+
+	<section>
+		<h3>Footnotes Section</h3>
+		<p>This section explains how to set-up a dedicated footnotes section.</p>
+		<p>Use the following code as a basis to create the section:</p>
+<pre><code>&lt;aside class="wb-fnote" role="note"&gt;
+		&lt;h2 id="fn"&gt;Footnotes&lt;/h2&gt;
+		&lt;dl&gt;
+			&lt;!--PLACE FOOTNOTES HERE--&gt;
+		&lt;/dl&gt;
+&lt;/aside&gt;</code></pre>
+	</section>
+
+	<section>
+		<h3>Types of Footnotes</h3>
+		<p>This section explains how to create different types of footnotes, which are expected to be placed within the footnotes section.</p>
+
+		<section>
+			<h4>Standard Footnote</h4>
+			<p>This is a footnote that is referenced only once within a given page's content.</p>
+			<p>Use the following code as a basis to create a standard footnote:</p>
+<pre><code>&lt;dt&gt;Footnote 1&lt;/dt&gt;
+&lt;dd id="fn1"&gt;
+	&lt;p&gt;Example of a standard footnote.&lt;/p&gt;
+	&lt;p class="fn-rtn"&gt;&lt;a href="#fn1-rf"&gt;&lt;span class="wb-inv"&gt;Return to footnote &lt;/span&gt;1&lt;span class="wb-inv"&gt; referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;</code></pre>
+		</section>
+
+		<section>
+			<h4>Multi-referenced Footnote</h4>
+			<p>This is a footnote that is referenced two or more times within a given page's content. By default, its return link should point to (and explicitly identify) the first reference to the footnote. If JavaScript support is available, a supporting plugin will automatically remove the explicit identifier in the return link text, in addition to managing the return link's destination when the footnote is accessed via a different reference from the content.</p>
+			<p>Use the following code as a basis to create a footnote that can be referenced by multiple pieces of content:</p>
+<pre><code>&lt;dt&gt;Footnote 2&lt;/dt&gt;
+&lt;dd id="fn2"&gt;
+	&lt;p&gt;Example of a footnote being referenced by multiple pieces of content.&lt;/p&gt;
+	&lt;p class="fn-rtn"&gt;&lt;a href="#fn2a-rf"&gt;&lt;span class="wb-inv"&gt;Return to &lt;span&gt;first&lt;/span&gt; footnote &lt;/span&gt;2&lt;span class="wb-inv"&gt; referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;</code></pre>
+
+			<p><b>Note 1:</b> The <code>href</code> attributes of return links in multi-referenced footnotes should always contain an "a" after the footnote number (e.g. <code>href="#fn2a-rf"</code>).</p>
+			<p><b>Note 2:</b> The return link text of multi-referenced footnotes should always contain <code>&lt;span&gt;first&lt;/span&gt;</code>, to specifically denote their default destinations when JavaScript support isn't present.</p>
+		</section>
+
+		<section>
+			<h4>Multi-paragraph Footnote</h4>
+			<p>Footnotes containing two or more paragraphs are supported. They can take the form of either a standard or multi-referenced footnote.</p>
+			<p>Use the following code as a basis to create a footnote containing multiple paragraphs:</p>
+<pre><code>&lt;dt&gt;Footnote 3&lt;/dt&gt;
+&lt;dd id="fn3"&gt;
+	&lt;p&gt;Example of a footnote containing multiple paragraphs (first paragraph).&lt;/p&gt;
+	&lt;p&gt;Example of a footnote containing multiple paragraphs (second paragraph).&lt;/p&gt;
+	&lt;p&gt;Example of a footnote containing multiple paragraphs (third paragraph).&lt;/p&gt;
+	&lt;p class="fn-rtn"&gt;&lt;a href="#fn3-rf"&gt;&lt;span class="wb-inv"&gt;Return to footnote &lt;/span&gt;3&lt;span class="wb-inv"&gt; referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/dd&gt;</code></pre>
+		</section>
+	</section>
 </section>
 
 <section>
@@ -127,5 +201,5 @@ Example of multi-line code</code></pre>
 
 <section>
 	<h2>Source code</h2>
-	<p><a href="#">Link to the folder on GitHub containing the files for the component</a></p>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/v4.0/src/plugins/footnotes">Source code (GitHub)</a></p>
 </section>

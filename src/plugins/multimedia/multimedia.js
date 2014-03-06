@@ -146,8 +146,8 @@ var pluginName = "wb-mltmd",
 			data = $this.data( "properties" );
 
 		return withPlayer !== undef ?
-			 [ $this, data, data.player ] :
-			 [ $this, data ];
+			[ $this, data, data.player ] :
+			[ $this, data ];
 	},
 
 	/*
@@ -548,7 +548,7 @@ $document.on( initializedEvent, selector, function() {
 
 	$this.data( "properties", data );
 
-	if ( $media.find( "[type='video/youtube']" ).length > 0 ){
+	if ( $media.find( "[type='video/youtube']" ).length > 0 ) {
 		// lets tweak some variables and start the load sequence
 		url = wb.getUrlParts( $this.find( "[type='video/youtube']").attr( "src") );
 
@@ -560,7 +560,7 @@ $document.on( initializedEvent, selector, function() {
 
 			// lets bind youtubes global function
 			window.onYouTubeIframeAPIReady = function() {
-				  $this.trigger( youtubeEvent );
+				$this.trigger( youtubeEvent );
 			};
 		}
 
@@ -582,7 +582,7 @@ $document.on( fallbackEvent, selector, function() {
 		data = ref[ 1 ],
 		$media = data.media,
 		type = data.type,
-		source = $media.find( ( type === "video"  ? "[type='video/mp4']" : "[type='audio/mp3']" ) ).attr( "src" ),
+		source = $media.find( ( type === "video" ? "[type='video/mp4']" : "[type='audio/mp3']" ) ).attr( "src" ),
 		poster = $media.attr( "poster" ),
 		flashvars = "id=" + data.mId,
 		width = data.width,
