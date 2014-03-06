@@ -17,48 +17,13 @@
  */
 /*jshint unused:false*/
 var wet_boew_geomap = {
-	// OPTIONAL: note that Geomap will provide a default basemap if not specified here.
-	/*
-	basemap: {
-		title: "CBMT",
-		type: "wms",
-		url: "http://geogratis.gc.ca/maps/CBMT",
-		layers: "CBMT",
-		format: "image/png",
-		version: "1.1.1",
-		options: {
-			singleTile: false,
-			ratio: 1.0,
-			projection: "EPSG:3978",
-			fractionalZoom: true
-		},
-		mapOptions: {
-			maxExtent: "-3000000.0, -800000.0, 4000000.0, 3900000.0",			
-			maxResolution: "auto",
-			projection: "EPSG:3978",
-			restrictedExtent: "-3000000.0, -800000.0, 4000000.0, 3900000.0",
-			units: "m",
-			displayProjection: "EPSG:4269",
-			numZoomLevels: 12
-		}
-	},
-	*/
-	
-	/*basemap : {
-		title: "WMS Demo",
-		type: "wms",
-		url: "http://vmap0.tiles.osgeo.org/wms/vmap0",
-		layers: "basic",
-		mapOptions: {
-			maxExtent: "-180, -90, 180, 90",			
-			maxResolution: "auto",
-			projection: "EPSG:4326",
-			restrictedExtent: "-180, -90, 180, 90",
-			units: "m",
-			displayProjection: "EPSG:4326",
-			tileManager: null
-		}
-	},*/
+	// OPTIONAL: note that Geomap will provide a default basemap if not specified here.	
+//	basemap: {
+//		title: "WMS Demo",
+//		type: "wms",
+//		url: "http://vmap0.tiles.osgeo.org/wms/vmap0",
+//		layers: "basic"
+//	},
 	overlays: [
 		{
 			title: "KML Demo EN",

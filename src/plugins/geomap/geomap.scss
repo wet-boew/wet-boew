@@ -288,6 +288,11 @@ div {
 	display: inline;
 }
 
+.geomap-geoloc {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 @media print {
 	%geomap-print-visibility-hidden {
 		visibility: hidden;

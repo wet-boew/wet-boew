@@ -9,9 +9,10 @@
 	"js": "demo/popup_function"
 }
 ---
+
 <!-- GeomapStart -->
 <div id="sample_map"
-	class="wb-geomap position scaleline tab"
+	class="wb-geomap position scaleline tab debug geolocation"
 	data-wet-boew='{
 		"layersFile": "demo/config-en{{environment.suffix}}.js",
 		"tables": [{
@@ -87,17 +88,18 @@
 	}'>
 
     <div class="row">
-        <div class="col-md-12">
-        	<!-- Insert Map Start (mandatory) -->
-        	<div class="wb-geomap-map col-md-9"></div>
-        	<!-- Insert Map End -->
 
+            <div class="col-md-9">
+        	<!-- Insert Map Start (mandatory) -->
+        	<div class="wb-geomap-map"></div>
+        	<!-- Insert Map End -->
+            </div>
         	<!-- Insert Legend Start (optional) -->
         	<div class="wb-geomap-legend col-md-3">
         		<h2>Legend</h2>
         	</div>
         	<!-- Insert Legend End -->
-    	</div>
+
     </div>
 
 	<!-- Insert Layer Data Start (mandatory) -->
@@ -209,43 +211,4 @@
 	</div>
 	<!-- Insert Layer Data End -->
 </div>
-<!-- GeomapEnd -->
-
-<!-- GeomapStart -->
-<div id="location_map"
-	class="wb-geomap static"
-	data-wet-boew='{
-		"tables": [{
-			"id": "addNRCan"
-		}]
-	}'>
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Example - Static Map</h2>
-            <p>GeoMap can be configured to provide a static map ideally suited to display a location or bounding box extent.</p>
-           	<!-- Insert Map Start (mandatory) -->
-        	<div class="wb-geomap-map col-md-4"></div>
-        	<!-- Insert Map End -->
-
-        	<!-- Insert Layer Data Start (mandatory) -->
-        	<div class="wb-geomap-layers col-md-4">
-        		<table id="addNRCan" aria-label="NRCan Ottawa office adress">
-        			<caption class="wb-inv">Natural Resources Canada Ottawa office adress</caption>
-        			<thead>
-        				<tr>
-        					<th>Adress</th>
-        				</tr>
-        			</thead>
-        			<tbody>
-        				<tr data-geometry="POINT (-75.70535, 45.3995)" data-type="wkt">
-        					<td>615 Booth St.,<br />Ottawa (ON),<br />Canada,<br />K1A 0E8</td>
-        				</tr>
-        			</tbody>
-        		</table>
-        	</div>
-    	<!-- Insert Layer Data End -->
-    	</div>
-	</div>
-</div>
-
 <!-- GeomapEnd -->
