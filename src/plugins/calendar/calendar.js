@@ -183,7 +183,7 @@ var $document = wb.doc,
 			$monthNav[ buttonSpec[ 3 ] ]( $btn );
 
 			$btn.toggleClass( "active", !hideButton );
-			
+
 			if ( !hideButton ) {
 				$btn
 					.removeAttr( "disabled" )

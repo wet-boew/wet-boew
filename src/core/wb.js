@@ -179,7 +179,7 @@ var getUrlParts = function( url ) {
 			var exists = false,
 				len = wb.selectors.length,
 				i;
-		
+
 			// Lets ensure we are not running if things are disabled
 			if ( wb.isDisabled && selector !== "#wb-tphp" ) {
 				return 0;
@@ -221,11 +221,11 @@ var getUrlParts = function( url ) {
 			for ( i = 0; i !== len; i += 1 ) {
 				selector = selectorsLocal[ i ];
 				$elms = $( selector );
-				
+
 				// If the selector returns elements, trigger a timerpoke event
 				if ( $elms.length !== 0 ) {
 					$elms.trigger( "timerpoke.wb" );
-					
+
 				// If the selector returns no elements, remove the selector
 				} else {
 					wb.remove( selector );

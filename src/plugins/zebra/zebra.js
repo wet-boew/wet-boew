@@ -35,10 +35,10 @@
 	zebraTable = function( $elm ) {
 		var i, iLength, tblGroup,
 			tblparser = $elm.data().tblparser; // Cache the table parsed results
-		
+
 		function addCellClass( arr, className ) {
 			var i, iLength;
-			
+
 			for ( i = 0, iLength = arr.length; i !== iLength; i += 1 ) {
 				$( arr[i].elem ).addClass( className );
 			}
@@ -92,7 +92,7 @@
 			deps = [
 				"site!deps/tableparser" + modeJS
 			];
-	
+
 		if ( elm.className.indexOf( initedClass ) === -1 ) {
 			wb.remove( selector );
 
@@ -132,11 +132,11 @@
 $document.on( "timerpoke.wb " + initEvent + " " + tableParsingCompleteEvent, selector, function( event ) {
 	var eventType = event.type,
 		elm = event.target;
-	
+
 	if ( event.currentTarget !== elm ) {
 		return true;
 	}
-	
+
 	switch ( eventType ) {
 
 	/*
@@ -145,7 +145,7 @@ $document.on( "timerpoke.wb " + initEvent + " " + tableParsingCompleteEvent, sel
 	case "timerpoke":
 		init( elm );
 		break;
-	
+
 	/*
 	 * Data table parsed
 	 */
@@ -164,7 +164,7 @@ $document.on( "timerpoke.wb " + initEvent + " " + tableParsingCompleteEvent, sel
 // Applying the hover, Simulate Column Hovering Effect
 $document.on( "mouseenter focusin", selectorHoverCol, function( event ) {
 	var tblparserCell = $( event.currentTarget ).data().tblparser;
-	
+
 	if ( tblparserCell.col && tblparserCell.col.elem ) {
 		$( tblparserCell.col.elem ).addClass( "table-hover" );
 	}
@@ -173,7 +173,7 @@ $document.on( "mouseenter focusin", selectorHoverCol, function( event ) {
 // Removing the hover, Simulate Column Hovering Effect
 $document.on( "mouseleave focusout", selectorHoverCol, function( event ) {
 	var tblparserCell = $( event.currentTarget ).data().tblparser;
-	
+
 	if ( tblparserCell.col && tblparserCell.col.elem ) {
 		$( tblparserCell.col.elem ).removeClass( "table-hover" );
 	}

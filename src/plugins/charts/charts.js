@@ -1,7 +1,7 @@
 /**
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * @title Charts and Graph
- * @overview Draw charts from an html simple and complex data table 
+ * @overview Draw charts from an html simple and complex data table
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @duboisp
  *
@@ -160,7 +160,7 @@
 						// [boolean] true means that the legend will be destroyed and the label for pie chart will include the legend
 						nolegend: false,
 
-						// [number] Literal number of displayed decimal for a pie charts 
+						// [number] Literal number of displayed decimal for a pie charts
 						decimal: 0,
 
 						// [number] Provide a default width for the charts that will be rendered
@@ -183,7 +183,7 @@
 								];
 							}
 						}
-						
+
 					},
 					donut: {
 						decimal: 1
@@ -212,19 +212,19 @@
 					}
 				}
 			};
-		
+
 		/**
 		 * A little function to ovewrite and add preset into the default options
-		 * 
+		 *
 		 * @method overwriteDefaultsOptions
-		 * @param {string} scopekey - Key that represent the subject of the setting, [flot, charts, series,...] 
+		 * @param {string} scopekey - Key that represent the subject of the setting, [flot, charts, series,...]
 		 * @param {json object} target - DefaultOptions that wiil be overwritten
 		 * @param {json object} object - User defined object for overwritting options
 		 * @return {json object} - Return the new object
 		 */
 		function overwriteDefaultsOptions( scopekey, target, object ) {
 			var cachedObj, key;
-			
+
 			cachedObj = object[ scopekey ];
 			if ( !cachedObj ) {
 				return target;
@@ -237,8 +237,8 @@
 			}
 			return target;
 		}
-		
-		// User defined options 
+
+		// User defined options
 		if ( !window.chartsGraphOpts ){
 			// Global setting
 			if ( window.wet_boew_charts !== undefined ) {
@@ -250,20 +250,20 @@
 			window.chartsGraphOpts = defaultsOptions;
 		}
 		defaultsOptions = window.chartsGraphOpts;
-		
+
 		/**
 		 * A little function to ease the web editor life
-		 * 
+		 *
 		 * Apply preset defined by a set of space-separated tokens from a baseline json object and at the same time extend the result by using the HTML5 data attribute
-		 * 
+		 *
 		 * @method applyPreset
-		 * @param {json object} baseline - Base line json object that includes predefined and userdefined preset 
+		 * @param {json object} baseline - Base line json object that includes predefined and userdefined preset
 		 * @param {jQuery} $elem - Element on which the class attribute will be taken for a set of space-separated tokens
 		 * @param {string} attribute - Name of the HTML5 data attribute for extending the object at the end
 		 * @return {json object} - Return a new object build from the ```baseline``` or ```baseline.default``` object with the preset applied.
 		 */
 		function applyPreset( baseline, $elem, attribute ) {
-			
+
 			var config = $.extend( true, {}, baseline.defaults || baseline ),
 				fn = $.extend( true, {}, baseline.defaults && baseline.defaults.fn || { } ),
 				tokens = $elem.attr( "class" ) || "",
@@ -272,27 +272,27 @@
 				// Prefix used in front of the token
 				prefix, prefixLength,
 				preset, key, tblFn, localKey, currObj;
-			
+
 			if ( tokens.length ) {
-				
+
 				prefix = ( baseline.prefix || "" );
 				prefixLength = prefix.length;
-				
+
 				// split the set of space-separated tokens
 				tblTokens = tokens.split( " " );
-				
+
 				for ( i = 0, iLength = tblTokens.length; i !== iLength; i += 1 ) {
-					
+
 					// Get the current token
 					token = tblTokens[ i ];
 					tokenLength = token.length;
-					
+
 					// Remove the token is used
 					if ( tokenLength <= prefixLength || token.slice( 0, prefixLength ) !== prefix ) {
 						continue;
 					}
 					token = token.slice( prefixLength, tokenLength );
-					
+
 					preset = baseline[ token ];
 
 					// Apply the preset
@@ -309,10 +309,9 @@
 				}
 			}
 
-			
 			// Extend the config from the element @data attribute
 			config = $.extend( true, config, wb.getData( $elem, attribute ) );
-			
+
 			// Merge and Overide the function.
 			for ( key in fn ) {
 				if ( !fn.hasOwnProperty( key ) ) {
@@ -346,7 +345,7 @@
 		optionsCharts.width = optionsCharts.width | 250;
 		optionsCharts.height = optionsCharts.height | 250;
 
-		/** 
+		/**
 		 * @method getColumnGroupHeaderCalculateSteps
 		 * @param {object} colGroupHead - Column Group Header Object from the table parser
 		 * @param {number} referenceValuePosition - Vector position use as reference for defining the steps, zero based position
@@ -357,14 +356,13 @@
 			var headerCell, i, iLen,
 				calcStep = 1,
 				colRefValue, colCurent;
-				
-				
+
 			if ( !colGroupHead ) {
 
 				// There is an error. Possibly the series are missing a header.
 				return;
 			}
-			
+
 			colRefValue = colGroupHead.col[ referenceValuePosition ];
 			colCurent = colGroupHead.col[ 0 ];
 
@@ -391,11 +389,11 @@
 			return calcStep;
 		}
 
-		/** 
+		/**
 		 * @method getRowGroupHeaderCalculateSteps
 		 * @param {object} rowGroupHead - Row Group Header Object from the table parser
 		 * @param {number} referenceValuePosition - Vector position use as reference for defining the steps, zero based position
-		 * @param {number} dataColgroupStart - Column position where the column data group start 
+		 * @param {number} dataColgroupStart - Column position where the column data group start
 		 */
 		function getRowGroupHeaderCalculateSteps( rowGroupHead, referenceValuePosition, dataColgroupStart ) {
 
@@ -416,11 +414,11 @@
 				if ( headerCell.colpos >= dataColgroupStart && ( headerCell.type === 1 || headerCell.type === 7 ) ) {
 					if ( headerCell.child.length !== 0 ) {
 						calcStep = calcStep * headerCell.child.length * groupHeaderCalculateStepsRecursive( headerCell, 1 );
-						
+
 					}
 				}
 			}
-			
+
 			return calcStep;
 		}
 
@@ -437,7 +435,7 @@
 			if ( childLength === 0 ) {
 				return calcStep;
 			}
-					
+
 			subRefValue = childLength * refValue;
 
 			calcStep = calcStep * subRefValue;
@@ -453,14 +451,14 @@
 
 		/**
 		 * Set the inner step value (divisor) of an header cell and for his child
-		 * 
+		 *
 		 * @method setInnerStepValues
 		 * @param {object} vectorHead - Group Header Object from the table parser
 		 * @param {number} headerLevel - Hiearchical Level of heading
 		 * @param {number} stepsValue - Step Value for the reference value vector
 		 * @param {number} referenceValue - Reference Value Vector ID
-		 * @param {number} dataColgroupStart - Column position where the column data group start 
-		 * 
+		 * @param {number} dataColgroupStart - Column position where the column data group start
+		 *
 		 */
 		function setInnerStepValues( vectorHead, headerLevel, stepsValue, referenceValue, dataColgroupStart ) {
 			var i, iLength,
@@ -494,19 +492,19 @@
 						lowestFlotDelta = headerCell.flotDelta;
 					}
 					headerCell.flotValue = cumulativeValue;
-					
+
 					cumulativeValue = cumulativeValue + stepsValue;
-					
+
 					if ( headerCell.child.length > 0 ) {
 						setInnerStepValuesChildRecursive( headerCell, headerLevel, stepsValue, referenceValue );
 					}
 				}
 			}
 		}
-		
+
 		/**
-		 * Recursize - Set the inner step value (divisor) of an sub header cell  
-		 * 
+		 * Recursize - Set the inner step value (divisor) of an sub header cell
+		 *
 		 * @method setInnerStepValuesChildRecursive
 		 * @param {object} headerCell - Header cell object from the table parser
 		 * @param {number} headerLevel - Hiearchical Level of heading
@@ -545,8 +543,8 @@
 		}
 
 		/**
-		 * Set the header cell step value (flotDelta) for vector that regroup more than one reference 
-		 * 
+		 * Set the header cell step value (flotDelta) for vector that regroup more than one reference
+		 *
 		 * @method setUpperStepValues
 		 * @param {object} vectorHead - Group Header Object from the table parser
 		 * @param {number} referenceValue - Reference Value Vector ID
@@ -556,14 +554,14 @@
 				cumulativeValue,
 				currentCell,
 				currentCellChild;
-			
+
 			// Calculate upper-step for cells that are
 			// less precise than the reference value vector
 			for ( i = referenceValue - 1; i !== -1; i -= 1 ){
-				
+
 				for ( k = 0, kLen = vectorHead[ i ].cell.length; k !== kLen; k += 1 ) {
 					currentCell = vectorHead[ i ].cell[ k ];
-					
+
 					if ( currentCell.flotDelta || k > 0 &&
 						currentCell.uid === vectorHead[ i ].cell[ k - 1 ].uid ){
 
@@ -577,7 +575,7 @@
 					cumulativeValue = 0;
 					for ( m = 0, mLen = currentCell.child.length; m !== mLen; m += 1 ) {
 						currentCellChild = currentCell.child[ m ];
-						
+
 						cumulativeValue = currentCellChild.flotDelta;
 						if ( !currentCell.flotValue ) {
 							currentCell.flotValue = currentCellChild.flotValue;
@@ -590,10 +588,10 @@
 
 		/**
 		 * Get labels for a specific vector
-		 * 
+		 *
 		 * @method getLabels
 		 * @param {object} labelVector - Vector Header Object from the table parser
-		 * @param {number} dataColgroupStart - Column position where the column data group start 
+		 * @param {number} dataColgroupStart - Column position where the column data group start
 		 */
 		function getLabels( labelVector, dataColgroupStart ) {
 			var labels = [],
@@ -601,7 +599,7 @@
 
 			for ( i = 0, iLen = labelVector.cell.length; i !== iLen; i += 1 ) {
 				currentCell = labelVector.cell[ i ];
-				
+
 				if ( ( i !== 0 && currentCell.uid === labelVector.cell[ i - 1 ].uid ) ||
 						( !( currentCell.type === 1 || currentCell.type === 7 ) ) ||
 						( dataColgroupStart && currentCell.colpos < dataColgroupStart ) ) {
@@ -615,7 +613,7 @@
 
 		/**
 		 * Get the vector that would be used for labelling x-axis
-		 * 
+		 *
 		 * @method getlabelsVectorPosition
 		 * @param {object[]} arrVectorHeaders - Collection of vector headers
 		 */
@@ -625,7 +623,7 @@
 
 		/**
 		 * Get the vertical label and set the appropriate header cell x-axis Value
-		 * 
+		 *
 		 * @method verticalLabels
 		 * @param {object} parsedData - Generic object generated by the table parser
 		 */
@@ -640,9 +638,9 @@
 			} else {
 				columnReferenceValue = optionsCharts.referencevalue;
 			}
-			
+
 			columnReferenceValue = columnReferenceValue - 1;
-			
+
 			stepsValue = getColumnGroupHeaderCalculateSteps( parsedData.colgrouphead, columnReferenceValue );
 
 			if ( !reverseTblParsing ) {
@@ -652,10 +650,10 @@
 			}
 
 			headerlevel = columnReferenceValue;
-			
-			// Calculate inner-step for cells that are more precise than the reference value vector 
+
+			// Calculate inner-step for cells that are more precise than the reference value vector
 			setInnerStepValues( parsedData.colgrouphead.col[ columnReferenceValue ], headerlevel, stepsValue, columnReferenceValue );
-			
+
 			// Calculate upper-step for cells that are less precise than the reference value vector
 			setUpperStepValues( parsedData.colgrouphead.col, columnReferenceValue );
 
@@ -665,7 +663,7 @@
 
 		/**
 		 * Get the horizontal label and set the appropriate header cell x-axis Value
-		 * 
+		 *
 		 * @method horizontalLabels
 		 * @param {object} parsedData - Generic object generated by the table parser
 		 */
@@ -705,7 +703,7 @@
 
 			headerlevel = rowReferenceValue;
 
-			// Calculate inner-step for cells that are more precise than the reference value vector 
+			// Calculate inner-step for cells that are more precise than the reference value vector
 			setInnerStepValues( parsedData.theadRowStack[ rowReferenceValue ], headerlevel, stepsValue, rowReferenceValue, dataColgroupStart );
 
 			// Calculate upper-step for cells that are less precise than the reference value vector
@@ -713,25 +711,25 @@
 
 			// Get the labelling
 			return getLabels( parsedData.theadRowStack[ labelsVectorPosition ], dataColgroupStart );
-			
+
 		}
 
 		/**
 		 * Wrap the table into a smart details/summary element
-		 * 
+		 *
 		 * @method wrapTableIntoDetails
 		 */
 		function wrapTableIntoDetails() {
 			var $details = $( "<details><summary>" +
 				captionHtml + i18nText.tableMention +
 				"</summary></details>" );
-			
+
 			$elm.after( $details );
 			$details.append( $elm );
 		}
 
 		function createContainer(withDimension) {
-			
+
 			var $container = $( "<figure class='" + optionsCharts.graphclass +
 
 				// Copy to the inner table caption
@@ -743,10 +741,10 @@
 				"></div></figure>");
 
 			$container.insertBefore( $elm ).append( $elm );
-			
+
 			return $( "div:eq(0)", $container );
 		}
-		
+
 		// Retrieve the parsed data
 		parsedData = $elm.data().tblparser;
 
@@ -793,10 +791,10 @@
 
 					// For each cells
 					for ( j = 0, jLength = dataGroupVector[ i ].cell.length; j !== jLength; j += 1 ) {
-						
+
 						dataCell = dataGroupVector[ i ].cell[ j ];
-						
-						// Skip the column if 
+
+						// Skip the column if
 						if ( reverseTblParsing && dataCell.col.type === 1 ) {
 							continue;
 						}
@@ -835,9 +833,9 @@
 
 						break;
 					}
-					
+
 					pieQuaterFlotSeries = { };
-					
+
 					// Get the setting from the associative cell header
 					dataCell =  !reverseTblParsing ?
 						dataGroupVector[ i ].cell[ rIndex ] :
@@ -846,16 +844,16 @@
 						dataCell.col.header :
 						dataCell.row.header;
 					header = header[ header.length - 1 ];
-					
+
 					// Apply any preset
 					pieQuaterFlotSeries = applyPreset( defaultsOptions.series, $( header.elem ), "flot" );
-					
+
 					// Set the data issue from the table
 					pieQuaterFlotSeries.data = dataSeries;
 					pieQuaterFlotSeries.label = ( !reverseTblParsing ?
 						$( dataGroupVector[ i ].dataheader[ dataGroupVector[ i ].dataheader.length - 1 ].elem ).text() :
 						$( dataGroupVector[ i ].header[ dataGroupVector[ i ].header.length - 1 ].elem ).text() );
-					
+
 					// Add the series
 					allSeries.push(pieQuaterFlotSeries);
 				}
@@ -892,7 +890,7 @@
 					// Move the legend under the graphic
 					$( ".legend", $placeHolder ).appendTo( $wetChartContainer );
 				}
-		
+
 				allSeries = [];
 			}
 
@@ -958,13 +956,13 @@
 				if (!currVectorOptions.bars) {
 					currVectorOptions.bars = { show: true, barWidth: 0.9 };
 				}
-				
+
 				// Set a default order for orderBars flot plugin
 				if (!currVectorOptions.bars.order) {
 					currVectorOptions.bars.order = nbBarChart;
 				}
 			}
-			
+
 			// cache the compiled setting
 			currDataVector.chartOption = currVectorOptions;
 		}
@@ -983,7 +981,7 @@
 			for ( j = 0, jLength = currDataVector.cell.length; j !== jLength; j += 1 ) {
 
 				dataCell = currDataVector.cell[ j ];
-				
+
 				if ( datacolgroupfound > 1 && dataCell.col.groupstruct.type !== 2 ) {
 					break;
 				}
@@ -1012,17 +1010,17 @@
 
 			currVectorOptions.data = dataSeries;
 			currVectorOptions.label = $( currDataVector.header[ currDataVector.header.length - 1 ].elem ).text();
-			
+
 			if ( currVectorOptions.bars ) {
 
 				// Adjust the bars width
 				currVectorOptions.bars.barWidth = currVectorOptions.bars.barWidth * ( 1 / nbBarChart );
 			}
-			
+
 			allSeries.push( currVectorOptions );
 
 		}
-	
+
 		if ( optionFlot.bars ) {
 
 			// Adjust the bars width
@@ -1076,7 +1074,7 @@
 				"site!deps/jquery.flot.orderBars" + modeJS,
 				"site!deps/tableparser" + modeJS
 			];
-	
+
 		if ( elm.className.indexOf( initedClass ) === -1 ) {
 			wb.remove( selector );
 
@@ -1116,11 +1114,11 @@
 $document.on( "timerpoke.wb " + initEvent + " " + tableParsingCompleteEvent, selector, function( event ) {
 	var eventType = event.type,
 		elm = event.target;
-	
+
 	if ( event.currentTarget !== elm ) {
 		return true;
 	}
-	
+
 	switch ( eventType ) {
 
 	/*
@@ -1129,7 +1127,7 @@ $document.on( "timerpoke.wb " + initEvent + " " + tableParsingCompleteEvent, sel
 	case "timerpoke":
 		init( elm );
 		break;
-	
+
 	/*
 	 * Data table parsed
 	 */

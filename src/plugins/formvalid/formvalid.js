@@ -77,20 +77,19 @@ var pluginName = "wb-frmvld",
 						formDOM = $form.get( 0 ),
 						formId = $form.attr( "id" ),
 						labels = formDOM.getElementsByTagName( "label" ),
-						labels_len = labels.length,
 						$formElms = $form.find( "input, select, textarea" ),
 						$inputs = $formElms.filter( "input" ),
 						$pattern = $inputs.filter( "[pattern]" ),
 						submitted = false,
 						$required = $form.find( "[required]" ).attr( "aria-required", "true" ),
 						errorFormId = "errors-" + ( !formId ? "default" : formId ),
-						i, len,	validator;
+						i, len, validator;
 
 					// Append the aria-live region (for provide message updates to screen readers)
 					$elm.append( "<div class='arialive wb-inv' aria-live='polite' aria-relevant='all'></div>" );
 
 					// Add space to the end of the labels (so separation between label and error when CSS turned off)
-					len = labels_len;
+					len = labels.length;
 					for ( i = 0; i !== len; i += 1 ) {
 						labels[ i ].innerHTML += " ";
 					}
@@ -153,13 +152,12 @@ var pluginName = "wb-frmvld",
 						// Create our error summary that will appear before the form
 						showErrors: function( errorMap ) {
 							this.defaultShowErrors();
-							var _i18nText = i18nText,
-								$errors = $form.find( "strong.error" ).filter( ":not(:hidden)" ),
+							var $errors = $form.find( "strong.error" ).filter( ":not(:hidden)" ),
 								$errorfields = $form.find( "input.error, select.error, textarea.error" ),
 								$summaryContainer = $form.find( "#" + errorFormId ),
-								prefixStart = "<span class='prefix'>" + _i18nText.error + "&#160;",
-								prefixEnd = _i18nText.colon + " </span>",
-								separator = _i18nText.hyphen,
+								prefixStart = "<span class='prefix'>" + i18nText.error + "&#160;",
+								prefixEnd = i18nText.colon + " </span>",
+								separator = i18nText.hyphen,
 								ariaLive = $form.parent().find( ".arialive" )[ 0 ],
 								summary, key, i, len, $error, prefix, $fieldName, $fieldset, label, labelString;
 
@@ -173,7 +171,7 @@ var pluginName = "wb-frmvld",
 								}
 
 								// Post process
-								summary = "<p>" + _i18nText.formNotSubmitted + $errors.length + ( $errors.length !== 1 ? _i18nText.errorsFound : _i18nText.errorFound ) + "</p><ul>";
+								summary = "<p>" + i18nText.formNotSubmitted + $errors.length + ( $errors.length !== 1 ? i18nText.errorsFound : i18nText.errorFound ) + "</p><ul>";
 								$errorfields.attr( "aria-invalid", "true" );
 								len = $errors.length;
 								for ( i = 0; i !== len; i += 1 ) {
