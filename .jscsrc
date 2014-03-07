@@ -104,6 +104,7 @@
 	"disallowYodaConditions": true,
 	"requireLineFeedAtFileEnd": true,
 	"requireParenthesesAroundIIFE": true,
+	"disallowMultipleLineStrings": true,
 	"validateJSDoc": {
 		"checkParamNames": true,
 		"checkRedundantParams": true,
