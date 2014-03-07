@@ -32,7 +32,7 @@ var pluginName = "wb-share",
 
 		// Supported types are: "page" and "video"
 		type: "page",
-		
+
 		// For custom types
 		// custType = " this comment" results in "Share this comment"
 		custType: "",
@@ -150,12 +150,12 @@ var pluginName = "wb-share",
 			settings = $.extend( true, defaults, wb.getData( $elm, "wet-boew" ) );
 			sites = settings.sites;
 			heading = settings.hdLvl;
-			
+
 			shareText = i18nText.shareText + ( settings.custType.length !== 0 ? settings.custType : i18nText[ settings.type ] );
 			pnlId = settings.pnlId;
 			id = "shr-pg" + ( pnlId.length !== 0 ? "-" + pnlId : panelCount );
 			pageHref = encodeURIComponent( settings.url );
-			
+
 			regex = /\'|&#39;|&apos;/;
 			pageTitle = encodeURIComponent( settings.title )
 							.replace( regex, "%27" );

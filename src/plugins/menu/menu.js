@@ -123,7 +123,7 @@ var pluginName = "wb-menu",
 			panel = "",
 			sectionHtml, properties, sections, section, parent, items,
 			href, linkHtml, i, j, k, len, len2, len3;
-	
+
 		// Process the secondary and site menus
 		len = allProperties.length;
 		for ( i = 0; i !== len; i += 1 ) {
@@ -160,7 +160,7 @@ var pluginName = "wb-menu",
 					sectionHtml += "</ul>" + detailsClose;
 				} else {
 					parent = section.parentNode;
-					
+
 					// Menu item without a section
 					if ( parent.nodeName.toLowerCase() === "li" ) {
 						linkHtml = parent.innerHTML;
@@ -171,7 +171,7 @@ var pluginName = "wb-menu",
 							parent.getElementsByTagName( "a" )[ 0 ].href + "'>" +
 							section.innerHTML + "</a>";
 					}
-					
+
 					// Convert the list item to a WAI-ARIA menuitem
 					sectionHtml += "<li class='no-sect'>" +
 						linkHtml.replace(
@@ -193,7 +193,7 @@ var pluginName = "wb-menu",
 
 		return panel.replace( /list-group-item/gi, "" ) + "</div>";
 	},
-	
+
 	/**
 	 * @method onAjaxLoaded
 	 * @param {jQuery DOM element} $elm The plugin element
@@ -277,7 +277,7 @@ var pluginName = "wb-menu",
 					$info.trigger( navCurrentEvent, breadcrumb );
 				}
 			}
-			
+
 			panel += createMobilePanelMenu( allProperties );
 		}
 
@@ -575,7 +575,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 	// Tab key = Hide all sub-menus
 	if ( which === 9 ) {
 		menuClose( $( selector + " .active" ), true );
-		
+
 	// Menu item is within a menu bar
 	} else if ( inMenuBar ) {
 
@@ -601,7 +601,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 
 			// Set focus on the first submenu item
 			$subMenu.find( "a:first" ).trigger( focusEvent );
-		
+
 		// Hide sub-menus and set focus
 		} else if ( which === 27 ) {
 			event.preventDefault();
@@ -619,7 +619,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 	// Menu item is not within a menu bar
 	} else {
 		menuitemSelector = "> a, > details > summary";
-	
+
 		// Up / down arrow = Previous / next menu item
 		if ( which === 38 || which === 40 ) {
 			event.preventDefault();
@@ -688,17 +688,17 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 			// If the parent menu is a menubar
 			if ( $parentMenu.attr( "role" ) === "menubar" ) {
 				$menuLink = $parent.children( "[href=#" + $menu.attr( "id" ) + "]" );
-			
+
 				// Escape key = Close menu and return to menu bar item
 				if ( which === 27 ) {
 					event.preventDefault();
 					$menuLink.trigger( focusEvent );
-					
+
 					// Close the menu but keep the referring link active
 					setTimeout(function() {
 						menuClose( $menuLink.parent(), false );
 					}, 1 );
-				
+
 				// Left / right key = Next / previous menu bar item
 				} else if ( $parentMenu.attr( "role" ) === "menubar" ) {
 					menuIncrement(
@@ -707,7 +707,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 						which === 37 ? -1 : 1
 					);
 				}
-				
+
 			// Escape or left arrow: Go up a level if there is a higher-level
 			// menu or close the current submenu if there isn't
 			} else if ( which !== 39 ) {

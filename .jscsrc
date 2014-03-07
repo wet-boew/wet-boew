@@ -107,6 +107,7 @@
 	"disallowMultipleLineStrings": true,
 	"validateQuoteMarks": "\"",
 	"disallowMixedSpacesAndTabs": true,
+	"disallowTrailingWhitespace": true,
 	"validateJSDoc": {
 		"checkParamNames": true,
 		"checkRedundantParams": true,

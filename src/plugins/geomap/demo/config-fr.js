@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
- 
+
 /*
  * Les composantes individuelles seront substituées par les compasantes globales
  *
@@ -32,7 +32,7 @@ var wet_boew_geomap = {
 			fractionalZoom: true
 		},
 		mapOptions: {
-			maxExtent: "-3000000.0, -800000.0, 4000000.0, 3900000.0",			
+			maxExtent: "-3000000.0, -800000.0, 4000000.0, 3900000.0",
 			maxResolution: "auto",
 			projection: "EPSG:3978",
 			restrictedExtent: "-3000000.0, -800000.0, 4000000.0, 3900000.0",
@@ -45,7 +45,7 @@ var wet_boew_geomap = {
 	/*
 	basemap : {
 		title: "WMS Demo",
-		type: "wms",	
+		type: "wms",
 		url: "http://vmap0.tiles.osgeo.org/wms/vmap0",
 		layers: "basic"
 	},
@@ -131,8 +131,8 @@ var wet_boew_geomap = {
 			zoom: true,
 			datatable: true,
 			tab: true,
-			
-			// default style			
+
+			// default style
 			style: {
 				type: "symbol",
 				init: {
@@ -148,7 +148,7 @@ var wet_boew_geomap = {
 					graphicOpacity: 0.5
 				}
 			}
-			
+
 			// unique value style
 			/*style: {
 				type: "unique",
@@ -172,7 +172,7 @@ var wet_boew_geomap = {
 					fillOpacity: 0.90
 				}
 			}
-			
+
 			// rule style
 			style: {
 				type: "rule",

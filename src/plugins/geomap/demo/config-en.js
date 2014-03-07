@@ -33,7 +33,7 @@ var wet_boew_geomap = {
 			fractionalZoom: true
 		},
 		mapOptions: {
-			maxExtent: "-3000000.0, -800000.0, 4000000.0, 3900000.0",			
+			maxExtent: "-3000000.0, -800000.0, 4000000.0, 3900000.0",
 			maxResolution: "auto",
 			projection: "EPSG:3978",
 			restrictedExtent: "-3000000.0, -800000.0, 4000000.0, 3900000.0",
@@ -43,14 +43,14 @@ var wet_boew_geomap = {
 		}
 	},
 	*/
-	
+
 	/*basemap : {
 		title: "WMS Demo",
 		type: "wms",
 		url: "http://vmap0.tiles.osgeo.org/wms/vmap0",
 		layers: "basic",
 		mapOptions: {
-			maxExtent: "-180, -90, 180, 90",			
+			maxExtent: "-180, -90, 180, 90",
 			maxResolution: "auto",
 			projection: "EPSG:4326",
 			restrictedExtent: "-180, -90, 180, 90",
@@ -138,8 +138,8 @@ var wet_boew_geomap = {
 			zoom: true,
 			datatable: true,
 			tab: true,
-			
-			// default style			
+
+			// default style
 			style: {
 				type: "symbol",
 				init: {

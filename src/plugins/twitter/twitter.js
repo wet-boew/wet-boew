@@ -28,7 +28,7 @@ var pluginName = "wb-twitter",
 	init = function( event ) {
 		var eventTarget = event.target,
 			protocol = wb.pageUrlParts.protocol;
-	
+
 		// Filter out any events triggered by descendants
 		// and only initialize the element once
 		if ( event.currentTarget === eventTarget &&

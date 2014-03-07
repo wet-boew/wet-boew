@@ -14,7 +14,7 @@ var pluginName = "wb-geomap",
 	$document = wb.doc,
 
 	/*
-	 * Init runs once per plugin element on the page. There may be multiple elements. 
+	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
 	 * @param {jQuery Event} event Event that triggered this handler
@@ -51,7 +51,7 @@ var pluginName = "wb-geomap",
 
 // Bind the init function to the timerpoke event
 $document.on( "timerpoke.wb " + initEvent, selector, init );
-				
+
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 

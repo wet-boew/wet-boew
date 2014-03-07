@@ -36,7 +36,7 @@ var pluginName = "wb-wamethod",
 	rsltAAA = document.getElementById( "rsltAAA" ),
 	percAAA = document.getElementById( "percAAA" ),
 	aaaIncluded = rsltAAA !== null,
-	
+
 	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
@@ -55,7 +55,7 @@ var pluginName = "wb-wamethod",
 
 			// Initialize the summary fields
 			$input.eq( 0 ).trigger( "change" );
-		
+
 			// Apply WAI-ARIA
 			$summaryTd.attr({
 				"aria-live": "polite",
@@ -68,7 +68,7 @@ var pluginName = "wb-wamethod",
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb " + initEvent, selector, init );
-	
+
 // Input field event handler
 $document.on( "change", selector + " input", function() {
 	var aPassed = $input.filter( "[id^='ap']:checked, [id^='an']:checked" ).length,
