@@ -251,6 +251,15 @@ $modal-title-line-height: $line-height-base;
 	@include button-size($padding-xs-vertical, $padding-xs-horizontal, $font-size-small, $line-height-small, $border-radius-small);
 }
 
+.btn-default {
+	background-color: $grayLight;
+	color: $accentBlue;
+	&:hover, &:focus {
+		background-color: $gray;
+		color: $activeBlue;
+	}
+}
+
 
 // close.less
 .close {
