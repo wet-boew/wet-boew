@@ -21,14 +21,12 @@ var $document = wb.doc,
 	 */
 	generateSerial = function( len ) {
 		var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz",
-			string_length = len,
+			stringLength = len,
 			randomstring = "",
 			counter = 0,
-			letterOrNumber,
-			newNum,
-			rnum;
+			letterOrNumber, newNum, rnum;
 
-		for ( counter; counter !== string_length; counter += 1 ) {
+		for ( counter; counter !== stringLength; counter += 1 ) {
 			letterOrNumber = Math.floor( Math.random( ) * 2 );
 			if ( letterOrNumber === 0 ) {
 				newNum = Math.floor( Math.random( ) * 9 );
