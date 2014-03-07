@@ -105,6 +105,7 @@
 	"requireLineFeedAtFileEnd": true,
 	"requireParenthesesAroundIIFE": true,
 	"disallowMultipleLineStrings": true,
+	"validateQuoteMarks": "\"",
 	"validateJSDoc": {
 		"checkParamNames": true,
 		"checkRedundantParams": true,
