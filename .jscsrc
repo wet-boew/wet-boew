@@ -108,6 +108,7 @@
 	"validateQuoteMarks": "\"",
 	"disallowMixedSpacesAndTabs": true,
 	"disallowTrailingWhitespace": true,
+	"requireDotNotation": true,
 	"validateJSDoc": {
 		"checkParamNames": true,
 		"checkRedundantParams": true,
