@@ -63,8 +63,7 @@ $medGray: #ccc;
 			cursor: pointer;
 			margin: 0 10px 0 0;
 			color: #000;
-			background: $lightGray;
-			background: transparentize($lightGray, 0.1);
+			background: #ebf2fc;
 			border: 1px solid $medGray;
 			text-align: center;
 			position: relative;
@@ -83,6 +82,7 @@ $medGray: #ccc;
 				border-bottom: 0;
 				background: #fff;
 				cursor: default;
+				font-weight: 700;
 				a {
 					cursor: default;
 				}
