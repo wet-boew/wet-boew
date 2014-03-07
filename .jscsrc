@@ -106,6 +106,7 @@
 	"requireParenthesesAroundIIFE": true,
 	"disallowMultipleLineStrings": true,
 	"validateQuoteMarks": "\"",
+	"disallowMixedSpacesAndTabs": true,
 	"validateJSDoc": {
 		"checkParamNames": true,
 		"checkRedundantParams": true,

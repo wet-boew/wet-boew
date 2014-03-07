@@ -43,7 +43,7 @@ var selector = ".wb-geomap",
 	},
 
 	/*
-	 * Init runs once per plugin element on the page. There may be multiple elements. 
+	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
 	 * @param {jQuery Event} event Event that triggered this handler
@@ -95,7 +95,7 @@ var selector = ".wb-geomap",
 				useTab: className.indexOf( "tab" ) !== -1,
 				useMapControls: className.indexOf( "static" ) !== -1 ? false : true
 			};
-			
+
 			// Merge default settings with overrides from the selected plugin element.
 			// There may be more than one, so don't override defaults globally!
 			$.extend( settings, defaults, overrides, wb.getData( $elm, "wet-boew" ) );
@@ -114,16 +114,16 @@ var selector = ".wb-geomap",
 				defs: proj4.defs,
 				transform: proj4
 			};
-			
+
 			// Set the language for OpenLayers
 			OpenLayers.Lang.setCode( document.documentElement.lang );
 
 			// Set the image path for OpenLayers
 			OpenLayers.ImgPath = wb.getPath( "/assets" ) + "/";
-			
+
 			// Add projection for default base map
 			proj4.defs( "EPSG:3978", "+proj=lcc +lat_1=49 +lat_2=77 +lat_0=49 +lon_0=-95 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs");
-			  
+
 			if ( debug ) {
 				Modernizr.load( [ {
 					load: "site!../assets/geomap-debug" + modeJS
@@ -172,7 +172,7 @@ var selector = ".wb-geomap",
 			}
 		}
 	},
-			
+
 	/*
 	 * Set the geomap array that will be use to generate Geomap
 	 */
@@ -278,7 +278,7 @@ var selector = ".wb-geomap",
 	},
 
 	/*
-	 *	Map feature unselect
+	 * Map feature unselect
 	 */
 	onFeatureUnselect = function( feature ) {
 		var featureId = feature.id.replace( /\W/g, "_" ),
@@ -293,7 +293,7 @@ var selector = ".wb-geomap",
 	},
 
 	/*
-	 *	Select and unselect map feature on click
+	 * Select and unselect map feature on click
 	 */
 	onFeatureClick = function( feature ) {
 		var selectControl = feature.layer.map.getControlsByClass( "OpenLayers.Control.SelectFeature" )[ 0 ];
@@ -321,7 +321,7 @@ var selector = ".wb-geomap",
 	},
 
 	/*
-	 *	Create popup
+	 * Create popup
 	 */
 	createPopup = function( feature ) {
 
@@ -394,7 +394,7 @@ var selector = ".wb-geomap",
 	},
 
 	/*
-	 *	Create legend
+	 * Create legend
 	 */
 	createLegend = function() {
 
@@ -405,7 +405,7 @@ var selector = ".wb-geomap",
 	},
 
 	/*
-	 *	Create layer holder to add all tabs data (HTML and overlay) and overlay data.
+	 * Create layer holder to add all tabs data (HTML and overlay) and overlay data.
 	 */
 	createLayerHolder = function( geomap, tab ) {
 
@@ -447,7 +447,7 @@ var selector = ".wb-geomap",
 	 * Add layer data
 	 */
 	addLayerData = function( geomap, featureTable, enabled, olLayerId, tab ) {
-		
+
 		// Add layer to legend
 		if ( geomap.glegend.length !== 0 ) {
 			addToLegend( geomap, featureTable, enabled, olLayerId );
@@ -490,12 +490,12 @@ var selector = ".wb-geomap",
 	 * Create Legend
 	 */
 	addToLegend = function( geomap, featureTable, enabled, olLayerId ) {
-		
+
 		var $featureTable = $( featureTable ),
 			featureTableId = featureTable[ 0 ].id,
 			glegend = geomap.glegend,
 			$fieldset, $ul, checked, $chkBox, $label, $li;
-		
+
 		if ( geomap.glegend ) {
 
 			// If no legend or fieldset add them
@@ -521,7 +521,7 @@ var selector = ".wb-geomap",
 				"for": "cb_" + featureTableId,
 				text: $featureTable.attr( "aria-label" )
 			}).prepend( $chkBox );
-			
+
 			$li = $( "<li class='checkbox'>" )
 					.append( $label, "<div id='sb_" + featureTableId + "'></div>" );
 
@@ -537,7 +537,7 @@ var selector = ".wb-geomap",
 			colon = i18nText.colon,
 			ruleLen, $symbol, symbolText, layer, style, styleDefault,
 			filter, filterType, symbolizer, i, j, rule;
-		
+
 		for ( i = 0; i !== len; i += 1 ) {
 			layer = geomap.map.layers[ i ];
 			if ( !layer.isBaseLayer ) {
@@ -640,13 +640,13 @@ var selector = ".wb-geomap",
 			featureTableId = featureTable[ 0 ].id,
 			$featureTable = $( featureTable ), $details,
 			title = $featureTable.attr( "aria-label" );
-		
+
 		$details = $( "<details>", {
 			id: "details-" + featureTableId
 		}).append( "<summary>" + title + "</summary>", featureTable );
 
 		$tabs.append( "<li><a href='#tabs_" + featureTableId + "'>" + title + "</a></li>" );
-		
+
 		$div.append( $details );
 		if ( !enabled ) {
 			$details.append( "<div id='msg_" + featureTableId + "'><p>" +
@@ -860,19 +860,19 @@ var selector = ".wb-geomap",
 	},
 
 	/*
-	 *	Add the checkbox to the column
+	 * Add the checkbox to the column
 	 *
 	 */
-	 addChkBox = function( geomap, feature, featureId ) {
+	addChkBox = function( geomap, feature, featureId ) {
 		return "<td><label class='wb-inv' for='cb_" + featureId + "'>" +
 					i18nText.labelSelect + "</label><input type='checkbox' id='cb_" +
 					featureId + "' class='geomap-cbx' data-map='" + geomap.mapid +
 					"' data-layer='" + feature.layer.id + "' data-feature='" +
 					feature.id + "' /></td>";
-	 },
-	
+	},
+
 	/*
-	 *	Add the zoom to the column
+	 * Add the zoom to the column
 	 *
 	 */
 	addZoomTo = function( geomap, feature ) {
@@ -882,7 +882,7 @@ var selector = ".wb-geomap",
 	},
 
 	/*
-	 *	Set the default basemap
+	 * Set the default basemap
 	 */
 	setDefaultBaseMap = function( geomap ) {
 		var mapWidth = geomap.gmap.width(),
@@ -975,7 +975,7 @@ var selector = ".wb-geomap",
 	},
 
 	/*
-	 *	Add baseMap data
+	 * Add baseMap data
 	 */
 	addBasemapData = function( geomap, opts ) {
 		var mapOptions, mapOpts,
@@ -1018,7 +1018,7 @@ var selector = ".wb-geomap",
 		// Initialize control to []. If not, all maps share the same
 		// set of controls. This maybe a OpenLayers bug
 		geomap.map.controls = [];
-		
+
 		// Check to see if a base map has been configured. If not add the
 		// default base map (the Canada Transportation Base Map (CBMT))
 		if ( hasBasemap ) {
@@ -1056,7 +1056,7 @@ var selector = ".wb-geomap",
 	},
 
 	/*
-	 *	Add overlay data
+	 * Add overlay data
 	 */
 	addOverlayData = function( geomap, opts ) {
 		var overlayData = opts.overlays,
@@ -1092,7 +1092,7 @@ var selector = ".wb-geomap",
 
 										// When read from server, data is string instead of #document
 										if ( typeof data === "string" ) {
-										
+
 											// With IE we cant use DOMParser
 											if ( wb.ie ) {
 												xmlDocument = new window.ActiveXObject( "Microsoft.XMLDOM" );
@@ -1179,7 +1179,7 @@ var selector = ".wb-geomap",
 											g = this.parseFeature( row );
 											feature = new OpenLayers.Feature.Vector();
 											firstComponent = g.geometry.components[ 0 ];
-											
+
 											// if we have a bounding box polygon, densify the coordinates
 											if ( g.geometry.CLASS_NAME === "OpenLayers.Geometry.Polygon" &&
 												firstComponent.components.length === 5 ) {
@@ -1190,11 +1190,11 @@ var selector = ".wb-geomap",
 													firstComponent.components[ 3 ].x,
 													firstComponent.components[ 3 ].y
 												);
-													
+
 												ring = new OpenLayers.Geometry.LinearRing( bnds );
 												geom = new OpenLayers.Geometry.Polygon( ring );
 												geomProj = geom.transform( projLatLon, projMap );
-												
+
 												feature.geometry = geomProj;
 											} else {
 												feature.geometry = this.parseFeature( row ).geometry.transform( projLatLon, projMap );
@@ -1275,7 +1275,7 @@ var selector = ".wb-geomap",
 											g = this.createFeatureFromItem( row );
 											feature = new OpenLayers.Feature.Vector();
 											firstComponent = g.geometry.components[ 0 ];
-											
+
 											// if we have a bounding box polygon, densify the coordinates
 											if ( g.geometry.CLASS_NAME === "OpenLayers.Geometry.Polygon" &&
 												firstComponent.components.length === 5 ) {
@@ -1286,7 +1286,7 @@ var selector = ".wb-geomap",
 													firstComponent.components[ 3 ].x,
 													firstComponent.components[ 3 ].y
 												);
-												
+
 												ring = new OpenLayers.Geometry.LinearRing( bnds );
 												geom = new OpenLayers.Geometry.Polygon( ring );
 												geomProj = geom.transform(projLatLon, projMap );
@@ -1365,7 +1365,7 @@ var selector = ".wb-geomap",
 											row = items[ i ];
 											feature = new OpenLayers.Feature.Vector();
 											firstComponent = row.geometry.coordinates[ 0 ];
-											
+
 											// if we have a bounding box polygon, densify the coordinates
 											if ( row.geometry.type === "Polygon" &&
 												firstComponent.length === 5 ) {
@@ -1457,7 +1457,7 @@ var selector = ".wb-geomap",
 											row = items[ i ];
 											feature = new OpenLayers.Feature.Vector();
 											firstComponent = row.geometry.coordinates[ 0 ];
-											
+
 											// if we have a bounding box polygon, densify the coordinates
 											if ( row.geometry.type === "Polygon" &&
 												firstComponent.length === 5 ) {
@@ -1535,9 +1535,9 @@ var selector = ".wb-geomap",
 	*
 	* Sample tables object:
 	*
-	*	tables: [
-	*		{ id: 'cityE', strokeColor: '#F00', fillcolor: '#F00' }
-	*	]
+	* tables: [
+	*   { id: 'cityE', strokeColor: '#F00', fillcolor: '#F00' }
+	* ]
 	*/
 	addTabularData = function( geomap, opts, projLatLon, projMap ) {
 		var $table, table, openLayersTable, attr, theadTr, tableLayer, thElms, thLen,
@@ -1614,14 +1614,14 @@ var selector = ".wb-geomap",
 							bbox[ 3 ]
 						);
 						vertices = "";
-						
+
 						for ( vertLen = feat.length - 1; vertLen !== -1; vertLen -= 1 ) {
 							vertices += feat[ vertLen ].x + " " + feat[ vertLen ].y + ", ";
 						}
-					
+
 						vertices = vertices.slice( 0, -2 );
 						wktFeature = "POLYGON ((" + vertices + "))";
-						
+
 					} else if ( geomType === "wkt" ) {
 						wktFeature = trElmsInd.getAttribute( "data-geometry" );
 					}
@@ -1654,7 +1654,7 @@ var selector = ".wb-geomap",
 	},
 
 	/*
-	 *	Load controls
+	 * Load controls
 	 */
 	loadControls = function( geomap, opts ) {
 		var $mapDiv = geomap.gmap,
@@ -1766,23 +1766,23 @@ var selector = ".wb-geomap",
 		// Zoom to the maximum extent specified
 		map.zoomToMaxExtent();
 	},
-	
-	// Construct a polygon and densify the latitudes to show the curvature	
+
+	// Construct a polygon and densify the latitudes to show the curvature
 	densifyBBox = function( minX, minY, maxX, maxY ) {
-		
+
 		var left = parseFloat( minX ),
 			bottom = parseFloat( minY ),
 			right = parseFloat( maxX ),
 			top = parseFloat( maxY ),
 			newbounds = [ ],
 			j;
-		
+
 		if ( left.length === 0 || bottom.length === 0 ||
 			right.length === 0 || top.length === 0 ) {
 
 			return false;
 		}
-	
+
 		// If default BBOX, make it fit in view showing Canada and not the world.
 		if ( left === -180.0 ) {
 			left += 0.1;
@@ -1800,16 +1800,16 @@ var selector = ".wb-geomap",
 		for ( j = left; j < right; j += 0.5 ) {
 			newbounds.push( new OpenLayers.Geometry.Point( j, bottom ) );
 		}
-		
+
 		newbounds.push( new OpenLayers.Geometry.Point( right, bottom ) );
-		
+
 		for ( j = right; j > left; j -= 0.5 ) {
 			newbounds.push( new OpenLayers.Geometry.Point( j, top ) );
 		}
-		
+
 		newbounds.push( new OpenLayers.Geometry.Point( left, top ) );
 		newbounds.push( new OpenLayers.Geometry.Point( left, bottom ) );
-		
+
 		return newbounds;
 	},
 
@@ -1824,7 +1824,7 @@ var selector = ".wb-geomap",
 		// Create projection objects
 		var projLatLon = new OpenLayers.Projection( "EPSG:4326" ),
 			projMap = geomap.map.getProjectionObject();
-		
+
 		if ( debug ) {
 			$document.trigger( "projection" + selector, projMap.getCode() );
 		}
@@ -1868,7 +1868,7 @@ var selector = ".wb-geomap",
 			mapArrayItem = mapArray[ len ];
 			map[ mapArrayItem.id ] = mapArrayItem;
 		}
-		
+
 		return map;
 	},
 
@@ -1889,7 +1889,7 @@ var selector = ".wb-geomap",
 
 		glayers.find( ".wb-tables" ).trigger( "wb-init.wb-tables" );
 		glayers.find( ".wb-geomap-tabs" ).trigger( "wb-init.wb-tabs" );
-		
+
 		// Symbolize legend
 		symbolizeLegend( geomap );
 
@@ -1920,7 +1920,7 @@ var selector = ".wb-geomap",
 					$( ".olTileImage" ).attr( "alt", "" );
 				}
 			});
-			
+
 			wb.doc.trigger( "geomap.ready", [ getMap() ]);
 		}
 	},
@@ -2051,7 +2051,7 @@ $document.on( "keydown click", ".olPopupCloseBox span", function( event ) {
 				.unselect( selectedFeature );
 	}
 });
-				
+
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
