@@ -125,7 +125,7 @@ var pluginName = "wb-share",
 		var elm = event.target,
 			sites, heading, settings, panel, link, $share, $elm,
 			pageHref, pageTitle, pageImage, pageDescription, site,
-			siteProperties, url, shareText, id, pnlId;
+			siteProperties, url, shareText, id, pnlId, regex;
 
 		// Filter out any events triggered by descendants
 		// and only initialize the element once
@@ -155,11 +155,13 @@ var pluginName = "wb-share",
 			pnlId = settings.pnlId;
 			id = "shr-pg" + ( pnlId.length !== 0 ? "-" + pnlId : panelCount );
 			pageHref = encodeURIComponent( settings.url );
+			
+			regex = /\'|&#39;|&apos;/;
 			pageTitle = encodeURIComponent( settings.title )
-							.replace( /\'|&#39;|&apos;/, "%27" );
+							.replace( regex, "%27" );
 			pageImage = encodeURIComponent( settings.img );
 			pageDescription = encodeURIComponent( settings.desc )
-								.replace( /\'|&#39;|&apos;/, "%27" );
+								.replace( regex, "%27" );
 
 			// Don't create the panel for the second link (class="link-only")
 			if ( elm.className.indexOf( "link-only" ) === -1 ) {
