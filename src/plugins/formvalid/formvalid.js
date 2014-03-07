@@ -153,13 +153,12 @@ var pluginName = "wb-frmvld",
 						// Create our error summary that will appear before the form
 						showErrors: function( errorMap ) {
 							this.defaultShowErrors();
-							var _i18nText = i18nText,
-								$errors = $form.find( "strong.error" ).filter( ":not(:hidden)" ),
+							var $errors = $form.find( "strong.error" ).filter( ":not(:hidden)" ),
 								$errorfields = $form.find( "input.error, select.error, textarea.error" ),
 								$summaryContainer = $form.find( "#" + errorFormId ),
-								prefixStart = "<span class='prefix'>" + _i18nText.error + "&#160;",
-								prefixEnd = _i18nText.colon + " </span>",
-								separator = _i18nText.hyphen,
+								prefixStart = "<span class='prefix'>" + i18nText.error + "&#160;",
+								prefixEnd = i18nText.colon + " </span>",
+								separator = i18nText.hyphen,
 								ariaLive = $form.parent().find( ".arialive" )[ 0 ],
 								summary, key, i, len, $error, prefix, $fieldName, $fieldset, label, labelString;
 
@@ -173,7 +172,7 @@ var pluginName = "wb-frmvld",
 								}
 
 								// Post process
-								summary = "<p>" + _i18nText.formNotSubmitted + $errors.length + ( $errors.length !== 1 ? _i18nText.errorsFound : _i18nText.errorFound ) + "</p><ul>";
+								summary = "<p>" + i18nText.formNotSubmitted + $errors.length + ( $errors.length !== 1 ? i18nText.errorsFound : i18nText.errorFound ) + "</p><ul>";
 								$errorfields.attr( "aria-invalid", "true" );
 								len = $errors.length;
 								for ( i = 0; i !== len; i += 1 ) {

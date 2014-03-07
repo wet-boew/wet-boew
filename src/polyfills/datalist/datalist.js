@@ -111,11 +111,11 @@ var pluginName = "wb-datalist",
 	 * @param {DOM element} input The polyfilled input field
 	 */
 	closeOptions = function( input ) {
-		var _autolist = input.nextSibling;
+		var autolist = input.nextSibling;
 
-		_autolist.className += " hide";
-		_autolist.innerHTML = "";
-		_autolist.setAttribute( "aria-hidden", "true" );
+		autolist.className += " hide";
+		autolist.innerHTML = "";
+		autolist.setAttribute( "aria-hidden", "true" );
 		input.setAttribute( "aria-expanded", "false" );
 		input.setAttribute( "aria-activedescendent", "" );
 	},
@@ -143,8 +143,8 @@ var pluginName = "wb-datalist",
 	 */
 	keyboardHandlerInput = function( which, event ) {
 		var input = event.target,
-			_autolist = input.nextSibling,
-			_alHide = ( _autolist.className.indexOf( "hide" ) !== -1 ),
+			autolist = input.nextSibling,
+			autolistHidden = ( autolist.className.indexOf( "hide" ) !== -1 ),
 			options, dest, value, len;
 
 		// Spacebar, a - z keys, 0 - 9 keys punctuation, and symbols
@@ -166,11 +166,11 @@ var pluginName = "wb-datalist",
 
 		// Up / down arrow
 		} else if ( ( which === 38 || which === 40) && input.getAttribute( "aria-activedescendent" ) === "" ) {
-			if ( _alHide ) {
+			if ( autolistHidden ) {
 				showOptions( input );
 			}
 
-			options = _autolist.getElementsByTagName( "a" );
+			options = autolist.getElementsByTagName( "a" );
 			dest = options[ ( which === 38 ? options.length - 1 : 0 ) ];
 
 			input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
@@ -179,7 +179,7 @@ var pluginName = "wb-datalist",
 			$( dest ).trigger( setFocusEvent );
 
 			return false;
-		} else if ( !_alHide ) {
+		} else if ( !autolistHidden ) {
 
 			// Tab or Escape key
 			if ( ( which === 9 || which === 27 ) || ( which === 27 && !event.altKey ) ) {
@@ -195,10 +195,10 @@ var pluginName = "wb-datalist",
 	 * @param {DOM element} link Link element that is the target of the event
 	 */
 	keyboardHandlerAutolist = function( which, link ) {
-		var _autolist = link.parentNode.parentNode,
-			input = _autolist.previousSibling,
+		var autolist = link.parentNode.parentNode,
+			input = autolist.previousSibling,
 			$input = $( input ),
-			_span, dest, value, len, children;
+			span, dest, value, len, children;
 
 		// Spacebar, a - z keys, 0 - 9 keys punctuation, and symbols
 		if ( which === 32 || ( which > 47 && which < 91 ) ||
@@ -227,15 +227,15 @@ var pluginName = "wb-datalist",
 
 		// Enter key
 		} else if ( which === 13) {
-			_span = link.getElementsByTagName( "span" );
+			span = link.getElementsByTagName( "span" );
 
 			// .al-val
-			value = _span[ 0 ].innerHTML;
+			value = span[ 0 ].innerHTML;
 
 			if ( value.length === 0 ) {
 
 				// .al-lbl
-				value = _span[ 1 ].innerHTML;
+				value = span[ 1 ].innerHTML;
 			}
 
 			input.value = value;
@@ -258,7 +258,7 @@ var pluginName = "wb-datalist",
 			if ( which === 38 ) {
 				dest = link.parentNode.previousSibling;
 				if ( !dest ) {
-					children = _autolist.getElementsByTagName( "li" );
+					children = autolist.getElementsByTagName( "li" );
 					dest = children[ children.length - 1 ];
 				}
 
@@ -266,7 +266,7 @@ var pluginName = "wb-datalist",
 			} else {
 				dest = link.parentNode.nextSibling;
 				if ( !dest ) {
-					dest = _autolist.getElementsByTagName( "li" )[ 0 ];
+					dest = autolist.getElementsByTagName( "li" )[ 0 ];
 				}
 			}
 			dest = dest.getElementsByTagName( "a" )[ 0 ];
@@ -373,7 +373,7 @@ $document.on( "focusin txt-rsz.wb win-rsz-width.wb win-rsz-height.wb", function(
 	var focusEvent = ( event.type === "focusin" ),
 		eventTarget = event.target,
 		eventTargetId = ( eventTarget ? eventTarget.id : null ),
-		inputs, input, _autolist, i, len;
+		inputs, input, autolist, i, len;
 
 	// Only correct width if the polyfill has been initialized
 	if ( initialized ) {
@@ -382,10 +382,10 @@ $document.on( "focusin txt-rsz.wb win-rsz-width.wb win-rsz-height.wb", function(
 		for ( i = 0; i !== len; i += 1 ) {
 			input = inputs[ i ];
 			if ( focusEvent ) {
-				_autolist = input.nextSibling;
-				if ( _autolist.className.indexOf( "hide" ) === -1 &&
-					eventTargetId !== input.id && eventTargetId !== _autolist.id &&
-					!$.contains( _autolist, eventTarget ) ) {
+				autolist = input.nextSibling;
+				if ( autolist.className.indexOf( "hide" ) === -1 &&
+					eventTargetId !== input.id && eventTargetId !== autolist.id &&
+					!$.contains( autolist, eventTarget ) ) {
 
 					closeOptions( input );
 				}
