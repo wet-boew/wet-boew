@@ -96,6 +96,7 @@
 	"disallowQuotedKeysInObjects": "allButReserved",
 	"disallowYodaConditions": true,
 	"requireLineFeedAtFileEnd": true,
+	"requireParenthesesAroundIIFE": true,
 	"validateJSDoc": {
 		"checkParamNames": true,
 		"checkRedundantParams": true,
