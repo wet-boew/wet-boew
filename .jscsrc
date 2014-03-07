@@ -18,6 +18,9 @@
 	"requireSpacesInFunctionExpression": {
 		"beforeOpeningCurlyBrace": true
 	},
+	"disallowSpacesInNamedFunctionExpression": {
+		"beforeOpeningRoundBrace": true
+	},
 	"requireSpacesInsideObjectBrackets": "all",
 	"requireSpacesInsideArrayBrackets": "all",
 	"disallowSpacesInFunctionExpression": {
