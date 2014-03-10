@@ -556,32 +556,38 @@ h4, h5, h6 {
 	margin-bottom: ($line-height-computed / 2);
 }
 
-h1, h2, h3, h4, h5, h6 {
+%font-weight-700 {
 	font-weight: 700;
 }
 
 h1, .h1 {
 	font-size: $font-size-h1;
+	@extend %font-weight-700;
 }
 
 h2, .h2 {
 	font-size: $font-size-h2;
+	@extend %font-weight-700;
 }
 
 h3, .h3 {
 	font-size: $font-size-h3;
+	@extend %font-weight-700;
 }
 
 h4, .h4 {
 	font-size: $font-size-h4;
+	@extend %font-weight-700;
 }
 
 h5, .h5 {
 	font-size: $font-size-h5;
+	@extend %font-weight-700;
 }
 
 h6, .h6 {
 	font-size: $font-size-h6;
+	@extend %font-weight-700;
 }
 
 p {
