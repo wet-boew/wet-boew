@@ -45,9 +45,7 @@
 				}
 				&.prv {
 					a {
-						&.prv {
-							@extend %carousel-background-none;
-						}
+						@extend %carousel-background-none;
 						.glyphicon {
 							@extend %carousel-bottom-2em-top-auto;
 						}
@@ -55,13 +53,9 @@
 				}
 				&.nxt {
 					a {
-						&.nxt {
-							@extend %carousel-background-none;
-						}
+						@extend %carousel-background-none;
 						.glyphicon {
 							@extend %carousel-bottom-2em-top-auto;
-							right: auto;
-							left: 0;
 						}
 					}
 				}
