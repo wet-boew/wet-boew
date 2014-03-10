@@ -155,6 +155,7 @@ module.exports = (grunt) ->
 			"assemble:theme_min"
 			"assemble:demos_min"
 			"htmlcompressor"
+			"htmllint"
 		]
 	)
 
@@ -703,6 +704,12 @@ module.exports = (grunt) ->
 				dest: "dist"
 				expand: true
 
+			htmllint:
+			all: [
+					"dist/**/*.html"
+					"!dist/unmin/**/*.*"
+				]
+
 		ie8csscleaning:
 			min:
 				expand: true
@@ -1140,6 +1147,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-contrib-uglify"
 	@loadNpmTasks "grunt-contrib-watch"
 	@loadNpmTasks "grunt-gh-pages"
+	@loadNpmTasks "grunt-html"
 	@loadNpmTasks "grunt-htmlcompressor"
 	@loadNpmTasks "grunt-i18n-gspreadsheet"
 	@loadNpmTasks "grunt-imagine"
