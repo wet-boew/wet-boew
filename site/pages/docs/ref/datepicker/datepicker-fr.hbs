@@ -2,100 +2,83 @@
 {
 	"title": "Correctif « input type=\"date\" » (sélecteur de date)",
 	"language": "fr",
-	"description": "Émule l’élément <input type=\"date\"> pour les navigateurs qui ne le supportent pas.",
+	"description": "Émule l'élément <input type=\"date\"> pour les navigateurs qui ne le supportent pas.",
 	"altLangPrefix": "datepicker",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-03-10"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
 
-<div lang="en">
-<p><strong>Needs translation</strong></p>
 <section>
-	<h2>Purpose</h2>
-	<p>A brief description of the component.</p>
+	<h2>Objet</h2>
+	<p>Fournir une interface pour sélectionner une date dans un formulaire.</p>
 </section>
 
 <section>
-	<h2>Use when</h2>
-	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
-	</ul>
+	<h2>Utilisation</h2>
+	<p>Cette fonctionnalité peut être utilisée sur n'importe quelle page où sélectionner une date dans un formulaire est requis.</p>
 </section>
 
 <section>
-	<h2>Do not use when</h2>
-	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
-	</ul>
+	<h2>Exemple</h2>
+	<p><a href="../../../demos/datepicker/datepicker-fr.html">Exemple</a></p>
 </section>
 
 <section>
-	<h2>Working example</h2>
-	<p><a href="#">Link to a working example</a></p>
-</section>
-
-<section>
-	<h2>How to implement</h2>
+	<h2>Mise en œuvre</h2>
 	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
-		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
-		</li>
-		<li>Step 4</li>
+		<li>Ajouter un champ de saisie de texte pour chaque date qui sera demandée. Chaque champ de saisie de texte doit implémenter le type <code>date</code>.</li>
+		<li><strong>Facultatif :</strong> Enrouler le format de date avec <code>&lt;span class="datepicker-format"&gt;&lt;/span&gt;</code> pour le cacher lorsque le correctif ne charge (à cause du soutien natif).</li>
+		<li><strong>Facultatif :</strong> Ajouter l'attribut <code>max</code> indiquant la date la plus éloignée que peut sélectionner l'utilisateur.</li>
+		<li><strong>Facultatif :</strong> Ajouter l'attribut <code>min</code> indiquant la date la plus proche que peut sélectionner l'utilisateur.</li>
 	</ol>
+	
+	<h3>Code d'exemple</h3>
+	<pre><code>&lt;div&gt;
+	&lt;label for="startdate"&gt;Date de début&lt;span class="datepicker-format"&gt; (&lt;abbr title="Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour"&gt;AAAA-MM-JJ&lt;/abbr&gt;)&lt;/span&gt;&#160;:&lt;/label&gt;
+	&lt;input type="date" id="startdate" name="startdate" min="2013-03-27" max="2013-05-07" /&gt;
+&lt;/div&gt;
+&lt;div&gt;
+	&lt;label for="enddate"&gt;Date de fin&lt;span class="datepicker-format"&gt; (&lt;abbr title="Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour"&gt;AAAA-MM-JJ&lt;/abbr&gt;)&lt;/span&gt;&#160;:&lt;/label&gt;
+	&lt;input type="date" id="enddate" name="enddate" min="2013-03-27" max="2016-05-07" /&gt;
+&lt;/div&gt;</code></pre>
 </section>
 
 <section>
-	<h2>Configuration options</h2>
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
+	<h2>Options de configuration</h2>
+
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Option</th>
 				<th>Description</th>
-				<th>How to configure</th>
-				<th>Values</th>
+				<th>Configuration</th>
+				<th>Exemple</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
+				<td>Cacher le format de la date</td>
+				<td>Cacher le format de la date lorsque le correctif ne charge pas (à cause du soutien natif).</td>
+				<td>Enrouler le format de date avec : <pre><code>&lt;span class="datepicker-format"&gt;&lt;/span&gt;</code></pre></td>
 				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
+					<pre><code>&lt;label for="startdate"&gt;Date de début&lt;span class="datepicker-format"&gt; (&lt;abbr title="Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour"&gt;AAAA-MM-JJ&lt;/abbr&gt;)&lt;/span&gt;</code></pre>
 				</td>
 			</tr>
 			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
+				<td>Date min</td>
+				<td>La date la plus proche que peut sélectionner l'utilisateur.</td>
+				<td>Ajouter l'attribut « min » avec une date en format <abbr title="Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour">AAAA-MM-JJ</abbr> pour indiquer la date la plus proche que peut sélectionner l'utilisateur.</td>
 				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
+					<pre><code>&lt;input type="date" id="startdate" name="startdate" min="2013-03-27" /&gt;</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td>Date max</td>
+				<td>La date la plus éloignée que peut sélectionner l’utilisateur.</td>
+				<td>Ajouter l'attribut « max » avec une date en format <abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr> pour indiquer la date la plus éloignée que peut sélectionner l'utilisateur.</td>
+				<td>
+					<pre><code>&lt;input type="date" id="startdate" name="startdate" max="2013-05-07" /&gt;</code></pre>
 				</td>
 			</tr>
 		</tbody>
@@ -103,33 +86,36 @@ Example of multi-line code</code></pre>
 </section>
 
 <section>
-	<h2>Events</h2>
-	<p>Document the public events that can be used by implementers or developers.</p>
+	<h2>Événements</h2>
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Event</th>
-				<th>Trigger</th>
-				<th>What it does</th>
+				<th>Événement</th>
+				<th>Déclencheur</th>
+				<th>Fonction</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Event 1</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td>create.wb-cal</td>
+				<td>Avant que l'interface du calendrier devienne visible.</td>
+				<td>Crée l'interface du calendrier.</td>
 			</tr>
 			<tr>
-				<td>Event 2</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td>setFocus.wb-cal</td>
+				<td>Après que l'interface du calendrier soit affiché.</td>
+				<td>Place le focus sur la date dans le champ de saisie, si elle est définie.</td>
+			</tr>
+			<tr>
+				<td>hideGoToFrm.wb-cal</td>
+				<td>Avant que l'interface du calendrier soit caché.</td>
+				<td>Cache le formulaire « Aller à » dans l'interface du calendrier.</td>
 			</tr>
 		</tbody>
 	</table>
 </section>
 
 <section>
-	<h2>Source code</h2>
-	<p><a href="#">Link to the folder on GitHub containing the files for the component</a></p>
+	<h2>Code source</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/v4.0/src/polyfills/datepicker">Code source</a></p>
 </section>
-</div>
