@@ -2,25 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
-%details-bg-d4d4d4-font-weight-700 {
-	background: #D4D4D4;
-	font-weight: 700;
-}
-summary {
-	color: #284162;
-	background: #EBEBEB;
-	cursor: pointer; /* Apply a pointer cursor upon hover to indicate it’s a clickable element. These styles can be applied regardless of whether the fallback is needed */
-	&:hover, &:focus { /* Add focus styles (for keyboard accessibility) */
-		@extend %details-bg-d4d4d4-font-weight-700;
-	}
-}
-
 details {
-	&[open] {
-		summary {
-			@extend %details-bg-d4d4d4-font-weight-700;
-		}
-	}
 	&:not([open]) {
 		> {
 			* {
