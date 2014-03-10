@@ -706,8 +706,7 @@ module.exports = (grunt) ->
 
 			htmllint:
 			all: [
-					"dist/**/*.html"
-					"!dist/unmin/**/*.*"
+					"dist/unmin/**/*.html"
 				]
 
 		ie8csscleaning:
