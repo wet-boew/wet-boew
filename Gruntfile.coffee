@@ -704,9 +704,32 @@ module.exports = (grunt) ->
 				dest: "dist"
 				expand: true
 
-			htmllint:
-			all: [
+		htmllint:
+			ajax:
+				options:
+					ignore: [
+						"XHTML element “head” is missing a required instance of child element “title”."
+
+					]
+				src: [
+					"dist/unmin/ajax/**/*.html"
+				]
+			ajaxFragments:
+				options:
+					ignore: [
+						"XHTML element “head” is missing a required instance of child element “title”."
+						"XHTML element “li” not allowed as child of XHTML element “body” in this context. (Suppressing further errors from this subtree.)"
+						"The “aria-controls” attribute must point to an element in the same document."
+					]
+				src: [
+					"dist/unmin/demos/cal-events/ajax/**/*.html"
+					"dist/unmin/assets/*.html"
+				]
+			all:
+				src: [
 					"dist/unmin/**/*.html"
+					"!dist/unmin/**/ajax/**/*.html"
+					"!dist/unmin/assets/**/*.html"
 				]
 
 		ie8csscleaning:
