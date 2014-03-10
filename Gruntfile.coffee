@@ -726,6 +726,13 @@ module.exports = (grunt) ->
 					"dist/unmin/assets/*.html"
 				]
 			all:
+				options:
+					ignore: [
+						"The “details” element is not supported properly by browsers yet. It would probably be better to wait for implementations."
+						"The “date” input type is not supported in all browsers. Please be sure to test, and consider using a polyfill."
+						"The “track” element is not supported by browsers yet. It would probably be better to wait for implementations."
+						"The “time” input type is not supported in all browsers. Please be sure to test, and consider using a polyfill."
+					]
 				src: [
 					"dist/unmin/**/*.html"
 					"!dist/unmin/**/ajax/**/*.html"
