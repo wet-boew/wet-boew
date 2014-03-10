@@ -120,7 +120,8 @@ module.exports = (grunt) ->
 			"concat:css"
 			"concat:css_addBanners"
 			"cssmin:dist"
-			"copy:cssIE8"
+			"cssmin:distIE8"
+			"ie8csscleaning"
 		]
 	)
 
@@ -664,6 +665,19 @@ module.exports = (grunt) ->
 				dest: "dist/css"
 				ext: ".min.css"
 
+			distIE8:
+				options:
+					banner: ""
+					compatibility: "ie8"
+					noAdvanced: true
+				expand: true
+				cwd: "dist/unmin/css"
+				src: [
+					"**/ie8*.css"
+				]
+				dest: "dist/css"
+				ext: ".min.css"
+
 			demos_min:
 				options:
 					banner: "@charset \"utf-8\";\n/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
@@ -688,6 +702,15 @@ module.exports = (grunt) ->
 				]
 				dest: "dist"
 				expand: true
+
+		ie8csscleaning:
+			min:
+				expand: true
+				cwd: "dist/css"
+				src: [
+					"**/ie8*.min.css"
+				]
+				dest: "dist/css"
 
 		modernizr:
 			devFile: "lib/modernizr/modernizr-custom.js"
@@ -818,12 +841,6 @@ module.exports = (grunt) ->
 					dest: "dist/unmin/demos/"
 					expand: true
 				]
-
-			cssIE8:
-				cwd: "dist/unmin/css/"
-				src: "ie8-wet-boew.css"
-				dest: "dist/css"
-				expand: true
 
 			themeAssets:
 				cwd: "theme/"
