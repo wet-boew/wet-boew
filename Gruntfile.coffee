@@ -713,6 +713,8 @@ module.exports = (grunt) ->
 					]
 				src: [
 					"dist/unmin/ajax/**/*.html"
+					"dist/unmin/demos/menu/demo/*.html"
+
 				]
 			ajaxFragments:
 				options:
@@ -737,6 +739,7 @@ module.exports = (grunt) ->
 					"dist/unmin/**/*.html"
 					"!dist/unmin/**/ajax/**/*.html"
 					"!dist/unmin/assets/**/*.html"
+					"!dist/unmin/demos/menu/demo/*.html"
 				]
 
 		ie8csscleaning:
