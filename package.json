@@ -29,7 +29,7 @@
   "license": "MIT",
   "devDependencies": {
     "assemble": "~0.4.10",
-    "assemble-contrib-i18n": "https://github.com/assemble/assemble-contrib-i18n/tarball/master",
+    "assemble-contrib-i18n": "~0.1.2",
     "csv": "~0.3.6",
     "expect.js": "~0.2.0",
     "grunt": "~0.4.1",
