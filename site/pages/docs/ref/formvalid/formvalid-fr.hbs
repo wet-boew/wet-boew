@@ -34,12 +34,11 @@ wb-frmvld
 <section>
 	<h2>How to implement</h2>
 	<ol>
-		<li>Add <code>class="wb-frmvld"</code> to a <code>div</code> element surrounding the <code>form</code> element</li>
-			<pre><code><div class="wb-frmvld">
-	<form action="#" method="get" id="validation-example">
+		<li>Add <code>class="wb-frmvld"</code> to a <code>div</code> element surrounding the <code>form</code> element
+			<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
 	...
-	</form>
-</div></code></pre>
+	&lt;/form&gt;</code></pre>
 		</li>
 		<li><strong>Optional:</strong> Wrap each form field name with <code>&lt;span class="field-name"&gt;...&lt;/span&gt;</code>. This specifies the prefix to use for the error message summary.
 			<pre><code>&lt;label for="fname1"&gt;
@@ -47,7 +46,7 @@ wb-frmvld
 &lt;/label&gt;</code></pre>
 		</li>
 		<li>Add <code>required="required"</code> to each mandatory form field
-			<pre><code>&lt;input id="fname1" name="fname1" type="text" required="required" /&gt;</pre></code>
+			<pre><code>&lt;input id="fname1" name="fname1" type="text" required="required" /&gt;</code></pre>
 		</li>
 		<li><strong>Optional:</strong> For input fields, add one of the <a href="#config">configuration options</a> for specialized validation.</li>
 	</ol>
