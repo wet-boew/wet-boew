@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "test": "grunt test",
-    "postinstall": "bower install && grunt init"
+    "postinstall": "echo \"Y\" | bower install && grunt init"
   },
   "repository": {
     "type": "git",
