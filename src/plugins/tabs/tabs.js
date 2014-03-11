@@ -642,10 +642,11 @@ $document.on( "keydown", selector + " [role=tabpanel]", function( event ) {
 $document.on( "click", selector + " [role=tabpanel] a", function( event ) {
 	var currentTarget = event.currentTarget,
 		href = currentTarget.getAttribute( "href" ),
+		which = event.which,
 		$container, $panel, $summary;
 
 	// Ignore middle and right mouse buttons
-	if ( event.which === 1 && href.charAt( 0 ) === "#" ) {
+	if ( ( !which || which === 1 ) && href.charAt( 0 ) === "#" ) {
 		$container = $( currentTarget ).closest( selector );
 		$panel = $container.find( href );
 		if ( $panel.length !== 0 ) {
