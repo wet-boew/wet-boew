@@ -321,14 +321,14 @@ var $document = wb.doc,
 		$form
 			.append( $monthContainer )
 			.append( $yearContainer )
-			.append( "<span class='clearfix'></span>" )
+			.append( "<div class='clearfix'></div>" )
 			.append( $buttonSubmit )
 			.append( $buttonCancel );
 
 		$goToLink = $( "<div id='cal-" +
 			calendarId + "-goto-lnk'><a href='javascript:;' role='button' aria-controls='cal-" +
 			calendarId + "-goto' class='cal-goto-lnk' aria-expanded='false'>" +
-			i18nText.monthNames[ month ] + " " + year + "</div>" + "</a></div>" );
+			i18nText.monthNames[ month ] + " " + year + "</a></div>" );
 		$goToLink.on( "click", "a", function( event ) {
 			event.preventDefault();
 
