@@ -179,13 +179,11 @@ var pluginName = "wb-share",
 					shareText + "</" + heading + "></header><ul class='colcount-xs-2'>";
 
 				// If there is a site filter, then filter the sites in advance
-				window.console.log( filterLen );
 				if ( filterLen !== 0 ) {
 					filteredSites = {};
 					for ( i = 0; i !== filterLen; i += 1 ) {
 						site = filter[ i ];
 						filteredSites[ site ] = sites[ site ];
-						window.console.log( "Filter: " + site );
 					}
 					sites = filteredSites;
 				}
