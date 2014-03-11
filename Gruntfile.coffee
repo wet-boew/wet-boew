@@ -736,6 +736,7 @@ module.exports = (grunt) ->
 						"The “time” input type is not supported in all browsers. Please be sure to test, and consider using a polyfill."
 						"The value of attribute “title” on element “a” from namespace “http://www.w3.org/1999/xhtml” is not in Unicode Normalization Form C." #required for vietnamese translations
 						"Text run is not in Unicode Normalization Form C." #required for vietnamese translations
+						"The “longdesc” attribute on the “img” element is obsolete. Use a regular “a” element to link to the description."
 					]
 				src: [
 					"dist/unmin/**/*.html"
