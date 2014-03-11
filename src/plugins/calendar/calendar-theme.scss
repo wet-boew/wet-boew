@@ -5,6 +5,9 @@
 %cal-color-fff {
 	color: #FFF;
 }
+%cal-color-000 {
+	color: #000;
+}
 %cal-color-fff-important {
 	color: #FFF !important;
 }
@@ -35,6 +38,9 @@
 	}
 	.cal-goto-lnk {
 		@extend %cal-color-fff-important;
+	}
+	.cal-goto-mnth, .cal-goto-yr {
+		@extend %cal-color-000;
 	}
 }
 
