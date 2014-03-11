@@ -4,7 +4,7 @@
 	"language": "en",
 	"description": "Facilitates sharing Web content on social media platforms.",
 	"altLangPrefix": "share",
-	"dateModified": "2014-02-26"
+	"dateModified": "2014-03-11"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -140,6 +140,17 @@
 					<dl>
 						<dt>None (default):</dt>
 						<dd>A separate image is not shared by default.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>filter</code></td>
+				<td>Optional filter for the sites to display in the panel. Only the sites listed in the array will be displayed. If no sites are listed, then all sites will be displayed.</td>
+				<td>Add <code>"filter": ["site-1", "site-2", ... "site-n"]</code> to the <code>data-wet-boew</code> attribute.</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>Sites are not filtered by default.</dd>
 					</dl>
 				</td>
 			</tr>
