@@ -154,7 +154,7 @@ var pluginName = "wb-share",
 			}
 
 			$elm = $( elm );
-			settings = $.extend( true, defaults, wb.getData( $elm, "wet-boew" ) );
+			settings = $.extend( true, {}, defaults, wb.getData( $elm, "wet-boew" ) );
 			sites = settings.sites;
 			filter = settings.filter;
 			filterLen = filter ? filter.length : 0;
