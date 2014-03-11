@@ -44,6 +44,12 @@ var pluginName = "wb-share",
 		img: "",
 		desc: "",
 
+		// For filtering the sites that area displayed and controlling the order
+		// they are displayed. Empty array displays all sites in the default order.
+		// Otherwise, it displays the sites in the order in the array using the
+		// keys used by the sites object.
+		filter: [],
+
 		sites: {
 
 			// The definitions of the available bookmarking sites, in URL use
@@ -125,7 +131,8 @@ var pluginName = "wb-share",
 		var elm = event.target,
 			sites, heading, settings, panel, link, $share, $elm,
 			pageHref, pageTitle, pageImage, pageDescription, site,
-			siteProperties, url, shareText, id, pnlId, regex;
+			siteProperties, url, shareText, id, pnlId, regex,
+			filter, filterLen, filteredSites, i;
 
 		// Filter out any events triggered by descendants
 		// and only initialize the element once
@@ -149,6 +156,8 @@ var pluginName = "wb-share",
 			$elm = $( elm );
 			settings = $.extend( true, defaults, wb.getData( $elm, "wet-boew" ) );
 			sites = settings.sites;
+			filter = settings.filter;
+			filterLen = filter ? filter.length : 0;
 			heading = settings.hdLvl;
 
 			shareText = i18nText.shareText + ( settings.custType.length !== 0 ? settings.custType : i18nText[ settings.type ] );
@@ -169,6 +178,19 @@ var pluginName = "wb-share",
 					"'><header class='modal-header'><" + heading + " class='modal-title'>" +
 					shareText + "</" + heading + "></header><ul class='colcount-xs-2'>";
 
+				// If there is a site filter, then filter the sites in advance
+				window.console.log( filterLen );
+				if ( filterLen !== 0 ) {
+					filteredSites = {};
+					for ( i = 0; i !== filterLen; i += 1 ) {
+						site = filter[ i ];
+						filteredSites[ site ] = sites[ site ];
+						window.console.log( "Filter: " + site );
+					}
+					sites = filteredSites;
+				}
+
+				// Generate the panel
 				for ( site in sites ) {
 					siteProperties = sites[ site ];
 					url = siteProperties.url
