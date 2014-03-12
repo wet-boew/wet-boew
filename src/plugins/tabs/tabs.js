@@ -279,7 +279,10 @@ var pluginName = "wb-tabs",
 				nextText + "'>" + glyphiconStart + "chevron-right'></span>" +
 				wbInvStart + nextText + btnEnd;
 
-		$tablist.append( prevControl + ( excludePlay ? "" : playControl ) + nextControl );
+		$tablist.prepend( prevControl + nextControl );
+		if ( !excludePlay ) {
+			$tablist.append( playControl );
+		}
 	},
 
 	/*
