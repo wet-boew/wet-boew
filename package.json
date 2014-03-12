@@ -46,6 +46,7 @@
     "grunt-contrib-uglify": "~0.2.0",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-gh-pages": "~0.9.0",
+    "grunt-html": "https://github.com/LaurentGoderre/grunt-html/tarball/custom",
     "grunt-htmlcompressor": "~0.1.10",
     "grunt-i18n-gspreadsheet": "https://github.com/LaurentGoderre/grunt-i18n-spreadsheet/tarball/custom",
     "grunt-imagine": "http://github.com/LaurentGoderre/grunt-imagine/tarball/custom",
