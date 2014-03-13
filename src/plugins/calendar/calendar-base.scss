@@ -64,6 +64,9 @@
 	}
 	width: 2.5em;
 	height: 2.5em;
+	&[disabled] {
+		opacity: 0.2;
+	}
 }
 
 .cal-wd {
