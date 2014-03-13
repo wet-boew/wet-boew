@@ -117,7 +117,6 @@ module.exports = (grunt) ->
 			"sass:all"
 			"autoprefixer"
 			"csslint:unmin"
-			"concat:css"
 			"concat:css_addBanners"
 			"cssmin:dist"
 			"cssmin:distIE8"
@@ -291,20 +290,6 @@ module.exports = (grunt) ->
 				]
 				dest: "dist/unmin/js/i18n"
 				expand: true
-
-			css:
-				options:
-					banner: "@charset \"utf-8\";\n<%= banner %><%= glyphiconsBanner %>"
-				files:
-					"dist/unmin/css/ie8-wet-boew.css": [
-						"lib/bootstrap/dist/css/bootstrap.css"
-						"dist/unmin/css/wet-boew.css"
-						"dist/unmin/css/ie8-wet-boew.css"
-					]
-					"dist/unmin/css/wet-boew.css": [
-						"lib/bootstrap/dist/css/bootstrap.css"
-						"dist/unmin/css/wet-boew.css"
-					]
 
 			css_addBanners:
 				options:
@@ -547,19 +532,26 @@ module.exports = (grunt) ->
 				# Can be turned off after https://github.com/dimsemenov/Magnific-Popup/pull/303 lands
 				"empty-rules": false
 				"fallback-colors": false
-				"float": false
+				"floats": false
 				"font-sizes": false
 				"gradients": false
 				"headings": false
 				"ids": false
 				"important": false
+				# Need due to use of "\9" hacks for oldIE
+				"known-properties": false
 				"outline-none": false
 				"overqualified-elements": false
 				"qualified-headings": false
 				"regex-selectors": false
+				# Some Bootstrap mixins end up listing all the longhand properties
+				"shorthand": false
+				"text-indent": false
 				"unique-headings": false
 				"universal-selector": false
 				"unqualified-attributes": false
+				# Zeros are output by some of the Bootstrap mixins, but shouldn't be used in our code
+				"zero-units": false
 
 			unmin:
 				options:
@@ -791,7 +783,7 @@ module.exports = (grunt) ->
 
 		copy:
 			bootstrap:
-				cwd: "lib/bootstrap/dist/fonts"
+				cwd: "lib/bootstrap-sass-official/vendor/assets/fonts/bootstrap"
 				src: "*.*"
 				dest: "dist/unmin/fonts"
 				expand: true
