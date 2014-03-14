@@ -17,100 +17,164 @@
 	<form action="#" method="get" id="fdbck-frm">
 		<input type="hidden" name="language" value="fr" />
 		<div id="type">
-			<label for="fbrsn"><span class="field-name">Raison pour communiquer avec nous</span> <strong>(obligatoire)</strong></label>
-			<select name="fbrsn" id="fbrsn" required="required">
-				<option value=""> </option>
-				<option value="web">Problème critique avec le site Web</option>
-				<option value="improvement">Suggestion pour améliorer le site Web</option>
-				<option value="subject1">Question/commentaire sur sujet 1</option>
-				<option value="subject2">Question/commentaire sur sujet 2</option>
-				<option value="subject3">Question/commentaire sur sujet 3</option>
-				<option value="other">Autre</option>
-			</select>
-			<label for="fbsbj"><span class="field-name">Objet</span></label>
-			<input type="text" id="fbsbj" name="fbsbj" size="45" maxlength="60" />
-			<label for="fbmsg"><span class="field-name">Message</span> <strong>(obligatoire)</strong></label>
-			<textarea id="fbmsg" name="fbmsg" rows="5" cols="45" required="required"></textarea>
+			<div class="form-group">
+				<label for="fbrsn"><span class="field-name">Raison pour communiquer avec nous</span> <strong>(obligatoire)</strong></label>
+				<select class="form-control" name="fbrsn" id="fbrsn" required="required">
+					<option value=""> </option>
+					<option value="web">Problème critique avec le site Web</option>
+					<option value="improvement">Suggestion pour améliorer le site Web</option>
+					<option value="subject1">Question/commentaire sur sujet 1</option>
+					<option value="subject2">Question/commentaire sur sujet 2</option>
+					<option value="subject3">Question/commentaire sur sujet 3</option>
+					<option value="other">Autre</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="fbsbj"><span class="field-name">Objet</span></label>
+				<input class="form-control" type="text" id="fbsbj" name="fbsbj" size="45" maxlength="60" />
+			</div>
+			<div class="form-group">
+				<label for="fbmsg"><span class="field-name">Message</span> <strong>(obligatoire)</strong></label>
+				<textarea class="form-control" id="fbmsg" name="fbmsg" rows="5" cols="45" required="required"></textarea>
+			</div>
 		</div>
 
 		<section id="fbweb">
 			<h2>Problèmes avec le site Web</h2>
 			<a class="wb-show-onfocus" href="#fbcntc">Passer aux Coordonnées</a>
-			<label for="fbpg"><span class="field-name">Adresse de la page (URL) ou description de la page</span></label>
-			<input type="text" id="fbpg" name="fbpg" size="80" maxlength="400" />
-			<label for="fbprb">Que faisiez-vous lorsque le problème s'est produit?</label>
-			<textarea id="fbprb" name="fbprb" rows="5" cols="45"></textarea>
+			<div class="form-group">
+				<label for="fbpg"><span class="field-name">Adresse de la page (URL) ou description de la page</span></label>
+				<input class="form-control" type="text" id="fbpg" name="fbpg" size="80" maxlength="400" />
+			</div>
+			<div class="form-group">
+				<label for="fbprb">Que faisiez-vous lorsque le problème s'est produit?</label>
+				<textarea class="form-control" id="fbprb" name="fbprb" rows="5" cols="45"></textarea>
+			</div>
 			<fieldset>
 				<legend>Avez-vous connu les problèmes suivants?</legend>
-				<label for="fbq1"><input class="problems" type="checkbox" name="problems[]" id="fbq1" value="petite police qui ne peut pas être modifiée?" /> petite police qui ne peut pas être modifiée?</label>
-				<label for="fbq2"><input class="problems" type="checkbox" name="problems[]" id="fbq2" value="contraste de couleurs qui ne peut pas être ajusté?" /> contraste de couleurs qui ne peut pas être ajusté?</label>
-				<label for="fbq3"><input class="problems" type="checkbox" name="problems[]" id="fbq3" value="information incertaine, erreurs typographiques ou fautes de grammaire?" />information incertaine, erreurs typographiques ou fautes de grammaire?</label>
-				<label for="fbq4"><input class="problems" type="checkbox" name="problems[]" id="fbq4" value="acronyme ou jargon inexpliqué?" /> acronyme ou jargon inexpliqué?</label>
-				<label for="fbq5"><input class="problems" type="checkbox" name="problems[]" id="fbq5" value="résultats de recherche confus?" /> résultats de recherche confus?</label>
-				<label for="fbq6"><input class="problems" type="checkbox" name="problems[]" id="fbq6" value="navigation clavier de piètre qualité?" /> navigation clavier de piètre qualité?</label>
-				<label for="fbq7"><input class="problems" type="checkbox" name="problems[]" id="fbq7" value="certains éléments trop petits pour cliquer dessus?" /> certains éléments trop petits pour cliquer dessus?</label>
-				<label for="fbq8"><input class="problems" type="checkbox" name="problems[]" id="fbq8" value="images sans alternative texte?" /> images sans alternative texte?</label>
-				<label for="fbq9"><input class="problems" type="checkbox" name="problems[]" id="fbq9" value="multimédia sans sous-titre ou texte équivalent?" /> multimédia sans sous-titre ou texte équivalent?</label>
-				<label for="fbq10"><input class="problems" type="checkbox" name="problems[]" id="fbq10" value="objets qui se déplacent ou qui clignotent de façon incontrôlable?" /> objets qui se déplacent ou qui clignotent de façon incontrôlable?</label>
-				<label for="fbq11"><input class="problems" type="checkbox" name="problems[]" id="fbq11" value="page incomplète ou inexistante (p. ex.&#160;: erreur «&#160;Page ne peut être trouvée&#160;»)" /> page incomplète ou inexistante (<abbr title="par example">p. ex.</abbr>&#160;: erreur &#171;&#160;Page ne peut être trouvée&#160;&#187;)</label>
-				<label for="fbq12"><input class="problems" type="checkbox" name="problems[]" id="fbq12" value="message d'erreur confus ou manquant?" /> message d'erreur confus ou manquant?</label>
-				<label for="fbop">autre problème</label>
-				<input class="problems" type="text" id="fbop" name="fbop" size="45" maxlength="60" />
+				<div class="checkbox">
+					<label for="fbq1"><input class="problems" type="checkbox" name="problems[]" id="fbq1" value="petite police qui ne peut pas être modifiée?" /> petite police qui ne peut pas être modifiée?</label>
+				</div>
+				<div class="checkbox">
+					<label for="fbq2"><input class="problems" type="checkbox" name="problems[]" id="fbq2" value="contraste de couleurs qui ne peut pas être ajusté?" /> contraste de couleurs qui ne peut pas être ajusté?</label>
+				</div>
+				<div class="checkbox">
+					<label for="fbq3"><input class="problems" type="checkbox" name="problems[]" id="fbq3" value="information incertaine, erreurs typographiques ou fautes de grammaire?" />information incertaine, erreurs typographiques ou fautes de grammaire?</label>
+				</div>
+				<div class="checkbox">
+					<label for="fbq4"><input class="problems" type="checkbox" name="problems[]" id="fbq4" value="acronyme ou jargon inexpliqué?" /> acronyme ou jargon inexpliqué?</label>
+				</div>
+				<div class="checkbox">
+					<label for="fbq5"><input class="problems" type="checkbox" name="problems[]" id="fbq5" value="résultats de recherche confus?" /> résultats de recherche confus?</label>
+				</div>
+				<div class="checkbox">
+					<label for="fbq6"><input class="problems" type="checkbox" name="problems[]" id="fbq6" value="navigation clavier de piètre qualité?" /> navigation clavier de piètre qualité?</label>
+				</div>
+				<div class="checkbox">
+					<label for="fbq7"><input class="problems" type="checkbox" name="problems[]" id="fbq7" value="certains éléments trop petits pour cliquer dessus?" /> certains éléments trop petits pour cliquer dessus?</label>
+				</div>
+				<div class="checkbox">
+					<label for="fbq8"><input class="problems" type="checkbox" name="problems[]" id="fbq8" value="images sans alternative texte?" /> images sans alternative texte?</label>
+				</div>
+				<div class="checkbox">
+					<label for="fbq9"><input class="problems" type="checkbox" name="problems[]" id="fbq9" value="multimédia sans sous-titre ou texte équivalent?" /> multimédia sans sous-titre ou texte équivalent?</label>
+				</div>
+				<div class="checkbox">
+					<label for="fbq10"><input class="problems" type="checkbox" name="problems[]" id="fbq10" value="objets qui se déplacent ou qui clignotent de façon incontrôlable?" /> objets qui se déplacent ou qui clignotent de façon incontrôlable?</label>
+				</div>
+				<div class="checkbox">
+					<label for="fbq11"><input class="problems" type="checkbox" name="problems[]" id="fbq11" value="page incomplète ou inexistante (p. ex.&#160;: erreur «&#160;Page ne peut être trouvée&#160;»)" /> page incomplète ou inexistante (<abbr title="par example">p. ex.</abbr>&#160;: erreur &#171;&#160;Page ne peut être trouvée&#160;&#187;)</label>
+				</div>
+				<div class="checkbox">
+					<label for="fbq12"><input class="problems" type="checkbox" name="problems[]" id="fbq12" value="message d'erreur confus ou manquant?" /> message d'erreur confus ou manquant?</label>
+				</div>
+				<div class="form-group">
+					<label for="fbop">Autre problème</label>
+					<input class="form-control problems" type="text" id="fbop" name="fbop" size="45" maxlength="60" />
+				</div>
 			</fieldset>
 
-			<label for="fbaxs">Comment avez-vous accédé au site Web aujourd'hui?</label>
-			<select name="fbaxs" id="fbaxs">
-				<option value="desktop">Ordinateur de bureau</option>
-				<option value="laptop">Ordinateur portable</option>
-				<option value="mobile">Appareil sans fil</option>
-			</select>
+			<div class="form-group">
+				<label for="fbaxs">Comment avez-vous accédé au site Web aujourd'hui?</label>
+				<select class="form-control" name="fbaxs" id="fbaxs">
+					<option value="desktop">Ordinateur de bureau</option>
+					<option value="laptop">Ordinateur portable</option>
+					<option value="mobile">Appareil sans fil</option>
+				</select>
+			</div>
 
 			<section id="fbcomp">
 				<h3>Information sur l'ordinateur de bureau et l'ordinateur portable</h3>
 				<fieldset>
 					<legend>Veuillez préciser la version et d'autres détails</legend>
-					<label for="fbos">Système d'exploitation</label>
-					<input type="text" id="fbos" name="fbos" size="20" maxlength="100" />
-					<label for="fbdbrwsr">Navigateur</label>
-					<input type="text" id="fbdbrwsr" name="fbdbrwsr" size="20" maxlength="100" />
-					<label for="fbdaad">Matériel adapté/fonctionnel</label>
-					<input type="text" id="fbdaad" name="fbdaad" size="20" maxlength="100" />
+					<div class="form-group">
+						<label for="fbos">Système d'exploitation</label>
+						<input class="form-control" type="text" id="fbos" name="fbos" size="20" maxlength="100" />
+					</div>
+					<div class="form-group">
+						<label for="fbdbrwsr">Navigateur</label>
+						<input class="form-control" type="text" id="fbdbrwsr" name="fbdbrwsr" size="20" maxlength="100" />
+					</div>
+					<div class="form-group">
+						<label for="fbdaad">Matériel adapté/fonctionnel</label>
+						<input class="form-control" type="text" id="fbdaad" name="fbdaad" size="20" maxlength="100" />
+					</div>
 				</fieldset>
 			</section>
 
 			<section id="fbmob">
 				<h3>Information sur l'appareil sans fil</h3>
 				<fieldset>
-					<legend>Veuillez préciser la version et d'autres détails</legend>
-					<label for="fbsphn">Type Smartphone</label>
-					<input type="text" id="fbsphn" name="fbsphn" size="20" maxlength="100" />
-					<label for="fbmbrwsr">Navigateur</label>
-					<input type="text" id="fbmbrwsr" name="fbmbrwsr" size="20" maxlength="100" />
-					<label for="fbmaad">Matériel adapté où fonctionnel</label>
-					<input type="text" id="fbmaad" name="fbmaad" size="20" maxlength="100" />
+					<legend>Veuillez préciser la version et d'autres détails</legend>à
+					<div class="form-group">
+						<label for="fbsphn">Type Smartphone</label>
+						<input class="form-control" type="text" id="fbsphn" name="fbsphn" size="20" maxlength="100" />
+					</div>
+					<div class="form-group">
+						<label for="fbmbrwsr">Navigateur</label>
+						<input class="form-control" type="text" id="fbmbrwsr" name="fbmbrwsr" size="20" maxlength="100" />
+					</div>
+					<div class="form-group">
+						<label for="fbmaad">Matériel adapté où fonctionnel</label>
+						<input class="form-control" type="text" id="fbmaad" name="fbmaad" size="20" maxlength="100" />
+					</div>
 				</fieldset>
 			</section>
 		</section>
 
 		<section id="fbcntc">
 			<h2 class="wb-inv">Suivi</h2>
-			<label for="fbcntc1"><input type="checkbox" name="fbcntc1" id="fbcntc1" value="yes" /> Veuillez communiquer avec moi si vous avez besoin de plus amples renseignements.</label>
-			<label for="fbcntc2"><input type="checkbox" name="fbcntc2" id="fbcntc2" value="yes" /> Veuillez me fournir une réponse.</label>
+			<div class="checkbox">
+				<label for="fbcntc1"><input type="checkbox" name="fbcntc1" id="fbcntc1" value="yes" /> Veuillez communiquer avec moi si vous avez besoin de plus amples renseignements.</label>
+			</div>
+			<div class="checkbox">
+				<label for="fbcntc2"><input type="checkbox" name="fbcntc2" id="fbcntc2" value="yes" /> Veuillez me fournir une réponse.</label>
+			</div>
 
 			<section id="fbinfo">
 				<h3>Coordonnées</h3>
 				<fieldset>
 					<legend>Veuillez fournir des renseignements qui pourraient servir à vous joindre</legend>
-					<label for="fbnm"><span class="field-name">Nom</span></label>
-					<input type="text" id="fbnm" name="fbnm" size="45" maxlength="45" pattern=".{2,}" data-rule-minlength="2" />
-					<label for="fbeml"><span class="field-name">Adresse de courriel</span> <strong>(obligatoire)</strong></label>
-					<input type="email" id="fbeml" name="fbeml" size="45" maxlength="60" required="required" />
-					<label for="fbhphn"><span class="field-name">Numéro de téléphone à domicile</span>, y compris l'indicatif régional (<abbr title="par example">p. ex.</abbr>&#160;: 123-456-7890)</label>
-					<input type="tel" id="fbhphn" name="fbhphn" size="12" maxlength="12" data-rule-phoneUS="true" />
-					<label for="fbwphn"><span class="field-name">Numéro de téléphone au travail</span>, y compris l'indicatif régional (<abbr title="par example">p. ex.</abbr>&#160;: 123-456-7890)</label>
-					<input type="tel" id="fbwphn" name="fbwphn" size="12" maxlength="12" data-rule-phoneUS="true" />
-					<label for="fbwphnxt"><span class="field-name">Numéro du poste au travail</span></label>
-					<input type="text" id="fbwphnxt" name="fbwphnxt" size="8" maxlength="8" />
+					<div class="form-group">
+						<label for="fbnm"><span class="field-name">Nom</span></label>
+						<input class="form-control" type="text" id="fbnm" name="fbnm" size="45" maxlength="45" pattern=".{2,}" data-rule-minlength="2" />
+					</div>
+					<div class="form-group">
+						<label for="fbeml"><span class="field-name">Adresse de courriel</span> <strong>(obligatoire)</strong></label>
+						<input class="form-control" type="email" id="fbeml" name="fbeml" size="45" maxlength="60" required="required" />
+					</div>
+					<div class="form-group">
+						<label for="fbhphn"><span class="field-name">Numéro de téléphone à domicile</span>, y compris l'indicatif régional (<abbr title="par example">p. ex.</abbr>&#160;: 123-456-7890)</label>
+						<input class="form-control" type="tel" id="fbhphn" name="fbhphn" size="12" maxlength="12" data-rule-phoneUS="true" />
+					</div>
+					<div class="form-group">
+						<label for="fbwphn"><span class="field-name">Numéro de téléphone au travail</span>, y compris l'indicatif régional (<abbr title="par example">p. ex.</abbr>&#160;: 123-456-7890)</label>
+						<input class="form-control" type="tel" id="fbwphn" name="fbwphn" size="12" maxlength="12" data-rule-phoneUS="true" />
+					</div>
+					<div class="form-group">
+						<label for="fbwphnxt"><span class="field-name">Numéro du poste au travail</span></label>
+						<input class="form-control" type="text" id="fbwphnxt" name="fbwphnxt" size="8" maxlength="8" />
+					</div>
 				</fieldset>
 			</section>
 		</section>

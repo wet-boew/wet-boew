@@ -104,7 +104,7 @@ var pluginName = "wb-date",
 				showFieldLabel + "'><span class='glyphicon glyphicon-calendar'></span><span class='wb-inv'>" +
 				showFieldLabel + "</span></button>";
 
-		$( "#" + fieldId ).after( objToggle );
+		$( "#" + fieldId ).wrap( "<span class='wb-date-wrap'/>" ).after( objToggle );
 		$container.slideUp( 0 );
 	},
 
