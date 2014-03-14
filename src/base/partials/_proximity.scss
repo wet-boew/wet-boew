@@ -81,60 +81,6 @@
 	opacity: .1;
 }
 
-.clmn-2-xs {
-	column-count: 2;
-}
-
-.clmn-3-xs {
-	column-count: 3;
-}
-
-.clmn-4-xs {
-	column-count: 4;
-}
-
-@media screen and (min-width: $smallViewMin) {
-	.clmn-2-sm {
-		column-count: 2;
-	}
-
-	.clmn-3-sm {
-		column-count: 3;
-	}
-
-	.clmn-4-sm {
-		column-count: 4;
-	}
-}
-
-@media screen and (min-width: $mediumViewMin) {
-	.clmn-2-md {
-		column-count: 2;
-	}
-
-	.clmn-3-md {
-		column-count: 3;
-	}
-
-	.clmn-4-md {
-		column-count: 4;
-	}
-}
-
-@media screen and (min-width: $largeViewMin) {
-	.clmn-2-lg {
-		column-count: 2;
-	}
-
-	.clmn-3-lg {
-		column-count: 3;
-	}
-
-	.clmn-4-lg {
-		column-count: 4;
-	}
-}
-
 /*
  *	Fix for missing bullets in Chrome and Safari
  */
@@ -189,84 +135,6 @@
 	@include pstn;
 	@include pstn-bttm;
 	@include pstn-tp-rst;
-}
-
-@media screen and (min-width: $smallViewMin) {
-	.pstn-lft-sm {
-		@include pstn;
-		@include pstn-lft;
-		@include pstn-rght-rst;
-	}
-
-	.pstn-rght-sm {
-		@include pstn;
-		@include pstn-rght;
-		@include pstn-lft-rst;
-	}
-
-	.pstn-tp-sm {
-		@include pstn;
-		@include pstn-tp;
-		@include pstn-bttm-rst;
-	}
-
-	.pstn-bttm-sm {
-		@include pstn;
-		@include pstn-bttm;
-		@include pstn-tp-rst;
-	}
-}
-
-@media screen and (min-width: $mediumViewMin) {
-	.pstn-lft-md {
-		@include pstn;
-		@include pstn-lft;
-		@include pstn-rght-rst;
-	}
-
-	.pstn-rght-md {
-		@include pstn;
-		@include pstn-rght;
-		@include pstn-lft-rst;
-	}
-
-	.pstn-tp-md {
-		@include pstn;
-		@include pstn-tp;
-		@include pstn-bttm-rst;
-	}
-
-	.pstn-bttm-md {
-		@include pstn;
-		@include pstn-bttm;
-		@include pstn-tp-rst;
-	}
-}
-
-@media screen and (min-width: $largeViewMin) {
-	.pstn-lft-lg {
-		@include pstn;
-		@include pstn-lft;
-		@include pstn-rght-rst;
-	}
-
-	.pstn-rght-lg {
-		@include pstn;
-		@include pstn-rght;
-		@include pstn-lft-rst;
-	}
-
-	.pstn-tp-lg {
-		@include pstn;
-		@include pstn-tp;
-		@include pstn-bttm-rst;
-	}
-
-	.pstn-bttm-lg {
-		@include pstn;
-		@include pstn-bttm;
-		@include pstn-tp-rst;
-	}
 }
 
 .mrgn-lft-0 {
@@ -384,4 +252,29 @@
 	tbody, td, td {
 		display: block;
 	}
+}
+
+/*
+ *	Fix for missing bullets in Chrome and Safari
+ */
+[class*=colcount-] {
+	padding-left: 1.3em;
+	list-style: outside;
+	> {
+		li {
+			margin-left: 1.3em;
+		}
+	}
+}
+
+.colcount-xxs-2 {
+	column-count: 2;
+}
+
+.colcount-xxs-3 {
+	column-count: 3;
+}
+
+.colcount-xxs-4 {
+	column-count: 4;
 }
