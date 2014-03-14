@@ -184,30 +184,18 @@ $medGray: #ccc;
 				}
 				&.control {
 					display: inline-block;
-					position: absolute;
-					top: 0;
-					bottom: 0;
 				}
 				%carousel-s2-prv-nxt-common {
-					height: 100%;
-					width: 3em;
 					background: none;
 					margin: 0;
 					padding: 0;
 				}
 				%carousel-s2-prv-nxt-a-common {
-					position: absolute;
-					top: 0;
-					bottom: 0;
-					left: 0;
 					width: 100%;
 					color: $drabBlue;
 					border: none;
 				}
 				%carousel-s2-prv-nxt-glyphicon-common {
-					position: absolute;
-					top: 0;
-					bottom: 0;
 					margin: auto 0;
 					height: 1.75em;
 					width: 1.75em;
@@ -225,20 +213,14 @@ $medGray: #ccc;
 					box-shadow: none;
 				}
 				&.prv {
-					left: 0;
 					@extend %carousel-s2-prv-nxt-common;
 					a {
 						@extend %carousel-s2-prv-nxt-a-common;
-						background-image: linear-gradient(to right, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
 						.glyphicon {
-							left: .25em;
-							padding-top: 1px;
-							padding-right: 2px;
 							@extend %carousel-s2-prv-nxt-glyphicon-common;
 						}
 						&:focus, &:hover {
 							@extend %tabs-background-transparent;
-							background-image: linear-gradient(to right, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 100%);
 							.glyphicon {
 								@extend %tabs-box-shadow-none;
 							}
@@ -246,18 +228,14 @@ $medGray: #ccc;
 					}
 				}
 				&.nxt {
-					right: 0;
 					@extend %carousel-s2-prv-nxt-common;
 					a {
 						@extend %carousel-s2-prv-nxt-a-common;
-						background-image: linear-gradient(to left, rgba(255, 255 ,255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
 						.glyphicon {
-							right: .25em;
 							@extend %carousel-s2-prv-nxt-glyphicon-common;
 						}
 						&:focus, &:hover {
 							@extend %tabs-background-transparent;
-							background-image: linear-gradient(to left, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 100%);
 							.glyphicon {
 								@extend %tabs-box-shadow-none;
 							}
@@ -269,7 +247,6 @@ $medGray: #ccc;
 					border: none;
 					display: inline-block !important;
 					top: 100%;
-					right: 0;
 					padding: 2px 10px;
 					i {
 						color: #000 !important;
