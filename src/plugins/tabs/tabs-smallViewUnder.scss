@@ -23,10 +23,21 @@
 	&.carousel-s1 {
 		[role="tablist"] {
 			position: static;
-		}
-		li {
-			&[role="presentation"] {
-				@extend %tabs-smallview-display-none;
+			li {
+				&[role="presentation"] {
+					@extend %tabs-smallview-display-none;
+				}
+				&.tab-count {
+					background: none;
+					border: none;
+					.curr-count {
+						display: inline;
+					}
+					&.active, &:focus, &:hover {
+						top: 0;
+						cursor: default;
+					}
+				}
 			}
 		}
 	}
@@ -49,12 +60,31 @@
 						padding-left: 1em;
 					}
 				}
+				%tabs-smallview-font-size-15-em {
+					font-size: 1.5em;
+				}
+				&.tab-count {
+					line-height: normal;
+					> {
+						div {
+							position: relative;
+							top: 0.7em;
+						}
+					}
+					.curr-count {
+						@extend %tabs-smallview-font-size-15-em;
+					}
+					&:focus, &:hover {
+						background: transparent;
+						cursor: default;
+					}
+				}
 				&.plypause {
 					float: right;
 					margin-right: 0;
 					padding-right: 1em;
 					a {
-						font-size: 1.5em;
+						@extend %tabs-smallview-font-size-15-em;
 						margin-top: 0.3em;
 						padding-right: 0;
 					}
