@@ -16,8 +16,10 @@
 <section>
 	<h2>Example</h2>
 	<form action="#" method="get">
-		<label for="city">City</label>
-		<input type="text" id="city" name="city" list="suggestions" />
+		<div class="form-group">
+			<label for="city">City</label>
+			<input class="form-control" type="text" id="city" name="city" list="suggestions" />
+		</div>
 		<datalist id="suggestions">
 			<!--[if lte IE 9]><select><![endif]-->
 			<option label="Barrie" value="Barrie"></option>

@@ -165,7 +165,7 @@ var pluginName = "wb-frmvld",
 							if ( $errors.length !== 0 ) {
 								// Create our container if one doesn't already exist
 								if ( $summaryContainer.length === 0 ) {
-									$summaryContainer = $( "<div id='" + errorFormId + "' class='errCnt' tabindex='-1'/>" ).prependTo( $form );
+									$summaryContainer = $( "<div id='" + errorFormId + "' class='alert alert-danger' tabindex='-1'/>" ).prependTo( $form );
 								} else {
 									$summaryContainer.empty();
 								}
@@ -188,8 +188,10 @@ var pluginName = "wb-frmvld",
 									}
 
 									$error.find( "span.prefix" ).detach();
-									summary += "<li><a href='#" + $error.data( "element-id" ) + "'>" + prefix + ( $fieldName.length !== 0 ? $fieldName.html() + separator : "" ) + $error[ 0 ].innerHTML + "</a></li>";
-									$error.prepend( prefix );
+									summary += "<li><a href='#" + $error.data( "element-id" ) +
+										"'>" + prefix + ( $fieldName.length !== 0 ? $fieldName.html() + separator : "" ) +
+										$error.text() + "</a></li>";
+									$error.html( "<span class='label label-danger'>" + prefix + $error.text() + "</span>" );
 								}
 								summary += "</ul>";
 

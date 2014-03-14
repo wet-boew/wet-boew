@@ -5,12 +5,32 @@
 %datepicker-color-fff-important {
 	color: #FFF !important;
 }
+%datepicker-inline-block {
+	display: inline-block;
+}
  
 .cal-cnt {
 	&.picker-overlay {
 		position: absolute;
 		z-index: 498 !important;
 		margin-top: -2em;
+	}
+}
+
+.form-group {
+	.wb-date-wrap {
+		display: block;
+		input {
+			@extend %datepicker-inline-block;
+		}
+	}
+}
+
+.form-inline {
+	.form-group {
+		.wb-date-wrap {
+			@extend %datepicker-inline-block;
+		}
 	}
 }
 
