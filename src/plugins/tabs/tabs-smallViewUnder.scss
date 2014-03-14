@@ -31,40 +31,33 @@
 		}
 	}
 	&.carousel-s2 {
+		$smallViewToolbarSize: 4.375em;
+		margin-bottom: auto;
+		padding-bottom: $smallViewToolbarSize;
+		background: #eee;
 		[role="tablist"] {
+			margin-top: -$smallViewToolbarSize;
 			li {
 				&[role="presentation"] {
 					@extend %tabs-smallview-display-none;
 				}
-				%carousel-background-none {
-					background: none;
-				}
-				%carousel-bottom-2em-top-auto {
-					bottom: -2em;
-					top: auto;
+				&.control {
+					top: 100%;
 				}
 				&.prv {
 					a {
-						@extend %carousel-background-none;
-						.glyphicon {
-							@extend %carousel-bottom-2em-top-auto;
-						}
-					}
-				}
-				&.nxt {
-					a {
-						@extend %carousel-background-none;
-						.glyphicon {
-							@extend %carousel-bottom-2em-top-auto;
-						}
+						padding-left: 1em;
 					}
 				}
 				&.plypause {
-					right: auto;
-					text-align: center;
-					width: 100%;
-					font-size: 1.5em;
-					margin-top: 0.3em;
+					float: right;
+					margin-right: 0;
+					padding-right: 1em;
+					a {
+						font-size: 1.5em;
+						margin-top: 0.3em;
+						padding-right: 0;
+					}
 				}
 			}
 		}

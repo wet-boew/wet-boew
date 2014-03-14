@@ -13,6 +13,66 @@
 			@extend %carouselDrabBlueBackground-mediumViewOver;
 		}
 	}
+	&.carousel-s2 {
+		[role="tablist"] {
+			li {
+				&.control {
+					position: absolute;
+				}
+				&.prv {
+					left: 0;
+					top: 0;
+					bottom: 0;
+					height: 100%;
+					width: 3em;
+					a {
+						position: absolute;
+						top: 0;
+						bottom: 0;
+						left: 0;
+						background-image: linear-gradient(to right, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+						.glyphicon {
+							position: absolute;
+							top: 0;
+							bottom: 0;
+							left: .25em;
+							padding-top: 1px;
+							padding-right: 2px;
+						}
+						&:focus, &:hover {
+							background-image: linear-gradient(to right, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 100%);
+						}
+					}
+				}
+				&.nxt {
+					right: 0;
+					top: 0;
+					bottom: 0;
+					height: 100%;
+					width: 3em;
+					a {
+						position: absolute;
+						top: 0;
+						bottom: 0;
+						left: 0;
+						background-image: linear-gradient(to left, rgba(255, 255 ,255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+						.glyphicon {
+							position: absolute;
+							top: 0;
+							bottom: 0;
+							right: .25em;
+						}
+						&:focus, &:hover {
+							background-image: linear-gradient(to left, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 100%);
+						}
+					}
+				}
+				&.plypause {
+					right: 0;
+				}
+			}
+		}
+	}
 	> {
 		details {
 			display: none;
