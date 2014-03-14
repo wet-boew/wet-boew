@@ -4,6 +4,18 @@
 #wb-sec {
 	margin-top: 20px;
 	padding-bottom: 2em;
+	h3 {
+		padding: 15px;
+		margin: 0;
+		border: 1px solid #ddd;
+		border-bottom: 3px solid #666;
+		line-height: 0.8;
+		a {
+			color: #333;
+			font-size: 0.7em;
+			text-decoration:none;
+		}
+	}
 	.list-group {
 		margin-bottom: 0;
 		a {
