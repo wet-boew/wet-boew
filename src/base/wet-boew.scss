@@ -111,23 +111,27 @@
 /* Extra-small view and over */
 @media screen and (min-width: $xSmallViewMin) {
 	@import "views/xSmallViewOver";
+	@import "partials/proximity-xSmallViewOver";
 	@import "../plugins/menu/menu-xSmallViewOver";
 }
 
 /* Small view and over */
 @media screen and (min-width: $smallViewMin) {
 	@import "views/smallViewOver";
+	@import "partials/proximity-smallViewOver";
 }
 
 /* Medium view and over */
 @media screen and (min-width: $mediumViewMin) {
 	@import "views/mediumViewOver";
+	@import "partials/proximity-mediumViewOver";
 	@import "../plugins/tabs/tabs-mediumViewOver";
 }
 
 /* Large view and over */
 @media screen and (min-width: $largeViewMin) {
 	@import "views/largeViewOver";
+	@import "partials/proximity-largeViewOver";
 }
 
 /* Extra-extra-small view */
@@ -159,6 +163,7 @@
 /* Extra-large view */
 @media screen and (min-width: $xLargeViewMin) {
 	@import "views/xLargeView";
+	@import "partials/proximity-xLargeView";
 }
 
 /* Print view */
@@ -167,4 +172,5 @@
 	@import "../plugins/footnotes/footnotes-printView";
 	@import "../plugins/prettify/prettify-printView";
 	@import "../plugins/tabs/tabs-printView";
+	@import "../plugins/geomap/geomap-printView";
 }

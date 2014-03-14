@@ -1,0 +1,39 @@
+/*
+  WET-BOEW
+  @title: Proximity CSS - Small view and over
+ */
+.colcount-sm-2 {
+	column-count: 2;
+}
+
+.colcount-sm-3 {
+	column-count: 3;
+}
+
+.colcount-sm-4 {
+	column-count: 4;
+}
+
+.pstn-lft-sm {
+	@include pstn;
+	@include pstn-lft;
+	@include pstn-rght-rst;
+}
+
+.pstn-rght-sm {
+	@include pstn;
+	@include pstn-rght;
+	@include pstn-lft-rst;
+}
+
+.pstn-tp-sm {
+	@include pstn;
+	@include pstn-tp;
+	@include pstn-bttm-rst;
+}
+
+.pstn-bttm-sm {
+	@include pstn;
+	@include pstn-bttm;
+	@include pstn-tp-rst;
+}
