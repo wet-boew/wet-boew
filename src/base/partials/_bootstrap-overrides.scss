@@ -374,102 +374,128 @@ textarea.input-lg {
 }
 
 // labels.less
-%label-color-000-underline {
+%label-alert-color-000 {
 	color: #000;
+}
+%label-alert-underline {
 	text-decoration: underline;
 }
-.label {
+.label, .alert {
 	border-radius: 0;
+	border-width: 0 0 0 4px;
+	border-style: solid;
 }
 
 %label-default-bg-border-left {
-	border-left: 4px solid #acacac;
+	border-color: #acacac;
 	background: #eee;
 }
 .label-default {
 	@extend %label-default-bg-border-left;
-	@extend %label-color-000-underline;
+	@extend %label-alert-color-000;
 	&[href] {
 		&:hover, &:focus, &:active {
 			@extend %label-default-bg-border-left;
-			@extend %label-color-000-underline;
+			@extend %label-alert-color-000;
+			@extend %label-alert-underline;
 		}
 	}
 }
 
 %label-primary-bg-border-left {
-	border-left: 4px solid #083c6c;
+	border-color: #083c6c;
 	background: #e8f2f4;
 }
 .label-primary {
 	@extend %label-primary-bg-border-left;
-	@extend %label-color-000-underline;
+	@extend %label-alert-color-000;
 	&[href] {
 		&:hover, &:focus, &:active {
 			@extend %label-primary-bg-border-left;
-			@extend %label-color-000-underline;
+			@extend %label-alert-color-000;
+			@extend %label-alert-underline;
 		}
 	}
 }
 
-%label-success-bg-border-left {
-	border-left: 4px solid #278400;
+%label-alert-success-bg-border-left {
+	border-color: #278400;
 	background: #d8eeca;
 }
 .label-success {
-	@extend %label-success-bg-border-left;
-	@extend %label-color-000-underline;
+	@extend %label-alert-success-bg-border-left;
+	@extend %label-alert-color-000;
 	&[href] {
 		&:hover, &:focus, &:active {
-			@extend %label-success-bg-border-left;
-			@extend %label-color-000-underline;
+			@extend %label-alert-success-bg-border-left;
+			@extend %label-alert-color-000;
+			@extend %label-alert-underline;
 		}
 	}
 }
+.alert-success {
+	@extend %label-alert-success-bg-border-left;
+	@extend %label-alert-color-000;
+}
 
-%label-info-bg-border-left {
-	border-left: 4px solid #269abc;
+%label-alert-info-bg-border-left {
+	border-color: #269abc;
 	background: #d7faff;
 }
 .label-info {
-	@extend %label-info-bg-border-left;
-	@extend %label-color-000-underline;
+	@extend %label-alert-info-bg-border-left;
+	@extend %label-alert-color-000;
 	&[href] {
 		&:hover, &:focus, &:active {
-			@extend %label-info-bg-border-left;
-			@extend %label-color-000-underline;
+			@extend %label-alert-info-bg-border-left;
+			@extend %label-alert-color-000;
+			@extend %label-alert-underline;
 		}
 	}
 }
+.alert-info {
+	@extend %label-alert-info-bg-border-left;
+	@extend %label-alert-color-000;
+}
 
-%label-warning-bg-border-left {
-	border-left: 4px solid #f4e100;
+%label-alert-warning-bg-border-left {
+	border-color: #f4e100;
 	background: #f9f4d4;
 }
 .label-warning {
-	@extend %label-warning-bg-border-left;
-	@extend %label-color-000-underline;
+	@extend %label-alert-warning-bg-border-left;
+	@extend %label-alert-color-000;
 	&[href] {
 		&:hover, &:focus, &:active {
-			@extend %label-warning-bg-border-left;
-			@extend %label-color-000-underline;
+			@extend %label-alert-warning-bg-border-left;
+			@extend %label-alert-color-000;
+			@extend %label-alert-underline;
 		}
 	}
 }
+.alert-warning {
+	@extend %label-alert-warning-bg-border-left;
+	@extend %label-alert-color-000;
+}
 
-%label-danger-bg-border-left {
-	border-left: 4px solid #d3080c;
+%label-alert-danger-bg-border-left {
+	border-color: #d3080c;
 	background: #f3e9e8;
 }
 .label-danger {
-	@extend %label-danger-bg-border-left;
-	@extend %label-color-000-underline;
+	@extend %label-alert-danger-bg-border-left;
+	@extend %label-alert-color-000;
 	&[href] {
 		&:hover, &:focus, &:active {
-			@extend %label-danger-bg-border-left;
-			@extend %label-color-000-underline;
+			@extend %label-alert-danger-bg-border-left;
+			@extend %label-alert-color-000;
+			@extend %label-alert-underline;
 		}
 	}
+}
+.alert-danger {
+	@extend %label-alert-danger-bg-border-left;
+	@extend %label-alert-color-000;
 }
 
 // modals.less
