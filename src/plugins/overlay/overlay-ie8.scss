@@ -6,15 +6,14 @@
 /*
  *	Overlay base
  */
-.ie8 {
-	%overlay-ie8-border-left-999 {
-		border-left: 1px solid #999;
-	}
-	
-	%overlay-ie8-border-right-999 {
-		border-left: 1px solid #999;
-	}
+%overlay-ie8-border-left-999 {
+	border-left: 1px solid #999;
+}
 
+%overlay-ie8-border-right-999 {
+	border-left: 1px solid #999;
+}
+.ie8 {
 	.wb-panel-l {
 		@extend %overlay-ie8-border-right-999;
 	}
