@@ -1,0 +1,21 @@
+/*
+  WET-BOEW
+  @title: Form additions to WET-BOEW
+ */
+%forms-color-c00 {
+	color: #c00;
+}
+label, legend {
+	&.required {
+		&:before {
+			@extend %forms-color-c00;
+			content: "* ";
+			margin-left: -0.665em;
+		}
+		strong {
+			&.required {
+				@extend %forms-color-c00;	
+			}
+		}
+	}
+}

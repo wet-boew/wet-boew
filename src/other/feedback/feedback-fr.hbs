@@ -18,7 +18,7 @@
 		<input type="hidden" name="language" value="fr" />
 		<div id="type">
 			<div class="form-group">
-				<label for="fbrsn"><span class="field-name">Raison pour communiquer avec nous</span> <strong>(obligatoire)</strong></label>
+				<label for="fbrsn" class="required"><span class="field-name">Raison pour communiquer avec nous</span> <strong class="required">(obligatoire)</strong></label>
 				<select class="form-control" name="fbrsn" id="fbrsn" required="required">
 					<option value=""> </option>
 					<option value="web">Problème critique avec le site Web</option>
@@ -34,7 +34,7 @@
 				<input class="form-control" type="text" id="fbsbj" name="fbsbj" size="45" maxlength="60" />
 			</div>
 			<div class="form-group">
-				<label for="fbmsg"><span class="field-name">Message</span> <strong>(obligatoire)</strong></label>
+				<label for="fbmsg" class="required"><span class="field-name">Message</span> <strong class="required">(obligatoire)</strong></label>
 				<textarea class="form-control" id="fbmsg" name="fbmsg" rows="5" cols="45" required="required"></textarea>
 			</div>
 		</div>
@@ -160,7 +160,7 @@
 						<input class="form-control" type="text" id="fbnm" name="fbnm" size="45" maxlength="45" pattern=".{2,}" data-rule-minlength="2" />
 					</div>
 					<div class="form-group">
-						<label for="fbeml"><span class="field-name">Adresse de courriel</span> <strong>(obligatoire)</strong></label>
+						<label for="fbeml" class="required"><span class="field-name">Adresse de courriel</span> <strong class="required">(obligatoire)</strong></label>
 						<input class="form-control" type="email" id="fbeml" name="fbeml" size="45" maxlength="60" required="required" />
 					</div>
 					<div class="form-group">

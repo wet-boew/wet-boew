@@ -15,7 +15,7 @@
 		<fieldset>
 			<legend>Coordonnées</legend>
 			<div class="form-group">
-				<label for="title1"><span class="field-name">Titre</span> <strong>(obligatoire)</strong></label>
+				<label for="title1" class="required"><span class="field-name">Titre</span> <strong class="required">(obligatoire)</strong></label>
 				<select class="form-control" id="title1" name="title1" required="required">
 					<option label="Sélectionner un titre"></option>
 					<option value="dr">D. Ph.</option>
@@ -25,15 +25,15 @@
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="fname"><span class="field-name">Prénom</span> <strong>(obligatoire)</strong></label>
+				<label for="fname" class="required"><span class="field-name">Prénom</span> <strong class="required">(obligatoire)</strong></label>
 				<input class="form-control" id="fname" name="fname" type="text" required="required" pattern=".{2,}" data-rule-minlength="2" />
 			</div>
 			<div class="form-group">
-				<label for="lname"><span class="field-name">Nom de famille</span> <strong>(obligatoire)</strong></label>
+				<label for="lname" class="required"><span class="field-name">Nom de famille</span> <strong class="required">(obligatoire)</strong></label>
 				<input class="form-control" id="lname" name="lname" type="text" required="required" pattern=".{2,}" data-rule-minlength="2" />
 			</div>
 			<div class="form-group">
-				<label for="tel"><span class="field-name">Numéro de téléphone</span> (999-999-9999) <strong>(obligatoire)</strong></label>
+				<label for="tel" class="required"><span class="field-name">Numéro de téléphone</span> (999-999-9999) <strong class="required">(obligatoire)</strong></label>
 				<input class="form-control" id="tel" name="tel" type="tel" required="required" data-rule-phoneUS="true" />
 			</div>
 			<div class="form-group">
@@ -83,7 +83,7 @@
 		</fieldset>
 
 		<fieldset>
-			<legend><span class="field-name">Animal favori</span> (sélectionner au moins une des options ci-dessous)</legend>
+			<legend class="required"><span class="field-name">Animal favori</span> <strong class="required">(obligatoire)</strong></legend>
 			<div class="checkbox">
 				<label for="animal1"><input type="checkbox" name="animal" value="1" id="animal1" required="required" />&#160;&#160;Chien</label>
 			</div>
@@ -99,9 +99,9 @@
 		</fieldset>
 
 		<fieldset>
-			<legend><span class="field-name">Statut de citoyen</span></legend>
+			<legend class="required"><span class="field-name">Statut de citoyen</span> <strong class="required">(obligatoire)</strong></legend>
 			<div class="radio">
-				<label for="status1"><input type="radio" name="status" value="1" id="status1" required="required" />&#160;&#160;Citoyen canadien</label>
+				<label for="status1" class="required"><input type="radio" name="status" value="1" id="status1" required="required" />&#160;&#160;Citoyen canadien</label>
 			</div>
 			<div class="radio">
 				<label for="status2"><input type="radio" name="status" value="2" id="status2" />&#160;&#160;Résident permanent</label>
