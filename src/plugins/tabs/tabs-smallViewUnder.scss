@@ -10,6 +10,14 @@
 	display: none;
 }
 
+%tabs-smallview-font-size-15-em {
+	font-size: 1.5em;
+}
+
+%tabs-details-padding-6-12 {
+	padding: 6px 12px;
+}
+
 .wb-tabs {
 	&.carousel-s1, &.carousel-s2 {
 		figcaption {
@@ -60,9 +68,6 @@
 						padding-left: 1em;
 					}
 				}
-				%tabs-smallview-font-size-15-em {
-					font-size: 1.5em;
-				}
 				&.tab-count {
 					line-height: normal;
 					> {
@@ -101,9 +106,6 @@
 				@extend %tabs-smallview-display-none;
 			}
 		}
-	}
-	%tabs-details-padding-6-12 {
-		padding: 6px 12px;
 	}
 	> {
 		details {

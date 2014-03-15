@@ -7,6 +7,27 @@
 	background: transparentize($drabBlue, 0.1);
 }
 
+%tabs-mediumview-prv-nxt-common {
+	top: 0;
+	bottom: 0;
+	height: 100%;
+	width: 3em;
+}
+%tabs-mediumview-prv-nxt-a-common {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+}
+%tabs-mediumview-prv-nxt-glyphicon-common {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+}
+%tabs-mediumview-right-0 {
+	right: 0;
+}
+
 .wb-tabs {
 	&.carousel-s1, &.carousel-s2 {
 		figcaption {
@@ -25,26 +46,6 @@
 			li {
 				&.control {
 					position: absolute;
-				}
-				%tabs-mediumview-prv-nxt-common {
-					top: 0;
-					bottom: 0;
-					height: 100%;
-					width: 3em;
-				}
-				%tabs-mediumview-prv-nxt-a-common {
-					position: absolute;
-					top: 0;
-					bottom: 0;
-					left: 0;
-				}
-				%tabs-mediumview-prv-nxt-glyphicon-common {
-					position: absolute;
-					top: 0;
-					bottom: 0;
-				}
-				%tabs-mediumview-right-0 {
-					right: 0;
 				}
 				&.prv {
 					left: 0;
