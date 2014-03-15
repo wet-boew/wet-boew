@@ -252,10 +252,10 @@ $modal-title-line-height: $line-height-base;
 }
 
 .btn-default {
-	background-color: $grayLight;
+	background-color: $wbGrayLight;
 	color: $accentBlue;
 	&:hover, &:focus {
-		background-color: $gray;
+		background-color: $wbGray;
 		color: $activeBlue;
 	}
 }
