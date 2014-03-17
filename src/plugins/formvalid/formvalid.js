@@ -22,6 +22,10 @@ var pluginName = "wb-frmvld",
 	idCount = 0,
 	i18n, i18nText,
 
+	defaults = {
+		hdLvl: "h2"
+	},
+
 	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
 	 * It will run more than once per plugin if you don't remove the selector from the timer.
@@ -77,20 +81,21 @@ var pluginName = "wb-frmvld",
 						formDOM = $form.get( 0 ),
 						formId = $form.attr( "id" ),
 						labels = formDOM.getElementsByTagName( "label" ),
-						labels_len = labels.length,
 						$formElms = $form.find( "input, select, textarea" ),
 						$inputs = $formElms.filter( "input" ),
 						$pattern = $inputs.filter( "[pattern]" ),
 						submitted = false,
 						$required = $form.find( "[required]" ).attr( "aria-required", "true" ),
 						errorFormId = "errors-" + ( !formId ? "default" : formId ),
-						i, len,	validator;
+						settings = $.extend( true, {}, defaults, wb.getData( $elm, "wet-boew" ) ),
+						summaryHeading = settings.hdLvl,
+						i, len, validator;
 
 					// Append the aria-live region (for provide message updates to screen readers)
 					$elm.append( "<div class='arialive wb-inv' aria-live='polite' aria-relevant='all'></div>" );
 
 					// Add space to the end of the labels (so separation between label and error when CSS turned off)
-					len = labels_len;
+					len = labels.length;
 					for ( i = 0; i !== len; i += 1 ) {
 						labels[ i ].innerHTML += " ";
 					}
@@ -153,28 +158,40 @@ var pluginName = "wb-frmvld",
 						// Create our error summary that will appear before the form
 						showErrors: function( errorMap ) {
 							this.defaultShowErrors();
-							var _i18nText = i18nText,
-								$errors = $form.find( "strong.error" ).filter( ":not(:hidden)" ),
+							var $errors = $form.find( "strong.error" ).filter( ":not(:hidden)" ),
 								$errorfields = $form.find( "input.error, select.error, textarea.error" ),
 								$summaryContainer = $form.find( "#" + errorFormId ),
-								prefixStart = "<span class='prefix'>" + _i18nText.error + "&#160;",
-								prefixEnd = _i18nText.colon + " </span>",
-								separator = _i18nText.hyphen,
+								prefixStart = "<span class='prefix'>" + i18nText.error + "&#160;",
+								prefixEnd = i18nText.colon + " </span>",
+								separator = i18nText.hyphen,
 								ariaLive = $form.parent().find( ".arialive" )[ 0 ],
 								summary, key, i, len, $error, prefix, $fieldName, $fieldset, label, labelString;
 
-							$form.find( "[aria-invalid=true]" ).removeAttr( "aria-invalid" );
+							$form
+								.find( "[aria-invalid=true]" )
+									.removeAttr( "aria-invalid" )
+									.closest( ".form-group" )
+										.removeClass( "has-error" );
 							if ( $errors.length !== 0 ) {
 								// Create our container if one doesn't already exist
 								if ( $summaryContainer.length === 0 ) {
-									$summaryContainer = $( "<div id='" + errorFormId + "' class='errCnt' tabindex='-1'/>" ).prependTo( $form );
+									$summaryContainer = $( "<section id='" + errorFormId + "' class='alert alert-danger' tabindex='-1'/>" ).prependTo( $form );
 								} else {
 									$summaryContainer.empty();
 								}
 
 								// Post process
-								summary = "<p>" + _i18nText.formNotSubmitted + $errors.length + ( $errors.length !== 1 ? _i18nText.errorsFound : _i18nText.errorFound ) + "</p><ul>";
-								$errorfields.attr( "aria-invalid", "true" );
+								summary = "<" + summaryHeading + ">" +
+									i18nText.formNotSubmitted + $errors.length +
+									(
+										$errors.length !== 1 ?
+											i18nText.errorsFound :
+											i18nText.errorFound
+									) + "</" + summaryHeading + "><ul>";
+								$errorfields
+									.attr( "aria-invalid", "true" )
+									.closest( ".form-group" )
+										.addClass( "has-error" );
 								len = $errors.length;
 								for ( i = 0; i !== len; i += 1 ) {
 									$error = $errors.eq( i );
@@ -190,8 +207,10 @@ var pluginName = "wb-frmvld",
 									}
 
 									$error.find( "span.prefix" ).detach();
-									summary += "<li><a href='#" + $error.data( "element-id" ) + "'>" + prefix + ( $fieldName.length !== 0 ? $fieldName.html() + separator : "" ) + $error[ 0 ].innerHTML + "</a></li>";
-									$error.prepend( prefix );
+									summary += "<li><a href='#" + $error.data( "element-id" ) +
+										"'>" + prefix + ( $fieldName.length !== 0 ? $fieldName.html() + separator : "" ) +
+										$error.text() + "</a></li>";
+									$error.html( "<span class='label label-danger'>" + prefix + $error.text() + "</span>" );
 								}
 								summary += "</ul>";
 

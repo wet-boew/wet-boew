@@ -5,14 +5,15 @@
 	"category": "Plugin",
 	"description": "Displays a dynamic map over which information from additional sources can be overlaid.",
 	"tag": "geomap",
+	"parentdir": "geomap",
 	"altLangPrefix": "geomap",
-	"js": "demo/popup_function"
+	"js": "demo/popup_function",
+	"dateModified": "2014-03-07"
 }
 ---
-
 <!-- GeomapStart -->
 <div id="sample_map"
-	class="wb-geomap position scaleline tab debug geolocation"
+	class="wb-geomap position scaleline tab"
 	data-wet-boew='{
 		"layersFile": "demo/config-en{{environment.suffix}}.js",
 		"tables": [{
@@ -26,7 +27,7 @@
 				"width": 300,
 				"close": true,
 				"content": "<div style=\"white-space:nowrap;\"><p><strong>Census subdivision: </strong>_Census subdivision<div><a href=\"#\" class=\"button\" role=\"button\" title=\"Zoom to city\" aria-label=\"Zoom to city\" onclick=\"wb.doc.zoomFeature()\">Zoom to city</a></div></div>"
- 			},
+			},
 			"style": {
 				"type": "rule",
 				"rule": [
@@ -95,9 +96,8 @@
 		<h2>Example - Remote &amp; File-based Layer Data</h2>
 		<p>Layers are created from file-based formats, feeds, and web API's.</p>
 	</div>
-
 	<div class="wb-geomap-layers row">
-        <div class="col-md-12">
+		<div class="col-md-12">
 			<h2>Example - Inline Layer Data</h2>
 			<p>Layers are created from the following tables. An attribute <em>data-geometry</em> to hold the geometry and an attribute <em>data-type</em> to hold the geometry type (wkt or bbox) are required for each row.</p>
             <h3>Points</h3>
@@ -200,32 +200,32 @@
 			"id": "addNRCan"
 		}]
 	}'>
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Example - Static Map</h2>
-            <p>GeoMap can be configured to provide a static map ideally suited to display a location or bounding box extent.</p>
-           	<!-- Insert Map Start (mandatory) -->
-        	<div class="wb-geomap-map col-md-4"></div>
-        	<!-- Insert Map End -->
+	<div class="row">
+		<div class="col-md-12">
+			<h2>Example - Static Map</h2>
+			<p>GeoMap can be configured to provide a static map ideally suited to display a location or bounding box extent.</p>
+			<!-- Insert Map Start (mandatory) -->
+			<div class="wb-geomap-map col-md-4"></div>
+			<!-- Insert Map End -->
 
-        	<!-- Insert Layer Data Start (mandatory) -->
-        	<div class="wb-geomap-layers col-md-4">
-        		<table id="addNRCan" aria-label="NRCan Ottawa office adress" class="table">
-        			<caption class="wb-inv">Natural Resources Canada Ottawa office adress</caption>
-        			<thead>
-        				<tr>
-        					<th>Adress</th>
-        				</tr>
-        			</thead>
-        			<tbody>
-        				<tr data-geometry="POINT (-75.70535, 45.3995)" data-type="wkt">
-        					<td>615 Booth St.,<br />Ottawa (ON),<br />Canada,<br />K1A 0E8</td>
-        				</tr>
-        			</tbody>
-        		</table>
-        	</div>
-    	<!-- Insert Layer Data End -->
-    	</div>
+			<!-- Insert Layer Data Start (mandatory) -->
+			<div class="wb-geomap-layers col-md-4">
+				<table id="addNRCan" aria-label="NRCan Ottawa office adress" class="table">
+					<caption class="wb-inv">Natural Resources Canada Ottawa office adress</caption>
+					<thead>
+						<tr>
+							<th>Adress</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr data-geometry="POINT (-75.70535, 45.3995)" data-type="wkt">
+							<td>615 Booth St.,<br />Ottawa (ON),<br />Canada,<br />K1A 0E8</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		<!-- Insert Layer Data End -->
+		</div>
 	</div>
 </div>
 

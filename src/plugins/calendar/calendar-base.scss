@@ -5,6 +5,12 @@
 %cal-position-relative {
 	position: relative;
 }
+
+%cal-goto-btns {
+	display: inline-block;
+	margin: 10px 5px;
+}
+	
 .cal-cnt {
 	width: 18em;
 	text-shadow: none;
@@ -26,10 +32,6 @@
 	}
 	.cal-goto {
 		display: inline-block;
-	}
-	%cal-goto-btns {
-		display: inline-block;
-		margin: 10px 5px;
 	}
 	.cal-goto-mnth {
 		@extend %cal-goto-btns;
@@ -64,6 +66,9 @@
 	}
 	width: 2.5em;
 	height: 2.5em;
+	&[disabled] {
+		opacity: 0.2;
+	}
 }
 
 .cal-wd {

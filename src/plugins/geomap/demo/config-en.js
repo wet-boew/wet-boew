@@ -24,7 +24,7 @@ var wet_boew_geomap = {
 		url: "http://vmap0.tiles.osgeo.org/wms/vmap0",
 		layers: "basic",
 		mapOptions: {
-			maxExtent: "-180, -90, 180, 90",			
+			maxExtent: "-180, -90, 180, 90",
 			maxResolution: "auto",
 			projection: "EPSG:4326",
 			restrictedExtent: "-180, -90, 180, 90",
@@ -112,8 +112,8 @@ var wet_boew_geomap = {
 			zoom: true,
 			datatable: true,
 			tab: true,
-			
-			// default style			
+
+			// default style
 			style: {
 				type: "symbol",
 				init: {

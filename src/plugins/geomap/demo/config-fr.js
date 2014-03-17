@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
- 
+
 /*
  * Les composantes individuelles seront substituées par les compasantes globales
  *
@@ -16,11 +16,11 @@
  */
 /*jshint unused:false*/
 var wet_boew_geomap = {
-	// OPTIONNEL: Géomap va fournir une carte de base par défaut si aucune carte de base n"est spécifié ici.	
+	// OPTIONNEL: Géomap va fournir une carte de base par défaut si aucune carte de base n"est spécifié ici.
 	/*
 	basemap : {
 		title: "WMS Demo",
-		type: "wms",	
+		type: "wms",
 		url: "http://vmap0.tiles.osgeo.org/wms/vmap0",
 		layers: "basic"
 	},
@@ -106,8 +106,8 @@ var wet_boew_geomap = {
 			zoom: true,
 			datatable: true,
 			tab: true,
-			
-			// default style			
+
+			// default style
 			style: {
 				type: "symbol",
 				init: {
@@ -123,7 +123,7 @@ var wet_boew_geomap = {
 					graphicOpacity: 0.5
 				}
 			}
-			
+
 			// unique value style
 			/*style: {
 				type: "unique",
@@ -147,7 +147,7 @@ var wet_boew_geomap = {
 					fillOpacity: 0.90
 				}
 			}
-			
+
 			// rule style
 			style: {
 				type: "rule",

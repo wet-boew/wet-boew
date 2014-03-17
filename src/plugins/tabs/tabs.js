@@ -103,7 +103,8 @@ var pluginName = "wb-tabs",
 					rotStop: i18n( "tab-rot" ).off,
 					space: i18n( "space" ),
 					hyphen: i18n( "hyphen" ),
-					pause: i18n( "pause" )
+					pause: i18n( "pause" ),
+					tabCount: i18n( "lb-curr")
 				};
 			}
 
@@ -268,18 +269,34 @@ var pluginName = "wb-tabs",
 			btnMiddle = "' href='javascript:;' role='button' title='",
 			btnEnd = "</span></a></li> ",
 			iconState = glyphiconStart + ( isPlaying ? "pause" : "play" ) + "'></span>",
+			$tabs = $tablist.find( "[role=tab]" ),
+			currentIndex = $tabs.index( $tabs.filter( "[aria-selected=true]" ) ) + 1,
+			i18nTabCount = i18nText.tabCount,
+			firstReplaceIndex = i18nTabCount.indexOf( "%" ),
+			lastReplaceIndex = i18nTabCount.lastIndexOf( "%" ) + 1,
 			prevControl = tabsToggleStart + "prv'><a class='prv" + btnMiddle +
 				prevText + "'>" + glyphiconStart + "chevron-left'></span>" +
 				wbInvStart + prevText + btnEnd,
+			tabCount = tabsToggleStart + " tab-count' tabindex='0'><div>" +
+				i18nTabCount.substring( 0, firstReplaceIndex ) +
+				"<div class='curr-count'>" +
+				i18nTabCount.substring( firstReplaceIndex, lastReplaceIndex )
+					.replace( "%curr%", "<span class='curr-index'>" + currentIndex + "</span>" )
+					.replace( "%total%", $tabs.length ) +
+				"</div>" + i18nTabCount.substring( lastReplaceIndex ) +
+				"</div></li>",
+			nextControl = tabsToggleStart + "nxt'><a class='nxt" + btnMiddle +
+				nextText + "'>" + glyphiconStart + "chevron-right'></span>" +
+				wbInvStart + nextText + btnEnd,
 			playControl =  tabsToggleStart + "plypause'><a class='plypause" +
 				btnMiddle + state + "'>" + iconState + " <i>" + state +
 				"</i>" + wbInvStart + spaceText + i18nText.hyphen + spaceText +
-				hidden + btnEnd,
-			nextControl = tabsToggleStart + "nxt'><a class='nxt" + btnMiddle +
-				nextText + "'>" + glyphiconStart + "chevron-right'></span>" +
-				wbInvStart + nextText + btnEnd;
+				hidden + btnEnd;
 
-		$tablist.append( prevControl + ( excludePlay ? "" : playControl ) + nextControl );
+		$tablist.prepend( prevControl + tabCount + nextControl );
+		if ( !excludePlay ) {
+			$tablist.append( playControl );
+		}
 	},
 
 	/*
@@ -324,6 +341,9 @@ var pluginName = "wb-tabs",
 	},
 
 	updateNodes = function( $panels, $controls, $next, $control ) {
+		var $tabs = $controls.find( "[role=tab]" ),
+			newIndex = $tabs.index( $control ) + 1;
+
 		$panels
 			.filter( ".in" )
 				.removeClass( "in" )
@@ -349,6 +369,11 @@ var pluginName = "wb-tabs",
 						"aria-selected": "false",
 						tabindex: "-1"
 					});
+
+		// Update the Item x of n
+		$controls
+			.find( ".curr-index" )
+				.html( newIndex );
 
 		$control
 			.attr({
@@ -612,6 +637,19 @@ var pluginName = "wb-tabs",
 	return true;
 });
 
+//Pause on escape
+$document.on( "keydown", selector, function( event ) {
+
+	// Escape key
+	if ( event.which === 27 ) {
+		var $sldr = $( event.target ).closest( selector );
+		if ( $sldr.hasClass( "playing" ) ) {
+			$sldr.find( ".plypause" ).trigger( "click" );
+		}
+		return false;
+	}
+});
+
 $document.on( "keydown", selector + " [role=tabpanel]", function( event ) {
 	var currentTarget = event.currentTarget;
 
@@ -625,15 +663,15 @@ $document.on( "keydown", selector + " [role=tabpanel]", function( event ) {
 					.trigger( "setfocus.wb" );
 	}
 });
-
 // Handling for links to tabs from within a panel
 $document.on( "click", selector + " [role=tabpanel] a", function( event ) {
 	var currentTarget = event.currentTarget,
 		href = currentTarget.getAttribute( "href" ),
+		which = event.which,
 		$container, $panel, $summary;
 
 	// Ignore middle and right mouse buttons
-	if ( event.which === 1 && href.charAt( 0 ) === "#" ) {
+	if ( ( !which || which === 1 ) && href.charAt( 0 ) === "#" ) {
 		$container = $( currentTarget ).closest( selector );
 		$panel = $container.find( href );
 		if ( $panel.length !== 0 ) {

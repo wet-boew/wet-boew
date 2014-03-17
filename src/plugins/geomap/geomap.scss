@@ -57,18 +57,15 @@
 	z-index: 0;
 	cursor: default;
 }
-
 .olMapViewport {
 	text-align: left;
 }
-
 .olLayerDiv {
 	user-select: none;
 	img {
 		max-width: none !important;
 	}
 }
-
 .olControlMousePosition {
 	bottom: 5px;
 	left: 100px;
@@ -217,6 +214,7 @@
 	position: relative;
 	outline: 1px solid #CCC;
 	margin-bottom: 30px;
+	
 	&.active {
 		outline-color: #07F;
 	}
@@ -242,25 +240,4 @@
 
 .geomap-legend-label {
 	display: inline;
-}
-
-.geomap-geoloc {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-@media print {
-	%geomap-print-visibility-hidden {
-		visibility: hidden;
-	}
-
-	.wb-geomap-detail {
-		@extend %geomap-print-visibility-hidden;
-	}
-	.olControlMousePosition {
-		@extend %geomap-print-visibility-hidden;
-	}
-	.olControlPanZoomBar {
-		@extend %geomap-print-visibility-hidden;
-	}
 }

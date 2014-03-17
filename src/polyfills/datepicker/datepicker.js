@@ -104,7 +104,7 @@ var pluginName = "wb-date",
 				showFieldLabel + "'><span class='glyphicon glyphicon-calendar'></span><span class='wb-inv'>" +
 				showFieldLabel + "</span></button>";
 
-		$( "#" + fieldId ).after( objToggle );
+		$( "#" + fieldId ).wrap( "<span class='wb-date-wrap'/>" ).after( objToggle );
 		$container.slideUp( 0 );
 	},
 
@@ -341,7 +341,7 @@ $document.on( "click", ".picker-toggle", function( event ) {
 		pickerId;
 
 	// Ignore middle/right mouse buttons
-	if ( which === 1 ) {
+	if ( ( !which || which === 1 ) ) {
 		pickerId = this.id;
 		toggle( pickerId.substring( 0, pickerId.indexOf( "-picker-toggle" ) ) );
 		return false;

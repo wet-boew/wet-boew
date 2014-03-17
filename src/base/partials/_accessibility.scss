@@ -6,6 +6,13 @@
 .wb-invisible, .wb-inv {
 	@extend %accessible-invisible;
 }
+
+.wb-show-onfocus {
+	@extend %accessible-invisible;
+	&:focus {
+		@extend %accessible-invisible-show;
+	}
+}
  
 #wb-tphp {
 	list-style-type: none;

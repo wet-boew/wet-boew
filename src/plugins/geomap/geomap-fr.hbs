@@ -5,8 +5,10 @@
 	"category": "Plugiciel",
 	"description": "Affiche une carte dynamique sur laquelle des informations de sources supplémentaires peuvent être superposées.",
 	"tag": "geomap",
+	"parentdir": "geomap",
 	"altLangPrefix": "geomap",
-	"js": "demo/popup_function"
+	"js": "demo/popup_function",
+	"dateModified": "2014-03-07"
 }
 ---
 <!-- GeomapStart -->
@@ -76,18 +78,18 @@
 	}'>
 
 	<div class="row">
-        <div class="col-md-12">
+		<div class="col-md-12">
 			<!-- Insert Map Start (mandatory) -->
 			<div class="wb-geomap-map col-sm-9"></div>
 			<!-- Insert Map End -->
-
+		
 			<!-- Insert Legend Start (optional) -->
 			<div class="wb-geomap-legend col-md-3">
 				<h2>Légende</h2>
 			</div>
 			<!-- Insert Legend End -->
-	    </div>
-    </div>
+		</div>
+	</div>
 
 	<!-- Insert Layer Data Start (mandatory) -->
 	<div class="col-md-12">
@@ -98,11 +100,11 @@
 		<div class="col-md-12">
 			<h2>Exemple - Données dans le fichier HTML</h2>
 			<p>Les données est créées à partir des tables suivantes. Un attribut <em>data-geometry</em> contient la géometry et un attribut <em>data-type</em> contient le type (wkt ou bbox) ont été ajoutés à chaque ligne.</p>
-            <h3>Points</h3>
-            <caption>
-				Table de géométrie point.
-            </caption>
+			<h3>Points</h3>
 			<table id="cities" aria-label="Villes" class="table wb-tables">
+				<caption>
+					Table de géométrie point.
+				</caption>
 				<thead>
 					<tr>
 						<th>Rang</th>
@@ -168,8 +170,8 @@
 			<h3>Résultats de la recherche</h3>
 			<table id="bbox" aria-label="Résultats de la recherche" class="table table-condensed">
 				<caption>
-                    Tableau des résultats de la recherche contenant la géométries des étendues des éléments.
-                </caption>
+					Tableau des résultats de la recherche contenant la géométries des étendues des éléments.
+				</caption>
 				<thead>
 					<tr>
 						<th>Titre</th>
@@ -186,7 +188,6 @@
 						<td>-92.5, 72.75, -79, 75.5</td>
 					</tr>
 				</tbody>
-
 			</table>
 		</div>
 	</div>
@@ -202,33 +203,32 @@
 			"id": "addNRCan"
 		}]
 	}'>
+	<div class="row">
+		<div class="col-md-12">
+			<h2>Exemple - Carte statique</h2>
+			<p>GeoMap peux être configuré pour créer une carte statique afin de situer un endroit comme un bureau ou une étendue à l'aide d'une "bbox".</p>
+			<!-- Insert Map Start (mandatory) -->
+			<div class="wb-geomap-map col-md-4"></div>
+			<!-- Insert Map End -->
 
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Exemple - Carte statique</h2>
-            <p>GeoMap peux être configuré pour créer une carte statique afin de situer un endroit comme un bureau ou une étendue à l'aide d'une "bbox".</p>
-           	<!-- Insert Map Start (mandatory) -->
-        	<div class="wb-geomap-map col-md-4"></div>
-        	<!-- Insert Map End -->
-
-        	<!-- Insert Layer Data Start (mandatory) -->
-        	<div class="wb-geomap-layers col-md-4">
-        		<table id="addNRCan" aria-label="Adresse des bureaux de RNCan Ottawa" class="table">
-        			<caption class="wb-inv">Adresse des bureaux de Ressources naturelles Canada Ottawa</caption>
-        			<thead>
-        				<tr>
-        					<th>Adresse</th>
-        				</tr>
-        			</thead>
-        			<tbody>
-        				<tr data-geometry="POINT (-75.70535, 45.3995)" data-type="wkt">
-        					<td>615 rue Booth,<br />Ottawa (ON),<br />Canada,<br />K1A 0E8</td>
-        				</tr>
-        			</tbody>
-        		</table>
-        	</div>
-    	<!-- Insert Layer Data End -->
-    	</div>
+			<!-- Insert Layer Data Start (mandatory) -->
+			<div class="wb-geomap-layers col-md-4">
+				<table id="addNRCan" aria-label="Adresse des bureaux de RNCan Ottawa" class="table">
+					<caption class="wb-inv">Adresse des bureaux de Ressources naturelles Canada Ottawa</caption>
+					<thead>
+						<tr>
+							<th>Adresse</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr data-geometry="POINT (-75.70535, 45.3995)" data-type="wkt">
+							<td>615 rue Booth,<br />Ottawa (ON),<br />Canada,<br />K1A 0E8</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		<!-- Insert Layer Data End -->
+		</div>
 	</div>
 </div>
 

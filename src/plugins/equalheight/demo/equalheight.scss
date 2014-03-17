@@ -1,3 +1,5 @@
+@import "../../../variables";
+
 .wb-eqht {
 	section {
 		display: inline-block;
@@ -10,10 +12,10 @@
 		box-sizing: border-box;
 		box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
-		@media (min-width: 768px) {
+		@media (min-width: $smallViewMin) {
 			width: 49%;
 		}
-		@media (min-width: 1200px) {
+		@media (min-width: $largeViewMin) {
 			width: 33%;
 		}
 	}

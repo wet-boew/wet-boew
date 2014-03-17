@@ -117,10 +117,10 @@ module.exports = (grunt) ->
 			"sass:all"
 			"autoprefixer"
 			"csslint:unmin"
-			"concat:css"
 			"concat:css_addBanners"
 			"cssmin:dist"
-			"copy:cssIE8"
+			"cssmin:distIE8"
+			"ie8csscleaning"
 		]
 	)
 
@@ -154,6 +154,7 @@ module.exports = (grunt) ->
 			"assemble:theme_min"
 			"assemble:demos_min"
 			"htmlcompressor"
+			"htmllint"
 		]
 	)
 
@@ -289,20 +290,6 @@ module.exports = (grunt) ->
 				]
 				dest: "dist/unmin/js/i18n"
 				expand: true
-
-			css:
-				options:
-					banner: "@charset \"utf-8\";\n<%= banner %><%= glyphiconsBanner %>"
-				files:
-					"dist/unmin/css/ie8-wet-boew.css": [
-						"lib/bootstrap/dist/css/bootstrap.css"
-						"dist/unmin/css/wet-boew.css"
-						"dist/unmin/css/ie8-wet-boew.css"
-					]
-					"dist/unmin/css/wet-boew.css": [
-						"lib/bootstrap/dist/css/bootstrap.css"
-						"dist/unmin/css/wet-boew.css"
-					]
 
 			css_addBanners:
 				options:
@@ -544,19 +531,26 @@ module.exports = (grunt) ->
 				# Can be turned off after https://github.com/dimsemenov/Magnific-Popup/pull/303 lands
 				"empty-rules": false
 				"fallback-colors": false
-				"float": false
+				"floats": false
 				"font-sizes": false
 				"gradients": false
 				"headings": false
 				"ids": false
 				"important": false
+				# Need due to use of "\9" hacks for oldIE
+				"known-properties": false
 				"outline-none": false
 				"overqualified-elements": false
 				"qualified-headings": false
 				"regex-selectors": false
+				# Some Bootstrap mixins end up listing all the longhand properties
+				"shorthand": false
+				"text-indent": false
 				"unique-headings": false
 				"universal-selector": false
 				"unqualified-attributes": false
+				# Zeros are output by some of the Bootstrap mixins, but shouldn't be used in our code
+				"zero-units": false
 
 			unmin:
 				options:
@@ -663,6 +657,19 @@ module.exports = (grunt) ->
 				dest: "dist/css"
 				ext: ".min.css"
 
+			distIE8:
+				options:
+					banner: ""
+					compatibility: "ie8"
+					noAdvanced: true
+				expand: true
+				cwd: "dist/unmin/css"
+				src: [
+					"**/ie8*.css"
+				]
+				dest: "dist/css"
+				ext: ".min.css"
+
 			demos_min:
 				options:
 					banner: "@charset \"utf-8\";\n/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
@@ -687,6 +694,56 @@ module.exports = (grunt) ->
 				]
 				dest: "dist"
 				expand: true
+
+		htmllint:
+			ajax:
+				options:
+					ignore: [
+						"XHTML element “head” is missing a required instance of child element “title”."
+
+					]
+				src: [
+					"dist/unmin/ajax/**/*.html"
+					"dist/unmin/demos/menu/demo/*.html"
+
+				]
+			ajaxFragments:
+				options:
+					ignore: [
+						"XHTML element “head” is missing a required instance of child element “title”."
+						"XHTML element “li” not allowed as child of XHTML element “body” in this context. (Suppressing further errors from this subtree.)"
+						"The “aria-controls” attribute must point to an element in the same document."
+					]
+				src: [
+					"dist/unmin/demos/cal-events/ajax/**/*.html"
+					"dist/unmin/assets/*.html"
+				]
+			all:
+				options:
+					ignore: [
+						"The “details” element is not supported properly by browsers yet. It would probably be better to wait for implementations."
+						"The “date” input type is not supported in all browsers. Please be sure to test, and consider using a polyfill."
+						"The “track” element is not supported by browsers yet. It would probably be better to wait for implementations."
+						"The “time” input type is not supported in all browsers. Please be sure to test, and consider using a polyfill."
+						"The value of attribute “title” on element “a” from namespace “http://www.w3.org/1999/xhtml” is not in Unicode Normalization Form C." #required for vietnamese translations
+						"Text run is not in Unicode Normalization Form C." #required for vietnamese translations
+						"The “longdesc” attribute on the “img” element is obsolete. Use a regular “a” element to link to the description."
+					]
+				src: [
+					"dist/unmin/**/*.html"
+					"!dist/unmin/**/ajax/**/*.html"
+					"!dist/unmin/assets/**/*.html"
+					"!dist/unmin/demos/menu/demo/*.html"
+				]
+
+		ie8csscleaning:
+			min:
+				expand: true
+				cwd: "dist/css"
+				src: [
+					"**/ie8*.min.css"
+				]
+				dest: "dist/css"
 
 		modernizr:
 			devFile: "lib/modernizr/modernizr-custom.js"
@@ -725,7 +782,7 @@ module.exports = (grunt) ->
 
 		copy:
 			bootstrap:
-				cwd: "lib/bootstrap/dist/fonts"
+				cwd: "lib/bootstrap-sass-official/vendor/assets/fonts/bootstrap"
 				src: "*.*"
 				dest: "dist/unmin/fonts"
 				expand: true
@@ -817,12 +874,6 @@ module.exports = (grunt) ->
 					dest: "dist/unmin/demos/"
 					expand: true
 				]
-
-			cssIE8:
-				cwd: "dist/unmin/css/"
-				src: "ie8-wet-boew.css"
-				dest: "dist/css"
-				expand: true
 
 			themeAssets:
 				cwd: "theme/"
@@ -1121,6 +1172,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-contrib-uglify"
 	@loadNpmTasks "grunt-contrib-watch"
 	@loadNpmTasks "grunt-gh-pages"
+	@loadNpmTasks "grunt-html"
 	@loadNpmTasks "grunt-htmlcompressor"
 	@loadNpmTasks "grunt-i18n-gspreadsheet"
 	@loadNpmTasks "grunt-imagine"

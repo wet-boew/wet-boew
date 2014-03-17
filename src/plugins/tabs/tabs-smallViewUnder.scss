@@ -10,6 +10,14 @@
 	display: none;
 }
 
+%tabs-smallview-font-size-15-em {
+	font-size: 1.5em;
+}
+
+%tabs-details-padding-6-12 {
+	padding: 6px 12px;
+}
+
 .wb-tabs {
 	&.carousel-s1, &.carousel-s2 {
 		figcaption {
@@ -23,54 +31,68 @@
 	&.carousel-s1 {
 		[role="tablist"] {
 			position: static;
-		}
-		li {
-			&[role="presentation"] {
-				@extend %tabs-smallview-display-none;
-			}
-		}
-	}
-	&.carousel-s2 {
-		[role="tablist"] {
 			li {
 				&[role="presentation"] {
 					@extend %tabs-smallview-display-none;
 				}
-				%carousel-background-none {
+				&.tab-count {
 					background: none;
+					border: none;
+					.curr-count {
+						display: inline;
+					}
+					&.active, &:focus, &:hover {
+						top: 0;
+						cursor: default;
+					}
 				}
-				%carousel-bottom-2em-top-auto {
-					bottom: -2em;
-					top: auto;
+			}
+		}
+	}
+	&.carousel-s2 {
+		$smallViewToolbarSize: 4.375em;
+		margin-bottom: auto;
+		padding-bottom: $smallViewToolbarSize;
+		background: #eee;
+		[role="tablist"] {
+			margin-top: -$smallViewToolbarSize;
+			li {
+				&[role="presentation"] {
+					@extend %tabs-smallview-display-none;
+				}
+				&.control {
+					top: 100%;
 				}
 				&.prv {
 					a {
-						&.prv {
-							@extend %carousel-background-none;
-						}
-						.glyphicon {
-							@extend %carousel-bottom-2em-top-auto;
-						}
+						padding-left: 1em;
 					}
 				}
-				&.nxt {
-					a {
-						&.nxt {
-							@extend %carousel-background-none;
+				&.tab-count {
+					line-height: normal;
+					> {
+						div {
+							position: relative;
+							top: 0.4em;
 						}
-						.glyphicon {
-							@extend %carousel-bottom-2em-top-auto;
-							right: auto;
-							left: 0;
-						}
+					}
+					.curr-count {
+						@extend %tabs-smallview-font-size-15-em;
+					}
+					&:focus, &:hover {
+						background: transparent;
+						cursor: default;
 					}
 				}
 				&.plypause {
-					right: auto;
-					text-align: center;
-					width: 100%;
-					font-size: 1.5em;
-					margin-top: 0.3em;
+					float: right;
+					margin-right: 0;
+					padding-right: 1em;
+					a {
+						@extend %tabs-smallview-font-size-15-em;
+						margin-top: 0.3em;
+						padding-right: 0;
+					}
 				}
 			}
 		}
@@ -84,9 +106,6 @@
 				@extend %tabs-smallview-display-none;
 			}
 		}
-	}
-	%tabs-details-padding-6-12 {
-		padding: 6px 12px;
 	}
 	> {
 		details {

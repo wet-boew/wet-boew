@@ -48,6 +48,43 @@ $medGray: #ccc;
 	color: #fff;
 }
 
+%carousel-s2-prv-nxt-common {
+	background: none;
+	margin: 0;
+	padding: 0;
+}
+
+%carousel-s2-prv-nxt-a-common {
+	width: 100%;
+	color: $drabBlue;
+	border: none;
+}
+
+%carousel-s2-prv-nxt-glyphicon-common {
+	margin: auto 0;
+	height: 1.75em;
+	width: 1.75em;
+	font-size: 1.75em;
+	line-height: 1.75em;
+	text-align: center;
+	background: #fff;
+	border-radius: 999px;
+	box-shadow: 0 0 4px $drabBlue;
+}
+
+%tabs-background-transparent {
+	background: transparent;
+}
+
+%tabs-box-shadow-none {
+	box-shadow: none;
+}
+
+%tabs-carousel-border-top-none-padding-top-1 {
+	border-top: none;
+	padding-top: 10px;
+}
+
 .wb-tabs {
 	/**
 	 * Default, minimal, shared style
@@ -63,8 +100,7 @@ $medGray: #ccc;
 			cursor: pointer;
 			margin: 0 10px 0 0;
 			color: #000;
-			background: $lightGray;
-			background: transparentize($lightGray, 0.1);
+			background: #ebf2fc;
 			border: 1px solid $medGray;
 			text-align: center;
 			position: relative;
@@ -85,6 +121,8 @@ $medGray: #ccc;
 				cursor: default;
 				a {
 					cursor: default;
+					border-top: 4px solid #666;
+					padding-top: 6px;
 				}
 			}
 		}
@@ -107,6 +145,9 @@ $medGray: #ccc;
 			li {
 				&.active, &:focus, &:hover {
 					top: 1px;
+					a {
+						@extend %tabs-carousel-border-top-none-padding-top-1;
+					}
 				}
 			}
 		}
@@ -152,6 +193,7 @@ $medGray: #ccc;
 					}
 					&.active {
 						a {
+							@extend %tabs-carousel-border-top-none-padding-top-1;
 							img {
 								/* Firefox 10+, Firefox on Android */
 								filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
@@ -175,71 +217,33 @@ $medGray: #ccc;
 				}
 				&.control {
 					display: inline-block;
-					position: absolute;
-					top: 0;
-					bottom: 0;
 				}
 				&.prv {
-					left: 0;
-				}
-				&.nxt {
-					right: 0;
-				}
-				&.prv, &.nxt {
-					height: 100%;
-					width: 3em;
-					background: none;
-					margin: 0;
-					padding: 0;
+					@extend %carousel-s2-prv-nxt-common;
 					a {
-						position: absolute;
-						top: 0;
-						bottom: 0;
-						left: 0;
-						width: 100%;
-						color: $drabBlue;
-						border: none;
-						&.prv {
-							background-image: linear-gradient(to right, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
-							.glyphicon {
-								left: .25em;
-								padding-top: 1px;
-								padding-right: 2px;
-							}
-						}
-						&.nxt {
-							background-image: linear-gradient(to left, rgba(255, 255 ,255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
-							.glyphicon {
-								right: .25em;
-							}
+						@extend %carousel-s2-prv-nxt-a-common;
+						.glyphicon {
+							@extend %carousel-s2-prv-nxt-glyphicon-common;
 						}
 						&:focus, &:hover {
-							background: transparent;
-							&.prv {
-								background-image: linear-gradient(to right, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 100%);
-							}
-							&.nxt {
-								background-image: linear-gradient(to left, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 100%);
-							}
+							@extend %tabs-background-transparent;
 							.glyphicon {
-								box-shadow: none;
+								@extend %tabs-box-shadow-none;
 							}
 						}
+					}
+				}
+				&.nxt {
+					@extend %carousel-s2-prv-nxt-common;
+					a {
+						@extend %carousel-s2-prv-nxt-a-common;
 						.glyphicon {
-							position: absolute;
-							top: 0;
-							bottom: 0;
-							margin: auto 0;
-							height: 1.75em;
-							width: 1.75em;
-							font-size: 1.75em;
-							line-height: 1.75em;
-							text-align: center;
-							background: #fff;
-							border-radius: 999px;
-							box-shadow: 0 0 4px $drabBlue;
-							&:focus, &:hover {
-								box-shadow: none;
+							@extend %carousel-s2-prv-nxt-glyphicon-common;
+						}
+						&:focus, &:hover {
+							@extend %tabs-background-transparent;
+							.glyphicon {
+								@extend %tabs-box-shadow-none;
 							}
 						}
 					}
@@ -249,7 +253,6 @@ $medGray: #ccc;
 					border: none;
 					display: inline-block !important;
 					top: 100%;
-					right: 0;
 					padding: 2px 10px;
 					i {
 						color: #000 !important;

@@ -33,7 +33,7 @@ var pluginName = "wb-ajax",
 	init = function( $elm, ajaxType ) {
 		var url = $elm.data( "ajax-" + ajaxType ),
 			initedClass = pluginName + ajaxType + inited;
-	
+
 		// Only initialize the element once for the ajaxType
 		if ( !$elm.hasClass( initedClass ) ) {
 			wb.remove( selector );

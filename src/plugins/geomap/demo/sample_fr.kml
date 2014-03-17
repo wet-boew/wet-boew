@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gml="http://www.opengis.net/gml"
      xmlns:georss="http://www.georss.org/georss">
    <Document>
@@ -32,7 +32,7 @@
          <PolyStyle>
             <color>800080ff</color>
          </PolyStyle>
-      </Style>
+      </Style>      
       <Placemark>
          <name>U-Pb ages of Archean basement and Paleoproterozoic plutonic rocks, southern Cumberland Peninsula, eastern Baffin Island, Nunavut</name>
          <description><![CDATA[<ul class="list-unstyled">
@@ -100,7 +100,7 @@
                </LinearRing>
             </outerBoundaryIs>
          </Polygon>
-      </Placemark>
+      </Placemark>     
       <NetworkLink>
          <name>Prochain</name>
          <visibility>0</visibility>

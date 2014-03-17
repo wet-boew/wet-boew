@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "test": "grunt test",
-    "postinstall": "bower install && grunt init"
+    "postinstall": "bower update --config.interactive=false && grunt init"
   },
   "repository": {
     "type": "git",
@@ -29,7 +29,7 @@
   "license": "MIT",
   "devDependencies": {
     "assemble": "~0.4.10",
-    "assemble-contrib-i18n": "https://github.com/assemble/assemble-contrib-i18n/tarball/master",
+    "assemble-contrib-i18n": "~0.1.2",
     "csv": "~0.3.6",
     "expect.js": "~0.2.0",
     "grunt": "~0.4.1",
@@ -40,19 +40,20 @@
     "grunt-contrib-connect": "~0.5.0",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-csslint": "~0.2.0",
-    "grunt-contrib-cssmin": "~0.7.0",
+    "grunt-contrib-cssmin": "^0.9.0",
     "grunt-contrib-imagemin": "~0.5.0",
     "grunt-contrib-jshint": "~0.7.1",
     "grunt-contrib-uglify": "~0.2.0",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-gh-pages": "~0.9.0",
+    "grunt-html": "https://github.com/LaurentGoderre/grunt-html/tarball/custom",
     "grunt-htmlcompressor": "~0.1.10",
     "grunt-i18n-gspreadsheet": "https://github.com/LaurentGoderre/grunt-i18n-spreadsheet/tarball/custom",
     "grunt-imagine": "http://github.com/LaurentGoderre/grunt-imagine/tarball/custom",
-    "grunt-jscs-checker": "~0.2.6",
+    "grunt-jscs-checker": "^0.4.0",
     "grunt-mocha": "~0.4.1",
     "grunt-modernizr": "~0.4.0",
-    "grunt-sass": "~0.9.0",
+    "grunt-sass": "^0.11.0",
     "grunt-saucelabs": "~4.1.2",
     "mocha": "~1.13.0",
     "sinon": "~1.7.3"

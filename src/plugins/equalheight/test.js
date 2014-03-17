@@ -84,7 +84,7 @@ describe( "equalheights test suite", function() {
 	describe( "resize float on same baseline", function() {
 
 		before(function() {
-			 $row1 = $equalheights.filter( ".row-1" ).children();
+			$row1 = $equalheights.filter( ".row-1" ).children();
 		});
 
 		// Before each test, reset the height and min-height values of the elements
@@ -121,7 +121,7 @@ describe( "equalheights test suite", function() {
 	describe( "resize multiple floated baselines", function() {
 
 		before(function() {
-			 $row2 = $equalheights.filter( ".row-2" ).children();
+			$row2 = $equalheights.filter( ".row-2" ).children();
 		});
 
 		// Before each test, reset the height and min-height values of the elements
@@ -158,7 +158,7 @@ describe( "equalheights test suite", function() {
 	describe( "resize multiple inline-block baselines", function() {
 
 		before(function() {
-			 $row3 = $equalheights.filter( ".row-3" ).children();
+			$row3 = $equalheights.filter( ".row-3" ).children();
 		});
 
 		// Before each test, reset the height and min-height values of the elements

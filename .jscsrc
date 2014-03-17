@@ -18,13 +18,18 @@
 	"requireSpacesInFunctionExpression": {
 		"beforeOpeningCurlyBrace": true
 	},
+	"disallowSpacesInNamedFunctionExpression": {
+		"beforeOpeningRoundBrace": true
+	},
 	"requireSpacesInsideObjectBrackets": "all",
 	"requireSpacesInsideArrayBrackets": "all",
 	"disallowSpacesInFunctionExpression": {
 		"beforeOpeningRoundBrace": true
 	},
 	"disallowLeftStickedOperators": [
-		"?",
+		"?"
+	],
+	"requireSpaceBeforeBinaryOperators": [
 		"-",
 		"/",
 		"*",
@@ -39,7 +44,9 @@
 		"<="
 	],
 	"disallowRightStickedOperators": [
-		"?",
+		"?"
+	],
+	"requireSpaceBeforeBinaryOperators": [
 		"/",
 		"*",
 		":",
@@ -96,6 +103,12 @@
 	"disallowQuotedKeysInObjects": "allButReserved",
 	"disallowYodaConditions": true,
 	"requireLineFeedAtFileEnd": true,
+	"requireParenthesesAroundIIFE": true,
+	"disallowMultipleLineStrings": true,
+	"validateQuoteMarks": "\"",
+	"disallowMixedSpacesAndTabs": true,
+	"disallowTrailingWhitespace": true,
+	"requireDotNotation": true,
 	"validateJSDoc": {
 		"checkParamNames": true,
 		"checkRedundantParams": true,

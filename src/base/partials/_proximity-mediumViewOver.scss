@@ -1,0 +1,39 @@
+/*
+  WET-BOEW
+  @title: Proximity CSS - Medium view and over
+ */
+.colcount-md-2 {
+	column-count: 2;
+}
+
+.colcount-md-3 {
+	column-count: 3;
+}
+
+.colcount-md-4 {
+	column-count: 4;
+}
+
+.pstn-lft-md {
+	@include pstn;
+	@include pstn-lft;
+	@include pstn-rght-rst;
+}
+
+.pstn-rght-md {
+	@include pstn;
+	@include pstn-rght;
+	@include pstn-lft-rst;
+}
+
+.pstn-tp-md {
+	@include pstn;
+	@include pstn-tp;
+	@include pstn-bttm-rst;
+}
+
+.pstn-bttm-md {
+	@include pstn;
+	@include pstn-bttm;
+	@include pstn-tp-rst;
+}

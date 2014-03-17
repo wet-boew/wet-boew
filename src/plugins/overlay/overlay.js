@@ -33,7 +33,7 @@ var pluginName = "wb-overlay",
 	 */
 	init = function( event ) {
 		var elm = event.target,
-			overlayClose;
+			$elm, $header, closeText, overlayClose;
 
 		// Filter out any events triggered by descendants
 		// and only initialize the element once
@@ -42,20 +42,34 @@ var pluginName = "wb-overlay",
 
 			wb.remove( selector );
 			elm.className += " " + initedClass;
+			$elm = $( elm );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
 				i18n = wb.i18n;
 				i18nText = {
-					close: i18n( closeClass ) + i18n( "space" ) + i18n( "esc-key" )
+					close: i18n( "close" ),
+					colon: i18n( "colon" ),
+					space: i18n( "space" ),
+					esc: i18n( "esc-key" ),
+					closeOverlay: i18n( closeClass )
 				};
 			}
 
 			// Add close button
+			$header = $elm.find( ".modal-title" );
+			if ( $header.length !== 0 ) {
+				closeText = i18nText.close + i18nText.colon + i18nText.space +
+					$header.text() + i18nText.space + i18nText.esc;
+			} else {
+				closeText = i18nText.closeOverlay;
+			}
+			closeText = closeText.replace( "'", "&#39;" );
 			overlayClose = "<button class='mfp-close " + closeClass +
-				"' title='" + i18nText.close + "'>×<span class='wb-inv'> " + i18nText.close + "</span></button>";
+				"' title='" + closeText + "'>×<span class='wb-inv'> " +
+				closeText + "</span></button>";
 
-			elm.appendChild( $( overlayClose )[ 0 ] );
+			$elm.append( overlayClose );
 			elm.setAttribute( "aria-hidden", "true" );
 		}
 	},

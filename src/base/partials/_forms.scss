@@ -1,0 +1,34 @@
+/*
+  WET-BOEW
+  @title: Form additions to WET-BOEW
+ */
+$asterisk-width: 0.665em;
+%forms-color-red-italic {
+	color: #d3080c;
+	font-style: italic;
+}
+label, legend {
+	&.required {
+		&:before {
+			@extend %forms-color-red-italic;
+			content: "* ";
+			margin-left: -$asterisk-width;
+		}
+		strong {
+			&.required {
+				@extend %forms-color-red-italic;	
+			}
+		}
+	}
+}
+
+[dir=rtl] {
+	label, legend {
+		&.required {
+			&:before {
+				margin-left: auto;
+				margin-right: -$asterisk-width;
+			}
+		}
+	}
+}

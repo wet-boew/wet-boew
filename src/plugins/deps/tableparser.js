@@ -9,8 +9,8 @@
 (function( $, window, document, wb ) {
 "use strict";
 
-/* 
- * Variable and function definitions. 
+/*
+ * Variable and function definitions.
  * These are global to the plugin - meaning that they will be initialized once per page,
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
@@ -22,7 +22,7 @@ var pluginName = "wb-tableparser",
 	$document = wb.doc,
 
 	/*
-	* Init runs once per plugin element on the page. There may be multiple elements. 
+	* Init runs once per plugin element on the page. There may be multiple elements.
 	* It will run more than once per plugin if you don't remove the selector from the timer.
 	* @method init
 	* @param {jQuery DOM element} $elm The plugin element being initialized
@@ -283,7 +283,7 @@ var pluginName = "wb-tableparser",
 				}
 				colgroupspan += width;
 
-				// Create virtual column 
+				// Create virtual column
 				for ( i = colgroup.start, iLen = ( colgroup.start + colgroupspan ); i !== iLen; i += 1 ) {
 					col = {
 						start: 0,
@@ -472,7 +472,7 @@ var pluginName = "wb-tableparser",
 				dataColgroup = colgroup;
 
 				// Create the column
-				// Create virtual column 
+				// Create virtual column
 				for ( i = colgroup.start, iLen = colgroup.end; i <= iLen; i += 1 ) {
 					col = {
 						start: 0,
@@ -524,7 +524,7 @@ var pluginName = "wb-tableparser",
 					groupZero.colcaption.dataset = dataColgroup.col;
 
 					// Create the column
-					// Create virtual column 
+					// Create virtual column
 					for ( i = hcolgroup.start, iLen = hcolgroup.end; i <= iLen; i += 1 ) {
 						col = {
 							start: 0,
@@ -577,7 +577,7 @@ var pluginName = "wb-tableparser",
 				}
 			} else {
 
-				// They exist colgroup element, 
+				// They exist colgroup element,
 				//
 				// -----------------------------------------------------
 				//
@@ -727,7 +727,7 @@ var pluginName = "wb-tableparser",
 					for ( i = currColgroupStructure.length, iLen = (groupLevel - 1); i !== iLen; i += 1 ) {
 						tmpStackCell = tmpStack[ i ].cell[ curColgroupFrame.start - 1 ];
 
-						// Use the top cell at level minus 1, that cell must be larger 
+						// Use the top cell at level minus 1, that cell must be larger
 						if ( tmpStackCell.uid !== tmpStack[ i ].cell[ curColgroupFrame.end - 1 ].uid ||
 								tmpStackCell.colpos > curColgroupFrame.start ||
 								tmpStackCell.colpos + tmpStackCell.width - 1 < curColgroupFrame.end ) {
@@ -806,7 +806,7 @@ var pluginName = "wb-tableparser",
 					// Preparing the current stack for the next colgroup and set if the current are a summary group
 					//
 
-					// Check if we need to pop out the current header colgroup 
+					// Check if we need to pop out the current header colgroup
 					summaryAttached = false;
 					for ( i = currColgroupStructure.length - 1; i !== -1; i -= 1 ) {
 
@@ -843,7 +843,7 @@ var pluginName = "wb-tableparser",
 						for (i = 0; i < groupZero.colgrp[ 1 ].length; i += 1 ) {
 							if ( groupZero.colgrp[ 1 ][ i ].type === 3 ) {
 
-								// Congrats, we found the last possible colgroup, 
+								// Congrats, we found the last possible colgroup,
 								curColgroupFrame.level = 0;
 								if ( !groupZero.colgrp[ 0 ] ) {
 									groupZero.colgrp[ 0 ] = [];
@@ -954,7 +954,7 @@ var pluginName = "wb-tableparser",
 				finalizeRowGroup();
 			}
 
-			// Initialisation of the a new row group 
+			// Initialisation of the a new row group
 			currentRowGroup = {};
 			currentRowGroup.elem = currentRowGroupElement;
 			currentRowGroup.row = [];
@@ -1034,7 +1034,7 @@ var pluginName = "wb-tableparser",
 			}
 
 			// Set the Data Level for this row group
-			// Calculate the appropriate row group level based on the previous rowgroup 
+			// Calculate the appropriate row group level based on the previous rowgroup
 			//	* a Summary Group decrease the row group level
 			//	* a Data Group increase the row group level based of his number of row group header and the previous row group level
 			//	* Dont forget to set the appropriate level to each group header cell inside this row group.
@@ -1049,7 +1049,7 @@ var pluginName = "wb-tableparser",
 							// Same Level as the previous one
 							currentRowGroup.level = previousRowGroup.level;
 						} else if (currentRowGroup.headerlevel.length < previousRowGroup.headerlevel.length) {
-							// add the missing group heading cell 
+							// add the missing group heading cell
 							tmpHeaderLevel = currentRowGroup.headerlevel;
 							currentRowGroup.headerlevel = [];
 
@@ -1106,7 +1106,7 @@ var pluginName = "wb-tableparser",
 				currentRowGroup.headerlevel[i].rowlevel = currentRowGroup.headerlevel[i].level;
 			}
 
-			rowgroupHeaderRowStack = []; // reset the row header stack	
+			rowgroupHeaderRowStack = []; // reset the row header stack
 
 			if (currentRowGroup.level === undefined || currentRowGroup.level < 0) {
 				$obj.trigger( {
@@ -1208,7 +1208,7 @@ var pluginName = "wb-tableparser",
 				var j,
 					currCell;
 
-				// Check for spanned row 
+				// Check for spanned row
 				while (columnPos <= tableCellWidth) {
 					if (!spannedRow[columnPos]) {
 						break;
@@ -1257,7 +1257,7 @@ var pluginName = "wb-tableparser",
 					i;
 
 				switch (this.nodeName.toLowerCase()) {
-				case "th": // cell header		
+				case "th": // cell header
 					fnParseSpannedRowCell(); // Check for spanned cell between cells
 
 					headerCell = {
@@ -1376,7 +1376,7 @@ var pluginName = "wb-tableparser",
 				//
 
 				if (row.colgroup.length === 2 && currentRowPos === 1) {
-					// Check if the first is a data colgroup with only one cell 
+					// Check if the first is a data colgroup with only one cell
 					if (row.colgroup[0].type === 2 && row.colgroup[0].cell.length === 1) {
 						// Valid row header for the row group header
 
@@ -1425,7 +1425,7 @@ var pluginName = "wb-tableparser",
 							// Stack the row found for the rowgroup header
 							rowgroupHeaderRowStack.push(row);
 
-							// This will be processed on the first data row 
+							// This will be processed on the first data row
 
 							headerRowGroupCompleted = true; // End of any header row group (thead)
 
@@ -1633,7 +1633,7 @@ var pluginName = "wb-tableparser",
 										} );
 									}
 
-									// The current cell are a child of the previous rowheader 
+									// The current cell are a child of the previous rowheader
 									if (!rowheader.subheader) {
 										rowheader.subheader = [];
 										rowheader.isgroup = true;
@@ -1698,7 +1698,7 @@ var pluginName = "wb-tableparser",
 				} else {
 					// There are only at least one colgroup,
 					// Any colgroup tag defined but be equal or greater than 0.
-					// if colgroup tag defined, they are all data colgroup. 
+					// if colgroup tag defined, they are all data colgroup.
 					lastHeadingColPos = 0;
 
 					if (colgroupFrame.length === 0) {
@@ -1718,7 +1718,7 @@ var pluginName = "wb-tableparser",
 				}
 
 				//
-				// Associate the data cell type with the colgroup if any, 
+				// Associate the data cell type with the colgroup if any,
 				// Process the data cell. There are a need to have at least one data cell per data row.
 				if (!row.datacell) {
 					row.datacell = [];
@@ -2093,10 +2093,10 @@ var pluginName = "wb-tableparser",
 				* First tbody = data
 				* All tbody with header === data
 				* Subsequent tbody without header === summary
-				* 
+				*
 				*/
 
-				// New row group					
+				// New row group
 				$this.children().each( function() {
 					if (this.nodeName.toLowerCase() !== "tr") {
 						// ERROR
@@ -2149,9 +2149,9 @@ var pluginName = "wb-tableparser",
 		delete groupZero.colgrp;
 
 		addHeaders( groupZero );
-		
+
 		$obj.trigger( "parsecomplete.wb-tableparser.wb" );
-					
+
 	};
 
 // Bind the init event of the plugin
@@ -2168,21 +2168,21 @@ $document.on( "timerpoke.wb " + initEvent, selector, function( event ) {
 	}
 
 	/*
-	* Since we are working with events we want to ensure that we are being passive about our control, 
+	* Since we are working with events we want to ensure that we are being passive about our control,
 	* so returning true allows for events to always continue
 	*/
 	return true;
 });
 
-// Bind the init event of the plugin on passive table parsing request 
+// Bind the init event of the plugin on passive table parsing request
 $document.on( "pasiveparse.wb-tableparser.wb", function( event ) {
 	var eventTarget = event.target,
 		$elm = $( eventTarget );
-	
+
 	init( $elm );
 
 	/*
-	* Since we are working with events we want to ensure that we are being passive about our control, 
+	* Since we are working with events we want to ensure that we are being passive about our control,
 	* so returning true allows for events to always continue
 	*/
 	return true;
