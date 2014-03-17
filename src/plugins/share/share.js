@@ -82,6 +82,10 @@ var pluginName = "wb-share",
 				name: "Facebook",
 				url: "http://www.facebook.com/sharer.php?u={u}&amp;t={t}"
 			},
+			gmail: {
+				name: "Gmail",
+				url: "https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su={t}&body={u}%0A{d}"
+			},
 			googleplus: {
 				name: "Google+",
 				url: "https://plus.google.com/share?url={u}&amp;hl=" + document.documentElement.lang
@@ -117,6 +121,10 @@ var pluginName = "wb-share",
 			twitter: {
 				name: "Twitter",
 				url: "http://twitter.com/home?status={t}%20{u}"
+			},
+			yahoomail: {
+				name: "Yahoo! Mail",
+				url: "http://compose.mail.yahoo.com/?to=&subject={t}&body={u}%0A{d}"
 			}
 		}
 	},
@@ -130,9 +138,9 @@ var pluginName = "wb-share",
 	init = function( event ) {
 		var elm = event.target,
 			sites, heading, settings, panel, link, $share, $elm,
-			pageHref, pageTitle, pageImage, pageDescription, site,
+			pageHref, pageTitle, pageImage, pageDescription,
 			siteProperties, url, shareText, id, pnlId, regex,
-			filter, filterLen, filteredSites, i;
+			filter, i, len, keys, key;
 
 		// Filter out any events triggered by descendants
 		// and only initialize the element once
@@ -149,7 +157,15 @@ var pluginName = "wb-share",
 					shareText: i18n( "shr-txt" ),
 					page: i18n( "shr-pg" ),
 					video: i18n( "shr-vid" ),
-					disclaimer: i18n( "shr-disc" )
+					disclaimer: i18n( "shr-disc" ),
+					email: i18n( "email" )
+				};
+
+				// Add an email mailto option
+				defaults.sites[ i18nText.email ] = {
+					name: i18nText.email,
+					url: "mailto:?to=&subject={t}&body={u}%0A{d}",
+					isMailto: true
 				};
 			}
 
@@ -157,7 +173,6 @@ var pluginName = "wb-share",
 			settings = $.extend( true, {}, defaults, wb.getData( $elm, "wet-boew" ) );
 			sites = settings.sites;
 			filter = settings.filter;
-			filterLen = filter ? filter.length : 0;
 			heading = settings.hdLvl;
 
 			shareText = i18nText.shareText + ( settings.custType.length !== 0 ? settings.custType : i18nText[ settings.type ] );
@@ -178,25 +193,37 @@ var pluginName = "wb-share",
 					"'><header class='modal-header'><" + heading + " class='modal-title'>" +
 					shareText + "</" + heading + "></header><ul class='colcount-xs-2'>";
 
-				// If there is a site filter, then filter the sites in advance
-				if ( filterLen !== 0 ) {
-					filteredSites = {};
-					for ( i = 0; i !== filterLen; i += 1 ) {
-						site = filter[ i ];
-						filteredSites[ site ] = sites[ site ];
+				// If there is no filter array of site keys, then generate an array of site keys
+				if ( !filter || filter.length === 0 ) {
+					keys = [];
+					for ( key in sites ) {
+						if ( sites.hasOwnProperty( key ) ) {
+							keys.push( key );
+						}
 					}
-					sites = filteredSites;
+				} else {
+					keys = filter;
 				}
 
+				// i18n-friendly sort of the site keys
+				keys.sort(function( x, y ) {
+					return wb.normalizeDiacritics( x ).localeCompare( wb.normalizeDiacritics( y ) );
+				});
+				len = keys.length;
+
 				// Generate the panel
-				for ( site in sites ) {
-					siteProperties = sites[ site ];
+				for ( i = 0; i !== len; i += 1 ) {
+					key = keys[ i ];
+					siteProperties = sites[ key ];
 					url = siteProperties.url
 							.replace( /\{u\}/, pageHref )
 							.replace( /\{t\}/, pageTitle )
 							.replace( /\{i\}/, pageImage )
 							.replace( /\{d\}/, pageDescription );
-					panel += "<li><a href='" + url + "' class='" + shareLink + " " + site + " btn btn-default' target='_blank'>" + siteProperties.name + "</a></li>";
+					panel += "<li><a href='" + url + "' class='" + shareLink +
+						" " + ( siteProperties.isMailto ? "email" : key ) +
+						" btn btn-default' target='_blank'>" +
+						siteProperties.name + "</a></li>";
 				}
 
 				panel += "</ul><div class='clearfix'></div><p class='col-sm-12'>" + i18nText.disclaimer + "</p></section>";
