@@ -216,12 +216,6 @@ $modal-title-line-height: $line-height-base;
 	}
 }
 
-// alerts.less
-.alert {
-	margin-bottom: $line-height-computed;
-}
-
-
 // breadcrumbs.less
 .breadcrumb {
 	margin-bottom: $line-height-computed;
@@ -373,6 +367,28 @@ textarea.input-lg {
 	}
 }
 
+%label-alert-common {
+	border-radius: 0;
+	border-width: 0 0 0 4px;
+	border-style: solid;
+}
+
+// alerts.less
+.alert {
+	@extend %label-alert-common;
+	margin-bottom: $line-height-computed;
+	> {
+		:first-child {
+			margin-top: auto;
+			&:before {
+				padding-right: 10px;
+				display: inline-block;
+				font-family: "Glyphicons Halflings";
+			}
+		}
+	}
+}
+
 // labels.less
 %label-alert-color-000 {
 	color: #000;
@@ -380,10 +396,8 @@ textarea.input-lg {
 %label-alert-underline {
 	text-decoration: underline;
 }
-.label, .alert {
-	border-radius: 0;
-	border-width: 0 0 0 4px;
-	border-style: solid;
+.label {
+	@extend %label-alert-common;
 }
 
 %label-default-bg-border-left {
@@ -418,8 +432,9 @@ textarea.input-lg {
 	}
 }
 
+$label-alert-warning-border-icon-color: #278400;
 %label-alert-success-bg-border-left {
-	border-color: #278400;
+	border-color: $label-alert-warning-border-icon-color;
 	background: #d8eeca;
 }
 .label-success {
@@ -436,10 +451,19 @@ textarea.input-lg {
 .alert-success {
 	@extend %label-alert-success-bg-border-left;
 	@extend %label-alert-color-000;
+	> {
+		:first-child {
+			&:before {
+				content: "\e084";
+				color: $label-alert-warning-border-icon-color;
+			}
+		}
+	}
 }
 
+$label-alert-info-border-icon-color: #269abc;
 %label-alert-info-bg-border-left {
-	border-color: #269abc;
+	border-color: $label-alert-info-border-icon-color;
 	background: #d7faff;
 }
 .label-info {
@@ -456,10 +480,19 @@ textarea.input-lg {
 .alert-info {
 	@extend %label-alert-info-bg-border-left;
 	@extend %label-alert-color-000;
+	> {
+		:first-child {
+			&:before {
+				content: "\e086";
+				color: $label-alert-info-border-icon-color;
+			}
+		}
+	}
 }
 
+$label-alert-warning-border-icon-color: #f90;
 %label-alert-warning-bg-border-left {
-	border-color: #f4e100;
+	border-color: $label-alert-warning-border-icon-color;
 	background: #f9f4d4;
 }
 .label-warning {
@@ -476,10 +509,19 @@ textarea.input-lg {
 .alert-warning {
 	@extend %label-alert-warning-bg-border-left;
 	@extend %label-alert-color-000;
+	> {
+		:first-child {
+			&:before {
+				content: "\e107";
+				color: $label-alert-warning-border-icon-color;
+			}
+		}
+	}
 }
 
+$label-alert-danger-border-icon-color: #d3080c;
 %label-alert-danger-bg-border-left {
-	border-color: #d3080c;
+	border-color: $label-alert-danger-border-icon-color;
 	background: #f3e9e8;
 }
 .label-danger {
@@ -496,6 +538,14 @@ textarea.input-lg {
 .alert-danger {
 	@extend %label-alert-danger-bg-border-left;
 	@extend %label-alert-color-000;
+	> {
+		:first-child {
+			&:before {
+				content: "\e101";
+				color: $label-alert-danger-border-icon-color;
+			}
+		}
+	}
 }
 
 // modals.less
