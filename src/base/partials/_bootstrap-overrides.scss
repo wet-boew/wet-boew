@@ -380,10 +380,27 @@ textarea.input-lg {
 	> {
 		:first-child {
 			margin-top: auto;
+			margin-left: 1.2em;
 			&:before {
-				padding-right: 10px;
+				position: absolute;
+				margin-left: -1.3em;
 				display: inline-block;
 				font-family: "Glyphicons Halflings";
+			}
+		}
+	}
+}
+
+[dir=rtl] {
+	.alert {
+		> {
+			:first-child {
+				margin-left: auto;
+				margin-right: 1.2em;
+				&:before {
+					margin-left: auto;
+					margin-right: -1.3em;
+				}
 			}
 		}
 	}
