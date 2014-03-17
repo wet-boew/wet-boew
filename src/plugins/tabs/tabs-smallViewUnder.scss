@@ -24,18 +24,58 @@
 		[role="tablist"] {
 			position: static;
 		}
-		li[role="presentation"] {
-			@extend %tabs-smallview-display-none;
+		li {
+			&[role="presentation"] {
+				@extend %tabs-smallview-display-none;
+			}
 		}
 	}
 	&.carousel-s2 {
 		[role="tablist"] {
-			li[role="presentation"] {
-				@extend %tabs-smallview-display-none;
+			li {
+				&[role="presentation"] {
+					@extend %tabs-smallview-display-none;
+				}
+				%carousel-background-none {
+					background: none;
+				}
+				%carousel-bottom-2em-top-auto {
+					bottom: -2em;
+					top: auto;
+				}
+				&.prv {
+					a {
+						&.prv {
+							@extend %carousel-background-none;
+						}
+						.glyphicon {
+							@extend %carousel-bottom-2em-top-auto;
+						}
+					}
+				}
+				&.nxt {
+					a {
+						&.nxt {
+							@extend %carousel-background-none;
+						}
+						.glyphicon {
+							@extend %carousel-bottom-2em-top-auto;
+							right: auto;
+							left: 0;
+						}
+					}
+				}
+				&.plypause {
+					right: auto;
+					text-align: center;
+					width: 100%;
+					font-size: 1.5em;
+					margin-top: 0.3em;
+				}
 			}
 		}
 		figcaption {
-			margin: 1em 3.5em;
+			margin: auto;
 		}
 	}
 	&.tabs-acc {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<!--[if lt IE 9]><html class="no-js lt-ie9" lang="{{language}}"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lt-ie9" lang="{{language}}" dir="{{#i18n "lang-dir"}}{{/i18n}}"><![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" lang="{{language}}">
+<html class="no-js" lang="{{language}}" dir="{{#i18n "lang-dir"}}{{/i18n}}">
 <!--<![endif]-->
 	<head>
 		<meta charset="utf-8" />
@@ -92,6 +92,9 @@
 			<h1 id="wb-cont" property="name">{{title}}</h1>
 			{{>contentbuttons}}
 			{{>body}}
+{{#if page.dateModified}}
+			{{>datemodified}}
+{{/if}}
 		</main>
 {{#is secondarymenu "true"}}
 				<nav role="navigation" id="wb-sec" typeof="SiteNavigationElement" class="col-md-3 col-md-pull-9 visible-md visible-lg">

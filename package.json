@@ -1,6 +1,6 @@
 {
   "name": "wet-boew",
-  "version": "4.0.0-b2-development",
+  "version": "4.0.0-rc1-development",
   "description": "Web Experience Toolkit (WET): Open source code library for building innovative websites that are accessible, usable, interoperable, mobile-friendly and multilingual. This collaborative open source project is led by the Government of Canada. / Boîte à outils de l’expérience Web (BOEW) : Une bibliothèque de code primée pour construire des sites Web innovants qui sont accessibles, faciles d'emploi, interopérables, optimisés pour les appareils mobiles et multilingues. Ceci est un projet à source ouverte collaboratif dirigé par le Gouvernement du Canada.",
   "main": "index.html",
   "scripts": {
@@ -28,7 +28,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "assemble": "~0.4.7",
+    "assemble": "~0.4.10",
+    "assemble-contrib-i18n": "https://github.com/assemble/assemble-contrib-i18n/tarball/master",
     "csv": "~0.3.6",
     "expect.js": "~0.2.0",
     "grunt": "~0.4.1",
@@ -46,6 +47,7 @@
     "grunt-contrib-watch": "~0.5.3",
     "grunt-gh-pages": "~0.9.0",
     "grunt-htmlcompressor": "~0.1.10",
+    "grunt-i18n-gspreadsheet": "https://github.com/LaurentGoderre/grunt-i18n-spreadsheet/tarball/custom",
     "grunt-imagine": "http://github.com/LaurentGoderre/grunt-imagine/tarball/custom",
     "grunt-jscs-checker": "~0.2.6",
     "grunt-mocha": "~0.4.1",

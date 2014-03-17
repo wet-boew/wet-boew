@@ -162,5 +162,13 @@
 				width: 75%;
 			}
 		}
+		ul {
+			li {
+				&.no-sect {
+					padding-left: 0;
+					padding-right: 1.27em
+				}
+			}
+		}
 	}
 }

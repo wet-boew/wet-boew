@@ -16,6 +16,10 @@ $medGray: #ccc;
 	background: transparentize($medGray, 0.1)
 }
 
+%tabsPositionRelative {
+	position: relative;
+}
+
 %carouselTabs {
 	position: absolute;
 	z-index: 100;
@@ -24,10 +28,6 @@ $medGray: #ccc;
 %carouselDrabBlueBackground {
 	background: $drabBlue;
 	background: transparentize($drabBlue, 0.1);
-}
-
-%carouselFigure {
-	position: relative;
 }
 
 //TODO:Combine with previous placeholder when libsass supports nested selectors
@@ -39,7 +39,7 @@ $medGray: #ccc;
 %carouselFigureCaptions {
 	position: absolute;
 	color: #fff;
-	padding: 1em;
+	padding: 0.5em 1em;
 	z-index: 101;
 }
 
@@ -52,7 +52,7 @@ $medGray: #ccc;
 	/**
 	 * Default, minimal, shared style
 	 */
-	position: relative;
+	@extend %tabsPositionRelative;
 	[role ="tablist"] {
 		position : relative;
 		list-style: none;
@@ -111,7 +111,7 @@ $medGray: #ccc;
 			}
 		}
 		figure {
-			@extend %carouselFigure;
+			@extend %tabsPositionRelative;
 			@extend %carouselDrabBlueBackground;
 			img {
 				@extend %carouselFigureImage;
@@ -132,7 +132,8 @@ $medGray: #ccc;
 	 */
 	&.carousel-s2 {
 		$thumbHeight: 50px;
-		margin-bottom: $thumbHeight + 10px;
+		// 44px = 2 x 10px for anchor padding + 2 x 4px for list item padding + 16px for carousel bottom margin
+		margin-bottom: $thumbHeight + 44px;
 		[role="tablist"] {
 			@extend %carouselTabs;
 			width: 100%;
@@ -258,7 +259,7 @@ $medGray: #ccc;
 			}
 		}
 		figure {
-			@extend %carouselFigure;
+			@extend %tabsPositionRelative;
 			@extend %carouselDrabBlueBackground;
 			img {
 				@extend %carouselFigureImage;
@@ -266,10 +267,19 @@ $medGray: #ccc;
 		}
 		figcaption {
 			@extend %carouselFigureCaptions;
-			bottom: 1em;
-			left: 3em;
+			bottom: 0;
+			left: 0;
+			right: 0;
 			a {
 				@extend %carouselFigureCaptionsLinks;
+			}
+			p {
+				margin-bottom: 0;
+			}
+		}
+		&.no-overlap {
+			figcaption {
+				@extend %tabsPositionRelative;
 			}
 		}
 	}

@@ -40,8 +40,8 @@ module.exports = (grunt) ->
 		[
 			"clean:dist"
 			"assets"
-			"js"
 			"css"
+			"js"
 			"imagemin"
 		]
 	)
@@ -50,7 +50,6 @@ module.exports = (grunt) ->
 		"deploy"
 		"Build and deploy artifacts to wet-boew-dist"
 		[
-			"dist"
 			"copy:deploy"
 			"gh-pages:travis"
 		]
@@ -79,6 +78,7 @@ module.exports = (grunt) ->
 		"Only needed when the repo is first cloned"
 		[
 			"modernizr"
+			"i18n_gspreadsheet"
 		]
 	)
 
@@ -103,6 +103,7 @@ module.exports = (grunt) ->
 			"concat:i18n"
 			"uglify:polyfills"
 			"uglify:core"
+			"uglify:coreIE8"
 			"uglify:i18n"
 			"uglify:deps"
 		]
@@ -138,6 +139,7 @@ module.exports = (grunt) ->
 			"copy:demos"
 			"autoprefixer:demos"
 			"csslint:demos"
+			"assemble:theme"
 			"assemble:demos"
 		]
 	)
@@ -149,6 +151,7 @@ module.exports = (grunt) ->
 			"copy:demos_min"
 			"cssmin:demos_min"
 			"uglify:demos"
+			"assemble:theme_min"
 			"assemble:demos_min"
 			"htmlcompressor"
 		]
@@ -194,6 +197,15 @@ module.exports = (grunt) ->
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n *\n */"
 		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
 		glyphiconsBanner: "/*!\n * GLYPHICONS Halflings for Twitter Bootstrap by GLYPHICONS.com | Licensed under http://www.apache.org/licenses/LICENSE-2.0\n */"
+
+		locales: grunt.file.expand(
+					filter: ( src ) ->
+						return true
+					"site/data/i18n/*.json"
+					).map( ( src ) ->
+						src = src.replace( "site/data/i18n/", "")
+						return src.replace( ".json", "" )
+					)
 
 		# Task configuration.
 		concat:
@@ -319,6 +331,22 @@ module.exports = (grunt) ->
 				partials: "site/includes/**/*.hbs"
 				layout: "default.hbs"
 
+			theme:
+				options:
+					environment:
+						root: "/v4.0-ci/unmin"
+					assets: "dist/unmin"
+					flatten: true,
+					plugins: ["assemble-contrib-i18n"]
+					i18n:
+						languages: "<%= locales %>"
+						templates: [
+							"site/pages/theme/*.hbs"
+							"!site/pages/theme/splashpage*.hbs"
+						]
+				dest: "dist/unmin/theme/"
+				src: "!*.*"
+
 			demos:
 				options:
 					environment:
@@ -341,10 +369,31 @@ module.exports = (grunt) ->
 						dest: "dist/unmin/demos"
 					,
 						cwd: "site/pages"
-						src: "**/*.hbs"
+						src: [
+							"**/*.hbs",
+							"!theme/**/*.hbs"
+							"theme/splashpage*.hbs"
+						]
 						dest: "dist/unmin"
 						expand: true
 				]
+
+			theme_min:
+				options:
+					environment:
+						suffix: ".min"
+						root: "/v4.0-ci"
+					assets: "dist"
+					flatten: true,
+					plugins: ['assemble-contrib-i18n']
+					i18n:
+						languages: "<%= locales %>"
+						templates: [
+							'site/pages/theme/*.hbs',
+							"!site/pages/theme/splashpage*.hbs"
+						]
+				dest:  "dist/theme/"
+				src: "!*.*"
 
 			demos_min:
 				options:
@@ -369,12 +418,16 @@ module.exports = (grunt) ->
 						dest: "dist/demos"
 					,
 						cwd: "site/pages"
-						src: "**/*.hbs"
+						src: [
+							"**/*.hbs",
+							"!theme/**/*.hbs"
+							"theme/splashpage*.hbs"
+						]
 						dest: "dist"
 						expand: true
 				]
 
-		#Generate the sprites include stylesheets
+		#Generate the sprites including the stylesheet
 		sprites:
 			share:
 				src: [
@@ -491,7 +544,7 @@ module.exports = (grunt) ->
 				# Can be turned off after https://github.com/dimsemenov/Magnific-Popup/pull/303 lands
 				"empty-rules": false
 				"fallback-colors": false
-				"floats": false
+				"float": false
 				"font-sizes": false
 				"gradients": false
 				"headings": false
@@ -554,10 +607,27 @@ module.exports = (grunt) ->
 					preserveComments: (uglify,comment) ->
 						return comment.value.match(/^!/i)
 				cwd: "dist/unmin/js/"
-				src: [ "*wet-boew*.js" ]
+				src: [
+					"*wet-boew*.js"
+					"!ie*.js"
+				]
 				dest: "dist/js/"
 				ext: ".min.js"
 				expand: true
+
+			coreIE8:
+				options:
+					beautify:
+						quote_keys: true
+						ascii_only: true
+					preserveComments: (uglify,comment) ->
+						return comment.value.match(/^!/i)
+				cwd: "dist/unmin/js/"
+				src: [ "ie8*.js" ]
+				dest: "dist/js/"
+				ext: ".min.js"
+				expand: true
+
 
 			i18n:
 				options:
@@ -682,9 +752,11 @@ module.exports = (grunt) ->
 						"google-code-prettify/src/*.js"
 						"DataTables/media/js/jquery.dataTables.js"
 						"proj4/dist/proj4.js"
-						"openlayers/OpenLayers.js"
+						"openlayers/OpenLayers.debug.js"
 					]
 					dest: "dist/unmin/js/deps"
+					rename: (dest, src) ->
+						return dest + "/" + src.replace( ".debug", "" )
 					expand: true
 					flatten: true
 				,
@@ -898,10 +970,10 @@ module.exports = (grunt) ->
 
 							# Test to see if the plugin or polyfill has a test file
 							plugins = dir.replace("/dist/demos/", "src/plugins/") + "test.js"
-
 							polyfills = dir.replace("/dist/demos/", "src/polyfills/") + "test.js"
+							other = dir.replace("/dist/demos/", "src/other/") + "test.js"
 
-							testFile = if fs.existsSync( plugins ) then plugins else if fs.existsSync( polyfills ) then polyfills else ""
+							testFile = if fs.existsSync( plugins ) then plugins else if fs.existsSync( polyfills ) then polyfills else if fs.existsSync( other ) then other else ""
 
 							if testFile != ""
 
@@ -948,6 +1020,17 @@ module.exports = (grunt) ->
 				csv: "src/i18n/i18n.csv"
 				dest: "dist/unmin/js/i18n/"
 
+		i18n_gspreadsheet:
+			all:
+				options:
+					key_column: 'lang-code'
+					sort_keys: false
+					use_default_on_missing: true
+					output_dir: 'site/data/i18n'
+					ext: '.json'
+					document_key: '0AqLc8VEIumBwdDNud1M2Wi1tb0RUSXJxSGp4eXI0ZXc'
+					worksheet: 2
+
 		mocha:
 			all:
 				options:
@@ -958,11 +1041,13 @@ module.exports = (grunt) ->
 							return fs.existsSync( src + "/test.js" )
 						"src/plugins/**/*.hbs"
 						"src/polyfills/**/*.hbs"
+						"src/other/**/*.hbs"
 					).map( ( src ) ->
 						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
 						src = src.replace( "src/", "dist/")
 						src = src.replace( "plugins/", "demos/" )
 						src = src.replace( "polyfills/", "demos/" )
+						src = src.replace( "other/", "demos/" )
 						src = src.replace( ".hbs", ".html" )
 						return "http://localhost:8000/" + src
 					)
@@ -976,11 +1061,13 @@ module.exports = (grunt) ->
 							return fs.existsSync( src + "/test.js" )
 						"src/plugins/**/*.hbs"
 						"src/polyfills/**/*.hbs"
+						"src/other/**/*.hbs"
 					).map( ( src ) ->
 						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
 						src = src.replace( "src/", "dist/")
 						src = src.replace( "plugins/", "demos/" )
 						src = src.replace( "polyfills/", "demos/" )
+						src = src.replace( "other/", "demos/" )
 						src = src.replace( ".hbs", ".html" )
 						return "http://localhost:8000/" + src
 					)
@@ -1035,6 +1122,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-contrib-watch"
 	@loadNpmTasks "grunt-gh-pages"
 	@loadNpmTasks "grunt-htmlcompressor"
+	@loadNpmTasks "grunt-i18n-gspreadsheet"
 	@loadNpmTasks "grunt-imagine"
 	@loadNpmTasks "grunt-jscs-checker"
 	@loadNpmTasks "grunt-mocha"

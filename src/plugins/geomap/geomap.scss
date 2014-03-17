@@ -53,54 +53,29 @@
   }
 }
 
-div {
-	&.olMap {
-		z-index: 0;
-		cursor: default;
+.olMap {
+	z-index: 0;
+	cursor: default;
+}
+
+.olMapViewport {
+	text-align: left;
+}
+
+.olLayerDiv {
+	user-select: none;
+	img {
+		max-width: none !important;
 	}
-	&.olMapViewport {
-		text-align: left;
-	}
-	&.olLayerDiv {
-		user-select: none;
-		img {
-			max-width: none !important;
-		}
-	}
-	&.olControlMousePosition {
-		bottom: 5px;
-		left: 100px;
-		display: block;
-		position: absolute;
-		font-family: Arial;
-		font-size: smaller;
-	}
-	&.olControlZoom {
-		position: absolute;
-		top: 8px;
-		left: 8px;
-		background: rgba(255,255,255,0.4);
-		border-radius: 4px;
-		padding: 2px;
-		a {
-			display: block;
-			margin: 1px;
-			padding: 0;
-			color: #fff;
-			font-size: 18px;
-			font-family: 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
-			font-weight: 700;
-			text-decoration: none;
-			text-align: center;
-			height: 22px;
-			width: 22px;
-			line-height: 19px;
-			background: rgba(0, 60, 136, 0.5);
-			&:hover, &:focus {
-				background: rgba(0, 60, 136, 0.7);
-			}
-		}
-	}
+}
+
+.olControlMousePosition {
+	bottom: 5px;
+	left: 100px;
+	display: block;
+	position: absolute;
+	font-family: Arial;
+	font-size: smaller;
 }
 
 .olControlScale {
@@ -196,7 +171,7 @@ div {
 }
 
 .olImageLoadError {
-  display: none !important;
+	display: none !important;
 }
 
 /**
@@ -221,7 +196,6 @@ div {
 .olControlDragFeatureActive {
 	&.olControlDragFeatureOver {
 		&.olDragDown {
-			// cursor: -moz-grabbing;
 			cursor: grabbing;
 		}
 	}
@@ -236,39 +210,21 @@ div {
 	}
 }
 
-.medium-screen {
-  .wb-geomap-legend {
-    width: 100% !important;
-  }
-  .form-checkbox {
-    display: block;
-  }
-}
-
 /**
  * GeoMap
  */
 .wb-geomap-map {
-	/*width: 100%;*/
 	position: relative;
 	outline: 1px solid #CCC;
+	margin-bottom: 30px;
 	&.active {
 		outline-color: #07F;
 	}
 }
 
 .wb-geomap-detail {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.geomap-legend-chk {
-	// float: left;
-}
-
-.geomap-legend-item {
-	// float: left;
-	// padding-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .geomap-legend-detail {

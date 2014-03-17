@@ -18,12 +18,21 @@
 /*jshint unused:false*/
 var wet_boew_geomap = {
 	// OPTIONAL: note that Geomap will provide a default basemap if not specified here.	
-//	basemap: {
-//		title: "WMS Demo",
-//		type: "wms",
-//		url: "http://vmap0.tiles.osgeo.org/wms/vmap0",
-//		layers: "basic"
-//	},
+	/*basemap : {
+		title: "WMS Demo",
+		type: "wms",
+		url: "http://vmap0.tiles.osgeo.org/wms/vmap0",
+		layers: "basic",
+		mapOptions: {
+			maxExtent: "-180, -90, 180, 90",			
+			maxResolution: "auto",
+			projection: "EPSG:4326",
+			restrictedExtent: "-180, -90, 180, 90",
+			units: "m",
+			displayProjection: "EPSG:4326",
+			tileManager: null
+		}
+	},*/
 	overlays: [
 		{
 			title: "KML Demo EN",
@@ -100,13 +109,8 @@ var wet_boew_geomap = {
 				updated_at: "Last updated"
 			},
 			visible: true,
-			zoom: [
-				true,
-				{
-					type: "text"
-				}
-			],
-			datatable: false,
+			zoom: true,
+			datatable: true,
 			tab: true,
 			
 			// default style			
