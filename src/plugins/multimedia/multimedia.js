@@ -75,7 +75,7 @@ var pluginName = "wb-mltmd",
 				templatetriggered = true;
 				$document.trigger({
 					type: "ajax-fetch.wb",
-					element: "#" + elmId,
+					element: selector,
 					fetch: wb.getPath( "/assets" ) + "/mediacontrols.html"
 				});
 			}
