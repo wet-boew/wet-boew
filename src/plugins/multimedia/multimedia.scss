@@ -171,12 +171,13 @@
 
 	.frstpnl {
 		@extend %pnl;
-		width: 7.5em;
+		text-align: center;
+		width: 8em;
 	}
 	.lastpnl {
 		@extend %pnl;
 		text-align: center;
-		width: 5.5em;
+		width: 6em;
 	}
 	.tline {
 		@extend %pnl;
