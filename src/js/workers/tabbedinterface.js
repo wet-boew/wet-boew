@@ -184,7 +184,7 @@
 					isKeySelect = e.keyCode === 13 || e.keyCode === 32;	// enter, space
 					isKeyPrev = e.keyCode === 37 || e.keyCode === 38;	// left, up
 					isKeyNext = e.keyCode === 39 || e.keyCode === 40;	// right, down
-					if (isKeySelect || isKeyPrev || isKeyNext) {
+					if ((isKeySelect || isKeyPrev || isKeyNext) && !(e.ctrlKey || e.altKey || e.metaKey)) {
 						if (opts.cycle) {
 							stopCycle();
 						}
@@ -315,7 +315,7 @@
 				$toggleButton = $toggleRow.find('a');
 				$nav.append($toggleRow);
 				$toggleRow.click(toggleCycle).on('keydown', function (e) {
-					if (e.keyCode === 32) {
+					if (e.keyCode === 32 && !(e.ctrlKey || e.altKey || e.metaKey)) {
 						toggleCycle();
 						return e.preventDefault();
 					}
