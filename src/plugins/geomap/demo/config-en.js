@@ -35,7 +35,7 @@ var wet_boew_geomap = {
 	},*/
 	overlays: [
 		{
-			title: "KML Demo EN",
+			title: "KML File",
 			caption: "This is a sample KML file loaded locally by Geomap.",
 			type: "kml",
 			url: "demo/sample.kml",
@@ -49,7 +49,7 @@ var wet_boew_geomap = {
 			}
 		},
 		{
-			title: "ATOM Demo EN",
+			title: "ATOM Feed",
 			caption: "This is a sample ATOM feed loaded locally by Geomap.",
 			type: "atom",
 			url: "demo/sample.atom",
@@ -61,7 +61,7 @@ var wet_boew_geomap = {
 			visible: true
 		},
 		{
-			title: "GeoRSS Demo EN",
+			title: "GeoRSS Feed",
 			caption: "This is a sample GeoRSS feed loaded locally by Geomap.",
 			type: "georss",
 			url: "demo/sample.rss",
@@ -75,7 +75,7 @@ var wet_boew_geomap = {
 			tab: true
 		},
 		{
-			title: "JSON (GeoGratis) EN",
+			title: "JSON (GeoGratis)",
 			caption: "This is a sample dataset loaded from a remote JSON resource, in this case the GeoGratis API.",
 			type: "json",
 			url: "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst",
@@ -94,7 +94,7 @@ var wet_boew_geomap = {
 			}
 		},
 		{
-			title: "GeoJSON (CartoDB) EN",
+			title: "GeoJSON (CartoDB)",
 			caption: "This is a sample dataset loaded from a remote GeoJSON resource, in this case traffic cameras in the city of Ottawa from the CartoDB API.",
 			type: "geojson",
 			url: "http://stephenott.cartodb.com/api/v2/sql",

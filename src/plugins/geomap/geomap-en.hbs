@@ -71,7 +71,7 @@
 		},
 		{
 			"id": "bbox",
-			"tab": true,
+			"tab": false,
 			"zoom": true,
 			"popups": true
 		}]
@@ -91,18 +91,21 @@
     	<!-- Insert Legend End -->
     </div>
 
-	<!-- Insert Layer Data Start (mandatory) -->
-	<div class="col-md-12">
-		<h2>Example - Remote &amp; File-based Layer Data</h2>
-		<p>Layers are created from file-based formats, feeds, and web API's.</p>
+	<div class="row">
+    	<div class="col-md-12">
+    		<h2>Example - Remote &amp; File-based Layer Data</h2>
+    		<p>Layers are created from file-based formats, feeds, and web API's.</p>
+    	</div>
 	</div>
-	<div class="wb-geomap-layers row">
-		<div class="col-md-12">
+
+    <!-- Insert Layer Data Start (mandatory) -->
+	<div class="row">
+		<div class="wb-geomap-layers col-md-12">
 			<h2>Example - Inline Layer Data</h2>
 			<p>Layers are created from the following tables. An attribute <em>data-geometry</em> to hold the geometry and an attribute <em>data-type</em> to hold the geometry type (wkt or bbox) are required for each row.</p>
-            <h3>Points</h3>
-            <table id="cities" aria-label="Cities" class="table wb-tables">
-                <caption> Table of point geometries.</caption>
+            <h3>Point Features</h3>
+            <table id="cities" aria-label="Point Features" class="table wb-tables">
+                <caption class="sr-only">Table of point features.</caption>
                 <thead>
                     <tr>
                         <th>Rank</th>
@@ -165,10 +168,9 @@
             </table>
         </div>
         <div class="col-md-12">
-            <table id="bbox" aria-label="Search Results" class="table table-condensed">
-                <caption>
-                    Table of bounding box geometries.
-                </caption>
+            <h3>Bounding Box Features</h3>
+            <table id="bbox" aria-label="Bounding Box Features" class="table table-condensed">
+                <caption class="sr-only">Table of bounding box features.</caption>
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -197,7 +199,17 @@
 	class="wb-geomap static"
 	data-wet-boew='{
 		"tables": [{
-			"id": "addNRCan"
+			"id": "addNRCan",
+            "style": {
+                "type": "symbol",
+                "init": {
+                    "pointRadius": 12,
+                    "graphicName": "star",
+                    "strokeColor": "#FF0000",
+                    "fillColor": "#FF0000",
+                    "fillOpacity": 0.7
+                }
+            }
 		}]
 	}'>
 	<div class="row">

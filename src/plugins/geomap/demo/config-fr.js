@@ -27,7 +27,7 @@ var wet_boew_geomap = {
 	*/
 	overlays: [
 		{
-			title: "KML Demo FR",
+			title: "Fichier KML",
 			caption: "Ceci est un exemple de fichier KML chargé localement par Géocarte.",
 			type: "kml",
 			url: "demo/sample_fr.kml",
@@ -41,7 +41,7 @@ var wet_boew_geomap = {
 			}
 		},
 		{
-			title: "ATOM Demo FR",
+			title: "ATOM Feed",
 			caption: "Ceci est un exemple de fil ATOM chargé localement par Géocarte.",
 			type: "atom",
 			url: "demo/sample_fr.atom",
@@ -54,7 +54,7 @@ var wet_boew_geomap = {
 			tab: true
 		},
 		{
-			title: "GeoRSS Demo FR",
+			title: "GeoRSS Feed",
 			caption: "Ceci est un exemple de fil GeoRSS chargé localement par Géocarte.",
 			type: "georss",
 			url: "demo/sample_fr.rss",
@@ -68,7 +68,7 @@ var wet_boew_geomap = {
 			tab: true
 		},
 		{
-			title: "JSON (GeoGratis) FR",
+			title: "JSON (GeoGratis)",
 			caption: "Ceci est un exemple d'un jeu de données JSON chargé à partir d'un site externe, dans ce cas-ci Géogratis.",
 			type: "json",
 			url: "http://geogratis.gc.ca/api/fr/nrcan-rncan/ess-sst",
@@ -88,7 +88,7 @@ var wet_boew_geomap = {
 			}
 		},
 		{
-			title: "GeoJSON (CartoDB) FR",
+			title: "GeoJSON (CartoDB)",
 			caption: "Ceci est un exemple d'un jeu de données JSON chargé à partir d'un site externe, dans ce cas-ci les caméras de circulation de la ville d'Ottawa à partir du site Carto DB.",
 			type: "geojson",
 			url: "http://stephenott.cartodb.com/api/v2/sql",
