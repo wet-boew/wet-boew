@@ -320,29 +320,28 @@ var pluginName = "wb-menu",
 			$elm.trigger( navCurrentEvent, breadcrumb );
 			$panel.find( "#sm-pnl" ).trigger( navCurrentEvent, breadcrumb );
 
-			// Open up each menu with the wb-navcurr class
+			// Ensure that wb-navcurr is reflected in the top level
 			$navCurr = $panel.find( ".wb-navcurr" );
 			len = $navCurr.length;
 			for ( i = 0; i !== len; i += 1 ) {
 				$menuItem = $navCurr.eq( i );
 
-				// If not at the top level, check to see if the parent menu
-				// link has the wb-navcurr class already. If not, then
-				// click on the parent menu item.
+				// If not at the top level, then add wb-navcurr to the top level
 				if ( !$menuItem.hasClass( ".mb-item" ) ) {
 					$menuItem = $menuItem
 									.closest( "details" )
 										.children( "summary" )
 											.addClass( "wb-navcurr" );
 				}
+			}
 
-				// Only click on the menu item and set the open property if it has a submenu
-				if ( $menuItem.attr( "aria-haspopup" ) === "true" ) {
-					$menuItem
-						.trigger( "click" )
-						.parent()
-							.prop( "open", "open" );
-				}
+			// Open up the secondary menu if it has wb-navcurr and has a submenu
+			$menuItem = $panel.find( "#sec-pnl .wb-navcurr.mb-item" );
+			if ( $menuItem.attr( "aria-haspopup" ) === "true" ) {
+				$menuItem
+					.trigger( "click" )
+					.parent()
+						.prop( "open", "open" );
 			}
 		}, 1 );
 	},
