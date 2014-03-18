@@ -784,37 +784,40 @@ $document.on( "keydown", selector, function( event ) {
 		$this = ref[ 0 ],
 		volume = 0;
 
-	switch ( which ) {
-	case 32:
-		$this.find( ctrls + " .playpause" ).trigger( "click" );
-		break;
+	if ( !( event.ctrlKey || event.altKey || event.metaKey ) ) {
+		switch ( which ) {
+		case 32:
+			$this.find( ctrls + " .playpause" ).trigger( "click" );
+			break;
 
-	case 37:
-		$this.find( ctrls + " .rewind" ).trigger( "click" );
-		break;
+		case 37:
+			$this.find( ctrls + " .rewind" ).trigger( "click" );
+			break;
 
-	case 39:
-		$this.find( ctrls + " .fastforward" ).trigger( "click" );
-		break;
+		case 39:
+			$this.find( ctrls + " .fastforward" ).trigger( "click" );
+			break;
 
-	case 38:
-		volume = Math.round( playerTarget.player( "getVolume" ) * 10 ) / 10 + 0.1;
-		playerTarget.player( "setVolume", volume < 1 ? volume : 1 );
-		break;
+		case 38:
+			volume = Math.round( playerTarget.player( "getVolume" ) * 10 ) / 10 + 0.1;
+			playerTarget.player( "setVolume", volume < 1 ? volume : 1 );
+			break;
 
-	case 40:
-		volume = Math.round( playerTarget.player( "getVolume" ) * 10 ) / 10 - 0.1;
-		playerTarget.player( "setVolume", volume > 0 ? volume : 0 );
-		break;
+		case 40:
+			volume = Math.round( playerTarget.player( "getVolume" ) * 10 ) / 10 - 0.1;
+			playerTarget.player( "setVolume", volume > 0 ? volume : 0 );
+			break;
 
-	default:
-		return true;
+		default:
+			return true;
+		}
+		return false;
 	}
-	return false;
 });
 
 $document.on( "keyup", selector, function( event ) {
-	if ( event.which === 32 ) {
+	if ( event.which === 32 && !( event.ctrlKey || event.altKey || event.metaKey ) ) {
+
 		// Allows the spacebar to be used for play/pause without double triggering
 		return false;
 	}
