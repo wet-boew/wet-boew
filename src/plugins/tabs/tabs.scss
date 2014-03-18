@@ -22,6 +22,9 @@ $medGray: #ccc;
 
 %carouselTabs {
 	position: absolute;
+}
+
+%carouselTabsLi {
 	z-index: 100;
 }
 
@@ -143,6 +146,7 @@ $medGray: #ccc;
 			bottom: 1em;
 			left: 1em;
 			li {
+				@extend %carouselTabsLi;
 				&.active, &:focus, &:hover {
 					top: 1px;
 					a {
@@ -180,6 +184,7 @@ $medGray: #ccc;
 			width: 100%;
 			height: 100%;
 			li {
+				@extend %carouselTabsLi;
 				display: none;
 				border: none;
 				&[role="presentation"] {
