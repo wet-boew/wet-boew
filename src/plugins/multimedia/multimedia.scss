@@ -171,12 +171,12 @@
 
 	.frstpnl {
 		@extend %pnl;
-		width: 6em;
+		width: 7.5em;
 	}
 	.lastpnl {
 		@extend %pnl;
-		text-align: right;
-		width: 4em;
+		text-align: center;
+		width: 5.5em;
 	}
 	.tline {
 		@extend %pnl;
@@ -203,7 +203,7 @@
 	/* Progress Bar */
 	progress {
 		width: 100%;
-		height: 14px;
+		height: 16px;
 		display: block;
 		/* Important Thing */
 		-webkit-appearance: none;
@@ -218,7 +218,7 @@
 	}
 
 	.progress {
-		height: 14px;
+		height: 16px;
 	}
 }
 
