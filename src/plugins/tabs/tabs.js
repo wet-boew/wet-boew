@@ -540,28 +540,30 @@ var pluginName = "wb-tabs",
 	var eventType = event.type,
 
 		// "this" is cached for all events to utilize
-		$elm = $( this );
+		$elm = $( event.target );
 
-	switch ( eventType ) {
-	case "timerpoke":
-		onTimerPoke( $elm );
-		break;
+	// Filter out any events triggered by descendants
+	if ( event.currentTarget === event.target ) {
+		switch ( eventType ) {
+		case "timerpoke":
+			onTimerPoke( $elm );
+			break;
 
-	/*
-	 * Init
-	 */
-	case "wb-init":
-		init( $elm );
-		break;
+		/*
+		 * Init
+		 */
+		case "wb-init":
+			init( $elm );
+			break;
 
-	/*
-	 * Change Slides
-	 */
-	case "shift":
-		onShift( $elm, event );
-		break;
+		/*
+		 * Change Slides
+		 */
+		case "shift":
+			onShift( $elm, event );
+			break;
+		}
 	}
-
 	/*
 	 * Since we are working with events we want to ensure that we are being passive about our control,
 	 * so returning true allows for events to always continue
