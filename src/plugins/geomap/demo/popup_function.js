@@ -33,7 +33,7 @@ wb.doc.on( "geomap.ready", function( event, maps ) {
 	mapLocation = maps.location_map;
 
 	if ( mapLocation ) {
-		mapLocation.zoomToExtent( mapLocation.layers[ 2 ].features[ 0 ].geometry.bounds );
+		mapLocation.zoomToExtent( mapLocation.layers[ 3 ].features[ 0 ].geometry.bounds );
 	}
 });
 

@@ -212,11 +212,11 @@
  */
 .wb-geomap-map {
 	position: relative;
-	outline: 1px solid #CCC;
+	border: 1px solid #CCC;
 	margin-bottom: 30px;
-	
+
 	&.active {
-		outline-color: #07F;
+		border-color: #07F;
 	}
 }
 
@@ -241,3 +241,13 @@
 .geomap-legend-label {
 	display: inline;
 }
+
+.geomap-geoloc label {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.geomap-geoloc {
+  margin-bottom: 3px;
+}
+
