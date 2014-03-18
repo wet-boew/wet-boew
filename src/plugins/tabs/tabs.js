@@ -580,9 +580,10 @@ var pluginName = "wb-tabs",
 		playText = i18nText.play,
 		$elm, text, inv, $sldr, $plypause;
 
-	// Ignore middle and right mouse buttons
-	if ( !which || which === 1 || which === 13 || which === 32 ||
-		( which > 36 && which < 41 ) ) {
+	// Ignore middle and right mouse buttons and modified keys
+	if ( !( event.ctrlKey || event.altKey || event.metaKey ) &&
+			( !which || which === 1 || which === 13 || which === 32 ||
+			( which > 36 && which < 41 ) ) ) {
 
 		event.preventDefault();
 		$elm = $( elm );
@@ -696,7 +697,8 @@ $document.on( activateEvent, selector + " > details > summary", function( event 
 	var which = event.which,
 		details = event.currentTarget.parentNode;
 
-	if ( !which || which === 1 || which === 13 || which === 32 ) {
+	if ( !( event.ctrlKey || event.altKey || event.metaKey ) &&
+		( !which || which === 1 || which === 13 || which === 32 ) ) {
 
 		// Update sessionStorage with the current active panel
 		try {
