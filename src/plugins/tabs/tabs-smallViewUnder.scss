@@ -55,6 +55,8 @@
 		padding-bottom: $smallViewToolbarSize;
 		background: #eee;
 		[role="tablist"] {
+			height: auto;
+			bottom: 0;
 			margin-top: -$smallViewToolbarSize;
 			li {
 				&[role="presentation"] {
