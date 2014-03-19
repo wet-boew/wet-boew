@@ -111,15 +111,12 @@ var pluginName = "wb-date",
 		$container.slideUp( 0 );
 	},
 
-	addLinksToCalendar = function( fieldId, year, month, $days, targetDay ) {
+	addLinksToCalendar = function( fieldId, year, month, $days ) {
 		var field = document.getElementById( fieldId ),
 			minDate = field.getAttribute( "min" ),
 			maxDate = field.getAttribute( "max" ),
 			fromDateISO = wb.date.fromDateISO,
 			len = $days.length,
-
-			// $parent = $days.parent(),
-			focusDay = ( targetDay ? targetDay - 1 : 0 ),
 			lowLimit, highLimit, minDay, maxDay, index, day;
 
 		minDate = fromDateISO( ( minDate ? minDate : "1800-01-01" ) );
@@ -130,21 +127,12 @@ var pluginName = "wb-date",
 		lowLimit = ( year === minDate.getFullYear() && month === minDate.getMonth() );
 		highLimit = ( year === maxDate.getFullYear() && month === maxDate.getMonth() );
 
-		// TODO: Find a way to keep detach()
-		// $days.detach();
 		for ( index = 0; index !== len; index += 1 ) {
 			if ( ( !lowLimit && !highLimit ) || ( lowLimit && index >= minDay ) || ( highLimit && index < maxDay ) ) {
 				day = $days[ index ];
-				day.innerHTML = "<a href='javascript:;' tabindex='" +
-					( index === focusDay ? "0" : "-1" ) +
-					"'>" + day.getElementsByTagName( "div" )[ 0 ].innerHTML + "</a>";
+				day.innerHTML = "<a href='javascript:;' tabindex='-1'>" +
+					day.getElementsByTagName( "div" )[ 0 ].innerHTML + "</a>";
 			}
-		}
-
-		// $parent.append( $days );
-
-		if ( targetDay ) {
-			$days.eq( targetDay - 1 ).find( "a" ).trigger( setFocusEvent );
 		}
 	},
 
@@ -225,13 +213,14 @@ var pluginName = "wb-date",
 					.text( closeLabel );
 
 			if ( targetDate !== null ) {
+				targetDate.setDate( targetDate.getDate() + 1 );
 				$document.trigger( "setFocus.wb-cal", [
 						containerName,
 						year,
 						month,
 						fromDateISO( minDate ),
 						fromDateISO( maxDate ),
-						targetDate.setDate( targetDate.getDate() + 1 )
+						targetDate
 					]
 				);
 			} else {
@@ -309,7 +298,7 @@ $document.on( "click vclick touchstart focusin", function( event ) {
 	}
 });
 
-$document.on( "keydown displayed.wb-cal", "#" + containerName, function( event, year, month, $days, day ) {
+$document.on( "keydown displayed.wb-cal", "#" + containerName, function( event, year, month, $days ) {
 	var $container = $( this ),
 		eventType = event.type,
 		which = event.which,
@@ -326,8 +315,9 @@ $document.on( "keydown displayed.wb-cal", "#" + containerName, function( event, 
 		break;
 
 	case "displayed":
-		addLinksToCalendar( fieldId, year, month, $days, day );
+		addLinksToCalendar( fieldId, year, month, $days );
 		setSelectedDate( fieldId, year, month, $days );
+		$container.trigger( setFocusEvent );
 		break;
 
 	case "click":
