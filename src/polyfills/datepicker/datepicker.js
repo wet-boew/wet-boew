@@ -34,7 +34,8 @@ var pluginName = "wb-date",
 	 */
 	init = function( event ) {
 		var elm = event.target,
-			elmId = elm.id;
+			elmId = elm.id,
+			closeLabel;
 
 		// Filter out any events triggered by descendants
 		// and only initialize the element once
@@ -53,9 +54,10 @@ var pluginName = "wb-date",
 				i18n = wb.i18n;
 				i18nText = {
 					show: i18n( "date-show" ) + i18n( "space" ),
-					hide: i18n( "date-hide" ),
 					selected: i18n( "date-sel" ),
-					close: i18n( "overlay-close" ) + i18n( "space" ) + i18n( "esc-key" )
+					close: i18n( "close" ) + i18n( "space" ) +
+						i18n( "cal" ).toLowerCase() +
+						i18n( "space" ) + i18n( "esc-key" )
 				};
 			}
 
@@ -63,10 +65,11 @@ var pluginName = "wb-date",
 
 			if ( !$container ) {
 				$container = $( "<div id='" + containerName + "' class='picker-overlay' role='dialog' aria-hidden='true'></div>" );
+				closeLabel = i18nText.close;
 
 				// Close button
 				$( "<button type='button' class='picker-close mfp-close overlay-close' title='" +
-					i18nText.close + "'>×<span class='wb-inv'> " + i18nText.close + "</span></button>" )
+					closeLabel + "'>×<span class='wb-inv'> " + closeLabel + "</span></button>" )
 					.appendTo( $container )
 					.on( "click", function( event ) {
 						var which = event.which;
@@ -179,7 +182,8 @@ var pluginName = "wb-date",
 			minDate = field.getAttribute( "min" ),
 			maxDate = field.getAttribute( "max" ),
 			fromDateISO = wb.date.fromDateISO,
-			targetDate = fromDateISO( field.value );
+			targetDate = fromDateISO( field.value ),
+			closeLabel;
 
 		if ( !minDate ) {
 			minDate = "1800-01-01";
@@ -205,6 +209,7 @@ var pluginName = "wb-date",
 		$field.after( $container );
 
 		if ( $container.attr( "aria-hidden" ) !== "false" ) {
+			closeLabel = i18nText.close;
 
 			// Hide all other calendars
 			hideAll( fieldId );
@@ -215,9 +220,9 @@ var pluginName = "wb-date",
 				.slideDown( "fast" )
 				.attr( "aria-hidden", "false");
 			$( "#" + fieldId + "-picker-toggle" )
-				.children( "a" )
-					.children( "span" )
-						.text( i18nText.hide );
+				.attr( "title", closeLabel )
+				.children( ".wb-inv" )
+					.text( closeLabel );
 
 			if ( targetDate !== null ) {
 				$document.trigger( "setFocus.wb-cal", [
@@ -253,13 +258,22 @@ var pluginName = "wb-date",
 
 	hide = function( fieldId ) {
 		var toggle = $( "#" + fieldId + "-picker-toggle" ),
-			fieldLabel = $( "label[for=" + fieldId + "]" ).text();
+			label = i18nText.show +
+				$( "label[for=" + fieldId + "]" )
+					.clone()
+					.find( ".datepicker-format" )
+						.remove()
+						.end()
+					.text();
 
 		$container
 			.slideUp( "fast" )
 			.attr( "aria-hidden", "true" )
 			.trigger( "hideGoToFrm.wb-cal" );
-		toggle.children( "a" ).children( "span" ).text( i18nText.show + fieldLabel );
+		toggle
+			.attr( "title", label.replace( "&#32;", " " ) )
+			.children( ".wb-inv" )
+				.html( label );
 	},
 
 	formatDate = function( year, month, day, format ) {
