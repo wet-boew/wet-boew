@@ -387,9 +387,6 @@ a {
 		.mb-has-sm {
 			padding-right: 0.38em;
 		}
-		.mb-sm-open {
-			@include box-shadow(0 5px 5px -4px rgba(0, 0, 0, 0.5), 5px 5px 5px -4px rgba(0, 0, 0, 0.5), -5px 5px 5px -4px rgba(0, 0, 0, 0.5));
-		}
 		&, li {
 			min-height: 2.15em;
 		}
