@@ -374,10 +374,8 @@ a {
 				bottom: none;
 			}
 			padding: 0;
-			&:first-child {
-				&.mb-active {
-					border-left: 1px solid #CCC;
-				}
+			&.mb-active {
+				border-color: #CCC;
 			}
 		}
 		a {
