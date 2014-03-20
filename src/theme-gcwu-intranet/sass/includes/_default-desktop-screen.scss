@@ -269,8 +269,6 @@
 		@extend %gcwu-default-desktop-screen-psnb-background;
 		li {
 			background: transparent; //TODO: Can these be removed as transparent is the default background colour
-			border-left-color: #1b5a9f;
-			border-right-color: #3874bd;
 		}
 		a {
 			padding: {
