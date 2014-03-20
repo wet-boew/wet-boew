@@ -389,8 +389,10 @@ h1 {
 		}
 		li {
 			@extend %ogpl-default-large-screen-background-202A33;
-			border-left-color: #202A33;
-			border-right-color: #474747;
+			border-left-color: #999;
+ 			&:last-child {
+				border-right-color: #999;
+			}
 		}
 		a, .no-link {
 			padding-bottom: 0.65em;

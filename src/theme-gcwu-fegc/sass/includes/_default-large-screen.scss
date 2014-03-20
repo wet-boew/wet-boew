@@ -459,8 +459,7 @@ h1 {
 		li {
 			@extend %gcwu-default-large-screen-padding-0;
 			border: {
-				left: 1px solid #124B79;
-				right: 1px solid #15598f;
+				right: 1px solid #999;
 				bottom: none;
 			}
 			&:first-child {

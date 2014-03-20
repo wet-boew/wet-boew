@@ -387,8 +387,10 @@ h1 {
 		}
 		li {
 			@extend %wet-default-large-screen-background-0E4164;
-			border-left-color: #0B3048;
-			border-right-color: #135480;
+			border-left-color: #999;
+ 			&:last-child {
+				border-right-color: #999;
+			}
 		}
 		a, .no-link {
 			padding-bottom: 0.65em;
