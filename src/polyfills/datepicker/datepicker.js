@@ -103,9 +103,9 @@ var pluginName = "wb-date",
 							.end()
 						.text(),
 			showFieldLabel = i18nText.show + fieldLabel,
-			objToggle = "<button id='" + fieldId + "-picker-toggle' class='picker-toggle' href='javascript:;' title='" +
+			objToggle = "<a href='javascript:;' button id='" + fieldId + "-picker-toggle' class='picker-toggle' href='javascript:;' title='" +
 				showFieldLabel + "'><span class='glyphicon glyphicon-calendar'></span><span class='wb-inv'>" +
-				showFieldLabel + "</span></button>";
+				showFieldLabel + "</span></a>";
 
 		$( "#" + fieldId ).wrap( "<span class='wb-date-wrap'/>" ).after( objToggle );
 		$container.slideUp( 0 );
@@ -303,7 +303,7 @@ $document.on( "click vclick touchstart focusin", function( event ) {
 			event.target.id !== container.id &&
 			!$.contains( container, event.target ) ) {
 
-			hide( container.getAttribute( "aria-controls") );
+			hide( container.getAttribute( "aria-controls" ) );
 			return false;
 		}
 	}
