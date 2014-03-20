@@ -28,3 +28,18 @@ $mediumViewMax: 1199px;
 $largeViewMin: 1200px;
 $largeViewMax: 1599px;
 $xLargeViewMin: 1600px;
+
+/*
+ *	Overrides for Bootstrap variables
+ */
+$font-size-base: 16px;
+$font-size-large: ceil($font-size-base * 1.125);
+$font-size-small: ceil($font-size-base * 0.875);
+
+$font-size-h1: ceil($font-size-base * 2.125);
+$font-size-h2: ceil($font-size-base * 1.625);
+$font-size-h3: ceil($font-size-base * 1.375);
+$font-size-h4: ceil($font-size-base * 1.125);
+$font-size-h6: ceil($font-size-base * 0.875);
+
+$line-height-base: 1.4375; // 20/14 -> 23/16 on the basis of ceil((20/14)*16) = 23
