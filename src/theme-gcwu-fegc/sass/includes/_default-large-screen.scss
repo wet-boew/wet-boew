@@ -462,10 +462,8 @@ h1 {
 				right: 1px solid #999;
 				bottom: none;
 			}
-			&:first-child {
-				&.mb-active {
-					border-left: 1px solid #CCC;
-				}
+			&.mb-active {
+				border-color: #CCC;
 			}
 		}
 		a {

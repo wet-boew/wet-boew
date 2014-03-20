@@ -377,7 +377,15 @@ h1 {
 		.nav-current {
 			background: #23378E;
 		}
+		li {
+			@extend %ogpl-default-large-screen-background-202A33;
+			border-left-color: #999;
+ 			&:last-child {
+				border-right-color: #999;
+			}
+		}
 		.mb-active {
+			border-color: #CCC;
 			a {
 				&.mb-has-sm {
 					&:hover, &:link, &:visited {
@@ -385,13 +393,6 @@ h1 {
 						color: #000;
 					}
 				}
-			}
-		}
-		li {
-			@extend %ogpl-default-large-screen-background-202A33;
-			border-left-color: #999;
- 			&:last-child {
-				border-right-color: #999;
 			}
 		}
 		a, .no-link {
