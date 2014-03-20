@@ -240,8 +240,7 @@
 				var escFieldID = pe.string.jqescape(fieldid),
 					field = $('#' + escFieldID),
 					wrapper = field.parent(),
-					toggle = wrapper.find('#' + escFieldID + '-picker-toggle'),
-					targetDate = pe.date.from_iso_format(field.val());
+					toggle = wrapper.find('#' + escFieldID + '-picker-toggle');
 
 				toggle.toggleClass('picker-toggle-hidden picker-toggle-visible');
 
@@ -279,18 +278,13 @@
 					container.attr('aria-hidden', 'false');
 					toggle.children('a').children('span').text(datepickerHide);
 
-					if (targetDate !== null) {
-						targetDate.setDate(targetDate.getDate() + 1);
-						setFocus('wb-picker', year, month, pe.date.from_iso_format(minDate), pe.date.from_iso_format(maxDate), targetDate);
+					if (container.find('.cal-prevmonth a').length !== 0) {
+						pe.focus(container.find('.cal-prevmonth a'));
 					} else {
-						if (container.find('.cal-prevmonth a').length !== 0) {
-							pe.focus(container.find('.cal-prevmonth a'));
+						if (container.find('.cal-nextmonth a').length !== 0) {
+							pe.focus(container.find('.cal-nextmonth a'));
 						} else {
-							if (container.find('.cal-nextmonth a').length !== 0) {
-								pe.focus(container.find('.cal-nextmonth a'));
-							} else {
-								pe.focus(container.find('.cal-goto a'));
-							}
+							pe.focus(container.find('.cal-goto a'));
 						}
 					}
 				} else {
