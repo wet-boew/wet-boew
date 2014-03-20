@@ -43,13 +43,13 @@
 }
 
 .picker-toggle {
-	margin: 0;
+	display: inline-block;
+	margin-left: 5px;
 	background: none;
 	border: none;
 	vertical-align: middle;
-	&:focus {
-		outline: 1px dotted;
-		outline-offset: -2px;
+	&:link, &:visited, &:focus {
+		color: #000;
 	}
 	span {
 		font-size: 1.3em;
