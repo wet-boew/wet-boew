@@ -7,13 +7,13 @@
 	"tag": "geomap",
 	"parentdir": "geomap",
 	"altLangPrefix": "geomap",
-	"js": "demo/popup_function",
+	"js": "demo/client_functions",
 	"dateModified": "2014-03-07"
 }
 ---
 <!-- GeomapStart -->
 <div id="sample_map"
-	class="wb-geomap position scaleline tab geolocation aoi"
+	class="wb-geomap position scaleline tab geocoder aoi geolocation"
 	data-wet-boew='{
 		"layersFile": "demo/config-en{{environment.suffix}}.js",
 		"tables": [{
@@ -215,7 +215,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h2>Example - Static Map</h2>
-			<p>GeoMap can be configured to provide a static map ideally suited to display a location or bounding box extent.</p>
+			<p>Geomap can be configured to provide a static map ideally suited to display a location or bounding box extent.</p>
 			<!-- Insert Map Start (mandatory) -->
 			<div class="wb-geomap-map col-md-4"></div>
 			<!-- Insert Map End -->

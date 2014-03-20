@@ -198,6 +198,7 @@ wb.i18nDict = {
 	"geo-aoi-btndraw": "@geo-aoi-btndraw@",
 	"geo-aoi-btnclear": "@geo-aoi-btnclear@",
 	"geo-aoi-btnclose": "@geo-aoi-btnclose@",
+	"geo-geoloc-btn": "@geo-geoloc-btn@",
 	/* Disable/enable WET plugins and polyfills */
 	"wb-disable": "@wb-disable@",
 	"wb-enable": "@wb-enable@",

@@ -40,7 +40,7 @@ var selector = ".wb-geomap",
 		useLegend: false,
 		useTab: false,
 		useMapControls: true,
-		useGeolocation: false,
+		useGeocoder: false,
 		useAOI: false
 	},
 
@@ -86,8 +86,8 @@ var selector = ".wb-geomap",
 					attribTitle: i18n( "geo-attrttl" ),
 					ariaMap: i18n( "geo-ariamap"),
 					geoLocationURL: i18n( "geo-locurl" ),
-					geoLocationPlaceholder: i18n( "geo-loc-placeholder" ),
-					geoLocationLabel: i18n( "geo-loc-label" ),
+					geoCoderPlaceholder: i18n( "geo-loc-placeholder" ),
+					geoCoderLabel: i18n( "geo-loc-label" ),
 					aoiNorth: i18n( "geo-aoi-north" ),
 					aoiEast: i18n( "geo-aoi-east" ),
 					aoiSouth: i18n( "geo-aoi-south" ),
@@ -95,7 +95,8 @@ var selector = ".wb-geomap",
 					aoiInstructions: i18n( "geo-aoi-instructions" ),
 					aoiBtnDraw: i18n( "geo-aoi-btndraw" ),
 					aoiBtnClear: i18n( "geo-aoi-btnclear" ),
-					aoiBtnClose: i18n( "geo-aoi-btnclose" )
+					aoiBtnClose: i18n( "geo-aoi-btnclose" ),
+					geolocBtn: i18n( "geo-geoloc-btn" )
 				};
 			}
 
@@ -107,6 +108,7 @@ var selector = ".wb-geomap",
 				useLegend: className.indexOf( "legend" ) !== -1,
 				useTab: className.indexOf( "tab" ) !== -1,
 				useMapControls: className.indexOf( "static" ) !== -1 ? false : true,
+				useGeocoder: className.indexOf( "geocoder" ) !== -1 ? true : false,
 				useGeolocation: className.indexOf( "geolocation" ) !== -1 ? true : false,
 				useAOI: className.indexOf( "aoi" ) !== -1 ? true : false
 			};
@@ -1031,6 +1033,9 @@ var selector = ".wb-geomap",
 		geomap.gmap.height( geomap.gmap.width() * mapOptions.aspectRatio );
 
 		geomap.map = new OpenLayers.Map( geomap.gmap.attr( "id" ), $.extend( opts.config, mapOptions ) );
+		
+		// Add the geomap uniqueId so developers can get related elements
+		geomap.map.uniqueId = geomap.uniqueId;
 
 		// Initialize control to []. If not, all maps share the same
 		// set of controls. This maybe a OpenLayers bug
@@ -1838,7 +1843,7 @@ var selector = ".wb-geomap",
 		// Add basemap data
 		addBasemapData( geomap, opts );
 
-		// Add geolocation and AOI layer
+		// Add geocoder and AOI layer
 		geomap.locStyle = new OpenLayers.Style( { pointRadius: 10, strokeColor: "#ff0000", fillColor: "#333333" } );
 		geomap.locLayer = new OpenLayers.Layer.Vector( "Location Features", {
 			styleMap: new OpenLayers.StyleMap( {
@@ -1882,10 +1887,10 @@ var selector = ".wb-geomap",
 		// Load Controls
 		loadControls( geomap, opts );
 
-		if ( opts.useGeolocation ) {
+		if ( opts.useGeocoder ) {
 
-			// Add the geolocation widget
-			createGeolocationWidget( geomap );
+			// Add the geocoder widget
+			createGeocoderWidget( geomap );
 
 			if ( opts.useAOI ) {
 
@@ -1893,6 +1898,13 @@ var selector = ".wb-geomap",
 				createAOIWidget( geomap );
 
 			}
+
+		}
+
+		if ( opts.useGeolocation ) {
+
+			// Add the geolocation widget
+			createGeolocationWidget( geomap );
 
 		}
 
@@ -1948,7 +1960,7 @@ var selector = ".wb-geomap",
 							bndsLL = bnds.transform( projMap, projLatLon );
 
 						$( "#geomap-aoi-extent-" + geomap.uniqueId ).val( bnds.toString() );
-						$( "#geomap-aoi-extent-latlon-" + geomap.uniqueId ).val( bndsLL.toString() );
+						$( "#geomap-aoi-extent-lonlat-" + geomap.uniqueId ).val( bndsLL.toString() );
 						$( "#geomap-aoi-minx-" + geomap.uniqueId ).val( bndsLL.toArray()[ 0 ].toFixed( 6 ) );
 						$( "#geomap-aoi-miny-" + geomap.uniqueId ).val( bndsLL.toArray()[ 1 ].toFixed( 6 ) );
 						$( "#geomap-aoi-maxx-" + geomap.uniqueId ).val( bndsLL.toArray()[ 2 ].toFixed( 6 ) );
@@ -1964,7 +1976,7 @@ var selector = ".wb-geomap",
 
 		geomap.gmap.before( "<div class='geomap-aoi panel panel-default'><div id='geomap-aoi-" + geomap.uniqueId + "' class='panel-body'></div></div>" );
 
-		$("#wb-geomap-geoloc-btn-search-" + uniqueId).after("<button id='geomap-aoi-toggle-mode-draw-" + geomap.uniqueId + "' href='#' class='btn btn-primary'><i class='glyphicon glyphicon-edit'><span class='sr-only'>Draw extent</span></i></button>");
+		$("#wb-geomap-geocode-btn-search-" + uniqueId).after("<button id='geomap-aoi-toggle-mode-draw-" + geomap.uniqueId + "' href='#' class='btn btn-primary'><i class='glyphicon glyphicon-edit'><span class='sr-only'>Draw extent</span></i></button>");
 
 		$( "#geomap-aoi-" + geomap.uniqueId ).parent().hide();
 
@@ -1978,10 +1990,10 @@ var selector = ".wb-geomap",
 					"</div>" +
 					"<div class='form-group'>" +
 						"<label for='geomap-aoi-maxx-" + geomap.uniqueId + "' class='input-sm'>" + i18nText.aoiEast + "</label>" +
-						"<input type='number' id='geomap-aoi-maxx-" + geomap.uniqueId + "' placeholder='180' class='form-control input-sm' min='-180' max='180' step='0.000001'/> " +
+						"<input type='number' id='geomap-aoi-maxx-" + geomap.uniqueId + "' placeholder='180' class='form-control input-sm col-s' min='-180' max='180' step='0.000001'/> " +
 					"</div>" +
 					"<div class='form-group'>" +
-						"<label for='geomap-aoi-miny-" + geomap.uniqueId + "' class='input-sm'>" + i18nText.aoiSouth + "</label>" +
+						"<label for='geomap-aoi-miny-" + geomap.uniqueId + "' class='input-sm control-label'>" + i18nText.aoiSouth + "</label>" +
 						"<input type='number' id='geomap-aoi-miny-" + geomap.uniqueId + "' placeholder='-90' class='form-control input-sm' min='-90' max='90' step='0.000001'/> " +
 					"</div>" +
 					"<div class='form-group'>" +
@@ -1993,7 +2005,7 @@ var selector = ".wb-geomap",
 				"<button class='btn btn-default btn-sm' id='geomap-aoi-btn-clear-" + geomap.uniqueId + "'>" + i18nText.aoiBtnClear + "</button> " +
 				"<button class='btn btn-primary btn-sm pull-right' id='geomap-aoi-btn-close-" + geomap.uniqueId + "'>" + i18nText.aoiBtnClose + "</button>" +
 				"<input type='hidden' id='geomap-aoi-extent-" + geomap.uniqueId + "'/>" +
-				"<input type='hidden' id='geomap-aoi-extent-latlon-" + geomap.uniqueId + "'/>" +
+				"<input type='hidden' id='geomap-aoi-extent-lonlat-" + geomap.uniqueId + "'/>" +
 			"</form>" +
 		"</div>" +
 		"<div class='clear'></div>");
@@ -2017,7 +2029,7 @@ var selector = ".wb-geomap",
 			evt.preventDefault();
 
 			$( "#geomap-aoi-extent-" + geomap.uniqueId ).val( "" );
-			$( "#geomap-aoi-extent-latlon-" + geomap.uniqueId ).val( "" );
+			$( "#geomap-aoi-extent-lonlat-" + geomap.uniqueId ).val( "" );
 			$( "#geomap-aoi-minx-" + geomap.uniqueId ).parent().removeClass( "has-error" );
 			$( "#geomap-aoi-maxx-" + geomap.uniqueId ).parent().removeClass( "has-error" );
 			$( "#geomap-aoi-maxy-" + geomap.uniqueId ).parent().removeClass( "has-error" );
@@ -2072,15 +2084,15 @@ var selector = ".wb-geomap",
 
 			geomap.map.zoomToExtent( geomap.locLayer.getDataExtent() );
 
-			$( "#geomap-aoi-extent-" + geomap.uniqueId ).val( geomProj.getBounds().toBBOX() );
-			$( "#geomap-aoi-extent-latlon-" + geomap.uniqueId ).val( left + ", " + bottom + ", " + right + ", " + top );
+			$( "#geomap-aoi-extent-" + geomap.uniqueId ).val( geomProj.getBounds().toBBOX() ).trigger('change');
+			$( "#geomap-aoi-extent-lonlat-" + geomap.uniqueId ).val( left + ", " + bottom + ", " + right + ", " + top ).trigger('change');
 
 		} );
 
 		$document.on( "click", "#geomap-aoi-btn-clear-" + geomap.uniqueId, function( evt ) {
 			evt.preventDefault();
 			$( "#geomap-aoi-extent-" + geomap.uniqueId ).val( "" );
-			$( "#geomap-aoi-extent-latlon-" + geomap.uniqueId ).val( "" );
+			$( "#geomap-aoi-extent-lonlat-" + geomap.uniqueId ).val( "" );
 			$( "#geomap-aoi-minx-" + geomap.uniqueId ).val( "" );
 			$( "#geomap-aoi-miny-" + geomap.uniqueId ).val( "" );
 			$( "#geomap-aoi-maxx-" + geomap.uniqueId ).val( "" );
@@ -2089,20 +2101,20 @@ var selector = ".wb-geomap",
 		});
 	},
 
-	createGeolocationWidget = function( geomap ) {
+	createGeocoderWidget = function( geomap ) {
 
 		geomap.gmap.before(
 			"<div class='geomap-geoloc input-group'>" +
-				"<label for='wb-geomap-geoloc-search-" + geomap.uniqueId + "' class='input-group-addon hidden-xs'>" + i18nText.geoLocationLabel + "</label>" +
-				"<input type='text' class='form-control' name='wb-geomap-geoloc-search-" + geomap.uniqueId + "' id='wb-geomap-geoloc-search-" + geomap.uniqueId + "' placeholder='" + i18nText.geoLocationPlaceholder + "' list='wb-geomap-geoloc-results-" + geomap.uniqueId + "' autocomplete='off'>" +
-				"<datalist id='wb-geomap-geoloc-results-" + geomap.uniqueId + "'></datalist>" +
+				"<label for='wb-geomap-geocode-search-" + geomap.uniqueId + "' class='input-group-addon hidden-xs'>" + i18nText.geoCoderLabel + "</label>" +
+				"<input type='text' class='form-control' name='wb-geomap-geocode-search-" + geomap.uniqueId + "' id='wb-geomap-geocode-search-" + geomap.uniqueId + "' placeholder='" + i18nText.geoCoderPlaceholder + "' list='wb-geomap-geocode-results-" + geomap.uniqueId + "' autocomplete='off'>" +
+				"<datalist id='wb-geomap-geocode-results-" + geomap.uniqueId + "'></datalist>" +
 				"<span class='input-group-btn'>" +
-					"<button id='wb-geomap-geoloc-btn-search-" + geomap.uniqueId + "' class='btn btn-primary' type='button'><i class='glyphicon glyphicon-screenshot'><span class='sr-only'>Search</span></i></button>" +
+					"<button id='wb-geomap-geocode-btn-search-" + geomap.uniqueId + "' class='btn btn-primary' type='button'><i class='glyphicon glyphicon-screenshot'><span class='sr-only'>Search</span></i></button>" +
 				"</span>" +
 			"</div>"
 		);
 
-		$document.on( "click", "#wb-geomap-geoloc-btn-search-" + geomap.uniqueId, function() {
+		$document.on( "click", "#wb-geomap-geocode-btn-search-" + geomap.uniqueId, function() {
 
 			var bbox,
 				bnds,
@@ -2122,21 +2134,21 @@ var selector = ".wb-geomap",
 
 			geomap.locLayer.destroyFeatures();
 
-			val = $("#wb-geomap-geoloc-search-" + geomap.uniqueId ).val();
+			val = $("#wb-geomap-geocode-search-" + geomap.uniqueId ).val();
 
 			if ( !val ) {
-				$("#wb-geomap-geoloc-search-" + geomap.uniqueId ).parent().addClass( "has-error" );
+				$("#wb-geomap-geocode-search-" + geomap.uniqueId ).parent().addClass( "has-error" );
 				setTimeout(	function() {
-					$("#wb-geomap-geoloc-search-" + geomap.uniqueId ).parent().removeClass( "has-error" );
+					$("#wb-geomap-geocode-search-" + geomap.uniqueId ).parent().removeClass( "has-error" );
 				}, 5000 );
 				return;
 			}
 
-			bbox = $( "#wb-geomap-geoloc-results-" + geomap.uniqueId + " option" ).filter( function() {
+			bbox = $( "#wb-geomap-geocode-results-" + geomap.uniqueId + " option" ).filter( function() {
 				return this.value === val;
 			}).data("bbox");
 
-			ll = $( "#wb-geomap-geoloc-results-" + geomap.uniqueId	+ " option" ).filter(function() {
+			ll = $( "#wb-geomap-geocode-results-" + geomap.uniqueId	+ " option" ).filter(function() {
 				return this.value === val;
 			} ).data( "lat-lon" );
 
@@ -2168,7 +2180,7 @@ var selector = ".wb-geomap",
 
 		var xhr, timer;
 
-		$document.on( "keyup", "#wb-geomap-geoloc-search-" + geomap.uniqueId, function( evt ) {
+		$document.on( "keyup", "#wb-geomap-geocode-search-" + geomap.uniqueId, function( evt ) {
 
 			var $dataList,
 				val,
@@ -2176,9 +2188,9 @@ var selector = ".wb-geomap",
 				ll,
 				keycode;
 
-			$("#wb-geomap-geoloc-search-" + geomap.uniqueId).parent().removeClass( "has-error" );
+			$("#wb-geomap-geocode-search-" + geomap.uniqueId).parent().removeClass( "has-error" );
 
-			$dataList = $("#wb-geomap-geoloc-results-" + geomap.uniqueId);
+			$dataList = $("#wb-geomap-geocode-results-" + geomap.uniqueId);
 			val = $( this ).val();
 			keycode = evt.which;
 
@@ -2198,6 +2210,119 @@ var selector = ".wb-geomap",
 				}, "json" );
 			}, 500 );
 		} );
+	},
+
+	createGeolocationWidget = function( geomap ) {
+
+		var geolocationPanel = new OpenLayers.Control.Panel( {
+			displayClass: "olPanelGeolocate",
+			createControlMarkup: function( control ) {
+				var button = document.createElement( "button" );
+				if ( control.title ) {
+					button.setAttribute( "title", control.title );
+				}
+				return button;
+			}
+		}),
+
+		btnGeolocate = new OpenLayers.Control.Button( {
+			title: i18nText.geolocBtn,
+			displayClass: "olButtonGeolocate",
+			eventListeners: {
+				activate: function() {
+					geomap.geoLocLayer.removeAllFeatures();
+					geomap.geolocate.deactivate();
+					geomap.geolocate.watch = true;
+					geomap.geolocate.activate();
+				},
+				deactivate: function() {
+					geomap.geoLocLayer.removeAllFeatures();
+					geomap.geolocate.deactivate();
+					geomap.geolocate.watch = false;
+				}
+			},
+			type: OpenLayers.Control.TYPE_TOGGLE
+		});
+
+		geolocationPanel.addControls( [ btnGeolocate ] );
+
+		geomap.geoLocLayer = new OpenLayers.Layer.Vector( "geoLocLayer" );
+
+		geomap.geolocate = new OpenLayers.Control.Geolocate(
+				{
+					type: OpenLayers.Control.TYPE_TOGGLE,
+					bind: false,
+					watch: true,
+					geolocationOptions: {
+						enableHighAccuracy: false,
+						maximumAge: 0,
+						timeout: 7000
+					},
+					eventListeners: {
+						locationupdated: function( e ) {
+							geomap.geoLocLayer.removeAllFeatures();
+
+							var pnt = new OpenLayers.Feature.Vector(e.point,
+									null, {
+										graphicName: "circle",
+										fillColor: "#FF0033",
+										strokeWidth: 0,
+										pointRadius: 5
+									}), circle = new OpenLayers.Feature.Vector(
+									OpenLayers.Geometry.Polygon
+											.createRegularPolygon(
+													new OpenLayers.Geometry.Point(
+															e.point.x,
+															e.point.y),
+													e.position.coords.accuracy / 2,
+													40, 0 ), null, {
+										fillOpacity: 0.3,
+										fillColor: "#FF0033",
+										strokeWidth: 0
+									});
+
+							geomap.geoLocLayer.addFeatures( [ pnt, circle ] );
+							geomap.map.zoomToExtent( geomap.geoLocLayer
+									.getDataExtent() );
+							pulsate( circle, geomap.geoLocLayer );
+						},
+						locationuncapable: function() {
+							// prompt users to enable location services
+						},
+						locationfailed: function() {
+							// alert users of failed attempt at determining location
+						}
+					}
+				});
+		geomap.map.addLayers([ geomap.geoLocLayer ]);
+		geomap.map.addControls([ geolocationPanel, geomap.geolocate ]);
+	},
+
+	pulsate = function(feature, layer) {
+		var point = feature.geometry.getCentroid(), bounds = feature.geometry
+				.getBounds(), radius = Math
+				.abs((bounds.right - bounds.left) / 2), count = 0, grow = "up", resize = function() {
+			if (count > 16) {
+				clearInterval(window.resizeInterval);
+			}
+			var interval = radius * 0.03, ratio = interval / radius;
+			switch (count) {
+			case 4:
+			case 12:
+				grow = "down";
+				break;
+			case 8:
+				grow = "up";
+				break;
+			}
+			if (grow !== "up") {
+				ratio = -Math.abs(ratio);
+			}
+			feature.geometry.resize(1 + ratio, point);
+			layer.drawFeature(feature);
+			count++;
+		};
+		window.resizeInterval = window.setInterval(resize, 50, point, radius);
 	},
 
 	refreshPlugins = function( geomap ) {
