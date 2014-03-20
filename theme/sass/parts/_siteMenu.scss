@@ -11,7 +11,7 @@
 				> {
 					a {
 						color: #fff;
-						border-left: 1px solid #0B3048;
+						border-left: 1px solid #999;
 						&.wb-navcurr {
 							background: #0b3048;
 							color: #fff;
@@ -20,7 +20,7 @@
 				}
 				&:last-child {
 					a {
-						border-right: 1px solid #135480;
+						border-right: 1px solid #999;
 					}
 				}
 				&.active {
