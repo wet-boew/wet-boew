@@ -363,7 +363,6 @@ h1 {
 	.mb-menu {
 		@extend %wet-default-large-screen-background-0E4164;
 		.mb-sm-open {
-			@include box-shadow(0 5px 5px -4px rgba(0, 0, 0, 0.5), 5px 5px 5px -4px rgba(0, 0, 0, 0.5), -5px 5px 5px -4px rgba(0, 0, 0, 0.5));
 			@include background-image(linear-gradient(bottom,#EEE,#CCC));
 			border-bottom: 4px solid #0E4164;
 			li {
