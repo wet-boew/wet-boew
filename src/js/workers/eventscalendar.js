@@ -411,7 +411,7 @@
 					showOnlyEventsFor(year, month, containerid);
 				});
 				calendar.create(containerid, year, month, true, events.minDate, events.maxDate);
-				$containerid.attr({'role': 'application', 'aria-label': _pe.dic.get('%calendar')});
+				$containerid.attr('aria-label', _pe.dic.get('%calendar'));
 			});
 		} // end of exec
 	};
