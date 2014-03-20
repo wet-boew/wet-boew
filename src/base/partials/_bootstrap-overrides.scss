@@ -388,6 +388,11 @@ textarea.input-lg {
 				font-family: "Glyphicons Halflings";
 			}
 		}
+		strong, em, span {
+			&:first-child {
+				display: inline-block;
+			}
+		}
 	}
 }
 
