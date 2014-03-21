@@ -4,20 +4,17 @@
  */
 
 /*
- *	Links colour and decoration
+ *	Link colour and decoration
  */
 
 a {
-	color: #295376;
-	&:focus, &:hover {
-		color: #0535D2;
-	}
-	
 	text-decoration: underline;		// re-enable underlining
 	&.btn {
 		text-decoration: none;		// except for buttons
 	}
 }
+
+// visited link color for content area, except for certain elements
 main {
 	:not(.dropdown) {
 		&:not(.btn-group) {
@@ -28,7 +25,7 @@ main {
 							&:not(.btn) {
 								&:not([role=tab]) {
 									&:visited {
-										color: #7834BC;
+										color: $link-visited-color;
 									}
 								}
 							}
@@ -41,41 +38,9 @@ main {
 }
 
 /*
- *	Table stripes and hover -- Increased the contrast for the table stripes
- *	and hover
- */
-.table-striped {
-	> tbody {
-		> tr:nth-child(odd) {
-			> {
-				td, th {
-					background-color: #f5f5f5;
-				}
-			}
-		}
-	}
-}
-
-.table-hover {
-	> tbody {
-		> tr:hover {
-			> {
-				td, th {
-					background-color: #f0f0f0;
-				}
-			}
-		}
-	}
-}
-
-/*
- *	Font size -- Reset base font size to 16px as required by the Technical
- *	specifications for the Web and mobile presence.
+ *	Override color for "default" button style
  */
 
-$input-height-xs: (floor($font-size-small * $line-height-small) + ($padding-xs-vertical * 2) + 2);
-
-// buttons.less
 .btn-default {
 	background-color: $wbGrayLight;
 	color: $accentBlue;
@@ -85,7 +50,10 @@ $input-height-xs: (floor($font-size-small * $line-height-small) + ($padding-xs-v
 	}
 }
 
-// alerts.less
+/*
+ *	Override the design of alerts and labels
+ */
+
 %label-alert-common {
 	border-radius: 0;
 	border-width: 0 0 0 4px;
@@ -128,7 +96,6 @@ $input-height-xs: (floor($font-size-small * $line-height-small) + ($padding-xs-v
 	}
 }
 
-// labels.less
 %label-alert-color-000 {
 	color: #000;
 }
@@ -287,7 +254,10 @@ $label-alert-danger-border-icon-color: #d3080c;
 	}
 }
 
-// type.less
+/*
+ *	Increase font weight of headings to 700
+ */
+
 %font-weight-700 {
 	font-weight: 700;
 }
@@ -333,6 +303,8 @@ code {
 /*
  *	Firefox-safe line height on input[type="reset|button|submit"]
  */
+$input-height-xs: (floor($font-size-small * $line-height-small) + ($padding-xs-vertical * 2) + 2);
+
 input[type="reset"], input[type="button"], input[type="submit"] {
 	height: $input-height-base;
 	&.btn-lg, &.input-lg {
