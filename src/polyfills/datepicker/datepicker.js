@@ -69,7 +69,7 @@ var pluginName = "wb-date",
 
 				// Close button
 				$( "<button type='button' class='picker-close mfp-close overlay-close' title='" +
-					closeLabel + "'>×<span class='wb-inv'> " + closeLabel + "</span></button>" )
+					closeLabel + "'>&#xd7;<span class='wb-inv'> " + closeLabel + "</span></button>" )
 					.appendTo( $container )
 					.on( "click", function( event ) {
 						var which = event.which;
