@@ -28,6 +28,7 @@
 		alphanumeric: "Veuillez fournir seulement des lettres, nombres, espaces et soulignages",
 		lettersonly: "Veuillez fournir seulement des lettres.",
 		nowhitespace: "Veuillez ne pas inscrire d'espaces blancs.",
+		postcodeCA: "Veuillez fournir un code postal valide.",
 		ziprange: "Veuillez fournir un code postal entre 902xx-xxxx et 905-xx-xxxx.",
 		integer: "Veuillez fournir un nombre non décimal qui est positif ou négatif.",
 		vinUS: "Veuillez fournir un numéro d'identification du véhicule (VIN).",
