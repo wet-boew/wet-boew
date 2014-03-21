@@ -379,9 +379,6 @@ var pluginName = "wb-mltmd",
 			}
 			$this.trigger( captionsVisibleChangeEvent );
 			break;
-		case "setPreviousTime":
-			this.object.previousTime = args;
-			break;
 		case "getBuffering":
 			return this.object.buffering || false;
 		case "setBuffering":
