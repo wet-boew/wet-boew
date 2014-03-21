@@ -117,13 +117,6 @@
 	padding: 10px 20px 8px;
 }
 #mb-pnl {
-	ul {
-		li {
-			&.no-sect {
-				padding-left: 1.27em;
-			}
-		}
-	}
 	.srch-pnl {
 		@extend %menu-mb-pnl-padding-10-20-8;
 	}
@@ -144,6 +137,13 @@
 	}
 	nav {
 		@extend %menu-mb-pnl-padding-10-20-8;
+		ul {
+			li {
+				&.no-sect {
+					padding-left: 1.27em;
+				}
+			}
+		}
 		.mb-menu {
 			> {
 				li {
@@ -163,10 +163,13 @@
 			}
 		}
 		summary {
+			margin-left: -3px;
+			padding-left: 3px;
 			&.wb-navcurr {
 				@extend %menu-mb-pnl-wb-navcurr;
 				&:focus {
 					@extend %menu-mb-pnl-wb-navcurr-focus;
+					outline-offset: -2px;
 				}
 			}
 		}
@@ -201,18 +204,30 @@
 				padding-right: 10px;
 			}
 		}
+		nav {
+			ul {
+				li {
+					&.no-sect {
+						padding-left: 0;
+						padding-right: 1.27em
+					}
+				}
+			}
+			a {
+				margin-left: 0;
+				margin-right: -6px;
+			}
+			summary {
+				margin-left: 0;
+				margin-right: -3px;
+				padding-left: 0;
+				padding-right: 3px;
+			}
+		}
 		details {
 			ul {
 				padding-left: 0;
 				padding-right: 2em;
-			}
-		}
-		ul {
-			li {
-				&.no-sect {
-					padding-left: 0;
-					padding-right: 1.27em
-				}
 			}
 		}
 	}
