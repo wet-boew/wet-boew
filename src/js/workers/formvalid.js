@@ -11,9 +11,11 @@
 	var _pe = window.pe || {
 		fn: {}
 	};
+
 	/* local reference */
 	_pe.fn.formvalid = {
 		type: 'plugin',
+		inited: false,
 		depends: ['validate', 'validateAdditional', 'metadata'],
 		languages: ['@wet-boew-build.validlanguagelist@'],
 		methods: ['@wet-boew-build.validlanguagemethod@'],
@@ -40,6 +42,14 @@
 				mthdlang = _pe.get_language(vlang, _pe.fn.formvalid.methods, '_'),
 				liblocation = _pe.add.liblocation,
 				suffixExt = _pe.suffix + '.js';
+
+			// Add additonal validation methods
+			if (!_pe.fn.formvalid.inited) {
+				_pe.fn.formvalid.inited = true;
+				$.validator.addMethod("postcodeCA", function(value, element) {
+					return this.optional(element) ||/^([a-zA-Z]\d[a-zA-z](?: )?\d[a-zA-Z]\d)$/.test(value);
+				}, "The specified postal code is invalid");
+			}
 
 			// Append the aria-live region (for provide message updates to screen readers)
 			elm.append('<div class="arialive wb-invisible" aria-live="polite" aria-relevant="all"></div>');
