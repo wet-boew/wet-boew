@@ -43,3 +43,11 @@ $font-size-h4: ceil($font-size-base * 1.125);
 $font-size-h6: ceil($font-size-base * 0.875);
 
 $line-height-base: 1.4375; // 20/14 -> 23/16 on the basis of ceil((20/14)*16) = 23
+
+$brand-primary: #2572b4;
+$brand-success: #1b6c1c;
+$brand-info: #4d4d4d;
+$brand-warning: #f2d40d;
+$brand-danger: #bc3331;
+
+$btn-warning-color: #000;
