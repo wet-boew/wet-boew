@@ -1031,12 +1031,9 @@ var selector = ".wb-geomap",
 
 		// set aspect ratio
 		geomap.gmap.height( geomap.gmap.width() * mapOptions.aspectRatio );
-
 		geomap.map = new OpenLayers.Map( geomap.gmap.attr( "id" ), $.extend( opts.config, mapOptions ) );
-		
 		// Add the geomap uniqueId so developers can get related elements
 		geomap.map.uniqueId = geomap.uniqueId;
-
 		// Initialize control to []. If not, all maps share the same
 		// set of controls. This maybe a OpenLayers bug
 		geomap.map.controls = [];
@@ -2084,8 +2081,8 @@ var selector = ".wb-geomap",
 
 			geomap.map.zoomToExtent( geomap.locLayer.getDataExtent() );
 
-			$( "#geomap-aoi-extent-" + geomap.uniqueId ).val( geomProj.getBounds().toBBOX() ).trigger('change');
-			$( "#geomap-aoi-extent-lonlat-" + geomap.uniqueId ).val( left + ", " + bottom + ", " + right + ", " + top ).trigger('change');
+			$( "#geomap-aoi-extent-" + geomap.uniqueId ).val( geomProj.getBounds().toBBOX() ).trigger( "change" );
+			$( "#geomap-aoi-extent-lonlat-" + geomap.uniqueId ).val( left + ", " + bottom + ", " + right + ", " + top ).trigger( "change" );
 
 		} );
 
