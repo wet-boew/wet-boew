@@ -59,8 +59,7 @@
 						@extend %wet-theme-wb-sm-wb-navcurr;
 					}
 					&:hover, &:focus {
-						background: #243850;
-						color: #fff;
+						@extend %wet-theme-wb-sm-wb-navcurr;
 					}
 				}
 			}
