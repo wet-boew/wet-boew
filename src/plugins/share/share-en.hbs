@@ -95,81 +95,20 @@
 <hr />
 
 <section>
-	<h2>Options</h2>
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th scope="col">Option</th>
-				<th scope="col">Values</th>
-				<th scope="col">Default value</th>
-				<th scope="col">Example</th>
-				<th scope="col">Description</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><code>link-only</code></td>
-				<td>Class name</td>
-				<td>n/a</td>
-				<td><code>class="wb-share link-only"</code></td>
-				<td>Used to specify additional links for an existing panel.</td>
-			</tr>
-			<tr>
-				<td><code>pnlId</code></td>
-				<td>String</td>
-				<td>n/a</td>
-				<td><code>data-wet-boew='{"pnlId": "pnl1"}'</code></td>
-				<td>Unique identifier for the panel. Only required if providing a second link for the same panel (needs to be specified on all <code>wb-share</code> calls for that panel).</td>
-			</tr>
-			<tr>
-				<td><code>type</code></td>
-				<td>"<code>page</code>", "<code>video</code>"</td>
-				<td>"<code>page</code>"</td>
-				<td><code>data-wet-boew='{"type": "video"}'</code></td>
-				<td>Type of content to share.</td>
-			</tr>
-			<tr>
-				<td><code>custType</code></td>
-				<td>String</td>
-				<td>""</td>
-				<td><code>data-wet-boew='{"custType": "&#160;this comment"}'</code></td>
-				<td>Text to use after "Share" on the share button and the panel header (overrides the text associated to the type option).</td>
-			</tr>
-			<tr>
-				<td><code>title</code></td>
-				<td>String</td>
-				<td>Page title or the main <code>h1</code> text</td>
-				<td><code>data-wet-boew='{"title": "Page title"}'</code></td>
-				<td>Text to use instead of the page title or the main <code>h1</code> text. Recommended for the video type if the page title is not the title of the video.</td>
-			</tr>
-			<tr>
-				<td><code>url</code></td>
-				<td>URL</td>
-				<td>URL of the current page (excluding the hash and query string)</td>
-				<td><code>data-wet-boew='{"url": "http://page.url"}'</code></td>
-				<td>URL to use instead of the URL of the current page.</td>
-			</tr>
-			<tr>
-				<td><code>desc</code></td>
-				<td>String</td>
-				<td>""</td>
-				<td><code>data-wet-boew='{"desc": "Description of the page."}'</code></td>
-				<td>Optional description of the item to share. <strong>Note:</strong> A separate description is not supported by all social media sites.</td>
-			</tr>
-			<tr>
-				<td><code>img</code></td>
-				<td>URL</td>
-				<td>""</td>
-				<td><code>data-wet-boew='{"img": "http://img.url"}'</code></td>
-				<td>Optional image for the item to share (mainly for Pinterest). <strong>Note:</strong> Very few social media sites support specifying a separate image through a URL request.</td>
-			</tr>
-			<tr>
-				<td><code>filter</code></td>
-				<td>Array</td>
-				<td>[]</td>
-				<td><code>data-wet-boew='{"filter": ["twitter", "facebook"]}'</code></td>
-				<td>Optional filter for the sites to display in the panel. Only the sites listed in the array will be displayed. If no sites are listed, then all sites will be displayed.</td>
-			</tr>
-		</tbody>
-	</table>
+	<h2>Add custom CSS to the share link</h2>
+
+	<div class="wb-share" data-wet-boew='{"pnlId": "pnl5", "lnkClass": "btn btn-default"}'></div>
+	<div class="text-right">
+		<strong>Add a second link:</strong>
+		<div class="wb-share link-only text-right" data-wet-boew='{"pnlId": "pnl5", "lnkClass": "btn btn-default"}'></div>
+	</div>
+
+	<details>
+		<summary>View code</summary>
+		<pre class="wb-prettify"><code>&lt;div class="wb-share" data-wet-boew='{"pnlId": "pnl5", "lnkClass": "btn btn-default"}'&gt;&lt;/div&gt;
+&lt;div class="text-right"&gt;
+	&lt;strong&gt;Add a second link:&lt;/strong&gt;
+	&lt;div class="wb-share link-only text-right" data-wet-boew='{"pnlId": "pnl5", "lnkClass": "btn btn-default"}'&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+	</details>
 </section>
