@@ -338,18 +338,25 @@ h1 {
 	}
 }
 
+%base-psnb-bg-333 {
+	background: #333;
+}
 #base-psnb {
 	.mb-menu {
 		.mb-sm-open {
-			li, .nav-current {
+			li {
 				background: none;
+			}
+			.nav-current {
+				@extend %base-psnb-bg-333;
+				color: #FFF;
 			}
 		}
 		li {
 			border-right: 1px solid #999;
 		}
 		.nav-current {
-			background: #333;
+			@extend %base-psnb-bg-333;
 		}
 		.mb-active {
 			border-color: #CCC;

@@ -437,6 +437,9 @@ h1 {
 	@extend %gcwu-default-large-screen-width-139-height-33;
 }
 
+%gcwu-psnb-bg-0f315b {
+	background: #0f315b;
+}
 #gcwu-psnb {
 	.wet-boew-menubar {
 		margin-top: -1px;
@@ -489,7 +492,8 @@ h1 {
 				border: none;
 			}
 			.nav-current {
-				background: none;
+				@extend %gcwu-psnb-bg-0f315b;
+				color: #FFF;
 			}
 		}
 		.mb-active {
@@ -503,7 +507,7 @@ h1 {
 			}
 		}
 		.nav-current {
-			background: #0f315b;
+			@extend %gcwu-psnb-bg-0f315b;
 		}
 	}
 }

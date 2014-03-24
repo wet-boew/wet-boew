@@ -357,6 +357,9 @@ h1 {
 	@extend %wet-default-large-screen-overflow-hidden;
 }
 
+%base-psnb-bg-0B3048 {
+	background: #0B3048;
+}
 #wet-psnb {
 	background: #0E4164;
 	border-top: 1px solid #0B3048;
@@ -369,11 +372,12 @@ h1 {
 				@extend %wet-default-large-screen-background-none;
 			}
 			.nav-current {
-				@extend %wet-default-large-screen-background-none;
+				@extend %base-psnb-bg-0B3048;
+				color: #FFF;
 			}
 		}
 		.nav-current {
-			background: #0B3048;
+			@extend %base-psnb-bg-0B3048;
 		}
 		li {
 			@extend %wet-default-large-screen-background-0E4164;

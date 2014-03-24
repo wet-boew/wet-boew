@@ -359,6 +359,9 @@ h1 {
 	@extend %ogpl-default-large-screen-overflow-hidden;
 }
 
+%ogpl-psnb-bg-23378E {
+	background: #23378E;
+}
 #ogpl-psnb {
 	background: #202A33;
 	border-top: 1px solid #CCC;
@@ -371,11 +374,12 @@ h1 {
 				@extend %ogpl-default-large-screen-background-none;
 			}
 			.nav-current {
-				@extend %ogpl-default-large-screen-background-none;
+				@extend %ogpl-psnb-bg-23378E;
+				color: #FFF;
 			}
 		}
 		.nav-current {
-			background: #23378E;
+			@extend %ogpl-psnb-bg-23378E;
 		}
 		li {
 			@extend %ogpl-default-large-screen-background-202A33;
