@@ -1,6 +1,10 @@
 /*
  * Site menu
  */
+%wet-theme-wb-sm-wb-navcurr {
+	background: #0b3048;
+	color: #fff;
+}
 #wb-sm {
 	background: #0E4164;
 	.menu {
@@ -13,8 +17,7 @@
 						color: #fff;
 						border-left: 1px solid #999;
 						&.wb-navcurr {
-							background: #0b3048;
-							color: #fff;
+							@extend %wet-theme-wb-sm-wb-navcurr;
 						}
 					}
 				}
@@ -52,6 +55,9 @@
 					text-shadow: none;
 					padding: 5px 10px;
 					text-decoration: none;
+					&.wb-navcurr {
+						@extend %wet-theme-wb-sm-wb-navcurr;
+					}
 					&:hover, &:focus {
 						background: #243850;
 						color: #fff;
