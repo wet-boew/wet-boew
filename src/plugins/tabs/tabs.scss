@@ -184,6 +184,7 @@ $medGray: #ccc;
 			width: 100%;
 			height: 100%;
 			li {
+				background: transparent;
 				@extend %carouselTabsLi;
 				display: none;
 				border: none;

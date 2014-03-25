@@ -303,6 +303,8 @@ module.exports = (grunt) ->
 					"dist/unmin/css/polyfills/slider.css": "dist/unmin/css/polyfills/slider.css"
 					"dist/unmin/css/noscript.css": "dist/unmin/css/noscript.css"
 					"dist/unmin/css/theme.css": "dist/unmin/css/theme.css"
+					"dist/unmin/css/wet-boew.css": "dist/unmin/css/wet-boew.css"
+					"dist/unmin/css/ie8-wet-boew.css": "dist/unmin/css/ie8-wet-boew.css"
 
 		# Builds the demos
 		assemble:

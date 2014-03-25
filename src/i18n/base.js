@@ -101,7 +101,6 @@ wb.i18nDict = {
 	"errs-fnd": "@errs-fnd@",
 	"err-fnd": "@err-fnd@",
 	/* Date picker */
-	"date-hide": "@date-hide@",
 	"date-show": "@date-show@",
 	"date-sel": "@date-sel@",
 	/* Calendar */
