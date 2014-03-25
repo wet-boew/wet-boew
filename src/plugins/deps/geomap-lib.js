@@ -2463,12 +2463,12 @@ $document.on( "mouseenter mouseleave focusin focusout", ".wb-geomap-map", functi
 	if ( map ) {
 		isActive = target.className.indexOf( "active" );
 		if ( type === "mouseenter" || type === "focusin" ) {
-			if ( !isActive ) {
+			if ( isActive ) {
 				map.getControlsByClass( keyboardDefaults )[ 0 ].activate();
 				map.getControlsByClass( navigation )[ 0 ].activate();
 				$( target ).addClass( "active" );
 			}
-		} else if ( isActive ) {
+		} else if ( !isActive ) {
 			map.getControlsByClass( navigation )[ 0 ].deactivate();
 			map.getControlsByClass( keyboardDefaults )[ 0 ].deactivate();
 			$( target ).removeClass( "active" );
