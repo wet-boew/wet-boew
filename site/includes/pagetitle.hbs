@@ -5,25 +5,25 @@
 		{{#contains page.src "/versions/"}}
 			{{#contains page.src "/index"}}
 			{{else}}
-				{{#i18n "hyphen"}}{{/i18n}}{{#i18n "tmpl-version-history"}}{{/i18n}}
+				{{i18n "hyphen"}}{{i18n "tmpl-version-history"}}
 			{{/contains}}
 		{{else}}
 			{{#contains page.src "/gs-cd/"}}
 				{{#contains page.src "/index"}}
 				{{else}}
-					{{#i18n "hyphen"}}{{/i18n}}{{#i18n "tmpl-getting-started"}}{{/i18n}}
+					{{i18n "hyphen"}}{{i18n "tmpl-getting-started"}}
 				{{/contains}}
 			{{/contains}}	
 			{{#if page.componentType}}
-				{{#i18n "hyphen"}}{{/i18n}}{{page.componentType}}
+				{{i18n "hyphen"}}{{page.componentType}}
 			{{/if}}
-			{{#i18n "hyphen"}}{{/i18n}}{{#i18n "tmpl-documentation"}}{{/i18n}}
+			{{i18n "hyphen"}}{{i18n "tmpl-documentation"}}
 		{{/contains}}
 	{{else}}
 		{{#is breadcrumb3 "true"}}
-			{{#i18n "hyphen"}}{{/i18n}}{{breadcrumb3-title}}
+			{{i18n "hyphen"}}{{breadcrumb3-title}}
 		{{/is}}
-		{{#i18n "hyphen"}}{{/i18n}}{{#i18n "tmpl-work-examples"}}{{/i18n}}
+		{{i18n "hyphen"}}{{i18n "tmpl-work-examples"}}
 	{{/contains}}
 {{/contains}}
-{{#i18n "hyphen"}}{{/i18n}}{{#i18n "site.title"}}{{/i18n}}
+{{i18n "hyphen"}}{{i18n "site.title"}}
