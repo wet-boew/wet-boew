@@ -471,6 +471,12 @@ blockquote {
 			}
 		}
 	}
+
+/*
+ *	Use button border style 'outset' to give buttons depth
+ */
+.btn {
+	border-style: outset;
 }
 
 /*
