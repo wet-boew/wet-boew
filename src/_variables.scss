@@ -66,7 +66,21 @@ $btn-default-color: #335075;
 $btn-default-bg: #eaebed;
 $btn-default-border: darken($btn-default-bg, 5%);
 
+$btn-primary-bg: $brand-primary;
+$btn-primary-border: darken($btn-primary-bg, 20%);
+
+$btn-success-bg: $brand-success;
+$btn-success-border: darken($btn-success-bg, 20%);
+
+$btn-info-bg: $brand-info;
+$btn-info-border: darken($btn-info-bg, 20%);
+
 $btn-warning-color: #000;
+$btn-warning-bg: $brand-warning;
+$btn-warning-border: darken($btn-warning-bg, 20%);
+
+$btn-danger-bg: $brand-danger;
+$btn-danger-border: darken($btn-danger-bg, 20%);
 
 $pagination-color: $btn-default-color;
 $pagination-bg: $btn-default-bg;
