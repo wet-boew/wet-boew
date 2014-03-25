@@ -4,39 +4,17 @@
  */
 
 /*
- *	Breakpoints
- */
-$screen-xs:                  480px;
-$screen-xs-min:              $screen-xs;
-
-$screen-sm:                  768px;
-$screen-sm-min:              $screen-sm;
-
-$screen-md:                  992px;
-$screen-md-min:              $screen-md;
-
-$screen-lg:                  1200px;
-$screen-lg-min:              $screen-lg;
-
-$screen-xs-max:              ($screen-sm-min - 1);
-$screen-sm-max:              ($screen-md-min - 1);
-$screen-md-max:              ($screen-lg-min - 1);
-
-/*
- *	Links colour and decoration
+ *	Link colour and decoration
  */
 
 a {
-	color: #295376;
-	&:focus, &:hover {
-		color: #0535D2;
-	}
-	
 	text-decoration: underline;		// re-enable underlining
 	&.btn {
 		text-decoration: none;		// except for buttons
 	}
 }
+
+// visited link color for content area, except for certain elements
 main {
 	:not(.dropdown) {
 		&:not(.btn-group) {
@@ -47,7 +25,7 @@ main {
 							&:not(.btn) {
 								&:not([role=tab]) {
 									&:visited {
-										color: #7834BC;
+										color: $link-visited-color;
 									}
 								}
 							}
@@ -60,190 +38,8 @@ main {
 }
 
 /*
- *	Table stripes and hover -- Increased the contrast for the table stripes
- *	and hover
+ *	Override color for "default" button style
  */
-.table-striped {
-	> tbody {
-		> tr:nth-child(odd) {
-			> {
-				td, th {
-					background-color: #f5f5f5;
-				}
-			}
-		}
-	}
-}
-
-.table-hover {
-	> tbody {
-		> tr:hover {
-			> {
-				td, th {
-					background-color: #f0f0f0;
-				}
-			}
-		}
-	}
-}
-
-/*
- *	Font size -- Reset base font size to 16px as required by the Technical
- *	specifications for the Web and mobile presence.
- */
-
-// variables.less
-$font-size-base: 16px;
-$font-size-large: ceil($font-size-base * 1.125);
-$font-size-small: ceil($font-size-base * 0.875);
-
-$font-size-h1: ceil($font-size-base * 2.125);
-$font-size-h2: ceil($font-size-base * 1.625);
-$font-size-h3: ceil($font-size-base * 1.375);
-$font-size-h4: ceil($font-size-base * 1.125);
-$font-size-h5: $font-size-base;
-$font-size-h6: ceil($font-size-base * 0.875);
-
-$line-height-base: 1.4375; // 20/14 -> 23/16 on the basis of ceil((20/14)*16) = 23
-$line-height-computed: floor($font-size-base * $line-height-base);
-
-// all these need new values based on the 16px font size
-// the calculations used to obtain these values are not documented in bootstrap
-$padding-base-vertical: 6px;
-$padding-base-horizontal: 12px;
-
-$padding-large-vertical: 10px;
-$padding-large-horizontal: 16px;
-
-$padding-small-vertical: 5px;
-$padding-small-horizontal: 10px;
-
-$padding-xs-vertical: 1px;
-$padding-xs-horizontal: 5px;
-
-$line-height-large: 1.33;
-$line-height-small: 1.5;
-
-$border-radius-base: 4px;
-$border-radius-large: 6px;
-$border-radius-small: 3px;
-// End: all these need new values based on the 16px font size
-
-$input-height-base: ($line-height-computed + ($padding-base-vertical * 2) + 2);
-$input-height-large: (ceil($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2);
-$input-height-small: (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2);
-$input-height-xs: (floor($font-size-small * $line-height-small) + ($padding-xs-vertical * 2) + 2);
-
-$grid-gutter-width: 30px;
-
-$grid-float-breakpoint: $screen-sm-min;
-$grid-float-breakpoint-max: $grid-float-breakpoint - 1;
-
-$navbar-height: 50px;
-$navbar-margin-bottom: $line-height-computed;
-$navbar-padding-horizontal: floor($grid-gutter-width / 2);
-$navbar-padding-vertical: (($navbar-height - $line-height-computed) / 2);
-
-$jumbotron-font-size: ceil($font-size-base * 1.5);
-
-$modal-title-line-height: $line-height-base;
-
-
-// mixins.less
-@mixin border-right-radius($radius) {
-	border-bottom-right-radius: $radius;
-	border-top-right-radius: $radius;
-}
-
-@mixin border-left-radius($radius) {
-	border-bottom-left-radius: $radius;
-	border-top-left-radius: $radius;
-}
-
-@mixin button-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
-	padding: $padding-vertical $padding-horizontal;
-	font-size: $font-size;
-	line-height: $line-height;
-	border-radius: $border-radius;
-}
-
-@mixin input-size($input-height, $padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
-	height: $input-height;
-	padding: $padding-vertical $padding-horizontal;
-	font-size: $font-size;
-	line-height: $line-height;
-	border-radius: $border-radius;
-	// The following cannot be accomplished using SASS and has been recreated below
-	/*select& {
-		height: $input-height;
-		line-height: $input-height;
-	}
-	textarea& {
-		height: auto;
-	}*/
-}
-
-@mixin navbar-vertical-align($element-height) {
-	margin-top: (($navbar-height - $element-height) / 2);
-	margin-bottom: (($navbar-height - $element-height) / 2);
-}
-
-
-@mixin pagination-size($padding-vertical, $padding-horizontal, $font-size, $border-radius) {
-	> {
-		li {
-			> {
-				a, span {
-					padding: $padding-vertical $padding-horizontal;
-					font-size: $font-size;
-				}
-			}
-			&:first-child {
-				> {
-					a, span {
-						@include border-left-radius($border-radius);
-					}
-				}
-			}
-			&:last-child {
-				> {
-					a, span {
-						@include border-right-radius($border-radius);
-					}
-				}
-			}
-		}
-	}
-}
-
-// breadcrumbs.less
-.breadcrumb {
-	margin-bottom: $line-height-computed;
-}
-
-
-// badges.less
-.badge {
-	font-size: $font-size-small;
-}
-
-
-// buttons.less
-.btn {
-	@include button-size($padding-base-vertical, $padding-base-horizontal, $font-size-base, $line-height-base, $border-radius-base);
-}
-
-.btn-lg {
-	@include button-size($padding-large-vertical, $padding-large-horizontal, $font-size-large, $line-height-large, $border-radius-large);
-}
-
-.btn-sm {
-	@include button-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $border-radius-small);
-}
-
-.btn-xs {
-	@include button-size($padding-xs-vertical, $padding-xs-horizontal, $font-size-small, $line-height-small, $border-radius-small);
-}
 
 .btn-default {
 	background-color: $wbGrayLight;
@@ -254,118 +50,9 @@ $modal-title-line-height: $line-height-base;
 	}
 }
 
-
-// close.less
-.close {
-	font-size: ($font-size-base * 1.5);
-}
-
-
-// code.less
-pre {
-	padding: ($line-height-computed - 1) / 2;
-	margin: 0 0 ($line-height-computed / 2);
-	font-size: ($font-size-base - 1);
-	line-height: $line-height-base;
-}
-
-
-// dropdowns.less
-.dropdown-menu {
-	font-size: $font-size-base;
-	> li > a {
-		line-height: $line-height-base;
-	}
-}
-
-.dropdown-header {
-	font-size: $font-size-small;
-	line-height: $line-height-base;
-}
-
-
-// forms.less
-legend {
-	margin-bottom: $line-height-computed;
-	font-size: ($font-size-base * 1.5);
-}
-
-output {
-	font-size: $font-size-base;
-	line-height: $line-height-base;
-}
-
-.form-control {
-	height: $input-height-base;
-	font-size: $font-size-base;
-	padding: $padding-base-vertical $padding-base-horizontal;
-	line-height: $line-height-base;
-}
-
-.radio, .checkbox {
-	min-height: $line-height-computed;
-}
-
-.input-sm {
-	@include input-size($input-height-small, $padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $border-radius-small);
-}
-
-select.input-sm {
-	height: $input-height-small;
-	line-height: $input-height-small;
-}
-
-textarea.input-sm {
-	height: auto;
-}
-
-.input-lg {
-	@include input-size($input-height-large, $padding-large-vertical, $padding-large-horizontal, $font-size-large, $line-height-large, $border-radius-large);
-}
-
-select.input-lg {
-	height: $input-height-large;
-	line-height: $input-height-large;
-}
-
-textarea.input-lg {
-	height: auto;
-}
-
-.form-horizontal {
-	.radio, .checkbox {
-		min-height: $line-height-computed + ($padding-base-vertical + 1);
-	}
-
-}
-
-
-// input-groups.less
-.input-group-addon {
-	font-size: $font-size-base;
-	&.input-sm {
-		padding: $padding-small-vertical $padding-small-horizontal;
-		font-size: $font-size-small;
-		border-radius: $border-radius-small;
-	}
-	&.input-lg {
-		padding: $padding-large-vertical $padding-large-horizontal;
-		font-size: $font-size-large;
-		border-radius: $border-radius-large;
-	}
-}
-
-
-// jumbotron.less
-.jumbotron {
-	font-size: $jumbotron-font-size;
-	line-height: ($line-height-base * 1.5);
-	@media screen and (min-width: $screen-sm-min) {
-		h1, .h1 {
-			font-size: ($font-size-base * 4.5);
-		}
-	}
-}
+/*
+ *	Override the design of alerts and labels
+ */
 
 %label-alert-common {
 	border-radius: 0;
@@ -373,10 +60,8 @@ textarea.input-lg {
 	border-style: solid;
 }
 
-// alerts.less
 .alert {
 	@extend %label-alert-common;
-	margin-bottom: $line-height-computed;
 	> {
 		:first-child {
 			margin-top: auto;
@@ -411,7 +96,6 @@ textarea.input-lg {
 	}
 }
 
-// labels.less
 %label-alert-color-000 {
 	color: #000;
 }
@@ -570,264 +254,37 @@ $label-alert-danger-border-icon-color: #d3080c;
 	}
 }
 
-// modals.less
-.modal-title {
-	line-height: $modal-title-line-height;
-}
-
-
-// navbar.less
-.navbar {
-	margin-bottom: $navbar-margin-bottom;
-}
-
-.navbar-brand {
-	padding: $navbar-padding-vertical $navbar-padding-horizontal; 
-	font-size: $font-size-large;
-	line-height: $line-height-computed;
-}
-
-.navbar-nav {
-	margin: ($navbar-padding-vertical / 2) - $navbar-padding-horizontal;
-	> li > a {
-		line-height: $line-height-computed;
-	}
-	@media (max-width: $grid-float-breakpoint-max) {
-		.open .dropdown-menu {
-			> li > a {
-				line-height: $line-height-computed;
-			}
-		}
-	}
-	@media (min-width: $grid-float-breakpoint) {
-		> li {
-			> a {
-				padding-top: $navbar-padding-vertical;
-				padding-bottom: $navbar-padding-vertical;
-			}
-		}
-	}
-}
-
-.navbar-form {
-	@include navbar-vertical-align($input-height-base);
-}
-
-.navbar-btn {
-	@include navbar-vertical-align($input-height-base);
-	&.btn-sm {
-		@include navbar-vertical-align($input-height-small);
-	}
-}
-
-.navbar-text {
-	@include navbar-vertical-align($line-height-computed);
-}
-
-
-// navs.less
-.nav-tabs {
-	> li {
-		> a {
-			line-height: $line-height-base;
-		}
-	}
-}
-
-// pager
-.pager {
-	margin: $line-height-computed 0;
-}
-
-
-// pagination.less
-.pagination {
-	margin: $line-height-computed 0;
-	> li {
-		> {
-			a, span {
-				line-height: $line-height-base;
-			}
-		}
-	}
-}
-
-.pagination-lg {
-	@include pagination-size($padding-large-vertical, $padding-large-horizontal, $font-size-large, $border-radius-large);
-}
-
-.pagination-sm {
-	@include pagination-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $border-radius-small);
-}
-
-
-// panels.less
-.panel {
-	margin-bottom: $line-height-computed;
-}
-
-.panel-title {
-	font-size: ceil($font-size-base * 1.125);
-}
-
-
-// popovers.less
-.popover-title {
-	font-size: $font-size-base;
-}
-
-
-// progress-bars.less
-.progress {
-	height: $line-height-computed;
-	margin-bottom: $line-height-computed;
-}
-
-.progress-bar {
-	font-size: $font-size-small;
-	line-height: $line-height-computed;
-}
-
-
-// scaffolding.less
-body {
-	font-size: $font-size-base;
-	line-height: $line-height-base;
-}
-
-.img-thumbnail {
-	line-height: $line-height-base;
-}
-
-hr {
-	margin-top: $line-height-computed;
-	margin-bottom: $line-height-computed;
-}
-
-
-// tables.less
-.table {
-	margin-bottom: $line-height-computed;
-	> {
-		thead, tbody, tfoot {
-			> tr {
-				> {
-					th, td {
-						line-height: $line-height-base;
-					}
-				}
-			}
-		}
-	}
-}
-
-@media (max-width: $screen-xs-max) {
-	.table-responsive {
-		margin-bottom: ($line-height-computed * 0.75);
-	}
-}
-
-
-// thumbnails.less
-.thumbnail {
-	margin-bottom: $line-height-computed;
-	line-height: $line-height-base;
-}
-
-
-// tooltip.less
-.tooltip {
-	font-size: $font-size-small;
-}
-
-
-// type.less
-h1, h2, h3 {
-	margin-top: $line-height-computed;
-	margin-bottom: ($line-height-computed / 2);
-}
-
-h4, h5, h6 {
-	margin-top: ($line-height-computed / 2);
-	margin-bottom: ($line-height-computed / 2);
-}
+/*
+ *	Increase font weight of headings to 700
+ */
 
 %font-weight-700 {
 	font-weight: 700;
 }
 
 h1, .h1 {
-	font-size: $font-size-h1;
 	@extend %font-weight-700;
 }
 
 h2, .h2 {
-	font-size: $font-size-h2;
 	@extend %font-weight-700;
 }
 
 h3, .h3 {
-	font-size: $font-size-h3;
 	@extend %font-weight-700;
 }
 
 h4, .h4 {
-	font-size: $font-size-h4;
 	@extend %font-weight-700;
 }
 
 h5, .h5 {
-	font-size: $font-size-h5;
 	@extend %font-weight-700;
 }
 
 h6, .h6 {
-	font-size: $font-size-h6;
 	@extend %font-weight-700;
 }
-
-p {
-	margin: 0 0 ($line-height-computed / 2);
-}
-
-.lead {
-	margin-bottom: $line-height-computed;
-	font-size: floor($font-size-base * 1.15);
-	@media (min-width: $screen-sm-min) {
-		font-size: ($font-size-base * 1.5);
-	}
-}
-
-.page-header {
-	padding-bottom: (($line-height-computed / 2) - 1);
-	margin: ($line-height-computed * 2) 0 $line-height-computed;
-}
-
-ul, ol {
-	margin-bottom: ($line-height-computed / 2);
-}
-
-dl {
-	margin-bottom: $line-height-computed;
-}
-
-dt, dd {
-	line-height: $line-height-base;
-}
-
-blockquote {
-	padding: ($line-height-computed / 2) $line-height-computed;
-	margin: 0 0 $line-height-computed;
-	small, .small {
-		line-height: $line-height-base;
-	}
-}
-
-address {
-	margin-bottom: $line-height-computed;
-	line-height: $line-height-base;
-}
-
 
 /*
  * Code
@@ -846,6 +303,8 @@ code {
 /*
  *	Firefox-safe line height on input[type="reset|button|submit"]
  */
+$input-height-xs: (floor($font-size-small * $line-height-small) + ($padding-xs-vertical * 2) + 2);
+
 input[type="reset"], input[type="button"], input[type="submit"] {
 	height: $input-height-base;
 	&.btn-lg, &.input-lg {
@@ -892,4 +351,16 @@ input[type="reset"], input[type="button"], input[type="submit"] {
  */
 blockquote {
 	font-size: $font-size-base;
+}
+
+/*
+ *	Form control width
+ *
+ *	Default should be representative of the expected length of input.
+ *	Full width should be only for cases when the expected length of input is
+ *	greater than the available width.
+ */
+.form-control {
+	width: auto;
+	max-width: 100%;
 }

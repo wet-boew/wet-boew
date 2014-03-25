@@ -1,6 +1,10 @@
 /*
  * Site menu
  */
+%wet-theme-wb-sm-wb-navcurr {
+	background: #0b3048;
+	color: #fff;
+}
 #wb-sm {
 	background: #0E4164;
 	.menu {
@@ -13,8 +17,7 @@
 						color: #fff;
 						border-left: 1px solid #999;
 						&.wb-navcurr {
-							background: #0b3048;
-							color: #fff;
+							@extend %wet-theme-wb-sm-wb-navcurr;
 						}
 					}
 				}
@@ -52,9 +55,11 @@
 					text-shadow: none;
 					padding: 5px 10px;
 					text-decoration: none;
+					&.wb-navcurr {
+						@extend %wet-theme-wb-sm-wb-navcurr;
+					}
 					&:hover, &:focus {
-						background: #243850;
-						color: #fff;
+						@extend %wet-theme-wb-sm-wb-navcurr;
 					}
 				}
 			}
@@ -76,9 +81,6 @@
 
 %wet-theme-site-menu-mb-pnl-bg-0e4164 {
 	background: #0e4164;
-}
-%wet-theme-site-menu-mb-pnl-padding-10-20 {
-	padding: 10px 20px;
 }
 #mb-pnl {
 	&.modal-content {
@@ -103,12 +105,6 @@
 	}
 	.lng-ofr {
 		@extend %wet-theme-site-menu-mb-pnl-bg-0e4164;
-		padding: 5px 20px;
-		text-align: right;
-		li {
-			padding-left: 10px;
-			line-height: normal;				
-		}
 	}
 	summary {
 		&:hover, &:focus {
@@ -122,7 +118,6 @@
 	}
 	.srch-pnl {
 		@extend %wet-theme-site-menu-mb-pnl-bg-0e4164;
-		@extend %wet-theme-site-menu-mb-pnl-padding-10-20;
 		.form-group {
 			float: left;
 			margin-right: 5px;
@@ -130,7 +125,6 @@
 		}
 	}
 	.sec-pnl {
-		@extend %wet-theme-site-menu-mb-pnl-padding-10-20;
 		background: #cdd4da;
 		a, summary {
 			color: #2e5576;
@@ -138,37 +132,20 @@
 	}
 	.sm-pnl{
 		@extend %wet-theme-site-menu-mb-pnl-bg-0e4164;
-		@extend %wet-theme-site-menu-mb-pnl-padding-10-20;
 	}
 	.info-pnl {
 		border-top: 2px solid #061E38;
-		@extend %wet-theme-site-menu-mb-pnl-padding-10-20;
 	}
 }
 
 [dir=rtl] {
 	#mb-pnl {
-		.lng-ofr {
-			text-align: left;
-			li {
-				padding-left: 0;
-				padding-right: 10px;
-			}
-		}
 		.srch-pnl {
 			.form-group {
 				float: right;
 				margin-right: auto;
 				margin-left: 5px;
 				width: 75%;
-			}
-		}
-		ul {
-			li {
-				&.no-sect {
-					padding-left: 0;
-					padding-right: 1.27em
-				}
 			}
 		}
 	}
