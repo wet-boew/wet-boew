@@ -38,19 +38,6 @@ main {
 }
 
 /*
- *	Override color for "default" button style
- */
-
-.btn-default {
-	background-color: $wbGrayLight;
-	color: $accentBlue;
-	&:hover, &:focus {
-		background-color: $wbGray;
-		color: $activeBlue;
-	}
-}
-
-/*
  *	Override the design of alerts and labels
  */
 
