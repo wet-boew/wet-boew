@@ -12,10 +12,6 @@ $clrWhite: #FFF;
 $clrLight: #EEE;
 $clrMedium: #CCC;
 $clrDark: #555;
-$accentBlue: #335075;
-$activeBlue: #243850;
-$wbGray: #e1e4e7;
-$wbGrayLight: #eaebed;
 
 // Views
 $xxSmallViewMax: 479px;
@@ -56,5 +52,9 @@ $link-visited-color: #7834BC;
 
 $table-bg-accent: #f5f5f5;
 $table-bg-hover: #f0f0f0;
+
+$btn-default-color: #335075;
+$btn-default-bg: #eaebed;
+$btn-default-border: darken($btn-default-bg, 5%);
 
 $btn-warning-color: #000;
