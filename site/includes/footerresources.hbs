@@ -5,4 +5,4 @@
 <!--[if lt IE 9]>
 <script src="{{assets}}/js/ie8-wet-boew2{{environment.suffix}}.js"></script>
 <![endif]-->
-{{#if page.js}}<script src="{{page.js}}{{environment.suffix}}.js"></script>{{/if}}
+{{#if page.js}}{{#each page.js}}<script src="{{this}}{{../environment.suffix}}.js"></script>{{/each}}{{/if}}
