@@ -58,3 +58,11 @@ $btn-default-bg: #eaebed;
 $btn-default-border: darken($btn-default-bg, 5%);
 
 $btn-warning-color: #000;
+
+$pagination-color: $btn-default-color;
+$pagination-bg: $btn-default-bg;
+$pagination-border: $btn-default-border;
+
+$pagination-hover-color: $btn-default-color;
+$pagination-hover-bg: darken($btn-default-bg, 8%);
+$pagination-hover-border: darken($btn-default-border, 12%);
