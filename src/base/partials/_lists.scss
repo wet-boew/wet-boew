@@ -22,3 +22,14 @@
 .lst-num {
 	list-style-type: decimal;
 }
+
+.lst-spcd {
+	> {
+		li {
+			margin-bottom: 10px;
+		}
+	}
+	ul, ol {
+		margin-top: 10px;
+	}
+}
