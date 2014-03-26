@@ -6,6 +6,38 @@
 	display: block;
 }
 
+#gcwu-sft {
+	float: left;
+	padding: 0 15px 20px;
+	width: 100%;
+}
+
+#gcwu-sft-in {
+	background: none !important;
+}
+
+#gcwu-tctr {
+	li {
+		&.gcwu-tc {
+			padding-left: 0;
+		}
+	}
+}
+
+#gcwu-gcft-in {
+	float: left;
+	padding: 10px 0;
+	text-shadow: none;
+	width: 100%;
+	background: #000;
+	li {
+		padding-left: 15px;
+		&#gcwu-gcft-ca {
+			margin-right: 15px !important;
+		}
+	}
+}
+
 #jqm-wb-mb {
 	#gcwu-bc-in {
 		display: none;

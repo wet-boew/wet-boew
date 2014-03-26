@@ -332,31 +332,6 @@ h1 {
 	@extend %wet-default-large-screen-a-hover-focus-active-text-decoration-underline;
 }
 
-#wb-foot {
-	@extend %wet-default-large-screen-a-hover-focus-active-text-decoration-underline;
-	@extend %wet-default-large-screen-overflow-hidden;
-}
-
-#wb-foot-in {
-	@extend %wet-default-large-screen-overflow-hidden;
-}
-
-#wet-sft {
-	@extend %wet-default-large-screen-overflow-hidden;
-}
-
-#wet-sft-in {
-	@extend %wet-default-large-screen-overflow-hidden;
-}
-
-#wet-fullft {
-	@extend %wet-default-large-screen-overflow-hidden;
-}
-
-#wet-fullft-in {
-	@extend %wet-default-large-screen-overflow-hidden;
-}
-
 %base-psnb-bg-0B3048 {
 	background: #0B3048;
 }
