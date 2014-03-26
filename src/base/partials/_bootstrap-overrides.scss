@@ -351,3 +351,30 @@ blockquote {
 	width: auto;
 	max-width: 100%;
 }
+
+/*
+ *	Pagination
+ *	  * Add left/right arrows to previous/next buttons
+ *	  * Increase size of the pagination buttons
+ */
+
+.pagination {
+	[rel="prev"] {
+		&:before {
+			content: "← ";
+		}
+	}
+
+	[rel="next"] {
+		&:after {
+			content: " →";
+		}
+	}
+	
+	> li {
+		> a,
+		> span {
+			padding: $padding-large-vertical $padding-large-horizontal;
+		}
+	}
+}
