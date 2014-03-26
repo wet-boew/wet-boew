@@ -236,6 +236,9 @@ table {
 		@extend %gcwu-default-small-medium-screen-display-none-important;
 	}
 }
+#gcwu-gcft {
+	@extend %gcwu-default-small-medium-screen-display-none;
+}
 
 #wb-head {
 	@extend %gcwu-default-small-medium-screen-period-after-pseudo;
