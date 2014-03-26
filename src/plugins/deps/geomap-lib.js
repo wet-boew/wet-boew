@@ -577,13 +577,13 @@ var selector = ".wb-geomap",
 							}
 							symbolizer = rule.symbolizer;
 
-							symbolText += "<li class='margin-bottom-medium'>" +
+							symbolText += "<li><div class='row'><div class='col-md-2'>" +
+											getLegendSymbol( symbolizer ) + "</div><div class='col-md-10'><small>" +
 								filter.property + " " + (
 									filter.value !== null ?
 										filterType + " " + filter.value :
 										filter.lowerBoundary + " " + filterType +
-											" " + filter.upperBoundary + "</label>"
-								) + getLegendSymbol( symbolizer ) + "</li>";
+											" " + filter.upperBoundary ) + "</small></div></div></li>";
 						}
 						symbolText += "</ul>";
 					} else if ( styleDefault.fillColor ) {
@@ -741,7 +741,11 @@ var selector = ".wb-geomap",
 						})
 					);
 				}
-				stylePrefs[ "default" ] = style.addRules( rules );
+
+				style.addRules( rules );
+
+				stylePrefs[ "default" ] = style;
+
 			} else if ( styleType !== "unique" ) {
 				stylePrefs[ "default" ] = new OpenLayers.Style( elmStyle.init );
 			}
@@ -753,6 +757,7 @@ var selector = ".wb-geomap",
 		}
 
 		styleMap = new OpenLayers.StyleMap( stylePrefs );
+
 		if ( elmStyle && styleType === "unique" ) {
 			styleMap.addUniqueValueRules( "default", elmStyle.field, elmStyle.init );
 		}
