@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{assets}}/css/wet-boew{{environment.suffix}}.css" />
 <!--<![endif]-->
 <link rel="stylesheet" href="{{assets}}/css/theme{{environment.suffix}}.css" />
-{{#if page.css}}{{#each page.css}}<link rel="stylesheet" href="{{this}}{{environment.suffix}}.css" />{{/each}}{{/if}}
+{{#if page.css}}{{#each page.css}}<link rel="stylesheet" href="{{this}}{{../environment.suffix}}.css" />{{/each}}{{/if}}
 <!--[if lt IE 9]>
 <link href="{{assets}}/assets/favicon.ico" rel="shortcut icon" />
 <link rel="stylesheet" href="{{assets}}/css/ie8-wet-boew{{environment.suffix}}.css" />
