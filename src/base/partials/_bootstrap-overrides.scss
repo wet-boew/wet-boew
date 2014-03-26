@@ -355,6 +355,7 @@ blockquote {
 /*
  *	Pagination
  *	  * Add left/right arrows to previous/next buttons
+ *	  * Increase size of the pagination buttons
  */
 
 .pagination {
@@ -367,6 +368,13 @@ blockquote {
 	[rel="next"] {
 		&:after {
 			content: " →";
+		}
+	}
+	
+	> li {
+		> a,
+		> span {
+			padding: $padding-large-vertical $padding-large-horizontal;
 		}
 	}
 }
