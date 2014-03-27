@@ -134,6 +134,8 @@ var pluginName = "wb-date",
 					day.getElementsByTagName( "div" )[ 0 ].innerHTML + "</a>";
 			}
 		}
+
+		$days.find( "a" ).eq( 0 ).attr( "tabindex", "0" );
 	},
 
 	setSelectedDate = function( fieldId, year, month, days ) {
