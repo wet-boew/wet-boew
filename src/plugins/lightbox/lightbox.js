@@ -178,12 +178,13 @@ var pluginName = "wb-lbx",
 						settings.modal = true;
 					}
 
-					// Extend the settings with data-wet-boew then
+					// Extend the settings with data-wb-lbx then
 					$elm.magnificPopup(
 						$.extend(
 							true,
 							settings,
-							wb.getData( $elm, "wet-boew" )
+							window[ pluginName ],
+							wb.getData( $elm, pluginName )
 						)
 					);
 				}

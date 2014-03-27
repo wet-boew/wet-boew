@@ -160,7 +160,7 @@
 	<p>Les préréglages personnalisés sont déclarés à l'intérieur d'un script dans la page courant d'où le nom <code>personalise</code> (le nom du préréglage) peut être n'importe quel nom. Après que le préréglage a été déclaré, vous pouvez l'utiliser en utilisant une class avec le préfixe <code>wb-charts-</code> suivi du nom de votre préréglage.</p>
 
 	<pre><code>&lt;script&gt;
-var wet_boew_charts = {
+window[ "wb-charts" ] = {
 	flot: {
 		<strong>personalise</strong>: {
 			colors: [ &quot;#ff0000&quot;,
@@ -174,10 +174,10 @@ var wet_boew_charts = {
 					&quot;#0000ff&quot;]
 		}
 	}
-}
+};
 &lt;/script&gt;</code></pre>
 	<script>
-	var wet_boew_charts = {
+	window[ "wb-charts" ] = {
 		flot: {
 			personalise: {
 				colors: [ "#ff0000",
@@ -191,7 +191,7 @@ var wet_boew_charts = {
 						"#0000ff"]
 			}
 		}
-	}
+	};
 	</script>
 
 	<p><code>&lt;table class=&quot;wb-charts <strong>wb-charts-personalise</strong> table&quot;&gt;</code></p>
@@ -320,12 +320,12 @@ var wet_boew_charts = {
 		<p>Il est possible d'appliquer un préréglage à plusieurs paramètres. Par ailleur lorsqu'un le même nom pour le préréglage existe, lors de l'appel c'est l'ensemble qui vont étendre les paramètres.
 
 		<pre><code>&lt;script&gt;
-var wet_boew_charts = {
+window[ "wb-charts" ] = {
 	flot: { }, // Paramètre généraux de Flot. Équivalent à l'attribut &quot;data-flot&quot; défini sur l'élément &quot;table&quot;
 	series: { }, // Paramètre spéficique à une série de Flot. Équivalent à l'attribut &quot;data-flot&quot; défini sur l'élément &quot;th&quot;
-	charts: { } // Paramètre spécique au graphique de la BOEW. Équivalent à l'attribute &quot;data-wet-boew&quot; défini sur l'élément &quot;table&quot;
+	charts: { } // Paramètre spécique au graphique de la BOEW. Équivalent à l'attribute &quot;data-wb-charts&quot; défini sur l'élément &quot;table&quot;
 	
-}
+};
 &lt;/script&gt;</code></pre>
 	</section>
 </section>
@@ -406,7 +406,7 @@ var wet_boew_charts = {
 	&lt;/tr&gt;
 &lt;/thead&gt;</code></pre>
 
-	<table class="wb-charts wb-charts-pie table" data-wet-boew='{ "height": 300, "decimal": 1 }'>
+	<table class="wb-charts wb-charts-pie table" data-wb-charts='{ "height": 300, "decimal": 1 }'>
 		<caption>Nombre de pages ayant une tâche comme objectif principal et par audience</caption>
 		<colgroup><col /></colgroup>
 		<colgroup>

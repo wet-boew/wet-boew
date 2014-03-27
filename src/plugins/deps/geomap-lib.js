@@ -8,7 +8,8 @@
 (function( $, window, document, wb ) {
 "use strict";
 
-var selector = ".wb-geomap",
+var pluginName = "wb-geomap",
+	selector = "." + pluginName,
 	$document = wb.doc,
 
 	// timeout for overlay loading in milliseconds
@@ -97,8 +98,7 @@ var selector = ".wb-geomap",
 			};
 
 			// Merge default settings with overrides from the selected plugin element.
-			// There may be more than one, so don't override defaults globally!
-			$.extend( settings, defaults, overrides, wb.getData( $elm, "wet-boew" ) );
+			$.extend( settings, defaults, overrides, window[ pluginName ], wb.getData( $elm, pluginName ) );
 
 			// Bind the merged settings to the element node for faster access in other events.
 			$elm.data( { settings: settings } );

@@ -25,7 +25,6 @@ var pluginName = "wb-share",
 	/*
 	 * Plugin users can override these defaults by setting attributes on the html elements that the
 	 * selector matches.
-	 * For example, adding the attribute data-option1="false", will override option1 for that plugin instance.
 	 */
 	defaults = {
 		hdLvl: "h2",
@@ -171,7 +170,13 @@ var pluginName = "wb-share",
 			}
 
 			$elm = $( elm );
-			settings = $.extend( true, {}, defaults, wb.getData( $elm, "wet-boew" ) );
+			settings = $.extend(
+				true,
+				{},
+				defaults,
+				window[ pluginName ],
+				wb.getData( $elm, pluginName )
+			);
 			sites = settings.sites;
 			filter = settings.filter;
 			heading = settings.hdLvl;

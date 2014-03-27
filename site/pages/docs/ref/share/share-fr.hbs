@@ -44,11 +44,11 @@
 	<ol>
 		<li>Add <code>&lt;div class="wb-share"&gt;&lt;/div&gt;</code> to the Web page.</li>
 		<li>Add a unique id for the share panel.
-			<pre><code>&lt;div class="wb-share" data-wet-boew='{"pnlId": "pnl1"}'&gt;&lt;/div&gt;</code></pre>
+			<pre><code>&lt;div class="wb-share" data-wb-share='{"pnlId": "pnl1"}'&gt;&lt;/div&gt;</code></pre>
 		</li>
 		<li><strong>Optional:</strong> Override the default settings using the <a href="#config">configuration options</a>.</li>
 		<li><strong>Optional:</strong> Add additional links using the <code>link-only</code> class.
-			<pre><code>&lt;div class="wb-share link-only" data-wet-boew='{"pnlId": "pnl1"}'&gt;&lt;/div&gt;</code></pre>
+			<pre><code>&lt;div class="wb-share link-only" data-wb-share='{"pnlId": "pnl1"}'&gt;&lt;/div&gt;</code></pre>
 		</li>
 	</ol>
 </section>
@@ -69,7 +69,7 @@
 			<tr>
 				<td><code>pnlId</code></td>
 				<td>Unique identifier for the panel. Only required if providing a second link for the same panel (needs to be specified on all <code>wb-share</code> calls for that panel).</td>
-				<td>Add <code>"pnlId": "uniqueId"</code> to the <code>data-wet-boew</code> attribute where <code>uniqueId</code> is a valid unique id.</td>
+				<td>Add <code>"pnlId": "uniqueId"</code> to the <code>data-wb-share</code> attribute where <code>uniqueId</code> is a valid unique id.</td>
 				<td>
 					<dl>
 						<dt><code>uniqueId</code>:</dt>
@@ -80,7 +80,7 @@
 			<tr>
 				<td><code>hdLvl</code></td>
 				<td>Heading level for the share panel.</td>
-				<td>Add <code>"hdLvl": "headingLevel"</code> to the <code>data-wet-boew</code> attribute where <code>headingLevel</code> is the heading level.</td>
+				<td>Add <code>"hdLvl": "headingLevel"</code> to the <code>data-wb-share</code> attribute where <code>headingLevel</code> is the heading level.</td>
 				<td>
 					<dl>
 						<dt><code>h2</code> (default):</dt>
@@ -99,7 +99,7 @@
 			<tr>
 				<td><code>lnkClass</code></td>
 				<td>Classes to be applied to the class attribute of the generated link.</td>
-				<td>Add <code>"lnkClass": "class1 class2"</code> to the <code>data-wet-boew</code> attribute where <code>class1 class2</code> are the classes to be added separated by spaces.</td>
+				<td>Add <code>"lnkClass": "class1 class2"</code> to the <code>data-wb-share</code> attribute where <code>class1 class2</code> are the classes to be added separated by spaces.</td>
 				<td>
 					<ul>
 						<li>None (default)</li>
@@ -109,7 +109,7 @@
 			<tr>
 				<td><code>type</code></td>
 				<td>Type of content to share.</td>
-				<td>Add <code>"type": "value"</code> to the <code>data-wet-boew</code> attribute.</td>
+				<td>Add <code>"type": "value"</code> to the <code>data-wb-share</code> attribute.</td>
 				<td>
 					<dl>
 						<dt><code>page</code> (default):</dt>
@@ -122,7 +122,7 @@
 			<tr>
 				<td><code>custType</code></td>
 				<td>Text to use after "Share" on the share button and the panel header (overrides the text associated to the type option).</td>
-				<td>Add <code>"custType": "string"</code> to the <code>data-wet-boew</code> attribute.</td>
+				<td>Add <code>"custType": "string"</code> to the <code>data-wb-share</code> attribute.</td>
 				<td>
 					<dl>
 						<dt><code> this page</code> or <code> this video</code> (default):</dt>
@@ -133,7 +133,7 @@
 			<tr>
 				<td><code>title</code></td>
 				<td>Text to use instead of the page title or the main h1 text. Recommended for the video type if the page title is not the title of the video.</td>
-				<td>Add <code>"title": "Page title"</code> to the <code>data-wet-boew</code> attribute.</td>
+				<td>Add <code>"title": "Page title"</code> to the <code>data-wb-share</code> attribute.</td>
 				<td>
 					<dl>
 						<dt>Page title or the main h1 text (default):</dt>
@@ -144,7 +144,7 @@
 			<tr>
 				<td><code>url</code></td>
 				<td>URL to use instead of the URL of the current page.</td>
-				<td>Add <code>"url": "newURL"</code> to the <code>data-wet-boew</code> attribute.</td>
+				<td>Add <code>"url": "newURL"</code> to the <code>data-wb-share</code> attribute.</td>
 				<td>
 					<dl>
 						<dt>Page URL (default):</dt>
@@ -155,7 +155,7 @@
 			<tr>
 				<td><code>desc</code></td>
 				<td>Optional description of the item to share. <strong>Note:</strong> A separate description is not supported by all social media sites.</td>
-				<td>Add <code>"desc": "description"</code> to the <code>data-wet-boew</code> attribute.</td>
+				<td>Add <code>"desc": "description"</code> to the <code>data-wb-share</code> attribute.</td>
 				<td>
 					<dl>
 						<dt>None (default):</dt>
@@ -166,7 +166,7 @@
 			<tr>
 				<td><code>img</code></td>
 				<td>Optional image for the item to share (mainly for Pinterest). <strong>Note:</strong> Very few social media sites support specifying a separate image through a URL request.</td>
-				<td>Add <code>"img": "imageURL"</code> to the <code>data-wet-boew</code> attribute.</td>
+				<td>Add <code>"img": "imageURL"</code> to the <code>data-wb-share</code> attribute.</td>
 				<td>
 					<dl>
 						<dt>None (default):</dt>
@@ -177,7 +177,7 @@
 			<tr>
 				<td><code>filter</code></td>
 				<td>Optional filter for the sites to display in the panel. Only the sites listed in the array will be displayed. If no sites are listed, then all sites will be displayed.</td>
-				<td>Add <code>"filter": ["site-1", "site-2", ... "site-n"]</code> to the <code>data-wet-boew</code> attribute.</td>
+				<td>Add <code>"filter": ["site-1", "site-2", ... "site-n"]</code> to the <code>data-wb-share</code> attribute.</td>
 				<td>
 					<dl>
 						<dt>None (default):</dt>

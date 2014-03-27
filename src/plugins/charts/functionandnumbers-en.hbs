@@ -248,7 +248,7 @@
 	<section>
 		<h3>Declaring your custom preset</h3>
 		<pre><code>&lt;script&gt;
-var wet_boew_charts = {
+window[ "wb-charts" ] = {
 	charts: {
 		<strong>custom</strong>: {
 			fn: {
@@ -259,13 +259,13 @@ var wet_boew_charts = {
 			}
 		}
 	}
-}
+};
 &lt;/script&gt;</code></pre>
 
 		<p>The key for the <code>fn</code> object is similar to the JSON pointer defined in <a href="http://tools.ietf.org/html/rfc6901">RFC 6901</a>. The key identifies what should be overwritten with the function.</p>
 
 		<script>
-		var wet_boew_charts = {
+		window[ "wb-charts" ] = {
 			charts: {
 				custom: {
 					fn: {
@@ -276,7 +276,7 @@ var wet_boew_charts = {
 					}
 				}
 			}
-		}
+		};
 		</script>
 
 		<p><code>&lt;table class=&quot;wb-charts wb-charts-custom table&quot;&gt;</code></p>
