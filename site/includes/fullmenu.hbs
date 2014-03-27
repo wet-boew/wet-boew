@@ -1,36 +1,36 @@
 <div class="pnl-strt container visible-md visible-lg nvbar">
-	<h2>{{i18n "tmpl-site-menu"}}</h2>
+	<h2>{{{i18n "tmpl-site-menu"}}}</h2>
 	<div class="row">
 		<ul class="list-inline menu" role="menubar">
-			<li><a href="#project" class="item">{{i18n "tmpl-wet-project"}}</a>
+			<li><a href="#project" class="item">{{{i18n "tmpl-wet-project"}}}</a>
 				<ul class="sm list-unstyled" id="project" role="menu">
-					<li><a href="{{environment.root}}/index-{{language}}.html#{{i18n "tmpl-about-anchor"}}">{{i18n "tmpl-about-wet"}}</a></li>
-					<li><a href="{{environment.root}}/index-en.html#{{i18n "tmpl-benefits-anchor"}}">{{i18n "tmpl-benefits"}}</a></li>
-					<li><a href="http://wet-boew.github.io/wet-boew/docs/ref/accolades-{{language}}.html">{{i18n "tmpl-accolades"}}</a></li>
-					<li><a href="https://github.com/wet-boew/wet-boew/">{{i18n "tmpl-wet-main-project-page"}}</a></li>
-					<li><a href="{{environment.root}}/License-{{language}}.html">{{i18n "tmpl-terms"}}</a></li>
-					<li><a href="http://wet-boew.github.io/wet-boew/docs/versions/rdmp-{{language}}.html">{{i18n "tmpl-roadmap"}}</a></li>
-					<li><a href="http://wet-boew.github.io/wet-boew/docs/versions/index-{{language}}.html">{{i18n "tmpl-version-history"}}</a></li>
-					<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-{{#isnt language "fr"}}eng{{else}}fra{{/isnt}}.asp">{{i18n "tmpl-about-web-standards"}}</a></li>
+					<li><a href="{{environment.root}}/index-{{language}}.html#{{{i18n "tmpl-about-anchor"}}}">{{{i18n "tmpl-about-wet"}}}</a></li>
+					<li><a href="{{environment.root}}/index-en.html#{{{i18n "tmpl-benefits-anchor"}}}">{{{i18n "tmpl-benefits"}}}</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew/docs/ref/accolades-{{language}}.html">{{{i18n "tmpl-accolades"}}}</a></li>
+					<li><a href="https://github.com/wet-boew/wet-boew/">{{{i18n "tmpl-wet-main-project-page"}}}</a></li>
+					<li><a href="{{environment.root}}/License-{{language}}.html">{{{i18n "tmpl-terms"}}}</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew/docs/versions/rdmp-{{language}}.html">{{{i18n "tmpl-roadmap"}}}</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew/docs/versions/index-{{language}}.html">{{{i18n "tmpl-version-history"}}}</a></li>
+					<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-{{#isnt language "fr"}}eng{{else}}fra{{/isnt}}.asp">{{{i18n "tmpl-about-web-standards"}}}</a></li>
 				</ul>
 			</li>
-			<li><a href="#implement" class="item">{{i18n "tmpl-implement-wet"}}</a>
+			<li><a href="#implement" class="item">{{{i18n "tmpl-implement-wet"}}}</a>
 				<ul class="sm list-unstyled" id="implement" role="menu">
-					<li><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/index-{{language}}.html">{{i18n "tmpl-getting-started"}}</a></li>
-					<li><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/github-{{language}}.html">{{i18n "tmpl-using-github"}}</a></li>
-					<li><a href="http://wet-boew.github.io/wet-boew/docs/versions/dwnld-{{language}}.html">{{i18n "tmpl-download-wet"}}</a></li>
-					<li><a href="{{environment.root}}/demos/index-{{language}}.html">{{i18n "tmpl-work-examples"}}</a></li>
-					<li><a href="http://wet-boew.github.io/wet-boew/docs/index-{{language}}.html">{{i18n "tmpl-documentation"}}</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/index-{{language}}.html">{{{i18n "tmpl-getting-started"}}}</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/github-{{language}}.html">{{{i18n "tmpl-using-github"}}}</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew/docs/versions/dwnld-{{language}}.html">{{{i18n "tmpl-download-wet"}}}</a></li>
+					<li><a href="{{environment.root}}/demos/index-{{language}}.html">{{{i18n "tmpl-work-examples"}}}</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew/docs/index-{{language}}.html">{{{i18n "tmpl-documentation"}}}</a></li>
 				</ul>
 			</li>
-			<li><a href="#contribute" class="item">{{i18n "tmpl-contribute-wet"}}</a>
+			<li><a href="#contribute" class="item">{{{i18n "tmpl-contribute-wet"}}}</a>
 				<ul class="sm list-unstyled" id="contribute" role="menu">
-					<li><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-{{language}}.html">{{i18n "tmpl-contributor-guidelines"}}</a></li>
-					<li><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-{{language}}.html#prob">{{i18n "tmpl-contribute-bug"}}</a></li>
-					<li><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-{{language}}.html#pr">{{i18n "tmpl-contribute-pr"}}</a></li>
-					<li><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-{{language}}.html#test">{{i18n "tmpl-contribute-test"}}</a></li>
-					<li><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/dev-{{language}}.html">{{i18n "tmpl-contribute-develop"}}</a></li>
-					<li><a href="http://wet-boew.github.io/wet-boew/docs/index-{{language}}.html#change">{{i18n "tmpl-contribute-docs"}}</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-{{language}}.html">{{{i18n "tmpl-contributor-guidelines"}}}</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-{{language}}.html#prob">{{{i18n "tmpl-contribute-bug"}}}</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-{{language}}.html#pr">{{{i18n "tmpl-contribute-pr"}}}</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/contrib-{{language}}.html#test">{{{i18n "tmpl-contribute-test"}}}</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew/docs/gs-cd/dev-{{language}}.html">{{{i18n "tmpl-contribute-develop"}}}</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew/docs/index-{{language}}.html#change">{{{i18n "tmpl-contribute-docs"}}}</a></li>
 				</ul>
 			</li>
 		</ul>
