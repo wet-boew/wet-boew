@@ -249,7 +249,7 @@
 		<h3>Déclaration de votre préréglage personalisé</h3>
 
 		<pre><code>&lt;script&gt;
-var wet_boew_charts = {
+window[ "wb-charts" ] = {
 	charts: {
 		<strong>personlise</strong>: {
 			fn: {
@@ -260,13 +260,13 @@ var wet_boew_charts = {
 			}
 		}
 	}
-}
+};
 &lt;/script&gt;</code></pre>
 
 		<p>La cleft à l'intéreur de l'objet <code>fn</code> est similaire a un pointeur JSON tel que défini dans <a href="http://tools.ietf.org/html/rfc6901">RFC 6901</a>. La cleft représent le chemin vers où vous désirer remplacer la valeur par la fonction définie.</p>
 
 		<script>
-		var wet_boew_charts = {
+		window[ "wb-charts" ] = {
 			charts: {
 				personlise: {
 					fn: {
@@ -277,7 +277,7 @@ var wet_boew_charts = {
 					}
 				}
 			}
-		}
+		};
 		</script>
 
 

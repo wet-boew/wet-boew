@@ -87,7 +87,13 @@ var pluginName = "wb-frmvld",
 						submitted = false,
 						$required = $form.find( "[required]" ).attr( "aria-required", "true" ),
 						errorFormId = "errors-" + ( !formId ? "default" : formId ),
-						settings = $.extend( true, {}, defaults, wb.getData( $elm, "wet-boew" ) ),
+						settings = $.extend(
+							true,
+							{},
+							defaults,
+							window[ pluginName ],
+							wb.getData( $elm, pluginName )
+						),
 						summaryHeading = settings.hdLvl,
 						i, len, validator;
 

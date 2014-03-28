@@ -75,8 +75,8 @@
 
 	<h3>Customize your chart</h3>
 	<ul>
-		<li>Configure the plugin using the <b>data-wet-boew</b> on the <code>table</code>code> element. This parameter allow you configure the options on how your data table will be interpreted in a programmatically determined way.
-			<pre><code>&lt;table class=&quot;wb-charts table&quot; data-wet-boew='{ &quot;referencevalue&quot;: 1, &quot;labelposition&quot;: 1, &quot;noencapsulation&quot;: true }'&gt;</code></pre>
+		<li>Configure the plugin using the <b>data-wb-charts</b> on the <code>table</code>code> element. This parameter allow you configure the options on how your data table will be interpreted in a programmatically determined way.
+			<pre><code>&lt;table class=&quot;wb-charts table&quot; data-wb-charts='{ &quot;referencevalue&quot;: 1, &quot;labelposition&quot;: 1, &quot;noencapsulation&quot;: true }'&gt;</code></pre>
 		</li>
 		<li>Configure the plugin using the <b>data-flot</b> on the <code>table</code>code> element. This parameter allow you to set the global Flot options.
 			<pre><code>&lt;!-- The following example configure gradients background color for the grid --&gt;
@@ -181,7 +181,7 @@
 			<tr>
 				<td>reversettblparsing</td>
 				<td>Define how the data table should be traversed. The default traversal direction is the same as the direction defined in HTML spec. The HTML spec direction is row base. Hold boolean value.</td>
-				<td>data-wet-boew='{ &quot;reversettblparsing&quot;: true }'</td>
+				<td>data-wb-charts='{ &quot;reversettblparsing&quot;: true }'</td>
 				<td>
 					<dl>
 						<dt>false (default):</dt>
@@ -194,7 +194,7 @@
 			<tr>
 				<td>labelposition</td>
 				<td>Specify the row or the column to use to set label on the charts. A <dfn>vector</dfn> is a row or column where the direction have no importance. Hold numeric value.</td>
-				<td>data-wet-boew='{ &quot;labelposition&quot;: 1 }'</td>
+				<td>data-wb-charts='{ &quot;labelposition&quot;: 1 }'</td>
 				<td>
 					<dl>
 						<dt>false (default):</dt>
@@ -211,7 +211,7 @@
 			<tr>
 				<td>referencevalue</td>
 				<td>Specify the row or the column to use as the value of reference to set the steps (x-axis ticks) on the charts. A <dfn>vector</dfn> is a row or column where the direction have no importance. Hold numeric value.</td>
-				<td>data-wet-boew='{ &quot;referencevalue&quot;: 1 }'</td>
+				<td>data-wb-charts='{ &quot;referencevalue&quot;: 1 }'</td>
 				<td>
 					<dl>
 						<dt>false (default):</dt>
@@ -228,7 +228,7 @@
 			<tr>
 				<td>decimal</td>
 				<td>For pie charts, it set the number of decimal precision to include for the percentage label. Hold numeric value</td>
-				<td>data-wet-boew='{ &quot;decimal&quot;: 1 }'</td>
+				<td>data-wb-charts='{ &quot;decimal&quot;: 1 }'</td>
 				<td>
 					<dl>
 						<dt>0 (default):</dt>
@@ -243,7 +243,7 @@
 			<tr>
 				<td>nolegend</td>
 				<td>Ability to destroy the flot generated legend. Hold boolean value.</td>
-				<td>data-wet-boew='{ &quot;nolegend&quot;: true }'</td>
+				<td>data-wb-charts='{ &quot;nolegend&quot;: true }'</td>
 				<td>
 					<dl>
 						<dt>false (default):</dt>
@@ -256,7 +256,7 @@
 			<tr>
 				<td>legendinline</td>
 				<td>Ability to move the flot generated legend after the table to meet WCAG 2.0 Level AA purpose. Hold boolean value.</td>
-				<td>data-wet-boew='{ &quot;legendinline&quot;: true }'</td>
+				<td>data-wb-charts='{ &quot;legendinline&quot;: true }'</td>
 				<td>
 					<dl>
 						<dt>false (default):</dt>
@@ -269,7 +269,7 @@
 			<tr>
 				<td>noencapsulation</td>
 				<td>Wrap or not the table in a details/summary elements. Hold boolean value.</td>
-				<td>data-wet-boew='{ &quot;noencapsulation&quot;: true }'</td>
+				<td>data-wb-charts='{ &quot;noencapsulation&quot;: true }'</td>
 				<td>
 					<dl>
 						<dt>false (default):</dt>
@@ -282,7 +282,7 @@
 			<tr>
 				<td>height</td>
 				<td>Set the height of a charts. Hold numeric value mesured in pixel.</td>
-				<td>data-wet-boew='{ &quot;height&quot;: 350 }'</td>
+				<td>data-wb-charts='{ &quot;height&quot;: 350 }'</td>
 				<td>
 					<dl>
 						<dt>$elm.height() (default):</dt>
@@ -295,7 +295,7 @@
 			<tr>
 				<td>width</td>
 				<td>Set the width of a charts. It may useful for pie charts but are useless for other charts because the Flot Canvas plugin will allow the charts to fit the full width of the table container. Hold numeric value mesured in pixel.</td>
-				<td>data-wet-boew='{ &quot;width&quot;: 350 }'</td>
+				<td>data-wb-charts='{ &quot;width&quot;: 350 }'</td>
 				<td>
 					<dl>
 						<dt>$elm.width() (default):</dt>

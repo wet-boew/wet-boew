@@ -44,7 +44,7 @@
 			i, iLength, j, jLength, parsedData, rIndex, currVectorOptions,
 			currentRowGroup, reverseTblParsing, dataGroupVector,
 			dataCell, previousDataCell, currDataVector,
-			pieQuaterFlotSeries, optionFlot, optionsCharts,
+			pieQuaterFlotSeries, optionFlot, optionsCharts, globalOptions,
 			defaultsOptions = {
 
 				// Flot Global Options
@@ -214,12 +214,12 @@
 			};
 
 		/**
-		 * A little function to ovewrite and add preset into the default options
+		 * A little function to overwrite and add preset into the default options
 		 *
 		 * @method overwriteDefaultsOptions
 		 * @param {string} scopekey - Key that represent the subject of the setting, [flot, charts, series,...]
-		 * @param {json object} target - DefaultOptions that wiil be overwritten
-		 * @param {json object} object - User defined object for overwritting options
+		 * @param {json object} target - DefaultOptions that will be overwritten
+		 * @param {json object} object - User defined object for overwriting options
 		 * @return {json object} - Return the new object
 		 */
 		function overwriteDefaultsOptions( scopekey, target, object ) {
@@ -239,13 +239,16 @@
 		}
 
 		// User defined options
-		if ( !window.chartsGraphOpts ){
+		if ( !window.chartsGraphOpts ) {
+			globalOptions = window[ pluginName ];
+
 			// Global setting
-			if ( window.wet_boew_charts !== undefined ) {
-				overwriteDefaultsOptions( "flot", defaultsOptions, window.wet_boew_charts );
-				overwriteDefaultsOptions( "series", defaultsOptions, window.wet_boew_charts );
-				overwriteDefaultsOptions( "charts", defaultsOptions, window.wet_boew_charts );
+			if ( globalOptions ) {
+				overwriteDefaultsOptions( "flot", defaultsOptions, globalOptions );
+				overwriteDefaultsOptions( "series", defaultsOptions, globalOptions );
+				overwriteDefaultsOptions( "charts", defaultsOptions, globalOptions );
 			}
+
 			// Save the setting here in a case of a second graphic on the same page
 			window.chartsGraphOpts = defaultsOptions;
 		}
@@ -312,7 +315,7 @@
 			// Extend the config from the element @data attribute
 			config = $.extend( true, config, wb.getData( $elem, attribute ) );
 
-			// Merge and Overide the function.
+			// Merge and override the function.
 			for ( key in fn ) {
 				if ( !fn.hasOwnProperty( key ) ) {
 					continue;
@@ -339,7 +342,7 @@
 		optionFlot = applyPreset( defaultsOptions.flot, $elm, "flot" );
 
 		// Apply any preset
-		optionsCharts = applyPreset( defaultsOptions.charts, $elm, "wet-boew" );
+		optionsCharts = applyPreset( defaultsOptions.charts, $elm, pluginName );
 
 		// Fix default width and height in case the table is hidden.
 		optionsCharts.width = optionsCharts.width | 250;
