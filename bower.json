@@ -30,6 +30,8 @@
     "flot": "0.8.1",
     "google-code-prettify": "1.0.0",
     "html5shiv": "3.7.0",
+    "jquery": "2.1.0",
+    "jquery-oldIE": "jquery#1.11.0",
     "jquery-pjax": "1.7.3",
     "jquery.validation": "1.11.1",
     "magnific-popup": "0.9.8",
@@ -40,6 +42,6 @@
     "SideBySideImproved": "https://github.com/pkoltermann/SideBySideImproved.git"
   },
   "resolutions": {
-    "jquery": ">= 1.9.0"
+    "jquery": "~2.1.0"
   }
 }

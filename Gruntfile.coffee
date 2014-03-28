@@ -194,6 +194,8 @@ module.exports = (grunt) ->
 
 		# Metadata.
 		pkg: grunt.file.readJSON("package.json")
+		jqueryVersion: grunt.file.readJSON("lib/jquery/bower.json")
+		jqueryOldIEVersion: grunt.file.readJSON("lib/jquery-oldIE/bower.json")
 		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n *\n */"
 		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
@@ -324,6 +326,8 @@ module.exports = (grunt) ->
 				options:
 					environment:
 						root: "/v4.0-ci/unmin"
+						jqueryVersion: "<%= jqueryVersion.version %>"
+						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
 					assets: "dist/unmin"
 					flatten: true,
 					plugins: ["assemble-contrib-i18n"]
@@ -340,6 +344,8 @@ module.exports = (grunt) ->
 				options:
 					environment:
 						root: "/v4.0-ci/unmin"
+						jqueryVersion: "<%= jqueryVersion.version %>"
+						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
 					assets: "dist/unmin"
 				files: [
 						expand: true
@@ -372,6 +378,8 @@ module.exports = (grunt) ->
 					environment:
 						suffix: ".min"
 						root: "/v4.0-ci"
+						jqueryVersion: "<%= jqueryVersion.version %>"
+						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
 					assets: "dist"
 					flatten: true,
 					plugins: ['assemble-contrib-i18n']
@@ -389,6 +397,8 @@ module.exports = (grunt) ->
 					environment:
 						suffix: ".min"
 						root: "/v4.0-ci"
+						jqueryVersion: "<%= jqueryVersion.version %>"
+						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
 					assets: "dist"
 				files: [
 						expand: true
