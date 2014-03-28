@@ -43,14 +43,6 @@
 				liblocation = _pe.add.liblocation,
 				suffixExt = _pe.suffix + '.js';
 
-			// Add additonal validation methods
-			if (!_pe.fn.formvalid.inited) {
-				_pe.fn.formvalid.inited = true;
-				$.validator.addMethod("postcodeCA", function(value, element) {
-					return this.optional(element) ||/^([a-zA-Z]\d[a-zA-z](?: )?\d[a-zA-Z]\d)$/.test(value);
-				}, "The specified postal code is invalid");
-			}
-
 			// Append the aria-live region (for provide message updates to screen readers)
 			elm.append('<div class="arialive wb-invisible" aria-live="polite" aria-relevant="all"></div>');
 
@@ -61,6 +53,19 @@
 
 			if (mthdlang !== null) {
 				_pe.add._load(liblocation + 'i18n/formvalid/methods_' + mthdlang + suffixExt);
+			}
+
+			// Add additonal validation methods
+			if (!_pe.fn.formvalid.inited) {
+				_pe.fn.formvalid.inited = true;
+
+				// TODO: Remove when upstream PR is merged (https://github.com/jzaefferer/jquery-validation/pull/1048)
+				$.validator.addMethod("postcodeCA", function(value, element) {
+					return this.optional(element) ||/^([a-zA-Z]\d[a-zA-z](?: )?\d[a-zA-Z]\d)$/.test(value);
+				}, "The specified postal code is invalid");
+				if (lang === "fr") {
+					$.validator.messages.postcodeCA = "Veuillez fournir un code postal valide.";
+				}
 			}
 
 			// Add space to the end of the labels (so separation between label and error when CSS turned off)
