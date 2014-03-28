@@ -358,7 +358,7 @@ blockquote {
  *	  * Increase size of the pagination buttons
  */
 
-.pagination {
+.pagination, .pager {
 	[rel="prev"] {
 		&:before {
 			content: "← ";
@@ -375,6 +375,24 @@ blockquote {
 		> a,
 		> span {
 			padding: $padding-large-vertical $padding-large-horizontal;
+		}
+	}
+}
+
+.pager {
+	> li {
+		> a {
+			text-decoration: none;
+		}
+	}
+
+	> li {
+		> a,
+		> span {
+			&:hover, &:focus {
+				color: $pagination-hover-color;
+				border-color: $pagination-hover-border;
+			}
 		}
 	}
 }
