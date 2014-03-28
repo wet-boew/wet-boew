@@ -7,25 +7,18 @@
 	"tag": "share",
 	"parentdir": "share",
 	"altLangPrefix": "share",
-	"dateModified": "2014-03-11"
+	"css": ["demo/share"],
+	"dateModified": "2014-03-27"
 }
 ---
 <section>
 	<h2>Share a page</h2>
 
 	<div class="wb-share" data-wb-share='{"pnlId": "pnl1"}'></div>
-	<div class="text-right">
-		<strong>Add a second link:</strong>
-		<div class="wb-share link-only text-right" data-wb-share='{"pnlId": "pnl1"}'></div>
-	</div>
 
 	<details>
 		<summary>View code</summary>
-		<pre class="wb-prettify"><code>&lt;div class="wb-share" data-wb-share='{"pnlId": "pnl1"}'&gt;&lt;/div&gt;
-&lt;div class="text-right"&gt;
-	&lt;strong&gt;Add a second link:&lt;/strong&gt;
-	&lt;div class="wb-share link-only text-right" data-wb-share='{"pnlId": "pnl1"}'&gt;&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+		<pre class="wb-prettify"><code>&lt;div class="wb-share" data-wb-share='{"pnlId": "pnl1"}'&gt;&lt;/div&gt;</code></pre>
 	</details>
 </section>
 
@@ -35,18 +28,10 @@
 	<h2>Share a video</h2>
 
 	<div class="wb-share" data-wb-share='{"type": "video", "title": "Video title", "url": "http://video.url", "pnlId": "pnl2"}'></div>
-	<div class="text-right">
-		<strong>Add a second link:</strong>
-		<div class="wb-share link-only text-right" data-wb-share='{"type": "video", "pnlId": "pnl2"}'></div>
-	</div>
 
 	<details>
 		<summary>View code</summary>
-		<pre class="wb-prettify"><code>&lt;div class="wb-share" data-wb-share='{"type": "video", "title": "Video title", "url": "http://video.url", "pnlId": "pnl2"}'&gt;&lt;/div&gt;
-&lt;div class="text-right"&gt;
-	&lt;strong&gt;Add a second link:&lt;/strong&gt;
-	&lt;div class="wb-share link-only text-right" data-wb-share='{"type": "video", "pnlId": "pnl2"}'&gt;&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+		<pre class="wb-prettify"><code>&lt;div class="wb-share" data-wb-share='{"type": "video", "title": "Video title", "url": "http://video.url", "pnlId": "pnl2"}'&gt;&lt;/div&gt;</code></pre>
 	</details>
 </section>
 
@@ -56,17 +41,30 @@
 	<h2>Share a custom type</h2>
 
 	<div class="wb-share" data-wb-share='{"custType": " this comment", "title": "Comment title", "url": "http://comment.url", "pnlId": "pnl3"}'></div>
+
+	<details>
+		<summary>View code</summary>
+		<pre class="wb-prettify"><code>&lt;div class="wb-share" data-wb-share='{"custType": " this comment", "title": "Comment title", "url": "http://comment.url", "pnlId": "pnl3"}'&gt;&lt;/div&gt;</code></pre>
+	</details>
+</section>
+
+<hr />
+
+<section>
+	<h2>Add additional links</h2>
+
+	<div class="wb-share" data-wb-share='{"pnlId": "pnl4"}'></div>
 	<div class="text-right">
-		<strong>Add a second link:</strong>
-		<div class="wb-share link-only text-right" data-wb-share='{"custType": " this comment", "pnlId": "pnl3"}'></div>
+		<strong>Second link:</strong>
+		<div class="wb-share link-only text-right" data-wb-share='{"pnlId": "pnl4"}'></div>
 	</div>
 
 	<details>
 		<summary>View code</summary>
-		<pre class="wb-prettify"><code>&lt;div class="wb-share" data-wb-share='{"custType": " this comment", "title": "Comment title", "url": "http://comment.url", "pnlId": "pnl3"}'&gt;&lt;/div&gt;
+		<pre class="wb-prettify"><code>&lt;div class="wb-share" data-wb-share='{"pnlId": "pnl4"}'&gt;&lt;/div&gt;
 &lt;div class="text-right"&gt;
-	&lt;strong&gt;Add a second link:&lt;/strong&gt;
-	&lt;div class="wb-share link-only text-right" data-wb-share='{"custType": " this comment", "pnlId": "pnl3"}'&gt;&lt;/div&gt;
+	&lt;strong&gt;Second link:&lt;/strong&gt;
+	&lt;div class="wb-share link-only text-right" data-wb-share='{"pnlId": "pnl4"}'&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 	</details>
 </section>
@@ -76,19 +74,11 @@
 <section>
 	<h2>Filter the displayed sites</h2>
 
-	<div class="wb-share" data-wb-share='{"filter": ["twitter", "facebook"], "pnlId": "pnl4"}'></div>
-	<div class="text-right">
-		<strong>Add a second link:</strong>
-		<div class="wb-share link-only text-right" data-wb-share='{"pnlId": "pnl4"}'></div>
-	</div>
+	<div class="wb-share" data-wb-share='{"filter": ["twitter", "facebook"], "pnlId": "pnl5"}'></div>
 
 	<details>
 		<summary>View code</summary>
-		<pre class="wb-prettify"><code>&lt;div class="wb-share" data-wb-share='{"filter": ["twitter", "facebook"], "pnlId": "pnl4"}'&gt;&lt;/div&gt;
-&lt;div class="text-right"&gt;
-	&lt;strong&gt;Add a second link:&lt;/strong&gt;
-	&lt;div class="wb-share link-only text-right" data-wb-share='{"pnlId": "pnl4"}'&gt;&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+		<pre class="wb-prettify"><code>&lt;div class="wb-share" data-wb-share='{"filter": ["twitter", "facebook"], "pnlId": "pnl5"}'&gt;&lt;/div&gt;</code></pre>
 	</details>
 </section>
 
@@ -97,18 +87,32 @@
 <section>
 	<h2>Add custom CSS to the share link</h2>
 
-	<div class="wb-share" data-wb-share='{"pnlId": "pnl5", "lnkClass": "btn btn-default"}'></div>
-	<div class="text-right">
-		<strong>Add a second link:</strong>
-		<div class="wb-share link-only text-right" data-wb-share='{"pnlId": "pnl5", "lnkClass": "btn btn-default"}'></div>
-	</div>
+	<div class="wb-share" data-wb-share='{"pnlId": "pnl6", "lnkClass": "btn btn-default"}'></div>
 
 	<details>
 		<summary>View code</summary>
-		<pre class="wb-prettify"><code>&lt;div class="wb-share" data-wb-share='{"pnlId": "pnl5", "lnkClass": "btn btn-default"}'&gt;&lt;/div&gt;
-&lt;div class="text-right"&gt;
-	&lt;strong&gt;Add a second link:&lt;/strong&gt;
-	&lt;div class="wb-share link-only text-right" data-wb-share='{"pnlId": "pnl5", "lnkClass": "btn btn-default"}'&gt;&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+		<pre class="wb-prettify"><code>&lt;div class="wb-share" data-wb-share='{"pnlId": "pnl6", "lnkClass": "btn btn-default"}'&gt;&lt;/div&gt;</code></pre>
+	</details>
+</section>
+
+<hr />
+
+<section>
+	<h2>Add a site to the share panel</h2>
+
+	<div class="wb-share" data-wb-share='{"pnlId": "pnl7", "sites": {"demosite": {"name": "Demo site", "url": "http://www.demosite.com/?to=&amp;subject={t}&amp;body={u}%0A{d}"}}}'></div>
+
+	<details>
+		<summary>View code</summary>
+		<section>
+			<h3>HTML</h3>
+			<pre class="wb-prettify"><code>&lt;div class="wb-share" data-wb-share='{"pnlId": "pnl7", "sites": "demosite": {"name": "Demo site", "url": "http://www.demosite.com/?to=&amp;subject={t}&amp;body={u}%0A{d}"}}'&gt;&lt;/div&gt;</code></pre>
+		</section>
+		<section>
+			<h3>CSS</h3>
+			<pre class="wb-prettify"><code>.wb-share .demosite:before {
+	background: url("demosite.png") no-repeat;
+}</code></pre>
+		</section>
 	</details>
 </section>

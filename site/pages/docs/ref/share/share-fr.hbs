@@ -4,7 +4,7 @@
 	"language": "fr",
 	"description": "Permet à l'utilisateur de partager un contenu Web sur les plateformes de médias sociaux.",
 	"altLangPrefix": "share",
-	"dateModified": "2014-03-24"
+	"dateModified": "2014-03-27"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -55,7 +55,6 @@
 
 <section>
 	<h2 id="config">Configuration options</h2>
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -80,7 +79,7 @@
 			<tr>
 				<td><code>hdLvl</code></td>
 				<td>Heading level for the share panel.</td>
-				<td>Add <code>"hdLvl": "headingLevel"</code> to the <code>data-wb-share</code> attribute where <code>headingLevel</code> is the heading level.</td>
+				<td>Add <code>"hdLvl": "headingLevel"</code> to the <code>data-wb-share</code> attribute where <code>headingLevel</code> is the heading level. Use the following JavaScript code instead to configure all instances of the plugin: <code>window[ "wb-share" ] = {"hdLvl": "headingLevel"};</code>.</td>
 				<td>
 					<dl>
 						<dt><code>h2</code> (default):</dt>
@@ -99,7 +98,7 @@
 			<tr>
 				<td><code>lnkClass</code></td>
 				<td>Classes to be applied to the class attribute of the generated link.</td>
-				<td>Add <code>"lnkClass": "class1 class2"</code> to the <code>data-wb-share</code> attribute where <code>class1 class2</code> are the classes to be added separated by spaces.</td>
+				<td>Add <code>"lnkClass": "class1 class2"</code> to the <code>data-wb-share</code> attribute where <code>class1 class2</code> are the classes to be added separated by spaces. Use the following JavaScript code instead to configure all instances of the plugin: <code>window[ "wb-share" ] = {"hdLvl": "lnkClass": "class1 class2"};</code>.</td>
 				<td>
 					<ul>
 						<li>None (default)</li>
@@ -177,11 +176,64 @@
 			<tr>
 				<td><code>filter</code></td>
 				<td>Optional filter for the sites to display in the panel. Only the sites listed in the array will be displayed. If no sites are listed, then all sites will be displayed.</td>
-				<td>Add <code>"filter": ["site-1", "site-2", ... "site-n"]</code> to the <code>data-wb-share</code> attribute.</td>
+				<td>Add <code>"filter": ["site-1", "site-2", ... "site-n"]</code> to the <code>data-wb-share</code> attribute. Use the following JavaScript code instead to configure all instances of the plugin: <code>window[ "wb-share" ] = {"filter": ["site-1", "site-2", ... "site-n"]};</code>.</td>
 				<td>
 					<dl>
 						<dt>None (default):</dt>
 						<dd>Sites are not filtered by default.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>sites</code></td>
+				<td>Add one or more sites to the panel.</td>
+				<td>
+					<ol>
+						<li>
+							<p>Add the following to the <code>data-wb-share</code> attribute:</p>
+							<pre><code>"sites": {
+	"siteId1": {
+		"name": "siteName1",
+		"url": "siteUrl1"
+	},
+	"siteId2": {
+		"name": "siteName2",
+		"url": "siteUrl2"
+	}
+}</code></pre>
+							<p>For example "siteId1" could be "yahoomail", "name1" could be "Yahoo! Mail" and "url1" could be
+								"<code>http://compose.mail.yahoo.com/?to=&amp;subject={t}&amp;body={u}%0A{d}</code>" where "{u}" is
+								the page URL, "{t}" is the page title, {i} is the image URL, and '{d}' is the description.</p>
+							<p>
+							<p>Use the following JavaScript code instead to configure all instances of the plugin:</p>
+							<pre><code>window[ "wb-share" ] = {
+	"sites": {
+		"siteId1": {
+			"name": "siteName1",
+			"url": "siteUrl1"
+		},
+		"siteId2": {
+			"name": "siteName2",
+			"url": "siteUrl2"
+		}
+	}
+};</code></pre>
+						</li>
+						<li>Create a 32 pixel by 32 pixel image for each site.</li>
+						<li>Add the following CSS:
+							<pre><code>.wb-share .siteId1:before {
+	background: url("../assets/site1.png") no-repeat;
+}
+.wb-share .siteId2:before {
+	background: url("../assets/site2.png") no-repeat;
+}</code></pre>
+						</li>
+					</ol>
+				</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>Sites are not added this way by default.</dd>
 					</dl>
 				</td>
 			</tr>
