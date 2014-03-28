@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "test": "grunt test",
-    "postinstall": "bower update --config.interactive=false && grunt init"
+    "postinstall": "bower update && grunt init"
   },
   "repository": {
     "type": "git",
