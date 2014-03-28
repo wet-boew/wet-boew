@@ -9,7 +9,7 @@ function error_exit
 }
 
 if [ "$POST_BUILD" == "true" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$TRAVIS_REPO_SLUG" == "wet-boew/wet-boew" ]; then
-	declare -a supported_branches=('v4.0' 'master' 'v3.0') # List of branches to store build output for
+	declare -a supported_branches=('v4.0' 'master' 'v3.1' 'v3.0') # List of branches to store build output for
 
 	#Set git user
 	git config --global user.email "wet.boew.bot@gmail.com"
@@ -52,8 +52,8 @@ if [ "$POST_BUILD" == "true" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$
 		git push -fq origin $build_branch > /dev/null 2>&1 || error_exit "Error uploading the build artifacts"
 
 		#Create the dist without the GC themes
-		if [ "$TRAVIS_BRANCH" == "master" ]; then
-			git checkout master-base-dist
+		if [ "$TRAVIS_BRANCH" == "v3.1" ]; then
+			git checkout v3.1-base-dist
 			cp -Rf $HOME/temp_wet-boew/dist ./dist
 			rm -Rf ./dist/theme-clf2-nsi2
 			rm -Rf ./dist/theme-gcwu-fegc
@@ -62,7 +62,7 @@ if [ "$POST_BUILD" == "true" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] &&  [ "$
 			cp -Rf $HOME/temp_wet-boew/demos/theme-wet-boew ./demos/theme-wet-boew
 			git add -f .
 			git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER"
-			git push -fq origin master-base-dist > /dev/null 2>&1 || error_exit "Error uploading the base build artifacts"
+			git push -fq origin v3.1-base-dist > /dev/null 2>&1 || error_exit "Error uploading the base build artifacts"
 		fi
 
 		echo -e "Done uploading the build artifact for branch $TRAVIS_BRANCH\n"
