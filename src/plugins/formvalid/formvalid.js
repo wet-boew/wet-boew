@@ -150,14 +150,14 @@ var pluginName = "wb-frmvld",
 									$fieldset = $element.closest( "fieldset" );
 									if ( $fieldset.length !== 0 ) {
 										$legend = $fieldset.find( "legend" ).first();
-										if ( $legend.length !== 0 && $fieldset.find( "input[name=" + $element.attr( "name" ) + "]" ) !== 1) {
+										if ( $legend.length !== 0 && $fieldset.find( "input[name='" + $element.attr( "name" ) + "']" ) !== 1) {
 											$error.appendTo( $legend );
 											return;
 										}
 									}
 								}
 							}
-							$error.appendTo( $form.find( "label[for=" + $element.attr( "id" ) + "]" ) );
+							$error.appendTo( $form.find( "label[for='" + $element.attr( "id" ) + "']" ) );
 							return;
 						},
 
