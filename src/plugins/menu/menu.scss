@@ -142,6 +142,9 @@
 			li {
 				&.no-sect {
 					padding-left: 1.27em;
+					.list-group {
+						margin-bottom: 0;
+					}
 				}
 			}
 		}
@@ -177,7 +180,10 @@
 	}
 	details {
 		ul {
-			padding-left: 2em;
+			padding-left: 2.5em;
+		}
+		details {
+			margin-left: -1.28em;
 		}
 	}
 
