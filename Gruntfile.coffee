@@ -713,7 +713,7 @@ module.exports = (grunt) ->
 				options:
 					ignore: [
 						"XHTML element “head” is missing a required instance of child element “title”."
-
+						"The “details” element is not supported properly by browsers yet. It would probably be better to wait for implementations."
 					]
 				src: [
 					"dist/unmin/ajax/**/*.html"
@@ -726,6 +726,7 @@ module.exports = (grunt) ->
 						"XHTML element “head” is missing a required instance of child element “title”."
 						"XHTML element “li” not allowed as child of XHTML element “body” in this context. (Suppressing further errors from this subtree.)"
 						"The “aria-controls” attribute must point to an element in the same document."
+						"The “details” element is not supported properly by browsers yet. It would probably be better to wait for implementations."
 					]
 				src: [
 					"dist/unmin/demos/cal-events/ajax/**/*.html"

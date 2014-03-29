@@ -20,6 +20,7 @@ var pluginName = "wb-menu",
 	breadcrumb = document.getElementById( "wb-bc" ),
 	navCurrentEvent = "navcurr.wb",
 	focusEvent = "setfocus.wb",
+	menuItemSelector = "> a, > details > summary",
 	i18n, i18nText,
 	$document = wb.doc,
 
@@ -79,7 +80,7 @@ var pluginName = "wb-menu",
 		// Lets tweak for aria
 		for ( i = 0; i !== length; i += 1 ) {
 			$elm = $elements.eq( i );
-			$subMenu = $elm.siblings( ".sm" );
+			$subMenu = $elm.siblings( "ul" );
 
 			$elm.attr({
 				"aria-posinset": ( i + 1 ),
@@ -98,9 +99,47 @@ var pluginName = "wb-menu",
 				});
 
 				// recurse into submenu
-				drizzleAria( $subMenu.find( ":discoverable" ) );
+				drizzleAria( $subMenu.children( "li" ).find( menuItemSelector ) );
 			}
 		}
+	},
+
+	/**
+	 * @method createCollapsibleSection
+	 * @return {string}
+	 */
+	createCollapsibleSection = function( section, sectionIndex, sectionsLength, $items, itemsLength ) {
+
+		// Use details/summary for the collapsible mechanism
+		var k, $elm, elm, $item, $subItems,
+			$section = $( section ),
+			posinset = "' aria-posinset='",
+			menuitem = "role='menuitem' aria-setsize='",
+			sectionHtml = "<li><details>" + "<summary class='mb-item" +
+				( $section.hasClass( "wb-navcurr" ) || $section.children( ".wb-navcurr" ).length !== 0 ? " wb-navcurr'" : "'" ) +
+				"' " + menuitem + sectionsLength + posinset + ( sectionIndex + 1 ) +
+				"' aria-haspopup='true'>" + $section.text() + "</summary>" +
+				"<ul class='list-unstyled mb-sm' role='menu' aria-expanded='false' aria-hidden='true'>";
+
+		// Convert each of the list items into WAI-ARIA menuitems
+		for ( k = 0; k !== itemsLength; k += 1 ) {
+			$item = $items.eq( k );
+			$elm = $item.find( menuItemSelector );
+			elm = $elm[ 0 ];
+			if ( elm.nodeName.toLowerCase() === "a" ) {
+				sectionHtml += "<li>" + $item[ 0 ].innerHTML.replace(
+						/(<a\s)/,
+						"$1 " + menuitem + itemsLength +
+							posinset + ( k + 1 ) +
+							"' tabindex='-1' "
+					) + "</li>";
+			} else {
+				$subItems = $elm.parent().find( "> ul > li" );
+				sectionHtml += createCollapsibleSection( elm, k, itemsLength, $subItems, $subItems.length );
+			}
+		}
+
+		return sectionHtml + "</ul></details></li>";
 	},
 
 	/**
@@ -109,20 +148,9 @@ var pluginName = "wb-menu",
 	 * @return {string}
 	 */
 	createMobilePanelMenu = function( allProperties ) {
-		var navOpen = "<nav role='navigation'",
-			siteNavElement = " typeof='SiteNavigationElement'",
-			navClose = "</nav>",
-			detailsOpen = "<li><details>",
-			detailsClose = "</details></li>",
-			listOpen = "<ul class='list-unstyled ",
-			menuItemReplace1 = "role='menuitem' aria-setsize='",
-			menuItemReplace2 = "' aria-posinset='",
-			menuItemReplace3 = "' tabindex='-1' ",
-			summaryOpen = "<summary class='mb-item' " + menuItemReplace1,
-			summaryClose = "</summary>",
-			panel = "",
-			sectionHtml, properties, sections, section, parent, items,
-			href, linkHtml, i, j, k, len, len2, len3;
+		var panel = "",
+			sectionHtml, properties, sections, section, parent, $items,
+			href, linkHtml, i, j, len, sectionsLength, itemsLength;
 
 		// Process the secondary and site menus
 		len = allProperties.length;
@@ -130,34 +158,16 @@ var pluginName = "wb-menu",
 			properties = allProperties[ i ];
 			sectionHtml = "";
 			sections = properties[ 0 ];
-			len2 = sections.length;
-			for ( j = 0; j !== len2; j += 1 ) {
+			sectionsLength = sections.length;
+			for ( j = 0; j !== sectionsLength; j += 1 ) {
 				section = sections[ j ];
 				href = section.getAttribute( "href" );
-				items = section.parentNode.getElementsByTagName( "li" );
-				len3 = items.length;
+				$items = $( section.parentNode ).find( "> ul > li" );
+				itemsLength = $items.length;
 
 				// Collapsible section
-				if ( len3 !== 0 && ( !href || href.charAt( 0 ) === "#" ) ) {
-
-					// Use details/summary for the collapsible mechanism
-					sectionHtml += detailsOpen +
-						summaryOpen + len2 + menuItemReplace2 +
-						( j + 1 ) + "' aria-haspopup='true'>" +
-						section.innerHTML + summaryClose +
-						listOpen + "mb-sm' role='menu' aria-expanded='false' aria-hidden='true'>";
-
-					// Convert each of the list items in WAI-ARIA menuitems
-					for ( k = 0; k !== len3; k += 1 ) {
-						sectionHtml += "<li>" + items[ k ].innerHTML.replace(
-								/(<a\s)/,
-								"$1 " + menuItemReplace1 + len3 +
-									menuItemReplace2 + ( k + 1 ) +
-									menuItemReplace3
-							) + "</li>";
-					}
-
-					sectionHtml += "</ul>" + detailsClose;
+				if ( itemsLength !== 0 && ( !href || href.charAt( 0 ) === "#" ) ) {
+					sectionHtml += createCollapsibleSection( section, j, sectionsLength, $items, itemsLength );
 				} else {
 					parent = section.parentNode;
 
@@ -176,19 +186,19 @@ var pluginName = "wb-menu",
 					sectionHtml += "<li class='no-sect'>" +
 						linkHtml.replace(
 							/(<a\s)/,
-							"$1 class='mb-item' " + menuItemReplace1 +
-								len2 + menuItemReplace2 + ( j + 1 ) +
-								menuItemReplace3
+							"$1 class='mb-item' " + "role='menuitem' aria-setsize='" +
+								sectionsLength + "' aria-posinset='" + ( j + 1 ) +
+								"' tabindex='-1' "
 						) + "</li>";
 				}
 			}
 
 			// Create the panel section
-			panel += navOpen + siteNavElement + " id='" + properties[ 1 ] +
-				"' class='" + properties[ 1 ] + " wb-menu'>" +
+			panel += "<nav role='navigation' typeof='SiteNavigationElement' id='" +
+				properties[ 1 ] + "' class='" + properties[ 1 ] + " wb-menu'>" +
 				"<h3>" + properties[ 2 ] + "</h3>" +
-				listOpen + "mb-menu' role='menu'>" +
-				sectionHtml + "</ul>" + navClose;
+				"<ul class='list-unstyled mb-menu' role='menu'>" +
+				sectionHtml + "</ul></nav>";
 		}
 
 		return panel.replace( /list-group-item/gi, "" ) + "</div>";
@@ -603,7 +613,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 				}
 
 				// Set focus on the first submenu item
-				$subMenu.find( "a:first" ).trigger( focusEvent );
+				$subMenu.children( "li" ).eq( 0 ).find( menuItemSelector ).trigger( focusEvent );
 
 			// Hide sub-menus and set focus
 			} else if ( which === 27 ) {
@@ -621,7 +631,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 
 		// Menu item is not within a menu bar
 		} else {
-			menuitemSelector = "> a, > details > summary";
+			menuitemSelector = menuItemSelector;
 
 			// Up / down arrow = Previous / next menu item
 			if ( which === 38 || which === 40 ) {
