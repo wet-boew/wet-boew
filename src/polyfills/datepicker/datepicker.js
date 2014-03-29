@@ -35,7 +35,7 @@ var pluginName = "wb-date",
 	init = function( event ) {
 		var elm = event.target,
 			elmId = elm.id,
-			closeLabel;
+			closeLabel, space;
 
 		// Filter out any events triggered by descendants
 		// and only initialize the element once
@@ -52,12 +52,13 @@ var pluginName = "wb-date",
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
 				i18n = wb.i18n;
+				space = i18n( "space" );
 				i18nText = {
-					show: i18n( "date-show" ) + i18n( "space" ),
+					show: i18n( "date-show" ) + space,
 					selected: i18n( "date-sel" ),
-					close: i18n( "close" ) + i18n( "space" ) +
+					close: i18n( "close" ) + space +
 						i18n( "cal" ).toLowerCase() +
-						i18n( "space" ) + i18n( "esc-key" )
+						space + i18n( "esc-key" )
 				};
 			}
 
