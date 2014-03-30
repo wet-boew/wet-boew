@@ -280,11 +280,24 @@ code {
 	white-space: normal;
 }
 
-/* List unstyled RTL fix */
+/* 
+ * List unstyled RTL fix
+ */
 [dir=rtl] {
 	.list-unstyled {
 		padding-right: 0;
 	}
+}
+
+/*
+ * Adding space for definition list items
+ */
+dt {
+	margin-bottom: 3px;
+}
+
+dd {
+	margin-bottom: 15px;
 }
 
 /*
