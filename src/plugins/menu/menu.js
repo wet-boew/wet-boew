@@ -166,7 +166,7 @@ var pluginName = "wb-menu",
 				itemsLength = $items.length;
 
 				// Collapsible section
-				if ( itemsLength !== 0 && ( !href || href.charAt( 0 ) === "#" ) ) {
+				if ( itemsLength !== 0 ) {
 					sectionHtml += createCollapsibleSection( section, j, sectionsLength, $items, itemsLength );
 				} else {
 					parent = section.parentNode;
