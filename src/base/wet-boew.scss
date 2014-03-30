@@ -148,6 +148,7 @@ $icon-font-path: "../fonts/";
 @media screen and (max-width: $xxSmallViewMax) {
 	@import "views/xxSmallView";
 	@import "../plugins/menu/menu-xxSmallView";
+	@import "../plugins/tabs/tabs-xxSmallView";
 }
 
 /* Extra-small view */
