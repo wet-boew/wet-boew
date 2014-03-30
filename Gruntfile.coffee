@@ -238,6 +238,7 @@ module.exports = (grunt) ->
 					"lib/respond/src/respond.js"
 					"lib/excanvas/excanvas.js"
 					"lib/html5shiv/dist/html5shiv-printshiv.js"
+					"lib/es5-shim/dist/es5-shim.js"
 					"src/core/wb.js"
 					"!src/plugins/**/test.js"
 					"!src/plugins/**/assets/*.js"
@@ -824,6 +825,7 @@ module.exports = (grunt) ->
 						"DataTables/media/js/jquery.dataTables.js"
 						"proj4/dist/proj4.js"
 						"openlayers/OpenLayers.debug.js"
+						"es5-shim/es5-shim.js"
 					]
 					dest: "dist/unmin/js/deps"
 					rename: (dest, src) ->
