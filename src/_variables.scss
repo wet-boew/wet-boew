@@ -26,17 +26,26 @@ $largeViewMax: 1599px;
 $xLargeViewMin: 1600px;
 
 /*
+ *	Font scales
+ */
+$font-scale-xxxl: 2.125;
+$font-scale-xxl: 1.625;
+$font-scale-xl: 1.375;
+$font-scale-lg: 1.125;
+$font-scale-sm: 0.875;
+
+/*
  *	Overrides for Bootstrap variables
  */
 $font-size-base: 16px;
-$font-size-large: ceil($font-size-base * 1.125);
-$font-size-small: ceil($font-size-base * 0.875);
+$font-size-large: ceil($font-size-base * $font-scale-lg);
+$font-size-small: ceil($font-size-base * $font-scale-sm);
 
-$font-size-h1: ceil($font-size-base * 2.125);
-$font-size-h2: ceil($font-size-base * 1.625);
-$font-size-h3: ceil($font-size-base * 1.375);
-$font-size-h4: ceil($font-size-base * 1.125);
-$font-size-h6: ceil($font-size-base * 0.875);
+$font-size-h1: ceil($font-size-base * $font-scale-xxxl);
+$font-size-h2: ceil($font-size-base * $font-scale-xxl);
+$font-size-h3: ceil($font-size-base * $font-scale-xl);
+$font-size-h4: ceil($font-size-base * $font-scale-lg);
+$font-size-h6: ceil($font-size-base * $font-scale-sm);
 
 $line-height-base: 1.4375; // 20/14 -> 23/16 on the basis of ceil((20/14)*16) = 23
 
