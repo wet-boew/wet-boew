@@ -12,28 +12,91 @@ a {
 	&.btn {
 		text-decoration: none;		// except for buttons
 	}
+	&:visited {
+		color: $link-visited-color;
+	}
 }
 
-// visited link color for content area, except for certain elements
-main {
-	:not(.dropdown) {
-		&:not(.btn-group) {
-			&:not(.nav) {
-				&:not(.navbar) {
-					&:not(.badge) {
-						a {
-							&:not(.btn) {
-								&:not([role=tab]) {
-									&:visited {
-										color: $link-visited-color;
-									}
-								}
-							}
-						}
-					}
-				}
+// do not change the visited link colour for certain elements
+.btn-default:visited {
+	color: $btn-default-color;
+}
+
+.btn-primary:visited {
+	color: $btn-primary-color;
+}
+
+.btn-success:visited {
+	color: $btn-success-color;
+}
+
+.btn-info:visited {
+	color: $btn-info-color;
+}
+
+.btn-warning:visited {
+	color: $btn-warning-color;
+}
+
+.btn-danger:visited {
+	color: $btn-danger-color;
+}
+
+.dropdown-menu {
+	> li > a:visited {
+		color: $dropdown-link-color;
+	}
+}
+
+.nav {
+	> li > a:visited {
+		color: $link-color;
+	}
+}
+
+.nav-pills {
+	> li.active > a:visited {
+		color: $nav-pills-active-link-hover-color;
+	}
+}
+
+.navbar-default {
+	.navbar-nav {
+		> li > a:visited {
+			color: $navbar-default-link-color;
+		}
+	}
+	
+	@media (max-width: $grid-float-breakpoint-max) {
+		.open .dropdown-menu {
+			> li > a {
+				color: $navbar-default-link-color;
 			}
 		}
+	}
+	
+	.navbar-link:visited {
+		color: $navbar-default-link-color;
+	}
+}
+
+.navbar-inverse {
+	.navbar-nav {
+		> li > a:visited {
+			color: $navbar-inverse-link-color;
+		}
+	}
+	
+	@media (max-width: $grid-float-breakpoint-max) {
+		.open .dropdown-menu {
+			> li > a:visited {
+				color: $navbar-inverse-link-color;
+			}
+		}
+	}
+
+	.navbar-link:visited {
+		color: $navbar-inverse-link-color;
 	}
 }
 
