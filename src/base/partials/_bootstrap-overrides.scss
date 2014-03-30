@@ -474,6 +474,16 @@ blockquote {
 }
 
 /*
+ *	Use button border style 'outset' to give buttons depth, except when disabled
+ */
+.btn {
+	border-style: outset;
+	&.disabled, &[disabled], fieldset[disabled] & {
+		border-style: solid;
+	}
+}
+
+/*
  *	Heading top margins
  */
 h1, .h1 {
