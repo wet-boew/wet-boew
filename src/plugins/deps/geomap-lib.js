@@ -798,20 +798,19 @@ var pluginName = "wb-geomap",
 				feature: evt.features[ 0 ]
 			},
 			targetTable = document.getElementById( $table.attr( "id" ) ),
+			targetTableHead = targetTable.getElementsByTagName( "thead" )[ 0 ],
 			targetTableBody = targetTable.getElementsByTagName( "tbody" )[ 0 ],
 			selectControl = geomap.selectControl,
 			features = evt.features,
 			len = features.length,
 			geoRegex = /\W/g,
+			headRow = createRow( geomap, rowObj, zoom, mapControl ),
+			tableBody = targetTableBody.innerHTML,
 			feature, i;
-
-		targetTable
-			.getElementsByTagName( "thead" )[ 0 ]
-				.innerHTML = createRow( geomap, rowObj, zoom, mapControl );
 
 		for ( i = 0; i !== len; i += 1 ) {
 			feature = features[ i ];
-			targetTableBody.innerHTML += createRow(
+			tableBody += createRow(
 				geomap,
 				{
 					type: "body",
@@ -822,6 +821,15 @@ var pluginName = "wb-geomap",
 				zoom,
 				mapControl
 			);
+		}
+
+		// Temporary fix for unknown runtime error in IE8
+		if ( wb.ielt9 ) {
+			$( targetTableHead ).html( headRow );
+			$( targetTableBody ).html( tableBody );
+		} else {
+			targetTableHead.innerHTML = headRow;
+			targetTableBody.innerHTML += tableBody;
 		}
 	},
 
@@ -852,11 +860,17 @@ var pluginName = "wb-geomap",
 
 		// Find the row
 		var featureId = feature.id.replace( /\W/g, "_" ),
-			tr = document.getElementById( featureId );
+			tr = document.getElementById( featureId ),
+			newTr = addChkBox( geomap, feature, featureId ) + tr.innerHTML +
+				( mapControl && zoom ? addZoomTo( geomap, feature ) : "" );
 
 		// Add select checkbox and zoom column
-		tr.innerHTML = addChkBox( geomap, feature, featureId ) + tr.innerHTML +
-				( mapControl && zoom ? addZoomTo( geomap, feature ) : "" );
+		// Temporary fix for IE8 unknown runtime error bug
+		if ( wb.ielt9 ) {
+			$( tr ).html( newTr );
+		} else {
+			tr.innerHTML = newTr;
+		}
 	},
 
 	/*
