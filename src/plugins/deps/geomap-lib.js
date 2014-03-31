@@ -2253,10 +2253,10 @@ var selector = ".wb-geomap",
 		geomap.geolocate = new OpenLayers.Control.Geolocate(
 				{
 					type: OpenLayers.Control.TYPE_TOGGLE,
-					bind: false,
+					bind: true,
 					watch: true,
 					geolocationOptions: {
-						enableHighAccuracy: false,
+						enableHighAccuracy: true,
 						maximumAge: 0,
 						timeout: 7000
 					},
