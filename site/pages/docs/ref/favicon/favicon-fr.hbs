@@ -37,10 +37,10 @@
 			<h3>Add a mobile favicon:</h3>
 			<ol>
 				<li>Add a favicon to the web page using a link element: 
-					<pre><code>&lt;link href="favion.ico" rel="shortcut icon"&gt;</code></pre>
+					<pre><code>&lt;link href="favion.ico" rel="icon" type="image/x-icon"&gt;</code></pre>
 				</li>
 				<li>Optionally specify the mobile favion's filename, path, rel attribute and sizes attribute:
-					<pre><code>&lt;link href="favion.ico" rel="shortcut icon" 
+					<pre><code>&lt;link href="favion.ico" rel="icon" type="image/x-icon"
 		data-filename="my-mobile-favicon.ico" 
 		data-path="/path/to/favicon/"
 		data-rel="apple-touch-icon-precomposed"
@@ -53,7 +53,7 @@
 			<h3>Update an existing favicon's href attribute:</h3>
 			<ol>
 				<li>Using JavaScript, get a reference to the favicon's link element: 
-					<pre><code>var $favicon = $( "link[rel='shortcut icon']" );</code></pre>
+					<pre><code>var $favicon = $( "link[rel='icon']" );</code></pre>
 				</li>
 				<li>Trigger the <code>icon.wb-favicon</code> event on the favicon element:
 					<pre><code>$favicon.trigger( "icon.wb-favicon" );</code></pre>
@@ -97,7 +97,7 @@
 					<td>
 						<dl>
 							<dt>None (default):</dt>
-							<dd>If not specified, defaults to the same path as the <code>&lt;link&gt;</code> shortcut icon</dd>
+							<dd>If not specified, defaults to the same path as the <code>&lt;link&gt;</code> icon</dd>
 							<dt>String (favicon path):</dt>
 							<dd>Custom mobile favicon path.</dd>
 						</dl>
