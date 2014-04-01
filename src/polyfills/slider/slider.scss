@@ -87,7 +87,7 @@
 .fd-slider {
 	@extend %slider-width-100perc;
 	@extend %slider-height-20;
-	margin: 0 0 10px 0;
+	margin: 0 0 10px;
 	text-align: center;
 	@extend %slider-display-block;
 	position: relative;

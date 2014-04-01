@@ -40,5 +40,3 @@ linters:
     enabled: false
   DuplicateProperty:
     enabled: false
-  Shorthand:
-    enabled: false
