@@ -7,7 +7,7 @@
 	"tag": "geomap",
 	"parentdir": "geomap",
 	"altLangPrefix": "geomap",
-	"js": ["demo/client_function"],
+	"js": ["demo/client_functions"],
 	"dateModified": "2014-03-07"
 }
 ---
@@ -103,9 +103,9 @@
 		<div class="wb-geomap-layers col-md-12">
 			<h2>Exemple - Données dans le fichier HTML</h2>
 			<p>Les données est créées à partir des tables suivantes. Un attribut <em>data-geometry</em> contient la géometry et un attribut <em>data-type</em> contient le type (wkt ou bbox) ont été ajoutés à chaque ligne.</p>
-			<h3>Géométries de point</h3>
-			<table id="cities" aria-label="Géométries de point" class="table wb-tables">
-				<caption class="sr-only">Table de géométrie point.</caption>
+			<h3>Points</h3>
+			<table id="cities" aria-label="Points" class="table wb-tables">
+				<caption class="sr-only">Tableau de géométrie point.</caption>
 				<thead>
 					<tr>
 						<th>Rang</th>
@@ -168,10 +168,10 @@
 			</table>
 		</div>
 		<div class="col-md-12">
-			<h3>Résultats de la recherche</h3>
-			<table id="bbox" aria-label="Résultats de la recherche" class="table table-condensed">
+			<h3>Boîtes des délimitations</h3>
+			<table id="bbox" aria-label="Boîtes des délimitations" class="table table-condensed">
 				<caption class="sr-only">
-					Tableau des résultats de la recherche contenant la géométries des étendues des éléments.
+					Tableau des boîtes de délimitations.
 				</caption>
 				<thead>
 					<tr>

@@ -58,7 +58,7 @@ var wet_boew_geomap = {
 				title: "Title",
 				summary: "About this dataset"
 			},
-			visible: true
+			visible: false
 		},
 		{
 			title: "GeoRSS Feed",
@@ -70,7 +70,7 @@ var wet_boew_geomap = {
 				description: "Description",
 				link: "More Info"
 			},
-			visible: true,
+			visible: false,
 			datatable: false,
 			tab: true
 		},
@@ -83,7 +83,7 @@ var wet_boew_geomap = {
 				alt: "json",
 				q: "alluvial"
 			},
-			visible: true,
+			visible: false,
 			root: "products",
 			popups: true,
 			tab: true,
