@@ -9,9 +9,11 @@
 
 a {
 	text-decoration: underline;		// re-enable underlining
+
 	&.btn {
 		text-decoration: none;		// except for buttons
 	}
+
 	&:visited {
 		color: $link-visited-color;
 	}
@@ -43,60 +45,124 @@ a {
 }
 
 .dropdown-menu {
-	> li > a:visited {
-		color: $dropdown-link-color;
+	> {
+		li {
+			> {
+				a {
+					&:visited {
+						color: $dropdown-link-color;
+					}
+				}
+			}
+		}
 	}
 }
 
 .nav {
-	> li > a:visited {
-		color: $link-color;
+	> {
+		li {
+			> {
+				a {
+					&:visited {
+						color: $link-color;
+					}
+				}
+			}
+		}
 	}
 }
 
 .nav-pills {
-	> li.active > a:visited {
-		color: $nav-pills-active-link-hover-color;
+	> {
+		li {
+			&.active {
+				> {
+					a {
+						&:visited {
+							color: $nav-pills-active-link-hover-color;
+						}
+					}
+				}
+			}
+		}
 	}
 }
 
 .navbar-default {
 	.navbar-nav {
-		> li > a:visited {
-			color: $navbar-default-link-color;
-		}
-	}
-
-	@media (max-width: $grid-float-breakpoint-max) {
-		.open .dropdown-menu {
-			> li > a {
-				color: $navbar-default-link-color;
+		> {
+			li {
+				> {
+					a {
+						&:visited {
+							color: $navbar-default-link-color;
+						}
+					}
+				}
 			}
 		}
 	}
 
-	.navbar-link:visited {
-		color: $navbar-default-link-color;
+	@media (max-width: $grid-float-breakpoint-max) {
+		.open {
+			.dropdown-menu {
+				> {
+					li {
+						> {
+							a {
+								color: $navbar-default-link-color;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.navbar-link {
+		&:visited {
+			color: $navbar-default-link-color;
+		}
 	}
 }
 
 .navbar-inverse {
 	.navbar-nav {
-		> li > a:visited {
-			color: $navbar-inverse-link-color;
-		}
-	}
-
-	@media (max-width: $grid-float-breakpoint-max) {
-		.open .dropdown-menu {
-			> li > a:visited {
-				color: $navbar-inverse-link-color;
+		> {
+			li {
+				> {
+					a {
+						&:visited {
+							color: $navbar-inverse-link-color;
+						}
+					}
+				}
 			}
 		}
 	}
 
-	.navbar-link:visited {
-		color: $navbar-inverse-link-color;
+	@media (max-width: $grid-float-breakpoint-max) {
+		.open {
+			.dropdown-menu {
+				> {
+					li {
+						> {
+							a {
+								&:visited {
+									color: $navbar-inverse-link-color;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.navbar-link {
+		&:visited {
+			color: $navbar-inverse-link-color;
+		}
 	}
 }
 
@@ -112,10 +178,12 @@ a {
 
 .alert {
 	@extend %label-alert-common;
+
 	> {
 		:first-child {
 			margin-top: auto;
 			margin-left: 1.2em;
+
 			&:before {
 				position: absolute;
 				margin-left: -1.3em;
@@ -123,6 +191,7 @@ a {
 				font-family: "Glyphicons Halflings";
 			}
 		}
+
 		strong,
 		em,
 		span {
@@ -139,6 +208,7 @@ a {
 			:first-child {
 				margin-left: auto;
 				margin-right: 1.2em;
+
 				&:before {
 					margin-left: auto;
 					margin-right: -1.3em;
@@ -151,9 +221,11 @@ a {
 %label-alert-color-000 {
 	color: #000;
 }
+
 %label-alert-underline {
 	text-decoration: underline;
 }
+
 .label {
 	@extend %label-alert-common;
 }
@@ -162,9 +234,11 @@ a {
 	border-color: #acacac;
 	background: #eee;
 }
+
 .label-default {
 	@extend %label-default-bg-border-left;
 	@extend %label-alert-color-000;
+
 	&[href] {
 		&:hover,
 		&:focus,
@@ -180,9 +254,11 @@ a {
 	border-color: #083c6c;
 	background: #e8f2f4;
 }
+
 .label-primary {
 	@extend %label-primary-bg-border-left;
 	@extend %label-alert-color-000;
+
 	&[href] {
 		&:hover,
 		&:focus,
@@ -195,13 +271,16 @@ a {
 }
 
 $label-alert-warning-border-icon-color: #278400;
+
 %label-alert-success-bg-border-left {
 	border-color: $label-alert-warning-border-icon-color;
 	background: #d8eeca;
 }
+
 .label-success {
 	@extend %label-alert-success-bg-border-left;
 	@extend %label-alert-color-000;
+
 	&[href] {
 		&:hover,
 		&:focus,
@@ -212,9 +291,11 @@ $label-alert-warning-border-icon-color: #278400;
 		}
 	}
 }
+
 .alert-success {
 	@extend %label-alert-success-bg-border-left;
 	@extend %label-alert-color-000;
+
 	> {
 		:first-child {
 			&:before {
@@ -226,13 +307,16 @@ $label-alert-warning-border-icon-color: #278400;
 }
 
 $label-alert-info-border-icon-color: #269abc;
+
 %label-alert-info-bg-border-left {
 	border-color: $label-alert-info-border-icon-color;
 	background: #d7faff;
 }
+
 .label-info {
 	@extend %label-alert-info-bg-border-left;
 	@extend %label-alert-color-000;
+
 	&[href] {
 		&:hover,
 		&:focus,
@@ -243,9 +327,11 @@ $label-alert-info-border-icon-color: #269abc;
 		}
 	}
 }
+
 .alert-info {
 	@extend %label-alert-info-bg-border-left;
 	@extend %label-alert-color-000;
+
 	> {
 		:first-child {
 			&:before {
@@ -257,13 +343,16 @@ $label-alert-info-border-icon-color: #269abc;
 }
 
 $label-alert-warning-border-icon-color: #f90;
+
 %label-alert-warning-bg-border-left {
 	border-color: $label-alert-warning-border-icon-color;
 	background: #f9f4d4;
 }
+
 .label-warning {
 	@extend %label-alert-warning-bg-border-left;
 	@extend %label-alert-color-000;
+
 	&[href] {
 		&:hover,
 		&:focus,
@@ -274,9 +363,11 @@ $label-alert-warning-border-icon-color: #f90;
 		}
 	}
 }
+
 .alert-warning {
 	@extend %label-alert-warning-bg-border-left;
 	@extend %label-alert-color-000;
+
 	> {
 		:first-child {
 			&:before {
@@ -288,13 +379,16 @@ $label-alert-warning-border-icon-color: #f90;
 }
 
 $label-alert-danger-border-icon-color: #d3080c;
+
 %label-alert-danger-bg-border-left {
 	border-color: $label-alert-danger-border-icon-color;
 	background: #f3e9e8;
 }
+
 .label-danger {
 	@extend %label-alert-danger-bg-border-left;
 	@extend %label-alert-color-000;
+
 	&[href] {
 		&:hover,
 		&:focus,
@@ -305,9 +399,11 @@ $label-alert-danger-border-icon-color: #d3080c;
 		}
 	}
 }
+
 .alert-danger {
 	@extend %label-alert-danger-bg-border-left;
 	@extend %label-alert-color-000;
+
 	> {
 		:first-child {
 			&:before {
@@ -393,14 +489,17 @@ input {
 	&[type="button"],
 	&[type="submit"] {
 		height: $input-height-base;
+
 		&.btn-lg,
 		&.input-lg {
 			height: $input-height-large;
 		}
+
 		&.btn-sm,
 		&.input-sm {
 			height: $input-height-small;
 		}
+
 		&.btn-xs {
 			height: $input-height-xs;
 		}
@@ -514,6 +613,7 @@ blockquote {
  */
 .btn {
 	border-style: outset;
+
 	&.disabled,
 	&[disabled],
 	fieldset[disabled] & {

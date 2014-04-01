@@ -18,15 +18,18 @@
 #wb-glb-mn .pnl-btn {
 	float: right;
 	margin: 0;
+
 	li {
 		border-left: 1px solid #777;
 		list-style-type: none;
 		float: left;
 		padding: 6px 15px;
+
 		&:first-child {
 			border-left: none;
 		}
 	}
+
 	a {
 		color: #fff;
 		text-decoration: none;
@@ -37,10 +40,12 @@
 	.pnl-btn {
 		position: relative;
 		z-index: 2;
+
 		li {
 			padding: 4px 10px;
 			width: 100%;
 		}
+
 		a {
 			font-size: 1.5em;
 			display: block;
@@ -59,14 +64,17 @@
 		text-shadow: 1px 1px 1px #333;
 		text-decoration: none;
 	}
+
 	small {
 		display: block;
 		font-size: 0.4em;
 		margin-bottom: 4px;
 	}
+
 	object {
 		pointer-events: none;
 	}
+
 	object,
 	img {
 		height: 1.5em;
@@ -85,13 +93,16 @@
 			}
 		}
 	}
+
 	#wb-glb-mn {
 		.pnl-btn {
 			text-align: left;
 		}
 	}
+
 	#wb-sttl {
 		float: right;
+
 		object,
 		img {
 			margin: 9px 0 9px 15px;

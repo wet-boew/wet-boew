@@ -5,22 +5,27 @@
 	background: #0b3048;
 	color: #fff;
 }
+
 #wb-sm {
 	background: #0e4164;
+
 	.menu {
 		text-shadow: 1px 1px 1px #666;
 		margin-bottom: 0;
+
 		> {
 			li {
 				> {
 					a {
 						color: #fff;
 						border-left: 1px solid #999;
+
 						&.wb-navcurr {
 							@extend %wet-theme-wb-sm-wb-navcurr;
 						}
 					}
 				}
+
 				&:last-child {
 					> {
 						a {
@@ -28,6 +33,7 @@
 						}
 					}
 				}
+
 				&.active {
 					> {
 						a {
@@ -40,6 +46,7 @@
 			}
 		}
 	}
+
 	.sm {
 		&.open {
 			border-left: none;
@@ -47,6 +54,7 @@
 			border-bottom: 5px solid #243850;
 			padding: 0;
 			background: #ccc;
+
 			li {
 				a,
 				summary {
@@ -56,26 +64,32 @@
 					text-shadow: none;
 					padding: 5px 10px;
 					text-decoration: none;
+
 					&.wb-navcurr {
 						@extend %wet-theme-wb-sm-wb-navcurr;
 					}
+
 					&:hover,
 					&:focus {
 						@extend %wet-theme-wb-sm-wb-navcurr;
 					}
 				}
 			}
+
 			.slflnk {
 				background: #bbb;
 			}
 		}
+
 		.row {
 			background: transparent;
+
 			a {
 				color: #6e6e6e;
 			}
 		}
 	}
+
 	#wb-sec-p {
 		display: none;
 	}
@@ -84,30 +98,37 @@
 %wet-theme-site-menu-mb-pnl-bg-0e4164 {
 	background: #0e4164;
 }
+
 #mb-pnl {
 	&.modal-content {
 		background: #193451;
 	}
+
 	.modal-header {
 		border: none;
 		border-bottom: 1px solid #072337;
 		box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.3), 3px 3px 3px -2px rgba(0, 0, 0, 0.3), -3px 3px 3px -2px rgba(0, 0, 0, 0.3);
 	}
+
 	.modal-body {
 		background: #193451;
 		padding: 0;
+
 		li {
 			line-height: 2em;
 		}
+
 		> {
 			:first-child {
 				padding-top: 20px;
 			}
 		}
 	}
+
 	.lng-ofr {
 		@extend %wet-theme-site-menu-mb-pnl-bg-0e4164;
 	}
+
 	summary {
 		&:hover,
 		&:focus {
@@ -115,28 +136,35 @@
 			color: #fff;
 		}
 	}
+
 	a {
 		color: #fff;
 		text-decoration: none;
 	}
+
 	.srch-pnl {
 		@extend %wet-theme-site-menu-mb-pnl-bg-0e4164;
+
 		.form-group {
 			float: left;
 			margin-right: 5px;
 			width: 75%;
 		}
 	}
+
 	.sec-pnl {
 		background: #cdd4da;
+
 		a,
 		summary {
 			color: #2e5576;
 		}
 	}
+
 	.sm-pnl {
 		@extend %wet-theme-site-menu-mb-pnl-bg-0e4164;
 	}
+
 	.info-pnl {
 		border-top: 2px solid #061e38;
 	}

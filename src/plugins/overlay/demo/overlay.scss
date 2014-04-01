@@ -21,12 +21,15 @@
 	header {
 		@extend %overlay-demo-inline-block;
 	}
+
 	ul {
 		@extend %overlay-demo-inline-block;
 		margin-bottom: 0;
+
 		li {
 			margin-bottom: 5px;
 		}
+
 		> {
 			li {
 				&:first-child {

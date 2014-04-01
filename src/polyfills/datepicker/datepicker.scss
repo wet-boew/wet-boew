@@ -5,6 +5,7 @@
 %datepicker-color-fff-important {
 	color: #fff !important;
 }
+
 %datepicker-inline-block {
 	display: inline-block;
 }
@@ -20,6 +21,7 @@
 .form-group {
 	.wb-date-wrap {
 		display: block;
+
 		input {
 			@extend %datepicker-inline-block;
 		}
@@ -48,11 +50,13 @@
 	background: none;
 	border: none;
 	vertical-align: middle;
+
 	&:link,
 	&:visited,
 	&:focus {
 		color: #000;
 	}
+
 	span {
 		font-size: 1.3em;
 	}
@@ -62,6 +66,7 @@
 	a {
 		text-decoration: underline;
 	}
+
 	td {
 		&.datepicker-selected {
 			a {
@@ -70,8 +75,10 @@
 			}
 		}
 	}
+
 	a {
 		color: #111;
+
 		&:hover,
 		&:focus {
 			@extend %datepicker-color-fff-important;

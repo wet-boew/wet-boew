@@ -16,6 +16,7 @@
 	li {
 		list-style-type: none;
 		display: none;
+
 		&:first-child {
 			display: block;
 		}
@@ -38,6 +39,7 @@
 
 .mfp-close {
 	font-weight: 700;
+
 	/* Should fix upstream in Magnific Popup rather than overriding in WET */
 	&:focus {
 		@extend %lightbox-button-outline;
@@ -57,6 +59,7 @@
 		width: 75%;
 		padding-right: 5px;
 	}
+
 	.mfp-counter {
 		font-size: 1em;
 		width: 25%;

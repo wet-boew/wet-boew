@@ -24,6 +24,7 @@
 		position: relative;
 		max-height: 0;
 		overflow: hidden;
+
 		&.open {
 			max-height: 1000px;
 			min-width: 12.5em;
@@ -32,27 +33,33 @@
 			z-index: 500;
 			text-transform: none;
 			top: auto;
+
 			li {
 				@extend %global-display-block;
+
 				a {
 					text-align: left;
 				}
 			}
 		}
 	}
+
 	.menu {
 		position: relative;
 		margin-left: 0;
+
 		> {
 			li {
 				margin: 0;
 				padding: 0;
 				float: left;
+
 				a {
 					text-align: center;
 					display: block;
 					padding: 1em;
 					text-decoration: none;
+
 					&:hover,
 					&:focus {
 						text-decoration: underline;
@@ -61,16 +68,19 @@
 			}
 		}
 	}
+
 	.active {
 		> {
 			a {
 				@extend %global-text-decoration-none;
 			}
 		}
+
 		.expicon {
 			border-top-color: #000;
 		}
 	}
+
 	.sm-open {
 		.expicon {
 			border-color: transparent !important;
@@ -82,12 +92,14 @@
 	.wb-menu {
 		.menu {
 			padding-right: 0;
+
 			> {
 				li {
 					float: right;
 				}
 			}
 		}
+
 		.sm {
 			&.open {
 				li {
@@ -98,6 +110,7 @@
 			}
 		}
 	}
+
 	.expicon {
 		left: auto;
 		right: 0.75em;
@@ -109,46 +122,58 @@
 %menu-mb-pnl-margin-bottom-5px {
 	margin-bottom: 5px;
 }
+
 %menu-mb-pnl-wb-navcurr {
 	outline: 1px solid;
 }
+
 %menu-mb-pnl-wb-navcurr-focus {
 	outline-style: dotted;
 }
+
 %menu-mb-pnl-padding-10-20-8 {
 	padding: 10px 20px 8px;
 }
+
 #mb-pnl {
 	.srch-pnl {
 		@extend %menu-mb-pnl-padding-10-20-8;
 	}
+
 	.lng-ofr {
 		padding: 7px 15px 0;
 		text-align: right;
+
 		ul {
 			margin-bottom: 0;
 		}
+
 		li {
 			padding-left: 10px;
 			padding-right: 0;
 			line-height: normal;
+
 			a {
 				padding: 5px;
 			}
 		}
 	}
+
 	nav {
 		@extend %menu-mb-pnl-padding-10-20-8;
+
 		ul {
 			li {
 				&.no-sect {
 					padding-left: 1.27em;
+
 					.list-group {
 						margin-bottom: 0;
 					}
 				}
 			}
 		}
+
 		.mb-menu {
 			> {
 				li {
@@ -156,22 +181,28 @@
 				}
 			}
 		}
+
 		a {
 			margin: 6px 0 6px -6px;
 			padding: 0 6px;
 			display: inline-block;
+
 			&.wb-navcurr {
 				@extend %menu-mb-pnl-wb-navcurr;
+
 				&:focus {
 					@extend %menu-mb-pnl-wb-navcurr-focus;
 				}
 			}
 		}
+
 		summary {
 			margin-left: -3px;
 			padding-left: 3px;
+
 			&.wb-navcurr {
 				@extend %menu-mb-pnl-wb-navcurr;
+
 				&:focus {
 					@extend %menu-mb-pnl-wb-navcurr-focus;
 					outline-offset: -2px;
@@ -179,10 +210,12 @@
 			}
 		}
 	}
+
 	details {
 		ul {
 			padding-left: 2.5em;
 		}
+
 		details {
 			margin-left: 6px 0 6px -1.28em;
 		}
@@ -192,10 +225,12 @@
 		form {
 			white-space: nowrap;
 		}
+
 		label {
 			@extend %accessible-invisible;
 		}
 	}
+
 	.modal-body {
 		h2 {
 			@extend %global-display-none;
@@ -207,11 +242,13 @@
 	#mb-pnl {
 		.lng-ofr {
 			text-align: left;
+
 			li {
 				padding-left: 0;
 				padding-right: 10px;
 			}
 		}
+
 		nav {
 			ul {
 				li {
@@ -221,10 +258,12 @@
 					}
 				}
 			}
+
 			a {
 				margin-left: 0;
 				margin-right: -6px;
 			}
+
 			summary {
 				margin-left: 0;
 				margin-right: -3px;
@@ -232,6 +271,7 @@
 				padding-right: 3px;
 			}
 		}
+
 		details {
 			ul {
 				padding-left: 0;
@@ -244,6 +284,7 @@
 %menu-noscript-display-block-important {
 	display: block !important;
 }
+
 .wb-disable {
 	#wb-glb-mn {
 		display: none !important;

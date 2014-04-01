@@ -10,9 +10,11 @@
 	[role="tablist"] {
 		display: none !important;
 	}
+
 	[role="tabpanel"] {
 		display: block !important;
 		opacity: 1 !important;
+
 		figcaption {
 			position: static;
 		}

@@ -9,17 +9,20 @@
 	height: 100%;
 	width: 3em;
 }
+
 %tabs-mediumview-prv-nxt-a-common {
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	left: 0;
 }
+
 %tabs-mediumview-prv-nxt-glyphicon-common {
 	position: absolute;
 	top: 0;
 	bottom: 0;
 }
+
 %tabs-mediumview-right-0 {
 	right: 0;
 }
@@ -31,6 +34,7 @@
 			background: $drabBlue;
 			background: transparentize($drabBlue, 0.1);
 		}
+
 		[role="tablist"] {
 			li {
 				&.tab-count {
@@ -39,18 +43,22 @@
 			}
 		}
 	}
+
 	&.carousel-s2 {
 		[role="tablist"] {
 			li {
 				&.control {
 					position: absolute;
 				}
+
 				&.prv {
 					left: 0;
 					@extend %tabs-mediumview-prv-nxt-common;
+
 					a {
 						@extend %tabs-mediumview-prv-nxt-a-common;
 						background-image: linear-gradient(to right, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+
 						.glyphicon {
 							@extend %tabs-mediumview-prv-nxt-glyphicon-common;
 							bottom: 0;
@@ -58,41 +66,50 @@
 							padding-top: 1px;
 							padding-right: 2px;
 						}
+
 						&:focus,
 						&:hover {
 							background-image: linear-gradient(to right, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 100%);
 						}
 					}
 				}
+
 				&.nxt {
 					@extend %tabs-mediumview-right-0;
 					@extend %tabs-mediumview-prv-nxt-common;
+
 					a {
 						@extend %tabs-mediumview-prv-nxt-a-common;
 						background-image: linear-gradient(to left, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+
 						.glyphicon {
 							@extend %tabs-mediumview-prv-nxt-glyphicon-common;
 							right: .25em;
 						}
+
 						&:focus,
 						&:hover {
 							background-image: linear-gradient(to left, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 100%);
 						}
 					}
 				}
+
 				&.plypause {
 					@extend %tabs-mediumview-right-0;
 				}
 			}
 		}
 	}
+
 	> {
 		details {
 			display: none;
 			border: 1px solid #ccc;
 			margin-top: -1px;
+
 			&[open] {
 				display: block;
+
 				> {
 					summary {
 						display: none !important;

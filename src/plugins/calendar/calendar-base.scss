@@ -18,37 +18,46 @@
 
 .cal-cnt {
 	background: #fff;
+
 	* {
 		font-size: 100%;
 	}
+
 	.cal-hd {
 		overflow: hidden;
 		padding: 0.5em 4px;
 		text-align: center;
 		position: relative;
 	}
+
 	.cal-mnth {
 		font-size: 110%;
 	}
+
 	.cal-goto {
 		display: inline-block;
 	}
+
 	.cal-goto-mnth {
 		@extend %cal-goto-btns;
 		@extend %cal-position-relative;
 	}
+
 	.cal-goto-yr {
 		@extend %cal-goto-btns;
 		@extend %cal-position-relative;
 	}
+
 	.cal-goto-btn {
 		@extend %cal-goto-btns;
 		@extend %cal-position-relative;
+
 		input {
 			padding: 0.1em 0.2em;
 			min-width: 5em;
 		}
 	}
+
 	td {
 		border: 1px solid #aaa;
 		padding: 0;
@@ -61,12 +70,14 @@
 	display: inline-block;
 	background: none;
 	border: none;
+	width: 2.5em;
+	height: 2.5em;
+
 	&:focus {
 		outline: 1px dotted;
 		outline-offset: -2px;
 	}
-	width: 2.5em;
-	height: 2.5em;
+
 	&[disabled] {
 		opacity: 0.2;
 	}
@@ -87,6 +98,7 @@
 		padding: 0.5em 0;
 		width: 100%;
 	}
+
 	.cal-currday {
 		font-weight: bolder;
 	}

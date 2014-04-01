@@ -6,9 +6,11 @@
 /* Pretty printing styles. Used with prettify.js. */
 
 /* SPAN elements with the classes below are added by prettyprint. */
+
+/* plain text */
 .pln {
 	color: #000;
-}	/* plain text */
+}
 
 pre {
 	&.prettyprint {
@@ -17,6 +19,7 @@ pre {
 		color: #707070;
 		font-size: 95%;
 		padding: 8px;
+
 		/* Specify class=linenums on a pre to get line numbering */
 		&.linenums {
 			box-shadow: 40px 0 0 #fbfbfc inset, 41px 0 0 #eee inset;
@@ -27,6 +30,7 @@ pre {
 ol {
 	&.linenums {
 		margin: 0 !important;
+
 		li {
 			padding-left: 10px;
 			text-shadow: 0 1px 0 #fff;

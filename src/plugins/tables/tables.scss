@@ -51,56 +51,70 @@ table {
 		margin: 0 auto;
 		@extend %tables-clear-both;
 		width: 100% !important;
+
 		thead {
 			th {
 				@extend %tables-border-bottom-1px-solid-black-font-weight-700-padding-right-15em;
+
 				&:active {
 					@extend %tables-outline-none;
 				}
 			}
+
 			td {
 				&:active {
 					@extend %tables-outline-none;
 				}
 			}
 		}
+
 		tfoot {
 			th {
 				@extend %tables-border-bottom-1px-solid-black-font-weight-700-padding-right-15em;
 			}
 		}
+
 		td {
 			&.center {
 				@extend %tables-text-align-center;
 			}
+
 			&.dataTables_empty {
 				@extend %tables-text-align-center;
 			}
 		}
+
 		tr {
 			&.odd {
 				background-color: #f0fcff;
+
 				td {
 					&.sorting_1 {
 						background-color: #e6f1f4;
 					}
+
 					&.sorting_2 {
 						background-color: #dadcff;
 					}
+
 					&.sorting_3 {
 						background-color: #e0e2ff;
 					}
 				}
 			}
+
 			&.even {
 				background-color: #fff;
+
 				td {
 					&.sorting_1 {
 						background-color: #e8f6f6;
 					}
+
 					&.sorting_2 {
 						background-color: #f2f3ff;
 					}
+
 					&.sorting_3 {
 						background-color: #f9f9ff;
 					}
@@ -124,6 +138,7 @@ table {
 // Filter
 .dataTables_filter {
 	@extend %tables-float-right-text-align-right;
+
 	input {
 		&::-ms-clear {
 			display: none;
@@ -150,6 +165,7 @@ table {
 .paginate_enabled_next {
 	cursor: pointer;
 	color: #111 !important;
+
 	&:active {
 		@extend %tables-outline-none;
 	}
@@ -161,14 +177,18 @@ table {
 	cursor: default;
 }
 
-.paginate_disabled_previous,
 .paginate_disabled_next {
+	@extend %table-icon-disabled;
+}
+
+.paginate_disabled_previous {
 	@extend %table-icon-disabled;
 }
 
 .paginate_disabled_previous,
 .paginate_enabled_previous {
 	padding-right: 5px;
+
 	&:before {
 		@extend %table_icons;
 		margin-right: 5px;
@@ -179,6 +199,7 @@ table {
 .paginate_disabled_next,
 .paginate_enabled_next {
 	padding-left: 5px;
+
 	&:after {
 		@extend %table_icons;
 		margin-left: 5px;
@@ -198,19 +219,23 @@ table {
 .paging_full_numbers {
 	height: 22px;
 	line-height: 22px;
+
 	a {
 		&:active {
 			@extend %tables-outline-none;
 		}
+
 		&.paginate_button {
 			@extend %tables-paginate-button-active;
 			background-color: #ddd;
+
 			&:hover,
 			&:focus {
 				background-color: #ccc;
 				text-decoration: none !important;
 			}
 		}
+
 		&.paginate_active {
 			@extend %tables-paginate-button-active;
 			background-color: #99b3ff;
@@ -244,8 +269,10 @@ table {
 	margin-left: 5px;
 	position: absolute;
 }
+
 .sorting {
 	@extend %tables-cursor-pointer;
+
 	&:after {
 		@extend %table_icons;
 		@extend %tables-sorting-margin-left-5-position-absolute;
@@ -256,6 +283,7 @@ table {
 
 .sorting_asc {
 	@extend %tables-cursor-pointer;
+
 	&:after {
 		@extend %table_icons;
 		@extend %tables-sorting-margin-left-5-position-absolute;
@@ -265,6 +293,7 @@ table {
 
 .sorting_desc {
 	@extend %tables-cursor-pointer;
+
 	&:after {
 		@extend %table_icons;
 		@extend %tables-sorting-margin-left-5-position-absolute;
@@ -272,7 +301,10 @@ table {
 	}
 }
 
-.sorting_asc_disabled,
+.sorting_asc_disabled {
+	@extend %table-icon-disabled;
+}
+
 .sorting_desc_disabled {
 	@extend %table-icon-disabled;
 }
@@ -291,17 +323,21 @@ table {
 %tables-sorting-text-align-right {
 	text-align: right;
 }
+
 %tables-sorting-margin-left-0-margin-right-5 {
 	margin-left: 0;
 	margin-right: 5px;
 }
+
 %tables-th-padding-right-8-padding-left-15em {
 	padding-right: 8px;
 	padding-left: 15em;
 }
+
 [dir=rtl] {
 	.sorting {
 		@extend %tables-sorting-text-align-right;
+
 		&:after {
 			@extend %tables-sorting-margin-left-0-margin-right-5;
 		}
@@ -309,6 +345,7 @@ table {
 
 	.sorting_asc {
 		@extend %tables-sorting-text-align-right;
+
 		&:after {
 			@extend %tables-sorting-margin-left-0-margin-right-5;
 		}
@@ -316,6 +353,7 @@ table {
 
 	.sorting_desc {
 		@extend %tables-sorting-text-align-right;
+
 		&:after {
 			@extend %tables-sorting-margin-left-0-margin-right-5;
 		}
@@ -328,6 +366,7 @@ table {
 					@extend %tables-th-padding-right-8-padding-left-15em;
 				}
 			}
+
 			tfoot {
 				th {
 					@extend %tables-th-padding-right-8-padding-left-15em;

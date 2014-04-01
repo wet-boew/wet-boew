@@ -14,15 +14,18 @@
 	list-style-type: none;
 	border: 1px solid #666;
 	border-top: 0;
+
 	.al-lbl {
 		padding-left: 10px;
 		float: right;
 	}
+
 	a {
 		text-decoration: none;
 		color: #000;
 		display: block;
 		padding-left: 10px;
+
 		&:hover,
 		&:focus {
 			background: #406c93;

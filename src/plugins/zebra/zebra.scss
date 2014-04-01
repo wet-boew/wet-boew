@@ -20,6 +20,7 @@
 .wb-cell-key {
 	@extend %zebra-font-style-italic;
 }
+
 .wb-cell-desc {
 	@extend %zebra-font-style-italic;
 }
@@ -49,6 +50,7 @@
 			background-color: #f0f0f0;
 		}
 	}
+
 	.wb-group-summary {
 		col {
 			&.table-hover {

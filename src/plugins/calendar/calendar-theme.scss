@@ -5,15 +5,19 @@
 %cal-color-fff {
 	color: #fff;
 }
+
 %cal-color-000 {
 	color: #000;
 }
+
 %cal-color-fff-important {
 	color: #fff !important;
 }
+
 %cal-background-333 {
 	background: #333;
 }
+
 %cal-background-color-333 {
 	background-color: #333;
 }
@@ -23,25 +27,33 @@
 		background: #555;
 		border-color: #333;
 	}
+
 	.cal-hd {
 		@extend %cal-background-333;
 		@extend %cal-color-fff;
 		font-weight: 700;
 	}
+
 	.cal-nxtmnth,
 	.cal-prvmnth {
 		&.active {
 			color: #ccc;
+
 			&:hover,
 			&:focus {
 				@extend %cal-color-fff;
 			}
 		}
 	}
+
 	.cal-goto-lnk {
 		@extend %cal-color-fff-important;
 	}
-	.cal-goto-mnth,
+
+	.cal-goto-mnth {
+		@extend %cal-color-000;
+	}
+
 	.cal-goto-yr {
 		@extend %cal-color-000;
 	}
@@ -50,6 +62,7 @@
 .cal-days {
 	a {
 		color: #111;
+
 		&:hover,
 		&:focus {
 			@extend %cal-background-333;
@@ -57,9 +70,11 @@
 		}
 	}
 }
+
 .cal-currday {
 	@extend %cal-color-fff;
 	@extend %cal-background-color-333;
+
 	a {
 		@extend %cal-color-fff-important;
 		@extend %cal-background-color-333;

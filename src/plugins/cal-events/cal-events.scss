@@ -5,6 +5,7 @@
 %events-calendar-background-color-fff {
 	background-color: #fff;
 }
+
 %events-calendar-color-fff-important {
 	color: #fff !important;
 }
@@ -20,6 +21,7 @@ ul {
 		margin-top: -0.5em;
 		font-weight: 400;
 		@extend %events-calendar-background-color-fff;
+
 		a {
 			padding: 0.5em;
 			@extend %events-calendar-background-color-fff;
@@ -35,9 +37,11 @@ tbody {
 					border: none;
 					width: 100%;
 					list-style-type: none !important;
+
 					a {
 						color: #000;
 						width: auto;
+
 						&:hover,
 						&:focus {
 							@extend %events-calendar-color-fff-important;
@@ -46,6 +50,7 @@ tbody {
 				}
 			}
 		}
+
 		a {
 			&.cal-evt {
 				@extend %events-calendar-color-fff-important;

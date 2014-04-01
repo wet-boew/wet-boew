@@ -10,42 +10,52 @@
 	background-color: $clrDark;
 	border-color: $clrDark;
 }
+
 %fnote-link-background-light-border-medium-padding-whitespace {
 	background-color: $clrLight;
 	border: 1px solid $clrMedium;
 	padding: 0 4px 1px;
 	white-space: nowrap;
 }
+
 .fn-lnk {
 	@extend %fnote-link-background-light-border-medium-padding-whitespace;
+
 	&:hover,
 	&:focus {
 		@extend %fnote-link-highlight;
 	}
 }
+
 .wb-fnote {
 	margin: 2em 10px 0;
 	border-width: 1px 0;
 	border-style: solid;
 	border-color: $clrMedium;
+
 	h2 {
 		margin-left: 0;
 		margin-right: 0;
 		margin-top: $spacing;
 	}
+
 	dl {
 		margin: 0;
 	}
+
 	dt {
 		@extend %accessible-invisible;
 	}
+
 	dd {
 		position: relative;
 		margin: $spacing 0;
 		border: 1px solid transparent;
+
 		&:focus {
 			background-color: $clrLight;
 			border-color: $clrDark;
+
 			.fn-rtn {
 				a {
 					@extend %fnote-link-highlight;
@@ -53,13 +63,16 @@
 			}
 		}
 	}
+
 	p {
 		margin: 0 0 0 ($spacing + $ddRtnWidth);
 		padding: 0 $spacing $spacing;
+
 		&:first-child {
 			padding-top: $spacing;
 		}
 	}
+
 	.fn-rtn {
 		top: 0;
 		margin: 0;
@@ -68,10 +81,12 @@
 		position: absolute;
 		width: $ddRtnWidth;
 		overflow: hidden;
+
 		a {
 			@extend %fnote-link-background-light-border-medium-padding-whitespace;
 			display: inline-block;
 			padding-bottom: 0;
+
 			&:hover,
 			&:focus {
 				@extend %fnote-link-highlight;
@@ -89,6 +104,7 @@
 			padding-left: 0;
 			padding-right: 0.375em;
 		}
+
 		.fn-rtn {
 			margin-right: 0;
 			padding-right: 0;

@@ -3,6 +3,7 @@ exclude:
   - "node_modules/**"
   - "dist/**"
   - "src/plugins/share/sprites/**"
+  - "wet-boew-dist/**"
 
 linters:
   StringQuotes:
@@ -13,8 +14,6 @@ linters:
   Comment:
     enabled: false
   LeadingZero:
-    enabled: false
-  EmptyLineBetweenBlocks:
     enabled: false
   SelectorDepth:
     enabled: false

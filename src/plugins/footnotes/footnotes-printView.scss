@@ -7,24 +7,27 @@
 	border: 0;
 	padding: 0;
 }
+
 .fn-lnk {
 	@extend %fnote-print-link-background-transparent-border-0-padding-0;
 }
+
 .wb-fnote {
-	border: {
-		left: 0;
-		right: 0;
-	}
+	border-left: 0;
+	border-right: 0;
 	margin-left: 0;
 	margin-right: 0;
 	margin-bottom: 1em;
+
 	dd {
 		border: 0;
 		width: 100%;
 		display: inline-block;
 	}
+
 	.fn-rtn {
 		overflow: visible;
+
 		a {
 			@extend %fnote-print-link-background-transparent-border-0-padding-0;
 		}

@@ -18,6 +18,7 @@ legend {
 			content: "* ";
 			margin-left: -$asterisk-width;
 		}
+
 		strong {
 			&.required {
 				@extend %forms-color-red-italic;

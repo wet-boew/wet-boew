@@ -1,10 +1,12 @@
 .wb-slc {
 	float: left;
 	height: 0;
+
 	ul {
 		list-style-type: none;
 		margin-top: -1.8em;
 	}
+
 	li {
 		left: 0;
 		position: absolute;
@@ -13,6 +15,7 @@
 		width: 100%;
 		z-index: 3;
 	}
+
 	a {
 		background-color: transparent;
 		color: #fff;
@@ -25,6 +28,7 @@
 	background-color: #000;
 	color: #fff;
 	font-weight: 700;
+
 	&:focus {
 		color: #fff;
 		text-decoration: none;

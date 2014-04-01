@@ -13,9 +13,11 @@
 	border: none;
 	background-clip: border-box;
 	z-index: 1050;
+
 	&.wb-inview {
 		display: block;
 	}
+
 	&.open {
 		position: fixed;
 		display: inline-block;
@@ -85,20 +87,24 @@
  */
 .overlay-def {
 	overflow-y: auto;
+
 	header {
 		background-color: #000;
 		color: #fff;
 		display: block;
 		padding: 0 44px 0 1em;
 	}
+
 	.modal-title {
 		font-size: 1.15em;
 		padding: 10px 0;
 	}
+
 	&.wb-bar-t,
 	&.wb-bar-b {
 		background-color: #000;
 	}
+
 	.mfp-close {
 		color: #fff;
 	}
@@ -108,6 +114,7 @@
 	.modal-body {
 		padding-top: 50px;
 	}
+
 	.overlay-close {
 		background-color: #000;
 		border-radius: 999px;
@@ -124,14 +131,17 @@
 		right: auto;
 		left: 0;
 	}
+
 	.wb-panel-l {
 		left: auto;
 		right: 0;
 	}
+
 	.wb-panel-r {
 		right: auto;
 		left: 0;
 	}
+
 	.overlay-def {
 		header {
 			padding: 0 1em 0 44px;

@@ -4,21 +4,25 @@
  */
 #archived-bnr {
 	background-color: #fd0;
+
 	p {
 		text-align: center;
 		margin: 0;
 	}
+
 	a {
 		display: block;
 		padding: 0.75em 44px;
 		color: #000;
 		text-decoration: none;
 		font-weight: 700;
+
 		&:hover,
 		&:focus {
 			text-decoration: underline;
 		}
 	}
+
 	.overlay-close {
 		color: #000;
 	}

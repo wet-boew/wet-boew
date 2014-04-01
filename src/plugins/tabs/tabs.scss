@@ -88,11 +88,13 @@ $medGray: #ccc;
 	 * Default, minimal, shared style
 	 */
 	@extend %tabs-position-relative;
+
 	[role ="tablist"] {
 		position: relative;
 		list-style: none;
 		margin: 0;
 		padding: 0;
+
 		li {
 			display: inline-block;
 			cursor: pointer;
@@ -102,6 +104,7 @@ $medGray: #ccc;
 			border: 1px solid $medGray;
 			text-align: center;
 			position: relative;
+
 			a {
 				text-decoration: none;
 				color: #000;
@@ -109,16 +112,19 @@ $medGray: #ccc;
 				// changed padding and margin from em to px to fix web-kit layout issue
 				padding: 10px;
 			}
+
 			&:focus,
 			&:hover {
 				background: $medGray;
 				background: transparentize($medGray, 0.1);
 			}
+
 			&.active {
 				padding-bottom: 1px;
 				border-bottom: 0;
 				background: #fff;
 				cursor: default;
+
 				a {
 					cursor: default;
 					border-top: 4px solid #666;
@@ -127,8 +133,10 @@ $medGray: #ccc;
 			}
 		}
 	}
+
 	[role="tabpanel"] {
 		z-index: 1;
+
 		&.out {
 			display: none;
 		}
@@ -142,29 +150,36 @@ $medGray: #ccc;
 			@extend %tab-position-relative;
 			bottom: 1em;
 			left: 1em;
+
 			li {
 				@extend %tab-zindex-100;
+
 				&.active,
 				&:focus,
 				&:hover {
 					top: 1px;
+
 					a {
 						@extend %tabs-carousel-border-top-none-padding-top-1;
 					}
 				}
 			}
 		}
+
 		figure {
 			@extend %tabs-position-relative;
 			@extend %tab-background-243850;
+
 			img {
 				@extend %tab-width-100-height-auto;
 			}
 		}
+
 		figcaption {
 			@extend %tab-figure-captions;
 			top: 3em;
 			right: 1em;
+
 			a {
 				@extend %tab-figure-captions-links;
 			}
@@ -178,29 +193,35 @@ $medGray: #ccc;
 		$thumbHeight: 50px;
 		// 44px = 2 x 10px for anchor padding + 2 x 4px for list item padding + 16px for carousel bottom margin
 		margin-bottom: $thumbHeight + 44px;
+
 		[role="tablist"] {
 			@extend %tab-position-relative;
 			width: 100%;
 			height: 100%;
+
 			li {
 				background: transparent;
 				@extend %tab-zindex-100;
 				display: none;
 				border: none;
+
 				&[role="presentation"] {
 					display: inline-block;
 					padding: 4px;
 					top: 100%;
 					background: $lightGray;
 					background: transparentize($lightGray, .1);
+
 					&.active,
 					&:focus,
 					&:hover {
 						box-shadow: 0 0 4px $drabBlue;
 					}
+
 					&.active {
 						a {
 							@extend %tabs-carousel-border-top-none-padding-top-1;
+
 							img {
 								/* Firefox 10+, Firefox on Android */
 								filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
@@ -209,6 +230,7 @@ $medGray: #ccc;
 							}
 						}
 					}
+
 					a {
 						img {
 							box-shadow: none;
@@ -222,78 +244,98 @@ $medGray: #ccc;
 						}
 					}
 				}
+
 				&.control {
 					display: inline-block;
 				}
+
 				&.prv {
 					@extend %carousel-s2-prv-nxt-common;
+
 					a {
 						@extend %carousel-s2-prv-nxt-a-common;
+
 						.glyphicon {
 							@extend %carousel-s2-prv-nxt-glyphicon-common;
 						}
+
 						&:focus,
 						&:hover {
 							@extend %tabs-background-transparent;
+
 							.glyphicon {
 								@extend %tabs-box-shadow-none;
 							}
 						}
 					}
 				}
+
 				&.nxt {
 					@extend %carousel-s2-prv-nxt-common;
+
 					a {
 						@extend %carousel-s2-prv-nxt-a-common;
+
 						.glyphicon {
 							@extend %carousel-s2-prv-nxt-glyphicon-common;
 						}
+
 						&:focus,
 						&:hover {
 							@extend %tabs-background-transparent;
+
 							.glyphicon {
 								@extend %tabs-box-shadow-none;
 							}
 						}
 					}
 				}
+
 				&.plypause {
 					background: none;
 					border: none;
 					display: inline-block !important;
 					top: 100%;
 					padding: 2px 10px;
+
 					span {
 						color: #000 !important;
 					}
 				}
 			}
 		}
+
 		figure {
 			@extend %tabs-position-relative;
 			@extend %tab-background-243850;
+
 			img {
 				@extend %tab-width-100-height-auto;
 			}
 		}
+
 		figcaption {
 			@extend %tab-figure-captions;
 			bottom: 0;
 			left: 0;
 			right: 0;
+
 			a {
 				@extend %tab-figure-captions-links;
 			}
+
 			p {
 				margin-bottom: 0;
 			}
 		}
+
 		&.no-overlap {
 			figcaption {
 				@extend %tabs-position-relative;
 			}
 		}
 	}
+
 	> {
 		details {
 			padding: 6px 12px;
@@ -306,10 +348,12 @@ $medGray: #ccc;
 		[role="tablist"] {
 			display: none;
 		}
+
 		[role="tabpanel"] {
 			display: block;
 			opacity: 1;
 		}
+
 		> {
 			details {
 				> {
