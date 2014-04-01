@@ -1,0 +1,66 @@
+{{#contains page.dirname "versions"}}
+{{else}}
+	{{#contains page.dirname "county-content"}}
+	{{else}}
+		{{#contains page.dirname "data-"}}
+		{{else}}
+			{{#contains page.dirname "overlay"}}
+			{{else}}
+				{{#contains page.dirname "toggle"}}
+				{{else}}
+					{{#contains page.dirname "transitions"}}
+					{{else}}
+						{{#contains page.dirname "twitter"}}
+						{{else}}
+							{{#contains page.filename "start"}}
+								{{>v31gettingstarted}}
+							{{else}}
+								{{#contains page.filename "bugs"}}
+									{{>v31gettingstarted}}
+								{{else}}
+									{{#contains page.filename "pull"}}
+										{{>v31gettingstarted}}
+									{{else}}
+										{{#contains page.dirname "/demos"}}
+<section class="alert alert-info">
+{{#contains page.language "fr" }}
+	<h2 class="h3">Vous cherchez la BOEW v3.1?</h2>
+	<p>La BOEW v4.0 est maintenant la version courrante. La <a href="http://wet-boew.github.io/v3.1-ci/demos/{{#contains page.dirname "demos/index-"}}{{else}}{{page.altLangPrefix}}/{{/contains}}{{page.filename}}">version de la page actuelle pour la BOEW v3.1</a> a été déplacée.</p>
+{{else}}
+	<h2 class="h3">Looking for WET v3.1?</h2>
+	<p>WET v4.0 is now the current version. There is a new location for the <a href="http://wet-boew.github.io/v3.1-ci/demos/{{#contains page.dirname "demos/index-"}}{{else}}{{page.altLangPrefix}}/{{/contains}}{{page.filename}}">current page in WET v3.1</a>.</p>
+{{/contains}}
+</section>
+										{{/contains}}
+										{{#contains page.dirname "/docs"}}
+<section class="alert alert-info">
+{{#contains page.language "fr" }}
+	<h2 class="h3">Vous cherchez la BOEW v3.1?</h2>
+	<p>La BOEW v4.0 est maintenant la version courrante. La <a href="http://wet-boew.github.io/v3.1-ci/docs/{{#contains page.src "ref/"}}ref/{{#contains page.dirname page.altLangPrefix}}{{page.altLangPrefix}}/{{/contains}}{{/contains}}{{page.filename}}">version de la page actuelle pour la BOEW v3.1</a> a été déplacée.</p>
+{{else}}
+	<h2 class="h3">Looking for WET v3.1?</h2>
+	<p>WET v4.0 is now the current version. There is a new location for the <a href="http://wet-boew.github.io/v3.1-ci/docs/{{#contains page.src "ref/"}}ref/{{#contains page.dirname page.altLangPrefix}}{{page.altLangPrefix}}/{{/contains}}{{/contains}}{{page.filename}}">current page in WET v3.1</a>.</p>
+{{/contains}}
+</section>
+										{{/contains}}
+										{{#contains page.src "pages/index"}}
+<section class="alert alert-info">
+{{#contains page.language "fr" }}
+	<h2 class="h3">Vous cherchez la BOEW v3.1?</h2>
+	<p>La BOEW v4.0 est maintenant la version courrante. La <a href="http://wet-boew.github.io/v3.1-ci/{{page.filename}}">version de la page actuelle pour la BOEW v3.1</a> a été déplacée.</p>
+{{else}}
+	<h2 class="h3">Looking for WET v3.1?</h2>
+	<p>WET v4.0 is now the current version. There is a new location for the <a href="http://wet-boew.github.io/v3.1-ci/{{page.filename}}">current page in WET v3.1</a>.</p>
+{{/contains}}
+</section>
+										{{/contains}}
+									{{/contains}}
+								{{/contains}}
+							{{/contains}}
+						{{/contains}}
+					{{/contains}}
+				{{/contains}}
+			{{/contains}}
+		{{/contains}}
+	{{/contains}}
+{{/contains}}
