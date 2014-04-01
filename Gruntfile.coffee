@@ -194,6 +194,8 @@ module.exports = (grunt) ->
 
 		# Metadata.
 		pkg: grunt.file.readJSON("package.json")
+		jqueryVersion: grunt.file.readJSON("lib/jquery/bower.json")
+		jqueryOldIEVersion: grunt.file.readJSON("lib/jquery-oldIE/bower.json")
 		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n *\n */"
 		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
@@ -236,6 +238,7 @@ module.exports = (grunt) ->
 					"lib/respond/src/respond.js"
 					"lib/excanvas/excanvas.js"
 					"lib/html5shiv/dist/html5shiv-printshiv.js"
+					"lib/es5-shim/es5-shim.js"
 					"src/core/wb.js"
 					"!src/plugins/**/test.js"
 					"!src/plugins/**/assets/*.js"
@@ -303,6 +306,8 @@ module.exports = (grunt) ->
 					"dist/unmin/css/polyfills/slider.css": "dist/unmin/css/polyfills/slider.css"
 					"dist/unmin/css/noscript.css": "dist/unmin/css/noscript.css"
 					"dist/unmin/css/theme.css": "dist/unmin/css/theme.css"
+					"dist/unmin/css/wet-boew.css": "dist/unmin/css/wet-boew.css"
+					"dist/unmin/css/ie8-wet-boew.css": "dist/unmin/css/ie8-wet-boew.css"
 
 		# Builds the demos
 		assemble:
@@ -322,6 +327,8 @@ module.exports = (grunt) ->
 				options:
 					environment:
 						root: "/v4.0-ci/unmin"
+						jqueryVersion: "<%= jqueryVersion.version %>"
+						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
 					assets: "dist/unmin"
 					flatten: true,
 					plugins: ["assemble-contrib-i18n"]
@@ -338,6 +345,8 @@ module.exports = (grunt) ->
 				options:
 					environment:
 						root: "/v4.0-ci/unmin"
+						jqueryVersion: "<%= jqueryVersion.version %>"
+						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
 					assets: "dist/unmin"
 				files: [
 						expand: true
@@ -370,6 +379,8 @@ module.exports = (grunt) ->
 					environment:
 						suffix: ".min"
 						root: "/v4.0-ci"
+						jqueryVersion: "<%= jqueryVersion.version %>"
+						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
 					assets: "dist"
 					flatten: true,
 					plugins: ['assemble-contrib-i18n']
@@ -387,6 +398,8 @@ module.exports = (grunt) ->
 					environment:
 						suffix: ".min"
 						root: "/v4.0-ci"
+						jqueryVersion: "<%= jqueryVersion.version %>"
+						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
 					assets: "dist"
 				files: [
 						expand: true
@@ -700,7 +713,7 @@ module.exports = (grunt) ->
 				options:
 					ignore: [
 						"XHTML element “head” is missing a required instance of child element “title”."
-
+						"The “details” element is not supported properly by browsers yet. It would probably be better to wait for implementations."
 					]
 				src: [
 					"dist/unmin/ajax/**/*.html"
@@ -713,6 +726,7 @@ module.exports = (grunt) ->
 						"XHTML element “head” is missing a required instance of child element “title”."
 						"XHTML element “li” not allowed as child of XHTML element “body” in this context. (Suppressing further errors from this subtree.)"
 						"The “aria-controls” attribute must point to an element in the same document."
+						"The “details” element is not supported properly by browsers yet. It would probably be better to wait for implementations."
 					]
 				src: [
 					"dist/unmin/demos/cal-events/ajax/**/*.html"
@@ -810,6 +824,7 @@ module.exports = (grunt) ->
 						"DataTables/media/js/jquery.dataTables.js"
 						"proj4/dist/proj4.js"
 						"openlayers/OpenLayers.debug.js"
+						"es5-shim/es5-shim.js"
 					]
 					dest: "dist/unmin/js/deps"
 					rename: (dest, src) ->

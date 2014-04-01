@@ -1,8 +1,8 @@
 <!--[if gte IE 9 | !IE ]><!-->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery{{environment.suffix}}.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/{{environment.jqueryVersion}}/jquery{{environment.suffix}}.js"></script>
 <script src="{{assets}}/js/wet-boew{{environment.suffix}}.js"></script>
 <!--<![endif]-->
 <!--[if lt IE 9]>
 <script src="{{assets}}/js/ie8-wet-boew2{{environment.suffix}}.js"></script>
 <![endif]-->
-{{#if page.js}}<script src="{{page.js}}{{environment.suffix}}.js"></script>{{/if}}
+{{#if page.js}}{{#each page.js}}<script src="{{this}}{{../environment.suffix}}.js"></script>{{/each}}{{/if}}

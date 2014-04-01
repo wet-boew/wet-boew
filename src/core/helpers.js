@@ -14,12 +14,12 @@
 		if ( dataAttr ) {
 			try {
 				dataObj = JSON.parse( dataAttr );
+				$.data( elm, dataName, dataObj );
 			} catch ( error ) {
 				$.error( "Bad JSON array in data-" + dataName + " attribute" );
 			}
 		}
 
-		$.data( elm, dataName, dataObj );
 		return dataObj;
 	};
 })( jQuery, wb );

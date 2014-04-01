@@ -28,3 +28,70 @@ $mediumViewMax: 1199px;
 $largeViewMin: 1200px;
 $largeViewMax: 1599px;
 $xLargeViewMin: 1600px;
+
+/*
+ *	Font scales
+ */
+$font-scale-xxxl: 2.125;
+$font-scale-xxl: 1.625;
+$font-scale-xl: 1.375;
+$font-scale-lg: 1.125;
+$font-scale-sm: 0.875;
+
+/*
+ *	Overrides for Bootstrap variables
+ */
+$font-size-base: 16px;
+$font-size-large: ceil($font-size-base * $font-scale-lg);
+$font-size-small: ceil($font-size-base * $font-scale-sm);
+
+$font-size-h1: ceil($font-size-base * $font-scale-xxxl);
+$font-size-h2: ceil($font-size-base * $font-scale-xxl);
+$font-size-h3: ceil($font-size-base * $font-scale-xl);
+$font-size-h4: ceil($font-size-base * $font-scale-lg);
+$font-size-h6: ceil($font-size-base * $font-scale-sm);
+
+$line-height-base: 1.4375; // 20/14 -> 23/16 on the basis of ceil((20/14)*16) = 23
+
+$brand-primary: #2572b4;
+$brand-success: #1b6c1c;
+$brand-info: #4d4d4d;
+$brand-warning: #f2d40d;
+$brand-danger: #bc3331;
+
+$link-color: #295376;
+$link-hover-color: #0535d2;
+$link-visited-color: #7834BC;
+
+$table-bg-accent: #f5f5f5;
+$table-bg-hover: #f0f0f0;
+
+$btn-default-color: #335075;
+$btn-default-bg: #eaebed;
+$btn-default-border: darken($btn-default-bg, 5%);
+
+$btn-primary-bg: $brand-primary;
+$btn-primary-border: darken($btn-primary-bg, 20%);
+
+$btn-success-bg: $brand-success;
+$btn-success-border: darken($btn-success-bg, 20%);
+
+$btn-info-bg: $brand-info;
+$btn-info-border: darken($btn-info-bg, 20%);
+
+$btn-warning-color: #000;
+$btn-warning-bg: $brand-warning;
+$btn-warning-border: darken($btn-warning-bg, 20%);
+
+$btn-danger-bg: $brand-danger;
+$btn-danger-border: darken($btn-danger-bg, 20%);
+
+$pagination-color: $btn-default-color;
+$pagination-bg: $btn-default-bg;
+$pagination-border: $btn-default-border;
+
+$pagination-hover-color: $btn-default-color;
+$pagination-hover-bg: darken($btn-default-bg, 8%);
+$pagination-hover-border: darken($btn-default-border, 12%);
+
+$pager-border-radius: 4px;

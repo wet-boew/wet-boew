@@ -147,43 +147,47 @@ var pluginName = "wb-datalist",
 			autolistHidden = ( autolist.className.indexOf( "hide" ) !== -1 ),
 			options, dest, value, len;
 
-		// Spacebar, a - z keys, 0 - 9 keys punctuation, and symbols
-		if ( which === 32 || ( which > 47 && which < 91 ) ||
-			( which > 95 && which < 112 ) || ( which > 159 && which < 177 ) ||
-			( which > 187 && which < 223 ) ) {
-			if ( !event.altKey ) {
-				showOptions( input, input.value + String.fromCharCode( which ) );
-			}
+		// Unmodified keystrokes only
+		if ( !( event.ctrlKey || event.altKey || event.metaKey ) ) {
 
-		// Backspace
-		} else if ( which === 8 && !event.altKey ) {
-			value = input.value;
-			len = value.length;
+			// Spacebar, a - z keys, 0 - 9 keys punctuation, and symbols
+			if ( which === 32 || ( which > 47 && which < 91 ) ||
+				( which > 95 && which < 112 ) || ( which > 159 && which < 177 ) ||
+				( which > 187 && which < 223 ) ) {
+				if ( !event.altKey ) {
+					showOptions( input, input.value + String.fromCharCode( which ) );
+				}
 
-			if ( len !== 0 ) {
-				showOptions( input, value.substring( 0, len - 1 ) );
-			}
+			// Backspace
+			} else if ( which === 8 && !event.altKey ) {
+				value = input.value;
+				len = value.length;
 
-		// Up / down arrow
-		} else if ( ( which === 38 || which === 40) && input.getAttribute( "aria-activedescendent" ) === "" ) {
-			if ( autolistHidden ) {
-				showOptions( input );
-			}
+				if ( len !== 0 ) {
+					showOptions( input, value.substring( 0, len - 1 ) );
+				}
 
-			options = autolist.getElementsByTagName( "a" );
-			dest = options[ ( which === 38 ? options.length - 1 : 0 ) ];
+			// Up / down arrow
+			} else if ( ( which === 38 || which === 40) && input.getAttribute( "aria-activedescendent" ) === "" ) {
+				if ( autolistHidden ) {
+					showOptions( input );
+				}
 
-			input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
+				options = autolist.getElementsByTagName( "a" );
+				dest = options[ ( which === 38 ? options.length - 1 : 0 ) ];
 
-			// Assign focus to dest
-			$( dest ).trigger( setFocusEvent );
+				input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
 
-			return false;
-		} else if ( !autolistHidden ) {
+				// Assign focus to dest
+				$( dest ).trigger( setFocusEvent );
 
-			// Tab or Escape key
-			if ( ( which === 9 || which === 27 ) || ( which === 27 && !event.altKey ) ) {
-				closeOptions( input );
+				return false;
+			} else if ( !autolistHidden ) {
+
+				// Tab or Escape key
+				if ( ( which === 9 || which === 27 ) || ( which === 27 && !event.altKey ) ) {
+					closeOptions( input );
+				}
 			}
 		}
 	},
@@ -200,81 +204,85 @@ var pluginName = "wb-datalist",
 			$input = $( input ),
 			span, dest, value, len, children;
 
-		// Spacebar, a - z keys, 0 - 9 keys punctuation, and symbols
-		if ( which === 32 || ( which > 47 && which < 91 ) ||
-			( which > 95 && which < 112 ) || ( which > 159 && which < 177 ) ||
-			( which > 187 && which < 223 ) ) {
+		// Unmodified keystrokes only
+		if ( !( event.ctrlKey || event.altKey || event.metaKey ) ) {
 
-			input.value += String.fromCharCode( which );
-			$input.trigger( setFocusEvent );
-			showOptions( input, input.value );
+			// Spacebar, a - z keys, 0 - 9 keys punctuation, and symbols
+			if ( which === 32 || ( which > 47 && which < 91 ) ||
+				( which > 95 && which < 112 ) || ( which > 159 && which < 177 ) ||
+				( which > 187 && which < 223 ) ) {
 
-			return false;
-
-		// Backspace
-		} else if ( which === 8 ) {
-			value = input.value;
-			len = value.length;
-
-			if ( len !== 0 ) {
-				input.value = value.substring( 0, len - 1 );
+				input.value += String.fromCharCode( which );
+				$input.trigger( setFocusEvent );
 				showOptions( input, input.value );
-			}
 
-			$input.trigger( setFocusEvent );
+				return false;
 
-			return false;
+			// Backspace
+			} else if ( which === 8 ) {
+				value = input.value;
+				len = value.length;
 
-		// Enter key
-		} else if ( which === 13) {
-			span = link.getElementsByTagName( "span" );
-
-			// .al-val
-			value = span[ 0 ].innerHTML;
-
-			if ( value.length === 0 ) {
-
-				// .al-lbl
-				value = span[ 1 ].innerHTML;
-			}
-
-			input.value = value;
-			$input.trigger( setFocusEvent );
-			closeOptions( input );
-
-			return false;
-
-		// Tab or Escape key
-		} else if ( which === 9 || which === 27 ) {
-			$input.trigger( setFocusEvent );
-			closeOptions( input );
-
-			return false;
-
-		// Up or down arrow
-		} else if ( which === 38 || which === 40 ) {
-
-			// Up arrow
-			if ( which === 38 ) {
-				dest = link.parentNode.previousSibling;
-				if ( !dest ) {
-					children = autolist.getElementsByTagName( "li" );
-					dest = children[ children.length - 1 ];
+				if ( len !== 0 ) {
+					input.value = value.substring( 0, len - 1 );
+					showOptions( input, input.value );
 				}
 
-			// Down arrow
-			} else {
-				dest = link.parentNode.nextSibling;
-				if ( !dest ) {
-					dest = autolist.getElementsByTagName( "li" )[ 0 ];
+				$input.trigger( setFocusEvent );
+
+				return false;
+
+			// Enter key
+			} else if ( which === 13) {
+				span = link.getElementsByTagName( "span" );
+
+				// .al-val
+				value = span[ 0 ].innerHTML;
+
+				if ( value.length === 0 ) {
+
+					// .al-lbl
+					value = span[ 1 ].innerHTML;
 				}
+
+				input.value = value;
+				$input.trigger( setFocusEvent );
+				closeOptions( input );
+
+				return false;
+
+			// Tab or Escape key
+			} else if ( which === 9 || which === 27 ) {
+				$input.trigger( setFocusEvent );
+				closeOptions( input );
+
+				return false;
+
+			// Up or down arrow
+			} else if ( which === 38 || which === 40 ) {
+
+				// Up arrow
+				if ( which === 38 ) {
+					dest = link.parentNode.previousSibling;
+					if ( !dest ) {
+						children = autolist.getElementsByTagName( "li" );
+						dest = children[ children.length - 1 ];
+					}
+
+				// Down arrow
+				} else {
+					dest = link.parentNode.nextSibling;
+					if ( !dest ) {
+						dest = autolist.getElementsByTagName( "li" )[ 0 ];
+					}
+				}
+				dest = dest.getElementsByTagName( "a" )[ 0 ];
+
+				input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
+				$( dest ).trigger( setFocusEvent );
+
+				return false;
 			}
-			dest = dest.getElementsByTagName( "a" )[ 0 ];
-
-			input.setAttribute( "aria-activedescendent", dest.parentNode.getAttribute( "id" ) );
-			$( dest ).trigger( setFocusEvent );
-
-			return false;
 		}
 	},
 

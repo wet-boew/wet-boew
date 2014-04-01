@@ -289,8 +289,8 @@ var pluginName = "wb-tabs",
 				nextText + "'>" + glyphiconStart + "chevron-right'></span>" +
 				wbInvStart + nextText + btnEnd,
 			playControl =  tabsToggleStart + "plypause'><a class='plypause" +
-				btnMiddle + state + "'>" + iconState + " <i>" + state +
-				"</i>" + wbInvStart + spaceText + i18nText.hyphen + spaceText +
+				btnMiddle + state + "'>" + iconState + " <span>" + state +
+				"</span>" + wbInvStart + spaceText + i18nText.hyphen + spaceText +
 				hidden + btnEnd;
 
 		$tablist.prepend( prevControl + tabCount + nextControl );
@@ -538,29 +538,39 @@ var pluginName = "wb-tabs",
  // Bind the init event of the plugin
  $document.on( "timerpoke.wb " + initEvent + " " + shiftEvent, selector, function( event ) {
 	var eventType = event.type,
+		currentTarget = event.currentTarget,
+		isOrigin = currentTarget === event.target,
 
 		// "this" is cached for all events to utilize
-		$elm = $( this );
+		$elm = $( currentTarget );
 
-	switch ( eventType ) {
-	case "timerpoke":
-		onTimerPoke( $elm );
-		break;
+		switch ( eventType ) {
+		case "timerpoke":
 
-	/*
-	 * Init
-	 */
-	case "wb-init":
-		init( $elm );
-		break;
+			// Filter out any events triggered by descendants
+			if ( isOrigin ) {
+				onTimerPoke( $elm );
+			}
+			break;
 
-	/*
-	 * Change Slides
-	 */
-	case "shift":
-		onShift( $elm, event );
-		break;
-	}
+		/*
+		 * Init
+		 */
+		case "wb-init":
+
+			// Filter out any events triggered by descendants
+			if ( isOrigin ) {
+				init( $elm );
+			}
+			break;
+
+		/*
+		 * Change Slides
+		 */
+		case "shift":
+			onShift( $elm, event );
+			break;
+		}
 
 	/*
 	 * Since we are working with events we want to ensure that we are being passive about our control,
@@ -580,9 +590,10 @@ var pluginName = "wb-tabs",
 		playText = i18nText.play,
 		$elm, text, inv, $sldr, $plypause;
 
-	// Ignore middle and right mouse buttons
-	if ( !which || which === 1 || which === 13 || which === 32 ||
-		( which > 36 && which < 41 ) ) {
+	// Ignore middle and right mouse buttons and modified keys
+	if ( !( event.ctrlKey || event.altKey || event.metaKey ) &&
+			( !which || which === 1 || which === 13 || which === 32 ||
+			( which > 36 && which < 41 ) ) ) {
 
 		event.preventDefault();
 		$elm = $( elm );
@@ -601,7 +612,7 @@ var pluginName = "wb-tabs",
 					.toggleClass( "glyphicon-play glyphicon-pause" );
 			$sldr.toggleClass( "playing" );
 
-			text = $plypause[ 0 ].getElementsByTagName( "i" )[ 0 ];
+			text = $plypause[ 0 ].getElementsByTagName( "span" )[ 1 ];
 			text.innerHTML = text.innerHTML === playText ?
 				i18nText.pause :
 				playText;
@@ -696,7 +707,8 @@ $document.on( activateEvent, selector + " > details > summary", function( event 
 	var which = event.which,
 		details = event.currentTarget.parentNode;
 
-	if ( !which || which === 1 || which === 13 || which === 32 ) {
+	if ( !( event.ctrlKey || event.altKey || event.metaKey ) &&
+		( !which || which === 1 || which === 13 || which === 32 ) ) {
 
 		// Update sessionStorage with the current active panel
 		try {

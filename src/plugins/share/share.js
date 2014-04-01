@@ -25,7 +25,6 @@ var pluginName = "wb-share",
 	/*
 	 * Plugin users can override these defaults by setting attributes on the html elements that the
 	 * selector matches.
-	 * For example, adding the attribute data-option1="false", will override option1 for that plugin instance.
 	 */
 	defaults = {
 		hdLvl: "h2",
@@ -41,6 +40,7 @@ var pluginName = "wb-share",
 		title: document.title || $document.find( "h1:first" ).text(),
 
 		pnlId: "",
+		lnkClass: "",
 		img: "",
 		desc: "",
 
@@ -170,7 +170,13 @@ var pluginName = "wb-share",
 			}
 
 			$elm = $( elm );
-			settings = $.extend( true, {}, defaults, wb.getData( $elm, "wet-boew" ) );
+			settings = $.extend(
+				true,
+				{},
+				defaults,
+				window[ pluginName ],
+				wb.getData( $elm, pluginName )
+			);
 			sites = settings.sites;
 			filter = settings.filter;
 			heading = settings.hdLvl;
@@ -191,7 +197,7 @@ var pluginName = "wb-share",
 			if ( elm.className.indexOf( "link-only" ) === -1 ) {
 				panel = "<section id='" + id  + "' class='shr-pg wb-overlay modal-content overlay-def wb-panel-r" +
 					"'><header class='modal-header'><" + heading + " class='modal-title'>" +
-					shareText + "</" + heading + "></header><ul class='colcount-xs-2'>";
+					shareText + "</" + heading + "></header><ul class='list-unstyled colcount-xs-2'>";
 
 				// If there is no filter array of site keys, then generate an array of site keys
 				if ( !filter || filter.length === 0 ) {
@@ -229,7 +235,7 @@ var pluginName = "wb-share",
 				panel += "</ul><div class='clearfix'></div><p class='col-sm-12'>" + i18nText.disclaimer + "</p></section>";
 				panelCount += 1;
 			}
-			link = "<a href='#" + id + "' aria-controls='" + id + "' class='shr-opn overlay-lnk'><span class='glyphicon glyphicon-share'></span> " +
+			link = "<a href='#" + id + "' aria-controls='" + id + "' class='shr-opn overlay-lnk " + settings.lnkClass + "'><span class='glyphicon glyphicon-share'></span> " +
 				shareText + "</a>";
 
 			$share = $( ( panel ? panel : "" ) + link );

@@ -36,8 +36,12 @@ var pluginName = "wb-details",
 			details.className += " " + initedClass;
 
 			summary.setAttribute( "aria-expanded", ( details.getAttribute( "open" ) !== null ) );
-			summary.setAttribute( "role", "button" );
-			summary.setAttribute( "tabindex", "0" );
+			if ( !summary.getAttribute( "role" ) ) {
+				summary.setAttribute( "role", "button" );
+			}
+			if ( !summary.getAttribute( "tabindex" ) ) {
+				summary.setAttribute( "tabindex", "0" );
+			}
 		}
 	};
 

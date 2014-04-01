@@ -1,6 +1,3 @@
-/*!
-
-/*! WET-BOEW Core and Plugins */
 /*
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
@@ -51,6 +48,7 @@ $icon-font-path: "../fonts/";
 	text-decoration: none;
 }
 
+/*! WET-BOEW Core and Plugins */
 @import "partials/accessibility";
 @import "partials/bootstrap-overrides";
 @import "partials/language-selector";
@@ -152,6 +150,7 @@ $icon-font-path: "../fonts/";
 @media screen and (max-width: $xxSmallViewMax) {
 	@import "views/xxSmallView";
 	@import "../plugins/menu/menu-xxSmallView";
+	@import "../plugins/tabs/tabs-xxSmallView";
 }
 
 /* Extra-small view */

@@ -94,7 +94,8 @@ var pluginName = "wb-lbx",
 							// TODO: Better if dealt with upstream by Magnific popup
 							var $item = this.currItem,
 								$content = this.contentContainer,
-								$buttons = this.wrap.find( ".mfp-close, .mfp-arrow" ),
+								$wrap = this.wrap,
+								$buttons = $wrap.find( ".mfp-close, .mfp-arrow" ),
 								len = $buttons.length,
 								i, button, $bottomBar;
 
@@ -108,6 +109,8 @@ var pluginName = "wb-lbx",
 							} else {
 								$content.attr( "role", "document" );
 							}
+
+							$wrap.append( "<span tabindex='0' class='lbx-end wb-inv'></span>" );
 						},
 						change: function() {
 							var $item = this.currItem,
@@ -178,12 +181,13 @@ var pluginName = "wb-lbx",
 						settings.modal = true;
 					}
 
-					// Extend the settings with data-wet-boew then
+					// Extend the settings with data-wb-lbx then
 					$elm.magnificPopup(
 						$.extend(
 							true,
 							settings,
-							wb.getData( $elm, "wet-boew" )
+							window[ pluginName ],
+							wb.getData( $elm, pluginName )
 						)
 					);
 				}
@@ -205,12 +209,30 @@ $document.on( "keydown", ".mfp-wrap", function( event ) {
 		length = $focusable.length;
 		index = $focusable.index( event.target ) + ( event.shiftKey ? -1 : 1 );
 		if ( index === -1 ) {
-			index = length - 1;
-		} else if ( index === length ) {
+			index = length - 2;
+		} else if ( index === length - 1 ) {
 			index = 0;
 		}
 		$focusable.eq( index ).trigger( "setfocus.wb" );
 	}
+
+	/*
+	 * Since we are working with events we want to ensure that we are being passive about our control,
+	 * so returning true allows for events to always continue
+	 */
+	return true;
+});
+
+/*
+ * Sends focus to the close button if focus moves beyond the Lightbox (Jaws fix)
+ */
+$document.on( "focus", ".lbx-end", function( event ) {
+	event.preventDefault();
+	$( this )
+		.closest( ".mfp-wrap" )
+			.find( ":focusable" )
+				.eq( 0 )
+					.trigger( "setfocus.wb" );
 
 	/*
 	 * Since we are working with events we want to ensure that we are being passive about our control,

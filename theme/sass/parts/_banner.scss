@@ -34,17 +34,18 @@
 
 #wb-glb-mn {
 	.pnl-btn {
-		width: 50%;
 		position: relative;
 		z-index: 2;
 		li {
-			padding: 3px 10px 0;
+			padding: 4px 10px;
 			width: 100%;
 		}
 		a {
 			font-size: 1.5em;
 			display: block;
 			width: 100%;
+			color: #474747;
+			line-height: 1em;
 		}
 	}
 }

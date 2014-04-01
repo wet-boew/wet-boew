@@ -1,6 +1,10 @@
 /*
  * Site menu
  */
+%wet-theme-wb-sm-wb-navcurr {
+	background: #0b3048;
+	color: #fff;
+}
 #wb-sm {
 	background: #0E4164;
 	.menu {
@@ -11,16 +15,17 @@
 				> {
 					a {
 						color: #fff;
-						border-left: 1px solid #0B3048;
+						border-left: 1px solid #999;
 						&.wb-navcurr {
-							background: #0b3048;
-							color: #fff;
+							@extend %wet-theme-wb-sm-wb-navcurr;
 						}
 					}
 				}
 				&:last-child {
-					a {
-						border-right: 1px solid #135480;
+					> {
+						a {
+							border-right: 1px solid #999;
+						}
 					}
 				}
 				&.active {
@@ -28,6 +33,7 @@
 						a {
 							color: #000;
 							background: #ccc;
+							border-color: #ccc;
 						}
 					}
 				}
@@ -36,23 +42,24 @@
 	}
 	.sm {
 		&.open {
-			box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.3), 3px 3px 3px -2px rgba(0, 0, 0, 0.3), -3px 3px 3px -2px rgba(0, 0, 0, 0.3);
 			border-left: none;
 			border-right: none;
 			border-bottom: 5px solid #243850;
 			padding: 0;
 			background: #ccc;
 			li {
-				a {
+				a, summary {
 					color: #444;
 					border-left: none;
 					border-right: none;
 					text-shadow: none;
 					padding: 5px 10px;
 					text-decoration: none;
+					&.wb-navcurr {
+						@extend %wet-theme-wb-sm-wb-navcurr;
+					}
 					&:hover, &:focus {
-						background: #243850;
-						color: #fff;
+						@extend %wet-theme-wb-sm-wb-navcurr;
 					}
 				}
 			}
@@ -74,9 +81,6 @@
 
 %wet-theme-site-menu-mb-pnl-bg-0e4164 {
 	background: #0e4164;
-}
-%wet-theme-site-menu-mb-pnl-padding-10-20 {
-	padding: 10px 20px;
 }
 #mb-pnl {
 	&.modal-content {
@@ -101,12 +105,6 @@
 	}
 	.lng-ofr {
 		@extend %wet-theme-site-menu-mb-pnl-bg-0e4164;
-		padding: 5px 20px;
-		text-align: right;
-		li {
-			padding-left: 10px;
-			line-height: normal;				
-		}
 	}
 	summary {
 		&:hover, &:focus {
@@ -120,7 +118,6 @@
 	}
 	.srch-pnl {
 		@extend %wet-theme-site-menu-mb-pnl-bg-0e4164;
-		@extend %wet-theme-site-menu-mb-pnl-padding-10-20;
 		.form-group {
 			float: left;
 			margin-right: 5px;
@@ -128,7 +125,6 @@
 		}
 	}
 	.sec-pnl {
-		@extend %wet-theme-site-menu-mb-pnl-padding-10-20;
 		background: #cdd4da;
 		a, summary {
 			color: #2e5576;
@@ -136,22 +132,14 @@
 	}
 	.sm-pnl{
 		@extend %wet-theme-site-menu-mb-pnl-bg-0e4164;
-		@extend %wet-theme-site-menu-mb-pnl-padding-10-20;
 	}
 	.info-pnl {
-		@extend %wet-theme-site-menu-mb-pnl-padding-10-20;
+		border-top: 2px solid #061E38;
 	}
 }
 
 [dir=rtl] {
 	#mb-pnl {
-		.lng-ofr {
-			text-align: left;
-			li {
-				padding-left: 0;
-				padding-right: 10px;
-			}
-		}
 		.srch-pnl {
 			.form-group {
 				float: right;

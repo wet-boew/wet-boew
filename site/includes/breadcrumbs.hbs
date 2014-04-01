@@ -2,7 +2,7 @@
 	<div class="row">
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{assets}}/index-{{language}}.html">{{#i18n "tmpl-home"}}{{/i18n}}</a>
+				<a href="{{assets}}/index-{{language}}.html">{{{i18n "tmpl-home"}}}</a>
 			</li>
 {{#contains page.src "/demos/index"}}
 {{else}}
@@ -11,18 +11,18 @@
 			{{#contains page.src "/index"}}
 			{{else}}
 				<li>
-					<a href="{{assets}}/docs/versions/index-{{language}}.html">{{#i18n "tmpl-version-history"}}{{/i18n}}</a>
+					<a href="{{assets}}/docs/versions/index-{{language}}.html">{{{i18n "tmpl-version-history"}}}</a>
 				</li>
 			{{/contains}}
 		{{else}}
 				<li>
-					<a href="{{assets}}/docs/index-{{language}}.html">{{#i18n "tmpl-documentation"}}{{/i18n}}</a>
+					<a href="{{assets}}/docs/index-{{language}}.html">{{{i18n "tmpl-documentation"}}}</a>
 				</li>
 			{{#contains page.src "/gs-cd/"}}
 				{{#contains page.src "/index"}}
 				{{else}}
 				<li>
-					<a href="{{assets}}/docs/gs-cd/index-{{language}}.html">{{#i18n "tmpl-getting-started"}}{{/i18n}}</a>
+					<a href="{{assets}}/docs/gs-cd/index-{{language}}.html">{{{i18n "tmpl-getting-started"}}}</a>
 				</li>
 				{{/contains}}
 			{{/contains}}
@@ -34,7 +34,7 @@
 		{{/contains}}
 	{{else}}
 			<li>
-				<a href="{{assets}}/demos/index-{{language}}.html">{{#i18n "tmpl-work-examples"}}{{/i18n}}</a>
+				<a href="{{assets}}/demos/index-{{language}}.html">{{{i18n "tmpl-work-examples"}}}</a>
 			</li>
 		{{#is breadcrumb3 "true"}}
 			{{#contains tag "theme-wet-boew"}}

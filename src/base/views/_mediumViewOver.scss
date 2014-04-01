@@ -14,15 +14,3 @@
 		}
 	}
 }
-[dir=rtl] {
-	main {
-		&.col-md-push-3 {
-			left: auto;
-		}
-	}
-	#wb-sec {
-		&.col-md-pull-9 {
-			right: auto;
-		}
-	}
-}

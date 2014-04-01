@@ -160,7 +160,7 @@
 	<p>Custom presets can be declared using embedded JavaScript where <code>custom</code> (name of the preset) can be any name. The custom preset can be applied using a class name with <code>wb-charts-</code> as the prefix followed by your custom preset name.</p>
 
 	<pre><code>&lt;script&gt;
-var wet_boew_charts = {
+window[ "wb-charts" ] = {
 	flot: {
 		<strong>custom</strong>: {
 			colors: [ &quot;#ff0000&quot;,
@@ -174,10 +174,10 @@ var wet_boew_charts = {
 					&quot;#0000ff&quot;]
 		}
 	}
-}
+};
 &lt;/script&gt;</code></pre>
 	<script>
-	var wet_boew_charts = {
+	window[ "wb-charts" ] = {
 		flot: {
 			custom: {
 				colors: [ "#ff0000",
@@ -191,7 +191,7 @@ var wet_boew_charts = {
 						"#0000ff"]
 			}
 		}
-	}
+	};
 	</script>
 
 	<p><code>&lt;table class=&quot;wb-charts <strong>wb-charts-custom</strong> table&quot;&gt;</code></p>
@@ -320,7 +320,7 @@ var wet_boew_charts = {
 		<p>It is possible to apply a preset to multiple settings. When the same preset name exists and is applied to multiple settings, the preset is applied across all those settings.</p>
 
 		<pre><code>&lt;script&gt;
-var wet_boew_charts = {
+window[ "wb-charts" ] = {
 
 	// Flot global settings. Equivalent to applying &quot;data-flot&quot; to the table element.
 	flot: { },
@@ -328,9 +328,9 @@ var wet_boew_charts = {
 	// Flot series-specific setting. Equivalent to applying &quot;data-flot&quot; to the th element.
 	series: { },
 
-	// WET chart-specific setting. Equivalent to applying &quot;data-wet-boew&quot; on the table element.
+	// WET chart-specific setting. Equivalent to applying &quot;data-wb-charts&quot; on the table element.
 	charts: { }
-}
+};
 &lt;/script&gt;</code></pre>
 	</section>
 </section>
@@ -411,7 +411,7 @@ var wet_boew_charts = {
 	&lt;/tr&gt;
 &lt;/thead&gt;</code></pre>
 
-	<table class="wb-charts wb-charts-pie table" data-wet-boew='{ "height": 300, "decimal": 1 }'>
+	<table class="wb-charts wb-charts-pie table" data-wb-charts='{ "height": 300, "decimal": 1 }'>
 		<caption>Number of pages with tasks as a main purpose per audience</caption>
 		<colgroup><col /></colgroup>
 		<colgroup>

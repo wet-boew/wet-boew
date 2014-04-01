@@ -20,6 +20,7 @@ var pluginName = "wb-menu",
 	breadcrumb = document.getElementById( "wb-bc" ),
 	navCurrentEvent = "navcurr.wb",
 	focusEvent = "setfocus.wb",
+	menuItemSelector = "> a, > details > summary",
 	i18n, i18nText,
 	$document = wb.doc,
 
@@ -79,7 +80,7 @@ var pluginName = "wb-menu",
 		// Lets tweak for aria
 		for ( i = 0; i !== length; i += 1 ) {
 			$elm = $elements.eq( i );
-			$subMenu = $elm.siblings( ".sm" );
+			$subMenu = $elm.siblings( "ul" );
 
 			$elm.attr({
 				"aria-posinset": ( i + 1 ),
@@ -98,9 +99,47 @@ var pluginName = "wb-menu",
 				});
 
 				// recurse into submenu
-				drizzleAria( $subMenu.find( ":discoverable" ) );
+				drizzleAria( $subMenu.children( "li" ).find( menuItemSelector ) );
 			}
 		}
+	},
+
+	/**
+	 * @method createCollapsibleSection
+	 * @return {string}
+	 */
+	createCollapsibleSection = function( section, sectionIndex, sectionsLength, $items, itemsLength ) {
+
+		// Use details/summary for the collapsible mechanism
+		var k, $elm, elm, $item, $subItems,
+			$section = $( section ),
+			posinset = "' aria-posinset='",
+			menuitem = "role='menuitem' aria-setsize='",
+			sectionHtml = "<li><details>" + "<summary class='mb-item" +
+				( $section.hasClass( "wb-navcurr" ) || $section.children( ".wb-navcurr" ).length !== 0 ? " wb-navcurr'" : "'" ) +
+				"' " + menuitem + sectionsLength + posinset + ( sectionIndex + 1 ) +
+				"' aria-haspopup='true'>" + $section.text() + "</summary>" +
+				"<ul class='list-unstyled mb-sm' role='menu' aria-expanded='false' aria-hidden='true'>";
+
+		// Convert each of the list items into WAI-ARIA menuitems
+		for ( k = 0; k !== itemsLength; k += 1 ) {
+			$item = $items.eq( k );
+			$elm = $item.find( menuItemSelector );
+			elm = $elm[ 0 ];
+			if ( elm.nodeName.toLowerCase() === "a" ) {
+				sectionHtml += "<li>" + $item[ 0 ].innerHTML.replace(
+						/(<a\s)/,
+						"$1 " + menuitem + itemsLength +
+							posinset + ( k + 1 ) +
+							"' tabindex='-1' "
+					) + "</li>";
+			} else {
+				$subItems = $elm.parent().find( "> ul > li" );
+				sectionHtml += createCollapsibleSection( elm, k, itemsLength, $subItems, $subItems.length );
+			}
+		}
+
+		return sectionHtml + "</ul></details></li>";
 	},
 
 	/**
@@ -109,20 +148,9 @@ var pluginName = "wb-menu",
 	 * @return {string}
 	 */
 	createMobilePanelMenu = function( allProperties ) {
-		var navOpen = "<nav role='navigation'",
-			siteNavElement = " typeof='SiteNavigationElement'",
-			navClose = "</nav>",
-			detailsOpen = "<li><details>",
-			detailsClose = "</details></li>",
-			listOpen = "<ul class='list-unstyled ",
-			menuItemReplace1 = "role='menuitem' aria-setsize='",
-			menuItemReplace2 = "' aria-posinset='",
-			menuItemReplace3 = "' tabindex='-1' ",
-			summaryOpen = "<summary class='mb-item' " + menuItemReplace1,
-			summaryClose = "</summary>",
-			panel = "",
-			sectionHtml, properties, sections, section, parent, items,
-			href, linkHtml, i, j, k, len, len2, len3;
+		var panel = "",
+			sectionHtml, properties, sections, section, parent, $items,
+			href, linkHtml, i, j, len, sectionsLength, itemsLength;
 
 		// Process the secondary and site menus
 		len = allProperties.length;
@@ -130,34 +158,16 @@ var pluginName = "wb-menu",
 			properties = allProperties[ i ];
 			sectionHtml = "";
 			sections = properties[ 0 ];
-			len2 = sections.length;
-			for ( j = 0; j !== len2; j += 1 ) {
+			sectionsLength = sections.length;
+			for ( j = 0; j !== sectionsLength; j += 1 ) {
 				section = sections[ j ];
 				href = section.getAttribute( "href" );
-				items = section.parentNode.getElementsByTagName( "li" );
-				len3 = items.length;
+				$items = $( section.parentNode ).find( "> ul > li" );
+				itemsLength = $items.length;
 
 				// Collapsible section
-				if ( len3 !== 0 && ( !href || href.charAt( 0 ) === "#" ) ) {
-
-					// Use details/summary for the collapsible mechanism
-					sectionHtml += detailsOpen +
-						summaryOpen + len2 + menuItemReplace2 +
-						( j + 1 ) + "' aria-haspopup='true'>" +
-						section.innerHTML + summaryClose +
-						listOpen + "mb-sm' role='menu' aria-expanded='false' aria-hidden='true'>";
-
-					// Convert each of the list items in WAI-ARIA menuitems
-					for ( k = 0; k !== len3; k += 1 ) {
-						sectionHtml += "<li>" + items[ k ].innerHTML.replace(
-								/(<a\s)/,
-								"$1 " + menuItemReplace1 + len3 +
-									menuItemReplace2 + ( k + 1 ) +
-									menuItemReplace3
-							) + "</li>";
-					}
-
-					sectionHtml += "</ul>" + detailsClose;
+				if ( itemsLength !== 0 ) {
+					sectionHtml += createCollapsibleSection( section, j, sectionsLength, $items, itemsLength );
 				} else {
 					parent = section.parentNode;
 
@@ -176,19 +186,19 @@ var pluginName = "wb-menu",
 					sectionHtml += "<li class='no-sect'>" +
 						linkHtml.replace(
 							/(<a\s)/,
-							"$1 class='mb-item' " + menuItemReplace1 +
-								len2 + menuItemReplace2 + ( j + 1 ) +
-								menuItemReplace3
+							"$1 class='mb-item' " + "role='menuitem' aria-setsize='" +
+								sectionsLength + "' aria-posinset='" + ( j + 1 ) +
+								"' tabindex='-1' "
 						) + "</li>";
 				}
 			}
 
 			// Create the panel section
-			panel += navOpen + siteNavElement + " id='" + properties[ 1 ] +
-				"' class='" + properties[ 1 ] + " wb-menu'>" +
+			panel += "<nav role='navigation' typeof='SiteNavigationElement' id='" +
+				properties[ 1 ] + "' class='" + properties[ 1 ] + " wb-menu'>" +
 				"<h3>" + properties[ 2 ] + "</h3>" +
-				listOpen + "mb-menu' role='menu'>" +
-				sectionHtml + "</ul>" + navClose;
+				"<ul class='list-unstyled mb-menu' role='menu'>" +
+				sectionHtml + "</ul></nav>";
 		}
 
 		return panel.replace( /list-group-item/gi, "" ) + "</div>";
@@ -320,29 +330,28 @@ var pluginName = "wb-menu",
 			$elm.trigger( navCurrentEvent, breadcrumb );
 			$panel.find( "#sm-pnl" ).trigger( navCurrentEvent, breadcrumb );
 
-			// Open up each menu with the wb-navcurr class
+			// Ensure that wb-navcurr is reflected in the top level
 			$navCurr = $panel.find( ".wb-navcurr" );
 			len = $navCurr.length;
 			for ( i = 0; i !== len; i += 1 ) {
 				$menuItem = $navCurr.eq( i );
 
-				// If not at the top level, check to see if the parent menu
-				// link has the wb-navcurr class already. If not, then
-				// click on the parent menu item.
+				// If not at the top level, then add wb-navcurr to the top level
 				if ( !$menuItem.hasClass( ".mb-item" ) ) {
 					$menuItem = $menuItem
 									.closest( "details" )
 										.children( "summary" )
 											.addClass( "wb-navcurr" );
 				}
+			}
 
-				// Only click on the menu item and set the open property if it has a submenu
-				if ( $menuItem.attr( "aria-haspopup" ) === "true" ) {
-					$menuItem
-						.trigger( "click" )
-						.parent()
-							.prop( "open", "open" );
-				}
+			// Open up the secondary menu if it has wb-navcurr and has a submenu
+			$menuItem = $panel.find( "#sec-pnl .wb-navcurr.mb-item" );
+			if ( $menuItem.attr( "aria-haspopup" ) === "true" ) {
+				$menuItem
+					.trigger( "click" )
+					.parent()
+						.prop( "open", "open" );
 			}
 		}, 1 );
 	},
@@ -574,181 +583,184 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 		$menuLink, $parentMenu, $parent, $subMenu, result,
 		menuitemSelector, isOpen, menuItemOffsetTop, menuContainer;
 
-	// Tab key = Hide all sub-menus
-	if ( which === 9 ) {
-		menuClose( $( selector + " .active" ), true );
+	if ( !( event.ctrlKey || event.altKey || event.metaKey ) ) {
 
-	// Menu item is within a menu bar
-	} else if ( inMenuBar ) {
+		// Tab key = Hide all sub-menus
+		if ( which === 9 ) {
+			menuClose( $( selector + " .active" ), true );
 
-		// Left / right arrow = Previous / next menu item
-		if ( which === 37 || which === 39 ) {
-			event.preventDefault();
-			menuIncrement(
-				$menu.find( "> li > a" ),
-				$menuItem,
-				which === 37 ? -1 : 1
-			);
+		// Menu item is within a menu bar
+		} else if ( inMenuBar ) {
 
-		// Enter sub-menu
-		} else if ( hasPopup && ( which === 13 || which === 38 || which === 40 ) ) {
-			event.preventDefault();
-			$parent = $menuItem.parent();
-			$subMenu = $parent.find( ".sm" );
-
-			// Open the submenu if it is not already open
-			if ( !$subMenu.hasClass( "open" ) ) {
-				menuDisplay( $menu.closest( selector ), $parent );
-			}
-
-			// Set focus on the first submenu item
-			$subMenu.find( "a:first" ).trigger( focusEvent );
-
-		// Hide sub-menus and set focus
-		} else if ( which === 27 ) {
-			event.preventDefault();
-			menuClose( $menu.closest( selector ).find( ".active" ), false );
-
-		// Letters only
-		} else if ( which > 64 && which < 91 ) {
-			event.preventDefault();
-			selectByLetter(
-				which,
-				$menuItem.parent().find( "> ul > li > a" ).get()
-			);
-		}
-
-	// Menu item is not within a menu bar
-	} else {
-		menuitemSelector = "> a, > details > summary";
-
-		// Up / down arrow = Previous / next menu item
-		if ( which === 38 || which === 40 ) {
-			event.preventDefault();
-			menuIncrement(
-				$menu.children( "li" ).find( menuitemSelector ),
-				$menuItem,
-				which === 38 ? -1 : 1
-			);
-
-		// Enter or right arrow with a submenu
-		} else if ( hasPopup && ( which === 13 || which === 39 ) ) {
-			$parent = $menuItem.parent();
-
-			if ( which === 39 ) {
+			// Left / right arrow = Previous / next menu item
+			if ( which === 37 || which === 39 ) {
 				event.preventDefault();
+				menuIncrement(
+					$menu.find( "> li > a" ),
+					$menuItem,
+					which === 37 ? -1 : 1
+				);
+
+			// Enter sub-menu
+			} else if ( hasPopup && ( which === 13 || which === 38 || which === 40 ) ) {
+				event.preventDefault();
+				$parent = $menuItem.parent();
+				$subMenu = $parent.find( ".sm" );
+
+				// Open the submenu if it is not already open
+				if ( !$subMenu.hasClass( "open" ) ) {
+					menuDisplay( $menu.closest( selector ), $parent );
+				}
+
+				// Set focus on the first submenu item
+				$subMenu.children( "li" ).eq( 0 ).find( menuItemSelector ).trigger( focusEvent );
+
+			// Hide sub-menus and set focus
+			} else if ( which === 27 ) {
+				event.preventDefault();
+				menuClose( $menu.closest( selector ).find( ".active" ), false );
+
+			// Letters only
+			} else if ( which > 64 && which < 91 ) {
+				event.preventDefault();
+				selectByLetter(
+					which,
+					$menuItem.parent().find( "> ul > li > a" ).get()
+				);
 			}
 
-			// If the menu item is a summary element
-			if ( menuItem.nodeName.toLowerCase( "summary" ) ) {
-				isOpen = !!$parent.attr( "open" );
+		// Menu item is not within a menu bar
+		} else {
+			menuitemSelector = menuItemSelector;
 
-				// Close any other open menus
-				if ( !isOpen ) {
-					$( parent )
-						.closest( "[role^='menu']" )
-							.find( "[aria-hidden=false]" )
-								.parent()
-									.find( "[aria-haspopup=true]" )
-										.not( menuItem )
-											.trigger( "click" );
+			// Up / down arrow = Previous / next menu item
+			if ( which === 38 || which === 40 ) {
+				event.preventDefault();
+				menuIncrement(
+					$menu.children( "li" ).find( menuitemSelector ),
+					$menuItem,
+					which === 38 ? -1 : 1
+				);
 
-					// Ensure the opened menu is in view if in a mobile panel
-					menuContainer = document.getElementById( "mb-pnl" );
-					menuItemOffsetTop = menuItem.offsetTop;
-					if ( $.contains( menuContainer, menuItem ) &&
-						menuItemOffsetTop < menuContainer.scrollTop ) {
+			// Enter or right arrow with a submenu
+			} else if ( hasPopup && ( which === 13 || which === 39 ) ) {
+				$parent = $menuItem.parent();
 
-						menuContainer.scrollTop = menuItemOffsetTop;
+				if ( which === 39 ) {
+					event.preventDefault();
+				}
+
+				// If the menu item is a summary element
+				if ( menuItem.nodeName.toLowerCase( "summary" ) ) {
+					isOpen = !!$parent.attr( "open" );
+
+					// Close any other open menus
+					if ( !isOpen ) {
+						$( parent )
+							.closest( "[role^='menu']" )
+								.find( "[aria-hidden=false]" )
+									.parent()
+										.find( "[aria-haspopup=true]" )
+											.not( menuItem )
+												.trigger( "click" );
+
+						// Ensure the opened menu is in view if in a mobile panel
+						menuContainer = document.getElementById( "mb-pnl" );
+						menuItemOffsetTop = menuItem.offsetTop;
+						if ( $.contains( menuContainer, menuItem ) &&
+							menuItemOffsetTop < menuContainer.scrollTop ) {
+
+							menuContainer.scrollTop = menuItemOffsetTop;
+						}
+					}
+
+					// Ensure the menu is opened or stays open
+					if ( ( !isOpen && which === 39 ) || ( isOpen && which === 13 ) ) {
+						$menuItem.trigger( "click" );
+					}
+
+					// Update the WAI-ARIA states and move focus to
+					// the first submenu item
+					$parent.children( "ul" )
+						.attr({
+							"aria-expanded": "true",
+							"aria-hidden": "false"
+						})
+						.find( "[role=menuitem]:first" )
+							.trigger( "setfocus.wb" );
+				}
+
+			// Escape, left / right arrow without a submenu
+			} else if ( which === 27 || which === 37 || which === 39 ) {
+				$parent = $menu.parent();
+				$parentMenu = $parent.closest( "[role^='menu']" );
+				if ( which === 37 || which === 39 ) {
+					event.preventDefault();
+				}
+
+				// If the parent menu is a menubar
+				if ( $parentMenu.attr( "role" ) === "menubar" ) {
+					$menuLink = $parent.children( "[href=#" + $menu.attr( "id" ) + "]" );
+
+					// Escape key = Close menu and return to menu bar item
+					if ( which === 27 ) {
+						event.preventDefault();
+						$menuLink.trigger( focusEvent );
+
+						// Close the menu but keep the referring link active
+						setTimeout(function() {
+							menuClose( $menuLink.parent(), false );
+						}, 1 );
+
+					// Left / right key = Next / previous menu bar item
+					} else if ( $parentMenu.attr( "role" ) === "menubar" ) {
+						menuIncrement(
+							$parentMenu.find( "> li > a" ),
+							$menuLink,
+							which === 37 ? -1 : 1
+						);
+					}
+
+				// Escape or left arrow: Go up a level if there is a higher-level
+				// menu or close the current submenu if there isn't
+				} else if ( which !== 39 ) {
+					$subMenu = $parentMenu.length !== 0 ? $menu : $menuItem;
+
+					// There is a higher-level menu
+					if ( $parentMenu.length !== 0 ) {
+						event.preventDefault();
+						$menu.closest( "li" )
+							.find( menuitemSelector )
+								.trigger( "click" )
+								.trigger( "setfocus.wb" );
+
+					// No higher-level menu but the current submenu is open
+					} else if ( $menuItem.parent().children( "ul" ).attr( "aria-hidden" ) === "false" ) {
+						event.preventDefault();
+						$menuItem
+							.trigger( "click" )
+							.trigger( "setfocus.wb" );
 					}
 				}
 
-				// Ensure the menu is opened or stays open
-				if ( ( !isOpen && which === 39 ) || ( isOpen && which === 13 ) ) {
-					$menuItem.trigger( "click" );
-				}
-
-				// Update the WAI-ARIA states and move focus to
-				// the first submenu item
-				$parent.children( "ul" )
-					.attr({
-						"aria-expanded": "true",
-						"aria-hidden": "false"
-					})
-					.find( "[role=menuitem]:first" )
-						.trigger( "setfocus.wb" );
-			}
-
-		// Escape, left / right arrow without a submenu
-		} else if ( which === 27 || which === 37 || which === 39 ) {
-			$parent = $menu.parent();
-			$parentMenu = $parent.closest( "[role^='menu']" );
-			if ( which === 37 || which === 39 ) {
+			// Select a menu item in the current menu by the first letter
+			} else if ( which > 64 && which < 91 ) {
 				event.preventDefault();
-			}
+				$parent = $menuItem.closest( "li" );
 
-			// If the parent menu is a menubar
-			if ( $parentMenu.attr( "role" ) === "menubar" ) {
-				$menuLink = $parent.children( "[href=#" + $menu.attr( "id" ) + "]" );
-
-				// Escape key = Close menu and return to menu bar item
-				if ( which === 27 ) {
-					event.preventDefault();
-					$menuLink.trigger( focusEvent );
-
-					// Close the menu but keep the referring link active
-					setTimeout(function() {
-						menuClose( $menuLink.parent(), false );
-					}, 1 );
-
-				// Left / right key = Next / previous menu bar item
-				} else if ( $parentMenu.attr( "role" ) === "menubar" ) {
-					menuIncrement(
-						$parentMenu.find( "> li > a" ),
-						$menuLink,
-						which === 37 ? -1 : 1
-					);
-				}
-
-			// Escape or left arrow: Go up a level if there is a higher-level
-			// menu or close the current submenu if there isn't
-			} else if ( which !== 39 ) {
-				$subMenu = $parentMenu.length !== 0 ? $menu : $menuItem;
-
-				// There is a higher-level menu
-				if ( $parentMenu.length !== 0 ) {
-					event.preventDefault();
-					$menu.closest( "li" )
-						.find( menuitemSelector )
-							.trigger( "click" )
-							.trigger( "setfocus.wb" );
-
-				// No higher-level menu but the current submenu is open
-				} else if ( $menuItem.parent().children( "ul" ).attr( "aria-hidden" ) === "false" ) {
-					event.preventDefault();
-					$menuItem
-						.trigger( "click" )
-						.trigger( "setfocus.wb" );
-				}
-			}
-
-		// Select a menu item in the current menu by the first letter
-		} else if ( which > 64 && which < 91 ) {
-			event.preventDefault();
-			$parent = $menuItem.closest( "li" );
-
-			// Try to find a match in the next siblings
-			result = selectByLetter(
-				which,
-				$parent.nextAll().find( menuitemSelector ).get()
-			);
-
-			// If couldn't find a match, try the previous siblings
-			if ( !result ) {
+				// Try to find a match in the next siblings
 				result = selectByLetter(
 					which,
-					$parent.prevAll().find( menuitemSelector ).get()
+					$parent.nextAll().find( menuitemSelector ).get()
 				);
+
+				// If couldn't find a match, try the previous siblings
+				if ( !result ) {
+					result = selectByLetter(
+						which,
+						$parent.prevAll().find( menuitemSelector ).get()
+					);
+				}
 			}
 		}
 	}

@@ -4,9 +4,9 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  *
- * This plugin provides the ability to add and update the favicon's on a web page. Its default behaviour is to add a mobile favicon to web pages that have a favicon defined by a `<link rel="shortcut icon">` element.
+ * This plugin provides the ability to add and update the favicon's on a web page. Its default behaviour is to add a mobile favicon to web pages that have a favicon defined by a `<link rel='icon'>` element.
  *
- * The mobile favicon's file name, rel, path and sizes can be set with data attributes on the `<link rel="shortcut icon">`:
+ * The mobile favicon's file name, rel, path and sizes can be set with data attributes on the `<link rel='icon'>`:
  *
  * -**data-filename:** filename of the mobile favicon (defaults to "favicon-mobile.png"). This will be appended to the favicon's path.
  * -**data-path:** path to the mobile favicon (defaults to using the same path as the shortcut icon).
@@ -15,7 +15,7 @@
  *
  * For example, the following overides the rel and file name attributes of the mobile favicon:
  *
- *     <link href="favion.ico" rel="shortcut icon" data-rel="apple-touch-icon-precomposed" data-filename="my-mobile-favicon.ico">
+ *     <link href="favion.ico" rel='icon' data-rel="apple-touch-icon-precomposed" data-filename="my-mobile-favicon.ico">
  */
 (function( $, window, wb ) {
 "use strict";
@@ -27,7 +27,7 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var pluginName = "wb-favicon",
-	selector = "link[rel='shortcut icon']",
+	selector = "link[rel='icon']",
 	initEvent = "wb-init." + pluginName,
 	mobileEvent = "mobile." + pluginName,
 	iconEvent = "icon." + pluginName,
