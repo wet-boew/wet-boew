@@ -42,5 +42,3 @@ linters:
     enabled: false
   Shorthand:
     enabled: false
-  HexFormat:
-    enabled: false

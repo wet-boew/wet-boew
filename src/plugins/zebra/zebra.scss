@@ -4,15 +4,15 @@
  */
 
 %zebra-summary {
-	background-color: #F0F2F4;
+	background-color: #f0f2f4;
 }
 
 %zebra-col-hover {
-	background-color: #F0F0F0;
+	background-color: #f0f0f0;
 }
 
 %zebra-summary-hover {
-	background-color: #FAFAFF;
+	background-color: #fafaff;
 }
 
 // Layout cell styling often at the junction of two header group or two summary group.
@@ -30,7 +30,7 @@
 
 // Separate multiple colgroup instances
 .wb-zebra > colgroup + colgroup {
-	border-left: 2px solid #DDDDDD;
+	border-left: 2px solid #ddd;
 }
 
 // Style summary group

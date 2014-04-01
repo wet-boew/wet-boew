@@ -152,7 +152,7 @@
 .wb-mm-cc {
 	@extend %captions_hidden;
 	background-color: #000;
-	color: #FFF;
+	color: #fff;
 	text-align: center;
 	transition: all 0.26s ease;
 }
@@ -214,7 +214,7 @@
 		}
 		/* Now the value part */
 		&::-webkit-progress-value {
-			background: #176CA7;
+			background: #176ca7;
 		}
 	}
 

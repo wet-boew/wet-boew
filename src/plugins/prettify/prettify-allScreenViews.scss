@@ -11,14 +11,14 @@
 	color: #660;
 }
 %prettify-screen-color-2F6D2F {
-	color: #2F6D2F;
+	color: #2f6d2f;
 }
 
 .str {
 	@extend %prettify-screen-color-2F6D2F;
 }	/* string content - from #080 */
 .kwd {
-	color: #024B6E;
+	color: #024b6e;
 }	/* a keyword - from #008 */
 .com {
 	color: #800;
@@ -40,7 +40,8 @@
 	@extend %prettify-screen-color-660;
 }
 .tag {
-	color: #125B7E; }	/* a markup tag name - from #008 */
+	color: #125b7e;
+}	/* a markup tag name - from #008 */
 .atn {
 	@extend %prettify-screen-color-606;
 }	/* a markup attribute name */

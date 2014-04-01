@@ -66,7 +66,7 @@ a {
 			color: $navbar-default-link-color;
 		}
 	}
-	
+
 	@media (max-width: $grid-float-breakpoint-max) {
 		.open .dropdown-menu {
 			> li > a {
@@ -74,7 +74,7 @@ a {
 			}
 		}
 	}
-	
+
 	.navbar-link:visited {
 		color: $navbar-default-link-color;
 	}
@@ -86,7 +86,7 @@ a {
 			color: $navbar-inverse-link-color;
 		}
 	}
-	
+
 	@media (max-width: $grid-float-breakpoint-max) {
 		.open .dropdown-menu {
 			> li > a:visited {
@@ -343,7 +343,7 @@ code {
 	white-space: normal;
 }
 
-/* 
+/*
  * List unstyled RTL fix
  */
 [dir=rtl] {
@@ -446,7 +446,7 @@ blockquote {
 			content: " →";
 		}
 	}
-	
+
 	> li {
 		> a,
 		> span {
