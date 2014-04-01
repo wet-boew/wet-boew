@@ -2,22 +2,25 @@
 {{#contains page.src "/demos/index"}}
 {{else}}
 	{{#contains page.src "/docs/"}}
-		{{#contains page.src "/versions/"}}
-			{{#contains page.src "/index"}}
-			{{else}}
-				{{{i18n "hyphen"}}}{{{i18n "tmpl-version-history"}}}
-			{{/contains}}
+		{{#contains page.src "/docs/index"}}
 		{{else}}
-			{{#contains page.src "/gs-cd/"}}
+			{{#contains page.src "/versions/"}}
 				{{#contains page.src "/index"}}
 				{{else}}
-					{{{i18n "hyphen"}}}{{{i18n "tmpl-getting-started"}}}
+					{{{i18n "hyphen"}}}{{{i18n "tmpl-version-history"}}}
 				{{/contains}}
-			{{/contains}}	
-			{{#if page.componentType}}
-				{{{i18n "hyphen"}}}{{page.componentType}}
-			{{/if}}
-			{{{i18n "hyphen"}}}{{{i18n "tmpl-documentation"}}}
+			{{else}}
+				{{#contains page.src "/gs-cd/"}}
+					{{#contains page.src "/index"}}
+					{{else}}
+						{{{i18n "hyphen"}}}{{{i18n "tmpl-getting-started"}}}
+					{{/contains}}
+				{{/contains}}	
+				{{#if page.componentType}}
+					{{{i18n "hyphen"}}}{{page.componentType}}
+				{{/if}}
+				{{{i18n "hyphen"}}}{{{i18n "tmpl-documentation"}}}
+			{{/contains}}
 		{{/contains}}
 	{{else}}
 		{{#is breadcrumb3 "true"}}
