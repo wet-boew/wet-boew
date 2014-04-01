@@ -10,9 +10,10 @@ env:
 
 before_install:
   - ./script/setup
+  - gem install scss-lint
 
 script:
-  - travis_retry grunt test test-mocha && ./script/travis_artifacts.sh
+  - ./script/travis_script.sh
 
 after_success:
   - ./script/travis_saucelabs.sh
