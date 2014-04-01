@@ -44,5 +44,3 @@ linters:
     enabled: false
   HexFormat:
     enabled: false
-  SpaceAfterComma:
-    enabled: false
