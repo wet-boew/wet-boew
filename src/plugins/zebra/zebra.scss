@@ -15,11 +15,11 @@
 	background-color: #FAFAFF;
 }
 
-// Layout cell styling often at the junction of two header group or two summary group. 
+// Layout cell styling often at the junction of two header group or two summary group.
 .wb-cell-layout {
 	background-color: transparent;
 }
- 
+
 // Styling of special kind of cell defined in a header group
 .wb-cell-key {
 	font-style: italic;
@@ -30,7 +30,7 @@
 
 // Separate multiple colgroup instances
 .wb-zebra > colgroup + colgroup {
-    border-left: 2px solid #DDDDDD;
+	border-left: 2px solid #DDDDDD;
 }
 
 // Style summary group

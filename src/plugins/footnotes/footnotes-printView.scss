@@ -24,9 +24,9 @@
 		display: inline-block;
 	}
 	.fn-rtn {
-			overflow: visible;
-			a {
-				@extend %fnote-print-link-background-transparent-border-0-padding-0;
-			}
+		overflow: visible;
+		a {
+			@extend %fnote-print-link-background-transparent-border-0-padding-0;
 		}
+	}
 }

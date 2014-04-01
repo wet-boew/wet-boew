@@ -2,11 +2,11 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
- %wb-fade-opacity-0 {
-    opacity: 0;
+%wb-fade-opacity-0 {
+	opacity: 0;
 }
 %wb-fade-opacity-1 {
-    opacity: 1;
+	opacity: 1;
 }
 %wb-slide-left {
 	transform: translate(-25%, 0);
@@ -32,24 +32,24 @@
 
 /* Fade */
 .wb-fade-in-test {
-    @extend %wb-fade-opacity-0;
-    @extend %transition-300;
-    &:hover {
-        @extend %wb-fade-opacity-1;
-    }
-    &:focus {
-        @extend %wb-fade-opacity-1;
-    }
+	@extend %wb-fade-opacity-0;
+	@extend %transition-300;
+	&:hover {
+		@extend %wb-fade-opacity-1;
+	}
+	&:focus {
+		@extend %wb-fade-opacity-1;
+	}
 }
 .wb-fade-out-test {
-    @extend %wb-fade-opacity-1;
-    @extend %transition-500;
-    &:hover {
-        @extend %wb-fade-opacity-0;
-    }
-    &:focus {
-        @extend %wb-fade-opacity-0;
-    }
+	@extend %wb-fade-opacity-1;
+	@extend %transition-500;
+	&:hover {
+		@extend %wb-fade-opacity-0;
+	}
+	&:focus {
+		@extend %wb-fade-opacity-0;
+	}
 }
 
 /* Slide */

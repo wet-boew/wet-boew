@@ -48,9 +48,9 @@
  * with some headers (closes #3154)
  */
 .olControlPanZoomBar {
-  div {
-    font-size: 1px;
-  }
+	div {
+		font-size: 1px;
+	}
 }
 
 .olMap {
@@ -214,7 +214,7 @@
 	position: relative;
 	outline: 1px solid #CCC;
 	margin-bottom: 30px;
-	
+
 	&.active {
 		outline-color: #07F;
 	}
