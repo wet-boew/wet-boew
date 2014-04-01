@@ -28,14 +28,8 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_REPO_SLUG" == "wet-boew/w
 	git clone -q https://${GH_TOKEN}@github.com/wet-boew/wet-boew.github.io.git > /dev/null 2>&1 || error_exit "Error cloning the working examples repository";
 	cd wet-boew.github.io
 
-	if [ "$TRAVIS_BRANCH" == "master" ]; then
-		submodule_name="wet-boew"
-	else
-		submodule_name="$TRAVIS_BRANCH-ci"
-	fi
-
 	echo -e "Updating submodule '$submodule_name'"
-	git submodule update --remote --init "$submodule_name" > /dev/null 2>&1 || error_exit "Error updating submodules"
+	git submodule update --remote --init wet-boew "$TRAVIS_BRANCH-ci" > /dev/null 2>&1 || error_exit "Error updating submodules"
 	git add .
 	git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER"
 	git push -fq origin master > /dev/null 2>&1 || error_exit "Error uploading the working examples"
