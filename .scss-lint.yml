@@ -48,5 +48,3 @@ linters:
     enabled: false
   SpaceAfterPropertyColon:
     enabled: false
-  ZeroUnit:
-    enabled: false
