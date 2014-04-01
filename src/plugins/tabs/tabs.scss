@@ -13,7 +13,7 @@ $medGray: #ccc;
 
 %tabsGreyBackground {
 	background: $medGray;
-	background: transparentize($medGray, 0.1)
+	background: transparentize($medGray, 0.1);
 }
 
 %tabsPositionRelative {

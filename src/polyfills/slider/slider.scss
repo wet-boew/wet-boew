@@ -195,19 +195,19 @@
 */
 .fd-slider-focused, .fd-slider-hover, .fd-slider-active {
 	.fd-slider-handle {
-		background-position: 0 -20px
+		background-position: 0 -20px;
 	}
 }
 .fd-slider-no-value {
 	.fd-slider-handle {
-		background-position: 0 -59px
+		background-position: 0 -59px;
 	}
 }
 body {
 	&.fd-slider-drag-horizontal, &.fd-slider-drag-horizontal * {
 		cursor: N-resize !important;
 		user-select: none;
-		cursor: W-resize !important
+		cursor: W-resize !important;
 	}
 }
 .fd-slider-disabled {
@@ -238,22 +238,22 @@ body {
 
 keyframes fd-pulse {
 	0% {
-		box-shadow: 0 0 3px rgba(100, 130, 170, 0.55)
+		box-shadow: 0 0 3px rgba(100, 130, 170, 0.55);
 	}
 	20% {
-		box-shadow: 0 0 4px rgba(70, 130, 170, 0.6)
+		box-shadow: 0 0 4px rgba(70, 130, 170, 0.6);
 	}
 	40% {
-		box-shadow: 0 0 5px rgba(40, 130, 170, 0.65)
+		box-shadow: 0 0 5px rgba(40, 130, 170, 0.65);
 	}
 	60% {
-		box-shadow: 0 0 6px rgba(10, 130, 170, 0.7)
+		box-shadow: 0 0 6px rgba(10, 130, 170, 0.7);
 	}
 	80% {
-		box-shadow: 0 0 5px rgba(40, 130, 170, 0.65)
+		box-shadow: 0 0 5px rgba(40, 130, 170, 0.65);
 	}
 	100% {
-		box-shadow: 0 0 4px rgba(70, 130, 170, 0.6)
+		box-shadow: 0 0 4px rgba(70, 130, 170, 0.6);
 	}
 }
 
