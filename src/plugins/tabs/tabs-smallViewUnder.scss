@@ -22,7 +22,8 @@
 	border-top: 1px solid #adadad;
 	border-radius: 4px;
 	margin-bottom: 15px;
-	&.carousel-s1, &.carousel-s2 {
+	&.carousel-s1,
+	&.carousel-s2 {
 		figcaption {
 			position: relative;
 			top: auto;
@@ -45,7 +46,9 @@
 					.curr-count {
 						display: inline;
 					}
-					&.active, &:focus, &:hover {
+					&.active,
+					&:focus,
+					&:hover {
 						top: 0;
 						cursor: default;
 					}
@@ -85,7 +88,8 @@
 					.curr-count {
 						@extend %tabs-smallview-font-size-15-em;
 					}
-					&:focus, &:hover {
+					&:focus,
+					&:hover {
 						background: transparent;
 						cursor: default;
 					}

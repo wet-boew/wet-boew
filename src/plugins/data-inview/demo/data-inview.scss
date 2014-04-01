@@ -26,7 +26,8 @@
 	}
 }
 
-.wb-bar-t, .wb-bar-b {
+.wb-bar-t,
+.wb-bar-b {
 	header {
 		@extend %data-inview-bar-demo-inline-block;
 	}
@@ -36,8 +37,12 @@
 		li {
 			margin-bottom: 5px;
 		}
-		> li:first-child {
-			padding-left: 5px;
+		> {
+			li {
+				&:first-child {
+					padding-left: 5px;
+				}
+			}
 		}
 	}
 }

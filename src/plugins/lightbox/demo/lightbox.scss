@@ -29,7 +29,9 @@
 	}
 	> {
 		a {
-			&:hover, &:focus, &:active {
+			&:hover,
+			&:focus,
+			&:active {
 				text-decoration: underline;
 				background: #fff;
 			}

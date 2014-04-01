@@ -34,8 +34,6 @@ linters:
     enabled: false
   NameFormat:
     enabled: false
-  SingleLinePerSelector:
-    enabled: false
   UrlFormat:
     enabled: false
   DeclarationOrder:

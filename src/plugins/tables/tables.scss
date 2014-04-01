@@ -205,7 +205,8 @@ table {
 		&.paginate_button {
 			@extend %tables-paginate-button-active;
 			background-color: #ddd;
-			&:hover, &:focus {
+			&:hover,
+			&:focus {
 				background-color: #ccc;
 				text-decoration: none !important;
 			}

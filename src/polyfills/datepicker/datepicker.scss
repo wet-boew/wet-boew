@@ -8,7 +8,7 @@
 %datepicker-inline-block {
 	display: inline-block;
 }
- 
+
 .cal-cnt {
 	&.picker-overlay {
 		position: absolute;
@@ -48,7 +48,9 @@
 	background: none;
 	border: none;
 	vertical-align: middle;
-	&:link, &:visited, &:focus {
+	&:link,
+	&:visited,
+	&:focus {
 		color: #000;
 	}
 	span {
@@ -70,7 +72,8 @@
 	}
 	a {
 		color: #111;
-		&:hover, &:focus {
+		&:hover,
+		&:focus {
 			@extend %datepicker-color-fff-important;
 		}
 	}

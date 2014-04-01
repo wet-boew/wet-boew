@@ -48,7 +48,8 @@
 			padding: 0;
 			background: #ccc;
 			li {
-				a, summary {
+				a,
+				summary {
 					color: #444;
 					border-left: none;
 					border-right: none;
@@ -58,7 +59,8 @@
 					&.wb-navcurr {
 						@extend %wet-theme-wb-sm-wb-navcurr;
 					}
-					&:hover, &:focus {
+					&:hover,
+					&:focus {
 						@extend %wet-theme-wb-sm-wb-navcurr;
 					}
 				}
@@ -107,7 +109,8 @@
 		@extend %wet-theme-site-menu-mb-pnl-bg-0e4164;
 	}
 	summary {
-		&:hover, &:focus {
+		&:hover,
+		&:focus {
 			background: transparent;
 			color: #fff;
 		}
@@ -126,7 +129,8 @@
 	}
 	.sec-pnl {
 		background: #cdd4da;
-		a, summary {
+		a,
+		summary {
 			color: #2e5576;
 		}
 	}

@@ -56,7 +56,8 @@
 	}
 }
 
-.cal-nxtmnth, .cal-prvmnth {
+.cal-nxtmnth,
+.cal-prvmnth {
 	display: inline-block;
 	background: none;
 	border: none;
@@ -79,7 +80,8 @@
 }
 
 .cal-days {
-	a, div {
+	a,
+	div {
 		display: block;
 		height: 100%;
 		padding: 0.5em 0;

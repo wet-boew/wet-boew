@@ -246,10 +246,13 @@
 }
 
 .tbl-gridify {
-	thead, tfoot {
+	thead,
+	tfoot {
 		display: none;
 	}
-	tbody, td, td {
+	tbody,
+	td,
+	td {
 		display: block;
 	}
 }

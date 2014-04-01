@@ -23,7 +23,8 @@
 		color: #000;
 		display: block;
 		padding-left: 10px;
-		&:hover, &:focus {
+		&:hover,
+		&:focus {
 			background: #406c93;
 			color: #fff;
 		}

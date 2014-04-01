@@ -18,7 +18,8 @@
 .wb-twitter {
 	.twitter-timeline {
 		a {
-			&:link, &:visited {
+			&:link,
+			&:visited {
 				color: #707070;
 			}
 		}

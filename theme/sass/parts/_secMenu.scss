@@ -33,7 +33,8 @@
 					@extend %secmenu-wet-theme-menuitem-curr-hover-focus;
 				}
 				&[href] {
-					&:hover, &:focus {
+					&:hover,
+					&:focus {
 						@extend %secmenu-wet-theme-menuitem-curr-hover-focus;
 					}
 				}

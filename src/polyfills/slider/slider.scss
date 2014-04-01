@@ -191,7 +191,9 @@
 	}
 }
 */
-.fd-slider-focused, .fd-slider-hover, .fd-slider-active {
+.fd-slider-focused,
+.fd-slider-hover,
+.fd-slider-active {
 	.fd-slider-handle {
 		background-position: 0 -20px;
 	}
@@ -202,7 +204,8 @@
 	}
 }
 body {
-	&.fd-slider-drag-horizontal, &.fd-slider-drag-horizontal * {
+	&.fd-slider-drag-horizontal,
+	&.fd-slider-drag-horizontal * {
 		cursor: N-resize !important;
 		user-select: none;
 		cursor: W-resize !important;

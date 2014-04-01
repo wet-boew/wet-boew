@@ -18,7 +18,8 @@
 }
 .fn-lnk {
 	@extend %fnote-link-background-light-border-medium-padding-whitespace;
-	&:hover, &:focus {
+	&:hover,
+	&:focus {
 		@extend %fnote-link-highlight;
 	}
 }
@@ -71,7 +72,8 @@
 			@extend %fnote-link-background-light-border-medium-padding-whitespace;
 			display: inline-block;
 			padding-bottom: 0;
-			&:hover, &:focus {
+			&:hover,
+			&:focus {
 				@extend %fnote-link-highlight;
 			}
 		}

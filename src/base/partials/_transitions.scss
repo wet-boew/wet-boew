@@ -103,7 +103,8 @@
 }
 
 .slide {
-	.out, .in {
+	.out,
+	.in {
 		animation-timing-function: ease-out;
 		animation-duration: 350ms;
 	}

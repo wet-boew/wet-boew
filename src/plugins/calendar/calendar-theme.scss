@@ -28,10 +28,12 @@
 		@extend %cal-color-fff;
 		font-weight: 700;
 	}
-	.cal-nxtmnth, .cal-prvmnth {
+	.cal-nxtmnth,
+	.cal-prvmnth {
 		&.active {
 			color: #ccc;
-			&:hover, &:focus {
+			&:hover,
+			&:focus {
 				@extend %cal-color-fff;
 			}
 		}
@@ -39,7 +41,8 @@
 	.cal-goto-lnk {
 		@extend %cal-color-fff-important;
 	}
-	.cal-goto-mnth, .cal-goto-yr {
+	.cal-goto-mnth,
+	.cal-goto-yr {
 		@extend %cal-color-000;
 	}
 }
@@ -47,7 +50,8 @@
 .cal-days {
 	a {
 		color: #111;
-		&:hover, &:focus {
+		&:hover,
+		&:focus {
 			@extend %cal-background-333;
 			@extend %cal-color-fff-important;
 		}

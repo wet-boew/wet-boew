@@ -109,7 +109,8 @@ $medGray: #ccc;
 				// changed padding and margin from em to px to fix web-kit layout issue
 				padding: 10px;
 			}
-			&:focus, &:hover {
+			&:focus,
+			&:hover {
 				background: $medGray;
 				background: transparentize($medGray, 0.1);
 			}
@@ -143,7 +144,9 @@ $medGray: #ccc;
 			left: 1em;
 			li {
 				@extend %tab-zindex-100;
-				&.active, &:focus, &:hover {
+				&.active,
+				&:focus,
+				&:hover {
 					top: 1px;
 					a {
 						@extend %tabs-carousel-border-top-none-padding-top-1;
@@ -190,7 +193,9 @@ $medGray: #ccc;
 					top: 100%;
 					background: $lightGray;
 					background: transparentize($lightGray, .1);
-					&.active, &:focus, &:hover {
+					&.active,
+					&:focus,
+					&:hover {
 						box-shadow: 0 0 4px $drabBlue;
 					}
 					&.active {
@@ -227,7 +232,8 @@ $medGray: #ccc;
 						.glyphicon {
 							@extend %carousel-s2-prv-nxt-glyphicon-common;
 						}
-						&:focus, &:hover {
+						&:focus,
+						&:hover {
 							@extend %tabs-background-transparent;
 							.glyphicon {
 								@extend %tabs-box-shadow-none;
@@ -242,7 +248,8 @@ $medGray: #ccc;
 						.glyphicon {
 							@extend %carousel-s2-prv-nxt-glyphicon-common;
 						}
-						&:focus, &:hover {
+						&:focus,
+						&:hover {
 							@extend %tabs-background-transparent;
 							.glyphicon {
 								@extend %tabs-box-shadow-none;

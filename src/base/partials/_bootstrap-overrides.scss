@@ -123,7 +123,9 @@ a {
 				font-family: "Glyphicons Halflings";
 			}
 		}
-		strong, em, span {
+		strong,
+		em,
+		span {
 			&:first-child {
 				display: inline-block;
 			}
@@ -164,7 +166,9 @@ a {
 	@extend %label-default-bg-border-left;
 	@extend %label-alert-color-000;
 	&[href] {
-		&:hover, &:focus, &:active {
+		&:hover,
+		&:focus,
+		&:active {
 			@extend %label-default-bg-border-left;
 			@extend %label-alert-color-000;
 			@extend %label-alert-underline;
@@ -180,7 +184,9 @@ a {
 	@extend %label-primary-bg-border-left;
 	@extend %label-alert-color-000;
 	&[href] {
-		&:hover, &:focus, &:active {
+		&:hover,
+		&:focus,
+		&:active {
 			@extend %label-primary-bg-border-left;
 			@extend %label-alert-color-000;
 			@extend %label-alert-underline;
@@ -197,7 +203,9 @@ $label-alert-warning-border-icon-color: #278400;
 	@extend %label-alert-success-bg-border-left;
 	@extend %label-alert-color-000;
 	&[href] {
-		&:hover, &:focus, &:active {
+		&:hover,
+		&:focus,
+		&:active {
 			@extend %label-alert-success-bg-border-left;
 			@extend %label-alert-color-000;
 			@extend %label-alert-underline;
@@ -226,7 +234,9 @@ $label-alert-info-border-icon-color: #269abc;
 	@extend %label-alert-info-bg-border-left;
 	@extend %label-alert-color-000;
 	&[href] {
-		&:hover, &:focus, &:active {
+		&:hover,
+		&:focus,
+		&:active {
 			@extend %label-alert-info-bg-border-left;
 			@extend %label-alert-color-000;
 			@extend %label-alert-underline;
@@ -255,7 +265,9 @@ $label-alert-warning-border-icon-color: #f90;
 	@extend %label-alert-warning-bg-border-left;
 	@extend %label-alert-color-000;
 	&[href] {
-		&:hover, &:focus, &:active {
+		&:hover,
+		&:focus,
+		&:active {
 			@extend %label-alert-warning-bg-border-left;
 			@extend %label-alert-color-000;
 			@extend %label-alert-underline;
@@ -284,7 +296,9 @@ $label-alert-danger-border-icon-color: #d3080c;
 	@extend %label-alert-danger-bg-border-left;
 	@extend %label-alert-color-000;
 	&[href] {
-		&:hover, &:focus, &:active {
+		&:hover,
+		&:focus,
+		&:active {
 			@extend %label-alert-danger-bg-border-left;
 			@extend %label-alert-color-000;
 			@extend %label-alert-underline;
@@ -312,27 +326,33 @@ $label-alert-danger-border-icon-color: #d3080c;
 	font-weight: 700;
 }
 
-h1, .h1 {
+h1,
+.h1 {
 	@extend %font-weight-700;
 }
 
-h2, .h2 {
+h2,
+.h2 {
 	@extend %font-weight-700;
 }
 
-h3, .h3 {
+h3,
+.h3 {
 	@extend %font-weight-700;
 }
 
-h4, .h4 {
+h4,
+.h4 {
 	@extend %font-weight-700;
 }
 
-h5, .h5 {
+h5,
+.h5 {
 	@extend %font-weight-700;
 }
 
-h6, .h6 {
+h6,
+.h6 {
 	@extend %font-weight-700;
 }
 
@@ -368,16 +388,22 @@ dd {
  */
 $input-height-xs: (floor($font-size-small * $line-height-small) + ($padding-xs-vertical * 2) + 2);
 
-input[type="reset"], input[type="button"], input[type="submit"] {
-	height: $input-height-base;
-	&.btn-lg, &.input-lg {
-		height: $input-height-large;
-	}
-	&.btn-sm, &.input-sm {
-		height: $input-height-small;
-	}
-	&.btn-xs {
-		height: $input-height-xs;
+input {
+	&[type="reset"],
+	&[type="button"],
+	&[type="submit"] {
+		height: $input-height-base;
+		&.btn-lg,
+		&.input-lg {
+			height: $input-height-large;
+		}
+		&.btn-sm,
+		&.input-sm {
+			height: $input-height-small;
+		}
+		&.btn-xs {
+			height: $input-height-xs;
+		}
 	}
 }
 
@@ -386,23 +412,29 @@ input[type="reset"], input[type="button"], input[type="submit"] {
  *	breakpoint
  */
 @media (max-width: $screen-xs-max) {
-	.pull-left, .pull-right {
-		&[class*=col-sm], &[class*=col-md], &[class*=col-lg] {
+	.pull-left,
+	.pull-right {
+		&[class*=col-sm],
+		&[class*=col-md],
+		&[class*=col-lg] {
 			float: none !important;
 		}
 	}
 }
 
 @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-	.pull-left, .pull-right {
-		&[class*=col-md], &[class*=col-lg] {
+	.pull-left,
+	.pull-right {
+		&[class*=col-md],
+		&[class*=col-lg] {
 			float: none !important;
 		}
 	}
 }
 
 @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
-	.pull-left, .pull-right {
+	.pull-left,
+	.pull-right {
 		&[class*=col-lg] {
 			float: none !important;
 		}
@@ -434,7 +466,8 @@ blockquote {
  *	  * Increase size of the pagination buttons
  */
 
-.pagination, .pager {
+.pagination,
+.pager {
 	[rel="prev"] {
 		&:before {
 			content: "← ";
@@ -456,18 +489,21 @@ blockquote {
 }
 
 .pager {
-	> li {
-		> a {
-			text-decoration: none;
-		}
-	}
+	> {
+		li {
+			> {
+				a {
+					text-decoration: none;
+				}
 
-	> li {
-		> a,
-		> span {
-			&:hover, &:focus {
-				color: $pagination-hover-color;
-				border-color: $pagination-hover-border;
+				a,
+				span {
+					&:hover,
+					&:focus {
+						color: $pagination-hover-color;
+						border-color: $pagination-hover-border;
+					}
+				}
 			}
 		}
 	}
@@ -478,7 +514,9 @@ blockquote {
  */
 .btn {
 	border-style: outset;
-	&.disabled, &[disabled], fieldset[disabled] & {
+	&.disabled,
+	&[disabled],
+	fieldset[disabled] & {
 		border-style: solid;
 	}
 }
@@ -486,26 +524,32 @@ blockquote {
 /*
  *	Heading top margins
  */
-h1, .h1 {
+h1,
+.h1 {
 	margin-top: 0;
 }
 
-h2, .h2 {
+h2,
+.h2 {
 	margin-top: ceil($line-height-computed * $font-scale-xxl);
 }
 
-h3, .h3 {
+h3,
+.h3 {
 	margin-top: ceil($line-height-computed * $font-scale-xl);
 }
 
-h4, .h4 {
+h4,
+.h4 {
 	margin-top: ceil($line-height-computed * $font-scale-lg);
 }
 
-h5, .h5 {
+h5,
+.h5 {
 	margin-top: $line-height-computed;
 }
 
-h6, .h6 {
+h6,
+.h6 {
 	margin-top: ceil($line-height-computed * $font-scale-sm);
 }

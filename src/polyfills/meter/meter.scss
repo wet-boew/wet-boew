@@ -16,7 +16,8 @@ meter {
 		background: #b4e391;
 		background-image: linear-gradient(top, #b4e391 0, #4a0 35%, #b4e391 100%);
 	}
-	&.meterValueTooHigh, &.meterValueTooLow {
+	&.meterValueTooHigh,
+	&.meterValueTooLow {
 		div {
 			background: #ffd65e;
 			background-image: linear-gradient(top, #ffd65e 0, #fbff47 35%, #febf04 100%);

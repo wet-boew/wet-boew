@@ -53,7 +53,8 @@
 					display: block;
 					padding: 1em;
 					text-decoration: none;
-					&:hover, &:focus {
+					&:hover,
+					&:focus {
 						text-decoration: underline;
 					}
 				}

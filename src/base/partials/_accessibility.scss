@@ -3,7 +3,8 @@
   @title: Accessibility Additions to WET-BOEW
  */
 
-.wb-invisible, .wb-inv {
+.wb-invisible,
+.wb-inv {
 	@extend %accessible-invisible;
 }
 
@@ -13,7 +14,7 @@
 		@extend %accessible-invisible-show;
 	}
 }
- 
+
 #wb-tphp {
 	list-style-type: none;
 	margin-bottom: 0;
@@ -88,7 +89,8 @@
 }
 
 q {
-	&:before, &:after {
+	&:before,
+	&:after {
 		content: "";
 	}
 }

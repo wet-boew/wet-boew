@@ -3,14 +3,6 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 
-%zebra-summary {
-	background-color: #f0f2f4;
-}
-
-%zebra-col-hover {
-	background-color: #f0f0f0;
-}
-
 %zebra-summary-hover {
 	background-color: #fafaff;
 }
@@ -20,36 +12,61 @@
 	background-color: transparent;
 }
 
-// Styling of special kind of cell defined in a header group
-.wb-cell-key {
-	font-style: italic;
-}
-.wb-cell-desc {
+%zebra-font-style-italic {
 	font-style: italic;
 }
 
+// Styling of special kind of cell defined in a header group
+.wb-cell-key {
+	@extend %zebra-font-style-italic;
+}
+.wb-cell-desc {
+	@extend %zebra-font-style-italic;
+}
+
 // Separate multiple colgroup instances
-.wb-zebra > colgroup + colgroup {
-	border-left: 2px solid #ddd;
+.wb-zebra {
+	> {
+		colgroup {
+			+ {
+				colgroup {
+					border-left: 2px solid #ddd;
+				}
+			}
+		}
+	}
 }
 
 // Style summary group
 .wb-group-summary {
-	@extend %zebra-summary;
+	background-color: #f0f2f4;
 }
 
 // Column hover effect
 .wb-zebra-col-hover {
-	col.table-hover {
-		@extend %zebra-col-hover;
+	col {
+		&.table-hover {
+			background-color: #f0f0f0;
+		}
 	}
-	.wb-group-summary col.table-hover {
-		@extend %zebra-summary-hover;
+	.wb-group-summary {
+		col {
+			&.table-hover {
+				@extend %zebra-summary-hover;
+			}
+		}
 	}
 }
 
-.table-hover .wb-group-summary {
-	tr:hover td, tr:hover th {
-		@extend %zebra-summary-hover;
+.table-hover {
+	.wb-group-summary {
+		tr {
+			&:hover {
+				td,
+				th {
+					@extend %zebra-summary-hover;
+				}
+			}
+		}
 	}
 }

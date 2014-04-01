@@ -48,7 +48,8 @@
 		border: 0;
 		color: #fff;
 	}
-	progress, .btn {
+	progress,
+	.btn {
 		&:focus {
 			outline: #fff thin dotted;
 		}
@@ -63,7 +64,9 @@
 			height: 100%;
 			z-index: 1;
 		}
-		video, object, iframe {
+		video,
+		object,
+		iframe {
 			width: 100%;
 			margin-bottom: -7px;
 		}
@@ -181,7 +184,8 @@
 	}
 	.tline {
 		@extend %pnl;
-		.wb-mm-tmln-crrnt, .wb-mm-tmln-ttl {
+		.wb-mm-tmln-crrnt,
+		.wb-mm-tmln-ttl {
 			margin: 0;
 			float: left;
 		}
@@ -209,7 +213,8 @@
 		/* Important Thing */
 		-webkit-appearance: none;
 		border: none;
-		&::-webkit-progress-bar, &::-moz-progress-bar {
+		&::-webkit-progress-bar,
+		&::-moz-progress-bar {
 			background: #fff;
 		}
 		/* Now the value part */
@@ -240,8 +245,13 @@
 	}
 }
 
-.mediumview, .largeview, .xlargeview, .xxlargeview {
-	.col-md-1, .col-md-2, .col-md-3 {
+.mediumview,
+.largeview,
+.xlargeview,
+.xxlargeview {
+	.col-md-1,
+	.col-md-2,
+	.col-md-3 {
 		.wb-mm-txtonly {
 			span {
 				~ {

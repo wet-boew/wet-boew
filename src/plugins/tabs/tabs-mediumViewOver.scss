@@ -25,7 +25,8 @@
 }
 
 .wb-tabs {
-	&.carousel-s1, &.carousel-s2 {
+	&.carousel-s1,
+	&.carousel-s2 {
 		figcaption {
 			background: $drabBlue;
 			background: transparentize($drabBlue, 0.1);
@@ -57,7 +58,8 @@
 							padding-top: 1px;
 							padding-right: 2px;
 						}
-						&:focus, &:hover {
+						&:focus,
+						&:hover {
 							background-image: linear-gradient(to right, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 100%);
 						}
 					}
@@ -72,7 +74,8 @@
 							@extend %tabs-mediumview-prv-nxt-glyphicon-common;
 							right: .25em;
 						}
-						&:focus, &:hover {
+						&:focus,
+						&:hover {
 							background-image: linear-gradient(to left, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 100%);
 						}
 					}
