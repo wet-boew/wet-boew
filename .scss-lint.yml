@@ -34,8 +34,6 @@ linters:
     enabled: false
   UrlFormat:
     enabled: false
-  SpaceBeforeBrace:
-    enabled: false
   DeclarationOrder:
     enabled: false
   DuplicateProperty:

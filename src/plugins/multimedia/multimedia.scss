@@ -68,7 +68,7 @@
 			margin-bottom: -7px;
 		}
 		&.waiting {
-			&:after{
+			&:after {
 				@extend %multimedia_loading;
 				background: url("../assets/loading.png") center center no-repeat;
 				animation-name: spin;
@@ -124,7 +124,7 @@
 
 	//TODO: Remove this when captions works in chromeless api with controls
 	&.youtube {
-		.wb-mm-ctrls{
+		.wb-mm-ctrls {
 			margin-top: -35px;
 			border-bottom: 10px solid #fff;
 		}
@@ -186,7 +186,7 @@
 			float: left;
 		}
 
-		.wb-mm-tmln-ttl{
+		.wb-mm-tmln-ttl {
 			float: right
 		}
 	}
