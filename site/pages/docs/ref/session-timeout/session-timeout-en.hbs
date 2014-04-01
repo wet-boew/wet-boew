@@ -13,7 +13,9 @@
 	<h2>Purpose</h2>
 	<p>Create a session inactivity timeout that warns users when their session is about to expire.</p>
 	<p>This plugin helps web page owners by providing session timeout and inactivity timeout functionality. When a user requests a page with this plugin implemented their session will begin. After the specified session period, they will be notified that their session is about to timeout. At this point, they will have the option to remain logged in by clicking "Continue session", or signing out by clicking "End session now".</p>
-	<p>At anytime during the session, if the user remains idle for a specified amount of time, they will be notified that they're session is about to timeout. In either case, if the user does not respond to the timeout notification within a specified amount of time, once they click either "Continue session" or "End session now" they will be automatically redirected to the sign out page.</p>	
+
+	<p>At anytime during the session, if the user remains idle for a specified amount of time, they will be notified that they're session is about to timeout. In either case, if the user does not respond to the timeout notification within a specified amount of time, once they click either "Continue session" or "End session now" they will be automatically redirected to the sign out page.</p>
+
 </section>
 
 <section>
@@ -35,14 +37,15 @@
 	<ol>
 		<li>
 			Add a <b>class="wb-sessto"</b> element to the web page (only required once).  You must set the <b>logouturl</b>, which controls where the user is redirected if their session expires:
-			<pre><code>&lt;span class="wb-sessto" data-wet-boew='{"logouturl": "http://app.gc.ca/logout"}'&gt;&lt;/span&gt;</code></pre>		
-		</li>		
+
+			<pre><code>&lt;span class="wb-sessto" data-wet-boew='{"logouturl": "http://app.gc.ca/logout"}'&gt;&lt;/span&gt;</code></pre>
+		</li>
 		<li>Configure the plugin using the <b>data-wet-boew</b> attribute of the element:
 			<pre><code>&lt;span class="wb-sessto" data-wet-boew='{
-	"inactivity": 1200000, 
-	"reactionTime": 30000, 
-	"sessionalive": 1200000, 
-	"logouturl": "./", 
+	"inactivity": 1200000,
+	"reactionTime": 30000,
+	"sessionalive": 1200000,
+	"logouturl": "./",
 	"refreshCallbackUrl": "./"
 	"refreshOnClick": true,
 	"refreshLimit": 200000}'&gt;&lt;/span&gt;</code></pre>
@@ -62,7 +65,7 @@
 		<li><b>das:</b> dekasecond (10 seconds)</li>
 		<li><b>hs:</b> hectosecond (100 seconds)</li>
 		<li><b>ks:</b> kilosecond (1,000 seconds)</li>
-	</ul>	
+	</ul>
 	<table class="table">
 		<thead>
 			<tr>
@@ -171,7 +174,7 @@
 						<dd>Treated as a time value in the provided unit.</dd>
 					</dl>
 				</td>
-			</tr>															
+			</tr>
 		</tbody>
 	</table>
 </section>
@@ -197,7 +200,7 @@
 				<td><code>inactivity.wb-sessto</code></td>
 				<td>Triggered manually and by the plugin.</td>
 				<td>Causes the modal dialog to appear and prompt the user to continue or end their session.  This event is triggered automatically when the inactivity timeout expires.</td>
-			</tr>			
+			</tr>
 			<tr>
 				<td><code>keepalive.wb-sessto</code></td>
 				<td>Triggered manually and by the plugin.</td>
@@ -207,14 +210,14 @@
 				<td><code>reset.wb-sessto</code></td>
 				<td>Triggered manually and by the plugin.</td>
 				<td>Restarts the inactivity and keepalive timeouts.</td>
-			</tr>			
+			</tr>
 		</tbody>
 	</table>
 	<p><b>Note:</b> when manually triggering the inactivity, keepalive and reset events, you must pass the data-wet-boew attribute as a second argument:</p>
-	<pre><code>// Get a reference to the session timeout element and its data-wet-boew attribute	
+	<pre><code>// Get a reference to the session timeout element and its data-wet-boew attribute
 var $element = $( ".wb-sessto" ),
     settings = $element.data( "wet-boew" );
-	
+
 // Trigger the event on the element
 $element.trigger( "reset.wb-sessto", settings );</code></pre>
 </section>

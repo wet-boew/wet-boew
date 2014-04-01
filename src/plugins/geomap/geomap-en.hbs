@@ -7,13 +7,13 @@
 	"tag": "geomap",
 	"parentdir": "geomap",
 	"altLangPrefix": "geomap",
-	"js": ["demo/popup_function"],
+	"js": "demo/client_functions",
 	"dateModified": "2014-03-07"
 }
 ---
 <!-- GeomapStart -->
 <div id="sample_map"
-	class="wb-geomap position scaleline tab"
+	class="wb-geomap position scaleline tab geocoder aoi geolocation"
 	data-wb-geomap='{
 		"layersFile": "demo/config-en{{environment.suffix}}.js",
 		"tables": [{
@@ -38,7 +38,7 @@
 					"init": {
 						"strokeColor": "#0083f5",
 						"fillColor": "#57a8f0",
-						"pointRadius": "6",
+						"pointRadius": 6,
 						"fillOpacity": 0.80,
 						"strokeWidth": 1.0
 					}
@@ -50,7 +50,7 @@
 					"init": {
 						"strokeColor": "#F90",
 						"fillColor": "#F90",
-						"pointRadius": "8",
+						"pointRadius": 8,
 						"fillOpacity": 0.80,
 						"strokeWidth": 1.0
 					}
@@ -62,7 +62,7 @@
 					"init": {
 						"strokeColor": "#F00",
 						"fillColor": "#F00",
-						"pointRadius": "10",
+						"pointRadius": 10,
 						"fillOpacity": 0.80,
 						"strokeWidth": 1.0
 					}
@@ -71,37 +71,40 @@
 		},
 		{
 			"id": "bbox",
-			"tab": true,
+			"tab": false,
 			"zoom": true,
 			"popups": true
 		}]
 	}'>
 
+    <div class="row">
+        <div class="col-md-9">
+    	<!-- Insert Map Start (mandatory) -->
+    	<div class="wb-geomap-map"></div>
+    	<!-- Insert Map End -->
+        </div>
+
+    	<!-- Insert Legend Start (optional) -->
+    	<div class="wb-geomap-legend col-md-3">
+    		<h2>Legend</h2>
+    	</div>
+    	<!-- Insert Legend End -->
+    </div>
+
 	<div class="row">
-		<div class="col-md-12">
-			<!-- Insert Map Start (mandatory) -->
-			<div class="wb-geomap-map col-md-9"></div>
-			<!-- Insert Map End -->
-
-			<!-- Insert Legend Start (optional) -->
-			<div class="wb-geomap-legend col-md-3">
-				<h2>Legend</h2>
-			</div>
-			<!-- Insert Legend End -->
-		</div>
+    	<div class="col-md-12">
+    		<h2>Example - Remote &amp; File-based Layer Data</h2>
+    		<p>Layers are created from file-based formats, feeds, and web API's.</p>
+    	</div>
 	</div>
 
-	<!-- Insert Layer Data Start (mandatory) -->
-	<div class="col-md-12">
-		<h2>Example - Remote &amp; File-based Layer Data</h2>
-		<p>Layers are created from file-based formats, feeds, and web API's.</p>
-	</div>
-	<div class="wb-geomap-layers row">
-		<div class="col-md-12">
+    <!-- Insert Layer Data Start (mandatory) -->
+	<div class="row">
+		<div class="wb-geomap-layers col-md-12">
 			<h2>Example - Inline Layer Data</h2>
 			<p>Layers are created from the following tables. An attribute <em>data-geometry</em> to hold the geometry and an attribute <em>data-type</em> to hold the geometry type (wkt or bbox) are required for each row.</p>
 			<h3>Points</h3>
-			<table id="cities" aria-label="Cities" class="table wb-tables">
+			<table id="cities" aria-label="Points" class="table wb-tables">
 				<caption>
 					Table of point geometries.
 				</caption>
@@ -168,7 +171,7 @@
 		</div>
 		<div class="col-md-12">
 			<h3>Bounding Boxes</h3>
-			<table id="bbox" aria-label="Search Results" class="table table-condensed">
+			<table id="bbox" aria-label="Bounding Boxes" class="table table-condensed">
 				<caption>
 					Table of bounding box geometries.
 				</caption>
@@ -200,13 +203,23 @@
 	class="wb-geomap static"
 	data-wb-geomap='{
 		"tables": [{
-			"id": "addNRCan"
+			"id": "addNRCan",
+            "style": {
+                "type": "symbol",
+                "init": {
+                    "pointRadius": 12,
+                    "graphicName": "star",
+                    "strokeColor": "#FF0000",
+                    "fillColor": "#FF0000",
+                    "fillOpacity": 0.7
+                }
+            }
 		}]
 	}'>
 	<div class="row">
 		<div class="col-md-12">
 			<h2>Example - Static Map</h2>
-			<p>GeoMap can be configured to provide a static map ideally suited to display a location or bounding box extent.</p>
+			<p>Geomap can be configured to provide a static map ideally suited to display a location or bounding box extent.</p>
 			<!-- Insert Map Start (mandatory) -->
 			<div class="wb-geomap-map col-md-4"></div>
 			<!-- Insert Map End -->

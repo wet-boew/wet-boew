@@ -60,6 +60,8 @@ $icon-font-path: "../fonts/";
 /*
  Plugins
  */
+
+@import "../plugins/geomap/geomap";
 @import "../plugins/cal-events/cal-events";
 @import "../plugins/calendar/calendar-base";
 @import "../plugins/calendar/calendar-theme";

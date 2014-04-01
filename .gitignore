@@ -33,4 +33,4 @@ sprite*.png
 node_modules/
 lib/
 wet-boew-dist/
-site/data/i18n/
+site/data/i18n

@@ -24,16 +24,28 @@ wb.doc.zoomFeature = function() {
 };
 
 wb.doc.on( "geomap.ready", function( event, maps ) {
-	var mapLocation;
 
 	// Get the sample_map to use in zoomFeature function
 	mapSample = maps.sample_map;
+	var $aoiExtent = $( "#geomap-aoi-extent-" + mapSample.uniqueId ),
+		$aoiExtentLonLat = $( "#geomap-aoi-extent-lonlat-" + mapSample.uniqueId ),
+		mapLocation;
 
+	if ( $aoiExtent ) {
+
+		$aoiExtent.on( "change", function() {
+			// console.log( "BBox: " + $( this ).val() );
+		} );
+
+		$aoiExtentLonLat.on("change", function() {
+			// console.log( "BBox LonLat: " + $( this ).val() );
+		} );
+	}
 	// Zoom to location on location_map
 	mapLocation = maps.location_map;
 
 	if ( mapLocation ) {
-		mapLocation.zoomToExtent( mapLocation.layers[ 2 ].features[ 0 ].geometry.bounds );
+		mapLocation.zoomToExtent( mapLocation.layers[ 3 ].features[ 0 ].geometry.bounds );
 	}
 });
 

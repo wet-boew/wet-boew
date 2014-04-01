@@ -7,13 +7,13 @@
 	"tag": "geomap",
 	"parentdir": "geomap",
 	"altLangPrefix": "geomap",
-	"js": ["demo/popup_function"],
+	"js": ["demo/client_functions"],
 	"dateModified": "2014-03-07"
 }
 ---
 <!-- GeomapStart -->
 <div id="sample_map"
-	class="wb-geomap position scaleline tab"
+	class="wb-geomap position scaleline tab geocoder aoi geolocation"
 	data-wb-geomap='{
 		"layersFile": "demo/config-fr{{environment.suffix}}.js",
 		"tables": [{
@@ -71,40 +71,41 @@
 		},
 		{
 			"id": "bbox",
-			"tab": true,
+			"tab": false,
 			"zoom": true,
 			"popups": true
 		}]
 	}'>
 
 	<div class="row">
-		<div class="col-md-12">
-			<!-- Insert Map Start (mandatory) -->
-			<div class="wb-geomap-map col-sm-9"></div>
-			<!-- Insert Map End -->
-		
-			<!-- Insert Legend Start (optional) -->
-			<div class="wb-geomap-legend col-md-3">
-				<h2>Légende</h2>
-			</div>
-			<!-- Insert Legend End -->
-		</div>
-	</div>
+        <div class="col-md-9">
+        <!-- Insert Map Start (mandatory) -->
+        <div class="wb-geomap-map"></div>
+        <!-- Insert Map End -->
+        </div>
+
+        <!-- Insert Legend Start (optional) -->
+        <div class="wb-geomap-legend col-md-3">
+            <h2>Légende</h2>
+        </div>
+        <!-- Insert Legend End -->
+    </div>
 
 	<!-- Insert Layer Data Start (mandatory) -->
-	<div class="col-md-12">
-		<h2>Exemple - Données extérieure &amp; provenant de fichiers</h2>
-		<p>Les données sont créées à partir de fichiers, fils ou d'API web.</p>
+	<div class="row">
+    	<div class="col-md-12">
+    		<h2>Exemple - Données extérieure &amp; provenant de fichiers</h2>
+    		<p>Les données sont créées à partir de fichiers, fils ou d'API web.</p>
+    	</div>
 	</div>
-	<div class="wb-geomap-layers row">
-		<div class="col-md-12">
+
+	<div class="row">
+		<div class="wb-geomap-layers col-md-12">
 			<h2>Exemple - Données dans le fichier HTML</h2>
 			<p>Les données est créées à partir des tables suivantes. Un attribut <em>data-geometry</em> contient la géometry et un attribut <em>data-type</em> contient le type (wkt ou bbox) ont été ajoutés à chaque ligne.</p>
 			<h3>Points</h3>
-			<table id="cities" aria-label="Villes" class="table wb-tables">
-				<caption>
-					Table de géométrie point.
-				</caption>
+			<table id="cities" aria-label="Points" class="table wb-tables">
+				<caption class="sr-only">Tableau de géométrie point.</caption>
 				<thead>
 					<tr>
 						<th>Rang</th>
@@ -167,10 +168,10 @@
 			</table>
 		</div>
 		<div class="col-md-12">
-			<h3>Résultats de la recherche</h3>
-			<table id="bbox" aria-label="Résultats de la recherche" class="table table-condensed">
-				<caption>
-					Tableau des résultats de la recherche contenant la géométries des étendues des éléments.
+			<h3>Boîtes des délimitations</h3>
+			<table id="bbox" aria-label="Boîtes des délimitations" class="table table-condensed">
+				<caption class="sr-only">
+					Tableau des boîtes de délimitations.
 				</caption>
 				<thead>
 					<tr>
@@ -200,13 +201,23 @@
 	class="wb-geomap static"
 	data-wb-geomap='{
 		"tables": [{
-			"id": "addNRCan"
+			"id": "addNRCan",
+            "style": {
+                "type": "symbol",
+                "init": {
+                    "pointRadius": 12,
+                    "graphicName": "star",
+                    "strokeColor": "#FF0000",
+                    "fillColor": "#FF0000",
+                    "fillOpacity": 0.7
+                }
+            }
 		}]
 	}'>
 	<div class="row">
 		<div class="col-md-12">
 			<h2>Exemple - Carte statique</h2>
-			<p>GeoMap peux être configuré pour créer une carte statique afin de situer un endroit comme un bureau ou une étendue à l'aide d'une "bbox".</p>
+			<p>Geomap peux être configuré pour créer une carte statique afin de situer un endroit comme un bureau ou une étendue à l'aide d'une "bbox".</p>
 			<!-- Insert Map Start (mandatory) -->
 			<div class="wb-geomap-map col-md-4"></div>
 			<!-- Insert Map End -->
