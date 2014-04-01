@@ -9,7 +9,7 @@
 	border: 1px solid #000;
 	text-align: center;
 	line-height: 148px;
-	background: #EEE;
+	background: #eee;
 }
 
 .wb-lbx-demo {
@@ -27,11 +27,14 @@
 	a {
 		@extend %lightbox-demo-box;
 	}
+
 	> {
 		a {
-			&:hover, &:focus, &:active {
+			&:hover,
+			&:focus,
+			&:active {
 				text-decoration: underline;
-				background: #FFF;
+				background: #fff;
 			}
 		}
 	}

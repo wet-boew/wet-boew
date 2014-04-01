@@ -7,52 +7,79 @@
 %prettify-screen-color-606 {
 	color: #606;
 }
+
 %prettify-screen-color-660 {
 	color: #660;
 }
-%prettify-screen-color-2F6D2F {
-	color: #2F6D2F;
+
+%prettify-screen-color-2f6d2f {
+	color: #2f6d2f;
 }
 
+/* string content - from #080 */
 .str {
-	@extend %prettify-screen-color-2F6D2F;
-}	/* string content - from #080 */
+	@extend %prettify-screen-color-2f6d2f;
+}
+
+/* a keyword - from #008 */
 .kwd {
-	color: #024B6E;
-}	/* a keyword - from #008 */
+	color: #024b6e;
+}
+
+/* a comment */
 .com {
 	color: #800;
-}	/* a comment */
+}
+
+/* a type name */
 .typ {
 	@extend %prettify-screen-color-606;
-}	/* a type name */
+}
+
+/* a literal value */
 .lit {
 	color: #066;
-}	/* a literal value */
+}
+
 /* punctuation, lisp open bracket, lisp close bracket */
 .pun {
 	@extend %prettify-screen-color-660;
 }
+
 .opn {
 	@extend %prettify-screen-color-660;
 }
+
 .clo {
 	@extend %prettify-screen-color-660;
 }
+
+/* a markup tag name - from #008 */
 .tag {
-	color: #125B7E; }	/* a markup tag name - from #008 */
+	color: #125b7e;
+}
+
+/* a markup attribute name */
 .atn {
 	@extend %prettify-screen-color-606;
-}	/* a markup attribute name */
+}
+
+/* a markup attribute value - from #080 */
 .atv {
-	@extend %prettify-screen-color-2F6D2F;
-}	/* a markup attribute value - from #080 */
+	@extend %prettify-screen-color-2f6d2f;
+}
+
+/* a declaration */
 .dec {
 	@extend %prettify-screen-color-606;
-}	/* a declaration */
+}
+
+/* a variable name */
 .var {
 	@extend %prettify-screen-color-606;
-}	/* a variable name */
+}
+
+/* a function name */
 .fun {
-	color: red;
-}	/* a function name */
+	color: #f00;
+}

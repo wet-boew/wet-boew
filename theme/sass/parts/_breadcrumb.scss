@@ -3,24 +3,30 @@
  */
 #wb-bc {
 	background: #f9f9f9;
+
 	ol {
 		background: #fff;
 		border-radius: 0;
 		margin-bottom: 0;
 	}
+
 	li {
-		&:before, &:after {
-			font-family: "Glyphicons Halflings";
-			font-size: 0.7em;
-			color: #333;
-		}
-		&:before {
-			content: "\e092";
-		}
 		white-space: nowrap;
 		max-width: 100%;
 		overflow: hidden;
 		text-overflow: ellipsis;
+
+		&:before,
+		&:after {
+			font-family: "Glyphicons Halflings";
+			font-size: 0.7em;
+			color: #333;
+		}
+
+		&:before {
+			content: "\e092";
+		}
+
 		&:first-child {
 			&:before {
 				display: none;
@@ -36,10 +42,12 @@
 				content: "";
 				padding: 0;
 			}
+
 			&:after {
 				content: "\e091";
 				padding: 0 5px;
 			}
+
 			&:first-child {
 				&:after {
 					content: "";

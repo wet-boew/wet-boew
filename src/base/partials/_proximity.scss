@@ -87,6 +87,7 @@
 [class*=clmn-] {
 	padding-left: 1.3em;
 	list-style: outside;
+
 	> {
 		li {
 			margin-left: 1.3em;
@@ -246,10 +247,14 @@
 }
 
 .tbl-gridify {
-	thead, tfoot {
+	thead,
+	tfoot {
 		display: none;
 	}
-	tbody, td, td {
+
+	tbody,
+	td,
+	td {
 		display: block;
 	}
 }
@@ -260,14 +265,17 @@
 [class*=colcount-] {
 	padding-left: 1.3em;
 	list-style: outside;
+
 	> {
 		li {
 			margin-left: 1.3em;
 		}
 	}
+
 	&.list-unstyled {
 		padding-left: 0;
 		list-style: none outside none;
+
 		li {
 			margin-left: 0;
 		}

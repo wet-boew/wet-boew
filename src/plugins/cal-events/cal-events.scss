@@ -3,14 +3,16 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 %events-calendar-background-color-fff {
-	background-color: #FFF
+	background-color: #fff;
 }
+
 %events-calendar-color-fff-important {
-	color: #FFF !important;
+	color: #fff !important;
 }
 
 ul {
 	&.ev-details {
+		@extend %events-calendar-background-color-fff;
 		padding: 0;
 		position: absolute;
 		z-index: 5;
@@ -19,10 +21,10 @@ ul {
 		margin: 0;
 		margin-top: -0.5em;
 		font-weight: 400;
-		@extend %events-calendar-background-color-fff;
+
 		a {
-			padding: 0.5em;
 			@extend %events-calendar-background-color-fff;
+			padding: 0.5em;
 		}
 	}
 }
@@ -32,19 +34,23 @@ tbody {
 		ul {
 			&.ev-details {
 				li {
-					border: none;
+					border: 0;
 					width: 100%;
 					list-style-type: none !important;
+
 					a {
 						color: #000;
 						width: auto;
-						&:hover, &:focus {
+
+						&:hover,
+						&:focus {
 							@extend %events-calendar-color-fff-important;
 						}
 					}
 				}
 			}
 		}
+
 		a {
 			&.cal-evt {
 				@extend %events-calendar-color-fff-important;

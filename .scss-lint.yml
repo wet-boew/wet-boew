@@ -1,0 +1,42 @@
+exclude:
+  - "lib/**"
+  - "node_modules/**"
+  - "dist/**"
+  - "src/plugins/share/sprites/**"
+  - "wet-boew-dist/**"
+
+linters:
+  StringQuotes:
+    enabled: true
+    style: double_quotes
+  Indentation:
+    width: 1
+  Comment:
+    enabled: false
+  LeadingZero:
+    enabled: false
+  SelectorDepth:
+    enabled: false
+  PropertySortOrder:
+    enabled: false
+  CapitalizationInSelector:
+    exclude:
+      - "src/plugins/charts/charts.scss"
+      - "src/plugins/geomap/geomap.scss"
+      - "src/plugins/geomap/geomap-ie8.scss"
+      - "src/plugins/geomap/geomap-printView.scss"
+      - "src/plugins/tables/tables.scss"
+      - "src/polyfills/meter/meter.scss"
+      - "src/polyfills/meter/demo/meter.scss"
+      - "src/polyfills/progress/demo/progress.scss"
+  NameFormat:
+    enabled: false
+  UrlFormat:
+    enabled: false
+  DuplicateProperty:
+    # This unfortunately catches RGB fallbacks
+    exclude:
+      - "src/plugins/tabs/tabs-mediumViewOver.scss"
+      - "src/plugins/tabs/tabs.scss"
+      - "src/polyfills/slider/slider.scss"
+      - "theme/sass/parts/_banner.scss"

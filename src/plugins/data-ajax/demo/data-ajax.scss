@@ -6,11 +6,13 @@
 	padding: 5px;
 	border: 1px solid #000;
 }
+
 .original {
+	@extend %data-ajax-demo-padding-border;
 	background: #ccc;
-	@extend %data-ajax-demo-padding-border;
 }
+
 .ajaxed-in {
-	background: #fff;
 	@extend %data-ajax-demo-padding-border;
+	background: #fff;
 }

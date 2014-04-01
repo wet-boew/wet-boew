@@ -9,19 +9,23 @@ meter {
 	height: 20px;
 	width: 100px;
 	overflow: hidden;
+
 	div {
 		display: block;
-		border-right:1px solid #000;
+		border-right: 1px solid #000;
 		height: 20px;
 		background: #b4e391;
-		background-image: linear-gradient(top, #b4e391 0, #44AA00 35%, #b4e391 100%);
+		background-image: linear-gradient(top, #b4e391 0, #4a0 35%, #b4e391 100%);
 	}
-	&.meterValueTooHigh, &.meterValueTooLow {
+
+	&.meterValueTooHigh,
+	&.meterValueTooLow {
 		div {
 			background: #ffd65e;
-			background-image: linear-gradient(top, #ffd65e 0, #FBFF47 35%, #febf04 100%);
+			background-image: linear-gradient(top, #ffd65e 0, #fbff47 35%, #febf04 100%);
 		}
 	}
+
 	&.meterIsMaxed {
 		border-right: 0 none !important;
 	}

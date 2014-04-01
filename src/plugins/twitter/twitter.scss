@@ -18,41 +18,51 @@
 .wb-twitter {
 	.twitter-timeline {
 		a {
-			&:link, &:visited {
+			&:link,
+			&:visited {
 				color: #707070;
 			}
 		}
+
 		.stats {
 			span {
 				color: #707070;
 			}
 		}
+
 		.byline {
 			color: #707070;
 		}
+
 		.retweet-credit {
 			color: #707070;
 		}
+
 		.no-more-pane {
 			color: #707070;
 		}
+
 		.no-tweets-pane {
 			p {
 				color: #707070;
 			}
 		}
+
 		.p-geo {
 			color: #707070;
 		}
+
 		.cards-base {
 			.byline-user {
 				color: #707070;
 			}
 		}
+
 		.tweet-box-button {
 			color: #707070;
 		}
 	}
+
 	a {
 		&.twitter-timeline {
 			display: block;

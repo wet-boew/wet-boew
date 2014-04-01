@@ -10,8 +10,11 @@ details {
 			}
 		}
 	}
-	summary { /* Make sure summary remains visible */
+
+	summary {
+		// Make sure summary remains visible
 		display: block !important;
+
 		&:hover {
 			cursor: pointer;
 		}
@@ -20,8 +23,12 @@ details {
 
 /* Details/summary polyfill */
 summary {
-	cursor: pointer; /* Apply a pointer cursor upon hover to indicate it’s a clickable element. These styles can be applied regardless of whether the fallback is needed */
-	&:hover, &:focus { /* Add focus styles (for keyboard accessibility) */
+	// Apply a pointer cursor upon hover to indicate it’s a clickable element. These styles can be applied regardless of whether the fallback is needed
+	cursor: pointer;
+
+	// Add focus styles (for keyboard accessibility)
+	&:hover,
+	&:focus {
 		color: #000;
 		background: #ddd;
 	}

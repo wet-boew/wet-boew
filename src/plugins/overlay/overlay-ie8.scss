@@ -13,6 +13,7 @@
 %overlay-ie8-border-right-999 {
 	border-left: 1px solid #999;
 }
+
 .ie8 {
 	.wb-panel-l {
 		@extend %overlay-ie8-border-right-999;
@@ -29,15 +30,16 @@
 	.wb-bar-b {
 		border-top: 1px solid #999;
 	}
+
 	&[dir=rtl] {
 		.wb-panel-l {
-			border-right: none;
 			@extend %overlay-ie8-border-left-999;
+			border-right: 0;
 		}
 
 		.wb-panel-r {
-			border-left: none;
 			@extend %overlay-ie8-border-right-999;
+			border-left: 0;
 		}
 	}
 }

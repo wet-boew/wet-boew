@@ -3,12 +3,13 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 %datepicker-color-fff-important {
-	color: #FFF !important;
+	color: #fff !important;
 }
+
 %datepicker-inline-block {
 	display: inline-block;
 }
- 
+
 .cal-cnt {
 	&.picker-overlay {
 		position: absolute;
@@ -20,6 +21,7 @@
 .form-group {
 	.wb-date-wrap {
 		display: block;
+
 		input {
 			@extend %datepicker-inline-block;
 		}
@@ -46,11 +48,15 @@
 	display: inline-block;
 	margin-left: 5px;
 	background: none;
-	border: none;
+	border: 0;
 	vertical-align: middle;
-	&:link, &:visited, &:focus {
+
+	&:link,
+	&:visited,
+	&:focus {
 		color: #000;
 	}
+
 	span {
 		font-size: 1.3em;
 	}
@@ -60,17 +66,21 @@
 	a {
 		text-decoration: underline;
 	}
+
 	td {
 		&.datepicker-selected {
 			a {
-				background-color: #333;
 				@extend %datepicker-color-fff-important;
+				background-color: #333;
 			}
 		}
 	}
+
 	a {
 		color: #111;
-		&:hover, &:focus {
+
+		&:hover,
+		&:focus {
 			@extend %datepicker-color-fff-important;
 		}
 	}

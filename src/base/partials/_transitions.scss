@@ -20,21 +20,25 @@
 
 .pop {
 	transform-origin: 50% 50%;
+
 	.in {
 		transform: scale(1);
 		animation-name: popin;
 		animation-duration: 350ms;
 		opacity: 1;
 	}
+
 	.out {
 		animation-name: fadeout;
 		animation-duration: 100ms;
 		opacity: 0;
 	}
+
 	&.reverse {
 		.in {
 			animation-name: fadein;
 		}
+
 		.out {
 			transform: scale(0.8);
 			animation-name: popout;
@@ -47,6 +51,7 @@
 		transform: scale(0.8);
 		opacity: 0;
 	}
+
 	to {
 		transform: scale(1);
 		opacity: 1;
@@ -58,6 +63,7 @@
 		transform: scale(1);
 		opacity: 1;
 	}
+
 	to {
 		transform: scale(0.8);
 		opacity: 0;
@@ -69,6 +75,7 @@
 	from {
 		transform: translateX(100%);
 	}
+
 	to {
 		transform: translateX(0);
 	}
@@ -78,6 +85,7 @@
 	from {
 		transform: translateX(-100%);
 	}
+
 	to {
 		transform: translateX(0);
 	}
@@ -88,6 +96,7 @@
 	from {
 		transform: translateX(0);
 	}
+
 	to {
 		transform: translateX(-100%);
 	}
@@ -97,29 +106,35 @@
 	from {
 		transform: translateX(0);
 	}
+
 	to {
 		transform: translateX(100%);
 	}
 }
 
 .slide {
-	.out, .in {
+	.out,
+	.in {
 		animation-timing-function: ease-out;
 		animation-duration: 350ms;
 	}
+
 	.out {
 		transform: translateX(-100%);
 		animation-name: slideouttoleft;
 	}
+
 	.in {
 		transform: translateX(0);
 		animation-name: slideinfromright;
 	}
+
 	&.reverse {
 		.out {
 			transform: translateX(100%);
 			animation-name: slideouttoright;
 		}
+
 		.in {
 			transform: translateX(100%);
 			animation-name: slideouttoright;
@@ -134,6 +149,7 @@
 		animation-name: fadeout;
 		animation-duration: 100ms;
 	}
+
 	.in {
 		transform: translateY(0);
 		animation-name: slideinfromtop;
@@ -146,6 +162,7 @@
 			animation-name: slideouttotop;
 			animation-duration: 200ms;
 		}
+
 		.in {
 			animation-name: fadein;
 			animation-duration: 150ms;
@@ -157,6 +174,7 @@
 	from {
 		transform: translateY(-100%);
 	}
+
 	to {
 		transform: translateY(0);
 	}
@@ -166,6 +184,7 @@
 	from {
 		transform: translateY(0);
 	}
+
 	to {
 		transform: translateY(-100%);
 	}
@@ -175,6 +194,7 @@
 	from {
 		opacity: 0;
 	}
+
 	to {
 		opacity: 1;
 	}
@@ -184,6 +204,7 @@
 	from {
 		opacity: 1;
 	}
+
 	to {
 		opacity: 0;
 	}
@@ -196,6 +217,7 @@
 		animation-duration: 125ms;
 		animation-name: fadeout;
 	}
+
 	.in {
 		opacity: 1;
 		animation-duration: 225ms;
@@ -208,6 +230,7 @@
 	from {
 		transform: translateX(0);
 	}
+
 	to {
 		transform: translateX(-100%);
 	}
@@ -217,6 +240,7 @@
 	from {
 		transform: translateX(0);
 	}
+
 	to {
 		transform: translateX(100%);
 	}
@@ -228,17 +252,20 @@
 		animation-name: slideouttoleft;
 		animation-duration: 225ms;
 	}
+
 	.in {
 		transform: translateX(0);
 		animation-name: fadein;
 		animation-duration: 200ms;
 	}
+
 	&.reverse {
 		.out {
 			transform: translateX(100%);
 			animation-name: slideouttoright;
 			animation-duration: 200ms;
 		}
+
 		.in {
 			transform: translateX(0);
 			animation-name: fadein;
@@ -253,16 +280,19 @@
 		animation-name: fadeout;
 		animation-duration: 100ms;
 	}
+
 	.in {
 		transform: translateY(0);
 		animation-name: slideinfrombottom;
 		animation-duration: 250ms;
 	}
+
 	&.reverse {
 		.in {
 			animation-name: fadein;
 			animation-duration: 150ms;
 		}
+
 		.out {
 			transform: translateY(100%);
 			animation-name: slideouttobottom;
@@ -275,6 +305,7 @@
 	from {
 		transform: translateY(100%);
 	}
+
 	to {
 		transform: translateY(0);
 	}
@@ -284,6 +315,7 @@
 	from {
 		transform: translateY(0);
 	}
+
 	to {
 		transform: translateY(100%);
 	}

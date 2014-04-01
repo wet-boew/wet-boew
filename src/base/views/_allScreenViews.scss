@@ -7,8 +7,10 @@
 }
 
 #wb-dtmd {
-	margin: 2em 0 0 0;
-	dt, dd {
+	margin: 2em 0 0;
+
+	dt,
+	dd {
 		display: inline;
 		font-weight: normal;
 		margin-right: 0;
@@ -27,6 +29,7 @@
 	.nojs-show {
 		display: block !important;
 	}
+
 	.nojs-hide {
 		@extend %display-none-important;
 	}

@@ -5,12 +5,14 @@
 .wb-wamethod {
 	ol {
 		padding: 0;
+
 		li {
-			border: 1px solid #DDD;
+			border: 1px solid #ddd;
 			border-radius: 4px;
 			box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 			list-style-type: none;
 			margin: 15px 0;
+
 			legend {
 				float: left;
 				font-size: 16px;
@@ -19,9 +21,11 @@
 				padding: 10px;
 				width: 40%;
 			}
+
 			label {
-				margin: 10px 0 0 0;
+				margin: 10px 0 0;
 			}
+
 			input {
 				margin: 10px 5px 0 10px;
 			}

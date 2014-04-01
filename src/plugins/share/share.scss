@@ -13,6 +13,7 @@
 		text-align: left;
 		text-decoration: none;
 		font-size: 115%;
+
 		&:before {
 			content: " ";
 			display: inline-block;
@@ -29,31 +30,37 @@
 			@include bitly;
 		}
 	}
+
 	.blogger {
 		&:before {
 			@include blogger;
 		}
 	}
+
 	.delicious {
 		&:before {
 			@include delicious;
 		}
 	}
+
 	.digg {
 		&:before {
 			@include digg;
 		}
 	}
+
 	.diigo {
 		&:before {
 			@include diigo;
 		}
 	}
+
 	.dzone {
 		&:before {
 			@include dzone;
 		}
 	}
+
 	.email {
 		&:before {
 			display: inline-block;
@@ -63,74 +70,89 @@
 			margin-right: 0.3em;
 		}
 	}
+
 	.facebook {
 		&:before {
 			@include facebook;
 		}
 	}
+
 	.feed {
 		&:before {
 			@include feed;
 		}
 	}
+
 	.gmail {
 		&:before {
 			@include gmail;
 		}
 	}
+
 	.googleplus {
 		&:before {
 			@include googleplus;
 		}
 	}
+
 	.linkedin {
 		&:before {
 			@include linkedin;
 		}
 	}
+
 	.myspace {
 		&:before {
 			@include myspace;
 		}
 	}
+
 	.pinterest {
 		&:before {
 			@include pinterest;
 		}
 	}
+
 	.reddit {
 		&:before {
 			@include reddit;
 		}
 	}
+
 	.stumbleupon {
 		&:before {
 			@include stumbleupon;
 		}
 	}
+
 	.technorati {
 		&:before {
 			@include technorati;
 		}
 	}
+
 	.tumblr {
 		&:before {
 			@include tumblr;
 		}
 	}
+
 	.twitter {
 		&:before {
 			@include twitter;
 		}
 	}
+
 	.yahoomail {
 		&:before {
 			@include yahoomail;
 		}
 	}
+
 	.shr-pg {
 		text-align: left;
 	}
+
 	ul {
 		list-style-type: none;
 		padding: 0;
@@ -142,17 +164,20 @@
 	.wb-share {
 		.shr-lnk {
 			text-align: right;
+
 			&:before {
 				margin-right: auto;
 				margin-left: 0.4em;
 			}
 		}
+
 		.email {
 			&:before {
 				margin-right: auto;
 				margin-left: 0.6em;
 			}
 		}
+
 		.shr-pg {
 			text-align: right;
 		}

@@ -12,8 +12,10 @@ details {
 			}
 		}
 	}
+
 	&[open] {
 		display: block;
+
 		> {
 			summary {
 				&:before { /* Add the opened pointer */

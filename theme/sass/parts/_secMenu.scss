@@ -5,23 +5,28 @@
 	background: darken($clrWhite, 50%);
 	color: lighten($clrDark, 75%);
 }
+
 #wb-sec {
 	margin-top: 20px;
 	padding-bottom: 2em;
+
 	h3 {
 		padding: 15px;
 		margin: 0;
 		border: 1px solid #ddd;
 		border-bottom: 3px solid #666;
 		line-height: 0.8;
+
 		a {
 			color: #333;
 			font-size: 0.7em;
-			text-decoration:none;
+			text-decoration: none;
 		}
 	}
+
 	.list-group {
 		margin-bottom: 0;
+
 		a {
 			&.list-group-item {
 				background: $clrWhite;
@@ -29,16 +34,20 @@
 				border-radius: 0;
 				margin-top: -1px;
 				text-decoration: none;
+
 				&.wb-navcurr {
 					@extend %secmenu-wet-theme-menuitem-curr-hover-focus;
 				}
+
 				&[href] {
-					&:hover, &:focus {
+					&:hover,
+					&:focus {
 						@extend %secmenu-wet-theme-menuitem-curr-hover-focus;
 					}
 				}
 			}
 		}
+
 		.list-group {
 			.list-group-item {
 				background: darken($clrWhite, 10%);
