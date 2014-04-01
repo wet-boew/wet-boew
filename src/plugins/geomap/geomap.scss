@@ -92,14 +92,14 @@
 }
 
 .olControlScaleLineBottom {
-	border: solid 2px black;
+	border: solid 2px #000;
 	border-bottom: none;
 	margin-top: -2px;
 	text-align: center;
 }
 
 .olControlScaleLineTop {
-	border: solid 2px black;
+	border: solid 2px #000;
 	border-top: none;
 	text-align: center;
 }
@@ -110,12 +110,12 @@
 }
 
 .olHandlerBoxZoomBox {
-	border: 2px solid red;
+	border: 2px solid #f00;
 	@extend %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1;
 }
 
 .olHandlerBoxSelectFeature {
-	border: 2px solid blue;
+	border: 2px solid #00f;
 	@extend %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1;
 }
 

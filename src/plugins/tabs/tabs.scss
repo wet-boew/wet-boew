@@ -210,7 +210,7 @@ $medGray: #ccc;
 							/* Firefox 10+, Firefox on Android */
 							filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
 							/* IE6-9 */
-							filter: gray;
+							filter: #808080;
 							/* Chrome 19+, Safari 6+, Safari 6+ iOS */
 							-webkit-filter: unquote("grayscale(100%)");
 							max-height: $thumbHeight;

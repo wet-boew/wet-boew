@@ -30,8 +30,6 @@ linters:
       - "src/polyfills/meter/meter.scss"
       - "src/polyfills/meter/demo/meter.scss"
       - "src/polyfills/progress/demo/progress.scss"
-  ColorKeyword:
-    enabled: false
   BorderZero:
     enabled: false
   NameFormat:
