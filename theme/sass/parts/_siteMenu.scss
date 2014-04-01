@@ -49,8 +49,8 @@
 
 	.sm {
 		&.open {
-			border-left: none;
-			border-right: none;
+			border-left: 0;
+			border-right: 0;
 			border-bottom: 5px solid #243850;
 			padding: 0;
 			background: #ccc;
@@ -59,8 +59,8 @@
 				a,
 				summary {
 					color: #444;
-					border-left: none;
-					border-right: none;
+					border-left: 0;
+					border-right: 0;
 					text-shadow: none;
 					padding: 5px 10px;
 					text-decoration: none;
@@ -105,7 +105,7 @@
 	}
 
 	.modal-header {
-		border: none;
+		border: 0;
 		border-bottom: 1px solid #072337;
 		box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.3), 3px 3px 3px -2px rgba(0, 0, 0, 0.3), -3px 3px 3px -2px rgba(0, 0, 0, 0.3);
 	}

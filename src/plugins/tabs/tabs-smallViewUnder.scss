@@ -47,7 +47,7 @@
 
 				&.tab-count {
 					background: none;
-					border: none;
+					border: 0;
 
 					.curr-count {
 						display: inline;
@@ -142,7 +142,7 @@
 		details {
 			@extend %tabs-details-padding-6-12;
 			border: 1px solid #adadad;
-			border-top: none;
+			border-top: 0;
 
 			&:first-of-type {
 				border-top-left-radius: 4px;

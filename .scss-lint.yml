@@ -29,8 +29,6 @@ linters:
       - "src/polyfills/meter/meter.scss"
       - "src/polyfills/meter/demo/meter.scss"
       - "src/polyfills/progress/demo/progress.scss"
-  BorderZero:
-    enabled: false
   NameFormat:
     enabled: false
   UrlFormat:
