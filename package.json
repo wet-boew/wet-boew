@@ -55,6 +55,7 @@
     "grunt-modernizr": "~0.4.0",
     "grunt-sass": "^0.11.0",
     "grunt-saucelabs": "~4.1.2",
+    "grunt-wget": "~0.1.0",
     "mocha": "~1.13.0",
     "sinon": "~1.7.3"
   }

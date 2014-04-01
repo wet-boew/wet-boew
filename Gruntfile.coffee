@@ -90,6 +90,14 @@ module.exports = (grunt) ->
 		]
 	)
 
+	@registerTask(
+		"update-i18n"
+		" Update the i18n CSV file used to generate the i18n files"
+		[
+			"wget:i18n"
+		]
+	)
+
 	#Internal task groups
 	@registerTask(
 		"js"
@@ -200,6 +208,8 @@ module.exports = (grunt) ->
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n *\n */"
 		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
 		glyphiconsBanner: "/*!\n * GLYPHICONS Halflings for Twitter Bootstrap by GLYPHICONS.com | Licensed under http://www.apache.org/licenses/LICENSE-2.0\n */"
+		i18nGDocsID: "0AqLc8VEIumBwdDNud1M2Wi1tb0RUSXJxSGp4eXI0ZXc"
+		i18nGDocsSheet: 1
 
 		locales: grunt.file.expand(
 					filter: ( src ) ->
@@ -211,6 +221,13 @@ module.exports = (grunt) ->
 					)
 
 		# Task configuration.
+		wget:
+			i18n:
+				options:
+					overwrite: true
+				src: "https://docs.google.com/spreadsheet/pub?key=<%= i18nGDocsID %>&gid=<%= i18nGDocsSheet %>&output=csv"
+				dest: "src/i18n/i18n.csv"
+
 		concat:
 			options:
 				banner: "<%= banner %><%= modernizrBanner %>"
@@ -1198,6 +1215,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-modernizr"
 	@loadNpmTasks "grunt-sass"
 	@loadNpmTasks "grunt-saucelabs"
+	@loadNpmTasks "grunt-wget"
 
 	# Load custom grunt tasks form the tasks directory
 	@loadTasks "tasks"
