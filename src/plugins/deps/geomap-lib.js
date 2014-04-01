@@ -40,7 +40,10 @@ var pluginName = "wb-geomap",
 		debug: false,
 		useLegend: false,
 		useTab: false,
-		useMapControls: true
+		useMapControls: true,
+		useGeocoder: false,
+		useGeolocation: false,
+		useAOI: false
 	},
 
 	/*
@@ -1046,9 +1049,9 @@ var pluginName = "wb-geomap",
 
 		// set aspect ratio
 		geomap.gmap.height( geomap.gmap.width() * mapOptions.aspectRatio );
-
 		geomap.map = new OpenLayers.Map( geomap.gmap.attr( "id" ), $.extend( opts.config, mapOptions ) );
-
+		// Add the geomap uniqueId so developers can get related elements
+		geomap.map.uniqueId = geomap.uniqueId;
 		// Initialize control to []. If not, all maps share the same
 		// set of controls. This maybe a OpenLayers bug
 		geomap.map.controls = [];
@@ -1997,11 +2000,11 @@ var pluginName = "wb-geomap",
 				"<p><small>" + i18nText.aoiInstructions + "</small></p>" +
 				"<div class='form-group form-inline'>" +
 					"<div class='form-group'>" +
-						"<label for='geomap-aoi-maxy-" + geomap.uniqueId + "' class='input-sm'>" + i18nText.aoiNorth + "</label>" +
+						"<label for='geomap-aoi-maxy-" + geomap.uniqueId + "' class='input-sm control-label'>" + i18nText.aoiNorth + "</label>" +
 						"<input type='number' id='geomap-aoi-maxy-" + geomap.uniqueId + "' placeholder='90' class='form-control input-sm' min='-90' max='90' step='0.000001'/> " +
 					"</div>" +
 					"<div class='form-group'>" +
-						"<label for='geomap-aoi-maxx-" + geomap.uniqueId + "' class='input-sm'>" + i18nText.aoiEast + "</label>" +
+						"<label for='geomap-aoi-maxx-" + geomap.uniqueId + "' class='input-sm control-label'>" + i18nText.aoiEast + "</label>" +
 						"<input type='number' id='geomap-aoi-maxx-" + geomap.uniqueId + "' placeholder='180' class='form-control input-sm col-s' min='-180' max='180' step='0.000001'/> " +
 					"</div>" +
 					"<div class='form-group'>" +
@@ -2009,7 +2012,7 @@ var pluginName = "wb-geomap",
 						"<input type='number' id='geomap-aoi-miny-" + geomap.uniqueId + "' placeholder='-90' class='form-control input-sm' min='-90' max='90' step='0.000001'/> " +
 					"</div>" +
 					"<div class='form-group'>" +
-						"<label for='geomap-aoi-minx-" + geomap.uniqueId + "' class='input-sm'>" + i18nText.aoiWest + "</label>" +
+						"<label for='geomap-aoi-minx-" + geomap.uniqueId + "' class='input-sm control-label'>" + i18nText.aoiWest + "</label>" +
 						"<input type='number' id='geomap-aoi-minx-" + geomap.uniqueId + "' placeholder='-180' class='form-control input-sm' min='-180' max='180' step='0.000001'/> " +
 					"</div>" +
 					"</div>" +
