@@ -46,5 +46,3 @@ linters:
     enabled: false
   SpaceAfterComma:
     enabled: false
-  SpaceAfterPropertyColon:
-    enabled: false
