@@ -2,9 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
-%slider-gradient-left-89A5BD-165C91 {
-	background-image: linear-gradient(left, #89a5bd, #165c91);
-}
+
 %slider-display-block {
 	display: block;
 }
@@ -149,7 +147,7 @@
 	@extend %slider-overflow-hidden;
 	line-height: 2px;
 	@extend %slider-background-color-165c91;
-	@extend %slider-gradient-left-89A5BD-165C91;
+	background-image: linear-gradient(left, #89a5bd, #165c91);
 	@extend %slider-border-radius-2;
 	@extend %slider-background-clip-padding-box;
 }

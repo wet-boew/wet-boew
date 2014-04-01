@@ -10,12 +10,12 @@
 %prettify-screen-color-660 {
 	color: #660;
 }
-%prettify-screen-color-2F6D2F {
+%prettify-screen-color-2f6d2f {
 	color: #2f6d2f;
 }
 
 .str {
-	@extend %prettify-screen-color-2F6D2F;
+	@extend %prettify-screen-color-2f6d2f;
 }	/* string content - from #080 */
 .kwd {
 	color: #024b6e;
@@ -46,7 +46,7 @@
 	@extend %prettify-screen-color-606;
 }	/* a markup attribute name */
 .atv {
-	@extend %prettify-screen-color-2F6D2F;
+	@extend %prettify-screen-color-2f6d2f;
 }	/* a markup attribute value - from #080 */
 .dec {
 	@extend %prettify-screen-color-606;

@@ -11,35 +11,30 @@ $drabBlue: #243850;
 $lightGray: #eee;
 $medGray: #ccc;
 
-%tabsGreyBackground {
-	background: $medGray;
-	background: transparentize($medGray, 0.1);
-}
-
-%tabsPositionRelative {
+%tabs-position-relative {
 	position: relative;
 }
 
-%carouselTabs {
+%tab-position-relative {
 	position: absolute;
 }
 
-%carouselTabsLi {
+%tab-zindex-100 {
 	z-index: 100;
 }
 
-%carouselDrabBlueBackground {
+%tab-background-243850 {
 	background: $drabBlue;
 	background: transparentize($drabBlue, 0.1);
 }
 
 //TODO:Combine with previous placeholder when libsass supports nested selectors
-%carouselFigureImage {
+%tab-width-100-height-auto {
 	width: 100%;
 	height: auto;
 }
 
-%carouselFigureCaptions {
+%tab-figure-captions {
 	position: absolute;
 	color: #fff;
 	padding: 0.5em 1em;
@@ -47,7 +42,7 @@ $medGray: #ccc;
 }
 
 //TODO:Combine with previous placeholder when libsass supports nested selectors
-%carouselFigureCaptionsLinks {
+%tab-figure-captions-links {
 	color: #fff;
 }
 
@@ -92,7 +87,7 @@ $medGray: #ccc;
 	/**
 	 * Default, minimal, shared style
 	 */
-	@extend %tabsPositionRelative;
+	@extend %tabs-position-relative;
 	[role ="tablist"] {
 		position: relative;
 		list-style: none;
@@ -115,7 +110,8 @@ $medGray: #ccc;
 				padding: 10px;
 			}
 			&:focus, &:hover {
-				@extend %tabsGreyBackground;
+				background: $medGray;
+				background: transparentize($medGray, 0.1);
 			}
 			&.active {
 				padding-bottom: 1px;
@@ -142,11 +138,11 @@ $medGray: #ccc;
 	 */
 	&.carousel-s1 {
 		[role="tablist"] {
-			@extend %carouselTabs;
+			@extend %tab-position-relative;
 			bottom: 1em;
 			left: 1em;
 			li {
-				@extend %carouselTabsLi;
+				@extend %tab-zindex-100;
 				&.active, &:focus, &:hover {
 					top: 1px;
 					a {
@@ -156,18 +152,18 @@ $medGray: #ccc;
 			}
 		}
 		figure {
-			@extend %tabsPositionRelative;
-			@extend %carouselDrabBlueBackground;
+			@extend %tabs-position-relative;
+			@extend %tab-background-243850;
 			img {
-				@extend %carouselFigureImage;
+				@extend %tab-width-100-height-auto;
 			}
 		}
 		figcaption {
-			@extend %carouselFigureCaptions;
+			@extend %tab-figure-captions;
 			top: 3em;
 			right: 1em;
 			a {
-				@extend %carouselFigureCaptionsLinks;
+				@extend %tab-figure-captions-links;
 			}
 		}
 	}
@@ -180,12 +176,12 @@ $medGray: #ccc;
 		// 44px = 2 x 10px for anchor padding + 2 x 4px for list item padding + 16px for carousel bottom margin
 		margin-bottom: $thumbHeight + 44px;
 		[role="tablist"] {
-			@extend %carouselTabs;
+			@extend %tab-position-relative;
 			width: 100%;
 			height: 100%;
 			li {
 				background: transparent;
-				@extend %carouselTabsLi;
+				@extend %tab-zindex-100;
 				display: none;
 				border: none;
 				&[role="presentation"] {
@@ -267,19 +263,19 @@ $medGray: #ccc;
 			}
 		}
 		figure {
-			@extend %tabsPositionRelative;
-			@extend %carouselDrabBlueBackground;
+			@extend %tabs-position-relative;
+			@extend %tab-background-243850;
 			img {
-				@extend %carouselFigureImage;
+				@extend %tab-width-100-height-auto;
 			}
 		}
 		figcaption {
-			@extend %carouselFigureCaptions;
+			@extend %tab-figure-captions;
 			bottom: 0;
 			left: 0;
 			right: 0;
 			a {
-				@extend %carouselFigureCaptionsLinks;
+				@extend %tab-figure-captions-links;
 			}
 			p {
 				margin-bottom: 0;
@@ -287,7 +283,7 @@ $medGray: #ccc;
 		}
 		&.no-overlap {
 			figcaption {
-				@extend %tabsPositionRelative;
+				@extend %tabs-position-relative;
 			}
 		}
 	}

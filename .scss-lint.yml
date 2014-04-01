@@ -21,7 +21,15 @@ linters:
   PropertySortOrder:
     enabled: false
   CapitalizationInSelector:
-    enabled: false
+    exclude:
+      - "src/plugins/charts/charts.scss"
+      - "src/plugins/geomap/geomap.scss"
+      - "src/plugins/geomap/geomap-ie8.scss"
+      - "src/plugins/geomap/geomap-printView.scss"
+      - "src/plugins/tables/tables.scss"
+      - "src/polyfills/meter/meter.scss"
+      - "src/polyfills/meter/demo/meter.scss"
+      - "src/polyfills/progress/demo/progress.scss"
   ColorKeyword:
     enabled: false
   BorderZero:
