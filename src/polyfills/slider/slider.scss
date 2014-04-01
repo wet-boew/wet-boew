@@ -118,10 +118,10 @@
 	@extend %slider-padding-0;
 	@extend %slider-overflow-hidden;
 	border: 1px solid #606060;
-	border-bottom: 1px solid #aaa;
-	border-right: 1px solid #aaa;
 	border: 1px solid rgba(187, 187, 187, .8);
+	border-bottom: 1px solid #aaa;
 	border-bottom: 1px solid rgba(170, 170, 170, .8);
+	border-right: 1px solid #aaa;
 	border-right: 1px solid rgba(170, 170, 170, .8);
 	line-height: 4px;
 	@extend %slider-background-color-ddd;

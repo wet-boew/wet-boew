@@ -39,4 +39,9 @@ linters:
   DeclarationOrder:
     enabled: false
   DuplicateProperty:
-    enabled: false
+    # This unfortunately catches RGB fallbacks
+    exclude:
+      - "src/plugins/tabs/tabs-mediumViewOver.scss"
+      - "src/plugins/tabs/tabs.scss"
+      - "src/polyfills/slider/slider.scss"
+      - "theme/sass/parts/_banner.scss"
