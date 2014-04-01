@@ -70,7 +70,7 @@
 		&.waiting {
 			&:after{
 				@extend %multimedia_loading;
-				background: url(../assets/loading.png) center center no-repeat;
+				background: url("../assets/loading.png") center center no-repeat;
 				animation-name: spin;
 				animation-duration: 1000ms;
 				animation-iteration-count: infinite;

@@ -52,5 +52,3 @@ linters:
     enabled: false
   SpaceBetweenParens:
     enabled: false
-  UrlQuotes:
-    enabled: false
