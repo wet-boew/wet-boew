@@ -48,8 +48,8 @@
 // Table
 table {
 	&.dataTable {
-		margin: 0 auto;
 		@extend %tables-clear-both;
+		margin: 0 auto;
 		width: 100% !important;
 
 		thead {
@@ -126,8 +126,8 @@ table {
 
 // Table wrapper
 .dataTables_wrapper {
-	position: relative;
 	@extend %tables-clear-both;
+	position: relative;
 }
 
 // Page length menu

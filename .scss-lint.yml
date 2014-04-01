@@ -33,8 +33,6 @@ linters:
     enabled: false
   UrlFormat:
     enabled: false
-  DeclarationOrder:
-    enabled: false
   DuplicateProperty:
     # This unfortunately catches RGB fallbacks
     exclude:

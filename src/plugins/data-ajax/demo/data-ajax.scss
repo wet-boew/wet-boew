@@ -8,11 +8,11 @@
 }
 
 .original {
-	background: #ccc;
 	@extend %data-ajax-demo-padding-border;
+	background: #ccc;
 }
 
 .ajaxed-in {
-	background: #fff;
 	@extend %data-ajax-demo-padding-border;
+	background: #fff;
 }

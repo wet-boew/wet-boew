@@ -52,8 +52,8 @@
 				}
 
 				&.prv {
-					left: 0;
 					@extend %tabs-mediumview-prv-nxt-common;
+					left: 0;
 
 					a {
 						@extend %tabs-mediumview-prv-nxt-a-common;

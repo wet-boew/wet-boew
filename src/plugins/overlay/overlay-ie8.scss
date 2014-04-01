@@ -33,13 +33,13 @@
 
 	&[dir=rtl] {
 		.wb-panel-l {
-			border-right: 0;
 			@extend %overlay-ie8-border-left-999;
+			border-right: 0;
 		}
 
 		.wb-panel-r {
-			border-left: 0;
 			@extend %overlay-ie8-border-right-999;
+			border-left: 0;
 		}
 	}
 }

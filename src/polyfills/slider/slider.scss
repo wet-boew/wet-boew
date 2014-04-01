@@ -110,13 +110,13 @@
 .fd-slider {
 	@extend %slider-width-100perc;
 	@extend %slider-height-20;
+	@extend %slider-display-block;
+	@extend %slider-border-none;
 	margin: 0 0 10px;
 	text-align: center;
-	@extend %slider-display-block;
 	position: relative;
 	cursor: pointer;
 	text-decoration: none;
-	@extend %slider-border-none;
 	user-select: none;
 }
 
@@ -135,14 +135,17 @@
 .fd-slider-bar {
 	@extend %slider-display-block;
 	@extend %slider-position-absolute;
-	top: 8px;
-	right: 10px;
-	left: 10px;
-	z-index: 2;
 	@extend %slider-height-2;
 	@extend %slider-margin-0;
 	@extend %slider-padding-0;
 	@extend %slider-overflow-hidden;
+	@extend %slider-background-color-ddd;
+	@extend %slider-border-radius-2;
+	@extend %slider-background-clip-padding-box;
+	top: 8px;
+	right: 10px;
+	left: 10px;
+	z-index: 2;
 	border: 1px solid #606060;
 	border: 1px solid rgba(187, 187, 187, .8);
 	border-bottom: 1px solid #aaa;
@@ -150,10 +153,7 @@
 	border-right: 1px solid #aaa;
 	border-right: 1px solid rgba(170, 170, 170, .8);
 	line-height: 4px;
-	@extend %slider-background-color-ddd;
 	background-image: linear-gradient(#ececec, #ccc);
-	@extend %slider-border-radius-2;
-	@extend %slider-background-clip-padding-box;
 }
 
 .fd-slider-focused {
@@ -168,18 +168,18 @@
 .fd-slider-range {
 	@extend %slider-display-block;
 	@extend %slider-position-absolute;
-	top: 9px;
-	left: 11px;
 	@extend %slider-z-index-3;
 	@extend %slider-height-2;
 	@extend %slider-margin-0;
 	@extend %slider-padding-0;
 	@extend %slider-overflow-hidden;
-	line-height: 2px;
 	@extend %slider-background-color-165c91;
-	background-image: linear-gradient(left, #89a5bd, #165c91);
 	@extend %slider-border-radius-2;
 	@extend %slider-background-clip-padding-box;
+	top: 9px;
+	left: 11px;
+	line-height: 2px;
+	background-image: linear-gradient(left, #89a5bd, #165c91);
 }
 
 .fd-slider-handle {

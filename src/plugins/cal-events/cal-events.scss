@@ -12,6 +12,7 @@
 
 ul {
 	&.ev-details {
+		@extend %events-calendar-background-color-fff;
 		padding: 0;
 		position: absolute;
 		z-index: 5;
@@ -20,11 +21,10 @@ ul {
 		margin: 0;
 		margin-top: -0.5em;
 		font-weight: 400;
-		@extend %events-calendar-background-color-fff;
 
 		a {
-			padding: 0.5em;
 			@extend %events-calendar-background-color-fff;
+			padding: 0.5em;
 		}
 	}
 }

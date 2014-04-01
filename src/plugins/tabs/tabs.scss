@@ -200,8 +200,8 @@ $medGray: #ccc;
 			height: 100%;
 
 			li {
-				background: transparent;
 				@extend %tab-zindex-100;
+				background: transparent;
 				display: none;
 				border: 0;
 

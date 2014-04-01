@@ -70,8 +70,8 @@
 	td {
 		&.datepicker-selected {
 			a {
-				background-color: #333;
 				@extend %datepicker-color-fff-important;
+				background-color: #333;
 			}
 		}
 	}

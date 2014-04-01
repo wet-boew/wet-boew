@@ -116,13 +116,13 @@
 }
 
 .olHandlerBoxZoomBox {
-	border: 2px solid #f00;
 	@extend %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1;
+	border: 2px solid #f00;
 }
 
 .olHandlerBoxSelectFeature {
-	border: 2px solid #00f;
 	@extend %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1;
+	border: 2px solid #00f;
 }
 
 .olPopupCloseBox {
