@@ -1,0 +1,33 @@
+---
+{
+	"title": "Working behind a proxy",
+	"language": "en",
+	"description": "Instructions for running behind a proxy",
+	"altLangPrefix": "start",
+	"dateModified": "2014-04-01"
+}
+---
+The following steps can be used for those working behind proxys that require authentication. All these methods will store your password in plain text, so use caution when doing this.
+
+<h2>Setting the proxy for NPM installs</h2>
+<ol>
+	<li>Open a command prompt</li>
+	<li>Run the following commands replacing "USERNAME", "PASSWORD", "PROXY_ADDRESS", and "PROXY_PORT" with your netork's information:
+		<ol>
+			<li><code>npm config set proxy http://USERNAME:PASSWORD@PROXY_ADDRESS:PROXY_PORT</code></li>
+			<li><code>npm config set https-proxy http://USERNAME:PASSWORD@PROXY_ADDRESS:PROXY_PORT</code></li>
+		</ol>
+	</li>
+</ol>
+
+<h2>Setting the proxy for other tasks</h2>
+Many plugins will also look for environmental variables of "HTTP_PROXY" and "HTTPS_PROXY" when they need to call out to the internet.
+<ol>
+	<li>You can set these variables with the value "http://USERNAME:PASSWORD@PROXY_ADDRESS:PROXY_PORT" each session by calling:
+		<ol>
+			<li>Windows Command Prompt: <code>set http://HTTP_PROXY=USERNAME:PASSWORD@PROXY_ADDRESS:PROXY_PORT</code><li>
+			<li>Bash Shell: "export http://HTTP_PROXY=USERNAME:PASSWORD@PROXY_ADDRESS:PROXY_PORT"</li>
+		</ol>
+	</li>
+	<li>To avoid doing this everytime, you can add these commands the the your console's "RC" file. If you are using the Git Bash Shell on Windows, you can add the export statements to the ".bashrc" in the root of your user profile ("C:\Users\USERNAME"). That file is run everytime you open a Git Bash session, so the environmental variables will be available from the command line. You may need to create that file with a text editor, since Windows doesn't allow creating files starting with a period in Windows Explorer.</li>
+</ol>
