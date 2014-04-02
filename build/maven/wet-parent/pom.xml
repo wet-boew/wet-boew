@@ -247,13 +247,13 @@
 	<licenses>
 		<license>
 			<name>MIT License</name>
-			<url>https://github.com/wet-boew/wet-boew/blob/master/License-eng.txt</url>
+			<url>https://github.com/wet-boew/wet-boew/blob/v3.1/License-eng.txt</url>
 			<distribution>repo</distribution>
 			<comments>License in English</comments>
 		</license>
 		<license>
 			<name>MIT License</name>
-			<url>https://github.com/wet-boew/wet-boew/blob/master/Licence-fra.txt</url>
+			<url>https://github.com/wet-boew/wet-boew/blob/v3.1/Licence-fra.txt</url>
 			<distribution>repo</distribution>
 			<comments>Licence en français</comments>
 		</license>

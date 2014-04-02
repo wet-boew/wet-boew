@@ -3,18 +3,18 @@
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
 <!-- DataAjaxFragmentStart -->
-<li><section><h3><a href="http://wet-boew.github.io/wet-boew/index-en.html">WET project</a></h3><div class="mb-sm">
+<li><section><h3><a href="http://wet-boew.github.io/v3.1-ci/index-en.html">WET project</a></h3><div class="mb-sm">
 <div class="span-2">
-<section><h4><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">About WET</a></h4>
+<section><h4><a href="http://wet-boew.github.io/v3.1-ci/index-en.html#about">About WET</a></h4>
 <ul>
-<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#about">What is WET?</a></li>
-<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#benefits">Benefits</a></li>
+<li><a href="http://wet-boew.github.io/v3.1-ci/index-en.html#about">What is WET?</a></li>
+<li><a href="http://wet-boew.github.io/v3.1-ci/index-en.html#benefits">Benefits</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Accolades">Accolades for WET</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Accolades#wiki-Known_implementations">Known implementations</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki#upcoming-events">Events</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/License-en.html">Terms and conditions of use</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Roadmap">Roadmap of past and future releases</a></li>
-<li><a href="http://wet-boew.github.io/wet-boew/index-en.html#version-history">Version history</a></li>
+<li><a href="http://wet-boew.github.io/v3.1-ci/index-en.html#version-history">Version history</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/External-Projects-used-in-WET">External projects used in WET</a></li>
 </ul>
 </section>
@@ -39,18 +39,18 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Downloads">Download WET</a></li>
 </ul>
 </section>
-<section><h4><a href="http://wet-boew.github.io/wet-boew/demos/guide-design/guide-en.html">Designing sites and page layouts</a></h4>
+<section><h4><a href="http://wet-boew.github.io/v3.1-ci/demos/guide-design/guide-en.html">Designing sites and page layouts</a></h4>
 <ul>
-<li><a href="http://wet-boew.github.io/wet-boew/demos/grids/grid-base-en.html">Using grids to design pages</a></li>
+<li><a href="http://wet-boew.github.io/v3.1-ci/demos/grids/grid-base-en.html">Using grids to design pages</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Themes-and-Style">Themes and style</a></li>
-<li><a href="http://wet-boew.github.io/wet-boew/demos/opt-cont/index-en.html">Optimal content examples</a></li>
+<li><a href="http://wet-boew.github.io/v3.1-ci/demos/opt-cont/index-en.html">Optimal content examples</a></li>
 </ul>
 </section>
 </div>
 <div class="span-2">
 <section><h4><a href="https://github.com/wet-boew/wet-boew/wiki/Implementing-WET">Working with WET</a></h4>
 <ul>
-<li><a href="http://wet-boew.github.io/wet-boew/demos/index-en.html">Working examples</a></li>
+<li><a href="http://wet-boew.github.io/v3.1-ci/demos/index-en.html">Working examples</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki#reference">Documentation</a>
 	<ul>
 	<li><a href="https://github.com/wet-boew/wet-boew/wiki/Core-Framework">Core framework</a></li>
