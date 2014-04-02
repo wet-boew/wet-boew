@@ -8,7 +8,7 @@ function error_exit
 	exit 1
 }
 
-if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_REPO_SLUG" == "wet-boew/wet-boew" ] && [ "$TRAVIS_BRANCH" == "v4.0" ]; then
+if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_REPO_SLUG" == "wet-boew/wet-boew" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
 
 	#Set git user
 	git config --global user.email "wet.boew.bot@gmail.com"
@@ -23,13 +23,19 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_REPO_SLUG" == "wet-boew/w
 
 	#Update the working examples
 	echo -e "Updating working examples...\n"
+	
+	if [ "$TRAVIS_BRANCH" == "master" ]; then
+		submodule_name="v4.0-ci"
+	else
+		submodule_name="$TRAVIS_BRANCH-ci"
+	fi
 
 	cd ..
 	git clone -q https://${GH_TOKEN}@github.com/wet-boew/wet-boew.github.io.git > /dev/null 2>&1 || error_exit "Error cloning the working examples repository";
 	cd wet-boew.github.io
 
-	echo -e "Updating submodule '$submodule_name'"
-	git submodule update --remote --init wet-boew "$TRAVIS_BRANCH-ci" > /dev/null 2>&1 || error_exit "Error updating submodules"
+	echo -e "Updating submodules wet-boew and '$submodule_name'"
+	git submodule update --remote --init wet-boew "$submodule_name" > /dev/null 2>&1 || error_exit "Error updating submodules"
 	git add .
 	git commit -q -m "Travis build $TRAVIS_BUILD_NUMBER"
 	git push -fq origin master > /dev/null 2>&1 || error_exit "Error uploading the working examples"
