@@ -210,6 +210,22 @@ module.exports = (grunt) ->
 		glyphiconsBanner: "/*!\n * GLYPHICONS Halflings for Twitter Bootstrap by GLYPHICONS.com | Licensed under http://www.apache.org/licenses/LICENSE-2.0\n */"
 		i18nGDocsID: "0AqLc8VEIumBwdDNud1M2Wi1tb0RUSXJxSGp4eXI0ZXc"
 		i18nGDocsSheet: 1
+		mochaUrls: grunt.file.expand(
+						filter: ( src ) ->
+							src = path.dirname( src ).replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
+							return fs.existsSync( src + "/test.js" )
+						"src/plugins/**/*-en.hbs"
+						"src/polyfills/**/*-en.hbs"
+						"src/other/**/*-en.hbs"
+					).map( ( src ) ->
+						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
+						src = src.replace( "src/", "dist/")
+						src = src.replace( "plugins/", "demos/" )
+						src = src.replace( "polyfills/", "demos/" )
+						src = src.replace( "other/", "demos/" )
+						src = src.replace( ".hbs", ".html" )
+						return "http://localhost:8000/" + src
+					)
 
 		locales: grunt.file.expand(
 					filter: ( src ) ->
@@ -1120,42 +1136,12 @@ module.exports = (grunt) ->
 			all:
 				options:
 					reporter: "Spec"
-					urls: grunt.file.expand(
-						filter: ( src ) ->
-							src = path.dirname( src ).replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
-							return fs.existsSync( src + "/test.js" )
-						"src/plugins/**/*.hbs"
-						"src/polyfills/**/*.hbs"
-						"src/other/**/*.hbs"
-					).map( ( src ) ->
-						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
-						src = src.replace( "src/", "dist/")
-						src = src.replace( "plugins/", "demos/" )
-						src = src.replace( "polyfills/", "demos/" )
-						src = src.replace( "other/", "demos/" )
-						src = src.replace( ".hbs", ".html" )
-						return "http://localhost:8000/" + src
-					)
+					urls: "<%= mochaUrls %>"
 
 		"saucelabs-mocha":
 			all:
 				options:
-					urls: grunt.file.expand(
-						filter: ( src ) ->
-							src = path.dirname( src ).replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
-							return fs.existsSync( src + "/test.js" )
-						"src/plugins/**/*.hbs"
-						"src/polyfills/**/*.hbs"
-						"src/other/**/*.hbs"
-					).map( ( src ) ->
-						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
-						src = src.replace( "src/", "dist/")
-						src = src.replace( "plugins/", "demos/" )
-						src = src.replace( "polyfills/", "demos/" )
-						src = src.replace( "other/", "demos/" )
-						src = src.replace( ".hbs", ".html" )
-						return "http://localhost:8000/" + src
-					)
+					urls: "<%= mochaUrls %>"
 					tunnelTimeout: 5
 					build: process.env.TRAVIS_BUILD_NUMBER
 					concurrency: 3
