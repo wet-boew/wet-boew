@@ -13,9 +13,10 @@ before_install:
   - gem install scss-lint
 
 script:
-  - ./script/travis_script.sh
+  - travis_retry ./script/travis_script.sh
 
 after_success:
+  - ./script/travis_artifacts.sh
   - ./script/travis_saucelabs.sh
 
 notifications:
