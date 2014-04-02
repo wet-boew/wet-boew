@@ -25,10 +25,10 @@
 <section class="alert alert-info">
 {{#contains page.language "fr" }}
 	<h2 class="h3">Vous cherchez la BOEW v3.1?</h2>
-	<p>La BOEW v4.0 est maintenant la version courrante. La <a href="http://wet-boew.github.io/v3.1-ci/demos/{{#contains page.dirname "demos/index-"}}{{else}}{{page.altLangPrefix}}/{{/contains}}{{page.filename}}">version de la page actuelle pour la BOEW v3.1</a> a été déplacée.</p>
+	<p>La BOEW v4.0 est maintenant la version courrante. La <a href="http://wet-boew.github.io/v3.1-ci/demos/{{#contains page.src "demos/index-"}}{{else}}{{page.altLangPrefix}}/{{/contains}}{{page.filename}}">version de la page actuelle pour la BOEW v3.1</a> a été déplacée.</p>
 {{else}}
 	<h2 class="h3">Looking for WET v3.1?</h2>
-	<p>WET v4.0 is now the current version. There is a new location for the <a href="http://wet-boew.github.io/v3.1-ci/demos/{{#contains page.dirname "demos/index-"}}{{else}}{{page.altLangPrefix}}/{{/contains}}{{page.filename}}">current page in WET v3.1</a>.</p>
+	<p>WET v4.0 is now the current version. There is a new location for the <a href="http://wet-boew.github.io/v3.1-ci/demos/{{#contains page.src "demos/index-"}}{{else}}{{page.altLangPrefix}}/{{/contains}}{{page.filename}}">current page in WET v3.1</a>.</p>
 {{/contains}}
 </section>
 										{{/contains}}
