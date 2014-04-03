@@ -1,66 +1,44 @@
-{{#contains page.dirname "versions"}}
-{{else}}
-	{{#contains page.dirname "county-content"}}
-	{{else}}
-		{{#contains page.dirname "data-"}}
-		{{else}}
-			{{#contains page.dirname "overlay"}}
-			{{else}}
-				{{#contains page.dirname "toggle"}}
-				{{else}}
-					{{#contains page.dirname "transitions"}}
-					{{else}}
-						{{#contains page.dirname "twitter"}}
-						{{else}}
-							{{#contains page.filename "start"}}
-								{{>v31gettingstarted}}
-							{{else}}
-								{{#contains page.filename "bugs"}}
-									{{>v31gettingstarted}}
-								{{else}}
-									{{#contains page.filename "pull"}}
-										{{>v31gettingstarted}}
-									{{else}}
-										{{#contains page.dirname "/demos"}}
+{{#each site.v40only}}{{#contains ../page.dirname this}}
 <section class="alert alert-info">
-{{#contains page.language "fr" }}
-	<h2 class="h3">Vous cherchez la BOEW v3.1?</h2>
-	<p>La BOEW v4.0 est maintenant la version courrante. La <a href="http://wet-boew.github.io/v3.1-ci/demos/{{#contains page.src "demos/index-"}}{{else}}{{page.altLangPrefix}}/{{/contains}}{{page.filename}}">version de la page actuelle pour la BOEW v3.1</a> a été déplacée.</p>
-{{else}}
-	<h2 class="h3">Looking for WET v3.1?</h2>
-	<p>WET v4.0 is now the current version. There is a new location for the <a href="http://wet-boew.github.io/v3.1-ci/demos/{{#contains page.src "demos/index-"}}{{else}}{{page.altLangPrefix}}/{{/contains}}{{page.filename}}">current page in WET v3.1</a>.</p>
-{{/contains}}
+	<h2 class="h3">{{#contains ../../page.language "fr"}}La BOEW v4.0 seulement{{else}}WET v4.0 or later{{/contains}}</h2>
+	<p>{{#contains ../../page.language "fr"}}Ce composant est seulement disponible à partir de la BOEW v4.0.{{else}}This feature is exclusive to WET v4.0 or later.{{/contains}}</p>
 </section>
-										{{/contains}}
-										{{#contains page.dirname "/docs"}}
+{{/contains}}{{/each}}
+
+{{#each site.v31same}}{{#contains ../page.dirname this}}
 <section class="alert alert-info">
-{{#contains page.language "fr" }}
-	<h2 class="h3">Vous cherchez la BOEW v3.1?</h2>
-	<p>La BOEW v4.0 est maintenant la version courrante. La <a href="http://wet-boew.github.io/v3.1-ci/docs/{{#contains page.src "ref/"}}ref/{{#contains page.dirname page.altLangPrefix}}{{page.altLangPrefix}}/{{/contains}}{{/contains}}{{page.filename}}">version de la page actuelle pour la BOEW v3.1</a> a été déplacée.</p>
-{{else}}
-	<h2 class="h3">Looking for WET v3.1?</h2>
-	<p>WET v4.0 is now the current version. There is a new location for the <a href="http://wet-boew.github.io/v3.1-ci/docs/{{#contains page.src "ref/"}}ref/{{#contains page.dirname page.altLangPrefix}}{{page.altLangPrefix}}/{{/contains}}{{/contains}}{{page.filename}}">current page in WET v3.1</a>.</p>
-{{/contains}}
+	<h2 class="h3">{{#contains ../../page.language "fr"}}{{../../../site.tmpl-v31-ref-head-fr}}{{else}}{{../../../site.tmpl-v31-ref-head-en}}{{/contains}}</h2>
+	<p>{{#contains ../../page.language "fr"}}{{../../../site.tmpl-v31-ref-1-fr}}{{else}}{{../../../site.tmpl-v31-ref-1-en}}{{/contains}}<a href="{{../../site.v31linkstart}}{{#contains ../../page.dirname "/demos"}}demos{{else}}docs/ref{{/contains}}/{{this}}/{{this}}-{{../../page.language}}.html">{{#contains ../../page.language "fr" }}{{../../../site.tmpl-v31-ref-2-fr}}{{else}}{{../../../site.tmpl-v31-ref-2-en}}{{/contains}}</a>{{#contains ../../page.language "fr" }}{{../../../site.tmpl-v31-ref-3-fr}}{{else}}{{../../../site.tmpl-v31-ref-3-en}}{{/contains}}</p>
 </section>
-										{{/contains}}
-										{{#contains page.src "pages/index"}}
+{{/contains}}{{/each}}
+
+{{#each site.v31diff}}{{#contains ../page.dirname this}}
 <section class="alert alert-info">
-{{#contains page.language "fr" }}
-	<h2 class="h3">Vous cherchez la BOEW v3.1?</h2>
-	<p>La BOEW v4.0 est maintenant la version courrante. La <a href="http://wet-boew.github.io/v3.1-ci/{{page.filename}}">version de la page actuelle pour la BOEW v3.1</a> a été déplacée.</p>
-{{else}}
-	<h2 class="h3">Looking for WET v3.1?</h2>
-	<p>WET v4.0 is now the current version. There is a new location for the <a href="http://wet-boew.github.io/v3.1-ci/{{page.filename}}">current page in WET v3.1</a>.</p>
-{{/contains}}
+	<h2 class="h3">{{#contains ../../page.language "fr" }}{{../../../site.tmpl-v31-ref-head-fr}}{{else}}{{../../../site.tmpl-v31-ref-head-en}}{{/contains}}</h2>
+	<p>{{#contains ../../page.language "fr"}}{{../../../site.tmpl-v31-ref-1-fr}}{{else}}{{../../../site.tmpl-v31-ref-1-en}}{{/contains}}
+	{{#contains ../../page.dirname "charts"}}<a href="{{#contains ../../../page.dirname "/demos"}}demos/charts/index{{else}}docs/ref/charts/charts{{/contains}}-{{../../../page.language}}.html">{{/contains}}
+	{{#contains ../../page.dirname "cal-events"}}<a href="{{../../../site.v31linkstart}}{{#contains ../../../page.dirname "/demos"}}demos{{else}}docs/ref{{/contains}}/eventscalendar/eventscalendar-{{../../../page.language}}.html">{{/contains}}
+	{{#contains ../../page.dirname "data-picture"}}<a href="{{../../../site.v31linkstart}}{{#contains ../../../page.dirname "/demos"}}demos{{else}}docs/ref{{/contains}}/responsiveimg/responsiveimg-{{../../../page.language}}.html">{{/contains}}
+	{{#contains ../../page.dirname "feeds"}}<a href="{{../../../site.v31linkstart}}{{#contains ../../../page.dirname "/demos"}}demos{{else}}docs/ref{{/contains}}/webfeeds/webfeeds-{{../../../page.language}}.html">{{/contains}}
+	{{#contains ../../page.dirname "mathml"}}<a href="{{../../../site.v31linkstart}}{{#contains ../../../page.dirname "/demos"}}demos{{else}}docs/ref{{/contains}}/mathlib/mathlib-{{../../../page.language}}.html">{{/contains}}
+	{{#contains ../../page.dirname "menu"}}<a href="{{../../../site.v31linkstart}}{{#contains ../../../page.dirname "/demos"}}demos{{else}}docs/ref{{/contains}}/menubar/megamenu-{{../../../page.language}}.html">{{/contains}}
+	{{#contains ../../page.dirname "session-timeout"}}<a href="{{../../../site.v31linkstart}}{{#contains ../../../page.dirname "/demos"}}demos{{else}}docs/ref{{/contains}}/sessiontimeout/sessiontimeout-{{../../../page.language}}.html">{{/contains}}
+	{{#contains ../../page.dirname "toggle"}}<a href="{{../../../site.v31linkstart}}{{#contains ../../../page.dirname "/demos"}}demos{{else}}docs/ref{{/contains}}/details/expandcollapseall-{{../../../page.language}}.html">{{/contains}}
+	{{#contains ../../page.language "fr" }}{{../../../site.tmpl-v31-ref-2-fr}}{{else}}{{../../../site.tmpl-v31-ref-2-en}}{{/contains}}</a>{{#contains ../../page.language "fr" }}{{../../../site.tmpl-v31-ref-3-fr}}{{else}}{{../../../site.tmpl-v31-ref-3-en}}{{/contains}}</p>
 </section>
-										{{/contains}}
-									{{/contains}}
-								{{/contains}}
-							{{/contains}}
-						{{/contains}}
-					{{/contains}}
-				{{/contains}}
-			{{/contains}}
-		{{/contains}}
-	{{/contains}}
+{{/contains}}{{/each}}
+
+{{#contains page.filename "index"}}{{>v31general}}{{/contains}}
+
+{{#contains page.dirname "/docs"}}
+	{{#contains page.filename "start"}}{{>v31gettingstarted}}{{/contains}}
+	{{#contains page.filename "bugs"}}{{>v31gettingstarted}}{{/contains}}
+	{{#contains page.filename "proxy"}}{{>v31gettingstarted}}{{/contains}}
+	{{#contains page.filename "pull"}}{{>v31gettingstarted}}{{/contains}}
+	{{#contains page.filename "docstmpl"}}{{>v31general}}{{/contains}}
+	{{#contains page.filename "other"}}{{>v31general}}{{/contains}}
+	{{#contains page.filename "plugins"}}{{>v31general}}{{/contains}}
+	{{#contains page.filename "polyfills"}}{{>v31general}}{{/contains}}
+	{{#contains page.filename "themesstyle"}}{{>v31general}}{{/contains}}
+	{{#contains page.filename "variants"}}{{>v31general}}{{/contains}}
 {{/contains}}

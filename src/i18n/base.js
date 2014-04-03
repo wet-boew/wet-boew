@@ -10,7 +10,7 @@
 /* main index */
 wb.i18nDict = {
 	"lang-code": "@lang-code@",
-	"lang-nat": "@lang-nat@",
+	"lang-native": "@lang-native@",
 	all: "@all@",
 	tphp: "@tphp@",
 	load: "@load@",
@@ -20,7 +20,7 @@ wb.i18nDict = {
 	matches: {
 		mixin: "@matches@"
 	},
-	curr: "@curr@",
+	current: "@current@",
 	hide: "@hide@",
 	err: "@err@",
 	colon: "@colon@",

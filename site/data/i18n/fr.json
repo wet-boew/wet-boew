@@ -323,6 +323,13 @@
  "tmpl-contribute-test": "Essayer votre code",
  "tmpl-contribute-develop": "Développer pour la BOEW",
  "tmpl-contribute-docs": "Créer de la documentation",
+ "tmpl-v40-only-head": "La BOEW v4.0 seulement",
+ "tmpl-v40-only": "Ce composant est seulement disponible à partir de la BOEW v4.0.",
+ "tmpl-v31-ref-head": "Vous cherchez la BOEW v3.1?",
+ "tmpl-v31-ref-1": "La BOEW v4.0 est maintenant la version courrante. La ",
+ "tmpl-v31-ref-2": "version de la page actuelle pour la BOEW v3.1",
+ "tmpl-v31-ref-2-gs": "version de la page Comment démarrer pour la BOEW v3.1",
+ "tmpl-v31-ref-3": " a été déplacée.",
  "site.title": "Boîte à outils de l'expérience Web",
  "site.tagline": "Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada",
  "site.description": "La Boîte à outils de l’expérience Web (BOEW) rassemble différents composants réutilisables et prêts-à-utiliser pour la conception et la mise à jour de sites Web innovateurs qui sont à la fois accessibles, conviviaux et interopérables. Tous ces composants réutilisables sont des logiciels libres mis à la disposition des ministères et des collectivités Web externes."

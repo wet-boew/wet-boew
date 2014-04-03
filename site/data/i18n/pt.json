@@ -323,6 +323,13 @@
  "tmpl-contribute-test": "Testing your code",
  "tmpl-contribute-develop": "Developing for WET",
  "tmpl-contribute-docs": "Creating documentation",
+ "tmpl-v40-only-head": "WET v4.0 or later",
+ "tmpl-v40-only": "This feature is exclusive to WET v4.0 or later.",
+ "tmpl-v31-ref-head": "Looking for WET v3.1?",
+ "tmpl-v31-ref-1": "WET v4.0 is now the current version. There is a new location for the ",
+ "tmpl-v31-ref-2": "current page in WET v3.1",
+ "tmpl-v31-ref-2-gs": "Getting started page in WET v3.1",
+ "tmpl-v31-ref-3": ".",
  "site.title": "Web Experience Toolkit",
  "site.tagline": "Collaborative open source project led by the Government of Canada",
  "site.description": "Web Experience Toolkit (WET) includes reusable components for building and maintaining innovative Web sites that are accessible, usable, and interoperable. These reusable components are open source software and free for use by departments and external Web communities"
