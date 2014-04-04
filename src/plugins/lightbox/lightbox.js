@@ -241,8 +241,20 @@ $document.on( "focus", ".lbx-end", function( event ) {
 	return true;
 });
 
+// Outside focus detection (for screen readers that exit the lightbox
+// outside the normal means)
+$document.on( "focusin", "body", function( event ) {
+
+	if ( extendedGlobal && $.magnificPopup.instance.currItem &&
+		$( event.target ).closest( ".mfp-wrap" ).length === 0 ) {
+
+		// Close the popup
+		$.magnificPopup.close();
+	}
+});
+
 // Event handler for closing a modal popup
-$(document).on( "click", ".popup-modal-dismiss", function( event ) {
+$( document ).on( "click", ".popup-modal-dismiss", function( event ) {
 	event.preventDefault();
 	$.magnificPopup.close();
 });
