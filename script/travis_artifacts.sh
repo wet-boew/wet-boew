@@ -14,21 +14,21 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_REPO_SLUG" == "wet-boew/w
 	git config --global user.email "wet.boew.bot@gmail.com"
 	git config --global user.name "Web Experience Toolkit Bot"
 
+	if [ "$TRAVIS_BRANCH" == "master" ]; then
+		export build_branch="v4.0-dist"
+		submodule_name="v4.0-ci"
+	else
+		export build_branch="$TRAVIS_BRANCH-dist"
+		submodule_name="$TRAVIS_BRANCH-ci"
+	fi
+
 	#Add the latest build result
 	echo -e "Uploading the build artifact for branch $TRAVIS_BRANCH\n"
-
-	export build_branch="$TRAVIS_BRANCH-dist"
 
 	grunt deploy || error_exit "Error running gh-pages task";
 
 	#Update the working examples
 	echo -e "Updating working examples...\n"
-	
-	if [ "$TRAVIS_BRANCH" == "master" ]; then
-		submodule_name="v4.0-ci"
-	else
-		submodule_name="$TRAVIS_BRANCH-ci"
-	fi
 
 	cd ..
 	git clone -q https://${GH_TOKEN}@github.com/wet-boew/wet-boew.github.io.git > /dev/null 2>&1 || error_exit "Error cloning the working examples repository";
