@@ -16,7 +16,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li><a href="http://wet-boew.github.io/wet-boew/License-en.html">Terms and conditions of use</a></li>
 <li><a href="http://wet-boew.github.io/v3.1-ci/docs/versions/rdmp-en.html">Roadmap of past and future releases</a></li>
 <li><a href="http://wet-boew.github.io/v3.1-ci/docs/versions/index-en.html">Version history</a></li>
-<li><a href="https://github.com/wet-boew/wet-boew/wiki/External-Projects-used-in-WET">External projects used in WET</a></li>
+<li><a href="http://wet-boew.github.io/v3.1-ci/docs/ref/external-en.html">External projects used in WET</a></li>
 </ul>
 </section>
 </div>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Multimedia player - Plugins - Documentation - Web Experience Toolkit (WET)</title>
+
+<meta name="description" content="Provides a multimedia player for embedding accessible video and audio into web pages." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<link rel="icon" type="image/x-icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Skip to main content</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Skip to footer</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Header bar</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-2"><a href="multimedia-fr.html" lang="fr">Français</a></li>
+<li id="wet-fullhd-lang-current">English</li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-en.html" lang="en"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Web Experience Toolkit&#160;(WET) <small>Collaborative open source project led by the Government of Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Search</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Search website</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Search" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-en.txt">
+<li><div><a href="http://wet-boew.github.io/v3.1-ci/index-en.html">WET project</a></div></li>
+<li><div><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/impl-en.html">Implement WET</a></div></li>
+<li><div><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/contrib-en.html">Contribute to WET</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Breadcrumb trail</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-en.html">Home</a></li>
+<li><a href="../../index-en.html">Documentation</a></li>
+<li><a href="../plugins-en.html">Plugins</a></li>
+<li>Multimedia player</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Multimedia player</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/multimedia/multimedia-en.html" class="button">Working examples</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions or comments?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<h2>Overview</h2>
+	<p><b>Project lead:</b> Laurent Goderre (<a href="https://github.com/LaurentGoderre">@LaurentGoderre</a>)</p>
+
+	<p>The multimedia player allows developers to easily embed audio or video files into their pages, and helps to achieve WCAG 2.0 compliance when providing such media. The media player enhances the HTML5 <code>&lt;video&gt;</code> and <code>&lt;audio&gt;</code> tags, and provides a polyfill utilizing the Flash player for browsers that do not support such tags.</p>
+
+	<section>
+		<h3>Purpose</h3>
+		<p>The purpose of this feature is to help ensure video and audio media embedded on websites meet WCAG 2.0 requirements.</p>
+	</section>
+
+	<section>
+		<h3>Rationale</h3>
+		<p>There are no media player plug-ins currently available that are fully keyboard accessible, meaning that some or most video player functions can only be accessed using a mouse. The WET media player ensures all player functions are tab focus-able and can be triggered via the Enter key.</p>
+	</section>
+</section>
+
+<section>
+	<h2>Implementation</h2>
+	<p>The media player requires the use of a few HTML5 tags and a link to the media source you wish to embed.</p>
+	<section>
+		<h3>Media Formats</h3>
+		<p>The media player supports several formats, listed below; however, we recommend at a minimum you provide any video media in MPEG4 (using the H264 and AAC codecs) to be able to reach every audience, as all mobile players and most browsers are able to play this format. We also recommend you provide media in the WebM format (using the VP8 codec) in addition to MPEG4 in order to take advantage of native browser support, for example FireFox.</p>
+		<section>
+			<h4>Compatible Formats</h4>
+			<ul>
+				<li><strong>Video:</strong> MPEG4 (H264+AAC), WebM (VP8)</li>
+				<li><strong>Audio:</strong> MP3, Ogg Vorbis</li>
+				<li><strong>Captions:</strong> TTML, HTML5 Data</li>
+			</ul>
+		</section>
+	</section>
+	<section>
+		<h3>Required Elements</h3>
+		<ol>
+			<li>Each media must be placed in its own <code>&lt;div&gt;</code> using the "wet-boew-multimedia" class:
+				<pre><code>&lt;div class="wet-boew-multimedia"&gt;</code></pre>
+			</li>
+			<li>Each container should contain one <code>&lt;video&gt;</code> or <code>&lt;audio&gt;</code> tag.
+				<pre><code>&lt;source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-eng.mp4" type="video/mp4" /&gt;</code></pre>
+				<p><strong>Note:</strong> You may list multiple sources for the video, the player should play the first source that works (is available, compatible... etc.).</p>
+			</li>
+			<li>Finally, if using the <code>&lt;video&gt;</code> tag, you must include the <code>&lt;track&gt;</code> tag, which provides captions for the video:
+				<pre><code>&lt;track src="mediaplayer-transcript_captions-en.html" kind="captions" data-type="text/html" srclang="en" label="English" /&gt;</code></pre>
+				<p><strong>Note:</strong> If you are using the <code>&lt;audio&gt;</code> tag, you must include a link to a transcript of the audio file on the page. The media player accepts two formats for the captions specified by the data-type property. Those are: <a href="http://www.w3.org/TR/ttaf1-dfxp/">application/ttml+xml</a> specified by the W3C and text/html developed for WET.</p>
+			</li>
+		</ol>
+		<p><strong>Note:</strong> To take advantage of responsive-design, ensure that the video is placed in a container that leverages the grids functionality.</p>
+		<section>
+			<h4>Example Code</h4>
+			<p><a href="../../../demos/multimedia/multimedia-en.html">Working examples</a></p>
+			<section>
+				<h5>Video</h5>
+				<p><a href="../../../demos/multimedia/multimedia-en.html">Video example</a></p>
+				<pre><code>&lt;div class="wet-boew-multimedia span-4"&gt;
+	&lt;video width="480" height="270" poster="http://31591.vws.magma.ca/sct-tbs/wet-boew/thumbnail.png" title="Video Example"&gt;
+		&lt;source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-eng.webm" type="video/webm" /&gt;
+		&lt;source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-eng.mp4" type="video/mp4" /&gt;
+		&lt;track src="mediaplayer-transcript_captions-en.html" kind="captions" data-type="text/html" srclang="en" label="English" /&gt;
+	&lt;/video&gt;
+&lt;/div&gt;</code></pre>
+			</section>
+			<section>
+				<h5>Audio</h5>
+				<p><a href="../../../demos/multimedia/multimedia-en.html#audio-only">Audio example</a></p>
+				<pre><code>&lt;div class="wet-boew-multimedia span-4"&gt;
+	&lt;audio title="Audio Example"&gt;
+		&lt;source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries.ogg" type="audio/ogg" /&gt;
+		&lt;source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3" /&gt;
+	&lt;/audio&gt;
+&lt;/div&gt;</code></pre>
+			</section>
+		</section>
+	</section>
+</section>
+
+<section>
+	<h2>Examples</h2>
+	<ul>
+		<li><a href="../../../demos/multimedia/multimedia-en.html">English examples</a></li>
+		<li><a href="../../../demos/multimedia/multimedia-fr.html">French examples</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Development</h2>
+	<p>The multimedia player is dependent on the <a href="../progress/progress-en.html">progress bar polyfill</a>.</p>
+	<p>The code for the multimedia player is located in several places within the <b>source</b> folder of WET:</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.1/src/js/workers/multimedia.js">js/workers/multimedia.js</a> - contains the JavaScript code for the multimedia player</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.1/src/js/sass/includes/_multimedia.scss">js/sass/includes/_multimedia.scss</a> - contains the CSS for the multimedia player</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.1/src/js/sass/includes/_multimedia-ie.scss">js/sass/includes/_multimedia-ie.scss</a> - contains the IE7 &amp; IE8 specific CSS for the multimedia player</li>
+	</ul>
+	<p><strong>Note:</strong> the code for the Flash player fallback can be found in the <a href="https://github.com/wet-boew/wet-boew-multimedia-fallback">wet-boew-multimedia-fallback</a> repository.</p>
+</section>
+
+<section>
+	<h2>Known Issues</h2>
+	<p>There are no known issues at this point in time. If you find one, please contribute by filing an issue.</p>
+</section>
+
+<section>
+	<h2>Version History</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.1/src/js/workers/multimedia.js">multimedia.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.1/src/js/sass/includes/_multimedia.scss">_multimedia.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.1/src/js/sass/includes/_multimedia-ie.scss">_multimedia-ie.scss</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Related Documentation</h2>
+	<ul>
+		<li><a href="../progress/progress-en.html">Progress bar polyfill</a></li>
+	</ul>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date modified:</dt><dd><span><time>2014-04-04</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Footer</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">About</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/v3.1-ci/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contact us</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions or comments?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">News</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Recent project activity</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Project statistics</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Stay connected</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/WebExpToolkit">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>
