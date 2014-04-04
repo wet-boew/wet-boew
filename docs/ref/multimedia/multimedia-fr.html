@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="fr" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="fr" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<title>Lecteur multimédia - Plugiciels - Documentation - Boîte à outils de l'expérience Web (BOEW)</title>
+
+<meta name="description" content="Un lecteur multimédia accessible permettant d'intégrer des contenus vidéo et audio sur les pages Web." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]>
+<link rel="shortcut icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<script src="../../../dist/js/jquery-ie.min.js"></script>
+<script src="../../../dist/js/polyfills/html5shiv-min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-ie-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ie-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-ie-min.css" /></noscript>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<link rel="icon" type="image/x-icon" href="../../../dist/theme-wet-boew/images/favicon.ico" />
+<script src="../../../dist/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../dist/grids/css/util-min.css" />
+<link rel="stylesheet" href="../../../dist/js/css/pe-ap-min.css" />
+<link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-min.css" />
+<noscript><link rel="stylesheet" href="../../../dist/theme-wet-boew/css/theme-ns-min.css" /></noscript>
+<!--<![endif]-->
+
+<!-- CustomCSSStart -->
+
+<!-- CustomCSSEnd -->
+</head>
+
+<body><div id="wb-body">
+<div id="wb-skip">
+<ul id="wb-tphp">
+<li id="wb-skip1"><a href="#wb-cont">Passer au contenu principal</a></li>
+<li id="wb-skip2"><a href="#wb-nav">Passer au pied de page</a></li>
+</ul>
+</div>
+
+<div id="wb-head"><div id="wb-head-in"><header>
+<!-- HeaderStart -->
+<section><div id="wet-fullhd"><h2>Barre d'en-tête</h2>
+<div id="wet-fullhd-in">
+<ul>
+<li id="wet-fullhd-lang-current">Français</li>
+<li id="wet-fullhd-lang-2"><a href="multimedia-en.html" lang="en">English</a></li>
+</ul>
+</div>
+</div></section>
+
+<div id="wet-bnr" role="banner"><div id="wet-bnr-in">
+<div id="wet-title"><p id="wet-title-in"><a href="../../../index-fr.html" lang="fr"><object data="../../../dist/theme-wet-boew/images/logo.svg" role="img" tabindex="-1" type="image/svg+xml"><img src="../../../dist/theme-wet-boew/images/logo.png" alt="" /></object> <span>Boîte à outils de l'expérience Web&#160;(BOEW) <small>Projet à source ouverte collaboratif dirigé par le Gouvernement du Canada</small></span></a></p></div>
+
+<section role="search"><div id="wet-srchbx"><h2>Recherche</h2>
+<form action="https://google.ca/search" method="get"><div id="wet-srchbx-in">
+<label for="wet-srch">Recherchez le site Web</label><input id="wet-srch" name="q" type="search" value="" size="27" maxlength="150" /><input type="hidden" name="q" value="site:wet-boew.github.io OR site:github.com/wet-boew/" />
+<input id="wet-srch-submit" type="submit" value="Recherche" data-icon="search" class="button button-accent" />
+</div></form>
+</div></section>
+</div></div>
+
+<nav role="navigation">
+<div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
+<ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-fr.txt">
+<li><div><a href="http://wet-boew.github.io/v3.1-ci/index-fr.html">Projet de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/impl-fr.html">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/contrib-fr.html">Contribuer à la BOEW</a></div></li>
+</ul>
+</div></div></div></div>
+
+<div id="wet-bc"><h2>Fil d'Ariane</h2><div id="wet-bc-in">
+<ol>
+<li><a href="../../../index-fr.html">Accueil</a></li>
+<li><a href="../../index-fr.html">Documentation</a></li>
+<li><a href="../plugins-fr.html">Plugiciels</a></li>
+<li>Lecteur multimédia</li>
+</ol>
+</div></div>
+</nav>
+<!-- HeaderEnd -->
+</header></div></div>
+
+<div id="wb-core"><div id="wb-core-in" class="equalize">
+<div id="wb-main" role="main"><div id="wb-main-in">
+<!-- MainContentStart -->
+<h1 id="wb-cont">Lecteur multimédia</h1>
+
+<ul class="button-group">
+<li><a href="../../../demos/multimedia/multimedia-fr.html" class="button">Exemples pratiques</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new" class="button">Questions ou commentaires?</a></li>
+</ul>
+
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<p>Cette fonctionnalité offre un lecteur multimédia qui permet d’intégrer dans des pages Web des fichiers vidéo et audio accessibles.</p>
+	
+	<h2>Vue d’ensemble</h2>
+	<p><strong>Chef de projet :</strong> Laurent Goderre (<a href="https://github.com/LaurentGoderre">@LaurentGoderre</a>)</p>
+	<p>Ce lecteur multimédia permet aux concepteurs d’intégrer facilement des fichiers audio ou vidéo dans leurs pages Web, en plus de les aider à assurer la conformité aux WCAG 2.0. Il améliore les balises HTML5 <code>video</code> et <code>audio</code> et fournit un script polyfill qui permet d’utiliser le lecteur Flash pour les navigateurs qui ne prennent pas en charge les balises susmentionnées.</p>
+
+	<section>
+		<h3>Description</h3>
+		<p>Le but de cette fonctionnalité est d’aider les utilisateurs à s’assurer que les fichiers vidéo et audio intégrés dans leurs sites Web respectent les exigences des WCAG 2.0.</p>
+	</section>
+
+	<section>
+		<h3>Justification</h3>
+		<p>Il n’existe actuellement aucun module d’extension pour lecteur multimédia qui permet l’accessibilité complète à partir d’un clavier : en effet, il faut une souris pour accéder à une partie, voir à la plupart des fonctions des lecteurs vidéo. Le lecteur multimédia BOEW (Boîte à outils de l’expérience Web) permet à l’utilisateur de sélectionner toutes ses fonctions à l’aide de la touche de tabulation et de les activer en appuyant sur Entrée.</p>
+	</section>
+</section>
+<section>
+	<h2>Mise en oeuvre</h2>
+	<p>Ce lecteur multimédia est simple à mettre en œuvre et à utiliser; il ne nécessite l’utilisation que de quelques balises HTML5 et du lien vers la source multimédia à intégrer.</p>
+	<section>
+		<h3>Formats de fichiers multimédias</h3>
+		<p>Ce lecteur multimédia prend en charge plusieurs formats de fichiers, indiqués ci-dessous. Toutefois, nous vous recommandons de fournir les fichiers vidéo au moins dans le format MPEG4 (à l’aide des codecs H264 et AAC), afin que n’importe qui puisse les écouter : tous les lecteurs pour appareil mobile ainsi que la plupart des navigateurs Web sont en mesure de lire ce type de fichier. Nous vous recommandons également d’accompagner les fichiers MPEG4 d’une version en format WebM (à l’aide du codec VP8), afin de tirer profit de la prise en charge native des navigateurs, comme FireFox.</p>
+		<section>
+			<h4>Formats compatibles</h4>
+			<ul>
+				<li><strong>Vidéo :</strong> MPEG4 (H264+AAC), WebM (VP8)</li>
+				<li><strong>Audio :</strong> MP3, Ogg Vorbis</li>
+				<li><strong>Sous-titre :</strong> TTML, HTML5 Data</li>
+			</ul>
+		</section>
+	</section>
+	<section>
+		<h3>Éléments requis</h3>
+		<ol>
+			<li>Il faut placer chaque fichier multimédia dans son propre élément <code>&lt;div&gt;</code> en utilisant la classe «&#160;wet-boew-multimedia&#160;»&#160;:
+				<pre><code>&lt;div class="wet-boew-multimedia"&gt;</code></pre>
+			</li>
+			<li>Chaque conteneur doit contenir une balise <code>&lt;video&gt;</code> ou <code>&lt;audio&gt;</code>.
+				<pre><code>&lt;source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-fra.mp4" type="video/mp4" /&gt;</code></pre>
+				<p><strong>Nota :</strong> Vous pouvez indiquer plus d’une source pour le vidéo : le lecteur lit simplement la première qui fonctionne (c.-à-d. qui est accessible, compatible, etc.)</p>
+			</li>
+			<li>Finalement, vous devez inclure la balise <code>&lt;track&gt;</code> lorsque vous utilisez celle <code>&lt;video&gt;</code>, car elle fournit les sous-titres associés à la vidéo&#160;:
+				<pre><code>&lt;track src="mediaplayer-transcript_captions-fr.html" kind="captions" data-type="text/html" srclang="fr" label="Français" /&gt;</code></pre>
+				<p><strong>Nota :</strong> Lorsque vous utilisez la balise <code>&lt;audio&gt;</code>, vous devez inclure sur la page un lien vers une transcription du fichier audio en question. Ce lecteur multimédia prend en charge deux formats de sous-titres qui dépendent de la propriété data-type. Il s’agit des formats suivants&#160;: <a href="http://www.w3.org/TR/ttaf1-dfxp/">application/ttml+xml (anglais seulement)</a>, spécifié par le W3C et text/html, conçu pour la BOEW.</p>
+			</li>
+		</ol>
+		<p><strong>Nota :</strong> Afin de profiter de la conception adaptative, assurez-vous que le fichier vidéo se trouve dans un conteneur qui tire parti de la fonctionnalité de grilles.</p>
+		<section>
+			<h4>Exemple de code</h4>
+			<p><a href="../../../demos/multimedia/multimedia-fr.html">Exemples pratiques</a></p>
+			<section>
+				<h5>Vidéo</h5>
+				<p><a href="../../../demos/multimedia/multimedia-fr.html">Exemple de vidéo</a></p>
+				<pre><code>&lt;div class="wet-boew-multimedia span-4"&gt;
+	&lt;video width="480" height="270" poster="http://31591.vws.magma.ca/sct-tbs/wet-boew/thumbnail.png" title="Exmple de vidéo"&gt;
+		&lt;source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-fra.webm" type="video/webm" /&gt;
+		&lt;source src="http://31591.vws.magma.ca/sct-tbs/wet-boew/demo-fra.mp4" type="video/mp4" /&gt;
+		&lt;track src="mediaplayer-transcript_captions-fr.html" kind="captions" data-type="text/html" srclang="fr" label="Français" /&gt;
+	&lt;/video&gt;
+&lt;/div&gt;</code></pre>
+			</section>
+			<section>
+				<h5>Audio</h5>
+				<p><a href="../../../demos/multimedia/multimedia-fr.html#audio-only">Exemple de fichier audio</a></p>
+				<pre><code>&lt;div class="wet-boew-multimedia span-4"&gt;
+	&lt;audio title="Exemple de fichier audio"&gt;
+		&lt;source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries.ogg" type="audio/ogg" /&gt;
+		&lt;source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3" /&gt;
+	&lt;/audio&gt;
+&lt;/div&gt;</code></pre>
+			</section>
+		</section>
+	</section>
+</section>
+
+<section>
+	<h2>Exemples</h2>
+	<ul>
+		<li><a href="../../../demos/multimedia/multimedia-en.html">Exemples en anglais</a></li>
+		<li><a href="../../../demos/multimedia/multimedia-fr.html">Exempes en français</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Développement</h2>
+	<p>Le lecteur multimédia dépend du <a href="../progress/progress-fr.html">correctif de la barre de progression</a>.</p>
+	<p>Le code pour le lecteur multimédia se trouve à plusieurs endroits dans le dossier <strong>source</strong> de la BOEW :</p>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.1/src/js/workers/multimedia.js">js/workers/multimedia.js</a> - contient le code JavaScript pour le lecteur multimédia</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.1/src/js/sass/includes/_multimedia.scss">js/sass/multimedia.scss</a> - contient le CSS pour le lecteur multimédia</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.1/src/js/sass/includes/_multimedia-ie.scss">js/sass/includes/multimedia-ie.scss</a> - contien le CSS spécifique à IE pour le lecteur multimédia</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Problèmes connus</h2>
+	<p>Il n’existe actuellement aucun problème connu.</p>
+</section>
+
+<section>
+	<h2>Historique des versions</h2>
+	<ul>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.1/src/js/workers/multimedia.js">multimedia.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.1/src/js/sass/includes/_multimedia.scss">_multimedia.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.1/src/js/sass/includes/_multimedia-ie.scss">_multimedia-ie.scss</a></li>
+	</ul>
+</section>
+<section>
+	<h2>Documentation connexes</h2>
+	<ul>
+		<li><a href="../progress/progress-fr.html">Correctif de la barre de progression</a></li>
+	</ul>
+</section>
+
+<dl id="wet-date-mod" role="contentinfo">
+<dt>Date de modification&#160;:</dt><dd><span><time>2014-04-04</time></span></dd>
+</dl>
+<div class="clear"></div>
+<!-- MainContentEnd -->
+</div></div>
+
+</div></div>
+
+<div id="wb-foot"><div id="wb-foot-in"><footer><h2 id="wb-nav">Pied de page</h2>
+<!-- FooterStart -->
+<nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
+<section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
+<ul>
+<li><a href="http://wet-boew.github.io/v3.1-ci/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Contactez-nous</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/issues/new">Questions ou commentaires?</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Nouvelles</h4>
+<ul>
+<li><a href="https://github.com/wet-boew/wet-boew/pulse">Activité du projet récente</a></li>
+<li><a href="https://github.com/wet-boew/wet-boew/graphs">Statistiques du projet</a></li>
+</ul>
+</div></section>
+<section><div class="span-2"><h4 class="wet-col-head">Restez branchés</h4>
+<ul>
+<li><a rel="external" href="https://twitter.com/BoiteExpWeb">Twitter</a></li>
+</ul>
+</div></section>
+</div></div></nav>
+<!-- FooterEnd -->
+</footer>
+</div></div></div>
+
+<!-- ScriptsStart -->
+<script src="../../../dist/js/settings.js"></script>
+<!--[if lte IE 8]>
+<script src="../../../dist/theme-wet-boew/js/theme-ie-min.js"></script>
+<script src="../../../dist/js/pe-ap-ie-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile-ie.min.js"></script>
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<script src="../../../dist/theme-wet-boew/js/theme-min.js"></script>
+<script src="../../../dist/js/pe-ap-min.js"></script>
+<script src="../../../dist/js/jquerymobile/jquery.mobile.min.js"></script>
+<!--<![endif]-->
+<!-- ScriptsEnd -->
+
+<!-- CustomScriptsStart -->
+
+<!-- CustomScriptsEnd -->
+</body>
+</html>
