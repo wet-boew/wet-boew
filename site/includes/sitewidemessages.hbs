@@ -16,7 +16,7 @@
 <section class="alert alert-info">
 	<h2 class="h3">{{#contains ../../page.language "fr" }}{{../../../site.tmpl-v31-ref-head-fr}}{{else}}{{../../../site.tmpl-v31-ref-head-en}}{{/contains}}</h2>
 	<p>{{#contains ../../page.language "fr"}}{{../../../site.tmpl-v31-ref-1-fr}}{{else}}{{../../../site.tmpl-v31-ref-1-en}}{{/contains}}
-	{{#contains ../../page.dirname "charts"}}<a href="{{#contains ../../../page.dirname "/demos"}}demos/charts/index{{else}}docs/ref/charts/charts{{/contains}}-{{../../../page.language}}.html">{{/contains}}
+	{{#contains ../../page.dirname "charts"}}<a href="{{../../../site.v31linkstart}}{{#contains ../../../page.dirname "/demos"}}demos/charts/index{{else}}docs/ref/charts/charts{{/contains}}-{{../../../page.language}}.html">{{/contains}}
 	{{#contains ../../page.dirname "cal-events"}}<a href="{{../../../site.v31linkstart}}{{#contains ../../../page.dirname "/demos"}}demos{{else}}docs/ref{{/contains}}/eventscalendar/eventscalendar-{{../../../page.language}}.html">{{/contains}}
 	{{#contains ../../page.dirname "data-picture"}}<a href="{{../../../site.v31linkstart}}{{#contains ../../../page.dirname "/demos"}}demos{{else}}docs/ref{{/contains}}/responsiveimg/responsiveimg-{{../../../page.language}}.html">{{/contains}}
 	{{#contains ../../page.dirname "feeds"}}<a href="{{../../../site.v31linkstart}}{{#contains ../../../page.dirname "/demos"}}demos{{else}}docs/ref{{/contains}}/webfeeds/webfeeds-{{../../../page.language}}.html">{{/contains}}
