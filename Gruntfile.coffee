@@ -1119,6 +1119,7 @@ module.exports = (grunt) ->
 				csv: "src/i18n/i18n.csv"
 				startCol: 1
 				useDefaultOnMissing: true
+				headerRowHasKey: true
 			js:
 				options:
 					template: "src/i18n/base.js"
