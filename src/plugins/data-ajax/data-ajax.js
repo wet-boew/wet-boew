@@ -15,7 +15,7 @@
  * place to define variables that are common to all instances of the plugin on a
  * page.
  */
-var pluginName = "wb-ajax",
+var pluginName = "wb-data-ajax",
 	selector = "[data-ajax-after], [data-ajax-append], [data-ajax-before], " +
 		"[data-ajax-prepend], [data-ajax-replace]",
 	inited = "-inited",
@@ -32,7 +32,7 @@ var pluginName = "wb-ajax",
 	 */
 	init = function( $elm, ajaxType ) {
 		var url = $elm.data( "ajax-" + ajaxType ),
-			initedClass = pluginName + ajaxType + inited;
+			initedClass = pluginName + "-" + ajaxType + inited;
 
 		// Only initialize the element once for the ajaxType
 		if ( !$elm.hasClass( initedClass ) ) {
@@ -91,7 +91,7 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, functi
 				$elm[ ajaxType ]( content );
 			}
 
-			$elm.trigger( "ajax-" + ajaxType + "-loaded.wb" );
+			$elm.trigger( pluginName + "-" + ajaxType + "-loaded.wb" );
 		}
 	}
 

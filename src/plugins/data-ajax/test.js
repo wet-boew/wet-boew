@@ -20,7 +20,7 @@ describe( "data-ajax test suite", function() {
 			var $elm = $( "<div data-ajax-" + type + "='ajax/data-ajax-extra-en.html'>" );
 			$elm
 				.appendTo( wb.doc.find( "body" ) )
-				.trigger( "wb-init.wb-ajax" )
+				.trigger( "wb-init.wb-data-ajax" )
 				.on( "ajax-fetched.wb", function() {
 					if ( typeof done === "function" ) {
 						done();
@@ -86,8 +86,8 @@ describe( "data-ajax test suite", function() {
 			$before.remove();
 		});
 
-		it( "should add the .wb-ajaxbefore-inited class", function() {
-			expect( $elm.hasClass( "wb-ajaxbefore-inited" ) ).to.equal( true );
+		it( "should add the .wb-data-ajax-before-inited class", function() {
+			expect( $elm.hasClass( "wb-data-ajax-before-inited" ) ).to.equal( true );
 		});
 
 		it( "should load an element before itself", function() {
@@ -112,8 +112,8 @@ describe( "data-ajax test suite", function() {
 			$after.remove();
 		});
 
-		it( "should add the .wb-ajaxafter-inited class", function() {
-			expect( $elm.hasClass( "wb-ajaxafter-inited" ) ).to.equal( true );
+		it( "should add the .wb-data-ajax-after-inited class", function() {
+			expect( $elm.hasClass( "wb-data-ajax-after-inited" ) ).to.equal( true );
 		});
 
 		it( "should load an element after itself", function() {
@@ -137,13 +137,13 @@ describe( "data-ajax test suite", function() {
 			$elm.remove();
 		});
 
-		it( "should add the .wb-ajaxreplace-inited class", function() {
-			expect( $elm.hasClass( "wb-ajaxreplace-inited" ) ).to.equal( true );
+		it( "should add the .wb-data-ajax-replace-inited class", function() {
+			expect( $elm.hasClass( "wb-data-ajax-replace-inited" ) ).to.equal( true );
 		});
 
 		it( "should replace its content", function() {
 			var $replace = $elm.find( ".ajaxed-in" );
-			expect( $elm.children().first()[0] ).to.equal( $replace[0] );
+			expect( $elm.children().first()[0] ).to.equal( $replace[ 0 ] );
 			expect( $replace.length ).to.be.greaterThan( 0 );
 			expect( $replace.children().length ).to.be.greaterThan( 0 );
 		});
@@ -163,8 +163,8 @@ describe( "data-ajax test suite", function() {
 			$elm.remove();
 		});
 
-		it( "should add the .wb-ajaxprepend-inited class", function() {
-			expect( $elm.hasClass( "wb-ajaxprepend-inited" ) ).to.equal( true );
+		it( "should add the .wb-data-ajax-prepend-inited class", function() {
+			expect( $elm.hasClass( "wb-data-ajax-prepend-inited" ) ).to.equal( true );
 		});
 
 		it( "should prepend to its content", function() {
@@ -189,8 +189,8 @@ describe( "data-ajax test suite", function() {
 			$elm.remove();
 		});
 
-		it( "should add the .wb-ajaxprepend-inited class", function() {
-			expect( $elm.hasClass( "wb-ajaxappend-inited" ) ).to.equal( true );
+		it( "should add the .wb-data-ajax-append-inited class", function() {
+			expect( $elm.hasClass( "wb-data-ajax-append-inited" ) ).to.equal( true );
 		});
 
 		it( "should append to its content", function() {
