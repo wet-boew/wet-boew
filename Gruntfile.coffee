@@ -39,6 +39,7 @@ module.exports = (grunt) ->
 		"Run full build."
 		[
 			"clean:dist"
+			"i18n_csv"
 			"assets"
 			"css"
 			"js"
@@ -78,7 +79,6 @@ module.exports = (grunt) ->
 		"Only needed when the repo is first cloned"
 		[
 			"modernizr"
-			"i18n_gspreadsheet"
 		]
 	)
 
@@ -104,7 +104,6 @@ module.exports = (grunt) ->
 		"INTERNAL: Copies all third party JS to the dist folder"
 		[
 			"copy:js"
-			"i18n"
 			"concat:core"
 			"concat:coreIE8"
 			"concat:pluginsIE8"
@@ -1115,22 +1114,18 @@ module.exports = (grunt) ->
 
 						middlewares
 
-		i18n:
+		i18n_csv:
 			options:
-				template: "src/i18n/base.js"
 				csv: "src/i18n/i18n.csv"
-				dest: "dist/unmin/js/i18n/"
-
-		i18n_gspreadsheet:
-			all:
+				startCol: 1
+				useDefaultOnMissing: true
+				headerRowHasKey: true
+			js:
 				options:
-					key_column: 'lang-code'
-					sort_keys: false
-					use_default_on_missing: true
-					output_dir: 'site/data/i18n'
-					ext: '.json'
-					document_key: '0AqLc8VEIumBwdDNud1M2Wi1tb0RUSXJxSGp4eXI0ZXc'
-					worksheet: 2
+					template: "src/i18n/base.js"
+				dest: "dist/unmin/js/i18n/"
+			assemble:
+				dest: 'site/data/i18n'
 
 		mocha:
 			all:
@@ -1194,7 +1189,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-gh-pages"
 	@loadNpmTasks "grunt-html"
 	@loadNpmTasks "grunt-htmlcompressor"
-	@loadNpmTasks "grunt-i18n-gspreadsheet"
+	@loadNpmTasks "grunt-i18n-csv"
 	@loadNpmTasks "grunt-imagine"
 	@loadNpmTasks "grunt-jscs-checker"
 	@loadNpmTasks "grunt-mocha"
