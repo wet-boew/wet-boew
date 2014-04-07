@@ -1,6 +1,8 @@
 # Web Experience Toolkit (WET)
 
-[![Build Status](https://secure.travis-ci.org/wet-boew/wet-boew.png?branch=master)](http://travis-ci.org/wet-boew/wet-boew)<br/>
+[![Build Status](https://secure.travis-ci.org/wet-boew/wet-boew.svg?branch=master)](http://travis-ci.org/wet-boew/wet-boew)
+[![devDependency Status](https://david-dm.org/wet-boew/wet-boew/dev-status.svg)](https://david-dm.org/wet-boew/wet-boew#info=devDependencies)
+
 [![Selenium Test Status](https://saucelabs.com/browser-matrix/wet-boew-bot.svg)](https://saucelabs.com/u/wet-boew-bot)
 
 ## What is the Web Experience Toolkit?
@@ -16,7 +18,7 @@
  * [Developed openly by the community on GitHub](#collaborative-approach)
 
 ## Key resources
- 
+
 * [Benefits](#benefits)
 * [Working examples](http://wet-boew.github.io/v4.0-ci/demos/index-en.html)
 * [Documentation](http://wet-boew.github.io/v4.0-ci/docs/index-en.html)
@@ -31,7 +33,7 @@
 
 ## Benefits
 
-### Accessibility 
+### Accessibility
 
 * Conforms to [WCAG 2.0](http://www.w3.org/TR/WCAG20/) level AA
 * Leverages [WAI-ARIA](http://www.w3.org/TR/wai-aria/) to further enhance accessibility
@@ -134,7 +136,7 @@
  * [Développé ouvertement sur GitHub par la communauté](#approche-collaborative)
 
 ## Ressources clés
- 
+
 * [Avantages](#avantages)
 * [Exemples pratiques](http://wet-boew.github.io/v4.0-ci/demos/index-fr.html)
 * [Documentation](http://wet-boew.github.io/v4.0-ci/docs/index-fr.html)
