@@ -36,6 +36,7 @@ var pluginName = "wb-wamethod",
 	rsltAAA = document.getElementById( "rsltAAA" ),
 	percAAA = document.getElementById( "percAAA" ),
 	aaaIncluded = rsltAAA !== null,
+	successCriteriaDivideBy = aaaIncluded ? 0.61 : 0.38,
 
 	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
@@ -91,10 +92,10 @@ $document.on( "change", selector + " input", function() {
 		percAAA.innerHTML = Math.round( aaaPassed / 0.23 );
 	}
 	evalTotal.innerHTML = aEvaluated + aaEvaluated + aaaEvaluated;
-	percEvalTotal.innerHTML = Math.round( ( aEvaluated + aaEvaluated + aaaEvaluated ) / 0.61 );
+	percEvalTotal.innerHTML = Math.round( ( aEvaluated + aaEvaluated + aaaEvaluated ) / successCriteriaDivideBy );
 	rsltTotal.innerHTML = aPassed + aaPassed + aaaPassed;
-	percTotal.innerHTML = Math.round( ( aPassed + aaPassed + aaaPassed ) / 0.61 );
-	percNATotal.innerHTML = Math.round( naChecked / 0.61 );
+	percTotal.innerHTML = Math.round( ( aPassed + aaPassed + aaaPassed ) / successCriteriaDivideBy );
+	percNATotal.innerHTML = Math.round( naChecked / successCriteriaDivideBy );
 	$summaryTd.attr( "aria-busy", "false" );
 });
 
