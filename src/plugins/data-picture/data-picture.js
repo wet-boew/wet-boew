@@ -13,7 +13,8 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-pic",
+var imgClass,
+	pluginName = "wb-pic",
 	selector = "[data-pic]",
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init." + pluginName,
@@ -32,6 +33,10 @@ var pluginName = "wb-pic",
 		if ( !$elm.hasClass( initedClass ) ) {
 			wb.remove( selector );
 			$elm.addClass( initedClass );
+
+			// Store the class attribute of the plugin element.  It
+			// will be added to the image created by the plugin.
+			imgClass = $elm.data( "class" ) || "";
 
 			$elm.trigger( picturefillEvent );
 		}
@@ -63,9 +68,15 @@ var pluginName = "wb-pic",
 			if ( !img ) {
 				img = $document[ 0 ].createElement( "img" );
 				img.alt = elm.getAttribute( "data-alt" );
+				img.className = imgClass;
 			}
 			img.src = matchedElm.getAttribute( "data-src" );
 			matchedElm.appendChild( img );
+
+			// Fixes bug with IE8 constraining the height of the image
+			// when the .img-responsive class is used.
+			img.removeAttribute( "width" );
+			img.removeAttribute( "height" );
 
 		// No match and an image exists: delete it
 		} else if ( img ) {

@@ -103,6 +103,14 @@ describe( "[data-pic] test suite", function() {
 			});
 		});
 
+		it( "should have set the responsive image's class attribute", function() {
+			var $elm;
+			$( "[data-pic]" ).each(function() {
+				$elm = $( this );
+				expect( $elm.find( "img" ).attr( "class" ) ).to.equal( $elm.data( "class" ) );
+			});
+		});
+
 		it( "should create a responsive image after the picfill.wb-pic event", function() {
 			var $img = $(
 					"<span data-pic data-alt='foo' class='test'>" +
