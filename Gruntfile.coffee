@@ -226,15 +226,6 @@ module.exports = (grunt) ->
 						return "http://localhost:8000/" + src
 					)
 
-		locales: grunt.file.expand(
-					filter: ( src ) ->
-						return true
-					"site/data/i18n/*.json"
-					).map( ( src ) ->
-						src = src.replace( "site/data/i18n/", "")
-						return src.replace( ".json", "" )
-					)
-
 		# Task configuration.
 		wget:
 			i18n:
@@ -365,7 +356,7 @@ module.exports = (grunt) ->
 					flatten: true,
 					plugins: ["assemble-contrib-i18n"]
 					i18n:
-						languages: "<%= locales %>"
+						languages: "<%= i18n_csv.assemble.locales %>"
 						templates: [
 							"site/pages/theme/*.hbs"
 							"!site/pages/theme/splashpage*.hbs"
@@ -417,7 +408,7 @@ module.exports = (grunt) ->
 					flatten: true,
 					plugins: ['assemble-contrib-i18n']
 					i18n:
-						languages: "<%= locales %>"
+						languages: "<%= i18n_csv.assemble.locales %>"
 						templates: [
 							'site/pages/theme/*.hbs',
 							"!site/pages/theme/splashpage*.hbs"
