@@ -21,6 +21,8 @@
 				i18nSortDescend = function( x, y ) {
 					return _pe.string.normalizeDiacritics( y ).localeCompare( _pe.string.normalizeDiacritics( x ) );
 				},
+				// Initialize Regex for currency detection
+				regexCurrency = new RegExp('[^$£€c0123456789\\.\\-,\']'),
 				opts,
 				overrides;
 
@@ -52,6 +54,63 @@
 			$.fn.dataTableExt.oSort['html-desc'] = i18nSortDescend;
 			$.fn.dataTableExt.oSort['string-case-asc'] = i18nSortAscend;
 			$.fn.dataTableExt.oSort['string-case-desc'] = i18nSortDescend;
+
+			/*
+			 * Extend sorting support
+			 */
+			$.extend($.fn.dataTableExt.oSort, {
+				// Currency sorting
+				// Source: datatables.net/plug-ins/sorting#currency
+				'currency-pre': function(a) {
+					a = (a === '-') ? 0 : a.replace(/[^\d\-\.]/g, '');
+					return parseFloat(a);
+				},
+				'currency-asc': function(a, b) {
+					return a - b;
+				},
+				'currency-desc': function(a, b) {
+					return b - a;
+				},
+
+				// Formatted number sorting
+				// Source: datatables.net/plug-ins/sorting#formatted_numbers
+				'formatted-num-pre': function(a) {
+					a = (a === '-' || a === '') ? 0 : a.replace(/[^\d\-\.]/g, '');
+					return parseFloat(a);
+				},
+				'formatted-num-asc': function(a, b) {
+					return a - b;
+				},
+				'formatted-num-desc': function(a, b) {
+					return b - a;
+				}
+			} );
+
+			/*
+			 * Extend type detection
+			 */
+			// Currency detection
+			// Source: http://datatables.net/plug-ins/type-detection#currency
+			$.fn.dataTableExt.aTypes.unshift(
+				function(data) {
+					if ( typeof data !== 'string' || regexCurrency.test(data) ) {
+						return null;
+					}
+					return 'currency';
+				}
+			);
+
+			// Formatted numbers detection
+			// Source: http://datatables.net/plug-ins/type-detection#formatted_numbers
+			$.fn.dataTableExt.aTypes.unshift(
+				function(sData) {
+					var deformatted = sData.replace(/[^\d\-\.\/a-zA-Z]/g, '');
+					if ($.isNumeric(deformatted) || deformatted === '-') {
+						return 'formatted-num';
+					}
+					return null;
+				}
+			);
 
 			elm.dataTable({
 				'aaSorting': opts.aaSorting,
