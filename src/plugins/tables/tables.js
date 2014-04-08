@@ -90,10 +90,7 @@ var pluginName = "wb-tables",
 						},
 						i18nSortDescend = function( x, y ) {
 							return wb.normalizeDiacritics( y ).localeCompare( wb.normalizeDiacritics( x ) );
-						},
-
-						// Initialize Regex for currency detection
-						regexCurrency = new RegExp( "[^$£€c0123456789\\.\\-,']" );
+						};
 
 					// Enable internationalization support in the sorting
 					$.fn.dataTableExt.oSort[ "html-asc" ] = i18nSortAscend;
@@ -105,19 +102,6 @@ var pluginName = "wb-tables",
 					 * Extend sorting support
 					 */
 					$.extend( $.fn.dataTableExt.oSort, {
-
-						// Currency sorting
-						// Source: datatables.net/plug-ins/sorting#currency
-						"currency-pre": function( a ) {
-							a = ( a === "-" ) ? 0 : a.replace( /[^\d\-\.]/g, "" );
-							return parseFloat( a );
-						},
-						"currency-asc": function( a, b ) {
-							return a - b;
-						},
-						"currency-desc": function( a, b ) {
-							return b - a;
-						},
 
 						// Formatted number sorting
 						// Source: datatables.net/plug-ins/sorting#formatted_numbers
@@ -136,17 +120,6 @@ var pluginName = "wb-tables",
 					/*
 					 * Extend type detection
 					 */
-					// Currency detection
-					// Source: http://datatables.net/plug-ins/type-detection#currency
-					$.fn.dataTableExt.aTypes.unshift(
-						function( data ) {
-							if ( typeof data !== "string" || regexCurrency.test( data ) ) {
-								return null;
-							}
-							return "currency";
-						}
-					);
-
 					// Formatted numbers detection
 					// Source: http://datatables.net/plug-ins/type-detection#formatted_numbers
 					$.fn.dataTableExt.aTypes.unshift(
