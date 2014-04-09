@@ -50,8 +50,6 @@ var pluginName = "wb-mltmd",
 			if ( !i18nText ) {
 				i18n = wb.i18n;
 				i18nText = {
-					rewind: i18n( "rew" ),
-					ff: i18n( "ffwd" ),
 					play: i18n( "play" ),
 					pause: i18n( "pause" ),
 					cc_on: i18n( "cc", "on" ),
@@ -768,7 +766,7 @@ $document.on( "click", selector, function( event ) {
 		return true;
 	}
 
-	// Opitmized multiple class tests to include child glyphicon because Safari was reporting the click event
+	// Optimized multiple class tests to include child glyphicon because Safari was reporting the click event
 	// from the child span not the parent button, forcing us to have to check for both elements
 	// JSPerf for multiple class matching http://jsperf.com/hasclass-vs-is-stackoverflow/7
 	if ( className.match( /playpause|-play|-pause|wb-mm-ovrly/ ) || $target.is( "object" ) ) {
@@ -801,11 +799,11 @@ $document.on( "keydown", selector, function( event ) {
 			break;
 
 		case 37:
-			$this.find( ctrls + " .rewind" ).trigger( "click" );
+			playerTarget.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05);
 			break;
 
 		case 39:
-			$this.find( ctrls + " .fastforward" ).trigger( "click" );
+			playerTarget.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05);
 			break;
 
 		case 38:
