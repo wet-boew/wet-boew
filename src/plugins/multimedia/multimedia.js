@@ -72,12 +72,13 @@ var pluginName = "wb-mltmd",
 			}
 
 			if ( template === undef ) {
+				template = "";
 				$document.trigger({
 					type: "ajax-fetch.wb",
 					element: selector,
 					fetch: wb.getPath( "/assets" ) + "/mediacontrols.html"
 				});
-			} else {
+			} else if ( template !== "" ) {
 				$( eventTarget ).trigger({
 					type: "templateloaded.wb"
 				});
@@ -518,7 +519,7 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 $document.on( "ajax-fetched.wb templateloaded.wb", selector, function( event ) {
 	var $this = $( this );
 
-	if ( event.type === "ajax-fetched" ) {
+	if ( event.type === "ajax-fetched" && template === undef ) {
 		template = event.pointer.html();
 	}
 
