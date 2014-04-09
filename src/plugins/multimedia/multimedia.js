@@ -534,7 +534,7 @@ $document.on( initializedEvent, selector, function() {
 		captions = $media.children( "track[kind='captions']" ).attr( "src" ) || undef,
 		id = $this.attr( "id" ),
 		mId = $media.attr( "id" ) || id + "-md",
-		type = $media.is( "video" ) ? "video" : "audio",
+		type = $media.is( "audio" ) ? "audio" : "video",
 		width = type === "video" ? $media.attr( "width" ) || $media.width() : 0,
 		height = type === "video" ? $media.attr( "height" ) || $media.height() : 0,
 		data = $.extend({
