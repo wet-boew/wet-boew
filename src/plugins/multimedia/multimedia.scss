@@ -2,6 +2,13 @@
   Multimedia Player Code
  */
 
+$mm-progress-fg-color: #176ca7;
+$mm-progress-bg-color: #fff;
+$mm-cc-fg-color: #fff;
+$mm-cc-bg-color: #000;
+$mm-ctrl-fg-color: #fff;
+$mm-ctrl-bg-color: #000;
+
 %multimedia-display-none {
 	display: none;
 }
@@ -48,13 +55,13 @@
 		border-top-left-radius: 0 !important;
 		background: transparent;
 		border: 0;
-		color: #fff;
+		color: $mm-ctrl-fg-color;
 	}
 
 	progress,
 	.btn {
 		&:focus {
-			outline: #fff thin dotted;
+			outline: 1px dotted $mm-ctrl-fg-color;
 		}
 	}
 
@@ -180,8 +187,8 @@
 
 .wb-mm-cc {
 	@extend %captions_hidden;
-	background-color: #000;
-	color: #fff;
+	background-color: $mm-cc-bg-color;
+	color: $mm-cc-fg-color;
 	text-align: center;
 	transition: all 0.26s ease;
 }
@@ -193,8 +200,8 @@
 
 .wb-mm-ctrls {
 	display: table;
-	background: #000;
-	color: #fff;
+	background: $mm-ctrl-bg-color;
+	color: $mm-ctrl-fg-color;
 	position: relative;
 	width: 100%;
 
@@ -242,19 +249,19 @@
 		/* Important Thing */
 		-webkit-appearance: none;
 		border: 0;
+		color: $mm-progress-fg-color;
+		background: $mm-progress-bg-color;
 
-		/* DO NOT combine the following selector because WebKit does not support it */
 		&::-webkit-progress-bar {
-			background: #fff;
+			background: $mm-progress-bg-color;
+		}
+
+		&::-webkit-progress-value {
+			background: $mm-progress-fg-color;
 		}
 
 		&::-moz-progress-bar {
-			background: #fff;
-		}
-
-		/* Now the value part */
-		&::-webkit-progress-value {
-			background: #176ca7;
+			background: $mm-progress-fg-color;
 		}
 	}
 
