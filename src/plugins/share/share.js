@@ -74,10 +74,6 @@ var pluginName = "wb-share",
 				name: "Diigo",
 				url: "http://www.diigo.com/post?url={u}&amp;title={t}"
 			},
-			dzone: {
-				name: "DZone",
-				url: "http://www.dzone.com/links/add.html?url={u}&amp;title={t}"
-			},
 			facebook: {
 				name: "Facebook",
 				url: "http://www.facebook.com/sharer.php?u={u}&amp;t={t}"
