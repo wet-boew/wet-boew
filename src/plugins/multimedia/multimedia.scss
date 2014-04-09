@@ -58,6 +58,20 @@
 		}
 	}
 
+	&.audio {
+		.wb-mm-ovrly {
+			@extend %multimedia-display-none;
+		}
+
+		.btn.cc {
+			@extend %multimedia-display-none;
+		}
+
+		.lastpnl {
+			width: 3em;
+		}
+	}
+
 	.display {
 		position: relative;
 		background: #000;
