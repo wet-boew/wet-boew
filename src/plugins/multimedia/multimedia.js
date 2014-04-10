@@ -519,7 +519,7 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 $document.on( "ajax-fetched.wb templateloaded.wb", selector, function( event ) {
 	var $this = $( this );
 
-	if ( event.type === "ajax-fetched" && template === undef ) {
+	if ( event.type === "ajax-fetched" ) {
 		template = event.pointer.html();
 	}
 
