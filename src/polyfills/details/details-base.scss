@@ -22,18 +22,6 @@ details {
 }
 
 /* Details/summary polyfill */
-summary {
-	// Apply a pointer cursor upon hover to indicate it’s a clickable element. These styles can be applied regardless of whether the fallback is needed
-	cursor: pointer;
-
-	// Add focus styles (for keyboard accessibility)
-	&:hover,
-	&:focus {
-		color: #000;
-		background: #ddd;
-	}
-}
-
 .wb-disable {
 	details {
 		> {
