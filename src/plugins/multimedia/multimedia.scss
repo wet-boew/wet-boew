@@ -220,14 +220,10 @@ $mm-ctrl-bg-color: #3e3e3e;
 	.tline {
 		@extend %pnl;
 
-		.wb-mm-tmln-crrnt,
-		.wb-mm-tmln-ttl {
-			float: left;
-			margin: 0;
-		}
-
-		.wb-mm-tmln-ttl {
-			float: right;
+		.wb-mm-tmln-crrnt  {
+			&:after {
+				content: " / "
+			}
 		}
 	}
 
@@ -236,9 +232,14 @@ $mm-ctrl-bg-color: #3e3e3e;
 	}
 
 	.wb-mm-txtonly {
-		span {
-			@extend %accessible-invisible;
+		p {
+			display: inline;
 		}
+	}
+
+	.wb-mm-txtonly, .wb-mm-prgrss {
+		display: table-cell;
+		vertical-align: middle;
 	}
 
 	/* Progress Bar */
@@ -267,44 +268,5 @@ $mm-ctrl-bg-color: #3e3e3e;
 
 	.progress {
 		height: 16px;
-	}
-}
-
-.xxsmallview {
-	.wb-mm-txtonly {
-		span {
-			~ {
-				span {
-					@extend %accessible-invisible-show;
-				}
-			}
-		}
-	}
-
-	.wb-mm-prgrss {
-		@extend %multimedia-display-none;
-	}
-}
-
-.mediumview,
-.largeview,
-.xlargeview,
-.xxlargeview {
-	.col-md-1,
-	.col-md-2,
-	.col-md-3 {
-		.wb-mm-txtonly {
-			span {
-				~ {
-					span {
-						@extend %accessible-invisible-show;
-					}
-				}
-			}
-		}
-
-		.wb-mm-prgrss {
-			@extend %multimedia-display-none;
-		}
 	}
 }
