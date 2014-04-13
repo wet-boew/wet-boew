@@ -7,43 +7,46 @@
 	"dateModified": "2014-03-27"
 }
 ---
-Step 0 for all these instructions requires <a href="https://help.github.com/articles/signing-up-for-a-new-github-account">creating a GitHub account</a>. We suggest following GitHub's own guides on <a href="https://help.github.com/articles/set-up-git">setting up Git</a>. If you are working behind a proxy, you may want to look at the <a href="proxy-en.html">proxy troubleshootig guide</a>.
+<p>If you are working behind a proxy, you may want to look at the <a href="proxy-en.html">proxy troubleshooting guide</a>.</p>
 
 <section>
-	<h2 id="issues">I want to report a bug or ask a question about WET</h2>
-	<ul>
-		<li>Fill any style guide related questions by <a href="https://github.com/wet-boew/wet-boew-styleguide/issues/new">creating a new issue</a>.</li>
-		<li>Fill any bugs you encounter or feature requests by following the <a href="bugs-en.html">bug reporting guide</a>.</li>
-	</ul>
+	<h2 id="implement">I want to use WET on my website</h2>
+	<ol>
+		<li>Grab the latest stable release from the <a href="versions/dwnld-en.html">downloads page</a>.</li>
+		<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/index-en.html">Review the style guide</a> for information on implementing WET on your site.</li>
+	</ol>
 </section>
 
 <section>
-	<h2 id="implement">I want to implement WET on my website</h2>
+	<h2 id="theme">I want to customize WET and design a new WET theme</h2>
 	<ol>
-		<li>Grab the latest stable release from the <a href="versions/dwnld-en.html">downloads page</a>.</li>
-		<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/index-en.html">Review the styleguide</a> for information on implementing WET on your site.</li>
+		<li><a href="http://nodejs.org/">Install NodeJS</a> for your platform.</li>
+		<li>Create a directory for your project.</li>
+		<li>Install the <a href="http://gruntjs.com/">Grunt <abbr title="Command Line Interface">CLI</abbr></a>, <a href="http://yeoman.io/">Yeoman</a>, and <a href="http://bower.io">Bower</a> packages globally by running <code>npm install -g grunt-cli yo bower</code> from the command line console (Command Prompt on Windows, Terminal on OS X, or other shell environment on Linux or Unix).</li>
+		<li>Install the WET theme generator by running <code>npm install -g generator-wet-boew-theme</code>.</li>
+		<li>Run <code>yo wet-boew-theme</code> from the command prompt, and answer the questions at the prompt to setup your theme project.</li>
+	</ol>
+</section>
+
+<section>
+	<h2 id="issues">I want to report a bug or ask a question about WET</h2>
+	<ol>
+		<li><a href="https://help.github.com/articles/signing-up-for-a-new-github-account">Create a GitHub account</a>.</li>
+		<li>Ask a question relating to the <a href="http://wet-boew.github.io/wet-boew-styleguide/v4/index-en.html">style guide</a> by <a href="https://github.com/wet-boew/wet-boew-styleguide/issues/new">creating a new issue on GitHub</a>.</li>
+		<li>Report a bug or request a feature by following the <a href="bugs-en.html">bug reporting guide</a>.</li>
 	</ol>
 </section>
 
 <section>
 	<h2 id="develop">I want to fix or improve WET as a developer</h2>
 	<ol>
-		<li>Fork the <code>wet-boew</code> repository by following the <a href="https://help.github.com/articles/fork-a-repo">GitHub forking guide</a>. Use the "upstream" URL of "https://github.com/wet-boew/wet-boew.git" when completing the steps.</li>
 		<li><a href="http://nodejs.org/">Install NodeJS</a> for your platform.</li>
-		<li>Run the setup script located in the "script" folder.</li>
-		<li>Run "grunt" to build the project, or <code>grunt --help</code> to see the build target descriptions.</li>
-		<li>The latest files will now be compiled to the "dist" folder.</li>
-		<li>To create a pull request to contribute back, follow the instructions on <a href="pull-en.html">how to create a pull request</a>.</li>
-	</ol>
-</section>
-
-<section>
-	<h2 id="theme">I want to design a new WET theme</h2>
-	<ol>
-		<li><a href="http://nodejs.org/">Install NodeJS</a> for your platform.</li>
-		<li>Create a directory for your project</li>
-		<li>Install the <a href="http://gruntjs.com/">Grunt <abbr title="Command Line Interface">CLI</abbr></a>, <a href="http://yeoman.io/">Yeoman</a>, and <a href="http://bower.io">Bower</a> globally if you have not already done so. Run <code>npm install -g grunt-cli yo bower</code> from the command line console (Command Prompt on Windows, Terminal on OSX, or other shell envronment on Unix).</li>
-		<li>Install the WET theme generator by running <code>npm install -g generator-wet-boew-theme</code>.</li>
-		<li>Run <code>yo wet-boew-theme</code> from the command prompt, and answer the questions at the prompt to setup your theme project.</li>
+		<li><a href="https://help.github.com/articles/signing-up-for-a-new-github-account">Create a GitHub account</a>.</li>
+		<li>Follow GitHub's guides on <a href="https://help.github.com/articles/set-up-git">setting up Git</a>.</li>
+		<li>Fork the <a href="https://github.com/wet-boew/wet-boew">wet-boew repository</a> by following the <a href="https://help.github.com/articles/fork-a-repo">GitHub forking guide</a>. Use the upstream URL of <code>https://github.com/wet-boew/wet-boew.git</code> in step 3.</li>
+		<li>Run <code>./script/setup</code> from the <code>wet-boew</code> directory in your command line console.</li>
+		<li>Run <code>grunt</code> to build the project. You may run <code>grunt --help</code> to see the build target descriptions.</li>
+		<li>The latest files will now be compiled to the <code>dist/</code> folder.</li>
+		<li>To contribute back, follow the instructions on <a href="pull-en.html">how to create a pull request</a>.</li>
 	</ol>
 </section>
