@@ -415,6 +415,22 @@ module.exports = (grunt) ->
 						expand: true
 				]
 
+			versions:
+				options:
+					environment:
+						root: "/v4.0-ci/unmin"
+						jqueryVersion: "<%= jqueryVersion.version %>"
+						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
+					assets: "dist/unmin"
+				files: [
+						cwd: "site/pages"
+						src: [
+							"docs/versions/**/*.hbs"
+						]
+						dest: "dist/unmin"
+						expand: true
+				]
+
 			theme_min:
 				options:
 					environment:
@@ -1013,6 +1029,16 @@ module.exports = (grunt) ->
 				]
 				tasks: [
 					"assemble:docs"
+				]
+				options:
+					livereload: true
+
+			versions:
+				files: [
+					"site/pages/docs/versions/**/*.hbs"
+				]
+				tasks: [
+					"assemble:versions"
 				]
 				options:
 					livereload: true
