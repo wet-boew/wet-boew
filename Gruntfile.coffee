@@ -147,6 +147,7 @@ module.exports = (grunt) ->
 			"autoprefixer:demos"
 			"csslint:demos"
 			"assemble:theme"
+			"assemble:ajax"
 			"assemble:demos"
 		]
 	)
@@ -159,6 +160,7 @@ module.exports = (grunt) ->
 			"cssmin:demos_min"
 			"uglify:demos"
 			"assemble:theme_min"
+			"assemble:ajax_min"
 			"assemble:demos_min"
 			"htmlcompressor"
 			"htmllint"
@@ -358,10 +360,29 @@ module.exports = (grunt) ->
 					i18n:
 						languages: "<%= i18n_csv.assemble.locales %>"
 						templates: [
+
 							"site/pages/theme/*.hbs"
 							"!site/pages/theme/splashpage*.hbs"
 						]
 				dest: "dist/unmin/theme/"
+				src: "!*.*"
+
+			ajax:
+				options:
+					environment:
+						root: "/v4.0-ci/unmin"
+						jqueryVersion: "<%= jqueryVersion.version %>"
+						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
+					assets: "dist/unmin"
+					flatten: true,
+					plugins: ["assemble-contrib-i18n"]
+					i18n:
+						languages: "<%= i18n_csv.assemble.locales %>"
+						templates: [
+
+							"site/pages/ajax/*.hbs"
+						]
+				dest: "dist/unmin/ajax/"
 				src: "!*.*"
 
 			demos:
@@ -390,6 +411,7 @@ module.exports = (grunt) ->
 						cwd: "site/pages"
 						src: [
 							"**/*.hbs",
+							"!ajax/**/*.hbs"
 							"!theme/**/*.hbs"
 							"theme/splashpage*.hbs"
 						]
@@ -414,6 +436,25 @@ module.exports = (grunt) ->
 							"!site/pages/theme/splashpage*.hbs"
 						]
 				dest:  "dist/theme/"
+				src: "!*.*"
+
+			ajax_min:
+				options:
+					environment:
+						suffix: ".min"
+						root: "/v4.0-ci/unmin"
+						jqueryVersion: "<%= jqueryVersion.version %>"
+						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
+					assets: "dist/unmin"
+					flatten: true,
+					plugins: ["assemble-contrib-i18n"]
+					i18n:
+						languages: "<%= i18n_csv.assemble.locales %>"
+						templates: [
+
+							"site/pages/ajax/*.hbs"
+						]
+				dest: "dist/ajax/"
 				src: "!*.*"
 
 			demos_min:
@@ -443,6 +484,7 @@ module.exports = (grunt) ->
 						cwd: "site/pages"
 						src: [
 							"**/*.hbs",
+							"!ajax/**/*.hbs"
 							"!theme/**/*.hbs"
 							"theme/splashpage*.hbs"
 						]
@@ -738,6 +780,8 @@ module.exports = (grunt) ->
 					ignore: [
 						"XHTML element “head” is missing a required instance of child element “title”."
 						"The “details” element is not supported properly by browsers yet. It would probably be better to wait for implementations."
+						"The value of attribute “title” on element “a” from namespace “http://www.w3.org/1999/xhtml” is not in Unicode Normalization Form C." #required for vietnamese translations
+						"Text run is not in Unicode Normalization Form C." #required for vietnamese translations
 					]
 				src: [
 					"dist/unmin/ajax/**/*.html"
@@ -751,6 +795,8 @@ module.exports = (grunt) ->
 						"XHTML element “li” not allowed as child of XHTML element “body” in this context. (Suppressing further errors from this subtree.)"
 						"The “aria-controls” attribute must point to an element in the same document."
 						"The “details” element is not supported properly by browsers yet. It would probably be better to wait for implementations."
+						"The value of attribute “title” on element “a” from namespace “http://www.w3.org/1999/xhtml” is not in Unicode Normalization Form C." #required for vietnamese translations
+						"Text run is not in Unicode Normalization Form C." #required for vietnamese translations
 					]
 				src: [
 					"dist/unmin/demos/cal-events/ajax/**/*.html"
