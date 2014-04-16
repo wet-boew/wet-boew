@@ -1,7 +1,7 @@
 {
   "name": "wet-boew",
   "version": "4.0.1-development",
-  "homepage": "https://github.com/wet-boew/wet-boew",
+  "homepage": "http://wet-boew.github.io",
   "authors": [
     "WET-BOEW Team"
   ],
@@ -13,15 +13,13 @@
     "bootstrap"
   ],
   "license": "MIT",
-  "private": true,
   "ignore": [
     ".git*",
     ".travis.yml",
     ".editorconfig",
     "node_modules",
-    "bower_components",
     "test",
-    "tests"
+    "lib"
   ],
   "dependencies": {
     "bootstrap-sass-official": "3.1.1",
@@ -37,12 +35,15 @@
     "magnific-popup": "0.9.8",
     "openlayers": "https://github.com/wet-boew/openlayers/releases/download/v2.13.1/OpenLayers-2.13.1.tar.gz",
     "proj4": "2.1.0",
-	"es5-shim": "2.3.0",
+    "es5-shim": "2.3.0",
     "respond": "1.4.0",
     "selectivizr": "1.0.2",
     "SideBySideImproved": "https://github.com/pkoltermann/SideBySideImproved.git"
   },
   "resolutions": {
     "jquery": "~2.1.0"
-  }
+  },
+  "moduleType": [
+    "globals"
+  ]
 }
