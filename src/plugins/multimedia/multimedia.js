@@ -511,10 +511,14 @@ var pluginName = "wb-mltmd",
 	},
 
 	onResize = function() {
-		$( selector + " object, " + selector + " iframe" ).trigger( resizeEvent );
+		$( selector + " object, " + selector + " iframe, " +  selector + " video" ).trigger( resizeEvent );
 	};
 
 $document.on( "timerpoke.wb " + initEvent, selector, init );
+
+$window.on( "resize", onResize );
+
+$document.on( "ready", onResize );
 
 $document.on( "ajax-fetched.wb templateloaded.wb", selector, function( event ) {
 	var $this = $( this );
@@ -619,7 +623,6 @@ $document.on( fallbackEvent, selector, function() {
 		"<param name='wmode' value='opaque'/>" +
 		data.poster + "</object>" );
 	$this.data( "properties", data );
-	$window.on( "resize", onResize );
 	$this.trigger( renderUIEvent, type );
 });
 
@@ -671,7 +674,6 @@ $document.on( youtubeEvent, selector, function() {
 	data.ytPlayer = ytPlayer;
 
 	$this.data( "properties", data );
-	$window.on( "resize", onResize );
 	$this.trigger( renderUIEvent, "youtube" );
 });
 
@@ -963,16 +965,24 @@ $document.on( "progress", selector, function( event ) {
 });
 
 $document.on( resizeEvent, selector, function( event ) {
-	var $player = $( event.target ),
-		height = $player.attr( "height" ),
-		width = $player.attr( "width" ),
-		newHeight = Math.round( $player.width() * height / width );
+	var player = event.target,
+		$player = $( player ),
+		ratio, newHeight;
 
-	//TODO: Remove this when captions works in chromeless api with controls
-	if ( $player.is( "iframe") ) {
-		newHeight += 30;
+	if ( player.videoWidth === 0 ) {
+		ratio = $player.attr( "height" ) / $player.attr( "width" );
+
+		// Calculate the new height based on the specified ratio or assume a default 16:9 ratio
+		newHeight = Math.round( $player.width() * ( !isNaN( ratio ) ? ratio : 0.5625 ) );
+
+		//TODO: Remove this when captions works in chromeless api with controls
+		if ( $player.is( "iframe") ) {
+			newHeight += 30;
+		}
+		$player.css( "height", newHeight + "px" );
+	} else {
+		$player.css( "height", "" );
 	}
-	$player.attr( "style", "height:" + newHeight + "px" );
 });
 
 wb.add( selector );
