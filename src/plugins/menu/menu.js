@@ -276,7 +276,7 @@ var pluginName = "wb-menu",
 			// Add the site information
 			if ( $info.length !== 0 ) {
 				allProperties.push([
-					$info.find( "h3" ),
+					$info.find( "h3, a" ).not( "section a" ),
 					"info-pnl",
 					$info.find( "h2" ).html()
 				]);
