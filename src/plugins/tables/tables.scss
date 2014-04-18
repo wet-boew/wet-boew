@@ -6,7 +6,7 @@
 	content: " ";
 	display: inline-block;
 	font-family: "Glyphicons Halflings";
-	font-size: 0.9em;
+	font-weight: 400;
 }
 
 %tables-clear-both {
@@ -287,17 +287,18 @@ table {
 	&:after {
 		@extend %table_icons;
 		@extend %tables-sorting-margin-left-5-position-absolute;
-		content: "\e093";
+		content: "\e152";
 	}
 }
 
+.sorting,
 .sorting_desc {
 	@extend %tables-cursor-pointer;
 
 	&:after {
 		@extend %table_icons;
 		@extend %tables-sorting-margin-left-5-position-absolute;
-		content: "\e094";
+		content: "\e151";
 	}
 }
 
