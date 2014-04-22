@@ -7,15 +7,8 @@
  * Menu Sass
  */
 .expicon {
-	width: 0;
-	height: 0;
-	border-left: 0.35em solid transparent;
-	border-right: 0.35em solid transparent;
-	border-top: 0.4em solid #fff;
-	position: relative;
-	left: 0.75em;
-	top: 0.8em;
-	margin-right: 0.35em;
+	font-size: 0.8em;
+	margin: 0 -0.35em 0 0.7em;
 }
 
 .wb-menu {
@@ -83,15 +76,11 @@
 				@extend %global-text-decoration-none;
 			}
 		}
-
-		.expicon {
-			border-top-color: #000;
-		}
 	}
 
 	.sm-open {
 		.expicon {
-			border-color: transparent !important;
+			z-index: -1;
 		}
 	}
 }
@@ -274,10 +263,7 @@
 	}
 
 	.expicon {
-		left: auto;
-		right: 0.75em;
-		margin-right: 0;
-		margin-left: 0.35em;
+		margin: 0 0.7em 0 -0.35em;
 	}
 
 	#mb-pnl {
