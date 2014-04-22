@@ -317,7 +317,7 @@ var pluginName = "wb-menu",
 			$menu[ 0 ].setAttribute( "tabindex", "0" );
 			$menu
 				.filter( "[href^=#]" )
-					.append( "<span class='expicon'></span>" );
+					.append( "<span class='expicon glyphicon glyphicon-chevron-down'></span>" );
 
 			drizzleAria( $menu );
 		}
