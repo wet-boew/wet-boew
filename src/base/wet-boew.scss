@@ -10,7 +10,7 @@
 // Hack for Bootstrap 3.1.1, since it doesn't convert the "fadein" LESS method.
 // Pending fix release in https://github.com/twbs/bootstrap-sass/commit/df7be4f0412497e22f1d271d94d6e9835f61113e
 @function fadein($colour, $pct) {
-	@return opacify($colour, $pct / 100.0);
+	@return opacify($colour, $pct / 100);
 }
 
 // Override Bootstrap's expected font path
