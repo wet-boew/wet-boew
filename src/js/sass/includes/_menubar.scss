@@ -62,6 +62,12 @@
 			@include pseudo-focus {
 				text-decoration: underline;
 			}
+			&[aria-haspopup] {
+				&:hover, &:focus {
+					text-decoration: none;
+					cursor: default;
+				}
+			}
 		}
 		&.mb-has-sm {
 			padding-right: 0.79em;
