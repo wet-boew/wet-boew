@@ -108,14 +108,14 @@
 }
 
 .fd-slider {
-	@extend %slider-width-100perc;
-	@extend %slider-height-20;
-	@extend %slider-display-block;
 	@extend %slider-border-none;
-	margin: 0 0 10px;
-	text-align: center;
-	position: relative;
+	@extend %slider-display-block;
+	@extend %slider-height-20;
+	@extend %slider-width-100perc;
 	cursor: pointer;
+	margin: 0 0 10px;
+	position: relative;
+	text-align: center;
 	text-decoration: none;
 	user-select: none;
 }
@@ -142,18 +142,18 @@
 	@extend %slider-background-color-ddd;
 	@extend %slider-border-radius-2;
 	@extend %slider-background-clip-padding-box;
-	top: 8px;
-	right: 10px;
-	left: 10px;
-	z-index: 2;
+	background-image: linear-gradient(#ececec, #ccc);
 	border: 1px solid #606060;
 	border: 1px solid rgba(187, 187, 187, .8);
 	border-bottom: 1px solid #aaa;
 	border-bottom: 1px solid rgba(170, 170, 170, .8);
 	border-right: 1px solid #aaa;
 	border-right: 1px solid rgba(170, 170, 170, .8);
+	left: 10px;
 	line-height: 4px;
-	background-image: linear-gradient(#ececec, #ccc);
+	right: 10px;
+	top: 8px;
+	z-index: 2;
 }
 
 .fd-slider-focused {
@@ -166,20 +166,20 @@
 }
 
 .fd-slider-range {
-	@extend %slider-display-block;
-	@extend %slider-position-absolute;
-	@extend %slider-z-index-3;
-	@extend %slider-height-2;
-	@extend %slider-margin-0;
-	@extend %slider-padding-0;
-	@extend %slider-overflow-hidden;
+	@extend %slider-background-clip-padding-box;
 	@extend %slider-background-color-165c91;
 	@extend %slider-border-radius-2;
-	@extend %slider-background-clip-padding-box;
-	top: 9px;
+	@extend %slider-display-block;
+	@extend %slider-height-2;
+	@extend %slider-margin-0;
+	@extend %slider-overflow-hidden;
+	@extend %slider-padding-0;
+	@extend %slider-position-absolute;
+	@extend %slider-z-index-3;
+	background-image: linear-gradient(left, #89a5bd, #165c91);
 	left: 11px;
 	line-height: 2px;
-	background-image: linear-gradient(left, #89a5bd, #165c91);
+	top: 9px;
 }
 
 .fd-slider-handle {
@@ -200,8 +200,8 @@
 		position: 0 0;
 	}
 	cursor: W-resize;
-	line-height: 20px;
 	font-size: 10px;
+	line-height: 20px;
 	/* Are these needed?
 	@if $experimental-support-for-mozilla {-moz-outline: 0 none;}
 	@if $experimental-support-for-webkit {-webkit-touch-callout: none;}
@@ -243,41 +243,41 @@ body {
 	&.fd-slider-drag-horizontal,
 	&.fd-slider-drag-horizontal * {
 		cursor: N-resize !important;
-		user-select: none;
 		cursor: W-resize !important;
+		user-select: none;
 	}
 }
 
 .fd-slider-disabled {
-	opacity: 0.8;
 	cursor: default;
+	opacity: 0.8;
 
 	.fd-slider-handle {
-		cursor: default !important;
 		background-position: 0 -40px;
+		cursor: default !important;
 		opacity: 1;
 	}
 
 	.fd-slider-bar {
-		cursor: auto !important;
-		border: 1px solid #888;
-		border-bottom: 1px solid #999;
-		border-right: 1px solid #999;
-		border: 1px solid rgba(136, 136, 136, .8);
-		border-bottom: 1px solid rgba(153, 153, 153, .8);
-		border-right: 1px solid rgba(153, 153, 153, .8);
 		background-color: #555;
 		background-image: linear-gradient(left, #666, #333);
+		border: 1px solid #888;
+		border: 1px solid rgba(136, 136, 136, .8);
+		border-bottom: 1px solid #999;
+		border-bottom: 1px solid rgba(153, 153, 153, .8);
+		border-right: 1px solid #999;
+		border-right: 1px solid rgba(153, 153, 153, .8);
+		cursor: auto !important;
 	}
 
 	.fd-slider-range {
-		cursor: auto !important;
 		background-color: #222;
 		background-image: linear-gradient(left, #222, #000);
+		cursor: auto !important;
 	}
 }
 
-keyframes fd-pulse {
+@keyframes fd-pulse {
 	0% {
 		box-shadow: 0 0 3px rgba(100, 130, 170, 0.55);
 	}
@@ -304,10 +304,10 @@ keyframes fd-pulse {
 }
 
 #fd-slider-describedby {
-	padding: 1em;
-	border: 3px solid #a84444;
 	background: #fff;
+	border: 3px solid #a84444;
 	border-radius: 8px;
+	padding: 1em;
 }
 
 input {
@@ -317,8 +317,8 @@ input {
 }
 
 #html5shim-2-out {
-	font-weight: 400;
 	font-style: italic;
+	font-weight: 400;
 }
 
 #html5shim-4 {
@@ -327,6 +327,6 @@ input {
 }
 
 .visu {
-	font: normal 3em impact, helvetica, sans serif;
 	color: #6cc;
+	font: normal 3em impact, helvetica, sans serif;
 }

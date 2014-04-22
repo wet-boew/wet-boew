@@ -18,7 +18,9 @@ linters:
   SelectorDepth:
     enabled: false
   PropertySortOrder:
-    enabled: false
+    exclude:
+      # Ignore because of greyscale hack
+      - "src/plugins/tabs/tabs.scss"
   CapitalizationInSelector:
     exclude:
       - "src/plugins/charts/charts.scss"

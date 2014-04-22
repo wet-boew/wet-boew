@@ -6,16 +6,16 @@
 	background-color: #fd0;
 
 	p {
-		text-align: center;
 		margin: 0;
+		text-align: center;
 	}
 
 	a {
-		display: block;
-		padding: 0.75em 44px;
 		color: #000;
-		text-decoration: none;
+		display: block;
 		font-weight: 700;
+		padding: 0.75em 44px;
+		text-decoration: none;
 
 		&:hover,
 		&:focus {

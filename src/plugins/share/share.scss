@@ -6,21 +6,21 @@
 
 .wb-share {
 	.shr-lnk {
-		width: 100%;
-		min-height: 32px;
+		font-size: 115%;
 		line-height: 32px;
 		margin-bottom: 8px;
+		min-height: 32px;
 		text-align: left;
 		text-decoration: none;
-		font-size: 115%;
+		width: 100%;
 
 		&:before {
 			content: " ";
 			display: inline-block;
 			height: 32px;
-			width: 32px;
 			margin-right: 0.6em;
 			vertical-align: middle;
+			width: 32px;
 		}
 	}
 
@@ -57,10 +57,10 @@
 
 	.email {
 		&:before {
+			content: "\2709";
 			display: inline-block;
 			font-family: "Glyphicons Halflings";
 			font-size: 32px;
-			content: "\2709";
 			margin-right: 0.3em;
 		}
 	}
@@ -149,8 +149,8 @@
 
 	ul {
 		list-style-type: none;
-		padding: 0;
 		margin: 10px;
+		padding: 0;
 	}
 }
 
@@ -160,15 +160,15 @@
 			text-align: right;
 
 			&:before {
-				margin-right: auto;
 				margin-left: 0.4em;
+				margin-right: auto;
 			}
 		}
 
 		.email {
 			&:before {
-				margin-right: auto;
 				margin-left: 0.6em;
+				margin-right: auto;
 			}
 		}
 

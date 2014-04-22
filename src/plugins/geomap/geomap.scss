@@ -7,10 +7,10 @@
 }
 
 %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1 {
-	position: absolute;
 	background-color: #fff;
-	opacity: 0.5;
 	font-size: 1px;
+	opacity: 0.5;
+	position: absolute;
 }
 
 /**
@@ -21,12 +21,12 @@
 	width: 25px;
 
 	img {
-		left: 0;
-		top: 0;
-		height: 25px;
-		width: 25px;
 		float: left;
+		height: 25px;
+		left: 0;
 		margin: 0;
+		top: 0;
+		width: 25px;
 	}
 }
 
@@ -56,8 +56,8 @@
 }
 
 .olMap {
-	z-index: 0;
 	cursor: default;
+	z-index: 0;
 }
 
 .olMapViewport {
@@ -74,27 +74,27 @@
 
 .olControlMousePosition {
 	bottom: 5px;
-	left: 100px;
 	display: block;
-	position: absolute;
 	font-family: Arial;
 	font-size: smaller;
+	left: 100px;
+	position: absolute;
 }
 
 .olControlScale {
-	right: 3px;
 	bottom: 3em;
 	display: block;
-	position: absolute;
 	font-size: smaller;
+	position: absolute;
+	right: 3px;
 }
 
 .olControlScaleLine {
-	display: block;
-	position: absolute;
-	left: 10px;
 	bottom: 15px;
+	display: block;
 	font-size: xx-small;
+	left: 10px;
+	position: absolute;
 }
 
 .olControlScaleLineBottom {
@@ -130,8 +130,8 @@
 }
 
 .olFramedCloudPopupContent {
-	padding: 5px;
 	overflow: auto;
+	padding: 5px;
 }
 
 %olPopupMargin {
@@ -225,9 +225,9 @@
  * GeoMap
  */
 .wb-geomap-map {
-	position: relative;
-	outline: 1px solid #ccc;
 	margin-bottom: 30px;
+	outline: 1px solid #ccc;
+	position: relative;
 
 	&.active {
 		outline-color: #07f;
@@ -235,8 +235,8 @@
 }
 
 .wb-geomap-detail {
-	margin-top: 10px;
 	margin-bottom: 10px;
+	margin-top: 10px;
 }
 
 .geomap-legend-detail {

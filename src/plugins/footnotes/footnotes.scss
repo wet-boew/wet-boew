@@ -6,9 +6,9 @@
 @import "../../variables";
 
 %fnote-link-highlight {
-	color: $clrWhite !important;
 	background-color: $clrDark;
 	border-color: $clrDark;
+	color: $clrWhite !important;
 }
 
 %fnote-link-background-light-border-medium-padding-whitespace {
@@ -28,10 +28,10 @@
 }
 
 .wb-fnote {
-	margin: 2em 10px 0;
-	border-width: 1px 0;
-	border-style: solid;
 	border-color: $clrMedium;
+	border-style: solid;
+	border-width: 1px 0;
+	margin: 2em 10px 0;
 
 	h2 {
 		margin-left: 0;
@@ -48,9 +48,9 @@
 	}
 
 	dd {
-		position: relative;
-		margin: $spacing 0;
 		border: 1px solid transparent;
+		margin: $spacing 0;
+		position: relative;
 
 		&:focus {
 			background-color: $clrLight;
@@ -74,13 +74,13 @@
 	}
 
 	.fn-rtn {
-		top: 0;
 		margin: 0;
-		padding-top: $spacing;
-		padding-right: 0;
-		position: absolute;
-		width: $ddRtnWidth;
 		overflow: hidden;
+		padding-right: 0;
+		padding-top: $spacing;
+		position: absolute;
+		top: 0;
+		width: $ddRtnWidth;
 
 		a {
 			@extend %fnote-link-background-light-border-medium-padding-whitespace;

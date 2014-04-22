@@ -7,25 +7,32 @@
  * Menu Sass
  */
 .expicon {
-	font-size: 0.8em;
-	margin: 0 -0.35em 0 0.7em;
+	border-left: 0.35em solid transparent;
+	border-right: 0.35em solid transparent;
+	border-top: 0.4em solid #fff;
+	height: 0;
+	left: 0.75em;
+	margin-right: 0.35em;
+	position: relative;
+	top: 0.8em;
+	width: 0;
 }
 
 .wb-menu {
 	.sm {
 		display: none;
-		position: relative;
 		max-height: 0;
 		overflow: hidden;
+		position: relative;
 
 		&.open {
+			display: inline;
 			max-height: 1000px;
 			min-width: 12.5em;
-			display: inline;
 			position: absolute;
-			z-index: 500;
 			text-transform: none;
 			top: auto;
+			z-index: 500;
 
 			li {
 				@extend %global-display-block;
@@ -38,20 +45,20 @@
 	}
 
 	.menu {
-		position: relative;
 		margin-left: 0;
+		position: relative;
 
 		> {
 			li {
+				float: left;
 				margin: 0;
 				padding: 0;
-				float: left;
 
 				a {
 					@extend %global-text-decoration-none;
-					text-align: center;
 					display: block;
 					padding: 1em;
+					text-align: center;
 
 					&:hover,
 					&:focus {
@@ -115,9 +122,9 @@
 		}
 
 		li {
+			line-height: normal;
 			padding-left: 10px;
 			padding-right: 0;
-			line-height: normal;
 
 			a {
 				padding: 5px;
@@ -154,9 +161,9 @@
 		}
 
 		a {
+			display: inline-block;
 			margin: 6px 0 6px -6px;
 			padding: 0 6px;
-			display: inline-block;
 
 			&.wb-navcurr {
 				@extend %menu-mb-pnl-wb-navcurr;
@@ -263,7 +270,10 @@
 	}
 
 	.expicon {
-		margin: 0 0.7em 0 -0.35em;
+		left: auto;
+		margin-left: 0.35em;
+		margin-right: 0;
+		right: 0.75em;
 	}
 
 	#mb-pnl {

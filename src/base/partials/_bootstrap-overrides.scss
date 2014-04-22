@@ -172,8 +172,8 @@ a {
 
 %label-alert-common {
 	border-radius: 0;
-	border-width: 0 0 0 4px;
 	border-style: solid;
+	border-width: 0 0 0 4px;
 }
 
 .alert {
@@ -181,14 +181,14 @@ a {
 
 	> {
 		:first-child {
-			margin-top: auto;
 			margin-left: 1.2em;
+			margin-top: auto;
 
 			&:before {
-				position: absolute;
-				margin-left: -1.3em;
 				display: inline-block;
 				font-family: "Glyphicons Halflings";
+				margin-left: -1.3em;
+				position: absolute;
 			}
 		}
 
@@ -238,8 +238,8 @@ a {
 }
 
 %label-default-bg-border-left {
-	border-color: #acacac;
 	background: #eee;
+	border-color: #acacac;
 }
 
 .label-default {
@@ -258,8 +258,8 @@ a {
 }
 
 %label-primary-bg-border-left {
-	border-color: #083c6c;
 	background: #e8f2f4;
+	border-color: #083c6c;
 }
 
 .label-primary {
@@ -280,8 +280,8 @@ a {
 $label-alert-warning-border-icon-color: #278400;
 
 %label-alert-success-bg-border-left {
-	border-color: $label-alert-warning-border-icon-color;
 	background: #d8eeca;
+	border-color: $label-alert-warning-border-icon-color;
 }
 
 .label-success {
@@ -306,8 +306,8 @@ $label-alert-warning-border-icon-color: #278400;
 	> {
 		:first-child {
 			&:before {
-				content: "\e084";
 				color: $label-alert-warning-border-icon-color;
+				content: "\e084";
 			}
 		}
 	}
@@ -316,8 +316,8 @@ $label-alert-warning-border-icon-color: #278400;
 $label-alert-info-border-icon-color: #269abc;
 
 %label-alert-info-bg-border-left {
-	border-color: $label-alert-info-border-icon-color;
 	background: #d7faff;
+	border-color: $label-alert-info-border-icon-color;
 }
 
 .label-info {
@@ -342,8 +342,8 @@ $label-alert-info-border-icon-color: #269abc;
 	> {
 		:first-child {
 			&:before {
-				content: "\e086";
 				color: $label-alert-info-border-icon-color;
+				content: "\e086";
 			}
 		}
 	}
@@ -352,8 +352,8 @@ $label-alert-info-border-icon-color: #269abc;
 $label-alert-warning-border-icon-color: #f90;
 
 %label-alert-warning-bg-border-left {
-	border-color: $label-alert-warning-border-icon-color;
 	background: #f9f4d4;
+	border-color: $label-alert-warning-border-icon-color;
 }
 
 .label-warning {
@@ -378,8 +378,8 @@ $label-alert-warning-border-icon-color: #f90;
 	> {
 		:first-child {
 			&:before {
-				content: "\e107";
 				color: $label-alert-warning-border-icon-color;
+				content: "\e107";
 			}
 		}
 	}
@@ -388,8 +388,8 @@ $label-alert-warning-border-icon-color: #f90;
 $label-alert-danger-border-icon-color: #d3080c;
 
 %label-alert-danger-bg-border-left {
-	border-color: $label-alert-danger-border-icon-color;
 	background: #f3e9e8;
+	border-color: $label-alert-danger-border-icon-color;
 }
 
 .label-danger {
@@ -414,8 +414,8 @@ $label-alert-danger-border-icon-color: #d3080c;
 	> {
 		:first-child {
 			&:before {
-				content: "\e101";
 				color: $label-alert-danger-border-icon-color;
+				content: "\e101";
 			}
 		}
 	}
@@ -559,8 +559,8 @@ blockquote {
  *	greater than the available width.
  */
 .form-control {
-	width: auto;
 	max-width: 100%;
+	width: auto;
 }
 
 /*
@@ -603,8 +603,8 @@ blockquote {
 				span {
 					&:hover,
 					&:focus {
-						color: $pagination-hover-color;
 						border-color: $pagination-hover-border;
+						color: $pagination-hover-color;
 					}
 				}
 			}

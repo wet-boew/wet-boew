@@ -12,9 +12,9 @@
 
 .cal-cnt {
 	&.picker-overlay {
+		margin-top: -2em;
 		position: absolute;
 		z-index: 498 !important;
-		margin-top: -2em;
 	}
 }
 
@@ -45,10 +45,10 @@
 }
 
 .picker-toggle {
-	display: inline-block;
-	margin-left: 5px;
 	background: none;
 	border: 0;
+	display: inline-block;
+	margin-left: 5px;
 	vertical-align: middle;
 
 	&:link,

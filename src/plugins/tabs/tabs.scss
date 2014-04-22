@@ -30,14 +30,14 @@ $medGray: #ccc;
 
 //TODO:Combine with previous placeholder when libsass supports nested selectors
 %tab-width-100-height-auto {
-	width: 100%;
 	height: auto;
+	width: 100%;
 }
 
 %tab-figure-captions {
-	position: absolute;
 	color: #fff;
 	padding: 0.5em 1em;
+	position: absolute;
 	z-index: 101;
 }
 
@@ -53,21 +53,21 @@ $medGray: #ccc;
 }
 
 %carousel-s2-prv-nxt-a-common {
-	width: 100%;
-	color: $drabBlue;
 	border: 0;
+	color: $drabBlue;
+	width: 100%;
 }
 
 %carousel-s2-prv-nxt-glyphicon-common {
-	margin: auto 0;
-	height: 1.75em;
-	width: 1.75em;
-	font-size: 1.75em;
-	line-height: 1.75em;
-	text-align: center;
 	background: #fff;
 	border-radius: 999px;
 	box-shadow: 0 0 4px $drabBlue;
+	font-size: 1.75em;
+	height: 1.75em;
+	line-height: 1.75em;
+	margin: auto 0;
+	text-align: center;
+	width: 1.75em;
 }
 
 %tabs-background-transparent {
@@ -90,27 +90,27 @@ $medGray: #ccc;
 	@extend %tabs-position-relative;
 
 	[role ="tablist"] {
-		position: relative;
 		list-style: none;
 		margin: 0;
 		padding: 0;
+		position: relative;
 
 		li {
-			display: inline-block;
-			cursor: pointer;
-			margin: 0 10px 0 0;
-			color: #000;
 			background: #ebf2fc;
 			border: 1px solid $medGray;
-			text-align: center;
+			color: #000;
+			cursor: pointer;
+			display: inline-block;
+			margin: 0 10px 0 0;
 			position: relative;
+			text-align: center;
 
 			a {
-				text-decoration: none;
 				color: #000;
 				display: inline-block;
 				// changed padding and margin from em to px to fix web-kit layout issue
 				padding: 10px;
+				text-decoration: none;
 			}
 
 			&:focus,
@@ -120,14 +120,14 @@ $medGray: #ccc;
 			}
 
 			&.active {
-				padding-bottom: 1px;
-				border-bottom: 0;
 				background: #fff;
+				border-bottom: 0;
 				cursor: default;
+				padding-bottom: 1px;
 
 				a {
-					cursor: default;
 					border-top: 4px solid #666;
+					cursor: default;
 					padding-top: 6px;
 				}
 			}
@@ -177,8 +177,8 @@ $medGray: #ccc;
 
 		figcaption {
 			@extend %tab-figure-captions;
-			top: 3em;
 			right: 1em;
+			top: 3em;
 
 			a {
 				@extend %tab-figure-captions-links;
@@ -196,21 +196,21 @@ $medGray: #ccc;
 
 		[role="tablist"] {
 			@extend %tab-position-relative;
-			width: 100%;
 			height: 100%;
+			width: 100%;
 
 			li {
 				@extend %tab-zindex-100;
 				background: transparent;
-				display: none;
 				border: 0;
+				display: none;
 
 				&[role="presentation"] {
+					background: $lightGray;
+					background: transparentize($lightGray, .1);
 					display: inline-block;
 					padding: 4px;
 					top: 100%;
-					background: $lightGray;
-					background: transparentize($lightGray, .1);
 
 					&.active,
 					&:focus,
@@ -295,8 +295,8 @@ $medGray: #ccc;
 					background: none;
 					border: 0;
 					display: inline-block !important;
-					top: 100%;
 					padding: 2px 10px;
+					top: 100%;
 
 					span {
 						color: #000 !important;

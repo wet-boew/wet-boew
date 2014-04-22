@@ -5,9 +5,9 @@
 
 //	Sourced from http://css-tricks.com/snippets/css/clear-fix/
 %clear-fix {
+	clear: both;
 	content: "";
 	display: table;
-	clear: both;
 }
 
 //	Horizontal language selector
