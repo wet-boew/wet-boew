@@ -6,6 +6,12 @@
 	color: #fff;
 }
 
+%wet-theme-wb-menu-hover-active {
+	color: #000;
+	background: #ccc;
+	border-color: #ccc;
+}
+
 #wb-sm {
 	background: #0e4164;
 
@@ -23,6 +29,15 @@
 						&.wb-navcurr {
 							@extend %wet-theme-wb-sm-wb-navcurr;
 						}
+
+						// :focus not needed since already covered by the &.active state
+						&:hover {
+							@extend %wet-theme-wb-menu-hover-active;
+
+							.expicon {
+								border-top-color: #000;
+							}
+						}
 					}
 				}
 
@@ -37,9 +52,7 @@
 				&.active {
 					> {
 						a {
-							color: #000;
-							background: #ccc;
-							border-color: #ccc;
+							@extend %wet-theme-wb-menu-hover-active;
 						}
 					}
 				}

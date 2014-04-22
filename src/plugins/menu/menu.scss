@@ -11,10 +11,10 @@
 	height: 0;
 	border-left: 0.35em solid transparent;
 	border-right: 0.35em solid transparent;
-	border-top: 0.35em solid #fff;
+	border-top: 0.4em solid #fff;
 	position: relative;
 	left: 0.75em;
-	top: 0.75em;
+	top: 0.8em;
 	margin-right: 0.35em;
 }
 
@@ -55,14 +55,22 @@
 				float: left;
 
 				a {
+					@extend %global-text-decoration-none;
 					text-align: center;
 					display: block;
 					padding: 1em;
-					text-decoration: none;
 
 					&:hover,
 					&:focus {
 						text-decoration: underline;
+					}
+
+					&[aria-haspopup] {
+						&:hover,
+						&:focus {
+							@extend %global-text-decoration-none;
+							cursor: default;
+						}
 					}
 				}
 			}
