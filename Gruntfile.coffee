@@ -144,7 +144,6 @@ module.exports = (grunt) ->
 		"INTERNAL: Create unminified demos"
 		[
 			"copy:demos"
-			"autoprefixer:demos"
 			"csslint:demos"
 			"assemble:theme"
 			"assemble:ajax"
@@ -596,18 +595,38 @@ module.exports = (grunt) ->
 				]
 
 		autoprefixer:
-			options:
-				browsers: [
-					"last 2 versions"
-					"ff >= 17"
-					"opera 12.1"
-					"bb >= 7"
-					"android >= 2.3"
-					"ie >= 8"
-					"ios 5"
+			# Only vendor prefixing and no IE8
+			modern:
+				options:
+					browsers: [
+						"last 2 versions"
+						"android >= 2.3"
+						"bb >= 7"
+						"ff >= 17"
+						"ie > 8"
+						"ios 5"
+						"opera 12.1"
+					]
+				cwd: "dist/unmin/css"
+				src: [
+					"*.css"
+					"!ie8*.css"
 				]
+				dest: "dist/unmin/css"
+				expand: true
 
-			all:
+			# Needs both IE8 and vendor prefixing
+			mixed:
+				options:
+					browsers: [
+						"last 2 versions"
+						"android >= 2.3"
+						"bb >= 7"
+						"ff >= 17"
+						"ie >= 8"
+						"ios 5"
+						"opera 12.1"
+					]
 				files: [
 					cwd: "dist/unmin/css"
 					src: [
@@ -626,13 +645,26 @@ module.exports = (grunt) ->
 					]
 					dest: "dist/unmin/css/polyfills/"
 					expand: true
+				,
+					cwd: "dist/unmin/demos"
+					src: "**/*.css"
+					dest: "dist/unmin/demos/"
+					expand: true
 				]
 
-			demos:
-				cwd: "dist/unmin/demos"
-				src: "**/*.css"
-				dest: "dist/unmin/demos/"
+			# Only IE8 support
+			oldIE:
+				options:
+					browsers: [
+						"ie 8"
+					]
+				cwd: "dist/unmin/css"
+				src: [
+					"ie8*.css"
+				]
+				dest: "dist/unmin/css"
 				expand: true
+				flatten: true
 
 		csslint:
 			options:
@@ -641,6 +673,7 @@ module.exports = (grunt) ->
 				"box-sizing": false
 				"compatible-vendor-prefixes": false
 				"duplicate-background-images": false
+				"duplicate-properties": false
 				# Can be turned off after https://github.com/dimsemenov/Magnific-Popup/pull/303 lands
 				"empty-rules": false
 				"fallback-colors": false
