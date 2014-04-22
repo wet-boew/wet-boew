@@ -216,6 +216,13 @@ a {
 			}
 		}
 	}
+
+	/*
+	 * List unstyled RTL fix
+	 */
+	.list-unstyled {
+		padding-right: 0;
+	}
 }
 
 %label-alert-color-000 {
@@ -415,7 +422,7 @@ $label-alert-danger-border-icon-color: #d3080c;
 }
 
 /*
- *	Increase font weight of headings to 700
+ *	Heading top margins
  */
 
 %font-weight-700 {
@@ -425,31 +432,37 @@ $label-alert-danger-border-icon-color: #d3080c;
 h1,
 .h1 {
 	@extend %font-weight-700;
+	margin-top: 0;
 }
 
 h2,
 .h2 {
 	@extend %font-weight-700;
+	margin-top: ceil($line-height-computed * $font-scale-xxl);
 }
 
 h3,
 .h3 {
 	@extend %font-weight-700;
+	margin-top: ceil($line-height-computed * $font-scale-xl);
 }
 
 h4,
 .h4 {
 	@extend %font-weight-700;
+	margin-top: ceil($line-height-computed * $font-scale-lg);
 }
 
 h5,
 .h5 {
 	@extend %font-weight-700;
+	margin-top: $line-height-computed;
 }
 
 h6,
 .h6 {
 	@extend %font-weight-700;
+	margin-top: ceil($line-height-computed * $font-scale-sm);
 }
 
 /*
@@ -457,15 +470,6 @@ h6,
  */
 code {
 	white-space: normal;
-}
-
-/*
- * List unstyled RTL fix
- */
-[dir=rtl] {
-	.list-unstyled {
-		padding-right: 0;
-	}
 }
 
 /*
@@ -619,37 +623,4 @@ blockquote {
 	fieldset[disabled] & {
 		border-style: solid;
 	}
-}
-
-/*
- *	Heading top margins
- */
-h1,
-.h1 {
-	margin-top: 0;
-}
-
-h2,
-.h2 {
-	margin-top: ceil($line-height-computed * $font-scale-xxl);
-}
-
-h3,
-.h3 {
-	margin-top: ceil($line-height-computed * $font-scale-xl);
-}
-
-h4,
-.h4 {
-	margin-top: ceil($line-height-computed * $font-scale-lg);
-}
-
-h5,
-.h5 {
-	margin-top: $line-height-computed;
-}
-
-h6,
-.h6 {
-	margin-top: ceil($line-height-computed * $font-scale-sm);
 }
