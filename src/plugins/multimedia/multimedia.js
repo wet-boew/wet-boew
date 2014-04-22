@@ -969,7 +969,7 @@ $document.on( resizeEvent, selector, function( event ) {
 		$player = $( player ),
 		ratio, newHeight;
 
-	if ( player.videoWidth === 0 ) {
+	if ( player.videoWidth === 0 || player.videoWidth === undef ) {
 		ratio = $player.attr( "height" ) / $player.attr( "width" );
 
 		// Calculate the new height based on the specified ratio or assume a default 16:9 ratio
