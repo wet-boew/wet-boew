@@ -147,12 +147,12 @@ $mm-ctrl-cc-color: #4aafff;
 		}
 
 		.cc {
-			&:before {
+			&:after {
 				content: " ";
 				display: block;
 				border-bottom: 3px solid $mm-ctrl-cc-color;
-				margin-left: -1px;
-				width: 1.1em;
+				margin-left: -2px;
+				width: 1.2em;
 
 			}
 		}
