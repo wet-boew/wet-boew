@@ -70,7 +70,7 @@ module.exports = (grunt) ->
 		"Full build for running tests on SauceLabs. Currently only for Travis builds"
 		[
 			"pre-mocha"
-			"saucelabs-mocha"
+			"saucelabs-custom"
 		]
 	)
 
@@ -468,7 +468,7 @@ module.exports = (grunt) ->
 							'site/pages/theme/*.hbs',
 							"!site/pages/theme/splashpage*.hbs"
 						]
-				dest:  "dist/theme/"
+				dest: "dist/theme/"
 				src: "!*.*"
 
 			ajax_min:
@@ -1218,7 +1218,41 @@ module.exports = (grunt) ->
 								testHtml += "<script src='/" + path.dirname( path.relative(__dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon.js'></script>"
 								testHtml += "<!--[if lt IE 9]><script src='/" + path.dirname( path.relative(__dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon-ie.js'></script><![endif]-->"
 
-								testHtml += "<script>mocha.setup( 'bdd' ); wb.doc.on( 'ready', function() { mocha.run(); } );</script>"
+								testHtml += "<script>
+												mocha.setup( 'bdd' );
+												wb.doc.on( 'ready', function() {
+
+													var runner = mocha.run();
+
+													var tests = [];
+													runner.on('end', function(){
+														window.global_test_results = {
+															passed: runner.stats.passes,
+															failed: runner.stats.failures,
+															total: runner.stats.tests,
+															duration: runner.stats.duration,
+															tests: tests
+														};
+													});
+
+													runner.on('pass', function(test) {
+														tests.push({
+															name: test.fullTitle(),
+															result: true,
+															duration: test.duration
+														});
+													});
+
+													runner.on('fail', function (test, err) {
+														tests.push({
+															name: test.fullTitle(),
+															result: false,
+															duration: test.duration,
+															message: err.stack
+														});
+													});
+												});
+											</script>"
 
 								testHtml += "<script src='/" + testFile + "'></script>"
 
@@ -1257,17 +1291,16 @@ module.exports = (grunt) ->
 					reporter: "Spec"
 					urls: "<%= mochaUrls %>"
 
-		"saucelabs-mocha":
+		"saucelabs-custom":
 			all:
 				options:
 					urls: "<%= mochaUrls %>"
-					tunnelTimeout: 5
-					build: process.env.TRAVIS_BUILD_NUMBER
-					concurrency: 3
+					throttled: 3
 					browsers: grunt.file.readJSON "browsers.json"
 					testname: "WET-BOEW Travis Build #{process.env.TRAVIS_BUILD_NUMBER}"
 					tags: [
-						process.env.TRAVIS_BRANCH,
+						process.env.TRAVIS_BUILD_NUMBER
+						process.env.TRAVIS_BRANCH
 						process.env.TRAVIS_COMMIT
 					]
 
