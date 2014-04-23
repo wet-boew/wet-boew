@@ -15,7 +15,9 @@ $mm-ctrl-cc-color: #4aafff;
 }
 
 %multimedia-controls-outline {
-	outline: 1px dotted $mm-ctrl-fg-color;
+	&:focus {
+		outline: 1px dotted $mm-ctrl-fg-color;
+	}
 }
 
 @keyframes spin {
@@ -62,9 +64,7 @@ $mm-ctrl-cc-color: #4aafff;
 		border: 0;
 		color: $mm-ctrl-fg-color;
 
-		&:focus {
-			@extend %multimedia-controls-outline;
-		}
+		@extend %multimedia-controls-outline;
 	}
 
 	&.audio {
