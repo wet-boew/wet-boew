@@ -14,6 +14,12 @@ $mm-ctrl-cc-color: #4aafff;
 	display: none;
 }
 
+%multimedia-controls-outline {
+	&:focus {
+		outline: 1px dotted $mm-ctrl-fg-color;
+	}
+}
+
 @keyframes spin {
 	from {
 		transform: rotate(0);
@@ -57,13 +63,9 @@ $mm-ctrl-cc-color: #4aafff;
 		background: transparent;
 		border: 0;
 		color: $mm-ctrl-fg-color;
-	}
+		font-size: 130%;
 
-	progress,
-	.btn {
-		&:focus {
-			outline: 1px dotted $mm-ctrl-fg-color;
-		}
+		@extend %multimedia-controls-outline;
 	}
 
 	&.audio {
@@ -71,12 +73,8 @@ $mm-ctrl-cc-color: #4aafff;
 			@extend %multimedia-display-none;
 		}
 
-		.btn.cc {
-			@extend %multimedia-display-none;
-		}
-
 		.lastpnl {
-			width: 3em;
+			@extend %multimedia-display-none;
 		}
 	}
 
@@ -153,7 +151,6 @@ $mm-ctrl-cc-color: #4aafff;
 				border-bottom: 3px solid $mm-ctrl-cc-color;
 				margin-left: -2px;
 				width: 1.2em;
-
 			}
 		}
 
@@ -223,13 +220,13 @@ $mm-ctrl-cc-color: #4aafff;
 	.lastpnl {
 		@extend %pnl;
 		text-align: center;
-		width: 6em;
+		width: 3em;
 	}
 
 	.tline {
 		@extend %pnl;
 
-		.wb-mm-tmln-crrnt  {
+		.wb-mm-tmln-crrnt {
 			&:after {
 				content: " / ";
 				padding: 0 0.5em;
@@ -243,13 +240,15 @@ $mm-ctrl-cc-color: #4aafff;
 		}
 	}
 
-	.wb-mm-txtonly, .wb-mm-prgrss {
+	.wb-mm-txtonly,
+	.wb-mm-prgrss {
 		display: table-cell;
 		vertical-align: middle;
 	}
 
 	/* Progress Bar */
 	progress {
+		@extend %multimedia-controls-outline;
 		position: absolute;
 		top: 0;
 		left: 0;

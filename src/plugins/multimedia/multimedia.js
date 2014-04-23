@@ -867,7 +867,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		buttonData = $button.data( "state-" + ( isMuted ? "off" : "on" ) );
 		$button
 			.attr( {
-				"title": buttonData,
+				title: buttonData,
 				"aria-pressed": isMuted
 			} )
 			.children( "span" )
@@ -922,11 +922,11 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		break;
 
 	case "ccvischange":
-		isCCVisible = eventTarget.player( "getCaptionsVisible" )
+		isCCVisible = eventTarget.player( "getCaptionsVisible" );
 		$button = $this.find( ".cc" );
 		buttonData = $button.data( "state-" + ( isCCVisible ? "off" : "on" ) );
 		$button.attr( {
-			"title": buttonData,
+			title: buttonData,
 			"aria-pressed": isCCVisible
 		} ).children( "span" ).html( invStart + buttonData + invEnd );
 		break;
