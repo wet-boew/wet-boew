@@ -14,6 +14,12 @@ $mm-ctrl-cc-color: #4aafff;
 	display: none;
 }
 
+%multimedia-controls-outline {
+	&:focus {
+		outline: 1px dotted $mm-ctrl-fg-color;
+	}
+}
+
 @keyframes spin {
 	from {
 		transform: rotate(0);
@@ -52,18 +58,13 @@ $mm-ctrl-cc-color: #4aafff;
 	}
 
 	.btn {
+		@extend %multimedia-controls-outline;
 		background: transparent;
 		border: 0;
 		border-top-left-radius: 0 !important;
 		border-top-right-radius: 0 !important;
 		color: $mm-ctrl-fg-color;
-	}
-
-	progress,
-	.btn {
-		&:focus {
-			outline: 1px dotted $mm-ctrl-fg-color;
-		}
+		font-size: 130%;
 	}
 
 	&.audio {
@@ -71,12 +72,8 @@ $mm-ctrl-cc-color: #4aafff;
 			@extend %multimedia-display-none;
 		}
 
-		.btn.cc {
-			@extend %multimedia-display-none;
-		}
-
 		.lastpnl {
-			width: 3em;
+			@extend %multimedia-display-none;
 		}
 	}
 
@@ -153,7 +150,6 @@ $mm-ctrl-cc-color: #4aafff;
 				border-bottom: 3px solid $mm-ctrl-cc-color;
 				margin-left: -2px;
 				width: 1.2em;
-
 			}
 		}
 
@@ -229,7 +225,7 @@ $mm-ctrl-cc-color: #4aafff;
 	.tline {
 		@extend %pnl;
 
-		.wb-mm-tmln-crrnt  {
+		.wb-mm-tmln-crrnt {
 			&:after {
 				content: " / ";
 				padding: 0 0.5em;
@@ -243,13 +239,15 @@ $mm-ctrl-cc-color: #4aafff;
 		}
 	}
 
-	.wb-mm-txtonly, .wb-mm-prgrss {
+	.wb-mm-txtonly,
+	.wb-mm-prgrss {
 		display: table-cell;
 		vertical-align: middle;
 	}
 
 	/* Progress Bar */
 	progress {
+		@extend %multimedia-controls-outline;
 		/* Important Thing */
 		-webkit-appearance: none;
 		display: block;
