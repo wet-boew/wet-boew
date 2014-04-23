@@ -841,7 +841,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		$this = $( eventTarget ),
 		invStart = "<span class='wb-inv'>",
 		invEnd = "</span>",
-		currentTime, $button, buttonData, isPlay, getMuted, ref, skipTo;
+		currentTime, $button, buttonData, isPlay, isMuted, isCCVisible, ref, skipTo;
 	switch ( eventType ) {
 	case "play":
 	case "pause":
@@ -865,14 +865,17 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		break;
 
 	case "volumechange":
-		getMuted = eventTarget.player( "getMuted" );
+		isMuted = eventTarget.player( "getMuted" );
 		$button = $this.find( ".mute" );
-		buttonData = $button.data( "state-" + ( getMuted ? "off" : "on" ) );
+		buttonData = $button.data( "state-" + ( isMuted ? "off" : "on" ) );
 		$button
-			.attr( "title", buttonData )
+			.attr( {
+				title: buttonData,
+				"aria-pressed": isMuted
+			} )
 			.children( "span" )
-				.toggleClass( "glyphicon-volume-up", !getMuted )
-				.toggleClass( "glyphicon-volume-off", getMuted )
+				.toggleClass( "glyphicon-volume-up", !isMuted )
+				.toggleClass( "glyphicon-volume-off", isMuted )
 				.html( invStart + buttonData + invEnd );
 		break;
 
@@ -922,9 +925,13 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		break;
 
 	case "ccvischange":
+		isCCVisible = eventTarget.player( "getCaptionsVisible" );
 		$button = $this.find( ".cc" );
-		buttonData = $button.data( "state-" + ( eventTarget.player( "getCaptionsVisible" ) ? "off" : "on" ) );
-		$button.attr( "title", buttonData ).children( "span" ).html( invStart + buttonData + invEnd );
+		buttonData = $button.data( "state-" + ( isCCVisible ? "off" : "on" ) );
+		$button.attr( {
+			title: buttonData,
+			"aria-pressed": isCCVisible
+		} ).children( "span" ).html( invStart + buttonData + invEnd );
 		break;
 
 	case "waiting":
