@@ -11,16 +11,16 @@
 	}
 
 	li {
-		white-space: nowrap;
 		max-width: 100%;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		white-space: nowrap;
 
 		&:before,
 		&:after {
+			color: #333;
 			font-family: "Glyphicons Halflings";
 			font-size: 0.7em;
-			color: #333;
 		}
 
 		&:before {

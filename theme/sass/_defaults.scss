@@ -11,10 +11,10 @@
 }
 
 %accessible-invisible {
-	height: 1px;
-	width: 1px;
 	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	margin: 0;
 	overflow: hidden;
 	position: absolute;
-	margin: 0;
+	width: 1px;
 }

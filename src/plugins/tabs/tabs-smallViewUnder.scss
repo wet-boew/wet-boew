@@ -19,18 +19,18 @@
 }
 
 .wb-tabs {
-	border-top: 1px solid #adadad;
 	border-radius: 4px;
+	border-top: 1px solid #adadad;
 	margin-bottom: 15px;
 
 	&.carousel-s1,
 	&.carousel-s2 {
 		figcaption {
-			position: relative;
-			top: auto;
-			right: 0;
 			bottom: 0;
 			left: 0;
+			position: relative;
+			right: 0;
+			top: auto;
 		}
 	}
 
@@ -56,8 +56,8 @@
 					&.active,
 					&:focus,
 					&:hover {
-						top: 0;
 						cursor: default;
+						top: 0;
 					}
 				}
 			}
@@ -66,13 +66,13 @@
 
 	&.carousel-s2 {
 		$smallViewToolbarSize: 4.375em;
+		background: #eee;
 		margin-bottom: auto;
 		padding-bottom: $smallViewToolbarSize;
-		background: #eee;
 
 		[role="tablist"] {
-			height: auto;
 			bottom: 0;
+			height: auto;
 			margin-top: -$smallViewToolbarSize;
 
 			li {
