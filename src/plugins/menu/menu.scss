@@ -55,13 +55,12 @@
 
 					&:hover,
 					&:focus {
-						text-decoration: underline;
+						@extend %global-text-decoration-none;
 					}
 
 					&[aria-haspopup] {
 						&:hover,
 						&:focus {
-							@extend %global-text-decoration-none;
 							cursor: default;
 						}
 					}
