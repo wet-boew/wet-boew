@@ -497,6 +497,7 @@ var pluginName = "wb-mltmd",
 			break;
 		case 1:
 			$target.trigger( "canplay" );
+			$target.trigger( "durationchange" );
 			$target.trigger( "play" );
 			target.timeline = setInterval( timeline, 250 );
 			break;
@@ -736,7 +737,7 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 	$this.data( "properties", data );
 
 	// Trigger the duration change for cases where the event was called before the event binding
-	if ( !isNaN( this.player( "getDuration" ) ) && type !== "youtube" ) {
+	if ( type !== "youtube" && !isNaN( this.player( "getDuration" ) ) ) {
 		data.player.trigger( "durationchange" );
 	}
 
