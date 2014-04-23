@@ -8,6 +8,7 @@ $mm-cc-fg-color: #fff;
 $mm-cc-bg-color: #000;
 $mm-ctrl-fg-color: #fff;
 $mm-ctrl-bg-color: #3e3e3e;
+$mm-ctrl-cc-color: #4aafff;
 
 %multimedia-display-none {
 	display: none;
@@ -146,7 +147,14 @@ $mm-ctrl-bg-color: #3e3e3e;
 		}
 
 		.cc {
-			opacity: 1;
+			&:before {
+				content: " ";
+				display: block;
+				border-bottom: 3px solid $mm-ctrl-cc-color;
+				margin-left: -1px;
+				width: 1.1em;
+
+			}
 		}
 
 		&.youtube {
@@ -227,10 +235,6 @@ $mm-ctrl-bg-color: #3e3e3e;
 				padding: 0 0.5em;
 			}
 		}
-	}
-
-	.cc {
-		opacity: .5;
 	}
 
 	.wb-mm-txtonly {
