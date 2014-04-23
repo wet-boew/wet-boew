@@ -6,7 +6,7 @@
 	content: " ";
 	display: inline-block;
 	font-family: "Glyphicons Halflings";
-	font-size: 0.9em;
+	font-weight: 400;
 }
 
 %tables-clear-both {
@@ -270,6 +270,10 @@ table {
 	position: absolute;
 }
 
+%tables-sorting-active {
+	background: #e7e7e7;
+}
+
 .sorting {
 	@extend %tables-cursor-pointer;
 
@@ -277,27 +281,29 @@ table {
 		@extend %table_icons;
 		@extend %tables-sorting-margin-left-5-position-absolute;
 		color: #757575;
-		content: "\e150";
+		content: "\e151";
 	}
 }
 
 .sorting_asc {
 	@extend %tables-cursor-pointer;
+	@extend %tables-sorting-active;
 
 	&:after {
 		@extend %table_icons;
 		@extend %tables-sorting-margin-left-5-position-absolute;
-		content: "\e093";
+		content: "\e152";
 	}
 }
 
 .sorting_desc {
 	@extend %tables-cursor-pointer;
+	@extend %tables-sorting-active;
 
 	&:after {
 		@extend %table_icons;
 		@extend %tables-sorting-margin-left-5-position-absolute;
-		content: "\e094";
+		content: "\e151";
 	}
 }
 
