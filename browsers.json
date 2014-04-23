@@ -5,6 +5,10 @@
     "browserName": "chrome",
     "platform": "Windows 7"
 },{
+    "browserName": "internet explorer",
+    "platform": "Windows 7",
+    "version": "8"
+},{
     "browserName": "safari",
     "platform": "OS X 10.8"
 },{
