@@ -11,11 +11,11 @@
 	padding-bottom: 2em;
 
 	h3 {
-		padding: 15px;
-		margin: 0;
 		border: 1px solid #ddd;
 		border-bottom: 3px solid #666;
 		font-size: 1em;
+		margin: 0;
+		padding: 15px;
 
 		a {
 			color: #333;
@@ -29,8 +29,8 @@
 		a {
 			&.list-group-item {
 				background: $clrWhite;
-				color: $clrDark;
 				border-radius: 0;
+				color: $clrDark;
 				margin-top: -1px;
 				text-decoration: none;
 

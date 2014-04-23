@@ -7,15 +7,14 @@
 @import "../../../lib/magnific-popup/src/css/main";
 
 %lightbox-button-outline {
-	outline: 1px dotted;
+	outline: 1px dotted #fff;
 	outline-offset: -2px;
-	outline-color: #fff;
 }
 
 .lbx-hide-gal {
 	li {
-		list-style-type: none;
 		display: none;
+		list-style-type: none;
 
 		&:first-child {
 			display: block;
@@ -24,9 +23,9 @@
 }
 
 .modal-dialog {
+	left: auto;
 	padding: 0;
 	position: relative;
-	left: auto;
 }
 
 .modal-content {
@@ -56,13 +55,13 @@
 /* Should fix upstream in Magnific Popup rather than overriding in WET */
 .mfp-bottom-bar {
 	.mfp-title {
-		width: 75%;
 		padding-right: 5px;
+		width: 75%;
 	}
 
 	.mfp-counter {
 		font-size: 1em;
-		width: 25%;
 		text-align: right;
+		width: 25%;
 	}
 }

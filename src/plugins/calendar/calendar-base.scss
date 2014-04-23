@@ -12,12 +12,9 @@
 }
 
 .cal-cnt {
-	width: 18em;
-	text-shadow: none;
-}
-
-.cal-cnt {
 	background: #fff;
+	text-shadow: none;
+	width: 18em;
 
 	* {
 		font-size: 100%;
@@ -26,8 +23,8 @@
 	.cal-hd {
 		overflow: hidden;
 		padding: 0.5em 4px;
-		text-align: center;
 		position: relative;
+		text-align: center;
 	}
 
 	.cal-mnth {
@@ -53,8 +50,8 @@
 		@extend %cal-position-relative;
 
 		input {
-			padding: 0.1em 0.2em;
 			min-width: 5em;
+			padding: 0.1em 0.2em;
 		}
 	}
 
@@ -67,11 +64,11 @@
 
 .cal-nxtmnth,
 .cal-prvmnth {
-	display: inline-block;
 	background: none;
 	border: 0;
-	width: 2.5em;
+	display: inline-block;
 	height: 2.5em;
+	width: 2.5em;
 
 	&:focus {
 		outline: 1px dotted;
@@ -84,8 +81,8 @@
 }
 
 .cal-wd {
-	color: #fff;
 	border: 1px solid #333;
+	color: #fff;
 	padding: 0.5em 0;
 	text-align: center;
 }

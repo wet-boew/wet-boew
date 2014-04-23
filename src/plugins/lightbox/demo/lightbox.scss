@@ -3,13 +3,13 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 %lightbox-demo-box {
-	display: block;
-	width: 150px;
-	height: 150px;
-	border: 1px solid #000;
-	text-align: center;
-	line-height: 148px;
 	background: #eee;
+	border: 1px solid #000;
+	display: block;
+	height: 150px;
+	line-height: 148px;
+	text-align: center;
+	width: 150px;
 }
 
 .wb-lbx-demo {
@@ -33,8 +33,8 @@
 			&:hover,
 			&:focus,
 			&:active {
-				text-decoration: underline;
 				background: #fff;
+				text-decoration: underline;
 			}
 		}
 	}

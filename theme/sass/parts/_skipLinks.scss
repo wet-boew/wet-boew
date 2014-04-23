@@ -31,9 +31,9 @@
 
 	&:focus {
 		color: #fff;
-		text-decoration: none;
-		z-index: 501;
 		/* Shouldn't be needed. Only here because Bootstrap forces an outline colour */
 		outline-color: #fff;
+		text-decoration: none;
+		z-index: 501;
 	}
 }

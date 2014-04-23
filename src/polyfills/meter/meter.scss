@@ -4,18 +4,18 @@
  */
 // Based on code from https://gist.github.com/667320
 meter {
-	display: block;
 	border: 1px outset;
+	display: block;
 	height: 20px;
-	width: 100px;
 	overflow: hidden;
+	width: 100px;
 
 	div {
-		display: block;
-		border-right: 1px solid #000;
-		height: 20px;
 		background: #b4e391;
 		background-image: linear-gradient(top, #b4e391 0, #4a0 35%, #b4e391 100%);
+		border-right: 1px solid #000;
+		display: block;
+		height: 20px;
 	}
 
 	&.meterValueTooHigh,

@@ -10,7 +10,7 @@
 // Hack for Bootstrap 3.1.1, since it doesn't convert the "fadein" LESS method.
 // Pending fix release in https://github.com/twbs/bootstrap-sass/commit/df7be4f0412497e22f1d271d94d6e9835f61113e
 @function fadein($colour, $pct) {
-	@return opacify($colour, $pct / 100.0);
+	@return opacify($colour, $pct / 100);
 }
 
 // Override Bootstrap's expected font path
@@ -22,21 +22,21 @@ $icon-font-path: "../fonts/";
  Global placeholders
  */
 %accessible-invisible {
-	height: 1px;
-	width: 1px;
 	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	margin: 0;
 	overflow: hidden;
 	position: absolute;
-	margin: 0;
+	width: 1px;
 }
 
 %accessible-invisible-show {
-	height: inherit;
-	width: inherit;
 	clip: rect(auto, auto, auto, auto);
+	height: inherit;
+	margin: inherit;
 	overflow: inherit;
 	position: static;
-	margin: inherit;
+	width: inherit;
 }
 
 %global-display-none {

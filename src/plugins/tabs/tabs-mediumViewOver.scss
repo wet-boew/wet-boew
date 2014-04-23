@@ -4,23 +4,23 @@
  */
 
 %tabs-mediumview-prv-nxt-common {
-	top: 0;
 	bottom: 0;
 	height: 100%;
+	top: 0;
 	width: 3em;
 }
 
 %tabs-mediumview-prv-nxt-a-common {
-	position: absolute;
-	top: 0;
 	bottom: 0;
 	left: 0;
+	position: absolute;
+	top: 0;
 }
 
 %tabs-mediumview-prv-nxt-glyphicon-common {
+	bottom: 0;
 	position: absolute;
 	top: 0;
-	bottom: 0;
 }
 
 %tabs-mediumview-right-0 {
@@ -63,8 +63,8 @@
 							@extend %tabs-mediumview-prv-nxt-glyphicon-common;
 							bottom: 0;
 							left: .25em;
-							padding-top: 1px;
 							padding-right: 2px;
+							padding-top: 1px;
 						}
 
 						&:focus,
@@ -103,8 +103,8 @@
 
 	> {
 		details {
-			display: none;
 			border: 1px solid #ccc;
+			display: none;
 			margin-top: -1px;
 
 			&[open] {

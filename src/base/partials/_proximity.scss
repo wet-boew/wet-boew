@@ -85,8 +85,8 @@
  *	Fix for missing bullets in Chrome and Safari
  */
 [class*=clmn-] {
-	padding-left: 1.3em;
 	list-style: outside;
+	padding-left: 1.3em;
 
 	> {
 		li {
@@ -263,8 +263,8 @@
  *	Fix for missing bullets in Chrome and Safari
  */
 [class*=colcount-] {
-	padding-left: 1.3em;
 	list-style: outside;
+	padding-left: 1.3em;
 
 	> {
 		li {
@@ -273,8 +273,8 @@
 	}
 
 	&.list-unstyled {
-		padding-left: 0;
 		list-style: none outside none;
+		padding-left: 0;
 
 		li {
 			margin-left: 0;

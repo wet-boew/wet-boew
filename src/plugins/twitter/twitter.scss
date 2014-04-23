@@ -65,16 +65,16 @@
 
 	a {
 		&.twitter-timeline {
-			display: block;
-			direction: ltr;
-			text-indent: -9999px;
-			font-size: 90%;
-			min-height: 50px;
-			overflow: auto;
 			background: #fff;
 			border: 1px solid #ccc;
+			direction: ltr;
+			display: block;
+			font-size: 90%;
 			margin: 0 !important;
+			min-height: 50px;
+			overflow: auto;
 			padding: 5px !important;
+			text-indent: -9999px;
 		}
 	}
 }

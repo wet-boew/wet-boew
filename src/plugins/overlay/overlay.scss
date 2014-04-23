@@ -7,11 +7,11 @@
  *	Overlay base
  */
 .wb-overlay {
-	background-color: #fff;
-	display: none;
-	border-radius: 0;
-	border: 0;
 	background-clip: border-box;
+	background-color: #fff;
+	border: 0;
+	border-radius: 0;
+	display: none;
 	z-index: 1050;
 
 	&.wb-inview {
@@ -19,22 +19,22 @@
 	}
 
 	&.open {
-		position: fixed;
 		display: inline-block;
+		position: fixed;
 	}
 }
 
 %overlay-panel {
-	top: 0;
 	height: 100%;
 	max-width: 90%;
+	top: 0;
 }
 
 %overlay-bar {
+	border-bottom: 0;
+	left: 0;
 	max-height: 90%;
 	min-width: 100%;
-	left: 0;
-	border-bottom: 0;
 }
 
 %overlay-popup {
@@ -68,18 +68,18 @@
 .wb-popup-mid {
 	@extend %overlay-popup;
 	border-radius: 6px;
-	top: 0;
 	bottom: 0;
 	left: 0;
-	right: 0;
 	margin: auto;
+	right: 0;
+	top: 0;
 }
 
 .wb-popup-full {
-	width: 100%;
 	height: 100%;
-	top: 0;
 	left: 0;
+	top: 0;
+	width: 100%;
 }
 
 /*
@@ -119,17 +119,17 @@
 		background-color: #000;
 		border-radius: 999px;
 		height: 1em;
-		width: 1em;
 		line-height: 1em;
-		margin-top: 10px;
 		margin-right: 20px;
+		margin-top: 10px;
+		width: 1em;
 	}
 }
 
 [dir=rtl] {
 	.mfp-close {
-		right: auto;
 		left: 0;
+		right: auto;
 	}
 
 	.wb-panel-l {
@@ -138,8 +138,8 @@
 	}
 
 	.wb-panel-r {
-		right: auto;
 		left: 0;
+		right: auto;
 	}
 
 	.overlay-def {

@@ -2,15 +2,14 @@
 
 .wb-eqht {
 	section {
-		display: inline-block;
-		width: 100%;
-		padding: 15px;
-		margin-bottom: 15px;
-
 		border: 1px solid #ddd;
 		border-radius: 4px;
-		box-sizing: border-box;
 		box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+		box-sizing: border-box;
+		display: inline-block;
+		margin-bottom: 15px;
+		padding: 15px;
+		width: 100%;
 
 		@media (min-width: $smallViewMin) {
 			width: 49%;

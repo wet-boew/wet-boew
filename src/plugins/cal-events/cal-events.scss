@@ -3,17 +3,17 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 .ev-details {
-	color: #000;
 	background-color: $clrWhite;
-	padding: 0;
-	position: absolute;
-	z-index: 5;
 	border: 1px solid #333;
-	width: 10em;
+	color: #000;
+	list-style-type: none;
 	margin: 0;
 	margin-top: -0.5em;
-	list-style-type: none;
-	
+	padding: 0;
+	position: absolute;
+	width: 10em;
+	z-index: 5;
+
 	a {
 		&:hover,
 		&:focus {
@@ -25,8 +25,8 @@
 .cal-days {
 	a {
 		&.cal-evt {
-			color: $clrWhite;
 			background: #176ca7;
+			color: $clrWhite;
 		}
 	}
 }

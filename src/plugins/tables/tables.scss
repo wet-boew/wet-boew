@@ -163,8 +163,8 @@ table {
 .paginate_enabled_previous,
 .paginate_disabled_next,
 .paginate_enabled_next {
-	cursor: pointer;
 	color: #111 !important;
+	cursor: pointer;
 
 	&:active {
 		@extend %tables-outline-none;
@@ -173,8 +173,8 @@ table {
 
 %table-icon-disabled {
 	color: #757575 !important;
-	text-decoration: none;
 	cursor: default;
+	text-decoration: none;
 }
 
 .paginate_disabled_next {
@@ -191,8 +191,8 @@ table {
 
 	&:before {
 		@extend %table_icons;
-		margin-right: 5px;
 		content: "\e091";
+		margin-right: 5px;
 	}
 }
 
@@ -202,18 +202,18 @@ table {
 
 	&:after {
 		@extend %table_icons;
-		margin-left: 5px;
 		content: "\e092";
+		margin-left: 5px;
 	}
 }
 
 /* Full number pagination */
 %tables-paginate-button-active {
 	border: 1px solid #aaa;
-	padding: 2px 5px;
-	margin: 0 3px;
-	cursor: pointer;
 	color: #333 !important;
+	cursor: pointer;
+	margin: 0 3px;
+	padding: 2px 5px;
 }
 
 .paging_full_numbers {
@@ -247,19 +247,19 @@ table {
  * Processing indicator
  */
 .dataTables_processing {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 250px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	color: #999;
+	font-size: 14px;
 	height: 30px;
+	left: 50%;
 	margin-left: -125px;
 	margin-top: -15px;
 	padding: 14px 0 2px;
-	border: 1px solid #ddd;
+	position: absolute;
 	text-align: center;
-	color: #999;
-	font-size: 14px;
-	background-color: #fff;
+	top: 50%;
+	width: 250px;
 }
 
 /*
@@ -276,8 +276,8 @@ table {
 	&:after {
 		@extend %table_icons;
 		@extend %tables-sorting-margin-left-5-position-absolute;
-		content: "\e150";
 		color: #757575;
+		content: "\e150";
 	}
 }
 
@@ -330,8 +330,8 @@ table {
 }
 
 %tables-th-padding-right-8-padding-left-15em {
-	padding-right: 8px;
 	padding-left: 15em;
+	padding-right: 8px;
 }
 
 [dir=rtl] {

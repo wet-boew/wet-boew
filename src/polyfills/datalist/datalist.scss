@@ -3,28 +3,28 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 .wb-al {
-	position: absolute;
-	margin-top: -6px;
-	padding-left: 0;
-	z-index: 50;
 	background: #fff;
-	max-height: 18em;
-	overflow: auto;
-	width: 100%;
-	list-style-type: none;
 	border: 1px solid #666;
 	border-top: 0;
+	list-style-type: none;
+	margin-top: -6px;
+	max-height: 18em;
+	overflow: auto;
+	padding-left: 0;
+	position: absolute;
+	width: 100%;
+	z-index: 50;
 
 	.al-lbl {
-		padding-left: 10px;
 		float: right;
+		padding-left: 10px;
 	}
 
 	a {
-		text-decoration: none;
 		color: #000;
 		display: block;
 		padding-left: 10px;
+		text-decoration: none;
 
 		&:hover,
 		&:focus {
