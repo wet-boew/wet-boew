@@ -32,7 +32,7 @@
     "assemble-contrib-i18n": "~0.1.2",
     "expect.js": "~0.2.0",
     "grunt": "~0.4.1",
-    "grunt-autoprefixer": "~0.4.0",
+    "grunt-autoprefixer": "^0.7.2",
     "grunt-check-dependencies": "~0.3.0",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-concat": "~0.3.0",
