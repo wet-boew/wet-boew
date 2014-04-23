@@ -8,6 +8,7 @@ $mm-cc-fg-color: #fff;
 $mm-cc-bg-color: #000;
 $mm-ctrl-fg-color: #fff;
 $mm-ctrl-bg-color: #3e3e3e;
+$mm-ctrl-cc-color: #4aafff;
 
 %multimedia-display-none {
 	display: none;
@@ -146,7 +147,14 @@ $mm-ctrl-bg-color: #3e3e3e;
 		}
 
 		.cc {
-			opacity: 1;
+			&:before {
+				content: " ";
+				display: block;
+				border-bottom: 3px solid $mm-ctrl-cc-color;
+				margin-left: -1px;
+				width: 1.1em;
+
+			}
 		}
 
 		&.youtube {
@@ -204,6 +212,7 @@ $mm-ctrl-bg-color: #3e3e3e;
 	color: $mm-ctrl-fg-color;
 	position: relative;
 	width: 100%;
+	padding-top: 2em;
 
 	.frstpnl {
 		@extend %pnl;
@@ -222,13 +231,10 @@ $mm-ctrl-bg-color: #3e3e3e;
 
 		.wb-mm-tmln-crrnt  {
 			&:after {
-				content: " / "
+				content: " / ";
+				padding: 0 0.5em;
 			}
 		}
-	}
-
-	.cc {
-		opacity: .5;
 	}
 
 	.wb-mm-txtonly {
@@ -244,12 +250,17 @@ $mm-ctrl-bg-color: #3e3e3e;
 
 	/* Progress Bar */
 	progress {
+		position: absolute;
+		top: 0;
+		left: 0;
 		width: 100%;
-		height: 16px;
+		height: 30px;
 		display: block;
 		/* Important Thing */
 		-webkit-appearance: none;
-		border: 0;
+		border: 7px solid #3e3e3e;
+		border-radius: 14px;
+		padding: 2px;
 		color: $mm-progress-fg-color;
 		background: $mm-progress-bg-color;
 
@@ -259,14 +270,16 @@ $mm-ctrl-bg-color: #3e3e3e;
 
 		&::-webkit-progress-value {
 			background: $mm-progress-fg-color;
+			border-radius: 7px;
 		}
 
 		&::-moz-progress-bar {
 			background: $mm-progress-fg-color;
+			border-radius: 7px;
 		}
 	}
 
 	.progress {
-		height: 16px;
+		height: 22px;
 	}
 }
