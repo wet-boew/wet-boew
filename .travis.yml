@@ -2,12 +2,12 @@ language: java
 
 env:
   global:
-    - secure: "S1Bnt1YZ9Vvp86L8Wv1kjnN+HvGAtA7EBmPtP2B/7yvpgL1hYPDPGn9E6lYKJL2MHUtwF0xwWIbKiunrJBsO91P79s3u/AUxvEDX0wIl6eezPeISUG3cNbWzkbNqeYuVMjeoPE1Y6SDF1+NYW2oV4jzrpLKIZ1XsH3fYEPDuFQE="
+    - secure: "rmN2TEeTxkLgdDPEK3pzaP4nLQxikAzu1wXlChlWYZFz8gb1rr5BJHqZAQhnAqtPA0209sRBa20r9LbBRNY87mnODl7BbOb1o/i400NWxKHdQHpMa0LRZRJz/GWu3X6+ny4l9hB4f6KOnL8UAbFEWPxBnZI7KD30fLNGVxgN/xo="
     - POST_BUILD=true
 
 script:
   - ant test -Djshint.failbuild=true && ant && ./build/post_build.sh
-  
+
 notifications:
   irc:
   - "chat.freenode.net#wet-boew"
