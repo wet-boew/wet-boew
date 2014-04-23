@@ -63,6 +63,7 @@ $mm-ctrl-cc-color: #4aafff;
 		background: transparent;
 		border: 0;
 		color: $mm-ctrl-fg-color;
+		font-size: 130%;
 
 		@extend %multimedia-controls-outline;
 	}
