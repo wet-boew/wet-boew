@@ -497,6 +497,7 @@ var pluginName = "wb-mltmd",
 			break;
 		case 1:
 			$target.trigger( "canplay" );
+			$target.trigger( "durationchange" );
 			$target.trigger( "play" );
 			target.timeline = setInterval( timeline, 250 );
 			break;
