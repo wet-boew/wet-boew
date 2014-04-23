@@ -223,7 +223,8 @@ $mm-ctrl-bg-color: #3e3e3e;
 
 		.wb-mm-tmln-crrnt  {
 			&:after {
-				content: " / "
+				content: " / ";
+				padding: 0 0.5em;
 			}
 		}
 	}
