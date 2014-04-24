@@ -73,6 +73,7 @@ wb.i18nDict = {
 	pause: "@pause@",
 	open: "@open@",
 	close: "@close@",
+	volume: "@volume@",
 	mute: {
 		on: "@mute-on@",
 		off: "@mute-off@"

@@ -213,7 +213,7 @@ $mm-ctrl-cc-color: #4aafff;
 	.frstpnl {
 		@extend %pnl;
 		text-align: center;
-		width: 8em;
+		width: 13em;
 	}
 
 	.lastpnl {
@@ -234,6 +234,7 @@ $mm-ctrl-cc-color: #4aafff;
 	}
 
 	.wb-mm-txtonly {
+		padding: 0 1em;
 		p {
 			display: inline;
 		}
@@ -279,5 +280,13 @@ $mm-ctrl-cc-color: #4aafff;
 
 	.progress {
 		height: 22px;
+	}
+
+	input {
+		&[type=range] {
+			display: inline-block;
+			height: 2.5em;
+			width: 7em;
+		}
 	}
 }
