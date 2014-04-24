@@ -52,6 +52,7 @@ var pluginName = "wb-mltmd",
 				i18nText = {
 					play: i18n( "play" ),
 					pause: i18n( "pause" ),
+					volume: i18n( "volume" ),
 					cc_on: i18n( "cc", "on" ),
 					cc_off: i18n( "cc", "off" ),
 					cc_error: i18n ( "cc-err" ),
@@ -784,13 +785,22 @@ $document.on( "click", selector, function( event ) {
 	}
 });
 
+$document.on( "input change", selector, function(event) {
+	var target = event.target;
+
+	if ( $( target ).hasClass( "volume" ) ) {
+		event.currentTarget.player( "setVolume", target.value );
+	}
+});
+
 $document.on( "keydown", selector, function( event ) {
 	var playerTarget = event.currentTarget,
 		which = event.which,
 		ctrls = ".wb-mm-ctrls",
 		ref = expand( playerTarget ),
 		$this = ref[ 0 ],
-		volume = 0;
+		volume = 0,
+		step = 0.05;
 
 	if ( !( event.ctrlKey || event.altKey || event.metaKey ) ) {
 		switch ( which ) {
@@ -807,12 +817,12 @@ $document.on( "keydown", selector, function( event ) {
 			break;
 
 		case 38:
-			volume = Math.round( playerTarget.player( "getVolume" ) * 10 ) / 10 + 0.1;
+			volume = Math.round( playerTarget.player( "getVolume" ) * 100 ) / 100 + step;
 			playerTarget.player( "setVolume", volume < 1 ? volume : 1 );
 			break;
 
 		case 40:
-			volume = Math.round( playerTarget.player( "getVolume" ) * 10 ) / 10 - 0.1;
+			volume = Math.round( playerTarget.player( "getVolume" ) * 100 ) / 100 - step;
 			playerTarget.player( "setVolume", volume > 0 ? volume : 0 );
 			break;
 
@@ -841,7 +851,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		$this = $( eventTarget ),
 		invStart = "<span class='wb-inv'>",
 		invEnd = "</span>",
-		currentTime, $button, buttonData, isPlay, isMuted, isCCVisible, ref, skipTo;
+		currentTime, $button, $slider, buttonData, isPlay, isMuted, isCCVisible, ref, skipTo;
 	switch ( eventType ) {
 	case "play":
 	case "pause":
@@ -877,6 +887,8 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 				.toggleClass( "glyphicon-volume-up", !isMuted )
 				.toggleClass( "glyphicon-volume-off", isMuted )
 				.html( invStart + buttonData + invEnd );
+		$slider = $this.find( "input[type='range']" );
+		$slider[0].value = eventTarget.player( "getVolume" );
 		break;
 
 	case "timeupdate":
