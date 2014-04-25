@@ -9,6 +9,8 @@ $mm-cc-bg-color: #000;
 $mm-ctrl-fg-color: #fff;
 $mm-ctrl-bg-color: #3e3e3e;
 $mm-ctrl-cc-color: #4aafff;
+$mm-volume-bg-color: #AAA;
+$mm-volume-thumb-color: #FFF;
 
 %multimedia-display-none {
 	display: none;
@@ -284,10 +286,49 @@ $mm-ctrl-cc-color: #4aafff;
 
 	input {
 		&[type=range] {
+			-webkit-appearance: none;
+			background: transparent;
 			display: inline-block;
 			height: 2.5em;
 			width: 7em;
 			padding: 0;
+
+			&::-webkit-slider-runnable-track  {
+				background: $mm-volume-bg-color;
+				height: 4px;
+			}
+
+			&::-webkit-slider-thumb {
+				margin-top: -8px;
+			}
+
+			&::-moz-range-track {
+				background: $mm-volume-bg-color;
+				border: none;
+			}
+
+			&::-moz-range-thumb {
+				border-radius: 0;
+				height: 1.3em;
+				width: 10px;
+			}
+
+			&::-ms-track {
+				height: 4px;
+			}
+
+			&::-ms-fill-upper {
+				background: $mm-volume-bg-color;
+			}
+
+			&::-ms-fill-lower {
+				background: $mm-volume-bg-color;		
+			}
+
+			&::-ms-thumb {
+				background: $mm-volume-thumb-color;
+				height: 1.3em;
+			}
 		}
 	}
 }
