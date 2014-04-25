@@ -792,6 +792,7 @@ $document.on( "input change", selector, function(event) {
 	var target = event.target;
 
 	if ( $( target ).hasClass( "volume" ) ) {
+		event.currentTarget.player( "setMuted", false );
 		event.currentTarget.player( "setVolume", target.value / 100 );
 	}
 });
@@ -854,7 +855,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		$this = $( eventTarget ),
 		invStart = "<span class='wb-inv'>",
 		invEnd = "</span>",
-		currentTime, $button, $slider, buttonData, isPlay, isMuted, isCCVisible, ref, skipTo;
+		currentTime, $button, $slider, buttonData, isPlay, isMuted, isCCVisible, ref, skipTo, volume;
 	switch ( eventType ) {
 	case "play":
 	case "pause":
@@ -881,6 +882,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		isMuted = eventTarget.player( "getMuted" );
 		$button = $this.find( ".mute" );
 		buttonData = $button.data( "state-" + ( isMuted ? "off" : "on" ) );
+		volume = eventTarget.player( "getVolume" ) * 100;
 		$button
 			.attr( {
 				title: buttonData,
@@ -891,7 +893,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 				.toggleClass( "glyphicon-volume-off", isMuted )
 				.html( invStart + buttonData + invEnd );
 		$slider = $this.find( "input[type='range']" );
-		$slider[0].value = eventTarget.player( "getVolume" ) * 100;
+		$slider[0].value = isMuted ? 0 : volume;
 		break;
 
 	case "timeupdate":
