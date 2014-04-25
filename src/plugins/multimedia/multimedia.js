@@ -743,6 +743,9 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 	// Load the progress polyfill if needed
 	$this.find( "progress" ).trigger( "wb-init.wb-progress" );
 
+	// Load the slider polyfill if needed
+	$this.find( "input[type=range]" ).trigger( "wb-init.wb-slider" );
+
 	if ( data.captions === undef ) {
 		return 1;
 	}
@@ -789,7 +792,7 @@ $document.on( "input change", selector, function(event) {
 	var target = event.target;
 
 	if ( $( target ).hasClass( "volume" ) ) {
-		event.currentTarget.player( "setVolume", target.value );
+		event.currentTarget.player( "setVolume", target.value / 100 );
 	}
 });
 
@@ -888,7 +891,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 				.toggleClass( "glyphicon-volume-off", isMuted )
 				.html( invStart + buttonData + invEnd );
 		$slider = $this.find( "input[type='range']" );
-		$slider[0].value = eventTarget.player( "getVolume" );
+		$slider[0].value = eventTarget.player( "getVolume" ) * 100;
 		break;
 
 	case "timeupdate":
