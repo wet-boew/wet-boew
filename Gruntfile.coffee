@@ -549,7 +549,7 @@ module.exports = (grunt) ->
 					ext: ".css"
 				,
 					expand: true
-					cwd: "theme/sass"
+					cwd: "theme"
 					src: [
 						"**/*.scss"
 					]
@@ -583,12 +583,6 @@ module.exports = (grunt) ->
 				,
 					expand: true
 					cwd: "src/other"
-					src: "**/demo/*.scss"
-					dest: "dist/unmin/demos/"
-					ext: ".css"
-				,
-					expand: true
-					cwd: "src/themestyle"
 					src: "**/demo/*.scss"
 					dest: "dist/unmin/demos/"
 					ext: ".css"
@@ -1011,14 +1005,6 @@ module.exports = (grunt) ->
 					expand: true
 				,
 					cwd: "src/other"
-					src: [
-						"**/demo/*.*"
-						"!**/*.scss"
-					]
-					dest: "dist/unmin/demos/"
-					expand: true
-				,
-					cwd: "src/themestyle"
 					src: [
 						"**/demo/*.*"
 						"!**/*.scss"

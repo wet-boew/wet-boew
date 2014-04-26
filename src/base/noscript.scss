@@ -6,14 +6,14 @@
 /*
  Plugins
  */
-@import "../plugins/tabs/tabs-noscript";
-@import "../plugins/menu/menu-noscript";
+@import "../plugins/tabs/noscript";
+@import "../plugins/menu/noscript";
 
 /*
  Polyfills
  */
-@import "../polyfills/details/details-noscript";
-@import "../polyfills/datepicker/datepicker-noscript";
+@import "../polyfills/details/noscript";
+@import "../polyfills/datepicker/noscript";
 
 .nojs-show {
 	display: block !important;

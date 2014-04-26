@@ -5,16 +5,7 @@
 /*
  * GLYPHICONS Halflings for Twitter Bootstrap by GLYPHICONS.com | Licensed under http://www.apache.org/licenses/LICENSE-2.0
  */
-@import "../_variables";
-
-// Hack for Bootstrap 3.1.1, since it doesn't convert the "fadein" LESS method.
-// Pending fix release in https://github.com/twbs/bootstrap-sass/commit/df7be4f0412497e22f1d271d94d6e9835f61113e
-@function fadein($colour, $pct) {
-	@return opacify($colour, $pct / 100);
-}
-
-// Override Bootstrap's expected font path
-$icon-font-path: "../fonts/";
+@import "../variables";
 
 @import "../../lib/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap";
 
@@ -52,140 +43,139 @@ $icon-font-path: "../fonts/";
 }
 
 /*! WET-BOEW Core and Plugins */
-@import "partials/accessibility";
-@import "partials/bootstrap-overrides";
-@import "partials/language-selector";
-@import "partials/transitions";
-@import "partials/proximity";
-@import "partials/lists";
-@import "partials/forms";
-@import "partials/details";
+@import "accessibility/base";
+@import "bootstrap-overrides/base";
+@import "language-selector/base";
+@import "transitions/base";
+@import "proximity/base";
+@import "lists/base";
+@import "forms/base";
 
 /*
  Plugins
  */
-@import "../plugins/cal-events/cal-events";
-@import "../plugins/calendar/calendar-base";
-@import "../plugins/calendar/calendar-theme";
-@import "../plugins/charts/charts";
-@import "../plugins/footnotes/footnotes";
-@import "../plugins/formvalid/formvalid";
-@import "../plugins/lightbox/lightbox";
-@import "../plugins/menu/menu";
-@import "../plugins/multimedia/multimedia";
-@import "../plugins/overlay/overlay";
-@import "../plugins/prettify/prettify";
-@import "../plugins/resize/resize";
-@import "../plugins/session-timeout/session-timeout";
-@import "../plugins/share/share";
-@import "../plugins/tables/tables";
-@import "../plugins/tabs/tabs";
-@import "../plugins/twitter/twitter";
-@import "../plugins/texthighlight/texthighlight";
-@import "../plugins/geomap/geomap";
-@import "../plugins/zebra/zebra";
+@import "../plugins/cal-events/base";
+@import "../plugins/calendar/base";
+@import "../plugins/calendar/base";
+@import "../plugins/charts/base";
+@import "../plugins/footnotes/base";
+@import "../plugins/formvalid/base";
+@import "../plugins/lightbox/base";
+@import "../plugins/menu/base";
+@import "../plugins/multimedia/base";
+@import "../plugins/overlay/base";
+@import "../plugins/prettify/base";
+@import "../plugins/resize/base";
+@import "../plugins/session-timeout/base";
+@import "../plugins/share/base";
+@import "../plugins/tables/base";
+@import "../plugins/tabs/base";
+@import "../plugins/twitter/base";
+@import "../plugins/texthighlight/base";
+@import "../plugins/geomap/base";
+@import "../plugins/zebra/base";
 
 /*
  Polyfills
  */
-@import "../polyfills/datalist/datalist-base";
-@import "../polyfills/details/details-base";
-@import "../polyfills/datepicker/datepicker-base";
+@import "../polyfills/datalist/base";
+@import "../polyfills/details/base";
+@import "../polyfills/datepicker/base";
 
 /*
  Views
  */
 /* All screen views */
 @media screen {
-	@import "views/allScreenViews";
-	@import "../plugins/prettify/prettify-allScreenViews";
+	@import "views/screen";
+	@import "../plugins/prettify/screen";
 }
 
 /* Extra-small view and under */
-@media screen and (max-width: $xSmallViewMax) {
-	@import "views/xSmallViewUnder";
+@media screen and (max-width: $screen-xs-max) {
+	@import "views/screen-xs-max";
 }
 
 /* Small view and under */
-@media screen and (max-width: $smallViewMax) {
-	@import "views/smallViewUnder";
-	@import "../plugins/tabs/tabs-smallViewUnder";
+@media screen and (max-width: $screen-sm-max) {
+	@import "views/screen-sm-max";
+	@import "../plugins/tabs/screen-sm-max";
 }
 
 /* Medium view and under */
-@media screen and (max-width: $mediumViewMax) {
-	@import "views/mediumViewUnder";
+@media screen and (max-width: $screen-md-max) {
+	@import "views/screen-md-max";
 }
 
 /* Large view and under */
-@media screen and (max-width: $largeViewMax) {
-	@import "views/largeViewUnder";
+@media screen and (max-width: $screen-lg-max) {
+	@import "views/screen-lg-max";
 }
 
 /* Extra-small view and over */
-@media screen and (min-width: $xSmallViewMin) {
-	@import "views/xSmallViewOver";
-	@import "partials/proximity-xSmallViewOver";
-	@import "../plugins/menu/menu-xSmallViewOver";
+@media screen and (min-width: $screen-xs-min) {
+	@import "views/screen-xs-min";
+	@import "proximity/screen-xs-min";
+	@import "../plugins/menu/screen-xs-min";
 }
 
 /* Small view and over */
-@media screen and (min-width: $smallViewMin) {
-	@import "views/smallViewOver";
-	@import "partials/proximity-smallViewOver";
+@media screen and (min-width: $screen-sm-min) {
+	@import "views/screen-sm-min";
+	@import "proximity/screen-sm-min";
 }
 
 /* Medium view and over */
-@media screen and (min-width: $mediumViewMin) {
-	@import "views/mediumViewOver";
-	@import "partials/proximity-mediumViewOver";
-	@import "../plugins/tabs/tabs-mediumViewOver";
+@media screen and (min-width: $screen-md-min) {
+	@import "views/screen-md-min";
+	@import "proximity/screen-md-min";
+	@import "../plugins/tabs/screen-md-min";
 }
 
 /* Large view and over */
-@media screen and (min-width: $largeViewMin) {
-	@import "views/largeViewOver";
-	@import "partials/proximity-largeViewOver";
+@media screen and (min-width: $screen-lg-min) {
+	@import "views/screen-lg-min";
+	@import "proximity/screen-lg-min";
 }
 
 /* Extra-extra-small view */
-@media screen and (max-width: $xxSmallViewMax) {
-	@import "views/xxSmallView";
-	@import "../plugins/menu/menu-xxSmallView";
-	@import "../plugins/tabs/tabs-xxSmallView";
+@media screen and (max-width: $screen-xxs-max) {
+	@import "views/screen-xxs-max";
+	@import "../plugins/menu/screen-xxs-max";
+	@import "../plugins/tabs/screen-xxs-max";
 }
 
 /* Extra-small view */
-@media screen and (min-width: $xSmallViewMin) and (max-width: $xSmallViewMax) {
-	@import "views/xSmallView";
+@media screen and (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+	@import "views/screen-xs-min-to-screen-xs-max";
 }
 
 /* Small view */
-@media screen and (min-width: $smallViewMin) and (max-width: $smallViewMax) {
-	@import "views/smallView";
+@media screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+	@import "views/screen-sm-min-to-screen-sm-max";
 }
 
 /* Medium view */
-@media screen and (min-width: $mediumViewMin) and (max-width: $mediumViewMax) {
-	@import "views/mediumView";
+@media screen and (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+	@import "views/screen-md-min-to-screen-md-max";
 }
 
 /* Large view */
-@media screen and (min-width: $largeViewMin) and (max-width: $largeViewMax) {
-	@import "views/largeView";
+@media screen and (min-width: $screen-lg-min) and (max-width: $screen-lg-max) {
+	@import "views/screen-lg-min-to-screen-lg-max";
 }
 
 /* Extra-large view */
-@media screen and (min-width: $xLargeViewMin) {
-	@import "views/xLargeView";
-	@import "partials/proximity-xLargeView";
+@media screen and (min-width: $screen-xl-min) {
+	@import "views/screen-xl-min";
+	@import "proximity/screen-xl-min";
 }
 
 /* Print view */
 @media print {
-	@import "views/printView";
-	@import "../plugins/footnotes/footnotes-printView";
-	@import "../plugins/prettify/prettify-printView";
-	@import "../plugins/tabs/tabs-printView";
-	@import "../plugins/geomap/geomap-printView";
+	@import "views/print";
+	@import "../plugins/footnotes/print";
+	@import "../plugins/prettify/print";
+	@import "../plugins/tabs/print";
+	@import "../plugins/geomap/print";
 }

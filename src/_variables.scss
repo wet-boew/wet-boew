@@ -13,30 +13,14 @@ $clrLight: #eee;
 $clrMedium: #ccc;
 $clrDark: #555;
 
-// Views
-$xxSmallViewMax: 479px;
-$xSmallViewMin: 480px;
-$xSmallViewMax: 767px;
-$smallViewMin: 768px;
-$smallViewMax: 991px;
-$mediumViewMin: 992px;
-$mediumViewMax: 1199px;
-$largeViewMin: 1200px;
-$largeViewMax: 1599px;
-$xLargeViewMin: 1600px;
-
-/*
- *	Font scales
- */
+// Font scales
 $font-scale-xxxl: 2.125;
 $font-scale-xxl: 1.625;
 $font-scale-xl: 1.375;
 $font-scale-lg: 1.125;
 $font-scale-sm: 0.875;
 
-/*
- *	Overrides for Bootstrap variables
- */
+// Overrides for Bootstrap font sizes
 $font-size-base: 16px;
 $font-size-large: ceil($font-size-base * $font-scale-lg);
 $font-size-small: ceil($font-size-base * $font-scale-sm);
@@ -47,7 +31,8 @@ $font-size-h3: ceil($font-size-base * $font-scale-xl);
 $font-size-h4: ceil($font-size-base * $font-scale-lg);
 $font-size-h6: ceil($font-size-base * $font-scale-sm);
 
-$line-height-base: 1.4375; // 20/14 -> 23/16 on the basis of ceil((20/14)*16) = 23
+// 20/14 -> 23/16 on the basis of ceil((20/14)*16) = 23
+$line-height-base: 1.4375;
 
 $brand-primary: #2572b4;
 $brand-success: #1b6c1c;
@@ -91,3 +76,32 @@ $pagination-hover-bg: darken($btn-default-bg, 8%);
 $pagination-hover-border: darken($btn-default-border, 12%);
 
 $pager-border-radius: 4px;
+
+// Hack for Bootstrap 3.1.1, since it doesn't convert the "fadein" LESS method.
+// Pending fix release in https://github.com/twbs/bootstrap-sass/commit/df7be4f0412497e22f1d271d94d6e9835f61113e
+@function fadein($colour, $pct) {
+	@return opacify($colour, $pct / 100);
+}
+
+// Override Bootstrap's expected font path.
+// This is a path relative to the final CSS destination and not the current file
+$icon-font-path: "../fonts/";
+
+// Import Bootstrap variables for viewport sizes
+@import "../lib/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/variables";
+
+// Additional Viewports outside of Bootstrap definitions
+// @TODO: Remove camel case variables once themes are patched
+$screen-xxs-max: 479px;
+$xxSmallViewMax: $screen-xxs-max;
+$xSmallViewMin: $screen-xs-min;
+$xSmallViewMax: $screen-xs-max;
+$smallViewMin: $screen-sm-min;
+$smallViewMax: $screen-sm-max;
+$mediumViewMin: $screen-md-min;
+$mediumViewMax: $screen-md-min;
+$largeViewMin: $screen-lg-min;
+$screen-lg-max: 1599px;
+$largeViewMax: $screen-lg-max;
+$screen-xl-min: 1600px;
+$xLargeViewMin: $screen-xl-min;
