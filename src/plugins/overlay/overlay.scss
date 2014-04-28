@@ -12,6 +12,8 @@
 	border: 0;
 	border-radius: 0;
 	display: none;
+	// Push the element onto the GPU stack
+	transform: translateZ(0);
 	z-index: 1050;
 
 	&.wb-inview {
