@@ -175,7 +175,7 @@ var pluginName = "wb-calevt",
 				 *	- 'evt-anchor' class dynamically generates page anchors on the links it maps to the event
 				 */
 				if ( !directLinking ) {
-					linkId = event.attr( "id" ) || randomId( 6 );
+					linkId = event.attr( "id" ) || wb.guid();
 					event.attr( "id", linkId );
 
 					/*
@@ -278,32 +278,6 @@ var pluginName = "wb-calevt",
 
 		window.events = events;
 		return events;
-	},
-
-	randomId = function( sInt ) {
-		var s = "",
-			randomChar, n;
-
-		randomChar = function() {
-			n = Math.floor( Math.random() * 62 );
-			if ( n < 10 ) {
-
-				// 1-10
-				return n;
-			}
-			if ( n < 36 ) {
-
-				// A-Z
-				return String.fromCharCode( n + 55 );
-			}
-
-			// a-z
-			return String.fromCharCode( n + 61 );
-		};
-		while ( s.length < sInt ) {
-			s += randomChar();
-		}
-		return "id" + s;
 	},
 
 	keyboardNavEvents = function( event ) {
