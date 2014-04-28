@@ -744,7 +744,7 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 	$this.find( "progress" ).trigger( "wb-init.wb-progress" );
 
 	// Load the slider polyfill if needed
-	$this.find( "input[type=range]" ).trigger( "wb-init.wb-slider" );
+	$this.find( "input[type='range']" ).trigger( "wb-init.wb-slider" );
 
 	if ( data.captions === undef ) {
 		return 1;
