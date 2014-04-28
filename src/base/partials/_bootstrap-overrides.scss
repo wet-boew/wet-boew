@@ -429,16 +429,20 @@ $label-alert-danger-border-icon-color: #d3080c;
 	font-weight: 700;
 }
 
+%h1-h2-margin-top {
+	margin-top: ceil($line-height-computed * $font-scale-xxl);
+}
+
 h1,
 .h1 {
 	@extend %font-weight-700;
-	margin-top: 0;
+	@extend %h1-h2-margin-top;
 }
 
 h2,
 .h2 {
 	@extend %font-weight-700;
-	margin-top: ceil($line-height-computed * $font-scale-xxl);
+	@extend %h1-h2-margin-top;
 }
 
 h3,
