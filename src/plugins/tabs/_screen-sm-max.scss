@@ -65,15 +65,14 @@
 	}
 
 	&.carousel-s2 {
-		$smallViewToolbarSize: 4.375em;
 		background: #eee;
 		margin-bottom: auto;
-		padding-bottom: $smallViewToolbarSize;
+		padding-bottom: $tabs-sm-toolbar-height;
 
 		[role="tablist"] {
 			bottom: 0;
 			height: auto;
-			margin-top: -$smallViewToolbarSize;
+			margin-top: -$tabs-sm-toolbar-height;
 
 			li {
 				&[role="presentation"] {

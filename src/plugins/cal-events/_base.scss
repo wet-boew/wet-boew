@@ -3,7 +3,7 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 .ev-details {
-	background-color: $clrWhite;
+	background-color: #fff;
 	border: 1px solid #333;
 	color: #000;
 	list-style-type: none;
@@ -17,7 +17,7 @@
 	a {
 		&:hover,
 		&:focus {
-			color: $clrWhite;
+			color: #fff;
 		}
 	}
 }
@@ -26,7 +26,7 @@
 	a {
 		&.cal-evt {
 			background: #176ca7;
-			color: $clrWhite;
+			color: #fff;
 		}
 	}
 }

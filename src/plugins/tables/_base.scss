@@ -2,7 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
  */
-%table_icons {
+%table-icons {
 	content: " ";
 	display: inline-block;
 	font-family: "Glyphicons Halflings";
@@ -189,7 +189,7 @@ table {
 	padding-right: 5px;
 
 	&:before {
-		@extend %table_icons;
+		@extend %table-icons;
 		content: "\e091";
 		margin-right: 5px;
 	}
@@ -200,7 +200,7 @@ table {
 	padding-left: 5px;
 
 	&:after {
-		@extend %table_icons;
+		@extend %table-icons;
 		content: "\e092";
 		margin-left: 5px;
 	}
@@ -282,8 +282,11 @@ table {
 .sorting-cnt {
 	white-space: nowrap;
 
-	&:before {
-		content: " ";
+	&:after {
+		@extend %table-icons;
+		@extend %tables-sorting-margin-left-5-position-absolute;
+		color: #757575;
+		content: "\e151";
 	}
 }
 
@@ -298,7 +301,8 @@ table {
 	}
 
 	&:after {
-		@extend %table_icons;
+		@extend %table-icons;
+		@extend %tables-sorting-margin-left-5-position-absolute;
 		content: "\e152";
 		padding: 0 2px;
 	}
@@ -307,14 +311,10 @@ table {
 .sorting {
 	@extend %tables-cursor-pointer;
 
-	.sorting-icons {
-		&:before {
-			@extend %tables-inactive-sort-option;
-		}
-
-		&:after {
-			@extend %tables-inactive-sort-option;
-		}
+	&:after {
+		@extend %table-icons;
+		@extend %tables-sorting-margin-left-5-position-absolute;
+		content: "\e151";
 	}
 }
 

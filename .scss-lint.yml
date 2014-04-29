@@ -35,7 +35,9 @@ linters:
       - "src/polyfills/meter/demo/meter.scss"
       - "src/polyfills/progress/demo/progress.scss"
   NameFormat:
-    enabled: false
+    exclude:
+     - "src/_variables.scss"
+     - "src/plugins/geomap/_base.scss"
   UrlFormat:
     enabled: false
   DuplicateProperty:
