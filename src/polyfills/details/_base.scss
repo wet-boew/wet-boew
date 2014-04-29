@@ -1,41 +1,13 @@
 /*
   WET-BOEW
-  @title: Details/summary CSS
+  @title: Details/summary polyfill pre-Modernizr CSS
  */
 summary {
-	// Apply a pointer cursor upon hover to indicate it’s a clickable element.
-	// These styles can be applied regardless of whether the fallback is needed
-	cursor: pointer;
 	// Make sure summary remains visible
 	display: block !important;
-
-	&:hover {
-		cursor: pointer;
-	}
-
-	// Add focus styles (for keyboard accessibility)
-	&:hover,
-	&:focus {
-		background: #ddd;
-		color: #000;
-	}
 }
 
 details {
-	&[open] {
-		padding-bottom: 1em;
-
-		> {
-			* {
-				margin-left: 1.3em;
-			}
-
-			summary {
-				margin-left: auto;
-			}
-		}
-	}
-
 	// Prevent FOUC
 	&:not([open]) {
 		> {
@@ -52,23 +24,6 @@ details {
 		> {
 			* {
 				display: block !important;
-			}
-		}
-	}
-}
-
-[dir=rtl] {
-	details {
-		&[open] {
-			> {
-				* {
-					margin-left: auto;
-					margin-right: 1.3em;
-				}
-
-				summary {
-					margin-right: auto;
-				}
 			}
 		}
 	}
