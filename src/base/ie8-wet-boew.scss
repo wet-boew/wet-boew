@@ -4,19 +4,19 @@
  */
 @import "wet-boew";
 
-@import "partials/bootstrap-overrides-ie8";
+@import "bootstrap-overrides/ie8";
 
 /*
  Plugins
  */
-@import "../plugins/overlay/overlay-ie8";
+@import "../plugins/overlay/ie8";
 
 /*
  Polyfills
  */
-@import "../polyfills/details/details-ie8";
+@import "../polyfills/details/ie8";
 
 /* Print view */
 @media print {
-	@import "../plugins/footnotes/footnotes-ie8-printView";
+	@import "../plugins/footnotes/print-ie8";
 }

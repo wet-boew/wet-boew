@@ -11,10 +11,10 @@
 		padding: 15px;
 		width: 100%;
 
-		@media (min-width: $smallViewMin) {
+		@media (min-width: $screen-sm-min) {
 			width: 49%;
 		}
-		@media (min-width: $largeViewMin) {
+		@media (min-width: $screen-lg-min) {
 			width: 33%;
 		}
 	}
