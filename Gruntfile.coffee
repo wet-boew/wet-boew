@@ -1344,4 +1344,5 @@ module.exports = (grunt) ->
 	# Load custom grunt tasks form the tasks directory
 	@loadTasks "tasks"
 
+	require( "time-grunt" )( grunt )
 	@

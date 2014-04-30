@@ -275,7 +275,7 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 		rowheaders = ( currRow.idsrowheaders ? currRow.idsrowheaders + " " + rowheaders : rowheaders );
 		for ( j = 0; j < currRow.cell.length; j += 1 ) {
 
-			if ( ( j === 0 ) || ( j > 0 && currRow.cell[ j ].uid !== currRow.cell[ ( j - 1 ) ].uid ) ){
+			if ( ( j === 0 ) || ( j > 0 && currRow.cell[ j ].uid !== currRow.cell[ j - 1 ].uid ) ) {
 				currCell = currRow.cell[ j ];
 				coldataheader = "";
 
@@ -419,7 +419,7 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 	for ( i = 0; i < tblparser.lstrowgroup.length; i += 1 ) {
 
 		if ( tblparser.lstrowgroup[ i ].headerlevel.length > 0 ) {
-			for ( j = 0; j < tblparser.lstrowgroup[ i ].headerlevel.length; j += 1 ){
+			for ( j = 0; j < tblparser.lstrowgroup[ i ].headerlevel.length; j += 1 ) {
 
 				if ( tblparser.lstrowgroup[ i ].headerlevel[ j ].descCell ) {
 					// Set the aria-describedby
@@ -534,14 +534,14 @@ $document.on( addscopeEvent, "#visualoutput > table:eq( 0 )", function( event ) 
 			i = 0;
 		}
 		for ( i; i < tblparser.theadRowStack[ 0 ].cell.length; i += 1 ) {
-			if ( i === 0 || ( tblparser.theadRowStack[ 0 ].cell[ i - 1 ].uid !== tblparser.theadRowStack[ 0 ].cell[ i ].uid ) ){
+			if ( i === 0 || ( tblparser.theadRowStack[ 0 ].cell[ i - 1 ].uid !== tblparser.theadRowStack[ 0 ].cell[ i ].uid ) ) {
 				$( tblparser.theadRowStack[ 0 ].cell[ i ].elem ).attr( "scope", "colgroup" );
 			}
 		}
 	}
 	if ( tblparser.theadRowStack.length === 1 || tblparser.theadRowStack.length === 2 ) {
 		for ( i = 0; i < tblparser.theadRowStack[ ( tblparser.theadRowStack.length === 1 ? 0 : 1 ) ].cell.length; i += 1 ) {
-			if ( tblparser.theadRowStack[ ( tblparser.theadRowStack.length === 1 ? 0 : 1 ) ].cell[ i ].type === 1 ){
+			if ( tblparser.theadRowStack[ ( tblparser.theadRowStack.length === 1 ? 0 : 1 ) ].cell[ i ].type === 1 ) {
 				$( tblparser.theadRowStack[ ( tblparser.theadRowStack.length === 1 ? 0 : 1 ) ].cell[ i ].elem ).attr( "scope", "col" );
 			}
 		}
@@ -785,7 +785,7 @@ function detectValidationOptions( $tbl ) {
 	var opts = { };
 
 	// Has Summary Group
-	if ( $( "#chkHassum" ).is( ":checked" ) ){
+	if ( $( "#chkHassum" ).is( ":checked" ) ) {
 		$tbl.addClass( "hassum" );
 	}
 

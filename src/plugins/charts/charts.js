@@ -560,13 +560,13 @@
 
 			// Calculate upper-step for cells that are
 			// less precise than the reference value vector
-			for ( i = referenceValue - 1; i !== -1; i -= 1 ){
+			for ( i = referenceValue - 1; i !== -1; i -= 1 ) {
 
 				for ( k = 0, kLen = vectorHead[ i ].cell.length; k !== kLen; k += 1 ) {
 					currentCell = vectorHead[ i ].cell[ k ];
 
 					if ( currentCell.flotDelta || k > 0 &&
-						currentCell.uid === vectorHead[ i ].cell[ k - 1 ].uid ){
+						currentCell.uid === vectorHead[ i ].cell[ k - 1 ].uid ) {
 
 						continue;
 					}

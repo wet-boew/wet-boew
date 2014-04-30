@@ -1,119 +1,23 @@
 {
-	"requireCurlyBraces": [
-		"if",
-		"else",
-		"for",
-		"while",
-		"do"
-	],
-	"requireSpaceAfterKeywords": [
-		"if",
-		"else",
-		"for",
-		"while",
-		"do",
-		"switch",
-		"return"
-	],
-	"requireSpacesInFunctionExpression": {
-		"beforeOpeningCurlyBrace": true
-	},
+	"preset": "jquery",
+	"validateLineBreaks": null,
 	"disallowSpacesInNamedFunctionExpression": {
 		"beforeOpeningRoundBrace": true
 	},
-	"requireSpacesInsideObjectBrackets": "all",
-	"requireSpacesInsideArrayBrackets": "all",
-	"disallowSpacesInFunctionExpression": {
+	"requireSpacesInNamedFunctionExpression": {
+		"beforeOpeningCurlyBrace": true
+	},
+	"disallowSpacesInAnonymousFunctionExpression": {
 		"beforeOpeningRoundBrace": true
 	},
-	"disallowLeftStickedOperators": [
-		"?"
-	],
-	"requireSpaceBeforeBinaryOperators": [
-		"-",
-		"/",
-		"*",
-		"=",
-		"==",
-		"===",
-		"!=",
-		"!==",
-		">",
-		">=",
-		"<",
-		"<="
-	],
-	"disallowRightStickedOperators": [
-		"?"
-	],
-	"requireSpaceBeforeBinaryOperators": [
-		"/",
-		"*",
-		":",
-		"=",
-		"==",
-		"===",
-		"!=",
-		"!==",
-		">",
-		">=",
-		"<",
-		"<="
-	],
-	"requireRightStickedOperators": [
-		"!"
-	],
-	"requireLeftStickedOperators": [
-		","
-	],
-	"disallowKeywords": [
-		"with"
-	],
-	"disallowMultipleLineBreaks": true,
-	"disallowKeywordsOnNewLine": [
-		"else"
-	],
-	"disallowSpaceAfterObjectKeys": true,
-	"disallowSpaceBeforePostfixUnaryOperators": [
-		"++",
-		"--"
-	],
-	"requireSpaceAfterBinaryOperators": [
-		"+",
-		"-",
-		"/",
-		"*",
-		"=",
-		"==",
-		"===",
-		"!=",
-		"!=="
-	],
-	"requireSpaceBeforeBinaryOperators": [
-		"+",
-		"-",
-		"/",
-		"*",
-		"=",
-		"==",
-		"===",
-		"!=",
-		"!=="
-	],
-	"disallowQuotedKeysInObjects": "allButReserved",
-	"disallowYodaConditions": true,
-	"requireLineFeedAtFileEnd": true,
-	"requireParenthesesAroundIIFE": true,
-	"disallowMultipleLineStrings": true,
-	"validateQuoteMarks": "\"",
-	"disallowMixedSpacesAndTabs": true,
-	"disallowTrailingWhitespace": true,
-	"requireDotNotation": true,
-	"validateJSDoc": {
-		"checkParamNames": true,
-		"checkRedundantParams": true,
-		"requireParamTypes": true
+	"requireSpacesInAnonymousFunctionExpression": {
+		"beforeOpeningCurlyBrace": true
 	},
+	"requireBlocksOnNewline": true,
+	"requireSpaceBeforeBlockStatements": true,
+	"requireParenthesesAroundIIFE": true,
+	"disallowTrailingComma": true,
+	"requireMultipleVarDecl": "onevar",
 	"excludeFiles": [
 		"node_modules/**",
 		"dist/**",

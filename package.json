@@ -49,13 +49,14 @@
     "grunt-htmlcompressor": "~0.1.10",
     "grunt-i18n-csv": "^0.0.5",
     "grunt-imagine": "http://github.com/LaurentGoderre/grunt-imagine/tarball/custom",
-    "grunt-jscs-checker": "^0.4.0",
+    "grunt-jscs-checker": "^0.4.2",
     "grunt-mocha": "~0.4.1",
     "grunt-modernizr": "~0.4.0",
     "grunt-sass": "^0.11.0",
     "grunt-saucelabs": "^5.1.2",
     "grunt-wget": "~0.1.0",
     "mocha": "^1.18.2",
-    "sinon": "^1.9.1"
+    "sinon": "^1.9.1",
+    "time-grunt": "^0.3.1"
   }
 }
