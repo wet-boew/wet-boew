@@ -15,12 +15,7 @@
 		display: block;
 		font-weight: 700;
 		padding: 0.75em 44px;
-		text-decoration: none;
-
-		&:hover,
-		&:focus {
-			text-decoration: underline;
-		}
+		text-decoration: underline;
 	}
 
 	.overlay-close {
