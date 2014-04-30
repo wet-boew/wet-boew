@@ -84,7 +84,7 @@ var pluginName = "wb-date",
 				// Disable the tabbing of all the links when calendar is hidden
 				$container.find( "a" ).attr( "tabindex", "-1" );
 
-				$( "body > main" ).after( $container );
+				$( "main" ).after( $container );
 			}
 
 			if ( elmId ) {
