@@ -76,6 +76,7 @@ var pluginName = "wb-tables",
 			defaults = {
 				asStripeClasses: [],
 				oLanguage: i18nText,
+				sDom: "<'top'ilf>rt<'bottom'p><'clear'>",
 				fnDrawCallback: function() {
 					$( "#" + elmId ).trigger( "tables-draw.wb" );
 				}

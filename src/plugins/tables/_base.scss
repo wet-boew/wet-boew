@@ -336,7 +336,7 @@ table {
 }
 
 %tables-th-padding-right-8-padding-left-15em {
-	padding-left: 15em;
+	padding-left: 1.5em;
 	padding-right: 8px;
 }
 
@@ -379,5 +379,10 @@ table {
 				}
 			}
 		}
+	}
+
+	.dataTables_filter {
+		float: left;
+		text-align: left;
 	}
 }

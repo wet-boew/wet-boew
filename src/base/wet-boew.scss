@@ -100,6 +100,7 @@
 /* Small view and under */
 @media screen and (max-width: $screen-sm-max) {
 	@import "views/screen-sm-max";
+	@import "../plugins/tables/screen-sm-max";
 	@import "../plugins/tabs/screen-sm-max";
 }
 
@@ -118,6 +119,7 @@
 	@import "views/screen-xs-min";
 	@import "proximity/screen-xs-min";
 	@import "../plugins/menu/screen-xs-min";
+	@import "../plugins/tables/screen-xs-min";
 }
 
 /* Small view and over */
@@ -143,6 +145,7 @@
 @media screen and (max-width: $screen-xxs-max) {
 	@import "views/screen-xxs-max";
 	@import "../plugins/menu/screen-xxs-max";
+	@import "../plugins/tables/screen-xxs-max";
 	@import "../plugins/tabs/screen-xxs-max";
 }
 
