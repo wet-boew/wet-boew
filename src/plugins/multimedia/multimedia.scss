@@ -9,8 +9,8 @@ $mm-cc-bg-color: #000;
 $mm-ctrl-fg-color: #fff;
 $mm-ctrl-bg-color: #3e3e3e;
 $mm-ctrl-cc-color: #4aafff;
-$mm-volume-bg-color: #AAA;
-$mm-volume-thumb-color: #FFF;
+$mm-volume-bg-color: #aaa;
+$mm-volume-thumb-color: #fff;
 
 %multimedia-display-none {
 	display: none;
@@ -147,9 +147,9 @@ $mm-volume-thumb-color: #FFF;
 
 		.cc {
 			&:after {
+				border-bottom: 3px solid $mm-ctrl-cc-color;
 				content: " ";
 				display: block;
-				border-bottom: 3px solid $mm-ctrl-cc-color;
 				margin-left: -2px;
 				width: 1.2em;
 			}
@@ -208,9 +208,9 @@ $mm-volume-thumb-color: #FFF;
 	background: $mm-ctrl-bg-color;
 	color: $mm-ctrl-fg-color;
 	display: table;
+	padding-top: 2em;
 	position: relative;
 	width: 100%;
-	padding-top: 2em;
 
 	.frstpnl {
 		@extend %pnl;
@@ -237,6 +237,7 @@ $mm-volume-thumb-color: #FFF;
 
 	.wb-mm-txtonly {
 		padding: 0 1em;
+
 		p {
 			display: inline;
 		}
@@ -253,17 +254,17 @@ $mm-volume-thumb-color: #FFF;
 		@extend %multimedia-controls-outline;
 		/* Important Thing */
 		-webkit-appearance: none;
-		display: block;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 30px;
+		background: $mm-progress-bg-color;
 		border: 7px solid #3e3e3e;
 		border-radius: 14px;
-		padding: 2px;
 		color: $mm-progress-fg-color;
-		background: $mm-progress-bg-color;
+		display: block;
+		height: 30px;
+		left: 0;
+		padding: 2px;
+		position: absolute;
+		top: 0;
+		width: 100%;
 
 		&::-webkit-progress-bar {
 			background: $mm-progress-bg-color;
@@ -290,10 +291,10 @@ $mm-volume-thumb-color: #FFF;
 			background: transparent;
 			display: inline-block;
 			height: 2.5em;
-			width: 7em;
 			padding: 0;
+			width: 7em;
 
-			&::-webkit-slider-runnable-track  {
+			&::-webkit-slider-runnable-track {
 				background: $mm-volume-bg-color;
 				height: 4px;
 			}
@@ -304,7 +305,7 @@ $mm-volume-thumb-color: #FFF;
 
 			&::-moz-range-track {
 				background: $mm-volume-bg-color;
-				border: none;
+				border: 0;
 			}
 
 			&::-moz-range-thumb {
@@ -322,7 +323,7 @@ $mm-volume-thumb-color: #FFF;
 			}
 
 			&::-ms-fill-lower {
-				background: $mm-volume-bg-color;		
+				background: $mm-volume-bg-color;
 			}
 
 			&::-ms-thumb {
