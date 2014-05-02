@@ -1,0 +1,11 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+.dataTables_info {
+	&:after {
+		content: "|";
+		font-size: 1.2em;
+		padding: 0 0.25em;
+	}
+}
