@@ -12,12 +12,12 @@
 @import "banner/base";
 @import "breadcrumb/base";
 @import "calendar/base";
+@import "footer/base";
 @import "language-bar/base";
 @import "main/base";
+@import "menu/base";
 @import "search/base";
 @import "secondary-menu/base";
-@import "site-info/base";
-@import "site-menu/base";
 @import "skip-links/base";
 
 /*
@@ -36,8 +36,8 @@
 /* Small view and under */
 @media screen and (max-width: $screen-sm-max) {
 	@import "views/screen-sm-max";
-	@import "secondary-menu/screen-sm-max";
 	@import "banner/screen-sm-max";
+	@import "secondary-menu/screen-sm-max";
 }
 
 /* Medium view and under */
@@ -105,8 +105,8 @@
 @media print {
 	@import "views/print";
 	@import "banner/print";
+	@import "footer/print";
+	@import "menu/print";
 	@import "search/print";
 	@import "secondary-menu/print";
-	@import "site-info/print";
-	@import "site-menu/print";
 }
