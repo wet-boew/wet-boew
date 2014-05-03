@@ -264,21 +264,6 @@ table {
 /*
  * Sorting
  */
-%tables-sort-icons {
-	display: inline-block;
-	margin-top: 2px;
-}
-
-%tables-sort-icons-before {
-	content: " \e151";
-	padding: 0 2px;
-}
-
-%tables-sort-icons-after {
-	content: "\e152";
-	padding: 0 2px;
-}
-
 %tables-active-sort-option {
 	background: #ccc;
 	border: 1px solid #000;
@@ -294,21 +279,40 @@ table {
 	background: #e7e7e7;
 }
 
+.sorting-cnt {
+	white-space: nowrap;
+
+	&:before {
+		content: " ";
+	}
+}
+
+.sorting-icons {
+	display: inline-block;
+	margin-top: 2px;
+
+	&:before {
+		@extend %table_icons;
+		content: "\e151";
+		padding: 0 2px;
+	}
+
+	&:after {
+		@extend %table_icons;
+		content: "\e152";
+		padding: 0 2px;
+	}
+}
+
 .sorting {
 	@extend %tables-cursor-pointer;
 
-	.sort-icons {
-		@extend %tables-sort-icons;
-
+	.sorting-icons {
 		&:before {
-			@extend %table_icons;
-			@extend %tables-sort-icons-before;
 			@extend %tables-inactive-sort-option;
 		}
 
 		&:after {
-			@extend %table_icons;
-			@extend %tables-sort-icons-after;
 			@extend %tables-inactive-sort-option;
 		}
 	}
@@ -318,19 +322,12 @@ table {
 	@extend %tables-cursor-pointer;
 	@extend %tables-sorting-active;
 
-	.sort-icons {
-		@extend %table_icons;
-		@extend %tables-sort-icons;
-
+	.sorting-icons {
 		&:before {
-			@extend %table_icons;
-			@extend %tables-sort-icons-before;
 			@extend %tables-active-sort-option;
 		}
 
 		&:after {
-			@extend %table_icons;
-			@extend %tables-sort-icons-after;
 			@extend %tables-inactive-sort-option;
 		}
 	}
@@ -340,19 +337,12 @@ table {
 	@extend %tables-cursor-pointer;
 	@extend %tables-sorting-active;
 
-	.sort-icons {
-		@extend %table_icons;
-		@extend %tables-sort-icons;
-
+	.sorting-icons {
 		&:before {
-			@extend %table_icons;
-			@extend %tables-sort-icons-before;
 			@extend %tables-inactive-sort-option;
 		}
 
 		&:after {
-			@extend %table_icons;
-			@extend %tables-sort-icons-after;
 			@extend %tables-active-sort-option;
 		}
 	}
