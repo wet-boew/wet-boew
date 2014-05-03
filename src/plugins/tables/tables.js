@@ -135,6 +135,7 @@ var pluginName = "wb-tables",
 						}
 					);
 
+					$elm.find( "th" ).append( " <span class='sort-icons'></span>" );
 					$elm.dataTable( $.extend( true, {}, defaults, window[ pluginName ], wb.getData( $elm, pluginName ) ) );
 				}
 			});

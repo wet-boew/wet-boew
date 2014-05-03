@@ -35,10 +35,9 @@
 	text-align: right;
 }
 
-%tables-border-bottom-1px-solid-black-font-weight-700-padding-right-15em {
+%tables-border-bottom-1px-solid-black-font-weight-700 {
 	border-bottom: 1px solid #000;
 	font-weight: 700;
-	padding-right: 1.5em;
 }
 
 %tables-cursor-pointer {
@@ -54,7 +53,7 @@ table {
 
 		thead {
 			th {
-				@extend %tables-border-bottom-1px-solid-black-font-weight-700-padding-right-15em;
+				@extend %tables-border-bottom-1px-solid-black-font-weight-700;
 
 				&:active {
 					@extend %tables-outline-none;
@@ -70,7 +69,7 @@ table {
 
 		tfoot {
 			th {
-				@extend %tables-border-bottom-1px-solid-black-font-weight-700-padding-right-15em;
+				@extend %tables-border-bottom-1px-solid-black-font-weight-700;
 			}
 		}
 
@@ -265,9 +264,30 @@ table {
 /*
  * Sorting
  */
-%tables-sorting-margin-left-5-position-absolute {
-	margin-left: 5px;
-	position: absolute;
+%tables-sort-icons {
+	display: inline-block;
+	margin-top: 2px;
+}
+
+%tables-sort-icons-before {
+	content: " \e151";
+	padding: 0 2px;
+}
+
+%tables-sort-icons-after {
+	content: "\e152";
+	padding: 0 2px;
+}
+
+%tables-active-sort-option {
+	background: #ccc;
+	border: 1px solid #000;
+}
+
+%tables-inactive-sort-option {
+	background: #fff;
+	border: 1px solid #aaa;
+	color: #757575;
 }
 
 %tables-sorting-active {
@@ -277,11 +297,20 @@ table {
 .sorting {
 	@extend %tables-cursor-pointer;
 
-	&:after {
-		@extend %table_icons;
-		@extend %tables-sorting-margin-left-5-position-absolute;
-		color: #757575;
-		content: "\e151";
+	.sort-icons {
+		@extend %tables-sort-icons;
+
+		&:before {
+			@extend %table_icons;
+			@extend %tables-sort-icons-before;
+			@extend %tables-inactive-sort-option;
+		}
+
+		&:after {
+			@extend %table_icons;
+			@extend %tables-sort-icons-after;
+			@extend %tables-inactive-sort-option;
+		}
 	}
 }
 
@@ -289,10 +318,21 @@ table {
 	@extend %tables-cursor-pointer;
 	@extend %tables-sorting-active;
 
-	&:after {
+	.sort-icons {
 		@extend %table_icons;
-		@extend %tables-sorting-margin-left-5-position-absolute;
-		content: "\e152";
+		@extend %tables-sort-icons;
+
+		&:before {
+			@extend %table_icons;
+			@extend %tables-sort-icons-before;
+			@extend %tables-active-sort-option;
+		}
+
+		&:after {
+			@extend %table_icons;
+			@extend %tables-sort-icons-after;
+			@extend %tables-inactive-sort-option;
+		}
 	}
 }
 
@@ -300,19 +340,22 @@ table {
 	@extend %tables-cursor-pointer;
 	@extend %tables-sorting-active;
 
-	&:after {
+	.sort-icons {
 		@extend %table_icons;
-		@extend %tables-sorting-margin-left-5-position-absolute;
-		content: "\e151";
+		@extend %tables-sort-icons;
+
+		&:before {
+			@extend %table_icons;
+			@extend %tables-sort-icons-before;
+			@extend %tables-inactive-sort-option;
+		}
+
+		&:after {
+			@extend %table_icons;
+			@extend %tables-sort-icons-after;
+			@extend %tables-active-sort-option;
+		}
 	}
-}
-
-.sorting_asc_disabled {
-	@extend %table-icon-disabled;
-}
-
-.sorting_desc_disabled {
-	@extend %table-icon-disabled;
 }
 
 /*
@@ -333,11 +376,6 @@ table {
 %tables-sorting-margin-left-0-margin-right-5 {
 	margin-left: 0;
 	margin-right: 5px;
-}
-
-%tables-th-padding-right-8-padding-left-15em {
-	padding-left: 1.5em;
-	padding-right: 8px;
 }
 
 [dir=rtl] {
@@ -362,22 +400,6 @@ table {
 
 		&:after {
 			@extend %tables-sorting-margin-left-0-margin-right-5;
-		}
-	}
-
-	table {
-		&.dataTable {
-			thead {
-				th {
-					@extend %tables-th-padding-right-8-padding-left-15em;
-				}
-			}
-
-			tfoot {
-				th {
-					@extend %tables-th-padding-right-8-padding-left-15em;
-				}
-			}
 		}
 	}
 
