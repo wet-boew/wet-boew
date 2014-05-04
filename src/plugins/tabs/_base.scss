@@ -4,13 +4,6 @@
  */
 @import "../../variables";
 
-/**
- * Shared variables
- */
-$drabBlue: #243850;
-$lightGray: #eee;
-$medGray: #ccc;
-
 %tabs-position-relative {
 	position: relative;
 }
@@ -24,8 +17,8 @@ $medGray: #ccc;
 }
 
 %tab-background-243850 {
-	background: $drabBlue;
-	background: transparentize($drabBlue, 0.1);
+	background: $tabs-bg-color;
+	background: transparentize($tabs-bg-color, 0.1);
 }
 
 //TODO:Combine with previous placeholder when libsass supports nested selectors
@@ -54,14 +47,14 @@ $medGray: #ccc;
 
 %carousel-s2-prv-nxt-a-common {
 	border: 0;
-	color: $drabBlue;
+	color: $tabs-bg-color;
 	width: 100%;
 }
 
 %carousel-s2-prv-nxt-glyphicon-common {
 	background: #fff;
 	border-radius: 999px;
-	box-shadow: 0 0 4px $drabBlue;
+	box-shadow: 0 0 4px $tabs-bg-color;
 	font-size: 1.75em;
 	height: 1.75em;
 	line-height: 1.75em;
@@ -97,7 +90,7 @@ $medGray: #ccc;
 
 		li {
 			background: #ebf2fc;
-			border: 1px solid $medGray;
+			border: 1px solid $gray-medium;
 			color: #000;
 			cursor: pointer;
 			display: inline-block;
@@ -115,8 +108,8 @@ $medGray: #ccc;
 
 			&:focus,
 			&:hover {
-				background: $medGray;
-				background: transparentize($medGray, 0.1);
+				background: $gray-medium;
+				background: transparentize($gray-medium, 0.1);
 			}
 
 			&.active {
@@ -190,9 +183,8 @@ $medGray: #ccc;
 	 * Style 2 - Slider-like carousel style
 	 */
 	&.carousel-s2 {
-		$thumbHeight: 50px;
 		// 44px = 2 x 10px for anchor padding + 2 x 4px for list item padding + 16px for carousel bottom margin
-		margin-bottom: $thumbHeight + 44px;
+		margin-bottom: $tabs-thumbnail-height + 44px;
 
 		[role="tablist"] {
 			@extend %tab-position-relative;
@@ -206,8 +198,8 @@ $medGray: #ccc;
 				display: none;
 
 				&[role="presentation"] {
-					background: $lightGray;
-					background: transparentize($lightGray, .1);
+					background: $gray-lighter;
+					background: transparentize($gray-lighter, .1);
 					display: inline-block;
 					padding: 4px;
 					top: 100%;
@@ -215,7 +207,7 @@ $medGray: #ccc;
 					&.active,
 					&:focus,
 					&:hover {
-						box-shadow: 0 0 4px $drabBlue;
+						box-shadow: 0 0 4px $tabs-bg-color;
 					}
 
 					&.active {
@@ -240,7 +232,7 @@ $medGray: #ccc;
 							filter: #808080;
 							/* Chrome 19+, Safari 6+, Safari 6+ iOS */
 							-webkit-filter: unquote("grayscale(100%)");
-							max-height: $thumbHeight;
+							max-height: $tabs-thumbnail-height;
 						}
 					}
 				}

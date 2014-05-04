@@ -5,7 +5,7 @@
 .wb-tabs {
 	&.carousel-s1 {
 		li[role="presentation"] {
-			@extend %accessible-invisible-xxSmallView;
+			@extend %accessible-invisible;
 		}
 	}
 

@@ -6,14 +6,14 @@
 @import "../../variables";
 
 %fnote-link-highlight {
-	background-color: $clrDark;
-	border-color: $clrDark;
-	color: $clrWhite !important;
+	background-color: $gray;
+	border-color: $gray;
+	color: #fff !important;
 }
 
 %fnote-link-background-light-border-medium-padding-whitespace {
-	background-color: $clrLight;
-	border: 1px solid $clrMedium;
+	background-color: $gray-lighter;
+	border: 1px solid $gray-medium;
 	padding: 0 4px 1px;
 	white-space: nowrap;
 }
@@ -28,7 +28,7 @@
 }
 
 .wb-fnote {
-	border-color: $clrMedium;
+	border-color: $gray-medium;
 	border-style: solid;
 	border-width: 1px 0;
 	margin: 2em 10px 0;
@@ -53,8 +53,8 @@
 		position: relative;
 
 		&:focus {
-			background-color: $clrLight;
-			border-color: $clrDark;
+			background-color: $gray-lighter;
+			border-color: $gray;
 
 			.fn-rtn {
 				a {
@@ -65,7 +65,7 @@
 	}
 
 	p {
-		margin: 0 0 0 ($spacing + $ddRtnWidth);
+		margin: 0 0 0 ($spacing + $footnotes-dd-return-width);
 		padding: 0 $spacing $spacing;
 
 		&:first-child {
@@ -80,7 +80,7 @@
 		padding-top: $spacing;
 		position: absolute;
 		top: 0;
-		width: $ddRtnWidth;
+		width: $footnotes-dd-return-width;
 
 		a {
 			@extend %fnote-link-background-light-border-medium-padding-whitespace;

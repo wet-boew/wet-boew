@@ -2,8 +2,8 @@
  * Secondary menu
  */
 %secmenu-wet-theme-menuitem-curr-hover-focus {
-	background: darken($clrWhite, 50%);
-	color: lighten($clrDark, 75%);
+	background: darken(#fff, 50%);
+	color: lighten($gray, 75%);
 }
 
 #wb-sec {
@@ -28,9 +28,9 @@
 
 		a {
 			&.list-group-item {
-				background: $clrWhite;
+				background: #fff;
 				border-radius: 0;
-				color: $clrDark;
+				color: $gray;
 				margin-top: -1px;
 				text-decoration: none;
 
@@ -49,8 +49,8 @@
 
 		.list-group {
 			.list-group-item {
-				background: darken($clrWhite, 10%);
-				color: darken($clrDark, 50%);
+				background: darken(#fff, 10%);
+				color: darken($gray, 50%);
 				padding-left: 1.8em;
 			}
 		}

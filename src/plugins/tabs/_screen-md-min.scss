@@ -31,8 +31,8 @@
 	&.carousel-s1,
 	&.carousel-s2 {
 		figcaption {
-			background: $drabBlue;
-			background: transparentize($drabBlue, 0.1);
+			background: $tabs-bg-color;
+			background: transparentize($tabs-bg-color, 0.1);
 		}
 
 		[role="tablist"] {

@@ -23,7 +23,7 @@ $mm-ctrl-bg-color: #000;
 	}
 }
 
-%multimedia_loading {
+%multimedia-loading {
 	bottom: 0;
 	content: " ";
 	height: 100px;
@@ -35,7 +35,7 @@ $mm-ctrl-bg-color: #000;
 	width: 100px;
 }
 
-%captions_hidden {
+%captions-hidden {
 	max-height: 0;
 	padding: 0;
 }
@@ -99,7 +99,7 @@ $mm-ctrl-bg-color: #000;
 
 		&.waiting {
 			&:after {
-				@extend %multimedia_loading;
+				@extend %multimedia-loading;
 				animation-duration: 1000ms;
 				animation-iteration-count: infinite;
 				animation-name: spin;
@@ -109,7 +109,7 @@ $mm-ctrl-bg-color: #000;
 			}
 
 			&:before {
-				@extend %multimedia_loading;
+				@extend %multimedia-loading;
 				background: rgba(0, 0, 0, 0.7);
 				border-radius: 10px;
 				z-index: 1;
@@ -151,7 +151,7 @@ $mm-ctrl-bg-color: #000;
 
 		&.youtube {
 			.wb-mm-cc {
-				@extend %captions_hidden;
+				@extend %captions-hidden;
 			}
 		}
 	}
@@ -186,7 +186,7 @@ $mm-ctrl-bg-color: #000;
 }
 
 .wb-mm-cc {
-	@extend %captions_hidden;
+	@extend %captions-hidden;
 	background-color: $mm-cc-bg-color;
 	color: $mm-cc-fg-color;
 	text-align: center;

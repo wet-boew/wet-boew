@@ -5,13 +5,9 @@
 
 // Spacing
 $spacing: .375em;
-$ddRtnWidth: 2.75em;
 
 // Colours
-$clrWhite: #fff;
-$clrLight: #eee;
-$clrMedium: #ccc;
-$clrDark: #555;
+$gray-medium: #ccc;
 
 // Font scales
 $font-scale-xxxl: 2.125;
@@ -105,3 +101,13 @@ $screen-lg-max: 1599px;
 $largeViewMax: $screen-lg-max;
 $screen-xl-min: 1600px;
 $xLargeViewMin: $screen-xl-min;
+
+// WET plug-in variables
+
+// Tabs
+$tabs-thumbnail-height: 50px;
+$tabs-bg-color: #243850;
+$tabs-sm-toolbar-height: 4.375em;
+
+// Footnotes
+$footnotes-dd-return-width: 2.75em;
