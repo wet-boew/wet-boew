@@ -258,7 +258,7 @@ table {
 			.sorting_asc_disabled {
 				.sorting-icons {
 					&:before {
-						@extend %tables-inactive-sort-option;
+						@extend %global-display-none;
 					}
 				}
 			}
@@ -266,7 +266,7 @@ table {
 			.sorting_desc_disabled {
 				.sorting-icons {
 					&:after {
-						@extend %tables-inactive-sort-option;
+						@extend %global-display-none;
 					}
 				}
 			}
