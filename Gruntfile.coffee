@@ -354,17 +354,22 @@ module.exports = (grunt) ->
 						jqueryVersion: "<%= jqueryVersion.version %>"
 						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
 					assets: "dist/unmin"
-					flatten: true,
-					plugins: ["assemble-contrib-i18n"]
+					plugins: [
+						"assemble-contrib-i18n"
+					]
 					i18n:
 						languages: "<%= i18n_csv.assemble.locales %>"
 						templates: [
-
-							"site/pages/theme/*.hbs"
-							"!site/pages/theme/splashpage*.hbs"
+							"theme/**/*.hbs"
+							# Don't run i18n transforms on language specific templates
+							"!theme/**/*-en.hbs"
+							"!theme/**/*-fr.hbs"
 						]
-				dest: "dist/unmin/theme/"
-				src: "!*.*"
+				dest: "dist/unmin/"
+				src: [
+					"theme/**/*-en.hbs"
+					"theme/**/*-fr.hbs"
+				]
 
 			ajax:
 				options:
@@ -374,11 +379,12 @@ module.exports = (grunt) ->
 						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
 					assets: "dist/unmin"
 					flatten: true,
-					plugins: ["assemble-contrib-i18n"]
+					plugins: [
+						"assemble-contrib-i18n"
+					]
 					i18n:
 						languages: "<%= i18n_csv.assemble.locales %>"
 						templates: [
-
 							"site/pages/ajax/*.hbs"
 						]
 				dest: "dist/unmin/ajax/"
@@ -412,7 +418,6 @@ module.exports = (grunt) ->
 							"**/*.hbs",
 							"!ajax/**/*.hbs"
 							"!theme/**/*.hbs"
-							"theme/splashpage*.hbs"
 						]
 						dest: "dist/unmin"
 						expand: true
@@ -460,16 +465,23 @@ module.exports = (grunt) ->
 						jqueryVersion: "<%= jqueryVersion.version %>"
 						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
 					assets: "dist"
-					flatten: true,
-					plugins: ['assemble-contrib-i18n']
+					plugins: [
+						"assemble-contrib-i18n"
+					]
 					i18n:
 						languages: "<%= i18n_csv.assemble.locales %>"
 						templates: [
-							'site/pages/theme/*.hbs',
-							"!site/pages/theme/splashpage*.hbs"
+							"theme/**/*.hbs"
+							# Don't run i18n transforms on language specific templates
+							"!theme/**/*-en.hbs"
+							"!theme/**/*-fr.hbs"
 						]
-				dest: "dist/theme/"
-				src: "!*.*"
+				dest: "dist/"
+				src: [
+					"theme/**/*-en.hbs"
+					"theme/**/*-fr.hbs"
+				]
+
 
 			ajax_min:
 				options:
@@ -480,11 +492,12 @@ module.exports = (grunt) ->
 						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
 					assets: "dist/unmin"
 					flatten: true,
-					plugins: ["assemble-contrib-i18n"]
+					plugins: [
+						"assemble-contrib-i18n"
+					]
 					i18n:
 						languages: "<%= i18n_csv.assemble.locales %>"
 						templates: [
-
 							"site/pages/ajax/*.hbs"
 						]
 				dest: "dist/ajax/"
@@ -519,7 +532,6 @@ module.exports = (grunt) ->
 							"**/*.hbs",
 							"!ajax/**/*.hbs"
 							"!theme/**/*.hbs"
-							"theme/splashpage*.hbs"
 						]
 						dest: "dist"
 						expand: true
