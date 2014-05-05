@@ -11,6 +11,10 @@
 	outline: none;
 }
 
+%tables-font-weight-400 {
+	font-weight: 400;
+}
+
 %tables-font-weight-700 {
 	font-weight: 700;
 }
@@ -887,11 +891,13 @@ table {
 
 	.dataTables_length {
 		@extend %tables-color-333;
+		@extend %tables-font-weight-400;
 		float: left;
 	}
 
 	.dataTables_filter {
 		@extend %tables-color-333;
+		@extend %tables-font-weight-400;
 		float: right;
 		text-align: right;
 
