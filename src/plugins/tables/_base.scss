@@ -204,13 +204,13 @@ table {
 				&:before {
 					@extend %table_icons;
 					content: "\e093";
-					padding: 0 2px;
+					padding: 0 0.1em 0 0.2em;
 				}
 
 				&:after {
 					@extend %table_icons;
 					content: "\e094";
-					padding: 0 2px;
+					padding: 0 0.1em 0 0.2em;
 				}
 			}
 
