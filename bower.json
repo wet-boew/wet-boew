@@ -23,7 +23,7 @@
   ],
   "dependencies": {
     "bootstrap-sass-official": "3.1.1",
-    "DataTables": "1.9.4",
+    "DataTables": "1.10.0",
     "excanvas": "*",
     "flot": "0.8.1",
     "google-code-prettify": "1.0.0",
