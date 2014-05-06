@@ -32,7 +32,34 @@
 	wb.jqEscape = function( selector ) {
 		return selector.replace( /([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, "\\$1" );
 	};
+	
+	// RegEx used by formattedNumCompare
+	wb.formattedNumCompareRegEx = /(<[^>]*>|[^\d\.])/g;
 
+	// Compares two formatted numbers (e.g., 1.2.12 or 1,000,345)
+	wb.formattedNumCompare = function( a, b ) {
+		var regEx = wb.formattedNumCompareRegEx,
+			aMultiple = a.indexOf( "-" ) === -1 ? 1 : -1,
+			aNumbers = ( ( a === "-" || a === "" ) ? 0 : a.replace( regEx, "" ) ).split( "." ),
+			bMultiple = b.indexOf( "-" ) === -1 ? 1 : -1,
+			bNumbers = ( ( b === "-" || b === "" ) ? 0 : b.replace( regEx, "" ) ).split( "." ),
+			len = aNumbers.length,
+			i, result;
+
+		for ( i = 0; i !== len; i += 1 ) {
+			result = parseInt( aNumbers[ i ], 10 ) * aMultiple - parseInt( bNumbers[ i ], 10 ) * bMultiple;
+			if ( result !== 0 ) {
+				break;
+			}
+		}
+		return result;
+	};
+
+	// Compare two strings with special characters (e.g., Cyrillic or Chinese characters)
+	wb.i18nTextCompare = function( a, b ) {
+		return wb.normalizeDiacritics( a ).localeCompare( wb.normalizeDiacritics( b ) );
+	};
+	
 	// Based upon https://gist.github.com/instanceofme/1731620
 	// Licensed under WTFPL v2 http://sam.zoy.org/wtfpl/COPYING
 	wb.normalizeDiacritics = function( str ) {
