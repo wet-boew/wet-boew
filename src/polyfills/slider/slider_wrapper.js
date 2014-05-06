@@ -11,20 +11,30 @@
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
 var polyfillName = "wb-slider",
-	selector = "input",
+	selector = "input[type='range']",
 	initEvent = "wb-init." + polyfillName,
 	updateEvent = "wb-update." + polyfillName;
 
 // Bind the init and update event of the plugin
 wb.doc.on( initEvent + " " + updateEvent, selector, function( event ) {
-	var eventTarget = event.target;
+	var eventTarget = event.target,
+		$target;
 
 	if ( event.currentTarget === eventTarget ) {
 		switch ( event.type ) {
 		case "wb-init":
 			window.fdSlider.createSlider( {
-				inp: eventTarget
+				inp: eventTarget,
+				html5Shim: true
 			});
+
+			//Allows listening for input and change at the document level for IE < 9
+			if ( wb.ielt9 ) {
+				$target = $( eventTarget );
+				$target.on( "input change", function( event ) {
+					$target.closest( "[class^='wb-'], body" ).trigger ( event );
+				});
+			}
 			break;
 		case "wb-update":
 			window.fdSlider.updateSlider( eventTarget.id );
