@@ -50,34 +50,34 @@ var pluginName = "wb-tables",
 			if ( !i18nText ) {
 				i18n = wb.i18n;
 				i18nText = {
-					oAria: {
-						sSortAscending: i18n( "sortAsc" ),
-						sSortDescending: i18n( "sortDesc" )
+					aria: {
+						sortAscending: i18n( "sortAsc" ),
+						sortDescending: i18n( "sortDesc" )
 					},
-					oPaginate: {
-						sFirst: i18n( "first" ),
-						sLast: i18n( "last" ),
-						sNext: i18n( "nxt" ),
-						sPrevious: i18n( "prv" )
+					emptyTable: i18n( "emptyTbl" ),
+					info: i18n( "infoEntr" ),
+					infoEmpty: i18n( "infoEmpty" ),
+					infoFiltered: i18n( "infoFilt" ),
+					lengthMenu: i18n( "lenMenu" ),
+					loadingRecords: i18n( "load" ),
+					paginate: {
+						first: i18n( "first" ),
+						last: i18n( "last" ),
+						next: i18n( "nxt" ),
+						previous: i18n( "prv" )
 					},
-					sEmptyTable: i18n( "emptyTbl" ),
-					sInfo: i18n( "infoEntr" ),
-					sInfoEmpty: i18n( "infoEmpty" ),
-					sInfoFiltered: i18n( "infoFilt" ),
-					sInfoThousands: i18n( "info1000" ),
-					sLengthMenu: i18n( "lenMenu" ),
-					sLoadingRecords: i18n( "load" ),
-					sProcessing: i18n( "process" ),
-					sSearch: i18n( "filter" ),
-					sZeroRecords: i18n( "infoEmpty" )
+					processing: i18n( "process" ),
+					search: i18n( "filter" ),
+					thousands: i18n( "info1000" ),
+					zeroRecords: i18n( "infoEmpty" )
 				};
 			}
 
 			defaults = {
 				asStripeClasses: [],
-				oLanguage: i18nText,
-				sDom: "<'top'ilf>rt<'bottom'p><'clear'>",
-				fnDrawCallback: function() {
+				language: i18nText,
+				dom: "<'top'ilf>rt<'bottom'p><'clear'>",
+				drawCallback: function() {
 					$( "#" + elmId ).trigger( "tables-draw.wb" );
 				}
 			};
@@ -86,51 +86,33 @@ var pluginName = "wb-tables",
 				load: [ "site!deps/jquery.dataTables" + wb.getMode() + ".js" ],
 				complete: function() {
 					var $elm = $( "#" + elmId ),
-						i18nSortAscend = function( x, y ) {
-							return wb.normalizeDiacritics( x ).localeCompare( wb.normalizeDiacritics( y ) );
-						},
-						i18nSortDescend = function( x, y ) {
-							return wb.normalizeDiacritics( y ).localeCompare( wb.normalizeDiacritics( x ) );
-						},
-						formattedNumCompare = function( a, b ) {
-							var aMultiple = a[ 0 ],
-								aNumbers = a[ 1 ],
-								bMultiple = b[ 0 ],
-								bNumbers = b[ 1 ],
-								len = aNumbers.length,
-								i, result;
-							for ( i = 0; i !== len; i += 1 ) {
-								result = parseInt( aNumbers[ i ], 10 ) * aMultiple - parseInt( bNumbers[ i ], 10 ) * bMultiple;
-								if ( result !== 0 ) {
-									break;
-								}
-							}
-							return result;
-						};
-
-					// Enable internationalization support in the sorting
-					$.fn.dataTableExt.oSort[ "html-asc" ] = i18nSortAscend;
-					$.fn.dataTableExt.oSort[ "html-desc" ] = i18nSortDescend;
-					$.fn.dataTableExt.oSort[ "string-case-asc" ] = i18nSortAscend;
-					$.fn.dataTableExt.oSort[ "string-case-desc" ] = i18nSortDescend;
+						dataTableExt = $.fn.dataTableExt;
 
 					/*
 					 * Extend sorting support
 					 */
-					$.extend( $.fn.dataTableExt.oSort, {
+					$.extend( dataTableExt.type.order, {
+
+						// Enable internationalization support in the sorting
+						"html-pre": function( a ) {
+							return wb.normalizeDiacritics(
+								!a ? "" : a.replace ?
+									a.replace( /<.*?>/g, "" ).toLowerCase() : a + ""
+							);
+						},
+						"string-case-pre": function( a ) {
+							return wb.normalizeDiacritics( a );
+						},
+						"string-pre": function( a ) {
+							return wb.normalizeDiacritics( a );
+						},
 
 						// Formatted number sorting
-						// Based on: datatables.net/plug-ins/sorting#formatted_numbers
-						"formatted-num-pre": function( a ) {
-							var multiple = a.indexOf( "-" ) === -1 ? 1 : -1;
-							a = ( a === "-" || a === "" ) ? 0 : a.replace( /<[^>]*>/g, "" ).replace( /[^\d\.]/g, "" );
-							return [ multiple, a.split( "." ) ];
-						},
 						"formatted-num-asc": function( a, b ) {
-							return formattedNumCompare( b, a );
+							return wb.formattedNumCompare( b, a );
 						},
 						"formatted-num-desc": function( a, b ) {
-							return formattedNumCompare( a, b );
+							return wb.formattedNumCompare( a, b );
 						}
 					} );
 
@@ -139,7 +121,7 @@ var pluginName = "wb-tables",
 					 */
 					// Formatted numbers detection
 					// Based on: http://datatables.net/plug-ins/type-detection#formatted_numbers
-					$.fn.dataTableExt.aTypes.unshift(
+					dataTableExt.aTypes.unshift(
 						function( sData ) {
 
 							// Strip off HTML tags and all non-alpha-numeric characters (except minus sign)
@@ -151,7 +133,10 @@ var pluginName = "wb-tables",
 						}
 					);
 
+					// Add the container or the sorting icons
 					$elm.find( "th" ).append( "<span class='sorting-cnt'><span class='sorting-icons'></span></span>" );
+
+					// Create the DataTable object
 					$elm.dataTable( $.extend( true, {}, defaults, window[ pluginName ], wb.getData( $elm, pluginName ) ) );
 				}
 			});
