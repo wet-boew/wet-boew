@@ -140,7 +140,7 @@
 	box-sizing: content-box;
 }
 
-%table_icons {
+%table-icons {
 	content: " ";
 	display: inline-block;
 	font-family: "Glyphicons Halflings";
@@ -206,13 +206,13 @@ table {
 				margin-top: 2px;
 
 				&:before {
-					@extend %table_icons;
+					@extend %table-icons;
 					content: "\e093";
 					padding: 0 0.2em;
 				}
 
 				&:after {
-					@extend %table_icons;
+					@extend %table-icons;
 					content: "\e094";
 					padding: 0 0.2em;
 				}
@@ -913,70 +913,62 @@ table {
 	}
 
 	.dataTables_paginate {
-		@extend %tables-color-333;
-		padding-top: 0.75em;
+		padding-top: 1.25em;
 		text-align: center;
 
+		// Duplicating Bootstrap CSS
 		.paginate_button {
-			border: 1px solid transparent;
-			box-sizing: border-box;
-			color: #333 !important;
-			cursor: pointer;
-			display: inline-block;
-			margin-left: 2px;
-			min-width: 1.5em;
-			padding: 0.5em 1em;
-			text-align: center;
-			text-decoration: none !important;
+			background-color: $pagination-bg;
+			border: 1px solid $pagination-border;
+			color: $pagination-color;
+			line-height: $line-height-base;
+			margin-left: -1px;
+			padding: $padding-large-vertical $padding-large-horizontal;
+			position: relative;
+			text-decoration: none;
 
 			&.previous {
+				@include border-left-radius($border-radius-base);
+				margin-left: 0;
+					
 				&:before {
-					@extend %table_icons;
+					@extend %table-icons;
 					content: "\e091";
 					margin-right: 0.5em;
 				}
 			}
 
 			&.next {
+				@include border-right-radius($border-radius-base);
+
 				&:after {
-					@extend %table_icons;
+					@extend %table-icons;
 					content: "\e092";
 					margin-left: 0.5em;
 				}
 			}
 
 			&.current {
-				@extend %tables-paginate-button-current;
-
-				&:hover {
-					@extend %tables-paginate-button-current;
-				}
+				background-color: $pagination-active-bg;
+				border-color: $pagination-active-border;
+				color: $pagination-active-color;
+				cursor: default;
+				z-index: 2;
 			}
 
 			&.disabled {
-				@extend %tables-paginate-button-disabled;
-
-				&:hover {
-					@extend %tables-paginate-button-disabled;
-				}
-
-				&:active {
-					@extend %tables-paginate-button-disabled;
-				}
+				background-color: $pagination-disabled-bg !important;
+				border-color: $pagination-disabled-border !important;
+				color: $pagination-disabled-color !important;
+				cursor: default;
 			}
 
-			&:hover {
-				background: linear-gradient(to bottom, #585858 0%, #111 100%);
-				background-color: #585858;
-				border: 1px solid #111;
-				color: #fff !important;
-			}
-
+			&:hover,
+			&:focus,
 			&:active {
-				background: linear-gradient(to bottom, #2b2b2b 0%, #0c0c0c 100%);
-				background-color: #2b2b2b;
-				box-shadow: inset 0 0 3px #111;
-				outline: none;
+				background-color: $pagination-hover-bg;
+				border-color: $pagination-hover-border;
+				color: $pagination-hover-color;
 			}
 		}
 	}
@@ -1087,12 +1079,15 @@ table {
 		}
 		
 		.dataTables_paginate {
-			@extend %tables-color-333;
 			padding-top: 0.75em;
-			text-align: center;
 
 			.paginate_button {
+				display: inline-block;
+
 				&.previous {
+					@include border-left-radius(0);
+					@include border-right-radius($border-radius-base);
+
 					&:before {
 						content: "\e092";
 						margin-left: 0.5em;
@@ -1101,6 +1096,9 @@ table {
 				}
 
 				&.next {
+					@include border-left-radius($border-radius-base);
+					@include border-right-radius(0);
+
 					&:after {
 						content: "\e091";
 						margin-left: auto;
