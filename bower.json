@@ -25,7 +25,7 @@
     "bootstrap-sass-official": "3.1.1",
     "DataTables": "1.10.0",
     "excanvas": "*",
-    "flot": "0.8.1",
+    "flot": "0.8.3",
     "google-code-prettify": "1.0.0",
     "html5shiv": "3.7.0",
     "jquery": "2.1.0",
