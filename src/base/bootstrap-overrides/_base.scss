@@ -208,29 +208,6 @@ a {
 	}
 }
 
-[dir=rtl] {
-	.alert {
-		> {
-			:first-child {
-				margin-left: auto;
-				margin-right: 1.2em;
-
-				&:before {
-					margin-left: auto;
-					margin-right: -1.3em;
-				}
-			}
-		}
-	}
-
-	/*
-	 * List unstyled RTL fix
-	 */
-	.list-unstyled {
-		padding-right: 0;
-	}
-}
-
 %label-alert-color-000 {
 	color: #000;
 }
@@ -578,19 +555,36 @@ blockquote {
  *	  * Add left/right arrows to previous/next buttons
  *	  * Increase size of the pagination buttons
  */
+%next-prev-icons {
+	content: " ";
+	display: inline-block;
+	font-family: "Glyphicons Halflings";
+	font-weight: 400;
+}
 
 .pagination,
 .pager {
 	[rel="prev"] {
 		&:before {
-			content: "← ";
+			@extend %next-prev-icons;
+			content: "\e091";
+			margin-right: 0.5em;
 		}
 	}
 
 	[rel="next"] {
 		&:after {
-			content: " →";
+			@extend %next-prev-icons;
+			content: "\e092";
+			margin-left: 0.5em;
 		}
+	}
+
+	&.disabled {
+		background-color: $pagination-disabled-bg !important;
+		border-color: $pagination-disabled-border !important;
+		color: $pagination-disabled-color !important;
+		cursor: default;
 	}
 
 	> li {
@@ -622,6 +616,7 @@ blockquote {
 	}
 }
 
+
 /*
  *	Use button border style 'outset' to give buttons depth, except when disabled
  */
@@ -632,5 +627,54 @@ blockquote {
 	&[disabled],
 	fieldset[disabled] & {
 		border-style: solid;
+	}
+}
+
+
+/*
+ *  Right-to-left support
+ */
+[dir=rtl] {
+	.alert {
+		> {
+			:first-child {
+				margin-left: auto;
+				margin-right: 1.2em;
+
+				&:before {
+					margin-left: auto;
+					margin-right: -1.3em;
+				}
+			}
+		}
+	}
+
+	.list-unstyled {
+		padding-right: 0;
+	}
+
+	.pagination,
+	.pager {
+		[rel="prev"] {
+			@include border-left-radius(0);
+			@include border-right-radius($border-radius-base);
+
+			&:before {
+				content: "\e092";
+				margin-left: 0.5em;
+				margin-right: auto;
+			}
+		}
+
+		[rel="next"] {
+			@include border-left-radius($border-radius-base);
+			@include border-right-radius(0);
+
+			&:after {
+				content: "\e091";
+				margin-left: auto;
+				margin-right: 0.5em;
+			}
+		}
 	}
 }
