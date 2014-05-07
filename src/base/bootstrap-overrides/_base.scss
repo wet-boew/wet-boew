@@ -44,6 +44,12 @@ a {
 	color: $btn-danger-color;
 }
 
+.dl-horizontal {
+	dt {
+		white-space: normal;
+	}
+}
+
 .dropdown-menu {
 	> {
 		li {
