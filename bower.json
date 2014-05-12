@@ -40,9 +40,6 @@
     "selectivizr": "1.0.2",
     "SideBySideImproved": "https://github.com/pkoltermann/SideBySideImproved.git"
   },
-  "resolutions": {
-    "jquery": "~2.1.0"
-  },
   "moduleType": [
     "globals"
   ]
