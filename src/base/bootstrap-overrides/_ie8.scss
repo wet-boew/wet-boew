@@ -11,5 +11,22 @@
 				}
 			}
 		}
+
+		.pagination,
+		.pager {
+			> li {
+				> a,
+				> span {
+					cursor: hand;
+				}
+
+				&.active {
+					> a,
+					> span {
+						cursor: default;				
+					}
+				}
+			}
+		}
 	}
 }
