@@ -555,42 +555,75 @@ blockquote {
  *	  * Add left/right arrows to previous/next buttons
  *	  * Increase size of the pagination buttons
  */
-%next-prev-icons {
+%glyphicon-inline-icons {
 	content: " ";
-	display: inline-block;
 	font-family: "Glyphicons Halflings";
 	font-weight: 400;
+	line-height: 1em;
+	position: relative;
+	top: 0.1em;
+}
+
+%pagination-left-arrow {
+	@extend %glyphicon-inline-icons;
+	content: "\e091";
+	margin-right: 0.5em;
+}
+
+%pagination-right-arrow {
+	@extend %glyphicon-inline-icons;
+	content: "\e092";
+	margin-left: 0.5em;
 }
 
 .pagination,
 .pager {
 	[rel="prev"] {
 		&:before {
-			@extend %next-prev-icons;
-			content: "\e091";
-			margin-right: 0.5em;
+			@extend %pagination-left-arrow;
 		}
 	}
 
 	[rel="next"] {
 		&:after {
-			@extend %next-prev-icons;
-			content: "\e092";
-			margin-left: 0.5em;
+			@extend %pagination-right-arrow;
 		}
 	}
 
 	&.disabled {
-		background-color: $pagination-disabled-bg !important;
-		border-color: $pagination-disabled-border !important;
-		color: $pagination-disabled-color !important;
-		cursor: default;
+		@extend %global-display-none;
 	}
 
 	> li {
-		> a,
-		> span {
-			padding: $padding-large-vertical $padding-large-horizontal;
+		> {
+			a {
+				cursor: pointer;
+				display: inline-block;
+				margin-bottom: 0.5em;
+				padding: $padding-large-vertical $padding-large-horizontal;
+			}
+		}
+
+		&.active {
+			> {
+				a {
+					cursor: default;
+				}
+			}
+		}
+
+		&.disabled {
+			@extend %global-display-none;
+
+			+ {
+				li {
+					> {
+						a {
+							@include border-left-radius($border-radius-base);
+						}
+					}
+				}
+			}
 		}
 	}
 }
@@ -659,10 +692,12 @@ blockquote {
 			@include border-left-radius(0);
 			@include border-right-radius($border-radius-base);
 
+			&:after {
+				@extend %pagination-right-arrow;
+			}
+
 			&:before {
-				content: "\e092";
-				margin-left: 0.5em;
-				margin-right: auto;
+				@extend %global-display-none;
 			}
 		}
 
@@ -671,9 +706,28 @@ blockquote {
 			@include border-right-radius(0);
 
 			&:after {
-				content: "\e091";
-				margin-left: auto;
-				margin-right: 0.5em;
+				@extend %global-display-none;
+			}
+
+			&:before {
+				@extend %pagination-left-arrow;
+			}
+		}
+
+		> li {
+			float: right;
+
+			&.disabled {
+				+ {
+					li {
+						> {
+							a {
+								@include border-left-radius(0);
+								@include border-right-radius($border-radius-base);
+							}
+						}
+					}
+				}
 			}
 		}
 	}

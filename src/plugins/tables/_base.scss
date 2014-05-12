@@ -140,13 +140,6 @@
 	box-sizing: content-box;
 }
 
-%table-icons {
-	content: " ";
-	display: inline-block;
-	font-family: "Glyphicons Halflings";
-	font-weight: 400;
-}
-
 %tables-active-sort-option {
 	background: #ccc;
 	border: 1px solid #111;
@@ -206,13 +199,13 @@ table {
 				margin-top: 2px;
 
 				&:before {
-					@extend %table-icons;
+					@extend %glyphicon-inline-icons;
 					content: "\e093";
 					padding: 0 0.2em;
 				}
 
 				&:after {
-					@extend %table-icons;
+					@extend %glyphicon-inline-icons;
 					content: "\e094";
 					padding: 0 0.2em;
 				}
@@ -255,6 +248,15 @@ table {
 
 					&:after {
 						@extend %tables-active-sort-option;
+					}
+				}
+			}
+			
+			.sorting_disabled {
+				.sorting-icons {
+					&:after,
+					&:before {
+						@extend %global-display-none;
 					}
 				}
 			}
@@ -931,7 +933,9 @@ table {
 			border: 1px solid $pagination-border;
 			color: $pagination-color;
 			cursor: pointer;
+			display: inline-block;
 			line-height: $line-height-base;
+			margin-bottom: 0.5em;
 			margin-left: -1px;
 			padding: $padding-large-vertical $padding-large-horizontal;
 			position: relative;
@@ -941,9 +945,7 @@ table {
 				@extend %tables-pagination-first-button;
 					
 				&:before {
-					@extend %table-icons;
-					content: "\e091";
-					margin-right: 0.5em;
+					@extend %pagination-left-arrow;
 				}
 			}
 
@@ -951,9 +953,7 @@ table {
 				@extend %tables-pagination-last-button;
 
 				&:after {
-					@extend %table-icons;
-					content: "\e092";
-					margin-left: 0.5em;
+					@extend %pagination-right-arrow;
 				}
 			}
 			
@@ -1103,20 +1103,16 @@ table {
 		}
 		
 		.dataTables_paginate {
-			padding-top: 0.75em;
-
 			.paginate_button {
-				display: inline-block;
-				line-height: 1.1em;
-
 				&.previous {
 					@extend %tables-pagination-first-button-rtl;
 
+					&:after {
+						@extend %pagination-right-arrow;
+					}
+
 					&:before {
-						content: "\e092";
-						line-height: 0.8em;
-						margin-left: 0.5em;
-						margin-right: auto;
+						@extend %global-display-none;
 					}
 				}
 
@@ -1124,10 +1120,11 @@ table {
 					@extend %tables-pagination-last-button-rtl;
 
 					&:after {
-						content: "\e091";
-						line-height: 0.8em;
-						margin-left: auto;
-						margin-right: 0.5em;
+						@extend %global-display-none;
+					}
+
+					&:before {
+						@extend %pagination-left-arrow;
 					}
 				}
 
