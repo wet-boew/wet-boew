@@ -884,6 +884,15 @@ table {
 	padding: 0 !important;
 }
 
+%tables-pagination-first-button {
+	@include border-left-radius($border-radius-base);
+	margin-left: 0;
+}
+
+%tables-pagination-last-button {
+	@include border-right-radius($border-radius-base);
+}
+
 .dataTables_wrapper {
 	clear: both;
 	position: relative;
@@ -921,6 +930,7 @@ table {
 			background-color: $pagination-bg;
 			border: 1px solid $pagination-border;
 			color: $pagination-color;
+			cursor: pointer;
 			line-height: $line-height-base;
 			margin-left: -1px;
 			padding: $padding-large-vertical $padding-large-horizontal;
@@ -928,8 +938,7 @@ table {
 			text-decoration: none;
 
 			&.previous {
-				@include border-left-radius($border-radius-base);
-				margin-left: 0;
+				@extend %tables-pagination-first-button;
 					
 				&:before {
 					@extend %table-icons;
@@ -939,7 +948,7 @@ table {
 			}
 
 			&.next {
-				@include border-right-radius($border-radius-base);
+				@extend %tables-pagination-last-button;
 
 				&:after {
 					@extend %table-icons;
@@ -947,20 +956,25 @@ table {
 					margin-left: 0.5em;
 				}
 			}
-
+			
 			&.current {
 				background-color: $pagination-active-bg;
 				border-color: $pagination-active-border;
 				color: $pagination-active-color;
 				cursor: default;
 				z-index: 2;
+
+				&:first-child {
+					@extend %tables-pagination-first-button;
+				}
+
+				&:last-child {
+					@extend %tables-pagination-last-button;
+				}
 			}
 
 			&.disabled {
-				background-color: $pagination-disabled-bg !important;
-				border-color: $pagination-disabled-border !important;
-				color: $pagination-disabled-color !important;
-				cursor: default;
+				@extend %global-display-none;
 			}
 
 			&:hover,
@@ -1043,6 +1057,16 @@ table {
 	margin-right: 5px;
 }
 
+%tables-pagination-first-button-rtl {
+	@include border-left-radius(0);
+	@include border-right-radius($border-radius-base);
+}
+
+%tables-pagination-last-button-rtl {
+	@include border-left-radius($border-radius-base);
+	@include border-right-radius(0);
+}
+
 [dir=rtl] {
 	table {
 		&.dataTable {
@@ -1083,27 +1107,42 @@ table {
 
 			.paginate_button {
 				display: inline-block;
+				line-height: 1.1em;
 
 				&.previous {
-					@include border-left-radius(0);
-					@include border-right-radius($border-radius-base);
+					@extend %tables-pagination-first-button-rtl;
 
 					&:before {
 						content: "\e092";
+						line-height: 0.8em;
 						margin-left: 0.5em;
 						margin-right: auto;
 					}
 				}
 
 				&.next {
-					@include border-left-radius($border-radius-base);
-					@include border-right-radius(0);
+					@extend %tables-pagination-last-button-rtl;
 
 					&:after {
 						content: "\e091";
+						line-height: 0.8em;
 						margin-left: auto;
 						margin-right: 0.5em;
 					}
+				}
+
+				&.current {
+					&:first-child {
+						@extend %tables-pagination-first-button-rtl;
+					}
+
+					&:last-child {
+						@extend %tables-pagination-last-button-rtl;
+					}
+				}
+
+				&.disabled {
+					@extend %global-display-none;
 				}
 			}
 		}
