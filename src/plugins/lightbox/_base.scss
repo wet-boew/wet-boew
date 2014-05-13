@@ -43,6 +43,7 @@
 }
 
 .mfp-close {
+	cursor: pointer !important;
 	font-weight: 700;
 
 	/* Should fix upstream in Magnific Popup rather than overriding in WET */
