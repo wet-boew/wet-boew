@@ -256,7 +256,7 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 					currCellId = idPrefix + currRow.headerset[ j ].uid; // Generate a new ID
 					$( currRow.headerset[ j ].elem ).attr( "id", currCellId );
 				}
-				rowheadersgroup= ( rowheadersgroup ? rowheadersgroup + " " + currCellId : currCellId );
+				rowheadersgroup = ( rowheadersgroup ? rowheadersgroup + " " + currCellId : currCellId );
 			}
 			currRow.idsrowheaders = rowheadersgroup;
 		}
