@@ -64,7 +64,13 @@
 
 .cal-days {
 	a {
+		color: #111;
 		text-decoration: underline;
+
+		&:hover,
+		&:focus {
+			@extend %datepicker-color-fff-important;
+		}
 	}
 
 	td {
@@ -73,15 +79,6 @@
 				@extend %datepicker-color-fff-important;
 				background-color: #333;
 			}
-		}
-	}
-
-	a {
-		color: #111;
-
-		&:hover,
-		&:focus {
-			@extend %datepicker-color-fff-important;
 		}
 	}
 }

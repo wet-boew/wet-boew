@@ -103,6 +103,14 @@
 #mb-pnl {
 	.srch-pnl {
 		@extend %menu-mb-pnl-padding-10-20-8;
+
+		form {
+			white-space: nowrap;
+		}
+
+		label {
+			@extend %accessible-invisible;
+		}
 	}
 
 	.lng-ofr {
@@ -192,16 +200,6 @@
 
 		details {
 			margin: 6px 0 6px -1.28em;
-		}
-	}
-
-	.srch-pnl {
-		form {
-			white-space: nowrap;
-		}
-
-		label {
-			@extend %accessible-invisible;
 		}
 	}
 
