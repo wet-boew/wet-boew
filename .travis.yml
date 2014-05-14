@@ -10,7 +10,7 @@ env:
 
 before_install:
   - ./script/setup
-  - gem install scss-lint --no-ri --version '=0.23.1'
+  - gem install scss-lint --no-ri --version '=0.24.0'
 
 script:
   - travis_retry ./script/travis_script.sh
