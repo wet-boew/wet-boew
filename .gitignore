@@ -25,3 +25,4 @@ sprite*.png
 *.log
 node_modules/
 lib/
+site/data/i18n/
