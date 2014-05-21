@@ -275,7 +275,7 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 		rowheaders = ( currRow.idsrowheaders ? currRow.idsrowheaders + " " + rowheaders : rowheaders );
 		for ( j = 0; j < currRow.cell.length; j += 1 ) {
 
-			if ( ( j === 0 ) || ( j > 0 && currRow.cell[ j ].uid !== currRow.cell[ j - 1 ].uid ) ) {
+			if ( !currRow.cell[ j ].processed && ( ( j === 0 ) || ( j > 0 && currRow.cell[ j ].uid !== currRow.cell[ j - 1 ].uid ) ) ) {
 				currCell = currRow.cell[ j ];
 				coldataheader = "";
 
@@ -411,6 +411,8 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 						}
 					}
 				}
+
+				currCell.processed = true;
 			}
 		}
 	}
