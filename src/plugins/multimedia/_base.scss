@@ -162,6 +162,10 @@ $mm-ctrl-bg-color: #000;
 			border-bottom: 10px solid #fff;
 			margin-top: -35px;
 		}
+
+		.wb-mm-ovrly {
+			@extend %multimedia-display-none;
+		}
 	}
 
 	/*
