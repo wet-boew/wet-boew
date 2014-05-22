@@ -162,6 +162,7 @@ module.exports = (grunt) ->
 			"assemble:theme_min"
 			"assemble:ajax_min"
 			"assemble:demos_min"
+			"htmlcompressor"
 			"htmllint"
 		]
 	)
