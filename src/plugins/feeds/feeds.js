@@ -21,52 +21,61 @@ var pluginName = "wb-feeds",
 	patt = /\\u([\d\w]{4})/g,
 
     /**
-     * [decode Unicode Character functions]
+     * Helper function that returns the string representaion of a unicode character
+     * @method decode
      * @param  {regex} match  unicode pattern
-     * @param  {string} code
-     * @return {string}       unicode string character
+     * @param  {string} code  string where unicode is needed to be converted
+     * @return {string}	unicode string character
      */
     decode = function( match, code ) {
         return String.fromCharCode( parseInt( code, 16 ) );
     },
 
     /**
-     * [fromCharCode helper method for unicode conversion]
+     * Helper wrapper function that performs unicode decodes on a string
+     * @method fromCharCode
      * @param  {string} s string to sanitize with escaped unicode characters
-     * @return {string}   sanitized string
+     * @return {string}	sanitized string
      */
     fromCharCode = function(s) {
         return s.replace( patt, decode );
     },
 
 	/**
-	 * Templates
+	 * @object Templates
+	 * @properties {function}
+	 * @param {object} requires a entry object of various ATOM based properties
+	 * @returns {string} modified string with appropiate markup/format for a entry object
 	 */
 	Templates = {
+
 		/**
 		 * [facebook template]
 		 * @param  {entry object} data
-		 * @return {string}      HTML string of formatted using Media Object ( twitter bootstrap )
+		 * @return {string}	HTML string of formatted using Media Object (twitter bootstrap)
 		 */
 		facebook: function( data ) {
-			// Facebook feeds does not really do titles well. It simply truncates content at 150 characters. We are using a JS based sentence
+
+			// Facebook feeds does not really do titles in ATOM RSS. It simply truncates content at 150 characters. We are using a JS based sentence
 			// detection algorithm to better split content and titles
 			var content = fromCharCode( data.content ),
 				title = content.replace( /(<([^>]+)>)/ig,"" ).match( /\(?[^\.\?\!]+[\.!\?]\)?/g );
 
-			// Sanitize the HTML from Facebook
+			// Sanitize the HTML from Facebook - extra 'br' tags
 			content = content.replace( /(<br>\n?)+/gi,"<br>" );
 
-			return "<li class='media'><a class='pull-left' href=''><img src='" + data.fIcon + "' alt='" + data.author + "' height='64px' width='64px' class='media-object'/></a>" +
-				"<div class='media-body'>" +
+			return "<li class='media'><a class='pull-left' href=''><img src='" + data.fIcon + "' alt='" + data.author +
+				"' height='64px' width='64px' class='media-object'/></a><div class='media-body'>" +
 				"<h4 class='media-heading'><a href='" + data.link + "'><span class='wb-inv'>" + title[0] + " - </span>" + data.author + "</a>  " +
 				( data.publishedDate !== "" ? " <small class='feeds-date text-right'>[" +
 				wb.date.toDateISO( data.publishedDate, true ) + "]</small>" : "" ) +
-				"</h4>" +
-				"<p>" + content + "</p>" +
-				"</div></li>";
+				"</h4><p>" + content + "</p></div></li>";
 		},
-
+		/**
+		 * [generic template]
+		 * @param  {entry object}	data
+		 * @return {string}	HTML string of formatted using a simple list / anchor view
+		 */
 		generic: function( data ) {
 
 			return "<li><a href='" + data.link + "'>" + data.title + "</a>" +
@@ -91,7 +100,7 @@ var pluginName = "wb-feeds",
 					k, len, feedtype;
 
 				// lets bind the template to the Entries
-				if ( feedUrl.indexOf( "facebook.com" ) > -1 ) {
+				if ( feedUrl && feedUrl.indexOf( "facebook.com" ) > -1 ) {
 					feedtype = "facebook";
 				} else {
 					feedtype = "generic";
