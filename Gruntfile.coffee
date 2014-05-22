@@ -19,9 +19,8 @@ module.exports = (grunt) ->
 			"checkDependencies"
 			"test"
 			"build"
-			"assets-dist"
-			"demos"
-			"demos-dist"
+			"assets-min"
+			"demos-min"
 		]
 	)
 
@@ -39,7 +38,6 @@ module.exports = (grunt) ->
 		"Run full build."
 		[
 			"clean:dist"
-			"i18n_csv"
 			"assets"
 			"css"
 			"js"
@@ -103,6 +101,7 @@ module.exports = (grunt) ->
 		"js"
 		"INTERNAL: Copies all third party JS to the dist folder"
 		[
+			"i18n_csv:js"
 			"copy:js"
 			"concat:core"
 			"concat:coreIE8"
@@ -132,7 +131,7 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
-		"assets-dist"
+		"assets-min"
 		"INTERNAL: Process non-CSS/JS assets to dist"
 		[
 			"copy:assets_min"
@@ -143,6 +142,7 @@ module.exports = (grunt) ->
 		"demos"
 		"INTERNAL: Create unminified demos"
 		[
+			"i18n_csv:assemble"
 			"copy:demos"
 			"csslint:demos"
 			"assemble:theme"
@@ -152,16 +152,16 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
-		"demos-dist"
+		"demos-min"
 		"INTERNAL: Create minified demos"
 		[
+			"demos"
 			"copy:demos_min"
 			"cssmin:demos_min"
 			"uglify:demos"
 			"assemble:theme_min"
 			"assemble:ajax_min"
 			"assemble:demos_min"
-			"htmlcompressor"
 			"htmllint"
 		]
 	)
@@ -189,9 +189,9 @@ module.exports = (grunt) ->
 		"INTERNAL: prepare for running Mocha unit tests"
 		[
 			"build"
-			"assets-dist"
+			"assets-min"
 			"demos"
-			"demos-dist"
+			"demos-min"
 			"connect:test"
 		]
 	)
