@@ -2,10 +2,47 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
+%tabs-screen-xxs-max-margin-right-15pct {
+	margin-right: 1.5%;
+}
+
 .wb-tabs {
 	&.carousel-s1 {
 		li[role="presentation"] {
 			@extend %accessible-invisible-xxSmallView;
+		}
+	}
+
+	&.carousel-s2 {
+		[role="tablist"] {
+			li {
+				&.prv {
+					@extend %tabs-screen-xxs-max-margin-right-15pct;
+					margin-left: 1%;
+
+					a {
+						padding: 10px 0 10px 0.4em;
+					}
+				}
+
+				&.nxt {
+					@extend %tabs-screen-xxs-max-margin-right-15pct;
+
+					a {
+						padding: 10px 0;
+					}
+				}
+
+				&.plypause {
+					margin-right: 2.5%;
+
+					a {
+						font-size: 1.3em;
+						margin-right: 0;
+						padding: 12px 10px 7px;
+					}
+				}
+			}
 		}
 	}
 

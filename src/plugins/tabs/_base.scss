@@ -35,9 +35,12 @@ $medGray: #ccc;
 }
 
 %tab-figure-captions {
+	bottom: 0;
 	color: #fff;
+	left: 0;
 	padding: 0.5em 1em;
-	position: absolute;
+	position: relative;
+	right: 0;
 	z-index: 101;
 }
 
@@ -54,14 +57,21 @@ $medGray: #ccc;
 
 %carousel-s2-prv-nxt-a-common {
 	border: 0;
-	color: $drabBlue;
+	padding: 10px 5px;
 	width: 100%;
 }
 
-%carousel-s2-prv-nxt-glyphicon-common {
+%carousel-s2-btn-common {
 	background: #fff;
 	border-radius: 999px;
 	box-shadow: 0 0 4px $drabBlue;
+}
+
+%carousel-color-drabblue {
+	color: $drabBlue;
+}
+
+%carousel-s2-prv-nxt-glyphicon-common {
 	font-size: 1.75em;
 	height: 1.75em;
 	line-height: 1.75em;
@@ -83,31 +93,39 @@ $medGray: #ccc;
 	padding-top: 10px;
 }
 
+%tabs-display-inline-block {
+	display: inline-block;
+}
+
+%tabs-margin-bottom-0 {
+	margin-bottom: 0;
+}
+
 .wb-tabs {
 	/**
 	 * Default, minimal, shared style
 	 */
 	@extend %tabs-position-relative;
 
-	[role ="tablist"] {
+	[role="tablist"] {
 		list-style: none;
 		margin: 0;
 		padding: 0;
 		position: relative;
 
 		li {
+			@extend %tabs-display-inline-block;
 			background: #ebf2fc;
 			border: 1px solid $medGray;
 			color: #000;
 			cursor: pointer;
-			display: inline-block;
 			margin: 0 10px 0 0;
 			position: relative;
 			text-align: center;
 
 			a {
+				@extend %tabs-display-inline-block;
 				color: #000;
-				display: inline-block;
 				// changed padding and margin from em to px to fix web-kit layout issue
 				padding: 10px;
 				text-decoration: none;
@@ -138,7 +156,7 @@ $medGray: #ccc;
 		z-index: 1;
 
 		&.out {
-			display: none;
+			@extend %global-display-none;
 		}
 	}
 
@@ -146,13 +164,36 @@ $medGray: #ccc;
 	 * Style 1 - Basic carousel style
 	 */
 	&.carousel-s1 {
+		border-top: 0;
+	
 		[role="tablist"] {
-			@extend %tab-position-relative;
 			bottom: 1em;
 			left: 1em;
+			position: static;
 
 			li {
+				@extend %global-display-none;
 				@extend %tab-zindex-100;
+
+				&.control {
+					@extend %tabs-display-inline-block;
+				}
+
+				&.tab-count {
+					background: none;
+					border: 0;
+
+					.curr-count {
+						display: inline;
+					}
+
+					&.active,
+					&:focus,
+					&:hover {
+						cursor: default;
+						top: 0;
+					}
+				}
 
 				&.active,
 				&:focus,
@@ -177,11 +218,13 @@ $medGray: #ccc;
 
 		figcaption {
 			@extend %tab-figure-captions;
-			right: 1em;
-			top: 3em;
 
 			a {
 				@extend %tab-figure-captions-links;
+			}
+
+			p {
+				@extend %tabs-margin-bottom-0;
 			}
 		}
 	}
@@ -190,63 +233,22 @@ $medGray: #ccc;
 	 * Style 2 - Slider-like carousel style
 	 */
 	&.carousel-s2 {
-		$thumbHeight: 50px;
-		// 44px = 2 x 10px for anchor padding + 2 x 4px for list item padding + 16px for carousel bottom margin
-		margin-bottom: $thumbHeight + 44px;
+		background: #eee;
+		padding-bottom: 4.375em;
 
 		[role="tablist"] {
 			@extend %tab-position-relative;
-			height: 100%;
+			bottom: 0;
 			width: 100%;
 
 			li {
+				@extend %global-display-none;
 				@extend %tab-zindex-100;
 				background: transparent;
 				border: 0;
-				display: none;
-
-				&[role="presentation"] {
-					background: $lightGray;
-					background: transparentize($lightGray, .1);
-					display: inline-block;
-					padding: 4px;
-					top: 100%;
-
-					&.active,
-					&:focus,
-					&:hover {
-						box-shadow: 0 0 4px $drabBlue;
-					}
-
-					&.active {
-						a {
-							@extend %tabs-carousel-border-top-none-padding-top-1;
-
-							img {
-								/* Firefox 10+, Firefox on Android */
-								filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0'/></filter></svg>#grayscale");
-								/* Chrome 19+, Safari 6+, Safari 6+ iOS */
-								-webkit-filter: unquote("grayscale(0)");
-							}
-						}
-					}
-
-					a {
-						img {
-							box-shadow: none;
-							/* Firefox 10+, Firefox on Android */
-							filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#grayscale");
-							/* IE6-9 */
-							filter: #808080;
-							/* Chrome 19+, Safari 6+, Safari 6+ iOS */
-							-webkit-filter: unquote("grayscale(100%)");
-							max-height: $thumbHeight;
-						}
-					}
-				}
 
 				&.control {
-					display: inline-block;
+					@extend %tabs-display-inline-block;
 				}
 
 				&.prv {
@@ -254,8 +256,11 @@ $medGray: #ccc;
 
 					a {
 						@extend %carousel-s2-prv-nxt-a-common;
+						@extend %carousel-color-drabblue;
+						padding-left: 1em;
 
 						.glyphicon {
+							@extend %carousel-s2-btn-common;
 							@extend %carousel-s2-prv-nxt-glyphicon-common;
 						}
 
@@ -275,8 +280,10 @@ $medGray: #ccc;
 
 					a {
 						@extend %carousel-s2-prv-nxt-a-common;
+						@extend %carousel-color-drabblue;
 
 						.glyphicon {
+							@extend %carousel-s2-btn-common;
 							@extend %carousel-s2-prv-nxt-glyphicon-common;
 						}
 
@@ -294,12 +301,43 @@ $medGray: #ccc;
 				&.plypause {
 					background: none;
 					border: 0;
-					display: inline-block !important;
-					padding: 2px 10px;
-					top: 100%;
+					float: right;
+					margin-right: 0;
+					padding: 2px 0;
 
-					span {
-						color: #000 !important;
+					a {
+						@extend %carousel-s2-btn-common;
+						@extend %carousel-color-drabblue;
+						font-size: 1.5em;
+						margin-top: 0.4em;
+						margin-right: 0.65em;
+						padding: 8px 10px 4px;
+
+						&:focus,
+						&:hover {
+							@extend %tabs-box-shadow-none;
+						}
+					}
+				}
+
+				&.tab-count {
+					line-height: normal;
+
+					> {
+						div {
+							position: relative;
+							top: 0.4em;
+						}
+					}
+
+					.curr-count {
+						font-size: 1.5em;
+					}
+
+					&:focus,
+					&:hover {
+						background: transparent;
+						cursor: default;
 					}
 				}
 			}
@@ -316,22 +354,13 @@ $medGray: #ccc;
 
 		figcaption {
 			@extend %tab-figure-captions;
-			bottom: 0;
-			left: 0;
-			right: 0;
 
 			a {
 				@extend %tab-figure-captions-links;
 			}
 
 			p {
-				margin-bottom: 0;
-			}
-		}
-
-		&.no-overlap {
-			figcaption {
-				@extend %tabs-position-relative;
+				@extend %tabs-margin-bottom-0;
 			}
 		}
 	}
