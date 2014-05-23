@@ -6,14 +6,6 @@
 /**
  * Mobile-friendly styles
  */
-%tabs-smallview-display-none {
-	display: none;
-}
-
-%tabs-smallview-font-size-15-em {
-	font-size: 1.5em;
-}
-
 %tabs-details-padding-6-12 {
 	padding: 6px 12px;
 }
@@ -23,117 +15,10 @@
 	border-top: 1px solid #adadad;
 	margin-bottom: 15px;
 
-	&.carousel-s1,
-	&.carousel-s2 {
-		figcaption {
-			bottom: 0;
-			left: 0;
-			position: relative;
-			right: 0;
-			top: auto;
-		}
-	}
-
-	&.carousel-s1 {
-		border-top: 0;
-
-		[role="tablist"] {
-			position: static;
-
-			li {
-				&[role="presentation"] {
-					@extend %tabs-smallview-display-none;
-				}
-
-				&.tab-count {
-					background: none;
-					border: 0;
-
-					.curr-count {
-						display: inline;
-					}
-
-					&.active,
-					&:focus,
-					&:hover {
-						cursor: default;
-						top: 0;
-					}
-				}
-			}
-		}
-	}
-
-	&.carousel-s2 {
-		$smallViewToolbarSize: 4.375em;
-		background: #eee;
-		margin-bottom: auto;
-		padding-bottom: $smallViewToolbarSize;
-
-		[role="tablist"] {
-			bottom: 0;
-			height: auto;
-			margin-top: -$smallViewToolbarSize;
-
-			li {
-				&[role="presentation"] {
-					@extend %tabs-smallview-display-none;
-				}
-
-				&.control {
-					top: 100%;
-				}
-
-				&.prv {
-					a {
-						padding-left: 1em;
-					}
-				}
-
-				&.tab-count {
-					line-height: normal;
-
-					> {
-						div {
-							position: relative;
-							top: 0.4em;
-						}
-					}
-
-					.curr-count {
-						@extend %tabs-smallview-font-size-15-em;
-					}
-
-					&:focus,
-					&:hover {
-						background: transparent;
-						cursor: default;
-					}
-				}
-
-				&.plypause {
-					float: right;
-					margin-right: 0;
-					padding-right: 1em;
-
-					a {
-						@extend %tabs-smallview-font-size-15-em;
-						margin-top: 0.3em;
-						padding-right: 0;
-					}
-				}
-			}
-		}
-
-		figcaption {
-			margin: auto;
-		}
-	}
-
 	&.tabs-acc {
 		> {
 			ul {
-				@extend %tabs-smallview-display-none;
+				display: none;
 			}
 		}
 	}
