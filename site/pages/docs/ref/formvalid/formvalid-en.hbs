@@ -4,7 +4,7 @@
 	"language": "en",
 	"description": "Provides generic validation and error message handling for Web forms.",
 	"altLangPrefix": "formvalid",
-	"dateModified": "2014-03-17"
+	"dateModified": "2014-05-24"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -65,7 +65,7 @@ wb-frmvld
 			<tr>
 				<td><code>hdLvl</code></td>
 				<td>Heading level for error summary.</td>
-				<td>Add <code>"hdLvl": "headingLevel"</code> to the <code>data-wb-frmvld</code> attribute where <code>headingLevel</code> is the heading level. Use the following JavaScript code instead to configure all instances of the plugin: <code>window[ "wb-share" ] = {"hdLvl": "headingLevel"};</code>.</td>
+				<td>Add <code>"hdLvl": "headingLevel"</code> to the <code>data-wb-frmvld</code> attribute where <code>headingLevel</code> is the heading level. Use the following JavaScript code instead to configure all instances of the plugin: <code>window[ "wb-frmvld" ] = {"hdLvl": "headingLevel"};</code>.</td>
 				<td>
 					<dl>
 						<dt><code>h2</code> (default):</dt>
@@ -78,6 +78,21 @@ wb-frmvld
 						<dd>Heading level 5</dd>
 						<dt><code>h6</code>:</dt>
 						<dd>Heading level 6</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>ignore</code></td>
+				<td>Selector identifying the fields to ignore.</td>
+				<td>Add <code>"ignore": "selector"</code> to the <code>data-wb-frmvld</code> attribute where <code>selector</code> is a valid jQuery selector. Use the following JavaScript code instead to configure all instances of the plugin: <code>window[ "wb-frmvld" ] = {"ignore": ".ignore"};</code>.</td>
+				<td>
+					<dl>
+						<dt><code>:hidden</code> (default):</dt>
+						<dd>All hidden fields</dd>
+						<dt><code>.ignore</code>:</dt>
+						<dd>All fields with the <code>ignore</code> class</dd>
+						<dt>Empty string ("")</dt>
+						<dd>None of the fields</dd>
 					</dl>
 				</td>
 			</tr>
