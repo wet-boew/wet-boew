@@ -23,7 +23,8 @@ var pluginName = "wb-frmvld",
 	i18n, i18nText,
 
 	defaults = {
-		hdLvl: "h2"
+		hdLvl: "h2",
+		ignore: ":hidden"
 	},
 
 	/**
@@ -133,6 +134,7 @@ var pluginName = "wb-frmvld",
 					validator = $form.validate({
 						meta: "validate",
 						focusInvalid: false,
+						ignore: settings.ignore,
 
 						// Set the element which will wrap the inline error messages
 						errorElement: "strong",
