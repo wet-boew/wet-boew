@@ -145,9 +145,7 @@ module.exports = (grunt) ->
 			"i18n_csv:assemble"
 			"copy:demos"
 			"csslint:demos"
-			"assemble:theme"
-			"assemble:ajax"
-			"assemble:demos"
+			"pages"
 		]
 	)
 
@@ -159,10 +157,7 @@ module.exports = (grunt) ->
 			"copy:demos_min"
 			"cssmin:demos_min"
 			"uglify:demos"
-			"assemble:theme_min"
-			"assemble:ajax_min"
-			"assemble:demos_min"
-			"htmlcompressor"
+			"pages:min"
 			"htmllint"
 		]
 	)
@@ -195,6 +190,41 @@ module.exports = (grunt) ->
 			"demos-min"
 			"connect:test"
 		]
+	)
+
+	@registerTask(
+		"pages"
+		"Task to intelligently call Assemble targets"
+		( target ) ->
+			if target == "min"
+				# Run the minifier and update asset paths
+				grunt.task.run(
+					"htmlcompressor"
+					"useMinAssets"
+				);
+			else
+				# Only use a target path for assemble if pages recieved one too
+				target = if target then ":" + target else ""
+				grunt.task.run( "assemble" + target );
+	)
+
+	@registerTask(
+		"useMinAssets"
+		"Replace unmin refrences with the min paths for HTML files"
+		() ->
+			htmlFiles = grunt.file.expand(
+				"dist/**/*.html"
+				"!dist/unmin/**/*.html"
+			);
+
+			htmlFiles.forEach(
+				( file ) ->
+					contents = grunt.file.read( file )
+					contents = contents.replace( /\/unmin/g, "" )
+					contents = contents.replace( /\"([^\"]*)?\.(js|css)\"/g, "\"$1.min.$2\"" )
+
+					grunt.file.write(file, contents);
+			);
 	)
 
 	grunt.util.linefeed = "\n"
@@ -347,14 +377,14 @@ module.exports = (grunt) ->
 				layoutdir: "site/layouts"
 				partials: "site/includes/**/*.hbs"
 				layout: "default.hbs"
+				environment:
+					root: "/v4.0-ci/unmin"
+					jqueryVersion: "<%= jqueryVersion.version %>"
+					jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
+				assets: "dist/unmin"
 
 			theme:
 				options:
-					environment:
-						root: "/v4.0-ci/unmin"
-						jqueryVersion: "<%= jqueryVersion.version %>"
-						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
-					assets: "dist/unmin"
 					plugins: [
 						"assemble-contrib-i18n"
 					]
@@ -366,7 +396,7 @@ module.exports = (grunt) ->
 							"!theme/**/*-en.hbs"
 							"!theme/**/*-fr.hbs"
 						]
-				dest: "dist/unmin/"
+				dest: "dist/unmin"
 				src: [
 					"theme/**/*-en.hbs"
 					"theme/**/*-fr.hbs"
@@ -374,12 +404,7 @@ module.exports = (grunt) ->
 
 			ajax:
 				options:
-					environment:
-						root: "/v4.0-ci/unmin"
-						jqueryVersion: "<%= jqueryVersion.version %>"
-						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
-					assets: "dist/unmin"
-					flatten: true,
+					flatten: true
 					plugins: [
 						"assemble-contrib-i18n"
 					]
@@ -392,12 +417,6 @@ module.exports = (grunt) ->
 				src: "!*.*"
 
 			demos:
-				options:
-					environment:
-						root: "/v4.0-ci/unmin"
-						jqueryVersion: "<%= jqueryVersion.version %>"
-						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
-					assets: "dist/unmin"
 				files: [
 						expand: true
 						cwd: "src/plugins"
@@ -418,125 +437,27 @@ module.exports = (grunt) ->
 						src: [
 							"**/*.hbs",
 							"!ajax/**/*.hbs"
-							"!theme/**/*.hbs"
+							"!docs/**/*.hbs"
 						]
 						dest: "dist/unmin"
 						expand: true
 				]
 
 			docs:
-				options:
-					environment:
-						root: "/v4.0-ci/unmin"
-						jqueryVersion: "<%= jqueryVersion.version %>"
-						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
-					assets: "dist/unmin"
-				files: [
-						cwd: "site/pages"
-						src: [
-							"docs/**/*.hbs"
-							"!docs/ref/**/*.hbs"
-							"!docs/versions/**/*.hbs"
-						]
-						dest: "dist/unmin"
-						expand: true
+				cwd: "site/pages"
+				src: [
+					"docs/**/*.hbs"
 				]
+				dest: "dist/unmin"
+				expand: true
 
 			versions:
-				options:
-					environment:
-						root: "/v4.0-ci/unmin"
-						jqueryVersion: "<%= jqueryVersion.version %>"
-						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
-					assets: "dist/unmin"
-				files: [
-						cwd: "site/pages"
-						src: [
-							"docs/versions/**/*.hbs"
-						]
-						dest: "dist/unmin"
-						expand: true
-				]
-
-			theme_min:
-				options:
-					environment:
-						suffix: ".min"
-						root: "/v4.0-ci"
-						jqueryVersion: "<%= jqueryVersion.version %>"
-						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
-					assets: "dist"
-					plugins: [
-						"assemble-contrib-i18n"
-					]
-					i18n:
-						languages: "<%= i18n_csv.assemble.locales %>"
-						templates: [
-							"theme/**/*.hbs"
-							# Don't run i18n transforms on language specific templates
-							"!theme/**/*-en.hbs"
-							"!theme/**/*-fr.hbs"
-						]
-				dest: "dist/"
+				cwd: "site/pages"
 				src: [
-					"theme/**/*-en.hbs"
-					"theme/**/*-fr.hbs"
+					"docs/versions/**/*.hbs"
 				]
-
-
-			ajax_min:
-				options:
-					environment:
-						suffix: ".min"
-						root: "/v4.0-ci/unmin"
-						jqueryVersion: "<%= jqueryVersion.version %>"
-						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
-					assets: "dist/unmin"
-					flatten: true,
-					plugins: [
-						"assemble-contrib-i18n"
-					]
-					i18n:
-						languages: "<%= i18n_csv.assemble.locales %>"
-						templates: [
-							"site/pages/ajax/*.hbs"
-						]
-				dest: "dist/ajax/"
-				src: "!*.*"
-
-			demos_min:
-				options:
-					environment:
-						suffix: ".min"
-						root: "/v4.0-ci"
-						jqueryVersion: "<%= jqueryVersion.version %>"
-						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
-					assets: "dist"
-				files: [
-						expand: true
-						cwd: "src/plugins"
-						src: "**/*.hbs"
-						dest: "dist/demos"
-					,
-						expand: true
-						cwd: "src/polyfills"
-						src: "**/*.hbs"
-						dest: "dist/demos"
-					,
-						expand: true
-						cwd: "src/other"
-						src: "**/*.hbs"
-						dest: "dist/demos"
-					,
-						cwd: "site/pages"
-						src: [
-							"**/*.hbs",
-							"!ajax/**/*.hbs"
-							"!theme/**/*.hbs"
-						]
-						dest: "dist"
-						expand: true
-				]
+				dest: "dist/unmin"
+				expand: true
 
 		#Generate the sprites including the stylesheet
 		sprites:
@@ -840,10 +761,9 @@ module.exports = (grunt) ->
 				type: "html"
 				concurrentProcess: 5
 			all:
-				cwd: "dist"
+				cwd: "dist/unmin"
 				src: [
 					"**/*.html"
-					"!unmin/**/*.html"
 				]
 				dest: "dist"
 				expand: true
@@ -1091,10 +1011,10 @@ module.exports = (grunt) ->
 
 			demos:
 				files: [
-					"**/*.hbs"
+					"<%= assemble.demos.src %>"
 				]
 				tasks: [
-					"assemble"
+					"pages:demos"
 				]
 				options:
 					interval: 5007
@@ -1102,10 +1022,10 @@ module.exports = (grunt) ->
 
 			docs:
 				files: [
-					"site/pages/docs/**/*.hbs"
+					"<%= assemble.docs.src %>"
 				]
 				tasks: [
-					"assemble:docs"
+					"pages:docs"
 				]
 				options:
 					livereload: true
@@ -1115,7 +1035,7 @@ module.exports = (grunt) ->
 					"site/pages/docs/versions/**/*.hbs"
 				]
 				tasks: [
-					"assemble:versions"
+					"pages:versions"
 				]
 				options:
 					livereload: true
