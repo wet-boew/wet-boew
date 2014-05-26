@@ -336,4 +336,12 @@ $mm-volume-thumb-color: #fff;
 			}
 		}
 	}
+
+	/* Slider polyfill styles */
+	.fd-slider {
+		display: inline-block;
+		height: 100%;
+		margin-top: 10px;
+		width: 7em;
+	}
 }
