@@ -277,6 +277,11 @@ $mm-volume-thumb-width: 10px;
 		top: 0;
 		width: 100%;
 
+		&.wb-progress-inited {
+			overflow: hidden;
+			padding: 0;
+		}
+
 		&::-webkit-progress-bar {
 			background: $mm-progress-bg-color;
 		}
