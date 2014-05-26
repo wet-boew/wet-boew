@@ -13,7 +13,8 @@
 var polyfillName = "wb-slider",
 	selector = "input[type='range']",
 	initEvent = "wb-init." + polyfillName,
-	updateEvent = "wb-update." + polyfillName;
+	updateEvent = "wb-update." + polyfillName,
+	uniqueCount = 0;
 
 // Bind the init and update event of the plugin
 wb.doc.on( initEvent + " " + updateEvent, selector, function( event ) {
@@ -23,6 +24,11 @@ wb.doc.on( initEvent + " " + updateEvent, selector, function( event ) {
 	if ( event.currentTarget === eventTarget ) {
 		switch ( event.type ) {
 		case "wb-init":
+
+			if ( !eventTarget.id ) {
+				eventTarget.id = "wb-sldr-" + ( uniqueCount++ );
+			}
+
 			window.fdSlider.createSlider( {
 				inp: eventTarget,
 				html5Shim: true
