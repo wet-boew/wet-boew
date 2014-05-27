@@ -1048,16 +1048,12 @@ module.exports = (grunt) ->
 				src: [
 					"src/**/*.js"
 					"theme/**/*.js"
-					"test/**/*.js"
 					"tasks/*.js"
 				]
 		jscs:
 			all:
 				src: [
-					"src/**/*.js"
-					"theme/**/*.js"
-					"test/**/*.js"
-					"tasks/*.js"
+					"<%= jshint.lib_test.src %>"
 				]
 
 

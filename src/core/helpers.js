@@ -32,7 +32,7 @@
 	wb.jqEscape = function( selector ) {
 		return selector.replace( /([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, "\\$1" );
 	};
-	
+
 	// RegEx used by formattedNumCompare
 	wb.formattedNumCompareRegEx = /(<[^>]*>|[^\d\.])/g;
 
@@ -59,7 +59,7 @@
 	wb.i18nTextCompare = function( a, b ) {
 		return wb.normalizeDiacritics( a ).localeCompare( wb.normalizeDiacritics( b ) );
 	};
-	
+
 	// Based upon https://gist.github.com/instanceofme/1731620
 	// Licensed under WTFPL v2 http://sam.zoy.org/wtfpl/COPYING
 	wb.normalizeDiacritics = function( str ) {
