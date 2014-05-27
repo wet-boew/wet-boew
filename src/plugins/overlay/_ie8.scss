@@ -14,7 +14,7 @@
 	border-right: 1px solid #999;
 }
 
-.ie8 {
+.lt-ie9 {
 	.wb-panel-l {
 		@extend %overlay-ie8-border-right-999;
 	}

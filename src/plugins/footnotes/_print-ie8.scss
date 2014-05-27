@@ -7,7 +7,7 @@
 	display: block;
 }
 
-.ie8 {
+.lt-ie9 {
 	.wb-fnote {
 		dd {
 			@extend %footnotes-ie8-display-block;
