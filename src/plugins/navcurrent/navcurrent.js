@@ -33,14 +33,13 @@ var $document = wb.doc,
 			pageUrl = windowLocation.hostname + windowLocation.pathname.replace( /^([^\/])/, "/$1" ),
 			pageUrlQuery = windowLocation.search,
 			match = false,
-			len = menuLinks.length,
-			i, j, link, linkHref, linkUrl, linkQuery, linkQueryLen,
+			len, i, j, link, linkHref, linkUrl, linkQuery, linkQueryLen,
 			localBreadcrumbLinks, localBreadcrumbLinksArray, localBreadcrumbLinksUrlArray,
 			localBreadcrumbQuery, localBreadcrumbLinkUrl;
 
 		// Try to find a match with the page Url and cache link + Url for later if no match found
 		// Perform the check and caching in reverse to go from more specific links to more general links
-		for ( i = len - 1; i !== -1; i -= 1 ) {
+		for ( i = menuLinks.length - 1; i !== -1; i -= 1 ) {
 			link = menuLinks[ i ];
 			linkHref = link.getAttribute( "href" );
 			if ( linkHref !== null ) {
