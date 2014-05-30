@@ -56,6 +56,12 @@ $mm-volume-thumb-width: 10px;
 	padding: 0;
 }
 
+%captions_text_box {
+	display: table-cell;
+	height: 3em;
+	vertical-align: middle
+}
+
 .wb-mltmd {
 	// lets fight the FOUC
 	// base state
@@ -148,7 +154,8 @@ $mm-volume-thumb-width: 10px;
 
 	&.cc_on {
 		.wb-mm-cc {
-			max-height: 999em;
+			display: table;
+			height: 4em;
 			padding: 0.5em;
 		}
 
@@ -208,6 +215,16 @@ $mm-volume-thumb-width: 10px;
 	color: $mm-cc-fg-color;
 	text-align: center;
 	transition: all 0.26s ease;
+	width: 100%;
+
+	&:before {
+		content: " ";
+		@extend %captions_text_box;
+	}
+
+	div {
+		@extend %captions_text_box;
+	}
 }
 
 %pnl {
