@@ -19,7 +19,7 @@
 * [Version history](http://wet-boew.github.io/wet-boew/docs/versions/index-en.html) and [roadmap](http://wet-boew.github.io/wet-boew/docs/versions/rdmp-en.html)
 * [Terms and conditions](http://wet-boew.github.io/wet-boew/License-en.html) (MIT license)
 * [Source code repository](https://github.com/wet-boew/wet-boew/) and [contributing guidelines](http://wet-boew.github.io/wet-boew/docs/start-en.html#develop)
-* [Communications material](http://wet-boew.github.io/wet-boew/docs/index-en.html#comms)
+* [Communications material](http://wet-boew.github.io/wet-boew/docs/comms-en.html)
 * [Websites using WET](http://wet-boew.github.io/wet-boew/docs/ref/wetsites-en.html)
 
 ## Benefits
@@ -128,7 +128,7 @@
 * [Historique des versions](http://wet-boew.github.io/wet-boew/docs/versions/index-fr.html) et [feuille de route](http://wet-boew.github.io/wet-boew/docs/versions/rdmp-fr.html)
 * [Conditions régissant l'utilisation](http://wet-boew.github.io/wet-boew/Licence-fr.html) (licence MIT)
 * [Dépôt de code source](https://github.com/wet-boew/wet-boew/) et [lignes directrices pour les contributeurs](http://wet-boew.github.io/wet-boew/docs/start-fr.html#develop)
-* [Matériel de communications](http://wet-boew.github.io/wet-boew/docs/index-fr.html#comms)
+* [Matériel de communications](http://wet-boew.github.io/wet-boew/docs/comms-fr.html)
 * [Sites Web qui se servent de la BOEW](http://wet-boew.github.io/wet-boew/docs/ref/wetsites-fr.html)
 
 ## Avantages
