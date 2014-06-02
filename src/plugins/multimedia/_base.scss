@@ -60,7 +60,7 @@ $mm-volume-thumb-width: 10px;
 %captions_text_box {
 	display: table-cell;
 	height: 3em;
-	vertical-align: middle
+	vertical-align: middle;
 }
 
 .wb-mltmd {
@@ -77,8 +77,10 @@ $mm-volume-thumb-width: 10px;
 		@extend %multimedia-controls-outline;
 		background: transparent;
 		border: 0;
-		border-top-left-radius: 0 !important;
-		border-top-right-radius: 0 !important;
+		border-top: {
+			left-radius: 0 !important;
+			right-radius: 0 !important;
+		}
 		color: $mm-ctrl-fg-color;
 		font-size: 130%;
 	}
@@ -115,10 +117,12 @@ $mm-volume-thumb-width: 10px;
 		&.waiting {
 			&:after {
 				@extend %multimedia_loading;
-				animation-duration: 1000ms;
-				animation-iteration-count: infinite;
-				animation-name: spin;
-				animation-timing-function: linear;
+				animation: {
+					duration: 1000ms;
+					iteration-count: infinite;
+					name: spin;
+					timing-function: linear;
+				}
 				background: url("../assets/loading.png") center center no-repeat;
 				z-index: 2;
 			}
@@ -218,8 +222,8 @@ $mm-volume-thumb-width: 10px;
 	width: 100%;
 
 	&:before {
-		content: " ";
 		@extend %captions_text_box;
+		content: " ";
 	}
 
 	div {
