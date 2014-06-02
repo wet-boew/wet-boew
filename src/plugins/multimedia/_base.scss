@@ -8,6 +8,7 @@ $mm-cc-fg-color: #fff;
 $mm-cc-bg-color: #000;
 $mm-ctrl-fg-color: #fff;
 $mm-ctrl-bg-color: #3e3e3e;
+$mm-ctrl-outline-color: #4aafff;
 $mm-ctrl-cc-color: #4aafff;
 $mm-volume-bg-color: #aaa;
 $mm-volume-thumb-color: #fff;
@@ -20,7 +21,7 @@ $mm-volume-thumb-width: 10px;
 
 %multimedia-controls-outline {
 	&:focus {
-		outline: 1px dotted $mm-ctrl-fg-color;
+		outline: 1px solid $mm-ctrl-outline-color;
 	}
 }
 
@@ -97,6 +98,7 @@ $mm-volume-thumb-width: 10px;
 		position: relative;
 
 		.wb-mm-ovrly {
+			@extend %multimedia-controls-outline;
 			height: 100%;
 			position: absolute;
 			width: 100%;
@@ -133,9 +135,7 @@ $mm-volume-thumb-width: 10px;
 	.wb-mm-ovrly {
 		background: transparent;
 		border: 0;
-		direction: ltr;
 		padding: 0;
-		text-indent: -9999px;
 
 		img {
 			width: 100%;
@@ -320,6 +320,7 @@ $mm-volume-thumb-width: 10px;
 
 	input {
 		&[type=range] {
+			@extend %multimedia-controls-outline;
 			-webkit-appearance: none;
 			background: transparent;
 			display: inline-block;
