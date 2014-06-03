@@ -36,7 +36,8 @@ var pluginName = "wb-tabs",
 
 	defaults = {
 		addControls: true,
-		excludePlay: false
+		excludePlay: false,
+		interval: 6
 	},
 
 	/*
@@ -49,16 +50,26 @@ var pluginName = "wb-tabs",
 		if ( !$elm.hasClass( initedClass ) ) {
 			$elm.addClass( initedClass );
 
-			var interval = $elm.hasClass( "slow" ) ? 9 : $elm.hasClass( "fast" ) ? 3 : 6,
-				$panels = $elm.children( "[role=tabpanel], details" ),
+			var $panels = $elm.children( "[role=tabpanel], details" ),
 				$tablist = $elm.children( "[role=tablist]" ),
-				addControls = defaults.addControls,
-				excludePlay = defaults.excludePlay,
 				activeId = wb.pageUrlParts.hash.substring( 1 ),
 				$openPanel = activeId.length !== 0 ? $panels.filter( "#" + activeId ) : undefined,
 				elmId = $elm.attr( "id" ),
 				hashFocus = false,
 				open = "open",
+				settings = $.extend(
+					true,
+					{},
+					defaults,
+					{ interval: $elm.hasClass( "slow" ) ?
+									9 : $elm.hasClass( "fast" ) ?
+										3 : defaults.interval },
+					window[ pluginName ],
+					wb.getData( $elm, pluginName )
+				),
+				interval = settings.interval,
+				addControls = settings.addControls,
+				excludePlay = settings.excludePlay,
 				$panel, i, len, tablist, isOpen, newId, positionY, groupClass;
 
 			// Ensure there is an id on the element
