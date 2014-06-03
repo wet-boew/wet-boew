@@ -119,12 +119,6 @@
 		}
 	}
 
-	.technorati {
-		&:before {
-			@include technorati;
-		}
-	}
-
 	.tumblr {
 		&:before {
 			@include tumblr;

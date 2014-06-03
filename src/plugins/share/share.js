@@ -106,10 +106,6 @@ var pluginName = "wb-share",
 				name: "StumbleUpon",
 				url: "http://www.stumbleupon.com/submit?url={u}&amp;title={t}"
 			},
-			technorati: {
-				name: "Technorati",
-				url: "http://www.technorati.com/faves?add={u}"
-			},
 			tumblr: {
 				name: "tumblr",
 				url: "http://www.tumblr.com/share/link?url={u}&amp;name={t}&amp;description={d}"
