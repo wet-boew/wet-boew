@@ -649,7 +649,6 @@ var pluginName = "wb-tabs",
 				onCycle( $elm, className.indexOf( "prv" ) !== -1 ? -1 : 1 );
 			}
 		}
-		return false;
 	}
 
 	/*
@@ -665,10 +664,12 @@ $document.on( "keydown", selector, function( event ) {
 	// Escape key
 	if ( event.which === 27 ) {
 		var $sldr = $( event.target ).closest( selector );
+
+		event.preventDefault();
+
 		if ( $sldr.hasClass( "playing" ) ) {
 			$sldr.find( ".plypause" ).trigger( "click" );
 		}
-		return false;
 	}
 });
 
@@ -697,13 +698,13 @@ $document.on( "click", selector + " [role=tabpanel] a", function( event ) {
 		$container = $( currentTarget ).closest( selector );
 		$panel = $container.find( href );
 		if ( $panel.length !== 0 ) {
+			event.preventDefault();
 			$summary = $panel.children( "summary" );
 			if ( $summary.length !== 0 && $summary.attr( "aria-hidden" ) !== "true" ) {
 				$summary.trigger( "click" );
 			} else {
 				$container.find( href + "-lnk" ).trigger( "click" );
 			}
-			return false;
 		}
 	}
 });
