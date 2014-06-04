@@ -11,6 +11,22 @@
 	margin: 10px 5px;
 }
 
+%cal-text-head {
+	color: $cal-text-head;
+}
+
+%cal-text-head-important {
+	color: $cal-text-head !important;
+}
+
+%cal-text-body {
+	color: $cal-text-body;
+}
+
+%cal-bg-dark {
+	background: $cal-dark;
+}
+
 .cal-cnt {
 	background: #fff;
 	text-shadow: none;
@@ -21,6 +37,9 @@
 	}
 
 	.cal-hd {
+		@extend %cal-bg-dark;
+		@extend %cal-text-head;
+		font-weight: 700;
 		overflow: hidden;
 		padding: 0.5em 4px;
 		position: relative;
@@ -38,11 +57,13 @@
 	.cal-goto-mnth {
 		@extend %cal-goto-btns;
 		@extend %cal-position-relative;
+		@extend %cal-text-body;
 	}
 
 	.cal-goto-yr {
 		@extend %cal-goto-btns;
 		@extend %cal-position-relative;
+		@extend %cal-text-body;
 	}
 
 	.cal-goto-btn {
@@ -53,6 +74,10 @@
 			min-width: 5em;
 			padding: 0.1em 0.2em;
 		}
+	}
+
+	.cal-goto-lnk {
+		@extend %cal-text-head-important;
 	}
 
 	td {
@@ -78,25 +103,56 @@
 	&[disabled] {
 		opacity: 0.2;
 	}
+
+	&.active {
+		color: $cal-active;
+
+		&:hover,
+		&:focus {
+			@extend %cal-text-head;
+		}
+	}
 }
 
 .cal-wd {
-	border: 1px solid #333;
+	background: $cal-medium;
+	border: 1px solid $cal-dark;
 	color: #fff;
 	padding: 0.5em 0;
 	text-align: center;
 }
 
+%cal-days-a-div {
+	display: block;
+	height: 100%;
+	padding: 0.5em 0;
+	width: 100%;
+}
+
 .cal-days {
-	a,
+	a {
+		@extend %cal-days-a-div;
+		color: $cal-days-link;
+
+		&:hover,
+		&:focus {
+			@extend %cal-bg-dark;
+			@extend %cal-text-head-important;
+		}
+	}
+
 	div {
-		display: block;
-		height: 100%;
-		padding: 0.5em 0;
-		width: 100%;
+		@extend %cal-days-a-div;
 	}
 
 	.cal-currday {
+		@extend %cal-text-head;
+		@extend %cal-bg-dark;
 		font-weight: bolder;
+
+		a {
+			@extend %cal-text-head-important;
+			@extend %cal-bg-dark;
+		}
 	}
 }
