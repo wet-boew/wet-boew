@@ -186,7 +186,7 @@ wb.i18nDict = {
 	"geo-attrttl": "@geo-attrttl@",
 	"geo-sel": "@geo-sel@",
 	"geo-lblsel": "@geo-lblsel@",
-	"geo-locurl": "@geo-locurl@",
+	"geo-locurl-geogratis": "@geo-locurl-geogratis@",
 	"geo-loc-placeholder": "@geo-loc-placeholder@",
 	"geo-loc-label": "@geo-loc-label@",
 	"geo-aoi-north": "@geo-aoi-north@",

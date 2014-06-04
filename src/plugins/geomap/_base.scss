@@ -271,8 +271,8 @@
 
 .geomap-legend-symbol {
  height: 18px;
- width: 18px;
  margin: 5px;
+ width: 18px; 
 }
 
 .geomap-clear-format {
@@ -283,26 +283,26 @@
  display: inline;
 }
 
-.geomap-geoloc {
- position: absolute;
- top: 15px;
+.geomap-geoloc { 
  left: 60px;
+ position: absolute; 
  right: 60px;
+ top: 15px;
  z-index: 10000;
-}
-
-.geomap-geoloc input[type="text"] {
- width: 80%;
+ 
+ input[type="text"] {
+  width: 80%;
+ }
 }
 
 button.geomap-geoloc-aoi-btn {
+ background-color: #fff; 
+ border-color: #eee;
  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+ color: #666; 
  position: absolute;
  right: 15px;
  top: 15px;
  z-index: 10000;
- background-color: #fff;
- color: #666;
- border-color: #eee;
 }

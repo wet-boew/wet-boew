@@ -85,7 +85,7 @@ var pluginName = "wb-geomap",
 					attribLink: i18n( "geo-attrlnk" ),
 					attribTitle: i18n( "geo-attrttl" ),
 					ariaMap: i18n( "geo-ariamap"),
-					geoLocationURL: i18n( "geo-locurl" ),
+					geoLocationURL: i18n( "geo-locurl-geogratis" ),
 					geoCoderPlaceholder: i18n( "geo-loc-placeholder" ),
 					geoCoderLabel: i18n( "geo-loc-label" ),
 					aoiNorth: i18n( "geo-aoi-north" ),
@@ -95,7 +95,7 @@ var pluginName = "wb-geomap",
 					aoiInstructions: i18n( "geo-aoi-instructions" ),
 					aoiBtnDraw: i18n( "geo-aoi-btndraw" ),
 					aoiBtnClear: i18n( "geo-aoi-btnclear" ),
-					aoiBtnClose: i18n( "geo-aoi-btnclose" ),
+					aoiBtnClose: i18n( "close" ),
 					geolocBtn: i18n( "geo-geoloc-btn" ),
 					geolocFail: i18n( "geo-geoloc-fail" ),
 					geolocUncapable: i18n( "geo-geoloc-uncapable" )
@@ -2109,7 +2109,7 @@ var pluginName = "wb-geomap",
 		mapDiv.append(
 			"<div class='geomap-geoloc form-inline'>" +
 				"<label for='wb-geomap-geocode-search-" + geomap.uniqueId + "' class='wb-invisible'>" + i18nText.geoCoderLabel + "</label>" +
-				"<input type='text' class='form-control input-sm opct-90 pull-right' name='wb-geomap-geocode-search-" + geomap.uniqueId + "' id='wb-geomap-geocode-search-" + geomap.uniqueId + "' list='wb-geomap-geocode-results-" + geomap.uniqueId + "' autocomplete='off'></input>" +
+				"<input type='text' class='form-control input-sm opct-90 pull-right' name='wb-geomap-geocode-search-" + geomap.uniqueId + "' id='wb-geomap-geocode-search-" + geomap.uniqueId + "' list='wb-geomap-geocode-results-" + geomap.uniqueId + "' autocomplete='off' placeholder='" + i18nText.geoCoderPlaceholder + "'></input>" +
 				"<datalist id='wb-geomap-geocode-results-" + geomap.uniqueId + "'></datalist>" +
 			"</div>"
 		);
