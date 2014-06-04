@@ -37,14 +37,19 @@ var wet_boew_geomap = {
 			title: "KML Demo",
 			caption: "Ceci est un exemple de fichier KML chargé localement par Géocarte.",
 			type: "kml",
-			url: "demo/sample_fr.kml",
+			url: "demo/proposed_roads.kml",
 			visible: false,
-			datatable: true,
+			datatable: false,
 			tab: true,
 			popups: true,
 			attributes: {
-				name: "Titre du produit",
-				description: "Description"
+				name: "Nom"
+			},
+			style: {
+				init: {
+					strokeWidth: 2,
+					strokeColor: "#FF0000"
+				}
 			}
 		},
 		{

@@ -241,6 +241,7 @@
  * Animations
  */
 .olLayerGrid {
+
 	.olTileImage {
 		transition: opacity 0.2s linear;
 	}
@@ -280,6 +281,14 @@
 
 .geomap-legend-label {
 	display: inline;
+}
+
+.geomap-geoloc {
+	position: absolute;
+	top: 15px;
+	left: 60px;
+	right: 60px;
+	z-index: 10000;
 }
 
 .geomap-geoloc {

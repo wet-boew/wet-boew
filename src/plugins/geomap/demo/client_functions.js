@@ -7,15 +7,14 @@
 (function( $, wb ) {
 "use strict";
 
-var $document = wb.doc,
-	mapSample;
+var mapSample;
 
-$document.zoomFeature = function() {
+wb.doc.zoomFeature = function() {
 	var layer = mapSample.getLayersByName( "cities" )[ 0 ],
 		feats = layer.features,
-		len;
+		len = layer.features.length;
 
-	for ( len = layer.features.length - 1; len !== -1; len -= 1 ) {
+	while ( len-- ) {
 		if ( feats[ len ].popup ) {
 			if ( feats[ len ].popup.visible() ) {
 				mapSample.zoomToExtent( feats[ len ].geometry.bounds );
@@ -24,29 +23,30 @@ $document.zoomFeature = function() {
 	}
 };
 
-$document.on( "wb-ready.wb-geomap", "#sample_map", function( event, map ) {
+wb.doc.on( "geomap.ready", function( event, maps ) {
 
 	// Get the sample_map to use in zoomFeature function
-	mapSample = map;
+	mapSample = maps.sample_map;
 	var $aoiExtent = $( "#geomap-aoi-extent-" + mapSample.uniqueId ),
-		$aoiExtentLonLat = $( "#geomap-aoi-extent-lonlat-" + mapSample.uniqueId );
+		$aoiExtentLonLat = $( "#geomap-aoi-extent-lonlat-" + mapSample.uniqueId ),
+		mapLocation;
 
 	if ( $aoiExtent ) {
 
 		$aoiExtent.on( "change", function() {
-			//console.log( "BBox: " + $( this ).val() );
+			 //console.log( "BBox: " + $( this ).val() );
 		} );
 
 		$aoiExtentLonLat.on("change", function() {
-			//console.log( "BBox LonLat: " + $( this ).val() );
+			 //console.log( "BBox LonLat: " + $( this ).val() );
 		} );
 	}
-});
-
-$document.on( "wb-ready.wb-geomap", "#location_map", function( event, map ) {
-
 	// Zoom to location on location_map
-	map.zoomToExtent( map.getLayer( "#addNRCan" ).getDataExtent() );
+	mapLocation = maps.location_map;
+
+	if ( mapLocation ) {
+		mapLocation.zoomToExtent( mapLocation.getLayer( "#addNRCan" ).getDataExtent() );
+	}
 });
 
 })( jQuery, wb );
