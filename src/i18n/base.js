@@ -52,7 +52,7 @@ wb.i18nDict = {
 	"prv-l": "@prv-l@",
 	first: "@first@",
 	last: "@last@",
-	"srch-menus": "@srch-menus@",
+	menu: "@menu@",
 	email: "@email@",
 	"menu-close": "@menu-close@",
 	"overlay-close": "@overlay-close@",
@@ -73,7 +73,8 @@ wb.i18nDict = {
 	pause: "@pause@",
 	open: "@open@",
 	close: "@close@",
-	volume: "@volume@",
+	rew: "@rew@",
+	ffwd: "@ffwd@",
 	mute: {
 		on: "@mute-on@",
 		off: "@mute-off@"
