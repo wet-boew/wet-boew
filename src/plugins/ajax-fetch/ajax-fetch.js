@@ -24,11 +24,14 @@ $document.on( "ajax-fetch.wb", function( event ) {
 	if ( event.currentTarget === event.target ) {
 
 		$( "<div id='" + wb.guid() + "' />" )
-			.load( url, function() {
+			.load( url, function( response, status, xhr ) {
 				$( caller )
 					.trigger( {
 						type: "ajax-fetched.wb",
-						pointer: $( this )
+						pointer: $( this ),
+						response: response,
+						status: status,
+						xhr: xhr
 					});
 			});
 	}

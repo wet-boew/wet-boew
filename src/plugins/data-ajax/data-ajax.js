@@ -84,14 +84,18 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, functi
 			content = event.pointer.html();
 			$elm.removeAttr( "data-ajax-" + ajaxType );
 
-			// "replace" is the only event that doesn't map to a jQuery function
-			if ( ajaxType === "replace") {
-				$elm.html( content );
-			} else {
-				$elm[ ajaxType ]( content );
-			}
+			// Only complete the action if there wasn't an error
+			if ( event.status !== "error" ) {
 
-			$elm.trigger( pluginName + "-" + ajaxType + "-loaded.wb" );
+				// "replace" is the only event that doesn't map to a jQuery function
+				if ( ajaxType === "replace") {
+					$elm.html( content );
+				} else {
+					$elm[ ajaxType ]( content );
+				}
+
+				$elm.trigger( pluginName + "-" + ajaxType + "-loaded.wb" );
+			}
 		}
 	}
 

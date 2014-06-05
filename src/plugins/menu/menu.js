@@ -456,7 +456,12 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, functi
 
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === elm ) {
-			onAjaxLoaded( $elm, event.pointer );
+
+			// Only replace the menu if there isn't an error
+			onAjaxLoaded(
+				$elm,
+				event.status !== "error" ? event.pointer : $elm
+			);
 		}
 		return false;
 
