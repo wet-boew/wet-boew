@@ -520,7 +520,12 @@ $document.on( "keydown", ".cal-days a", function( event ) {
 		fieldId = $container.attr( "aria-controls" ),
 		which = event.which,
 		fromDateISO = wb.date.fromDateISO,
-		date = fromDateISO( elm.getElementsByTagName( "time" )[ 0 ].getAttribute( "datetime" ) ),
+		date = fromDateISO(
+			(
+				elm.className.indexOf( "cal-evt-lnk" ) === -1 ?
+					elm : elm.parentNode.parentNode.previousSibling
+			).getElementsByTagName( "time" )[ 0 ].getAttribute( "datetime" )
+		),
 		currYear = date.getFullYear(),
 		currMonth = date.getMonth(),
 		currDay = date.getDate(),
