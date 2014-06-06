@@ -187,9 +187,10 @@ var pluginName = "wb-share",
 
 			// Don't create the panel for the second link (class="link-only")
 			if ( elm.className.indexOf( "link-only" ) === -1 ) {
-				panel = "<section id='" + id  + "' class='shr-pg wb-overlay modal-content overlay-def wb-panel-r" +
+				panel = "<section id='" + id  + "' class='shr-pg mfp-hide modal-dialog modal-content overlay-def" +
 					"'><header class='modal-header'><" + heading + " class='modal-title'>" +
-					shareText + "</" + heading + "></header><ul class='list-unstyled colcount-xs-2'>";
+					shareText + "</" + heading + "></header><div class='modal-body'>" +
+					"<ul class='list-unstyled colcount-xs-2'>";
 
 				// If there is no filter array of site keys, then generate an array of site keys
 				if ( !filter || filter.length === 0 ) {
@@ -224,10 +225,11 @@ var pluginName = "wb-share",
 						siteProperties.name + "</a></li>";
 				}
 
-				panel += "</ul><div class='clearfix'></div><p class='col-sm-12'>" + i18nText.disclaimer + "</p></section>";
+				panel += "</ul><p class='col-sm-12 shr-dscl'>" + i18nText.disclaimer +
+					"</p><div class='clearfix'></div></div></section>";
 				panelCount += 1;
 			}
-			link = "<a href='#" + id + "' aria-controls='" + id + "' class='shr-opn overlay-lnk " + settings.lnkClass + "'><span class='glyphicon glyphicon-share'></span> " +
+			link = "<a href='#" + id + "' aria-controls='" + id + "' class='shr-opn wb-lbx " + settings.lnkClass + "'><span class='glyphicon glyphicon-share'></span> " +
 				shareText + "</a>";
 
 			$share = $( ( panel ? panel : "" ) + link );
@@ -236,7 +238,7 @@ var pluginName = "wb-share",
 
 			$share
 				.trigger( initEvent )
-				.trigger( "wb-init.wb-overlay" );
+				.trigger( "wb-init.wb-lbx" );
 		}
 	};
 
