@@ -406,10 +406,14 @@ var $document = wb.doc,
 					className += " cal-index-" + dayCount;
 					isCurrentDate = ( dayCount === currDay && month === currMonth && year === currYear );
 
-					cells += "<td id='" + id + "' class='" + ( isCurrentDate ? "cal-currday " : "" ) + className + "'><div><time datetime='" + year + "-" +
-						( month < 9 ? "0" : "" ) + ( month + 1 ) + "-" + ( dayCount < 10 ? "0" : "" ) + dayCount + "'><span class='wb-inv'>" + textWeekDayNames[ day ] +
-						( frenchLang ? ( " </span>" + dayCount + "<span class='wb-inv'> " + textMonthNames[ month ].toLowerCase() + " " ) :
-						( " " + textMonthNames[ month ] + " </span>" + dayCount + "<span class='wb-inv'>&nbsp;" ) ) + year +
+					cells += "<td id='" + id + "' class='" + ( isCurrentDate ? "cal-currday " : "" ) +
+						className + "'><div><time datetime='" + year + "-" +
+						( month < 9 ? "0" : "" ) + ( month + 1 ) + "-" + ( dayCount < 10 ? "0" : "" ) +
+						dayCount + "'><span class='wb-inv'>" + textWeekDayNames[ day ] +
+						( frenchLang ? ( " </span>" + dayCount + "<span class='wb-inv'> " +
+						textMonthNames[ month ].toLowerCase() + " " ) :
+						( " " + textMonthNames[ month ] + " </span>" + dayCount +
+						"<span class='wb-inv'>&nbsp;" ) ) + year +
 						( isCurrentDate ? textCurrentDay : "" ) + "</span></time></div></td>";
 
 					if ( dayCount > lastDay ) {
@@ -529,9 +533,7 @@ $document.on( "keydown", ".cal-days a", function( event ) {
 		currYear = date.getFullYear(),
 		currMonth = date.getMonth(),
 		currDay = date.getDate(),
-		days = $monthContainer.find( "td > a" ).get(),
-		maxDay = days.length,
-		field, minDate, maxDate, modifier;
+		field, minDate, maxDate, modifier, $links, $link;
 
 	if ( fieldId ) {
 		field = document.getElementById( fieldId );
@@ -565,14 +567,12 @@ $document.on( "keydown", ".cal-days a", function( event ) {
 			}
 			break;
 
-		// end key
+		// end / home
 		case 35:
-			date.setDate( maxDay );
-			break;
-
-		// home key
 		case 36:
-			date.setDate( 1 );
+			$links = $monthContainer.find( "td > a" );
+			$link = which === 35 ? $links.last() : $links.first();
+			date.setDate( fromDateISO( $link.find( "time" ).attr( "datetime" ) ).getDate() );
 			break;
 
 		// left arrow key
@@ -608,7 +608,7 @@ $document.on( "keydown", ".cal-days a", function( event ) {
 				]
 			);
 		} else if ( currDay !== date.getDate() ) {
-			$( days[ date.getDate() - 1 ] ).trigger( "setfocus.wb" );
+			$monthContainer.find( ".cal-index-" + date.getDate() + " > a" ).trigger( "setfocus.wb" );
 		}
 
 		return false;
