@@ -353,16 +353,24 @@ var pluginName = "wb-tabs",
 
 	updateNodes = function( $panels, $controls, $next, $control ) {
 		var $tabs = $controls.find( "[role=tab]" ),
-			newIndex = $tabs.index( $control ) + 1;
+			newIndex = $tabs.index( $control ) + 1,
+			$currPanel = $panels.filter( ".in" ),
+			mPlayers = $currPanel.find( ".wb-mltmd" ).get(),
+			mPlayersLen = mPlayers.length,
+			i;
 
-		$panels
-			.filter( ".in" )
-				.removeClass( "in" )
-				.addClass( "out" )
-				.attr({
-					"aria-hidden": "true",
-					"aria-expanded": "false"
-				});
+		$currPanel
+			.removeClass( "in" )
+			.addClass( "out" )
+			.attr({
+				"aria-hidden": "true",
+				"aria-expanded": "false"
+			});
+
+		// Pause all multimedia players in the current panel
+		for ( i = 0; i !== mPlayersLen; i += 1 ) {
+			mPlayers[ i ].player( "pause" );
+		}
 
 		$next
 			.removeClass( "out" )
