@@ -149,6 +149,27 @@ $medGray: #ccc;
 					padding-top: 6px;
 				}
 			}
+
+			&.tab-count {
+				line-height: normal;
+
+				> {
+					div {
+						position: relative;
+						top: 0.4em;
+					}
+				}
+
+				.curr-count {
+					font-size: 1.5em;
+				}
+
+				&:focus,
+				&:hover {
+					background: transparent;
+					cursor: default;
+				}
+			}
 		}
 	}
 
@@ -179,12 +200,19 @@ $medGray: #ccc;
 					@extend %tabs-display-inline-block;
 				}
 
+				&.prv {
+					margin-right: 5px;
+				}
+
 				&.tab-count {
 					background: none;
 					border: 0;
+					font-size: 0.9em;
 
-					.curr-count {
-						display: inline;
+					> {
+						div {
+							top: 0.7em;
+						}
 					}
 
 					&.active,
@@ -317,27 +345,6 @@ $medGray: #ccc;
 						&:hover {
 							@extend %tabs-box-shadow-none;
 						}
-					}
-				}
-
-				&.tab-count {
-					line-height: normal;
-
-					> {
-						div {
-							position: relative;
-							top: 0.4em;
-						}
-					}
-
-					.curr-count {
-						font-size: 1.5em;
-					}
-
-					&:focus,
-					&:hover {
-						background: transparent;
-						cursor: default;
 					}
 				}
 			}
