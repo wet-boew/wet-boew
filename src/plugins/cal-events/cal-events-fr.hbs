@@ -84,8 +84,74 @@
 		<p>Cette option filtre des événements de la liste qui ne sont pas pour le mois actuel. Rendre capable cette option en ajoutant la classe <code>calender-display-onshow</code> à chaque événement qui devrait être filtré par le mois.</p>
 		<p>Les événements qui n'ont pas la classe <code>cal-disp-onshow</code> seront visible toujours.</p>
 		<div id="calendar3"></div>
-
 		<div class="wb-calevt evt-anchor" data-calevt-src="calendar3">
+			<section>
+				<h4>Événements - Liste 1</h4>
+				<ol>
+					<li class="cal-disp-onshow">
+						<section>
+							<h5><a href="http://www.ec.gc.ca" rel="external">Événement 1</a></h5>
+							<p><time datetime="2013-03-11">11 mars 2013</time></p>
+						</section>
+					</li>
+					<li class="cal-disp-onshow">
+						<section>
+							<h5><a href="http://www.canada.ca" rel="external">Événement 2</a></h5>
+							<p><time datetime="2013-03-11">11 mars 2013</time></p>
+						</section>
+					</li>
+					<li class="cal-disp-onshow">
+						<section>
+							<h5>Expo 2010 Shanghai</h5>
+							<p>Le <time datetime="2013-03-22">22 mars 2013</time> au <time datetime="2013-04-26">26 avril 2013</time></p>
+							<p>Le Pavillon du Canada souligne le dynamisme et la vitalité des villes canadiennes et de leurs résidents.</p>
+							<p>Pour obtenir de plus amples renseignements, visitez le site Web de Canada à Expo 2010 Shanghai à l’adresse suivante&#160;: <a href="http://www.expo2010canada.gc.ca/index-fra.cfm" rel="external">www.expo2010canada.gc.ca/index-fra.cfm</a></p>
+						</section>
+					</li>
+					<li class="cal-disp-onshow">
+						<section>
+							<h5><a href="http://www.ic.gc.ca" rel="external">Événement 4</a></h5>
+							<p><time datetime="2013-03-24">24 mars 2013</time></p>
+						</section>
+					</li>
+					<li class="cal-disp-onshow">
+						<section>
+							<h5><a href="http://www.ec.gc.ca" rel="external">Événement 6</a></h5>
+							<p><time datetime="2013-04-11">4 avril 2013</time></p>
+						</section>
+					</li>
+					<li class="cal-disp-onshow">
+						<section>
+							<h5><a href="http://www.canada.ca" rel="external">Événement 7</a></h5>
+							<p><time datetime="2013-04-23">23 avril 2013</time></p>
+						</section>
+					</li>
+					<li class="cal-disp-onshow">
+						<section>
+							<h5><a href="http://www.canada.ca" rel="external">Événement 17</a></h5>
+							<p><time datetime="2013-04-23">23 avril 2013</time></p>
+						</section>
+					</li>
+				</ol>
+			</section>
+		</div>
+	</section>
+	<section>
+		<h3>Calendrier de largeur fluide</h3>
+		<details>
+			<summary>Visualiser le code</summary>
+			<pre>
+				<code>
+&lt;div id="calendar4" class="cal-cnt-fluid"&gt;&lt;/div&gt;
+&lt;div class="wb-calevt evt-anchor" data-calevt-src="calendar4"&gt;
+	// Events list...
+&lt;/div&gt;
+				</code>
+			</pre>
+		</details>
+		<br>
+		<div id="calendar4" class="cal-cnt-fluid"></div>
+		<div class="wb-calevt evt-anchor" data-calevt-src="calendar4">
 			<section>
 				<h4>Événements - Liste 1</h4>
 				<ol>
