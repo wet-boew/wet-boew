@@ -332,10 +332,10 @@ var pluginName = "wb-mltmd",
 		var caption, i,
 			captionsLength = captions.length;
 
-		// added &nbsp; to prevent caption space from collapsing
+		// added &#160; (non-breaking space) to prevent caption space from collapsing
 		// Used .html() instead of .append for performance purposes
 		// http://jsperf.com/jquery-append-vs-html-list-performance/2
-		area.html( "&nbsp;" );
+		area.html( "&#160;" );
 
 		for ( i = 0; i < captionsLength; i += 1 ) {
 			caption = captions[ i ];

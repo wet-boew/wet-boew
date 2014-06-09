@@ -413,7 +413,7 @@ var $document = wb.doc,
 						( frenchLang ? ( " </span>" + dayCount + "<span class='wb-inv'> " +
 						textMonthNames[ month ].toLowerCase() + " " ) :
 						( " " + textMonthNames[ month ] + " </span>" + dayCount +
-						"<span class='wb-inv'>&nbsp;" ) ) + year +
+						"<span class='wb-inv'>&#160;" ) ) + year +
 						( isCurrentDate ? textCurrentDay : "" ) + "</span></time></div></td>";
 
 					if ( dayCount > lastDay ) {
