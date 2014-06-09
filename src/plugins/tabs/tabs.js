@@ -686,6 +686,23 @@ $document.on( "keydown", selector + " [role=tabpanel]", function( event ) {
 					.trigger( "setfocus.wb" );
 	}
 });
+
+// Stop the carousel if there is a click within the panel
+$document.on( "click", selector + " [role=tabpanel]", function( event ) {
+	var which = event.which,
+		$container;
+
+	// Ignore middle and right mouse buttons
+	if ( ( !which || which === 1 ) ) {
+		$container = $( event.currentTarget ).closest( selector );
+
+		// Stop the carousel if there is a click within a panel
+		if ( $container.hasClass( "playing" ) ) {
+			$container.find( ".plypause" ).trigger( "click" );
+		}
+	}
+});
+
 // Handling for links to tabs from within a panel
 $document.on( "click", selector + " [role=tabpanel] a", function( event ) {
 	var currentTarget = event.currentTarget,
