@@ -2,8 +2,8 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
-%tabs-screen-xxs-max-margin-right-15pct {
-	margin-right: 1.5%;
+%tabs-screen-xxs-max-margin-right-0 {
+	margin-right: 0;
 }
 
 .wb-tabs {
@@ -17,8 +17,8 @@
 		[role="tablist"] {
 			li {
 				&.prv {
-					@extend %tabs-screen-xxs-max-margin-right-15pct;
-					margin-left: 1%;
+					@extend %tabs-screen-xxs-max-margin-right-0;
+					margin-left: 0;
 
 					a {
 						padding: 10px 0 10px 0.4em;
@@ -26,15 +26,20 @@
 				}
 
 				&.nxt {
-					@extend %tabs-screen-xxs-max-margin-right-15pct;
+					@extend %tabs-screen-xxs-max-margin-right-0;
 
 					a {
 						padding: 10px 0;
 					}
 				}
 
+				&.tab-count {
+					font-size: 0.9em;
+					margin-right: 5px;
+				}
+
 				&.plypause {
-					margin-right: 2.5%;
+					margin-right: 2%;
 
 					a {
 						font-size: 1.3em;
@@ -44,9 +49,5 @@
 				}
 			}
 		}
-	}
-
-	.tab-count {
-		display: none !important;
 	}
 }
