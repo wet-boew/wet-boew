@@ -101,6 +101,26 @@ $medGray: #ccc;
 	margin-bottom: 0;
 }
 
+.csstransitions {
+	.wb-tabs {
+		[role="tabpanel"] {
+			&.out {
+				position: absolute;
+				top: 0;
+				width: 100%;
+			}
+		}
+
+		&.carousel-s1 {
+			[role="tabpanel"] {
+				&.out {
+					top: 3.31em;
+				}
+			}
+		}
+	}
+}
+
 .wb-tabs {
 	/**
 	 * Default, minimal, shared style
@@ -175,10 +195,6 @@ $medGray: #ccc;
 
 	[role="tabpanel"] {
 		z-index: 1;
-
-		&.out {
-			@extend %global-display-none;
-		}
 	}
 
 	/**
