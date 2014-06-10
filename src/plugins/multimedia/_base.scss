@@ -7,10 +7,27 @@ $mm-progress-bg-color: #fff;
 $mm-cc-fg-color: #fff;
 $mm-cc-bg-color: #000;
 $mm-ctrl-fg-color: #fff;
-$mm-ctrl-bg-color: #000;
+$mm-ctrl-bg-color: #3e3e3e;
+$mm-ctrl-outline-color: #4aafff;
+$mm-ctrl-cc-color: #4aafff;
+$mm-volume-bg-color: #aaa;
+$mm-volume-thumb-color: #fff;
+$mm-volume-thumb-height: 1.3em;
+$mm-volume-thumb-width: 10px;
 
 %multimedia-display-none {
 	display: none;
+}
+
+%multimedia-controls-outline {
+	&:focus {
+		outline: 1px solid $mm-ctrl-outline-color;
+	}
+}
+
+%slider-polyfill-background {
+	background: $mm-volume-bg-color;
+	border: 0;
 }
 
 @keyframes spin {
@@ -40,6 +57,12 @@ $mm-ctrl-bg-color: #000;
 	padding: 0;
 }
 
+%captions_text_box {
+	display: table-cell;
+	height: 3em;
+	vertical-align: middle;
+}
+
 .wb-mltmd {
 	// lets fight the FOUC
 	// base state
@@ -51,18 +74,15 @@ $mm-ctrl-bg-color: #000;
 	}
 
 	.btn {
+		@extend %multimedia-controls-outline;
 		background: transparent;
 		border: 0;
-		border-top-left-radius: 0 !important;
-		border-top-right-radius: 0 !important;
-		color: $mm-ctrl-fg-color;
-	}
-
-	progress,
-	.btn {
-		&:focus {
-			outline: 1px dotted $mm-ctrl-fg-color;
+		border-top: {
+			left-radius: 0 !important;
+			right-radius: 0 !important;
 		}
+		color: $mm-ctrl-fg-color;
+		font-size: 130%;
 	}
 
 	&.audio {
@@ -70,12 +90,8 @@ $mm-ctrl-bg-color: #000;
 			@extend %multimedia-display-none;
 		}
 
-		.btn.cc {
-			@extend %multimedia-display-none;
-		}
-
 		.lastpnl {
-			width: 3em;
+			@extend %multimedia-display-none;
 		}
 	}
 
@@ -84,6 +100,7 @@ $mm-ctrl-bg-color: #000;
 		position: relative;
 
 		.wb-mm-ovrly {
+			@extend %multimedia-controls-outline;
 			height: 100%;
 			position: absolute;
 			width: 100%;
@@ -100,10 +117,12 @@ $mm-ctrl-bg-color: #000;
 		&.waiting {
 			&:after {
 				@extend %multimedia_loading;
-				animation-duration: 1000ms;
-				animation-iteration-count: infinite;
-				animation-name: spin;
-				animation-timing-function: linear;
+				animation: {
+					duration: 1000ms;
+					iteration-count: infinite;
+					name: spin;
+					timing-function: linear;
+				}
 				background: url("../assets/loading.png") center center no-repeat;
 				z-index: 2;
 			}
@@ -120,9 +139,7 @@ $mm-ctrl-bg-color: #000;
 	.wb-mm-ovrly {
 		background: transparent;
 		border: 0;
-		direction: ltr;
 		padding: 0;
-		text-indent: -9999px;
 
 		img {
 			width: 100%;
@@ -141,12 +158,19 @@ $mm-ctrl-bg-color: #000;
 
 	&.cc_on {
 		.wb-mm-cc {
-			max-height: 999em;
+			display: table;
+			height: 4em;
 			padding: 0.5em;
 		}
 
 		.cc {
-			opacity: 1;
+			&:after {
+				border-bottom: 3px solid $mm-ctrl-cc-color;
+				content: " ";
+				display: block;
+				margin-left: -2px;
+				width: 1.2em;
+			}
 		}
 
 		&.youtube {
@@ -195,6 +219,16 @@ $mm-ctrl-bg-color: #000;
 	color: $mm-cc-fg-color;
 	text-align: center;
 	transition: all 0.26s ease;
+	width: 100%;
+
+	&:before {
+		@extend %captions_text_box;
+		content: " ";
+	}
+
+	div {
+		@extend %captions_text_box;
+	}
 }
 
 %pnl {
@@ -206,55 +240,68 @@ $mm-ctrl-bg-color: #000;
 	background: $mm-ctrl-bg-color;
 	color: $mm-ctrl-fg-color;
 	display: table;
+	padding-top: 2em;
 	position: relative;
 	width: 100%;
 
 	.frstpnl {
 		@extend %pnl;
 		text-align: center;
-		width: 8em;
+		width: 13em;
 	}
 
 	.lastpnl {
 		@extend %pnl;
 		text-align: center;
-		width: 6em;
+		width: 3em;
 	}
 
 	.tline {
 		@extend %pnl;
 
-		.wb-mm-tmln-crrnt,
-		.wb-mm-tmln-ttl {
-			float: left;
-			margin: 0;
+		.wb-mm-tmln-crrnt {
+			&:after {
+				content: " / ";
+				padding: 0 0.5em;
+			}
 		}
-
-		.wb-mm-tmln-ttl {
-			float: right;
-		}
-	}
-
-	.cc {
-		opacity: .5;
 	}
 
 	.wb-mm-txtonly {
-		span {
-			@extend %accessible-invisible;
+		padding: 0 1em;
+
+		p {
+			display: inline;
 		}
+	}
+
+	.wb-mm-txtonly,
+	.wb-mm-prgrss {
+		display: table-cell;
+		vertical-align: middle;
 	}
 
 	/* Progress Bar */
 	progress {
+		@extend %multimedia-controls-outline;
 		/* Important Thing */
 		-webkit-appearance: none;
 		background: $mm-progress-bg-color;
-		border: 0;
+		border: 7px solid #3e3e3e;
+		border-radius: 14px;
 		color: $mm-progress-fg-color;
 		display: block;
-		height: 16px;
+		height: 30px;
+		left: 0;
+		padding: 2px;
+		position: absolute;
+		top: 0;
 		width: 100%;
+
+		&.wb-progress-inited {
+			overflow: hidden;
+			padding: 0;
+		}
 
 		&::-webkit-progress-bar {
 			background: $mm-progress-bg-color;
@@ -262,53 +309,88 @@ $mm-ctrl-bg-color: #000;
 
 		&::-webkit-progress-value {
 			background: $mm-progress-fg-color;
+			border-radius: 7px;
 		}
 
 		&::-moz-progress-bar {
 			background: $mm-progress-fg-color;
+			border-radius: 7px;
 		}
 	}
 
 	.progress {
-		height: 16px;
+		height: 22px;
 	}
-}
 
-.xxsmallview {
-	.wb-mm-txtonly {
-		span {
-			~ {
-				span {
-					@extend %accessible-invisible-show;
-				}
+	input {
+		&[type=range] {
+			@extend %multimedia-controls-outline;
+			-webkit-appearance: none;
+			background: transparent;
+			display: inline-block;
+			height: 2.5em;
+			padding: 0;
+			width: 7em;
+
+			&::-webkit-slider-runnable-track {
+				background: $mm-volume-bg-color;
+				height: 4px;
+			}
+
+			&::-webkit-slider-thumb {
+				margin-top: -8px;
+			}
+
+			&::-moz-range-track {
+				background: $mm-volume-bg-color;
+				border: 0;
+			}
+
+			&::-moz-range-thumb {
+				border-radius: 0;
+				height: $mm-volume-thumb-height;
+				width: $mm-volume-thumb-width;
+			}
+
+			&::-ms-track {
+				height: 4px;
+			}
+
+			&::-ms-fill-upper {
+				background: $mm-volume-bg-color;
+			}
+
+			&::-ms-fill-lower {
+				background: $mm-volume-bg-color;
+			}
+
+			&::-ms-thumb {
+				background: $mm-volume-thumb-color;
+				border: 1px outset #fff;
+				height: 1.3em;
 			}
 		}
 	}
 
-	.wb-mm-prgrss {
-		@extend %multimedia-display-none;
+	/* Slider polyfill styles */
+	.fd-slider {
+		display: inline-block;
+		height: 100%;
+		margin-top: 10px;
+		width: 7em;
 	}
-}
 
-.mediumview,
-.largeview,
-.xlargeview,
-.xxlargeview {
-	.col-md-1,
-	.col-md-2,
-	.col-md-3 {
-		.wb-mm-txtonly {
-			span {
-				~ {
-					span {
-						@extend %accessible-invisible-show;
-					}
-				}
-			}
-		}
+	.fd-slider-bar {
+		@extend %slider-polyfill-background;
+	}
 
-		.wb-mm-prgrss {
-			@extend %multimedia-display-none;
-		}
+	.fd-slider-range {
+		@extend %slider-polyfill-background;
+	}
+
+	.fd-slider-handle {
+		background: $mm-volume-thumb-color;
+		border: 1px outset #fff;
+		width: $mm-volume-thumb-width;
 	}
 }

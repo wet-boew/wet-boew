@@ -50,10 +50,9 @@ var pluginName = "wb-mltmd",
 			if ( !i18nText ) {
 				i18n = wb.i18n;
 				i18nText = {
-					rewind: i18n( "rew" ),
-					ff: i18n( "ffwd" ),
 					play: i18n( "play" ),
 					pause: i18n( "pause" ),
+					volume: i18n( "volume" ),
 					cc_on: i18n( "cc", "on" ),
 					cc_off: i18n( "cc", "off" ),
 					cc_error: i18n ( "cc-err" ),
@@ -744,6 +743,9 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 	// Load the progress polyfill if needed
 	$this.find( "progress" ).trigger( "wb-init.wb-progress" );
 
+	// Load the slider polyfill if needed
+	$this.find( "input[type='range']" ).trigger( "wb-init.wb-slider" );
+
 	if ( data.captions === undef ) {
 		return 1;
 	}
@@ -768,7 +770,7 @@ $document.on( "click", selector, function( event ) {
 		return true;
 	}
 
-	// Opitmized multiple class tests to include child glyphicon because Safari was reporting the click event
+	// Optimized multiple class tests to include child glyphicon because Safari was reporting the click event
 	// from the child span not the parent button, forcing us to have to check for both elements
 	// JSPerf for multiple class matching http://jsperf.com/hasclass-vs-is-stackoverflow/7
 	if ( className.match( /playpause|-play|-pause|wb-mm-ovrly/ ) || $target.is( "object" ) ) {
@@ -786,13 +788,23 @@ $document.on( "click", selector, function( event ) {
 	}
 });
 
+$document.on( "input change", selector, function(event) {
+	var target = event.target;
+
+	if ( $( target ).hasClass( "volume" ) ) {
+		event.currentTarget.player( "setMuted", false );
+		event.currentTarget.player( "setVolume", target.value / 100 );
+	}
+});
+
 $document.on( "keydown", selector, function( event ) {
 	var playerTarget = event.currentTarget,
 		which = event.which,
 		ctrls = ".wb-mm-ctrls",
 		ref = expand( playerTarget ),
 		$this = ref[ 0 ],
-		volume = 0;
+		volume = 0,
+		step = 0.05;
 
 	if ( !( event.ctrlKey || event.altKey || event.metaKey ) ) {
 		switch ( which ) {
@@ -801,20 +813,20 @@ $document.on( "keydown", selector, function( event ) {
 			break;
 
 		case 37:
-			$this.find( ctrls + " .rewind" ).trigger( "click" );
+			playerTarget.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05);
 			break;
 
 		case 39:
-			$this.find( ctrls + " .fastforward" ).trigger( "click" );
+			playerTarget.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05);
 			break;
 
 		case 38:
-			volume = Math.round( playerTarget.player( "getVolume" ) * 10 ) / 10 + 0.1;
+			volume = Math.round( playerTarget.player( "getVolume" ) * 100 ) / 100 + step;
 			playerTarget.player( "setVolume", volume < 1 ? volume : 1 );
 			break;
 
 		case 40:
-			volume = Math.round( playerTarget.player( "getVolume" ) * 10 ) / 10 - 0.1;
+			volume = Math.round( playerTarget.player( "getVolume" ) * 100 ) / 100 - step;
 			playerTarget.player( "setVolume", volume > 0 ? volume : 0 );
 			break;
 
@@ -843,7 +855,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		$this = $( eventTarget ),
 		invStart = "<span class='wb-inv'>",
 		invEnd = "</span>",
-		currentTime, $button, buttonData, isPlay, getMuted, ref, skipTo;
+		currentTime, $button, $slider, buttonData, isPlay, isMuted, isCCVisible, ref, skipTo, volume;
 	switch ( eventType ) {
 	case "play":
 	case "pause":
@@ -867,15 +879,22 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		break;
 
 	case "volumechange":
-		getMuted = eventTarget.player( "getMuted" );
+		isMuted = eventTarget.player( "getMuted" );
 		$button = $this.find( ".mute" );
-		buttonData = $button.data( "state-" + ( getMuted ? "off" : "on" ) );
+		buttonData = $button.data( "state-" + ( isMuted ? "off" : "on" ) );
+		volume = eventTarget.player( "getVolume" ) * 100;
 		$button
-			.attr( "title", buttonData )
+			.attr( {
+				title: buttonData,
+				"aria-pressed": isMuted
+			} )
 			.children( "span" )
-				.toggleClass( "glyphicon-volume-up", !getMuted )
-				.toggleClass( "glyphicon-volume-off", getMuted )
+				.toggleClass( "glyphicon-volume-up", !isMuted )
+				.toggleClass( "glyphicon-volume-off", isMuted )
 				.html( invStart + buttonData + invEnd );
+		$slider = $this.find( "input[type='range']" );
+		$slider[0].value = isMuted ? 0 : volume;
+		$slider.trigger( "wb-update.wb-slider" );
 		break;
 
 	case "timeupdate":
@@ -924,9 +943,13 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		break;
 
 	case "ccvischange":
+		isCCVisible = eventTarget.player( "getCaptionsVisible" );
 		$button = $this.find( ".cc" );
-		buttonData = $button.data( "state-" + ( eventTarget.player( "getCaptionsVisible" ) ? "off" : "on" ) );
-		$button.attr( "title", buttonData ).children( "span" ).html( invStart + buttonData + invEnd );
+		buttonData = $button.data( "state-" + ( isCCVisible ? "off" : "on" ) );
+		$button.attr( {
+			title: buttonData,
+			"aria-pressed": isCCVisible
+		} ).children( "span" ).html( invStart + buttonData + invEnd );
 		break;
 
 	case "waiting":
