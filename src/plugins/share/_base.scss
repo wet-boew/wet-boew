@@ -4,6 +4,12 @@
  */
 @import "sprites/sprites";
 
+.shr-opn {
+	span {
+		padding-right: 0.2em;
+	}
+}
+
 .shr-pg {
 	.shr-lnk {
 		font-size: 115%;
@@ -153,6 +159,13 @@
 }
 
 [dir=rtl] {
+	.shr-opn {
+		span {
+			padding-left: 0.2em;
+			padding-right: 0;
+		}
+	}
+
 	.shr-pg {
 		text-align: right;
 

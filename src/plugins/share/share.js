@@ -229,7 +229,9 @@ var pluginName = "wb-share",
 					"</p><div class='clearfix'></div></div></section>";
 				panelCount += 1;
 			}
-			link = "<a href='#" + id + "' aria-controls='" + id + "' class='shr-opn wb-lbx " + settings.lnkClass + "'><span class='glyphicon glyphicon-share'></span> " +
+			link = "<a href='#" + id + "' aria-controls='" + id +
+				"' class='shr-opn wb-lbx " + settings.lnkClass +
+				"'><span class='glyphicon glyphicon-share'></span>" +
 				shareText + "</a>";
 
 			$share = $( ( panel ? panel : "" ) + link );
