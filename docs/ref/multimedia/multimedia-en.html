@@ -134,8 +134,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<section>
 		<h3>Required Elements</h3>
 		<ol>
-			<li>Each media must be placed in its own <code>&lt;div&gt;</code> using the "wet-boew-multimedia" class:
-				<pre><code>&lt;div class="wet-boew-multimedia"&gt;</code></pre>
+			<li>Each media must be placed in its own <code>&lt;figure&gt;</code> using the "wet-boew-multimedia" class:
+				<pre><code>&lt;figure class="wet-boew-multimedia"&gt;</code></pre>
 			</li>
 			<li>Each container should contain one <code>&lt;video&gt;</code> or <code>&lt;audio&gt;</code> tag.
 				<pre><code>&lt;source src="http://hebergement-hosting.ca/hosting/sct-tbs/wet-boew/demo-eng.mp4" type="video/mp4" /&gt;</code></pre>
@@ -153,23 +153,29 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<section>
 				<h5>Video</h5>
 				<p><a href="../../../demos/multimedia/multimedia-en.html">Video example</a></p>
-				<pre><code>&lt;div class="wet-boew-multimedia span-4"&gt;
-	&lt;video width="480" height="270" poster="http://hebergement-hosting.ca/hosting/sct-tbs/wet-boew/thumbnail.png" title="Video Example"&gt;
+				<pre><code>&lt;figure class="wet-boew-multimedia"&gt;
+	&lt;video width="480" height="270" poster="http://hebergement-hosting.ca/hosting/sct-tbs/wet-boew/thumbnail.png" title="Small Aircraft Passenger Guidelines"&gt;
 		&lt;source src="http://hebergement-hosting.ca/hosting/sct-tbs/wet-boew/demo-eng.webm" type="video/webm" /&gt;
 		&lt;source src="http://hebergement-hosting.ca/hosting/sct-tbs/wet-boew/demo-eng.mp4" type="video/mp4" /&gt;
 		&lt;track src="mediaplayer-transcript_captions-en.html" kind="captions" data-type="text/html" srclang="en" label="English" /&gt;
 	&lt;/video&gt;
-&lt;/div&gt;</code></pre>
+	&lt;figcaption&gt;
+		&lt;p&gt;Small Aircraft Passenger Guidelines (&lt;a href="mediaplayer-transcript_captions-en.html"&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
 			</section>
 			<section>
 				<h5>Audio</h5>
 				<p><a href="../../../demos/multimedia/multimedia-en.html#audio-only">Audio example</a></p>
-				<pre><code>&lt;div class="wet-boew-multimedia span-4"&gt;
-	&lt;audio title="Audio Example"&gt;
+				<pre><code>&lt;figure class="wet-boew-multimedia"&gt;
+	&lt;audio title="Ride of the Valkyries"&gt;
 		&lt;source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries.ogg" type="audio/ogg" /&gt;
 		&lt;source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3" /&gt;
 	&lt;/audio&gt;
-&lt;/div&gt;</code></pre>
+	&lt;figcaption&gt;
+		&lt;p&gt;Ride of the Valkyries&lt;/p&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
 			</section>
 		</section>
 	</section>
@@ -217,7 +223,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 </section>
 
 <dl id="wet-date-mod" role="contentinfo">
-<dt>Date modified:</dt><dd><span><time>2014-04-04</time></span></dd>
+<dt>Date modified:</dt><dd><span><time>2014-06-10</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
