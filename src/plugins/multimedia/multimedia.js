@@ -471,7 +471,7 @@ var pluginName = "wb-mltmd",
 	},
 
 	/**
-	 * @method youTubeEvennts
+	 * @method youTubeEvents
 	 * @description Youtube API event manager
 	 * @param {object} event The event object fior the triggered event
 	 */
@@ -540,14 +540,17 @@ $document.on( initializedEvent, selector, function() {
 		id = $this.attr( "id" ),
 		mId = $media.attr( "id" ) || id + "-md",
 		type = $media.is( "audio" ) ? "audio" : "video",
+		title = $media.attr( "title" ) || "",
 		width = type === "video" ? $media.attr( "width" ) || $media.width() : 0,
 		height = type === "video" ? $media.attr( "height" ) || $media.height() : 0,
+		settings = wb.getData( $this, pluginName ),
 		data = $.extend({
 			media: $media,
 			captions: captions,
 			id: id,
 			mId: mId,
 			type: type,
+			title: title,
 			height: height,
 			width: width
 		}, i18nText),
@@ -556,6 +559,10 @@ $document.on( initializedEvent, selector, function() {
 
 	if ( $media.attr( "id" ) === undef ) {
 		$media.attr( "id", mId );
+	}
+
+	if ( settings !== undef ) {
+		data.shareUrl = settings.shareUrl;
 	}
 
 	$this.addClass( type );
@@ -716,7 +723,7 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 		captionsUrl = wb.getUrlParts( data.captions ),
 		currentUrl = wb.getUrlParts( window.location.href ),
 		$media = $this.find( "video, audio, iframe, object" ),
-		$player, $overlay;
+		$player, $overlay, $share;
 
 	$media.after( tmpl( $this.data( "template" ), data ) );
 	$overlay = $media.next().find( ".wb-mm-ovrly" ).after( $media );
@@ -750,10 +757,19 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 		return 1;
 	}
 
+	// Load the captions
 	if ( currentUrl.absolute.replace( currentUrl.hash, "" ) !== captionsUrl.absolute.replace( captionsUrl.hash, "" ) ) {
 		loadCaptionsExternal( $player, captionsUrl.absolute );
 	} else {
 		loadCaptionsInternal( $player, $( captionsUrl.hash ) );
+	}
+
+	// Create the share widgets if needed
+	// TODO: Remove .parent() when getting rid of the overlay
+	if ( data.shareUrl !== undef ) {
+		$share = $( "<div class='wb-share' data-wb-share=\'{\"type\": \"video\", \"title\": \"" + data.title + "\", \"url\": \"" + data.shareUrl + "\", \"pnlId\": \"" + data.id + "-shr\"}\'></div>" );
+		$media.parent().before( $share );
+		wb.add( $share );
 	}
 });
 
