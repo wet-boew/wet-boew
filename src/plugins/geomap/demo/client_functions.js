@@ -1,5 +1,5 @@
 /*
- * @title WET-BOEW Geomap popup function
+ * @title WET-BOEW Geomap client functions
  * @overview OpenLayers popup loader for Geomap
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
@@ -34,18 +34,18 @@ wb.doc.on( "geomap.ready", function( event, maps ) {
 	if ( $aoiExtent ) {
 
 		$aoiExtent.on( "change", function() {
-			// console.log( "BBox: " + $( this ).val() );
+			 //console.log( "BBox: " + $( this ).val() );
 		} );
 
 		$aoiExtentLonLat.on("change", function() {
-			// console.log( "BBox LonLat: " + $( this ).val() );
+			 //console.log( "BBox LonLat: " + $( this ).val() );
 		} );
 	}
 	// Zoom to location on location_map
 	mapLocation = maps.location_map;
 
 	if ( mapLocation ) {
-		mapLocation.zoomToExtent( mapLocation.layers[ 3 ].features[ 0 ].geometry.bounds );
+		mapLocation.zoomToExtent( mapLocation.getLayer( "#addNRCan" ).getDataExtent() );
 	}
 });
 
