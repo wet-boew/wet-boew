@@ -18,6 +18,12 @@
 	animation-timing-function: ease-in;
 }
 
+.no-csstransitions {
+	.out {
+		@extend %global-display-none;
+	}
+}
+
 .pop {
 	transform-origin: 50% 50%;
 
