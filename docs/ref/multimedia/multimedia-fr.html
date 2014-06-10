@@ -134,8 +134,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<section>
 		<h3>Éléments requis</h3>
 		<ol>
-			<li>Il faut placer chaque fichier multimédia dans son propre élément <code>&lt;div&gt;</code> en utilisant la classe «&#160;wet-boew-multimedia&#160;»&#160;:
-				<pre><code>&lt;div class="wet-boew-multimedia"&gt;</code></pre>
+			<li>Il faut placer chaque fichier multimédia dans son propre élément <code>&lt;figure&gt;</code> en utilisant la classe «&#160;wet-boew-multimedia&#160;»&#160;:
+				<pre><code>&lt;figure class="wet-boew-multimedia"&gt;</code></pre>
 			</li>
 			<li>Chaque conteneur doit contenir une balise <code>&lt;video&gt;</code> ou <code>&lt;audio&gt;</code>.
 				<pre><code>&lt;source src="http://hebergement-hosting.ca/hosting/sct-tbs/wet-boew/demo-fra.mp4" type="video/mp4" /&gt;</code></pre>
@@ -153,23 +153,29 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<section>
 				<h5>Vidéo</h5>
 				<p><a href="../../../demos/multimedia/multimedia-fr.html">Exemple de vidéo</a></p>
-				<pre><code>&lt;div class="wet-boew-multimedia span-4"&gt;
-	&lt;video width="480" height="270" poster="http://hebergement-hosting.ca/hosting/sct-tbs/wet-boew/thumbnail.png" title="Exmple de vidéo"&gt;
+				<pre><code>&lt;figure class="wet-boew-multimedia"&gt;
+	&lt;video width="480" height="270" poster="http://hebergement-hosting.ca/hosting/sct-tbs/wet-boew/thumbnail.png" title="ignes directrices pour les passagers de petits avions"&gt;
 		&lt;source src="http://hebergement-hosting.ca/hosting/sct-tbs/wet-boew/demo-fra.webm" type="video/webm" /&gt;
 		&lt;source src="http://hebergement-hosting.ca/hosting/sct-tbs/wet-boew/demo-fra.mp4" type="video/mp4" /&gt;
 		&lt;track src="mediaplayer-transcript_captions-fr.html" kind="captions" data-type="text/html" srclang="fr" label="Français" /&gt;
 	&lt;/video&gt;
-&lt;/div&gt;</code></pre>
+	&lt;figcaption&gt;
+		&lt;p&gt;ignes directrices pour les passagers de petits avions (&lt;a href="mediaplayer-transcript_captions-fr.html"&gt;Transcription&lt;/a&gt;)&lt;/p&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
 			</section>
 			<section>
 				<h5>Audio</h5>
 				<p><a href="../../../demos/multimedia/multimedia-fr.html#audio-only">Exemple de fichier audio</a></p>
-				<pre><code>&lt;div class="wet-boew-multimedia span-4"&gt;
-	&lt;audio title="Exemple de fichier audio"&gt;
+				<pre><code>&lt;figure class="wet-boew-multimedia"&gt;
+	&lt;audio title="Chevauchée des Walkyries"&gt;
 		&lt;source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries.ogg" type="audio/ogg" /&gt;
 		&lt;source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3" /&gt;
 	&lt;/audio&gt;
-&lt;/div&gt;</code></pre>
+	&lt;figcaption&gt;
+		&lt;p&gt;Chevauchée des Walkyries&lt;/p&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
 			</section>
 		</section>
 	</section>
@@ -215,7 +221,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 </section>
 
 <dl id="wet-date-mod" role="contentinfo">
-<dt>Date de modification&#160;:</dt><dd><span><time>2014-04-04</time></span></dd>
+<dt>Date de modification&#160;:</dt><dd><span><time>2014-06-10</time></span></dd>
 </dl>
 <div class="clear"></div>
 <!-- MainContentEnd -->
