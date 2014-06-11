@@ -108,6 +108,7 @@ $medGray: #ccc;
 				position: absolute;
 				top: 0;
 				width: 100%;
+				z-index: 0;
 			}
 		}
 
@@ -194,6 +195,7 @@ $medGray: #ccc;
 	}
 
 	[role="tabpanel"] {
+		position: relative;
 		z-index: 1;
 	}
 
