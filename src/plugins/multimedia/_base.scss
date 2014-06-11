@@ -30,6 +30,10 @@ $mm-volume-thumb-width: 10px;
 	border: 0;
 }
 
+%multimedia-xxsmall-ui-panels {
+	padding-top: 2em;
+}
+
 @keyframes spin {
 	from {
 		transform: rotate(0);
@@ -396,5 +400,25 @@ $mm-volume-thumb-width: 10px;
 		background: $mm-volume-thumb-color;
 		border: 1px outset #fff;
 		width: $mm-volume-thumb-width;
+	}
+}
+
+
+.xxsmallview {
+	.wb-mm-ctrls {
+
+		.frstpnl {
+			@extend %multimedia-xxsmall-ui-panels;
+		}
+
+		.lastpnl {
+			@extend %multimedia-xxsmall-ui-panels;
+		}
+
+		.wb-mm-txtonly {
+			left: 0;
+			margin-top: -2em;
+			position: absolute;
+		}
 	}
 }
