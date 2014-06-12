@@ -51,7 +51,7 @@ var getUrlParts = function( url ) {
 	 * @variable $src
 	 * @return {jQuery Element} of wb script element
 	 */
-	$src = $( "script[src$='wet-boew.js'],script[src$='wet-boew.min.js']" )
+	$src = $( "script[src*='wet-boew.js'],script[src*='wet-boew.min.js']" )
 		.last(),
 
 	/**
