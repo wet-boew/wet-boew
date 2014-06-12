@@ -83,7 +83,7 @@ var id = "wb-rsz",
 
 			// Change the breakpoint class on the html element
 			wb.html
-				.removeClass( currentView )
+				.removeClass( currentView || "" )
 				.addClass( viewName );
 
 			// Update the current view
