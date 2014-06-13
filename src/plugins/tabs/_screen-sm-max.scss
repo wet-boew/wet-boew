@@ -6,28 +6,12 @@
 /**
  * Mobile-friendly styles
  */
-%tabs-details-padding-6-12 {
-	padding: 6px 12px;
-}
-
-.wb-tabs {
-	border-radius: 4px;
-	border-top: 1px solid #adadad;
-	margin-bottom: 15px;
-
-	&.tabs-acc {
-		> {
-			ul {
-				display: none;
-			}
-		}
-	}
-
+%tabs-screen-sm-max-details {
 	> {
 		details {
-			@extend %tabs-details-padding-6-12;
 			border: 1px solid #adadad;
 			border-top: 0;
+			padding: 6px 12px;
 
 			&:first-of-type {
 				border-top-left-radius: 4px;
@@ -56,6 +40,28 @@
 						margin-bottom: 0;
 					}
 				}
+			}
+		}
+	}
+}
+
+.wb-tabs {
+	@extend %tabs-screen-sm-max-details; /* Only for backwards compatibility. Should be removed in v4.1. */
+
+	border-radius: 4px;
+	border-top: 1px solid #adadad;
+	margin-bottom: 15px;
+
+	> {
+		.tabpanels {
+			@extend %tabs-screen-sm-max-details;
+		}
+	}
+
+	&.tabs-acc {
+		> {
+			ul {
+				display: none;
 			}
 		}
 	}
