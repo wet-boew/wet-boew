@@ -3,12 +3,11 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 
-.wb-tabs {
+%tabs-screen-md-min-details {
 	> {
 		details {
 			border: 1px solid #ccc;
 			display: none;
-			margin-top: -1px;
 
 			&[open] {
 				display: block;
@@ -19,6 +18,16 @@
 					}
 				}
 			}
+		}
+	}
+}
+
+.wb-tabs {
+	@extend %tabs-screen-md-min-details; /* Only for backwards compatibility. Should be removed in v4.1. */
+
+	> {
+		.tabpanels {
+			@extend %tabs-screen-md-min-details;
 		}
 	}
 }

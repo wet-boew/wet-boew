@@ -14,13 +14,14 @@
 }
 
 .out {
+	@extend %global-display-none;
 	animation-duration: 225ms;
 	animation-timing-function: ease-in;
 }
 
-.no-csstransitions {
+.csstransitions {
 	.out {
-		@extend %global-display-none;
+		@extend %global-display-block;
 	}
 }
 

@@ -101,6 +101,14 @@ $medGray: #ccc;
 	margin-bottom: 0;
 }
 
+%tabs-details-padding-6-12 {
+	> {
+		details {
+			padding: 6px 12px;
+		}
+	}
+}
+
 .csstransitions {
 	.wb-tabs {
 		[role="tabpanel"] {
@@ -111,14 +119,6 @@ $medGray: #ccc;
 				z-index: 0;
 			}
 		}
-
-		&.carousel-s1 {
-			[role="tabpanel"] {
-				&.out {
-					top: 3.31em;
-				}
-			}
-		}
 	}
 }
 
@@ -127,6 +127,17 @@ $medGray: #ccc;
 	 * Default, minimal, shared style
 	 */
 	@extend %tabs-position-relative;
+
+	/* For backwards compatibility. Should be removed in v4.1 */
+	@extend %tabs-details-padding-6-12;
+
+	> {
+		.tabpanels {
+			@extend %tabs-details-padding-6-12;
+			overflow: hidden;
+			position: relative;
+		}
+	}
 
 	[role="tablist"] {
 		list-style: none;
@@ -163,6 +174,7 @@ $medGray: #ccc;
 				border-bottom: 0;
 				cursor: default;
 				padding-bottom: 1px;
+				z-index: 2;
 
 				a {
 					border-top: 4px solid #666;
@@ -190,6 +202,13 @@ $medGray: #ccc;
 					background: transparent;
 					cursor: default;
 				}
+			}
+		}
+
+		&.generated {
+			li {
+				border-bottom: 0;
+				top: 1px;
 			}
 		}
 	}
@@ -389,16 +408,42 @@ $medGray: #ccc;
 			}
 		}
 	}
+}
 
+%tabs-wb-disable-details-summary-display-block-important {
 	> {
 		details {
-			padding: 6px 12px;
+			> {
+				summary {
+					display: block !important;
+				}
+			}
 		}
 	}
 }
 
 .wb-disable {
+	.csstransitions {
+		.wb-tabs {
+			[role="tabpanel"] {
+				&.out {
+					position: static;
+					width: auto;
+				}
+			}
+		}
+	}
+
 	.wb-tabs {
+		// Only for backwards compatibility. Should be removed in v4.1.
+		@extend %tabs-wb-disable-details-summary-display-block-important;
+
+		> {
+			.tabpanels {
+				@extend %tabs-wb-disable-details-summary-display-block-important;
+			}
+		}
+
 		[role="tablist"] {
 			display: none;
 		}
@@ -406,16 +451,6 @@ $medGray: #ccc;
 		[role="tabpanel"] {
 			display: block;
 			opacity: 1;
-		}
-
-		> {
-			details {
-				> {
-					summary {
-						display: block !important;
-					}
-				}
-			}
 		}
 	}
 }

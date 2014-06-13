@@ -6,16 +6,8 @@
 /**
  * Mobile-friendly styles
  */
-.wb-tabs {
-	[role="tablist"] {
-		display: none;
-	}
-
-	[role="tabpanel"] {
-		display: block;
-		opacity: 1;
-	}
-
+ 
+%tabs-noscript-details-summary-display-block-important {
 	> {
 		details {
 			> {
@@ -25,4 +17,23 @@
 			}
 		}
 	}
+}
+ 
+.wb-tabs {
+	@extend %tabs-noscript-details-summary-display-block-important; /* Only for backwards compatibility. Should be removed in v4.1. */
+
+	> {
+		.tabpanels {
+			@extend %tabs-noscript-details-summary-display-block-important;
+		}
+	}
+
+	[role="tablist"] {
+		display: none;
+	}
+
+	[role="tabpanel"] {
+		display: block;
+		opacity: 1;
+	}	
 }
