@@ -18,32 +18,6 @@
 /*jshint unused:false*/
 var wet_boew_geomap = {
 	// OPTIONAL: note that Geomap will provide a default basemap if not specified here.
-	/*
-	basemap: {
-		title: "CBMT",
-		type: "wms",
-		url: "http://geogratis.gc.ca/maps/CBMT",
-		layers: "CBMT",
-		format: "image/png",
-		version: "1.1.1",
-		options: {
-			singleTile: false,
-			ratio: 1.0,
-			projection: "EPSG:3978",
-			fractionalZoom: true
-		},
-		mapOptions: {
-			maxExtent: "-3000000.0, -800000.0, 4000000.0, 3900000.0",
-			maxResolution: "auto",
-			projection: "EPSG:3978",
-			restrictedExtent: "-3000000.0, -800000.0, 4000000.0, 3900000.0",
-			units: "m",
-			displayProjection: "EPSG:4269",
-			numZoomLevels: 12
-		}
-	},
-	*/
-
 	/*basemap : {
 		title: "WMS Demo",
 		type: "wms",
@@ -61,11 +35,11 @@ var wet_boew_geomap = {
 	},*/
 	overlays: [
 		{
-			title: "KML Demo EN",
+			title: "KML Demo",
 			caption: "This is a sample KML file loaded locally by Geomap.",
 			type: "kml",
 			url: "demo/sample.kml",
-			visible: true,
+			visible: false,
 			datatable: false,
 			tab: true,
 			popups: true,
@@ -75,7 +49,7 @@ var wet_boew_geomap = {
 			}
 		},
 		{
-			title: "ATOM Demo EN",
+			title: "ATOM Demo",
 			caption: "This is a sample ATOM feed loaded locally by Geomap.",
 			type: "atom",
 			url: "demo/sample.atom",
@@ -84,10 +58,10 @@ var wet_boew_geomap = {
 				title: "Title",
 				summary: "About this dataset"
 			},
-			visible: true
+			visible: false
 		},
 		{
-			title: "GeoRSS Demo EN",
+			title: "GeoRSS Demo",
 			caption: "This is a sample GeoRSS feed loaded locally by Geomap.",
 			type: "georss",
 			url: "demo/sample.rss",
@@ -96,12 +70,12 @@ var wet_boew_geomap = {
 				description: "Description",
 				link: "More Info"
 			},
-			visible: true,
+			visible: false,
 			datatable: false,
 			tab: true
 		},
 		{
-			title: "JSON (GeoGratis) EN",
+			title: "JSON (GeoGratis)",
 			caption: "This is a sample dataset loaded from a remote JSON resource, in this case the GeoGratis API.",
 			type: "json",
 			url: "http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst",
@@ -109,7 +83,7 @@ var wet_boew_geomap = {
 				alt: "json",
 				q: "alluvial"
 			},
-			visible: true,
+			visible: false,
 			root: "products",
 			popups: true,
 			tab: true,
@@ -120,7 +94,7 @@ var wet_boew_geomap = {
 			}
 		},
 		{
-			title: "GeoJSON (CartoDB) EN",
+			title: "GeoJSON (CartoDB)",
 			caption: "This is a sample dataset loaded from a remote GeoJSON resource, in this case traffic cameras in the city of Ottawa from the CartoDB API.",
 			type: "geojson",
 			url: "http://stephenott.cartodb.com/api/v2/sql",
@@ -134,7 +108,7 @@ var wet_boew_geomap = {
 				latitude: "Longitude",
 				updated_at: "Last updated"
 			},
-			visible: true,
+			visible: false,
 			zoom: true,
 			datatable: true,
 			tab: true,
