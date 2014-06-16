@@ -87,6 +87,10 @@ $mm-volume-thumb-width: 10px;
 		.lastpnl {
 			@extend %multimedia-display-none;
 		}
+
+		object {
+			position: absolute;
+		}
 	}
 
 	.display {
