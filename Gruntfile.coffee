@@ -14,6 +14,16 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
+		"travis"
+		"Default task that runs the core unminified build"
+		[
+			"dist"
+			"test-mocha"
+			"htmllint"
+		]
+	)
+
+	@registerTask(
 		"dist"
 		"Produces the production files"
 		[
@@ -25,7 +35,6 @@ module.exports = (grunt) ->
 			"pages:docs"
 			"pages:versions"
 			"demos-min"
-			"htmllint"
 		]
 	)
 
