@@ -34,11 +34,11 @@ wb.doc.on( "geomap.ready", function( event, maps ) {
 	if ( $aoiExtent ) {
 
 		$aoiExtent.on( "change", function() {
-			 //console.log( "BBox: " + $( this ).val() );
+			//console.log( "BBox: " + $( this ).val() );
 		} );
 
 		$aoiExtentLonLat.on("change", function() {
-			 //console.log( "BBox LonLat: " + $( this ).val() );
+			//console.log( "BBox LonLat: " + $( this ).val() );
 		} );
 	}
 	// Zoom to location on location_map

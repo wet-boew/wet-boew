@@ -2214,7 +2214,7 @@ var pluginName = "wb-geomap",
 			timer = setTimeout(	function() {
 				xhr = $.get( i18nText.geoLocationURL, {
 						q: val + "*"
-					 }, function( res ) {
+					}, function( res ) {
 
 					options = [ "<!--[if lte IE 9]><select><![endif]-->" ];
 
@@ -2223,10 +2223,10 @@ var pluginName = "wb-geomap",
 
 							title = res[ i ].title
 								.replace(/&/g, "&amp;")
-					            .replace(/"/g, "&quot;")
-					            .replace(/'/g, "&#39;")
-					            .replace(/</g, "&lt;")
-					            .replace(/>/g, "&gt;");
+								.replace(/"/g, "&quot;")
+								.replace(/'/g, "&#39;")
+								.replace(/</g, "&lt;")
+								.replace(/>/g, "&gt;");
 
 							bnd = res[ i ].bbox ? res[ i ].bbox[ 0 ] + ", " + res[ i ].bbox[ 1 ] + ", " + res[ i ].bbox[ 2 ] + ", " + res[ i ].bbox[ 3 ] : null;
 							ll = res[ i ].geometry && res[ i ].geometry.type === "Point" ? res[ i ].geometry.coordinates[ 0 ] + ", " + res[ i ].geometry.coordinates[ 1] : null;
@@ -2284,10 +2284,9 @@ var pluginName = "wb-geomap",
 		}),
 		geolocationPanel = new OpenLayers.Control.Panel( {
 			displayClass: "olPanelGeolocate",
-	        createControlMarkup: function() {
-	            var button = document.createElement( "button" );
-	            return button;
-	        }
+			createControlMarkup: function() {
+				return document.createElement( "button" );
+			}
 		});
 
 		geolocationPanel.addControls( [ btnGeolocate ] );
