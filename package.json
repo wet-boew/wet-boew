@@ -1,62 +1,34 @@
 {
-  "name": "wet-boew",
-  "version": "4.0.3",
-  "description": "Web Experience Toolkit (WET): Open source code library for building innovative websites that are accessible, usable, interoperable, mobile-friendly and multilingual. This collaborative open source project is led by the Government of Canada. / Boîte à outils de l’expérience Web (BOEW) : Une bibliothèque de code primée pour construire des sites Web innovants qui sont accessibles, faciles d'emploi, interopérables, optimisés pour les appareils mobiles et multilingues. Ceci est un projet à source ouverte collaboratif dirigé par le Gouvernement du Canada.",
-  "main": "index.html",
-  "scripts": {
-    "test": "grunt test",
-    "postinstall": "bower update && grunt init"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wet-boew/wet-boew.git"
-  },
-  "keywords": [
-    "framework",
-    "web",
-    "html5",
-    "javascript",
-    "modernizr",
-    "polyfill",
-    "WCAG2.0",
-    "accessiblity",
-    "usability",
-    "interoperability",
-    "mobile",
-    "multilingual"
-  ],
-  "author": "",
+  "name": "theme-base",
+  "version": "4.0.4-development",
   "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "bower.json",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "lib"
+  ],
   "devDependencies": {
-    "assemble": "~0.4.10",
-    "assemble-contrib-i18n": "~0.1.2",
-    "expect.js": "^0.3.1",
-    "grunt": "~0.4.1",
-    "grunt-autoprefixer": "^0.7.2",
-    "grunt-check-dependencies": "~0.3.0",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-connect": "~0.5.0",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-csslint": "~0.2.0",
-    "grunt-contrib-cssmin": "^0.9.0",
-    "grunt-contrib-imagemin": "~0.5.0",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-uglify": "~0.2.0",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-gh-pages": "~0.9.0",
-    "grunt-html": "^1.4.0",
-    "grunt-htmlcompressor": "~0.1.10",
-    "grunt-i18n-csv": "^0.0.5",
-    "grunt-imagine": "http://github.com/LaurentGoderre/grunt-imagine/tarball/custom",
-    "grunt-jscs-checker": "^0.4.2",
-    "grunt-mocha": "~0.4.1",
-    "grunt-modernizr": "~0.4.0",
-    "grunt-sass": "^0.14.0",
-    "grunt-saucelabs": "^5.1.2",
-    "grunt-wget": "~0.1.0",
-    "mocha": "^1.18.2",
-    "sinon": "^1.9.1",
-    "time-grunt": "^0.3.1"
-  }
+    "wet-boew": "git://github.com/wet-boew/wet-boew.git#v4.0.3"
+  },
+  "homepage": "https://github.com/wet-boew/theme-base",
+  "authors": [
+    "WET Team"
+  ],
+  "description": "A WET theme template to aid in the creation of new themes",
+  "main": [
+    "src/theme.js",
+    "src/theme.scss"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "wet-boew",
+    "theme",
+    "example"
+  ]
 }
