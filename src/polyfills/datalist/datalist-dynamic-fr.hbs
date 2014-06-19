@@ -1,0 +1,40 @@
+---
+{
+	"title": "Correctif « datalist » (saisie automatique) - Dynamique",
+	"language": "fr",
+	"category": "Polyfills",
+	"description": "Émule l'attribut list de l'élément <inputs>, ainsi que l'élément <datalist>, pour les navigateurs qui ne les supportent pas.",
+	"tag": "datalist",
+	"parentdir": "datalist",
+	"altLangPrefix": "datalist-dynamic",
+	"js": ["demo/datalist_dynamic"],
+	"dateModified": "2014-06-19"
+}
+---
+<p>La balise <code lang="en">datalist</code> spécifie une liste d'options pré-définis pour un élément <code lang="en">input</code>.</p>
+
+<!-- Start of Datalist content -->
+<section>
+	<h2>Exemple</h2>
+	<form action="#" method="get">
+		<fieldset>
+			<legend>Choisir un bogue ou problême</legend>
+			<div class="form-group">
+				<label for="plugin">Plugiciel:</label>
+				<select class="form-control" id="plugin" name="plugin">
+					<option label="Choisir un plugiciel"> </option>
+					<option value="Multimedia player">Lecteur multimédia</option>
+					<option value="Lightbox" lang="en">Lightbox</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="issue">Bogue ou problême:</label>
+				<input class="form-control" type="text" id="issue" name="issue" list="issues" />
+			</div>
+			<datalist id="issues" lang="en">
+				<!--[if lte IE 9]><select><![endif]-->
+				<!--[if lte IE 9]></select><![endif]-->
+			</datalist>
+		</fieldset>
+	</form>
+</section>
