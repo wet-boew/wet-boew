@@ -1,24 +1,12 @@
 {
 	"preset": "jquery",
+	// Preset overrides
 	"validateLineBreaks": null,
-	"disallowSpacesInNamedFunctionExpression": {
-		"beforeOpeningRoundBrace": true
-	},
-	"requireSpacesInNamedFunctionExpression": {
-		"beforeOpeningCurlyBrace": true
-	},
-	"disallowSpacesInAnonymousFunctionExpression": {
-		"beforeOpeningRoundBrace": true
-	},
-	"requireSpacesInAnonymousFunctionExpression": {
-		"beforeOpeningCurlyBrace": true
-	},
+	"requireCamelCaseOrUpperCaseIdentifiers": null,
+	"maximumLineLength": 500,
+	// Additional preset tightening
 	"requireBlocksOnNewline": true,
 	"requireSpaceBeforeBlockStatements": true,
-	"requireParenthesesAroundIIFE": true,
-	"disallowTrailingComma": true,
-	"requireMultipleVarDecl": "onevar",
-	"disallowTrailingWhitespace": true,
 	"excludeFiles": [
 		"node_modules/**",
 		"dist/**",

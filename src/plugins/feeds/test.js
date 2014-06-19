@@ -25,22 +25,29 @@ describe( "Feeds test suite", function() {
 		// JSON-P for the request: http://sinonjs.org/docs/#json-p
 		stubs.ajax = sandbox.stub( $, "ajax" ).returns((function() {
 			var deferred = $.Deferred();
-			deferred.resolve( { responseData:	{
-				feed: {
-					entries: [ {
-						title: "Test entry 1",
-						link: "http://foo.com",
-						publishedDate: "Mon, 27 Jan 2014 21:00:00 -0500"
-					},{
-						title: "Test entry 2",
-						link: "http://bar.com",
-						publishedDate: "Wed, 29 Jan 2014 21:00:00 -0500"
-					},{
-						title: "Test entry 3",
-						link: "http://baz.com",
-						publishedDate: "Fri, 31 Jan 2014 21:00:00 -0500"
-					} ]
-				} } } );
+			deferred.resolve({
+				responseData: {
+					feed: {
+						entries: [
+							{
+								title: "Test entry 1",
+								link: "http://foo.com",
+								publishedDate: "Mon, 27 Jan 2014 21:00:00 -0500"
+							},
+							{
+								title: "Test entry 2",
+								link: "http://bar.com",
+								publishedDate: "Wed, 29 Jan 2014 21:00:00 -0500"
+							},
+							{
+								title: "Test entry 3",
+								link: "http://baz.com",
+								publishedDate: "Fri, 31 Jan 2014 21:00:00 -0500"
+							}
+						]
+					}
+				}
+			});
 			return deferred;
 		}()));
 	});

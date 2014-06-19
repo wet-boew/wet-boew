@@ -59,10 +59,10 @@ var pluginName = "wb-feeds",
 			// Facebook feeds does not really do titles in ATOM RSS. It simply truncates content at 150 characters. We are using a JS based sentence
 			// detection algorithm to better split content and titles
 			var content = fromCharCode( data.content ),
-				title = content.replace( /(<([^>]+)>)/ig,"" ).match( /\(?[^\.\?\!]+[\.!\?]\)?/g );
+				title = content.replace( /(<([^>]+)>)/ig, "" ).match( /\(?[^\.\?\!]+[\.!\?]\)?/g );
 
 			// Sanitize the HTML from Facebook - extra 'br' tags
-			content = content.replace( /(<br>\n?)+/gi,"<br>" );
+			content = content.replace( /(<br>\n?)+/gi, "<br>" );
 
 			return "<li class='media'><a class='pull-left' href=''><img src='" + data.fIcon + "' alt='" + data.author +
 				"' height='64px' width='64px' class='media-object'/></a><div class='media-body'>" +
