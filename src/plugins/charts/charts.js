@@ -746,7 +746,7 @@
 			var $container = $( "<figure class='" + optionsCharts.graphclass + "'>" +
 
 				// Copy to the inner table caption
-				( captionHtml.length ? "<figcaption>" + captionHtml + "</figcaption>": "" ) +
+				( captionHtml.length ? "<figcaption>" + captionHtml + "</figcaption>" : "" ) +
 
 				// Image Container
 				"<div role='img' aria-label='" +
@@ -754,7 +754,7 @@
 
 				// Add Dimension
 				( withDimension ? "style='height:" + optionsCharts.height +
-				"px; width:" + optionsCharts.width + "px'": "" ) +
+				"px; width:" + optionsCharts.width + "px'" : "" ) +
 
 				"></div></figure>");
 

@@ -1050,12 +1050,15 @@ module.exports = (grunt) ->
 					"theme/**/*.js"
 					"tasks/*.js"
 				]
+
 		jscs:
 			all:
+				options:
+					config: ".jscsrc"
+
 				src: [
 					"<%= jshint.lib_test.src %>"
 				]
-
 
 		connect:
 			options:

@@ -49,7 +49,7 @@
     "grunt-htmlcompressor": "~0.1.10",
     "grunt-i18n-csv": "^0.0.7",
     "grunt-imagine": "http://github.com/LaurentGoderre/grunt-imagine/tarball/custom",
-    "grunt-jscs-checker": "^0.4.2",
+    "grunt-jscs-checker": "^0.5.1",
     "grunt-mocha": "~0.4.1",
     "grunt-modernizr": "~0.4.0",
     "grunt-sass": "^0.14.0",
