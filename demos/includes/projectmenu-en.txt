@@ -34,7 +34,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 					<li><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/index-en.html">Getting started</a></li>
 					<li><a href="http://wet-boew.github.io/v3.1-ci/docs/versions/dwnld-en.html">Download WET</a></li>
 					<li><a href="http://wet-boew.github.io/v3.1-ci/demos/index-en.html">Working examples</a></li>
-					<li><a href="http://wet-boew.github.io/v3.1-ci/docs/index-en.html">Documentation</a>
+					<li><a href="http://wet-boew.github.io/v3.1-ci/docs/index-en.html">Documentation</a></li>
 				</ul>
 			</div>
 		</div>

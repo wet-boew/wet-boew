@@ -34,7 +34,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 					<li><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/index-fr.html">Comment démarrer avec la BOEW</a></li>
 					<li><a href="http://wet-boew.github.io/v3.1-ci/docs/versions/dwnld-fr.html">Télécharger la BOEW</a></li>
 					<li><a href="http://wet-boew.github.io/v3.1-ci/demos/index-fr.html">Exemples pratiques</a></li>
-					<li><a href="http://wet-boew.github.io/v3.1-ci/docs/index-fr.html">Documentation</a>
+					<li><a href="http://wet-boew.github.io/v3.1-ci/docs/index-fr.html">Documentation</a></li>
 				</ul>
 			</div>
 		</div>
