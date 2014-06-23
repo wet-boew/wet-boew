@@ -1,0 +1,40 @@
+---
+{
+	"title": "Datalist polyfill (auto-complete) - Dynamic",
+	"language": "en",
+	"category": "Polyfills",
+	"description": "Adds auto-complete functionality to specific <input> fields by dynamically displaying a list of words that match the <datalist>.",
+	"tag": "datalist",
+	"parentdir": "datalist",
+	"altLangPrefix": "datalist-dynamic",
+	"js": ["demo/datalist_dynamic"],
+	"dateModified": "2014-06-19"
+}
+---
+<p>The <code>datalist</code> tag specifies a list of pre-defined options for an <code>input</code> element.</p>
+
+<!-- Start of Datalist content -->
+<section>
+	<h2>Example</h2>
+	<form action="#" method="get">
+		<fieldset>
+			<legend>Select an issues</legend>
+			<div class="form-group">
+				<label for="plugin">Plugin</label>
+				<select class="form-control" id="plugin" name="plugin">
+					<option label="Select a plugin"> </option>
+					<option value="Multimedia player">Multimedia Player</option>
+					<option value="Lightbox">Lightbox</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="issue">Issue</label>
+				<input class="form-control" type="text" id="issue" name="issue" list="issues" />
+			</div>
+			<datalist id="issues">
+				<!--[if lte IE 9]><select><![endif]-->
+				<!--[if lte IE 9]></select><![endif]-->
+			</datalist>
+		</fieldset>
+	</form>
+</section>
