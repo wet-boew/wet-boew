@@ -75,7 +75,9 @@ var pluginName = "wb-mltmd",
 				$document.trigger({
 					type: "ajax-fetch.wb",
 					element: selector,
-					fetch: wb.getPath( "/assets" ) + "/mediacontrols.html"
+					fetch: {
+						url: wb.getPath( "/assets" ) + "/mediacontrols.html"
+					}
 				});
 			} else if ( template !== "" ) {
 				$( eventTarget ).trigger({
@@ -524,7 +526,7 @@ $document.on( "ajax-fetched.wb templateloaded.wb", selector, function( event ) {
 	var $this = $( this );
 
 	if ( event.type === "ajax-fetched" ) {
-		template = event.pointer.html();
+		template = event.fetch.pointer.html();
 	}
 
 	$this.data( "template", template );

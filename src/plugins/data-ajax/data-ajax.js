@@ -42,7 +42,9 @@ var pluginName = "wb-data-ajax",
 			$document.trigger({
 				type: "ajax-fetch.wb",
 				element: $elm,
-				fetch: url
+				fetch: {
+					url: url
+				}
 			});
 		}
 	};
@@ -81,21 +83,17 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, functi
 		default:
 
 			// ajax-fetched event
-			content = event.pointer.html();
+			content = event.fetch.pointer.html();
 			$elm.removeAttr( "data-ajax-" + ajaxType );
 
-			// Only complete the action if there wasn't an error
-			if ( event.status !== "error" ) {
-
-				// "replace" is the only event that doesn't map to a jQuery function
-				if ( ajaxType === "replace") {
-					$elm.html( content );
-				} else {
-					$elm[ ajaxType ]( content );
-				}
-
-				$elm.trigger( pluginName + "-" + ajaxType + "-loaded.wb" );
+			// "replace" is the only event that doesn't map to a jQuery function
+			if ( ajaxType === "replace") {
+				$elm.html( content );
+			} else {
+				$elm[ ajaxType ]( content );
 			}
+
+			$elm.trigger( pluginName + "-" + ajaxType + "-loaded.wb" );
 		}
 	}
 

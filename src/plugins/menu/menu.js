@@ -60,7 +60,9 @@ var pluginName = "wb-menu",
 				$document.trigger({
 					type: "ajax-fetch.wb",
 					element: $elm,
-					fetch: $elm.data( "ajax-fetch" )
+					fetch: {
+						url: $elm.data( "ajax-fetch" )
+					}
 				});
 			} else {
 				onAjaxLoaded( $elm, $elm );
@@ -445,7 +447,7 @@ var pluginName = "wb-menu",
 	};
 
 // Bind the events of the plugin
-$document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, function( event ) {
+$document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb ajax-failed.wb", selector, function( event ) {
 
 	var elm = event.target,
 		eventType = event.type,
@@ -453,6 +455,7 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, functi
 
 	switch ( eventType ) {
 	case "ajax-fetched":
+	case "ajax-failed":
 
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === elm ) {
@@ -460,7 +463,7 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, functi
 			// Only replace the menu if there isn't an error
 			onAjaxLoaded(
 				$elm,
-				event.status !== "error" ? event.pointer : $elm
+				eventType === "ajax-fetched" ? event.fetch.pointer : $elm
 			);
 		}
 		return false;
