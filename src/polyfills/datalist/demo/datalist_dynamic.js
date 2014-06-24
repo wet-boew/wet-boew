@@ -7,7 +7,7 @@
 
 var $document = wb.doc,
 	pluginSelector = "#plugin",
-	dataList = $( "#issues" );
+	issueInput = $("#issue");
 
 $document.on( "change", pluginSelector, function( event ) {
 	var pluginName = event.target.value;
@@ -16,28 +16,37 @@ $document.on( "change", pluginSelector, function( event ) {
 		type: "ajax-fetch.wb",
 		element: this,
 		fetch: {
-			url: encodeURI("https://api.github.com/repos/wet-boew/wet-boew/issues?labels=Plugin: " + pluginName)
+			url: encodeURI("https://api.github.com/repos/wet-boew/wet-boew/issues?labels=Plugin: " + pluginName),
+			dataType: wb.ielt10 ? "jsonp" : "json",
+			jsonp: wb.ielt10 ? "callback" : null
 		}
 	});
+
+	issueInput.get(0).value = "";
 });
 
 $document.on( "ajax-fetched.wb", pluginSelector, function( event ) {
-	var issues = event.fetch.response,
+	var dataList = $( "#" + issueInput.attr( "list" ) ),
+		issues = wb.ielt10 ? event.fetch.response.data : event.fetch.response,
 		lenIssues = issues.length,
+		options = "",
 		indIssue, issue;
 
 	dataList.empty();
 
-	dataList.append( "<!--[if lte IE 9]><select><![endif]-->" );
-
 	for ( indIssue = 0; indIssue < lenIssues; indIssue += 1 ) {
 		issue = issues[ indIssue ];
 
-		dataList.append( "<option value=\"" + issue.id + "\">" + issue.title + "</option>" );
+		options += "<option label=\"" + issue.title + "\" value=\"" + issue.title + "\"></option>";
 	}
 
-	dataList.append( "<!--[if lte IE 9]></select><![endif]-->" );
-	dataList.trigger( "wb-update.wb-datalist" );
+	if ( wb.ielt10 ) {
+		options = "<select>" + options + "</select>";
+	}
+
+	dataList.append( options );
+
+	issueInput.trigger( "wb-update.wb-datalist" );
 });
 
 })( jQuery, document, wb );
