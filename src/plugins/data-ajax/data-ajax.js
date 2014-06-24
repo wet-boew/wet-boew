@@ -52,7 +52,6 @@ var pluginName = "wb-data-ajax",
 $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, function( event ) {
 	var eventTarget = event.target,
 		eventType = event.type,
-		eventData = event.fetch,
 		ajaxTypes = [
 			"before",
 			"replace",
@@ -84,21 +83,17 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, functi
 		default:
 
 			// ajax-fetched event
-			content = eventData.pointer.html();
+			content = event.fetch.pointer.html();
 			$elm.removeAttr( "data-ajax-" + ajaxType );
 
-			// Only complete the action if there wasn't an error
-			if ( eventData.status !== "error" ) {
-
-				// "replace" is the only event that doesn't map to a jQuery function
-				if ( ajaxType === "replace") {
-					$elm.html( content );
-				} else {
-					$elm[ ajaxType ]( content );
-				}
-
-				$elm.trigger( pluginName + "-" + ajaxType + "-loaded.wb" );
+			// "replace" is the only event that doesn't map to a jQuery function
+			if ( ajaxType === "replace") {
+				$elm.html( content );
+			} else {
+				$elm[ ajaxType ]( content );
 			}
+
+			$elm.trigger( pluginName + "-" + ajaxType + "-loaded.wb" );
 		}
 	}
 
