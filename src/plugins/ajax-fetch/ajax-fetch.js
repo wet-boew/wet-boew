@@ -18,22 +18,38 @@ var $document = wb.doc;
 // Event binding
 $document.on( "ajax-fetch.wb", function( event ) {
 	var caller = event.element,
-		url = event.fetch;
+		fetchOpts = event.fetch,
+		fetchData;
 
 	// Filter out any events triggered by descendants
 	if ( event.currentTarget === event.target ) {
-
-		$( "<div id='" + wb.guid() + "' />" )
-			.load( url, function( response, status, xhr ) {
-				$( caller )
-					.trigger( {
-						type: "ajax-fetched.wb",
-						pointer: $( this ),
+			$.ajax( fetchOpts )
+				.done( function( response, status, xhr ) {
+					fetchData = {
 						response: response,
 						status: status,
 						xhr: xhr
+					};
+
+					if ( typeof response === "string" ) {
+						fetchData.pointer = $( "<div id='" + wb.guid() + "' />" ).append(response);
+					}
+
+					$( caller ).trigger({
+						type: "ajax-fetched.wb",
+						fetch: fetchData
 					});
-			});
+				})
+				.fail( function(xhr, status, error) {
+					$( caller ).trigger({
+						type: "ajax-failed.wb",
+						fetch: {
+							xhr: xhr,
+							status: status,
+							error: error
+						}
+					});
+				});
 	}
 });
 

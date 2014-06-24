@@ -15,12 +15,14 @@ $document.on( "change", pluginSelector, function( event ) {
 	$document.trigger({
 		type: "ajax-fetch.wb",
 		element: this,
-		fetch: encodeURI("https://api.github.com/repos/wet-boew/wet-boew/issues?labels=Plugin: " + pluginName)
+		fetch: {
+			url: encodeURI("https://api.github.com/repos/wet-boew/wet-boew/issues?labels=Plugin: " + pluginName)
+		}
 	});
 });
 
 $document.on( "ajax-fetched.wb", pluginSelector, function( event ) {
-	var issues = JSON.parse(event.response),
+	var issues = event.fetch.response,
 		lenIssues = issues.length,
 		indIssue, issue;
 
@@ -28,9 +30,9 @@ $document.on( "ajax-fetched.wb", pluginSelector, function( event ) {
 
 	dataList.append( "<!--[if lte IE 9]><select><![endif]-->" );
 
-	for ( indIssue = 0; indIssue < lenIssues; indIssue++ ) {
+	for ( indIssue = 0; indIssue < lenIssues; indIssue += 1 ) {
 		issue = issues[ indIssue ];
-		window.console.log( issue );
+
 		dataList.append( "<option value=\"" + issue.id + "\">" + issue.title + "</option>" );
 	}
 

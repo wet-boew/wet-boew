@@ -60,7 +60,9 @@ var pluginName = "wb-menu",
 				$document.trigger({
 					type: "ajax-fetch.wb",
 					element: $elm,
-					fetch: $elm.data( "ajax-fetch" )
+					fetch: {
+						url: $elm.data( "ajax-fetch" )
+					}
 				});
 			} else {
 				onAjaxLoaded( $elm, $elm );
@@ -449,6 +451,7 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, functi
 
 	var elm = event.target,
 		eventType = event.type,
+		eventData = event.fetch,
 		$elm = $( elm );
 
 	switch ( eventType ) {
@@ -460,7 +463,7 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, functi
 			// Only replace the menu if there isn't an error
 			onAjaxLoaded(
 				$elm,
-				event.status !== "error" ? event.pointer : $elm
+				eventData.status !== "error" ? eventData.pointer : $elm
 			);
 		}
 		return false;
