@@ -15,6 +15,7 @@ var pluginName = "wb-datalist",
 	selector = "input[list]",
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init." + pluginName,
+	updateEvent = "wb-update." + pluginName,
 	setFocusEvent = "setfocus.wb",
 	initialized = false,
 	$document = wb.doc,
@@ -26,9 +27,7 @@ var pluginName = "wb-datalist",
 	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
 	 */
 	init = function( event ) {
-		var input = event.target,
-			inputId = input.id,
-			$input, autolist, datalist, options, len, option, value, label, i;
+		var input = event.target;
 
 		// Filter out any events triggered by descendants
 		// and only initialize the element once
@@ -38,36 +37,42 @@ var pluginName = "wb-datalist",
 			wb.remove( selector );
 			input.className += " " + initedClass;
 
-			$input = $( input );
-			autolist = "<ul role='listbox' id='wb-al-" + input.id + "' class='wb-al hide' aria-hidden='true' aria-live='polite'></ul>";
-			datalist = document.getElementById( input.getAttribute( "list" ) );
-			options = datalist.getElementsByTagName( "option" );
-			len = options.length;
-
+			//Adds WAI-ARIA
 			input.setAttribute( "autocomplete", "off" );
 			input.setAttribute( "role", "textbox" );
 			input.setAttribute( "aria-haspopup", "true" );
 			input.setAttribute( "aria-autocomplete", "list" );
-			input.setAttribute( "aria-owns", "wb-al-" + inputId );
+			input.setAttribute( "aria-owns", "wb-al-" + input.id );
 			input.setAttribute( "aria-activedescendent", "" );
 
-			autolist += "<ul id='wb-al-" + input.id + "-src' class='wb-al-src hide' aria-hidden='true'>";
-			for ( i = 0; i !== len; i += 1 ) {
-				option = options[ i ];
-				value = option.getAttribute( "value" );
-				label = option.getAttribute( "label" );
-				if ( !value ) {
-					value = option.innerHTML;
-				}
-				autolist += "<li id='al-opt-" + inputId + "-" + i +
-					"'><a href='javascript:;' tabindex='-1'><span class='al-val'>" +
-					( !value ? "" : value ) + "</span><span class='al-lbl'>" +
-					( !label || label === value ? "" : label ) + "</span></a></li>";
-			}
-			$input.after( autolist + "</ul>" );
+			populateOptions( input );
 
 			initialized = true;
 		}
+	},
+
+	populateOptions = function( input ) {
+		var $input = $( input ),
+			autolist = "<ul role='listbox' id='wb-al-" + input.id + "' class='wb-al hide' aria-hidden='true' aria-live='polite'></ul>",
+			datalist = document.getElementById( input.getAttribute( "list" ) ),
+			options = datalist.getElementsByTagName( "option" ),
+			len = options.length,
+			option, value, label, i;
+
+		autolist += "<ul id='wb-al-" + input.id + "-src' class='wb-al-src hide' aria-hidden='true'>";
+		for ( i = 0; i !== len; i += 1 ) {
+			option = options[ i ];
+			value = option.getAttribute( "value" );
+			label = option.getAttribute( "label" );
+			if ( !value ) {
+				value = option.innerHTML;
+			}
+			autolist += "<li id='al-opt-" + input.id + "-" + i +
+				"'><a href='javascript:;' tabindex='-1'><span class='al-val'>" +
+				( !value ? "" : value ) + "</span><span class='al-lbl'>" +
+				( !label || label === value ? "" : label ) + "</span></a></li>";
+		}
+		$input.after( autolist + "</ul>" );
 	},
 
 	/**
@@ -316,7 +321,7 @@ var pluginName = "wb-datalist",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb " + initEvent + " keydown click vclick touchstart", selector, function( event ) {
+$document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " keydown click vclick touchstart", selector, function( event ) {
 	var input = event.target,
 		eventType = event.type,
 		which = event.which;
@@ -325,6 +330,9 @@ $document.on( "timerpoke.wb " + initEvent + " keydown click vclick touchstart", 
 	case "timerpoke":
 	case "wb-init":
 		init( event );
+		break;
+	case "wb-update":
+		populateOptions( event.target );
 		break;
 	case "keydown":
 		if ( !(event.ctrlKey || event.metaKey ) ) {
