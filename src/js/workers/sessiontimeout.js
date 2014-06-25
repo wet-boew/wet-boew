@@ -63,7 +63,7 @@
 			//------------------------------------------------------ Main functions
 
 			keep_session = function () {
-				// If the refreshCallbackUrl not present then dont show any error
+				// If the refreshCallbackUrl not present then don't show any errors
 				if (opts.refreshCallbackUrl.length > 2) {
 					$.post(opts.refreshCallbackUrl,	function (responseData) {
 						// if the response data returns anything but "true", we should display that the session has timed out.
@@ -101,6 +101,9 @@
 
 			logout = function () {
 				var start = getCurrentTimeMs();
+
+				// Clear the sessionTimeout to avoid double requests
+				clearTimeout(sessionTimeout);
 
 				// because of short circuit evaluation, this statement
 				// will show the dialog before evaluating the time, thus the
