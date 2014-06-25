@@ -145,15 +145,23 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 	 */
 	initRefreshOnClick = function( $elm, settings ) {
 		if ( settings.refreshOnClick ) {
-			$document.on( "click", function() {
-				var lastActivity = $elm.data( "lastActivity" ),
+			$document.on( "click", function( event ) {
+				var className = event.target.className,
+					lastActivity, currentTime;
+
+				// Ignore clicks when the modal dialog is open
+				if ( ( !className || className.indexOf( confirmClass ) === -1 ) &&
+					$( ".mfp-ready ." + confirmClass ).length === 0 ) {
+
+					lastActivity = $elm.data( "lastActivity" );
 					currentTime = getCurrentTime();
-				if ( !lastActivity || ( currentTime - lastActivity ) > settings.refreshLimit ) {
-					$elm
-						.trigger( resetEvent, settings )
-						.trigger( keepaliveEvent, settings );
+					if ( !lastActivity || ( currentTime - lastActivity ) > settings.refreshLimit ) {
+						$elm
+							.trigger( resetEvent, settings )
+							.trigger( keepaliveEvent, settings );
+					}
+					$elm.data( "lastActivity", currentTime );
 				}
-				$elm.data( "lastActivity", currentTime );
 			});
 		}
 	},
@@ -204,6 +212,9 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 				.replace( "#sec#", "<span class='sec'>" + time.seconds + "</span>" ),
 			buttonStart = "<button type='button' class='",
 			buttonEnd = "</button>";
+
+		// Clear the keepalive timeout to avoid double firing of requests
+		clearTimeout( $( event.target ).data( keepaliveEvent ) );
 
 		$buttonContinue = $( buttonStart + confirmClass +
 			" btn btn-primary'>" + i18nText.buttonContinue + buttonEnd )
