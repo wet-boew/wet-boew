@@ -35,6 +35,7 @@ var pluginName = "wb-menu",
 	 * @param {jQuery DOM element} $elm The plugin element
 	 */
 	init = function( $elm ) {
+		var ajaxFetch;
 
 		// Only initialize the element once
 		if ( !$elm.hasClass( initedClass ) ) {
@@ -56,12 +57,13 @@ var pluginName = "wb-menu",
 			}
 
 			// Lets test to see if we have any menus to fetch
-			if ( $elm.data( "ajax-fetch" ) ) {
+			ajaxFetch = $elm.data( "ajax-fetch" );
+			if ( ajaxFetch ) {
 				$document.trigger({
 					type: "ajax-fetch.wb",
 					element: $elm,
 					fetch: {
-						url: $elm.data( "ajax-fetch" )
+						url: ajaxFetch
 					}
 				});
 			} else {
@@ -209,10 +211,11 @@ var pluginName = "wb-menu",
 	/**
 	 * @method onAjaxLoaded
 	 * @param {jQuery DOM element} $elm The plugin element
-	 * @param {jQuery DOM element} $ajaxed The AJAX'd in menu content to import
+	 * @param {jQuery DOM element} $ajaxResult The AJAXed in menu content to import
 	 */
-	onAjaxLoaded = function( $elm, $ajaxed ) {
-		var $menubar = $ajaxed.find( ".menu" ),
+	onAjaxLoaded = function( $elm, $ajaxResult ) {
+		var $ajaxed = !$ajaxResult ? $elm : $ajaxResult,
+			$menubar = $ajaxed.find( ".menu" ),
 			$menu = $menubar.find( "> li > a" ),
 			target = $elm.data( "trgt" ),
 			$secnav = $( "#wb-sec" ),
@@ -272,6 +275,12 @@ var pluginName = "wb-menu",
 
 			// Add the site menu
 			if ( $menubar.length !== 0 ) {
+
+				// Add the menubar role if it is missing
+				if ( !$menubar.attr( "role" ) ) {
+					$menubar.attr( "role", "menubar" );
+				}
+
 				allProperties.push([
 					$menu.get(),
 					"sm-pnl",
@@ -321,11 +330,10 @@ var pluginName = "wb-menu",
 
 		if ( $menu.length !== 0 ) {
 			$menu[ 0 ].setAttribute( "tabindex", "0" );
-			$menu
-				.filter( "[href^=#]" )
-					.append( "<span class='expicon glyphicon glyphicon-chevron-down'></span>" );
-
 			drizzleAria( $menu );
+			$menu
+				.filter( "[aria-haspopup=true]" )
+					.append( "<span class='expicon glyphicon glyphicon-chevron-down'></span>" );
 		}
 
 		// Replace elements

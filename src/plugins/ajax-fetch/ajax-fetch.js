@@ -32,7 +32,7 @@ $document.on( "ajax-fetch.wb", function( event ) {
 					};
 
 					if ( typeof response === "string" ) {
-						fetchData.pointer = $( "<div id='" + wb.guid() + "' />" ).append(response);
+						fetchData.pointer = $( "<div id='" + wb.guid() + "' />" ).append( response );
 					}
 
 					$( caller ).trigger({
@@ -40,7 +40,7 @@ $document.on( "ajax-fetch.wb", function( event ) {
 						fetch: fetchData
 					});
 				})
-				.fail( function(xhr, status, error) {
+				.fail(function( xhr, status, error ) {
 					$( caller ).trigger({
 						type: "ajax-failed.wb",
 						fetch: {
