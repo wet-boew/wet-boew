@@ -40,6 +40,89 @@ var pluginName = "wb-feeds",
     fromCharCode = function(s) {
         return s.replace( patt, decode );
     },
+    /**
+     * Process Feed Entries
+     * @method processFeedEntries
+     * @param  {responseObject} JSON formatted response object
+     * @return {string}	of HTML output
+     */
+     processEntries = function( data ) {
+				var feedUrl = data.responseData.feed.feedUrl,
+					items = data.responseData.feed.entries,
+					icon = this.fIcon,
+					entries = [],
+					$content = this._content,
+					toProcess = $content.data( "toProcess" ),
+					k, len, feedtype;
+
+				// lets bind the template to the Entries
+				if ( feedUrl && feedUrl.indexOf( "facebook.com" ) > -1 ) {
+					feedtype = "facebook";
+				} else {
+					feedtype = "generic";
+				}
+
+				len = items.length;
+				for ( k = 0; k !== len; k += 1 ) {
+					items[ k ].fIcon =  icon ;
+					entries.push( items[ k ] );
+				}
+				// lets merge with latest entries
+				entries = $.merge( entries, $content.data( "entries" ) );
+
+				if ( toProcess === 1 ) {
+					parseEntries( entries, $content.data( "feedLimit" ), $content, feedtype );
+					return 0;
+				}
+
+				toProcess -= 1 ;
+				$content.data({
+					"toProcess": toProcess,
+					"entries": entries
+				});
+
+				return toProcess;
+	},
+
+	  /**
+     * Process JSON Entries
+     * @method processJson
+     * @param  {responseObject} JSON formatted response object
+     * @return {string}	of HTML output
+     */
+     processJson = function( data ) {
+				var items = ( data.items ) ? data.items : data.feed.entry,
+					icon = this.fIcon,
+					entries = [],
+					feedtype = this.feedtype,
+					$content = this._content,
+					toProcess = $content.data( "toProcess" ),
+					k, len;
+
+					len = items.length;
+
+				for ( k = 0; k !== len; k += 1 ) {
+					items[ k ].fIcon =  icon ;
+					items[ k ].publishedDate = items[ k ].published;
+					entries.push( items[ k ] );
+				}
+				// lets merge with latest entries
+				entries = $.merge( entries, $content.data( "entries" ) );
+
+				if ( toProcess === 1 ) {
+					parseEntries( entries, $content.data( "feedLimit" ), $content, feedtype );
+					return 0;
+				}
+
+				toProcess -= 1 ;
+				$content.data({
+					"toProcess": toProcess,
+					"entries": entries
+				});
+
+				return toProcess;
+
+	},
 
 	/**
 	 * @object Templates
@@ -71,6 +154,53 @@ var pluginName = "wb-feeds",
 				wb.date.toDateISO( data.publishedDate, true ) + "]</small>" : "" ) +
 				"</h4><p>" + content + "</p></div></li>";
 		},
+
+		/**
+		 * [fickr template]
+		 * @param  {entry object} data
+		 * @return {string}	HTML string for creating a photowall effect
+		 */
+		flickr: function( data ) {
+
+			var title = data.title,
+				thumbnail = data.media.m.replace( "_m.", "_s." ),
+				seed = "id" + wb.guid(),
+				description = data.description.replace( /^\s*<p>(.*?)<\/p>\s*<p>(.*?)<\/p>/i, ""),
+				image = data.media.m.replace("_m", "");
+
+			// due to CORS we cannot default to simple ajax pulls of the image. We have to inline the content box
+			return "<li class='col-md-4 col-sm-6'><a class='wb-lbx' href='#" + seed + "' title='" + title + "'><img src='" + thumbnail + "' alt='" + title + "' class='img-responsive'/></a>" +
+					"<section id='" + seed + "' class='mfp-hide modal-dialog modal-content overlay-def'>" +
+					"<header class='modal-header'><h2 class='modal-title'>" + title + "</h2></header>" +
+					"<div class='modal-body'><img src='" + image + "' class='thumbnail center-block' alt='" + title + "' />" +
+					description + "</div></section>" +
+					"</li>";
+		},
+
+		/**
+		 * [Youtube template]
+		 * @param  {entry object} data
+		 * @return {string}	HTML string for creating a photowall effect
+		 */
+		youtube: function( data ) {
+			var title = data.media$group.media$title.$t,
+				thumbnail = data.media$group.media$thumbnail[1].url,
+				seed = "id" + wb.guid(),
+				description = data.media$group.media$description.$t,
+				videoid = data.media$group.yt$videoid.$t;
+
+				// due to CORS we cannot default to simple ajax pulls of the image. We have to inline the content box
+			return "<li class='col-md-4 col-sm-6' ><a class='wb-lbx' href='#" + seed + "' title='" + title + "'><img src='" + thumbnail + "' alt='" + title + "' class='img-responsive' /></a>" +
+					"<section id='" + seed + "' class='mfp-hide modal-dialog modal-content overlay-def'>" +
+					"<header class='modal-header'><h2 class='modal-title'>" + title + "</h2></header>" +
+					"<div class='modal-body'>" +
+					"<figure class='wb-mltmd'><video title='" + title + "'>" +
+					"<source type='video/youtube' src='http://www.youtube.com/watch?v=" + videoid + "' />" +
+					"</video><figcaption><p>" +  description + "</p>" +
+					"</figcaption></figure>" +
+					"</div></section>" +
+					"</li>";
+		},
 		/**
 		 * [generic template]
 		 * @param  {entry object}	data
@@ -92,33 +222,7 @@ var pluginName = "wb-feeds",
 	 */
 	init = function( event ) {
 		var elm = event.target,
-			entries = [],
-			processEntries = function( data ) {
-				var feedUrl = data.responseData.feed.feedUrl,
-					items = data.responseData.feed.entries,
-					icon = this.fIcon,
-					k, len, feedtype;
-
-				// lets bind the template to the Entries
-				if ( feedUrl && feedUrl.indexOf( "facebook.com" ) > -1 ) {
-					feedtype = "facebook";
-				} else {
-					feedtype = "generic";
-				}
-
-				len = items.length;
-				for ( k = 0; k !== len; k += 1 ) {
-					items[ k ].fIcon =  icon ;
-					entries.push( items[ k ] );
-				}
-				if ( !last ) {
-					parseEntries( entries, limit, $content, feedtype );
-				}
-
-				last -= 1;
-				return last;
-			},
-			$content, limit, feeds, last, i,  fElem, fIcon;
+			$content, limit, feeds, fType, last, i, callback, fElem, fIcon;
 
 		// Filter out any events triggered by descendants
 		// and only initialize the element once
@@ -134,16 +238,52 @@ var pluginName = "wb-feeds",
 			last = feeds.length - 1;
 			i = last;
 
+			// Lets bind some varialbes to the node to ensure safe ajax thread counting
+
+			$content.data( "toProcess", feeds.length )
+					.data( "feedLimit", limit )
+					.data( "entries", []);
+
 			while ( i >= 0 ) {
 				fElem = feeds.eq( i );
 				fIcon = fElem.find( "> img" );
+				if ( fElem.attr( "data-ajax" ) ) {
 
-				$.ajax({
-					url: jsonRequest( fElem.attr( "href" ), limit ),
-					dataType: "json",
-					fIcon: ( fIcon.length > 0 )  ? fIcon.attr( "src" ) : "",
-					timeout: 1000
+					if ( fElem.attr( "href" ).indexOf( "flickr" ) > -1 ) {
+						fType =  "flickr";
+						callback = "jsoncallback";
+						$content.data( "postProcess", [ ".wb-lbx" ] );
+					} else {
+						fType = "youtube";
+						callback = "callback";
+						$content.data( "postProcess", [ ".wb-lbx", ".wb-mltmd" ] );
+					}
+
+					// We need a Gallery so lets add another plugin
+					// #TODO: Lightbox review for more abstraction we should not have to add a wb.add() for overlaying
+
+					$.ajax({
+						url: fElem.attr( "data-ajax"),
+						dataType: "jsonp",
+						feedtype: fType,
+						jsonp: callback,
+						fIcon: ( fIcon.length > 0 )  ? fIcon.attr( "src" ) : "",
+						timeout: 1000,
+						// set some private variables/function for reference
+						_content: $content
+					}).done( processJson );
+
+				} else {
+
+					$.ajax({
+						url: jsonRequest( fElem.attr( "href" ), limit ),
+						dataType: "json",
+						fIcon: ( fIcon.length > 0 )  ? fIcon.attr( "src" ) : "",
+						timeout: 1000,
+						_content: $content
 					}).done( processEntries );
+
+				}
 
 				i -= 1;
 			}
@@ -195,6 +335,7 @@ var pluginName = "wb-feeds",
 	parseEntries = function( entries, limit, $elm, feedtype ) {
 		var cap = ( limit > 0 && limit < entries.length ? limit : entries.length ),
 			result = "",
+			postProcess = $elm.data( "postProcess" ),
 			compare = wb.date.compare,
 			i, sorted, sortedEntry;
 
@@ -206,7 +347,16 @@ var pluginName = "wb-feeds",
 			sortedEntry = sorted[ i ];
 			result += Templates[ feedtype ]( sortedEntry );
 		}
-		return $elm.empty().append( result );
+		$elm.empty().append( result );
+
+		if ( postProcess ) {
+
+			for ( i = postProcess.length - 1; i >= 0; i--) {
+				wb.add( postProcess[i] );
+			}
+
+		}
+		return true;
 	};
 
 $document.on( "timerpoke.wb " + initEvent, selector, init );
