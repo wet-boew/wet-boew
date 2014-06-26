@@ -252,7 +252,7 @@ var pluginName = "wb-feeds",
 
 				fetch = {
 					dataType: "jsonp",
-					timeout: 1000
+					timeout: 3000
 				};
 
 				if ( fElem.attr( "data-ajax" ) ) {
@@ -263,7 +263,6 @@ var pluginName = "wb-feeds",
 						$content.data( "postProcess", [ ".wb-lbx" ] );
 					} else {
 						fType = "youtube";
-						callback = "callback";
 						$content.data( "postProcess", [ ".wb-lbx", ".wb-mltmd" ] );
 					}
 
@@ -274,6 +273,8 @@ var pluginName = "wb-feeds",
 				} else {
 					fetch.url = jsonRequest( fElem.attr( "href" ), limit );
 				}
+
+				fetch.jsonp = callback;
 
 				fetch.context = {
 					fIcon: ( fIcon.length > 0 )  ? fIcon.attr( "src" ) : "",
