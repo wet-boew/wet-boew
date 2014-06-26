@@ -15,6 +15,7 @@
  */
 var pluginName = "wb-feeds",
 	selector = "." + pluginName,
+	feedLinkSelector = "li > a",
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
@@ -46,42 +47,43 @@ var pluginName = "wb-feeds",
      * @param  {responseObject} JSON formatted response object
      * @return {string}	of HTML output
      */
+     // TODO: Refactor processEntries and processJSON since they share almost 80% of the same code
      processEntries = function( data ) {
-				var feedUrl = data.responseData.feed.feedUrl,
-					items = data.responseData.feed.entries,
-					icon = this.fIcon,
-					entries = [],
-					$content = this._content,
-					toProcess = $content.data( "toProcess" ),
-					k, len, feedtype;
+		var feedUrl = data.responseData.feed.feedUrl,
+			items = data.responseData.feed.entries,
+			icon = this.fIcon,
+			entries = [],
+			$content = this._content,
+			toProcess = $content.data( "toProcess" ),
+			k, len, feedtype;
 
-				// lets bind the template to the Entries
-				if ( feedUrl && feedUrl.indexOf( "facebook.com" ) > -1 ) {
-					feedtype = "facebook";
-				} else {
-					feedtype = "generic";
-				}
+		// lets bind the template to the Entries
+		if ( feedUrl && feedUrl.indexOf( "facebook.com" ) > -1 ) {
+			feedtype = "facebook";
+		} else {
+			feedtype = "generic";
+		}
 
-				len = items.length;
-				for ( k = 0; k !== len; k += 1 ) {
-					items[ k ].fIcon =  icon ;
-					entries.push( items[ k ] );
-				}
-				// lets merge with latest entries
-				entries = $.merge( entries, $content.data( "entries" ) );
+		len = items.length;
+		for ( k = 0; k !== len; k += 1 ) {
+			items[ k ].fIcon =  icon ;
+			entries.push( items[ k ] );
+		}
+		// lets merge with latest entries
+		entries = $.merge( entries, $content.data( "entries" ) );
 
-				if ( toProcess === 1 ) {
-					parseEntries( entries, $content.data( "feedLimit" ), $content, feedtype );
-					return 0;
-				}
+		if ( toProcess === 1 ) {
+			parseEntries( entries, $content.data( "feedLimit" ), $content, feedtype );
+			return 0;
+		}
 
-				toProcess -= 1 ;
-				$content.data({
-					"toProcess": toProcess,
-					"entries": entries
-				});
+		toProcess -= 1 ;
+		$content.data({
+			"toProcess": toProcess,
+			"entries": entries
+		});
 
-				return toProcess;
+		return toProcess;
 	},
 
 	  /**
@@ -91,36 +93,36 @@ var pluginName = "wb-feeds",
      * @return {string}	of HTML output
      */
      processJson = function( data ) {
-				var items = ( data.items ) ? data.items : data.feed.entry,
-					icon = this.fIcon,
-					entries = [],
-					feedtype = this.feedtype,
-					$content = this._content,
-					toProcess = $content.data( "toProcess" ),
-					k, len;
+		var items = ( data.items ) ? data.items : data.feed.entry,
+			icon = this.fIcon,
+			entries = [],
+			feedtype = this.feedType,
+			$content = this._content,
+			toProcess = $content.data( "toProcess" ),
+			k, len;
 
-					len = items.length;
+			len = items.length;
 
-				for ( k = 0; k !== len; k += 1 ) {
-					items[ k ].fIcon =  icon ;
-					items[ k ].publishedDate = items[ k ].published;
-					entries.push( items[ k ] );
-				}
-				// lets merge with latest entries
-				entries = $.merge( entries, $content.data( "entries" ) );
+		for ( k = 0; k !== len; k += 1 ) {
+			items[ k ].fIcon =  icon ;
+			items[ k ].publishedDate = items[ k ].published;
+			entries.push( items[ k ] );
+		}
+		// lets merge with latest entries
+		entries = $.merge( entries, $content.data( "entries" ) );
 
-				if ( toProcess === 1 ) {
-					parseEntries( entries, $content.data( "feedLimit" ), $content, feedtype );
-					return 0;
-				}
+		if ( toProcess === 1 ) {
+			parseEntries( entries, $content.data( "feedLimit" ), $content, feedtype );
+			return 0;
+		}
 
-				toProcess -= 1 ;
-				$content.data({
-					"toProcess": toProcess,
-					"entries": entries
-				});
+		toProcess -= 1 ;
+		$content.data({
+			"toProcess": toProcess,
+			"entries": entries
+		});
 
-				return toProcess;
+		return toProcess;
 
 	},
 
@@ -222,7 +224,7 @@ var pluginName = "wb-feeds",
 	 */
 	init = function( event ) {
 		var elm = event.target,
-			$content, limit, feeds, fType, last, i, callback, fElem, fIcon;
+			fetch, $content, limit, feeds, fType, last, i, callback, fElem, fIcon;
 
 		// Filter out any events triggered by descendants
 		// and only initialize the element once
@@ -234,7 +236,7 @@ var pluginName = "wb-feeds",
 
 			$content = $( elm ).find( ".feeds-cont" );
 			limit = getLimit( elm );
-			feeds = $content.find( "li > a" );
+			feeds = $content.find( feedLinkSelector );
 			last = feeds.length - 1;
 			i = last;
 
@@ -247,6 +249,12 @@ var pluginName = "wb-feeds",
 			while ( i >= 0 ) {
 				fElem = feeds.eq( i );
 				fIcon = fElem.find( "> img" );
+
+				fetch = {
+					dataType: "jsonp",
+					timeout: 1000
+				};
+
 				if ( fElem.attr( "data-ajax" ) ) {
 
 					if ( fElem.attr( "href" ).indexOf( "flickr" ) > -1 ) {
@@ -261,29 +269,23 @@ var pluginName = "wb-feeds",
 
 					// We need a Gallery so lets add another plugin
 					// #TODO: Lightbox review for more abstraction we should not have to add a wb.add() for overlaying
-
-					$.ajax({
-						url: fElem.attr( "data-ajax"),
-						dataType: "jsonp",
-						feedtype: fType,
-						jsonp: callback,
-						fIcon: ( fIcon.length > 0 )  ? fIcon.attr( "src" ) : "",
-						timeout: 1000,
-						// set some private variables/function for reference
-						_content: $content
-					}).done( processJson );
-
+					fetch.url = fElem.attr( "data-ajax");
+					fetch.jsonp = callback;
 				} else {
-
-					$.ajax({
-						url: jsonRequest( fElem.attr( "href" ), limit ),
-						dataType: "json",
-						fIcon: ( fIcon.length > 0 )  ? fIcon.attr( "src" ) : "",
-						timeout: 1000,
-						_content: $content
-					}).done( processEntries );
-
+					fetch.url = jsonRequest( fElem.attr( "href" ), limit );
 				}
+
+				fetch.context = {
+					fIcon: ( fIcon.length > 0 )  ? fIcon.attr( "src" ) : "",
+					feedType: fType,
+					_content: $content
+				};
+
+				$document.trigger({
+					type: "ajax-fetch.wb",
+					element: fElem,
+					fetch: fetch
+				});
 
 				i -= 1;
 			}
@@ -358,6 +360,20 @@ var pluginName = "wb-feeds",
 		}
 		return true;
 	};
+
+$document.on( "ajax-fetched.wb", selector + " " + feedLinkSelector, function( event, context ) {
+	var data;
+
+	// Filter out any events triggered by descendants
+	if ( event.currentTarget === event.target ) {
+		data = event.fetch.response;
+		if ( $( this ).attr( "data-ajax" ) ) {
+			processJson.apply( context, [ data ] );
+		} else {
+			processEntries.apply( context, [ data ] );
+		}
+	}
+});
 
 $document.on( "timerpoke.wb " + initEvent, selector, init );
 
