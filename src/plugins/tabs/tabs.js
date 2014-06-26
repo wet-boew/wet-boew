@@ -706,7 +706,7 @@ $document.on( "click", selector + " [role=tabpanel]", function( event ) {
 		$container;
 
 	// Ignore middle and right mouse buttons
-	if ( ( !which || which === 1 ) ) {
+	if ( !which || which === 1 ) {
 		$container = $( event.currentTarget ).closest( selector );
 
 		// Stop the carousel if there is a click within a panel
