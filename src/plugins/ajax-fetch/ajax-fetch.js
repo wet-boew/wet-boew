@@ -23,33 +23,33 @@ $document.on( "ajax-fetch.wb", function( event ) {
 
 	// Filter out any events triggered by descendants
 	if ( event.currentTarget === event.target ) {
-			$.ajax( fetchOpts )
-				.done( function( response, status, xhr ) {
-					fetchData = {
-						response: response,
-						status: status,
-						xhr: xhr
-					};
+		$.ajax( fetchOpts )
+			.done( function( response, status, xhr ) {
+				fetchData = {
+					response: response,
+					status: status,
+					xhr: xhr
+				};
 
-					if ( typeof response === "string" ) {
-						fetchData.pointer = $( "<div id='" + wb.guid() + "' />" ).append( response );
-					}
+				if ( typeof response === "string" ) {
+					fetchData.pointer = $( "<div id='" + wb.guid() + "' />" ).append( response );
+				}
 
-					$( caller ).trigger({
-						type: "ajax-fetched.wb",
-						fetch: fetchData
-					});
-				})
-				.fail(function( xhr, status, error ) {
-					$( caller ).trigger({
-						type: "ajax-failed.wb",
-						fetch: {
-							xhr: xhr,
-							status: status,
-							error: error
-						}
-					});
+				$( caller ).trigger({
+					type: "ajax-fetched.wb",
+					fetch: fetchData
 				});
+			})
+			.fail(function( xhr, status, error ) {
+				$( caller ).trigger({
+					type: "ajax-failed.wb",
+					fetch: {
+						xhr: xhr,
+						status: status,
+						error: error
+					}
+				});
+			});
 	}
 });
 
