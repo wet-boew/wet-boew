@@ -49,3 +49,10 @@
 		}
 	}
 }
+
+.cal-cnt-fluid {
+	&.cal-cnt,
+	table.cal-cnt {
+		width: 100%;
+	}
+}
