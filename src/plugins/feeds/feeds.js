@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, wb ) {
+(function( $, window, wb, undef ) {
 "use strict";
 
 /*
@@ -41,39 +41,36 @@ var pluginName = "wb-feeds",
     fromCharCode = function(s) {
         return s.replace( patt, decode );
     },
+
     /**
-     * Process Feed Entries
-     * @method processFeedEntries
-     * @param  {responseObject} JSON formatted response object
+     * Process Feed/JSON Entries
+     * @method processEntries
+     * @param  {data} JSON formatted data to process
      * @return {string}	of HTML output
      */
-     // TODO: Refactor processEntries and processJSON since they share almost 80% of the same code
      processEntries = function( data ) {
-		var feedUrl = data.responseData.feed.feedUrl,
-			items = data.responseData.feed.entries,
-			icon = this.fIcon,
+		var items = data,
 			entries = [],
+			icon = this.fIcon,
 			$content = this._content,
 			toProcess = $content.data( "toProcess" ),
-			k, len, feedtype;
-
-		// lets bind the template to the Entries
-		if ( feedUrl && feedUrl.indexOf( "facebook.com" ) > -1 ) {
-			feedtype = "facebook";
-		} else {
-			feedtype = "generic";
-		}
+			i, len;
 
 		len = items.length;
-		for ( k = 0; k !== len; k += 1 ) {
-			items[ k ].fIcon =  icon ;
-			entries.push( items[ k ] );
+		for ( i = 0; i !== len; i += 1 ) {
+			items[ i ].fIcon =  icon ;
+
+			if ( items[ i ].publishedDate === undef && items[ i ].published !== undef ) {
+				items[ i ].publishedDate = items[ i ].published;
+			}
+
+			entries.push( items[ i ] );
 		}
 		// lets merge with latest entries
 		entries = $.merge( entries, $content.data( "entries" ) );
 
 		if ( toProcess === 1 ) {
-			parseEntries( entries, $content.data( "feedLimit" ), $content, feedtype );
+			parseEntries( entries, $content.data( "feedLimit" ), $content, this.feedType );
 			return 0;
 		}
 
@@ -84,46 +81,6 @@ var pluginName = "wb-feeds",
 		});
 
 		return toProcess;
-	},
-
-	  /**
-     * Process JSON Entries
-     * @method processJson
-     * @param  {responseObject} JSON formatted response object
-     * @return {string}	of HTML output
-     */
-     processJson = function( data ) {
-		var items = ( data.items ) ? data.items : data.feed.entry,
-			icon = this.fIcon,
-			entries = [],
-			feedtype = this.feedType,
-			$content = this._content,
-			toProcess = $content.data( "toProcess" ),
-			k, len;
-
-			len = items.length;
-
-		for ( k = 0; k !== len; k += 1 ) {
-			items[ k ].fIcon =  icon ;
-			items[ k ].publishedDate = items[ k ].published;
-			entries.push( items[ k ] );
-		}
-		// lets merge with latest entries
-		entries = $.merge( entries, $content.data( "entries" ) );
-
-		if ( toProcess === 1 ) {
-			parseEntries( entries, $content.data( "feedLimit" ), $content, feedtype );
-			return 0;
-		}
-
-		toProcess -= 1 ;
-		$content.data({
-			"toProcess": toProcess,
-			"entries": entries
-		});
-
-		return toProcess;
-
 	},
 
 	/**
@@ -224,7 +181,7 @@ var pluginName = "wb-feeds",
 	 */
 	init = function( event ) {
 		var elm = event.target,
-			fetch, $content, limit, feeds, fType, last, i, callback, fElem, fIcon;
+			fetch, url, $content, limit, feeds, fType, last, i, callback, fElem, fIcon;
 
 		// Filter out any events triggered by descendants
 		// and only initialize the element once
@@ -271,7 +228,15 @@ var pluginName = "wb-feeds",
 					fetch.url = fElem.attr( "data-ajax");
 					fetch.jsonp = callback;
 				} else {
-					fetch.url = jsonRequest( fElem.attr( "href" ), limit );
+					url = jsonRequest( fElem.attr( "href" ), limit );
+					fetch.url = url;
+
+					// lets bind the template to the Entries
+					if ( url.indexOf( "facebook.com" ) > -1 ) {
+						fType = "facebook";
+					} else {
+						fType = "generic";
+					}
 				}
 
 				fetch.jsonp = callback;
@@ -354,7 +319,7 @@ var pluginName = "wb-feeds",
 
 		if ( postProcess ) {
 
-			for ( i = postProcess.length - 1; i >= 0; i--) {
+			for ( i = postProcess.length - 1; i >= 0; i -= 1 ) {
 				wb.add( postProcess[i] );
 			}
 
@@ -363,16 +328,13 @@ var pluginName = "wb-feeds",
 	};
 
 $document.on( "ajax-fetched.wb", selector + " " + feedLinkSelector, function( event, context ) {
-	var data;
+	var response = event.fetch.response,
+		data;
 
 	// Filter out any events triggered by descendants
 	if ( event.currentTarget === event.target ) {
-		data = event.fetch.response;
-		if ( $( this ).attr( "data-ajax" ) ) {
-			processJson.apply( context, [ data ] );
-		} else {
-			processEntries.apply( context, [ data ] );
-		}
+		data = ( response.responseData ) ? response.responseData.feed.entries : response.items || response.feed.entry,
+		processEntries.apply( context, [ data ] );
 	}
 });
 
