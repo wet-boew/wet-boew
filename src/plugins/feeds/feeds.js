@@ -121,11 +121,12 @@ var pluginName = "wb-feeds",
 		 */
 		flickr: function( data ) {
 
-			var title = data.title,
-				thumbnail = data.media.m.replace( "_m.", "_s." ),
-				seed = "id" + wb.guid(),
-				description = data.description.replace( /^\s*<p>(.*?)<\/p>\s*<p>(.*?)<\/p>/i, ""),
-				image = data.media.m.replace("_m", "");
+			var seed = "id" + wb.guid(),
+				title = data.title,
+				media = data.media.m,
+				thumbnail = media.replace( "_m.", "_s." ),
+				image = media.replace("_m", ""),
+				description = data.description.replace( /^\s*<p>(.*?)<\/p>\s*<p>(.*?)<\/p>/i, "");
 
 			// due to CORS we cannot default to simple ajax pulls of the image. We have to inline the content box
 			return "<li class='col-md-4 col-sm-6'><a class='wb-lbx' href='#" + seed + "' title='" + title + "'><img src='" + thumbnail + "' alt='" + title + "' class='img-responsive'/></a>" +
@@ -142,11 +143,12 @@ var pluginName = "wb-feeds",
 		 * @return {string}	HTML string for creating a photowall effect
 		 */
 		youtube: function( data ) {
-			var title = data.media$group.media$title.$t,
-				thumbnail = data.media$group.media$thumbnail[1].url,
-				seed = "id" + wb.guid(),
-				description = data.media$group.media$description.$t,
-				videoid = data.media$group.yt$videoid.$t;
+			var seed = "id" + wb.guid(),
+				mediaGroup = data.media$group,
+				title = mediaGroup.media$title.$t,
+				thumbnail = mediaGroup.media$thumbnail[1].url,
+				description = mediaGroup.media$description.$t,
+				videoid = mediaGroup.yt$videoid.$t;
 
 				// due to CORS we cannot default to simple ajax pulls of the image. We have to inline the content box
 			return "<li class='col-md-4 col-sm-6' ><a class='wb-lbx' href='#" + seed + "' title='" + title + "'><img src='" + thumbnail + "' alt='" + title + "' class='img-responsive' /></a>" +
