@@ -185,6 +185,7 @@ var pluginName = "wb-calevt",
 				}
 
 				date = new Date();
+				date.setHours( 0, 0, 0, 0 );
 				tCollection = event.find( "time" );
 
 				/*
