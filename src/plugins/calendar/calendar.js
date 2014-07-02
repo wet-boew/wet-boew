@@ -243,10 +243,14 @@ var $document = wb.doc,
 			minDate = eventData.minDate,
 			maxDate = eventData.maxDate,
 			$monthField = eventData.$monthField,
+			value = $monthField.val(),
+			month = value ? value : eventData.month,
 			minMonth = 0,
 			maxMonth = 12,
 			monthNames = i18nText.monthNames,
-			month, i;
+			newMonthField = "<select id='" + $monthField.attr( "id" ) +
+				"' title='" + $monthField.attr( "title" ) + "'>",
+			i;
 
 		if ( year === minDate.getFullYear() ) {
 			minMonth = minDate.getMonth();
@@ -256,25 +260,17 @@ var $document = wb.doc,
 			maxMonth = maxDate.getMonth() + 1;
 		}
 
-		month = $monthField.val();
-
-		// Can't use $monthField.empty() or .html("") on <select> in IE
-		// http://stackoverflow.com/questions/3252382/why-does-dynamically-populating-a-select-drop-down-list-element-using-javascript
-		for ( i = $monthField.length - 1 ; i !== -1; i -= 1 ) {
-			$monthField[ i ].remove( i );
-		}
-
 		for ( i = minMonth; i !== maxMonth; i += 1 ) {
-			$monthField.append( "<option value='" + i + "'" + ( ( i === month ) ? " selected='selected'" : "" ) +
-				">" + monthNames[ i ] + "</option>" );
+			newMonthField += "<option value='" + i + "'" + ( ( i === month ) ? " selected='selected'" : "" ) +
+				">" + monthNames[ i ] + "</option>";
 		}
+		$monthField.replaceWith( newMonthField + "</select>" );
 	},
 
 	createGoToForm = function( calendarId, year, month, minDate, maxDate ) {
 		var $goToForm = $( "<div class='cal-goto'></div>" ),
 			$form = $( "<form id='cal-" + calendarId + "-goto' role='form' style='display:none;' action=''></form>" ),
-			$yearContainer, $yearField, y, ylen, $monthContainer, $monthField, $buttonSubmit,
-			$buttonCancel, $goToLink;
+			$yearContainer, yearField, $yearField, y, ylen, $monthContainer, $monthField;
 
 		$form.on( "submit", function( event ) {
 			event.preventDefault();
@@ -284,10 +280,11 @@ var $document = wb.doc,
 
 		// Create the year field
 		$yearContainer = $( "<div class='cal-goto-yr'></div>" );
-		$yearField = $( "<select title='" + i18nText.goToYear + "' id='cal-" + calendarId + "-goto-year'></select>" );
-		for ( y = minDate.getFullYear(), ylen = maxDate.getFullYear(); y <= ylen; y += 1 ) {
-			$yearField.append( $( "<option value='" + y + "'" + (y === year ? " selected='selected'" : "" ) + ">" + y + "</option>" ) );
+		yearField = "<select title='" + i18nText.goToYear + "' id='cal-" + calendarId + "-goto-year'>";
+		for ( y = minDate.getFullYear(), ylen = maxDate.getFullYear() + 1; y !== ylen; y += 1 ) {
+			yearField += "<option value='" + y + "'" + ( y === year ? " selected='selected'" : "" ) + ">" + y + "</option>";
 		}
+		$yearField = $( yearField + "</select>" );
 
 		// Create the month field
 		$monthContainer = $( "<div class='cal-goto-mnth'></div>" );
@@ -299,49 +296,25 @@ var $document = wb.doc,
 		$yearContainer.append( $yearField );
 
 		// Update the list of available months when changing the year
-		$yearField.on( "change", { minDate: minDate, maxDate: maxDate, $monthField: $monthField }, yearChanged );
+		$yearField.on( "change", { minDate: minDate, maxDate: maxDate, month: month, $monthField: $monthField }, yearChanged );
 
 		// Populate initial month list
 		$yearField.trigger( "change" );
 
-		$buttonSubmit = $( "<div class='cal-goto-btn'><input type='submit' class='btn btn-primary' value='" +
-			i18nText.goToBtn + "' /></div>" );
-
-		$buttonCancel = $( "<div class='cal-goto-btn'><input type='button' class='btn btn-default' value='" +
-			i18nText.cancelBtn + "' /></div>" );
-		$buttonCancel.on( "click", "input", function( event ) {
-			var which = event.which;
-
-			// Ignore middle/right mouse buttons
-			if ( !which || which === 1 ) {
-				$( "#" + calendarId ).trigger( "hideGoToFrm.wb-cal" );
-			}
-		});
-
 		$form
 			.append( $monthContainer )
 			.append( $yearContainer )
-			.append( "<div class='clearfix'></div>" )
-			.append( $buttonSubmit )
-			.append( $buttonCancel );
-
-		$goToLink = $( "<div id='cal-" +
-			calendarId + "-goto-lnk'><a href='javascript:;' role='button' aria-controls='cal-" +
-			calendarId + "-goto' class='cal-goto-lnk' aria-expanded='false'>" +
-			i18nText.monthNames[ month ] + " " + year + "</a></div>" );
-		$goToLink.on( "click", "a", function( event ) {
-			event.preventDefault();
-
-			var which = event.which;
-
-			// Ignore middle/right mouse buttons
-			if ( !which || which === 1 ) {
-				showGoToForm( calendarId );
-			}
-		} );
+			.append( "<div class='clearfix'></div>" +
+				"<div class='cal-goto-btn'><input type='submit' class='btn btn-primary' value='" +
+				i18nText.goToBtn + "' /></div>" +
+				"<div class='cal-goto-btn'><input type='button' class='btn btn-default cal-goto-cancel' value='" +
+				i18nText.cancelBtn + "' /></div>" );
 
 		$goToForm
-			.append( $goToLink )
+			.append( "<div id='cal-" +
+				calendarId + "-goto-lnk'><a href='javascript:;' role='button' aria-controls='cal-" +
+				calendarId + "-goto' class='cal-goto-lnk' aria-expanded='false'>" +
+				i18nText.monthNames[ month ] + " " + year + "</a></div>" )
 			.append( $form );
 
 		return $goToForm;
@@ -664,5 +637,25 @@ $document.on( "keydown", ".cal-days a", function( event ) {
 $document.on( "hideGoToFrm.wb-cal", ".cal-cnt", hideGoToFrm );
 
 $document.on( "setFocus.wb-cal", setFocus );
+
+$document.on( "click", ".cal-goto-lnk", function( event ) {
+	event.preventDefault();
+
+	var which = event.which;
+
+	// Ignore middle/right mouse buttons
+	if ( !which || which === 1 ) {
+		showGoToForm( $( event.currentTarget ).closest( ".cal-cnt" ).attr( "id" ) );
+	}
+});
+
+$document.on( "click", ".cal-goto-cancel", function( event ) {
+	var which = event.which;
+
+	// Ignore middle/right mouse buttons
+	if ( !which || which === 1 ) {
+		$( event.currentTarget ).closest( ".cal-cnt" ).trigger( "hideGoToFrm.wb-cal" );
+	}
+});
 
 })( jQuery, window, document, wb );
