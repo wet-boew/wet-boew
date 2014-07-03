@@ -19,7 +19,7 @@ describe( "data-ajax test suite", function() {
 		$document = wb.doc,
 		$body = $document.find( "body" ),
 		createElm = function( type, done ) {
-			var $elm = $( "<div class='ajax' data-ajax-" + type + "='ajax/data-ajax-extra-en.html'>test</div>" );
+			var $elm = $( "<div class='ajax' data-ajax-" + type + "='data-ajax/test/data-ajax.html'>test</div>" );
 
 			callback = done;
 			$elm
