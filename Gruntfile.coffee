@@ -236,7 +236,7 @@ module.exports = (grunt) ->
 		jqueryVersion: grunt.file.readJSON("lib/jquery/bower.json")
 		jqueryOldIEVersion: grunt.file.readJSON("lib/jquery-oldIE/bower.json")
 		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
-				" * v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n *\n */"
+				" * v<%= pkg.version %> - " + "<%= grunt.template.today('yyyy-mm-dd') %>\n *\n */"
 		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
 		glyphiconsBanner: "/*!\n * GLYPHICONS Halflings for Twitter Bootstrap by GLYPHICONS.com | Licensed under http://www.apache.org/licenses/LICENSE-2.0\n */"
 		i18nGDocsID: "0AqLc8VEIumBwdDNud1M2Wi1tb0RUSXJxSGp4eXI0ZXc"
@@ -746,8 +746,7 @@ module.exports = (grunt) ->
 
 			demos_min:
 				options:
-					banner: "@charset \"utf-8\";\n/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
-						" * v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n *\n */"
+					banner: "@charset \"utf-8\";\n<%= banner %>"
 				expand: true
 				cwd: "dist/unmin/demos/"
 				src: [
