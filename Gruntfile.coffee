@@ -878,22 +878,34 @@ module.exports = (grunt) ->
 			test:
 				files: [
 					cwd: "src/plugins"
-					src: "**/test.js"
+					src: [
+						"**/test.js"
+						"**/test/*.*"
+					]
 					dest: "dist/unmin/test"
 					expand: true
 				,
 					cwd: "src/polyfills"
-					src: "**/test.js"
+					src: [
+						"**/test.js"
+						"**/test/*.*"
+					]
 					dest: "dist/unmin/test"
 					expand: true
 				,
 					cwd: "src/other"
-					src: "**/test.js"
+					src: [
+						"**/test.js"
+						"**/test/*.*"
+					]
 					dest: "dist/unmin/test"
 					expand: true
 				,
 					cwd: "src/"
-					src: "test.js"
+					src: [
+						"**/test.js"
+						"**/test/*.*"
+					]
 					dest: "dist/unmin/test"
 					expand: true
 				,
@@ -967,6 +979,7 @@ module.exports = (grunt) ->
 						"**/img/*.*"
 						"!**/assets/*.*"
 						"!**/deps/*.*"
+						"!**/test/*.*"
 						"!**/*.scss"
 					]
 					dest: "dist/unmin/demos/"
