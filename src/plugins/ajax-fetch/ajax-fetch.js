@@ -38,7 +38,7 @@ $document.on( "ajax-fetch.wb", function( event ) {
 				$( caller ).trigger({
 					type: "ajax-fetched.wb",
 					fetch: fetchData
-				});
+				}, this);
 			})
 			.fail(function( xhr, status, error ) {
 				$( caller ).trigger({
@@ -49,7 +49,7 @@ $document.on( "ajax-fetch.wb", function( event ) {
 						error: error
 					}
 				});
-			});
+			}, this);
 	}
 });
 

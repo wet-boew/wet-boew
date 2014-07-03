@@ -360,7 +360,7 @@ var pluginName = "wb-tabs",
 		var $tabs = $controls.find( "[role=tab]" ),
 			newIndex = $tabs.index( $control ) + 1,
 			$currPanel = $panels.filter( ".in" ),
-			mPlayers = $currPanel.find( ".wb-mltmd" ).get(),
+			mPlayers = $currPanel.find( ".wb-mltmd-inited" ).get(),
 			mPlayersLen = mPlayers.length,
 			i;
 

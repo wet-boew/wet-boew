@@ -512,6 +512,12 @@ var pluginName = "wb-mltmd",
 		}
 	},
 
+	youTubeAPIReady = function() {
+		var youTube = window.youTube;
+		youTube.ready = true;
+		youTube.waitingPlayers.trigger( youtubeEvent );
+	},
+
 	onResize = function() {
 		$( selector + " object, " + selector + " iframe, " +  selector + " video" ).trigger( resizeEvent );
 	};
@@ -557,6 +563,7 @@ $document.on( initializedEvent, selector, function() {
 			width: width
 		}, i18nText),
 		media = $media.get( 0 ),
+		youTube = window.youTube,
 		url;
 
 	if ( $media.attr( "id" ) === undef ) {
@@ -579,12 +586,15 @@ $document.on( initializedEvent, selector, function() {
 		$this.data( "youtube", url.params.v );
 
 		// Method called the the YouTUbe API when ready
-		if ( window.onYouTubeIframeAPIReady === undefined ) {
 
-			// lets bind youtubes global function
-			window.onYouTubeIframeAPIReady = function() {
-				$this.trigger( youtubeEvent );
-			};
+		if ( youTube.ready === false ) {
+			if ( youTube.waitingPlayers === undef ) {
+				youTube.waitingPlayers = $this;
+			} else {
+				youTube.waitingPlayers = youTube.waitingPlayers.add( $this );
+			}
+		} else {
+			$this.trigger( youtubeEvent );
 		}
 
 		// finally lets load safely
@@ -1028,6 +1038,12 @@ $document.on( resizeEvent, selector, function( event ) {
 		}
 	}
 });
+
+window.onYouTubeIframeAPIReady = youTubeAPIReady;
+
+window.youTube = {
+	ready: false
+};
 
 wb.add( selector );
 
