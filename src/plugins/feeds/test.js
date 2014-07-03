@@ -15,41 +15,52 @@
  * teardown `after()` for more than one test suite (as is the case below.)
  */
 describe( "Feeds test suite", function() {
-	var stubs = {},
-		sandbox = sinon.sandbox.create();
+	var sandbox = sinon.sandbox.create(),
+		ajaxEvent = "ajax-fetch.wb",
+		fetchedEvent = "ajax-fetched.wb",
+		$document = wb.doc,
+		ajaxCalls, callback;
 
 	before(function() {
 
-		// Stub the $.ajax method to return test feed data to the done() handler.
-		// This must be used instead of Sinon's fakeServer because the plugin uses
-		// JSON-P for the request: http://sinonjs.org/docs/#json-p
-		stubs.ajax = sandbox.stub( $, "ajax" ).returns((function() {
-			var deferred = $.Deferred();
-			deferred.resolve({
-				responseData: {
-					feed: {
-						entries: [
-							{
-								title: "Test entry 1",
-								link: "http://foo.com",
-								publishedDate: "Mon, 27 Jan 2014 21:00:00 -0500"
-							},
-							{
-								title: "Test entry 2",
-								link: "http://bar.com",
-								publishedDate: "Wed, 29 Jan 2014 21:00:00 -0500"
-							},
-							{
-								title: "Test entry 3",
-								link: "http://baz.com",
-								publishedDate: "Fri, 31 Jan 2014 21:00:00 -0500"
+		//Replaces the ajax-fetch event hanlder with a simulated one
+		$document.off( ajaxEvent );
+
+		$document.on( ajaxEvent, function( event ) {
+			ajaxCalls.push( event.fetch );
+			$( event.element ).trigger({
+				type: fetchedEvent,
+				fetch: {
+					response: {
+						responseData: {
+							feed: {
+								entries: [
+									{
+										title: "Test entry 1",
+										link: "http://foo.com",
+										publishedDate: "Mon, 27 Jan 2014 21:00:00 -0500"
+									},
+									{
+										title: "Test entry 2",
+										link: "http://bar.com",
+										publishedDate: "Wed, 29 Jan 2014 21:00:00 -0500"
+									},
+									{
+										title: "Test entry 3",
+										link: "http://baz.com",
+										publishedDate: "Fri, 31 Jan 2014 21:00:00 -0500"
+									}
+								]
 							}
-						]
+						}
 					}
 				}
-			});
-			return deferred;
-		}()));
+			}, event.fetch.context );
+		} );
+
+		$document.on( fetchedEvent, ".wb-feeds li > a", function() {
+			callback();
+		});
 	});
 
 	after(function() {
@@ -62,14 +73,17 @@ describe( "Feeds test suite", function() {
 	describe( "plugin init", function() {
 		var $elm;
 
-		before(function() {
+		before( function( done ) {
+			ajaxCalls = [];
+			callback = done;
 
 			// Create the feed element
 			$elm = $( "<div class='wb-feeds'><ul class='feeds-cont'>" +
 				"<li><a href='http://foobar.com/'></a></li>" +
 				"</ul></div>" )
-				.appendTo( wb.doc.find( "body" ) )
+				.appendTo( $document.find( "body" ) )
 				.trigger( "wb-init.wb-feeds" );
+
 		});
 
 		after(function() {
@@ -82,16 +96,13 @@ describe( "Feeds test suite", function() {
 
 		it( "should have made an ajax call to load the feed entries", function() {
 			var i = 0,
-				args = stubs.ajax.args,
-				len = args.length,
+				len = ajaxCalls.length,
 				isLookup = false,
 				feedurl = "http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q=" +
 					encodeURIComponent( decodeURIComponent( "http://foobar.com/" ) );
 
 			for ( ; i !== len && !isLookup; i += 1 ) {
-				if ( args[ i ] instanceof Array ) {
-					isLookup = args[ i ].length && args[ i ][ 0 ].url === feedurl;
-				}
+				isLookup = ajaxCalls.length && ajaxCalls[ i ].url === feedurl;
 			}
 			expect( isLookup ).to.equal( true );
 		});
@@ -107,13 +118,15 @@ describe( "Feeds test suite", function() {
 	describe( "feed entries limit", function() {
 		var $elm;
 
-		before(function() {
+		before( function( done ) {
+			ajaxCalls = [];
+			callback = done;
 
 			// Create the feed element
 			$elm = $( "<div class='wb-feeds limit-2'><ul class='feeds-cont'>" +
 				"<li><a href='http://foobar.com/'></a></li>" +
 				"</ul></div>" )
-				.appendTo( wb.doc.find( "body" ) )
+				.appendTo( $document.find( "body" ) )
 				.trigger( "wb-init.wb-feeds" );
 		});
 
@@ -132,15 +145,16 @@ describe( "Feeds test suite", function() {
 	describe( "multiple feed links", function() {
 		var $elm;
 
-		before(function() {
-			stubs.ajax.reset();
+		before (function( done ) {
+			ajaxCalls = [];
+			callback = done;
 
 			// Create the feed element
 			$elm = $( "<div class='wb-feeds'><ul class='feeds-cont'>" +
 				"<li><a href='http://foobar.com/'></a></li>" +
 				"<li><a href='http://bazbam.com/'></a></li>" +
 				"</ul></div>" )
-				.appendTo( wb.doc.find( "body" ) )
+				.appendTo( $document.find( "body" ) )
 				.trigger( "wb-init.wb-feeds" );
 		});
 
@@ -150,8 +164,7 @@ describe( "Feeds test suite", function() {
 
 		it( "should have made two ajax calls to load the feed entries", function() {
 			var i = 0,
-				args = stubs.ajax.args,
-				len = args.length,
+				len = ajaxCalls.length,
 				isLookup1 = false,
 				isLookup2 = false,
 				feedurl1 = "http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q=" +
@@ -160,10 +173,8 @@ describe( "Feeds test suite", function() {
 					encodeURIComponent( decodeURIComponent( "http://bazbam.com/" ) );
 
 			for ( ; i !== len; i += 1 ) {
-				if ( args[ i ] instanceof Array ) {
-					isLookup1 = isLookup1 || ( args[ i ].length && args[ i ][ 0 ].url === feedurl1 );
-					isLookup2 = isLookup2 || ( args[ i ].length && args[ i ][ 0 ].url === feedurl2 );
-				}
+				isLookup1 = isLookup1 || ( ajaxCalls.length && ajaxCalls[ i ].url === feedurl1 );
+				isLookup2 = isLookup2 || ( ajaxCalls.length && ajaxCalls[ i ].url === feedurl2 );
 			}
 			expect( isLookup1 ).to.equal( true );
 			expect( isLookup2 ).to.equal( true );
