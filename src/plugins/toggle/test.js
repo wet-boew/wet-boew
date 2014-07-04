@@ -41,7 +41,7 @@ describe( "Toggle test suite", function() {
 
 		before(function() {
 			// Create test element
-			$test = $( "<div class='test'>" )
+			$test = $( "<div class='toggle-test'>" )
 				.appendTo( wb.doc.find( "body" ) );
 
 			// Create toggle elements and trigger plugin init
@@ -49,17 +49,17 @@ describe( "Toggle test suite", function() {
 				.appendTo( wb.doc.find( "body" ) )
 				.trigger( "wb-init.wb-toggle" );
 
-			$toggleOthers = $( "<div class='wb-toggle' data-toggle='{\"selector\": \".test\"}'>" )
+			$toggleOthers = $( "<div class='wb-toggle' data-toggle='{\"selector\": \".toggle-test\"}'>" )
 				.appendTo( wb.doc.find( "body" ) )
 				.trigger( "wb-init.wb-toggle" );
 
-			$accordion = $( "<div class='test-accordion'>" +
-					"<details class='test-acc'>" +
-						"<summary class='wb-toggle tgl-tab' data-toggle='{\"parent\": \".test-accordion\", \"group\": \".test-acc\"}'></summary>" +
+			$accordion = $( "<div class='toggle-test-accordion'>" +
+					"<details class='toggle-test-acc'>" +
+						"<summary class='wb-toggle tgl-tab' data-toggle='{\"parent\": \".toggle-test-accordion\", \"group\": \".toggle-test-acc\"}'></summary>" +
 						"<div class='tgl-panel'></div>" +
 					"</details>" +
-					"<details class='test-acc'>" +
-						"<summary class='wb-toggle tgl-tab' data-toggle='{\"parent\": \".test-accordion\", \"group\": \".test-acc\"}'></summary>" +
+					"<details class='toggle-test-acc'>" +
+						"<summary class='wb-toggle tgl-tab' data-toggle='{\"parent\": \".toggle-test-accordion\", \"group\": \".toggle-test-acc\"}'></summary>" +
 						"<div class='tgl-panel'></div>" +
 					"</details>" +
 				"</div>")
