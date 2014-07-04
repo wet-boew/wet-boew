@@ -14,12 +14,13 @@
 %fnote-link-background-light-border-medium-padding-whitespace {
 	background-color: $clrLight;
 	border: 1px solid $clrMedium;
-	padding: 0 4px 1px;
+	padding: 1px 10px 2px;
 	white-space: nowrap;
 }
 
 .fn-lnk {
 	@extend %fnote-link-background-light-border-medium-padding-whitespace;
+	margin-left: 5px;
 
 	&:hover,
 	&:focus {
@@ -97,12 +98,16 @@
 
 /* Right to left (RTL) SCSS */
 [dir="rtl"] {
+	sup {
+		.fn-lnk {
+			margin-left: 0;
+			margin-right: 5px;
+		}
+	}
+
 	.wb-fnote {
 		p {
-			margin-left: 0;
-			margin-right: 3.125em;
-			padding-left: 0;
-			padding-right: 0.375em;
+			margin: 0 ($spacing + $ddRtnWidth) 0 0;
 		}
 
 		.fn-rtn {
