@@ -14,9 +14,14 @@
 	[role="tabpanel"] {
 		display: block !important;
 		opacity: 1 !important;
+		position: static !important;
 
 		figcaption {
 			position: static;
+		}
+
+		summary {
+			display: block !important;
 		}
 	}
 }
