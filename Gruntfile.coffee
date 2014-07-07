@@ -56,7 +56,7 @@ module.exports = (grunt) ->
 
 	@registerTask(
 		"test-mocha"
-		"Full build for running tests locally with Grunt Mocha"
+		"Run tests locally with Grunt Mocha"
 		[
 			"pre-mocha"
 			"mocha"
@@ -65,7 +65,7 @@ module.exports = (grunt) ->
 
 	@registerTask(
 		"saucelabs"
-		"Full build for running tests on SauceLabs. Currently only for Travis builds"
+		"Run tests on SauceLabs. Currently only for Travis builds"
 		[
 			"pre-mocha"
 			"saucelabs-custom"
@@ -184,10 +184,6 @@ module.exports = (grunt) ->
 		"pre-mocha"
 		"INTERNAL: prepare for running Mocha unit tests"
 		[
-			"build"
-			"assets-min"
-			"demos"
-			"demos-min"
 			"connect:test"
 		]
 	)
