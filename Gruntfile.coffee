@@ -979,6 +979,7 @@ module.exports = (grunt) ->
 			deploy:
 				src: [
 					"*.txt"
+					"*.html"
 					"README.md"
 				]
 				dest: "dist"
