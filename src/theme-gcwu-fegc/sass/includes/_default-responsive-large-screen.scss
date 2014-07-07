@@ -65,9 +65,13 @@ body {
 #gcwu-gcft {
 	@extend %gcwu-default-responsive-large-width-100perc-min-width-960;
 	li {
-		margin: 12px 0 13px 44px;
+		margin: 18px 0 18px 88px;
 		&:first-child {
 			margin-left: 10px;
+		}
+		&#gcwu-gcft-ca {
+			margin: 12px 0 13px 0;
+			padding-left: 44px;
 		}
 	}
 }
@@ -124,16 +128,6 @@ body {
 #wb-sup {
 	@extend %gcwu-default-responsive-large-width-240;
 	left: 480px;
-}
-
-//TODO: Is li parent nessessary?
-li {
-	&#gcwu-gcft-ca {
-		margin-left: 0 !important;
-		a {
-			padding-left: 44px;
-		}
-	}
 }
 
 #gcwu-bnr-in {
