@@ -185,6 +185,14 @@ a {
 .alert {
 	@extend %label-alert-common;
 
+	&:before {
+		cursor: pointer;
+		display: block;
+		font-family: "Glyphicons Halflings";
+		font-size: 130%;
+		float: right;
+	}
+
 	> {
 		:first-child {
 			margin-left: 1.2em;
@@ -321,6 +329,15 @@ $label-alert-info-border-icon-color: #269abc;
 .alert-info {
 	@extend %label-alert-info-bg-border-left;
 	@extend %label-alert-color-000;
+
+	&:before {
+		color: $label-alert-info-border-icon-color;
+		content: "\e088";
+
+		:hover {
+			color: $label-alert-info-border-icon-color * 2;
+		}
+	}
 
 	> {
 		:first-child {
