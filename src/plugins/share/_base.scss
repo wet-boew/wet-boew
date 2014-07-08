@@ -34,34 +34,33 @@
 		padding-bottom: 0;
 	}
 
-	// TODO: Convert @include to @extend when libsass supports nested extends
 	.bitly {
 		&:before {
-			@include bitly;
+			@extend %bitly;
 		}
 	}
 
 	.blogger {
 		&:before {
-			@include blogger;
+			@extend %blogger;
 		}
 	}
 
 	.delicious {
 		&:before {
-			@include delicious;
+			@extend %delicious;
 		}
 	}
 
 	.digg {
 		&:before {
-			@include digg;
+			@extend %digg;
 		}
 	}
 
 	.diigo {
 		&:before {
-			@include diigo;
+			@extend %diigo;
 		}
 	}
 
@@ -77,73 +76,73 @@
 
 	.facebook {
 		&:before {
-			@include facebook;
+			@extend %facebook;
 		}
 	}
 
 	.feed {
 		&:before {
-			@include feed;
+			@extend %feed;
 		}
 	}
 
 	.gmail {
 		&:before {
-			@include gmail;
+			@extend %gmail;
 		}
 	}
 
 	.googleplus {
 		&:before {
-			@include googleplus;
+			@extend %googleplus;
 		}
 	}
 
 	.linkedin {
 		&:before {
-			@include linkedin;
+			@extend %linkedin;
 		}
 	}
 
 	.myspace {
 		&:before {
-			@include myspace;
+			@extend %myspace;
 		}
 	}
 
 	.pinterest {
 		&:before {
-			@include pinterest;
+			@extend %pinterest;
 		}
 	}
 
 	.reddit {
 		&:before {
-			@include reddit;
+			@extend %reddit;
 		}
 	}
 
 	.stumbleupon {
 		&:before {
-			@include stumbleupon;
+			@extend %stumbleupon;
 		}
 	}
 
 	.tumblr {
 		&:before {
-			@include tumblr;
+			@extend %tumblr;
 		}
 	}
 
 	.twitter {
 		&:before {
-			@include twitter;
+			@extend %twitter;
 		}
 	}
 
 	.yahoomail {
 		&:before {
-			@include yahoomail;
+			@extend %yahoomail;
 		}
 	}
 
