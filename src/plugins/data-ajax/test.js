@@ -16,25 +16,32 @@
 describe( "data-ajax test suite", function() {
 	var spy,
 		sandbox = sinon.sandbox.create(),
+		$document = wb.doc,
+		$body = $document.find( "body" ),
 		createElm = function( type, done ) {
-			var $elm = $( "<div data-ajax-" + type + "='ajax/data-ajax-extra-en.html'>" );
+			var $elm = $( "<div class='ajax' data-ajax-" + type + "='data-ajax/test/data-ajax.html'>test</div>" );
+
+			callback = done;
 			$elm
-				.appendTo( wb.doc.find( "body" ) )
-				.trigger( "wb-init.wb-data-ajax" )
-				.on( "ajax-fetched.wb", function() {
-					if ( typeof done === "function" ) {
-						done();
-					}
-				});
+				.appendTo( $body )
+				.trigger( "wb-init.wb-data-ajax" );
 			return $elm;
-		};
+		},
+		callback;
 
 	/*
 	 * Before beginning the test suite, this function is executed once.
 	 */
 	before(function() {
+
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
 		spy = sandbox.spy( $.prototype, "trigger" );
+
+		$document.on( "ajax-fetched.wb ajax-failed.wb", ".ajax", function() {
+			if ( typeof callback === "function" ) {
+				callback();
+			}
+		});
 	});
 
 	/*
@@ -51,7 +58,7 @@ describe( "data-ajax test suite", function() {
 	describe( "init events", function() {
 		var $elm;
 
-		before(function() {
+		before(function(  ) {
 			$elm = createElm( "replace" );
 		});
 

@@ -96,10 +96,6 @@ describe( "Country Content test suite", function() {
 			$elm.remove();
 		});
 
-		it( "should have loaded the US content", function() {
-			expect( $elm.find( ".ajaxed-in" ).hasClass( "us" ) ).to.equal( true );
-		});
-
 		it( "should have saved the country code", function() {
 			expect( localStorage.getItem( "countryCode" ) ).to.equal( "US" );
 		});

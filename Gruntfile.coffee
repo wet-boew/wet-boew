@@ -184,6 +184,8 @@ module.exports = (grunt) ->
 		"pre-mocha"
 		"INTERNAL: prepare for running Mocha unit tests"
 		[
+			"copy:test"
+			"assemble:test"
 			"connect:test"
 		]
 	)
@@ -238,20 +240,19 @@ module.exports = (grunt) ->
 		i18nGDocsID: "0AqLc8VEIumBwdDNud1M2Wi1tb0RUSXJxSGp4eXI0ZXc"
 		i18nGDocsSheet: 1
 		mochaUrls: grunt.file.expand(
-						filter: ( src ) ->
-							src = path.dirname( src ).replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
-							return fs.existsSync( src + "/test.js" )
-						"src/plugins/**/*-en.hbs"
-						"src/polyfills/**/*-en.hbs"
-						"src/other/**/*-en.hbs"
+						"src/test.js"
+						"src/**/test.js"
+						# Tests failing because they depend on demo page
+						"!src/plugins/data-inview/test.js"
+						"!src/other/feedback/test.js"
 					).map( ( src ) ->
 						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
-						src = src.replace( "src/", "dist/")
-						src = src.replace( "plugins/", "demos/" )
-						src = src.replace( "polyfills/", "demos/" )
-						src = src.replace( "other/", "demos/" )
-						src = src.replace( ".hbs", ".html" )
-						return "http://localhost:8000/" + src
+						src = src.replace( "src/" , "" )
+						src = src.replace( "polyfills/" , "" )
+						src = src.replace( "plugins/" , "" )
+						src = src.replace( "other/" , "" )
+						src = src.replace( ".js" , "" )
+						return src
 					)
 
 		# Task configuration.
@@ -438,6 +439,18 @@ module.exports = (grunt) ->
 						dest: "dist/unmin"
 						expand: true
 				]
+
+			test:
+				options:
+					environment:
+						root: "/v4.0-ci/unmin"
+						jqueryVersion: "<%= jqueryVersion.version %>"
+						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
+					assets: "dist/unmin"
+				expand: true
+				cwd: "site/pages"
+				src: "test/test.hbs"
+				dest: "dist/unmin"
 
 			docs:
 				cwd: "site/pages"
@@ -808,6 +821,7 @@ module.exports = (grunt) ->
 					"!dist/unmin/**/ajax/**/*.html"
 					"!dist/unmin/assets/**/*.html"
 					"!dist/unmin/demos/menu/demo/*.html"
+					"!dist/unmin/test/**/*.html"
 				]
 
 		ie8csscleaning:
@@ -861,6 +875,53 @@ module.exports = (grunt) ->
 				dest: "dist/unmin/fonts"
 				expand: true
 				flatten: true
+
+			test:
+				files: [
+					cwd: "src/plugins"
+					src: [
+						"**/test.js"
+						"**/test/*.*"
+					]
+					dest: "dist/unmin/test"
+					expand: true
+				,
+					cwd: "src/polyfills"
+					src: [
+						"**/test.js"
+						"**/test/*.*"
+					]
+					dest: "dist/unmin/test"
+					expand: true
+				,
+					cwd: "src/other"
+					src: [
+						"**/test.js"
+						"**/test/*.*"
+					]
+					dest: "dist/unmin/test"
+					expand: true
+				,
+					cwd: "src/"
+					src: [
+						"**/test.js"
+						"**/test/*.*"
+					]
+					dest: "dist/unmin/test"
+					expand: true
+				,
+					cwd: "node_modules"
+					src: [
+						"mocha/mocha.js"
+						"mocha/mocha.css"
+						"expect.js/index.js"
+						"sinon/pkg/sinon.js"
+						"sinon/pkg/sinon-ie.js"
+					]
+					dest: "dist/unmin/test"
+					expand: true
+					flatten: true
+				]
 
 			js:
 				files: [
@@ -919,6 +980,7 @@ module.exports = (grunt) ->
 						"**/img/*.*"
 						"!**/assets/*.*"
 						"!**/deps/*.*"
+						"!**/test/*.*"
 						"!**/*.scss"
 					]
 					dest: "dist/unmin/demos/"
@@ -1097,90 +1159,6 @@ module.exports = (grunt) ->
 					middleware: (connect, options) ->
 						middlewares = []
 
-						mochascript = (req, res, next) ->
-							url = req._parsedUrl.pathname
-
-							# Skip to the static middleware if it's an index file or not HTML
-							if /index|mobmenu[-]?\w*\.html/.test( url ) or not /\.html/.test( url )
-								return next()
-
-							dir = url.substring( 0, url.lastIndexOf( "/" ) + 1 )
-
-							# Test to see if the plugin or polyfill has a test file
-							plugins = dir.replace("/dist/demos/", "src/plugins/") + "test.js"
-							polyfills = dir.replace("/dist/demos/", "src/polyfills/") + "test.js"
-							other = dir.replace("/dist/demos/", "src/other/") + "test.js"
-
-							testFile = if fs.existsSync( plugins ) then plugins else if fs.existsSync( polyfills ) then polyfills else if fs.existsSync( other ) then other else ""
-
-							if testFile != ""
-
-								result = fs.readFileSync( __dirname + url, { encoding: "utf-8" } )
-
-								# Append mocha content to the response above the footer
-								result = result.replace( "</main>", "<div class='row' id='mocha'></div></main>" )
-
-								mochaPath = path.dirname( require.resolve( "mocha" ) )
-
-								testHtml = "<link src='/" + path.relative(__dirname, mochaPath) + "/mocha.css' />"
-								testHtml += "<script src='/" + path.relative(__dirname, mochaPath) + "/mocha.js'></script>"
-
-								# Append ExpectJS script
-								testHtml += "<script src='/" + path.relative(__dirname, require.resolve( "expect.js" ) ) + "'></script>"
-
-								# Append Sinon scripts
-								testHtml += "<script src='/" + path.dirname( path.relative(__dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon.js'></script>"
-								testHtml += "<!--[if lt IE 9]><script src='/" + path.dirname( path.relative(__dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon-ie.js'></script><![endif]-->"
-
-								testHtml += "<script>
-												mocha.setup( 'bdd' );
-												wb.doc.on( 'ready', function() {
-
-													var runner = mocha.run();
-
-													var tests = [];
-													runner.on('end', function(){
-														window.global_test_results = {
-															passed: runner.stats.passes,
-															failed: runner.stats.failures,
-															total: runner.stats.tests,
-															duration: runner.stats.duration,
-															tests: tests
-														};
-													});
-
-													runner.on('pass', function(test) {
-														tests.push({
-															name: test.fullTitle(),
-															result: true,
-															duration: test.duration
-														});
-													});
-
-													runner.on('fail', function (test, err) {
-														tests.push({
-															name: test.fullTitle(),
-															result: false,
-															duration: test.duration,
-															message: err.stack
-														});
-													});
-												});
-											</script>"
-
-								testHtml += "<script src='/" + testFile + "'></script>"
-
-								testHtml += "</body>"
-
-								result = result.replace( "</body>", testHtml )
-
-								res.end( result )
-							else
-								# No test files found, skipping
-								return next()
-
-						middlewares.push mochascript
-
 						# Serve static files.
 						middlewares.push connect.static( options.base )
 
@@ -1203,12 +1181,12 @@ module.exports = (grunt) ->
 			all:
 				options:
 					reporter: "Spec"
-					urls: "<%= mochaUrls %>"
+					urls: ["http://localhost:8000/dist/unmin/test/test.html"]
 
 		"saucelabs-custom":
 			all:
 				options:
-					urls: "<%= mochaUrls %>"
+					urls: ["http://localhost:8000/dist/unmin/test/test.html"]
 					throttled: 3
 					browsers: grunt.file.readJSON "browsers.json"
 					testname: "WET-BOEW Travis Build #{process.env.TRAVIS_BUILD_NUMBER}"
