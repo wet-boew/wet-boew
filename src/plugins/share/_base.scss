@@ -30,38 +30,16 @@
 		}
 	}
 
+	@each $service in bitly, blogger, delicious, digg, diigo, facebook, feed, gmail, googleplus, linkedin, myspace, pinterest, reddit, stumbleupon, tumblr, twitter, yahoomail {
+		.#{$service} {
+			&:before {
+				@extend %#{$service};
+			}
+		}
+	}
+
 	.shr-dscl {
 		padding-bottom: 0;
-	}
-
-	.bitly {
-		&:before {
-			@extend %bitly;
-		}
-	}
-
-	.blogger {
-		&:before {
-			@extend %blogger;
-		}
-	}
-
-	.delicious {
-		&:before {
-			@extend %delicious;
-		}
-	}
-
-	.digg {
-		&:before {
-			@extend %digg;
-		}
-	}
-
-	.diigo {
-		&:before {
-			@extend %diigo;
-		}
 	}
 
 	.email {
@@ -71,78 +49,6 @@
 			font-family: "Glyphicons Halflings";
 			font-size: 32px;
 			margin-right: 0.3em;
-		}
-	}
-
-	.facebook {
-		&:before {
-			@extend %facebook;
-		}
-	}
-
-	.feed {
-		&:before {
-			@extend %feed;
-		}
-	}
-
-	.gmail {
-		&:before {
-			@extend %gmail;
-		}
-	}
-
-	.googleplus {
-		&:before {
-			@extend %googleplus;
-		}
-	}
-
-	.linkedin {
-		&:before {
-			@extend %linkedin;
-		}
-	}
-
-	.myspace {
-		&:before {
-			@extend %myspace;
-		}
-	}
-
-	.pinterest {
-		&:before {
-			@extend %pinterest;
-		}
-	}
-
-	.reddit {
-		&:before {
-			@extend %reddit;
-		}
-	}
-
-	.stumbleupon {
-		&:before {
-			@extend %stumbleupon;
-		}
-	}
-
-	.tumblr {
-		&:before {
-			@extend %tumblr;
-		}
-	}
-
-	.twitter {
-		&:before {
-			@extend %twitter;
-		}
-	}
-
-	.yahoomail {
-		&:before {
-			@extend %yahoomail;
 		}
 	}
 
