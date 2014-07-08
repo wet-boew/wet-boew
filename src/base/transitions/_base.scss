@@ -77,6 +77,72 @@
 	}
 }
 
+
+.fade {
+	.out {
+		animation-duration: 125ms;
+		animation-name: fadeout;
+		opacity: 0;
+	}
+
+	.in {
+		animation-duration: 225ms;
+		animation-name: fadein;
+		opacity: 1;
+	}
+}
+
+@keyframes fadein {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeout {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+}
+
+
+.slide {
+	.out,
+	.in {
+		animation-duration: 350ms;
+		animation-timing-function: ease-out;
+	}
+
+	.out {
+		animation-name: slideouttoleft;
+		transform: translateX(-100%);
+	}
+
+	.in {
+		animation-name: slideinfromright;
+		transform: translateX(0);
+	}
+
+	&.reverse {
+		.out {
+			animation-name: slideouttoright;
+			transform: translateX(100%);
+		}
+
+		.in {
+			animation-name: slideinfromleft;
+			transform: translateX(0);
+		}
+	}
+}
+
 /* keyframes for slidein from sides */
 @keyframes slideinfromright {
 	from {
@@ -119,139 +185,6 @@
 	}
 }
 
-.slide {
-	.out,
-	.in {
-		animation-duration: 350ms;
-		animation-timing-function: ease-out;
-	}
-
-	.out {
-		animation-name: slideouttoleft;
-		transform: translateX(-100%);
-	}
-
-	.in {
-		animation-name: slideinfromright;
-		transform: translateX(0);
-	}
-
-	&.reverse {
-		.out {
-			animation-name: slideouttoright;
-			transform: translateX(100%);
-		}
-
-		.in {
-			animation-name: slideouttoright;
-			transform: translateX(100%);
-		}
-	}
-
-}
-
-/* slide down */
-.slidedown {
-	.out {
-		animation-duration: 100ms;
-		animation-name: fadeout;
-	}
-
-	.in {
-		animation-duration: 250ms;
-		animation-name: slideinfromtop;
-		transform: translateY(0);
-	}
-
-	&.reverse {
-		.out {
-			animation-duration: 200ms;
-			animation-name: slideouttotop;
-			transform: translateY(-100%);
-		}
-
-		.in {
-			animation-duration: 150ms;
-			animation-name: fadein;
-		}
-	}
-}
-
-@keyframes slideinfromtop {
-	from {
-		transform: translateY(-100%);
-	}
-
-	to {
-		transform: translateY(0);
-	}
-}
-
-@keyframes slideouttotop {
-	from {
-		transform: translateY(0);
-	}
-
-	to {
-		transform: translateY(-100%);
-	}
-}
-
-@keyframes fadein {
-	from {
-		opacity: 0;
-	}
-
-	to {
-		opacity: 1;
-	}
-}
-
-@keyframes fadeout {
-	from {
-		opacity: 1;
-	}
-
-	to {
-		opacity: 0;
-	}
-}
-
-
-.fade {
-	.out {
-		animation-duration: 125ms;
-		animation-name: fadeout;
-		opacity: 0;
-	}
-
-	.in {
-		animation-duration: 225ms;
-		animation-name: fadein;
-		opacity: 1;
-	}
-}
-
-/* keyframes for slideout to sides */
-@keyframes slideouttoleft {
-	from {
-		transform: translateX(0);
-	}
-
-	to {
-		transform: translateX(-100%);
-	}
-}
-
-@keyframes slideouttoright {
-	from {
-		transform: translateX(0);
-	}
-
-	to {
-		transform: translateX(100%);
-	}
-}
 
 .slidefade {
 	.out {
@@ -281,30 +214,55 @@
 	}
 }
 
-/* slide up */
-.slideup {
+
+/* slide up/down */
+.slidevert {
+	.out,
+	.in {
+		animation-duration: 350ms;
+		animation-timing-function: ease-out;
+	}
+
 	.out {
-		animation-duration: 100ms;
-		animation-name: fadeout;
+		animation-name: slideouttobottom;
+		transform: translateY(100%);
 	}
 
 	.in {
-		animation-duration: 250ms;
-		animation-name: slideinfrombottom;
+		animation-name: slideinfromtop;
 		transform: translateY(0);
 	}
 
 	&.reverse {
-		.in {
-			animation-duration: 150ms;
-			animation-name: fadein;
+		.out {
+			animation-name: slideouttotop;
+			transform: translateY(-100%);
 		}
 
-		.out {
-			animation-duration: 200ms;
-			animation-name: slideouttobottom;
-			transform: translateY(100%);
+		.in {
+			animation-name: slideinfrombottom;
+			transform: translateY(0);
 		}
+	}
+}
+
+@keyframes slideinfromtop {
+	from {
+		transform: translateY(-100%);
+	}
+
+	to {
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideouttotop {
+	from {
+		transform: translateY(0);
+	}
+
+	to {
+		transform: translateY(-100%);
 	}
 }
 
