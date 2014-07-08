@@ -99,14 +99,14 @@
 		<h3>Plugin configuration options</h3>
 		<p>Geomap can be configured in three ways:</p>
 		<ul>
-			<li>Using the <code>data-wet-boew</code> attribute on the plugin element</li>
+			<li>Using the <code>data-wb-geomap</code> attribute on the plugin element</li>
 			<li>Using a configuration file</li>
 			<li>Using CSS classes on the plugin element</li>
 		</ul>
 		<div class="alert alert-info"><strong>Note:</strong> all plugin configuration parameters are optional.</div>
 		<section>
-			<h4>Configuration using <code>data-wet-boew</code> attribute on plugin element</h4>
-			<p>Use the <code>data-wet-boew</code> attribute to configure the display of map features from inline HTML tables or from a local/remote data source.</p>
+			<h4>Configuration using <code>data-wb-geomap</code> attribute on plugin element</h4>
+			<p>Use the <code>data-wb-geomap</code> attribute to configure the display of map features from inline HTML tables or from a local/remote data source.</p>
 			<table class="table">
 				<thead>
 					<tr>
@@ -155,7 +155,7 @@
 				</tbody>
 			</table>
 			<h5>Example configuration file reference</h5>
-			<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wet-boew='{ "layersFile": "data/config-en.js" }'&gt; ... &lt;/div&gt;</code></pre>
+			<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wb-geomap='{ "layersFile": "data/config-en.js" }'&gt; ... &lt;/div&gt;</code></pre>
 		</section>
 
 		<section>
@@ -412,8 +412,8 @@ var wet_boew_geomap = {
         { ... }
     ]
 };</code></pre></li>
-				<li>Reference the configuration file in the <code>data-wet-beow</code> attribute of the plugin element by setting the <code>layersFile</code> property to the file path.
-				<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wet-boew='{ "layersFile": "data/config-en.js" }'&gt; ... &lt;/div&gt;</code></pre></li>
+				<li>Reference the configuration file in the <code>data-wb-geomap</code> attribute of the plugin element by setting the <code>layersFile</code> property to the file path.
+				<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wb-geomap='{ "layersFile": "data/config-en.js" }'&gt; ... &lt;/div&gt;</code></pre></li>
 			</ol>
 		</section>
 
