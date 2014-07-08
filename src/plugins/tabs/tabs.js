@@ -360,9 +360,22 @@ var pluginName = "wb-tabs",
 		var $tabs = $controls.find( "[role=tab]" ),
 			newIndex = $tabs.index( $control ) + 1,
 			$currPanel = $panels.filter( ".in" ),
+			$container = $currPanel.closest( selector ),
 			mPlayers = $currPanel.find( ".wb-mltmd-inited" ).get(),
 			mPlayersLen = mPlayers.length,
-			i;
+			i, j, last;
+
+		// Handle the direction of the slide transitions
+		if ( $container[ 0 ].className.indexOf( "slide" ) !== -1 ) {
+			i = $panels.index( $currPanel );
+			j = $panels.index( $next );
+			last = $panels.length - 1;
+
+			$container.toggleClass(
+				"reverse",
+				( i > j && ( i !== last || j !== 0 ) ) || ( i === 0 && j === last )
+			);
+		}
 
 		$currPanel
 			.removeClass( "in" )
