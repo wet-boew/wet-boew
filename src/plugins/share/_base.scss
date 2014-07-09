@@ -30,39 +30,16 @@
 		}
 	}
 
+	@each $service in bitly, blogger, delicious, digg, diigo, facebook, feed, gmail, googleplus, linkedin, myspace, pinterest, reddit, stumbleupon, tumblr, twitter, yahoomail {
+		.#{$service} {
+			&:before {
+				@extend %#{$service};
+			}
+		}
+	}
+
 	.shr-dscl {
 		padding-bottom: 0;
-	}
-
-	// TODO: Convert @include to @extend when libsass supports nested extends
-	.bitly {
-		&:before {
-			@include bitly;
-		}
-	}
-
-	.blogger {
-		&:before {
-			@include blogger;
-		}
-	}
-
-	.delicious {
-		&:before {
-			@include delicious;
-		}
-	}
-
-	.digg {
-		&:before {
-			@include digg;
-		}
-	}
-
-	.diigo {
-		&:before {
-			@include diigo;
-		}
 	}
 
 	.email {
@@ -72,78 +49,6 @@
 			font-family: "Glyphicons Halflings";
 			font-size: 32px;
 			margin-right: 0.3em;
-		}
-	}
-
-	.facebook {
-		&:before {
-			@include facebook;
-		}
-	}
-
-	.feed {
-		&:before {
-			@include feed;
-		}
-	}
-
-	.gmail {
-		&:before {
-			@include gmail;
-		}
-	}
-
-	.googleplus {
-		&:before {
-			@include googleplus;
-		}
-	}
-
-	.linkedin {
-		&:before {
-			@include linkedin;
-		}
-	}
-
-	.myspace {
-		&:before {
-			@include myspace;
-		}
-	}
-
-	.pinterest {
-		&:before {
-			@include pinterest;
-		}
-	}
-
-	.reddit {
-		&:before {
-			@include reddit;
-		}
-	}
-
-	.stumbleupon {
-		&:before {
-			@include stumbleupon;
-		}
-	}
-
-	.tumblr {
-		&:before {
-			@include tumblr;
-		}
-	}
-
-	.twitter {
-		&:before {
-			@include twitter;
-		}
-	}
-
-	.yahoomail {
-		&:before {
-			@include yahoomail;
 		}
 	}
 
