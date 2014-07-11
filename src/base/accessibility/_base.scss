@@ -36,6 +36,7 @@
 .wb-sl {
 	@extend %accessible-invisible;
 	padding: 5px;
+	z-index: 501;
 
 	&:focus {
 		@extend %accessible-invisible-show;
