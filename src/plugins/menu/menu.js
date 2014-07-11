@@ -52,7 +52,7 @@ var pluginName = "wb-menu",
 			if ( !i18nText ) {
 				i18n = wb.i18n;
 				i18nText = {
-					menu: i18n( "menu" )
+					searchMenus: i18n( "srch-menus" )
 				};
 			}
 
@@ -308,7 +308,7 @@ var pluginName = "wb-menu",
 
 		// Let's now populate the DOM since we have done all the work in a documentFragment
 		panelDOM.innerHTML = "<header class='modal-header'><div class='modal-title'>" +
-				i18nText.menu  + "</div></header><div class='modal-body'>" +
+				i18nText.searchMenus + "</div></header><div class='modal-body'>" +
 				panel + "</div>";
 		panelDOM.className += " wb-overlay modal-content overlay-def wb-panel-r";
 		$panel
