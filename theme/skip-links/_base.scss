@@ -15,24 +15,16 @@
 		width: 100%;
 		z-index: 3;
 	}
-
-	a {
-		background-color: transparent;
-		color: #fff;
-		font-weight: 700;
-		padding: 5px;
-	}
 }
 
 .wb-sl {
 	background-color: #000;
 	color: #fff;
 	font-weight: 700;
+	padding: 5px;
 
 	&:focus {
 		color: #fff;
-		/* Shouldn't be needed. Only here because Bootstrap forces an outline colour */
-		outline-color: #fff;
 		text-decoration: none;
 		z-index: 501;
 	}
