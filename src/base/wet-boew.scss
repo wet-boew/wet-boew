@@ -38,6 +38,10 @@
 	display: block;
 }
 
+%global-display-block-important {
+	display: block !important;
+}
+
 %global-text-decoration-none {
 	text-decoration: none;
 }

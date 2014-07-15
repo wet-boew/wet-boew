@@ -10,9 +10,13 @@
 %tabs-noscript-details-summary-display-block-important {
 	> {
 		details {
-			> {
-				summary {
-					display: block !important;
+			display: block;
+
+			&[open] {
+				> {
+					summary {
+						display: block !important;
+					}
 				}
 			}
 		}

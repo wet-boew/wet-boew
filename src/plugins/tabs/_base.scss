@@ -400,18 +400,6 @@ $medGray: #ccc;
 	}
 }
 
-%tabs-wb-disable-details-summary-display-block-important {
-	> {
-		details {
-			> {
-				summary {
-					display: block !important;
-				}
-			}
-		}
-	}
-}
-
 .wb-disable {
 	.csstransitions {
 		.wb-tabs {
@@ -426,11 +414,33 @@ $medGray: #ccc;
 
 	.wb-tabs {
 		// Only for backwards compatibility. Should be removed in v4.1.
-		@extend %tabs-wb-disable-details-summary-display-block-important;
-
 		> {
+			details {
+				@extend %global-display-block;
+
+				&[open] {
+					> {
+						summary {
+							@extend %global-display-block-important;
+						}
+					}
+				}
+			}
+
 			.tabpanels {
-				@extend %tabs-wb-disable-details-summary-display-block-important;
+				> {
+					details {
+						@extend %global-display-block;
+
+						&[open] {
+							> {
+								summary {
+									@extend %global-display-block-important;
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 
