@@ -78,6 +78,17 @@ var pluginName = "wb-tables",
 				language: i18nText,
 				dom: "<'top'ilf>rt<'bottom'p><'clear'>",
 				drawCallback: function() {
+
+					// Update the aria-pressed properties on the pagination buttons
+					// Should be pushed upstream to DataTables
+					$( ".dataTables_paginate a" )
+						.attr( "role", "button" )
+						.not( ".previous, .next" )
+							.attr( "aria-pressed", "false" )
+							.filter( ".current" )
+								.attr( "aria-pressed", "true" );
+
+					// Trigger the tables-draw.wb callback event
 					$( "#" + elmId ).trigger( "tables-draw.wb" );
 				}
 			};
