@@ -20,7 +20,7 @@ var pluginName = "wb-lbx",
 	extendedGlobal = false,
 	$document = wb.doc,
 	idCount = 0,
-	i18n, i18nText,
+	callbacks, i18n, i18nText,
 
 	/**
 	 * Init runs once per plugin element on the page. There may be multiple elements.
@@ -51,7 +51,7 @@ var pluginName = "wb-lbx",
 			// read the selector node for parameters
 			modeJS = wb.getMode() + ".js";
 
-			// Only initialize the i18nText once
+			// Only initialize the i18nText and callbacks once
 			if ( !i18nText ) {
 				i18n = wb.i18n;
 				i18nText = {
@@ -69,60 +69,45 @@ var pluginName = "wb-lbx",
 						tError: i18n( "lb-xhr-err" ) + " (<a href=\"url%\">)"
 					}
 				};
-			}
 
-			// Load Magnific Popup dependency and bind the init event handler
-			Modernizr.load({
-				load: "site!deps/jquery.magnific-popup" + modeJS,
-				complete: function() {
-					var elm = document.getElementById( elmId ),
-						$elm = $( elm ),
-						settings = {},
-						firstLink;
+				callbacks = {
+					open: function() {
 
-					// Set the dependency i18nText only once
-					if ( !extendedGlobal ) {
-						$.extend( true, $.magnificPopup.defaults, i18nText );
-						extendedGlobal = true;
-					}
+						// TODO: Better if dealt with upstream by Magnific popup
+						var $item = this.currItem,
+							$content = this.contentContainer,
+							$wrap = this.wrap,
+							$buttons = $wrap.find( ".mfp-close, .mfp-arrow" ),
+							len = $buttons.length,
+							i, button, $bottomBar;
 
-					// TODO: Add swipe support
+						for ( i = 0; i !== len; i += 1 ) {
+							button = $buttons[ i ];
+							button.innerHTML += "<span class='wb-inv'> " + button.title + "</span>";
+						}
 
-					settings.callbacks = {
-						open: function() {
+						if ( $item.type === "image" ) {
+							$bottomBar = $content.find( ".mfp-bottom-bar" ).attr( "id", "lbx-title" );
+						} else {
+							$content.attr( "role", "document" );
+						}
 
-							// TODO: Better if dealt with upstream by Magnific popup
-							var $item = this.currItem,
-								$content = this.contentContainer,
-								$wrap = this.wrap,
-								$buttons = $wrap.find( ".mfp-close, .mfp-arrow" ),
-								len = $buttons.length,
-								i, button, $bottomBar;
+						$wrap.append( "<span tabindex='0' class='lbx-end wb-inv'></span>" );
+					},
+					change: function() {
+						var $item = this.currItem,
+							$content = this.contentContainer,
+							$el, $bottomBar, $source, $target,
+							description, altTitleId, altTitle;
 
-							for ( i = 0; i !== len; i += 1 ) {
-								button = $buttons[ i ];
-								button.innerHTML += "<span class='wb-inv'> " + button.title + "</span>";
-							}
+						if ( $item.type === "image" ) {
+							$el = $item.el;
+							$target = $item.img;
+							$bottomBar = $content.find( ".mfp-bottom-bar" );
 
-							if ( $item.type === "image" ) {
-								$bottomBar = $content.find( ".mfp-bottom-bar" ).attr( "id", "lbx-title" );
-							} else {
-								$content.attr( "role", "document" );
-							}
-
-							$wrap.append( "<span tabindex='0' class='lbx-end wb-inv'></span>" );
-						},
-						change: function() {
-							var $item = this.currItem,
-								$content = this.contentContainer,
-								$el, $bottomBar, $source, $target,
-								description, altTitleId, altTitle;
-
-							if ( $item.type === "image" ) {
-								$el = $item.el;
+							if ( $el ) {
 								$source = $el.find( "img" );
-								$target = $item.img.attr( "alt", $source.attr( "alt" ) );
-								$bottomBar = $content.find( ".mfp-bottom-bar" );
+								$target.attr( "alt", $source.attr( "alt" ) );
 
 								// Replicate aria-describedby if it exists
 								description = $source.attr( "aria-describedby" );
@@ -145,17 +130,40 @@ var pluginName = "wb-lbx",
 									}
 								}
 							} else {
-								$content
-									.find( ".modal-title, h1" )
-									.first()
-									.attr( "id", "lbx-title" );
+								$target.attr( "alt", $bottomBar.find( ".mfp-title" ).html() );
 							}
+						} else {
+							$content
+								.find( ".modal-title, h1" )
+								.first()
+								.attr( "id", "lbx-title" );
 						}
-					};
+					}
+				};
+			}
+
+			// Load Magnific Popup dependency and bind the init event handler
+			Modernizr.load({
+				load: "site!deps/jquery.magnific-popup" + modeJS,
+				complete: function() {
+					var elm = document.getElementById( elmId ),
+						$elm = $( elm ),
+						settings = {},
+						firstLink;
+
+					// Set the dependency i18nText only once
+					if ( !extendedGlobal ) {
+						$.extend( true, $.magnificPopup.defaults, i18nText );
+						extendedGlobal = true;
+					}
+
+					// TODO: Add swipe support
+
+					settings.callbacks = callbacks;
 
 					if ( elm.nodeName.toLowerCase() !== "a" ) {
 						settings.delegate = "a";
-						firstLink = elm.getElementsByTagName( "a" )[0];
+						firstLink = elm.getElementsByTagName( "a" )[ 0 ];
 
 						// Is the element a gallery?
 						if ( elm.className.indexOf( "-gal" ) !== -1 ) {
@@ -257,6 +265,30 @@ $document.on( "focusin", "body", function( event ) {
 $( document ).on( "click", ".popup-modal-dismiss", function( event ) {
 	event.preventDefault();
 	$.magnificPopup.close();
+});
+
+// Event handler for opening a popup without a link
+$( document ).on( "open.wb-lbx", function( event, items, modal, title ) {
+	if ( event.namespace === "wb-lbx" ) {
+		var isGallery = items.length > 1,
+			isModal = modal && !isGallery ? modal : false,
+			titleSrc = title ? function() {
+					return title[ $.magnificPopup.instance.index ];
+				} : "title";
+
+		event.preventDefault();
+		$.magnificPopup.open({
+			items: items,
+			modal: isModal,
+			gallery: {
+				enabled: isGallery
+			},
+			image: {
+				titleSrc: titleSrc
+			},
+			callbacks: callbacks
+		});
+	}
 });
 
 // Add the timer poke to initialize the plugin

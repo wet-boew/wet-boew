@@ -4,7 +4,7 @@
 	"language": "fr",
 	"description": "Afficher des images et d'autres contenus dans une boîte de dialogue, individuellement ou dans le cadre d'une galerie.",
 	"altLangPrefix": "lightbox",
-	"dateModified": "2014-03-30"
+	"dateModified": "2014-07-17"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -101,6 +101,24 @@
 				<td>wb-init.wb-lbx</td>
 				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-lbx" );</code>).</td>
 				<td>Used to manually initialize the Lightbox plugin. <strong>Note:</strong> The Lightbox plugin will be initialized automatically unless the Lightbox markup is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td>wb-open.wb-lbx</td>
+				<td>Triggered manually:
+					<pre><code>$( document ).trigger( "open.wb-lbx", [
+	[
+		{
+			src: "demo/1_b.jpg",
+			type: "image"
+		}
+	],
+	false,
+	[
+		"Image 1"
+	]
+]);</code></pre>
+				</td>
+				<td>Used to manually open a Lightbox popup. Can be used to load single popups, galleries and modal popups. See <a href="../../../demos/lightbox/lightbox-en.html#examples5">Opening popups through JavaScript</a> for working examples.</td>
 			</tr>
 		</tbody>
 	</table>
