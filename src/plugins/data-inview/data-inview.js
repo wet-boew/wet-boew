@@ -75,7 +75,7 @@ var pluginName = "wb-inview",
 
 			$elm.attr( "data-inviewstate", viewState );
 			$dataInView = $( "#" + $elm.attr( "data-inview" ) );
-			
+
 			if ( $dataInView.length !== 0 ) {
 
 				// Keep closed if the user closed the inView result

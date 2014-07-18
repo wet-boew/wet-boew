@@ -8,7 +8,9 @@
 "use strict";
 
 wb.doc.on( "all.wb-inview partial.wb-inview none.wb-inview", function( event) {
-	$( event.target ).find( ".view-state-status" ).html( event.type );
+	if ( event.namespace === "wb-inview" ) {
+		$( event.target ).find( ".view-state-status" ).html( event.type );
+	}
 });
 
 })( jQuery, wb );
