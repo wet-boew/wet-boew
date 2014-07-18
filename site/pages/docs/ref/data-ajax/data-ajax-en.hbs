@@ -4,7 +4,7 @@
 	"language": "en",
 	"description": "A basic AjaxLoader wrapper that inserts AJAXed-in content.",
 	"altLangPrefix": "data-ajax",
-	"dateModified": "2014-04-04"
+	"dateModified": "2014-07-18"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -43,29 +43,48 @@
 </section>
 
 <section>
-	<p>Coming soon</p>
-	<!--
 	<h2>How to implement</h2>
 	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
+		<li>
+			<p>Add one of the following data-ajax attributes to an element, with the attribute value being the URL of the content to AJAX in:</p>
+			<ul>
+				<li>
+					<p><code>data-ajax-after</code>: Insert content after the element</p>
+					<pre><code>&lt;section data-ajax-after=&quot;ajax/data-ajax-extra-en.html&quot;&gt;
+	...
+&lt;/section&gt;</code></pre>
+				</li>
+				<li>
+					<p><code>data-ajax-append</code>: Insert content at the end of the element</p>
+					<pre><code>&lt;section data-ajax-append=&quot;ajax/data-ajax-extra-en.html&quot;&gt;
+	...
+&lt;/section&gt;</code></pre>
+				</li>
+				<li>
+					<p><code>data-ajax-before</code>: Insert content before the element</p>
+					<pre><code>&lt;section data-ajax-before=&quot;ajax/data-ajax-extra-en.html&quot;&gt;
+	...
+&lt;/section&gt;</code></pre>
+				</li>
+				<li>
+					<p><code>data-ajax-before</code>: Insert content at the start of the element</p>
+					<pre><code>&lt;section data-ajax-prepend=&quot;ajax/data-ajax-extra-en.html&quot;&gt;
+	...
+&lt;/section&gt;</code></pre>
+				</li>
+				<li>
+					<p><code>data-ajax-before</code>: Replace the element with the content</p>
+					<pre><code>&lt;section data-ajax-replace=&quot;ajax/data-ajax-extra-en.html&quot;&gt;
+	...
+&lt;/section&gt;</code></pre>
+				</li>
+			</ul>
 		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
-		</li>
-		<li>Step 4</li>
 	</ol>
-	-->
 </section>
 
 <section>
 	<h2>Configuration options</h2>
-	<p>Coming soon</p>
-	<!--
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -77,38 +96,26 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
+				<td>Overlay type</td>
+				<td>Configure the origin and destination of the content to AJAX in.</td>
+				<td>Add the configuration attribute to the affected element with the value being the URL of the content to AJAX in.</td>
 				<td>
 					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
-			</tr>
-			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
+						<dt><code>data-ajax-after</code>:</dt>
+						<dd>Insert the content after the element.</dd>
+						<dt><code>data-ajax-append</code>:</dt>
+						<dd>Insert the content at the end of the element.</dd>
+						<dt><code>data-ajax-before</code>:</dt>
+						<dd>Insert the content before the element.</dd>
+						<dt><code>data-ajax-prepend</code>:</dt>
+						<dd>Insert the content at the start of the element.</dd>
+						<dt><code>data-ajax-replace</code>:</dt>
+						<dd>Replace the element with the content.</dd>
 					</dl>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-	-->
 </section>
 
 <section>
