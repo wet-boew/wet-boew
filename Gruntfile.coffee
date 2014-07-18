@@ -219,7 +219,7 @@ module.exports = (grunt) ->
 				( file ) ->
 					contents = grunt.file.read( file )
 					contents = contents.replace( /\/unmin/g, "" )
-					contents = contents.replace( /\"([^\"]*)?\.(js|css)\"/g, "\"$1.min.$2\"" )
+					contents = contents.replace( /\"(?!https:)([^\"]*)?\.(js|css)\"/g, "\"$1.min.$2\"" )
 
 					grunt.file.write(file, contents);
 			);
