@@ -3,15 +3,23 @@
 	"title": "Correctif « input type=\"range\" » (barre coulissante)",
 	"language": "fr",
 	"category": "Correctifs",
-	"description": "Émule l’élément <input type=\"range\"> pour les navigateurs qui ne le supportent pas.",
+	"description": "Émule l’élément <input type=\"range\"> pour les navigateurs qui ne le supportent pas. Le <input type=\"range\"> permet d'afficher une barre coulissante.",
 	"tag": "slider",
 	"parentdir": "slider",
 	"altLangPrefix": "slider",
 	"js": ["demo/slider"],
-	"dateModified": "2014-04-28"
+	"dateModified": "2014-07-20"
 }
 ---
-<div>
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<h2>But</h2>
+	<p>Le <code>&lt;input type="range" /&gt;</code> permet d'afficher une barre coulissante. Étant donné que certains navigateurs ne prennent pas en charge cette fonctionnalité à l'origine, ce correctif émule la même fonctionnalité en utilisant HTML générique et WAI-ARIA.</p>
+</section>
+
+<section>
+	<h2>Attributs pertinents</h2>
 	<p>Utilisez les attributs suivants pour spécifier les restrictions:</p>
 	<ul>
 		<li>max - spécifie la valeur maximale autorisée</li>
@@ -19,40 +27,47 @@
 		<li>step - spécifie la valeur d'intervalles (augmentations)</li>
 		<li>value - spécifie la valeur par défaut</li>
 	</ul>
-</div>
+</section>
 
-<div class="wet-boew-prettify all-pre">
+<section>
+	<h2>Exemples</h2>
 	<section>
 		<h3>Étendue&#160;: 0 à 100 avec les augmentations de 1 <span id="html5shim-1-out"></span></h3>
 		<p><input name="html5shim-1" id="html5shim-1" type="range" min="0" max="100" step="1" title="Étendue&#160;: 0 à 100 avec les augmentations de 10" value="50" /></p>
+		<details>
+			<summary>Visualiser le code</summary>
+			<pre><code>&lt;input name="html5shim-1" id="html5shim-1" type="range" min="0" max="100" step="1" title="Étendue&#160;: 0 à 100 avec les augmentations de 10" value="50" /&gt;</code></pre>
+		</details>
 	</section>
-	<section>
-		<h3>Code</h3>
-		<pre><code>&lt;input name="html5shim-1" id="html5shim-1" type="range" min="0" max="100" step="1" title="Étendue&#160;: 0 à 100 avec les augmentations de 10" value="50" /&gt;</code></pre>
-	</section>
+
 	<section>
 		<h3>Étendue&#160;: 20 à 50 avec les augmentations de 10 <span id="html5shim-2-out"></span></h3>
 		<p><input name="html5shim-2" id="html5shim-2" type="range" min="20" max="50" step="10" title="Étendue&#160;: 20 à 50 avec les augmentations de 10" value="20" /></p>
+		<details>
+			<summary>Visualiser le code</summary>
+			<pre><code>&lt;input name="html5shim-2" id="html5shim-2" type="range" min="20" max="50" step="10" title="Étendue&#160;: 20 à 50 avec les augmentations de 10" value="20" /&gt;</code></pre>
+		</details>
 	</section>
-	<section>
-		<h3>Code</h3>
-		<pre><code>&lt;input name="html5shim-2" id="html5shim-2" type="range" min="20" max="50" step="10" title="Étendue&#160;: 20 à 50 avec les augmentations de 10" value="20" /&gt;</code></pre>
-	</section>
+
 	<section>
 		<h3>Étendue&#160;: Créée programmaticalement <span id="html5shim-3-out"></span></h3>
 		<p id="slider-prg"></p>
-	</section>
-	<section>
-		<h3>Code</h3>
-		<pre><code>&lt;p id="slider-prg"&gt;&lt;/p&gt;
-&lt;script&gt;
-$slider = $( "&lt;input name='html5shim-3' id='html5shim-3' type='range' value='50'/&gt;" );
+		<details>
+			<summary>Visualiser le code</summary>
+			<section>
+				<h4>HTML</h4>
+				<pre><code>&lt;p id=&quot;slider-prg&quot;&gt;&lt;/p&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>JavaScript</h4>
+				<pre><code>$slider = $( "&lt;input name='html5shim-3' id='html5shim-3' type='range' value='50'/&gt;" );
 $slider.appendTo( "#slider-prg" ).trigger( "wb-init.wb-slider" );
 setTimeout( function() {
 	$slider.get( 0 ).value = 85;
 	$slider.trigger( "wb-update.wb-slider" );
-}, 2000);
-&lt;/script&gt;
-</code></pre>
+}, 2000);</code></pre>
+			</section>
+		</details>
 	</section>
-</div>
+</section>

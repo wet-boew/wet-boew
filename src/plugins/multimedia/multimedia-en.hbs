@@ -7,14 +7,17 @@
 	"tag": "multimedia",
 	"parentdir": "multimedia",
 	"altLangPrefix": "multimedia",
-	"dateModified": "2014-06-10"
+	"dateModified": "2014-07-20"
 }
 ---
+<span class="wb-prettify all-pre hide"></span>
+
 <div class="row">
-	<div class="col-md-12">
-		<p>For video, the multimedia player leverages the native HTML5 video tag and relies on Flash as a fallback mechanism when the HTML5 video tag is not implemented. The MPEG 4 format (H264 codec) is the minimum requirement for video because the Flash fallback relies on it and H264 is the standard video format on many mobile devices. An optional but highly recommended Webm (VP8 codec) should be added as well to allow some browsers such as Firefox that do not include native support for H264 to leverage the native HTML5 performance gains.</p>
-		<p>The multimedia player's timeline relies on the HTML5 progress element and uses a polyfill when the element is not supported.</p>
-	</div>
+	<section class="col-md-12">
+		<h2>Overview</h2>
+		<p>For video, the multimedia player leverages the native HTML5 <code>video</code> tag and relies on Flash as a fallback mechanism when the HTML5 <code>video</code> tag is not implemented. The MPEG 4 format (H264 codec) is the minimum requirement for video because the Flash fallback relies on it and H264 is the standard video format on many mobile devices. An optional but highly recommended Webm (VP8 codec) should be added as well to allow some browsers such as Firefox that do not include native support for H264 to leverage the native HTML5 performance gains.</p>
+		<p>The multimedia player's timeline relies on the HTML5 <code>progress</code> element and uses a polyfill when the element is not supported.</p>
+	</section>
 </div>
 
 <section>
@@ -38,7 +41,90 @@
 					<p>Looking for a Job (<a href="http://www.servicecanada.gc.ca/eng/video/lj.shtml">Transcript</a>)</p>
 				</figcaption>
 			</figure>
+
+			<details class="mrgn-tp-md">
+				<summary>View code</summary>
+				<section>
+					<h4>In-page HTML</h4>
+					<pre><code>&lt;figure class=&quot;wb-mltmd&quot; data-wb-mltmd='{&quot;shareUrl&quot;: &quot;http://youtu.be/p2-1ZIHu1W0&quot;}'&gt;
+	&lt;video poster=&quot;http://www.servicecanada.gc.ca/eng/video/images/te-lj-eng.jpg&quot; title=&quot;Looking for a Job&quot;&gt;
+		&lt;source type=&quot;video/webm&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.webm&quot; /&gt;
+		&lt;source type=&quot;video/mp4&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4&quot; /&gt;
+		&lt;track src=&quot;cpts-lg-en.html&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
+	&lt;/video&gt;
+	&lt;figcaption&gt;
+		&lt;p&gt;Looking for a Job (&lt;a href=&quot;http://www.servicecanada.gc.ca/eng/video/lj.shtml&quot;&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+				</section>
+
+				<section>
+					<h4>cpts-lg-en.html</h4>
+					<pre><code>&lt;div id=&quot;inline-captions&quot;&gt;
+	&lt;section&gt;
+		&lt;h2&gt;Transcript&lt;/h2&gt;
+		&lt;p class=&quot;wb-vd&quot;&gt;&lt;strong&gt;(Animated pen draws a red line that leads into the text Looking for A Job)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot;&gt;&lt;strong&gt;(Cut to a medium shot of the Host. LINE DRAWING GRAPHIC: Stick person appears and waves.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;2.50s&quot; data-dur=&quot;3.84s&quot;&gt;Hi, my name is Eric, and I&amp;#39;m a Service Canada employee.&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;6.34s&quot; data-dur=&quot;1.87s&quot;&gt;You may have heard the old saying that, &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;8.21s&quot; data-dur=&quot;1.84s&quot;&gt;when you&amp;#39;re out of work, finding a job is your &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;10.04s&quot; data-dur=&quot;1.70s&quot;&gt;full-time occupation.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot;&gt;&lt;strong&gt;(LINE DRAWING GRAPHIC: Stick person walks to right side of screen. Screenshot of job bank website appears in animated computer screen.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;11.75s&quot; data-dur=&quot;2.40s&quot;&gt;Well, there&amp;#39;s a lot of truth to that:&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;14.15s&quot; data-dur=&quot;2.57s&quot;&gt;finding a job does take time… and effort.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot;&gt;&lt;strong&gt;(LINE DRAWING GRAPHIC: Stick person rests head against computer screen in discouragement. But then perks-up.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;16.72s&quot; data-dur=&quot;1.40s&quot;&gt;But don&amp;#39;t get discouraged.&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;18.12s&quot; data-dur=&quot;1.90s&quot;&gt;There are a number of online tools and programs available &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;20.02s&quot; data-dur=&quot;1.94s&quot;&gt;to help you find a job.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot;&gt;&lt;strong&gt;(Close-up of the Host.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;21.96s&quot; data-dur=&quot;2.30s&quot;&gt;No matter what you&amp;#39;re looking for there are many Web sites &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;24.26s&quot; data-dur=&quot;2.37s&quot;&gt;where employers post job notices looking for people &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;26.63s&quot; data-dur=&quot;1.90s&quot;&gt;to fill vacant positions.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot;&gt;&lt;strong&gt;(Job Bank website reappears.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;28.53s&quot; data-dur=&quot;2.34s&quot;&gt;One of these sites is called Job Bank.&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;30.86s&quot; data-dur=&quot;2.17s&quot;&gt;It&amp;#39;s updated every day, and lists job opportunities &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;33.03s&quot; data-dur=&quot;2.17s&quot;&gt;that are available across the country.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot;&gt;&lt;strong&gt;(Close-up of the screen. Stick person’s profile. Words “Updated Daily and “48 Hours” appear on screen.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;35.20s&quot; data-dur=&quot;2.30s&quot;&gt;Since the job ads on Job Bank are updated daily, &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;37.50s&quot; data-dur=&quot;2.20s&quot;&gt;you should check them regularly.&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;39.71s&quot; data-dur=&quot;3.57s&quot;&gt;And, you can search for jobs posted in the last 48 hours.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot;&gt;&lt;strong&gt;(Words “Advertise your Skills” and “Email your matches” appear on screen.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;43.28s&quot; data-dur=&quot;2.40s&quot;&gt;On Job Bank you can also advertise your skills, &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;45.68s&quot; data-dur=&quot;2.57s&quot;&gt;and even ask them to send you e-mails when jobs &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;48.25s&quot; data-dur=&quot;2.34s&quot;&gt;that match your search criteria are posted.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot;&gt;&lt;strong&gt;(Close-up of the Host. LINE DRAWING GRAPHIC: of the Parliament Building. The web address jobs.gc.ca appears in large letters on the front lawn, stick person points to words.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;50.58s&quot; data-dur=&quot;1.80s&quot;&gt;If you&amp;#39;re thinking about working in the public sector, &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;52.39s&quot; data-dur=&quot;2.70s&quot;&gt;jobs.gc.ca is the official Web site &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;55.09s&quot; data-dur=&quot;2.90s&quot;&gt;for Government of Canada listings open to the public.&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;57.99s&quot; data-dur=&quot;1.57s&quot;&gt;Keep in mind, that some departments, &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;59.56s&quot; data-dur=&quot;2.50s&quot;&gt;like the Canada Revenue Agency and Parks Canada, &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;62.06s&quot; data-dur=&quot;2.34s&quot;&gt;post jobs on their own sites too.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot;&gt;&lt;strong&gt;(Medium shot of the Host. LINE DRAWING GRAPHIC: stick person points to Job Bank web page, where words “User ID” and “Password” are highlighted.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;64.40s&quot; data-dur=&quot;2.44s&quot;&gt;When you apply for jobs, potential employers might ask &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;66.83s&quot; data-dur=&quot;2.34s&quot;&gt;you to send them your résumé and a covering letter.&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;69.17s&quot; data-dur=&quot;2.17s&quot;&gt;Of course, you&amp;#39;ll want to make a good first impression &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;71.34s&quot; data-dur=&quot;2.04s&quot;&gt;on any potential employer.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot;&gt;&lt;strong&gt;(The text Résumé Builder appears across stick person’s screen.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;73.37s&quot; data-dur=&quot;1.57s&quot;&gt;Here we can help too!&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;74.94s&quot; data-dur=&quot;1.67s&quot;&gt;Check out our online Résumé Builder &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;76.61s&quot; data-dur=&quot;1.84s&quot;&gt;on the Job Bank Web site.&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;78.45s&quot; data-dur=&quot;2.04s&quot;&gt;It can show you how to create a first-class résumé &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;80.48s&quot; data-dur=&quot;2.64s&quot;&gt;by giving you tips and different layout options.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot;&gt;&lt;strong&gt;(Medium shot of the Host. LINE DRAWING GRAPHIC: one stick person talks to another stick person behind a desk labelled Career Counsellor.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;83.12s&quot; data-dur=&quot;2.24s&quot;&gt;And if you&amp;#39;re not sure which jobs you&amp;#39;d like to apply for, &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;85.35s&quot; data-dur=&quot;2.54s&quot;&gt;check out our Career Navigator tool to explore &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;87.89s&quot; data-dur=&quot;2.44s&quot;&gt;occupations that you might be interested in.&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;90.32s&quot; data-dur=&quot;2.90s&quot;&gt;As well, career counsellors are usually available through &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;93.23s&quot; data-dur=&quot;2.44s&quot;&gt;your provincial or territorial government to help out.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot;&gt;&lt;strong&gt;(Close-up of the Host. LINE DRAWING GRAPHIC: Stick person take a bow. Service Canada logo appears.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;95.66s&quot; data-dur=&quot;3.00s&quot;&gt;At Service Canada, we&amp;#39;re people serving people.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot;&gt;&lt;strong&gt;(Dip to black.)&lt;/strong&gt;&lt;/p&gt;
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
+				</section>
+			</details>
 		</section>
+
 		<section class="col-md-6">
 			<h3 class="wb-inv">MPEG4 (H264 + AAC) and WebM (VP8) source and HTML captions</h3>
 			<figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "http://youtu.be/jmNmrubTNI4"}'>
@@ -51,8 +137,97 @@
 					<p>Training and Development (<a href="http://www.servicecanada.gc.ca/eng/video/td.shtml">Transcript</a>)</p>
 				</figcaption>
 			</figure>
+
+			<details class="mrgn-tp-md">
+				<summary>View code</summary>
+				<section>
+					<h4>In-page HTML</h4>
+					<pre><code>&lt;figure class=&quot;wb-mltmd&quot; data-wb-mltmd='{&quot;shareUrl&quot;: &quot;http://youtu.be/jmNmrubTNI4&quot;}'&gt;
+	&lt;video poster=&quot;http://www.servicecanada.gc.ca/eng/video/images/dc-td-eng.jpg&quot; title=&quot;Training and Development&quot;&gt;
+		&lt;source type=&quot;video/webm&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/dc-td-eng.webm&quot; /&gt;
+		&lt;source type=&quot;video/mp4&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/dc-td-eng.mp4&quot; /&gt;
+		&lt;track src=&quot;cpts-lg2-en.html&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
+	&lt;/video&gt;
+	&lt;figcaption&gt;
+		&lt;p&gt;Training and Development (&lt;a href=&quot;http://www.servicecanada.gc.ca/eng/video/td.shtml&quot;&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+				</section>
+
+				<section>
+					<h4>cpts-lg2-en.html</h4>
+					<pre><code>&lt;div id=&quot;inline-captions&quot;&gt;
+	&lt;section&gt;
+		&lt;h2&gt;Transcript&lt;/h2&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(Animated pen draws a red line that leads into the text Training and development.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;1.40s&quot; data-dur=&quot;3.33s&quot; data-load=&quot;tt&quot;&gt;Hi, my name is Eric, and I'm a Service Canada employee.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(Cut to a close-up of the Host.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;4.73s&quot; data-dur=&quot;2.73s&quot; data-load=&quot;tt&quot;&gt;Each and every day, Canadians are improving their job &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;7.46s&quot; data-dur=&quot;2.14s&quot; data-load=&quot;tt&quot;&gt;skills or changing their career paths.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(LINE DRAWING GRAPHIC: Stairs appear and our stick person walks towards them, stops. Question marks appear around his head.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;9.60s&quot; data-dur=&quot;1.66s&quot; data-load=&quot;tt&quot;&gt;Are you thinking about taking that step?&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;11.26s&quot; data-dur=&quot;2.04s&quot; data-load=&quot;tt&quot;&gt;If so, did you know that you can research &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;13.30s&quot; data-dur=&quot;2.40s&quot; data-load=&quot;tt&quot;&gt;more than 300 job profiles online?&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(LINE DRAWING GRAPHIC: Stick person appears with briefcase. And then wearing a hard hat and swinging a hammer.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;15.70s&quot; data-dur=&quot;2.30s&quot; data-load=&quot;tt&quot;&gt;Plus, you can find out what skills you'll need &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;18.00s&quot; data-dur=&quot;1.70s&quot; data-load=&quot;tt&quot;&gt;to get the job that interests you.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(Medium shot of Host. LINE DRAWING GRAPHIC: The (actual) Job Bank’s Training and learning page appears. The words “Training, Career and Worker Information” are highlighted.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;19.70s&quot; data-dur=&quot;2.43s&quot; data-load=&quot;tt&quot;&gt;Job Bank's Training and Careers site lets you explore &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;22.13s&quot; data-dur=&quot;3.07s&quot; data-load=&quot;tt&quot;&gt;adult-learning choices and explains the various options &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;25.20s&quot; data-dur=&quot;1.93s&quot; data-load=&quot;tt&quot;&gt;that are available to help you pay &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;27.13s&quot; data-dur=&quot;1.50s&quot; data-load=&quot;tt&quot;&gt;for the training you need.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(Medium shot of Host.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;28.63s&quot; data-dur=&quot;1.80s&quot; data-load=&quot;tt&quot;&gt;You can even find counsellors, teachers, &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;30.43s&quot; data-dur=&quot;2.10s&quot; data-load=&quot;tt&quot;&gt;and other resources near you if you'd like to have &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;32.53s&quot; data-dur=&quot;2.13s&quot; data-load=&quot;tt&quot;&gt;more information before you make a decision.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(Medium shot of Host.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;34.66s&quot; data-dur=&quot;1.74s&quot; data-load=&quot;tt&quot;&gt;And the support doesn't end there.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(Medium shot of Host. (actual) Service Canada home page. Dissolve to (actual) Labour Market Information site.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;36.40s&quot; data-dur=&quot;2.73s&quot; data-load=&quot;tt&quot;&gt;From the alphabetical index on our Service Canada home page, &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;39.13s&quot; data-dur=&quot;2.93s&quot; data-load=&quot;tt&quot;&gt;you can link to the Labour Market Information site.&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;42.06s&quot; data-dur=&quot;2.10s&quot; data-load=&quot;tt&quot;&gt;There, you'll find out what kinds of jobs are available, &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;44.16s&quot; data-dur=&quot;2.50s&quot; data-load=&quot;tt&quot;&gt;by area, across the country, and what skills you'll need &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;46.66s&quot; data-dur=&quot;1.74s&quot; data-load=&quot;tt&quot;&gt;to get those jobs.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(Medium shot of Host. LINE DRAWING GRAPHIC: our stick person in a classroom setting.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;48.40s&quot; data-dur=&quot;2.23s&quot; data-load=&quot;tt&quot;&gt;But, what if you decide to go for full-time training?&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;50.63s&quot; data-dur=&quot;2.67s&quot; data-load=&quot;tt&quot;&gt;Well, there are a number of loans and grants available &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;53.30s&quot; data-dur=&quot;2.13s&quot; data-load=&quot;tt&quot;&gt;that could help you with the costs.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(Medium shot of Host.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;55.43s&quot; data-dur=&quot;2.33s&quot; data-load=&quot;tt&quot;&gt;For example, there's the Apprenticeship Incentive Grant &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;57.76s&quot; data-dur=&quot;2.20s&quot; data-load=&quot;tt&quot;&gt;for those who've completed the first or second level &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;59.96s&quot; data-dur=&quot;1.60s&quot; data-load=&quot;tt&quot;&gt;of their apprenticeship.&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;61.56s&quot; data-dur=&quot;2.54s&quot; data-load=&quot;tt&quot;&gt;And for those who've completed the entire apprenticeship, &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;64.10s&quot; data-dur=&quot;1.30s&quot; data-load=&quot;tt&quot;&gt;in a specific trade, &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;65.40s&quot; data-dur=&quot;2.06s&quot; data-load=&quot;tt&quot;&gt;there's the Apprenticeship Completion Grant.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(Show (actual) Canada Student Loans Program – Permanent Disability Benefit web page. Words “Student Loans Program” and “Study Grant” appear.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;67.46s&quot; data-dur=&quot;1.67s&quot; data-load=&quot;tt&quot;&gt;If you have a permanent disability, &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;69.13s&quot; data-dur=&quot;2.50s&quot; data-load=&quot;tt&quot;&gt;you may want to look into the Canada Student Loans program, &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;71.63s&quot; data-dur=&quot;2.20s&quot; data-load=&quot;tt&quot;&gt;or apply for a study grant.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(Show main Life-Long Learning Plan program pages.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;73.83s&quot; data-dur=&quot;2.70s&quot; data-load=&quot;tt&quot;&gt;Under the Life-Long Learning Plan program, &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;76.53s&quot; data-dur=&quot;2.73s&quot; data-load=&quot;tt&quot;&gt;you can find out how to use some of your RRSP funds &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;79.26s&quot; data-dur=&quot;2.37s&quot; data-load=&quot;tt&quot;&gt;to pay for your education or training.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(Medium shot of Host.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;81.63s&quot; data-dur=&quot;2.47s&quot; data-load=&quot;tt&quot;&gt;Whatever you see yourself doing, &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;84.10s&quot; data-dur=&quot;2.73s&quot; data-load=&quot;tt&quot;&gt;why not take the time to discover all your options?&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(LINE DRAWING GRAPHIC: our stick person waves.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;86.83s&quot; data-dur=&quot;2.73s&quot; data-load=&quot;tt&quot;&gt;Doing your homework now can help you get &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;89.56s&quot; data-dur=&quot;2.74s&quot; data-load=&quot;tt&quot;&gt;on the right path to finding the work you want.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(Our stick person appears typing at computer and desk. (actual) Canada homepage, Job Bank and LMI pages loom out from the computer.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;92.30s&quot; data-dur=&quot;2.40s&quot; data-load=&quot;tt&quot;&gt;Be sure to check out our Service Canada Web site.&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;94.70s&quot; data-dur=&quot;1.80s&quot; data-load=&quot;tt&quot;&gt;There you'll find the tools and information &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;96.50s&quot; data-dur=&quot;1.80s&quot; data-load=&quot;tt&quot;&gt;you need to continue your education and training.&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;98.30s&quot; data-dur=&quot;2.53s&quot; data-load=&quot;tt&quot;&gt;It really is time well spent.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(Tight shot of the Host. LINE DRAWING GRAPHIC: Service Canada logo. Stick person takes a bow.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;100.83s&quot; data-dur=&quot;2.70s&quot; data-load=&quot;tt&quot;&gt;At Service Canada, we're people serving people.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(Dip to black.)&lt;/strong&gt;&lt;/p&gt;
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
+				</section>
+			</details>
 		</section>
 	</div>
+
 	<div class="row">
 		<section class="col-md-12">
 			<h3>MPEG4 (H264 + AAC) source with inline HTML captions</h3>
@@ -124,6 +299,77 @@
 					</details>
 				</figcaption>
 			</figure>
+
+			<details class="mrgn-tp-md">
+				<summary>View code</summary>
+				<pre><code>&lt;figure class=&quot;wb-mltmd&quot;&gt;
+	&lt;video poster=&quot;http://www.servicecanada.gc.ca/eng/video/images/te-lj-eng.jpg&quot; title=&quot;Looking for a Job&quot;&gt;
+		&lt;source type=&quot;video/mp4&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4&quot; /&gt;
+		&lt;track src=&quot;#inline-captions&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
+	&lt;/video&gt;
+	&lt;figcaption&gt;
+		&lt;details id=&quot;inline-captions&quot;&gt;
+			&lt;summary&gt;Looking for a Job - HTML5 Transcript/Captions&lt;/summary&gt;
+			&lt;p class=&quot;wet-boew-vd&quot;&gt;&lt;strong&gt;(Animated pen draws a red line that leads into the text Looking for A Job)&lt;/strong&gt;&lt;/p&gt;
+			&lt;p class=&quot;wet-boew-vd&quot;&gt;&lt;strong&gt;(Cut to a medium shot of the Host. LINE DRAWING GRAPHIC: Stick person appears and waves.)&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;2.50s&quot; data-dur=&quot;3.84s&quot;&gt;Hi, my name is Eric, and I&amp;#39;m a Service Canada employee.&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;6.34s&quot; data-dur=&quot;1.87s&quot;&gt;You may have heard the old saying that, &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;8.21s&quot; data-dur=&quot;1.84s&quot;&gt;when you&amp;#39;re out of work, finding a job is your &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;10.04s&quot; data-dur=&quot;1.70s&quot;&gt;full-time occupation.&lt;/span&gt;&lt;/p&gt;
+			&lt;p class=&quot;wet-boew-vd&quot;&gt;&lt;strong&gt;(LINE DRAWING GRAPHIC: Stick person walks to right side of screen. Screenshot of job bank website appears in animated computer screen.)&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;11.75s&quot; data-dur=&quot;2.40s&quot;&gt;Well, there&amp;#39;s a lot of truth to that:&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;14.15s&quot; data-dur=&quot;2.57s&quot;&gt;finding a job does take time… and effort.&lt;/span&gt;&lt;/p&gt;
+			&lt;p class=&quot;wet-boew-vd&quot;&gt;&lt;strong&gt;(LINE DRAWING GRAPHIC: Stick person rests head against computer screen in discouragement. But then perks-up.)&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;16.72s&quot; data-dur=&quot;1.40s&quot;&gt;But don&amp;#39;t get discouraged.&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;18.12s&quot; data-dur=&quot;1.90s&quot;&gt;There are a number of online tools and programs available &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;20.02s&quot; data-dur=&quot;1.94s&quot;&gt;to help you find a job.&lt;/span&gt;&lt;/p&gt;
+			&lt;p class=&quot;wet-boew-vd&quot;&gt;&lt;strong&gt;(Close-up of the Host.)&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;21.96s&quot; data-dur=&quot;2.30s&quot;&gt;No matter what you&amp;#39;re looking for there are many Web sites &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;24.26s&quot; data-dur=&quot;2.37s&quot;&gt;where employers post job notices looking for people &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;26.63s&quot; data-dur=&quot;1.90s&quot;&gt;to fill vacant positions.&lt;/span&gt;&lt;/p&gt;
+			&lt;p class=&quot;wet-boew-vd&quot;&gt;&lt;strong&gt;(Job Bank website reappears.)&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;28.53s&quot; data-dur=&quot;2.34s&quot;&gt;One of these sites is called Job Bank.&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;30.86s&quot; data-dur=&quot;2.17s&quot;&gt;It&amp;#39;s updated every day, and lists job opportunities &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;33.03s&quot; data-dur=&quot;2.17s&quot;&gt;that are available across the country.&lt;/span&gt;&lt;/p&gt;
+			&lt;p class=&quot;wet-boew-vd&quot;&gt;&lt;strong&gt;(Close-up of the screen. Stick person’s profile. Words “Updated Daily and “48 Hours” appear on screen.)&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;35.20s&quot; data-dur=&quot;2.30s&quot;&gt;Since the job ads on Job Bank are updated daily, &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;37.50s&quot; data-dur=&quot;2.20s&quot;&gt;you should check them regularly.&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;39.71s&quot; data-dur=&quot;3.57s&quot;&gt;And, you can search for jobs posted in the last 48 hours.&lt;/span&gt;&lt;/p&gt;
+			&lt;p class=&quot;wet-boew-vd&quot;&gt;&lt;strong&gt;(Words “Advertise your Skills” and “Email your matches” appear on screen.)&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;43.28s&quot; data-dur=&quot;2.40s&quot;&gt;On Job Bank you can also advertise your skills, &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;45.68s&quot; data-dur=&quot;2.57s&quot;&gt;and even ask them to send you e-mails when jobs &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;48.25s&quot; data-dur=&quot;2.34s&quot;&gt;that match your search criteria are posted.&lt;/span&gt;&lt;/p&gt;
+			&lt;p class=&quot;wet-boew-vd&quot;&gt;&lt;strong&gt;(Close-up of the Host. LINE DRAWING GRAPHIC: of the Parliament Building. The web address jobs.gc.ca appears in large letters on the front lawn, stick person points to words.)&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;50.58s&quot; data-dur=&quot;1.80s&quot;&gt;If you&amp;#39;re thinking about working in the public sector, &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;52.39s&quot; data-dur=&quot;2.70s&quot;&gt;jobs.gc.ca is the official Web site &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;55.09s&quot; data-dur=&quot;2.90s&quot;&gt;for Government of Canada listings open to the public.&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;57.99s&quot; data-dur=&quot;1.57s&quot;&gt;Keep in mind, that some departments, &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;59.56s&quot; data-dur=&quot;2.50s&quot;&gt;like the Canada Revenue Agency and Parks Canada, &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;62.06s&quot; data-dur=&quot;2.34s&quot;&gt;post jobs on their own sites too.&lt;/span&gt;&lt;/p&gt;
+			&lt;p class=&quot;wet-boew-vd&quot;&gt;&lt;strong&gt;(Medium shot of the Host. LINE DRAWING GRAPHIC: stick person points to Job Bank web page, where words “User ID” and “Password” are highlighted.)&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;64.40s&quot; data-dur=&quot;2.44s&quot;&gt;When you apply for jobs, potential employers might ask &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;66.83s&quot; data-dur=&quot;2.34s&quot;&gt;you to send them your résumé and a covering letter.&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;69.17s&quot; data-dur=&quot;2.17s&quot;&gt;Of course, you&amp;#39;ll want to make a good first impression &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;71.34s&quot; data-dur=&quot;2.04s&quot;&gt;on any potential employer.&lt;/span&gt;&lt;/p&gt;
+			&lt;p class=&quot;wet-boew-vd&quot;&gt;&lt;strong&gt;(The text Résumé Builder appears across stick person’s screen.)&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;73.37s&quot; data-dur=&quot;1.57s&quot;&gt;Here we can help too!&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;74.94s&quot; data-dur=&quot;1.67s&quot;&gt;Check out our online Résumé Builder &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;76.61s&quot; data-dur=&quot;1.84s&quot;&gt;on the Job Bank Web site.&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;78.45s&quot; data-dur=&quot;2.04s&quot;&gt;It can show you how to create a first-class résumé &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;80.48s&quot; data-dur=&quot;2.64s&quot;&gt;by giving you tips and different layout options.&lt;/span&gt;&lt;/p&gt;
+			&lt;p class=&quot;wet-boew-vd&quot;&gt;&lt;strong&gt;(Medium shot of the Host. LINE DRAWING GRAPHIC: one stick person talks to another stick person behind a desk labelled Career Counsellor.)&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;83.12s&quot; data-dur=&quot;2.24s&quot;&gt;And if you&amp;#39;re not sure which jobs you&amp;#39;d like to apply for, &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;85.35s&quot; data-dur=&quot;2.54s&quot;&gt;check out our Career Navigator tool to explore &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;87.89s&quot; data-dur=&quot;2.44s&quot;&gt;occupations that you might be interested in.&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;90.32s&quot; data-dur=&quot;2.90s&quot;&gt;As well, career counsellors are usually available through &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;93.23s&quot; data-dur=&quot;2.44s&quot;&gt;your provincial or territorial government to help out.&lt;/span&gt;&lt;/p&gt;
+			&lt;p class=&quot;wet-boew-vd&quot;&gt;&lt;strong&gt;(Close-up of the Host. LINE DRAWING GRAPHIC: Stick person take a bow. Service Canada logo appears.)&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;95.66s&quot; data-dur=&quot;3.00s&quot;&gt;At Service Canada, we&amp;#39;re people serving people.&lt;/span&gt;&lt;/p&gt;
+			&lt;p class=&quot;wet-boew-vd&quot;&gt;&lt;strong&gt;(Dip to black.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;/details&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+			</details>
 		</section>
 	</div>
 </section>

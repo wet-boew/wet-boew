@@ -439,69 +439,69 @@
 
 					<section>
 						<h5>JavaScript</h5>
-						<pre><code>$( document ).on( "click vclick", "#lbx-open-btn", function( event ) {
-	var value = $( "#lbx-select" ).val();
+						<pre><code>$( document ).on( &quot;click vclick&quot;, &quot;#lbx-open-btn&quot;, function( event ) {
+	var value = $( &quot;#lbx-select&quot; ).val();
 
-	if ( value === "1" ) {
-		wb.doc.trigger( "open.wb-lbx", [
+	if ( value === &quot;1&quot; ) {
+		wb.doc.trigger( &quot;open.wb-lbx&quot;, [
 			[
 				{
-					src: "demo/1_b.jpg",
-					type: "image"
+					src: &quot;demo/1_b.jpg&quot;,
+					type: &quot;image&quot;
 				}
 			],
 			false,
 			[
-				"Image 1"
+				&quot;Image 1&quot;
 			]
 		]);
-	} else if ( value === "2" ) {
-		wb.doc.trigger( "open.wb-lbx", [
+	} else if ( value === &quot;2&quot; ) {
+		wb.doc.trigger( &quot;open.wb-lbx&quot;, [
 			[
 				{
-					src: "ajax/ajax1-en.html",
-					type: "ajax"
+					src: &quot;ajax/ajax1-en.html&quot;,
+					type: &quot;ajax&quot;
 				}
 			]
 		]);
-	} else if ( value === "3" ) {
-		wb.doc.trigger( "open.wb-lbx", [
+	} else if ( value === &quot;3&quot; ) {
+		wb.doc.trigger( &quot;open.wb-lbx&quot;, [
 			[
 				{
-					src: "#inline_content",
-					type: "inline"
+					src: &quot;#inline_content&quot;,
+					type: &quot;inline&quot;
 				}
 			]
 		]);
-	} else if ( value === "4" ) {
-		wb.doc.trigger( "open.wb-lbx", [
+	} else if ( value === &quot;4&quot; ) {
+		wb.doc.trigger( &quot;open.wb-lbx&quot;, [
 			[
 				{
-					src: "#inline_content_modal",
-					type: "inline"
+					src: &quot;#inline_content_modal&quot;,
+					type: &quot;inline&quot;
 				}
 			],
 			true
 		]);
-	} else if ( value === "5" ) {
-		wb.doc.trigger( "open.wb-lbx", [
+	} else if ( value === &quot;5&quot; ) {
+		wb.doc.trigger( &quot;open.wb-lbx&quot;, [
 			[
 				{
-					src: "demo/1_b.jpg",
-					type: "image"
+					src: &quot;demo/1_b.jpg&quot;,
+					type: &quot;image&quot;
 				}, {
-					src: "demo/2_b.jpg",
-					type: "image"
+					src: &quot;demo/2_b.jpg&quot;,
+					type: &quot;image&quot;
 				}, {
-					src: "demo/3_b.jpg",
-					type: "image"
+					src: &quot;demo/3_b.jpg&quot;,
+					type: &quot;image&quot;
 				}
 			],
 			false,
 			[
-				"Image 1",
-				"Image 2",
-				"Image 3"
+				&quot;Image 1&quot;,
+				&quot;Image 2&quot;,
+				&quot;Image 3&quot;
 			]
 		]);
 	}

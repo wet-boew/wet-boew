@@ -800,9 +800,10 @@ module.exports = (grunt) ->
 						"The “details” element is not supported properly by browsers yet. It would probably be better to wait for implementations."
 						"The value of attribute “title” on element “a” from namespace “http://www.w3.org/1999/xhtml” is not in Unicode Normalization Form C." #required for vietnamese translations
 						"Text run is not in Unicode Normalization Form C." #required for vietnamese translations
+						"Start tag seen without seeing a doctype first. Expected “<!DOCTYPE html>”."
 					]
 				src: [
-					"dist/unmin/demos/cal-events/ajax/**/*.html"
+					"dist/unmin/demos/**/ajax/**/*.html"
 					"dist/unmin/assets/*.html"
 				]
 			all:

@@ -8,7 +8,7 @@
 	"parentdir": "data-ajax",
 	"altLangPrefix": "data-ajax",
 	"css": ["demo/data-ajax"],
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-07-19"
 }
 ---
 <p>A basic AjaxLoader wrapper that inserts AJAXed in content.</p>
@@ -27,7 +27,9 @@
 		</section>
 		<details>
 			<summary>View code</summary>
-			<pre><code>&lt;section data-ajax-after="ajax/data-ajax-extra-en.html" class="original"&gt;
+			<section>
+				<h4>In-page HTML</h4>
+				<pre><code>&lt;section data-ajax-after="ajax/data-ajax-extra-en.html" class="original"&gt;
 	&lt;h4&gt;Hello World&lt;/h4&gt;
 	&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
 &lt;/section&gt;
@@ -35,6 +37,23 @@
 	&lt;h4&gt;Hello World - Part 2&lt;/h4&gt;
 	&lt;p&gt;Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.&lt;/p&gt;
 &lt;/section&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>data-ajax-extra-en.html</h4>
+				<pre><code>&lt;section class=&quot;ajaxed-in&quot;&gt;
+	&lt;h4&gt;J'ai été affiché via Ajax&lt;/h4&gt;
+	&lt;p&gt;J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax. J'ai été affiché via Ajax.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>data-ajax-extra-2-en.html</h4>
+				<pre><code>&lt;section class=&quot;ajaxed-in&quot;&gt;
+	&lt;h4&gt;I was ajaxed in - Part 2&lt;/h4&gt;
+	&lt;p&gt;I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+			</section>
 		</details>
 	</section>
 </section>
@@ -51,12 +70,31 @@
 		</div>
 		<details>
 			<summary>View code</summary>
-			<pre><code>&lt;div data-ajax-append="ajax/data-ajax-extra-en.html" class="original"&gt;
+			<section>
+				<h4>In-page HTML</h4>
+				<pre><code>&lt;div data-ajax-append="ajax/data-ajax-extra-en.html" class="original"&gt;
 	&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div data-ajax-append="ajax/data-ajax-extra-2-en.html" class="original"&gt;
 	&lt;p&gt;Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>data-ajax-extra-en.html</h4>
+				<pre><code>&lt;section class=&quot;ajaxed-in&quot;&gt;
+	&lt;h4&gt;I was ajaxed in&lt;/h4&gt;
+	&lt;p&gt;I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>data-ajax-extra-2-en.html</h4>
+				<pre><code>&lt;section class=&quot;ajaxed-in&quot;&gt;
+	&lt;h4&gt;I was ajaxed in - Part 2&lt;/h4&gt;
+	&lt;p&gt;I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+			</section>
 		</details>
 	</section>
 </section>
@@ -75,7 +113,9 @@
 		</section>
 		<details>
 			<summary>View code</summary>
-			<pre><code>&lt;section data-ajax-before="ajax/data-ajax-extra-en.html" class="original"&gt;
+			<section>
+				<h4>In-page HTML</h4>
+				<pre><code>&lt;section data-ajax-before="ajax/data-ajax-extra-en.html" class="original"&gt;
 	&lt;h4&gt;Hello World&lt;/h4&gt;
 	&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
 &lt;/section&gt;
@@ -83,6 +123,23 @@
 	&lt;h4&gt;Hello World - Part 2&lt;/h4&gt;
 	&lt;p&gt;Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.&lt;/p&gt;
 &lt;/section&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>data-ajax-extra-en.html</h4>
+				<pre><code>&lt;section class=&quot;ajaxed-in&quot;&gt;
+	&lt;h4&gt;I was ajaxed in&lt;/h4&gt;
+	&lt;p&gt;I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>data-ajax-extra-2-en.html</h4>
+				<pre><code>&lt;section class=&quot;ajaxed-in&quot;&gt;
+	&lt;h4&gt;I was ajaxed in - Part 2&lt;/h4&gt;
+	&lt;p&gt;I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+			</section>
 		</details>
 	</section>
 </section>
@@ -99,12 +156,31 @@
 		</div>
 		<details>
 			<summary>View code</summary>
-			<pre><code>&lt;div data-ajax-prepend="ajax/data-ajax-extra-en.html" class="original"&gt;
+			<section>
+				<h4>In-page HTML</h4>
+				<pre><code>&lt;div data-ajax-prepend="ajax/data-ajax-extra-en.html" class="original"&gt;
 	&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div data-ajax-prepend="ajax/data-ajax-extra-2-en.html" class="original"&gt;
 	&lt;p&gt;Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>data-ajax-extra-en.html</h4>
+				<pre><code>&lt;section class=&quot;ajaxed-in&quot;&gt;
+	&lt;h4&gt;I was ajaxed in&lt;/h4&gt;
+	&lt;p&gt;I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>data-ajax-extra-2-en.html</h4>
+				<pre><code>&lt;section class=&quot;ajaxed-in&quot;&gt;
+	&lt;h4&gt;I was ajaxed in - Part 2&lt;/h4&gt;
+	&lt;p&gt;I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+			</section>
 		</details>
 	</section>
 </section>
@@ -127,7 +203,9 @@
 		</div>
 		<details>
 			<summary>View code</summary>
-			<pre><code>&lt;div data-ajax-replace="ajax/data-ajax-extra-en.html" class="original"&gt;
+			<section>
+				<h4>In-page HTML</h4>
+				<pre><code>&lt;div data-ajax-replace="ajax/data-ajax-extra-en.html" class="original"&gt;
 	&lt;section&gt;
 		&lt;h4&gt;Hello World&lt;/h4&gt;
 		&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
@@ -139,6 +217,23 @@
 		&lt;p&gt;Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.&lt;/p&gt;
 	&lt;/section&gt;
 &lt;/div&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>data-ajax-extra-en.html</h4>
+				<pre><code>&lt;section class=&quot;ajaxed-in&quot;&gt;
+	&lt;h4&gt;I was ajaxed in&lt;/h4&gt;
+	&lt;p&gt;I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>data-ajax-extra-2-en.html</h4>
+				<pre><code>&lt;section class=&quot;ajaxed-in&quot;&gt;
+	&lt;h4&gt;I was ajaxed in - Part 2&lt;/h4&gt;
+	&lt;p&gt;I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+			</section>
 		</details>
 	</section>
 </section>
