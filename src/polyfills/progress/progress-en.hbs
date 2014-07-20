@@ -3,19 +3,25 @@
 	"title": "Progress polyfill (progress bar)",
 	"language": "en",
 	"category": "Polyfills",
-	"description": "The <progress> element displays the progress of a task.",
+	"description": "Emulates progress element support for browsers that do not have support. The progress element displays the progress of a task.",
 	"tag": "progress",
 	"parentdir": "progress",
 	"altLangPrefix": "progress",
 	"css": ["demo/progress"],
 	"js": ["demo/progress"],
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-07-20"
 }
 ---
-<p>The HTML5 <code>progress</code> elements is used to provide a progress bar. This component adds support for this elements in browsers that do not already have native support.</p>
+<span class="wb-prettify all-pre hide"></span>
+
+<section>
+	<h2>Purpose</h2>
+	<p>The HTML5 <code>progress</code> element displays the progress of a task. Because some browsers do not support this functionality natively, this polyfill emulates the same functionality using generic HTML and WAI-ARIA.</p>
+</section>
 
 <section>
 	<h2>Examples</h2>
+
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -46,4 +52,63 @@
 			</tr>
 		</tbody>
 	</table>
+
+	<details class="mrgn-bttm-md">
+		<summary>View code</summary>
+		<section>
+			<h3>HTML</h3>
+			<pre><code>&lt;table class=&quot;table table-striped&quot;&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th scope=&quot;col&quot;&gt;Value&lt;/th&gt;
+			&lt;th scope=&quot;col&quot;&gt;Max&lt;/th&gt;
+			&lt;th scope=&quot;col&quot;&gt;Result&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;22&lt;/td&gt;
+			&lt;td&gt;100&lt;/td&gt;
+			&lt;td&gt;&lt;progress value=&quot;22&quot; max=&quot;100&quot;&gt;&lt;span class=&quot;wb-inv&quot;&gt;22%&lt;/span&gt;&lt;/progress&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;198&lt;/td&gt;
+			&lt;td&gt;300&lt;/td&gt;
+			&lt;td&gt;&lt;progress value=&quot;198&quot; max=&quot;300&quot;&gt;&lt;span class=&quot;wb-inv&quot;&gt;66%&lt;/span&gt;&lt;/progress&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;500&lt;/td&gt;
+			&lt;td&gt;500&lt;/td&gt;
+			&lt;td&gt;&lt;progress value=&quot;500&quot; max=&quot;500&quot;&gt;&lt;span class=&quot;wb-inv&quot;&gt;100%&lt;/span&gt;&lt;/progress&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td colspan=&quot;2&quot;&gt;&lt;button class=&quot;btn btn-default&quot; id=&quot;updateProgress&quot;&gt;Update&lt;/button&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;progress id=&quot;updateTest&quot; value=&quot;82&quot; max=&quot;100&quot;&gt;&lt;span class=&quot;wb-inv&quot;&gt;82%&lt;/span&gt;&lt;/progress&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>JavaScript (demo only)</h3>
+			<pre><code>(function( $, wb ) {
+&quot;use strict&quot;;
+
+$( document ).on( &quot;click vclick&quot;, &quot;#updateProgress&quot;, function() {
+	var $elm = $( &quot;#updateTest&quot; ),
+		valuenow = parseInt( $elm.attr( &quot;value&quot; ), 10 ),
+		newValue = valuenow === parseInt( $elm.attr( &quot;max&quot; ), 10 ) ? 0 : valuenow + 1;
+
+	$elm
+		.attr( &quot;value&quot;, newValue )
+		.find( &quot;span&quot; )
+			.text( newValue + &quot;%&quot; );
+
+	// Update the visuals
+	$elm.trigger( &quot;wb-update.wb-progress&quot; );
+});
+
+})( jQuery, wb );</code></pre>
+		</section>
+	</details>
 </section>

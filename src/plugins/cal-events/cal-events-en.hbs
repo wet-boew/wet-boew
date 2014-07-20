@@ -7,14 +7,39 @@
 	"tag": "cal-events",
 	"parentdir": "cal-events",
 	"altLangPrefix": "cal-events",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-07-19"
 }
 ---
+<span class="wb-prettify all-pre"></span>
+
 <section>
 	<h2>Linking Options</h2>
 	<section>
 		<h3>Direct Linking</h3>
 		<p>In this method, the calendar links to the first link in each event (usually in the event heading).</p>
+		<details class="mrgn-bttm-md">
+			<summary>View code</summary>
+			<pre><code>&lt;div id=&quot;calendar1&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;wb-calevt&quot; data-calevt-src=&quot;calendar1&quot;&gt;
+	&lt;ol&gt;
+		&lt;li&gt;
+			&lt;section&gt;
+				&lt;h4&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Single-Day Event&lt;/a&gt;&lt;/h4&gt;
+				&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;March 11th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;p&gt;Event Description&lt;/p&gt;
+			&lt;/section&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;section&gt;
+				&lt;h4&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Multi-Day Event&lt;/a&gt;&lt;/h4&gt;
+				&lt;p&gt;&lt;time datetime=&quot;2013-03-22&quot;&gt;March 22nd, 2013&lt;/time&gt; to &lt;time datetime=&quot;2013-04-26&quot;&gt;April 26th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;p&gt;Event Description&lt;/p&gt;
+			&lt;/section&gt;
+		&lt;/li&gt;
+	&lt;/ol&gt;
+&lt;/div&gt;</code></pre>
+		</details>
+
 		<div id="calendar1"></div>
 		<div class="wb-calevt" data-calevt-src="calendar1">
 			<ol>
@@ -35,9 +60,43 @@
 			</ol>
 		</div>
 	</section>
+
 	<section>
 		<h3>Details Linking</h3>
 		<p>In this method, the calendar links to the details of the event. This is used when an event has multiple links.</p>
+		<details class="mrgn-bttm-md">
+			<summary>View code</summary>
+			<pre><code>&lt;div id=&quot;calendar2&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;wb-calevt evt-anchor&quot; data-calevt-src=&quot;calendar2&quot;&gt;
+	&lt;ol&gt;
+		&lt;li&gt;
+			&lt;section&gt;
+				&lt;h4&gt;Single-Day Event&lt;/h4&gt;
+				&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;March 11th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;p&gt;Event Description&lt;/p&gt;
+				&lt;p&gt;Links:&lt;/p&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Single-Day Event Link 1&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Single-Day Event Link 2&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/section&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;section&gt;
+				&lt;h4&gt;Multi-Day Event&lt;/h4&gt;
+				&lt;p&gt;&lt;time datetime=&quot;2013-03-22&quot;&gt;March 22nd, 2013&lt;/time&gt; to &lt;time datetime=&quot;2013-04-26&quot;&gt;April 26th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;p&gt;Event Description&lt;/p&gt;
+				&lt;p&gt;Links:&lt;/p&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Multi-Day Event Link 1&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Multi-Day Event Link 2&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/section&gt;
+		&lt;/li&gt;
+	&lt;/ol&gt;
+&lt;/div&gt;</code></pre>
+		</details>
+
 		<div id="calendar2"></div>
 		<div class="wb-calevt evt-anchor" data-calevt-src="calendar2">
 			<ol>
@@ -68,21 +127,183 @@
 			</ol>
 		</div>
 	</section>
+
 	<section>
 		<h3>Ajax Events</h3>
 		<p>In this method, events are pulled from a remote source.</p>
+		<details class="mrgn-bttm-md">
+			<summary>View code</summary>
+			<section>
+				<h4>In-page HTML</h4>
+				<pre><code>&lt;div id=&quot;cal-ajax&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;wb-calevt evt-anchor&quot; data-calevt-src=&quot;cal-ajax&quot;&gt;
+	&lt;ol data-calevt=&quot;ajax/cal-include1-en.html ajax/cal-include2-en.html ajax/cal-include3-en.html&quot;&gt;&lt;/ol&gt;
+&lt;/div&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>cal-include1-en.html</h4>
+				<pre><code>&lt;li&gt;
+	&lt;section&gt;
+		&lt;h4&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Ajax 1 - Single-Day Event&lt;/a&gt;&lt;/h4&gt;
+		&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;Ajax 1 - March 11th, 2013&lt;/time&gt;&lt;/p&gt;
+		&lt;p&gt;Event Description&lt;/p&gt;
+	&lt;/section&gt;
+&lt;/li&gt;
+&lt;li&gt;
+	&lt;section&gt;
+		&lt;h4&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Ajax 1 - Multi-Day Event&lt;/a&gt;&lt;/h4&gt;
+		&lt;p&gt;&lt;time datetime=&quot;2013-03-22&quot;&gt;March 22nd, 2013&lt;/time&gt; to &lt;time datetime=&quot;2013-04-26&quot;&gt;Ajax 1 - April 26th, 2013&lt;/time&gt;&lt;/p&gt;
+		&lt;p&gt;Event Description&lt;/p&gt;
+	&lt;/section&gt;
+&lt;/li&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>cal-include2-en.html</h4>
+				<pre><code>&lt;li&gt;
+	&lt;section&gt;
+		&lt;h4&gt;Ajax 2 - Single-Day Event&lt;/h4&gt;
+		&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;March 11th, 2013&lt;/time&gt;&lt;/p&gt;
+		&lt;p&gt;Event Description&lt;/p&gt;
+		&lt;p&gt;Links:&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Ajax 2 - Single-Day Event Link 1&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Ajax 2 - Single-Day Event Link 2&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/section&gt;
+&lt;/li&gt;
+&lt;li&gt;
+	&lt;section&gt;
+		&lt;h4&gt;Ajax 2 - Multi-Day Event&lt;/h4&gt;
+		&lt;p&gt;&lt;time datetime=&quot;2013-03-22&quot;&gt;March 22nd, 2013&lt;/time&gt; to &lt;time datetime=&quot;2013-04-26&quot;&gt;Ajax 2 - April 26th, 2013&lt;/time&gt;&lt;/p&gt;
+		&lt;p&gt;Event Description&lt;/p&gt;
+		&lt;p&gt;Links:&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Ajax 2 - Multi-Day Event Link 1&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Ajax 2 - Multi-Day Event Link 2&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/section&gt;
+&lt;/li&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>cal-include3-en.html</h4>
+				<pre><code>&lt;li class=&quot;calendar-display-onshow&quot;&gt;
+	&lt;section&gt;
+		&lt;h4&gt;&lt;a href=&quot;http://www.ec.gc.ca&quot; rel=&quot;external&quot;&gt;Ajax 3 - Event 1&lt;/a&gt;&lt;/h4&gt;
+		&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;March 11th, 2013&lt;/time&gt;&lt;/p&gt;
+	&lt;/section&gt;
+&lt;/li&gt;
+&lt;li class=&quot;calendar-display-onshow&quot;&gt;
+	&lt;section&gt;
+		&lt;h4&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Ajax 3 - Event 2&lt;/a&gt;&lt;/h4&gt;
+		&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;March 11th, 2013&lt;/time&gt;&lt;/p&gt;
+	&lt;/section&gt;
+&lt;/li&gt;
+&lt;li class=&quot;calendar-display-onshow&quot;&gt;
+	&lt;section&gt;
+		&lt;h4&gt;Ajax 3 - World Expo Shanghai (Shanghai, China)&lt;/h4&gt;
+		&lt;p&gt;&lt;time datetime=&quot;2013-03-22&quot;&gt;March 22nd, 2013&lt;/time&gt; to &lt;time datetime=&quot;2013-04-26&quot;&gt;April 26th, 2013&lt;/time&gt;&lt;/p&gt;
+		&lt;p&gt;The Canada Pavilion celebrates the vibrancy and the vitality of Canadian communities and the people within them.&lt;/p&gt;
+		&lt;p&gt;For more information about Canada at Expo 2010 Shanghai, visit: &lt;a href=&quot;http://www.expo2010canada.gc.ca/index-eng.cfm&quot; rel=&quot;external&quot;&gt;www.expo2010canada.gc.ca/index-eng.cfm&lt;/a&gt;&lt;/p&gt;
+	&lt;/section&gt;
+&lt;/li&gt;
+&lt;li class=&quot;calendar-display-onshow&quot;&gt;
+	&lt;section&gt;
+		&lt;h4&gt;&lt;a href=&quot;http://www.ic.gc.ca&quot; rel=&quot;external&quot;&gt;Ajax 3 - Event 4&lt;/a&gt;&lt;/h4&gt;
+		&lt;p&gt;&lt;time datetime=&quot;2013-03-24&quot;&gt;March 24th, 2013&lt;/time&gt;&lt;/p&gt;
+	&lt;/section&gt;
+&lt;/li&gt;
+&lt;li class=&quot;calendar-display-onshow&quot;&gt;
+	&lt;section&gt;
+		&lt;h4&gt;&lt;a href=&quot;http://www.ec.gc.ca&quot; rel=&quot;external&quot;&gt;Ajax 3 - Event 6&lt;/a&gt;&lt;/h4&gt;
+		&lt;p&gt;&lt;time datetime=&quot;2013-04-11&quot;&gt;April 11th, 2013&lt;/time&gt;&lt;/p&gt;
+	&lt;/section&gt;
+&lt;/li&gt;
+&lt;li class=&quot;calendar-display-onshow&quot;&gt;
+	&lt;section&gt;
+		&lt;h4&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Ajax 3 - Event 7&lt;/a&gt;&lt;/h4&gt;
+		&lt;p&gt;&lt;time datetime=&quot;2013-04-23&quot;&gt;April 23rd, 2013&lt;/time&gt;&lt;/p&gt;
+	&lt;/section&gt;
+&lt;/li&gt;
+&lt;li class=&quot;calendar-display-onshow&quot;&gt;
+	&lt;section&gt;
+		&lt;h4&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Ajax 3 - Event 17&lt;/a&gt;&lt;/h4&gt;
+		&lt;p&gt;&lt;time datetime=&quot;2013-04-23&quot;&gt;April 23rd, 2013&lt;/time&gt;&lt;/p&gt;
+	&lt;/section&gt;
+&lt;/li&gt;</code></pre>
+			</section>
+		</details>
+
 		<div id="cal-ajax"></div>
 		<div class="wb-calevt evt-anchor" data-calevt-src="cal-ajax">
 			<ol data-calevt="ajax/cal-include1-en.html ajax/cal-include2-en.html ajax/cal-include3-en.html"></ol>
 		</div>
 	</section>
 </section>
+
 <section>
 	<h2>Display Options</h2>
 	<section>
 		<h3>List Filtering</h3>
 		<p>This option filters out events from the list that are not for the current month. Enable this option by adding the <code>cal-disp-onshow</code> class to each event that should be filtered by month.</p>
 		<p>Events that do not have the <em>cal-disp-onshow</em> class will always be visible.</p>
+		<details class="mrgn-bttm-md">
+			<summary>View code</summary>
+			<pre><code>&lt;div id=&quot;calendar3&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;wb-calevt evt-anchor&quot; data-calevt-src=&quot;calendar3&quot;&gt;
+	&lt;section&gt;
+		&lt;h4&gt;Events List 1&lt;/h4&gt;
+		&lt;ol&gt;
+			&lt;li class=&quot;cal-disp-onshow&quot;&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;http://www.ec.gc.ca&quot; rel=&quot;external&quot;&gt;Event 1&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;March 11th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li class=&quot;cal-disp-onshow&quot;&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Event 2&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;March 11th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li class=&quot;cal-disp-onshow&quot;&gt;
+				&lt;section&gt;
+					&lt;h5&gt;World Expo Shanghai (Shanghai, China)&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-03-22&quot;&gt;March 22nd, 2013&lt;/time&gt; to &lt;time datetime=&quot;2013-04-26&quot;&gt;April 26th, 2013&lt;/time&gt;&lt;/p&gt;
+					&lt;p&gt;The Canada Pavilion celebrates the vibrancy and the vitality of Canadian communities and the people within them.&lt;/p&gt;
+					&lt;p&gt;For more information about Canada at Expo 2010 Shanghai, visit: &lt;a href=&quot;http://www.expo2010canada.gc.ca/index-eng.cfm&quot; rel=&quot;external&quot;&gt;www.expo2010canada.gc.ca/index-eng.cfm&lt;/a&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li class=&quot;cal-disp-onshow&quot;&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;http://www.ic.gc.ca&quot; rel=&quot;external&quot;&gt;Event 4&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-03-24&quot;&gt;March 24th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li class=&quot;cal-disp-onshow&quot;&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;http://www.ec.gc.ca&quot; rel=&quot;external&quot;&gt;Event 6&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-04-11&quot;&gt;April 11th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li class=&quot;cal-disp-onshow&quot;&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Event 7&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-04-23&quot;&gt;April 23rd, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li class=&quot;cal-disp-onshow&quot;&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Event 17&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-04-23&quot;&gt;April 23rd, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+		&lt;/ol&gt;
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
+		</details>
 
 		<div id="calendar3"></div>
 		<div class="wb-calevt evt-anchor" data-calevt-src="calendar3">
@@ -140,18 +361,62 @@
 
 	<section>
 		<h3>Fluid-width Calendar</h3>
-		<details>
+		<details class="mrgn-bttm-md">
 			<summary>View code</summary>
-			<pre>
-				<code>
-&lt;div id="calendar4" class="cal-cnt-fluid"&gt;&lt;/div&gt;
-&lt;div class="wb-calevt evt-anchor" data-calevt-src="calendar4"&gt;
-	// Events list...
-&lt;/div&gt;
-				</code>
-			</pre>
+			<pre><code>&lt;div id=&quot;calendar4&quot; class=&quot;cal-cnt-fluid&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;wb-calevt evt-anchor&quot; data-calevt-src=&quot;calendar4&quot;&gt;
+	&lt;section&gt;
+		&lt;h4&gt;Events List 1&lt;/h4&gt;
+		&lt;ol&gt;
+			&lt;li class=&quot;cal-disp-onshow&quot;&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;http://www.ec.gc.ca&quot; rel=&quot;external&quot;&gt;Event 1&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;March 11th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li class=&quot;cal-disp-onshow&quot;&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Event 2&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;March 11th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li class=&quot;cal-disp-onshow&quot;&gt;
+				&lt;section&gt;
+					&lt;h5&gt;World Expo Shanghai (Shanghai, China)&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-03-22&quot;&gt;March 22nd, 2013&lt;/time&gt; to &lt;time datetime=&quot;2013-04-26&quot;&gt;April 26th, 2013&lt;/time&gt;&lt;/p&gt;
+					&lt;p&gt;The Canada Pavilion celebrates the vibrancy and the vitality of Canadian communities and the people within them.&lt;/p&gt;
+					&lt;p&gt;For more information about Canada at Expo 2010 Shanghai, visit: &lt;a href=&quot;http://www.expo2010canada.gc.ca/index-eng.cfm&quot; rel=&quot;external&quot;&gt;www.expo2010canada.gc.ca/index-eng.cfm&lt;/a&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li class=&quot;cal-disp-onshow&quot;&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;http://www.ic.gc.ca&quot; rel=&quot;external&quot;&gt;Event 4&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-03-24&quot;&gt;March 24th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li class=&quot;cal-disp-onshow&quot;&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;http://www.ec.gc.ca&quot; rel=&quot;external&quot;&gt;Event 6&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-04-11&quot;&gt;April 11th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li class=&quot;cal-disp-onshow&quot;&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Event 7&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-04-23&quot;&gt;April 23rd, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li class=&quot;cal-disp-onshow&quot;&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Event 17&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-04-23&quot;&gt;April 23rd, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+		&lt;/ol&gt;
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
 		</details>
-		<br>
+
 		<div id="calendar4" class="cal-cnt-fluid"></div>
 		<div class="wb-calevt evt-anchor" data-calevt-src="calendar4">
 			<section>
