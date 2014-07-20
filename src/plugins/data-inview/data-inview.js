@@ -76,24 +76,31 @@ var pluginName = "wb-inview",
 			$elm.attr( "data-inviewstate", viewState );
 			$dataInView = $( "#" + $elm.attr( "data-inview" ) );
 
-			// Keep closed if the user closed the inView result
-			if ( !$dataInView.hasClass( "user-closed" ) ) {
-				if ( $dataInView.hasClass( "wb-overlay" ) ) {
-					if ( !oldViewState ) {
-						$dataInView.addClass( "outside-off" );
+			if ( $dataInView.length !== 0 ) {
+
+				// Keep closed if the user closed the inView result
+				if ( !$dataInView.hasClass( "user-closed" ) ) {
+					if ( $dataInView.hasClass( "wb-overlay" ) ) {
+						if ( !oldViewState ) {
+							$dataInView.addClass( "outside-off" );
+						}
+						$dataInView.trigger({
+							type: ( show ? "open" : "close" ),
+							namespace: "wb-overlay",
+							noFocus: true
+						});
+					} else {
+						$dataInView
+							.attr( "aria-hidden", !show )
+							.toggleClass( "in", !show )
+							.toggleClass( "out", show );
 					}
-					$dataInView.trigger({
-						type: ( show ? "open" : "close" ),
-						namespace: "wb-overlay",
-						noFocus: true
-					});
-				} else {
-					$dataInView
-						.attr( "aria-hidden", !show )
-						.toggleClass( "in", !show )
-						.toggleClass( "out", show );
 				}
 			}
+
+			// Trigger an event on the element identifying that the view state has changed
+			// (e.g., "all.wb-inview", "partial.wb-inview", "none.wb-inview")
+			$elm.trigger( viewState + selector );
 		}
 	};
 
