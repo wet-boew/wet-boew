@@ -7,7 +7,7 @@
 	"tag": "footnotes",
 	"parentdir": "footnotes",
 	"altLangPrefix": "footnotes",
-	"dateModified": "2014-07-20"
+	"dateModified": "2014-07-21"
 }
 ---
 <section>
@@ -17,6 +17,66 @@
 
 <section>
 	<h2>Example</h2>
+
+	<section>
+		<h3>Purpose</h3>
+		<p>The purpose of the Footnotes plugin is to implement a consistent, accessible way of handling footnotes across Government of Canada web sites. The main concept behind this solution is to place footnotes in a definition list, within a dedicated section. An example of this can be found in the <a href="#fn">Footnotes</a> section. Supporting CSS is used to lay out the footnotes and hide navigational aids<sup id="fn1-rf"><a class="fn-lnk" href="#fn1"><span class="wb-inv">Footnote </span>1</a></sup>.</p>
+	</section>
+
+	<section>
+		<h3>Benefits</h3>
+		<ul>
+			<li>Conforms to WCAG 2.0 AA<sup id="fn2-1-rf"><a class="fn-lnk" href="#fn2"><span class="wb-inv">Footnote </span>2</a></sup></li>
+			<li>Progressive enhancement approach</li>
+			<li>Support for Firefox, Opera, Safari, Chrome, and IE 7+<sup id="fn2-2-rf"><a class="fn-lnk" href="#fn2"><span class="wb-inv">Footnote </span>2</a></sup></li>
+			<li>Support for English and French</li>
+			<li>Configurable layout and design<sup id="fn2-3-rf"><a class="fn-lnk" href="#fn2"><span class="wb-inv">Footnote </span>2</a></sup>&#160;<sup id="fn3-rf"><a class="fn-lnk" href="#fn3"><span class="wb-inv">Footnote </span>3</a></sup></li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Recommended usage</h3>
+		<ul>
+			<li>Implementing footnotes in Web pages<sup id="fn*-rf"><a class="fn-lnk" href="#fn*"><span class="wb-inv">Footnote </span>*</a></sup></li>
+		</ul>
+	</section>
+
+	<aside class="wb-fnote" role="note">
+		<h3 id="fn">Footnotes</h3>
+		<dl>
+			<dt>Footnote 1</dt>
+			<dd id="fn1">
+				<p>Example of a standard footnote.</p>
+				<p class="fn-rtn">
+					<a href="#fn1-rf"><span class="wb-inv">Return to footnote </span>1<span class="wb-inv"> referrer</span></a>
+				</p>
+			</dd>
+			<dt>Footnote 2</dt>
+			<dd id="fn2">
+				<p>Example of a footnote being referenced by multiple pieces of content.</p>
+				<p class="fn-rtn">
+					<a href="#fn2-1-rf"><span class="wb-inv">Return to <span>first</span> footnote </span>2<span class="wb-inv"> referrer</span></a>
+				</p>
+			</dd>
+			<dt>Footnote 3</dt>
+			<dd id="fn3">
+				<p>Example of a footnote containing multiple paragraphs (first paragraph).</p>
+				<p>Example of a footnote containing multiple paragraphs (second paragraph).</p>
+				<p>Example of a footnote containing multiple paragraphs (third paragraph).</p>
+				<p class="fn-rtn">
+					<a href="#fn3-rf"><span class="wb-inv">Return to footnote </span>3<span class="wb-inv"> referrer</span></a>
+				</p>
+			</dd>
+			<dt>Footnote *</dt>
+			<dd id="fn*">
+				<p>Example of a standard footnote, denoted by a symbol.</p>
+				<p class="fn-rtn">
+					<a href="#fn*-rf"><span class="wb-inv">Return to footnote </span>*<span class="wb-inv"> referrer</span></a>
+				</p>
+			</dd>
+		</dl>
+	</aside>
+
 	<details>
 		<summary>View code</summary>
 		<pre><code>&lt;section&gt;
@@ -78,63 +138,4 @@
 	&lt;/dl&gt;
 &lt;/aside&gt;</code></pre>
 	</details>
-
-	<section>
-		<h3>Purpose</h3>
-		<p>The purpose of the Footnotes plugin is to implement a consistent, accessible way of handling footnotes across Government of Canada web sites. The main concept behind this solution is to place footnotes in a definition list, within a dedicated section. An example of this can be found in the <a href="#fn">Footnotes</a> section. Supporting CSS is used to lay out the footnotes and hide navigational aids<sup id="fn1-rf"><a class="fn-lnk" href="#fn1"><span class="wb-inv">Footnote </span>1</a></sup>.</p>
-	</section>
-
-	<section>
-		<h3>Benefits</h3>
-		<ul>
-			<li>Conforms to WCAG 2.0 AA<sup id="fn2-1-rf"><a class="fn-lnk" href="#fn2"><span class="wb-inv">Footnote </span>2</a></sup></li>
-			<li>Progressive enhancement approach</li>
-			<li>Support for Firefox, Opera, Safari, Chrome, and IE 7+<sup id="fn2-2-rf"><a class="fn-lnk" href="#fn2"><span class="wb-inv">Footnote </span>2</a></sup></li>
-			<li>Support for English and French</li>
-			<li>Configurable layout and design<sup id="fn2-3-rf"><a class="fn-lnk" href="#fn2"><span class="wb-inv">Footnote </span>2</a></sup>&#160;<sup id="fn3-rf"><a class="fn-lnk" href="#fn3"><span class="wb-inv">Footnote </span>3</a></sup></li>
-		</ul>
-	</section>
-
-	<section>
-		<h3>Recommended usage</h3>
-		<ul>
-			<li>Implementing footnotes in Web pages<sup id="fn*-rf"><a class="fn-lnk" href="#fn*"><span class="wb-inv">Footnote </span>*</a></sup></li>
-		</ul>
-	</section>
-
-	<aside class="wb-fnote" role="note">
-		<h3 id="fn">Footnotes</h3>
-		<dl>
-			<dt>Footnote 1</dt>
-			<dd id="fn1">
-				<p>Example of a standard footnote.</p>
-				<p class="fn-rtn">
-					<a href="#fn1-rf"><span class="wb-inv">Return to footnote </span>1<span class="wb-inv"> referrer</span></a>
-				</p>
-			</dd>
-			<dt>Footnote 2</dt>
-			<dd id="fn2">
-				<p>Example of a footnote being referenced by multiple pieces of content.</p>
-				<p class="fn-rtn">
-					<a href="#fn2-1-rf"><span class="wb-inv">Return to <span>first</span> footnote </span>2<span class="wb-inv"> referrer</span></a>
-				</p>
-			</dd>
-			<dt>Footnote 3</dt>
-			<dd id="fn3">
-				<p>Example of a footnote containing multiple paragraphs (first paragraph).</p>
-				<p>Example of a footnote containing multiple paragraphs (second paragraph).</p>
-				<p>Example of a footnote containing multiple paragraphs (third paragraph).</p>
-				<p class="fn-rtn">
-					<a href="#fn3-rf"><span class="wb-inv">Return to footnote </span>3<span class="wb-inv"> referrer</span></a>
-				</p>
-			</dd>
-			<dt>Footnote *</dt>
-			<dd id="fn*">
-				<p>Example of a standard footnote, denoted by a symbol.</p>
-				<p class="fn-rtn">
-					<a href="#fn*-rf"><span class="wb-inv">Return to footnote </span>*<span class="wb-inv"> referrer</span></a>
-				</p>
-			</dd>
-		</dl>
-	</aside>
 </section>
