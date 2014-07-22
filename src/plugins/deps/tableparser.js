@@ -2166,10 +2166,10 @@ $document.on( "timerpoke.wb " + initEvent, selector, function( event ) {
 });
 
 // Bind the init event of the plugin on passive table parsing request
-$document.on( "passiveparse.wb-tableparser", function( event ) {
+$document.on( "passiveparse" + selector, function( event ) {
 	var eventTarget = event.target;
 
-	if ( event.currentTarget === eventTarget ) {
+	if ( event.namespace === pluginName ) {
 		init( $( eventTarget ) );
 	}
 
