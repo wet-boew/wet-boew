@@ -9,7 +9,7 @@
 	"altLangPrefix": "lightbox",
 	"css": ["demo/lightbox"],
 	"js": ["demo/lightbox"],
-	"dateModified": "2014-07-21"
+	"dateModified": "2014-07-22"
 }
 ---
 <section>
@@ -22,6 +22,7 @@
 				<li><a href="#examples2">Galeries d'articles</a></li>
 				<li><a href="#examples3">Galeries d'articles cachées</a></li>
 				<li><a href="#examples4">Titre de l'image alternative</a></li>
+				<li><a href="#examples5">Ouvrir de contenu superposé &#171;&#160;Lightbox&#160;&#187; via JavaScript</a></li>
 			</ul>
 		</li>
 	</ul>
@@ -122,6 +123,7 @@
 	&lt;/li&gt;
 	&lt;li&gt;
 		&lt;a class="wb-lbx" title="Exemple de contenu incorporé" href="#inline_content"&gt;Contenu incorporé&lt;/a&gt;
+
 		&lt;div id="inline_content" class="mfp-hide modal-dialog modal-content overlay-def"&gt;
 			&lt;section class="modal-content"&gt;
 				&lt;header class="modal-header overlay-hd"&gt;
@@ -135,6 +137,7 @@
 	&lt;/li&gt;
 	&lt;li&gt;
 		&lt;a class="wb-lbx lbx-modal" title="Exemple de contenu superposé modal" href="#inline_content_modal"&gt;Contenu superposé modal&lt;/a&gt;
+
 		&lt;div id="inline_content_modal" class="mfp-hide modal-dialog modal-content overlay-def"&gt;
 			&lt;section class="modal-content"&gt;
 				&lt;header class="modal-header overlay-hd"&gt;
@@ -391,8 +394,8 @@
 		</section>
 
 		<section>
-			<h3 id="examples5">Ouvrir de contenu superposé via JavaScript</h3>
-			<p>Le contenu surperposé peut être ouverte via JavaScript avec&#160;:</p>
+			<h3 id="examples5">Ouvrir de contenu superposé &#171;&#160;Lightbox&#160;&#187; via JavaScript</h3>
+			<p>Le contenu surperposé &#171;&#160;Lightbox&#160;&#187; peut être ouverte via JavaScript avec&#160;:</p>
 			<pre><code>$( document ).trigger( "open.wb-lbx", [
 	[
 		{
@@ -406,7 +409,7 @@
 	]
 ]);</code></pre>
 
-			<label for="lbx-select">Contenu superposé à ouvrir</label>
+			<label for="lbx-select">Contenu superposé &#171;&#160;Lightbox&#160;&#187; à ouvrir</label>
 			<select id="lbx-select">
 				<option value="1">Image</option>
 				<option value="2">AJAX</option>
@@ -414,7 +417,7 @@
 				<option value="4">Contenu superposé modal</option>
 				<option value="5">Galerie d'images</option>
 			</select>
-			<button id="lbx-open-btn">Ouvrir le contenu superposé</button>
+			<button id="lbx-open-btn">Ouvrir le contenu superposé &#171;&#160;Lightbox&#160;&#187;</button>
 
 			<section>
 				<h4>Code</h4>
@@ -422,7 +425,7 @@
 					<summary>Visualiser le code</summary>
 					<section>
 						<h5>HTML</h5>
-						<pre><code>&lt;label for=&quot;lbx-select&quot;&gt;Contenu superposé à ouvrir&lt;/label&gt;
+						<pre><code>&lt;label for=&quot;lbx-select&quot;&gt;Contenu superposé &#171;&#160;Lightbox&#160;&#187; à ouvrir&lt;/label&gt;
 &lt;select id=&quot;lbx-select&quot;&gt;
 	&lt;option value=&quot;1&quot;&gt;Image&lt;/option&gt;
 	&lt;option value=&quot;2&quot;&gt;AJAX&lt;/option&gt;
@@ -430,16 +433,21 @@
 	&lt;option value=&quot;4&quot;&gt;Contenu superposé modal&lt;/option&gt;
 	&lt;option value=&quot;5&quot;&gt;Galerie d'images&lt;/option&gt;
 &lt;/select&gt;
-&lt;button id=&quot;lbx-open-btn&quot;&gt;Ouvrir le contenu superposé&lt;/button&gt;</code></pre>
+&lt;button id=&quot;lbx-open-btn&quot;&gt;Ouvrir le contenu superposé &#171;&#160;Lightbox&#160;&#187;&lt;/button&gt;</code></pre>
 					</section>
 
 					<section>
 						<h5>JavaScript</h5>
-						<pre><code>$( document ).on( &quot;click vclick&quot;, &quot;#lbx-open-btn&quot;, function( event ) {
+						<pre><code>(function( $, wb ) {
+"use strict";
+
+var $document = wb.doc;
+
+$document.on( &quot;click vclick&quot;, &quot;#lbx-open-btn&quot;, function( event ) {
 	var value = $( &quot;#lbx-select&quot; ).val();
 
 	if ( value === &quot;1&quot; ) {
-		wb.doc.trigger( &quot;open.wb-lbx&quot;, [
+		$document.trigger( &quot;open.wb-lbx&quot;, [
 			[
 				{
 					src: &quot;demo/1_b.jpg&quot;,
@@ -452,7 +460,7 @@
 			]
 		]);
 	} else if ( value === &quot;2&quot; ) {
-		wb.doc.trigger( &quot;open.wb-lbx&quot;, [
+		$document.trigger( &quot;open.wb-lbx&quot;, [
 			[
 				{
 					src: &quot;ajax/ajax1-en.html&quot;,
@@ -461,7 +469,7 @@
 			]
 		]);
 	} else if ( value === &quot;3&quot; ) {
-		wb.doc.trigger( &quot;open.wb-lbx&quot;, [
+		$document.trigger( &quot;open.wb-lbx&quot;, [
 			[
 				{
 					src: &quot;#inline_content&quot;,
@@ -470,7 +478,7 @@
 			]
 		]);
 	} else if ( value === &quot;4&quot; ) {
-		wb.doc.trigger( &quot;open.wb-lbx&quot;, [
+		$document.trigger( &quot;open.wb-lbx&quot;, [
 			[
 				{
 					src: &quot;#inline_content_modal&quot;,
@@ -480,7 +488,7 @@
 			true
 		]);
 	} else if ( value === &quot;5&quot; ) {
-		wb.doc.trigger( &quot;wb-open.wb-lbx&quot;, [
+		$document.trigger( &quot;wb-open.wb-lbx&quot;, [
 			[
 				{
 					src: &quot;demo/1_b.jpg&quot;,

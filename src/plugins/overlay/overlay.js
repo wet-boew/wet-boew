@@ -86,6 +86,14 @@ var pluginName = "wb-overlay",
 				.scrollTop( 0 )
 				.trigger( setFocusEvent );
 		}
+
+		// Register the overlay if it wasn't previously registered
+		// (only required when opening through an event)
+		if ( !sourceLinks[ overlayId ] ) {
+			setTimeout(function() {
+				sourceLinks[ overlayId ] = null;
+			}, 1 );
+		}
 	},
 
 	closeOverlay = function( overlayId, noFocus, userClosed ) {
