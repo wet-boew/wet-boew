@@ -9,7 +9,7 @@
 	"altLangPrefix": "lightbox",
 	"css": ["demo/lightbox"],
 	"js": ["demo/lightbox"],
-	"dateModified": "2014-07-21"
+	"dateModified": "2014-07-22"
 }
 ---
 <section>
@@ -22,7 +22,7 @@
 				<li><a href="#examples2">Item gallery</a></li>
 				<li><a href="#examples3">Hidden item gallery</a></li>
 				<li><a href="#examples4">Alternative image title</a></li>
-				<li><a href="#examples5">Open through JavaScript</a></li>
+				<li><a href="#examples5">Opening popups through JavaScript</a></li>
 			</ul>
 		</li>
 	</ul>
@@ -58,6 +58,7 @@
 				</li>
 				<li class="box">
 					<a class="wb-lbx" title="Example of inline content" href="#inline_content">Inline content</a>
+
 					<section id="inline_content" class="mfp-hide modal-dialog modal-content overlay-def">
 						<header class="modal-header">
 							<h2 class="modal-title">Title</h2>
@@ -82,6 +83,7 @@
 				</li>
 				<li class="box">
 					<a class="wb-lbx lbx-modal" title="Example of a modal popup" href="#inline_content_modal">Modal popup</a>
+
 					<section id="inline_content_modal" class="mfp-hide modal-dialog modal-content overlay-def">
 						<header class="modal-header">
 							<h2 class="modal-title">Title</h2>
@@ -431,11 +433,16 @@
 
 					<section>
 						<h5>JavaScript</h5>
-						<pre><code>$( document ).on( &quot;click vclick&quot;, &quot;#lbx-open-btn&quot;, function( event ) {
+						<pre><code>(function( $, wb ) {
+"use strict";
+
+var $document = wb.doc;
+
+$document.on( &quot;click vclick&quot;, &quot;#lbx-open-btn&quot;, function( event ) {
 	var value = $( &quot;#lbx-select&quot; ).val();
 
 	if ( value === &quot;1&quot; ) {
-		wb.doc.trigger( &quot;open.wb-lbx&quot;, [
+		$document.trigger( &quot;open.wb-lbx&quot;, [
 			[
 				{
 					src: &quot;demo/1_b.jpg&quot;,
@@ -448,7 +455,7 @@
 			]
 		]);
 	} else if ( value === &quot;2&quot; ) {
-		wb.doc.trigger( &quot;open.wb-lbx&quot;, [
+		$document.trigger( &quot;open.wb-lbx&quot;, [
 			[
 				{
 					src: &quot;ajax/ajax1-en.html&quot;,
@@ -457,7 +464,7 @@
 			]
 		]);
 	} else if ( value === &quot;3&quot; ) {
-		wb.doc.trigger( &quot;open.wb-lbx&quot;, [
+		$document.trigger( &quot;open.wb-lbx&quot;, [
 			[
 				{
 					src: &quot;#inline_content&quot;,
@@ -466,7 +473,7 @@
 			]
 		]);
 	} else if ( value === &quot;4&quot; ) {
-		wb.doc.trigger( &quot;open.wb-lbx&quot;, [
+		$document.trigger( &quot;open.wb-lbx&quot;, [
 			[
 				{
 					src: &quot;#inline_content_modal&quot;,
@@ -476,7 +483,7 @@
 			true
 		]);
 	} else if ( value === &quot;5&quot; ) {
-		wb.doc.trigger( &quot;open.wb-lbx&quot;, [
+		$document.trigger( &quot;open.wb-lbx&quot;, [
 			[
 				{
 					src: &quot;demo/1_b.jpg&quot;,

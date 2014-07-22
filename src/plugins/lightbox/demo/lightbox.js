@@ -6,11 +6,13 @@
 (function( $, wb ) {
 "use strict";
 
-wb.doc.on( "click vclick", "#lbx-open-btn", function( event ) {
+var $document = wb.doc;
+
+$document.on( "click vclick", "#lbx-open-btn", function( event ) {
 	var value = $( "#lbx-select" ).val();
 
 	if ( value === "1" ) {
-		wb.doc.trigger( "open.wb-lbx", [
+		$document.trigger( "open.wb-lbx", [
 			[
 				{
 					src: "demo/1_b.jpg",
@@ -23,7 +25,7 @@ wb.doc.on( "click vclick", "#lbx-open-btn", function( event ) {
 			]
 		]);
 	} else if ( value === "2" ) {
-		wb.doc.trigger( "open.wb-lbx", [
+		$document.trigger( "open.wb-lbx", [
 			[
 				{
 					src: "ajax/ajax1-en.html",
@@ -32,7 +34,7 @@ wb.doc.on( "click vclick", "#lbx-open-btn", function( event ) {
 			]
 		]);
 	} else if ( value === "3" ) {
-		wb.doc.trigger( "open.wb-lbx", [
+		$document.trigger( "open.wb-lbx", [
 			[
 				{
 					src: "#inline_content",
@@ -41,7 +43,7 @@ wb.doc.on( "click vclick", "#lbx-open-btn", function( event ) {
 			]
 		]);
 	} else if ( value === "4" ) {
-		wb.doc.trigger( "open.wb-lbx", [
+		$document.trigger( "open.wb-lbx", [
 			[
 				{
 					src: "#inline_content_modal",
@@ -51,7 +53,7 @@ wb.doc.on( "click vclick", "#lbx-open-btn", function( event ) {
 			true
 		]);
 	} else if ( value === "5" ) {
-		wb.doc.trigger( "open.wb-lbx", [
+		$document.trigger( "open.wb-lbx", [
 			[
 				{
 					src: "demo/1_b.jpg",
