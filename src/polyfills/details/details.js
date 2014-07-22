@@ -49,14 +49,15 @@ var pluginName = "wb-details",
 $document.on( "timerpoke.wb " + initEvent, selector, init );
 
 // Bind the the event handlers of the plugin
-$document.on( "click keydown toggle.wb-details", selector, function( event ) {
+$document.on( "click keydown toggle." + pluginName, selector, function( event ) {
 	var which = event.which,
 		currentTarget = event.currentTarget,
 		details, isClosed;
 
 	// Ignore middle/right mouse buttons and wb-toggle enhanced summary elements (except for toggle)
 	if ( ( !which || which === 1 ) &&
-		( currentTarget.className.indexOf( "wb-toggle" ) === -1 || event.type === "toggle" ) ) {
+		( currentTarget.className.indexOf( "wb-toggle" ) === -1 ||
+		( event.type === "toggle" && event.namespace === pluginName ) ) ) {
 
 		details = currentTarget.parentNode;
 		isClosed = details.getAttribute( "open" ) === null ;

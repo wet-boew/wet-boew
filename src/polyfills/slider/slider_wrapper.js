@@ -34,7 +34,7 @@ wb.doc.on( initEvent + " " + updateEvent, selector, function( event ) {
 				html5Shim: true
 			});
 
-			//Allows listening for input and change at the document level for IE < 9
+			// Allows listening for input and change at the document level for IE < 9
 			if ( wb.ielt9 ) {
 				$target = $( eventTarget );
 				$target.on( "input change", function( event ) {
@@ -42,8 +42,11 @@ wb.doc.on( initEvent + " " + updateEvent, selector, function( event ) {
 				});
 			}
 			break;
+
 		case "wb-update":
-			window.fdSlider.updateSlider( eventTarget.id );
+			if ( event.namespace === polyfillName ) {
+				window.fdSlider.updateSlider( eventTarget.id );
+			}
 		}
 	}
 });

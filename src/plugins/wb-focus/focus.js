@@ -16,26 +16,28 @@ var $document = wb.doc,
 
 // Bind the setfocus event
 $document.on( setFocusEvent, function( event ) {
-	var $elm = $( event.target );
+	if ( event.namespace === "wb" ) {
+		var $elm = $( event.target );
 
-	// Set the tabindex to -1 (as needed) to ensure the element is focusable
-	$elm
-		.filter( ":not([tabindex], a[href], button, input, textarea, select)" )
-			.attr( "tabindex", "-1" );
+		// Set the tabindex to -1 (as needed) to ensure the element is focusable
+		$elm
+			.filter( ":not([tabindex], a[href], button, input, textarea, select)" )
+				.attr( "tabindex", "-1" );
 
-	// Assigns focus to an element (delay allows for revealing of hidden content)
-	setTimeout(function() {
-		$elm.trigger( "focus" );
+		// Assigns focus to an element (delay allows for revealing of hidden content)
+		setTimeout(function() {
+			$elm.trigger( "focus" );
 
-		var $topBar = $( ".wb-bar-t[aria-hidden=false]" );
+			var $topBar = $( ".wb-bar-t[aria-hidden=false]" );
 
-		// Ensure the top bar overlay does not conceal the focus target
-		if ( $topBar.length !== 0 ) {
-			document.documentElement.scrollTop -= $topBar.outerHeight();
-		}
+			// Ensure the top bar overlay does not conceal the focus target
+			if ( $topBar.length !== 0 ) {
+				document.documentElement.scrollTop -= $topBar.outerHeight();
+			}
 
-		return $elm;
-	}, 100 );
+			return $elm;
+		}, 100 );
+	}
 });
 
 // Set focus to the target of a deep link from a different page

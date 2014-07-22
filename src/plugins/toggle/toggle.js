@@ -216,65 +216,67 @@ var pluginName = "wb-toggle",
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 */
 	toggle = function( event, data ) {
-		var dataGroup, key, $elmsGroup,
-			isGroup = !!data.group,
-			isPersist = !!data.persist,
-			isTablist = isGroup && !!data.parent,
-			link = event.currentTarget,
-			$link = $( link ),
-			stateFrom = getState( $link, data ),
-			isToggleOn = stateFrom === data.stateOff,
-			stateTo = isToggleOn ? data.stateOn : data.stateOff,
-			$elms = isTablist ?	$link.parent( data.group ) : getElements( link, data );
+		if ( event.namespace === pluginName ) {
+			var dataGroup, key, $elmsGroup,
+				isGroup = !!data.group,
+				isPersist = !!data.persist,
+				isTablist = isGroup && !!data.parent,
+				link = event.currentTarget,
+				$link = $( link ),
+				stateFrom = getState( $link, data ),
+				isToggleOn = stateFrom === data.stateOff,
+				stateTo = isToggleOn ? data.stateOn : data.stateOff,
+				$elms = isTablist ?	$link.parent( data.group ) : getElements( link, data );
 
-		// Group toggle behaviour: only one element in the group open at a time.
-		if ( isGroup ) {
+			// Group toggle behaviour: only one element in the group open at a time.
+			if ( isGroup ) {
 
-			// Get the grouped elements using data.group as the CSS selector
-			// and filter to only retrieve currently open grouped elements
-			dataGroup = $.extend( {}, data, { selector: data.group } );
-			$elmsGroup = getElements( link, dataGroup ).filter( "." + data.stateOn + ", [open]" );
+				// Get the grouped elements using data.group as the CSS selector
+				// and filter to only retrieve currently open grouped elements
+				dataGroup = $.extend( {}, data, { selector: data.group } );
+				$elmsGroup = getElements( link, dataGroup ).filter( "." + data.stateOn + ", [open]" );
 
-			// Set the toggle state to "off".  For tab lists, this is stored on the tab element
-			setState( isTablist ? $( data.parent ).find( selectorTab ) : $elmsGroup,
-				dataGroup, data.stateOff );
+				// Set the toggle state to "off".  For tab lists, this is stored on the tab element
+				setState( isTablist ? $( data.parent ).find( selectorTab ) : $elmsGroup,
+					dataGroup, data.stateOff );
 
-			// Toggle all grouped elements to "off"
-			$elmsGroup.wb( "toggle", data.stateOff, data.stateOn );
-			$elmsGroup.trigger( toggledEvent, {
-				isOn: false,
-				isTablist: isTablist,
-				elms: $elmsGroup
-			});
+				// Toggle all grouped elements to "off"
+				$elmsGroup.wb( "toggle", data.stateOff, data.stateOn );
+				$elmsGroup.trigger( toggledEvent, {
+					isOn: false,
+					isTablist: isTablist,
+					elms: $elmsGroup
+				});
 
-			// Remove all grouped persistence keys
-			if ( isPersist ) {
-				for ( key in data.persist ) {
-					if ( key.indexOf( pluginName + data.group ) === 0 ) {
-						data.persist.removeItem( key );
+				// Remove all grouped persistence keys
+				if ( isPersist ) {
+					for ( key in data.persist ) {
+						if ( key.indexOf( pluginName + data.group ) === 0 ) {
+							data.persist.removeItem( key );
+						}
 					}
 				}
 			}
-		}
 
-		// Set the toggle state. For tab lists, this is set on the tab element
-		setState( isTablist ? $link : $elms, data, stateTo );
+			// Set the toggle state. For tab lists, this is set on the tab element
+			setState( isTablist ? $link : $elms, data, stateTo );
 
-		// Toggle all elements to the requested state
-		$elms.wb( "toggle", stateTo, stateFrom );
-		$elms.trigger( toggledEvent, {
-			isOn: isToggleOn,
-			isTablist: isTablist,
-			elms: $elms
-		});
+			// Toggle all elements to the requested state
+			$elms.wb( "toggle", stateTo, stateFrom );
+			$elms.trigger( toggledEvent, {
+				isOn: isToggleOn,
+				isTablist: isTablist,
+				elms: $elms
+			});
 
-		// Store the toggle link's current state if persistence is turned on.
-		// Try/catch is required to address exceptions thrown when using BB10 or
-		// private browsing in iOS.
-		if ( isPersist ) {
-			try {
-				data.persist.setItem( data.persistKey, stateTo );
-			} catch ( error ) {
+			// Store the toggle link's current state if persistence is turned on.
+			// Try/catch is required to address exceptions thrown when using BB10 or
+			// private browsing in iOS.
+			if ( isPersist ) {
+				try {
+					data.persist.setItem( data.persistKey, stateTo );
+				} catch ( error ) {
+				}
 			}
 		}
 	},
@@ -285,38 +287,40 @@ var pluginName = "wb-toggle",
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 */
 	toggleDetails = function( event, data ) {
-		var top,
-			isOn = data.isOn,
-			$elms = data.elms,
-			$detail = $( this );
+		if ( event.namespace === pluginName ) {
+			var top,
+				isOn = data.isOn,
+				$elms = data.elms,
+				$detail = $( this );
 
-		// Native details support
-		$detail.prop( "open", isOn );
+			// Native details support
+			$detail.prop( "open", isOn );
 
-		// Polyfill details support
-		if ( !Modernizr.details ) {
-			$detail
-				.attr( "open", isOn ? null : "open" )
-				.find( "summary" ).trigger( "toggle.wb-details" );
-		}
+			// Polyfill details support
+			if ( !Modernizr.details ) {
+				$detail
+					.attr( "open", isOn ? null : "open" )
+					.find( "summary" ).trigger( "toggle.wb-details" );
+			}
 
-		if ( data.isTablist ) {
+			if ( data.isTablist ) {
 
-			// Set the required aria attributes
-			$elms.find( selectorTab ).attr({
-				"aria-selected": isOn,
-				tabindex: isOn ? "0" : "-1"
-			});
-			$elms.find( selectorPanel ).attr({
-				"aria-hidden": !isOn,
-				"aria-expanded": isOn
-			});
+				// Set the required aria attributes
+				$elms.find( selectorTab ).attr({
+					"aria-selected": isOn,
+					tabindex: isOn ? "0" : "-1"
+				});
+				$elms.find( selectorPanel ).attr({
+					"aria-hidden": !isOn,
+					"aria-expanded": isOn
+				});
 
-			// Check that the top of the open element is in view.
-			if ( isOn && $elms.length === 1 ) {
-				top = $elms.offset().top;
-				if ( top < $window.scrollTop() ) {
-					$window.scrollTop( top );
+				// Check that the top of the open element is in view.
+				if ( isOn && $elms.length === 1 ) {
+					top = $elms.offset().top;
+					if ( top < $window.scrollTop() ) {
+						$window.scrollTop( top );
+					}
 				}
 			}
 		}

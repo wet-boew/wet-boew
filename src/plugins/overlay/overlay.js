@@ -115,7 +115,9 @@ $document.on( "timerpoke.wb " + initEvent + " keydown open" + selector +
 
 	var eventType = event.type,
 		which = event.which,
-		overlayId = event.currentTarget.id,
+		eventTarget = event.target,
+		eventTurrentTarget = event.currentTarget,
+		overlayId = eventTurrentTarget.id,
 		overlay, $focusable, index, length;
 
 	switch ( eventType ) {
@@ -125,11 +127,15 @@ $document.on( "timerpoke.wb " + initEvent + " keydown open" + selector +
 		break;
 
 	case "open":
-		openOverlay( overlayId, event.noFocus );
+		if ( eventTurrentTarget === eventTarget ) {
+			openOverlay( overlayId, event.noFocus );
+		}
 		break;
 
 	case "close":
-		closeOverlay( overlayId, event.noFocus );
+		if ( eventTurrentTarget === eventTarget ) {
+			closeOverlay( overlayId, event.noFocus );
+		}
 		break;
 
 	default:

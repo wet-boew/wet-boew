@@ -318,12 +318,14 @@ $document.on( "keydown displayed.wb-cal", "#" + containerName, function( event, 
 		break;
 
 	case "displayed":
-		addLinksToCalendar( fieldId, year, month, $days );
-		setSelectedDate( fieldId, year, month, $days );
-		( day ?
-			$container.find( ".cal-index-" + day + " a" ) :
-			$container
-		).trigger( setFocusEvent );
+		if ( event.namespace === "wb-cal" ) {
+			addLinksToCalendar( fieldId, year, month, $days );
+			setSelectedDate( fieldId, year, month, $days );
+			( day ?
+				$container.find( ".cal-index-" + day + " a" ) :
+				$container
+			).trigger( setFocusEvent );
+		}
 		break;
 
 	case "click":
