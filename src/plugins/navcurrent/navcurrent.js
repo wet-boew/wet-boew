@@ -62,7 +62,7 @@ var $document = wb.doc,
 			if ( !match && breadcrumb ) {
 
 				// Check to see if the data has been cached already
-				if ( !localBreadcrumbLinksArray ) {
+				if ( !breadcrumbLinksArray ) {
 
 					// Pre-process the breadcrumb links
 					localBreadcrumbLinksArray = [];
