@@ -120,7 +120,9 @@ $document.on( "timerpoke.wb " + initEvent + " "  + updateEvent, selector, functi
 
 	if ( event.currentTarget === eventTarget ) {
 		if ( event.type === "wb-update" ) {
-			meter( eventTarget );
+			if ( event.namespace === polyfillName ) {
+				meter( eventTarget );
+			}
 
 		// Only initialize the element once
 		} else if ( eventTarget.className.indexOf( initedClass ) === -1 ) {

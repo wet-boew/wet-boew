@@ -332,7 +332,9 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " keydown click 
 		init( event );
 		break;
 	case "wb-update":
-		populateOptions( event.target );
+		if ( event.namespace === pluginName ) {
+			populateOptions( event.target );
+		}
 		break;
 	case "keydown":
 		if ( !(event.ctrlKey || event.metaKey ) ) {

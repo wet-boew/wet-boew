@@ -117,8 +117,10 @@ var pluginName = "wb-prettify",
 	 * Invoke the Google pretty print library if it has been initialized
 	 * @method prettyprint
 	 */
-	prettyprint = function() {
-		if ( typeof window.prettyPrint === "function" ) {
+	prettyprint = function( event ) {
+		if ( event.namespace === pluginName &&
+			typeof window.prettyPrint === "function" ) {
+
 			window.prettyPrint();
 		}
 	};

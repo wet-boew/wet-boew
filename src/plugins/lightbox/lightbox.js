@@ -268,8 +268,8 @@ $( document ).on( "click", ".popup-modal-dismiss", function( event ) {
 });
 
 // Event handler for opening a popup without a link
-$( document ).on( "open.wb-lbx", function( event, items, modal, title ) {
-	if ( event.namespace === "wb-lbx" ) {
+$( document ).on( "open" + selector, function( event, items, modal, title ) {
+	if ( event.namespace === pluginName ) {
 		var isGallery = items.length > 1,
 			isModal = modal && !isGallery ? modal : false,
 			titleSrc = title ? function() {

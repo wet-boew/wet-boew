@@ -31,7 +31,7 @@ var pluginName = "wb-tableparser",
 
 		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
 		wb.remove( selector );
-		$obj.get(0).className += " " + initedClass;
+		$obj.get( 0 ).className += " " + initedClass;
 
 		var groupZero = {
 				allParserObj: [],
@@ -2150,41 +2150,29 @@ var pluginName = "wb-tableparser",
 
 		addHeaders( groupZero );
 
-		$obj.trigger( "parsecomplete.wb-tableparser.wb" );
+		$obj.trigger( "parsecomplete.wb-tableparser" );
 
 	};
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb " + initEvent, selector, function( event ) {
-	var eventType = event.type,
+	var eventTarget = event.target;
 
-		// "this" is cached for all events to utilize
-		$elm = $( this );
-
-	switch ( eventType ) {
-	case "wb-init":
-		init( $elm );
-		break;
+	if ( event.currentTarget === eventTarget ) {
+		init( $( eventTarget ) );
 	}
 
-	/*
-	* Since we are working with events we want to ensure that we are being passive about our control,
-	* so returning true allows for events to always continue
-	*/
 	return true;
 });
 
 // Bind the init event of the plugin on passive table parsing request
-$document.on( "pasiveparse.wb-tableparser.wb", function( event ) {
-	var eventTarget = event.target,
-		$elm = $( eventTarget );
+$document.on( "passiveparse.wb-tableparser", function( event ) {
+	var eventTarget = event.target;
 
-	init( $elm );
+	if ( event.currentTarget === eventTarget ) {
+		init( $( eventTarget ) );
+	}
 
-	/*
-	* Since we are working with events we want to ensure that we are being passive about our control,
-	* so returning true allows for events to always continue
-	*/
 	return true;
 });
 

@@ -25,95 +25,97 @@ var $document = wb.doc,
 	 * @param {jQuery DOM element | DOM element} breadcrumb Optional breadcrumb element
 	 */
 	navCurrent = function( event, breadcrumb ) {
-		var menu = event.target,
-			menuLinks = menu.getElementsByTagName( "a" ),
-			menuLinksArray = [],
-			menuLinksUrlArray = [],
-			windowLocation = window.location,
-			pageUrl = windowLocation.hostname + windowLocation.pathname.replace( /^([^\/])/, "/$1" ),
-			pageUrlQuery = windowLocation.search,
-			match = false,
-			len, i, j, link, linkHref, linkUrl, linkQuery, linkQueryLen,
-			localBreadcrumbLinks, localBreadcrumbLinksArray, localBreadcrumbLinksUrlArray,
-			localBreadcrumbQuery, localBreadcrumbLinkUrl;
+		if ( event.namespace === "wb" ) {
+			var menu = event.target,
+				menuLinks = menu.getElementsByTagName( "a" ),
+				menuLinksArray = [],
+				menuLinksUrlArray = [],
+				windowLocation = window.location,
+				pageUrl = windowLocation.hostname + windowLocation.pathname.replace( /^([^\/])/, "/$1" ),
+				pageUrlQuery = windowLocation.search,
+				match = false,
+				len, i, j, link, linkHref, linkUrl, linkQuery, linkQueryLen,
+				localBreadcrumbLinks, localBreadcrumbLinksArray, localBreadcrumbLinksUrlArray,
+				localBreadcrumbQuery, localBreadcrumbLinkUrl;
 
-		// Try to find a match with the page Url and cache link + Url for later if no match found
-		// Perform the check and caching in reverse to go from more specific links to more general links
-		for ( i = menuLinks.length - 1; i !== -1; i -= 1 ) {
-			link = menuLinks[ i ];
-			linkHref = link.getAttribute( "href" );
-			if ( linkHref !== null ) {
-				if ( linkHref.length !== 0 && linkHref.charAt( 0 ) !== "#" ) {
-					linkUrl = link.hostname + link.pathname.replace( /^([^\/])/, "/$1" );
-					linkQuery = link.search;
-					linkQueryLen = linkQuery.length;
-					if ( pageUrl.slice( -linkUrl.length ) === linkUrl && ( linkQueryLen === 0 || pageUrlQuery.slice( -linkQueryLen ) === linkQuery ) ) {
-						match = true;
-						break;
-					}
-					menuLinksArray.push( link );
-					menuLinksUrlArray.push( linkUrl );
-				}
-			}
-		}
-
-		// No page Url match found, try a breadcrumb link match instead
-		if ( !match && breadcrumb ) {
-
-			// Check to see if the data has been cached already
-			if ( !localBreadcrumbLinksArray ) {
-
-				// Pre-process the breadcrumb links
-				localBreadcrumbLinksArray = [];
-				localBreadcrumbLinksUrlArray = [];
-				localBreadcrumbLinks = ( breadcrumb.jquery ? breadcrumb[ 0 ] : breadcrumb ).getElementsByTagName( "a" );
-				len = localBreadcrumbLinks.length;
-				for ( i = 0; i !== len; i += 1 ) {
-					link = localBreadcrumbLinks[ i ];
-					linkHref = link.getAttribute( "href" );
+			// Try to find a match with the page Url and cache link + Url for later if no match found
+			// Perform the check and caching in reverse to go from more specific links to more general links
+			for ( i = menuLinks.length - 1; i !== -1; i -= 1 ) {
+				link = menuLinks[ i ];
+				linkHref = link.getAttribute( "href" );
+				if ( linkHref !== null ) {
 					if ( linkHref.length !== 0 && linkHref.charAt( 0 ) !== "#" ) {
-						localBreadcrumbLinksArray.push( link );
-						localBreadcrumbLinksUrlArray.push( link.hostname + link.pathname.replace( /^([^\/])/, "/$1" ) );
+						linkUrl = link.hostname + link.pathname.replace( /^([^\/])/, "/$1" );
+						linkQuery = link.search;
+						linkQueryLen = linkQuery.length;
+						if ( pageUrl.slice( -linkUrl.length ) === linkUrl && ( linkQueryLen === 0 || pageUrlQuery.slice( -linkQueryLen ) === linkQuery ) ) {
+							match = true;
+							break;
+						}
+						menuLinksArray.push( link );
+						menuLinksUrlArray.push( linkUrl );
 					}
 				}
-
-				// Cache the data in case of more than one execution (e.g., site menu + secondary navigation)
-				breadcrumbLinksArray = localBreadcrumbLinksArray;
-				breadcrumbLinksUrlArray = localBreadcrumbLinksUrlArray;
-			} else {
-
-				// Retrieve the cached data
-				localBreadcrumbLinksArray = breadcrumbLinksArray;
-				localBreadcrumbLinksUrlArray = breadcrumbLinksUrlArray;
 			}
 
-			// Try to match each breadcrumb link
-			len = menuLinksArray.length;
-			for ( j = localBreadcrumbLinksArray.length - 1; j !== -1; j -= 1 ) {
-				localBreadcrumbLinkUrl = localBreadcrumbLinksUrlArray[ j ];
-				localBreadcrumbQuery = localBreadcrumbLinksArray[ j ].search;
+			// No page Url match found, try a breadcrumb link match instead
+			if ( !match && breadcrumb ) {
 
-				for ( i = 0; i !== len; i += 1 ) {
-					link = menuLinksArray[ i ];
-					linkUrl = menuLinksUrlArray[ i ];
-					linkQuery = link.search;
-					linkQueryLen = linkQuery.length;
+				// Check to see if the data has been cached already
+				if ( !localBreadcrumbLinksArray ) {
 
-					if ( localBreadcrumbLinkUrl.slice( -linkUrl.length ) === linkUrl && ( linkQueryLen === 0 || localBreadcrumbQuery.slice( -linkQueryLen ) === linkQuery ) ) {
-						match = true;
+					// Pre-process the breadcrumb links
+					localBreadcrumbLinksArray = [];
+					localBreadcrumbLinksUrlArray = [];
+					localBreadcrumbLinks = ( breadcrumb.jquery ? breadcrumb[ 0 ] : breadcrumb ).getElementsByTagName( "a" );
+					len = localBreadcrumbLinks.length;
+					for ( i = 0; i !== len; i += 1 ) {
+						link = localBreadcrumbLinks[ i ];
+						linkHref = link.getAttribute( "href" );
+						if ( linkHref.length !== 0 && linkHref.charAt( 0 ) !== "#" ) {
+							localBreadcrumbLinksArray.push( link );
+							localBreadcrumbLinksUrlArray.push( link.hostname + link.pathname.replace( /^([^\/])/, "/$1" ) );
+						}
+					}
+
+					// Cache the data in case of more than one execution (e.g., site menu + secondary navigation)
+					breadcrumbLinksArray = localBreadcrumbLinksArray;
+					breadcrumbLinksUrlArray = localBreadcrumbLinksUrlArray;
+				} else {
+
+					// Retrieve the cached data
+					localBreadcrumbLinksArray = breadcrumbLinksArray;
+					localBreadcrumbLinksUrlArray = breadcrumbLinksUrlArray;
+				}
+
+				// Try to match each breadcrumb link
+				len = menuLinksArray.length;
+				for ( j = localBreadcrumbLinksArray.length - 1; j !== -1; j -= 1 ) {
+					localBreadcrumbLinkUrl = localBreadcrumbLinksUrlArray[ j ];
+					localBreadcrumbQuery = localBreadcrumbLinksArray[ j ].search;
+
+					for ( i = 0; i !== len; i += 1 ) {
+						link = menuLinksArray[ i ];
+						linkUrl = menuLinksUrlArray[ i ];
+						linkQuery = link.search;
+						linkQueryLen = linkQuery.length;
+
+						if ( localBreadcrumbLinkUrl.slice( -linkUrl.length ) === linkUrl && ( linkQueryLen === 0 || localBreadcrumbQuery.slice( -linkQueryLen ) === linkQuery ) ) {
+							match = true;
+							break;
+						}
+					}
+					if ( match ) {
 						break;
 					}
 				}
-				if ( match ) {
-					break;
-				}
 			}
-		}
 
-		if ( match ) {
-			link.className += " " + navClass;
-			if ( menu.className.indexOf( "wb-menu" ) !== -1 && link.className.indexOf( "item" ) === -1 ) {
-				$( link ).closest( ".sm" ).parent().children( "a" ).addClass( navClass );
+			if ( match ) {
+				link.className += " " + navClass;
+				if ( menu.className.indexOf( "wb-menu" ) !== -1 && link.className.indexOf( "item" ) === -1 ) {
+					$( link ).closest( ".sm" ).parent().children( "a" ).addClass( navClass );
+				}
 			}
 		}
 	};

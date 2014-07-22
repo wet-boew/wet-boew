@@ -19,8 +19,8 @@
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
-	tableParsingEvent = "pasiveparse.wb-tableparser.wb",
-	tableParsingCompleteEvent = "parsecomplete.wb-tableparser.wb",
+	tableParsingEvent = "passiveparse.wb-tableparser",
+	tableParsingCompleteEvent = "parsecomplete.wb-tableparser",
 	$document = wb.doc,
 	idCount = 0,
 	i18n, i18nText,
@@ -1131,25 +1131,23 @@ $document.on( "timerpoke.wb " + initEvent + " " + tableParsingCompleteEvent, sel
 	var eventType = event.type,
 		elm = event.target;
 
-	if ( event.currentTarget !== elm ) {
-		return true;
-	}
+	if ( event.currentTarget === elm ) {
+		switch ( eventType ) {
 
-	switch ( eventType ) {
+		/*
+		 * Init
+		 */
+		case "timerpoke":
+			init( elm );
+			break;
 
-	/*
-	 * Init
-	 */
-	case "timerpoke":
-		init( elm );
-		break;
-
-	/*
-	 * Data table parsed
-	 */
-	case "parsecomplete":
-		createCharts( $( elm ) );
-		break;
+		/*
+		 * Data table parsed
+		 */
+		case "parsecomplete":
+			createCharts( $( elm ) );
+			break;
+		}
 	}
 
 	/*

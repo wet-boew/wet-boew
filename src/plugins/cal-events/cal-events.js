@@ -42,7 +42,7 @@ var pluginName = "wb-calevt",
 			}
 
 			// Load ajax content
-			$.when.apply($, $.map( $elm.find( "[data-calevt]" ), getAjax))
+			$.when.apply( $, $.map( $elm.find( "[data-calevt]" ), getAjax ) )
 				.always( function() {
 					processEvents( $elm );
 				});
@@ -334,8 +334,12 @@ var pluginName = "wb-calevt",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb " + initEvent, selector, function() {
-	init( $( this ) );
+$document.on( "timerpoke.wb " + initEvent, selector, function( event ) {
+
+	// Filter out any events triggered by descendants
+	if ( event.currentTarget === event.target ) {
+		init( $( this ) );
+	}
 
 	/*
 	 * Since we are working with events we want to ensure that we are being passive about our control,
@@ -345,14 +349,18 @@ $document.on( "timerpoke.wb " + initEvent, selector, function() {
 });
 
 $document.on( "displayed.wb-cal", selector + "-cal", function( event, year, month, days, day ) {
-	var target = event.target,
-		$target = $( target ),
-		containerId = target.id,
-		events = $target.data( "calEvents" );
 
-	addEvents( year, month, days, containerId, events.list );
-	showOnlyEventsFor( year, month, containerId );
-	$target.find( ".cal-index-" + day + " .cal-evt" ).trigger( "setfocus.wb" );
+	// Filter out any events triggered by descendants
+	if ( event.currentTarget === event.target ) {
+		var target = event.target,
+			$target = $( target ),
+			containerId = target.id,
+			events = $target.data( "calEvents" );
+
+		addEvents( year, month, days, containerId, events.list );
+		showOnlyEventsFor( year, month, containerId );
+		$target.find( ".cal-index-" + day + " .cal-evt" ).trigger( "setfocus.wb" );
+	}
 });
 
 $document.on( "focusin focusout", ".wb-calevt-cal .cal-days a", function( event ) {
