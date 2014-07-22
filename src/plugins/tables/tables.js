@@ -144,6 +144,11 @@ var pluginName = "wb-tables",
 						}
 					);
 
+					// Remove HTML tags before doing any filtering for formatted numbers
+					dataTableExt.type.search[ "formatted-num" ] = function( data ) {
+						return data.replace( /<[^>]*>/g, "" );
+					};
+
 					// Add the container or the sorting icons
 					$elm.find( "th" ).append( "<span class='sorting-cnt'><span class='sorting-icons'></span></span>" );
 
