@@ -4,7 +4,7 @@
 	"language": "fr",
 	"description": "Un calendrier servant à consulter une liste d'événements.",
 	"altLangPrefix": "cal-events",
-	"dateModified": "2014-03-10"
+	"dateModified": "2014-07-23"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -154,41 +154,34 @@
 	</section>
 </section>
 
-<section>
-	<h2>Événements</h2>
+<section lang="en">
+	<p><strong>Needs translation</strong></p>
+	<h2>Events</h2>
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Événement</th>
-				<th>Déclencheur</th>
-				<th>Fonction</th>
+				<th>Event</th>
+				<th>Trigger</th>
+				<th>What it does</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>create.wb-cal</td>
-				<td>Après que l'année ou le mois soit modifié et après que le formulaire « Aller à » soit soumis.</td>
-				<td>Crée l'interface du calendrier.</td>
+				<td><code>wb-init.wb-calevt</code></td>
+				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-calevt" );</code>).</td>
+				<td>Used to manually initialize the Calendar of events plugin. <strong>Note:</strong> The Calendar of events plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
 			</tr>
 			<tr>
-				<td>displayed.wb-cal</td>
-				<td>Après que l'interface du calendrier soit créé.</td>
-				<td>Déclenche l'événement pour les composantes (ex : le sélecteur de date) qui en ont besoin.</td>
-			</tr>
-			<tr>
-				<td>hideGoToFrm.wb-cal</td>
-				<td>Après que le bouton "Annuler" sur le formulaire « Aller à » soit activé et après que le formulaire « Aller à » soit soumis.</td>
-				<td>Cache le formulaire "Aller à" dans l'interface du calendrier.</td>
-			</tr>
-			<tr>
-				<td>setFocus.wb-cal</td>
-				<td>Lors de la navigation de l'interface du calendrier à partir du clavier.</td>
-				<td>Places le « focus » sur la date ciblée.</td>
+				<td><code>wb-ready.wb-calevt</code></td>
+				<td>Triggered automatically after a calendar of events draws.</td>
+				<td>Used to identify which calendar of events was drawn (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-calevt", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>
 </section>
-
 <section>
 	<h2>Code source</h2>
 	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/cal-events">Code source pour le calendrier d'événements</a></p>
