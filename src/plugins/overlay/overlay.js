@@ -214,6 +214,35 @@ $document.on( "click vclick", "." + linkClass, function( event ) {
 	}
 });
 
+// Handler for clicking on a same page link within the overlay to outside the overlay
+$document.on( "click vclick", selector + " a[href^='#']", function( event ) {
+	var which = event.which,
+		eventTarget = event.target,
+		href, overlay, linkTarget;
+
+	// Ignore middle/right mouse buttons
+	if ( !which || which === 1 ) {
+		overlay = $( eventTarget ).closest( selector )[ 0 ];
+		href = eventTarget.getAttribute( "href" ),
+		linkTarget = document.getElementById( href.substring( 1 ) );
+
+		// Ignore same page links to within the overlay
+		if ( href.length > 1 && !$.contains( overlay, linkTarget ) ) {
+
+			// Stop propagation of the click event
+			if ( event.stopPropagation ) {
+				event.stopImmediatePropagation();
+			} else {
+				event.cancelBubble = true;
+			}
+
+			// Close the overlay and set focus to the same page link
+			closeOverlay( overlay.id, true );
+			$( linkTarget ).trigger( setFocusEvent );
+		}
+	}
+});
+
 // Outside activity detection
 $document.on( "click vclick touchstart focusin", "body", function( event ) {
 	var eventTarget = event.target,
