@@ -17,6 +17,7 @@ var pluginName = "wb-calevt",
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
+	readyEvent = "wb-ready" + selector,
 	evDetails = "ev-details",
 	$document = wb.doc,
 	i18n, i18nText,
@@ -360,6 +361,9 @@ $document.on( "displayed.wb-cal", selector + "-cal", function( event, year, mont
 		addEvents( year, month, days, containerId, events.list );
 		showOnlyEventsFor( year, month, containerId );
 		$target.find( ".cal-index-" + day + " .cal-evt" ).trigger( "setfocus.wb" );
+
+		// Identify that the plugin is ready
+		$target.trigger( readyEvent );
 	}
 });
 

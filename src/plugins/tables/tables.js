@@ -17,6 +17,7 @@ var pluginName = "wb-tables",
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
+	readyEvent = "wb-ready" + selector,
 	$document = wb.doc,
 	idCount = 0,
 	i18n, i18nText, defaults,
@@ -88,8 +89,8 @@ var pluginName = "wb-tables",
 							.filter( ".current" )
 								.attr( "aria-pressed", "true" );
 
-					// Trigger the table-draw.wb-tables callback event
-					$( "#" + elmId ).trigger( "table-draw.wb-tables", [ this, settings ] );
+					// Trigger the wb-ready.wb-tables callback event
+					$( "#" + elmId ).trigger( readyEvent, [ this, settings ] );
 				}
 			};
 

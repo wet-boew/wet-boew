@@ -4,7 +4,7 @@
 	"language": "en",
 	"description": "Dynamically generates a calendar interface for navigating a list of events.",
 	"altLangPrefix": "cal-events",
-	"dateModified": "2014-03-10"
+	"dateModified": "2014-07-23"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -166,25 +166,18 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>create.wb-cal</td>
-				<td>After the year or month is changed and after the "Go to" form is submitted.</td>
-				<td>Creates the calendar interface.</td>
+				<td><code>wb-init.wb-calevt</code></td>
+				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-calevt" );</code>).</td>
+				<td>Used to manually initialize the Calendar of events plugin. <strong>Note:</strong> The Calendar of events plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
 			</tr>
 			<tr>
-				<td>displayed.wb-cal</td>
-				<td>After the calendar interface is created.</td>
-				<td>Triggers the event for components (ex: the date picker polyfill) that need it.</td>
+				<td><code>wb-ready.wb-calevt</code></td>
+				<td>Triggered automatically after a calendar of events draws.</td>
+				<td>Used to identify which calendar of events was drawn (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-calevt", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
-			<tr>
-				<td>hideGoToFrm.wb-cal</td>
-				<td>After the "Cancel" button on the "Go to" form is pressed and after the "Go to" form is submitted.</td>
-				<td>Hides the "Go To" form in the calendar interface.</td>
-			</tr>
-			<tr>
-				<td>setFocus.wb-cal</td>
-				<td>When navigating the calendar interface via keyboard.</td>
-				<td>Places focus on the targetted date.</td>
-			</tr>			
 		</tbody>
 	</table>
 </section>

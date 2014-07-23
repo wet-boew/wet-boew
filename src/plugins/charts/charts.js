@@ -19,6 +19,7 @@
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
+	readyEvent = "wb-ready" + selector,
 	tableParsingEvent = "passiveparse.wb-tableparser",
 	tableParsingCompleteEvent = "parsecomplete.wb-tableparser",
 	$document = wb.doc,
@@ -1072,6 +1073,7 @@
 		$( "canvas:eq(1)", $placeHolder ).css( "position", "static" );
 		$( "canvas:eq(0)", $placeHolder ).css( "width", "100%" );
 
+		$elm.trigger( readyEvent );
 	},
 
 	/**
