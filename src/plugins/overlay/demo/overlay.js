@@ -6,10 +6,14 @@
 (function( $, wb ) {
 "use strict";
 
-wb.doc.on( "click vclick", ".modal-close", function( event ) {
-	$( event.currentTarget )
-			.closest( ".wb-overlay" )
-				.trigger( "close.wb-overlay" );
+wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
+	if ( event.stopPropagation ) {
+		event.stopImmediatePropagation();
+	} else {
+		event.cancelBubble = true;
+	}
+
+	$( "#" + $( "#overlay-select" ).val() ).trigger( "open.wb-overlay" );
 });
 
 })( jQuery, wb );
