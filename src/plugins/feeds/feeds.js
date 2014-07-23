@@ -257,7 +257,6 @@ var pluginName = "wb-feeds",
 
 				i -= 1;
 			}
-			//$.extend( {}, results );
 		}
 	},
 
@@ -273,6 +272,41 @@ var pluginName = "wb-feeds",
 			return 0;
 		}
 		return Number( count[ 0 ].replace( /limit-/i, "" ) );
+	},
+
+	/**
+	 * Activates results view
+	 * @method checkIfVisible
+	 * @param = {jQuery EventObject}
+	 */
+	activateIfVisible = function() {
+
+		var $elm = $( this ),
+			needTimer = ( $elm.parents( "[aria-hidden]" ).length > 0 ),
+			isHidden = ( $elm.parents( "[aria-hidden='true']" ).length > 0 ),
+			result, postProcess, i;
+
+		if ( !needTimer || ( needTimer && !isHidden ) ) {
+			postProcess = $elm.data( "postProcess" );
+			result = $elm.data( "result" );
+
+			$elm.empty()
+				.removeClass( "waiting" )
+				.append( result )
+				.off( "timerpoke.wb", activateIfVisible );
+
+			if ( postProcess ) {
+
+				for ( i = postProcess.length - 1; i >= 0; i -= 1 ) {
+					wb.add( postProcess[i] );
+				}
+			}
+
+		} else {
+			$elm.empty().addClass( "waiting" );
+		}
+
+		return false;
 	},
 
 	/**
@@ -305,7 +339,6 @@ var pluginName = "wb-feeds",
 	parseEntries = function( entries, limit, $elm, feedtype ) {
 		var cap = ( limit > 0 && limit < entries.length ? limit : entries.length ),
 			result = "",
-			postProcess = $elm.data( "postProcess" ),
 			compare = wb.date.compare,
 			i, sorted, sortedEntry;
 
@@ -317,15 +350,13 @@ var pluginName = "wb-feeds",
 			sortedEntry = sorted[ i ];
 			result += Templates[ feedtype ]( sortedEntry );
 		}
-		$elm.empty().append( result );
 
-		if ( postProcess ) {
+		wb.selectors.push( $elm );
 
-			for ( i = postProcess.length - 1; i >= 0; i -= 1 ) {
-				wb.add( postProcess[i] );
-			}
+		$elm.data( "result", result );
 
-		}
+		$elm.on( "timerpoke.wb", activateIfVisible );
+
 		return true;
 	};
 
