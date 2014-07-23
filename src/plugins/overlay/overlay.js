@@ -223,7 +223,7 @@ $document.on( "click vclick", selector + " a[href^='#']", function( event ) {
 	// Ignore middle/right mouse buttons
 	if ( !which || which === 1 ) {
 		overlay = $( eventTarget ).closest( selector )[ 0 ];
-		href = eventTarget.getAttribute( "href" ),
+		href = eventTarget.getAttribute( "href" );
 		linkTarget = document.getElementById( href.substring( 1 ) );
 
 		// Ignore same page links to within the overlay

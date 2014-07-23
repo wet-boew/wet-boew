@@ -17,6 +17,7 @@ var pluginName = "wb-lbx",
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
+	setFocusEvent = "setfocus.wb",
 	extendedGlobal = false,
 	$document = wb.doc,
 	idCount = 0,
@@ -221,7 +222,7 @@ $document.on( "keydown", ".mfp-wrap", function( event ) {
 		} else if ( index === length - 1 ) {
 			index = 0;
 		}
-		$focusable.eq( index ).trigger( "setfocus.wb" );
+		$focusable.eq( index ).trigger( setFocusEvent );
 	}
 
 	/*
@@ -240,7 +241,7 @@ $document.on( "focus", ".lbx-end", function( event ) {
 		.closest( ".mfp-wrap" )
 			.find( ":focusable" )
 				.eq( 0 )
-					.trigger( "setfocus.wb" );
+					.trigger( setFocusEvent );
 
 	/*
 	 * Since we are working with events we want to ensure that we are being passive about our control,
@@ -254,10 +255,44 @@ $document.on( "focus", ".lbx-end", function( event ) {
 $document.on( "focusin", "body", function( event ) {
 
 	if ( extendedGlobal && $.magnificPopup.instance.currItem &&
-		$( event.target ).closest( ".mfp-wrap" ).length === 0 ) {
+		$( event.target ).closest( ".mfp-wrap" ).length === 0 &&
+		$( ".popup-modal-dismiss" ).length === 0 ) {
 
 		// Close the popup
 		$.magnificPopup.close();
+	}
+});
+
+// Handler for clicking on a same page link within the overlay to outside the overlay
+$document.on( "click vclick", ".mfp-wrap a[href^='#']", function( event ) {
+	var which = event.which,
+		eventTarget = event.target,
+		href, $lightbox, linkTarget;
+
+	// Ignore middle/right mouse buttons
+	if ( !which || which === 1 ) {
+		$lightbox = $( eventTarget ).closest( ".mfp-wrap" );
+		href = eventTarget.getAttribute( "href" );
+		linkTarget = document.getElementById( href.substring( 1 ) );
+
+		// Ignore same page links to within the overlay and modal popups
+		if ( href.length > 1 && !$.contains( $lightbox[ 0 ], linkTarget ) ) {
+			if ( $lightbox.find( ".popup-modal-dismiss" ).length === 0 ) {
+
+				// Stop propagation of the click event
+				if ( event.stopPropagation ) {
+					event.stopImmediatePropagation();
+				} else {
+					event.cancelBubble = true;
+				}
+
+				// Close the overlay and set focus to the same page link
+				$.magnificPopup.close();
+				$( linkTarget ).trigger( setFocusEvent );
+			} else {
+				return false;
+			}
+		}
 	}
 });
 
