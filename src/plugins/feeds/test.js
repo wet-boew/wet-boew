@@ -14,7 +14,7 @@
  * nested in other test suites if you want to use the same setup `before()` and
  * teardown `after()` for more than one test suite (as is the case below.)
  */
-describe( "Feeds test suite", function() {
+describe.skip( "Feeds test suite", function() {
 	var sandbox = sinon.sandbox.create(),
 		ajaxEvent = "ajax-fetch.wb",
 		fetchedEvent = "ajax-fetched.wb",

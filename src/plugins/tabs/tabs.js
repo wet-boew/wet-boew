@@ -362,7 +362,7 @@ var pluginName = "wb-tabs",
 			$currPanel = $panels.filter( ".in" ),
 			mPlayers = $currPanel.find( ".wb-mltmd-inited" ).get(),
 			mPlayersLen = mPlayers.length,
-			i, j, last;
+			mPlayer, i, j, last;
 
 		// Handle the direction of the slide transitions
 		if ( $currPanel[ 0 ].className.indexOf( "slide" ) !== -1 ) {
@@ -386,7 +386,10 @@ var pluginName = "wb-tabs",
 
 		// Pause all multimedia players in the current panel
 		for ( i = 0; i !== mPlayersLen; i += 1 ) {
-			mPlayers[ i ].player( "pause" );
+			mPlayer = mPlayers[ i ];
+			if ( mPlayer.player ) {
+				mPlayer.player( "pause" );
+			}
 		}
 
 		$next
