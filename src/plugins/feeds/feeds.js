@@ -280,9 +280,11 @@ var pluginName = "wb-feeds",
 	 */
 	activateIfVisible = function() {
 		var $elm = $( this ),
-			$tabPanelHidden = $elm.closest( "[role=tabpanel]" ).filter( "[aria-hidden]" ),
-			needTimer = $tabPanelHidden.length !== 0,
-			isHidden = $tabPanelHidden.attr( "aria-hidden" ) === "true",
+			$details = $elm.closest( "details" ),
+			needTimer = $details.length !== 0,
+			isTabPanel = $details.attr( "role" ) === "tabpanel",
+			isHidden = ( isTabPanel && $details.attr( "aria-hidden" ) === "true" ) ||
+						( !isTabPanel && !$details.attr( "open" ) ),
 			result, postProcess, i;
 
 		if ( !needTimer || ( needTimer && !isHidden ) ) {
