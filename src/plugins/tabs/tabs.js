@@ -522,7 +522,6 @@ var pluginName = "wb-tabs",
 						$active = $tablist.find( ".active a" );
 						$details
 							.removeAttr( "role aria-expanded aria-hidden" )
-							.removeAttr( "role" )
 							.removeClass( "fade out in" );
 						$openDetails = $details
 											.filter( "#" + $active.attr( "href" ).substring( 1 ) )
