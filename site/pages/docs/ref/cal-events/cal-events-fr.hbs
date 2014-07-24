@@ -38,7 +38,7 @@
 				<li>La date de l’événement doit être fournie dans un élément time en HTML5 contenu au sein d’un élément de paragraphe (à la suite de l’élément d’en-tête). La date à afficher est contenue dans l’élément time et une date de norme ISO-8601 (p. ex., 2010-03-11) est indiquée dans l’attribut datetime.</li>
 			</ol>
 		</li>
-		<li>Ajouter un deuxième élément div à la page Web avec une valeur d’attribut à identification contenant votre classe unique ci-haut (e.g.: <code>&lt;div id="unique-class"&gt;&lt;/div&gt;</code>). Cela permettra de maintenir en place l’interface de calendrier.</li>
+		<li>Ajouter un deuxième élément div à la page Web avec une valeur d’attribut à identification contenant votre classe unique ci-haut (p.ex., <code>&lt;div id="unique-class"&gt;&lt;/div&gt;</code>). Cela permettra de maintenir en place l’interface de calendrier.</li>
 	</ol>
 	<p>Exemple code :</p>
 	<pre><code>&lt;div id="calendar1"&gt;&lt;/div&gt;
@@ -172,10 +172,12 @@
 				<td>Used to manually initialize the Calendar of events plugin. <strong>Note:</strong> The Calendar of events plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
 			</tr>
 			<tr>
-				<td><code>wb-ready.wb-calevt</code></td>
+				<td><code>wb-ready.wb-calevt</code> (v4.0.5+)</td>
 				<td>Triggered automatically after a calendar of events draws.</td>
 				<td>Used to identify which calendar of events was drawn (target of the event)
-					<pre><code>$( document ).on( "wb-ready.wb-calevt", function( event ) {
+					<pre><code>$( document ).on( "wb-ready.wb-calevt", ".wb-calevt", function( event ) {
+});</code></pre>
+					<pre><code>$elm.on( "wb-ready.wb-calevt", function( event ) {
 });</code></pre>
 				</td>
 			</tr>

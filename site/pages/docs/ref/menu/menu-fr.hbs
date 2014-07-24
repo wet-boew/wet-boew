@@ -4,7 +4,7 @@
 	"language": "fr",
 	"description": "Une barre de menu interactive comprenant des sous-menus optionnels.",
 	"altLangPrefix": "menu",
-	"dateModified": "2014-03-31"
+	"dateModified": "2014-07-23"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -108,6 +108,16 @@ Example of multi-line code</code></pre>
 				<td>wb-init.wb-menu</td>
 				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-menu" );</code>).</td>
 				<td>Used to manually initialize the menu plugin. <strong>Note:</strong> The menu plugin will be initialized automatically unless the menu markup is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-menu</code> (v4.0.5+)</td>
+				<td>Triggered automatically after a menu has initialized.</td>
+				<td>Used to identify which menu has initialized (target of the event).
+					<pre><code>$( document ).on( "wb-ready.wb-menu", ".wb-menu", function( event, instance, settings ) {
+});</code></pre>
+					<pre><code>$elm.on( "wb-ready.wb-menu", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>

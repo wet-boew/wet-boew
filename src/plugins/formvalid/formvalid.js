@@ -17,6 +17,7 @@ var pluginName = "wb-frmvld",
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
+	readyEvent = "wb-ready" + selector,
 	setFocusEvent = "setfocus.wb",
 	$document = wb.doc,
 	idCount = 0,
@@ -295,6 +296,8 @@ var pluginName = "wb-frmvld",
 
 					// Tell the i18n file to execute to run any $.validator extends
 					$form.trigger( "formLanguages.wb" );
+
+					$( eventTarget ).trigger( readyEvent );
 				}
 			});
 		}

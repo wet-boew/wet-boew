@@ -62,7 +62,9 @@
 				<td><code>wb-ready.wb-tables</code> (v4.0.5+)</td>
 				<td>Triggered automatically after a DataTable table draws.</td>
 				<td>Used to identify which table was drawn (target of the event) and to pass along the DataTables instance and the settings object.
-					<pre><code>$( document ).on( "wb-ready.wb-tables", function( event, instance, settings ) {
+					<pre><code>$( document ).on( "wb-ready.wb-tables", ".wb-tables", function( event, instance, settings ) {
+});</code></pre>
+					<pre><code>$elm.on( "wb-ready.wb-tables", function( event ) {
 });</code></pre>
 				</td>
 			</tr>

@@ -327,25 +327,22 @@
 				<td>Used to manually initialize the Charts plugin. <strong>Note:</strong> The Charts plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
 			</tr>
 			<tr>
-				<td><code>wb-ready.wb-charts</code></td>
+				<td><code>wb-ready.wb-charts</code> (v4.0.5+)</td>
 				<td>Triggered automatically after a chart draws.</td>
 				<td>Used to identify which chart was drawn (target of the event)
-					<pre><code>$( document ).on( "wb-ready.wb-charts", function( event ) {
+					<pre><code>$( document ).on( "wb-ready.wb-charts", ".wb-charts", function( event ) {
+});</code></pre>
+					<pre><code>$elm.on( "wb-ready.wb-charts", function( event ) {
 });</code></pre>
 				</td>
 			</tr>
 			<tr>
-				<td>wb-init.wb-charts</td>
-				<td>When the charts plugin is initialized</td>
-				<td>Load dependency required for charting and initiate the complex table parsing.</td>
-			</tr>
-			<tr>
-				<td>pasiveparse.wb-tableparser.wb</td>
+				<td>pasiveparse.wb-tableparser</td>
 				<td>When the charts need the table parser to parse the table. When this event is triggered, that means Flot library is loaded. As that said, you can take advantage of this event to load your own Flot plugin. </td>
 				<td>It will parse the data table and attach the information to a data attribute named tblparser on every elements that related to the table.</td>
 			</tr>
 			<tr>
-				<td>parsecomplete.wb-tableparser.wb</td>
+				<td>parsecomplete.wb-tableparser</td>
 				<td>When the table parser has completed his parsing job.</td>
 				<td>It's means that the tblparser data attribute is now ready to be use. So it is after this event that the data will be prepared for Flot. Then the charts will be created.</td>
 			</tr>

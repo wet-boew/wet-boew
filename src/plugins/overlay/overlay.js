@@ -17,6 +17,7 @@ var pluginName = "wb-overlay",
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
+	readyEvent = "wb-ready" + selector,
 	closeClass = "overlay-close",
 	linkClass = "overlay-lnk",
 	ignoreOutsideClass = "outside-off",
@@ -71,6 +72,8 @@ var pluginName = "wb-overlay",
 
 			$elm.append( overlayClose );
 			elm.setAttribute( "aria-hidden", "true" );
+
+			$elm.trigger( readyEvent );
 		}
 	},
 

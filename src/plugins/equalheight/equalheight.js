@@ -183,7 +183,7 @@ var selector = ".wb-eqht",
 $document.on( eventTimerpoke, selector, init );
 
 // Handle text and window resizing
-$document.on( "txt-rsz.wb win-rsz-width.wb win-rsz-height.wb table-draw.wb-tables", onResize );
+$document.on( "txt-rsz.wb win-rsz-width.wb win-rsz-height.wb wb-ready.wb-tables", onResize );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
