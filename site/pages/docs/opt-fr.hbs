@@ -4,50 +4,83 @@
 	"language": "fr",
 	"description": "Comment optimiser votre code JavaScript, CSS et HTML",
 	"altLangPrefix": "opt",
-	"dateModified": "2014-04-04"
+	"dateModified": "2014-07-24"
 }
 ---
-<div lang="en">
-<p><strong>Needs translation</strong></p>
 
 <span class="wet-boew-prettify all-pre"></span>
-<p>How to optimize your JavaScript, CSS and HTML code. Please add to and improve upon the techniques that already listed.</p>
+<p>Comment optimiser votre code JavaScript, CSS et HTML. Veuillez ajouter et apporter des améliorations aux techniques qui sont déjà énumérées.</p>
 
 <section>
-	<h2>Overview</h2>
-	<p>Code optimization is now an important task with the Web Experience Toolkit taking a mobile-first approach in version 4.0. Where sluggish code may have minimal impact on desktop browser performance, it can result in very noticeable delays on mobile devices. That is why a main focus of WET v4.x is performance optimization.</p>
-	<p>The WET v4.x framework is already heavily optimized using code minification, consolidation, CSS spriting and Base64 encoding. All of these result in significant performance increases but can still be bogged down by bloated and sluggish code. This page provides many tips for ensuring your code is as efficient as possible.</p>
+	<h2>Synthèse</h2>
+	<p>L'optimisation de la programmation est une tâche importante de la Boîte à outils de l'expérience Web maintenant qu'elle adopte une approche mobilité d'abord dans la version 4.0. 
+	Là où la programmation molle pourrait avoir un impact minimal sur les performances dans un fureteur d'ordinateur de bureau, 
+	elle peut résulter en des délais vraiment significatifs sur les appreils mobiles. 
+	C'est pourquoi une des priorités de la BOEW v4.x est l'optimisation de la performance.</p>
+	<p>Le cadre de la BOEW v4.x est déjà fortement optimisé en utilisant la minification de code, la consolidation, le scriptage CSS et l'encodage Base64. 
+	Tout ca résulte dans une augmentation de la performance significative mais peut encore s'enliser par du code gonflé et mou.
+	Cette page fournie plusieurs conseils pour vous assurer que votre programmation est aussi efficace que possible.</p>
 </section>
 
 <section>
-	<h2>JavaScript code optimization</h2>
+	<h2>Optimisation du code JavaScript</h2>
 	<ul>
-		<li><strong>Minimize the use of jQuery:</strong> jQuery can be a big help with DOM traversal and complex scripting scenarios but can be sluggish when dealing with simple and straight forward coding scenarios. There is a performance cost to each jQuery object created and jQuery wrapper methods for native JavaScript operations. Avoid creating jQuery objects wherever possible, especially in loops.</li>
+		<li><strong>Minimiser l'utilisation du jQuery :</strong> jQuery peut être d'un grand aide avec la traversée DOM 
+		et les scénarios complexes de scrptage mais peut ralentir lorsqu'on travaille avec des scénarios de code simple et direct. 
+		Il y a un coût a la performance pour chaque objet jQuery créé et méthode d'emballage jQuery 
+		pour les opérations JavaScript de base. Évitez de créer des objets jQuery chaque fois que possible, 
+		spécialement dans les boucles.</li>
 		<li>
-			<strong>Optimize your loops:</strong> The fastest loops in JavaScript are cached for loops (length cached outside the loop). Avoid using jQuery loops (e.g., <code>each()</code>) wherever possible as there is a lot of overhead. In the case of jQuery objects, use <code>.get()</code> to get an array of DOM objects upon which reverse while and cached for loops can be used.
-			'''Cached for loop (length cached outside the loop):'''
+			<strong>Optimiser vos boucles :</strong> La boucle la plus rapide en JavaScript est en mémoire tampon pour boucles
+			 (longueur en mémoire tampon en dehors de la boucle). Évitez d'utiliser des boucles jQuery (p.e., <code>each()</code>) 
+			 lorsque possible car il y a beaucoup de frais système. Dans le cas d'objets jQuery, utilisez <code>.get()</code> pour 
+			accéder à une collection d'objets DOM pour lesquels une condition « while » renversée et mémoire tampon pour boucles peuvent être utilisés.
+			'''En mémoire tampon pour boucle (longueur en mémoire tampon en dehors de la boucle):'''
 <pre><code>var i,
 	len = myArray.length;
 for ( i = 0; i !== len; i += 1 ) {
 
-	// do something with array item
+	// utiliser l'item de la collection
 	console.log( myArray[ i ] );
 }</code></pre>
 		</li>
-		<li><strong>if/else versus switch statements:</strong> When deciding how to control your program flow, it's important to consider the number of different conditions you need to test.  If there are only 1 or 2 conditions, if/else statements are generally faster.  However, once you have 3 or more conditions to test, a switch statement is the faster option.  Your if/else and switch statements should also be organized so that the most common conditions appear at the top of the if/else block or switch statement (see the jsPerf <a rel="external" href="http://jsperf.com/program-flow-statements">if/else versus switch test case</a>).</li>
-		<li><strong>Cache DOM elements, jQuery objects and object/array values:</strong> There is a lot of overhead to performing DOM searches, creating jQuery objects, and retrieving object/array values. Minimize the impact by caching the results where those results will be used more than once. It is best to store those results in local variables and reuse those variables.</li>
+		<li><strong>« if/else » versus déclarations « switch » :</strong> Lorsque vous décidez comment contrôler le flot de votre programmation,
+		il est important de considérer le nombre de conditions à comparer.  Si il n'y a qu'une ou deux conditions, les déclarations « if/else »  sont généralement plus rapides.  
+		Cependant, lorsque vous avez 3 conditions ou plus à comparer, une déclaration « switch » est l'option la plus rapide.  
+		Vos déclarations « if/else » et « switch » devraient aussi être organisées pour que les conditions les plus communes
+		apparaissent au haut du bloc de déclaration « if/else » ou « switch » (Voir jsPerf <a rel="external" href="http://jsperf.com/program-flow-statements" lang="en">if/else versus switch test case</a>).</li>
+		<li><strong>Éléments DOM en mémoire tampon, objets jQuery et valeurs objet/collection :</strong> 
+		Il y a beaucoup de frais système à faire des recherches DOM, créer des objets jQuery, et retrouver des valeurs objet/collection. 
+		Minimisez l'impact en ajoutant à la mémoire tampon les résultats où ces résultats seront utilisés plus d'une fois. 
+		Il est préférable d'emmagasiner ces résultats dans des variables locales et de réutiliser ces variables.</li>
 		<li>
-			<strong>Minimize reflow:</strong> Every change you make to the DOM has a significant performance cost as it causes page reflow. Minimize this cost by doing all the changes in a single operation to trigger reflow only once versus multiple operations which trigger reflow multiple times. This can be done in the following ways:
+			<strong>Minimiser le refoulement :</strong> Chaque modification apportée au DOM a un coût significatif à la performace car elle 
+			le refoulement de page. Minimisez ce coût en effectuant tout les changements dans une seule opération 
+			pour actionner le refoulement qu'une seule fois plutôt que plusieurs opérations qui activent le refoulement plusieurs fois. 
+			Ca peut être effectuer de la manière suivante :
 			<ul>
-				<li>Put all the changes in a string or object and then append it to the DOM or replace part of the DOM with that string or object.</li>
-				<li>Detach an element from the DOM, make the changes to it, then reattach it to the DOM.</li>
+				<li>Mettre tout les changements dans une chaîne de caractères ou objet et ensuite le joindre
+				au DOM ou remplacer en partie le DOM avec cette chaîne de caractères ou objet.</li>
+				<li>Détachez un élément du DOM, apportez-y le changement, réattachez le ensuite au DOM.</li>
 			</ul>
 		</li>
-		<li><strong>Avoid global DOM searches:</strong> The performance cost is much greater when searching the whole DOM rather than searching only a small part of it. If you already have a cached search, then take advantage of it and search from that point rather than searching the whole DOM again. For instance if you already have the search for the <code>.button</code> class already cached in the variable $buttons, then do <code>$buttons.find( "a.mybutton" )</code> to find the a elements versus <code>$( "a.mybutton" )</code>. Where possible, use native JavaScript for searching such as <code>getElementById</code> and <code>getElementsByTagName</code>.</li>
-		<li><strong>Optimized DOM searches first, filtering later:</strong> The fastest DOM searches in JavaScript are by id and tag name because of the native JavaScript function <code>getElementById</code> and <code>getElementsByTagName</code>. Take advantage of this performance by doing optimized searches first then filtering later. For instance, instead of <code>.find( "a[href=*'url_fragment']" )</code> do <code>.find( "a" ).filter( "[href=*'url_fragment']" )</code>.</li>
+		<li><strong>Éviter les recherches DOM globales :</strong> Le coût à la performance est beaucoup plus grand
+		lorsqu'on recherche le DOM au complet plutôt que de rechercher seulement une partie de celui-ci. 
+		Si vous avez déjà une recherche en mémoire tampon, veuillez en prendre avantage et recherchez de ce point
+		plutôt que de rechercher le DOM au complet à nouveau. Par exemple si vous avez déjà la recherche pour la classe <code>.button</code> en mémoire tampon
+		dans la variable $buttons, faites alors <code>$buttons.find( "a.mybutton" )</code> pour trouver les éléments 
+		a plutôt que <code>$( "a.mybutton" )</code>. Lorsque possible, utilisez du JavaScript natif pour rechercher
+		tel que <code>getElementById</code> et <code>getElementsByTagName</code>.</li>
+		<li><strong>Recherches DOM optimisées tout d'adord, filtrage ensuite:</strong> Les recherches DOM les plus rapides
+		en JavaScript sont par id et nom de balise à cause des fonctions JavaScript natives <code>getElementById</code> 
+		et <code>getElementsByTagName</code>. Prenez avantage de cette performance en exécutant d'abord des recherches optimisées
+		et filtrez ensuite. Par exemple, au lieu de <code>.find( "a[href=*'url_fragment']" )</code> effectuez <code>.find( "a" ).filter( "[href=*'url_fragment']" )</code>.</li>
 		<li>
-			<strong>Binding multiple events to an element:</strong> When binding multiple events to an element, it is faster to bind all events to a single event handler.  You can then use the event's type property to determine which event has been triggered (see the jsPerf <a rel="external" href="http://jsperf.com/combined-or-separate-event-handlers">handling multiple events test case</a>).
-<pre><code>// Faster: single event handler for both events
+			<strong>Combiner de multiples événements à un élément :</strong> Lorsque vous combinez de multiples événements à un élément, 
+			il est plus rapide de combiner tous les événements a un seul gestionnaire d'événement. 
+			Vous pouvez utiliser la propriété type de l'événement pour déterminer quel événement a été activé
+			(see the jsPerf <a rel="external" href="http://jsperf.com/combined-or-separate-event-handlers" lang="en">handling multiple events test case</a>).
+<pre><code>// Plus rapide : un seul gestionnaire d'événement pour les deux événements
 $( "#elem" ).on( "mouseover mouseout", function( event ) {
 	if ( event.type === "mouseover" ) {
 
@@ -58,7 +91,7 @@ $( "#elem" ).on( "mouseover mouseout", function( event ) {
 	}
 });
 
-// Slower: separate event handler for each events
+// Plus lent: séparer le gestionnaire d'événement pour chaque événement
 var $elem = $( "#elem" );
 $elem.on( "mouseover", function( event ) {
 
@@ -72,17 +105,17 @@ $elem.on( "mouseout", function( event ) {
 	</ul>
 
 	<section>
-		<h3>Testing your optimizations</h3>
-		<p>To test your optimization changes, wrap a block of code with the following two lines of code.</p>
+		<h3>Tester vos optimisations</h3>
+		<p>Pour tester vos changements à l'optimisation, enveloppez un bloc de code avec les deux lignes de code suivantes.</p>
 		<pre><code>var test = ( new Date() ).getTime();
-// Code to test
+// Code à tester
 console.log( ( new Date() ).getTime() - test );</code></pre>
-		<p>Another option is to use a site like <a rel="external" href="http://jsperf.com/">jsPerf</a> to benchmark different JavaScript code snippets.</p>
+		<p>Un autre option est d'tiliser un site tel que <a rel="external" href="http://jsperf.com/">jsPerf</a> pour mesurer différents morceaux de code JavaScript.</p>
 	</section>
 
 	<section>
-		<h3>jsPerf Test Cases</h3>
-		<ul>
+		<h3>Scénarios d'essai jsPerf</h3>
+		<ul lang="en">
 			<li><a rel="external" href="http://jsperf.com/combined-or-separate-event-handlers/3">Combined vs. Separate Event Binding</a></li>
 			<li><a rel="external" href="http://jsperf.com/program-flow-statements">if/else versus switch statements</a></li>
 			<li><a rel="external" href="http://jsperf.com/jep-vs-direct-binding">jQuery Event Binding: Document vs. Element</a></li>
@@ -91,7 +124,7 @@ console.log( ( new Date() ).getTime() - test );</code></pre>
 	</section>
 
 	<section>
-		<h3>Additional techniques</h3>
+		<h3>Techniques additionelles</h3>
 		<ul>
 			<li><a rel="external" href="http://24ways.org/2011/your-jquery-now-with-less-suck">Your jQuery: Now With 67% Less Suck</a></li>
 			<li><a rel="external" href="http://hungred.com/useful-information/jquery-optimization-tips-and-tricks/">8 jQuery Optimization Tips and Tricks</a></li>
@@ -105,14 +138,17 @@ console.log( ( new Date() ).getTime() - test );</code></pre>
 </section>
 
 <section>
-	<h2>CSS code optimization</h2>
+	<h2>Optimisation de code CSS</h2>
 	<ul>
-		<li><strong>Minimize class names:</strong> CSS class names are often reused multiple times within CSS and HTML files so can quickly add bulk to files if they are unnecessarily long. Keep class names as short as possible while ensuring they remain unique. A recent WET core framework class name shortening exercise resulted in a 10% to 30% decrease in file sizes.</li>
+		<li><strong>Minimiser les noms de classe CSS :</strong> les noms de classe CSS sont souvent réutilisées de 
+		multiple fois à l'intérieur des fichiers CSS et HTML pour pouvoir ajouter rapidement en vrac aux fichiers si ils sont longs are inutilement long. 
+		Gardez les noms de classe aussi courts que possible tout en s'assurant qu'ils restent unique. 
+		Un exercice de réduction des noms de classe d'un cadre de la BOEW récent a permis de réduire la taille de fichier de 		10% à 30%.</li>
 	</ul>
 
 	<section>
-		<h3>Additional techniques</h3>
-		<ul>
+		<h3>Techniques aditionelles</h3>
+		<ul lang="en">
 			<li><a rel="external" href="http://www.queness.com/post/588/15-ways-to-optimize-css-and-reduce-css-file-size">15 Ways to Optimize CSS and Reduce CSS File Size</a></li>
 			<li><a rel="external" href="http://www.dailycoding.com/Posts/top_7_tip_for_optimizing_css.aspx">Top 7 Tip for Optimizing CSS</a></li>
 			<li><a rel="external" href="http://perishablepress.com/how-to-micro-optimize-your-css/">How to Micro-Optimize Your CSS]</a></li>
@@ -121,21 +157,21 @@ console.log( ( new Date() ).getTime() - test );</code></pre>
 </section>
 
 <section>
-	<h2>HTML code optimization</h2>
+	<h2>Optimisation du code HTML</h2>
 	<ul>
-		<li><strong>Minimize the use of HTML comments:</strong> Every kilobyte counts when it comes to mobile devices so avoid unnecessarily bloating your code with HTML comments. Keep comments to the bare minimum by eliminating unnecessary comments and shortening the rest.</li>
-		<li><strong>Remove commented out code:</strong> Commented out code should not be left in production Web pages. Commented out code can easily add many unnecessary kilobytes to downloads. Keep unused code separate from production Web pages.</li>
-		<li><strong>Use tabs instead of spaces to indent code:</strong> It can take an average of 5 space characters to equal the indent of 1 tab character. Significant file size savings can be achieved by using tabs instead of spaces. Many editing tools provide the ability to quickly switch to indenting with tabs.</li>
-		<li><strong>Minimize indenting:</strong> Indenting is helpful for code clarity but can quickly add to the HTML file size. Find a good balance between code clarity and file size to minimize the impact on the end user.</li>
-		<li><strong>Remove the <code>type</code> attribute from <code>script</code> elements:</strong> In HTML5, <code>type="text/javascript"</code> is no longer required on <code>script</code> elements. Only use the <code>type</code> attribute on <code>script</code> elements for non-JavaScript scenarios.</li>
-		<li><strong>Remove the <code>type</code> attribute from <code>style</code> elements:</strong> In HTML5, <code>type="text/css"</code> is no longer required on style elements. Only use the <code>type</code> attribute on <code>style</code> elements for non-CSS scenarios.</li>
+		<li><strong>Minimiser l'utilisation de commentaires HTML :</strong> chaque kilooctet compte lorsqu'il est question d'appareils mobiles, alors évitez de gonfler inutilement votre code avec des commentaires HTML. Gardez les commentaires à un strict minimum en éliminant les commentaires inutiles et réduisant le reste.</li>		
+		<li><strong>Retirer le code marquer en commentaire :</strong> Le code marquer en commentaire ne devrait pas être laissé dans les pages Web en production. Le code marqué en commentaire peut facilement ajouter plusieurs kilooctets inutiles aux téléchargements. Gardez le code inutilisé séparé des pages Web en production.</li>
+		<li><strong>Utiliser la tabulation plutôt que la barre d'espacement pour espacer votre code :</strong> 		Il faut en général 5 caractères d'espacement pour égaler l'espacement d'une tabulation. 		Une réduction significative de taille de fichier peut être accomplie en utilisant la tabulation plutôt que la barre d'espacement. 		Plusieurs outils d'édition permettent de facilement passé à l'espacement par tabulation.</li>
+		<li><strong>Minimiser l'espacement:</strong> L'espacement est pratique pour la clarté du code 		mais peut rapidement ajouter à la taille du fichier HTML. Trouvez un bon équilibre entre la clarté de code 		et la taille de fichier pour minimiser l'impact sur l'utilisateur final.</li>
+		<li><strong>Retirer l'attribut <code>type</code> des éléments <code>script</code> :</strong> En HTML5, <code>type="text/javascript"</code> n'est plus requis sur les éléments <code>script</code>. Utilisez l'attribut <code>type</code> seulement sur les éléments <code>script</code> pour les scénarios non-JavaScript.</li>
+		<li><strong>Retirer l'attribut <code>type</code> des éléments <code>style</code> :</strong> En HTML5, <code>type="text/css"</code> n'est plus requis sur les éléments <code>style</code>. Utilisez seulement l'attribut <code>type</code> sur les éléments <code>style</code> pour des scénarios non-CSS.</li>
 	</ul>
 </section>
 
 <section>
-	<h2>Web server optimization</h2>
+	<h2>Optimisation de serveur Web</h2>
 	<ul>
-		<li>Enable Gzip compression on your Web server. Gzip compression can reduce file transfer sizes by up to 70%. ''Note:''' Gzip compression does not reduce the impact on end user cache sizes (cached uncompressed) so files sizes should be reduced as much as possible before Gzip compression.</li>
+		<li>Autoriser la compression Gzip sur votre serveur Web. La compression Gzip peut réduire la taille de transfert 
+		jusqu'à 70%. ''Note :''' La compression Gzip ne réduit pas l'impact sur la taille de la mémoire tampon de l'utilisateur final (mémoire tampon non-comprimée) alors la taille des fichiers devrait être réduite autant que possible avant la compression Gzip.</li>
 	</ul>
 </section>
-</div>
