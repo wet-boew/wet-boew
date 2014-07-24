@@ -17,6 +17,7 @@ var pluginName = "wb-lbx",
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
+	readyEvent = "wb-ready" + selector,
 	setFocusEvent = "setfocus.wb",
 	extendedGlobal = false,
 	$document = wb.doc,
@@ -198,7 +199,7 @@ var pluginName = "wb-lbx",
 							window[ pluginName ],
 							wb.getData( $elm, pluginName )
 						)
-					);
+					).trigger( readyEvent );
 				}
 			});
 		}

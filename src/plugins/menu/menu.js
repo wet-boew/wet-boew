@@ -17,6 +17,7 @@ var pluginName = "wb-menu",
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
+	readyEvent = "wb-ready" + selector,
 	breadcrumb = document.getElementById( "wb-bc" ),
 	navCurrentEvent = "navcurr.wb",
 	focusEvent = "setfocus.wb",
@@ -367,6 +368,8 @@ var pluginName = "wb-menu",
 					.parent()
 						.prop( "open", "open" );
 			}
+
+			$elm.trigger( readyEvent );
 		}, 1 );
 	},
 

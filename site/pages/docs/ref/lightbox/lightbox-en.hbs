@@ -4,7 +4,7 @@
 	"language": "en",
 	"description": "Display images and other content in a dialog box, either individually or as part of a gallery.",
 	"altLangPrefix": "lightbox",
-	"dateModified": "2014-07-17"
+	"dateModified": "2014-07-23"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -96,12 +96,22 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-lbx</td>
+				<td><code>wb-init.wb-lbx</code></td>
 				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-lbx" );</code>).</td>
 				<td>Used to manually initialize the Lightbox plugin. <strong>Note:</strong> The Lightbox plugin will be initialized automatically unless the Lightbox markup is added after the page has already loaded.</td>
 			</tr>
 			<tr>
-				<td>wb-open.wb-lbx</td>
+				<td><code>wb-ready.wb-lbx</code> (v4.0.5+)</td>
+				<td>Triggered automatically after a lightbox is initialized.</td>
+				<td>Used to identify when a lightbox has initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-lbx", ".wb-lbx", function( event ) {
+});</code></pre>
+					<pre><code>$elm.on( "wb-ready.wb-lbx", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-open.wb-lbx</code> (v4.0.4+)</td>
 				<td>Triggered manually:
 					<pre><code>$( document ).trigger( "open.wb-lbx", [
 	[
