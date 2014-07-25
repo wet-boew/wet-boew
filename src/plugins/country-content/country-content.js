@@ -17,6 +17,7 @@
 var pluginName = "wb-ctrycnt",
 	selector = "[data-ctrycnt]",
 	initEvent = "wb-init." + pluginName,
+	readyEvent = "wb-ready." + pluginName,
 	initedClass = pluginName + "-inited",
 	$document = wb.doc,
 
@@ -42,10 +43,12 @@ var pluginName = "wb-ctrycnt",
 
 			$.when( getCountry() ).then( function( countryCode ) {
 
-				if ( countryCode === "") {
-					// Leave default content since we couldn"t find the country
+				if ( countryCode === "" ) {
+
+					// Leave default content since we couldn't find the country
 					return;
 				} else {
+
 					// @TODO: Handle bad country values or any whitelist of countries.
 				}
 
@@ -53,7 +56,9 @@ var pluginName = "wb-ctrycnt",
 
 				$elm.removeAttr( "data-ctrycnt" );
 
-				$elm.load(url);
+				$elm.load( url, function() {
+					$elm.trigger( readyEvent );
+				});
 			});
 		}
 	},

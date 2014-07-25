@@ -17,6 +17,7 @@ var pluginName = "wb-inview",
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
+	readyEvent = "wb-ready" + selector,
 	scrollEvent = "scroll" + selector,
 	$elms = $( selector ),
 	$document = wb.doc,
@@ -38,6 +39,7 @@ var pluginName = "wb-inview",
 			// Allow other plugins to run first
 			setTimeout(function() {
 				onInView( $elm );
+				$elm.trigger( readyEvent );
 			}, 1 );
 		}
 	},
