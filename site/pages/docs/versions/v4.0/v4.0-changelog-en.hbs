@@ -4,7 +4,7 @@
 	"language": "en",
 	"description": "v4.0 changelog - Version history - Web Experience Toolkit (WET)",
 	"altLangPrefix": "v4.0-changelog",
-	"dateModified": "2014-07-23"
+	"dateModified": "2014-07-25"
 }
 ---
 <p>See <a href="../version-info-en.html">Versioning</a> for the meaning of each version number.</p>
@@ -65,27 +65,39 @@
 				</ul>
 			</li>
 			<li>
-				Changed heading text and skip link text for "Site menu", "Secondary menu" and "Site information" to "Topics menu", "Section menu" and "About this site"
+				Changed menu panel button and title to 'Search and menus'
 				<ul>
-					<li>Before:
-						<pre><code>&lt;li class="wb-slc visible-md visible-lg"&gt;&lt;a class="wb-sl" href="#wb-info"&gt;Skip to <strong>site information</strong>&lt;/a&gt;&lt;/li&gt;
-&lt;li class="wb-slc visible-md visible-lg"&gt;&lt;a class="wb-sl" href="#wb-sec"&gt;Skip to <strong>secondary</strong> menu&lt;/a&gt;&lt;/li&gt;
-...
-&lt;h2 class="wb-inv"&gt;<strong>Site</strong> menu&lt;/h2&gt;
-...
-&lt;h2&gt;<strong>Secondary</strong> menu&lt;/h2&gt;
-...
-&lt;h2 class="wb-inv"&gt;<strong>Site information</strong>&lt;/h2&gt;</code></pre>
+					<li>Canada.ca theme:
+						<ul>
+							<li>Before:
+								<pre><code>&lt;section class="wb-mb-links col-xs-3 visible-sm visible-xs" id="wb-glb-mn"&gt;
+	&lt;h2&gt;<strong>Menu</strong>&lt;/h2&gt;
+	&lt;ul class="list-inline text-right chvrn"&gt;
+		&lt;li&gt;&lt;a href="#mb-pnl" title="<strong>Menu</strong>" aria-controls="mb-pnl" class="overlay-lnk" role="button"&gt;&lt;span class="glyphicon glyphicon-th-list"&gt;&lt;span class="wb-inv"&gt;<strong>Menu</strong>&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</code></pre>
+							</li>
+							<li>After:
+								<pre><code>&lt;section class="wb-mb-links col-xs-3 visible-sm visible-xs" id="wb-glb-mn"&gt;
+	&lt;h2&gt;<strong>Search and menus</strong>&lt;/h2&gt;
+	&lt;ul class="list-inline text-right chvrn"&gt;
+		&lt;li&gt;&lt;a href="#mb-pnl" title="<strong>Search and menus</strong>" aria-controls="mb-pnl" class="overlay-lnk" role="button"&gt;&lt;span class="glyphicon glyphicon-search"&gt;&lt;span class="glyphicon glyphicon-th-list"&gt;&lt;span class="wb-inv"&gt;<strong>Search and menus</strong>&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</code></pre>
+							</li>
+						</ul>
 					</li>
-					<li>After:
-						<pre><code>&lt;li class="wb-slc visible-md visible-lg"&gt;&lt;a class="wb-sl" href="#wb-info"&gt;Skip to <strong>"About this site"</strong>&lt;/a&gt;&lt;/li&gt;
-&lt;li class="wb-slc visible-md visible-lg"&gt;&lt;a class="wb-sl" href="#wb-sec"&gt;Skip to <strong>section</strong> menu&lt;/a&gt;&lt;/li&gt;
-...
-&lt;h2 class="wb-inv"&gt;<strong>Topics</strong> menu&lt;/h2&gt;
-...
-&lt;h2&gt;<strong>Section</strong> menu&lt;/h2&gt;
-...
-&lt;h2 class="wb-inv"&gt;<strong>About this site</strong>&lt;/h2&gt;</code></pre>
+					<li>Other themes:
+						<ul>
+							<li>Before:
+								<pre><code>?lt;section class="wb-mb-links col-xs-12 visible-sm visible-xs" id="wb-glb-mn"&gt;
+	&lt;h2&gt;<strong>Menu</strong>&lt;/h2&gt;
+	&lt;ul class="pnl-btn list-inline text-right"&gt;
+		&lt;li&gt;&lt;a href="#mb-pnl" title="<strong>Menu</strong>" aria-controls="mb-pnl" class="overlay-lnk btn btn-xs btn-default" role="button"&gt;&lt;span class="glyphicon glyphicon-th-list"&gt;&lt;span class="wb-inv"&gt;<strong>Menu</strong>&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</code></pre>
+							</li>
+							<li>After:
+								<pre><code>&lt;section class="wb-mb-links col-xs-12 visible-sm visible-xs" id="wb-glb-mn"&gt;
+	&lt;h2&gt;<strong>Search and menus</strong>&lt;/h2&gt;
+	&lt;ul class="pnl-btn list-inline text-right"&gt;
+		&lt;li&gt;&lt;a href="#mb-pnl" title="<strong>Search and menus</strong>" aria-controls="mb-pnl" class="overlay-lnk btn btn-sm btn-default" role="button"&gt;&lt;span class="glyphicon glyphicon-search"&gt;&lt;span class="glyphicon glyphicon-th-list"&gt;&lt;span class="wb-inv"&gt;<strong>Search and menus</strong>&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</code></pre>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</li>
@@ -103,29 +115,81 @@
 			<li>
 				Moved contact information section to the start of the footer
 				<ul>
-					<li>Before:
-						<pre><code>&lt;h2 class="wb-inv"&gt;Site Information&lt;/h2&gt;
+					<li>Canada.ca theme:
+						<ul>
+							<li>Before:
+								<pre><code>&lt;h2 class="wb-inv"&gt;Site Information&lt;/h2&gt;
 	&lt;div class="row"&gt;
-		&lt;section class="col-sm-3 col-lg-3"&gt;
+		<strong>&lt;section class="col-sm-3 col-lg-3"&gt;
+			&lt;h3&gt;Government&lt;/h3&gt;
 			...
 		&lt;/section&gt;
-		...
+		&lt;section class="col-sm-3 col-lg-3"&gt;
+			&lt;h3&gt;Transparency&lt;/h3&gt;
+			...
+		&lt;/section&gt;
+		&lt;div class="col-sm-3 col-lg-3 brdr-lft"&gt;
+			&lt;section&gt;
+				&lt;h3&gt;News&lt;/h3&gt;
+				...
+			&lt;/section&gt;
+			&lt;section&gt;
+				&lt;h3&gt;Contact information&lt;/h3&gt;
+				...
+			&lt;/section&gt;
+		&lt;/div&gt;</strong></code></pre>
+							</li>
+							<li>After:
+								<pre><code>&lt;h2 class="wb-inv"&gt;About this site&lt;/h2&gt;
+	&lt;div class="row"&gt;
+		<strong>&lt;div class="col-sm-3 col-lg-3"&gt;
+			&lt;section&gt;
+				&lt;h3&gt;News&lt;/h3&gt;
+				...
+			&lt;/section&gt;
+			&lt;section&gt;
+				&lt;h3&gt;Contact information&lt;/h3&gt;
+				...
+			&lt;/section&gt;
+		&lt;/div&gt;
+		&lt;section class="col-sm-3 col-lg-3"&gt;
+			&lt;h3&gt;Government&lt;/h3&gt;
+			...
+		&lt;/section&gt;
+		&lt;section class="col-sm-3 col-lg-3 brdr-lft"&gt;
+			&lt;h3&gt;Transparency&lt;/h3&gt;
+			...
+		&lt;/section&gt;</strong></code></pre>
+							</li>
+						</ul>
+					</li>
+					<li>Other themes:
+						<ul>
+							<li>Before:
+								<pre><code>&lt;h2 class="wb-inv"&gt;Site Information&lt;/h2&gt;
+	&lt;div class="row"&gt;
+		&lt;section class="col-sm-3 col-lg-3"&gt;
+			&lt;h3&gt;About&lt;/h3&gt;
+			...
+		&lt;/section&gt;
 		<strong>&lt;section class="col-sm-3 col-lg-3"&gt;
 			&lt;h3&gt;Contact information&lt;/h3&gt;
 			...
 		&lt;/section&gt;</strong></code></pre>
-					</li>
-					<li>After:
-						<pre><code>&lt;h2 class="wb-inv"&gt;Site Information&lt;/h2&gt;
+							</li>
+							<li>After:
+								<pre><code>&lt;h2 class="wb-inv"&gt;About this site&lt;/h2&gt;
 	&lt;div class="row"&gt;
 		<strong>&lt;section class="col-sm-3 col-lg-3"&gt;
 			&lt;h3&gt;Contact information&lt;/h3&gt;
 			...
 		&lt;/section&gt;</strong>
-		...
 		&lt;section class="col-sm-3 col-lg-3"&gt;
+			&lt;h3&gt;About&lt;/h3&gt;
 			...
 		&lt;/section&gt;</code></pre>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</li>
