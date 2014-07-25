@@ -18,6 +18,7 @@ var imgClass,
 	selector = "[data-pic]",
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init." + pluginName,
+	readyEvent = "wb-ready." + pluginName,
 	picturefillEvent = "picfill." + pluginName,
 	$document = wb.doc,
 
@@ -75,13 +76,17 @@ var imgClass,
 
 			// Fixes bug with IE8 constraining the height of the image
 			// when the .img-responsive class is used.
-			img.removeAttribute( "width" );
-			img.removeAttribute( "height" );
+			if ( wb.ielt9 ) {
+				img.removeAttribute( "width" );
+				img.removeAttribute( "height" );
+			}
 
 		// No match and an image exists: delete it
 		} else if ( img ) {
 			img.parentNode.removeChild( img );
 		}
+
+		$( elm ).trigger( readyEvent );
 	};
 
 // Bind the init event of the plugin
