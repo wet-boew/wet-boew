@@ -20,6 +20,7 @@ var pluginName = "wb-data-ajax",
 		"[data-ajax-prepend], [data-ajax-replace]",
 	inited = "-inited",
 	initEvent = "wb-init." + pluginName,
+	readyEvent = "wb-ready." + pluginName,
 	$document = wb.doc,
 
 	/**
@@ -93,7 +94,7 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, functi
 				$elm[ ajaxType ]( content );
 			}
 
-			$elm.trigger( pluginName + "-" + ajaxType + "-loaded.wb" );
+			$elm.trigger( readyEvent, [ ajaxType ] );
 		}
 	}
 
