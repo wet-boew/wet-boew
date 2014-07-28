@@ -13,3 +13,29 @@
 		padding: 10px;
 	}
 }
+
+#details-facebook,
+#details-flickr,
+#details-youtube {
+	.tgl-panel {
+		margin-left: 0;
+	}
+
+	.feeds-cont {
+		border: 0;
+
+		li {
+			border: 0;
+
+			&:nth-child(even) {
+				background-color: #f9f9f9;
+			}
+		}
+	}
+
+	&[open] {
+		summary {
+			border-bottom: 1px solid #eee;
+		}
+	}
+}
