@@ -4,7 +4,7 @@
 	"language": "en",
 	"description": "Provides a consistent, accessible way of handling footnotes across websites.",
 	"altLangPrefix": "footnotes",
-	"dateModified": "2014-03-05"
+	"dateModified": "2014-07-28"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -124,6 +124,36 @@
 &lt;/dd&gt;</code></pre>
 		</section>
 	</section>
+</section>
+
+<section>
+	<h2>Events</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Event</th>
+				<th>Trigger</th>
+				<th>What it does</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>wb-init.wb-footnotes</code></td>
+				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-footnotes" );</code>).</td>
+				<td>Used to manually initialize the Footnotes plugin. <strong>Note:</strong> The Footnotes plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-footnotes</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the Footnotes plugin initializes.</td>
+				<td>Used to identify where the Footnotes plugin was initialized (target of the event).
+					<pre><code>$( document ).on( "wb-ready.wb-footnotes", ".wb-footnotes", function( event ) {
+});</code></pre>
+					<pre><code>$elm.on( "wb-ready.wb-footnotes", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </section>
 
 <section>

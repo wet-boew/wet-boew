@@ -4,7 +4,7 @@
 	"language": "fr",
 	"description": "Ajoutes des fonctionnalités aux tableaux telles que la recherche, le tri, le filtrage et la pagination.",
 	"altLangPrefix": "tables",
-	"dateModified": "2014-07-23"
+	"dateModified": "2014-07-28"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -55,7 +55,7 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-tables</td>
+				<td><code>wb-init.wb-tables</code></td>
 				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-inview" );</code>).</td>
 				<td>Used to manually initialize the Tables plugin. <strong>Note:</strong> The Tables plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
 			</tr>
@@ -65,7 +65,7 @@
 				<td>Used to identify which table was drawn (target of the event) and to pass along the DataTables instance and the settings object.
 					<pre><code>$( document ).on( "wb-ready.wb-tables", ".wb-tables", function( event, instance, settings ) {
 });</code></pre>
-					<pre><code>$elm.on( "wb-ready.wb-tables", function( event ) {
+					<pre><code>$elm.on( "wb-ready.wb-tables", function( event, instance, settings ) {
 });</code></pre>
 				</td>
 			</tr>

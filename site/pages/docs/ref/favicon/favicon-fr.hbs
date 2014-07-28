@@ -4,7 +4,7 @@
 	"language": "fr",
 	"description": "Offre la possibilité d'ajouter et de mettre à jour les favoricônes d'une page.",
 	"altLangPrefix": "favicon",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-07-28"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -149,6 +149,14 @@
 					<td><code>wb-init.wb-favicon</code></td>
 					<td>Triggered manually.</td>
 					<td>Initializes the plugin and creates a mobile favicon if it doesn't already exist. <b>Note: </b> the favicon plugin will be initialized automatically unless the link element is added after the page has already loaded.</td>
+				</tr>
+				<tr>
+					<td><code>wb-ready.wb-favicon</code> (v4.0.5+)</td>
+					<td>Triggered automatically after the favicon update has completed.</td>
+					<td>Used to identify when the plugin has finished updating the favicon and to pass along what type of favicon was updated (<code>mobile</code>, <code>icon</code>).
+						<pre><code>$( document ).on( "wb-ready.wb-favicon", function( event, type ) {
+});</code></pre>
+					</td>
 				</tr>
 				<tr>
 					<td><code>mobile.wb-favicon</code></td>

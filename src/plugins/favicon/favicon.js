@@ -29,6 +29,7 @@
 var pluginName = "wb-favicon",
 	selector = "link[rel='icon']",
 	initEvent = "wb-init." + pluginName,
+	readyEvent = "wb-ready." + pluginName,
 	mobileEvent = "mobile." + pluginName,
 	iconEvent = "icon." + pluginName,
 	$document = wb.doc,
@@ -89,6 +90,8 @@ var pluginName = "wb-favicon",
 				favicon.parentNode.insertBefore( faviconMobile[ 0 ], favicon );
 			}
 		}
+
+		$document.trigger( readyEvent, [ "mobile" ] );
 	},
 
 	/**
@@ -101,6 +104,8 @@ var pluginName = "wb-favicon",
 	icon = function( favicon, event, data ) {
 		var faviconPath = data.path !== null ? data.path : getPath( favicon.getAttribute( "href" ) );
 		favicon.setAttribute( "href", faviconPath + data.filename );
+
+		$document.trigger( readyEvent, [ "icon" ] );
 	},
 
 	/**

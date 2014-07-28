@@ -4,7 +4,7 @@
 	"language": "fr",
 	"description": "Affiche de la syntaxe des extraits de code source.",
 	"altLangPrefix": "prettify",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-07-28"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -138,6 +138,14 @@
 					<td><code>wb-init.wb-prettify</code></td>
 					<td>Triggered manually.</td>
 					<td>Initializes the plugin and applies syntax highlighting to the web page's pre and code elements. <b>Note: </b> the prettify plugin will be initialized automatically unless the element is added after the page has already loaded.</td>
+				</tr>
+				<tr>
+					<td><code>wb-ready.wb-prettify</code> (v4.0.5+)</td>
+					<td>Triggered automatically after the Prettify enhancement has completed.</td>
+					<td>Used to identify when Prettify has finished enhancing the page.
+						<pre><code>$( document ).on( "wb-ready.wb-prettify", function( event ) {
+});</code></pre>
+					</td>
 				</tr>
 				<tr>
 					<td><code>prettyprint.wb-prettify</code></td>

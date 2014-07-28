@@ -17,6 +17,7 @@ var pluginName = "wb-fnote",
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
+	readyEvent = "wb-ready" + selector,
 	setFocusEvent = "setfocus.wb",
 	$document = wb.doc,
 
@@ -58,6 +59,8 @@ var pluginName = "wb-fnote",
 
 			// Remove "first/premier/etc"-style text from certain footnote return links (via the child spans that hold those bits of text)
 			$returnLinks = $elm.find( "dd p.fn-rtn a span span" ).remove();
+
+			$elm.trigger( readyEvent );
 		}
 	};
 
