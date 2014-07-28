@@ -4,7 +4,7 @@
 	"language": "en",
 	"description": "Create a session inactivity timeout that warns users when their session is about to expire.",
 	"altLangPrefix": "session-timeout",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-07-28"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -192,6 +192,16 @@
 				<td><code>wb-init.wb-sessto</code></td>
 				<td>Triggered manually.</td>
 				<td>Initializes the plugin and starts the session and inactivity timeouts. <b>Note: </b> the session timeout plugin will be initialized automatically unless the <b>.wb-sessto</b> element is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-sessto</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the Session timeout plugin initializes.</td>
+				<td>Used to identify when and where the Session timeout plugin initializes (target of the event).
+					<pre><code>$( document ).on( "wb-ready.wb-sessto", ".wb-sessto", function( event ) {
+});</code></pre>
+					<pre><code>$elm.on( "wb-ready.wb-sessto", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 			<tr>
 				<td><code>inactivity.wb-sessto</code></td>

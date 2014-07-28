@@ -43,6 +43,7 @@ var pluginName = "wb-prettify",
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
+	readyEvent = "wb-ready" + selector,
 	prettyPrintEvent = "prettyprint" + selector,
 	$document = wb.doc,
 
@@ -122,6 +123,8 @@ var pluginName = "wb-prettify",
 			typeof window.prettyPrint === "function" ) {
 
 			window.prettyPrint();
+
+			$document.trigger( readyEvent );
 		}
 	};
 

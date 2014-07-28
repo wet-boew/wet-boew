@@ -17,6 +17,7 @@ var pluginName = "wb-share",
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
+	readyEvent = "wb-ready" + selector,
 	shareLink = "shr-lnk",
 	panelCount = 0,
 	$document = wb.doc,
@@ -241,6 +242,8 @@ var pluginName = "wb-share",
 			$share
 				.trigger( initEvent )
 				.trigger( "wb-init.wb-lbx" );
+
+			$elm.trigger( readyEvent );
 		}
 	};
 

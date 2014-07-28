@@ -17,6 +17,7 @@ var pluginName = "wb-twitter",
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
+	readyEvent = "wb-ready" + selector,
 	$document = wb.doc,
 
 	/**
@@ -38,7 +39,10 @@ var pluginName = "wb-twitter",
 			eventTarget.className += " " + initedClass;
 
 			Modernizr.load( {
-				load: ( protocol.indexOf( "http" ) === -1 ? "http:" : protocol ) + "//platform.twitter.com/widgets.js"
+				load: ( protocol.indexOf( "http" ) === -1 ? "http:" : protocol ) + "//platform.twitter.com/widgets.js",
+				complete: function() {
+					$document.trigger( readyEvent );
+				}
 			});
 		}
 	};

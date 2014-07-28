@@ -4,7 +4,7 @@
 	"language": "en",
 	"description": "Automatically highlights certain words on a Web page. The highlighted words can be selected via the query string.",
 	"altLangPrefix": "texthighlight",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-07-28"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -87,9 +87,19 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-txthl</td>
+				<td><code>wb-init.wb-txthl</code></td>
 				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-txthl" );</code>).</td>
 				<td>Used to manually enhance an element with the Text highlighting plugin. <strong>Note:</strong> The Text highlighting plugin will be initialized automatically unless the element is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-txthl</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the Text highlight plugin initializes.</td>
+				<td>Used to identify where the Text highlight plugin was initialized (target of the event).
+					<pre><code>$( document ).on( "wb-ready.wb-txthl", ".wb-txthl", function( event ) {
+});</code></pre>
+					<pre><code>$elm.on( "wb-ready.wb-txthl", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>

@@ -20,6 +20,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 	confirmClass = pluginName + "-confirm",
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
+	readyEvent = "wb-ready" + selector,
 	resetEvent = "reset" + selector,
 	keepaliveEvent = "keepalive" + selector,
 	inactivityEvent = "inactivity" + selector,
@@ -85,7 +86,10 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 			initRefreshOnClick( $elm, settings );
 
 			// Initialize the keepalive and inactive timeouts of the plugin
-			$elm.trigger( resetEvent, settings );
+			// then fire the wb-ready event
+			$elm
+				.trigger( resetEvent, settings )
+				.trigger( readyEvent );
 		}
 	},
 

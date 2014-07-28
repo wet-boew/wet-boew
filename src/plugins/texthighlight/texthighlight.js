@@ -17,6 +17,7 @@ var pluginName = "wb-txthl",
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
+	readyEvent = "wb-ready" + selector,
 	$document = wb.doc,
 
 	/**
@@ -51,6 +52,8 @@ var pluginName = "wb-txthl",
 					return ( !group2 ? "" : group2 ) + "<span class='txthl'><mark>" + group3 + "</mark></span>";
 				});
 				elm.innerHTML = newText;
+
+				$( elm ).trigger( readyEvent );
 			}
 		}
 	};
