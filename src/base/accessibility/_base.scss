@@ -43,6 +43,28 @@
 	}
 }
 
+.wb-disable {
+	#wb-tphp {
+		background: #fff;
+	}
+
+	.wb-slc {
+		position: static;
+
+		.wb-sl {
+			@extend %accessible-invisible-show;
+			background: none;
+			color: $link-color;
+			font-weight: 400;
+
+			&:hover,
+			&:focus {
+				color: $link-hover-color;
+			}
+		}
+	}
+}
+
 #wb-lng {
 	h2 {
 		@extend %accessible-invisible;
