@@ -36,6 +36,7 @@
 @media screen and (max-width: $screen-sm-max) {
 	@import "views/screen-sm-max";
 	@import "banner/screen-sm-max";
+	@import "search/screen-sm-max";
 	@import "secondary-menu/screen-sm-max";
 }
 
@@ -83,6 +84,7 @@
 /* Small view */
 @media screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
 	@import "views/screen-sm-min-to-screen-sm-max";
+	@import "search/screen-sm-min-to-screen-sm-max";
 }
 
 /* Medium view */
