@@ -21,6 +21,7 @@
 }
 
 .wb-slc {
+	display: block !important;
 	position: static;
 
 	.wb-sl {
@@ -39,6 +40,10 @@
 			color: $link-hover-color;
 		}
 	}
+}
+
+#wb-dtmd {
+	float: none !important;
 }
 
 .nojs-show {
