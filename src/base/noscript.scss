@@ -16,32 +16,6 @@
 @import "../polyfills/details/noscript";
 @import "../polyfills/datepicker/noscript";
 
-#wb-tphp {
-	background: #fff;
-}
-
-.wb-slc {
-	display: block !important;
-	position: static;
-
-	.wb-sl {
-		background: none;
-		clip: rect(auto, auto, auto, auto);
-		color: $link-color;
-		font-weight: 400;
-		height: inherit;
-		margin: inherit;
-		overflow: inherit;
-		position: static;
-		width: inherit;
-
-		&:hover,
-		&:focus {
-			color: $link-hover-color;
-		}
-	}
-}
-
 #wb-dtmd {
 	float: none !important;
 }
