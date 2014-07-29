@@ -2,6 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
+@import "../variables";
 
 /*
  Plugins
@@ -14,6 +15,31 @@
  */
 @import "../polyfills/details/noscript";
 @import "../polyfills/datepicker/noscript";
+
+#wb-tphp {
+	background: #fff;
+}
+
+.wb-slc {
+	position: static;
+
+	.wb-sl {
+		background: none;
+		clip: rect(auto, auto, auto, auto);
+		color: $link-color;
+		font-weight: 400;
+		height: inherit;
+		margin: inherit;
+		overflow: inherit;
+		position: static;
+		width: inherit;
+
+		&:hover,
+		&:focus {
+			color: $link-hover-color;
+		}
+	}
+}
 
 .nojs-show {
 	display: block !important;
