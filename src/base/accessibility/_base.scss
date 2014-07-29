@@ -55,6 +55,7 @@
 			@extend %accessible-invisible-show;
 			background: none;
 			color: $link-color;
+			display: block !important;
 			font-weight: 400;
 
 			&:hover,
@@ -62,6 +63,10 @@
 				color: $link-hover-color;
 			}
 		}
+	}
+
+	#wb-dtmd {
+		float: none !important;
 	}
 }
 
