@@ -69,8 +69,8 @@ var pluginName = "wb-date",
 				closeLabel = i18nText.close;
 
 				// Close button
-				$( "<button type='button' class='picker-close mfp-close overlay-close' title='" +
-					closeLabel + "'>&#xd7;<span class='wb-inv'> " + closeLabel + "</span></button>" )
+				$( "<button type='button' class='picker-close mfp-close overlay-close' title=\"" +
+					closeLabel + "\">&#xd7;<span class='wb-inv'> " + closeLabel + "</span></button>" )
 					.appendTo( $container )
 					.on( "click", function( event ) {
 						var which = event.which;
@@ -104,8 +104,8 @@ var pluginName = "wb-date",
 							.end()
 						.text(),
 			showFieldLabel = i18nText.show + fieldLabel,
-			objToggle = "<a href='javascript:;' button id='" + fieldId + "-picker-toggle' class='picker-toggle' href='javascript:;' title='" +
-				showFieldLabel + "'><span class='glyphicon glyphicon-calendar'></span><span class='wb-inv'>" +
+			objToggle = "<a href='javascript:;' id='" + fieldId + "-picker-toggle' class='picker-toggle' href='javascript:;' title=\"" +
+				showFieldLabel + "\"><span class='glyphicon glyphicon-calendar'></span><span class='wb-inv'>" +
 				showFieldLabel + "</span></a>";
 
 		$( "#" + fieldId ).wrap( "<span class='wb-date-wrap'/>" ).after( objToggle );
