@@ -38,14 +38,18 @@ var wet_boew_geomap = {
 			title: "KML Demo",
 			caption: "This is a sample KML file loaded locally by Geomap.",
 			type: "kml",
-			url: "demo/sample.kml",
+			url: "demo/railways.kml",
 			visible: false,
 			datatable: false,
 			tab: true,
 			popups: true,
 			attributes: {
-				name: "Product Title",
-				description: "Description"
+				name: "ID"
+			},
+			style: {
+				init: {
+					strokeColor: "#ff0000"
+				}
 			}
 		},
 		{
