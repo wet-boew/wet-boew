@@ -20,6 +20,10 @@
 
 #wb-sm {
 	@extend %menu-noscript-display-block-important;
+
+	.nvbar {
+		@extend %menu-noscript-display-block-important;
+	}
 }
 
 #wb-sec {
