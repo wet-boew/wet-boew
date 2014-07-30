@@ -67,7 +67,7 @@
 				</div>
 			</div>
 {{#isnt sitemenu "false"}}
-			<nav role="navigation" id="wb-sm" data-ajax-fetch="{{#if page.altMenu}}{{page.altMenu}}{{else}}{{assets}}/ajax/sitemenu{{/if}}-{{language}}.html" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
+			<nav role="navigation" id="wb-sm" data-ajax-fetch="{{#if page.altMenu}}{{page.altMenu}}{{else}}{{#if site.menuRoot}}{{site.menuRoot}}{{else}}{{assets}}{{/if}}/ajax/sitemenu{{/if}}-{{language}}.html" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
 				{{>sitemenu}}
 			</nav>
 {{else}}
