@@ -512,8 +512,8 @@ var pluginName = "wb-geomap",
 	symbolizeLegend = function( geomap ) {
 		var len = geomap.map.layers.length,
 			colon = i18nText.colon,
-			ruleLen, $symbol, symbolText, layer, style, styleDefault,
-			filter, filterType, symbolizer, i, j, rule;
+			ruleLen, $symbol, $symbolList, symbolText, layer, style, styleDefault,
+			filter, filterType, symbolizer, i, j, rule, spanId;
 
 		for ( i = 0; i !== len; i += 1 ) {
 			layer = geomap.map.layers[ i ];
@@ -527,7 +527,9 @@ var pluginName = "wb-geomap",
 					ruleLen = style.rules.length;
 
 					if ( ruleLen ) {
-						symbolText += "<ul class='list-unstyled'>";
+
+						$symbolList = $( "<ul class='list-unstyled'>" ).appendTo( $symbol );
+
 						for ( j = 0; j !== ruleLen; j += 1 ) {
 							rule = style.rules[ j ];
 							filter = rule.filter;
@@ -537,23 +539,22 @@ var pluginName = "wb-geomap",
 							}
 							symbolizer = rule.symbolizer;
 
-							symbolText += "<li><div class='row'><div class='col-md-2'>" +
-								getLegendSymbol( symbolizer ) +
-								"</div><div class='col-md-10'><small>" +
+							spanId = "legendSymbol_" + j;
+
+							$symbolList.append("<li><div class='row'>" +
+								"<div id='" + spanId + "' class='col-md-2 geomap-legend-symbol'></div>" +
+								"<div class='col-md-10'><small>" +
 								filter.property + " " + (
 									filter.value !== null ?
 										filterType + " " + filter.value :
 										filter.lowerBoundary + " " + filterType +
-											" " + filter.upperBoundary ) + "</small></div></div></li>";
-						}
-						symbolText += "</ul>";
-					} else if ( styleDefault.fillColor ) {
-						symbolText += getLegendSymbol( styleDefault );
-					} else if ( styleDefault.externalGraphic ) {
-						symbolText += getLegendGraphic( styleDefault );
-					}
+											" " + filter.upperBoundary ) + "</small></div></div></li>");
 
-					$symbol.append( symbolText );
+							getLegendSymbol( spanId, layer.features[0], symbolizer );
+						}
+					} else {
+						getLegendSymbol( "sb_" + layer.name, layer.features[0], styleDefault );
+					}
 				}
 			}
 		}
@@ -562,51 +563,73 @@ var pluginName = "wb-geomap",
 	/*
 	 * Get the div object with the proper style
 	 */
-	getLegendSymbol = function( style ) {
-		var symbolStyle = "",
-			fillColor = style.fillColor,
-			strokeColor = style.strokeColor,
-			fillOpacity = style.fillOpacity;
+	getLegendSymbol = function( id, feature, symbolizer ) {
 
-		if ( fillColor ) {
-			symbolStyle += "background-color: " + fillColor + ";";
+		var pseudoFeature,
+			RendererClass,
+			rendererIcon,
+			featureType = feature && feature.geometry ? feature.geometry.CLASS_NAME : "OpenLayers.Geometry.Polygon",
+			height = 20, width = 20, i, len,
+			strokeWidth = symbolizer.strokeWidth ? symbolizer.strokeWidth : 0,
+			renderers = [ "SVG", "VML", "Canvas" ];
+
+		for ( i = 0, len = renderers.length; i < len; ++i ) {
+			RendererClass = OpenLayers.Renderer[ renderers[ i ] ];
+			if ( RendererClass && RendererClass.prototype.supported() ) {
+				rendererIcon = new RendererClass( id, null );
+				break;
+			}
 		}
 
-		if ( strokeColor ) {
-			symbolStyle += "border-style: solid; border-width: 2px; border-color: " + strokeColor + ";";
+		rendererIcon.map = {
+			resolution: 1,
+			getResolution: function() {
+				return this.resolution;
+			} };
+
+		switch ( featureType ) {
+			case "OpenLayers.Geometry.Polygon" || "OpenLayers.Geometry.MultiPolygon":
+				pseudoFeature = new OpenLayers.Feature.Vector(
+					new OpenLayers.Geometry.Polygon(
+						[ new OpenLayers.Geometry.LinearRing( [
+							new OpenLayers.Geometry.Point( 2, 2),
+							new OpenLayers.Geometry.Point( 2, 18 ),
+							new OpenLayers.Geometry.Point( 18, 18 ),
+							new OpenLayers.Geometry.Point( 18, 2 ),
+							new OpenLayers.Geometry.Point( 2, 2 ) ] ) ] ) );
+				break;
+			case "OpenLayers.Geometry.Point" || "OpenLayers.Geometry.MultiPoint":
+					height = symbolizer.graphicHeight ? symbolizer.graphicHeight : symbolizer.pointRadius ? ( symbolizer.pointRadius * 2 ) + ( strokeWidth * 2 ) : 20;
+					width = symbolizer.graphicWidth ? symbolizer.graphicWidth : symbolizer.pointRadius ? ( symbolizer.pointRadius * 2 ) + ( strokeWidth * 2 ) :  20;
+					pseudoFeature = new OpenLayers.Feature.Vector(
+							new OpenLayers.Geometry.Point( width / 2, height / 2 ) );
+					break;
+			case "OpenLayers.Geometry.LineString" || "OpenLayers.Geometry.MultiLineString":
+				pseudoFeature = new OpenLayers.Feature.Vector(
+					new OpenLayers.Geometry.LineString( [
+						new OpenLayers.Geometry.Point( 2, 18 ),
+						new OpenLayers.Geometry.Point( 6, 2 ),
+						new OpenLayers.Geometry.Point( 12, 18 ),
+						new OpenLayers.Geometry.Point( 18, 2 ) ] ) );
+				break;
+			default:
+				pseudoFeature = new OpenLayers.Feature.Vector(
+					new OpenLayers.Geometry.Polygon(
+						[ new OpenLayers.Geometry.LinearRing( [
+							new OpenLayers.Geometry.Point( 2, 2 ),
+							new OpenLayers.Geometry.Point( 2, 18 ),
+							new OpenLayers.Geometry.Point( 18, 18 ),
+							new OpenLayers.Geometry.Point( 18, 2 ),
+							new OpenLayers.Geometry.Point( 2, 2 )  ] ) ] ) );
+				break;
 		}
 
-		if ( fillOpacity ) {
-			symbolStyle += "opacity: " + fillOpacity + ";";
-		}
+		rendererIcon.setSize( new OpenLayers.Size( width, height ) );
+		rendererIcon.resolution = 1;
+		rendererIcon.setExtent( new OpenLayers.Bounds( 0, 0, width, height ), true );
 
-		return "<div class='geomap-legend-symbol'" +
-			( symbolStyle !== "" ?
-				" style='" + symbolStyle + "'/>" :
-				"/>"
-			);
-	},
-
-	getLegendGraphic = function( style, alt ) {
-		var symbolStyle = "",
-			altText = alt ? alt : "",
-			graphicOpacity = style.graphicOpacity,
-			pointRadius = style.pointRadius,
-			graphicHeight = style.graphicHeight,
-			graphicWidth = style.graphicWidth;
-
-		if ( graphicOpacity ) {
-			symbolStyle += "opacity: " + graphicOpacity + ";";
-		}
-
-		if ( pointRadius ) {
-			symbolStyle += "height: " + pointRadius + "px; width: " + pointRadius + "px;";
-		} else if ( graphicHeight && graphicWidth ) {
-			symbolStyle += "height: " + graphicHeight + "px; width: " + graphicWidth + "px;";
-		}
-
-		return "<img src='" + style.externalGraphic + "' alt='" + altText +
-			( symbolStyle !== "" ? "' style='" + symbolStyle + "' />" : "' />" );
+		rendererIcon.clear();
+		rendererIcon.drawFeature( pseudoFeature, symbolizer );
 	},
 
 	/*
@@ -616,7 +639,7 @@ var pluginName = "wb-geomap",
 		var $div = geomap.glayers.find( ".wb-geomap-tabs" ),
 			$tabs = $div.find( "ul" ),
 			featureTableId = featureTable[ 0 ].id,
-			$parent = $("<div class='wb-geomap-table-wrapper'></div>").append( featureTable ),
+			$parent = $( "<div class='wb-geomap-table-wrapper'></div>" ).append( featureTable ),
 			$details,
 			title = featureTable.attr( "aria-label" );
 
@@ -1069,8 +1092,8 @@ var pluginName = "wb-geomap",
 							protocol: new OpenLayers.Protocol.HTTP({
 								url: layerURL,
 								format: new OpenLayers.Format.KML({
-									extractStyles: !layer.style,
 									extractAttributes: true,
+									//extractStyles: true,
 									internalProjection: geomap.map.getProjectionObject(),
 									externalProjection: new OpenLayers.Projection( "EPSG:4269" ),
 									read: function( data ) {
@@ -1094,14 +1117,13 @@ var pluginName = "wb-geomap",
 												data = ( new DOMParser() ).parseFromString( data, "text/xml" );
 											}
 										}
+
 										items = this.getElementsByTagNameNS( data, "*", "Placemark" );
 
 										for ( len = items.length; i !== len; i += 1 ) {
 											row = items[ i ];
 											$row = $( row );
-											feature = new OpenLayers.Feature.Vector();
-											feature.geometry = this.parseFeature( row ).geometry;
-
+											feature = this.parseFeature( row );
 											// Parse and store the attributes
 											// TODO: test on nested attributes
 											atts = {};
@@ -1133,7 +1155,7 @@ var pluginName = "wb-geomap",
 									}, overlayTimeout );
 								}
 							},
-							styleMap: getStyleMap( overlayData[ index ] )
+							styleMap: layer.style ? getStyleMap( overlayData[ index ] ) : null
 						}
 					);
 					olLayer.name = "overlay_" + index;
@@ -1925,10 +1947,7 @@ var pluginName = "wb-geomap",
 		geomap.drawControl = new OpenLayers.Control.DrawFeature(
 			geomap.locLayer,
 			OpenLayers.Handler.RegularPolygon, {
-				handlerOptions: {
-                    sides: 4,
-                    irregular: true
-                },
+				handlerOptions: { sides: 4, irregular: true },
 				eventListeners: {
 					featureadded: function( e ) {
 						var projLatLon = new OpenLayers.Projection( "EPSG:4326" ),
@@ -2222,7 +2241,6 @@ var pluginName = "wb-geomap",
 				xhr = $.get( i18nText.geoLocationURL, {
 						q: val + "*"
 					}, function( res ) {
-
 					options = [ "<!--[if lte IE 9]><select><![endif]-->" ];
 
 					if ( res.length ) {
@@ -2234,7 +2252,6 @@ var pluginName = "wb-geomap",
 								.replace(/'/g, "&#39;")
 								.replace(/</g, "&lt;")
 								.replace(/>/g, "&gt;");
-
 							bnd = res[ i ].bbox ? res[ i ].bbox[ 0 ] + ", " + res[ i ].bbox[ 1 ] + ", " + res[ i ].bbox[ 2 ] + ", " + res[ i ].bbox[ 3 ] : null;
 							ll = res[ i ].geometry && res[ i ].geometry.type === "Point" ? res[ i ].geometry.coordinates[ 0 ] + ", " + res[ i ].geometry.coordinates[ 1] : null;
 							options.push( "<option value='" + title + "' data-lat-lon='" + ll + "' data-bbox='" + bnd  + "' data-type='" + res[ i ].type + "'></option>" );

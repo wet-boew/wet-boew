@@ -250,7 +250,7 @@
  * GeoMap
  */
 .wb-geomap-map {
-	margin: 0 15px 30px;
+	margin-bottom: 30px;
 	outline: 1px solid #ccc;
 	position: relative;
 
@@ -268,10 +268,8 @@
 	padding-top: 10px;
 }
 
-.geomap-legend-symbol {
-	height: 18px;
-	margin: 5px;
-	width: 18px;
+.geomap-legend-symbol svg{
+
 }
 
 .geomap-clear-format {
@@ -294,24 +292,14 @@
 	}
 }
 
-.geomap-aoi {
-	legend {
-		border: 0;
-		font-size: 1em;
-		margin-bottom: 1em;
-	}
-}
-
-button {
-	&.geomap-geoloc-aoi-btn {
-		background-color: #fff;
-		border-color: #eee;
-		-webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
-		box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
-		color: #666;
-		position: absolute;
-		right: 15px;
-		top: 15px;
-		z-index: 10000;
-	}
+button.geomap-geoloc-aoi-btn {
+	background-color: #fff;
+	border-color: #eee;
+	-webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+	box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+	color: #666;
+	position: absolute;
+	right: 15px;
+	top: 15px;
+	z-index: 10000;
 }

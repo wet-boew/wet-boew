@@ -43,8 +43,12 @@ var wet_boew_geomap = {
 			tab: true,
 			popups: true,
 			attributes: {
-				name: "Titre du produit",
-				description: "Description"
+				name: "ID"
+			},
+			style: {
+				init: {
+					strokeColor: "#ff0000"
+				}
 			}
 		},
 		{
