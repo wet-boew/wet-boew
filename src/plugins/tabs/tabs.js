@@ -185,7 +185,7 @@ var pluginName = "wb-tabs",
 				$tablist = $( tablist + "</ul>" );
 				$elm
 					.prepend( $tablist )
-					.find( "> details > summary" )
+					.find( "> .tabpanels > details > summary" )
 						.addClass( "wb-toggle tgl-tab" )
 						.attr( "data-toggle", "{\"parent\": \"#" + elmId +
 							"\", \"group\": \"." + groupClass + "\"}" )
@@ -759,25 +759,17 @@ $document.on( wb.resizeEvents, onResize );
 // This event only fires on the window
 $window.on( "hashchange", onHashChange );
 
-$document.on( activateEvent, selector + " .tabpanels > details > summary", function( event, ignore ) {
+$document.on( activateEvent, selector + " .tabpanels > details > summary", function( event ) {
 	var which = event.which,
-		target = event.currentTarget,
-		details = target.parentNode,
-		parent = details.parentNode;
+		details = event.currentTarget.parentNode;
 
-	if ( !ignore && !( event.ctrlKey || event.altKey || event.metaKey ) &&
+	if ( !( event.ctrlKey || event.altKey || event.metaKey ) &&
 		( !which || which === 1 || which === 13 || which === 32 ) ) {
-
-		// Close all other open panels
-		$( parent )
-			.find( "> details[open] > summary" )
-				.not( target )
-					.trigger( "click", [ true ] );
 
 		// Update sessionStorage with the current active panel
 		try {
 			sessionStorage.setItem(
-				parent.id + activePanel,
+				details.parentNode.id + activePanel,
 				details.id
 			);
 		} catch ( error ) {
