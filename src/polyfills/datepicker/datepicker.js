@@ -52,13 +52,13 @@ var pluginName = "wb-date",
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
 				i18n = wb.i18n;
-				space = i18n( "space" );
+				space = i18n( "space" ).replace( "&#32;", " " ).replace( "&#178;", "" );
 				i18nText = {
-					show: i18n( "date-show" ) + space,
-					selected: i18n( "date-sel" ),
-					close: i18n( "close" ) + space +
-						i18n( "cal" ).toLowerCase() +
-						space + i18n( "esc-key" )
+					show: i18n( "date-show" ).replace( "\\\'", "'" ) + space,
+					selected: i18n( "date-sel" ).replace( "\\\'", "'" ),
+					close: i18n( "close" ) + i18n( "colon" ).replace( "&#160;", " " ) +
+						space + i18n( "cal" ).toLowerCase() +
+						space + i18n( "esc-key" ).replace( "\\\'", "'" )
 				};
 			}
 
@@ -69,8 +69,8 @@ var pluginName = "wb-date",
 				closeLabel = i18nText.close;
 
 				// Close button
-				$( "<button type='button' class='picker-close mfp-close overlay-close' title='" +
-					closeLabel + "'>&#xd7;<span class='wb-inv'> " + closeLabel + "</span></button>" )
+				$( "<button type='button' class='picker-close mfp-close overlay-close' title=\"" +
+					closeLabel + "\">&#xd7;<span class='wb-inv'> " + closeLabel + "</span></button>" )
 					.appendTo( $container )
 					.on( "click", function( event ) {
 						var which = event.which;
@@ -104,8 +104,8 @@ var pluginName = "wb-date",
 							.end()
 						.text(),
 			showFieldLabel = i18nText.show + fieldLabel,
-			objToggle = "<a href='javascript:;' button id='" + fieldId + "-picker-toggle' class='picker-toggle' href='javascript:;' title='" +
-				showFieldLabel + "'><span class='glyphicon glyphicon-calendar'></span><span class='wb-inv'>" +
+			objToggle = "<a href='javascript:;' button id='" + fieldId + "-picker-toggle' class='picker-toggle' href='javascript:;' title=\"" +
+				showFieldLabel + "\"><span class='glyphicon glyphicon-calendar'></span><span class='wb-inv'>" +
 				showFieldLabel + "</span></a>";
 
 		$( "#" + fieldId ).wrap( "<span class='wb-date-wrap'/>" ).after( objToggle );
