@@ -42,14 +42,17 @@
 		<li>Add <code>div</code> with <code>class="wb-geomap-layers"</code> to the <code>div</code> created in step 1 where you want the layer(s) listing to be rendered.</li>
 	</ol>
 
+<section>
 	<h3>Optional elements</h3>
 	<ul>
 		<li><strong>Add legend:</strong> If a map legend is required add <code>div</code> with <code>class="wb-geomap-legend"</code> to the <code>div</code> created in step 1 where you want it to be rendered.</li>
 		<li><strong>Add widgets:</strong> Widgets (e.g. position, scaleline, etc.) are configured using classes on the plugin element created in step 1.</li>
 	</ul>
 
-	<div class="alert alert-info"><strong>Note:</strong> If you are implementing the working example on your development environment you may need to add the necessary support for the mime-types required by the various formats demonstrated (e.g. ".kml" "application/vnd.google-earth.kml+xml") to your web server.</div>
+	<section class="alert alert-info"><strong>Note:</strong> If you are implementing the working example on your development environment you may need to add the necessary support for the mime-types required by the various formats demonstrated (e.g. ".kml" "application/vnd.google-earth.kml+xml") to your web server.</section>
+</section>
 
+<section>
 	<h3>Example implementation markup</h3>
 	<pre><code>&lt;-- Add plugin with optional position widget --&gt;
 &lt;div id="mygeomap" class="wb-geomap position"&gt;
@@ -68,6 +71,7 @@
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/div&gt;</code></pre>
+</section>
 <!--
 	<section>
 		<h3>File based (e.g. "config-en.js") configuration example</h3>
@@ -96,7 +100,6 @@
 	</section>
 -->
 
-
 	<section>
 		<h3>Plugin configuration options</h3>
 		<p>Geomap can be configured in three ways:</p>
@@ -105,7 +108,7 @@
 			<li>Using a configuration file</li>
 			<li>Using CSS classes on the plugin element</li>
 		</ul>
-		<div class="alert alert-info"><strong>Note:</strong> all plugin configuration parameters are optional.</div>
+		<section class="alert alert-info"><strong>Note:</strong> all plugin configuration parameters are optional.</section>
 		<section>
 			<h4>Configuration using <code>data-wb-geomap</code> attribute on plugin element</h4>
 			<p>Use the <code>data-wb-geomap</code> attribute to configure the display of map features from inline HTML tables or from a local/remote data source.</p>
@@ -156,8 +159,10 @@
 					</tr>
 				</tbody>
 			</table>
+			<section>
 			<h5>Example configuration file reference</h5>
-			<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wb-geomap='{ "layersFile": "data/config-en.js" }'&gt; ... &lt;/div&gt;</code></pre>
+				<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wet-boew='{ "layersFile": "data/config-en.js" }'&gt; ... &lt;/div&gt;</code></pre>
+			</section>
 		</section>
 
 		<section>
@@ -333,18 +338,20 @@
 		<section>
 			<h4>Adding features from an HTML table in the page</h4>
 			<p>Geomap can create features from HTML markup in the page. </p>
-			<h5>Steps:</h5>
-			<ol>
-				<li>Add a unique <code>id</code> to each table (e.g. "myTable") and ensure that each table row (i.e. <code>tr</code>) element has the required attributes. See below for configuration.</li>
-				<li>
-					Add the unique <code>id</code> created in step 1 to a <code>tables</code> array in the <code>data-wb-geomap</code> attribute of the plugin element.
-					<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wb-geomap='{ "tables": [ { "id": "myTable", "style": { ... } } ] }'&gt; ... &lt;/div&gt;</code></pre>
-				</li>
-
-			</ol>
-
-			<h5>Inline HTML table configuration</h5>
-			<p>Geomap requires a <code>data-geometry</code> attribute with feature geometry encoded in <strong>Well Known Text (WKT)</strong> or as a bounding box extent with lower left  and upper right coordinate pairs, and a <code>data-type</code> attribute that specifies the encoding as either <code>wkt</code> or <code>bbox</code>.</p>
+			<section>
+				<h5>Steps:</h5>
+				<ol>
+					<li>Add a unique <code>id</code> to each table (e.g. "myTable") and ensure that each table row (i.e. <code>tr</code>) element has the required attributes. See below for configuration.</li>
+					<li>
+						Add the unique <code>id</code> created in step 1 to a <code>tables</code> array in the <code>data-wet-boew</code> attribute of the plugin element.
+						<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wet-boew='{ "tables": [ { "id": "myTable", "style": { ... } } ] }'&gt; ... &lt;/div&gt;</code></pre>
+					</li>
+				</ol>
+			</section>
+			<section>
+				<h5>Inline HTML table configuration</h5>
+				<p>Geomap requires a <code>data-geometry</code> attribute with feature geometry encoded in <strong>Well Known Text (WKT)</strong> or as a bounding box extent with lower left  and upper right coordinate pairs, and a <code>data-type</code> attribute that specifies the encoding as either <code>wkt</code> or <code>bbox</code>.</p>
+			</section>
 			<section>
 				<h5>WKT examples</h5>
 				<pre><code>&lt;tr data-geometry="POINT (-114.05879, 51.04668)" data-type="wkt"&gt; ... &lt;/tr&gt;</code></pre>
@@ -397,11 +404,12 @@
 
 		<section>
 			<h4>Adding features from external data sources via a configuration file</h4>
-			<h5>Steps:</h5>
-			<ol>
-				<li>Create a Javascript configuration file and save it to a web accessible directory (e.g. "data/config-en.js").</li>
-				<li>Add an <code>overlays</code> array to the <code>wet_boew_geomap</code> variable in the configuration file.
-				<pre><code>// Configuration file ("data/config-en.js")
+			<section>
+				<h5>Steps:</h5>
+				<ol>
+					<li>Create a Javascript configuration file and save it to a web accessible directory (e.g. "data/config-en.js").</li>
+					<li>Add an <code>overlays</code> array to the <code>wet_boew_geomap</code> variable in the configuration file.
+					<pre><code>// Configuration file ("data/config-en.js")
 var wet_boew_geomap = {
     overlays : [
         {
@@ -414,9 +422,10 @@ var wet_boew_geomap = {
         { ... }
     ]
 };</code></pre></li>
-				<li>Reference the configuration file in the <code>data-wb-geomap</code> attribute of the plugin element by setting the <code>layersFile</code> property to the file path.
-				<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wb-geomap='{ "layersFile": "data/config-en.js" }'&gt; ... &lt;/div&gt;</code></pre></li>
-			</ol>
+					<li>Reference the configuration file in the <code>data-wet-beow</code> attribute of the plugin element by setting the <code>layersFile</code> property to the file path.
+					<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wet-boew='{ "layersFile": "data/config-en.js" }'&gt; ... &lt;/div&gt;</code></pre></li>
+				</ol>
+			</section>
 		</section>
 
 		<section>
