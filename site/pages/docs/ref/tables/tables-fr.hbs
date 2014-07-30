@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Ajoutes des fonctionnalités aux tableaux telles que la recherche, le tri, le filtrage et la pagination.",
 	"altLangPrefix": "tables",
-	"dateModified": "2014-07-28"
+	"dateModified": "2014-07-30"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -68,6 +68,16 @@
 					<pre><code>$( document ).on( "wb-ready.wb-tables", ".wb-tables", function( event, instance, settings ) {
 });</code></pre>
 					<pre><code>$elm.on( "wb-ready.wb-tables", function( event, instance, settings ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>*.dt</code> events (e.g., <code>xhr.dt</code></td>
+				<td>Events triggered automatically by DataTables (<a href="http://datatables.net/reference/event/">documentation on DataTables events</a>.</td>
+				<td>Used by DataTables to identify what events are occurring.
+					<pre><code>$( document ).on( "xhr.dt", ".wb-tables", function( event ) {
+});</code></pre>
+					<pre><code>$elm.on( "xhr.dt", function( event ) {
 });</code></pre>
 				</td>
 			</tr>
