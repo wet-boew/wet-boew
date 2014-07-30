@@ -759,17 +759,25 @@ $document.on( wb.resizeEvents, onResize );
 // This event only fires on the window
 $window.on( "hashchange", onHashChange );
 
-$document.on( activateEvent, selector + " > details > summary", function( event ) {
+$document.on( activateEvent, selector + " .tabpanels > details > summary", function( event, ignore ) {
 	var which = event.which,
-		details = event.currentTarget.parentNode;
+		target = event.currentTarget,
+		details = target.parentNode,
+		parent = details.parentNode;
 
-	if ( !( event.ctrlKey || event.altKey || event.metaKey ) &&
+	if ( !ignore && !( event.ctrlKey || event.altKey || event.metaKey ) &&
 		( !which || which === 1 || which === 13 || which === 32 ) ) {
+
+		// Close all other open panels
+		$( parent )
+			.find( "> details[open] > summary" )
+				.not( target )
+					.trigger( "click", [ true ] );
 
 		// Update sessionStorage with the current active panel
 		try {
 			sessionStorage.setItem(
-				details.parentNode.id + activePanel,
+				parent.id + activePanel,
 				details.id
 			);
 		} catch ( error ) {
