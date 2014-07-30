@@ -4,25 +4,16 @@
 	{{#contains page.src "/docs/"}}
 		{{#contains page.src "/docs/index"}}
 		{{else}}
-			{{#contains page.src "/docs/comms"}}
-			{{else}}		
-				{{#contains page.src "/versions/"}}
-					{{#contains page.src "/index"}}
-					{{else}}
-						{{{i18n "hyphen"}}}{{{i18n "tmpl-version-history"}}}
-					{{/contains}}
+			{{#contains page.src "/versions/"}}
+				{{#contains page.src "/index"}}
 				{{else}}
-					{{#contains page.src "/gs-cd/"}}
-						{{#contains page.src "/index"}}
-						{{else}}
-							{{{i18n "hyphen"}}}{{{i18n "tmpl-getting-started"}}}
-						{{/contains}}
-					{{/contains}}	
-					{{#if page.componentType}}
-						{{{i18n "hyphen"}}}{{page.componentType}}
-					{{/if}}
-					{{{i18n "hyphen"}}}{{{i18n "tmpl-documentation"}}}
+					{{{i18n "hyphen"}}}{{{i18n "tmpl-version-history"}}}
 				{{/contains}}
+			{{else}}
+				{{#if page.category}}
+					{{{i18n "hyphen"}}}{{page.category}}
+				{{/if}}
+				{{{i18n "hyphen"}}}{{{i18n "tmpl-documentation"}}}
 			{{/contains}}
 		{{/contains}}
 	{{else}}
