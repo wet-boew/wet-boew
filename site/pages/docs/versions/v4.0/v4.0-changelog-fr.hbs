@@ -4,7 +4,7 @@
 	"language": "fr",
 	"description": "ChangeLog de la version 4.0 - Historique des versions - Boîte à outils de l'expérience Web (BOEW)",
 	"altLangPrefix": "v4.0-changelog",
-	"dateModified": "2014-07-28"
+	"dateModified": "2014-07-30"
 }
 ---
 <p>Voir <a href="../version-info-fr.html">Contrôle des versions</a> pour la signification de chaque numéro de version.</p>
@@ -195,6 +195,77 @@
 		&lt;time <strong>property="dateModified"</strong>&gt;2014-07-22&lt;/time&gt;
 	&lt;/dd&gt;
 &lt;/dl&gt;</code></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				Wrapped Tabbed interface details and carousel tab panels with <code>div class="tabpanels"</code>
+				<ul>
+					<li>Tabbed interface:
+						<ul>
+							<li>Before:
+								<pre><code>&lt;div class="wb-tabs wb-eqht"&gt;
+	&lt;details id="details-panel1"&gt;
+		...
+	&lt;/details&gt;
+	&lt;details id="details-panel2"&gt;
+		...
+	&lt;/details&gt;
+	&lt;details id="details-panel3"&gt;
+		...
+	&lt;/details&gt;
+&lt;/div&gt;</code></pre>
+							</li>
+							<li>After:
+								<pre><code>&lt;div class="wb-tabs wb-eqht"&gt;
+	<strong>&lt;div class="tabpanels"&gt;</strong>
+		&lt;details id="details-panel1"&gt;
+			...
+		&lt;/details&gt;
+		&lt;details id="details-panel2"&gt;
+			...
+		&lt;/details&gt;
+		&lt;details id="details-panel3"&gt;
+			...
+		&lt;/details&gt;
+	<strong>&lt;/div&gt;</strong>
+&lt;/div&gt;</code></pre>
+							</li>
+						</ul>
+					</li>
+					<li>Carousel:
+						<ul>
+							<li>Before:
+								<pre><code>&lt;div class=&quot;wb-tabs carousel-s1&quot;&gt;
+	&lt;ul role=&quot;tablist&quot;&gt;
+		...
+	&lt;/ul&gt;
+	&lt;div role=&quot;tabpanel&quot; id=&quot;panel1&quot; class=&quot;in fade&quot;&gt;
+		...
+	&lt;/div&gt;
+	&lt;div role=&quot;tabpanel&quot; id=&quot;panel2&quot; class=&quot;out fade&quot;&gt;
+		..
+	&lt;/div&gt;
+	...
+&lt;/div&gt;</code></pre>
+							</li>
+							<li>After:
+								<pre><code>&lt;div class=&quot;wb-tabs carousel-s1&quot;&gt;
+	&lt;ul role=&quot;tablist&quot;&gt;
+		...
+	&lt;/ul&gt;
+	<strong>&lt;div class="tabpanels"&gt;</strong>
+		&lt;div role=&quot;tabpanel&quot; id=&quot;panel1&quot; class=&quot;in fade&quot;&gt;
+			...
+		&lt;/div&gt;
+		&lt;div role=&quot;tabpanel&quot; id=&quot;panel2&quot; class=&quot;out fade&quot;&gt;
+			..
+		&lt;/div&gt;
+		...
+	<strong>&lt;/div&gt;</strong>
+&lt;/div&gt;</code></pre>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</li>
