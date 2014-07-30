@@ -17,25 +17,14 @@
 		{{else}}
 			{{#contains page.src "/docs/index"}}
 			{{else}}
-				{{#contains page.src "/docs/comms/"}}
-				{{else}}
-						<li>
-							<a href="{{assets}}/docs/index-{{language}}.html">{{{i18n "tmpl-documentation"}}}</a>
-						</li>
-					{{#contains page.src "/gs-cd/"}}
-						{{#contains page.src "/index"}}
-						{{else}}
-						<li>
-							<a href="{{assets}}/docs/gs-cd/index-{{language}}.html">{{{i18n "tmpl-getting-started"}}}</a>
-						</li>
-						{{/contains}}
-					{{/contains}}
-					{{#if page.componentType}}
-						<li>
-							<a href="{{assets}}/docs/{{page.componentType}}-{{language}}.html">{{#i18n "tmpl-#{page.componentType}"}}{{/i18n}}</a>
-						</li>
-					{{/if}}
-				{{/contains}}
+					<li>
+						<a href="{{assets}}/docs/index-{{language}}.html">{{{i18n "tmpl-documentation"}}}</a>
+					</li>
+				{{#if page.categoryfile}}
+					<li>
+						<a href="{{assets}}/docs/ref/{{page.categoryfile}}-{{language}}.html">{{page.category}}</a>
+					</li>
+				{{/if}}
 			{{/contains}}
 		{{/contains}}
 	{{else}}
