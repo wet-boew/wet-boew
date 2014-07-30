@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Afficher des images et d'autres contenus dans une boîte de dialogue, individuellement ou dans le cadre d'une galerie.",
 	"altLangPrefix": "lightbox",
-	"dateModified": "2014-07-23"
+	"dateModified": "2014-07-30"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -131,6 +131,19 @@
 ]);</code></pre>
 				</td>
 				<td>Used to manually open a Lightbox popup. Can be used to load single popups, galleries and modal popups. See <a href="../../../demos/lightbox/lightbox-en.html#examples5">Opening popups through JavaScript</a> for working examples.</td>
+			</tr>
+			<tr>
+				<td><code>mfp*</code> events (e.g., <code>mfpClose</code></td>
+				<td>Events triggered automatically by Magnific Popup (<a href="dimsemenov.com/plugins/magnific-popup/documentation.html#events">documentation on Magnific Popup events</a>.</td>
+				<td>Used by Magnific Popup to identify what events are occurring. <code>$.magnificPopup.instance</code> contains the properties of the popup in question.
+					<pre><code>$( document ).on( "mfpClose", function( event ) {
+	$.magnificPopup.instance.items[ 0 ].data.src;
+	
+	if ( src === "#inline_content" ) {
+	} else if ( src === "demo/1_b.jpg" ) {
+	}
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>
