@@ -196,10 +196,6 @@ wb.i18nDict = {
 	"geo-aoi-instructions": "@geo-aoi-instructions@",
 	"geo-aoi-btndraw": "@geo-aoi-btndraw@",
 	"geo-aoi-btnclear": "@geo-aoi-btnclear@",
-<<<<<<< HEAD
-=======
-	"geo-aoi-btnclose": "@geo-aoi-btnclose@",
->>>>>>> FETCH_HEAD
 	"geo-geoloc-btn": "@geo-geoloc-btn@",
 	"geo-geoloc-fail": "@geo-geoloc-fail@",
 	"geo-geoloc-uncapable": "@geo-geoloc-uncapable@",

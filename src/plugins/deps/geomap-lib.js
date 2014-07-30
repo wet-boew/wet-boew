@@ -571,7 +571,7 @@ var pluginName = "wb-geomap",
 			featureType = feature && feature.geometry ? feature.geometry.CLASS_NAME : "OpenLayers.Geometry.Polygon",
 			height = 20, width = 20, i, len,
 			strokeWidth = symbolizer.strokeWidth ? symbolizer.strokeWidth : 0,
-			renderers = [ 'SVG', 'VML', 'Canvas' ];
+			renderers = [ "SVG", "VML", "Canvas" ];
 
 		for ( i = 0, len = renderers.length; i < len; ++i ) {
 			RendererClass = OpenLayers.Renderer[ renderers[ i ] ];
@@ -1972,29 +1972,18 @@ var pluginName = "wb-geomap",
 
 		geomap.gmap.before( "<div class='geomap-aoi panel panel-default'><div id='geomap-aoi-" + geomap.uniqueId + "' class='panel-body'></div></div>" );
 
-<<<<<<< HEAD
 		var mapDiv = $( "#geomap-map-" + geomap.uniqueId );
 
 		mapDiv.append( "<button id='geomap-aoi-toggle-mode-draw-" + geomap.uniqueId +
 			"' href='#' class='btn btn-sm geomap-geoloc-aoi-btn' title='" + i18nText.aoiBtnDraw +
 			"'><i class='glyphicon glyphicon-edit'></i><span class='wb-inv'> " +
 			i18nText.aoiBtnDraw + "</span></button>" );
-=======
-		var mapDiv = $("#geomap-map-" + geomap.uniqueId);
-
-		mapDiv.append( "<button id='geomap-aoi-toggle-mode-draw-" + geomap.uniqueId + "' href='#' class='btn btn-sm geomap-geoloc-aoi-btn'><i class='glyphicon glyphicon-edit'></i></button>" );
->>>>>>> FETCH_HEAD
 
 		$( "#geomap-aoi-" + geomap.uniqueId ).parent().hide();
 
 		$( "#geomap-aoi-" + geomap.uniqueId ).append(
-<<<<<<< HEAD
 			"<fieldset id='form-aoi-" + geomap.uniqueId + "'>" +
 				"<legend tabindex='-1'>" + i18nText.aoiInstructions + "</legend>" +
-=======
-			"<div id='form-aoi-" + geomap.uniqueId + "'>" +
-				"<p><small>" + i18nText.aoiInstructions + "</small></p>" +
->>>>>>> FETCH_HEAD
 				"<div class='row'>" +
 					"<div class='col-md-2'>" +
 						"<label for='geomap-aoi-maxy-" + geomap.uniqueId + "' class='input-sm control-label wb-inv'>" + i18nText.aoiNorth + "</label>" +
@@ -2031,18 +2020,13 @@ var pluginName = "wb-geomap",
 				"</div>" +
 				"<input type='hidden' id='geomap-aoi-extent-" + geomap.uniqueId + "'/>" +
 				"<input type='hidden' id='geomap-aoi-extent-lonlat-" + geomap.uniqueId + "'/>" +
-<<<<<<< HEAD
 			"</fieldset>" +
-=======
-			"</form>" +
->>>>>>> FETCH_HEAD
 		"</div>" +
 		"<div class='clear'></div>" );
 
 		$document.on( "click", "#geomap-aoi-toggle-mode-draw-" + geomap.uniqueId, function( evt ) {
 			evt.preventDefault();
 
-<<<<<<< HEAD
 			var drawFeature = geomap.map.getControlsByClass( "OpenLayers.Control.DrawFeature" )[ 0 ],
 				active = drawFeature.active,
 				$aoiElm = $( "#geomap-aoi-" + geomap.uniqueId );
@@ -2057,18 +2041,6 @@ var pluginName = "wb-geomap",
 
 			if ( !active ) {
 				$aoiElm.find( "legend" ).trigger( "setfocus.wb" );
-=======
-			var active = geomap.map.getControlsByClass( "OpenLayers.Control.DrawFeature" )[0].active;
-
-			if ( active ) {
-				geomap.map.getControlsByClass( "OpenLayers.Control.DrawFeature" )[ 0 ].deactivate();
-				$( "#geomap-aoi-" + geomap.uniqueId ).parent().slideToggle();
-				$( this ).toggleClass( "active" );
-			} else {
-				geomap.map.getControlsByClass( "OpenLayers.Control.DrawFeature" )[ 0 ].activate();
-				$( "#geomap-aoi-" + geomap.uniqueId ).parent().slideToggle();
-				$( this ).toggleClass( "active" );
->>>>>>> FETCH_HEAD
 			}
 
 			geomap.map.updateSize();
@@ -2162,13 +2134,8 @@ var pluginName = "wb-geomap",
 
 		mapDiv.append(
 			"<div class='geomap-geoloc form-inline'>" +
-<<<<<<< HEAD
 				"<label for='wb-geomap-geocode-search-" + geomap.uniqueId + "' class='wb-inv'>" + i18nText.geoCoderLabel + "</label>" +
 				"<input type='text' class='form-control input-sm opct-90 pull-right' name='wb-geomap-geocode-search-" + geomap.uniqueId + "' id='wb-geomap-geocode-search-" + geomap.uniqueId + "' list='wb-geomap-geocode-results-" + geomap.uniqueId + "' autocomplete='off' placeholder='" + i18nText.geoCoderPlaceholder + "' />" +
-=======
-				"<label for='wb-geomap-geocode-search-" + geomap.uniqueId + "' class='wb-invisible'>" + i18nText.geoCoderLabel + "</label>" +
-				"<input type='text' class='form-control input-sm opct-90 pull-right' name='wb-geomap-geocode-search-" + geomap.uniqueId + "' id='wb-geomap-geocode-search-" + geomap.uniqueId + "' list='wb-geomap-geocode-results-" + geomap.uniqueId + "' autocomplete='off' placeholder='" + i18nText.geoCoderPlaceholder + "'></input>" +
->>>>>>> FETCH_HEAD
 				"<datalist id='wb-geomap-geocode-results-" + geomap.uniqueId + "'></datalist>" +
 			"</div>"
 		);
@@ -2273,12 +2240,7 @@ var pluginName = "wb-geomap",
 			timer = setTimeout(	function() {
 				xhr = $.get( i18nText.geoLocationURL, {
 						q: val + "*"
-<<<<<<< HEAD
 					}, function( res ) {
-=======
-					 }, function( res ) {
->>>>>>> FETCH_HEAD
-
 					options = [ "<!--[if lte IE 9]><select><![endif]-->" ];
 
 					if ( res.length ) {
@@ -2286,18 +2248,10 @@ var pluginName = "wb-geomap",
 
 							title = res[ i ].title
 								.replace(/&/g, "&amp;")
-<<<<<<< HEAD
 								.replace(/"/g, "&quot;")
 								.replace(/'/g, "&#39;")
 								.replace(/</g, "&lt;")
 								.replace(/>/g, "&gt;");
-=======
-					            .replace(/"/g, "&quot;")
-					            .replace(/'/g, "&#39;")
-					            .replace(/</g, "&lt;")
-					            .replace(/>/g, "&gt;");
->>>>>>> FETCH_HEAD
-
 							bnd = res[ i ].bbox ? res[ i ].bbox[ 0 ] + ", " + res[ i ].bbox[ 1 ] + ", " + res[ i ].bbox[ 2 ] + ", " + res[ i ].bbox[ 3 ] : null;
 							ll = res[ i ].geometry && res[ i ].geometry.type === "Point" ? res[ i ].geometry.coordinates[ 0 ] + ", " + res[ i ].geometry.coordinates[ 1] : null;
 							options.push( "<option value='" + title + "' data-lat-lon='" + ll + "' data-bbox='" + bnd  + "' data-type='" + res[ i ].type + "'></option>" );
@@ -2354,16 +2308,9 @@ var pluginName = "wb-geomap",
 		}),
 		geolocationPanel = new OpenLayers.Control.Panel( {
 			displayClass: "olPanelGeolocate",
-<<<<<<< HEAD
 			createControlMarkup: function() {
 				return document.createElement( "button" );
 			}
-=======
-	        createControlMarkup: function() {
-	            var button = document.createElement( "button" );
-	            return button;
-	        }
->>>>>>> FETCH_HEAD
 		});
 
 		geolocationPanel.addControls( [ btnGeolocate ] );

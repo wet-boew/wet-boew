@@ -34,20 +34,13 @@ wb.doc.on( "geomap.ready", function( event, maps ) {
 	if ( $aoiExtent ) {
 
 		$aoiExtent.on( "change", function() {
-<<<<<<< HEAD:src/plugins/geomap/demo/client_functions.js
-			//console.log( "BBox: " + $( this ).val() );
-		} );
-
-		$aoiExtentLonLat.on("change", function() {
-			//console.log( "BBox LonLat: " + $( this ).val() );
-=======
 			 //console.log( "BBox: " + $( this ).val() );
 		} );
 
 		$aoiExtentLonLat.on("change", function() {
 			 //console.log( "BBox LonLat: " + $( this ).val() );
->>>>>>> FETCH_HEAD:src/plugins/geomap/demo/client_functions.js
 		} );
+
 	}
 	// Zoom to location on location_map
 	mapLocation = maps.location_map;
