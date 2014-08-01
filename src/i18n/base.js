@@ -93,6 +93,7 @@ wb.i18nDict = {
 	"shr-txt": "@shr-txt@",
 	"shr-pg": "@shr-pg@",
 	"shr-vid": "@shr-vid@",
+	"shr-aud": "@shr-aud@",
 	"shr-hnt": "@shr-hnt@",
 	"shr-disc": "@shr-disc@",
 	/* Form validation */
