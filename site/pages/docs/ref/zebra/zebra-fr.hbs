@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Rayage du zèbre pour les tableaux",
 	"altLangPrefix": "zebra",
-	"dateModified": "2014-07-30"
+	"dateModified": "2014-08-01"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -88,12 +88,22 @@
 				<td>Load table parser dependency and initiate the complex table parsing.</td>
 			</tr>
 			<tr>
-				<td>pasiveparse.wb-tableparser.wb</td>
+				<td><code>wb-ready.wb-zebra</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the Zebra plugin initializes.</td>
+				<td>Used to identify where the Zebra plugin initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-zebra", ".wb-zebra", function( event ) {
+});</code></pre>
+					<pre><code>$elm.on( "wb-ready.wb-zebra", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td>passiveparse.wb-tableparser</td>
 				<td>When the zebra plugin initiate the complex table parsing.</td>
 				<td>It will parse the data table and attach the information to a data attribute named &quot;tblparser&quot; on every elements inside and on to the table elements.</td>
 			</tr>
 			<tr>
-				<td>parsecomplete.wb-tableparser.wb</td>
+				<td>parsecomplete.wb-tableparser</td>
 				<td>When the table parser has completed his parsing.</td>
 				<td>It's means that the &quot;tblparser&quot; data attribute is now ready to be use.</td>
 			</tr>

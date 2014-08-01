@@ -21,6 +21,7 @@
 	selectorHoverCol = "." + hoverColClass + " td, " + hoverColClass + " th",
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
+	readyEvent = "wb-ready" + selector,
 	tableParsingEvent = "passiveparse.wb-tableparser",
 	tableParsingCompleteEvent = "parsecomplete.wb-tableparser",
 	$document = wb.doc,
@@ -78,6 +79,7 @@
 			}
 		}
 
+		$elm.trigger( readyEvent );
 	},
 
 	/**

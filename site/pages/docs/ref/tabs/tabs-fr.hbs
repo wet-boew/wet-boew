@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Comprime plusieurs images et légendes superposées et fourni des controls qui permettent à l'utilisateur de choisi l'image à afficher.",
 	"altLangPrefix": "tabs",
-	"dateModified": "2014-03-31"
+	"dateModified": "2014-08-01"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -130,6 +130,16 @@ Example of multi-line code</code></pre>
 				<td>wb-init.wb-tabs</td>
 				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-tabs" );</code>).</td>
 				<td>Used to manually initialize the Tabbed interface plugin. <strong>Note:</strong> The Tabbed interface plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-tabs</code> (v4.0.5+)</td>
+				<td>Triggered automatically after a tabbed interface or carousel initializes.</td>
+				<td>Used to identify which tabbed interface or carousel was initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-tabs", ".wb-tabs", function( event ) {
+});</code></pre>
+					<pre><code>$elm.on( "wb-ready.wb-tabs", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>

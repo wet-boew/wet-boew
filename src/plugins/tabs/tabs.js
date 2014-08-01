@@ -17,6 +17,7 @@ var pluginName = "wb-tabs",
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
+	readyEvent = "wb-ready" + selector,
 	shiftEvent = "shift" + selector,
 	setFocusEvent = "setfocus.wb",
 	controls = selector + " [role=tablist] a",
@@ -233,6 +234,8 @@ var pluginName = "wb-tabs",
 
 			initialized = true;
 			onResize();
+
+			$elm.trigger( readyEvent );
 		}
 	},
 
