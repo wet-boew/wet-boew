@@ -53,8 +53,26 @@
 			</li>
 			<li>Each container should contain one <code>&lt;video&gt;</code> or <code>&lt;audio&gt;</code> tag.</li>
 			<li>
-				<strong>Optional:</strong> Add a "Share this video" link by adding the following to the <code>figure</code> element:
-				<pre><code>data-wb-mltmd='{"shareUrl": "http://youtu.be/p2-1ZIHu1W0"}'</code></pre>
+				<strong>Optional:</strong> Add a "Share this video" or "Share this audio file" link by adding the following to the <code>figure</code> element:
+				<pre><code>data-wb-mltmd='{"shareUrl": "url"}'</code></pre>
+			</li>
+			<li>
+				Add a <code>figcaption</code> element to the <code>figure</code> element with the title of the video or audio file. If a transcript is required, then also include either a link to the transcript or a details/summary containing the transcript.
+					<pre><code>&lt;figcaption&gt;
+	&lt;p&gt;Looking for a Job&lt;/p&gt;
+&lt;/figcaption&gt;</code></pre>
+					<pre><code>&lt;figcaption&gt;
+	&lt;p&gt;Looking for a Job (&lt;a href="http://www.servicecanada.gc.ca/eng/video/lj.shtml"&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
+&lt;/figcaption&gt;</code></pre>
+					<pre><code>&lt;figcaption&gt;
+	&lt;details id="inline-captions"&gt;
+		&lt;summary&gt;Looking for a Job - HTML5 Transcript/Captions&lt;/summary&gt;
+		&lt;p class="wet-boew-vd"&gt;&lt;strong&gt;(Animated pen draws a red line that leads into the text Looking for A Job)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p class="wet-boew-vd"&gt;&lt;strong&gt;(Cut to a medium shot of the Host. LINE DRAWING GRAPHIC: Stick person appears and waves.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class="wb-tmtxt" data-begin="2.50s" data-dur="3.84s"&gt;Hi, my name is Eric, and I&#39;m a Service Canada employee.&lt;/span&gt;&lt;/p&gt;
+		...
+	&lt;/details&gt;
+&lt;/figcaption&gt;</code></pre>
 			</li>
 		</ol>
 
@@ -85,23 +103,11 @@
 					</ol>
 					<pre><code>&lt;track src="cpts-lg-en.html" kind="captions" data-type="text/html" srclang="en" label="English" /&gt;</code></pre>
 				</li>
-				<li>
-					Add a <code>figcaption</code> element to the <code>figure</code> element with the title of the video and either a link to the transcript or a details/summary containing the transcript.
-					<pre><code>&lt;figcaption&gt;
-	&lt;p&gt;Looking for a Job (&lt;a href="http://www.servicecanada.gc.ca/eng/video/lj.shtml"&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
-&lt;/figcaption&gt;</code></pre>
-					<pre><code>&lt;figcaption&gt;
-	&lt;details id="inline-captions"&gt;
-		&lt;summary&gt;Looking for a Job - HTML5 Transcript/Captions&lt;/summary&gt;
-		&lt;p class="wet-boew-vd"&gt;&lt;strong&gt;(Animated pen draws a red line that leads into the text Looking for A Job)&lt;/strong&gt;&lt;/p&gt;
-		&lt;p class="wet-boew-vd"&gt;&lt;strong&gt;(Cut to a medium shot of the Host. LINE DRAWING GRAPHIC: Stick person appears and waves.)&lt;/strong&gt;&lt;/p&gt;
-		&lt;p&gt;&lt;span class="wb-tmtxt" data-begin="2.50s" data-dur="3.84s"&gt;Hi, my name is Eric, and I&#39;m a Service Canada employee.&lt;/span&gt;&lt;/p&gt;
-		...
-	&lt;/details&gt;
-&lt;/figcaption&gt;</code></pre>
-				</li>
 			</ol>
-			<pre><code>&lt;figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "http://youtu.be/p2-1ZIHu1W0"}'&gt;
+
+			<section>
+				<h5>Code</h5>
+				<pre><code>&lt;figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "http://youtu.be/p2-1ZIHu1W0"}'&gt;
 	&lt;video poster="http://www.servicecanada.gc.ca/eng/video/images/te-lj-eng.jpg" title="Looking for a Job"&gt;
 		&lt;source type="video/webm" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.webm" /&gt;
 		&lt;source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4" /&gt;
@@ -111,6 +117,7 @@
 		&lt;p&gt;Looking for a Job (&lt;a href="http://www.servicecanada.gc.ca/eng/video/lj.shtml"&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
 	&lt;/figcaption&gt;
 &lt;/figure&gt;</code></pre>
+			</section>
 		</section>
 
 		<section>
@@ -121,13 +128,10 @@
 					<pre><code>&lt;source type="video/youtube" src="http://www.youtube.com/watch?v=9znKJqnFuuY" /&gt;</code></pre>
 				</li>
 				<li>If captions are not already included for the video, add the captions using the tools provided by YouTube.</li>
-				<li>
-					Add a <code>figcaption</code> element to the <code>figure</code> element with the title of the video. If a transcript is required, then also include either a link to the transcript or a details/summary containing the transcript.
-					<pre><code>&lt;figcaption&gt;
-	&lt;p&gt;Suspect&lt;/p&gt;
-&lt;/figcaption&gt;</code></pre>
-				</li>
 			</ol>
+
+			<section>
+				<h5>Code</h5>
 			<pre><code>&lt;figure class="wb-mltmd"&gt;
 	&lt;video title="Suspect"&gt;
 		&lt;source type="video/youtube" src="http://www.youtube.com/watch?v=9znKJqnFuuY" /&gt;
@@ -136,6 +140,7 @@
 		&lt;p&gt;Suspect&lt;/p&gt;
 	&lt;/figcaption&gt;
 &lt;/figure&gt;</code></pre>
+			</section>
 		</section>
 
 		<section>
@@ -148,14 +153,11 @@
 					<pre><code>&lt;source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3" /&gt;
 &lt;source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.ogg" type="audio/ogg" /&gt;</code></pre>
 				</li>
-				<li>
-					Add a <code>figcaption</code> element to the <code>figure</code> element with the title of the video. If a transcript is required, then also include either a link to the transcript or a details/summary containing the transcript.
-					<pre><code>&lt;figcaption&gt;
-	&lt;p&gt;Ride of the Valkyries&lt;/p&gt;
-&lt;/figcaption&gt;</code></pre>
-				</li>
 			</ol>
-			<pre><code>&lt;figure class="wb-mltmd"&gt;
+
+			<section>
+				<h5>Code</h5>
+				<pre><code>&lt;figure class="wb-mltmd"&gt;
 	&lt;audio title="Ride of the Valkyries"&gt;
 		&lt;source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3" /&gt;
 		&lt;source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.ogg" type="audio/ogg" /&gt;
@@ -164,6 +166,7 @@
 		&lt;p&gt;Ride of the Valkyries&lt;/p&gt;
 	&lt;/figcaption&gt;
 &lt;/figure&gt;</code></pre>
+			</section>
 		</section>
 	</section>
 </section>
@@ -182,12 +185,12 @@
 		<tbody>
 			<tr>
 				<td><code>shareUrl</code></td>
-				<td>Adds a "Share this video" link</td>
-				<td>Add <pre><code>data-wb-mltmd='{"shareUrl": "http://youtu.be/p2-1ZIHu1W0"}'</code></pre> to the element with <code>class="wb-mltmd"</code>.</td>
+				<td>Adds a "Share this video" or "Share this audio file" link</td>
+				<td>Add <pre><code>data-wb-mltmd='{"shareUrl": "url"}'</code></pre> to the element with <code>class="wb-mltmd"</code>.</td>
 				<td>
 					<dl>
 						<dt>URL</dt>
-						<dd>URL of the video file to share.</dd>
+						<dd>URL of the video or audio file to share.</dd>
 					</dl>
 				</td>
 			</tr>
