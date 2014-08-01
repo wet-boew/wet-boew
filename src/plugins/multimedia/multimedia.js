@@ -13,6 +13,7 @@ var pluginName = "wb-mltmd",
 	selector = "." + pluginName,
 	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
+	readyEvent = "wb-ready" + selector,
 	uniqueCount = 0,
 	template,
 	i18n, i18nText,
@@ -794,6 +795,8 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 			$media.parent().before( $share );
 			wb.add( $share );
 		}
+
+		$this.trigger( readyEvent );
 	}
 });
 
