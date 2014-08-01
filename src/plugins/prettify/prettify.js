@@ -39,11 +39,9 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-prettify",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
+var componentName = "wb-prettify",
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
-	readyEvent = "wb-ready" + selector,
 	prettyPrintEvent = "prettyprint" + selector,
 	$document = wb.doc,
 
@@ -56,26 +54,21 @@ var pluginName = "wb-prettify",
 		allpre: false
 	},
 
-	/*
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
+	/**
 	 * @method init
-	 * @param {jQuery Event} event Event that triggered this handler
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
-		var elm = event.target,
+
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
 			modeJS = wb.getMode() + ".js",
 			deps = [ "site!deps/prettify" + modeJS ],
 			$elm, classes, settings, i, len, $pre;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === elm &&
-			elm.className.indexOf( initedClass ) === -1 ) {
-
-			wb.remove( selector );
-			elm.className += " " + initedClass;
-
+		if ( elm ) {
 			$elm = $( elm );
 			classes = elm.className.split( " " );
 
@@ -119,12 +112,13 @@ var pluginName = "wb-prettify",
 	 * @method prettyprint
 	 */
 	prettyprint = function( event ) {
-		if ( event.namespace === pluginName &&
+		if ( event.namespace === componentName &&
 			typeof window.prettyPrint === "function" ) {
 
 			window.prettyPrint();
 
-			$document.trigger( readyEvent );
+			// Identify that initialization has completed
+			wb.ready( $document, componentName );
 		}
 	};
 

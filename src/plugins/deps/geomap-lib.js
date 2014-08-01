@@ -8,8 +8,8 @@
 (function( $, window, document, wb ) {
 "use strict";
 
-var pluginName = "wb-geomap",
-	selector = "." + pluginName,
+var componentName = "wb-geomap",
+	selector = "." + componentName,
 	$document = wb.doc,
 
 	// timeout for overlay loading in milliseconds
@@ -44,9 +44,7 @@ var pluginName = "wb-geomap",
 		useAOI: false
 	},
 
-	/*
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
+	/**
 	 * @method init
 	 * @param {jQuery Event} event Event that triggered this handler
 	 */
@@ -54,12 +52,11 @@ var pluginName = "wb-geomap",
 		var elm = event.target,
 			className = elm.className,
 			settings = {},
-			$elm, modeJS, overrides;
+			$elm, overrides;
 
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === elm ) {
 			$elm = $( elm );
-			modeJS = wb.getMode() + ".js";
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
@@ -115,7 +112,7 @@ var pluginName = "wb-geomap",
 			};
 
 			// Merge default settings with overrides from the selected plugin element.
-			$.extend( settings, defaults, overrides, window[ pluginName ], wb.getData( $elm, pluginName ) );
+			$.extend( settings, defaults, overrides, window[ componentName ], wb.getData( $elm, componentName ) );
 
 			// Bind the merged settings to the element node for faster access in other events.
 			$elm.data( { settings: settings } );
@@ -2380,7 +2377,8 @@ var pluginName = "wb-geomap",
 	},
 
 	refreshPlugins = function( geomap ) {
-		var glayers = geomap.glayers;
+		var glayers = geomap.glayers,
+			map = geomap.map;
 
 		glayers.find( ".wb-tables" ).trigger( "wb-init.wb-tables" );
 		glayers.find( ".wb-geomap-tabs" ).trigger( "wb-init.wb-tabs" );
@@ -2390,32 +2388,38 @@ var pluginName = "wb-geomap",
 
 		// Set map id to be able to access by getMap.
 		geomap.map.id = geomap.mapid;
-		mapArray.push( geomap.map );
+		mapArray.push( map );
+
+		// Set the alt attributes for images to fix the missing alt
+		// attribute. Need to do it after zoom because each zoom brings
+		// new tiles to solve this modifications needs to be done to
+		// OpenLayers core code OpenLayers.Util.createImage and
+		// OpenLayers.Util.createAlphaImageDiv
+		// TODO: fix no alt attribute on tile image in OpenLayers rather
+		// than use this override wait 2 seconds for all tile to be loaded
+		// in the page
+		setTimeout(function() {
+			geomap.gmap.find( "img" ).attr( "alt", "" );
+			$( ".olTileImage" ).attr( "alt", "" );
+
+			// Identify that initialization has completed
+			wb.ready( $( geomap.mapid ), componentName, [ map ] );
+		}, 2000 );
+
+		geomap.map.events.on({
+			moveend: function() {
+
+				// Every time we zoom/pan we need to put back the alt for OpenLayers tiles
+				$( ".olTileImage" ).attr( "alt", "" );
+
+				$( geomap.mapid ).trigger( "wb-updated" + selector, [ map ] );
+			}
+		});
 
 		// If all geomap instance are loaded, trigger ready.wb-geomap
 		if ( mapArray.length === $( selector ).length ) {
 
-			// Set the alt attributes for images to fix the missing alt
-			// attribute. Need to do it after zoom because each zoom brings
-			// new tiles to solve this modifications needs to be done to
-			// OpenLayers core code OpenLayers.Util.createImage and
-			// OpenLayers.Util.createAlphaImageDiv
-			// TODO: fix no alt attribute on tile image in OpenLayers rather
-			// than use this override wait 2 seconds for all tile to be loaded
-			// in the page
-			setTimeout(function() {
-				geomap.gmap.find( "img" ).attr( "alt", "" );
-				$( ".olTileImage" ).attr( "alt", "" );
-			}, 2000 );
-
-			geomap.map.events.on({
-				moveend: function() {
-
-					// Every time we zoom/pan we need to put back the alt for OpenLayers tiles
-					$( ".olTileImage" ).attr( "alt", "" );
-				}
-			});
-
+			// Deprecated: Replaced by wb-ready.wb-geomap
 			wb.doc.trigger( "geomap.ready", [ getMap() ]);
 		}
 	},
@@ -2542,8 +2546,5 @@ $document.on( "keydown click", ".olPopupCloseBox span", function( event ) {
 				.unselect( selectedFeature );
 	}
 });
-
-// Add the timer poke to initialize the plugin
-wb.add( selector );
 
 })( jQuery, window, document, wb );

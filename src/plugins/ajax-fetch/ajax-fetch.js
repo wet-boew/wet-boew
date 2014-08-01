@@ -24,7 +24,7 @@ $document.on( "ajax-fetch.wb", function( event ) {
 	// Filter out any events triggered by descendants
 	if ( event.currentTarget === event.target ) {
 		$.ajax( fetchOpts )
-			.done( function( response, status, xhr ) {
+			.done(function( response, status, xhr ) {
 				fetchData = {
 					response: response,
 					status: status,
@@ -38,7 +38,7 @@ $document.on( "ajax-fetch.wb", function( event ) {
 				$( caller ).trigger({
 					type: "ajax-fetched.wb",
 					fetch: fetchData
-				}, this);
+				}, this );
 			})
 			.fail(function( xhr, status, error ) {
 				$( caller ).trigger({
@@ -48,8 +48,8 @@ $document.on( "ajax-fetch.wb", function( event ) {
 						status: status,
 						error: error
 					}
-				});
-			}, this);
+				}, this );
+			}, this );
 	}
 });
 

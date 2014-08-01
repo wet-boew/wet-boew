@@ -13,25 +13,27 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-calevt",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
+var componentName = "wb-calevt",
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
-	readyEvent = "wb-ready" + selector,
 	evDetails = "ev-details",
 	$document = wb.doc,
 	i18n, i18nText,
 
 	/**
 	 * @method init
-	 * @param {jQuery DOM element} $elm The plugin element
+	 * @param {jQuery Event} event Event that triggered this handler
 	 */
-	init = function( $elm ) {
+	init = function( event ) {
 
-		// Only initialize the element once
-		if ( !$elm.hasClass( initedClass ) ) {
-			wb.remove( selector );
-			$elm.addClass( initedClass );
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
+			$elm;
+
+		if ( elm ) {
+			$elm = $( elm );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
@@ -46,6 +48,9 @@ var pluginName = "wb-calevt",
 			$.when.apply( $, $.map( $elm.find( "[data-calevt]" ), getAjax ) )
 				.always( function() {
 					processEvents( $elm );
+
+					// Identify that initialization has completed
+					wb.ready( $elm, componentName );
 				});
 		}
 	},
@@ -92,7 +97,7 @@ var pluginName = "wb-calevt",
 		events = getEvents( $elm );
 		containerId = $elm.data( "calevtSrc" );
 		$container = $( "#" + containerId )
-			.addClass( pluginName + "-cal" )
+			.addClass( componentName + "-cal" )
 			.data( "calEvents", events );
 
 		$document.trigger( "create.wb-cal", [
@@ -335,19 +340,7 @@ var pluginName = "wb-calevt",
 	};
 
 // Bind the init event of the plugin
-$document.on( "timerpoke.wb " + initEvent, selector, function( event ) {
-
-	// Filter out any events triggered by descendants
-	if ( event.currentTarget === event.target ) {
-		init( $( this ) );
-	}
-
-	/*
-	 * Since we are working with events we want to ensure that we are being passive about our control,
-	 * so returning true allows for events to always continue
-	 */
-	return true;
-});
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 $document.on( "displayed.wb-cal", selector + "-cal", function( event, year, month, days, day ) {
 
@@ -362,8 +355,7 @@ $document.on( "displayed.wb-cal", selector + "-cal", function( event, year, mont
 		showOnlyEventsFor( year, month, containerId );
 		$target.find( ".cal-index-" + day + " .cal-evt" ).trigger( "setfocus.wb" );
 
-		// Identify that the plugin is ready
-		$target.trigger( readyEvent );
+		$target.trigger( "wb-updated" + selector );
 	}
 });
 

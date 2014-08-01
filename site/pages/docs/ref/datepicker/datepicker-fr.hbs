@@ -6,7 +6,7 @@
 	"categoryfile": "polyfills",
 	"description": "Émule l’élément <input type=\"date\"> pour les navigateurs qui ne le supportent pas. Cela génère dynamiquement une interface de calendrier pour sélectionner une date dans un formulaire.",
 	"altLangPrefix": "datepicker",
-	"dateModified": "2014-07-20"
+	"dateModified": "2014-08-04"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -100,21 +100,29 @@
 				<th>Fonction</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody lang="en">
 			<tr>
-				<td>create.wb-cal</td>
-				<td>Avant que l'interface du calendrier devienne visible.</td>
-				<td>Crée l'interface du calendrier.</td>
+				<td><code>wb-init.wb-date</code></td>
+				<td>Triggered manually (e.g., <code>$( "input[type=date]" ).trigger( "wb-init.wb-date" );</code>).</td>
+				<td>Used to manually initialize the <code>input type="date"</code> polyfill. <strong>Note:</strong> The <code>input type="date"</code> polyfill will be initialized automatically unless the <code>input type="date"</code> element is added after the page has already loaded.</td>
 			</tr>
 			<tr>
-				<td>setFocus.wb-cal</td>
-				<td>Après que l'interface du calendrier soit affiché.</td>
-				<td>Place le focus sur la date dans le champ de saisie, si elle est définie.</td>
+				<td><code>wb-ready.wb-date</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the <code>input type="date"</code> polyfill initializes. <strong>Note:</strong> This event will only be triggered if the polyfill is loaded. The polyfill will not load for browsers with native <code>input type="date"</code> support.</td>
+				<td>Used to identify where the <code>input type="date"</code> polyfill initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-date", "input[type=date]", function( event ) {
+});</code></pre>
+					<pre><code>$( "input[type=date]" ).on( "wb-ready.wb-date", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 			<tr>
-				<td>hideGoToFrm.wb-cal</td>
-				<td>Avant que l'interface du calendrier soit caché.</td>
-				<td>Cache le formulaire « Aller à » dans l'interface du calendrier.</td>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>

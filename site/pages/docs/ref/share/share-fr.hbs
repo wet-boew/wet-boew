@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Permet à l'utilisateur de partager un contenu Web sur les plateformes de médias sociaux.",
 	"altLangPrefix": "share",
-	"dateModified": "2014-08-01"
+	"dateModified": "2014-08-04"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -258,7 +258,7 @@
 		<tbody>
 			<tr>
 				<td><code>wb-init.wb-share</code></td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-share" );</code>).</td>
+				<td>Triggered manually (e.g., <code>$( ".wb-share" ).trigger( "wb-init.wb-share" );</code>).</td>
 				<td>Used to manually initialize the share widget. <strong>Note:</strong> The share widget will be initialized automatically unless it is added after the page has already loaded.</td>
 			</tr>
 			<tr>
@@ -267,7 +267,15 @@
 				<td>Used to identify where the Share plugin was initialized (target of the event).
 					<pre><code>$( document ).on( "wb-ready.wb-share", ".wb-share", function( event ) {
 });</code></pre>
-					<pre><code>$elm.on( "wb-ready.wb-share", function( event ) {
+					<pre><code>$( ".wb-share" ).on( "wb-ready.wb-share", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
 			</tr>

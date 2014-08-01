@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Affiche les articles d’un ou plus fils de syndication.",
 	"altLangPrefix": "feeds",
-	"dateModified": "2014-07-28"
+	"dateModified": "2014-08-04"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -336,7 +336,7 @@
 		<tbody>
 			<tr>
 				<td><code>wb-init.wb-feeds</code></td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-feeds" );</code>).</td>
+				<td>Triggered manually (e.g., <code>$( ".wb-feeds" ).trigger( "wb-init.wb-feeds" );</code>).</td>
 				<td>Used to manually initialize the Feeds widget. <strong>Note:</strong> The Feeds widget will be initialized automatically unless it is added after the page has already loaded.</td>
 			</tr>
 			<tr>
@@ -345,7 +345,7 @@
 				<td>Used to identify where the Feeds plugin has finished initializing (target of the event).
 					<pre><code>$( document ).on( "wb-ready.wb-feeds", ".wb-feeds", function( event ) {
 });</code></pre>
-					<pre><code>$elm.on( "wb-ready.wb-feeds", function( event ) {
+					<pre><code>$( ".wb-feeds" ).on( "wb-ready.wb-feeds", function( event ) {
 });</code></pre>
 				</td>
 			</tr>
@@ -353,9 +353,17 @@
 				<td><code>wb-feed-ready.wb-feeds</code> (v4.0.5+)</td>
 				<td>Triggered automatically after a feed has become visible.</td>
 				<td>Used to identify which feed has become visible (target of the event).
-					<pre><code>$( document ).on( "wb-feed-ready.wb-feeds", function( event ) {
+					<pre><code>$( document ).on( "wb-feed-ready.wb-feeds", ".wb-feeds .feeds-cont", function( event ) {
 });</code></pre>
-					<pre><code>$elm.on( "wb-feed-ready.wb-feeds", function( event ) {
+					<pre><code>$( ".wb-feeds .feeds-cont" ).on( "wb-feed-ready.wb-feeds", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
 			</tr>

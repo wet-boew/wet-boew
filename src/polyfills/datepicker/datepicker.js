@@ -12,10 +12,9 @@
  * Variable and function definitions.
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
-var pluginName = "wb-date",
+var componentName = "wb-date",
 	selector = "input[type=date]",
-	initedClass = pluginName + "-inited",
-	initEvent = "wb-init." + pluginName,
+	initEvent = "wb-init." + componentName,
 	setFocusEvent = "setfocus.wb",
 	containerName = "wb-picker",
 	date = new Date(),
@@ -27,23 +26,19 @@ var pluginName = "wb-date",
 	i18n, i18nText, $container,
 
 	/**
-	 * Init runs once per polyfill element on the page. There may be multiple elements.
-	 * It will run more than once if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
-		var elm = event.target,
-			elmId = elm.id,
-			closeLabel, space;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === elm &&
-			elm.className.indexOf( initedClass ) === -1 ) {
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
+			elmId, closeLabel, space;
 
-			wb.remove( selector );
-			elm.className += " " + initedClass;
+		if ( elm ) {
+			elmId = elm.id;
 
 			if ( elm.className.indexOf( "picker-field" ) !== -1 ) {
 				return;
@@ -91,6 +86,8 @@ var pluginName = "wb-date",
 				createToggleIcon( elmId );
 			}
 
+			// Identify that initialization has completed
+			wb.ready( $( elm ), componentName );
 			initialized = true;
 		}
 	},

@@ -14,9 +14,8 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-wamethod",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
+var componentName = "wb-wamethod",
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
 	$checklist = $( selector ),
@@ -39,20 +38,17 @@ var pluginName = "wb-wamethod",
 	successCriteriaDivideBy = aaaIncluded ? 0.61 : 0.38,
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
+	 * @param {jQuery Event} event Event that triggered this handler
 	 */
 	init = function( event ) {
-		var elm = event.target;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === elm &&
-			elm.className.indexOf( initedClass ) === -1 ) {
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector );
 
-			wb.remove( selector );
-			elm.className += " " + initedClass;
+		if ( elm ) {
 
 			// Initialize the summary fields
 			$input.eq( 0 ).trigger( "change" );
@@ -64,6 +60,9 @@ var pluginName = "wb-wamethod",
 				"aria-atomic": "true",
 				"aria-busy": "false"
 			});
+
+			// Identify that initialization has completed
+			wb.ready( $( elm ), componentName );
 		}
 	};
 

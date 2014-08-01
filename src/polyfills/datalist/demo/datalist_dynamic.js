@@ -10,13 +10,13 @@ var $document = wb.doc,
 	issueInput = $( "#issue" );
 
 $document.on( "change", pluginSelector, function( event ) {
-	var pluginName = event.target.value;
+	var componentName = event.target.value;
 
 	$document.trigger({
 		type: "ajax-fetch.wb",
 		element: this,
 		fetch: {
-			url: encodeURI( "https://api.github.com/repos/wet-boew/wet-boew/issues?labels=Plugin: " + pluginName ),
+			url: encodeURI( "https://api.github.com/repos/wet-boew/wet-boew/issues?labels=Plugin: " + componentName ),
 			dataType: wb.ielt10 ? "jsonp" : "json",
 			jsonp: wb.ielt10 ? "callback" : null
 		}

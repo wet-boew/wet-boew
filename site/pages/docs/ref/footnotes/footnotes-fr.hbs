@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Une méthode cohérente et facile d’accès pour répertorier les notes de bas de page.",
 	"altLangPrefix": "footnotes",
-	"dateModified": "2014-07-28"
+	"dateModified": "2014-08-04"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -69,7 +69,7 @@
 		<p>Utiliser le code suivant pour rechercher le lien vers une note de bas de page particulière.</p>
 		<pre><code>&lt;sup id="fn1-rf"&gt;&lt;a class="fn-lnk" href="#fn1"&gt;&lt;span class="wb-inv"&gt;Note de bas de page &lt;/span&gt;1&lt;/a&gt;&lt;/sup&gt;</code></pre>
 
-		<p><b>Remarque&#160;:</b> Les attributs ID des liens vers une note de bas de page multiréférentielle devraient contenir une lettre classée par ordre alphabétique placée juste après le nombre (par exemple&#160;: <code>id="fn2a-rf"</code>, <code>id="fn2b-rf"</code>, <code>id="fn2c-rf"</code>, etc.) afin de pouvoir faire, à l’aide d’un programme, la distinction entre les liens de référence.</p>
+		<p><strong>Remarque&#160;:</strong> Les attributs ID des liens vers une note de bas de page multiréférentielle devraient contenir une lettre classée par ordre alphabétique placée juste après le nombre (par exemple&#160;: <code>id="fn2a-rf"</code>, <code>id="fn2b-rf"</code>, <code>id="fn2c-rf"</code>, etc.) afin de pouvoir faire, à l’aide d’un programme, la distinction entre les liens de référence.</p>
 	</section>
 
 	<div lang="en">
@@ -79,7 +79,7 @@
 		<p>Use the following code as a basis to consecutively link to multiple footnotes.</p>
 		<pre><code>&lt;sup id="fn2-rf"&gt;&lt;a class="fn-lnk" href="#fn2"&gt;&lt;span class="wb-inv"&gt;Note de bas de page &lt;/span&gt;2&lt;/a&gt;&lt;/sup&gt;&#160;&lt;sup id="fn3-rf"&gt;&lt;a class="fn-lnk" href="#fn3"&gt;&lt;span class="wb-inv"&gt;Note de bas de page &lt;/span&gt;3&lt;/a&gt;&lt;/sup&gt;</code></pre>
 
-		<p><b>Note:</b> Non-breaking spaces (i.e. <code>&amp;#160;</code>) should be used to separate each link.</p>
+		<p><strong>Note:</strong> Non-breaking spaces (i.e. <code>&amp;#160;</code>) should be used to separate each link.</p>
 	</section>
 	</div>
 
@@ -120,8 +120,8 @@
 	&lt;p class="fn-rtn"&gt;&lt;a href="#fn2a-rf"&gt;&lt;span class="wb-inv"&gt;Retour à la &lt;span&gt;première&lt;/span&gt; référence de la note de bas de page &lt;/span&gt;2&lt;/a&gt;&lt;/p&gt;
 &lt;/dd&gt;</code></pre>
 
-			<p><b>Remarque&#160;:</b> Les attributs <code>href</code> des liens retour dans des notes de bas de page multiréférentielles devraient toujours contenir un « a » après le numéro de la note de bas de page (p. ex. <code>href="#fn2a-rf"</code>).</p>
-			<p><b>Remarque 2&#160;:</b> Le texte du lien retour de notes de bas de page multiréférentielles devrait toujours contenir <code>&lt;span&gt;première&lt;/span&gt;</code>, pour désigner spécifiquement leurs destinations par défaut quand il n’y a pas de prise en charge de JavaScript.</p>
+			<p><strong>Remarque&#160;:</strong> Les attributs <code>href</code> des liens retour dans des notes de bas de page multiréférentielles devraient toujours contenir un « a » après le numéro de la note de bas de page (p. ex. <code>href="#fn2a-rf"</code>).</p>
+			<p><strong>Remarque 2&#160;:</strong> Le texte du lien retour de notes de bas de page multiréférentielles devrait toujours contenir <code>&lt;span&gt;première&lt;/span&gt;</code>, pour désigner spécifiquement leurs destinations par défaut quand il n’y a pas de prise en charge de JavaScript.</p>
 		</section>
 
 		<section>
@@ -153,17 +153,25 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><code>wb-init.wb-footnotes</code></td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-footnotes" );</code>).</td>
+				<td><code>wb-init.wb-fnote</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-fnote" ).trigger( "wb-init.wb-fnote" );</code>).</td>
 				<td>Used to manually initialize the Footnotes plugin. <strong>Note:</strong> The Footnotes plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
 			</tr>
 			<tr>
-				<td><code>wb-ready.wb-footnotes</code> (v4.0.5+)</td>
+				<td><code>wb-ready.wb-fnote</code> (v4.0.5+)</td>
 				<td>Triggered automatically after the Footnotes plugin initializes.</td>
 				<td>Used to identify where the Footnotes plugin was initialized (target of the event).
-					<pre><code>$( document ).on( "wb-ready.wb-footnotes", ".wb-footnotes", function( event ) {
+					<pre><code>$( document ).on( "wb-ready.wb-fnote", ".wb-fnote", function( event ) {
 });</code></pre>
-					<pre><code>$elm.on( "wb-ready.wb-footnotes", function( event ) {
+					<pre><code>$( ".wb-fnote" ).on( "wb-ready.wb-fnote", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
 			</tr>

@@ -13,8 +13,9 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var id = "wb-rsz",
-	selector = "#" + id,
+var componentName = "wb-rsz",
+	selector = "#" + componentName,
+	initEvent = "wb-init" + selector,
 	$document = wb.doc,
 	sizes = [],
 	events = [
@@ -32,36 +33,45 @@ var id = "wb-rsz",
 		largeview: 1200,
 		xlargeview: 1600
 	},
-	initialized = false,
 	eventsAll, resizeTest, currentView,
 
 	/**
-	 * Init runs once
 	 * @method init
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
-	init = function() {
-		var localResizeTest = document.createElement( "span" );
+	init = function( event ) {
 
-		// Set up the DOM element used for resize testing
-		localResizeTest.innerHTML = "&#160;";
-		localResizeTest.setAttribute( "id", id );
-		document.body.appendChild( localResizeTest );
-		resizeTest = localResizeTest;
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
+			localResizeTest;
 
-		// Get a snapshot of the current sizes
-		sizes = [
-			localResizeTest.offsetHeight,
-			window.innerWidth || $document.width(),
-			window.innerHeight || $document.height()
-		];
+		if ( elm ) {
 
-		// Create a string containing all the events
-		eventsAll = events.join( " " );
+			// Set up the DOM element used for resize testing
+			localResizeTest = document.createElement( "span" );
+			localResizeTest.innerHTML = "&#160;";
+			localResizeTest.setAttribute( "id", componentName );
+			document.body.appendChild( localResizeTest );
+			resizeTest = localResizeTest;
 
-		// Determine the current view
-		viewChange( sizes[ 1 ] );
+			// Get a snapshot of the current sizes
+			sizes = [
+				localResizeTest.offsetHeight,
+				window.innerWidth || $document.width(),
+				window.innerHeight || $document.height()
+			];
 
-		initialized = true;
+			// Create a string containing all the events
+			eventsAll = events.join( " " );
+
+			// Determine the current view
+			viewChange( sizes[ 1 ] );
+
+			// Identify that initialization has completed
+			wb.ready( $document, componentName );
+		}
 	},
 
 	viewChange = function( viewportWidth ) {
@@ -99,36 +109,38 @@ var id = "wb-rsz",
 	 * @method test
 	 */
 	test = function() {
-		if ( initialized ) {
-			var currentSizes = [
-					resizeTest.offsetHeight,
-					window.innerWidth || $document.width(),
-					window.innerHeight || $document.height()
-				],
-				len = currentSizes.length,
-				i;
+		var currentSizes = [
+				resizeTest.offsetHeight,
+				window.innerWidth || $document.width(),
+				window.innerHeight || $document.height()
+			],
+			len = currentSizes.length,
+			i;
 
-			// Check for a viewport or text size change
-			for ( i = 0; i !== len; i += 1 ) {
-				if ( currentSizes[ i ] !== sizes[ i ] ) {
+		// Check for a viewport or text size change
+		for ( i = 0; i !== len; i += 1 ) {
+			if ( currentSizes[ i ] !== sizes[ i ] ) {
 
-					// Change detected so trigger related event
-					$document.trigger( events[ i ], currentSizes );
+				// Change detected so trigger related event
+				$document.trigger( events[ i ], currentSizes );
 
-					// Check for a view change
-					viewChange( currentSizes[ 1 ] );
-				}
+				// Check for a view change
+				viewChange( currentSizes[ 1 ] );
 			}
-			sizes = currentSizes;
-			return;
 		}
+		sizes = currentSizes;
+
+		return;
 	};
+
+// Bind the init event to the plugin
+$document.on( initEvent, init );
 
 // Re-test on each timerpoke
 $document.on( "timerpoke.wb", selector, test );
 
 // Initialize the resources
-init();
+$document.trigger( initEvent );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );

@@ -13,11 +13,9 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-lbx",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
+var componentName = "wb-lbx",
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
-	readyEvent = "wb-ready" + selector,
 	setFocusEvent = "setfocus.wb",
 	extendedGlobal = false,
 	$document = wb.doc,
@@ -25,33 +23,28 @@ var pluginName = "wb-lbx",
 	callbacks, i18n, i18nText,
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery Event} event Event that triggered this handler
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
-		var elm = event.target,
-			elmId = elm.id,
-			modeJS;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === elm &&
-			elm.className.indexOf( initedClass ) === -1 ) {
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
+			elmId;
 
-			wb.remove( selector );
-			elm.className += " " + initedClass;
+		if ( elm ) {
+			elmId = elm.id;
 
 			// Ensure there is a unique id on the element
 			if ( !elmId ) {
-				elmId = pluginName + "-id-" + idCount;
+				elmId = componentName + "-id-" + idCount;
 				idCount += 1;
 				elm.id = elmId;
 			}
 
 			// read the selector node for parameters
-			modeJS = wb.getMode() + ".js";
 
 			// Only initialize the i18nText and callbacks once
 			if ( !i18nText ) {
@@ -146,7 +139,7 @@ var pluginName = "wb-lbx",
 
 			// Load Magnific Popup dependency and bind the init event handler
 			Modernizr.load({
-				load: "site!deps/jquery.magnific-popup" + modeJS,
+				load: "site!deps/jquery.magnific-popup" + wb.getMode() + ".js",
 				complete: function() {
 					var elm = document.getElementById( elmId ),
 						$elm = $( elm ),
@@ -200,10 +193,13 @@ var pluginName = "wb-lbx",
 						$.extend(
 							true,
 							settings,
-							window[ pluginName ],
-							wb.getData( $elm, pluginName )
+							window[ componentName ],
+							wb.getData( $elm, componentName )
 						)
-					).trigger( readyEvent );
+					);
+
+					// Identify that initialization has completed
+					wb.ready( $elm, componentName );
 				}
 			});
 		}
@@ -309,7 +305,7 @@ $( document ).on( "click", ".popup-modal-dismiss", function( event ) {
 
 // Event handler for opening a popup without a link
 $( document ).on( "open" + selector, function( event, items, modal, title ) {
-	if ( event.namespace === pluginName ) {
+	if ( event.namespace === componentName ) {
 		var isGallery = items.length > 1,
 			isModal = modal && !isGallery ? modal : false,
 			titleSrc = title ? function() {

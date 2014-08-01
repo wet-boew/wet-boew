@@ -109,8 +109,8 @@ describe( "equalheights test suite", function() {
 			$row1.each( testHeight );
 		});
 
-		it( "should resize on wb-ready.wb-tables event", function() {
-			$document.trigger( "wb-ready.wb-tables" );
+		it( "should resize on wb-updated.wb-tables event", function() {
+			$document.trigger( "wb-updated.wb-tables" );
 			$row1.each( testHeight );
 		});
 	});
@@ -146,8 +146,8 @@ describe( "equalheights test suite", function() {
 			$row2.each( testHeight );
 		});
 
-		it( "should resize on wb-ready.wb-tables event", function() {
-			$document.trigger( "wb-ready.wb-tables" );
+		it( "should resize on wb-updated.wb-tables event", function() {
+			$document.trigger( "wb-updated.wb-tables" );
 			$row2.each( testHeight );
 		});
 	});
@@ -183,8 +183,8 @@ describe( "equalheights test suite", function() {
 			$row3.each( testHeight );
 		});
 
-		it( "should resize on wb-ready.wb-tables event", function() {
-			$document.trigger( "wb-ready.wb-tables" );
+		it( "should resize on wb-updated.wb-tables event", function() {
+			$document.trigger( "wb-updated.wb-tables" );
 			$row3.each( testHeight );
 		});
 	});
