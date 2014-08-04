@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Integrates the DataTables plugin into WET providing searching, sorting, filtering, pagination and other advanced features for tables.",
 	"altLangPrefix": "tables",
-	"dateModified": "2014-07-30"
+	"dateModified": "2014-08-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -57,16 +57,34 @@
 		<tbody>
 			<tr>
 				<td><code>wb-init.wb-tables</code></td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-inview" );</code>).</td>
+				<td>Triggered manually (e.g., <code>$( ".wb-tables" ).trigger( "wb-init.wb-tables" );</code>).</td>
 				<td>Used to manually initialize the Tables plugin. <strong>Note:</strong> The Tables plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
 			</tr>
 			<tr>
 				<td><code>wb-ready.wb-tables</code> (v4.0.5+)</td>
-				<td>Triggered automatically after a DataTable table draws.</td>
-				<td>Used to identify which table was drawn (target of the event) and to pass along the DataTables instance and the settings object.
-					<pre><code>$( document ).on( "wb-ready.wb-tables", ".wb-tables", function( event, instance, settings ) {
+				<td>Triggered automatically after Data Tables has been initialized.</td>
+				<td>Used to identify where Data Tables was initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-tables", ".wb-tables", function( event ) {
 });</code></pre>
-					<pre><code>$elm.on( "wb-ready.wb-tables", function( event, instance, settings ) {
+					<pre><code>$( ".wb-tables" ).on( "wb-ready.wb-tables", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-updated.wb-tables</code> (v4.0.5+)</td>
+				<td>Triggered automatically after a DataTable table was updated (extension of the <code>draw.dt</code> event).</td>
+				<td>Used to identify which table was updated (target of the event) and to pass along the DataTables settings object.
+					<pre><code>$( document ).on( "wb-updated.wb-tables", ".wb-tables", function( event, settings ) {
+});</code></pre>
+					<pre><code>$( ".wb-tables" ).on( "wb-updated.wb-tables", function( event, settings ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
 			</tr>
@@ -76,7 +94,7 @@
 				<td>Used by DataTables to identify what events are occurring.
 					<pre><code>$( document ).on( "xhr.dt", ".wb-tables", function( event ) {
 });</code></pre>
-					<pre><code>$elm.on( "xhr.dt", function( event ) {
+					<pre><code>$( ".wb-tables" ).on( "xhr.dt", function( event ) {
 });</code></pre>
 				</td>
 			</tr>

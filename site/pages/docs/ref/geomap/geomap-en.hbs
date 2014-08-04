@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Displays a dynamic map over which information from additional sources can be overlaid.",
 	"altLangPrefix": "geomap",
-	"dateModified": "2014-03-31"
+	"dateModified": "2014-08-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -674,9 +674,37 @@ wb.doc.on( "geomap.ready", function( event, maps ) {
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-geomap</td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-geomap" );</code>).</td>
+				<td><code>wb-init.wb-geomap</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-geomap" ).trigger( "wb-init.wb-geomap" );</code>).</td>
 				<td>Used to manually initialize the Geomap plugin. <strong>Note:</strong> The Geomap plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-geomap</code> (v4.0.5+)</td>
+				<td>Triggered automatically after Geomap initializes.</td>
+				<td>Used to identify the element where Geomap has initialized (target of the event) and to pass along the map object. 
+					<pre><code>$( document ).on( "wb-ready.wb-geomap", ".wb-geomap", function( event, map ) {
+});</code></pre>
+					<pre><code>$( ".wb-geomap" ).on( "wb-ready.wb-geomap", function( event, map ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-updated.wb-geomap</code> (v4.0.5+)</td>
+				<td>Triggered automatically after Geomap updates (e.g., change in zoom).</td>
+				<td>Used to identify the element where Geomap has been updated (target of the event) and to pass along the map object. 
+					<pre><code>$( document ).on( "wb-updated.wb-geomap", ".wb-geomap", function( event, map ) {
+});</code></pre>
+					<pre><code>$( ".wb-geomap" ).on( "wb-updated.wb-geomap", function( event, map ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>

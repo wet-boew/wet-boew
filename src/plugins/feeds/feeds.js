@@ -13,13 +13,10 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-feeds",
-	selector = "." + pluginName,
+var componentName = "wb-feeds",
+	selector = "." + componentName,
 	feedLinkSelector = "li > a",
-	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
-	readyEvent = "wb-ready" + selector,
-	feedReadyEvent = "wb-feed-ready" + selector,
 	$document = wb.doc,
 	patt = /\\u([\d\w]{4})/g,
 
@@ -180,23 +177,18 @@ var pluginName = "wb-feeds",
 	},
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery Event} event Event that triggered this handler
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
-		var elm = event.target,
+
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
 			fetch, url, $content, limit, feeds, fType, last, i, callback, fElem, fIcon;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === elm &&
-			elm.className.indexOf( initedClass ) === -1 ) {
-
-			wb.remove( selector );
-			elm.className += " " + initedClass;
-
+		if ( elm ) {
 			$content = $( elm ).find( ".feeds-cont" );
 			limit = getLimit( elm );
 			feeds = $content.find( feedLinkSelector );
@@ -230,7 +222,7 @@ var pluginName = "wb-feeds",
 
 					// We need a Gallery so lets add another plugin
 					// #TODO: Lightbox review for more abstraction we should not have to add a wb.add() for overlaying
-					fetch.url = fElem.attr( "data-ajax");
+					fetch.url = fElem.attr( "data-ajax" );
 					fetch.jsonp = callback;
 				} else {
 					url = jsonRequest( fElem.attr( "href" ), limit );
@@ -287,7 +279,7 @@ var pluginName = "wb-feeds",
 			isTabPanel = $details.attr( "role" ) === "tabpanel",
 			isHidden = ( isTabPanel && $details.attr( "aria-hidden" ) === "true" ) ||
 						( !isTabPanel && !$details.attr( "open" ) ),
-			result, postProcess, i;
+			result, postProcess, i, postProcessSelector;
 
 		if ( !needTimer || ( needTimer && !isHidden ) ) {
 			postProcess = $elm.data( "postProcess" );
@@ -300,10 +292,14 @@ var pluginName = "wb-feeds",
 
 			if ( postProcess ) {
 				for ( i = postProcess.length - 1; i !== -1; i -= 1 ) {
-					wb.add( postProcess[ i ] );
+					postProcessSelector = postProcess[ i ];
+					$elm.find( postProcessSelector )
+						.trigger( "wb-init" + postProcessSelector );
 				}
 			}
-			$elm.trigger( feedReadyEvent );
+
+			// Identify that the feed has now been displayed
+			$elm.trigger( "wb-feed-ready" + selector );
 		} else if ( this.className.indexOf( "waiting" ) === -1 ) {
 			$elm.empty().addClass( "waiting" );
 		}
@@ -369,13 +365,17 @@ $document.on( "ajax-fetched.wb", selector + " " + feedLinkSelector, function( ev
 
 	// Filter out any events triggered by descendants
 	if ( event.currentTarget === eventTarget ) {
-		data = ( response.responseData ) ? response.responseData.feed.entries : response.items || response.feed.entry,
-		processEntries.apply( context, [ data ] );
+		data = ( response.responseData ) ? response.responseData.feed.entries : response.items || response.feed.entry;
 
-		$( eventTarget ).closest( selector ).trigger( readyEvent );
+		// Identify that initialization has completed
+		// if there are no entries left to process
+		if ( processEntries.apply( context, [ data ] ) === 0 ) {
+			wb.ready( $( eventTarget ).closest( selector ), componentName );
+		}
 	}
 });
 
+// Bind the init event to the plugin
 $document.on( "timerpoke.wb " + initEvent, selector, init );
 
 // Add the timer poke to initialize the plugin

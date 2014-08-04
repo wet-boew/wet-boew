@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Une barre de menu interactive comprenant des sous-menus optionnels.",
 	"altLangPrefix": "menu",
-	"dateModified": "2014-07-23"
+	"dateModified": "2014-08-04"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -107,8 +107,8 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-menu</td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-menu" );</code>).</td>
+				<td><code>wb-init.wb-menu</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-menu" ).trigger( "wb-init.wb-menu" );</code>).</td>
 				<td>Used to manually initialize the menu plugin. <strong>Note:</strong> The menu plugin will be initialized automatically unless the menu markup is added after the page has already loaded.</td>
 			</tr>
 			<tr>
@@ -117,7 +117,15 @@ Example of multi-line code</code></pre>
 				<td>Used to identify which menu has initialized (target of the event).
 					<pre><code>$( document ).on( "wb-ready.wb-menu", ".wb-menu", function( event, instance, settings ) {
 });</code></pre>
-					<pre><code>$elm.on( "wb-ready.wb-menu", function( event ) {
+					<pre><code>$( ".wb-menu" ).on( "wb-ready.wb-menu", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
 			</tr>

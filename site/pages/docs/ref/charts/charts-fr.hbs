@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Génère des graphiques à partir de données d’un tableau.",
 	"altLangPrefix": "charts",
-	"dateModified": "2014-07-23"
+	"dateModified": "2014-08-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -64,7 +64,7 @@
 		<li>Organize your charts data into a table.
 			<p>Tips: You can use the techniques for designing tables</p>
 		</li>
-		<li>Add a <b>class=&quot;wb-charts&quot;</b> element to the table.
+		<li>Add a <code>class=&quot;wb-charts&quot;</code> element to the table.
 			<pre><code>&lt;table class=&quot;wb-charts&quot;&gt;</code></pre>
 		</li>
 		<li>Customize quickly your chart by adding predefined preset, via CSS class name, to the table.
@@ -81,14 +81,14 @@
 
 	<h3>Customize your chart</h3>
 	<ul>
-		<li>Configure the plugin using the <b>data-wb-charts</b> on the <code>table</code>code> element. This parameter allow you configure the options on how your data table will be interpreted in a programmatically determined way.
+		<li>Configure the plugin using the <code>data-wb-charts</code> on the <code>table</code>code> element. This parameter allow you configure the options on how your data table will be interpreted in a programmatically determined way.
 			<pre><code>&lt;table class=&quot;wb-charts table&quot; data-wb-charts='{ &quot;referencevalue&quot;: 1, &quot;labelposition&quot;: 1, &quot;noencapsulation&quot;: true }'&gt;</code></pre>
 		</li>
-		<li>Configure the plugin using the <b>data-flot</b> on the <code>table</code>code> element. This parameter allow you to set the global Flot options.
+		<li>Configure the plugin using the <code>data-flot</code> on the <code>table</code>code> element. This parameter allow you to set the global Flot options.
 			<pre><code>&lt;!-- The following example configure gradients background color for the grid --&gt;
 &lt;table class=&quot;wb-charts table&quot; data-flot='{ &quot;grid&quot;: { &quot;backgroundColor&quot;: { &quot;colors&quot; : [ &quot;#000&quot;, &quot;#999&quot; ] } } }'&gt;</code></pre>
 		</li>
-		<li>Configure the plugin using the <b>data-flot</b> on the <code>th</code> element
+		<li>Configure the plugin using the <code>data-flot</code> on the <code>th</code> element
 			<pre><code>&lt;!-- The following example configure a specific color for a serie --&gt;
 &lt;th data-flot='{&quot;color&quot;:&quot;#56E&quot;}'&gt;</code></pre>
 		</li>
@@ -334,11 +334,29 @@
 			</tr>
 			<tr>
 				<td><code>wb-ready.wb-charts</code> (v4.0.5+)</td>
-				<td>Triggered automatically after a chart draws.</td>
-				<td>Used to identify which chart was drawn (target of the event)
+				<td>Triggered automatically after a chart initializes.</td>
+				<td>Used to identify which chart was initialized (target of the event)
 					<pre><code>$( document ).on( "wb-ready.wb-charts", ".wb-charts", function( event ) {
 });</code></pre>
-					<pre><code>$elm.on( "wb-ready.wb-charts", function( event ) {
+					<pre><code>$( ".wb-charts" ).on( "wb-ready.wb-charts", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-updated.wb-charts</code> (v4.0.5+)</td>
+				<td>Triggered automatically each time the chart is updated.</td>
+				<td>Used to identify which chart was updated (target of the event)
+					<pre><code>$( document ).on( "wb-updated.wb-charts", ".wb-charts", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-charts" ).on( "wb-updated.wb-charts", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
 			</tr>

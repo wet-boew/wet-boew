@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Un enveloppeur simple pour AjaxLoader qui insère de contenu télécharger via AJAX.",
 	"altLangPrefix": "data-ajax",
-	"dateModified": "2014-07-25"
+	"dateModified": "2014-08-04"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -134,17 +134,25 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-data-ajax</td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-data-ajax" );</code>).</td>
+				<td><code>wb-init.wb-data-ajax</code></td>
+				<td>Triggered manually (e.g., <code>$( "[data-ajax-after], [data-ajax-append], [data-ajax-before], [data-ajax-prepend], [data-ajax-replace]" ).trigger( "wb-init.wb-data-ajax" );</code>).</td>
 				<td>Used to manually initialize the Data Ajax plugin. <strong>Note:</strong> The Data Ajax plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
 			</tr>
 			<tr>
 				<td><code>wb-ready.wb-data-ajax</code> (v4.0.5+)</td>
 				<td>Triggered automatically after the content has been AJAXed in.</td>
 				<td>Used to identify where content has been AJAXed in by the plugin (target of the event) and to pass along how the content was included ("after", "append", "before", "prepend" or "replace").
-					<pre><code>$( document ).on( "wb-ready.wb-data-ajax", function( event, ajaxType ) {
+					<pre><code>$( document ).on( "wb-ready.wb-data-ajax", "[data-ajax-after], [data-ajax-append], [data-ajax-before], [data-ajax-prepend], [data-ajax-replace]", function( event, ajaxType ) {
 });</code></pre>
-					<pre><code>$elm.on( "wb-ready.wb-data-ajax", function( event, ajaxType ) {
+					<pre><code>$( "[data-ajax-after], [data-ajax-append], [data-ajax-before], [data-ajax-prepend], [data-ajax-replace]" ).on( "wb-ready.wb-data-ajax", function( event, ajaxType ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
 			</tr>

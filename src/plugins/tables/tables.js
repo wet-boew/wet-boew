@@ -13,36 +13,31 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-tables",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
+var componentName = "wb-tables",
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
-	readyEvent = "wb-ready" + selector,
 	$document = wb.doc,
 	idCount = 0,
 	i18n, i18nText, defaults,
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
-		var elm = event.target,
+
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
+			elmId;
+
+		if ( elm ) {
 			elmId = elm.id;
-
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === elm &&
-			elm.className.indexOf( initedClass ) === -1 ) {
-
-			wb.remove( selector );
-			elm.className += " " + initedClass;
 
 			// Ensure there is a unique id on the element
 			if ( !elmId ) {
-				elmId = pluginName + "-id-" + idCount;
+				elmId = componentName + "-id-" + idCount;
 				idCount += 1;
 				elm.id = elmId;
 			}
@@ -77,21 +72,7 @@ var pluginName = "wb-tables",
 			defaults = {
 				asStripeClasses: [],
 				language: i18nText,
-				dom: "<'top'ilf>rt<'bottom'p><'clear'>",
-				drawCallback: function( settings ) {
-
-					// Update the aria-pressed properties on the pagination buttons
-					// Should be pushed upstream to DataTables
-					$( ".dataTables_paginate a" )
-						.attr( "role", "button" )
-						.not( ".previous, .next" )
-							.attr( "aria-pressed", "false" )
-							.filter( ".current" )
-								.attr( "aria-pressed", "true" );
-
-					// Trigger the wb-ready.wb-tables callback event
-					$( "#" + elmId ).trigger( readyEvent, [ this, settings ] );
-				}
+				dom: "<'top'ilf>rt<'bottom'p><'clear'>"
 			};
 
 			Modernizr.load({
@@ -154,7 +135,7 @@ var pluginName = "wb-tables",
 					$elm.find( "th" ).append( "<span class='sorting-cnt'><span class='sorting-icons'></span></span>" );
 
 					// Create the DataTable object
-					$elm.dataTable( $.extend( true, {}, defaults, window[ pluginName ], wb.getData( $elm, pluginName ) ) );
+					$elm.dataTable( $.extend( true, {}, defaults, window[ componentName ], wb.getData( $elm, componentName ) ) );
 				}
 			});
 		}
@@ -162,6 +143,29 @@ var pluginName = "wb-tables",
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb " + initEvent, selector, init );
+
+// Handle the draw.dt event
+$document.on( "init.dt draw.dt", selector, function( event, settings ) {
+	var $elm = $( event.target );
+
+	// Update the aria-pressed properties on the pagination buttons
+	// Should be pushed upstream to DataTables
+	$( ".dataTables_paginate a" )
+		.attr( "role", "button" )
+		.not( ".previous, .next" )
+			.attr( "aria-pressed", "false" )
+			.filter( ".current" )
+				.attr( "aria-pressed", "true" );
+
+	if ( event.type === "init" ) {
+
+		// Identify that initialization has completed
+		wb.ready( $elm, componentName );
+	}
+
+	// Identify that the table has been updated
+	$elm.trigger( "wb-updated" + selector, [ settings ] );
+});
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );

@@ -13,11 +13,10 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-toggle",
-	selector = "." + pluginName,
+var componentName = "wb-toggle",
+	selector = "." + componentName,
 	selectorPanel = ".tgl-panel",
 	selectorTab = ".tgl-tab",
-	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
 	toggleEvent = "toggle" + selector,
 	toggledEvent = "toggled" + selector,
@@ -33,22 +32,18 @@ var pluginName = "wb-toggle",
 	},
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
-		var $link, data,
-			link = event.target;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === link &&
-			link.className.indexOf( initedClass ) === -1 ) {
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var link = wb.init( event, componentName, selector ),
+			$link, data;
 
-			wb.remove( selector );
-			link.className += " " + initedClass;
+		if ( link ) {
 			elmIdx += 1;
 
 			// Merge the elements settings with the defaults
@@ -68,6 +63,9 @@ var pluginName = "wb-toggle",
 			if ( data.print ) {
 				initPrint( $link, data );
 			}
+
+			// Identify that initialization has completed
+			wb.ready( $link, componentName );
 		}
 	},
 
@@ -162,7 +160,7 @@ var pluginName = "wb-toggle",
 
 		// Store the persistence type and key for later use
 		data.persist = data.persist === "session" ? sessionStorage : localStorage;
-		data.persistKey = pluginName + ( data.group ? data.group : "" ) + link.id;
+		data.persistKey = componentName + ( data.group ? data.group : "" ) + link.id;
 
 		// If there's a saved toggle state, trigger the change to that state
 		state = data.persist.getItem( data.persistKey );
@@ -217,7 +215,7 @@ var pluginName = "wb-toggle",
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 */
 	toggle = function( event, data ) {
-		if ( event.namespace === pluginName ) {
+		if ( event.namespace === componentName ) {
 			var dataGroup, key, $elmsGroup,
 				isGroup = !!data.group,
 				isPersist = !!data.persist,
@@ -252,7 +250,7 @@ var pluginName = "wb-toggle",
 				// Remove all grouped persistence keys
 				if ( isPersist ) {
 					for ( key in data.persist ) {
-						if ( key.indexOf( pluginName + data.group ) === 0 ) {
+						if ( key.indexOf( componentName + data.group ) === 0 ) {
 							data.persist.removeItem( key );
 						}
 					}
@@ -288,7 +286,7 @@ var pluginName = "wb-toggle",
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 */
 	toggleDetails = function( event, data ) {
-		if ( event.namespace === pluginName ) {
+		if ( event.namespace === componentName ) {
 			var top,
 				isOn = data.isOn,
 				$elms = data.elms,
@@ -422,9 +420,11 @@ $document.on( "timerpoke.wb " + initEvent + " " + toggleEvent +
 	case "click":
 		click( event );
 		break;
+
 	case "toggle":
 		toggle( event, data );
 		break;
+
 	case "timerpoke":
 	case "wb-init":
 		init( event );

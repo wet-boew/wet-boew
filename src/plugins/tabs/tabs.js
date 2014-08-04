@@ -13,11 +13,9 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-tabs",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
+var componentName = "wb-tabs",
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
-	readyEvent = "wb-ready" + selector,
 	shiftEvent = "shift" + selector,
 	setFocusEvent = "setfocus.wb",
 	controls = selector + " [role=tablist] a",
@@ -41,42 +39,47 @@ var pluginName = "wb-tabs",
 		interval: 6
 	},
 
-	/*
+	/**
 	 * @method init
-	 * @param {jQuery DOM element} $elm The plugin element
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
-	init = function( $elm ) {
+	init = function( event, $elm ) {
 
-		// Only initialize the element once
-		if ( !$elm.hasClass( initedClass ) ) {
-			$elm.addClass( initedClass );
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
+			hashFocus = false,
+			open = "open",
+			$panels, $tablist, activeId, $openPanel, elmId, settings,
+			interval, addControls, excludePlay, $panel, i, len, tablist,
+			isOpen, newId, positionY, groupClass;
+
+		if ( elm ) {
 
 			// For backwards compatibility. Should be removed in WET v4.1
 			if ( $elm.children( ".tabpanels" ).length === 0 ) {
 				$elm.children( "[role=tabpanel], details" ).wrapAll( "<div class='tabpanels'/>" );
 			}
 
-			var $panels = $elm.find( "> .tabpanels > [role=tabpanel], > .tabpanels > details" ),
-				$tablist = $elm.children( "[role=tablist]" ),
-				activeId = wb.pageUrlParts.hash.substring( 1 ),
-				$openPanel = activeId.length !== 0 ? $panels.filter( "#" + activeId ) : undefined,
-				elmId = $elm.attr( "id" ),
-				hashFocus = false,
-				open = "open",
-				settings = $.extend(
-					true,
-					{},
-					defaults,
-					{ interval: $elm.hasClass( "slow" ) ?
-									9 : $elm.hasClass( "fast" ) ?
-										3 : defaults.interval },
-					window[ pluginName ],
-					wb.getData( $elm, pluginName )
-				),
-				interval = settings.interval,
-				addControls = settings.addControls,
-				excludePlay = settings.excludePlay,
-				$panel, i, len, tablist, isOpen, newId, positionY, groupClass;
+			$panels = $elm.find( "> .tabpanels > [role=tabpanel], > .tabpanels > details" );
+			$tablist = $elm.children( "[role=tablist]" );
+			activeId = wb.pageUrlParts.hash.substring( 1 );
+			$openPanel = activeId.length !== 0 ? $panels.filter( "#" + activeId ) : undefined;
+			elmId = elm.id;
+			settings = $.extend(
+				true,
+				{},
+				defaults,
+				{ interval: $elm.hasClass( "slow" ) ?
+								9 : $elm.hasClass( "fast" ) ?
+									3 : defaults.interval },
+				window[ componentName ],
+				wb.getData( $elm, componentName )
+			);
+			interval = settings.interval;
+			addControls = settings.addControls;
+			excludePlay = settings.excludePlay;
 
 			// Ensure there is an id on the element
 			if ( !elmId ) {
@@ -235,27 +238,18 @@ var pluginName = "wb-tabs",
 			initialized = true;
 			onResize();
 
-			$elm.trigger( readyEvent );
+			// Identify that initialization has completed
+			wb.ready( $elm, componentName );
 		}
 	},
 
-	/*
+	/**
 	 * @method onTimerPoke
 	 * @param {jQuery DOM element} $elm The plugin element
+	 * @param {string} dataDelay The setting for the tab rotation delay
 	 */
-	onTimerPoke = function( $elm ) {
-		var dataDelay = $elm.data( "delay" ),
-			setting, delay;
-
-		if ( !dataDelay ) {
-			$elm.trigger( initEvent );
-			return false;
-		}
-
-		// State playing
-		if ( !$elm.hasClass( "playing" ) ) {
-			return false;
-		}
+	onTimerPoke = function( $elm, dataDelay ) {
+		var setting, delay;
 
 		// Add settings and counter
 		setting = parseFloat( dataDelay );
@@ -269,7 +263,7 @@ var pluginName = "wb-tabs",
 		$elm.data( "ctime", delay );
 	},
 
-	/*
+	/**
 	 * @method createControls
 	 * @param {jQuery DOM element} $tablist The plugin element
 	 * @param {boolean} excludePlay Whether or not to exclude the play/pause control
@@ -318,13 +312,14 @@ var pluginName = "wb-tabs",
 		}
 	},
 
-	/*
+	/**
 	 * @method drizzleAria
-	 * @param {2 jQuery DOM element} $panels for the tabpanel grouping, and $tablist for the pointers to the groupings
+	 * @param {jQuery DOM element} $panels Tabpanel groupings
+	 * @param {jQuery DOM element} $tablist Pointers to the groupings
 	 */
 	drizzleAria = function( $panels, $tabList ) {
 
-		// lets process the elements for aria
+		// Let's process the elements for aria
 		var panels = $panels.get(),
 			tabCounter = panels.length - 1,
 			listItems = $tabList.children().get(),
@@ -435,7 +430,7 @@ var pluginName = "wb-tabs",
 		}
 	},
 
-	/*
+	/**
 	 * @method onPick
 	 * @param {jQuery DOM element} $sldr The plugin element
 	 * @param {jQuery DOM element} $elm The selected link from the tablist
@@ -448,7 +443,7 @@ var pluginName = "wb-tabs",
 		updateNodes( $panels, $controls, $next, $elm );
 	},
 
-	/*
+	/**
 	 * @method onShift
 	 * @param {jQuery DOM element} $elm The plugin element
 	 * @param (jQuery event} event Current event
@@ -468,8 +463,8 @@ var pluginName = "wb-tabs",
 		);
 	},
 
-	/*
-	 * @method onShift
+	/**
+	 * @method onCycle
 	 * @param {jQuery DOM element} $elm The plugin element
 	 * @param {integer} shifto The item to shift to
 	 */
@@ -480,6 +475,10 @@ var pluginName = "wb-tabs",
 		});
 	},
 
+	/**
+	 * @method onHashChange
+	 * @param {jQuery Event} event Event that triggered the function call
+	 */
 	onHashChange = function( event ) {
 		if ( initialized ) {
 			var hash = window.location.hash,
@@ -578,19 +577,23 @@ var pluginName = "wb-tabs",
 
  // Bind the init event of the plugin
  $document.on( "timerpoke.wb " + initEvent + " " + shiftEvent, selector, function( event ) {
-	var eventType = event.type,
-		currentTarget = event.currentTarget,
-		isOrigin = currentTarget === event.target,
+	var eventTarget = event.target,
+		isOrigin = event.currentTarget === eventTarget,
+		$elm = $( eventTarget ),
+		dataDelay;
 
-		// "this" is cached for all events to utilize
-		$elm = $( currentTarget );
-
-		switch ( eventType ) {
+		switch ( event.type ) {
 		case "timerpoke":
+			dataDelay = $elm.data( "delay" );
 
-			// Filter out any events triggered by descendants
-			if ( isOrigin ) {
-				onTimerPoke( $elm );
+			if ( !dataDelay ) {
+				init( event, $elm );
+			} else if ( $elm.hasClass( "playing" ) ) {
+
+				// Filter out any events triggered by descendants
+				if ( isOrigin ) {
+					onTimerPoke( $elm, dataDelay );
+				}
 			}
 			break;
 
@@ -598,18 +601,18 @@ var pluginName = "wb-tabs",
 		 * Init
 		 */
 		case "wb-init":
-
-			// Filter out any events triggered by descendants
-			if ( isOrigin ) {
-				init( $elm );
-			}
+			init( event, $elm );
 			break;
 
 		/*
 		 * Change Slides
 		 */
 		case "shift":
-			onShift( $elm, event );
+
+			// Filter out any events triggered by descendants
+			if ( isOrigin ) {
+				onShift( event, $elm );
+			}
 			break;
 		}
 

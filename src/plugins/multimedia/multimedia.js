@@ -9,11 +9,9 @@
 "use strict";
 
 /* Local scoped variables*/
-var pluginName = "wb-mltmd",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
+var componentName = "wb-mltmd",
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
-	readyEvent = "wb-ready" + selector,
 	uniqueCount = 0,
 	template,
 	i18n, i18nText,
@@ -25,27 +23,25 @@ var pluginName = "wb-mltmd",
 	fallbackEvent = "fallback" + selector,
 	youtubeEvent = "youtube" + selector,
 	resizeEvent = "resize" + selector,
+	templateLoadedEvent = "templateloaded" + selector,
 	captionClass = "cc_on",
 	$document = wb.doc,
 	$window = wb.win,
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @function init
-	 * @param {jQuery Event} event Event that triggered this handler
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
-		var eventTarget = event.target,
+
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var eventTarget = wb.init( event, componentName, selector ),
+			elmId;
+
+		if ( eventTarget ) {
 			elmId = eventTarget.id;
-
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === eventTarget &&
-			eventTarget.className.indexOf( initedClass ) === -1 ) {
-
-			wb.remove( selector );
-			eventTarget.className += " " + initedClass;
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
@@ -81,9 +77,7 @@ var pluginName = "wb-mltmd",
 					}
 				});
 			} else if ( template !== "" ) {
-				$( eventTarget ).trigger({
-					type: "templateloaded.wb"
-				});
+				$( eventTarget ).trigger( templateLoadedEvent );
 			}
 		}
 	},
@@ -529,7 +523,7 @@ $window.on( "resize", onResize );
 
 $document.on( "ready", onResize );
 
-$document.on( "ajax-fetched.wb templateloaded.wb", selector, function( event ) {
+$document.on( "ajax-fetched.wb " + templateLoadedEvent, selector, function( event ) {
 	var $this = $( this );
 
 	if ( event.type === "ajax-fetched" ) {
@@ -543,7 +537,7 @@ $document.on( "ajax-fetched.wb templateloaded.wb", selector, function( event ) {
 });
 
 $document.on( initializedEvent, selector, function( event ) {
-	if ( event.namespace === pluginName ) {
+	if ( event.namespace === componentName ) {
 		var $this = $( this ),
 			$media = $this.children( "audio, video" ).eq( 0 ),
 			captions = $media.children( "track[kind='captions']" ).attr( "src" ) || undef,
@@ -553,7 +547,7 @@ $document.on( initializedEvent, selector, function( event ) {
 			title = $media.attr( "title" ) || "",
 			width = type === "video" ? $media.attr( "width" ) || $media.width() : 0,
 			height = type === "video" ? $media.attr( "height" ) || $media.height() : 0,
-			settings = wb.getData( $this, pluginName ),
+			settings = wb.getData( $this, componentName ),
 			data = $.extend({
 				media: $media,
 				captions: captions,
@@ -610,12 +604,13 @@ $document.on( initializedEvent, selector, function( event ) {
 			$this.trigger( fallbackEvent );
 		}
 
-		$this.trigger( readyEvent );
+		// Identify that initialization has completed
+		wb.ready( $this, componentName );
 	}
 });
 
 $document.on( fallbackEvent, selector, function( event ) {
-	if ( event.namespace === pluginName ) {
+	if ( event.namespace === componentName ) {
 		var ref = expand( this ),
 			$this = ref[ 0 ],
 			data = ref[ 1 ],
@@ -656,7 +651,7 @@ $document.on( fallbackEvent, selector, function( event ) {
  *  Youtube Video mode Event
  */
 $document.on( youtubeEvent, selector, function( event ) {
-	if ( event.namespace === pluginName ) {
+	if ( event.namespace === componentName ) {
 		var ref = expand( this ),
 			ytPlayer,
 			$this = ref[ 0 ],
@@ -709,7 +704,7 @@ $document.on( youtubeEvent, selector, function( event ) {
  *  Native Video mode Event
  */
 $document.on( "video" + selector, selector, function( event ) {
-	if ( event.namespace === pluginName ) {
+	if ( event.namespace === componentName ) {
 		var ref = expand( this ),
 			$this = ref[ 0 ],
 			data = ref[ 1 ];
@@ -728,7 +723,7 @@ $document.on( "video" + selector, selector, function( event ) {
  *  Native Audio mode Event
  */
 $document.on( "audio" + selector, selector, function( event ) {
-	if ( event.namespace === pluginName ) {
+	if ( event.namespace === componentName ) {
 		var ref = expand (this ),
 			$this = ref[ 0 ],
 			data = ref[ 1 ];
@@ -742,7 +737,7 @@ $document.on( "audio" + selector, selector, function( event ) {
 });
 
 $document.on( renderUIEvent, selector, function( event, type ) {
-	if ( event.namespace === pluginName ) {
+	if ( event.namespace === componentName ) {
 		var ref = expand( this ),
 			$this = ref[ 0 ],
 			data = ref[ 1 ],
@@ -978,13 +973,13 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		break;
 
 	case "ccloaded":
-		if ( eventNamespace === pluginName ) {
+		if ( eventNamespace === componentName ) {
 			$.data( eventTarget, "captions", event.captions );
 		}
 		break;
 
 	case "ccloadfail":
-		if ( eventNamespace === pluginName ) {
+		if ( eventNamespace === componentName ) {
 			$this.find( ".wb-mm-cc" )
 				.append( "<p class='errmsg'><span>" + i18nText.cc_error + "</span></p>" )
 				.end()
@@ -994,7 +989,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		break;
 
 	case "ccvischange":
-		if ( eventNamespace === pluginName ) {
+		if ( eventNamespace === componentName ) {
 			isCCVisible = eventTarget.player( "getCaptionsVisible" );
 			$button = $this.find( ".cc" );
 			buttonData = $button.data( "state-" + ( isCCVisible ? "off" : "on" ) );
@@ -1042,7 +1037,7 @@ $document.on( "progress", selector, function( event ) {
 });
 
 $document.on( resizeEvent, selector, function( event ) {
-	if ( event.namespace === pluginName ) {
+	if ( event.namespace === componentName ) {
 		var player = event.target,
 			$player = $( player ),
 			ratio, newHeight;

@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Dynamically generates a calendar interface for navigating a list of events.",
 	"altLangPrefix": "cal-events",
-	"dateModified": "2014-07-23"
+	"dateModified": "2014-08-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -32,7 +32,7 @@
 <section>
 	<h2>How to implement</h2>
 	<ol>
-		<li>Add a div element to the Web page with a class attribute containing "wet-boew-calendar-events" and a unique class name (e.g.: <pre><code>&lt;div class="wet-boew-calendar-events unique-class"&gt;&lt;/div&gt;</code></pre>).<br><b>Note:</b> your unique class must be the last class in the list.</li>
+		<li>Add a div element to the Web page with a class attribute containing "wet-boew-calendar-events" and a unique class name (e.g.: <pre><code>&lt;div class="wet-boew-calendar-events unique-class"&gt;&lt;/div&gt;</code></pre>).<br /><strong>Note:</strong> your unique class must be the last class in the list.</li>
 		<li>Include in the div element a ordered list of events (ol element) with the following structure for each event:
 			<ol>
 				<li>The list element must start with a heading element (h2 to h6, depending on the context of the page).</li>
@@ -174,11 +174,29 @@
 			</tr>
 			<tr>
 				<td><code>wb-ready.wb-calevt</code> (v4.0.5+)</td>
-				<td>Triggered automatically after a calendar of events draws.</td>
-				<td>Used to identify which calendar of events was drawn (target of the event)
+				<td>Triggered automatically after a calendar of events initializes.</td>
+				<td>Used to identify which calendar of events was initialized (target of the event)
 					<pre><code>$( document ).on( "wb-ready.wb-calevt", ".wb-calevt", function( event ) {
 });</code></pre>
-					<pre><code>$elm.on( "wb-ready.wb-calevt", function( event ) {
+					<pre><code>$( ".wb-calevt" ).on( "wb-ready.wb-calevt", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-updated.wb-calevt</code> (v4.0.5+)</td>
+				<td>Triggered automatically each time the calendar of events is updated (e.g., month changed).</td>
+				<td>Used to identify which calendar of events was updated (target of the event)
+					<pre><code>$( document ).on( "wb-updated.wb-calevt", ".wb-calevt", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-calevt" ).on( "wb-updated.wb-calevt", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
 			</tr>
