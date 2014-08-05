@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Comprime plusieurs images et légendes superposées et fourni des controls qui permettent à l'utilisateur de choisi l'image à afficher.",
 	"altLangPrefix": "tabs",
-	"dateModified": "2014-08-04"
+	"dateModified": "2014-08-05"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -283,6 +283,66 @@
 						<dd>Horizontal sliding transition</dd>
 						<dt><code>slidevert</code></dt>
 						<dd>Vertical sliding transition</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>Exclude play (<code>data-wb-tabs</code>) (v4.0.5+)</td>
+				<td>Exclude the play button from the carousel controls through the <code>excludePlay</code> property of the <code>data-wb-tabs</code> attribute.</td>
+				<td>Add the <code>data-wb-tabs</code> attribute to the element with <code>class="wb-tabs"</code> and include the <code>excludePlay</code> property with <code>true</code> for the value.
+					<pre><code>data-wb-tabs='{"excludePlay": true}'</code></pre>
+				</td>
+				<td>
+					<dl>
+						<dt><code>false</code> (default):</dt>
+						<dd>Play button is <strong>included in</strong> the carousel controls.</dd>
+						<dt><code>true</code>:</dt>
+						<dd>Play button is <strong>excluded from</strong> the carousel controls.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>Exclude play (<code>exclude-play</code>) (v4.0.5+)</td>
+				<td>Exclude the play button from the carousel controls through the <code>exclude-play</code> class.</td>
+				<td>Add <code>exclude-play</code> after the <code>wb-tabs</code> class.
+					<pre><code>class="wb-tabs exclude-play"</code></pre>
+				</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>Play button is <strong>included in</strong> the carousel controls.</dd>
+						<dt><code>playing</code></dt>
+						<dd>Play button is <strong>excluded from</strong> the carousel controls.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>Play on page load (<code>data-wb-tabs</code>) (v4.0.5+)</td>
+				<td>Play the carousel on page load through the <code>playing</code> property of the <code>data-wb-tabs</code> attribute.<br /><strong>Warning:</strong> Playing on page load can be distracting and cause usability issues for some users.<br /><strong>Note:</strong> Playing will be disabled if the play button is excluded from the carousel controls.</td>
+				<td>Add the <code>data-wb-tabs</code> attribute to the element with <code>class="wb-tabs"</code> and include the <code>playing</code> property with <code>true</code> for the value.
+					<pre><code>data-wb-tabs='{"playing": true}'</code></pre>
+				</td>
+				<td>
+					<dl>
+						<dt><code>false</code> (default):</dt>
+						<dd>Carousel <strong>does not play</strong> on page load.</dd>
+						<dt><code>true</code>:</dt>
+						<dd>Carousel <strong>plays</strong> on page load.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>Play on page load (<code>playing</code>)</td>
+				<td>Play the carousel on page load through the <code>playing</code> class.<br /><strong>Warning:</strong> Playing on page load can be distracting and cause usability issues for some users.<br /><strong>Note:</strong> Playing will be disabled if the play button is excluded from the carousel controls.</td>
+				<td>Add <code>playing</code> after the <code>wb-tabs</code> class.
+					<pre><code>class="wb-tabs playing"</code></pre>
+				</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>Carousel <strong>does not play</strong> on page load.</dd>
+						<dt><code>playing</code></dt>
+						<dd>Carousel <strong>plays</strong> on page load.</dd>
 					</dl>
 				</td>
 			</tr>

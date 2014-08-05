@@ -31,9 +31,8 @@ $document.on( "ajax-fetch.wb", function( event ) {
 					xhr: xhr
 				};
 
-				if ( typeof response === "string" ) {
-					fetchData.pointer = $( "<div id='" + wb.guid() + "' />" ).append( response );
-				}
+				fetchData.pointer = $( "<div id='" + wb.guid() + "' />" )
+										.append( typeof response === "string" ? response : "" );
 
 				$( caller ).trigger({
 					type: "ajax-fetched.wb",
