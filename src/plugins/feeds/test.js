@@ -14,10 +14,11 @@
  * nested in other test suites if you want to use the same setup `before()` and
  * teardown `after()` for more than one test suite (as is the case below.)
  */
-describe.skip( "Feeds test suite", function() {
+describe( "Feeds test suite", function() {
 	var sandbox = sinon.sandbox.create(),
 		ajaxEvent = "ajax-fetch.wb",
 		fetchedEvent = "ajax-fetched.wb",
+		fetched = false,
 		$document = wb.doc,
 		ajaxCalls, callback;
 
@@ -59,7 +60,13 @@ describe.skip( "Feeds test suite", function() {
 		} );
 
 		$document.on( fetchedEvent, ".wb-feeds li > a", function() {
-			callback();
+			fetched = true;
+		});
+
+		$document.on( "timerpoke.wb", ".wb-feeds", function() {
+			if (fetched) {
+				callback();
+			}
 		});
 	});
 
