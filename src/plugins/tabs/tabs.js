@@ -193,7 +193,7 @@ var componentName = "wb-tabs",
 					.prepend( $tablist )
 					.find( "> .tabpanels > details > summary" )
 						.addClass( "wb-toggle tgl-tab" )
-						.attr( "data-wb-toggle", "{\"parent\": \"#" + elmId +
+						.attr( "data-toggle", "{\"parent\": \"#" + elmId +
 							"\", \"group\": \"." + groupClass + "\"}" )
 						.trigger( "wb-init.wb-toggle" );
 			} else if ( $openPanel && $openPanel.length !== 0 ) {
