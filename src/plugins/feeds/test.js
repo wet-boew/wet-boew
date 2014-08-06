@@ -18,13 +18,12 @@ describe( "Feeds test suite", function() {
 	var sandbox = sinon.sandbox.create(),
 		ajaxEvent = "ajax-fetch.wb",
 		fetchedEvent = "ajax-fetched.wb",
-		fetched = false,
 		$document = wb.doc,
 		ajaxCalls, callback;
 
 	before(function() {
 
-		//Replaces the ajax-fetch event hanlder with a simulated one
+		//Replaces the ajax-fetch event handler with a simulated one
 		$document.off( ajaxEvent );
 
 		$document.on( ajaxEvent, function( event ) {
@@ -59,14 +58,8 @@ describe( "Feeds test suite", function() {
 			}, event.fetch.context );
 		} );
 
-		$document.on( fetchedEvent, ".wb-feeds li > a", function() {
-			fetched = true;
-		});
-
-		$document.on( "timerpoke.wb", ".wb-feeds", function() {
-			if (fetched) {
-				callback();
-			}
+		$document.on( "wb-feed-ready.wb-feeds", ".wb-feeds .feeds-cont", function() {
+			callback();
 		});
 	});
 
