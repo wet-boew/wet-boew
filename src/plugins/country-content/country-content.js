@@ -48,8 +48,6 @@ var componentName = "wb-ctrycnt",
 
 				url = url.replace( "{country}", countryCode.toLowerCase() );
 
-				$elm.removeAttr( "data-ctrycnt" );
-
 				$elm.load( url, function() {
 
 					// Identify that initialization has completed
