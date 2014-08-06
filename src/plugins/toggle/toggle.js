@@ -359,7 +359,7 @@ var componentName = "wb-toggle",
 
 		// When no selector, use the data attribute of the link
 		} else if ( !selector ) {
-			return $link.data( "state" ) || data.stateOff;
+			return $link.data( componentName + "-state" ) || data.stateOff;
 
 		// Get the current on/off state of the elements specified by the selector and parent
 		} else if ( states.hasOwnProperty( selector ) ) {
@@ -407,7 +407,7 @@ var componentName = "wb-toggle",
 		}
 
 		// Store the state on the elements as well. This allows a link to toggle itself.
-		$elms.data( "state", state );
+		$elms.data( componentName + "-state", state );
 	};
 
 // Bind the plugin's events
