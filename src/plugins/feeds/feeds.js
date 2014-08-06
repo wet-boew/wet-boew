@@ -214,10 +214,10 @@ var componentName = "wb-feeds",
 					if ( fElem.attr( "href" ).indexOf( "flickr" ) !== -1 ) {
 						fType =  "flickr";
 						callback = "jsoncallback";
-						$content.data( "postProcess", [ ".wb-lbx" ] );
+						$content.data( componentName + "-postProcess", [ ".wb-lbx" ] );
 					} else {
 						fType = "youtube";
-						$content.data( "postProcess", [ ".wb-lbx", ".wb-mltmd" ] );
+						$content.data( componentName + "-postProcess", [ ".wb-lbx", ".wb-mltmd" ] );
 					}
 
 					// We need a Gallery so lets add another plugin
@@ -268,43 +268,30 @@ var componentName = "wb-feeds",
 	},
 
 	/**
-	 * Activates results view
-	 * @method checkIfVisible
-	 * @param = {jQuery EventObject}
+	 * Activates feed results view
+	 * @method activateFeed
+	 * @param = {jQuery object} $elm Feed container
 	 */
-	activateIfVisible = function() {
-		var $elm = $( this ),
-			$details = $elm.closest( "details" ),
-			needTimer = $details.length !== 0,
-			isTabPanel = $details.attr( "role" ) === "tabpanel",
-			isHidden = ( isTabPanel && $details.attr( "aria-hidden" ) === "true" ) ||
-						( !isTabPanel && !$details.attr( "open" ) ),
-			result, postProcess, i, postProcessSelector;
+	activateFeed = function( $elm ) {
+		var result = $elm.data( componentName + "-result" ),
+			postProcess = $elm.data( componentName + "-postProcess" ),
+			i, postProcessSelector;
 
-		if ( !needTimer || ( needTimer && !isHidden ) ) {
-			postProcess = $elm.data( "postProcess" );
-			result = $elm.data( "result" );
+		$elm.empty()
+			.removeClass( "waiting" )
+			.addClass( "feed-active" )
+			.append( result );
 
-			$elm.empty()
-				.removeClass( "waiting" )
-				.append( result )
-				.off( "timerpoke.wb", activateIfVisible );
-
-			if ( postProcess ) {
-				for ( i = postProcess.length - 1; i !== -1; i -= 1 ) {
-					postProcessSelector = postProcess[ i ];
-					$elm.find( postProcessSelector )
-						.trigger( "wb-init" + postProcessSelector );
-				}
+		if ( postProcess ) {
+			for ( i = postProcess.length - 1; i !== -1; i -= 1 ) {
+				postProcessSelector = postProcess[ i ];
+				$elm.find( postProcessSelector )
+					.trigger( "wb-init" + postProcessSelector );
 			}
-
-			// Identify that the feed has now been displayed
-			$elm.trigger( "wb-feed-ready" + selector );
-		} else if ( this.className.indexOf( "waiting" ) === -1 ) {
-			$elm.empty().addClass( "waiting" );
 		}
 
-		return false;
+		// Identify that the feed has now been displayed
+		$elm.trigger( "wb-feed-ready" + selector );
 	},
 
 	/**
@@ -338,7 +325,11 @@ var componentName = "wb-feeds",
 		var cap = ( limit > 0 && limit < entries.length ? limit : entries.length ),
 			result = "",
 			compare = wb.date.compare,
-			i, sorted, sortedEntry;
+			$details = $elm.closest( "details" ),
+			activate = true,
+			feedContSelector = ".feeds-cont",
+			hasVisibilityHandler = "vis-handler",
+			i, sorted, sortedEntry, $tabs;
 
 		sorted = entries.sort( function( a, b ) {
 			return compare( b.publishedDate, a.publishedDate );
@@ -348,12 +339,42 @@ var componentName = "wb-feeds",
 			sortedEntry = sorted[ i ];
 			result += Templates[ feedtype ]( sortedEntry );
 		}
+		$elm.data( componentName + "-result", result );
 
-		wb.selectors.push( $elm );
+		// Check to see if feed should be activated (only if visible)
+		// and add handler to determine visibility
+		if ( $details.length !== 0 ) {
+			if ( $details.attr( "role" ) === "tabpanel" ) {
+				if ( $details.attr( "aria-hidden" ) === "true" ) {
+					activate = false;
+					$elm.empty().addClass( "waiting" );
+					$tabs = $details.closest( ".wb-tabs" );
+					if ( !$tabs.hasClass( hasVisibilityHandler ) ) {
+						$tabs
+							.on( "wb-updated.wb-tabs", function( event, $newPanel ) {
+								var $feedCont = $newPanel.find( feedContSelector );
+								if ( !$feedCont.hasClass( "feed-active" ) ) {
+									activateFeed( $feedCont );
+								}
+							})
+							.addClass( hasVisibilityHandler );
+					}
+				}
+			} else if ( !$details.attr( "open" ) ) {
+				activate = false;
+				$elm.empty().addClass( "waiting" );
+				$details
+					.children( "summary" )
+						.on( "click.wb-feeds", function( event ) {
+							var $summary = $( event.currentTarget ).off( "click.wb-feeds" );
+							activateFeed( $summary.parent().find( feedContSelector ) );
+						});
+			}
+		}
 
-		$elm.data( "result", result );
-
-		$elm.on( "timerpoke.wb", activateIfVisible );
+		if ( activate ) {
+			activateFeed( $elm );
+		}
 
 		return true;
 	};
