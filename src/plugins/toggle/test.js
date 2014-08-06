@@ -178,13 +178,13 @@ describe( "Toggle test suite", function() {
 		it( "should have been toggled on", function() {
 			$toggler.trigger( "click" );
 			expect( $toggledElm.hasClass( "on" ) ).to.equal( true );
-			expect( $toggledElm.data( "state" ) ).to.equal( "on" );
+			expect( $toggledElm.data( "wb-toggle-state" ) ).to.equal( "on" );
 		});
 
 		it( "should have been toggled off", function() {
 			$toggler.trigger( "click" );
 			expect( $toggledElm.hasClass( "off" ) ).to.equal( true );
-			expect( $toggledElm.data( "state" ) ).to.equal( "off" );
+			expect( $toggledElm.data( "wb-toggle-state" ) ).to.equal( "off" );
 		});
 	});
 
@@ -207,13 +207,13 @@ describe( "Toggle test suite", function() {
 		it( "should have been toggled on", function() {
 			$toggler.trigger( "click" );
 			expect( $toggler.hasClass( "on" ) ).to.equal( true );
-			expect( $toggler.data( "state" ) ).to.equal( "on" );
+			expect( $toggler.data( "wb-toggle-state" ) ).to.equal( "on" );
 		});
 
 		it( "should have been toggled off", function() {
 			$toggler.trigger( "click" );
 			expect( $toggler.hasClass( "off" ) ).to.equal( true );
-			expect( $toggler.data( "state" ) ).to.equal( "off" );
+			expect( $toggler.data( "wb-toggle-state" ) ).to.equal( "off" );
 		});
 	});
 
@@ -239,25 +239,25 @@ describe( "Toggle test suite", function() {
 		it( "should have been toggled on", function() {
 			$togglerOn.trigger( "click" );
 			expect( $togglerOn.hasClass( "open" ) ).to.equal( true );
-			expect( $togglerOn.data( "state" ) ).to.equal( "open" );
+			expect( $togglerOn.data( "wb-toggle-state" ) ).to.equal( "open" );
 		});
 
 		it( "should remain toggled on", function() {
 			$togglerOn.trigger( "click" );
 			expect( $togglerOn.hasClass( "open" ) ).to.equal( true );
-			expect( $togglerOn.data( "state" ) ).to.equal( "open" );
+			expect( $togglerOn.data( "wb-toggle-state" ) ).to.equal( "open" );
 		});
 
 		it( "should have been toggled off", function() {
 			$togglerOff.trigger( "click" );
 			expect( $togglerOff.hasClass( "close" ) ).to.equal( true );
-			expect( $togglerOff.data( "state" ) ).to.equal( "close" );
+			expect( $togglerOff.data( "wb-toggle-state" ) ).to.equal( "close" );
 		});
 
 		it( "should remain toggled off", function() {
 			$togglerOff.trigger( "click" );
 			expect( $togglerOff.hasClass( "close" ) ).to.equal( true );
-			expect( $togglerOff.data( "state" ) ).to.equal( "close" );
+			expect( $togglerOff.data( "wb-toggle-state" ) ).to.equal( "close" );
 		});
 	});
 
