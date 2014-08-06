@@ -31,14 +31,11 @@ describe( "[data-pic] test suite", function() {
 			done();
 		});
 
-		$elm = $("<span data-pic='data-pic' data-alt='data-picture test' data-class='img-responsive'>" +
-				"<span data-src='img/large.jpg'></span>" +
-				"<span data-src='img/small.jpg' data-media='(min-width: 0px)'></span>" +
-				"<span data-src='img/medium.jpg' data-media='(min-width: 768px)'></span>" +
-				"<span data-src='img/large.jpg' data-media='(min-width: 992px)'></span>" +
-				"<span data-src='img/extralarge.jpg' data-media='(min-width: 1200px)'></span>" +
-				"<noscript><img src='img/large.jpg' alt='Parliament Hill'></noscript>" +
-			"</span>");
+		$elm = $(
+			"<span data-pic data-alt='foo' data-class='foo' class='test'>" +
+			"<span data-src='baz.jpg' data-media='screen'></span>" +
+			"<span data-src='bar.jpg' data-media='print'></span>" +
+			"</span>" );
 
 		$elm.appendTo( $body );
 
@@ -100,78 +97,69 @@ describe( "[data-pic] test suite", function() {
 	 * Test that the plugin creates responsive images as expected
 	 */
 	describe( "responsive images", function() {
+		var $img;
+
+		before(function() {
+			$img = $elm.find( "img" );
+		});
 
 		it( "should have created one responsive image that matches one of the span[data-src] elements", function() {
-			var $elm, $img, $span;
-			$( "[data-pic]" ).each(function() {
-				$elm = $( this );
-				$img = $elm.find( "img" );
-				$span = $elm.find( "[data-src='" + $img.attr("src") + "']" );
-				expect( $img ).to.have.length( 1 );
-				expect( $span.length ).to.be.greaterThan( 0 );
-			});
-		});
+			var $span;
 
-		it( "should have set the responsive image alt attribute", function() {
-			var $elm;
-			$( "[data-pic]" ).each(function() {
-				$elm = $( this );
-				expect( $elm.find( "img" ).attr( "alt" ) ).to.equal( $elm.data( "alt" ) );
-			});
-		});
-
-		it( "should have set the responsive image's class attribute", function() {
-			var $elm;
-			$( "[data-pic]" ).each(function() {
-				$elm = $( this );
-				expect( $elm.find( "img" ).attr( "class" ) ).to.equal( $elm.data( "class" ) );
-			});
-		});
-
-		it( "should create a responsive image after the picfill.wb-pic event", function() {
-			var $img = $(
-					"<span data-pic data-alt='foo' class='test'>" +
-					"<span data-src='bar.jpg'></span>" +
-					"</span>" );
-				$img = $img.appendTo( $body );
-
-			// Sanity check
-			expect( $img.find( "img" ) ).to.have.length( 0 );
-
-			// Confirm image was created
-			$img.trigger( "picfill.wb-pic" );
-			expect( $img.find( "img" ) ).to.have.length( 1 );
+			$span = $elm.find( "[data-src='" + $img.attr("src") + "']" );
+			expect( $img ).to.have.length( 1 );
+			expect( $span.length ).to.be.greaterThan( 0 );
 		});
 
 		it( "should create a responsive image with src for the matching media query", function() {
-			var $img = $(
-					"<span data-pic data-alt='foo' class='test'>" +
-					"<span data-src='baz.jpg' data-media='screen'></span>" +
-					"<span data-src='bar.jpg' data-media='print'></span>" +
-					"</span>" );
-				$img = $img.appendTo( $body );
+			expect( $img ).to.have.length( 1 );
+			expect( $img.attr( "src" ) ).to.equal( "baz.jpg" );
+		});
 
-			$img.trigger( "picfill.wb-pic" );
-			expect( $img.find( "img" ) ).to.have.length( 1 );
-			expect( $img.find( "img" ).attr( "src" ) ).to.equal( "baz.jpg" );
+		it( "should have set the responsive image alt attribute", function() {
+			expect( $img.attr( "alt" ) ).to.equal( $elm.data( "alt" ) );
+		});
+
+		it( "should have set the responsive image's class attribute", function() {
+			expect( $img.attr( "class" ) ).to.equal( $elm.data( "class" ) );
+		});
+	});
+
+	describe( "responsive images with no matching media query", function() {
+		var $img;
+
+		before(function() {
+			$img = $(
+					"<span data-pic data-alt='foo' class='test'>" +
+					"<span data-src='bar.jpg' data-media='print'></span>" +
+					"</span>" )
+				.appendTo( $body )
+				.trigger( "picfill.wb-pic" );
+		});
+
+		after(function() {
+			$img.remove();
 		});
 
 		it( "should not create a responsive image when no matching media query", function() {
-			var $img = $(
-					"<span data-pic data-alt='foo' class='test'>" +
-					"<span data-src='bar.jpg' data-media='print'></span>" +
-					"</span>" );
-				$img = $img.appendTo( $body );
-
-			$img.trigger( "picfill.wb-pic" );
 			expect( $img.find( "img" ) ).to.have.length( 0 );
+		});
+	});
+
+	describe( "responsive images with no source", function() {
+		var $img;
+
+		before(function() {
+			$img = $("<span data-pic data-alt='foo' class='test'>" )
+				.appendTo( $body )
+				.trigger( "picfill.wb-pic" );
+		});
+
+		after(function() {
+			$img.remove();
 		});
 
 		it( "should not create a responsive image when no span[data-src]", function() {
-			var $img = $( "<span data-pic data-alt='foo' class='test'>" );
-				$img = $img.appendTo( $body );
-
-			$img.trigger( "picfill.wb-pic" );
 			expect( $img.find( "img" ) ).to.have.length( 0 );
 		});
 	});
