@@ -15,10 +15,9 @@
  */
 var $modal, $modalLink, countdownInterval, i18n, i18nText,
 	$document = wb.doc,
-	pluginName = "wb-sessto",
-	selector = "." + pluginName,
-	confirmClass = pluginName + "-confirm",
-	initedClass = pluginName + "-inited",
+	componentName = "wb-sessto",
+	selector = "." + componentName,
+	confirmClass = componentName + "-confirm",
 	initEvent = "wb-init" + selector,
 	resetEvent = "reset" + selector,
 	keepaliveEvent = "keepalive" + selector,
@@ -40,23 +39,18 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 	},
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @function init
-	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
-		var elm = event.target,
+
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
 			$elm, settings;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === elm &&
-			elm.className.indexOf( initedClass ) === -1 ) {
-
-			wb.remove( selector );
-			elm.className += " " + initedClass;
-
+		if ( elm ) {
 			$elm = $( elm );
 
 			// Merge default settings with overrides from the plugin element
@@ -86,6 +80,9 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 
 			// Initialize the keepalive and inactive timeouts of the plugin
 			$elm.trigger( resetEvent, settings );
+
+			// Identify that initialization has completed
+			wb.ready( $elm, componentName );
 		}
 	},
 
@@ -118,8 +115,8 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 			temp = document.createElement( "div" );
 
 		// Create the modal dialog.  A temp <div> element is used so that its innerHTML can be set as a string.
-		temp.innerHTML = "<a class='wb-lbx lbx-modal mfp-hide' href='#" + pluginName + "-modal'></a>" +
-			"<section id='" + pluginName + "-modal' class='mfp-hide modal-dialog modal-content overlay-def'>" +
+		temp.innerHTML = "<a class='wb-lbx lbx-modal mfp-hide' href='#" + componentName + "-modal'></a>" +
+			"<section id='" + componentName + "-modal' class='mfp-hide modal-dialog modal-content overlay-def'>" +
 			"<header class='modal-header'><h2 class='modal-title'>" + i18nText.timeoutTitle + "</h2></header>" +
 			"<div class='modal-body'></div>" +
 			"<div class='modal-footer'></div>" +
@@ -132,7 +129,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 		document.body.appendChild( modal );
 
 		// Get object references to the modal and its triggering link
-		$modal = $document.find( "#" + pluginName + "-modal" );
+		$modal = $document.find( "#" + componentName + "-modal" );
 		$modalLink = $modal.prev().trigger( "wb-init.wb-lbx" );
 	},
 

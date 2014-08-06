@@ -13,33 +13,27 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-fdbck",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
+var componentName = "wb-fdbck",
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
 	fbrsn, fbaxs, fbcntc1, fbcntc2, $fbweb, $fbmob, $fbcomp, $fbinfo,
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
 	 * @param {jQuery Event} event Event that triggered this handler
 	 */
 	init = function( event ) {
-		var eventTarget = event.target,
+
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
 			referrerUrl = document.referrer,
 			$elm, $fbrsn, urlParams;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === eventTarget &&
-			eventTarget.className.indexOf( initedClass ) === -1 ) {
-
-			wb.remove( selector );
-			eventTarget.className += " " + initedClass;
-
-			$elm = $( eventTarget );
+		if ( elm ) {
+			$elm = $( elm );
 			$fbrsn = $elm.find( "#fbrsn" );
 			urlParams = wb.pageUrlParts.params;
 
@@ -70,6 +64,9 @@ var pluginName = "wb-fdbck",
 
 			// Prepopulates URL form field with referrer
 			document.getElementById( "fbpg" ).setAttribute( "value", referrerUrl );
+
+			// Identify that initialization has completed
+			wb.ready( $elm, componentName );
 		}
 	},
 

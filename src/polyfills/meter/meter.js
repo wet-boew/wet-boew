@@ -11,24 +11,29 @@
  * Variable and function definitions.
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
-var polyfillName = "wb-meter",
+var componentName = "wb-meter",
 	selector = "meter",
-	initedClass = polyfillName + "-inited",
-	initEvent = "wb-init." + polyfillName,
-	updateEvent = "wb-update." + polyfillName,
+	initEvent = "wb-init." + componentName,
+	updateEvent = "wb-update." + componentName,
 	$document = wb.doc,
 
 	/**
-	 * Init runs once per polyfill element on the page. There may be multiple elements.
-	 * It will run more than once if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {DOM element} elm Element to be polyfilled
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
-	init = function( elm ) {
-		wb.remove( selector );
-		elm.className += " " + initedClass;
+	init = function( event ) {
 
-		meter( elm );
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector );
+
+		if ( elm ) {
+			meter( elm );
+
+			// Identify that initialization has completed
+			wb.ready( $( elm ), componentName );
+		}
 	},
 
 	/**
@@ -111,21 +116,21 @@ var polyfillName = "wb-meter",
 			max: max,
 			value: value,
 			title: $elm.attr( "title" ) || value
-		});
+		}).trigger( "wb-updated." + componentName );
 	};
 
 // Bind the events of the polyfill
 $document.on( "timerpoke.wb " + initEvent + " "  + updateEvent, selector, function( event ) {
 	var eventTarget = event.target;
 
-	if ( event.currentTarget === eventTarget ) {
-		if ( event.type === "wb-update" ) {
-			meter( eventTarget );
+	if ( event.type === "wb-update" ) {
+		if ( event.namespace === componentName &&
+			event.currentTarget === eventTarget ) {
 
-		// Only initialize the element once
-		} else if ( eventTarget.className.indexOf( initedClass ) === -1 ) {
-			init( eventTarget );
+			meter( eventTarget );
 		}
+	} else {
+		init( event );
 	}
 });
 

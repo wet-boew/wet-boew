@@ -13,9 +13,8 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-frmvld",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
+var componentName = "wb-frmvld",
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	setFocusEvent = "setfocus.wb",
 	$document = wb.doc,
@@ -28,27 +27,23 @@ var pluginName = "wb-frmvld",
 	},
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery Event} event Event that triggered this handler
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
-		var eventTarget = event.target,
-			elmId = eventTarget.id,
-			modeJS;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === eventTarget &&
-			eventTarget.className.indexOf( initedClass ) === -1 ) {
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var eventTarget = wb.init( event, componentName, selector ),
+			elmId, modeJS;
 
-			wb.remove( selector );
-			eventTarget.className += " " + initedClass;
+		if ( eventTarget ) {
+			elmId = eventTarget.id;
 
 			// Ensure there is a unique id on the element
 			if ( !elmId ) {
-				elmId = pluginName + "-id-" + idCount;
+				elmId = componentName + "-id-" + idCount;
 				idCount += 1;
 				eventTarget.id = elmId;
 			}
@@ -92,8 +87,8 @@ var pluginName = "wb-frmvld",
 							true,
 							{},
 							defaults,
-							window[ pluginName ],
-							wb.getData( $elm, pluginName )
+							window[ componentName ],
+							wb.getData( $elm, componentName )
 						),
 						summaryHeading = settings.hdLvl,
 						i, len, validator;
@@ -295,6 +290,9 @@ var pluginName = "wb-frmvld",
 
 					// Tell the i18n file to execute to run any $.validator extends
 					$form.trigger( "formLanguages.wb" );
+
+					// Identify that initialization has completed
+					wb.ready( $( eventTarget ), componentName );
 				}
 			});
 		}

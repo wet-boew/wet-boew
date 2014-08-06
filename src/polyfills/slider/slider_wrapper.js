@@ -10,21 +10,25 @@
  * Variable and function definitions.
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
-var polyfillName = "wb-slider",
+var componentName = "wb-slider",
 	selector = "input[type='range']",
-	initEvent = "wb-init." + polyfillName,
-	updateEvent = "wb-update." + polyfillName,
-	uniqueCount = 0;
+	initEvent = "wb-init." + componentName,
+	updateEvent = "wb-update." + componentName,
+	uniqueCount = 0,
 
-// Bind the init and update event of the plugin
-wb.doc.on( initEvent + " " + updateEvent, selector, function( event ) {
-	var eventTarget = event.target,
-		$target;
+	/**
+	 * @method init
+	 * @param {jQuery Event} event Event that triggered the function call
+	 */
+	init = function( event ) {
 
-	if ( event.currentTarget === eventTarget ) {
-		switch ( event.type ) {
-		case "wb-init":
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var eventTarget = wb.init( event, componentName, selector ),
+			$eventTarget;
 
+		if ( eventTarget ) {
 			if ( !eventTarget.id ) {
 				eventTarget.id = "wb-sldr-" + ( uniqueCount++ );
 			}
@@ -34,16 +38,34 @@ wb.doc.on( initEvent + " " + updateEvent, selector, function( event ) {
 				html5Shim: true
 			});
 
-			//Allows listening for input and change at the document level for IE < 9
+			// Allows listening for input and change at the document level for IE < 9
 			if ( wb.ielt9 ) {
-				$target = $( eventTarget );
-				$target.on( "input change", function( event ) {
-					$target.closest( "[class^='wb-'], body" ).trigger ( event );
+				$eventTarget = $( eventTarget );
+				$eventTarget.on( "input change", function( event ) {
+					$eventTarget.closest( "[class^='wb-'], body" ).trigger( event );
 				});
 			}
+
+			// Identify that initialization has completed
+			wb.ready( $eventTarget, componentName );
+		}
+	};
+
+// Bind the init and update event of the plugin
+wb.doc.on( initEvent + " " + updateEvent, selector, function( event ) {
+	var eventTarget = event.target;
+
+	if ( event.currentTarget === eventTarget ) {
+		switch ( event.type ) {
+		case "wb-init":
+			init( event );
 			break;
+
 		case "wb-update":
-			window.fdSlider.updateSlider( eventTarget.id );
+			if ( event.namespace === componentName ) {
+				window.fdSlider.updateSlider( eventTarget.id );
+				$( eventTarget ).trigger( "wb-updated." + componentName );
+			}
 		}
 	}
 });

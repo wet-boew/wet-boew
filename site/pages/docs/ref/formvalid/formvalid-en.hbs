@@ -2,9 +2,11 @@
 {
 	"title": "Form validation",
 	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
 	"description": "Provides generic validation and error message handling for Web forms.",
 	"altLangPrefix": "formvalid",
-	"dateModified": "2014-05-24"
+	"dateModified": "2014-08-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -28,7 +30,7 @@
 		<li><a href="../../../demos/formvalid/formvalid-fr.html">French example</a></li>
 	</ul>
 </section>
-wb-frmvld
+
 <section>
 	<h2>How to implement</h2>
 	<ol>
@@ -192,9 +194,27 @@ wb-frmvld
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-frmvld</td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-frmvld" );</code>).</td>
+				<td><code>wb-init.wb-frmvld</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-frmvld" ).trigger( "wb-init.wb-frmvld" );</code>).</td>
 				<td>Used to manually initialize the form validation. <strong>Note:</strong> The Form validation plugin will be initialized automatically unless the form elements are added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-frmvld</code> (v4.0.5+)</td>
+				<td>Triggered automatically after form validation initializes.</td>
+				<td>Used to identify the element where form validation has initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-frmvld", ".wb-frmvld", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-frmvld" ).on( "wb-ready.wb-frmvld", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>

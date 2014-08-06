@@ -3,22 +3,29 @@
 	"title": "Correctif « meter » (compteur)",
 	"language": "fr",
 	"category": "Correctifs",
-	"description": "Émule l’élément « meter » pour les navigateurs qui ne le supportent pas.",
+	"description": "Émule l’élément « meter » pour les navigateurs qui ne le supportent pas. L'élément « meter » affiche une mesure scalaire dans une gamme connue.",
 	"tag": "meter",
 	"parentdir": "meter",
 	"altLangPrefix": "meter",
 	"css": ["demo/meter"],
 	"js": ["demo/meter"],
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-07-20"
 }
 ---
-<p>La description qui est inclus dans HTML5&#160;:</p>
-<blockquote lang="en" cite="http://www.w3.org/TR/html5/forms.html#the-meter-element">
-The meter element represents a scalar measurement within a known range, or a fractional value; for example disk usage, the relevance of a query result, or the fraction of a voting population to have selected a particular candidate.<br /><br />
-This is also known as a gauge.<br /><br />
-The meter element should not be used to indicate progress (as in a progress bar). For that role, HTML provides a separate progress element.<br /><br />
-The meter element also does not represent a scalar value of arbitrary range — for example, it would be wrong to use this to report a weight, or height, unless there is a known maximum value.
-</blockquote>
+<section>
+	<h2>But</h2>
+	<p>L'élément «&#160;<code>meter</code>&#160;» de HTML5 affiche une mesure scalaire dans une gamme connue. Étant donné que certains navigateurs ne prennent pas en charge cette fonctionnalité à l'origine, ce correctif émule la même fonctionnalité en utilisant HTML générique et WAI-ARIA.</p>
+
+	<section>
+		<h3>Description qui est inclus dans HTML5</h3>
+		<blockquote lang="en" cite="http://www.w3.org/TR/html5/forms.html#the-meter-element">
+			<p>The <code>meter</code> element represents a scalar measurement within a known range, or a fractional value; for example disk usage, the relevance of a query result, or the fraction of a voting population to have selected a particular candidate.</p>
+			<p>This is also known as a gauge.</p>
+			<p>The <code>meter</code> element should not be used to indicate progress (as in a progress bar). For that role, HTML provides a separate <code>progress</code> element.</p>
+			<p>The <code>meter</code> element also does not represent a scalar value of arbitrary range — for example, it would be wrong to use this to report a weight, or height, unless there is a known maximum value.</p>
+		</blockquote>
+	</section>
+</section>
 
 <section>
 	<h2>Exemples</h2>
@@ -70,4 +77,83 @@ The meter element also does not represent a scalar value of arbitrary range — 
 			</tr>
 		</tbody>
 	</table>
+
+	<details class="mrgn-bttm-md">
+		<summary>View code</summary>
+		<section>
+			<h3>HTML</h3>
+			<pre><code>&lt;table class=&quot;table table-striped&quot;&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th scope=&quot;col&quot;&gt;Description&lt;/th&gt;
+			&lt;th scope=&quot;col&quot; lang=&quot;en&quot;&gt;Min&lt;/th&gt;
+			&lt;th scope=&quot;col&quot; lang=&quot;en&quot;&gt;Low&lt;/th&gt;
+			&lt;th scope=&quot;col&quot; lang=&quot;en&quot;&gt;Value&lt;/th&gt;
+			&lt;th scope=&quot;col&quot; lang=&quot;en&quot;&gt;Max&lt;/th&gt;
+			&lt;th scope=&quot;col&quot; lang=&quot;en&quot;&gt;High&lt;/th&gt;
+			&lt;th scope=&quot;col&quot;&gt;Résultat&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Normal (75%)&lt;/td&gt;
+			&lt;td&gt;20&lt;/td&gt;
+			&lt;td&gt;n/a&lt;/td&gt;
+			&lt;td&gt;65&lt;/td&gt;
+			&lt;td&gt;80&lt;/td&gt;
+			&lt;td&gt;n/a&lt;/td&gt;
+			&lt;td&gt;&lt;meter min=&quot;20&quot; value=&quot;65&quot; max=&quot;80&quot;&gt;75 % (normal)&lt;/meter&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Trop haut (90%)&lt;/td&gt;
+			&lt;td&gt;0&lt;/td&gt;
+			&lt;td&gt;n/a&lt;/td&gt;
+			&lt;td&gt;90&lt;/td&gt;
+			&lt;td&gt;100&lt;/td&gt;
+			&lt;td&gt;80&lt;/td&gt;
+			&lt;td&gt;&lt;meter min=&quot;0&quot; value=&quot;90&quot; max=&quot;100&quot; high=&quot;80&quot;&gt;90 % (trop haut)&lt;/meter&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Trop bas (15 %)&lt;/td&gt;
+			&lt;td&gt;100&lt;/td&gt;
+			&lt;td&gt;120&lt;/td&gt;
+			&lt;td&gt;115&lt;/td&gt;
+			&lt;td&gt;200&lt;/td&gt;
+			&lt;td&gt;180&lt;/td&gt;
+			&lt;td&gt;&lt;meter min=&quot;100&quot; low=&quot;120&quot; value=&quot;115&quot; max=&quot;200&quot; high=&quot;180&quot;&gt;15 % (trop bas)&lt;/meter&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td colspan=&quot;3&quot;&gt;&lt;button class=&quot;btn btn-default&quot; id=&quot;decreaseMeter&quot;&gt;Diminuer&lt;/button&gt;&lt;/td&gt;
+			&lt;td colspan=&quot;3&quot;&gt;&lt;button class=&quot;btn btn-default&quot; id=&quot;increaseMeter&quot;&gt;Augmenter&lt;/button&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;meter id=&quot;updateTest&quot; min=&quot;100&quot; low=&quot;120&quot; value=&quot;150&quot; max=&quot;200&quot; high=&quot;180&quot;&gt;&lt;span class=&quot;wb-inv&quot;&gt;150&lt;/span&gt;&lt;/meter&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>JavaScript (démo seulement)</h3>
+			<pre><code>(function( $, wb ) {
+&quot;use strict&quot;;
+
+$( document ).on( &quot;click vclick&quot;, &quot;#increaseMeter, #decreaseMeter&quot;, function( event ) {
+	var $elm = $( &quot;#updateTest&quot; ),
+		increase = event.currentTarget.id === &quot;increaseMeter&quot;,
+		valuenow = parseInt( $elm.attr( &quot;value&quot; ), 10 ),
+		limit = parseInt( $elm.attr( increase ? &quot;max&quot; : &quot;min&quot; ), 10 ),
+		change = increase ? 1 : -1,
+		newValue = valuenow === limit ? 0 : valuenow + change;
+
+	$elm
+		.attr( &quot;value&quot;, newValue )
+		.find( &quot;span&quot; )
+			.text( newValue );
+
+	// Update the visuals
+	$elm.trigger( &quot;wb-update.wb-meter&quot; );
+});
+
+})( jQuery, wb );</code></pre>
+		</section>
+	</details>
 </section>

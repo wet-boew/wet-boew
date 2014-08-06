@@ -2,9 +2,11 @@
 {
 	"title": "Equal height",
 	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
 	"description": "A plugin for responsive equal height.",
 	"altLangPrefix": "equalheight",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-08-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -55,21 +57,38 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><code>txt-rsz.wb</code></td>
-				<td>The font size was changed.</td>
-				<td rowspan="4">Re-equalises the heights of all elements contained in a <code>wb-eqht</code> container.</td>
+				<td><code>wb-init.wb-eqht</code> (v4.0.5+)</td>
+				<td>Triggered manually (e.g., <code>$( ".wb-eqht" ).trigger( "wb-init.wb-eqht" );</code>).</td>
+				<td>Used to manually initialize the Equal heights plugin. <strong>Note:</strong> The Equal heights plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
 			</tr>
 			<tr>
-				<td><code>win-rsz-width.wb</code></td>
-				<td>The width of the browser window was changed.</td>
+				<td><code>wb-update.wb-eqht</code> (v4.0.5+)</td>
+				<td>Triggered manually (e.g., <code>$( ".wb-eqht" ).trigger( "wb-update.wb-eqht" );</code>).</td>
+				<td>Used to manually trigger an update yo the height equalization. <strong>Note:</strong> The Equal heights plugin will be automatically update the height equalization on window, text and zoom resizes as well as DataTable draws.</td>
 			</tr>
 			<tr>
-				<td><code>win-rsz-height.wb</code></td>
-				<td>The height of the browser window was changed.</td>
+				<td><code>wb-ready.wb-eqht</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the height equalization has been initialized.</td>
+				<td>Used to identify when height equalization was initialized
+					<pre><code>$( document ).on( "wb-ready.wb-eqht", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 			<tr>
-				<td><code>tables-draw.wb</code></td>
-				<td>A <a href="../tables/tables-en.html">table</a> was drawn.</td>
+				<td><code>wb-updated.wb-eqht</code> (v4.0.5+)</td>
+				<td>Triggered automatically each time the height equalization is updated.</td>
+				<td>Used to identify when height equalization was updated
+					<pre><code>$( document ).on( "wb-updated.wb-eqht", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>

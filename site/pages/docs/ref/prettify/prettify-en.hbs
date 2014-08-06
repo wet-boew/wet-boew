@@ -2,9 +2,11 @@
 {
 	"title": "Prettify",
 	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
 	"description": "Provides syntax highlighting of source code snippets in an HTML page using google-code-prettify.",
 	"altLangPrefix": "prettify",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-08-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -31,12 +33,12 @@
 	<h2>How to implement</h2>
 	<ol>
 		<li>
-			Add <b>class="wb-prettify"</b> to an element on the page to load the component (once per page):
+			Add <code>class="wb-prettify"</code> to an element on the page to load the component (once per page):
 			<pre><code>&lt;!-- Load the plugin.  Only needed once per page. --&gt;
 &lt;span class="wb-prettify"&gt;&lt;/span&gt;</code></pre>
 		</li>
 		<li>
-			Add <b>class="prettyprint"</b> to a pre or code element to apply syntax highlighting. Alternatively use <b>class="wb-prettify all-pre"</b> to apply syntax highlighting to all pre elements on the page:
+			Add <code>class="prettyprint"</code> to a pre or code element to apply syntax highlighting. Alternatively use <code>class="wb-prettify all-pre"</code> to apply syntax highlighting to all pre elements on the page:
 			<pre><code>&lt;!-- Apply syntax highlighting to this element --&gt;
 &lt;pre class="prettyprint"&gt;
 			
@@ -44,7 +46,7 @@
 &lt;span class="wb-prettify all-pre"&gt;&lt;/span&gt;</code></pre>
 		</li>
 		<li>
-			Add <b>class="linenums"</b> to a pre or code element to add line numbers. Alternatively use <b>class="wb-prettify linenums"</b> to apply line numbers to all applicable pre and code elements on the page. Specify the starting number by adding <b>linenums:#</b> before the linenums CSS class:
+			Add <code>class="linenums"</code> to a pre or code element to add line numbers. Alternatively use <code>class="wb-prettify linenums"</code> to apply line numbers to all applicable pre and code elements on the page. Specify the starting number by adding <code>linenums:#</code> before the linenums CSS class:
 			<pre><code>&lt;!-- Apply syntax highlighting (with line numbers) to this element --&gt;
 &lt;pre class="prettyprint linenums"&gt;
 
@@ -54,7 +56,7 @@
 &lt;!-- Add line numbers to all &lt;pre&gt; and &lt;code&gt; elements --&gt;
 &lt;span class="wb-prettify linenums"&gt;&lt;/span&gt;</code></pre>
 		</li>
-		<li>Add extra language support by using <b>class="wb-prettify lang-*"</b> and applying <b>class="lang-*"</b> to each applicable pre and code element: 
+		<li>Add extra language support by using <code>class="wb-prettify lang-*"</code> and applying <code>class="lang-*"</code> to each applicable pre and code element: 
 			<pre><code>&lt;!-- Load the plugin with CSS syntax highlighting. --&gt;
 &lt;span class="wb-prettify lang-css"&gt;&lt;/span&gt;
 
@@ -137,13 +139,24 @@
 		<tbody>
 			<tr>
 				<td><code>wb-init.wb-prettify</code></td>
-				<td>Triggered manually.</td>
-				<td>Initializes the plugin and applies syntax highlighting to the web page's pre and code elements. <b>Note: </b> the prettify plugin will be initialized automatically unless the element is added after the page has already loaded.</td>
+				<td>Triggered manually (e.g., <code>$( ".wb-prettify" ).trigger( "wb-init.wb-prettify" );</code>).</td>
+				<td>Initializes the plugin and applies syntax highlighting to the web page's <code>pre</code> and <code>code</code> elements. <strong>Note:</strong> The Prettify plugin will be initialized automatically unless the element is added after the page has already loaded.</td>
 			</tr>
 			<tr>
-				<td><code>prettyprint.wb-prettify</code></td>
-				<td>Triggered manually and during plugin initialization.</td>
-				<td>Applies syntax highlighting to the web page's pre and code elements.</td>
+				<td><code>wb-ready.wb-prettify</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the Prettify enhancement has completed.</td>
+				<td>Used to identify when Prettify has finished enhancing the page.
+					<pre><code>$( document ).on( "wb-ready.wb-prettify", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>

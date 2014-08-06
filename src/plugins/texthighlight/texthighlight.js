@@ -13,29 +13,24 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-txthl",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
+var componentName = "wb-txthl",
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
-		var elm = event.target,
+
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
 			searchCriteria, newText;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === elm &&
-			elm.className.indexOf( initedClass ) === -1 ) {
-
-			wb.remove( selector );
-			elm.className += " " + initedClass;
+		if ( elm ) {
 
 			searchCriteria = wb.pageUrlParts.params.txthl;
 
@@ -51,6 +46,9 @@ var pluginName = "wb-txthl",
 					return ( !group2 ? "" : group2 ) + "<span class='txthl'><mark>" + group3 + "</mark></span>";
 				});
 				elm.innerHTML = newText;
+
+				// Identify that initialization has completed
+				wb.ready( $( elm ), componentName );
 			}
 		}
 	};

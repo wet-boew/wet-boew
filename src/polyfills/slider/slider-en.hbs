@@ -3,15 +3,23 @@
 	"title": "Input type=\"range\" polyfill (slider control)",
 	"language": "en",
 	"category": "Polyfills",
-	"description": "The <input type=\"range\"> element displays a slider control bar.",
+	"description": "Emulates <input type=\"range\"> support for browsers that do not have support. The <input type=\"range\"> element displays a slider control bar.",
 	"tag": "slider",
 	"parentdir": "slider",
 	"altLangPrefix": "slider",
 	"js": ["demo/slider"],
-	"dateModified": "2014-04-28"
+	"dateModified": "2014-07-20"
 }
 ---
-<div>
+<span class="wet-boew-prettify all-pre"></span>
+
+<section>
+	<h2>Purpose</h2>
+	<p>The <code>&lt;input type="range" /&gt;</code> allows to display a slider control bar. Because some browsers do not support this functionality natively, this polyfill emulates the same functionality using generic HTML and WAI-ARIA.</p>
+</section>
+
+<section>
+	<h2>Relevant attributes</h2>
 	<p>Use the following attributes to specify restrictions:</p>
 	<ul>
 		<li>max - specifies the maximum value allowed</li>
@@ -19,40 +27,47 @@
 		<li>step - specifies the legal number intervals</li>
 		<li>value - specifies the default value</li>
 	</ul>
-</div>
+</section>
 
-<div class="wet-boew-prettify all-pre">
+<section>
+	<h2>Examples</h2>
 	<section>
 		<h3>Range: 0 to 100 in steps of 1 <span id="html5shim-1-out"></span></h3>
 		<p><input name="html5shim-1" id="html5shim-1" type="range" min="0" max="100" step="1" title="Range: 0 to 100 in steps of 1" value="50" /></p>
+		<details>
+			<summary>View code</summary>
+			<pre><code>&lt;input name="html5shim-1" id="html5shim-1" type="range" min="0" max="100" step="1" title="Range: 0 to 100 in steps of 1" value="50" /&gt;</code></pre>
+		</details>
 	</section>
-	<section>
-		<h3>Coding</h3>
-		<pre><code>&lt;input name="html5shim-1" id="html5shim-1" type="range" min="0" max="100" step="1" title="Range: 0 to 100 in steps of 1" value="50" /&gt;</code></pre>
-	</section>
+
 	<section>
 		<h3>Range: 20 to 50 in steps of 10 <span id="html5shim-2-out"></span></h3>
 		<p><input name="html5shim-2" id="html5shim-2" type="range" min="20" max="50" step="10" title="Range: 20 to 50 in steps of 10" value="20" /></p>
+		<details>
+			<summary>View code</summary>
+			<pre><code>&lt;input name="html5shim-2" id="html5shim-2" type="range" min="20" max="50" step="10" title="Range: 20 to 50 in steps of 10" value="20" /&gt;</code></pre>
+		</details>
 	</section>
-	<section>
-		<h3>Coding</h3>
-		<pre><code>&lt;input name="html5shim-2" id="html5shim-2" type="range" min="20" max="50" step="10" title="Range: 20 to 50 in steps of 10" value="20" /&gt;</code></pre>
-	</section>
+
 	<section>
 		<h3>Range: Programmatically created <span id="html5shim-3-out"></span></h3>
 		<p id="slider-prg"></p>
-	</section>
-	<section>
-		<h3>Coding</h3>
-		<pre><code>&lt;p id="slider-prg"&gt;&lt;/p&gt;
-&lt;script&gt;
-$slider = $( "&lt;input name='html5shim-3' id='html5shim-3' type='range' value='50'/&gt;" );
+		<details>
+			<summary>View code</summary>
+			<section>
+				<h4>HTML</h4>
+				<pre><code>&lt;p id=&quot;slider-prg&quot;&gt;&lt;/p&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>JavaScript</h4>
+				<pre><code>$slider = $( "&lt;input name='html5shim-3' id='html5shim-3' type='range' value='50'/&gt;" );
 $slider.appendTo( "#slider-prg" ).trigger( "wb-init.wb-slider" );
 setTimeout( function() {
 	$slider.get( 0 ).value = 85;
 	$slider.trigger( "wb-update.wb-slider" );
-}, 2000);
-&lt;/script&gt;
-</code></pre>
+}, 2000);</code></pre>
+			</section>
+		</details>
 	</section>
-</div>
+</section>

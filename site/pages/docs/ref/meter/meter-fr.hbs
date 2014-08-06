@@ -2,16 +2,18 @@
 {
 	"title": "Correctif « meter » (compteur)",
 	"language": "fr",
-	"description": "Émule l’élément « meter » pour les navigateurs qui ne le supportent pas.",
+	"category": "Correctifs",
+	"categoryfile": "polyfills",
+	"description": "Émule l’élément « meter » pour les navigateurs qui ne le supportent pas. L'élément « meter » affiche une mesure scalaire dans une gamme connue.",
 	"altLangPrefix": "meter",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-08-04"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
 
 <section>
 	<h2>But</h2>
-	<p>L'élément meter de HTML5 affiche une mesure scalaire dans une gamme connue. Étant donné que certains navigateurs ne prennent pas en charge cette fonctionnalité à l'origine, ce correctif émule la même fonctionnalité en utilisant HTML générique et WAI-ARIA.</p>
+	<p>L'élément «&#160;<code>meter</code>&#160;» de HTML5 affiche une mesure scalaire dans une gamme connue. Étant donné que certains navigateurs ne prennent pas en charge cette fonctionnalité à l'origine, ce correctif émule la même fonctionnalité en utilisant HTML générique et WAI-ARIA.</p>
 </section>
 
 <div lang="en">
@@ -73,9 +75,42 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-meter</td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb.wb-meter" );</code>).</td>
-				<td>Used to manually initialize the meter polyfill. <strong>Note:</strong> The meter polyfill will be initialized automatically unless the <code>meter</code> element is added after the page has already loaded.</td>
+				<td><code>wb-init.wb-meter</code></td>
+				<td>Triggered manually (e.g., <code>$( "meter" ).trigger( "wb-init.wb-meter" );</code>).</td>
+				<td>Used to manually initialize the <code>meter</code> polyfill. <strong>Note:</strong> The <code>meter</code> polyfill will be initialized automatically unless the <code>meter</code> element is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-update.wb-meter</code></td>
+				<td>Triggered manually (e.g., <code>$( "meter" ).trigger( "wb-update.wb-meter" );</code>).</td>
+				<td>Used to manually update the <code>meter</code> polyfill.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-meter</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the <code>meter</code> polyfill initializes. <strong>Note:</strong> This event will only be triggered if the polyfill is loaded. The polyfill will not load for browsers with native <code>meter</code> support.</td>
+				<td>Used to identify where the <code>meter</code> polyfill initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-meter", "meter", function( event ) {
+});</code></pre>
+					<pre><code>$( "meter" ).on( "wb-ready.wb-meter", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-updated.wb-meter</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the <code>meter</code> polyfill is updated. <strong>Note:</strong> This event will only be triggered if the polyfill is loaded. The polyfill will not load for browsers with native <code>meter</code> support.</td>
+				<td>Used to identify where the <code>meter</code> polyfill initialized (target of the event)
+					<pre><code>$( document ).on( "wb-updated.wb-meter", "meter", function( event ) {
+});</code></pre>
+					<pre><code>$( "meter" ).on( "wb-updated.wb-meter", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>

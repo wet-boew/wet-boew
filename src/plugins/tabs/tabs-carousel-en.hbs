@@ -7,12 +7,18 @@
 	"tag": "tabs, carousel",
 	"parentdir": "tabs",
 	"altLangPrefix": "tabs-carousel",
-	"dateModified": "2014-07-08"
+	"dateModified": "2014-08-01"
 }
 ---
+<span class="wb-prettify all-pre hide"></span>
 
 <section>
-	<h2>Carousel style 1 (<code>carousel-s1</code>)</h2>
+	<h2>Purpose</h2>
+	<p>Dynamically stacks multiple images and captions into a carousel (or slider) widget.</p>
+</section>
+
+<section>
+	<h2 id="carousel-s1">Carousel style 1 example (<code>carousel-s1</code>)</h2>
 	<div class="wb-tabs carousel-s1">
 		<ul role="tablist">
 			<li class="active"><a href="#panel1">Tab 1</a></li>
@@ -55,10 +61,47 @@
 			</div>
 		</div>
 	</div>
+
+	<section>
+		<h3>Code</h3>
+		<details>
+			<summary>View code</summary>
+			<pre><code>&lt;div class=&quot;wb-tabs carousel-s1&quot;&gt;
+	&lt;ul role=&quot;tablist&quot;&gt;
+		&lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#panel1&quot;&gt;Tab 1&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#panel2&quot;&gt;Tab 2&lt;/a&gt;&lt;/li&gt;
+		...
+	&lt;/ul&gt;
+	&lt;div class=&quot;tabpanels&quot;&gt;
+		&lt;div role=&quot;tabpanel&quot; id=&quot;panel1&quot; class=&quot;in fade&quot;&gt;
+			&lt;figure&gt;
+				&lt;img src=&quot;img/protect-environment.jpg&quot; alt=&quot;Panel 1&quot; /&gt;
+				&lt;figcaption&gt;
+					&lt;p&gt;
+						...
+					&lt;/p&gt;
+				&lt;/figcaption&gt;
+			&lt;/figure&gt;
+		&lt;/div&gt;
+		&lt;div role=&quot;tabpanel&quot; id=&quot;panel2&quot; class=&quot;out fade&quot;&gt;
+			&lt;figure&gt;
+				&lt;img src=&quot;img/banff.jpg&quot; alt=&quot;Panel 2&quot; /&gt;
+				&lt;figcaption&gt;
+					&lt;p&gt;
+						...
+					&lt;/p&gt;
+				&lt;/figcaption&gt;
+			&lt;/figure&gt;
+		&lt;/div&gt;
+		...
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		</details>
+	</section>
 </section>
 
 <section>
-	<h2>Carousel style 2 (<code>carousel-s2</code>)</h2>
+	<h2 id="carousel-s2">Carousel style 2 example (<code>carousel-s2</code>)</h2>
 	<div class="wb-tabs carousel-s2">
 		<ul role="tablist">
 			<li class="active"><a href="#panel4"><img src="img/protect-environment.jpg" alt="tab 1" /></a></li>
@@ -101,6 +144,43 @@
 			</div>
 		</div>
 	</div>
+
+	<section>
+		<h3>Code</h3>
+		<details>
+			<summary>View code</summary>
+			<pre><code>&lt;div class=&quot;wb-tabs carousel-s2&quot;&gt;
+	&lt;ul role=&quot;tablist&quot;&gt;
+		&lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#panel4&quot;&gt;&lt;img src=&quot;img/protect-environment.jpg&quot; alt=&quot;tab 1&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href=&quot;#panel5&quot;&gt;&lt;img src=&quot;img/banff.jpg&quot; alt=&quot;tab 2&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
+		...
+	&lt;/ul&gt;
+	&lt;div class=&quot;tabpanels&quot;&gt;
+		&lt;div role=&quot;tabpanel&quot; id=&quot;panel4&quot; class=&quot;in fade&quot;&gt;
+			&lt;figure&gt;
+				&lt;img src=&quot;img/protect-environment.jpg&quot; alt=&quot;Panel 1&quot; /&gt;
+				&lt;figcaption&gt;
+					&lt;p&gt;
+						...
+					&lt;/p&gt;
+				&lt;/figcaption&gt;
+			&lt;/figure&gt;
+		&lt;/div&gt;
+		&lt;div role=&quot;tabpanel&quot; id=&quot;panel5&quot; class=&quot;out fade&quot;&gt;
+			&lt;figure&gt;
+				&lt;img src=&quot;img/banff.jpg&quot; alt=&quot;Panel 2&quot; /&gt;
+				&lt;figcaption&gt;
+					&lt;p&gt;
+						...
+					&lt;/p&gt;
+				&lt;/figcaption&gt;
+			&lt;/figure&gt;
+		&lt;/div&gt;
+		...
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		</details>
+	</section>
 </section>
 
 <section>
@@ -197,12 +277,43 @@
 			</div>
 		</section>
 	</div>
+
+	<section>
+		<h3>Code</h3>
+		<details>
+			<summary>View code</summary>
+			<pre><code>&lt;div class=&quot;row&quot;&gt;
+	&lt;section class=&quot;col-sm-6 col-md-4&quot;&gt;
+		&lt;h3&gt;Carousel style 1 - col-sm-6 col-md-4&lt;/h3&gt;
+		&lt;div class=&quot;wb-tabs carousel-s1&quot;&gt;
+			&lt;ul role=&quot;tablist&quot;&gt;
+				...
+			&lt;/ul&gt;
+			&lt;div class=&quot;tabpanels&quot;&gt;
+				...
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/section&gt;
+	&lt;section class=&quot;col-sm-6 col-md-8&quot;&gt;
+		&lt;h3&gt;Carousel style 2 - col-sm-6 col-md-8&lt;/h3&gt;
+		&lt;div class=&quot;wb-tabs carousel-s2&quot;&gt;
+			&lt;ul role=&quot;tablist&quot;&gt;
+				...
+			&lt;/ul&gt;
+			&lt;div class=&quot;tabpanels&quot;&gt;
+				...
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
+		</details>
+	</section>
 </section>
 
 <section>
 	<h2>Change rotation speed</h2>
 	<section>
-		<h3>Data attribute (<code>data-wb-tabs='{"interval": 3}'</code>)</h3>
+		<h3>Data attribute example (<code>data-wb-tabs='{"interval": 3}'</code>)</h3>
 		<div class="wb-tabs carousel-s2" data-wb-tabs='{"interval": 3}'>
 			<ul role="tablist">
 				<li class="active"><a href="#panel13">Tab 1</a></li>
@@ -245,10 +356,18 @@
 				</div>
 			</div>
 		</div>
+
+		<section>
+			<h4>Code</h4>
+			<details>
+				<summary>View code</summary>
+				<pre><code>&lt;div class=&quot;wb-tabs carousel-s2&quot; data-wb-tabs='{&quot;interval&quot;: 3}'&gt;</code></pre>
+			</details>
+		</section>
 	</section>
 
 	<section>
-		<h3>CSS classes (<code>slow</code>, <code>fast</code>)</h3>
+		<h3>CSS classes example (<code>slow</code>, <code>fast</code>)</h3>
 		<div class="wb-tabs carousel-s2 fast">
 			<ul role="tablist">
 				<li class="active"><a href="#panel16">Tab 1</a></li>
@@ -291,6 +410,14 @@
 				</div>
 			</div>
 		</div>
+
+		<section>
+			<h4>Code</h4>
+			<details>
+				<summary>View code</summary>
+				<pre><code>&lt;div class=&quot;wb-tabs carousel-s2 fast&quot;&gt;</code></pre>
+			</details>
+		</section>
 	</section>
 </section>
 
@@ -332,12 +459,55 @@
 			</div>
 		</div>
 	</div>
+
+	<section>
+		<h3>Code</h3>
+		<details>
+			<summary>View code</summary>
+			<pre><code>&lt;div class=&quot;row&quot;&gt;
+	&lt;div class=&quot;col-xs-12 col-sm-6&quot;&gt;
+		&lt;div class=&quot;wb-tabs carousel-s2&quot;&gt;
+			&lt;ul role=&quot;tablist&quot;&gt;
+				&lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#panel19&quot;&gt;Tab 1&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;#panel20&quot;&gt;Tab 2&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;div class=&quot;tabpanels&quot;&gt;
+				&lt;div role=&quot;tabpanel&quot; id=&quot;panel19&quot; class=&quot;in fade&quot;&gt;
+					&lt;figure class=&quot;wb-mltmd&quot;&gt;
+						&lt;video poster=&quot;http://www.servicecanada.gc.ca/eng/video/images/te-lj-eng.jpg&quot; title=&quot;Looking for a Job&quot;&gt;
+							&lt;source type=&quot;video/webm&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.webm&quot; /&gt;
+							&lt;source type=&quot;video/mp4&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4&quot; /&gt;
+							&lt;track src=&quot;../multimedia/cpts-lg-en.html&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
+						&lt;/video&gt;
+						&lt;figcaption&gt;
+							&lt;p&gt;Looking for a Job (&lt;a href=&quot;http://www.servicecanada.gc.ca/eng/video/lj.shtml&quot;&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
+						&lt;/figcaption&gt;
+					&lt;/figure&gt;
+				&lt;/div&gt;
+				&lt;div role=&quot;tabpanel&quot; id=&quot;panel20&quot; class=&quot;out fade&quot;&gt;
+					&lt;figure class=&quot;wb-mltmd&quot;&gt;
+						&lt;video poster=&quot;http://www.servicecanada.gc.ca/eng/video/images/dc-td-eng.jpg&quot; title=&quot;Training and Development&quot;&gt;
+							&lt;source type=&quot;video/webm&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/dc-td-eng.webm&quot; /&gt;
+							&lt;source type=&quot;video/mp4&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/dc-td-eng.mp4&quot; /&gt;
+							&lt;track src=&quot;../multimedia/cpts-lg2-en.html&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
+						&lt;/video&gt;
+						&lt;figcaption&gt;
+							&lt;p&gt;Training and Development (&lt;a href=&quot;http://www.servicecanada.gc.ca/eng/video/td.shtml&quot;&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
+						&lt;/figcaption&gt;
+					&lt;/figure&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		</details>
+	</section>
 </section>
 
 <section>
 	<h2>CSS Transitions</h2>
 	<section>
-		<h3 id="fade">Fade (<code>fade</code>)</h3>
+		<h3 id="fade">Fade example (<code>fade</code>)</h3>
 		<div class="row">
 			<div class="wb-tabs carousel-s2 fast">
 				<ul role="tablist">
@@ -382,10 +552,35 @@
 				</div>
 			</div>
 		</div>
+
+		<section>
+			<h4>Code</h4>
+			<details>
+				<summary>View code</summary>
+				<pre><code>&lt;div class=&quot;row&quot;&gt;
+	&lt;div class=&quot;wb-tabs carousel-s2 fast&quot;&gt;
+		&lt;ul role=&quot;tablist&quot;&gt;
+			&lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#panel21&quot;&gt;Tab 1&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href=&quot;#panel22&quot;&gt;Tab 2&lt;/a&gt;&lt;/li&gt;
+			...
+		&lt;/ul&gt;
+		&lt;div class=&quot;tabpanels&quot;&gt;
+			&lt;div role=&quot;tabpanel&quot; id=&quot;panel21&quot; class=&quot;in fade&quot;&gt;
+				...
+			&lt;/div&gt;
+			&lt;div role=&quot;tabpanel&quot; id=&quot;panel22&quot; class=&quot;out fade&quot;&gt;
+				...
+			&lt;/div&gt;
+			...
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+			</details>
+		</section>
 	</section>
 
 	<section>
-		<h3 id="slide">Slide - Horizontal (<code>slide</code>)</h3>
+		<h3 id="slide">Slide - Horizontal example (<code>slide</code>)</h3>
 		<div class="row">
 			<div class="wb-tabs carousel-s2 fast">
 				<ul role="tablist">
@@ -430,10 +625,35 @@
 				</div>
 			</div>
 		</div>
+
+		<section>
+			<h4>Code</h4>
+			<details>
+				<summary>View code</summary>
+				<pre><code>&lt;div class=&quot;row&quot;&gt;
+	&lt;div class=&quot;wb-tabs carousel-s2 fast&quot;&gt;
+		&lt;ul role=&quot;tablist&quot;&gt;
+			&lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#panel24&quot;&gt;Tab 1&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href=&quot;#panel25&quot;&gt;Tab 2&lt;/a&gt;&lt;/li&gt;
+			...
+		&lt;/ul&gt;
+		&lt;div class=&quot;tabpanels&quot;&gt;
+			&lt;div role=&quot;tabpanel&quot; id=&quot;panel24&quot; class=&quot;slide in&quot;&gt;
+				...
+			&lt;/div&gt;
+			&lt;div role=&quot;tabpanel&quot; id=&quot;panel25&quot; class=&quot;slide out&quot;&gt;
+				...
+			&lt;/div&gt;
+			...
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+			</details>
+		</section>
 	</section>
 
 	<section>
-		<h3 id="slidevert">Slide - Vertical (<code>slidevert</code>)</h3>
+		<h3 id="slidevert">Slide - Vertical example (<code>slidevert</code>)</h3>
 		<div class="row">
 			<div class="wb-tabs carousel-s2 fast">
 				<ul role="tablist">
@@ -478,5 +698,30 @@
 				</div>
 			</div>
 		</div>
+
+		<section>
+			<h4>Code</h4>
+			<details>
+				<summary>View code</summary>
+				<pre><code>&lt;div class=&quot;row&quot;&gt;
+	&lt;div class=&quot;wb-tabs carousel-s2 fast&quot;&gt;
+		&lt;ul role=&quot;tablist&quot;&gt;
+			&lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#panel27&quot;&gt;Tab 1&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href=&quot;#panel28&quot;&gt;Tab 2&lt;/a&gt;&lt;/li&gt;
+			...
+		&lt;/ul&gt;
+		&lt;div class=&quot;tabpanels&quot;&gt;
+			&lt;div role=&quot;tabpanel&quot; id=&quot;panel27&quot; class=&quot;slidevert in&quot;&gt;
+				...
+			&lt;/div&gt;
+			&lt;div role=&quot;tabpanel&quot; id=&quot;panel28&quot; class=&quot;slidevert out&quot;&gt;
+				...
+			&lt;/div&gt;
+			...
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+			</details>
+		</section>
 	</section>
 </section>

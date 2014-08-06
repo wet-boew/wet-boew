@@ -2,9 +2,11 @@
 {
 	"title": "Data Ajax",
 	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
 	"description": "Un enveloppeur simple pour AjaxLoader qui insère de contenu télécharger via AJAX.",
 	"altLangPrefix": "data-ajax",
-	"dateModified": "2014-04-04"
+	"dateModified": "2014-08-04"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -45,29 +47,48 @@
 </section>
 
 <section>
-	<p>Coming soon</p>
-	<!--
 	<h2>How to implement</h2>
 	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
+		<li>
+			<p>Add one of the following data-ajax attributes to an element, with the attribute value being the URL of the content to AJAX in:</p>
+			<ul>
+				<li>
+					<p><code>data-ajax-after</code>: Insert content after the element</p>
+					<pre><code>&lt;section data-ajax-after=&quot;ajax/data-ajax-extra-en.html&quot;&gt;
+	...
+&lt;/section&gt;</code></pre>
+				</li>
+				<li>
+					<p><code>data-ajax-append</code>: Insert content at the end of the element</p>
+					<pre><code>&lt;section data-ajax-append=&quot;ajax/data-ajax-extra-en.html&quot;&gt;
+	...
+&lt;/section&gt;</code></pre>
+				</li>
+				<li>
+					<p><code>data-ajax-before</code>: Insert content before the element</p>
+					<pre><code>&lt;section data-ajax-before=&quot;ajax/data-ajax-extra-en.html&quot;&gt;
+	...
+&lt;/section&gt;</code></pre>
+				</li>
+				<li>
+					<p><code>data-ajax-before</code>: Insert content at the start of the element</p>
+					<pre><code>&lt;section data-ajax-prepend=&quot;ajax/data-ajax-extra-en.html&quot;&gt;
+	...
+&lt;/section&gt;</code></pre>
+				</li>
+				<li>
+					<p><code>data-ajax-before</code>: Replace the element with the content</p>
+					<pre><code>&lt;section data-ajax-replace=&quot;ajax/data-ajax-extra-en.html&quot;&gt;
+	...
+&lt;/section&gt;</code></pre>
+				</li>
+			</ul>
 		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
-		</li>
-		<li>Step 4</li>
 	</ol>
-	-->
 </section>
 
 <section>
 	<h2>Configuration options</h2>
-	<p>Coming soon</p>
-	<!--
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -79,38 +100,26 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
+				<td>Overlay type</td>
+				<td>Configure the origin and destination of the content to AJAX in.</td>
+				<td>Add the configuration attribute to the affected element with the value being the URL of the content to AJAX in.</td>
 				<td>
 					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
-			</tr>
-			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
+						<dt><code>data-ajax-after</code>:</dt>
+						<dd>Insert the content after the element.</dd>
+						<dt><code>data-ajax-append</code>:</dt>
+						<dd>Insert the content at the end of the element.</dd>
+						<dt><code>data-ajax-before</code>:</dt>
+						<dd>Insert the content before the element.</dd>
+						<dt><code>data-ajax-prepend</code>:</dt>
+						<dd>Insert the content at the start of the element.</dd>
+						<dt><code>data-ajax-replace</code>:</dt>
+						<dd>Replace the element with the content.</dd>
 					</dl>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-	-->
 </section>
 
 <section>
@@ -125,9 +134,27 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-data-ajax</td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-data-ajax" );</code>).</td>
+				<td><code>wb-init.wb-data-ajax</code></td>
+				<td>Triggered manually (e.g., <code>$( "[data-ajax-after], [data-ajax-append], [data-ajax-before], [data-ajax-prepend], [data-ajax-replace]" ).trigger( "wb-init.wb-data-ajax" );</code>).</td>
 				<td>Used to manually initialize the Data Ajax plugin. <strong>Note:</strong> The Data Ajax plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-data-ajax</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the content has been AJAXed in.</td>
+				<td>Used to identify where content has been AJAXed in by the plugin (target of the event) and to pass along how the content was included ("after", "append", "before", "prepend" or "replace").
+					<pre><code>$( document ).on( "wb-ready.wb-data-ajax", "[data-ajax-after], [data-ajax-append], [data-ajax-before], [data-ajax-prepend], [data-ajax-replace]", function( event, ajaxType ) {
+});</code></pre>
+					<pre><code>$( "[data-ajax-after], [data-ajax-append], [data-ajax-before], [data-ajax-prepend], [data-ajax-replace]" ).on( "wb-ready.wb-data-ajax", function( event, ajaxType ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>

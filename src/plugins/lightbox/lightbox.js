@@ -13,45 +13,40 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-lbx",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
+var componentName = "wb-lbx",
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
+	setFocusEvent = "setfocus.wb",
 	extendedGlobal = false,
 	$document = wb.doc,
 	idCount = 0,
-	i18n, i18nText,
+	callbacks, i18n, i18nText,
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery Event} event Event that triggered this handler
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
-		var elm = event.target,
-			elmId = elm.id,
-			modeJS;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === elm &&
-			elm.className.indexOf( initedClass ) === -1 ) {
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
+			elmId;
 
-			wb.remove( selector );
-			elm.className += " " + initedClass;
+		if ( elm ) {
+			elmId = elm.id;
 
 			// Ensure there is a unique id on the element
 			if ( !elmId ) {
-				elmId = pluginName + "-id-" + idCount;
+				elmId = componentName + "-id-" + idCount;
 				idCount += 1;
 				elm.id = elmId;
 			}
 
 			// read the selector node for parameters
-			modeJS = wb.getMode() + ".js";
 
-			// Only initialize the i18nText once
+			// Only initialize the i18nText and callbacks once
 			if ( !i18nText ) {
 				i18n = wb.i18n;
 				i18nText = {
@@ -69,60 +64,45 @@ var pluginName = "wb-lbx",
 						tError: i18n( "lb-xhr-err" ) + " (<a href=\"url%\">)"
 					}
 				};
-			}
 
-			// Load Magnific Popup dependency and bind the init event handler
-			Modernizr.load({
-				load: "site!deps/jquery.magnific-popup" + modeJS,
-				complete: function() {
-					var elm = document.getElementById( elmId ),
-						$elm = $( elm ),
-						settings = {},
-						firstLink;
+				callbacks = {
+					open: function() {
 
-					// Set the dependency i18nText only once
-					if ( !extendedGlobal ) {
-						$.extend( true, $.magnificPopup.defaults, i18nText );
-						extendedGlobal = true;
-					}
+						// TODO: Better if dealt with upstream by Magnific popup
+						var $item = this.currItem,
+							$content = this.contentContainer,
+							$wrap = this.wrap,
+							$buttons = $wrap.find( ".mfp-close, .mfp-arrow" ),
+							len = $buttons.length,
+							i, button, $bottomBar;
 
-					// TODO: Add swipe support
+						for ( i = 0; i !== len; i += 1 ) {
+							button = $buttons[ i ];
+							button.innerHTML += "<span class='wb-inv'> " + button.title + "</span>";
+						}
 
-					settings.callbacks = {
-						open: function() {
+						if ( $item.type === "image" ) {
+							$bottomBar = $content.find( ".mfp-bottom-bar" ).attr( "id", "lbx-title" );
+						} else {
+							$content.attr( "role", "document" );
+						}
 
-							// TODO: Better if dealt with upstream by Magnific popup
-							var $item = this.currItem,
-								$content = this.contentContainer,
-								$wrap = this.wrap,
-								$buttons = $wrap.find( ".mfp-close, .mfp-arrow" ),
-								len = $buttons.length,
-								i, button, $bottomBar;
+						$wrap.append( "<span tabindex='0' class='lbx-end wb-inv'></span>" );
+					},
+					change: function() {
+						var $item = this.currItem,
+							$content = this.contentContainer,
+							$el, $bottomBar, $source, $target,
+							description, altTitleId, altTitle;
 
-							for ( i = 0; i !== len; i += 1 ) {
-								button = $buttons[ i ];
-								button.innerHTML += "<span class='wb-inv'> " + button.title + "</span>";
-							}
+						if ( $item.type === "image" ) {
+							$el = $item.el;
+							$target = $item.img;
+							$bottomBar = $content.find( ".mfp-bottom-bar" );
 
-							if ( $item.type === "image" ) {
-								$bottomBar = $content.find( ".mfp-bottom-bar" ).attr( "id", "lbx-title" );
-							} else {
-								$content.attr( "role", "document" );
-							}
-
-							$wrap.append( "<span tabindex='0' class='lbx-end wb-inv'></span>" );
-						},
-						change: function() {
-							var $item = this.currItem,
-								$content = this.contentContainer,
-								$el, $bottomBar, $source, $target,
-								description, altTitleId, altTitle;
-
-							if ( $item.type === "image" ) {
-								$el = $item.el;
+							if ( $el ) {
 								$source = $el.find( "img" );
-								$target = $item.img.attr( "alt", $source.attr( "alt" ) );
-								$bottomBar = $content.find( ".mfp-bottom-bar" );
+								$target.attr( "alt", $source.attr( "alt" ) );
 
 								// Replicate aria-describedby if it exists
 								description = $source.attr( "aria-describedby" );
@@ -145,17 +125,44 @@ var pluginName = "wb-lbx",
 									}
 								}
 							} else {
-								$content
-									.find( ".modal-title, h1" )
-									.first()
-									.attr( "id", "lbx-title" );
+								$target.attr( "alt", $bottomBar.find( ".mfp-title" ).html() );
 							}
+						} else {
+							$content
+								.find( ".modal-title, h1" )
+								.first()
+								.attr( "id", "lbx-title" );
 						}
-					};
+					}
+				};
+			}
+
+			// Load Magnific Popup dependency and bind the init event handler
+			Modernizr.load({
+				load: "site!deps/jquery.magnific-popup" + wb.getMode() + ".js",
+				complete: function() {
+					var elm = document.getElementById( elmId ),
+						$elm = $( elm ),
+						settings = {},
+						firstLink;
+
+					if ( !elm ) {
+						return;
+					}
+
+					// Set the dependency i18nText only once
+					if ( !extendedGlobal ) {
+						$.extend( true, $.magnificPopup.defaults, i18nText );
+						extendedGlobal = true;
+					}
+
+					// TODO: Add swipe support
+
+					settings.callbacks = callbacks;
 
 					if ( elm.nodeName.toLowerCase() !== "a" ) {
 						settings.delegate = "a";
-						firstLink = elm.getElementsByTagName( "a" )[0];
+						firstLink = elm.getElementsByTagName( "a" )[ 0 ];
 
 						// Is the element a gallery?
 						if ( elm.className.indexOf( "-gal" ) !== -1 ) {
@@ -186,10 +193,13 @@ var pluginName = "wb-lbx",
 						$.extend(
 							true,
 							settings,
-							window[ pluginName ],
-							wb.getData( $elm, pluginName )
+							window[ componentName ],
+							wb.getData( $elm, componentName )
 						)
 					);
+
+					// Identify that initialization has completed
+					wb.ready( $elm, componentName );
 				}
 			});
 		}
@@ -213,7 +223,7 @@ $document.on( "keydown", ".mfp-wrap", function( event ) {
 		} else if ( index === length - 1 ) {
 			index = 0;
 		}
-		$focusable.eq( index ).trigger( "setfocus.wb" );
+		$focusable.eq( index ).trigger( setFocusEvent );
 	}
 
 	/*
@@ -232,7 +242,7 @@ $document.on( "focus", ".lbx-end", function( event ) {
 		.closest( ".mfp-wrap" )
 			.find( ":focusable" )
 				.eq( 0 )
-					.trigger( "setfocus.wb" );
+					.trigger( setFocusEvent );
 
 	/*
 	 * Since we are working with events we want to ensure that we are being passive about our control,
@@ -246,10 +256,44 @@ $document.on( "focus", ".lbx-end", function( event ) {
 $document.on( "focusin", "body", function( event ) {
 
 	if ( extendedGlobal && $.magnificPopup.instance.currItem &&
-		$( event.target ).closest( ".mfp-wrap" ).length === 0 ) {
+		$( event.target ).closest( ".mfp-wrap" ).length === 0 &&
+		$( ".popup-modal-dismiss" ).length === 0 ) {
 
 		// Close the popup
 		$.magnificPopup.close();
+	}
+});
+
+// Handler for clicking on a same page link within the overlay to outside the overlay
+$document.on( "click vclick", ".mfp-wrap a[href^='#']", function( event ) {
+	var which = event.which,
+		eventTarget = event.target,
+		href, $lightbox, linkTarget;
+
+	// Ignore middle/right mouse buttons
+	if ( !which || which === 1 ) {
+		$lightbox = $( eventTarget ).closest( ".mfp-wrap" );
+		href = eventTarget.getAttribute( "href" );
+		linkTarget = document.getElementById( href.substring( 1 ) );
+
+		// Ignore same page links to within the overlay and modal popups
+		if ( href.length > 1 && !$.contains( $lightbox[ 0 ], linkTarget ) ) {
+			if ( $lightbox.find( ".popup-modal-dismiss" ).length === 0 ) {
+
+				// Stop propagation of the click event
+				if ( event.stopPropagation ) {
+					event.stopImmediatePropagation();
+				} else {
+					event.cancelBubble = true;
+				}
+
+				// Close the overlay and set focus to the same page link
+				$.magnificPopup.close();
+				$( linkTarget ).trigger( setFocusEvent );
+			} else {
+				return false;
+			}
+		}
 	}
 });
 
@@ -257,6 +301,30 @@ $document.on( "focusin", "body", function( event ) {
 $( document ).on( "click", ".popup-modal-dismiss", function( event ) {
 	event.preventDefault();
 	$.magnificPopup.close();
+});
+
+// Event handler for opening a popup without a link
+$( document ).on( "open" + selector, function( event, items, modal, title ) {
+	if ( event.namespace === componentName ) {
+		var isGallery = items.length > 1,
+			isModal = modal && !isGallery ? modal : false,
+			titleSrc = title ? function() {
+					return title[ $.magnificPopup.instance.index ];
+				} : "title";
+
+		event.preventDefault();
+		$.magnificPopup.open({
+			items: items,
+			modal: isModal,
+			gallery: {
+				enabled: isGallery
+			},
+			image: {
+				titleSrc: titleSrc
+			},
+			callbacks: callbacks
+		});
+	}
 });
 
 // Add the timer poke to initialize the plugin

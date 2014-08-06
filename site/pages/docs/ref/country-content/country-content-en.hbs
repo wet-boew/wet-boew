@@ -2,9 +2,11 @@
 {
 	"title": "Country Content",
 	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
 	"description": "A basic AjaxLoader wrapper that inserts AJAXed-in content based on a visitor's country as determined by http://freegeoip.net",
 	"altLangPrefix": "country-content",
-	"dateModified": "2014-03-31"
+	"dateModified": "2014-08-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -93,9 +95,6 @@ Example of multi-line code</code></pre>
 
 <section>
 	<h2>Events</h2>
-	<p>Coming soon</p>
-	<!--
-	<p>Document the public events that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -106,18 +105,30 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Event 1</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td><code>wb-init.wb-calevt</code></td>
+				<td>Triggered manually (e.g., <code>$( "[data-ctrycnt]" ).trigger( "wb-init.wb-ctrycnt" );</code>).</td>
+				<td>Used to manually initialize the Country Content plugin. <strong>Note:</strong> The Country Content plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
 			</tr>
 			<tr>
-				<td>Event 2</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td><code>wb-ready.wb-ctrycnt</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the country content has loaded.</td>
+				<td>Used to identify where country content has loaded (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-ctrycnt", "[data-ctrycnt]", function( event ) {
+});</code></pre>
+					<pre><code>$( "[data-ctrycnt]" ).on( "wb-ready.wb-calevt", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>
-	-->
 </section>
 
 <section>

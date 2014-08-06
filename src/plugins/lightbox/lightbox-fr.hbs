@@ -8,7 +8,8 @@
 	"parentdir": "lightbox",
 	"altLangPrefix": "lightbox",
 	"css": ["demo/lightbox"],
-	"dateModified": "2014-02-19"
+	"js": ["demo/lightbox"],
+	"dateModified": "2014-07-30"
 }
 ---
 <section>
@@ -21,6 +22,7 @@
 				<li><a href="#examples2">Galeries d'articles</a></li>
 				<li><a href="#examples3">Galeries d'articles cachées</a></li>
 				<li><a href="#examples4">Titre de l'image alternative</a></li>
+				<li><a href="#examples5">Ouvrir de contenu superposé &#171;&#160;Lightbox&#160;&#187; via JavaScript</a></li>
 			</ul>
 		</li>
 	</ul>
@@ -45,69 +47,69 @@
 
 		<section>
 			<h3 id="examples1">Articles seules</h3>
-			<section>
-				<h4>Exemple</h4>
-				<ul class="list-inline">
-					<li>
-						<a class="wb-lbx" href="demo/1_b.jpg" title="Image 1">
-							<img src="demo/1_s.jpg" alt="Image 1" />
-						</a>
-					</li>
-					<li class="box">
-						<a class="wb-lbx" title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html">AJAX - Exemple 1</a>
-					</li>
-					<li class="box">
-						<a class="wb-lbx" title="Exemple de contenu incorporé" href="#inline_content">Contenu incorporé</a>
-						<section id="inline_content" class="mfp-hide modal-dialog modal-content overlay-def">
-							<header class="modal-header">
-								<h2 class="modal-title">Titre</h2>
-							</header>
-							<div class="modal-body">
-								<ol>
-									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
-									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
-										<ol>
-											<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
-											<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
-												<ol>
-													<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-													<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-												</ol>
-											</li>
-										</ol>
-									</li>
-								</ol>
-							</div>
-						</section>
-					</li>
-					<li class="box">
-						<a class="wb-lbx lbx-modal" title="Exemple de contenu superposé modal" href="#inline_content_modal">Contenu superposé modal</a>
-						<section id="inline_content_modal" class="mfp-hide modal-dialog modal-content overlay-def">
-							<header class="modal-header">
-								<h2 class="modal-title">Titre</h2>
-							</header>
-							<div class="modal-body">
-								<ol>
-									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
-									<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
-										<ol>
-											<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
-											<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
-												<ol>
-													<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-													<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
-												</ol>
-											</li>
-										</ol>
-									</li>
-								</ol>
-								<p><a href="#">Lien - apparence par défaut</a></p>
-								<button class="btn btn-primary popup-modal-dismiss">Fermer le contenu superposé modal</button>
-							</div>
-						</section>
-					</li>
-				</ul>
+			<ul>
+				<li>
+					<a class="wb-lbx" href="demo/1_b.jpg" title="Image 1">
+						<img src="demo/1_s.jpg" alt="Image 1" />
+					</a>
+				</li>
+				<li>
+					<a class="wb-lbx" title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html">AJAX - Exemple 1</a>
+				</li>
+				<li>
+					<a class="wb-lbx" title="Exemple de contenu incorporé" href="#inline_content">Contenu incorporé</a>
+					<section id="inline_content" class="mfp-hide modal-dialog modal-content overlay-def">
+						<header class="modal-header">
+							<h2 class="modal-title">Titre</h2>
+						</header>
+						<div class="modal-body">
+							<ol>
+								<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+								<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+									<ol>
+										<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+										<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
+											<ol>
+												<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+												<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+											</ol>
+										</li>
+									</ol>
+								</li>
+							</ol>
+						</div>
+					</section>
+				</li>
+				<li>
+					<a class="wb-lbx lbx-modal" title="Exemple de contenu superposé modal" href="#inline_content_modal">Contenu superposé modal</a>
+					<section id="inline_content_modal" class="mfp-hide modal-dialog modal-content overlay-def">
+						<header class="modal-header">
+							<h2 class="modal-title">Titre</h2>
+						</header>
+						<div class="modal-body">
+							<ol>
+								<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut</li>
+								<li>liste ordonnée (<code>ol</code>) premier niveau - apparence par défaut
+									<ol>
+										<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut</li>
+										<li>liste ordonnée (<code>ol</code>) deuxième niveau - apparence par défaut
+											<ol>
+												<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+												<li>liste ordonnée (<code>ol</code>) troisième niveau - apparence par défaut</li>
+											</ol>
+										</li>
+									</ol>
+								</li>
+							</ol>
+							<p><a href="#">Lien - apparence par défaut</a></p>
+							<button class="btn btn-primary popup-modal-dismiss">Fermer le contenu superposé modal</button>
+						</div>
+					</section>
+				</li>
+			</ul>
 
+			<section>
+				<h4>Code</h4>
 				<details>
 					<summary>Visualiser le code</summary>
 					<pre><code>&lt;ul class="list-inline"&gt;
@@ -121,53 +123,28 @@
 	&lt;/li&gt;
 	&lt;li&gt;
 		&lt;a class="wb-lbx" title="Exemple de contenu incorporé" href="#inline_content"&gt;Contenu incorporé&lt;/a&gt;
+
 		&lt;div id="inline_content" class="mfp-hide modal-dialog modal-content overlay-def"&gt;
 			&lt;section class="modal-content"&gt;
 				&lt;header class="modal-header overlay-hd"&gt;
 					&lt;h2 class="modal-title"&gt;Titre&lt;/h2&gt;
 				&lt;/header&gt;
 				&lt;div class="modal-body"&gt;
-					&lt;ol&gt;
-						&lt;li&gt;liste ordonnée (&lt;code&gt;ol&lt;/code&gt;) premier niveau - apparence par défaut&lt;/li&gt;
-						&lt;li&gt;liste ordonnée (&lt;code&gt;ol&lt;/code&gt;) premier niveau - apparence par défaut
-							&lt;ol&gt;
-								&lt;li&gt;liste ordonnée (&lt;code&gt;ol&lt;/code&gt;) deuxième niveau - apparence par défaut&lt;/li&gt;
-								&lt;li&gt;liste ordonnée (&lt;code&gt;ol&lt;/code&gt;) deuxième niveau - apparence par défaut
-									&lt;ol&gt;
-										&lt;li&gt;liste ordonnée (&lt;code&gt;ol&lt;/code&gt;) troisième niveau - apparence par défaut&lt;/li&gt;
-										&lt;li&gt;liste ordonnée (&lt;code&gt;ol&lt;/code&gt;) troisième niveau - apparence par défaut&lt;/li&gt;
-									&lt;/ol&gt;
-								&lt;/li&gt;
-							&lt;/ol&gt;
-						&lt;/li&gt;
-					&lt;/ol&gt;
-					&lt;p&gt;&lt;a href="#"&gt;Lien - apparence par défaut&lt;/a&gt;&lt;/p&gt;
+					...
 				&lt;/div&gt;
 			&lt;/section&gt;
 		&lt;/div&gt;
 	&lt;/li&gt;
 	&lt;li&gt;
 		&lt;a class="wb-lbx lbx-modal" title="Exemple de contenu superposé modal" href="#inline_content_modal"&gt;Contenu superposé modal&lt;/a&gt;
+
 		&lt;div id="inline_content_modal" class="mfp-hide modal-dialog modal-content overlay-def"&gt;
 			&lt;section class="modal-content"&gt;
 				&lt;header class="modal-header overlay-hd"&gt;
 					&lt;h2 class="modal-title"&gt;Titre&lt;/h2&gt;
 				&lt;/header&gt;
 				&lt;div class="modal-body"&gt;
-					&lt;ol&gt;
-						&lt;li&gt;liste ordonnée (&lt;code&gt;ol&lt;/code&gt;) premier niveau - apparence par défaut&lt;/li&gt;
-						&lt;li&gt;liste ordonnée (&lt;code&gt;ol&lt;/code&gt;) premier niveau - apparence par défaut
-							&lt;ol&gt;
-								&lt;li&gt;liste ordonnée (&lt;code&gt;ol&lt;/code&gt;) deuxième niveau - apparence par défaut&lt;/li&gt;
-								&lt;li&gt;liste ordonnée (&lt;code&gt;ol&lt;/code&gt;) deuxième niveau - apparence par défaut
-									&lt;ol&gt;
-										&lt;li&gt;liste ordonnée (&lt;code&gt;ol&lt;/code&gt;) troisième niveau - apparence par défaut&lt;/li&gt;
-										&lt;li&gt;liste ordonnée (&lt;code&gt;ol&lt;/code&gt;) troisième niveau - apparence par défaut&lt;/li&gt;
-									&lt;/ol&gt;
-								&lt;/li&gt;
-							&lt;/ol&gt;
-						&lt;/li&gt;
-					&lt;/ol&gt;
+					...
 					&lt;button class="btn btn-primary popup-modal-dismiss"&gt;Fermer le contenu superposé modal&lt;/button&gt;
 				&lt;/div&gt;
 			&lt;/section&gt;
@@ -180,51 +157,37 @@
 
 		<section>
 			<h3 id="examples2">Galeries</h3>
-			<section>
-				<h4>Exemples</h4>
-				<section class="wb-lbx lbx-gal">
-					<h5>Galerie d'images</h5>
-					<ul class="list-inline">
-						<li>
-							<a href="demo/1_b.jpg" title="Image 1">
-								<img src="demo/1_s.jpg" alt="Image 1" />
-							</a>
-						</li>
-						<li>
-							<a href="demo/2_b.jpg" title="Image 2">
-								<img src="demo/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" />
-							</a>
-						</li>
-						<li>
-							<a href="demo/3_b.jpg" title="Image 3">
-								<img src="demo/3_s.jpg" alt="Image 3" />
-							</a>
-						</li>
-						<li>
-							<a href="demo/4_b.jpg" title="Image 4">
-								<img src="demo/4_s.jpg" alt="Image 4" />
-							</a>
-						</li>
-					</ul>
-				</section>
-				<section class="wb-lbx lbx-gal">
-					<h5>Galerie d'AJAX</h5>
-					<ul class="list-inline">
-						<li class="box">
-							<a title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html">AJAX - Exemple 1</a>
-						</li>
-						<li class="box">
-							<a title="AJAX - Exemple 2 de contenu AJAX" href="ajax/ajax2-fr.html">AJAX - Exemple 2</a>
-						</li>
-						<li class="box">
-							<a title="AJAX - Exemple 3 de contenu AJAX" href="ajax/ajax3-fr.html">AJAX - Exemple 3</a>
-						</li>
-					</ul>
-				</section>
-				<details>
-					<summary>Visualier le code</summary>
-					<pre><code>&lt;section class="wb-lbx lbx-gal inline-lst"&gt;
-	&lt;h5&gt;Galerie d'images&lt;/h5&gt;
+			<section class="wb-lbx lbx-gal">
+				<h4>Galerie d'images</h4>
+				<ul class="list-inline">
+					<li>
+						<a href="demo/1_b.jpg" title="Image 1">
+							<img src="demo/1_s.jpg" alt="Image 1" />
+						</a>
+					</li>
+					<li>
+						<a href="demo/2_b.jpg" title="Image 2">
+							<img src="demo/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" />
+						</a>
+					</li>
+					<li>
+						<a href="demo/3_b.jpg" title="Image 3">
+							<img src="demo/3_s.jpg" alt="Image 3" />
+						</a>
+					</li>
+					<li>
+						<a href="demo/4_b.jpg" title="Image 4">
+							<img src="demo/4_s.jpg" alt="Image 4" />
+						</a>
+					</li>
+				</ul>
+
+				<section>
+					<h5>Code</h5>
+					<details>
+						<summary>Visualier le code</summary>
+						<pre><code>&lt;section class="wb-lbx lbx-gal"&gt;
+	&lt;h4&gt;Galerie d'images&lt;/h4&gt;
 	&lt;ul class="list-inline"&gt;
 		&lt;li&gt;
 			&lt;a href="demo/1_b.jpg" title="Image 1"&gt;
@@ -247,10 +210,32 @@
 			&lt;/a&gt;
 		&lt;/li&gt;
 	&lt;/ul&gt;
-&lt;/section&gt;
-&lt;section class="wb-lbx lbx-gal inline-lst"&gt;
-	&lt;h5&gt;Galerie d'AJAX&lt;/h5&gt;
-	&lt;ul class="list-inline"&gt;
+&lt;/section&gt;</code></pre>
+					</details>
+				</section>
+			</section>
+
+			<section class="wb-lbx lbx-gal">
+				<h4>Galerie d'AJAX</h4>
+				<ul>
+					<li>
+						<a title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html">AJAX - Exemple 1</a>
+					</li>
+					<li>
+						<a title="AJAX - Exemple 2 de contenu AJAX" href="ajax/ajax2-fr.html">AJAX - Exemple 2</a>
+					</li>
+					<li>
+						<a title="AJAX - Exemple 3 de contenu AJAX" href="ajax/ajax3-fr.html">AJAX - Exemple 3</a>
+					</li>
+				</ul>
+
+				<section>
+					<h5>Code</h5>
+					<details>
+						<summary>Visualier le code</summary>
+						<pre><code>&lt;section class="wb-lbx lbx-gal"&gt;
+	&lt;h4&gt;Galerie d'AJAX&lt;/h4&gt;
+	&lt;ul&gt;
 		&lt;li&gt;
 			&lt;a title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html"&gt;AJAX - Exemple 1&lt;/a&gt;
 		&lt;/li&gt;
@@ -262,57 +247,43 @@
 		&lt;/li&gt;
 	&lt;/ul&gt;
 &lt;/section&gt;</code></pre>
-				</details>
+					</details>
+				</section>
 			</section>
 		</section>
 
 		<section>
 			<h3 id="examples3">Galeries cachés</h3>
-			<section>
-				<h4>Exemples</h4>
-				<section class="wb-lbx lbx-hide-gal">
-					<h5>Galerie d'images</h5>
-					<ul class="list-inline">
-						<li>
-							<a href="demo/1_b.jpg" title="Image 1">
-								<img src="demo/1_s.jpg" alt="Image 1" />
-							</a>
-						</li>
-						<li>
-							<a href="demo/2_b.jpg" title="Image 2">
-								<img src="demo/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" />
-							</a>
-						</li>
-						<li>
-							<a href="demo/3_b.jpg" title="Image 3">
-								<img src="demo/3_s.jpg" alt="Image 3" />
-							</a>
-						</li>
-						<li>
-							<a href="demo/4_b.jpg" title="Image 4">
-								<img src="demo/4_s.jpg" alt="Image 4" />
-							</a>
-						</li>
-					</ul>
-				</section>
-				<section class="wb-lbx lbx-hide-gal">
-					<h5>Galerie d'AJAX</h5>
-					<ul class="list-inline">
-						<li class="box">
-							<a title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html">AJAX - Exemple 1</a>
-						</li>
-						<li class="box">
-							<a title="AJAX - Exemple 2 de contenu AJAX" href="ajax/ajax2-fr.html">AJAX - Exemple 2</a>
-						</li>
-						<li class="box">
-							<a title="AJAX - Exemple 3 de contenu AJAX" href="ajax/ajax3-fr.html">AJAX - Exemple 3</a>
-						</li>
-					</ul>
-				</section>
+			<section class="wb-lbx lbx-hide-gal">
+				<h4>Galerie d'images</h4>
+				<ul class="list-inline">
+					<li>
+						<a href="demo/1_b.jpg" title="Image 1">
+							<img src="demo/1_s.jpg" alt="Image 1" />
+						</a>
+					</li>
+					<li>
+						<a href="demo/2_b.jpg" title="Image 2">
+							<img src="demo/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" />
+						</a>
+					</li>
+					<li>
+						<a href="demo/3_b.jpg" title="Image 3">
+							<img src="demo/3_s.jpg" alt="Image 3" />
+						</a>
+					</li>
+					<li>
+						<a href="demo/4_b.jpg" title="Image 4">
+							<img src="demo/4_s.jpg" alt="Image 4" />
+						</a>
+					</li>
+				</ul>
 
-				<details>
-					<summary>Visualiser le code</summary>
-					<pre><code>&lt;section class="wb-lbx lbx-hide-gal"&gt;
+				<section>
+					<h5>Code</h5>
+					<details>
+						<summary>Visualiser le code</summary>
+						<pre><code>&lt;section class="wb-lbx lbx-hide-gal"&gt;
 	&lt;h5&gt;Galerie d'images&lt;/h5&gt;
 	&lt;ul class="list-inline"&gt;
 		&lt;li&gt;
@@ -336,10 +307,32 @@
 			&lt;/a&gt;
 		&lt;/li&gt;
 	&lt;/ul&gt;
-&lt;/section&gt;
-&lt;section class="wb-lbx lbx-hide-gal"&gt;
+&lt;/section&gt;</code></pre>
+					</details>						
+				</section>
+			</section>
+
+			<section class="wb-lbx lbx-hide-gal">
+				<h4>Galerie d'AJAX</h4>
+				<ul>
+					<li>
+						<a title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html">AJAX - Exemple 1</a>
+					</li>
+					<li>
+						<a title="AJAX - Exemple 2 de contenu AJAX" href="ajax/ajax2-fr.html">AJAX - Exemple 2</a>
+					</li>
+					<li>
+						<a title="AJAX - Exemple 3 de contenu AJAX" href="ajax/ajax3-fr.html">AJAX - Exemple 3</a>
+					</li>
+				</ul>
+
+				<section>
+					<h5>Code</h5>
+					<details>
+						<summary>Visualiser le code</summary>
+						<pre><code>&lt;section class="wb-lbx lbx-hide-gal"&gt;
 	&lt;h5&gt;Galerie d'AJAX&lt;/h5&gt;
-	&lt;ul class="list-inline"&gt;
+	&lt;ul&gt;
 		&lt;li&gt;
 			&lt;a title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html"&gt;AJAX - Exemple 1&lt;/a&gt;
 		&lt;/li&gt;
@@ -351,32 +344,33 @@
 		&lt;/li&gt;
 	&lt;/ul&gt;
 &lt;/section&gt;</code></pre>
-				</details>
+					</details>
+				</section>
 			</section>
 		</section>
 
 		<section>
 			<h3 id="examples4">Titre de l'image alternative</h3>
+			<div class="wb-lbx lbx-gal inline-lst">
+				<ul>
+					<li>
+						<a href="demo/1_b.jpg" title="Image 1" data-title="image_1_b">
+							<img src="demo/1_s.jpg" alt="Image 1" />
+						</a>
+					</li>
+					<li>
+						<a href="demo/2_b.jpg" title="Image 2" data-title="image_2_b">
+							<img src="demo/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" />
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<p id="image_1_b"><strong>Image 1&#160;:</strong> Lorem ipsum consectetur <em>adipiscing elit</em>.</p>
+			<p id="image_2_b"><strong>Image 2&#160;:</strong> Nulla mollis dolor leo. Quisque laoreet tincidunt mollis. Duis posuere scelerisque lectus quis lobortis.</p>
+
 			<section>
-				<h4>Example</h4>
-				<div class="wb-lbx lbx-gal inline-lst">
-					<ul>
-						<li>
-							<a href="demo/1_b.jpg" title="Image 1" data-title="image_1_b">
-								<img src="demo/1_s.jpg" alt="Image 1" />
-							</a>
-						</li>
-						<li>
-							<a href="demo/2_b.jpg" title="Image 2" data-title="image_2_b">
-								<img src="demo/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" />
-							</a>
-						</li>
-					</ul>
-				</div>
-
-				<p id="image_1_b"><strong>Image 1&#160;:</strong> Lorem ipsum consectetur <em>adipiscing elit</em>.</p>
-				<p id="image_2_b"><strong>Image 2&#160;:</strong> Nulla mollis dolor leo. Quisque laoreet tincidunt mollis. Duis posuere scelerisque lectus quis lobortis.</p>
-
+				<h4>Code</h4>
 				<details>
 					<summary>Visualiser le code</summary>
 					<pre><code>&lt;div class="wb-lbx lbx-gal inline-lst"&gt;
@@ -395,6 +389,130 @@
 &lt;/div&gt;
 &lt;p id="image_1_b"&gt;&lt;strong&gt;Image 1&amp;#160;:&lt;/strong&gt; Lorem ipsum consectetur &lt;em&gt;adipiscing elit&lt;/em&gt;.&lt;/p&gt;
 &lt;p id="image_2_b"&gt;&lt;strong&gt;Image 2&amp;#160;:&lt;/strong&gt; Nulla mollis dolor leo. Quisque laoreet tincidunt mollis. Duis posuere scelerisque lectus quis lobortis.&lt;/p&gt;</code></pre>
+				</details>
+			</section>
+		</section>
+
+		<section>
+			<h3 id="examples5">Ouvrir de contenu superposé &#171;&#160;Lightbox&#160;&#187; via JavaScript</h3>
+			<p>Le contenu surperposé &#171;&#160;Lightbox&#160;&#187; peut être ouverte via JavaScript avec&#160;:</p>
+			<pre><code>$( document ).trigger( "open.wb-lbx", [
+	[
+		{
+			src: "demo/1_b.jpg",
+			type: "image"
+		}
+	],
+	false,
+	[
+		"Image 1"
+	]
+]);</code></pre>
+
+			<label for="lbx-select">Contenu superposé &#171;&#160;Lightbox&#160;&#187; à ouvrir</label>
+			<select id="lbx-select">
+				<option value="1">Image</option>
+				<option value="2">AJAX</option>
+				<option value="3">Contenu incorporé</option>
+				<option value="4">Contenu superposé modal</option>
+				<option value="5">Galerie d'images</option>
+			</select>
+			<button id="lbx-open-btn">Ouvrir le contenu superposé &#171;&#160;Lightbox&#160;&#187;</button>
+
+			<section>
+				<h4>Code</h4>
+				<details>
+					<summary>Visualiser le code</summary>
+					<section>
+						<h5>HTML</h5>
+						<pre><code>&lt;label for=&quot;lbx-select&quot;&gt;Contenu superposé &#171;&#160;Lightbox&#160;&#187; à ouvrir&lt;/label&gt;
+&lt;select id=&quot;lbx-select&quot;&gt;
+	&lt;option value=&quot;1&quot;&gt;Image&lt;/option&gt;
+	&lt;option value=&quot;2&quot;&gt;AJAX&lt;/option&gt;
+	&lt;option value=&quot;3&quot;&gt;Contenu incorporé&lt;/option&gt;
+	&lt;option value=&quot;4&quot;&gt;Contenu superposé modal&lt;/option&gt;
+	&lt;option value=&quot;5&quot;&gt;Galerie d'images&lt;/option&gt;
+&lt;/select&gt;
+&lt;button id=&quot;lbx-open-btn&quot;&gt;Ouvrir le contenu superposé &#171;&#160;Lightbox&#160;&#187;&lt;/button&gt;</code></pre>
+					</section>
+
+					<section>
+						<h5>JavaScript</h5>
+						<pre><code>(function( $, wb ) {
+"use strict";
+
+var $document = wb.doc;
+
+$document.on( &quot;click vclick&quot;, &quot;#lbx-open-btn&quot;, function( event ) {
+	var value = $( &quot;#lbx-select&quot; ).val();
+
+	if ( value === &quot;1&quot; ) {
+		$document.trigger( &quot;open.wb-lbx&quot;, [
+			[
+				{
+					src: &quot;demo/1_b.jpg&quot;,
+					type: &quot;image&quot;
+				}
+			],
+			false,
+			[
+				&quot;Image 1&quot;
+			]
+		]);
+	} else if ( value === &quot;2&quot; ) {
+		$document.trigger( &quot;open.wb-lbx&quot;, [
+			[
+				{
+					src: &quot;ajax/ajax1-en.html&quot;,
+					type: &quot;ajax&quot;
+				}
+			]
+		]);
+	} else if ( value === &quot;3&quot; ) {
+		$document.trigger( &quot;open.wb-lbx&quot;, [
+			[
+				{
+					src: &quot;#inline_content&quot;,
+					type: &quot;inline&quot;
+				}
+			]
+		]);
+	} else if ( value === &quot;4&quot; ) {
+		$document.trigger( &quot;open.wb-lbx&quot;, [
+			[
+				{
+					src: &quot;#inline_content_modal&quot;,
+					type: &quot;inline&quot;
+				}
+			],
+			true
+		]);
+	} else if ( value === &quot;5&quot; ) {
+		$document.trigger( &quot;wb-open.wb-lbx&quot;, [
+			[
+				{
+					src: &quot;demo/1_b.jpg&quot;,
+					type: &quot;image&quot;
+				}, {
+					src: &quot;demo/2_b.jpg&quot;,
+					type: &quot;image&quot;
+				}, {
+					src: &quot;demo/3_b.jpg&quot;,
+					type: &quot;image&quot;
+				}
+			],
+			false,
+			[
+				&quot;Image 1&quot;,
+				&quot;Image 2&quot;,
+				&quot;Image 3&quot;
+			]
+		]);
+	}
+});
+
+})( jQuery, wb );</code></pre>
+					</section>
 				</details>
 			</section>
 		</section>

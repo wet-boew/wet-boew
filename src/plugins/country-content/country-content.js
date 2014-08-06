@@ -14,46 +14,45 @@
  * place to define variables that are common to all instances of the plugin on a
  * page.
  */
-var pluginName = "wb-ctrycnt",
+var componentName = "wb-ctrycnt",
 	selector = "[data-ctrycnt]",
-	initEvent = "wb-init." + pluginName,
-	initedClass = pluginName + "-inited",
+	initEvent = "wb-init." + componentName,
 	$document = wb.doc,
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple
-	 * elements. It will run more than once per plugin if you don"t remove the
-	 * selector from the timer.
 	 * @method init
-	 * @param {jQuery DOM element} $elm The plugin element being initialized
+	 * @param {jQuery Event} event Event that triggered this handler
 	 */
-	init = function( $elm ) {
+	init = function( event ) {
 
-		// Only initialize the element once
-		if ( !$elm.hasClass( initedClass ) ) {
-			wb.remove( selector );
-			$elm.addClass( initedClass );
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
+			$elm, url;
 
-			var url = $elm.data( "ctrycnt" );
-
-			// All plugins need to remove their reference from the timer in the init
-			// sequence unless they have a requirement to be poked every 0.5 seconds
-			wb.remove( selector );
+		if ( elm ) {
+			$elm = $( elm );
+			url = $elm.data( "ctrycnt" );
 
 			$.when( getCountry() ).then( function( countryCode ) {
 
-				if ( countryCode === "") {
-					// Leave default content since we couldn"t find the country
+				if ( countryCode === "" ) {
+
+					// Leave default content since we couldn't find the country
 					return;
 				} else {
+
 					// @TODO: Handle bad country values or any whitelist of countries.
 				}
 
 				url = url.replace( "{country}", countryCode.toLowerCase() );
 
-				$elm.removeAttr( "data-ctrycnt" );
+				$elm.load( url, function() {
 
-				$elm.load(url);
+					// Identify that initialization has completed
+					wb.ready( $elm, componentName );
+				});
 			});
 		}
 	},
@@ -92,21 +91,8 @@ var pluginName = "wb-ctrycnt",
 		return dfd.promise();
 	};
 
-$document.on( "timerpoke.wb " + initEvent, selector, function( event ) {
-	var eventTarget = event.target;
-
-	// Filter out any events triggered by descendants
-	if ( event.currentTarget === eventTarget ) {
-		init( $( eventTarget ) );
-	}
-
-	/*
-	 * Since we are working with events we want to ensure that we are being
-	 * passive about our control, so returning true allows for events to always
-	 * continue
-	 */
-	return true;
-} );
+// Bind the init event of the plugin
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );

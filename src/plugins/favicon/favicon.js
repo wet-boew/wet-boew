@@ -26,11 +26,12 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-favicon",
+var componentName = "wb-favicon",
 	selector = "link[rel='icon']",
-	initEvent = "wb-init." + pluginName,
-	mobileEvent = "mobile." + pluginName,
-	iconEvent = "icon." + pluginName,
+	initEvent = "wb-init." + componentName,
+	updatedEvent = "wb-updated." + componentName,
+	mobileEvent = "mobile." + componentName,
+	iconEvent = "icon." + componentName,
 	$document = wb.doc,
 
 	/*
@@ -46,20 +47,28 @@ var pluginName = "wb-favicon",
 	},
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery DOM element} $favicon The plugin element being initialized
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
-	init = function( $favicon ) {
+	init = function( event ) {
 
-		// Merge default settings with overrides from the selected plugin element.
-		var settings = $.extend( {}, defaults, $favicon.data() );
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
+			$favicon, settings;
 
-		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		wb.remove( selector );
+		if ( elm ) {
+			$favicon = $( elm );
 
-		$favicon.trigger( mobileEvent, settings );
+			// Merge default settings with overrides from the selected plugin element.
+			settings = $.extend( {}, defaults, $favicon.data() );
+
+			$favicon.trigger( mobileEvent, settings );
+
+			// Identify that initialization has completed
+			wb.ready( $document, componentName );
+		}
 	},
 
 	/**
@@ -77,11 +86,11 @@ var pluginName = "wb-favicon",
 
 		// Create the mobile favicon if it doesn't exist
 		if ( !isFaviconMobile ) {
-			faviconMobile = $( "<link rel='" + data.rel + "' sizes='" + data.sizes + "' class='" + pluginName + "'>" );
+			faviconMobile = $( "<link rel='" + data.rel + "' sizes='" + data.sizes + "' class='" + componentName + "'>" );
 		}
 
 		// Only add/update a mobile favicon that was created by the plugin
-		if ( faviconMobile.hasClass( pluginName ) ) {
+		if ( faviconMobile.hasClass( componentName ) ) {
 			faviconPath = data.path !== null ? data.path : getPath( favicon.getAttribute( "href" ) );
 			faviconMobile.attr( "href", faviconPath + data.filename );
 
@@ -89,6 +98,8 @@ var pluginName = "wb-favicon",
 				favicon.parentNode.insertBefore( faviconMobile[ 0 ], favicon );
 			}
 		}
+
+		$document.trigger( updatedEvent, [ "mobile" ] );
 	},
 
 	/**
@@ -101,6 +112,8 @@ var pluginName = "wb-favicon",
 	icon = function( favicon, event, data ) {
 		var faviconPath = data.path !== null ? data.path : getPath( favicon.getAttribute( "href" ) );
 		favicon.setAttribute( "href", faviconPath + data.filename );
+
+		$document.trigger( updatedEvent, [ "icon" ] );
 	},
 
 	/**
@@ -113,21 +126,20 @@ var pluginName = "wb-favicon",
 		return filepath.substring( 0, filepath.lastIndexOf( "/" ) + 1 );
 	};
 
-// Bind the plugin events
-$document.on( "timerpoke.wb " + initEvent + " " + mobileEvent + " " + iconEvent, selector, function( event, data ) {
+// Bind the init event
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
+// Bind the mobile and icon events
+$document.on( mobileEvent + " " + iconEvent, selector, function( event, data ) {
 	var eventTarget = event.target;
 
 	// Filter out any events triggered by descendants
 	if ( event.currentTarget === eventTarget ) {
 		switch ( event.type ) {
-		case "timerpoke":
-		case "wb-init":
-			init( $( eventTarget ) );
-			break;
 		case "mobile":
 			mobile( eventTarget, event, data );
 			break;
+
 		case "icon":
 			icon( eventTarget, event, data );
 			break;

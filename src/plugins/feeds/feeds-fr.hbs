@@ -8,7 +8,7 @@
 	"parentdir": "feeds",
 	"altLangPrefix": "feeds",
 	"css": ["demo/feeds"],
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-07-28"
 }
 ---
 <p>Cette composante est un gadget logiciel permettant de regrouper et d’afficher des données d'un ou plusieurs fils de syndication. Les formats soutenus sont Atom, RSS et Media RSS.</p>
@@ -25,6 +25,24 @@
 				<a href="http://wwwapps.tc.gc.ca/Saf-Sec-Sur/7/VRDB-BDRV/search-recherche/rss.aspx?lang=fra" rel="external">Rappels de la Sécurité Routière</a>
 			</li>
 		</ul>
+
+		<section>
+			<h4>Code</h4>
+			<details>
+				<summary>Visualiser le code</summary>
+				<pre><code>&lt;section class="wb-feeds limit-5"&gt;
+	&lt;h3&gt;Communiqués de presse et rappels de la sécurité routière&lt;/h3&gt;
+	&lt;ul class="feeds-cont"&gt;
+		&lt;li&gt;
+			&lt;a href="http://www.tc.gc.ca/medias/rss/routier.xml" rel="external"&gt;Communiqués de presse routière (Tous)&lt;/a&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;a href="http://wwwapps.tc.gc.ca/Saf-Sec-Sur/7/VRDB-BDRV/search-recherche/rss.aspx?lang=fra" rel="external"&gt;Rappels de la Sécurité Routière&lt;/a&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</section>
 	</section>
 
 	<section class="wb-feeds limit-1">
@@ -34,68 +52,151 @@
 				<a href="http://weather.gc.ca/rss/city/on-118_f.xml" rel="external">Ottawa Ontario</a>
 			</li>
 		</ul>
+
+		<section>
+			<h4>Code</h4>
+			<details>
+				<summary>Visualiser le code</summary>
+				<pre><code>&lt;section class="wb-feeds limit-1"&gt;
+	&lt;h3&gt;Météo d'Ottawa&lt;/h3&gt;
+	&lt;ul class="feeds-cont"&gt;
+		&lt;li&gt;
+			&lt;a href="http://weather.gc.ca/rss/city/on-118_f.xml" rel="external"&gt;Ottawa Ontario&lt;/a&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</section>
 	</section>
 
 	<section>
 		<h3>Les comptes des médias sociaux à onglets</h3>
 		<div class="wb-tabs col-md-5 wb-eqht">
-		<div class="tabpanels">
-			<details id="details-facebook" open="open">
-			<summary>Facebook</summary>
-				<section class="wb-feeds limit-5">
-					<ul class="feeds-cont media-list">
-						<li class="media">
-							 <a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=460123390028&amp;format=atom10">
-								 <img class="media-object" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1.0-1/c17.17.207.207/430015_10151952323214045_194318965_n.png" alt="Environnement Canada" width="64">
-							</a>
-							<div class="media-body">
-								<h4 class="media-heading"><a href="https://www.facebook.com/feeds/page.php?id=460123390028&amp;format=atom10" rel="external">Environnement Canada - Facebook</a></h4>
-								<p>EC est une organisation diversifiée offrant des programmes et des services efficaces et regroupant des gens dynamiques qui font une différence sur le plan environnemental et dans différents aspects de la vie des Canadiennes et Canadiens.</p>
-							</div>
-						</li>
-						<li class="media">
-							 <a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=134615279898518&amp;format=atom10">
-								 <img class="media-object" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/t1.0-1/p320x320/10245484_872682866081663_8340097330550277155_n.png" alt="Parcs Canada" width="64">
-							</a>
-							<div class="media-body">
-								<h4 class="media-heading"><a href="https://www.facebook.com/feeds/page.php?id=134615279898518&amp;format=atom10" rel="external">Parcs Canada- Facebook</a></h4>
-								<p>Les parcs nationaux, aires marines nationales de conservation et lieux historiques nationaux du Canada.</p>
-							</div>
-						</li>
-					</ul>
-					<div class="clearfix"></div>
-				</section>
-			</details>
-
-			<details id="details-flickr">
-			<summary>Flickr</summary>
-				<section class="wb-feeds limit-15">
-					<ul class="feeds-cont list-inline">
-						<li>
-							<a href="https://www.flickr.com/photos/environnementcan" rel="external" data-ajax="https://api.flickr.com/services/feeds/photos_public.gne?id=47721741@N05&amp;format=json" >Flickr d'Environnement Canada</a>
-						</li>
-					</ul>
-					<div class="clearfix"></div>
-				</section>
-			</details>
-
-			<details id="details-Youtube">
-			<summary>Youtube</summary>
-					<section class="wb-feeds limit-15">
-						<ul class="feeds-cont list-inline">
-							<li>
-								<a href="https://www.youtube.com/user/ParksCanadaAgency" rel="external" data-ajax="https://gdata.youtube.com/feeds/api/users/UCr23fllByMomgNGeShe-73g/uploads?v=2&amp;alt=json" >YouTube de Parcs Canada</a>
+			<div class="tabpanels">
+				<details id="details-facebook" open="open">
+					<summary>Facebook</summary>
+					<section class="wb-feeds limit-5">
+						<ul class="feeds-cont media-list">
+							<li class="media">
+								<a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=460123390028&amp;format=atom10">
+									<img class="media-object" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1.0-1/c17.17.207.207/430015_10151952323214045_194318965_n.png" alt="Environnement Canada" width="64">
+								</a>
+								<section class="media-body">
+									<h4 class="media-heading"><a href="https://www.facebook.com/feeds/page.php?id=460123390028&amp;format=atom10" rel="external">Environnement Canada - Facebook</a></h4>
+									<p>EC est une organisation diversifiée offrant des programmes et des services efficaces et regroupant des gens dynamiques qui font une différence sur le plan environnemental et dans différents aspects de la vie des Canadiennes et Canadiens.</p>
+								</section>
 							</li>
-							<li>
-								<a href="https://www.youtube.com/user/fisheriescanada?feature=results_main" rel="external" data-ajax="https://gdata.youtube.com/feeds/api/users/UCf1JLCB96nHLjidhSJtHDFA/uploads?v=2&amp;alt=json" >YouTube de Pêches et Océans Canada</a>
+							<li class="media">
+								<a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=134615279898518&amp;format=atom10">
+									<img class="media-object" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/t1.0-1/p320x320/10245484_872682866081663_8340097330550277155_n.png" alt="Parcs Canada" width="64">
+								</a>
+								<section class="media-body">
+									<h4 class="media-heading"><a href="https://www.facebook.com/feeds/page.php?id=134615279898518&amp;format=atom10" rel="external">Parcs Canada- Facebook</a></h4>
+									<p>Les parcs nationaux, aires marines nationales de conservation et lieux historiques nationaux du Canada.</p>
+								</section>
 							</li>
 						</ul>
 						<div class="clearfix"></div>
 					</section>
-			</details>
-		</div>
+				</details>
+
+				<details id="details-flickr">
+					<summary>Flickr</summary>
+					<section class="wb-feeds limit-10">
+						<ul class="feeds-cont list-inline">
+							<li>
+								<a href="https://www.flickr.com/photos/environnementcan" rel="external" data-ajax="https://api.flickr.com/services/feeds/photos_public.gne?id=47721741@N05&amp;format=json">Flickr d'Environnement Canada</a>
+							</li>
+						</ul>
+						<div class="clearfix"></div>
+					</section>
+				</details>
+
+				<details id="details-youtube">
+					<summary>YouTube</summary>
+					<section class="wb-feeds limit-10">
+						<ul class="feeds-cont list-inline">
+							<li>
+								<a href="https://www.youtube.com/user/ParksCanadaAgency" rel="external" data-ajax="https://gdata.youtube.com/feeds/api/users/UCr23fllByMomgNGeShe-73g/uploads?v=2&amp;alt=json">YouTube de Parcs Canada</a>
+							</li>
+							<li>
+								<a href="https://www.youtube.com/user/fisheriescanada?feature=results_main" rel="external" data-ajax="https://gdata.youtube.com/feeds/api/users/UCf1JLCB96nHLjidhSJtHDFA/uploads?v=2&amp;alt=json">YouTube de Pêches et Océans Canada</a>
+							</li>
+						</ul>
+						<div class="clearfix"></div>
+					</section>
+				</details>
+			</div>
 		</div>
 		<div class="clearfix"></div>
+
+		<section>
+			<h4>Code</h4>
+			<details>
+				<summary>Visualiser le code</summary>
+				<pre><code>&lt;section&gt;
+	&lt;h3&gt;Les fils de syndication à onglets&lt;/h3&gt;
+	&lt;div class="wb-tabs col-md-5 wb-eqht"&gt;
+		&lt;div class="tabpanels"&gt;
+			&lt;details id="details-facebook" open="open"&gt;
+				&lt;summary&gt;Facebook&lt;/summary&gt;
+				&lt;section class="wb-feeds limit-5"&gt;
+					&lt;ul class="feeds-cont media-list"&gt;
+						&lt;li class="media"&gt;
+							&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=460123390028&amp;amp;format=atom10"&gt;
+								&lt;img class="media-object" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1.0-1/c17.17.207.207/430015_10151952323214045_194318965_n.png" alt="Environnement Canada" width="64"&gt;
+							&lt;/a&gt;
+							&lt;section class="media-body"&gt;
+								&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=460123390028&amp;amp;format=atom10" rel="external"&gt;Environnement Canada - Facebook&lt;/a&gt;&lt;/h4&gt;
+								&lt;p&gt;EC est une organisation diversifiée offrant des programmes et des services efficaces et regroupant des gens dynamiques qui font une différence sur le plan environnemental et dans différents aspects de la vie des Canadiennes et Canadiens.&lt;/p&gt;
+							&lt;/section&gt;
+						&lt;/li&gt;
+						&lt;li class="media"&gt;
+							&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=134615279898518&amp;amp;format=atom10"&gt;
+								&lt;img class="media-object" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/t1.0-1/p320x320/10245484_872682866081663_8340097330550277155_n.png" alt="Parcs Canada" width="64"&gt;
+							&lt;/a&gt;
+							&lt;section class="media-body"&gt;
+								&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=134615279898518&amp;amp;format=atom10" rel="external"&gt;Parcs Canada- Facebook&lt;/a&gt;&lt;/h4&gt;
+								&lt;p&gt;Les parcs nationaux, aires marines nationales de conservation et lieux historiques nationaux du Canada.&lt;/p&gt;
+							&lt;/section&gt;
+						&lt;/li&gt;
+					&lt;/ul&gt;
+					&lt;div class="clearfix"&gt;&lt;/div&gt;
+				&lt;/section&gt;
+			&lt;/details&gt;
+
+			&lt;details id="details-flickr"&gt;
+				&lt;summary&gt;Flickr&lt;/summary&gt;
+				&lt;section class="wb-feeds limit-10"&gt;
+					&lt;ul class="feeds-cont list-inline"&gt;
+						&lt;li&gt;
+							&lt;a href="https://www.flickr.com/photos/environnementcan" rel="external" data-ajax="https://api.flickr.com/services/feeds/photos_public.gne?id=47721741@N05&amp;amp;format=json"&gt;Flickr d'Environnement Canada&lt;/a&gt;
+						&lt;/li&gt;
+					&lt;/ul&gt;
+					&lt;div class="clearfix"&gt;&lt;/div&gt;
+				&lt;/section&gt;
+			&lt;/details&gt;
+
+			&lt;details id="details-youtube"&gt;
+				&lt;summary&gt;YouTube&lt;/summary&gt;
+				&lt;section class="wb-feeds limit-10"&gt;
+					&lt;ul class="feeds-cont list-inline"&gt;
+						&lt;li&gt;
+							&lt;a href="https://www.youtube.com/user/ParksCanadaAgency" rel="external" data-ajax="https://gdata.youtube.com/feeds/api/users/UCr23fllByMomgNGeShe-73g/uploads?v=2&amp;amp;alt=json"&gt;YouTube de Parcs Canada&lt;/a&gt;
+						&lt;/li&gt;
+						&lt;li&gt;
+							&lt;a href="https://www.youtube.com/user/fisheriescanada?feature=results_main" rel="external" data-ajax="https://gdata.youtube.com/feeds/api/users/UCf1JLCB96nHLjidhSJtHDFA/uploads?v=2&amp;amp;alt=json"&gt;YouTube de Pêches et Océans Canada&lt;/a&gt;
+						&lt;/li&gt;
+					&lt;/ul&gt;
+					&lt;div class="clearfix"&gt;&lt;/div&gt;
+				&lt;/section&gt;
+			&lt;/details&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class="clearfix"&gt;&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</section>
 	</section>
 </section>
 

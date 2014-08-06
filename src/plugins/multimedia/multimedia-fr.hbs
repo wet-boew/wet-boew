@@ -7,14 +7,17 @@
 	"tag": "multimedia",
 	"parentdir": "multimedia",
 	"altLangPrefix": "multimedia",
-	"dateModified": "2014-06-10"
+	"dateModified": "2014-07-21"
 }
 ---
+<span class="wb-prettify all-pre hide"></span>
+
 <div class="row">
-	<div class="col-md-12">
-		<p>Pour la vidéo, le lecteur multimédia s'appuie sur la balise video HTML5 natif et s'appuie sur Flash comme un mécanisme de secours lorsque la balise video HTML5 n'est pas implémentée. Le format MPEG-4 (codec H264) est le minimum requis pour la vidéo parce que le repli flash s'appuie sur elle et H264 est le format vidéo standard sur de nombreux appareils mobiles. Un WebM facultative mais fortement recommandée (VP8 codec) devrait être ajouté aussi bien pour permettre à certains navigateurs tels que Firefox qui ne comprennent pas un support natif pour H264 de tirer parti des gains de performance HTML5 indigènes.</p>
-		<p>Le scénario du lecteur multimédia repose sur l'élément de progrès HTML5 et utilise un polyfill lorsque l'élément n'est pas pris en charge.</p>
-	</div>
+	<section class="col-md-12">
+		<h2>Vue d'ensemble</h2>
+		<p>Pour la vidéo, le lecteur multimédia s'appuie sur la balise «&#160;<code>video</code>&#160;» HTML5 natif et s'appuie sur Flash comme un mécanisme de secours lorsque la balise «&#160;<code>video</code>&#160;» HTML5 n'est pas implémentée. Le format MPEG-4 (codec H264) est le minimum requis pour la vidéo parce que le repli flash s'appuie sur elle et H264 est le format vidéo standard sur de nombreux appareils mobiles. Un WebM facultative mais fortement recommandée (VP8 codec) devrait être ajouté aussi bien pour permettre à certains navigateurs tels que Firefox qui ne comprennent pas un support natif pour H264 de tirer parti des gains de performance HTML5 indigènes.</p>
+		<p>Le scénario du lecteur multimédia repose sur l'élément «&#160;<code>progress</code>&#160;» HTML5 et utilise un polyfill lorsque l'élément n'est pas pris en charge.</p>
+	</section>
 </div>
 
 <section>
@@ -38,7 +41,38 @@
 					<p>Trouver un emploi (<a href="http://www.servicecanada.gc.ca/fra/video/te.shtml">Transcription</a>)</p>
 				</figcaption>
 			</figure>
+
+			<details class="mrgn-tp-md mrgn-bttm-lg">
+				<summary>Visualiser le code</summary>
+				<section>
+					<h4>HTML dans la page</h4>
+					<pre><code>&lt;figure class=&quot;wb-mltmd&quot; data-wb-mltmd='{&quot;shareUrl&quot;: &quot;http://youtu.be/6hvfIm4eEdI&quot;}'&gt;
+	&lt;video poster=&quot;http://www.servicecanada.gc.ca/fra/video/images/te-lj-fra.jpg&quot; title=&quot;Trouver un emploi&quot;&gt;
+		&lt;source type=&quot;video/webm&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.webm&quot; /&gt;
+		&lt;source type=&quot;video/mp4&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.mp4&quot; /&gt;
+		&lt;track src=&quot;cpts-lg-fr.html&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;fr&quot; label=&quot;Français&quot; /&gt;
+	&lt;/video&gt;
+	&lt;figcaption&gt;
+		&lt;p&gt;Trouver un emploi (&lt;a href=&quot;http://www.servicecanada.gc.ca/fra/video/te.shtml&quot;&gt;Transcription&lt;/a&gt;)&lt;/p&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+				</section>
+
+				<section>
+					<h4>cpts-lg-fr.html</h4>
+					<pre><code>&lt;div id=&quot;inline-captions&quot;&gt;
+	&lt;section&gt;
+		&lt;h2&gt;Transcription&lt;/h2&gt;
+		&lt;p class=&quot;wb-vd&quot;&gt;&lt;strong&gt;(La vidéo débute par une image de l&amp;#39;animatrice s&amp;#39;avançant vers la caméra. Un trait rouge suit le texte «&amp;#160;Trouver un emploi&amp;#160;».)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;2.34s&quot; data-dur=&quot;3.04s&quot;&gt;Bonjour, je m&amp;#39;appelle Amélie et je travaille &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;5.37s&quot; data-dur=&quot;1.50s&quot;&gt;à Service Canada.&lt;/span&gt;&lt;/p&gt;
+		...
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
+				</section>
+			</details>
 		</section>
+
 		<section class="col-md-6">
 			<h3 class="wb-inv">MPEG4 (H264 + AAC) et WebM (VP8) avec les sous-titres au HTML</h3>
 			<figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "http://youtu.be/8dyFjxGXF6s"}'>
@@ -51,8 +85,39 @@
 					<p>Développement des compétences (<a href="http://www.servicecanada.gc.ca/fra/video/dc.shtml">Transcription</a>)</p>
 				</figcaption>
 			</figure>
+
+			<details class="mrgn-tp-md mrgn-bttm-lg">
+				<summary>Visualiser le code</summary>
+				<section>
+					<h4>HTML dans la page</h4>
+					<pre><code>&lt;figure class=&quot;wb-mltmd&quot; data-wb-mltmd='{&quot;shareUrl&quot;: &quot;http://youtu.be/8dyFjxGXF6s&quot;}'&gt;
+	&lt;video poster=&quot;http://www.servicecanada.gc.ca/fra/video/images/dc-td-fra.jpg&quot; title=&quot;Video Example&quot;&gt;
+		&lt;source type=&quot;video/webm&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/dc-td-fra.webm&quot; /&gt;
+		&lt;source type=&quot;video/mp4&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/dc-td-fra.mp4&quot; /&gt;
+		&lt;track src=&quot;cpts-lg2-fr.html&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;fr&quot; label=&quot;Français&quot; /&gt;
+	&lt;/video&gt;
+	&lt;figcaption&gt;
+		&lt;p&gt;Développement des compétences (&lt;a href=&quot;http://www.servicecanada.gc.ca/fra/video/dc.shtml&quot;&gt;Transcription&lt;/a&gt;)&lt;/p&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+				</section>
+
+				<section>
+					<h4>cpts-lg2-fr.html</h4>
+					<pre><code>&lt;div id=&quot;inline-captions&quot;&gt;
+	&lt;section&gt;
+		&lt;h2&gt;Transcription&lt;/h2&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(La vidéo débute par une image de l'animatrice s'avançant vers la caméra. Un trait rouge suit le texte «&amp;#160;Développement des compétences&amp;#160;».)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;2.20s&quot; data-dur=&quot;3.10s&quot; data-load=&quot;tt&quot;&gt;Bonjour, je m'appelle Amélie et je travaille &lt;/span&gt;
+		&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;5.30s&quot; data-dur=&quot;1.63s&quot; data-load=&quot;tt&quot;&gt;à Service Canada.&lt;/span&gt;&lt;/p&gt;
+		...
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
+				</section>
+			</details>
 		</section>
 	</div>
+
 	<div class="row">
 		<section class="col-md-12">
 			<h3>MPEG4 (H264 + AAC) Source avec sous-titre intégré au HTML</h3>
@@ -130,6 +195,25 @@
 					</details>
 				</figcaption>
 			</figure>
+
+			<details class="mrgn-tp-md">
+				<summary>Visualiser le code</summary>
+				<pre><code>&lt;figure class=&quot;wb-mltmd&quot;&gt;
+	&lt;video poster=&quot;http://www.servicecanada.gc.ca/fra/video/images/te-lj-fra.jpg&quot; title=&quot;Trouver un emploi&quot;&gt;
+		&lt;source type=&quot;video/mp4&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.mp4&quot; /&gt;
+		&lt;track src=&quot;#inline-captions&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;en&quot; label=&quot;Français&quot; /&gt;
+	&lt;/video&gt;
+	&lt;figcaption&gt;
+		&lt;details id=&quot;inline-captions&quot;&gt;
+			&lt;summary&gt;Trouver un emploi - Transcription et Sous-Titres HTML5&lt;/summary&gt;
+			&lt;p class=&quot;wet-boew-vd&quot;&gt;&lt;strong&gt;(La vidéo débute par une image de l&amp;#39;animatrice s&amp;#39;avançant vers la caméra. Un trait rouge suit le texte «&amp;#160;Trouver un emploi&amp;#160;».)&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;2.34s&quot; data-dur=&quot;3.04s&quot;&gt;Bonjour, je m&amp;#39;appelle Amélie et je travaille &lt;/span&gt;
+			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;5.37s&quot; data-dur=&quot;1.50s&quot;&gt;à Service Canada.&lt;/span&gt;&lt;/p&gt;
+			...
+		&lt;/details&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+			</details>
 		</section>
 	</div>
 </section>

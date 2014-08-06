@@ -13,32 +13,31 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-twitter",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
+var componentName = "wb-twitter",
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
-		var eventTarget = event.target,
+
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var eventTarget = wb.init( event, componentName, selector ),
 			protocol = wb.pageUrlParts.protocol;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === eventTarget &&
-			eventTarget.className.indexOf( initedClass ) === -1 ) {
-
-			wb.remove( selector );
-			eventTarget.className += " " + initedClass;
-
+		if ( eventTarget ) {
 			Modernizr.load( {
-				load: ( protocol.indexOf( "http" ) === -1 ? "http:" : protocol ) + "//platform.twitter.com/widgets.js"
+				load: ( protocol.indexOf( "http" ) === -1 ? "http:" : protocol ) + "//platform.twitter.com/widgets.js",
+				complete: function() {
+
+					// Identify that initialization has completed
+					wb.ready( $( eventTarget ), componentName );
+				}
 			});
 		}
 	};

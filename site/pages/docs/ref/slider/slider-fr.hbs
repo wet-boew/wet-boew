@@ -2,15 +2,17 @@
 {
 	"title": "Correctif « input type=\"range\" » (barre coulissante)",
 	"language": "fr",
-	"description": "Émule l’élément <input type=\"range\"> pour les navigateurs qui ne le supportent pas.",
+	"category": "Correctifs",
+	"categoryfile": "polyfills",
+	"description": "Émule l’élément <input type=\"range\"> pour les navigateurs qui ne le supportent pas. Le <input type=\"range\"> permet d'afficher une barre coulissante.",
 	"altLangPrefix": "slider",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-08-04"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
 
 <section>
-	<h2>Purpose</h2>
+	<h2>But</h2>
 	<p>Le <code>&lt;input type="range" /&gt;</code> permet d'afficher une barre coulissante. Étant donné que certains navigateurs ne prennent pas en charge cette fonctionnalité à l'origine, ce correctif émule la même fonctionnalité en utilisant HTML générique et WAI-ARIA.</p>
 </section>
 
@@ -32,6 +34,59 @@
 <section>
 	<h2>Configuration options</h2>
 	<p><a href="http://www.w3.org/TR/html5/forms.html#range-state-%28type=range%29">Configuration options available for the <code>input type="range"</code> element (HTML5 specification)</a></p>
+</section>
+
+<section>
+	<h2>Events</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Event</th>
+				<th>Trigger</th>
+				<th>What it does</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>wb-init.wb-slider</code></td>
+				<td>Triggered manually (e.g., <code>$( "input[type='range']" ).trigger( "wb-init.wb-slider" );</code>).</td>
+				<td>Used to manually initialize the <code>input type="range"</code> polyfill. <strong>Note:</strong> The <code>progress</code> polyfill will be initialized automatically unless the <code>input type="range"</code> element is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-update.wb-slider</code></td>
+				<td>Triggered manually (e.g., <code>$( "input[type='range']" ).trigger( "wb-update.wb-slider" );</code>).</td>
+				<td>Used to manually update the <code>input type="range"</code> polyfill.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-slider</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the <code>progress</code> polyfill initializes. <strong>Note:</strong> This event will only be triggered if the polyfill is loaded. The polyfill will not load for browsers with native <code>input type="range"</code> support.</td>
+				<td>Used to identify where the <code>input type="range"</code> polyfill initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-slider", "input[type='range']", function( event ) {
+});</code></pre>
+					<pre><code>$( "input[type='range']" ).on( "wb-ready.wb-slider", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-updated.wb-slider</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the <code>input type="range"</code> polyfill is updated. <strong>Note:</strong> This event will only be triggered if the polyfill is loaded. The polyfill will not load for browsers with native <code>input type="range"</code> support.</td>
+				<td>Used to identify where the <code>input type="range"</code> polyfill initialized (target of the event)
+					<pre><code>$( document ).on( "wb-updated.wb-slider", "input[type='range']", function( event ) {
+});</code></pre>
+					<pre><code>$( "input[type='range']" ).on( "wb-updated.wb-slider", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </section>
 
 <section>

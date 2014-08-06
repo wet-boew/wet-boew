@@ -9,19 +9,202 @@
 	"altLangPrefix": "overlay",
 	"js": ["demo/overlay"],
 	"css": ["demo/overlay"],
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-07-22"
 }
 ---
-<ul>
-	<li><a href="#left-panel" aria-controls="left-panel" class="overlay-lnk" role="button">Left-panel</a></li>
-	<li><a href="#right-panel" aria-controls="right-panel" class="overlay-lnk" role="button">Right-panel</a></li>
-	<li><a href="#top-bar" aria-controls="top-bar" class="overlay-lnk" role="button">Top bar</a></li>
-	<li><a href="#bottom-bar" aria-controls="bottom-bar" class="overlay-lnk" role="button">Bottom bar</a></li>
-	<li><a href="#centred-popup" aria-controls="centred-popup" class="wb-lbx" role="button">Centred popup (Lightbox)</a></li>
-	<li><a href="#centred-popup-modal" aria-controls="centred-popup-modal" class="wb-lbx lbx-modal" role="button">Centred popup - Modal (Lightbox + Modal)</a></li>
-	<li><a href="#full-screen" aria-controls="full-screen" class="overlay-lnk" role="button">Full-screen overlay</a></li>
-	<li><a href="#hidden-header" aria-controls="hidden-header" class="overlay-lnk" role="button">Full-screen overlay - Hidden header</a></li>
-</ul>
+<span class="wb-prettify all-pre hide"></span>
+
+<section>
+	<h2>Purpose</h2>
+	<p>A flexible, responsive overlay plugin.</p>
+</section>
+
+<section>
+	<h2>Examples</h2>
+	<ul>
+		<li>
+			<p><a href="#left-panel" aria-controls="left-panel" class="overlay-lnk" role="button">Left-panel</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>View code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#left-panel&quot; aria-controls=&quot;left-panel&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Left-panel&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;left-panel&quot; class=&quot;wb-overlay modal-content overlay-def wb-panel-l&quot;&gt;
+	&lt;header class=&quot;modal-header&quot;&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Left panel&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;div class=&quot;modal-body&quot;&gt;
+		...
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+		<li>
+			<p><a href="#right-panel" aria-controls="right-panel" class="overlay-lnk" role="button">Right-panel</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>View code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#right-panel&quot; aria-controls=&quot;right-panel&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Right-panel&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;right-panel&quot; class=&quot;wb-overlay modal-content overlay-def wb-panel-r&quot;&gt;
+	&lt;header class=&quot;modal-header&quot;&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Right panel&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;div class=&quot;modal-body&quot;&gt;
+		...
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+		<li>
+			<p><a href="#top-bar" aria-controls="top-bar" class="overlay-lnk" role="button">Top bar</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>View code</summary><p><a href="#top-bar" aria-controls="top-bar" class="overlay-lnk" role="button">Top bar</a></p>
+				<pre><code>&lt;a href=&quot;#top-bar&quot; aria-controls=&quot;top-bar&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Top bar&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;top-bar&quot; class=&quot;wb-overlay modal-content overlay-def wb-bar-t&quot;&gt;
+	&lt;header&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Top bar&lt;/h2&gt;
+	&lt;/header&gt;
+	...
+&lt;/section&gt;</code></pre>				
+			</details>
+		</li>
+		<li>
+			<p><a href="#bottom-bar" aria-controls="bottom-bar" class="overlay-lnk" role="button">Bottom bar</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>View code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#bottom-bar&quot; aria-controls=&quot;bottom-bar&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Bottom bar&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;bottom-bar&quot; class=&quot;wb-overlay modal-content overlay-def wb-bar-b&quot;&gt;
+	&lt;header&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Bottom bar&lt;/h2&gt;
+	&lt;/header&gt;
+	...
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+		<li>
+			<p><a href="#centred-popup" aria-controls="centred-popup" class="wb-lbx" role="button">Centred popup (Lightbox)</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>View code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#centred-popup&quot; aria-controls=&quot;centred-popup&quot; class=&quot;wb-lbx&quot; role=&quot;button&quot;&gt;Centred popup (Lightbox)&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;centred-popup&quot; class=&quot;mfp-hide modal-dialog modal-content overlay-def&quot;&gt;
+	&lt;header class=&quot;modal-header&quot;&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Centred popup (Lightbox)&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;div class=&quot;modal-body&quot;&gt;
+		...
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+		<li>
+			<p><a href="#centred-popup-modal" aria-controls="centred-popup-modal" class="wb-lbx lbx-modal" role="button">Centred popup - Modal (Lightbox + Modal)</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>View code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#centred-popup-modal&quot; aria-controls=&quot;centred-popup-modal&quot; class=&quot;wb-lbx lbx-modal&quot; role=&quot;button&quot;&gt;Centred popup - Modal (Lightbox + Modal)&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;centred-popup-modal&quot; class=&quot;mfp-hide modal-dialog modal-content overlay-def&quot;&gt;
+	&lt;header class=&quot;modal-header&quot;&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Centred popup - Modal (Lightbox + Modal)&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;div class=&quot;modal-body&quot;&gt;
+		...
+		&lt;button class=&quot;btn btn-primary popup-modal-dismiss&quot;&gt;Close modal popup&lt;/button&gt;
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+		<li>
+			<p><a href="#full-screen" aria-controls="full-screen" class="overlay-lnk" role="button">Full-screen overlay</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>View code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#full-screen&quot; aria-controls=&quot;full-screen&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Full-screen overlay&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;full-screen&quot; class=&quot;wb-overlay modal-content overlay-def wb-popup-full&quot;&gt;
+	&lt;header class=&quot;modal-header&quot;&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Full-screen overlay&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;div class=&quot;modal-body&quot;&gt;
+		...
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+		<li>
+			<p><a href="#hidden-header" aria-controls="hidden-header" class="overlay-lnk" role="button">Full-screen overlay - Hidden header</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>View code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#hidden-header&quot; aria-controls=&quot;hidden-header&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Full-screen overlay - Hidden header&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;hidden-header&quot; class=&quot;wb-overlay modal-content wb-popup-full hidden-hd&quot;&gt;
+	&lt;header&gt;
+		&lt;h2 class=&quot;wb-inv&quot;&gt;Full-screen overlay - Hidden header&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;div class=&quot;modal-body&quot;&gt;
+		...
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+	</ul>
+
+	<section>
+		<h3>Opening overlays through JavaScript</h3>
+		<p>Overlays can be opened through JavaScript with:</p>
+		<pre><code>$( "#overlayId" ).trigger( "open.wb-overlaylbx" );</code></pre>
+		<p>For an example of opening Lightbox popups through JavaScript, see <a href="../lightbox/lightbox-en.html#examples5">Opening popups through JavaScript</a>.</p>
+
+		<label for="overlay-select">Overlay to open</label>
+		<select id="overlay-select">
+			<option value="left-panel">Left panel</option>
+			<option value="right-panel">Right panel</option>
+			<option value="top-bar">Top bar</option>
+			<option value="bottom-bar">Bottom bar</option>
+			<option value="full-screen">Full-screen overlay</option>
+			<option value="hidden-header">Full-screen overlay - Hidden header</option>
+		</select>
+		<button id="overlay-open-btn">Open overlay</button>
+
+		<section>
+			<h4>Code</h4>
+			<details>
+				<summary>View code</summary>
+				<section>
+					<h5>HTML</h5>
+					<pre><code>&lt;label for="overlay-select"&gt;Overlay to open&lt;/label&gt;
+&lt;select id="overlay-select"&gt;
+	&lt;option value="left-panel"&gt;Left panel&lt;/option&gt;
+	&lt;option value="right-panel"&gt;Right panel&lt;/option&gt;
+	&lt;option value="top-bar"&gt;Top bar&lt;/option&gt;
+	&lt;option value="bottom-bar"&gt;Bottom bar&lt;/option&gt;
+	&lt;option value="full-screen"&gt;Full-screen overlay&lt;/option&gt;
+	&lt;option value="hidden-header"&gt;Full-screen overlay - Hidden header&lt;/option&gt;
+&lt;/select&gt;
+&lt;button id="overlay-open-btn"&gt;Open overlay&lt;/button&gt;</code></pre>
+						</section>
+
+					<section>
+						<h5>JavaScript</h5>
+						<pre><code>(function( $, wb ) {
+"use strict";
+
+wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
+	if ( event.stopPropagation ) {
+		event.stopImmediatePropagation();
+	} else {
+		event.cancelBubble = true;
+	}
+
+	$( "#" + $( "#overlay-select" ).val() ).trigger( "open.wb-overlay" );
+});
+
+})( jQuery, wb );</code></pre>
+				</section>
+			</details>
+		</section>
+	</section>
+</section>
 
 <section id="left-panel" class="wb-overlay modal-content overlay-def wb-panel-l">
 	<header class="modal-header">

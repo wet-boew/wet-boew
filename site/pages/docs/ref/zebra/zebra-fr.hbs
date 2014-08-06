@@ -2,104 +2,72 @@
 {
 	"title": "Rayage du zèbre",
 	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
 	"description": "Rayage du zèbre pour les tableaux",
 	"altLangPrefix": "zebra",
-	"dateModified": "2014-03-06"
+	"dateModified": "2014-08-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
 
 <div lang="en">
 <p><strong>Needs translation</strong></p>
+<p class="bg-info">The <a href="http://getbootstrap.com/css/#tables-striped">striped rows</a> functionality is provided from <strong>Twitter Bootstrap CSS</strong></p>
+
 <section>
 	<h2>Purpose</h2>
-	<p>A brief description of the component.</p>
+	<p>Style special relationship between cell, vector (row/col) and group (tbody/colgroup). It also simulate a column hovering effect for table.</p>	
 </section>
 
 <section>
 	<h2>Use when</h2>
 	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
+		<li>To style special relationship in table</li>
+		<li>To provide a column hovering effect to the user, when appropriate</li>
 	</ul>
 </section>
 
 <section>
 	<h2>Do not use when</h2>
 	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
+		<li>For styling table that are not conform at the 12 technique for tables</li>
 	</ul>
 </section>
 
 <section>
 	<h2>Working example</h2>
-	<p><a href="#">Link to a working example</a></p>
+	<p>English:</p>
+	<ul>
+		<li><a href="../../../demos/zebra/zebra-en.html">Zebra Stripping</a></li>
+	</ul>
+	<p>French:</p>
+	<ul lang="fr">
+		<li><a href="../../../demos/zebra/zebra-fr.html" hreflang="fr">Rayage du zèbre</a></li>
+	</ul>
 </section>
+
 
 <section>
 	<h2>How to implement</h2>
 	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
+		<li>Make your table conform at the 12 techniques for tables</li>
+		<li>Add a <b>class=&quot;wb-zebra&quot;</b> element to the table.
+			<pre><code>&lt;table class=&quot;wb-zebra&quot;&gt;</code></pre>
 		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
+		<li>(Optional) Activate the indicator that your tables contains data summaries
+			<pre><code>&lt;table class=&quot;wb-zebra hassum&quot;&gt;</code></pre>
 		</li>
-		<li>Step 4</li>
+		<li>(Optional) Activate the column hovering effect
+			<pre><code>&lt;table class=&quot;wb-zebra wb-zebra-col-hover&quot;&gt;</code></pre>
+		</li>
 	</ol>
 </section>
 
+
 <section>
 	<h2>Configuration options</h2>
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Option</th>
-				<th>Description</th>
-				<th>How to configure</th>
-				<th>Values</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
-			</tr>
-			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+	<p>There is no customizable configuration options.</p>
 </section>
 
 <section>
@@ -115,14 +83,37 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Event 1</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td><code>wb-init.wb-zebra</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-zebra" ).trigger( "wb-init.wb-zebra" );</code>).</td>
+				<td>Load table parser dependency and initiate the complex table parsing.</td>
 			</tr>
 			<tr>
-				<td>Event 2</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td><code>wb-ready.wb-zebra</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the Zebra plugin initializes.</td>
+				<td>Used to identify where the Zebra plugin initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-zebra", ".wb-zebra", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-zebra" ).on( "wb-ready.wb-zebra", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>passiveparse.wb-tableparser</code></td>
+				<td>When the zebra plugin initiate the complex table parsing.</td>
+				<td>It will parse the data table and attach the information to a data attribute named <code>&quot;tblparser&quot;</code> on every elements inside and on to the table elements.</td>
+			</tr>
+			<tr>
+				<td><code>parsecomplete.wb-tableparser</code></td>
+				<td>When the table parser has completed his parsing.</td>
+				<td>It's means that the <code>&quot;tblparser&quot;</code> data attribute is now ready to be use.</td>
 			</tr>
 		</tbody>
 	</table>
@@ -130,6 +121,9 @@ Example of multi-line code</code></pre>
 
 <section>
 	<h2>Source code</h2>
-	<p><a href="#">Link to the folder on GitHub containing the files for the component</a></p>
+	<ul>
+		<li>Core: <a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/zebra">Zebra plugin</a></li>
+		<li>Dependency: <a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/deps">Complex Table Parser</a></li>
+	</ul>
 </section>
 </div>

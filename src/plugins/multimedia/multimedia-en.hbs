@@ -7,14 +7,17 @@
 	"tag": "multimedia",
 	"parentdir": "multimedia",
 	"altLangPrefix": "multimedia",
-	"dateModified": "2014-06-10"
+	"dateModified": "2014-07-21"
 }
 ---
+<span class="wb-prettify all-pre hide"></span>
+
 <div class="row">
-	<div class="col-md-12">
-		<p>For video, the multimedia player leverages the native HTML5 video tag and relies on Flash as a fallback mechanism when the HTML5 video tag is not implemented. The MPEG 4 format (H264 codec) is the minimum requirement for video because the Flash fallback relies on it and H264 is the standard video format on many mobile devices. An optional but highly recommended Webm (VP8 codec) should be added as well to allow some browsers such as Firefox that do not include native support for H264 to leverage the native HTML5 performance gains.</p>
-		<p>The multimedia player's timeline relies on the HTML5 progress element and uses a polyfill when the element is not supported.</p>
-	</div>
+	<section class="col-md-12">
+		<h2>Overview</h2>
+		<p>For video, the multimedia player leverages the native HTML5 <code>video</code> tag and relies on Flash as a fallback mechanism when the HTML5 <code>video</code> tag is not implemented. The MPEG 4 format (H264 codec) is the minimum requirement for video because the Flash fallback relies on it and H264 is the standard video format on many mobile devices. An optional but highly recommended Webm (VP8 codec) should be added as well to allow some browsers such as Firefox that do not include native support for H264 to leverage the native HTML5 performance gains.</p>
+		<p>The multimedia player's timeline relies on the HTML5 <code>progress</code> element and uses a polyfill when the element is not supported.</p>
+	</section>
 </div>
 
 <section>
@@ -38,7 +41,38 @@
 					<p>Looking for a Job (<a href="http://www.servicecanada.gc.ca/eng/video/lj.shtml">Transcript</a>)</p>
 				</figcaption>
 			</figure>
+
+			<details class="mrgn-tp-md mrgn-bttm-lg">
+				<summary>View code</summary>
+				<section>
+					<h4>In-page HTML</h4>
+					<pre><code>&lt;figure class=&quot;wb-mltmd&quot; data-wb-mltmd='{&quot;shareUrl&quot;: &quot;http://youtu.be/p2-1ZIHu1W0&quot;}'&gt;
+	&lt;video poster=&quot;http://www.servicecanada.gc.ca/eng/video/images/te-lj-eng.jpg&quot; title=&quot;Looking for a Job&quot;&gt;
+		&lt;source type=&quot;video/webm&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.webm&quot; /&gt;
+		&lt;source type=&quot;video/mp4&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4&quot; /&gt;
+		&lt;track src=&quot;cpts-lg-en.html&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
+	&lt;/video&gt;
+	&lt;figcaption&gt;
+		&lt;p&gt;Looking for a Job (&lt;a href=&quot;http://www.servicecanada.gc.ca/eng/video/lj.shtml&quot;&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+				</section>
+
+				<section>
+					<h4>cpts-lg-en.html</h4>
+					<pre><code>&lt;div id=&quot;inline-captions&quot;&gt;
+	&lt;section&gt;
+		&lt;h2&gt;Transcript&lt;/h2&gt;
+		&lt;p class=&quot;wb-vd&quot;&gt;&lt;strong&gt;(Animated pen draws a red line that leads into the text Looking for A Job)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot;&gt;&lt;strong&gt;(Cut to a medium shot of the Host. LINE DRAWING GRAPHIC: Stick person appears and waves.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;2.50s&quot; data-dur=&quot;3.84s&quot;&gt;Hi, my name is Eric, and I&amp;#39;m a Service Canada employee.&lt;/span&gt;&lt;/p&gt;
+		...
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
+				</section>
+			</details>
 		</section>
+
 		<section class="col-md-6">
 			<h3 class="wb-inv">MPEG4 (H264 + AAC) and WebM (VP8) source and HTML captions</h3>
 			<figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "http://youtu.be/jmNmrubTNI4"}'>
@@ -51,8 +85,39 @@
 					<p>Training and Development (<a href="http://www.servicecanada.gc.ca/eng/video/td.shtml">Transcript</a>)</p>
 				</figcaption>
 			</figure>
+
+			<details class="mrgn-tp-md mrgn-bttm-lg">
+				<summary>View code</summary>
+				<section>
+					<h4>In-page HTML</h4>
+					<pre><code>&lt;figure class=&quot;wb-mltmd&quot; data-wb-mltmd='{&quot;shareUrl&quot;: &quot;http://youtu.be/jmNmrubTNI4&quot;}'&gt;
+	&lt;video poster=&quot;http://www.servicecanada.gc.ca/eng/video/images/dc-td-eng.jpg&quot; title=&quot;Training and Development&quot;&gt;
+		&lt;source type=&quot;video/webm&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/dc-td-eng.webm&quot; /&gt;
+		&lt;source type=&quot;video/mp4&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/dc-td-eng.mp4&quot; /&gt;
+		&lt;track src=&quot;cpts-lg2-en.html&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
+	&lt;/video&gt;
+	&lt;figcaption&gt;
+		&lt;p&gt;Training and Development (&lt;a href=&quot;http://www.servicecanada.gc.ca/eng/video/td.shtml&quot;&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+				</section>
+
+				<section>
+					<h4>cpts-lg2-en.html</h4>
+					<pre><code>&lt;div id=&quot;inline-captions&quot;&gt;
+	&lt;section&gt;
+		&lt;h2&gt;Transcript&lt;/h2&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(Animated pen draws a red line that leads into the text Training and development.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;1.40s&quot; data-dur=&quot;3.33s&quot; data-load=&quot;tt&quot;&gt;Hi, my name is Eric, and I'm a Service Canada employee.&lt;/span&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot; data-load=&quot;vd&quot;&gt;&lt;strong&gt;(Cut to a close-up of the Host.)&lt;/strong&gt;&lt;/p&gt;
+		...
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
+				</section>
+			</details>
 		</section>
 	</div>
+
 	<div class="row">
 		<section class="col-md-12">
 			<h3>MPEG4 (H264 + AAC) source with inline HTML captions</h3>
@@ -124,6 +189,25 @@
 					</details>
 				</figcaption>
 			</figure>
+
+			<details class="mrgn-tp-md">
+				<summary>View code</summary>
+				<pre><code>&lt;figure class=&quot;wb-mltmd&quot;&gt;
+	&lt;video poster=&quot;http://www.servicecanada.gc.ca/eng/video/images/te-lj-eng.jpg&quot; title=&quot;Looking for a Job&quot;&gt;
+		&lt;source type=&quot;video/mp4&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4&quot; /&gt;
+		&lt;track src=&quot;#inline-captions&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
+	&lt;/video&gt;
+	&lt;figcaption&gt;
+		&lt;details id=&quot;inline-captions&quot;&gt;
+			&lt;summary&gt;Looking for a Job - HTML5 Transcript/Captions&lt;/summary&gt;
+			&lt;p class=&quot;wet-boew-vd&quot;&gt;&lt;strong&gt;(Animated pen draws a red line that leads into the text Looking for A Job)&lt;/strong&gt;&lt;/p&gt;
+			&lt;p class=&quot;wet-boew-vd&quot;&gt;&lt;strong&gt;(Cut to a medium shot of the Host. LINE DRAWING GRAPHIC: Stick person appears and waves.)&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;2.50s&quot; data-dur=&quot;3.84s&quot;&gt;Hi, my name is Eric, and I&amp;#39;m a Service Canada employee.&lt;/span&gt;&lt;/p&gt;
+			...
+		&lt;/details&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+			</details>
 		</section>
 	</div>
 </section>

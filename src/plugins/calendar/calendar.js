@@ -14,7 +14,13 @@
  * place to define variables that are common to all instances of the plugin on a
  * page.
  */
-var $document = wb.doc,
+var namespace = "wb-cal",
+	setFocusEvent = "setfocus.wb",
+	createEvent = "create." + namespace,
+	displayedEvent = "displayed." + namespace,
+	hideGoToFrmEvent = "hideGoToFrm." + namespace,
+	setFocusCalEvent = "setFocus." + namespace,
+	$document = wb.doc,
 	i18n, i18nText,
 
 	/**
@@ -24,112 +30,114 @@ var $document = wb.doc,
 	create = function( event, calendarId, year, month, shownav, mindate,
 		maxdate, day, ariaControls, ariaLabelledBy ) {
 
-		var calendar = document.getElementById( calendarId ),
-			$calendar = $( calendar ),
-			objCalendarId = "#cal-" + calendarId + "-cnt",
-			fromDateISO = wb.date.fromDateISO,
-			$objCalendar, $calendarHeader, $oldCalendarHeader, $days, $daysList,
-			maxDateYear, maxDateMonth, minDateYear, minDateMonth;
+		if ( event.namespace === namespace ) {
+			var calendar = document.getElementById( calendarId ),
+				$calendar = $( calendar ),
+				objCalendarId = "#cal-" + calendarId + "-cnt",
+				fromDateISO = wb.date.fromDateISO,
+				$objCalendar, $calendarHeader, $oldCalendarHeader, $days, $daysList,
+				maxDateYear, maxDateMonth, minDateYear, minDateMonth;
 
-		// Only initialize the i18nText once
-		if ( !i18nText ) {
-			i18n = wb.i18n;
-			i18nText = {
-				monthNames: i18n( "mnths" ),
-				prevMonth: i18n( "prvMnth" ),
-				nextMonth: i18n( "nxtMnth" ),
-				goToTitle: i18n( "cal-goToTtl" ),
-				goToYear: i18n( "cal-goToYr" ),
-				goToMonth: i18n( "cal-goToMnth" ),
-				goToLink: i18n( "cal-goToLnk" ),
-				goToBtn: i18n( "cal-goToBtn" ),
-				cancelBtn: i18n( "cancel" ),
-				dayNames: i18n( "days" ),
-				currDay: i18n( "currDay" )
-			};
+			// Only initialize the i18nText once
+			if ( !i18nText ) {
+				i18n = wb.i18n;
+				i18nText = {
+					monthNames: i18n( "mnths" ),
+					prevMonth: i18n( "prvMnth" ),
+					nextMonth: i18n( "nxtMnth" ),
+					goToTitle: i18n( "cal-goToTtl" ),
+					goToYear: i18n( "cal-goToYr" ),
+					goToMonth: i18n( "cal-goToMnth" ),
+					goToLink: i18n( "cal-goToLnk" ),
+					goToBtn: i18n( "cal-goToBtn" ),
+					cancelBtn: i18n( "cancel" ),
+					dayNames: i18n( "days" ),
+					currDay: i18n( "currDay" )
+				};
+			}
+
+			$calendar
+				.addClass( "cal-cnt" )
+				.attr( "id", calendarId );
+
+			if ( ariaLabelledBy ) {
+				$calendar.attr({
+					"aria-controls": ariaControls,
+					"aria-labelledby": ariaLabelledBy
+				});
+			}
+
+			// Converts min and max date from string to date objects
+			if ( typeof mindate === "string" ) {
+				mindate = fromDateISO( mindate );
+			} else if ( !( typeof mindate === "object" && mindate.getFullYear() ) ) {
+				mindate = null;
+			}
+			if ( mindate === null ) {
+				mindate = new Date();
+				mindate.setFullYear( year - 1, month, 1 );
+			}
+
+			if ( typeof maxdate === "string" ) {
+				maxdate = fromDateISO( maxdate );
+			} else if ( typeof maxdate !== "object" || maxdate.constructor !== Date ) {
+				maxdate = new Date();
+				maxdate.setFullYear( year + 1, month, 1 );
+			}
+
+			// Validates that the year and month are in the min and max date range
+			maxDateYear = maxdate.getFullYear();
+			maxDateMonth = maxdate.getMonth();
+			minDateYear = mindate.getFullYear();
+			minDateMonth = mindate.getMonth();
+			if ( year > maxDateYear || ( year === maxDateYear && month > maxDateMonth ) ) {
+				year = maxDateYear;
+				month = maxDateMonth;
+			} else if ( year < minDateYear || ( year === minDateYear && month < minDateMonth ) ) {
+				year = minDateYear;
+				month = minDateMonth;
+			}
+
+			// Reset calendar if the calendar previously existed
+			$objCalendar = $( objCalendarId );
+			if ( $objCalendar.length !== 0 ) {
+				$objCalendar.find( "#cal-" + calendarId + "-wd, .cal-mnth, #cal-" + calendarId + "-days").remove();
+				$objCalendar = $calendar.children("#cal-" + calendarId + "-cnt");
+			} else {
+				$objCalendar = $( "<table id='cal-" + calendarId + "-cnt' class='cal-cnt'></table>" );
+				$calendar.append( $objCalendar );
+			}
+
+			// Creates the calendar header
+			$calendarHeader = $( "<div class='cal-hd'></div>" );
+
+			// Create the month navigation
+			$calendarHeader.append( shownav ?
+				createMonthNav( calendarId, year, month, mindate, maxdate, minDateYear, maxDateYear ) :
+				"<div class='cal-mnth'>" + i18nText.monthNames[ month ] + " " + year + "</div>"
+			);
+
+			$oldCalendarHeader = $objCalendar.prev( ".cal-hd" );
+			if ( $oldCalendarHeader.length === 0 ) {
+				$objCalendar.before( $calendarHeader );
+			} else {
+				$oldCalendarHeader.replaceWith( $calendarHeader );
+			}
+
+			// Create the calendar body
+
+			// Creates weekdays
+			$objCalendar.append( createWeekdays( calendarId ) );
+
+			// Creates the rest of the calendar
+			$days = createDays( calendarId, year, month );
+			$daysList = $days.find( "td:not(.cal-empty)" );
+
+			$objCalendar.append( $days );
+
+			// Trigger the displayed.wb-cal event
+			$calendar.trigger( displayedEvent, [ year, month, $daysList, day ] );
 		}
-
-		$calendar
-			.addClass( "cal-cnt" )
-			.attr( "id", calendarId );
-
-		if ( ariaLabelledBy ) {
-			$calendar.attr({
-				"aria-controls": ariaControls,
-				"aria-labelledby": ariaLabelledBy
-			});
-		}
-
-		// Converts min and max date from string to date objects
-		if ( typeof mindate === "string" ) {
-			mindate = fromDateISO( mindate );
-		} else if ( !( typeof mindate === "object" && mindate.getFullYear() ) ) {
-			mindate = null;
-		}
-		if ( mindate === null ) {
-			mindate = new Date();
-			mindate.setFullYear( year - 1, month, 1 );
-		}
-
-		if ( typeof maxdate === "string" ) {
-			maxdate = fromDateISO( maxdate );
-		} else if ( typeof maxdate !== "object" || maxdate.constructor !== Date ) {
-			maxdate = new Date();
-			maxdate.setFullYear( year + 1, month, 1 );
-		}
-
-		// Validates that the year and month are in the min and max date range
-		maxDateYear = maxdate.getFullYear();
-		maxDateMonth = maxdate.getMonth();
-		minDateYear = mindate.getFullYear();
-		minDateMonth = mindate.getMonth();
-		if ( year > maxDateYear || ( year === maxDateYear && month > maxDateMonth ) ) {
-			year = maxDateYear;
-			month = maxDateMonth;
-		} else if ( year < minDateYear || ( year === minDateYear && month < minDateMonth ) ) {
-			year = minDateYear;
-			month = minDateMonth;
-		}
-
-		// Reset calendar if the calendar previously existed
-		$objCalendar = $( objCalendarId );
-		if ( $objCalendar.length !== 0 ) {
-			$objCalendar.find( "#cal-" + calendarId + "-wd, .cal-mnth, #cal-" + calendarId + "-days").remove();
-			$objCalendar = $calendar.children("#cal-" + calendarId + "-cnt");
-		} else {
-			$objCalendar = $( "<table id='cal-" + calendarId + "-cnt' class='cal-cnt'></table>" );
-			$calendar.append( $objCalendar );
-		}
-
-		// Creates the calendar header
-		$calendarHeader = $( "<div class='cal-hd'></div>" );
-
-		// Create the month navigation
-		$calendarHeader.append( shownav ?
-			createMonthNav( calendarId, year, month, mindate, maxdate, minDateYear, maxDateYear ) :
-			"<div class='cal-mnth'>" + i18nText.monthNames[ month ] + " " + year + "</div>"
-		);
-
-		$oldCalendarHeader = $objCalendar.prev( ".cal-hd" );
-		if ( $oldCalendarHeader.length === 0 ) {
-			$objCalendar.before( $calendarHeader );
-		} else {
-			$oldCalendarHeader.replaceWith( $calendarHeader );
-		}
-
-		// Create the calendar body
-
-		// Creates weekdays
-		$objCalendar.append( createWeekdays( calendarId ) );
-
-		// Creates the rest of the calendar
-		$days = createDays( calendarId, year, month );
-		$daysList = $days.find( "td:not(.cal-empty)" );
-
-		$objCalendar.append( $days );
-
-		// Trigger the displayed.wb-cal event
-		$calendar.trigger( "displayed.wb-cal", [ year, month, $daysList, day ] );
 	},
 
 	createMonthNav = function( calendarId, year, month, minDate, maxDate, minDateYear, maxDateYear ) {
@@ -218,7 +226,7 @@ var $document = wb.doc,
 		if ( !which || which === 1 ) {
 
 			if ( typeof eventData !== "undefined" ) {
-				$document.trigger( "create.wb-cal", [
+				$document.trigger( createEvent, [
 					eventData.calID,
 					eventData.year,
 					eventData.month,
@@ -231,7 +239,7 @@ var $document = wb.doc,
 			$container.find( classes.indexOf( "wb-inv" ) !== -1 ?
 				".cal-goto-lnk a" :
 				"." + classes.match( /cal-[a-z]*mnth/i )
-			).trigger( "setfocus.wb" );
+			).trigger( setFocusEvent );
 
 			return false;
 		}
@@ -405,36 +413,36 @@ var $document = wb.doc,
 	},
 
 	showGoToForm = function( calendarId ) {
-		var gotoId = "#cal-" + calendarId + "-goto",
-			$form = $( gotoId ),
-			$buttons = $( "#" + calendarId ).find( gotoId + "-lnk, .cal-prvmnth, .cal-nxtmnth" );
+		var gotoId = "#cal-" + calendarId + "-goto";
 
-		$buttons
-			.addClass( "hide" )
-			.attr( "aria-hidden", "true" )
-			.filter( "a" )
-				.attr( "aria-expanded", "true" );
+		$( "#" + calendarId )
+			.find( gotoId + "-lnk, .cal-prvmnth, .cal-nxtmnth" )
+				.addClass( "hide" )
+				.attr( "aria-hidden", "true" )
+				.filter( "a" )
+					.attr( "aria-expanded", "true" );
 
 		// TODO: Replace with CSS animation
-		$form.stop().slideDown( 0 ).queue(function() {
-			$( this ).find( ":input:eq(0)" ).trigger( "setfocus.wb" );
+		$( gotoId ).stop().slideDown( 0 ).queue(function() {
+			$( this ).find( ":input:eq(0)" ).trigger( setFocusEvent );
 		});
 	},
 
 	hideGoToFrm = function( event ) {
-		var calendarId = event.target.id,
-			gotoId = "#cal-" + calendarId + "-goto",
-			$form = $( gotoId ),
-			$buttons = $( "#" + calendarId ).find( gotoId + "-lnk, .cal-prvmnth, .cal-nxtmnth" );
+		if ( event.namespace === namespace ) {
+			var calendarId = event.target.id,
+				gotoId = "#cal-" + calendarId + "-goto";
 
-		$buttons
-			.removeClass( "hide" )
-			.attr( "aria-hidden", "false" )
-			.filter( "a" )
-				.attr( "aria-expanded", "false" );
+			$( "#" + calendarId )
+				.find( gotoId + "-lnk, .cal-prvmnth, .cal-nxtmnth" )
+					.removeClass( "hide" )
+					.attr( "aria-hidden", "false" )
+					.filter( "a" )
+						.attr( "aria-expanded", "false" );
 
-		// TODO: Replace with CSS animation
-		$form.stop().slideUp( 0 );
+			// TODO: Replace with CSS animation
+			$( gotoId ).stop().slideUp( 0 );
+		}
 	},
 
 	onGoTo = function( calendarId, minDate, maxDate ) {
@@ -444,7 +452,7 @@ var $document = wb.doc,
 			year = parseInt( $form.find( ".cal-goto-yr select" ).val(), 10 );
 
 		if ( !( month < minDate.getMonth() && year <= minDate.getFullYear() ) && !( month > maxDate.getMonth() && year >= maxDate.getFullYear() ) ) {
-			$document.trigger( "create.wb-cal", [
+			$document.trigger( createEvent, [
 				calendarId,
 				year,
 				month,
@@ -452,40 +460,44 @@ var $document = wb.doc,
 				minDate,
 				maxDate
 			]);
-			$container.trigger( "hideGoToFrm.wb-cal" );
+			$container.trigger( hideGoToFrmEvent );
 
 			// Go to the first day to avoid having to tab over the navigation again.
 			$( "#cal-" + calendarId + "-days a" )
 				.eq( 0 )
-				.trigger( "setfocus.wb" );
+				.trigger( setFocusEvent );
 		}
 	},
 
 	setFocus = function( event, calendarId, year, month, minDate, maxDate, targetDate ) {
-		var time = targetDate.getTime();
+		var time;
 
-		if ( time < minDate.getTime() ) {
-			targetDate = minDate;
-		} else if ( time > maxDate.getTime() ) {
-			targetDate = maxDate;
-		}
+		if ( event.namespace === namespace ) {
+			time = targetDate.getTime();
 
-		if ( targetDate.getMonth() !== month || targetDate.getFullYear() !== year ) {
-			$document.trigger( "create.wb-cal", [
-					calendarId,
-					targetDate.getFullYear(),
-					targetDate.getMonth(),
-					true,
-					minDate,
-					maxDate,
-					targetDate.getDate()
-				]
-			);
+			if ( time < minDate.getTime() ) {
+				targetDate = minDate;
+			} else if ( time > maxDate.getTime() ) {
+				targetDate = maxDate;
+			}
+
+			if ( targetDate.getMonth() !== month || targetDate.getFullYear() !== year ) {
+				$document.trigger( createEvent, [
+						calendarId,
+						targetDate.getFullYear(),
+						targetDate.getMonth(),
+						true,
+						minDate,
+						maxDate,
+						targetDate.getDate()
+					]
+				);
+			}
 		}
 	};
 
 // Event binding
-$document.on( "create.wb-cal", create );
+$document.on( createEvent, create );
 
 // Keyboard nav
 $document.on( "keydown", ".cal-days a", function( event ) {
@@ -617,7 +629,7 @@ $document.on( "keydown", ".cal-days a", function( event ) {
 
 		// Move focus to the new date
 		if ( currYear !== date.getFullYear() || currMonth !== date.getMonth() ) {
-			$document.trigger( "setFocus.wb-cal", [
+			$document.trigger( setFocusCalEvent, [
 					calendarId,
 					currYear,
 					currMonth,
@@ -627,16 +639,16 @@ $document.on( "keydown", ".cal-days a", function( event ) {
 				]
 			);
 		} else if ( currDay !== date.getDate() ) {
-			$monthContainer.find( ".cal-index-" + date.getDate() + " > a" ).trigger( "setfocus.wb" );
+			$monthContainer.find( ".cal-index-" + date.getDate() + " > a" ).trigger( setFocusEvent );
 		}
 
 		return false;
 	}
 });
 
-$document.on( "hideGoToFrm.wb-cal", ".cal-cnt", hideGoToFrm );
+$document.on( hideGoToFrmEvent, ".cal-cnt", hideGoToFrm );
 
-$document.on( "setFocus.wb-cal", setFocus );
+$document.on( setFocusCalEvent, setFocus );
 
 $document.on( "click", ".cal-goto-lnk", function( event ) {
 	event.preventDefault();
@@ -654,7 +666,7 @@ $document.on( "click", ".cal-goto-cancel", function( event ) {
 
 	// Ignore middle/right mouse buttons
 	if ( !which || which === 1 ) {
-		$( event.currentTarget ).closest( ".cal-cnt" ).trigger( "hideGoToFrm.wb-cal" );
+		$( event.currentTarget ).closest( ".cal-cnt" ).trigger( hideGoToFrmEvent );
 	}
 });
 

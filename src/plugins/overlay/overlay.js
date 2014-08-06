@@ -13,9 +13,8 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-overlay",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
+var componentName = "wb-overlay",
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	closeClass = "overlay-close",
 	linkClass = "overlay-lnk",
@@ -26,22 +25,18 @@ var pluginName = "wb-overlay",
 	i18n, i18nText,
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery Event} event Event that triggered this handler
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
-		var elm = event.target,
+
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
 			$elm, $header, closeText, overlayClose;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === elm &&
-			elm.className.indexOf( initedClass ) === -1 ) {
-
-			wb.remove( selector );
-			elm.className += " " + initedClass;
+		if ( elm ) {
 			$elm = $( elm );
 
 			// Only initialize the i18nText once
@@ -71,6 +66,9 @@ var pluginName = "wb-overlay",
 
 			$elm.append( overlayClose );
 			elm.setAttribute( "aria-hidden", "true" );
+
+			// Identify that initialization has completed
+			wb.ready( $elm, componentName );
 		}
 	},
 
@@ -85,6 +83,14 @@ var pluginName = "wb-overlay",
 			$overlay
 				.scrollTop( 0 )
 				.trigger( setFocusEvent );
+		}
+
+		// Register the overlay if it wasn't previously registered
+		// (only required when opening through an event)
+		if ( !sourceLinks[ overlayId ] ) {
+			setTimeout(function() {
+				sourceLinks[ overlayId ] = null;
+			}, 1 );
 		}
 	},
 
@@ -115,7 +121,9 @@ $document.on( "timerpoke.wb " + initEvent + " keydown open" + selector +
 
 	var eventType = event.type,
 		which = event.which,
-		overlayId = event.currentTarget.id,
+		eventTarget = event.target,
+		eventTurrentTarget = event.currentTarget,
+		overlayId = eventTurrentTarget.id,
 		overlay, $focusable, index, length;
 
 	switch ( eventType ) {
@@ -125,11 +133,15 @@ $document.on( "timerpoke.wb " + initEvent + " keydown open" + selector +
 		break;
 
 	case "open":
-		openOverlay( overlayId, event.noFocus );
+		if ( eventTurrentTarget === eventTarget ) {
+			openOverlay( overlayId, event.noFocus );
+		}
 		break;
 
 	case "close":
-		closeOverlay( overlayId, event.noFocus );
+		if ( eventTurrentTarget === eventTarget ) {
+			closeOverlay( overlayId, event.noFocus );
+		}
 		break;
 
 	default:
@@ -197,6 +209,35 @@ $document.on( "click vclick", "." + linkClass, function( event ) {
 			// Opens the overlay
 			openOverlay( overlayId );
 		}, 1 );
+	}
+});
+
+// Handler for clicking on a same page link within the overlay to outside the overlay
+$document.on( "click vclick", selector + " a[href^='#']", function( event ) {
+	var which = event.which,
+		eventTarget = event.target,
+		href, overlay, linkTarget;
+
+	// Ignore middle/right mouse buttons
+	if ( !which || which === 1 ) {
+		overlay = $( eventTarget ).closest( selector )[ 0 ];
+		href = eventTarget.getAttribute( "href" );
+		linkTarget = document.getElementById( href.substring( 1 ) );
+
+		// Ignore same page links to within the overlay
+		if ( href.length > 1 && !$.contains( overlay, linkTarget ) ) {
+
+			// Stop propagation of the click event
+			if ( event.stopPropagation ) {
+				event.stopImmediatePropagation();
+			} else {
+				event.cancelBubble = true;
+			}
+
+			// Close the overlay and set focus to the same page link
+			closeOverlay( overlay.id, true );
+			$( linkTarget ).trigger( setFocusEvent );
+		}
 	}
 });
 

@@ -7,15 +7,19 @@
 	"tag": "cal-events",
 	"parentdir": "cal-events",
 	"altLangPrefix": "cal-events",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-07-21"
 }
 ---
+<span class="wb-prettify all-pre"></span>
+
 <section>
 	<h2>Linking Options</h2>
 	<section>
 		<h3>Direct Linking</h3>
 		<p>In this method, the calendar links to the first link in each event (usually in the event heading).</p>
+
 		<div id="calendar1"></div>
+
 		<div class="wb-calevt" data-calevt-src="calendar1">
 			<ol>
 				<li>
@@ -34,11 +38,38 @@
 				</li>
 			</ol>
 		</div>
+
+		<section>
+			<h4>Code</h4>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				<pre><code>&lt;div id=&quot;calendar1&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;wb-calevt&quot; data-calevt-src=&quot;calendar1&quot;&gt;
+	&lt;ol&gt;
+		&lt;li&gt;
+			&lt;section&gt;
+				&lt;h4&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Single-Day Event&lt;/a&gt;&lt;/h4&gt;
+				&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;March 11th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;p&gt;Event Description&lt;/p&gt;
+			&lt;/section&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			...
+		&lt;/li&gt;
+		...
+	&lt;/ol&gt;
+&lt;/div&gt;</code></pre>
+			</details>
+		</section>
 	</section>
+
 	<section>
 		<h3>Details Linking</h3>
 		<p>In this method, the calendar links to the details of the event. This is used when an event has multiple links.</p>
+
 		<div id="calendar2"></div>
+
 		<div class="wb-calevt evt-anchor" data-calevt-src="calendar2">
 			<ol>
 				<li>
@@ -67,16 +98,112 @@
 				</li>
 			</ol>
 		</div>
+
+		<section>
+			<h4>Code</h4>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				<pre><code>&lt;div id=&quot;calendar2&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;wb-calevt evt-anchor&quot; data-calevt-src=&quot;calendar2&quot;&gt;
+	&lt;ol&gt;
+		&lt;li&gt;
+			&lt;section&gt;
+				&lt;h4&gt;Single-Day Event&lt;/h4&gt;
+				&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;March 11th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;p&gt;Event Description&lt;/p&gt;
+				&lt;p&gt;Links:&lt;/p&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Single-Day Event Link 1&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Single-Day Event Link 2&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/section&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			...
+		&lt;/li&gt;
+		...
+	&lt;/ol&gt;
+&lt;/div&gt;</code></pre>
+			</details>
+		</section>
 	</section>
+
 	<section>
 		<h3>Ajax Events</h3>
 		<p>In this method, events are pulled from a remote source.</p>
+
 		<div id="cal-ajax"></div>
+
 		<div class="wb-calevt evt-anchor" data-calevt-src="cal-ajax">
 			<ol data-calevt="ajax/cal-include1-en.html ajax/cal-include2-en.html ajax/cal-include3-en.html"></ol>
 		</div>
+
+		<section>
+			<h4>Code</h4>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				<section>
+					<h5>In-page HTML</h5>
+					<pre><code>&lt;div id=&quot;cal-ajax&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;wb-calevt evt-anchor&quot; data-calevt-src=&quot;cal-ajax&quot;&gt;
+	&lt;ol data-calevt=&quot;ajax/cal-include1-en.html ajax/cal-include2-en.html ajax/cal-include3-en.html&quot;&gt;&lt;/ol&gt;
+&lt;/div&gt;</code></pre>
+				</section>
+
+				<section>
+					<h5>cal-include1-en.html</h5>
+					<pre><code>&lt;li&gt;
+	&lt;section&gt;
+		&lt;h4&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Ajax 1 - Single-Day Event&lt;/a&gt;&lt;/h4&gt;
+		&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;Ajax 1 - March 11th, 2013&lt;/time&gt;&lt;/p&gt;
+		&lt;p&gt;Event Description&lt;/p&gt;
+	&lt;/section&gt;
+&lt;/li&gt;
+&lt;li&gt;
+	...
+&lt;/li&gt;
+...</code></pre>
+				</section>
+
+				<section>
+					<h5>cal-include2-en.html</h5>
+					<pre><code>&lt;li&gt;
+	&lt;section&gt;
+		&lt;h4&gt;Ajax 2 - Single-Day Event&lt;/h4&gt;
+		&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;March 11th, 2013&lt;/time&gt;&lt;/p&gt;
+		&lt;p&gt;Event Description&lt;/p&gt;
+		&lt;p&gt;Links:&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Ajax 2 - Single-Day Event Link 1&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href=&quot;http://www.canada.ca&quot; rel=&quot;external&quot;&gt;Ajax 2 - Single-Day Event Link 2&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/section&gt;
+&lt;/li&gt;
+&lt;li&gt;
+	...
+&lt;/li&gt;
+...</code></pre>
+				</section>
+
+				<section>
+					<h5>cal-include3-en.html</h5>
+					<pre><code>&lt;li class="calendar-display-onshow"&gt;
+	&lt;section&gt;
+		&lt;h4&gt;&lt;a href="http://www.ec.gc.ca" rel="external"&gt;Ajax 3 - Event 1&lt;/a&gt;&lt;/h4&gt;
+		&lt;p&gt;&lt;time datetime="2013-03-11"&gt;March 11th, 2013&lt;/time&gt;&lt;/p&gt;
+	&lt;/section&gt;
+&lt;/li&gt;
+&lt;li class="calendar-display-onshow"&gt;
+	...
+&lt;/li&gt;
+...</code></pre>
+				</section>
+			</details>
+		</section>
 	</section>
 </section>
+
 <section>
 	<h2>Display Options</h2>
 	<section>
@@ -85,6 +212,7 @@
 		<p>Events that do not have the <em>cal-disp-onshow</em> class will always be visible.</p>
 
 		<div id="calendar3"></div>
+
 		<div class="wb-calevt evt-anchor" data-calevt-src="calendar3">
 			<section>
 				<h4>Events List 1</h4>
@@ -136,23 +264,39 @@
 				</ol>
 			</section>
 		</div>
+
+		<section>
+			<h4>Code</h4>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				<pre><code>&lt;div id=&quot;calendar3&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;wb-calevt evt-anchor&quot; data-calevt-src=&quot;calendar3&quot;&gt;
+	&lt;section&gt;
+		&lt;h4&gt;Events List 1&lt;/h4&gt;
+		&lt;ol&gt;
+			&lt;li class=&quot;cal-disp-onshow&quot;&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;http://www.ec.gc.ca&quot; rel=&quot;external&quot;&gt;Event 1&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;March 11th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li class=&quot;cal-disp-onshow&quot;&gt;
+				...
+			&lt;/li&gt;
+			...
+		&lt;/ol&gt;
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
+			</details>
+		</section>
 	</section>
 
 	<section>
 		<h3>Fluid-width Calendar</h3>
-		<details>
-			<summary>View code</summary>
-			<pre>
-				<code>
-&lt;div id="calendar4" class="cal-cnt-fluid"&gt;&lt;/div&gt;
-&lt;div class="wb-calevt evt-anchor" data-calevt-src="calendar4"&gt;
-	// Events list...
-&lt;/div&gt;
-				</code>
-			</pre>
-		</details>
-		<br>
+
 		<div id="calendar4" class="cal-cnt-fluid"></div>
+
 		<div class="wb-calevt evt-anchor" data-calevt-src="calendar4">
 			<section>
 				<h4>Events List 1</h4>
@@ -204,5 +348,30 @@
 				</ol>
 			</section>
 		</div>
+
+		<section>
+			<h4>Code</h4>
+			<details class="mrgn-bttm-md">
+				<summary>View code</summary>
+				<pre><code>&lt;div id=&quot;calendar4&quot; class=&quot;cal-cnt-fluid&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;wb-calevt evt-anchor&quot; data-calevt-src=&quot;calendar4&quot;&gt;
+	&lt;section&gt;
+		&lt;h4&gt;Events List 1&lt;/h4&gt;
+		&lt;ol&gt;
+			&lt;li class=&quot;cal-disp-onshow&quot;&gt;
+				&lt;section&gt;
+					&lt;h5&gt;&lt;a href=&quot;http://www.ec.gc.ca&quot; rel=&quot;external&quot;&gt;Event 1&lt;/a&gt;&lt;/h5&gt;
+					&lt;p&gt;&lt;time datetime=&quot;2013-03-11&quot;&gt;March 11th, 2013&lt;/time&gt;&lt;/p&gt;
+				&lt;/section&gt;
+			&lt;/li&gt;
+			&lt;li class=&quot;cal-disp-onshow&quot;&gt;
+				...
+			&lt;/li&gt;
+			...
+		&lt;/ol&gt;
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
+			</details>
+		</section>
 	</section>
 </section>
