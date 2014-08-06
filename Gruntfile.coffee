@@ -242,9 +242,6 @@ module.exports = (grunt) ->
 		mochaUrls: grunt.file.expand(
 						"src/test.js"
 						"src/**/test.js"
-						# Tests failing because they depend on demo page
-						"!src/plugins/data-inview/test.js"
-						"!src/other/feedback/test.js"
 					).map( ( src ) ->
 						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
 						src = src.replace( "src/" , "" )

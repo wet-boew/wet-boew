@@ -14,7 +14,7 @@
  * nested in other test suites if you want to use the same setup `before()` and
  * teardown `after()` for more than one test suite (as is the case below.)
  */
-describe( "Feedback test suite", function() {
+describe.skip( "Feedback test suite", function() {
 
 	var $form = $( ".wb-fdbck" ),
 		$reason = $form.find( "#fbrsn" ),
