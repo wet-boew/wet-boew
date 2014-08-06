@@ -25,13 +25,25 @@ Toutes ces méthodes vont emmagasiner votre mot de passe en texte clair, alors f
 </section>
 
 <section>
+	<h2>Configurer le proxy pour Git</h2>
+	<ol>
+		<li>Ouvrir une invite de commande</li>
+		<li>Exécuter les commandes suivantes en remplacant <code>USAGER</code>, <code>MOT_DE_PASSE</code>, <code>ADRESSE_PROXY</code>, et <code>PORT_PROXY</code> avec les informations de votre réseau :
+			<ol>
+				<li><code>git config --global --add proxy http://USAGER:MOT_DE_PASSE@ADRESSE_PROXY:PORT_PROXY</code></li>
+				<li><code>git config --global --add https-proxy http://USAGER:MOT_DE_PASSE@ADRESSE_PROXYS:PORT_PROXY</code></li>
+			</ol>
+		</li>
+	</ol>
+</section>
+<section>
 	<h2>Configurer le proxy pour d'autres tâches</h2>
 	<p>Plusieurs modules d'extension vérifient aussi pour les variables environnementales <code>PROXY_HTTP</code> et <code>PROXY_HTTPS</code> lorsq'ils ont besoin de faire un appel extérieur à l'Internet.</p>
 	<ol>
 		<li>Vous pouvez configurer ces variables avec la valeur <code>http://USAGER:MOT_DE_PASSE@ADRESSE_PROXY:PORT_PROXY</code> à chaque session en apellant :
 			<ol>
-				<li>Invite de commande Windows : <code>set http://PROXY_HTTP=USAGER:MOT_DE_PASSE@ADRESSE_PROXY:PORT_PROXY</code></li>
-				<li><span lang="en">Bash Shell</span> : <code>export http://PROXY_HTTP=USAGER:MOT_DE_PASSE@ADRESSE_PROXY:PORT_PROXY</code></li>
+				<li>Invite de commande Windows : <code>set HTTP_PROXY=http://USAGER:MOT_DE_PASSE@ADRESSE_PROXY:PORT_PROXY</code></li>
+				<li><span lang="en">Bash Shell</span> : <code>export HTTPS_PROXY=http://USAGER:MOT_DE_PASSE@ADRESSE_PROXY:PORT_PROXY</code></li>
 			</ol>
 		</li>
 		<li>Pour éviter de faire cet action à chaque fois, vous pouvez ajouter ces commandes à votre fichier console "RC". 
