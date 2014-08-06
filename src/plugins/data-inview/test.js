@@ -14,14 +14,21 @@
  * teardown `after()` for more than one test suite (as is the case below.)
  */
 describe( "data-inview test suite", function() {
-	var spy,
-		$inviewBottom = $( ".wb-inview[data-inview='bottom-bar'], .wb-inview[data-inview='barre-bas']" ),
-		$inviewTop = $( ".wb-inview[data-inview='top-bar'], .wb-inview[data-inview='barre-haut']" ),
-		$bottomBar = $( "#" + $inviewBottom.data( "inview" ) ),
-		$topBar = $( "#" + $inviewTop.data( "inview" ) ),
+	var spy, callback,
+		$bar = $( "<section id='bar' class='wb-overlay modal-content overlay-def'>" +
+				"<header><h3>Test Bar</h3></header>" +
+			"</section>" ),
+		$content = $( "<section class='wb-inview' data-inview='bar' style='margin:1200px 0; height: 50px'>" +
+				"<h2>Content</h2>" +
+			"</section>" ),
 		$document = wb.doc,
 		$window = wb.win,
-		sandbox = sinon.sandbox.create();
+		$body  = $document.find( "body" ),
+		sandbox = sinon.sandbox.create(),
+		componentName = "wb-inview",
+		selector = "." + componentName,
+		initEvent = "wb-init" + selector,
+		scrollEvent = "scroll" + selector;
 
 	/*
 	 * Before beginning the test suite, this function is executed once.
@@ -29,10 +36,17 @@ describe( "data-inview test suite", function() {
 	before(function( done ) {
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
 		spy = sandbox.spy( $.prototype, "trigger" );
+		callback = done;
 
-		// Init the plugin and give it 1ms before starting the tests
-		$( ".wb-inview" ).trigger( "wb-init.wb-inview" );
-		setTimeout( done, 1 );
+		$document.on( initEvent + " " + scrollEvent, selector, function( event ) {
+			callback();
+		});
+
+		$bar.appendTo( $body );
+
+		$content
+			.appendTo( $body )
+			.trigger( initEvent );
 	});
 
 	/*
@@ -41,6 +55,10 @@ describe( "data-inview test suite", function() {
 	after(function() {
 		// Restore the original behaviour of trigger once the tests are finished
 		sandbox.restore();
+		$bar.remove();
+		$content.remove();
+
+		$window.scrollTop( 0 );
 	});
 
 	/*
@@ -95,115 +113,148 @@ describe( "data-inview test suite", function() {
 		});
 	});
 
-	/*
-	 * Test that inview bottom works as expected
-	 * Testing with PhantomJS is excluded because grunt-mocha doesn't provide a way
-	 * to set the viewport height to completely show the $inviewBottom element.
-	 */
-	if ( !/PhantomJS/.test( navigator.userAgent ) ) {
+	describe( "inview bottom", function() {
 
-		describe( "inview bottom 'all'", function() {
+		before( function() {
+			$bar.addClass( "wb-bar-b" );
+		});
+
+		after( function() {
+			$bar.removeClass( "wb-bar-b" );
+		});
+
+		/*
+		 * Test that inview bottom works as expected
+		 * Testing with PhantomJS is excluded because grunt-mocha doesn't provide a way
+		 * to set the viewport height to completely show the $content element.
+		 */
+		if ( !/PhantomJS/.test( navigator.userAgent ) ) {
+
+			describe( "'all'", function() {
+
+				before( function( done ) {
+					callback = done;
+					$window.scrollTop( $content.offset().top );
+				});
+
+				it( "should not have an inview bottom bar visible", function() {
+					expect( $content.attr( "data-inviewstate" ) ).to.equal( "all" );
+					expect( $bar.hasClass( "open" ) ).to.equal( false );
+					expect( $bar.is( ":visible" ) ).to.equal( false );
+				});
+			});
+		}
+
+		describe( "'partial'", function() {
 
 			before(function( done ) {
-				$inviewBottom.one( "scroll.wb-inview", function() {
-					done();
+				callback = done;
+				$window.scrollTop( $content.offset().top + 50 );
+			});
+
+			it( "should have an inview bottom bar visible", function() {
+				expect( $content.attr( "data-inviewstate" ) ).to.equal( "partial" );
+				expect( $bar.hasClass( "open" ) ).to.equal( true );
+				expect( $bar.is( ":visible" ) ).to.equal( true );
+			});
+		});
+
+		describe( "'none'", function() {
+
+			before(function( done ) {
+				callback = done;
+				$window.scrollTop( $content.offset().top + 500 );
+			});
+
+			it( "should have an inview bottom bar visible", function() {
+				expect( $content.attr( "data-inviewstate" ) ).to.equal( "none" );
+				expect( $bar.hasClass( "open" ) ).to.equal( true );
+				expect( $bar.is( ":visible" ) ).to.equal( true );
+			});
+		});
+
+	});
+
+	describe( "inview top", function() {
+
+		before( function() {
+			$bar.addClass( "wb-bar-t" );
+		});
+
+		after( function() {
+			$bar.removeClass( "wb-bar-t" );
+		});
+
+		/*
+		 * Test that inview top works as expected.
+		 * Testing with PhantomJS is excluded because grunt-mocha doesn't provide a way
+		 * to set the viewport height to completely show the $content element.
+		 */
+		if ( !/PhantomJS/.test( navigator.userAgent ) ) {
+
+			describe( "'all'", function() {
+
+				before(function( done ) {
+					callback = done;
+					$window.scrollTop( $content.offset().top );
 				});
-				$window.scrollTop( $inviewBottom.offset().top );
+
+				it( "should not have an inview top bar visible", function() {
+					expect( $content.attr( "data-inviewstate" ) ).to.equal( "all" );
+					expect( $bar.hasClass( "open" ) ).to.equal( false );
+					expect( $bar.is( ":visible" ) ).to.equal( false );
+				});
+			});
+		}
+
+		describe( "'partial'", function() {
+
+			before(function( done ) {
+				callback = done;
+				$window.scrollTop( $content.offset().top + 50 );
 			});
 
-			it( "should not have an inview bottom bar visible", function() {
-				expect( $inviewBottom.attr( "data-inviewstate" ) ).to.equal( "all" );
-				expect( $bottomBar.hasClass( "open" ) ).to.equal( false );
-				expect( $bottomBar.is( ":visible" ) ).to.equal( false );
+			it( "should have an inview top bar visible", function() {
+				expect( $content.attr( "data-inviewstate" ) ).to.equal( "partial" );
+				expect( $bar.hasClass( "open" ) ).to.equal( true );
+				expect( $bar.is( ":visible" ) ).to.equal( true );
 			});
 		});
-	}
 
-	describe( "inview bottom 'partial'", function() {
+		describe( "'none'", function() {
 
-		before(function( done ) {
-			$inviewBottom.one( "scroll.wb-inview", function() {
-				done();
+			before(function( done ) {
+				callback = done;
+				$window.scrollTop( $content.offset().top + 500 );
 			});
-			$window.scrollTop( $inviewBottom.offset().top + 50 );
-		});
 
-		it( "should have an inview bottom bar visible", function() {
-			expect( $inviewBottom.attr( "data-inviewstate" ) ).to.equal( "partial" );
-			expect( $bottomBar.hasClass( "open" ) ).to.equal( true );
-			expect( $bottomBar.is( ":visible" ) ).to.equal( true );
+			it( "should have an inview top bar visible", function() {
+				expect( $content.attr( "data-inviewstate" ) ).to.equal( "none" );
+				expect( $bar.hasClass( "open" ) ).to.equal( true );
+				expect( $bar.is( ":visible" ) ).to.equal( true );
+			});
 		});
 	});
 
-	describe( "inview bottom 'none'", function() {
-
+	describe( "inview show-none", function() {
 		before(function( done ) {
-			$inviewBottom.one( "scroll.wb-inview", function() {
-				done();
-			});
-			$window.scrollTop( $inviewBottom.offset().top + 500 );
+			callback = done;
+
+			$bar.addClass( "wb-bar-t" );
+			$content.addClass("show-none");
+
+			$window.scrollTop( $content.offset().top + 50 );
 		});
 
-		it( "should have an inview bottom bar visible", function() {
-			expect( $inviewBottom.attr( "data-inviewstate" ) ).to.equal( "none" );
-			expect( $bottomBar.hasClass( "open" ) ).to.equal( true );
-			expect( $bottomBar.is( ":visible" ) ).to.equal( true );
-		});
-	});
-
-	/*
-	 * Test that inview top works as expected.
-	 * Testing with PhantomJS is excluded because grunt-mocha doesn't provide a way
-	 * to set the viewport height to completely show the $inviewTop element.
-	 */
-	if ( !/PhantomJS/.test( navigator.userAgent ) ) {
-
-		describe( "inview top 'all'", function() {
-
-			before(function( done ) {
-				$inviewTop.one( "scroll.wb-inview", function() {
-					done();
-				});
-				$window.scrollTop( $inviewTop.offset().top );
-			});
-
-			it( "should not have an inview top bar visible", function() {
-				expect( $inviewTop.attr( "data-inviewstate" ) ).to.equal( "all" );
-				expect( $topBar.hasClass( "open" ) ).to.equal( false );
-				expect( $topBar.is( ":visible" ) ).to.equal( false );
-			});
-		});
-	}
-
-	describe( "inview top 'partial'", function() {
-
-		before(function( done ) {
-			$inviewTop.one( "scroll.wb-inview", function() {
-				done();
-			});
-			$window.scrollTop( $inviewTop.offset().top + 50 );
+		after(function() {
+			$bar.removeClass( "wb-bar-t" );
+			$content.removeClass("show-none");
 		});
 
 		it( "should not have an inview top bar visible (.show-none CSS class prevents it)", function() {
-			expect( $inviewTop.attr( "data-inviewstate" ) ).to.equal( "partial" );
-			expect( $topBar.hasClass( "open" ) ).to.equal( false );
-			expect( $topBar.is( ":visible" ) ).to.equal( false );
-		});
-	});
-
-	describe( "inview top 'none'", function() {
-
-		before(function( done ) {
-			$inviewTop.one( "scroll.wb-inview", function() {
-				done();
-			});
-			$window.scrollTop( $inviewTop.offset().top + 500 );
-		});
-
-		it( "should have an inview top bar visible", function() {
-			expect( $inviewTop.attr( "data-inviewstate" ) ).to.equal( "none" );
-			expect( $topBar.hasClass( "open" ) ).to.equal( true );
-			expect( $topBar.is( ":visible" ) ).to.equal( true );
+			expect( $content.attr( "data-inviewstate" ) ).to.equal( "partial" );
+			expect( $bar.hasClass( "open" ) ).to.equal( false );
+			expect( $bar.is( ":visible" ) ).to.equal( false );
 		});
 	});
 });
