@@ -14,7 +14,7 @@ before_install:
 
 script:
   - travis_retry ./script/travis_script.sh
-  - travis_retry ./script/travis_saucelabs.sh
+  - ./script/travis_saucelabs.sh
 
 after_success:
   - ./script/travis_artifacts.sh
