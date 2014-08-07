@@ -1,0 +1,32 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ * Style specific to the new Events page added July 23, 2014
+ */
+
+/* variables for events page */
+$evt-pg-bg-clr: #bdccd4;
+$evt-pg-bdr: 1px solid #135684;
+
+/* Adds padding to the calendar on the events page so that it has enough white space below it. */
+.evt-cal-pdng {
+	padding-bottom: 15px;
+}
+
+.past-evt {
+	background-color: $evt-pg-bg-clr;
+}
+
+.past-evt-bdr {
+	> {
+		section {
+			border-bottom: $evt-pg-bdr;
+		}
+	}
+}
+
+/* Removes the list styling from the calendar plugin for this page */
+.upcoming-evt-ol {
+	list-style: none;
+	padding: 0;
+}
