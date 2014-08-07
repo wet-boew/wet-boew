@@ -1244,7 +1244,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-htmlcompressor"
 	@loadNpmTasks "grunt-i18n-csv"
 	@loadNpmTasks "grunt-imagine"
-	@loadNpmTasks "grunt-jscs-checker"
+	@loadNpmTasks "grunt-jscs"
 	@loadNpmTasks "grunt-mocha"
 	@loadNpmTasks "grunt-modernizr"
 	@loadNpmTasks "grunt-sass"
