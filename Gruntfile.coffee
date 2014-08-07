@@ -1194,14 +1194,12 @@ module.exports = (grunt) ->
 					urls: ["http://localhost:8000/dist/unmin/test/test.html"]
 					throttled: 3
 					browsers: grunt.file.readJSON "browsers.json"
-					testname: "WET-BOEW Travis Build #{process.env.TRAVIS_BUILD_NUMBER}"
-					tags: [
-						process.env.TRAVIS_BUILD_NUMBER
-						process.env.TRAVIS_BRANCH
-						process.env.TRAVIS_COMMIT
-					]
+					build: process.env.TRAVIS_JOB_ID
 					sauceConfig:
-						'video-upload-on-pass': false
+						"video-upload-on-pass": false
+						"single-window": true
+						"record-screenshots": false
+						"capture-html": true
 
 		"gh-pages":
 			options:
