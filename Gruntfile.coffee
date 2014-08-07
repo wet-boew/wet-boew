@@ -68,7 +68,7 @@ module.exports = (grunt) ->
 		"Run tests on SauceLabs. Currently only for Travis builds"
 		[
 			"pre-mocha"
-			"saucelabs-custom"
+			"saucelabs-mocha"
 		]
 	)
 
@@ -1187,7 +1187,7 @@ module.exports = (grunt) ->
 					reporter: "Spec"
 					urls: ["http://localhost:8000/dist/unmin/test/test.html"]
 
-		"saucelabs-custom":
+		"saucelabs-mocha":
 			all:
 				options:
 					urls: ["http://localhost:8000/dist/unmin/test/test.html"]
@@ -1199,6 +1199,8 @@ module.exports = (grunt) ->
 						process.env.TRAVIS_BRANCH
 						process.env.TRAVIS_COMMIT
 					]
+					sauceConfig:
+						'video-upload-on-pass': false
 
 		"gh-pages":
 			options:
