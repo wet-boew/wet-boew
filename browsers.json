@@ -9,9 +9,24 @@
     "platform": "Windows 7",
     "version": "8"
 },{
+    "browserName": "internet explorer",
+    "platform": "Windows 7",
+    "version": "9"
+},{
+    "browserName": "internet explorer",
+    "platform": "Windows 7",
+    "version": "10"
+},{
+    "browserName": "internet explorer",
+    "platform": "Windows 8.1",
+    "version": "11"
+},{
+    "browserName": "firefox",
+    "platform": "OS X 10.9"
+},{
     "browserName": "safari",
-    "platform": "OS X 10.8"
+    "platform": "OS X 10.9"
 },{
     "browserName": "chrome",
-    "platform": "Mac 10.8"
+    "platform": "Mac 10.9"
 }]
