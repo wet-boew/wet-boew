@@ -1,217 +1,106 @@
-{{! TODO: Localize this file }}
-{{#is language "en"}}
 <section>
-	<h2>Heading 2 (<code>h2</code>)</h2>
+	<h2>{{{i18n "tmpl-heading"}}}{{{i18n "space"}}}2{{{i18n "space"}}}(<code>h2</code>)</h2>
 	<section>
-		<h3>Heading 3 (<code>h3</code>)</h3>
+		<h3>{{{i18n "tmpl-heading"}}}{{{i18n "space"}}}3{{{i18n "space"}}}(<code>h3</code>)</h3>
 		<section>
-			<h4>Heading 4 (<code>h4</code>)</h4>
+			<h4>{{{i18n "tmpl-heading"}}}{{{i18n "space"}}}4{{{i18n "space"}}}(<code>h4</code>)</h4>
 			<section>
-				<h5>Heading 5 (<code>h5</code>)</h5>
+				<h5>{{{i18n "tmpl-heading"}}}{{{i18n "space"}}}5{{{i18n "space"}}}(<code>h5</code>)</h5>
 				<section>
-					<h6>Heading 6 (<code>h6</code>)</h6>
-					<p>Paragraph default appearance</p>
+					<h6>{{{i18n "tmpl-heading"}}}{{{i18n "space"}}}6{{{i18n "space"}}}(<code>h6</code>)</h6>
+					<p>{{{i18n "tmpl-para"}}}{{{i18n "hyphen"}}}{{{i18n "tmpl-default-app"}}}</p>
 				</section>
 			</section>
 		</section>
 	</section>
 </section>
-<p><a href="#">Link</a></p>
+<p><a href="#">{{{i18n "tmpl-link"}}}</a></p>
 <ul>
-	<li>unordered list (<code>ul</code>) - level 1
+	<li>{{{i18n "tmpl-ul"}}}{{{i18n "space"}}}(<code>ul</code>){{{i18n "hyphen"}}}{{{i18n "tmpl-level"}}}{{{i18n "space"}}}1
 		<ul>
-			<li>unordered list (<code>ul</code>) - level 2
+			<li>{{{i18n "tmpl-ul"}}}{{{i18n "space"}}}(<code>ul</code>){{{i18n "hyphen"}}}{{{i18n "tmpl-level"}}}{{{i18n "space"}}}2
 				<ul>
-					<li>unordered list (<code>ul</code>) - level 3</li>
+					<li>{{{i18n "tmpl-ul"}}}{{{i18n "space"}}}(<code>ul</code>){{{i18n "hyphen"}}}{{{i18n "tmpl-level"}}}{{{i18n "space"}}}3</li>
 				</ul>
 			</li>
 		</ul>
 	</li>
 </ul>
 <ol>
-	<li>ordered list (<code>ol</code>) - level 1</li>
-	<li>ordered list (<code>ol</code>) - level 1
+	<li>{{{i18n "tmpl-ol"}}}{{{i18n "space"}}}(<code>ol</code>){{{i18n "hyphen"}}}{{{i18n "tmpl-level"}}}{{{i18n "space"}}}1</li>
+	<li>{{{i18n "tmpl-ol"}}}{{{i18n "space"}}}(<code>ol</code>){{{i18n "hyphen"}}}{{{i18n "tmpl-level"}}}{{{i18n "space"}}}1
 		<ol>
-			<li>ordered list (<code>ol</code>) - level 2</li>
-			<li>ordered list (<code>ol</code>) - level 2
+			<li>{{{i18n "tmpl-ol"}}}{{{i18n "space"}}}(<code>ol</code>){{{i18n "hyphen"}}}{{{i18n "tmpl-level"}}}{{{i18n "space"}}}2</li>
+			<li>{{{i18n "tmpl-ol"}}}{{{i18n "space"}}}(<code>ol</code>){{{i18n "hyphen"}}}{{{i18n "tmpl-level"}}}{{{i18n "space"}}}2
 				<ol>
-					<li>ordered list (<code>ol</code>) - level 3</li>
-					<li>ordered list (<code>ol</code>) - level 3</li>
+					<li>{{{i18n "tmpl-ol"}}}{{{i18n "space"}}}(<code>ol</code>){{{i18n "hyphen"}}}{{{i18n "tmpl-level"}}}{{{i18n "space"}}}3</li>
+					<li>{{{i18n "tmpl-ol"}}}{{{i18n "space"}}}(<code>ol</code>){{{i18n "hyphen"}}}{{{i18n "tmpl-level"}}}{{{i18n "space"}}}3</li>
 				</ol>
 			</li>
 		</ol>
 	</li>
 </ol>
 <table class="table table-striped">
-	<caption>Table caption</caption>
+	<caption>{{{i18n "tmpl-table-caption"}}}</caption>
 	<thead>
 		<tr>
-			<th scope="col">Table header (<code>th</code>)</th>
-			<th scope="col">Table header (<code>th</code>)</th>
-			<th scope="col">Table header (<code>th</code>)</th>
-			<th scope="col">Table header (<code>th</code>)</th>
+			<th scope="col">{{{i18n "tmpl-table-head"}}}{{{i18n "space"}}}(<code>th</code>)</th>
+			<th scope="col">{{{i18n "tmpl-table-head"}}}{{{i18n "space"}}}(<code>th</code>)</th>
+			<th scope="col">{{{i18n "tmpl-table-head"}}}{{{i18n "space"}}}(<code>th</code>)</th>
+			<th scope="col">{{{i18n "tmpl-table-head"}}}{{{i18n "space"}}}(<code>th</code>)</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<td>Table data (<code>td</code>)</td>
-			<td>Table data (<code>td</code>)</td>
-			<td>Table data (<code>td</code>)</td>
-			<td>Table data (<code>td</code>)</td>
+			<td>{{{i18n "tmpl-table-data"}}}{{{i18n "space"}}}(<code>td</code>)</td>
+			<td>{{{i18n "tmpl-table-data"}}}{{{i18n "space"}}}(<code>td</code>)</td>
+			<td>{{{i18n "tmpl-table-data"}}}{{{i18n "space"}}}(<code>td</code>)</td>
+			<td>{{{i18n "tmpl-table-data"}}}{{{i18n "space"}}}(<code>td</code>)</td>
 		</tr>
 		<tr>
-			<td>Table data (<code>td</code>)</td>
-			<td>Table data (<code>td</code>)</td>
-			<td>Table data (<code>td</code>)</td>
-			<td>Table data (<code>td</code>)</td>
+			<td>{{{i18n "tmpl-table-data"}}}{{{i18n "space"}}}(<code>td</code>)</td>
+			<td>{{{i18n "tmpl-table-data"}}}{{{i18n "space"}}}(<code>td</code>)</td>
+			<td>{{{i18n "tmpl-table-data"}}}{{{i18n "space"}}}(<code>td</code>)</td>
+			<td>{{{i18n "tmpl-table-data"}}}{{{i18n "space"}}}(<code>td</code>)</td>
 		</tr>
 		<tr>
-			<td>Table data (<code>td</code>)</td>
-			<td>Table data (<code>td</code>)</td>
-			<td>Table data (<code>td</code>)</td>
-			<td>Table data (<code>td</code>)</td>
+			<td>{{{i18n "tmpl-table-data"}}}{{{i18n "space"}}}(<code>td</code>)</td>
+			<td>{{{i18n "tmpl-table-data"}}}{{{i18n "space"}}}(<code>td</code>)</td>
+			<td>{{{i18n "tmpl-table-data"}}}{{{i18n "space"}}}(<code>td</code>)</td>
+			<td>{{{i18n "tmpl-table-data"}}}{{{i18n "space"}}}(<code>td</code>)</td>
 		</tr>
 	</tbody>
 </table>
 <form method="post" action="#" class="form-horizontal">
 	<div class="form-group">
-		<label for="data1" class="col-sm-3 control-label">Form (<code>input</code>):</label>
+		<label for="data1" class="col-sm-3 control-label">{{{i18n "tmpl-form"}}}{{{i18n "space"}}}<code>input</code></label>
 		<div class="col-sm-9">
-			<input type="text" id="data1" name="data1" class="form-control">
+			<input type="text" id="data1" name="data1" class="form-control" />
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="data2" class="col-sm-3 control-label">Form (<code>textarea</code>):</label>
+		<label for="data2" class="col-sm-3 control-label">{{{i18n "tmpl-form"}}}{{{i18n "space"}}}<code>textarea</code></label>
 		<div class="col-sm-9">
 			<textarea id="data2" rows="3" cols="15" name="data2" class="form-control"></textarea>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="data4" class="col-sm-3 control-label">Form (<code>select</code>):</label>
+		<label for="data4" class="col-sm-3 control-label">{{{i18n "tmpl-form"}}}{{{i18n "space"}}}<code>select</code></label>
 		<div class="col-sm-9">
 			<select name="data4" id="data4" class="form-control">
-				<option value="Option 1">Option 1</option>
-				<option value="Option 2">Option 2</option>
-				<option value="Option 3">Option 3</option>
-				<option value="Option 4">Option 4</option>
+				<option value="1">{{{i18n "tmpl-option"}}}{{{i18n "space"}}}1</option>
+				<option value="2">{{{i18n "tmpl-option"}}}{{{i18n "space"}}}2</option>
+				<option value="3">{{{i18n "tmpl-option"}}}{{{i18n "space"}}}3</option>
+				<option value="4">{{{i18n "tmpl-option"}}}{{{i18n "space"}}}4</option>
 			</select>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-9">
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="submit" class="btn btn-primary">{{{i18n "tmpl-submit"}}}</button>
 		</div>
 	</div>
 </form>
 <blockquote>
 	<p>"<code>blockquote</code>"</p>
 </blockquote>
-{{else}}
-<section>
-	<h2>En-tête 2 (<code>h2</code>)</h2>
-	<section>
-		<h3>En-tête 3 (<code>h3</code>)</h3>
-		<section>
-			<h4>En-tête 4 (<code>h4</code>)</h4>
-			<section>
-				<h5>En-tête 5 (<code>h5</code>)</h5>
-				<section>
-					<h6>En-tête 6 (<code>h6</code>)</h6>
-					<p>Paragraphe apparence par défaut</p>
-				</section>
-			</section>
-		</section>
-	</section>
-</section>
-<p><a href="#">Lien</a></p>
-<ul>
-	<li>liste à puces (<code>ul</code>) - niveau 1
-		<ul>
-			<li>liste à puces (<code>ul</code>) - niveau 2
-				<ul>
-					<li>liste à puces (<code>ul</code>) - niveau 3</li>
-				</ul>
-			</li>
-		</ul>
-	</li>
-</ul>
-<ol>
-	<li>liste ordonnée (<code>ol</code>) - niveau 1</li>
-	<li>liste ordonnée (<code>ol</code>) - niveau 1
-		<ol>
-			<li>liste ordonnée (<code>ol</code>) - niveau 2</li>
-			<li>liste ordonnée (<code>ol</code>) - niveau 2
-				<ol>
-					<li>liste ordonnée (<code>ol</code>) - niveau 3</li>
-					<li>liste ordonnée (<code>ol</code>) - niveau 3</li>
-				</ol>
-			</li>
-		</ol>
-	</li>
-</ol>
-<table class="table table-striped">
-	<caption>Légende de table</caption>
-	<thead>
-		<tr>
-			<th scope="col">En-tête de table (<code>th</code>)</th>
-			<th scope="col">En-tête de table (<code>th</code>)</th>
-			<th scope="col">En-tête de table (<code>th</code>)</th>
-			<th scope="col">En-tête de table (<code>th</code>)</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>Données de table (<code>td</code>)</td>
-			<td>Données de table (<code>td</code>)</td>
-			<td>Données de table (<code>td</code>)</td>
-			<td>Données de table (<code>td</code>)</td>
-		</tr>
-		<tr>
-			<td>Données de table (<code>td</code>)</td>
-			<td>Données de table (<code>td</code>)</td>
-			<td>Données de table (<code>td</code>)</td>
-			<td>Données de table (<code>td</code>)</td>
-		</tr>
-		<tr>
-			<td>Données de table (<code>td</code>)</td>
-			<td>Données de table (<code>td</code>)</td>
-			<td>Données de table (<code>td</code>)</td>
-			<td>Données de table (<code>td</code>)</td>
-		</tr>
-	</tbody>
-</table>
-<form method="post" action="#" class="form-horizontal">
-	<div class="form-group">
-		<label for="data1" class="col-sm-3 control-label">Formulaire (<code>input</code>):</label>
-		<div class="col-sm-9">
-			<input type="text" id="data1" name="data1" class="form-control">
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="data2" class="col-sm-3 control-label">Formulaire (<code>textarea</code>):</label>
-		<div class="col-sm-9">
-			<textarea id="data2" rows="3" cols="15" name="data2" class="form-control"></textarea>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="data4" class="col-sm-3 control-label">Formulaire (<code>select</code>):</label>
-		<div class="col-sm-9">
-			<select name="data4" id="data4" class="form-control">
-				<option value="Option 1">Option 1</option>
-				<option value="Option 2">Option 2</option>
-				<option value="Option 3">Option 3</option>
-				<option value="Option 4">Option 4</option>
-			</select>
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="col-sm-offset-3 col-sm-9">
-			<button type="submit" class="btn btn-primary">Soumettre</button>
-		</div>
-	</div>
-</form>
-<blockquote>
-	<p>"<code>blockquote</code>"</p>
-</blockquote>
-
-{{/is}}
