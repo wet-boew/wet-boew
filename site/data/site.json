@@ -13,5 +13,167 @@
 	"tmpl-v31-ref-1-en": "WET v4.0 is now the current version. There is a new location for the ",
 	"tmpl-v31-ref-2-en": "current page in WET v3.1",
 	"tmpl-v31-ref-3-en": ".",
-	"v31linkstart": "http://wet-boew.github.io/v3.1-ci/"
+	"v31linkstart": "http://wet-boew.github.io/v3.1-ci/",
+	"langs": [
+		{
+			"lang-code": "en",
+			"lang-en": "English",
+			"lang-fr": "Anglais"
+		},
+		{
+			"lang-code": "fr",
+			"lang-en": "French",
+			"lang-fr": "Français"
+		},
+		{
+			"lang-code": "af",
+			"lang-en": "Afrikaans",
+			"lang-fr": "Afrikaans"
+		},
+		{
+			"lang-code": "sq",
+			"lang-en": "Albanian",
+			"lang-fr": "Albanais"
+		},
+		{
+			"lang-code": "ar",
+			"lang-en": "Arabic",
+			"lang-fr": "Arabe"
+		},
+		{
+			"lang-code": "hy",
+			"lang-en": "Armenian",
+			"lang-fr": "Arménien"
+		},
+		{
+			"lang-code": "bg",
+			"lang-en": "Bulgarian",
+			"lang-fr": "Bulgare"
+		},
+		{
+			"lang-code": "zh",
+			"lang-en": "Chinese",
+			"lang-fr": "Chinois"
+		},
+		{
+			"lang-code": "zb-Hans",
+			"lang-en": "Chinese (Simplified)",
+			"lang-fr": "Chinois (simplifié)"
+		},
+		{
+			"lang-code": "cs",
+			"lang-en": "Czech",
+			"lang-fr": "Tchèque"
+		},
+		{
+			"lang-code": "nl",
+			"lang-en": "Dutch",
+			"lang-fr": "Néerlandais"
+		},
+		{
+			"lang-code": "et",
+			"lang-en": "Estonian",
+			"lang-fr": "Estonien"
+		},
+		{
+			"lang-code": "de",
+			"lang-en": "German",
+			"lang-fr": "Allemand"
+		},
+		{
+			"lang-code": "el",
+			"lang-en": "Greek",
+			"lang-fr": "Grec"
+		},
+		{
+			"lang-code": "hi",
+			"lang-en": "Hindi",
+			"lang-fr": "Hindi"
+		},
+		{
+			"lang-code": "hu",
+			"lang-en": "Hungarian",
+			"lang-fr": "Hongrois"
+		},
+		{
+			"lang-code": "is",
+			"lang-en": "Icelandic",
+			"lang-fr": "Islandais"
+		},
+		{
+			"lang-code": "id",
+			"lang-en": "Indonesian",
+			"lang-fr": "Indonésien"
+		},
+		{
+			"lang-code": "it",
+			"lang-en": "Italian",
+			"lang-fr": "Italien"
+		},
+		{
+			"lang-code": "ja",
+			"lang-en": "Japanese",
+			"lang-fr": "Japonais"
+		},
+		{
+			"lang-code": "ko",
+			"lang-en": "Korean",
+			"lang-fr": "Coréen"
+		},
+		{
+			"lang-code": "lv",
+			"lang-en": "Latvian",
+			"lang-fr": "Letton"
+		},
+		{
+			"lang-code": "lt",
+			"lang-en": "Lithuanian",
+			"lang-fr": "Lituanien"
+		},
+		{
+			"lang-code": "pl",
+			"lang-en": "Polish",
+			"lang-fr": "Polonais"
+		},
+		{
+			"lang-code": "pt",
+			"lang-en": "Portuguese",
+			"lang-fr": "Portugais"
+		},
+		{
+			"lang-code": "pt-BR",
+			"lang-en": "Portuguese (Brazilian)",
+			"lang-fr": "Portugais (brésilien)"
+		},
+		{
+			"lang-code": "ru",
+			"lang-en": "Russian",
+			"lang-fr": "Russe"
+		},
+		{
+			"lang-code": "sk",
+			"lang-en": "Slovak",
+			"lang-fr": "Slovaque"
+		},
+		{
+			"lang-code": "th",
+			"lang-en": "Thai",
+			"lang-fr": "Thaï"
+		},
+		{
+			"lang-code": "tr",
+			"lang-en": "Turkish",
+			"lang-fr": "Turc"
+		},
+		{
+			"lang-code": "uk",
+			"lang-en": "Ukrainian",
+			"lang-fr": "Ukrainien"
+		},
+		{
+			"lang-code": "vi",
+			"lang-en": "Vietnamese",
+			"lang-fr": "Vietnamien"
+		}
+	]
 }
