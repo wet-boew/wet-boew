@@ -47,6 +47,8 @@ describe( "data-inview test suite", function() {
 		$content
 			.appendTo( $body )
 			.trigger( initEvent );
+
+		$window.scrollTop( 0 );
 	});
 
 	/*
