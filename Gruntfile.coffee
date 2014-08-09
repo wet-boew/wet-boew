@@ -949,7 +949,6 @@ module.exports = (grunt) ->
 						"DataTables/media/js/jquery.dataTables.js"
 						"proj4/dist/proj4.js"
 						"openlayers/OpenLayers.debug.js"
-						"jquery-sheetrock/src/jquery.sheetrock.js"
 					]
 					dest: "dist/unmin/js/deps"
 					rename: (dest, src) ->

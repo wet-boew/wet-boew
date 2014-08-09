@@ -38,8 +38,7 @@
     "proj4": "2.1.0",
     "respond": "1.4.0",
     "selectivizr": "1.0.2",
-    "SideBySideImproved": "https://github.com/pkoltermann/SideBySideImproved.git",
-    "jquery-sheetrock": "0.2.1"
+    "SideBySideImproved": "https://github.com/pkoltermann/SideBySideImproved.git"
   },
   "moduleType": [
     "globals"
