@@ -13,9 +13,8 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-share",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
+var componentName = "wb-share",
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	shareLink = "shr-lnk",
 	panelCount = 0,
@@ -29,7 +28,7 @@ var pluginName = "wb-share",
 	defaults = {
 		hdLvl: "h2",
 
-		// Supported types are: "page" and "video"
+		// Supported types are: "page", "video" and "audio"
 		type: "page",
 
 		// For custom types
@@ -122,25 +121,21 @@ var pluginName = "wb-share",
 	},
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
-		var elm = event.target,
+
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
 			sites, heading, settings, panel, link, $share, $elm,
 			pageHref, pageTitle, pageImage, pageDescription,
 			siteProperties, url, shareText, id, pnlId, regex,
 			filter, i, len, keys, key;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === elm &&
-			elm.className.indexOf( initedClass ) === -1 ) {
-
-			wb.remove( selector );
-			elm.className += " " + initedClass;
+		if ( elm ) {
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
@@ -149,6 +144,7 @@ var pluginName = "wb-share",
 					shareText: i18n( "shr-txt" ),
 					page: i18n( "shr-pg" ),
 					video: i18n( "shr-vid" ),
+					audio: i18n( "shr-aud" ),
 					disclaimer: i18n( "shr-disc" ),
 					email: i18n( "email" )
 				};
@@ -166,8 +162,8 @@ var pluginName = "wb-share",
 				true,
 				{},
 				defaults,
-				window[ pluginName ],
-				wb.getData( $elm, pluginName )
+				window[ componentName ],
+				wb.getData( $elm, componentName )
 			);
 			sites = settings.sites;
 			filter = settings.filter;
@@ -241,6 +237,9 @@ var pluginName = "wb-share",
 			$share
 				.trigger( initEvent )
 				.trigger( "wb-init.wb-lbx" );
+
+			// Identify that initialization has completed
+			wb.ready( $elm, componentName );
 		}
 	};
 

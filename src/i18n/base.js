@@ -52,7 +52,7 @@ wb.i18nDict = {
 	"prv-l": "@prv-l@",
 	first: "@first@",
 	last: "@last@",
-	menu: "@menu@",
+	"srch-menus": "@srch-menus@",
 	email: "@email@",
 	"menu-close": "@menu-close@",
 	"overlay-close": "@overlay-close@",
@@ -93,6 +93,7 @@ wb.i18nDict = {
 	"shr-txt": "@shr-txt@",
 	"shr-pg": "@shr-pg@",
 	"shr-vid": "@shr-vid@",
+	"shr-aud": "@shr-aud@",
 	"shr-hnt": "@shr-hnt@",
 	"shr-disc": "@shr-disc@",
 	/* Form validation */

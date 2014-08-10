@@ -578,18 +578,6 @@ blockquote {
 
 .pagination,
 .pager {
-	[rel="prev"] {
-		&:before {
-			@extend %pagination-left-arrow;
-		}
-	}
-
-	[rel="next"] {
-		&:after {
-			@extend %pagination-right-arrow;
-		}
-	}
-
 	&.disabled {
 		@extend %global-display-none;
 	}
@@ -601,6 +589,22 @@ blockquote {
 				display: inline-block;
 				margin-bottom: 0.5em;
 				padding: $padding-large-vertical $padding-large-horizontal;
+			}
+		}
+		
+		&:first-child {
+			[rel="prev"] {
+				&:before {
+					@extend %pagination-left-arrow;
+				}
+			}
+		}
+
+		&:last-child {
+			[rel="next"] {
+				&:after {
+					@extend %pagination-right-arrow;
+				}
 			}
 		}
 
@@ -655,6 +659,13 @@ blockquote {
  */
 .btn {
 	border-style: outset;
+
+	/*
+	 * These two property overrides should be recommended upstream to
+	 * Bootstrap as a fix for button wrapping (see wet-boew/wet-boew#4454)
+	 */
+	height: auto;
+	white-space: normal;
 
 	&.disabled,
 	&[disabled],

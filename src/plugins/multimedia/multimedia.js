@@ -9,9 +9,8 @@
 "use strict";
 
 /* Local scoped variables*/
-var pluginName = "wb-mltmd",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
+var componentName = "wb-mltmd",
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	uniqueCount = 0,
 	template,
@@ -24,27 +23,25 @@ var pluginName = "wb-mltmd",
 	fallbackEvent = "fallback" + selector,
 	youtubeEvent = "youtube" + selector,
 	resizeEvent = "resize" + selector,
+	templateLoadedEvent = "templateloaded" + selector,
 	captionClass = "cc_on",
 	$document = wb.doc,
 	$window = wb.win,
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @function init
-	 * @param {jQuery Event} event Event that triggered this handler
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
-		var eventTarget = event.target,
+
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var eventTarget = wb.init( event, componentName, selector ),
+			elmId;
+
+		if ( eventTarget ) {
 			elmId = eventTarget.id;
-
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === eventTarget &&
-			eventTarget.className.indexOf( initedClass ) === -1 ) {
-
-			wb.remove( selector );
-			eventTarget.className += " " + initedClass;
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
@@ -80,9 +77,7 @@ var pluginName = "wb-mltmd",
 					}
 				});
 			} else if ( template !== "" ) {
-				$( eventTarget ).trigger({
-					type: "templateloaded.wb"
-				});
+				$( eventTarget ).trigger( templateLoadedEvent );
 			}
 		}
 	},
@@ -528,7 +523,7 @@ $window.on( "resize", onResize );
 
 $document.on( "ready", onResize );
 
-$document.on( "ajax-fetched.wb templateloaded.wb", selector, function( event ) {
+$document.on( "ajax-fetched.wb " + templateLoadedEvent, selector, function( event ) {
 	var $this = $( this );
 
 	if ( event.type === "ajax-fetched" ) {
@@ -541,247 +536,265 @@ $document.on( "ajax-fetched.wb templateloaded.wb", selector, function( event ) {
 	});
 });
 
-$document.on( initializedEvent, selector, function() {
-	var $this = $( this ),
-		$media = $this.children( "audio, video" ).eq( 0 ),
-		captions = $media.children( "track[kind='captions']" ).attr( "src" ) || undef,
-		id = $this.attr( "id" ),
-		mId = $media.attr( "id" ) || id + "-md",
-		type = $media.is( "audio" ) ? "audio" : "video",
-		title = $media.attr( "title" ) || "",
-		width = type === "video" ? $media.attr( "width" ) || $media.width() : 0,
-		height = type === "video" ? $media.attr( "height" ) || $media.height() : 0,
-		settings = wb.getData( $this, pluginName ),
-		data = $.extend({
-			media: $media,
-			captions: captions,
-			id: id,
-			mId: mId,
-			type: type,
-			title: title,
-			height: height,
-			width: width
-		}, i18nText),
-		media = $media.get( 0 ),
-		youTube = window.youTube,
-		url;
+$document.on( initializedEvent, selector, function( event ) {
+	if ( event.namespace === componentName ) {
+		var $this = $( this ),
+			$media = $this.children( "audio, video" ).eq( 0 ),
+			captions = $media.children( "track[kind='captions']" ).attr( "src" ) || undef,
+			id = $this.attr( "id" ),
+			mId = $media.attr( "id" ) || id + "-md",
+			type = $media.is( "audio" ) ? "audio" : "video",
+			title = $media.attr( "title" ) || "",
+			width = type === "video" ? $media.attr( "width" ) || $media.width() : 0,
+			height = type === "video" ? $media.attr( "height" ) || $media.height() : 0,
+			settings = wb.getData( $this, componentName ),
+			data = $.extend({
+				media: $media,
+				captions: captions,
+				id: id,
+				mId: mId,
+				type: type,
+				title: title,
+				height: height,
+				width: width
+			}, i18nText),
+			media = $media.get( 0 ),
+			youTube = window.youTube,
+			url;
 
-	if ( $media.attr( "id" ) === undef ) {
-		$media.attr( "id", mId );
-	}
-
-	if ( settings !== undef ) {
-		data.shareUrl = settings.shareUrl;
-	}
-
-	$this.addClass( type );
-
-	$this.data( "properties", data );
-
-	if ( $media.find( "[type='video/youtube']" ).length > 0 ) {
-		// lets tweak some variables and start the load sequence
-		url = wb.getUrlParts( $this.find( "[type='video/youtube']").attr( "src") );
-
-		// lets set the flag for the call back
-		$this.data( "youtube", url.params.v );
-
-		// Method called the the YouTUbe API when ready
-
-		if ( youTube.ready === false ) {
-			if ( youTube.waitingPlayers === undef ) {
-				youTube.waitingPlayers = $this;
-			} else {
-				youTube.waitingPlayers = youTube.waitingPlayers.add( $this );
-			}
-		} else {
-			$this.trigger( youtubeEvent );
+		if ( $media.attr( "id" ) === undef ) {
+			$media.attr( "id", mId );
 		}
 
-		// finally lets load safely
-		return Modernizr.load( {
-			load: "https://www.youtube.com/iframe_api"
-		} );
+		if ( settings !== undef ) {
+			data.shareUrl = settings.shareUrl;
+		}
 
-	} else if ( media.error === null && media.currentSrc !== "" && media.currentSrc !== undef ) {
-		$this.trigger( type + selector );
-	} else {
-		$this.trigger( fallbackEvent );
+		$this.addClass( type );
+
+		$this.data( "properties", data );
+
+		if ( $media.find( "[type='video/youtube']" ).length > 0 ) {
+			// lets tweak some variables and start the load sequence
+			url = wb.getUrlParts( $this.find( "[type='video/youtube']").attr( "src") );
+
+			// lets set the flag for the call back
+			$this.data( "youtube", url.params.v );
+
+			// Method called the the YouTUbe API when ready
+
+			if ( youTube.ready === false ) {
+				if ( youTube.waitingPlayers === undef ) {
+					youTube.waitingPlayers = $this;
+				} else {
+					youTube.waitingPlayers = youTube.waitingPlayers.add( $this );
+				}
+			} else {
+				$this.trigger( youtubeEvent );
+			}
+
+			// finally lets load safely
+			return Modernizr.load( {
+				load: "https://www.youtube.com/iframe_api"
+			} );
+
+		} else if ( media.error === null && media.currentSrc !== "" && media.currentSrc !== undef ) {
+			$this.trigger( type + selector );
+		} else {
+			$this.trigger( fallbackEvent );
+		}
+
+		// Identify that initialization has completed
+		wb.ready( $this, componentName );
 	}
 });
 
-$document.on( fallbackEvent, selector, function() {
-	var ref = expand( this ),
-		$this = ref[ 0 ],
-		data = ref[ 1 ],
-		$media = data.media,
-		type = data.type,
-		source = $media.find( ( type === "video" ? "[type='video/mp4']" : "[type='audio/mp3']" ) ).attr( "src" ),
-		poster = $media.attr( "poster" ),
-		flashvars = "id=" + data.mId,
-		width = data.width,
-		height = data.height > 0 ? data.height : Math.round( data.width / 1.777 ),
-		playerresource = wb.getPath( "/assets" ) + "/multimedia.swf?" + new Date().getTime();
+$document.on( fallbackEvent, selector, function( event ) {
+	if ( event.namespace === componentName ) {
+		var ref = expand( this ),
+			$this = ref[ 0 ],
+			data = ref[ 1 ],
+			$media = data.media,
+			type = data.type,
+			source = $media.find( ( type === "video" ? "[type='video/mp4']" : "[type='audio/mp3']" ) ).attr( "src" ),
+			poster = $media.attr( "poster" ),
+			flashvars = "id=" + data.mId,
+			width = data.width,
+			height = data.height > 0 ? data.height : Math.round( data.width / 1.777 ),
+			playerresource = wb.getPath( "/assets" ) + "/multimedia.swf?" + new Date().getTime();
 
-	flashvars += "&amp;media=" + encodeURI( wb.getUrlParts( source ).absolute );
-	if ( type === "video" ) {
-		data.poster = "<img src='" + poster + "' class='img-responsive' height='" +
-			height + "' width='" + width + "' alt='" + $media.attr( "title" ) + "'/>";
+		flashvars += "&amp;media=" + encodeURI( wb.getUrlParts( source ).absolute );
+		if ( type === "video" ) {
+			data.poster = "<img src='" + poster + "' class='img-responsive' height='" +
+				height + "' width='" + width + "' alt='" + $media.attr( "title" ) + "'/>";
 
-		flashvars += "&amp;height=" + height + "&amp;width=" +
-			width + "&amp;posterimg=" + encodeURI( wb.getUrlParts( poster ).absolute );
+			flashvars += "&amp;height=" + height + "&amp;width=" +
+				width + "&amp;posterimg=" + encodeURI( wb.getUrlParts( poster ).absolute );
+		}
+
+		$this.find( "video, audio" ).replaceWith( "<object id='" + data.mId + "' width='" + width +
+			"' height='" + height + "' class='" + type +
+			"' type='application/x-shockwave-flash' data='" +
+			playerresource + "' tabindex='-1' play='' pause=''>" +
+			"<param name='movie' value='" + playerresource + "'/>" +
+			"<param name='flashvars' value='" + flashvars + "'/>" +
+			"<param name='allowScriptAccess' value='always'/>" +
+			"<param name='bgcolor' value='#000000'/>" +
+			"<param name='wmode' value='opaque'/>" +
+			data.poster + "</object>" );
+		$this.data( "properties", data );
+		$this.trigger( renderUIEvent, type );
 	}
-
-	$this.find( "video, audio" ).replaceWith( "<object id='" + data.mId + "' width='" + width +
-		"' height='" + height + "' class='" + type +
-		"' type='application/x-shockwave-flash' data='" +
-		playerresource + "' tabindex='-1' play='' pause=''>" +
-		"<param name='movie' value='" + playerresource + "'/>" +
-		"<param name='flashvars' value='" + flashvars + "'/>" +
-		"<param name='allowScriptAccess' value='always'/>" +
-		"<param name='bgcolor' value='#000000'/>" +
-		"<param name='wmode' value='opaque'/>" +
-		data.poster + "</object>" );
-	$this.data( "properties", data );
-	$this.trigger( renderUIEvent, type );
 });
 
 /*
  *  Youtube Video mode Event
  */
-$document.on( youtubeEvent, selector, function() {
-	var ref = expand( this ),
-		ytPlayer,
-		$this = ref[ 0 ],
-		data = ref[ 1 ],
-		$media = data.media,
-		id = $media.get( 0 ).id;
+$document.on( youtubeEvent, selector, function( event ) {
+	if ( event.namespace === componentName ) {
+		var ref = expand( this ),
+			ytPlayer,
+			$this = ref[ 0 ],
+			data = ref[ 1 ],
+			$media = data.media,
+			id = $media.get( 0 ).id;
 
-	$media.replaceWith( "<div id=" + id + "/>" );
-	ytPlayer = new YT.Player( id, {
-		videoId: $this.data( "youtube" ),
-		playerVars: {
-			autoplay: 0,
-			controls: 1,
-			origin: wb.pageUrlParts.host,
-			modestbranding: 1,
-			rel: 0,
-			showinfo: 0,
-			html5: 1,
-			cc_load_policy: 1
-		},
-		events: {
-			onReady: function( event ) {
-				onResize();
-				youTubeEvents( event );
+		$media.replaceWith( "<div id=" + id + "/>" );
+		ytPlayer = new YT.Player( id, {
+			videoId: $this.data( "youtube" ),
+			playerVars: {
+				autoplay: 0,
+				controls: 1,
+				origin: wb.pageUrlParts.host,
+				modestbranding: 1,
+				rel: 0,
+				showinfo: 0,
+				html5: 1,
+				cc_load_policy: 1
 			},
-			onStateChange: youTubeEvents,
-			onApiChange: function() {
-				//If captions were enabled before the module was ready, re-enable them
-				var t = $this.get( 0 );
-				t.player( "setCaptionsVisible", t.player( "getCaptionsVisible" ) );
+			events: {
+				onReady: function( event ) {
+					onResize();
+					youTubeEvents( event );
+				},
+				onStateChange: youTubeEvents,
+				onApiChange: function() {
+					//If captions were enabled before the module was ready, re-enable them
+					var t = $this.get( 0 );
+					t.player( "setCaptionsVisible", t.player( "getCaptionsVisible" ) );
+				}
 			}
-		}
-	});
+		});
 
-	$this.addClass( "youtube" );
+		$this.addClass( "youtube" );
 
-	$this.find( "iframe" ).attr( "tabindex", -1 );
+		$this.find( "iframe" ).attr( "tabindex", -1 );
 
-	data.poster = "<img src='" + $media.attr( "poster" ) +
-		"' class='img-responsive' height='" + data.height +
-		"' width='" + data.width + "' alt='" + data.media.attr( "title" ) + "'/>";
-	data.ytPlayer = ytPlayer;
+		data.poster = "<img src='" + $media.attr( "poster" ) +
+			"' class='img-responsive' height='" + data.height +
+			"' width='" + data.width + "' alt='" + data.media.attr( "title" ) + "'/>";
+		data.ytPlayer = ytPlayer;
 
-	$this.data( "properties", data );
-	$this.trigger( renderUIEvent, "youtube" );
+		$this.data( "properties", data );
+		$this.trigger( renderUIEvent, "youtube" );
+	}
 });
 
 /*
  *  Native Video mode Event
  */
-$document.on( "video.wb-mltmd", selector, function() {
-	var ref = expand( this ),
-		$this = ref[ 0 ],
-		data = ref[ 1 ];
+$document.on( "video" + selector, selector, function( event ) {
+	if ( event.namespace === componentName ) {
+		var ref = expand( this ),
+			$this = ref[ 0 ],
+			data = ref[ 1 ];
 
-	data.poster = "<img src='" + data.media.attr( "poster" ) +
-		"' class='img-responsive' height='" + data.height +
-		"' width='" + data.width + "' alt='" + data.media.attr( "title" ) + "'/>";
+		data.poster = "<img src='" + data.media.attr( "poster" ) +
+			"' class='img-responsive' height='" + data.height +
+			"' width='" + data.width + "' alt='" + data.media.attr( "title" ) + "'/>";
 
-	$this.data( "properties", data );
+		$this.data( "properties", data );
 
-	$this.trigger( renderUIEvent, "video" );
+		$this.trigger( renderUIEvent, "video" );
+	}
 });
 
 /*
  *  Native Audio mode Event
  */
-$document.on( "audio.wb-mltmd", selector, function() {
-	var ref = expand (this ),
-		$this = ref[ 0 ],
-		data = ref[ 1 ];
+$document.on( "audio" + selector, selector, function( event ) {
+	if ( event.namespace === componentName ) {
+		var ref = expand (this ),
+			$this = ref[ 0 ],
+			data = ref[ 1 ];
 
-	data.poster = "";
+		data.poster = "";
 
-	$this.data( "properties", data );
+		$this.data( "properties", data );
 
-	$this.trigger( renderUIEvent, "audio" );
+		$this.trigger( renderUIEvent, "audio" );
+	}
 });
 
 $document.on( renderUIEvent, selector, function( event, type ) {
-	var ref = expand( this ),
-		$this = ref[ 0 ],
-		data = ref[ 1 ],
-		captionsUrl = wb.getUrlParts( data.captions ),
-		currentUrl = wb.getUrlParts( window.location.href ),
-		$media = $this.find( "video, audio, iframe, object" ),
-		$player, $overlay, $share;
+	if ( event.namespace === componentName ) {
+		var ref = expand( this ),
+			$this = ref[ 0 ],
+			data = ref[ 1 ],
+			captionsUrl = wb.getUrlParts( data.captions ),
+			currentUrl = wb.getUrlParts( window.location.href ),
+			$media = $this.find( "video, audio, iframe, object" ),
+			$player, $overlay, $share;
 
-	$media.after( tmpl( $this.data( "template" ), data ) );
-	$overlay = $media.next().find( ".wb-mm-ovrly" ).after( $media );
+		$media.after( tmpl( $this.data( "template" ), data ) );
+		$overlay = $media.next().find( ".wb-mm-ovrly" ).after( $media );
 
-	$player = $( "#" + data.mId );
-	data.player = $player.is( "object" ) ? $player.children( ":first-child" ) : $player;
+		$player = $( "#" + data.mId );
+		data.player = $player.is( "object" ) ? $player.children( ":first-child" ) : $player;
 
-	// Create an adapter for the event management
-	data.player.on( "durationchange play pause ended volumechange timeupdate " +
-		captionsLoadedEvent + " " + captionsLoadFailedEvent + " " +
-		captionsVisibleChangeEvent + " waiting canplay progress", function( event ) {
-		$this.trigger( event );
-	});
+		// Create an adapter for the event management
+		data.player.on( "durationchange play pause ended volumechange timeupdate " +
+			captionsLoadedEvent + " " + captionsLoadFailedEvent + " " +
+			captionsVisibleChangeEvent + " waiting canplay progress", function( event ) {
+			$this.trigger( event );
+		});
 
-	this.object = data.ytPlayer || $player.get( 0 );
-	this.player = ( data.ytPlayer ) ? youTubeApi : playerApi;
-	$this.data( "properties", data );
+		this.object = data.ytPlayer || $player.get( 0 );
+		this.player = ( data.ytPlayer ) ? youTubeApi : playerApi;
+		$this.data( "properties", data );
 
-	// Trigger the duration change for cases where the event was called before the event binding
-	if ( type !== "youtube" && !isNaN( this.player( "getDuration" ) ) ) {
-		data.player.trigger( "durationchange" );
-	}
+		// Trigger the duration change for cases where the event was called before the event binding
+		if ( type !== "youtube" && !isNaN( this.player( "getDuration" ) ) ) {
+			data.player.trigger( "durationchange" );
+		}
 
-	// Load the progress polyfill if needed
-	$this.find( "progress" ).trigger( "wb-init.wb-progress" );
+		// Load the progress polyfill if needed
+		$this.find( "progress" ).trigger( "wb-init.wb-progress" );
 
-	// Load the slider polyfill if needed
-	$this.find( "input[type='range']" ).trigger( "wb-init.wb-slider" );
+		// Load the slider polyfill if needed
+		$this.find( "input[type='range']" ).trigger( "wb-init.wb-slider" );
 
-	if ( data.captions === undef ) {
-		return 1;
-	}
+		// Create the share widgets if needed
+		// TODO: Remove .parent() when getting rid of the overlay
+		if ( data.shareUrl !== undef ) {
+			$share = $( "<div class='wb-share' data-wb-share=\'{\"type\": \"" +
+				( type === "audio" ? type : "video" ) + "\", \"title\": \"" +
+				data.title + "\", \"url\": \"" + data.shareUrl +
+				"\", \"pnlId\": \"" + data.id + "-shr\"}\'></div>" );
+			$media.parent().before( $share );
+			wb.add( $share );
+		}
 
-	// Load the captions
-	if ( currentUrl.absolute.replace( currentUrl.hash, "" ) !== captionsUrl.absolute.replace( captionsUrl.hash, "" ) ) {
-		loadCaptionsExternal( $player, captionsUrl.absolute );
-	} else {
-		loadCaptionsInternal( $player, $( captionsUrl.hash ) );
-	}
+		if ( data.captions === undef ) {
+			return 1;
+		}
 
-	// Create the share widgets if needed
-	// TODO: Remove .parent() when getting rid of the overlay
-	if ( data.shareUrl !== undef ) {
-		$share = $( "<div class='wb-share' data-wb-share=\'{\"type\": \"video\", \"title\": \"" + data.title + "\", \"url\": \"" + data.shareUrl + "\", \"pnlId\": \"" + data.id + "-shr\"}\'></div>" );
-		$media.parent().before( $share );
-		wb.add( $share );
+		// Load the captions
+		if ( currentUrl.absolute.replace( currentUrl.hash, "" ) !== captionsUrl.absolute.replace( captionsUrl.hash, "" ) ) {
+			loadCaptionsExternal( $player, captionsUrl.absolute );
+		} else {
+			loadCaptionsInternal( $player, $( captionsUrl.hash ) );
+		}
 	}
 });
 
@@ -880,6 +893,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 
 	var eventTarget = event.currentTarget,
 		eventType = event.type,
+		eventNamespace = event.namespace,
 		$this = $( eventTarget ),
 		invStart = "<span class='wb-inv'>",
 		invEnd = "</span>",
@@ -959,25 +973,31 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		break;
 
 	case "ccloaded":
-		$.data( eventTarget, "captions", event.captions );
+		if ( eventNamespace === componentName ) {
+			$.data( eventTarget, "captions", event.captions );
+		}
 		break;
 
 	case "ccloadfail":
-		$this.find( ".wb-mm-cc" )
-			.append( "<p class='errmsg'><span>" + i18nText.cc_error + "</span></p>" )
-			.end()
-			.find( ".cc" )
-			.attr( "disabled", "" );
+		if ( eventNamespace === componentName ) {
+			$this.find( ".wb-mm-cc" )
+				.append( "<p class='errmsg'><span>" + i18nText.cc_error + "</span></p>" )
+				.end()
+				.find( ".cc" )
+				.attr( "disabled", "" );
+		}
 		break;
 
 	case "ccvischange":
-		isCCVisible = eventTarget.player( "getCaptionsVisible" );
-		$button = $this.find( ".cc" );
-		buttonData = $button.data( "state-" + ( isCCVisible ? "off" : "on" ) );
-		$button.attr( {
-			title: buttonData,
-			"aria-pressed": isCCVisible
-		} ).children( "span" ).html( invStart + buttonData + invEnd );
+		if ( eventNamespace === componentName ) {
+			isCCVisible = eventTarget.player( "getCaptionsVisible" );
+			$button = $this.find( ".cc" );
+			buttonData = $button.data( "state-" + ( isCCVisible ? "off" : "on" ) );
+			$button.attr( {
+				title: buttonData,
+				"aria-pressed": isCCVisible
+			} ).children( "span" ).html( invStart + buttonData + invEnd );
+		}
 		break;
 
 	case "waiting":
@@ -1017,24 +1037,26 @@ $document.on( "progress", selector, function( event ) {
 });
 
 $document.on( resizeEvent, selector, function( event ) {
-	var player = event.target,
-		$player = $( player ),
-		ratio, newHeight;
+	if ( event.namespace === componentName ) {
+		var player = event.target,
+			$player = $( player ),
+			ratio, newHeight;
 
-	if ( $player.hasClass( "video" ) ) {
-		if ( player.videoWidth === 0 || player.videoWidth === undef ) {
-			ratio = $player.attr( "height" ) / $player.attr( "width" );
+		if ( $player.hasClass( "video" ) ) {
+			if ( player.videoWidth === 0 || player.videoWidth === undef ) {
+				ratio = $player.attr( "height" ) / $player.attr( "width" );
 
-			// Calculate the new height based on the specified ratio or assume a default 16:9 ratio
-			newHeight = Math.round( $player.width() * ( !isNaN( ratio ) ? ratio : 0.5625 ) );
+				// Calculate the new height based on the specified ratio or assume a default 16:9 ratio
+				newHeight = Math.round( $player.width() * ( !isNaN( ratio ) ? ratio : 0.5625 ) );
 
-			//TODO: Remove this when captions works in chromeless api with controls
-			if ( $player.is( "iframe") ) {
-				newHeight += 30;
+				//TODO: Remove this when captions works in chromeless api with controls
+				if ( $player.is( "iframe") ) {
+					newHeight += 30;
+				}
+				$player.css( "height", newHeight + "px" );
+			} else {
+				$player.css( "height", "" );
 			}
-			$player.css( "height", newHeight + "px" );
-		} else {
-			$player.css( "height", "" );
 		}
 	}
 });

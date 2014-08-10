@@ -12,28 +12,27 @@
  * These are global to the event - meaning that they will be initialized once per page,
  * not once per instance of event on the page.
  */
-var selector = "#wb-tphp",
+var componentName = "wb-disable",
+	selector = "#wb-tphp",
 	$document = wb.doc,
 
 	/**
-	 * createOffer runs once per plugin element on the page.
-	 * @method createOffer
-	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
+	 * @method init
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
-	createOffer = function( event ) {
-		var elm = event.target,
+	init = function( event ) {
+
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
 			nQuery = "?",
 			$html = wb.html,
 			i18n = wb.i18n,
 			pageUrl = wb.pageUrlParts,
 			li, param;
 
-		// Filter out any events triggered by descendants
-		if ( event.currentTarget === elm ) {
-
-			// Let remove ourselves from the queue we only run once
-			wb.remove( selector );
-
+		if ( elm ) {
 			li = document.createElement( "li" );
 			li.className = "wb-slc";
 
@@ -69,12 +68,17 @@ var selector = "#wb-tphp",
 
 			// Append the Basic HTML version link version
 			li.innerHTML = "<a class='wb-sl' href='" + nQuery + "wbdisable=true'>" + i18n( "wb-disable" ) + "</a>";
-			elm.appendChild( li ); // Add link to disable WET plugins and polyfills
+
+			// Add link to disable WET plugins and polyfills
+			elm.appendChild( li );
+
+			// Identify that initialization has completed
+			wb.ready( $document, componentName );
 		}
 	};
 
 // Bind the events
-$document.on( "timerpoke.wb", selector, createOffer );
+$document.on( "timerpoke.wb", selector, init );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );

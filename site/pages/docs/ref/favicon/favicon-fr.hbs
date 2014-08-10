@@ -2,9 +2,11 @@
 {
 	"title": "Favoricône",
 	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
 	"description": "Offre la possibilité d'ajouter et de mettre à jour les favoricônes d'une page.",
 	"altLangPrefix": "favicon",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-08-04"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -57,7 +59,7 @@
 				</li>
 				<li>Trigger the <code>icon.wb-favicon</code> event on the favicon element:
 					<pre><code>$favicon.trigger( "icon.wb-favicon" );</code></pre>
-					<b>Note:</b> the update of the favicon's href attribute will be based on its data-path and data-filename attributes. 
+					<strong>Note:</strong> the update of the favicon's href attribute will be based on its data-path and data-filename attributes. 
 				</li>
 			</ol>		
 		</section>
@@ -147,19 +149,47 @@
 			<tbody>
 				<tr>
 					<td><code>wb-init.wb-favicon</code></td>
-					<td>Triggered manually.</td>
-					<td>Initializes the plugin and creates a mobile favicon if it doesn't already exist. <b>Note: </b> the favicon plugin will be initialized automatically unless the link element is added after the page has already loaded.</td>
+					<td>Triggered manually (e.g., <code>$( "link[rel='icon']" ).trigger( "wb-init.wb-favicon" );</code>).</td>
+					<td>Initializes the plugin and creates a mobile favicon if it doesn't already exist. <strong>Note:</strong> the favicon plugin will be initialized automatically unless the link element is added after the page has already loaded.</td>
+				</tr>
+				<tr>
+					<td><code>wb-ready.wb-favicon</code> (v4.0.5+)</td>
+					<td>Triggered automatically after the Favicon plugin initializes.</td>
+					<td>Used to identify when the Favicon plugin has initialized
+						<pre><code>$( document ).on( "wb-ready.wb-favicon", "link[rel='icon']", function( event ) {
+});</code></pre>
+						<pre><code>$( "link[rel='icon']" ).on( "wb-ready.wb-favicon", function( event ) {
+});</code></pre>
+					</td>
+				</tr>
+				<tr>
+					<td><code>wb-updated.wb-favicon</code> (v4.0.5+)</td>
+					<td>Triggered automatically after the favicon update has completed.</td>
+					<td>Used to identify when the plugin has finished updating the favicon and to pass along what type of favicon was updated (<code>mobile</code>, <code>icon</code>).
+						<pre><code>$( document ).on( "wb-updated.wb-favicon", "link[rel='icon']", function( event ) {
+});</code></pre>
+						<pre><code>$( "link[rel='icon']" ).on( "wb-updated.wb-favicon", function( event ) {
+});</code></pre>
+					</td>
 				</tr>
 				<tr>
 					<td><code>mobile.wb-favicon</code></td>
-					<td>Triggered manually and during plugin initialization.</td>
+					<td>Triggered manually and during plugin initialization (e.g., <code>$( "link[rel='icon']" ).trigger( "mobile.wb-favicon" );</code>).</td>
 					<td>Adds or updates the mobile favicon on the web page.  This will only update a mobile favicon that was added by the plugin.</td>
 				</tr>
 				<tr>
 					<td><code>icon.wb-favicon</code></td>
-					<td>Triggered manually.</td>
-					<td>Updates the favicon's href attribute based on its data-filename and data-path attributes.</td>
-				</tr>			
+					<td>Triggered manually (e.g., <code>$( "link[rel='icon']" ).trigger( "icon.wb-favicon" );</code>).</td>
+					<td>Updates the favicon's <code>href</code> attribute based on its <code>data-filename</code> and <code>data-path</code> attributes.</td>
+				</tr>
+				<tr>
+					<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+					<td>Triggered automatically when WET has finished loading and executing.</td>
+					<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+						<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+					</td>
+				</tr>
 			</tbody>
 		</table>
 	</section>

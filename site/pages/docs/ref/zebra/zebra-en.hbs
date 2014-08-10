@@ -2,9 +2,11 @@
 {
 	"title": "Zebra Stripping",
 	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
 	"description": "Zebra Stripping for table",
 	"altLangPrefix": "zebra",
-	"dateModified": "2014-03-06"
+	"dateModified": "2014-08-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -30,7 +32,6 @@
 		<li>For styling table that are not conform at the 12 technique for tables</li>
 	</ul>
 </section>
-
 
 <section>
 	<h2>Working example</h2>
@@ -80,19 +81,37 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-zebra</td>
-				<td>When the zebra plugin is initialized</td>
+				<td><code>wb-init.wb-</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-zebra" ).trigger( "wb-init.wb-zebra" );</code>).</td>
 				<td>Load table parser dependency and initiate the complex table parsing.</td>
 			</tr>
 			<tr>
-				<td>pasiveparse.wb-tableparser.wb</td>
-				<td>When the zebra plugin initiate the complex table parsing.</td>
-				<td>It will parse the data table and attach the information to a data attribute named &quot;tblparser&quot; on every elements inside and on to the table elements.</td>
+				<td><code>wb-ready.wb-zebra</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the Zebra plugin initializes.</td>
+				<td>Used to identify where the Zebra plugin initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-zebra", ".wb-zebra", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-zebra" ).on( "wb-ready.wb-zebra", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 			<tr>
-				<td>parsecomplete.wb-tableparser.wb</td>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>passiveparse.wb-tableparser</code></td>
+				<td>When the zebra plugin initiate the complex table parsing.</td>
+				<td>It will parse the data table and attach the information to a data attribute named <code>&quot;tblparser&quot;</code> on every elements inside and on to the table elements.</td>
+			</tr>
+			<tr>
+				<td><code>parsecomplete.wb-tableparser</code></td>
 				<td>When the table parser has completed his parsing.</td>
-				<td>It's means that the &quot;tblparser&quot; data attribute is now ready to be use.</td>
+				<td>It's means that the <code>&quot;tblparser&quot;</code> data attribute is now ready to be use.</td>
 			</tr>
 		</tbody>
 	</table>

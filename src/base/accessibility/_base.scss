@@ -36,9 +36,37 @@
 .wb-sl {
 	@extend %accessible-invisible;
 	padding: 5px;
+	z-index: 501;
 
 	&:focus {
 		@extend %accessible-invisible-show;
+	}
+}
+
+.wb-disable {
+	#wb-tphp {
+		background: #fff;
+	}
+
+	.wb-slc {
+		position: static;
+
+		.wb-sl {
+			@extend %accessible-invisible-show;
+			background: none;
+			color: $link-color;
+			display: block !important;
+			font-weight: 400;
+
+			&:hover,
+			&:focus {
+				color: $link-hover-color;
+			}
+		}
+	}
+
+	#wb-dtmd {
+		float: none !important;
 	}
 }
 

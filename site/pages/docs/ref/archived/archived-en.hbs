@@ -2,9 +2,11 @@
 {
 	"title": "ARCHIVED - Archiving content",
 	"language": "en",
+	"category": "Other",
+	"categoryfile": "other",
 	"description": "Helps users identify Web pages that have been archived online.",
 	"altLangPrefix": "archived",
-	"dateModified": "2014-03-31"
+	"dateModified": "2014-08-06"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -44,72 +46,80 @@
 </section>
 
 <section>
-	<p>Coming soon</p>
-	<!--
 	<h2>How to implement</h2>
-	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
-		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
-		</li>
-		<li>Step 4</li>
-	</ol>
-	-->
-</section>
+	<section>
+		<h3>English pages</h3>
+		<ol>
+			<li>Add the following markup at the start of the content area of the page (after the h1)
+				<pre><code>&lt;section id="archived" class="alert alert-warning wb-inview" data-inview="archived-bnr"&gt;
+	&lt;h2&gt;This page has been archived on the Web&lt;/h2&gt;
+	&lt;p&gt;Information identified as archived is provided for reference, research or recordkeeping purposes. It is not subject to the Government of Canada Web Standards and has not been altered or updated since it was archived. Please contact us to request a format other than those available.&lt;/p&gt;
+&lt;/section&gt;
 
-<section>
-	<h2>Configuration options</h2>
-	<p>Coming soon</p>
-	<!--
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Option</th>
-				<th>Description</th>
-				<th>How to configure</th>
-				<th>Values</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
-			</tr>
-			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	-->
+&lt;section id="archived-bnr" class="wb-overlay modal-content overlay-def wb-bar-t"&gt;
+	&lt;header&gt;
+		&lt;h2 class="wb-inv"&gt;Archived&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;p&gt;&lt;a href="#archived"&gt;This page has been archived on the Web.&lt;/a&gt;&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+			</li>
+			<li><strong>Optional:</strong> Add a paragraph after the first <code>h2</code> providing a link to a replacement (if one exists) and explaining why the current page was archived.
+				<pre><code>&lt;h2&gt;This page has been archived on the Web&lt;/h2&gt;
+&lt;p&gt;The &lt;a href="http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=24227"&gt;Standard on Web Usability&lt;/a&gt; replaces this content. This content is archived because Common Look and Feel 2.0 Standards have been rescinded.&lt;/p&gt;</code></pre>
+			</li>
+		</ol>
+	</section>
+
+	<section>
+		<h3>French pages</h3>
+		<ol>
+			<li>Add the following markup at the start of the content area of the page (after the h1)
+				<pre><code>&lt;section id="archived" class="alert alert-warning wb-inview" data-inview="archived-bnr"&gt;
+	&lt;h2&gt;Cette page Web a été archivée dans le Web&lt;/h2&gt;
+	&lt;p&gt;L’information dont il est indiqué qu’elle est archivée est fournie à des fins de référence, de recherche ou de tenue de documents. Elle n’est pas assujettie aux normes Web du gouvernement du Canada et elle n’a pas été modifiée ou mise à jour depuis son archivage. Pour obtenir cette information dans un autre format, veuillez communiquer avec nous.&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;section id="archived-bnr" class="wb-overlay modal-content overlay-def wb-bar-t"&gt;
+	&lt;header&gt;
+		&lt;h2 class="wb-inv"&gt;Archivée&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;p&gt;&lt;a href="#archived"&gt;Cette page Web a été archivée dans le Web.&lt;/a&gt;&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+			</li>
+			<li><strong>Optional:</strong> Add a paragraph after the first <code>h2</code> providing a link to a replacement (if one exists) and explaining why the current page was archived.
+				<pre><code>&lt;h2&gt;Cette page Web a été archivée dans le Web&lt;/h2&gt;
+&lt;p&gt;La &lt;a href="http://www.tbs-sct.gc.ca/pol/doc-fra.aspx?id=24227"&gt;Norme sur la facilité d'emploi des sites Web&lt;/a&gt; remplace ce contenu. Cette page Web a été archivée parce que les Normes sur la normalisation des sites Internet 2.0 ont étés annulées.&lt;/p&gt;</code></pre>
+			</li>
+		</ol>
+	</section>
+
+	<section>
+		<h3>All pages</h3>
+		<ol>
+			<li>Configure the display of the archived message through CSS as needed
+				<pre><code>#archived-bnr {
+	background-color: #fd0;
+}
+
+#archived-bnr p {
+	margin: 0;
+	text-align: center;
+}
+
+#archived-bnr a {
+	color: #000;
+	display: block;
+	font-weight: 700;
+	padding: 0.75em 44px;
+	text-decoration: underline;
+}
+
+#archived-bnr .overlay-close {
+	color: #000;
+}</code></pre>
+			</li>
+		</ol>
+	</section>
 </section>
 
 <section>

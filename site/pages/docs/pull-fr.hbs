@@ -2,40 +2,41 @@
 {
 	"title": "Créér une demande de retrait",
 	"language": "fr",
-	"description": "How to create a pull request",
+	"description": "Comment créer une demande de retrait",
 	"altLangPrefix": "pull",
-	"dateModified": "2014-03-27"
+	"dateModified": "2014-08-08"
 }
 ---
-<div lang="en">
-<p><strong>Needs translation</strong></p>
-<p>Pull requests are welcome. Please make sure your changes are to the latest code and limit the commit range to just the files you intended to change (to avoid conflicts).</p>
+
+<p>Les demandes de retrait (<span lang="en">Pull requests</span>) sont bienvenues. Veuillez vous assurer que vos modifications sont à jour et limitez la portée d'engagement (<span lang="en">commit</span>)
+seulement aux fichiers que vous désirez modifier (pour éviter des conflits).</p>
 <ul>
-	<li>To cut down on commit pollution in the main code base consider <a rel="external" href="http://git-scm.com/book/en/Git-Branching-Rebasing">rebasing</a> your commits before you create a pull request to the main branch.</li>
+	<li>Pour réduire la pollution d'engagement dans la base de code principale, considérez <a rel="external" href="http://git-scm.com/book/en/Git-Branching-Rebasing">rebaser</a> vos engagements avant de créer
+	une demande de retrait de la branche principale.</li>
 </ul>
 
 <section>
-	<h2>New components</h2>
-	<p>Should be added in a feature-* branch (e.g., feature-lightbox) that is created off of the master branch.</p>
+	<h2>Nouvelles composantes</h2>
+	<p>Devraient être ajoutées dans une branche feature-* (p.e., feature-lightbox) qui est créé à partir de la branche maître (<span lang="en">master</span>).</p>
 	<ul>
-		<li>Create the a fresh branch off master by using:
+		<li>Créer une nouvelle branche du maître en utilisant :
 			<ul>
 				<li><code>git fetch upstream</code></li>
 				<li><code>git checkout upstream/master</code></li>
 				<li><code>git checkout -b my-cool-new-feature</code></li>
 			</ul>
 		</li>
-		<li>Licensing for all new components and supporting code must be compatible with the MIT license used by WET.</li>
-		<li>New plugins should use the same structure and formatas existing plugins.</li>
-		<li>Include the WET terms and conditions comment block in all text-based source files that fall under Crown Copyright.</li>
+		<li>L'accord de licence pour toutes les nouvelles composantes et code de support doit être compatible avec la licence MIT utilisée par la BOEW.</li>
+		<li>Les nouveaux modules d'extension devraient utiliser la même structure et format que les modules d'extension existants.</li>
+		<li>Inclure le bloc commentaire d'avis à l'intérieur de tout fichiers sources à base textuelle qui dérivent du droit d'auteur de la Couronne.</li>
 	</ul>
 </section>
 
 <section>
-	<h2>Bug fixes and patches that apply to all versions</h2>
-	<p>Should be submitted to the master branch.</p>
+	<h2>Correction d'anomalies et déploiements de correctifs qui s'appliquent à toutes les versions</h2>
+	<p>Devraient être soumises à la branche maître.</p>
 	<ul>
-		<li>Create a fresh branch off of master by using:
+		<li>Créer une nouvelle branche du maître en utilisant :
 			<ul>
 				<li><code>git fetch upstream</code></li>
 				<li><code>git checkout upstream/master</code></li>
@@ -46,40 +47,53 @@
 </section>
 
 <section>
-	<h2 id="test">Testing your PR before submitting</h2>
+	<h2 id="test">Tester votre rapiécage avant de soumettre</h2>
 	<ul>
-		<li>
-			Validate your HTML markup as to ensure well-formed HTML5.
+		<li>Validez vos balises HTML pour vous assurer du HTML5 bien formé.
 			<ul>
-				<li>These tests will be run as part of the default build, or by calling <code>grunt htmllint</code> to run the task on your built HTML.
-				<li>You can manually test for well-formed markup using the <a rel="external" href="http://validator.w3.org/nu/">W3C HTML validatr</a>, validate with an XHTML5 preset and a checkmark next to "Be lax about HTTP Content-Type".</li>
+				<li>Ces tests seront exécutés comme partie de l'intégration (<span lang="en">build</span>) par défaut, ou en apellant <code>grunt htmllint</code> pour exécuter la tâche sur votre construction HTML.</li>
+				<li>Vous pouvez manuellement tester pour des balises bien formées en utilisant le <a rel="external" href="http://validator.w3.org/nu/">validateur HTML W3C</a>, validez avec une paramètre XHTML5
+				et un crochet à <span lang="en">"Be lax about HTTP Content-Type"</span>.</li>
 			</ul>
 		</li>
 		<li>
-			<a rel="external" href="http://jigsaw.w3.org/css-validator/#validate_by_uri+with_options">Validate your CSS</a> with the following changes to the default settings:
-			 <ul>
+			<a rel="external" href="http://jigsaw.w3.org/css-validator/#validate_by_uri+with_options">Validez votre CSS</a> avec les changements suivants aux paramètres par défaut:
+			 <ul lang="en">
 				<li><strong>Profile:</strong> CSS level 3</li>
 				<li><strong>Vendor extensions:</strong> Warnings</li>
 			</ul>
 		</li>
-		<li><a rel="external" href="http://www.jshint.com">Validate your JavaScript code</a>. This validation is done by calling <code>grunt jshint</code></li>
-		<li><a href="opt-en.html">Optimize your JavaScript, CSS and HTML code</a></li>
-		<li>Formatting recommendations:
+		<li><a rel="external" href="http://www.jshint.com">Validez votre code JavaScript</a>. Cette validation est effectuée en apellant <code>grunt jshint</code></li>
+		<li><a href="opt-fr.html">Optimiser votre code JavaScript, CSS et HTML</a></li>
+		<li>Recommandations de formattage :
 			<ul>
-				<li>Indenting can be enforced by installing an <a href="http://editorconfig.org">EditorConfig</a> plugin for your prefered <abbr>IDE</abbr>
-				<li>Indent with tabs using the <a rel="external" href="http://en.wikipedia.org/wiki/Indent_style#K.26R_style">K&amp;R indenting style</a></li>
-				<li>Use single quotes for strings in JavaScript (so unescaped double quotes can be used for attributes in HTML output)</li>
+				<li>L'indentation peut être renforcé en installant un module d'extension <a href="http://editorconfig.org">EditorConfig</a> pour votre environnement de développement intégré préféré.</li>
+				<li>Indenter avec la tabulation en utilisant le <a rel="external" href="http://en.wikipedia.org/wiki/Indent_style#K.26R_style">style d'indentation K&amp;R</a></li>
+				<li>Utiliser des guillemets simples pour des chaînes de caractères en JavaScript (pour que les double guillemets non échappés
+				puissent être utilisés pour des attributs dans le code de sortie HTML).</li>
 			</ul>
 		</li>
 		<li>
-			Test Web pages against the following browser test baseline:
+			Tester les pages Web contre la base de test des fureteurs suivants&#160;:
 			<ul>
-				<li>The current and previous major version of each browser that accounts for at least 5 per cent of visits to the website;</li>
-				<li>Any major version of a browser that, on its own, accounts for at least 5 per cent of visits to the website; and</li>
-				<li>The current and previous versions of the default browsers of each mobile operating systems that accounts for at least 5 per cent of the global or Canadian mobile operating system market share.</li>
+				<li>Les versions majeures courante et précédente de chaque fureteur qui compte pour au moins 5 pourcent des visites<sup id="fn1-rf"><a class="fn-lnk" href="#fn1"><span class="wb-inv">Footnote </span>1</a></sup> sur le site Web;</li>
+				<li>N'importe quelle version majeure d'un fureteur qui, par lui même, compte pour 5 pourcent des visites<sup id="fn2-rf"><a class="fn-lnk" href="#fn1"><span class="wb-inv">Footnote </span>1</a></sup> du site Web; et</li>
+				<li>La version majeure courante de fureteur mobile qui compte pour au moins 5 pourcent des visites<sup id="fn3-rf"><a class="fn-lnk" href="#fn1"><span class="wb-inv">Footnote </span>1</a></sup> sur le site Web effecutées avec les appareils mobiles.</li>
 			</ul>
 		</li>
-		<li>PR testing is done by <a rel="external" href="https://travis-ci.org/wet-boew/wet-boew">Travis-CI</a>, but the same set of tests can be run using "ant test" locally before you submit</li>
+		<li>Les tests sur les déploiements de correctifs sont exécutés par <a rel="external" href="https://travis-ci.org/wet-boew/wet-boew">Travis-CI</a>, mais la même batterie de tests peut être exécutée en utilisant "ant test" localement avant de soumettre.</li>
 	</ul>
 </section>
-</div>
+
+<aside class="wb-fnote" role="note">
+	<h2 id="fn">Notes de bas de page</h2>
+	<dl>
+		<dt>Note de bas de page 1</dt>
+		<dd id="fn1">
+			<p>Pour les sites Web du gouvernement du Canada&#160;: Les visites sur tous les sites web et toutes les applications web publiques du gouvernement du Canada, à l'exception de toutes visites provenant des stations de travail du gouvernement du Canada.</p>
+			<p class="fn-rtn">
+				<a href="#fn1-rf"><span class="wb-inv">Retour à la référence de la note de bas de page </span>1</a>
+			</p>
+		</dd>
+	</dl>
+</aside>

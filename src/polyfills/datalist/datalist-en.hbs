@@ -3,16 +3,18 @@
 	"title": "Datalist polyfill (auto-complete)",
 	"language": "en",
 	"category": "Polyfills",
-	"description": "Adds auto-complete functionality to specific <input> fields by dynamically displaying a list of words that match the <datalist>.",
+	"description": "Emulates input list attribute and datalist element support for browsers that do not have support. This adds auto-complete functionality to specific input fields by dynamically displaying a list of words that match the datalist.",
 	"tag": "datalist",
 	"parentdir": "datalist",
 	"altLangPrefix": "datalist",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-08-06"
 }
 ---
-<p>The <code>datalist</code> tag specifies a list of pre-defined options for an <code>input</code> element.</p>
+<section>
+	<h2>Purpose</h2>
+	<p>The HTML5 <code>input list</code> attribute and the <code>datalist</code> element add auto-complete functionality to specific text input fields by dynamically displaying a list of words that match the user’s input. Because some browsers do not support this functionality natively, this polyfill emulates the same functionality using generic HTML and WAI-ARIA. Browsers that do not support the <code>input list</code> attribute and the <code>datalist</code> element natively ignore the auto-complete functionality and therefore, the text input field behaves like it normally does.</p>
+</section>
 
-<!-- Start of Datalist content -->
 <section>
 	<h2>Example</h2>
 	<form action="#" method="get">

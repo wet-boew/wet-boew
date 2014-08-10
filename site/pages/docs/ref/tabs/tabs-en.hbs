@@ -2,16 +2,18 @@
 {
 	"title": "Tabbed Interface",
 	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
 	"description": "Dynamically stacks multiple sections of content, transforming them into a tabbed interface.",
 	"altLangPrefix": "tabs",
-	"dateModified": "2014-03-31"
+	"dateModified": "2014-08-06"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
 
 <section>
 	<h2>Purpose</h2>
-	<p>Dynamically stacks multiple sections of content, transforming them into a tabbed interface.</p>
+	<p>Dynamically stacks multiple sections of content, transforming them into a tabbed interface. Implements the <a href="http://www.w3.org/TR/wai-aria-practices/#tabpanel">WAI-ARIA tab panel design pattern</a> for large screens and the <a href="http://www.w3.org/TR/wai-aria-practices/#accordion">WAI-ARIA accordion design pattern</a> for small screens.</p>
 </section>
 
 <!--
@@ -45,29 +47,173 @@
 </section>
 
 <section>
-	<p>Coming soon</p>
-	<!--
 	<h2>How to implement</h2>
-	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
-		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
-		</li>
-		<li>Step 4</li>
-	</ol>
-	-->
+	<section>
+		<h3>Tabbed interface</h3>
+		<ol>
+			<li>Add a <code>div</code> element to the page with the class <code>wb-tabs</code>.</li>
+			<li>Add a <code>div</code> element to the previous <code>div</code> element with the class <code>tabpanels</code>.</li>
+			<li>For each tab panel, add a <code>details</code> element with a unique <code>id</code>. Add <code>open="open"</code> for the tab panel that should be open by default.
+				<pre><code>&lt;div class="wb-tabs"&gt;
+	&lt;div class="tabpanels"&gt;
+		&lt;details id="details-panel1"&gt;
+			...
+		&lt;/details&gt;
+		&lt;details id="details-panel2" open="open"&gt;
+			...
+		&lt;/details&gt;</code></pre>
+			</li>
+			<li>Add a <code>summary</code> element with the label of the tab to each <code>details</code> element.
+				<pre><code>&lt;details id="details-panel1"&gt;
+		&lt;summary&gt;Example 1&lt;/summary&gt;
+		...
+	&lt;/details&gt;
+	&lt;details id="details-panel2" open="open"&gt;
+		&lt;summary&gt;Example 2&lt;/summary&gt;
+		...
+	&lt;/details&gt;</code></pre>
+			</li>
+			<li>Add the tab panel content after each <code>summary</code> element.</li>
+		</ol>
+
+		<section>
+			<h4>Code</h4>
+			<pre><code>&lt;div class="wb-tabs"&gt;
+	&lt;div class="tabpanels"&gt;
+		&lt;details id="details-panel1"&gt;
+			&lt;summary&gt;Example 1&lt;/summary&gt;
+			&lt;p&gt;
+				...
+			&lt;/p&gt;
+		&lt;/details&gt;
+		&lt;details id="details-panel2" open="open"&gt;
+			&lt;summary&gt;Example 2&lt;/summary&gt;
+			&lt;p&gt;
+				...
+			&lt;/p&gt;
+		&lt;/details&gt;
+		...
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		</section>
+	</section>
+
+	<section>
+		<h3>Carousel</h3>
+		<ol>
+			<li>Add a <code>div</code> element to the page with the class <code>wb-tabs</code> and either the styling class <a href="../../../demos/tabs/tabs-carousel-en.html#carousel-s1"><code>carousel-s1</code></a> or <a href="../../../demos/tabs/tabs-carousel-en.html#carousel-s2"><code>carousel-s2</code></a>.</li>
+			<li>Add a <code>div</code> element to the previous <code>div</code> element with the class <code>tabpanels</code>.</li>
+			<li>For each tab panel, add a <code>div</code> element with a unique id, <code>role="tabpanel"</code> and <code>class="out"</code>. For the tab panel that should be opened by default, replace the <code>out</code> class with <code>in</code>.</li>
+			<li>Specify the tab panel transition type by adding one of the following classes to the <code>div</code> element for each of the tab panels:
+				<ul>
+					<li><code>fade</code>: Fading transition</li>
+					<li><code>slide</code>: Horizontal sliding transition</li>
+					<li><code>slidevert</code>: Vertical sliding transition</li>
+				</ul>
+				<pre><code>&lt;div class="wb-tabs carousel-s1"&gt;
+	&lt;div class="tabpanels"&gt;
+		&lt;div role="tabpanel" id="panel1" class="in fade"&gt;
+		&lt;/div&gt;
+		&lt;div role="tabpanel" id="panel2" class="out fade"&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+			</li>
+			<li>Add a <code>figure</code> element to each tab panel.</li>
+			<li>Add content to each <code>figure</code> element:
+				<ul>
+					<li><strong>Image:</strong> Add an image to the <code>figure</code> element followed by a <code>figcaption</code> element with the caption for the tab panel.
+						<pre><code>&lt;div role="tabpanel" id="panel1" class="in fade"&gt;
+	&lt;figure&gt;
+		&lt;img src="img/protect-environment.jpg" alt="Panel 1" /&gt;
+		&lt;figcaption&gt;
+			&lt;p&gt;
+				Take Note: &lt;a href="http://www.tc.gc.ca/eng/civilaviation/opssvs/general-personnel-changes-1814.htm"&gt;Renewal of the Aviation Document Booklet&lt;/a&gt;&amp;#160;&lt;br /&gt;
+				Learn more about&nbsp;&lt;a href="http://www.tc.gc.ca/eng/air-menu.htm"&gt;air transportation&lt;/a&gt; in Canada.
+			&lt;/p&gt;
+		&lt;/figcaption&gt;
+	&lt;/figure&gt;
+&lt;/div&gt;</code></pre>
+					</li>
+					<li><strong>Video:</strong> Add a multimedia player to the <code>figure</code> element according to the <a href="../multimedia/multimedia-en.html">multimedia player documentation</a>.
+						<pre><code>&lt;div role="tabpanel" id="panel1" class="in fade"&gt;
+	&lt;figure class="wb-mltmd"&gt;
+		&lt;video poster="http://www.servicecanada.gc.ca/eng/video/images/te-lj-eng.jpg" title="Looking for a Job"&gt;
+			&lt;source type="video/webm" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.webm" /&gt;
+			&lt;source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4" /&gt;
+			&lt;track src="../multimedia/cpts-lg-en.html" kind="captions" data-type="text/html" srclang="en" label="English" /&gt;
+		&lt;/video&gt;
+		&lt;figcaption&gt;
+			&lt;p&gt;Looking for a Job (&lt;a href="http://www.servicecanada.gc.ca/eng/video/lj.shtml"&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
+		&lt;/figcaption&gt;
+	&lt;/figure&gt;
+&lt;/div&gt;</code></pre>
+					</li>
+					<li><strong>Other content:</strong> Add content to the <code>figure</code> element followed by a <code>figcaption</code> element with the caption for the tab panel.
+						<pre><code>&lt;div role="tabpanel" id="panel1" class="in fade"&gt;
+	&lt;figure&gt;
+		&lt;table&gt;
+			...
+		&lt;/table&gt;
+		&lt;figcaption&gt;
+			&lt;p&gt;Tab panel caption&lt;/p&gt;
+		&lt;/figcaption&gt;
+	&lt;/figure&gt;
+&lt;/div&gt;</code></pre>
+					</li>
+				</ul>
+			</li>
+			<li>Add a <code>ul</code> element with <code>role="tablist"</code> at the start of the <code>div</code> element with the <code>wb-tabs</code> class.</li>
+			<li>For each tab panel, add an <code>li</code> element to the previous <code>ul</code> element. Add <code>class="active"</code> for the tab panel that should be open by default.</li>
+			<li>Add an <code>a</code> element to each <code>li</code> element
+			<li>Add to each <code>li</code> element an <code>a</code> element with the label of the tab and that links to the associated tab panel.
+				<pre><code>&lt;ul role="tablist"&gt;
+	&lt;li class="active"&gt;&lt;a href="#panel27"&gt;Tab 1&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="#panel28"&gt;Tab 2&lt;/a&gt;&lt;/li&gt;
+		...
+&lt;/ul&gt;</code></pre>
+			</li>
+			<li><strong>Optional:</strong> Override the default settings using the <a href="#config">configuration options</a>.</li>
+		</ol>
+
+		<section>
+			<h4>Code</h4>
+			<pre><code>&lt;div class="wb-tabs carousel-s1"&gt;
+	&lt;ul role="tablist"&gt;
+		&lt;li class="active"&gt;&lt;a href="#panel1"&gt;Tab 1&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#panel2"&gt;Tab 2&lt;/a&gt;&lt;/li&gt;
+		...
+	&lt;/ul&gt;
+	&lt;div class="tabpanels"&gt;
+		&lt;div role="tabpanel" id="panel1" class="in fade"&gt;
+			&lt;figure&gt;
+				&lt;img src="img/protect-environment.jpg" alt="Panel 1" /&gt;
+				&lt;figcaption&gt;
+					&lt;p&gt;
+						...
+					&lt;/p&gt;
+				&lt;/figcaption&gt;
+			&lt;/figure&gt;
+		&lt;/div&gt;
+		&lt;div role="tabpanel" id="panel2" class="out fade"&gt;
+			&lt;figure&gt;
+				&lt;img src="img/banff.jpg" alt="Panel 2" /&gt;
+				&lt;figcaption&gt;
+					&lt;p&gt;
+						...
+					&lt;/p&gt;
+				&lt;/figcaption&gt;
+			&lt;/figure&gt;
+		&lt;/div&gt;
+		...
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		</section>
+	</section>
 </section>
 
 <section>
-	<h2>Configuration options</h2>
-	<p>Coming soon</p>
-	<!--
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
+	<h2 id="config">Configuration options (carousel only)</h2>
 	<table class="table">
 		<thead>
 			<tr>
@@ -79,38 +225,129 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
+				<td>Carousel style</td>
+				<td>Configures the carousel style.</td>
+				<td>Add the value after the <code>wb-tabs</code> class (e.g., <code>class="wb-tabs carousel-s1"</code>)</td>
 				<td>
 					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
+						<dt><code>carousel-s1</code>:</dt>
+						<dd>Square grey controls located at the top of the carousel.</dd>
+						<dt><code>carousel-s2</code>:</dt>
+						<dd>Rounded white controls located at the bottom of the carousel.</dd>
 					</dl>
 				</td>
 			</tr>
 			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
+				<td>Change rotation speed (<code>data-wb-tabs</code>)</td>
+				<td>Configure the tab rotation speed through the <code>interval</code> property of the <code>data-wb-tabs</code> attribute.</td>
+				<td>Add the <code>data-wb-tabs</code> attribute to the element with <code>class="wb-tabs"</code> and include the <code>interval</code> property with the number of seconds between tab rotations.
+					<pre><code>data-wb-tabs='{"interval": 3}'</code></pre>
+				</td>
 				<td>
 					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
+						<dt><code>6</code> (default):</dt>
+						<dd>Six seconds between tab rotations</dd>
+						<dt>Integer</dt>
+						<dd>Number of seconds between tab rotations</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>Change rotation speed (<code>slow</code>, <code>fast</code>)</td>
+				<td>Configure the tab rotation speed through either the <code>slow</code> or <code>fast</code> classes.</td>
+				<td>Add either <code>slow</code> or <code>fast</code> after the <code>wb-tabs</code> class.
+					<pre><code>class="wb-tabs slow"</code></pre>
+				</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>Six seconds between tab rotations</dd>
+						<dt><code>slow</code></dt>
+						<dd>Nine seconds between tab rotations</dd>
+						<dt><code>fast</code></dt>
+						<dd>Three seconds between tab rotations</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>Tab panel transitions</td>
+				<td>Configure the tab panel transition type through the <code>fade</code>, <code>slide</code> or <code>slidevert</code> classes.</td>
+				<td>Add <code>fade</code>, <code>slide</code> or <code>slidevert</code> after the <code>in</code> or <code>out</code> class on each tab panel.
+					<pre><code>&lt;div role="tabpanel" id="panel21" class="in fade"&gt;</code></pre>
+				</td>
+				<td>
+					<dl>
+						<dt><code>fade</code>:</dt>
+						<dd>Fading transition</dd>
+						<dt><code>slide</code></dt>
+						<dd>Horizontal sliding transition</dd>
+						<dt><code>slidevert</code></dt>
+						<dd>Vertical sliding transition</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>Exclude play (<code>data-wb-tabs</code>) (v4.0.5+)</td>
+				<td>Exclude the play button from the carousel controls through the <code>excludePlay</code> property of the <code>data-wb-tabs</code> attribute.</td>
+				<td>Add the <code>data-wb-tabs</code> attribute to the element with <code>class="wb-tabs"</code> and include the <code>excludePlay</code> property with <code>true</code> for the value.
+					<pre><code>data-wb-tabs='{"excludePlay": true}'</code></pre>
+				</td>
+				<td>
+					<dl>
+						<dt><code>false</code> (default):</dt>
+						<dd>Play button is <strong>included in</strong> the carousel controls.</dd>
+						<dt><code>true</code>:</dt>
+						<dd>Play button is <strong>excluded from</strong> the carousel controls.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>Exclude play (<code>exclude-play</code>) (v4.0.5+)</td>
+				<td>Exclude the play button from the carousel controls through the <code>exclude-play</code> class.</td>
+				<td>Add <code>exclude-play</code> after the <code>wb-tabs</code> class.
+					<pre><code>class="wb-tabs exclude-play"</code></pre>
+				</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>Play button is <strong>included in</strong> the carousel controls.</dd>
+						<dt><code>playing</code></dt>
+						<dd>Play button is <strong>excluded from</strong> the carousel controls.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>Play on page load (<code>data-wb-tabs</code>) (v4.0.5+)</td>
+				<td>Play the carousel on page load through the <code>playing</code> property of the <code>data-wb-tabs</code> attribute.<br /><strong>Warning:</strong> Playing on page load can be distracting and cause usability issues for some users.<br /><strong>Note:</strong> Playing will be disabled if the play button is excluded from the carousel controls.</td>
+				<td>Add the <code>data-wb-tabs</code> attribute to the element with <code>class="wb-tabs"</code> and include the <code>playing</code> property with <code>true</code> for the value.
+					<pre><code>data-wb-tabs='{"playing": true}'</code></pre>
+				</td>
+				<td>
+					<dl>
+						<dt><code>false</code> (default):</dt>
+						<dd>Carousel <strong>does not play</strong> on page load.</dd>
+						<dt><code>true</code>:</dt>
+						<dd>Carousel <strong>plays</strong> on page load.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>Play on page load (<code>playing</code>)</td>
+				<td>Play the carousel on page load through the <code>playing</code> class.<br /><strong>Warning:</strong> Playing on page load can be distracting and cause usability issues for some users.<br /><strong>Note:</strong> Playing will be disabled if the play button is excluded from the carousel controls.</td>
+				<td>Add <code>playing</code> after the <code>wb-tabs</code> class.
+					<pre><code>class="wb-tabs playing"</code></pre>
+				</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>Carousel <strong>does not play</strong> on page load.</dd>
+						<dt><code>playing</code></dt>
+						<dd>Carousel <strong>plays</strong> on page load.</dd>
 					</dl>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-	-->
 </section>
 
 <section>
@@ -125,9 +362,37 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-tabs</td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-tabs" );</code>).</td>
+				<td><code>wb-init.wb-tabs</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-tabs" ).trigger( "wb-init.wb-tabs" );</code>).</td>
 				<td>Used to manually initialize the Tabbed interface plugin. <strong>Note:</strong> The Tabbed interface plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-tabs</code> (v4.0.5+)</td>
+				<td>Triggered automatically after a tabbed interface or carousel initializes.</td>
+				<td>Used to identify which tabbed interface or carousel was initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-tabs", ".wb-tabs", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-tabs" ).on( "wb-ready.wb-tabs", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-updated.wb-tabs</code> (v4.0.5+)</td>
+				<td>Triggered automatically after a tabbed interface/carousel was updated (visible tab panel changed).</td>
+				<td>Used to identify which tabbed inteface/carousel was updated (target of the event) and to pass along the newly visible panel (as a jQuery object).
+					<pre><code>$( document ).on( "wb-updated.wb-tabs", ".wb-tabs", function( event, $newPanel ) {
+});</code></pre>
+					<pre><code>$( ".wb-tabs" ).on( "wb-updated.wb-tabs", function( event, $newPanel ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>

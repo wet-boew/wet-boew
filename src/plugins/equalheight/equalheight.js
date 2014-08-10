@@ -13,9 +13,11 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var selector = ".wb-eqht",
+var componentName = "wb-eqht",
+	selector = "." + componentName,
 	$document = wb.doc,
 	eventTimerpoke = "timerpoke.wb",
+	initEvent = "wb-init" + selector,
 	vAlignCSS = "vertical-align",
 	vAlignDefault = "top",
 	minHeightCSS = "min-height",
@@ -27,21 +29,25 @@ var selector = ".wb-eqht",
 	regexMinHeight = new RegExp( minHeightCSS + cssValueSeparator + " ?" + regexCSSValue + cssPropertySeparator + "?", "i" ),
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery Event} event Event that triggered this handler
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
 
-		// Filter out any events triggered by descendants
-		if ( event.currentTarget === event.target ) {
-			wb.remove( selector );
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector );
+
+		if ( elm ) {
 
 			// Remove the event handler since only want init fired once per page (not per element)
 			$document.off( eventTimerpoke, selector );
 
 			onResize();
+
+			// Identify that initialization has completed
+			wb.ready( $document, componentName );
 		}
 	},
 
@@ -114,6 +120,9 @@ var selector = ".wb-eqht",
 				}
 			}
 			$elm = reattachElement( $anchor );
+
+			// Identify that the height equalization was updated
+			$document.trigger( "wb-updated" + selector );
 		}
 	},
 
@@ -180,10 +189,10 @@ var selector = ".wb-eqht",
 	};
 
 // Bind the init event of the plugin
-$document.on( eventTimerpoke, selector, init );
+$document.on( eventTimerpoke + " " + initEvent, selector, init );
 
 // Handle text and window resizing
-$document.on( "txt-rsz.wb win-rsz-width.wb win-rsz-height.wb tables-draw.wb", onResize );
+$document.on( "txt-rsz.wb win-rsz-width.wb win-rsz-height.wb wb-updated.wb-tables wb-update" + selector, onResize );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );

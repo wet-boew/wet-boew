@@ -2,9 +2,11 @@
 {
 	"title": "Table Validator",
 	"language": "en",
+	"category": "Other",
+	"categoryfile": "other",
 	"description": "Web editor tool that helps to produce tables that conform to WCAG 2.0",
 	"altLangPrefix": "tablevalidator",
-	"dateModified": "2014-04-30"
+	"dateModified": "2014-08-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -102,7 +104,6 @@ Example of multi-line code</code></pre>
 
 <section>
 	<h2>Events</h2>
-	<p>Document the public events that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -113,14 +114,12 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Event 1</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
-			</tr>
-			<tr>
-				<td>Event 2</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>

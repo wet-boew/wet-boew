@@ -8,9 +8,12 @@
 	"parentdir": "data-inview",
 	"altLangPrefix": "data-inview",
 	"css": ["demo/data-inview"],
-	"dateModified": "2014-02-19"
+	"js": ["demo/data-inview"],
+	"dateModified": "2014-07-21"
 }
 ---
+<span class="wb-prettify all-pre"></span>
+
 <section>
 	<h2>Purpose</h2>
 	<p>Create fixed position content panels that are conditionally displayed as the web page is scrolled and resized.</p>
@@ -22,6 +25,21 @@
 	<section class="wb-inview bar-demo" data-inview="bottom-bar">
 		<h3 class="no-gutter">Section with a conditional bottom bar</h3>
 		<p>A bar will be displayed at the bottom when this section is <strong>partially out</strong> of the viewport.</p>
+		<p><strong>View state:</strong> <code class="view-state-status"></code></p>
+		<details>
+			<summary>View code</summary>
+			<pre><code>&lt;section class=&quot;wb-inview bar-demo&quot; data-inview=&quot;bottom-bar&quot;&gt;
+	&lt;h3 class=&quot;no-gutter&quot;&gt;Section with a conditional bottom bar&lt;/h3&gt;
+	...
+&lt;/section&gt;
+
+&lt;section id=&quot;bottom-bar&quot; class=&quot;wb-overlay modal-content overlay-def wb-bar-b&quot;&gt;
+	&lt;header&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Bottom bar&lt;/h2&gt;
+	&lt;/header&gt;
+	...
+&lt;/section&gt;</code></pre>
+		</details>
 	</section>
 
 	<p>Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
@@ -29,8 +47,76 @@
 	<section class="wb-inview show-none bar-demo" data-inview="top-bar">
 		<h3 class="no-gutter">Section with a conditional top bar</h3>
 		<p>A bar will be displayed at the top when this section is <strong>fully out</strong> of the viewport (<code>class="show-none"</code>).</p>
+		<p><strong>View state:</strong> <code class="view-state-status"></code></p>
+		<details>
+			<summary>View code</summary>
+			<pre><code>&lt;section class=&quot;wb-inview show-none bar-demo&quot; data-inview=&quot;top-bar&quot;&gt;
+	&lt;h3 class=&quot;no-gutter&quot;&gt;Section with a conditional top bar&lt;/h3&gt;
+	...
+&lt;/section&gt;
+
+&lt;section id=&quot;top-bar&quot; class=&quot;wb-overlay modal-content overlay-def wb-bar-t&quot;&gt;
+	&lt;header&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Top bar&lt;/h2&gt;
+	&lt;/header&gt;
+	...
+&lt;/section&gt;</code></pre>
+		</details>
 	</section>
 
+	<section class="wb-inview bar-demo" data-inview="fade-effect">
+		<h3 class="no-gutter">Section that triggers a fade in or out effect for the next section</h3>
+		<p>The next section will fade in when this section is <strong>partially out</strong> of the viewport.</p>
+		<p><strong>View state:</strong> <code class="view-state-status"></code></p>
+		<details>
+			<summary>View code</summary>
+			<pre><code>&lt;section class=&quot;wb-inview bar-demo&quot; data-inview=&quot;fade-effect&quot;&gt;
+	&lt;h3 class=&quot;no-gutter&quot;&gt;Section that triggers a fade in or out effect for the next section&lt;/h3&gt;
+	...
+&lt;/section&gt;
+
+&lt;section id=&quot;fade-effect&quot; class=&quot;fade bar-demo&quot;&gt;
+	&lt;h3 class=&quot;no-gutter&quot;&gt;Section that fades in/out&lt;/h3&gt;
+	...
+&lt;/section&gt;</code></pre>
+		</details>
+	</section>
+
+	<section id="fade-effect" class="fade bar-demo">
+		<h3 class="no-gutter">Section that fades in/out</h3>
+		<p>This section fades in or out based upon the view state of the previous section.</p>
+	</section>
+
+	<section class="wb-inview bar-demo">
+		<h3 class="no-gutter">View state change events</h3>
+		<p>The view state of this section is being identified below through JavaScript.</p>
+		<p><strong>View state:</strong> <code class="view-state-status"></code></p>
+		<details>
+			<summary>View code</summary>
+			<section>
+				<h4>HTML</h4>
+				<pre><code>&lt;section class=&quot;wb-inview bar-demo&quot;&gt;
+	&lt;h3 class=&quot;no-gutter&quot;&gt;View state change events&lt;/h3&gt;
+	...
+&lt;/section&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>JavaScript</h4>
+				<pre><code>(function( $, wb ) {
+&quot;use strict&quot;;
+
+wb.doc.on( &quot;all.wb-inview partial.wb-inview none.wb-inview&quot;, function( event) {
+	if ( event.namespace === &quot;wb-inview&quot; ) {
+		$( event.target ).find( &quot;.view-state-status&quot; ).html( event.type );
+	}
+});
+
+})( jQuery, wb );</code></pre>
+			</section>
+		</details>
+	</section>
+	
 	<p>Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
 	<p>Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text. Other example text.</p>
 	<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>

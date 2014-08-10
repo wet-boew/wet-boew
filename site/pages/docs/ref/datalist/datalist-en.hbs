@@ -2,16 +2,18 @@
 {
 	"title": "Datalist polyfill (auto-complete)",
 	"language": "en",
-	"description": "Adds auto-complete functionality to specific <input> fields by dynamically displaying a list of words that match the <datalist>.",
+	"category": "Polyfills",
+	"categoryfile": "polyfills",
+	"description": "Emulates input list attribute and datalist element support for browsers that do not have support. This adds auto-complete functionality to specific input fields by dynamically displaying a list of words that match the datalist.",
 	"altLangPrefix": "datalist",
-	"dateModified": "2014-04-17"
+	"dateModified": "2014-08-06"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
 
 <section>
 	<h2>Purpose</h2>
-	<p>The HTML5 <code>input list</code> attribute and the <code>datalist</code> element add auto-complete functionality to specific text input fields by dynamically displaying a list of words that match the user’s input. Because some browsers do not support this functionality natively, this polyfill emulates the same functionality using generic HTML and WAI-ARIA. Browsers that do not support the <code>input list</code> attribute and the <code>datalist</code> element natively ignore the auto-complete functionality and therefore, the text input field behaves like it normally does.</p>
+	<p>The HTML5 <code>input list</code> attribute and the <code>datalist</code> element add auto-complete functionality to specific text input fields by dynamically displaying a list of words that match the user’s input. Because some browsers do not support this functionality natively, this polyfill emulates the same functionality using generic HTML and WAI-ARIA. Browsers that do not support the <code>input list</code> attribute and the <code>datalist</code> element natively ignore the auto-complete functionality and therefore, the text input field behaves like it normally does. Implements the <a href="http://www.w3.org/TR/wai-aria-practices/#autocomplete">WAI-ARIA Auto Complete design pattern</a>.</p>
 </section>
 
 <section>
@@ -71,9 +73,27 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-datalist</td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-datalist" );</code>).</td>
-				<td>Used to manually initialize the datalist polyfill on an <code>input</code> element with a <code>list</code> attribute. <strong>Note:</strong> The datalist polyfill will be initialized automatically unless the <code>input list</code> attribute and <code>datalist</code> element are added after the page has already loaded.</td>
+				<td><code>wb-init.wb-datalist</code></td>
+				<td>Triggered manually (e.g., <code>$( "input[type=list]" ).trigger( "wb-init.wb-datalist" );</code>).</td>
+				<td>Used to manually initialize the <code>datalist</code> polyfill on an <code>input</code> element with a <code>list</code> attribute. <strong>Note:</strong> The <code>datalist</code> polyfill will be initialized automatically unless the <code>input list</code> attribute and <code>datalist</code> element are added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-datalist</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the <code>datalist</code> polyfill initializes. <strong>Note:</strong> This event will only be triggered if the polyfill is loaded. The polyfill will not load for browsers with native <code>datalist</code> support.</td>
+				<td>Used to identify where the <code>datalist</code> polyfill initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-datalist", "input[type=list]", function( event ) {
+});</code></pre>
+					<pre><code>$( "input[type=list]" ).on( "wb-ready.wb-datalist", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>

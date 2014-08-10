@@ -7,20 +7,23 @@
 	"tag": "multimedia, youtube",
 	"parentdir": "multimedia",
 	"altLangPrefix": "multimedia-youtube",
-	"dateModified": "2014-06-10"
+	"dateModified": "2014-08-01"
 }
 ---
+<span class="wb-prettify all-pre hide"></span>
+
 <div class="row">
-	<div class="col-md-12">
-		<p>For YouTube videos, the multimedia player integrates the YouTube chromeless player which leverages the native HTML5 video tag and relies on Flash as a fallback mechanism when the HTML5 video tag is not implemented.</p>
-		<p>The multimedia player's timeline relies on the HTML5 progress element and uses a polyfill when the element is not supported.</p>
-	</div>
+	<section class="col-md-12">
+		<h2>Overview</h2>
+		<p>For YouTube videos, the multimedia player integrates the YouTube chromeless player which leverages the native HTML5 <code>video</code> tag and relies on Flash as a fallback mechanism when the HTML5 <code>video</code> tag is not implemented.</p>
+		<p>The multimedia player's timeline relies on the HTML5 <code>progress</code> element and uses a polyfill when the element is not supported.</p>
+	</section>
 </div>
 
 <div class="row">
 	<section class="col-md-6">
 		<h2>Example</h2>
-		<figure class="wb-mltmd">
+		<figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "http://www.youtube.com/watch?v=9znKJqnFuuY"}'>
 			<video title="Suspect">
 				<source type="video/youtube" src="http://www.youtube.com/watch?v=9znKJqnFuuY" />
 			</video>
@@ -28,5 +31,17 @@
 				<p>Suspect</p>
 			</figcaption>
 		</figure>
+
+		<details class="mrgn-tp-md">
+			<summary>View code</summary>
+			<pre><code>&lt;figure class=&quot;wb-mltmd&quot; data-wb-mltmd='{"shareUrl": "http://www.youtube.com/watch?v=9znKJqnFuuY"}'&gt;
+	&lt;video title=&quot;Suspect&quot;&gt;
+		&lt;source type=&quot;video/youtube&quot; src=&quot;http://www.youtube.com/watch?v=9znKJqnFuuY&quot; /&gt;
+	&lt;/video&gt;
+	&lt;figcaption&gt;
+		&lt;p&gt;Suspect&lt;/p&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+		</details>
 	</section>
 </div>

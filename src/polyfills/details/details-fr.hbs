@@ -3,11 +3,11 @@
 	"title": "Correctif « details/summary » (contenu affichable/masquable)",
 	"language": "fr",
 	"category": "Correctifs",
-	"description": "Émule les éléments <details> et <summary> pour les navigateurs qui ne le supportent pas.",
+	"description": "Émule les éléments « details » et « summary » pour les navigateurs qui ne le supportent pas. Les éléments « details » et « summary » éléments permettent au contenu d'être affiché et masqué.","description": "Émule les éléments « details » et « summary » pour les navigateurs qui ne le supportent pas. Les éléments « details » et « summary » éléments permettent au contenu d'être affiché et masqué.",
 	"tag": "details",
 	"parentdir": "details",
 	"altLangPrefix": "details",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-07-21"
 }
 ---
 <p>Les éléments HTML5 «&#160;<code lang="en">details</code>&#160;» et «&#160;<code lang="en">summary</code>&#160;» sont utilisés pour fournir le contenu en arborescence affichable/masquable. Ce composant ajoute le soutien pour ces éléments dans les navigateurs qui n'ont pas déjà la prise en charge native.</p>
@@ -15,93 +15,117 @@
 <section>
 	<h2>Exemples</h2>
 
-	<details>
-		<summary>Exemple 1</summary>
-		<p>Le contenu d'exemple qui fournit plus de détails.</p>
-		<table>
-			<caption>Tasses de café bues par chaque député</caption>
-			<thead>
-			<tr>
-				<th scope="col">Nom</th>
-				<th scope="col">Tasses</th>
-				<th scope="col">Type de café</th>
-				<th scope="col">Sucre?</th>
-			</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>T. Sexton</td>
-					<td>10</td>
-					<td>Expresso</td>
-					<td>Non</td>
-				</tr>
-				<tr>
-					<td>J. Dinnen</td>
-					<td>5</td>
-					<td>Déca</td>
-					<td>Oui</td>
-				</tr>
-			</tbody>
-		</table>
-	</details>
+	<ul class="list-unstyled">
+		<li>
+			<details>
+				<summary>Exemple 1</summary>
+				<p>Le contenu d'exemple qui fournit plus de détails.</p>
+				<table>
+					<caption>Tasses de café bues par chaque député</caption>
+					<thead>
+					<tr>
+						<th scope="col">Nom</th>
+						<th scope="col">Tasses</th>
+						<th scope="col">Type de café</th>
+						<th scope="col">Sucre?</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>T. Sexton</td>
+							<td>10</td>
+							<td>Expresso</td>
+							<td>Non</td>
+						</tr>
+						<tr>
+							<td>J. Dinnen</td>
+							<td>5</td>
+							<td>Déca</td>
+							<td>Oui</td>
+						</tr>
+					</tbody>
+				</table>
+			</details>
+		</li>
+		<li>
+			<details open="open">
+				<summary>Exemple 2</summary>
+				<p>Le contenu d'exemple qui fournit plus de détails.</p>
+				<table>
+					<caption>Tasses de café bues par chaque député</caption>
+					<thead>
+					<tr>
+						<th scope="col">Nom</th>
+						<th scope="col">Tasses</th>
+						<th scope="col">Type de café</th>
+						<th scope="col">Sucre?</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>T. Sexton</td>
+							<td>10</td>
+							<td>Expresso</td>
+							<td>Non</td>
+						</tr>
+						<tr>
+							<td>J. Dinnen</td>
+							<td>5</td>
+							<td>Déca</td>
+							<td>Oui</td>
+						</tr>
+					</tbody>
+				</table>
+			</details>
+		</li>
+		<li>
+			<details>
+				<summary>Exemple 3</summary>
+				<p>Le contenu d'exemple qui fournit plus de détails.</p>
+				<table>
+					<caption>Tasses de café bues par chaque député</caption>
+					<thead>
+					<tr>
+						<th scope="col">Nom</th>
+						<th scope="col">Tasses</th>
+						<th scope="col">Type de café</th>
+						<th scope="col">Sucre?</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>T. Sexton</td>
+							<td>10</td>
+							<td>Expresso</td>
+							<td>Non</td>
+						</tr>
+						<tr>
+							<td>J. Dinnen</td>
+							<td>5</td>
+							<td>Déca</td>
+							<td>Oui</td>
+						</tr>
+					</tbody>
+				</table>
+			</details>
+		</li>
+	</ul>
 
-	<details>
-		<summary>Exemple 2</summary>
-		<p>Le contenu d'exemple qui fournit plus de détails.</p>
-		<table>
-			<caption>Tasses de café bues par chaque député</caption>
-			<thead>
-			<tr>
-				<th scope="col">Nom</th>
-				<th scope="col">Tasses</th>
-				<th scope="col">Type de café</th>
-				<th scope="col">Sucre?</th>
-			</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>T. Sexton</td>
-					<td>10</td>
-					<td>Expresso</td>
-					<td>Non</td>
-				</tr>
-				<tr>
-					<td>J. Dinnen</td>
-					<td>5</td>
-					<td>Déca</td>
-					<td>Oui</td>
-				</tr>
-			</tbody>
-		</table>
-	</details>
-
-	<details>
-		<summary>Exemple 3</summary>
-		<p>Le contenu d'exemple qui fournit plus de détails.</p>
-		<table>
-			<caption>Tasses de café bues par chaque député</caption>
-			<thead>
-			<tr>
-				<th scope="col">Nom</th>
-				<th scope="col">Tasses</th>
-				<th scope="col">Type de café</th>
-				<th scope="col">Sucre?</th>
-			</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>T. Sexton</td>
-					<td>10</td>
-					<td>Expresso</td>
-					<td>Non</td>
-				</tr>
-				<tr>
-					<td>J. Dinnen</td>
-					<td>5</td>
-					<td>Déca</td>
-					<td>Oui</td>
-				</tr>
-			</tbody>
-		</table>
-	</details>
+	<section>
+		<h3>Code</h3>
+		<pre><code>&lt;ul class=&quot;list-unstyled&quot;&gt;
+	&lt;li&gt;
+		&lt;details&gt;
+			&lt;summary&gt;Exemple 1&lt;/summary&gt;
+			...
+		&lt;/details&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;details open="open"&gt;
+			&lt;summary&gt;Exemple 2&lt;/summary&gt;
+		&lt;/details&gt;
+	&lt;/li&gt;
+	...
+&lt;/ul&gt;</code></pre>
+	</section>
 </section>

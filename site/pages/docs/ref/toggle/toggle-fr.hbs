@@ -2,9 +2,11 @@
 {
 	"title": "Basculer",
 	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
 	"description": "Plugiciel qui permet un lien à basculer des éléments entre les états activé et désactivé.",
 	"altLangPrefix": "toggle",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-08-06"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -13,7 +15,7 @@
 	<p><strong>Needs translation</strong></p>
 	<section>
 		<h2>Purpose</h2>
-		<p>Allows an element to toggle elements between on and off states.  The element that is toggled records its current state using a ".on" or ".off" CSS class.</p>
+		<p>Allows an element to toggle elements between on and off states.  The element that is toggled records its current state using a ".on" or ".off" CSS class.  The accordion option implements the <a href="http://www.w3.org/TR/wai-aria-practices/#accordion">WAI-ARIA accordion design pattern</a>.</p>
 	</section>
 	
 	<section>
@@ -45,7 +47,7 @@
 			<h3>Toggle self</h3>
 			<p>This is the most basic use of the plugin.  It allows an element to toggle itself on and off when clicked.</p>
 			<ol>
-				<li>Add the <b>wb-toggle</b> CSS class to an element.</li>
+				<li>Add the <code>wb-toggle</code> CSS class to an element.</li>
 			</ol>	
 			<pre><code>&lt;button type="button" class="wb-toggle"&gt;Toggle&lt;/button&gt;</code></pre>
 		</section>
@@ -54,8 +56,8 @@
 			<h3 id="toggle-other">Toggle other elements</h3>
 			<p>A toggle element can be setup to control the on/off toggle state of other elements.  Any elements that match the CSS selector specified by the data-toggle attribute will have their on/off state changed when the toggle element is clicked.</p>
 			<ol>
-				<li>Add the <b>wb-toggle</b> CSS class to the toggle element.</li>
-				<li>Using the <b>data-toggle</b> attribute, specify the CSS selector of the elements that will have their states toggled.</li>
+				<li>Add the <code>wb-toggle</code> CSS class to the toggle element.</li>
+				<li>Using the <code>data-toggle</code> attribute, specify the CSS selector of the elements that will have their states toggled.</li>
 			</ol>
 			<pre><code>&lt;button type="button" class="wb-toggle" data-toggle="{'selector': '.otherElements'}"&gt;Toggle&lt;/button&gt;</code></pre>
 		</section>
@@ -64,8 +66,8 @@
 			<h3>Toggle configuration</h3>
 			<p>This example expands on <a href="#toggle-other">Toggle other elements</a> by using the plugin's <a href="#config">configuration options</a>.</p>
 			<ol>
-				<li>Add the <b>wb-toggle</b> CSS class to the toggle element.</li>
-				<li>Using the <b>data-toggle</b> data attribute, specify
+				<li>Add the <code>wb-toggle</code> CSS class to the toggle element.</li>
+				<li>Using the <code>data-toggle</code> data attribute, specify
 					<ul> 
 						<li>the CSS selector of the elements that will have their states toggled,</li>
 						<li>the CSS selector of the parent these elements must exist in,</li>
@@ -87,8 +89,8 @@
 			<h3>Grouped Toggle</h3>
 			<p>This option causes a group of elements to only allow one of the elements to be active ("on") at a time, much like a tabbed interface.</p>
 			<ol>
-				<li>Add the <b>wb-toggle</b> CSS class to the toggle elements.</li>
-				<li>Using the <b>data-toggle</b> attribute, specify the element(s) the toggle element will control, and the group CSS selector.</li>
+				<li>Add the <code>wb-toggle</code> CSS class to the toggle elements.</li>
+				<li>Using the <code>data-toggle</code> attribute, specify the element(s) the toggle element will control, and the group CSS selector.</li>
 			</ol>
 			<p>The following shows a completed example for button elements that toggle open details elements:</p>
 			<pre class="linenums"><code>&lt;button type="button" class="wb-toggle" data-toggle='{"selector": "#toggle1", "group": ".grouped", "type": "on"}'&gt;Example 1&lt;/button&gt;
@@ -109,8 +111,8 @@
 				<li>Wrap all sections of the accordion in parent element with a unique CSS class or ID. <code>&lt;div class="accordion"&gt;</code></li>
 				<li>For each accordion section:
 					<ul>
-						<li>Add the <b>wb-toggle</b> class and <b>data-toggle</b> attribute to the element the user will click to open/close the section.</li>
-						<li>Add the <b>tgl-tab</b> class to the element that shows the section's heading.</li>
+						<li>Add the <code>wb-toggle</code> class and <code>data-toggle</code> attribute to the element the user will click to open/close the section.</li>
+						<li>Add the <code>tgl-tab</code> class to the element that shows the section's heading.</li>
 						<li>Wrap the content in a <code>&lt;div class="tgl-panel"&gt;</code> element.</li>
 					</ul>
 				</li>
@@ -140,7 +142,7 @@
 	
 	<section>
 		<h2 id="config">Configuration options</h2>
-		<p>All configuration options of the plugin are controlled by the <b>data-toggle</b> attribute:</p>
+		<p>All configuration options of the plugin are controlled by the <code>data-toggle</code> attribute:</p>
 		<table class="table">
 			<thead>
 				<tr>
@@ -304,14 +306,24 @@
 			<tbody>
 				<tr>
 					<td><code>wb-init.wb-toggle</code></td>
-					<td>Triggered manually.</td>
-					<td>Initializes the plugin. <b>Note: </b> the toggle plugin will be initialized automatically unless the element is added after the page has already loaded.</td>
+					<td>Triggered manually (e.g., <code>$( ".wb-toggle" ).trigger( "wb-init.wb-toggle" );</code>).</td>
+					<td>Used to manually initialize the Toggle plugin. <strong>Note:</strong> the toggle plugin will be initialized automatically unless the element is added after the page has already loaded.</td>
+				</tr>
+				<tr>
+					<td><code>wb-ready.wb-toggle</code> (v4.0.5+)</td>
+					<td>Triggered automatically after a toggle initializes.</td>
+					<td>Used to identify which toggle was initialized (target of the event)
+						<pre><code>$( document ).on( "wb-ready.wb-toggle", ".wb-toggle", function( event ) {
+});</code></pre>
+						<pre><code>$( ".wb-toggle" ).on( "wb-ready.wb-toggle", function( event ) {
+});</code></pre>
+					</td>
 				</tr>
 				<tr>
 					<td><code>toggle.wb-toggle</code></td>
-					<td>Triggered manually and by plugin.</td>
+					<td>Triggered manually and automatically by plugin (e.g., <code>$( ".wb-toggle" ).trigger( "toggle.wb-toggle" );</code>).</td>
 					<td>
-						Causes a toggle element to change the toggle state of the elements it controls.  Normally triggered by clicking on the toggle element.  When triggering this event manually, the data-toggle attribute must be passed as the second argument:
+						Causes a toggle element to change the toggle state of the elements it controls. Normally triggered by clicking on the toggle element.  When triggering this event manually, the data-toggle attribute must be passed as the second argument:
 						<pre><code>// Get a reference to the toggle element and its settings
 	var $toggler = $( ".wb-toggle" );
 	    settings = $toggler.data( "toggle" );
@@ -320,6 +332,14 @@
 	$toggler.trigger( "toggle.wb-toggle", settings );</code></pre>				
 					</td>
 				</tr>
+				<tr>
+					<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+					<td>Triggered automatically when WET has finished loading and executing.</td>
+					<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+						<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+					</td>
+			</tr>
 			</tbody>
 		</table>
 	</section>

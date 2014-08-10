@@ -2,9 +2,11 @@
 {
 	"title": "Feedback form",
 	"language": "en",
+	"category": "Other",
+	"categoryfile": "other",
 	"description": "Allows users to submit feedback for a specific Web page or Web site.",
 	"altLangPrefix": "feedback",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-08-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -90,6 +92,24 @@
 				<td>wb-init.wb-fdbck</td>
 				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-fdbck" );</code>).</td>
 				<td>Used to manually initialize the feedback form. <strong>Note:</strong> The feedback form will be initialized automatically unless it is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-fdbck</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the feedback form initializes.</td>
+				<td>Used to identify when the feedback form has initialized
+					<pre><code>$( document ).on( "wb-ready.wb-fdbck", ".wb-fdbck", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-fdbck" ).on( "wb-ready.wb-pic", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>

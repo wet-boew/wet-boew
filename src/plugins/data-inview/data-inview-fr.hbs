@@ -8,9 +8,12 @@
 	"parentdir": "data-inview",
 	"altLangPrefix": "data-inview",
 	"css": ["demo/data-inview"],
-	"dateModified": "2014-02-19"
+	"js": ["demo/data-inview"],
+	"dateModified": "2014-07-21"
 }
 ---
+<span class="wb-prettify all-pre"></span>
+
 <section>
 	<h2>Intention</h2>
 	<p>Créer des panneaux de contenu de position fixe qui sont conditionnellement affichées quand la page est défiler et redimensionner.</p>
@@ -22,6 +25,21 @@
 	<section class="wb-inview bar-demo" data-inview="barre-bas">
 		<h3 class="no-gutter">Section avec une barre en bas conditionnelle</h3>
 		<p>Une barre sera affichée en bas lors de cette section est <strong>partiellement hors</strong> de la clôture.</p>
+		<p><strong>L'état d'affichage&#160;:</strong> <code lang="en"></code></p>
+		<details>
+			<summary>Visualiser le code</summary>
+			<pre><code>&lt;section class=&quot;wb-inview bar-demo&quot; data-inview=&quot;barre-bas&quot;&gt;
+	&lt;h3 class=&quot;no-gutter&quot;&gt;Section avec une barre en bas conditionnelle&lt;/h3&gt;
+	...
+&lt;/section&gt;
+
+&lt;section id=&quot;barre-bas&quot; class=&quot;wb-overlay modal-content overlay-def wb-bar-b&quot;&gt;
+	&lt;header&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Barre en bas&lt;/h2&gt;
+	&lt;/header&gt;
+	...
+&lt;/section&gt;</code></pre>
+		</details>
 	</section>
 
 	<p>Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent.</p>
@@ -29,6 +47,74 @@
 	<section class="wb-inview show-none bar-demo" data-inview="barre-haut">
 		<h3 class="no-gutter">Section avec une barre en haut conditionnelle</h3>
 		<p>Une barre sera affichée en haut lors de cette section est <strong>entièrement hors</strong> de la clôture (<code>class="show-none"</code>).</p>
+		<p><strong>L'état d'affichage&#160;:</strong> <code lang="en"></code></p>
+		<details>
+			<summary>Visualiser le code</summary>
+			<pre><code>&lt;section class=&quot;wb-inview show-none bar-demo&quot; data-inview=&quot;barre-haut&quot;&gt;
+	&lt;h3 class=&quot;no-gutter&quot;&gt;Section avec une barre en haut conditionnelle&lt;/h3&gt;
+	...
+&lt;/section&gt;
+
+&lt;section id=&quot;barre-haut&quot; class=&quot;wb-overlay modal-content overlay-def wb-bar-t&quot;&gt;
+	&lt;header&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Barre en haut&lt;/h2&gt;
+	&lt;/header&gt;
+	...
+&lt;/section&gt;</code></pre>
+		</details>
+	</section>
+
+	<section class="wb-inview bar-demo" data-inview="fade-effect">
+		<h3 class="no-gutter">Section qui cause la section suivante à apparaître ou disparaître</h3>
+		<p>La section suivante va apparaître quand cette section est <strong>partiellement hors</strong> de la clôture.</p>
+		<p><strong>L'état d'affichage&#160;:</strong> <code lang="en"></code></p>
+		<details>
+			<summary>Visualiser le code</summary>
+			<pre><code>&lt;section class=&quot;wb-inview bar-demo&quot; data-inview=&quot;fade-effect&quot;&gt;
+	&lt;h3 class=&quot;no-gutter&quot;&gt;Section qui cause la section suivante à apparaître ou disparaître&lt;/h3&gt;
+	...
+&lt;/section&gt;
+
+&lt;section id=&quot;fade-effect&quot; class=&quot;fade bar-demo&quot;&gt;
+	&lt;h3 class=&quot;no-gutter&quot;&gt;Section va apparaître / disparaître&lt;/h3&gt;
+	...
+&lt;/section&gt;</code></pre>
+		</details>
+	</section>
+
+	<section id="fade-effect" class="fade bar-demo">
+		<h3 class="no-gutter">Section qui va apparaître / disparaître</h3>
+		<p>Cette section apparaît et disparaît en fonction de l'état de la section précédente de vue.</p>
+	</section>
+
+	<section class="wb-inview bar-demo">
+		<h3 class="no-gutter">Événements de changement de l'état d'affichage</h3>
+		<p>L'état d'affichage de cette section est identifié ci-dessous via JavaScript.</p>
+		<p><strong>L'état d'affichage&#160;:</strong> <code class="view-state-status"></code></p>
+		<details>
+			<summary>Visualiser le code</summary>
+			<section>
+				<h4>HTML</h4>
+				<pre><code>&lt;section class=&quot;wb-inview bar-demo&quot;&gt;
+	&lt;h3 class=&quot;no-gutter&quot;&gt;Événements de changement de l'état d'affichage&lt;/h3&gt;
+	...
+&lt;/section&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>JavaScript</h4>
+				<pre><code>(function( $, wb ) {
+&quot;use strict&quot;;
+
+wb.doc.on( &quot;all.wb-inview partial.wb-inview none.wb-inview&quot;, function( event) {
+	if ( event.namespace === &quot;wb-inview&quot; ) {
+		$( event.target ).find( &quot;.view-state-status&quot; ).html( event.type );
+	}
+});
+
+})( jQuery, wb );</code></pre>
+			</section>
+		</details>
 	</section>
 
 	<p>Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent. Exemple de texte différent.</p>

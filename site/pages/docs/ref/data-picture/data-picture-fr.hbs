@@ -2,9 +2,11 @@
 {
 	"title": "Data Picture",
 	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
 	"description": "Conversion de Picturefill guidé par l'événement.",
 	"altLangPrefix": "data-picture",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-08-04"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -34,20 +36,20 @@
 	<section>
 		<h2>How to implement</h2>
 		<ol>
-			<li>Add a <b>data-pic</b> element for each image that will have multiple sources:
+			<li>Add a <code>data-pic</code> element for each image that will have multiple sources:
 				<pre><code>&lt;span data-pic="data-pic" data-alt="Alt tag for the image"&gt;</code></pre>
 			</li>
-			<li>Nested inside the <b>data-pic</b> element, specify the default image, different images sources and fallback image:
+			<li>Nested inside the <code>data-pic</code> element, specify the default image, different images sources and fallback image:
 				<ol>
-					<li><b>Default image:</b> image that will be displayed if no media queries match or the browser doesn't support media queries:
+					<li><strong>Default image:</strong> image that will be displayed if no media queries match or the browser doesn't support media queries:
 						<pre><code>&lt;span data-src="img/default.jpg"&gt;&lt;/span&gt;</code></pre>
 					</li>
-					<li><b>Different image sources:</b> images that will be displayed if their media query matches:
+					<li><strong>Different image sources:</strong> images that will be displayed if their media query matches:
 						<pre><code>&lt;span data-src="img/small.jpg" data-media="(min-width: 0px)"&gt;&lt;/span&gt;
 	&lt;span data-src="img/medium.jpg" data-media="(min-width: 500px)"&gt;&lt;/span&gt;
 	&lt;span data-src="img/large.jpg" data-media="(min-width: 960px)"&gt;&lt;/span&gt;</code></pre>
 					</li>
-					<li><b>Fallback image:</b> image to display if JavaScript is not supported:
+					<li><strong>Fallback image:</strong> image to display if JavaScript is not supported:
 						<pre><code>&lt;noscript&gt;&lt;img src="img/fallback.jpg" alt="Alt tag for the image"/&gt;&lt;/noscript&gt;</code></pre>
 					</li>
 				</ol>
@@ -164,13 +166,41 @@
 			<tbody>
 				<tr>
 					<td><code>wb-init.wb-pic</code></td>
-					<td>Triggered manually.</td>
-					<td>Initializes the plugin and determines which data-pic image source should be displayed. <b>Note: </b> the data picture plugin will be initialized automatically unless it is added after the page has already loaded.</td>
+					<td>Triggered manually (e.g., <code>$( "[data-pic]" ).trigger( "wb-init.wb-pic" );</code>).</td>
+					<td>Initializes the plugin and determines which data-pic image source should be displayed. <strong>Note:</strong> the data picture plugin will be initialized automatically unless it is added after the page has already loaded.</td>
+				</tr>
+				<tr>
+					<td><code>wb-ready.wb-pic</code> (v4.0.5+)</td>
+					<td>Triggered automatically after Date Picture initializes.</td>
+					<td>Used to identify where Data Picture was initialized (target of the event)
+						<pre><code>$( document ).on( "wb-ready.wb-pic", function( event ) {
+});</code></pre>
+						<pre><code>$( "[data-pic]" ).on( "wb-ready.wb-pic", function( event ) {
+});</code></pre>
+					</td>
+				</tr>
+				<tr>
+					<td><code>wb-updated.wb-pic</code> (v4.0.5+)</td>
+					<td>Triggered automatically each time the picture is updated.</td>
+					<td>Used to identify which picture was updated (target of the event)
+						<pre><code>$( document ).on( "wb-updated.wb-pic", "[data-pic]", function( event ) {
+});</code></pre>
+						<pre><code>$( "[data-pic]" ).on( "wb-updated.wb-pic", function( event ) {
+});</code></pre>
+					</td>
 				</tr>
 				<tr>
 					<td><code>picfill.wb-pic</code></td>
-					<td>Triggered during plugin initialization and manually.</td>
-					<td>Causes the data-pic element to determine which image source should be displayed.  This could be called as part of a window resize event handler.</td>
+					<td>Triggered during plugin initialization and manually (e.g., <code>$( "[data-pic]" ).trigger( "picfill.wb-pic" );</code>).</td>
+					<td>Causes the data-pic element to determine which image source should be displayed. This could be called as part of a window resize event handler.</td>
+				</tr>
+				<tr>
+					<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+					<td>Triggered automatically when WET has finished loading and executing.</td>
+					<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+						<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+					</td>
 				</tr>
 			</tbody>
 		</table>

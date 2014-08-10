@@ -14,31 +14,35 @@
  * variables that are common to all instances of the plugin on a page.
  */
 var imgClass,
-	pluginName = "wb-pic",
+	componentName = "wb-pic",
 	selector = "[data-pic]",
-	initedClass = pluginName + "-inited",
-	initEvent = "wb-init." + pluginName,
-	picturefillEvent = "picfill." + pluginName,
+	initEvent = "wb-init." + componentName,
+	picturefillEvent = "picfill." + componentName,
 	$document = wb.doc,
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery DOM element} $elm The plugin element being initialized
+	 * @param {jQuery Event} event Event that triggered this handler
 	 */
-	init = function( $elm ) {
+	init = function( event ) {
 
-		// Only initialize the element once
-		if ( !$elm.hasClass( initedClass ) ) {
-			wb.remove( selector );
-			$elm.addClass( initedClass );
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
+			$elm;
+
+		if ( elm ) {
+			$elm = $( elm );
 
 			// Store the class attribute of the plugin element.  It
 			// will be added to the image created by the plugin.
 			imgClass = $elm.data( "class" ) || "";
 
 			$elm.trigger( picturefillEvent );
+
+			// Identify that initialization has completed
+			wb.ready( $elm, componentName );
 		}
 	},
 
@@ -75,13 +79,18 @@ var imgClass,
 
 			// Fixes bug with IE8 constraining the height of the image
 			// when the .img-responsive class is used.
-			img.removeAttribute( "width" );
-			img.removeAttribute( "height" );
+			if ( wb.ielt9 ) {
+				img.removeAttribute( "width" );
+				img.removeAttribute( "height" );
+			}
 
 		// No match and an image exists: delete it
 		} else if ( img ) {
 			img.parentNode.removeChild( img );
 		}
+
+		// Identify that the picture has been updated
+		$( elm ).trigger( "wb-updated." + componentName );
 	};
 
 // Bind the init event of the plugin
@@ -89,17 +98,19 @@ $document.on( "timerpoke.wb " + initEvent + " " + picturefillEvent, selector, fu
 	var eventTarget = event.target,
 		eventType = event.type;
 
-	// Filter out any events triggered by descendants
-	if ( event.currentTarget === eventTarget ) {
-		switch ( eventType ) {
-		case "timerpoke":
-		case "wb-init":
-			init( $( eventTarget ) );
-			break;
-		case "picfill":
+	switch ( eventType ) {
+	case "timerpoke":
+	case "wb-init":
+		init( event );
+		break;
+
+	case "picfill":
+
+		// Filter out any events triggered by descendants
+		if ( event.currentTarget === eventTarget ) {
 			picturefill( eventTarget );
-			break;
 		}
+		break;
 	}
 });
 

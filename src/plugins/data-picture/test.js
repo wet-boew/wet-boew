@@ -14,18 +14,32 @@
  * teardown `after()` for more than one test suite (as is the case below.)
  */
 describe( "[data-pic] test suite", function() {
-	var spy,
-		sandbox = sinon.sandbox.create();
+	var sandbox = sinon.sandbox.create(),
+		selector = "[data-pic]",
+		$document = wb.doc,
+		$body = $document.find( "body" ),
+		$elm, spy;
 
 	/*
 	 * Before beginning the test suite, this function is executed once.
 	 */
-	before(function() {
+	before(function( done ) {
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
 		spy = sandbox.spy( $.prototype, "trigger" );
 
-		// Trigger the plugin's initialization
-		$( "[data-pic]" ).trigger( "wb-init.wb-pic" );
+		$document.on( "wb-init.wb-pic", selector, function() {
+			done();
+		});
+
+		$elm = $(
+			"<span data-pic data-alt='foo' data-class='foo' class='test'>" +
+			"<span data-src='baz.jpg' data-media='screen'></span>" +
+			"<span data-src='bar.jpg' data-media='print'></span>" +
+			"</span>" );
+
+		$elm.appendTo( $body );
+
+		$( selector ).trigger( "wb-init.wb-pic" );
 	});
 
 	/*
@@ -36,7 +50,7 @@ describe( "[data-pic] test suite", function() {
 		sandbox.restore();
 
 		// Remove test data from the page
-		$( ".test[data-pic]" ).remove();
+		$elm.remove();
 	});
 
 	/*
@@ -64,17 +78,17 @@ describe( "[data-pic] test suite", function() {
 	describe( "resize events", function() {
 
 		it( "should have txt-rsz.wb event handler", function() {
-			wb.doc.trigger( "txt-rsz.wb" );
+			$document.trigger( "txt-rsz.wb" );
 			expect( spy.calledWith( "picfill.wb-pic" ) ).to.equal( true );
 		});
 
 		it( "should have win-rsz-width.wb event handler", function() {
-			wb.doc.trigger( "win-rsz-width.wb" );
+			$document.trigger( "win-rsz-width.wb" );
 			expect( spy.calledWith( "picfill.wb-pic" ) ).to.equal( true );
 		});
 
 		it( "should have win-rsz-height.wb event handler", function() {
-			wb.doc.trigger( "win-rsz-height.wb" );
+			$document.trigger( "win-rsz-height.wb" );
 			expect( spy.calledWith( "picfill.wb-pic" ) ).to.equal( true );
 		});
 	});
@@ -83,78 +97,69 @@ describe( "[data-pic] test suite", function() {
 	 * Test that the plugin creates responsive images as expected
 	 */
 	describe( "responsive images", function() {
+		var $img;
+
+		before(function() {
+			$img = $elm.find( "img" );
+		});
 
 		it( "should have created one responsive image that matches one of the span[data-src] elements", function() {
-			var $elm, $img, $span;
-			$( "[data-pic]" ).each(function() {
-				$elm = $( this );
-				$img = $elm.find( "img" );
-				$span = $elm.find( "[data-src='" + $img.attr("src") + "']" );
-				expect( $img ).to.have.length( 1 );
-				expect( $span.length ).to.be.greaterThan( 0 );
-			});
-		});
+			var $span;
 
-		it( "should have set the responsive image alt attribute", function() {
-			var $elm;
-			$( "[data-pic]" ).each(function() {
-				$elm = $( this );
-				expect( $elm.find( "img" ).attr( "alt" ) ).to.equal( $elm.data( "alt" ) );
-			});
-		});
-
-		it( "should have set the responsive image's class attribute", function() {
-			var $elm;
-			$( "[data-pic]" ).each(function() {
-				$elm = $( this );
-				expect( $elm.find( "img" ).attr( "class" ) ).to.equal( $elm.data( "class" ) );
-			});
-		});
-
-		it( "should create a responsive image after the picfill.wb-pic event", function() {
-			var $img = $(
-					"<span data-pic data-alt='foo' class='test'>" +
-					"<span data-src='bar.jpg'></span>" +
-					"</span>" );
-				$img = $img.appendTo( wb.doc.find( "body" ) );
-
-			// Sanity check
-			expect( $img.find( "img" ) ).to.have.length( 0 );
-
-			// Confirm image was created
-			$img.trigger( "picfill.wb-pic" );
-			expect( $img.find( "img" ) ).to.have.length( 1 );
+			$span = $elm.find( "[data-src='" + $img.attr("src") + "']" );
+			expect( $img ).to.have.length( 1 );
+			expect( $span.length ).to.be.greaterThan( 0 );
 		});
 
 		it( "should create a responsive image with src for the matching media query", function() {
-			var $img = $(
-					"<span data-pic data-alt='foo' class='test'>" +
-					"<span data-src='baz.jpg' data-media='screen'></span>" +
-					"<span data-src='bar.jpg' data-media='print'></span>" +
-					"</span>" );
-				$img = $img.appendTo( wb.doc.find( "body" ) );
+			expect( $img ).to.have.length( 1 );
+			expect( $img.attr( "src" ) ).to.equal( "baz.jpg" );
+		});
 
-			$img.trigger( "picfill.wb-pic" );
-			expect( $img.find( "img" ) ).to.have.length( 1 );
-			expect( $img.find( "img" ).attr( "src" ) ).to.equal( "baz.jpg" );
+		it( "should have set the responsive image alt attribute", function() {
+			expect( $img.attr( "alt" ) ).to.equal( $elm.data( "alt" ) );
+		});
+
+		it( "should have set the responsive image's class attribute", function() {
+			expect( $img.attr( "class" ) ).to.equal( $elm.data( "class" ) );
+		});
+	});
+
+	describe( "responsive images with no matching media query", function() {
+		var $img;
+
+		before(function() {
+			$img = $(
+					"<span data-pic data-alt='foo' class='test'>" +
+					"<span data-src='bar.jpg' data-media='print'></span>" +
+					"</span>" )
+				.appendTo( $body )
+				.trigger( "picfill.wb-pic" );
+		});
+
+		after(function() {
+			$img.remove();
 		});
 
 		it( "should not create a responsive image when no matching media query", function() {
-			var $img = $(
-					"<span data-pic data-alt='foo' class='test'>" +
-					"<span data-src='bar.jpg' data-media='print'></span>" +
-					"</span>" );
-				$img = $img.appendTo( wb.doc.find( "body" ) );
-
-			$img.trigger( "picfill.wb-pic" );
 			expect( $img.find( "img" ) ).to.have.length( 0 );
+		});
+	});
+
+	describe( "responsive images with no source", function() {
+		var $img;
+
+		before(function() {
+			$img = $("<span data-pic data-alt='foo' class='test'>" )
+				.appendTo( $body )
+				.trigger( "picfill.wb-pic" );
+		});
+
+		after(function() {
+			$img.remove();
 		});
 
 		it( "should not create a responsive image when no span[data-src]", function() {
-			var $img = $( "<span data-pic data-alt='foo' class='test'>" );
-				$img = $img.appendTo( wb.doc.find( "body" ) );
-
-			$img.trigger( "picfill.wb-pic" );
 			expect( $img.find( "img" ) ).to.have.length( 0 );
 		});
 	});

@@ -2,27 +2,27 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
-(function( $, document, wb ) {
+(function( $, wb ) {
 "use strict";
 
 var $document = wb.doc,
 	pluginSelector = "#plugin",
-	issueInput = $("#issue");
+	issueInput = $( "#issue" );
 
 $document.on( "change", pluginSelector, function( event ) {
-	var pluginName = event.target.value;
+	var componentName = event.target.value;
 
 	$document.trigger({
 		type: "ajax-fetch.wb",
 		element: this,
 		fetch: {
-			url: encodeURI("https://api.github.com/repos/wet-boew/wet-boew/issues?labels=Plugin: " + pluginName),
+			url: encodeURI( "https://api.github.com/repos/wet-boew/wet-boew/issues?labels=Plugin: " + componentName ),
 			dataType: wb.ielt10 ? "jsonp" : "json",
 			jsonp: wb.ielt10 ? "callback" : null
 		}
 	});
 
-	issueInput.get(0).value = "";
+	issueInput.get( 0 ).value = "";
 });
 
 $document.on( "ajax-fetched.wb", pluginSelector, function( event ) {
@@ -34,7 +34,7 @@ $document.on( "ajax-fetched.wb", pluginSelector, function( event ) {
 
 	dataList.empty();
 
-	for ( indIssue = 0; indIssue < lenIssues; indIssue += 1 ) {
+	for ( indIssue = 0; indIssue !== lenIssues; indIssue += 1 ) {
 		issue = issues[ indIssue ];
 
 		options += "<option label=\"" + issue.title + "\" value=\"" + issue.title + "\"></option>";
@@ -49,4 +49,4 @@ $document.on( "ajax-fetched.wb", pluginSelector, function( event ) {
 	issueInput.trigger( "wb-update.wb-datalist" );
 });
 
-})( jQuery, document, wb );
+})( jQuery, wb );

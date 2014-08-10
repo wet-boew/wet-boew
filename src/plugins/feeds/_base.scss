@@ -1,0 +1,41 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+%feeds_loading {
+	bottom: 0;
+	content: " ";
+	height: 50px;
+	left: 0;
+	margin: auto;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 50px;
+}
+
+.feeds-cont {
+	&.waiting {
+		min-height: 100px;
+		min-width: 100px;
+
+		&:after {
+			@extend %feeds_loading;
+			animation: {
+				duration: 1000ms;
+				iteration-count: infinite;
+				name: spin;
+				timing-function: linear;
+			}
+			background: url("../assets/loading.png") center center no-repeat;
+			background-size: 30px 30px;
+			z-index: 2;
+		}
+
+		&:before {
+			@extend %feeds_loading;
+			background: rgba(0, 0, 0, 0);
+			z-index: 1;
+		}
+	}
+}

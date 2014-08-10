@@ -2,9 +2,11 @@
 {
 	"title": "Data Inview",
 	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
 	"description": "Affiche de contenu superposé quand une section se déplace hors de la clôture.",
 	"altLangPrefix": "data-inview",
-	"dateModified": "2014-03-31"
+	"dateModified": "2014-08-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -25,29 +27,67 @@
 </section>
 
 <section>
-	<p>Coming soon</p>
-	<!--
 	<h2>How to implement</h2>
 	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
+		<li>
+			<p>Add the <code>wb-inview</code> class to an element.</p>
+			<pre><code>&lt;section class=&quot;wb-inview&quot;&gt;
+	...
+&lt;/section&gt;</code></pre>
 		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
+		<li>
+			<p>Handle the view state changes using one of the following approaches:</p>
+			<ol>
+				<li>
+					<p><strong>Overlays:</strong> You can open and close overlays based upon an element's view state.</p>
+					<ol>
+						<li>Add an overlay with a unique id. See the <a href="../overlay/overlay-en.html">overlay documentation</a> for further details.</li>
+						<li>Add the <code>data-inview</code> attribute to the element with the value being the unique id of the overlay added in the previous step.</li>
+						<li><strong>Optional:</strong> Add the <code>show-none</code> class to the element to make the overlay only open when the element is fully out of view (default is partially out of view).</li>
+					</ol>
+				</li>
+				<li>
+					<p><strong>Show/hide content:</strong> You can show/hide content with CSS transitions, based upon an element's view state.</p>
+					<ol>
+						<li>Add an element with a unique id.</li>
+						<li>Add a CSS transition class to the element added in the previous step (e.g., <code>fade</code>, <code>slide</code>, <code>slidevert</code>, etc.)</li>
+						<li><strong>Optional:</strong> Reverse the transition by adding the <code>reverse</code> class with the CSS transition.</li>
+						<li>Add the <code>data-inview</code> attribute to the element with the <code>wb-inview</code> class with the value being the unique id of the element with the CSS transition class.</li>
+						<li><strong>Optional:</strong> Add the <code>show-none</code> class to the <code>wb-inview</code> element to make the CSS transition only occur when the <code>wb-inview</code> element is fully out of view (default is partially out of view).</li>
+					</ol>
+				</li>
+				<li>
+					<p><strong>Events:</strong> You can handle the view state change events through JavaScript.</p>
+					<ol>
+						<li>
+							<p>Add an event handler to listen for each of the view state changes:</p>
+							<pre><code>$( document ).trigger( "all.wb-inview partial.wb-inview none.wb-inview", function( event ) {
+	if ( event.namespace === "wb-inview" ) {
+		switch ( eventType ) {
+	
+		case "all":
+			// event.target is a wb-inview element that has become completely visible
+			break;
+
+		case "partial": {
+			// event.target is a wb-inview element that has become partially hidden
+			break;
+
+		case "none": 
+			// event.target is a wb-inview element that has become completely hidden
+		}
+	}
+});</code></pre>
+						</li>
+					</ol>
+				</li>
+			</ol>
 		</li>
-		<li>Step 4</li>
 	</ol>
-	-->
 </section>
 
 <section>
 	<h2>Configuration options</h2>
-	<p>Coming soon</p>
-	<!--
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -59,38 +99,19 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
+				<td><code>data-inview</code></td>
+				<td>Identifies the element to trigger a change on (uses the unique id of the element).</td>
+				<td>Add the <code>data-inview</code> attribute with the value being the unique id of the element to trigger a change on.</td>
+				<td>Unique id of the target element</td>
 			</tr>
 			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
+				<td><code>show-none</code></td>
+				<td>Overrides the overlay/CSS transition trigger to only occur when the element is completely hidden.</td>
+				<td>Add the <code>show-none</code> class to the element.</td>
+				<td>n/a</td>
 			</tr>
 		</tbody>
 	</table>
-	-->
 </section>
 
 <section>
@@ -105,9 +126,57 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-inview</td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-inview" );</code>).</td>
+				<td><code>wb-init.wb-inview</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-inview" ).trigger( "wb-init.wb-inview" );</code>).</td>
 				<td>Used to manually initialize the Data Inview plugin. <strong>Note:</strong> The Data Inview plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-inview</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the Data InView plugin has initialized.</td>
+				<td>Used to identify where the Data InView plugin was initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-inview", ".wb-inview", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-inview" ).on( "wb-ready.wb-inview", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>all.wb-inview</code> (v4.0.4+)</td>
+				<td>Triggered automatically when a <code>wb-inview</code> element becomes completely visible.</td>
+				<td>Used to identify that the view state of a <code>wb-inview</code> element has changed to <code>all</code>.
+					<pre><code>$( document ).on( "all.wb-inview", ".wb-inview", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-inview" ).on( "all.wb-inview", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>partial.wb-inview</code> (v4.0.4+)</td>
+				<td>Triggered automatically when a <code>wb-inview</code> element becomes partially hidden.</td>
+				<td>Used to identify that the view state of a <code>wb-inview</code> element has changed to <code>partial</code>.
+					<pre><code>$( document ).on( "partial.wb-inview", ".wb-inview", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-inview" ).on( "partial.wb-inview", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>none.wb-inview</code> (v4.0.4+)</td>
+				<td>Triggered automatically when a <code>wb-inview</code> element becomes completely hidden.</td>
+				<td>Used to identify that the view state of a <code>wb-inview</code> element has changed to <code>none</code>.
+					<pre><code>$( document ).on( "none.wb-inview", ".wb-inview", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-inview" ).on( "none.wb-inview", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>

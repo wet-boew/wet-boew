@@ -13,31 +13,36 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-inview",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
+var componentName = "wb-inview",
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	scrollEvent = "scroll" + selector,
-	$elms = $( selector ),
 	$document = wb.doc,
 	$window = wb.win,
+	$elms = $(),
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery DOM element} $elm The plugin element being initialized
+	 * @param {jQuery Event} event Event that triggered this handler
 	 */
-	init = function( $elm ) {
+	init = function( event ) {
 
-		// Only initialize the element once
-		if ( !$elm.hasClass( initedClass ) ) {
-			wb.remove( selector );
-			$elm.addClass( initedClass );
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
+			$elm;
+
+		if ( elm ) {
+			$elm = $( elm );
+			$elms = $elms.add( $elm );
 
 			// Allow other plugins to run first
 			setTimeout(function() {
 				onInView( $elm );
+
+				// Identify that initialization has completed
+				wb.ready( $elm, componentName );
 			}, 1 );
 		}
 	},
@@ -76,46 +81,52 @@ var pluginName = "wb-inview",
 			$elm.attr( "data-inviewstate", viewState );
 			$dataInView = $( "#" + $elm.attr( "data-inview" ) );
 
-			// Keep closed if the user closed the inView result
-			if ( !$dataInView.hasClass( "user-closed" ) ) {
-				if ( $dataInView.hasClass( "wb-overlay" ) ) {
-					if ( !oldViewState ) {
-						$dataInView.addClass( "outside-off" );
+			if ( $dataInView.length !== 0 ) {
+
+				// Keep closed if the user closed the inView result
+				if ( !$dataInView.hasClass( "user-closed" ) ) {
+					if ( $dataInView.hasClass( "wb-overlay" ) ) {
+						if ( !oldViewState ) {
+							$dataInView.addClass( "outside-off" );
+						}
+						$dataInView.trigger({
+							type: ( show ? "open" : "close" ),
+							namespace: "wb-overlay",
+							noFocus: true
+						});
+					} else {
+						$dataInView
+							.attr( "aria-hidden", !show )
+							.toggleClass( "in", !show )
+							.toggleClass( "out", show );
 					}
-					$dataInView.trigger({
-						type: ( show ? "open" : "close" ),
-						namespace: "wb-overlay",
-						noFocus: true
-					});
-				} else {
-					$dataInView
-						.attr( "aria-hidden", !show )
-						.toggleClass( "in", !show )
-						.toggleClass( "out", show );
 				}
 			}
+
+			// Trigger an event on the element identifying that the view state has changed
+			// (e.g., "all.wb-inview", "partial.wb-inview", "none.wb-inview")
+			$elm.trigger( viewState + selector );
 		}
 	};
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb " + initEvent + " " + scrollEvent, selector, function( event ) {
 	var eventTarget = event.target,
-		eventType = event.type,
-		$elm;
+		eventType = event.type;
 
-	// Filter out any events triggered by descendants
-	if ( event.currentTarget === eventTarget ) {
-		$elm = $( eventTarget );
+	switch ( eventType ) {
+	case "timerpoke":
+	case "wb-init":
+		init( event );
+		break;
 
-		switch ( eventType ) {
-		case "timerpoke":
-		case "wb-init":
-			init( $elm );
-			break;
-		case "scroll":
-			onInView( $elm );
-			break;
+	case "scroll":
+
+		// Filter out any events triggered by descendants
+		if ( event.currentTarget === eventTarget ) {
+			onInView( $( eventTarget ) );
 		}
+		break;
 	}
 
 	/*

@@ -2,16 +2,18 @@
 {
 	"title": "Calendar of Events",
 	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
 	"description": "Dynamically generates a calendar interface for navigating a list of events.",
 	"altLangPrefix": "cal-events",
-	"dateModified": "2014-03-10"
+	"dateModified": "2014-08-06"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
 
 <section>
 	<h2>Purpose</h2>
-	<p>This feature provides an interface for navigating a chronological list of events.</p>
+	<p>This feature provides an interface for navigating a chronological list of events. Implements the <a href="http://www.w3.org/TR/wai-aria-practices/#datepicker">WAI-ARIA Date Picker design pattern</a>.</p>
 </section>
 
 <section>
@@ -20,14 +22,17 @@
 </section>
 
 <section>
-	<h2>Working examples</h2>
-	<p><a href="../../../demos/cal-events/cal-events-en.html">Working examples</a></p>
+	<h2>Working example</h2>
+	<ul>
+		<li><a href="../../../demos/cal-events/cal-events-en.html">English example</a></li>
+		<li><a href="../../../demos/cal-events/cal-events-fr.html">French example</a></li>
+	</ul>
 </section>
 
 <section>
 	<h2>How to implement</h2>
 	<ol>
-		<li>Add a div element to the Web page with a class attribute containing "wet-boew-calendar-events" and a unique class name (e.g.: <pre><code>&lt;div class="wet-boew-calendar-events unique-class"&gt;&lt;/div&gt;</code></pre>).<br><b>Note:</b> your unique class must be the last class in the list.</li>
+		<li>Add a div element to the Web page with a class attribute containing "wet-boew-calendar-events" and a unique class name (e.g.: <pre><code>&lt;div class="wet-boew-calendar-events unique-class"&gt;&lt;/div&gt;</code></pre>).<br /><strong>Note:</strong> your unique class must be the last class in the list.</li>
 		<li>Include in the div element a ordered list of events (ol element) with the following structure for each event:
 			<ol>
 				<li>The list element must start with a heading element (h2 to h6, depending on the context of the page).</li>
@@ -35,7 +40,7 @@
 				<li>The event date must be provided in an HTML5 time element contained within a paragraph element (following the heading element). The date to be displayed is contained in the time element and an ISO-8601 date (e.g., 2010-03-11) is provided in the datetime attribute.</li>
 			</ol>
 		</li>
-		<li>Add a second div element to the Web page with an id attribute containing your unique class name from above (e.g.: <pre><code>&lt;div id="unique-class"&gt;&lt;/div&gt;</code></pre>). This will hold the calendar interface.</li>
+		<li>Add a second div element to the Web page with an id attribute containing your unique class name from above (e.g., <code>&lt;div id="unique-class"&gt;&lt;/div&gt;</code>). This will hold the calendar interface.</li>
 	</ol>
 	
 	<h3>Example Code</h3>
@@ -163,30 +168,43 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>create.wb-cal</td>
-				<td>After the year or month is changed and after the "Go to" form is submitted.</td>
-				<td>Creates the calendar interface.</td>
+				<td><code>wb-init.wb-calevt</code></td>
+				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-calevt" );</code>).</td>
+				<td>Used to manually initialize the Calendar of events plugin. <strong>Note:</strong> The Calendar of events plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
 			</tr>
 			<tr>
-				<td>displayed.wb-cal</td>
-				<td>After the calendar interface is created.</td>
-				<td>Triggers the event for components (ex: the date picker polyfill) that need it.</td>
+				<td><code>wb-ready.wb-calevt</code> (v4.0.5+)</td>
+				<td>Triggered automatically after a calendar of events initializes.</td>
+				<td>Used to identify which calendar of events was initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-calevt", ".wb-calevt", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-calevt" ).on( "wb-ready.wb-calevt", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 			<tr>
-				<td>hideGoToFrm.wb-cal</td>
-				<td>After the "Cancel" button on the "Go to" form is pressed and after the "Go to" form is submitted.</td>
-				<td>Hides the "Go To" form in the calendar interface.</td>
+				<td><code>wb-updated.wb-calevt</code> (v4.0.5+)</td>
+				<td>Triggered automatically each time the calendar of events is updated (e.g., month changed).</td>
+				<td>Used to identify which calendar of events was updated (target of the event)
+					<pre><code>$( document ).on( "wb-updated.wb-calevt", ".wb-calevt", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-calevt" ).on( "wb-updated.wb-calevt", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 			<tr>
-				<td>setFocus.wb-cal</td>
-				<td>When navigating the calendar interface via keyboard.</td>
-				<td>Places focus on the targetted date.</td>
-			</tr>			
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
 		</tbody>
 	</table>
 </section>
 
 <section>
 	<h2>Source code</h2>
-	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/cal-events">Source code</a></p>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/cal-events">Source code for the calendar of events</a></p>
 </section>

@@ -7,20 +7,22 @@
 	"tag": "multimedia, youtube",
 	"parentdir": "multimedia",
 	"altLangPrefix": "multimedia-youtube",
-	"dateModified": "2014-06-10"
+	"dateModified": "2014-08-01"
 }
 ---
+<span class="wb-prettify all-pre hide"></span>
+
 <div class="row">
 	<div class="col-md-12">
-		<p>Pour les vidéos YouTube, le lecteur multimédia s'appuie le lecteur sans interface de YouTube qui s'appuie sur la balise video HTML5 natif et s'appuie sur Flash comme un mécanisme de secours lorsque la balise video HTML5 n'est pas implémentée.</p>
-		<p>Le scénario du lecteur multimédia repose sur l'élément de progrès HTML5 et utilise un polyfill lorsque l'élément n'est pas pris en charge.</p>
+		<p>Pour les vidéos YouTube, le lecteur multimédia s'appuie le lecteur sans interface de YouTube qui s'appuie sur la balise «&#160;<code>video</code>&#160;» HTML5 natif et s'appuie sur Flash comme un mécanisme de secours lorsque la balise «&#160;<code>video</code>&#160;» HTML5 n'est pas implémentée.</p>
+		<p>Le scénario du lecteur multimédia repose sur l'élément «&#160;<code>progress</code>&#160;» HTML5 et utilise un polyfill lorsque l'élément n'est pas pris en charge.</p>
 	</div>
 </div>
 
 <div class="row">
 	<section class="col-md-6">
 		<h2>Exemple</h2>
-		<figure class="wb-mltmd">
+		<figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "http://www.youtube.com/watch?v=LLg-UsTr7us"}'>
 			<video title="Suspect">
 				<source type="video/youtube" src="http://www.youtube.com/watch?v=LLg-UsTr7us" />
 			</video>
@@ -28,5 +30,17 @@
 				<p>Suspect</p>
 			</figcaption>
 		</figure>
+
+		<details class="mrgn-tp-md">
+			<summary>View code</summary>
+			<pre><code>&lt;figure class=&quot;wb-mltmd&quot; data-wb-mltmd='{"shareUrl": "http://www.youtube.com/watch?v=LLg-UsTr7us"}'&gt;
+	&lt;video title=&quot;Suspect&quot;&gt;
+		&lt;source type=&quot;video/youtube&quot; src=&quot;http://www.youtube.com/watch?v=LLg-UsTr7us&quot; /&gt;
+	&lt;/video&gt;
+	&lt;figcaption&gt;
+		&lt;p&gt;Suspect&lt;/p&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+		</details>
 	</section>
 </div>

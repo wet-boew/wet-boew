@@ -2,9 +2,11 @@
 {
 	"title": "Contenu superposé",
 	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
 	"description": "Un plugiciel fournissant un modèle de contenu superposé flexible et réactif.",
 	"altLangPrefix": "overlay",
-	"dateModified": "2014-03-31"
+	"dateModified": "2014-08-06"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -13,7 +15,7 @@
 <p><strong>Needs translation</strong></p>
 <section>
 	<h2>Purpose</h2>
-	<p>A flexible, responsive overlay plugin.</p>
+	<p>A flexible, responsive overlay plugin. Implements the <a href="http://www.w3.org/TR/wai-aria-practices/#dialog_modal">WAI-ARIA Dialog (Modal) design pattern</a>.</p>
 </section>
 
 <!--
@@ -45,29 +47,61 @@
 </section>
 
 <section>
-	<p>Coming soon</p>
-	<!--
 	<h2>How to implement</h2>
+	<p>For centred popups, please see the <a href="../lightbox/lightbox-en.html">Lightbox documentation</a>.</p>
 	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
+		<li>
+			<p>Create a <code>section</code> element with a unique id and the following classes <code>wb-overlay modal-content overlay-def</code>.</p>
+			<pre><code>&lt;section id="unique-id" class="wb-overlay modal-content overlay-def wb-bar-t"&gt;&lt;/section&gt;</code></pre>
 		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
+		<li>
+			<p>Add one of the following classes to the section element to configure the type of overlay:</p>
+			<ul>
+				<li><code>wb-panel-l</code>: Left panel</li>
+				<li><code>wb-panel-r</code>: Right panel</li>
+				<li><code>wb-bar-t</code>: Top bar</li>
+				<li><code>wb-bar-b</code>: Bottom bar</li>
+				<li><code>wb-popup-full</code>: Full-screen overlay</li>
+				<li><code>wb-popup-full hidden-hd</code>: Full-screen overlay - Hidden header</li>
+			</ul>
 		</li>
-		<li>Step 4</li>
+		<li>
+			<p>Add the header of the overlay by adding the following code at the start of the section element:</p>
+			<pre><code>&lt;header class=&quot;modal-header&quot;&gt;
+	&lt;h2 class=&quot;modal-title&quot;&gt;Overlay title&lt;/h2&gt;
+&lt;/header&gt;</code></pre>
+			<p>For the full-screen overlay with a hidden header, use the following instead:</p>
+			<pre><code>&lt;header&gt;
+	&lt;h2 class=&quot;wb-inv&quot;&gt;Overlay title&lt;/h2&gt;
+&lt;/header&gt;</code></pre>
+		</li>
+		<li>
+			<p>Add the body of the overlay by adding the following code after the header code:</p>
+			<pre><code>&lt;div class=&quot;modal-body&quot;&gt;
+	... Overlay content ...
+&lt;/idv&gt;</code></pre>
+		</li>
+		<li>
+			<p>Add a way of opening the overlay. The overlay can be opened either by clicking a link or by triggering an event.</p>
+			<ul>
+				<li>
+					<p><strong>Link approach:</strong> Add the following link to the page where the <code>href</code> and the <code>aria-controls</code> attribute match the <code>id</code> attribute on the <code>section</code> element of the overlay:</p>
+					<pre><code>&lt;li&gt;
+	&lt;a href=&quot;#unique-id&quot; aria-controls=&quot;unique-id&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Open overlay&lt;/a&gt;
+&lt;/li&gt;</code></pre>
+				</li>
+				<li>
+					<p><strong>Event approach:</strong> Trigger the overlay with the following JavaScript code:</p>
+					<pre><code>$( "#unique-id" ).trigger( "open.wb-overlay" );</code></pre>
+				</li>
+			</ul>
+		</li>
 	</ol>
-	-->
 </section>
 
 <section>
 	<h2>Configuration options</h2>
 	<p>Coming soon</p>
-	<!--
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -79,38 +113,26 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
+				<td>Overlay type</td>
+				<td>Configure the type of overlay to display.</td>
+				<td>Add the configuration class to the <code>section</code> element of the overlay.</td>
 				<td>
 					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
-			</tr>
-			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
+						<dt><code>wb-panel-l</code>:</dt>
+						<dd>Left panel</dd>
+						<dt><code>wb-panel-r</code>:</dt>
+						<dd>Right panel</dd>
+						<dt><code>wb-bar-t</code>:</dt>
+						<dd>Top bar</dd>
+						<dt><code>wb-bar-b</code>:</dt>
+						<dd>Bottom bar</dd>
+						<dt><code>wb-popup-full</code>:</dt>
+						<dd>Full-screen overlay</dd>
 					</dl>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-	-->
 </section>
 
 <section>
@@ -125,9 +147,37 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-overlay</td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-overlay" );</code>).</td>
+				<td><code>wb-init.wb-overlay</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-overlay" ).trigger( "wb-init.wb-overlay" );</code>).</td>
 				<td>Used to manually initialize the Overlay plugin. <strong>Note:</strong> The Overlay plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-overlay</code> (v4.0.5+)</td>
+				<td>Triggered automatically after an overlay is initialized.</td>
+				<td>Used to identify when an overlay has initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-overlay", ".wb-overlay", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-overlay" ).on( "wb-ready.wb-overlay", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>open.wb-overlay</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-overlay" ).trigger( "open.wb-overlay" );</code>).</td>
+				<td>Used to manually open an overlay (event must be triggered on the <code>section</code> element of the overlay).</td>
+			</tr>
+			<tr>
+				<td><code>close.wb-overlay</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-overlay" ).trigger( "close.wb-overlay" );</code>).</td>
+				<td>Used to manually close an overlay (event must be triggered on the <code>section</code> element of the overlay).</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>
@@ -135,6 +185,6 @@ Example of multi-line code</code></pre>
 
 <section>
 	<h2>Source code</h2>
-	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/overlay">Data Inview plugin source code on GitHub</a></p>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/overlay">Overlay plugin source code on GitHub</a></p>
 </section>
 </div>

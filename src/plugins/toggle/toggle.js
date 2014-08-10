@@ -13,14 +13,14 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-toggle",
-	selector = "." + pluginName,
+var componentName = "wb-toggle",
+	selector = "." + componentName,
 	selectorPanel = ".tgl-panel",
 	selectorTab = ".tgl-tab",
-	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
 	toggleEvent = "toggle" + selector,
 	toggledEvent = "toggled" + selector,
+	setFocusEvent = "setfocus.wb",
 	elmIdx = 0,
 	states = {},
 	$document = wb.doc,
@@ -32,22 +32,18 @@ var pluginName = "wb-toggle",
 	},
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
-		var $link, data,
-			link = event.target;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === link &&
-			link.className.indexOf( initedClass ) === -1 ) {
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var link = wb.init( event, componentName, selector ),
+			$link, data;
 
-			wb.remove( selector );
-			link.className += " " + initedClass;
+		if ( link ) {
 			elmIdx += 1;
 
 			// Merge the elements settings with the defaults
@@ -67,6 +63,9 @@ var pluginName = "wb-toggle",
 			if ( data.print ) {
 				initPrint( $link, data );
 			}
+
+			// Identify that initialization has completed
+			wb.ready( $link, componentName );
 		}
 	},
 
@@ -161,7 +160,7 @@ var pluginName = "wb-toggle",
 
 		// Store the persistence type and key for later use
 		data.persist = data.persist === "session" ? sessionStorage : localStorage;
-		data.persistKey = pluginName + ( data.group ? data.group : "" ) + link.id;
+		data.persistKey = componentName + ( data.group ? data.group : "" ) + link.id;
 
 		// If there's a saved toggle state, trigger the change to that state
 		state = data.persist.getItem( data.persistKey );
@@ -207,7 +206,7 @@ var pluginName = "wb-toggle",
 		event.preventDefault();
 
 		// Assign focus to eventTarget
-		$link.trigger( "setfocus.wb" );
+		$link.trigger( setFocusEvent );
 	},
 
 	/**
@@ -216,65 +215,67 @@ var pluginName = "wb-toggle",
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 */
 	toggle = function( event, data ) {
-		var dataGroup, key, $elmsGroup,
-			isGroup = !!data.group,
-			isPersist = !!data.persist,
-			isTablist = isGroup && !!data.parent,
-			link = event.currentTarget,
-			$link = $( link ),
-			stateFrom = getState( $link, data ),
-			isToggleOn = stateFrom === data.stateOff,
-			stateTo = isToggleOn ? data.stateOn : data.stateOff,
-			$elms = isTablist ?	$link.parent( data.group ) : getElements( link, data );
+		if ( event.namespace === componentName ) {
+			var dataGroup, key, $elmsGroup,
+				isGroup = !!data.group,
+				isPersist = !!data.persist,
+				isTablist = isGroup && !!data.parent,
+				link = event.currentTarget,
+				$link = $( link ),
+				stateFrom = getState( $link, data ),
+				isToggleOn = stateFrom === data.stateOff,
+				stateTo = isToggleOn ? data.stateOn : data.stateOff,
+				$elms = isTablist ?	$link.parent( data.group ) : getElements( link, data );
 
-		// Group toggle behaviour: only one element in the group open at a time.
-		if ( isGroup ) {
+			// Group toggle behaviour: only one element in the group open at a time.
+			if ( isGroup ) {
 
-			// Get the grouped elements using data.group as the CSS selector
-			// and filter to only retrieve currently open grouped elements
-			dataGroup = $.extend( {}, data, { selector: data.group } );
-			$elmsGroup = getElements( link, dataGroup ).filter( "." + data.stateOn + ", [open]" );
+				// Get the grouped elements using data.group as the CSS selector
+				// and filter to only retrieve currently open grouped elements
+				dataGroup = $.extend( {}, data, { selector: data.group } );
+				$elmsGroup = getElements( link, dataGroup ).filter( "." + data.stateOn + ", [open]" );
 
-			// Set the toggle state to "off".  For tab lists, this is stored on the tab element
-			setState( isTablist ? $( data.parent ).find( selectorTab ) : $elmsGroup,
-				dataGroup, data.stateOff );
+				// Set the toggle state to "off".  For tab lists, this is stored on the tab element
+				setState( isTablist ? $( data.parent ).find( selectorTab ) : $elmsGroup,
+					dataGroup, data.stateOff );
 
-			// Toggle all grouped elements to "off"
-			$elmsGroup.wb( "toggle", data.stateOff, data.stateOn );
-			$elmsGroup.trigger( toggledEvent, {
-				isOn: false,
-				isTablist: isTablist,
-				elms: $elmsGroup
-			});
+				// Toggle all grouped elements to "off"
+				$elmsGroup.wb( "toggle", data.stateOff, data.stateOn );
+				$elmsGroup.trigger( toggledEvent, {
+					isOn: false,
+					isTablist: isTablist,
+					elms: $elmsGroup
+				});
 
-			// Remove all grouped persistence keys
-			if ( isPersist ) {
-				for ( key in data.persist ) {
-					if ( key.indexOf( pluginName + data.group ) === 0 ) {
-						data.persist.removeItem( key );
+				// Remove all grouped persistence keys
+				if ( isPersist ) {
+					for ( key in data.persist ) {
+						if ( key.indexOf( componentName + data.group ) === 0 ) {
+							data.persist.removeItem( key );
+						}
 					}
 				}
 			}
-		}
 
-		// Set the toggle state. For tab lists, this is set on the tab element
-		setState( isTablist ? $link : $elms, data, stateTo );
+			// Set the toggle state. For tab lists, this is set on the tab element
+			setState( isTablist ? $link : $elms, data, stateTo );
 
-		// Toggle all elements to the requested state
-		$elms.wb( "toggle", stateTo, stateFrom );
-		$elms.trigger( toggledEvent, {
-			isOn: isToggleOn,
-			isTablist: isTablist,
-			elms: $elms
-		});
+			// Toggle all elements to the requested state
+			$elms.wb( "toggle", stateTo, stateFrom );
+			$elms.trigger( toggledEvent, {
+				isOn: isToggleOn,
+				isTablist: isTablist,
+				elms: $elms
+			});
 
-		// Store the toggle link's current state if persistence is turned on.
-		// Try/catch is required to address exceptions thrown when using BB10 or
-		// private browsing in iOS.
-		if ( isPersist ) {
-			try {
-				data.persist.setItem( data.persistKey, stateTo );
-			} catch ( error ) {
+			// Store the toggle link's current state if persistence is turned on.
+			// Try/catch is required to address exceptions thrown when using BB10 or
+			// private browsing in iOS.
+			if ( isPersist ) {
+				try {
+					data.persist.setItem( data.persistKey, stateTo );
+				} catch ( error ) {
+				}
 			}
 		}
 	},
@@ -285,38 +286,40 @@ var pluginName = "wb-toggle",
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
 	 */
 	toggleDetails = function( event, data ) {
-		var top,
-			isOn = data.isOn,
-			$elms = data.elms,
-			$detail = $( this );
+		if ( event.namespace === componentName ) {
+			var top,
+				isOn = data.isOn,
+				$elms = data.elms,
+				$detail = $( this );
 
-		// Native details support
-		$detail.prop( "open", isOn );
+			// Native details support
+			$detail.prop( "open", isOn );
 
-		// Polyfill details support
-		if ( !Modernizr.details ) {
-			$detail
-				.attr( "open", isOn ? null : "open" )
-				.find( "summary" ).trigger( "toggle.wb-details" );
-		}
+			// Polyfill details support
+			if ( !Modernizr.details ) {
+				$detail
+					.attr( "open", isOn ? null : "open" )
+					.find( "summary" ).trigger( "toggle.wb-details" );
+			}
 
-		if ( data.isTablist ) {
+			if ( data.isTablist ) {
 
-			// Set the required aria attributes
-			$elms.find( selectorTab ).attr({
-				"aria-selected": isOn,
-				tabindex: isOn ? "0" : "-1"
-			});
-			$elms.find( selectorPanel ).attr({
-				"aria-hidden": !isOn,
-				"aria-expanded": isOn
-			});
+				// Set the required aria attributes
+				$elms.find( selectorTab ).attr({
+					"aria-selected": isOn,
+					tabindex: isOn ? "0" : "-1"
+				});
+				$elms.find( selectorPanel ).attr({
+					"aria-hidden": !isOn,
+					"aria-expanded": isOn
+				});
 
-			// Check that the top of the open element is in view.
-			if ( isOn && $elms.length === 1 ) {
-				top = $elms.offset().top;
-				if ( top < $window.scrollTop() ) {
-					$window.scrollTop( top );
+				// Check that the top of the open element is in view.
+				if ( isOn && $elms.length === 1 ) {
+					top = $elms.offset().top;
+					if ( top < $window.scrollTop() ) {
+						$window.scrollTop( top );
+					}
 				}
 			}
 		}
@@ -356,7 +359,7 @@ var pluginName = "wb-toggle",
 
 		// When no selector, use the data attribute of the link
 		} else if ( !selector ) {
-			return $link.data( "state" ) || data.stateOff;
+			return $link.data( componentName + "-state" ) || data.stateOff;
 
 		// Get the current on/off state of the elements specified by the selector and parent
 		} else if ( states.hasOwnProperty( selector ) ) {
@@ -404,7 +407,7 @@ var pluginName = "wb-toggle",
 		}
 
 		// Store the state on the elements as well. This allows a link to toggle itself.
-		$elms.data( "state", state );
+		$elms.data( componentName + "-state", state );
 	};
 
 // Bind the plugin's events
@@ -417,9 +420,11 @@ $document.on( "timerpoke.wb " + initEvent + " " + toggleEvent +
 	case "click":
 		click( event );
 		break;
+
 	case "toggle":
 		toggle( event, data );
 		break;
+
 	case "timerpoke":
 	case "wb-init":
 		init( event );
@@ -477,7 +482,7 @@ $document.on( "keydown", selectorTab, function( event ) {
 
 		$newPanel
 			.children( "summary" )
-				.trigger( "click" );
+				.trigger( setFocusEvent );
 	}
 });
 
@@ -489,7 +494,7 @@ $document.on( "keydown", selectorPanel, function( event ) {
 		// Move focus to the summary element
 		$( event.currentTarget )
 			.prev()
-				.trigger( "setfocus.wb" );
+				.trigger( setFocusEvent );
 	}
 });
 

@@ -4,10 +4,327 @@
 	"language": "fr",
 	"description": "ChangeLog de la version 4.0 - Historique des versions - Boîte à outils de l'expérience Web (BOEW)",
 	"altLangPrefix": "v4.0-changelog",
-	"dateModified": "2014-06-17"
+	"dateModified": "2014-07-30"
 }
 ---
 <p>Voir <a href="../version-info-fr.html">Contrôle des versions</a> pour la signification de chaque numéro de version.</p>
+<span class="wb-prettify all-pre"></span>
+
+<section>
+	<h2>v4.0.4</h2>
+	<ul>
+		<li><strong>Date de lancement&#160;:</strong> <time>2014-07-22</time></li>
+		<li><a href="v4.0.4-fr.html">Notes d'utilisation<span class="wb-inv"> - v4.0.4</span></a></li>
+		<li><a href="../dwnld-fr.html#v404">Téléchargements<span class="wb-inv"> - v4.0.4</span></a></li>
+	</ul>
+
+	<div lang="en">
+	<section>
+		<h3>Template changes (non-breaking)</h3>
+		<p><strong>Note:</strong> Only the changes to the English templates are shown. The same changes were made to the templates in the other supported languages.</p>
+		<ol>
+			<li>
+				Added a search icon to the mobile panel button, changed the size of the button and changed menu panel button and title to "Search and menus"
+				<ul>
+					<li>Canada.ca theme:
+						<ul>
+							<li>Before:
+								<pre><code>&lt;section class="wb-mb-links col-xs-3 visible-sm visible-xs" id="wb-glb-mn"&gt;
+	&lt;h2&gt;<strong>Menu</strong>&lt;/h2&gt;
+	&lt;ul class="list-inline text-right chvrn"&gt;
+		&lt;li&gt;&lt;a href="#mb-pnl" title="<strong>Menu</strong>" aria-controls="mb-pnl" class="overlay-lnk" role="button"&gt;<strong>&lt;span class="glyphicon glyphicon-th-list"&gt;&lt;span class="wb-inv"&gt;Menu&lt;/span&gt;&lt;/span&gt;</strong>&lt;/a&gt;&lt;/li&gt;</code></pre>
+							</li>
+							<li>After:
+								<pre><code>&lt;section class="wb-mb-links col-xs-3 visible-sm visible-xs" id="wb-glb-mn"&gt;
+	&lt;h2&gt;<strong>Search and menus</strong>&lt;/h2&gt;
+	&lt;ul class="list-inline text-right chvrn"&gt;
+		&lt;li&gt;&lt;a href="#mb-pnl" title="<strong>Search and menus</strong>" aria-controls="mb-pnl" class="overlay-lnk btn" role="button"&gt;<strong>&lt;span class="glyphicon glyphicon-search"&gt;&lt;span class="glyphicon glyphicon-th-list"&gt;&lt;span class="wb-inv"&gt;Search and menus&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</strong>&lt;/a&gt;&lt;/li&gt;</code></pre>
+							</li>
+						</ul>
+					</li>
+					<li>Other themes:
+						<ul>
+							<li>Before:
+								<pre><code>&lt;section class="wb-mb-links col-xs-12 visible-sm visible-xs" id="wb-glb-mn"&gt;
+	&lt;h2&gt;<strong>Menu</strong>&lt;/h2&gt;
+	&lt;ul class="pnl-btn list-inline text-right"&gt;
+		&lt;li&gt;&lt;a href="#mb-pnl" title="Menu" aria-controls="mb-pnl" class="overlay-lnk <strong>btn-xs</strong> btn-default" role="button"&gt;<strong>&lt;span class="glyphicon glyphicon-th-list"&gt;&lt;span class="wb-inv"&gt;Menu&lt;/span&gt;&lt;/span&gt;</strong>&lt;/a&gt;&lt;/li&gt;</code></pre>
+							</li>
+							<li>After:
+								<pre><code>section class="wb-mb-links col-xs-12 visible-sm visible-xs" id="wb-glb-mn"&gt;
+	&lt;h2&gt;<strong>Search and menus</strong>&lt;/h2&gt;
+	&lt;ul class="pnl-btn list-inline text-right"&gt;
+		&lt;li&gt;&lt;a href="#mb-pnl" title="Search and menus" aria-controls="mb-pnl" class="overlay-lnk btn <strong>btn-sm</strong> btn-default" role="button"&gt;<strong>&lt;span class="glyphicon glyphicon-search"&gt;&lt;span class="glyphicon glyphicon-th-list"&gt;&lt;span class="wb-inv"&gt;Search and menus&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</strong>&lt;/a&gt;&lt;/li&gt;</code></pre>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				Changed heading text and skip link text for "Site menu", "Secondary menu" and "Site information" to "Topics menu", "Section menu" and "About this site"
+				<ul>
+					<li>Before:
+						<pre><code>&lt;li class="wb-slc visible-md visible-lg"&gt;&lt;a class="wb-sl" href="#wb-info"&gt;Skip to <strong>site information</strong>&lt;/a&gt;&lt;/li&gt;
+&lt;li class="wb-slc visible-md visible-lg"&gt;&lt;a class="wb-sl" href="#wb-sec"&gt;Skip to <strong>secondary</strong> menu&lt;/a&gt;&lt;/li&gt;
+...
+&lt;h2 class="wb-inv"&gt;<strong>Site</strong> menu&lt;/h2&gt;
+...
+&lt;h2&gt;<strong>Secondary</strong> menu&lt;/h2&gt;
+...
+&lt;h2 class="wb-inv"&gt;<strong>Site information</strong>&lt;/h2&gt;</code></pre>
+					</li>
+					<li>After:
+						<pre><code>&lt;li class="wb-slc visible-md visible-lg"&gt;&lt;a class="wb-sl" href="#wb-info"&gt;Skip to <strong>"About this site"</strong>&lt;/a&gt;&lt;/li&gt;
+&lt;li class="wb-slc visible-md visible-lg"&gt;&lt;a class="wb-sl" href="#wb-sec"&gt;Skip to <strong>section</strong> menu&lt;/a&gt;&lt;/li&gt;
+...
+&lt;h2 class="wb-inv"&gt;<strong>Topics</strong> menu&lt;/h2&gt;
+...
+&lt;h2&gt;<strong>Section</strong> menu&lt;/h2&gt;
+...
+&lt;h2 class="wb-inv"&gt;<strong>About this site</strong>&lt;/h2&gt;</code></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				Changed "Site menu" heading in the full menu AJAX file to "Topics menu"
+				<ul>
+					<li>Before:
+						<pre><code>&lt;h2&gt;<strong>Site</strong> menu&lt;/h2&gt;</code></pre>
+					</li>
+					<li>After:
+						<pre><code>&lt;h2&gt;<strong>Topics</strong> menu&lt;/h2&gt;</code></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				Moved contact information section to the start of the footer
+				<ul>
+					<li>Canada.ca theme:
+						<ul>
+							<li>Before:
+								<pre><code>&lt;h2 class="wb-inv"&gt;Site Information&lt;/h2&gt;
+	&lt;div class="row"&gt;
+		<strong>&lt;section class="col-sm-3 col-lg-3"&gt;
+			&lt;h3&gt;Government&lt;/h3&gt;
+			...
+		&lt;/section&gt;
+		&lt;section class="col-sm-3 col-lg-3"&gt;
+			&lt;h3&gt;Transparency&lt;/h3&gt;
+			...
+		&lt;/section&gt;
+		&lt;div class="col-sm-3 col-lg-3 brdr-lft"&gt;
+			&lt;section&gt;
+				&lt;h3&gt;News&lt;/h3&gt;
+				...
+			&lt;/section&gt;
+			&lt;section&gt;
+				&lt;h3&gt;Contact information&lt;/h3&gt;
+				...
+			&lt;/section&gt;
+		&lt;/div&gt;</strong></code></pre>
+							</li>
+							<li>After:
+								<pre><code>&lt;h2 class="wb-inv"&gt;About this site&lt;/h2&gt;
+	&lt;div class="row"&gt;
+		<strong>&lt;div class="col-sm-3 col-lg-3"&gt;
+			&lt;section&gt;
+				&lt;h3&gt;News&lt;/h3&gt;
+				...
+			&lt;/section&gt;
+			&lt;section&gt;
+				&lt;h3&gt;Contact information&lt;/h3&gt;
+				...
+			&lt;/section&gt;
+		&lt;/div&gt;
+		&lt;section class="col-sm-3 col-lg-3"&gt;
+			&lt;h3&gt;Government&lt;/h3&gt;
+			...
+		&lt;/section&gt;
+		&lt;section class="col-sm-3 col-lg-3 brdr-lft"&gt;
+			&lt;h3&gt;Transparency&lt;/h3&gt;
+			...
+		&lt;/section&gt;</strong></code></pre>
+							</li>
+						</ul>
+					</li>
+					<li>Other themes:
+						<ul>
+							<li>Before:
+								<pre><code>&lt;h2 class="wb-inv"&gt;Site Information&lt;/h2&gt;
+	&lt;div class="row"&gt;
+		&lt;section class="col-sm-3 col-lg-3"&gt;
+			&lt;h3&gt;About&lt;/h3&gt;
+			...
+		&lt;/section&gt;
+		<strong>&lt;section class="col-sm-3 col-lg-3"&gt;
+			&lt;h3&gt;Contact information&lt;/h3&gt;
+			...
+		&lt;/section&gt;</strong></code></pre>
+							</li>
+							<li>After:
+								<pre><code>&lt;h2 class="wb-inv"&gt;About this site&lt;/h2&gt;
+	&lt;div class="row"&gt;
+		<strong>&lt;section class="col-sm-3 col-lg-3"&gt;
+			&lt;h3&gt;Contact information&lt;/h3&gt;
+			...
+		&lt;/section&gt;</strong>
+		&lt;section class="col-sm-3 col-lg-3"&gt;
+			&lt;h3&gt;About&lt;/h3&gt;
+			...
+		&lt;/section&gt;</code></pre>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				Moved the Date modified RDFa property into the time element
+				<ul>
+					<li>Before:
+						<pre><code>&lt;dl id="wb-dtmd" <strong>property="dateModified"</strong>&gt;
+	&lt;dt&gt;Date modified: &lt;/dt&gt;
+	&lt;dd&gt;
+		&lt;time&gt;2014-07-22&lt;/time&gt;
+	&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+					</li>
+					<li>After:
+						<pre><code>&lt;dl id="wb-dtmd"&gt;
+	&lt;dt&gt;Date modified: &lt;/dt&gt;
+	&lt;dd&gt;
+		&lt;time <strong>property="dateModified"</strong>&gt;2014-07-22&lt;/time&gt;
+	&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				Wrapped Tabbed interface details and carousel tab panels with <code>div class="tabpanels"</code>
+				<ul>
+					<li>Tabbed interface:
+						<ul>
+							<li>Before:
+								<pre><code>&lt;div class="wb-tabs wb-eqht"&gt;
+	&lt;details id="details-panel1"&gt;
+		...
+	&lt;/details&gt;
+	&lt;details id="details-panel2"&gt;
+		...
+	&lt;/details&gt;
+	&lt;details id="details-panel3"&gt;
+		...
+	&lt;/details&gt;
+&lt;/div&gt;</code></pre>
+							</li>
+							<li>After:
+								<pre><code>&lt;div class="wb-tabs wb-eqht"&gt;
+	<strong>&lt;div class="tabpanels"&gt;</strong>
+		&lt;details id="details-panel1"&gt;
+			...
+		&lt;/details&gt;
+		&lt;details id="details-panel2"&gt;
+			...
+		&lt;/details&gt;
+		&lt;details id="details-panel3"&gt;
+			...
+		&lt;/details&gt;
+	<strong>&lt;/div&gt;</strong>
+&lt;/div&gt;</code></pre>
+							</li>
+						</ul>
+					</li>
+					<li>Carousel:
+						<ul>
+							<li>Before:
+								<pre><code>&lt;div class=&quot;wb-tabs carousel-s1&quot;&gt;
+	&lt;ul role=&quot;tablist&quot;&gt;
+		...
+	&lt;/ul&gt;
+	&lt;div role=&quot;tabpanel&quot; id=&quot;panel1&quot; class=&quot;in fade&quot;&gt;
+		...
+	&lt;/div&gt;
+	&lt;div role=&quot;tabpanel&quot; id=&quot;panel2&quot; class=&quot;out fade&quot;&gt;
+		..
+	&lt;/div&gt;
+	...
+&lt;/div&gt;</code></pre>
+							</li>
+							<li>After:
+								<pre><code>&lt;div class=&quot;wb-tabs carousel-s1&quot;&gt;
+	&lt;ul role=&quot;tablist&quot;&gt;
+		...
+	&lt;/ul&gt;
+	<strong>&lt;div class="tabpanels"&gt;</strong>
+		&lt;div role=&quot;tabpanel&quot; id=&quot;panel1&quot; class=&quot;in fade&quot;&gt;
+			...
+		&lt;/div&gt;
+		&lt;div role=&quot;tabpanel&quot; id=&quot;panel2&quot; class=&quot;out fade&quot;&gt;
+			..
+		&lt;/div&gt;
+		...
+	<strong>&lt;/div&gt;</strong>
+&lt;/div&gt;</code></pre>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ol>
+	</section>
+	</div>
+
+	<section>
+		<h3>Quoi de neuf?</h3>
+		<div lang="en">
+		<ul>
+			<li><strong>AJAX fetch:</strong> Modified the Ajax Fetch plugin to provide more control via jQuery AJAX settings and to send the context with the event</li>
+			<li><strong>Calendar of events:</strong> Added fluid width display option</li>
+			<li><strong>Calendar of events / Date picker:</strong> Fixed goto month field issues.</li>
+			<li><strong>Calendar of events / Date picker:</strong> Fixed numerous keyboard handling issues.</li>
+			<li><strong>CSS:</strong> Fixed pagination wrapping in IE8</li>
+			<li><strong>CSS:</strong> Fixed wrapping issues with the <code>btn</code> class</li>
+			<li><strong>Data AJAX:</strong> Added documentation</li>
+			<li><strong>Data InView:</strong> Added documentation and examples for CSS transitions and view state change events</li>
+			<li><strong>Datalist polyfill:</strong> Added an example of a dynamic datalist</li>
+			<li><strong>Datalist polyfill:</strong> Added the update event to allow updating of a dynamically modified datalist</li>
+			<li><strong>Date picker:</strong> Fixed spacing for picker toggle button in RTL display</li>
+			<li><strong>Feeds:</strong> Added Flickr and YouTube support</li>
+			<li><strong>Feeds:</strong> Delayed postProcessing of feeds when not visible</li>
+			<li><strong>Feeds:</strong> Now uses the AJAX Fetch plugin</li>
+			<li><strong>Footnotes:</strong> Increased width and spacing of links</li>
+			<li><strong>Geomap:</strong> Added margins to the map object to make scrolling on mobile devices easier</li>
+			<li><strong>Geomap:</strong> Fixed accessibility issues with new AOI feature</li>
+			<li><strong>HTML minification:</strong> Preserved line breaks to make it easier to implement the templates.</li>
+			<li><strong>i18n</strong> Fixed i18n strings where ' was not properly encoded</li>
+			<li><strong>Lightbox:</strong> Added open.wb-lbx event for opening a Lightbox popup through JavaScript</li>
+			<li><strong>Menu:</strong> Added search icon to mobile panel button and increased mobile panel button height by 20%</li>
+			<li><strong>Menu:</strong> Changed menu panel heading, button and title to 'Search and menus'</li>
+			<li><strong>Menu:</strong> Fixed a display issue with the <code>slflnk</code> class</li>
+			<li><strong>Menu:</strong> Fixed menu handling for undefined AJAX response</li>
+			<li><strong>Menu:</strong> Fixed outlining of non-section wb-navcurr links in the menu panel</li>
+			<li><strong>Multimedia player:</strong> Fixed not being able to have more than one YouTube player per page</li>
+			<li><strong>Overlay:</strong> Added documentation</li>
+			<li><strong>Overlay:</strong> Added example of opening overlays with JavaScript</li>
+			<li><strong>Session timeout:</strong> Prevented double firing of requests.</li>
+			<li><strong>Tables:</strong> Added documentation</li>
+			<li><strong>Tables:</strong> Added role='button' and aria-pressed to the pagination buttons to indicate which button is pressed</li>
+			<li><strong>Tables:</strong> Removed HTML tags before doing any filtering for formatted number</li>
+			<li><strong>Tabs:</strong> Fixed handling of attributes when transitioning between views</li>
+			<li><strong>Tabs:</strong> Only pause initialized video players when changing tabs</li>
+			<li><strong>Tabs - Carousel:</strong> Added support for fade and slide transitions</li>
+			<li><strong>Template:</strong> Added support for a full-width main</li>
+			<li><strong>Template:</strong> Changed site menu heading in fullmenu AJAX file</li>
+			<li><strong>Template:</strong> Changed heading text and skip link text for site menu, secondary menu and site information</li>
+			<li><strong>Template:</strong> Made skip to footer link discoverable in small view</li>
+			<li><strong>Template:</strong> Moved contact information section to the start of the footer</li>
+			<li><strong>Template:</strong> Moved the Date modified RDFa property into the time element</li>
+			<li><strong>Toggle:</strong> Fixed arrow key handling</li>
+			<li><strong>Variants:</strong> Added Jekyll and WordPress working examples</li>
+			<li><strong>WET theme:</strong> Increased the minimum height of the top bar in mobile view</li>
+		</ul>
+		</div>
+	</section>
+</section>
 
 <section>
 	<h2>v4.0.3</h2>

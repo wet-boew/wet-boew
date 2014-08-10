@@ -2,46 +2,84 @@
 {
 	"title": "Correctif MathML",
 	"language": "fr",
+	"category": "Correctifs",
+	"categoryfile": "polyfills",
 	"description": "Émule le MathML pour les navigateurs qui ne le supportent pas.",
 	"altLangPrefix": "mathml",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-08-04"
 }
 ---	
-<span class="wb-prettify all-pre hide"></span>
-
-<section>
-	<h2>But</h2>
-	<p>Émule le MathML pour les navigateurs qui ne le supportent pas.</p>
-</section>
-
 <div lang="en">
-	<p><strong>Needs translation</strong></p>
-	<section>
-		<h2>Use when</h2>
-		<ul>
-			<li>Adding scientific or mathematical formulas to a web page.</li>
-		</ul>
-	</section>
-</div>
-
 <section>
-	<h2>Exemple pratique</h2>
-	<p><a href="../../../demos/mathml/mathml-en.html">Exemple en anglais</a></p>
-	<p><a href="../../../demos/mathml/mathml-fr.html">Exemple en français</a></p>
+	<h2>Purpose</h2>
+	<p>MathML enables the display of mathematical formulas. Because some browsers do not support this functionality natively, this polyfill emulates the same functionality using MathJax.</p>
 </section>
 
 <section>
-	<h2>Comment mettre en œuvre</h2>
+	<h2>Known issues</h2>
 	<ol>
-		<li>Coder quelconque formule à ajouter à une page Web en MathML et ajouter le code MathML dans le code HTML à l'aide de l'élément <code>&lt;math&gt;</code>. Le correctif est lancé automatiquement dans les navigateurs ne supportant pas le MathML.</li>
+		<li>Browsers that lack both MathML and SVG support (e.g., IE8 - IE9) will take longer to load MathML than browsers with either SVG or MathML support</li>
+		<li>IE8 takes a lot longer to load MathML than IE9 (known MathJax reflow issue)</li>
+		<li>Pages with a lot of complex formulas can take a few minutes to load on slow machines running IE8 (known MathJax issue)</li>
 	</ol>
-	<p><b>Nota : </b> Le correctif MathML dépend de <a href="http://www.mathjax.org/">MathJax</a>, qui est téléchargé à partir du MathJax CDN.</p>
 </section>
 
-<div lang="en">
-	<p><strong>Needs translation</strong></p>
-	<section>
-		<h2>Source code</h2>
-		<p><a href="https://github.com/wet-boew/wet-boew/blob/master/src/core/wb.js">MathML source code on GitHub (bundled as part of the Modernizr polyfill loading).</a></p>
-	</section>
+<section>
+	<h2>Working example</h2>
+	<ul>
+		<li><a href="../../../demos/mathml/mathml-en.html">English examples</a></li>
+		<li><a href="../../../demos/mathml/mathml-fr.html">French examples</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>How to implement</h2>
+	<p>To use the polyfill, standard MathML is required. In cases where a browser doesn't support MathML, the polyfill is automatically loaded.</p>
+</section>
+
+<section>
+	<h2>Configuration options</h2>
+	<p><a href="http://www.w3.org/TR/MathML3/">Configuration options available for MathML (MathML 3.0 specification)</a></p>
+</section>
+
+<section>
+	<h2>Events</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Event</th>
+				<th>Trigger</th>
+				<th>What it does</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>wb-init.wb-math</code> (v4.0.5+)</td>
+				<td>Triggered manually (e.g., <code>$( "math" ).trigger( "wb-init.wb-math" );</code>).</td>
+				<td>Used to manually initialize the MathML polyfill. <strong>Note:</strong> The MathML polyfill will be initialized automatically unless the <code>math</code> element is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-math</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the MathML polyfill initializes. <strong>Note:</strong> This event will only be triggered if the polyfill is loaded. The polyfill will not load for browsers with adequate native MathML support.</td>
+				<td>Used to identify when the MathML polyfill initializes (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-math", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2>Source code</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/polyfills/mathml">MathML polyfill source code on GitHub</a> (also in <a href="https://github.com/wet-boew/wet-boew/tree/master/src/core/wb.js">wb.js</a>)</p>
+</section>
 </div>

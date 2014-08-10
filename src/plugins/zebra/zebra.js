@@ -15,14 +15,13 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
- var pluginName = "wb-zebra",
-	selector = "." + pluginName,
-	hoverColClass = pluginName + "-col-hover",
+ var componentName = "wb-zebra",
+	selector = "." + componentName,
+	hoverColClass = componentName + "-col-hover",
 	selectorHoverCol = "." + hoverColClass + " td, " + hoverColClass + " th",
-	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
-	tableParsingEvent = "pasiveparse.wb-tableparser.wb",
-	tableParsingCompleteEvent = "parsecomplete.wb-tableparser.wb",
+	tableParsingEvent = "passiveparse.wb-tableparser",
+	tableParsingCompleteEvent = "parsecomplete.wb-tableparser",
 	$document = wb.doc,
 	idCount = 0,
 	i18n, i18nText,
@@ -34,23 +33,28 @@
 	 */
 	zebraTable = function( $elm ) {
 		var i, iLength, tblGroup,
-			tblparser = $elm.data().tblparser; // Cache the table parsed results
+
+			// Cache the table parsed results
+			tblparser = $elm.data().tblparser;
 
 		function addCellClass( arr, className ) {
 			var i, iLength;
 
 			for ( i = 0, iLength = arr.length; i !== iLength; i += 1 ) {
-				$( arr[i].elem ).addClass( className );
+				$( arr[ i ].elem ).addClass( className );
 			}
 		}
+
 		// Key Cell
 		if ( tblparser.keycell ) {
 			addCellClass( tblparser.keycell, "wb-cell-key" );
 		}
+
 		// Description Cell
 		if ( tblparser.desccell ) {
 			addCellClass( tblparser.desccell, "wb-cell-desc" );
 		}
+
 		// Layout Cell
 		if ( tblparser.layoutCell ) {
 			addCellClass( tblparser.layoutCell, "wb-cell-layout" );
@@ -61,7 +65,7 @@
 			for ( i = 0, iLength = tblparser.lstrowgroup.length; i !== iLength; i += 1 ) {
 				tblGroup = tblparser.lstrowgroup[ i ];
 				// Add a class to the row
-				if ( tblGroup.type === 3 || tblGroup.row[ 0 ].type === 3) {
+				if ( tblGroup.type === 3 || tblGroup.row[ 0 ].type === 3 ) {
 					$( tblGroup.elem ).addClass( "wb-group-summary" );
 				}
 			}
@@ -78,29 +82,31 @@
 			}
 		}
 
+		// Identify that initialization has completed
+		wb.ready( $elm, componentName );
 	},
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {DOM element} elm The plugin element being initialized
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
-	init = function( elm ) {
-		var elmId = elm.id,
-			modeJS = wb.getMode() + ".js",
+	init = function( event ) {
+
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
 			deps = [
-				"site!deps/tableparser" + modeJS
-			];
+				"site!deps/tableparser" + wb.getMode() + ".js"
+			],
+			elmId;
 
-		if ( elm.className.indexOf( initedClass ) === -1 ) {
-			wb.remove( selector );
-
-			elm.className += " " + initedClass;
+		if ( elm ) {
+			elmId = elm.id;
 
 			// Ensure there is a unique id on the element
 			if ( !elmId ) {
-				elmId = pluginName + "-id-" + idCount;
+				elmId = componentName + "-id-" + idCount;
 				idCount += 1;
 				elm.id = elmId;
 			}
@@ -130,27 +136,25 @@
 
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb " + initEvent + " " + tableParsingCompleteEvent, selector, function( event ) {
-	var eventType = event.type,
-		elm = event.target;
+	var eventTarget = event.target;
 
-	if ( event.currentTarget !== elm ) {
-		return true;
-	}
-
-	switch ( eventType ) {
+	switch ( event.type ) {
 
 	/*
 	 * Init
 	 */
 	case "timerpoke":
-		init( elm );
+	case "wb-init":
+		init( event );
 		break;
 
 	/*
 	 * Data table parsed
 	 */
 	case "parsecomplete":
-		zebraTable( $( elm ) );
+		if ( event.currentTarget === eventTarget ) {
+			zebraTable( $( eventTarget ) );
+		}
 		break;
 	}
 

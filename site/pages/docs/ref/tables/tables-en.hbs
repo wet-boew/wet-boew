@@ -2,9 +2,11 @@
 {
 	"title": "Tables",
 	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
 	"description": "Integrates the DataTables plugin into WET providing searching, sorting, filtering, pagination and other advanced features for tables.",
 	"altLangPrefix": "tables",
-	"dateModified": "2014-03-31"
+	"dateModified": "2014-08-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -14,25 +16,10 @@
 	<p>Integrates the DataTables plugin into WET providing searching, sorting, filtering, pagination and other advanced features for tables.</p>
 </section>
 
-<!--
 <section>
 	<h2>Use when</h2>
-	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
-	</ul>
+	<p>Displaying large tables, to ease searching, sorting and filtering of information.</p>
 </section>
-
-<section>
-	<h2>Do not use when</h2>
-	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
-	</ul>
-</section>
--->
 
 <section>
 	<h2>Working example</h2>
@@ -43,72 +30,18 @@
 </section>
 
 <section>
-	<p>Coming soon</p>
-	<!--
 	<h2>How to implement</h2>
 	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
+		<li>Add class <code>wb-tables</code> to the table tag of the table you wish to enhance.</li>
+		<li>Modify the default configuration by passing a JSON array through the <code>data-wb-tables</code> attribute of the table tag.
+			<pre><code>&lt;table class="wb-tables table table-striped table-hover" data-wb-tables='{ "ordering" : false }'&gt;</code></pre>
 		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
-		</li>
-		<li>Step 4</li>
 	</ol>
-	-->
 </section>
 
 <section>
 	<h2>Configuration options</h2>
-	<p>Coming soon</p>
-	<!--
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Option</th>
-				<th>Description</th>
-				<th>How to configure</th>
-				<th>Values</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
-			</tr>
-			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	-->
+	<p>All configuration options are detailed in the <a href="http://www.datatables.net/ref">DataTables documentation</a> and is fully accessible via the <code>data-wb-tables</code> attribute.</p>
 </section>
 
 <section>
@@ -123,9 +56,47 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-tables</td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-inview" );</code>).</td>
+				<td><code>wb-init.wb-tables</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-tables" ).trigger( "wb-init.wb-tables" );</code>).</td>
 				<td>Used to manually initialize the Tables plugin. <strong>Note:</strong> The Tables plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-tables</code> (v4.0.5+)</td>
+				<td>Triggered automatically after Data Tables has been initialized.</td>
+				<td>Used to identify where Data Tables was initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-tables", ".wb-tables", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-tables" ).on( "wb-ready.wb-tables", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-updated.wb-tables</code> (v4.0.5+)</td>
+				<td>Triggered automatically after a DataTable table was updated (extension of the <code>draw.dt</code> event).</td>
+				<td>Used to identify which table was updated (target of the event) and to pass along the DataTables settings object.
+					<pre><code>$( document ).on( "wb-updated.wb-tables", ".wb-tables", function( event, settings ) {
+});</code></pre>
+					<pre><code>$( ".wb-tables" ).on( "wb-updated.wb-tables", function( event, settings ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>*.dt</code> events (e.g., <code>xhr.dt</code></td>
+				<td>Events triggered automatically by DataTables (<a href="http://datatables.net/reference/event/">documentation on DataTables events</a>.</td>
+				<td>Used by DataTables to identify what events are occurring.
+					<pre><code>$( document ).on( "xhr.dt", ".wb-tables", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-tables" ).on( "xhr.dt", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>
@@ -133,5 +104,5 @@ Example of multi-line code</code></pre>
 
 <section>
 	<h2>Source code</h2>
-	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/tables">Data Inview plugin source code on GitHub</a></p>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/tables">Tables plugin source code on GitHub</a></p>
 </section>

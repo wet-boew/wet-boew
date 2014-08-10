@@ -15,25 +15,23 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-tableparser",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
-	initEvent = "wb-init" + selector,
+var componentName = "wb-tableparser",
+	selector = "." + componentName,
+	errorEvent = "error" + selector,
+	warningEvent = "warning" + selector,
 	$document = wb.doc,
 
-	/*
-	* Init runs once per plugin element on the page. There may be multiple elements.
-	* It will run more than once per plugin if you don't remove the selector from the timer.
+	/**
 	* @method init
-	* @param {jQuery DOM element} $elm The plugin element being initialized
+	* @param {jQuery Event} event Event that triggered this handler
 	*/
-	init = function( $obj ) {
+	init = function( event ) {
+		if ( event.namespace !== componentName ) {
+			return;
+		}
 
-		// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-		wb.remove( selector );
-		$obj.get(0).className += " " + initedClass;
-
-		var groupZero = {
+		var $obj = $( event.target ),
+			groupZero = {
 				allParserObj: [],
 				nbDescriptionRow: 0 // To remove ??
 			},
@@ -66,7 +64,7 @@ var pluginName = "wb-tableparser",
 		// obj need to be a table
 		if ( $obj.get( 0 ).nodeName.toLowerCase() !== "table" ) {
 			$obj.trigger( {
-				type: "error.wb-tableparser.wb",
+				type: errorEvent,
 				pointer: $obj,
 				err: 1
 			} );
@@ -76,7 +74,7 @@ var pluginName = "wb-tableparser",
 		// Check if this table was already parsed, if yes we exit by throwing an error
 		if ( $obj.tblparser ) {
 			$obj.trigger({
-				type: "error.wb-tableparser.wb",
+				type: errorEvent,
 				pointer: $obj,
 				err: 2
 			});
@@ -275,7 +273,7 @@ var pluginName = "wb-tableparser",
 					width = nbvirtualcol;
 				} else {
 					$obj.trigger({
-						type: "error.wb-tableparser.wb",
+						type: errorEvent,
 						pointer: $obj,
 						err: 31
 					});
@@ -327,7 +325,7 @@ var pluginName = "wb-tableparser",
 					colgroupFrame[ 0 ].end !== ( colgroupHeaderColEnd + 1 ) ) ) ) {
 
 					$obj.trigger({
-						type: "warning.wb-tableparser.wb",
+						type: warningEvent,
 						pointer: $obj,
 						err: 3
 					});
@@ -418,7 +416,7 @@ var pluginName = "wb-tableparser",
 						cell = theadRS.cell[ j ];
 						if ( cell.type !== 5 && cell.type !== 6 && cell.height === 1 ) {
 							$obj.trigger({
-								type: "warning.wb-tableparser.wb",
+								type: warningEvent,
 								pointer: cell.elem,
 								err: 4
 							});
@@ -463,7 +461,7 @@ var pluginName = "wb-tableparser",
 
 				if ( colgroup.start > colgroup.end ) {
 					$obj.trigger({
-						type: "warning.wb-tableparser.wb",
+						type: warningEvent,
 						pointer: $obj,
 						err: 5
 					});
@@ -621,7 +619,7 @@ var pluginName = "wb-tableparser",
 
 					if ( bigTotalColgroupFound || groupZero.colgrp[ 0  ] ) {
 						$obj.trigger({
-							type: "error.wb-tableparser.wb",
+							type: errorEvent,
 							pointer: curColgroupFrame,
 							err: 6
 						});
@@ -642,7 +640,7 @@ var pluginName = "wb-tableparser",
 					if ( curColgroupFrame.start < currColPos ) {
 						if ( colgroupHeaderColEnd !== curColgroupFrame.end ) {
 							$obj.trigger({
-								type: "warning.wb-tableparser.wb",
+								type: warningEvent,
 								pointer: curColgroupFrame,
 								err: 7
 							});
@@ -677,7 +675,7 @@ var pluginName = "wb-tableparser",
 
 							// Number of column are not corresponding to the table width
 							$obj.trigger({
-								type: "warning.wb-tableparser.wb",
+								type: warningEvent,
 								pointer: $obj,
 								err: 3
 							});
@@ -714,7 +712,7 @@ var pluginName = "wb-tableparser",
 								(tmpStackCell.colpos + tmpStackCell.width - 1 ) > curColgroupFrame.end) {
 
 								$obj.trigger({
-									type: "error.wb-tableparser.wb",
+									type: errorEvent,
 									pointer: $obj,
 									err: 9
 								});
@@ -732,7 +730,7 @@ var pluginName = "wb-tableparser",
 								tmpStackCell.colpos > curColgroupFrame.start ||
 								tmpStackCell.colpos + tmpStackCell.width - 1 < curColgroupFrame.end ) {
 							$obj.trigger({
-								type: "error.wb-tableparser.wb",
+								type: errorEvent,
 								pointer: $obj,
 								err: 10
 							});
@@ -1074,7 +1072,7 @@ var pluginName = "wb-tableparser",
 						if (currentRowGroup.level < 0) {
 							// This is an error, Last summary row group was already found.
 							$obj.trigger( {
-								type: "warning.wb-tableparser.wb",
+								type: warningEvent,
 								pointer: $obj,
 								err: 12
 							} );
@@ -1090,7 +1088,7 @@ var pluginName = "wb-tableparser",
 						// Error
 						currentRowGroup.level = "Error, not calculated";
 						$obj.trigger( {
-							type: "warning.wb-tableparser.wb",
+							type: warningEvent,
 							pointer: $obj,
 							err: 13
 						} );
@@ -1110,7 +1108,7 @@ var pluginName = "wb-tableparser",
 
 			if (currentRowGroup.level === undefined || currentRowGroup.level < 0) {
 				$obj.trigger( {
-					type: "warning.wb-tableparser.wb",
+					type: warningEvent,
 					pointer: currentRowGroup.elem,
 					err: 14
 				} );
@@ -1327,7 +1325,7 @@ var pluginName = "wb-tableparser",
 					break;
 				default:
 					$obj.trigger( {
-						type: "warning.wb-tableparser.wb",
+						type: warningEvent,
 						pointer: this,
 						err: 15
 					} );
@@ -1349,7 +1347,7 @@ var pluginName = "wb-tableparser",
 			if (tableCellWidth !== row.cell.length) {
 				row.spannedRow = spannedRow;
 				$obj.trigger( {
-					type: "warning.wb-tableparser.wb",
+					type: warningEvent,
 					pointer: row.elem,
 					err: 16
 				} );
@@ -1389,14 +1387,14 @@ var pluginName = "wb-tableparser",
 							return; // We do not go further
 						}
 						$obj.trigger( {
-							type: "warning.wb-tableparser.wb",
+							type: warningEvent,
 							pointer: $obj,
 							err: 17
 						} );
 					} else {
 						// Invalid row header
 						$obj.trigger( {
-							type: "warning.wb-tableparser.wb",
+							type: warningEvent,
 							pointer: $obj,
 							err: 18
 						} );
@@ -1416,7 +1414,7 @@ var pluginName = "wb-tableparser",
 						}
 						// Bad row, remove the row or split the table
 						$obj.trigger( {
-							type: "warning.wb-tableparser.wb",
+							type: warningEvent,
 							pointer: $obj,
 							err: 18
 						} );
@@ -1432,7 +1430,7 @@ var pluginName = "wb-tableparser",
 							return;
 						}
 						$obj.trigger( {
-							type: "warning.wb-tableparser.wb",
+							type: warningEvent,
 							pointer: $obj,
 							err: 18
 						} );
@@ -1441,7 +1439,7 @@ var pluginName = "wb-tableparser",
 
 				if (row.colgroup.length > 1 && currentRowPos !== 1) {
 					$obj.trigger( {
-						type: "warning.wb-tableparser.wb",
+						type: warningEvent,
 						pointer: $obj,
 						err: 21
 					} );
@@ -1509,7 +1507,7 @@ var pluginName = "wb-tableparser",
 							if (this && this.spanHeight > 0) {
 								// That row are spanned in 2 different row group
 								$obj.trigger( {
-									type: "warning.wb-tableparser.wb",
+									type: warningEvent,
 									pointer: this,
 									err: 29
 								} );
@@ -1537,7 +1535,7 @@ var pluginName = "wb-tableparser",
 							if (this && this.spanHeight > 0) {
 								// That row are spanned in 2 different row group
 								$obj.trigger( {
-									type: "warning.wb-tableparser.wb",
+									type: warningEvent,
 									pointer: this,
 									err: 29
 								} );
@@ -1558,14 +1556,14 @@ var pluginName = "wb-tableparser",
 						row.type = currentRowGroup.type; // Reset the current row type
 
 						$obj.trigger( {
-							type: "warning.wb-tableparser.wb",
+							type: warningEvent,
 							pointer: row.elem,
 							err: 34
 						} );
 
 					} else {
 						$obj.trigger( {
-							type: "warning.wb-tableparser.wb",
+							type: warningEvent,
 							pointer: $obj,
 							err: 32
 						} );
@@ -1627,7 +1625,7 @@ var pluginName = "wb-tableparser",
 								if (rowheader.height >= row.cell[i].height) {
 									if (rowheader.height === row.cell[i].height) {
 										$obj.trigger( {
-											type: "warning.wb-tableparser.wb",
+											type: warningEvent,
 											pointer: $obj,
 											err: 23
 										} );
@@ -1646,7 +1644,7 @@ var pluginName = "wb-tableparser",
 								} else {
 									// This case are either paralel heading of growing header, this are an error.
 									$obj.trigger( {
-										type: "warning.wb-tableparser.wb",
+										type: warningEvent,
 										pointer: $obj,
 										err: 24
 									} );
@@ -1684,7 +1682,7 @@ var pluginName = "wb-tableparser",
 					$.each(colKeyCell, function() {
 						if (!(this.type)) {
 							$obj.trigger( {
-								type: "warning.wb-tableparser.wb",
+								type: warningEvent,
 								pointer: $obj,
 								err: 25
 							} );
@@ -1795,7 +1793,7 @@ var pluginName = "wb-tableparser",
 								}
 							} else {
 								$obj.trigger( {
-									type: "warning.wb-tableparser.wb",
+									type: warningEvent,
 									pointer: $obj,
 									err: 35
 								} );
@@ -2049,7 +2047,7 @@ var pluginName = "wb-tableparser",
 				// The table should not have any row at this point
 				if (theadRowStack.length !== 0 || (groupZero.row && groupZero.row.length > 0)) {
 					$obj.trigger( {
-						type: "warning.wb-tableparser.wb",
+						type: warningEvent,
 						pointer: this,
 						err: 26
 					} );
@@ -2063,7 +2061,7 @@ var pluginName = "wb-tableparser",
 					if (this.nodeName.toLowerCase() !== "tr") {
 						// ERROR
 						$obj.trigger( {
-							type: "warning.wb-tableparser.wb",
+							type: warningEvent,
 							pointer: this,
 							err: 27
 						} );
@@ -2101,7 +2099,7 @@ var pluginName = "wb-tableparser",
 					if (this.nodeName.toLowerCase() !== "tr") {
 						// ERROR
 						$obj.trigger( {
-							type: "warning.wb-tableparser.wb",
+							type: warningEvent,
 							pointer: this,
 							err: 27
 						} );
@@ -2117,7 +2115,7 @@ var pluginName = "wb-tableparser",
 					if (this && this.spanHeigh && this.spanHeight > 0) {
 						// That row are spanned in 2 different row group
 						$obj.trigger( {
-							type: "warning.wb-tableparser.wb",
+							type: warningEvent,
 							pointer: this,
 							err: 29
 						} );
@@ -2135,7 +2133,7 @@ var pluginName = "wb-tableparser",
 			} else {
 				// There is a DOM Structure error
 				$obj.trigger( {
-					type: "error.wb-tableparser.wb",
+					type: errorEvent,
 					pointer: this,
 					err: 30
 				} );
@@ -2150,45 +2148,10 @@ var pluginName = "wb-tableparser",
 
 		addHeaders( groupZero );
 
-		$obj.trigger( "parsecomplete.wb-tableparser.wb" );
-
+		$obj.trigger( "parsecomplete" + selector );
 	};
 
-// Bind the init event of the plugin
-$document.on( "timerpoke.wb " + initEvent, selector, function( event ) {
-	var eventType = event.type,
-
-		// "this" is cached for all events to utilize
-		$elm = $( this );
-
-	switch ( eventType ) {
-	case "wb-init":
-		init( $elm );
-		break;
-	}
-
-	/*
-	* Since we are working with events we want to ensure that we are being passive about our control,
-	* so returning true allows for events to always continue
-	*/
-	return true;
-});
-
 // Bind the init event of the plugin on passive table parsing request
-$document.on( "pasiveparse.wb-tableparser.wb", function( event ) {
-	var eventTarget = event.target,
-		$elm = $( eventTarget );
-
-	init( $elm );
-
-	/*
-	* Since we are working with events we want to ensure that we are being passive about our control,
-	* so returning true allows for events to always continue
-	*/
-	return true;
-});
-
-// Add the timer poke to initialize the plugin
-wb.add( selector );
+$document.on( "passiveparse" + selector, init );
 
 })( jQuery, window, document, wb );

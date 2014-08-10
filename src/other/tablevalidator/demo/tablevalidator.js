@@ -12,17 +12,17 @@
 ( function( $, wb ) {
 	"use strict";
 
-	var pluginName = "wb-tblvalidator",
-		selector = "." + pluginName,
-		tableParsingEvent = "pasiveparse.wb-tableparser.wb",
-		tableParsingCompleteEvent = "parsecomplete.wb-tableparser.wb",
+	var componentName = "wb-tblvalidator",
+		selector = "." + componentName,
+		tableParserSelector = ".wb-tableparser",
+		tableParsingEvent = "passiveparse" + tableParserSelector,
+		tableParsingCompleteEvent = "parsecomplete" + tableParserSelector,
 		$document = wb.doc,
-		modeJS = wb.getMode( ) + ".js",
-		addidheadersEvent = "idsheaders." + pluginName + ".wb",
-		addscopeEvent = "scope." + pluginName + ".wb",
-		addnothingEvent = "simple." + pluginName + ".wb",
-		showHTMLEvent = "showhtml." + pluginName + ".wb",
-		logEvent = "log." + pluginName + ".wb",
+		addidheadersEvent = "idsheaders" + selector,
+		addscopeEvent = "scope" + selector,
+		addnothingEvent = "simple" + selector,
+		showHTMLEvent = "showhtml" + selector,
+		logEvent = "log" + selector,
 		formSelector = "#formtablevalidator",
 		ErrorMessage = {
 				"%tblparser1":  "Only table can be parsed with this parser",
@@ -123,7 +123,7 @@ $document.on( showHTMLEvent, "#visualoutput > table:eq( 0 )", function( event ) 
 	}
 	$elm = $( elm );
 
-	tableHTMLstring = ( "<table>" + $elm.html( ) + "</table>" ).replace( /&/g, "&amp;" ).replace( /</g, "&lt;" ).replace( />/g, "&gt;" ).replace( /"/g, "&quot;" );
+	tableHTMLstring = ( "<table>" + $elm.html( ) + "</table>" ).replace( /<col>/g, "<col />" ).replace( /&/g, "&amp;" ).replace( /</g, "&lt;" ).replace( />/g, "&gt;" ).replace( /"/g, "&quot;" );
 
 	// Show the result
 	$output.html( "<pre class='prettyprint'><code>" + tableHTMLstring  + "</code></pre>" );
@@ -574,7 +574,7 @@ $document.on( addnothingEvent, "#visualoutput > table:eq( 0 )", function( event 
 } );
 
 // Check the minimum accessibility requirement
-$document.on( "parsecomplete.wb-tableparser.wb", "#visualoutput > table:eq( 0 )", function( event ) {
+$document.on( tableParsingCompleteEvent, "#visualoutput > table:eq( 0 )", function( event ) {
 	var elm = event.target,
 		$elm, options,
 		tblparser,
@@ -654,7 +654,7 @@ $document.on( "parsecomplete.wb-tableparser.wb", "#visualoutput > table:eq( 0 )"
 } );
 
 // On error detected in the table
-$document.on( "error.wb-tableparser.wb", "#visualoutput > table:eq( 0 )", function( event ) {
+$document.on( "error" + tableParserSelector, "#visualoutput > table:eq( 0 )", function( event ) {
 	var numerr = event.err,
 		html = "#" + numerr + ", ",
 		errorHTML = "",
@@ -679,7 +679,7 @@ $document.on( "error.wb-tableparser.wb", "#visualoutput > table:eq( 0 )", functi
 } );
 
 // On warning detected in the table
-$document.on( "warning.wb-tableparser.wb", "#visualoutput > table:eq( 0 )", function( event ) {
+$document.on( "warning" + tableParserSelector, "#visualoutput > table:eq( 0 )", function( event ) {
 	var numerr = event.err,
 	html = "#" + numerr + ", ",
 	errorHTML = "",
@@ -759,8 +759,9 @@ $document.on( "click", "#validatetable", function( ) {
 	// 4. Load the table parser and trigger the table parsing
 	Modernizr.load( {
 		// For loading multiple dependencies
-		load: [ "site!deps/tableparser" + modeJS ],
+		load: [ "site!deps/tableparser" + wb.getMode( ) + ".js" ],
 		complete: function( ) {
+
 			// Let's parse the table
 			$tbl.trigger( tableParsingEvent );
 		}
@@ -811,38 +812,5 @@ function detectValidationOptions( $tbl ) {
 
 	return opts;
 }
-
-// Bind the init event of the plugin
-$document.on( tableParsingCompleteEvent, selector, function( event ) {
-	var eventType = event.type,
-		elm = event.target;
-
-	if ( event.currentTarget !== elm ) {
-		return true;
-	}
-
-	switch ( eventType ) {
-
-	/*
-	 * Init
-	 */
-	case "timerpoke":
-		//init( elm );
-		break;
-
-	/*
-	 * Data table parsed
-	 */
-	case "parsecomplete":
-		//createCharts( $( elm ) );
-		break;
-	}
-
-	/*
-	 * Since we are working with events we want to ensure that we are being passive about our control,
-	 * so returning true allows for events to always continue
-	 */
-	return true;
-} );
 
 }( jQuery, wb ) );

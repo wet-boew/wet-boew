@@ -3,14 +3,17 @@
 	"title": "Correctif « datalist » (saisie automatique)",
 	"language": "fr",
 	"category": "Correctifs",
-	"description": "Émule l'attribut list de l'élément <inputs>, ainsi que l'élément <datalist>, pour les navigateurs qui ne les supportent pas.",
+	"description": "Émule l'attribut « list » de l'élément « input », ainsi que l'élément « datalist », pour les navigateurs qui ne les supportent pas. Ceci ajoute des fonctionnalités de saisie semi-automatique des champs de « input » spécifiques en affichant dynamiquement une liste de mots qui correspondent à la « datalist ».",
 	"tag": "datalist",
 	"parentdir": "datalist",
 	"altLangPrefix": "datalist",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-08-06"
 }
 ---
-<p>La balise <code lang="en">datalist</code> spécifie une liste d'options pré-définis pour un élément <code lang="en">input</code>.</p>
+<section>
+	<h2>But</h2>
+	<p>L'attribut <code>input list</code> et l'élément <code>datalist</code> de HTML5 ajoutent des fonctionnalités de saisie automatique en affichant dynamiquement une liste de mots qui correspondent à l'entrée de l'utilisateur. Étant donné que certains navigateurs ne prennent pas en charge cette fonctionnalité à l'origine, ce correctif émule la même fonctionnalité en utilisant HTML générique et WAI-ARIA. Met en œuvre le <a href="http://www.w3.org/TR/wai-aria-practices/#datepicker">modèle de conception &#171;&#160;<span lang="en">Auto Complete</span>&#160;&#187; de WAI-ARIA (anglais seulement)</a>.</p>
+</section>
 
 <section>
 	<h2>Exemple</h2>

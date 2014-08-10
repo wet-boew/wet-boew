@@ -13,10 +13,9 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-feeds",
-	selector = "." + pluginName,
+var componentName = "wb-feeds",
+	selector = "." + componentName,
 	feedLinkSelector = "li > a",
-	initedClass = pluginName + "-inited",
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
 	patt = /\\u([\d\w]{4})/g,
@@ -104,11 +103,13 @@ var pluginName = "wb-feeds",
 				title = content.replace( /(<([^>]+)>)/ig, "" ).match( /\(?[^\.\?\!]+[\.!\?]\)?/g );
 
 			// Sanitize the HTML from Facebook - extra 'br' tags
-			content = content.replace( /(<br>\n?)+/gi, "<br>" );
+			content = content.replace( /(<br>\n?)+/gi, "<br />" );
 
-			return "<li class='media'><a class='pull-left' href=''><img src='" + data.fIcon + "' alt='" + data.author +
+			return "<li class='media'><a class='pull-left' href=''><img src='" +
+				data.fIcon + "' alt='" + data.author +
 				"' height='64px' width='64px' class='media-object'/></a><div class='media-body'>" +
-				"<h4 class='media-heading'><a href='" + data.link + "'><span class='wb-inv'>" + title[0] + " - </span>" + data.author + "</a>  " +
+				"<h4 class='media-heading'><a href='" + data.link + "'><span class='wb-inv'>" +
+				title[ 0 ] + " - </span>" + data.author + "</a>  " +
 				( data.publishedDate !== "" ? " <small class='feeds-date text-right'>[" +
 				wb.date.toDateISO( data.publishedDate, true ) + "]</small>" : "" ) +
 				"</h4><p>" + content + "</p></div></li>";
@@ -129,7 +130,7 @@ var pluginName = "wb-feeds",
 				description = data.description.replace( /^\s*<p>(.*?)<\/p>\s*<p>(.*?)<\/p>/i, "");
 
 			// due to CORS we cannot default to simple ajax pulls of the image. We have to inline the content box
-			return "<li class='col-md-4 col-sm-6'><a class='wb-lbx' href='#" + seed + "' title='" + title + "'><img src='" + thumbnail + "' alt='" + title + "' class='img-responsive'/></a>" +
+			return "<li class='col-md-4 col-sm-6'><a class='wb-lbx' href='#" + seed + "'><img src='" + thumbnail + "' alt='" + title + "' title='" + title + "' class='img-responsive'/></a>" +
 					"<section id='" + seed + "' class='mfp-hide modal-dialog modal-content overlay-def'>" +
 					"<header class='modal-header'><h2 class='modal-title'>" + title + "</h2></header>" +
 					"<div class='modal-body'><img src='" + image + "' class='thumbnail center-block' alt='" + title + "' />" +
@@ -146,12 +147,12 @@ var pluginName = "wb-feeds",
 			var seed = "id" + wb.guid(),
 				mediaGroup = data.media$group,
 				title = mediaGroup.media$title.$t,
-				thumbnail = mediaGroup.media$thumbnail[1].url,
+				thumbnail = mediaGroup.media$thumbnail[ 1 ].url,
 				description = mediaGroup.media$description.$t,
 				videoid = mediaGroup.yt$videoid.$t;
 
-				// due to CORS we cannot default to simple ajax pulls of the image. We have to inline the content box
-			return "<li class='col-md-4 col-sm-6' ><a class='wb-lbx' href='#" + seed + "' title='" + title + "'><img src='" + thumbnail + "' alt='" + title + "' class='img-responsive' /></a>" +
+			// Due to CORS we cannot default to simple ajax pulls of the image. We have to inline the content box
+			return "<li class='col-md-4 col-sm-6' ><a class='wb-lbx' href='#" + seed + "'><img src='" + thumbnail + "' alt='" + title + "' title='" + title + "' class='img-responsive' /></a>" +
 					"<section id='" + seed + "' class='mfp-hide modal-dialog modal-content overlay-def'>" +
 					"<header class='modal-header'><h2 class='modal-title'>" + title + "</h2></header>" +
 					"<div class='modal-body'>" +
@@ -176,36 +177,30 @@ var pluginName = "wb-feeds",
 	},
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery Event} event Event that triggered this handler
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
-		var elm = event.target,
+
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
 			fetch, url, $content, limit, feeds, fType, last, i, callback, fElem, fIcon;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === elm &&
-			elm.className.indexOf( initedClass ) === -1 ) {
-
-			wb.remove( selector );
-			elm.className += " " + initedClass;
-
+		if ( elm ) {
 			$content = $( elm ).find( ".feeds-cont" );
 			limit = getLimit( elm );
 			feeds = $content.find( feedLinkSelector );
 			last = feeds.length - 1;
-			i = last;
 
 			// Lets bind some varialbes to the node to ensure safe ajax thread counting
 
 			$content.data( "toProcess", feeds.length )
 					.data( "feedLimit", limit )
-					.data( "entries", []);
+					.data( "entries", [] );
 
-			while ( i >= 0 ) {
+			for ( i = last; i !== -1; i -= 1 ) {
 				fElem = feeds.eq( i );
 				fIcon = fElem.find( "> img" );
 
@@ -216,25 +211,25 @@ var pluginName = "wb-feeds",
 
 				if ( fElem.attr( "data-ajax" ) ) {
 
-					if ( fElem.attr( "href" ).indexOf( "flickr" ) > -1 ) {
+					if ( fElem.attr( "href" ).indexOf( "flickr" ) !== -1 ) {
 						fType =  "flickr";
 						callback = "jsoncallback";
-						$content.data( "postProcess", [ ".wb-lbx" ] );
+						$content.data( componentName + "-postProcess", [ ".wb-lbx" ] );
 					} else {
 						fType = "youtube";
-						$content.data( "postProcess", [ ".wb-lbx", ".wb-mltmd" ] );
+						$content.data( componentName + "-postProcess", [ ".wb-lbx", ".wb-mltmd" ] );
 					}
 
 					// We need a Gallery so lets add another plugin
 					// #TODO: Lightbox review for more abstraction we should not have to add a wb.add() for overlaying
-					fetch.url = fElem.attr( "data-ajax");
+					fetch.url = fElem.attr( "data-ajax" );
 					fetch.jsonp = callback;
 				} else {
 					url = jsonRequest( fElem.attr( "href" ), limit );
 					fetch.url = url;
 
-					// lets bind the template to the Entries
-					if ( url.indexOf( "facebook.com" ) > -1 ) {
+					// Let's bind the template to the Entries
+					if ( url.indexOf( "facebook.com" ) !== -1 ) {
 						fType = "facebook";
 					} else {
 						fType = "generic";
@@ -244,7 +239,7 @@ var pluginName = "wb-feeds",
 				fetch.jsonp = callback;
 
 				fetch.context = {
-					fIcon: ( fIcon.length > 0 )  ? fIcon.attr( "src" ) : "",
+					fIcon: ( fIcon.length !== 0 ) ? fIcon.attr( "src" ) : "",
 					feedType: fType,
 					_content: $content
 				};
@@ -254,10 +249,7 @@ var pluginName = "wb-feeds",
 					element: fElem,
 					fetch: fetch
 				});
-
-				i -= 1;
 			}
-			//$.extend( {}, results );
 		}
 	},
 
@@ -273,6 +265,33 @@ var pluginName = "wb-feeds",
 			return 0;
 		}
 		return Number( count[ 0 ].replace( /limit-/i, "" ) );
+	},
+
+	/**
+	 * Activates feed results view
+	 * @method activateFeed
+	 * @param = {jQuery object} $elm Feed container
+	 */
+	activateFeed = function( $elm ) {
+		var result = $elm.data( componentName + "-result" ),
+			postProcess = $elm.data( componentName + "-postProcess" ),
+			i, postProcessSelector;
+
+		$elm.empty()
+			.removeClass( "waiting" )
+			.addClass( "feed-active" )
+			.append( result );
+
+		if ( postProcess ) {
+			for ( i = postProcess.length - 1; i !== -1; i -= 1 ) {
+				postProcessSelector = postProcess[ i ];
+				$elm.find( postProcessSelector )
+					.trigger( "wb-init" + postProcessSelector );
+			}
+		}
+
+		// Identify that the feed has now been displayed
+		$elm.trigger( "wb-feed-ready" + selector );
 	},
 
 	/**
@@ -305,9 +324,12 @@ var pluginName = "wb-feeds",
 	parseEntries = function( entries, limit, $elm, feedtype ) {
 		var cap = ( limit > 0 && limit < entries.length ? limit : entries.length ),
 			result = "",
-			postProcess = $elm.data( "postProcess" ),
 			compare = wb.date.compare,
-			i, sorted, sortedEntry;
+			$details = $elm.closest( "details" ),
+			activate = true,
+			feedContSelector = ".feeds-cont",
+			hasVisibilityHandler = "vis-handler",
+			i, sorted, sortedEntry, $tabs;
 
 		sorted = entries.sort( function( a, b ) {
 			return compare( b.publishedDate, a.publishedDate );
@@ -317,29 +339,64 @@ var pluginName = "wb-feeds",
 			sortedEntry = sorted[ i ];
 			result += Templates[ feedtype ]( sortedEntry );
 		}
-		$elm.empty().append( result );
+		$elm.data( componentName + "-result", result );
 
-		if ( postProcess ) {
-
-			for ( i = postProcess.length - 1; i >= 0; i -= 1 ) {
-				wb.add( postProcess[i] );
+		// Check to see if feed should be activated (only if visible)
+		// and add handler to determine visibility
+		if ( $details.length !== 0 ) {
+			if ( $details.attr( "role" ) === "tabpanel" ) {
+				if ( $details.attr( "aria-hidden" ) === "true" ) {
+					activate = false;
+					$elm.empty().addClass( "waiting" );
+					$tabs = $details.closest( ".wb-tabs" );
+					if ( !$tabs.hasClass( hasVisibilityHandler ) ) {
+						$tabs
+							.on( "wb-updated.wb-tabs", function( event, $newPanel ) {
+								var $feedCont = $newPanel.find( feedContSelector );
+								if ( !$feedCont.hasClass( "feed-active" ) ) {
+									activateFeed( $feedCont );
+								}
+							})
+							.addClass( hasVisibilityHandler );
+					}
+				}
+			} else if ( !$details.attr( "open" ) ) {
+				activate = false;
+				$elm.empty().addClass( "waiting" );
+				$details
+					.children( "summary" )
+						.on( "click.wb-feeds", function( event ) {
+							var $summary = $( event.currentTarget ).off( "click.wb-feeds" );
+							activateFeed( $summary.parent().find( feedContSelector ) );
+						});
 			}
-
 		}
+
+		if ( activate ) {
+			activateFeed( $elm );
+		}
+
 		return true;
 	};
 
 $document.on( "ajax-fetched.wb", selector + " " + feedLinkSelector, function( event, context ) {
 	var response = event.fetch.response,
+		eventTarget = event.target,
 		data;
 
 	// Filter out any events triggered by descendants
-	if ( event.currentTarget === event.target ) {
-		data = ( response.responseData ) ? response.responseData.feed.entries : response.items || response.feed.entry,
-		processEntries.apply( context, [ data ] );
+	if ( event.currentTarget === eventTarget ) {
+		data = ( response.responseData ) ? response.responseData.feed.entries : response.items || response.feed.entry;
+
+		// Identify that initialization has completed
+		// if there are no entries left to process
+		if ( processEntries.apply( context, [ data ] ) === 0 ) {
+			wb.ready( $( eventTarget ).closest( selector ), componentName );
+		}
 	}
 });
 
+// Bind the init event to the plugin
 $document.on( "timerpoke.wb " + initEvent, selector, init );
 
 // Add the timer poke to initialize the plugin

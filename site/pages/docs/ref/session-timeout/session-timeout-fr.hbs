@@ -2,9 +2,11 @@
 {
 	"title": "Expiration de la session",
 	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
 	"description": "Créer un délai d'inactivité qui avertit les utilisateurs lorsque leur session est sur le point d'expirer.",
 	"altLangPrefix": "session-timeout",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-08-04"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -40,11 +42,11 @@
 		<h2>How to implement</h2>
 		<ol>
 			<li>
-				Add a <b>class="wb-sessto"</b> element to the web page (only required once).  You must set the <b>logouturl</b>, which controls where the user is redirected if their session expires:
-				<pre><code>&lt;span class="wb-sessto" data-wet-boew='{"logouturl": "http://app.gc.ca/logout"}'&gt;&lt;/span&gt;</code></pre>		
+				Add a <code>class="wb-sessto"</code> element to the web page (only required once).  You must set the <code>logouturl</code>, which controls where the user is redirected if their session expires:
+				<pre><code>&lt;span class="wb-sessto" data-wb-sessto='{"logouturl": "http://app.gc.ca/logout"}'&gt;&lt;/span&gt;</code></pre>		
 			</li>		
-			<li>Configure the plugin using the <b>data-wet-boew</b> attribute of the element:
-				<pre><code>&lt;span class="wb-sessto" data-wet-boew='{
+			<li>Configure the plugin using the <code>data-wb-sessto</code> attribute of the element:
+				<pre><code>&lt;span class="wb-sessto" data-wb-sessto='{
 		"inactivity": 1200000, 
 		"reactionTime": 30000, 
 		"sessionalive": 1200000, 
@@ -58,16 +60,16 @@
 	
 	<section>
 		<h2>Configuration options</h2>
-		<p>All configuration options of the plugin are controlled by the <b>data-wet-boew</b> attribute.  Any configuration parameter that accepts a time value, can optionally have the time unit specified (e.g. "100 ms").</p>
+		<p>All configuration options of the plugin are controlled by the <code>data-wb-sessto</code> attribute.  Any configuration parameter that accepts a time value, can optionally have the time unit specified (e.g. "100 ms").</p>
 		<p>Supported time units are:</p>
 		<ul>
-			<li><b>ms:</b> millisecond (0.001 seconds)</li>
-			<li><b>cs:</b> centisecond (0.01 seconds)</li>
-			<li><b>ds:</b> decisecond (0.1 seconds)</li>
-			<li><b>s:</b> seconds (1 second)</li>
-			<li><b>das:</b> dekasecond (10 seconds)</li>
-			<li><b>hs:</b> hectosecond (100 seconds)</li>
-			<li><b>ks:</b> kilosecond (1,000 seconds)</li>
+			<li><code>ms</code>: millisecond (0.001 seconds)</li>
+			<li><code>cs</code>: centisecond (0.01 seconds)</li>
+			<li><code>ds</code>: decisecond (0.1 seconds)</li>
+			<li><code>s</code>: seconds (1 second)</li>
+			<li><code>das</code>: dekasecond (10 seconds)</li>
+			<li><code>hs</code>: hectosecond (100 seconds)</li>
+			<li><code>ks</code>: kilosecond (1,000 seconds)</li>
 		</ul>	
 		<table class="table">
 			<thead>
@@ -196,30 +198,48 @@
 			<tbody>
 				<tr>
 					<td><code>wb-init.wb-sessto</code></td>
-					<td>Triggered manually.</td>
-					<td>Initializes the plugin and starts the session and inactivity timeouts. <b>Note: </b> the session timeout plugin will be initialized automatically unless the <b>.wb-sessto</b> element is added after the page has already loaded.</td>
+					<td>Triggered manually (e.g., <code>$( ".wb-sessto" ).trigger( "wb-init.wb-sessto" );</code>).</td>
+					<td>Initializes the plugin and starts the session and inactivity timeouts. <strong>Note:</strong> the session timeout plugin will be initialized automatically unless the <b>.wb-sessto</b> element is added after the page has already loaded.</td>
+				</tr>
+				<tr>
+					<td><code>wb-ready.wb-sessto</code> (v4.0.5+)</td>
+					<td>Triggered automatically after the Session timeout plugin initializes.</td>
+					<td>Used to identify when and where the Session timeout plugin initializes (target of the event).
+						<pre><code>$( document ).on( "wb-ready.wb-sessto", ".wb-sessto", function( event ) {
+});</code></pre>
+						<pre><code>$elm.on( "wb-ready.wb-sessto", function( event ) {
+});</code></pre>
+					</td>
 				</tr>
 				<tr>
 					<td><code>inactivity.wb-sessto</code></td>
-					<td>Triggered manually and by the plugin.</td>
-					<td>Causes the modal dialog to appear and prompt the user to continue or end their session.  This event is triggered automatically when the inactivity timeout expires.</td>
+					<td>Triggered manually and by the plugin (e.g., <code>$( ".wb-sessto" ).trigger( "inactivity.wb-sessto" );</code>).</td>
+					<td>Causes the modal dialog to appear and prompt the user to continue or end their session. This event is triggered automatically when the <code>inactivity</code> timeout expires.</td>
 				</tr>			
 				<tr>
 					<td><code>keepalive.wb-sessto</code></td>
-					<td>Triggered manually and by the plugin.</td>
-					<td>Causes an ajax request to be made (if a refreshCallbackUrl has been specified).  This will alert the user that their session has expired if the refreshCallbackUrl response is not "true".</td>
+					<td>Triggered manually and by the plugin (e.g., <code>$( ".wb-sessto" ).trigger( "keepalive.wb-sessto" );</code>).</td>
+					<td>Causes an ajax request to be made (if a <code>refreshCallbackUrl</code> has been specified). This will alert the user that their session has expired if the <code>refreshCallbackUrl</code> response is not "true".</td>
 				</tr>
 				<tr>
 					<td><code>reset.wb-sessto</code></td>
-					<td>Triggered manually and by the plugin.</td>
-					<td>Restarts the inactivity and keepalive timeouts.</td>
-				</tr>			
+					<td>Triggered manually and by the plugin (e.g., <code>$( ".wb-sessto" ).trigger( "reset.wb-sessto" );</code>).</td>
+					<td>Restarts the <code>inactivity</code> and <code>keepalive</code> timeouts.</td>
+				</tr>
+				<tr>
+					<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+					<td>Triggered automatically when WET has finished loading and executing.</td>
+					<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+						<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+					</td>
+				</tr>
 			</tbody>
 		</table>
-		<p><b>Note:</b> when manually triggering the inactivity, keepalive and reset events, you must pass the data-wet-boew attribute as a second argument:</p>
-		<pre><code>// Get a reference to the session timeout element and its data-wet-boew attribute	
+		<p><strong>Note:</strong> when manually triggering the <code>inactivity</code>, <code>keepalive</code> and <code>reset</code> events, you must pass the <code>data-wb-sessto</code> attribute as a second argument:</p>
+		<pre><code>// Get a reference to the session timeout element and its <code>data-wb-sessto</code> attribute	
 	var $element = $( ".wb-sessto" ),
-	    settings = $element.data( "wet-boew" );
+	    settings = $element.data( "wb-sessto" );
 		
 	// Trigger the event on the element
 	$element.trigger( "reset.wb-sessto", settings );</code></pre>

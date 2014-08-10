@@ -2,9 +2,11 @@
 {
 	"title": "Lightbox",
 	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
 	"description": "Afficher des images et d'autres contenus dans une boîte de dialogue, individuellement ou dans le cadre d'une galerie.",
 	"altLangPrefix": "lightbox",
-	"dateModified": "2014-03-30"
+	"dateModified": "2014-08-06"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -13,7 +15,7 @@
 <p><strong>Needs translation</strong></p>
 <section>
 	<h2>Purpose</h2>
-	<p>Display images and other content in a dialog box, either individually or as part of a gallery.</p>
+	<p>Display images and other content in a dialog box, either individually or as part of a gallery. Implements the <a href="http://www.w3.org/TR/wai-aria-practices/#dialog_modal">WAI-ARIA Dialog (Modal) design pattern</a>.</p>
 </section>
 
 <section>
@@ -98,9 +100,71 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-lbx</td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-lbx" );</code>).</td>
+				<td><code>wb-init.wb-lbx</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-lbx" )trigger( "wb-init.wb-lbx" );</code>).</td>
 				<td>Used to manually initialize the Lightbox plugin. <strong>Note:</strong> The Lightbox plugin will be initialized automatically unless the Lightbox markup is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-lbx</code> (v4.0.5+)</td>
+				<td>Triggered automatically after a lightbox is initialized.</td>
+				<td>Used to identify when a lightbox has initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-lbx", ".wb-lbx", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-lbx" ).on( "wb-ready.wb-lbx", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-open.wb-lbx</code> (v4.0.4+)</td>
+				<td>Triggered manually:
+					<pre><code>$( document ).trigger( "open.wb-lbx", [
+	[
+		{
+			src: "demo/1_b.jpg",
+			type: "image"
+		}
+	],
+	false,
+	[
+		"Image 1"
+	]
+]);</code></pre>
+				</td>
+				<td>Used to manually open a Lightbox popup. Can be used to load single popups, galleries and modal popups. See <a href="../../../demos/lightbox/lightbox-en.html#examples5">Opening popups through JavaScript</a> for working examples.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>mfp*</code> events (e.g., <code>mfpClose</code></td>
+				<td>Events triggered automatically by Magnific Popup (<a rel="external" href="http://dimsemenov.com/plugins/magnific-popup/documentation.html#events">documentation on Magnific Popup events</a>.</td>
+				<td>Used by Magnific Popup to identify what events are occurring. <code>$.magnificPopup.instance</code> contains the properties of the popup in question.
+					<ul>
+						<li><strong>Opened with <code>.wb-lbx</code></strong>:
+							<pre><code>$( ".wb-lbx" ).on( "mfpClose", function( event ) {
+	$.magnificPopup.instance.items[ 0 ].data.src;
+	
+	if ( src === "#inline_content" ) {
+	} else if ( src === "demo/1_b.jpg" ) {
+	}
+});</code></pre>
+						</li>
+						<li><strong>Opened with JavaScript</strong>:
+							<pre><code>$( document ).on( "mfpClose", function( event ) {
+	$.magnificPopup.instance.items[ 0 ].data.src;
+	
+	if ( src === "#inline_content" ) {
+	} else if ( src === "demo/1_b.jpg" ) {
+	}
+});</code></pre>
+						</li>
+					</ul>
+				</td>
 			</tr>
 		</tbody>
 	</table>

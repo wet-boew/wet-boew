@@ -15,12 +15,11 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
- var pluginName = "wb-charts",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
+ var componentName = "wb-charts",
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
-	tableParsingEvent = "pasiveparse.wb-tableparser.wb",
-	tableParsingCompleteEvent = "parsecomplete.wb-tableparser.wb",
+	tableParsingEvent = "passiveparse.wb-tableparser",
+	tableParsingCompleteEvent = "parsecomplete.wb-tableparser",
 	$document = wb.doc,
 	idCount = 0,
 	i18n, i18nText,
@@ -244,7 +243,7 @@
 
 		// User defined options
 		if ( !window.chartsGraphOpts ) {
-			globalOptions = window[ pluginName ];
+			globalOptions = window[ componentName ];
 
 			// Global setting
 			if ( globalOptions ) {
@@ -346,7 +345,7 @@
 		optionFlot = applyPreset( defaultsOptions.flot, $elm, "flot" );
 
 		// Apply any preset
-		optionsCharts = applyPreset( defaultsOptions.charts, $elm, pluginName );
+		optionsCharts = applyPreset( defaultsOptions.charts, $elm, componentName );
 
 		// Fix default width and height in case the table is hidden or too small.
 		optionsCharts.width = ( optionsCharts.width && optionsCharts.width > 250 ? optionsCharts.width : 250 );
@@ -1072,17 +1071,24 @@
 		$( "canvas:eq(1)", $placeHolder ).css( "position", "static" );
 		$( "canvas:eq(0)", $placeHolder ).css( "width", "100%" );
 
+		$elm.trigger( "wb-updated" + selector );
 	},
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {DOM element} elm The plugin element being initialized
+	 * @param {jQuery Event} event Event that triggered this handler
 	 */
-	init = function( elm ) {
-		var elmId = elm.id,
-			modeJS = wb.getMode() + ".js",
+	init = function( event ) {
+
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
+			elmId, modeJS, deps;
+
+		if ( elm ) {
+			elmId = elm.id;
+			modeJS = wb.getMode() + ".js";
 			deps = [
 				"site!deps/jquery.flot" + modeJS,
 				"site!deps/jquery.flot.pie" + modeJS,
@@ -1091,14 +1097,9 @@
 				"site!deps/tableparser" + modeJS
 			];
 
-		if ( elm.className.indexOf( initedClass ) === -1 ) {
-			wb.remove( selector );
-
-			elm.className += " " + initedClass;
-
 			// Ensure there is a unique id on the element
 			if ( !elmId ) {
-				elmId = pluginName + "-id-" + idCount;
+				elmId = componentName + "-id-" + idCount;
 				idCount += 1;
 				elm.id = elmId;
 			}
@@ -1118,9 +1119,13 @@
 				// For loading multiple dependencies
 				load: deps,
 				complete: function() {
+					var $elm = $( "#" + elmId );
 
 					// Let's parse the table
-					$( "#" + elmId ).trigger( tableParsingEvent );
+					$elm.trigger( tableParsingEvent );
+
+					// Identify that initialization has completed
+					wb.ready( $elm, componentName );
 				}
 			});
 		}
@@ -1131,24 +1136,23 @@ $document.on( "timerpoke.wb " + initEvent + " " + tableParsingCompleteEvent, sel
 	var eventType = event.type,
 		elm = event.target;
 
-	if ( event.currentTarget !== elm ) {
-		return true;
-	}
-
 	switch ( eventType ) {
 
 	/*
 	 * Init
 	 */
 	case "timerpoke":
-		init( elm );
+	case "wb-init":
+		init( event );
 		break;
 
 	/*
 	 * Data table parsed
 	 */
 	case "parsecomplete":
-		createCharts( $( elm ) );
+		if ( event.currentTarget === elm ) {
+			createCharts( $( elm ) );
+		}
 		break;
 	}
 

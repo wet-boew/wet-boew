@@ -87,19 +87,20 @@ describe( "Favicon test suite", function() {
 	describe( "create custom mobile favicon", function() {
 
 		before(function( done ) {
+			$favicon.removeClass( "wb-favicon-inited" );
 			$faviconMobile.remove();
 
 			$favicon.data({
-				rel: "apple-touch-icon-precompossed",
+				rel: "apple-touch-icon-precomposed",
 				sizes: "57x57",
 				path: "foo/",
 				filename: "bar"
 			}).trigger( "wb-init.wb-favicon" );
 
-			setTimeout( function() {
+			setTimeout(function() {
 				$faviconMobile = $( ".wb-favicon" );
 				done();
-			}, 1);
+			}, 1 );
 
 		});
 
@@ -108,7 +109,7 @@ describe( "Favicon test suite", function() {
 		});
 
 		it( "should have set a custom 'rel' attribute", function() {
-			expect( $faviconMobile.attr( "rel" ) ).to.equal( "apple-touch-icon-precompossed" );
+			expect( $faviconMobile.attr( "rel" ) ).to.equal( "apple-touch-icon-precomposed" );
 		});
 
 		it( "should have set a custom 'sizes' attribute", function() {

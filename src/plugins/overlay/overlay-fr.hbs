@@ -9,19 +9,202 @@
 	"altLangPrefix": "overlay",
 	"js": ["demo/overlay"],
 	"css": ["demo/overlay"],
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-07-22"
 }
 ---
-<ul>
-	<li><a href="#panneau-gauche" aria-controls="panneau-gauche" class="overlay-lnk" role="button">Panneau à gauche</a></li>
-	<li><a href="#panneau-droite" aria-controls="panneau-droite" class="overlay-lnk" role="button">Panneau à droite</a></li>
-	<li><a href="#barre-haut" aria-controls="barre-haut" class="overlay-lnk" role="button">Barre en haut</a></li>
-	<li><a href="#barre-bas" aria-controls="barre-bas" class="overlay-lnk" role="button">Barre en bas</a></li>
-	<li><a href="#cs-centre" aria-controls="cs-centre" class="wb-lbx" role="button">Contenu superposé centré (Lightbox)</a></li>
-	<li><a href="#cs-centre-modal" aria-controls="cs-centre-modal" class="wb-lbx lbx-modal" role="button">Contenu superposé centré - Modal (Lightbox + Modal)</a></li>
-	<li><a href="#cs-plein-ecran" aria-controls="cs-plein-ecran" class="overlay-lnk" role="button">Contenu superposé plein écran</a></li>
-	<li><a href="#en-tete-cache" aria-controls="en-tete-cache" class="overlay-lnk" role="button">Contenu superposé plein écran - En-tête caché</a></li>
-</ul>
+<span class="wb-prettify all-pre hide"></span>
+
+<section>
+	<h2>But</h2>
+	<p>Un plugiciel fournissant un modèle de contenu superposé flexible et réactif.</p>
+</section>
+
+<section>
+	<h2>Exemples</h2>
+	<ul>
+		<li>
+			<p><a href="#panneau-gauche" aria-controls="panneau-gauche" class="overlay-lnk" role="button">Panneau à gauche</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>Visualiser le code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#panneau-gauche&quot; aria-controls=&quot;panneau-gauche&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Panneau à gauche&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;panneau-gauche&quot; class=&quot;wb-overlay modal-content overlay-def wb-panel-l&quot;&gt;
+	&lt;header class=&quot;modal-header&quot;&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Panneau à gauche&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;div class=&quot;modal-body&quot;&gt;
+		...
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+		<li>
+			<p><a href="#panneau-droit" aria-controls="panneau-droit" class="overlay-lnk" role="button">Panneau à droit</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>Visualiser le code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#panneau-droit&quot; aria-controls=&quot;panneau-droit&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Panneau à droit&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;panneau-droit&quot; class=&quot;wb-overlay modal-content overlay-def wb-panel-r&quot;&gt;
+	&lt;header class=&quot;modal-header&quot;&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Panneau à droit&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;div class=&quot;modal-body&quot;&gt;
+		...
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+		<li>
+			<p><a href="#barre-haut" aria-controls="barre-haut" class="overlay-lnk" role="button">Barre en haut</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>Visualiser le code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#barre-haut&quot; aria-controls=&quot;barre-haut&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Barre en haut&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;barre-haut&quot; class=&quot;wb-overlay modal-content overlay-def wb-bar-t&quot;&gt;
+	&lt;header&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Barre en haut&lt;/h2&gt;
+	&lt;/header&gt;
+	...
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+		<li>
+			<p><a href="#barre-bas" aria-controls="barre-bas" class="overlay-lnk" role="button">Barre en bas</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>Visualiser le code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#barre-bas&quot; aria-controls=&quot;barre-bas&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Barre en bas&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;barre-bas&quot; class=&quot;wb-overlay modal-content overlay-def wb-bar-b&quot;&gt;
+	&lt;header&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Barre en bas&lt;/h2&gt;
+	&lt;/header&gt;
+	...
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+		<li>
+			<p><a href="#cs-centre" aria-controls="cs-centre" class="wb-lbx" role="button">Contenu superposé centré (Lightbox)</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>Visualiser le code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#cs-centre&quot; aria-controls=&quot;cs-centre&quot; class=&quot;wb-lbx&quot; role=&quot;button&quot;&gt;Contenu superposé centré (Lightbox)&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;cs-centre&quot; class=&quot;mfp-hide modal-dialog modal-content overlay-def&quot;&gt;
+	&lt;header class=&quot;modal-header&quot;&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Contenu superposé centré (Lightbox)&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;div class=&quot;modal-body&quot;&gt;
+		...
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+		<li>
+			<p><a href="#cs-centre-modal" aria-controls="cs-centre-modal" class="wb-lbx lbx-modal" role="button">Contenu superposé centré - Modal (Lightbox + Modal)</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>Visualiser le code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#cs-centre-modal&quot; aria-controls=&quot;cs-centre-modal&quot; class=&quot;wb-lbx lbx-modal&quot; role=&quot;button&quot;&gt;Contenu superposé centré - Modal (Lightbox + Modal)&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;cs-centre-modal&quot; class=&quot;mfp-hide modal-dialog modal-content overlay-def&quot;&gt;
+	&lt;header class=&quot;modal-header&quot;&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Contenu superposé centré - Modal (Lightbox + Modal)&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;div class=&quot;modal-body&quot;&gt;
+		...
+		&lt;button class=&quot;btn btn-primary popup-modal-dismiss&quot;&gt;Fermer le contenu superposé modal&lt;/button&gt;
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+		<li>
+			<p><a href="#cs-plein-ecran" aria-controls="cs-plein-ecran" class="overlay-lnk" role="button">Contenu superposé plein écran</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>Visualiser le code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#cs-plein-ecran&quot; aria-controls=&quot;cs-plein-ecran&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Contenu superposé plein écran&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;cs-plein-ecran&quot; class=&quot;wb-overlay modal-content overlay-def wb-popup-full&quot;&gt;
+	&lt;header class=&quot;modal-header&quot;&gt;
+		&lt;h2 class=&quot;modal-title&quot;&gt;Contenu superposé plein écran&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;div class=&quot;modal-body&quot;&gt;
+		...
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+		<li>
+			<p><a href="#en-tete-cache" aria-controls="en-tete-cache" class="overlay-lnk" role="button">Contenu superposé plein écran - En-tête caché</a></p>
+			<details class="mrgn-bttm-lg">
+				<summary>Visualiser le code</summary>
+				<pre><code>&lt;p&gt;&lt;a href=&quot;#en-tete-cache&quot; aria-controls=&quot;en-tete-cache&quot; class=&quot;overlay-lnk&quot; role=&quot;button&quot;&gt;Contenu superposé plein écran - En-tête caché&lt;/a&gt;&lt;/p&gt;
+
+&lt;section id=&quot;en-tete-cache&quot; class=&quot;wb-overlay modal-content wb-popup-full hidden-hd&quot;&gt;
+	&lt;header&gt;
+		&lt;h2 class=&quot;wb-inv&quot;&gt;Contenu superposé plein écran - En-tête caché&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;div class=&quot;modal-body&quot;&gt;
+		...
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+			</details>
+		</li>
+	</ul>
+
+	<section>
+		<h3>Ouvrir de contenu superposé via JavaScript</h3>
+		<p>Le contenu surperposé peut être ouverte via JavaScript avec&#160;:</p>
+		<pre><code>$( "#overlayId" ).trigger( "open.wb-overlaylbx" );</code></pre>
+		<p>Pour un exemple d'ouvrir de contenu superposeé &#171;&#160;Lightbox&#160;&#187; via JavaScript, consultez <a href="../lightbox/lightbox-fr.html#examples5">Ouvrir de contenu superposé &#171;&#160;Lightbox&#160;&#187; via JavaScript</a>.</p>
+
+		<label for="overlay-select">Contenu superposé à ouvrir</label>
+		<select id="overlay-select">
+			<option value="panneau-gauche">Panneau à gauche</option>
+			<option value="panneau-droit">Panneau à droit</option>
+			<option value="barre-haut">Barre en haut</option>
+			<option value="barre-bas">Barre en bas</option>
+			<option value="cs-plein-ecran">Contenu superposé plein écran</option>
+			<option value="en-tete-cache">Contenu superposé plein écran - En-tête caché</option>
+		</select>
+		<button id="overlay-open-btn">Ouvrir le contenu superposé</button>
+
+		<section>
+			<h4>Code</h4>
+			<details>
+				<summary>View code</summary>
+				<section>
+					<h5>HTML</h5>
+					<pre><code>&lt;label for="overlay-select"&gt;Overlay to open&lt;/label&gt;
+&lt;select id="overlay-select"&gt;
+	&lt;option value="panneau-gauche"&gt;Panneau à gauche&lt;/option&gt;
+	&lt;option value="panneau-droit"&gt;Panneau à droit&lt;/option&gt;
+	&lt;option value="barre-haut"&gt;Barre en haut&lt;/option&gt;
+	&lt;option value="barre-bas"&gt;Barre en bas&lt;/option&gt;
+	&lt;option value="cs-plein-ecran"&gt;Contenu superposé plein écran&lt;/option&gt;
+	&lt;option value="en-tete-cache"&gt;Contenu superposé plein écran - En-tête caché&lt;/option&gt;
+&lt;/select&gt;
+&lt;button id="overlay-open-btn"&gt;Open overlay&lt;/button&gt;</code></pre>
+						</section>
+
+					<section>
+						<h5>JavaScript</h5>
+						<pre><code>(function( $, wb ) {
+"use strict";
+
+wb.doc.on( "click vclick", "#overlay-open-btn", function( event ) {
+	if ( event.stopPropagation ) {
+		event.stopImmediatePropagation();
+	} else {
+		event.cancelBubble = true;
+	}
+
+	$( "#" + $( "#overlay-select" ).val() ).trigger( "open.wb-overlay" );
+});
+
+})( jQuery, wb );</code></pre>
+				</section>
+			</details>
+		</section>
+	</section>
+</section>
 
 <section id="panneau-gauche" class="wb-overlay modal-content overlay-def wb-panel-l">
 	<header class="modal-header">
@@ -51,9 +234,9 @@
 	</div>
 </section>
 
-<section id="panneau-droite" class="wb-overlay modal-content overlay-def wb-panel-r">
+<section id="panneau-droit" class="wb-overlay modal-content overlay-def wb-panel-r">
 	<header class="modal-header">
-		<h2 class="modal-title">Panneau à droite</h2>
+		<h2 class="modal-title">Panneau à droit</h2>
 	</header>
 	<div class="modal-body">
 		<ul class="list-unstyled">

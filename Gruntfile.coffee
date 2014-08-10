@@ -56,7 +56,7 @@ module.exports = (grunt) ->
 
 	@registerTask(
 		"test-mocha"
-		"Full build for running tests locally with Grunt Mocha"
+		"Run tests locally with Grunt Mocha"
 		[
 			"pre-mocha"
 			"mocha"
@@ -65,10 +65,10 @@ module.exports = (grunt) ->
 
 	@registerTask(
 		"saucelabs"
-		"Full build for running tests on SauceLabs. Currently only for Travis builds"
+		"Run tests on SauceLabs. Currently only for Travis builds"
 		[
 			"pre-mocha"
-			"saucelabs-custom"
+			"saucelabs-mocha"
 		]
 	)
 
@@ -184,10 +184,8 @@ module.exports = (grunt) ->
 		"pre-mocha"
 		"INTERNAL: prepare for running Mocha unit tests"
 		[
-			"build"
-			"assets-min"
-			"demos"
-			"demos-min"
+			"copy:test"
+			"assemble:test"
 			"connect:test"
 		]
 	)
@@ -221,7 +219,7 @@ module.exports = (grunt) ->
 				( file ) ->
 					contents = grunt.file.read( file )
 					contents = contents.replace( /\/unmin/g, "" )
-					contents = contents.replace( /\"([^\"]*)?\.(js|css)\"/g, "\"$1.min.$2\"" )
+					contents = contents.replace( /\"(?!https:)([^\"]*)?\.(js|css)\"/g, "\"$1.min.$2\"" )
 
 					grunt.file.write(file, contents);
 			);
@@ -241,21 +239,23 @@ module.exports = (grunt) ->
 		glyphiconsBanner: "/*!\n * GLYPHICONS Halflings for Twitter Bootstrap by GLYPHICONS.com | Licensed under http://www.apache.org/licenses/LICENSE-2.0\n */"
 		i18nGDocsID: "0AqLc8VEIumBwdDNud1M2Wi1tb0RUSXJxSGp4eXI0ZXc"
 		i18nGDocsSheet: 1
-		mochaUrls: grunt.file.expand(
-						filter: ( src ) ->
-							src = path.dirname( src ).replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
-							return fs.existsSync( src + "/test.js" )
-						"src/plugins/**/*-en.hbs"
-						"src/polyfills/**/*-en.hbs"
-						"src/other/**/*-en.hbs"
+		mochaUrls: grunt.file.expand({cwd: "src"}
+						"test.js"
+						"**/test.js"
 					).map( ( src ) ->
 						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
-						src = src.replace( "src/", "dist/")
-						src = src.replace( "plugins/", "demos/" )
-						src = src.replace( "polyfills/", "demos/" )
-						src = src.replace( "other/", "demos/" )
-						src = src.replace( ".hbs", ".html" )
-						return "http://localhost:8000/" + src
+						src = src.replace( "polyfills/" , "" )
+						src = src.replace( "plugins/" , "" )
+						src = src.replace( "other/" , "" )
+						src = src.replace( ".js" , "" )
+						src
+					).sort( ( a, b) ->
+						if a is "test"
+								-1
+							else if a > b
+								1
+							else
+								-1
 					)
 
 		# Task configuration.
@@ -442,6 +442,18 @@ module.exports = (grunt) ->
 						dest: "dist/unmin"
 						expand: true
 				]
+
+			test:
+				options:
+					environment:
+						root: "/v4.0-ci/unmin"
+						jqueryVersion: "<%= jqueryVersion.version %>"
+						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
+					assets: "dist/unmin"
+				expand: true
+				cwd: "site/pages"
+				src: "test/test.hbs"
+				dest: "dist/unmin"
 
 			docs:
 				cwd: "site/pages"
@@ -791,9 +803,10 @@ module.exports = (grunt) ->
 						"The “details” element is not supported properly by browsers yet. It would probably be better to wait for implementations."
 						"The value of attribute “title” on element “a” from namespace “http://www.w3.org/1999/xhtml” is not in Unicode Normalization Form C." #required for vietnamese translations
 						"Text run is not in Unicode Normalization Form C." #required for vietnamese translations
+						"Start tag seen without seeing a doctype first. Expected “<!DOCTYPE html>”."
 					]
 				src: [
-					"dist/unmin/demos/cal-events/ajax/**/*.html"
+					"dist/unmin/demos/**/ajax/**/*.html"
 					"dist/unmin/assets/*.html"
 				]
 			all:
@@ -812,6 +825,7 @@ module.exports = (grunt) ->
 					"!dist/unmin/**/ajax/**/*.html"
 					"!dist/unmin/assets/**/*.html"
 					"!dist/unmin/demos/menu/demo/*.html"
+					"!dist/unmin/test/**/*.html"
 				]
 
 		ie8csscleaning:
@@ -865,6 +879,53 @@ module.exports = (grunt) ->
 				dest: "dist/unmin/fonts"
 				expand: true
 				flatten: true
+
+			test:
+				files: [
+					cwd: "src/plugins"
+					src: [
+						"**/test.js"
+						"**/test/*.*"
+					]
+					dest: "dist/unmin/test"
+					expand: true
+				,
+					cwd: "src/polyfills"
+					src: [
+						"**/test.js"
+						"**/test/*.*"
+					]
+					dest: "dist/unmin/test"
+					expand: true
+				,
+					cwd: "src/other"
+					src: [
+						"**/test.js"
+						"**/test/*.*"
+					]
+					dest: "dist/unmin/test"
+					expand: true
+				,
+					cwd: "src/"
+					src: [
+						"**/test.js"
+						"**/test/*.*"
+					]
+					dest: "dist/unmin/test"
+					expand: true
+				,
+					cwd: "node_modules"
+					src: [
+						"mocha/mocha.js"
+						"mocha/mocha.css"
+						"expect.js/index.js"
+						"sinon/pkg/sinon.js"
+						"sinon/pkg/sinon-ie.js"
+					]
+					dest: "dist/unmin/test"
+					expand: true
+					flatten: true
+				]
 
 			js:
 				files: [
@@ -923,6 +984,7 @@ module.exports = (grunt) ->
 						"**/img/*.*"
 						"!**/assets/*.*"
 						"!**/deps/*.*"
+						"!**/test/*.*"
 						"!**/*.scss"
 					]
 					dest: "dist/unmin/demos/"
@@ -979,6 +1041,7 @@ module.exports = (grunt) ->
 			deploy:
 				src: [
 					"*.txt"
+					"*.html"
 					"README.md"
 				]
 				dest: "dist"
@@ -1100,90 +1163,6 @@ module.exports = (grunt) ->
 					middleware: (connect, options) ->
 						middlewares = []
 
-						mochascript = (req, res, next) ->
-							url = req._parsedUrl.pathname
-
-							# Skip to the static middleware if it's an index file or not HTML
-							if /index|mobmenu[-]?\w*\.html/.test( url ) or not /\.html/.test( url )
-								return next()
-
-							dir = url.substring( 0, url.lastIndexOf( "/" ) + 1 )
-
-							# Test to see if the plugin or polyfill has a test file
-							plugins = dir.replace("/dist/demos/", "src/plugins/") + "test.js"
-							polyfills = dir.replace("/dist/demos/", "src/polyfills/") + "test.js"
-							other = dir.replace("/dist/demos/", "src/other/") + "test.js"
-
-							testFile = if fs.existsSync( plugins ) then plugins else if fs.existsSync( polyfills ) then polyfills else if fs.existsSync( other ) then other else ""
-
-							if testFile != ""
-
-								result = fs.readFileSync( __dirname + url, { encoding: "utf-8" } )
-
-								# Append mocha content to the response above the footer
-								result = result.replace( "</main>", "<div class='row' id='mocha'></div></main>" )
-
-								mochaPath = path.dirname( require.resolve( "mocha" ) )
-
-								testHtml = "<link src='/" + path.relative(__dirname, mochaPath) + "/mocha.css' />"
-								testHtml += "<script src='/" + path.relative(__dirname, mochaPath) + "/mocha.js'></script>"
-
-								# Append ExpectJS script
-								testHtml += "<script src='/" + path.relative(__dirname, require.resolve( "expect.js" ) ) + "'></script>"
-
-								# Append Sinon scripts
-								testHtml += "<script src='/" + path.dirname( path.relative(__dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon.js'></script>"
-								testHtml += "<!--[if lt IE 9]><script src='/" + path.dirname( path.relative(__dirname, require.resolve( "sinon" ) ) ) + "/../pkg/sinon-ie.js'></script><![endif]-->"
-
-								testHtml += "<script>
-												mocha.setup( 'bdd' );
-												wb.doc.on( 'ready', function() {
-
-													var runner = mocha.run();
-
-													var tests = [];
-													runner.on('end', function(){
-														window.global_test_results = {
-															passed: runner.stats.passes,
-															failed: runner.stats.failures,
-															total: runner.stats.tests,
-															duration: runner.stats.duration,
-															tests: tests
-														};
-													});
-
-													runner.on('pass', function(test) {
-														tests.push({
-															name: test.fullTitle(),
-															result: true,
-															duration: test.duration
-														});
-													});
-
-													runner.on('fail', function (test, err) {
-														tests.push({
-															name: test.fullTitle(),
-															result: false,
-															duration: test.duration,
-															message: err.stack
-														});
-													});
-												});
-											</script>"
-
-								testHtml += "<script src='/" + testFile + "'></script>"
-
-								testHtml += "</body>"
-
-								result = result.replace( "</body>", testHtml )
-
-								res.end( result )
-							else
-								# No test files found, skipping
-								return next()
-
-						middlewares.push mochascript
-
 						# Serve static files.
 						middlewares.push connect.static( options.base )
 
@@ -1206,20 +1185,26 @@ module.exports = (grunt) ->
 			all:
 				options:
 					reporter: "Spec"
-					urls: "<%= mochaUrls %>"
+					urls: ["http://localhost:8000/dist/unmin/test/test.html"]
 
-		"saucelabs-custom":
+		"saucelabs-mocha":
 			all:
 				options:
-					urls: "<%= mochaUrls %>"
+					urls: ["http://localhost:8000/dist/unmin/test/test.html"]
 					throttled: 3
 					browsers: grunt.file.readJSON "browsers.json"
-					testname: "WET-BOEW Travis Build #{process.env.TRAVIS_BUILD_NUMBER}"
+					testname: process.env.TRAVIS_COMMIT_MSG
+					build: process.env.TRAVIS_BUILD_NUMBER
 					tags: [
-						process.env.TRAVIS_BUILD_NUMBER
+						process.env.TRAVIS_JOB_ID
 						process.env.TRAVIS_BRANCH
 						process.env.TRAVIS_COMMIT
 					]
+					sauceConfig:
+						"video-upload-on-pass": false
+						"single-window": true
+						"record-screenshots": false
+						"capture-html": true
 
 		"gh-pages":
 			options:
@@ -1265,7 +1250,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-htmlcompressor"
 	@loadNpmTasks "grunt-i18n-csv"
 	@loadNpmTasks "grunt-imagine"
-	@loadNpmTasks "grunt-jscs-checker"
+	@loadNpmTasks "grunt-jscs"
 	@loadNpmTasks "grunt-mocha"
 	@loadNpmTasks "grunt-modernizr"
 	@loadNpmTasks "grunt-sass"

@@ -2,9 +2,11 @@
 {
 	"title": "Mise en surbrillance de texte",
 	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
 	"description": "Met en surbrillance sur une page Web les mots choisis.",
 	"altLangPrefix": "texthighlight",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-08-04"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -96,9 +98,27 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-txthl</td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-txthl" );</code>).</td>
+				<td><code>wb-init.wb-txthl</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-txthl" ).trigger( "wb-init.wb-txthl" );</code>).</td>
 				<td>Used to manually enhance an element with the Text highlighting plugin. <strong>Note:</strong> The Text highlighting plugin will be initialized automatically unless the element is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-txthl</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the Text highlight plugin initializes.</td>
+				<td>Used to identify where the Text highlight plugin was initialized (target of the event).
+					<pre><code>$( document ).on( "wb-ready.wb-txthl", ".wb-txthl", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-txthl" ).on( "wb-ready.wb-txthl", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>

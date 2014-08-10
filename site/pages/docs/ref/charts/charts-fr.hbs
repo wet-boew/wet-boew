@@ -2,62 +2,178 @@
 {
 	"title": "Graphiques",
 	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
 	"description": "Génère des graphiques à partir de données d’un tableau.",
 	"altLangPrefix": "charts",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-08-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
 
 <div lang="en">
 <p><strong>Needs translation</strong></p>
+<span class="wb-prettify all-pre hide"></span>
+
 <section>
 	<h2>Purpose</h2>
-	<p>A brief description of the component.</p>
+	<p>Dynamically generates charts and graphs from table data.</p>
+	<p>This feature dynamically generates charts from table data. The table data used to generate the graphic need to have a structure as defined in the techniques for tables. The graphic generated can be easily customized by using the CSS Option set to the tables elements.</p>
+	<p>The charts plugin is a interface between data table and a drawing charts engine. Currently, for extensibility and to ease support, <a href="http://www.flotcharts.org/">Flot</a> is the charts drawing engine used.</p>
 </section>
 
 <section>
 	<h2>Use when</h2>
 	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
+		<li>To publish a simple or complex charts online</li>
+		<li>Before to use an image-based charts approach</li>
+		<li>To save time in creating a long text description for your charts</li>
+		<li>To have uniform charting style accross your website</li>
 	</ul>
 </section>
 
-<section>
-	<h2>Do not use when</h2>
-	<ul>
-		<li>Use case 1</li>
-		<li>Use case 2</li>
-		<li>Use case 3</li>
-	</ul>
-</section>
 
 <section>
 	<h2>Working example</h2>
-	<p><a href="#">Link to a working example</a></p>
+	<p>English:</p>
+	<ul>
+		<li><a href="../../../demos/charts/charts-en.html">Charts and graphs - Simple and easy</a></li>
+		<li><a href="../../../demos/charts/labelsandreferencevalue-en.html">Labels and reference values</a></li>
+		<li><a href="../../../demos/charts/custom-en.html">Customization, custom presets and multiple charts and graphs types</a></li>
+		<li><a href="../../../demos/charts/piecustom-en.html">Customizing pie charts</a></li>
+		<li><a href="../../../demos/charts/functionandnumbers-en.html">Thousands separator</a></li>
+		<li><a href="../../../demos/charts/functionandnumbers-en.html#functionpreset">Custom preset functions</a></li>
+		<li><a href="../../../demos/charts/testing-en.html">Specific test cases</a></li>
+	</ul>
+	<p>French:</p>
+	<ul lang="fr">
+		<li><a href="../../../demos/charts/charts-fr.html" hreflang="fr">Graphiques - Simple</a></li>
+		<li><a href="../../../demos/charts/labelsandreferencevalue-fr.html" hreflang="fr">Étiquettage et valeur de référence</a></li>
+		<li><a href="../../../demos/charts/custom-fr.html" hreflang="fr">Personalisation, préréglages personnalisés et plusieurs types de graphique</a></li>
+		<li><a href="../../../demos/charts/piecustom-fr.html" hreflang="fr">Personalisation de diagrame circulaire</a></li>
+		<li><a href="../../../demos/charts/functionandnumbers-fr.html" hreflang="fr">Séparateur des milliers</a></li>
+		<li><a href="../../../demos/charts/functionandnumbers-fr.html#functionpreset" hreflang="fr">Fonctions personalisés dans vos préréglages</a></li>
+		<li><a href="../../../demos/charts/testing-fr.html" hreflang="fr">Scénarios d'essai spécifiques</a></li>
+	</ul>
 </section>
+
 
 <section>
 	<h2>How to implement</h2>
 	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
+		<li>Organize your charts data into a table.
+			<p>Tips: You can use the techniques for designing tables</p>
 		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
+		<li>Add a <code>class=&quot;wb-charts&quot;</code> element to the table.
+			<pre><code>&lt;table class=&quot;wb-charts&quot;&gt;</code></pre>
 		</li>
-		<li>Step 4</li>
+		<li>Customize quickly your chart by adding predefined preset, via CSS class name, to the table.
+			<pre><code>&lt;table class=&quot;wb-charts wb-charts-bar&quot;&gt;</code></pre>
+			or to series header
+			<pre><code>&lt;tr&gt;
+	&lt;th class=&quot;wb-charts-bar&quot;&gt;
+	[...]
+&lt;tr&gt;
+	&lt;th class=&quot;wb-charts-line&quot;&gt;
+	[...]</code></pre>
+		</li>
+	</ol>
+
+	<h3>Customize your chart</h3>
+	<ul>
+		<li>Configure the plugin using the <code>data-wb-charts</code> on the <code>table</code>code> element. This parameter allow you configure the options on how your data table will be interpreted in a programmatically determined way.
+			<pre><code>&lt;table class=&quot;wb-charts table&quot; data-wb-charts='{ &quot;referencevalue&quot;: 1, &quot;labelposition&quot;: 1, &quot;noencapsulation&quot;: true }'&gt;</code></pre>
+		</li>
+		<li>Configure the plugin using the <code>data-flot</code> on the <code>table</code>code> element. This parameter allow you to set the global Flot options.
+			<pre><code>&lt;!-- The following example configure gradients background color for the grid --&gt;
+&lt;table class=&quot;wb-charts table&quot; data-flot='{ &quot;grid&quot;: { &quot;backgroundColor&quot;: { &quot;colors&quot; : [ &quot;#000&quot;, &quot;#999&quot; ] } } }'&gt;</code></pre>
+		</li>
+		<li>Configure the plugin using the <code>data-flot</code> on the <code>th</code> element
+			<pre><code>&lt;!-- The following example configure a specific color for a serie --&gt;
+&lt;th data-flot='{&quot;color&quot;:&quot;#56E&quot;}'&gt;</code></pre>
+		</li>
+	</ul>
+	
+	<h3>Beyond your customization</h3>
+	<ul>
+		<li>Create your own preset. Take a look at the <a href="../../../demos/charts/piecustom-en.html">Customizing pie charts</a> working example.</li>
+		<li>Implement your own function. Take a look at the <a href="../../../demos/charts/functionandnumbers-en.html#functionpreset">Custom preset functions</a> working example.</li>
+		<li>Extends with other Flot Plugin. Take a look at <a href="https://github.com/wet-boew/wet-boew/issues/4466#issuecomment-34213974">Pierre Dubois comment</a> on the Github issue</li>
+	</ul>
+	
+	<h3>Prioritization of the configuration</h3>
+	<ol>
+		<li>Javascript JSON object passed through global variable</li>
+		<li>CSS Preset, will be executed sequentially</li>
+		<li>HTML5 data attribute</li>
 	</ol>
 </section>
 
 <section>
+	<h2>Preset configuration options</h2>
+	<p>The following is the build in preset available configuration options is specific to wet-charts plugins.</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Preset</th>
+				<th>Inherit</th>
+				<th>What it does</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>defaults</td>
+				<td></td>
+				<td>Sets minimal defaults options for the charts. It contains the instruction to activate the Flot Canvas plugin, the defaults colors array for charting, the defaults function to parse the data content of a table cells.</td>
+			</tr>
+			<tr>
+				<td>wb-charts-line</td>
+				<td></td>
+				<td>Do nothing, here for conviniance and to add more clarity on the charts generated from the data table.</td>
+			</tr>
+			<tr>
+				<td>wb-charts-area</td>
+				<td></td>
+				<td>Customization of a Flot line charts. It's fill the area under the line.</td>
+			</tr>
+			<tr>
+				<td>wb-charts-bar</td>
+				<td></td>
+				<td>Configuration defaults options to create a bars charts. This preset, when detected, will activate the orderbar Flot plugin and set the associated configuration requirement.</td>
+			</tr>
+			<tr>
+				<td>wb-charts-pie</td>
+				<td></td>
+				<td>Default options and activation of the Flot pie chart plugin. It set a default label formater function for the pie chart labels.</td>
+			</tr>
+			<tr>
+				<td>wb-charts-donut</td>
+				<td>wb-charts-pie</td>
+				<td>Build on pie charts preset. It set default options that will transform the pie chart into a donut charts. Also set the pie label formater to use only one decimal precision</td>
+			</tr>
+			<tr>
+				<td>wb-charts-stacked</td>
+				<td>wb-charts-bar</td>
+				<td>Only for series. Avoid to be cought and have no impact on how the orderbar plugin will be configured.</td>
+			</tr>
+			<tr>
+				<td>wb-charts-thousandcomma</td>
+				<td></td>
+				<td>Replace the function to parse the data content of a table cells in order to support thousand comma separator numbers</td>
+			</tr>
+			<tr>
+				<td>wb-charts-thousanddot</td>
+				<td></td>
+				<td>Replace the function to parse the data content of a table cells in order to support thousand dot separator numbers</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
 	<h2>Configuration options</h2>
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
+	<p>For any configuration options related to Flot, please look at the <a href="https://github.com/flot/flot/blob/master/API.md">Flot Reference</a> documentation or/and the <a href="http://www.flotcharts.org/flot/examples/series-pie/index.html">pie charts options</a>.</p>
+	<p>The following configuration options is specific to wet-charts plugins.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -69,32 +185,129 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
+				<td>reversettblparsing</td>
+				<td>Define how the data table should be traversed. The default traversal direction is the same as the direction defined in HTML spec. The HTML spec direction is row base. Hold boolean value.</td>
+				<td>data-wb-charts='{ &quot;reversettblparsing&quot;: true }'</td>
 				<td>
 					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
+						<dt>false (default):</dt>
+						<dd>The data of the table will be parsed in the <strong>row</strong> direction</dd>
+						<dt>true:</dt>
+						<dd>The data of the table will be parsed in the <strong>column</strong> direction</dd>
 					</dl>
 				</td>
 			</tr>
 			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
+				<td>labelposition</td>
+				<td>Specify the row or the column to use to set label on the charts. A <dfn>vector</dfn> is a row or column where the direction have no importance. Hold numeric value.</td>
+				<td>data-wb-charts='{ &quot;labelposition&quot;: 1 }'</td>
 				<td>
 					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
+						<dt>false (default):</dt>
+						<dd>false means the deepest vector will be used for labelling</dd>
+						<dt>1:</dt>
+						<dd>First vector is used to set labels on the chart</dd>
+						<dt>2:</dt>
+						<dd>Second vector is used to set labels on the chart</dd>
+						<dt>Numerical Value:</dt>
+						<dd>The numeric value represent the number of vector in the header group that will be use to set labels on the chart</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>referencevalue</td>
+				<td>Specify the row or the column to use as the value of reference to set the steps (x-axis ticks) on the charts. A <dfn>vector</dfn> is a row or column where the direction have no importance. Hold numeric value.</td>
+				<td>data-wb-charts='{ &quot;referencevalue&quot;: 1 }'</td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>false means the deepest vector will be used for calculate the reference</dd>
+						<dt>1:</dt>
+						<dd>First vector is used to set the value of reference steps on the chart</dd>
+						<dt>2:</dt>
+						<dd>Second vector is used to set the value of reference steps on the chart</dd>
+						<dt>Numerical Value:</dt>
+						<dd>The numeric value represent the number of vector in the header group that will be use to set the value of reference stepson the chart</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>decimal</td>
+				<td>For pie charts, it set the number of decimal precision to include for the percentage label. Hold numeric value</td>
+				<td>data-wb-charts='{ &quot;decimal&quot;: 1 }'</td>
+				<td>
+					<dl>
+						<dt>0 (default):</dt>
+						<dd>The percentage label will include no decimal</dd>
+						<dt>1:</dt>
+						<dd>One decimal of the percentage label will included.</dd>
+						<dt>Numerical Value:</dt>
+						<dd>Number of decimal to be included in the percentage pie label.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>nolegend</td>
+				<td>Ability to destroy the flot generated legend. Hold boolean value.</td>
+				<td>data-wb-charts='{ &quot;nolegend&quot;: true }'</td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>Flot create his legend as it do by default</dd>
+						<dt>true:</dt>
+						<dd>The legend will be destroyed. It may allow you also to have pie label on each pie quarter.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>legendinline</td>
+				<td>Ability to move the flot generated legend after the table to meet WCAG 2.0 Level AA purpose. Hold boolean value.</td>
+				<td>data-wb-charts='{ &quot;legendinline&quot;: true }'</td>
+				<td>
+					<dl>
+						<dt>false (default):</dt>
+						<dd>The DOM produced by flot will be manipulated to move the legend from inside the charts to next to it</dd>
+						<dt>true:</dt>
+						<dd>No DOM manipulation. This may allow you more control for using the flot labeling options.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>noencapsulation</td>
+				<td>Wrap or not the table in a details/summary elements. Hold boolean value.</td>
+				<td>data-wb-charts='{ &quot;noencapsulation&quot;: true }'</td>
+				<td>
+					<dl>
+						<dt>false:</dt>
+						<dd>The table will be wrapped in a details/summary elements. Default when table have caption.</dd>
+						<dt>true:</dt>
+						<dd>The table will be leaved as is. Default when table have no caption.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>height</td>
+				<td>Set the height of a charts. Hold numeric value mesured in pixel.</td>
+				<td>data-wb-charts='{ &quot;height&quot;: 350 }'</td>
+				<td>
+					<dl>
+						<dt>$elm.height() (default):</dt>
+						<dd>The height, in pixel, of the table, if unknow it would use a value of 200 pixels.</dd>
+						<dt>Numerical Value:</dt>
+						<dd>Number of pixel that represent the charts height.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>width</td>
+				<td>Set the width of a charts. It may useful for pie charts but are useless for other charts because the Flot Canvas plugin will allow the charts to fit the full width of the table container. Hold numeric value mesured in pixel.</td>
+				<td>data-wb-charts='{ &quot;width&quot;: 350 }'</td>
+				<td>
+					<dl>
+						<dt>$elm.width() (default):</dt>
+						<dd>The width, in pixel, of the table, if unknow it would use a value of 200 pixels.</dd>
+						<dt>Numerical Value:</dt>
+						<dd>Number of pixel that represent the charts width.</dd>
 					</dl>
 				</td>
 			</tr>
@@ -115,14 +328,47 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Event 1</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td><code>wb-init.wb-charts</code></td>
+				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-charts" );</code>).</td>
+				<td>Used to manually initialize the Charts plugin. <strong>Note:</strong> The Charts plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
 			</tr>
 			<tr>
-				<td>Event 2</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td><code>wb-ready.wb-charts</code> (v4.0.5+)</td>
+				<td>Triggered automatically after a chart initializes.</td>
+				<td>Used to identify which chart was initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-charts", ".wb-charts", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-charts" ).on( "wb-ready.wb-charts", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-updated.wb-charts</code> (v4.0.5+)</td>
+				<td>Triggered automatically each time the chart is updated.</td>
+				<td>Used to identify which chart was updated (target of the event)
+					<pre><code>$( document ).on( "wb-updated.wb-charts", ".wb-charts", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-charts" ).on( "wb-updated.wb-charts", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td>passiveparse.wb-tableparser</td>
+				<td>When the charts need the table parser to parse the table. When this event is triggered, that means Flot library is loaded. As that said, you can take advantage of this event to load your own Flot plugin. </td>
+				<td>It will parse the data table and attach the information to a data attribute named tblparser on every elements that related to the table.</td>
+			</tr>
+			<tr>
+				<td>parsecomplete.wb-tableparser</td>
+				<td>When the table parser has completed his parsing job.</td>
+				<td>It's means that the tblparser data attribute is now ready to be use. So it is after this event that the data will be prepared for Flot. Then the charts will be created.</td>
 			</tr>
 		</tbody>
 	</table>
@@ -130,6 +376,11 @@ Example of multi-line code</code></pre>
 
 <section>
 	<h2>Source code</h2>
-	<p><a href="#">Link to the folder on GitHub containing the files for the component</a></p>
+	<ul>
+		<li>Core: <a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/charts">Charts plugin</a></li>
+		<li>Dependency: <a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/deps">Complex Table Parser</a></li>
+		<li>Dependency: <a href="https://github.com/flot/flot">Flot</a></li>
+		<li>Flot Pluging third party dependency: <a href="https://github.com/pkoltermann/SideBySideImproved">SideBySideImproved</a></li>
+	</ul>
 </section>
 </div>

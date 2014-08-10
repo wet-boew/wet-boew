@@ -11,33 +11,28 @@
  * Variable and function definitions.
  * These are global to the polyfill - meaning that they will be initialized once per page.
  */
-var pluginName = "wb-datalist",
+var componentName = "wb-datalist",
 	selector = "input[list]",
-	initedClass = pluginName + "-inited",
-	initEvent = "wb-init." + pluginName,
-	updateEvent = "wb-update." + pluginName,
+	initEvent = "wb-init." + componentName,
+	updateEvent = "wb-update." + componentName,
 	setFocusEvent = "setfocus.wb",
 	initialized = false,
 	$document = wb.doc,
 
 	/**
-	 * Init runs once per polyfill element on the page. There may be multiple elements.
-	 * It will run more than once if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery Event} event `timerpoke.wb` event that triggered the function call
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
-		var input = event.target;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === input &&
-			input.className.indexOf( initedClass ) === -1 ) {
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var input = wb.init( event, componentName, selector );
 
-			wb.remove( selector );
-			input.className += " " + initedClass;
+		if ( input ) {
 
-			//Adds WAI-ARIA
+			// Adds WAI-ARIA
 			input.setAttribute( "autocomplete", "off" );
 			input.setAttribute( "role", "textbox" );
 			input.setAttribute( "aria-haspopup", "true" );
@@ -47,6 +42,8 @@ var pluginName = "wb-datalist",
 
 			populateOptions( input );
 
+			// Identify that initialization has completed
+			wb.ready( $( input ), componentName );
 			initialized = true;
 		}
 	},
@@ -331,14 +328,19 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " keydown click 
 	case "wb-init":
 		init( event );
 		break;
+
 	case "wb-update":
-		populateOptions( event.target );
+		if ( event.namespace === componentName ) {
+			populateOptions( event.target );
+		}
 		break;
+
 	case "keydown":
 		if ( !(event.ctrlKey || event.metaKey ) ) {
 			return keyboardHandlerInput( which, event );
 		}
 		break;
+
 	case "click":
 	case "vclick":
 	case "touchstart":

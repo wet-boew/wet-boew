@@ -4,37 +4,51 @@
 	"language": "fr",
 	"description": "Instructions pour travailler derrière un proxy",
 	"altLangPrefix": "start",
-	"dateModified": "2014-06-20"
+	"dateModified": "2014-07-25"
 }
 ---
-<div lang="en">
-<p><strong>Needs translation</strong></p>
-<p>The following steps can be used for those working behind proxies that require authentication. All these methods will store your password in plain text, so use caution when doing this.</p>
+
+<p>Les étapes suivantes peuvent être utilisées pour ceux qui travaillent derrière un proxy qui requiert une authentification.
+Toutes ces méthodes vont emmagasiner votre mot de passe en texte clair, alors faites attention si vous utilisez l'une des méthode.</p>
 
 <section>
-	<h2>Setting the proxy for NPM installs</h2>
+	<h2>Configurer le proxy pour une installation NPM</h2>
 	<ol>
-		<li>Open a command prompt</li>
-		<li>Run the following commands replacing <code>USERNAME</code>, <code>PASSWORD</code>, <code>PROXY_ADDRESS</code>, and <code>PROXY_PORT</code> with your network's information:
+		<li>Ouvrir une invite de commande</li>
+		<li>Exécuter les commandes suivantes en remplacant <code>USAGER</code>, <code>MOT_DE_PASSE</code>, <code>ADRESSE_PROXY</code>, et <code>PORT_PROXY</code> avec les informations de votre réseau :
 			<ol>
-				<li><code>npm config set proxy http://USERNAME:PASSWORD@PROXY_ADDRESS:PROXY_PORT</code></li>
-				<li><code>npm config set https-proxy http://USERNAME:PASSWORD@PROXY_ADDRESS:PROXY_PORT</code></li>
+				<li><code>npm config set proxy http://USAGER:MOT_DE_PASSE@ADRESSE_PROXY:PORT_PROXY</code></li>
+				<li><code>npm config set https-proxy http://USAGER:MOT_DE_PASSE@ADRESSE_PROXYS:PORT_PROXY</code></li>
 			</ol>
 		</li>
 	</ol>
 </section>
 
 <section>
-	<h2>Setting the proxy for other tasks</h2>
-	<p>Many plugins will also look for environmental variables of <code>HTTP_PROXY</code> and <code>HTTPS_PROXY</code> when they need to call out to the internet.</p>
+	<h2>Configurer le proxy pour Git</h2>
 	<ol>
-		<li>You can set these variables with the value <code>http://USERNAME:PASSWORD@PROXY_ADDRESS:PROXY_PORT</code> each session by calling:
+		<li>Ouvrir une invite de commande</li>
+		<li>Exécuter les commandes suivantes en remplacant <code>USAGER</code>, <code>MOT_DE_PASSE</code>, <code>ADRESSE_PROXY</code>, et <code>PORT_PROXY</code> avec les informations de votre réseau :
 			<ol>
-				<li>Windows Command Prompt: <code>set http://HTTP_PROXY=USERNAME:PASSWORD@PROXY_ADDRESS:PROXY_PORT</code></li>
-				<li>Bash Shell: <code>export http://HTTP_PROXY=USERNAME:PASSWORD@PROXY_ADDRESS:PROXY_PORT</code></li>
+				<li><code>git config --global --add proxy http://USAGER:MOT_DE_PASSE@ADRESSE_PROXY:PORT_PROXY</code></li>
+				<li><code>git config --global --add https-proxy http://USAGER:MOT_DE_PASSE@ADRESSE_PROXYS:PORT_PROXY</code></li>
 			</ol>
 		</li>
-		<li>To avoid doing this every time, you can add these commands to your console's "RC" file. If you are using the Git Bash Shell on Windows, you can add the export statements to the ".bashrc" file in the root of your user profile (<code>C:\Users\USERNAME</code>). That file is run every time you open a Git Bash session, so the environmental variables will be available from the command line. You may need to create that file with a text editor, since Windows doesn't allow creating files starting with a period in Windows Explorer.</li>
 	</ol>
 </section>
-</div>
+<section>
+	<h2>Configurer le proxy pour d'autres tâches</h2>
+	<p>Plusieurs modules d'extension vérifient aussi pour les variables environnementales <code>PROXY_HTTP</code> et <code>PROXY_HTTPS</code> lorsq'ils ont besoin de faire un appel extérieur à l'Internet.</p>
+	<ol>
+		<li>Vous pouvez configurer ces variables avec la valeur <code>http://USAGER:MOT_DE_PASSE@ADRESSE_PROXY:PORT_PROXY</code> à chaque session en apellant :
+			<ol>
+				<li>Invite de commande Windows : <code>set HTTP_PROXY=http://USAGER:MOT_DE_PASSE@ADRESSE_PROXY:PORT_PROXY</code></li>
+				<li><span lang="en">Bash Shell</span> : <code>export HTTPS_PROXY=http://USAGER:MOT_DE_PASSE@ADRESSE_PROXY:PORT_PROXY</code></li>
+			</ol>
+		</li>
+		<li>Pour éviter de faire cet action à chaque fois, vous pouvez ajouter ces commandes à votre fichier console "RC". 
+		Si vous utilisez le <span lang="en">Git Bash Shell</span> sur Windows, vous pouvez ajouter les déclarations d'exportation au fichier ".bashrc" à la base de votre profil d'usager (<code>C:\Users\USAGER</code>). Ce fichier est exécuté chaque fois que vous ouvrez une session <span lang="en">Git Bash</span>, 
+		 alors les variables environnementales seront disponibles de l'invite de commande. 
+		 Vous devrez peut être créer ce fichier a vec un éditeur de texte, puisque Windows ne permet pas de créer des fichiers débutant par un point à travers Windows Explorer.</li>
+	</ol>
+</section>

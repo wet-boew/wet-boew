@@ -3,13 +3,32 @@
 	"title": "Correctif « input type=\"date\" » (sélecteur de date)",
 	"language": "fr",
 	"category": "Correctifs",
-	"description": "Émule l’élément <input type=\"date\"> pour les navigateurs qui ne le supportent pas.",
+	"description": "Émule l’élément <input type=\"date\"> pour les navigateurs qui ne le supportent pas. Cela génère dynamiquement une interface de calendrier pour sélectionner une date dans un formulaire.",
 	"tag": "datepicker",
 	"parentdir": "datepicker",
 	"altLangPrefix": "datepicker",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-08-06"
 }
 ---
+<section>
+	<h2>But</h2>
+	<p>Fournir une interface pour sélectionner une date dans un formulaire. Met en œuvre le <a href="http://www.w3.org/TR/wai-aria-practices/#datepicker">modèle de conception &#171;&#160;<span lang="en">Date Picker</span>&#160;&#187; de WAI-ARIA (anglais seulement)</a>.</p>
+</section>
+
+<section>
+	<h2>Attributs pertinents</h2>
+	<dl>
+		<dt>Attributs pertinents de la date de début&#160;:</dt>
+		<dd><code lang="en">type="date"</code></dd>
+		<dd><code lang="en">min="2013-03-27"</code></dd>
+		<dd><code lang="en">max="2013-05-07"</code></dd>
+		<dt>Attributs pertinents de la date de fin&#160;:</dt>
+		<dd><code lang="en">type="date"</code></dd>
+		<dd><code lang="en">min="2013-03-27"</code></dd>
+		<dd><code lang="en">max="2016-05-07"</code></dd>
+	</dl>
+</section>
+
 <section>
 	<h2>Exemples</h2>
 	<form method="get" action="#">
@@ -25,17 +44,15 @@
 			<input class="btn btn-primary" type="submit" value="Soumettre" />
 		</div>
 	</form>
-</section>
-<section>
-	<h2>Attributs pertinents</h2>
-	<dl>
-		<dt>Attributs pertinents de la date de début&#160;:</dt>
-		<dd><code lang="en">type="date"</code></dd>
-		<dd><code lang="en">min="2013-03-27"</code></dd>
-		<dd><code lang="en">max="2013-05-07"</code></dd>
-		<dt>Attributs pertinents de la date de fin&#160;:</dt>
-		<dd><code lang="en">type="date"</code></dd>
-		<dd><code lang="en">min="2013-03-27"</code></dd>
-		<dd><code lang="en">max="2016-05-07"</code></dd>
-	</dl>
+	<details class="mrgn-tp-md">
+		<summary>Visualiser le code</summary>
+		<pre><code>&lt;div class=&quot;form-group&quot;&gt;
+	&lt;label for=&quot;startdate&quot;&gt;Date de début&lt;span class=&quot;datepicker-format&quot;&gt; (&lt;abbr title=&quot;Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour&quot;&gt;AAAA-MM-JJ&lt;/abbr&gt;)&lt;/span&gt;&#160;:&lt;/label&gt;
+	&lt;input class=&quot;form-control&quot; type=&quot;date&quot; id=&quot;startdate&quot; name=&quot;startdate&quot; min=&quot;2013-03-27&quot; max=&quot;2013-05-07&quot; /&gt;
+&lt;/div&gt;
+&lt;div class=&quot;form-group&quot;&gt;
+	&lt;label for=&quot;enddate&quot;&gt;Date de fin&lt;span class=&quot;datepicker-format&quot;&gt; (&lt;abbr title=&quot;Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour&quot;&gt;AAAA-MM-JJ&lt;/abbr&gt;)&lt;/span&gt;&#160;:&lt;/label&gt;
+	&lt;input class=&quot;form-control&quot; type=&quot;date&quot; id=&quot;enddate&quot; name=&quot;enddate&quot; min=&quot;2013-03-27&quot; max=&quot;2016-05-07&quot; /&gt;
+&lt;/div&gt;</code></pre>
+	</details>
 </section>

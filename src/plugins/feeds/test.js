@@ -23,7 +23,7 @@ describe( "Feeds test suite", function() {
 
 	before(function() {
 
-		//Replaces the ajax-fetch event hanlder with a simulated one
+		//Replaces the ajax-fetch event handler with a simulated one
 		$document.off( ajaxEvent );
 
 		$document.on( ajaxEvent, function( event ) {
@@ -58,7 +58,7 @@ describe( "Feeds test suite", function() {
 			}, event.fetch.context );
 		} );
 
-		$document.on( fetchedEvent, ".wb-feeds li > a", function() {
+		$document.on( "wb-feed-ready.wb-feeds", ".wb-feeds .feeds-cont", function() {
 			callback();
 		});
 	});

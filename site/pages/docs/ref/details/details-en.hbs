@@ -2,9 +2,11 @@
 {
 	"title": "Details/summary polyfill (expandable/collapsible content)",
 	"language": "en",
-	"description": "The <details> and <summary> elements allows content to be expanded and collapsed.",
+	"category": "Polyfills",
+	"categoryfile": "polyfills",
+	"description": "Emulates details and summary element support for browsers that do not have support. The details and summary elements allows content to be expanded and collapsed.",
 	"altLangPrefix": "details",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-08-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -43,9 +45,32 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-meter</td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb.wb-meter" );</code>).</td>
+				<td>wb-init.wb-details</td>
+				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb.wb-details" );</code>).</td>
 				<td>Used to manually initialize the details/summary polyfill on a summary element. <strong>Note:</strong> The details/summary polyfill will be initialized automatically unless the <code>summary</code> element is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-init.wb-details</code></td>
+				<td>Triggered manually (e.g., <code>$( "summary" ).trigger( "wb-init.wb-details" );</code>).</td>
+				<td>Used to manually initialize the details/summary polyfill on a <code>summary</code> element. <strong>Note:</strong> The details/summary polyfill will be initialized automatically unless the <code>summary</code> is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-details</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the details/summary polyfill initializes. <strong>Note:</strong> This event will only be triggered if the polyfill is loaded. The polyfill will not load for browsers with native details/summary support.</td>
+				<td>Used to identify where the details/summary polyfill initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-details", "summary", function( event ) {
+});</code></pre>
+					<pre><code>$( "summary" ).on( "wb-ready.wb-details", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>
@@ -53,5 +78,5 @@
 
 <section>
 	<h2>Source code</h2>
-	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/polyfills/details">Details/summary polyfill source code on GitHub</a></p>Ù
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/polyfills/details">Details/summary polyfill source code on GitHub</a></p>
 </section>

@@ -13,37 +13,28 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-fnote",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
+var componentName = "wb-fnote",
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	setFocusEvent = "setfocus.wb",
 	$document = wb.doc,
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
 	 * @method init
-	 * @param {jQuery Event} event Event that triggered this handler
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	init = function( event ) {
-		var elm = event.target,
+
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
 			$elm, footnoteDd, footnoteDt, i, len, dd, dt, dtId, $returnLinks;
 
-		// Filter out any events triggered by descendants
-		// and only initialize the element once
-		if ( event.currentTarget === elm &&
-			elm.className.indexOf( initedClass ) === -1 ) {
-
-			wb.remove( selector );
-			elm.className += " " + initedClass;
-
+		if ( elm ) {
 			$elm = $( elm );
 			footnoteDd = elm.getElementsByTagName( "dd" );
 			footnoteDt = elm.getElementsByTagName( "dt" );
-
-			// All plugins need to remove their reference from the timer in the init sequence unless they have a requirement to be poked every 0.5 seconds
-			wb.remove( selector );
 
 			// Apply aria-labelledby and set initial event handlers for return to referrer links
 			len = footnoteDd.length;
@@ -58,6 +49,9 @@ var pluginName = "wb-fnote",
 
 			// Remove "first/premier/etc"-style text from certain footnote return links (via the child spans that hold those bits of text)
 			$returnLinks = $elm.find( "dd p.fn-rtn a span span" ).remove();
+
+			// Identify that initialization has completed
+			wb.ready( $elm, componentName );
 		}
 	};
 

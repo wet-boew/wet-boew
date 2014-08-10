@@ -2,16 +2,18 @@
 {
 	"title": "Menu",
 	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
 	"description": "Provides an interactive menu with optional sub-menus.",
 	"altLangPrefix": "menu",
-	"dateModified": "2014-03-31"
+	"dateModified": "2014-08-06"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
 
 <section>
 	<h2>Purpose</h2>
-	<p>Provides an interactive menu with optional sub-menus.</p>
+	<p>Provides an interactive menu with optional sub-menus. Implements the <a href="http://www.w3.org/TR/wai-aria-practices/#menu">WAI-ARIA menu design pattern</a>.</p>
 </section>
 
 <section>
@@ -24,28 +26,139 @@
 
 <section>
 	<h2>How to implement</h2>
-	<p>Coming soon</p>
-	<!--
 	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
+		<li>Add the following code to the <code>header</code> area of the page. <strong>Note:</strong> This step should already be done for most themes.
+			<ul>
+				<li><strong>English pages:</strong>
+					<pre><code>&lt;nav role="navigation" id="wb-sm" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement"&gt;
+	&lt;div class="container nvbar"&gt;
+		&lt;h2&gt;Topics menu&lt;/h2&gt;
+		&lt;div class="row"&gt;
+			&lt;ul class="list-inline menu"&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Section 1&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Section 2&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Section 3&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+				</li>
+				<li><strong>French pages:</strong>
+					<pre><code>&lt;nav role="navigation" id="wb-sm" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement"&gt;
+	&lt;div class="container nvbar"&gt;
+		&lt;h2&gt;Menu des sujets&lt;/h2&gt;
+		&lt;div class="row"&gt;
+			&lt;ul class="list-inline menu"&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Section 1&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Section 2&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Section 3&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+				</li>
+			</ul>
 		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
+		<li>Update the <code>ul</code> element with list items (<code>li</code>) containing the desired links.</li>
+		<li><strong>Optional:</strong> Create a full menu to AJAX in. This menu will replace the <code>class="container"</code> element and its descendants. Sub-menus are achieved by nesting <code>&lt;ul class="sm list-unstyled" id="lore" role="menu"&gt;</code> in each <code>li</code> element of the menu bar. The following is an example of a full menu:
+			<ul>
+				<li><strong>English pages:</strong>
+					<pre><code>&lt;div class="pnl-strt container visible-md visible-lg nvbar"&gt;
+	&lt;h2&gt;Topics menu&lt;/h2&gt;
+	&lt;div class="row"&gt;
+		&lt;ul class="list-inline menu" role="menubar"&gt;
+			&lt;li&gt;&lt;a href="#lore" class="item"&gt;Section 1&lt;/a&gt;
+				&lt;ul class="sm list-unstyled" id="lore" role="menu"&gt;
+					&lt;li&gt;&lt;a href="#"&gt;Item 1.1&lt;/a&gt;&lt;/li&gt;
+					...
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#lor" class="item"&gt;Section 2&lt;/a&gt;
+				&lt;ul class="sm list-unstyled" id="lor" role="menu" &gt;
+					&lt;li&gt;&lt;a href="#"&gt;Item 2.1&lt;/a&gt;&lt;/li&gt;
+					...
+					&lt;li class="slflnk"&gt;&lt;a href="#"&gt;Section 2 - More&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#lorm" class="item"&gt;Section 3&lt;/a&gt;
+				&lt;ul class="sm list-unstyled" id="lorm" role="menu" &gt;
+					&lt;li&gt;
+						&lt;details&gt;
+							&lt;summary&gt;Section 3.1&lt;/summary&gt;
+							&lt;ul role="menu"&gt;
+								&lt;li&gt;&lt;a href="#"&gt;Item 3.1.1&lt;/a&gt;&lt;/li&gt;
+								...
+							&lt;/ul&gt;
+						&lt;/details&gt;
+					&lt;/li&gt;
+					...
+				&lt;/ul&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+				</li>
+				<li><strong>French pages:</strong>
+					<pre><code>&lt;div class="pnl-strt container visible-md visible-lg nvbar"&gt;
+	&lt;h2&gt;Menu des sujets&lt;/h2&gt;
+	&lt;div class="row"&gt;
+		&lt;ul class="list-inline menu" role="menubar"&gt;
+			&lt;li&gt;&lt;a href="#lore" class="item"&gt;Section 1&lt;/a&gt;
+				&lt;ul class="sm list-unstyled" id="lore" role="menu"&gt;
+					&lt;li&gt;&lt;a href="#"&gt;Article 1.1&lt;/a&gt;&lt;/li&gt;
+					...
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#lor" class="item"&gt;Section 2&lt;/a&gt;
+				&lt;ul class="sm list-unstyled" id="lor" role="menu" &gt;
+					&lt;li&gt;&lt;a href="#"&gt;Article 2.1&lt;/a&gt;&lt;/li&gt;
+					...
+					&lt;li class="slflnk"&gt;&lt;a href="#"&gt;Section 2 - Autre&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#lorm" class="item"&gt;Section 3&lt;/a&gt;
+				&lt;ul class="sm list-unstyled" id="lorm" role="menu" &gt;
+					&lt;li&gt;
+						&lt;details&gt;
+							&lt;summary&gt;Section 3.1&lt;/summary&gt;
+							&lt;ul role="menu"&gt;
+								&lt;li&gt;&lt;a href="#"&gt;Article 3.1.1&lt;/a&gt;&lt;/li&gt;
+								...
+							&lt;/ul&gt;
+						&lt;/details&gt;
+					&lt;/li&gt;
+					...
+				&lt;/ul&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+				</li>
+			</ul>
 		</li>
-		<li>Step 4</li>
+		<li><strong>Optional:</strong> Add sub-sub-menus to the full menu using nested <code>details</code> elements.<br /><strong>Warning:</strong> Sub-sub-menus significantly increase menu complexity, particularly on screen readers and mobile devices, which can create usability issues for some users.
+			<pre><code>&lt;ul class="sm list-unstyled" id="lorm" role="menu" &gt;
+	&lt;li&gt;
+		&lt;details&gt;
+			&lt;summary&gt;Section 3.1&lt;/summary&gt;
+			&lt;ul role="menu"&gt;
+				&lt;li&gt;&lt;a href="#"&gt;Item 3.1.1&lt;/a&gt;&lt;/li&gt;
+					...
+			&lt;/ul&gt;
+		&lt;/details&gt;
+	&lt;/li&gt;
+	...
+&lt;/ul&gt;</code></pre>
+		</li>
+		<li><strong>Optional:</strong> Add <code>data-ajax-fetch="[url]"</code> to the element with <code>class="wb-menu"</code>, with <code>[url]</code> being the URL of the full menu to AJAX in.
+			<pre><code>&lt;nav role="navigation" id="wb-sm" data-ajax-fetch="ajax/menu-include-en.html" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement"&gt;</code></pre>
+		</li>
+		<li><strong>Optional:</strong> Update <code>data-trgt</code> with the <code>id</code> of the target element for the mobile panel (in most cases this should not change).</li>
 	</ol>
-	-->
 </section>
 
 <section>
 	<h2>Configuration options</h2>
-	<p>Coming soon</p>
-	<!--
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -57,38 +170,31 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
+				<td><code>data-ajax-fetch</code></td>
+				<td>Used to AJAX in a full menu.</td>
+				<td>Add <code>data-ajax-fetch="[url]"</code> to the element with <code>class="wb-menu"</code>, with <code>[url]</code> being the URL of the full menu to AJAX in.</td>
 				<td>
 					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
+						<dt>None (default):</dt>
+						<dd>Full menu is not AJAXed in.</dd>
+						<dt>URL</dt>
+						<dd>URL for the full menu to AJAX in.</dd>
 					</dl>
 				</td>
 			</tr>
 			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
+				<td><code>data-trgt</code></td>
+				<td>Used to identify the target for the mobile panel.</td>
+				<td>Add <code>data-trgt="mb-pnl"</code> to the element with <code>class="wb-menu"</code>. The value of <code>data-trgt</code> must match the <code>id</code> of the target element for the mobile panel.</td>
 				<td>
 					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
+						<dt>String</dt>
+						<dd>The <code>id</code> of the target element (should remain <code>mb-pnl</code> unless that <code>id</code> has changed.</dd>
 					</dl>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-	-->
 </section>
 
 <section>
@@ -103,9 +209,27 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-menu</td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb-menu" );</code>).</td>
+				<td><code>wb-init.wb-menu</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-menu" ).trigger( "wb-init.wb-menu" );</code>).</td>
 				<td>Used to manually initialize the menu plugin. <strong>Note:</strong> The menu plugin will be initialized automatically unless the menu markup is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-menu</code> (v4.0.5+)</td>
+				<td>Triggered automatically after a menu has initialized.</td>
+				<td>Used to identify which menu has initialized (target of the event).
+					<pre><code>$( document ).on( "wb-ready.wb-menu", ".wb-menu", function( event, instance, settings ) {
+});</code></pre>
+					<pre><code>$( ".wb-menu" ).on( "wb-ready.wb-menu", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>

@@ -10,6 +10,7 @@ linters:
     enabled: true
     style: double_quotes
   Indentation:
+    character: tab
     width: 1
   Comment:
     enabled: false

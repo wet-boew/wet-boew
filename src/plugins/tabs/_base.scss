@@ -26,12 +26,11 @@ $medGray: #ccc;
 %tab-background-243850 {
 	background: $drabBlue;
 	background: transparentize($drabBlue, 0.1);
-}
 
-//TODO:Combine with previous placeholder when libsass supports nested selectors
-%tab-width-100-height-auto {
-	height: auto;
-	width: 100%;
+	img {
+		height: auto;
+		width: 100%;
+	}
 }
 
 %tab-figure-captions {
@@ -42,11 +41,10 @@ $medGray: #ccc;
 	position: relative;
 	right: 0;
 	z-index: 101;
-}
 
-//TODO:Combine with previous placeholder when libsass supports nested selectors
-%tab-figure-captions-links {
-	color: #fff;
+	a {
+		color: #fff;
+	}
 }
 
 %carousel-s2-prv-nxt-common {
@@ -275,18 +273,10 @@ $medGray: #ccc;
 		figure {
 			@extend %tabs-position-relative;
 			@extend %tab-background-243850;
-
-			img {
-				@extend %tab-width-100-height-auto;
-			}
 		}
 
 		figcaption {
 			@extend %tab-figure-captions;
-
-			a {
-				@extend %tab-figure-captions-links;
-			}
 
 			p {
 				@extend %tabs-margin-bottom-0;
@@ -410,18 +400,6 @@ $medGray: #ccc;
 	}
 }
 
-%tabs-wb-disable-details-summary-display-block-important {
-	> {
-		details {
-			> {
-				summary {
-					display: block !important;
-				}
-			}
-		}
-	}
-}
-
 .wb-disable {
 	.csstransitions {
 		.wb-tabs {
@@ -436,11 +414,33 @@ $medGray: #ccc;
 
 	.wb-tabs {
 		// Only for backwards compatibility. Should be removed in v4.1.
-		@extend %tabs-wb-disable-details-summary-display-block-important;
-
 		> {
+			details {
+				@extend %global-display-block;
+
+				&[open] {
+					> {
+						summary {
+							@extend %global-display-block-important;
+						}
+					}
+				}
+			}
+
 			.tabpanels {
-				@extend %tabs-wb-disable-details-summary-display-block-important;
+				> {
+					details {
+						@extend %global-display-block;
+
+						&[open] {
+							> {
+								summary {
+									@extend %global-display-block-important;
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 

@@ -8,8 +8,8 @@
 (function( $, window, document, wb ) {
 "use strict";
 
-var pluginName = "wb-geomap",
-	selector = "." + pluginName,
+var componentName = "wb-geomap",
+	selector = "." + componentName,
 	$document = wb.doc,
 
 	// timeout for overlay loading in milliseconds
@@ -44,9 +44,7 @@ var pluginName = "wb-geomap",
 		useAOI: false
 	},
 
-	/*
-	 * Init runs once per plugin element on the page. There may be multiple elements.
-	 * It will run more than once per plugin if you don't remove the selector from the timer.
+	/**
 	 * @method init
 	 * @param {jQuery Event} event Event that triggered this handler
 	 */
@@ -54,12 +52,11 @@ var pluginName = "wb-geomap",
 		var elm = event.target,
 			className = elm.className,
 			settings = {},
-			$elm, modeJS, overrides;
+			$elm, overrides;
 
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === elm ) {
 			$elm = $( elm );
-			modeJS = wb.getMode() + ".js";
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
@@ -115,7 +112,7 @@ var pluginName = "wb-geomap",
 			};
 
 			// Merge default settings with overrides from the selected plugin element.
-			$.extend( settings, defaults, overrides, window[ pluginName ], wb.getData( $elm, pluginName ) );
+			$.extend( settings, defaults, overrides, window[ componentName ], wb.getData( $elm, componentName ) );
 
 			// Bind the merged settings to the element node for faster access in other events.
 			$elm.data( { settings: settings } );
@@ -1953,15 +1950,18 @@ var pluginName = "wb-geomap",
 
 		geomap.gmap.before( "<div class='geomap-aoi panel panel-default'><div id='geomap-aoi-" + geomap.uniqueId + "' class='panel-body'></div></div>" );
 
-		var mapDiv = $("#geomap-map-" + geomap.uniqueId);
+		var mapDiv = $( "#geomap-map-" + geomap.uniqueId );
 
-		mapDiv.append( "<button id='geomap-aoi-toggle-mode-draw-" + geomap.uniqueId + "' href='#' class='btn btn-sm geomap-geoloc-aoi-btn'><i class='glyphicon glyphicon-edit'></i></button>" );
+		mapDiv.append( "<button id='geomap-aoi-toggle-mode-draw-" + geomap.uniqueId +
+			"' href='#' class='btn btn-sm geomap-geoloc-aoi-btn' title='" + i18nText.aoiBtnDraw +
+			"'><i class='glyphicon glyphicon-edit'></i><span class='wb-inv'> " +
+			i18nText.aoiBtnDraw + "</span></button>" );
 
 		$( "#geomap-aoi-" + geomap.uniqueId ).parent().hide();
 
 		$( "#geomap-aoi-" + geomap.uniqueId ).append(
-			"<div id='form-aoi-" + geomap.uniqueId + "'>" +
-				"<p><small>" + i18nText.aoiInstructions + "</small></p>" +
+			"<fieldset id='form-aoi-" + geomap.uniqueId + "'>" +
+				"<legend tabindex='-1'>" + i18nText.aoiInstructions + "</legend>" +
 				"<div class='row'>" +
 					"<div class='col-md-2'>" +
 						"<label for='geomap-aoi-maxy-" + geomap.uniqueId + "' class='input-sm control-label wb-inv'>" + i18nText.aoiNorth + "</label>" +
@@ -1998,23 +1998,27 @@ var pluginName = "wb-geomap",
 				"</div>" +
 				"<input type='hidden' id='geomap-aoi-extent-" + geomap.uniqueId + "'/>" +
 				"<input type='hidden' id='geomap-aoi-extent-lonlat-" + geomap.uniqueId + "'/>" +
-			"</form>" +
+			"</fieldset>" +
 		"</div>" +
 		"<div class='clear'></div>" );
 
 		$document.on( "click", "#geomap-aoi-toggle-mode-draw-" + geomap.uniqueId, function( evt ) {
 			evt.preventDefault();
 
-			var active = geomap.map.getControlsByClass( "OpenLayers.Control.DrawFeature" )[0].active;
+			var drawFeature = geomap.map.getControlsByClass( "OpenLayers.Control.DrawFeature" )[ 0 ],
+				active = drawFeature.active,
+				$aoiElm = $( "#geomap-aoi-" + geomap.uniqueId );
 
 			if ( active ) {
-				geomap.map.getControlsByClass( "OpenLayers.Control.DrawFeature" )[ 0 ].deactivate();
-				$( "#geomap-aoi-" + geomap.uniqueId ).parent().slideToggle();
-				$( this ).toggleClass( "active" );
+				drawFeature.deactivate();
 			} else {
-				geomap.map.getControlsByClass( "OpenLayers.Control.DrawFeature" )[ 0 ].activate();
-				$( "#geomap-aoi-" + geomap.uniqueId ).parent().slideToggle();
-				$( this ).toggleClass( "active" );
+				drawFeature.activate();
+			}
+			$aoiElm.parent().slideToggle();
+			$( this ).toggleClass( "active" );
+
+			if ( !active ) {
+				$aoiElm.find( "legend" ).trigger( "setfocus.wb" );
 			}
 
 			geomap.map.updateSize();
@@ -2108,8 +2112,8 @@ var pluginName = "wb-geomap",
 
 		mapDiv.append(
 			"<div class='geomap-geoloc form-inline'>" +
-				"<label for='wb-geomap-geocode-search-" + geomap.uniqueId + "' class='wb-invisible'>" + i18nText.geoCoderLabel + "</label>" +
-				"<input type='text' class='form-control input-sm opct-90 pull-right' name='wb-geomap-geocode-search-" + geomap.uniqueId + "' id='wb-geomap-geocode-search-" + geomap.uniqueId + "' list='wb-geomap-geocode-results-" + geomap.uniqueId + "' autocomplete='off' placeholder='" + i18nText.geoCoderPlaceholder + "'></input>" +
+				"<label for='wb-geomap-geocode-search-" + geomap.uniqueId + "' class='wb-inv'>" + i18nText.geoCoderLabel + "</label>" +
+				"<input type='text' class='form-control input-sm opct-90 pull-right' name='wb-geomap-geocode-search-" + geomap.uniqueId + "' id='wb-geomap-geocode-search-" + geomap.uniqueId + "' list='wb-geomap-geocode-results-" + geomap.uniqueId + "' autocomplete='off' placeholder='" + i18nText.geoCoderPlaceholder + "' />" +
 				"<datalist id='wb-geomap-geocode-results-" + geomap.uniqueId + "'></datalist>" +
 			"</div>"
 		);
@@ -2373,7 +2377,8 @@ var pluginName = "wb-geomap",
 	},
 
 	refreshPlugins = function( geomap ) {
-		var glayers = geomap.glayers;
+		var glayers = geomap.glayers,
+			map = geomap.map;
 
 		glayers.find( ".wb-tables" ).trigger( "wb-init.wb-tables" );
 		glayers.find( ".wb-geomap-tabs" ).trigger( "wb-init.wb-tabs" );
@@ -2383,32 +2388,38 @@ var pluginName = "wb-geomap",
 
 		// Set map id to be able to access by getMap.
 		geomap.map.id = geomap.mapid;
-		mapArray.push( geomap.map );
+		mapArray.push( map );
+
+		// Set the alt attributes for images to fix the missing alt
+		// attribute. Need to do it after zoom because each zoom brings
+		// new tiles to solve this modifications needs to be done to
+		// OpenLayers core code OpenLayers.Util.createImage and
+		// OpenLayers.Util.createAlphaImageDiv
+		// TODO: fix no alt attribute on tile image in OpenLayers rather
+		// than use this override wait 2 seconds for all tile to be loaded
+		// in the page
+		setTimeout(function() {
+			geomap.gmap.find( "img" ).attr( "alt", "" );
+			$( ".olTileImage" ).attr( "alt", "" );
+
+			// Identify that initialization has completed
+			wb.ready( $( geomap.mapid ), componentName, [ map ] );
+		}, 2000 );
+
+		geomap.map.events.on({
+			moveend: function() {
+
+				// Every time we zoom/pan we need to put back the alt for OpenLayers tiles
+				$( ".olTileImage" ).attr( "alt", "" );
+
+				$( geomap.mapid ).trigger( "wb-updated" + selector, [ map ] );
+			}
+		});
 
 		// If all geomap instance are loaded, trigger ready.wb-geomap
 		if ( mapArray.length === $( selector ).length ) {
 
-			// Set the alt attributes for images to fix the missing alt
-			// attribute. Need to do it after zoom because each zoom brings
-			// new tiles to solve this modifications needs to be done to
-			// OpenLayers core code OpenLayers.Util.createImage and
-			// OpenLayers.Util.createAlphaImageDiv
-			// TODO: fix no alt attribute on tile image in OpenLayers rather
-			// than use this override wait 2 seconds for all tile to be loaded
-			// in the page
-			setTimeout(function() {
-				geomap.gmap.find( "img" ).attr( "alt", "" );
-				$( ".olTileImage" ).attr( "alt", "" );
-			}, 2000 );
-
-			geomap.map.events.on({
-				moveend: function() {
-
-					// Every time we zoom/pan we need to put back the alt for OpenLayers tiles
-					$( ".olTileImage" ).attr( "alt", "" );
-				}
-			});
-
+			// Deprecated: Replaced by wb-ready.wb-geomap
 			wb.doc.trigger( "geomap.ready", [ getMap() ]);
 		}
 	},
@@ -2535,8 +2546,5 @@ $document.on( "keydown click", ".olPopupCloseBox span", function( event ) {
 				.unselect( selectedFeature );
 	}
 });
-
-// Add the timer poke to initialize the plugin
-wb.add( selector );
 
 })( jQuery, window, document, wb );

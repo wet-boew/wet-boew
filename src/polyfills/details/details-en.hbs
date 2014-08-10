@@ -3,11 +3,11 @@
 	"title": "Details/summary polyfill (expandable/collapsible content)",
 	"language": "en",
 	"category": "Polyfills",
-	"description": "The <details> and <summary> elements allows content to be expanded and collapsed.",
+	"description": "Emulates details and summary element support for browsers that do not have support. The details and summary elements allows content to be expanded and collapsed.",
 	"tag": "details",
 	"parentdir": "details",
 	"altLangPrefix": "details",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-07-21"
 }
 ---
 <p>The HTML5 <code>details</code> and <code>summary</code> elements are used to provide expandable/collapsible content. This component adds support for these elements in browsers that do not already have native support.</p>
@@ -15,93 +15,118 @@
 <section>
 	<h2>Examples</h2>
 
-	<details>
-		<summary>Example 1</summary>
-		<p>Example content that provides more details.</p>
-		<table>
-			<caption>Cups of coffee consumed by each delegate</caption>
-			<thead>
-				<tr>
-					<th scope="col">Name</th>
-					<th scope="col">Cups</th>
-					<th scope="col">Type of Coffee</th>
-					<th scope="col">Sugar?</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>T. Sexton</td>
-					<td>10</td>
-					<td>Espresso</td>
-					<td>No</td>
-				</tr>
-				<tr>
-					<td>J. Dinnen</td>
-					<td>5</td>
-					<td>Decaf</td>
-					<td>Yes</td>
-				</tr>
-			</tbody>
-		</table>
-	</details>
+	<ul class="list-unstyled">
+		<li>
+			<details>
+				<summary>Example 1</summary>
+				<p>Example content that provides more details.</p>
+				<table>
+					<caption>Cups of coffee consumed by each delegate</caption>
+					<thead>
+						<tr>
+							<th scope="col">Name</th>
+							<th scope="col">Cups</th>
+							<th scope="col">Type of Coffee</th>
+							<th scope="col">Sugar?</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>T. Sexton</td>
+							<td>10</td>
+							<td>Espresso</td>
+							<td>No</td>
+						</tr>
+						<tr>
+							<td>J. Dinnen</td>
+							<td>5</td>
+							<td>Decaf</td>
+							<td>Yes</td>
+						</tr>
+					</tbody>
+				</table>
+			</details>
+		</li>
+		<li>
+			<details open="open">
+				<summary>Example 2</summary>
+				<p>Example content that provides more details.</p>
+				<table>
+					<caption>Cups of coffee consumed by each delegate</caption>
+					<thead>
+					<tr>
+						<th scope="col">Name</th>
+						<th scope="col">Cups</th>
+						<th scope="col">Type of Coffee</th>
+						<th scope="col">Sugar?</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>T. Sexton</td>
+							<td>10</td>
+							<td>Espresso</td>
+							<td>No</td>
+						</tr>
+						<tr>
+							<td>J. Dinnen</td>
+							<td>5</td>
+							<td>Decaf</td>
+							<td>Yes</td>
+						</tr>
+					</tbody>
+				</table>
+			</details>
+		</li>
+		<li>
+			<details>
+				<summary>Example 3</summary>
+				<p>Example content that provides more details.</p>
+				<table>
+					<caption>Cups of coffee consumed by each delegate</caption>
+					<thead>
+					<tr>
+						<th scope="col">Name</th>
+						<th scope="col">Cups</th>
+						<th scope="col">Type of Coffee</th>
+						<th scope="col">Sugar?</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>T. Sexton</td>
+							<td>10</td>
+							<td>Espresso</td>
+							<td>No</td>
+						</tr>
+						<tr>
+							<td>J. Dinnen</td>
+							<td>5</td>
+							<td>Decaf</td>
+							<td>Yes</td>
+						</tr>
+					</tbody>
+				</table>
+			</details>
+		</li>
+	</ul>
 
-	<details>
-		<summary>Example 2</summary>
-		<p>Example content that provides more details.</p>
-		<table>
-			<caption>Cups of coffee consumed by each delegate</caption>
-			<thead>
-			<tr>
-				<th scope="col">Name</th>
-				<th scope="col">Cups</th>
-				<th scope="col">Type of Coffee</th>
-				<th scope="col">Sugar?</th>
-			</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>T. Sexton</td>
-					<td>10</td>
-					<td>Espresso</td>
-					<td>No</td>
-				</tr>
-				<tr>
-					<td>J. Dinnen</td>
-					<td>5</td>
-					<td>Decaf</td>
-					<td>Yes</td>
-				</tr>
-			</tbody>
-		</table>
-	</details>
-
-	<details>
-		<summary>Example 3</summary>
-		<p>Example content that provides more details.</p>
-		<table>
-			<caption>Cups of coffee consumed by each delegate</caption>
-			<thead>
-			<tr>
-				<th scope="col">Name</th>
-				<th scope="col">Cups</th>
-				<th scope="col">Type of Coffee</th>
-				<th scope="col">Sugar?</th>
-			</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>T. Sexton</td>
-					<td>10</td>
-					<td>Espresso</td>
-					<td>No</td>
-				</tr>
-				<tr>
-					<td>J. Dinnen</td>
-					<td>5</td>
-					<td>Decaf</td>
-					<td>Yes</td>
-				</tr>
-			</tbody>
-		</table>
-	</details>
+	<section>
+		<h3>Code</h3>
+		<pre><code>&lt;ul class=&quot;list-unstyled&quot;&gt;
+	&lt;li&gt;
+		&lt;details&gt;
+			&lt;summary&gt;Example 1&lt;/summary&gt;
+			...
+		&lt;/details&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;details open="open"&gt;
+			&lt;summary&gt;Example 2&lt;/summary&gt;
+			...
+		&lt;/details&gt;
+	&lt;/li&gt;
+	...
+&lt;/ul&gt;</code></pre>
+	</section>
 </section>

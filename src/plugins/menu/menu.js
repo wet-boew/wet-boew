@@ -13,9 +13,8 @@
  * not once per instance of plugin on the page. So, this is a good place to define
  * variables that are common to all instances of the plugin on a page.
  */
-var pluginName = "wb-menu",
-	selector = "." + pluginName,
-	initedClass = pluginName + "-inited",
+var componentName = "wb-menu",
+	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	breadcrumb = document.getElementById( "wb-bc" ),
 	navCurrentEvent = "navcurr.wb",
@@ -30,21 +29,23 @@ var pluginName = "wb-menu",
 	globalTimeout,
 
 	/**
-	 * Lets set some aria states and attributes
 	 * @method init
-	 * @param {jQuery DOM element} $elm The plugin element
+	 * @param {jQuery Event} event Event that triggered the function call
 	 */
-	init = function( $elm ) {
-		var ajaxFetch;
+	init = function( event ) {
 
-		// Only initialize the element once
-		if ( !$elm.hasClass( initedClass ) ) {
-			wb.remove( selector );
-			$elm.addClass( initedClass );
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName, selector ),
+			$elm, ajaxFetch;
+
+		if ( elm ) {
+			$elm = $( elm );
 
 			// Ensure the container has an id attribute
 			if ( !$elm.attr( "id" ) ) {
-				$elm.attr( "id", pluginName + "-" + menuCount );
+				$elm.attr( "id", componentName + "-" + menuCount );
 			}
 			menuCount += 1;
 
@@ -52,7 +53,7 @@ var pluginName = "wb-menu",
 			if ( !i18nText ) {
 				i18n = wb.i18n;
 				i18nText = {
-					menu: i18n( "menu" )
+					searchMenus: i18n( "srch-menus" )
 				};
 			}
 
@@ -308,7 +309,7 @@ var pluginName = "wb-menu",
 
 		// Let's now populate the DOM since we have done all the work in a documentFragment
 		panelDOM.innerHTML = "<header class='modal-header'><div class='modal-title'>" +
-				i18nText.menu  + "</div></header><div class='modal-body'>" +
+				i18nText.searchMenus + "</div></header><div class='modal-body'>" +
 				panel + "</div>";
 		panelDOM.className += " wb-overlay modal-content overlay-def wb-panel-r";
 		$panel
@@ -367,6 +368,9 @@ var pluginName = "wb-menu",
 					.parent()
 						.prop( "open", "open" );
 			}
+
+			// Identify that initialization has completed
+			wb.ready( $elm, componentName );
 		}, 1 );
 	},
 
@@ -457,16 +461,17 @@ var pluginName = "wb-menu",
 // Bind the events of the plugin
 $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb ajax-failed.wb", selector, function( event ) {
 
-	var elm = event.target,
-		eventType = event.type,
-		$elm = $( elm );
+	var eventType = event.type,
+		elm, $elm;
 
 	switch ( eventType ) {
 	case "ajax-fetched":
 	case "ajax-failed":
+		elm = event.target;
 
 		// Filter out any events triggered by descendants
 		if ( event.currentTarget === elm ) {
+			$elm = $( elm );
 
 			// Only replace the menu if there isn't an error
 			onAjaxLoaded(
@@ -478,11 +483,7 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb ajax-failed.wb", s
 
 	case "timerpoke":
 	case "wb-init":
-
-		// Filter out any events triggered by descendants
-		if ( event.currentTarget === elm ) {
-			init( $elm );
-		}
+		init( event );
 		break;
 	}
 

@@ -15,35 +15,33 @@
  * place to define variables that are common to all instances of the plugin on a
  * page.
  */
-var pluginName = "wb-data-ajax",
+var componentName = "wb-data-ajax",
 	selector = "[data-ajax-after], [data-ajax-append], [data-ajax-before], " +
 		"[data-ajax-prepend], [data-ajax-replace]",
-	inited = "-inited",
-	initEvent = "wb-init." + pluginName,
+	initEvent = "wb-init." + componentName,
 	$document = wb.doc,
 
 	/**
-	 * Init runs once per plugin element on the page. There may be multiple
-	 * elements. It will run more than once per plugin if you don't remove the
-	 * selector from the timer.
 	 * @method init
-	 * @param {jQuery DOM element} $elm The plugin element being initialized
+	 * @param {jQuery Event} event Event that triggered this handler
 	 * @param {string} ajaxType The type of AJAX operation, either after, append, before or replace
 	 */
-	init = function( $elm, ajaxType ) {
-		var url = $elm.data( "ajax-" + ajaxType ),
-			initedClass = pluginName + "-" + ajaxType + inited;
+	init = function( event, ajaxType ) {
 
-		// Only initialize the element once for the ajaxType
-		if ( !$elm.hasClass( initedClass ) ) {
-			wb.remove( selector );
-			$elm.addClass( initedClass );
+		// Start initialization
+		// returns DOM object = proceed with init
+		// returns undefined = do not proceed with init (e.g., already initialized)
+		var elm = wb.init( event, componentName + "-" + ajaxType, selector ),
+			$elm;
+
+		if ( elm ) {
+			$elm = $( elm );
 
 			$document.trigger({
 				type: "ajax-fetch.wb",
-				element: $elm,
+				element: $( elm ),
 				fetch: {
-					url: url
+					url: $elm.data( "ajax-" + ajaxType )
 				}
 			});
 		}
@@ -51,7 +49,6 @@ var pluginName = "wb-data-ajax",
 
 $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, function( event ) {
 	var eventTarget = event.target,
-		eventType = event.type,
 		ajaxTypes = [
 			"before",
 			"replace",
@@ -60,40 +57,43 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, functi
 			"prepend"
 		],
 		len = ajaxTypes.length,
-		$elm, ajaxType, i, content;
+		$elm, ajaxType, i, content, pointer;
 
-	// Filter out any events triggered by descendants
-	if ( event.currentTarget === eventTarget ) {
-		$elm = $( eventTarget );
-
-		for ( i = 0; i !== len; i += 1 ) {
-			ajaxType = ajaxTypes[ i ];
-			if ( this.getAttribute( "data-ajax-" + ajaxType ) !== null ) {
-				break;
-			}
-		}
-
-		switch ( eventType ) {
-
-		case "timerpoke":
-		case "wb-init":
-			init( $elm, ajaxType );
+	for ( i = 0; i !== len; i += 1 ) {
+		ajaxType = ajaxTypes[ i ];
+		if ( this.getAttribute( "data-ajax-" + ajaxType ) !== null ) {
 			break;
+		}
+	}
 
-		default:
+	switch ( event.type ) {
+
+	case "timerpoke":
+	case "wb-init":
+		init( event, ajaxType );
+		break;
+
+	default:
+
+		// Filter out any events triggered by descendants
+		if ( event.currentTarget === eventTarget ) {
+			$elm = $( eventTarget );
 
 			// ajax-fetched event
-			content = event.fetch.pointer.html();
-			$elm.removeAttr( "data-ajax-" + ajaxType );
+			pointer = event.fetch.pointer;
+			if ( pointer ) {
+				content = pointer.html();
 
-			// "replace" is the only event that doesn't map to a jQuery function
-			if ( ajaxType === "replace") {
-				$elm.html( content );
-			} else {
-				$elm[ ajaxType ]( content );
+				// "replace" is the only event that doesn't map to a jQuery function
+				if ( ajaxType === "replace") {
+					$elm.html( content );
+				} else {
+					$elm[ ajaxType ]( content );
+				}
 			}
 
-			$elm.trigger( pluginName + "-" + ajaxType + "-loaded.wb" );
+			// Identify that initialization has completed
+			wb.ready( $elm, componentName, [ ajaxType ] );
 		}
 	}
 

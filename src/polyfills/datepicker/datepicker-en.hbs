@@ -3,13 +3,32 @@
 	"title": "Input type=\"date\" polyfill (date picker)",
 	"language": "en",
 	"category": "Polyfills",
-	"description": "The <input type=\"date\"> element dynamically generates a calendar interface for selecting a date in a form.",
+	"description": "Emulates <input type=\"date\"> support for browsers that do not have support. This dynamically generates a calendar interface for selecting a date in a form.",
 	"tag": "datepicker",
 	"parentdir": "datepicker",
 	"altLangPrefix": "datepicker",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-08-06"
 }
 ---
+<section>
+	<h2>Purpose</h2>
+	<p>Provide an interface for selecting a date in a form. Implements the <a href="http://www.w3.org/TR/wai-aria-practices/#datepicker">WAI-ARIA Date Picker design pattern</a>.</p>
+</section>
+
+<section>
+	<h2>Relevant attributes</h2>
+	<dl>
+		<dt>Relevant Start Date attributes:</dt>
+		<dd><code>type="date"</code></dd>
+		<dd><code>min="2013-03-27"</code></dd>
+		<dd><code>max="2013-05-07"</code></dd>
+		<dt>Relevant End Date attributes:</dt>
+		<dd><code>type="date"</code></dd>
+		<dd><code>min="2013-03-27"</code></dd>
+		<dd><code>max="2016-05-07"</code></dd>
+	</dl>
+</section>
+
 <section>
 	<h2>Examples</h2>
 	<form method="get" action="#">
@@ -25,17 +44,15 @@
 			<input class="btn btn-primary" type="submit" value="Submit" />
 		</div>
 	</form>
-</section>
-<section>
-	<h2>Relevant Attributes</h2>
-	<dl>
-		<dt>Relevant Start Date attributes:</dt>
-		<dd><code>type="date"</code></dd>
-		<dd><code>min="2013-03-27"</code></dd>
-		<dd><code>max="2013-05-07"</code></dd>
-		<dt>Relevant End Date attributes:</dt>
-		<dd><code>type="date"</code></dd>
-		<dd><code>min="2013-03-27"</code></dd>
-		<dd><code>max="2016-05-07"</code></dd>
-	</dl>
+	<details class="mrgn-tp-md">
+		<summary>View code</summary>
+		<pre><code>&lt;div class=&quot;form-group&quot;&gt;
+	&lt;label for=&quot;startdate&quot;&gt;Start Date&lt;span class=&quot;datepicker-format&quot;&gt; (&lt;abbr title=&quot;Four digits year, dash, two digits month, dash, two digits day&quot;&gt;YYYY-MM-DD&lt;/abbr&gt;)&lt;/span&gt;&lt;/label&gt;
+	&lt;input class=&quot;form-control&quot; type=&quot;date&quot; id=&quot;startdate&quot; name=&quot;startdate&quot; min=&quot;2013-03-27&quot; max=&quot;2013-05-07&quot; /&gt;
+&lt;/div&gt;
+&lt;div class=&quot;form-group&quot;&gt;
+	&lt;label for=&quot;enddate&quot;&gt;End Date&lt;span class=&quot;datepicker-format&quot;&gt; (&lt;abbr title=&quot;Four digits year, dash, two digits month, dash, two digits day&quot;&gt;YYYY-MM-DD&lt;/abbr&gt;)&lt;/span&gt;&lt;/label&gt;
+	&lt;input class=&quot;form-control&quot; type=&quot;date&quot; id=&quot;enddate&quot; name=&quot;enddate&quot; min=&quot;2013-03-27&quot; max=&quot;2016-05-07&quot; /&gt;
+&lt;/div&gt;</code></pre>
+	</details>
 </section>

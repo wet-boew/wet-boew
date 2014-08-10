@@ -2,9 +2,11 @@
 {
 	"title": "Country Content",
 	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
 	"description": "A basic AjaxLoader wrapper that inserts AJAXed-in content based on a visitor's country as determined by http://freegeoip.net",
 	"altLangPrefix": "country-content",
-	"dateModified": "2014-03-31"
+	"dateModified": "2014-08-07"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -24,28 +26,38 @@
 
 <section>
 	<h2>How to implement</h2>
-	<p>Coming soon</p>
-	<!--
 	<ol>
-		<li>Step 1</li>
-		<li>Step 2
-			<pre><code>Example code</code></pre>
+		<li>Create a file with country-specific content for each supported country (e.g., Canada and the United States) in each supported language (e.g., English and French). The file name must include the two letter code for the supported country (e.g., "ca" for Canada and "us" for the United States). The file names for each supported language must be identical except for the country code (e.g., <code>country-content-us-en.html</code> and <code>country-content-ca-en.html</code>).
+			<ul>
+				<li><code>*-us-en.html:</code>
+					<pre><code>&lt;section class="ajaxed-in"&gt;
+	&lt;h4&gt;Hello United States&lt;/h4&gt;
+	&lt;p&gt;I'm the content that is shown when the user visits from the United States.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+				</li>
+				<li><code>*-ca-fr.html:</code>
+					<pre><code>&lt;section class="ajaxed-in"&gt;
+	&lt;h4&gt;<span lang="fr">Bonjour Canada</span>&lt;/h4&gt;
+	&lt;p&gt;<span lang="fr">Je suis le contenu qui est affiché lorsque l'utilisateur visite du Canada.</span>&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+				</li>
+			</ul>
 		</li>
-		<li>Step 3
-			<pre><code>Example of multi-line code
-Example of multi-line code
-Example of multi-line code</code></pre>
+		<li>Add an element to the page that will be the container for the country-specific content.</li>
+		<li>Add the <code>data-ctrycnt</code> attribute to the element in the previous step where the value is the URL of the country-specific files for the page with the country code replaced by <code>{country}</code>.
+			<pre><code>&lt;div data-ctrycnt="ajax/country-content-{country}-en.html"&gt;</code></pre>
 		</li>
-		<li>Step 4</li>
+		<li>Add fallback content to the element to cover the case where country-specific content for the user's country could not be found.
+			<pre><code>&lt;div data-ctrycnt="ajax/country-content-{country}-en.html"&gt;
+	&lt;h4&gt;Hello World&lt;/h4&gt;
+	&lt;p&gt;I'm the content that is shown when the country can't be resolved or the country that is returned does not have additional content.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+		</li>
 	</ol>
-	-->
 </section>
 
 <section>
 	<h2>Configuration options</h2>
-	<p>Coming soon</p>
-	<!--
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -57,45 +69,26 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Option 1</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
-				<td>
-					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
-					</dl>
+				<td><code>data-ctrycnt</code></td>
+				<td>Used to AJAX in country-specific content.</td>
+				<td>Add <code>data-ctrycnt="[url]"</code> to the element that will hold the country-specific content, with <code>[url]</code> being the URL of the country-specific content to AJAX in with the language code replaced by <code>{country}</code>.
+					<pre><code>&lt;div data-ctrycnt="ajax/country-content-{country}-en.html"&gt;</code></pre>
 				</td>
-			</tr>
-			<tr>
-				<td>Option 2</td>
-				<td>Brief description of the option</td>
-				<td>How to configure the option</td>
 				<td>
 					<dl>
-						<dt>Value 1 (default):</dt>
-						<dd>Brief description</dd>
-						<dt>Value 2:</dt>
-						<dd>Brief description</dd>
-						<dt>Value 3:</dt>
-						<dd>Brief description</dd>
+						<dt>None (default):</dt>
+						<dd>Country-specific content is not AJAXed in.</dd>
+						<dt>URL</dt>
+						<dd>URL for the country-specific content to AJAX in.</dd>
 					</dl>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-	-->
 </section>
 
 <section>
 	<h2>Events</h2>
-	<p>Coming soon</p>
-	<!--
-	<p>Document the public events that can be used by implementers or developers.</p>
 	<table class="table">
 		<thead>
 			<tr>
@@ -106,18 +99,30 @@ Example of multi-line code</code></pre>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Event 1</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td><code>wb-init.wb-calevt</code></td>
+				<td>Triggered manually (e.g., <code>$( "[data-ctrycnt]" ).trigger( "wb-init.wb-ctrycnt" );</code>).</td>
+				<td>Used to manually initialize the Country Content plugin. <strong>Note:</strong> The Country Content plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
 			</tr>
 			<tr>
-				<td>Event 2</td>
-				<td>When the event is triggered and how to trigger it manually (where supported)</td>
-				<td>Brief description of what it does.</td>
+				<td><code>wb-ready.wb-ctrycnt</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the country content has loaded.</td>
+				<td>Used to identify where country content has loaded (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-ctrycnt", "[data-ctrycnt]", function( event ) {
+});</code></pre>
+					<pre><code>$( "[data-ctrycnt]" ).on( "wb-ready.wb-calevt", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>
-	-->
 </section>
 
 <section>

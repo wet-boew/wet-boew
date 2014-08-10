@@ -7,11 +7,79 @@
 	"tag": "menu",
 	"parentdir": "menu",
 	"altLangPrefix": "menu",
-	"altMenu": "demo/menu-include",
-	"dateModified": "2014-03-28"
+	"altMenu": "ajax/menu-include",
+	"dateModified": "2014-07-21"
 }
 ---
-<ul>
-	<li><strong>Grands écrans&#160;:</strong> Le menu est affiché dans l'en-tête comme une barre de menu.</li>
-	<li><strong>Petits écrans et écrans de taille moyenne&#160;:</strong> Le menu est affiché comme un panneau latéral, activé par un bouton de menu dans l'en-tête, et comprend le menu secondaire et le pied de page.</li>
-</ul>
+<span class="wb-prettify all-pre hide"></span>
+
+<section>
+	<h2>But</h2>
+	<p>Une barre de menu interactive comprenant des sous-menus optionnels.</p>
+</section>
+
+<section>
+	<h2>Exemple</h2>
+	<ul>
+		<li><strong>Grands écrans&#160;:</strong> Le menu est affiché dans l'en-tête comme une barre de menu.</li>
+		<li><strong>Petits écrans et écrans de taille moyenne&#160;:</strong> Le menu est affiché comme un panneau latéral, activé par un bouton de menu dans l'en-tête, et comprend le menu secondaire et le pied de page.</li>
+	</ul>
+
+	<section>
+		<h3>Code</h3>
+
+		<section>
+			<h4>HTML dans la page</h4>
+			<pre><code>&lt;nav role=&quot;navigation&quot; id=&quot;wb-sm&quot; data-ajax-fetch=&quot;ajax/menu-include-fr.html&quot; data-trgt=&quot;mb-pnl&quot; class=&quot;wb-menu visible-md visible-lg&quot; typeof=&quot;SiteNavigationElement&quot;&gt;
+	&lt;div class=&quot;container nvbar&quot;&gt;
+		&lt;h2&gt;Menu des sujets&lt;/h2&gt;
+		&lt;div class=&quot;row&quot;&gt;
+			&lt;ul class=&quot;list-inline menu&quot;&gt;
+				&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Section&#32;1&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Section&#32;2&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Section&#32;3&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+		</section>
+
+		<section>
+			<h4>menu-include-fr.html</h4>
+			<pre><code>&lt;div class=&quot;pnl-strt container visible-md visible-lg nvbar&quot;&gt;
+	&lt;h2&gt;Menu des sujets&lt;/h2&gt;
+	&lt;div class=&quot;row&quot;&gt;
+		&lt;ul class=&quot;list-inline menu&quot; role=&quot;menubar&quot;&gt;
+			&lt;li&gt;&lt;a href=&quot;#lore&quot; class=&quot;item&quot;&gt;Section 1&lt;/a&gt;
+				&lt;ul class=&quot;sm list-unstyled&quot; id=&quot;lore&quot; role=&quot;menu&quot;&gt;
+					&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Article 1.1&lt;/a&gt;&lt;/li&gt;
+					...
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;&lt;a href=&quot;#lor&quot; class=&quot;item&quot;&gt;Section 2&lt;/a&gt;
+				&lt;ul class=&quot;sm list-unstyled&quot; id=&quot;lor&quot; role=&quot;menu&quot; &gt;
+					&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Article 2.1&lt;/a&gt;&lt;/li&gt;
+					...
+					&lt;li class=&quot;slflnk&quot;&gt;&lt;a href=&quot;#&quot;&gt;Section 2 - Autre&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;&lt;a href=&quot;#lorm&quot; class=&quot;item&quot;&gt;Section 3&lt;/a&gt;
+				&lt;ul class=&quot;sm list-unstyled&quot; id=&quot;lorm&quot; role=&quot;menu&quot; &gt;
+					&lt;li&gt;
+						&lt;details&gt;
+							&lt;summary&gt;Section 3.1&lt;/summary&gt;
+							&lt;ul role=&quot;menu&quot;&gt;
+								&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Article 3.1.1&lt;/a&gt;&lt;/li&gt;
+								...
+							&lt;/ul&gt;
+						&lt;/details&gt;
+					&lt;/li&gt;
+					...
+				&lt;/ul&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		</section>
+	</section>
+</section>

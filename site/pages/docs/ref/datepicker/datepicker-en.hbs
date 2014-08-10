@@ -2,16 +2,18 @@
 {
 	"title": "Input type=\"date\" polyfill (date picker)",
 	"language": "en",
-	"description": "The <input type=\"date\"> element dynamically generates a calendar interface for selecting a date in a form.",
+	"category": "Polyfills",
+	"categoryfile": "polyfills",
+	"description": "Emulates <input type=\"date\"> support for browsers that do not have support. This dynamically generates a calendar interface for selecting a date in a form.",
 	"altLangPrefix": "datepicker",
-	"dateModified": "2014-03-10"
+	"dateModified": "2014-08-06"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
 
 <section>
 	<h2>Purpose</h2>
-	<p>Provide an interface for selecting a date in a form.</p>
+	<p>Provide an interface for selecting a date in a form. Implements the <a href="http://www.w3.org/TR/wai-aria-practices/#datepicker">WAI-ARIA Date Picker design pattern</a>.</p>
 </section>
 
 <section>
@@ -21,7 +23,10 @@
 
 <section>
 	<h2>Working example</h2>
-	<p><a href="../../../demos/datepicker/datepicker-en.html">Working example</a></p>
+	<ul>
+		<li><a href="../../../demos/datepicker/datepicker-en.html">English example</a></li>
+		<li><a href="../../../demos/datepicker/datepicker-fr.html">French example</a></li>
+	</ul>
 </section>
 
 <section>
@@ -96,19 +101,27 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>create.wb-cal</td>
-				<td>Before the calendar interface becomes visible.</td>
-				<td>Creates the calendar interface.</td>
+				<td><code>wb-init.wb-date</code></td>
+				<td>Triggered manually (e.g., <code>$( "input[type=date]" ).trigger( "wb-init.wb-date" );</code>).</td>
+				<td>Used to manually initialize the <code>input type="date"</code> polyfill. <strong>Note:</strong> The <code>input type="date"</code> polyfill will be initialized automatically unless the <code>input type="date"</code> element is added after the page has already loaded.</td>
 			</tr>
 			<tr>
-				<td>setFocus.wb-cal</td>
-				<td>After the calendar interface is displayed.</td>
-				<td>Sets focus on the date in the input field, if defined.</td>
+				<td><code>wb-ready.wb-date</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the <code>input type="date"</code> polyfill initializes. <strong>Note:</strong> This event will only be triggered if the polyfill is loaded. The polyfill will not load for browsers with native <code>input type="date"</code> support.</td>
+				<td>Used to identify where the <code>input type="date"</code> polyfill initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-date", "input[type=date]", function( event ) {
+});</code></pre>
+					<pre><code>$( "input[type=date]" ).on( "wb-ready.wb-date", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 			<tr>
-				<td>hideGoToFrm.wb-cal</td>
-				<td>Before the calendar interface is hidden.</td>
-				<td>Hides the "Go To" form in the calendar interface.</td>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>
@@ -116,5 +129,5 @@
 
 <section>
 	<h2>Source code</h2>
-	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/polyfills/datepicker">Source code</a></p>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/polyfills/datepicker">Source code for the input type="date" polyfill (date picker)</a></p>
 </section>

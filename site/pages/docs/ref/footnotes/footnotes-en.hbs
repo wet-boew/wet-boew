@@ -2,9 +2,11 @@
 {
 	"title": "Footnotes",
 	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
 	"description": "Provides a consistent, accessible way of handling footnotes across websites.",
 	"altLangPrefix": "footnotes",
-	"dateModified": "2014-03-05"
+	"dateModified": "2014-08-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -59,14 +61,14 @@
 			<h4>Link to a Footnote</h4>
 			<p>Use the following code as a basis to link to a particular footnote.</p>
 			<pre><code>&lt;sup id="fn1-rf"&gt;&lt;a class="fn-lnk" href="#fn1"&gt;&lt;span class="wb-inv"&gt;Footnote &lt;/span&gt;1&lt;/a&gt;&lt;/sup&gt;</code></pre>
-			<p><b>Note:</b> The ID attributes of links to a multi-referenced footnote should contain an alphabetically-ordered letter just after the number (e.g. <code>id="fn2a-rf"</code>, <code>id="fn2b-rf"</code>, <code>id="fn2c-rf"</code>, etc) to make it possible to programmatically distinguish one referrer link from another.</p>
+			<p><strong>Note:</strong> The ID attributes of links to a multi-referenced footnote should contain an alphabetically-ordered letter just after the number (e.g. <code>id="fn2a-rf"</code>, <code>id="fn2b-rf"</code>, <code>id="fn2c-rf"</code>, etc) to make it possible to programmatically distinguish one referrer link from another.</p>
 		</section>
 
 		<section>
 			<h4>Link to Multiple Footnotes</h4>
 			<p>Use the following code as a basis to consecutively link to multiple footnotes.</p>
 			<pre><code>&lt;sup id="fn2-rf"&gt;&lt;a class="fn-lnk" href="#fn2"&gt;&lt;span class="wb-inv"&gt;Footnote &lt;/span&gt;2&lt;/a&gt;&lt;/sup&gt;&#160;&lt;sup id="fn3-rf"&gt;&lt;a class="fn-lnk" href="#fn3"&gt;&lt;span class="wb-inv"&gt;Footnote &lt;/span&gt;3&lt;/a&gt;&lt;/sup&gt;</code></pre>
-			<p><b>Note:</b> Non-breaking spaces (i.e. <code>&amp;#160;</code>) should be used to separate each link.</p>
+			<p><strong>Note:</strong> Non-breaking spaces (i.e. <code>&amp;#160;</code>) should be used to separate each link.</p>
 		</section>
 	</section>
 
@@ -107,8 +109,8 @@
 	&lt;p class="fn-rtn"&gt;&lt;a href="#fn2a-rf"&gt;&lt;span class="wb-inv"&gt;Return to &lt;span&gt;first&lt;/span&gt; footnote &lt;/span&gt;2&lt;span class="wb-inv"&gt; referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/dd&gt;</code></pre>
 
-			<p><b>Note 1:</b> The <code>href</code> attributes of return links in multi-referenced footnotes should always contain an "a" after the footnote number (e.g. <code>href="#fn2a-rf"</code>).</p>
-			<p><b>Note 2:</b> The return link text of multi-referenced footnotes should always contain <code>&lt;span&gt;first&lt;/span&gt;</code>, to specifically denote their default destinations when JavaScript support isn't present.</p>
+			<p><strong>Note 1:</strong> The <code>href</code> attributes of return links in multi-referenced footnotes should always contain an "a" after the footnote number (e.g. <code>href="#fn2a-rf"</code>).</p>
+			<p><strong>Note 2:</strong> The return link text of multi-referenced footnotes should always contain <code>&lt;span&gt;first&lt;/span&gt;</code>, to specifically denote their default destinations when JavaScript support isn't present.</p>
 		</section>
 
 		<section>
@@ -124,6 +126,44 @@
 &lt;/dd&gt;</code></pre>
 		</section>
 	</section>
+</section>
+
+<section>
+	<h2>Events</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Event</th>
+				<th>Trigger</th>
+				<th>What it does</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>wb-init.wb-fnote</code></td>
+				<td>Triggered manually (e.g., <code>$( ".wb-fnote" ).trigger( "wb-init.wb-fnote" );</code>).</td>
+				<td>Used to manually initialize the Footnotes plugin. <strong>Note:</strong> The Footnotes plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-fnote</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the Footnotes plugin initializes.</td>
+				<td>Used to identify where the Footnotes plugin was initialized (target of the event).
+					<pre><code>$( document ).on( "wb-ready.wb-fnote", ".wb-fnote", function( event ) {
+});</code></pre>
+					<pre><code>$( ".wb-fnote" ).on( "wb-ready.wb-fnote", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </section>
 
 <section>

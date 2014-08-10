@@ -2,9 +2,11 @@
 {
 	"title": "Progress polyfill (progress bar)",
 	"language": "en",
-	"description": "The <progress> element displays the progress of a task.",
+	"category": "Polyfills",
+	"categoryfile": "polyfills",
+	"description": "Emulates progress element support for browsers that do not have support. The progress element displays the progress of a task.",
 	"altLangPrefix": "progress",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-08-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -66,9 +68,42 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>wb-init.wb-progress</td>
-				<td>Triggered manually (e.g., <code>$elm.trigger( "wb-init.wb.wb-progress" );</code>).</td>
-				<td>Used to manually initialize the progress polyfill. <strong>Note:</strong> The progress polyfill will be initialized automatically unless the <code>progress</code> element is added after the page has already loaded.</td>
+				<td><code>wb-init.wb-progress</code></td>
+				<td>Triggered manually (e.g., <code>$( "progress" ).trigger( "wb-init.wb-progress" );</code>).</td>
+				<td>Used to manually initialize the <code>progress</code> polyfill. <strong>Note:</strong> The <code>progress</code> polyfill will be initialized automatically unless the <code>progress</code> element is added after the page has already loaded.</td>
+			</tr>
+			<tr>
+				<td><code>wb-update.wb-progress</code></td>
+				<td>Triggered manually (e.g., <code>$( "progress" ).trigger( "wb-update.wb-progress" );</code>).</td>
+				<td>Used to manually update the <code>progress</code> polyfill.</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb-progress</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the <code>progress</code> polyfill initializes. <strong>Note:</strong> This event will only be triggered if the polyfill is loaded. The polyfill will not load for browsers with native <code>progress</code> support.</td>
+				<td>Used to identify where the <code>progress</code> polyfill initialized (target of the event)
+					<pre><code>$( document ).on( "wb-ready.wb-progress", "progress", function( event ) {
+});</code></pre>
+					<pre><code>$( "progress" ).on( "wb-ready.wb-progress", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-updated.wb-progress</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the <code>progress</code> polyfill is updated. <strong>Note:</strong> This event will only be triggered if the polyfill is loaded. The polyfill will not load for browsers with native <code>progress</code> support.</td>
+				<td>Used to identify where the <code>progress</code> polyfill initialized (target of the event)
+					<pre><code>$( document ).on( "wb-updated.wb-progress", "progress", function( event ) {
+});</code></pre>
+					<pre><code>$( "progress" ).on( "wb-updated.wb-progress", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>

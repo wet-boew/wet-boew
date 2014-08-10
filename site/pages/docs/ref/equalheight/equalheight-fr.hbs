@@ -2,9 +2,11 @@
 {
 	"title": "Égalisation des hauteurs",
 	"language": "fr",
+	"category": "Plugiciels",
+	"categoryfile": "plugins",
 	"description": "Un plugiel d'égalisation des hauteurs réactif.",
 	"altLangPrefix": "equalheight",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-08-04"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -55,21 +57,38 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><code lang="en">txt-rsz.wb</code></td>
-				<td>La taille de la police de caractères à été changée.</td>
-				<td rowspan="4">Ré-égalise la hauteur de tous les éléments contenus dans un contenant <code lang="en">wb-eqht</code>.</td>
+				<td><code>wb-init.wb-eqht</code> (v4.0.5+)</td>
+				<td>Triggered manually (e.g., <code>$( ".wb-eqht" ).trigger( "wb-init.wb-eqht" );</code>).</td>
+				<td>Used to manually initialize the Equal heights plugin. <strong>Note:</strong> The Equal heights plugin will be initialized automatically unless the required markup is added after the page has already loaded.</td>
 			</tr>
 			<tr>
-				<td><code lang="en">win-rsz-width.wb</code></td>
-				<td>La largeur de la fenêtre du navigateur à été changée.</td>
+				<td><code>wb-update.wb-eqht</code> (v4.0.5+)</td>
+				<td>Triggered manually (e.g., <code>$( ".wb-eqht" ).trigger( "wb-update.wb-eqht" );</code>).</td>
+				<td>Used to manually trigger an update to the height equalization. <strong>Note:</strong> The Equal heights plugin will be automatically update the height equalization on window, text and zoom resizes as well as DataTable draws.</td>
 			</tr>
 			<tr>
-				<td><code lang="en">win-rsz-height.wb</code></td>
-				<td>La hauteur de la fenêtre du navigateur à été changée.</td>
+				<td><code>wb-ready.wb-eqht</code> (v4.0.5+)</td>
+				<td>Triggered automatically after the height equalization has been initialized.</td>
+				<td>Used to identify when height equalization was initialized
+					<pre><code>$( document ).on( "wb-ready.wb-eqht", ".wb-eqht", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 			<tr>
-				<td><code lang="en">tables-draw.wb</code></td>
-				<td>Un <a href="../tables/tables-fr.html">tableau</a> à été déssiné.</td>
+				<td><code>wb-updated.wb-eqht</code> (v4.0.5+)</td>
+				<td>Triggered automatically each time the height equalization is updated.</td>
+				<td>Used to identify when height equalization was updated
+					<pre><code>$( document ).on( "wb-updated.wb-eqht", function( event ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
+				<td>Triggered automatically when WET has finished loading and executing.</td>
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
+});</code></pre>
+				</td>
 			</tr>
 		</tbody>
 	</table>

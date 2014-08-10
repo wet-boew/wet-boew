@@ -38,6 +38,10 @@
 	display: block;
 }
 
+%global-display-block-important {
+	display: block !important;
+}
+
 %global-text-decoration-none {
 	text-decoration: none;
 }
@@ -75,6 +79,7 @@
 @import "../plugins/texthighlight/base";
 @import "../plugins/geomap/base";
 @import "../plugins/zebra/base";
+@import "../plugins/feeds/base";
 
 /*
  Polyfills
@@ -132,6 +137,7 @@
 @media screen and (min-width: $screen-md-min) {
 	@import "views/screen-md-min";
 	@import "proximity/screen-md-min";
+	@import "../plugins/feeds/screen-md-min";
 	@import "../plugins/tabs/screen-md-min";
 }
 

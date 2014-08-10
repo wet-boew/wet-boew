@@ -5,7 +5,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-/* global jQuery, describe, it, expect, before */
+/* global jQuery, describe, it, expect, before, after */
 /* jshint unused:vars */
 (function( $, wb ) {
 
@@ -16,15 +16,9 @@
  */
 describe( "Feedback test suite", function() {
 
-	var $form = $( ".wb-fdbck" ),
-		$reason = $form.find( "#fbrsn" ),
-		$reasonWeb = $form.find( "#fbweb" ),
-		$access = $form.find( "#fbaxs" ),
-		$accessComp = $form.find( "#fbcomp" ),
-		$accessMobile = $form.find( "#fbmob" ),
-		$info = $form.find( "#fbinfo" ),
-		$contact1 = $form.find( "#fbcntc1" ),
-		$contact2 = $form.find( "#fbcntc2" ),
+	var $document = wb.doc,
+		$body = $document.find("body"),
+		$elm, $script, $form, $reason, $reasonWeb, $access, $accessComp, $accessMobile, $info, $contact1, $contact2,
 
 		// Tests sections for visibility.  Not using the ":visible" jQuery selector
 		// because it is giving inconsistent results in PhantomJS.
@@ -42,8 +36,45 @@ describe( "Feedback test suite", function() {
 	/*
 	 * Before beginning the test suite, this function is executed once.
 	 */
-	before(function() {
-		$form.trigger( "wb-init.wb-fdbck" );
+	before(function( done ) {
+		$elm = $("<div class='feedback'></div>")
+			.appendTo( $body );
+
+		$document.trigger({
+			type: "ajax-fetch.wb",
+			element: $elm,
+			fetch: {
+				url: "../demos/feedback/feedback-en.html"
+			}
+		});
+
+		$document.on( "ajax-fetched.wb ajax-failed.wb", ".feedback", function( event ) {
+			if ( event.type === "ajax-fetched" ) {
+				$script = $("<script src='../demos/feedback/demo/feedback.js'></script>")
+					.appendTo( $elm );
+				$form = event.fetch.pointer.find( ".wb-fdbck" )
+					.appendTo( $elm )
+					.trigger( "wb-init.wb-fdbck" );
+				$reason = $form.find( "#fbrsn" );
+				$reasonWeb = $form.find( "#fbweb" );
+				$access = $form.find( "#fbaxs" );
+				$accessComp = $form.find( "#fbcomp" );
+				$accessMobile = $form.find( "#fbmob" );
+				$info = $form.find( "#fbinfo" );
+				$contact1 = $form.find( "#fbcntc1" );
+				$contact2 = $form.find( "#fbcntc2" );
+			} else {
+				done( event.fetch.error );
+			}
+		});
+
+		$document.on( "wb-init.wb-fdbck", ".wb-fdbck", function() {
+			done();
+		});
+	});
+
+	after(function() {
+		$elm.remove();
 	});
 
 	/*
