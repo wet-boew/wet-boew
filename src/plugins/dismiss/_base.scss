@@ -6,6 +6,17 @@
 /*
  * Dismiss Sass
  */
+
+.alert-dismiss:before {
+	color: #269ABC;
+	content: "";
+}
+
+.alert-dismiss .alert-info > :first-child:before {
+	color: black;
+	content: "▼ ";
+}
+
  /*
 .expicon {
 	font-size: 0.7em;
