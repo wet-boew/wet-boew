@@ -14,8 +14,9 @@
  * teardown `after()` for more than one test suite (as is the case below.)
  */
 describe( "Prettify test suite", function() {
-	var spy, $prettify,
-		$body = wb.doc.find( "body" ),
+	var spy, callback, $prettify,
+		$document = wb.doc,
+		$body = $document.find( "body" ),
 		sandbox = sinon.sandbox.create();
 
 	/*
@@ -25,10 +26,12 @@ describe( "Prettify test suite", function() {
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
 		spy = sandbox.spy( $.prototype, "trigger" );
 
-		// Start the tests once the plugin has been initialized
-		wb.doc.on( "prettyprint.wb-prettify", function() {
-			done();
+		// Start the tests once the plugin has been finished processing
+		$document.on( "wb-ready.wb-prettify", function() {
+			callback();
 		});
+
+		callback = done;
 
 		// Add the test elements
 		$prettify = $( "<span class='wb-prettify lang-css'>" )
@@ -90,7 +93,7 @@ describe( "Prettify test suite", function() {
 			expect( $("script[src*='/lang-css']") ).to.have.length( 1 );
 		});
 
-		it( "should have not have loaded lang-sql.js syntax file", function() {
+		it( "should not have loaded lang-sql.js syntax file", function() {
 			expect( $("script[src*='/lang-sql']") ).to.have.length( 0 );
 		});
 	});
@@ -102,6 +105,11 @@ describe( "Prettify test suite", function() {
 
 		before(function( done ) {
 
+			//Prettify needs more time in IE to complete, due to the pre from mocha results
+			this.timeout(5000);
+
+			callback = done;
+
 			$body.append( "<pre class='test'>" );
 			$prettify
 				.removeClass( "wb-prettify-inited" )
@@ -109,9 +117,6 @@ describe( "Prettify test suite", function() {
 				.addClass( "all-pre" )
 				.addClass( "linenums" )
 				.trigger( "wb-init.wb-prettify" );
-			wb.doc.on( "prettyprint.wb-prettify", function() {
-				done();
-			});
 		});
 
 		it( "should have loaded lang-sql.js syntax file", function() {
@@ -119,15 +124,11 @@ describe( "Prettify test suite", function() {
 		});
 
 		it( "should have added a .prettyprinted CSS class to all pre elements", function() {
-			$( "pre:visible" ).each(function() {
-				expect( this.className.indexOf( "prettyprinted" ) ).to.be.greaterThan( -1 );
-			});
+			expect( $( "pre.test.prettyprinted" ).length ).to.be( $( "pre.test" ).length );
 		});
 
 		it( "should have added a .linenums CSS class to all pre elements", function() {
-			$( "pre:visible" ).each(function() {
-				expect( this.className.indexOf( "linenums" ) ).to.be.greaterThan( -1 );
-			});
+			expect( $( "pre.test.linenums" ).length ).to.be( $( "pre.test" ).length );
 		});
 	});
 
@@ -138,29 +139,28 @@ describe( "Prettify test suite", function() {
 
 		before(function( done ) {
 
+			//Prettify needs more time in IE to complete, due to the pre from mocha results
+			this.timeout(500);
+
+			callback = done;
+
 			$body.append( "<pre class='test'>" );
 			$prettify
 				.removeClass( "wb-prettify-inited" )
+				.removeClass( "all-pre linenums")
 				.data({
 					allpre: true,
 					linenums: true
 				})
 				.trigger( "wb-init.wb-prettify" );
-			wb.doc.on( "prettyprint.wb-prettify", function() {
-				done();
-			});
 		});
 
 		it( "should have added a .prettyprinted CSS class to all pre elements", function() {
-			$( "pre:visible" ).each(function() {
-				expect( this.className.indexOf( "prettyprinted" ) ).to.be.greaterThan( -1 );
-			});
+			expect( $( "pre.test.prettyprinted" ).length ).to.be( $( "pre.test" ).length );
 		});
 
 		it( "should have added a .linenums CSS class to all pre elements", function() {
-			$( "pre:visible" ).each(function() {
-				expect( this.className.indexOf( "linenums" ) ).to.be.greaterThan( -1 );
-			});
+			expect( $( "pre.test.linenums" ).length ).to.be( $( "pre.test" ).length );
 		});
 	});
 });
