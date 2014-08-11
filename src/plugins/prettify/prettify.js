@@ -107,6 +107,12 @@ var componentName = "wb-prettify",
 		}
 	},
 
+	prettifyDone = function() {
+
+		// Identify that initialization has completed
+		wb.ready( $document, componentName );
+	},
+
 	/*
 	 * Invoke the Google pretty print library if it has been initialized
 	 * @method prettyprint
@@ -115,10 +121,7 @@ var componentName = "wb-prettify",
 		if ( event.namespace === componentName &&
 			typeof window.prettyPrint === "function" ) {
 
-			window.prettyPrint();
-
-			// Identify that initialization has completed
-			wb.ready( $document, componentName );
+			window.prettyPrint( prettifyDone );
 		}
 	};
 
