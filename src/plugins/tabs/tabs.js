@@ -623,7 +623,7 @@ var componentName = "wb-tabs",
 		/*
 		 * Change Slides
 		 */
-		case "shift":
+		case "wb-shift":
 
 			// Filter out any events triggered by descendants
 			if ( eventCurrentTarget === eventTarget ) {
