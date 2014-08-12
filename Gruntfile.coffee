@@ -6,9 +6,20 @@ module.exports = (grunt) ->
 	# External tasks
 	@registerTask(
 		"default"
-		"Default task that runs the production build"
+		"Default task that runs the core unminified build"
+		[
+			"build"
+			"demos"
+		]
+	)
+
+	@registerTask(
+		"travis"
+		"Default task that runs the core unminified build"
 		[
 			"dist"
+			"test-mocha"
+			"htmllint"
 		]
 	)
 
@@ -19,17 +30,11 @@ module.exports = (grunt) ->
 			"checkDependencies"
 			"test"
 			"build"
-			"assets-min"
+			"minify"
+			"pages:theme"
+			"pages:docs"
+			"pages:versions"
 			"demos-min"
-		]
-	)
-
-	@registerTask(
-		"debug"
-		"Produces unminified files"
-		[
-			"build"
-			"demos"
 		]
 	)
 
@@ -46,9 +51,20 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
+		"minify"
+		"Minify built files."
+		[
+			"js-min"
+			"css-min"
+			"assets-min"
+		]
+	)
+
+	@registerTask(
 		"deploy"
 		"Build and deploy artifacts to wet-boew-dist"
 		[
+			"dist"
 			"copy:deploy"
 			"gh-pages:travis"
 		]
@@ -107,6 +123,13 @@ module.exports = (grunt) ->
 			"concat:coreIE8"
 			"concat:pluginsIE8"
 			"concat:i18n"
+		]
+	)
+
+	@registerTask(
+		"js-min"
+		"INTERNAL: Minify the built Javascript files"
+		[
 			"uglify:polyfills"
 			"uglify:core"
 			"uglify:coreIE8"
@@ -124,6 +147,13 @@ module.exports = (grunt) ->
 			"autoprefixer"
 			"csslint:unmin"
 			"concat:css_addBanners"
+		]
+	)
+
+	@registerTask(
+		"css-min"
+		"INTERNAL: Minify the CSS files"
+		[
 			"cssmin:dist"
 			"cssmin:distIE8"
 			"ie8csscleaning"
@@ -142,10 +172,10 @@ module.exports = (grunt) ->
 		"demos"
 		"INTERNAL: Create unminified demos"
 		[
-			"i18n_csv:assemble"
 			"copy:demos"
 			"csslint:demos"
-			"pages"
+			"pages:demos"
+			"pages:ajax"
 		]
 	)
 
@@ -158,7 +188,6 @@ module.exports = (grunt) ->
 			"cssmin:demos_min"
 			"uglify:demos"
 			"pages:min"
-			"htmllint"
 		]
 	)
 
@@ -185,7 +214,8 @@ module.exports = (grunt) ->
 		"INTERNAL: prepare for running Mocha unit tests"
 		[
 			"copy:test"
-			"assemble:test"
+			"minify"
+			"pages:test"
 			"connect:test"
 		]
 	)
@@ -201,9 +231,12 @@ module.exports = (grunt) ->
 					"useMinAssets"
 				);
 			else
-				# Only use a target path for assemble if pages recieved one too
+				# Only use a target path for assemble if pages received one too
 				target = if target then ":" + target else ""
-				grunt.task.run( "assemble" + target );
+				grunt.task.run(
+					"i18n_csv:assemble"
+					"assemble" + target
+				);
 	)
 
 	@registerTask(
