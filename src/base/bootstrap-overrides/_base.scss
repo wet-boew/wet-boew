@@ -187,7 +187,7 @@ a {
 
 	> {
 		:first-child {
-			margin-left: 1.2em;
+			margin-left: 0em;
 			margin-top: auto;
 
 			&:before {
@@ -204,6 +204,14 @@ a {
 			&:first-child {
 				display: inline-block;
 			}
+		}
+	}
+}
+
+section.alert {
+	> {
+		:first-child {
+			margin-left: 1.2em;
 		}
 	}
 }
@@ -683,12 +691,20 @@ blockquote {
 		> {
 			:first-child {
 				margin-left: auto;
-				margin-right: 1.2em;
+				margin-right: 0em;
 
 				&:before {
 					margin-left: auto;
 					margin-right: -1.3em;
 				}
+			}
+		}
+	}
+
+	section.alert {
+		> {
+			:first-child {
+				margin-right: 1.2em;
 			}
 		}
 	}
