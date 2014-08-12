@@ -34,12 +34,12 @@ describe( "Prettify test suite", function() {
 		callback = done;
 
 		// Add the test elements
-		$prettify = $( "<span class='wb-prettify lang-css'>" )
+		$prettify = $( "<span class='wb-prettify lang-css'></span>" )
 			.appendTo( $body )
 			.trigger( "wb-init.wb-prettify" );
 
-		$body.append( "<pre class='test prettyprint'>" );
-		$body.append( "<pre class='test noprettify'>" );
+		$body.append( "<pre class='test prettyprint'></pre>" );
+		$body.append( "<pre class='test noprettify'></pre>" );
 	});
 
 	/*
@@ -110,7 +110,7 @@ describe( "Prettify test suite", function() {
 
 			callback = done;
 
-			$body.append( "<pre class='test'>" );
+			$body.append( "<pre class='test'></pre>" );
 			$prettify
 				.removeClass( "wb-prettify-inited" )
 				.addClass( "lang-sql" )
@@ -144,7 +144,7 @@ describe( "Prettify test suite", function() {
 
 			callback = done;
 
-			$body.append( "<pre class='test'>" );
+			$body.append( "<pre class='test'></pre>" );
 			$prettify
 				.removeClass( "wb-prettify-inited" )
 				.removeClass( "all-pre linenums")
