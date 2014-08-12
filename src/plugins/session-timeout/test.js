@@ -18,7 +18,10 @@ describe( "Session Timeout test suite", function() {
 
 	var clock, server, $session,
 		spies = {},
-		sandbox = sinon.sandbox.create();
+		sandbox = sinon.sandbox.create(),
+		$document = wb.doc;
+
+	this.timeout(5000);
 
 	/*
 	 * Before beginning the test suite, this function is executed once.
@@ -29,25 +32,30 @@ describe( "Session Timeout test suite", function() {
 		spies.trigger = sandbox.spy( $.prototype, "trigger" );
 		spies.post = sandbox.spy( $, "post" );
 
+		$document.on( "wb-ready.wb-sessto", ".wb-sessto", function() {
+			done();
+		});
+
+		$document.on( "inactivity.wb-sessto", function() {
+			$( ".wb-sessto-confirm.btn-primary" ).trigger( "click" );
+		});
+
 		// Inject the test element after the Modernizr.load calls in wb.js
 		// have finished.  This is required because the session timeout
 		// plugin relies on the i18n libraries being loaded.
-		setTimeout(function() {
-			$session = $( "<span class='wb-sessto'>" )
+
+		$document.one( "wb-ready.wb timerpoke.wb", function() {
+			$session = $( "<span class='wb-sessto'></span>" )
 				.data( "wet-boew", {
 					inactivity: 10000,
 					sessionalive: 10000,
 					refreshLimit: 42000,
 					refreshOnClick: true
 				})
-				.appendTo( wb.doc.find( "body" ) )
+				.appendTo( $document.find( "body" ))
 				.trigger( "wb-init.wb-sessto" );
-			done();
-		}, 500 );
-
-		wb.doc.on( "inactivity.wb-sessto", function() {
-			$( ".wb-sessto-confirm.btn-primary" ).trigger( "click" );
 		});
+
 	});
 
 	/*
@@ -137,7 +145,7 @@ describe( "Session Timeout test suite", function() {
 
 		it( "should trigger keepalive.wb-sessto on document click", function() {
 			clock.tick( 42010 );
-			wb.doc.trigger( "click" );
+			$document.trigger( "click" );
 			expect( spies.trigger.calledWith( "keepalive.wb-sessto" ) ).to.equal( true );
 		});
 
@@ -152,7 +160,7 @@ describe( "Session Timeout test suite", function() {
 		it( "should not trigger keepalive.wb-sessto on document click (refresh limit prevents)", function() {
 			spies.trigger.reset();
 
-			wb.doc.trigger( "click" );
+			$document.trigger( "click" );
 			expect( spies.trigger.calledWith( "keepalive.wb-sessto" ) ).to.equal( false );
 		});
 
@@ -160,7 +168,7 @@ describe( "Session Timeout test suite", function() {
 			spies.trigger.reset();
 			clock.tick( 42010 );
 
-			wb.doc.trigger( "click" );
+			$document.trigger( "click" );
 			expect( spies.trigger.calledWith( "keepalive.wb-sessto" ) ).to.equal( true );
 		});
 	});
