@@ -9,6 +9,7 @@ details {
 		summary {
 			&:before { /* Add the closed pointer */
 				content: "\25BA\a0" !important;
+				font-size: 90%;
 			}
 		}
 	}
@@ -20,6 +21,7 @@ details {
 			summary {
 				&:before { /* Add the opened pointer */
 					content: "\25BC\a0" !important;
+					font-size: 90%;
 				}
 			}
 		}
@@ -33,6 +35,7 @@ details {
 			summary {
 				&:before { /* Add the close pointer */
 					content: "\25C0\a0" !important;
+					font-size: 90%;
 				}
 			}
 		}
