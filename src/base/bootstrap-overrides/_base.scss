@@ -329,7 +329,7 @@ $label-alert-warning-border-icon-color: #278400;
 
 details.alert-success {
 	&:before {
-		color: $label-alert-success-border-icon-color;
+		color: $label-alert-warning-border-icon-color;
 		content: "\e084";
 	}
 }
