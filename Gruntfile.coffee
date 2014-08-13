@@ -212,7 +212,6 @@ module.exports = (grunt) ->
 		"INTERNAL: prepare for running Mocha unit tests"
 		[
 			"copy:test"
-			"minify"
 			"pages:test"
 			"connect:test"
 		]
@@ -230,7 +229,7 @@ module.exports = (grunt) ->
 				);
 			else
 
-				if grunt.config("i18n_csv.assemble.locales") == undefined
+				if target != "test" and grunt.config("i18n_csv.assemble.locales") == undefined
 					grunt.task.run(
 						"i18n_csv:assemble"
 					)
