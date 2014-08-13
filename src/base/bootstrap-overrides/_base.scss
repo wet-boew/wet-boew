@@ -216,6 +216,29 @@ section.alert {
 	}
 }
 
+details.alert {
+
+	padding-left: 45px;
+
+	&:before {
+		display: inline-block;
+		font-family: "Glyphicons Halflings";
+		font-size: 24px;
+		margin-left: -1.3em;
+		margin-top: -3px;
+		position: absolute;
+	}
+
+	> {
+		:first-child {
+			&:before {
+				color: black;
+				content: "";
+			}
+		}
+	}
+}
+
 %label-alert-color-000 {
 	color: #000;
 }
@@ -301,6 +324,34 @@ $label-alert-warning-border-icon-color: #278400;
 				content: "\e084";
 			}
 		}
+	}
+}
+
+details.alert-success {
+	&:before {
+		color: $label-alert-success-border-icon-color;
+		content: "\e084";
+	}
+}
+
+details.alert-info {
+	&:before {
+		color: $label-alert-info-border-icon-color;
+		content: "\e086";
+	}
+}
+
+details.alert-warning {
+	&:before {
+		color: $label-alert-warning-border-icon-color;
+		content: "\e107";
+	}
+}
+
+details.alert-danger {
+	&:before {
+		color: $label-alert-danger-border-icon-color;
+		content: "\e101";
 	}
 }
 
