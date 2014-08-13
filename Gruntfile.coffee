@@ -33,7 +33,6 @@ module.exports = (grunt) ->
 			"minify"
 			"pages:theme"
 			"pages:docs"
-			"pages:versions"
 			"demos-min"
 		]
 	)
@@ -497,14 +496,6 @@ module.exports = (grunt) ->
 				cwd: "site/pages"
 				src: [
 					"docs/**/*.hbs"
-				]
-				dest: "dist/unmin"
-				expand: true
-
-			versions:
-				cwd: "site/pages"
-				src: [
-					"docs/versions/**/*.hbs"
 				]
 				dest: "dist/unmin"
 				expand: true
@@ -1127,16 +1118,6 @@ module.exports = (grunt) ->
 				]
 				tasks: [
 					"pages:docs"
-				]
-				options:
-					livereload: true
-
-			versions:
-				files: [
-					"site/pages/docs/versions/**/*.hbs"
-				]
-				tasks: [
-					"pages:versions"
 				]
 				options:
 					livereload: true
