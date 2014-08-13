@@ -331,7 +331,7 @@ details.alert-success {
 	@extend %label-alert-success-bg-border-left;
 	
 	&:before {
-		color: $label-alert-success-border-icon-color;
+		color: $label-alert-warning-border-icon-color;
 		content: "\e084";
 	}
 }
