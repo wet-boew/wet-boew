@@ -5,32 +5,32 @@ mocha.setup( "bdd" );
 wb.doc.on( "ready", function() {
 
 	var runner = mocha.run(),
-		tests = [];
+		failedTests = [];
 
 	runner.on( "end", function() {
-		window.global_test_results = {
-			passed: runner.stats.passes,
-			failed: runner.stats.failures,
-			total: runner.stats.tests,
-			duration: runner.stats.duration,
-			tests: tests
+		window.mochaResults = runner.stats;
+		window.mochaResults.reports = failedTests;
+	});
+
+	runner.on( "fail", logFailure);
+
+	function logFailure(test, err) {
+
+		var flattenTitles = function(test) {
+			var titles = [];
+			while (test.parent.title) {
+				titles.push(test.parent.title);
+				test = test.parent;
+			}
+			return titles.reverse();
 		};
-	});
 
-	runner.on( "pass", function( test ) {
-		tests.push({
-			name: test.fullTitle(),
-			result: true,
-			duration: test.duration
-		});
-	});
-
-	runner.on( "fail", function( test, err ) {
-		tests.push({
-			name: test.fullTitle(),
+		failedTests.push({
+			name: test.title,
 			result: false,
-			duration: test.duration,
-			message: err.stack
+			message: err.message,
+			stack: err.stack,
+			titles: flattenTitles( test )
 		});
-	});
+	}
 });

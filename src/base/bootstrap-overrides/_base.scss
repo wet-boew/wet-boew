@@ -578,18 +578,6 @@ blockquote {
 
 .pagination,
 .pager {
-	[rel="prev"] {
-		&:before {
-			@extend %pagination-left-arrow;
-		}
-	}
-
-	[rel="next"] {
-		&:after {
-			@extend %pagination-right-arrow;
-		}
-	}
-
 	&.disabled {
 		@extend %global-display-none;
 	}
@@ -601,6 +589,22 @@ blockquote {
 				display: inline-block;
 				margin-bottom: 0.5em;
 				padding: $padding-large-vertical $padding-large-horizontal;
+			}
+		}
+		
+		&:first-child {
+			[rel="prev"] {
+				&:before {
+					@extend %pagination-left-arrow;
+				}
+			}
+		}
+
+		&:last-child {
+			[rel="next"] {
+				&:after {
+					@extend %pagination-right-arrow;
+				}
 			}
 		}
 

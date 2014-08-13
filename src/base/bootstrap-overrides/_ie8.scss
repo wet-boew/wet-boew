@@ -2,6 +2,22 @@
   WET-BOEW
   @title: Bootstrap IE8-specific overrides for WET-BOEW
  */
+.lt-ie9 {
+	.pagination, 
+	.pager {
+		> li {
+			&:first-child {
+				[rel="prev"] {
+					&:before {
+						content: none;
+						margin-right: -1px;
+					}
+				}
+			}
+		}
+	}
+}
+
 @media print {
 	.lt-ie9 {
 		abbr {

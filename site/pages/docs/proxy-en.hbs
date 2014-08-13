@@ -23,13 +23,26 @@
 </section>
 
 <section>
+	<h2>Setting the proxy for Git</h2>
+	<ol>
+		<li>Open a command prompt</li>
+		<li>Run the following commands replacing <code>USERNAME</code>, <code>PASSWORD</code>, <code>PROXY_ADDRESS</code>, and <code>PROXY_PORT</code> with your network's information:
+			<ol>
+				<li><code>git config --global --add http.proxy http://USERNAME:PASSWORD@PROXY_ADDRESS:PROXY_PORT</code></li>
+				<li><code>git config --global --add https.proxy http://USERNAME:PASSWORD@PROXY_ADDRESS:PROXY_PORT</code></li>
+			</ol>
+		</li>
+	</ol>
+</section>
+
+<section>
 	<h2>Setting the proxy for other tasks</h2>
 	<p>Many plugins will also look for environmental variables of <code>HTTP_PROXY</code> and <code>HTTPS_PROXY</code> when they need to call out to the internet.</p>
 	<ol>
 		<li>You can set these variables with the value <code>http://USERNAME:PASSWORD@PROXY_ADDRESS:PROXY_PORT</code> each session by calling:
 			<ol>
-				<li>Windows Command Prompt: <code>set http://HTTP_PROXY=USERNAME:PASSWORD@PROXY_ADDRESS:PROXY_PORT</code></li>
-				<li>Bash Shell: <code>export http://HTTP_PROXY=USERNAME:PASSWORD@PROXY_ADDRESS:PROXY_PORT</code></li>
+				<li>Windows Command Prompt: <code>set HTTP_PROXY=http://USERNAME:PASSWORD@PROXY_ADDRESS:PROXY_PORT</code></li>
+				<li>Bash Shell: <code>export HTTPS_PROXY=http://USERNAME:PASSWORD@PROXY_ADDRESS:PROXY_PORT</code></li>
 			</ol>
 		</li>
 		<li>To avoid doing this every time, you can add these commands to your console's "RC" file. If you are using the Git Bash Shell on Windows, you can add the export statements to the ".bashrc" file in the root of your user profile (<code>C:\Users\USERNAME</code>). That file is run every time you open a Git Bash session, so the environmental variables will be available from the command line. You may need to create that file with a text editor, since Windows doesn't allow creating files starting with a period in Windows Explorer.</li>
