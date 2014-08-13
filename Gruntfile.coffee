@@ -63,7 +63,6 @@ module.exports = (grunt) ->
 		"deploy"
 		"Build and deploy artifacts to wet-boew-dist"
 		[
-			"dist"
 			"copy:deploy"
 			"gh-pages:travis"
 		]
