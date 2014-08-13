@@ -231,10 +231,15 @@ module.exports = (grunt) ->
 					"useMinAssets"
 				);
 			else
+
+				if grunt.config("i18n_csv.assemble.locales") == undefined
+					grunt.task.run(
+						"i18n_csv:assemble"
+					)
+
 				# Only use a target path for assemble if pages received one too
 				target = if target then ":" + target else ""
 				grunt.task.run(
-					"i18n_csv:assemble"
 					"assemble" + target
 				);
 	)
