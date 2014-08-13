@@ -101,6 +101,7 @@
 		@extend %invisible;
 		animation-duration: 125ms;
 		animation-name: fadeout;
+		z-index: -1;
 	}
 }
 
