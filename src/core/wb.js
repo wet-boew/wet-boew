@@ -124,6 +124,7 @@ var getUrlParts = function( url ) {
 		"/assets": $homepath + "/../assets",
 		"/templates": $homepath + "/assets/templates",
 		"/deps": $homepath + "/deps",
+		lang: lang,
 		mode: $mode,
 		doc: $( document ),
 		win: $( window ),
