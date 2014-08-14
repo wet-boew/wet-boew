@@ -22,7 +22,7 @@
     "lib"
   ],
   "dependencies": {
-    "bootstrap-sass-official": "3.1.1",
+    "bootstrap-sass-official": "3.2.0+1",
     "DataTables": "1.10.0",
     "es5-shim": "2.3.0",
     "excanvas": "*",
