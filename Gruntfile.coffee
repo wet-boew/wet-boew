@@ -901,7 +901,7 @@ module.exports = (grunt) ->
 
 		copy:
 			bootstrap:
-				cwd: "lib/bootstrap-sass-official/vendor/assets/fonts/bootstrap"
+				cwd: "lib/bootstrap-sass-official/assets/fonts/bootstrap"
 				src: "*.*"
 				dest: "dist/unmin/fonts"
 				expand: true
