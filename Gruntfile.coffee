@@ -178,6 +178,22 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
+		"docs"
+		"INTERNAL: Create unminified docs"
+		[
+			"pages:docs"
+		]
+	)
+
+	@registerTask(
+		"theme"
+		"INTERNAL: Create unminified theme"
+		[
+			"pages:theme"
+		]
+	)
+
+	@registerTask(
 		"demos-min"
 		"INTERNAL: Create minified demos"
 		[
@@ -420,18 +436,19 @@ module.exports = (grunt) ->
 
 			theme:
 				options:
+					flatten: true
 					plugins: [
 						"assemble-contrib-i18n"
 					]
 					i18n:
 						languages: "<%= i18n_csv.assemble.locales %>"
 						templates: [
-							"theme/**/*.hbs"
+							"theme/site/pages/**/*.hbs"
 							# Don't run i18n transforms on language specific templates
 							"!theme/**/*-en.hbs"
 							"!theme/**/*-fr.hbs"
 						]
-				dest: "dist/unmin"
+				dest: "dist/unmin/theme/"
 				src: [
 					"theme/**/*-en.hbs"
 					"theme/**/*-fr.hbs"
