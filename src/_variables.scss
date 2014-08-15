@@ -109,7 +109,7 @@ $pager-border-radius: 4px;
 $icon-font-path: "../fonts/";
 
 // Import Bootstrap variables for viewport sizes
-@import "../lib/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/variables";
+@import "../lib/bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
 
 // Additional Viewports outside of Bootstrap definitions
 // @TODO: Remove camel case variables once themes are patched

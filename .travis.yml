@@ -9,7 +9,7 @@ env:
     - secure: "14iu5t7qzaF4KYE9XRND7WrkdEYqESr8+dxWtSNfv37F5Ef28yI0HWw9NeLr66PvCE/oSti5fF4JPqBmBAGMeLbCIpT9uROTYEM3Vd6KcEo8Vp3KW10sRKhjVquKb4u8km/qsoj4qudGaQ4MMxSo6sVo5SyHC4OsyBqxED83EWs=" #Sauce Access Key
     - TRAVIS_COMMIT_MSG="$(git log --format=%B --no-merges -n 1)"
 
-before_install:
+install:
   - ./script/setup
   - gem install scss-lint --no-ri --version '=0.26.2'
 

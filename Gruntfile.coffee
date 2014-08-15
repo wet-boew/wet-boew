@@ -6,9 +6,20 @@ module.exports = (grunt) ->
 	# External tasks
 	@registerTask(
 		"default"
-		"Default task that runs the production build"
+		"Default task that runs the core unminified build"
+		[
+			"build"
+			"demos"
+		]
+	)
+
+	@registerTask(
+		"travis"
+		"Default task that runs the core unminified build"
 		[
 			"dist"
+			"test-mocha"
+			"htmllint"
 		]
 	)
 
@@ -19,17 +30,10 @@ module.exports = (grunt) ->
 			"checkDependencies"
 			"test"
 			"build"
-			"assets-min"
+			"minify"
+			"pages:theme"
+			"pages:docs"
 			"demos-min"
-		]
-	)
-
-	@registerTask(
-		"debug"
-		"Produces unminified files"
-		[
-			"build"
-			"demos"
 		]
 	)
 
@@ -42,6 +46,16 @@ module.exports = (grunt) ->
 			"css"
 			"js"
 			"imagemin"
+		]
+	)
+
+	@registerTask(
+		"minify"
+		"Minify built files."
+		[
+			"js-min"
+			"css-min"
+			"assets-min"
 		]
 	)
 
@@ -107,6 +121,13 @@ module.exports = (grunt) ->
 			"concat:coreIE8"
 			"concat:pluginsIE8"
 			"concat:i18n"
+		]
+	)
+
+	@registerTask(
+		"js-min"
+		"INTERNAL: Minify the built Javascript files"
+		[
 			"uglify:polyfills"
 			"uglify:core"
 			"uglify:coreIE8"
@@ -124,6 +145,13 @@ module.exports = (grunt) ->
 			"autoprefixer"
 			"csslint:unmin"
 			"concat:css_addBanners"
+		]
+	)
+
+	@registerTask(
+		"css-min"
+		"INTERNAL: Minify the CSS files"
+		[
 			"cssmin:dist"
 			"cssmin:distIE8"
 			"ie8csscleaning"
@@ -142,10 +170,26 @@ module.exports = (grunt) ->
 		"demos"
 		"INTERNAL: Create unminified demos"
 		[
-			"i18n_csv:assemble"
 			"copy:demos"
 			"csslint:demos"
-			"pages"
+			"pages:demos"
+			"pages:ajax"
+		]
+	)
+
+	@registerTask(
+		"docs"
+		"INTERNAL: Create unminified docs"
+		[
+			"pages:docs"
+		]
+	)
+
+	@registerTask(
+		"theme"
+		"INTERNAL: Create unminified theme"
+		[
+			"pages:theme"
 		]
 	)
 
@@ -158,7 +202,6 @@ module.exports = (grunt) ->
 			"cssmin:demos_min"
 			"uglify:demos"
 			"pages:min"
-			"htmllint"
 		]
 	)
 
@@ -185,7 +228,7 @@ module.exports = (grunt) ->
 		"INTERNAL: prepare for running Mocha unit tests"
 		[
 			"copy:test"
-			"assemble:test"
+			"pages:test"
 			"connect:test"
 		]
 	)
@@ -201,9 +244,17 @@ module.exports = (grunt) ->
 					"useMinAssets"
 				);
 			else
-				# Only use a target path for assemble if pages recieved one too
+
+				if target != "test" and grunt.config("i18n_csv.assemble.locales") == undefined
+					grunt.task.run(
+						"i18n_csv:assemble"
+					)
+
+				# Only use a target path for assemble if pages received one too
 				target = if target then ":" + target else ""
-				grunt.task.run( "assemble" + target );
+				grunt.task.run(
+					"assemble" + target
+				);
 	)
 
 	@registerTask(
@@ -385,18 +436,19 @@ module.exports = (grunt) ->
 
 			theme:
 				options:
+					flatten: true
 					plugins: [
 						"assemble-contrib-i18n"
 					]
 					i18n:
 						languages: "<%= i18n_csv.assemble.locales %>"
 						templates: [
-							"theme/**/*.hbs"
+							"theme/site/pages/**/*.hbs"
 							# Don't run i18n transforms on language specific templates
 							"!theme/**/*-en.hbs"
 							"!theme/**/*-fr.hbs"
 						]
-				dest: "dist/unmin"
+				dest: "dist/unmin/theme/"
 				src: [
 					"theme/**/*-en.hbs"
 					"theme/**/*-fr.hbs"
@@ -459,14 +511,6 @@ module.exports = (grunt) ->
 				cwd: "site/pages"
 				src: [
 					"docs/**/*.hbs"
-				]
-				dest: "dist/unmin"
-				expand: true
-
-			versions:
-				cwd: "site/pages"
-				src: [
-					"docs/versions/**/*.hbs"
 				]
 				dest: "dist/unmin"
 				expand: true
@@ -874,7 +918,7 @@ module.exports = (grunt) ->
 
 		copy:
 			bootstrap:
-				cwd: "lib/bootstrap-sass-official/vendor/assets/fonts/bootstrap"
+				cwd: "lib/bootstrap-sass-official/assets/fonts/bootstrap"
 				src: "*.*"
 				dest: "dist/unmin/fonts"
 				expand: true
@@ -1089,16 +1133,6 @@ module.exports = (grunt) ->
 				]
 				tasks: [
 					"pages:docs"
-				]
-				options:
-					livereload: true
-
-			versions:
-				files: [
-					"site/pages/docs/versions/**/*.hbs"
-				]
-				tasks: [
-					"pages:versions"
 				]
 				options:
 					livereload: true
