@@ -33,7 +33,6 @@ module.exports = (grunt) ->
 			"minify"
 			"pages:theme"
 			"pages:docs"
-			"pages:versions"
 			"demos-min"
 		]
 	)
@@ -64,7 +63,6 @@ module.exports = (grunt) ->
 		"deploy"
 		"Build and deploy artifacts to wet-boew-dist"
 		[
-			"dist"
 			"copy:deploy"
 			"gh-pages:travis"
 		]
@@ -214,7 +212,6 @@ module.exports = (grunt) ->
 		"INTERNAL: prepare for running Mocha unit tests"
 		[
 			"copy:test"
-			"minify"
 			"pages:test"
 			"connect:test"
 		]
@@ -231,10 +228,15 @@ module.exports = (grunt) ->
 					"useMinAssets"
 				);
 			else
+
+				if target != "test" and grunt.config("i18n_csv.assemble.locales") == undefined
+					grunt.task.run(
+						"i18n_csv:assemble"
+					)
+
 				# Only use a target path for assemble if pages received one too
 				target = if target then ":" + target else ""
 				grunt.task.run(
-					"i18n_csv:assemble"
 					"assemble" + target
 				);
 	)
@@ -492,14 +494,6 @@ module.exports = (grunt) ->
 				cwd: "site/pages"
 				src: [
 					"docs/**/*.hbs"
-				]
-				dest: "dist/unmin"
-				expand: true
-
-			versions:
-				cwd: "site/pages"
-				src: [
-					"docs/versions/**/*.hbs"
 				]
 				dest: "dist/unmin"
 				expand: true
@@ -907,7 +901,7 @@ module.exports = (grunt) ->
 
 		copy:
 			bootstrap:
-				cwd: "lib/bootstrap-sass-official/vendor/assets/fonts/bootstrap"
+				cwd: "lib/bootstrap-sass-official/assets/fonts/bootstrap"
 				src: "*.*"
 				dest: "dist/unmin/fonts"
 				expand: true
@@ -1122,16 +1116,6 @@ module.exports = (grunt) ->
 				]
 				tasks: [
 					"pages:docs"
-				]
-				options:
-					livereload: true
-
-			versions:
-				files: [
-					"site/pages/docs/versions/**/*.hbs"
-				]
-				tasks: [
-					"pages:versions"
 				]
 				options:
 					livereload: true
