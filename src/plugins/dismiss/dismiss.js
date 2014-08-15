@@ -10,51 +10,52 @@
 
 if ( typeof(Storage) !== "undefined" ) {
 
-	/*
-	 * Init State
-	 */
 	$("details.alert").each(function(index) {
 
-		localStorage.setItem("Test", "test");
-		//alert(localStorage.getItem("Test"));
-		
-		console.log(this.attr("id"));
-		//alert(index.attr("id"));
+		var details_id = $(this).attr("id");
 
-		/*
-		if (localStorage.getItem("alert-dismiss-state-" + this.attr("id"))) {
+		if (localStorage.getItem("alert-dismiss-state-" + details_id)) {
 
 			// Set open/closed state for existing localStorage keys
-			if (localStorage.setItem("alert-dismiss-state-" + this.attr("id")), "open") {
-				this.attr("open");
-			} else if (localStorage.setItem("alert-dismiss-state-" + this.attr("id")), "closed") {
-				this.removeAttr("open");
+			if (localStorage.getItem("alert-dismiss-state-" + details_id) === "open") {
+				$(this).attr("open");
+			} else if (localStorage.getItem("alert-dismiss-state-" + details_id) === "closed") {
+				$(this).removeAttr("open");
 			}
 
 		} else {
 
 			// Set new localStorage values
-			if (this.attr("open")) {
-				if (this.attr("id")) {
-					localStorage.setItem("alert-dismiss-state-" + this.attr("id"), "open");
+			if ($(this).attr("open")) {
+				if (details_id) {
+					localStorage.setItem("alert-dismiss-state-" + details_id, "open");
 				}
 			} else {
-				if (this.attr("id")) {
-					localStorage.setItem("alert-dismiss-state-" + this.attr("id"), "closed");
+				if (details_id) {
+					localStorage.setItem("alert-dismiss-state-" + details_id, "closed");
 				}
 			}
 
 		}
-		*/
+
+		$(this).children().eq(0).click(function(index) {
+
+			if ($(this).parent().attr("open")) {
+				if (details_id) {
+					$(this).removeAttr("open");
+					localStorage.setItem("alert-dismiss-state-" + details_id, "closed");
+				}
+			} else {
+				if (details_id) {
+					$(this).attr("open");
+					localStorage.setItem("alert-dismiss-state-" + details_id, "open");
+				}
+			}
+
+		});
 
 	});
 
-	/*
-	 * Event listeners for details elements
-	 */
-
-} else {
-	// Sorry! No Web Storage support..
 }
 
 })( jQuery );
