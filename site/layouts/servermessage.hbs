@@ -1,39 +1,23 @@
 <!DOCTYPE html>
-<!--[if lt IE 9]><html class="no-js lt-ie9" lang="{{language}}"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lt-ie9" lang="{{language}}" dir="{{{i18n "lang-dir"}}}"><![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" lang="{{language}}">
+<html class="no-js" lang="{{language}}" dir="{{{i18n "lang-dir"}}}">
 <!--<![endif]-->
 	<head>
 		<meta charset="utf-8" />
 		<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 		wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-		<title>{{title}} - {{{i18n "site-title"}}}</title>
+		<title>{{title}}</title>
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
 		<!-- Meta data -->
-		<meta name="description" content="{{{i18n "site-description"}}}" />
+		<meta name="robots" content="noindex, nofollow, noarchive" />
 		<!-- Meta data-->
-		<!--[if gte IE 9 | !IE ]><!-->
-		<link href="{{environment.root}}/assets/favicon.ico" rel="icon" type="image/x-icon" />
-		<link rel="stylesheet" href="{{environment.root}}/css/wet-boew{{environment.suffix}}.css" />
-		<!--<![endif]-->
-		<link rel="stylesheet" href="{{environment.root}}/css/theme{{environment.suffix}}.css" />
-		{{#if page.css}}<link rel="stylesheet" href="{{page.css}}{{environment.suffix}}.css" />{{/if}}
-		<!--[if lt IE 9]>
-		<link href="{{environment.root}}/assets/favicon.ico" rel="shortcut icon" />
-		<link rel="stylesheet" href="{{environment.root}}/css/ie8-wet-boew.css" />
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/{{environment.jqueryOldIEVersion}}/jquery{{environment.suffix}}.js"></script>
-		<script src="{{environment.root}}/js/ie8-wet-boew{{environment.suffix}}.js"></script>
-		<![endif]-->
-
-		<noscript><link rel="stylesheet" href="{{environment.root}}/css/noscript{{environment.suffix}}.css" /></noscript>
-
+		{{>headresources}}
 	</head>
 	<body vocab="http://schema.org/" typeof="WebPage">
 		<main role="main" property="mainContentOfPage" class="container">
 			<div class="row mrgn-tp-lg">
-				<div class="col-md-12">
-					{{>body}}
-				</div>
+				{{>body}}
 			</div>
 		</main>
 	</body>
