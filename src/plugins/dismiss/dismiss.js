@@ -18,7 +18,7 @@ if ( typeof(Storage) !== "undefined" ) {
 
 			// Set open/closed state for existing localStorage keys
 			if (localStorage.getItem("alert-dismiss-state-" + details_id) === "open") {
-				$(this).attr("open");
+				$(this).attr("open", "open");
 			} else if (localStorage.getItem("alert-dismiss-state-" + details_id) === "closed") {
 				$(this).removeAttr("open");
 			}
@@ -38,6 +38,7 @@ if ( typeof(Storage) !== "undefined" ) {
 
 		}
 
+		// Set event listeners for details/summary open/close actions
 		$(this).children().eq(0).click(function(index) {
 
 			if ($(this).parent().attr("open")) {
