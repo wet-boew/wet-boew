@@ -208,6 +208,16 @@ a {
 	}
 }
 
+section {
+	&.alert {
+		> {
+			:first-child {
+				margin-left: 1.2em;
+			}
+		}
+	}
+}
+
 %label-alert-color-000 {
 	color: #000;
 }
@@ -403,6 +413,67 @@ $label-alert-danger-border-icon-color: #d3080c;
 		}
 	}
 }
+
+details {
+	&.alert {
+		padding-left: 45px;
+
+		&:before {
+			display: inline-block;
+			font-family: "Glyphicons Halflings";
+			font-size: 24px;
+			margin-left: -1.3em;
+			margin-top: -3px;
+			position: absolute;
+		}
+
+		> {
+			:first-child {
+				&:before {
+					color: #000;
+					content: "";
+				}
+			}
+		}
+	}
+
+	&.alert-success {
+		@extend %label-alert-success-bg-border-left;
+
+		&:before {
+			color: $label-alert-warning-border-icon-color;
+			content: "\e084";
+		}
+	}
+
+	&.alert-info {
+		@extend %label-alert-info-bg-border-left;
+
+		&:before {
+			color: $label-alert-info-border-icon-color;
+			content: "\e086";
+		}
+	}
+
+	&.alert-warning {
+		@extend %label-alert-warning-bg-border-left;
+
+		&:before {
+			color: $label-alert-warning-border-icon-color;
+			content: "\e107";
+		}
+	}
+
+	&.alert-danger {
+		@extend %label-alert-danger-bg-border-left;
+
+		&:before {
+			color: $label-alert-danger-border-icon-color;
+			content: "\e101";
+		}
+	}
+}
+
 
 /*
  *	Heading top margins
@@ -688,6 +759,16 @@ blockquote {
 				&:before {
 					margin-left: auto;
 					margin-right: -1.3em;
+				}
+			}
+		}
+	}
+
+	section {
+		&.alert {
+			> {
+				:first-child {
+					margin-right: 1.2em;
 				}
 			}
 		}
