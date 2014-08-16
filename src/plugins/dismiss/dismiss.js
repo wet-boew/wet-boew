@@ -31,7 +31,7 @@ var componentName = "wb-dismiss",
 
 			if ( typeof(Storage) !== "undefined" ) {
 
-				$("details.alert").each(function(index) {
+				$("details.alert").each(function() {
 
 					var details_id = $(this).attr("id");
 
@@ -60,7 +60,7 @@ var componentName = "wb-dismiss",
 					}
 
 					// Set event listeners for details/summary open/close actions
-					$(this).children().eq(0).click(function(index) {
+					$(this).children().eq(0).click(function() {
 
 						if ($(this).parent().attr("open")) {
 							if (details_id) {
