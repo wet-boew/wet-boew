@@ -187,7 +187,7 @@ a {
 
 	> {
 		:first-child {
-			margin-left: 0em;
+			margin-left: 0;
 			margin-top: auto;
 
 			&:before {
@@ -232,7 +232,7 @@ details.alert {
 	> {
 		:first-child {
 			&:before {
-				color: black;
+				color: #000000;
 				content: "";
 			}
 		}
@@ -750,7 +750,7 @@ blockquote {
 		> {
 			:first-child {
 				margin-left: auto;
-				margin-right: 0em;
+				margin-right: 0;
 
 				&:before {
 					margin-left: auto;
