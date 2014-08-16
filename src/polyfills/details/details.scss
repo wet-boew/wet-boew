@@ -7,8 +7,10 @@
 details {
 	> {
 		summary {
+			margin-left: 1.1em !important;
 			&:before { /* Add the closed pointer */
-				content: "\25BA\a0";
+				content: "\25BA\a0" !important;
+				font-size: 90%;
 			}
 		}
 	}
@@ -18,8 +20,10 @@ details {
 
 		> {
 			summary {
+				margin-left: 1.1em !important;
 				&:before { /* Add the opened pointer */
 					content: "\25BC\a0" !important;
+					font-size: 90%;
 				}
 			}
 		}
@@ -31,8 +35,10 @@ details {
 	details {
 		> {
 			summary {
+				margin-right: 1.1em !important;
 				&:before { /* Add the close pointer */
-					content: "\25C0\a0";
+					content: "\25C0\a0" !important;
+					font-size: 90%;
 				}
 			}
 		}
