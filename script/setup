@@ -1,16 +1,19 @@
-#!/bin/sh
+#!/bin/bash
 npm install -g bower grunt-cli && 
 
 while true; do
         
     yn="y" 
-
+   
     # Check if lib directory exists because setup tends to throw error if lib exists
     if [ -d "$PWD/lib" ];
         then
+            TMOUT=5
+
             echo "\nYou currently have a lib directory, this may cause an error to occour during the setup process.\n"
-            read -p "Would you like to continue anyways? [Y/n] " yn
+            read -t 30 -p "Would you like to continue anyways? [Y/n] " $yn 
     fi
+
     
     # If users want to run setup anyways or if lib directory doesn't exist, go ahead
     case $yn in
