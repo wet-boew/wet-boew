@@ -1,2 +1,21 @@
 #!/bin/sh
-npm install -g bower grunt-cli && npm install
+npm install -g bower grunt-cli && 
+
+case "$(uname -s)" in
+    CYGWIN*) 
+			npm install 
+		;;
+    *) 
+			# If a users has escalated his rights (Linux users must execute setup with root privileges), 
+	        # then the user must be brought back down to a regular user in order to run npm install successfully.
+	        # This is because Bower will not run if user is root.
+	        if [ $(id -u) != "0" ]; # 0 indicates a root user
+	            then
+	                # --unsafe-perm specified otherwise wont work on some Linux machines
+	                npm install --unsafe-perm
+	            else
+	                # log name is the only variable that maintains user integrity
+	                sudo -u $(logname) npm install --unsafe-perm
+	        fi
+		;;
+esac

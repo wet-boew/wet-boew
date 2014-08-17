@@ -11,9 +11,6 @@
     "type": "git",
     "url": "https://github.com/wet-boew/wet-boew.git"
   },
-  "config": {
-    "unsafe-perm":true
-  },
   "keywords": [
     "framework",
     "web",
