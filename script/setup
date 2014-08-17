@@ -1,2 +1,42 @@
 #!/bin/sh
-npm install -g bower grunt-cli && npm install
+npm install -g bower grunt-cli && 
+
+while true; do
+        
+    yn="y" 
+
+    # Check if lib directory exists because setup tends to throw error if lib exists
+    if [ -d "$PWD/lib" ];
+        then
+            echo "\nYou currently have a lib directory, this may cause an error to occour during the setup process.\n"
+            read -p "Would you like to continue anyways? [Y/n] " yn
+    fi
+    
+    # If users want to run setup anyways or if lib directory doesn't exist, go ahead
+    case $yn in
+        [Yy] ) 
+
+            # If a users has escalated his rights (Linux users must execute setup with root privileges), 
+            # then the user must be brought back down to a regular user in order to run npm install successfully.
+            # This is because Bower will not run if user is root.
+            if [ $(id -u) != "0" ]; # 0 indicates a root user
+                then
+                    # --unsafe-perm specified otherwise wont work on some Linux machines
+                    npm install --unsafe-perm
+                else
+                    # log name is the only variable that maintains user integrity
+                    sudo -u $(logname) npm install --unsafe-perm
+                
+                # success, kill loop
+                break 
+            fi
+            ;;
+        
+        * ) 
+            # Invalid selection, just exit the setup process
+            echo "\nThat was not a valid selection. Exiting setup.\n"
+            exit 0
+            ;;
+    esac
+done
+
