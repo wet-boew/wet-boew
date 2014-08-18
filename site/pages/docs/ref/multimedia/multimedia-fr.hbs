@@ -11,65 +11,65 @@
 ---	
 <span class="wb-prettify all-pre hide"></span>
 
-<div lang="en">
-<p><strong>Needs translation</strong></p>
+<div lang="fr">
+
 <section>
-	<h2>Purpose</h2>
-	<p>Provides an accessible multimedia player for embedding video and audio into web pages.</p>
+	<h2>But</h2>
+	<p>Fournir un lecteur multimédia accessible permettant d'intégrer des contenus vidéo et audio sur les pages Web.</p>
 </section>
 
 <section>
-	<h2>Examples</h2>
+	<h2>Exemples</h2>
 	<ul>
-		<li><a href="../../../demos/multimedia/multimedia-en.html">English video example</a></li>
-		<li><a href="../../../demos/multimedia/multimedia-fr.html">French video example</a></li>
-		<li><a href="../../../demos/multimedia/multimedia-audio-en.html">English audio example</a></li>
-		<li><a href="../../../demos/multimedia/multimedia-audio-fr.html">French audio example</a></li>
-		<li><a href="../../../demos/multimedia/multimedia-youtube-en.html">English YouTube example</a></li>
-		<li><a href="../../../demos/multimedia/multimedia-youtube-fr.html">French YouTube example</a></li>
+		<li><a href="../../../demos/multimedia/multimedia-en.html">Exemple vidéo anglais</a></li>
+		<li><a href="../../../demos/multimedia/multimedia-fr.html">Exemple vidéo français</a></li>
+		<li><a href="../../../demos/multimedia/multimedia-audio-en.html">Exemple audio anglais</a></li>
+		<li><a href="../../../demos/multimedia/multimedia-audio-fr.html">Exemple audio français</a></li>
+		<li><a href="../../../demos/multimedia/multimedia-youtube-en.html">Exemple YouTube anglais</a></li>
+		<li><a href="../../../demos/multimedia/multimedia-youtube-fr.html">Exemple YouTube français</a></li>
 	</ul>
 </section>
 
 <section>
-	<h2>How to implement</h2>
-	<p>The multimedia player requires the use of a few HTML5 tags and a link to the media source you wish to embed.</p>
+	<h2>Comment implémenter</h2>
+	<p>Le lecteur multimédia requiert l'utilisation de quelques balises HTML5 et un lien vers la source média que vous désirez intégrer.</p>
 	<section>
-		<h3>Media Formats</h3>
-		<p>The media player supports several formats, listed below; however, we recommend at a minimum you provide any video media in MPEG4 (using the H264 and AAC codecs) to be able to reach every audience, as all mobile players and most browsers are able to play this format. We also recommend you provide media in the WebM format (using the VP8 codec) in addition to MPEG4 in order to take advantage of native browser support, for example Firefox.</p>
+		<h3>Formats des médias</h3>
+		<p>Le lecteur multimédia supporte plusieurs formats, énumérés ci-dessous. Toutefois, nous recommandons que vous fournissiez au minimum tout média vidéo au format MPEG4 (en utilisant les codecs H264 et AAC) afin de pouvoir rejoindre le plus grand auditoire, puisque tous les lecteurs mobiles et la plupart des navigateurs sont en mesure de jouer ce format. Nous recommandons également que vous fournissiez les médias en format WebM (en utilisant le codec VP8) en plus du format MPEG4 afin de prendre avantage du support natif du navigateur, par exemple Firefox.</p>
 		<section>
-			<h4>Compatible Formats</h4>
+			<h4>Formats compatibles</h4>
 			<ul>
-				<li><strong>Video:</strong> MPEG4 (H264+AAC), WebM (VP8)</li>
-				<li><strong>Audio:</strong> MP3, Ogg Vorbis</li>
-				<li><strong>Captions:</strong> TTML, HTML5 Data</li>
+				<li><strong>Vidéo :</strong> MPEG4 (H264+AAC), WebM (VP8)</li>
+				<li><strong>Audio :</strong> MP3, Ogg Vorbis</li>
+				<li><strong>Sous-titrage :</strong> TTML, HTML5 Data</li>
 			</ul>
 		</section>
 	</section>
 	<section>
-		<h3>Required Elements</h3>
+		<h3>Éléments requis</h3>
 		<ol>
-			<li>Each multimedia player must be placed in its own <code>&lt;figure&gt;</code> using the <code>wb-mltmd</code> class:
+			<li>Chaque lecteur multimédia doit être placé dans sa propre balise <code>&lt;figure&gt;</code> en utilisant la classe <code>wb-mltmd</code> :
 				<pre><code>&lt;figure class="wb-mltmd"&gt;</code></pre>
 			</li>
-			<li>Each container should contain one <code>&lt;video&gt;</code> or <code>&lt;audio&gt;</code> tag.</li>
+			<li>Chaque contenant devrait contenir une balise <code>&lt;video&gt;</code> ou <code>&lt;audio&gt;</code>.</li>
 			<li>
-				<strong>Optional:</strong> Add a "Share this video" or "Share this audio file" link by adding the following to the <code>figure</code> element:
+				<strong>Facultatif :</strong> Ajoutez un lien "Partagez cette vidéo" ou "Partagez ce fichier audio" en ajoutant ce qui suit à la balise <code>figure</code> :
 				<pre><code>data-wb-mltmd='{"shareUrl": "url"}'</code></pre>
 			</li>
 			<li>
-				Add a <code>figcaption</code> element to the <code>figure</code> element with the title of the video or audio file. If a transcript is required, then also include either a link to the transcript or a details/summary containing the transcript.
+				Ajoutez l'élément <code>figcaption</code> à l'élément <code>figure</code> avec le titre du fichier vidéo ou audio. Si une transcription est requise, ajoutez soit le lien vers la transcription, soit un "details/summary" contenant le texte de la transcription.
 					<pre><code>&lt;figcaption&gt;
-	&lt;p&gt;Looking for a Job&lt;/p&gt;
+	&lt;p&gt;Trouver un emploi&lt;/p&gt;
 &lt;/figcaption&gt;</code></pre>
 					<pre><code>&lt;figcaption&gt;
-	&lt;p&gt;Looking for a Job (&lt;a href="http://www.servicecanada.gc.ca/eng/video/lj.shtml"&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
+	&lt;p&gt;Trouver un emploi (&lt;a href="http://www.servicecanada.gc.ca/fra/video/te.shtml"&gt;Transcription&lt;/a&gt;)&lt;/p&gt;
 &lt;/figcaption&gt;</code></pre>
 					<pre><code>&lt;figcaption&gt;
 	&lt;details id="inline-captions"&gt;
-		&lt;summary&gt;Looking for a Job - HTML5 Transcript/Captions&lt;/summary&gt;
-		&lt;p class="wet-boew-vd"&gt;&lt;strong&gt;(Animated pen draws a red line that leads into the text Looking for A Job)&lt;/strong&gt;&lt;/p&gt;
-		&lt;p class="wet-boew-vd"&gt;&lt;strong&gt;(Cut to a medium shot of the Host. LINE DRAWING GRAPHIC: Stick person appears and waves.)&lt;/strong&gt;&lt;/p&gt;
-		&lt;p&gt;&lt;span class="wb-tmtxt" data-begin="2.50s" data-dur="3.84s"&gt;Hi, my name is Eric, and I&#39;m a Service Canada employee.&lt;/span&gt;&lt;/p&gt;
+		&lt;summary&gt;Trouver un emploi - Transcription/Sous-titrage HTML5 &lt;/summary&gt;
+		&lt;p class="wet-boew-vd"&gt;&lt;strong&gt;(La vidéo débute par une image de l'animatrice s'avançant vers la caméra. Un trait rouge suit le texte « Trouver un emploi ».)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p class="wet-boew-vd"&gt;&lt;strong&gt;(Coupure et plan moyen de l'animatrice. DESSIN AU TRAIT : Le bonhomme-allumettes apparaît à l'écran.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class="wb-tmtxt" data-begin="2.50s" data-dur="3.84s"&gt;Bonjour, je m'appelle Amélie et je travaille à Service Canada.&lt;/span&gt;&lt;/p&gt;
 		...
 	&lt;/details&gt;
 &lt;/figcaption&gt;</code></pre>
@@ -77,57 +77,57 @@
 		</ol>
 
 		<section>
-			<h4>Video</h4>
+			<h4>Vidéo</h4>
 			<ol>
-				<li>Add a <code>poster</code> attribute to the <code>video</code> element with the value being the URL for the thumbnail image.</li>
-				<li>Add a <code>title</code> attribute to the <code>video</code> element with the value being the title of the video.</li>
+				<li>Ajoutez l'attribut <code>poster</code> à l'élément <code>video</code> avec la valeur étant l'URL de la vignette de l'image illustrant la vidéo.</li>
+				<li>Ajoutez l'attribut <code>title</code> à l'élément <code>video</code> avec la valeur étant le titre de la vidéo.</li>
 				<li>
-					Add one or more <code>source</code> elements to the <code>video</code> element with the <code>src</code> attribute value being the URL of the media file and the <code>type</code> attribute being the media file MIME type.<br />
-					<strong>Note:</strong> If you list multiple media sources for the video, the player will play the first media source file that works (is available, compatible, etc.).
-					<pre><code>&lt;source type="video/webm" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.webm" /&gt;
-&lt;source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4" /&gt;</code></pre>
+					Ajoutez un ou plusieurs éléments <code>source</code> à l'élément <code>video</code> avec l'attribut <code>src</code> ayant comme valeur l'URL du fichier média et l'attribut <code>type</code> étant son type MIME.<br />
+					<strong>Note :</strong> Si vous indiquez plusieurs sources média pour la vidéo, le lecteur jouera le premier média qui fonctionne (est disponible, compatible, etc.).
+					<pre><code>&lt;source type="video/webm" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.webm" /&gt;
+&lt;source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.mp4" /&gt;</code></pre>
 				</li>
-				<li>Add a <code>track</code> element with <code>kind="captions"</code> to the <code>video</code> element to add captions.
+				<li>Ajoutez l'élément <code>track</code> avec <code>kind="captions"</code> à l'élément <code>video</code> pour inclure le sous-titrage.
 					<ol>
 						<li>
-							Add the <code>srclang</code> and <code>label</code> attributes to the <code>track</code> element to identify the captions language.
-							<pre><code>&lt;track srclang="en" label="English" /&gt;</code></pre>
+							Ajoutez les attributs <code>srclang</code> et <code>label</code> à l'élément <code>track</code> pour identifier la langue du sous-titrage.
+							<pre><code>&lt;track srclang="fr" label="Français" /&gt;</code></pre>
 						</li>
-						<li>Add the <code>src</code> and <code>data-type</code> attributes to the <code>track</code> element to identify the source of the captions.
+						<li>Ajoutez les attributs <code>src</code> et <code>data-type</code> à l'élément <code>track</code> pour identifier la source du sous-titrage.
 							<ul>
-								<li><strong>Timed Text Markup Language:</strong> <code>data-type="application/ttml+xml"</code> and <code>src</code> is the URL of the <a rel="external" href="http://www.w3.org/TR/ttaf1-dfxp/">Timed Text Markup Language</a> captions file.</li>
-								<li><strong>HTML captions file:</strong> <code>data-type="text/html"</code> and <code>src</code> is the URL of the HTML captions file.</li>
-								<li><strong>Inline HTML captions:</strong> <code>data-type="text/html"</code> and <code>src</code> is the URL of the inline HTML captions (e.g., <code>src="#inline-captions"</code>.</li>
+								<li><strong>Timed Text Markup Language :</strong> <code>data-type="application/ttml+xml"</code> et <code>src</code> est l'URL du fichier de sous-titrage de format <a rel="external" href="http://www.w3.org/TR/ttaf1-dfxp/">Timed Text Markup Language</a>.</li>
+								<li><strong>Fichier de sous-titrage HTML :</strong> <code>data-type="text/html"</code> et <code>src</code> est l'URL du fichier de sous-titrage HTML.</li>
+								<li><strong>Sous-titrage HTML en ligne :</strong> <code>data-type="text/html"</code> and <code>src</code> est l'URL du sous-titrage HTML en ligne (e.g., <code>src="#inline-captions"</code>).</li>
 							</ul>
 						</li>
 					</ol>
-					<pre><code>&lt;track src="cpts-lg-en.html" kind="captions" data-type="text/html" srclang="en" label="English" /&gt;</code></pre>
+					<pre><code>&lt;track src="cpts-lg-fr.html" kind="captions" data-type="text/html" srclang="fr" label="Français" /&gt;</code></pre>
 				</li>
 			</ol>
 
 			<section>
 				<h5>Code</h5>
 				<pre><code>&lt;figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "http://youtu.be/p2-1ZIHu1W0"}'&gt;
-	&lt;video poster="http://www.servicecanada.gc.ca/eng/video/images/te-lj-eng.jpg" title="Looking for a Job"&gt;
-		&lt;source type="video/webm" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.webm" /&gt;
-		&lt;source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4" /&gt;
-		&lt;track src="cpts-lg-en.html" kind="captions" data-type="text/html" srclang="en" label="English" /&gt;
+	&lt;video poster="http://www.servicecanada.gc.ca/fra/video/images/te-lj-fra.jpg" title="Trouver un emploi"&gt;
+		&lt;source type="video/webm" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.webm" /&gt;
+		&lt;source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.mp4" /&gt;
+		&lt;track src="cpts-lg-fr.html" kind="captions" data-type="text/html" srclang="fr" label="Français" /&gt;
 	&lt;/video&gt;
 	&lt;figcaption&gt;
-		&lt;p&gt;Looking for a Job (&lt;a href="http://www.servicecanada.gc.ca/eng/video/lj.shtml"&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
+		&lt;p&gt;Trouver un emploi (&lt;a href="http://www.servicecanada.gc.ca/fra/video/te.shtml"&gt;Transcription&lt;/a&gt;)&lt;/p&gt;
 	&lt;/figcaption&gt;
 &lt;/figure&gt;</code></pre>
 			</section>
 		</section>
 
 		<section>
-			<h4>Video (YouTube)</h4>
+			<h4>Vidéo (YouTube)</h4>
 			<ol>
-				<li>Add a <code>title</code> attribute to the <code>video</code> element with the value being the title of the video.</li>
-				<li>Add a <code>source</code> element to the <code>video</code> element with <code>type="video/youtube"</code> and the <code>src</code> attribute being the URL of the video.
+				<li>Ajoutez l'attribut <code>title</code> à l'élément <code>video</code> avec la valeur étant le titre de la vidéo.</li>
+				<li>Ajoutez un élément <code>source</code> à l'élément <code>video</code> avec l'attribut <code>type="video/youtube"</code> et l'attribut <code>src</code> étant l'URL de la vidéo.
 					<pre><code>&lt;source type="video/youtube" src="http://www.youtube.com/watch?v=9znKJqnFuuY" /&gt;</code></pre>
 				</li>
-				<li>If captions are not already included for the video, add the captions using the tools provided by YouTube.</li>
+				<li>Si le sous-titrage n'est pas déjà inclut pour la vidéo, l'ajouter avec les outils fournis par YouTube.</li>
 			</ol>
 
 			<section>
@@ -146,10 +146,10 @@
 		<section>
 			<h4>Audio</h4>
 			<ol>
-				<li>Add a <code>title</code> attribute to the <code>audio</code> element with the value being the title of the audio.</li>
+				<li>Ajoutez l'attribut <code>title</code> à l'élément <code>audio</code> avec la valeur étant le titre de l'audio.</li>
 				<li>
-					Add one or more <code>source</code> elements to the <code>audio</code> element with the <code>src</code> attribute value being the URL of the media file and the <code>type</code> attribute being the media file MIME type.<br />
-					<strong>Note:</strong> If you list multiple media sources for the audio, the player will play the first media source file that works (is available, compatible, etc.).
+					Ajoutez un ou plusieurs éléments <code>source</code> à l'élément <code>audio</code> avec l'attribut <code>src</code> avec la valeur étant l'URL du fichier média et l'attribut <code>type</code> étant le type MIME du fichier.<br />
+					<strong>Note :</strong> Si vous indiquez plusieurs sources média pour l'audio, le lecteur jouera le premier fichier média qui fonctionne (est disponible, compatible, etc.).
 					<pre><code>&lt;source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3" /&gt;
 &lt;source src="http://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.ogg" type="audio/ogg" /&gt;</code></pre>
 				</li>
@@ -172,25 +172,25 @@
 </section>
 
 <section>
-	<h2>Configuration options</h2>
+	<h2>Options de configuration</h2>
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Option</th>
 				<th>Description</th>
-				<th>How to configure</th>
-				<th>Values</th>
+				<th>Comment configurer</th>
+				<th>Valeurs</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td><code>shareUrl</code></td>
-				<td>Adds a "Share this video" or "Share this audio file" link</td>
-				<td>Add <pre><code>data-wb-mltmd='{"shareUrl": "url"}'</code></pre> to the element with <code>class="wb-mltmd"</code>.</td>
+				<td>Ajoute un lien "Partagez cette vidéo" ou "Partagez ce fichier audio"</td>
+				<td>Ajoutez <pre><code>data-wb-mltmd='{"shareUrl": "url"}'</code></pre> à l'élément avec l'attribut <code>class="wb-mltmd"</code>.</td>
 				<td>
 					<dl>
 						<dt>URL</dt>
-						<dd>URL of the video or audio file to share.</dd>
+						<dd>URL de la vidéo ou du fichier audio à partager.</dd>
 					</dl>
 				</td>
 			</tr>
@@ -199,25 +199,25 @@
 </section>
 
 <section>
-	<h2>Events</h2>
+	<h2>Événements</h2>
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Event</th>
-				<th>Trigger</th>
-				<th>What it does</th>
+				<th>Événement</th>
+				<th>Déclencheur</th>
+				<th>Ce qu'il fait</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td><code>wb-init.wb-mltmd</code></td>
-				<td>Triggered manually (e.g., <code>$( ".wb-mltmd" ).trigger( "wb-init.wb-mltmd" );</code>).</td>
-				<td>Used to manually initialize the multimedia player. <strong>Note:</strong> The multimedia player will be initialized automatically unless the multimedia player markup is added after the page has already loaded.</td>
+				<td>Déclenché manuellement (e.g., <code>$( ".wb-mltmd" ).trigger( "wb-init.wb-mltmd" );</code>).</td>
+				<td>Utilisé pour initialiser manuellement le lecteur multimédia. <strong>Note :</strong> Le lecteur sera initialisé automatiquement à moins que le code du lecteur soit ajouté après que la page ait déjà été chargée.</td>
 			</tr>
 			<tr>
 				<td><code>wb-ready.wb-mltmd</code> (v4.0.5+)</td>
-				<td>Triggered automatically after a multimedia player initializes.</td>
-				<td>Used to identify which multimedia player initialized (target of the event)
+				<td>Déclenché automatiquement après que le lecteur soit initialisé.</td>
+				<td>Utilisé pour identifier quel lecteur est initialisé (cible de l'événement)
 					<pre><code>$( document ).on( "wb-ready.wb-mltmd", ".wb-mltmd", function( event ) {
 });</code></pre>
 					<pre><code>$( ".wb-mltmd" ).on( "wb-ready.wb-mltmd", function( event ) {
@@ -226,8 +226,8 @@
 			</tr>
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
-				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Déclenché automatiquement quant BOEW a fini son chargement et son exécution.</td>
+				<td>Utilisé pour identifier quand tous les plugiciels BOEW et les polyfills ont terminé leur chargement et leur exécution. 
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
@@ -237,7 +237,7 @@
 </section>
 
 <section>
-	<h2>Source code</h2>
-	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/multimedia">Multimedia player source code on GitHub</a></p>
+	<h2>Code source</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/multimedia">Code source du lecteur multimédia sur GitHub</a></p>
 </section>
 </div>
