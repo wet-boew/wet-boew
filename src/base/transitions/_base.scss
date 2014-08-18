@@ -91,6 +91,8 @@
 
 
 .fade {
+	transition: all 0 ease 0;
+
 	&.in {
 		@extend %visible;
 		animation-duration: 225ms;
