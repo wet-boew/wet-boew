@@ -170,12 +170,6 @@ $mm-volume-thumb-width: 10px;
 				width: 1.2em;
 			}
 		}
-
-		&.youtube {
-			.wb-mm-cc {
-				@extend %captions_hidden;
-			}
-		}
 	}
 
 	//TODO: Remove this when captions works in chromeless api with controls
@@ -183,6 +177,12 @@ $mm-volume-thumb-width: 10px;
 		.wb-mm-ctrls {
 			border-bottom: 10px solid #fff;
 			margin-top: -35px;
+		}
+
+		&.cc_on {
+			.wb-mm-cc {
+				@extend %multimedia-display-none;
+			}
 		}
 
 		.wb-mm-ovrly {
