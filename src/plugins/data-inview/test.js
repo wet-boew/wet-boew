@@ -27,8 +27,7 @@ describe( "data-inview test suite", function() {
 		sandbox = sinon.sandbox.create(),
 		componentName = "wb-inview",
 		selector = "." + componentName,
-		initEvent = "wb-init" + selector,
-		scrollEvent = "scroll" + selector;
+		initEvent = "wb-init" + selector;
 
 	/*
 	 * Before beginning the test suite, this function is executed once.
@@ -36,10 +35,15 @@ describe( "data-inview test suite", function() {
 	before(function( done ) {
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
 		spy = sandbox.spy( $.prototype, "trigger" );
-		callback = done;
 
-		$document.on( initEvent + " " + scrollEvent, selector, function( event ) {
-			callback();
+		$document.on( initEvent, selector, function( event ) {
+			done();
+		});
+
+		$document.on( "all.wb-inview partial.wb-inview none.wb-inview", selector, function( event ) {
+			if (callback) {
+				callback();
+			}
 		});
 
 		$bar.appendTo( $body );
