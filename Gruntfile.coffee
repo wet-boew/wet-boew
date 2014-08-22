@@ -673,6 +673,7 @@ module.exports = (grunt) ->
 				"overqualified-elements": false
 				"qualified-headings": false
 				"regex-selectors": false
+				"selector-max-approaching": false
 				# Some Bootstrap mixins end up listing all the longhand properties
 				"shorthand": false
 				"text-indent": false
