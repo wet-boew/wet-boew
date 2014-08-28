@@ -43,7 +43,8 @@ var wet_boew_geomap = {
 			tab: true,
 			popups: true,
 			attributes: {
-				name: "Nom"
+				RD_NAME: "RD_NAME",
+				RD_SUFFIX: "RD_SUFFIX"
 			},
 			style: {
 				init: {
@@ -129,10 +130,10 @@ var wet_boew_geomap = {
 					graphicOpacity: 1.0
 				},
 				select: {
-					graphicWidth: 20,
-					graphicHeight: 20,
+					graphicWidth: 30,
+					graphicHeight: 30,
 					externalGraphic: "demo/trafficcamera_active.png",
-					graphicOpacity: 0.5
+					graphicOpacity: 1.0
 				}
 			}
 

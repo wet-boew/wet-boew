@@ -251,7 +251,6 @@
  * GeoMap
  */
 .wb-geomap-map {
-	margin: 0 15px 30px;
 	outline: 1px solid #ccc;
 	position: relative;
 
@@ -281,14 +280,6 @@
 
 .geomap-legend-label {
 	display: inline;
-}
-
-.geomap-geoloc {
-	position: absolute;
-	top: 15px;
-	left: 60px;
-	right: 60px;
-	z-index: 10000;
 }
 
 .geomap-geoloc {

@@ -9,7 +9,6 @@
 	"dateModified": "2014-08-04"
 }
 ---
-<span class="wb-prettify all-pre hide"></span>
 
 <section>
 	<h2>Purpose</h2>
@@ -32,23 +31,23 @@
 	</ul>
 </section>
 
-
-<span class="wet-boew-prettify all-pre"></span>
+<section>
+	<h2>How to implement</h2>
+	<ol>
+		<li>Add a <code>div</code> element with <code>class="wb-geomap"</code> and assign it a unique <code>id</code>.
+		<li>Add <code>div</code> with <code>class="wb-geomap-map"</code> to the <code>div</code> created in step 1 where you want the map to be rendered.</li>
+		<li>Add <code>div</code> with <code>class="wb-geomap-layers"</code> to the <code>div</code> created in step 1 where you want the layer(s) listing to be rendered.</li>
+	</ol>
 	<section>
-		<h2>How to implement</h2>
-		<ol>
-			<li>Add a <code>div</code> element with <code>class="wb-geomap"</code> and assign it a unique <code>id</code>.
-			<li>Add <code>div</code> with <code>class="wb-geomap-map"</code> to the <code>div</code> created in step 1 where you want the map to be rendered.</li>
-			<li>Add <code>div</code> with <code>class="wb-geomap-layers"</code> to the <code>div</code> created in step 1 where you want the layer(s) listing to be rendered.</li>
-		</ol>
-		<section>
-			<h3>Optional elements</h3>
-			<ul>
-				<li><strong>Add legend:</strong> If a map legend is required add <code>div</code> with <code>class="wb-geomap-legend"</code> to the <code>div</code> created in step 1 where you want it to be rendered.</li>
-				<li><strong>Add widgets:</strong> Widgets (e.g. position, scaleline, etc.) are configured using classes on the plugin element created in step 1.</li>
-			</ul>
-
-			<section class="alert alert-info"><strong>Note:</strong> If you are implementing the working example on your development environment you may need to add the necessary support for the mime-types required by the various formats demonstrated (e.g. ".kml" "application/vnd.google-earth.kml+xml") to your web server.</section>
+		<h3>Optional elements</h3>
+		<ul>
+			<li><strong>Add legend:</strong> If a map legend is required add <code>div</code> with <code>class="wb-geomap-legend"</code> to the <code>div</code> created in step 1 where you want it to be rendered.</li>
+			<li><strong>Add widgets:</strong> Widgets (e.g. position, scaleline, etc.) are configured using classes on the plugin element created in step 1.</li>
+		</ul>
+		<section class="alert alert-info">
+			<h4>Note:</h4>
+			<p>If you are implementing the working example on your development environment you may need to add the necessary support for the mime-types required by the various formats demonstrated (e.g. ".kml" "application/vnd.google-earth.kml+xml") to your web server.</p>
+		</section>
 	</section>
 	<section>
 		<h3>Example implementation markup</h3>
@@ -70,33 +69,6 @@
 	    &lt;/div&gt;
 	&lt;/div&gt;</code></pre>
 	</section>
-<!--
-	<section>
-		<h3>File based (e.g. "config-en.js") configuration example</h3>
-		<pre><code>var wet_boew_geomap = {
-    basemap : {
-        title: 'CBMT',
-        type: 'wms',
-	url: 'http://geogratis.gc.ca/maps/CBMT',
-	layers: 'CBMT',
-	format: 'image/png',
-	version: '1.1.1'
-    },
-    overlays : [
-        {
-            title: 'KML Demo EN',
-            caption: 'This is a sample KML file loaded locally by Geomap.',
-	    type: 'kml',
-	    url: 'data/sample.kml',
-	    visible: true
-        },
-        {
-            ...
-        }
-    ]
-};</code></pre>
-	</section>
--->
 
 	<section>
 		<h3>Plugin configuration options</h3>
@@ -106,7 +78,10 @@
 			<li>Using a configuration file</li>
 			<li>Using CSS classes on the plugin element</li>
 		</ul>
-		<section class="alert alert-info"><strong>Note:</strong> all plugin configuration parameters are optional.</section>
+		<section class="alert alert-info">
+			<h4>Note:</h4>
+			<p>all plugin configuration parameters are optional.</p>
+		</section>
 		<section>
 			<h4>Configuration using <code>data-wb-geomap</code> attribute on plugin element</h4>
 			<p>Use the <code>data-wb-geomap</code> attribute to configure the display of map features from inline HTML tables or from a local/remote data source.</p>
