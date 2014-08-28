@@ -2413,7 +2413,7 @@ var componentName = "wb-geomap",
 			$( ".olTileImage" ).attr( "alt", "" );
 
 			// Identify that initialization has completed
-			wb.ready( $( geomap.mapid ), componentName, [ map ] );
+			wb.ready( $( "#" + geomap.mapid ), componentName, [ map ] );
 		}, 2000 );
 
 		geomap.map.events.on({
