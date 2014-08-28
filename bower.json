@@ -34,7 +34,7 @@
     "jquery-pjax": "1.7.3",
     "jquery-validation": "1.11.1",
     "magnific-popup": "0.9.9",
-    "openlayers": "release-2.13.1",
+    "openlayers": "https://github.com/wet-boew/openlayers-dist.git#2.13.1",
     "proj4": "2.1.0",
     "respond": "1.4.0",
     "selectivizr": "1.0.2",
