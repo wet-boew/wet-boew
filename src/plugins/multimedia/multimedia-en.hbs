@@ -7,7 +7,7 @@
 	"tag": "multimedia",
 	"parentdir": "multimedia",
 	"altLangPrefix": "multimedia",
-	"dateModified": "2014-07-21"
+	"dateModified": "2014-09-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -119,7 +119,7 @@
 	</div>
 
 	<div class="row">
-		<section class="col-md-12">
+		<section class="col-md-6">
 			<h3>MPEG4 (H264 + AAC) source with inline HTML captions</h3>
 			<p>This example illustrates the use of an inline transcript to provide captions. This example can also demonstrate the fallback mechanism in Web browsers that don't support HTML5 videos.</p>
 			<figure class="wb-mltmd">
@@ -205,6 +205,35 @@
 			&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;2.50s&quot; data-dur=&quot;3.84s&quot;&gt;Hi, my name is Eric, and I&amp;#39;m a Service Canada employee.&lt;/span&gt;&lt;/p&gt;
 			...
 		&lt;/details&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+			</details>
+		</section>
+		<section class="col-md-6">
+			<h3>MPEG4 (H264 + AAC) source with cue points</h3>
+			<p>This example illustrates the use of buttons to navigate to specific cue points within the video.</p>
+			<figure class="wb-mltmd">
+				<video poster="http://www.servicecanada.gc.ca/eng/video/images/te-lj-eng.jpg" title="Looking for a Job">
+					<source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4" />
+					<track src="#inline-captions" kind="captions" data-type="text/html" srclang="en" label="English" />
+				</video>
+				<button class="btn btn-info cuepoint" data-cuepoint="45s">Cue point - 45s</button>
+				<button class="btn btn-info cuepoint" data-cuepoint="01:10">Cue point - 01:10</button>
+				<figcaption>
+					<p>Looking for a Job (<a href="http://www.servicecanada.gc.ca/eng/video/lj.shtml">Transcript</a>)</p>
+				</figcaption>
+			</figure>
+			<details class="mrgn-tp-md">
+				<summary>View code</summary>
+				<pre><code>&lt;figure class=&quot;wb-mltmd&quot;&gt;
+	&lt;video poster=&quot;http://www.servicecanada.gc.ca/eng/video/images/te-lj-eng.jpg&quot; title=&quot;Looking for a Job&quot;&gt;
+		&lt;source type=&quot;video/mp4&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4&quot; /&gt;
+		&lt;track src=&quot;#inline-captions&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
+	&lt;/video&gt;
+	&lt;button class="btn btn-info cuepoint" data-cuepoint="45s"&gt;Cue point - 45s&lt;/button&gt;
+	&lt;button class="btn btn-info cuepoint" data-cuepoint="01:10"&gt;Cue point - 01:10&lt;/button&gt;
+	&lt;figcaption&gt;
+		&lt;p&gt;Looking for a Job (&lt;a href="http://www.servicecanada.gc.ca/eng/video/lj.shtml"&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
 	&lt;/figcaption&gt;
 &lt;/figure&gt;</code></pre>
 			</details>
