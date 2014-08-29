@@ -826,6 +826,8 @@ $document.on( "click", selector, function( event ) {
 		this.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05);
 	} else if ( className.match( /\bfastforward\b|-forward/ ) ) {
 		this.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05);
+	} else if ( className.match( /mltmd-cuepoint/ ) ) {
+		this.player( "setCurrentTime", $target.data( "cuepoint" ));
 	}
 });
 
