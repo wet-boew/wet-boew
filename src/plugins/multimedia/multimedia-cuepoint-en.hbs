@@ -1,0 +1,70 @@
+---
+{
+	"title": "Multimedia Player - Video",
+	"language": "en",
+	"category": "Plugins",
+	"description": "Provides an accessible multimedia player for embedding video into web pages.",
+	"tag": "multimedia",
+	"parentdir": "multimedia",
+	"altLangPrefix": "multimedia",
+	"dateModified": "2014-09-03"
+}
+---
+<span class="wb-prettify all-pre hide"></span>
+
+<section>
+	<div class="row">
+		<div class="col-md-12">
+			<h2>Examples</h2>
+		</div>
+	</div>
+
+	<div class="row">
+		<section class="col-md-6">
+			<h3 class="wb-inv">MPEG4 (H264 + AAC) and WebM (VP8) source and HTML captions</h3>
+			<figure class="wb-mltmd" data-wb-mltmd='{"shareUrl": "http://youtu.be/p2-1ZIHu1W0"}'>
+				<video poster="http://www.servicecanada.gc.ca/eng/video/images/te-lj-eng.jpg" title="Looking for a Job">
+					<source type="video/webm" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.webm" />
+					<source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4" />
+					<track src="cpts-lg-en.html" kind="captions" data-type="text/html" srclang="en" label="English" />
+				</video>
+				<figcaption>
+					<button class="btn btn-default cuepoint" data-cuepoint="45">Cuepoint - 00:45</button>
+					<button class="btn btn-default cuepoint" data-cuepoint="70">Cuepoint - 01:10</button>
+					<p>Looking for a Job (<a href="http://www.servicecanada.gc.ca/eng/video/lj.shtml">Transcript</a>)</p>
+				</figcaption>
+			</figure>
+
+			<details class="mrgn-tp-md mrgn-bttm-lg">
+				<summary>View code</summary>
+				<section>
+					<h4>In-page HTML</h4>
+					<pre><code>&lt;figure class=&quot;wb-mltmd&quot; data-wb-mltmd='{&quot;shareUrl&quot;: &quot;http://youtu.be/p2-1ZIHu1W0&quot;}'&gt;
+	&lt;video poster=&quot;http://www.servicecanada.gc.ca/eng/video/images/te-lj-eng.jpg&quot; title=&quot;Looking for a Job&quot;&gt;
+		&lt;source type=&quot;video/webm&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.webm&quot; /&gt;
+		&lt;source type=&quot;video/mp4&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4&quot; /&gt;
+		&lt;track src=&quot;cpts-lg-en.html&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
+	&lt;/video&gt;
+	&lt;figcaption&gt;
+		&lt;button class="btn btn-default cuepoint" data-cuepoint="45"&gt;&lt;/button&gt;
+		&lt;p&gt;Looking for a Job (&lt;a href=&quot;http://www.servicecanada.gc.ca/eng/video/lj.shtml&quot;&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+				</section>
+
+				<section>
+					<h4>cpts-lg-en.html</h4>
+					<pre><code>&lt;div id=&quot;inline-captions&quot;&gt;
+	&lt;section&gt;
+		&lt;h2&gt;Transcript&lt;/h2&gt;
+		&lt;p class=&quot;wb-vd&quot;&gt;&lt;strong&gt;(Animated pen draws a red line that leads into the text Looking for A Job)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p class=&quot;wb-vd&quot;&gt;&lt;strong&gt;(Cut to a medium shot of the Host. LINE DRAWING GRAPHIC: Stick person appears and waves.)&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;2.50s&quot; data-dur=&quot;3.84s&quot;&gt;Hi, my name is Eric, and I&amp;#39;m a Service Canada employee.&lt;/span&gt;&lt;/p&gt;
+		...
+	&lt;/section&gt;
+&lt;/div&gt;</code></pre>
+				</section>
+			</details>
+		</section>
+	</div>
+</section>
