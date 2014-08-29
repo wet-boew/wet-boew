@@ -19,7 +19,6 @@ module.exports = (grunt) ->
 		[
 			"dist"
 			"test-mocha"
-			"htmllint"
 		]
 	)
 
@@ -34,6 +33,7 @@ module.exports = (grunt) ->
 			"pages:theme"
 			"pages:docs"
 			"demos-min"
+			"htmllint"
 		]
 	)
 
@@ -240,7 +240,7 @@ module.exports = (grunt) ->
 			if target == "min"
 				# Run the minifier and update asset paths
 				grunt.task.run(
-					"htmlcompressor"
+					"htmlmin"
 					"useMinAssets"
 				);
 			else
@@ -812,10 +812,9 @@ module.exports = (grunt) ->
 				dest: "dist/demos/"
 				ext: ".min.css"
 
-		htmlcompressor:
+		htmlmin:
 			options:
-				type: "html"
-				concurrentProcess: 5
+				collapseWhitespace: true
 				preserveLineBreaks: true
 			all:
 				cwd: "dist/unmin"
@@ -1276,13 +1275,13 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-contrib-copy"
 	@loadNpmTasks "grunt-contrib-csslint"
 	@loadNpmTasks "grunt-contrib-cssmin"
+	@loadNpmTasks "grunt-contrib-htmlmin"
 	@loadNpmTasks "grunt-contrib-imagemin"
 	@loadNpmTasks "grunt-contrib-jshint"
 	@loadNpmTasks "grunt-contrib-uglify"
 	@loadNpmTasks "grunt-contrib-watch"
 	@loadNpmTasks "grunt-gh-pages"
 	@loadNpmTasks "grunt-html"
-	@loadNpmTasks "grunt-htmlcompressor"
 	@loadNpmTasks "grunt-i18n-csv"
 	@loadNpmTasks "grunt-imagine"
 	@loadNpmTasks "grunt-jscs"
