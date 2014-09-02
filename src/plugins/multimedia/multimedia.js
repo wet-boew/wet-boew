@@ -24,6 +24,7 @@ var componentName = "wb-mltmd",
 	youtubeEvent = "youtube" + selector,
 	resizeEvent = "resize" + selector,
 	templateLoadedEvent = "templateloaded" + selector,
+	cuepointEvent = "cuepoint" + selector,
 	captionClass = "cc_on",
 	$document = wb.doc,
 	$window = wb.win,
@@ -385,6 +386,9 @@ var componentName = "wb-mltmd",
 			return this.object.previousTime;
 		case "setPreviousTime":
 			this.object.previousTime = args;
+			break;
+		case "gotoCuepoint":
+			$( this ).trigger( cuepointEvent );
 			break;
 		default:
 			method = fn.charAt( 3 ).toLowerCase() + fn.substr( 4 );
@@ -826,8 +830,8 @@ $document.on( "click", selector, function( event ) {
 		this.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05);
 	} else if ( className.match( /\bfastforward\b|-forward/ ) ) {
 		this.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05);
-	} else if ( className.match( /mltmd-cuepoint/ ) ) {
-		this.player( "setCurrentTime", $target.data( "cuepoint" ));
+	} else if ( className.match( /cuepoint/ ) ) {
+		this.player( "gotoCuepoint", $target.data( "cuepoint" ));
 	}
 });
 
@@ -890,7 +894,7 @@ $document.on( "keyup", selector, function( event ) {
 
 $document.on( "durationchange play pause ended volumechange timeupdate " +
 	captionsLoadedEvent + " " + captionsLoadFailedEvent + " " +
-	captionsVisibleChangeEvent +
+	captionsVisibleChangeEvent + " " + cuepointEvent +
 	" waiting canplay", selector, function( event, simulated ) {
 
 	var eventTarget = event.currentTarget,
@@ -1014,6 +1018,10 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 	case "canplay":
 		this.loading = clearTimeout( this.loading );
 		$this.find( ".display" ).removeClass( "waiting" );
+		break;
+	case "cuepoint":
+		$button = $this.find( ".cuepoint" );
+		eventTarget.player( "setCurrentTime", $button.data( "cuepoint" ) );
 		break;
 	}
 });
