@@ -67,16 +67,18 @@ $mm-volume-thumb-width: 10px;
 		width: 100%;
 	}
 
-	.btn {
-		@extend %multimedia-controls-outline;
-		background: transparent;
-		border: 0;
-		border-top: {
-			left-radius: 0 !important;
-			right-radius: 0 !important;
+	.wb-mm-ctrls {
+		.btn {
+			@extend %multimedia-controls-outline;
+			background: transparent;
+			border: 0;
+			border-top: {
+				left-radius: 0 !important;
+				right-radius: 0 !important;
+			}
+			color: $mm-ctrl-fg-color;
+			font-size: 130%;
 		}
-		color: $mm-ctrl-fg-color;
-		font-size: 130%;
 	}
 
 	&.audio {
@@ -200,12 +202,12 @@ $mm-volume-thumb-width: 10px;
 		.wb-mm-ctrls {
 			background: #fff;
 			color: #000;
-		}
 
-		.btn {
-			background: #fff;
-			border: 0;
-			color: #000;
+			.btn {
+				background: #fff;
+				border: 0;
+				color: #000;
+			}
 		}
 	}
 
