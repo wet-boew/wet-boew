@@ -387,9 +387,6 @@ var componentName = "wb-mltmd",
 		case "setPreviousTime":
 			this.object.previousTime = args;
 			break;
-		case "gotoCuepoint":
-			$( this ).trigger( cuepointEvent );
-			break;
 		default:
 			method = fn.charAt( 3 ).toLowerCase() + fn.substr( 4 );
 			switch ( fn.substr( 0, 3 ) ) {
@@ -831,7 +828,7 @@ $document.on( "click", selector, function( event ) {
 	} else if ( className.match( /\bfastforward\b|-forward/ ) ) {
 		this.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05);
 	} else if ( className.match( /cuepoint/ ) ) {
-		this.player( "gotoCuepoint", $target.data( "cuepoint" ));
+		$(this).trigger( { type: "cuepoint", cuepoint: $target.data( "cuepoint" ) } );
 	}
 });
 
@@ -1020,8 +1017,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		$this.find( ".display" ).removeClass( "waiting" );
 		break;
 	case "cuepoint":
-		$button = $this.find( ".cuepoint" );
-		eventTarget.player( "setCurrentTime", $button.data( "cuepoint" ) );
+		eventTarget.player( "setCurrentTime", event.cuepoint );
 		break;
 	}
 });
