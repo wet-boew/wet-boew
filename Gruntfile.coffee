@@ -27,7 +27,6 @@ module.exports = (grunt) ->
 		"dist"
 		"Produces the production files"
 		[
-			"checkDependencies"
 			"test"
 			"build"
 			"minify"
@@ -41,6 +40,7 @@ module.exports = (grunt) ->
 		"build"
 		"Run full build."
 		[
+			"checkDependencies"
 			"clean:dist"
 			"assets"
 			"css"
