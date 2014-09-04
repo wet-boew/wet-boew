@@ -1017,7 +1017,7 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		$this.find( ".display" ).removeClass( "waiting" );
 		break;
 	case "cuepoint":
-		eventTarget.player( "setCurrentTime", event.cuepoint );
+		eventTarget.player( "setCurrentTime", parseTime( event.cuepoint ) );
 		break;
 	}
 });
