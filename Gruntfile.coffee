@@ -1164,18 +1164,15 @@ module.exports = (grunt) ->
 			server:
 				options:
 					base: "dist"
-					middleware: (connect, options) ->
-						middlewares = []
-						middlewares.push(connect.compress(
+					middleware: (connect, options, middlewares) ->
+						middlewares.unshift(connect.compress(
 							filter: (req, res) ->
 								/json|text|javascript|dart|image\/svg\+xml|application\/x-font-ttf|application\/vnd\.ms-opentype|application\/vnd\.ms-fontobject/.test(res.getHeader('Content-Type'))
 						))
 
-						middlewares.push (req, res, next) ->
+						middlewares.unshift (req, res, next) ->
 							req.url = req.url.replace( "/v4.0-ci/", "/" )
 							next()
-
-						middlewares.push(connect.static(options.base));
 
 						# Serve the custom error page
 						middlewares.push (req, res) ->
@@ -1194,13 +1191,6 @@ module.exports = (grunt) ->
 			test:
 				options:
 					base: "."
-					middleware: (connect, options) ->
-						middlewares = []
-
-						# Serve static files.
-						middlewares.push connect.static( options.base )
-
-						middlewares
 
 		i18n_csv:
 			options:
