@@ -23,7 +23,7 @@
   ],
   "dependencies": {
     "bootstrap-sass-official": "3.2.0+1",
-    "DataTables": "1.10.0",
+    "DataTables": "1.10.2",
     "es5-shim": "2.3.0",
     "excanvas": "*",
     "flot": "0.8.3",
@@ -32,7 +32,7 @@
     "jquery": "2.1.1",
     "jquery-oldIE": "jquery#1.11.1",
     "jquery-pjax": "1.7.3",
-    "jquery-validation": "1.11.1",
+    "jquery-validation": "1.13.0",
     "magnific-popup": "0.9.9",
     "openlayers": "https://github.com/wet-boew/openlayers-dist.git#2.13.1",
     "proj4": "2.1.0",
