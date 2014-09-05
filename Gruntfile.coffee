@@ -373,7 +373,7 @@ module.exports = (grunt) ->
 						lang = filepath.replace "dist/unmin/js/i18n/", ""
 						# jQuery validation uses an underscore for locals
 						lang = lang.replace "_", "-"
-						validationPath = "lib/jquery-validation/localization/"
+						validationPath = "lib/jquery-validation/src/localization/"
 
 						# Check and append message file
 						messagesPath = validationPath + "messages_" + lang
@@ -986,8 +986,8 @@ module.exports = (grunt) ->
 						"flot/jquery.flot.pie.js"
 						"flot/jquery.flot.canvas.js"
 						"SideBySideImproved/jquery.flot.orderBars.js"
-						"jquery-validation/jquery.validate.js"
-						"jquery-validation/additional-methods.js"
+						"jquery-validation/dist/jquery.validate.js"
+						"jquery-validation/dist/additional-methods.js"
 						"magnific-popup/dist/jquery.magnific-popup.js"
 						"google-code-prettify/src/*.js"
 						"DataTables/media/js/jquery.dataTables.js"
