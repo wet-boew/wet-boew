@@ -7,7 +7,7 @@
 	"tag": "multimedia",
 	"parentdir": "multimedia",
 	"altLangPrefix": "multimedia",
-	"dateModified": "2014-07-21"
+	"dateModified": "2014-09-04"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -119,13 +119,13 @@
 	</div>
 
 	<div class="row">
-		<section class="col-md-12">
+		<section class="col-md-6">
 			<h3>MPEG4 (H264 + AAC) Source avec sous-titre intégré au HTML</h3>
 			<p>Cet exemple illustre l'utilisation d'un relevé de notes en ligne pour fournir des légendes. Cet exemple peut également démontrer le mécanisme de secours dans les navigateurs Web qui ne supporte pas les vidéos HTML5.</p>
 			<figure class="wb-mltmd">
 				<video poster="http://www.servicecanada.gc.ca/fra/video/images/te-lj-fra.jpg" title="Trouver un emploi">
 					<source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.mp4" />
-					<track src="#inline-captions" kind="captions" data-type="text/html" srclang="en" label="Français" />
+					<track src="#inline-captions" kind="captions" data-type="text/html" srclang="fr" label="Français" />
 				</video>
 				<figcaption>
 					<details id="inline-captions">
@@ -201,7 +201,7 @@
 				<pre><code>&lt;figure class=&quot;wb-mltmd&quot;&gt;
 	&lt;video poster=&quot;http://www.servicecanada.gc.ca/fra/video/images/te-lj-fra.jpg&quot; title=&quot;Trouver un emploi&quot;&gt;
 		&lt;source type=&quot;video/mp4&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.mp4&quot; /&gt;
-		&lt;track src=&quot;#inline-captions&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;en&quot; label=&quot;Français&quot; /&gt;
+		&lt;track src=&quot;#inline-captions&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;fr&quot; label=&quot;Français&quot; /&gt;
 	&lt;/video&gt;
 	&lt;figcaption&gt;
 		&lt;details id=&quot;inline-captions&quot;&gt;
@@ -211,6 +211,36 @@
 			&lt;span class=&quot;wb-tmtxt&quot; data-begin=&quot;5.37s&quot; data-dur=&quot;1.50s&quot;&gt;à Service Canada.&lt;/span&gt;&lt;/p&gt;
 			...
 		&lt;/details&gt;
+	&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+			</details>
+		</section>		
+		<section class="col-md-6">
+			<h3>MPEG4 (H264 + AAC) Source avec marqueurs temporels (cue points)</h3>
+			<p>Cet exemple illustre l'utilisation de boutons pour naviguer à des marqueurs temporels dans une vidéo.</p>
+			<figure class="wb-mltmd">
+				<video poster="http://www.servicecanada.gc.ca/fra/video/images/te-lj-fra.jpg" title="Trouver un emploi">
+					<source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.mp4" />
+					<track src="#inline-captions" kind="captions" data-type="text/html" srclang="fr" label="Français" />
+				</video>
+				<button class="btn btn-info cuepoint" data-cuepoint="45s">Marqueur temporel - 45s</button>
+				<button class="btn btn-info cuepoint" data-cuepoint="01:10">Marqueur temporel - 01:10</button>
+				<figcaption>
+					<p>Trouver un emploi (<a href="http://www.servicecanada.gc.ca/fra/video/te.shtml">Transcription</a>)</p>
+				</figcaption>
+			</figure>
+			
+			<details class="mrgn-tp-md">
+				<summary>Visualiser le code</summary>
+				<pre><code>&lt;figure class=&quot;wb-mltmd&quot;&gt;
+	&lt;video poster=&quot;http://www.servicecanada.gc.ca/fra/video/images/te-lj-fra.jpg&quot; title=&quot;Trouver un emploi&quot;&gt;
+		&lt;source type=&quot;video/mp4&quot; src=&quot;http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.mp4&quot; /&gt;
+		&lt;track src=&quot;#inline-captions&quot; kind=&quot;captions&quot; data-type=&quot;text/html&quot; srclang=&quot;en&quot; label=&quot;Français&quot; /&gt;
+	&lt;/video&gt;
+	&lt;button class="btn btn-info cuepoint" data-cuepoint="45s"&gt;Marqueur temporel - 45s&lt;/button&gt;
+	&lt;button class="btn btn-info cuepoint" data-cuepoint="01:10"&gt;Marqueur temporel - 01:10&lt;/button&gt;
+	&lt;figcaption&gt;
+		&lt;p&gt;Trouver un emploi (&lt;a href="http://www.servicecanada.gc.ca/fra/video/te.shtml"&gt;Transcription&lt;/a&gt;)&lt;/p&gt;
 	&lt;/figcaption&gt;
 &lt;/figure&gt;</code></pre>
 			</details>
