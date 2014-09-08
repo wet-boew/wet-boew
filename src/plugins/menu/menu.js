@@ -215,7 +215,7 @@ var componentName = "wb-menu",
 	 * @param {jQuery DOM element} $ajaxResult The AJAXed in menu content to import
 	 */
 	onAjaxLoaded = function( $elm, $ajaxResult ) {
-		var $ajaxed = !$ajaxResult ? $elm : $ajaxResult,
+		var $ajaxed = $ajaxResult && $ajaxResult.attr( "data-type" ) === "string" ? $ajaxResult : $elm,
 			$menubar = $ajaxed.find( ".menu" ),
 			$menu = $menubar.find( "> li > a" ),
 			target = $elm.data( "trgt" ),

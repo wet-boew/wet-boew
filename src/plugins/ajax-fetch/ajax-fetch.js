@@ -25,14 +25,16 @@ $document.on( "ajax-fetch.wb", function( event ) {
 	if ( event.currentTarget === event.target ) {
 		$.ajax( fetchOpts )
 			.done(function( response, status, xhr ) {
+				var responseType = typeof response;
+
 				fetchData = {
 					response: response,
 					status: status,
 					xhr: xhr
 				};
 
-				fetchData.pointer = $( "<div id='" + wb.guid() + "' />" )
-										.append( typeof response === "string" ? response : "" );
+				fetchData.pointer = $( "<div id='" + wb.guid() + "' data-type='" + responseType + "' />" )
+										.append( responseType === "string" ? response : "" );
 
 				$( caller ).trigger({
 					type: "ajax-fetched.wb",
