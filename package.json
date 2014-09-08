@@ -57,6 +57,6 @@
     "grunt-wget": "~0.1.0",
     "mocha": "^1.18.2",
     "sinon": "^1.9.1",
-    "time-grunt": "^0.3.1"
+    "time-grunt": "~1.0.0"
   }
 }
