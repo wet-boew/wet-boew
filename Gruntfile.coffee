@@ -6,27 +6,7 @@ module.exports = (grunt) ->
 	# External tasks
 	@registerTask(
 		"default"
-		"Default task that runs the production build"
-		[
-			"dist"
-		]
-	)
-
-	@registerTask(
-		"dist"
-		"Produces the production files"
-		[
-			"checkDependencies"
-			"test"
-			"build"
-			"assets-min"
-			"demos-min"
-		]
-	)
-
-	@registerTask(
-		"debug"
-		"Produces unminified files"
+		"Default task that runs the core unminified build"
 		[
 			"build"
 			"demos"
@@ -34,14 +14,48 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
+		"travis"
+		"Default task that runs the core unminified build"
+		[
+			"dist"
+			"test-mocha"
+		]
+	)
+
+	@registerTask(
+		"dist"
+		"Produces the production files"
+		[
+			"test"
+			"build"
+			"minify"
+			"pages:theme"
+			"pages:docs"
+			"demos-min"
+			"htmllint"
+		]
+	)
+
+	@registerTask(
 		"build"
 		"Run full build."
 		[
+			"checkDependencies"
 			"clean:dist"
 			"assets"
 			"css"
 			"js"
 			"imagemin"
+		]
+	)
+
+	@registerTask(
+		"minify"
+		"Minify built files."
+		[
+			"js-min"
+			"css-min"
+			"assets-min"
 		]
 	)
 
@@ -107,6 +121,13 @@ module.exports = (grunt) ->
 			"concat:coreIE8"
 			"concat:pluginsIE8"
 			"concat:i18n"
+		]
+	)
+
+	@registerTask(
+		"js-min"
+		"INTERNAL: Minify the built Javascript files"
+		[
 			"uglify:polyfills"
 			"uglify:core"
 			"uglify:coreIE8"
@@ -124,6 +145,13 @@ module.exports = (grunt) ->
 			"autoprefixer"
 			"csslint:unmin"
 			"concat:css_addBanners"
+		]
+	)
+
+	@registerTask(
+		"css-min"
+		"INTERNAL: Minify the CSS files"
+		[
 			"cssmin:dist"
 			"cssmin:distIE8"
 			"ie8csscleaning"
@@ -142,10 +170,26 @@ module.exports = (grunt) ->
 		"demos"
 		"INTERNAL: Create unminified demos"
 		[
-			"i18n_csv:assemble"
 			"copy:demos"
 			"csslint:demos"
-			"pages"
+			"pages:demos"
+			"pages:ajax"
+		]
+	)
+
+	@registerTask(
+		"docs"
+		"INTERNAL: Create unminified docs"
+		[
+			"pages:docs"
+		]
+	)
+
+	@registerTask(
+		"theme"
+		"INTERNAL: Create unminified theme"
+		[
+			"pages:theme"
 		]
 	)
 
@@ -158,7 +202,6 @@ module.exports = (grunt) ->
 			"cssmin:demos_min"
 			"uglify:demos"
 			"pages:min"
-			"htmllint"
 		]
 	)
 
@@ -185,7 +228,7 @@ module.exports = (grunt) ->
 		"INTERNAL: prepare for running Mocha unit tests"
 		[
 			"copy:test"
-			"assemble:test"
+			"pages:test"
 			"connect:test"
 		]
 	)
@@ -197,13 +240,21 @@ module.exports = (grunt) ->
 			if target == "min"
 				# Run the minifier and update asset paths
 				grunt.task.run(
-					"htmlcompressor"
+					"htmlmin"
 					"useMinAssets"
 				);
 			else
-				# Only use a target path for assemble if pages recieved one too
+
+				if target != "test" and grunt.config("i18n_csv.assemble.locales") == undefined
+					grunt.task.run(
+						"i18n_csv:assemble"
+					)
+
+				# Only use a target path for assemble if pages received one too
 				target = if target then ":" + target else ""
-				grunt.task.run( "assemble" + target );
+				grunt.task.run(
+					"assemble" + target
+				);
 	)
 
 	@registerTask(
@@ -322,7 +373,7 @@ module.exports = (grunt) ->
 						lang = filepath.replace "dist/unmin/js/i18n/", ""
 						# jQuery validation uses an underscore for locals
 						lang = lang.replace "_", "-"
-						validationPath = "lib/jquery-validation/localization/"
+						validationPath = "lib/jquery-validation/src/localization/"
 
 						# Check and append message file
 						messagesPath = validationPath + "messages_" + lang
@@ -385,18 +436,19 @@ module.exports = (grunt) ->
 
 			theme:
 				options:
+					flatten: true
 					plugins: [
 						"assemble-contrib-i18n"
 					]
 					i18n:
 						languages: "<%= i18n_csv.assemble.locales %>"
 						templates: [
-							"theme/**/*.hbs"
+							"theme/site/pages/**/*.hbs"
 							# Don't run i18n transforms on language specific templates
 							"!theme/**/*-en.hbs"
 							"!theme/**/*-fr.hbs"
 						]
-				dest: "dist/unmin"
+				dest: "dist/unmin/theme/"
 				src: [
 					"theme/**/*-en.hbs"
 					"theme/**/*-fr.hbs"
@@ -459,14 +511,6 @@ module.exports = (grunt) ->
 				cwd: "site/pages"
 				src: [
 					"docs/**/*.hbs"
-				]
-				dest: "dist/unmin"
-				expand: true
-
-			versions:
-				cwd: "site/pages"
-				src: [
-					"docs/versions/**/*.hbs"
 				]
 				dest: "dist/unmin"
 				expand: true
@@ -629,6 +673,7 @@ module.exports = (grunt) ->
 				"overqualified-elements": false
 				"qualified-headings": false
 				"regex-selectors": false
+				"selector-max-approaching": false
 				# Some Bootstrap mixins end up listing all the longhand properties
 				"shorthand": false
 				"text-indent": false
@@ -767,10 +812,9 @@ module.exports = (grunt) ->
 				dest: "dist/demos/"
 				ext: ".min.css"
 
-		htmlcompressor:
+		htmlmin:
 			options:
-				type: "html"
-				concurrentProcess: 5
+				collapseWhitespace: true
 				preserveLineBreaks: true
 			all:
 				cwd: "dist/unmin"
@@ -874,7 +918,7 @@ module.exports = (grunt) ->
 
 		copy:
 			bootstrap:
-				cwd: "lib/bootstrap-sass-official/vendor/assets/fonts/bootstrap"
+				cwd: "lib/bootstrap-sass-official/assets/fonts/bootstrap"
 				src: "*.*"
 				dest: "dist/unmin/fonts"
 				expand: true
@@ -942,8 +986,8 @@ module.exports = (grunt) ->
 						"flot/jquery.flot.pie.js"
 						"flot/jquery.flot.canvas.js"
 						"SideBySideImproved/jquery.flot.orderBars.js"
-						"jquery-validation/jquery.validate.js"
-						"jquery-validation/additional-methods.js"
+						"jquery-validation/dist/jquery.validate.js"
+						"jquery-validation/dist/additional-methods.js"
 						"magnific-popup/dist/jquery.magnific-popup.js"
 						"google-code-prettify/src/*.js"
 						"DataTables/media/js/jquery.dataTables.js"
@@ -1093,16 +1137,6 @@ module.exports = (grunt) ->
 				options:
 					livereload: true
 
-			versions:
-				files: [
-					"site/pages/docs/versions/**/*.hbs"
-				]
-				tasks: [
-					"pages:versions"
-				]
-				options:
-					livereload: true
-
 		jshint:
 			options:
 				jshintrc: ".jshintrc"
@@ -1130,18 +1164,15 @@ module.exports = (grunt) ->
 			server:
 				options:
 					base: "dist"
-					middleware: (connect, options) ->
-						middlewares = []
-						middlewares.push(connect.compress(
+					middleware: (connect, options, middlewares) ->
+						middlewares.unshift(connect.compress(
 							filter: (req, res) ->
 								/json|text|javascript|dart|image\/svg\+xml|application\/x-font-ttf|application\/vnd\.ms-opentype|application\/vnd\.ms-fontobject/.test(res.getHeader('Content-Type'))
 						))
 
-						middlewares.push (req, res, next) ->
+						middlewares.unshift (req, res, next) ->
 							req.url = req.url.replace( "/v4.0-ci/", "/" )
 							next()
-
-						middlewares.push(connect.static(options.base));
 
 						# Serve the custom error page
 						middlewares.push (req, res) ->
@@ -1160,13 +1191,6 @@ module.exports = (grunt) ->
 			test:
 				options:
 					base: "."
-					middleware: (connect, options) ->
-						middlewares = []
-
-						# Serve static files.
-						middlewares.push connect.static( options.base )
-
-						middlewares
 
 		i18n_csv:
 			options:
@@ -1241,13 +1265,13 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-contrib-copy"
 	@loadNpmTasks "grunt-contrib-csslint"
 	@loadNpmTasks "grunt-contrib-cssmin"
+	@loadNpmTasks "grunt-contrib-htmlmin"
 	@loadNpmTasks "grunt-contrib-imagemin"
 	@loadNpmTasks "grunt-contrib-jshint"
 	@loadNpmTasks "grunt-contrib-uglify"
 	@loadNpmTasks "grunt-contrib-watch"
 	@loadNpmTasks "grunt-gh-pages"
 	@loadNpmTasks "grunt-html"
-	@loadNpmTasks "grunt-htmlcompressor"
 	@loadNpmTasks "grunt-i18n-csv"
 	@loadNpmTasks "grunt-imagine"
 	@loadNpmTasks "grunt-jscs"

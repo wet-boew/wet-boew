@@ -623,7 +623,7 @@ var componentName = "wb-tabs",
 		/*
 		 * Change Slides
 		 */
-		case "shift":
+		case "wb-shift":
 
 			// Filter out any events triggered by descendants
 			if ( eventCurrentTarget === eventTarget ) {
@@ -773,7 +773,7 @@ $document.on( "click", selector + " [role=tabpanel] a", function( event ) {
 	// Ignore middle and right mouse buttons
 	if ( ( !which || which === 1 ) && href.charAt( 0 ) === "#" ) {
 		$container = $( currentTarget ).closest( selector );
-		$panel = $container.find( href );
+		$panel = $container.find( href + "[role=tabpanel]" );
 		if ( $panel.length !== 0 ) {
 			event.preventDefault();
 			$summary = $panel.children( "summary" );

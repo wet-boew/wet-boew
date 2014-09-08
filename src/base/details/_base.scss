@@ -13,6 +13,15 @@ summary {
 		background: #ddd;
 		color: #000;
 	}
+
+	> {
+
+		// Only apply inline to first child to allow
+		// subsequent elements to use block layouts
+		:first-child {
+			display: inline;
+		}
+	}
 }
 
 details {
@@ -22,7 +31,8 @@ details {
 
 	> {
 		* {
-			margin-left: 1.3em;
+			margin-left: 1.5em;
+			margin-right: auto;
 		}
 
 		summary {
@@ -36,7 +46,7 @@ details {
 		> {
 			* {
 				margin-left: auto;
-				margin-right: 1.3em;
+				margin-right: 1.5em;
 			}
 
 			summary {

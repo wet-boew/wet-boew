@@ -1,0 +1,44 @@
+---
+{
+	"title": "Thème de la BOEW",
+	"tag": "theme-wet-boew",
+	"parentdir": "theme-wet-boew",
+	"language": "fr",
+	"altLangPrefix": "index",
+	"dateModified": "2014-08-15"
+}
+---
+<section>
+	<h2>Table des matières</h2>
+	<ul>
+{{#withSort site.langs "lang-fr"}}
+		<li><a href="#{{lang-code}}">{{lang-fr}}</a></li>
+{{/withSort}}
+	</ul>
+</section>
+
+{{#withSort site.langs "lang-fr"}}
+<section>
+	<h2 id="{{lang-code}}">{{lang-fr}}</h2>
+	<ul>
+		<li><a href="content-{{lang-code}}.html">Page de contenu</a></li>
+		<li><a href="content-secmenu-{{lang-code}}.html">Page de contenu - Menu secondaire</a></li>
+		<li><a href="content-nosearchlang-{{lang-code}}.html">Page de contenu - Sans recherche ou lien de sélection de la langue</a></li>
+		<li><a href="content-nositemenubc-{{lang-code}}.html">Page de contenu - Sans menu du site ou fil d'Ariane</a></li>
+		<li><a href="content-nosearchlangsitemenubc-{{lang-code}}.html">Page de contenu - Sans recherche, lien de sélection de la langue, menu du site ou fil d'Ariane</a></li>
+		{{#is lang-code "en"}}
+		<li><a href="splashpage-en.html">Page d'entrée</a></li>
+		<li><a href="404-en.html">Page d'erreur 404</a></li>
+		<li><a href="404-en-fr.html">Page d'erreur 404 (anglais/français)</a></li>
+		<li><a href="servermessage-en-fr.html">Page de message du serveur (anglais/français)</a></li>
+		{{/is}}
+		{{#is lang-code "fr"}}
+		<li><a href="splashpage-fr.html">Page d'entrée</a></li>
+		<li><a href="404-fr.html">Page d'erreur 404</a></li>
+		<li><a href="404-fr-en.html">Page d'erreur 404 (français/anglais)</a></li>
+		<li><a href="servermessage-fr-en.html">Page de message du serveur (français/anglais)</a></li>
+		{{/is}}
+		<li><a href="servermessage-{{lang-code}}.html">Page de message du serveur</a></li>
+	</ul>
+</section>
+{{/withSort}}

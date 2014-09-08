@@ -22,8 +22,9 @@ var componentName = "wb-navcurr",
 	 * @method init
 	 * @param {jQuery Event} event Event that triggered the function call
 	 * @param {jQuery DOM element | DOM element} breadcrumb Optional breadcrumb element
+	 * @param {string} classNameOverride Optional class name override (default is wb-navcurr)
 	 */
-	init = function( event, breadcrumb ) {
+	init = function( event, breadcrumb, classNameOverride ) {
 		if ( event.namespace === "wb" ) {
 
 			// Start initialization
@@ -37,6 +38,7 @@ var componentName = "wb-navcurr",
 				pageUrl = windowLocation.hostname + windowLocation.pathname.replace( /^([^\/])/, "/$1" ),
 				pageUrlQuery = windowLocation.search,
 				match = false,
+				className = classNameOverride ? classNameOverride : componentName,
 				len, i, j, link, linkHref, linkUrl, linkQuery, linkQueryLen,
 				localBreadcrumbLinks, localBreadcrumbLinksArray, localBreadcrumbLinksUrlArray,
 				localBreadcrumbQuery, localBreadcrumbLinkUrl;
@@ -117,9 +119,9 @@ var componentName = "wb-navcurr",
 				}
 
 				if ( match ) {
-					link.className += " " + componentName;
+					link.className += " " + className;
 					if ( menu.className.indexOf( "wb-menu" ) !== -1 && link.className.indexOf( "item" ) === -1 ) {
-						$( link ).closest( ".sm" ).parent().children( "a" ).addClass( componentName );
+						$( link ).closest( ".sm" ).parent().children( "a" ).addClass( className );
 					}
 				}
 

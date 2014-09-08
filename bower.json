@@ -1,6 +1,6 @@
 {
   "name": "wet-boew",
-  "version": "4.0.5-development",
+  "version": "4.0.6-development",
   "homepage": "http://wet-boew.github.io",
   "authors": [
     "WET-BOEW Team"
@@ -22,8 +22,8 @@
     "lib"
   ],
   "dependencies": {
-    "bootstrap-sass-official": "3.1.1",
-    "DataTables": "1.10.0",
+    "bootstrap-sass-official": "3.2.0+1",
+    "DataTables": "1.10.2",
     "es5-shim": "2.3.0",
     "excanvas": "*",
     "flot": "0.8.3",
@@ -31,10 +31,10 @@
     "html5shiv": "3.7.0",
     "jquery": "2.1.1",
     "jquery-oldIE": "jquery#1.11.1",
-    "jquery-pjax": "1.7.3",
-    "jquery-validation": "1.11.1",
+    "jquery-pjax": "1.8.2",
+    "jquery-validation": "1.13.0",
     "magnific-popup": "0.9.9",
-    "openlayers": "https://github.com/wet-boew/openlayers/releases/download/v2.13.1/OpenLayers-2.13.1.tar.gz",
+    "openlayers": "https://github.com/wet-boew/openlayers-dist.git#2.13.1",
     "proj4": "2.1.0",
     "respond": "1.4.0",
     "selectivizr": "1.0.2",

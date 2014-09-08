@@ -5,10 +5,19 @@
 
 /* Details/summary polyfill */
 details {
+	&.alert {
+		> {
+			summary {
+				margin-left: 1.4em !important;
+			}
+		}
+	}
+
 	> {
 		summary {
 			&:before { /* Add the closed pointer */
-				content: "\25BA\a0";
+				content: "\25BA\a0" !important;
+				font-size: 84%;
 			}
 		}
 	}
@@ -29,10 +38,28 @@ details {
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
 	details {
+		&.alert {
+			> {
+				summary {
+					margin-right: 1.4em !important;
+				}
+			}
+		}
+
 		> {
 			summary {
 				&:before { /* Add the close pointer */
-					content: "\25C0\a0";
+					content: "\25C4\a0" !important;
+				}
+			}
+		}
+
+		&[open] {
+			> {
+				summary {
+					&:before { /* Add the opened pointer */
+						content: "\25BC\a0" !important;
+					}
 				}
 			}
 		}

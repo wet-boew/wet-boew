@@ -4,12 +4,9 @@ node_js:
 
 env:
   global:
-    - secure: "rmN2TEeTxkLgdDPEK3pzaP4nLQxikAzu1wXlChlWYZFz8gb1rr5BJHqZAQhnAqtPA0209sRBa20r9LbBRNY87mnODl7BbOb1o/i400NWxKHdQHpMa0LRZRJz/GWu3X6+ny4l9hB4f6KOnL8UAbFEWPxBnZI7KD30fLNGVxgN/xo=" #Github Token
-    - secure: "Msb6q00yX6COM1yutdN2+leMsafy61o06WHgJVhbN5d0C86f+XzSyngURZqaJTSb+ZysCgeotXN7Dynlhr3Ay8aMYIvYM8pU9NTt0Lx+ZGvB4GL3cpbWlXNj0PWZEKRsXVjbJFdZThoqfd7z0VuRP1A9xbj+gQrztA7NiRZ6Q50=" #Sauce User
-    - secure: "14iu5t7qzaF4KYE9XRND7WrkdEYqESr8+dxWtSNfv37F5Ef28yI0HWw9NeLr66PvCE/oSti5fF4JPqBmBAGMeLbCIpT9uROTYEM3Vd6KcEo8Vp3KW10sRKhjVquKb4u8km/qsoj4qudGaQ4MMxSo6sVo5SyHC4OsyBqxED83EWs=" #Sauce Access Key
     - TRAVIS_COMMIT_MSG="$(git log --format=%B --no-merges -n 1)"
 
-before_install:
+install:
   - ./script/setup
   - gem install scss-lint --no-ri --version '=0.26.2'
 

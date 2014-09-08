@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( window, wb ) {
+(function( $, window, wb ) {
 "use strict";
 
 /*
@@ -51,7 +51,7 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 $document.on( "click keydown toggle." + componentName, selector, function( event ) {
 	var which = event.which,
 		currentTarget = event.currentTarget,
-		details, isClosed;
+		details, isClosed, key;
 
 	// Ignore middle/right mouse buttons and wb-toggle enhanced summary elements (except for toggle)
 	if ( ( !which || which === 1 ) &&
@@ -61,12 +61,26 @@ $document.on( "click keydown toggle." + componentName, selector, function( event
 		details = currentTarget.parentNode;
 		isClosed = details.getAttribute( "open" ) === null ;
 
+		if ( details.className.indexOf( "alert" ) !== -1 ) {
+			key = "alert-dismiss-state-" + details.getAttribute( "id" );
+		}
+
 		if ( isClosed ) {
 			details.setAttribute( "open", "open" );
 			details.className += " open";
+			if ( key ) {
+				try {
+					localStorage.setItem( key, "open" );
+				} catch ( e ) {}
+			}
 		} else {
 			details.removeAttribute( "open" );
 			details.className = details.className.replace( " open", "" );
+			if ( key ) {
+				try {
+					localStorage.setItem( key, "closed" );
+				} catch ( e ) {}
+			}
 		}
 		currentTarget.setAttribute( "aria-expanded", isClosed );
 	} else if ( which === 13 || which === 32 ) {
@@ -84,4 +98,4 @@ $document.on( "click keydown toggle." + componentName, selector, function( event
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( window, wb );
+})( jQuery, window, wb );

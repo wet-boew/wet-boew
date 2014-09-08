@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Dynamically stacks multiple sections of content, transforming them into a tabbed interface.",
 	"altLangPrefix": "tabs",
-	"dateModified": "2014-08-06"
+	"dateModified": "2014-08-28"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -383,6 +383,16 @@
 					<pre><code>$( document ).on( "wb-updated.wb-tabs", ".wb-tabs", function( event, $newPanel ) {
 });</code></pre>
 					<pre><code>$( ".wb-tabs" ).on( "wb-updated.wb-tabs", function( event, $newPanel ) {
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-shift.wb-tabs</code> (carousel only)</td>
+				<td>Triggered manually or automatically to change which tab panel is visible.</td>
+				<td>Changes which tab panel is visible. The value of <code>shiftto</code> is the number of tab panels to move forwards (positive number) or backwards (negative number).
+					<pre><code>$elm.trigger({
+    type: "wb-shift.wb-tabs",
+    shiftto: 1
 });</code></pre>
 				</td>
 			</tr>

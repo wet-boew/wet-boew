@@ -496,7 +496,7 @@ var componentName = "wb-geomap",
 				text: $featureTable.attr( "aria-label" )
 			}).prepend( $chkBox );
 
-			$li = $( "<li class='checkbox'>" )
+			$li = $( "<li class='checkbox geomap-lgnd-layer'>" )
 					.append( $label, "<div id='sb_" + featureTableId + "'></div>" );
 
 			$ul.append( $li );
@@ -969,7 +969,8 @@ var componentName = "wb-geomap",
 	 * Add baseMap data
 	 */
 	addBasemapData = function( geomap, opts ) {
-		var mapOptions, mapOpts,
+		var mapOptions, mapOpts, aspectRatio,
+			layer,
 			basemap = opts.basemap,
 			hasBasemap = basemap && basemap.length !== 0;
 
@@ -979,18 +980,26 @@ var componentName = "wb-geomap",
 				try {
 					mapOptions = {
 						maxExtent: new OpenLayers.Bounds( mapOpts.maxExtent.split( "," ) ),
-						maxResolution: mapOpts.maxResolution,
-						projection: mapOpts.projection,
 						restrictedExtent: new OpenLayers.Bounds( mapOpts.restrictedExtent.split( "," ) ),
+						maxResolution: mapOpts.maxResolution,
+						projection: new OpenLayers.Projection( mapOpts.projection ),
 						units: mapOpts.units,
+						// Only used by specific controls (i.e. MousePosition)
 						displayProjection: new OpenLayers.Projection( mapOpts.displayProjection ),
 						numZoomLevels: mapOpts.numZoomLevels,
 						aspectRatio: mapOpts.aspectRatio,
+						fractionalZoom: mapOpts.fractionalZoom,
 						tileManager: null
 					};
 				} catch ( error ) {
-					mapOptions = {};
+					mapOptions = {
+						projection: new OpenLayers.Projection( "EPSG:4326" )
+					};
 				}
+			} else {
+				mapOptions = {
+					projection: new OpenLayers.Projection( "EPSG:4326" )
+				};
 			}
 		} else {
 
@@ -999,6 +1008,7 @@ var componentName = "wb-geomap",
 		}
 
 		// set aspect ratio
+		aspectRatio = mapOptions.aspectRatio === undefined ? 0.8 : mapOptions.aspectRatio;
 		geomap.gmap.height( geomap.gmap.width() * mapOptions.aspectRatio );
 
 		geomap.map = new OpenLayers.Map( geomap.gmap.attr( "id" ), $.extend( opts.config, mapOptions ) );
@@ -1010,15 +1020,8 @@ var componentName = "wb-geomap",
 		// Check to see if a base map has been configured. If not add the
 		// default base map (the Canada Transportation Base Map (CBMT))
 		if ( hasBasemap ) {
-			if ( !basemap.options ) {
-				basemap.options = {};
-			} //projection: 'EPSG:4326' };
-
-			basemap.options.isBaseLayer = true;
-
 			if ( basemap.type === "wms" ) {
-				geomap.map.addLayer(
-					new OpenLayers.Layer.WMS(
+					layer = new OpenLayers.Layer.WMS(
 						basemap.title,
 						basemap.url,
 						{
@@ -1026,9 +1029,16 @@ var componentName = "wb-geomap",
 							version: basemap.version,
 							format: basemap.format
 						},
-						basemap.options
-					)
+						{
+							isBaseLayer: true
+						}
 				);
+
+				// Set the srs parameter. We need to do this because srs id not set by default.
+				// Looks like a bug because it suppose to be set by the map or layer projection.
+				layer.params.srs = mapOptions.projection.projCode;
+				geomap.map.addLayer( layer );
+
 			} else if ( basemap.type === "esri" ) {
 				geomap.map.addLayer(
 					new OpenLayers.Layer.ArcGIS93Rest(
@@ -2403,7 +2413,7 @@ var componentName = "wb-geomap",
 			$( ".olTileImage" ).attr( "alt", "" );
 
 			// Identify that initialization has completed
-			wb.ready( $( geomap.mapid ), componentName, [ map ] );
+			wb.ready( $( "#" + geomap.mapid ), componentName, [ map ] );
 		}, 2000 );
 
 		geomap.map.events.on({

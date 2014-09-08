@@ -1,0 +1,44 @@
+---
+{
+	"title": "WET theme",
+	"tag": "theme-wet-boew",
+	"parentdir": "theme-wet-boew",
+	"language": "en",
+	"altLangPrefix": "index",
+	"dateModified": "2014-08-15"
+}
+---
+<section>
+	<h2>Table of contents</h2>
+	<ul>
+{{#withSort site.langs "lang-en"}}
+		<li><a href="#{{lang-code}}">{{lang-en}}</a></li>
+{{/withSort}}
+	</ul>
+</section>
+
+{{#withSort site.langs "lang-en"}}
+<section>
+	<h2 id="{{lang-code}}">{{lang-en}}</h2>
+	<ul>
+		<li><a href="content-{{lang-code}}.html">Content page</a></li>
+		<li><a href="content-secmenu-{{lang-code}}.html">Content page - Secondary menu</a></li>
+		<li><a href="content-nosearchlang-{{lang-code}}.html">Content page - No search or language selection link</a></li>
+		<li><a href="content-nositemenubc-{{lang-code}}.html">Content page - No site menu or breadcrumb trail</a></li>
+		<li><a href="content-nosearchlangsitemenubc-{{lang-code}}.html">Content page - No search, language selection link, site menu or breadcrumb trail</a></li>
+		{{#is lang-code "en"}}
+		<li><a href="splashpage-en.html">Splash page</a></li>
+		<li><a href="404-en.html">404 error page</a></li>
+		<li><a href="404-en-fr.html">404 error page (English/French)</a></li>
+		<li><a href="servermessage-en-fr.html">Server message page (English/French)</a></li>
+		{{/is}}
+		{{#is lang-code "fr"}}
+		<li><a href="splashpage-fr.html">Splash page</a></li>
+		<li><a href="404-fr.html">404 error page</a></li>
+		<li><a href="404-fr-en.html">404 error page (French/English)</a></li>
+		<li><a href="servermessage-fr-en.html">Server message page (French/English)</a></li>
+		{{/is}}
+		<li><a href="servermessage-{{lang-code}}.html">Server message page</a></li>
+	</ul>
+</section>
+{{/withSort}}

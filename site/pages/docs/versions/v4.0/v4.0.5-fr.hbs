@@ -1,0 +1,182 @@
+---
+{
+	"title": "v4.0.5 - Notes d'utilisation",
+	"language": "fr",
+	"description": "v4.0.5 - Notes d'utilisation - Historique des versions - Boîte à outils de l'expérience Web (BOEW)",
+	"altLangPrefix": "v4.0.5",
+	"dateModified": "2014-08-20"
+}
+---
+<ul>
+	<li><strong>Date de lancement&#160;:</strong> <time>2014-08-20</time></li>
+	<li><a href="../dwnld-fr.html#v405">Téléchargements</a></li>
+</ul>
+
+<div lang="en">
+<section>
+	<h2>Template changes (non-breaking)</h2>
+	<ul>
+		<li><strong>Themes:</strong> Added server message pages and 404 error pages</li>
+		<li><strong>Themes:</strong> Cleaned up the splash page markup (non-breaking markup change)</li>
+		<li><strong>Themes:</strong> Removed aria-label from logo links since unnecessary duplication with text in the link itself (non-breaking markup change)</li>
+		<li><strong>Themes:</strong> Removed role='img' from logo link object to prevent object from being announced by screen readers (non-breaking markup change)</li>
+	</ul>
+</section>
+</div>
+
+<section>
+	<h2>Quoi de neuf?</h2>
+	<div lang="en">
+	<p><strong>Needs translation</strong></p>
+	<ul>
+		<li>Added wb-ready events to all plugins and polyfills</li>
+		<li><strong>Build:</strong> Fixed Linux issues with the development environment setup script</li>
+		<li><strong>Cleaned up the display of Basic HTML version and when JavaScript is disabled</strong></li>
+		<li><strong>Core:</strong> Updated Bootstrap for Sass version to 3.2.0+1</li>
+		<li><strong>Date picker:</strong> Fixed French toggle and close button</li>
+		<li><strong>Documentation:</strong> Added all missing documentation for plugins, polyfills and "other" components</li>
+		<li><strong>Documentation:</strong> Translated the getting started documentation and the multimedia player and Web Accessibility Assessment Methodology documentation into French</li>
+		<li><strong>Documentation:</strong> Updated the browser testing recommendations</li>
+		<li><strong>Equal heights:</strong> Fix a bug in IE8 where the last class would get removed if not followed by a semi-colon</li>
+		<li><strong>Feeds:</strong> Switched timerpoke-based visibility check to widget-based visibility check</li>
+		<li><strong>Lightbox:</strong> Added documentation on how to leverage Magnific Popup mfp* events</li>
+		<li><strong>Lightbox:</strong> Fixed null error when element is deleted</li>
+		<li><strong>Made Basic HTML version more noticeable by making skip links visible at all times</strong></li>
+		<li><strong>Multimedia player:</strong> Fixed the controls being shifted in the YouTube player</li>
+		<li><strong>Overlay / Lightbox:</strong> Fixed handling of same-page links to elsewhere on the page</li>
+		<li><strong>Share / Multimedia player:</strong> Added 'Share this audio file' option</li>
+		<li><strong>Tables:</strong> Added documentation on how to leverage DataTables *.dt events</li>
+		<li><strong>Tables:</strong> Fixed sort order of formatted numbers</li>
+		<li><strong>Tables:</strong> Made sort icons narrower and removed extra space when sorting disabled</li>
+		<li><strong>Tabs:</strong> Fixed automatic tab rotation and handling of data</li>
+		<li><strong>Tabs:</strong> Fixed fade effect in Safari</li>
+		<li><strong>Tabs:</strong> Fixed linking to an anchor within the same tab panel</li>
+		<li><strong>Tabs:</strong> Fixed printing of regular tabs with CSS transitions</li>
+	</ul>
+	</div>
+</section>
+
+<section>
+	<h2>Détails</h2>
+	<p><strong>Nombre des &#171;&#160;commits&#160;&#187;</strong> 132</p>
+	<ul>
+		<li><a href="https://github.com/pjackson28">@pjackson28</a>&#160;: 78 &#171;&#160;commits&#160;&#187;</li>
+		<li><a href="https://github.com/LaurentGoderre">@LaurentGoderre</a>&#160;: 27 &#171;&#160;commits&#160;&#187;</li>
+		<li><a href="https://github.com/nschonni">@nschonni</a>&#160;: 10 &#171;&#160;commits&#160;&#187;</li>
+		<li><a href="https://github.com/benhurqc">@benhurqc</a>&#160;: 7 &#171;&#160;commits&#160;&#187;</li>
+		<li><a href="https://github.com/EricDunsworth">@EricDunsworth</a>&#160;: 3 &#171;&#160;commits&#160;&#187;</li>
+		<li><a href="https://github.com/joshdevries">@joshdevries</a>&#160;: 2 &#171;&#160;commits&#160;&#187;</li>
+		<li><a href="https://github.com/shoffmand">@shoffmand</a>&#160;: 2 &#171;&#160;commits&#160;&#187;</li>
+		<li><a href="https://github.com/andre-d">@andre-d</a>&#160;: 1 &#171;&#160;commit&#160;&#187;</li>
+		<li><a href="https://github.com/crichard">@crichard</a>&#160;: 1 &#171;&#160;commit&#160;&#187;</li>
+		<li><a href="https://github.com/gobyrne">@gobyrne</a>&#160;: 1 &#171;&#160;commit&#160;&#187;</li>
+	</ul>
+	<section>
+		<h3>Liste des &#171;&#160;commits&#160;&#187;</h3>
+		<ul lang="en">
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/b24fd7d">Updated build version to v4.0.4-development</a> - Paul Jackson, 2014-06-17 23:44:56 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/af73ad0">Reverted the package.json that was overwritten by a theme package.json</a> - Laurent Goderre, 2014-06-18 12:59:45 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/5a3fac7">Calendar of Events: Moved fully to the JEP model</a> - Paul Jackson, 2014-06-18 14:49:16 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/829d36e">Geomap: Fixed jshint issues</a> - Paul Jackson, 2014-06-18 14:49:34 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/6dc0c80">CSS: Fixed pagination wrapping in IE8</a> - Paul Jackson, 2014-06-18 14:53:29 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/5a4268c">JSCS: Bump to 1.5.x release</a> - Nick Schonning, 2014-06-18 23:24:03 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/8e419f8">Added an example of dynamic datalist Addresses #4627</a> - Laurent Goderre, 2014-06-19 13:12:30 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d145e39">Tabbed Interface - Carousel: updated demos with fade/slide transitions</a> - sviens, 2014-06-19 13:35:26 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/4040f5b">Documentation: Cleaned up the markup for the working behind a proxy help.</a> - Paul Jackson, 2014-06-20 14:49:45 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/de12c8f">WET theme: Added support for a full-width main</a> - Paul Jackson, 2014-06-23 16:31:54 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/819eab4">Added the ability to provide more control over the fetch plugin via jQuery ajax settings</a> - Laurent Goderre, 2014-06-24 12:05:32 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/1a07269">Removed ajax status check since different events are now triggered The previous commit introduced a success and failure event for ajax-fetch</a> - Laurent Goderre, 2014-06-24 13:13:53 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f352df7">Added the update event to the datalist plugin Allows updating a dynamically modified datalist</a> - Laurent Goderre, 2014-06-24 15:44:16 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/8d3b518">Fixed the dynamic datalist to work with IE</a> - Laurent Goderre, 2014-06-24 15:44:21 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/6576acf">Calendar of Events: added fluid width display option</a> - sviens, 2014-06-25 10:34:44 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e2034f2">moved RDFa property into the time element</a> - Shawn Thompson, 2014-06-25 11:17:29 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/9c8b26f">Session timeout: Prevented double firing of requests.</a> - Paul Jackson, 2014-06-25 14:01:18 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/48f1179">Menu: Fixed menu handling for undefined AJAX response</a> - Paul Jackson, 2014-06-26 00:28:25 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/ce5a244">Tabs: Fixed minor formatting issue</a> - Paul Jackson, 2014-06-26 00:32:12 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/860251b">Fixed display issue with slflnk class</a> - unknown, 2014-06-26 09:34:57 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/4b3d958">Fixed the indentation of the ajax-fetch plugin</a> - Laurent Goderre, 2014-06-27 11:42:51 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/83aba51">Fixed i18n strings with ' not being properly encoded Fixes #5653</a> - Laurent Goderre, 2014-06-27 17:15:22 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/95489f5">Added redirects for index-eng and index-fra because WET's CodeFest 2013 YouTube video includes a URL with the -eng suffix.</a> - Paul Jackson, 2014-06-30 13:05:23 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/c54b8dd">Calendar of events / Date picker: Fixed numerous keyboard handling issues.</a> - Paul Jackson, 2014-07-02 01:45:03 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/7cfdcc9">Calendar: Fixed goto month field issues.</a> - Paul Jackson, 2014-07-02 02:56:10 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e431045">HTML minification: Preserved line breaks to make it easier to implement the templates.</a> - Paul Jackson, 2014-07-02 14:15:29 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/3cb228b">Changed the test workfllow to allow testing without a full recompile This allows to run grunt js test-mocha</a> - Laurent Goderre, 2014-07-03 10:57:32 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/bc87a09">Fixed syntax highlighting issue with the Gruntfile This is minor but it makes very annoying to work with the grunt file</a> - Laurent Goderre, 2014-07-03 11:06:47 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/5ca746c">[FEEDS] - Added Flickr and Youtube support</a> - Mario Bonito, 2014-07-03 15:11:12 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/dc9d2e1">Added width to the Facebook default image This prevents these image from overpowering the content when feeds fail to load. Also fixed indentation problems</a> - Laurent Goderre, 2014-07-03 15:11:13 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/2ae6dda">Modified the ajax plugin to send the context with the event</a> - Laurent Goderre, 2014-07-03 15:11:14 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/4ef17dd">Converted the feeds plugin to use the ajax-fetch plugin</a> - Laurent Goderre, 2014-07-03 15:11:15 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/320f336">Increased the feeds timeout and add back the callback options Fixes weird behaviors with loading</a> - Laurent Goderre, 2014-07-03 15:11:16 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/5f6d519">Refactored the two feed process methods into one</a> - Laurent Goderre, 2014-07-03 15:11:17 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/fd4ba73">Tabs: Only pause inited video players</a> - Laurent Goderre, 2014-07-03 15:11:18 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/9790130">Multimedia: Fixed not being to have more than one YouTube player per page</a> - Laurent Goderre, 2014-07-03 15:11:19 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e6db838">Optimizied the feeds code for speed and readability</a> - Laurent Goderre, 2014-07-03 15:11:19 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e792fba">Fixed the test to accomodate the new event driven model</a> - Laurent Goderre, 2014-07-03 15:11:20 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0830ce5">Tabs: Fixed display issue for browsers without support for CSS transitions</a> - Paul Jackson, 2014-07-04 11:15:55 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/b8f62b6">Footnotes: Increased width+spacing of links in SCSS. Fixes gh-5448.</a> - Eric Dunsworth, 2014-07-04 16:56:30 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d8d35b5">WET theme: Changed site.* i18n refs to site-* to avoid compatibility issues.</a> - Paul Jackson, 2014-07-07 00:49:28 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/a9b6155">Added Jekyll and WordPress working examples</a> - Paul Jackson, 2014-07-07 03:04:47 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/07c173a">Build: Fixed deployment of root redirects</a> - Paul Jackson, 2014-07-07 03:10:17 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/970470b">Geomap: Fixed accessibility issues with new AOI feature</a> - Paul Jackson, 2014-07-07 04:22:47 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/a1ed2d6">Tabs: Fixed printing of tab panels</a> - Paul Jackson, 2014-07-07 13:32:03 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/ea6505e">Tabs: Fixed direction of slide transitions</a> - Paul Jackson, 2014-07-08 02:33:00 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/55f71fd">Fixed the rest of the libsass TODO regarding nested extend</a> - Laurent Goderre, 2014-07-08 11:51:56 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f73172d">Testing: Move to single harness page</a> - Nick Schonning, 2014-07-08 13:35:40 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f8e4bef">Country Content: Update tests and demos</a> - Nick Schonning, 2014-07-08 13:35:47 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/bb1077f">Fixed some of the data-ajax test</a> - Laurent Goderre, 2014-07-08 13:35:47 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0b0c7b6">Removed duplicate mocha stylesheet</a> - Laurent Goderre, 2014-07-08 13:35:48 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/47fd5d3">Added ability to provide a folder for test fixtures The content of any test folder will be copied over to be used by tests</a> - Laurent Goderre, 2014-07-08 13:35:49 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d87d29b">Fixed the remaining data-ajax tests Fixed by providing a different ajax content fixture</a> - Laurent Goderre, 2014-07-08 13:35:49 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/b2360a6">Exclude the test page from HTMLLint</a> - Laurent Goderre, 2014-07-08 13:35:50 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d31bfaa">Fixed the toggle test suite conflicting with mocha</a> - Laurent Goderre, 2014-07-08 13:35:50 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/7e9b104">Fixed the data-picture test cases</a> - Laurent Goderre, 2014-07-08 13:35:51 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/40f1793">Optimized the share icons SCSS</a> - Laurent Goderre, 2014-07-08 14:05:33 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0015d4f">Fixed the invisible links in the caroussel being focusable Fixed the transitions styles from jQuery mobile. Note that this overrides some of the transitions in Bootstrap.</a> - Laurent Goderre, 2014-07-08 14:05:39 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/7bb7100">Fixed the slide examples for the carousel</a> - Laurent Goderre, 2014-07-08 14:05:40 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/6eb486c">Update geomap-en.hbs</a> - Patrick Upson, 2014-07-08 15:30:59 -0300</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/63eddf9">Tabs: Enabled support for the slide and slidevert classes on tabs panels.</a> - Paul Jackson, 2014-07-08 22:06:48 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/b953824">Tabs: Fixed hiding of panels at the end of slide transitions</a> - Paul Jackson, 2014-07-08 23:57:17 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/92d9f8a">Update geomap-en.hbs</a> - Patrick Upson, 2014-07-09 07:38:57 -0300</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/3e41980">Table validator: Fixed issue that caused &lt;col /&gt; to appear as &lt;col&gt; in HTML results.</a> - Eric Dunsworth, 2014-07-09 22:46:51 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d432d25">i18n: Updated i18n strings</a> - Paul Jackson, 2014-07-10 22:52:43 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/37fb6f2">Menu: Changed menu panel heading, button and title to 'Search and menus'</a> - Paul Jackson, 2014-07-10 22:55:06 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e85d142"> Menu: Added search icon to mobile panel button and increased mobile panel button height by 20%</a> - Paul Jackson, 2014-07-10 22:56:24 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/60b2dc3">Template:  Changed heading text and skip link text for site menu, secondary menu and site information</a> - Paul Jackson, 2014-07-10 23:02:33 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/9660320">Menu: Fixed outlining of non-section wb-navcurr links in the menu panel</a> - Paul Jackson, 2014-07-10 23:03:02 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/a9517a3">Template: Made skip to footer link discoverable in small view</a> - Paul Jackson, 2014-07-11 00:09:21 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e5ff38e">WET theme: Cleaned up skip link CSS</a> - Paul Jackson, 2014-07-11 00:10:08 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/39ace31">WET theme: Cleaned up skip link CSS</a> - Paul Jackson, 2014-07-11 00:56:47 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/b0c5504">Menu: Shrunk icons and increased padding on mobile panel buttons</a> - Paul Jackson, 2014-07-11 09:56:50 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/a7d3c0c">Template: Changed site menu heading in fullmenu AJAX file</a> - Paul Jackson, 2014-07-12 01:40:01 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e18694b">WET theme: Incresed the minimum height of the top bar in mobile view</a> - Paul Jackson, 2014-07-15 01:45:54 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d91a033">Fixed wrapping issues with the btn class</a> - Paul Jackson, 2014-07-15 02:03:37 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/566f4eb">Tabs: Fixed wb-disable and noscript support</a> - Paul Jackson, 2014-07-15 03:08:26 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0448eab">Lightbox: Added open.wb-lbx event for opening a Lightbox popup through JavaScript</a> - Paul Jackson, 2014-07-17 13:36:49 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/816152f">Tables: Added role='button' and aria-pressed to the pagination buttons to indicate which button is pressed</a> - Paul Jackson, 2014-07-17 15:54:14 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/53fe6e5">Demos/Documentation: Fixed a few broken links.</a> - Eric Dunsworth, 2014-07-18 00:11:52 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d2b2620">Overlay: Added documentation</a> - Paul Jackson, 2014-07-18 11:23:53 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/1755b96">Data AJAX: Added missing documentation</a> - Paul Jackson, 2014-07-18 12:04:50 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0b4367c">Data InView: Added events to indicate the view state has changed</a> - Paul Jackson, 2014-07-18 12:34:53 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/7c8826f">Documentation: Various minor documentation tweaks</a> - Paul Jackson, 2014-07-18 14:47:34 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f53dfae">Data InView: Added missing documentation and examples for CSS transitions and view state change events</a> - Paul Jackson, 2014-07-19 22:45:24 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/14eae98">Demos: Added more View code areas to the working examples</a> - Paul Jackson, 2014-07-20 05:07:57 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/4090b78">Documentation: Added table of contents to download page</a> - Paul Jackson, 2014-07-21 13:09:26 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/4294669">Tables: updated documentation</a> - Jeremy S, 2014-07-21 14:59:41 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/cd59a82">Demos: Optimized view code areas in working examples</a> - Paul Jackson, 2014-07-21 16:55:08 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/21b899d">Demos: Increased view code visibility by grouping less visible ones under 'Code' headings</a> - Paul Jackson, 2014-07-21 21:35:23 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/33e4bf6">Added namespace checking and correction to numerous plugins and polyfills to avoid cross-plugin/polyfill triggering of events</a> - Paul Jackson, 2014-07-22 00:45:11 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/6735797">Tables: Removed HTML tags before doing any filtering for formatted number</a> - Paul Jackson, 2014-07-22 01:15:28 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/92fc03f">Template: Moved contact information section to the start of the footer</a> - Paul Jackson, 2014-07-22 09:28:08 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/39bea09">Nav current: Fixed the caching of the parsed breacrumb trail</a> - Paul Jackson, 2014-07-22 13:26:27 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/011ee75">Overlay: Added example of opening overlays with JavaScript</a> - Paul Jackson, 2014-07-22 14:08:19 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/b7fe63e">Toggle: Fix arrow key handling</a> - Paul Jackson, 2014-07-22 14:19:05 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d685343">Charts: Fixed displaying of charts</a> - Paul Jackson, 2014-07-22 14:47:26 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e11e8d2">404 page: Added margin to error message icon</a> - Paul Jackson, 2014-07-22 15:07:23 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/3508790">Date picker: Fixed spacing for picker toggle button in RTL display</a> - Paul Jackson, 2014-07-22 15:16:16 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d716085">Geomap: Formatted population numbers and add margin to map object to make scrolling on mobile devices easier</a> - Paul Jackson, 2014-07-22 16:20:32 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f4f2392">Feeds: Delayed postProcessing of feeds when not visible</a> - Mario Bonito, 2014-07-23 02:28:40 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/7022014">Tabs: Fixed handling of attributes when transitioning between views</a> - Paul Jackson, 2014-07-23 03:08:17 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/460327d">Feeds: Fixed delayed postProcessing on small screens</a> - Paul Jackson, 2014-07-23 03:36:14 -0400</li>
+		</ul>
+	</section>
+</section>

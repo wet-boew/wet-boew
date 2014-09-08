@@ -1,2 +1,18 @@
 #!/bin/sh
-npm install -g bower grunt-cli && npm install
+
+case "$(uname -s)" in
+    CYGWIN*|MINGW*) 
+            npm install -g bower grunt-cli && npm install
+        ;;
+    *) 
+            if [ $(id -u) != "0" ];
+                then
+                    npm install -g bower grunt-cli && npm install
+                else
+                    # Allows Linux and OSX users to run script/setup without the need for sudo
+                    sudo npm install -g bower grunt-cli
+                    sudo -u $(logname) npm install
+            fi
+        ;;
+esac
+

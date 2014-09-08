@@ -102,10 +102,10 @@ var componentName = "wb-tables",
 
 						// Formatted number sorting
 						"formatted-num-asc": function( a, b ) {
-							return wb.formattedNumCompare( b, a );
+							return wb.formattedNumCompare( a, b );
 						},
 						"formatted-num-desc": function( a, b ) {
-							return wb.formattedNumCompare( a, b );
+							return wb.formattedNumCompare( b, a );
 						}
 					} );
 
