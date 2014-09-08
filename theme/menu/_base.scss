@@ -13,18 +13,18 @@
 }
 
 #wb-sm {
-	background: #0e4164;
+	background: #eaebed;
 
 	.menu {
 		margin-bottom: 0;
-		text-shadow: 1px 1px 1px #666;
+		text-shadow: none;
 
 		> {
 			li {
 				> {
 					a {
-						border-left: 1px solid #999;
-						color: #fff;
+						border-left: 1px solid #eaebed;
+						color: #eaebed;
 
 						&.wb-navcurr {
 							@extend %wet-theme-wb-sm-wb-navcurr;
@@ -32,7 +32,7 @@
 
 						// :focus not needed since already covered by the &.active state
 						&:hover {
-							@extend %wet-theme-wb-menu-hover-active;
+							color: #eaebed;
 						}
 					}
 				}
@@ -40,7 +40,7 @@
 				&:last-child {
 					> {
 						a {
-							border-right: 1px solid #999;
+							border-right: 1px solid #eaebed;
 						}
 					}
 				}
@@ -58,7 +58,7 @@
 
 	.sm {
 		&.open {
-			background: #ccc;
+			background: #bdccd4;
 			border-bottom: 5px solid #243850;
 			border-left: 0;
 			border-right: 0;

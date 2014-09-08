@@ -98,6 +98,14 @@ $pagination-hover-border: darken($btn-default-border, 12%);
 
 $pager-border-radius: 4px;
 
+$wb-pg-bnr-link-hover-color: #7fd3f4;
+$wb-pg-bnr-link-visited-color: #d4abfc;
+$wb-pg-bnr-bg-color: #0e4164;
+$wb-pg-bnr-color: #eaebed;
+
+$footer-bg-color: #eaebed;
+$footer-color: #0e4164;
+
 // Hack for Bootstrap 3.1.1, since it doesn't convert the "fadein" LESS method.
 // Pending fix release in https://github.com/twbs/bootstrap-sass/commit/df7be4f0412497e22f1d271d94d6e9835f61113e
 @function fadein($colour, $pct) {
