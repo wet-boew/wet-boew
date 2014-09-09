@@ -103,6 +103,14 @@
 					</ol>
 					<pre><code>&lt;track src="cpts-lg-fr.html" kind="captions" data-type="text/html" srclang="fr" label="Français" /&gt;</code></pre>
 				</li>
+				<li><strong>Facultatif : </strong>Ajoutez des boutons pour accéder aux marqueurs temporels dans la vidéo.
+					<ul>
+						<li>Ajoutez un élément <code>button</code> dans le contenant <code>figure</code>.</li>
+						<li>Spécifiez le marqueur en secondes (ex. 75s) ou en temps (01:15)</li>
+					</ul>
+					<pre><code>&lt;button class="btn btn-info cuepoint" data-cuepoint="75s"&gt;Marqueur temporel - 75s&lt;/button&gt;</code></pre>
+					<pre><code>&lt;button class="btn btn-info cuepoint" data-cuepoint="01:15"&gt;Marqueur temporel - 01:15&lt;/button&gt;</code></pre>
+				</li>
 			</ol>
 
 			<section>
@@ -113,6 +121,7 @@
 		&lt;source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-fra.mp4" /&gt;
 		&lt;track src="cpts-lg-fr.html" kind="captions" data-type="text/html" srclang="fr" label="Français" /&gt;
 	&lt;/video&gt;
+	&lt;button class="btn btn-info cuepoint" data-cuepoint="75s"&gt;Marqueur temporel - 75s&lt;/button&gt;
 	&lt;figcaption&gt;
 		&lt;p&gt;Trouver un emploi (&lt;a href="http://www.servicecanada.gc.ca/fra/video/te.shtml"&gt;Transcription&lt;/a&gt;)&lt;/p&gt;
 	&lt;/figcaption&gt;
