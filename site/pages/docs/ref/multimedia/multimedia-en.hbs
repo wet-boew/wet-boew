@@ -101,6 +101,14 @@
 					</ol>
 					<pre><code>&lt;track src="cpts-lg-en.html" kind="captions" data-type="text/html" srclang="en" label="English" /&gt;</code></pre>
 				</li>
+				<li><strong>Optional: </strong>Add buttons to link to cue points within your video.
+					<ul>
+						<li>Add a <code>button</code> element within the <code>figure</code> container.</li>
+						<li>Specify the cue point in seconds (ex. 75s) or time notation (01:15)</li>
+					</ul>
+					<pre><code>&lt;button class="btn btn-info cuepoint" data-cuepoint="75s"&gt;Cue point - 75s&lt;/button&gt;</code></pre>
+					<pre><code>&lt;button class="btn btn-info cuepoint" data-cuepoint="01:15"&gt;Cue point - 01:15&lt;/button&gt;</code></pre>
+				</li>
 			</ol>
 
 			<section>
@@ -111,6 +119,7 @@
 		&lt;source type="video/mp4" src="http://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4" /&gt;
 		&lt;track src="cpts-lg-en.html" kind="captions" data-type="text/html" srclang="en" label="English" /&gt;
 	&lt;/video&gt;
+	&lt;button class="btn btn-info cuepoint" data-cuepoint="75s"&gt;Cue point - 75s&lt;/button&gt;
 	&lt;figcaption&gt;
 		&lt;p&gt;Looking for a Job (&lt;a href="http://www.servicecanada.gc.ca/eng/video/lj.shtml"&gt;Transcript&lt;/a&gt;)&lt;/p&gt;
 	&lt;/figcaption&gt;
