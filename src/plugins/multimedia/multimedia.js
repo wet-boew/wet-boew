@@ -455,14 +455,12 @@ var componentName = "wb-mltmd",
 		case "setCaptionsVisible":
 			if ( args ) {
 				$( this).addClass( captionClass );
-				if ( this.object.getOptions().length > 0 ) {
-					this.object.setOption( "captions", "track", this.object.getOption( "captions", "tracklist" )[ 0 ] );
-				}
+				this.object.loadModule("cc");
+				this.object.loadModule("captions");
 			} else {
 				$( this ).removeClass( captionClass );
-				if ( this.object.getOptions().length > 0 ) {
-					this.object.setOption( "captions", "track", {} );
-				}
+				this.object.unloadModule("cc");
+				this.object.unloadModule("captions");
 			}
 			$player.trigger( "ccvischange" );
 		}
