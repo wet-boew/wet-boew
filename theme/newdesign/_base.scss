@@ -1,0 +1,89 @@
+/*
+New CSS design changes for global
+*/
+%wet-theme-wb-sm-wb-navcurr {
+	background: #0b3048;
+	color: #fff !important;
+}
+
+.newdesign {
+	background: #fff;
+
+	#wb-sm {
+		background: #eaebed;
+			
+		.menu {
+			text-shadow: none;
+
+			li {
+
+				&:last-child {
+					> {
+						a {
+							border-right: 1px solid $footer-color;
+						}
+					}
+				}
+
+				a {
+					border-left: 1px solid $footer-color;
+					color: $footer-color;
+
+					&:hover {
+						color: $footer-color;
+					}
+				}
+			}
+		}
+
+		.sm {
+
+			.open {
+				background: #bdccd4;
+			}
+		}
+	}
+
+	#wb-bc {
+		background: #fff;
+	}
+
+
+
+	footer {
+		background-color: $footer-bg-color;
+		color: $footer-color;
+
+		a {
+			color: $footer-color;
+		}
+	}
+
+// For page banner title which requires further testing
+	// .wb-pg-bnr {
+	// 	background-color: $wb-pg-bnr-bg-color;
+	// 	color: $wb-pg-bnr-color;  
+	// 	padding: 0 29px 29px;
+	// 	margin-top: -12px;
+
+	// 	a {
+	// 		color: $wb-pg-bnr-color;
+
+	// 		&:hover {
+	// 			color: $wb-pg-bnr-link-hover-color;
+	// 		}
+
+	// 		&:visited {
+	// 			color: $wb-pg-bnr-link-visited-color;
+	// 		}
+	// 	}
+	// }
+
+		// #wb-cont {
+	// 	background-color: $wb-pg-bnr-bg-color;
+	// 	border-bottom: 0;
+	// 	color: $wb-pg-bnr-color;
+	// 	margin-top: 0.45em;
+	// 	padding: 35.5px 24px 29px;
+	// }
+}

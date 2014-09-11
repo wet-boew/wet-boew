@@ -1,8 +1,17 @@
 /*
  Site information
 */
-#wb-info {
-	li {
-		margin-bottom: 0.75em;
+footer {
+	background-color: #eaebed;
+	color: #0e4164;
+
+	a {
+		color: #0e4164;
+	}
+
+	#wb-info {
+		li {
+			margin-bottom: 0.75em;
+		}
 	}
 }
