@@ -1046,7 +1046,7 @@ $document.on( resizeEvent, selector, function( event ) {
 			$player = $( player ),
 			ratio, newHeight;
 
-		if ( $player.hasClass( "video" ) ) {
+		if ( $( event.currentTarget ).hasClass( "video" ) ) {
 			if ( player.videoWidth === 0 || player.videoWidth === undef ) {
 				ratio = $player.attr( "height" ) / $player.attr( "width" );
 
