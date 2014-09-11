@@ -455,14 +455,12 @@ var componentName = "wb-mltmd",
 		case "setCaptionsVisible":
 			if ( args ) {
 				$( this).addClass( captionClass );
-				if ( this.object.getOptions().length > 0 ) {
-					this.object.setOption( "captions", "track", this.object.getOption( "captions", "tracklist" )[ 0 ] );
-				}
+				this.object.loadModule("cc");
+				this.object.loadModule("captions");
 			} else {
 				$( this ).removeClass( captionClass );
-				if ( this.object.getOptions().length > 0 ) {
-					this.object.setOption( "captions", "track", {} );
-				}
+				this.object.unloadModule("cc");
+				this.object.unloadModule("captions");
 			}
 			$player.trigger( "ccvischange" );
 		}
@@ -474,36 +472,36 @@ var componentName = "wb-mltmd",
 	 * @param {object} event The event object fior the triggered event
 	 */
 	youTubeEvents = function( event ) {
-		var target = event.target.a,
-			$target = $( event.target.a ),
+		var playerTarget = event.target.getIframe(),
+			$playerTarget = $( playerTarget ),
 			timeline = function() {
-				$target.trigger( "timeupdate" );
+				$playerTarget.trigger( "timeupdate" );
 			};
 
 		switch ( event.data ) {
 		case null:
-			$target.trigger( "canplay" );
+			$playerTarget.trigger( "canplay" );
+			$playerTarget.trigger( "durationchange" );
 			break;
 		case -1:
 			event.target.unMute();
-			$target.trigger( "durationchange" );
+			$playerTarget.trigger( "durationchange" );
 			break;
 		case 0:
-			$target.trigger( "ended" );
-			target.timeline = clearInterval( target.timeline );
+			$playerTarget.trigger( "ended" );
+			playerTarget.timeline = clearInterval( playerTarget.timeline );
 			break;
 		case 1:
-			$target.trigger( "canplay" );
-			$target.trigger( "durationchange" );
-			$target.trigger( "play" );
-			target.timeline = setInterval( timeline, 250 );
+			$playerTarget.trigger( "canplay" );
+			$playerTarget.trigger( "play" );
+			playerTarget.timeline = setInterval( timeline, 250 );
 			break;
 		case 2:
-			$target.trigger( "pause" );
-			target.timeline = clearInterval( target.timeline );
+			$playerTarget.trigger( "pause" );
+			playerTarget.timeline = clearInterval( playerTarget.timeline );
 			break;
 		case 3:
-			target.timeline = clearInterval( target.timeline );
+			playerTarget.timeline = clearInterval( playerTarget.timeline );
 			break;
 		}
 	},
