@@ -481,6 +481,7 @@ var componentName = "wb-mltmd",
 		switch ( event.data ) {
 		case null:
 			$playerTarget.trigger( "canplay" );
+			$playerTarget.trigger( "durationchange" );
 			break;
 		case -1:
 			event.target.unMute();
@@ -492,7 +493,6 @@ var componentName = "wb-mltmd",
 			break;
 		case 1:
 			$playerTarget.trigger( "canplay" );
-			$playerTarget.trigger( "durationchange" );
 			$playerTarget.trigger( "play" );
 			playerTarget.timeline = setInterval( timeline, 250 );
 			break;
