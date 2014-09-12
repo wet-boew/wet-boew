@@ -2,7 +2,7 @@
 	<div class="row">
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{assets}}/index-{{language}}.html">{{{i18n "tmpl-home"}}}</a>
+				<a href="{{assets}}/index-{{#contains language "fr"}}{{language}}{{else}}en{{/contains}}.html">{{{i18n "tmpl-home"}}}</a>
 			</li>
 {{#contains page.src "/demos/index"}}
 {{else}}
@@ -29,12 +29,12 @@
 		{{/contains}}
 	{{else}}
 			<li>
-				<a href="{{assets}}/demos/index-{{language}}.html">{{{i18n "tmpl-work-examples"}}}</a>
+				<a href="{{assets}}/demos/index-{{#contains language "fr"}}{{language}}{{else}}en{{/contains}}.html">{{{i18n "tmpl-work-examples"}}}</a>
 			</li>
 		{{#is breadcrumb3 "true"}}
 			{{#contains tag "theme-wet-boew"}}
 				<li>
-					<a href="{{assets}}/theme/index-{{language}}.html">{{breadcrumb3-title}}</a>
+					<a href="{{assets}}/theme/index-{{#contains language "fr"}}{{language}}{{else}}en{{/contains}}.html">{{breadcrumb3-title}}</a>
 				</li>
 			{{else}}
 				<li>
