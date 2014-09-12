@@ -292,6 +292,13 @@ var componentName = "wb-toggle",
 				$elms = data.elms,
 				$detail = $( this );
 
+			// Stop propagation of the toggleDetails event
+			if ( event.stopPropagation ) {
+				event.stopImmediatePropagation();
+			} else {
+				event.cancelBubble = true;
+			}
+
 			// Native details support
 			$detail.prop( "open", isOn );
 
