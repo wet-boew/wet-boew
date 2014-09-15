@@ -497,6 +497,7 @@ module.exports = (grunt) ->
 						cwd: "site/pages"
 						src: [
 							"**/*.hbs",
+							"!**/test.hbs"
 							"!ajax/**/*.hbs"
 							"!docs/**/*.hbs"
 						]
