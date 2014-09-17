@@ -748,7 +748,9 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 			$media = $this.find( "video, audio, iframe, object" ),
 			$player, $share;
 
-		$media.after( tmpl( $this.data( "template" ), data ) );
+		$media
+			.after( tmpl( $this.data( "template" ), data ) )
+			.wrap("<div class=\"display\"></div>");
 
 		$player = $( "#" + data.mId );
 		data.player = $player.is( "object" ) ? $player.children( ":first-child" ) : $player;
@@ -814,7 +816,7 @@ $document.on( "click", selector, function( event ) {
 	// Optimized multiple class tests to include child glyphicon because Safari was reporting the click event
 	// from the child span not the parent button, forcing us to have to check for both elements
 	// JSPerf for multiple class matching http://jsperf.com/hasclass-vs-is-stackoverflow/7
-	if ( className.match( /playpause|-play|-pause/ ) || $target.is( "object" ) ) {
+	if ( className.match( /playpause|-play|-pause/ ) || $target.is( "object" ) || $target.is( "video" ) ) {
 		this.player( "getPaused" ) ? this.player( "play" ) : this.player( "pause" );
 	} else if ( className.match( /\bcc\b|-subtitles/ )  ) {
 		this.player( "setCaptionsVisible", !this.player( "getCaptionsVisible" ) );

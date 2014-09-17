@@ -34,16 +34,70 @@ $mm-volume-thumb-width: 10px;
 	}
 }
 
-%multimedia_loading {
+%centered_overlay {
 	bottom: 0;
-	content: " ";
 	height: 100px;
 	left: 0;
 	margin: auto;
+	pointer-events: none;
 	position: absolute;
 	right: 0;
 	top: 0;
 	width: 100px;
+	z-index: 1;
+}
+
+@mixin multimedia_overlay_base {
+	.display {
+		position: relative;
+		&:before {
+			@extend %centered_overlay;
+			background: rgba(0, 0, 0, 0.7);
+			border-radius: 10px;
+		}
+	}
+}
+
+@mixin multimedia_overlay_loading {
+	.display {
+		&:before {
+			content: " ";
+			display: block;
+		}
+
+		&:after {
+			@extend %centered_overlay;
+			animation: {
+				duration: 1000ms;
+				iteration-count: infinite;
+				name: spin;
+				timing-function: linear;
+			}
+			content: " ";
+			background: url("../assets/loading.png") center center no-repeat;
+			z-index: 2;
+		}
+	}
+}
+
+@mixin multimedia_overlay_play {
+	.display {
+		&:before {
+			color: #fff;
+			content: "";
+			font-family: "Glyphicons Halflings";
+			font-size: 65px;
+			text-align: center;
+		}
+	}
+}
+
+@mixin multimedia_overlay_hidden {
+	.display {
+		&:before {
+			display: none;
+		}
+	}
 }
 
 %controls-offset {
@@ -63,12 +117,17 @@ $mm-volume-thumb-width: 10px;
 }
 
 .wb-mltmd {
+	@include multimedia_overlay_base;
+	@include multimedia_overlay_play;
+
 	// lets fight the FOUC
 	// base state
 	display: block;
+	position: relative;
 
 	video {
 		@extend %controls-offset;
+
 		height: auto;
 		width: 100%;
 	}
@@ -88,36 +147,18 @@ $mm-volume-thumb-width: 10px;
 		}
 	}
 
-	&.waiting {
-		&:after {
-			@extend %multimedia_loading;
-			animation: {
-				duration: 1000ms;
-				iteration-count: infinite;
-				name: spin;
-				timing-function: linear;
-			}
-			background: url("../assets/loading.png") center center no-repeat;
-			z-index: 2;
-		}
-
-		&:before {
-			@extend %multimedia_loading;
-			background: rgba(0, 0, 0, 0.7);
-			border-radius: 10px;
-			z-index: 1;
-		}
-	}
-
 	&.playing {
-		img {
-			visibility: hidden;
-		}
+		@include multimedia_overlay_hidden;
 
 		.errmsg {
 			display: none;
 		}
 	}
+
+	&.waiting {
+		@include multimedia_overlay_loading;
+	}
+
 
 	&.cc_on {
 		.wb-mm-cc {
@@ -138,6 +179,8 @@ $mm-volume-thumb-width: 10px;
 	}
 
 	&.youtube {
+		@include multimedia_overlay_hidden;
+
 		.wb-mm-ctrls {
 			border-bottom: 10px solid #fff;
 		}
