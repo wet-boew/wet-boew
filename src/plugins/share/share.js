@@ -235,7 +235,6 @@ var componentName = "wb-share",
 			$elm.append( $share );
 
 			$share
-				.trigger( initEvent )
 				.trigger( "wb-init.wb-lbx" );
 
 			// Identify that initialization has completed

@@ -779,9 +779,9 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 			$share = $( "<div class='wb-share' data-wb-share=\'{\"type\": \"" +
 				( type === "audio" ? type : "video" ) + "\", \"title\": \"" +
 				data.title + "\", \"url\": \"" + data.shareUrl +
-				"\", \"pnlId\": \"" + data.id + "-shr\"}\'></div>" );
-			$media.parent().before( $share );
-			wb.add( $share );
+				"\", \"pnlId\": \"" + data.id + "-shr\"}\'></div>" )
+				.insertBefore( $media.parent() )
+				.trigger( "wb-init.wb-share" );
 		}
 
 		if ( data.captions === undef ) {
