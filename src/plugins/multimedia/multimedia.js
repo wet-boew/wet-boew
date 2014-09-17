@@ -740,10 +740,11 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 			captionsUrl = wb.getUrlParts( data.captions ),
 			currentUrl = wb.getUrlParts( window.location.href ),
 			$media = $this.find( "video, audio, iframe, object" ),
-			$player, $overlay, $share;
+			$player, $share;
 
-		$media.after( tmpl( $this.data( "template" ), data ) );
-		$overlay = $media.next().find( ".wb-mm-ovrly" ).after( $media );
+		$media
+			.after( tmpl( $this.data( "template" ), data ) )
+			.wrap("<div class=\"display\"></div>");
 
 		$player = $( "#" + data.mId );
 		data.player = $player.is( "object" ) ? $player.children( ":first-child" ) : $player;
@@ -769,7 +770,6 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 		$this.find( "input[type='range']" ).trigger( "wb-init.wb-slider" );
 
 		// Create the share widgets if needed
-		// TODO: Remove .parent() when getting rid of the overlay
 		if ( data.shareUrl !== undef ) {
 			$share = $( "<div class='wb-share' data-wb-share=\'{\"type\": \"" +
 				( type === "audio" ? type : "video" ) + "\", \"title\": \"" +
@@ -808,7 +808,7 @@ $document.on( "click", selector, function( event ) {
 	// Optimized multiple class tests to include child glyphicon because Safari was reporting the click event
 	// from the child span not the parent button, forcing us to have to check for both elements
 	// JSPerf for multiple class matching http://jsperf.com/hasclass-vs-is-stackoverflow/7
-	if ( className.match( /playpause|-play|-pause|wb-mm-ovrly/ ) || $target.is( "object" ) ) {
+	if ( className.match( /playpause|-play|-pause|display/ ) || $target.is( "object" ) || $target.is( "video" ) ) {
 		this.player( "getPaused" ) || this.player( "getEnded" ) ? this.player( "play" ) : this.player( "pause" );
 	} else if ( className.match( /\bcc\b|-subtitles/ )  ) {
 		this.player( "setCaptionsVisible", !this.player( "getCaptionsVisible" ) );
@@ -907,11 +907,13 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 		$button = $this.find( ".playpause" );
 		buttonData = $button.data( "state-" + ( isPlay ? "off" : "on" ) );
 		if ( isPlay ) {
-			$this.find( ".wb-mm-ovrly" ).addClass( "playing" );
+			$this.addClass( "playing" );
 			$this.find( ".progress" ).addClass( "active" );
-		} else if ( eventType === "ended" ) {
-			this.loading = clearTimeout( this.loading );
-			$this.find( ".wb-mm-ovrly" ).removeClass( "playing" );
+		} else {
+			if ( eventType === "ended" ) {
+				this.loading = clearTimeout( this.loading );
+			}
+			$this.removeClass( "playing" );
 		}
 		$button
 			.attr( "title", buttonData )
@@ -1006,13 +1008,13 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 			$document.off( "progress", selector );
 		}
 		this.loading = setTimeout( function() {
-			$this.find( ".display" ).addClass( "waiting" );
+			$this.addClass( "waiting" );
 		}, 500 );
 		break;
 
 	case "canplay":
 		this.loading = clearTimeout( this.loading );
-		$this.find( ".display" ).removeClass( "waiting" );
+		$this.removeClass( "waiting" );
 		break;
 	case "cuepoint":
 		eventTarget.player( "setCurrentTime", parseTime( event.cuepoint ) );
