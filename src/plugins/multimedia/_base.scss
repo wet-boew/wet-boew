@@ -258,6 +258,11 @@ $mm-volume-thumb-width: 10px;
 		}
 		color: $mm-ctrl-fg-color;
 		font-size: 130%;
+
+		//TODO: Remove if bootstrap issue gets resolved https://github.com/twbs/bootstrap/issues/14638
+		.glyphicon {
+			pointer-events: none;
+		}
 	}
 
 	.frstpnl {

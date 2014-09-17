@@ -813,22 +813,24 @@ $document.on( "click", selector, function( event ) {
 		return true;
 	}
 
-	// Optimized multiple class tests to include child glyphicon because Safari was reporting the click event
-	// from the child span not the parent button, forcing us to have to check for both elements
-	// JSPerf for multiple class matching http://jsperf.com/hasclass-vs-is-stackoverflow/7
-	if ( className.match( /playpause|-play|-pause/ ) || $target.is( "object" ) || $target.is( "video" ) ) {
+	if ( className.match( /\bplaypause\b/ ) || $target.is( "object" ) || $target.is( "video" ) ) {
+
 		this.player( "getPaused" ) ? this.player( "play" ) : this.player( "pause" );
-	} else if ( className.match( /\bcc\b|-subtitles/ )  ) {
+
+	} else if ( className.match( /\bcc\b/ )  ) {
+
 		this.player( "setCaptionsVisible", !this.player( "getCaptionsVisible" ) );
-	} else if ( className.match( /\bmute\b|-volume-(up|off)/ ) ) {
+
+	} else if ( className.match( /\bmute\b/ ) ) {
+
 		this.player( "setMuted", !this.player( "getMuted" ) );
+
 	} else if ( $target.is( "progress" ) || $target.hasClass( "progress" ) || $target.hasClass( "progress-bar" ) ) {
+
 		this.player( "setCurrentTime", this.player( "getDuration" ) * ( ( event.pageX - $target.offset().left ) / $target.width() ) );
-	} else if ( className.match( /\brewind\b|-backward/ ) ) {
-		this.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05);
-	} else if ( className.match( /\bfastforward\b|-forward/ ) ) {
-		this.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05);
+
 	} else if ( className.match( /cuepoint/ ) ) {
+
 		$(this).trigger( { type: "cuepoint", cuepoint: $target.data( "cuepoint" ) } );
 	}
 });
