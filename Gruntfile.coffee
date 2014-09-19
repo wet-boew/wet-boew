@@ -820,6 +820,7 @@ module.exports = (grunt) ->
 				cwd: "dist/unmin"
 				src: [
 					"**/*.html"
+					"!**/geomap*.html"
 				]
 				dest: "dist"
 				expand: true
