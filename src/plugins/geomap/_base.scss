@@ -2,6 +2,8 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
 */
+@import "sprites/sprites_geomap";
+
 %geomap-overflow-cursor-move {
 	cursor: move;
 }
@@ -11,6 +13,10 @@
 	font-size: 1px;
 	opacity: 0.5;
 	position: absolute;
+}
+
+%geomap-locate-bg-size {
+	background-size: 33px auto;
 }
 
 /**
@@ -58,15 +64,14 @@
 }
 
 .olButtonGeolocateItemActive {
-	background: url("../assets/locate-active.png") no-repeat;
-	background-position: 0 0;
-	background-size: 33px 33px;
+	@extend %_sprites_geomap_scss;
+	@extend %geomap-locate-bg-size;
 }
 
 .olButtonGeolocateItemInactive {
-	background: url("../assets/locate.png") no-repeat;
-	background-position: 0 0;
-	background-size: 33px 33px;
+	@extend %_sprites_geomap_scss;
+	@extend %geomap-locate-bg-size;
+	background-position: 0 -34px;
 }
 
 /*
@@ -283,7 +288,7 @@
 }
 
 .geomap-lgnd-layer {
-	margin-top: 20px!important;	
+	margin-top: 20px!important;
 }
 
 .geomap-geoloc {
