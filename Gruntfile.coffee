@@ -521,8 +521,15 @@ module.exports = (grunt) ->
 				src: [
 					"src/plugins/share/sprites/*.png"
 				]
-				css: "src/plugins/share/sprites/_sprites.scss"
+				css: "src/plugins/share/sprites/_sprites_share.scss"
 				map: "src/plugins/share/assets/sprites_share.png"
+				output: "scss"
+			geomap:
+				src: [
+					"src/plugins/geomap/sprites/*.png"
+				]
+				css: "src/plugins/geomap/sprites/_sprites_geomap.scss"
+				map: "src/plugins/geomap/assets/sprites_geomap.png"
 				output: "scss"
 
 		# Compiles the Sass files
