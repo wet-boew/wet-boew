@@ -3,6 +3,7 @@ exclude:
   - "node_modules/**"
   - "dist/**"
   - "src/plugins/share/sprites/**"
+  - "src/plugins/geomap/sprites/**"
   - "wet-boew-dist/**"
 
 linters:
