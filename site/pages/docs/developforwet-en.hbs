@@ -1,0 +1,132 @@
+---
+{
+	"title": "Developing for WET guide",
+	"language": "en",
+	"description": "Developing for WET guide",
+	"altLangPrefix": "developforwet",
+	"dateModified": "2014-09-22"
+}
+---
+<p>Offers helpful information on how to develop with WET using Github. If you are working behind a proxy, you may want to look at the <a href="proxy-en.html">proxy troubleshooting guide</a>.</p>
+
+<section>
+	<h2 id="implement">I want to use WET on my website</h2>
+	<ol>
+		<li>Grab the production files for the latest stable release of one of the themes from the <a href="versions/dwnld-en.html">downloads page</a>.</li>
+		<li>Follow the implementation instructions in the <a href="ref/themesstyle-en.html">documentation for the theme that was downloaded</a>.</li>
+		<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/index-en.html">Review the design guide</a> for information on implementing WET on your site.</li>
+	</ol>
+</section>
+
+<section>
+	<h2 id="theme">I want to customize WET and design a new theme for WET</h2>
+	<ol>
+		<li><a href="http://nodejs.org/">Install NodeJS</a> for your platform.</li>
+		<li>Create a directory for your project.</li>
+		<li>Install the <a href="http://gruntjs.com/">Grunt <abbr title="Command Line Interface">CLI</abbr></a>, <a href="http://yeoman.io/">Yeoman</a>, and <a href="http://bower.io">Bower</a> packages globally by running <code>npm install -g grunt-cli yo bower</code> from the command line console (Command Prompt on Windows, Terminal on OS X, or other shell environment on Linux or Unix).</li>
+		<li>Install the WET theme generator by running <code>npm install -g generator-wet-boew-theme</code>.</li>
+		<li>Run <code>yo wet-boew-theme</code> from the command prompt, and answer the questions at the prompt to setup your theme project.</li>
+	</ol>
+</section>
+
+<section>
+	<h2 id="issues">I want to report a bug or ask a question about WET</h2>
+		<p>Before <a href="https://github.com/wet-boew/wet-boew/issues/new">creating an issue</a>:</p>
+	<ul>
+		<li>Is your question specific to WET-BOEW or just a general coding question? You might find general solutions to HTML, CSS, and JavaScript questions on <a href="http://stackoverflow.com">StackOverflow</a>.</li>
+		<li><a href="https://github.com/wet-boew/wet-boew/issues">Have you searched the existing issues</a> to see if someone's already filed the same thing? You can use the search box at the top of the page or filter issues by the categories on the left.</li>
+		<li>What version of WET are you using (v3.1.1, v4.0.0, etc)? If you're not using the latest stable version, does using the latest version resolve the issue?</li>
+		<li>Was the issue encountered in a WET variant (Drupal, PHP, .Net, etc.) or in the core framework? If it applies to the core project, <a href="https://github.com/wet-boew/wet-boew/issues/new">create an issue in the WET-BOEW repository</a>.</li>
+	</ul>
+
+	<p>When creating an issue:</p>
+	<ol>
+		<li><a href="https://help.github.com/articles/signing-up-for-a-new-github-account">Create a GitHub account</a>.</li>
+		<li>Ask a question relating to the <a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/index-en.html">design guide</a> by <a href="https://github.com/wet-boew/wet-boew-styleguide/issues/new">creating a new issue on GitHub</a>.</li>
+		<li>If an assistive technology (AT) was involved, then please include the combination of AT and what kind of browser that was used when creating your issue.</li>
+		<li>Can you provide a link to a page that reproduces the issue (for example, a demo or public URL)? If a public page cannot be provided, a picture should be attached showing the issue (use GitHub's <a class="ui-link" href="https://github.com/blog/1347-issue-attachments">issue attachment feature</a>).</li>	
+	</ol>
+</section>
+
+<section>
+	<h2 id="develop">I want to fix or improve WET as a developer</h2>
+	<ol>
+		<li><a href="http://nodejs.org/">Install NodeJS</a> for your platform.</li>
+		<li><a href="https://help.github.com/articles/signing-up-for-a-new-github-account">Create a GitHub account</a>.</li>
+		<li>Follow GitHub's guides on <a href="https://help.github.com/articles/set-up-git">setting up Git</a>.</li>
+		<li>Fork the <a href="https://github.com/wet-boew/wet-boew">wet-boew repository</a> by following the <a href="https://help.github.com/articles/fork-a-repo">GitHub forking guide</a>. Use the upstream URL of <code>https://github.com/wet-boew/wet-boew.git</code> in step 3.</li>
+		<li>Run <code>./script/setup</code> from the <code>wet-boew</code> directory in your command line console.</li>
+		<li>Run <code>grunt</code> to build the project. You may run <code>grunt --help</code> to see the build target descriptions.</li>
+		<li>The latest files will now be compiled to the <code>dist/</code> folder.</li>
+		<li>To contribute back, follow the instructions on <a href="#plrequest">how to create a pull request</a>.</li>
+	</ol>
+</section>
+
+<section>
+	<h2 id="plrequest">I want to make a pull request</h2>
+	<p>Pull requests are welcome. Please make sure your changes are to the latest code and limit the commit range to just the files you intended to change (to avoid conflicts).</p>
+	<ul>
+		<li>To cut down on commit pollution in the main code base consider <a rel="external" href="http://git-scm.com/book/en/Git-Branching-Rebasing">rebasing</a> your commits before you create a pull request to the main branch.</li>
+	</ul>
+	<p><strong>New components</strong> should be added in a feature-* branch (e.g., feature-lightbox) that is created off of the master branch.</p>
+	<ul>
+		<li>Create the a fresh branch off master by using:
+			<ul>
+				<li><code>git fetch upstream</code></li>
+				<li><code>git checkout upstream/master</code></li>
+				<li><code>git checkout -b my-cool-new-feature</code></li>
+			</ul>
+		</li>
+		<li>Licensing for all new components and supporting code must be compatible with the MIT license used by WET.</li>
+		<li>New plugins should use the same structure and formatas existing plugins.</li>
+		<li>Include the WET terms and conditions comment block in all text-based source files that fall under Crown Copyright.</li>
+	</ul>
+	<p><strong>Bug fixes</strong> and <strong>patches</strong> should be submitted to the master branch.</p>
+	<ul>
+		<li>Create a fresh branch off of master by using:
+			<ul>
+				<li><code>git fetch upstream</code></li>
+				<li><code>git checkout upstream/master</code></li>
+				<li><code>git checkout -b my-patch-description</code></li>
+			</ul>
+		</li>
+	</ul>
+</section>
+
+<section>
+	<h2 id="test">I want to test my pull request before submitting</h2>
+	<ul>
+		<li>
+			Validate your HTML markup as to ensure well-formed HTML5.
+			<ul>
+				<li>These tests will be run as part of the default build, or by calling <code>grunt htmllint</code> to run the task on your built HTML.
+				<li>You can manually test for well-formed markup using the <a rel="external" href="http://validator.w3.org/nu/">W3C HTML validator</a>. Validate with an XHTML5 preset and a checkmark next to "Be lax about HTTP Content-Type".</li>
+			</ul>
+		</li>
+		<li>
+			<a rel="external" href="http://jigsaw.w3.org/css-validator/#validate_by_uri+with_options">Validate your CSS</a> with the following changes to the default settings:
+			 <ul>
+				<li><strong>Profile:</strong> CSS level 3</li>
+				<li><strong>Vendor extensions:</strong> Warnings</li>
+			</ul>
+		</li>
+		<li><a rel="external" href="http://www.jshint.com">Validate your JavaScript code</a>. This validation is done by calling <code>grunt jshint</code></li>
+		<li><a href="opt-en.html">Optimize your JavaScript, CSS and HTML code</a></li>
+		<li>Formatting recommendations:
+			<ul>
+				<li>Indenting can be enforced by installing an <a href="http://editorconfig.org">EditorConfig</a> plugin for your prefered <abbr>IDE</abbr>
+				<li>Indent with tabs using the <a rel="external" href="http://en.wikipedia.org/wiki/Indent_style#K.26R_style">K&amp;R indenting style</a></li>
+				<li>Use single quotes for strings in JavaScript (so unescaped double quotes can be used for attributes in HTML output)</li>
+			</ul>
+		</li>
+		<li>
+			Test Web pages against the following browser test baseline:
+			<ul>
+				<li>The current and previous major version of each browser that accounts for at least 5 per cent of visits to the website;</li>
+				<li>Any major version of a browser that, on its own, accounts for at least 5 per cent of visits to the website; and</li>
+				<li>The current and previous versions of the default browsers of each mobile operating systems that accounts for at least 5 per cent of the global or Canadian mobile operating system market share.</li>
+			</ul>
+		</li>
+		<li>PR testing is done by <a rel="external" href="https://travis-ci.org/wet-boew/wet-boew">Travis-CI</a>, but the same set of tests can be run using "ant test" locally before you submit</li>
+	</ul>
+</section>
