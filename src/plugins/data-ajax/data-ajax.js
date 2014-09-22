@@ -16,11 +16,19 @@
  * page.
  */
 var componentName = "wb-data-ajax",
-	selector = "[data-ajax-after], [data-ajax-append], [data-ajax-before], " +
-		"[data-ajax-prepend], [data-ajax-replace]",
+	selectors = [
+		"[data-ajax-after]",
+		"[data-ajax-append]",
+		"[data-ajax-before]",
+		"[data-ajax-prepend]",
+		"[data-ajax-replace]"
+	],
+	selectorsLength = selectors.length,
+	selector = selectors.join( "," ),
 	initEvent = "wb-init." + componentName,
 	updateEvent = "wb-update." + componentName,
 	$document = wb.doc,
+	s,
 
 	/**
 	 * @method init
@@ -112,7 +120,9 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " ajax-fetched.w
 	return true;
 } );
 
-// Add the timer poke to initialize the plugin
-wb.add( selector );
+// Add the timerpoke to initialize the plugin
+for ( s = 0; s !== selectorsLength; s += 1 ) {
+	wb.add( selectors[ s ] );
+}
 
 })( jQuery, window, wb );
