@@ -8,10 +8,11 @@ env:
 
 install:
   - ./script/setup
-  - gem install scss-lint --no-ri --version '=0.26.2'
+  - bundle install
 
 script:
   - travis_retry ./script/travis_script.sh
+  - bundle exec rake
   - ./script/travis_saucelabs.sh
 
 after_success:

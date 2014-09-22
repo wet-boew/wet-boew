@@ -30,7 +30,7 @@ module.exports = (grunt) ->
 			"build"
 			"minify"
 			"pages:theme"
-			"pages:docs"
+			"docs-min"
 			"demos-min"
 			"htmllint"
 		]
@@ -182,6 +182,15 @@ module.exports = (grunt) ->
 		"INTERNAL: Create unminified docs"
 		[
 			"pages:docs"
+		]
+	)
+
+	@registerTask(
+		"docs-min"
+		"INTERNAL: Create minified docs"
+		[
+			"pages:docs"
+			"cssmin:docs_min"
 		]
 	)
 
@@ -488,6 +497,7 @@ module.exports = (grunt) ->
 						cwd: "site/pages"
 						src: [
 							"**/*.hbs",
+							"!**/test.hbs"
 							"!ajax/**/*.hbs"
 							"!docs/**/*.hbs"
 						]
@@ -583,6 +593,12 @@ module.exports = (grunt) ->
 					src: "**/demo/*.scss"
 					dest: "dist/unmin/demos/"
 					ext: ".css"
+				,
+					expand: true
+					cwd: "site/pages/docs/css"
+					src: "**/*.scss"
+					dest: "dist/unmin/docs/css/"
+					ext: ".css"
 				]
 
 		autoprefixer:
@@ -640,6 +656,11 @@ module.exports = (grunt) ->
 					cwd: "dist/unmin/demos"
 					src: "**/*.css"
 					dest: "dist/unmin/demos/"
+					expand: true
+				,
+					cwd: "dist/unmin/docs"
+					src: "**/*.css"
+					dest: "dist/unmin/docs/"
 					expand: true
 				]
 
@@ -817,6 +838,17 @@ module.exports = (grunt) ->
 					"**/demo/*.css"
 				]
 				dest: "dist/demos/"
+				ext: ".min.css"
+
+			docs_min:
+				options:
+					banner: "@charset \"utf-8\";\n<%= banner %>"
+				expand: true
+				cwd: "dist/unmin/docs/"
+				src: [
+					"**/*.css"
+				]
+				dest: "dist/docs/"
 				ext: ".min.css"
 
 		htmlmin:
