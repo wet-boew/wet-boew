@@ -39,9 +39,9 @@ var componentName = "wb-data-ajax",
 
 			$document.trigger({
 				type: "ajax-fetch.wb",
-				element: $( elm ),
+				element: $elm,
 				fetch: {
-					url: $elm.data( "ajax-" + ajaxType )
+					url: elm.getAttribute( "data-ajax-" + ajaxType )
 				}
 			});
 		}
