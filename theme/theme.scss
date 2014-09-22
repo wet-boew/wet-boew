@@ -18,6 +18,7 @@
 @import "search/base";
 @import "secondary-menu/base";
 @import "skip-links/base";
+@import "getting-started/base";
 
 /*
  Views
@@ -74,6 +75,7 @@
 /* Extra-extra-small view */
 @media screen and (max-width: $screen-xxs-max) {
 	@import "views/screen-xxs-max";
+	@import "getting-started/screen-xxs-max";
 }
 
 /* Extra-small view */
