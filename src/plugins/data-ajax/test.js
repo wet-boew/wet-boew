@@ -207,6 +207,31 @@ describe( "data-ajax test suite", function() {
 			expect( $append.children().length ).to.be.greaterThan( 0 );
 		});
 	});
+
+	describe( "dynamic data-ajax", function() {
+		var $elm;
+
+		before(function( done ) {
+			$elm = createElm( "append", done );
+		});
+
+		after(function() {
+			$elm.remove();
+		});
+
+		it( "should use the updated URL", function( done ) {
+			callback = done;
+
+			$elm
+				.attr( "data-ajax-append", "data-ajax/test/data-ajax2.html" )
+				.trigger( "wb-update.wb-data-ajax" );
+
+			callback = function() {
+				expect( $elm.find( ".ajaxed-in2" ).length ).to.be.greaterThan( 0 );
+				done();
+			};
+		});
+	});
 });
 
 }( jQuery, wb ));
