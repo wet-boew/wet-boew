@@ -360,21 +360,22 @@ yepnope.addPrefix( "site", function( resourceObj ) {
  * @prefix: plyfll! - builds the path for the polyfill resource
  */
 yepnope.addPrefix( "plyfll", function( resourceObj ) {
-	var path;
+	var path,
+		url = resourceObj.url;
 
-	if ( disabled ) {
+	if ( disabled && url.indexOf( "svg" ) === -1 ) {
 		resourceObj.bypass = true;
 	} else if ( !$mode ) {
-		resourceObj.url = resourceObj.url.replace( ".min", "" );
+		url = url.replace( ".min", "" );
 	}
 
-	if ( resourceObj.url.indexOf( ".css" ) !== -1 ) {
+	if ( url.indexOf( ".css" ) !== -1 ) {
 		resourceObj.forceCSS = true;
 		path = $homecss;
 	} else {
 		path = $homepath;
 	}
-	resourceObj.url = path + "/polyfills/" + resourceObj.url;
+	resourceObj.url = path + "/polyfills/" + url;
 
 	return resourceObj;
 });
