@@ -1,0 +1,133 @@
+---
+{
+	"title": "v4.0.6 release notes",
+	"language": "en",
+	"description": "v4.0.6 release notes - Version history - Web Experience Toolkit (WET)",
+	"altLangPrefix": "v4.0.6",
+	"dateModified": "2014-09-23"
+}
+---
+<ul>
+	<li><strong>Release date:</strong> <time>2014-09-23</time></li>
+	<li><a href="../dwnld-en.html#v406">Downloads</a></li>
+</ul>
+
+<span class="wb-prettify all-pre"></span>
+
+<section>
+	<h2>What's New</h2>
+	<ul>
+		<li>Added collapsible alert plugin</li>
+		<li><strong>Dependencies:</strong> Switched open layer dependency to a compiled version</li>
+		<li><strong>Build:</strong> Replaced the html minifier with a faster one</li>
+		<li><strong>Build:</strong> Moved the Travis variables to Travis UI</li>
+		<li><strong>Build:</strong> Check dependencies on every build</li>
+		<li><strong>Dependencies:</strong> Update DataTables to version 1.10.2</li>
+		<li><strong>Dependencies:</strong> Update jQuery Validation to version 1.13.0</li>
+		<li><strong>Dependencies:</strong> Update jquery-pjax to version 1.8.2</li>
+		<li><strong>Multimedia player:</strong> Added cue point support</li>
+		<li><strong>Multimedia player:</strong> Improved YouTube support</li>
+		<li><strong>Tabs:</strong> Added support for nesting tabs</li>
+		<li>Enbled SVG polyfill on basic HTML version</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Details</h2>
+	<p><strong>Number of commits:</strong> 76</p>
+	<ul>
+		<li><a href="https://github.com/LaurentGoderre">@LaurentGoderre</a>: 34 commits</li>
+		<li><a href="https://github.com/pjackson28">@pjackson28</a>: 13 commits</li>
+		<li><a href="https://github.com/nschonni">@nschonni</a>: 10 commits</li>
+		<li><a href="https://github.com/Pacoup">@Pacoup</a>: 5 commits</li>
+		<li><a href="https://github.com/EricDunsworth">@EricDunsworth</a>: 3 commits</li>
+		<li><a href="https://github.com/jolevesq">@jolevesq</a>: 3 commits</li>
+		<li><a href="https://github.com/crichard">@crichard</a>: 2 commits</li>
+		<li><a href="https://github.com/thomasgohard">@thomasgohard</a>: 2 commits</li>
+		<li><a href="https://github.com/shoffmand">@shoffmand</a>: 2 commits</li>
+		<li><a href="https://github.com/dubbs">@dubbs</a>: 1 commit</li>
+		<li><a href="https://github.com/masterbee">@masterbee</a>: 1 commit</li>
+	</ul>
+	
+	<section>
+		<h3>List of commits</h3>
+		<ul>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f49445d">Updated build version to v4.0.6-development</a> - Paul Jackson, 2014-08-20 23:23:14 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/59fe4b6">Added dismissible alert plugin</a> - Etienne Levesque Guitard, 2014-08-22 01:01:44 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/554ac79">Documentation: Added Design Jam video to video pages</a> - shoffmand, 2014-08-22 14:40:00 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d562df0">Documentation: Added article about CodeFest 2014</a> - shoffmand, 2014-08-22 16:08:15 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d8a4d80">Made dismiss-alert plugin naming consistent</a> - Etienne Levesque Guitard, 2014-08-22 17:39:25 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0d20e1d">Added back IE tests (except IE8) and linux for SauceLabs testing</a> - Laurent Goderre, 2014-08-25 11:47:18 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0566dfa">Nav current: Added ability to override the outputted class name</a> - Paul Jackson, 2014-08-27 13:25:16 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/2d787dd">CSS fixes for details/summary polyfills and alerts</a> - Etienne Levesque Guitard, 2014-08-27 18:04:11 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/ca37e4a">Added Dismissible Alerts plugin documentation</a> - Etienne Levesque Guitard, 2014-08-27 21:15:03 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0f32e51">Allowed caching of the openlayer dependency Because they don't use SEMVER or a package.json, bowering openlayers is akwards but using a tag instead of a tar allows caching of the package. This will significantly speed up the npm install command.</a> - Laurent Goderre, 2014-08-28 11:25:19 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/8394497">Geomap: Fixed issue with adding a custom basemap.</a> - jolevesq, 2014-08-28 13:31:20 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/31f72e8">Switch to a compiled version of openlayers Follow up to #5983</a> - Laurent Goderre, 2014-08-28 14:12:10 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/07e9765">Geomap: fix wb-ready event and cities layer visibility.</a> - jolevesq, 2014-08-28 15:09:50 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/9f05225">Tabs: Added wb-shift.wb-tabs to the documentation</a> - Paul Jackson, 2014-08-28 22:45:43 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/65aa303">Tabs: Specified that wb-shift.wb-tabs event is only used by the carousel</a> - Paul Jackson, 2014-08-28 23:41:41 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e54ab9e">Capture current version of jQuery</a> - Kevin Warrington, 2014-09-02 10:47:01 -0600</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/8e41b5d">Replaced the html minifier for a much quicker one htmlcompressor creates a new Java Virtual Machine for each file which consumes a lot of memory and makes it slower. htm-minifier is javascript based and run within the nodejs context which makes it much faster (#5818)</a> - Laurent Goderre, 2014-09-02 15:48:42 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/152daed">Move the travis variables to the Travis UI</a> - Laurent Goderre, 2014-09-02 15:59:44 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/93704a3">Move the checkDependencies so it is run on every build</a> - Laurent Goderre, 2014-09-02 17:37:39 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/789ad0b">Corrected some French spelling (from @GDaw)</a> - Laurent Goderre, 2014-09-03 16:03:36 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/61eebbd">Tables: Updated to DataTables 1.10.2</a> - Paul Jackson, 2014-09-05 11:45:39 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e348be8">Form validation: Updated to jQuery Validation 1.13.0</a> - Paul Jackson, 2014-09-05 11:58:21 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f68b82c">Updated jquery-pjax to 1.8.2</a> - Paul Jackson, 2014-09-05 12:31:09 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/bc9402d">Build: Updated some build dependencies</a> - Laurent Goderre, 2014-09-05 14:38:11 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/297e7dc">Build: Updated grunt-connect</a> - Laurent Goderre, 2014-09-05 15:13:16 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/53a5e33">Multimedia: Prevents buttons styles from being applied outside the control bar</a> - Laurent Goderre, 2014-09-08 11:03:09 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/87248ab">Multimedia: Add cuepoint functionnality</a> - Cynthia Richard, 2014-09-08 11:03:37 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0092766">Build: Update time-grunt</a> - Laurent Goderre, 2014-09-08 14:30:14 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/ab24cb0">Build: Updated grunt-contrib-concat</a> - Laurent Goderre, 2014-09-08 14:46:05 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f8cf2a5">Build: Update grunt-contrib-uglify</a> - Laurent Goderre, 2014-09-08 14:52:59 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/59bbd05">Build: Updated grunt-contrib-csslint</a> - Laurent Goderre, 2014-09-08 15:23:57 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0f2a094">Menu: Fixed handling of empty AJAX results</a> - Paul Jackson, 2014-09-08 16:09:02 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/edef66d">Build: Updated grunt-contrib-imagemin</a> - Laurent Goderre, 2014-09-08 16:18:18 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/372036f">Build: Update grunt-sass</a> - Laurent Goderre, 2014-09-08 16:18:24 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0a00729">Build: Update grunt-jscs</a> - Laurent Goderre, 2014-09-08 16:18:25 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/cda6f8c">Lightbox: Added auto-initialization when opening popup through JavaScript</a> - Paul Jackson, 2014-09-09 00:02:07 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/1477514">Multimedia: Add cuepoint documentation</a> - Cynthia Richard, 2014-09-09 11:17:23 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/85be6df">Menu: Fixed indenting of sub-sub-menus</a> - Paul Jackson, 2014-09-11 08:49:39 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/3048aa2">Geomap: Add new WMS map example</a> - jolevesq, 2014-09-11 11:54:35 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/6dbde9c">Multimedia: Optimized the YouTube player closed captions logic</a> - Laurent Goderre, 2014-09-11 15:06:36 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/7814539">Multimedia: Used the YouTube API getIframe instead of undocumented variable Also used clearer variable names</a> - Laurent Goderre, 2014-09-11 15:25:24 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/cade4aa">Multimedia: Show the duration of YouTube video on load instead of on play</a> - Laurent Goderre, 2014-09-11 15:25:32 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/8ea1130">Multimedia: Fixed the scaling of the YouTube player and Flash Fallback</a> - Laurent Goderre, 2014-09-11 16:18:48 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/2604fee">Theme/Dismissible alerts: Fixed avalanche of broken links.</a> - Eric Dunsworth, 2014-09-11 21:29:41 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0c9dbce">Documentation: Renamed "ant test" to "grunt dist" in creating a pull request page.</a> - Eric Dunsworth, 2014-09-11 22:43:17 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/548dfd2">Tabs: Enabled nesting of tabs</a> - Paul Jackson, 2014-09-12 14:20:32 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/5c7658c">Build: Updated autoprefixer</a> - Laurent Goderre, 2014-09-15 12:48:21 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/79ced27">Multimedia: Fix the share buttons</a> - Laurent Goderre, 2014-09-17 11:07:24 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/9d0765b">Geomap: Fixing examples by temporarily excluding them from minification</a> - Laurent Goderre, 2014-09-19 10:49:08 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/626c270">Multimedia: Converted the YouTube player to chromeless Captions in HTML5 and chromeless mode did not work. However the issue was fixed by the YouTube team</a> - Laurent Goderre, 2014-09-19 11:14:32 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/ff033d8">Geomap: Converting 'Locate' images to sprite</a> - Laurent Goderre, 2014-09-19 14:50:46 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/207609b">Revert "Geomap: Fixing examples by temporarily excluding them from minification"</a> - Nick Schonning, 2014-09-21 15:05:53 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e85b018">formatting fix to stop travis scss lint failures</a> - Mario Bonito, 2014-09-21 17:44:49 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/39de82c">Revert "formatting fix to stop travis scss lint failures"</a> - Nick Schonning, 2014-09-21 17:58:21 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/2085081">SCSSLint: Ignore Geomap sprite</a> - Nick Schonning, 2014-09-21 18:06:47 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/95b1a0d">HTML Proofer: Add to Travis build</a> - Nick Schonning, 2014-09-22 00:18:47 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e8dc137">Documentation: Fix bad download anchor link</a> - Nick Schonning, 2014-09-22 00:18:47 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e294098">Build: Compile Event page SCSS</a> - Nick Schonning, 2014-09-22 00:18:47 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/74f4722">Build: Skip creating test pages on dist</a> - Nick Schonning, 2014-09-22 00:18:47 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/984d990">HTML Proofer: Relax failures</a> - Nick Schonning, 2014-09-22 00:47:43 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/2356587">Tablevalidator: Fix casing on category frontmatter</a> - Nick Schonning, 2014-09-22 01:52:54 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/319ebd4">Test: Correct frontmatter for language toggle</a> - Nick Schonning, 2014-09-22 02:01:24 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/c7437b7">Revert "Geomap: Fixing examples by temporarily excluding them from minification"</a> - Laurent Goderre, 2014-09-22 10:03:21 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f5b11c2">SVG polyfill: Enabled the polyfill to be loaded for the Basic HTML version</a> - Paul Jackson, 2014-09-22 10:09:27 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d8a2c0e">Temporarily fix HTML minification Use a custom version of the html minification that prevents the escaping of JSON attributes. This can ber reverted if the functionnality lands upstream</a> - Laurent Goderre, 2014-09-22 11:34:09 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/5e41d83">Data AJAX: Using .getAttribute instead of .data to retrieve data value to avoid caching by jQuery.</a> - Paul Jackson, 2014-09-22 14:16:56 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/820dce5">Added a test case for dynamic data-ajax-*</a> - Laurent Goderre, 2014-09-22 14:16:58 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/6be6a59">Data Ajax: Added update event to allow refreshing of content</a> - Laurent Goderre, 2014-09-22 14:17:06 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f3493e0">Data Ajax: Fixed infinite loop on loading</a> - Laurent Goderre, 2014-09-22 15:49:09 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/386b83d">Table validator: Fixed issue that caused <br /> to appear as <br> in HTML results.</a> - Eric Dunsworth, 2014-09-23 09:45:04 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/14c48f5">Moved the release notes to the legacy repo</a> - Laurent Goderre, 2014-09-23 16:24:22 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/8e674f7">Added download section for to the v3.1.15 releases</a> - Laurent Goderre, 2014-09-23 16:24:29 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/b1de0e9">Updated the roadmap</a> - Laurent Goderre, 2014-09-23 16:24:29 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/70d94b2">Renamed 'Dismissible alert' to 'Collapsible alerts'</a> - Etienne Levesque Guitard, 2014-09-23 16:29:26 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/db1bd4e">Update the v3.1 banner on the Web site to reflect that v3.1 is no longer supported and has been moved to wet-boew-legacy.</a> - Thomas Gohard, 2014-09-23 16:33:51 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/fb5a112">Updated files for the v4.0.6 maintenance release</a> - Thomas Gohard, 2014-09-23 16:55:45 -0400</li>
+		</ul>
+	</section>
+</section>
