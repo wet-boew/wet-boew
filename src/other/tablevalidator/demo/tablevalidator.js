@@ -123,7 +123,7 @@ $document.on( showHTMLEvent, "#visualoutput > table:eq( 0 )", function( event ) 
 	}
 	$elm = $( elm );
 
-	tableHTMLstring = ( "<table>" + $elm.html( ) + "</table>" ).replace( /<col>/g, "<col />" ).replace( /&/g, "&amp;" ).replace( /</g, "&lt;" ).replace( />/g, "&gt;" ).replace( /"/g, "&quot;" );
+	tableHTMLstring = ( "<table>" + $elm.html( ) + "</table>" ).replace( /<col>/g, "<col />" ).replace( /<br>/g, "<br />" ).replace( /&/g, "&amp;" ).replace( /</g, "&lt;" ).replace( />/g, "&gt;" ).replace( /"/g, "&quot;" );
 
 	// Show the result
 	$output.html( "<pre class='prettyprint'><code>" + tableHTMLstring  + "</code></pre>" );
