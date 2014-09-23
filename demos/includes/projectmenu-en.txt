@@ -5,19 +5,19 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <!-- DataAjaxFragmentStart -->
 <li>
 	<section>
-		<h3><a href="http://wet-boew.github.io/v3.1-ci/index-en.html">WET project</a></h3>
+		<h3><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/index-en.html">WET project</a></h3>
 		<div class="mb-sm">
 			<div class="span-2">
 				<ul>
-					<li><a href="http://wet-boew.github.io/v3.1-ci/index-en.html#about">About WET</a></li>
-					<li><a href="http://wet-boew.github.io/v3.1-ci/index-en.html#benefits">Benefits</a></li>
-					<li><a href="http://wet-boew.github.io/v3.1-ci/docs/ref/accolades-en.html">Accolades for WET</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/index-en.html#about">About WET</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/index-en.html#benefits">Benefits</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/ref/accolades-en.html">Accolades for WET</a></li>
 					<li><a href="https://github.com/wet-boew/wet-boew/wiki#upcoming-events">Events</a></li>
 					<li><a href="https://github.com/wet-boew/wet-boew/">Main project</a></li>
 					<li><a href="http://wet-boew.github.io/wet-boew/License-en.html">Terms and conditions of use</a></li>
-					<li><a href="http://wet-boew.github.io/v3.1-ci/docs/versions/rdmp-en.html">Roadmap of past and future releases</a></li>
-					<li><a href="http://wet-boew.github.io/v3.1-ci/docs/versions/index-en.html">Version history</a></li>
-					<li><a href="http://wet-boew.github.io/v3.1-ci/docs/ref/external-en.html">External projects used in WET</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/versions/rdmp-en.html">Roadmap of past and future releases</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/versions/index-en.html">Version history</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/ref/external-en.html">External projects used in WET</a></li>
 					<li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
 				</ul>
 			</div>
@@ -27,14 +27,14 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 </li>
 <li>
 	<section>
-		<h3><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/impl-en.html">Implement WET</a></h3>
+		<h3><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/gs-cd/impl-en.html">Implement WET</a></h3>
 		<div class="mb-sm">
 			<div class="span-2">
 				<ul>
-					<li><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/index-en.html">Getting started</a></li>
-					<li><a href="http://wet-boew.github.io/v3.1-ci/docs/versions/dwnld-en.html">Download WET</a></li>
-					<li><a href="http://wet-boew.github.io/v3.1-ci/demos/index-en.html">Working examples</a></li>
-					<li><a href="http://wet-boew.github.io/v3.1-ci/docs/index-en.html">Documentation</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/gs-cd/index-en.html">Getting started</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/versions/dwnld-en.html">Download WET</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/demos/index-en.html">Working examples</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/index-en.html">Documentation</a></li>
 				</ul>
 			</div>
 		</div>
@@ -43,14 +43,14 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 </li>
 <li>
 	<section>
-		<h3><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/contrib-en.html">Contribute to WET</a></h3>
+		<h3><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/gs-cd/contrib-en.html">Contribute to WET</a></h3>
 		<div class="mb-sm">
 			<div class="span-2">
 				<ul>
-					<li><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/contrib-en.html#prob">Filing a bug or an issue</a></li>
-					<li><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/contrib-en.html#pr">Creating a pull request</a></li>
-					<li><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/contrib-en.html#test">Testing your code</a></li>
-					<li><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/dev-en.html">Developing for WET</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/gs-cd/contrib-en.html#prob">Filing a bug or an issue</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/gs-cd/contrib-en.html#pr">Creating a pull request</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/gs-cd/contrib-en.html#test">Testing your code</a></li>
+					<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/gs-cd/dev-en.html">Developing for WET</a></li>
 				</ul>
 			</div>
 		</div>

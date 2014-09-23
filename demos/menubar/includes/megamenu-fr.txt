@@ -3,18 +3,18 @@
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
 <!-- DataAjaxFragmentStart -->
-<li><section><h3><a href="http://wet-boew.github.io/v3.1-ci/index-fr.html">Projet de la BOEW</a></h3><div class="mb-sm">
+<li><section><h3><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/index-fr.html">Projet de la BOEW</a></h3><div class="mb-sm">
 <div class="span-2">
-<section><h4><a href="http://wet-boew.github.io/v3.1-ci/index-fr.html#apropos">À propos de la BOEW</a></h4>
+<section><h4><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/index-fr.html#apropos">À propos de la BOEW</a></h4>
 <ul>
-<li><a href="http://wet-boew.github.io/v3.1-ci/index-fr.html#apropos">Qu’est-ce que la BOEW?</a></li>
-<li><a href="http://wet-boew.github.io/v3.1-ci/index-fr.html#avantages">Avantages</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/index-fr.html#apropos">Qu’est-ce que la BOEW?</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/index-fr.html#avantages">Avantages</a></li>
 <li><a href="http://wet-boew.github.io/v3.1/docs/ref/accolades-fr.html">Distinctions pour la BOEW</a></li>
 <li><a href="http://wet-boew.github.io/v3.1/docs/ref/accolades-fr.html#impl">Implémentations connues</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Accueil#wiki-vnements__venir">Événements</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/Licence-fr.html">Conditions régissant l'utilisation</a></li>
 <li><a href="http://wet-boew.github.io/v3.1/docs/versions/rdmp-en.html">Feuille de route pour les versions passées et futures</a></li>
-<li><a href="http://wet-boew.github.io/v3.1-ci/demos/index-fr.html#historique-des-versions">Historique des versions</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/demos/index-fr.html#historique-des-versions">Historique des versions</a></li>
 <li><a href="http://wet-boew.github.io/v3.1/docs/ref/external-fr.html">Projets externes utilisés par la BOEW</a></li>
 </ul>
 </section>
@@ -39,21 +39,21 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <li><a href="http://wet-boew.github.io/v3.1/docs/versions/dwnld-fr.html">Télécharger la BOEW</a></li>
 </ul>
 </section>
-<section><h4><a href="http://wet-boew.github.io/v3.1-ci/demos/guide-design/guide-en.html">Conception des sites et les mises en page</a></h4>
+<section><h4><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/demos/guide-design/guide-en.html">Conception des sites et les mises en page</a></h4>
 <ul>
-<li><a href="http://wet-boew.github.io/v3.1-ci/demos/grids/grid-base-en.html">Utilisant les grilles pour concevoir les pages</a></li>
-<li><a href="http://wet-boew.github.io/v3.1-ci/docs/ref/themesstyle-fr.html">Thèmes et style</a></li>
-<li><a href="http://wet-boew.github.io/v3.1-ci/demos/opt-cont/index-en.html">Exemples de contenus optimaux</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/demos/grids/grid-base-en.html">Utilisant les grilles pour concevoir les pages</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/ref/themesstyle-fr.html">Thèmes et style</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/demos/opt-cont/index-en.html">Exemples de contenus optimaux</a></li>
 </ul>
 </section>
 </div>
 <div class="span-2">
 <section><h4><a href="http://wet-boew.github.io/v3.1/docs/gs-cd/impl-fr.html">Travailler avec la BOEW</a></h4>
 <ul>
-<li><a href="http://wet-boew.github.io/v3.1-ci/demos/index-fr.html">Exemples pratiques</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/demos/index-fr.html">Exemples pratiques</a></li>
 <li><a href="https://github.com/wet-boew/wet-boew/wiki/Accueil#rfrence">Documentation</a>
 	<ul>
-	<li><a href="http://wet-boew.github.io/v3.1-ci/docs/ref/core-fr.html">Cadre fondamental</a></li>
+	<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/ref/core-fr.html">Cadre fondamental</a></li>
 	<li><a href="http://wet-boew.github.io/v3.1/docs/ref/variants-fr.html">Variants</a></li>
 	<li><a href="http://wet-boew.github.io/v3.1/docs/ref/themesstyle-fr.html">Thèmes et style</a></li>
 	<li><a href="http://wet-boew.github.io/v3.1/docs/ref/plugins-fr.html">Plugiciels</a></li>
@@ -65,13 +65,13 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 </div>
 <div class="clear"></div>
 </div></section></li>
-<li><section><h3><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/contrib-fr.html">Contribuer à la BOEW</a></h3><div class="mb-sm">
+<li><section><h3><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/gs-cd/contrib-fr.html">Contribuer à la BOEW</a></h3><div class="mb-sm">
 <div class="span-2">
-<section><h4><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/contrib-fr.html">Lignes directrices pour les contributeurs</a></h4>
+<section><h4><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/gs-cd/contrib-fr.html">Lignes directrices pour les contributeurs</a></h4>
 <ul>
-<li><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/contrib-fr.html#prob">Soumettre un bogue ou un problème</a></li>
-<li><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/contrib-fr.html#pr">Créer un &#171;&#160;<span lang="en">pull request</span>&#160;&#187;</a></li>
-<li><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/contrib-fr.html#test">Essayer votre code</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/gs-cd/contrib-fr.html#prob">Soumettre un bogue ou un problème</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/gs-cd/contrib-fr.html#pr">Créer un &#171;&#160;<span lang="en">pull request</span>&#160;&#187;</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/gs-cd/contrib-fr.html#test">Essayer votre code</a></li>
 </ul>
 </section>
 </div>

@@ -69,9 +69,9 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <nav role="navigation">
 <div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
 <ul class="mb-menu" data-ajax-replace="../includes/projectmenu-en.txt">
-<li><div><a href="http://wet-boew.github.io/v3.1-ci/index-en.html">WET project</a></div></li>
-<li><div><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/impl-en.html">Implement WET</a></div></li>
-<li><div><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/contrib-en.html">Contribute to WET</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/index-en.html">WET project</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/gs-cd/impl-en.html">Implement WET</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/gs-cd/contrib-en.html">Contribute to WET</a></div></li>
 </ul>
 </div></div></div></div>
 
@@ -98,11 +98,11 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 <!-- GeomapStart -->
 <div id="sample_map"
-	class="wet-boew-geomap position scaleline tab" 
-	data-wet-boew='{ 
-		"layersFile": "data/config-en.js", 
-		"tables": [{ 
-			"id": "cities", 
+	class="wet-boew-geomap position scaleline tab"
+	data-wet-boew='{
+		"layersFile": "data/config-en.js",
+		"tables": [{
+			"id": "cities",
 			"zoom": [true, {type: "all"}],
 			"tab": false,
 			"datatable": true,
@@ -114,45 +114,45 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 				"close": true,
 				"content": "<div style=\"white-space:nowrap;\"><p><strong>Census subdivision: </strong>_Census subdivision<div><a href=\"\#\" class=\"button\" role=\"button\" title=\"Zoom to city\" aria-label=\"Zoom to city\" onclick=\"zoomFeature()\">Zoom to city</a></div></div>"
  			},
-			"style": { 
-				"type": "rule", 
+			"style": {
+				"type": "rule",
 				"rule": [
 				{
 					"field": "Population 2011",
 					"value": [1000000],
-					"filter": "LESS_THAN", 
+					"filter": "LESS_THAN",
 					"init": {
-						"strokeColor": "#0083f5", 
-						"fillColor": "#57a8f0", 
-						"pointRadius": "6", 
-						"fillOpacity": 0.80, 
+						"strokeColor": "#0083f5",
+						"fillColor": "#57a8f0",
+						"pointRadius": "6",
+						"fillOpacity": 0.80,
 						"strokeWidth": 1.0
 					}
 				},
 				{
 					"field": "Population 2011",
 					"value": [1000000, 2000000],
-					"filter": "BETWEEN", 
+					"filter": "BETWEEN",
 					"init": {
-						"strokeColor": "#F90", 
-						"fillColor": "#F90", 
-						"pointRadius": "8", 
-						"fillOpacity": 0.80, 
+						"strokeColor": "#F90",
+						"fillColor": "#F90",
+						"pointRadius": "8",
+						"fillOpacity": 0.80,
 						"strokeWidth": 1.0
 					}
 				},
 				{
 					"field": "Population 2011",
 					"value": [2000000],
-					"filter": "GREATER_THAN", 
+					"filter": "GREATER_THAN",
 					"init": {
-						"strokeColor": "#F00", 
-						"fillColor": "#F00", 
-						"pointRadius": "10", 
-						"fillOpacity": 0.80, 
+						"strokeColor": "#F00",
+						"fillColor": "#F00",
+						"pointRadius": "10",
+						"fillOpacity": 0.80,
 						"strokeWidth": 1.0
 					}
-				}					        
+				}
 			]}
 		},
 		{
@@ -160,15 +160,15 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			"tab": true,
 			"zoom": [true, {"type": "image"}],
 			"popups": true
-		}]    
+		}]
 	}'>
 
 	<!-- Insert Map Start (mandatory) -->
 	<div class="wet-boew-geomap-map span-6"></div>
 	<!-- Insert Map End -->
 
-	<!-- Insert Legend Start (optional) --> 
-	<section><div class="wet-boew-geomap-legend span-2">    
+	<!-- Insert Legend Start (optional) -->
+	<section><div class="wet-boew-geomap-legend span-2">
 		<h2 class="margin-top-none">Legend</h2>
 	</div></section>
 	<!-- Insert Legend End -->
@@ -182,7 +182,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<thead>
 				<tr>
 					<th>Rank</th>
-					<th>Census subdivision</th>                            
+					<th>Census subdivision</th>
 					<th>Population 2011</th>
 				</tr>
 			</thead>
@@ -241,19 +241,19 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<tfoot>
 				<tr>
 					<th>Rank</th>
-					<th>Census subdivision</th>                            
+					<th>Census subdivision</th>
 					<th>Population 2011</th>
 				</tr>
 			</tfoot>
 		</table>
 		</section></div>
 		<div class="clear margin-top-large"></div>
-	
+
 		<h2 class="wb-invisible">Search Results</h2>
 		<table id="bbox" class="table-simplify width-100" aria-label="Search Results">
 			<caption class="wb-invisible">Table of search results containing bounding box geometries.</caption>
 			<thead>
-				<tr>                        
+				<tr>
 					<th></th>
 					<th>Title</th>
 					<th>Geometry</th>
@@ -268,8 +268,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 				<tr data-geometry="-92.5, 72.75, -79, 75.5" data-type="bbox">
 					<td>2</td>
 					<td>Dinoflagellate cysts from upper cretaceous-lower tertiary sections, Bylot and Devon Islands, Arctic Archipelago</td>
-					<td>-92.5, 72.75, -79, 75.5</td>                                           
-				</tr>    
+					<td>-92.5, 72.75, -79, 75.5</td>
+				</tr>
 			</tbody>
 		</table>
 	</section></div>
@@ -283,24 +283,24 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 <!-- GeomapStart -->
 <div id="location_map"
-	class="wet-boew-geomap static" 
-	data-wet-boew='{ 
+	class="wet-boew-geomap static"
+	data-wet-boew='{
 		"tables": [{
 			"id": "addNRCan"
-		}] 
+		}]
 	}'>
-	
+
 	<!-- Insert Map Start (mandatory) -->
 	<div class="wet-boew-geomap-map  span-3"></div>
 	<!-- Insert Map End -->
-	
+
 	<!-- Insert Layer Data Start (mandatory) -->
-	<div class="wet-boew-geomap-layers span-3"><section>  
+	<div class="wet-boew-geomap-layers span-3"><section>
 	<h2 class="wb-invisible">Natural Resources Canada Ottawa office adress</h2>
 		<table id="addNRCan" class="table-simplify width-100" aria-label="NRCan Ottawa office adress">
 			<caption class="wb-invisible">Natural Resources Canada Ottawa office adress</caption>
 			<thead>
-				<tr>                    
+				<tr>
 					<th>Adress</th>
 				</tr>
 			</thead>
@@ -312,7 +312,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		</table>
 	</section>
 	</div>
-	<!-- Insert Layer Data End -->  
+	<!-- Insert Layer Data End -->
 </div>
 <!-- GeomapEnd -->
 
@@ -330,7 +330,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
 <section><div class="span-2"><h4 class="wet-col-head">About</h4>
 <ul>
-<li><a href="http://wet-boew.github.io/v3.1-ci/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/index-en.html#about">About the Web Experience Toolkit</a></li>
 <li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
 </ul>
 </div></section>

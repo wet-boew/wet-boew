@@ -3,18 +3,18 @@
 <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
 <!-- DataAjaxFragmentStart -->
-<li lang="en"><section><h3><a href="http://wet-boew.github.io/v3.1-ci/index-en.html">WET-Projekt</a></h3><div class="mb-sm">
+<li lang="en"><section><h3><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/index-en.html">WET-Projekt</a></h3><div class="mb-sm">
 <div class="span-2">
 <ul>
 <li><a href="https://github.com/wet-boew/wet-boew/">Hauptprojektseite</a></li>
-<li><a href="http://wet-boew.github.io/v3.1-ci/demos/index-en.html">Funktionierende Beispiele</a></li>
-<li><a href="http://wet-boew.github.io/v3.1-ci/docs/index-en.html">Dokumentation</a></li>
-<li><a href="http://wet-boew.github.io/v3.1-ci/docs/versions/dwnld-en.html">Downloads</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/demos/index-en.html">Funktionierende Beispiele</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/index-en.html">Dokumentation</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/versions/dwnld-en.html">Downloads</a></li>
 <li><a href="http://wet-boew.github.io/wet-boew/License-en.html">AGB Forumsuche</a></li>
 </ul>
 </div>
 <div class="clear"></div>
-<div class="mb-main-link"><a href="http://wet-boew.github.io/v3.1-ci/index-en.html">WET-Projekt - Startseite</a></div>
+<div class="mb-main-link"><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/index-en.html">WET-Projekt - Startseite</a></div>
 </div></section></li>
 <li><section><h3><a href="section2/index-en.html">Abschnitt 2</a></h3><div class="mb-sm">
 <div class="span-2">
