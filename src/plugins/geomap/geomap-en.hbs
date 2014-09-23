@@ -512,3 +512,82 @@
 		</details>
 	</section>
 </section>
+
+<section>
+	<h2>WMS Map example</h2>
+	<p>Geomap can be configured to use a WMS map as basemap. Configuration can be made in the config file in basemap property.</p>
+
+	<!-- GeomapStart -->
+	<div id="wms_map"
+		class="wb-geomap"
+		data-wb-geomap='{
+			"layersFile": "demo/configwms-en{{environment.suffix}}.js"
+		}'>
+		<div class="row">
+			<div class="col-md-12">
+				<!-- Insert Map Start (mandatory) -->
+				<div class="wb-geomap-map col-md-4"></div>
+				<!-- Insert Map End -->
+
+				<!-- Insert Layer Data Start (mandatory) -->
+				<div class="wb-geomap-layers col-md-4">
+				</div>
+				<!-- Insert Layer Data End -->
+			</div>
+		</div>
+	</div>
+	<!-- GeomapEnd -->
+
+		<section>
+		<h3>Code</h3>
+		<details class="mrgn-tp-lg">
+			<summary>View code</summary>
+			<pre><code>&lt;!-- GeomapStart --&gt;
+&lt;div id=&quot;location_map&quot;
+	class=&quot;wb-geomap&quot;
+	data-wb-geomap='{
+		&quot;layersFile&quot;: &quot;demo/configwms-en{{environment.suffix}}.js&quot;
+	}'&gt;
+	&lt;div class=&quot;row&quot;&gt;
+		&lt;div class=&quot;col-md-12&quot;&gt;
+			&lt;!-- Insert Map Start (mandatory) --&gt;
+			&lt;div class=&quot;wb-geomap-map col-md-4&quot;&gt;&lt;/div&gt;
+			&lt;!-- Insert Map End --&gt;
+
+			&lt;!-- Insert Layer Data Start (mandatory) --&gt;
+			&lt;div class=&quot;wb-geomap-layers col-md-4&quot;&gt;&lt;/div&gt;
+			&lt;!-- Insert Layer Data End --&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- GeomapEnd --&gt;</code></pre>
+		</details>
+
+		<details class="mrgn-tp-lg">
+			<summary>View config file</summary>
+			<pre><code>
+			var wet_boew_geomap = {
+				// OPTIONAL: note that Geomap will provide a default basemap if not specified here.
+				basemap : {
+					title: &quot;WMS-Toporama&quot;,
+					type: &quot;wms&quot;,
+					url: &quot;http://wms.ess-ws.nrcan.gc.ca/wms/toporama_en&quot;,
+					version: &quot;1.1.1&quot;,
+					format: &quot;image/jpeg&quot;,
+					layers: &quot;WMS-Toporama&quot;,
+					mapOptions: {
+						maxExtent: &quot;-141, 41, -52, 84&quot;,
+						restrictedExtent: &quot;-141, 41, -52, 84&quot;,
+						maxResolution: &quot;auto&quot;,
+						projection: &quot;EPSG:4269&quot;,
+						units: &quot;m&quot;,
+						displayProjection: &quot;EPSG:4269&quot;,
+						aspectRatio: 0.8
+					}
+				},
+				overlays: []
+			};
+		</code></pre>
+		</details>
+	</section>
+</section>

@@ -18,7 +18,7 @@
 /*jshint unused:false*/
 var wet_boew_geomap = {
 	// OPTIONAL: note that Geomap will provide a default basemap if not specified here.
-	/*basemap : {
+	/*basemap: {
 		title: "WMS-Toporama",
 		type: "wms",
 		url: "http://wms.ess-ws.nrcan.gc.ca/wms/toporama_en",

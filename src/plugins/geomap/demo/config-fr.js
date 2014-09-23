@@ -17,7 +17,7 @@
 /*jshint unused:false*/
 var wet_boew_geomap = {
 	// OPTIONNEL: Géomap va fournir une carte de base par défaut si aucune carte de base n"est spécifié ici.
-		/*basemap : {
+		/*basemap: {
 		title: "WMS-Toporama",
 		type: "wms",
 		url: "http://wms.ess-ws.nrcan.gc.ca/wms/toporama_en",
