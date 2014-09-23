@@ -163,16 +163,42 @@ var componentName = "wb-feeds",
 					"</div></section>" +
 					"</li>";
 		},
+
+		/**
+		 * [news template]
+		 * @param  {entry object}	data
+		 * @return {string}	HTML string of formatted using a simple list / anchor view
+		 */
+		news: function( data ) {
+			//var datestring = ( data.publishedDate !== "" ) ? " <small><time class='feeds-date'>" + wb.date.toDateYMD( data.publishedDate ) + "</time></small>" : "";
+            //return "<li><a href='" + data.link + "'>" + data.title + "</a><br />" + datestring + "</li>";
+            var datestring = ( data.publishedDate !== "" ) ? " <small><time class='feeds-date'>" + wb.date.toDateISO( data.publishedDate, true ) + "</time></small>" : "";
+			return "<li><a href='" + data.link + "'>" + data.title + "</a><br/>[" + datestring + " ]</li>";
+
+		},
+
+		/**
+		 * [lastnews template]
+		 * @param  {entry object}	data
+		 * @return {string}	HTML string of formatted using a simple list / anchor view
+		 */
+		lastnews: function( data ) {
+			//return "<li><a href='" + data.link + "'>" + data.title + "</a></li>";
+			var datestring = ( data.publishedDate !== "" ) ? " <small><time class='feeds-date'>" + wb.date.toDateYMD( data.publishedDate ) + "</time></small>" : "";
+            return "<li><a href='" + data.link + "'>" + data.title + "</a><br />" + datestring + "</li>";
+
+		},
+
 		/**
 		 * [generic template]
 		 * @param  {entry object}	data
 		 * @return {string}	HTML string of formatted using a simple list / anchor view
 		 */
 		generic: function( data ) {
-
-			return "<li><a href='" + data.link + "'>" + data.title + "</a>" +
-				( data.publishedDate !== "" ? " <span class='feeds-date'>[" +
-				wb.date.toDateISO( data.publishedDate, true ) + "]</span>" : "" ) + "</li>";
+			var datestring = ( data.publishedDate !== "" ) ? " <span class='feeds-date'>[" + wb.date.toDateISO( data.publishedDate, true ) + "]</span>" : "";
+			return "<li><a href='" + data.link + "'>" + data.title + "</a>" + datestring + "</li>";
+			//return "<h4 class='media-heading'><a href='" + data.link + "'><span class='wb-inv'>" +
+			//	title[ 0 ] + " - </span>" + data.author + "</a>  " + "</h4><p>" + content + "</p></div></li>";
 		}
 	},
 
@@ -186,10 +212,11 @@ var componentName = "wb-feeds",
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var elm = wb.init( event, componentName, selector ),
-			fetch, url, $content, limit, feeds, fType, last, i, callback, fElem, fIcon;
+			fetch, url, $content, isTemplate, limit, feeds, fType, last, i, callback, fElem, fIcon;
 
 		if ( elm ) {
 			$content = $( elm ).find( ".feeds-cont" );
+			isTemplate = $content.data( "tmpl" );
 			limit = getLimit( elm );
 			feeds = $content.find( feedLinkSelector );
 			last = feeds.length - 1;
@@ -229,7 +256,9 @@ var componentName = "wb-feeds",
 					fetch.url = url;
 
 					// Let's bind the template to the Entries
-					if ( url.indexOf( "facebook.com" ) !== -1 ) {
+					if ( isTemplate ) {
+						fType = isTemplate;
+					} else if ( url.indexOf( "facebook.com" ) !== -1 ) {
 						fType = "facebook";
 					} else {
 						fType = "generic";

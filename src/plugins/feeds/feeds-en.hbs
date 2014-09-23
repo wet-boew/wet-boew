@@ -16,16 +16,17 @@
 <section>
 	<h2>Examples</h2>
 	<section class="wb-feeds limit-5">
-		<h3>Road News Releases and Safety Recalls</h3>
-		<ul class="feeds-cont">
-			<li>
-				<a href="http://www.tc.gc.ca/mediaroom/rss/road.xml" rel="external">Road News Releases (All)</a>
-			</li>
-			<li>
-				<a href="http://wwwapps.tc.gc.ca/Saf-Sec-Sur/7/VRDB-BDRV/search-recherche/rss.aspx?lang=eng" rel="external">Road Safety Recalls</a>
-			</li>
-		</ul>
-
+		<h3 class="media-heading">Road News Releases and Safety Recalls (with time)</h3>
+			<h4 class="wb-inv">Road and Safety News</h4>
+				<ul class="feeds-cont media-list" data-tmpl="news">
+					<li>
+						<a href="http://www.tc.gc.ca/mediaroom/rss/road.xml" rel="external">Road News Releases (All)</a>
+					</li>
+					<li>
+						<a href="http://wwwapps.tc.gc.ca/Saf-Sec-Sur/7/VRDB-BDRV/search-recherche/rss.aspx?lang=eng" rel="external">Road Safety Recalls</a>
+					</li>
+				</ul>
+		
 		<section>
 			<h4>Code</h4>
 			<details>
@@ -44,15 +45,27 @@
 			</details>
 		</section>
 	</section>
-
-	<section class="wb-feeds limit-1">
-		<h3>Ottawa Weather</h3>
-		<ul class="feeds-cont">
-			<li>
-				<a href="http://weather.gc.ca/rss/city/on-118_e.xml" rel="external">Ottawa Ontario</a>
-			</li>
-		</ul>
-
+		
+					<section class="wb-feeds limit-5">
+					 <h3>Road News Releases and Safety Recalls (without time)</h3>					 
+					    <ul class="feeds-cont media-list" data-tmpl="lastnews">
+					           	<li>
+									<a href="http://www.tc.gc.ca/mediaroom/rss/road.xml" rel="external">Road News Releases (All)</a>
+								</li>
+								<li>
+									<a href="http://wwwapps.tc.gc.ca/Saf-Sec-Sur/7/VRDB-BDRV/search-recherche/rss.aspx?lang=eng" rel="external">Road Safety Recalls</a>
+								</li>
+					        </ul>
+						</section>
+					
+   	<section class="wb-feeds limit-1">
+		<h3 class="media-heading">Ottawa Weather</h3>
+			<h4 class="wb-inv">Ottawa Weather 2</h4>
+				<ul class="feeds-cont" media-list" data-tmpl="news">
+					<li>
+						<a href="http://weather.gc.ca/rss/city/on-118_e.xml" rel="external">Ottawa Ontario</a>
+					</li>
+				</ul>
 		<section>
 			<h4>Code</h4>
 			<details>
@@ -204,29 +217,29 @@
 			</details>
 		</section>
 	</section>
-</section>
 
-<section>
-	<h2>Parameters</h2>
-	<table class="table">
-		<thead>
-			<tr>
-				<th scope="col">Class (parameter)</th>
-				<th scope="col">Role</th>
-				<th scope="col">Details</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><code>wb-feeds</code></td>
-				<td>Identifier</td>
-				<td>Main targeting class that identifies the code block used for the Web feeds widget.</td>
-			</tr>
-			<tr>
-				<td><code>limit-<em>x</em></code></td>
-				<td>Display</td>
-				<td>Controls the amount of items the Web feeds widget will display.</td>
-			</tr>
-		</tbody>
-	</table>
-</section>
+	<section>
+		<h2>Parameters</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Class (parameter)</th>
+						<th scope="col">Role</th>
+						<th scope="col">Details</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>wb-feeds</code></td>
+						<td>Identifier</td>
+						<td>Main targeting class that identifies the code block used for the Web feeds widget.</td>
+					</tr>
+					<tr>
+						<td><code>limit-<em>x</em></code></td>
+						<td>Display</td>
+						<td>Controls the amount of items the Web feeds widget will display.</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	</section>
