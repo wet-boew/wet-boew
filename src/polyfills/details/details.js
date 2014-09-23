@@ -62,7 +62,7 @@ $document.on( "click keydown toggle." + componentName, selector, function( event
 		isClosed = details.getAttribute( "open" ) === null ;
 
 		if ( details.className.indexOf( "alert" ) !== -1 ) {
-			key = "alert-dismiss-state-" + details.getAttribute( "id" );
+			key = "alert-collapsible-state-" + details.getAttribute( "id" );
 		}
 
 		if ( isClosed ) {

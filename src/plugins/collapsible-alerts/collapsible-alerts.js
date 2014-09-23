@@ -1,6 +1,6 @@
 /**
- * @title WET-BOEW Dismiss plugin
- * @overview Dismiss alerts (details/summary)
+ * @title WET-BOEW Collapsible alerts plugin
+ * @overview Collapsible alerts (details/summary)
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET community
  */
@@ -12,7 +12,7 @@
  * These are global to the event - meaning that they will be initialized once per page,
  * not once per instance of event on the page.
  */
-var componentName = "wb-dismiss",
+var componentName = "wb-collapsible",
 	selector = "details.alert",
 	initEvent = "wb-init." + componentName,
 	$document = wb.doc,
@@ -31,7 +31,7 @@ var componentName = "wb-dismiss",
 
 		if ( details ) {
 
-			key = "alert-dismiss-state-" + details.getAttribute("id");
+			key = "alert-collapsible-state-" + details.getAttribute("id");
 
 			try {
 				if ( localStorage.getItem( key ) ) {
@@ -83,7 +83,7 @@ $document.on( "timerpoke.wb", function() {
 
 				details = currentTarget.parentNode;
 				isClosed = details.getAttribute( "open" ) === null ;
-				key = "alert-dismiss-state-" + details.getAttribute( "id" );
+				key = "alert-collapsible-state-" + details.getAttribute( "id" );
 
 				if ( isClosed ) {
 					try {

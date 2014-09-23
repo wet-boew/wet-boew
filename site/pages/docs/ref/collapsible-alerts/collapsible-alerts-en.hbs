@@ -1,0 +1,66 @@
+---
+{
+	"title": "Collapsible alerts",
+	"language": "en",
+	"category": "Plugins",
+	"categoryfile": "plugins",
+	"description": "Make alerts collapsible by users.",
+	"altLangPrefix": "collapsible-alerts",
+	"dateModified": "2014-09-23"
+}
+---
+<span class="wb-prettify all-pre hide"></span>
+
+<section>
+	<h2>Purpose</h2>
+	<p>Plugin to enable the <code>.alert</code> class to be used with the <code>details</code>/<code>summary</code> elements. This allows the creation of alerts which can be collapsed by the user. The plugin uses Local Storage to enable the browser to remember the state of the alert (open or collapsed) when loading a page.</p>
+</section>
+
+<section>
+	<h2>Working example</h2>
+	<ul>
+		<li><a href="../../../demos/collapsible-alerts/collapsible-alerts-en.html">English examples</a></li>
+		<li><a href="../../../demos/collapsible-alerts/collapsible-alerts-fr.html">French examples</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>How to implement</h2>
+	<p>To use collapsible alerts, your <code>details</code>/<code>summary</code> block must have the following:</p>
+	<ul>
+		<li>
+			<p>The <code>details</code> element must:</p>
+			<ul>
+				<li>
+					<p>Use a valid <code>.alert</code> class:<br>
+					e.g. <code>alert alert-success</code>.</p>
+				</li>
+				<li>
+					<p>Have an <code>id</code> attribute with a unique value. Reuse this value for all the pages where you want the state of the alert to be remembered. For example, if a user collapses the alert of <code>id</code> value “alert-123” on page A and navigates to page B where the same alert with the <code>id</code> value “alert-123” exists, the alert will already be collapsed upon loading the page.</p>
+				</li>
+				<li>
+					<p>Have an <code>open</code> attribute for its default state to be <strong>open</strong>. Omitting the <code>open</code> attribute will cause the default state of the collapsible alert to be <strong>closed</strong>.</p>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<p>The <code>summary</code> element must have a class matching that of its children element for the pointer (the triangle) to have the correct size. For instance, when using an <code>h3</code> element, the <code>summary</code> element should have an <code>h3</code> class.</p>
+		</li>
+		<li>
+			<p>Finally, every collapsible alert should be contained within a <code>section</code> element and have a heading for the <code>summary</code> element's child.</p>
+		</li>
+	</ul>
+	<pre><code>&lt;section&gt;
+	&lt;details class="alert alert-success" id="alert-success" open="open"&gt;
+		&lt;summary class="h3"&gt;
+			&lt;h3&gt;Well done!&lt;/h3&gt;
+		&lt;/summary&gt;
+		&lt;p&gt;You successfully read &lt;a href="#" class="alert-link"&gt;this important alert message&lt;/a&gt;.&lt;/p&gt;
+	&lt;/details&gt;
+&lt;/section&gt;</code></pre>
+</section>
+
+<section>
+	<h2>Source code</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/collapsible-alerts">Collapsible alerts plugin source code on GitHub</a></p>
+</section>
