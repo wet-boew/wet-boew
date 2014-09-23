@@ -211,7 +211,7 @@
 					<version>${maven.surefire.plugin.version}</version>
 				</plugin>
 
-				<!-- Tell Maven not to worry about requiring a web.xml, since this is 
+				<!-- Tell Maven not to worry about requiring a web.xml, since this is
 					just an overlay that will not stand alone (for now) -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -237,8 +237,8 @@
 	<name>Web Experience Toolkit - parent POM</name>
 
 	<description>
-	Web Experience Toolkit (WET) includes ready-made tools and solutions for building and maintaining innovative websites that 
-	are accessible, usable, and interoperable. These tools and solutions are open source software and free for use by departments 
+	Web Experience Toolkit (WET) includes ready-made tools and solutions for building and maintaining innovative websites that
+	are accessible, usable, and interoperable. These tools and solutions are open source software and free for use by departments
 	and external Web communities.
 	</description>
 
@@ -247,13 +247,13 @@
 	<licenses>
 		<license>
 			<name>MIT License</name>
-			<url>https://github.com/wet-boew/wet-boew/blob/v3.1/License-eng.txt</url>
+			<url>https://github.com/wet-boew/wet-boew-legacy/blob/v3.1/License-eng.txt</url>
 			<distribution>repo</distribution>
 			<comments>License in English</comments>
 		</license>
 		<license>
 			<name>MIT License</name>
-			<url>https://github.com/wet-boew/wet-boew/blob/v3.1/Licence-fra.txt</url>
+			<url>https://github.com/wet-boew/wet-boew-legacy/blob/v3.1/Licence-fra.txt</url>
 			<distribution>repo</distribution>
 			<comments>Licence en français</comments>
 		</license>

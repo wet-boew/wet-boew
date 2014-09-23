@@ -69,9 +69,9 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <nav role="navigation">
 <div id="wet-psnb"><h2>Site menu</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
 <ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-en.txt">
-<li><div><a href="http://wet-boew.github.io/v3.1-ci/index-en.html">WET project</a></div></li>
-<li><div><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/impl-en.html">Implement WET</a></div></li>
-<li><div><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/contrib-en.html">Contribute to WET</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/index-en.html">WET project</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/gs-cd/impl-en.html">Implement WET</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/gs-cd/contrib-en.html">Contribute to WET</a></div></li>
 </ul>
 </div></div></div></div>
 
@@ -154,16 +154,16 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	format: 'image/png',
 	version: '1.1.1'
     },
-    overlays : [		
+    overlays : [
         {
             title: 'KML Demo EN',
             caption: 'This is a sample KML file loaded locally by Geomap.',
 	    type: 'kml',
-	    url: 'data/sample.kml',		
+	    url: 'data/sample.kml',
 	    visible: true
         },
-        { 
-            ... 
+        {
+            ...
         }
     ]
 };</code></pre>
@@ -174,19 +174,19 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<section>
 			<h4>Adding features from an inline HTML table</h4>
 			<p>Note that specific element attributes must be present the row (i.e. <code>&lt;tr&gt;</code>) for Geomap to render the features. See below for configuration.</p>
-			<pre><code>&lt;div id="mygeomap" class="wet-boew-geomap" data-wet-boew='{ "tables": [ { "id": "myTable", "style": { ... } } ] }'&gt; 
-    &lt;div class="wet-boew-geomap-map"&gt;&lt;/div&gt;    
-    &lt;div class="wet-boew-geomap-legend"&gt;&lt;/div&gt;       
-    &lt;div class="wet-boew-geomap-layers"&gt;&lt;/div&gt;       
+			<pre><code>&lt;div id="mygeomap" class="wet-boew-geomap" data-wet-boew='{ "tables": [ { "id": "myTable", "style": { ... } } ] }'&gt;
+    &lt;div class="wet-boew-geomap-map"&gt;&lt;/div&gt;
+    &lt;div class="wet-boew-geomap-legend"&gt;&lt;/div&gt;
+    &lt;div class="wet-boew-geomap-layers"&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 		</section>
 
 		<section>
 			<h4>Adding features from local and remote data sources via a configuration file</h4>
-			<pre><code>&lt;div id="mygeomap" class="wet-boew-geomap" data-wet-boew='{ "layersFile": "data/config-en.js" }'&gt; 
-    &lt;div class="wet-boew-geomap-map"&gt;&lt;/div&gt;    
-    &lt;div class="wet-boew-geomap-legend"&gt;&lt;/div&gt;       
-    &lt;div class="wet-boew-geomap-layers"&gt;&lt;/div&gt;       
+			<pre><code>&lt;div id="mygeomap" class="wet-boew-geomap" data-wet-boew='{ "layersFile": "data/config-en.js" }'&gt;
+    &lt;div class="wet-boew-geomap-map"&gt;&lt;/div&gt;
+    &lt;div class="wet-boew-geomap-legend"&gt;&lt;/div&gt;
+    &lt;div class="wet-boew-geomap-layers"&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 		</section>
 	</section>
@@ -361,7 +361,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
     version: '1.1.1',
     options: { singleTile: true, ratio: 1.0, projection: 'EPSG:3978', fractionalZoom: true },
     mapOptions: {
-        maxExtent: '-3000000.0, -800000.0, 4000000.0, 3900000.0',			
+        maxExtent: '-3000000.0, -800000.0, 4000000.0, 3900000.0',
         maxResolution: 'auto',
         projection: 'EPSG:3978',
         restrictedExtent: '-3000000.0, -800000.0, 4000000.0, 3900000.0',
@@ -492,19 +492,19 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<pre><code>{
     title: 'Traffic Cameras',
     caption: 'Traffic cameras in the city of Ottawa.',
-    type: 'geojson',					
+    type: 'geojson',
     url: 'http://stephenott.cartodb.com/api/v2/sql',
     params: {
         'format': 'GeoJSON',
 	'q': 'SELECT * FROM traffic_cameras LIMIT 25'
     },
-    attributes: {				
+    attributes: {
         location_desc: 'Location',
 	longitude: 'Latitude',
-	latitude: 'Longitude',				
+	latitude: 'Longitude',
 	updated_at: 'Last updated'
     },
-    visible: true,	
+    visible: true,
     zoom:  true,
     datatable: true,
     tab: true,
@@ -535,7 +535,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
     &lt;thead&gt;
         &lt;tr&gt;
             &lt;th&gt;Rank&lt;/th&gt;
-            &lt;th&gt;Census subdivision&lt;/th&gt;                            
+            &lt;th&gt;Census subdivision&lt;/th&gt;
             &lt;th&gt;Population 2011&lt;/th&gt;
         &lt;/tr&gt;
     &lt;/thead&gt;
@@ -543,7 +543,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
         &lt;tr data-geometry="POINT (-79.3847, 43.6476)" data-type="wkt"&gt;
             &lt;td&gt;1&lt;/td&gt;
             &lt;td class="select"&gt;
-                &lt;a href="../Toronto" title="Toronto"&gt;Toronto&lt;/a&gt; 
+                &lt;a href="../Toronto" title="Toronto"&gt;Toronto&lt;/a&gt;
             &lt;/td&gt;
             &lt;td&gt;2615060&lt;/td&gt;
         &lt;/tr&gt;
@@ -568,10 +568,10 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<h4>Style configuration options</h4>
 			<section>
 				<h5>Basic style example - all features using the same style</h5>
-				<pre><code>style: { 
+				<pre><code>style: {
     'strokeColor': '#ff0000',
     'fillColor': '#ff0000',
-    'fillOpacity': '0.4' 
+    'fillOpacity': '0.4'
 }</code></pre>
 			</section>
 
@@ -621,7 +621,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
         'Bayshore & Richmond': { 'fillColor': '#000099' },
         'Baseline & Greenbank': { 'fillColor': '#009900'}
     },
-    // specify a style for selected features (optional). Note here we are adding a label when 
+    // specify a style for selected features (optional). Note here we are adding a label when
     // a feature is selected.
     select: {'fillColor': '#990000', 'label': '${Location}' }
 }</code></pre>
@@ -659,8 +659,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<pre><code>&lt;script&gt;
     pe.document.on('geomap-ready', function() {
         var myMap = pe.fn.geomap.getMap('mygeomap');
-        var myExtent = myMap.getLayer('table#bbox').getExtent(); 
-        myMap.zoomToExtent(myExtent, true);    
+        var myExtent = myMap.getLayer('table#bbox').getExtent();
+        myMap.zoomToExtent(myExtent, true);
     });
 &lt;/script&gt;</code></pre>
 	</section>
@@ -685,10 +685,10 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<section>
 		<h3>Starting with version 3.1.2</h3>
 		<p>All Geomap components are nested in a <code>div</code> with the <code>wet-boew-geomap</code> class which <strong>must</strong> include an <code>id</code>.</p>
-		<pre><code>&lt;div id="mygeomap" class="wet-boew-geomap" data-wet-boew='{ ... }'&gt; 
-    &lt;div class="wet-boew-geomap-map"&gt;&lt;/div&gt;    
-    &lt;div class="wet-boew-geomap-legend"&gt;&lt;/div&gt;       
-    &lt;div class="wet-boew-geomap-layers"&gt;&lt;/div&gt;       
+		<pre><code>&lt;div id="mygeomap" class="wet-boew-geomap" data-wet-boew='{ ... }'&gt;
+    &lt;div class="wet-boew-geomap-map"&gt;&lt;/div&gt;
+    &lt;div class="wet-boew-geomap-legend"&gt;&lt;/div&gt;
+    &lt;div class="wet-boew-geomap-layers"&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 	</section>
 </section>
@@ -698,11 +698,11 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<p>Geomap is dependent upon <a href="http://openlayers.org/">OpenLayers</a> (<a href="http://svn.openlayers.org/trunk/openlayers/license.txt">Clear BSD License</a>) and <a href="http://trac.osgeo.org/proj4js/">Proj4js</a> (<a href="http://www.gnu.org/copyleft/lesser.html">LGPL license</a>).</p>
 	<p>The code Geomap is located in several places within the <b>source</b> folder of WET:</p>
 	<ul>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.1/src/js/workers/geomap.js">js/workers/geomap.js</a>  - contains the JavaScript code for Geomap</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.1/src/js/sass/includes/_geomap.scss">js/sass/includes/_geomap.scss</a> - contains the CSS for Geomap</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.1/src/js/images/geomap/">js/images/geomap/</a> - contains the images for Geomap</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.1/src/js/dependencies/openlayers.js">js/dependencies/openlayers.js</a> - OpenLayers script file</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.1/src/js/dependencies/proj4js.js">js/dependencies/proj4js.js</a> - proj4js script file</li>
+		<li><a href="https://github.com/wet-boew/wet-boew-legacy/blob/v3.1/src/js/workers/geomap.js">js/workers/geomap.js</a>  - contains the JavaScript code for Geomap</li>
+		<li><a href="https://github.com/wet-boew/wet-boew-legacy/blob/v3.1/src/js/sass/includes/_geomap.scss">js/sass/includes/_geomap.scss</a> - contains the CSS for Geomap</li>
+		<li><a href="https://github.com/wet-boew/wet-boew-legacy/blob/v3.1/src/js/images/geomap/">js/images/geomap/</a> - contains the images for Geomap</li>
+		<li><a href="https://github.com/wet-boew/wet-boew-legacy/blob/v3.1/src/js/dependencies/openlayers.js">js/dependencies/openlayers.js</a> - OpenLayers script file</li>
+		<li><a href="https://github.com/wet-boew/wet-boew-legacy/blob/v3.1/src/js/dependencies/proj4js.js">js/dependencies/proj4js.js</a> - proj4js script file</li>
 	</ul>
 </section>
 
@@ -714,8 +714,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Version History</h2>
 	<ul>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.1/src/js/workers/geomap.js">geomap.js</a></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.1/src/js/sass/includes/_geomap.scss">_geomap.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew-legacy/commits/v3.1/src/js/workers/geomap.js">geomap.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew-legacy/commits/v3.1/src/js/sass/includes/_geomap.scss">_geomap.scss</a></li>
 	</ul>
 </section>
 
@@ -733,7 +733,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <nav role="navigation"><div id="wet-sft"><h3>Site footer</h3><div id="wet-sft-in">
 <section><div class="span-2"><h4 class="wet-col-head">About</h4>
 <ul>
-<li><a href="http://wet-boew.github.io/v3.1-ci/index-en.html#about">About the Web Experience Toolkit</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/index-en.html#about">About the Web Experience Toolkit</a></li>
 <li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-eng.asp">About the Web Standards</a></li>
 </ul>
 </div></section>

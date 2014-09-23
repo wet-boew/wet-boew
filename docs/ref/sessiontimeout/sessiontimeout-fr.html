@@ -69,9 +69,9 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <nav role="navigation">
 <div id="wet-psnb"><h2>Menu du site</h2><div id="wet-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
 <ul class="mb-menu" data-ajax-replace="../../../demos/includes/projectmenu-fr.txt">
-<li><div><a href="http://wet-boew.github.io/v3.1-ci/index-fr.html">Projet de la BOEW</a></div></li>
-<li><div><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/impl-fr.html">Mise en œuvre de la BOEW</a></div></li>
-<li><div><a href="http://wet-boew.github.io/v3.1-ci/docs/gs-cd/contrib-fr.html">Contribuer à la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/index-fr.html">Projet de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/gs-cd/impl-fr.html">Mise en œuvre de la BOEW</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/docs/gs-cd/contrib-fr.html">Contribuer à la BOEW</a></div></li>
 </ul>
 </div></div></div></div>
 
@@ -101,7 +101,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 <section>
 	<p>Cet élément aide les détenteurs d’actifs Web à offrir la fonctionnalité « délai d’expiration de la session et délai d’inactivité ».</p>
-	
+
 	<h2>Aperçu</h2>
 	<p><strong>Chef du projet :</strong> Roch Lambert (<a href="https://github.com/rlambert27">@rlambert27</a>)</p>
 
@@ -127,7 +127,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 <section>
 	<h2>Mise en oeuvre</h2>
-	
+
 	<p>Le code que vous êtes autorisé à modifier est :</p>
 	<pre><code>&lt;span class="wet-boew-sessiontimeout" data-wet-boew='{"ajaxLimiter": 200000, "inactivity": 1200000, "reactionTime": 30000, "sessionalive": 1200000, "logouturl": "./", "refreshOnClick": true, "refreshCallbackUrl": "./"}'&gt;&lt;/span&gt;</code></pre>
 
@@ -141,12 +141,12 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		<li><strong><code>refreshOnClick</code> :</strong> Mettre cette option à true ou false aura pour effet d'activer ou désactiver l'actualisation ajax à l'aide du paramètre <code>refreshCallbackUrl</code>.</li>
 		<li><strong><code>refreshCallbackUrl</code> :</strong> l'URL pour effectuer une actualisation ajax : doit retourner true/false.</li>
 	</ul>
-	 
+
 	<p>Le seul paramètre requis est <code>logouturl</code>tous les autres champs sont facultatifs. Le code par défaut serait :</p>
 	<pre><code>&lt;span class="wet-boew-sessiontimeout" data-wet-boew='{"logouturl": "./"'}'&gt;&lt;/span&gt;</code></pre>
-	
+
 	<p><strong>NOTE IMPORTANTE :</strong> les paramètres <code>ajaxLimiter</code>, <code>inactivity</code>, <code>reactionTime</code> et <code>sessionAlive</code> sont en millisecondes. Le seule paramètre requis est <code>logouturl</code>. Les paramètres <code>inactivity</code> et <code>sessionalive</code> sont réglés par défaut à 20 minutes avec 30 secondes pour la confirmation dans la boîte de dialogue. La requête Ajax se fera toutes les 2 minutes par défaut en utilisant le paramètre <code>refreshCallbackUrl</code>. L’élément <code>refreshCallbackUrl</code> ne doit pas être une page qui contient aussi une fonctionnalité « délai d’expiration de la session », car cela créerait une boucle; il devrait simplement s’agir d’une page non affichée qui rafraîchit la session.</p>
-	<p>Si vous avez besoin d’aide pour la conversion, veuillez vous rendre à l’adresse suivante : <a href="http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm">http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm</a></p>	
+	<p>Si vous avez besoin d’aide pour la conversion, veuillez vous rendre à l’adresse suivante : <a href="http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm">http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm</a></p>
 	<p><strong>NOTE IMPORTANTE :</strong> Les paramètres <code>sessionalive</code> et <code>inactivity</code> devraient correspondre à la période de votre session active sur le serveur Web moins le délai associé à <code>reactionTime</code>. Si les délais des paramètres <code>sessionalive</code> et <code>inactivity</code> sont les mêmes que ceux de votre serveur Web et qu’ils ne tiennent pas compte du temps associé au paramètre <code>reactionTime</code>, le serveur mettra fin à la session dès l’apparition de la boîte de dialogue qui permet de la prolonger.</p>
 </section>
 
@@ -162,10 +162,10 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<h2>Development</h2>
 	<p>Le code pour l'expiration de la session se trouve à plusieurs endroits dans le répertoire <strong>source</strong> de la BOEW :</p>
 	<ul>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.1/src/js/workers/sessiontimeout.js">js/workers/sessiontimeout.js</a> - contient le code JavaScript pour l'expiration de la session</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.1/src/js/sass/includes/_sessiontimeout.scss">js/sass/includes/_sessiontimeout.scss</a> - contient le CSS pour l'expiration de la session</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.1/src/js/sass/includes/_sessiontimeout-ie.scss">js/sass/includes/_sessiontimeout-ie.scss</a> - contient le CSS spécifique à IE7/8 pour l'expiration de la session</li>
-		<li><a href="https://github.com/wet-boew/wet-boew/blob/v3.1/src/js/images/sessiontimeout/">js/images/sessiontimeout/</a> - contient les images pour l'expiration de la session</li>
+		<li><a href="https://github.com/wet-boew/wet-boew-legacy/blob/v3.1/src/js/workers/sessiontimeout.js">js/workers/sessiontimeout.js</a> - contient le code JavaScript pour l'expiration de la session</li>
+		<li><a href="https://github.com/wet-boew/wet-boew-legacy/blob/v3.1/src/js/sass/includes/_sessiontimeout.scss">js/sass/includes/_sessiontimeout.scss</a> - contient le CSS pour l'expiration de la session</li>
+		<li><a href="https://github.com/wet-boew/wet-boew-legacy/blob/v3.1/src/js/sass/includes/_sessiontimeout-ie.scss">js/sass/includes/_sessiontimeout-ie.scss</a> - contient le CSS spécifique à IE7/8 pour l'expiration de la session</li>
+		<li><a href="https://github.com/wet-boew/wet-boew-legacy/blob/v3.1/src/js/images/sessiontimeout/">js/images/sessiontimeout/</a> - contient les images pour l'expiration de la session</li>
 	</ul>
 </section>
 
@@ -180,9 +180,9 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <section>
 	<h2>Historique des versions</h2>
 	<ul>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.1/src/js/workers/sessiontimeout.js">sessiontimeout.js</a></li>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.1/src/js/sass/includes/_sessiontimeout.scss">_sessiontimeout.scss</a> </li>
-		<li><a href="https://github.com/wet-boew/wet-boew/commits/v3.1/src/js/sass/includes/_sessiontimeout-ie.scss">_sessiontimeout-ie.scss</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew-legacy/commits/v3.1/src/js/workers/sessiontimeout.js">sessiontimeout.js</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew-legacy/commits/v3.1/src/js/sass/includes/_sessiontimeout.scss">_sessiontimeout.scss</a> </li>
+		<li><a href="https://github.com/wet-boew/wet-boew-legacy/commits/v3.1/src/js/sass/includes/_sessiontimeout-ie.scss">_sessiontimeout-ie.scss</a></li>
 	</ul>
 </section>
 
@@ -200,7 +200,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <nav role="navigation"><div id="wet-sft"><h3>Pied de page du site</h3><div id="wet-sft-in">
 <section><div class="span-2"><h4 class="wet-col-head">À propos</h4>
 <ul>
-<li><a href="http://wet-boew.github.io/v3.1-ci/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
+<li><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/index-fr.html#apropos">À propos de la Boîte à outils de l’expérience Web</a></li>
 <li><a href="http://www.tbs-sct.gc.ca/ws-nw/index-fra.asp">À propos des normes Web</a></li>
 </ul>
 </div></section>

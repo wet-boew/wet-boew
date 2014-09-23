@@ -36,11 +36,11 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <script>
 	//<![CDATA[
 	$(document).ready(function(){
-		
-		
+
+
 		function newzebra (tblSelector, isColumnHover){
-		
-		
+
+
 		// Column color for summary colgroup
 		$.each($(tblSelector + ':summary'), function(){
 			$(this).collevel(0).css('background-color', '#faf0fa');
@@ -56,7 +56,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			$(this).css('padding', '8px');
 			$(this).collevel(4).css('background-color', '#f0f0fa');
 		});
-		
+
 		// Description cell styling
 		$.each($(tblSelector + ':description'), function(){
 			$(this).css('font-style', 'italic');
@@ -67,7 +67,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 		// Column Group Level color
 		/*$.each($(tblSelector + ' colgroup:data'), function(){
 			$.each($(this).col().first().cell(), function(){
-				
+
 				$(this).tbldata().collevel(1).css('border-left', '2px solid #7dfafa');
 				$(this).tbldata().collevel(2).css('border-left', '2px solid #7dfa7d');
 				$(this).tbldata().collevel(3).css('border-left', '2px solid #fafa7d');
@@ -79,13 +79,13 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 				$(this).tblheader().collevel(2).css('border-bottom', '2px solid #7dfa7d');
 				$(this).tblheader().collevel(3).css('border-bottom', '2px solid #fafa7d');
 				$(this).tblheader().collevel(4).css('border-bottom', '2px solid #7d7dfa');
-				
+
 			});
 		});
-		
+
 		$.each($(tblSelector + ' colgroup:summary'), function(){
 			$.each($(this).col().last().cell(), function(){
-				
+
 				$(this).summary().collevel(1).css('border-right', '2px solid #7dfafa');
 				$(this).summary().collevel(2).css('border-right', '2px solid #7dfa7d');
 				$(this).summary().collevel(3).css('border-right', '2px solid #fafa7d');
@@ -97,12 +97,12 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 				$(this).tblheader().collevel(2).css('border-bottom', '2px solid #7dfa7d');
 				$(this).tblheader().collevel(3).css('border-bottom', '2px solid #fafa7d');
 				$(this).tblheader().collevel(4).css('border-bottom', '2px solid #7d7dfa');
-				
+
 			});
 		});
 		*/
 
-		// Mouse hover 
+		// Mouse hover
 		$(tblSelector + ':data, ' + tblSelector + ':summary' ).hover(
 			function(){
 
@@ -110,17 +110,17 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 					if(!$(this).data().zebraPrevBgColor){
 						$(this).data().zebraPrevBgColor = $(this).css('background-color');
 					}
-					
+
 					// HighLight
 					// Level 1 #F0FAFA
 					// Level 2 #F0FAF0
 					// Level 3 #FAFAF0
-					
+
 					$(this).tbldata().css('background-color', '#EEEEEE');
 					$(this).summary().css('background-color', 'white');
-					
+
 				});
-				
+
 				if(isColumnHover){
 					$.each($(this).col().cell(), function(){
 						if(!$(this).data().zebraPrevBgColor){
@@ -130,21 +130,21 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 						$(this).collevel(2).css('background-color', '#F0FAF0');
 						$(this).collevel(3).css('background-color', '#FAFAF0');
 						$(this).collevel(4).css('background-color', '#f0f0fa');
-						
+
 						$(this).summary().css('background-color', '#FFFFFF');
 					});
-					
+
 					$(this).css('background-color', 'white');
-					
-					
-					
+
+
+
 					$(this).summary(1).css('background-color', '#F0FAFA');
 					$(this).summary(2).css('background-color', '#F0FAF0');
 					$(this).summary(3).css('background-color', '#FAFAF0');
 					$(this).summary(4).css('background-color', '#f0f0fa');
 				}
-				
-				
+
+
 				// Highlight the header
 				$(this).row().tblheader().data().zebraPrevBgColor = $(this).row().tblheader().css('background-color');
 				$(this).row().tblheader().css('background-color', 'lightgray');
@@ -166,8 +166,8 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 						// delete $(this).data().zebraPrevBgColor;
 					}
 				});
-				
-				
+
+
 				$(this).row().tblheader().css('background-color', $(this).row().tblheader().data().zebraPrevBgColor);
 				delete $(this).row().tblheader().data().zebraPrevBgColor;
 
@@ -175,17 +175,17 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 				delete $(this).col().tblheader().data().zebraPrevBgColor;
 			}
 		);
-		
+
 	}
-	
+
 	// newzebra('table:eq(0)', false);
 	// newzebra('table:eq(1)', true);
 	// newzebra('table:eq(2)', true);
-	
+
 	// newzebra('table:eq(4)', true);
 	// newzebra('table:eq(5)', false);
 	// newzebra('table:eq(6)', true);
-	
+
 	});
 	//]]>
 </script>
@@ -228,7 +228,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <nav role="navigation">
 <div id="gcwu-psnb"><h2><span>Site </span>menu</h2><div id="gcwu-psnb-in"><div class="wet-boew-menubar mb-mega"><div>
 <ul class="mb-menu" data-ajax-replace="../includes/menu-en.txt">
-<li><div><a href="http://wet-boew.github.io/v3.1-ci/index-en.html">WET project</a></div></li>
+<li><div><a href="http://wet-boew.github.io/wet-boew-legacy/v3.1/index-en.html">WET project</a></div></li>
 <li><div><a href="section2/index-en.html">Section 2</a></div></li>
 <li><div><a href="#">Section 3</a></div></li>
 <li><div><a href="#">Section 4</a></div></li>
@@ -338,14 +338,6 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <table class="wet-boew-zebra">
 	<caption>Summary Column Highlight, No Column Hover</caption>
 	<colgroup span="3"></colgroup>
-	
-	<colgroup>
-		<col />
-		<col />
-	</colgroup>
-	<colgroup>
-		<col />
-	</colgroup>
 
 	<colgroup>
 		<col />
@@ -357,8 +349,16 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 	<colgroup>
 		<col />
+		<col />
 	</colgroup>
-	
+	<colgroup>
+		<col />
+	</colgroup>
+
+	<colgroup>
+		<col />
+	</colgroup>
+
 	<thead>
 		<tr>
 			<th rowspan="2">Item #</th>
@@ -368,20 +368,20 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<th colspan="3">Installation</th>
 			<th rowspan="2">Total</th>
 		</tr>
-		
+
 		<tr>
 			<th>Quantity</th>
 			<th>Price</th>
 			<th>Sub-Total</th>
-			
+
 			<th>Hours</th>
 			<th>Rates</th>
 			<th>Sub-Total</th>
 		</tr>
 	</thead>
-	
+
 	<tbody>
-	
+
 		<tr>
 			<td>wet-boew-zebra</td>
 			<th>Zebra</th>
@@ -589,10 +589,10 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<td>125 $</td>
 			<td>221 $</td>
 		</tr>
-	
+
 	</tbody>
-	
-	
+
+
 </table>
 
 
@@ -601,7 +601,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <table class="wet-boew-zebra">
 	<caption>Summary Column Highlight, With Column Hover</caption>
 	<colgroup span="3"></colgroup>
-	
+
 	<colgroup>
 		<col />
 		<col />
@@ -631,20 +631,20 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<th colspan="3">Installation</th>
 			<th rowspan="2">Total</th>
 		</tr>
-		
+
 		<tr>
 			<th>Quantity</th>
 			<th>Price</th>
 			<th>Sub-Total</th>
-			
+
 			<th>Hours</th>
 			<th>Rates</th>
 			<th>Sub-Total</th>
 		</tr>
 	</thead>
-	
+
 	<tbody>
-	
+
 		<tr>
 			<td>wet-boew-zebra</td>
 			<th>Zebra</th>
@@ -825,19 +825,19 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<td>125 $</td>
 			<td>221 $</td>
 		</tr>
-	
+
 	</tbody>
-	
-	
+
+
 </table>
 
-	
+
 <h3 id="sample3">Sample Table #3</h3>
 
 <table class="wet-boew-zebra">
 	<caption>Last Summary Column Highlight and Column Hover</caption>
 	<colgroup span="3"></colgroup>
-	
+
 	<colgroup>
 		<col />
 		<col />
@@ -849,7 +849,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<colgroup>
 		<col />
 	</colgroup>
-		
+
 	<thead>
 		<tr>
 			<th rowspan="2">Item #</th>
@@ -859,20 +859,20 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<th colspan="3">Installation</th>
 			<th rowspan="2">Total</th>
 		</tr>
-		
+
 		<tr>
 			<th>Quantity</th>
 			<th>Price</th>
 			<th>Sub-Total</th>
-			
+
 			<th>Hours</th>
 			<th>Rates</th>
 			<th>Sub-Total</th>
 		</tr>
 	</thead>
-	
+
 	<tbody>
-	
+
 		<tr>
 			<td>wet-boew-zebra</td>
 			<th>Zebra</th>
@@ -1053,12 +1053,12 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<td>125 $</td>
 			<td>221 $</td>
 		</tr>
-	
+
 	</tbody>
-	
-	
+
+
 </table>
-	
+
 
 
 <h3 id="sample4">Sample Table #4</h3>
@@ -1066,14 +1066,6 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <table class="wet-boew-zebra">
 	<caption>Original Zebra</caption>
 	<colgroup span="3"></colgroup>
-	
-	<colgroup>
-		<col />
-		<col />
-	</colgroup>
-	<colgroup>
-		<col />
-	</colgroup>
 
 	<colgroup>
 		<col />
@@ -1085,8 +1077,16 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 	<colgroup>
 		<col />
+		<col />
 	</colgroup>
-	
+	<colgroup>
+		<col />
+	</colgroup>
+
+	<colgroup>
+		<col />
+	</colgroup>
+
 	<thead>
 		<tr>
 			<th rowspan="2">Item #</th>
@@ -1096,20 +1096,20 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<th colspan="3">Installation</th>
 			<th rowspan="2">Total</th>
 		</tr>
-		
+
 		<tr>
 			<th>Quantity</th>
 			<th>Price</th>
 			<th>Sub-Total</th>
-			
+
 			<th>Hours</th>
 			<th>Rates</th>
 			<th>Sub-Total</th>
 		</tr>
 	</thead>
-	
+
 	<tbody>
-	
+
 		<tr>
 			<td>wet-boew-zebra</td>
 			<th>Zebra</th>
@@ -1290,10 +1290,10 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<td>125 $</td>
 			<td>221 $</td>
 		</tr>
-	
+
 	</tbody>
-	
-	
+
+
 </table>
 
 
@@ -1303,14 +1303,6 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <table class="wet-boew-zebra">
 	<caption>Original Zebra, Summary Column Highlight and Column Hover</caption>
 	<colgroup span="3"></colgroup>
-	
-	<colgroup>
-		<col />
-		<col />
-	</colgroup>
-	<colgroup>
-		<col />
-	</colgroup>
 
 	<colgroup>
 		<col />
@@ -1322,8 +1314,16 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 	<colgroup>
 		<col />
+		<col />
 	</colgroup>
-	
+	<colgroup>
+		<col />
+	</colgroup>
+
+	<colgroup>
+		<col />
+	</colgroup>
+
 	<thead>
 		<tr>
 			<th rowspan="2">Item #</th>
@@ -1333,20 +1333,20 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<th colspan="3">Installation</th>
 			<th rowspan="2">Total</th>
 		</tr>
-		
+
 		<tr>
 			<th>Quantity</th>
 			<th>Price</th>
 			<th>Sub-Total</th>
-			
+
 			<th>Hours</th>
 			<th>Rates</th>
 			<th>Sub-Total</th>
 		</tr>
 	</thead>
-	
+
 	<tbody>
-	
+
 		<tr>
 			<td>wet-boew-zebra</td>
 			<th>Zebra</th>
@@ -1527,10 +1527,10 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<td>125 $</td>
 			<td>221 $</td>
 		</tr>
-	
+
 	</tbody>
-	
-	
+
+
 </table>
 
 
@@ -1541,14 +1541,6 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <table class="wet-boew-zebra">
 	<caption>Original Zebra, Summary Column Highlight and No Column Hover</caption>
 	<colgroup span="3"></colgroup>
-	
-	<colgroup>
-		<col />
-		<col />
-	</colgroup>
-	<colgroup>
-		<col />
-	</colgroup>
 
 	<colgroup>
 		<col />
@@ -1560,8 +1552,16 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 
 	<colgroup>
 		<col />
+		<col />
 	</colgroup>
-	
+	<colgroup>
+		<col />
+	</colgroup>
+
+	<colgroup>
+		<col />
+	</colgroup>
+
 	<thead>
 		<tr>
 			<th rowspan="2">Item #</th>
@@ -1571,20 +1571,20 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<th colspan="3">Installation</th>
 			<th rowspan="2">Total</th>
 		</tr>
-		
+
 		<tr>
 			<th>Quantity</th>
 			<th>Price</th>
 			<th>Sub-Total</th>
-			
+
 			<th>Hours</th>
 			<th>Rates</th>
 			<th>Sub-Total</th>
 		</tr>
 	</thead>
-	
+
 	<tbody>
-	
+
 		<tr>
 			<td>wet-boew-zebra</td>
 			<th>Zebra</th>
@@ -1765,10 +1765,10 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<td>125 $</td>
 			<td>221 $</td>
 		</tr>
-	
+
 	</tbody>
-	
-	
+
+
 </table>
 
 
@@ -1778,7 +1778,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <table class="wet-boew-zebra">
 	<caption>Original Zebra, Last Summary Column Highlight and Column Hover</caption>
 	<colgroup span="3"></colgroup>
-	
+
 	<colgroup>
 		<col />
 		<col />
@@ -1791,7 +1791,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	<colgroup>
 		<col />
 	</colgroup>
-	
+
 	<thead>
 		<tr>
 			<th rowspan="2">Item #</th>
@@ -1801,20 +1801,20 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<th colspan="3">Installation</th>
 			<th rowspan="2">Total</th>
 		</tr>
-		
+
 		<tr>
 			<th>Quantity</th>
 			<th>Price</th>
 			<th>Sub-Total</th>
-			
+
 			<th>Hours</th>
 			<th>Rates</th>
 			<th>Sub-Total</th>
 		</tr>
 	</thead>
-	
+
 	<tbody>
-	
+
 		<tr>
 			<td>wet-boew-zebra</td>
 			<th>Zebra</th>
@@ -1995,10 +1995,10 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 			<td>125 $</td>
 			<td>221 $</td>
 		</tr>
-	
+
 	</tbody>
-	
-	
+
+
 </table>
 
 
