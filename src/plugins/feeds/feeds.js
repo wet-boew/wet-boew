@@ -170,9 +170,9 @@ var componentName = "wb-feeds",
 		 */
 		generic: function( data ) {
 
-			return "<li><a href='" + data.link + "'>" + data.title + "</a>" +
-				( data.publishedDate !== "" ? " <span class='feeds-date'>[" +
-				wb.date.toDateISO( data.publishedDate, true ) + "]</span>" : "" ) + "</li>";
+			return "<li><a href='" + data.link + "'>" + data.title + "</a><br />" +
+				( data.publishedDate !== "" ? " <small class='feeds-date'><time>" +
+				wb.date.toDateISO( data.publishedDate, true ) + "</time></small>" : "" ) + "</li>";
 		}
 	},
 
