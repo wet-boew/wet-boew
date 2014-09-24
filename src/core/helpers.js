@@ -1073,6 +1073,13 @@
 				( withTime ? " " + pad( date.getHours(), 2, "0" ) + ":" + pad( date.getMinutes(), 2, "0" ) : "" );
 		},
 
+		toDateYMD: function( dateValueYMD ) {
+			var date = wb.date.convert( dateValueYMD ),
+				pad = wb.string.pad;
+
+			return date.getFullYear() + "-" + pad( date.getMonth() + 1, 2, "0" ) + "-" + pad( date.getDate(), 2, "0" );
+		},
+
 		/*
 		 * Cross-browser safe way of creating a date object from a date string in ISO format
 		 * @memberof wb.date
