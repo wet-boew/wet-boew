@@ -10,10 +10,6 @@ function error_exit
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_REPO_SLUG" == "wet-boew/wet-boew" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
 
-	#Set git user
-	git config --global user.email "wet.boew.bot@gmail.com"
-	git config --global user.name "Web Experience Toolkit Bot"
-
 	if [ "$TRAVIS_BRANCH" == "master" ]; then
 		export build_branch="v4.0-dist"
 		submodule_name="v4.0-ci"
