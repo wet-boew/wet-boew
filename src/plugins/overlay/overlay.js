@@ -110,10 +110,10 @@ var componentName = "wb-overlay",
 
 			// Returns focus to the source link for the overlay
 			$( sourceLink ).trigger( setFocusEvent );
-
-			// Delete the source link reference
-			delete sourceLinks[ overlayId ];
 		}
+
+		// Delete the source link reference
+		delete sourceLinks[ overlayId ];
 	};
 
 $document.on( "timerpoke.wb " + initEvent + " keydown open" + selector +
