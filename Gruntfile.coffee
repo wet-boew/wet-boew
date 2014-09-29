@@ -19,6 +19,7 @@ module.exports = (grunt) ->
 		[
 			"dist"
 			"test-mocha"
+			"saucelabs"
 		]
 	)
 
@@ -80,10 +81,13 @@ module.exports = (grunt) ->
 	@registerTask(
 		"saucelabs"
 		"Run tests on SauceLabs. Currently only for Travis builds"
-		[
-			"pre-mocha"
-			"saucelabs-mocha"
-		]
+		->
+			if process.env.SAUCE_USERNAME isnt `undefined` and process.env.SAUCE_ACCESS_KEY isnt `undefined`
+				grunt.task.run [
+					"pre-mocha"
+					"saucelabs-mocha"
+				]
+
 	)
 
 	@registerTask(
@@ -233,16 +237,6 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
-		"pre-mocha"
-		"INTERNAL: prepare for running Mocha unit tests"
-		[
-			"copy:test"
-			"pages:test"
-			"connect:test"
-		]
-	)
-
-	@registerTask(
 		"pages"
 		"Task to intelligently call Assemble targets"
 		( target ) ->
@@ -264,6 +258,20 @@ module.exports = (grunt) ->
 				grunt.task.run(
 					"assemble" + target
 				);
+	)
+
+	@registerTask(
+		"pre-mocha"
+		"INTERNAL: prepare for running Mocha unit tests"
+		() ->
+			grunt.task.run [
+				"copy:test"
+				"pages:test"
+			]
+
+			#Prevents multiple instances of connect from running
+			if grunt.config.get('connect.test.options.port') is `undefined`
+				grunt.task.run "connect:test"
 	)
 
 	@registerTask(

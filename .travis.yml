@@ -11,9 +11,9 @@ install:
   - bundle install
 
 script:
-  - travis_retry ./script/travis_script.sh
+  - scss-lint .
+  - travis_retry grunt travis
   - bundle exec rake
-  - ./script/travis_saucelabs.sh
 
 after_success:
   - ./script/travis_artifacts.sh
