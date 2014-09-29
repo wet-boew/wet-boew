@@ -283,7 +283,7 @@ var getUrlParts = function( url ) {
 
 				// If the selector returns no elements, remove the selector
 				} else {
-					this.remove( selector );
+					wb.remove( selector );
 				}
 			}
 		},
