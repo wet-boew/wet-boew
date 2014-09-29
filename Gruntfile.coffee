@@ -922,39 +922,40 @@ module.exports = (grunt) ->
 				dest: "dist/css"
 
 		modernizr:
-			devFile: "lib/modernizr/modernizr-custom.js"
-			outputFile: "lib/modernizr/modernizr-custom.js"
-			extra:
-				shiv: false
-				printshiv: false
-				load: true
-				mq: true
-				css3: true
-				input: true
-				inputtypes: true
-				svg: true
-				html5: false
-				cssclasses: true
-				csstransitions: true
-				fontface: true
-				backgroundsize: true
-				borderimage: true
-			extensibility:
-				addtest: false
-				prefixed: false
-				teststyles: true
-				testprops: true
-				testallprops: true
-				hasevents: true
-				prefixes: true
-				domprefixes: true
-			tests: [
-				"elem_details"
-				"elem_progress_meter"
-				"mathml"
-			]
-			parseFiles: false
-			matchCommunityTests: false
+			dist:
+				devFile: "lib/modernizr/modernizr-custom.js"
+				outputFile: "lib/modernizr/modernizr-custom.js"
+				extra:
+					shiv: false
+					printshiv: false
+					load: true
+					mq: true
+					css3: true
+					input: true
+					inputtypes: true
+					svg: true
+					html5: false
+					cssclasses: true
+					csstransitions: true
+					fontface: true
+					backgroundsize: true
+					borderimage: true
+				extensibility:
+					addtest: false
+					prefixed: false
+					teststyles: true
+					testprops: true
+					testallprops: true
+					hasevents: true
+					prefixes: true
+					domprefixes: true
+				tests: [
+					"elem_details"
+					"elem_progress_meter"
+					"mathml"
+				]
+				parseFiles: false
+				matchCommunityTests: false
 
 		copy:
 			bootstrap:
