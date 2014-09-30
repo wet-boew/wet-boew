@@ -19,6 +19,7 @@ module.exports = (grunt) ->
 		[
 			"dist"
 			"test-mocha"
+			"saucelabs"
 		]
 	)
 
@@ -80,10 +81,14 @@ module.exports = (grunt) ->
 	@registerTask(
 		"saucelabs"
 		"Run tests on SauceLabs. Currently only for Travis builds"
-		[
-			"pre-mocha"
-			"saucelabs-mocha"
-		]
+		->
+			# TODO: Add error message when TRAVIS_SECURE_VARS is fixed (see https://github.com/wet-boew/wet-boew/pull/6108#discussion_r18190951)
+			if process.env.SAUCE_USERNAME isnt `undefined` and process.env.SAUCE_ACCESS_KEY isnt `undefined`
+				grunt.task.run [
+					"pre-mocha"
+					"saucelabs-mocha"
+				]
+
 	)
 
 	@registerTask(
@@ -235,11 +240,15 @@ module.exports = (grunt) ->
 	@registerTask(
 		"pre-mocha"
 		"INTERNAL: prepare for running Mocha unit tests"
-		[
-			"copy:test"
-			"pages:test"
-			"connect:test"
-		]
+		() ->
+			grunt.task.run [
+				"copy:test"
+				"pages:test"
+			]
+
+			#Prevents multiple instances of connect from running
+			if grunt.config.get('connect.test.options.port') is `undefined`
+				grunt.task.run "connect:test"
 	)
 
 	@registerTask(
