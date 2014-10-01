@@ -14,7 +14,7 @@
  * teardown `after()` for more than one test suite (as is the case below.)
  */
 describe( "equalheights test suite", function() {
-	var $row, height, minHeight, callback,
+	var $row, height, minHeight, callback, test,
 		$document = wb.doc,
 		$body = $document.find( "body" ),
 
@@ -44,12 +44,16 @@ describe( "equalheights test suite", function() {
 			expect( $elm.height() ).to.equal( height );
 		},
 
+		defaultTest = function( $rows, done ) {
+			$row.each( testHeight );
+		},
+
 		addFixture = function( $elm, done ) {
 			callback = done;
 
 			$row = $elm
 				.appendTo( $body )
-				.trigger("wb-init.wb-eqht")
+				.trigger( "wb-init.wb-eqht" )
 				.children();
 		},
 
@@ -62,10 +66,10 @@ describe( "equalheights test suite", function() {
 	 * Before beginning the test suite, this function is executed once.
 	 */
 	before(function() {
-
-		$document.on( "wb-updated.wb-eqht", function() {
-			if ($row !== undef) {
-				$row.each( testHeight );
+		$document.on( "wb-updated.wb-eqht", function( event ) {
+			var currentTest = test || defaultTest;
+			if ( $row !== undef ) {
+				currentTest();
 				callback();
 			}
 		});
@@ -206,6 +210,50 @@ describe( "equalheights test suite", function() {
 
 			$document.trigger( "wb-updated.wb-tables" );
 		});
+	});
+
+	describe( "resize nested elements", function() {
+
+		before(function( done ) {
+			addFixture( $( "<div class='wb-eqht test'>" +
+				"<div style='width:49%; float:left; height: 50px'><div class='hght-inhrt'>foo</div></div>" +
+				"<div style='width:49%; float:left;'><div>bar</div></div>" +
+			"</div>" ), done );
+
+			test = function() {
+				var $nestedBlocks = $row.find( ".hght-inhrt" ),
+					$nestedNonEqBlocks = $row.find(":not(.hght-inhrt)"),
+					nestedLength = $nestedBlocks.length,
+					nestedNonEqLength = $nestedNonEqBlocks.length,
+					$nested, n;
+
+				expect( nestedLength ).to.be.greaterThan( 0 );
+				expect( nestedNonEqLength ).to.be.greaterThan( 0 );
+
+				for ( n = 0; n < nestedLength; n += 1 ) {
+					$nested = $nestedBlocks.eq( n );
+					expect( $nested.height() ).to.be.equal( $nested.parent().height() );
+				}
+
+				for ( n = 0; n < nestedNonEqLength; n += 1 ) {
+					$nested = $nestedNonEqBlocks.eq( n );
+					expect( $nested.height() ).to.be.lessThan( $nested.parent().height() );
+				}
+			};
+		});
+
+		after(function() {
+			removeFixture();
+
+			test = null;
+		});
+
+		it( "should resize nested elements with the 'hght-inhrt' class", function( done ) {
+			callback = done;
+
+			$document.trigger( "txt-rsz.wb" );
+		});
+
 	});
 });
 
