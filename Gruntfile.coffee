@@ -34,6 +34,7 @@ module.exports = (grunt) ->
 			"docs-min"
 			"demos-min"
 			"htmllint"
+			"bootlint"
 		]
 	)
 
@@ -921,6 +922,29 @@ module.exports = (grunt) ->
 					"!dist/unmin/test/**/*.html"
 				]
 
+		bootlint:
+			all:
+				options:
+					relaxerror: [
+						# We recommend handling this through the server headers so it never appears in the markup
+						"<head> is missing X-UA-Compatible <meta> tag that disables old IE compatibility modes"
+						# TODO: The rules below should be resolved
+						"Always set a `type` on `<button>`s."
+						"Only columns (.col-*-*) may be children of `.row`s"
+						"Unable to locate jQuery, which is required for Bootstrap's JavaScript plugins to work"
+						"Columns (.col-*-*) can only be children of `.row`s or `.form-group`s"
+						".checkbox-inline should only be used on <label> elements"
+						"Incorrect markup used with the `.checkbox-inline` class. The correct markup structure is label.checkbox-inline>input[type=\"checkbox\"]"
+						".radio-inline should only be used on <label> elements"
+						"Incorrect markup used with the `.radio-inline` class. The correct markup structure is label.radio-inline>input[type=\"radio\"]"
+					]
+				src: [
+					"dist/**/*.html"
+					# Ignore HTML fragments used for the menus
+					"!dist/**/assets/*.html"
+					"!dist/**/ajax/*.html"
+				]
+
 		ie8csscleaning:
 			min:
 				expand: true
@@ -1308,6 +1332,7 @@ module.exports = (grunt) ->
 	# These plugins provide necessary tasks.
 	@loadNpmTasks "assemble"
 	@loadNpmTasks "grunt-autoprefixer"
+	@loadNpmTasks "grunt-bootlint"
 	@loadNpmTasks "grunt-check-dependencies"
 	@loadNpmTasks "grunt-contrib-clean"
 	@loadNpmTasks "grunt-contrib-concat"
