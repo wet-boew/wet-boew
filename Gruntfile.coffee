@@ -929,7 +929,6 @@ module.exports = (grunt) ->
 						# We recommend handling this through the server headers so it never appears in the markup
 						"<head> is missing X-UA-Compatible <meta> tag that disables old IE compatibility modes"
 						# TODO: The rules below should be resolved
-						"Always set a `type` on `<button>`s."
 						"Only columns (.col-*-*) may be children of `.row`s"
 						"Unable to locate jQuery, which is required for Bootstrap's JavaScript plugins to work"
 						"Columns (.col-*-*) can only be children of `.row`s or `.form-group`s"
