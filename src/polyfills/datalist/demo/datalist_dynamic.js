@@ -12,9 +12,8 @@ var $document = wb.doc,
 $document.on( "change", pluginSelector, function( event ) {
 	var componentName = event.target.value;
 
-	$document.trigger({
+	$( this ).trigger({
 		type: "ajax-fetch.wb",
-		element: this,
 		fetch: {
 			url: encodeURI( "https://api.github.com/repos/wet-boew/wet-boew/issues?labels=Plugin: " + componentName ),
 			dataType: wb.ielt10 ? "jsonp" : "json",

@@ -51,9 +51,8 @@ var componentName = "wb-menu",
 			// Lets test to see if we have any menus to fetch
 			ajaxFetch = $elm.data( "ajax-fetch" );
 			if ( ajaxFetch ) {
-				$document.trigger({
+				$elm.trigger({
 					type: "ajax-fetch.wb",
-					element: $elm,
 					fetch: {
 						url: ajaxFetch
 					}

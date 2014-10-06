@@ -244,9 +244,8 @@ var componentName = "wb-feeds",
 					_content: $content
 				};
 
-				$document.trigger({
+				fElem.trigger({
 					type: "ajax-fetch.wb",
-					element: fElem,
 					fetch: fetch
 				});
 			}

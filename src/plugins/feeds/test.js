@@ -28,7 +28,7 @@ describe( "Feeds test suite", function() {
 
 		$document.on( ajaxEvent, function( event ) {
 			ajaxCalls.push( event.fetch );
-			$( event.element ).trigger({
+			$( event.target ).trigger({
 				type: fetchedEvent,
 				fetch: {
 					response: {
