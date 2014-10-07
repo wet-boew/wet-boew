@@ -1259,12 +1259,12 @@ module.exports = (grunt) ->
 			all:
 				options:
 					reporter: "Spec"
-					urls: ["http://localhost:8000/dist/unmin/test/test.html?txthl=just some|test"]
+					urls: ["http://localhost:8000/dist/unmin/test/test.html?txthl=just%20some%7Ctest"]
 
 		"saucelabs-mocha":
 			all:
 				options:
-					urls: "<%= mocha.all.options.url %>"
+					urls: "<%= mocha.all.options.urls %>"
 					throttled: 3
 					browsers: grunt.file.readJSON "browsers.json"
 					testname: process.env.TRAVIS_COMMIT_MSG
