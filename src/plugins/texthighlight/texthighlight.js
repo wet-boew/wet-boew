@@ -31,19 +31,14 @@ var componentName = "wb-txthl",
 			searchCriteria, newText;
 
 		if ( elm ) {
-
-			searchCriteria = event.txthl || ( function() {
-				var criteria = wb.pageUrlParts.params.txthl;
-
-				if ( criteria ) {
-
-					// clean up the search criteria and OR each value
-					criteria = criteria.replace( /^\s+|\s+$|\|+|\"|\(|\)/g, "" ).replace( /\++/g, "|" );
-					criteria = decodeURIComponent( criteria );
-				}
-
-				return criteria;
-			} () );
+			if ( event.txthl ) {
+				searchCriteria = $.isArray(event.txthl) ? event.txthl.join( "|" ) : event.txthl;
+			} else {
+				searchCriteria = decodeURIComponent(
+					wb.pageUrlParts.params.txthl
+						.replace( /^\s+|\s+$|\|+|\"|\(|\)/g, "" ).replace( /\++/g, "|" )
+				);
+			}
 
 			if ( searchCriteria ) {
 

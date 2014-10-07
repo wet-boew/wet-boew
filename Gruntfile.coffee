@@ -1259,7 +1259,7 @@ module.exports = (grunt) ->
 			all:
 				options:
 					reporter: "Spec"
-					urls: ["http://localhost:8000/dist/unmin/test/test.html?txthl=test"]
+					urls: ["http://localhost:8000/dist/unmin/test/test.html?txthl=just some|test"]
 
 		"saucelabs-mocha":
 			all:
