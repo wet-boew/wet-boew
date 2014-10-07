@@ -1264,7 +1264,7 @@ module.exports = (grunt) ->
 		"saucelabs-mocha":
 			all:
 				options:
-					urls: ["http://localhost:8000/dist/unmin/test/test.html"]
+					urls: "<%= mocha.all.options.url %>"
 					throttled: 3
 					browsers: grunt.file.readJSON "browsers.json"
 					testname: process.env.TRAVIS_COMMIT_MSG
