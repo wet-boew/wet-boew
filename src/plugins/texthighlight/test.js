@@ -68,7 +68,7 @@ describe( "Text highlighting test suite", function() {
 		});
 	});
 
-	(wb.pageUrlParts.params.txthl ? describe : describe.skip)( "search query from the querystring", function() {
+	( wb.pageUrlParts.params.txthl ? describe : describe.skip )( "search query from the querystring", function() {
 		var $matches;
 
 		before( function() {
