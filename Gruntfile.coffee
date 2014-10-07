@@ -515,15 +515,15 @@ module.exports = (grunt) ->
 				]
 
 			test:
-				options:
-					environment:
-						root: "/v4.0-ci/unmin"
-						jqueryVersion: "<%= jqueryVersion.version %>"
-						jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
-					assets: "dist/unmin"
 				expand: true
 				cwd: "site/pages"
 				src: "test/test.hbs"
+				dest: "dist/unmin"
+
+			splash:
+				expand: true
+				cwd: "site/pages"
+				src: "index.hbs"
 				dest: "dist/unmin"
 
 			docs:
