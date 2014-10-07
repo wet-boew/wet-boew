@@ -13,7 +13,7 @@
 		<!-- Meta data-->
 		{{>headresources}}
 	</head>
-	<body vocab="http://schema.org/" typeof="WebPage">
+	<body {{#if pageclass}}class="{{pageclass}}" {{/if}}vocab="http://schema.org/" typeof="WebPage">
 		{{>body}}
 		{{>footerresources}}
 	</body>
