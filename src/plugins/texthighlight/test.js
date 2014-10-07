@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-/* global jQuery, describe, it, expect, before, after, sinon */
+/* global jQuery, describe, it, expect, before, beforeEach, after, afterEach, sinon */
 /* jshint unused:vars */
 (function( $, wb ) {
 
@@ -20,7 +20,10 @@ describe( "Text highlighting test suite", function() {
 		componentName = "wb-txthl",
 		selector = "." + componentName,
 		initEvent = "wb-init" + selector,
-		callback;
+		defaultInitEventObj = {
+			type: initEvent
+		},
+		initEventObj, callback, $elm;
 
 	/*
 	 * Before begining the test suite, this function is exectued once.
@@ -40,22 +43,24 @@ describe( "Text highlighting test suite", function() {
 		sandbox.restore();
 	});
 
+	beforeEach( function( done ) {
+		callback = done;
+
+		$elm = $( "<div class='wb-txthl'><p>This is a test. It's just some testing.</p></div>" )
+			.appendTo( $body )
+			.trigger( initEventObj );
+	});
+
+	afterEach( function() {
+		$elm.remove();
+	});
+
 	/*
 	 * Test initialization of the plugin
 	 */
 	describe( "init plugin", function() {
-		var $elm;
-
-		before( function( done ) {
-			callback = done;
-
-			$elm = $( "<div class='wb-txthl'></div>" )
-				.appendTo( $body )
-				.trigger( initEvent );
-		});
-
-		after( function() {
-			$elm.remove();
+		before( function() {
+			initEventObj = defaultInitEventObj;
 		});
 
 		it( "should have marked the element as initialized", function() {
@@ -64,64 +69,90 @@ describe( "Text highlighting test suite", function() {
 	});
 
 	(wb.pageUrlParts.params.txthl ? describe : describe.skip)( "search query from the querystring", function() {
+		var $matches;
 
-		var $elm, $matches;
-
-		before( function( done ) {
-			callback = done;
-
-			$elm = $( "<div class='wb-txthl'><p>This is a test. It's just some testing.</p></div>" )
-				.appendTo( $body )
-				.trigger( initEvent );
-		});
-
-		after( function() {
-			$elm.remove();
+		before( function() {
+			initEventObj = defaultInitEventObj;
 		});
 
 		it( "should have highlighted words matching the query", function() {
-			var matchesLength, m;
+			var matchesLength;
 
 			$matches = $elm.find( ".txthl > mark" );
 			matchesLength = $matches.length;
 
-			expect( matchesLength ).to.equal( 2 );
+			expect( matchesLength ).to.equal( 3 );
 
-			for ( m = 0; m < matchesLength; m += 1 ) {
-				expect( $matches.eq( m ).text() ).to.equal( "test" );
-			}
+			expect( $matches.eq( 0 ).text() ).to.equal( "test" );
+			expect( $matches.eq( 1 ).text() ).to.equal( "just some" );
+			expect( $matches.eq( 2 ).text() ).to.equal( "test" );
 		});
 	});
 
 	describe( "dynamic search query", function() {
-		var $elm, $matches;
+		var $matches;
 
-		before( function( done ) {
-			callback = done;
+		describe( "simple query", function() {
+			before( function() {
+				initEventObj = defaultInitEventObj;
+				initEventObj.txthl = "test";
+			});
 
-			$elm = $( "<div class='wb-txthl'><p>This is a test. It's just some testing.</p></div>" )
-				.appendTo( $body )
-				.trigger( {
-					type: initEvent,
-					txthl: "test"
-				} );
+			it( "should have highlighted words matching the query", function() {
+				var matchesLength, m;
+
+				$matches = $elm.find( ".txthl > mark" );
+				matchesLength = $matches.length;
+
+				expect( matchesLength ).to.equal( 2 );
+
+				for ( m = 0; m < matchesLength; m += 1 ) {
+					expect( $matches.eq( m ).text() ).to.equal( "test" );
+				}
+			});
 		});
 
-		after( function() {
-			$elm.remove();
+		describe( "complex query as a string", function() {
+			before( function() {
+				initEventObj = defaultInitEventObj;
+				initEventObj.txthl = "just some|test";
+			});
+
+			it( "should have highlighted words matching the query", function() {
+				var matchesLength;
+
+				$matches = $elm.find( ".txthl > mark" );
+				matchesLength = $matches.length;
+
+				expect( matchesLength ).to.equal( 3 );
+
+				expect( $matches.eq( 0 ).text() ).to.equal( "test" );
+				expect( $matches.eq( 1 ).text() ).to.equal( "just some" );
+				expect( $matches.eq( 2 ).text() ).to.equal( "test" );
+			});
 		});
 
-		it( "should have highlighted words matching the query", function() {
-			var matchesLength, m;
+		describe( "complex query as an array", function() {
+			before( function() {
+				initEventObj = defaultInitEventObj;
+				initEventObj.txthl = [
+					"just some",
+					"test"
+				];
+			});
 
-			$matches = $elm.find( ".txthl > mark" );
-			matchesLength = $matches.length;
+			it( "should have highlighted words matching the query", function() {
+				var matchesLength;
 
-			expect( matchesLength ).to.equal( 2 );
+				$matches = $elm.find( ".txthl > mark" );
+				matchesLength = $matches.length;
 
-			for ( m = 0; m < matchesLength; m += 1 ) {
-				expect( $matches.eq( m ).text() ).to.equal( "test" );
-			}
+				expect( matchesLength ).to.equal( 3 );
+
+				expect( $matches.eq( 0 ).text() ).to.equal( "test" );
+				expect( $matches.eq( 1 ).text() ).to.equal( "just some" );
+				expect( $matches.eq( 2 ).text() ).to.equal( "test" );
+			});
 		});
 	});
 });
