@@ -70,9 +70,8 @@ var componentName = "wb-mltmd",
 
 			if ( template === undef ) {
 				template = "";
-				$document.trigger({
+				$( eventTarget ).trigger({
 					type: "ajax-fetch.wb",
-					element: selector,
 					fetch: {
 						url: wb.getPath( "/assets" ) + "/mediacontrols.html"
 					}
@@ -527,9 +526,13 @@ $document.on( "ajax-fetched.wb " + templateLoadedEvent, selector, function( even
 
 	if ( event.type === "ajax-fetched" ) {
 		template = event.fetch.pointer.html();
+
+		//Notify all player waiting for the controls to load
+		$this = $( selector );
 	}
 
 	$this.data( "template", template );
+
 	$this.trigger({
 		type: initializedEvent
 	});

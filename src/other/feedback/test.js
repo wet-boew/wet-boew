@@ -40,9 +40,8 @@ describe( "Feedback test suite", function() {
 		$elm = $("<div class='feedback'></div>")
 			.appendTo( $body );
 
-		$document.trigger({
+		$elm.trigger({
 			type: "ajax-fetch.wb",
-			element: $elm,
 			fetch: {
 				url: "../demos/feedback/feedback-en.html"
 			}

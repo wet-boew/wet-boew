@@ -54,9 +54,8 @@ var componentName = "wb-data-ajax",
 		var elm = event.target,
 			$elm = $( elm );
 
-		$document.trigger({
+		$elm.trigger({
 			type: "ajax-fetch.wb",
-			element: $elm,
 			fetch: {
 				url: elm.getAttribute( "data-ajax-" + ajaxType )
 			}
