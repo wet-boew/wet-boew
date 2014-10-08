@@ -5,7 +5,8 @@
   "main": "index.html",
   "scripts": {
     "test": "grunt test",
-    "postinstall": "bower update && grunt init"
+    "postinstall": "bower update && grunt init",
+    "travis": "scss-lint . && grunt dist test-mocha saucelabs && bundle exec rake"
   },
   "repository": {
     "type": "git",
