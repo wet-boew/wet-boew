@@ -14,16 +14,6 @@ module.exports = (grunt) ->
 	)
 
 	@registerTask(
-		"travis"
-		"Default task that runs the core unminified build"
-		[
-			"dist"
-			"test-mocha"
-			"saucelabs"
-		]
-	)
-
-	@registerTask(
 		"dist"
 		"Produces the production files"
 		[
@@ -1279,6 +1269,7 @@ module.exports = (grunt) ->
 						"single-window": true
 						"record-screenshots": false
 						"capture-html": true
+					maxRetries: 3
 
 		"gh-pages":
 			options:

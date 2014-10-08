@@ -11,7 +11,7 @@ install:
   - bundle install
 
 script:
-  - scss-lint . && travis_retry grunt travis && bundle exec rake
+  - npm run-script travis
 
 after_success:
   - ./script/travis_artifacts.sh
