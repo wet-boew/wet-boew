@@ -79,7 +79,13 @@ var componentName = "wb-date",
 				// Disable the tabbing of all the links when calendar is hidden
 				$container.find( "a" ).attr( "tabindex", "-1" );
 
-				$( "main" ).after( $container );
+				var $main = $( "main" );
+
+				if (!$main.length) {
+					console.warn('<main> element is required for the datepicker to work properly.');
+				};
+
+				$main.after( $container );
 			}
 
 			if ( elmId ) {
