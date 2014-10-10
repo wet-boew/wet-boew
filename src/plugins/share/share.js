@@ -245,17 +245,6 @@ var componentName = "wb-share",
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb " + initEvent, selector, init );
 
-$document.on( "click vclick", "." + shareLink, function( event) {
-	var which = event.which;
-
-	// Ignore middle and right mouse buttons
-	if ( !which || which === 1 ) {
-
-		// Close the overlay
-		$( event.target ).trigger( "close.wb-overlay" );
-	}
-});
-
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
