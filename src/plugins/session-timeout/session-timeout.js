@@ -48,7 +48,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var elm = wb.init( event, componentName, selector ),
-			$elm, settings;
+			$elm, settings, onReady;
 
 		if ( elm ) {
 			$elm = $( elm );
@@ -72,17 +72,19 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 				};
 			}
 
+			onReady = function() {
+				// Setup the refresh on click behaviour
+				initRefreshOnClick( $elm, settings );
+
+				// Initialize the keepalive and inactive timeouts of the plugin
+				$elm.trigger( resetEvent, settings );
+
+				// Identify that initialization has completed
+				wb.ready( $elm, componentName );
+			};
+
 			// Create the modal dialog
-			initModalDialog();
-
-			// Setup the refresh on click behaviour
-			initRefreshOnClick( $elm, settings );
-
-			// Initialize the keepalive and inactive timeouts of the plugin
-			$elm.trigger( resetEvent, settings );
-
-			// Identify that initialization has completed
-			wb.ready( $elm, componentName );
+			initModalDialog(onReady);
 		}
 	},
 
@@ -109,28 +111,37 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 	 * that is used to create the dialog behaviour.
 	 * @function initModalDialog
 	 */
-	initModalDialog = function() {
-		var child,
-			modal = document.createDocumentFragment(),
-			temp = document.createElement( "div" );
+	initModalDialog = function( callback ) {
+		var modalID = "#" + componentName + "-modal",
+			child, modal, temp;
 
-		// Create the modal dialog.  A temp <div> element is used so that its innerHTML can be set as a string.
-		temp.innerHTML = "<a class='wb-lbx lbx-modal mfp-hide' href='#" + componentName + "-modal'></a>" +
-			"<section id='" + componentName + "-modal' class='mfp-hide modal-dialog modal-content overlay-def'>" +
-			"<header class='modal-header'><h2 class='modal-title'>" + i18nText.timeoutTitle + "</h2></header>" +
-			"<div class='modal-body'></div>" +
-			"<div class='modal-footer'></div>" +
-			"</section>";
+		if ( $document.find( modalID ).length === 0 ) {
+				modal = document.createDocumentFragment(),
+				temp = document.createElement( "div" );
 
-		// Get the temporary <div>'s top level children and append to the fragment
-		while ( child = temp.firstChild ) {
-			modal.appendChild( child );
+			// Create the modal dialog.  A temp <div> element is used so that its innerHTML can be set as a string.
+			temp.innerHTML = "<a class='wb-lbx lbx-modal mfp-hide' href='#" + componentName + "-modal'></a>" +
+				"<section id='" + componentName + "-modal' class='mfp-hide modal-dialog modal-content overlay-def'>" +
+				"<header class='modal-header'><h2 class='modal-title'>" + i18nText.timeoutTitle + "</h2></header>" +
+				"<div class='modal-body'></div>" +
+				"<div class='modal-footer'></div>" +
+				"</section>";
+
+			// Get the temporary <div>'s top level children and append to the fragment
+			while ( child = temp.firstChild ) {
+				modal.appendChild( child );
+			}
+			document.body.appendChild( modal );
+
+			$modal = $document.find( modalID );
+
+			// Get object references to the modal and its triggering link
+			$modalLink = $modal.prev()
+				.one( "wb-ready.wb-lbx", callback)
+				.trigger( "wb-init.wb-lbx" );
+		} else {
+			callback();
 		}
-		document.body.appendChild( modal );
-
-		// Get object references to the modal and its triggering link
-		$modal = $document.find( "#" + componentName + "-modal" );
-		$modalLink = $modal.prev().trigger( "wb-init.wb-lbx" );
 	},
 
 	/**
