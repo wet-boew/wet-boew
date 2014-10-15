@@ -1,0 +1,92 @@
+/*
+New CSS changes to the new Getting Started page added Aug 05th, 2014 
+*/
+
+#get-started-steps {
+	details {
+		summary {
+			border: 1px solid #d4d6da;
+			overflow: hidden;
+			padding: 18px;      
+		}
+
+		.panel-heading {
+			background-color: #bdccd4;
+
+			h2 {
+				font-size: 20px;
+			}
+		}
+
+		&[open] {
+			padding-bottom: 0;
+
+			.get-started-circle {
+				background-color: #bdccd4;
+				color: #0e4164;
+			}
+		}
+
+		.panel {
+			margin-bottom: 0;
+			margin-left: 0;
+
+			.panel-body {
+
+				h3 {
+					font-size: 18px;
+					margin-top: 4px;					
+				}
+
+				h4 {
+					font-size: 18px;
+				}
+
+				li {
+					list-style: none;
+				} 
+			}
+		}
+
+		.step-details {
+			float: left;   
+			padding: 15px 37px 0;
+		}
+
+		.step-title {
+			color: #135684;
+			font-size: 26px;
+			font-weight: bold;
+			margin-left: 63px;
+		}
+
+		.get-started-circle {
+			background-color: #0b3048;
+			border: 2px solid #135684;
+			border-radius: 50%;
+			color: #bdccd4;
+			float: left;
+			font-size: 23px;
+			height: 40px;
+			margin-left: 31px;
+			margin-right: -70px;
+			text-align: center;
+			width: 40px;
+		}
+
+		.theme-link {
+			margin-bottom: 20px;
+			margin-left: 0.5em;
+
+			a {
+				display: inline-block;    
+				position: relative;
+			}
+
+			h2 {
+				font-size: 18px;
+				margin-top: 20px;
+			}
+		}
+	}
+}
