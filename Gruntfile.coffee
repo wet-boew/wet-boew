@@ -178,6 +178,7 @@ module.exports = (grunt) ->
 		"INTERNAL: Create unminified docs"
 		[
 			"pages:docs"
+			"copy:docs"
 		]
 	)
 
@@ -185,8 +186,9 @@ module.exports = (grunt) ->
 		"docs-min"
 		"INTERNAL: Create minified docs"
 		[
-			"pages:docs"
+			"docs"
 			"cssmin:docs_min"
+			"copy:docs_min"
 		]
 	)
 
@@ -1110,6 +1112,12 @@ module.exports = (grunt) ->
 					expand: true
 				]
 
+			docs:
+				cwd: "site/pages/docs"
+				src: "**/img/*.*"
+				dest: "dist/unmin/docs"
+				expand: true
+
 			themeAssets:
 				cwd: "theme/"
 				src: "assets/*.*"
@@ -1139,6 +1147,12 @@ module.exports = (grunt) ->
 					"!**/*.js"
 				]
 				dest: "dist/demos/"
+				expand: true
+
+			docs_min:
+				cwd: "dist/unmin/docs"
+				src: "**/img/*.*"
+				dest: "dist/docs"
 				expand: true
 
 			deploy:
