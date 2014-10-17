@@ -72,6 +72,14 @@ var componentName = "wb-date",
 
 						// Ignore middle/right mouse buttons
 						if ( !which || which === 1 ) {
+
+							// Stop propagation of the click event
+							if ( event.stopPropagation ) {
+								event.stopImmediatePropagation();
+							} else {
+								event.cancelBubble = true;
+							}
+
 							toggle( $container.attr( "aria-controls" ) );
 						}
 					});
