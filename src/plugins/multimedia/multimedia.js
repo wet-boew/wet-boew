@@ -587,7 +587,7 @@ $document.on( initializedEvent, selector, function( event ) {
 			} );
 
 		} else if ( media.error === null && media.currentSrc !== "" && media.currentSrc !== undef ) {
-			$this.trigger( renderUIEvent, type, data );
+			$this.trigger( renderUIEvent, [ type, data ] );
 		} else {
 			$this.trigger( fallbackEvent, data );
 		}
@@ -630,7 +630,7 @@ $document.on( fallbackEvent, selector, function( event, data ) {
 			"<param name='wmode' value='opaque'/>" +
 			poster + "</object>" );
 
-		$this.trigger( renderUIEvent, type, data );
+		$this.trigger( renderUIEvent, [ type, data ] );
 	}
 });
 
@@ -720,7 +720,7 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 		if ( data.shareUrl !== undef ) {
 			$share = $( "<div class='wb-share' data-wb-share=\'{\"type\": \"" +
 				( type === "audio" ? type : "video" ) + "\", \"title\": \"" +
-				data.title + "\", \"url\": \"" + data.shareUrl +
+				data.title.replace( "'", "&apos;" ) + "\", \"url\": \"" + data.shareUrl +
 				"\", \"pnlId\": \"" + data.id + "-shr\"}\'></div>" )
 				.insertBefore( $media.parent() )
 				.trigger( "wb-init.wb-share" );
