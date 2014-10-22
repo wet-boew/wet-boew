@@ -1,54 +1,249 @@
 ---
 {
-	"title": "Getting Started",
+	"title": "Getting Started with the Web Experience Toolkit",
 	"language": "en",
 	"description": "Getting started with the Web Experience Toolkit",
 	"altLangPrefix": "start",
-	"dateModified": "2014-10-15"
+	"dateModified": "2014-10-22"
 }
 ---
-<p>If you are working behind a proxy, you may want to look at the <a href="proxy-en.html">proxy troubleshooting guide</a>.</p>
 
-<section>
-	<h2 id="implement">I want to use WET on my website</h2>
-	<ol>
-		<li>Grab the production files for the latest stable release of one of the themes from the <a href="versions/dwnld-en.html">downloads page</a>.</li>
-		<li>Ensure the <a href="server-en.html">server is configured correctly</a></li>
-		<li>Follow the implementation instructions in the <a href="ref/themesstyle-en.html">documentation for the theme that was downloaded</a>.</li>
-		<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/index-en.html">Review the style guide</a> for information on implementing WET on your site.</li>
-	</ol>
-</section>
+<div id="get-started-steps">
+	<div class="row">
+	<ul class="list-unstyled">
+		<li>
+		<details>
+			<summary>
+				<span class="get-started-circle">1</span><span class="step-title">Choose a theme</span><span class="step-details">There are five themes to choose from. You define the look and feel of your website through the cascading style sheet (CSS). If you are using a content management system, then you can find more information in <a href="ref/variants-{{language}}.html">variants.</a></span>
+			</summary>
+				<div class="row theme-link">
+					<section class="col-md-4 col-sm-6">
+						<h2>Base theme</h2>
+						<p><a href="http://wet-boew.github.io/themes-dist/theme-base/docs/ref/theme-base/theme-base-en.html"><img src="../assets/baseTheme-sm.jpg" title="Base theme" alt="Base theme" /></a></p>
+						<p>A theme template to aid in the creation of new themes.</p>
+						<a href="http://wet-boew.github.io/themes-dist/theme-base/docs/ref/theme-base/theme-base-en.html">Link to Base theme</a><br />
+						<a href="versions/dwnld-en.html#v40stable">Download Base theme</a>
+					</section>
+					<section class="col-md-4 col-sm-6">
+						<h2>Canada.ca theme</h2>
+						<p><a href="http://wet-boew.github.io/themes-dist/GCWeb/docs/ref/GCWeb/GCWeb-en.html"><img src="../assets/canadaTheme-sm.jpg" title="Canada.ca theme" alt="Canada.ca theme" /></a></p>
+						<p>This theme implements the layout and design requirements for Canada.ca.</p>
+						<a href="http://wet-boew.github.io/themes-dist/GCWeb/docs/ref/GCWeb/GCWeb-en.html">Link to Canada.ca theme</a><br />
+						<a href="versions/dwnld-en.html#v40stable">Download Canada.ca theme</a>
+					</section>
+					<section class="col-md-4 col-sm-6">
+						<h2>Government of Canada Intranet theme</h2>
+						<p><a href="http://wet-boew.github.io/themes-dist/theme-gc-intranet/docs/ref/theme-gc-intranet/theme-gc-intranet-en.html"><img src="../assets/intranetTheme-sm.jpg" title="Intranet theme" alt="Intranet theme" /></a></p>
+						<p>Built by the community for the community, open for re-use and adapting.</p>
+						<a href="http://wet-boew.github.io/themes-dist/theme-gc-intranet/docs/ref/theme-gc-intranet/theme-gc-intranet-en.html">Link to Intranet theme</a><br />
+						<a href="versions/dwnld-en.html#v40stable">Download Intranet theme</a>
+					</section>
+					<section class="col-lg-4 col-md-5 col-sm-6">
+						<h2>Government of Canada Web Usability theme</h2>
+						<p><a href="http://wet-boew.github.io/themes-dist/theme-gcwu-fegc/docs/ref/theme-gcwu-fegc/theme-gcwu-fegc-en.html"><img src="../assets/usabilityTheme-sm.jpg" title="Web Usability theme" alt="Web usability theme" /></a></p>
+						<p>This theme implements the requirements of the Standard on Web Usability and is recommended for use on all Government of Canada websites (except for Canada.ca).</p>
+						<a href="http://wet-boew.github.io/themes-dist/theme-gcwu-fegc/docs/ref/theme-gcwu-fegc/theme-gcwu-fegc-en.html">Link to Web Usability theme</a><br />
+						<a href="versions/dwnld-en.html#v40stable">Download Web Usability theme</a>
+					</section>
+					<section class="col-lg-4 col-md-5 col-sm-6">
+						<h2>WET theme</h2>
+						<p><a href="http://wet-boew.github.io/wet-boew/docs/ref/theme-wet-boew/theme-wet-boew-en.html"><img src="../assets/wetTheme-sm.jpg" title="Web Experience Toolkit theme" alt="WET theme" /></a></p>
+						<p>This theme provides an example implementation of the Base Theme.</p>
+						<a href="http://wet-boew.github.io/wet-boew/docs/ref/theme-wet-boew/theme-wet-boew-en.html">Link to WET theme</a><br />
+						<a href="versions/dwnld-en.html#v40stable">Download WET theme</a>
+					</section>
+				</div>
+		</details>
+		</li>
+	</ul>
+	</div>
+	<div class="row">
+	<ul class="list-unstyled">
+		<li>
+		<details>
+			<summary>
+				<span class="get-started-circle">2</span><span class="step-title">Style design elements</span><span class="step-details">This guide explains how to design front-end elements of your website by changing the cascading style sheet (CSS). Let the magic begin!</span>
+			</summary>
+			<section class="panel panel-default">
+				<header class="panel-heading">
+					<h2 class="panel-title">Core design elements</h2>
+				</header>
+				<div class="panel-body">
+						<p>Here are some reusable and customizable design elements that you can use in designing your website. You can find more design elements in the <a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/index-en.html">design guide.</a></p>
 
-<section>
-	<h2 id="theme">I want to customize WET and design a new WET theme</h2>
-	<ol>
-		<li><a href="http://nodejs.org/">Install NodeJS</a> for your platform.</li>
-		<li>Create a directory for your project.</li>
-		<li>Install the <a href="http://gruntjs.com/">Grunt <abbr title="Command Line Interface">CLI</abbr></a>, <a href="http://yeoman.io/">Yeoman</a>, and <a href="http://bower.io">Bower</a> packages globally by running <code>npm install -g grunt-cli yo bower</code> from the command line console (Command Prompt on Windows, Terminal on OS X, or other shell environment on Linux or Unix).</li>
-		<li>Install the WET theme generator by running <code>npm install -g generator-wet-boew-theme</code>.</li>
-		<li>Run <code>yo wet-boew-theme</code> from the command prompt, and answer the questions at the prompt to setup your theme project.</li>
-	</ol>
-</section>
+						<div class="row">
+						<section class="col-md-3 col-sm-12">
+                			<h3>Structure and placement</h3>
+							<ul>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/position-en.html">Absolute positioning</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/alignment-en.html">Alignment</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/floats-en.html">Floats</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/grids-en.html">Grids</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/proximity-en.html">Margin proximity</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/reflow-en.html">Reflowing content around grids</a></li>
+							</ul>
+            			</section>
+						<section class="col-md-3 col-sm-12">
+							<h3>Basic effects</h3>
+                			<ul>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/borders-en.html">Borders</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/buttons-en.html">Buttons</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/colour-en.html">Colour</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/forms-en.html">Forms</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/icons-en.html">Icons</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/images-en.html">Images</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/visible-en.html">Invisible and visible content</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/opacity-en.html">Opacity</a></li>	
+							</ul>
+          				</section>
+						<section class="col-md-3 col-sm-12">
+							<h3>Text effects</h3>
+                			<ul>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/quotations-en.html">Quotations</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/code-en.html">Code</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/headings-en.html">Headings</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/links-en.html">Links</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/lists-en.html">Lists</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/keyboard-en.html">Keyboard keys</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/sizing-en.html">Sizing</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/tables-en.html">Tables</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/whitespace-en.html">Whitespace</a></li>	
+							</ul>
+            			</section>
+						<section class="col-md-3 col-sm-12">
+                			<h3>Callouts</h3>
+                			<ul>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/alerts-en.html">Alerts</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/badges-en.html">Badges</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/buttons-en.html">Buttons</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/labels-en.html">Labels</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/jumbotron-en.html">Jumbotron</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/panels-en.html">Panels</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/progressmeter-en.html">Progress bar and meter</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/wells-en.html">Wells</a></li>	
+							</ul>
+          				</section>
+            			<section class="col-md-4 col-sm-12">
+                			<h3>Menus and navigation</h3>
+                			<ul>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/buttons-en.html">Buttons</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/listgroup-en.html">List group</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/pagination-en.html">Pagination</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/pills-en.html">Pills</a></li>	
+              				</ul>
+          				</section>
+					</div>
 
-<section>
-	<h2 id="issues">I want to report a bug or ask a question about WET</h2>
-	<ol>
-		<li><a href="https://help.github.com/articles/signing-up-for-a-new-github-account">Create a GitHub account</a>.</li>
-		<li>Ask a question relating to the <a href="http://wet-boew.github.io/wet-boew-styleguide/v4/index-en.html">style guide</a> by <a href="https://github.com/wet-boew/wet-boew-styleguide/issues/new">creating a new issue on GitHub</a>.</li>
-		<li>Report a bug, ask a question or request a feature relating to WET by following the <a href="bugs-en.html">reporting guide</a>.</li>
-	</ol>
-</section>
+				</div>
+			</section>
+		</details>
+		</li>
+	</ul>
+	</div>
+	<div class="row">
+	<ul class="list-unstyled">
+		<li>
+		<details>
+			<summary>
+				<span class="get-started-circle">3</span><span class="step-title">Choose components</span> <span class="step-details">The Toolkit contains reusable components to add interactive and accessible features to your site such as widgets, form validation, navigation menus, web feeds, and many more.</span>
+			</summary>
+			<section class="panel panel-default">
+				<header class="panel-heading">
+					<h2 class="panel-title">Plugins</h2>
+				</header>
+				<div class="panel-body">
+					<div class="col-sm-12">
+					<p>Each plugin adds functionality by calling the function in the class attribute of an HTML tag.</p>
+					</div>
+					<section class="col-sm-12">
+						<div class="row">
 
-<section>
-	<h2 id="develop">I want to fix or improve WET as a developer</h2>
-	<ol>
-		<li><a href="http://nodejs.org/">Install NodeJS</a> for your platform.</li>
-		<li><a href="https://help.github.com/articles/signing-up-for-a-new-github-account">Create a GitHub account</a>.</li>
-		<li>Follow GitHub's guides on <a href="https://help.github.com/articles/set-up-git">setting up Git</a>.</li>
-		<li>Fork the <a href="https://github.com/wet-boew/wet-boew">wet-boew repository</a> by following the <a href="https://help.github.com/articles/fork-a-repo">GitHub forking guide</a>. Use the upstream URL of <code>https://github.com/wet-boew/wet-boew.git</code> in step 3.</li>
-		<li>Run <code>./script/setup</code> from the <code>wet-boew</code> directory in your command line console.</li>
-		<li>Run <code>grunt</code> to build the project. You may run <code>grunt --help</code> to see the build target descriptions.</li>
-		<li>The latest files will now be compiled to the <code>dist/</code> folder.</li>
-		<li>To contribute back, follow the instructions on <a href="pull-en.html">how to create a pull request</a>.</li>
-	</ol>
-</section>
+							<section class="col-md-3 col-sm-12">
+								<ul>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/cal-events/cal-events-en.html">Calendar of Events</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/country-content/country-content-en.html">Country Content</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-en.html">Data Ajax</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/data-inview/data-inview-en.html">Data Inview: Bar</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/data-picture/data-picture-en.html">Data Picture</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-en.html">Equal height</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/favicon/favicon-en.html">Favicon</a></li>
+								</ul>
+            				</section>
+							
+							<section class="col-md-3 col-sm-12">
+								<ul>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/feedback/feedback-en.html">Feedback form</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/feeds/feeds-en.html">Feeds</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/footnotes/footnotes-en.html">Footnotes</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/formvalid/formvalid-en.html">Form validation</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-en.html">Lightbox</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/menu/menu-en.html">Menu</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-audio-en.html">Multimedia Player - Audio-only</a></li>
+								</ul>
+            				</section>
+							
+							<section class="col-md-3 col-sm-12">
+								<ul>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-en.html">Multimedia Player - Video</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-youtube-en.html">Multimedia Player - YouTube</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html">Overlay</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/prettify/prettify-en.html">Prettify</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/session-timeout/session-timeout-en.html">Session Timeout</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/share/share-en.html">Share widget</a></li>
+								</ul>
+            				</section>
+							
+							<section class="col-md-3 col-sm-12">
+								<ul>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/tabs/tabs-en.html">Tabbed Interface</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/tabs/tabs-carousel-en.html">Tabbed Interface - Carousel</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/tables/tables-en.html">Tables</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/texthighlight/texthighlight-en.html?txthl=avian%20influenza+world+cook+flu-like%20symptoms+Don%27t%20Forget...+causes%20sickness%20in%20birds,%20it%20can%20also%20infect%20people.">Text highlighting</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/toggle/toggle-en.html">Toggle</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/twitter/twitter-en.html">Twitter embedded timeline</a></li>
+								</ul>
+            				</section>
+							
+						</div>
+					</section>
+				</div>
+			</section>
+			<section class="panel panel-default">
+				<header class="panel-heading">
+					<h2 class="panel-title">Polyfills</h2>
+				</header>
+				<div class="panel-body">
+					<div class="col-sm-12">
+						<p>Polyfills are JavaScript components that mimic the behaviour of HTML5 tags in browsers in order to provide backwards compatibility for browsers that do not support HTML5.</p>
+					</div>
+				
+				<section class="col-sm-12">
+					<div class="row">
+							
+							<section class="col-md-6 col-sm-12">
+								<ul>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/datalist/datalist-en.html">Datalist polyfill (auto-complete)</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/details/details-en.html">Details/summary polyfill (expandable/collapsible content)</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/datepicker/datepicker-en.html">Input type="data" polyfill (date picker)</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/slider/slider-en.html">Input type="range" polyfill (slider control)</a></li>
+								</ul>
+            				</section>
+						
+							<section class="col-md-6 col-sm-12">
+								<ul>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/mathml/mathml-en.html">MathML polyfill</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/meter/meter-en.html">Meter polyfill</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/progress/progress-en.html">Progress polyfill (progress bar)</a></li>	
+								</ul>
+            				</section>
+
+					</div>
+				</section>
+					
+				</div>
+			</section>
+		</details>
+		</li>
+	</ul>	
+	</div>
+</div>
