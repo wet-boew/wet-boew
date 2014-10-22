@@ -18,6 +18,10 @@
 	white-space: nowrap;
 }
 
+%fnote-margin-top-spacing {
+	margin-top: $spacing;
+}
+
 .fn-lnk {
 	@extend %fnote-link-background-light-border-medium-padding-whitespace;
 	margin-left: 5px;
@@ -35,9 +39,9 @@
 	margin: 2em 10px 0;
 
 	h2 {
+		@extend %fnote-margin-top-spacing;
 		margin-left: 0;
 		margin-right: 0;
-		margin-top: $spacing;
 	}
 
 	dl {
@@ -63,6 +67,17 @@
 				}
 			}
 		}
+
+		> {
+			ul,
+			ol {
+				margin: 0 $spacing $spacing (($spacing * 2) + $ddRtnWidth);
+				
+				&:first-child {
+					@extend %fnote-margin-top-spacing;
+				}
+			}
+		}
 	}
 
 	p {
@@ -71,6 +86,19 @@
 
 		&:first-child {
 			padding-top: $spacing;
+		}
+	}
+	
+	ul,
+	ol {
+		margin-bottom: $spacing;
+	}
+	
+	table {
+		margin: 0 $spacing $spacing (($spacing * 2) + $ddRtnWidth);
+		
+		&:first-child {
+			@extend %fnote-margin-top-spacing;
 		}
 	}
 
