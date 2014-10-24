@@ -88,6 +88,15 @@ var componentName = "wb-lbx",
 					if ( elm.className.indexOf( "lbx-modal" ) !== -1 ) {
 						settings.modal = true;
 					}
+					if ( elm.className.indexOf( "lbx-ajax" ) !== -1 ) {
+						settings.type = "ajax";
+					}
+					if ( elm.className.indexOf( "lbx-image" ) !== -1 ) {
+						settings.type = "image";
+					}
+					if ( elm.className.indexOf( "lbx-inline" ) !== -1 ) {
+						settings.type = "inline";
+					}
 
 					// Extend the settings with window[ "wb-lbx" ] then data-wb-lbx
 					$elm.magnificPopup(
