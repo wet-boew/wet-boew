@@ -44,7 +44,7 @@
 	<section>
 	<h3>Footnote Indicators</h3>
 	<p>Footnotes are generally denoted by numbers, but may also be represented by other kinds of indicators, such as single letters or symbols.</p>
-	<p>The numbers used throughout this documentation's footnote examples (including numbers within IDs) can be safely subsituted with alternate kinds of indicators.</p>
+	<p>The numbers used throughout this documentation's footnote examples (including numbers within IDs) can be safely substituted with alternate kinds of indicators.</p>
 	</section>
 
 	<section>
@@ -61,7 +61,7 @@
 			<h4>Link to a Footnote</h4>
 			<p>Use the following code as a basis to link to a particular footnote.</p>
 			<pre><code>&lt;sup id="fn1-rf"&gt;&lt;a class="fn-lnk" href="#fn1"&gt;&lt;span class="wb-inv"&gt;Footnote &lt;/span&gt;1&lt;/a&gt;&lt;/sup&gt;</code></pre>
-			<p><strong>Note:</strong> The ID attributes of links to a multi-referenced footnote should contain an alphabetically-ordered letter just after the number (e.g. <code>id="fn2a-rf"</code>, <code>id="fn2b-rf"</code>, <code>id="fn2c-rf"</code>, etc) to make it possible to programmatically distinguish one referrer link from another.</p>
+			<p><strong>Note:</strong> The ID attributes of links to a multi-referenced footnote should contain a hyphen and a letter just after the indicator (e.g. <code>id="fn2-1-rf"</code>, <code>id="fn2-2-rf"</code>, <code>id="fn2-3-rf"</code>, etc) to make it possible to programmatically distinguish one referrer link from another.</p>
 		</section>
 
 		<section>
@@ -106,10 +106,10 @@
 <pre><code>&lt;dt&gt;Footnote 2&lt;/dt&gt;
 &lt;dd id="fn2"&gt;
 	&lt;p&gt;Example of a footnote being referenced by multiple pieces of content.&lt;/p&gt;
-	&lt;p class="fn-rtn"&gt;&lt;a href="#fn2a-rf"&gt;&lt;span class="wb-inv"&gt;Return to &lt;span&gt;first&lt;/span&gt; footnote &lt;/span&gt;2&lt;span class="wb-inv"&gt; referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+	&lt;p class="fn-rtn"&gt;&lt;a href="#fn2-1-rf"&gt;&lt;span class="wb-inv"&gt;Return to &lt;span&gt;first&lt;/span&gt; footnote &lt;/span&gt;2&lt;span class="wb-inv"&gt; referrer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/dd&gt;</code></pre>
 
-			<p><strong>Note 1:</strong> The <code>href</code> attributes of return links in multi-referenced footnotes should always contain an "a" after the footnote number (e.g. <code>href="#fn2a-rf"</code>).</p>
+			<p><strong>Note 1:</strong> The <code>href</code> attributes of return links in multi-referenced footnotes should always contain "-1" after the footnote indicator (e.g. <code>href="#fn2-1-rf"</code>).</p>
 			<p><strong>Note 2:</strong> The return link text of multi-referenced footnotes should always contain <code>&lt;span&gt;first&lt;/span&gt;</code>, to specifically denote their default destinations when JavaScript support isn't present.</p>
 		</section>
 
