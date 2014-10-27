@@ -355,7 +355,9 @@ $document.on( "displayed.wb-cal", selector + "-cal", function( event, year, mont
 		showOnlyEventsFor( year, month, containerId );
 		$target.find( ".cal-index-" + day + " .cal-evt" ).trigger( "setfocus.wb" );
 
-		$target.trigger( "wb-updated" + selector );
+		// Fire the wb-updated event on the wb-calevt element
+		$( selector ).filter( "[data-calevt-src='" + $target[ 0 ].id + "']" )
+				.trigger( "wb-updated" + selector );
 	}
 });
 

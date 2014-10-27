@@ -2,15 +2,21 @@
   WET-BOEW
   @title: Details/summary polyfill pre-Modernizr CSS
  */
+
 summary {
 	// Make sure summary remains visible
 	display: block !important;
+	visibility: visible !important;
 }
 
 details {
 	// Prevent FOUC
 	&:not([open]) {
+		visibility: hidden;
+
 		> {
+			// Need details and * to deal with specificity issues
+			details,
 			* {
 				display: none;
 			}
@@ -21,6 +27,8 @@ details {
 // Prevent FOUC when polyfill is disabled
 .wb-disable {
 	details {
+		visibility: visible !important;
+
 		> {
 			* {
 				display: block !important;
