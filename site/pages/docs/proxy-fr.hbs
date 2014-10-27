@@ -34,6 +34,13 @@ Toutes ces méthodes vont emmagasiner votre mot de passe en texte clair, alors f
 				<li><code>git config --global --add https-proxy http://USAGER:MOT_DE_PASSE@ADRESSE_PROXYS:PORT_PROXY</code></li>
 			</ol>
 		</li>
+		<li>Exécuter les commandes suivantes pour prévenir des problèmes reliés à SSH&#160;:
+			<ol>
+				<li><code>git config --global url."https://".insteadOf git://</code></li>
+				<li><code>git config --global url."https://github.com/".insteadOf git@github.com:</code> (<em>don't</em> remove the final colon)</li>
+			</ol>
+		</li>
+		<li>Si votre ordinateur fait parti d'un réseau corporatif qui utilise des espaces réseau personnels, assurez-vous que des copies identiques du fichier .gitconfig existent sur votre espace personnel et sur votre profil personnel local (exemple&#160;: <code>F:\</code> et <code>C:\Users\VotreUtilisateur</code>)</li>
 	</ol>
 </section>
 <section>
