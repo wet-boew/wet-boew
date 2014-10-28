@@ -43,6 +43,7 @@ var componentName = "wb-data-ajax",
 		var elm = wb.init( event, componentName + "-" + ajaxType, selector );
 
 		if ( elm ) {
+
 			ajax.apply( this, arguments );
 
 			// Identify that initialization has completed
@@ -52,13 +53,29 @@ var componentName = "wb-data-ajax",
 
 	ajax = function( event, ajaxType ) {
 		var elm = event.target,
-			$elm = $( elm );
+			$elm = $( elm ),
+			settings = window[ componentName ],
+			url = elm.getAttribute( "data-ajax-" + ajaxType ),
+			fetchObj = {
+				url: url
+			},
+			urlParts;
+
+		// Detect CORS requests
+		if ( settings && url.substr( 0, 4 ) === "http" ) {
+			urlParts = wb.getUrlParts( url );
+			if ( ( wb.pageUrlParts.protocol !== urlParts.protocol || wb.pageUrlParts.host !== urlParts.host ) && ( !Modernizr.cors || settings.forceCorsFallback ) ) {
+				if ( typeof settings.corsFallback === "function" ) {
+					fetchObj.dataType = "jsonp";
+					fetchObj.jsonp = "callback";
+					fetchObj = settings.corsFallback(fetchObj);
+				}
+			}
+		}
 
 		$elm.trigger({
 			type: "ajax-fetch.wb",
-			fetch: {
-				url: elm.getAttribute( "data-ajax-" + ajaxType )
-			}
+			fetch: fetchObj
 		});
 	};
 
@@ -72,7 +89,7 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " ajax-fetched.w
 			"prepend"
 		],
 		len = ajaxTypes.length,
-		$elm, ajaxType, i, content, pointer;
+		$elm, ajaxType, i, content;
 
 	for ( i = 0; i !== len; i += 1 ) {
 		ajaxType = ajaxTypes[ i ];
@@ -97,9 +114,8 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " ajax-fetched.w
 			$elm = $( eventTarget );
 
 			// ajax-fetched event
-			pointer = event.fetch.pointer;
-			if ( pointer ) {
-				content = pointer.html();
+			content = event.fetch.response;
+			if ( content ) {
 
 				// "replace" is the only event that doesn't map to a jQuery function
 				if ( ajaxType === "replace") {

@@ -977,6 +977,7 @@ module.exports = (grunt) ->
 					"elem_details"
 					"elem_progress_meter"
 					"mathml"
+					"cors"
 				]
 				parseFiles: false
 				matchCommunityTests: false
