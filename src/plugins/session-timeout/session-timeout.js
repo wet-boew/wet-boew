@@ -55,7 +55,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 
 			// Merge default settings with overrides from the plugin element
 			// and save back to the element for future reference
-			settings = $.extend( {}, defaults, $elm.data( "wet-boew" ) );
+			settings = $.extend( {}, defaults, window[ componentName ], $elm.data( "wet-boew" ) );
 			$elm.data( "wet-boew", settings );
 
 			// Only initialize the i18nText once
