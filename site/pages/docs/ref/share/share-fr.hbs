@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Permet à l'utilisateur de partager un contenu Web sur les plateformes de médias sociaux.",
 	"altLangPrefix": "share",
-	"dateModified": "2014-08-04"
+	"dateModified": "2014-10-28"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -70,7 +70,7 @@
 			<tr>
 				<td><code>pnlId</code></td>
 				<td>Unique identifier for the panel. Only required if providing a second link for the same panel (needs to be specified on all <code>wb-share</code> calls for that panel).</td>
-				<td>Add <code>"pnlId": "uniqueId"</code> to the <code>data-wb-share</code> attribute where <code>uniqueId</code> is a valid unique id.</td>
+				<td>Add <code>"pnlId": "uniqueId"</code> to the <code>data-wb-share</code> attribute or <code>window[ "wb-share" ]</code> where <code>uniqueId</code> is a valid unique id.</td>
 				<td>
 					<dl>
 						<dt><code>uniqueId</code>:</dt>
@@ -81,7 +81,7 @@
 			<tr>
 				<td><code>hdLvl</code></td>
 				<td>Heading level for the share panel.</td>
-				<td>Add <code>"hdLvl": "headingLevel"</code> to the <code>data-wb-share</code> attribute where <code>headingLevel</code> is the heading level. Use the following JavaScript code instead to configure all instances of the plugin: <code>window[ "wb-share" ] = {"hdLvl": "headingLevel"};</code>.</td>
+				<td>Add <code>"hdLvl": "headingLevel"</code> to the <code>data-wb-share</code> attribute or <code>window[ "wb-share" ]</code> where <code>headingLevel</code> is the heading level. Use the following JavaScript code instead to configure all instances of the plugin: <code>window[ "wb-share" ] = {"hdLvl": "headingLevel"};</code>.</td>
 				<td>
 					<dl>
 						<dt><code>h2</code> (default):</dt>
@@ -100,7 +100,7 @@
 			<tr>
 				<td><code>lnkClass</code></td>
 				<td>Classes to be applied to the class attribute of the generated link.</td>
-				<td>Add <code>"lnkClass": "class1 class2"</code> to the <code>data-wb-share</code> attribute where <code>class1 class2</code> are the classes to be added separated by spaces. Use the following JavaScript code instead to configure all instances of the plugin: <code>window[ "wb-share" ] = {"hdLvl": "lnkClass": "class1 class2"};</code>.</td>
+				<td>Add <code>"lnkClass": "class1 class2"</code> to the <code>data-wb-share</code> attribute or <code>window[ "wb-share" ]</code> where <code>class1 class2</code> are the classes to be added separated by spaces. Use the following JavaScript code instead to configure all instances of the plugin: <code>window[ "wb-share" ] = {"hdLvl": "lnkClass": "class1 class2"};</code>.</td>
 				<td>
 					<ul>
 						<li>None (default)</li>
@@ -110,7 +110,7 @@
 			<tr>
 				<td><code>type</code></td>
 				<td>Type of content to share.</td>
-				<td>Add <code>"type": "value"</code> to the <code>data-wb-share</code> attribute.</td>
+				<td>Add <code>"type": "value"</code> to the <code>data-wb-share</code> attribute or <code>window[ "wb-share" ]</code>.</td>
 				<td>
 					<dl>
 						<dt><code>page</code> (default):</dt>
@@ -125,7 +125,7 @@
 			<tr>
 				<td><code>custType</code></td>
 				<td>Text to use after "Share" on the share button and the panel header (overrides the text associated to the type option).</td>
-				<td>Add <code>"custType": "string"</code> to the <code>data-wb-share</code> attribute.</td>
+				<td>Add <code>"custType": "string"</code> to the <code>data-wb-share</code> attribute or <code>window[ "wb-share" ]</code>.</td>
 				<td>
 					<dl>
 						<dt><code> this page</code> or <code> this video</code> (default):</dt>
@@ -136,7 +136,7 @@
 			<tr>
 				<td><code>title</code></td>
 				<td>Text to use instead of the page title or the main h1 text. Recommended for the video type if the page title is not the title of the video.</td>
-				<td>Add <code>"title": "Page title"</code> to the <code>data-wb-share</code> attribute.</td>
+				<td>Add <code>"title": "Page title"</code> to the <code>data-wb-share</code> attribute or <code>window[ "wb-share" ]</code>.</td>
 				<td>
 					<dl>
 						<dt>Page title or the main h1 text (default):</dt>
@@ -147,7 +147,7 @@
 			<tr>
 				<td><code>url</code></td>
 				<td>URL to use instead of the URL of the current page.</td>
-				<td>Add <code>"url": "newURL"</code> to the <code>data-wb-share</code> attribute.</td>
+				<td>Add <code>"url": "newURL"</code> to the <code>data-wb-share</code> attribute or <code>window[ "wb-share" ]</code>.</td>
 				<td>
 					<dl>
 						<dt>Page URL (default):</dt>
@@ -158,7 +158,7 @@
 			<tr>
 				<td><code>desc</code></td>
 				<td>Optional description of the item to share. <strong>Note:</strong> A separate description is not supported by all social media sites.</td>
-				<td>Add <code>"desc": "description"</code> to the <code>data-wb-share</code> attribute.</td>
+				<td>Add <code>"desc": "description"</code> to the <code>data-wb-share</code> attribute or <code>window[ "wb-share" ]</code>.</td>
 				<td>
 					<dl>
 						<dt>None (default):</dt>
@@ -169,7 +169,7 @@
 			<tr>
 				<td><code>img</code></td>
 				<td>Optional image for the item to share (mainly for Pinterest). <strong>Note:</strong> Very few social media sites support specifying a separate image through a URL request.</td>
-				<td>Add <code>"img": "imageURL"</code> to the <code>data-wb-share</code> attribute.</td>
+				<td>Add <code>"img": "imageURL"</code> to the <code>data-wb-share</code> attribute or <code>window[ "wb-share" ]</code>.</td>
 				<td>
 					<dl>
 						<dt>None (default):</dt>
@@ -180,7 +180,7 @@
 			<tr>
 				<td><code>filter</code></td>
 				<td>Optional filter for the sites to display in the panel. Only the sites listed in the array will be displayed. If no sites are listed, then all sites will be displayed.</td>
-				<td>Add <code>"filter": ["site-1", "site-2", ... "site-n"]</code> to the <code>data-wb-share</code> attribute. Use the following JavaScript code instead to configure all instances of the plugin: <code>window[ "wb-share" ] = {"filter": ["site-1", "site-2", ... "site-n"]};</code>.</td>
+				<td>Add <code>"filter": ["site-1", "site-2", ... "site-n"]</code> to the <code>data-wb-share</code> attribute or <code>window[ "wb-share" ]</code>. Use the following JavaScript code instead to configure all instances of the plugin: <code>window[ "wb-share" ] = {"filter": ["site-1", "site-2", ... "site-n"]};</code>.</td>
 				<td>
 					<dl>
 						<dt>None (default):</dt>
@@ -194,7 +194,7 @@
 				<td>
 					<ol>
 						<li>
-							<p>Add the following to the <code>data-wb-share</code> attribute:</p>
+							<p>Add the following to the <code>data-wb-share</code> attribute or <code>window[ "wb-share" ]</code>:</p>
 							<pre><code>"sites": {
 	"siteId1": {
 		"name": "siteName1",
