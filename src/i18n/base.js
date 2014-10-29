@@ -68,8 +68,9 @@ wb.i18nDict = {
 	"tab-pnl-end1": "@tab-pnl-end1@",
 	"tab-pnl-end2": "@tab-pnl-end2@",
 	"tab-pnl-end3": "@tab-pnl-end3@",
+	"tab-play": "@tab-play@",
 	/* Multimedia player */
-	play: "@play@",
+	"mmp-play": "@mmp-play@",
 	pause: "@pause@",
 	open: "@open@",
 	close: "@close@",
