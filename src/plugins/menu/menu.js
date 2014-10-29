@@ -80,7 +80,7 @@ var componentName = "wb-menu",
 			$elm.attr({
 				"aria-posinset": ( i + 1 ),
 				"aria-setsize": length,
-				role: "menuitem"
+				role: "option"
 			});
 
 			// if there is a submenu lets put in the aria for it
@@ -109,11 +109,9 @@ var componentName = "wb-menu",
 		var k, $elm, elm, $item, $subItems,
 			$section = $( section ),
 			posinset = "' aria-posinset='",
-			menuitem = "role='menuitem' aria-setsize='",
-			sectionHtml = "<li><details>" + "<summary class='mb-item" +
-				( $section.hasClass( "wb-navcurr" ) || $section.children( ".wb-navcurr" ).length !== 0 ? " wb-navcurr'" : "'" ) +
-				"' " + menuitem + sectionsLength + posinset + ( sectionIndex + 1 ) +
-				"' aria-haspopup='true'>" + $section.text() + "</summary>" +
+			menuitem = "role='option' aria-setsize='",
+			sectionHtml = "<li " + menuitem + sectionsLength + posinset + ( sectionIndex + 1 ) + "' aria-haspopup='true'>\n<details>" + "<summary class='mb-item" +
+				( $section.hasClass( "wb-navcurr" ) || $section.children( ".wb-navcurr" ).length !== 0 ? " wb-navcurr'" : "" ) + "' >" + $section.text() + "</summary>" +
 				"<ul class='list-unstyled mb-sm' role='menu' aria-expanded='false' aria-hidden='true'>";
 
 		// Convert each of the list items into WAI-ARIA menuitems
@@ -122,11 +120,9 @@ var componentName = "wb-menu",
 			$elm = $item.find( menuItemSelector );
 			elm = $elm[ 0 ];
 			if ( elm.nodeName.toLowerCase() === "a" ) {
-				sectionHtml += "<li>" + $item[ 0 ].innerHTML.replace(
+				sectionHtml += "<li " + menuitem + itemsLength +	posinset + ( k + 1 ) + "'>" + $item[ 0 ].innerHTML.replace(
 						/(<a\s)/,
-						"$1 " + menuitem + itemsLength +
-							posinset + ( k + 1 ) +
-							"' tabindex='-1' "
+						"$1 tabindex='-1' "
 					) + "</li>";
 			} else {
 				$subItems = $elm.parent().find( "> ul > li" );
@@ -178,12 +174,11 @@ var componentName = "wb-menu",
 					}
 
 					// Convert the list item to a WAI-ARIA menuitem
-					sectionHtml += "<li class='no-sect'>" +
+					sectionHtml += "<li class='no-sect' role='option' aria-setsize='" +
+								sectionsLength + "' aria-posinset='" + ( j + 1 ) + "'>" +
 						linkHtml.replace(
 							/(<a\s)/,
-							"$1 class='mb-item' " + "role='menuitem' aria-setsize='" +
-								sectionsLength + "' aria-posinset='" + ( j + 1 ) +
-								"' tabindex='-1' "
+							"$1 class='mb-item' tabindex='-1'"
 						) + "</li>";
 				}
 			}
@@ -298,11 +293,11 @@ var componentName = "wb-menu",
 		}
 
 		// Let's now populate the DOM since we have done all the work in a documentFragment
-		panelDOM.innerHTML = "<header class='modal-header'><div class='modal-title'>" +
+		panelDOM.innerHTML = "<div class='modal-header'><div class='modal-title'>" +
 				document.getElementById( "wb-glb-mn" )
 					.getElementsByTagName( "h2" )[ 0 ]
 						.innerHTML +
-				"</div></header><div class='modal-body'>" + panel + "</div>";
+				"</div></div><div class='modal-body'>" + panel + "</div>";
 		panelDOM.className += " wb-overlay modal-content overlay-def wb-panel-r";
 		$panel
 			.trigger( "wb-init.wb-overlay" )
