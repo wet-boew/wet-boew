@@ -5,3 +5,17 @@
 %theme-wet-boew-print-display-none-important {
 	display: none !important;
 }
+
+#wb-bc {	
+	.breadcrumb {
+		margin-bottom: 0;
+	}
+	
+	a[href]:after {
+		content: "";
+	}
+}
+
+#wb-cont {
+	margin-top: 0;
+}
