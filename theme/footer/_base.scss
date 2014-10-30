@@ -1,7 +1,8 @@
 /*
  Site information
 */
-footer {
+
+#wb-info {
 	background-color: #eaebed;
 	color: #0e4164;
 
@@ -9,9 +10,7 @@ footer {
 		color: #0e4164;
 	}
 
-	#wb-info {
-		li {
-			margin-bottom: 0.75em;
-		}
+	li {
+		margin-bottom: 0.75em;
 	}
 }
