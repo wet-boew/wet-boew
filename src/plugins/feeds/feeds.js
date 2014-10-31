@@ -101,6 +101,30 @@ var componentName = "wb-feeds",
 					"</div></section>" +
 					"</li>";
 		},
+
+		/**
+		 * [Pinterest template]
+		 * @param  {entry object}	data
+		 * @return {string}	HTML string of formatted using a simple list / anchor view
+		 */
+		pinterest: function( data ) {
+
+			var content = fromCharCode( data.content ),
+			title = content.replace( /(<([^>]+)>)/ig, "" ).match( /\(?[^\.\?\!]+[\.!\?]\)?/g );
+
+			// Sanitize (clean) the HTML - extra 'br' tags
+			content = content.replace( /(<br>\n?)+/gi, "<br />" );
+
+			return "<li class='media'><a class='pull-left' href=''><img src='" +
+				data.fIcon + "' alt='" + data.author +
+				"' height='64px' width='64px' class='media-object'/></a><div class='media-body'>" +
+				"<h4 class='media-heading'><a href='" + data.link + "'><span class='wb-inv'>" +
+				title[ 0 ] + " - </span>" + data.author + "</a>  " +
+				( data.publishedDate !== "" ? " <small class='feeds-date text-right'>[" +
+				wb.date.toDateISO( data.publishedDate, true ) + "]</small>" : "" ) +
+				"</h4><p>" + content + "</p></div></li>";
+		},
+
 		/**
 		 * [generic template]
 		 * @param  {entry object}	data
@@ -108,9 +132,9 @@ var componentName = "wb-feeds",
 		 */
 		generic: function( data ) {
 
-			return "<li><a href='" + data.link + "'>" + data.title + "</a><br />" +
-				( data.publishedDate !== "" ? " <small class='feeds-date'><time>" +
-				wb.date.toDateISO( data.publishedDate, true ) + "</time></small>" : "" ) + "</li>";
+			return "<li><a href='" + data.link + "'>" + data.title + "</a>" +
+				( data.publishedDate !== "" ? " <span class='feeds-date'>[" +
+				wb.date.toDateISO( data.publishedDate, true ) + "]</span>" : "" ) + "</li>";
 		}
 	},
 
@@ -223,6 +247,8 @@ var componentName = "wb-feeds",
 					// Let's bind the template to the Entries
 					if ( url.indexOf( "facebook.com" ) !== -1 ) {
 						fType = "facebook";
+					} else if ( url.indexOf( "pinterest.com" ) !== -1 ) {
+						fType = "pinterest";
 					} else {
 						fType = "generic";
 					}
