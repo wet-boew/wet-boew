@@ -16,6 +16,12 @@
 			}
 		}
 	}
+
+	.dl-horizontal {
+		dt {
+			white-space: normal;
+		}
+	}
 }
 
 @media print {
