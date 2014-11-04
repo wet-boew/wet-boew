@@ -107,19 +107,20 @@ var componentName = "wb-feeds",
 		 * @param  {entry object}	data
 		 * @return {string}	HTML string of formatted using a simple list / anchor view
 		 */
-		pinterest: function( data ) {
+		pinterest: function( data ) {window.console.log(data);
 
 			var content = fromCharCode( data.content ),
-			title = content.replace( /(<([^>]+)>)/ig, "" ).match( /\(?[^\.\?\!]+[\.!\?]\)?/g );
+			title = data.contentSnippet,
+			author = data.author || data.fSource;
 
 			// Sanitize (clean) the HTML - extra 'br' tags
 			content = content.replace( /(<br>\n?)+/gi, "<br />" );
 
 			return "<li class='media'><a class='pull-left' href=''><img src='" +
-				data.fIcon + "' alt='" + data.author +
+				data.fIcon + "' alt='" + author +
 				"' height='64px' width='64px' class='media-object'/></a><div class='media-body'>" +
 				"<h4 class='media-heading'><a href='" + data.link + "'><span class='wb-inv'>" +
-				title[ 0 ] + " - </span>" + data.author + "</a>  " +
+				title[ 0 ] + " - </span>" + author + "</a>  " +
 				( data.publishedDate !== "" ? " <small class='feeds-date text-right'>[" +
 				wb.date.toDateISO( data.publishedDate, true ) + "]</small>" : "" ) +
 				"</h4><p>" + content + "</p></div></li>";
@@ -202,7 +203,7 @@ var componentName = "wb-feeds",
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var elm = wb.init( event, componentName, selector ),
-			fetch, url, $content, limit, feeds, fType, last, i, callback, fElem, fIcon;
+			fetch, context, url, $content, limit, feeds, fType, last, i, callback, fElem, fIcon;
 
 		if ( elm ) {
 			$content = $( elm ).find( ".feeds-cont" );
@@ -231,6 +232,8 @@ var componentName = "wb-feeds",
 						fType =  "flickr";
 						callback = "jsoncallback";
 						$content.data( componentName + "-postProcess", [ ".wb-lbx" ] );
+					} else if ( fElem.attr( "href" ).indexOf( "flickr" ) !== -1 ) {
+						fType = "pinterest";
 					} else {
 						fType = "youtube";
 						$content.data( componentName + "-postProcess", [ ".wb-lbx", ".wb-mltmd" ] );
@@ -247,8 +250,6 @@ var componentName = "wb-feeds",
 					// Let's bind the template to the Entries
 					if ( url.indexOf( "facebook.com" ) !== -1 ) {
 						fType = "facebook";
-					} else if ( url.indexOf( "pinterest.com" ) !== -1 ) {
-						fType = "pinterest";
 					} else {
 						fType = "generic";
 					}
@@ -256,11 +257,19 @@ var componentName = "wb-feeds",
 
 				fetch.jsonp = callback;
 
-				fetch.context = {
-					fIcon: ( fIcon.length !== 0 ) ? fIcon.attr( "src" ) : "",
+				context = {
+					fSource: "",
+					fIcon: "",
 					feedType: fType,
 					_content: $content
 				};
+
+				if ( fIcon.length !== 0 ) {
+					context.fSource = fIcon.attr( "alt" );
+					context.fIcon = fIcon.attr( "src" );
+				}
+
+				fetch.context = context;
 
 				fElem.trigger({
 					type: "ajax-fetch.wb",
@@ -280,13 +289,15 @@ var componentName = "wb-feeds",
 		var items = data,
 			entries = [],
 			icon = this.fIcon,
+			source = this.fSource,
 			$content = this._content,
 			toProcess = $content.data( "toProcess" ),
 			i, len;
 
 		len = items.length;
 		for ( i = 0; i !== len; i += 1 ) {
-			items[ i ].fIcon =  icon ;
+			items[ i ].fIcon =  icon;
+			items[ i ].fSource = source;
 
 			if ( items[ i ].publishedDate === undef && items[ i ].published !== undef ) {
 				items[ i ].publishedDate = items[ i ].published;
@@ -411,7 +422,7 @@ $document.on( "ajax-fetched.wb", selector + " " + feedLinkSelector, function( ev
 
 	// Filter out any events triggered by descendants
 	if ( event.currentTarget === eventTarget ) {
-		data = ( response.responseData ) ? response.responseData.feed.entries : response.items || response.feed.entry;
+		data = ( response.responseData ) ? response.responseData.feed.entries : response.items || response.data || response.feed.entry ;
 
 		// Identify that initialization has completed
 		// if there are no entries left to process
