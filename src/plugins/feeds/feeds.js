@@ -186,7 +186,7 @@ var componentName = "wb-feeds",
 			feeds = $content.find( feedLinkSelector );
 			last = feeds.length - 1;
 
-			// Lets bind some varialbes to the node to ensure safe ajax thread counting
+			// Lets bind some variables to the node to ensure safe ajax thread counting
 
 			$content.data( "toProcess", feeds.length )
 					.data( "feedLimit", limit )
