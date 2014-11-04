@@ -175,10 +175,6 @@ $mm-volume-thumb-width: 10px;
 	}
 
 	&.youtube {
-		.wb-mm-ctrls {
-			border-bottom: 10px solid #fff;
-		}
-
 		&.cc_on {
 			.wb-mm-cc {
 				@extend %multimedia-display-none;
