@@ -8,14 +8,14 @@
 	"parentdir": "feeds",
 	"altLangPrefix": "feeds",
 	"css": ["demo/feeds"],
-	"dateModified": "2014-07-28"
+	"dateModified": "2014-11-05"
 }
 ---
 <p>This feature provides a widget for aggregating and displaying the entries from one or more Web feeds on a Web page. Supported Web feed formats are Atom, RSS, and Media RSS.</p>
 
 <section>
 	<h2>Examples</h2>
-	<section class="wb-feeds limit-5">
+	<section class="wb-feeds load-10 display-5">
 		<h3>Road News Releases and Safety Recalls</h3>
 		<ul class="feeds-cont">
 			<li>
@@ -30,7 +30,7 @@
 			<h4>Code</h4>
 			<details>
 				<summary>View code</summary>
-				<pre><code>&lt;section class="wb-feeds limit-5"&gt;
+				<pre><code>&lt;section class="wb-feeds load-10 display-5"&gt;
 	&lt;h3&gt;Road News Releases and Safety Recalls&lt;/h3&gt;
 	&lt;ul class="feeds-cont"&gt;
 		&lt;li&gt;
@@ -45,7 +45,7 @@
 		</section>
 	</section>
 
-	<section class="wb-feeds limit-1">
+	<section class="wb-feeds load-1">
 		<h3>Ottawa Weather</h3>
 		<ul class="feeds-cont">
 			<li>
@@ -57,7 +57,7 @@
 			<h4>Code</h4>
 			<details>
 				<summary>View code</summary>
-				<pre><code>&lt;section class="wb-feeds limit-1"&gt;
+				<pre><code>&lt;section class="wb-feeds load-1"&gt;
 	&lt;h3&gt;Ottawa Weather&lt;/h3&gt;
 	&lt;ul class="feeds-cont"&gt;
 		&lt;li&gt;
@@ -75,7 +75,7 @@
 			<div class="tabpanels">
 				<details id="details-facebook" open="open">
 					<summary>Facebook</summary>
-					<section class="wb-feeds limit-5">
+					<section class="wb-feeds display-5">
 						<h4 class="wb-inv">Facebook</h4>
 						<ul class="feeds-cont media-list">
 							<li class="media">
@@ -103,7 +103,7 @@
 
 				<details id="details-flickr">
 					<summary>Flickr</summary>
-					<section class="wb-feeds limit-10">
+					<section class="wb-feeds display-10">
 						<h4 class="wb-inv">Flickr</h4>
 						<ul class="feeds-cont list-inline">
 							<li>
@@ -116,7 +116,7 @@
 
 				<details id="details-youtube">
 					<summary>YouTube</summary>
-					<section class="wb-feeds limit-10">
+					<section class="wb-feeds display-10">
 						<h4 class="wb-inv">YouTube</h4>
 						<ul class="feeds-cont list-inline">
 							<li>
@@ -143,7 +143,7 @@
 		&lt;div class="tabpanels"&gt;
 			&lt;details id="details-facebook" open="open"&gt;
 				&lt;summary&gt;Facebook&lt;/summary&gt;
-				&lt;section class="wb-feeds limit-5"&gt;
+				&lt;section class="wb-feeds display-5"&gt;
 					&lt;h4 class="wb-inv"&gt;Facebook&lt;/h4&gt;
 					&lt;ul class="feeds-cont media-list"&gt;
 						&lt;li class="media"&gt;
@@ -171,7 +171,7 @@
 
 			&lt;details id="details-flickr"&gt;
 				&lt;summary&gt;Flickr&lt;/summary&gt;
-				&lt;section class="wb-feeds limit-10"&gt;
+				&lt;section class="wb-feeds display-10"&gt;
 					&lt;h4 class="wb-inv"&gt;Flickr&lt;/h4&gt;
 					&lt;ul class="feeds-cont list-inline"&gt;
 						&lt;li&gt;
@@ -184,7 +184,7 @@
 
 			&lt;details id="details-youtube"&gt;
 				&lt;summary&gt;YouTube&lt;/summary&gt;
-				&lt;section class="wb-feeds limit-10"&gt;
+				&lt;section class="wb-feeds display-10"&gt;
 					&lt;h4 class="wb-inv"&gt;YouTube&lt;/h4&gt;
 					&lt;ul class="feeds-cont list-inline"&gt;
 						&lt;li&gt;
@@ -223,9 +223,14 @@
 				<td>Main targeting class that identifies the code block used for the Web feeds widget.</td>
 			</tr>
 			<tr>
-				<td><code>limit-<em>x</em></code></td>
+				<td><code>load-<em>x</em></code></td>
+				<td>Load</td>
+				<td>Controls the amount of items the Web feeds widget will load. If no <code>display-<em>x</em></code> parameter is specified, the amount of items displayed will be equal to the number of items loaded.</td>
+			</tr>
+			<tr>
+				<td><code>display-<em>x</em></code></td>
 				<td>Display</td>
-				<td>Controls the amount of items the Web feeds widget will display.</td>
+				<td>Controls the amount of items the Web feeds widget will display. If no <code>load-<em>x</em></code> parameter is specified, the amount of items loaded will be equal to the number of items displayed.</td>
 			</tr>
 		</tbody>
 	</table>
