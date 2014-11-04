@@ -10,7 +10,6 @@ summary {
 	// Add focus styles (for keyboard accessibility)
 	&:hover,
 	&:focus {
-		background: #ddd;
 		color: #000;
 	}
 
@@ -27,6 +26,8 @@ summary {
 details {
 	&[open] {
 		padding-bottom: 1em;
+		border: 4px solid #bdccd4;
+		margin: -4px;
 	}
 
 	> {
