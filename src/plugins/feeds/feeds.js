@@ -19,6 +19,7 @@ var componentName = "wb-feeds",
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
 	patt = /\\u([\d\w]{4})/g,
+	limitTypes = [ "load", "display" ],
 
 	/**
 	 * @object Templates
@@ -138,15 +139,19 @@ var componentName = "wb-feeds",
 	/**
 	 * Helper function that returns a class-based set limit on plugin instances
 	 * @method getLimit
-	 * @param {DOM object} elm The element to search for a class of the form limit-5
+	 * @param {DOM object} elm The element to search for a class of the form {limit-type}-5
+	 * @param {string} type The type of limit ("load" or "display")
 	 * @return {number} 0 if none found, which means the plugin default
 	 */
-	getLimit = function( elm ) {
-		var count = elm.className.match( /\blimit-\d+/ );
-		if ( !count ) {
+	getLimit = function( elm, type ) {
+		var re = new RegExp( "\\b" + type + "-(\\d+)", "i" ),
+			limit = elm.className.match( re );
+
+		if ( !limit ) {
 			return 0;
 		}
-		return Number( count[ 0 ].replace( /limit-/i, "" ) );
+
+		return Number( limit[ 1 ] );
 	},
 
 	/**
@@ -178,18 +183,27 @@ var componentName = "wb-feeds",
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var elm = wb.init( event, componentName, selector ),
-			fetch, url, $content, limit, feeds, fType, last, i, callback, fElem, fIcon;
+			fetch, url, $content, loadLimit, displayLimit, feeds, fType, last, i, callback, fElem, fIcon;
 
 		if ( elm ) {
 			$content = $( elm ).find( ".feeds-cont" );
-			limit = getLimit( elm );
+			loadLimit = getLimit( elm, limitTypes[ 0 ] );
+			displayLimit = getLimit( elm, limitTypes[ 1 ] );
 			feeds = $content.find( feedLinkSelector );
 			last = feeds.length - 1;
+
+			// Ensure load and display limits are either non-zero or both zero
+			if ( loadLimit === 0 && displayLimit !== 0 ) {
+				loadLimit = displayLimit;
+			} else if ( displayLimit === 0 && loadLimit !== 0 ) {
+				displayLimit = loadLimit;
+			}
 
 			// Lets bind some variables to the node to ensure safe ajax thread counting
 
 			$content.data( "toProcess", feeds.length )
-					.data( "feedLimit", limit )
+					.data( "loadLimit", loadLimit )
+					.data( "displayLimit", displayLimit )
 					.data( "entries", [] );
 
 			for ( i = last; i !== -1; i -= 1 ) {
@@ -217,7 +231,7 @@ var componentName = "wb-feeds",
 					fetch.url = fElem.attr( "data-ajax" );
 					fetch.jsonp = callback;
 				} else {
-					url = jsonRequest( fElem.attr( "href" ), limit );
+					url = jsonRequest( fElem.attr( "href" ), loadLimit );
 					fetch.url = url;
 
 					// Let's bind the template to the Entries
@@ -272,7 +286,7 @@ var componentName = "wb-feeds",
 		entries = $.merge( entries, $content.data( "entries" ) );
 
 		if ( toProcess === 1 ) {
-			parseEntries( entries, $content.data( "feedLimit" ), $content, this.feedType );
+			parseEntries( entries, $content.data( "displayLimit" ), $content, this.feedType );
 			return 0;
 		}
 

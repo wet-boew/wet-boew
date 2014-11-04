@@ -113,7 +113,7 @@ describe( "Feeds test suite", function() {
 	});
 
 	/*
-	 * Test limiting feed entries
+	 * Test limiting loading feed entries using load-x
 	 */
 	describe( "feed entries limit", function() {
 		var $elm;
@@ -123,7 +123,7 @@ describe( "Feeds test suite", function() {
 			callback = done;
 
 			// Create the feed element
-			$elm = $( "<div class='wb-feeds limit-2'><ul class='feeds-cont'>" +
+			$elm = $( "<div class='wb-feeds load-2'><ul class='feeds-cont'>" +
 				"<li><a href='http://foobar.com/'></a></li>" +
 				"</ul></div>" )
 				.appendTo( $document.find( "body" ) )
@@ -134,7 +134,61 @@ describe( "Feeds test suite", function() {
 			$elm.remove();
 		});
 
-		it( "should have limited to 2 feed entries", function() {
+		it( "should have limited to loading 2 feed entries", function() {
+			expect( $elm.find( ".feeds-cont > li" ).length ).to.equal( 2 );
+		});
+	});
+
+	/*
+	* Test limiting loading feed entries using display-x
+	*/
+	describe( "feed entries limit", function() {
+		var $elm;
+
+		before( function( done ) {
+			ajaxCalls = [];
+			callback = done;
+
+			// Create the feed element
+			$elm = $( "<div class='wb-feeds display-2'><ul class='feeds-cont'>" +
+				"<li><a href='http://foobar.com/'></a></li>" +
+				"</ul></div>" )
+				.appendTo( $document.find( "body" ) )
+				.trigger( "wb-init.wb-feeds" );
+		});
+
+		after(function() {
+			$elm.remove();
+		});
+
+		it( "should have limited to loading 2 feed entries", function() {
+			expect( $elm.find( ".feeds-cont > li" ).length ).to.equal( 2 );
+		});
+	});
+
+	/*
+	* Test limiting displaying feed entries to fewer entries than loaded
+	*/
+	describe( "feed entries limit", function() {
+		var $elm;
+
+		before( function( done ) {
+			ajaxCalls = [];
+			callback = done;
+
+			// Create the feed element
+			$elm = $( "<div class='wb-feeds load-10 display-2'><ul class='feeds-cont'>" +
+				"<li><a href='http://foobar.com/'></a></li>" +
+				"</ul></div>" )
+				.appendTo( $document.find( "body" ) )
+				.trigger( "wb-init.wb-feeds" );
+		});
+
+		after(function() {
+			$elm.remove();
+		});
+
+		it( "should have limited to displaying 2 feed entries", function() {
 			expect( $elm.find( ".feeds-cont > li" ).length ).to.equal( 2 );
 		});
 	});
