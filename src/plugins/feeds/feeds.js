@@ -114,28 +114,28 @@ var componentName = "wb-feeds",
 		}
 	},
 
-    /**
-     * Helper function that returns the string representaion of a unicode character
-     * @method decode
-     * @param  {regex} match  unicode pattern
-     * @param  {string} code  string where unicode is needed to be converted
-     * @return {string}	unicode string character
-     */
-    decode = function( match, code ) {
-        return String.fromCharCode( parseInt( code, 16 ) );
-    },
+	/**
+	 * Helper function that returns the string representaion of a unicode character
+	 * @method decode
+	 * @param  {regex} match  unicode pattern
+	 * @param  {string} code  string where unicode is needed to be converted
+	 * @return {string}	unicode string character
+	 */
+	decode = function( match, code ) {
+		return String.fromCharCode( parseInt( code, 16 ) );
+	},
 
-    /**
-     * Helper wrapper function that performs unicode decodes on a string
-     * @method fromCharCode
-     * @param  {string} s string to sanitize with escaped unicode characters
-     * @return {string}	sanitized string
-     */
-    fromCharCode = function(s) {
-        return s.replace( patt, decode );
-    },
+	/**
+	 * Helper wrapper function that performs unicode decodes on a string
+	 * @method fromCharCode
+	 * @param  {string} s string to sanitize with escaped unicode characters
+	 * @return {string}	sanitized string
+	 */
+	fromCharCode = function(s) {
+		return s.replace( patt, decode );
+	},
 
-    /**
+	/**
 	 * Helper function that returns a class-based set limit on plugin instances
 	 * @method getLimit
 	 * @param {DOM object} elm The element to search for a class of the form limit-5
@@ -245,12 +245,12 @@ var componentName = "wb-feeds",
 	},
 
 	/**
-     * Process Feed/JSON Entries
-     * @method processEntries
-     * @param  {data} JSON formatted data to process
-     * @return {string}	of HTML output
-     */
-     processEntries = function( data ) {
+	 * Process Feed/JSON Entries
+	 * @method processEntries
+	 * @param  {data} JSON formatted data to process
+	 * @return {string}	of HTML output
+	 */
+	processEntries = function( data ) {
 		var items = data,
 			entries = [],
 			icon = this.fIcon,
