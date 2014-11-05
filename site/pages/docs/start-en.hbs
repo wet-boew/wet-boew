@@ -7,7 +7,6 @@
 	"dateModified": "2014-09-21"
 }
 ---
-<p>Follow these quick steps to understand how to get started using the Web Experience Toolkit on your own site to create <a href="index-{{language}}.html#usability">usable</a>, <a href="index-{{language}}.html#accessibility">accessible</a>, <a href="index-{{language}}.html#mobile-friendly-responsive-design">mobile-friendly websites</a>. Start by choosing a flexible theme. Then find the components that meet your content needs. Finally, customize display elements such as buttons and icons.</p>
 
 <div id="get-started-steps">
 	<div class="row">
@@ -63,152 +62,178 @@
 		<li>
 		<details>
 			<summary>
-				<span class="get-started-circle">2</span><span class="step-title">Components</span> <span class="step-details">The Toolkit contains reusable components to add interactive and accessible features to your site such as widgets, form validation, navigation menus, web feeds, and many more.</span>
+				<span class="get-started-circle">2</span><span class="step-title">Style design elements</span><span class="step-details">This guide explains how to design front-end elements of your website by changing the cascading style sheet (CSS). Let the magic begin!</span>
 			</summary>
-			<section class="panel panel-default">
-				<header class="panel-heading">
-					<h2 class="panel-title">Plugins</h2>
-				</header>
-				<div class="panel-body">
-					<div class="col-md-4">
-					<p>Each plugin adds functionality by calling the function in the class attribute of an HTML tag.</p>
-					<p><a href="ref/plugins-{{language}}.html">More plugins.</a></p>
-					</div>
-					<section class="col-md-8">
-						<h3>Featured plugin: Lightbox</h3>
-						<div class="row">
-							<div class="col-md-4 col sm-4">
-								<div class="wb-lbx lbx-hide-gal">
-								<ul class="list-inline">
-									<li>
-										<a href="../demos/lightbox/demo/1_b.jpg" title="Image 1">
-											<img src="../demos/lightbox/demo/1_s.jpg" alt="Image 1" />
-										</a>
-									</li>
-									<li>
-										<a href="../demos/lightbox/demo/2_b.jpg" title="Image 2">
-											<img src="../demos/lightbox/demo/2_s.jpg" alt="Image 2" />
-										</a>
-									</li>
-									<li>
-										<a href="../demos/lightbox/demo/3_b.jpg" title="Image 3">
-											<img src="../demos/lightbox/demo/3_s.jpg" alt="Image 3" />
-										</a>
-									</li>
-									<li>
-										<a href="../demos/lightbox/demo/4_b.jpg" title="Image 4">
-											<img src="../demos/lightbox/demo/4_s.jpg" alt="Image 4" />
-										</a>
-									</li>
-								</ul>
-								</div>
-							</div>
-							<div class="col-md-8 col-sm-8">
-								<p>When a user clicks on, selects or holds the image, the photo gallery opens in a fullscreen lightbox where they can view the images one by one.</p>
-								<a class= "btn btn-default" href="../demos/lightbox/lightbox-en.html">Learn more</a>
-							</div>
-						</div>
-					</section>
-				</div>
-			</section>
-			<section class="panel panel-default">
-				<header class="panel-heading">
-					<h2 class="panel-title">Polyfills</h2>
-				</header>
-				<div class="panel-body">
-					<div class="col-md-4">
-						<p>Polyfills are JavaScript components that mimic the behaviour of HTML5 tags in browsers in order to provide backwards compatibility for browsers that do not support HTML5.</p>
-						<p><a href="ref/polyfills-{{language}}.html">More polyfills.</a></p>
-					</div>
-				<section class="col-md-8">
-					<h3>Featured polyfill: datalist polyfill (auto-complete)</h3>
-					<div class="row">
-						<div class="col-md-4 col-sm-5 col-xs-5">	
-							<label for="city">City</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-4 col-sm-5 col-xs-5">	
-							<input type="text" id="city" name="city" list="suggestions" />
-							<datalist id="suggestions">
-								<!--[if lte IE 9]><select><![endif]-->
-								<option label="Barrie" value="Barrie"></option>
-								<option label="Calgary" value="Calgary"></option>
-								<option label="Charlottetown" value="Charlottetown"></option>
-								<option label="Chibougamau" value="Chibougamau"></option>
-								<option label="Chilliwack" value="Chilliwack"></option>
-								<option label="Cold Lake" value="Cold Lake"></option>
-								<option label="Dorval" value="Dorval"></option>
-								<option label="Edmonton" value="Edmonton"></option>
-								<option label="Flin Flon" value="Flin Flon"></option>
-								<option label="Hamilton" value="Hamilton"></option>
-								<option label="Iqualuit" value="Iqualuit"></option>
-								<option label="Ottawa" value="Ottawa"></option>
-								<option label="Miramichi" value="Miramichi"></option>
-								<option label="Montreal" value="Montreal"></option>
-								<option label="Red Deer" value="Red Deer"></option>
-								<option label="St. John" value="St. John"></option>
-								<option label="St. John's" value="St. John's"></option>
-								<option label="Toronto" value="Toronto"></option>
-								<option label="Vancouver" value="Vancouver"></option>
-								<option label="Whitehorse" value="Whitehorse"></option>
-								<option label="Winnipeg" value="Winnipeg"></option>
-								<option label="Yellowknife" value="Yellowknife"></option>
-								<!--[if lte IE 9]></select><![endif]-->
-							</datalist>
-						</div>
-						<div class="col-md-8 col-sm-8 col-xs-12">
-						<p>For example, when a user types a V into a field called City, all cities beginning with V will appear in the text box.</p>
-						<a class="btn btn-default" href="../demos/datalist/datalist-en.html">Learn more</a>
-						</div>
-					</div>
+			<div class="row theme-link"> <!--<section class="panel panel-default">-->
+				<section class="col-sm-12"><!--<header class="panel-heading">-->
+					<h2 class="panel-title">Core design elements</h2>
+				<!--</header>-->
+				<!--<div class="panel-body">-->
+					<p>Here are some reusable and customizable design elements that you can use in designing your website. You can find more design elements in the <a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/index-en.html">design guide.</a></p>
 				</section>
-				</div>
-			</section>
+						<!--<div class="row">-->
+						<section class="col-md-3 col-sm-12">
+                			<h2>Structure and placement</h2>
+							<ul>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/position-en.html">Absolute positioning</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/alignment-en.html">Alignment</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/floats-en.html">Floats</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/grids-en.html">Grids</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/proximity-en.html">Margin proximity</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/reflow-en.html">Reflowing content around grids</a></li>
+							</ul>
+            			</section>
+						<section class="col-md-3 col-sm-12">
+							<h2>Basic effects</h2>
+                			<ul>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/borders-en.html">Borders</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/buttons-en.html">Buttons</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/colour-en.html">Colour</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/forms-en.html">Forms</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/icons-en.html">Icons</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/images-en.html">Images</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/visible-en.html">Invisible and visible content</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/opacity-en.html">Opacity</a></li>	
+							</ul>
+          				</section>
+						<section class="col-md-3 col-sm-12">
+							<h2>Text effects</h2>
+                			<ul>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/quotations-en.html">Quotations</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/code-en.html">Code</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/headings-en.html">Headings</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/links-en.html">Links</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/lists-en.html">Lists</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/keyboard-en.html">Keyboard keys</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/sizing-en.html">Sizing</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/tables-en.html">Tables</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/whitespace-en.html">Whitespace</a></li>	
+							</ul>
+            			</section>
+						<section class="col-md-3 col-sm-12">
+                			<h2>Callouts</h2>
+                			<ul>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/alerts-en.html">Alerts</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/badges-en.html">Badges</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/buttons-en.html">Buttons</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/labels-en.html">Labels</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/jumbotron-en.html">Jumbotron</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/panels-en.html">Panels</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/progressmeter-en.html">Progress bar and meter</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/wells-en.html">Wells</a></li>	
+							</ul>
+          				</section>
+            			<section class="col-md-4 col-sm-12">
+                			<h2>Menus and navigation</h2>
+                			<ul>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/buttons-en.html">Buttons</a></li>
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/listgroup-en.html">List group</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/pagination-en.html">Pagination</a></li>	
+								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/pills-en.html">Pills</a></li>	
+              				</ul>
+          				</section>
+					<!--</div>-->
+
+				<!--</div>-->
+			</div>
 		</details>
 		</li>
-	</ul>	
+	</ul>
 	</div>
 	<div class="row">
 	<ul class="list-unstyled">
 		<li>
 		<details>
 			<summary>
-				<span class="get-started-circle">3</span><span class="step-title">Design elements</span><span class="step-details">This guide explains how to design front-end elements of your website by changing the cascading style sheet (CSS). Let the magic begin!</span>
+				<span class="get-started-circle">3</span><span class="step-title">Choose components</span> <span class="step-details">The Toolkit contains reusable components to add interactive and accessible features to your site such as widgets, form validation, navigation menus, web feeds, and many more.</span>
 			</summary>
-			<section class="panel panel-default">
-				<header class="panel-heading">
-					<h2 class="panel-title">Core design elements</h2>
-				</header>
-				<div class="panel-body">
-					<div class="col-md-4">
-						<p>Here are some reusable and customizable design elements that you can use in designing your website. You can find more design elements in the <a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/index-en.html">design guide.</a></p>
-						<div class="row">
-							<ul class="col-md-6 col-sm-6">
-								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/buttons-en.html">Buttons</a></li>
-								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/sizing-en.html">Sizing</a></li>	
-								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/alignment-en.html">Alignment</a></li>	
-								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/alerts-en.html">Alerts</a></li>		
-							</ul>	
-							<ul class="col-md-6 col-sm-6">
-								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/grids-en.html">Grids</a></li>
-								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/lists-en.html">Lists</a></li>	
-								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/forms-en.html">Forms</a></li>	
-								<li><a href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/images-en.html">Images</a></li>		
-							</ul>
-						</div>
-					</div>
-					<section class="col-md-8">
-						<h3>Featured example: alert box</h3>
-						<section class="alert alert-success">
-							<h4>Well done!</h4>
-							<p>You successfully read this important alert message.</p>
-						</section>							
-						<p>Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.</p>
-						<a class="btn btn-default" href="http://wet-boew.github.io/wet-boew-styleguide/v4/design/alerts-en.html">Learn more</a>
+			<div class="row theme-link">
+					<section class="col-sm-12">
+						<h2 class="panel-title">Plugins</h2>
+						<p>Each plugin adds functionality by calling the function in the class attribute of an HTML tag.</p>
 					</section>
+
+							<section class="col-md-3 col-sm-12">
+								<ul>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/cal-events/cal-events-en.html">Calendar of Events</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/country-content/country-content-en.html">Country Content</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/data-ajax/data-ajax-en.html">Data Ajax</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/data-inview/data-inview-en.html">Data Inview: Bar</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/data-picture/data-picture-en.html">Data Picture</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/equalheight/equalheight-en.html">Equal height</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/favicon/favicon-en.html">Favicon</a></li>
+								</ul>
+            				</section>
+							
+							<section class="col-md-3 col-sm-12">
+								<ul>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/feedback/feedback-en.html">Feedback form</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/feeds/feeds-en.html">Feeds</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/footnotes/footnotes-en.html">Footnotes</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/formvalid/formvalid-en.html">Form validation</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-en.html">Lightbox</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/menu/menu-en.html">Menu</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-audio-en.html">Multimedia Player - Audio-only</a></li>
+								</ul>
+            				</section>
+							
+							<section class="col-md-3 col-sm-12">
+								<ul>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-en.html">Multimedia Player - Video</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/multimedia/multimedia-youtube-en.html">Multimedia Player - YouTube</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/overlay/overlay-en.html">Overlay</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/prettify/prettify-en.html">Prettify</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/session-timeout/session-timeout-en.html">Session Timeout</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/share/share-en.html">Share widget</a></li>
+								</ul>
+            				</section>
+							
+							<section class="col-md-3 col-sm-12">
+								<ul>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/tabs/tabs-en.html">Tabbed Interface</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/tabs/tabs-carousel-en.html">Tabbed Interface - Carousel</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/tables/tables-en.html">Tables</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/texthighlight/texthighlight-en.html?txthl=avian%20influenza+world+cook+flu-like%20symptoms+Don%27t%20Forget...+causes%20sickness%20in%20birds,%20it%20can%20also%20infect%20people.">Text highlighting</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/toggle/toggle-en.html">Toggle</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/twitter/twitter-en.html">Twitter embedded timeline</a></li>
+								</ul>
+            				</section>
+							
+						
+												
 				</div>
-			</section>
+			
+			<div class="row theme-link">
+				<section class="col-sm-12">
+					<h2 class="panel-title">Polyfills</h2>
+					<p>Polyfills are JavaScript components that mimic the behaviour of HTML5 tags in browsers in order to provide backwards compatibility for browsers that do not support HTML5.</p>
+				</section>
+				
+				<!--<section class="col-sm-12">
+					<div class="row">-->
+							
+							<section class="col-md-6 col-sm-12">
+								<ul>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/datalist/datalist-en.html">Datalist polyfill (auto-complete)</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/details/details-en.html">Details/summary polyfill (expandable/collapsible content)</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/datepicker/datepicker-en.html">Input type="data" polyfill (date picker)</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/slider/slider-en.html">Input type="range" polyfill (slider control)</a></li>
+								</ul>
+            				</section>
+						
+							<section class="col-md-6 col-sm-12">
+								<ul>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/mathml/mathml-en.html">MathML polyfill</a></li>
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/meter/meter-en.html">Meter polyfill</a></li>	
+									<li><a href="http://wet-boew.github.io/v4.0-ci/demos/progress/progress-en.html">Progress polyfill (progress bar)</a></li>	
+								</ul>
+            				</section>
+
+					<!--</div>
+				</section>-->
+					
+				</div>
+			
 		</details>
 		</li>
 	</ul>	
