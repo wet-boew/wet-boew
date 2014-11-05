@@ -6,71 +6,69 @@
 	"categoryfile": "plugins",
 	"description": "Affiche les articles d’un ou plus fils de syndication.",
 	"altLangPrefix": "feeds",
-	"dateModified": "2014-08-04"
+	"dateModified": "2014-11-05"
 }
----	
+---
 <span class="wb-prettify all-pre hide"></span>
 
-<div lang="en">
-<p><strong>Needs translation</strong></p>
 <section>
-	<h2>Purpose</h2>
-	<p>The purpose of this feature is to provides a widget for aggregating and displaying the entries from one or more Web feeds on a Web page. Supported Web feed formats are Atom, RSS, and Media RSS.</p>
+	<h2>But</h2>
+	<p>Le but de cette fonctionnalité est de permettre de regrouper et afficher les articles d'un ou plus fils de syndication sur une page Web. Les formats de fil de syndication supportés sont les formats <span lang="en">Atom</span>, <span lang="en">RSS</span>, et <span lang="en">Media RSS</span>.</p>
 </section>
 
 <section>
-	<h2>Use when</h2>
+	<h2>Utiliser lorsque</h2>
 	<ul>
-		<li>Promoting and sharing information from Web feeds on a Web page </li>
+		<li>Pour faire la promotion ou le partage d'informations provenant de fils de syncation sur une page Web.</li>
 	</ul>
 </section>
 
 <section>
-	<h2>Working example</h2>
+	<h2>Exemple pratique</h2>
 	<ul>
-		<li><a href="../../../demos/feeds/feeds-en.html">English working examples</a></li>
-		<li><a href="../../../demos/feeds/feeds-fr.html">French working examples</a></li>
+		<li><a href="../../../demos/feeds/feeds-en.html">Exemple en anglais</a></li>
+		<li><a href="../../../demos/feeds/feeds-fr.html">Exemple en français</a></li>
 	</ul>
 </section>
 
 <section>
-	<h2>How to implement</h2>
+	<h2>Mise en œuvre</h2>
 	<ol>
-		<li>For each area that will display Web feeds, create a <code>section</code> element with <code>class="wb-feeds"</code>.
+		<li>Pour chaque région qui affichera des fils de syndication, ajouter un élément de type <code>section</code> portant l'attribut <code>class="wb-feeds"</code>.
 			<pre><code>&lt;section class="wb-feeds"&gt;&lt;/section&gt;</code></pre>
 		</li>
-		<li>Inside the <code>section</code> element add a heading (<code>h1</code> - <code>h6</code>).</li>
-		<li>Add an unordered list (<code>ul</code>) after the heading with the <code>feeds-cont</code> class.
+		<li>À l'intérieur de l'élément de type <code>section</code>, ajouter un titre (<code>h1</code> - <code>h6</code>).</li>
+		<li>Ajouter un liste non ordonnée (<code>ul</code>) portant l'attribut <code>class="feeds-cont"</code> après le titre.
 			<ul>
-				<li><strong>Facebook feeds:</strong>
+				<li><strong>Fils Facebook :</strong>
 					<ol>
-						<li>Add the <code>media-list</code> class to the unordered list.</li>
-						<li>Add <code>&lt;div class="clearfix"&gt;&lt;/div&gt;</code> after the unordered list.</li>
+						<li>Ajouter l'attribut <code>class="media-list"</code> à la liste non ordonnée.</li>
+						<li>Ajouter le code <code>&lt;div class="clearfix"&gt;&lt;/div&gt;</code> après la liste non ordonnée.</li>
 					</ol>
 				</li>
-				<li><strong>Flickr and YouTube feeds:</strong>
+				<li><strong>Fils Flickr et YouTube :</strong>
 					<ol>
-						<li>Add the <code>list-inline</code> class to the unordered list.</li>
-						<li>Add <code>&lt;div class="clearfix"&gt;&lt;/div&gt;</code> after the unordered list.</li>
+						<li>Ajouter l'attribut <code>class="list-inline"</code> à la liste non ordonnée.</li>
+						<li>Ajouter le code <code>&lt;div class="clearfix"&gt;&lt;/div&gt;</code> après la liste non ordonnée.</li>
 					</ol>
 				</li>
 			</ul>
 		</li>
-		<li>For every Web feed source to display, add a list element containing a link to the feed.
+		<li>Pour chaque fil de syndication à afficher, ajouter un élément de type liste contenant un lien vers le fil de syndication.
 			<ul>
-				<li><strong>Regular feeds:</strong>
+				<li><strong>Fils de syndication normaux :</strong>
 					<pre><code>&lt;li&gt;
 	&lt;a href="http://canada.ca/sample.atom"&gt;Sample Atom Feed&lt;/a&gt;
 &lt;/li&gt;</code></pre>
 				</li>
-				<li><strong>Facebook feeds:</strong>
+				<li><strong>Fils Facebook :</strong>
 					<ol>
-						<li>Add a <code>media</code> class to the list element.</li>
-						<li>Add a <code>pull-left</code> class to the link.</li>
-						<li>Add a profile image with a <code>media-object</code> class to the link.</li>
-						<li>Add a section element with a <code>media-body</code> class after the link.</li>
-						<li>Inside the <code>section</code> element add a heading (<code>h1</code> - <code>h6</code>) with a <code>media-heading</code> class. Include the Facebook account name in this heading (e.g., "Parks Canada - Facebook").</li>
-						<li>Add a <code>p</code> element containing the Facebook account description after the heading.</li>
+						<li>Ajouter l'attribut <code>class="media"</code> à l'élément de type liste.</li>
+						<li>Ajouter l'attribut <code>class="pull-left"</code> au lien.</li>
+						<li>Ajouter une image de profil utilisateur ayant l'attribut <code>class="media-object"</code> au lien.</li>
+						<li>Ajouter un élément de type section ayant l'attribute <code>class="media-body"</code> après le lien.</li>
+						<li>À l'intérieur de l'élément de type section, ajouter un titre (<code>h1</code> - <code>h6</code>) ayant l'attribut <code>class="media-heading"</code>. Include le nom du compte Facebook au titre (e.g., "Parcs Canada - Facebook").</li>
+						<li>Ajouter un élément de type <code>p</code> contenant la description du compte Facebook après le titre.</li>
 					</ol>
 					<pre><code>&lt;li class="media"&gt;
 	&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=137563459593611&amp;amp;format=atom10"&gt;
@@ -82,19 +80,19 @@
 	&lt;/section&gt;
 &lt;/li&gt;</code></pre>
 				</li>
-				<li><strong>Flickr feeds:</strong>
+				<li><strong>Fils Flickr :</strong>
 					<ol>
-						<li>The link <code>href</code> attribute needs to contain the URL of the Flickr account's photostream.</li>
-						<li>Add a <code>data-ajax</code> attribute to the link containing the URL of the Flickr account JSON feed.</li>
+						<li>L'attribut <code>href</code> du lien doit contenir l'URL du fil de photos du compte Flickr.</li>
+						<li>Ajouter un attribut <code>data-ajax</code> contenant l'URL du fil JSON du compte Flickr au lien.</li>
 					</ol>
 					<pre><code>&lt;li&gt;
 	&lt;a href="https://www.flickr.com/photos/environmentcan" rel="external" data-ajax="https://api.flickr.com/services/feeds/photos_public.gne?id=47711201@N05&amp;amp;format=json"&gt;Environment Canada Flickr&lt;/a&gt;
 &lt;/li&gt;</code></pre>
 				</li>
-				<li><strong>YouTube feeds:</strong>
+				<li><strong>Fils YouTube :</strong>
 					<ol>
-						<li>The link <code>href</code> attribute needs to contain the URL of the YouTube account.</li>
-						<li>Add a <code>data-ajax</code> attribute to the link with the URL of the YouTube account JSON feed.</li>
+						<li>L'attribut <code>href</code> du lien doit contenir l'URL du compte YouTube.</li>
+						<li>Ajouter un attribut <code>data-ajax</code> contenant l'URL du fil JSON du compte YouTube au lien.</li>
 					</ol>
 					<pre><code>&lt;li&gt;
 	&lt;a href="https://www.youtube.com/user/ParksCanadaAgency" rel="external" data-ajax="https://gdata.youtube.com/feeds/api/users/UCzJRhTw3KVtDlcdNz33eDMQ/uploads?v=2&amp;amp;alt=json"&gt;Parks Canada Youtube&lt;/a&gt;
@@ -102,13 +100,13 @@
 				</li>
 			</ul>
 		</li>
-		<li><strong>Optional:</strong> Group multiple types of feeds into a tabbed interface. The benefit of this approach is it will only load the feeds that are currently visible (significantly improves performance when there are lots of feeds).
+		<li><strong>Optionnel :</strong> Regrouper plusieurs types de fils à l'aide d'une interface à onglets. L'avantage de cette approche est que seuls les fils visibles seront chargés (améliore grandement les performances lorsque beaucoup de fils sont présent).
 			<ol>
-				<li>Create a <code>div</code> element with <code>class="wb-tabs"</code>.</li>
-				<li>Add a <code>div</code> element with <code>class="tabpanels"</code> within the previous <code>div</code> element.</li>
-				<li>For each group of feeds (group feeds by type), add a <code>details</code> element. Add <code>open="open"</code> to the group of feeds that should be displayed by default.</li>
-				<li>Add a <code>summary</code> element at the start of each <code>details</code> element with the name of the group of feeds (e.g., <code>&lt;summary&gt;Facebook&lt;/summary&gt;</code>).</li>
-				<li>Add the areas to display Web feeds after each <code>summary</code> element as described in steps 1 to 4, except add the <code>wb-inv</code> class to the heading for each area.</li>
+				<li>Ajouter un élément de type <code>div</code> portant l'attribut <code>class="wb-tabs"</code>.</li>
+				<li>Ajouter un élément de type <code>div</code> portant l'attribut <code>class="tabpanels"</code> à l'intérieur du premier élément de type <code>div</code>.</li>
+				<li>Pour chaque groupe de fils (ils devraient être groupés par type), ajouter un élément de type <code>details</code>. Ajouter l'attribut <code>open="open"</code> au groupe de fils qui devrait être affiché par défaut.</li>
+				<li>Ajouter un élément de type <code>summary</code> au début de chaque élément de type <code>details</code> contenant le nom du groupe de fils (par exemple, <code>&lt;summary&gt;Facebook&lt;/summary&gt;</code>).</li>
+				<li>Ajouter les régions dans lesquelles afficher les fils de syndication aprés chaque élément de type <code>summary</code> tel que décrit aux étapes 1 à 4, à l'exception d'ajouter l'attribut <code>class="wb-inv"</code> au titre de chaque région.</li>
 			</ol>
 			<pre><code>&lt;section&gt;
 	&lt;h3&gt;Tabbed Social Feeds&lt;/h3&gt;
@@ -116,7 +114,7 @@
 		&lt;div class="tabpanels"&gt;
 			&lt;details id="details-facebook" open="open"&gt;
 				&lt;summary&gt;Facebook&lt;/summary&gt;
-				&lt;section class="wb-feeds limit-5"&gt;
+				&lt;section class="wb-feeds display-5"&gt;
 					&lt;h4 class="wb-inv"&gt;Facebook&lt;/h4&gt;
 					&lt;ul class="feeds-cont media-list"&gt;
 						...
@@ -127,7 +125,7 @@
 
 			&lt;details id="details-flickr"&gt;
 				&lt;summary&gt;Flickr&lt;/summary&gt;
-				&lt;section class="wb-feeds limit-10"&gt;
+				&lt;section class="wb-feeds display-10"&gt;
 					&lt;h4 class="wb-inv"&gt;Flickr&lt;/h4&gt;
 					&lt;ul class="feeds-cont list-inline"&gt;
 						...
@@ -138,7 +136,7 @@
 
 			&lt;details id="details-youtube"&gt;
 				&lt;summary&gt;YouTube&lt;/summary&gt;
-				&lt;section class="wb-feeds limit-10"&gt;
+				&lt;section class="wb-feeds display-10"&gt;
 					&lt;h4 class="wb-inv"&gt;YouTube&lt;/h4&gt;
 					&lt;ul class="feeds-cont list-inline"&gt;
 						...
@@ -154,10 +152,10 @@
 	</ol>
 
 	<section>
-		<h3>Example code</h3>
+		<h3>Exemples de code</h3>
 		<section>
-			<h4>Regular feeds</h4>
-			<pre><code>&lt;section class="wb-feeds limit-5"&gt;
+			<h4>Fils normaux</h4>
+			<pre><code>&lt;section class="wb-feeds load-10 display-5"&gt;
 	&lt;h3&gt;Road News Releases and Safety Recalls&lt;/h3&gt;
 	&lt;ul class="feeds-cont"&gt;
 		&lt;li&gt;
@@ -171,8 +169,8 @@
 		</section>
 
 		<section>
-			<h4>Facebook feeds</h4>
-			<pre><code>&lt;section class="wb-feeds limit-5"&gt;
+			<h4>Fils Facebook</h4>
+			<pre><code>&lt;section class="wb-feeds display-5"&gt;
 	&lt;ul class="feeds-cont media-list"&gt;
 		&lt;li class="media"&gt;
 			&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=318424514044&amp;amp;format=atom10"&gt;
@@ -198,8 +196,8 @@
 		</section>
 
 		<section>
-			<h4>Flickr feeds</h4>
-			<pre><code>&lt;section class="wb-feeds limit-15"&gt;
+			<h4>Fils Flickr</h4>
+			<pre><code>&lt;section class="wb-feeds display-15"&gt;
 	&lt;ul class="feeds-cont list-inline"&gt;
 		&lt;li&gt;
 			&lt;a href="https://www.flickr.com/photos/environmentcan" rel="external" data-ajax="https://api.flickr.com/services/feeds/photos_public.gne?id=47711201@N05&amp;amp;format=json"&gt;Environment Canada Flickr&lt;/a&gt;
@@ -210,8 +208,8 @@
 		</section>
 
 		<section>
-			<h4>YouTube feeds</h4>
-			<pre><code>&lt;section class="wb-feeds limit-15"&gt;
+			<h4>Fils YouTube</h4>
+			<pre><code>&lt;section class="wb-feeds display-15"&gt;
 	&lt;ul class="feeds-cont list-inline"&gt;
 		&lt;li&gt;
 			&lt;a href="https://www.youtube.com/user/ParksCanadaAgency" rel="external" data-ajax="https://gdata.youtube.com/feeds/api/users/UCzJRhTw3KVtDlcdNz33eDMQ/uploads?v=2&amp;amp;alt=json"&gt;Parks Canada Youtube&lt;/a&gt;
@@ -225,14 +223,14 @@
 		</section>
 
 		<section>
-			<h4>Tabbed feeds</h4>
+			<h4>Fils dans une interface à onglets</h4>
 			<pre><code>&lt;section&gt;
 	&lt;h3&gt;Tabbed Social Feeds&lt;/h3&gt;
 	&lt;div class="wb-tabs col-md-5 wb-eqht"&gt;
 		&lt;div class="tabpanels"&gt;
 			&lt;details id="details-facebook" open="open"&gt;
 				&lt;summary&gt;Facebook&lt;/summary&gt;
-				&lt;section class="wb-feeds limit-5"&gt;
+				&lt;section class="wb-feeds display-5"&gt;
 					&lt;h4 class="wb-inv"&gt;Facebook&lt;/h4&gt;
 					&lt;ul class="feeds-cont media-list"&gt;
 						&lt;li class="media"&gt;
@@ -260,7 +258,7 @@
 
 			&lt;details id="details-flickr"&gt;
 				&lt;summary&gt;Flickr&lt;/summary&gt;
-				&lt;section class="wb-feeds limit-10"&gt;
+				&lt;section class="wb-feeds display-10"&gt;
 					&lt;h4 class="wb-inv"&gt;Flickr&lt;/h4&gt;
 					&lt;ul class="feeds-cont list-inline"&gt;
 						&lt;li&gt;
@@ -273,7 +271,7 @@
 
 			&lt;details id="details-youtube"&gt;
 				&lt;summary&gt;YouTube&lt;/summary&gt;
-				&lt;section class="wb-feeds limit-10"&gt;
+				&lt;section class="wb-feeds display-10"&gt;
 					&lt;h4 class="wb-inv"&gt;YouTube&lt;/h4&gt;
 					&lt;ul class="feeds-cont list-inline"&gt;
 						&lt;li&gt;
@@ -295,26 +293,41 @@
 </section>
 
 <section>
-	<h2>Configuration options</h2>
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
+	<h2>Options de configuration</h2>
+	<p>Documente les options de configuration mises à la disposition des intégrateurs et des développeurs.</p>
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Option</th>
 				<th>Description</th>
-				<th>How to configure</th>
-				<th>Values</th>
+				<th>Comment la configurer</th>
+				<th>Valeurs</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td><code>limit-x</code></td>
-				<td>Controls the amount of items the Web feeds widget will display.</td>
-				<td>Add the <code>limit-x</code> class after the <code>wb-feeds</code> class and replace <code>x</code> with an integer.</td>
+				<td><code>load-<em>x</em></code></td>
+				<td>Contrôle la quantité d'articles que le gadget des fils de syndication chargera.</td>
+				<td>Ajouter la classe <code>load-<em>x</em></code> après la classe <code>wb-feeds</code> et remplacer le <code><em>x</em></code> par un nombre entier.</td>
 				<td>
 					<dl>
-						<dt><code>limit-4</code> (default):</dt>
-						<dd>Limits display to four items.</dd>
+						<dt>Omis :</dt>
+						<dd>Prends la même valeur que l'option <code>display-<em>x</em></code> ou, si l'option <code>display-<em>x</em></code> est omise aussi, la valeur par défaut pour le fil de syndication.</dd>
+						<dt><code>load-<em>n</em></code> :</dt>
+						<dd>Limite la quantité d'articles chargés du fil à <em>n</em> articles.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>display-<em>x</em></code></td>
+				<td>Contrôle la quantité d'articles que le gadget des fils de syndication affichera.</td>
+				<td>Ajouter la classe <code>display-<em>x</em></code> après la classe <code>wb-feeds</code> et remplacer le <code><em>x</em></code> par un nombre entier.</td>
+				<td>
+					<dl>
+						<dt>Omis :</dt>
+						<dd>Prends la même valeur que l'option <code>load-<em>x</em></code> ou, si l'option <code>load-<em>x</em></code> est omise aussi, la valeur par défaut pour le fil de syndication.</dd>
+						<dt><code>display-<em>n</em></code> :</dt>
+						<dd>Limite la quantité d'articles affichés à <em>n</em> articles.</dd>
 					</dl>
 				</td>
 			</tr>
@@ -323,26 +336,26 @@
 </section>
 
 <section>
-	<h2>Events</h2>
-	<p>Document the public events that can be used by implementers or developers.</p>
+	<h2>Événements</h2>
+	<p>Documente les événements mis à la disposition des intégrateurs et des développeurs.</p>
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Event</th>
-				<th>Trigger</th>
-				<th>What it does</th>
+				<th>Événement</th>
+				<th>Déclancheur</th>
+				<th>Effet</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td><code>wb-init.wb-feeds</code></td>
-				<td>Triggered manually (e.g., <code>$( ".wb-feeds" ).trigger( "wb-init.wb-feeds" );</code>).</td>
-				<td>Used to manually initialize the Feeds widget. <strong>Note:</strong> The Feeds widget will be initialized automatically unless it is added after the page has already loaded.</td>
+				<td>Déclanché manuellement (par exemple, <code>$( ".wb-feeds" ).trigger( "wb-init.wb-feeds" );</code>).</td>
+				<td>Sert à initialiser manuellement le gadget des fils de syndication. <strong>Nota :</strong> Le gadget des fils de syndication sera initialisé automatiquement à moins qu'il soit ajouté à la page après que la page ait été chargée.</td>
 			</tr>
 			<tr>
 				<td><code>wb-ready.wb-feeds</code> (v4.0.5+)</td>
-				<td>Triggered automatically after the Feeds plugin has initialized.</td>
-				<td>Used to identify where the Feeds plugin has finished initializing (target of the event).
+				<td>Déclanché automatiquement une fois que le plugiciel des fils de syndication ait été initialisé.</td>
+				<td>Sert à identifier là où le plugiciel des fils de syndication a terminé l'initialisation (cible de l'événement).
 					<pre><code>$( document ).on( "wb-ready.wb-feeds", ".wb-feeds", function( event ) {
 });</code></pre>
 					<pre><code>$( ".wb-feeds" ).on( "wb-ready.wb-feeds", function( event ) {
@@ -351,9 +364,9 @@
 			</tr>
 			<tr>
 				<td><code>wb-feed-ready.wb-feeds</code> (v4.0.5+)</td>
-				<td>Triggered automatically after a feed has become visible.</td>
-				<td>Used to identify which feed has become visible (target of the event).
-					<pre><code>$( document ).on( "wb-feed-ready.wb-feeds", ".wb-feeds .feeds-cont", function( event ) {
+				<td>Déclanché automatiquement une fois qu'un fil de syndication est affiché.</td>
+				<td>Sert à identifier le fil qui a été affiché (cible de l'événement).
+					<pre><code>$( document ).on( "wb-feed-ready.wb-feeds", ".wb-feeds .feeds-cont",  function( event ) {
 });</code></pre>
 					<pre><code>$( ".wb-feeds .feeds-cont" ).on( "wb-feed-ready.wb-feeds", function( event ) {
 });</code></pre>
@@ -361,8 +374,8 @@
 			</tr>
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
-				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Déclanché automatiquement lors que la Boîte à outils de l'expérience Web a terminé son chargement et son éxécusion.</td>
+				<td>Sert à identifier le moment où tous les plugiciels et les correctifs ont terminé leur chargement et leur éxécusion.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
@@ -372,7 +385,6 @@
 </section>
 
 <section>
-	<h2>Source code</h2>
-	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/feeds">Feeds widget source code on GitHub</a></p>
+	<h2>Code source</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/feeds">Code source du gadget des fils de syndications sur GitHub</a></p>
 </section>
-</div>
