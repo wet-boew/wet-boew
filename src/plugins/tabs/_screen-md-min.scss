@@ -30,4 +30,22 @@
 			@extend %tabs-screen-md-min-details;
 		}
 	}
+	
+	&.carousel-s2 {
+		&.show-thumbs {
+			[role="tablist"] {
+				li {
+					&[role="presentation"] {
+						display: inline-block;
+					}
+
+					&.prv,
+					&.tab-count,
+					&.nxt {
+						display: none;
+					}
+				}
+			}
+		}
+	}
 }
