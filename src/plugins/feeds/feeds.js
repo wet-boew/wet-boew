@@ -20,6 +20,7 @@ var componentName = "wb-feeds",
 	$document = wb.doc,
 	patt = /\\u([\d\w]{4})/g,
 	limitTypes = [ "load", "display" ],
+	i18n, i18nText,
 
 	/**
 	 * @object Templates
@@ -196,6 +197,15 @@ var componentName = "wb-feeds",
 		var elm = wb.init( event, componentName, selector ),
 			fetch, url, $content, loadLimit, displayLimit, feeds, fType, last, i, callback, fElem, fIcon;
 
+		// Only initialize the i18nText once
+		if ( !i18nText ) {
+			i18n = wb.i18n;
+			i18nText = {
+				previous: i18n( "prv" ),
+				next: i18n( "nxt" )
+			};
+		}
+
 		if ( elm ) {
 			$content = $( elm ).find( ".feeds-cont" );
 			loadLimit = getLimit( elm, limitTypes[ 0 ] );
@@ -322,6 +332,7 @@ var componentName = "wb-feeds",
 	 */
 	parseEntries = function( entries, limit, $elm, feedtype ) {
 		var cap = ( limit > 0 && limit < entries.length ? limit : entries.length ),
+			showPagination = (cap < entries.length),
 			result = "",
 			compare = wb.date.compare,
 			$details = $elm.closest( "details" ),
@@ -353,7 +364,7 @@ var componentName = "wb-feeds",
 							.on( "wb-updated.wb-tabs", function( event, $newPanel ) {
 								var $feedCont = $newPanel.find( feedContSelector );
 								if ( !$feedCont.hasClass( "feed-active" ) ) {
-									activateFeed( $feedCont );
+									activateFeed( $feedCont, showPagination );
 								}
 							})
 							.addClass( hasVisibilityHandler );
@@ -366,13 +377,13 @@ var componentName = "wb-feeds",
 					.children( "summary" )
 						.on( "click.wb-feeds", function( event ) {
 							var $summary = $( event.currentTarget ).off( "click.wb-feeds" );
-							activateFeed( $summary.parent().find( feedContSelector ) );
+							activateFeed( $summary.parent().find( feedContSelector ), showPagination );
 						});
 			}
 		}
 
 		if ( activate ) {
-			activateFeed( $elm );
+			activateFeed( $elm, showPagination );
 		}
 
 		return true;
@@ -382,8 +393,9 @@ var componentName = "wb-feeds",
 	 * Activates feed results view
 	 * @method activateFeed
 	 * @param = {jQuery object} $elm Feed container
+	 * @param = {boolean} showPagination Show pagination if `true`
 	 */
-	activateFeed = function( $elm ) {
+	activateFeed = function( $elm, showPagination ) {
 		var result = $elm.data( componentName + "-result" ),
 			postProcess = $elm.data( componentName + "-postProcess" ),
 			i, postProcessSelector;
@@ -392,6 +404,11 @@ var componentName = "wb-feeds",
 			.removeClass( "waiting" )
 			.addClass( "feed-active" )
 			.append( result );
+
+		if ( showPagination ) {
+			$elm.addClass( "mrgn-bttm-0" )
+				.after( "<div class=\"clearfix\"></div><ul class=\"pager mrgn-tp-sm\"><li><a href=\"#\" rel=\"prev\">" + i18nText.previous + "</a></li><li><a href=\"#\" rel=\"next\">" + i18nText.next + "</a></li></ul>" );
+		}
 
 		if ( postProcess ) {
 			for ( i = postProcess.length - 1; i !== -1; i -= 1 ) {
