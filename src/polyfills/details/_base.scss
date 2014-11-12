@@ -24,6 +24,16 @@ details {
 	}
 }
 
+.tabpanels {
+	> {
+		details {
+			&:not([open]) {
+				visibility: visible;
+			}
+		}
+	}
+}
+
 // Prevent FOUC when polyfill is disabled
 .wb-disable {
 	details {

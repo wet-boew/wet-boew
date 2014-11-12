@@ -247,7 +247,7 @@ var componentName = "wb-tabs",
 			});
 
 			initialized = true;
-			onResize();
+			onResize( $elm );
 
 			// Identify that initialization has completed
 			wb.ready( $elm, componentName );
@@ -518,78 +518,88 @@ var componentName = "wb-tabs",
 		}
 	},
 
-	onResize = function() {
-		var $elm, $details, $tablist, $openDetails,
-			$nonOpenDetails, $active, $summary;
+	/**
+	 * @method onResize
+	 * @param {jQuery Object} $currentElm Element being initialized (only during initialization process).
+	 */
+	onResize = function( $currentElm ) {
+		var $elms, $elm, $details, $tablist, $openDetails,
+			$nonOpenDetails, $active, $summary, i, len;
 
 		if ( initialized ) {
 			isSmallView = document.documentElement.className.indexOf( smallViewPattern ) !== -1;
-			$elm = $( selector );
-			$details = $elm.find( "> .tabpanels > details" );
-			if ( $details.length !== 0 ) {
-				if ( isSmallView !== oldIsSmallView ) {
-					$summary = $details.children( "summary" );
-					$tablist = $elm.children( "ul" );
+			$elms = $currentElm.length ? $currentElm : $( selector );
+			len = $elms.length;
 
-					// Disable equal heights for small view
-					if ( $elm.attr( "class" ).indexOf( equalHeightClass ) !== -1 ) {
-						$elm.toggleClass( equalHeightClass + " " + equalHeightOffClass );
-					}
+			for ( i = 0; i !== len; i += 1 ) {
+				$elm = $elms.eq( i );
+				$details = $elm.find( "> .tabpanels > details" );
 
-					if ( isSmallView ) {
+				if ( $details.length !== 0 ) {
+					if ( isSmallView !== oldIsSmallView ) {
+						$summary = $details.children( "summary" );
+						$tablist = $elm.children( "ul" );
 
-						// Switch to small view
-						$active = $tablist.find( ".active a" );
-						$details
-							.removeAttr( "role aria-expanded aria-hidden" )
-							.removeClass( "fade out in" );
-						$openDetails = $details
-											.filter( "#" + $active.attr( "href" ).substring( 1 ) )
-												.attr( "open", "open" )
-												.addClass( "open" );
-						$nonOpenDetails = $details.not( $openDetails )
-													.removeAttr( "open" )
-													.removeClass( "open" );
-					} else if ( oldIsSmallView ) {
+						// Disable equal heights for small view
+						if ( $elm.attr( "class" ).indexOf( equalHeightClass ) !== -1 ) {
+							$elm.toggleClass( equalHeightClass + " " + equalHeightOffClass );
+						}
 
-						// Switch to large view
-						$openDetails = $details.filter( "[open]" );
-						$openDetails = ( $openDetails.length === 0 ? $details : $openDetails ).eq( 0 );
+						if ( isSmallView ) {
 
-						$details
-							.attr({
-								role: "tabpanel",
-								open: "open"
-							})
-							.not( $openDetails )
-								.addClass( "fade out" )
+							// Switch to small view
+							$active = $tablist.find( ".active a" );
+							$details
+								.removeAttr( "role aria-expanded aria-hidden" )
+								.removeClass( "fade out in" );
+							$openDetails = $details
+												.filter( "#" + $active.attr( "href" ).substring( 1 ) )
+													.attr( "open", "open" )
+													.addClass( "open" );
+							$nonOpenDetails = $details.not( $openDetails )
+														.removeAttr( "open" )
+														.removeClass( "open" );
+						} else if ( oldIsSmallView ) {
+
+							// Switch to large view
+							$openDetails = $details.filter( "[open]" );
+							$openDetails = ( $openDetails.length === 0 ? $details : $openDetails ).eq( 0 );
+
+							$details
 								.attr({
-									"aria-hidden": "true",
-									"aria-expanded": "false"
-								});
-
-						$openDetails
-							.addClass( "fade in" )
-							.attr({
-									"aria-hidden": "false",
-									"aria-expanded": "true"
+									role: "tabpanel",
+									open: "open"
 								})
-							.parent()
-								.find( "> ul [href$='" + $openDetails.attr( "id" ) + "']" )
-									.trigger( "click" );
-					}
+								.not( $openDetails )
+									.addClass( "fade out" )
+									.attr({
+										"aria-hidden": "true",
+										"aria-expanded": "false"
+									});
 
-					$summary.attr( "aria-hidden", !isSmallView );
-					$tablist.attr( "aria-hidden", isSmallView );
-				} else {
+							$openDetails
+								.addClass( "fade in" )
+								.attr({
+										"aria-hidden": "false",
+										"aria-expanded": "true"
+									})
+								.parent()
+									.find( "> ul [href$='" + $openDetails.attr( "id" ) + "']" )
+										.trigger( "click" );
+						}
 
-					// Enable equal heights for large view
-					if ( $elm.attr( "class" ).indexOf( equalHeightClass ) !== -1 ) {
-						$elm.toggleClass( equalHeightClass + " " + equalHeightOffClass );
+						$summary.attr( "aria-hidden", !isSmallView );
+						$tablist.attr( "aria-hidden", isSmallView );
+					} else {
+
+						// Enable equal heights for large view
+						if ( $elm.attr( "class" ).indexOf( equalHeightClass ) !== -1 ) {
+							$elm.toggleClass( equalHeightClass + " " + equalHeightOffClass );
+						}
 					}
 				}
-				oldIsSmallView = isSmallView;
 			}
+			oldIsSmallView = isSmallView;
 		}
 	};
 
