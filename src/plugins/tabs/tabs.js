@@ -531,22 +531,18 @@ var componentName = "wb-tabs",
 
 		if ( initialized ) {
 			isSmallView = document.documentElement.className.indexOf( smallViewPattern ) !== -1;
-			$elms = $currentElm.length ? $currentElm : $( selector );
-			len = $elms.length;
 
-			for ( i = 0; i !== len; i += 1 ) {
-				$elm = $elms.eq( i );
-				$details = $elm.find( "> .tabpanels > details" );
+			if ( isSmallView !== oldIsSmallView ) {
+				$elms = $currentElm.length ? $currentElm : $( selector );
+				len = $elms.length;
 
-				if ( $details.length !== 0 ) {
-					if ( isSmallView !== oldIsSmallView ) {
+				for ( i = 0; i !== len; i += 1 ) {
+					$elm = $elms.eq( i );
+					$details = $elm.find( "> .tabpanels > details" );
+
+					if ( $details.length !== 0 ) {
 						$summary = $details.children( "summary" );
 						$tablist = $elm.children( "ul" );
-
-						// Disable equal heights for small view
-						if ( $elm.attr( "class" ).indexOf( equalHeightClass ) !== -1 ) {
-							$elm.toggleClass( equalHeightClass + " " + equalHeightOffClass );
-						}
 
 						if ( isSmallView ) {
 
@@ -591,14 +587,13 @@ var componentName = "wb-tabs",
 										.trigger( "click" );
 						}
 
-						$summary.attr( "aria-hidden", !isSmallView );
-						$tablist.attr( "aria-hidden", isSmallView );
-					} else {
-
-						// Enable equal heights for large view
-						if ( $elm.attr( "class" ).indexOf( equalHeightClass ) !== -1 ) {
+						// Enable equal heights for large view or disable for small view
+						if ( isSmallView !== $elm.hasClass( equalHeightOffClass ) ) {
 							$elm.toggleClass( equalHeightClass + " " + equalHeightOffClass );
 						}
+
+						$summary.attr( "aria-hidden", !isSmallView );
+						$tablist.attr( "aria-hidden", isSmallView );
 					}
 				}
 			}
