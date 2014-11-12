@@ -337,7 +337,7 @@ var componentName = "wb-tabs",
 			listItems = $tabList.children().get(),
 			listCounter = listItems.length - 1,
 			isDetails = $panels[ 0 ].nodeName.toLowerCase() === "details",
-			isActive, item, link;
+			isActive, item, link, panelId;
 
 		$panels.attr( "tabindex", "-1" );
 
@@ -358,10 +358,13 @@ var componentName = "wb-tabs",
 			isActive = item.className.indexOf( "active" ) !== -1;
 
 			link = item.getElementsByTagName( "a" )[ 0 ];
+			panelId = link.getAttribute( "href" ).substring( 1 );
+
 			link.tabIndex = isActive ? "0" : "-1";
 			link.setAttribute( "role", "tab" );
 			link.setAttribute( "aria-selected", isActive ? "true" : "false" );
-			link.setAttribute( "aria-controls", link.getAttribute( "href" ).substring( 1 ) );
+			link.setAttribute( "aria-controls", panelId );
+			link.id = panelId + "-lnk";
 		}
 		$tabList.attr( "aria-live", "off" );
 	},
