@@ -15,10 +15,6 @@ $medGray: #ccc;
 	position: relative;
 }
 
-%tab-position-relative {
-	position: absolute;
-}
-
 %tab-zindex-100 {
 	z-index: 100;
 }
@@ -292,8 +288,8 @@ $medGray: #ccc;
 		padding-bottom: 4.375em;
 
 		[role="tablist"] {
-			@extend %tab-position-relative;
 			bottom: 0;
+			position: absolute;
 			width: 100%;
 
 			li {

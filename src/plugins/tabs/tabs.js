@@ -56,7 +56,7 @@ var componentName = "wb-tabs",
 			open = "open",
 			$panels, $tablist, activeId, $openPanel, $elm, elmId,
 			settings, $panel, i, len, tablist, isOpen,
-			newId, positionY, groupClass;
+			newId, positionY, groupClass, $tabPanels;
 
 		if ( elm ) {
 			$elm = $( elm );
@@ -138,8 +138,11 @@ var componentName = "wb-tabs",
 			if ( !isCarousel ) {
 				$elm.addClass( "tabs-acc" );
 				groupClass = elmId + "-grp";
-				$panels = $elm.find( "> .tabpanels > details" );
+				$tabPanels = $elm.children( ".tabpanels" );
+				$panels = $tabPanels.children( "details" );
 				len = $panels.length;
+
+				$tabPanels.detach();
 
 				// Ensure there is only one panel open
 				// Order of priority is hash, open property, first details
@@ -183,7 +186,7 @@ var componentName = "wb-tabs",
 							open: open
 						});
 						$panel.addClass( ( Modernizr.details ? "" :  open + " " ) +
-							"fade " + ( isOpen ? "in" : "out" ) );
+							"fade " + ( isOpen ? "in" : "out wb-inv" ) );
 					}
 
 					tablist += "<li" + ( isOpen ? " class='active'" : "" ) +
@@ -192,13 +195,15 @@ var componentName = "wb-tabs",
 				}
 
 				$tablist = $( tablist + "</ul>" );
+				$tabPanels.find( "> details > summary" )
+					.addClass( "wb-toggle tgl-tab" )
+					.attr( "data-toggle", "{\"parent\": \"#" + elmId +
+						"\", \"group\": \"." + groupClass + "\"}" );
+
 				$elm
 					.prepend( $tablist )
-					.find( "> .tabpanels > details > summary" )
-						.addClass( "wb-toggle tgl-tab" )
-						.attr( "data-toggle", "{\"parent\": \"#" + elmId +
-							"\", \"group\": \"." + groupClass + "\"}" )
-						.trigger( "wb-init.wb-toggle" );
+					.append( $tabPanels )
+					.trigger( "wb-init.wb-toggle" );
 			} else if ( $openPanel && $openPanel.length !== 0 ) {
 				$panels.filter( ".in" )
 					.addClass( "out" )
@@ -477,7 +482,7 @@ var componentName = "wb-tabs",
 			current = $elm.find( "> .tabpanels > .in" ).prevAll( "[role=tabpanel]" ).length,
 			next = current > len ? 0 : current + ( event.shiftto ? event.shiftto : 1 );
 
-		onSelect( $panels.eq( ( next > len - 1 ) ? 0 : ( next < 0 ) ? len - 1 : next ) );
+		onSelect( $panels[( next > len - 1 ) ? 0 : ( next < 0 ) ? len - 1 : next ].id );
 	},
 
 	/**
@@ -485,15 +490,15 @@ var componentName = "wb-tabs",
 	 * @param (string) id Id attribute of the panel
 	 */
 	onSelect = function( id ) {
-		var selector = "#" + id,
-			$panel = $( selector );
+		var panelSelector = "#" + id,
+			$panel = $( panelSelector );
 
 		if ( isSmallView && $panel[ 0 ].nodeName.toLowerCase() === "details" ) {
 			if ( !$panel.attr( "open" ) ) {
 				$panel.children( "summary" ).trigger( "click" );
 			}
 		} else {
-			$( selector + "-lnk" ).trigger( "click" );
+			$( panelSelector + "-lnk" ).trigger( "click" );
 		}
 	},
 
@@ -539,7 +544,7 @@ var componentName = "wb-tabs",
 	 * @param {jQuery Object} $currentElm Element being initialized (only during initialization process).
 	 */
 	onResize = function( $currentElm ) {
-		var $elms, $elm, $details, $tablist, $openDetails,
+		var $elms, $elm, $tabPanels, $details, $tablist, $openDetails,
 			$nonOpenDetails, $active, $summary, i, len;
 
 		if ( initialized ) {
@@ -551,9 +556,11 @@ var componentName = "wb-tabs",
 
 				for ( i = 0; i !== len; i += 1 ) {
 					$elm = $elms.eq( i );
-					$details = $elm.find( "> .tabpanels > details" );
+					$tabPanels = $elm.children( ".tabpanels" );
+					$details = $tabPanels.children( "details" );
 
 					if ( $details.length !== 0 ) {
+						$tabPanels.detach();
 						$summary = $details.children( "summary" );
 						$tablist = $elm.children( "ul" );
 
@@ -583,7 +590,7 @@ var componentName = "wb-tabs",
 									open: "open"
 								})
 								.not( $openDetails )
-									.addClass( "fade out" )
+									.addClass( "fade out wb-inv" )
 									.attr({
 										"aria-hidden": "true",
 										"aria-expanded": "false"
@@ -607,8 +614,15 @@ var componentName = "wb-tabs",
 
 						$summary.attr( "aria-hidden", !isSmallView );
 						$tablist.attr( "aria-hidden", isSmallView );
+
+						$elm.append( $tabPanels );
 					}
 				}
+
+				// Remove wb-inv from regular tabs that were used to prevent FOUC (after 300ms delay)
+				setTimeout(function() {
+					$( selector + " .tabpanels > details.wb-inv" ).removeClass( "wb-inv" );
+				}, 300 );
 			}
 			oldIsSmallView = isSmallView;
 		}
