@@ -7,56 +7,37 @@
 	"tag": "session-timeout",
 	"parentdir": "session-timeout",
 	"altLangPrefix": "session-timeout",
-	"dateModified": "2014-02-19"
+	"dateModified": "2014-11-14"
 }
 ---
 
-<span class="wb-sessto" data-wet-boew='{"inactivity": 30000, "logouturl": "../index-fr.html"}'></span>
+<span class="wb-sessto" data-wb-sessto='{"inactivity": 30000, "logouturl": "../index-fr.html"}'></span>
 
-<section>
-	<h2>Intention</h2>
-	<p>Créer un délai d'inactivité qui avertit les utilisateurs lorsque leur session est sur le point d'expirer.</p>
+<section class="wb-prettify all-pre">
+	<h2 id="overview" class="mrgn-tp-0">Aperçu</h2>
+	<p>Ce plugiciel aidera les propriétaires d'actifs Web à configurer leurs actifs avec une fonction «&#160;Expiration de la session&#160;». Celle-ci sera activée en deux circonstances&#160;: après une période de temps spécifique ou lors d'inactivité.</p>
+	<p>Par exemple, si l'utilisateur demeure trop longtemps sur la même page, la fonction sera activée. De même, si l’utilisateur demeure inactif, la fonction sera activée. Le fureteur affichera alors une boîte de dialogue proposant deux options à l'utilisateur ; s’il souhaite rester connecté il devra sélectionner «&#160;Continuer la session&#160;» et ce, dans un laps de temps précis et s’il souhaite mettre fin à sa session, il n’aura qu’à choisir «&#160;Mettre fin à la session&#160;». Advenant que l'utilisateur tarde trop à faire son choix, ce sera le paramètre de déconnexion qui s’affichera.</p>
+	<p>Le code que vous êtes autorisés à modifier (dans la page) est&#160;:</p>
+	<pre><code>&lt;span class="wb-sessto" data-wb-sessto='{"inactivity": 1200000, "reactionTime": 30000, "sessionalive": 1200000, "logouturl": "./", "refreshCallbackUrl": "./"'}"&gt;&lt;/span&gt;</code></pre>
+	<p>Les paramètres suivants vous permettent de configurer la fonction&#160;:</p>
+	<ul>
+		<li><strong>inactivity :</strong> période de temps d'inactivité après laquelle la boîte de dialogue apparaîtra (20 minutes par défaut).</li>
+		<li><strong>reactionTime :</strong> période de temps dont dispose l'utilisateur pour faire un choix lorsque la boîte de dialogue apparaît (3 minutes par défaut).</li>
+		<li><strong>sessionalive :</strong> période de temps durant laquelle la session demeure active avant que la boîte de dialogue n’apparaisse (20 minutes par défaut).</li>
+		<li><strong>logouturl :</strong> adresse URL à laquelle l’utilisateur est acheminé lorsque la session a expiré.</li>
+		<li><strong>refreshCallbackUrl :</strong> adresse URL pour effectuer une actualisation ajax, doit retourner "true".</li>
+	</ul>
+	<p>Le seul paramètre requis est logouturl, tous les autres champs sont facultatifs. Le JavaScript par défaut serait&#160;:</p>
+	<pre><code>&lt;span class="wb-sessto" data-wb-sessto='{"logouturl": "./"}'&gt;&lt;/span&gt;</code></pre>
+	<p><strong>Nota :</strong> Les paramètres inactivity, reactionTime et sessionAlive sont mis en millisecondes. Voici <a href="http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm" rel="external">un outil (disponible en anglais seulement)</a> qui vous aidera a convertir des minutes en millisecondes.</p>
+	<p><strong>Nota :</strong> Les paramètres sessionalive et inactivity devrait être égal à votre session sur le serveur web moins le temps de reactionTime. Si vous définissez paramètres sessionalive et inactivity avec le même temps que la session sur le serveur web, sans prendre en considération le temps reactionTime, alors la session sur le serveur sera fini dès que la fenêtre contextuelle apparaît pour prolonger la session.</p>
 </section>
 
-<div class="row">
+<section><h2 id="how">Configuration</h2>
+	<p>Ajoutez les lignes suivantes à la page&#160;:</p>
+	<pre><code>&lt;span class="wb-sessto" data-wb-sessto='{logouturl: "./"}'&gt;&lt;/span&gt;</code></pre>
+</section>
 
-	<div class="col-md-3">
-		<div class="list-group">
-			<a href="#overview" class="list-group-item">Aperçu</a>
-			<a href="#how" class="list-group-item">Configuration</a>
-			<a href="#try" class="list-group-item">Faites un essai</a>
-		</div>
-	</div>
-
-	<div class="col-md-9">
-
-		<section class="wb-prettify all-pre">
-			<h2 id="overview" class="mrgn-tp-0">Aperçu</h2>
-			<p>Ce plugiciel aidera les propriétaires d'actifs Web à configurer leurs actifs avec une fonction «&#160;Expiration de la session&#160;». Celle-ci sera activée en deux circonstances&#160;: après une période de temps spécifique ou lors d'inactivité.</p>
-			<p>Par exemple, si l'utilisateur demeure trop longtemps sur la même page, la fonction sera activée. De même, si l’utilisateur demeure inactif, la fonction sera activée. Le fureteur affichera alors une boîte de dialogue proposant deux options à l'utilisateur ; s’il souhaite rester connecté il devra sélectionner «&#160;Continuer la session&#160;» et ce, dans un laps de temps précis et s’il souhaite mettre fin à sa session, il n’aura qu’à choisir «&#160;Mettre fin à la session&#160;». Advenant que l'utilisateur tarde trop à faire son choix, ce sera le paramètre de déconnexion qui s’affichera.</p>
-			<p>Le code que vous êtes autorisés à modifier (dans la page) est&#160;:</p>
-			<pre><code>&lt;span class="wb-sessto" data-wet-boew='{"inactivity": 1200000, "reactionTime": 30000, "sessionalive": 1200000, "logouturl": "./", "refreshCallbackUrl": "./"'}"&gt;&lt;/span&gt;</code></pre>
-			<p>Les paramètres suivants vous permettent de configurer la fonction&#160;:</p>
-			<ul>
-				<li><strong>inactivity :</strong> période de temps d'inactivité après laquelle la boîte de dialogue apparaîtra (20 minutes par défaut).</li>
-				<li><strong>reactionTime :</strong> période de temps dont dispose l'utilisateur pour faire un choix lorsque la boîte de dialogue apparaît (3 minutes par défaut).</li>
-				<li><strong>sessionalive :</strong> période de temps durant laquelle la session demeure active avant que la boîte de dialogue n’apparaisse (20 minutes par défaut).</li>
-				<li><strong>logouturl :</strong> adresse URL à laquelle l’utilisateur est acheminé lorsque la session a expiré.</li>
-				<li><strong>refreshCallbackUrl :</strong> adresse URL pour effectuer une actualisation ajax, doit retourner "true".</li>
-			</ul>
-			<p>Le seul paramètre requis est logouturl, tous les autres champs sont facultatifs. Le JavaScript par défaut serait&#160;:</p>
-			<pre><code>&lt;span class="wb-sessto" data-wet-boew='{"logouturl": "./"}'&gt;&lt;/span&gt;</code></pre>
-			<p><strong>Nota :</strong> Les paramètres inactivity, reactionTime et sessionAlive sont mis en millisecondes. Voici <a href="http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm" rel="external">un outil (disponible en anglais seulement)</a> qui vous aidera a convertir des minutes en millisecondes.</p>
-			<p><strong>Nota :</strong> Les paramètres sessionalive et inactivity devrait être égal à votre session sur le serveur web moins le temps de reactionTime. Si vous définissez paramètres sessionalive et inactivity avec le même temps que la session sur le serveur web, sans prendre en considération le temps reactionTime, alors la session sur le serveur sera fini dès que la fenêtre contextuelle apparaît pour prolonger la session.</p>
-		</section>
-		<section><h2 id="how">Configuration</h2>
-			<p>Ajoutez les lignes suivantes à la page&#160;:</p>
-			<pre><code>&lt;span class="wb-sessto" data-wet-boew='{logouturl: "./"}'&gt;&lt;/span&gt;</code></pre>
-		</section>
-		<section><h2 id="try">Faites un essai</h2>
-			<p>Cette page a été configurée pour expirer dans 30 secondes. Après ce délai, vous aurez 3 minutes pour choisir de la garder active ou non. Veuillez svp attendre que la boîte de dialogue apparaisse.</p>
-		</section>
-		
-	</div>
-	
-</div>
+<section><h2 id="try">Faites un essai</h2>
+	<p>Cette page a été configurée pour expirer dans 30 secondes. Après ce délai, vous aurez 3 minutes pour choisir de la garder active ou non. Veuillez svp attendre que la boîte de dialogue apparaisse.</p>
+</section>
