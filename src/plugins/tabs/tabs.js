@@ -494,11 +494,11 @@ var componentName = "wb-tabs",
 			$panel = $( panelSelector );
 
 		if ( isSmallView && $panel[ 0 ].nodeName.toLowerCase() === "details" ) {
-			if ( !$panel.attr( "open" ) ) {
-				$panel.children( "summary" ).trigger( "click" );
-			}
+			$panel.children( "summary" ).trigger( $panel.attr( "open" ) ? setFocusEvent : "click" );
 		} else {
-			$( panelSelector + "-lnk" ).trigger( "click" );
+			$( panelSelector + "-lnk" )
+				.trigger( "click" )
+				.trigger( setFocusEvent );
 		}
 	},
 
@@ -809,7 +809,7 @@ $document.on( "click keydown", selector + " [role=tabpanel]", function( event ) 
 			$( currentTarget )
 				.closest( selector )
 					.find( "[href$='#" + currentTarget.id + "']" )
-						.trigger( "setfocus.wb" );
+						.trigger( setFocusEvent );
 		}
 	}
 });
