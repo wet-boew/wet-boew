@@ -22,6 +22,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 	resetEvent = "reset" + selector,
 	keepaliveEvent = "keepalive" + selector,
 	inactivityEvent = "inactivity" + selector,
+	dataAttr = componentName,
 
 	/*
 	 * Plugin users can override these defaults by setting attributes on the html elements that the
@@ -53,10 +54,15 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 		if ( elm ) {
 			$elm = $( elm );
 
+			// For backwards compatibility where data-wet-boew was used instead of data-wb-sessto
+			if ( !$elm.attr( "data-" + componentName ) ) {
+				dataAttr = "wet-boew";
+			}
+
 			// Merge default settings with overrides from the plugin element
 			// and save back to the element for future reference
-			settings = $.extend( {}, defaults, window[ componentName ], $elm.data( "wet-boew" ) );
-			$elm.data( "wet-boew", settings );
+			settings = $.extend( {}, defaults, window[ componentName ], $elm.data( dataAttr ) );
+			$elm.data( dataAttr, settings );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
