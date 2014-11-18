@@ -321,7 +321,8 @@ var componentName = "wb-feeds",
 	 */
 	parseEntries = function( entries, startAt, limit, $elm, feedtype ) {
 		var cap = ( limit > 0 && limit < ( entries.length - startAt ) ? limit : ( entries.length - startAt ) ) + startAt,
-			showPagination = (cap < entries.length),
+			displaying = cap - startAt,
+			showPagination = (displaying <= entries.length),
 			result = "",
 			compare = wb.date.compare,
 			$details = $elm.closest( "details" ),
@@ -330,7 +331,7 @@ var componentName = "wb-feeds",
 			hasVisibilityHandler = "vis-handler",
 			i, sorted, sortedEntry, $tabs;
 
-		$elm.data( "displaying", cap - startAt );
+		$elm.data( "displaying", displaying );
 
 		sorted = entries.sort( function( a, b ) {
 			return compare( b.publishedDate, a.publishedDate );
@@ -397,6 +398,13 @@ var componentName = "wb-feeds",
 			.append( result );
 
 		if ( showPagination ) {
+			//Check for and remove outdated pagination markup
+			if ( $elm.hasClass( "mrgn-bttm-0" ) ) {
+				$elm.removeClass( "mrgn-bttm-0" );
+				$elm.next().remove();
+				$elm.next().remove();
+			}
+
 			paginationMarkup = "<div class=\"clearfix\"></div><ul class=\"pager mrgn-tp-sm\"><li";
 
 			if ( $elm.data( "startAt" ) === 0 ) {
@@ -442,6 +450,41 @@ $document.on( "ajax-fetched.wb", selector + " " + feedLinkSelector, function( ev
 		}
 	}
 });
+
+// Listen for clicks on pagination links
+$document.on( "click vclick", ".wb-feeds .pager a[rel]", function( event ) {
+	var $linkCtx = $(event.target),
+		$content = $(event.target).closest(".wb-feeds").find(".feeds-cont"),
+		newStartAt;
+
+	if ( $linkCtx.attr("rel") === "next" ) {
+		newStartAt = $content.data( "startAt" ) + $content.data( "displayLimit" );
+
+		// Ensure that the next page's starting entry isn't higher than the highest entry
+		if ( newStartAt < $content.data( "entries" ).length ) {
+
+			// Set the new start entry's number
+			$content.data( "startAt", newStartAt);
+
+			// Update the feed entries that are shown
+			// TODO: Don't force "generic"
+			parseEntries( $content.data( "entries" ), newStartAt, $content.data( "displayLimit" ), $content, "generic" );
+		}
+	} else {
+		newStartAt = $content.data( "startAt" ) - $content.data( "displayLimit" );
+
+		// Ensure that the previous page's starting entry isn't smaller than 0
+		if ( newStartAt >= 0 ) {
+
+			// Set the new start entry's number
+			$content.data( "startAt", newStartAt );
+
+			// Update the feed entries that are shown
+			// TODO: Don't force "generic"
+			parseEntries( $content.data( "entries" ), newStartAt, $content.data( "displayLimit" ), $content, "generic" );
+		}
+	}
+} );
 
 // Bind the init event to the plugin
 $document.on( "timerpoke.wb " + initEvent, selector, init );
