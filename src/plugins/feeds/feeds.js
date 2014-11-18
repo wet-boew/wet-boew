@@ -321,7 +321,8 @@ var componentName = "wb-feeds",
 	 */
 	parseEntries = function( entries, startAt, limit, $elm, feedtype ) {
 		var cap = ( limit > 0 && limit < ( entries.length - startAt ) ? limit : ( entries.length - startAt ) ) + startAt,
-			showPagination = (cap < entries.length),
+			displaying = cap - startAt,
+			showPagination = (displaying <= entries.length),
 			result = "",
 			compare = wb.date.compare,
 			$details = $elm.closest( "details" ),
@@ -330,7 +331,7 @@ var componentName = "wb-feeds",
 			hasVisibilityHandler = "vis-handler",
 			i, sorted, sortedEntry, $tabs;
 
-		$elm.data( "displaying", cap - startAt );
+		$elm.data( "displaying", displaying );
 
 		sorted = entries.sort( function( a, b ) {
 			return compare( b.publishedDate, a.publishedDate );
@@ -396,7 +397,14 @@ var componentName = "wb-feeds",
 			.addClass( "feed-active" )
 			.append( result );
 
-		if ( showPagination && !$elm.hasClass( "mrgn-bttm-0" ) ) {
+		if ( showPagination ) {
+			//Check for and remove outdated pagination markup
+			if ( $elm.hasClass( "mrgn-bttm-0" ) ) {
+				$elm.removeClass( "mrgn-bttm-0" );
+				$elm.next().remove();
+				$elm.next().remove();
+			}
+
 			paginationMarkup = "<div class=\"clearfix\"></div><ul class=\"pager mrgn-tp-sm\"><li";
 
 			if ( $elm.data( "startAt" ) === 0 ) {
