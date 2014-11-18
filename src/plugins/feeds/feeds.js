@@ -409,7 +409,7 @@ var componentName = "wb-feeds",
 			.addClass( "feed-active" )
 			.append( result );
 
-		if ( showPagination ) {
+		if ( showPagination && !$elm.hasClass( "mrgn-bttm-0" ) ) {
 			paginationMarkup = "<div class=\"clearfix\"></div><ul class=\"pager mrgn-tp-sm\"><li";
 
 			if ( $elm.data( "startAt" ) === 0 ) {
@@ -455,6 +455,41 @@ $document.on( "ajax-fetched.wb", selector + " " + feedLinkSelector, function( ev
 		}
 	}
 });
+
+// Listen for clicks on pagination links
+$document.on( "click vclick", ".wb-feeds .pager a[rel]", function( event ) {
+	var $linkCtx = $(event.target),
+		$content = $(event.target).closest(".wb-feeds").find(".feeds-cont"),
+		newStartAt;
+
+	if ( $linkCtx.attr("rel") === "next" ) {
+		newStartAt = $content.data( "startAt" ) + $content.data( "displayLimit" );
+
+		// Ensure that the next page's starting entry isn't higher than the highest entry
+		if ( newStartAt < $content.data( "entries" ).length ) {
+
+			// Set the new start entry's number
+			$content.data( "startAt", newStartAt);
+
+			// Update the feed entries that are shown
+			// TODO: Don't force "generic"
+			parseEntries( $content.data( "entries" ), newStartAt, $content.data( "displayLimit" ), $content, "generic" );
+		}
+	} else {
+		newStartAt = $content.data( "startAt" ) - $content.data( "displayLimit" );
+
+		// Ensure that the previous page's starting entry isn't smaller than 0
+		if ( newStartAt >= 0 ) {
+
+			// Set the new start entry's number
+			$content.data( "startAt", newStartAt );
+
+			// Update the feed entries that are shown
+			// TODO: Don't force "generic"
+			parseEntries( $content.data( "entries" ), newStartAt, $content.data( "displayLimit" ), $content, "generic" );
+		}
+	}
+} );
 
 // Bind the init event to the plugin
 $document.on( "timerpoke.wb " + initEvent, selector, init );
