@@ -20,6 +20,7 @@ var componentName = "wb-feeds",
 	$document = wb.doc,
 	patt = /\\u([\d\w]{4})/g,
 	limitTypes = [ "load", "display" ],
+	i18n, i18nText,
 
 	/**
 	 * @object Templates
@@ -185,6 +186,15 @@ var componentName = "wb-feeds",
 		var elm = wb.init( event, componentName, selector ),
 			fetch, url, $content, loadLimit, displayLimit, feeds, fType, last, i, callback, fElem, fIcon;
 
+		// Only initialize the i18nText once
+		if ( !i18nText ) {
+			i18n = wb.i18n;
+			i18nText = {
+				previous: i18n( "prv" ),
+				next: i18n( "nxt" )
+			};
+		}
+
 		if ( elm ) {
 			$content = $( elm ).find( ".feeds-cont" );
 			loadLimit = getLimit( elm, limitTypes[ 0 ] );
@@ -202,6 +212,7 @@ var componentName = "wb-feeds",
 			// Lets bind some variables to the node to ensure safe ajax thread counting
 
 			$content.data( "toProcess", feeds.length )
+					.data( "startAt", 0 )
 					.data( "loadLimit", loadLimit )
 					.data( "displayLimit", displayLimit )
 					.data( "entries", [] );
@@ -286,7 +297,7 @@ var componentName = "wb-feeds",
 		entries = $.merge( entries, $content.data( "entries" ) );
 
 		if ( toProcess === 1 ) {
-			parseEntries( entries, $content.data( "displayLimit" ), $content, this.feedType );
+			parseEntries( entries, $content.data( "startAt" ), $content.data( "displayLimit" ), $content, this.feedType );
 			return 0;
 		}
 
@@ -303,12 +314,14 @@ var componentName = "wb-feeds",
 	 * Parses the results from a JSON request and appends to an element
 	 * @method parseEntries
 	 * @param {object} entries Results from a JSON request.
+	 * @param {integer} startAt Entry from which to start appending results to the element.
 	 * @param {integer} limit Limit on the number of results to append to the element.
 	 * @param {jQuery DOM element} $elm Element to which the elements will be appended.
 	 * @return {url} The URL for the JSON request
 	 */
-	parseEntries = function( entries, limit, $elm, feedtype ) {
-		var cap = ( limit > 0 && limit < entries.length ? limit : entries.length ),
+	parseEntries = function( entries, startAt, limit, $elm, feedtype ) {
+		var cap = ( limit > 0 && limit < ( entries.length - startAt ) ? limit : ( entries.length - startAt ) ) + startAt,
+			showPagination = (cap < entries.length),
 			result = "",
 			compare = wb.date.compare,
 			$details = $elm.closest( "details" ),
@@ -317,11 +330,13 @@ var componentName = "wb-feeds",
 			hasVisibilityHandler = "vis-handler",
 			i, sorted, sortedEntry, $tabs;
 
+		$elm.data( "displaying", cap - startAt );
+
 		sorted = entries.sort( function( a, b ) {
 			return compare( b.publishedDate, a.publishedDate );
 		});
 
-		for ( i = 0; i !== cap; i += 1 ) {
+		for ( i = startAt; i !== cap; i += 1 ) {
 			sortedEntry = sorted[ i ];
 			result += Templates[ feedtype ]( sortedEntry );
 		}
@@ -340,7 +355,7 @@ var componentName = "wb-feeds",
 							.on( "wb-updated.wb-tabs", function( event, $newPanel ) {
 								var $feedCont = $newPanel.find( feedContSelector );
 								if ( !$feedCont.hasClass( "feed-active" ) ) {
-									activateFeed( $feedCont );
+									activateFeed( $feedCont, showPagination );
 								}
 							})
 							.addClass( hasVisibilityHandler );
@@ -353,13 +368,13 @@ var componentName = "wb-feeds",
 					.children( "summary" )
 						.on( "click.wb-feeds", function( event ) {
 							var $summary = $( event.currentTarget ).off( "click.wb-feeds" );
-							activateFeed( $summary.parent().find( feedContSelector ) );
+							activateFeed( $summary.parent().find( feedContSelector ), showPagination );
 						});
 			}
 		}
 
 		if ( activate ) {
-			activateFeed( $elm );
+			activateFeed( $elm, showPagination );
 		}
 
 		return true;
@@ -369,16 +384,35 @@ var componentName = "wb-feeds",
 	 * Activates feed results view
 	 * @method activateFeed
 	 * @param = {jQuery object} $elm Feed container
+	 * @param = {boolean} showPagination Show pagination if `true`
 	 */
-	activateFeed = function( $elm ) {
+	activateFeed = function( $elm, showPagination ) {
 		var result = $elm.data( componentName + "-result" ),
 			postProcess = $elm.data( componentName + "-postProcess" ),
-			i, postProcessSelector;
+			i, postProcessSelector, paginationMarkup;
 
 		$elm.empty()
 			.removeClass( "waiting" )
 			.addClass( "feed-active" )
 			.append( result );
+
+		if ( showPagination ) {
+			paginationMarkup = "<div class=\"clearfix\"></div><ul class=\"pager mrgn-tp-sm\"><li";
+
+			if ( $elm.data( "startAt" ) === 0 ) {
+				paginationMarkup += " class=\"disabled\"";
+			}
+
+			paginationMarkup += "><a href=\"#\" rel=\"prev\">" + i18nText.previous + "</a></li><li";
+
+			if ( ( $elm.data( "entries" ).length - $elm.data( "startAt" ) - $elm.data( "displaying" ) ) <= 0 ) {
+				paginationMarkup += " class=\"disabled\"";
+			}
+
+			paginationMarkup += "><a href=\"#\" rel=\"next\">" + i18nText.next + "</a></li></ul>";
+
+			$elm.addClass( "mrgn-bttm-0" ).after( paginationMarkup );
+		}
 
 		if ( postProcess ) {
 			for ( i = postProcess.length - 1; i !== -1; i -= 1 ) {
