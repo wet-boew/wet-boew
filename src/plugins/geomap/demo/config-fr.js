@@ -142,7 +142,7 @@ var wet_boew_geomap = {
 			// unique value style
 			/*style: {
 				type: "unique",
-				field: "Location",
+				field: "Emplacement",
 				init: {
 					"Bayshore & Richmond": {
 						graphicName: "x",
@@ -167,7 +167,7 @@ var wet_boew_geomap = {
 					strokeWidth: 1,
 					fillColor: "blue",
 					strokeColor: "blue",
-					label: "${Location}"
+					label: "${Emplacement}"
 				}
 			}
 
