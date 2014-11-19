@@ -138,28 +138,35 @@ var wet_boew_geomap = {
 				}
 			}
 
-			/*
 			// unique value style
-			style: {
+			/*style: {
 				type: "unique",
 				field: "Location",
 				init: {
 					"Bayshore & Richmond": {
-						pointRadius: "25",
-						strokeWidth: "20",
-						strokeColor: "#800080"
+						graphicName: "x",
+						pointRadius: 8,
+						strokeWidth: 1,
+						fillColor: "red",
+						fillOpacity: 0.9,
+						strokeColor: "red"
 					},
 					"Baseline & Greenbank": {
-						pointRadius: "25",
-						strokeWidth: "10",
-						fillColor: "#800080"
+						graphicName: "x",
+						pointRadius: 8,
+						fillOpacity: 0.9,
+						strokeWidth: 1,
+						fillColor: "green",
+						strokeColor: "green"
 					}
 				},
 				select: {
-					pointRadius: 30,
-					externalGraphic: "demo/icons/OverIcon.png",
-					label: "${Location}",
-					fillOpacity: 0.90
+					pointRadius: 8,
+					fillOpacity: 0.9,
+					strokeWidth: 1,
+					fillColor: "blue",
+					strokeColor: "blue",
+					label: "${Location}"
 				}
 			}
 
@@ -171,10 +178,10 @@ var wet_boew_geomap = {
 					value: [45.36],
 					filter: "LESS_THAN",
 					init: {
-						pointRadius: "15",
-						strokeColor: "#800000",
-						fillColor: "#FFFFFF",
-						fillOpacity: 0.90
+						graphicName: "triangle",
+						pointRadius: "5",
+						strokeColor: "green",
+						fillColor: "green"
 					}
 				},
 				{
@@ -182,10 +189,10 @@ var wet_boew_geomap = {
 					value: [45.37, 45.42],
 					filter: "BETWEEN",
 					init: {
-						pointRadius: "25",
-						strokeColor: "#000000",
-						fillColor: "#222222",
-						fillOpacity: 0.90
+						graphicName: "triangle",
+						pointRadius: "10",
+						strokeColor: "orange",
+						fillColor: "orange"
 					}
 				},
 				{
@@ -193,19 +200,13 @@ var wet_boew_geomap = {
 					value: [45.42],
 					filter: "GREATER_THAN",
 					init: {
-						pointRadius: "10",
-						strokeColor: "#800080",
-						fillColor: "#800080"
+						graphicName: "triangle",
+						pointRadius: "15",
+						strokeColor: "red",
+						fillColor: "red"
 					}
-				}],
-				select: {
-					pointRadius: "30",
-					externalGraphic: "demo/icons/OverIcon.png",
-					label: "Selected",
-					fillOpacity: 0.90
-				}
-			}
-			*/
+				}]
+			}*/
 		}
 	]
 };
