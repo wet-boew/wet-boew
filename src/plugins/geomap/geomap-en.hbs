@@ -591,3 +591,78 @@
 		</details>
 	</section>
 </section>
+
+<section>
+	<h2>ESRI REST basemap example</h2>
+	<p>Geomap can be configured to use an ESRI REST service as basemap. Configuration can be made in the config file in basemap property.</p>
+
+	<!-- GeomapStart -->
+	<div id="esri_map"
+		class="wb-geomap"
+		data-wb-geomap='{
+			"layersFile": "demo/config-esri-en{{environment.suffix}}.js"
+		}'>
+		<div class="row">
+			<div class="col-md-12">
+				<!-- Insert Map Start (mandatory) -->
+				<div class="wb-geomap-map col-md-4"></div>
+				<!-- Insert Map End -->
+
+				<!-- Insert Layer Data Start (mandatory) -->
+				<div class="wb-geomap-layers col-md-4">
+				</div>
+				<!-- Insert Layer Data End -->
+			</div>
+		</div>
+	</div>
+	<!-- GeomapEnd -->
+
+		<section>
+		<h3>Code</h3>
+		<details class="mrgn-tp-lg">
+			<summary>View code</summary>
+			<pre><code>&lt;!-- GeomapStart --&gt;
+&lt;div id=&quot;esri_map&quot;
+	class=&quot;wb-geomap&quot;
+	data-wb-geomap='{
+		&quot;layersFile&quot;: &quot;demo/config-esri-en{{environment.suffix}}.js&quot;
+	}'&gt;
+	&lt;div class=&quot;row&quot;&gt;
+		&lt;div class=&quot;col-md-12&quot;&gt;
+			&lt;!-- Insert Map Start (mandatory) --&gt;
+			&lt;div class=&quot;wb-geomap-map col-md-4&quot;&gt;&lt;/div&gt;
+			&lt;!-- Insert Map End --&gt;
+
+			&lt;!-- Insert Layer Data Start (mandatory) --&gt;
+			&lt;div class=&quot;wb-geomap-layers col-md-4&quot;&gt;&lt;/div&gt;
+			&lt;!-- Insert Layer Data End --&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- GeomapEnd --&gt;</code></pre>
+		</details>
+
+		<details class="mrgn-tp-lg">
+			<summary>View config file</summary>
+			<pre><code>
+			var wet_boew_geomap = {
+				basemap : {
+					title: &quot;Basic Map&quot;,
+					type: &quot;esri&quot;,
+					url: &quot;http://geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/provinces1c/MapServer/export&quot;,
+					options: { singleTile: false, ratio: 1.0, projection: &quot;EPSG:3978&quot;, fractionalZoom: true },
+					mapOptions: {
+						maxExtent: &quot;-3000000.0, -800000.0, 4000000.0, 3900000.0&quot;,			
+						maxResolution: &quot;auto&quot;,
+						projection: &quot;EPSG:3978&quot;,
+						restrictedExtent: &quot;-3000000.0, -800000.0, 4000000.0, 3900000.0&quot;,
+						units: &quot;m&quot;,
+						displayProjection: &quot;EPSG:4269&quot;,
+						numZoomLevels: 2
+					}
+				}
+			};
+		</code></pre>
+		</details>
+	</section>
+</section>
