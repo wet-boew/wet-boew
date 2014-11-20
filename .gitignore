@@ -1,6 +1,7 @@
 nbproject/*
 .sass-cache/
 .c9revisions/*
+.idea/*
 .DS_Store
 jruby*.jar
 dist/*
