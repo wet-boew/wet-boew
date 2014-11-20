@@ -544,7 +544,7 @@ var componentName = "wb-tabs",
 	 * @param {jQuery Object} $currentElm Element being initialized (only during initialization process).
 	 */
 	onResize = function( $currentElm ) {
-		var $elms, $elm, $tabPanels, $details, $tablist, $openDetails,
+		var $elms, $elm, $tabPanels, $details, $tablist, $openDetails, openDetailsId,
 			$nonOpenDetails, $active, $summary, i, len;
 
 		if ( initialized ) {
@@ -582,6 +582,8 @@ var componentName = "wb-tabs",
 
 							// Switch to large view
 							$openDetails = $details.filter( "[open]" );
+							openDetailsId = $openDetails.attr( "id" );
+
 							$openDetails = ( $openDetails.length === 0 ? $details : $openDetails ).eq( 0 );
 
 							$details
@@ -601,10 +603,7 @@ var componentName = "wb-tabs",
 								.attr({
 										"aria-hidden": "false",
 										"aria-expanded": "true"
-									})
-								.parent()
-									.find( "> ul [href$='" + $openDetails.attr( "id" ) + "']" )
-										.trigger( "click" );
+									});
 						}
 
 						// Enable equal heights for large view or disable for small view
@@ -616,6 +615,10 @@ var componentName = "wb-tabs",
 						$tablist.attr( "aria-hidden", isSmallView );
 
 						$elm.append( $tabPanels );
+
+						if ( oldIsSmallView ) {
+							$elm.find( "> ul [href$='" + openDetailsId + "']" ).trigger( "click" );
+						}
 					}
 				}
 
