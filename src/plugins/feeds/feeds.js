@@ -101,6 +101,19 @@ var componentName = "wb-feeds",
 					"</div></section>" +
 					"</li>";
 		},
+        /**
+         * [pinterest template]
+         * @param  {entry object}    data
+         * @return {string}    HTML string of formatted using a simple list / anchor view
+         */
+        pinterest: function( data ) {
+            var content = fromCharCode( data.content ),
+                lines = content.replace( "href=\"/pin", "href=\"https://www.pinterest.com/pin" ).replace( "<img ", "<img class='center-block' " ).split( "</a>" ),
+                promotion = lines.join("</a><br />");
+            return "<li class='media'>" + promotion +
+            ( data.publishedDate !== "" ? " <small class='small'>[" +
+            wb.date.toDateISO( data.publishedDate, true ) + "]</small>" : "" ) + "</li>";
+        },
 		/**
 		 * [generic template]
 		 * @param  {entry object}	data
@@ -223,7 +236,9 @@ var componentName = "wb-feeds",
 					// Let's bind the template to the Entries
 					if ( url.indexOf( "facebook.com" ) !== -1 ) {
 						fType = "facebook";
-					} else {
+					} else if ( url.indexOf( "pinterest.com" ) > -1  ) {
+                        fType = "pinterest";
+                    } else {
 						fType = "generic";
 					}
 				}
