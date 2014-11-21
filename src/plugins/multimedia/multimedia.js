@@ -890,6 +890,15 @@ $document.on( "keyup", selector, function( event ) {
 	}
 });
 
+// TODO: recode with a more efficient to use the API than DOM crawling
+$document.on( "wb-activate", selector, function( event ) {
+    var playerTarget = event.currentTarget,
+        ctrls = ".wb-mm-ctrls",
+        ref = expand( playerTarget ),
+        $this = ref[ 0 ];
+    $this.find( ctrls + " .playpause" ).trigger( "click" );
+});
+
 $document.on( "durationchange play pause ended volumechange timeupdate " +
 	captionsLoadedEvent + " " + captionsLoadFailedEvent + " " +
 	captionsVisibleChangeEvent + " " + cuepointEvent +
