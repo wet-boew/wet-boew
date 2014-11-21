@@ -164,7 +164,10 @@ var componentName = "wb-lbx",
 						$content.attr( "role", "document" );
 					}
 
-					$wrap.append( "<span tabindex='0' class='lbx-end wb-inv'></span>" );
+					$wrap.append( "<span tabindex='0' class='lbx-end wb-inv'></span>" )
+                        .find( ".activate-open" )
+                        .trigger( "wb-activate" );
+
 				},
 				change: function() {
 					var $item = this.currItem,
