@@ -24,7 +24,7 @@ $document.on( "ajax-fetch.wb", function( event ) {
 		fetchData;
 
 	// Filter out any events triggered by descendants
-	if ( caller = event.target || event.currentTarget === event.target ) {
+	if ( caller === event.target || event.currentTarget === event.target ) {
 		$.ajax( fetchOpts )
 			.done(function( response, status, xhr ) {
 				var responseType = typeof response;
