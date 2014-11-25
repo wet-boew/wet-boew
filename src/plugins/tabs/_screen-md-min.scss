@@ -30,4 +30,41 @@
 			@extend %tabs-screen-md-min-details;
 		}
 	}
+
+	&.carousel-s2 {
+		&.show-thumbs {
+			[role="tablist"] {
+				li {
+					&.active {
+						a {
+							border: 10px solid #666;
+							margin-bottom: 1px;
+							padding: 0;
+						}
+					}
+					
+					&[role="presentation"] {
+						display: inline-block;
+
+						img {
+							opacity: .5;
+							width: 140px;
+						}
+					}
+					
+					&[class="active"] {
+						img {
+							opacity: 1;
+						}
+					}
+					
+					&.prv,
+					&.tab-count,
+					&.nxt {
+						display: none;
+					}
+				}
+			}
+		}
+	}
 }
