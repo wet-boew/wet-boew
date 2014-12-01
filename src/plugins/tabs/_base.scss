@@ -208,6 +208,7 @@ $medGray: #ccc;
 	}
 
 	[role="tabpanel"] {
+		overflow-x: auto;
 		position: relative;
 		z-index: 1;
 	}
