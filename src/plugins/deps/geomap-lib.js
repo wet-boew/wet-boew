@@ -537,7 +537,7 @@ var componentName = "wb-geomap",
 							}
 							symbolizer = rule.symbolizer;
 
-							spanId = "legendSymbol_" + j;
+							spanId = "ls_" + layer.name + "_" + j;
 
 							symbolList += "<li><div class='row'>" +
 								"<div id='" + spanId + "' class='col-md-2 geomap-legend-symbol'></div>" +
