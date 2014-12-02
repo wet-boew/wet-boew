@@ -822,19 +822,19 @@ $document.on( "click", selector + " [role=tabpanel] a", function( event ) {
 	var currentTarget = event.currentTarget,
 		href = currentTarget.getAttribute( "href" ),
 		which = event.which,
-		$container, $panel, $summary;
+		$tabpanels, $panel, $summary;
 
 	// Ignore middle and right mouse buttons
 	if ( ( !which || which === 1 ) && href.charAt( 0 ) === "#" ) {
-		$container = $( currentTarget ).closest( selector );
-		$panel = $container.find( href + "[role=tabpanel]" );
+		$tabpanels = $( currentTarget ).closest( ".tabpanels" );
+		$panel = $tabpanels.children( href );
 		if ( $panel.length !== 0 ) {
 			event.preventDefault();
 			$summary = $panel.children( "summary" );
 			if ( $summary.length !== 0 && $summary.attr( "aria-hidden" ) !== "true" ) {
 				$summary.trigger( "click" );
 			} else {
-				$container.find( href + "-lnk" ).trigger( "click" );
+				$tabpanels.find( href + "-lnk" ).trigger( "click" );
 			}
 		}
 	}
