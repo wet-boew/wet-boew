@@ -76,4 +76,9 @@ $document.on( "click vclick", "#lbx-open-btn", function( event ) {
 	}
 });
 
+// Trigger multimedia player when ajax video is loaded in a lightbox
+$( ".wb-lbx" ).on( "mfpAjaxContentAdded", function(e) {
+	$( ".mfp-content" ).find( ".wb-mltmd" ).trigger( "wb-init.wb-mltmd" );
+});
+
 })( jQuery, wb );
