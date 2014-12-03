@@ -27,6 +27,7 @@ var componentName = "wb-tabs",
 	equalHeightOffClass = equalHeightClass + "-off",
 	activePanel = "-activePanel",
 	activateEvent = "click keydown",
+	ignoreHashChange = false,
 	pagePath = wb.pageUrlParts.pathname + "#",
 	$document = wb.doc,
 	$window = wb.win,
@@ -38,7 +39,8 @@ var componentName = "wb-tabs",
 
 	defaults = {
 		excludePlay: false,
-		interval: 6
+		interval: 6,
+		updateHash: false
 	},
 
 	/**
@@ -54,7 +56,7 @@ var componentName = "wb-tabs",
 			hashFocus = false,
 			isCarousel = true,
 			open = "open",
-			$panels, $tablist, activeId, $openPanel, $elm, elmId,
+			$panels, $tablist, activeId, $openPanel, openPanel, $elm, elmId,
 			settings, $panel, i, len, tablist, isOpen,
 			newId, positionY, groupClass, $tabPanels;
 
@@ -81,6 +83,7 @@ var componentName = "wb-tabs",
 								9 : $elm.hasClass( "fast" ) ?
 									3 : defaults.interval,
 					excludePlay: $elm.hasClass( "exclude-play" ),
+					updateHash: $elm.hasClass( "update-hash" ),
 					playing: $elm.hasClass( "playing" )
 				},
 				window[ componentName ],
@@ -257,6 +260,14 @@ var componentName = "wb-tabs",
 			onResize( $elm );
 
 			// Identify that initialization has completed
+			if ( settings.updateHash ) {
+				ignoreHashChange = true;
+				openPanel = $openPanel[ 0 ];
+				openPanel.id += "-off";
+				window.location.hash = activeId;
+				openPanel.id = activeId;
+				ignoreHashChange = false;
+			}
 			wb.ready( $elm, componentName );
 		}
 	},
@@ -383,6 +394,8 @@ var componentName = "wb-tabs",
 			$container = $next.closest( selector ),
 			mPlayers = $currPanel.find( ".wb-mltmd-inited" ).get(),
 			mPlayersLen = mPlayers.length,
+			next = $next[ 0 ],
+			nextId = next.id,
 			mPlayer, i, j, last;
 
 		// Handle the direction of the slide transitions
@@ -453,6 +466,13 @@ var componentName = "wb-tabs",
 		}
 
 		// Identify that the tabbed interface/carousel was updated
+		if ( $container.data( componentName ).settings.updateHash ) {
+			ignoreHashChange = true;
+			next.id += "-off";
+			window.location.hash = nextId;
+			next.id = nextId;
+			ignoreHashChange = false;
+		}
 		$container.trigger( updatedEvent, [ $next ] );
 	},
 
@@ -482,7 +502,7 @@ var componentName = "wb-tabs",
 			current = $elm.find( "> .tabpanels > .in" ).prevAll( "[role=tabpanel]" ).length,
 			next = current > len ? 0 : current + ( event.shiftto ? event.shiftto : 1 );
 
-		onSelect( $panels[( next > len - 1 ) ? 0 : ( next < 0 ) ? len - 1 : next ].id );
+		onSelect( $panels[ ( next > len - 1 ) ? 0 : ( next < 0 ) ? len - 1 : next ].id );
 	},
 
 	/**
@@ -519,7 +539,7 @@ var componentName = "wb-tabs",
 	 * @param {jQuery Event} event Event that triggered the function call
 	 */
 	onHashChange = function( event ) {
-		if ( initialized ) {
+		if ( initialized && !ignoreHashChange ) {
 			var hash = window.location.hash,
 				$hashTarget = $( hash );
 
@@ -532,8 +552,9 @@ var componentName = "wb-tabs",
 				} else {
 					$hashTarget
 						.parent()
-							.find( "> ul [href$='" + hash + "']" )
-								.trigger( "click" );
+							.parent()
+								.find( "> ul [href$='" + hash + "']" )
+									.trigger( "click" );
 				}
 			}
 		}
@@ -849,24 +870,33 @@ $window.on( "hashchange", onHashChange );
 $document.on( activateEvent, selector + " > .tabpanels > details > summary", function( event ) {
 	var which = event.which,
 		details = event.currentTarget.parentNode,
-		$details;
+		$details, $container, id;
 
 	if ( !( event.ctrlKey || event.altKey || event.metaKey ) &&
 		( !which || which === 1 || which === 13 || which === 32 ) ) {
 
+		id = details.id;
 		$details = $( details );
 
 		// Update sessionStorage with the current active panel
 		try {
 			sessionStorage.setItem(
 				pagePath + $details.closest( selector ).attr( "id" ) + activePanel,
-				details.id
+				id
 			);
 		} catch ( error ) {
 		}
 
 		// Identify that the tabbed interface was updated
-		$details.closest( selector ).trigger( updatedEvent, [ $details ] );
+		$container = $details.closest( selector );
+		if ( $container.data( componentName ).settings.updateHash ) {
+			ignoreHashChange = true;
+			details.id += "-off";
+			window.location.hash = id;
+			details.id = id;
+			ignoreHashChange = false;
+		}
+		$container.trigger( updatedEvent, [ $details ] );
 	}
 });
 
