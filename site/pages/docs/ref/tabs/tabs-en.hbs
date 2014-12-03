@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Dynamically stacks multiple sections of content, transforming them into a tabbed interface.",
 	"altLangPrefix": "tabs",
-	"dateModified": "2014-11-14"
+	"dateModified": "2014-12-03"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -216,7 +216,53 @@
 </section>
 
 <section>
-	<h2 id="config">Configuration options (carousel only)</h2>
+	<h2 id="config">Configuration options - Tabbed interface and carousel</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Option</th>
+				<th>Description</th>
+				<th>How to configure</th>
+				<th>Values</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Update the URL hash (<code>data-wb-tabs</code>) (v4.0.9+)</td>
+				<td>Configure the tab interface or carousel to update the URL hash every time the tab panel changes through the <code>updateHash</code> property of the <code>data-wb-tabs</code> attribute.</td>
+				<td>Add the <code>data-wb-tabs</code> attribute to the element with <code>class="wb-tabs"</code> and include the <code>updateHash</code> property with the number of seconds between tab rotations.
+					<pre><code>data-wb-tabs='{"updateHash": true}'</code></pre>
+				</td>
+				<td>
+					<dl>
+						<dt><code>false</code> (default):</dt>
+						<dd>URL hash is not updated every time the tab panel changes</dd>
+						<dt><code>true</code> (default):</dt>
+						<dd>URL hash is updated every time the tab panel changes</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>Update the URL hash (<code>update-hash</code>) (v4.0.9+)</td>
+				<td>>Configure the tab interface or carousel to update the URL hash every time the tab panel changes through the <code>update-hash</code> class.</td>
+				<td>Add <code>update-hash</code> after the <code>wb-tabs</code> class.
+					<pre><code>class="wb-tabs update-hash"</code></pre>
+				</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>URL hash is not updated every time the tab panel changes</dd>
+						<dt><code>update-hash</code></dt>
+						<dd>URL hash is updated every time the tab panel changes</dd>
+					</dl>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2 id="config-carousel">Configuration options - Carousel only</h2>
 	<table class="table">
 		<thead>
 			<tr>
