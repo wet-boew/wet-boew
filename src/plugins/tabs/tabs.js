@@ -56,7 +56,7 @@ var componentName = "wb-tabs",
 			hashFocus = false,
 			isCarousel = true,
 			open = "open",
-			$panels, $tablist, activeId, $openPanel, openPanel, $elm, elmId,
+			$panels, $tablist, activeId, $openPanel, $elm, elmId,
 			settings, $panel, i, len, tablist, isOpen,
 			newId, positionY, groupClass, $tabPanels;
 
@@ -259,15 +259,12 @@ var componentName = "wb-tabs",
 			initialized = true;
 			onResize( $elm );
 
-			// Identify that initialization has completed
+			// Update the URL hash if needed
 			if ( settings.updateHash ) {
-				ignoreHashChange = true;
-				openPanel = $openPanel[ 0 ];
-				openPanel.id += "-off";
-				window.location.hash = activeId;
-				openPanel.id = activeId;
-				ignoreHashChange = false;
+				updateHash( $openPanel[ 0 ] );
 			}
+
+			// Identify that initialization has completed
 			wb.ready( $elm, componentName );
 		}
 	},
@@ -387,6 +384,20 @@ var componentName = "wb-tabs",
 		$tabList.attr( "aria-live", "off" );
 	},
 
+	/**
+	 * @method updateHash
+	 * @param {DOM element} elm Tabpanel to be referenced in the URL hash
+	 */
+	updateHash = function( elm ) {
+		var elmId = elm.id;
+
+		ignoreHashChange = true;
+		elm.id += "-off";
+		window.location.hash = elmId;
+		elm.id = elmId;
+		ignoreHashChange = false;
+	},
+
 	updateNodes = function( $panels, $controls, $next, $control ) {
 		var $tabs = $controls.find( "[role=tab]" ),
 			newIndex = $tabs.index( $control ) + 1,
@@ -394,8 +405,6 @@ var componentName = "wb-tabs",
 			$container = $next.closest( selector ),
 			mPlayers = $currPanel.find( ".wb-mltmd-inited" ).get(),
 			mPlayersLen = mPlayers.length,
-			next = $next[ 0 ],
-			nextId = next.id,
 			mPlayer, i, j, last;
 
 		// Handle the direction of the slide transitions
@@ -465,14 +474,12 @@ var componentName = "wb-tabs",
 		} catch ( error ) {
 		}
 
-		// Identify that the tabbed interface/carousel was updated
+		// Update the URL hash if needed
 		if ( $container.data( componentName ).settings.updateHash ) {
-			ignoreHashChange = true;
-			next.id += "-off";
-			window.location.hash = nextId;
-			next.id = nextId;
-			ignoreHashChange = false;
+			updateHash( $next[ 0 ] );
 		}
+
+		// Identify that the tabbed interface/carousel was updated
 		$container.trigger( updatedEvent, [ $next ] );
 	},
 
@@ -870,32 +877,30 @@ $window.on( "hashchange", onHashChange );
 $document.on( activateEvent, selector + " > .tabpanels > details > summary", function( event ) {
 	var which = event.which,
 		details = event.currentTarget.parentNode,
-		$details, $container, id;
+		$details, $container;
 
 	if ( !( event.ctrlKey || event.altKey || event.metaKey ) &&
 		( !which || which === 1 || which === 13 || which === 32 ) ) {
 
-		id = details.id;
 		$details = $( details );
 
 		// Update sessionStorage with the current active panel
 		try {
 			sessionStorage.setItem(
 				pagePath + $details.closest( selector ).attr( "id" ) + activePanel,
-				id
+				details.id
 			);
 		} catch ( error ) {
 		}
 
-		// Identify that the tabbed interface was updated
 		$container = $details.closest( selector );
+
+		// Update the URL hash if needed
 		if ( $container.data( componentName ).settings.updateHash ) {
-			ignoreHashChange = true;
-			details.id += "-off";
-			window.location.hash = id;
-			details.id = id;
-			ignoreHashChange = false;
+			updateHash( details );
 		}
+
+		// Identify that the tabbed interface was updated
 		$container.trigger( updatedEvent, [ $details ] );
 	}
 });
