@@ -484,6 +484,8 @@ $document.on( "click vclick", ".wb-feeds .pager a[rel]", function( event ) {
 		}
 	}
 
+	$content.find( "a" ).first().focus();
+
 	event.preventDefault();
 } );
 
