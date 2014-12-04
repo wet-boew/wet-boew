@@ -213,6 +213,16 @@ var componentName = "wb-lbx",
 							.first()
 							.attr( "id", "lbx-title" );
 					}
+				},
+				parseAjax: function( mfpResponse ) {
+					var urlHash = this.currItem.src.split( "#" )[ 1 ];
+
+					// Provide the ability to filter the AJAX response HTML
+					// by the URL hash
+					// TODO: Should be dealt with upstream by Magnific Popup
+					if ( urlHash ) {
+						mfpResponse.data = $( mfpResponse.data ).find( "#" + urlHash );
+					}
 				}
 			};
 		}
