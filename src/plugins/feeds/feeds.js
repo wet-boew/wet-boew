@@ -281,6 +281,7 @@ var componentName = "wb-feeds",
 			icon = this.fIcon,
 			$content = this._content,
 			toProcess = $content.data( "toProcess" ),
+			compare = wb.date.compare,
 			i, len;
 
 		len = items.length;
@@ -293,11 +294,15 @@ var componentName = "wb-feeds",
 
 			entries.push( items[ i ] );
 		}
+
 		// lets merge with latest entries
 		entries = $.merge( entries, $content.data( "entries" ) );
 
 		if ( toProcess === 1 ) {
-			parseEntries( entries, $content.data( "startAt" ), $content.data( "displayLimit" ), $content, this.feedType );
+			entries = entries.sort( function( a, b ) {
+				return compare( b.publishedDate, a.publishedDate );
+			});
+			parseEntries( entries, $content.data( "startAt" ), $content.data( "displayLimit" ), $content.data("loadLimit"), $content, this.feedType );
 			return 0;
 		}
 
@@ -319,27 +324,21 @@ var componentName = "wb-feeds",
 	 * @param {jQuery DOM element} $elm Element to which the elements will be appended.
 	 * @return {url} The URL for the JSON request
 	 */
-	parseEntries = function( entries, startAt, limit, $elm, feedtype ) {
+	parseEntries = function( entries, startAt, limit, numload, $elm, feedtype ) {
 		var cap = ( limit > 0 && limit < ( entries.length - startAt ) ? limit : ( entries.length - startAt ) ) + startAt,
 			displaying = cap - startAt,
-			showPagination = (displaying <= entries.length),
+			showPagination = (limit < numload),
 			result = "",
-			compare = wb.date.compare,
 			$details = $elm.closest( "details" ),
 			activate = true,
 			feedContSelector = ".feeds-cont",
 			hasVisibilityHandler = "vis-handler",
-			i, sorted, sortedEntry, $tabs;
+			i, $tabs;
 
 		$elm.data( "displaying", displaying );
 
-		sorted = entries.sort( function( a, b ) {
-			return compare( b.publishedDate, a.publishedDate );
-		});
-
 		for ( i = startAt; i !== cap; i += 1 ) {
-			sortedEntry = sorted[ i ];
-			result += Templates[ feedtype ]( sortedEntry );
+			result += Templates[ feedtype ]( entries[ i ] );
 		}
 		$elm.data( componentName + "-result", result );
 
@@ -468,7 +467,7 @@ $document.on( "click vclick", ".wb-feeds .pager a[rel]", function( event ) {
 
 			// Update the feed entries that are shown
 			// TODO: Don't force "generic"
-			parseEntries( $content.data( "entries" ), newStartAt, $content.data( "displayLimit" ), $content, "generic" );
+			parseEntries( $content.data( "entries" ), newStartAt, $content.data( "displayLimit" ), $content.data("loadLimit"), $content, "generic" );
 		}
 	} else {
 		newStartAt = $content.data( "startAt" ) - $content.data( "displayLimit" );
@@ -481,9 +480,11 @@ $document.on( "click vclick", ".wb-feeds .pager a[rel]", function( event ) {
 
 			// Update the feed entries that are shown
 			// TODO: Don't force "generic"
-			parseEntries( $content.data( "entries" ), newStartAt, $content.data( "displayLimit" ), $content, "generic" );
+			parseEntries( $content.data( "entries" ), newStartAt, $content.data( "displayLimit" ), $content.data("loadLimit"), $content, "generic" );
 		}
 	}
+
+	event.preventDefault();
 } );
 
 // Bind the init event to the plugin
