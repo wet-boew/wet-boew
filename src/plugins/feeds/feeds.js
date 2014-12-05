@@ -195,7 +195,7 @@ var componentName = "wb-feeds",
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var elm = wb.init( event, componentName, selector ),
-			fetch, url, $content, loadLimit, displayLimit, feeds, fType, last, i, callback, fElem, fIcon;
+			fetch, url, $content, loadLimit, displayLimit, feeds, last, i, callback, fElem, fIcon;
 
 		// Only initialize the i18nText once
 		if ( !i18nText ) {
@@ -240,11 +240,11 @@ var componentName = "wb-feeds",
 				if ( fElem.attr( "data-ajax" ) ) {
 
 					if ( fElem.attr( "href" ).indexOf( "flickr" ) !== -1 ) {
-						fType =  "flickr";
+						$content.data( "feedType", "flickr" );
 						callback = "jsoncallback";
 						$content.data( componentName + "-postProcess", [ ".wb-lbx" ] );
 					} else {
-						fType = "youtube";
+						$content.data( "feedType", "youtube" );
 						$content.data( componentName + "-postProcess", [ ".wb-lbx", ".wb-mltmd" ] );
 					}
 
@@ -258,11 +258,11 @@ var componentName = "wb-feeds",
 
 					// Let's bind the template to the Entries
 					if ( url.indexOf( "facebook.com" ) !== -1 ) {
-						fType = "facebook";
+						$content.data( "feedType", "facebook");
 					} else if ( url.indexOf( "pinterest.com" ) > -1  ) {
-						fType = "pinterest";
+						$content.data( "feedType", "pinterest");
 					} else {
-						fType = "generic";
+						$content.data( "feedType", "generic" );
 					}
 				}
 
@@ -270,7 +270,7 @@ var componentName = "wb-feeds",
 
 				fetch.context = {
 					fIcon: ( fIcon.length !== 0 ) ? fIcon.attr( "src" ) : "",
-					feedType: fType,
+					feedType: $content.data( "feedType" ),
 					_content: $content
 				};
 
@@ -315,7 +315,7 @@ var componentName = "wb-feeds",
 			entries = entries.sort( function( a, b ) {
 				return compare( b.publishedDate, a.publishedDate );
 			});
-			parseEntries( entries, $content.data( "startAt" ), $content.data( "displayLimit" ), $content.data("loadLimit"), $content, this.feedType );
+			parseEntries( entries, $content.data( "startAt" ), $content.data( "displayLimit" ), $content.data("loadLimit"), $content, $content.data( "feedType" ) );
 			return 0;
 		}
 
@@ -479,8 +479,7 @@ $document.on( "click vclick", ".wb-feeds .pager a[rel]", function( event ) {
 			$content.data( "startAt", newStartAt);
 
 			// Update the feed entries that are shown
-			// TODO: Don't force "generic"
-			parseEntries( $content.data( "entries" ), newStartAt, $content.data( "displayLimit" ), $content.data("loadLimit"), $content, "generic" );
+			parseEntries( $content.data( "entries" ), newStartAt, $content.data( "displayLimit" ), $content.data("loadLimit"), $content, $content.data( "feedType" ) );
 		}
 	} else {
 		newStartAt = $content.data( "startAt" ) - $content.data( "displayLimit" );
@@ -492,8 +491,7 @@ $document.on( "click vclick", ".wb-feeds .pager a[rel]", function( event ) {
 			$content.data( "startAt", newStartAt );
 
 			// Update the feed entries that are shown
-			// TODO: Don't force "generic"
-			parseEntries( $content.data( "entries" ), newStartAt, $content.data( "displayLimit" ), $content.data("loadLimit"), $content, "generic" );
+			parseEntries( $content.data( "entries" ), newStartAt, $content.data( "displayLimit" ), $content.data("loadLimit"), $content, $content.data( "feedType" ) );
 		}
 	}
 
