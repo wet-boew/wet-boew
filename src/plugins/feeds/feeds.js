@@ -315,6 +315,14 @@ var componentName = "wb-feeds",
 			entries = entries.sort( function( a, b ) {
 				return compare( b.publishedDate, a.publishedDate );
 			});
+
+			// Remove any entries beyond the load limit specified.
+			// Needed because some feed APIs do not support load limits and for when
+			// multiple feeds are loaded in one widget.
+			if ( $content.data( "loadLimit" ) !== 0 ) {
+				entries.length = $content.data( "loadLimit" );
+			}
+
 			parseEntries( entries, $content.data( "startAt" ), $content.data( "displayLimit" ), $content.data("loadLimit"), $content, $content.data( "feedType" ) );
 		}
 
