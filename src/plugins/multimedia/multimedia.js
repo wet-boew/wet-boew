@@ -12,7 +12,6 @@
 var componentName = "wb-mltmd",
 	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
-	uniqueCount = 0,
 	template,
 	i18n, i18nText,
 	captionsLoadedEvent = "ccloaded" + selector,
@@ -59,13 +58,6 @@ var componentName = "wb-mltmd",
 					duration: i18n( "dur" ),
 					position: i18n( "pos" )
 				};
-			}
-
-			// Ensure there is an id on the element
-			if ( !elmId ) {
-				elmId = "wb-mm-" + uniqueCount;
-				eventTarget.id = elmId;
-				uniqueCount += 1;
 			}
 
 			if ( template === undef ) {
