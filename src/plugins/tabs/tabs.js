@@ -507,16 +507,18 @@ var componentName = "wb-tabs",
 			$panels = data.panels,
 			len = $panels.length,
 			current = $elm.find( "> .tabpanels > .in" ).prevAll( "[role=tabpanel]" ).length,
-			next = current > len ? 0 : current + ( event.shiftto ? event.shiftto : 1 );
+			autoCycle = !event.shiftto,
+			next = current > len ? 0 : current + ( autoCycle ? 1 : event.shiftto );
 
-		onSelect( $panels[ ( next > len - 1 ) ? 0 : ( next < 0 ) ? len - 1 : next ].id );
+		onSelect( $panels[ ( next > len - 1 ) ? 0 : ( next < 0 ) ? len - 1 : next ].id, autoCycle );
 	},
 
 	/**
 	 * @method onSelect
 	 * @param (string) id Id attribute of the panel
+	 * @param (boolean) autoCycle Whether change is caused by an auto cycle
 	 */
-	onSelect = function( id ) {
+	onSelect = function( id, autoCycle ) {
 		var panelSelector = "#" + id,
 			$panel = $( panelSelector );
 
@@ -524,7 +526,10 @@ var componentName = "wb-tabs",
 			$panel.children( "summary" ).trigger( $panel.attr( "open" ) ? setFocusEvent : "click" );
 		} else {
 			$( panelSelector + "-lnk" )
-				.trigger( "click" )
+				.trigger({
+					type: "click",
+					which: autoCycle ? undefined : 1
+				})
 				.trigger( setFocusEvent );
 		}
 	},
@@ -744,7 +749,7 @@ var componentName = "wb-tabs",
 
 		// Stop the slider from playing unless it is already stopped
 		// and the play button is activated
-		if ( isPlaying || ( which < 37 && isPlayPause ) ) {
+		if ( ( isPlaying && which ) || ( which < 37 && isPlayPause ) ) {
 			if ( isPlaying ) {
 				wb.remove( "#" + sldrId + selector );
 			} else {
