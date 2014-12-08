@@ -316,7 +316,6 @@ var componentName = "wb-feeds",
 				return compare( b.publishedDate, a.publishedDate );
 			});
 			parseEntries( entries, $content.data( "startAt" ), $content.data( "displayLimit" ), $content.data("loadLimit"), $content, $content.data( "feedType" ) );
-			return 0;
 		}
 
 		toProcess -= 1 ;
