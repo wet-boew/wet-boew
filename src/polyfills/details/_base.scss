@@ -22,6 +22,12 @@ details {
 			}
 		}
 	}
+
+	&.alert {
+		&:not([open]) {
+			visibility: visible;
+		}
+	}
 }
 
 .tabpanels {
