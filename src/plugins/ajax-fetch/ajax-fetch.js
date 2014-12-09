@@ -21,10 +21,16 @@ $document.on( "ajax-fetch.wb", function( event ) {
 	// TODO: Remove event.element in future versions
 	var caller = event.element || event.target,
 		fetchOpts = event.fetch,
-		fetchData;
+		fetchData, callerId;
 
 	// Filter out any events triggered by descendants
 	if ( caller === event.target || event.currentTarget === event.target ) {
+
+		if ( !caller.id ) {
+			caller.id = wb.guid();
+		}
+		callerId = caller.id;
+
 		$.ajax( fetchOpts )
 			.done(function( response, status, xhr ) {
 				var responseType = typeof response;
@@ -38,13 +44,13 @@ $document.on( "ajax-fetch.wb", function( event ) {
 				fetchData.pointer = $( "<div id='" + wb.guid() + "' data-type='" + responseType + "' />" )
 										.append( responseType === "string" ? response : "" );
 
-				$( caller ).trigger({
+				$( "#" + callerId ).trigger({
 					type: "ajax-fetched.wb",
 					fetch: fetchData
 				}, this );
 			})
 			.fail(function( xhr, status, error ) {
-				$( caller ).trigger({
+				$( "#" + callerId ).trigger({
 					type: "ajax-failed.wb",
 					fetch: {
 						xhr: xhr,

@@ -160,6 +160,11 @@ var getUrlParts = function( url ) {
 				this.remove( selector );
 				if ( !isDocumentNode ) {
 					node.className += " " + initedClass;
+
+					// TODO: Remove ID generation in individual plugins
+					if ( !node.id ) {
+						node.id = wb.guid();
+					}
 				}
 
 				return node;
