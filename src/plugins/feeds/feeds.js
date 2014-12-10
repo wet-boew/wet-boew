@@ -243,7 +243,7 @@ var componentName = "wb-feeds",
 						$content.data( "feedType", "flickr" );
 						callback = "jsoncallback";
 						$content.data( componentName + "-postProcess", [ ".wb-lbx" ] );
-					} else {
+					} else if ( fElem.attr( "href" ).indexOf( "youtube" ) !== -1 ) {
 						$content.data( "feedType", "youtube" );
 						$content.data( componentName + "-postProcess", [ ".wb-lbx", ".wb-mltmd" ] );
 					}
