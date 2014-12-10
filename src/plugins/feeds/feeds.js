@@ -56,7 +56,7 @@ var componentName = "wb-feeds",
 		},
 
 		/**
-		 * [fickr template]
+		 * [flickr template]
 		 * @param  {entry object} data
 		 * @return {string}	HTML string for creating a photowall effect
 		 */
