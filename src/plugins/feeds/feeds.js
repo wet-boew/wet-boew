@@ -323,7 +323,7 @@ var componentName = "wb-feeds",
 
 			$content.data( "entries", entries );
 
-			parseEntries( entries, $content.data( "startAt" ), $content.data( "displayLimit" ), $content.data( "loadLimit" ), $content, $content.data( "feedType" ) );
+			parseEntries( $content );
 		}
 
 		toProcess -= 1 ;
@@ -338,16 +338,18 @@ var componentName = "wb-feeds",
 	/**
 	 * Parses the results from a JSON request and appends to an element
 	 * @method parseEntries
-	 * @param {object} entries Results from a JSON request.
-	 * @param {integer} startAt Entry from which to start appending results to the element.
-	 * @param {integer} limit Limit on the number of results to append to the element.
 	 * @param {jQuery DOM element} $elm Element to which the elements will be appended.
 	 * @return {url} The URL for the JSON request
 	 */
-	parseEntries = function( entries, startAt, limit, numload, $elm, feedtype ) {
-		var cap = ( limit > 0 && limit < ( entries.length - startAt ) ? limit : ( entries.length - startAt ) ) + startAt,
+	parseEntries = function( $elm ) {
+		var entries = $elm.data( "entries" ),
+			startAt = $elm.data( "startAt" ),
+			displayLimit = $elm.data( "displayLimit" ),
+			loadLimit = $elm.data( "loadLimit" ),
+			feedType = $elm.data( "feedType" ),
+			cap = ( displayLimit > 0 && displayLimit < ( entries.length - startAt ) ? displayLimit : ( entries.length - startAt ) ) + startAt,
 			displaying = cap - startAt,
-			showPagination = ( limit < numload ),
+			showPagination = ( displayLimit < loadLimit ),
 			result = "",
 			$details = $elm.closest( "details" ),
 			activate = true,
@@ -357,7 +359,7 @@ var componentName = "wb-feeds",
 		$elm.data( "displaying", displaying );
 
 		for ( i = startAt; i !== cap; i += 1 ) {
-			result += Templates[ feedtype ]( entries[ i ] );
+			result += Templates[ feedType ]( entries[ i ] );
 		}
 		$elm.data( componentName + "-result", result );
 
@@ -486,7 +488,7 @@ $document.on( "click vclick", ".wb-feeds .pager a[rel]", function( event ) {
 			$content.data( "startAt", newStartAt );
 
 			// Update the feed entries that are shown
-			parseEntries( $content.data( "entries" ), newStartAt, $content.data( "displayLimit" ), $content.data( "loadLimit" ), $content, $content.data( "feedType" ) );
+			parseEntries( $content );
 		}
 	} else {
 		newStartAt = $content.data( "startAt" ) - $content.data( "displayLimit" );
@@ -498,7 +500,7 @@ $document.on( "click vclick", ".wb-feeds .pager a[rel]", function( event ) {
 			$content.data( "startAt", newStartAt );
 
 			// Update the feed entries that are shown
-			parseEntries( $content.data( "entries" ), newStartAt, $content.data( "displayLimit" ), $content.data( "loadLimit" ), $content, $content.data( "feedType" ) );
+			parseEntries( $content );
 		}
 	}
 
