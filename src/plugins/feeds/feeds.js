@@ -62,7 +62,6 @@ var componentName = "wb-feeds",
 		 * @return {string}	HTML string for creating a photowall effect
 		 */
 		flickr: function( data ) {
-
 			var seed = "id" + wb.guid(),
 				title = data.title,
 				media = data.media.m,
@@ -104,6 +103,7 @@ var componentName = "wb-feeds",
 					"</div></section>" +
 					"</li>";
 		},
+
 		/**
 		 * [pinterest template]
 		 * @param  {entry object}    data
@@ -115,13 +115,13 @@ var componentName = "wb-feeds",
 			( data.publishedDate !== "" ? " <small class='small'>[" +
 			wb.date.toDateISO( data.publishedDate, true ) + "]</small>" : "" ) + "</li>";
 		},
+
 		/**
 		 * [generic template]
 		 * @param  {entry object}	data
 		 * @return {string}	HTML string of formatted using a simple list / anchor view
 		 */
 		generic: function( data ) {
-
 			return "<li><a href='" + data.link + "'>" + data.title + "</a><br />" +
 				( data.publishedDate !== "" ? " <small class='feeds-date'><time>" +
 				wb.date.toDateISO( data.publishedDate, true ) + "</time></small>" : "" ) + "</li>";
@@ -176,13 +176,13 @@ var componentName = "wb-feeds",
 	 * @return {url} The URL for the JSON request
 	 */
 	jsonRequest = function( url, limit ) {
-
 		var requestURL = wb.pageUrlParts.protocol + "//ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q=" + encodeURIComponent( decodeURIComponent( url ) );
 
 		// API returns a maximum of 4 entries by default so only override if more entries should be returned
 		if ( limit > 4 ) {
 			requestURL += "&num=" + limit;
 		}
+
 		return requestURL;
 	},
 
@@ -222,7 +222,6 @@ var componentName = "wb-feeds",
 			}
 
 			// Lets bind some variables to the node to ensure safe ajax thread counting
-
 			$content.data( "toProcess", feeds.length )
 					.data( "startAt", 0 )
 					.data( "loadLimit", loadLimit )
@@ -239,7 +238,6 @@ var componentName = "wb-feeds",
 				};
 
 				if ( fElem.attr( "data-ajax" ) ) {
-
 					if ( fElem.attr( "href" ).indexOf( "flickr" ) !== -1 ) {
 						$content.data( "feedType", "flickr" );
 						callback = "jsoncallback";
@@ -268,7 +266,6 @@ var componentName = "wb-feeds",
 				}
 
 				fetch.jsonp = callback;
-
 				fetch.context = {
 					fIcon: ( fIcon.length !== 0 ) ? fIcon.attr( "src" ) : "",
 					feedType: $content.data( "feedType" ),
@@ -419,6 +416,7 @@ var componentName = "wb-feeds",
 			.append( result );
 
 		if ( showPagination ) {
+
 			//Check for and remove outdated pagination markup
 			if ( $elm.hasClass( "mrgn-bttm-0" ) ) {
 				$elm.removeClass( "mrgn-bttm-0" );
