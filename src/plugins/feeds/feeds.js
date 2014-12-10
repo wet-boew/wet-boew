@@ -323,6 +323,8 @@ var componentName = "wb-feeds",
 				entries.length = $content.data( "loadLimit" );
 			}
 
+			$content.data( "entries", entries );
+
 			parseEntries( entries, $content.data( "startAt" ), $content.data( "displayLimit" ), $content.data("loadLimit"), $content, $content.data( "feedType" ) );
 		}
 
