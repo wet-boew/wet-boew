@@ -15,6 +15,7 @@
  */
 var componentName = "wb-feeds",
 	selector = "." + componentName,
+	feedContSelector = ".feeds-cont",
 	feedLinkSelector = "li > a",
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
@@ -207,7 +208,7 @@ var componentName = "wb-feeds",
 		}
 
 		if ( elm ) {
-			$content = $( elm ).find( ".feeds-cont" );
+			$content = $( elm ).find( feedContSelector );
 			loadLimit = getLimit( elm, limitTypes[ 0 ] );
 			displayLimit = getLimit( elm, limitTypes[ 1 ] );
 			feeds = $content.find( feedLinkSelector );
@@ -353,7 +354,6 @@ var componentName = "wb-feeds",
 			result = "",
 			$details = $elm.closest( "details" ),
 			activate = true,
-			feedContSelector = ".feeds-cont",
 			hasVisibilityHandler = "vis-handler",
 			i, $tabs;
 
@@ -475,7 +475,7 @@ $document.on( "ajax-fetched.wb", selector + " " + feedLinkSelector, function( ev
 // Listen for clicks on pagination links
 $document.on( "click vclick", ".wb-feeds .pager a[rel]", function( event ) {
 	var $linkCtx = $( event.target ),
-		$content = $( event.target ).closest( ".wb-feeds" ).find( ".feeds-cont" ),
+		$content = $( event.target ).closest( ".wb-feeds" ).find( feedContSelector ),
 		newStartAt;
 
 	if ( $linkCtx.attr( "rel" ) === "next" ) {
