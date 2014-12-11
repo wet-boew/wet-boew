@@ -480,28 +480,18 @@ $document.on( "click vclick", ".wb-feeds .pager a[rel]", function( event ) {
 
 	if ( $linkCtx.attr( "rel" ) === "next" ) {
 		newStartAt = $content.data( "startAt" ) + $content.data( "displayLimit" );
-
-		// Ensure that the next page's starting entry isn't higher than the highest entry
-		if ( newStartAt < $content.data( "entries" ).length ) {
-
-			// Set the new start entry's number
-			$content.data( "startAt", newStartAt );
-
-			// Update the feed entries that are shown
-			parseEntries( $content );
-		}
 	} else {
 		newStartAt = $content.data( "startAt" ) - $content.data( "displayLimit" );
+	}
 
-		// Ensure that the previous page's starting entry isn't smaller than 0
-		if ( newStartAt >= 0 ) {
+	// Ensure that the next page's starting entry isn't smaller than 0 or higher than the highest entry
+	if ( newStartAt >= 0 && newStartAt < $content.data( "entries" ).length ) {
 
-			// Set the new start entry's number
-			$content.data( "startAt", newStartAt );
+		// Set the new start entry's number
+		$content.data( "startAt", newStartAt );
 
-			// Update the feed entries that are shown
-			parseEntries( $content );
-		}
+		// Update the feed entries that are shown
+		parseEntries( $content );
 	}
 
 	$content.find( "a" ).first().focus();
