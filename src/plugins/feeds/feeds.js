@@ -15,6 +15,7 @@
  */
 var componentName = "wb-feeds",
 	selector = "." + componentName,
+	feedContSelector = ".feeds-cont",
 	feedLinkSelector = "li > a",
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
@@ -56,18 +57,17 @@ var componentName = "wb-feeds",
 		},
 
 		/**
-		 * [fickr template]
+		 * [flickr template]
 		 * @param  {entry object} data
 		 * @return {string}	HTML string for creating a photowall effect
 		 */
 		flickr: function( data ) {
-
 			var seed = "id" + wb.guid(),
 				title = data.title,
 				media = data.media.m,
 				thumbnail = media.replace( "_m.", "_s." ),
-				image = media.replace("_m", ""),
-				description = data.description.replace( /^\s*<p>(.*?)<\/p>\s*<p>(.*?)<\/p>/i, "");
+				image = media.replace( "_m", "" ),
+				description = data.description.replace( /^\s*<p>(.*?)<\/p>\s*<p>(.*?)<\/p>/i, "" );
 
 			// due to CORS we cannot default to simple ajax pulls of the image. We have to inline the content box
 			return "<li><a class='wb-lbx' href='#" + seed + "'><img src='" + thumbnail + "' alt='" + title + "' title='" + title + "' class='img-responsive'/></a>" +
@@ -103,24 +103,25 @@ var componentName = "wb-feeds",
 					"</div></section>" +
 					"</li>";
 		},
+
 		/**
 		 * [pinterest template]
 		 * @param  {entry object}    data
 		 * @return {string}    HTML string of formatted using a simple list / anchor view
 		 */
 		pinterest: function( data ) {
-			var content = fromCharCode( data.content ).replace(/<a href="\/pin[^"]*"><img ([^>]*)><\/a>([^<]*)(<a .*)?/, "<a href='" + data.link + "'><img alt='' class='center-block' $1><br/>$2</a>$3");
+			var content = fromCharCode( data.content ).replace( /<a href="\/pin[^"]*"><img ([^>]*)><\/a>([^<]*)(<a .*)?/, "<a href='" + data.link + "'><img alt='' class='center-block' $1><br/>$2</a>$3" );
 			return "<li class='media'>" + content +
 			( data.publishedDate !== "" ? " <small class='small'>[" +
 			wb.date.toDateISO( data.publishedDate, true ) + "]</small>" : "" ) + "</li>";
 		},
+
 		/**
 		 * [generic template]
 		 * @param  {entry object}	data
 		 * @return {string}	HTML string of formatted using a simple list / anchor view
 		 */
 		generic: function( data ) {
-
 			return "<li><a href='" + data.link + "'>" + data.title + "</a><br />" +
 				( data.publishedDate !== "" ? " <small class='feeds-date'><time>" +
 				wb.date.toDateISO( data.publishedDate, true ) + "</time></small>" : "" ) + "</li>";
@@ -144,7 +145,7 @@ var componentName = "wb-feeds",
 	 * @param  {string} s string to sanitize with escaped unicode characters
 	 * @return {string}	sanitized string
 	 */
-	fromCharCode = function(s) {
+	fromCharCode = function( s ) {
 		return s.replace( patt, decode );
 	},
 
@@ -175,13 +176,13 @@ var componentName = "wb-feeds",
 	 * @return {url} The URL for the JSON request
 	 */
 	jsonRequest = function( url, limit ) {
-
 		var requestURL = wb.pageUrlParts.protocol + "//ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q=" + encodeURIComponent( decodeURIComponent( url ) );
 
 		// API returns a maximum of 4 entries by default so only override if more entries should be returned
 		if ( limit > 4 ) {
 			requestURL += "&num=" + limit;
 		}
+
 		return requestURL;
 	},
 
@@ -207,7 +208,7 @@ var componentName = "wb-feeds",
 		}
 
 		if ( elm ) {
-			$content = $( elm ).find( ".feeds-cont" );
+			$content = $( elm ).find( feedContSelector );
 			loadLimit = getLimit( elm, limitTypes[ 0 ] );
 			displayLimit = getLimit( elm, limitTypes[ 1 ] );
 			feeds = $content.find( feedLinkSelector );
@@ -221,7 +222,6 @@ var componentName = "wb-feeds",
 			}
 
 			// Lets bind some variables to the node to ensure safe ajax thread counting
-
 			$content.data( "toProcess", feeds.length )
 					.data( "startAt", 0 )
 					.data( "loadLimit", loadLimit )
@@ -238,12 +238,11 @@ var componentName = "wb-feeds",
 				};
 
 				if ( fElem.attr( "data-ajax" ) ) {
-
 					if ( fElem.attr( "href" ).indexOf( "flickr" ) !== -1 ) {
 						$content.data( "feedType", "flickr" );
 						callback = "jsoncallback";
 						$content.data( componentName + "-postProcess", [ ".wb-lbx" ] );
-					} else {
+					} else if ( fElem.attr( "href" ).indexOf( "youtube" ) !== -1 ) {
 						$content.data( "feedType", "youtube" );
 						$content.data( componentName + "-postProcess", [ ".wb-lbx", ".wb-mltmd" ] );
 					}
@@ -258,26 +257,25 @@ var componentName = "wb-feeds",
 
 					// Let's bind the template to the Entries
 					if ( url.indexOf( "facebook.com" ) !== -1 ) {
-						$content.data( "feedType", "facebook");
+						$content.data( "feedType", "facebook" );
 					} else if ( url.indexOf( "pinterest.com" ) > -1  ) {
-						$content.data( "feedType", "pinterest");
+						$content.data( "feedType", "pinterest" );
 					} else {
 						$content.data( "feedType", "generic" );
 					}
 				}
 
 				fetch.jsonp = callback;
-
 				fetch.context = {
 					fIcon: ( fIcon.length !== 0 ) ? fIcon.attr( "src" ) : "",
 					feedType: $content.data( "feedType" ),
 					_content: $content
 				};
 
-				fElem.trigger({
+				fElem.trigger( {
 					type: "ajax-fetch.wb",
 					fetch: fetch
-				});
+				} );
 			}
 		}
 	},
@@ -314,7 +312,7 @@ var componentName = "wb-feeds",
 		if ( toProcess === 1 ) {
 			entries = entries.sort( function( a, b ) {
 				return compare( b.publishedDate, a.publishedDate );
-			});
+			} );
 
 			// Remove any entries beyond the load limit specified.
 			// Needed because some feed APIs do not support load limits and for when
@@ -325,14 +323,14 @@ var componentName = "wb-feeds",
 
 			$content.data( "entries", entries );
 
-			parseEntries( entries, $content.data( "startAt" ), $content.data( "displayLimit" ), $content.data("loadLimit"), $content, $content.data( "feedType" ) );
+			parseEntries( $content );
 		}
 
 		toProcess -= 1 ;
-		$content.data({
+		$content.data( {
 			"toProcess": toProcess,
 			"entries": entries
-		});
+		} );
 
 		return toProcess;
 	},
@@ -340,27 +338,28 @@ var componentName = "wb-feeds",
 	/**
 	 * Parses the results from a JSON request and appends to an element
 	 * @method parseEntries
-	 * @param {object} entries Results from a JSON request.
-	 * @param {integer} startAt Entry from which to start appending results to the element.
-	 * @param {integer} limit Limit on the number of results to append to the element.
 	 * @param {jQuery DOM element} $elm Element to which the elements will be appended.
 	 * @return {url} The URL for the JSON request
 	 */
-	parseEntries = function( entries, startAt, limit, numload, $elm, feedtype ) {
-		var cap = ( limit > 0 && limit < ( entries.length - startAt ) ? limit : ( entries.length - startAt ) ) + startAt,
+	parseEntries = function( $elm ) {
+		var entries = $elm.data( "entries" ),
+			startAt = $elm.data( "startAt" ),
+			displayLimit = $elm.data( "displayLimit" ),
+			loadLimit = $elm.data( "loadLimit" ),
+			feedType = $elm.data( "feedType" ),
+			cap = ( displayLimit > 0 && displayLimit < ( entries.length - startAt ) ? displayLimit : ( entries.length - startAt ) ) + startAt,
 			displaying = cap - startAt,
-			showPagination = (limit < numload),
+			showPagination = ( displayLimit < loadLimit ),
 			result = "",
 			$details = $elm.closest( "details" ),
 			activate = true,
-			feedContSelector = ".feeds-cont",
 			hasVisibilityHandler = "vis-handler",
 			i, $tabs;
 
 		$elm.data( "displaying", displaying );
 
 		for ( i = startAt; i !== cap; i += 1 ) {
-			result += Templates[ feedtype ]( entries[ i ] );
+			result += Templates[ feedType ]( entries[ i ] );
 		}
 		$elm.data( componentName + "-result", result );
 
@@ -379,7 +378,7 @@ var componentName = "wb-feeds",
 								if ( !$feedCont.hasClass( "feed-active" ) ) {
 									activateFeed( $feedCont, showPagination );
 								}
-							})
+							} )
 							.addClass( hasVisibilityHandler );
 					}
 				}
@@ -391,7 +390,7 @@ var componentName = "wb-feeds",
 						.on( "click.wb-feeds", function( event ) {
 							var $summary = $( event.currentTarget ).off( "click.wb-feeds" );
 							activateFeed( $summary.parent().find( feedContSelector ), showPagination );
-						});
+						} );
 			}
 		}
 
@@ -419,6 +418,7 @@ var componentName = "wb-feeds",
 			.append( result );
 
 		if ( showPagination ) {
+
 			//Check for and remove outdated pagination markup
 			if ( $elm.hasClass( "mrgn-bttm-0" ) ) {
 				$elm.removeClass( "mrgn-bttm-0" );
@@ -470,38 +470,28 @@ $document.on( "ajax-fetched.wb", selector + " " + feedLinkSelector, function( ev
 			wb.ready( $( eventTarget ).closest( selector ), componentName );
 		}
 	}
-});
+} );
 
 // Listen for clicks on pagination links
 $document.on( "click vclick", ".wb-feeds .pager a[rel]", function( event ) {
-	var $linkCtx = $(event.target),
-		$content = $(event.target).closest(".wb-feeds").find(".feeds-cont"),
+	var $linkCtx = $( event.target ),
+		$content = $( event.target ).closest( ".wb-feeds" ).find( feedContSelector ),
 		newStartAt;
 
-	if ( $linkCtx.attr("rel") === "next" ) {
+	if ( $linkCtx.attr( "rel" ) === "next" ) {
 		newStartAt = $content.data( "startAt" ) + $content.data( "displayLimit" );
-
-		// Ensure that the next page's starting entry isn't higher than the highest entry
-		if ( newStartAt < $content.data( "entries" ).length ) {
-
-			// Set the new start entry's number
-			$content.data( "startAt", newStartAt);
-
-			// Update the feed entries that are shown
-			parseEntries( $content.data( "entries" ), newStartAt, $content.data( "displayLimit" ), $content.data("loadLimit"), $content, $content.data( "feedType" ) );
-		}
 	} else {
 		newStartAt = $content.data( "startAt" ) - $content.data( "displayLimit" );
+	}
 
-		// Ensure that the previous page's starting entry isn't smaller than 0
-		if ( newStartAt >= 0 ) {
+	// Ensure that the next page's starting entry isn't smaller than 0 or higher than the highest entry
+	if ( newStartAt >= 0 && newStartAt < $content.data( "entries" ).length ) {
 
-			// Set the new start entry's number
-			$content.data( "startAt", newStartAt );
+		// Set the new start entry's number
+		$content.data( "startAt", newStartAt );
 
-			// Update the feed entries that are shown
-			parseEntries( $content.data( "entries" ), newStartAt, $content.data( "displayLimit" ), $content.data("loadLimit"), $content, $content.data( "feedType" ) );
-		}
+		// Update the feed entries that are shown
+		parseEntries( $content );
 	}
 
 	$content.find( "a" ).first().focus();
