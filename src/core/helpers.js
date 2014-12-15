@@ -1094,7 +1094,7 @@
 	 * Originally from http://stackoverflow.com/a/2117523/455535
 	 */
 	wb.guid = function() {
-		return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function( replacementChar ) {
+		return "wb-xxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function( replacementChar ) {
 			var rand = Math.random() * 16 | 0,
 				newChar = replacementChar === "x" ? rand : ( rand & 0x3 | 0x8 );
 			return newChar.toString(16);
