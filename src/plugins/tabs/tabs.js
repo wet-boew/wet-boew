@@ -719,14 +719,13 @@ var componentName = "wb-tabs",
 	var which = event.which,
 		elm = event.currentTarget,
 		className = elm.className,
-		rotStopText = i18nText.rotStop,
-		playText = i18nText.play,
-		$elm, text, inv, $sldr, sldrId, $plypause, data, isPlaying, isPlayPause;
+		$elm, $sldr, sldrId, $plypause, data, isPlaying, isPlayPause;
 
-	// Ignore middle and right mouse buttons and modified keys
+	// No control, alt or meta keys and only left mouse button, enter key,
+	// space bar, escape key and arrow keys
 	if ( !( event.ctrlKey || event.altKey || event.metaKey ) &&
-			( !which || which === 1 || which === 13 || which === 32 ||
-			( which > 36 && which < 41 ) ) ) {
+			( !which || which === 1 || which === 13 || which === 27 ||
+			which === 32 || ( which > 36 && which < 41 ) ) ) {
 
 		// Stop propagation of the activate event
 		event.preventDefault();
@@ -749,7 +748,7 @@ var componentName = "wb-tabs",
 
 		// Stop the slider from playing unless it is already stopped
 		// and the play button is activated
-		if ( ( isPlaying && which ) || ( which < 37 && isPlayPause ) ) {
+		if ( ( isPlaying && which ) || ( isPlayPause && !( which > 36 && which < 41 ) ) ) {
 			if ( isPlaying ) {
 				wb.remove( "#" + sldrId + selector );
 			} else {
@@ -764,28 +763,35 @@ var componentName = "wb-tabs",
 			$sldr.toggleClass( "playing" );
 			isPlaying = !isPlaying;
 
-			text = $plypause[ 0 ].getElementsByTagName( "span" )[ 1 ];
-			text.innerHTML = text.innerHTML === playText ?
+			$plypause[ 0 ].getElementsByTagName( "span" )[ 1 ].innerHTML = isPlaying ?
 				i18nText.pause :
-				playText;
+				i18nText.play;
 
-			inv = $plypause.find( ".wb-inv" )[ 0 ];
-			inv.innerHTML = inv.innerHTML === rotStopText ?
-				i18nText.rotStart :
-				rotStopText;
+			$plypause.find( ".wb-inv" )[ 0 ].innerHTML = isPlaying ?
+				i18nText.rotStop :
+				i18nText.rotStart;
 		}
 
+		// Arrow keys
 		if ( which > 36 ) {
 			onCycle( $sldr, which < 39 ? -1 : 1 );
 			$sldr.find( "> [role=tablist] .active a" ).trigger( setFocusEvent );
-		} else {
+
+		// Not the escape key
+		} else if ( which !== 27 ) {
+
+			// If the target is a tab
 			if ( elm.getAttribute( "role" ) === "tab" ) {
 				onPick( $sldr, $elm );
-				if ( which > 1 ) {
+
+				// Put focus on the tab panel if the enter key or space bar are used
+				if ( which === 13 || which === 32 ) {
 					$sldr.find( elm.getAttribute( "href" ) )
 						.trigger( setFocusEvent );
 				}
-			} else if ( !isPlaying && !isPlayPause ) {
+
+			// If the target is next, previous or tab count
+			} else if ( !isPlayPause ) {
 				onCycle( $sldr, className.indexOf( "prv" ) !== -1 ? -1 : 1 );
 			}
 		}
@@ -798,22 +804,7 @@ var componentName = "wb-tabs",
 	return true;
 });
 
-// Pause on escape
-$document.on( "keydown", selector + ", " + selector + " [role=tabpanel]", function( event ) {
-
-	// Escape key
-	if ( event.which === 27 ) {
-		var $sldr = $( event.target ).closest( selector );
-
-		event.preventDefault();
-
-		if ( $sldr.hasClass( "playing" ) ) {
-			$sldr.find( ".plypause" ).trigger( "click" );
-		}
-	}
-});
-
-$document.on( "click keydown", selector + " [role=tabpanel]", function( event ) {
+$document.on( activateEvent, selector + " [role=tabpanel]", function( event ) {
 	var currentTarget = event.currentTarget,
 		which = event.which,
 		$container;
@@ -825,27 +816,22 @@ $document.on( "click keydown", selector + " [role=tabpanel]", function( event ) 
 		event.cancelBubble = true;
 	}
 
-	if ( event.target === "click" ) {
+	// Ctrl + Up arrow
+	if ( event.ctrlKey && event.which === 38 ) {
 
-		// Ignore middle and right mouse buttons
-		if ( !which || which === 1 ) {
-			$container = $( event.currentTarget ).closest( selector );
+		// Move focus to the summary element
+		$( currentTarget )
+			.closest( selector )
+				.find( "[href$='#" + currentTarget.id + "']" )
+					.trigger( setFocusEvent );
 
-			// Stop the carousel if there is a click within a panel
-			if ( $container.hasClass( "playing" ) ) {
-				$container.find( ".plypause" ).trigger( "click" );
-			}
-		}
-	} else {
+	// Left mouse button click or escape key
+	} else if ( !which || which === 1 || which === 27 ) {
+		$container = $( event.currentTarget ).closest( selector );
 
-		// Ctrl + Up arrow
-		if ( event.ctrlKey && event.which === 38 ) {
-
-			// Move focus to the summary element
-			$( currentTarget )
-				.closest( selector )
-					.find( "[href$='#" + currentTarget.id + "']" )
-						.trigger( setFocusEvent );
+		// Stop the carousel
+		if ( $container.hasClass( "playing" ) ) {
+			$container.find( ".plypause" ).trigger( "click" );
 		}
 	}
 });
