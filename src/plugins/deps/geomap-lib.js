@@ -503,7 +503,7 @@ var componentName = "wb-geomap",
 
 			$ul.append( $li );
 
-			$( "div#sb_" + featureTableId ).toggle( enabled );
+			$( "#sb_" + featureTableId ).toggle( enabled );
 		}
 	},
 
@@ -2553,7 +2553,7 @@ $document.on( "change", ".geomap-lgnd-cbx", function( event ) {
 
 	layer.setVisibility( visibility );
 
-	$( "div#sb_" + layer.name ).toggle( visibility );
+	$( "#sb_" + layer.name ).toggle( visibility );
 
 	if ( $alert.length !== 0 ) {
 		visibility ? $alert.fadeOut() : $alert.fadeIn();
