@@ -39,14 +39,20 @@ var wet_boew_geomap = {
 			title: "KML Demo",
 			caption: "Ceci est un exemple de fichier KML chargé localement par Géocarte.",
 			type: "kml",
-			url: "demo/sample_fr.kml",
+			url: "demo/proposed_roads.kml",
 			visible: false,
-			datatable: true,
+			datatable: false,
 			tab: true,
 			popups: true,
 			attributes: {
-				name: "Titre du produit",
-				description: "Description"
+				RD_NAME: "RD_NAME",
+				RD_SUFFIX: "RD_SUFFIX"
+			},
+			style: {
+				init: {
+					strokeWidth: 2,
+					strokeColor: "#FF0000"
+				}
 			}
 		},
 		{
@@ -126,10 +132,10 @@ var wet_boew_geomap = {
 					graphicOpacity: 1.0
 				},
 				select: {
-					graphicWidth: 20,
-					graphicHeight: 20,
+					graphicWidth: 30,
+					graphicHeight: 30,
 					externalGraphic: "demo/trafficcamera_active.png",
-					graphicOpacity: 0.5
+					graphicOpacity: 1.0
 				}
 			}
 

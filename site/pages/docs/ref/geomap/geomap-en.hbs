@@ -9,7 +9,6 @@
 	"dateModified": "2014-10-28"
 }
 ---
-<span class="wb-prettify all-pre hide"></span>
 
 <section>
 	<h2>Purpose</h2>
@@ -32,8 +31,6 @@
 	</ul>
 </section>
 
-
-<span class="wet-boew-prettify all-pre"></span>
 <section>
 	<h2>How to implement</h2>
 	<ol>
@@ -41,61 +38,37 @@
 		<li>Add <code>div</code> with <code>class="wb-geomap-map"</code> to the <code>div</code> created in step 1 where you want the map to be rendered.</li>
 		<li>Add <code>div</code> with <code>class="wb-geomap-layers"</code> to the <code>div</code> created in step 1 where you want the layer(s) listing to be rendered.</li>
 	</ol>
-
-	<h3>Optional elements</h3>
-	<ul>
-		<li><strong>Add legend:</strong> If a map legend is required add <code>div</code> with <code>class="wb-geomap-legend"</code> to the <code>div</code> created in step 1 where you want it to be rendered.</li>
-		<li><strong>Add widgets:</strong> Widgets (e.g. position, scaleline, etc.) are configured using classes on the plugin element created in step 1.</li>
-	</ul>
-
-	<div class="alert alert-info"><strong>Note:</strong> If you are implementing the working example on your development environment you may need to add the necessary support for the mime-types required by the various formats demonstrated (e.g. ".kml" "application/vnd.google-earth.kml+xml") to your web server.</div>
-
-	<h3>Example implementation markup</h3>
-	<pre><code>&lt;-- Add plugin with optional position widget --&gt;
-&lt;div id="mygeomap" class="wb-geomap position"&gt;
-    &lt;div class="row"&gt;
-        &lt;div class="col-md-9"&gt;
-            &lt;div class="wb-geomap-map"&gt;&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;-- Add optional map legend --&gt;
-        &lt;div class="wb-geomap-legend col-md-3"&gt;
-            &lt;h2&gt;Legend&lt;/h2&gt;
-            &lt;-- Geomap will insert legend here --&gt;
-        &lt;/div&gt;
-        &lt;div class="row"&gt;
-            &lt;-- Add placeholder for overlays --&gt;
-            &lt;div class="wb-geomap-layers col-md-12"&gt;&lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-<!--
 	<section>
-		<h3>File based (e.g. "config-en.js") configuration example</h3>
-		<pre><code>var wet_boew_geomap = {
-    basemap : {
-        title: 'CBMT',
-        type: 'wms',
-	url: 'http://geogratis.gc.ca/maps/CBMT',
-	layers: 'CBMT',
-	format: 'image/png',
-	version: '1.1.1'
-    },
-    overlays : [
-        {
-            title: 'KML Demo EN',
-            caption: 'This is a sample KML file loaded locally by Geomap.',
-	    type: 'kml',
-	    url: 'data/sample.kml',
-	    visible: true
-        },
-        {
-            ...
-        }
-    ]
-};</code></pre>
+		<h3>Optional elements</h3>
+		<ul>
+			<li><strong>Add legend:</strong> If a map legend is required add <code>div</code> with <code>class="wb-geomap-legend"</code> to the <code>div</code> created in step 1 where you want it to be rendered.</li>
+			<li><strong>Add widgets:</strong> Widgets (e.g. position, scaleline, etc.) are configured using classes on the plugin element created in step 1.</li>
+		</ul>
+		<section class="alert alert-info">
+			<h4>Note:</h4>
+			<p>If you are implementing the working example on your development environment you may need to add the necessary support for the mime-types required by the various formats demonstrated (e.g. ".kml" "application/vnd.google-earth.kml+xml") to your web server.</p>
+		</section>
 	</section>
--->
-
+	<section>
+		<h3>Example implementation markup</h3>
+		<pre><code>&lt;-- Add plugin with optional position widget --&gt;
+	&lt;div id="mygeomap" class="wb-geomap position"&gt;
+	    &lt;div class="row"&gt;
+	        &lt;div class="col-md-9"&gt;
+	            &lt;div class="wb-geomap-map"&gt;&lt;/div&gt;
+	        &lt;/div&gt;
+	        &lt;-- Add optional map legend --&gt;
+	        &lt;div class="wb-geomap-legend col-md-3"&gt;
+	            &lt;h2&gt;Legend&lt;/h2&gt;
+	            &lt;-- Geomap will insert legend here --&gt;
+	        &lt;/div&gt;
+	        &lt;div class="row"&gt;
+	            &lt;-- Add placeholder for overlays --&gt;
+	            &lt;div class="wb-geomap-layers col-md-12"&gt;&lt;/div&gt;
+	        &lt;/div&gt;
+	    &lt;/div&gt;
+	&lt;/div&gt;</code></pre>
+	</section>
 
 	<section>
 		<h3>Plugin configuration options</h3>
@@ -106,7 +79,10 @@
 			<li>Using a configuration file</li>
 			<li>Using CSS classes on the plugin element</li>
 		</ul>
-		<div class="alert alert-info"><strong>Note:</strong> all plugin configuration parameters are optional.</div>
+		<section class="alert alert-info">
+			<h4>Note:</h4>
+			<p>all plugin configuration parameters are optional.</p>
+		</section>
 		<section>
 			<h4>Configuration using <code>data-wb-geomap</code> attribute on plugin element</h4>
 			<p>Use the <code>data-wb-geomap</code> attribute to configure the display of map features from inline HTML tables or from a local/remote data source.</p>
@@ -157,8 +133,10 @@
 					</tr>
 				</tbody>
 			</table>
-			<h5>Example configuration file reference</h5>
-			<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wb-geomap='{ "layersFile": "data/config-en.js" }'&gt; ... &lt;/div&gt;</code></pre>
+			<section>
+				<h5>Example configuration file reference</h5>
+				<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wb-geomap='{ "layersFile": "data/config-en.js" }'&gt; ... &lt;/div&gt;</code></pre>
+			</section>
 		</section>
 
 		<section>
@@ -229,7 +207,6 @@
 			<pre><code>&lt;div id="mygeomap" class="wb-geomap position scaleline"&gt; ... &lt;/div&gt;</code></pre>
 		</section>
 	</section>
-
 
 	<section>
 		<h3>Basemap configuration options</h3>
@@ -343,9 +320,10 @@
 				</li>
 
 			</ol>
-
-			<h5>Inline HTML table configuration</h5>
-			<p>Geomap requires a <code>data-geometry</code> attribute with feature geometry encoded in <strong>Well Known Text (WKT)</strong> or as a bounding box extent with lower left  and upper right coordinate pairs, and a <code>data-type</code> attribute that specifies the encoding as either <code>wkt</code> or <code>bbox</code>.</p>
+			<section>
+				<h5>Inline HTML table configuration</h5>
+				<p>Geomap requires a <code>data-geometry</code> attribute with feature geometry encoded in <strong>Well Known Text (WKT)</strong> or as a bounding box extent with lower left  and upper right coordinate pairs, and a <code>data-type</code> attribute that specifies the encoding as either <code>wkt</code> or <code>bbox</code>.</p>
+			</section>
 			<section>
 				<h5>WKT examples</h5>
 				<pre><code>&lt;tr data-geometry="POINT (-114.05879, 51.04668)" data-type="wkt"&gt; ... &lt;/tr&gt;</code></pre>
@@ -393,31 +371,32 @@
 &lt;/table&gt;</code></pre>
 			</section>
 			<p>Note that attribute names for features rendered from an inline HTML table are taken from the table header. In the preceding example the table header would result in attributes named "Rank", "Census subdivision", and "Population 2011".</p>
-
 		</section>
 
 		<section>
 			<h4>Adding features from external data sources via a configuration file</h4>
-			<h5>Steps:</h5>
-			<ol>
-				<li>Create a Javascript configuration file and save it to a web accessible directory (e.g. "data/config-en.js").</li>
-				<li>Add an <code>overlays</code> array to the <code>wet_boew_geomap</code> variable in the configuration file.
-				<pre><code>// Configuration file ("data/config-en.js")
-var wet_boew_geomap = {
-    overlays : [
-        {
-            title: 'KML Demo EN',
-            caption: 'This is a sample KML file loaded locally by Geomap.',
-	    type: 'kml',
-	    url: 'data/sample.kml',
-	    visible: true
-        },
-        { ... }
-    ]
-};</code></pre></li>
-				<li>Reference the configuration file in the <code>data-wb-geomap</code> attribute of the plugin element by setting the <code>layersFile</code> property to the file path.
-				<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wb-geomap='{ "layersFile": "data/config-en.js" }'&gt; ... &lt;/div&gt;</code></pre></li>
-			</ol>
+			<section>
+				<h5>Steps:</h5>
+				<ol>
+					<li>Create a Javascript configuration file and save it to a web accessible directory (e.g. "data/config-en.js").</li>
+					<li>Add an <code>overlays</code> array to the <code>wet_boew_geomap</code> variable in the configuration file.
+					<pre><code>// Configuration file ("data/config-en.js")
+	var wet_boew_geomap = {
+	    overlays : [
+	        {
+	            title: 'KML Demo EN',
+	            caption: 'This is a sample KML file loaded locally by Geomap.',
+		    type: 'kml',
+		    url: 'data/sample.kml',
+		    visible: true
+	        },
+	        { ... }
+	    ]
+	};</code></pre></li>
+					<li>Reference the configuration file in the <code>data-wb-geomap</code> attribute of the plugin element by setting the <code>layersFile</code> property to the file path.
+					<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wb-geomap='{ "layersFile": "data/config-en.js" }'&gt; ... &lt;/div&gt;</code></pre></li>
+				</ol>
+			</section>
 		</section>
 
 		<section>
@@ -559,8 +538,6 @@ var wet_boew_geomap = {
 }</code></pre>
 			</section>
 
-
-
 		<section>
 			<h4>Style configuration options</h4>
 			<section>
@@ -682,7 +659,7 @@ wb.doc.on( "geomap.ready", function( event, maps ) {
 			<tr>
 				<td><code>wb-ready.wb-geomap</code> (v4.0.5+)</td>
 				<td>Triggered automatically after Geomap initializes.</td>
-				<td>Used to identify the element where Geomap has initialized (target of the event) and to pass along the map object. 
+				<td>Used to identify the element where Geomap has initialized (target of the event) and to pass along the map object.
 					<pre><code>$( document ).on( "wb-ready.wb-geomap", ".wb-geomap", function( event, map ) {
 });</code></pre>
 					<pre><code>$( ".wb-geomap" ).on( "wb-ready.wb-geomap", function( event, map ) {
@@ -692,7 +669,7 @@ wb.doc.on( "geomap.ready", function( event, maps ) {
 			<tr>
 				<td><code>wb-updated.wb-geomap</code> (v4.0.5+)</td>
 				<td>Triggered automatically after Geomap updates (e.g., change in zoom).</td>
-				<td>Used to identify the element where Geomap has been updated (target of the event) and to pass along the map object. 
+				<td>Used to identify the element where Geomap has been updated (target of the event) and to pass along the map object.
 					<pre><code>$( document ).on( "wb-updated.wb-geomap", ".wb-geomap", function( event, map ) {
 });</code></pre>
 					<pre><code>$( ".wb-geomap" ).on( "wb-updated.wb-geomap", function( event, map ) {
@@ -702,7 +679,7 @@ wb.doc.on( "geomap.ready", function( event, maps ) {
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>

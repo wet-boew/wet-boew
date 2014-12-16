@@ -1,0 +1,1887 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+  <name><![CDATA[City of Ottawa - Proposed Roadways]]></name>
+  <open>1</open>
+  <Snippet maxLines="0"><![CDATA[]]></Snippet>
+  <description><![CDATA[Exported from City of Ottawa - Proposed Roadways on 2012-Nov-21]]></description>
+  <Schema name="City_of_Ottawa_-_Proposed_Roadways" id="City_of_Ottawa_-_Proposed_Roadways_schema">
+    <SimpleField type="string" name="RD_NAME">
+      <displayName><![CDATA[RD_NAME]]></displayName>
+    </SimpleField>
+    <SimpleField type="string" name="RD_SUFFIX">
+      <displayName><![CDATA[RD_SUFFIX]]></displayName>
+    </SimpleField>
+    <SimpleField type="string" name="RD_DIRECTI">
+      <displayName><![CDATA[RD_DIRECTI]]></displayName>
+    </SimpleField>
+    <SimpleField type="string" name="LEFT_FROM">
+      <displayName><![CDATA[LEFT_FROM]]></displayName>
+    </SimpleField>
+    <SimpleField type="string" name="LEFT_TO">
+      <displayName><![CDATA[LEFT_TO]]></displayName>
+    </SimpleField>
+    <SimpleField type="string" name="RIGHT_FROM">
+      <displayName><![CDATA[RIGHT_FROM]]></displayName>
+    </SimpleField>
+    <SimpleField type="string" name="RIGHT_TO">
+      <displayName><![CDATA[RIGHT_TO]]></displayName>
+    </SimpleField>
+  </Schema>
+  <Style id="FEATURES">
+    <LineStyle>
+      <color>FF0098E6</color>
+      <width>2</width>
+    </LineStyle>   
+  </Style>
+  <Folder>
+    <name>Features</name>
+    <open>0</open>      
+       <Placemark>
+         <name><![CDATA[LONG ACRES]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[LONG ACRES]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[ST]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[300]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[334]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[299]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[331]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.8450966071827,45.2843004044369,0
+               -75.8422651570426,45.2853846751279,0
+               -75.8421988355307,45.2853964057794,0
+               -75.8421154965898,45.2853959257569,0
+               -75.8416306596812,45.2853516019345,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[LONGFORD]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[LONGFORD]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[LANE]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -76.0615760127158,45.407474651693,0
+               -76.0608753120584,45.4069279224199,0
+               -76.0607411636291,45.4068405788242,0
+               -76.0605798705315,45.406777545181,0
+               -76.0604452388665,45.4067526126253,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[LONGSHADOW]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[LONGSHADOW]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[ST]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.6427069364972,45.2446655050778,0
+               -75.6425141453668,45.2444721134249,0
+               -75.6423752293308,45.2443437082045,0
+               -75.6419815065976,45.2439268307502,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[LUCKNOW]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[LUCKNOW]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.7793128346692,45.2744120690368,0
+               -75.7792239150765,45.274304007942,0
+               -75.7790134066389,45.2740069045599,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[LUCKNOW]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[LUCKNOW]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.7808899461725,45.272893445927,0
+               -75.7789605474028,45.2737177190865,0
+               -75.7788968225214,45.2738423557637,0
+               -75.7790134066389,45.2740069045599,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[MANCINI]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[MANCINI]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[220]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[234]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.7360905843378,45.2712359503191,0
+               -75.7364409478439,45.2716935984893,0
+               -75.7364640927647,45.2717608646154,0
+               -75.736420573747,45.2718300641889,0
+               -75.7353679716679,45.2722172238656,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[MANCINI]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[MANCINI]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.7360905843378,45.2712359503191,0
+               -75.7356447542672,45.2706842766936,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[MANCINI]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[MANCINI]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.7356447542672,45.2706842766936,0
+               -75.735226241753,45.270115062709,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[MANCINI]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[MANCINI]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"></SimpleData>
+             <SimpleData name="LEFT_TO"></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[145]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[101]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.735226241753,45.270115062709,0
+               -75.7348983450431,45.2696677680676,0
+               -75.7348300128454,45.2696077282817,0
+               -75.7347593748659,45.2695953494506,0
+               -75.7346666534233,45.2696045109623,0
+               -75.7328529273728,45.2702647706153,0
+               -75.732786713428,45.2702738547103,0
+               -75.7327184792302,45.2702626248628,0
+               -75.7326788380097,45.2702290629353,0
+               -75.732212139314,45.269561542926,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[MARKINCH]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[MARKINCH]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[RD]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[1102]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[1086]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5072399272823,45.4278192714294,0
+               -75.5065661043157,45.4291767677118,0
+               -75.5065438918212,45.4292817419177,0
+               -75.5065354302558,45.4293772676581,0
+               -75.5065469869775,45.4294920913332,0
+               -75.5065723785724,45.4295926918656,0
+               -75.5068024873987,45.430020128266,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[MARKINCH]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[MARKINCH]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[RD]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[1000]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[1078]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5086877560043,45.4332951914434,0
+               -75.5068024873987,45.430020128266,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[MCDONELL]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[MCDONELL]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[CRES]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[1581]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[1653]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[1580]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[1652]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5166645297632,45.2693342441802,0
+               -75.5164377032811,45.2691532144503,0
+               -75.5148403263514,45.2678792812822,0
+               -75.5145784518746,45.2676808378538,0
+               -75.5143553380876,45.2675569698438,0
+               -75.5139948869166,45.2674142336808,0
+               -75.5136408377926,45.2673351622309,0
+               -75.513251000224,45.2672999831629,0
+               -75.5128277025262,45.2673175350803,0
+               -75.5124939282682,45.2673694337874,0
+               -75.5120710244586,45.2675089388013,0
+               -75.5116568281311,45.2677227590935,0
+               -75.5106750770505,45.2683346174429,0
+               -75.5103888461306,45.2685300844029,0
+               -75.5099820913527,45.268890643793,0
+               -75.5097474931853,45.2691395757706,0
+               -75.5091210168283,45.2699012084394,0
+               -75.5089938876978,45.2700612482486,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[MONTBLANC]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[MONTBLANC]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[PRIV]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[120]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[100]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[140]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[160]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5273379221575,45.4795580111782,0
+               -75.5268081080919,45.4803009326691,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[NIGHTSHADE]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[NIGHTSHADE]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[PL]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5522156990274,45.2560555618408,0
+               -75.5519897077362,45.2560015101162,0
+               -75.5518638999658,45.2559520273213,0
+               -75.5517750843022,45.2558991139357,0
+               -75.551707739134,45.2558240172697,0
+               -75.5513539541305,45.2552061700442,0
+               -75.5512710341327,45.2551160426479,0
+               -75.5511926432837,45.2550706758095,0
+               -75.5511034572253,45.2550401203118,0
+               -75.5509401027853,45.2550275772411,0
+               -75.5508236002901,45.2550526982555,0
+               -75.5503661149818,45.2552762229735,0
+               -75.5499299656088,45.255485022259,0
+               -75.5495205719476,45.2556716711974,0
+               -75.5487974806604,45.2560010560171,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[OPUS]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[OPUS]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[ST]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.8663084360481,45.2745613344654,0
+               -75.86588355745,45.2748342607165,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[PEBBLE TRAIL]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[PEBBLE TRAIL]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[6865]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[6905]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[6870]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[6920]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5840133923952,45.264257171528,0
+               -75.5834024417961,45.2643511384614,0
+               -75.5814036600251,45.2652190961757,0
+               -75.5811041366511,45.2655096537115,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[PEBBLE TRAIL]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[PEBBLE TRAIL]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[6880]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[6880]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5850220802986,45.2641260442525,0
+               -75.5840133923952,45.264257171528,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[PEERLESS]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[PEERLESS]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.7814536695411,45.2735148421061,0
+               -75.781045424898,45.2729979899428,0
+               -75.7808899461725,45.272893445927,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[PEERLESS]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[PEERLESS]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.7808899461725,45.272893445927,0
+               -75.7802096457612,45.2724932031018,0
+               -75.7800223647105,45.2724778143809,0
+               -75.7777197309002,45.2734409327599,0
+               -75.7776251015499,45.2734799807861,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[PERCIFOR]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[PERCIFOR]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[762]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[694]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[773]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[699]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5255601696596,45.4298191325976,0
+               -75.5258753245141,45.4303347122979,0
+               -75.5258829047898,45.4303756378482,0
+               -75.5258712463461,45.4304105711989,0
+               -75.5258208096096,45.4304510043789,0
+               -75.5242874870753,45.4309010437363,0
+               -75.5242293248863,45.4309083398588,0
+               -75.5241548137029,45.4309018628202,0
+               -75.5241053372406,45.4308858737932,0
+               -75.5240670579098,45.4308621948114,0
+               -75.523745084831,45.4303009550261,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[PERRODALE]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[PERRODALE]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[ST]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5111617779198,45.42714272401,0
+               -75.5105432929267,45.4280115408499,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[PINTO]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[PINTO]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[CRT]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[51]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[59]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[50]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[56]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.8416306596812,45.2853516019345,0
+               -75.8405088090505,45.2852793767517,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[PRESTIGE]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[PRESTIGE]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[CIRC]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.4956057850185,45.4906148772603,0
+               -75.4955428688945,45.4904513504556,0
+               -75.4953972450993,45.4903385526915,0
+               -75.49518199585,45.4903556645497,0
+               -75.4945020177262,45.4906728244856,0
+               -75.4943828055634,45.4908023342418,0
+               -75.4944363833862,45.4909519366011,0
+               -75.4946665482852,45.491161647561,0
+               -75.4947132140355,45.4911988090621,0
+               -75.4947664191451,45.4912313193051,0
+               -75.4950872902616,45.4914026041785,0
+               -75.4951755213575,45.4914354149929,0
+               -75.4952740276118,45.4914466655446,0
+               -75.4954119252851,45.4914464831034,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[REVELL]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[REVELL]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[DR]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.7017896532306,45.2146052668504,0
+               -75.7005646316987,45.2148036729418,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[RIEL]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[RIEL]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[ST]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5554874079869,45.4188957282112,0
+               -75.5545523718833,45.419031969315,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[RIEL]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[RIEL]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[ST]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5583443547283,45.4184423934203,0
+               -75.5577676519402,45.4185456202849,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[RIOCAN]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[RIOCAN]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[AVE]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.7404746120493,45.2685157865075,0
+               -75.7393468867775,45.2670791362689,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[ROCKROSE]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[ROCKROSE]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.6155351003547,45.3128002131624,0
+               -75.6146933847716,45.3113320975639,0
+               -75.6145473707011,45.3111265855172,0
+               -75.6142074566222,45.3106641874911,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[SANGEET]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[SANGEET]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[PL]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.8390729047176,45.171856815996,0
+               -75.8360484868854,45.1693569468901,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[SHAMUS]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[SHAMUS]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[200]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[216]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[217]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[217]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -76.0066228208363,45.2766647075878,0
+               -76.0064652680992,45.2768890609111,0
+               -76.0061276012018,45.2772149306722,0
+               -76.0049964940254,45.2779495649135,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[SILVERSTONE]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[SILVERSTONE]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[400]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[410]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.7356564549373,45.2726806310206,0
+               -75.7353679716679,45.2722172238656,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[SILVERSTONE]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[SILVERSTONE]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[460]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[418]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[461]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[435]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.7360905843378,45.2712359503191,0
+               -75.7350706260553,45.2716356823548,0
+               -75.7350393290475,45.2717057078206,0
+               -75.7350603041346,45.2717760833939,0
+               -75.7353679716679,45.2722172238656,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[SOLANDT]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[SOLANDT]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[RD]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[3150]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[3125]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.9226158008962,45.3355595897311,0
+               -75.9237254498267,45.3374625053869,0
+               -75.9237705910621,45.3376022771342,0
+               -75.9237861292933,45.3377911557032,0
+               -75.923708109709,45.338024711072,0
+               -75.9235901852164,45.3381759771133,0
+               -75.92337299231,45.3383595711418,0
+               -75.9231442479953,45.3385349089636,0
+               -75.9190038569298,45.3415812165552,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[STARCROSS]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[STARCROSS]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[ST]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5127916537936,45.4238364842321,0
+               -75.5126630979075,45.4245079785421,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[STONEMEADOW]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[STONEMEADOW]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[DR]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[122]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[120]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.8424248430507,45.2864151887683,0
+               -75.842379088766,45.2865568176607,0
+               -75.8423607373191,45.2866588124408,0
+               -75.842362239712,45.2867418786325,0
+               -75.8423782778947,45.2868388718542,0
+               -75.8424380914418,45.2869655394368,0
+               -75.8424952513014,45.2870761492201,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[STONEMEADOW]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[STONEMEADOW]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[DR]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.8429993153469,45.2876279042084,0
+               -75.8424952513014,45.2870761492201,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[STONEMEADOW]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[STONEMEADOW]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[DR]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[140]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[124]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[145]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[123]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.8442740404393,45.285486214348,0
+               -75.8430135088469,45.2859600157161,0
+               -75.8428361342983,45.2860368704891,0
+               -75.8427201080057,45.2861071502269,0
+               -75.8426137679621,45.2861878600884,0
+               -75.8425246320809,45.286265222232,0
+               -75.8424248430507,45.2864151887683,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[STONEMEADOW]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[STONEMEADOW]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[DR]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[157]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[147]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.8452688409717,45.2850956519615,0
+               -75.8442740404393,45.285486214348,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[STONEWALK]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[STONEWALK]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[308]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[284]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -76.1613447286145,45.340834374276,0
+               -76.1605952369688,45.3402742206223,0
+               -76.1604680710267,45.3402018531062,0
+               -76.1603663707862,45.3401385598699,0
+               -76.1602645631415,45.3400932636146,0
+               -76.1600226591745,45.3400025568683,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[STONEWALK]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[STONEWALK]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[272]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[260]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -76.1600226591745,45.3400025568683,0
+               -76.1597553551836,45.3398937765544,0
+               -76.1596790136668,45.3398575444682,0
+               -76.159590020514,45.339803287094,0
+               -76.1595137870331,45.3397490676876,0
+               -76.158662634678,45.3391256171255,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[STONEWALK]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[STONEWALK]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[248]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[236]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -76.158662634678,45.3391256171255,0
+               -76.157938493756,45.338601518883,0
+               -76.157760460673,45.3385019998864,0
+               -76.1576078381417,45.338420554184,0
+               -76.1574677582101,45.3383751406861,0
+               -76.1572131173608,45.3382843897634,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[STONEWALK]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[STONEWALK]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[224]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[200]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[201]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[201]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -76.1572131173608,45.3382843897634,0
+               -76.1569584773274,45.338193638274,0
+               -76.156843916815,45.3381482907896,0
+               -76.1567420611851,45.3381119899331,0
+               -76.1566022002783,45.3380305812329,0
+               -76.1548872092254,45.3367925853575,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[SUGAR PINE]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[SUGAR PINE]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[CRES]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[339]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[351]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.8445421070708,45.2862612418082,0
+               -75.8444246437456,45.2860304230954,0
+               -75.8443341357322,45.2858014897264,0
+               -75.8442919714945,45.2856316661706,0
+               -75.8442740404393,45.285486214348,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[SUGAR PINE]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[SUGAR PINE]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[CRES]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[300]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[334]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[301]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[337]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.8452688409717,45.2850956519615,0
+               -75.845342864997,45.2854802332258,0
+               -75.845375547944,45.2856223129152,0
+               -75.8454589439553,45.2858304384699,0
+               -75.8455405923785,45.2859779884226,0
+               -75.8455693945931,45.2860317960816,0
+               -75.8455787796363,45.2860681876896,0
+               -75.845583089404,45.2861201267423,0
+               -75.8455604282111,45.2861719087864,0
+               -75.8455108064046,45.2862235387959,0
+               -75.8450102332662,45.2864802310751,0
+               -75.8449018423749,45.2865263315925,0
+               -75.8448257406219,45.2865362695477,0
+               -75.8447402506211,45.2865098280876,0
+               -75.8446722208695,45.2864575234082,0
+               -75.8446215107699,45.2863897489453,0
+               -75.8445421070708,45.2862612418082,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[SUNNYRIDGE]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[SUNNYRIDGE]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[CRES]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[227]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[255]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[200]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[258]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.8433756190376,45.2841071006611,0
+               -75.8428942864986,45.283547134794,0
+               -75.8428311483409,45.2834965952561,0
+               -75.8427796874126,45.2834945634822,0
+               -75.8427232445692,45.2835011566444,0
+               -75.8426715202433,45.2835216301394,0
+               -75.8411346317427,45.2841564836213,0
+               -75.841077713199,45.2842028873134,0
+               -75.841047487924,45.2842736480298,0
+               -75.8410590337611,45.2843342875781,0
+               -75.8411049479078,45.2843916590217,0
+               -75.8411680289002,45.2844473913535,0
+               -75.8417282775357,45.2847534396104,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[TITANIUM]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[TITANIUM]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[PRIV]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5268081080919,45.4803009326691,0
+               -75.5257520457852,45.4799083596561,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[TITANIUM]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[TITANIUM]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[PRIV]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5281339594596,45.4809401711005,0
+               -75.5284325437216,45.4810078258796,0
+               -75.5284917935957,45.4810048561936,0
+               -75.5285689789989,45.480982557904,0
+               -75.5286036187806,45.4809572228369,0
+               -75.528625325474,45.4809140174602,0
+               -75.5286188563084,45.4808601687229,0
+               -75.5285633365102,45.4808188261278,0
+               -75.5285101846498,45.4807959049445,0
+               -75.5284410151354,45.4807969535841,0
+               -75.528257852907,45.4808697969273,0
+               -75.5281339594596,45.4809401711005,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[TITANIUM]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[TITANIUM]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[PRIV]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[286]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[200]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[299]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[215]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5281339594596,45.4809401711005,0
+               -75.5274350432069,45.4809907694911,0
+               -75.5273208432385,45.4809897970245,0
+               -75.5272370100324,45.4809444406953,0
+               -75.5271547099075,45.4808098150714,0
+               -75.5268081080919,45.4803009326691,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[TOURMALINE]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[TOURMALINE]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[CRES]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[366]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[300]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[365]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[301]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.7356447542672,45.2706842766936,0
+               -75.7347799790652,45.2710162641549,0
+               -75.7346909269096,45.2710185273491,0
+               -75.734610684149,45.2709942869976,0
+               -75.7345710670828,45.2709369887585,0
+               -75.7345201671646,45.2707104643706,0
+               -75.7344242758924,45.270569341562,0
+               -75.7343963181373,45.270509409443,0
+               -75.734413137221,45.270462388145,0
+               -75.7344521066078,45.2704226478032,0
+               -75.735226241753,45.270115062709,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[TRALEE]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[TRALEE]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[RD]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.7356980818616,45.2873038444228,0
+               -75.7356123799476,45.2871879163074,0
+               -75.7351231189893,45.2865997098091,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[TURRIFF]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[TURRIFF]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[PRIV]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[710]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[700]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5083030562143,45.430116365833,0
+               -75.5078871110462,45.4302562646684,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[TURRIFF]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[TURRIFF]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[PRIV]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[728]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[712]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[729]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[715]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5088479174923,45.4299678337854,0
+               -75.5083030562143,45.430116365833,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[VERBENA]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[VERBENA]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[CRES]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[943]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[925]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[918]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[900]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.6175794493268,45.3103982158405,0
+               -75.617210646504,45.3097729405701,0
+               -75.6171649338785,45.3097493704387,0
+               -75.6170991117968,45.3097488616129,0
+               -75.6168512462627,45.3098142928389,0
+               -75.6166990337149,45.309866531317,0
+               -75.616129441423,45.3100897313903,0
+               -75.6160995342359,45.3101080718757,0
+               -75.6160856158653,45.3101567373889,0
+               -75.6161080785297,45.3101940674507,0
+               -75.6165524999757,45.310809699747,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[WESTAR FARM]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[WESTAR FARM]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[330]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[378]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[323]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[379]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.9992544384191,45.1847613094518,0
+               -76.0005623245496,45.1858448555316,0
+               -76.0006239377945,45.1859471186896,0
+               -76.0006228676072,45.1860695168486,0
+               -76.000530591783,45.1861745192705,0
+               -76.0004290573593,45.1862386777075,0
+               -75.9992255595202,45.1869576145092,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[WESTAR FARM]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[WESTAR FARM]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[276]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[316]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[275]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[315]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.9967372186905,45.1817921959493,0
+               -75.9963114929881,45.1820929155278,0
+               -75.9962288671924,45.1821945547643,0
+               -75.9962182102265,45.1823135083341,0
+               -75.9962939902094,45.1824430501781,0
+               -75.9965040741946,45.182607180425,0
+               -75.9992544384191,45.1847613094518,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[WESTAR FARM]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[WESTAR FARM]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[100]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[156]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[109]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[173]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -76.0117723272101,45.1864286011675,0
+               -76.010972262297,45.1857675011777,0
+               -76.0108573111586,45.1857160034143,0
+               -76.0107086270824,45.1856745631079,0
+               -76.0105356910886,45.1856568276506,0
+               -76.0089224300691,45.1853982993305,0
+               -76.008740238414,45.185339715474,0
+               -76.0079548381131,45.1849793304224,0
+               -76.0040306433195,45.1817663013714,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[WESTAR FARM]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[WESTAR FARM]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[244]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[252]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.9999568402748,45.1797662936781,0
+               -75.9982163349132,45.1808840881386,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[WESTAR FARM]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[WESTAR FARM]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[260]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[268]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.9982163349132,45.1808840881386,0
+               -75.9967372186905,45.1817921959493,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[WESTAR FARM]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[WESTAR FARM]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[180]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[236]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[181]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[229]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -76.0040306433195,45.1817663013714,0
+               -76.001815634121,45.1799614250073,0
+               -76.0010516583026,45.1793630793898,0
+               -76.0009317210902,45.1793353514013,0
+               -76.0007923707272,45.179327947559,0
+               -76.0006576089611,45.1793443578196,0
+               -75.9999568402748,45.1797662936781,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[WILD FERN]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[WILD FERN]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[WAY]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5947675636418,45.2599248851262,0
+               -75.5941045709337,45.2588061054168,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[WIMBERLEY]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[WIMBERLEY]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[CRES]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -76.184843342469,45.389971624816,0
+               -76.1842410020804,45.3903479105611,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[WINTERHAVEN]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[WINTERHAVEN]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[DR]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5114683952831,45.4237091027171,0
+               -75.5105367970009,45.4236255093849,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[WINTERHAVEN]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[WINTERHAVEN]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[DR]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[113]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[129]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[100]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[130]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.514344769673,45.4246647797809,0
+               -75.5144328492367,45.4241201767032,0
+               -75.5144319400016,45.4240748505344,0
+               -75.5144054306869,45.4240412284212,0
+               -75.5143670165771,45.4240098974355,0
+               -75.5142980134042,45.4239854470721,0
+               -75.5127916537936,45.4238364842321,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[WINTERHAVEN]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[WINTERHAVEN]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[DR]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[0]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[0]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.5127916537936,45.4238364842321,0
+               -75.5114683952831,45.4237091027171,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+       <Placemark>
+         <name><![CDATA[WOODHURST]]></name>
+         <Snippet maxLines="0"><![CDATA[]]></Snippet>
+         <styleUrl>#FEATURES</styleUrl>
+         <ExtendedData>
+           <SchemaData schemaUrl="#City_of_Ottawa_-_Proposed_Roadways_schema">
+             <SimpleData name="RD_NAME"><![CDATA[WOODHURST]]></SimpleData>
+             <SimpleData name="RD_SUFFIX"><![CDATA[CRES]]></SimpleData>
+             <SimpleData name="RD_DIRECTI"></SimpleData>
+             <SimpleData name="LEFT_FROM"><![CDATA[177]]></SimpleData>
+             <SimpleData name="LEFT_TO"><![CDATA[115]]></SimpleData>
+             <SimpleData name="RIGHT_FROM"><![CDATA[156]]></SimpleData>
+             <SimpleData name="RIGHT_TO"><![CDATA[100]]></SimpleData>
+           </SchemaData>
+         </ExtendedData>
+           <LineString>
+             <extrude>0</extrude>
+             <tessellate>1</tessellate>
+             <altitudeMode>clampedToGround</altitudeMode>
+             <coordinates>
+               -75.9271578553841,45.2524195017888,0
+               -75.9280002696674,45.2519299392928,0
+               -75.9280698536066,45.2518538987361,0
+               -75.9280317489165,45.2517321693724,0
+               -75.9270318651542,45.2509423578193,0
+               -75.9269091466657,45.2509243854394,0
+               -75.9266970648311,45.2509927649627,0
+               -75.9265487795413,45.2510718932222,0
+               -75.9262480382924,45.2511571957074,0
+               -75.9260204754515,45.2512369604729,0
+             </coordinates>
+           </LineString>
+       </Placemark>
+  </Folder>
+</Document>
+</kml>
