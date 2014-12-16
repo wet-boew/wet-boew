@@ -177,7 +177,7 @@ var componentName = "wb-calevt",
 				 *	- 'evt-anchor' class dynamically generates page anchors on the links it maps to the event
 				 */
 				if ( !directLinking ) {
-					linkId = event.attr( "id" ) || wb.guid();
+					linkId = event.attr( "id" ) || "id" + wb.guid();
 					event.attr( "id", linkId );
 
 					/*
