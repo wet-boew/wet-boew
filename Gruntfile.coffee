@@ -80,7 +80,7 @@ module.exports = (grunt) ->
 			if process.env.SAUCE_USERNAME isnt `undefined` and process.env.SAUCE_ACCESS_KEY isnt `undefined`
 				grunt.task.run [
 					"pre-mocha"
-					"saucelabs-mocha"
+					(if process.env.TRAVIS is "true" then "saucelabs-mocha:travis" else "saucelabs-mocha:local")
 				]
 
 	)
@@ -1290,11 +1290,18 @@ module.exports = (grunt) ->
 					urls: ["http://localhost:8000/dist/unmin/test/test.html?txthl=just%20some%7Ctest"]
 
 		"saucelabs-mocha":
-			all:
+			options:
+				urls: "<%= mocha.all.options.urls %>"
+				throttled: 3
+				browsers: grunt.file.readJSON "browsers.json"
+				sauceConfig:
+					"video-upload-on-pass": false
+					"single-window": true
+					"record-screenshots": false
+					"capture-html": true
+				maxRetries: 3
+			travis:
 				options:
-					urls: "<%= mocha.all.options.urls %>"
-					throttled: 3
-					browsers: grunt.file.readJSON "browsers.json"
 					testname: process.env.TRAVIS_COMMIT_MSG
 					build: process.env.TRAVIS_BUILD_NUMBER
 					tags: [
@@ -1302,12 +1309,10 @@ module.exports = (grunt) ->
 						process.env.TRAVIS_BRANCH
 						process.env.TRAVIS_COMMIT
 					]
-					sauceConfig:
-						"video-upload-on-pass": false
-						"single-window": true
-						"record-screenshots": false
-						"capture-html": true
-					maxRetries: 3
+			local:
+				options:
+					testname: "Local Test"
+
 
 		"gh-pages":
 			options:
