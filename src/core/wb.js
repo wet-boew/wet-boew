@@ -163,7 +163,7 @@ var getUrlParts = function( url ) {
 
 					// TODO: Remove ID generation in individual plugins
 					if ( !node.id ) {
-						node.id = wb.guid();
+						node.id = "id" + wb.guid();
 					}
 				}
 
