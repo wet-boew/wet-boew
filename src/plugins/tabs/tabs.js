@@ -21,7 +21,6 @@ var componentName = "wb-tabs",
 	updatedEvent = "wb-updated" + selector,
 	setFocusEvent = "setfocus.wb",
 	controls = selector + " [role=tablist] a, " + selector + " [role=tablist] .tab-count",
-	uniqueCount = 0,
 	initialized = false,
 	equalHeightClass = "wb-eqht",
 	equalHeightOffClass = equalHeightClass + "-off",
@@ -52,7 +51,7 @@ var componentName = "wb-tabs",
 		// Start initialization
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
-		var elm = wb.init( event, componentName, selector ),
+		var elm = wb.init( event, componentName, selector, true ),
 			hashFocus = false,
 			isCarousel = true,
 			open = "open",
@@ -89,13 +88,6 @@ var componentName = "wb-tabs",
 				window[ componentName ],
 				wb.getData( $elm, componentName )
 			);
-
-			// Ensure there is an id on the element
-			if ( !elmId ) {
-				elmId = "tabs-cnt-" + uniqueCount;
-				$elm.attr( "id", elmId );
-				uniqueCount += 1;
-			}
 
 			try {
 
@@ -173,8 +165,7 @@ var componentName = "wb-tabs",
 
 					newId = $panel.attr( "id" );
 					if ( !newId ) {
-						newId = "tabpanel" + uniqueCount;
-						uniqueCount += 1;
+						newId = wb.getId();
 						$panel.attr( "id", newId );
 					}
 					isOpen = !!$panel.attr( open );

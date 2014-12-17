@@ -48,6 +48,12 @@ var getUrlParts = function( url ) {
 	},
 
 	/**
+	 * @variable seed
+	 * @return a unique number for auto-generating ids
+	 */
+	seed = 0,
+
+	/**
 	 * @variable $src
 	 * @return {jQuery Element} of wb script element
 	 */
@@ -144,7 +150,11 @@ var getUrlParts = function( url ) {
 			return this.mode;
 		},
 
-		init: function( event, componentName, selector ) {
+		getId: function() {
+			return "wb-auto-" + ( seed += 1 );
+		},
+
+		init: function( event, componentName, selector, autoId ) {
 			var	eventTarget = event.target,
 				isEvent = !!eventTarget,
 				node = isEvent ? eventTarget : event,
@@ -161,9 +171,8 @@ var getUrlParts = function( url ) {
 				if ( !isDocumentNode ) {
 					node.className += " " + initedClass;
 
-					// TODO: Remove ID generation in individual plugins
-					if ( !node.id ) {
-						node.id = "id" + wb.guid();
+					if ( autoId && !node.id ) {
+						node.id = wb.getId();
 					}
 				}
 
