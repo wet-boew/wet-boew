@@ -1294,6 +1294,10 @@ module.exports = (grunt) ->
 				urls: "<%= mocha.all.options.urls %>"
 				throttled: 3
 				browsers: grunt.file.readJSON "browsers.json"
+				tunnelArgs: [
+					"-D"
+					"ajax.googleapis.com"
+				]
 				sauceConfig:
 					"video-upload-on-pass": false
 					"single-window": true
@@ -1311,7 +1315,7 @@ module.exports = (grunt) ->
 					]
 			local:
 				options:
-					testname: "Local Test"
+					testname: "Local Test - <%= grunt.template.today('yyyy-mm-dd hh:MM') %>"
 
 
 		"gh-pages":
