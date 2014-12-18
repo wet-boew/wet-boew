@@ -37,7 +37,7 @@ var componentName = "wb-mltmd",
 		// Start initialization
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
-		var eventTarget = wb.init( event, componentName, selector ),
+		var eventTarget = wb.init( event, componentName, selector, true ),
 			elmId;
 
 		if ( eventTarget ) {

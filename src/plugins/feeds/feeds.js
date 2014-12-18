@@ -61,7 +61,7 @@ var componentName = "wb-feeds",
 		 */
 		flickr: function( data ) {
 
-			var seed = "id" + wb.guid(),
+			var seed = wb.getId(),
 				title = data.title,
 				media = data.media.m,
 				thumbnail = media.replace( "_m.", "_s." ),
@@ -83,7 +83,7 @@ var componentName = "wb-feeds",
 		 * @return {string}	HTML string for creating a photowall effect
 		 */
 		youtube: function( data ) {
-			var seed = "id" + wb.guid(),
+			var seed = wb.getId(),
 				mediaGroup = data.media$group,
 				title = mediaGroup.media$title.$t,
 				thumbnail = mediaGroup.media$thumbnail[ 1 ].url,

@@ -40,7 +40,7 @@ var componentName = "wb-data-ajax",
 		// Start initialization
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
-		var elm = wb.init( event, componentName + "-" + ajaxType, selector );
+		var elm = wb.init( event, componentName + "-" + ajaxType, selector, true );
 
 		if ( elm ) {
 

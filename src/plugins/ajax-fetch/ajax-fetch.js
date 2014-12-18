@@ -27,7 +27,7 @@ $document.on( "ajax-fetch.wb", function( event ) {
 	if ( caller === event.target || event.currentTarget === event.target ) {
 
 		if ( !caller.id ) {
-			caller.id = "id" + wb.guid();
+			caller.id = wb.getId();
 		}
 		callerId = caller.id;
 
@@ -41,7 +41,7 @@ $document.on( "ajax-fetch.wb", function( event ) {
 					xhr: xhr
 				};
 
-				fetchData.pointer = $( "<div id='id" + wb.guid() + "' data-type='" + responseType + "' />" )
+				fetchData.pointer = $( "<div id='" + wb.getId() + "' data-type='" + responseType + "' />" )
 										.append( responseType === "string" ? response : "" );
 
 				$( "#" + callerId ).trigger({

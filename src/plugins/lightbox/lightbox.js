@@ -20,7 +20,6 @@ var componentName = "wb-lbx",
 	dependenciesLoadedEvent = "deps-loaded" + selector,
 	extendedGlobal = false,
 	$document = wb.doc,
-	idCount = 0,
 	callbacks, i18n, i18nText,
 
 	/**
@@ -32,18 +31,11 @@ var componentName = "wb-lbx",
 		// Start initialization
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
-		var elm = wb.init( event, componentName, selector ),
+		var elm = wb.init( event, componentName, selector, true ),
 			elmId;
 
 		if ( elm ) {
 			elmId = elm.id;
-
-			// Ensure there is a unique id on the element
-			if ( !elmId ) {
-				elmId = componentName + "-id-" + idCount;
-				idCount += 1;
-				elm.id = elmId;
-			}
 
 			// Ensure the dependencies are loaded first
 			$document.one( dependenciesLoadedEvent, function() {
