@@ -2,7 +2,7 @@
 
 // Test harness to run the full suite
 mocha.setup( "bdd" );
-wb.doc.on( "ready", function() {
+wb.doc.on( "wb-ready.wb", function() {
 
 	var runner = mocha.run(),
 		failedTests = [];
