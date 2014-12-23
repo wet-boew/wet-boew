@@ -28,8 +28,8 @@ $document.on( "wb-ready.wb-geomap", "#sample_map", function( event, map ) {
 
 	// Get the sample_map to use in zoomFeature function
 	mapSample = map;
-	var $aoiExtent = $( "#geomap-aoi-extent-" + mapSample.uniqueId ),
-		$aoiExtentLonLat = $( "#geomap-aoi-extent-lonlat-" + mapSample.uniqueId );
+	var $aoiExtent = $( "#geomap-aoi-extent-" + mapSample.id ),
+		$aoiExtentLonLat = $( "#geomap-aoi-extent-lonlat-" + mapSample.id );
 
 	if ( $aoiExtent ) {
 
