@@ -619,6 +619,18 @@ blockquote {
 }
 
 /*
+ *	Fieldset legend border position
+ *
+ *	Bootstrap puts the border below the legend which creates a visual
+ *	separation between the legend and the fields to which it relates. Putting
+ *	the border above eliminates that visual separation.
+ */
+legend {
+	border-bottom: 0;
+	border-top: 1px solid $legend-border-color;
+}
+
+/*
  *	Pagination
  *	  * Add left/right arrows to previous/next buttons
  *	  * Increase size of the pagination buttons
