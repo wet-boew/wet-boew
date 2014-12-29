@@ -21,7 +21,7 @@ var componentName = "wb-tableofcontents",
 	navClasses = "col-md-3 col-md-push-9",
 	pageTitle = "#wb-cont",
 	$document = wb.doc,
-	//i18n, i18nText,
+	i18n, i18nText,
 
 	/**
 	 * @method init
@@ -39,16 +39,18 @@ var componentName = "wb-tableofcontents",
 			$elm = $( elm );
 
 			// Only initialize the i18nText once
-			/*if ( !i18nText ) {
+			if ( !i18nText ) {
 				i18n = wb.i18n;
 				i18nText = {
 					toc: i18n( "toc" )
 				};
-			}*/
+			}
 
 			$toc = $( "<nav class=\"" + navClasses + "\"></nav>" );
+			$( "<h2>" + i18nText.toc + "</h2>" ).appendTo( $toc );
 			$secList = $( "<ol>" );
 			c = 0;
+
 			$elm.find( "h2, h3, h4, h5, h6" ).each( function() {
 				var $this = $( this );
 
@@ -59,6 +61,7 @@ var componentName = "wb-tableofcontents",
 
 				$( "<li><a href=\"#" + $this.attr( "id" ) + "\">" + $this.text() + "</a></li>" ).appendTo( $secList );
 			} );
+
 			$toc.append( $secList ).insertAfter( pageTitle );
 			$( pageTitle ).siblings().wrapAll( "<div class=\"row\"></div>" );
 			$toc.siblings().wrapAll( "<div class=\"" + contentClasses + "\"></div>" );
