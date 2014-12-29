@@ -140,6 +140,7 @@ var getUrlParts = function( url ) {
 		isDisabled: disabled,
 		isStarted: false,
 		isReady: false,
+		ignoreHashChange: false,
 		initQueue: 0,
 
 		getPath: function( property ) {

@@ -787,7 +787,7 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 		if ( currentUrl.absolute.replace( currentUrl.hash || "#", "" ) !== captionsUrl.absolute.replace( captionsUrl.hash || "#", "" ) ) {
 			loadCaptionsExternal( $player, captionsUrl.absolute );
 		} else {
-			loadCaptionsInternal( $player, $( captionsUrl.hash ) );
+			loadCaptionsInternal( $player, $( "#" + wb.jqEscape( captionsUrl.hash.substring( 1 ) ) ) );
 		}
 	}
 });

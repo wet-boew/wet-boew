@@ -8,11 +8,22 @@
 "use strict";
 
 var $document = wb.doc,
-	hash = wb.pageUrlParts.hash,
+	$window = wb.win,
 	clickEvents = "click vclick",
 	setFocusEvent = "setfocus.wb",
 	linkSelector = "a[href]",
-	$linkTarget;
+	$linkTarget,
+
+	/**
+	 * @method processHash
+	 */
+	processHash = function() {
+		var hash = wb.pageUrlParts.hash;
+
+		if ( hash && ( $linkTarget = $( "#" + wb.jqEscape( hash.substring( 1 ) ) ) ).length !== 0 ) {
+			$linkTarget.trigger( setFocusEvent );
+		}
+	};
 
 // Bind the setfocus event
 $document.on( setFocusEvent, function( event ) {
@@ -60,9 +71,13 @@ $document.on( setFocusEvent, function( event ) {
 
 // Set focus to the target of a deep link from a different page
 // (helps browsers that can't set the focus on their own)
-$document.on( "wb-ready.wb", function() {
-	if ( hash && ( $linkTarget = $( hash ) ).length !== 0 ) {
-		$linkTarget.trigger( setFocusEvent );
+$document.on( "wb-ready.wb", processHash );
+
+// Handle any changes to the URL hash after the page has loaded
+$window.on( "hashchange", function() {
+	wb.pageUrlParts.hash = window.location.hash;
+	if ( !wb.ignoreHashChange ) {
+		processHash();
 	}
 });
 
@@ -72,7 +87,7 @@ $document.on( clickEvents, linkSelector, function( event ) {
 
 	// Same page links only
 	if ( testHref.charAt( 0 ) === "#" && !event.isDefaultPrevented() &&
-		( $linkTarget = $( testHref ) ).length !== 0 ) {
+		( $linkTarget = $( "#" + wb.jqEscape( testHref.substring( 0 ) ) ) ).length !== 0 ) {
 
 		$linkTarget.trigger( setFocusEvent );
 	}
