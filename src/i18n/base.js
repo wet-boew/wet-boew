@@ -204,7 +204,9 @@ wb.i18nDict = {
 	"wb-disable": "@wb-disable@",
 	"wb-enable": "@wb-enable@",
 	/* Template */
-	"tmpl-signin": "@tmpl-signin@"
+	"tmpl-signin": "@tmpl-signin@",
+	/* Table of contents */
+	"toc": "@toc@"
 };
 
 })( wb );
