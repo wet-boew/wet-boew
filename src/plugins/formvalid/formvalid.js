@@ -301,30 +301,6 @@ var componentName = "wb-frmvld",
 // Bind the init event of the plugin
 $document.on( "timerpoke.wb " + initEvent, selector, init );
 
-// Move the focus to the associated input when an error message link is clicked
-// and scroll to the top of the label or legend that contains the error
-$document.on( "click vclick", selector + " .errCnt a", function( event ) {
-	var which = event.which,
-		hash, $input, $label, $legend, errorTop;
-
-	// Ignore middle/right mouse buttons
-	if ( !which || which === 1 ) {
-		hash = this.href.substring( this.href.indexOf( "#" ) );
-		$input = $( hash );
-		$label = $input.prev();
-		$legend = $label.length === 0 ? $input.closest( "fieldset" ).find( "legend" ) : [];
-		errorTop = $label.length !== 0 ? $label.offset().top : ( $legend.length !== 0 ? $legend.offset().top : -1 );
-
-		// Assign focus to $input
-		$input.trigger( setFocusEvent );
-
-		if ( errorTop !== -1 ) {
-			window.scroll( 0, errorTop );
-		}
-		return false;
-	}
-});
-
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 

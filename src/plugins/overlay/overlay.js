@@ -73,7 +73,7 @@ var componentName = "wb-overlay",
 	},
 
 	openOverlay = function( overlayId, noFocus ) {
-		var $overlay = $( "#" + overlayId );
+		var $overlay = $( "#" + wb.jqEscape( overlayId ) );
 
 		$overlay
 			.addClass( "open" )

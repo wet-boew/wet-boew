@@ -26,10 +26,8 @@ var componentName = "wb-tabs",
 	equalHeightOffClass = equalHeightClass + "-off",
 	activePanel = "-activePanel",
 	activateEvent = "click keydown",
-	ignoreHashChange = false,
 	pagePath = wb.pageUrlParts.pathname + "#",
 	$document = wb.doc,
-	$window = wb.win,
 	i18n, i18nText,
 
 	// Includes "smallview", "xsmallview" and "xxsmallview"
@@ -70,7 +68,7 @@ var componentName = "wb-tabs",
 			$panels = $elm.find( "> .tabpanels > [role=tabpanel], > .tabpanels > details" );
 			$tablist = $elm.children( "[role=tablist]" );
 			isCarousel = $tablist.length !== 0;
-			activeId = wb.pageUrlParts.hash.substring( 1 );
+			activeId = wb.jqEscape( wb.pageUrlParts.hash.substring( 1 ) );
 			$openPanel = activeId.length !== 0 ? $panels.filter( "#" + activeId ) : undefined;
 			elmId = elm.id;
 			settings = $.extend(
@@ -382,11 +380,11 @@ var componentName = "wb-tabs",
 	updateHash = function( elm ) {
 		var elmId = elm.id;
 
-		ignoreHashChange = true;
+		wb.ignoreHashChange = true;
 		elm.id += "-off";
 		window.location.hash = elmId;
 		elm.id = elmId;
-		ignoreHashChange = false;
+		wb.ignoreHashChange = false;
 	},
 
 	updateNodes = function( $panels, $controls, $next, $control ) {
@@ -535,32 +533,6 @@ var componentName = "wb-tabs",
 			type: shiftEvent,
 			shiftto: shifto
 		});
-	},
-
-	/**
-	 * @method onHashChange
-	 * @param {jQuery Event} event Event that triggered the function call
-	 */
-	onHashChange = function( event ) {
-		if ( initialized && !ignoreHashChange ) {
-			var hash = window.location.hash,
-				$hashTarget = $( hash );
-
-			if ( $hashTarget.length !== 0 ) {
-				event.preventDefault();
-				if ( isSmallView && $hashTarget[ 0 ].nodeName.toLowerCase() === "details" ) {
-					$hashTarget
-						.children( "summary" )
-							.trigger( "click" );
-				} else {
-					$hashTarget
-						.parent()
-							.parent()
-								.find( "> ul [href$='" + hash + "']" )
-									.trigger( "click" );
-				}
-			}
-		}
 	},
 
 	/**
@@ -834,7 +806,7 @@ $document.on( "click", selector + " [role=tabpanel] a", function( event ) {
 	// Ignore middle and right mouse buttons
 	if ( ( !which || which === 1 ) && href.charAt( 0 ) === "#" ) {
 		$tabpanels = $( currentTarget ).closest( ".tabpanels" );
-		$panel = $tabpanels.children( href );
+		$panel = $tabpanels.children( "#" + wb.jqEscape( href.substring( 1 ) ) );
 		if ( $panel.length !== 0 ) {
 			event.preventDefault();
 			$summary = $panel.children( "summary" );
@@ -849,9 +821,6 @@ $document.on( "click", selector + " [role=tabpanel] a", function( event ) {
 
 // These events only fire at the document level
 $document.on( wb.resizeEvents, onResize );
-
-// This event only fires on the window
-$window.on( "hashchange", onHashChange );
 
 $document.on( activateEvent, selector + " > .tabpanels > details > summary", function( event ) {
 	var which = event.which,
