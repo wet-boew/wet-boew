@@ -349,7 +349,7 @@ var componentName = "wb-tabs",
 
 		for ( ; tabCounter !== -1; tabCounter -= 1 ) {
 			item = panels[ tabCounter ];
-			isActive = item.className.indexOf( "in" ) !== -1;
+			isActive = item.className.indexOf( "out" ) === -1;
 
 			if ( !isDetails || !isSmallView ) {
 				item.setAttribute( "aria-hidden", isActive ? "false" : "true" );
@@ -841,7 +841,7 @@ $document.on( "click", selector + " [role=tabpanel] a", function( event ) {
 			if ( $summary.length !== 0 && $summary.attr( "aria-hidden" ) !== "true" ) {
 				$summary.trigger( "click" );
 			} else {
-				$tabpanels.find( href + "-lnk" ).trigger( "click" );
+				$tabpanels.parent().find( href + "-lnk" ).trigger( "click" );
 			}
 		}
 	}
