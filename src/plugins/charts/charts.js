@@ -37,12 +37,14 @@
 			captionHtml = $caption.html() || "",
 			captionText = $caption.text() || "",
 			valuePoint = 0,
+			floatRegExp = /[\+\-0-9]+[0-9,\. ]*/,
+			floatRegExp2 = /[^\+\-\.\, 0-9]+[^\-\+0-9]*/,
 			lowestFlotDelta, $imgContainer, $placeHolder,
 			$wetChartContainer, htmlPlaceHolder, figurehtml,
 			cellValue, datacolgroupfound, dataGroup, header,
 			i, iLength, j, jLength, parsedData, rIndex, currVectorOptions,
 			currentRowGroup, reverseTblParsing, dataGroupVector,
-			dataCell, previousDataCell, currDataVector,
+			currentDataGroupVector, dataCell, previousDataCell, currDataVector,
 			pieQuaterFlotSeries, optionFlot, optionsCharts, globalOptions,
 			defaultsOptions = {
 
@@ -89,7 +91,7 @@
 								if ( optionsCharts.nolegend ) {
 
 									// Add the series label
-									textlabel = label + "<br/>" + textlabel;
+									textlabel = label + "<br />" + textlabel;
 								}
 								return textlabel + "%";
 							}
@@ -180,8 +182,8 @@
 								var cellRawValue = $.trim( $( elem ).text() ).replace( /\s/g, "" );
 
 								return [
-									parseFloat( cellRawValue.match( /[\+\-0-9]+[0-9,\. ]*/ ) ),
-									cellRawValue.match (/[^\+\-\.\, 0-9]+[^\-\+0-9]*/ )
+									parseFloat( cellRawValue.match( floatRegExp ) ),
+									cellRawValue.match ( floatRegExp2 )
 								];
 							}
 						}
@@ -195,8 +197,8 @@
 							"/getcellvalue": function( elem ) {
 								var raw = $.trim( $( elem ).text() ).replace( /,/g, "" );
 								return [
-									parseFloat( raw.match( /[\+\-0-9]+[0-9,\. ]*/ ) ),
-									raw.match( /[^\+\-\.\, 0-9]+[^\-\+0-9]*/ )
+									parseFloat( raw.match( floatRegExp ) ),
+									raw.match( floatRegExp2 )
 								];
 							}
 						}
@@ -206,8 +208,8 @@
 							"/getcellvalue": function( elem ) {
 								var raw = $.trim( $( elem ).text() ).replace( /\./g, "" );
 								return [
-									parseFloat( raw.match( /[\+\-0-9]+[0-9,\. ]*/ ) ),
-									raw.match( /[^\+\-\.\, 0-9]+[^\-\+0-9]*/ )
+									parseFloat( raw.match( floatRegExp ) ),
+									raw.match( floatRegExp2 )
 								];
 							}
 						}
@@ -412,6 +414,7 @@
 				headerCell = $( rowRefValueCells[ i ] ).data().tblparser;
 
 				if ( headerCell.colgroup && headerCell.colgroup.type === 3 ) {
+
 					// We only process the first column data group
 					break;
 				}
@@ -419,7 +422,6 @@
 				if ( headerCell.colpos >= dataColgroupStart && ( headerCell.type === 1 || headerCell.type === 7 ) ) {
 					if ( headerCell.child.length !== 0 ) {
 						calcStep = calcStep * headerCell.child.length * groupHeaderCalculateStepsRecursive( headerCell, 1 );
-
 					}
 				}
 			}
@@ -558,17 +560,19 @@
 			var i, k, m, kLen, mLen,
 				cumulativeValue,
 				currentCell,
-				currentCellChild;
+				currentCellChild,
+				currentVectorHead;
 
 			// Calculate upper-step for cells that are
 			// less precise than the reference value vector
 			for ( i = referenceValue - 1; i !== -1; i -= 1 ) {
+				currentVectorHead = vectorHead[ i ];
 
-				for ( k = 0, kLen = vectorHead[ i ].cell.length; k !== kLen; k += 1 ) {
-					currentCell = vectorHead[ i ].cell[ k ];
+				for ( k = 0, kLen = currentVectorHead.cell.length; k !== kLen; k += 1 ) {
+					currentCell = currentVectorHead.cell[ k ];
 
 					if ( currentCell.flotDelta || k > 0 &&
-						currentCell.uid === vectorHead[ i ].cell[ k - 1 ].uid ) {
+						currentCell.uid === currentVectorHead.cell[ k - 1 ].uid ) {
 
 						continue;
 					}
@@ -623,7 +627,9 @@
 		 * @param {object[]} arrVectorHeaders - Collection of vector headers
 		 */
 		function getlabelsVectorPosition( arrVectorHeaders ) {
-			return ( !optionsCharts.labelposition || ( optionsCharts.labelposition && optionsCharts.labelposition > arrVectorHeaders.length ) ? parsedData.theadRowStack.length : optionsCharts.labelposition ) - 1;
+			var labelPosition = optionsCharts.labelposition;
+			return ( !labelPosition || ( labelPosition && labelPosition > arrVectorHeaders.length ) ?
+				parsedData.theadRowStack.length : labelPosition ) - 1;
 		}
 
 		/**
@@ -676,10 +682,11 @@
 			// Find the range of the first data colgroup
 			var dataColgroupStart = -1,
 				headerlevel = 0,
+				theadRowStack = parsedData.theadRowStack,
 				i, iLength, labelsVectorPosition,
 				stepsValue, rowReferenceValue;
 
-			if ( !parsedData.theadRowStack ) {
+			if ( !theadRowStack ) {
 				return;
 			}
 
@@ -691,31 +698,31 @@
 			}
 
 			if ( ( !reverseTblParsing && optionsCharts.referencevalue === false ) || reverseTblParsing ) {
-				rowReferenceValue = parsedData.theadRowStack.length;
+				rowReferenceValue = theadRowStack.length;
 			} else {
 				rowReferenceValue = optionsCharts.referencevalue;
 			}
 
 			rowReferenceValue = rowReferenceValue - 1;
 
-			stepsValue = getRowGroupHeaderCalculateSteps( parsedData.theadRowStack, rowReferenceValue, dataColgroupStart );
+			stepsValue = getRowGroupHeaderCalculateSteps( theadRowStack, rowReferenceValue, dataColgroupStart );
 
 			if ( !reverseTblParsing ) {
-				labelsVectorPosition = getlabelsVectorPosition( parsedData.theadRowStack );
+				labelsVectorPosition = getlabelsVectorPosition( theadRowStack );
 			} else {
-				labelsVectorPosition = parsedData.theadRowStack.length - 1;
+				labelsVectorPosition = theadRowStack.length - 1;
 			}
 
 			headerlevel = rowReferenceValue;
 
 			// Calculate inner-step for cells that are more precise than the reference value vector
-			setInnerStepValues( parsedData.theadRowStack[ rowReferenceValue ], headerlevel, stepsValue, rowReferenceValue, dataColgroupStart );
+			setInnerStepValues( theadRowStack[ rowReferenceValue ], headerlevel, stepsValue, rowReferenceValue, dataColgroupStart );
 
 			// Calculate upper-step for cells that are less precise than the reference value vector
-			setUpperStepValues( parsedData.theadRowStack, rowReferenceValue );
+			setUpperStepValues( theadRowStack, rowReferenceValue );
 
 			// Get the labelling
-			return getLabels( parsedData.theadRowStack[ labelsVectorPosition ], dataColgroupStart );
+			return getLabels( theadRowStack[ labelsVectorPosition ], dataColgroupStart );
 
 		}
 
@@ -725,40 +732,32 @@
 		 * @method wrapTableIntoDetails
 		 */
 		function wrapTableIntoDetails() {
-			var $details;
-
 			if ( !captionHtml.length ) {
 				return;
 			}
 
-			$details = $( "<details><summary>" +
-				captionHtml + i18nText.tableMention +
-				"</summary></details>" );
-
-			$elm.after( $details );
-			$details.append( $elm );
+			$elm
+				.wrap( "<details/>" )
+				.before( "<summary>" + captionHtml + i18nText.tableMention + "</summary>" );
 		}
 
-		function createContainer(withDimension) {
+		function createContainer( withDimension ) {
+			$elm
+				.wrap( "<figure class='" + optionsCharts.graphclass + "'/>" )
+				.before(
 
-			var $container = $( "<figure class='" + optionsCharts.graphclass + "'>" +
+					// Copy to the inner table caption
+					( captionHtml.length ? "<figcaption>" + captionHtml + "</figcaption>" : "" ) +
 
-				// Copy to the inner table caption
-				( captionHtml.length ? "<figcaption>" + captionHtml + "</figcaption>" : "" ) +
+					// Image Container
+					"<div role='img' aria-label='" + captionText + i18nText.tableFollowing + "'" +
 
-				// Image Container
-				"<div role='img' aria-label='" +
-				captionText + i18nText.tableFollowing + "'" +
+					// Add Dimension
+					( withDimension ? "style='height:" + optionsCharts.height +
+					"px; width:" + optionsCharts.width + "px'" : "" ) + "></div>"
+				);
 
-				// Add Dimension
-				( withDimension ? "style='height:" + optionsCharts.height +
-				"px; width:" + optionsCharts.width + "px'" : "" ) +
-
-				"></div></figure>");
-
-			$container.insertBefore( $elm ).append( $elm );
-
-			return $( "div:eq(0)", $container );
+			return $( "div:eq(0)", $elm.parent() );
 		}
 
 		// Retrieve the parsed data
@@ -804,11 +803,12 @@
 				for ( i = 0, iLength = dataGroupVector.length; i !== iLength; i += 1 ) {
 					dataSeries = [];
 					valuePoint = 0;
+					currentDataGroupVector = dataGroupVector[ i ];
 
 					// For each cells
-					for ( j = 0, jLength = dataGroupVector[ i ].cell.length; j !== jLength; j += 1 ) {
+					for ( j = 0, jLength = currentDataGroupVector.cell.length; j !== jLength; j += 1 ) {
 
-						dataCell = dataGroupVector[ i ].cell[ j ];
+						dataCell = currentDataGroupVector.cell[ j ];
 
 						// Skip the column if
 						if ( reverseTblParsing && dataCell.col.type === 1 ) {
@@ -817,7 +817,7 @@
 
 						previousDataCell = undefined;
 						if ( j !== 0 ) {
-							previousDataCell = dataGroupVector[ i ].cell[ j - 1 ];
+							previousDataCell = currentDataGroupVector.cell[ j - 1 ];
 						}
 
 						// Verify if the selected cell still in the scope of a data group in his another axes (eg. row/col)
@@ -834,8 +834,8 @@
 						header = !reverseTblParsing ? dataCell.row.header : dataCell.col.header;
 
 						cellValue = optionsCharts.getcellvalue( !reverseTblParsing ?
-							dataGroupVector[ i ].cell[ rIndex ].elem :
-							dataGroupVector[ i ].datacell[ rIndex ].elem );
+							currentDataGroupVector.cell[ rIndex ].elem :
+							currentDataGroupVector.datacell[ rIndex ].elem );
 
 						dataSeries.push(
 							[
@@ -843,7 +843,8 @@
 								typeof cellValue === "object" ?
 									cellValue[ 0 ] :
 									cellValue
-							]);
+							]
+						);
 
 						valuePoint += header[ header.length - 1 ].flotDelta;
 
@@ -853,9 +854,9 @@
 					pieQuaterFlotSeries = { };
 
 					// Get the setting from the associative cell header
-					dataCell =  !reverseTblParsing ?
-						dataGroupVector[ i ].cell[ rIndex ] :
-						dataGroupVector[ i ].datacell[ rIndex ];
+					dataCell = !reverseTblParsing ?
+						currentDataGroupVector.cell[ rIndex ] :
+						currentDataGroupVector.datacell[ rIndex ];
 					header = !reverseTblParsing ?
 						dataCell.col.header :
 						dataCell.row.header;
@@ -867,8 +868,8 @@
 					// Set the data issue from the table
 					pieQuaterFlotSeries.data = dataSeries;
 					pieQuaterFlotSeries.label = ( !reverseTblParsing ?
-						$( dataGroupVector[ i ].dataheader[ dataGroupVector[ i ].dataheader.length - 1 ].elem ).text() :
-						$( dataGroupVector[ i ].header[ dataGroupVector[ i ].header.length - 1 ].elem ).text() );
+						$( currentDataGroupVector.dataheader[ currentDataGroupVector.dataheader.length - 1 ].elem ).text() :
+						$( currentDataGroupVector.header[ currentDataGroupVector.header.length - 1 ].elem ).text() );
 
 					// Add the series
 					allSeries.push(pieQuaterFlotSeries);
@@ -956,10 +957,11 @@
 
 		// Count the number of bar charts,
 		for ( i = 0, iLength = dataGroupVector.length; i !== iLength; i += 1 ) {
-			currDataVector = dataGroupVector[ i ].header[ dataGroupVector[ i ].header.length - 1 ];
+			currentDataGroupVector = dataGroupVector[ i ];
+			currDataVector = currentDataGroupVector.header[ currentDataGroupVector.header.length - 1 ];
 
 			// Apply any preset
-			currVectorOptions = applyPreset( defaultsOptions.series, $(currDataVector.elem), "flot" );
+			currVectorOptions = applyPreset( defaultsOptions.series, $( currDataVector.elem ), "flot" );
 
 			if ( currVectorOptions.bars || ( optionFlot.bars && !currVectorOptions.lines ) ) {
 
