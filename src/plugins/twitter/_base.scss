@@ -16,6 +16,12 @@
 		display: block;
 		text-indent: -9999px;
 	}
+
+	iframe {
+		&[style] {
+			width: 100% !important;
+		}
+	}
 }
 
 /* Right to left (RTL) CSS */
