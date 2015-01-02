@@ -46,6 +46,39 @@
 	text-decoration: none;
 }
 
+%global_loading_container {
+	bottom: 0;
+	content: " ";
+	height: 100px;
+	left: 0;
+	margin: auto;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 100px;
+}
+
+%global-loading {
+	&:after {
+		@extend %global_loading_container;
+		animation: {
+			duration: 1000ms;
+			iteration-count: infinite;
+			name: spin;
+			timing-function: linear;
+		}
+		background: url("../assets/loading.png") center center no-repeat;
+		z-index: 2;
+	}
+
+	&:before {
+		@extend %global_loading_container;
+		background: rgba(0, 0, 0, 0.7);
+		border-radius: 10px;
+		z-index: 1;
+	}
+}
+
 /*! WET-BOEW Core and Plugins */
 @import "accessibility/base";
 @import "bootstrap-overrides/base";

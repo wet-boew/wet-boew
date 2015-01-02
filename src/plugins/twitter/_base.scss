@@ -24,6 +24,17 @@
 	}
 }
 
+.wb-enable {
+	.wb-twitter {
+		.twitter-timeline {
+			@extend %global-loading;
+			min-height: 100px;
+			min-width: 100px;
+			position: relative;
+		}
+	}
+}
+
 /* Right to left (RTL) CSS */
 [dir="rtl"] {
 	.wb-twitter {
