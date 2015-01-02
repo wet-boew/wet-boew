@@ -34,18 +34,6 @@ $mm-volume-thumb-width: 10px;
 	}
 }
 
-%multimedia_loading {
-	bottom: 0;
-	content: " ";
-	height: 100px;
-	left: 0;
-	margin: auto;
-	position: absolute;
-	right: 0;
-	top: 0;
-	width: 100px;
-}
-
 %captions_hidden {
 	max-height: 0;
 	padding: 0;
@@ -115,24 +103,7 @@ $mm-volume-thumb-width: 10px;
 		}
 
 		&.waiting {
-			&:after {
-				@extend %multimedia_loading;
-				animation: {
-					duration: 1000ms;
-					iteration-count: infinite;
-					name: spin;
-					timing-function: linear;
-				}
-				background: url("../assets/loading.png") center center no-repeat;
-				z-index: 2;
-			}
-
-			&:before {
-				@extend %multimedia_loading;
-				background: rgba(0, 0, 0, 0.7);
-				border-radius: 10px;
-				z-index: 1;
-			}
+			@extend %global-loading;
 		}
 	}
 
