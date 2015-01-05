@@ -213,7 +213,7 @@ var componentName = "wb-lbx",
 					// by the URL hash
 					// TODO: Should be dealt with upstream by Magnific Popup
 					if ( urlHash ) {
-						mfpResponse.data = $( mfpResponse.data ).find( "#" + wb.jqEscape( urlHash ) );
+						mfpResponse.data = $( "<div>" + mfpResponse.data + "</div>" ).find( "#" + wb.jqEscape( urlHash ) );
 					}
 				}
 			};
