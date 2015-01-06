@@ -3,9 +3,8 @@
  * @title Twitter Plugin Unit Tests
  * @overview Test the favicon plugin behaviour
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
- * @author @patheard
  */
-/* global jQuery, describe, it, expect, before, after, sinon */
+/* global jQuery, describe, it, expect, before, after */
 /* jshint unused:vars */
 (function( $, wb ) {
 
@@ -28,10 +27,11 @@ describe( "Twitter test suite", function() {
     // Trigger plugin init
     $elm = $( "<div class='wb-twitter'><a class='twitter-timeline' href='https://twitter.com/search?q=%23WxT' data-widget-id='329066756620566528'>Tweets about '#WxT'</a></div>" )
       .appendTo( $body )
-      .trigger( "wb-init.wb-twitter");
+      .trigger( "wb-init.wb-twitter" );
 
-    // Give the content time to load
-    setTimeout( done, 100 );
+    $document.on( "wb-ready.wb-twitter", ".wb-twitter", function() {
+      done();
+    });
   });
 
   after(function() {
