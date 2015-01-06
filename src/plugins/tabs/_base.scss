@@ -43,6 +43,21 @@ $medGray: #ccc;
 	}
 }
 
+%tab-figure {
+	figure {
+		@extend %tabs-position-relative;
+		@extend %tab-background-243850;
+	}
+
+	figcaption {
+		@extend %tab-figure-captions;
+
+		p {
+			@extend %tabs-margin-bottom-0;
+		}
+	}
+}
+
 %carousel-s2-prv-nxt-common {
 	background: none;
 	margin: 0;
@@ -217,6 +232,8 @@ $medGray: #ccc;
 	 * Style 1 - Basic carousel style
 	 */
 	&.carousel-s1 {
+		@extend %tab-figure;
+
 		border-top: 0;
 
 		[role="tablist"] {
@@ -266,25 +283,14 @@ $medGray: #ccc;
 				}
 			}
 		}
-
-		figure {
-			@extend %tabs-position-relative;
-			@extend %tab-background-243850;
-		}
-
-		figcaption {
-			@extend %tab-figure-captions;
-
-			p {
-				@extend %tabs-margin-bottom-0;
-			}
-		}
 	}
 
 	/**
 	 * Style 2 - Slider-like carousel style
 	 */
 	&.carousel-s2 {
+		@extend %tab-figure;
+
 		background: #eee;
 		padding-bottom: 4.375em;
 
@@ -375,23 +381,14 @@ $medGray: #ccc;
 		}
 
 		figure {
-			@extend %tabs-position-relative;
-			@extend %tab-background-243850;
-
 			img {
 				@extend %tab-width-100-height-auto;
 			}
 		}
 
 		figcaption {
-			@extend %tab-figure-captions;
-
 			a {
 				@extend %tab-figure-captions-links;
-			}
-
-			p {
-				@extend %tabs-margin-bottom-0;
 			}
 		}
 	}
