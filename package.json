@@ -55,7 +55,7 @@
     "grunt-jscs": "^0.7.1",
     "grunt-mocha": "~0.4.1",
     "grunt-modernizr": "~0.5.2",
-    "grunt-sass": "^0.16.1",
+    "grunt-sass": "^0.14.1",
     "grunt-saucelabs": "^8.2.0",
     "grunt-wget": "~0.1.0",
     "grunt-wet-boew-postbuild": "wet-boew/grunt-wet-boew-postbuild#v0.1.2",
