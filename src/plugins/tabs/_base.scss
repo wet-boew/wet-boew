@@ -267,6 +267,7 @@ $medGray: #ccc;
 			}
 		}
 
+		// TODO: Simplify with extends when libsass fully supports @extends (https://github.com/wet-boew/wet-boew/pull/6419)
 		figure {
 			@extend %tabs-position-relative;
 			@extend %tab-background-243850;
@@ -374,6 +375,7 @@ $medGray: #ccc;
 			}
 		}
 
+		// TODO: Simplify with extends when libsass fully supports @extends
 		figure {
 			@extend %tabs-position-relative;
 			@extend %tab-background-243850;
