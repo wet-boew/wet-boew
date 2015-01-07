@@ -24,6 +24,8 @@ var componentName = "wb-tabs",
 	initialized = false,
 	equalHeightClass = "wb-eqht",
 	equalHeightOffClass = equalHeightClass + "-off",
+	tabsAccordionClass = "tabs-acc",
+	nestedTglPanelSelector = "> .tabpanels > details > .tgl-panel",
 	activePanel = "-activePanel",
 	activateEvent = "click keydown",
 	pagePath = wb.pageUrlParts.pathname + "#",
@@ -129,7 +131,7 @@ var componentName = "wb-tabs",
 
 			// Build the tablist and enhance the panels as needed for details/summary
 			if ( !isCarousel ) {
-				$elm.addClass( "tabs-acc" );
+				$elm.addClass( tabsAccordionClass );
 				groupClass = elmId + "-grp";
 				$tabPanels = $elm.children( ".tabpanels" );
 				$panels = $tabPanels.children( "details" );
@@ -568,7 +570,9 @@ var componentName = "wb-tabs",
 							$active = $tablist.find( ".active a" );
 							$details
 								.removeAttr( "role aria-expanded aria-hidden" )
-								.removeClass( "fade out in" );
+								.removeClass( "fade out in" )
+								.children( ".tgl-panel" )
+									.attr( "role", "tabpanel" );
 							$openDetails = $details
 												.filter( "#" + $active.attr( "href" ).substring( 1 ) )
 													.attr( "open", "open" )
@@ -596,6 +600,8 @@ var componentName = "wb-tabs",
 										"aria-expanded": "false"
 									});
 
+							$details.children( ".tgl-panel" ).removeAttr( "role" );
+
 							$openDetails
 								.addClass( "fade in" )
 								.attr({
@@ -614,11 +620,27 @@ var componentName = "wb-tabs",
 
 						$elm.append( $tabPanels );
 
-						if ( oldIsSmallView ) {
+						// Update the tablist role
+						if ( isSmallView ) {
+							$elm.attr( "role", "tablist" );
+						} else if ( oldIsSmallView ) {
+							$elm
+								.removeAttr( "role" )
+								.find( nestedTglPanelSelector ).removeAttr( "role" );
+
 							$elm.find( "> ul [href$='" + openDetailsId + "']" ).trigger( "click" );
 						}
 					}
 				}
+			}
+
+			// Need timeout to account for Toggle changes
+			if ( isInit && !isSmallView && $elms.hasClass( tabsAccordionClass ) ) {
+				setTimeout(function() {
+					$elms
+						.removeAttr( "role" )
+						.find( nestedTglPanelSelector ).removeAttr( "role" );
+				}, 1 );
 			}
 
 			oldIsSmallView = isSmallView;
@@ -785,11 +807,15 @@ $document.on( activateEvent, selector + " [role=tabpanel]", function( event ) {
 	// Ctrl + Up arrow
 	if ( event.ctrlKey && event.which === 38 ) {
 
-		// Move focus to the summary element
-		$( currentTarget )
-			.closest( selector )
-				.find( "[href$='#" + currentTarget.id + "']" )
-					.trigger( setFocusEvent );
+		// Move focus to the tab or summary element
+		if ( isSmallView ) {
+			$( currentTarget ).prev().trigger( setFocusEvent );
+		} else {
+			$( currentTarget )
+				.closest( selector )
+					.find( "[href$='#" + currentTarget.id + "']" )
+						.trigger( setFocusEvent );
+		}
 
 	// Left mouse button click or escape key
 	} else if ( !which || which === 1 || which === 27 ) {
