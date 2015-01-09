@@ -1,0 +1,7 @@
+// Override Bootstrap's expected font path.
+// This is a path relative to the final CSS destination and not the current file
+$icon-font-path: "../fonts/";
+
+
+@import "../../lib/bootstrap-sass-official/assets/stylesheets/bootstrap";
+@import "bootstrap-overrides/base";
