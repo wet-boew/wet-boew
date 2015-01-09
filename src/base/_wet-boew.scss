@@ -5,9 +5,6 @@
 /*
  * GLYPHICONS Halflings for Twitter Bootstrap by GLYPHICONS.com | Licensed under http://www.apache.org/licenses/LICENSE-2.0
  */
-@import "../variables";
-
-@import "../../lib/bootstrap-sass-official/assets/stylesheets/bootstrap";
 
 /*
  Global placeholders
@@ -81,7 +78,6 @@
 
 /*! WET-BOEW Core and Plugins */
 @import "accessibility/base";
-@import "bootstrap-overrides/base";
 @import "language-selector/base";
 @import "transitions/base";
 @import "proximity/base";
