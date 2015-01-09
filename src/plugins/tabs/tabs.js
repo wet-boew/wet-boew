@@ -632,15 +632,15 @@ var componentName = "wb-tabs",
 						}
 					}
 				}
-			}
 
-			// Need timeout to account for Toggle changes
-			if ( isInit && !isSmallView && $elms.hasClass( tabsAccordionClass ) ) {
-				setTimeout(function() {
-					$elms
-						.removeAttr( "role" )
-						.find( nestedTglPanelSelector ).removeAttr( "role" );
-				}, 1 );
+				// Need timeout to account for Toggle changes
+				if ( isInit && !isSmallView && $elms.hasClass( tabsAccordionClass ) ) {
+					setTimeout(function() {
+						$elms
+							.removeAttr( "role" )
+							.find( nestedTglPanelSelector ).removeAttr( "role" );
+					}, 1 );
+				}
 			}
 
 			oldIsSmallView = isSmallView;
