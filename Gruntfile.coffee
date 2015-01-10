@@ -143,7 +143,7 @@ module.exports = (grunt) ->
 			"sass:all"
 			"autoprefixer"
 			"csslint:unmin"
-			"concat:css_addBanners"
+			"usebanner:css"
 		]
 	)
 
@@ -415,20 +415,12 @@ module.exports = (grunt) ->
 				dest: "dist/unmin/js/i18n"
 				expand: true
 
-			css_addBanners:
+		usebanner:
+			css:
 				options:
 					banner: "@charset \"utf-8\";\n<%= banner %>"
 				files:
-					"dist/unmin/css/polyfills/datalist.css": "dist/unmin/css/polyfills/datalist.css"
-					"dist/unmin/css/polyfills/datepicker.css": "dist/unmin/css/polyfills/datepicker.css"
-					"dist/unmin/css/polyfills/details.css": "dist/unmin/css/polyfills/details.css"
-					"dist/unmin/css/polyfills/meter.css": "dist/unmin/css/polyfills/meter.css"
-					"dist/unmin/css/polyfills/progress.css": "dist/unmin/css/polyfills/progress.css"
-					"dist/unmin/css/polyfills/slider.css": "dist/unmin/css/polyfills/slider.css"
-					"dist/unmin/css/noscript.css": "dist/unmin/css/noscript.css"
-					"dist/unmin/css/theme.css": "dist/unmin/css/theme.css"
-					"dist/unmin/css/wet-boew.css": "dist/unmin/css/wet-boew.css"
-					"dist/unmin/css/ie8-wet-boew.css": "dist/unmin/css/ie8-wet-boew.css"
+					src: "dist/unmin/css/*.*"
 
 		# Builds the demos
 		assemble:
@@ -1362,6 +1354,7 @@ module.exports = (grunt) ->
 	# These plugins provide necessary tasks.
 	@loadNpmTasks "assemble"
 	@loadNpmTasks "grunt-autoprefixer"
+	@loadNpmTasks "grunt-banner"
 	@loadNpmTasks "grunt-bootlint"
 	@loadNpmTasks "grunt-check-dependencies"
 	@loadNpmTasks "grunt-contrib-clean"
