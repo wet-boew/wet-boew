@@ -1261,6 +1261,13 @@ module.exports = (grunt) ->
 			test:
 				options:
 					base: "."
+					middleware: (connect, options, middlewares) ->
+						middlewares.unshift(connect.compress(
+							filter: (req, res) ->
+								/json|text|javascript|dart|image\/svg\+xml|application\/x-font-ttf|application\/vnd\.ms-opentype|application\/vnd\.ms-fontobject/.test(res.getHeader('Content-Type'))
+						))
+
+						middlewares
 
 		i18n_csv:
 			options:
