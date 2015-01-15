@@ -186,7 +186,7 @@
 			&lt;input class="form-control" id="number1" name="number1" type="number" min="5" max="40" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
-				
+
 				<div class="form-group">
 					<label for="an1"><span class="field-name">Alphanumeric</span> (at least 4 characters)</label>
 					<input class="form-control" id="an1" name="an1" type="text" pattern="[A-Za-z0-9\s]{4,}" data-rule-alphanumeric="true" data-rule-minlength="4" />
@@ -250,6 +250,8 @@
 				<div class="form-group">
 					<label for="password1"><span class="field-name">Password</span> (between 5 and 10 characters)</label>
 					<input class="form-control" id="password1" name="password1" type="password" maxlength="10" size="10" pattern=".{5,10}" data-rule-rangelength="[5,10]" />
+					<label for="passwordconfirm"><span class="field-name">Confirm your password</span></label>
+					<input class="form-control" id="passwordconfirm" name="passwordconfirm" type="password" maxlength="10" size="10" data-rule-equalTo="#password1" />
 				</div>
 				<details class="mrgn-bttm-md">
 					<summary>View code</summary>
@@ -259,6 +261,8 @@
 		&lt;div class="form-group"&gt;
 			&lt;label for="password1"&gt;&lt;span class="field-name"&gt;Password&lt;/span&gt; (between 5 and 10 characters)&lt;/label&gt;
 			&lt;input class="form-control" id="password1" name="password1" type="password" maxlength="10" size="10" pattern=".{5,10}" data-rule-rangelength="[5,10]" /&gt;
+			&lt;label for="passwordconfirm"&gt;&lt;span class="field-name"&gt;Confirm your password&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="passwordconfirm" name="passwordconfirm" type="password" maxlength="10" size="10" data-rule-equalTo="#password1" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 			</fieldset>
