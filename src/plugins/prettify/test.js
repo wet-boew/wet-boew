@@ -140,7 +140,7 @@ describe( "Prettify test suite", function() {
 		before(function( done ) {
 
 			//Prettify needs more time in IE to complete, due to the pre from mocha results
-			this.timeout(500);
+			this.timeout(5000);
 
 			callback = done;
 
