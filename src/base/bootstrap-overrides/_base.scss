@@ -831,3 +831,12 @@ blockquote {
 		}
 	}
 }
+
+caption {
+	color: #333;
+	font: {
+		size: 1.1em;
+		weight: bold;
+	}
+	text-align: center;
+}
