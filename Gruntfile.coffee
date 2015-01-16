@@ -290,6 +290,12 @@ module.exports = (grunt) ->
 			);
 	)
 
+	globalConnectMiddleware = (connect, middlewares) ->
+		middlewares.unshift(
+			connect.compress filter: (req, res) ->
+				/json|text|javascript|dart|image\/svg\+xml|application\/x-font-ttf|application\/vnd\.ms-opentype|application\/vnd\.ms-fontobject/.test res.getHeader("Content-Type")
+		)
+
 	grunt.util.linefeed = "\n"
 	# Project configuration.
 	grunt.initConfig
@@ -1235,10 +1241,7 @@ module.exports = (grunt) ->
 				options:
 					base: "dist"
 					middleware: (connect, options, middlewares) ->
-						middlewares.unshift(connect.compress(
-							filter: (req, res) ->
-								/json|text|javascript|dart|image\/svg\+xml|application\/x-font-ttf|application\/vnd\.ms-opentype|application\/vnd\.ms-fontobject/.test(res.getHeader('Content-Type'))
-						))
+						globalConnectMiddleware connect, middlewares
 
 						middlewares.unshift (req, res, next) ->
 							req.url = req.url.replace( "/v4.0-ci/", "/" )
@@ -1262,11 +1265,7 @@ module.exports = (grunt) ->
 				options:
 					base: "."
 					middleware: (connect, options, middlewares) ->
-						middlewares.unshift(connect.compress(
-							filter: (req, res) ->
-								/json|text|javascript|dart|image\/svg\+xml|application\/x-font-ttf|application\/vnd\.ms-opentype|application\/vnd\.ms-fontobject/.test(res.getHeader('Content-Type'))
-						))
-
+						globalConnectMiddleware connect, middlewares
 						middlewares
 
 		i18n_csv:
