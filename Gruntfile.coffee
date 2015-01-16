@@ -238,6 +238,7 @@ module.exports = (grunt) ->
 		"INTERNAL: prepare for running Mocha unit tests"
 		() ->
 			grunt.task.run [
+				"concat:test"
 				"copy:test"
 				"pages:test"
 			]
@@ -310,24 +311,7 @@ module.exports = (grunt) ->
 		glyphiconsBanner: "/*!\n * GLYPHICONS Halflings for Twitter Bootstrap by GLYPHICONS.com | Licensed under http://www.apache.org/licenses/LICENSE-2.0\n */"
 		i18nGDocsID: "0AqLc8VEIumBwdDNud1M2Wi1tb0RUSXJxSGp4eXI0ZXc"
 		i18nGDocsSheet: 1
-		mochaUrls: grunt.file.expand({cwd: "src"}
-						"test.js"
-						"**/test.js"
-					).map( ( src ) ->
-						src = src.replace( /\\/g , "/" ) #" This is to escape a Sublime text regex issue in the replace
-						src = src.replace( "polyfills/" , "" )
-						src = src.replace( "plugins/" , "" )
-						src = src.replace( "other/" , "" )
-						src = src.replace( ".js" , "" )
-						src
-					).sort( ( a, b) ->
-						if a is "test"
-								-1
-							else if a > b
-								1
-							else
-								-1
-					)
+
 		deployBranch: "v4.0-dist"
 
 		# Task configuration.
@@ -387,6 +371,13 @@ module.exports = (grunt) ->
 					"!src/plugins/**/deps/*.*"
 				]
 				dest: "dist/unmin/js/ie8-wet-boew2.js"
+
+			test:
+				src: [
+					"src/test.js"
+					"src/**/test.js"
+				]
+				dest: "dist/unmin/test/tests.js"
 
 			i18n:
 				options:
@@ -990,36 +981,13 @@ module.exports = (grunt) ->
 
 			test:
 				files: [
-					cwd: "src/plugins"
+					cwd: "src"
 					src: [
-						"**/test.js"
 						"**/test/*.*"
 					]
 					dest: "dist/unmin/test"
-					expand: true
-				,
-					cwd: "src/polyfills"
-					src: [
-						"**/test.js"
-						"**/test/*.*"
-					]
-					dest: "dist/unmin/test"
-					expand: true
-				,
-					cwd: "src/other"
-					src: [
-						"**/test.js"
-						"**/test/*.*"
-					]
-					dest: "dist/unmin/test"
-					expand: true
-				,
-					cwd: "src/"
-					src: [
-						"**/test.js"
-						"**/test/*.*"
-					]
-					dest: "dist/unmin/test"
+					rename: (dest, src) ->
+						dest + src.replace /plugins|polyfills|others/, ""
 					expand: true
 				,
 					cwd: "node_modules"
