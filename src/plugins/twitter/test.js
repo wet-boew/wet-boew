@@ -24,6 +24,10 @@ describe( "Twitter test suite", function() {
     $body = $document.find( "body" );
 
   before(function( done ) {
+
+    // The Twitter widget sometimes takes longer than two second to load
+    this.timeout(5000);
+
     // Trigger plugin init
     $elm = $( "<div class='wb-twitter'><a class='twitter-timeline' href='https://twitter.com/search?q=%23WxT' data-widget-id='329066756620566528'>Tweets about '#WxT'</a></div>" )
       .appendTo( $body )
