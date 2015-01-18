@@ -6,7 +6,11 @@
 %tabs-screen-md-min-details {
 	> {
 		details {
-			border: 1px solid #ccc;
+			border: {
+				color: $tabpanel-border-color;
+				style: $tabpanel-border-style;
+				width: $tabpanel-border-width;
+			}
 			display: none;
 
 			&[open] {
@@ -37,7 +41,11 @@
 				li {
 					&.active {
 						a {
-							border: 10px solid #666;
+							border: {
+								color: $carousel-s2-tablist-thumbnail-active-border-color;
+								style: $carousel-s2-tablist-thumbnail-active-border-style;
+								width: $carousel-s2-tablist-thumbnail-active-border-width;
+							}
 							margin-bottom: 1px;
 							padding: 0;
 						}
