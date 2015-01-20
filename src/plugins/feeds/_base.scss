@@ -38,4 +38,14 @@
 			z-index: 1;
 		}
 	}
+
+	.feeds-date {
+		&:before {
+			content: "[";
+		}
+
+		&:after {
+			content: "]";
+		}
+	}
 }

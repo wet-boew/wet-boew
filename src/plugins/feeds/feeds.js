@@ -48,9 +48,9 @@ var componentName = "wb-feeds",
 				data.fIcon + "' alt='" + author +
 				"' height='64px' width='64px' class='media-object'/></a><div class='media-body'>" +
 				"<h4 class='media-heading'><a href='" + data.link + "'><span class='wb-inv'>" +
-				title[ 0 ] + " - </span>" + author + "</a>  " +
-				( data.publishedDate !== "" ? " <small class='feeds-date text-right'>[" +
-				wb.date.toDateISO( data.publishedDate, true ) + "]</small>" : "" ) +
+				title[ 0 ] + " - </span>" + author + "</a><br />" +
+				( data.publishedDate !== "" ? " <small class='feeds-date text-right'><time>" +
+				wb.date.toDateISO( data.publishedDate, true ) + "</time></small>" : "" ) +
 				"</h4><p>" + content + "</p></div></li>";
 		},
 
@@ -110,8 +110,8 @@ var componentName = "wb-feeds",
 		pinterest: function( data ) {
 			var content = fromCharCode( data.content ).replace(/<a href="\/pin[^"]*"><img ([^>]*)><\/a>([^<]*)(<a .*)?/, "<a href='" + data.link + "'><img alt='' class='center-block' $1><br/>$2</a>$3");
 			return "<li class='media'>" + content +
-			( data.publishedDate !== "" ? " <small class='small'>[" +
-			wb.date.toDateISO( data.publishedDate, true ) + "]</small>" : "" ) + "</li>";
+			( data.publishedDate !== "" ? " <small class='small feeds-date'><time>" +
+			wb.date.toDateISO( data.publishedDate, true ) + "</time></small>" : "" ) + "</li>";
 		},
 		/**
 		 * [generic template]
