@@ -1,0 +1,99 @@
+---
+{
+	"title": "v4.0.10 release notes",
+	"language": "en",
+	"description": "v4.0.10 release notes - Version history - Web Experience Toolkit (WET)",
+	"altLangPrefix": "v4.0.10",
+	"dateModified": "2015-01-20"
+}
+---
+<ul>
+	<li><strong>Release date:</strong> <time>2015-01-20</time></li>
+	<li><a href="../dwnld-en.html#v4010">Downloads</a></li>
+</ul>
+
+<span class="wb-prettify all-pre"></span>
+
+<section>
+	<h2>What's New</h2>
+	<ul>
+		<li><strong>Core:</strong> Fixed generation of unique id values</li>
+		<li><strong>Geomap:</strong> allow geocoder and AOI widgets to be loaded independently.</li>
+		<li><strong>Geomap:</strong> Solve geolocation text problem in French</li>
+		<li><strong>Tabs + Details/Summary:</strong> Open ancestor tabpanels and details elements when setfocus event is triggered inside.</li>
+		<li><strong>Tabs:</strong> Fixed visibility of details summary nested in a hidden details</li>
+		<li><strong>Tabs:</strong> Fixed WAI-ARIA roles and support for Ctrl + up arrow</li>
+		<li><strong>Tabs:</strong> Fixed resizing issue that could result in an undefined variable error</li>
+		<li><strong>Carousel:</strong> Fixed handling of play/pause button markup changes</li>
+		<li><strong>Calendar of Events:</strong> Direct linking now respects the source link target attribute and related code has been optimized.</li>
+		<li><strong>Twitter:</strong> Set width to 100% by default.</li>
+		<li><strong>Lightbox:</strong> Added aria-labelledby to the Lightbox content area to help Jaws to read the contained header.</li>
+		<li><strong>Theming:</strong> Added the ability for themes to customize WET variables.</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Details</h2>
+	<p><strong>Number of commits:</strong> 47</p>
+	<ul>
+		<li><a href="https://github.com/pjackson28">@pjackson28</a>: 20 commits</li>
+		<li><a href="https://github.com/LaurentGoderre">@LaurentGoderre</a>: 19 commits</li>
+		<li><a href="https://github.com/jvanulde">@jvanulde </a>: 3 commits</li>
+		<li><a href="https://github.com/thomasgohard">@thomasgohard</a>: 2 commits</li>
+		<li><a href="https://github.com/melodyma">@melodyma</a>: 2 commits</li>
+		<li><a href="https://github.com/jolevesq">@jolevesq</a>: 1 commits</li>
+	</ul>
+
+	<section>
+		<h3>List of commits</h3>
+		<ul>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/72da994">Added dynamic legend symbols and optimized rendering. Legend symbols are currently rendered at 100% of configured diameter.</a> - Joost van Ulden, 2014-12-02 17:48:57 -0800</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/27a279d">Updated the build version to v4.0.10-development</a> - Laurent Goderre, 2014-12-11 14:41:22 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/3035611">Add class for forcing page breaks when printing Replaces #6321, Implements #6215</a> - Laurent Goderre, 2014-12-12 09:37:58 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e3e0907">Build: Added seperate configuration for SauceLabs testing (CI and Local) Testing can be done locally by using the grunt saucelabs command</a> - Laurent Goderre, 2014-12-12 16:09:57 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/7a13f5a">Fixed generation of unique id values</a> - Paul Jackson, 2014-12-15 13:59:43 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/87996bc">Fixed generation and uses of guid</a> - Paul Jackson, 2014-12-15 22:46:39 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0d8755c">Tabs: Fixed mishandling of click and keyboard events, particularly handling of the escape key and how clicks and keyboard events affect the playing status of the carousel</a> - Paul Jackson, 2014-12-16 01:08:19 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e3582c8">Removed div prefixes on selector.</a> - Joost van Ulden, 2014-12-16 06:05:41 -0800</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/3891648">Tabs carousel: Fixed handling of play/pause button markup changes</a> - Paul Jackson, 2014-12-16 16:55:05 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/40cab9f">Replaced GUIDs with more much faster seeded ID</a> - Laurent Goderre, 2014-12-17 17:14:10 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/00ebd97">Geomap: allow geocoder and AOI widgets to be loaded independently. Fixes issue #6207.</a> - Joost van Ulden, 2014-12-18 11:20:21 -0800</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/ac8f132">Build: Improve SauceLabs testing</a> - Laurent Goderre, 2014-12-18 16:28:02 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0229635">Form validation: Added example for input type="file".</a> - Thomas Gohard, 2014-12-22 16:46:09 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/5981bdb">[CSS] Moved the rule from below the legend element to above it.</a> - Thomas Gohard, 2014-12-24 13:53:03 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/ab65922">Tabs + Details: Open ancestor tabpanels and details elements when setfocus event is triggered inside</a> - Paul Jackson, 2014-12-29 11:40:44 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/6135806">Centralized URL hash management in the focus plugin and escaped uses of URL hash as selectors for jQuery objects</a> - Paul Jackson, 2014-12-29 14:54:01 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/ede0a0f">Lightbox: Ignore HTML fragments that don't exist during outside check</a> - Paul Jackson, 2014-12-29 16:13:43 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/7e1c21c">Tabs: Fixed removal of the wb-inv class that is used to prevent FOUC (Flash Of Unstyled Content)</a> - Paul Jackson, 2014-12-29 16:45:19 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/1886235">Calendar of Events: Direct linking now respects the source link target attribute and related code has been optimized.</a> - Paul Jackson, 2014-12-30 14:32:31 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/8a1b5d5">Twitter: Removed unnecessary CSS</a> - Paul Jackson, 2015-01-02 10:43:11 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0741b43">Twitter: Set width to 100% by default</a> - Paul Jackson, 2015-01-02 10:43:45 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d1e6152">Centralized multimedia loading animation and applied to the Twitter embedded timeline</a> - Paul Jackson, 2015-01-02 11:01:19 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/52fc978">Charts: Optimized some of the plugin scripting</a> - Paul Jackson, 2015-01-02 14:24:34 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/46c5843">Calendar: Optimized some of the plugin scripting</a> - Paul Jackson, 2015-01-02 16:01:06 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/574fcc5">Added Twitter plugin test suite</a> - melodyma, 2015-01-03 23:48:57 -0800</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/5d6bb8d">Lightbox: Fixed AJAX fragment example and updated the version of Magnific Popup</a> - Paul Jackson, 2015-01-05 11:11:51 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/423a7d4">Core: Updated to the latest grunt-sass</a> - Laurent Goderre, 2015-01-05 16:25:22 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/ae2331a">Carousel: Optimized the carousel styles</a> - Laurent Goderre, 2015-01-05 16:25:25 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/acc819a">Twitter/test-suite: Updated init test to listen to ready event instead of using a timeout. Fixes part of #6070.</a> - melodyma, 2015-01-05 19:50:50 -0800</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/658bf5f">Revert "CSS: Optimize tabs CSS"</a> - Paul Jackson, 2015-01-06 22:34:37 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0836e30">Geomap: solve geolocation text problem in French</a> - jolevesq, 2015-01-07 10:35:25 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/eee32ee">Tabs: Added TODO comments</a> - Laurent Goderre, 2015-01-07 12:06:08 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/89aa8bd">Tabs: Fixed visibility of details summary nested in a hidden details</a> - Paul Jackson, 2015-01-07 15:29:20 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/a718240">Tabs: Fixed WAI-ARIA roles and support for Ctrl + up arrow</a> - Paul Jackson, 2015-01-07 17:07:11 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/3c40843">Lightbox: Added aria-labelledby to the Lightbox content area to help Jaws to read the contained header</a> - Paul Jackson, 2015-01-08 12:45:33 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/6580b07">Theming: Added the ability for themes to customize WET variables</a> - Laurent Goderre, 2015-01-09 11:15:00 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/2ca67af">Tabs: Fixed resizing issue that could result in an undefined variable error</a> - Paul Jackson, 2015-01-09 13:01:51 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/5503316">Build: Optimize the grunt file b y using grunt-banner instead of concat for CSS</a> - Laurent Goderre, 2015-01-10 11:57:35 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/3113df1">Fixed the installation of grunt-contrib-imagemin This issue is most common when working with themes</a> - Laurent Goderre, 2015-01-14 08:02:54 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/c071955">Form Validation: Add examples for two field needing to have the same value</a> - Laurent Goderre, 2015-01-15 16:30:27 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/97eb99a">Build: Added HTTP compression to the test server</a> - Laurent Goderre, 2015-01-15 17:19:07 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/c3cd240">Build: Add method for global connect middlewares</a> - Laurent Goderre, 2015-01-16 13:34:00 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d80c530">Theming: Added a way to add custom IE8 scripts in the template</a> - Laurent Goderre, 2015-01-16 13:34:01 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/7858f51">Build: Optimized the generation of tests</a> - Laurent Goderre, 2015-01-16 13:34:02 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/8e31d9e">Prettify: Fixed the short timeout in the test This partially fixes #6451, maybe even completely</a> - Laurent Goderre, 2015-01-16 13:34:02 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/713a88d">Twitter Widget: Add more time to the test to load the widget</a> - Laurent Goderre, 2015-01-16 13:34:03 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/4d3c70d">Test: Fixed the Saucelabs error reporting</a> - Laurent Goderre, 2015-01-16 14:43:52 -0500</li>
+		</ul>
+	</section>
+</section>
