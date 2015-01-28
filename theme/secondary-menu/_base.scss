@@ -56,3 +56,16 @@
 		}
 	}
 }
+
+[dir=rtl] {
+	#wb-sec {
+		.list-group {
+			.list-group {
+				.list-group-item {
+					padding-left: 15px;
+					padding-right: 1.8em;
+				}
+			}
+		}
+	}
+}
