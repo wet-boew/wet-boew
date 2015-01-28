@@ -112,7 +112,7 @@ var componentName = "wb-menu",
 	createCollapsibleSection = function( section, sectionIndex, sectionsLength, $items, itemsLength ) {
 
 		// Use details/summary for the collapsible mechanism
-		var k, $elm, elm, $item, $subItems,
+		var k, $elm, elm, $item, $subItems, subItemsLength,
 			$section = $( section ),
 			posinset = "' aria-posinset='",
 			menuitem = "role='menuitem' aria-setsize='",
@@ -127,7 +127,10 @@ var componentName = "wb-menu",
 			$item = $items.eq( k );
 			$elm = $item.find( menuItemSelector );
 			elm = $elm[ 0 ];
-			if ( elm.nodeName.toLowerCase() === "a" ) {
+			$subItems = $elm.parent().find( "> ul > li" );
+			subItemsLength = $subItems.length;
+
+			if ( subItemsLength === 0 && elm.nodeName.toLowerCase() === "a" ) {
 				sectionHtml += "<li>" + $item[ 0 ].innerHTML.replace(
 						/(<a\s)/,
 						"$1 " + menuitem + itemsLength +
@@ -135,7 +138,6 @@ var componentName = "wb-menu",
 							"' tabindex='-1' "
 					) + "</li>";
 			} else {
-				$subItems = $elm.parent().find( "> ul > li" );
 				sectionHtml += createCollapsibleSection( elm, k, itemsLength, $subItems, $subItems.length );
 			}
 		}
