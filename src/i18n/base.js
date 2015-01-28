@@ -11,6 +11,7 @@
 wb.i18nDict = {
 	"lang-code": "@lang-code@",
 	"lang-native": "@lang-native@",
+	add: "@add@",
 	all: "@all@",
 	tphp: "@tphp@",
 	load: "@load@",
