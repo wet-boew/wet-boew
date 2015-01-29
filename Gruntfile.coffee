@@ -153,7 +153,7 @@ module.exports = (grunt) ->
 		[
 			"cssmin:dist"
 			"cssmin:distIE8"
-			"ie8csscleaning"
+			"cssmin_ie8_clean"
 		]
 	)
 
@@ -925,7 +925,7 @@ module.exports = (grunt) ->
 					"!dist/**/ajax/*.html"
 				]
 
-		ie8csscleaning:
+		cssmin_ie8_clean:
 			min:
 				expand: true
 				cwd: "dist/css"
@@ -1342,6 +1342,7 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-contrib-jshint"
 	@loadNpmTasks "grunt-contrib-uglify"
 	@loadNpmTasks "grunt-contrib-watch"
+	@loadNpmTasks "grunt-cssmin-ie8-clean"
 	@loadNpmTasks "grunt-gh-pages"
 	@loadNpmTasks "grunt-html"
 	@loadNpmTasks "grunt-i18n-csv"
