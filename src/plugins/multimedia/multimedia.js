@@ -24,9 +24,11 @@ var componentName = "wb-mltmd",
 	resizeEvent = "resize" + selector,
 	templateLoadedEvent = "templateloaded" + selector,
 	cuepointEvent = "cuepoint" + selector,
+	interactiveTranscript = "trx" + selector,
 	captionClass = "cc_on",
 	$document = wb.doc,
 	$window = wb.win,
+	lastTime = 0,
 
 	/**
 	 * @function init
@@ -329,6 +331,33 @@ var componentName = "wb-mltmd",
 			caption = captions[ i ];
 			if ( seconds >= caption.begin && seconds <= caption.end ) {
 				area.html( $( "<div>" + caption.text + "</div>" ) );
+			}
+		}
+	},
+
+	/**
+	 * @method highlightTranscript
+	 * @description Highlight transcript position for a multimedia player (called from the timeupdate event of the HTML5 media API)
+	 * @param {Float} seconds The current time of the media (use to sync the captions)
+	 * @param {Object} transcript The JavaScript object containing the transcript
+	 */
+	highlightTranscript = function( seconds, transcript ) {
+		var transcriptSelector = ".wb-tmtxt",
+			transcriptElements = transcript.find( transcriptSelector ),
+			start, end,	len = transcriptElements.length,
+			i, transcriptElement;
+
+		for ( i = 0; i !== len; i += 1 ) {
+			transcriptElement = $( transcriptElements[ i ] );
+			start = parseTime( transcriptElement.attr( "data-begin" ) );
+			end = transcriptElement.attr( "data-end" ) !== undef ?
+					parseTime( transcriptElement.attr( "data-end" ) ) :
+					parseTime( transcriptElement.attr( "data-dur" ) ) + start;
+
+			if (seconds >= start && seconds <= end) {
+				$( ".bg-info" ).removeClass( "bg-info" );
+				transcriptElement.addClass( "bg-info" );
+				return false;
 			}
 		}
 	},
@@ -749,7 +778,7 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 		// Create an adapter for the event management
 		data.player.on( "durationchange play pause ended volumechange timeupdate " +
 			captionsLoadedEvent + " " + captionsLoadFailedEvent + " " +
-			captionsVisibleChangeEvent + " waiting canplay progress", function( event ) {
+			captionsVisibleChangeEvent + " " + interactiveTranscript + " waiting canplay progress", function( event ) {
 			$this.trigger( event );
 		});
 
@@ -893,7 +922,7 @@ $document.on( "wb-activate", selector, function( event ) {
 
 $document.on( "durationchange play pause ended volumechange timeupdate " +
 	captionsLoadedEvent + " " + captionsLoadFailedEvent + " " +
-	captionsVisibleChangeEvent + " " + cuepointEvent +
+	captionsVisibleChangeEvent + " " + cuepointEvent + " " + interactiveTranscript +
 	" waiting canplay", selector, function( event, simulated ) {
 
 	var eventTarget = event.currentTarget,
@@ -961,6 +990,16 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 				currentTime,
 				$.data( eventTarget, "captions" )
 			);
+		}
+		// highlight transcript section every second
+		if ( $(this).find(".inline-captions").length > 0 ) {
+			if ( currentTime > lastTime + 1 ) {
+				highlightTranscript(
+					currentTime,
+					$this.find( ".inline-captions" )
+				);
+				lastTime = currentTime;
+			}
 		}
 		break;
 
