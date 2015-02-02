@@ -94,7 +94,8 @@ var componentName = "wb-geomap",
 					aoiBtnClose: i18n( "close" ),
 					geolocBtn: i18n( "geo-geoloc-btn" ),
 					geolocFail: i18n( "geo-geoloc-fail" ),
-					geolocUncapable: i18n( "geo-geoloc-uncapable" )
+					geolocUncapable: i18n( "geo-geoloc-uncapable" ),
+					geoLgndGrphc: i18n( "geo-lgnd-grphc" )
 				};
 			}
 
@@ -516,7 +517,7 @@ var componentName = "wb-geomap",
 
 		for ( i = 0; i !== len; i += 1 ) {
 			layer = geomap.map.layers[ i ];
-			if ( !layer.isBaseLayer ) {
+			if ( !layer.isBaseLayer && layer.CLASS_NAME !== "OpenLayers.Layer.WMS" ) {
 				$symbol = $( "#sb_" + layer.name );
 				symbolText = "";
 
@@ -555,6 +556,12 @@ var componentName = "wb-geomap",
 					} else {
 						symbolItems.push( { "id": "sb_" + layer.name, "feature": layer.features[ 0 ], "symbolizer": styleDefault } );
 					}
+				}
+			} else if ( layer.CLASS_NAME === "OpenLayers.Layer.WMS" ) {
+				if ( layer.legendUrl ) {
+					$("#sb_" + layer.name ).append( "<img src='" + layer.legendUrl + "' alt='" + i18nText.geoLgndGrphc + "'/>" );
+				} else if ( layer.legendHTML ) {
+					$("#sb_" + layer.name ).append( layer.legendHTML );
 				}
 			}
 		}
@@ -997,8 +1004,6 @@ var componentName = "wb-geomap",
 			maxResolution: "auto",
 			projection: "EPSG:3978",
 			units: "m",
-
-			// Only used by specific controls (i.e. MousePosition)
 			displayProjection: new OpenLayers.Projection( "EPSG:4269" ),
 			aspectRatio: 0.8,
 			fractionalZoom: false,
@@ -1012,10 +1017,9 @@ var componentName = "wb-geomap",
 	 * Add baseMap data
 	 */
 	addBasemapData = function( geomap, opts ) {
-		var mapOptions, mapOpts, aspectRatio,
-			layer,
-			basemap = opts.basemap,
-			hasBasemap = basemap && basemap.length !== 0;
+		var basemap = opts.basemap,
+			hasBasemap = basemap && basemap.length !== 0,
+			mapOptions, mapOpts, aspectRatio, keys;
 
 		if ( hasBasemap ) {
 			mapOpts = basemap.mapOptions;
@@ -1027,7 +1031,6 @@ var componentName = "wb-geomap",
 						maxResolution: mapOpts.maxResolution,
 						projection: new OpenLayers.Projection( mapOpts.projection ),
 						units: mapOpts.units,
-						// Only used by specific controls (i.e. MousePosition)
 						displayProjection: new OpenLayers.Projection( mapOpts.displayProjection ),
 						numZoomLevels: mapOpts.numZoomLevels,
 						aspectRatio: mapOpts.aspectRatio,
@@ -1045,7 +1048,6 @@ var componentName = "wb-geomap",
 				};
 			}
 		} else {
-
 			// Use map options for the Canada Transportation Base Map (CBMT)
 			mapOptions = setDefaultMapOptions();
 		}
@@ -1064,23 +1066,17 @@ var componentName = "wb-geomap",
 		// default base map (the Canada Transportation Base Map (CBMT))
 		if ( hasBasemap ) {
 			if ( basemap.type === "wms" ) {
-					layer = new OpenLayers.Layer.WMS(
+				keys = getLayerKeys( basemap );
+				geomap.map.addLayer(
+					new OpenLayers.Layer.WMS(
 						basemap.title,
 						basemap.url,
-						{
-							layers: basemap.layers,
-							version: basemap.version,
-							format: basemap.format
-						},
+						keys,
 						{
 							isBaseLayer: true
 						}
+					)
 				);
-
-				// Set the srs parameter. We need to do this because srs id not set by default.
-				// Looks like a bug because it suppose to be set by the map or layer projection.
-				layer.params.srs = mapOptions.projection.projCode;
-				geomap.map.addLayer( layer );
 
 			} else if ( basemap.type === "esri" ) {
 				geomap.map.addLayer(
@@ -1097,6 +1093,21 @@ var componentName = "wb-geomap",
 	},
 
 	/*
+	 * Parse layer configuration keys
+	 */
+	getLayerKeys = function( obj ) {
+		var key, keys = {};
+		for ( key in obj ) {
+			if ( obj.hasOwnProperty( key ) ) {
+				if ( key !== "type" && key !== "caption" && key !== "url" && key !== "title" ) {
+					keys[ key ] = obj[ key ];
+				}
+			}
+		}
+		return keys;
+	},
+
+	/*
 	 * Add overlay data
 	 */
 	addOverlayData = function( geomap, opts ) {
@@ -1110,9 +1121,26 @@ var componentName = "wb-geomap",
 					layerTitle = layer.title,
 					layerVisible = layer.visible,
 					layerURL = layer.url,
-					$table = createTable( index, layerTitle, layer.caption, layer.datatable );
+					$table = createTable( index, layerTitle, layer.caption, layer.datatable ),
+					keys;
+				if ( layerType === "wms" ) {
+					keys = getLayerKeys( layer );
 
-				if ( layerType === "kml" ) {
+					olLayer = new OpenLayers.Layer.WMS(
+						layerTitle, layerURL, keys, layer.options
+					);
+
+					olLayer.name = "overlay_" + index;
+					olLayer.datatable = false;
+					olLayer.popupsInfo = false;
+					olLayer.popups = false;
+					olLayer.legendUrl = layer.options ? layer.options.legendGraphicUrl : null;
+					olLayer.legendHTML = layer.options ? layer.options.legendHTML : null;
+
+					geomap.map.addLayer( olLayer );
+					addToLegend( geomap, $table, layerVisible, olLayer.id );
+					olLayer.visibility = layerVisible;
+				} else if ( layerType === "kml" ) {
 					olLayer = new OpenLayers.Layer.Vector(
 						layerTitle, {
 							strategies: [ new OpenLayers.Strategy.Fixed() ],
@@ -2431,7 +2459,9 @@ var componentName = "wb-geomap",
 
 	refreshPlugins = function( geomap ) {
 		var glayers = geomap.glayers,
-			map = geomap.map;
+			map = geomap.map,
+			lyrs = map.layers,
+			lyr, lyrLen;
 
 		glayers.find( ".wb-tables" ).trigger( "wb-init.wb-tables" );
 		glayers.find( ".wb-geomap-tabs" ).trigger( "wb-init.wb-tabs" );
@@ -2466,6 +2496,14 @@ var componentName = "wb-geomap",
 				$( ".olTileImage" ).attr( "alt", "" );
 
 				$( geomap.mapid ).trigger( "wb-updated" + selector, [ map ] );
+
+				// Force redraw of WMS overlays
+				for ( lyrLen = lyrs.length - 1; lyrLen !== -1; lyrLen -= 1 ) {
+					lyr = lyrs[ lyrLen ];
+					if ( lyr.CLASS_NAME === "OpenLayers.Layer.WMS" ) {
+						lyr.redraw( true );
+					}
+				}
 			}
 		});
 
@@ -2479,13 +2517,19 @@ var componentName = "wb-geomap",
 
 	// Retrieve the map, layer and feature using data attributes on an element
 	getMapLayerFeature = function( elm ) {
+
 		var map = getMapById( elm.getAttribute( "data-map" ) ),
+			layer;
+		if ( elm.getAttribute( "data-layer" ) ) {
 			layer = map.getLayer( elm.getAttribute( "data-layer" ) );
-		return [
-			map,
-			layer,
-			layer.getFeatureById( elm.getAttribute( "data-feature" ) )
-		];
+			return [
+				map,
+				layer,
+				layer.CLASS_NAME === "OpenLayers.Layer.Vector" ? layer.getFeatureById( elm.getAttribute( "data-feature" ) ) : null
+			];
+		} else {
+			return [ map, null, null ];
+		}
 	};
 
 // Bind the init function to the geomap.wb event

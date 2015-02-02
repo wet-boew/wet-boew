@@ -23,13 +23,13 @@ var wet_boew_geomap = {
 		type: "wms",
 		url: "http://wms.ess-ws.nrcan.gc.ca/wms/toporama_en",
 		version: "1.1.1",
-		format: "image/jpeg",
-		layers: "WMS-Toporama",
+		format: "image/png",
+		layers: "limits",
 		mapOptions: {
-			maxExtent: "-141, 41, -52, 84",
-			restrictedExtent: "-141, 41, -52, 84",
+			maxExtent: "-2650000.0, -900000.0, 3600000.0, 4630000.0",
+			restrictedExtent: "-2750000.0, -1000000.0, 3700000.0, 4730000.0",
 			maxResolution: "auto",
-			projection: "EPSG:4269",
+			projection: "EPSG:3978",
 			units: "m",
 			displayProjection: "EPSG:4269",
 			aspectRatio: 0.8

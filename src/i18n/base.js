@@ -200,6 +200,7 @@ wb.i18nDict = {
 	"geo-geoloc-btn": "@geo-geoloc-btn@",
 	"geo-geoloc-fail": "@geo-geoloc-fail@",
 	"geo-geoloc-uncapable": "@geo-geoloc-uncapable@",
+	"geo-lgnd-grphc": "@geo-lgnd-grphc@",
 	/* Disable/enable WET plugins and polyfills */
 	"wb-disable": "@wb-disable@",
 	"wb-enable": "@wb-enable@",
