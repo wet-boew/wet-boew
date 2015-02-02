@@ -2164,9 +2164,9 @@ var componentName = "wb-geomap",
 			timer;
 
 		mapDiv.append(
-			"<div class='geomap-geoloc form-inline'>" +
+			"<div class='geomap-geoloc'>" +
 				"<label for='wb-geomap-geocode-search-" + geomap.mapid + "' class='wb-inv'>" + i18nText.geoCoderLabel + "</label>" +
-				"<input type='text' class='form-control input-sm opct-90 pull-right' name='wb-geomap-geocode-search-" + geomap.mapid + "' id='wb-geomap-geocode-search-" + geomap.mapid + "' list='wb-geomap-geocode-results-" + geomap.mapid + "' autocomplete='off' placeholder='" + i18nText.geoCoderPlaceholder + "' />" +
+				"<input type='text' class='form-control input-sm opct-90' name='wb-geomap-geocode-search-" + geomap.mapid + "' id='wb-geomap-geocode-search-" + geomap.mapid + "' list='wb-geomap-geocode-results-" + geomap.mapid + "' autocomplete='off' placeholder='" + i18nText.geoCoderPlaceholder + "' />" +
 				"<datalist id='wb-geomap-geocode-results-" + geomap.mapid + "'></datalist>" +
 			"</div>"
 		);
