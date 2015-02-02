@@ -52,6 +52,7 @@ wb.i18nDict = {
 	"prv-l": "@prv-l@",
 	first: "@first@",
 	last: "@last@",
+	page: "@page@",
 	"srch-menus": "@srch-menus@",
 	email: "@email@",
 	"menu-close": "@menu-close@",

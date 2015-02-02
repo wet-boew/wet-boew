@@ -60,7 +60,8 @@ var componentName = "wb-tables",
 						first: i18n( "first" ),
 						last: i18n( "last" ),
 						next: i18n( "nxt" ),
-						previous: i18n( "prv" )
+						previous: i18n( "prv" ),
+						page: i18n( "page" )
 					},
 					processing: i18n( "process" ),
 					search: i18n( "filter" ),
@@ -151,9 +152,15 @@ $document.on( "init.dt draw.dt", selector, function( event, settings ) {
 	// Update the aria-pressed properties on the pagination buttons
 	// Should be pushed upstream to DataTables
 	$( ".dataTables_paginate a" )
-		.attr( "role", "button" )
+		.attr({
+			"role": "button",
+			"href": "javascript;"
+		})
 		.not( ".previous, .next" )
 			.attr( "aria-pressed", "false" )
+			.html( function(index) {
+				return "<span class='wb-inv'>" + i18nText.paginate.page + " </span>" + ( index + 1 ) ;
+			})
 			.filter( ".current" )
 				.attr( "aria-pressed", "true" );
 
