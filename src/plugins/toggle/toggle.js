@@ -61,6 +61,10 @@ var componentName = "wb-toggle",
 				initPrint( $link, data );
 			}
 
+			if ( data.state ) {
+				setState( $link, data, data.state );
+			}
+
 			// Identify that initialization has completed
 			wb.ready( $link, componentName );
 		}
