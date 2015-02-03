@@ -770,7 +770,11 @@ var componentName = "wb-tabs",
 
 			// If the target is a tab
 			if ( elm.getAttribute( "role" ) === "tab" ) {
-				onPick( $sldr, $elm );
+
+				// Only change the tabpanel if the tab is not currently selected
+				if ( elm.getAttribute( "aria-selected" ) !== "true" ) {
+					onPick( $sldr, $elm );
+				}
 
 				// Put focus on the tab panel if the enter key or space bar are used
 				if ( which === 13 || which === 32 ) {
@@ -880,8 +884,11 @@ $document.on( activateEvent, selector + " > .tabpanels > details > summary", fun
 			updateHash( details );
 		}
 
-		// Identify that the tabbed interface was updated
-		$container.trigger( updatedEvent, [ $details ] );
+		// Identify that the tabbed interface accordion was updated
+		// if the panel was not already open
+		if ( !$details.attr( "open" ) ) {
+			$container.trigger( updatedEvent, [ $details ] );
+		}
 	}
 });
 
