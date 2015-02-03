@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Plugiciel qui permet un lien à basculer des éléments entre les états activé et désactivé.",
 	"altLangPrefix": "toggle",
-	"dateModified": "2014-08-06"
+	"dateModified": "2015-02-03"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -255,7 +255,23 @@
 							<dd>Toggle element will only turn elements it controls off.</dd>						
 						</dl>
 					</td>
-				</tr>		
+				</tr>
+				<tr>
+					<td><code>state</code> (v4.0.11+)</td>
+					<td>Sets the initial state of a toggle element</td>
+					<td>
+						Specify the initial state.  Only "on" or "off" are supported:
+						<pre><code>&lt;span class="wb-toggle" data-toggle="{'state': 'on'}"&gt;</code></pre>
+					</td>
+					<td>
+						<dl>
+							<dt>"off" (default):</dt>
+							<dd>Toggle element initial state is "off"</dd>
+							<dt>"on":</dt>
+							<dd>Toggle element initial state is "on"</dd>
+						</dl>
+					</td>
+				</tr>
 				<tr>
 					<td><code>stateOn</code></td>
 					<td>CSS class that's added to elements when they are toggled on.</td>
