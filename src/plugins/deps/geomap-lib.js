@@ -61,6 +61,7 @@ var componentName = "wb-geomap",
 			if ( !i18nText ) {
 				i18n = wb.i18n;
 				i18nText = {
+					add: i18n( "add" ),
 					close: i18n( "close" ),
 					colon: i18n( "colon" ),
 					hiddenLayer: i18n( "geo-hdnlyr" ),
@@ -139,6 +140,9 @@ var componentName = "wb-geomap",
 
 			// Set the Geomap object
 			geomap = setGeomapObject( $elm );
+
+			geomap.aoiToggle = typeof settings.aoi !== "undefined" && typeof settings.aoi.toggle !== "undefined" ? settings.aoi.toggle : true;
+			geomap.aoiExtent = typeof settings.aoi !== "undefined" && typeof settings.aoi.extent !== "undefined" ? settings.aoi.extent : null;
 
 			// Load configuration file
 			if ( settings.layersFile ) {
@@ -1820,7 +1824,7 @@ var componentName = "wb-geomap",
 			addPanZoom( geomap );
 
 			$mapDiv.before(
-				"<details id='geomap-details-" + geomap.id +
+				"<details id='geomap-details-" + geomap.mapid +
 				"' class='wb-geomap-detail' style='width:" +
 				( $mapDiv.width() - 10 ) + "px;'><summary>" +
 				i18nText.accessTitle + "</summary><p>" + i18nText.access +
@@ -2031,78 +2035,110 @@ var componentName = "wb-geomap",
 
 		geomap.gmap.before( "<div class='geomap-aoi panel panel-default'><div id='geomap-aoi-" + geomap.mapid + "' class='panel-body'></div></div>" );
 
-		var mapDiv = $( "#geomap-map-" + geomap.mapid );
+		var mapDiv = $( "#geomap-map-" + geomap.mapid ),
+			aoiDiv = $( "#geomap-aoi-" + geomap.mapid ),
+			extent,
+			left,
+			bottom,
+			right,
+			top,
+			geomProj;
 
-		mapDiv.append( "<button id='geomap-aoi-toggle-mode-draw-" + geomap.mapid +
-			"' href='#' class='btn btn-sm geomap-geoloc-aoi-btn' title='" + i18nText.aoiBtnDraw +
-			"'><i class='glyphicon glyphicon-edit'></i><span class='wb-inv'> " +
-			i18nText.aoiBtnDraw + "</span></button>" );
-
-		$( "#geomap-aoi-" + geomap.mapid ).parent().hide();
-
-		$( "#geomap-aoi-" + geomap.mapid ).append(
-			"<fieldset id='form-aoi-" + geomap.mapid + "'>" +
+		aoiDiv.append( "<fieldset id='form-aoi-" + geomap.mapid + "'>" +
 				"<legend tabindex='-1'>" + i18nText.aoiInstructions + "</legend>" +
 				"<div class='row'>" +
 					"<div class='col-md-2'>" +
 						"<label for='geomap-aoi-maxy-" + geomap.mapid + "' class='wb-inv'>" + i18nText.aoiNorth + "</label>" +
 						"<div class='input-group input-group-sm'>" +
 							"<span class='input-group-addon'>" + i18nText.aoiNorth.charAt( 0 ) + "</span>" +
-							"<input type='number' id='geomap-aoi-maxy-" + geomap.mapid + "' placeholder='90' class='form-control input-sm' min='-90' max='90' step='0.000001'/> " +
+							"<input type='number' id='geomap-aoi-maxy-" + geomap.mapid + "' placeholder='90' class='form-control input-sm' min='-90' max='90' step='0.000001'></input>" +
 						"</div>" +
 					"</div>" +
 					"<div class='col-md-2'>" +
 						"<label for='geomap-aoi-maxx-" + geomap.mapid + "' class='wb-inv'>" + i18nText.aoiEast + "</label>" +
 						"<div class='input-group input-group-sm'>" +
 							"<span class='input-group-addon'>" + i18nText.aoiEast.charAt( 0 ) + "</span>" +
-							"<input type='number' id='geomap-aoi-maxx-" + geomap.mapid + "' placeholder='180' class='form-control input-sm' min='-180' max='180' step='0.000001'/> " +
+							"<input type='number' id='geomap-aoi-maxx-" + geomap.mapid + "' placeholder='180' class='form-control input-sm' min='-180' max='180' step='0.000001'></input> " +
 						"</div>" +
 					"</div>" +
 					"<div class='col-md-2'>" +
 						"<label for='geomap-aoi-miny-" + geomap.mapid + "' class='wb-inv'>" + i18nText.aoiSouth + "</label>" +
 						"<div class='input-group input-group-sm'>" +
 							"<span class='input-group-addon'>" + i18nText.aoiSouth.charAt( 0 ) + "</span>" +
-							"<input type='number' id='geomap-aoi-miny-" + geomap.mapid + "' placeholder='-90' class='form-control input-sm' min='-90' max='90' step='0.000001'/> " +
+							"<input type='number' id='geomap-aoi-miny-" + geomap.mapid + "' placeholder='-90' class='form-control input-sm' min='-90' max='90' step='0.000001'></input> " +
 						"</div>" +
 					"</div>" +
 					"<div class='col-md-2'>" +
 						"<label for='geomap-aoi-minx-" + geomap.mapid + "' class='wb-inv'>" + i18nText.aoiWest + "</label>" +
 						"<div class='input-group input-group-sm'>" +
 							"<span class='input-group-addon'>" + i18nText.aoiWest.charAt( 0 ) + "</span>" +
-							"<input type='number' id='geomap-aoi-minx-" + geomap.mapid + "' placeholder='-180' class='form-control input-sm' min='-180' max='180' step='0.000001'/> " +
+							"<input type='number' id='geomap-aoi-minx-" + geomap.mapid + "' placeholder='-180' class='form-control input-sm' min='-180' max='180' step='0.000001'></input> " +
 						"</div>" +
 					"</div>" +
 					"<div class='col-md-4'>" +
-						"<button class='btn btn-default btn-sm' id='geomap-aoi-btn-draw-" + geomap.mapid + "'>" + i18nText.aoiBtnDraw + "</button> " +
+						"<button class='btn btn-default btn-sm' id='geomap-aoi-btn-draw-" + geomap.mapid + "'>" + i18nText.add + "</button> " +
 						"<button class='btn btn-default btn-sm' id='geomap-aoi-btn-clear-" + geomap.mapid + "'>" + i18nText.aoiBtnClear + "</button> " +
 					"</div>" +
 				"</div>" +
-				"<input type='hidden' id='geomap-aoi-extent-" + geomap.mapid + "'/>" +
-				"<input type='hidden' id='geomap-aoi-extent-lonlat-" + geomap.mapid + "'/>" +
+				"<input type='hidden' id='geomap-aoi-extent-" + geomap.mapid + "'></input>" +
+				"<input type='hidden' id='geomap-aoi-extent-lonlat-" + geomap.mapid + "'></input>" +
 			"</fieldset>" +
 		"</div>" +
 		"<div class='clear'></div>" );
 
+		if ( geomap.aoiToggle ) {
+			aoiDiv.parent().hide();
+			mapDiv.append( "<button id='geomap-aoi-toggle-mode-draw-" + geomap.mapid +
+					"' href='#' class='btn btn-sm geomap-geoloc-aoi-btn' title='" + i18nText.aoiBtnDraw +
+					"'><i class='glyphicon glyphicon-edit'></i><span class='wb-inv'> " +
+					i18nText.aoiBtnDraw + "</span></button>" );
+		} else {
+			$( "#geomap-aoi-btn-clear-" + geomap.mapid ).after( "<button id='geomap-aoi-toggle-mode-draw-" + geomap.mapid +
+					"' href='#' class='btn btn-sm geomap-geoloc-aoi-btn' title='" + i18nText.aoiBtnDraw +
+					"'><i class='glyphicon glyphicon-edit'></i> " +
+					i18nText.aoiBtnDraw + "</button>" );
+		}
+
 		$document.on( "click", "#geomap-aoi-toggle-mode-draw-" + geomap.mapid, function( evt ) {
+
 			evt.preventDefault();
 
 			var drawFeature = geomap.map.getControlsByClass( "OpenLayers.Control.DrawFeature" )[ 0 ],
 				active = drawFeature.active,
 				$aoiElm = $( "#geomap-aoi-" + geomap.mapid );
 
-			if ( active ) {
-				drawFeature.deactivate();
-			} else {
-				drawFeature.activate();
+			if ( geomap.aoiToggle ) {
+				$aoiElm.parent().slideToggle( function() {
+					// fixes issue #6148
+					geomap.map.events.element.offsets = null;
+					geomap.map.events.clearMouseCache(); // for v2.7
+				});
 			}
-			$aoiElm.parent().slideToggle();
+
 			$( this ).toggleClass( "active" );
 
 			if ( !active ) {
 				$aoiElm.find( "legend" ).trigger( "setfocus.wb" );
 			}
 
-			geomap.map.updateSize();
+			if ( active ) {
+				drawFeature.deactivate();
+			} else {
+				drawFeature.activate();
+			}
+
+		});
+
+		$document.on( "click", "#geomap-aoi-btn-clear-" + geomap.mapid, function( evt ) {
+			evt.preventDefault();
+			$( "#geomap-aoi-extent-" + geomap.mapid ).val( "" );
+			$( "#geomap-aoi-extent-lonlat-" + geomap.mapid ).val( "" );
+			$( "#geomap-aoi-minx-" + geomap.mapid ).val( "" ).parent().removeClass( "has-error" );
+			$( "#geomap-aoi-miny-" + geomap.mapid ).val( "" ).parent().removeClass( "has-error" );
+			$( "#geomap-aoi-maxx-" + geomap.mapid ).val( "" ).parent().removeClass( "has-error" );
+			$( "#geomap-aoi-maxy-" + geomap.mapid ).val( "" ).parent().removeClass( "has-error" );
+
+			geomap.locLayer.removeAllFeatures();
 		});
 
 		$document.on( "click", "#geomap-aoi-btn-draw-" + geomap.mapid, function( evt ) {
@@ -2123,13 +2159,8 @@ var componentName = "wb-geomap",
 				right = parseFloat( $( "#geomap-aoi-maxx-" + geomap.mapid ).val() ),
 				top = parseFloat( $( "#geomap-aoi-maxy-" + geomap.mapid ).val() ),
 				isValid = true,
-				bnds,
-				ring,
-				geom,
-				projLatLon,
-				projMap,
 				geomProj,
-				feat;
+				extent;
 
 			if ( !left || left < -180 || left > 180 ) {
 				$( "#geomap-aoi-minx-" + geomap.mapid ).parent().addClass( "has-error" );
@@ -2155,15 +2186,9 @@ var componentName = "wb-geomap",
 				return false;
 			}
 
-			bnds = densifyBBox( left, bottom, right, top );
-			ring = new OpenLayers.Geometry.LinearRing( bnds );
-			geom = new OpenLayers.Geometry.Polygon( ring );
-			projLatLon = new OpenLayers.Projection( "EPSG:4326" );
-			projMap = geomap.map.getProjectionObject();
-			geomProj = geom.transform( projLatLon, projMap );
-			feat = new OpenLayers.Feature.Vector( geomProj );
+			extent = { "minx": left, "miny": bottom, "maxx": right, "maxy": top };
 
-			geomap.locLayer.addFeatures( [ feat ] );
+			geomProj = drawAOI( geomap, extent );
 
 			geomap.map.zoomToExtent( geomap.locLayer.getDataExtent() );
 
@@ -2172,17 +2197,55 @@ var componentName = "wb-geomap",
 
 		} );
 
-		$document.on( "click", "#geomap-aoi-btn-clear-" + geomap.mapid, function( evt ) {
-			evt.preventDefault();
-			$( "#geomap-aoi-extent-" + geomap.mapid ).val( "" );
-			$( "#geomap-aoi-extent-lonlat-" + geomap.mapid ).val( "" );
-			$( "#geomap-aoi-minx-" + geomap.mapid ).val( "" ).parent().removeClass( "has-error" );
-			$( "#geomap-aoi-miny-" + geomap.mapid ).val( "" ).parent().removeClass( "has-error" );
-			$( "#geomap-aoi-maxx-" + geomap.mapid ).val( "" ).parent().removeClass( "has-error" );
-			$( "#geomap-aoi-maxy-" + geomap.mapid ).val( "" ).parent().removeClass( "has-error" );
+		// if a default AOI is provided add it to the map and zoom to it
+		if ( geomap.aoiExtent ) {
 
-			geomap.locLayer.removeAllFeatures();
-		});
+			extent = geomap.aoiExtent.split( "," );
+			left = extent[ 0 ].trim();
+			bottom = extent[ 1 ].trim();
+			right = extent[ 2 ].trim();
+			top = extent[ 3 ].trim();
+			geomProj = drawAOI( geomap, {
+				"minx": left,
+				"miny": bottom,
+				"maxx": right,
+				"maxy": top
+			} );
+
+			geomap.map.zoomToExtent( geomap.locLayer.getDataExtent() );
+
+			$( "#geomap-aoi-minx-" + geomap.mapid ).val( left );
+			$( "#geomap-aoi-maxx-" + geomap.mapid ).val( right );
+			$( "#geomap-aoi-maxy-" + geomap.mapid ).val( top );
+			$( "#geomap-aoi-miny-" + geomap.mapid ).val( bottom );
+			$( "#geomap-aoi-extent-" + geomap.mapid ).val( geomProj.getBounds().toBBOX() );
+			$( "#geomap-aoi-extent-lonlat-" + geomap.mapid ).val( left + ", " + bottom + ", " + right + ", " + top );
+
+		}
+	},
+
+	drawAOI = function( geomap, extent ) {
+		var bnds,
+			ring,
+			geom,
+			projLatLon,
+			projMap,
+			geomProj,
+			feat;
+
+		bnds = densifyBBox( extent.minx, extent.miny, extent.maxx, extent.maxy );
+		ring = new OpenLayers.Geometry.LinearRing( bnds );
+		geom = new OpenLayers.Geometry.Polygon( ring );
+		projLatLon = new OpenLayers.Projection( "EPSG:4326" );
+		projMap = geomap.map.getProjectionObject();
+		geomProj = geom.transform( projLatLon, projMap );
+		feat = new OpenLayers.Feature.Vector( geomProj );
+
+		geomap.locLayer.addFeatures( [ feat ] );
+
+		// return the projected geometry
+		return geomProj;
+
 	},
 
 	createGeocoderWidget = function( geomap ) {

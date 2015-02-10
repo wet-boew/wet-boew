@@ -255,7 +255,6 @@
  * GeoMap
  */
 .wb-geomap-map {
-	margin: 0 15px 30px;
 	outline: 1px solid #ccc;
 	position: relative;
 
@@ -303,14 +302,6 @@
 	}
 }
 
-.geomap-aoi {
-	legend {
-		border: 0;
-		font-size: 1em;
-		margin-bottom: 1em;
-	}
-}
-
 button {
 	&.geomap-geoloc-aoi-btn {
 		background-color: #fff;
@@ -322,5 +313,21 @@ button {
 		right: 15px;
 		top: 15px;
 		z-index: 10000;
+	}
+}
+
+.geomap-aoi {
+	legend {
+		border: 0;
+		font-size: 1em;
+		margin-bottom: 1em;
+	}
+
+	button {
+		&.geomap-geoloc-aoi-btn {
+			position: absolute;
+			right: 15px;
+			top: auto;
+		}
 	}
 }
