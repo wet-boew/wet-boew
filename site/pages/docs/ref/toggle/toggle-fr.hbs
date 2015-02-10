@@ -15,7 +15,7 @@
 	<p><strong>Needs translation</strong></p>
 	<section>
 		<h2>Purpose</h2>
-		<p>Allows an element to toggle elements between on and off states.  The element that is toggled records its current state using a ".on" or ".off" CSS class.  The accordion option implements the <a href="http://www.w3.org/TR/wai-aria-practices/#accordion">WAI-ARIA accordion design pattern</a>.</p>
+		<p>Allows an element to toggle elements between on and off states. The element that is toggled records its current state using a ".on" or ".off" CSS class. The accordion option implements the <a href="http://www.w3.org/TR/wai-aria-practices/#accordion">WAI-ARIA accordion design pattern</a>.</p>
 	</section>
 	
 	<section>
@@ -45,7 +45,7 @@
 		
 		<section>
 			<h3>Toggle self</h3>
-			<p>This is the most basic use of the plugin.  It allows an element to toggle itself on and off when clicked.</p>
+			<p>This is the most basic use of the plugin. It allows an element to toggle itself on and off when clicked.</p>
 			<ol>
 				<li>Add the <code>wb-toggle</code> CSS class to an element.</li>
 			</ol>	
@@ -54,7 +54,7 @@
 		
 		<section>
 			<h3 id="toggle-other">Toggle other elements</h3>
-			<p>A toggle element can be setup to control the on/off toggle state of other elements.  Any elements that match the CSS selector specified by the data-toggle attribute will have their on/off state changed when the toggle element is clicked.</p>
+			<p>A toggle element can be setup to control the on/off toggle state of other elements. Any elements that match the CSS selector specified by the data-toggle attribute will have their on/off state changed when the toggle element is clicked.</p>
 			<ol>
 				<li>Add the <code>wb-toggle</code> CSS class to the toggle element.</li>
 				<li>Using the <code>data-toggle</code> attribute, specify the CSS selector of the elements that will have their states toggled.</li>
@@ -120,21 +120,21 @@
 			<p>If details elements are used for the accordion sections, the HTML should look like the following once finished:</p>
 			<pre class="linenums"><code>&lt;div class="accordion"&gt;
 	
-	   &lt;!-- Accordion section 1 --&gt;
-	   &lt;details class="acc-group"&gt;
-	      &lt;summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'&gt;Section 1's heading&lt;/summary&gt;
-	      &lt;div class="tgl-panel"&gt;
-	         &lt;!-- Section 1's content --&gt;
-	      &lt;/div&gt;
-	   &lt;/details&gt;
+		&lt;!-- Accordion section 1 --&gt;
+		&lt;details class="acc-group"&gt;
+			&lt;summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'&gt;Section 1's heading&lt;/summary&gt;
+			&lt;div class="tgl-panel"&gt;
+				&lt;!-- Section 1's content --&gt;
+			&lt;/div&gt;
+		&lt;/details&gt;
 	
-	   &lt;!-- Accordion section 2 --&gt;
-	   &lt;details class="acc-group"&gt;
-	      &lt;summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'&gt;Section 2's heading&lt;/summary&gt;
-	      &lt;div class="tgl-panel"&gt;
-	         &lt;!-- Section 2's content --&gt;
-	      &lt;/div&gt;
-	   &lt;/details&gt;
+		&lt;!-- Accordion section 2 --&gt;
+		&lt;details class="acc-group"&gt;
+			&lt;summary class="wb-toggle tgl-tab" data-toggle='{"parent": ".accordion", "group": ".acc-group"}'&gt;Section 2's heading&lt;/summary&gt;
+			&lt;div class="tgl-panel"&gt;
+				&lt;!-- Section 2's content --&gt;
+			&lt;/div&gt;
+		&lt;/details&gt;
 	
 	&lt;/div&gt;</code></pre>		
 		</section>
@@ -156,9 +156,9 @@
 			<tbody>
 				<tr>
 					<td><code>selector</code></td>
-					<td>CSS selector that specifies the elements the toggle element controls.  If no CSS selector is supplied, the toggle element controls itself.</td>
+					<td>CSS selector that specifies the elements the toggle element controls. If no CSS selector is supplied, the toggle element controls itself.</td>
 					<td>
-						Specify the CSS selector.  All elements to be toggled should match this selector.
+						Specify the CSS selector. All elements to be toggled should match this selector.
 						<pre><code>&lt;span class="wb-toggle" data-toggle="{'selector': '.cssSelector'}"&gt;</code></pre>
 					</td>
 					<td>
@@ -166,7 +166,7 @@
 							<dt>None (default):</dt>
 							<dd>Toggle element toggles itself.</dd>
 							<dt>String:</dt>
-							<dd>CSS selector.  All elements that match this selector will be toggled when the toggle element is clicked.</dd>			
+							<dd>CSS selector. All elements that match this selector will be toggled when the toggle element is clicked.</dd>			
 						</dl>
 					</td>
 				</tr>		
@@ -174,7 +174,7 @@
 					<td><code>parent</code></td>
 					<td>CSS selector that causes the toggle element to only control elements within a given parent element.</td>
 					<td>
-						Specify the CSS selector.  When a toggle element is clicked, it will only toggle elements that are children of this selector.
+						Specify the CSS selector. When a toggle element is clicked, it will only toggle elements that are children of this selector.
 						<pre><code>&lt;span class="wb-toggle" data-toggle="{'parent': '.parentCssSelector'}"&gt;</code></pre>
 					</td>
 					<td>
@@ -182,7 +182,7 @@
 							<dt>None (default):</dt>
 							<dd>No parent element restriction.</dd>
 							<dt>String:</dt>
-							<dd>CSS selector.  When a toggle element is clicked, it will only toggle the elements that are children of this selector.</dd>			
+							<dd>CSS selector. When a toggle element is clicked, it will only toggle the elements that are children of this selector.</dd>			
 						</dl>
 					</td>
 				</tr>		
@@ -190,7 +190,7 @@
 					<td><code>group</code></td>
 					<td>CSS selector that groups multiple toggle elements together and only allows one of the elements to be open at a time.</td>
 					<td>
-						Specify the CSS group selector.  All elements to be toggled should match this selector.
+						Specify the CSS group selector. All elements to be toggled should match this selector.
 						<pre><code>&lt;span class="wb-toggle" data-toggle="{'group': '.groupCssSelector'}"&gt;</code></pre>
 					</td>
 					<td>
@@ -198,7 +198,7 @@
 							<dt>None (default):</dt>
 							<dd>No grouping behaviour.</dd>
 							<dt>String:</dt>
-							<dd>CSS selector.  When a toggle element is clicked, all other elements that match this selector will be closed.</dd>			
+							<dd>CSS selector. When a toggle element is clicked, all other elements that match this selector will be closed.</dd>			
 						</dl>
 					</td>
 				</tr>		
@@ -206,7 +206,7 @@
 					<td><code>persist</code></td>
 					<td>Causes a toggle element to remember its current state and re-apply it when the page reloads.</td>
 					<td>
-						Supports persistence.  Only "session" and "local" are supported:
+						Supports persistence. Only "session" and "local" are supported:
 						<pre><code>&lt;span class="wb-toggle" data-toggle="{'persist': 'session'}"&gt;</code></pre>
 					</td>
 					<td>
@@ -224,7 +224,7 @@
 					<td><code>print</code></td>
 					<td>Causes a toggle element to turn the elements it controls on or off when the page is printed.</td>
 					<td>
-						Specify the print behaviour.  Only "on" or "off" are supported:
+						Specify the print behaviour. Only "on" or "off" are supported:
 						<pre><code>&lt;span class="wb-toggle" data-toggle="{'print': 'on'}"&gt;</code></pre>
 					</td>
 					<td>
@@ -242,7 +242,7 @@
 					<td><code>type</code></td>
 					<td>Causes a toggle element to only turn the elements it controls on or off.</td>
 					<td>
-						Specify the type.  Only "on" or "off" are supported:
+						Specify the type. Only "on" or "off" are supported:
 						<pre><code>&lt;span class="wb-toggle" data-toggle="{'type': 'on'}"&gt;</code></pre>
 					</td>
 					<td>
@@ -260,7 +260,7 @@
 					<td><code>state</code> (v4.0.11+)</td>
 					<td>Sets the initial state of a toggle element</td>
 					<td>
-						Specify the initial state.  Only "on" or "off" are supported:
+						Specify the initial state. Only "on" or "off" are supported:
 						<pre><code>&lt;span class="wb-toggle" data-toggle="{'state': 'on'}"&gt;</code></pre>
 					</td>
 					<td>
@@ -339,10 +339,10 @@
 					<td><code>toggle.wb-toggle</code></td>
 					<td>Triggered manually and automatically by plugin (e.g., <code>$( ".wb-toggle" ).trigger( "toggle.wb-toggle" );</code>).</td>
 					<td>
-						Causes a toggle element to change the toggle state of the elements it controls. Normally triggered by clicking on the toggle element.  When triggering this event manually, the data-toggle attribute must be passed as the second argument:
+						Causes a toggle element to change the toggle state of the elements it controls. Normally triggered by clicking on the toggle element. When triggering this event manually, the data-toggle attribute must be passed as the second argument:
 						<pre><code>// Get a reference to the toggle element and its settings
 	var $toggler = $( ".wb-toggle" );
-	    settings = $toggler.data( "toggle" );
+		 settings = $toggler.data( "toggle" );
 	
 	// Trigger the toggle event
 	$toggler.trigger( "toggle.wb-toggle", settings );</code></pre>				

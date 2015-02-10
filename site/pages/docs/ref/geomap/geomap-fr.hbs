@@ -55,20 +55,20 @@
 	<h3>Example implementation markup</h3>
 	<pre><code>&lt;-- Add plugin with optional position widget --&gt;
 &lt;div id="mygeomap" class="wb-geomap position"&gt;
-    &lt;div class="row"&gt;
-        &lt;div class="col-md-9"&gt;
-            &lt;div class="wb-geomap-map"&gt;&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;-- Add optional map legend --&gt;
-        &lt;div class="wb-geomap-legend col-md-3"&gt;
-            &lt;h2&gt;Legend&lt;/h2&gt;
-            &lt;-- Geomap will insert legend here --&gt;
-        &lt;/div&gt;
-        &lt;div class="row"&gt;
-            &lt;-- Add placeholder for overlays --&gt;
-            &lt;div class="wb-geomap-layers col-md-12"&gt;&lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
+	&lt;div class="row"&gt;
+		&lt;div class="col-md-9"&gt;
+			&lt;div class="wb-geomap-map"&gt;&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;-- Add optional map legend --&gt;
+		&lt;div class="wb-geomap-legend col-md-3"&gt;
+			&lt;h2&gt;Legend&lt;/h2&gt;
+			&lt;-- Geomap will insert legend here --&gt;
+		&lt;/div&gt;
+		&lt;div class="row"&gt;
+			&lt;-- Add placeholder for overlays --&gt;
+			&lt;div class="wb-geomap-layers col-md-12"&gt;&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 <!--
 	<section>
@@ -86,9 +86,9 @@
         {
             title: 'KML Demo EN',
             caption: 'This is a sample KML file loaded locally by Geomap.',
-	    type: 'kml',
-	    url: 'data/sample.kml',
-	    visible: true
+        type: 'kml',
+        url: 'data/sample.kml',
+        visible: true
         },
         {
             ...
@@ -347,7 +347,7 @@
 			</ol>
 
 			<h5>Inline HTML table configuration</h5>
-			<p>Geomap requires a <code>data-geometry</code> attribute with feature geometry encoded in <strong>Well Known Text (WKT)</strong> or as a bounding box extent with lower left  and upper right coordinate pairs, and a <code>data-type</code> attribute that specifies the encoding as either <code>wkt</code> or <code>bbox</code>.</p>
+			<p>Geomap requires a <code>data-geometry</code> attribute with feature geometry encoded in <strong>Well Known Text (WKT)</strong> or as a bounding box extent with lower left and upper right coordinate pairs, and a <code>data-type</code> attribute that specifies the encoding as either <code>wkt</code> or <code>bbox</code>.</p>
 			<section>
 				<h5>WKT examples</h5>
 				<pre><code>&lt;tr data-geometry="POINT (-114.05879, 51.04668)" data-type="wkt"&gt; ... &lt;/tr&gt;</code></pre>
@@ -364,34 +364,34 @@
 			<section>
 				<h5>Inline HTML table configuration example</h5>
 				<pre><code>&lt;table id="cities" aria-label="Cities"&gt;
-    &lt;caption&gt;Major cities in Canada.&lt;/caption&gt;
-    &lt;thead&gt;
-        &lt;tr&gt;
-            &lt;th&gt;Rank&lt;/th&gt;
-            &lt;th&gt;Census subdivision&lt;/th&gt;
-            &lt;th&gt;Population 2011&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/thead&gt;
-    &lt;tbody&gt;
-        &lt;tr data-geometry="POINT (-79.3847, 43.6476)" data-type="wkt"&gt;
-            &lt;td&gt;1&lt;/td&gt;
-            &lt;td class="select"&gt;
-                &lt;a href="../Toronto" title="Toronto"&gt;Toronto&lt;/a&gt;
-            &lt;/td&gt;
-            &lt;td&gt;2615060&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr data-geometry="POINT (-73.56123, 45.52927)" data-type="wkt"&gt;
-            &lt;td&gt;2&lt;/td&gt;
-            &lt;td class="select"&gt;
-                &lt;a href="../Montreal" title="Montreal"&gt;Montreal&lt;/a&gt;
-            &lt;/td&gt;
-            &lt;td&gt;1649519&lt;/td&gt;
-        &lt;/tr&gt;
-        ...
-    &lt;/tbody&gt;
-    &lt;tfoot&gt;
-        ...
-    &lt;/tfoot&gt;
+	&lt;caption&gt;Major cities in Canada.&lt;/caption&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Rank&lt;/th&gt;
+			&lt;th&gt;Census subdivision&lt;/th&gt;
+			&lt;th&gt;Population 2011&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr data-geometry="POINT (-79.3847, 43.6476)" data-type="wkt"&gt;
+			&lt;td&gt;1&lt;/td&gt;
+			&lt;td class="select"&gt;
+				&lt;a href="../Toronto" title="Toronto"&gt;Toronto&lt;/a&gt;
+			&lt;/td&gt;
+			&lt;td&gt;2615060&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr data-geometry="POINT (-73.56123, 45.52927)" data-type="wkt"&gt;
+			&lt;td&gt;2&lt;/td&gt;
+			&lt;td class="select"&gt;
+				&lt;a href="../Montreal" title="Montreal"&gt;Montreal&lt;/a&gt;
+			&lt;/td&gt;
+			&lt;td&gt;1649519&lt;/td&gt;
+		&lt;/tr&gt;
+		...
+	&lt;/tbody&gt;
+	&lt;tfoot&gt;
+		...
+	&lt;/tfoot&gt;
 &lt;/table&gt;</code></pre>
 			</section>
 			<p>Note that attribute names for features rendered from an inline HTML table are taken from the table header. In the preceding example the table header would result in attributes named "Rank", "Census subdivision", and "Population 2011".</p>
@@ -410,9 +410,9 @@ var wet_boew_geomap = {
         {
             title: 'KML Demo EN',
             caption: 'This is a sample KML file loaded locally by Geomap.',
-	    type: 'kml',
-	    url: 'data/sample.kml',
-	    visible: true
+        type: 'kml',
+        url: 'data/sample.kml',
+        visible: true
         },
         { ... }
     ]

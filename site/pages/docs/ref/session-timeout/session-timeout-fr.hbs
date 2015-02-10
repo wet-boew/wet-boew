@@ -24,7 +24,7 @@
 	<section>
 		<h2>Use when</h2>
 		<ul>
-			<li>A session timeout warning is required.  This will alert the user before their session expires and give them a chance to extend the session.</li>
+			<li>A session timeout warning is required. This will alert the user before their session expires and give them a chance to extend the session.</li>
 			<li>User activity on a web page should extend their session.</li>
 		</ul>
 	</section>
@@ -42,7 +42,7 @@
 		<h2>How to implement</h2>
 		<ol>
 			<li>
-				Add a <code>class="wb-sessto"</code> element to the web page (only required once).  You must set the <code>logouturl</code>, which controls where the user is redirected if their session expires:
+				Add a <code>class="wb-sessto"</code> element to the web page (only required once). You must set the <code>logouturl</code>, which controls where the user is redirected if their session expires:
 				<pre><code>&lt;span class="wb-sessto" data-wb-sessto='{"logouturl": "http://app.gc.ca/logout"}'&gt;&lt;/span&gt;</code></pre>		
 			</li>		
 			<li>Configure the plugin using the <code>data-wb-sessto</code> attribute of the element:
@@ -60,7 +60,7 @@
 	
 	<section>
 		<h2>Configuration options</h2>
-		<p>All configuration options of the plugin are controlled by the <code>data-wb-sessto</code> attribute or <code>window[ "wb-sessto" ]</code>.  Any configuration parameter that accepts a time value, can optionally have the time unit specified (e.g. "100 ms").</p>
+		<p>All configuration options of the plugin are controlled by the <code>data-wb-sessto</code> attribute or <code>window[ "wb-sessto" ]</code>. Any configuration parameter that accepts a time value, can optionally have the time unit specified (e.g. "100 ms").</p>
 		<p>Supported time units are:</p>
 		<ul>
 			<li><code>ms</code>: millisecond (0.001 seconds)</li>
@@ -113,7 +113,7 @@
 				</tr>
 				<tr>
 					<td><code>sessionalive</code></td>
-					<td>Sets the period of time before an ajax request is made to the server to determine if the session is still alive.  A refreshCallbackUrl must be specified for this to work.</td>
+					<td>Sets the period of time before an ajax request is made to the server to determine if the session is still alive. A refreshCallbackUrl must be specified for this to work.</td>
 					<td>Provide a numeric value, optionally with a time unit appended.</td>
 					<td>
 						<dl>
@@ -142,7 +142,7 @@
 				<tr>
 					<td><code>refreshCallbackUrl</code></td>
 					<td>URL used to perform an ajax request. Must be a viewless page that returns "true" to indicate session is still valid.</td>
-					<td>Provide a URL whose response to a POST request is "true" if the session is still valid.  Any other characters in the response will mark the session as expired.</td>
+					<td>Provide a URL whose response to a POST request is "true" if the session is still valid. Any other characters in the response will mark the session as expired.</td>
 					<td>
 						<dl>
 							<dt>None (default):</dt>
@@ -239,7 +239,7 @@
 		<p><strong>Note:</strong> when manually triggering the <code>inactivity</code>, <code>keepalive</code> and <code>reset</code> events, you must pass the <code>data-wb-sessto</code> attribute as a second argument:</p>
 		<pre><code>// Get a reference to the session timeout element and its <code>data-wb-sessto</code> attribute	
 	var $element = $( ".wb-sessto" ),
-	    settings = $element.data( "wb-sessto" );
+		settings = $element.data( "wb-sessto" );
 		
 	// Trigger the event on the element
 	$element.trigger( "reset.wb-sessto", settings );</code></pre>
