@@ -130,7 +130,7 @@ var componentName = "wb-menu",
 			$subItems = $elm.parent().find( "> ul > li" );
 			subItemsLength = $subItems.length;
 
-			if ( subItemsLength === 0 && elm.nodeName.toLowerCase() === "a" ) {
+			if ( elm && subItemsLength === 0 && elm.nodeName.toLowerCase() === "a" ) {
 				sectionHtml += "<li>" + $item[ 0 ].innerHTML.replace(
 						/(<a\s)/,
 						"$1 " + menuitem + itemsLength +
