@@ -8,7 +8,7 @@
 	"altLangPrefix": "geomap",
 	"dateModified": "2014-10-28"
 }
----	
+---
 <span class="wb-prettify all-pre hide"></span>
 
 <div lang="en">
@@ -199,7 +199,10 @@
   } );
 
 });
-							</code></pre></td>
+							</code></pre><p>Le widget "zone d'intérêt" peut être configuré de sorte qu'il est activé par défaut en définissant, dans le module d'extension, la propriété <code>data-wb-geomap</code> à "false"</p>
+							<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wb-geomap='{ ... "aoi": { "toggle": false } ... }'&gt; ... &lt;/div&gt;</code></pre>
+							<p>Le widget "zone d'intérêt" peut être configuré avec une étendue initiale en définissant, dans le module d'extension, la propriété <code>extent</code> de l'attribut <code>data-wb-geomap</code>.</p>
+							<pre><code>&lt;div id="mygeomap" class="wb-geomap" data-wb-geomap='{ ... "aoi": { "toggle": false, , "extent": "-57, 46, -51, 50" } ... }'&gt; ... &lt;/div&gt;</code></pre></td>
 					</tr>
 					<tr>
 						<td><code>geocoder</code></td>
@@ -561,8 +564,6 @@ var wet_boew_geomap = {
 }</code></pre>
 			</section>
 
-
-
 		<section>
 			<h4>Style configuration options</h4>
 			<section>
@@ -647,21 +648,41 @@ var wet_boew_geomap = {
 	</section>
 	<section>
 		<h3>Advanced Configuration</h3>
-		<p>Geomap provides developers with a hook to access the OpenLayers Map object. This can be useful if you have specific functionality that Geomap does not support out of the box. Geomap fires an event when it has loaded called <code>geomap-ready</code> that you can attach a listener to and get an array of OpenLayers maps that exist in your page.</p>
+		<p>Geomap provides developers with a hook to access the OpenLayers Map object. This can be useful if you have specific functionality that Geomap does not support out of the box. Geomap fires an event when it has loaded that you can attach a listener to.</p>
 		<p>Once Geomap has loaded, the OpenLayers Map object can be accessed as follows:</p>
-		<pre><code>// return an array of OpenLayers maps in the page
+		<section>
+			<h4>Pre v4.0.5</h4>
+			<pre><code>// return an array of OpenLayers maps in the page
 wb.doc.on( "geomap.ready", function( event, maps ) {
   var myMap = maps.mygeomap; // return map with specfic id
   // do something
 });</code></pre>
-		<p>Note that the <code>id</code> (e.g. "mygeomap") of the <code>div</code> that contains the instance of Geomap you are accessing is used as the key in the maps array.</p>
-		<p>For example if you want Geomap to zoom the map (e.g. "mygeomap") to the extent of a specified layer (e.g. "#bbox") once the document is loaded simply add the following to your markup:</p>
-		<pre><code>&lt;script&gt;
+			<p>Note that the <code>id</code> (e.g. "mygeomap") of the <code>div</code> that contains the instance of Geomap you are accessing is used as the key in the maps array.</p>
+			<p>For example if you want Geomap to zoom the map (e.g. "mygeomap") to the extent of a specified layer (e.g. "#bbox") once the document is loaded simply add the following to your markup:</p>
+			<pre><code>&lt;script&gt;
   wb.doc.on( "geomap.ready", function( event, maps ) {
     var myMap = maps.mygeomap;
     myMap.zoomToExtent( myMap.getLayer( "#bbox" ).getDataExtent(), true );
   });
 &lt;/script&gt;</code></pre>
+		</section>
+		<section>
+			<h4>v4.0.5+</h4>
+			<pre><code>// get the map object with id "mygeomap"
+$document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
+  var myMap = map; // return OpenLayers map object
+  // do something
+});</code></pre>
+			<p>Note the <code>id</code> (e.g. "mygeomap") of the <code>div</code> that contains the instance of Geomap you are accessing.</p>
+			<p>For example if you want Geomap to zoom the map (e.g. "mygeomap") to the extent of a specified layer (e.g. "#bbox") once the document is loaded simply add the following to your markup:</p>
+			<pre><code>&lt;script&gt;
+  $document.on( "wb-ready.wb-geomap", "#mygeomap", function( event, map ) {
+    // Get the map to use in zoomFeature function
+    var myMap = map;
+    myMap.zoomToExtent( myMap.getLayer( "#bbox" ).getDataExtent(), true );
+  });
+&lt;/script&gt;</code></pre>
+		</section>
 	</section>
 </section>
 
@@ -684,7 +705,7 @@ wb.doc.on( "geomap.ready", function( event, maps ) {
 			<tr>
 				<td><code>wb-ready.wb-geomap</code> (v4.0.5+)</td>
 				<td>Triggered automatically after Geomap initializes.</td>
-				<td>Used to identify the element where Geomap has initialized (target of the event) and to pass along the map object. 
+				<td>Used to identify the element where Geomap has initialized (target of the event) and to pass along the map object.
 					<pre><code>$( document ).on( "wb-ready.wb-geomap", ".wb-geomap", function( event, map ) {
 });</code></pre>
 					<pre><code>$( ".wb-geomap" ).on( "wb-ready.wb-geomap", function( event, map ) {
@@ -694,7 +715,7 @@ wb.doc.on( "geomap.ready", function( event, maps ) {
 			<tr>
 				<td><code>wb-updated.wb-geomap</code> (v4.0.5+)</td>
 				<td>Triggered automatically after Geomap updates (e.g., change in zoom).</td>
-				<td>Used to identify the element where Geomap has been updated (target of the event) and to pass along the map object. 
+				<td>Used to identify the element where Geomap has been updated (target of the event) and to pass along the map object.
 					<pre><code>$( document ).on( "wb-updated.wb-geomap", ".wb-geomap", function( event, map ) {
 });</code></pre>
 					<pre><code>$( ".wb-geomap" ).on( "wb-updated.wb-geomap", function( event, map ) {
@@ -704,7 +725,7 @@ wb.doc.on( "geomap.ready", function( event, maps ) {
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
