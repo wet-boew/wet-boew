@@ -1756,7 +1756,7 @@ var componentName = "wb-geomap",
 			tablesLen = tables.length,
 			layers = geomap.queryLayers,
 			layersLen = layers.length,
-			mousePositionDiv, scaleLineDiv, attribHref, attribTxt,
+			mousePositionDiv, scaleLineDiv,
 			table, tableId, layer, features, featuresLen,
 			zoom, i, j, k;
 
@@ -1834,23 +1834,17 @@ var componentName = "wb-geomap",
 
 		// Add attribution
 		if ( geomap.showAttribNRCan || opts.attribution ) {
-			map.addControl( new OpenLayers.Control.Attribution() );
 
 			if ( geomap.showAttribNRCan ) {
-				attribHref = document.createElement( "a" );
-				attribHref.setAttribute( "href", i18nText.attribLink );
-				attribTxt = "\u00A9" + i18nText.attribTitle;
+				map.baseLayer.attribution = "<a href='" + i18nText.attribLink + "'>\u00A9" + i18nText.attribTitle + "</a>";
 			} else if ( opts.attribution.href ) {
-				attribHref = document.createElement( "a" );
-				attribHref.setAttribute( "href", opts.attribution.href );
-				attribTxt = opts.attribution.text;
+				map.baseLayer.attribution = "<a href='" + opts.attribution.href + "'>" + opts.attribution.text + "</a>";
 			} else {
-				attribHref = document.createElement( "p" );
-				attribTxt = opts.attribution.text;
+				map.baseLayer.attribution = "<p>" + opts.attribution.text + "</p>";
 			}
 
-			attribHref.appendChild (document.createTextNode( attribTxt ) );
-			map.getControlsByClass( "OpenLayers.Control.Attribution" )[ 0 ].div.appendChild( attribHref );
+			map.addControl( new OpenLayers.Control.Attribution() );
+
 		}
 
 		// Zoom to the maximum extent specified
