@@ -35,9 +35,9 @@ module.exports = (grunt) ->
 			"checkDependencies"
 			"clean:dist"
 			"assets"
+			"sprites"
 			"css"
 			"js"
-			"imagemin"
 		]
 	)
 
@@ -48,6 +48,7 @@ module.exports = (grunt) ->
 			"js-min"
 			"css-min"
 			"assets-min"
+			"imagemin"
 		]
 	)
 
@@ -97,7 +98,8 @@ module.exports = (grunt) ->
 		"server"
 		"Run the Connect web server for local repo"
 		[
-			"connect:server:keepalive"
+			"connect:server"
+			"watch"
 		]
 	)
 
@@ -139,8 +141,7 @@ module.exports = (grunt) ->
 		"css"
 		"INTERNAL: Compiles Sass and copies third party CSS to the dist folder"
 		[
-			"sprites"
-			"sass:all"
+			"sass"
 			"autoprefixer"
 			"csslint:unmin"
 			"usebanner:css"
@@ -630,32 +631,19 @@ module.exports = (grunt) ->
 						"opera 12.1"
 					]
 				files: [
-					cwd: "dist/unmin/css"
-					src: [
-						"**/*.css"
-						"!**/polyfills/**/*.css"
-						"!**/*.min.css"
-					]
-					dest: "dist/unmin/css"
-					expand: true
-					flatten: true
-				,
 					cwd: "dist/unmin/css/polyfills"
 					src: [
 						"**/*.css"
-						"!**/*.min.css"
 					]
 					dest: "dist/unmin/css/polyfills/"
 					expand: true
 				,
-					cwd: "dist/unmin/demos"
-					src: "**/*.css"
-					dest: "dist/unmin/demos/"
-					expand: true
-				,
-					cwd: "dist/unmin/docs"
-					src: "**/*.css"
-					dest: "dist/unmin/docs/"
+					cwd: "dist/unmin/"
+					src: [
+						"demos/**/*.css"
+						"docs/**/*.css"
+					]
+					dest: "dist/unmin/"
 					expand: true
 				]
 
@@ -675,36 +663,7 @@ module.exports = (grunt) ->
 
 		csslint:
 			options:
-				"adjoining-classes": false
-				"box-model": false
-				"box-sizing": false
-				"compatible-vendor-prefixes": false
-				"duplicate-background-images": false
-				"duplicate-properties": false
-				# Can be turned off after https://github.com/dimsemenov/Magnific-Popup/pull/303 lands
-				"empty-rules": false
-				"fallback-colors": false
-				"floats": false
-				"font-sizes": false
-				"gradients": false
-				"headings": false
-				"ids": false
-				"important": false
-				# Need due to use of "\9" hacks for oldIE
-				"known-properties": false
-				"outline-none": false
-				"overqualified-elements": false
-				"qualified-headings": false
-				"regex-selectors": false
-				"selector-max-approaching": false
-				# Some Bootstrap mixins end up listing all the longhand properties
-				"shorthand": false
-				"text-indent": false
-				"unique-headings": false
-				"universal-selector": false
-				"unqualified-attributes": false
-				# Zeros are output by some of the Bootstrap mixins, but shouldn't be used in our code
-				"zero-units": false
+				csslintrc: ".csslintrc"
 
 			unmin:
 				options:
@@ -713,7 +672,7 @@ module.exports = (grunt) ->
 						id: "csslint-xml"
 						dest: "csslint-unmin.log"
 					]
-				src: "dist/unmin/css/*.css"
+				src: "dist/unmin/css/**/*.css"
 
 			demos:
 				options:
@@ -1146,46 +1105,32 @@ module.exports = (grunt) ->
 			dist: ["dist", "src/base/partials/*sprites*"]
 
 		watch:
-			lib_test:
-				files: "<%= jshint.lib_test.src %>"
-				tasks: "jshint:lib_test"
-
-			source:
+			options:
+				livereload: true
+			js:
+				files: "<%= jshint.all.src %>"
+				tasks: "js"
+			css:
 				files: [
-					"src/**/*.*"
-					"!src/**/*sprites*"
+					"src/**/*.scss"
+					"site/**/*.scss"
+					"theme/**/*.scss"
 				]
-				tasks: "dist"
-				options:
-					interval: 5007
-					livereload: true
+				tasks: "css"
 
 			demos:
-				files: [
-					"<%= assemble.demos.src %>"
-				]
-				tasks: [
-					"pages:demos"
-				]
-				options:
-					interval: 5007
-					livereload: true
+				files: "src/**/*.hbs"
+				tasks: "pages:demos"
 
 			docs:
-				files: [
-					"<%= assemble.docs.src %>"
-				]
-				tasks: [
-					"pages:docs"
-				]
-				options:
-					livereload: true
+				files: "site/pages/docs/**/*.hbs"
+				tasks: "pages:docs"
 
 		jshint:
 			options:
 				jshintrc: ".jshintrc"
 
-			lib_test:
+			all:
 				src: [
 					"src/**/*.js"
 					"theme/**/*.js"
@@ -1198,7 +1143,7 @@ module.exports = (grunt) ->
 					config: ".jscsrc"
 
 				src: [
-					"<%= jshint.lib_test.src %>"
+					"<%= jshint.all.src %>"
 				]
 
 		connect:
