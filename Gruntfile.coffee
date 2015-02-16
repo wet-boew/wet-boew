@@ -984,6 +984,10 @@ module.exports = (grunt) ->
 						"DataTables/media/js/jquery.dataTables.js"
 						"proj4/dist/proj4.js"
 						"openlayers/OpenLayers.debug.js"
+						"tablesaw/dist/stackonly/tablesaw.stackonly.js"
+						"tablesaw/dist/customresponsive/tablesaw.customresponsive.js"
+						"tablesaw/dist/sortable/tablesaw.sortable.js"
+						"tablesaw/dist/tablesaw.css"
 					]
 					dest: "dist/unmin/js/deps"
 					rename: (dest, src) ->
