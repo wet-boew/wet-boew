@@ -4,6 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @jeresiv
  */
+ /*jshint scripturl:true*/
 (function( $, window, wb ) {
 "use strict";
 
@@ -151,10 +152,10 @@ $document.on( "init.dt draw.dt", selector, function( event, settings ) {
 
 	// Update the aria-pressed properties on the pagination buttons
 	// Should be pushed upstream to DataTables
-	$( ".dataTables_paginate a" )
+	$elm.next( ".bottom" ).find( ".paginate_button" )
 		.attr({
 			"role": "button",
-			"href": "javascript;"
+			"href": "javascript:;"
 		})
 		.not( ".previous, .next" )
 			.attr( "aria-pressed", "false" )
