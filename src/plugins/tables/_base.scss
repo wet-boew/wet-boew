@@ -250,7 +250,7 @@ table {
 					}
 				}
 			}
-			
+
 			.sorting_disabled {
 				.sorting-cnt {
 					@extend %global-display-none;
@@ -301,7 +301,7 @@ table {
 			&.center {
 				@extend %tables-text-align-center;
 			}
-		
+
 			&.right {
 				@extend %tables-text-align-right;
 			}
@@ -340,7 +340,7 @@ table {
 				}
 			}
 		}
-		
+
 		&.display {
 			tbody {
 				th,
@@ -463,7 +463,7 @@ table {
 							}
 						}
 					}
-					
+
 					&.even {
 						&:hover {
 							@extend %tables-bg-color-whitesmoke;
@@ -566,7 +566,7 @@ table {
 		}
 
 		&.cell-border {
-			tbody {		
+			tbody {
 				th,
 				td {
 					@extend %tables-border-right-top-1px-solid-ddd;
@@ -939,7 +939,7 @@ table {
 
 			&.previous {
 				@extend %tables-pagination-first-button;
-					
+
 				&:before {
 					@extend %pagination-left-arrow;
 				}
@@ -952,7 +952,7 @@ table {
 					@extend %pagination-right-arrow;
 				}
 			}
-			
+
 			&.current {
 				background-color: $pagination-active-bg;
 				border-color: $pagination-active-border;
@@ -1097,7 +1097,7 @@ table {
 				margin-right: 0.5em;
 			}
 		}
-		
+
 		.dataTables_paginate {
 			.paginate_button {
 				&.previous {
