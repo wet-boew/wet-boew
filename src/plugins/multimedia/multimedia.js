@@ -25,6 +25,8 @@ var componentName = "wb-mltmd",
 	templateLoadedEvent = "templateloaded" + selector,
 	cuepointEvent = "cuepoint" + selector,
 	captionClass = "cc_on",
+	multimediaEvents = "durationchange playing pause ended volumechange timeupdate waiting canplay progress" +
+			captionsLoadedEvent + " " + captionsLoadFailedEvent + " " + captionsVisibleChangeEvent + " " + cuepointEvent,
 	$document = wb.doc,
 	$window = wb.win,
 
@@ -747,9 +749,7 @@ $document.on( renderUIEvent, selector, function( event, type ) {
 		data.player = $player.is( "object" ) ? $player.children( ":first-child" ) : $player;
 
 		// Create an adapter for the event management
-		data.player.on( "durationchange play pause ended volumechange timeupdate " +
-			captionsLoadedEvent + " " + captionsLoadFailedEvent + " " +
-			captionsVisibleChangeEvent + " waiting canplay progress", function( event ) {
+		data.player.on( multimediaEvents, function( event ) {
 			$this.trigger( event );
 		});
 
@@ -891,11 +891,7 @@ $document.on( "wb-activate", selector, function( event ) {
     $this.find( ctrls + " .playpause" ).trigger( "click" );
 });
 
-$document.on( "durationchange play pause ended volumechange timeupdate " +
-	captionsLoadedEvent + " " + captionsLoadFailedEvent + " " +
-	captionsVisibleChangeEvent + " " + cuepointEvent +
-	" waiting canplay", selector, function( event, simulated ) {
-
+$document.on( multimediaEvents, selector, function( event, simulated ) {
 	var eventTarget = event.currentTarget,
 		eventType = event.type,
 		eventNamespace = event.namespace,
@@ -904,10 +900,10 @@ $document.on( "durationchange play pause ended volumechange timeupdate " +
 		invEnd = "</span>",
 		currentTime, $button, $slider, buttonData, isPlay, isMuted, isCCVisible, ref, skipTo, volume;
 	switch ( eventType ) {
-	case "play":
+	case "playing":
 	case "pause":
 	case "ended":
-		isPlay = eventType === "play";
+		isPlay = eventType === "playing";
 		$button = $this.find( ".playpause" );
 		buttonData = $button.data( "state-" + ( isPlay ? "off" : "on" ) );
 		if ( isPlay ) {
