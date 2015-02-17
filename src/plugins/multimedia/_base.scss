@@ -24,14 +24,50 @@ $mm-volume-thumb-width: 10px;
 	padding-top: 2em;
 }
 
-@keyframes spin {
-	from {
-		transform: rotate(0);
-	}
+@mixin multimedia_overlay_loading {
+	.display {
+		@extend %global-loading;
 
-	to {
-		transform: rotate(360deg);
+		&:before,
+		&:after {
+			content: " ";
+			display: block;
+		}
 	}
+}
+
+@mixin multimedia_overlay_base {
+	.display {
+		@extend %global_centered_overlay;
+		cursor: pointer;
+		position: relative;
+	}
+}
+
+@mixin multimedia_overlay_play {
+	.display {
+		&:before {
+			color: #fff;
+			content: "";
+			font-family: "Glyphicons Halflings";
+			font-size: 65px;
+			text-align: center;
+		}
+	}
+}
+
+@mixin multimedia_overlay_hidden {
+	.display {
+		&:before,
+		&:after {
+			display: none;
+		}
+	}
+}
+
+%controls-offset {
+	margin-bottom: -7px;
+	width: 100%;
 }
 
 %captions_hidden {
@@ -46,34 +82,26 @@ $mm-volume-thumb-width: 10px;
 }
 
 .wb-mltmd {
+	@include multimedia_overlay_base;
+	@include multimedia_overlay_play;
+
 	// lets fight the FOUC
 	// base state
 	display: block;
+	position: relative;
 
 	video {
+		@extend %controls-offset;
 		height: auto;
 		width: 100%;
 	}
 
-	.wb-mm-ctrls {
-		.btn {
-			@extend %multimedia-controls-outline;
-			background: transparent;
-			border: 0;
-			border-top: {
-				left-radius: 0 !important;
-				right-radius: 0 !important;
-			}
-			color: $mm-ctrl-fg-color;
-			font-size: 130%;
-		}
+	object,
+	iframe {
+		@extend %controls-offset;
 	}
 
 	&.audio {
-		.wb-mm-ovrly {
-			@extend %multimedia-display-none;
-		}
-
 		.lastpnl {
 			@extend %multimedia-display-none;
 		}
@@ -83,49 +111,18 @@ $mm-volume-thumb-width: 10px;
 		}
 	}
 
-	.display {
-		background: #000;
-		position: relative;
+	&.playing {
+		@include multimedia_overlay_hidden;
 
-		.wb-mm-ovrly {
-			@extend %multimedia-controls-outline;
-			height: 100%;
-			position: absolute;
-			width: 100%;
-			z-index: 1;
-		}
-
-		video,
-		object,
-		iframe {
-			margin-bottom: -7px;
-			width: 100%;
-		}
-
-		&.waiting {
-			@extend %global-loading;
+		.errmsg {
+			display: none;
 		}
 	}
 
-	.wb-mm-ovrly {
-		background: transparent;
-		border: 0;
-		padding: 0;
-
-		img {
-			width: 100%;
-		}
-
-		&.playing {
-			img {
-				visibility: hidden;
-			}
-
-			.errmsg {
-				display: none;
-			}
-		}
+	&.waiting {
+		@include multimedia_overlay_loading;
 	}
+
 
 	&.cc_on {
 		.wb-mm-cc {
@@ -146,14 +143,16 @@ $mm-volume-thumb-width: 10px;
 	}
 
 	&.youtube {
+		@include multimedia_overlay_hidden;
+
+		.wb-mm-ctrls {
+			border-bottom: 10px solid #fff;
+		}
+
 		&.cc_on {
 			.wb-mm-cc {
 				@extend %multimedia-display-none;
 			}
-		}
-
-		.wb-mm-ovrly {
-			@extend %multimedia-display-none;
 		}
 	}
 
@@ -212,6 +211,18 @@ $mm-volume-thumb-width: 10px;
 	padding-top: 2em;
 	position: relative;
 	width: 100%;
+
+	.btn {
+		@extend %multimedia-controls-outline;
+		background: transparent;
+		border: 0;
+		border-top: {
+			left-radius: 0 !important;
+			right-radius: 0 !important;
+		}
+		color: $mm-ctrl-fg-color;
+		font-size: 130%;
+	}
 
 	.frstpnl {
 		@extend %pnl;
