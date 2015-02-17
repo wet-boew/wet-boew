@@ -3,7 +3,7 @@
   @title: Bootstrap IE8-specific overrides for WET-BOEW
  */
 .lt-ie9 {
-	.pagination, 
+	.pagination,
 	.pager {
 		> li {
 			&:first-child {
@@ -20,37 +20,6 @@
 	.dl-horizontal {
 		dt {
 			white-space: normal;
-		}
-	}
-}
-
-@media print {
-	.lt-ie9 {
-		abbr {
-			&[title] {
-				&:after {
-					content: "";
-				}
-			}
-		}
-
-		.pagination,
-		.pager {
-			width: 100%;
-
-			> li {
-				> a,
-				> span {
-					cursor: hand;
-				}
-
-				&.active {
-					> a,
-					> span {
-						cursor: default;				
-					}
-				}
-			}
 		}
 	}
 }
