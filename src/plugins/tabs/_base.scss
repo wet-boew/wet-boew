@@ -21,6 +21,12 @@
 	}
 }
 
+%tab-link-color {
+	a {
+		color: $carousel-tabpanel-figcaption-link-color;
+	}
+}
+
 %tab-figure-captions {
 	bottom: 0;
 	color: $carousel-tabpanel-figcaption-color;
@@ -29,10 +35,6 @@
 	position: relative;
 	right: 0;
 	z-index: 101;
-
-	a {
-		color: $carousel-tabpanel-figcaption-link-color;
-	}
 }
 
 %carousel-s2-prv-nxt-common {
@@ -208,6 +210,7 @@
 	}
 
 	[role="tabpanel"] {
+		@extend %tab-link-color;
 		overflow-x: auto;
 		position: relative;
 		z-index: 1;
@@ -275,6 +278,7 @@
 
 		figcaption {
 			@extend %tab-figure-captions;
+			@extend %tab-link-color;
 
 			p {
 				@extend %tabs-margin-bottom-0;
@@ -387,10 +391,7 @@
 
 		figcaption {
 			@extend %tab-figure-captions;
-
-			a {
-				@extend %tab-figure-captions-links;
-			}
+			@extend %tab-link-color;
 
 			p {
 				@extend %tabs-margin-bottom-0;
