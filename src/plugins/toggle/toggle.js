@@ -86,7 +86,14 @@ var componentName = "wb-toggle",
 
 			// Check that the tablist widget hasn't already been initialized
 			if ( parent.getAttribute( "role" ) !== "tablist" ) {
-				parent.setAttribute( "role", "tablist" );
+
+				// Only apply the tablist role if the parent is not the tabbed interface container
+				// or the page is currently in "smallview", "xsmallview" or "xxsmallview"
+				if ( parent.className.indexOf( "wb-tabs" ) === -1 ||
+					document.documentElement.className.indexOf( "smallview" ) !== -1 ) {
+					parent.setAttribute( "role", "tablist" );
+				}
+
 				elms = parent.querySelectorAll( data.group );
 				tabs = parent.querySelectorAll( data.group + " " + selectorTab );
 
