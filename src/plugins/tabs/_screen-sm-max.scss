@@ -10,22 +10,13 @@
 	> {
 		details {
 			border-bottom: $tablist-screen-sm-seperator-border-color $tablist-screen-sm-seperator-border-style $tablist-screen-sm-seperator-border-width;
-			padding: 6px 12px;
 
 			&:last-of-type {
 				border-bottom: 0;
 			}
 
-
 			&[style] {
 				min-height: 0 !important;
-			}
-
-			> {
-				summary {
-					margin: -6px -12px;
-					padding: 6px 12px;
-				}
 			}
 
 			&[open] {
