@@ -4,8 +4,8 @@
  */
 .wb-txthl {
 	.txthl {
-		background-color: #ff0;
-		color: #000;
-		font-weight: 700;
+		background-color: $txthl-bg-color;
+		color: $txthl-color;
+		font-weight: $txthl-font-weight;
 	}
 }
