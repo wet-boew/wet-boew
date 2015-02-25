@@ -21,12 +21,6 @@
 	}
 }
 
-%tab-link-color {
-	a {
-		color: $carousel-tabpanel-figcaption-link-color;
-	}
-}
-
 %tab-figure-captions {
 	bottom: 0;
 	color: $carousel-tabpanel-figcaption-color;
@@ -35,6 +29,12 @@
 	position: relative;
 	right: 0;
 	z-index: 101;
+}
+
+%carousel-link {
+	a {
+		color: $carousel-tabpanel-link-color;
+	}
 }
 
 %carousel-s2-prv-nxt-common {
@@ -217,7 +217,6 @@
 	}
 
 	[role="tabpanel"] {
-		@extend %tab-link-color;
 		overflow-x: auto;
 		position: relative;
 		z-index: 1;
@@ -228,6 +227,10 @@
 	 */
 	&.carousel-s1 {
 		border-top: 0;
+
+		[role="tabpanel"] {
+			@extend %carousel-link;
+		}
 
 		[role="tablist"] {
 			bottom: 1em;
@@ -285,7 +288,7 @@
 
 		figcaption {
 			@extend %tab-figure-captions;
-			@extend %tab-link-color;
+			@extend %carousel-link;
 
 			p {
 				@extend %tabs-margin-bottom-0;
@@ -299,6 +302,10 @@
 	&.carousel-s2 {
 		background: $carousel-s2-tablist-controls-bg-color;
 		padding-bottom: 4.375em;
+
+		[role="tabpanel"] {
+			@extend %carousel-link;
+		}
 
 		[role="tablist"] {
 			bottom: 0;
@@ -398,7 +405,7 @@
 
 		figcaption {
 			@extend %tab-figure-captions;
-			@extend %tab-link-color;
+			@extend %carousel-link;
 
 			p {
 				@extend %tabs-margin-bottom-0;
