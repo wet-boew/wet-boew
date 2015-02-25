@@ -39,7 +39,8 @@ var componentName = "wb-tabs",
 	defaults = {
 		excludePlay: false,
 		interval: 6,
-		updateHash: false
+		updateHash: false,
+		ignoreSession: false
 	},
 
 	/**
@@ -73,6 +74,7 @@ var componentName = "wb-tabs",
 			activeId = wb.jqEscape( wb.pageUrlParts.hash.substring( 1 ) );
 			$openPanel = activeId.length !== 0 ? $panels.filter( "#" + activeId ) : undefined;
 			elmId = elm.id;
+
 			settings = $.extend(
 				true,
 				{},
@@ -83,7 +85,8 @@ var componentName = "wb-tabs",
 									3 : defaults.interval,
 					excludePlay: $elm.hasClass( "exclude-play" ),
 					updateHash: $elm.hasClass( "update-hash" ),
-					playing: $elm.hasClass( "playing" )
+					playing: $elm.hasClass( "playing" ),
+					ignoreSession: $elm.hasClass( "ignore-session" )
 				},
 				window[ componentName ],
 				wb.getData( $elm, componentName )
@@ -94,7 +97,9 @@ var componentName = "wb-tabs",
 				// If the panel was not set by URL hash, then attempt to
 				// retrieve from sessionStorage
 				if ( !$openPanel || $openPanel.length === 0 ) {
-					activeId = sessionStorage.getItem( pagePath + elmId + activePanel );
+					if ( !settings.ignoreSession ) {
+						activeId = sessionStorage.getItem( pagePath + elmId + activePanel );
+					}
 					if ( activeId ) {
 						$openPanel = $panels.filter( "#" + activeId );
 					}
@@ -102,9 +107,11 @@ var componentName = "wb-tabs",
 				// If the panel was set by URL hash, then store in sessionStorage
 				} else {
 					hashFocus = true;
-					try {
-						sessionStorage.setItem( pagePath + elmId + activePanel, activeId );
-					} catch ( error ) {
+					if ( !settings.ignoreSession ) {
+						try {
+							sessionStorage.setItem( pagePath + elmId + activePanel, activeId );
+						} catch ( error ) {
+						}
 					}
 				}
 			} catch ( error ) {
@@ -394,6 +401,7 @@ var componentName = "wb-tabs",
 			newIndex = $tabs.index( $control ) + 1,
 			$currPanel = $panels.filter( ".in" ),
 			$container = $next.closest( selector ),
+			tabSettings = $container.data( componentName ).settings,
 			mPlayers = $currPanel.find( ".wb-mltmd-inited" ).get(),
 			mPlayersLen = mPlayers.length,
 			mPlayer, i, j, last;
@@ -457,16 +465,18 @@ var componentName = "wb-tabs",
 				.addClass( "active" );
 
 		// Update sessionStorage with the current active panel
-		try {
-			sessionStorage.setItem(
-				pagePath + $container.attr( "id" ) + activePanel,
-				$next.attr( "id" )
-			);
-		} catch ( error ) {
+		if ( !tabSettings.ignoreSession ) {
+			try {
+				sessionStorage.setItem(
+					pagePath + $container.attr( "id" ) + activePanel,
+					$next.attr( "id" )
+				);
+			} catch ( error ) {
+			}
 		}
 
 		// Update the URL hash if needed
-		if ( $container.data( componentName ).settings.updateHash ) {
+		if ( tabSettings.updateHash ) {
 			updateHash( $next[ 0 ] );
 		}
 
@@ -861,26 +871,28 @@ $document.on( wb.resizeEvents, onResize );
 $document.on( activateEvent, selector + " > .tabpanels > details > summary", function( event ) {
 	var which = event.which,
 		details = event.currentTarget.parentNode,
-		$details, $container;
+		$details, $container, tabSettings;
 
 	if ( !( event.ctrlKey || event.altKey || event.metaKey ) &&
 		( !which || which === 1 || which === 13 || which === 32 ) ) {
 
+		$container = $( details.parentNode.parentNode );
 		$details = $( details );
+		tabSettings = $container.data( componentName ).settings;
 
 		// Update sessionStorage with the current active panel
-		try {
-			sessionStorage.setItem(
-				pagePath + $details.closest( selector ).attr( "id" ) + activePanel,
-				details.id
-			);
-		} catch ( error ) {
+		if ( !tabSettings.ignoreSession ) {
+			try {
+				sessionStorage.setItem(
+					pagePath + $container.attr( "id" ) + activePanel,
+					details.id
+				);
+			} catch ( error ) {
+			}
 		}
 
-		$container = $details.closest( selector );
-
 		// Update the URL hash if needed
-		if ( $container.data( componentName ).settings.updateHash ) {
+		if ( tabSettings.updateHash ) {
 			updateHash( details );
 		}
 
