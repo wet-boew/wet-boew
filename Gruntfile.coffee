@@ -429,7 +429,7 @@ module.exports = (grunt) ->
 					sanitize: false
 				production: false
 				data: "site/data/**/*.{yml,json}"
-				helpers: "site/helpers/helper-*.js"
+				helpers: "site/helpers/helper{,s}-*.js"
 				layoutdir: "site/layouts"
 				partials: "site/includes/**/*.hbs"
 				layout: "default.hbs"
