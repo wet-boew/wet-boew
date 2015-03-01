@@ -321,7 +321,8 @@ var componentName = "wb-datalist",
 $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " keydown click vclick touchstart", selector, function( event ) {
 	var input = event.target,
 		eventType = event.type,
-		which = event.which;
+		which = event.which,
+		autolist;
 
 	switch ( eventType ) {
 	case "timerpoke":
@@ -345,15 +346,18 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " keydown click 
 	case "vclick":
 	case "touchstart":
 
-		// Ignore middle/right mouse buttons
-		if ( !which || which === 1 ) {
-			if ( input.nextSibling.className.indexOf( "hide" ) === -1 ) {
-				closeOptions( input );
-			} else {
-				showOptions( input, input.value );
+		if ( initialized ) {
+
+			// Ignore middle/right mouse buttons
+			if ( !which || which === 1 ) {
+				autolist = input.nextElementSibling || $(input).next().get(0);
+				if ( autolist.className.indexOf( "hide" ) === -1 ) {
+					closeOptions( input );
+				} else {
+					showOptions( input, input.value );
+				}
 			}
 		}
-		break;
 	}
 
 	/*
@@ -400,7 +404,7 @@ $document.on( "focusin txt-rsz.wb win-rsz-width.wb win-rsz-height.wb", function(
 		for ( i = 0; i !== len; i += 1 ) {
 			input = inputs[ i ];
 			if ( focusEvent ) {
-				autolist = input.nextSibling;
+				autolist = input.nextElementSibling || $(input).next().get(0);
 				if ( autolist.className.indexOf( "hide" ) === -1 &&
 					eventTargetId !== input.id && eventTargetId !== autolist.id &&
 					!$.contains( autolist, eventTarget ) ) {
