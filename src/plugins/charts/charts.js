@@ -6,7 +6,7 @@
  * @author @duboisp
  *
  */
-(function( $, window, document, wb ) {
+( function( $, window, document, wb ) {
 "use strict";
 
 /**
@@ -872,7 +872,7 @@
 						$( currentDataGroupVector.header[ currentDataGroupVector.header.length - 1 ].elem ).text() );
 
 					// Add the series
-					allSeries.push(pieQuaterFlotSeries);
+					allSeries.push( pieQuaterFlotSeries );
 				}
 
 				// Create a sub Figure or use the main one
@@ -881,10 +881,10 @@
 					currentRowGroup.row[ 0 ].header.length === 0 ) ) {
 
 					$placeHolder = $wetChartContainer;
-					$placeHolder.css({
+					$placeHolder.css( {
 						height: optionsCharts.height,
 						width: optionsCharts.width
-					});
+					} );
 
 				} else {
 
@@ -969,12 +969,12 @@
 				nbBarChart += 1;
 
 				// Set a default setting specially for bar charts
-				if (!currVectorOptions.bars) {
+				if ( !currVectorOptions.bars ) {
 					currVectorOptions.bars = { show: true, barWidth: 0.9 };
 				}
 
 				// Set a default order for orderBars flot plugin
-				if (!currVectorOptions.bars.order) {
+				if ( !currVectorOptions.bars.order ) {
 					currVectorOptions.bars.order = nbBarChart;
 				}
 			}
@@ -1100,8 +1100,8 @@
 			];
 
 			//TODO: Revist this in the new plugin structure
-			if (settings && settings.plugins) {
-				deps = deps.concat(settings.plugins);
+			if ( settings && settings.plugins ) {
+				deps = deps.concat( settings.plugins );
 			}
 
 			// Only initialize the i18nText once
@@ -1114,7 +1114,7 @@
 			}
 
 			// Load the required dependencies
-			Modernizr.load({
+			Modernizr.load( {
 
 				// For loading multiple dependencies
 				load: deps,
@@ -1127,7 +1127,7 @@
 					// Identify that initialization has completed
 					wb.ready( $elm, componentName );
 				}
-			});
+			} );
 		}
 	};
 
@@ -1161,9 +1161,9 @@ $document.on( "timerpoke.wb " + initEvent + " " + tableParsingCompleteEvent, sel
 	 * so returning true allows for events to always continue
 	 */
 	return true;
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, document, wb );
+} )( jQuery, window, document, wb );

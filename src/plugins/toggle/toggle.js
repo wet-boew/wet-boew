@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -181,7 +181,7 @@ var componentName = "wb-toggle",
 
 		$window.on( printEvent, function() {
 			$link.trigger( toggleEvent, $.extend( {}, data, { type: data.print } ) );
-		});
+		} );
 
 		// Fallback for browsers that don't support print events
 		if ( window.matchMedia ) {
@@ -191,7 +191,7 @@ var componentName = "wb-toggle",
 					if ( query.matches ) {
 						$window.trigger( printEvent );
 					}
-				});
+				} );
 			}
 		}
 	},
@@ -246,7 +246,7 @@ var componentName = "wb-toggle",
 					isOn: false,
 					isTablist: isTablist,
 					elms: $elmsGroup
-				});
+				} );
 
 				// Remove all grouped persistence keys
 				if ( isPersist ) {
@@ -267,7 +267,7 @@ var componentName = "wb-toggle",
 				isOn: isToggleOn,
 				isTablist: isTablist,
 				elms: $elms
-			});
+			} );
 
 			// Store the toggle link's current state if persistence is turned on.
 			// Try/catch is required to address exceptions thrown when using BB10 or
@@ -313,14 +313,14 @@ var componentName = "wb-toggle",
 			if ( data.isTablist ) {
 
 				// Set the required aria attributes
-				$elms.find( selectorTab ).attr({
+				$elms.find( selectorTab ).attr( {
 					"aria-selected": isOn,
 					tabindex: isOn ? "0" : "-1"
-				});
-				$elms.find( selectorPanel ).attr({
+				} );
+				$elms.find( selectorPanel ).attr( {
 					"aria-hidden": !isOn,
 					"aria-expanded": isOn
-				});
+				} );
 
 				// Check that the top of the open element is in view.
 				if ( isOn && $elms.length === 1 ) {
@@ -438,7 +438,7 @@ $document.on( "timerpoke.wb " + initEvent + " " + toggleEvent +
 		init( event );
 		break;
 	}
-});
+} );
 
 $document.on( toggledEvent, "details", toggleDetails );
 
@@ -492,7 +492,7 @@ $document.on( "keydown", selectorTab, function( event ) {
 			.children( "summary" )
 				.trigger( setFocusEvent );
 	}
-});
+} );
 
 $document.on( "keydown", selectorPanel, function( event ) {
 
@@ -504,9 +504,9 @@ $document.on( "keydown", selectorPanel, function( event ) {
 			.prev()
 				.trigger( setFocusEvent );
 	}
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

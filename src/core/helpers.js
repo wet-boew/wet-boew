@@ -5,7 +5,7 @@
  * @author WET Community
  * Credits: http://kaibun.net/blog/2013/04/19/a-fully-fledged-coffeescript-boilerplate-for-jquery-plugins/
  */
-(function( $, wb ) {
+( function( $, wb ) {
 	wb.getData = function( element, dataName ) {
 		var elm = !element.jquery ? element : element[ 0 ],
 			dataAttr = elm.getAttribute( "data-" + dataName ),
@@ -22,9 +22,9 @@
 
 		return dataObj;
 	};
-})( jQuery, wb );
+} )( jQuery, wb );
 
-(function( wb ) {
+( function( wb ) {
 	"use strict";
 
 	// Escapes the characters in a string for use in a jQuery selector
@@ -1094,16 +1094,16 @@
 	 * Originally from http://stackoverflow.com/a/2117523/455535
 	 */
 	wb.guid = function() {
-		return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function( replacementChar ) {
+		return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace( /[xy]/g, function( replacementChar ) {
 			var rand = Math.random() * 16 | 0,
 				newChar = replacementChar === "x" ? rand : ( rand & 0x3 | 0x8 );
-			return newChar.toString(16);
-		});
+			return newChar.toString( 16 );
+		} );
 	};
 
-})( wb );
+} )( wb );
 
-(function( $, undef ) {
+( function( $, undef ) {
 	"use strict";
 
 	var methods,
@@ -1156,12 +1156,12 @@
 		}
 	};
 
-})( jQuery );
+} )( jQuery );
 
 /*
 :focusable and :tabable jQuery helper expressions - https://github.com/jquery/jquery-ui/blob/24756a978a977d7abbef5e5bce403837a01d964f/ui/jquery.ui.core.js
 */
-(function( $ ) {
+( function( $ ) {
 	"use strict";
 
 	function focusable( element, isTabIndexNotNaN, visibility ) {
@@ -1195,14 +1195,14 @@
 		return $.expr.filters.visible( element ) && !$( element )
 			.parents( )
 			.addBack( )
-			.filter(function() {
+			.filter( function() {
 				return $.css( this, "visibility" ) === "hidden";
-			})
+			} )
 			.length;
 	}
 
 	$.extend( $.expr[ ":" ], {
-		data: $.expr.createPseudo ? $.expr.createPseudo(function(dataName ) {
+		data: $.expr.createPseudo ? $.expr.createPseudo( function( dataName ) {
 			return function( elem ) {
 				return !!$.data( elem, dataName );
 			};
@@ -1223,6 +1223,6 @@
 				isTabIndexNaN = isNaN( tabIndex );
 			return ( isTabIndexNaN || tabIndex >= 0 ) && focusable( element, !isTabIndexNaN );
 		}
-	});
+	} );
 
-})( jQuery );
+} )( jQuery );

@@ -6,7 +6,7 @@
  * @author @duboisp
  *
  */
-(function( $, window, document, wb ) {
+( function( $, window, document, wb ) {
 "use strict";
 
 /**
@@ -121,7 +121,7 @@
 			}
 
 			// Load the required dependencies
-			Modernizr.load({
+			Modernizr.load( {
 
 				// For loading multiple dependencies
 				load: deps,
@@ -130,7 +130,7 @@
 					// Let's parse the table
 					$( "#" + elmId ).trigger( tableParsingEvent );
 				}
-			});
+			} );
 		}
 	};
 
@@ -163,7 +163,7 @@ $document.on( "timerpoke.wb " + initEvent + " " + tableParsingCompleteEvent, sel
 	 * so returning true allows for events to always continue
 	 */
 	return true;
-});
+} );
 
 // Applying the hover, Simulate Column Hovering Effect
 $document.on( "mouseenter focusin", selectorHoverCol, function( event ) {
@@ -172,7 +172,7 @@ $document.on( "mouseenter focusin", selectorHoverCol, function( event ) {
 	if ( tblparserCell.col && tblparserCell.col.elem ) {
 		$( tblparserCell.col.elem ).addClass( "table-hover" );
 	}
-});
+} );
 
 // Removing the hover, Simulate Column Hovering Effect
 $document.on( "mouseleave focusout", selectorHoverCol, function( event ) {
@@ -181,9 +181,9 @@ $document.on( "mouseleave focusout", selectorHoverCol, function( event ) {
 	if ( tblparserCell.col && tblparserCell.col.elem ) {
 		$( tblparserCell.col.elem ).removeClass( "table-hover" );
 	}
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, document, wb );
+} )( jQuery, window, document, wb );

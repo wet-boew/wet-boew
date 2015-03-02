@@ -7,7 +7,7 @@
 /*
  * Vapour Object that will store tombstone data for plugins to leverage
  */
-(function( $, window, document, undef ) {
+( function( $, window, document, undef ) {
 "use strict";
 
 /**
@@ -30,7 +30,7 @@ var getUrlParts = function( url ) {
 			search: a.search,
 
 			// A collection of the parameters of the query string part of the URL.
-			params: (function() {
+			params: ( function() {
 				var results = {},
 					queryString = a.search.replace( /^\?/, "" ).split( "&" ),
 					len = queryString.length,
@@ -43,7 +43,7 @@ var getUrlParts = function( url ) {
 					}
 				}
 				return results;
-			}())
+			}() )
 		};
 	},
 
@@ -92,7 +92,7 @@ var getUrlParts = function( url ) {
 	 * @variable oldie
 	 * @return {integer} of IE version
 	 */
-	oldie = (function() {
+	oldie = ( function() {
 		var undef,
 			v = 3,
 			div = document.createElement( "div" ),
@@ -104,7 +104,7 @@ var getUrlParts = function( url ) {
 		) {}
 
 		return v > 4 ? v : undef;
-	}()),
+	}() ),
 
 	/**
 	 * @variable currentpage
@@ -116,7 +116,7 @@ var getUrlParts = function( url ) {
 	 * @variable disabled
 	 * @return {boolean} of state of disabled flag
 	 */
-	disabled = (function() {
+	disabled = ( function() {
 		var disabledSaved = "false",
 			disabled;
 
@@ -126,7 +126,7 @@ var getUrlParts = function( url ) {
 
 		disabled = currentpage.params.wbdisable || disabledSaved;
 		return ( typeof disabled === "string" ) ? ( disabled.toLowerCase() === "true" ) : Boolean( disabled );
-	}()),
+	}() ),
 
 	/*-----------------------------
 	 * Core Library Object
@@ -376,7 +376,7 @@ window.wb = wb;
 yepnope.addPrefix( "site", function( resourceObj ) {
 	resourceObj.url = $homepath + "/" + resourceObj.url;
 	return resourceObj;
-});
+} );
 
 /**
  * @prefix: plyfll! - builds the path for the polyfill resource
@@ -400,7 +400,7 @@ yepnope.addPrefix( "plyfll", function( resourceObj ) {
 	resourceObj.url = path + "/polyfills/" + url;
 
 	return resourceObj;
-});
+} );
 
 /**
  * @prefix: i18n! - adds the correct document language for our i18n library
@@ -408,12 +408,12 @@ yepnope.addPrefix( "plyfll", function( resourceObj ) {
 yepnope.addPrefix( "i18n", function( resourceObj ) {
 	resourceObj.url = $homepath + "/" + resourceObj.url + lang + $mode + ".js";
 	return resourceObj;
-});
+} );
 
 /*-----------------------------
  * Modernizr Polyfill Loading
  *-----------------------------*/
-Modernizr.load([
+Modernizr.load( [
 	{
 		test: Modernizr.details,
 		nope: [
@@ -476,15 +476,15 @@ Modernizr.load([
 
 					// Load the MathML dependency. Since the polyfill is only loaded
 					// when !Modernizr.mathml, we can skip the test here.
-					Modernizr.load({
+					Modernizr.load( {
 						load: "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible",
 						complete: function() {
 
 							// Identify that initialization has completed
 							wb.ready( $document, componentName );
 						}
-					});
-				});
+					} );
+				} );
 
 				wb.add( selector );
 			}
@@ -507,6 +507,6 @@ Modernizr.load([
 			wb.start();
 		}
 	}
-]);
+] );
 
-})( jQuery, window, document );
+} )( jQuery, window, document );

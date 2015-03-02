@@ -10,7 +10,7 @@
  * Jaws WAI-ARIA fixes
  */
 
-(function( $ ) {
+( function( $ ) {
 	"use strict";
 	var heading, i, id, node,
 		headings = $( "h1, h2, h3, h4, h5, h6" ).get(),
@@ -42,4 +42,4 @@
 		heading.setAttribute( "role", "heading" );
 		heading.setAttribute( "aria-level", heading.nodeName.substring( 1 ) );
 	}
-}( jQuery ));
+} )( jQuery );

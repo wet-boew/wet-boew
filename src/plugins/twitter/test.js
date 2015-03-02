@@ -6,7 +6,7 @@
  */
 /* global jQuery, describe, it, expect, before, after */
 /* jshint unused:vars */
-(function( $, wb ) {
+( function( $, wb ) {
 
 /*
  * Create a suite of related test cases using `describe`. Test suites can also be
@@ -23,10 +23,10 @@ describe( "Twitter test suite", function() {
     $document = wb.doc,
     $body = $document.find( "body" );
 
-  before(function( done ) {
+  before( function( done ) {
 
     // The Twitter widget sometimes takes longer than two second to load
-    this.timeout(5000);
+    this.timeout( 5000 );
 
     // Trigger plugin init
     $elm = $( "<div class='wb-twitter'><a class='twitter-timeline' href='https://twitter.com/search?q=%23WxT' data-widget-id='329066756620566528'>Tweets about '#WxT'</a></div>" )
@@ -35,12 +35,12 @@ describe( "Twitter test suite", function() {
 
     $document.on( "wb-ready.wb-twitter", ".wb-twitter", function() {
       done();
-    });
-  });
+    } );
+  } );
 
-  after(function() {
+  after( function() {
     $elm.remove();
-  });
+  } );
 
   /*
    * Test the initialization events of the plugin
@@ -48,9 +48,9 @@ describe( "Twitter test suite", function() {
   describe( "init event", function() {
     it( "should have added the wb-twitter-inited CSS class", function() {
       expect( $elm.hasClass( "wb-twitter-inited" ) ).to.equal( true );
-    });
-  });
+    } );
+  } );
 
-});
+} );
 
-}( jQuery, wb ));
+}( jQuery, wb ) );

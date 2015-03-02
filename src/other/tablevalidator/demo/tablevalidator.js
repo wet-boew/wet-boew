@@ -109,7 +109,7 @@
 // Prevent any form to submit
 $document.on( "submit", formSelector, function( ) {
 	return false;
-});
+} );
 
 // Take the source code of the HTML table to be encoded and displayed
 $document.on( showHTMLEvent, "#visualoutput > table:eq( 0 )", function( event ) {
@@ -736,7 +736,7 @@ $document.on( "click", "#validatetable", function( ) {
 		$( "[ headers ]", $tbl ).each( function( ) {
 			$( this ).removeAttr( "headers" );
 		} );
-		$( "[ aria-describedby ]", $tbl ).each(function( ) {
+		$( "[ aria-describedby ]", $tbl ).each( function( ) {
 			$( this ).removeAttr( "aria-describedby" );
 		} );
 

@@ -3,7 +3,7 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 /*jshint unused: false*/
-(function( $, wb ) {
+( function( $, wb ) {
 "use strict";
 
 var $document = wb.doc;
@@ -23,7 +23,7 @@ $document.on( "click vclick", "#lbx-open-btn", function( event ) {
 			[
 				"Image 1"
 			]
-		]);
+		] );
 	} else if ( value === "2" ) {
 		$document.trigger( "open.wb-lbx", [
 			[
@@ -32,7 +32,7 @@ $document.on( "click vclick", "#lbx-open-btn", function( event ) {
 					type: "ajax"
 				}
 			]
-		]);
+		] );
 	} else if ( value === "3" ) {
 		$document.trigger( "open.wb-lbx", [
 			[
@@ -41,7 +41,7 @@ $document.on( "click vclick", "#lbx-open-btn", function( event ) {
 					type: "inline"
 				}
 			]
-		]);
+		] );
 	} else if ( value === "4" ) {
 		$document.trigger( "open.wb-lbx", [
 			[
@@ -51,7 +51,7 @@ $document.on( "click vclick", "#lbx-open-btn", function( event ) {
 				}
 			],
 			true
-		]);
+		] );
 	} else if ( value === "5" ) {
 		$document.trigger( "open.wb-lbx", [
 			[
@@ -72,8 +72,8 @@ $document.on( "click vclick", "#lbx-open-btn", function( event ) {
 				"Image 2",
 				"Image 3"
 			]
-		]);
+		] );
 	}
-});
+} );
 
-})( jQuery, wb );
+} )( jQuery, wb );

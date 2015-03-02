@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, wb ) {
+( function( $, wb ) {
 "use strict";
 
 var $document = wb.doc,
@@ -37,16 +37,16 @@ $document.on( "wb-ready.wb-geomap", "#sample_map", function( event, map ) {
 			//console.log( "BBox: " + $( this ).val() );
 		} );
 
-		$aoiExtentLonLat.on("change", function() {
+		$aoiExtentLonLat.on( "change", function() {
 			//console.log( "BBox LonLat: " + $( this ).val() );
 		} );
 	}
-});
+} );
 
 $document.on( "wb-ready.wb-geomap", "#location_map", function( event, map ) {
 
 	// Zoom to location on location_map
 	map.zoomToExtent( map.getLayer( "#addNRCan" ).getDataExtent() );
-});
+} );
 
-})( jQuery, wb );
+} )( jQuery, wb );

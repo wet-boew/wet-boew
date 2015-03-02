@@ -7,12 +7,5 @@
 	// Additional preset tightening
 	"requireBlocksOnNewline": true,
 	"requireSpaceBeforeBlockStatements": true,
-	"disallowMixedSpacesAndTabs": true,
-	"excludeFiles": [
-		"node_modules/**",
-		"dist/**",
-		"lib/**",
-		"src/polyfills/slider/slider.js",
-		"src/polyfills/events/mobile.js"
-	]
+	"disallowMixedSpacesAndTabs": true
 }

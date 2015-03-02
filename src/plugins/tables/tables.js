@@ -5,7 +5,7 @@
  * @author @jeresiv
  */
  /*jshint scripturl:true*/
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -77,7 +77,7 @@ var componentName = "wb-tables",
 				dom: "<'top'ilf>rt<'bottom'p><'clear'>"
 			};
 
-			Modernizr.load({
+			Modernizr.load( {
 				load: [ "site!deps/jquery.dataTables" + wb.getMode() + ".js" ],
 				complete: function() {
 					var $elm = $( "#" + elmId ),
@@ -139,7 +139,7 @@ var componentName = "wb-tables",
 					// Create the DataTable object
 					$elm.dataTable( $.extend( true, {}, defaults, window[ componentName ], wb.getData( $elm, componentName ) ) );
 				}
-			});
+			} );
 		}
 	};
 
@@ -153,15 +153,15 @@ $document.on( "init.dt draw.dt", selector, function( event, settings ) {
 	// Update the aria-pressed properties on the pagination buttons
 	// Should be pushed upstream to DataTables
 	$elm.next( ".bottom" ).find( ".paginate_button" )
-		.attr({
+		.attr( {
 			"role": "button",
 			"href": "javascript:;"
-		})
+		} )
 		.not( ".previous, .next" )
 			.attr( "aria-pressed", "false" )
-			.html( function(index) {
+			.html( function( index ) {
 				return "<span class='wb-inv'>" + i18nText.paginate.page + " </span>" + ( index + 1 ) ;
-			})
+			} )
 			.filter( ".current" )
 				.attr( "aria-pressed", "true" );
 
@@ -173,9 +173,9 @@ $document.on( "init.dt draw.dt", selector, function( event, settings ) {
 
 	// Identify that the table has been updated
 	$elm.trigger( "wb-updated" + selector, [ settings ] );
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

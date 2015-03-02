@@ -210,4 +210,4 @@ wb.i18nDict = {
 	"tmpl-signin": "@tmpl-signin@"
 };
 
-})( wb );
+} )( wb );

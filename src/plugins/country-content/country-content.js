@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @nschonni
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -52,8 +52,8 @@ var componentName = "wb-ctrycnt",
 
 					// Identify that initialization has completed
 					wb.ready( $elm, componentName );
-				});
-			});
+				} );
+			} );
 		}
 	},
 	getCountry = function() {
@@ -64,7 +64,7 @@ var componentName = "wb-ctrycnt",
 		if ( countryCode === null ) {
 
 			// From https://github.com/aFarkas/webshim/blob/master/src/shims/geolocation.js#L89-L127
-			$.ajax({
+			$.ajax( {
 				url: "http://freegeoip.net/json/",
 				dataType: "jsonp",
 				cache: true,
@@ -83,7 +83,7 @@ var componentName = "wb-ctrycnt",
 				error: function() {
 					dfd.reject( "" );
 				}
-			});
+			} );
 		} else {
 			dfd.resolve( countryCode );
 		}
@@ -97,4 +97,4 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

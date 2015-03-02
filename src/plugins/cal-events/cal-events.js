@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -51,7 +51,7 @@ var componentName = "wb-calevt",
 
 					// Identify that initialization has completed
 					wb.ready( $elm, componentName );
-				});
+				} );
 		}
 	},
 
@@ -71,9 +71,9 @@ var componentName = "wb-calevt",
 			promises.push( $.get( urls[ i ], appendData, "html" ) );
 		}
 
-		$.when.apply( $, promises ).always(function() {
+		$.when.apply( $, promises ).always( function() {
 			dfd.resolve();
-		});
+		} );
 
 		return dfd.promise();
 	},
@@ -352,7 +352,7 @@ $document.on( "displayed.wb-cal", selector + "-cal", function( event, year, mont
 		$( selector ).filter( "[data-calevt-src='" + $target[ 0 ].id + "']" )
 				.trigger( "wb-updated" + selector );
 	}
-});
+} );
 
 $document.on( "focusin focusout", ".wb-calevt-cal .cal-days a", function( event ) {
 	var eventType = event.type,
@@ -373,7 +373,7 @@ $document.on( "focusin focusout", ".wb-calevt-cal .cal-days a", function( event 
 		break;
 
 	case "focusout":
-		setTimeout(function() {
+		setTimeout( function() {
 			if ( dayEvents.find( "a:focus" ).length === 0 ) {
 				dayEvents.removeClass( evDetails )
 					.addClass( "wb-inv" )
@@ -383,7 +383,7 @@ $document.on( "focusin focusout", ".wb-calevt-cal .cal-days a", function( event 
 		}, 5 );
 		break;
 	}
-});
+} );
 
 $document.on( "mouseover mouseout", ".wb-calevt-cal .cal-days td", function( event ) {
 	var target = event.currentTarget,
@@ -402,17 +402,17 @@ $document.on( "mouseover mouseout", ".wb-calevt-cal .cal-days td", function( eve
 			break;
 
 		case "mouseout":
-			dayEvents.delay( 100 ).queue(function() {
+			dayEvents.delay( 100 ).queue( function() {
 				$( this ).removeClass( evDetails )
 					.addClass( "wb-inv" )
 					.dequeue();
-			});
+			} );
 			break;
 		}
 	}
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @thomasgohard, @pjackson28
  */
-(function( $, window, document, wb ) {
+( function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -88,7 +88,7 @@ var componentName = "wb-overlay",
 		// Register the overlay if it wasn't previously registered
 		// (only required when opening through an event)
 		if ( !sourceLinks[ overlayId ] ) {
-			setTimeout(function() {
+			setTimeout( function() {
 				sourceLinks[ overlayId ] = null;
 			}, 1 );
 		}
@@ -174,7 +174,7 @@ $document.on( "timerpoke.wb " + initEvent + " keydown open" + selector +
 			break;
 		}
 	}
-});
+} );
 
 // Handler for clicking on the close button of the overlay
 $document.on( "click vclick", "." + closeClass, function( event ) {
@@ -188,7 +188,7 @@ $document.on( "click vclick", "." + closeClass, function( event ) {
 			true
 		);
 	}
-});
+} );
 
 // Handler for clicking on a source link for the overlay
 $document.on( "click vclick", "." + linkClass, function( event ) {
@@ -201,7 +201,7 @@ $document.on( "click vclick", "." + linkClass, function( event ) {
 		event.preventDefault();
 
 		// Introduce a delay to prevent outside activity detection
-		setTimeout(function() {
+		setTimeout( function() {
 
 			// Stores the source link for the overlay
 			sourceLinks[ overlayId ] = sourceLink;
@@ -210,7 +210,7 @@ $document.on( "click vclick", "." + linkClass, function( event ) {
 			openOverlay( overlayId );
 		}, 1 );
 	}
-});
+} );
 
 // Handler for clicking on a same page link within the overlay to outside the overlay
 $document.on( "click vclick", selector + " a[href^='#']", function( event ) {
@@ -239,7 +239,7 @@ $document.on( "click vclick", selector + " a[href^='#']", function( event ) {
 			$( linkTarget ).trigger( setFocusEvent );
 		}
 	}
-});
+} );
 
 // Outside activity detection
 $document.on( "click vclick touchstart focusin", "body", function( event ) {
@@ -263,9 +263,9 @@ $document.on( "click vclick touchstart focusin", "body", function( event ) {
 			}
 		}
 	}
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, document, wb );
+} )( jQuery, window, document, wb );

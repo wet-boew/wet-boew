@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
-(function( $, wb ) {
+( function( $, wb ) {
 "use strict";
 
 /*
@@ -32,7 +32,7 @@ $document.on( "ajax-fetch.wb", function( event ) {
 		callerId = caller.id;
 
 		$.ajax( fetchOpts )
-			.done(function( response, status, xhr ) {
+			.done( function( response, status, xhr ) {
 				var responseType = typeof response;
 
 				fetchData = {
@@ -44,13 +44,13 @@ $document.on( "ajax-fetch.wb", function( event ) {
 				fetchData.pointer = $( "<div id='" + wb.getId() + "' data-type='" + responseType + "' />" )
 										.append( responseType === "string" ? response : "" );
 
-				$( "#" + callerId ).trigger({
+				$( "#" + callerId ).trigger( {
 					type: "ajax-fetched.wb",
 					fetch: fetchData
 				}, this );
-			})
-			.fail(function( xhr, status, error ) {
-				$( "#" + callerId ).trigger({
+			} )
+			.fail( function( xhr, status, error ) {
+				$( "#" + callerId ).trigger( {
 					type: "ajax-failed.wb",
 					fetch: {
 						xhr: xhr,
@@ -60,6 +60,6 @@ $document.on( "ajax-fetch.wb", function( event ) {
 				}, this );
 			}, this );
 	}
-});
+} );
 
-})( jQuery, wb );
+} )( jQuery, wb );

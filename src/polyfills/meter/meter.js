@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @nschonni
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -111,12 +111,12 @@ var componentName = "wb-meter",
 		}
 
 		// Set defaults as per HTML5 spec
-		$elm.attr({
+		$elm.attr( {
 			min: min,
 			max: max,
 			value: value,
 			title: $elm.attr( "title" ) || value
-		}).trigger( "wb-updated." + componentName );
+		} ).trigger( "wb-updated." + componentName );
 	};
 
 // Bind the events of the polyfill
@@ -132,9 +132,9 @@ $document.on( "timerpoke.wb " + initEvent + " "  + updateEvent, selector, functi
 	} else {
 		init( event );
 	}
-});
+} );
 
 // Add the timer poke to initialize the polyfill
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

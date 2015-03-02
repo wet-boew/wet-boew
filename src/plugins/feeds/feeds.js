@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, wb, undef ) {
+( function( $, window, wb, undef ) {
 "use strict";
 
 /*
@@ -65,8 +65,8 @@ var componentName = "wb-feeds",
 				title = data.title,
 				media = data.media.m,
 				thumbnail = media.replace( "_m.", "_s." ),
-				image = media.replace("_m", ""),
-				description = data.description.replace( /^\s*<p>(.*?)<\/p>\s*<p>(.*?)<\/p>/i, "");
+				image = media.replace( "_m", "" ),
+				description = data.description.replace( /^\s*<p>(.*?)<\/p>\s*<p>(.*?)<\/p>/i, "" );
 
 			// due to CORS we cannot default to simple ajax pulls of the image. We have to inline the content box
 			return "<li><a class='wb-lbx' href='#" + seed + "'><img src='" + thumbnail + "' alt='" + title + "' title='" + title + "' class='img-responsive'/></a>" +
@@ -108,7 +108,7 @@ var componentName = "wb-feeds",
 		 * @return {string}    HTML string of formatted using a simple list / anchor view
 		 */
 		pinterest: function( data ) {
-			var content = fromCharCode( data.content ).replace(/<a href="\/pin[^"]*"><img ([^>]*)><\/a>([^<]*)(<a .*)?/, "<a href='" + data.link + "'><img alt='' class='center-block' $1><br/>$2</a>$3");
+			var content = fromCharCode( data.content ).replace( /<a href="\/pin[^"]*"><img ([^>]*)><\/a>([^<]*)(<a .*)?/, "<a href='" + data.link + "'><img alt='' class='center-block' $1><br/>$2</a>$3" );
 			return "<li class='media'>" + content +
 			( data.publishedDate !== "" ? " <small class='small feeds-date'><time>" +
 			wb.date.toDateISO( data.publishedDate, true ) + "</time></small>" : "" ) + "</li>";
@@ -143,7 +143,7 @@ var componentName = "wb-feeds",
 	 * @param  {string} s string to sanitize with escaped unicode characters
 	 * @return {string}	sanitized string
 	 */
-	fromCharCode = function(s) {
+	fromCharCode = function( s ) {
 		return s.replace( patt, decode );
 	},
 
@@ -250,10 +250,10 @@ var componentName = "wb-feeds",
 					_content: $content
 				};
 
-				fElem.trigger({
+				fElem.trigger( {
 					type: "ajax-fetch.wb",
 					fetch: fetch
-				});
+				} );
 			}
 		}
 	},
@@ -291,10 +291,10 @@ var componentName = "wb-feeds",
 		}
 
 		toProcess -= 1 ;
-		$content.data({
+		$content.data( {
 			"toProcess": toProcess,
 			"entries": entries
-		});
+		} );
 
 		return toProcess;
 	},
@@ -319,7 +319,7 @@ var componentName = "wb-feeds",
 
 		sorted = entries.sort( function( a, b ) {
 			return compare( b.publishedDate, a.publishedDate );
-		});
+		} );
 
 		for ( i = 0; i !== cap; i += 1 ) {
 			sortedEntry = sorted[ i ];
@@ -342,7 +342,7 @@ var componentName = "wb-feeds",
 								if ( !$feedCont.hasClass( "feed-active" ) ) {
 									activateFeed( $feedCont );
 								}
-							})
+							} )
 							.addClass( hasVisibilityHandler );
 					}
 				}
@@ -354,7 +354,7 @@ var componentName = "wb-feeds",
 						.on( "click.wb-feeds", function( event ) {
 							var $summary = $( event.currentTarget ).off( "click.wb-feeds" );
 							activateFeed( $summary.parent().find( feedContSelector ) );
-						});
+						} );
 			}
 		}
 
@@ -407,7 +407,7 @@ $document.on( "ajax-fetched.wb", selector + " " + feedLinkSelector, function( ev
 			wb.ready( $( eventTarget ).closest( selector ), componentName );
 		}
 	}
-});
+} );
 
 // Bind the init event to the plugin
 $document.on( "timerpoke.wb " + initEvent, selector, init );
@@ -415,4 +415,4 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

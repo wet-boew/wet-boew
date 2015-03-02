@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, wb ) {
+( function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -201,9 +201,9 @@ var componentName = "wb-share",
 				}
 
 				// i18n-friendly sort of the site keys
-				keys.sort(function( x, y ) {
+				keys.sort( function( x, y ) {
 					return wb.normalizeDiacritics( x ).localeCompare( wb.normalizeDiacritics( y ) );
-				});
+				} );
 				len = keys.length;
 
 				// Generate the panel
@@ -248,4 +248,4 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, document, wb );
+} )( jQuery, window, document, wb );
