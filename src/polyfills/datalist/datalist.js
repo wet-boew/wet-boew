@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, wb ) {
+( function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -82,7 +82,7 @@ var componentName = "wb-datalist",
 			$options = $autolist.next().children().clone(),
 			comparator;
 
-		if ( value && value.length !== 0) {
+		if ( value && value.length !== 0 ) {
 			comparator = value.toLowerCase();
 			$options = $options.filter( function() {
 				var $this = $( this ),
@@ -91,7 +91,7 @@ var componentName = "wb-datalist",
 					value = $this.find( "span.al-lbl" ).html();
 				}
 				return ( comparator.length === 0 || value.toLowerCase().indexOf( comparator ) !== -1 );
-			});
+			} );
 		}
 
 		// Add the visible options to the autolist
@@ -131,10 +131,10 @@ var componentName = "wb-datalist",
 		var $elm = $( input ),
 			$autolist = $elm.next();
 
-		$autolist.css({
+		$autolist.css( {
 			width: $elm.outerWidth(),
 			left: $elm.position().left
-		});
+		} );
 	},
 
 	/**
@@ -170,7 +170,7 @@ var componentName = "wb-datalist",
 				}
 
 			// Up / down arrow
-			} else if ( ( which === 38 || which === 40) && input.getAttribute( "aria-activedescendent" ) === "" ) {
+			} else if ( ( which === 38 || which === 40 ) && input.getAttribute( "aria-activedescendent" ) === "" ) {
 				if ( autolistHidden ) {
 					showOptions( input );
 				}
@@ -235,7 +235,7 @@ var componentName = "wb-datalist",
 				return false;
 
 			// Enter key
-			} else if ( which === 13) {
+			} else if ( which === 13 ) {
 				span = link.getElementsByTagName( "span" );
 
 				// .al-val
@@ -336,7 +336,7 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " keydown click 
 		break;
 
 	case "keydown":
-		if ( !(event.ctrlKey || event.metaKey ) ) {
+		if ( !( event.ctrlKey || event.metaKey ) ) {
 			return keyboardHandlerInput( which, event );
 		}
 		break;
@@ -361,7 +361,7 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " keydown click 
 	 * so returning true allows for events to always continue
 	 */
 	return true;
-});
+} );
 
 $document.on( "keydown click vclick touchstart", ".wb-al a, .wb-al span", function( event ) {
 	var link = event.target,
@@ -370,7 +370,7 @@ $document.on( "keydown click vclick touchstart", ".wb-al a, .wb-al span", functi
 
 	switch ( eventType ) {
 	case "keydown":
-		if ( !(event.ctrlKey || event.metaKey ) ) {
+		if ( !( event.ctrlKey || event.metaKey ) ) {
 			return keyboardHandlerAutolist( which, link );
 		}
 		break;
@@ -384,7 +384,7 @@ $document.on( "keydown click vclick touchstart", ".wb-al a, .wb-al span", functi
 		}
 		break;
 	}
-});
+} );
 
 // Handle focus and resize events
 $document.on( "focusin txt-rsz.wb win-rsz-width.wb win-rsz-height.wb", function( event ) {
@@ -412,9 +412,9 @@ $document.on( "focusin txt-rsz.wb win-rsz-width.wb win-rsz-height.wb", function(
 			}
 		}
 	}
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, document, wb );
+} )( jQuery, window, document, wb );

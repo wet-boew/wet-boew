@@ -17,7 +17,7 @@
  *
  *     <link href="favion.ico" rel='icon' data-rel="apple-touch-icon-precomposed" data-filename="my-mobile-favicon.ico">
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -151,9 +151,9 @@ $document.on( mobileEvent + " " + iconEvent, selector, function( event, data ) {
 	 * so returning true allows for events to always continue
 	 */
 	return true;
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

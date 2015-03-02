@@ -5,7 +5,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -68,15 +68,15 @@ var componentName = "wb-data-ajax",
 				if ( typeof settings.corsFallback === "function" ) {
 					fetchObj.dataType = "jsonp";
 					fetchObj.jsonp = "callback";
-					fetchObj = settings.corsFallback(fetchObj);
+					fetchObj = settings.corsFallback( fetchObj );
 				}
 			}
 		}
 
-		$elm.trigger({
+		$elm.trigger( {
 			type: "ajax-fetch.wb",
 			fetch: fetchObj
-		});
+		} );
 	};
 
 $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " ajax-fetched.wb", selector, function( event ) {
@@ -122,7 +122,7 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " ajax-fetched.w
 				jQuery.ajaxSettings.cache = true;
 
 				// "replace" is the only event that doesn't map to a jQuery function
-				if ( ajaxType === "replace") {
+				if ( ajaxType === "replace" ) {
 					$elm.html( content );
 				} else {
 					$elm[ ajaxType ]( content );
@@ -147,4 +147,4 @@ for ( s = 0; s !== selectorsLength; s += 1 ) {
 	wb.add( selectors[ s ] );
 }
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

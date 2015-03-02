@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, wb ) {
+( function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -64,7 +64,7 @@ var componentName = "wb-frmvld",
 				};
 			}
 
-			Modernizr.load({
+			Modernizr.load( {
 
 				// For loading multiple dependencies
 				both: [
@@ -113,7 +113,7 @@ var componentName = "wb-frmvld",
 					if ( wb.ieVersion > 0 && wb.ieVersion < 9 ) {
 						len = $required.length;
 						$required.removeAttr( "required" );
-						for ( i = 0; i !== len; i += 1) {
+						for ( i = 0; i !== len; i += 1 ) {
 							$required[ i ].setAttribute( "data-rule-required", "true" );
 						}
 						$inputs.filter( "[type=date]" ).each( function() {
@@ -121,12 +121,12 @@ var componentName = "wb-frmvld",
 								$parent = $this.wrap( "<div/>" ).parent(),
 								newElm = $( $parent.html().replace( "type=date", "type=text" ) );
 							$parent.replaceWith( newElm );
-						});
+						} );
 						$formElms = $form.find( "input, select, textarea" );
 					}
 
 					// The jQuery validation plug-in in action
-					validator = $form.validate({
+					validator = $form.validate( {
 						meta: "validate",
 						focusInvalid: false,
 						ignore: settings.ignore,
@@ -147,7 +147,7 @@ var componentName = "wb-frmvld",
 									$fieldset = $element.closest( "fieldset" );
 									if ( $fieldset.length !== 0 ) {
 										$legend = $fieldset.find( "legend" ).first();
-										if ( $legend.length !== 0 && $fieldset.find( "input[name='" + $element.attr( "name" ) + "']" ) !== 1) {
+										if ( $legend.length !== 0 && $fieldset.find( "input[name='" + $element.attr( "name" ) + "']" ) !== 1 ) {
 											$error.appendTo( $legend );
 											return;
 										}
@@ -239,7 +239,7 @@ var componentName = "wb-frmvld",
 								}
 
 								// Delay updating the summary container in case a summary link was clicked
-								setTimeout(function() {
+								setTimeout( function() {
 
 									// Output our error summary and place it in the error container
 									// Create our container if one doesn't already exist
@@ -290,7 +290,7 @@ var componentName = "wb-frmvld",
 								ariaLive.innerHTML = "";
 							}
 						}
-					});
+					} );
 
 					// Tell the i18n file to execute to run any $.validator extends
 					$form.trigger( "formLanguages.wb" );
@@ -298,7 +298,7 @@ var componentName = "wb-frmvld",
 					// Identify that initialization has completed
 					wb.ready( $( eventTarget ), componentName );
 				}
-			});
+			} );
 		}
 	};
 
@@ -308,4 +308,4 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, document, wb );
+} )( jQuery, window, document, wb );

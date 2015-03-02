@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, wb ) {
+( function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -61,10 +61,10 @@ var namespace = "wb-cal",
 				.attr( "id", calendarId );
 
 			if ( ariaLabelledBy ) {
-				$calendar.attr({
+				$calendar.attr( {
 					"aria-controls": ariaControls,
 					"aria-labelledby": ariaLabelledBy
-				});
+				} );
 			}
 
 			// Converts min and max date from string to date objects
@@ -101,8 +101,8 @@ var namespace = "wb-cal",
 			// Reset calendar if the calendar previously existed
 			$objCalendar = $( objCalendarId );
 			if ( $objCalendar.length !== 0 ) {
-				$objCalendar.find( "#cal-" + calendarId + "-wd, .cal-mnth, #cal-" + calendarId + "-days").remove();
-				$objCalendar = $calendar.children("#cal-" + calendarId + "-cnt");
+				$objCalendar.find( "#cal-" + calendarId + "-wd, .cal-mnth, #cal-" + calendarId + "-days" ).remove();
+				$objCalendar = $calendar.children( "#cal-" + calendarId + "-cnt" );
 			} else {
 				$objCalendar = $( "<table id='cal-" + calendarId + "-cnt' class='cal-cnt'></table>" );
 				$calendar.append( $objCalendar );
@@ -233,7 +233,7 @@ var namespace = "wb-cal",
 					true,
 					eventData.mindate,
 					eventData.maxdate
-				]);
+				] );
 			}
 
 			$container.find( classes.indexOf( "wb-inv" ) !== -1 ?
@@ -308,7 +308,7 @@ var namespace = "wb-cal",
 				event.preventDefault();
 				onGoTo( calendarId, minDate, maxDate );
 				return false;
-			})
+			} )
 
 			// Update the list of available months when changing the year
 			// and populate the initial month list.
@@ -456,7 +456,7 @@ var namespace = "wb-cal",
 				true,
 				minDate,
 				maxDate
-			]);
+			] );
 			$container.trigger( hideGoToFrmEvent );
 
 			// Go to the first day to avoid having to tab over the navigation again.
@@ -641,7 +641,7 @@ $document.on( "keydown", ".cal-days a", function( event ) {
 
 		return false;
 	}
-});
+} );
 
 $document.on( hideGoToFrmEvent, ".cal-cnt", hideGoToFrm );
 
@@ -656,7 +656,7 @@ $document.on( "click", ".cal-goto-lnk", function( event ) {
 	if ( !which || which === 1 ) {
 		showGoToForm( $( event.currentTarget ).closest( ".cal-cnt" ).attr( "id" ) );
 	}
-});
+} );
 
 $document.on( "click", ".cal-goto-cancel", function( event ) {
 	var which = event.which;
@@ -665,6 +665,6 @@ $document.on( "click", ".cal-goto-cancel", function( event ) {
 	if ( !which || which === 1 ) {
 		$( event.currentTarget ).closest( ".cal-cnt" ).trigger( hideGoToFrmEvent );
 	}
-});
+} );
 
-})( jQuery, window, document, wb );
+} )( jQuery, window, document, wb );

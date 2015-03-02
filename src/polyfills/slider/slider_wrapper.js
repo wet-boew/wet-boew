@@ -3,7 +3,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @LaurentGoderre
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -36,14 +36,14 @@ var componentName = "wb-slider",
 			window.fdSlider.createSlider( {
 				inp: eventTarget,
 				html5Shim: true
-			});
+			} );
 
 			// Allows listening for input and change at the document level for IE < 9
 			if ( wb.ielt9 ) {
 				$eventTarget = $( eventTarget );
 				$eventTarget.on( "input change", function( event ) {
 					$eventTarget.closest( "[class^='wb-'], body" ).trigger( event );
-				});
+				} );
 			}
 
 			// Identify that initialization has completed
@@ -68,6 +68,6 @@ wb.doc.on( initEvent + " " + updateEvent, selector, function( event ) {
 			}
 		}
 	}
-});
+} );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $ ) {
+( function( $ ) {
 "use strict";
 
 var $svgObjects = $( "object[data$='.svg']" ),
@@ -26,4 +26,4 @@ for ( i = 0; i !== len; i += 1 ) {
 	$svg.attr( "src", $svg.attr( "src" ).replace( ".svg", ".png" ) );
 }
 
-})( jQuery );
+} )( jQuery );

@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -132,7 +132,7 @@ var componentName = "wb-tabs",
 					space: i18n( "space" ),
 					hyphen: i18n( "hyphen" ),
 					pause: i18n( "pause" ),
-					tabCount: i18n( "lb-curr")
+					tabCount: i18n( "lb-curr" )
 				};
 			}
 
@@ -182,10 +182,10 @@ var componentName = "wb-tabs",
 							$panel.toggleClass( "open", isOpen );
 						}
 					} else {
-						$panel.attr({
+						$panel.attr( {
 							role: "tabpanel",
 							open: open
-						});
+						} );
 						$panel.addClass( ( Modernizr.details ? "" :  open + " " ) +
 							"fade " + ( isOpen ? "in" : "out wb-inv" ) );
 					}
@@ -237,7 +237,7 @@ var componentName = "wb-tabs",
 			if ( hashFocus ) {
 
 				// Need a slight delay to allow for the reflow
-				setTimeout(function() {
+				setTimeout( function() {
 					positionY = $tablist.offset().top;
 					if ( positionY < document.body.scrollTop ) {
 						document.body.scrollTop = positionY;
@@ -245,14 +245,14 @@ var componentName = "wb-tabs",
 				}, 1 );
 			}
 
-			$elm.data({
+			$elm.data( {
 				"wb-tabs": {
 					panels: $panels,
 					tablist: $tablist,
 					settings: settings,
 					ctime: 0
 				}
-			});
+			} );
 
 			initialized = true;
 			onResize( $elm );
@@ -421,10 +421,10 @@ var componentName = "wb-tabs",
 		$currPanel
 			.removeClass( "in" )
 			.addClass( "out" )
-			.attr({
+			.attr( {
 				"aria-hidden": "true",
 				"aria-expanded": "false"
-			});
+			} );
 
 		// Pause all multimedia players in the current panel
 		for ( i = 0; i !== mPlayersLen; i += 1 ) {
@@ -437,19 +437,19 @@ var componentName = "wb-tabs",
 		$next
 			.removeClass( "out" )
 			.addClass( "in" )
-			.attr({
+			.attr( {
 				"aria-hidden": "false",
 				"aria-expanded": "true"
-			});
+			} );
 
 		$controls
 			.find( ".active" )
 				.removeClass( "active" )
 				.children( "a" )
-					.attr({
+					.attr( {
 						"aria-selected": "false",
 						tabindex: "-1"
-					});
+					} );
 
 		// Update the Item x of n
 		$controls
@@ -457,10 +457,10 @@ var componentName = "wb-tabs",
 				.html( newIndex );
 
 		$control
-			.attr({
+			.attr( {
 				"aria-selected": "true",
 				tabindex: "0"
-			})
+			} )
 			.parent()
 				.addClass( "active" );
 
@@ -528,10 +528,10 @@ var componentName = "wb-tabs",
 			$panel.children( "summary" ).trigger( $panel.attr( "open" ) ? setFocusEvent : "click" );
 		} else {
 			$panelSelectorLink = $( panelSelector + "-lnk" );
-			$panelSelectorLink.trigger({
+			$panelSelectorLink.trigger( {
 				type: "click",
 				which: autoCycle ? undefined : 1
-			});
+			} );
 
 			// Don't change the focus if change is cause by an auto cycle
 			if ( !autoCycle ) {
@@ -546,10 +546,10 @@ var componentName = "wb-tabs",
 	 * @param {integer} shifto The item to shift to
 	 */
 	onCycle = function( $elm, shifto ) {
-		$elm.trigger({
+		$elm.trigger( {
 			type: shiftEvent,
 			shiftto: shifto
-		});
+		} );
 	},
 
 	/**
@@ -604,25 +604,25 @@ var componentName = "wb-tabs",
 							$openDetails = ( $openDetails.length === 0 ? $details : $openDetails ).eq( 0 );
 
 							$details
-								.attr({
+								.attr( {
 									role: "tabpanel",
 									open: "open"
-								})
+								} )
 								.not( $openDetails )
 									.addClass( "fade out wb-inv" )
-									.attr({
+									.attr( {
 										"aria-hidden": "true",
 										"aria-expanded": "false"
-									});
+									} );
 
 							$details.children( ".tgl-panel" ).removeAttr( "role" );
 
 							$openDetails
 								.addClass( "fade in" )
-								.attr({
+								.attr( {
 										"aria-hidden": "false",
 										"aria-expanded": "true"
-									});
+									} );
 						}
 
 						// Enable equal heights for large view or disable for small view
@@ -650,7 +650,7 @@ var componentName = "wb-tabs",
 
 				// Need timeout to account for Toggle changes
 				if ( isInit && !isSmallView && $elms.hasClass( tabsAccordionClass ) ) {
-					setTimeout(function() {
+					setTimeout( function() {
 						$elms
 							.removeAttr( "role" )
 							.find( nestedTglPanelSelector ).removeAttr( "role" );
@@ -664,7 +664,7 @@ var componentName = "wb-tabs",
 		if ( viewChange || isInit ) {
 
 			// Remove wb-inv from regular tabs that were used to prevent FOUC (after 300ms delay)
-			setTimeout(function() {
+			setTimeout( function() {
 				$( selector + " .tabpanels > details.wb-inv" ).removeClass( "wb-inv" );
 			}, 300 );
 		}
@@ -716,7 +716,7 @@ var componentName = "wb-tabs",
 	 * so returning true allows for events to always continue
 	 */
 	return true;
- });
+ } );
 
  /*
   * Tabs, next, previous and play/pause
@@ -809,7 +809,7 @@ var componentName = "wb-tabs",
 	 * so returning true allows for events to always continue
 	 */
 	return true;
-});
+} );
 
 $document.on( activateEvent, selector + " [role=tabpanel]", function( event ) {
 	var currentTarget = event.currentTarget,
@@ -845,7 +845,7 @@ $document.on( activateEvent, selector + " [role=tabpanel]", function( event ) {
 			$container.find( ".plypause" ).trigger( "click" );
 		}
 	}
-});
+} );
 
 // Handling for links to tabs from within a panel
 $document.on( "click", selector + " [role=tabpanel] a", function( event ) {
@@ -868,7 +868,7 @@ $document.on( "click", selector + " [role=tabpanel] a", function( event ) {
 			}
 		}
 	}
-});
+} );
 
 // These events only fire at the document level
 $document.on( wb.resizeEvents, onResize );
@@ -907,7 +907,7 @@ $document.on( activateEvent, selector + " > .tabpanels > details > summary", fun
 			$container.trigger( updatedEvent, [ $details ] );
 		}
 	}
-});
+} );
 
 // Change the panel based upon an external link click
 $document.on( "click", ".wb-tabs-ext", function( event ) {
@@ -918,9 +918,9 @@ $document.on( "click", ".wb-tabs-ext", function( event ) {
 		event.preventDefault();
 		onSelect( event.currentTarget.getAttribute( "href" ).substring( 1 ) );
 	}
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

@@ -5,7 +5,7 @@
  * @author WET Community
  */
 /* globals YT */
-(function( $, window, wb, undef ) {
+( function( $, window, wb, undef ) {
 "use strict";
 
 /* Local scoped variables*/
@@ -64,12 +64,12 @@ var componentName = "wb-mltmd",
 
 			if ( template === undef ) {
 				template = "";
-				$( eventTarget ).trigger({
+				$( eventTarget ).trigger( {
 					type: "ajax-fetch.wb",
 					fetch: {
 						url: wb.getPath( "/assets" ) + "/mediacontrols.html"
 					}
-				});
+				} );
 			} else if ( template !== "" ) {
 				$( eventTarget ).trigger( templateLoadedEvent );
 			}
@@ -147,7 +147,7 @@ var componentName = "wb-mltmd",
 	 * @credit: https://github.com/premasagar/tim/blob/master/tinytim.js
 	 * @todo: caching
 	 */
-	tmpl = (function() {
+	tmpl = ( function() {
 		var start = "{{",
 			end = "}}",
 			// e.g. config.person.name
@@ -171,9 +171,9 @@ var componentName = "wb-mltmd",
 						return lookup;
 					}
 				}
-			});
+			} );
 		};
-	}()),
+	} () ),
 
 	/**
 	 * @method parseHtml
@@ -263,7 +263,7 @@ var componentName = "wb-mltmd",
 	 * @fires ccloadfail.wb-mltmd
 	 */
 	loadCaptionsExternal = function( elm, url ) {
-		$.ajax({
+		$.ajax( {
 			url: url,
 			dataType: "html",
 			//Filters out images and objects from the content to avoid loading them
@@ -271,20 +271,20 @@ var componentName = "wb-mltmd",
 				return data.replace( /<img|object [^>]*>/g, "" );
 			},
 			success: function( data ) {
-				elm.trigger({
+				elm.trigger( {
 					type: captionsLoadedEvent,
 					captions: data.indexOf( "<html" ) !== -1 ?
 						parseHtml( $( data ) ) :
 						parseXml( $( data ) )
-				});
+				} );
 			},
 			error: function( response, textStatus, errorThrown ) {
-				elm.trigger({
+				elm.trigger( {
 					type: captionsLoadFailedEvent,
 					error: errorThrown
-				});
+				} );
 			}
-		});
+		} );
 	},
 
 	/**
@@ -295,10 +295,10 @@ var componentName = "wb-mltmd",
 	 * @fires ccloaded.wb-mltmd
 	 */
 	loadCaptionsInternal = function( elm, obj ) {
-		elm.trigger({
+		elm.trigger( {
 			type: captionsLoadedEvent,
 			captions: parseHtml( obj )
-		});
+		} );
 	},
 
 	/**
@@ -437,13 +437,13 @@ var componentName = "wb-mltmd",
 			return $( this ).hasClass( captionClass );
 		case "setCaptionsVisible":
 			if ( args ) {
-				$( this).addClass( captionClass );
-				this.object.loadModule("cc");
-				this.object.loadModule("captions");
+				$( this ).addClass( captionClass );
+				this.object.loadModule( "cc" );
+				this.object.loadModule( "captions" );
 			} else {
 				$( this ).removeClass( captionClass );
-				this.object.unloadModule("cc");
-				this.object.unloadModule("captions");
+				this.object.unloadModule( "cc" );
+				this.object.unloadModule( "captions" );
 			}
 			$media.trigger( "ccvischange" );
 		}
@@ -515,10 +515,10 @@ $document.on( "ajax-fetched.wb " + templateLoadedEvent, selector, function( even
 		$this = $( selector );
 	}
 
-	$this.trigger({
+	$this.trigger( {
 		type: initializedEvent
-	});
-});
+	} );
+} );
 
 $document.on( initializedEvent, selector, function( event ) {
 	if ( event.namespace === componentName ) {
@@ -532,7 +532,7 @@ $document.on( initializedEvent, selector, function( event ) {
 			width = type === "video" ? $media.attr( "width" ) || $media.width() : 0,
 			height = type === "video" ? $media.attr( "height" ) || $media.height() : 0,
 			settings = wb.getData( $this, componentName ),
-			data = $.extend({
+			data = $.extend( {
 				media: $media,
 				captions: captions,
 				id: id,
@@ -541,7 +541,7 @@ $document.on( initializedEvent, selector, function( event ) {
 				title: title,
 				height: height,
 				width: width
-			}, i18nText),
+			}, i18nText ),
 			media = $media.get( 0 ),
 			youTube = window.youTube,
 			url;
@@ -558,7 +558,7 @@ $document.on( initializedEvent, selector, function( event ) {
 
 		if ( $media.find( "[type='video/youtube']" ).length > 0 ) {
 			// lets tweak some variables and start the load sequence
-			url = wb.getUrlParts( $this.find( "[type='video/youtube']").attr( "src") );
+			url = wb.getUrlParts( $this.find( "[type='video/youtube']" ).attr( "src" ) );
 
 			// lets set the flag for the call back
 			data.youTubeId = url.params.v;
@@ -589,7 +589,7 @@ $document.on( initializedEvent, selector, function( event ) {
 		// Identify that initialization has completed
 		wb.ready( $this, componentName );
 	}
-});
+} );
 
 $document.on( fallbackEvent, selector, function( event, data ) {
 	if ( event.namespace === componentName ) {
@@ -626,7 +626,7 @@ $document.on( fallbackEvent, selector, function( event, data ) {
 
 		$this.trigger( renderUIEvent, [ type, data ] );
 	}
-});
+} );
 
 /*
  *  Youtube Video mode Event
@@ -663,7 +663,7 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 					t.player( "setCaptionsVisible", t.player( "getCaptionsVisible" ) );
 				}
 			}
-		});
+		} );
 
 		$this.addClass( "youtube" );
 
@@ -673,7 +673,7 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 
 		$this.trigger( renderUIEvent, "youtube", data );
 	}
-});
+} );
 
 $document.on( renderUIEvent, selector, function( event, type, data ) {
 	if ( event.namespace === componentName ) {
@@ -685,14 +685,14 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 
 		$media
 			.after( tmpl( template, data ) )
-			.wrap("<div class=\"display\"></div>");
+			.wrap( "<div class=\"display\"></div>" );
 
 		$eventReceiver = $media.is( "object" ) ? $media.children( ":first-child" ) : $media;
 
 		// Create an adapter for the event management
 		$eventReceiver.on( multimediaEvents, function( event ) {
 			$this.trigger( event );
-		});
+		} );
 
 		this.object = data.ytPlayer || $media.get( 0 );
 		this.player = ( data.ytPlayer ) ? youTubeApi : playerApi;
@@ -729,7 +729,7 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 			loadCaptionsInternal( $media, $( "#" + wb.jqEscape( captionsUrl.hash.substring( 1 ) ) ) );
 		}
 	}
-});
+} );
 
 /*
  * UI Bindings
@@ -756,22 +756,22 @@ $document.on( "click", selector, function( event ) {
 	} else if ( $target.is( "progress" ) || $target.hasClass( "progress" ) || $target.hasClass( "progress-bar" ) ) {
 		this.player( "setCurrentTime", this.player( "getDuration" ) * ( ( event.pageX - $target.offset().left ) / $target.width() ) );
 	} else if ( className.match( /\brewind\b|-backward/ ) ) {
-		this.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05);
+		this.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05 );
 	} else if ( className.match( /\bfastforward\b|-forward/ ) ) {
-		this.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05);
+		this.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05 );
 	} else if ( className.match( /cuepoint/ ) ) {
-		$(this).trigger( { type: "cuepoint", cuepoint: $target.data( "cuepoint" ) } );
+		$( this ).trigger( { type: "cuepoint", cuepoint: $target.data( "cuepoint" ) } );
 	}
-});
+} );
 
-$document.on( "input change", selector, function(event) {
+$document.on( "input change", selector, function( event ) {
 	var target = event.target;
 
 	if ( $( target ).hasClass( "volume" ) ) {
 		event.currentTarget.player( "setMuted", false );
 		event.currentTarget.player( "setVolume", target.value / 100 );
 	}
-});
+} );
 
 $document.on( "keydown", selector, function( event ) {
 	var $this = $( event.currentTarget ),
@@ -788,11 +788,11 @@ $document.on( "keydown", selector, function( event ) {
 			break;
 
 		case 37:
-			playerTarget.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05);
+			playerTarget.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05 );
 			break;
 
 		case 39:
-			playerTarget.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05);
+			playerTarget.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05 );
 			break;
 
 		case 38:
@@ -810,7 +810,7 @@ $document.on( "keydown", selector, function( event ) {
 		}
 		return false;
 	}
-});
+} );
 
 $document.on( "keyup", selector, function( event ) {
 	if ( event.which === 32 && !( event.ctrlKey || event.altKey || event.metaKey ) ) {
@@ -818,11 +818,11 @@ $document.on( "keyup", selector, function( event ) {
 		// Allows the spacebar to be used for play/pause without double triggering
 		return false;
 	}
-});
+} );
 
 $document.on( "wb-activate", selector, function() {
     this.player( "play" );
-});
+} );
 
 $document.on( multimediaEvents, selector, function( event, simulated ) {
 	var eventTarget = event.currentTarget,
@@ -952,7 +952,7 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 		eventTarget.player( "setCurrentTime", parseTime( event.cuepoint ) );
 		break;
 	}
-});
+} );
 
 // Fallback for browsers that don't implement the waiting events
 $document.on( "progress", selector, function( event ) {
@@ -972,7 +972,7 @@ $document.on( "progress", selector, function( event ) {
 		$this.trigger( "canplay", true );
 	}
 	eventTarget.player( "setPreviousTime", eventTarget.player( "getCurrentTime" ) );
-});
+} );
 
 $document.on( resizeEvent, selector, function( event ) {
 	if ( event.namespace === componentName ) {
@@ -993,7 +993,7 @@ $document.on( resizeEvent, selector, function( event ) {
 			}
 		}
 	}
-});
+} );
 
 window.onYouTubeIframeAPIReady = youTubeAPIReady;
 
@@ -1003,4 +1003,4 @@ window.youTube = {
 
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

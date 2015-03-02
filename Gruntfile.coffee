@@ -1144,6 +1144,8 @@ module.exports = (grunt) ->
 
 				src: [
 					"<%= jshint.all.src %>"
+					"!src/polyfills/slider/slider.js",
+					"!src/polyfills/events/mobile.js"
 				]
 
 		connect:

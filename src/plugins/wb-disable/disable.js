@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @gc
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -50,8 +50,8 @@ var componentName = "wb-disable",
 					try {
 
 						// Store preference for WET plugins and polyfills to be disabled in localStorage
-						localStorage.setItem( "wbdisable", "true");
-					} catch (e) {}
+						localStorage.setItem( "wbdisable", "true" );
+					} catch ( e ) {}
 
 					// Append the Standard version link
 					li.innerHTML = "<a class='wb-sl' href='" + nQuery + "wbdisable=false'>" + i18n( "wb-enable" ) + "</a>";
@@ -88,4 +88,4 @@ $document.on( "timerpoke.wb", selector, init );
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );
