@@ -129,7 +129,7 @@ var componentName = "wb-datalist",
 	 */
 	correctWidth = function( input ) {
 		var $elm = $( input ),
-			$autolist = $(input.nextSibling.firstChild);
+			$autolist = $( input.nextSibling.firstChild );
 
 		$autolist.css( {
 			width: $elm.outerWidth(),
@@ -403,7 +403,7 @@ $document.on( "focusin txt-rsz.wb win-rsz-width.wb win-rsz-height.wb", function(
 		for ( i = 0; i !== len; i += 1 ) {
 			input = inputs[ i ];
 			if ( focusEvent ) {
-				autolistContainer = input.nextElementSibling || $(input).next().get(0);
+				autolistContainer = input.nextElementSibling || $( input ).next().get( 0 );
 				if ( autolistContainer.firstChild.className.indexOf( "hide" ) === -1 &&
 					eventTarget !== autolistContainer &&
 					!$.contains( autolistContainer, eventTarget ) ) {
