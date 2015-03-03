@@ -25,7 +25,7 @@ var componentName = "wb-mltmd",
 	templateLoadedEvent = "templateloaded" + selector,
 	cuepointEvent = "cuepoint" + selector,
 	captionClass = "cc_on",
-	multimediaEvents = "durationchange playing pause ended volumechange timeupdate waiting canplay progress" +
+	multimediaEvents = "durationchange playing pause ended volumechange timeupdate waiting canplay progress " +
 			captionsLoadedEvent + " " + captionsLoadFailedEvent + " " + captionsVisibleChangeEvent + " " + cuepointEvent,
 	$document = wb.doc,
 	$window = wb.win,
