@@ -14,6 +14,7 @@ var componentName = "wb-mltmd",
 	initEvent = "wb-init" + selector,
 	template,
 	i18n, i18nText,
+	youtubeReadyEvent = "ready.youtube",
 	captionsLoadedEvent = "ccloaded" + selector,
 	captionsLoadFailedEvent = "ccloadfail" + selector,
 	captionsVisibleChangeEvent = "ccvischange" + selector,
@@ -25,8 +26,21 @@ var componentName = "wb-mltmd",
 	templateLoadedEvent = "templateloaded" + selector,
 	cuepointEvent = "cuepoint" + selector,
 	captionClass = "cc_on",
-	multimediaEvents = "durationchange playing pause ended volumechange timeupdate waiting canplay progress " +
-			captionsLoadedEvent + " " + captionsLoadFailedEvent + " " + captionsVisibleChangeEvent + " " + cuepointEvent,
+	multimediaEvents = [
+		"durationchange",
+		"playing",
+		"pause",
+		"ended",
+		"volumechange",
+		"timeupdate",
+		"waiting",
+		"canplay",
+		"progress",
+		captionsLoadedEvent,
+		captionsLoadFailedEvent,
+		captionsVisibleChangeEvent,
+		cuepointEvent
+	].join( " " ),
 	$document = wb.doc,
 	$window = wb.win,
 
@@ -392,7 +406,7 @@ var componentName = "wb-mltmd",
 	 * @param {object} args The arguments to send to the function call
 	 */
 	youTubeApi = function( fn, args ) {
-		var $media = $( event.target.getIframe() ),
+		var $media = $( this.object.getIframe() ),
 			state;
 
 		switch ( fn ) {
@@ -492,7 +506,7 @@ var componentName = "wb-mltmd",
 	youTubeAPIReady = function() {
 		var youTube = window.youTube;
 		youTube.ready = true;
-		youTube.waitingPlayers.trigger( youtubeEvent );
+		$document.trigger( youtubeReadyEvent );
 	},
 
 	onResize = function() {
@@ -563,16 +577,12 @@ $document.on( initializedEvent, selector, function( event ) {
 			// lets set the flag for the call back
 			data.youTubeId = url.params.v;
 
-			// Method called the the YouTUbe API when ready
-
 			if ( youTube.ready === false ) {
-				if ( youTube.waitingPlayers === undef ) {
-					youTube.waitingPlayers = $this;
-				} else {
-					youTube.waitingPlayers = youTube.waitingPlayers.add( $this );
-				}
+				$document.one( youtubeReadyEvent, function() {
+					$this.trigger( youtubeEvent, data );
+				} );
 			} else {
-				$this.trigger( youtubeEvent );
+				$this.trigger( youtubeEvent, data );
 			}
 
 			// finally lets load safely
@@ -633,13 +643,11 @@ $document.on( fallbackEvent, selector, function( event, data ) {
  */
 $document.on( youtubeEvent, selector, function( event, data ) {
 	if ( event.namespace === componentName ) {
-		var $this = $( event.currentTarget ),
-			$media = data.media,
-			id = data.id,
-			ytPlayer;
+		var mId = data.mId,
+			$this = $( event.currentTarget ),
+			$media, ytPlayer;
 
-		data.media = $media.replaceWith( "<div id=" + id + "/>" );
-		ytPlayer = new YT.Player( id, {
+		ytPlayer = new YT.Player( mId, {
 			videoId: data.youTubeId,
 			playerVars: {
 				autoplay: 0,
@@ -667,11 +675,12 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 
 		$this.addClass( "youtube" );
 
-		$this.find( "iframe" ).attr( "tabindex", -1 );
+		$media = $this.find( "#" + mId ).attr( "tabindex", -1 );
 
+		data.media = $media;
 		data.ytPlayer = ytPlayer;
 
-		$this.trigger( renderUIEvent, "youtube", data );
+		$this.trigger( renderUIEvent, [ "youtube", data ] );
 	}
 } );
 
