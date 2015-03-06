@@ -210,19 +210,22 @@ var componentName = "wb-lbx",
 				},
 				parseAjax: function( mfpResponse ) {
 					var urlHash = this.currItem.src.split( "#" )[ 1 ],
-						$response = $( "<div>" + mfpResponse.data + "</div>" );
+						$response;
 
 					// Provide the ability to filter the AJAX response HTML
 					// by the URL hash
 					// TODO: Should be dealt with upstream by Magnific Popup
 					if ( urlHash ) {
-						$response = $response.find( "#" + wb.jqEscape( urlHash ) );
+						$response = $( "<div>" + mfpResponse.data + "</div>" )
+										.find( "#" + wb.jqEscape( urlHash ) );
+					} else {
+						$response = $( mfpResponse.data );
 					}
 
 					$response
 						.find( ".modal-title, h1" )
-						.first()
-						.attr( "id", "lbx-title" );
+							.first()
+								.attr( "id", "lbx-title" );
 
 					mfpResponse.data = $response;
 				}
