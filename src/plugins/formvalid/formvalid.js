@@ -170,11 +170,12 @@ var componentName = "wb-frmvld",
 								ariaLive = $form.parent().find( ".arialive" )[ 0 ],
 								summary, key, i, len, $error, prefix, $fieldName, $fieldset, label, labelString;
 
+							// Correct the colouring of fields that are no longer invalid
 							$form
-								.find( "[aria-invalid=true]" )
-									.removeAttr( "aria-invalid" )
-									.closest( ".form-group" )
+								.find( ".has-error [aria-invalid=false]" )
+									.closest( ".has-error" )
 										.removeClass( "has-error" );
+
 							if ( $errors.length !== 0 ) {
 
 								// Post process
@@ -186,7 +187,6 @@ var componentName = "wb-frmvld",
 											i18nText.errorFound
 									) + "</" + summaryHeading + "><ul>";
 								$errorfields
-									.attr( "aria-invalid", "true" )
 									.closest( ".form-group" )
 										.addClass( "has-error" );
 								len = $errors.length;
@@ -284,7 +284,6 @@ var componentName = "wb-frmvld",
 								$summaryContainer.empty();
 							}
 
-							$form.find( "[aria-invalid=true]" ).removeAttr( "aria-invalid" );
 							ariaLive = $form.parent().find( ".arialive" )[ 0 ];
 							if ( ariaLive.innerHTML.length !== 0 ) {
 								ariaLive.innerHTML = "";
