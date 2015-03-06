@@ -91,14 +91,15 @@ var componentName = "wb-lbx",
 					}
 
 					// Extend the settings with window[ "wb-lbx" ] then data-wb-lbx
-					$elm.magnificPopup(
-						$.extend(
-							true,
-							settings,
-							window[ componentName ],
-							wb.getData( $elm, componentName )
-						)
+					settings = $.extend(
+						true,
+						settings,
+						window[ componentName ],
+						wb.getData( $elm, componentName )
 					);
+					$elm.magnificPopup(
+						settings
+					).data( "wbLbxFilter", settings.filter );
 				}
 
 				// Identify that initialization has completed
@@ -209,15 +210,18 @@ var componentName = "wb-lbx",
 					$content.attr( "aria-labelledby", "lbx-title" );
 				},
 				parseAjax: function( mfpResponse ) {
-					var urlHash = this.currItem.src.split( "#" )[ 1 ],
-						$response;
+					var currItem = this.currItem,
+						urlHash = currItem.src.split( "#" )[ 1 ],
+						filter = currItem.el.data( "wbLbxFilter" ),
+						selector = filter || ( urlHash ? "#" + urlHash : false ),
+						$response, $filteredResponse;
 
 					// Provide the ability to filter the AJAX response HTML
-					// by the URL hash
+					// by the URL hash or a selector
 					// TODO: Should be dealt with upstream by Magnific Popup
-					if ( urlHash ) {
-						$response = $( "<div>" + mfpResponse.data + "</div>" )
-										.find( "#" + wb.jqEscape( urlHash ) );
+					if ( selector ) {
+						$filteredResponse = $( "<div>" + mfpResponse.data + "</div>" ).find( selector );
+						$response = $filteredResponse || $( mfpResponse.data );
 					} else {
 						$response = $( mfpResponse.data );
 					}
