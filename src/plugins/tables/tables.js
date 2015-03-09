@@ -159,8 +159,8 @@ $document.on( "init.dt draw.dt", selector, function( event, settings ) {
 		} )
 		.not( ".previous, .next" )
 			.attr( "aria-pressed", "false" )
-			.html( function( index ) {
-				return "<span class='wb-inv'>" + i18nText.paginate.page + " </span>" + ( index + 1 ) ;
+			.html( function( index, oldHtml ) {
+				return "<span class='wb-inv'>" + i18nText.paginate.page + " </span>" + oldHtml;
 			} )
 			.filter( ".current" )
 				.attr( "aria-pressed", "true" );
