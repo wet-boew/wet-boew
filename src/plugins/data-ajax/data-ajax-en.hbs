@@ -8,13 +8,13 @@
 	"parentdir": "data-ajax",
 	"altLangPrefix": "data-ajax",
 	"css": ["demo/data-ajax"],
-	"dateModified": "2014-07-19"
+	"dateModified": "2015-03-09"
 }
 ---
 <p>A basic AjaxLoader wrapper that inserts AJAXed in content.</p>
 
 <section class="wb-prettify all-pre">
-	<h2>Insert content after an element (data-ajax-after)</h2>
+	<h2>Insert content after an element (<code>data-ajax-after</code>)</h2>
 	<section>
 		<h3>Example</h3>
 		<section data-ajax-after="ajax/data-ajax-extra-en.html" class="original">
@@ -59,7 +59,7 @@
 </section>
 
 <section>
-	<h2>Append content to an element (data-ajax-append)</h2>
+	<h2>Append content to an element (<code>data-ajax-append</code>)</h2>
 	<section>
 		<h3>Example</h3>
 		<div data-ajax-append="ajax/data-ajax-extra-en.html" class="original">
@@ -100,7 +100,7 @@
 </section>
 
 <section>
-	<h2>Insert content before an element (data-ajax-before)</h2>
+	<h2>Insert content before an element (<code>data-ajax-before</code>)</h2>
 	<section>
 		<h3>Example</h3>
 		<section data-ajax-before="ajax/data-ajax-extra-en.html" class="original">
@@ -145,7 +145,7 @@
 </section>
 
 <section>
-	<h2>Prepend content to an element (data-ajax-prepend)</h2>
+	<h2>Prepend content to an element (<code>data-ajax-prepend</code>)</h2>
 	<section>
 		<h3>Example</h3>
 		<div data-ajax-prepend="ajax/data-ajax-extra-en.html" class="original">
@@ -186,7 +186,7 @@
 </section>
 
 <section>
-	<h2>Replaces an element (data-ajax-replace)</h2>
+	<h2>Replaces an element (<code>data-ajax-replace</code>)</h2>
 	<section>
 		<h3>Example</h3>
 		<div data-ajax-replace="ajax/data-ajax-extra-en.html" class="original">
@@ -233,6 +233,72 @@
 	&lt;h4&gt;I was ajaxed in - Part 2&lt;/h4&gt;
 	&lt;p&gt;I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2. I was ajaxed in - Part 2.&lt;/p&gt;
 &lt;/section&gt;</code></pre>
+			</section>
+		</details>
+	</section>
+</section>
+
+<section>
+	<h2>Filtering the content by the URL hash (<code>ajax/data-ajax-extra-en.html#filter-id</code>, v4.0.12+)</h2>
+	<section>
+		<h3>Example</h3>
+		<div data-ajax-append="ajax/data-ajax-filter-en.html#filter-id" class="original">
+			<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+		</div>
+		<details>
+			<summary>View code</summary>
+			<section>
+				<h4>In-page HTML</h4>
+				<pre><code>&lt;div data-ajax-append="ajax/data-ajax-filter-en.html#filter-id" class="original"&gt;
+	&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>data-ajax-filter-en.html</h4>
+				<pre><code>&lt;section id="filter-id" class=&quot;ajaxed-in&quot;&gt;
+	&lt;h4&gt;I was ajaxed in and filtered by the URL hash&lt;/h4&gt;
+	&lt;p&gt;I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in.&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;section class=&quot;ajaxed-in filter-selector&quot;&gt;
+	&lt;h4&gt;I was ajaxed in and filtered by a selector&lt;/h4&gt;
+	&lt;p&gt;I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in.&lt;/p&gt;
+&lt;/section&gt;
+</code></pre>
+			</section>
+		</details>
+	</section>
+</section>
+
+<section>
+	<h2>Filtering the content by a selector (<code>ajax/data-ajax-extra-en.html .filter-selector</code>, v4.0.12+)</h2>
+	<section>
+		<h3>Example</h3>
+		<div data-ajax-append="ajax/data-ajax-filter-en.html .filter-selector" class="original">
+			<p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
+		</div>
+		<details>
+			<summary>View code</summary>
+			<section>
+				<h4>In-page HTML</h4>
+				<pre><code>&lt;div data-ajax-append="ajax/data-ajax-filter-en.html .filter-selector" class="original"&gt;
+	&lt;p&gt;Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+			</section>
+
+			<section>
+				<h4>data-ajax-filter-en.html</h4>
+				<pre><code>&lt;section id="filter-id" class=&quot;ajaxed-in&quot;&gt;
+	&lt;h4&gt;I was ajaxed in and filtered by the URL hash&lt;/h4&gt;
+	&lt;p&gt;I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in.&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;section class=&quot;ajaxed-in filter-selector&quot;&gt;
+	&lt;h4&gt;I was ajaxed in and filtered by a selector&lt;/h4&gt;
+	&lt;p&gt;I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in. I was ajaxed in.&lt;/p&gt;
+&lt;/section&gt;
+</code></pre>
 			</section>
 		</details>
 	</section>
