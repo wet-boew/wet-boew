@@ -21,7 +21,16 @@ $document.on( "ajax-fetch.wb", function( event ) {
 	// TODO: Remove event.element in future versions
 	var caller = event.element || event.target,
 		fetchOpts = event.fetch,
+		urlParts = fetchOpts.url.split( " " ),
+		url = urlParts[ 0 ],
+		urlHash = url.split( "#" )[ 1 ],
+		selector = urlParts[ 1 ] || ( urlHash ? "#" + urlHash : false ),
 		fetchData, callerId;
+
+	// Separate the URL from the filtering criteria
+	if ( selector ) {
+		fetchOpts.url = urlParts[ 0 ];
+	}
 
 	// Filter out any events triggered by descendants
 	if ( caller === event.target || event.currentTarget === event.target ) {
@@ -33,7 +42,15 @@ $document.on( "ajax-fetch.wb", function( event ) {
 
 		$.ajax( fetchOpts )
 			.done( function( response, status, xhr ) {
-				var responseType = typeof response;
+				var responseType = typeof response,
+					filteredResponse;
+
+				if ( selector ) {
+					filteredResponse = $( "<div>" + response + "</div>" ).find( selector );
+					if ( filteredResponse.length !== 0 ) {
+						response = filteredResponse;
+					}
+				}
 
 				fetchData = {
 					response: response,
