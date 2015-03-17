@@ -42,14 +42,10 @@ $document.on( "ajax-fetch.wb", function( event ) {
 
 		$.ajax( fetchOpts )
 			.done( function( response, status, xhr ) {
-				var responseType = typeof response,
-					filteredResponse;
+				var responseType = typeof response;
 
 				if ( selector ) {
-					filteredResponse = $( "<div>" + response + "</div>" ).find( selector );
-					if ( filteredResponse.length !== 0 ) {
-						response = filteredResponse;
-					}
+					response = $( "<div>" + response + "</div>" ).find( selector );
 				}
 
 				fetchData = {
