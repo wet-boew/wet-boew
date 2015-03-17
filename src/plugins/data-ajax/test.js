@@ -18,16 +18,24 @@ describe( "data-ajax test suite", function() {
 		sandbox = sinon.sandbox.create(),
 		$document = wb.doc,
 		$body = $document.find( "body" ),
-		createElm = function( type, done ) {
-			var $elm = $( "<div class='ajax' data-ajax-" + type + "='data-ajax/test/data-ajax.html'>test</div>" );
+		ajax = {
+			"/data-ajax.html": "<!DOCTYPE html><html lang='en'><section class='ajaxed-in'><p>Ajaxed In</p></section></html>",
+			"/data-ajax-update.html": "<!DOCTYPE html><html lang='en'><section class='ajaxed-updated'><p>Ajax Updated</p></section></html>",
+			"/data-ajax-filtered.html": "<!DOCTYPE html><html lang='en'><section class='outer'><p>Lorem Ipsum</p><p id='inner'>Hash Filtered Element</p><p class='filter'>Class Filtered Element</p><p class='filter'>Class Filtered Element</p></section></html>"
+		},
+		createElm = function( type, url, done ) {
+			var $elm = $( "<div class='ajax' data-ajax-" + type + "='" + url + "'>test</div>" );
 
 			callback = done;
 			$elm
 				.appendTo( $body )
 				.trigger( "wb-init.wb-data-ajax" );
+
+			server.respond();
+
 			return $elm;
 		},
-		callback;
+		server, callback;
 
 	/*
 	 * Before beginning the test suite, this function is executed once.
@@ -36,6 +44,12 @@ describe( "data-ajax test suite", function() {
 
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
 		spy = sandbox.spy( $.prototype, "trigger" );
+
+		server = sinon.fakeServer.create();
+
+		server.respondWith( "/data-ajax.html", ajax["/data-ajax.html"] );
+		server.respondWith( "/data-ajax-update.html", ajax["/data-ajax-update.html"] );
+		server.respondWith( "/data-ajax-filtered.html", ajax["/data-ajax-filtered.html"] );
 
 		$document.on( "ajax-fetched.wb ajax-failed.wb", ".ajax", function() {
 			if ( typeof callback === "function" ) {
@@ -58,8 +72,8 @@ describe( "data-ajax test suite", function() {
 	describe( "init events", function() {
 		var $elm;
 
-		before( function(  ) {
-			$elm = createElm( "replace" );
+		before( function() {
+			$elm = createElm( "replace", "/data-ajax.html" );
 		} );
 
 		after( function() {
@@ -85,7 +99,7 @@ describe( "data-ajax test suite", function() {
 		var $elm, $before;
 
 		before( function( done ) {
-			$elm = createElm( "before", done );
+			$elm = createElm( "before", "/data-ajax.html", done );
 		} );
 
 		after( function() {
@@ -111,7 +125,7 @@ describe( "data-ajax test suite", function() {
 		var $elm, $after;
 
 		before( function( done ) {
-			$elm = createElm( "after", done );
+			$elm = createElm( "after", "/data-ajax.html", done );
 		} );
 
 		after( function() {
@@ -137,7 +151,7 @@ describe( "data-ajax test suite", function() {
 		var $elm;
 
 		before( function( done ) {
-			$elm = createElm( "replace", done );
+			$elm = createElm( "replace", "/data-ajax.html", done );
 		} );
 
 		after( function() {
@@ -163,7 +177,7 @@ describe( "data-ajax test suite", function() {
 		var $elm;
 
 		before( function( done ) {
-			$elm = createElm( "prepend", done );
+			$elm = createElm( "prepend", "/data-ajax.html", done );
 		} );
 
 		after( function() {
@@ -189,7 +203,7 @@ describe( "data-ajax test suite", function() {
 		var $elm;
 
 		before( function( done ) {
-			$elm = createElm( "append", done );
+			$elm = createElm( "append", "/data-ajax.html", done );
 		} );
 
 		after( function() {
@@ -208,11 +222,100 @@ describe( "data-ajax test suite", function() {
 		} );
 	} );
 
+	/*
+	 * Test filtered data-ajax
+	 */
+	describe( "filtered data-ajax", function() {
+		var $elm;
+
+		describe( "with a hash selector", function() {
+			before( function( done ) {
+				$elm = createElm( "replace", "/data-ajax-filtered.html#inner", done );
+
+			} );
+
+			after( function() {
+				$elm.remove();
+			} );
+
+			it( "should add the .wb-data-ajax-replace-inited class", function() {
+				expect( $elm.hasClass( "wb-data-ajax-replace-inited" ) ).to.equal( true );
+			} );
+
+			it( "should append to its content", function() {
+				expect( $elm.find( ".outer" ).length ).to.equal( 0 );
+				expect( $elm.find( "#inner" ).length ).to.be.greaterThan( 0 );
+			} );
+		} );
+
+		describe( "with a class selector", function() {
+			before( function( done ) {
+				$elm = createElm( "replace", "/data-ajax-filtered.html .filter+.filter", done );
+
+			} );
+
+			after( function() {
+				$elm.remove();
+			} );
+
+			it( "should add the .wb-data-ajax-replace-inited class", function() {
+				expect( $elm.hasClass( "wb-data-ajax-replace-inited" ) ).to.equal( true );
+			} );
+
+			it( "should append to its content", function() {
+				expect( $elm.find( ".outer, #inner" ).length ).to.equal( 0 );
+				expect( $elm.find( ".filter" ).length ).to.be( 1 );
+			} );
+		} );
+
+		describe( "with a complex selector", function() {
+			before( function( done ) {
+				$elm = createElm( "replace", "/data-ajax-filtered.html .filter", done );
+
+			} );
+
+			after( function() {
+				$elm.remove();
+			} );
+
+			it( "should add the .wb-data-ajax-replace-inited class", function() {
+				expect( $elm.hasClass( "wb-data-ajax-replace-inited" ) ).to.equal( true );
+			} );
+
+			it( "should append to its content", function() {
+				expect( $elm.find( ".outer, #inner" ).length ).to.equal( 0 );
+				expect( $elm.find( ".filter" ).length ).to.be( 2 );
+			} );
+		} );
+
+		describe( "without filtered content", function() {
+			before( function( done ) {
+				$elm = createElm( "replace", "/data-ajax-filtered.html#invalid", done );
+
+			} );
+
+			after( function() {
+				$elm.remove();
+			} );
+
+			it( "should add the .wb-data-ajax-replace-inited class", function() {
+				expect( $elm.hasClass( "wb-data-ajax-replace-inited" ) ).to.equal( true );
+			} );
+
+			it( "should ignore the request if no filtered content is found", function() {
+				expect( $elm.text() ).to.equal( "test" );
+			} );
+		} );
+	} );
+
+	/*
+	 * Test dynamic data-ajax
+	 */
 	describe( "dynamic data-ajax", function() {
 		var $elm;
 
 		before( function( done ) {
-			$elm = createElm( "append", done );
+			$elm = createElm( "append", "/data-ajax.html", done );
 		} );
 
 		after( function() {
@@ -223,11 +326,12 @@ describe( "data-ajax test suite", function() {
 			callback = done;
 
 			$elm
-				.attr( "data-ajax-append", "data-ajax/test/data-ajax2.html" )
+				.attr( "data-ajax-append", "/data-ajax-update.html" )
 				.trigger( "wb-update.wb-data-ajax" );
+			server.respond();
 
 			callback = function() {
-				expect( $elm.find( ".ajaxed-in2" ).length ).to.be.greaterThan( 0 );
+				expect( $elm.find( ".ajaxed-updated" ).length ).to.be.greaterThan( 0 );
 				done();
 			};
 		} );
