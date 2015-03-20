@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Afficher des images et d'autres contenus dans une boîte de dialogue, individuellement ou dans le cadre d'une galerie.",
 	"altLangPrefix": "lightbox",
-	"dateModified": "2014-10-28"
+	"dateModified": "2015-03-09"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -33,6 +33,7 @@
 			<li>Ajouter un élément lien à la page avec la classe <code>wb-lbx</code>.</li>
 			<li>Ajouter un attribut <code>href</code> sur l'élément lien qui pointe à l'image (e.g., <code>href="demo/1_b.jpg"</code>), au fichier content le contenu (e.g., <code>ajax/ajax.html</code>) ou à l'identifiant (id) du contenu en-ligne (e.g., <code>href="#inline-content</code>).</li>
 			<li>Ajouter un attribut <code>title</code> au lien avec le texte à mettre en légende.</li>
+			<li><strong>Facultatif :</strong> Filtrer le contenu avec le &#171;&#160;hash&#160;&#187; de l'URL (<code>ajax/ajax4-fr.html#filter-id</code>, v4.0.7+) ou avec un sélecteur (<code>href="ajax/ajax4-fr.html" data-wb-lbx='{"filter": ".filter-selector"}'</code>, v4.0.12+).</li>
 		</ol>
 	</section>
 	<section>
@@ -105,6 +106,12 @@
 				<td>Les paramètres de Magnific Popup peuvent être configurés par l'attribut <code>data-wb-lbx</code>. Voir la <a href="http://dimsemenov.com/plugins/magnific-popup/documentation.html#options">documentation Magnific Popup</a> pour les options disponibles.<br /><strong>À noter :</strong> BOEW utilise les callbacks open, change et parseAjax (voir <a href="http://dimsemenov.com/plugins/magnific-popup/documentation.html#events">Événements</a>).</td>
 				<td>Ajouter l'attribut <code>data-wb-lbx</code> à l'élément lien ou utiliser <code>window[ "wb-lbx" ]</code> avec les options souhaitées. </td>
 				<td>p.ex., <code>data-wb-lbx='{"type": "ajax"}'</code> permet d'identifier le type de contenu. Donne le même résultat que l'ajout de la classe <code>lbx-ajax</code>.</td>
+			</tr>
+			<tr>
+				<td><code>filter</code> (v4.0.12+)</td>
+				<td>Le content peut être filtré pa un selecteur par <code>filter</code> dans l'attribut <code>data-wb-lbx</code> ou <code>window[ "wb-lbx" ]</code>.</td>
+				<td>Ajouter <code>data-wb-lbx='{"filter": ".filter-selector"}'</code> à l'élément lien et remplacer <code>.filter-selector</code> avec un sélecteur.</td>
+				<td>p.ex.., <code>data-wb-lbx='{"filter": ".filter-selector"}'</code> va filtré le contenu par <code>.filter-selector</code>.</td>
 			</tr>
 		</tbody>
 	</table>
