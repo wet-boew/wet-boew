@@ -6,112 +6,112 @@
 	"categoryfile": "plugins",
 	"description": "Affiche les articles d’un ou plus fils de syndication.",
 	"altLangPrefix": "feeds",
-	"dateModified": "2014-08-04"
+	"dateModified": "2015-03-19"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
 
-<div lang="en">
-<p><strong>Needs translation</strong></p>
+<div>
+
 <section>
-	<h2>Purpose</h2>
-	<p>The purpose of this feature is to provides a widget for aggregating and displaying the entries from one or more Web feeds on a Web page. Supported Web feed formats are Atom, RSS, and Media RSS.</p>
+	<h2>But</h2>
+	<p>Cette composante est un gadget logiciel permettant de regrouper et d’afficher des données d'un ou plusieurs fils de syndication. Les formats soutenus sont Atom, RSS et Media RSS.</p>
 </section>
 
 <section>
-	<h2>Use when</h2>
+	<h2>Utiliser lors</h2>
 	<ul>
-		<li>Promoting and sharing information from Web feeds on a Web page </li>
+		<li>de la promotion et le partage d'information de fils de syndication sur une page Web </li>
 	</ul>
 </section>
 
 <section>
-	<h2>Working example</h2>
+	<h2>Exemples</h2>
 	<ul>
-		<li><a href="../../../demos/feeds/feeds-en.html">English working examples</a></li>
-		<li><a href="../../../demos/feeds/feeds-fr.html">French working examples</a></li>
+		<li><a href="../../../demos/feeds/feeds-en.html">Exemple anglais</a></li>
+		<li><a href="../../../demos/feeds/feeds-fr.html">Exemple français</a></li>
 	</ul>
 </section>
 
 <section>
-	<h2>How to implement</h2>
+	<h2>Comment implémenter</h2>
 	<ol>
-		<li>For each area that will display Web feeds, create a <code>section</code> element with <code>class="wb-feeds"</code>.
+		<li>Pour chaque zone qui affiche des fils de syndication, créer un élément <code>section</code> avec <code>class="wb-feeds"</code>.
 			<pre><code>&lt;section class="wb-feeds"&gt;&lt;/section&gt;</code></pre>
 		</li>
-		<li>Inside the <code>section</code> element add a heading (<code>h1</code> - <code>h6</code>).</li>
-		<li>Add an unordered list (<code>ul</code>) after the heading with the <code>feeds-cont</code> class.
+		<li>Dans l'élément <code>section</code>, ajouter une entête (<code>h1</code> - <code>h6</code>).</li>
+		<li>Ajouter une liste non-ordonnée (<code>ul</code>) après l'entête avec la classe <code>feeds-cont</code>.
 			<ul>
-				<li><strong>Facebook feeds:</strong>
+				<li><strong>Fils de syndication Facebook :</strong>
 					<ol>
-						<li>Add the <code>media-list</code> class to the unordered list.</li>
-						<li>Add <code>&lt;div class="clearfix"&gt;&lt;/div&gt;</code> after the unordered list.</li>
+						<li>Ajouter la classe <code>media-list</code> à la liste non-ordonnée.</li>
+						<li>Ajouter <code>&lt;div class="clearfix"&gt;&lt;/div&gt;</code> après la liste non-ordonnée.</li>
 					</ol>
 				</li>
-				<li><strong>Flickr and YouTube feeds:</strong>
+				<li><strong>Fils de syndication Flickr et YouTube :</strong>
 					<ol>
-						<li>Add the <code>list-inline</code> class to the unordered list.</li>
-						<li>Add <code>&lt;div class="clearfix"&gt;&lt;/div&gt;</code> after the unordered list.</li>
+						<li>Ajouter la classe <code>list-inline</code> à la liste non-ordonnée.</li>
+						<li>Ajouter <code>&lt;div class="clearfix"&gt;&lt;/div&gt;</code> après la liste non-ordonnée.</li>
 					</ol>
 				</li>
 			</ul>
 		</li>
-		<li>For every Web feed source to display, add a list element containing a link to the feed.
+		<li>Pour chaque source de fil de syndication à afficher, ajouter un élément de liste contenant un lien vers le fil.
 			<ul>
-				<li><strong>Regular feeds:</strong>
+				<li><strong>Fils de syndication ordinaires :</strong>
 					<pre><code>&lt;li&gt;
-	&lt;a href="http://canada.ca/sample.atom"&gt;Sample Atom Feed&lt;/a&gt;
+	&lt;a href="http://canada.ca/sample.atom"&gt;Exemple de flux Atom&lt;/a&gt;
 &lt;/li&gt;</code></pre>
 				</li>
-				<li><strong>Facebook feeds:</strong>
+				<li><strong>Fils de syndication Facebook :</strong>
 					<ol>
-						<li>Add a <code>media</code> class to the list element.</li>
-						<li>Add a <code>pull-left</code> class to the link.</li>
-						<li>Add a profile image with a <code>media-object</code> class to the link.</li>
-						<li>Add a section element with a <code>media-body</code> class after the link.</li>
-						<li>Inside the <code>section</code> element add a heading (<code>h1</code> - <code>h6</code>) with a <code>media-heading</code> class. Include the Facebook account name in this heading (e.g., "Parks Canada - Facebook").</li>
-						<li>Add a <code>p</code> element containing the Facebook account description after the heading.</li>
+						<li>Ajouter la classe <code>media</code> à l'élément liste.</li>
+						<li>Ajouter la classe <code>pull-left</code> au lien.</li>
+						<li>Ajouter une image de profile avec la classe <code>media-object</code> au lien.</li>
+						<li>Ajouter une élément <code>section</code> avec la classe <code>media-body</code> après le lien.</li>
+						<li>À l'intérieur de l'élément <code>section</code>, ajouter une entête (<code>h1</code> - <code>h6</code>) avec la classe <code>media-heading</code>. Ajouter le nom du compte Facebook dans cette entête (e.g., "Parcs Canada - Facebook").</li>
+						<li>Ajouter un élément <code>p</code> contenant la description du compte Facebook après l'entête.</li>
 					</ol>
 					<pre><code>&lt;li class="media"&gt;
-	&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=137563459593611&amp;amp;format=atom10"&gt;
-		&lt;img class="media-object" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/t1.0-1/p320x320/10245484_872682866081663_8340097330550277155_n.png" alt="Parks Canada Logo" width="64" /&gt;
+	&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=134615279898518&amp;amp;format=atom10"&gt;
+		&lt;img class="media-object" src="http://graph.facebook.com/134615279898518/picture?type=large" alt="Logo Parcs Canada" width="64" /&gt;
 	&lt;/a&gt;
 	&lt;section class="media-body"&gt;
-		&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=137563459593611&amp;amp;format=atom10" rel="external"&gt;Parks Canada - Facebook&lt;/a&gt;&lt;/h4&gt;
-		&lt;p&gt;On behalf of the people of Canada, we protect and present nationally significant examples of Canada's natural and cultural heritage, and foster public understanding, appreciation and enjoyment in ways that ensure the ecological and commemorative integrity of these places for present and future generations.&lt;/p&gt;
+		&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=134615279898518&amp;amp;format=atom10" rel="external"&gt;Parcs Canada - Facebook&lt;/a&gt;&lt;/h4&gt;
+		&lt;p&gt;Les parcs nationaux, aires marines nationales de conservation et lieux historiques nationaux du Canada.&lt;/p&gt;
 	&lt;/section&gt;
 &lt;/li&gt;</code></pre>
 				</li>
-				<li><strong>Flickr feeds:</strong>
+				<li><strong>Fils de syndication Flickr :</strong>
 					<ol>
-						<li>The link <code>href</code> attribute needs to contain the URL of the Flickr account's photostream.</li>
-						<li>Add a <code>data-ajax</code> attribute to the link containing the URL of the Flickr account JSON feed.</li>
+						<li>L'attribut <code>href</code> du lien doit contenir l'URL du fil-photo du compte Flickr.</li>
+						<li>Ajouter l'attribut <code>data-ajax</code> au lien contenant l'URL du fil JSON du compte Flickr.</li>
 					</ol>
 					<pre><code>&lt;li&gt;
-	&lt;a href="https://www.flickr.com/photos/environmentcan" rel="external" data-ajax="https://api.flickr.com/services/feeds/photos_public.gne?id=47711201@N05&amp;amp;format=json"&gt;Environment Canada Flickr&lt;/a&gt;
+	&lt;a href="https://www.flickr.com/photos/environmentcan" rel="external" data-ajax="https://api.flickr.com/services/feeds/photos_public.gne?id=47721741@N05&amp;format=json"&gt;Flickr d'Environnement Canada&lt;/a&gt;
 &lt;/li&gt;</code></pre>
 				</li>
-				<li><strong>YouTube feeds:</strong>
+				<li><strong>Fils de syndication YouTube :</strong>
 					<ol>
-						<li>The link <code>href</code> attribute needs to contain the URL of the YouTube account.</li>
-						<li>Add a <code>data-ajax</code> attribute to the link with the URL of the YouTube account JSON feed.</li>
+						<li>L'attribut <code>href</code> du lien doit contenir l'URL du compte YouTube.</li>
+						<li>Ajouter l'attribut <code>data-ajax</code> au lien contenant l'URL du fil JSON du compte YouTube.</li>
 					</ol>
 					<pre><code>&lt;li&gt;
-	&lt;a href="https://www.youtube.com/user/ParksCanadaAgency" rel="external" data-ajax="https://gdata.youtube.com/feeds/api/users/UCzJRhTw3KVtDlcdNz33eDMQ/uploads?v=2&amp;amp;alt=json"&gt;Parks Canada Youtube&lt;/a&gt;
+	&lt;a href="https://www.youtube.com/user/ParksCanadaAgency" rel="external" data-ajax="https://gdata.youtube.com/feeds/api/users/UCr23fllByMomgNGeShe-73g/uploads?v=2&amp;alt=json"&gt;YouTube de Parcs Canada&lt;/a&gt;
 &lt;/li&gt;</code></pre>
 				</li>
 			</ul>
 		</li>
-		<li><strong>Optional:</strong> Group multiple types of feeds into a tabbed interface. The benefit of this approach is it will only load the feeds that are currently visible (significantly improves performance when there are lots of feeds).
+		<li><strong>Facultatif :</strong> Regrouper plusieurs types de fils de syndication dans une interface à onglets. L'avantage de cette approche est qu'elle ne charge que les fils qui sont actuellement visibles (ce qui améliore considérablement la performance lorsqu'il y a beaucoup d'éléments).
 			<ol>
-				<li>Create a <code>div</code> element with <code>class="wb-tabs"</code>.</li>
-				<li>Add a <code>div</code> element with <code>class="tabpanels"</code> within the previous <code>div</code> element.</li>
-				<li>For each group of feeds (group feeds by type), add a <code>details</code> element. Add <code>open="open"</code> to the group of feeds that should be displayed by default.</li>
-				<li>Add a <code>summary</code> element at the start of each <code>details</code> element with the name of the group of feeds (e.g., <code>&lt;summary&gt;Facebook&lt;/summary&gt;</code>).</li>
-				<li>Add the areas to display Web feeds after each <code>summary</code> element as described in steps 1 to 4, except add the <code>wb-inv</code> class to the heading for each area.</li>
+				<li>Créer un élément <code>div</code> avec la classe <code>class="wb-tabs"</code>.</li>
+				<li>Ajouter un élément <code>div</code>avec <code>class="tabpanels"</code> à l'intérieur de l'élément <code>div</code> précédent.</li>
+				<li>Pour chaque groupe de flux (regrouper les fils par type), ajouter un élément <code>details</code>. Ajouter l'attribut <code>open="open"</code> au groupe de fils qui doit être affiché par défaut.</li>
+				<li>Ajouter un élément <code>summary</code> au début de chaque élément <code>details</code> avec le nom du groupe de fils (e.g., <code>&lt;summary&gt;Facebook&lt;/summary&gt;</code>).</li>
+				<li>Ajouter les zonnes pour afficher les flux Web après chaque élément <code>summary</code> tel que décrit aux étapes 1 à 4, mais avec l'exception d'ajouter la classe <code>wb-inv</code> à l'entête de chaque zone.</li>
 			</ol>
 			<pre><code>&lt;section&gt;
-	&lt;h3&gt;Tabbed Social Feeds&lt;/h3&gt;
+	&lt;h3&gt;Les comptes des médias sociaux à onglets&lt;/h3&gt;
 	&lt;div class="wb-tabs col-md-5 wb-eqht"&gt;
 		&lt;div class="tabpanels"&gt;
 			&lt;details id="details-facebook" open="open"&gt;
@@ -154,42 +154,42 @@
 	</ol>
 
 	<section>
-		<h3>Example code</h3>
+		<h3>Exemples de code</h3>
 		<section>
-			<h4>Regular feeds</h4>
+			<h4>Fils de syndication ordinaires</h4>
 			<pre><code>&lt;section class="wb-feeds limit-5"&gt;
-	&lt;h3&gt;Road News Releases and Safety Recalls&lt;/h3&gt;
+	&lt;h3&gt;Communiqués de presse et rappels de la sécurité routière&lt;/h3&gt;
 	&lt;ul class="feeds-cont"&gt;
 		&lt;li&gt;
-			&lt;a href="http://www.tc.gc.ca/mediaroom/rss/road.xml" rel="external"&gt;Road News Releases (All)&lt;/a&gt;
+			&lt;a href="http://www.tc.gc.ca/medias/rss/routier.xml" rel="external"&gt;Communiqués de presse routière (Tous)&lt;/a&gt;
 		&lt;/li&gt;
 		&lt;li&gt;
-			&lt;a href="http://wwwapps.tc.gc.ca/Saf-Sec-Sur/7/VRDB-BDRV/search-recherche/rss.aspx?lang=eng" rel="external"&gt;Road Safety Recalls&lt;/a&gt;
+			&lt;a href="http://wwwapps.tc.gc.ca/Saf-Sec-Sur/7/VRDB-BDRV/search-recherche/rss.aspx?lang=fra" rel="external"&gt;Rappels de la Sécurité Routière&lt;/a&gt;
 		&lt;/li&gt;
 	&lt;/ul&gt;
 &lt;/section&gt;</code></pre>
 		</section>
 
 		<section>
-			<h4>Facebook feeds</h4>
+			<h4>Fils de syndication Facebook</h4>
 			<pre><code>&lt;section class="wb-feeds limit-5"&gt;
 	&lt;ul class="feeds-cont media-list"&gt;
 		&lt;li class="media"&gt;
-			&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=318424514044&amp;amp;format=atom10"&gt;
-				&lt;img class="media-object" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1.0-1/c17.17.207.207/430015_10151952323214045_194318965_n.png" alt="Enviroment Canada Logo" width="64" /&gt;
+			&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=460123390028&amp;format=atom10"&gt;
+				&lt;img class="media-object" src="http://graph.facebook.com/460123390028/picture?type=large" alt="Logo Environnement Canada" width="64" /&gt;
 			&lt;/a&gt;
 			&lt;section class="media-body"&gt;
-				&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=318424514044&amp;amp;format=atom10" rel="external"&gt;Enviroment Canada - Facebook&lt;/a&gt;&lt;/h4&gt;
-				&lt;p&gt;At Environment Canada our business is protecting the environment, conserving the country's natural heritage and providing weather and environmental predictions to keep Canadians informed and safe.&lt;/p&gt;
+				&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=460123390028&amp;format=atom10" rel="external"&gt;Environnement Canada - Facebook&lt;/a&gt;&lt;/h4&gt;
+				&lt;p&gt;EC est une organisation diversifiée offrant des programmes et des services efficaces et regroupant des gens dynamiques qui font une différence sur le plan environnemental et dans différents aspects de la vie des Canadiennes et Canadiens..&lt;/p&gt;
 			&lt;/section&gt;
 		&lt;/li&gt;
 		&lt;li class="media"&gt;
-			&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=137563459593611&amp;amp;format=atom10"&gt;
-				&lt;img class="media-object" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/t1.0-1/p320x320/10245484_872682866081663_8340097330550277155_n.png" alt="Parks Canada Logo" width="64" /&gt;
+			&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=134615279898518&amp;format=atom10"&gt;
+				&lt;img class="media-object" src="http://graph.facebook.com/134615279898518/picture?type=large" alt="Logo Parcs Canada" width="64" /&gt;
 			&lt;/a&gt;
 			&lt;section class="media-body"&gt;
-				&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=137563459593611&amp;amp;format=atom10" rel="external"&gt;Parks Canada - Facebook&lt;/a&gt;&lt;/h4&gt;
-				&lt;p&gt;On behalf of the people of Canada, we protect and present nationally significant examples of Canada's natural and cultural heritage, and foster public understanding, appreciation and enjoyment in ways that ensure the ecological and commemorative integrity of these places for present and future generations.&lt;/p&gt;
+				&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=134615279898518&amp;format=atom10" rel="external"&gt;Parcs Canada- Facebook&lt;/a&gt;&lt;/h4&gt;
+				&lt;p&gt;Les parcs nationaux, aires marines nationales de conservation et lieux historiques nationaux du Canada.&lt;/p&gt;
 			&lt;/section&gt;
 		&lt;/li&gt;
 	&lt;/ul&gt;
@@ -198,11 +198,11 @@
 		</section>
 
 		<section>
-			<h4>Flickr feeds</h4>
+			<h4>Fils de syndication Flickr</h4>
 			<pre><code>&lt;section class="wb-feeds limit-15"&gt;
 	&lt;ul class="feeds-cont list-inline"&gt;
 		&lt;li&gt;
-			&lt;a href="https://www.flickr.com/photos/environmentcan" rel="external" data-ajax="https://api.flickr.com/services/feeds/photos_public.gne?id=47711201@N05&amp;amp;format=json"&gt;Environment Canada Flickr&lt;/a&gt;
+			&lt;a href="https://www.flickr.com/photos/environnementcan" rel="external" data-ajax="https://api.flickr.com/services/feeds/photos_public.gne?id=47721741@N05&amp;format=json"&gt;Flickr d'Environnement Canada&lt;/a&gt;
 		&lt;/li&gt;
 	&lt;/ul&gt;
 	&lt;div class="clearfix"&gt;&lt;/div&gt;
@@ -210,14 +210,14 @@
 		</section>
 
 		<section>
-			<h4>YouTube feeds</h4>
+			<h4>Fils de syndication YouTube</h4>
 			<pre><code>&lt;section class="wb-feeds limit-15"&gt;
 	&lt;ul class="feeds-cont list-inline"&gt;
 		&lt;li&gt;
-			&lt;a href="https://www.youtube.com/user/ParksCanadaAgency" rel="external" data-ajax="https://gdata.youtube.com/feeds/api/users/UCzJRhTw3KVtDlcdNz33eDMQ/uploads?v=2&amp;amp;alt=json"&gt;Parks Canada Youtube&lt;/a&gt;
+			&lt;a href="https://www.youtube.com/user/ParksCanadaAgency" rel="external" data-ajax="https://gdata.youtube.com/feeds/api/users/UCr23fllByMomgNGeShe-73g/uploads?v=2&amp;alt=json"&gt;YouTube de Parcs Canada&lt;/a&gt;
 		&lt;/li&gt;
 		&lt;li&gt;
-			&lt;a href="https://www.youtube.com/user/fisheriescanada?feature=results_main" rel="external" data-ajax="https://gdata.youtube.com/feeds/api/users/UC5D1a5R8bbrTXEJrjmRX7gA/uploads?v=2&amp;amp;alt=json"&gt;Department of Fisheries and Oceans’ YouTube&lt;/a&gt;
+			&lt;a href="https://www.youtube.com/user/fisheriescanada?feature=results_main" rel="external" data-ajax="https://gdata.youtube.com/feeds/api/users/UCf1JLCB96nHLjidhSJtHDFA/uploads?v=2&amp;alt=json"&gt;YouTube de Pêches et Océans Canada&lt;/a&gt;
 		&lt;/li&gt;
 	&lt;/ul&gt;
 	&lt;div class="clearfix"&gt;&lt;/div&gt;
@@ -225,9 +225,9 @@
 		</section>
 
 		<section>
-			<h4>Tabbed feeds</h4>
+			<h4>Les comptes des médias sociaux à onglets</h4>
 			<pre><code>&lt;section&gt;
-	&lt;h3&gt;Tabbed Social Feeds&lt;/h3&gt;
+	&lt;h3&gt;Les comptes des médias sociaux à onglets&lt;/h3&gt;
 	&lt;div class="wb-tabs col-md-5 wb-eqht"&gt;
 		&lt;div class="tabpanels"&gt;
 			&lt;details id="details-facebook" open="open"&gt;
@@ -236,21 +236,21 @@
 					&lt;h4 class="wb-inv"&gt;Facebook&lt;/h4&gt;
 					&lt;ul class="feeds-cont media-list"&gt;
 						&lt;li class="media"&gt;
-							&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=318424514044&amp;amp;format=atom10"&gt;
-								&lt;img class="media-object" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1.0-1/c17.17.207.207/430015_10151952323214045_194318965_n.png" alt="Enviroment Canada Logo" width="64" /&gt;
+							&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=460123390028&amp;format=atom10"&gt;
+								&lt;img class="media-object" src="http://graph.facebook.com/460123390028/picture?type=large" alt="Logo Environnement Canada" width="64" /&gt;
 							&lt;/a&gt;
 							&lt;section class="media-body"&gt;
-								&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=318424514044&amp;amp;format=atom10" rel="external"&gt;Enviroment Canada - Facebook&lt;/a&gt;&lt;/h4&gt;
-								&lt;p&gt;At Environment Canada our business is protecting the environment, conserving the country's natural heritage and providing weather and environmental predictions to keep Canadians informed and safe.&lt;/p&gt;
+								&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=460123390028&amp;format=atom10" rel="external"&gt;Environnement Canada - Facebook&lt;/a&gt;&lt;/h4&gt;
+								&lt;p&gt;EC est une organisation diversifiée offrant des programmes et des services efficaces et regroupant des gens dynamiques qui font une différence sur le plan environnemental et dans différents aspects de la vie des Canadiennes et Canadiens.&lt;/p&gt;
 							&lt;/section&gt;
 						&lt;/li&gt;
 						&lt;li class="media"&gt;
-							&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=137563459593611&amp;amp;format=atom10"&gt;
-								&lt;img class="media-object" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/t1.0-1/p320x320/10245484_872682866081663_8340097330550277155_n.png" alt="Parks Canada Logo" width="64" /&gt;
+							&lt;a class="pull-left" href="https://www.facebook.com/feeds/page.php?id=134615279898518&amp;format=atom10"&gt;
+								&lt;img class="media-object" src="http://graph.facebook.com/134615279898518/picture?type=large" alt="Logo Parcs Canada" width="64" /&gt;
 							&lt;/a&gt;
 							&lt;section class="media-body"&gt;
-								&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=137563459593611&amp;amp;format=atom10" rel="external"&gt;Parks Canada - Facebook&lt;/a&gt;&lt;/h4&gt;
-								&lt;p&gt;On behalf of the people of Canada, we protect and present nationally significant examples of Canada's natural and cultural heritage, and foster public understanding, appreciation and enjoyment in ways that ensure the ecological and commemorative integrity of these places for present and future generations.&lt;/p&gt;
+								&lt;h4 class="media-heading"&gt;&lt;a href="https://www.facebook.com/feeds/page.php?id=134615279898518&amp;format=atom10" rel="external"&gt;Parcs Canada- Facebook&lt;/a&gt;&lt;/h4&gt;
+								&lt;p&gt;Les parcs nationaux, aires marines nationales de conservation et lieux historiques nationaux du Canada.&lt;/p&gt;
 							&lt;/section&gt;
 						&lt;/li&gt;
 					&lt;/ul&gt;
@@ -264,7 +264,7 @@
 					&lt;h4 class="wb-inv"&gt;Flickr&lt;/h4&gt;
 					&lt;ul class="feeds-cont list-inline"&gt;
 						&lt;li&gt;
-							&lt;a href="https://www.flickr.com/photos/environmentcan" rel="external" data-ajax="https://api.flickr.com/services/feeds/photos_public.gne?id=47711201@N05&amp;amp;format=json"&gt;Environment Canada Flickr&lt;/a&gt;
+							&lt;a href="https://www.flickr.com/photos/environnementcan" rel="external" data-ajax="https://api.flickr.com/services/feeds/photos_public.gne?id=47721741@N05&amp;format=json"&gt;Flickr d'Environnement Canada&lt;/a&gt;
 						&lt;/li&gt;
 					&lt;/ul&gt;
 					&lt;div class="clearfix"&gt;&lt;/div&gt;
@@ -277,10 +277,10 @@
 					&lt;h4 class="wb-inv"&gt;YouTube&lt;/h4&gt;
 					&lt;ul class="feeds-cont list-inline"&gt;
 						&lt;li&gt;
-							&lt;a href="https://www.youtube.com/user/ParksCanadaAgency" rel="external" data-ajax="https://gdata.youtube.com/feeds/api/users/UCzJRhTw3KVtDlcdNz33eDMQ/uploads?v=2&amp;amp;alt=json"&gt;Parks Canada Youtube&lt;/a&gt;
+							&lt;a href="https://www.youtube.com/user/ParksCanadaAgency" rel="external" data-ajax="https://gdata.youtube.com/feeds/api/users/UCr23fllByMomgNGeShe-73g/uploads?v=2&amp;alt=json"&gt;YouTube de Parcs Canada&lt;/a&gt;
 						&lt;/li&gt;
 						&lt;li&gt;
-							&lt;a href="https://www.youtube.com/user/fisheriescanada?feature=results_main" rel="external" data-ajax="https://gdata.youtube.com/feeds/api/users/UC5D1a5R8bbrTXEJrjmRX7gA/uploads?v=2&amp;amp;alt=json"&gt;Department of Fisheries and Oceans’ YouTube&lt;/a&gt;
+							&lt;a href="https://www.youtube.com/user/fisheriescanada?feature=results_main" rel="external" data-ajax="https://gdata.youtube.com/feeds/api/users/UCf1JLCB96nHLjidhSJtHDFA/uploads?v=2&amp;alt=json"&gt;YouTube de Pêches et Océans Canada&lt;/a&gt;
 						&lt;/li&gt;
 					&lt;/ul&gt;
 					&lt;div class="clearfix"&gt;&lt;/div&gt;
@@ -295,26 +295,26 @@
 </section>
 
 <section>
-	<h2>Configuration options</h2>
-	<p>Document the public configuration options that can be used by implementers or developers.</p>
+	<h2>Options de configuration</h2>
+	<p>Documente les options de configuration publiques qui peuvent être utilisées par les intégrateurs ou les développeurs.</p>
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Option</th>
 				<th>Description</th>
-				<th>How to configure</th>
-				<th>Values</th>
+				<th>Comment configurer</th>
+				<th>Valeurs</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td><code>limit-x</code></td>
-				<td>Controls the amount of items the Web feeds widget will display.</td>
-				<td>Add the <code>limit-x</code> class after the <code>wb-feeds</code> class and replace <code>x</code> with an integer.</td>
+				<td>Contrôle le nombre d'items du fil de syndication que le widget affichera.</td>
+				<td>Ajouter la classe <code>limit-x</code> après la classe <code>wb-feeds</code> et remplacer <code>x</code> avec nombre entier.</td>
 				<td>
 					<dl>
-						<dt><code>limit-4</code> (default):</dt>
-						<dd>Limits display to four items.</dd>
+						<dt><code>limit-4</code> (défaut):</dt>
+						<dd>Limite l'affichage à quatre items.</dd>
 					</dl>
 				</td>
 			</tr>
@@ -323,26 +323,26 @@
 </section>
 
 <section>
-	<h2>Events</h2>
-	<p>Document the public events that can be used by implementers or developers.</p>
+	<h2>Événements</h2>
+	<p>Documente les événements publics qui peuvent être utilisés par les intégrateurs ou les développeurs .</p>
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Event</th>
-				<th>Trigger</th>
-				<th>What it does</th>
+				<th>Événement</th>
+				<th>Déclencheur</th>
+				<th>Ce qu'il fait</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td><code>wb-init.wb-feeds</code></td>
-				<td>Triggered manually (e.g., <code>$( ".wb-feeds" ).trigger( "wb-init.wb-feeds" );</code>).</td>
-				<td>Used to manually initialize the Feeds widget. <strong>Note:</strong> The Feeds widget will be initialized automatically unless it is added after the page has already loaded.</td>
+				<td>Déclenché manuellement (e.g., <code>$( ".wb-feeds" ).trigger( "wb-init.wb-feeds" );</code>).</td>
+				<td>Utilisé pour initialiser manuellement le widget de fils de syndication. <strong>Note:</strong> Le widget de fils de syndication sera initialisé automatiquement à moins qu'il soit ajouté après le chargement initial de la page.</td>
 			</tr>
 			<tr>
 				<td><code>wb-ready.wb-feeds</code> (v4.0.5+)</td>
-				<td>Triggered automatically after the Feeds plugin has initialized.</td>
-				<td>Used to identify where the Feeds plugin has finished initializing (target of the event).
+				<td>Déclenché automatiquement après que le plugiciel de fils de syndication ait été initialisé.</td>
+				<td>Utilisé pour identifier où le plugiciel a fini d'être initialisé (cible de l'événement).
 					<pre><code>$( document ).on( "wb-ready.wb-feeds", ".wb-feeds", function( event ) {
 });</code></pre>
 					<pre><code>$( ".wb-feeds" ).on( "wb-ready.wb-feeds", function( event ) {
@@ -351,8 +351,8 @@
 			</tr>
 			<tr>
 				<td><code>wb-feed-ready.wb-feeds</code> (v4.0.5+)</td>
-				<td>Triggered automatically after a feed has become visible.</td>
-				<td>Used to identify which feed has become visible (target of the event).
+				<td>Déclenché automatiquement après que le fil de syndication soit devenu visible.</td>
+				<td>Utilisé pour identifier quel fil est devenu visible (cible de l'événement).
 					<pre><code>$( document ).on( "wb-feed-ready.wb-feeds", ".wb-feeds .feeds-cont", function( event ) {
 });</code></pre>
 					<pre><code>$( ".wb-feeds .feeds-cont" ).on( "wb-feed-ready.wb-feeds", function( event ) {
@@ -361,8 +361,8 @@
 			</tr>
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
-				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Déclenché automatiquement lorsque BOEW a terminé son chargement et son exécution.</td>
+				<td>Utilisé pour identifier quand tous les plugiciels BOEW et les correctifs ont terminé leur chargement et leur exécution. 
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
@@ -372,7 +372,7 @@
 </section>
 
 <section>
-	<h2>Source code</h2>
-	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/feeds">Feeds widget source code on GitHub</a></p>
+	<h2>Code source</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/feeds">Code source du widget de fils de syndications sur GitHub</a></p>
 </section>
 </div>
