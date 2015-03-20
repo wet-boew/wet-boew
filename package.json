@@ -55,14 +55,14 @@
     "grunt-i18n-csv": "^0.1.0",
     "grunt-imagine": "^0.3.4",
     "grunt-jscs": "^1.5.0",
-    "grunt-mocha": "~0.4.1",
+    "grunt-mocha": "~0.4.12",
     "grunt-modernizr": "~0.5.2",
     "grunt-sass": "^0.14.1",
     "grunt-saucelabs": "^8.5.0",
     "grunt-wet-boew-postbuild": "wet-boew/grunt-wet-boew-postbuild#v0.1.2",
     "grunt-wget": "~0.1.0",
-    "mocha": "^1.18.2",
-    "sinon": "^1.9.1",
+    "mocha": "^1.21.5",
+    "sinon": "~1.12.2",
     "time-grunt": "~1.0.0"
   }
 }
