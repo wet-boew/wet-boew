@@ -615,7 +615,7 @@ $document.on( fallbackEvent, selector, function( event, data ) {
 			width = data.width,
 			height = data.height > 0 ? data.height : Math.round( data.width / 1.777 ),
 			playerresource = wb.getPath( "/assets" ) + "/multimedia.swf?" + new Date().getTime(),
-			poster;
+			poster, $newMedia;
 
 		flashvars += "&amp;media=" + encodeURI( wb.getUrlParts( source ).absolute );
 		if ( type === "video" ) {
@@ -626,7 +626,7 @@ $document.on( fallbackEvent, selector, function( event, data ) {
 				width + "&amp;posterimg=" + encodeURI( wb.getUrlParts( posterUrl ).absolute );
 		}
 
-		data.media = $media.replaceWith( "<object id='" + data.mId + "' width='" + width +
+		$newMedia = $( "<object id='" + data.mId + "' width='" + width +
 			"' height='" + height + "' class='" + type +
 			"' type='application/x-shockwave-flash' data='" +
 			playerresource + "' tabindex='-1' play='' pause=''>" +
@@ -636,6 +636,10 @@ $document.on( fallbackEvent, selector, function( event, data ) {
 			"<param name='bgcolor' value='#000000'/>" +
 			"<param name='wmode' value='opaque'/>" +
 			poster + "</object>" );
+
+		$media.replaceWith( $newMedia );
+
+		data.media = $newMedia;
 
 		$this.trigger( renderUIEvent, [ type, data ] );
 	}
