@@ -30,13 +30,13 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 	 * For example, adding the attribute data-option1="false", will override option1 for that plugin instance.
 	 */
 	defaults = {
-		inactivity: 1200000,		// default inactivity period 20 minutes
-		reactionTime: 180000,		// default confirmation period of 3 minutes
-		sessionalive: 1200000,		// default keepalive period of 20 minutes
-		refreshCallbackUrl: null,	// refresh callback if using AJAX keepalive (no default)
-		logouturl: "./",			// logout URL once the session has expired
-		refreshOnClick: true,		// refresh session if user clicks on the page
-		refreshLimit: 200000		// default period of 2 minutes (ajax calls happen only once during this period)
+		inactivity: 1200000,		/* default inactivity period 20 minutes */
+		reactionTime: 180000,		/* default confirmation period of 3 minutes */
+		sessionalive: 1200000,		/* default keepalive period of 20 minutes */
+		refreshCallbackUrl: null,	/* refresh callback if using AJAX keepalive (no default) */
+		logouturl: "./",			/* logout URL once the session has expired */
+		refreshOnClick: true,		/* refresh session if user clicks on the page */
+		refreshLimit: 200000		/* default period of 2 minutes (ajax calls happen only once during this period) */
 	},
 
 	/**
@@ -79,6 +79,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 			}
 
 			onReady = function() {
+
 				// Setup the refresh on click behaviour
 				initRefreshOnClick( $elm, settings );
 
@@ -103,6 +104,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 	 * @param {Object} settings Key-value object
 	 */
 	initEventTimeout = function( $elm, eventName, time, settings ) {
+
 		// Clear any existing timeout for the event
 		clearTimeout( $elm.data( eventName ) );
 
@@ -190,6 +192,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 		var $elm = $( event.target );
 		if ( settings.refreshCallbackUrl !== null ) {
 			$.post( settings.refreshCallbackUrl, function( response ) {
+
 				// Session is valid
 				if ( response && response.replace( /\s/g, "" ) === "true" ) {
 					$elm.trigger( resetEvent, settings );

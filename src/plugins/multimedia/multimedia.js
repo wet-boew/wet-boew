@@ -111,6 +111,7 @@ var componentName = "wb-mltmd",
 
 		//Loop to extract hours, minutes and seconds
 		while ( index >= 0 ) {
+
 			//Get the number of seconds for the current iteration (hour, minute or second)
 			secondsIn = Math.pow( 60, index );
 			current = Math.floor( time / secondsIn );
@@ -137,9 +138,11 @@ var componentName = "wb-mltmd",
 
 		if ( time !== undef ) {
 			if ( time.charAt( time.length - 1 ) === "s" ) {
+
 				//Duration parsing
 				return parseFloat( time.substring( 0, time.length - 1 ) );
 			} else {
+
 				//SMTPE Timecode Parsing
 				parts = time.split( ":" ).reverse();
 				seconds = 0;
@@ -164,10 +167,12 @@ var componentName = "wb-mltmd",
 	tmpl = ( function() {
 		var start = "{{",
 			end = "}}",
+
 			// e.g. config.person.name
 			path = "[a-z0-9_$][\\.a-z0-9_]*",
 			pattern = new RegExp( start + "\\s*(" + path + ")\\s*" + end, "gi" );
 		return function( template, data ) {
+
 			// Merge data into the template string
 			return template.replace( pattern, function( tag, token ) {
 				var path = token.split( "." ),
@@ -176,10 +181,12 @@ var componentName = "wb-mltmd",
 					i = 0;
 				for ( ; i < len; i += 1 ) {
 					lookup = lookup[ path[ i ] ];
+
 					// Property not found
 					if ( lookup === undef ) {
 						throw "tim: '" + path[ i ] + "' not found in " + tag;
 					}
+
 					// Return the required value
 					if ( i === len - 1 ) {
 						return lookup;
@@ -280,6 +287,7 @@ var componentName = "wb-mltmd",
 		$.ajax( {
 			url: url,
 			dataType: "html",
+
 			//Filters out images and objects from the content to avoid loading them
 			dataFilter: function( data ) {
 				return data.replace( /<img|object [^>]*>/g, "" );
@@ -574,6 +582,7 @@ $document.on( initializedEvent, selector, function( event ) {
 		$this.addClass( type );
 
 		if ( $media.find( "[type='video/youtube']" ).length > 0 ) {
+
 			// lets tweak some variables and start the load sequence
 			url = wb.getUrlParts( $this.find( "[type='video/youtube']" ).attr( "src" ) );
 
@@ -673,6 +682,7 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 				},
 				onStateChange: youTubeEvents,
 				onApiChange: function() {
+
 					//If captions were enabled before the module was ready, re-enable them
 					var t = $this.get( 0 );
 					t.player( "setCaptionsVisible", t.player( "getCaptionsVisible" ) );

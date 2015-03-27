@@ -450,6 +450,7 @@ var componentName = "wb-geomap",
 		// If tabs are specified
 		if ( tab && $( ".wb-geomap-tabs" ).length !== 0 ) {
 			addToTabs( geomap, featureTable, enabled, olLayerId );
+
 		// Tabs are not specified
 		} else {
 			$layerTab.append( $layerTitle, $parent.append( featureTable ) );
@@ -860,6 +861,7 @@ var componentName = "wb-geomap",
 			$( targetTableHead ).html( headRow );
 			$( targetTableBody ).html( tableBody );
 		} else {
+
 			//targetTableHead.innerHTML = headRow; // this is not working in IE9
 			//targetTableBody.innerHTML += tableBody; // this is not working in IE9
 			$( targetTableHead ).html( headRow );
@@ -903,6 +905,7 @@ var componentName = "wb-geomap",
 		if ( wb.ielt9 ) {
 			$( tr ).html( newTr );
 		} else {
+
 			// tr.innerHTML = newTr; // this doesn't work in IE9???
 			$( tr ).html( newTr );
 		}
@@ -1052,6 +1055,7 @@ var componentName = "wb-geomap",
 				};
 			}
 		} else {
+
 			// Use map options for the Canada Transportation Base Map (CBMT)
 			mapOptions = setDefaultMapOptions();
 		}
@@ -1641,6 +1645,7 @@ var componentName = "wb-geomap",
 			trElms = table.getElementsByTagName( "tr" );
 			trLen = trElms.length;
 			useMapControls = opts.useMapControls;
+
 			// if visibility is not set to false, show the layer
 			visibility = opts.tables[ lenTable ].visible === false ? false : true;
 
@@ -2103,9 +2108,10 @@ var componentName = "wb-geomap",
 
 			if ( geomap.aoiToggle ) {
 				$aoiElm.parent().slideToggle( function() {
+
 					// fixes issue #6148
 					geomap.map.events.element.offsets = null;
-					geomap.map.events.clearMouseCache(); // for v2.7
+					geomap.map.events.clearMouseCache(); /* for v2.7 */
 				} );
 			}
 
@@ -2328,7 +2334,7 @@ var componentName = "wb-geomap",
 
 		$document.on( "keyup", "#wb-geomap-geocode-search-" + geomap.mapid, function( evt ) {
 
-			var $dataList = $( "<datalist id='wb-geomap-geocode-results-" + geomap.mapid + "'></datalist>" ), //$("#wb-geomap-geocode-results-" + geomap.mapid),
+			var $dataList = $( "<datalist id='wb-geomap-geocode-results-" + geomap.mapid + "'></datalist>" ), /* $("#wb-geomap-geocode-results-" + geomap.mapid), */
 				val,
 				bnd,
 				ll,

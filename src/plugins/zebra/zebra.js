@@ -64,6 +64,7 @@
 		if ( tblparser.lstrowgroup ) {
 			for ( i = 0, iLength = tblparser.lstrowgroup.length; i !== iLength; i += 1 ) {
 				tblGroup = tblparser.lstrowgroup[ i ];
+
 				// Add a class to the row
 				if ( tblGroup.type === 3 || tblGroup.row[ 0 ].type === 3 ) {
 					$( tblGroup.elem ).addClass( "wb-group-summary" );
@@ -75,6 +76,7 @@
 		if ( tblparser.colgroup ) {
 			for ( i = 0, iLength = tblparser.colgroup.length; i !== iLength; i += 1 ) {
 				tblGroup = tblparser.colgroup[ i ];
+
 				// Add a class to the row
 				if ( tblGroup.type === 3 ) {
 					$( tblGroup.elem ).addClass( "wb-group-summary" );

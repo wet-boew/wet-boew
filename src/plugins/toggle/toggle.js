@@ -43,6 +43,7 @@ var componentName = "wb-toggle",
 			$link, data;
 
 		if ( link ) {
+
 			// Merge the elements settings with the defaults
 			$link = $( link );
 			data = $.extend( {}, defaults, $link.data( "toggle" ) );
