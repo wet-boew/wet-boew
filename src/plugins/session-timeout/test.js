@@ -60,6 +60,7 @@ describe( "Session Timeout test suite", function() {
 	 * After finishing the test suite, this function is executed once.
 	 */
 	after( function() {
+
 		// Cleanup the test element
 		$session.remove();
 		$( "#wb-sessto-modal" ).remove();
@@ -137,6 +138,7 @@ describe( "Session Timeout test suite", function() {
 	describe( "refresh onclick", function() {
 
 		before( function() {
+
 			// Reset the state of the spies
 			spies.trigger.reset();
 			spies.post.reset();
@@ -175,6 +177,7 @@ describe( "Session Timeout test suite", function() {
 	describe( "refreshCallbackUrl", function() {
 
 		before( function( done ) {
+
 			// Setup the fake server response for all POST requests to foo.html
 			server = sandbox.useFakeServer();
 			server.respondWith( "POST", "foo.html", "true" );

@@ -16,6 +16,7 @@
  */
 /*jshint unused:false*/
 var wet_boew_geomap = {
+
 	// OPTIONNEL: Géomap va fournir une carte de base par défaut si aucune carte de base n"est spécifié ici.
 		/*basemap: {
 		title: "WMS-Toporama",
@@ -47,6 +48,7 @@ var wet_boew_geomap = {
 			transparent: true,
 			options: {
 				opacity: 0.5,
+
 				//legendGraphicUrl: "http://geo.weather.gc.ca/geomet/?Lang=E&LAYERS=GDPS.ETA_PR&VERSION=1.1.1&FORMAT=image%2Fpng&SERVICE=WMS&REQUEST=GetLegendGraphic&STYLE=PRECIPMM"
 				legendHTML: "<small>GeoMet Precipitation (mm)</small>" +
 						"<ul class='list-unstyled'>" +

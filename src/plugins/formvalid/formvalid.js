@@ -258,17 +258,19 @@ var componentName = "wb-frmvld",
 									}
 								}, 100 );
 							} else {
+
 								// Update the aria-live region as necessary
 								if ( ariaLive.innerHTML.length !== 0 ) {
 									ariaLive.innerHTML = "";
 								}
 								$summaryContainer.detach();
 							}
-						}, // End of showErrors()
+
+						}, /* End of showErrors() */
 						invalidHandler: function() {
 							submitted = true;
 						}
-					} ); //end of validate()
+					} ); /* end of validate() */
 
 					// Clear the form and remove error messages on reset
 					$document.on( "click vclick touchstart", selector + " input[type=reset]", function( event ) {

@@ -114,6 +114,7 @@ var componentName = "wb-tables",
 					/*
 					 * Extend type detection
 					 */
+
 					// Formatted numbers detection
 					// Based on: http://datatables.net/plug-ins/type-detection#formatted_numbers
 					dataTableExt.aTypes.unshift(

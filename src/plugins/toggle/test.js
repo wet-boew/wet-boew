@@ -22,6 +22,7 @@ describe( "Toggle test suite", function() {
 	 * Before begining the test suite, this function is exectued once.
 	 */
 	before( function() {
+
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
 		spy = sandbox.spy( $.prototype, "trigger" );
 	} );
@@ -30,6 +31,7 @@ describe( "Toggle test suite", function() {
 	 * After finishing the test suite, this function is exectued once.
 	 */
 	after( function() {
+
 		// Restore the original behaviour of trigger once the tests are finished
 		sandbox.restore();
 	} );
@@ -41,6 +43,7 @@ describe( "Toggle test suite", function() {
 		var $test, $toggleSelf, $toggleOthers, $accordion, $toggleTabs;
 
 		before( function() {
+
 			// Create test element
 			$test = $( "<div class='toggle-test'>" )
 				.appendTo( $body );
@@ -166,6 +169,7 @@ describe( "Toggle test suite", function() {
 		var $toggler, $toggledElm;
 
 		before( function() {
+
 			// Create the toggle element and start testing once it has been initialized
 			$toggledElm = $( "<div id='foo' class='test'/>" ).appendTo( $body );
 			$toggler = $( "<button type='button' class='wb-toggle test' data-toggle='{\"selector\": \"#foo\"}'/>" ).appendTo( $body );
@@ -197,6 +201,7 @@ describe( "Toggle test suite", function() {
 		var $toggler;
 
 		before( function() {
+
 			// Create the toggle element and start testing once it has been initialized
 			$toggler = $( "<button type='button' class='wb-toggle test'/>" ).appendTo( $body );
 			$toggler.trigger( "wb-init.wb-toggle" );
@@ -226,6 +231,7 @@ describe( "Toggle test suite", function() {
 		var $togglerOn, $togglerOff;
 
 		before( function() {
+
 			// Create the toggle elements and start testing once it has been initialized
 			$togglerOn = $( "<button type='button' class='wb-toggle test' data-toggle='{\"type\": \"on\", \"stateOn\": \"open\"}'/>" ).appendTo( $body );
 			$togglerOn.trigger( "wb-init.wb-toggle" );
@@ -271,6 +277,7 @@ describe( "Toggle test suite", function() {
 		var $toggle1, $toggle2, $toggle3, $toggler1, $toggler2, $toggler3;
 
 		before( function() {
+
 			// Create the toggle elements and start testing once it has been initialized
 			$toggler1 = $( "<button type='button' class='wb-toggle' data-toggle='{\"selector\": \"#test-toggle1\", \"group\": \".grouped\", \"type\": \"on\"}'/>" ).appendTo( $body );
 			$toggler2 = $( "<button type='button' class='wb-toggle' data-toggle='{\"selector\": \"#test-toggle2\", \"group\": \".grouped\", \"type\": \"on\"}'/>" ).appendTo( $body );
