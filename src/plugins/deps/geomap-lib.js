@@ -269,7 +269,7 @@ var componentName = "wb-geomap",
 	 */
 	onFeatureSelect = function( feature ) {
 		var featureId = feature.id.replace( /\W/g, "_" );
-		$( "#" + featureId ).addClass( "background-highlight" );
+		$( "#" + featureId ).addClass( "active" );
 		$( "#cb_" + featureId ).prop( "checked", true );
 	},
 
@@ -279,7 +279,7 @@ var componentName = "wb-geomap",
 	onFeatureUnselect = function( feature ) {
 		var featureId = feature.id.replace( /\W/g, "_" ),
 			popup = feature.popup;
-		$( "#" + featureId ).removeClass( "background-highlight" );
+		$( "#" + featureId ).removeClass( "active" );
 		$( "#cb_" + featureId ).prop( "checked", false );
 
 		// If there is a popup attached, hide it.
