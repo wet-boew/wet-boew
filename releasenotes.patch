@@ -1,0 +1,537 @@
+From 9b7a977f8733ae5f60fa7178634069bbf54d32b8 Mon Sep 17 00:00:00 2001
+From: Zach Falsetto <zfalsetto@gmail.com>
+Date: Mon, 23 Mar 2015 13:16:05 -0400
+Subject: [PATCH] release notes for version 4.0.12
+
+---
+ site/pages/docs/versions/dwnld-en.hbs              | 48 ++++++++++++-
+ site/pages/docs/versions/dwnld-fr.hbs              | 48 ++++++++++++-
+ site/pages/docs/versions/index-en.hbs              |  8 ++-
+ site/pages/docs/versions/index-fr.hbs              |  8 ++-
+ site/pages/docs/versions/rdmp-en.hbs               | 14 ++--
+ site/pages/docs/versions/rdmp-fr.hbs               | 14 ++--
+ .../pages/docs/versions/v4.0/v4.0-changelog-en.hbs | 19 +++++-
+ .../pages/docs/versions/v4.0/v4.0-changelog-fr.hbs | 22 +++++-
+ site/pages/docs/versions/v4.0/v4.0.12-en.hbs       | 78 ++++++++++++++++++++++
+ site/pages/docs/versions/v4.0/v4.0.12-fr.hbs       | 78 ++++++++++++++++++++++
+ 10 files changed, 321 insertions(+), 16 deletions(-)
+ create mode 100644 site/pages/docs/versions/v4.0/v4.0.12-en.hbs
+ create mode 100644 site/pages/docs/versions/v4.0/v4.0.12-fr.hbs
+
+diff --git a/site/pages/docs/versions/dwnld-en.hbs b/site/pages/docs/versions/dwnld-en.hbs
+index a531577..f7f085b 100644
+--- a/site/pages/docs/versions/dwnld-en.hbs
++++ b/site/pages/docs/versions/dwnld-en.hbs
+@@ -4,7 +4,7 @@
+ 	"language": "en",
+ 	"description": "Downloads - Version history - Web Experience Toolkit (WET)",
+ 	"altLangPrefix": "dwnld",
+-	"dateModified": "2015-02-17"
++	"dateModified": "2015-03-23"
+ }
+ ---
+ <p>See <a href="version-info-en.html">Versioning</a> for the meaning of each version number.</p>
+@@ -36,6 +36,52 @@
+ 	<h2 id="v40">Version 4.0</h2>
+ 	<section>
+ 		<h3 id="v40stable">Stable releases</h3>
++			<section>
++			<h4 id="v4012">v4.0.12</h4>
++			<p><a href="v4.0/v4.0.12-en.html">Release notes<span class="wb-inv"> - v4.0.12</span></a></p>
++			<table class="table table-bordered mrgn-bttm-xl">	
++				<thead>
++					<tr>
++						<th scope="col">Theme</th>
++						<th scope="col">Source code</th>
++						<th scope="col">Production files</th>
++					</tr>	
++				</thead>
++				<tbody>
++					<tr>
++						<td>Web Experience Toolkit (WET)</td>
++						<td><a href="https://github.com/wet-boew/wet-boew/archive/v4.0.12.zip">Download<span class="wb-inv"> - v4.0.12 source code - Web Experience Toolkit (WET) theme</span></a></td>
++						<td><a href="https://github.com/wet-boew/wet-boew/releases/download/v4.0.12/wet-boew-dist-4.0.12.zip">Download<span class="wb-inv"> - v4.0.12 production files - Web Experience Toolkit (WET) theme</span></a></td>
++					</tr>
++					<tr>
++						<td>Base</td>
++						<td><a href="https://github.com/wet-boew/theme-base/archive/v4.0.12.zip">Download<span class="wb-inv"> - v4.0.12 source code- Base theme</span> (theme only)</a></td>
++						<td><a href="https://github.com/wet-boew/theme-base/releases/download/v4.0.12/themes-dist-4.0.12-theme-base.zip">Download<span class="wb-inv"> - v4.0.12 production files - Base theme</span></a></td>
++					</tr>
++					<tr>
++						<td>Canada.ca</td>
++						<td><a href="https://github.com/wet-boew/GCWeb/archive/v4.0.12.zip">Download<span class="wb-inv"> - v4.0.12 source code - Canada.ca theme</span> (theme only)</a></td>
++						<td><a href="https://github.com/wet-boew/GCWeb/releases/download/v4.0.12/themes-dist-4.0.12-gcweb.zip">Download<span class="wb-inv"> - v4.0.12 production files - Canada.ca theme</span></a></td>
++					</tr>
++					<tr>
++						<td>Government of Canada Web Usability</td>
++						<td><a href="https://github.com/wet-boew/theme-gcwu-fegc/archive/v4.0.12.zip">Download<span class="wb-inv"> - v4.0.12 source code - Government of Canada Web Usability theme</span> (theme only)</a></td>
++						<td><a href="https://github.com/wet-boew/theme-gcwu-fegc/releases/download/v4.0.12/themes-dist-4.0.12-theme-gcwu-fegc.zip">Download<span class="wb-inv"> - v4.0.12 production files - Government of Canada Web Usability theme</span></a></td>
++					</tr>
++					<tr>
++						<td>Government of Canada Intranet</td>
++						<td><a href="https://github.com/wet-boew/theme-gc-intranet/archive/v4.0.12.zip">Download<span class="wb-inv"> - v4.0.12 source code - Government of Canada Intranet theme</span> (theme only)</a></td>
++						<td><a href="https://github.com/wet-boew/theme-gc-intranet/releases/download/v4.0.12/themes-dist-4.0.12-theme-gc-intranet.zip">Download<span class="wb-inv"> - v4.0.12 production files - Government of Canada Intranet theme</span></a></td>
++					</tr>
++					<tr>
++						<td>Open Government Platform (OGPL)</td>
++						<td><a href="https://github.com/wet-boew/theme-ogpl/archive/v4.0.12.zip">Download<span class="wb-inv"> - v4.0.12 source code - Open Government Platform (OGPL) theme</span> (theme only)</a></td>
++						<td><a href="https://github.com/wet-boew/theme-ogpl/releases/download/v4.0.12/themes-dist-4.0.12-theme-ogpl.zip">Download<span class="wb-inv"> - v4.0.12 production files - Open Government Platform (OGPL) theme</span></a></td>
++					</tr>
++				</tbody>
++			</table>
++		</section>
++		
+ 		<section>
+ 			<h4 id="v4011">v4.0.11</h4>
+ 			<p><a href="v4.0/v4.0.11-en.html">Release notes<span class="wb-inv"> - v4.0.11</span></a></p>
+diff --git a/site/pages/docs/versions/dwnld-fr.hbs b/site/pages/docs/versions/dwnld-fr.hbs
+index 13e32b7..abf628a 100644
+--- a/site/pages/docs/versions/dwnld-fr.hbs
++++ b/site/pages/docs/versions/dwnld-fr.hbs
+@@ -4,7 +4,7 @@
+ 	"language": "fr",
+ 	"description": "Téléchargements - Historique des versions - Boîte à outils de l'expérience Web (BOEW)",
+ 	"altLangPrefix": "dwnld",
+-	"dateModified": "2015-02-17"
++	"dateModified": "2015-03-23"
+ }
+ ---
+ <p>Voir <a href="version-info-fr.html">Contrôle des versions</a> pour la signification de chaque numéro de version.</p>
+@@ -36,6 +36,52 @@
+ 	<h2 id="v40">Version 4.0</h2>
+ 	<section>
+ 		<h3 id="v40stable">Versions stables</h3>
++			<section>
++			<h4 id="v4012">v4.0.12</h4>
++			<p><a href="v4.0/v4.0.12-fr.html">Notes d'utilisation<span class="wb-inv"> - v4.0.12</span></a></p>
++			<table class="table table-bordered mrgn-bttm-xl">	
++				<thead>
++					<tr>
++						<th scope="col">Thème</th>
++						<th scope="col">Code source</th>
++						<th scope="col">Fichiers de production</th>
++					</tr>	
++				</thead>
++				<tbody>
++					<tr>
++						<td>Boîte à outils de l'expérience Web (BOEW)</td>
++						<td><a href="https://github.com/wet-boew/wet-boew/archive/v4.0.12.zip">Télécharger<span class="wb-inv"> - Code source de v4.0.12 - Thème de la Boîte à outils de l'expérience Web (BOEW)</span></a></td>
++						<td><a href="https://github.com/wet-boew/wet-boew/releases/download/v4.0.11/wet-boew-dist-4.0.12.zip">Télécharger<span class="wb-inv"> - Fichiers de production de v4.0.12 - Thème de la Boîte à outils de l'expérience Web (BOEW)</span></a></td>
++					</tr>
++					<tr>
++						<td>Base</td>
++						<td><a href="https://github.com/wet-boew/theme-base/archive/v4.0.12.zip">Télécharger<span class="wb-inv"> - Code source de v4.0.12 - Thème de base</span> (thème seulement)</a></td>
++						<td><a href="https://github.com/wet-boew/theme-base/releases/download/v4.0.12/themes-dist-4.0.12-theme-base.zip">Télécharger<span class="wb-inv"> - Fichiers de production de v4.0.12 - Thème de base</span></a></td>
++					</tr>
++					<tr>
++						<td>Canada.ca</td>
++						<td><a href="https://github.com/wet-boew/GCWeb/archive/v4.0.12.zip">Télécharger<span class="wb-inv"> - Code source de v4.0.12 - Thème Canada.ca</span> (thème seulement)</a></td>
++						<td><a href="https://github.com/wet-boew/GCWeb/releases/download/v4.0.12/themes-dist-4.0.12-gcweb.zip">Télécharger<span class="wb-inv"> - Fichiers de production de v4.0.12 - Thème Canada.ca</span></a></td>
++					</tr>
++					<tr>
++						<td>Facilité d’emploi Web du gouvernement du Canada</td>
++						<td><a href="https://github.com/wet-boew/theme-gcwu-fegc/archive/v4.0.12.zip">Télécharger<span class="wb-inv"> - Code source de v4.0.12 - Thème de la facilité d’emploi Web du gouvernement du Canada</span> (thème seulement)</a></td>
++						<td><a href="https://github.com/wet-boew/theme-gcwu-fegc/releases/download/v4.0.12/themes-dist-4.0.12-theme-gcwu-fegc.zip">Télécharger<span class="wb-inv"> - Fichiers de production de v4.0.12 - Thème de la facilité d’emploi Web du gouvernement du Canada</span></a></td>
++					</tr>
++					<tr>
++						<td>Gouvernement du Canada pour les sites intranet</td>
++						<td><a href="https://github.com/wet-boew/theme-gc-intranet/archive/v4.0.12.zip">Télécharger<span class="wb-inv"> - Code source de v4.0.12 - Thème du gouvernement du Canada pour les sites intranet</span> (thème seulement)</a></td>
++						<td><a href="https://github.com/wet-boew/theme-gc-intranet/releases/download/v4.0.12/themes-dist-4.0.12-theme-gc-intranet.zip">Télécharger<span class="wb-inv"> - Fichiers de production de v4.0.12 - Thème du gouvernement du Canada pour les sites intranet</span></a></td>
++					</tr>
++					<tr>
++						<td>Plate-forme de gouvernement ouvert (PGO)</td>
++						<td><a href="https://github.com/wet-boew/theme-ogpl/archive/v4.0.12.zip">Télécharger<span class="wb-inv"> - Code source de v4.0.12 - Thème de la Plate-forme de gouvernement ouvert (PGO)</span> (thème seulement)</a></td>
++						<td><a href="https://github.com/wet-boew/theme-ogpl/releases/download/v4.0.12/themes-dist-4.0.12-theme-ogpl.zip">Télécharger<span class="wb-inv"> - Fichiers de production de v4.0.12 - Thème de la Plate-forme de gouvernement ouvert (PGO)</span></a></td>
++					</tr>
++				</tbody>
++			</table>
++		</section>
++		
+ 		<section>
+ 			<h4 id="v4011">v4.0.11</h4>
+ 			<p><a href="v4.0/v4.0.11-fr.html">Notes d'utilisation<span class="wb-inv"> - v4.0.11</span></a></p>
+diff --git a/site/pages/docs/versions/index-en.hbs b/site/pages/docs/versions/index-en.hbs
+index 41883cd..73e5d4c 100644
+--- a/site/pages/docs/versions/index-en.hbs
++++ b/site/pages/docs/versions/index-en.hbs
+@@ -4,7 +4,7 @@
+ 	"language": "en",
+ 	"description": "Version history - Web Experience Toolkit (WET)",
+ 	"altLangPrefix": "index",
+-	"dateModified": "2015-02-17"
++	"dateModified": "2015-03-23"
+ }
+ ---
+ <p>See <a href="version-info-en.html">Versioning</a> for the meaning of each version number.</p>
+@@ -23,6 +23,12 @@
+ 		</thead>
+ 		<tbody>
+ 			<tr>
++				<td>v4.0.12</td>
++				<td><time>2015-03-23</time></td>
++				<td><a href="v4.0/v4.0.12-en.html">Release notes<span class="wb-inv"> - v4.0.12</span></a></td>
++				<td><a href="dwnld-en.html#v4012">Downloads<span class="wb-inv"> - v4.0.12</span></a></td>
++			</tr>
++			<tr>
+ 				<td>v4.0.11</td>
+ 				<td><time>2015-02-17</time></td>
+ 				<td><a href="v4.0/v4.0.11-en.html">Release notes<span class="wb-inv"> - v4.0.11</span></a></td>
+diff --git a/site/pages/docs/versions/index-fr.hbs b/site/pages/docs/versions/index-fr.hbs
+index 2eb2c4e..61d395e 100644
+--- a/site/pages/docs/versions/index-fr.hbs
++++ b/site/pages/docs/versions/index-fr.hbs
+@@ -4,7 +4,7 @@
+ 	"language": "fr",
+ 	"description": "Historique des versions - Boîte à outils de l'expérience Web (BOEW)",
+ 	"altLangPrefix": "index",
+-	"dateModified": "2015-02-17"
++	"dateModified": "2015-03-23"
+ }
+ ---
+ <p>Voir <a href="version-info-fr.html">Contrôle des versions</a> pour la signification de chaque numéro de version.</p>
+@@ -23,6 +23,12 @@
+ 		</thead>
+ 		<tbody>
+ 			<tr>
++				<td>v4.0.12</td>
++				<td><time>2015-03-23</time></td>
++				<td><a href="v4.0/v4.0.12-en.html">Notes d'utilisation<span class="wb-inv"> - v4.0.12</span></a></td>
++				<td><a href="dwnld-en.html#v4012">Téléchargements<span class="wb-inv"> - v4.0.12</span></a></td>
++			</tr>
++			<tr>
+ 				<td>v4.0.11</td>
+ 				<td><time>2015-02-17</time></td>
+ 				<td><a href="v4.0/v4.0.11-en.html">Notes d'utilisation<span class="wb-inv"> - v4.0.11</span></a></td>
+diff --git a/site/pages/docs/versions/rdmp-en.hbs b/site/pages/docs/versions/rdmp-en.hbs
+index 1c0bfee..11a08fd 100644
+--- a/site/pages/docs/versions/rdmp-en.hbs
++++ b/site/pages/docs/versions/rdmp-en.hbs
+@@ -4,7 +4,7 @@
+ 	"language": "en",
+ 	"description": "Roadmap - Version history - Web Experience Toolkit (WET)",
+ 	"altLangPrefix": "rdmp",
+-	"dateModified": "2015-02-17"
++	"dateModified": "2015-03-23"
+ }
+ ---
+ <p>See <a href="version-info-en.html">Versioning</a> for the meaning of each version number.</p>
+@@ -20,6 +20,10 @@
+ 		</thead>
+ 		<tbody>
+ 			<tr>
++				<td><time>2015-06-23</time></td>
++				<td>v4.0.15 release</td>
++			</tr>			
++			<tr>
+ 				<td><time>2015-05-19</time></td>
+ 				<td>v4.0.14 release</td>
+ 			</tr>
+@@ -28,10 +32,6 @@
+ 				<td>v4.0.13 release</td>
+ 			</tr>
+ 			<tr>
+-				<td><time>2015-03-24</time></td>
+-				<td>v4.0.12 release</td>
+-			</tr>
+-			<tr>
+ 				<td>Summer/Fall 2014</td>
+ 				<td>End of support for IE8 (when IE8 usage is below 5%)</td>
+ 			</tr>
+@@ -50,6 +50,10 @@
+ 		</thead>
+ 		<tbody>
+ 			<tr>
++				<td><time>2015-03-23</time></td>
++				<td><a href="v4.0/v4.0.12-en.html">v4.0.12 release</a></td>
++			</tr>
++			<tr>
+ 				<td><time>2015-02-17</time></td>
+ 				<td><a href="v4.0/v4.0.11-en.html">v4.0.11 release</a></td>
+ 			</tr>
+diff --git a/site/pages/docs/versions/rdmp-fr.hbs b/site/pages/docs/versions/rdmp-fr.hbs
+index bd4c732..ddbb60b 100644
+--- a/site/pages/docs/versions/rdmp-fr.hbs
++++ b/site/pages/docs/versions/rdmp-fr.hbs
+@@ -4,7 +4,7 @@
+ 	"language": "fr",
+ 	"description": "Feuille de route - Historique des versions - Boîte à outils de l'expérience Web (BOEW)",
+ 	"altLangPrefix": "rdmp",
+-	"dateModified": "2015-02-17"
++	"dateModified": "2015-03-23"
+ }
+ ---
+ <p>Voir <a href="version-info-fr.html">Contrôle des versions</a> pour la signification de chaque numéro de version.</p>
+@@ -20,6 +20,10 @@
+ 		</thead>
+ 		<tbody>
+ 			<tr>
++				<td><time>2015-06-23</time></td>
++				<td>Lancement de v4.0.15</td>
++			</tr>
++			<tr>
+ 				<td><time>2015-05-19</time></td>
+ 				<td>Lancement de v4.0.14</td>
+ 			</tr>
+@@ -28,10 +32,6 @@
+ 				<td>Lancement de v4.0.13</td>
+ 			</tr>
+ 			<tr>
+-				<td><time>2015-03-24</time></td>
+-				<td>Lancement de v4.0.12</td>
+-			</tr>
+-			<tr>
+ 				<td>Été/automne 2014</td>
+ 				<td>Fin du soutien pour IE8 (lorsque le taux d'utilisation passera sous la barre des 5&#160;%)</td>
+ 			</tr>
+@@ -50,6 +50,10 @@
+ 		</thead>
+ 		<tbody>
+ 			<tr>
++				<td><time>2015-03-23</time></td>
++				<td><a href="v4.0/v4.0.12-fr.html">Lancement de v4.0.12</a></td>
++			</tr>
++			<tr>
+ 				<td><time>2015-02-17</time></td>
+ 				<td><a href="v4.0/v4.0.11-fr.html">Lancement de v4.0.11</a></td>
+ 			</tr>
+diff --git a/site/pages/docs/versions/v4.0/v4.0-changelog-en.hbs b/site/pages/docs/versions/v4.0/v4.0-changelog-en.hbs
+index df82f4c..5618595 100644
+--- a/site/pages/docs/versions/v4.0/v4.0-changelog-en.hbs
++++ b/site/pages/docs/versions/v4.0/v4.0-changelog-en.hbs
+@@ -4,12 +4,29 @@
+ 	"language": "en",
+ 	"description": "v4.0 changelog - Version history - Web Experience Toolkit (WET)",
+ 	"altLangPrefix": "v4.0-changelog",
+-	"dateModified": "2015-02-17"
++	"dateModified": "2015-03-23"
+ }
+ ---
+ <p>See <a href="../version-info-en.html">Versioning</a> for the meaning of each version number.</p>
+ <span class="wb-prettify all-pre"></span>
+ <section>
++	<h2>v4.0.12</h2>
++	<ul>
++		<li><strong>Release date:</strong> <time>2015-03-23</time></li>
++		<li><a href="v4.0.12-en.html">Release notes<span class="wb-inv"> - v4.0.12</span></a></li>
++		<li><a href="../dwnld-en.html#v4012">Downloads<span class="wb-inv"> - v4.0.12</span></a></li>
++	</ul>
++
++	<section>
++		<h3>What's New</h3>
++		<ul>
++		<li><strong>asd:</strong>asd</li>
++
++		</ul>
++	</section>
++</section>
++
++<section>
+ 	<h2>v4.0.11</h2>
+ 	<ul>
+ 		<li><strong>Release date:</strong> <time>2015-02-17</time></li>
+diff --git a/site/pages/docs/versions/v4.0/v4.0-changelog-fr.hbs b/site/pages/docs/versions/v4.0/v4.0-changelog-fr.hbs
+index b1b21b8..2aae5d7 100644
+--- a/site/pages/docs/versions/v4.0/v4.0-changelog-fr.hbs
++++ b/site/pages/docs/versions/v4.0/v4.0-changelog-fr.hbs
+@@ -4,12 +4,32 @@
+ 	"language": "fr",
+ 	"description": "ChangeLog de la version 4.0 - Historique des versions - Boîte à outils de l'expérience Web (BOEW)",
+ 	"altLangPrefix": "v4.0-changelog",
+-	"dateModified": "2015-02-17"
++	"dateModified": "2015-03-23"
+ }
+ ---
+ <p>Voir <a href="../version-info-fr.html">Contrôle des versions</a> pour la signification de chaque numéro de version.</p>
+ <span class="wb-prettify all-pre"></span>
+ <section>
++	<h2>v4.0.12</h2>
++	<ul>
++		<li><strong>Date de lancement&#160;:</strong> <time>2015-03-23</time></li>
++		<li><a href="v4.0.12-fr.html">Notes d'utilisation<span class="wb-inv"> - v4.0.12</span></a></li>
++		<li><a href="../dwnld-fr.html#v4012">Téléchargements<span class="wb-inv"> - v4.0.12</span></a></li>
++	</ul>
++
++	<section>
++		<h3>Quoi de neuf?</h3>
++		<div lang="en">
++		<p><strong>Needs translation</strong></p>
++		<ul>
++		<li><strong>asd:</strong> asd</li>
++
++		</ul>
++		</div>
++	</section>
++</section>
++
++<section>
+ 	<h2>v4.0.11</h2>
+ 	<ul>
+ 		<li><strong>Date de lancement&#160;:</strong> <time>2015-02-17</time></li>
+diff --git a/site/pages/docs/versions/v4.0/v4.0.12-en.hbs b/site/pages/docs/versions/v4.0/v4.0.12-en.hbs
+new file mode 100644
+index 0000000..d18cdf0
+--- /dev/null
++++ b/site/pages/docs/versions/v4.0/v4.0.12-en.hbs
+@@ -0,0 +1,78 @@
++---
++{
++	"title": "v4.0.12 release notes",
++	"language": "en",
++	"description": "v4.0.12 release notes - Version history - Web Experience Toolkit (WET)",
++	"altLangPrefix": "v4.0.12",
++	"dateModified": "2015-03-23"
++}
++---
++<ul>
++	<li><strong>Release date:</strong> <time>2015-03-23</time></li>
++	<li><a href="../dwnld-en.html#v4012">Downloads</a></li>
++</ul>
++
++<span class="wb-prettify all-pre"></span>
++
++<section>
++	<h2>What's New</h2>
++	<ul>
++		<li><strong>DataTables:</strong> Fixed the page number when more than one datatable is on the page</li>
++		<li><strong>Multimedia:</strong> Fix the playback of video in IE9-11</li>
++		<li><strong>Geomap:</strong> Fixed issue where default attribution wasn't added to map</li>
++		<li><strong>Geomap:</strong> Added WMS overlay capability with support for graphic and HTML legends, cql_queries, and layer opacity</li>
++		<li><strong>Menu:</strong> Fixed Javascript execution halted when non link, non heading text in secondary menu</li>
++		<li><strong>Footnotes:</strong> Adjusted print SCSS to prevent URLs from appearing beside return links</li>
++		<li><strong>Theme:</strong> Added aria-labelledby to the Lightbox content area to help Jaws to read the contained header</li>
++		<li><strong>Tabs:</strong> Fixed firing of the wb-updated event so it only fires on a tabpane change</li>
++		<li><strong>Toggle:</strong> Added the ability to set the initial state of a toggle button and fixed the handling of nested elements</li>
++		<li><strong>SCSS Variables:</strong> Updated src variables file and added customizable variables for Tabs plugin</li>
++		<li><strong>Updated Bootstrap for Sass version to 3.3.1:</strong></li>
++	</ul>
++</section>
++
++<section>
++	<h2>Details</h2>
++	<p><strong>Number of commits:</strong> 27</p>
++	<ul>
++		<li><a href="https://github.com/LaurentGoderre">@LaurentGoderre</a>: 12 commits</li>
++		<li><a href="https://github.com/jvanulde">@jvanulde </a>: 6 commits</li>
++		<li><a href="https://github.com/pjackson28">@pjackson28</a>: 5 commits</li>
++		<li><a href="https://github.com/ericdunsworth">@EricDunsworth</a>: 2 commits</li>
++		<li><a href="https://github.com/melodyma">@melodyma</a>: 1 commits</li>
++		<li><a href="https://github.com/zachfalsetto">@zachfalsetto</a>: 1 commits</li>
++	</ul>
++
++	<section>
++		<h3>List of commits</h3>
++		<ul>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/7573824">changing to latest bootstrap</a> - Zach Falsetto, 2015-01-19 16:48:11 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/52f9ac8">Fixed the display of Facebook feed times by inserting a line break Also used CSS to display the brackets. Fixes #3511</a> - Laurent Goderre, 2015-01-19 19:13:26 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/ef8e93c">Test: Fixed SauceLabs intermittent build failures</a> - Laurent Goderre, 2015-01-20 11:07:50 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/16e6e26">Updated the build version to v4.0.11-development</a> - Laurent Goderre, 2015-01-20 11:44:00 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/7b7e5cf">Geomap: added WMS overlay capability with support for graphic and HTML legends, cql_queries, and layer opacity.</a> - Joost van Ulden, 2015-01-21 15:54:18 -0800</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/1f8b705">Prevented hash handling when handling same page links</a> - Paul Jackson, 2015-01-27 11:06:34 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/ed5b198">Menu: Added better nesting support for nested menu items</a> - Paul Jackson, 2015-01-28 16:41:41 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/9c448b1">Build: Convert the IE8 CSS minification clean to an npm module</a> - Laurent Goderre, 2015-01-29 14:26:44 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/f31c69a">Fixed issue where geocoder datalist contents covered text input in Safari on iOS, Mac, and Windows.</a> - Joost van Ulden, 2015-02-02 06:34:57 -0800</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/503dadc">DataTable: Fixed ambiguous page links</a> - Laurent Goderre, 2015-02-02 16:48:04 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/ac08afb">Toggle: Added the ability to set the initial state of a toggle button</a> - Paul Jackson, 2015-02-03 13:10:44 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/3daab3f">Toggle: Fixed handling of elements nested in a toggle button</a> - Paul Jackson, 2015-02-03 14:08:24 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/5351245">Tabs: Fixed firing of the wb-updated event so it only fires on a tabpanel change</a> - Paul Jackson, 2015-02-03 14:23:37 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/6657bab">Theme: Added missing rel=external to external links</a> - Laurent Goderre, 2015-02-04 10:44:48 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/98284d5">Addresses #6206 and fixes #6148. Users can configure the AOI widget to be displayed by default and pre-load it with a bound box extent. Minor markup improvements.</a> - Joost van Ulden, 2015-02-04 15:49:00 -0800</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/5a43c47">Footnotes: Adjusted print SCSS to prevent URLs from appearing beside return links. Fixes #6500.</a> - Eric Dunsworth, 2015-02-05 16:25:21 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/08b6377">Menu: Fixed Javascript execution halted when non link, non heading text in secondary menu Fixes #6510</a> - Laurent Goderre, 2015-02-10 16:54:42 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/75e9675">Site: Fixed spacing/indentation issues throughout many HBS files. Ignored non-HTML code examples.</a> - Eric Dunsworth, 2015-02-11 00:28:50 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/25b8329">Build: Optimized the grunt file and fixed the watch target</a> - Laurent Goderre, 2015-02-12 11:25:16 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/e0fd33d">Updated Geomap documentation to reflect new and updated functionality.</a> - Joost van Ulden, 2015-02-12 10:10:40 -0800</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/2fc30f0">Fixed issue where base map attribution text is too large on mobile.</a> - Joost van Ulden, 2015-02-13 07:35:24 -0800</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/d05f721">Fixed issue where default attribution wasn't added to map.</a> - Joost van Ulden, 2015-02-13 09:01:03 -0800</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/60450f4">Multimedia: Fixed the need to play play twice at the end of video in IE Fixes #6052</a> - Laurent Goderre, 2015-02-16 11:06:37 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/5f25a19">Multimedia: Use the `playing` event because IE incorrectly implements the play event</a> - Laurent Goderre, 2015-02-16 13:06:46 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/a419908">DataTable: Fixed the page number when more than one datatable is on the page</a> - Laurent Goderre, 2015-02-16 13:54:17 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/847ce7c">DataTables: Fixed the display of the pagination icons in IE8</a> - Laurent Goderre, 2015-02-16 15:46:45 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/033834c">SCSS/Tabs Plugin: Reorganized src variables file and add customizable variables for tabs plugin</a> - melodyma, 2015-02-16 23:04:43 -0800</li>
++		</ul>
++	</section>
++</section>
+diff --git a/site/pages/docs/versions/v4.0/v4.0.12-fr.hbs b/site/pages/docs/versions/v4.0/v4.0.12-fr.hbs
+new file mode 100644
+index 0000000..e1f68f9
+--- /dev/null
++++ b/site/pages/docs/versions/v4.0/v4.0.12-fr.hbs
+@@ -0,0 +1,78 @@
++---
++{
++	"title": "v4.0.12 - Notes d'utilisation",
++	"language": "fr",
++	"description": "v4.0.12 - Notes d'utilisation - Historique des versions - Boîte à outils de l'expérience Web (BOEW)",
++	"altLangPrefix": "v4.0.12",
++	"dateModified": "2015-03-23"
++}
++---
++<ul>
++	<li><strong>Date de lancement&#160;:</strong> <time>2015-03-23</time></li>
++	<li><a href="../dwnld-fr.html#v4012">Téléchargements</a></li>
++</ul>
++
++<section>
++	<h2>Quoi de neuf?</h2>
++	<div lang="en">
++	<p><strong>Needs translation</strong></p>
++	<ul>
++		<li><strong>DataTables:</strong> Fixed the page number when more than one datatable is on the page</li>
++		<li><strong>Multimedia:</strong> Fix the playback of video in IE9-11</li>
++		<li><strong>Geomap:</strong> Fixed issue where default attribution wasn't added to map</li>
++		<li><strong>Geomap:</strong> Added WMS overlay capability with support for graphic and HTML legends, cql_queries, and layer opacity</li>
++		<li><strong>Menu:</strong> Fixed Javascript execution halted when non link, non heading text in secondary menu</li>
++		<li><strong>Footnotes:</strong> Adjusted print SCSS to prevent URLs from appearing beside return links</li>
++		<li><strong>Theme:</strong> Added aria-labelledby to the Lightbox content area to help Jaws to read the contained header</li>
++		<li><strong>Tabs:</strong> Fixed firing of the wb-updated event so it only fires on a tabpane change</li>
++		<li><strong>Toggle:</strong> Added the ability to set the initial state of a toggle button and fixed the handling of nested elements</li>
++		<li><strong>SCSS Variables:</strong> Updated src variables file and added customizable variables for Tabs plugin</li>
++		<li><strong>Updated Bootstrap for Sass version to 3.3.1:</strong></li>
++	</ul>
++	</div>
++</section>
++
++<section>
++	<h2>Détails</h2>
++	<p><strong>Nombre des &#171;&#160;commits&#160;&#187;</strong> 27</p>
++	<ul>
++		<li><a href="https://github.com/LaurentGoderre">@LaurentGoderre</a>&#160;: &#171;&#160;12 commits&#160;&#187;</li>
++		<li><a href="https://github.com/jvanulde">@jvanulde </a>&#160;: &#171;&#160;6 commits&#160;&#187;</li>
++		<li><a href="https://github.com/pjackson28">@pjackson28</a>&#160;: &#171;&#160;5 commits&#160;&#187;</li>
++		<li><a href="https://github.com/EricDunsworth">@EricDunsworth</a>&#160;: &#171;&#160;2 commits&#160;&#187;</li>
++		<li><a href="https://github.com/melodyma">@melodyma</a>&#160;: &#171;&#160;1 commits&#160;&#187;</li>
++		<li><a href="https://github.com/zachfalsetto">@zachfalsetto</a>&#160;: &#171;&#160;1 commits&#160;&#187;</li>
++	</ul>
++	<section>
++		<h3>Liste des &#171;&#160;commits&#160;&#187;</h3>
++		<ul lang="en">
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/7573824">changing to latest bootstrap</a> - Zach Falsetto, 2015-01-19 16:48:11 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/52f9ac8">Fixed the display of Facebook feed times by inserting a line break Also used CSS to display the brackets. Fixes #3511</a> - Laurent Goderre, 2015-01-19 19:13:26 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/ef8e93c">Test: Fixed SauceLabs intermittent build failures</a> - Laurent Goderre, 2015-01-20 11:07:50 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/16e6e26">Updated the build version to v4.0.11-development</a> - Laurent Goderre, 2015-01-20 11:44:00 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/7b7e5cf">Geomap: added WMS overlay capability with support for graphic and HTML legends, cql_queries, and layer opacity.</a> - Joost van Ulden, 2015-01-21 15:54:18 -0800</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/1f8b705">Prevented hash handling when handling same page links</a> - Paul Jackson, 2015-01-27 11:06:34 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/ed5b198">Menu: Added better nesting support for nested menu items</a> - Paul Jackson, 2015-01-28 16:41:41 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/9c448b1">Build: Convert the IE8 CSS minification clean to an npm module</a> - Laurent Goderre, 2015-01-29 14:26:44 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/f31c69a">Fixed issue where geocoder datalist contents covered text input in Safari on iOS, Mac, and Windows.</a> - Joost van Ulden, 2015-02-02 06:34:57 -0800</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/503dadc">DataTable: Fixed ambiguous page links</a> - Laurent Goderre, 2015-02-02 16:48:04 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/ac08afb">Toggle: Added the ability to set the initial state of a toggle button</a> - Paul Jackson, 2015-02-03 13:10:44 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/3daab3f">Toggle: Fixed handling of elements nested in a toggle button</a> - Paul Jackson, 2015-02-03 14:08:24 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/5351245">Tabs: Fixed firing of the wb-updated event so it only fires on a tabpanel change</a> - Paul Jackson, 2015-02-03 14:23:37 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/6657bab">Theme: Added missing rel=external to external links</a> - Laurent Goderre, 2015-02-04 10:44:48 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/98284d5">Addresses #6206 and fixes #6148. Users can configure the AOI widget to be displayed by default and pre-load it with a bound box extent. Minor markup improvements.</a> - Joost van Ulden, 2015-02-04 15:49:00 -0800</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/5a43c47">Footnotes: Adjusted print SCSS to prevent URLs from appearing beside return links. Fixes #6500.</a> - Eric Dunsworth, 2015-02-05 16:25:21 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/08b6377">Menu: Fixed Javascript execution halted when non link, non heading text in secondary menu Fixes #6510</a> - Laurent Goderre, 2015-02-10 16:54:42 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/75e9675">Site: Fixed spacing/indentation issues throughout many HBS files. Ignored non-HTML code examples.</a> - Eric Dunsworth, 2015-02-11 00:28:50 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/25b8329">Build: Optimized the grunt file and fixed the watch target</a> - Laurent Goderre, 2015-02-12 11:25:16 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/e0fd33d">Updated Geomap documentation to reflect new and updated functionality.</a> - Joost van Ulden, 2015-02-12 10:10:40 -0800</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/2fc30f0">Fixed issue where base map attribution text is too large on mobile.</a> - Joost van Ulden, 2015-02-13 07:35:24 -0800</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/d05f721">Fixed issue where default attribution wasn't added to map.</a> - Joost van Ulden, 2015-02-13 09:01:03 -0800</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/60450f4">Multimedia: Fixed the need to play play twice at the end of video in IE Fixes #6052</a> - Laurent Goderre, 2015-02-16 11:06:37 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/5f25a19">Multimedia: Use the `playing` event because IE incorrectly implements the play event</a> - Laurent Goderre, 2015-02-16 13:06:46 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/a419908">DataTable: Fixed the page number when more than one datatable is on the page</a> - Laurent Goderre, 2015-02-16 13:54:17 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/847ce7c">DataTables: Fixed the display of the pagination icons in IE8</a> - Laurent Goderre, 2015-02-16 15:46:45 -0500</li>
++			<li><a href="https://github.com/wet-boew/wet-boew/commit/033834c">SCSS/Tabs Plugin: Reorganized src variables file and add customizable variables for tabs plugin</a> - melodyma, 2015-02-16 23:04:43 -0800</li>
++		</ul>
++	</section>
++</section>
