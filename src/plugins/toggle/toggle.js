@@ -98,9 +98,6 @@ var componentName = "wb-toggle",
 				elms = parent.querySelectorAll( data.group );
 				tabs = parent.querySelectorAll( data.group + " " + selectorTab );
 
-				// Initialize the detail/summaries
-				$( tabs ).trigger( "wb-init.wb-details" );
-
 				// Set the tab and panel aria attributes
 				for ( i = 0, len = elms.length; i !== len; i += 1 ) {
 					elm = elms[ i ];

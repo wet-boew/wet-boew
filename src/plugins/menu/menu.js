@@ -198,7 +198,7 @@ var componentName = "wb-menu",
 
 			// Create the panel section
 			panel += "<nav role='navigation' typeof='SiteNavigationElement' id='" +
-				properties[ 1 ] + "' class='" + properties[ 1 ] + " wb-menu'>" +
+				properties[ 1 ] + "' class='" + properties[ 1 ] + " wb-menu wb-menu-inited'>" +
 				"<h3>" + properties[ 2 ] + "</h3>" +
 				"<ul class='list-unstyled mb-menu' role='menu'>" +
 				sectionHtml + "</ul></nav>";
@@ -315,7 +315,6 @@ var componentName = "wb-menu",
 		$panel
 			.trigger( "wb-init.wb-overlay" )
 			.find( "summary" )
-				.trigger( "wb-init.wb-details" )
 				.attr( "tabindex", "-1" );
 		$panel
 			.find( ".mb-menu > li:first-child" )

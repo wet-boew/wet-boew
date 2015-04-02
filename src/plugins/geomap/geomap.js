@@ -21,7 +21,7 @@ var componentName = "wb-geomap",
 		// Start initialization
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
-		var elm = wb.init( event, componentName, selector, true ),
+		var elm = wb.init( event, componentName, selector ),
 			$elm, modeJS;
 
 		if ( elm ) {
