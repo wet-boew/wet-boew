@@ -131,6 +131,7 @@ wb.i18nDict = {
 		"@mnths-12@"
 	],
 	cal: "@cal@",
+	"cal-format": "@cal-format@",
 	currDay: "@currDay@",
 	"cal-goToLnk": "@cal-goToLnk@",
 	"cal-goToTtl": "@cal-goToTtl@",

@@ -156,14 +156,19 @@ $details-identation: 1.1em !default;
 //== Calendar
 //
 //##
+$cal-header-bg-color: #333 !default;
+$cal-mnth-arrows-color: $clrWhite !default;
+$cal-mnth-arrows-disabled-color: $clrMedium !default;
+$cal-dow-bg: $clrDark !default;
+$cal-dow-color: $clrWhite !default;
+$cal-dow-border: 1px solid #333;
+$cal-day-bg: $clrWhite !default;
+$cal-day-color: #000 !default;
+$cal-day-hover-bg: #333 !default;
+$cal-day-hover-color: $clrWhite !default;
+$cal-curr-day-bg: $clrMedium !default;
+$cal-curr-day-color: $cal-day-color !default;
 
-$cal-text-head-color: #fff !default;
-$cal-text-body-color: #000 !default;
-
-$cal-dark-color: #333 !default;
-$cal-medium-color: $clrDark !default;
-
-$cal-mnth-arrows-active-color: $clrMedium !default;
 
 //== Footnotes
 //

@@ -8,6 +8,7 @@
 	"noarg": true,
 	"undef": true,
 	"unused": true,
+	"-W086": true,
 
 	"globals": {
 		"wb": true,
