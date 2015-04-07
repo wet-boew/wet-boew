@@ -30,7 +30,6 @@ $mm-volume-thumb-width: 10px;
 
 		&:before,
 		&:after {
-			content: " ";
 			display: block;
 		}
 	}
@@ -47,8 +46,13 @@ $mm-volume-thumb-width: 10px;
 @mixin multimedia_overlay_play {
 	.display {
 		&:before {
+			text-align: center;
+		}
+
+		&:after {
 			color: #fff;
 			content: "";
+			// TODO: Use bootstratop placeholder when nested extends are supproted
 			font-family: "Glyphicons Halflings";
 			font-size: 65px;
 			text-align: center;
