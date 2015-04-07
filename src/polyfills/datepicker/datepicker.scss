@@ -41,25 +41,11 @@
 }
 
 .picker-field {
-	width: 7em;
+	width: 7em !important;
 }
 
-.picker-toggle {
-	background: none;
-	border: 0;
-	display: inline-block;
-	margin-left: 5px;
-	vertical-align: middle;
-
-	&:link,
-	&:visited,
-	&:focus {
-		color: #000;
-	}
-
-	span {
-		font-size: 1.3em;
-	}
+.input-group-btn {
+	width: auto !important;
 }
 
 .cal-days {
