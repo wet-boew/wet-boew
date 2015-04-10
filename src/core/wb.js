@@ -296,7 +296,7 @@ var getUrlParts = function( url ) {
 					selector = selectorsLocal[ i ];
 					$elms = $( selector );
 					if ( $elms.length !== 0 ) {
-						$foundElms.add( $elms );
+						$foundElms = $foundElms.add( $elms );
 
 					// If the selector returns no elements, remove the selector
 					} else {
