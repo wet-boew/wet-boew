@@ -442,6 +442,7 @@ module.exports = (grunt) ->
 			theme:
 				options:
 					flatten: true
+					languages: "<%= i18n_csv.assemble.locales %>"
 					plugins: [
 						"assemble-contrib-i18n"
 					]
