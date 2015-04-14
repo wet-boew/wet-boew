@@ -5,10 +5,13 @@
 {{#if page.js}}{{#each page.js}}<script src="{{this}}{{../environment.suffix}}.js"></script>{{/each}}{{/if}}
 {{#if page.jsie9}}
 <!--[if lte IE 9]>
-{{#if page.jsie9}}{{#each page.jsie9}}<script src="{{this}}{{../environment.suffix}}.js"></script>{{/each}}{{/if}}
+{{#each page.jsie9}}<script src="{{this}}{{../environment.suffix}}.js"></script>{{/each}}
 <![endif]-->
 {{/if}}
 <!--[if lt IE 9]>
 <script src="{{assets}}/js/ie8-wet-boew2{{environment.suffix}}.js"></script>
 {{#if page.jsie8}}{{#each page.jsie8}}<script src="{{this}}{{../environment.suffix}}.js"></script>{{/each}}{{/if}}
 <![endif]-->
+{{#if site.themeJS}}
+<script src="{{assets}}/js/theme{{environment.suffix}}.js"></script>
+{{/if}}
