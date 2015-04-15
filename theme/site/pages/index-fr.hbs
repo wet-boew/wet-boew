@@ -12,14 +12,14 @@
 	<h2>Table des matières</h2>
 	<ul>
 {{#withSort languages}}
-		<li><a href="#{{this}}">{{#with ..}}{{i18n "lang-en" language=../this}}{{/with}}</a></li>
+		<li><a href="#{{this}}">{{#with ..}}{{i18n "lang-fr" language=../this}}{{/with}}</a></li>
 {{/withSort}}
 	</ul>
 </section>
 
 {{#withSort languages}}
 <section>
-	<h2 id="{{this}}">{{#with ..}}{{i18n "lang-en" language=../this}}{{/with}}</h2>
+	<h2 id="{{this}}">{{#with ..}}{{i18n "lang-fr" language=../this}}{{/with}}</h2>
 	<ul>
 		<li><a href="content-{{this}}.html">Page de contenu</a></li>
 		<li><a href="content-secmenu-{{this}}.html">Page de contenu - Menu secondaire</a></li>
