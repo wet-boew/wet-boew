@@ -1181,8 +1181,7 @@
 				nodeName === "a" ?
 				element.href || isTabIndexNotNaN :
 				isTabIndexNotNaN ) &&
-			// the element and all of its ancestors must be visible
-			visible( element );
+			visible( element ); /* the element and all of its ancestors must be visible */
 		} else {
 			return ( /input|select|textarea|button|object/.test( nodeName ) ? !element.disabled :
 				nodeName === "a" ?
@@ -1207,6 +1206,7 @@
 				return !!$.data( elem, dataName );
 			};
 		} ) :
+
 		// support: jQuery <1.8
 
 		function( elem, i, match ) {

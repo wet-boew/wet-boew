@@ -23,6 +23,7 @@ describe( "Favicon test suite", function() {
 	 * Before beginning the test suite, this function is executed once.
 	 */
 	before( function() {
+
 		// Spy on jQuery's trigger methods
 		spy = sandbox.spy( $.prototype, "trigger" );
 
@@ -35,6 +36,7 @@ describe( "Favicon test suite", function() {
 	 * After finishing the test suite, this function is executed once.
 	 */
 	after( function() {
+
 		// Restore the original behaviour of trigger once the tests are finished
 		sandbox.restore();
 

@@ -41,6 +41,7 @@ describe( "Country Content test suite", function() {
 		} );
 
 		after( function() {
+
 			// Restore original behaviour of $.ajax
 			sandbox.restore();
 			$elm.remove();
@@ -80,6 +81,7 @@ describe( "Country Content test suite", function() {
 		var $elm;
 
 		before( function( done ) {
+
 			// Load the US content
 			localStorage.setItem( "countryCode", "US" );
 

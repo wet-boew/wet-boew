@@ -282,6 +282,7 @@ var componentName = "wb-feeds",
 
 			entries.push( items[ i ] );
 		}
+
 		// lets merge with latest entries
 		entries = $.merge( entries, $content.data( "entries" ) );
 

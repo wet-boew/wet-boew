@@ -43,6 +43,7 @@ var componentName = "wb-toggle",
 			$link, data;
 
 		if ( link ) {
+
 			// Merge the elements settings with the defaults
 			$link = $( link );
 			data = $.extend( {}, defaults, $link.data( "toggle" ) );
@@ -96,9 +97,6 @@ var componentName = "wb-toggle",
 
 				elms = parent.querySelectorAll( data.group );
 				tabs = parent.querySelectorAll( data.group + " " + selectorTab );
-
-				// Initialize the detail/summaries
-				$( tabs ).trigger( "wb-init.wb-details" );
 
 				// Set the tab and panel aria attributes
 				for ( i = 0, len = elms.length; i !== len; i += 1 ) {

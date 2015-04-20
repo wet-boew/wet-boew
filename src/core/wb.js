@@ -162,7 +162,7 @@ var getUrlParts = function( url ) {
 			return "wb-auto-" + ( seed += 1 );
 		},
 
-		init: function( event, componentName, selector, autoId ) {
+		init: function( event, componentName, selector, noAutoId ) {
 			var	eventTarget = event.target,
 				isEvent = !!eventTarget,
 				node = isEvent ? eventTarget : event,
@@ -179,7 +179,7 @@ var getUrlParts = function( url ) {
 				if ( !isDocumentNode ) {
 					node.className += " " + initedClass;
 
-					if ( autoId && !node.id ) {
+					if ( !noAutoId && !node.id ) {
 						node.id = wb.getId();
 					}
 				}
@@ -192,10 +192,20 @@ var getUrlParts = function( url ) {
 
 		ready: function( $elm, componentName, context ) {
 			if ( $elm ) {
+
+				// Trigger any nested elements (excluding nested within nested)
+				$elm
+					.find( wb.allSelectors )
+						.addClass( "wb-init" )
+						.filter( ":not(#" + $elm.attr( "id" ) + " .wb-init .wb-init)" )
+							.trigger( "timerpoke.wb" );
+
+				// Identify that the component is ready
 				$elm.trigger( "wb-ready." + componentName, context );
 				this.initQueue -= 1;
 			}
 
+			// Identify that global initialization is complete
 			if ( !this.isReady && this.isStarted && this.initQueue < 1 ) {
 				this.isReady = true;
 				this.doc.trigger( "wb-ready.wb" );
@@ -275,42 +285,37 @@ var getUrlParts = function( url ) {
 		},
 
 		// Handles triggering of timerpoke events
-		timerpoke: function() {
+		timerpoke: function( initial ) {
 			var selectorsLocal = wb.selectors.slice( 0 ),
 				len = selectorsLocal.length,
-				selector, currentSelector, $elms, elmsLength, i;
+				selector, $elms, $foundElms, i;
 
-			for ( i = 0; i !== len; i += 1 ) {
-				selector = selectorsLocal[ i ];
-				currentSelector = selector;
-				$elms = $( selector );
+			if ( initial ) {
+				$foundElms = $();
+				for ( i = 0; i !== len; i += 1 ) {
+					selector = selectorsLocal[ i ];
+					$elms = $( selector );
+					if ( $elms.length !== 0 ) {
+						$foundElms = $foundElms.add( $elms );
 
-				// If the selector returns elements, trigger a timerpoke event
-				elmsLength = $elms.length;
-				if ( elmsLength !== 0 ) {
-					while ( elmsLength !== 0 ) {
-
-						currentSelector += " " + selector;
-
-						// Filter out nested elements
-						$elms = $elms.filter( ":not(" + currentSelector + ")" );
-						$elms.trigger( "timerpoke.wb" );
-
-						// Handle nested elements
-						elmsLength -= $elms.length;
-						if ( elmsLength !== 0 ) {
-							$elms = $( currentSelector );
-						}
+					// If the selector returns no elements, remove the selector
+					} else {
+						wb.remove( selector );
 					}
-
-				// If the selector returns no elements, remove the selector
-				} else {
-					wb.remove( selector );
 				}
+
+				// Keep only the non-nested plugin/polyfill elements
+				$elms = $foundElms.filter( ":not(.wb-init .wb-init)" ).addClass( "wb-init" );
+			} else {
+				$elms = $( selectorsLocal.join( ", " ) );
 			}
+			$elms.trigger( "timerpoke.wb" );
 		},
 
 		start: function() {
+
+			// Save a copy of all the possible selectors
+			wb.allSelectors = wb.selectors.join( ", " );
 
 			// Initiate timerpoke events right way
 			wb.timerpoke( true );

@@ -25,7 +25,7 @@ var componentName = "wb-disable",
 		// Start initialization
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
-		var elm = wb.init( event, componentName, selector ),
+		var elm = wb.init( event, componentName, selector, true ),
 			nQuery = "?",
 			$html = wb.html,
 			i18n = wb.i18n,

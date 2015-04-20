@@ -23,6 +23,7 @@ describe( "Prettify test suite", function() {
 	 * Before beginning the test suite, this function is executed once.
 	 */
 	before( function( done ) {
+
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
 		spy = sandbox.spy( $.prototype, "trigger" );
 
@@ -46,6 +47,7 @@ describe( "Prettify test suite", function() {
 	 * After finishing the test suite, this function is executed once.
 	 */
 	after( function() {
+
 		// Restore the original behaviour of trigger once the tests are finished
 		sandbox.restore();
 

@@ -34,10 +34,12 @@ $document.on( "wb-ready.wb-geomap", "#sample_map", function( event, map ) {
 	if ( $aoiExtent ) {
 
 		$aoiExtent.on( "change", function() {
+
 			//console.log( "BBox: " + $( this ).val() );
 		} );
 
 		$aoiExtentLonLat.on( "change", function() {
+
 			//console.log( "BBox LonLat: " + $( this ).val() );
 		} );
 	}

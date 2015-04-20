@@ -33,7 +33,7 @@ var componentName = "wb-tableparser",
 		var $obj = $( event.target ),
 			groupZero = {
 				allParserObj: [],
-				nbDescriptionRow: 0 // To remove ??
+				nbDescriptionRow: 0 /* To remove ?? */
 			},
 			colgroupFrame = [],
 			columnFrame = [],
@@ -263,6 +263,7 @@ var componentName = "wb-tableparser",
 					colgroupspan += width;
 				} );
 			}
+
 			// If no col element check for the span attribute
 			if ( colgroup.col.length === 0 ) {
 				if ( elem ) {
@@ -784,10 +785,13 @@ var componentName = "wb-tableparser",
 
 					// Check to set if this group are a data group
 					if ( currColgroupStructure.length < groupLevel ) {
+
 						// This colgroup are a data colgroup
 						// The current colgroup are a data colgroup
 						if ( !curColgroupFrame.type ) {
-							curColgroupFrame.type = 2; // Set Data group type
+							curColgroupFrame.type = 2;
+
+							// Set Data group type
 							curColgroupFrame.level = groupLevel;
 						}
 
@@ -907,6 +911,7 @@ var componentName = "wb-tableparser",
 				if ( !groupZero.virtualColgroup ) {
 					groupZero.virtualColgroup = [];
 				}
+
 				// Set the Virtual Group Header Cell, if any
 				$.each( groupZero.virtualColgroup, function() {
 					var vGroupHeaderCell = this;
@@ -947,6 +952,7 @@ var componentName = "wb-tableparser",
 		}
 
 		function initiateRowGroup() {
+
 			// Finalisation of any existing row group
 			if ( currentRowGroup && currentRowGroup.type ) {
 				finalizeRowGroup();
@@ -1037,16 +1043,20 @@ var componentName = "wb-tableparser",
 			//	* a Data Group increase the row group level based of his number of row group header and the previous row group level
 			//	* Dont forget to set the appropriate level to each group header cell inside this row group.
 			if ( !currentRowGroup.level ) {
+
 				// Get the level of the previous group
 				if ( lstRowGroup.length > 0 ) {
 					previousRowGroup = lstRowGroup[ lstRowGroup.length - 1 ];
 
 					if ( currentRowGroup.type === 2 ) {
+
 						// Data Group
 						if ( currentRowGroup.headerlevel.length === previousRowGroup.headerlevel.length ) {
+
 							// Same Level as the previous one
 							currentRowGroup.level = previousRowGroup.level;
 						} else if ( currentRowGroup.headerlevel.length < previousRowGroup.headerlevel.length ) {
+
 							// add the missing group heading cell
 							tmpHeaderLevel = currentRowGroup.headerlevel;
 							currentRowGroup.headerlevel = [];
@@ -1059,10 +1069,12 @@ var componentName = "wb-tableparser",
 							}
 							currentRowGroup.level = previousRowGroup.level;
 						} else if ( currentRowGroup.headerlevel.length > previousRowGroup.headerlevel.length ) {
+
 							// This are a new set of heading, the level equal the number of group header cell found
 							currentRowGroup.level = currentRowGroup.headerlevel.length + 1;
 						}
 					} else if ( currentRowGroup.type === 3 ) {
+
 						// Summary Group
 						if ( previousRowGroup.type === 3 ) {
 							currentRowGroup.level = previousRowGroup.level - 1;
@@ -1070,6 +1082,7 @@ var componentName = "wb-tableparser",
 							currentRowGroup.level = previousRowGroup.level;
 						}
 						if ( currentRowGroup.level < 0 ) {
+
 							// This is an error, Last summary row group was already found.
 							$obj.trigger( {
 								type: warningEvent,
@@ -1085,6 +1098,7 @@ var componentName = "wb-tableparser",
 							}
 						}
 					} else {
+
 						// Error
 						currentRowGroup.level = "Error, not calculated";
 						$obj.trigger( {
@@ -1104,7 +1118,8 @@ var componentName = "wb-tableparser",
 				currentRowGroup.headerlevel[ i ].rowlevel = currentRowGroup.headerlevel [ i ].level;
 			}
 
-			rowgroupHeaderRowStack = []; // reset the row header stack
+			// reset the row header stack
+			rowgroupHeaderRowStack = [];
 
 			if ( currentRowGroup.level === undefined || currentRowGroup.level < 0 ) {
 				$obj.trigger( {
@@ -1116,6 +1131,7 @@ var componentName = "wb-tableparser",
 		}
 
 		function processRow( elem ) {
+
 			// In this function there are a possible confusion about the colgroup variable name used here vs the real colgroup table, In this function the colgroup is used when there are no header cell.
 			currentRowPos += 1;
 			var columnPos = 1,
@@ -1123,9 +1139,9 @@ var componentName = "wb-tableparser",
 				lastHeadingColPos = false,
 				cells = $( elem ).children(),
 				row = {
-					colgroup: [], // === Build from colgroup object ==
-					cell: [], // === Build from Cell Object ==
-					elem: elem, // Row Structure jQuery element
+					colgroup: [], /* === Build from colgroup object == */
+					cell: [], /* === Build from Cell Object == */
+					elem: elem, /* Row Structure jQuery element */
 					rowpos: currentRowPos
 				},
 				colgroup,
@@ -1150,8 +1166,8 @@ var componentName = "wb-tableparser",
 
 			colgroup = {
 				cell: [],
-				cgsummary: undefined, // ?? Not sure because this will be better in the data colgroup object ?? Summary Colgroup Associated
-				type: false // 1 === header, 2 === data, 3 === summary, 4 === key, 5 === description, 6 === layout, 7 === group header
+				cgsummary: undefined, /* ?? Not sure because this will be better in the data colgroup object ?? Summary Colgroup Associated */
+				type: false /* 1 === header, 2 === data, 3 === summary, 4 === key, 5 === description, 6 === layout, 7 === group header */
 			};
 
 			colgroup.uid = uidElem;
@@ -1163,8 +1179,10 @@ var componentName = "wb-tableparser",
 					colgroup.type = 1;
 				}
 				if ( colgroup.type !== 1 ) {
+
 					// Creation of a new colgroup
-					row.colgroup.push( colgroup ); // Add the previous colgroup
+					// Add the previous colgroup
+					row.colgroup.push( colgroup );
 
 					// Create a new colgroup
 					colgroup = {
@@ -1186,8 +1204,10 @@ var componentName = "wb-tableparser",
 
 				// Check if we need to create a summary colgroup (Based on the top colgroup definition)
 				if ( colgroup.type !== 2 ) {
+
 					// Creation of a new colgroup
-					row.colgroup.push( colgroup ); // Add the previous colgroup
+					// Add the previous colgroup
+					row.colgroup.push( colgroup );
 
 					// Create a new colgroup
 					colgroup = {
@@ -1236,6 +1256,7 @@ var componentName = "wb-tableparser",
 						for ( j = 0; j < currCell.width; j += 1 ) {
 							row.cell.push( currCell );
 						}
+
 						// Increment the column position
 						columnPos += currCell.width;
 					} else {
@@ -1255,8 +1276,12 @@ var componentName = "wb-tableparser",
 					i;
 
 				switch ( this.nodeName.toLowerCase() ) {
-				case "th": // cell header
-					fnParseSpannedRowCell(); // Check for spanned cell between cells
+
+				// cell header
+				case "th":
+
+					// Check for spanned cell between cells
+					fnParseSpannedRowCell();
 
 					headerCell = {
 						rowpos: currentRowPos,
@@ -1290,8 +1315,12 @@ var componentName = "wb-tableparser",
 					columnPos += headerCell.width;
 
 					break;
-				case "td": // data cell
-					fnParseSpannedRowCell(); // Check for spanned cell between cells
+
+				// data cell
+				case "td":
+
+					// Check for spanned cell between cells
+					fnParseSpannedRowCell();
 
 					dataCell = {
 						rowpos: currentRowPos,
@@ -1341,6 +1370,7 @@ var componentName = "wb-tableparser",
 
 			// Check if this the number of column for this row are equal to the other
 			if ( tableCellWidth === 0 ) {
+
 				// If not already set, we use the first row as a guideline
 				tableCellWidth = row.cell.length;
 			}
@@ -1366,6 +1396,7 @@ var componentName = "wb-tableparser",
 			// Diggest the row
 			//
 			if ( lastCellType === "th" ) {
+
 				// Digest the row header
 				row.type = 1;
 
@@ -1374,8 +1405,10 @@ var componentName = "wb-tableparser",
 				//
 
 				if ( row.colgroup.length === 2 && currentRowPos === 1 ) {
+
 					// Check if the first is a data colgroup with only one cell
 					if ( row.colgroup[ 0 ].type === 2 && row.colgroup[ 0 ].cell.length === 1 ) {
+
 						// Valid row header for the row group header
 
 						// REQUIRED: That cell need to be empty
@@ -1384,7 +1417,8 @@ var componentName = "wb-tableparser",
 							// We stack the row
 							theadRowStack.push( row );
 
-							return; // We do not go further
+							// We do not go further
+							return;
 						}
 						$obj.trigger( {
 							type: warningEvent,
@@ -1392,6 +1426,7 @@ var componentName = "wb-tableparser",
 							err: 17
 						} );
 					} else {
+
 						// Invalid row header
 						$obj.trigger( {
 							type: warningEvent,
@@ -1403,15 +1438,17 @@ var componentName = "wb-tableparser",
 
 				if ( row.colgroup.length === 1 ) {
 					if ( row.colgroup[ 0 ].cell.length > 1 ) {
+
 						// this is a row associated to a header row group
 						if ( !headerRowGroupCompleted ) {
-							// Good row
 
-							// We stack the row
+							// Good row, stack the row
 							theadRowStack.push( row );
 
-							return; // We do not go further
+							// We do not go further
+							return;
 						}
+
 						// Bad row, remove the row or split the table
 						$obj.trigger( {
 							type: warningEvent,
@@ -1420,12 +1457,13 @@ var componentName = "wb-tableparser",
 						} );
 					} else {
 						if ( currentRowPos !== 1 || row.cell[ 0 ].uid === row.cell[ row.cell.length - 1 ].uid ) {
+
 							// Stack the row found for the rowgroup header
 							rowgroupHeaderRowStack.push( row );
 
 							// This will be processed on the first data row
-
-							headerRowGroupCompleted = true; // End of any header row group (thead)
+							// End of any header row group (thead)
+							headerRowGroupCompleted = true;
 
 							return;
 						}
@@ -1449,6 +1487,7 @@ var componentName = "wb-tableparser",
 				// If Valid, process the row
 				//
 			} else {
+
 				// Digest the data row or summary row
 				row.type = 2;
 
@@ -1457,6 +1496,7 @@ var componentName = "wb-tableparser",
 
 				// Check if this row is considerated as a description row for a header
 				if ( rowgroupHeaderRowStack.length > 0 && row.cell[ 0 ].uid === row.cell[ row.cell.length - 1 ].uid ) {
+
 					// Horay this row are a description cell for the preceding heading
 
 					row.type = 5;
@@ -1474,7 +1514,8 @@ var componentName = "wb-tableparser",
 
 					// FYI - We do not push this row in any stack because this row is a description row
 
-					return; // Stop the processing for this row
+					// Stop the processing for this row
+					return;
 				}
 
 				//
@@ -1487,7 +1528,9 @@ var componentName = "wb-tableparser",
 				row.level = currentRowGroup.level;
 
 				if ( colgroupFrame[ 0 ] && lastHeadingColPos && colgroupFrame[ 0 ].end !== lastHeadingColPos && colgroupFrame[ 0 ].end === ( lastHeadingColPos + 1 ) ) {
-					lastHeadingColPos += 1; // Adjust if required, the lastHeadingColPos if colgroup are present, that would be the first colgroup
+
+					// Adjust if required, the lastHeadingColPos if colgroup are present, that would be the first colgroup
+					lastHeadingColPos += 1;
 				}
 				row.lastHeadingColPos = lastHeadingColPos;
 				if ( !currentRowGroup.lastHeadingColPos ) {
@@ -1500,11 +1543,13 @@ var componentName = "wb-tableparser",
 
 				if ( currentRowGroup.lastHeadingColPos !== lastHeadingColPos ) {
 					if ( ( !lastHeadingSummaryColPos && currentRowGroup.lastHeadingColPos < lastHeadingColPos ) || ( lastHeadingSummaryColPos && lastHeadingSummaryColPos === lastHeadingColPos ) ) {
+
 						// This is a virtual summary row group
 
 						// Check for residual rowspan, there can not have cell that overflow on two or more rowgroup
 						$.each( spannedRow, function() {
 							if ( this && this.spanHeight > 0 ) {
+
 								// That row are spanned in 2 different row group
 								$obj.trigger( {
 									type: warningEvent,
@@ -1514,8 +1559,11 @@ var componentName = "wb-tableparser",
 							}
 						} );
 
-						spannedRow = []; // Cleanup of any spanned row
-						rowgroupHeaderRowStack = []; // Remove any rowgroup header found.
+						// Cleanup of any spanned row
+						spannedRow = [];
+
+						// Remove any rowgroup header found.
+						rowgroupHeaderRowStack = [];
 						currentRowHeader = [];
 
 						currentTbodyID += 1;
@@ -1525,14 +1573,17 @@ var componentName = "wb-tableparser",
 						initiateRowGroup();
 						rowgroupSetup();
 
-						row.type = currentRowGroup.type; // Reset the current row type
+						// Reset the current row type
+						row.type = currentRowGroup.type;
 
 					} else if ( lastHeadingSummaryColPos && previousDataHeadingColPos === lastHeadingColPos ) {
+
 						// This is a virtual data row group
 
 						// Check for residual rowspan, there can not have cell that overflow on two or more rowgroup
 						$.each( spannedRow, function() {
 							if ( this && this.spanHeight > 0 ) {
+
 								// That row are spanned in 2 different row group
 								$obj.trigger( {
 									type: warningEvent,
@@ -1542,8 +1593,11 @@ var componentName = "wb-tableparser",
 							}
 						} );
 
-						spannedRow = []; // Cleanup of any spanned row
-						rowgroupHeaderRowStack = []; // Remove any rowgroup header found.
+						// Cleanup of any spanned row
+						spannedRow = [];
+
+						// Remove any rowgroup header found.
+						rowgroupHeaderRowStack = [];
 						currentRowHeader = [];
 
 						currentTbodyID += 1;
@@ -1553,7 +1607,8 @@ var componentName = "wb-tableparser",
 						initiateRowGroup();
 						rowgroupSetup( true );
 
-						row.type = currentRowGroup.type; // Reset the current row type
+						// Reset the current row type
+						row.type = currentRowGroup.type;
 
 						$obj.trigger( {
 							type: warningEvent,
@@ -1580,12 +1635,15 @@ var componentName = "wb-tableparser",
 				// Build the initial colgroup structure
 				// If an cell header exist in that row....
 				if ( lastHeadingColPos ) {
+
 					// Process the heading colgroup associated to this row.
 					headingRowCell = [];
-					rowheader = undefined; // This are the most precise cell header for this row
+
+					rowheader = undefined; /* This is the most precise cell header for this row */
 					colKeyCell = [];
 
 					for ( i = 0; i < lastHeadingColPos; i += 1 ) {
+
 						// Check for description cell or key cell
 						if ( row.cell[ i ].elem.nodeName.toLowerCase() === "td" ) {
 
@@ -1608,7 +1666,8 @@ var componentName = "wb-tableparser",
 								}
 								groupZero.desccell.push( row.cell[ i ] );
 
-								row.cell[ i ].scope = "row"; // Specify the scope of this description cell
+								// Specify the scope of this description cell
+								row.cell[ i ].scope = "row";
 							}
 
 							// Check if this cell can be an key cell associated to an cell heading
@@ -1619,7 +1678,9 @@ var componentName = "wb-tableparser",
 
 						// Set for the most appropriate header that can represent this row
 						if ( row.cell[ i ].elem.nodeName.toLowerCase() === "th" ) {
-							row.cell[ i ].type = 1; // Mark the cell to be an header cell
+
+							// Mark the cell to be an header cell
+							row.cell[ i ].type = 1;
 							row.cell[ i ].scope = "row";
 							if ( rowheader && rowheader.uid !== row.cell[ i ].uid ) {
 								if ( rowheader.height >= row.cell[ i ].height ) {
@@ -1642,6 +1703,7 @@ var componentName = "wb-tableparser",
 									rowheader = row.cell[ i ];
 									headingRowCell.push( row.cell[ i ] );
 								} else {
+
 									// This case are either paralel heading of growing header, this are an error.
 									$obj.trigger( {
 										type: warningEvent,
@@ -1694,6 +1756,7 @@ var componentName = "wb-tableparser",
 					} );
 					row.header = headingRowCell;
 				} else {
+
 					// There are only at least one colgroup,
 					// Any colgroup tag defined but be equal or greater than 0.
 					// if colgroup tag defined, they are all data colgroup.
@@ -1712,7 +1775,7 @@ var componentName = "wb-tableparser",
 				row.headerset = ( currentRowGroup.headerlevel || [] );
 
 				if ( lastHeadingColPos !== 0 ) {
-					lastHeadingColPos = colgroupFrame[ 0 ].end; // colgroupFrame must be defined here
+					lastHeadingColPos = colgroupFrame[ 0 ].end;  /* colgroupFrame must be defined here */
 				}
 
 				//
@@ -1725,10 +1788,12 @@ var componentName = "wb-tableparser",
 					isDataCell = true;
 					isDataColgroupType = true;
 
-					for ( j = ( lastHeadingColPos === 0 ? 0 : 1 ); j < colgroupFrame.length; j += 1 ) { // If colgroup, the first are always header colgroup
+					for ( j = ( lastHeadingColPos === 0 ? 0 : 1 ); j < colgroupFrame.length; j += 1 ) {
+
+						// If colgroup, the first are always header colgroup
 						if ( colgroupFrame[ j ].start <= row.cell[ i ].colpos && row.cell[ i ].colpos <= colgroupFrame[ j ].end ) {
 							if ( row.type === 3 || colgroupFrame[ j ].type === 3 ) {
-								row.cell[ i ].type = 3; // Summary Cell
+								row.cell[ i ].type = 3; /* Summary Cell */
 							} else {
 								row.cell[ i ].type = 2;
 							}
@@ -1749,6 +1814,7 @@ var componentName = "wb-tableparser",
 					}
 
 					if ( colgroupFrame.length === 0 ) {
+
 						// There are no colgroup definition, this cell are set to be a datacell
 						row.cell[ i ].type = 2;
 						row.datacell.push( row.cell[ i ] );
@@ -1757,12 +1823,16 @@ var componentName = "wb-tableparser",
 					// Add row header when the cell is span into more than one row
 					if ( row.cell[ i ].rowpos < currentRowPos ) {
 						if ( !row.cell[ i ].addrowheaders ) {
-							row.cell[ i ].addrowheaders = []; // addrowheaders for additional row headers
+
+							// addrowheaders for additional row headers
+							row.cell[ i ].addrowheaders = [];
 						}
 						if ( row.header ) {
 							for ( j = 0; j < row.header.length; j += 1 ) {
 								if ( ( row.header[ j ].rowpos === currentRowPos && row.cell[ i ].addrowheaders.length === 0 ) || ( row.header[ j ].rowpos === currentRowPos && row.cell[ i ].addrowheaders[ row.cell[ i ].addrowheaders.length - 1 ].uid !== row.header[ j ].uid ) ) {
-									row.cell[ i ].addrowheaders.push( row.header[ j ] ); // Add the current header
+
+									// Add the current header
+									row.cell[ i ].addrowheaders.push( row.header[ j ] );
 								}
 							}
 						}
@@ -1784,6 +1854,7 @@ var componentName = "wb-tableparser",
 						if ( !groupZero.col[ i ].cell ) {
 							groupZero.col[ i ].cell = [];
 						}
+
 						// Be sure to do not include twice the same cell for a column spanned in 2 or more column
 						if ( !( j > ( groupZero.col[ i ].start - 1 ) && groupZero.col[ i ].cell[ groupZero.col[ i ].cell.length - 1 ].uid === row.cell[ j ].uid ) ) {
 							if ( row.cell[ j ] ) {
@@ -1813,14 +1884,18 @@ var componentName = "wb-tableparser",
 
 					if ( i > 0 && row.cell[ i - 1 ].uid === row.cell[ i ].uid && row.cell[ i ].type !== 1 && row.cell[ i ].type !== 5 && row.cell[ i ].rowpos === currentRowPos && row.cell[ i ].colpos <= i ) {
 						if ( !row.cell[ i ].addcolheaders ) {
-							row.cell[ i ].addcolheaders = []; // addcolheaders for additional col headers
+
+							// addcolheaders for additional col headers
+							row.cell[ i ].addcolheaders = [];
 						}
 
 						// Add the column header if required
 						if ( groupZero.col[ i ] && groupZero.col[ i ].header ) {
 							for ( j = 0; j < groupZero.col[ i ].header.length; j += 1 ) {
 								if ( groupZero.col[ i ].header[ j ].colpos === ( i + 1 ) ) {
-									row.cell[ i ].addcolheaders.push( groupZero.col[ i ] .header[ j ] ); // Add the current header
+
+									// Add the current header
+									row.cell[ i ].addcolheaders.push( groupZero.col[ i ] .header[ j ] );
 								}
 							}
 						}
@@ -1838,7 +1913,7 @@ var componentName = "wb-tableparser",
 			currentRowGroup.row.push( row );
 
 			delete row.colgroup;
-		} // End processRow function
+		} /* End processRow function */
 
 		// Add headers information to the table parsed data structure
 		// Similar sample of code as the HTML Table validator
@@ -2025,12 +2100,13 @@ var componentName = "wb-tableparser",
 					}
 				}
 			}
-		} // END addHeaders function
+		} /* END addHeaders function*/
 
 		//
 		// Main Entry For The Table Parsing
 		//
 		if ( hasTfoot ) {
+
 			// If there is a tfoot element, be sure to add it at the end of all the tbody. FYI - HTML 5 spec allow now tfoot to be at the end
 			$( "tfoot", $obj ).appendTo( $( "tbody:last", $obj ).parent() );
 		}
@@ -2044,6 +2120,7 @@ var componentName = "wb-tableparser",
 				processColgroup( this );
 			} else if ( nodeName === "thead" ) {
 				currentRowGroupElement = this;
+
 				// The table should not have any row at this point
 				if ( theadRowStack.length !== 0 || ( groupZero.row && groupZero.row.length > 0 ) ) {
 					$obj.trigger( {
@@ -2059,6 +2136,7 @@ var componentName = "wb-tableparser",
 				// This is the rowgroup header, Colgroup type can not be defined here
 				$( this ).children().each( function() {
 					if ( this.nodeName.toLowerCase() !== "tr" ) {
+
 						// ERROR
 						$obj.trigger( {
 							type: warningEvent,
@@ -2077,6 +2155,7 @@ var componentName = "wb-tableparser",
 				if ( nodeName === "tfoot" ) {
 					tfootOnProcess = true;
 				}
+
 				// Currently there are no specific support for tfoot element, the tfoot is understood as a normal tbody
 
 				currentRowGroupElement = this;
@@ -2097,6 +2176,7 @@ var componentName = "wb-tableparser",
 				// New row group
 				$this.children().each( function() {
 					if ( this.nodeName.toLowerCase() !== "tr" ) {
+
 						// ERROR
 						$obj.trigger( {
 							type: warningEvent,
@@ -2113,6 +2193,7 @@ var componentName = "wb-tableparser",
 				// Check for residual rowspan, there can not have cell that overflow on two or more rowgroup
 				$.each( spannedRow, function() {
 					if ( this && this.spanHeigh && this.spanHeight > 0 ) {
+
 						// That row are spanned in 2 different row group
 						$obj.trigger( {
 							type: warningEvent,
@@ -2122,15 +2203,17 @@ var componentName = "wb-tableparser",
 					}
 				} );
 
-				spannedRow = []; // Cleanup of any spanned row
-				rowgroupHeaderRowStack = []; // Remove any rowgroup header found.
+				spannedRow = []; /* Cleanup of any spanned row */
+				rowgroupHeaderRowStack = []; /* Remove any rowgroup header found. */
 				currentRowHeader = [];
 
 				currentTbodyID += 1;
 			} else if ( nodeName === "tr" ) {
+
 				// This are suppose to be a simple table
 				processRow( this );
 			} else {
+
 				// There is a DOM Structure error
 				$obj.trigger( {
 					type: errorEvent,

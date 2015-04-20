@@ -184,6 +184,7 @@ var componentName = "wb-calevt",
 				 * Fixes IE tabbing error:
 				 * http://www.earthchronicle.com/ECv1point8/Accessibility01IEAnchoredKeyboardNavigation.aspx
 				 */
+
 				// TODO: Which versions of IE should this fix be limited to?
 				if ( wb.ie ) {
 					event.tabIndex = "-1";
