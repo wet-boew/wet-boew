@@ -460,8 +460,13 @@ var componentName = "wb-mltmd",
 		case "setCaptionsVisible":
 			if ( args ) {
 				$( this ).addClass( captionClass );
-				this.object.loadModule( "cc" );
-				this.object.loadModule( "captions" );
+				try {
+					this.object.loadModule( "cc" );
+					this.object.setOption( "cc", "track", { languageCode: this.object.getOption( "cc", "tracklist" )[ 0 ].languageCode } );
+				} catch ( e ) {
+					this.object.loadModule( "captions" );
+					this.object.setOption( "captions", "track", { languageCode: this.object.getOption( "captions", "tracklist" )[ 0 ].languageCode } );
+				}
 			} else {
 				$( this ).removeClass( captionClass );
 				this.object.unloadModule( "cc" );
