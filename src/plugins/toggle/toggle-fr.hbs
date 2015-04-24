@@ -8,7 +8,7 @@
 	"parentdir": "toggle",
 	"altLangPrefix": "toggle",
 	"css": ["demo/toggle"],
-	"dateModified": "2014-02-19"
+	"dateModified": "2015-04-22"
 }
 ---
 <section>
@@ -20,6 +20,7 @@
 
 	<div class="col-md-3">
 		<div class="list-group">
+			<a href="#setup" class="list-group-item" lang="en">Plugin Setup</a>
 			<a href="#simple" class="list-group-item">Exemple simple</a>
 			<a href="#details" class="list-group-item">Details</a>
 			<a href="#grouped" class="list-group-item">Basculer groupe</a>
@@ -29,6 +30,88 @@
 	</div>
 
 	<div class="col-md-9">
+
+		<section lang="en">
+			<p><strong>Needs translation</strong></p>
+			<h2 id="setup" class="mrgn-tp-0">Plugin Setup</h2>
+			<p>Adding the <code>.wb-toggle</code> CSS class to any element will turn it into a toggle element. The behaviour of this toggle element is then controlled by the <code>data-toggle</code> attribute which takes a JavaScript object of properties:</p>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Property</th>
+						<th>Purpose</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>selector</code></td>
+						<td>CSS selector that specifies the elements the toggle element controls. If no CSS selector is supplied, the toggle element controls itself.</td>
+					</tr>
+					<tr>
+						<td><code>parent</code></td>
+						<td>CSS selector that causes the toggle element to only control elements within a given parent element.</td>
+					</tr>
+					<tr>
+						<td><code>group</code></td>
+						<td>CSS selector that groups multiple toggle elements together and only allows one of the elements to be open at a time.</td>
+					</tr>
+					<tr>
+						<td><code>persist</code></td>
+						<td>
+							Causes a toggle element to remember its current state and re-apply it when the page reloads. Supports the following values:
+							<ul>
+								<li><strong>session:</strong> toggle state will persist until the user closes their browser window or tab.</li>
+								<li><strong>local:</strong> toggle state will persist even after the browser window or tab is closed.</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td><code>print</code></td>
+						<td>
+							Causes a toggle element to turn the elements it controls on or off when the page is printed. Supports the following values:
+							<ul>
+								<li><strong>on:</strong> elements will be set to "on" toggle state for printing.</li>
+								<li><strong>off:</strong> elements will be set to "off" toggle state for printing.</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td><code>type</code></td>
+						<td>
+							Causes a toggle element to only turn the elements it controls on or off. Supports the following values:
+							<ul>
+								<li><strong>on:</strong> toggle element will only turn elements to the "on" toggle state.</li>
+								<li><strong>off:</strong> toggle element will only turn elements to the "off" toggle state.</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td><code>state</code> (v4.0.11+)</td>
+						<td>
+							Sets the initial state of a toggle element. Supports the following values:
+							<ul>
+								<li><strong>off (default):</strong> Toggle element initial state is "off"</li>
+								<li><strong>on:</strong> Toggle element initial state is "on"</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td><code>stateOn</code></td>
+						<td>CSS class that's added to elements when they are toggled on. Defaults to "on".</td>
+					</tr>
+					<tr>
+						<td><code>stateOff</code></td>
+						<td>CSS class that's added to elements when they are toggled off. Defaults to "off".</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p>For example, the following element will always toggle on elements with the <code>.foo</code> CSS class that are contained in a parent with the <code>.bar</code> CSS class. In addition, the elements it controls will be toggled on when the page is printed.</p>
+
+			<pre class="lang-css"><code>&lt;button type="button" class="wb-toggle" data-toggle='{"type": "on", "selector": ".foo", "parent": ".bar", "print": "on"}'&gt;Turn on&lt;/button&gt;</code></pre>
+		</section>
+
 		<section>
 			<h2 id="simple" class="mrgn-tp-0">Exemple simple</h2>
 

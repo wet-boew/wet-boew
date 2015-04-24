@@ -40,7 +40,7 @@ var componentName = "wb-toggle",
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var link = wb.init( event, componentName, selector, true ),
-			$link, data;
+			$link, data, persistState;
 
 		if ( link ) {
 
@@ -54,7 +54,7 @@ var componentName = "wb-toggle",
 
 			// Persist toggle state across page loads
 			if ( data.persist ) {
-				initPersist( $link, data );
+				persistState = initPersist( $link, data );
 			}
 
 			// Toggle behaviour when the page is printed
@@ -62,7 +62,9 @@ var componentName = "wb-toggle",
 				initPrint( $link, data );
 			}
 
-			if ( data.state ) {
+			// Set the initial state if the state has been specified and
+			// the persistent state has not been set
+			if ( !persistState && data.state ) {
 				setState( $link, data, data.state );
 			}
 
@@ -149,9 +151,10 @@ var componentName = "wb-toggle",
 	},
 
 	/**
-	 * Initialize open on print behaviour of the toggle element
+	 * Initializes persistent behaviour of the toggle element
 	 * @param {jQuery Object} $link The toggle element to initialize
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
+	 * @returns {string} Persistent state
 	 */
 	initPersist = function( $link, data ) {
 		var state,
@@ -166,6 +169,8 @@ var componentName = "wb-toggle",
 		if ( state ) {
 			$link.trigger( toggleEvent, $.extend( {}, data, { type: state } ) );
 		}
+
+		return state;
 	},
 
 	/**
