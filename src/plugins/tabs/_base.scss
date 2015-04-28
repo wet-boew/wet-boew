@@ -3,6 +3,8 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 
+$tab-margin-width: 10px;
+
 %tabs-position-relative {
 	position: relative;
 }
@@ -135,6 +137,8 @@
 	}
 
 	[role="tablist"] {
+		border-spacing: $tab-margin-width 0;
+		display: table;
 		list-style: none;
 		margin: 0;
 		padding: 0;
@@ -150,6 +154,8 @@
 			}
 			color: $carousel-tablist-tabcount-color;
 			cursor: pointer;
+			display: table-cell;
+			left: -$tab-margin-width;
 			margin: 0 10px 0 0;
 			position: relative;
 			text-align: center;
