@@ -176,6 +176,7 @@
 						reversettblparsing: false,
 						fn: {
 							"/getcellvalue": function( elem ) {
+
 								// Get the number from the data cell, #3267
 								var cellValue = $.trim( $( elem ).text() );
 								return [
