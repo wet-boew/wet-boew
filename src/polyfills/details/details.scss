@@ -4,22 +4,21 @@
  */
 
 /* Details/summary polyfill */
+%details-opened-icon {
+	content: "\25BC\a0";
+}
+
+%details-closed-icon {
+	content: "\25BA\a0";
+	font-size: 84%;
+}
 
 .no-details {
 	details {
-		&.alert {
-			> {
-				summary {
-					margin-left: 1.4em !important;
-				}
-			}
-		}
-
 		> {
 			summary {
 				&:before { /* Add the closed pointer */
-					content: "\25BA\a0";
-					font-size: 84%;
+					@extend %details-closed-icon;
 				}
 			}
 		}
@@ -30,7 +29,7 @@
 			> {
 				summary {
 					&:before { /* Add the opened pointer */
-						content: "\25BC\a0";
+						@extend %details-opened-icon;
 					}
 				}
 			}
@@ -40,14 +39,6 @@
 	/* Right to left (RTL) CSS */
 	&[dir="rtl"] {
 		details {
-			&.alert {
-				> {
-					summary {
-						margin-right: 1.4em !important;
-					}
-				}
-			}
-
 			> {
 				summary {
 					&:before { /* Add the close pointer */
@@ -60,7 +51,7 @@
 				> {
 					summary {
 						&:before { /* Add the opened pointer */
-							content: "\25BC\a0";
+							@extend %details-opened-icon;
 						}
 					}
 				}
