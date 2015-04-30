@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-( function( $, window, document, wb ) {
+( function( $, window, document, wb, undef ) {
 "use strict";
 
 /*
@@ -211,8 +211,9 @@ var componentName = "wb-lbx",
 				},
 				parseAjax: function( mfpResponse ) {
 					var currItem = this.currItem,
+						currEl = currItem.el,
 						urlHash = currItem.src.split( "#" )[ 1 ],
-						filter = currItem.el.data( "wbLbxFilter" ),
+						filter = currEl ? currEl.data( "wbLbxFilter" ) : undef,
 						selector = filter || ( urlHash ? "#" + urlHash : false ),
 						$response;
 
