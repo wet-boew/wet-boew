@@ -731,7 +731,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 						// Close the menu but keep the referring link active
 						setTimeout( function() {
 							menuClose( $menuLink.parent(), false );
-						}, 1 );
+						}, 100 );
 
 					// Left / right key = Next / previous menu bar item
 					} else if ( $parentMenu.attr( "role" ) === "menubar" ) {
