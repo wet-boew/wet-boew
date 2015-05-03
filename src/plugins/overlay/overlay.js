@@ -265,6 +265,47 @@ $document.on( "click vclick touchstart focusin", "body", function( event ) {
 	}
 } );
 
+// Ensure any element in focus outside an overlay is visible
+$document.on( "keyup", function( ) {
+	var elmInFocus = document.activeElement,
+		elmInFocusRect = elmInFocus.getBoundingClientRect(),
+		focusAreaBelow = 0,
+		focusAreaAbove = window.innerHeight,
+		overlayId, overlay, overlayRect;
+
+	// Ensure that at least one overlay is visible, and that the element in focus is not an overlay,
+	// a child of an overlay, or the body element
+	if ( $.isEmptyObject( sourceLinks ) || elmInFocus.className.indexOf( componentName ) !== -1 ||
+		$( elmInFocus ).parents( selector ).length !== 0 || elmInFocus === document.body ) {
+		return;
+	}
+
+	// Determine the vertical portion of the viewport that is not obscured by an overlay
+	for ( overlayId in sourceLinks ) {
+		overlay = document.getElementById( overlayId );
+		if ( overlay && overlay.getAttribute( "aria-hidden" ) === "false" ) {
+			overlayRect = overlay.getBoundingClientRect();
+			if ( overlay.className.indexOf( "wb-bar-t" ) !== -1 ) {
+				focusAreaBelow = Math.max( overlayRect.bottom, focusAreaBelow );
+			} else if ( overlay.className.indexOf( "wb-bar-b" ) !== -1 ) {
+				focusAreaAbove = Math.min( overlayRect.top, focusAreaAbove );
+			}
+		}
+	}
+
+	// Ensure the element in focus is visible
+	// TODO: Find a solution for when there isn't enough page to scoll up or down
+	if ( elmInFocusRect.top < focusAreaBelow ) {
+
+		// Scroll down till the top of the element is visible
+		window.scrollBy( 0, focusAreaBelow - elmInFocusRect.top );
+	} else if ( elmInFocusRect.bottom > focusAreaAbove ) {
+
+		// Scroll up till the bottom of the element is visible
+		window.scrollBy( 0, elmInFocusRect.bottom - focusAreaAbove );
+	}
+} );
+
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
