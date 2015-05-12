@@ -206,6 +206,8 @@ wb.i18nDict = {
 	/* Disable/enable WET plugins and polyfills */
 	"wb-disable": "@wb-disable@",
 	"wb-enable": "@wb-enable@",
+	/* Dismissable content */
+	"dismiss": "@dismiss@",
 	/* Template */
 	"tmpl-signin": "@tmpl-signin@"
 };
