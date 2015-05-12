@@ -4,11 +4,17 @@
  */
 @import "../variables";
 
+%noscript-display-block-important {
+	display: block !important;
+}
+
 /*
  Plugins
  */
 @import "../plugins/tabs/noscript";
 @import "../plugins/menu/noscript";
+@import "../plugins/overlay/noscript";
+@import "../plugins/lightbox/noscript";
 
 /*
  Polyfills

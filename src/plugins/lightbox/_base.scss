@@ -72,3 +72,9 @@
 		width: 25%;
 	}
 }
+
+.wb-disable {
+	.mfp-hide {
+		@extend %global-display-block-important;
+	}
+}
