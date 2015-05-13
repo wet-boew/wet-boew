@@ -70,7 +70,21 @@ var componentName = "wb-inview",
 			// partial - part of the element is in the viewport
 			// none - no part of the element is in the viewport
 			viewState = ( scrollBottom > y2 && scrollTop < y1 ) ? "all" : inView ? "none" : "partial",
-			$dataInView, show;
+			$dataInView = $( "#" + $elm.attr( "data-inview" ) ),
+			show;
+
+		// Remove any element that no longer exists in the DOM
+		if ( elementWidth === 0 || elementHeight === 0 ) {
+			$elms = $elms.not( $elm );
+			$dataInView.addClass( "user-closed" );
+			$dataInView.trigger( {
+				type: ( "close" ),
+				namespace: "wb-overlay",
+				noFocus: true
+			} );
+
+			return;
+		}
 
 		// Only if the view state has changed
 		if ( viewState !== oldViewState ) {
@@ -79,7 +93,6 @@ var componentName = "wb-inview",
 			show = inView || ( $elm.hasClass( "show-none" ) ? false : viewState === "partial" );
 
 			$elm.attr( "data-inviewstate", viewState );
-			$dataInView = $( "#" + $elm.attr( "data-inview" ) );
 
 			if ( $dataInView.length !== 0 ) {
 
