@@ -157,6 +157,12 @@ $document.on( "txt-rsz.wb win-rsz-width.wb win-rsz-height.wb", function() {
 	$elms.trigger( scrollEvent );
 } );
 
+$document.on( "refresh.wb", function() {
+	$elms.each( function() {
+		onInView( $( this ) );
+	} );
+} );
+
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
