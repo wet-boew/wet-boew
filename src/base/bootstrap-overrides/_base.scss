@@ -551,15 +551,26 @@ blockquote {
 }
 
 /*
- *	Fieldset legend border position
+ *	Fieldset/legend border position
  *
  *	Bootstrap puts the border below the legend which creates a visual
  *	separation between the legend and the fields to which it relates. Putting
- *	the border above eliminates that visual separation.
+ *	the border above eliminates that visual separation. Putting it on the
+ *	fieldset element instead ensures that all fieldsets will have a separation
+ *	even when no legend is used.
  */
 legend {
 	border-bottom: 0;
+	float: left;
+}
+
+fieldset {
 	border-top: 1px solid $legend-border-color;
+	padding-top: 10px;
+
+	&:first-child {
+		border-top: 0;
+	}
 }
 
 /*
