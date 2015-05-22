@@ -45,7 +45,7 @@ var componentName = "wb-dismissable",
 			}
 
 			// Give the dismissable element a unique ID
-			itemId = wb.hashString( elm.innerHTML );
+			itemId = wb.hashString( wb.stripWhitespace( elm.innerHTML ) );
 
 			dismissedState = getDismissedState( itemId );
 
