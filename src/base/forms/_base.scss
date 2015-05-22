@@ -11,7 +11,9 @@ $asterisk-width: 0.665em;
 }
 
 label,
-legend {
+legend,
+.checkbox,
+input[type="checkbox"] {
 	&.required {
 		&:before {
 			@extend %forms-color-red-italic;
