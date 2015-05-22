@@ -380,6 +380,10 @@ var getUrlParts = function( url ) {
 			}
 
 			return hash;
+		},
+
+		stripWhitespace: function( str ) {
+			return str.replace( /\s+/g, "" );
 		}
 	};
 
