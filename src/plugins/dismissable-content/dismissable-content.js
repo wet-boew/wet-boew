@@ -45,7 +45,17 @@ var componentName = "wb-dismissable",
 			}
 
 			// Give the dismissable element a unique ID
-			itemId = wb.hashString( wb.stripWhitespace( elm.innerHTML ) );
+			if ( elm.hasAttribute( "id" ) ) {
+				itemId = elm.getAttribute( "id" );
+
+				// Ignore an ID assigned by wb
+				if ( itemId.indexOf( "wb-auto-" ) === 0 ) {
+					itemId = undefined;
+				}
+			}
+			if ( itemId === undefined ) {
+				itemId = wb.hashString( wb.stripWhitespace( elm.innerHTML ) );
+			}
 
 			dismissedState = getDismissedState( itemId );
 
