@@ -688,6 +688,8 @@ fieldset {
 	 * Bootstrap as a fix for button wrapping (see wet-boew/wet-boew#4454)
 	 */
 	height: auto;
+	min-height: 36px;
+	min-width: 36px;
 	white-space: normal;
 
 	&.disabled,
