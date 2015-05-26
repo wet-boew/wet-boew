@@ -23,7 +23,6 @@ var componentName = "wb-menu",
 	$document = wb.doc,
 
 	// Used for half second delay on showing/hiding menus because of mouse hover
-	hoverDelay = 500,
 	menuCount = 0,
 	globalTimeout,
 
