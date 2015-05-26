@@ -9,23 +9,27 @@
 .expicon {
 	font-size: 0.7em;
 	margin: 0 -0.35em 0 0.7em;
+	transition-property:visibility;
+	transition-delay: 0.5s;
+
 }
 
 .wb-menu {
 	.sm {
-		display: none;
 		max-height: 0;
 		overflow: hidden;
-		position: relative;
+      	visibility:hidden;
+        transition-property:visibility;
+        transition-delay:0.5s;
+        position: absolute;
+        z-index: 500;
+        top: auto;
+        text-transform: none;
+		max-height: 1000px;
+		min-width: 12.5em;
 
 		&.open {
-			display: inline;
-			max-height: 1000px;
-			min-width: 12.5em;
-			position: absolute;
-			text-transform: none;
-			top: auto;
-			z-index: 500;
+			visibility: visible;
 
 			li {
 				@extend %global-display-block;
@@ -60,7 +64,6 @@
 					@extend %global-text-decoration-none;
 					display: block;
 					padding: 1em;
-					text-align: center;
 
 					&:hover,
 					&:focus {
@@ -88,7 +91,8 @@
 
 	.sm-open {
 		.expicon {
-			z-index: -1;
+			visibility: hidden;
+			transition-delay: 0.5s;
 		}
 	}
 }
@@ -269,6 +273,7 @@
 
 	.expicon {
 		margin: 0 0.7em 0 -0.35em;
+		visibility: visible;
 	}
 
 	#mb-pnl {
