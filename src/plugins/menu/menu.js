@@ -23,7 +23,6 @@ var componentName = "wb-menu",
 	$document = wb.doc,
 
 	// Used for half second delay on showing/hiding menus because of mouse hover
-	hoverDelay = 500,
 	menuCount = 0,
 	globalTimeout,
 
@@ -498,9 +497,7 @@ $document.on( "mouseleave", selector + " .menu", function( event ) {
 	// Clear the timeout for open/closing menus
 	clearTimeout( globalTimeout );
 
-	globalTimeout = setTimeout( function() {
-		menuClose( $( event.currentTarget ).find( ".active" ), true );
-	}, hoverDelay );
+	menuClose( $( event.currentTarget ).find( ".active" ), true );
 } );
 
 // Touchscreen "touches" on menubar items should close the submenu if it is open
@@ -585,9 +582,7 @@ $document.on( "mouseover focusin", selector + " .item", function( event ) {
 	if ( event.type === "focusin" ) {
 		menuDisplay( $container, $parent );
 	} else {
-		globalTimeout = setTimeout( function() {
-			menuDisplay( $container, $parent );
-		}, hoverDelay );
+		menuDisplay( $container, $parent );
 	}
 } );
 

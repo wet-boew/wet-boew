@@ -10,6 +10,7 @@
 	background: #ccc;
 	border-color: #ccc;
 	color: #000;
+	transition-delay: 0s;
 }
 
 #wb-sm {
@@ -25,6 +26,10 @@
 					a {
 						border-left: 1px solid #999;
 						color: #fff;
+
+						transition-delay: 0.5s;
+						transition-property: background-color, color;
+
 
 						&.wb-navcurr {
 							@extend %wet-theme-wb-sm-wb-navcurr;
@@ -57,38 +62,36 @@
 	}
 
 	.sm {
-		&.open {
-			background: #ccc;
-			border-bottom: 5px solid #243850;
-			border-left: 0;
-			border-right: 0;
-			padding: 0;
+		background: #ccc;
+		border-bottom: 5px solid #243850;
+		border-left: 0;
+		border-right: 0;
+		padding: 0;
 
-			li {
-				a,
-				summary {
-					border-left: 0;
-					border-right: 0;
-					color: #444;
-					padding: 5px 10px;
-					text-decoration: none;
-					text-shadow: none;
+		li {
+			a,
+			summary {
+				border-left: 0;
+				border-right: 0;
+				color: #444;
+				padding: 5px 10px;
+				text-decoration: none;
+				text-shadow: none;
 
-					&.wb-navcurr {
-						@extend %wet-theme-wb-sm-wb-navcurr;
-					}
+				&.wb-navcurr {
+					@extend %wet-theme-wb-sm-wb-navcurr;
+				}
 
-					&:hover,
-					&:focus {
-						@extend %wet-theme-wb-sm-wb-navcurr;
-					}
+				&:hover,
+				&:focus {
+					@extend %wet-theme-wb-sm-wb-navcurr;
 				}
 			}
+		}
 
-			.slflnk {
-				a {
-					background: #bbb;
-				}
+		.slflnk {
+			a {
+				background: #bbb;
 			}
 		}
 
