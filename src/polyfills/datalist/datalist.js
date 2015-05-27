@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, wb ) {
+( function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -50,13 +50,13 @@ var componentName = "wb-datalist",
 
 	populateOptions = function( input ) {
 		var $input = $( input ),
-			autolist = "<ul role='listbox' id='wb-al-" + input.id + "' class='wb-al hide' aria-hidden='true' aria-live='polite'></ul>",
+			autolist = "<div class='wb-al-cnt'><ul role='listbox' id='wb-al-" + input.id + "' class='wb-al hide' aria-hidden='true' aria-live='polite'></ul>",
 			datalist = document.getElementById( input.getAttribute( "list" ) ),
 			options = datalist.getElementsByTagName( "option" ),
 			len = options.length,
 			option, value, label, i;
 
-		autolist += "<ul id='wb-al-" + input.id + "-src' class='wb-al-src hide' aria-hidden='true'>";
+		autolist += "<ul class='wb-al-src hide' aria-hidden='true'>";
 		for ( i = 0; i !== len; i += 1 ) {
 			option = options[ i ];
 			value = option.getAttribute( "value" );
@@ -69,7 +69,7 @@ var componentName = "wb-datalist",
 				( !value ? "" : value ) + "</span><span class='al-lbl'>" +
 				( !label || label === value ? "" : label ) + "</span></a></li>";
 		}
-		$input.after( autolist + "</ul>" );
+		$input.after( autolist + "</ul></div>" );
 	},
 
 	/**
@@ -78,11 +78,11 @@ var componentName = "wb-datalist",
 	 * @param {DOM element} input The polyfilled input field
 	 */
 	showOptions = function( input, value ) {
-		var $autolist = $( input.nextSibling ),
+		var $autolist = $( input.nextSibling.firstChild ),
 			$options = $autolist.next().children().clone(),
 			comparator;
 
-		if ( value && value.length !== 0) {
+		if ( value && value.length !== 0 ) {
 			comparator = value.toLowerCase();
 			$options = $options.filter( function() {
 				var $this = $( this ),
@@ -91,7 +91,7 @@ var componentName = "wb-datalist",
 					value = $this.find( "span.al-lbl" ).html();
 				}
 				return ( comparator.length === 0 || value.toLowerCase().indexOf( comparator ) !== -1 );
-			});
+			} );
 		}
 
 		// Add the visible options to the autolist
@@ -113,7 +113,7 @@ var componentName = "wb-datalist",
 	 * @param {DOM element} input The polyfilled input field
 	 */
 	closeOptions = function( input ) {
-		var autolist = input.nextSibling;
+		var autolist = input.nextSibling.firstChild;
 
 		autolist.className += " hide";
 		autolist.innerHTML = "";
@@ -129,12 +129,12 @@ var componentName = "wb-datalist",
 	 */
 	correctWidth = function( input ) {
 		var $elm = $( input ),
-			$autolist = $elm.next();
+			$autolist = $( input.nextSibling.firstChild );
 
-		$autolist.css({
+		$autolist.css( {
 			width: $elm.outerWidth(),
 			left: $elm.position().left
-		});
+		} );
 	},
 
 	/**
@@ -145,7 +145,7 @@ var componentName = "wb-datalist",
 	 */
 	keyboardHandlerInput = function( which, event ) {
 		var input = event.target,
-			autolist = input.nextSibling,
+			autolist = input.nextSibling.firstChild,
 			autolistHidden = ( autolist.className.indexOf( "hide" ) !== -1 ),
 			options, dest, value, len;
 
@@ -170,7 +170,7 @@ var componentName = "wb-datalist",
 				}
 
 			// Up / down arrow
-			} else if ( ( which === 38 || which === 40) && input.getAttribute( "aria-activedescendent" ) === "" ) {
+			} else if ( ( which === 38 || which === 40 ) && input.getAttribute( "aria-activedescendent" ) === "" ) {
 				if ( autolistHidden ) {
 					showOptions( input );
 				}
@@ -202,7 +202,7 @@ var componentName = "wb-datalist",
 	 */
 	keyboardHandlerAutolist = function( which, link ) {
 		var autolist = link.parentNode.parentNode,
-			input = autolist.previousSibling,
+			input = autolist.parentNode.previousSibling,
 			$input = $( input ),
 			span, dest, value, len, children;
 
@@ -235,7 +235,7 @@ var componentName = "wb-datalist",
 				return false;
 
 			// Enter key
-			} else if ( which === 13) {
+			} else if ( which === 13 ) {
 				span = link.getElementsByTagName( "span" );
 
 				// .al-val
@@ -297,7 +297,7 @@ var componentName = "wb-datalist",
 		var nodeName = eventTarget.nodeName.toLowerCase(),
 			link = nodeName === "a" ? eventTarget : eventTarget.parentNode,
 			autolist = link.parentNode.parentNode,
-			input = autolist.previousSibling,
+			input = autolist.parentNode.previousSibling,
 			$input = $( input ),
 			span = link.getElementsByTagName( "span" ),
 
@@ -321,7 +321,8 @@ var componentName = "wb-datalist",
 $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " keydown click vclick touchstart", selector, function( event ) {
 	var input = event.target,
 		eventType = event.type,
-		which = event.which;
+		which = event.which,
+		autolist;
 
 	switch ( eventType ) {
 	case "timerpoke":
@@ -336,7 +337,7 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " keydown click 
 		break;
 
 	case "keydown":
-		if ( !(event.ctrlKey || event.metaKey ) ) {
+		if ( !( event.ctrlKey || event.metaKey ) ) {
 			return keyboardHandlerInput( which, event );
 		}
 		break;
@@ -345,15 +346,18 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " keydown click 
 	case "vclick":
 	case "touchstart":
 
-		// Ignore middle/right mouse buttons
-		if ( !which || which === 1 ) {
-			if ( input.nextSibling.className.indexOf( "hide" ) === -1 ) {
-				closeOptions( input );
-			} else {
-				showOptions( input, input.value );
+		if ( initialized ) {
+
+			// Ignore middle/right mouse buttons
+			if ( !which || which === 1 ) {
+				autolist = input.nextSibling.firstChild;
+				if ( autolist.className.indexOf( "hide" ) === -1 ) {
+					closeOptions( input );
+				} else {
+					showOptions( input, input.value );
+				}
 			}
 		}
-		break;
 	}
 
 	/*
@@ -361,7 +365,7 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " keydown click 
 	 * so returning true allows for events to always continue
 	 */
 	return true;
-});
+} );
 
 $document.on( "keydown click vclick touchstart", ".wb-al a, .wb-al span", function( event ) {
 	var link = event.target,
@@ -370,7 +374,7 @@ $document.on( "keydown click vclick touchstart", ".wb-al a, .wb-al span", functi
 
 	switch ( eventType ) {
 	case "keydown":
-		if ( !(event.ctrlKey || event.metaKey ) ) {
+		if ( !( event.ctrlKey || event.metaKey ) ) {
 			return keyboardHandlerAutolist( which, link );
 		}
 		break;
@@ -384,14 +388,13 @@ $document.on( "keydown click vclick touchstart", ".wb-al a, .wb-al span", functi
 		}
 		break;
 	}
-});
+} );
 
 // Handle focus and resize events
 $document.on( "focusin txt-rsz.wb win-rsz-width.wb win-rsz-height.wb", function( event ) {
 	var focusEvent = ( event.type === "focusin" ),
 		eventTarget = event.target,
-		eventTargetId = ( eventTarget ? eventTarget.id : null ),
-		inputs, input, autolist, i, len;
+		inputs, input, autolistContainer, i, len;
 
 	// Only correct width if the polyfill has been initialized
 	if ( initialized ) {
@@ -400,10 +403,10 @@ $document.on( "focusin txt-rsz.wb win-rsz-width.wb win-rsz-height.wb", function(
 		for ( i = 0; i !== len; i += 1 ) {
 			input = inputs[ i ];
 			if ( focusEvent ) {
-				autolist = input.nextSibling;
-				if ( autolist.className.indexOf( "hide" ) === -1 &&
-					eventTargetId !== input.id && eventTargetId !== autolist.id &&
-					!$.contains( autolist, eventTarget ) ) {
+				autolistContainer = input.nextElementSibling || $( input ).next().get( 0 );
+				if ( autolistContainer.firstChild.className.indexOf( "hide" ) === -1 &&
+					eventTarget !== autolistContainer &&
+					!$.contains( autolistContainer, eventTarget ) ) {
 
 					closeOptions( input );
 				}
@@ -412,9 +415,9 @@ $document.on( "focusin txt-rsz.wb win-rsz-width.wb win-rsz-height.wb", function(
 			}
 		}
 	}
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, document, wb );
+} )( jQuery, window, document, wb );

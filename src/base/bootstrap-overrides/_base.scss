@@ -404,74 +404,6 @@ $label-alert-danger-border-icon-color: #d3080c;
 	}
 }
 
-details {
-	&.alert {
-		padding-left: 45px;
-
-		&:before {
-			display: inline-block;
-			font-family: "Glyphicons Halflings";
-			font-size: 24px;
-			margin-left: -1.3em;
-			margin-top: -3px;
-			position: absolute;
-		}
-
-		> {
-			* {
-				margin-left: 0.7em;
-			}
-
-			:first-child {
-				margin-left: 0.4em;
-				
-				&:before {
-					color: #000;
-					content: "";
-					font-family: $font-family-base;
-				}
-			}
-		}
-	}
-
-	&.alert-success {
-		@extend %label-alert-success-bg-border-left;
-
-		&:before {
-			color: $label-alert-success-border-icon-color;
-			content: "\e084";
-		}
-	}
-
-	&.alert-info {
-		@extend %label-alert-info-bg-border-left;
-
-		&:before {
-			color: $label-alert-info-border-icon-color;
-			content: "\e086";
-		}
-	}
-
-	&.alert-warning {
-		@extend %label-alert-warning-bg-border-left;
-
-		&:before {
-			color: $label-alert-warning-border-icon-color;
-			content: "\e107";
-		}
-	}
-
-	&.alert-danger {
-		@extend %label-alert-danger-bg-border-left;
-
-		&:before {
-			color: $label-alert-danger-border-icon-color;
-			content: "\e101";
-		}
-	}
-}
-
-
 /*
  *	Heading top margins
  */
@@ -619,15 +551,26 @@ blockquote {
 }
 
 /*
- *	Fieldset legend border position
+ *	Fieldset/legend border position
  *
  *	Bootstrap puts the border below the legend which creates a visual
  *	separation between the legend and the fields to which it relates. Putting
- *	the border above eliminates that visual separation.
+ *	the border above eliminates that visual separation. Putting it on the
+ *	fieldset element instead ensures that all fieldsets will have a separation
+ *	even when no legend is used.
  */
 legend {
 	border-bottom: 0;
+	float: left;
+}
+
+fieldset {
 	border-top: 1px solid $legend-border-color;
+	padding-top: 10px;
+
+	&:first-child {
+		border-top: 0;
+	}
 }
 
 /*
@@ -671,7 +614,7 @@ legend {
 				padding: $padding-large-vertical $padding-large-horizontal;
 			}
 		}
-		
+
 		&:first-child {
 			[rel="prev"] {
 				&:before {
@@ -745,6 +688,8 @@ legend {
 	 * Bootstrap as a fix for button wrapping (see wet-boew/wet-boew#4454)
 	 */
 	height: auto;
+	min-height: 36px;
+	min-width: 36px;
 	white-space: normal;
 
 	&.disabled,

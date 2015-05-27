@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, wb ) {
+( function( $, wb ) {
 "use strict";
 
 var $document = wb.doc,
@@ -54,7 +54,7 @@ $document.on( setFocusEvent, function( event ) {
 				.attr( "tabindex", "-1" );
 
 		// Assigns focus to an element (delay allows for revealing of hidden content)
-		setTimeout(function() {
+		setTimeout( function() {
 			$elm.trigger( "focus" );
 
 			var $topBar = $( ".wb-bar-t[aria-hidden=false]" );
@@ -67,7 +67,7 @@ $document.on( setFocusEvent, function( event ) {
 			return $elm;
 		}, 100 );
 	}
-});
+} );
 
 // Set focus to the target of a deep link from a different page
 // (helps browsers that can't set the focus on their own)
@@ -79,7 +79,7 @@ $window.on( "hashchange", function() {
 	if ( !wb.ignoreHashChange ) {
 		processHash();
 	}
-});
+} );
 
 // Helper for browsers that can't change keyboard and/or event focus on a same page link click
 $document.on( clickEvents, linkSelector, function( event ) {
@@ -91,6 +91,6 @@ $document.on( clickEvents, linkSelector, function( event ) {
 		wb.ignoreHashChange = true;
 		$linkTarget.trigger( setFocusEvent );
 	}
-});
+} );
 
-})( jQuery, wb );
+} )( jQuery, wb );

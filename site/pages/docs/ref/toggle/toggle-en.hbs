@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Allows an element to toggle elements between on and off states.",
 	"altLangPrefix": "toggle",
-	"dateModified": "2015-02-03"
+	"dateModified": "2015-04-22"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -157,7 +157,7 @@
 				<td>CSS selector that specifies the elements the toggle element controls. If no CSS selector is supplied, the toggle element controls itself.</td>
 				<td>
 					Specify the CSS selector. All elements to be toggled should match this selector.
-					<pre><code>&lt;span class="wb-toggle" data-toggle="{'selector': '.cssSelector'}"&gt;</code></pre>
+					<pre><code>&lt;span class="wb-toggle" data-toggle='{"selector": ".cssSelector"}"&gt;</code></pre>
 				</td>
 				<td>
 					<dl>
@@ -173,7 +173,7 @@
 				<td>CSS selector that causes the toggle element to only control elements within a given parent element.</td>
 				<td>
 					Specify the CSS selector. When a toggle element is clicked, it will only toggle elements that are children of this selector.
-					<pre><code>&lt;span class="wb-toggle" data-toggle="{'parent': '.parentCssSelector'}"&gt;</code></pre>
+					<pre><code>&lt;span class="wb-toggle" data-toggle='{"parent": ".parentCssSelector"}'&gt;</code></pre>
 				</td>
 				<td>
 					<dl>
@@ -189,7 +189,7 @@
 				<td>CSS selector that groups multiple toggle elements together and only allows one of the elements to be open at a time.</td>
 				<td>
 					Specify the CSS group selector. All elements to be toggled should match this selector.
-					<pre><code>&lt;span class="wb-toggle" data-toggle="{'group': '.groupCssSelector'}"&gt;</code></pre>
+					<pre><code>&lt;span class="wb-toggle" data-toggle='{"group": ".groupCssSelector"}"&gt;</code></pre>
 				</td>
 				<td>
 					<dl>
@@ -205,7 +205,7 @@
 				<td>Causes a toggle element to remember its current state and re-apply it when the page reloads.</td>
 				<td>
 					Supports persistence. Only "session" and "local" are supported:
-					<pre><code>&lt;span class="wb-toggle" data-toggle="{'persist': 'session'}"&gt;</code></pre>
+					<pre><code>&lt;span class="wb-toggle" data-toggle='{"persist": "session"}'&gt;</code></pre>
 				</td>
 				<td>
 					<dl>
@@ -223,7 +223,7 @@
 				<td>Causes a toggle element to turn the elements it controls on or off when the page is printed.</td>
 				<td>
 					Specify the print behaviour. Only "on" or "off" are supported:
-					<pre><code>&lt;span class="wb-toggle" data-toggle="{'print': 'on'}"&gt;</code></pre>
+					<pre><code>&lt;span class="wb-toggle" data-toggle='{"print": "on"}'&gt;</code></pre>
 				</td>
 				<td>
 					<dl>
@@ -241,7 +241,7 @@
 				<td>Causes a toggle element to only turn the elements it controls on or off.</td>
 				<td>
 					Specify the type. Only "on" or "off" are supported:
-					<pre><code>&lt;span class="wb-toggle" data-toggle="{'type': 'on'}"&gt;</code></pre>
+					<pre><code>&lt;span class="wb-toggle" data-toggle='{"type": "on"}'&gt;</code></pre>
 				</td>
 				<td>
 					<dl>
@@ -259,7 +259,7 @@
 				<td>Sets the initial state of a toggle element</td>
 				<td>
 					Specify the initial state. Only "on" or "off" are supported:
-					<pre><code>&lt;span class="wb-toggle" data-toggle="{'state': 'on'}"&gt;</code></pre>
+					<pre><code>&lt;span class="wb-toggle" data-toggle='{"state": "on"}'&gt;</code></pre>
 				</td>
 				<td>
 					<dl>
@@ -275,7 +275,7 @@
 				<td>CSS class that's added to elements when they are toggled on.</td>
 				<td>
 					Specify a CSS class name without the leading "."
-					<pre><code>&lt;span class="wb-toggle" data-toggle="{'stateOn': 'cssClass'}"&gt;</code></pre>
+					<pre><code>&lt;span class="wb-toggle" data-toggle='{"stateOn": "cssClass"}'&gt;</code></pre>
 				</td>
 				<td>
 					<dl>
@@ -291,7 +291,7 @@
 				<td>CSS class that's added to elements when they are toggled off.</td>
 				<td>
 					Specify a CSS class name without the leading "."
-					<pre><code>&lt;span class="wb-toggle" data-toggle="{'stateOff': 'cssClass'}"&gt;</code></pre>
+					<pre><code>&lt;span class="wb-toggle" data-toggle='{"stateOff": "cssClass"}'&gt;</code></pre>
 				</td>
 				<td>
 					<dl>

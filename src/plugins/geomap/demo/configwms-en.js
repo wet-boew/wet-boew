@@ -17,6 +17,7 @@
  */
 /*jshint unused:false*/
 var wet_boew_geomap = {
+
 	// OPTIONAL: note that Geomap will provide a default basemap if not specified here.
 	basemap: {
 		title: "WMS-Toporama",

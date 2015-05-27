@@ -26,8 +26,8 @@
 					a {
 						border-left: 1px solid #999;
 						color: #fff;
-						transition-property: background-color, color;
 						transition-delay: 0.5s;
+						transition-property: background-color, color;
 
 						&.wb-navcurr {
 							@extend %wet-theme-wb-sm-wb-navcurr;

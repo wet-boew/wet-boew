@@ -1,0 +1,29 @@
+/*
+ * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
+ */
+
+/*
+ *	Dismissable content container
+ */
+.wb-dismissable-container {
+	background-color: $clrLight;
+	display: table;
+	margin: 10px 0;
+	padding: 10px;
+	width: 100%;
+
+	.mfp-close {
+		color: $clrDark;
+		display: table-cell;
+		position: static;
+	}
+}
+
+/*
+ *	Dismissable content wrapper
+ */
+.wb-dismissable-wrapper {
+	display: table-cell;
+	width: 100%;
+}

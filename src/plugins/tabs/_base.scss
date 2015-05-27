@@ -3,6 +3,8 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 
+$tab-margin-width: 10px;
+
 %tabs-position-relative {
 	position: relative;
 }
@@ -21,12 +23,6 @@
 	}
 }
 
-%tab-link-color {
-	a {
-		color: $carousel-tabpanel-figcaption-link-color;
-	}
-}
-
 %tab-figure-captions {
 	bottom: 0;
 	color: $carousel-tabpanel-figcaption-color;
@@ -35,6 +31,12 @@
 	position: relative;
 	right: 0;
 	z-index: 101;
+}
+
+%carousel-link {
+	a {
+		color: $carousel-tabpanel-link-color;
+	}
 }
 
 %carousel-s2-prv-nxt-common {
@@ -93,6 +95,13 @@
 	> {
 		details {
 			padding: 6px 12px;
+
+			> {
+				summary {
+					margin: -6px -12px;
+					padding: 6px 12px;
+				}
+			}
 		}
 	}
 }
@@ -128,6 +137,8 @@
 	}
 
 	[role="tablist"] {
+		border-spacing: $tab-margin-width 0;
+		display: table;
 		list-style: none;
 		margin: 0;
 		padding: 0;
@@ -143,6 +154,8 @@
 			}
 			color: $carousel-tablist-tabcount-color;
 			cursor: pointer;
+			display: table-cell;
+			left: -$tab-margin-width;
 			margin: 0 10px 0 0;
 			position: relative;
 			text-align: center;
@@ -210,7 +223,6 @@
 	}
 
 	[role="tabpanel"] {
-		@extend %tab-link-color;
 		overflow-x: auto;
 		position: relative;
 		z-index: 1;
@@ -221,6 +233,10 @@
 	 */
 	&.carousel-s1 {
 		border-top: 0;
+
+		[role="tabpanel"] {
+			@extend %carousel-link;
+		}
 
 		[role="tablist"] {
 			bottom: 1em;
@@ -278,7 +294,7 @@
 
 		figcaption {
 			@extend %tab-figure-captions;
-			@extend %tab-link-color;
+			@extend %carousel-link;
 
 			p {
 				@extend %tabs-margin-bottom-0;
@@ -292,6 +308,10 @@
 	&.carousel-s2 {
 		background: $carousel-s2-tablist-controls-bg-color;
 		padding-bottom: 4.375em;
+
+		[role="tabpanel"] {
+			@extend %carousel-link;
+		}
 
 		[role="tablist"] {
 			bottom: 0;
@@ -391,7 +411,7 @@
 
 		figcaption {
 			@extend %tab-figure-captions;
-			@extend %tab-link-color;
+			@extend %carousel-link;
 
 			p {
 				@extend %tabs-margin-bottom-0;

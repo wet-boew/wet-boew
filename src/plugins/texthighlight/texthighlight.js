@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, wb ) {
+( function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -33,7 +33,7 @@ var componentName = "wb-txthl",
 
 		if ( elm ) {
 			if ( event.txthl ) {
-				searchCriteria = $.isArray(event.txthl) ? event.txthl.join( "|" ) : event.txthl;
+				searchCriteria = $.isArray( event.txthl ) ? event.txthl.join( "|" ) : event.txthl;
 			} else if ( params && params.txthl ) {
 				searchCriteria = decodeURIComponent(
 					wb.pageUrlParts.params.txthl
@@ -48,7 +48,7 @@ var componentName = "wb-txthl",
 
 				newText = elm.innerHTML.replace( new RegExp( searchCriteria, "gi" ), function( match, group1, group2, group3 ) {
 					return ( !group2 ? "" : group2 ) + "<mark class='txthl'>" + group3 + "</mark>";
-				});
+				} );
 				elm.innerHTML = newText;
 			}
 
@@ -63,4 +63,4 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, document, wb );
+} )( jQuery, window, document, wb );

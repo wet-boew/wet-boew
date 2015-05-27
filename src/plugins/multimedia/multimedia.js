@@ -5,7 +5,7 @@
  * @author WET Community
  */
 /* globals YT */
-(function( $, window, wb, undef ) {
+( function( $, window, wb, undef ) {
 "use strict";
 
 /* Local scoped variables*/
@@ -14,6 +14,7 @@ var componentName = "wb-mltmd",
 	initEvent = "wb-init" + selector,
 	template,
 	i18n, i18nText,
+	youtubeReadyEvent = "ready.youtube",
 	captionsLoadedEvent = "ccloaded" + selector,
 	captionsLoadFailedEvent = "ccloadfail" + selector,
 	captionsVisibleChangeEvent = "ccvischange" + selector,
@@ -25,8 +26,21 @@ var componentName = "wb-mltmd",
 	templateLoadedEvent = "templateloaded" + selector,
 	cuepointEvent = "cuepoint" + selector,
 	captionClass = "cc_on",
-	multimediaEvents = "durationchange playing pause ended volumechange timeupdate waiting canplay progress" +
-			captionsLoadedEvent + " " + captionsLoadFailedEvent + " " + captionsVisibleChangeEvent + " " + cuepointEvent,
+	multimediaEvents = [
+		"durationchange",
+		"playing",
+		"pause",
+		"ended",
+		"volumechange",
+		"timeupdate",
+		"waiting",
+		"canplay",
+		"progress",
+		captionsLoadedEvent,
+		captionsLoadFailedEvent,
+		captionsVisibleChangeEvent,
+		cuepointEvent
+	].join( " " ),
 	$document = wb.doc,
 	$window = wb.win,
 
@@ -39,7 +53,7 @@ var componentName = "wb-mltmd",
 		// Start initialization
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
-		var eventTarget = wb.init( event, componentName, selector, true ),
+		var eventTarget = wb.init( event, componentName, selector ),
 			elmId;
 
 		if ( eventTarget ) {
@@ -64,12 +78,12 @@ var componentName = "wb-mltmd",
 
 			if ( template === undef ) {
 				template = "";
-				$( eventTarget ).trigger({
+				$( eventTarget ).trigger( {
 					type: "ajax-fetch.wb",
 					fetch: {
 						url: wb.getPath( "/assets" ) + "/mediacontrols.html"
 					}
-				});
+				} );
 			} else if ( template !== "" ) {
 				$( eventTarget ).trigger( templateLoadedEvent );
 			}
@@ -97,6 +111,7 @@ var componentName = "wb-mltmd",
 
 		//Loop to extract hours, minutes and seconds
 		while ( index >= 0 ) {
+
 			//Get the number of seconds for the current iteration (hour, minute or second)
 			secondsIn = Math.pow( 60, index );
 			current = Math.floor( time / secondsIn );
@@ -123,9 +138,11 @@ var componentName = "wb-mltmd",
 
 		if ( time !== undef ) {
 			if ( time.charAt( time.length - 1 ) === "s" ) {
+
 				//Duration parsing
 				return parseFloat( time.substring( 0, time.length - 1 ) );
 			} else {
+
 				//SMTPE Timecode Parsing
 				parts = time.split( ":" ).reverse();
 				seconds = 0;
@@ -147,13 +164,15 @@ var componentName = "wb-mltmd",
 	 * @credit: https://github.com/premasagar/tim/blob/master/tinytim.js
 	 * @todo: caching
 	 */
-	tmpl = (function() {
+	tmpl = ( function() {
 		var start = "{{",
 			end = "}}",
+
 			// e.g. config.person.name
 			path = "[a-z0-9_$][\\.a-z0-9_]*",
 			pattern = new RegExp( start + "\\s*(" + path + ")\\s*" + end, "gi" );
 		return function( template, data ) {
+
 			// Merge data into the template string
 			return template.replace( pattern, function( tag, token ) {
 				var path = token.split( "." ),
@@ -162,18 +181,20 @@ var componentName = "wb-mltmd",
 					i = 0;
 				for ( ; i < len; i += 1 ) {
 					lookup = lookup[ path[ i ] ];
+
 					// Property not found
 					if ( lookup === undef ) {
 						throw "tim: '" + path[ i ] + "' not found in " + tag;
 					}
+
 					// Return the required value
 					if ( i === len - 1 ) {
 						return lookup;
 					}
 				}
-			});
+			} );
 		};
-	}()),
+	} () ),
 
 	/**
 	 * @method parseHtml
@@ -263,28 +284,29 @@ var componentName = "wb-mltmd",
 	 * @fires ccloadfail.wb-mltmd
 	 */
 	loadCaptionsExternal = function( elm, url ) {
-		$.ajax({
+		$.ajax( {
 			url: url,
 			dataType: "html",
+
 			//Filters out images and objects from the content to avoid loading them
 			dataFilter: function( data ) {
 				return data.replace( /<img|object [^>]*>/g, "" );
 			},
 			success: function( data ) {
-				elm.trigger({
+				elm.trigger( {
 					type: captionsLoadedEvent,
 					captions: data.indexOf( "<html" ) !== -1 ?
 						parseHtml( $( data ) ) :
 						parseXml( $( data ) )
-				});
+				} );
 			},
 			error: function( response, textStatus, errorThrown ) {
-				elm.trigger({
+				elm.trigger( {
 					type: captionsLoadFailedEvent,
 					error: errorThrown
-				});
+				} );
 			}
-		});
+		} );
 	},
 
 	/**
@@ -295,10 +317,10 @@ var componentName = "wb-mltmd",
 	 * @fires ccloaded.wb-mltmd
 	 */
 	loadCaptionsInternal = function( elm, obj ) {
-		elm.trigger({
+		elm.trigger( {
 			type: captionsLoadedEvent,
 			captions: parseHtml( obj )
-		});
+		} );
 	},
 
 	/**
@@ -392,7 +414,7 @@ var componentName = "wb-mltmd",
 	 * @param {object} args The arguments to send to the function call
 	 */
 	youTubeApi = function( fn, args ) {
-		var $media = $( event.target.getIframe() ),
+		var $media = $( this.object.getIframe() ),
 			state;
 
 		switch ( fn ) {
@@ -437,13 +459,18 @@ var componentName = "wb-mltmd",
 			return $( this ).hasClass( captionClass );
 		case "setCaptionsVisible":
 			if ( args ) {
-				$( this).addClass( captionClass );
-				this.object.loadModule("cc");
-				this.object.loadModule("captions");
+				$( this ).addClass( captionClass );
+				try {
+					this.object.loadModule( "cc" );
+					this.object.setOption( "cc", "track", { languageCode: this.object.getOption( "cc", "tracklist" )[ 0 ].languageCode } );
+				} catch ( e ) {
+					this.object.loadModule( "captions" );
+					this.object.setOption( "captions", "track", { languageCode: this.object.getOption( "captions", "tracklist" )[ 0 ].languageCode } );
+				}
 			} else {
 				$( this ).removeClass( captionClass );
-				this.object.unloadModule("cc");
-				this.object.unloadModule("captions");
+				this.object.unloadModule( "cc" );
+				this.object.unloadModule( "captions" );
 			}
 			$media.trigger( "ccvischange" );
 		}
@@ -463,8 +490,9 @@ var componentName = "wb-mltmd",
 
 		switch ( event.data ) {
 		case null:
-			$media.trigger( "canplay" );
-			$media.trigger( "durationchange" );
+			$media
+				.trigger( "canplay" )
+				.trigger( "durationchange" );
 			break;
 		case -1:
 			event.target.unMute();
@@ -475,8 +503,10 @@ var componentName = "wb-mltmd",
 			media.timeline = clearInterval( media.timeline );
 			break;
 		case 1:
-			$media.trigger( "canplay" );
-			$media.trigger( "play" );
+			$media
+				.trigger( "canplay" )
+				.trigger( "play" )
+				.trigger( "playing" );
 			media.timeline = setInterval( timeline, 250 );
 			break;
 		case 2:
@@ -492,7 +522,7 @@ var componentName = "wb-mltmd",
 	youTubeAPIReady = function() {
 		var youTube = window.youTube;
 		youTube.ready = true;
-		youTube.waitingPlayers.trigger( youtubeEvent );
+		$document.trigger( youtubeReadyEvent );
 	},
 
 	onResize = function() {
@@ -515,10 +545,10 @@ $document.on( "ajax-fetched.wb " + templateLoadedEvent, selector, function( even
 		$this = $( selector );
 	}
 
-	$this.trigger({
+	$this.trigger( {
 		type: initializedEvent
-	});
-});
+	} );
+} );
 
 $document.on( initializedEvent, selector, function( event ) {
 	if ( event.namespace === componentName ) {
@@ -532,7 +562,7 @@ $document.on( initializedEvent, selector, function( event ) {
 			width = type === "video" ? $media.attr( "width" ) || $media.width() : 0,
 			height = type === "video" ? $media.attr( "height" ) || $media.height() : 0,
 			settings = wb.getData( $this, componentName ),
-			data = $.extend({
+			data = $.extend( {
 				media: $media,
 				captions: captions,
 				id: id,
@@ -541,7 +571,7 @@ $document.on( initializedEvent, selector, function( event ) {
 				title: title,
 				height: height,
 				width: width
-			}, i18nText),
+			}, i18nText ),
 			media = $media.get( 0 ),
 			youTube = window.youTube,
 			url;
@@ -557,22 +587,19 @@ $document.on( initializedEvent, selector, function( event ) {
 		$this.addClass( type );
 
 		if ( $media.find( "[type='video/youtube']" ).length > 0 ) {
+
 			// lets tweak some variables and start the load sequence
-			url = wb.getUrlParts( $this.find( "[type='video/youtube']").attr( "src") );
+			url = wb.getUrlParts( $this.find( "[type='video/youtube']" ).attr( "src" ) );
 
 			// lets set the flag for the call back
 			data.youTubeId = url.params.v;
 
-			// Method called the the YouTUbe API when ready
-
 			if ( youTube.ready === false ) {
-				if ( youTube.waitingPlayers === undef ) {
-					youTube.waitingPlayers = $this;
-				} else {
-					youTube.waitingPlayers = youTube.waitingPlayers.add( $this );
-				}
+				$document.one( youtubeReadyEvent, function() {
+					$this.trigger( youtubeEvent, data );
+				} );
 			} else {
-				$this.trigger( youtubeEvent );
+				$this.trigger( youtubeEvent, data );
 			}
 
 			// finally lets load safely
@@ -589,7 +616,7 @@ $document.on( initializedEvent, selector, function( event ) {
 		// Identify that initialization has completed
 		wb.ready( $this, componentName );
 	}
-});
+} );
 
 $document.on( fallbackEvent, selector, function( event, data ) {
 	if ( event.namespace === componentName ) {
@@ -602,7 +629,7 @@ $document.on( fallbackEvent, selector, function( event, data ) {
 			width = data.width,
 			height = data.height > 0 ? data.height : Math.round( data.width / 1.777 ),
 			playerresource = wb.getPath( "/assets" ) + "/multimedia.swf?" + new Date().getTime(),
-			poster;
+			poster, $newMedia;
 
 		flashvars += "&amp;media=" + encodeURI( wb.getUrlParts( source ).absolute );
 		if ( type === "video" ) {
@@ -613,7 +640,7 @@ $document.on( fallbackEvent, selector, function( event, data ) {
 				width + "&amp;posterimg=" + encodeURI( wb.getUrlParts( posterUrl ).absolute );
 		}
 
-		data.media = $media.replaceWith( "<object id='" + data.mId + "' width='" + width +
+		$newMedia = $( "<object id='" + data.mId + "' width='" + width +
 			"' height='" + height + "' class='" + type +
 			"' type='application/x-shockwave-flash' data='" +
 			playerresource + "' tabindex='-1' play='' pause=''>" +
@@ -624,22 +651,24 @@ $document.on( fallbackEvent, selector, function( event, data ) {
 			"<param name='wmode' value='opaque'/>" +
 			poster + "</object>" );
 
+		$media.replaceWith( $newMedia );
+
+		data.media = $newMedia;
+
 		$this.trigger( renderUIEvent, [ type, data ] );
 	}
-});
+} );
 
 /*
  *  Youtube Video mode Event
  */
 $document.on( youtubeEvent, selector, function( event, data ) {
 	if ( event.namespace === componentName ) {
-		var $this = $( event.currentTarget ),
-			$media = data.media,
-			id = data.id,
-			ytPlayer;
+		var mId = data.mId,
+			$this = $( event.currentTarget ),
+			$media, ytPlayer;
 
-		data.media = $media.replaceWith( "<div id=" + id + "/>" );
-		ytPlayer = new YT.Player( id, {
+		ytPlayer = new YT.Player( mId, {
 			videoId: data.youTubeId,
 			playerVars: {
 				autoplay: 0,
@@ -658,22 +687,24 @@ $document.on( youtubeEvent, selector, function( event, data ) {
 				},
 				onStateChange: youTubeEvents,
 				onApiChange: function() {
+
 					//If captions were enabled before the module was ready, re-enable them
 					var t = $this.get( 0 );
 					t.player( "setCaptionsVisible", t.player( "getCaptionsVisible" ) );
 				}
 			}
-		});
+		} );
 
 		$this.addClass( "youtube" );
 
-		$this.find( "iframe" ).attr( "tabindex", -1 );
+		$media = $this.find( "#" + mId ).attr( "tabindex", -1 );
 
+		data.media = $media;
 		data.ytPlayer = ytPlayer;
 
-		$this.trigger( renderUIEvent, "youtube", data );
+		$this.trigger( renderUIEvent, [ "youtube", data ] );
 	}
-});
+} );
 
 $document.on( renderUIEvent, selector, function( event, type, data ) {
 	if ( event.namespace === componentName ) {
@@ -685,14 +716,14 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 
 		$media
 			.after( tmpl( template, data ) )
-			.wrap("<div class=\"display\"></div>");
+			.wrap( "<div class=\"display\"></div>" );
 
 		$eventReceiver = $media.is( "object" ) ? $media.children( ":first-child" ) : $media;
 
 		// Create an adapter for the event management
 		$eventReceiver.on( multimediaEvents, function( event ) {
 			$this.trigger( event );
-		});
+		} );
 
 		this.object = data.ytPlayer || $media.get( 0 );
 		this.player = ( data.ytPlayer ) ? youTubeApi : playerApi;
@@ -729,7 +760,7 @@ $document.on( renderUIEvent, selector, function( event, type, data ) {
 			loadCaptionsInternal( $media, $( "#" + wb.jqEscape( captionsUrl.hash.substring( 1 ) ) ) );
 		}
 	}
-});
+} );
 
 /*
  * UI Bindings
@@ -756,22 +787,22 @@ $document.on( "click", selector, function( event ) {
 	} else if ( $target.is( "progress" ) || $target.hasClass( "progress" ) || $target.hasClass( "progress-bar" ) ) {
 		this.player( "setCurrentTime", this.player( "getDuration" ) * ( ( event.pageX - $target.offset().left ) / $target.width() ) );
 	} else if ( className.match( /\brewind\b|-backward/ ) ) {
-		this.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05);
+		this.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05 );
 	} else if ( className.match( /\bfastforward\b|-forward/ ) ) {
-		this.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05);
+		this.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05 );
 	} else if ( className.match( /cuepoint/ ) ) {
-		$(this).trigger( { type: "cuepoint", cuepoint: $target.data( "cuepoint" ) } );
+		$( this ).trigger( { type: "cuepoint", cuepoint: $target.data( "cuepoint" ) } );
 	}
-});
+} );
 
-$document.on( "input change", selector, function(event) {
+$document.on( "input change", selector, function( event ) {
 	var target = event.target;
 
 	if ( $( target ).hasClass( "volume" ) ) {
 		event.currentTarget.player( "setMuted", false );
 		event.currentTarget.player( "setVolume", target.value / 100 );
 	}
-});
+} );
 
 $document.on( "keydown", selector, function( event ) {
 	var $this = $( event.currentTarget ),
@@ -788,11 +819,11 @@ $document.on( "keydown", selector, function( event ) {
 			break;
 
 		case 37:
-			playerTarget.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05);
+			playerTarget.player( "setCurrentTime", this.player( "getCurrentTime" ) - this.player( "getDuration" ) * 0.05 );
 			break;
 
 		case 39:
-			playerTarget.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05);
+			playerTarget.player( "setCurrentTime", this.player( "getCurrentTime" ) + this.player( "getDuration" ) * 0.05 );
 			break;
 
 		case 38:
@@ -810,7 +841,7 @@ $document.on( "keydown", selector, function( event ) {
 		}
 		return false;
 	}
-});
+} );
 
 $document.on( "keyup", selector, function( event ) {
 	if ( event.which === 32 && !( event.ctrlKey || event.altKey || event.metaKey ) ) {
@@ -818,11 +849,11 @@ $document.on( "keyup", selector, function( event ) {
 		// Allows the spacebar to be used for play/pause without double triggering
 		return false;
 	}
-});
+} );
 
 $document.on( "wb-activate", selector, function() {
     this.player( "play" );
-});
+} );
 
 $document.on( multimediaEvents, selector, function( event, simulated ) {
 	var eventTarget = event.currentTarget,
@@ -952,7 +983,7 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 		eventTarget.player( "setCurrentTime", parseTime( event.cuepoint ) );
 		break;
 	}
-});
+} );
 
 // Fallback for browsers that don't implement the waiting events
 $document.on( "progress", selector, function( event ) {
@@ -972,7 +1003,7 @@ $document.on( "progress", selector, function( event ) {
 		$this.trigger( "canplay", true );
 	}
 	eventTarget.player( "setPreviousTime", eventTarget.player( "getCurrentTime" ) );
-});
+} );
 
 $document.on( resizeEvent, selector, function( event ) {
 	if ( event.namespace === componentName ) {
@@ -993,7 +1024,7 @@ $document.on( resizeEvent, selector, function( event ) {
 			}
 		}
 	}
-});
+} );
 
 window.onYouTubeIframeAPIReady = youTubeAPIReady;
 
@@ -1003,4 +1034,4 @@ window.youTube = {
 
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

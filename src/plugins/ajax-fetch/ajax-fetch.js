@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
-(function( $, wb ) {
+( function( $, wb ) {
 "use strict";
 
 /*
@@ -21,7 +21,16 @@ $document.on( "ajax-fetch.wb", function( event ) {
 	// TODO: Remove event.element in future versions
 	var caller = event.element || event.target,
 		fetchOpts = event.fetch,
+		urlParts = fetchOpts.url.split( " " ),
+		url = urlParts[ 0 ],
+		urlHash = url.split( "#" )[ 1 ],
+		selector = urlParts[ 1 ] || ( urlHash ? "#" + urlHash : false ),
 		fetchData, callerId;
+
+	// Separate the URL from the filtering criteria
+	if ( selector ) {
+		fetchOpts.url = urlParts[ 0 ];
+	}
 
 	// Filter out any events triggered by descendants
 	if ( caller === event.target || event.currentTarget === event.target ) {
@@ -32,8 +41,12 @@ $document.on( "ajax-fetch.wb", function( event ) {
 		callerId = caller.id;
 
 		$.ajax( fetchOpts )
-			.done(function( response, status, xhr ) {
+			.done( function( response, status, xhr ) {
 				var responseType = typeof response;
+
+				if ( selector ) {
+					response = $( "<div>" + response + "</div>" ).find( selector );
+				}
 
 				fetchData = {
 					response: response,
@@ -44,13 +57,13 @@ $document.on( "ajax-fetch.wb", function( event ) {
 				fetchData.pointer = $( "<div id='" + wb.getId() + "' data-type='" + responseType + "' />" )
 										.append( responseType === "string" ? response : "" );
 
-				$( "#" + callerId ).trigger({
+				$( "#" + callerId ).trigger( {
 					type: "ajax-fetched.wb",
 					fetch: fetchData
 				}, this );
-			})
-			.fail(function( xhr, status, error ) {
-				$( "#" + callerId ).trigger({
+			} )
+			.fail( function( xhr, status, error ) {
+				$( "#" + callerId ).trigger( {
 					type: "ajax-failed.wb",
 					fetch: {
 						xhr: xhr,
@@ -60,6 +73,6 @@ $document.on( "ajax-fetch.wb", function( event ) {
 				}, this );
 			}, this );
 	}
-});
+} );
 
-})( jQuery, wb );
+} )( jQuery, wb );

@@ -4,64 +4,59 @@
  */
 
 /* Details/summary polyfill */
-details {
-	&.alert {
-		> {
-			summary {
-				margin-left: 1.4em !important;
-			}
-		}
-	}
-
-	> {
-		summary {
-			&:before { /* Add the closed pointer */
-				content: "\25BA\a0" !important;
-				font-size: 84%;
-			}
-		}
-	}
-
-	&[open] {
-		display: block;
-
-		> {
-			summary {
-				&:before { /* Add the opened pointer */
-					content: "\25BC\a0" !important;
-				}
-			}
-		}
-	}
+%details-opened-icon {
+	content: "\25BC\a0";
 }
 
-/* Right to left (RTL) CSS */
-[dir="rtl"] {
-	details {
-		&.alert {
-			> {
-				summary {
-					margin-right: 1.4em !important;
-				}
-			}
-		}
+%details-closed-icon {
+	content: "\25BA\a0";
+	font-size: 84%;
+}
 
+.no-details {
+	details {
 		> {
 			summary {
-				&:before { /* Add the close pointer */
-					content: "\25C4\a0" !important;
+				&:before { /* Add the closed pointer */
+					@extend %details-closed-icon;
 				}
 			}
 		}
 
 		&[open] {
+			display: block;
+
 			> {
 				summary {
 					&:before { /* Add the opened pointer */
-						content: "\25BC\a0" !important;
+						@extend %details-opened-icon;
 					}
 				}
 			}
 		}
 	}
+
+	/* Right to left (RTL) CSS */
+	&[dir="rtl"] {
+		details {
+			> {
+				summary {
+					&:before { /* Add the close pointer */
+						content: "\25C4\a0";
+					}
+				}
+			}
+
+			&[open] {
+				> {
+					summary {
+						&:before { /* Add the opened pointer */
+							@extend %details-opened-icon;
+						}
+					}
+				}
+			}
+		}
+	}
+
 }

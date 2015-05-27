@@ -9,24 +9,22 @@
 .expicon {
 	font-size: 0.7em;
 	margin: 0 -0.35em 0 0.7em;
-	transition-property:visibility;
 	transition-delay: 0.5s;
-
+	transition-property:visibility;
 }
 
 .wb-menu {
 	.sm {
-		max-height: 0;
-		overflow: hidden;
-		visibility:hidden;
-		transition-property:visibility;
-		transition-delay:0.5s;
-		position: absolute;
-		z-index: 500;
-		top: auto;
-		text-transform: none;
 		max-height: 1000px;
 		min-width: 12.5em;
+		overflow: hidden;
+		position: absolute;
+		text-transform: none;
+		top: auto;
+		transition-delay:0.5s;
+		transition-property:visibility;
+		visibility:hidden;
+		z-index: 500;
 
 		&.open {
 			visibility: visible;
@@ -91,8 +89,8 @@
 
 	.sm-open {
 		.expicon {
-			visibility: hidden;
 			transition-delay: 0.5s;
+			visibility: hidden;
 		}
 	}
 }
@@ -222,29 +220,25 @@
 	}
 }
 
-%menu-noscript-display-block-important {
-	display: block !important;
-}
-
 .wb-disable {
 	#wb-glb-mn {
 		display: none !important;
 	}
 
 	#wb-srch {
-		@extend %menu-noscript-display-block-important;
+		@extend %global-display-block-important;
 	}
 
 	#wb-sm {
-		@extend %menu-noscript-display-block-important;
+		@extend %global-display-block-important;
 	}
 
 	#wb-sec {
-		@extend %menu-noscript-display-block-important;
+		@extend %global-display-block-important;
 	}
 
 	#wb-info {
-		@extend %menu-noscript-display-block-important;
+		@extend %global-display-block-important;
 	}
 }
 

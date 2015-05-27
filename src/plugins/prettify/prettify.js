@@ -30,7 +30,7 @@
  *    - lang-xq
  *    - lang-yaml
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -98,12 +98,12 @@ var componentName = "wb-prettify",
 			}
 
 			// Load the required dependencies and prettify the code once finished
-			Modernizr.load({
+			Modernizr.load( {
 				load: deps,
 				complete: function() {
 					$document.trigger( prettyPrintEvent );
 				}
-			});
+			} );
 		}
 	},
 
@@ -133,4 +133,4 @@ $document
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

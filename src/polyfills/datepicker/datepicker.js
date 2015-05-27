@@ -5,7 +5,7 @@
  * @author @pjackson28
  */
 
-(function( $, window, document, wb ) {
+( function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -82,7 +82,7 @@ var componentName = "wb-date",
 
 							toggle( $container.attr( "aria-controls" ) );
 						}
-					});
+					} );
 
 				// Disable the tabbing of all the links when calendar is hidden
 				$container.find( "a" ).attr( "tabindex", "-1" );
@@ -214,7 +214,7 @@ var componentName = "wb-date",
 			// TODO: Replace with CSS animation
 			$container
 				.slideDown( "fast" )
-				.attr( "aria-hidden", "false");
+				.attr( "aria-hidden", "false" );
 			$( "#" + fieldId + "-picker-toggle" )
 				.attr( "title", closeLabel )
 				.children( ".wb-inv" )
@@ -277,7 +277,7 @@ var componentName = "wb-date",
 		var pad = wb.string.pad;
 		return format
 			.replace( "DD", pad( day, 2 ) )
-			.replace( "D", day)
+			.replace( "D", day )
 			.replace( "MM", pad( month, 2 ) )
 			.replace( "M", month )
 			.replace( "YYYY", year )
@@ -304,7 +304,7 @@ $document.on( "click vclick touchstart focusin", function( event ) {
 			return false;
 		}
 	}
-});
+} );
 
 $document.on( "keydown displayed.wb-cal", "#" + containerName, function( event, year, month, $days, day ) {
 	var $container = $( this ),
@@ -349,7 +349,7 @@ $document.on( "keydown displayed.wb-cal", "#" + containerName, function( event, 
 			}
 		}
 	}
-});
+} );
 
 $document.on( "click", ".picker-toggle", function( event ) {
 	event.preventDefault();
@@ -363,7 +363,7 @@ $document.on( "click", ".picker-toggle", function( event ) {
 		toggle( pickerId.substring( 0, pickerId.indexOf( "-picker-toggle" ) ) );
 		return false;
 	}
-});
+} );
 
 $document.on( "click", ".cal-days a", function( event ) {
 	var which = event.which,
@@ -389,9 +389,9 @@ $document.on( "click", ".cal-days a", function( event ) {
 
 		return false;
 	}
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, document, wb );
+} )( jQuery, window, document, wb );

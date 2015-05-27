@@ -5,7 +5,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -40,7 +40,7 @@ var componentName = "wb-data-ajax",
 		// Start initialization
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
-		var elm = wb.init( event, componentName + "-" + ajaxType, selector, true );
+		var elm = wb.init( event, componentName + "-" + ajaxType, selector );
 
 		if ( elm ) {
 
@@ -68,15 +68,15 @@ var componentName = "wb-data-ajax",
 				if ( typeof settings.corsFallback === "function" ) {
 					fetchObj.dataType = "jsonp";
 					fetchObj.jsonp = "callback";
-					fetchObj = settings.corsFallback(fetchObj);
+					fetchObj = settings.corsFallback( fetchObj );
 				}
 			}
 		}
 
-		$elm.trigger({
+		$elm.trigger( {
 			type: "ajax-fetch.wb",
 			fetch: fetchObj
-		});
+		} );
 	};
 
 $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " ajax-fetched.wb", selector, function( event ) {
@@ -115,14 +115,14 @@ $document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " ajax-fetched.w
 
 			// ajax-fetched event
 			content = event.fetch.response;
-			if ( content ) {
+			if ( content &&  content.length > 0 ) {
 
 				//Prevents the force caching of nested resources
 				jQueryCaching = jQuery.ajaxSettings.cache;
 				jQuery.ajaxSettings.cache = true;
 
 				// "replace" is the only event that doesn't map to a jQuery function
-				if ( ajaxType === "replace") {
+				if ( ajaxType === "replace" ) {
 					$elm.html( content );
 				} else {
 					$elm[ ajaxType ]( content );
@@ -147,4 +147,4 @@ for ( s = 0; s !== selectorsLength; s += 1 ) {
 	wb.add( selectors[ s ] );
 }
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

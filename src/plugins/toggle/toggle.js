@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -40,9 +40,10 @@ var componentName = "wb-toggle",
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var link = wb.init( event, componentName, selector, true ),
-			$link, data;
+			$link, data, persistState;
 
 		if ( link ) {
+
 			// Merge the elements settings with the defaults
 			$link = $( link );
 			data = $.extend( {}, defaults, $link.data( "toggle" ) );
@@ -53,7 +54,7 @@ var componentName = "wb-toggle",
 
 			// Persist toggle state across page loads
 			if ( data.persist ) {
-				initPersist( $link, data );
+				persistState = initPersist( $link, data );
 			}
 
 			// Toggle behaviour when the page is printed
@@ -61,7 +62,9 @@ var componentName = "wb-toggle",
 				initPrint( $link, data );
 			}
 
-			if ( data.state ) {
+			// Set the initial state if the state has been specified and
+			// the persistent state has not been set
+			if ( !persistState && data.state ) {
 				setState( $link, data, data.state );
 			}
 
@@ -86,12 +89,16 @@ var componentName = "wb-toggle",
 
 			// Check that the tablist widget hasn't already been initialized
 			if ( parent.getAttribute( "role" ) !== "tablist" ) {
-				parent.setAttribute( "role", "tablist" );
+
+				// Only apply the tablist role if the parent is not the tabbed interface container
+				// or the page is currently in "smallview", "xsmallview" or "xxsmallview"
+				if ( parent.className.indexOf( "wb-tabs" ) === -1 ||
+					document.documentElement.className.indexOf( "smallview" ) !== -1 ) {
+					parent.setAttribute( "role", "tablist" );
+				}
+
 				elms = parent.querySelectorAll( data.group );
 				tabs = parent.querySelectorAll( data.group + " " + selectorTab );
-
-				// Initialize the detail/summaries
-				$( tabs ).trigger( "wb-init.wb-details" );
 
 				// Set the tab and panel aria attributes
 				for ( i = 0, len = elms.length; i !== len; i += 1 ) {
@@ -144,9 +151,10 @@ var componentName = "wb-toggle",
 	},
 
 	/**
-	 * Initialize open on print behaviour of the toggle element
+	 * Initializes persistent behaviour of the toggle element
 	 * @param {jQuery Object} $link The toggle element to initialize
 	 * @param {Object} data Simple key/value data object passed when the event was triggered
+	 * @returns {string} Persistent state
 	 */
 	initPersist = function( $link, data ) {
 		var state,
@@ -161,6 +169,8 @@ var componentName = "wb-toggle",
 		if ( state ) {
 			$link.trigger( toggleEvent, $.extend( {}, data, { type: state } ) );
 		}
+
+		return state;
 	},
 
 	/**
@@ -174,7 +184,7 @@ var componentName = "wb-toggle",
 
 		$window.on( printEvent, function() {
 			$link.trigger( toggleEvent, $.extend( {}, data, { type: data.print } ) );
-		});
+		} );
 
 		// Fallback for browsers that don't support print events
 		if ( window.matchMedia ) {
@@ -184,7 +194,7 @@ var componentName = "wb-toggle",
 					if ( query.matches ) {
 						$window.trigger( printEvent );
 					}
-				});
+				} );
 			}
 		}
 	},
@@ -239,7 +249,7 @@ var componentName = "wb-toggle",
 					isOn: false,
 					isTablist: isTablist,
 					elms: $elmsGroup
-				});
+				} );
 
 				// Remove all grouped persistence keys
 				if ( isPersist ) {
@@ -260,7 +270,7 @@ var componentName = "wb-toggle",
 				isOn: isToggleOn,
 				isTablist: isTablist,
 				elms: $elms
-			});
+			} );
 
 			// Store the toggle link's current state if persistence is turned on.
 			// Try/catch is required to address exceptions thrown when using BB10 or
@@ -306,14 +316,14 @@ var componentName = "wb-toggle",
 			if ( data.isTablist ) {
 
 				// Set the required aria attributes
-				$elms.find( selectorTab ).attr({
+				$elms.find( selectorTab ).attr( {
 					"aria-selected": isOn,
 					tabindex: isOn ? "0" : "-1"
-				});
-				$elms.find( selectorPanel ).attr({
+				} );
+				$elms.find( selectorPanel ).attr( {
 					"aria-hidden": !isOn,
 					"aria-expanded": isOn
-				});
+				} );
 
 				// Check that the top of the open element is in view.
 				if ( isOn && $elms.length === 1 ) {
@@ -431,7 +441,7 @@ $document.on( "timerpoke.wb " + initEvent + " " + toggleEvent +
 		init( event );
 		break;
 	}
-});
+} );
 
 $document.on( toggledEvent, "details", toggleDetails );
 
@@ -485,7 +495,7 @@ $document.on( "keydown", selectorTab, function( event ) {
 			.children( "summary" )
 				.trigger( setFocusEvent );
 	}
-});
+} );
 
 $document.on( "keydown", selectorPanel, function( event ) {
 
@@ -497,9 +507,9 @@ $document.on( "keydown", selectorPanel, function( event ) {
 			.prev()
 				.trigger( setFocusEvent );
 	}
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

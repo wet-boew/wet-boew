@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -38,7 +38,7 @@ var componentName = "wb-twitter",
 					// Identify that initialization has completed
 					wb.ready( $( eventTarget ), componentName );
 				}
-			});
+			} );
 		}
 	};
 
@@ -47,4 +47,4 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

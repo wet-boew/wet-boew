@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, wb ) {
+( function( $, window, document, wb, undef ) {
 "use strict";
 
 /*
@@ -31,7 +31,7 @@ var componentName = "wb-lbx",
 		// Start initialization
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
-		var elm = wb.init( event, componentName, selector, true ),
+		var elm = wb.init( event, componentName, selector ),
 			elmId;
 
 		if ( elm ) {
@@ -91,19 +91,20 @@ var componentName = "wb-lbx",
 					}
 
 					// Extend the settings with window[ "wb-lbx" ] then data-wb-lbx
-					$elm.magnificPopup(
-						$.extend(
-							true,
-							settings,
-							window[ componentName ],
-							wb.getData( $elm, componentName )
-						)
+					settings = $.extend(
+						true,
+						settings,
+						window[ componentName ],
+						wb.getData( $elm, componentName )
 					);
+					$elm.magnificPopup(
+						settings
+					).data( "wbLbxFilter", settings.filter );
 				}
 
 				// Identify that initialization has completed
 				wb.ready( $elm, componentName );
-			});
+			} );
 
 			// Load dependencies as needed
 			setup();
@@ -209,20 +210,26 @@ var componentName = "wb-lbx",
 					$content.attr( "aria-labelledby", "lbx-title" );
 				},
 				parseAjax: function( mfpResponse ) {
-					var urlHash = this.currItem.src.split( "#" )[ 1 ],
-						$response = $( "<div>" + mfpResponse.data + "</div>" );
+					var currItem = this.currItem,
+						currEl = currItem.el,
+						urlHash = currItem.src.split( "#" )[ 1 ],
+						filter = currEl ? currEl.data( "wbLbxFilter" ) : undef,
+						selector = filter || ( urlHash ? "#" + urlHash : false ),
+						$response;
 
 					// Provide the ability to filter the AJAX response HTML
-					// by the URL hash
+					// by the URL hash or a selector
 					// TODO: Should be dealt with upstream by Magnific Popup
-					if ( urlHash ) {
-						$response = $response.find( "#" + wb.jqEscape( urlHash ) );
+					if ( selector ) {
+						$response = $( "<div>" + mfpResponse.data + "</div>" ).find( selector );
+					} else {
+						$response = $( mfpResponse.data );
 					}
 
 					$response
 						.find( ".modal-title, h1" )
-						.first()
-						.attr( "id", "lbx-title" );
+							.first()
+								.attr( "id", "lbx-title" );
 
 					mfpResponse.data = $response;
 				}
@@ -230,7 +237,7 @@ var componentName = "wb-lbx",
 		}
 
 		// Load Magnific Popup dependency and bind the init event handler
-		Modernizr.load({
+		Modernizr.load( {
 			load: "site!deps/jquery.magnific-popup" + wb.getMode() + ".js",
 			complete: function() {
 
@@ -240,7 +247,7 @@ var componentName = "wb-lbx",
 
 				$document.trigger( dependenciesLoadedEvent );
 			}
-		});
+		} );
 	};
 
 // Bind the init event of the plugin
@@ -269,7 +276,7 @@ $document.on( "keydown", ".mfp-wrap", function( event ) {
 	 * so returning true allows for events to always continue
 	 */
 	return true;
-});
+} );
 
 /*
  * Sends focus to the close button if focus moves beyond the Lightbox (Jaws fix)
@@ -287,7 +294,7 @@ $document.on( "focus", ".lbx-end", function( event ) {
 	 * so returning true allows for events to always continue
 	 */
 	return true;
-});
+} );
 
 // Outside focus detection (for screen readers that exit the lightbox
 // outside the normal means)
@@ -300,7 +307,7 @@ $document.on( "focusin", "body", function( event ) {
 		// Close the popup
 		$.magnificPopup.close();
 	}
-});
+} );
 
 // Handler for clicking on a same page link within the overlay to outside the overlay
 $document.on( "click vclick", ".mfp-wrap a[href^='#']", function( event ) {
@@ -332,13 +339,13 @@ $document.on( "click vclick", ".mfp-wrap a[href^='#']", function( event ) {
 			}
 		}
 	}
-});
+} );
 
 // Event handler for closing a modal popup
 $( document ).on( "click", ".popup-modal-dismiss", function( event ) {
 	event.preventDefault();
 	$.magnificPopup.close();
-});
+} );
 
 // Event handler for opening a popup without a link
 $( document ).on( "open" + selector, function( event, items, modal, title ) {
@@ -353,7 +360,7 @@ $( document ).on( "open" + selector, function( event, items, modal, title ) {
 
 		// Ensure the dependencies are loaded first
 		$document.one( dependenciesLoadedEvent, function() {
-			$.magnificPopup.open({
+			$.magnificPopup.open( {
 				items: items,
 				modal: isModal,
 				gallery: {
@@ -363,15 +370,15 @@ $( document ).on( "open" + selector, function( event, items, modal, title ) {
 					titleSrc: titleSrc
 				},
 				callbacks: callbacks
-			});
-		});
+			} );
+		} );
 
 		// Load dependencies as needed
 		setup();
 	}
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, document, wb );
+} )( jQuery, window, document, wb );

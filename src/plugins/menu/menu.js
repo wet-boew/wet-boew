@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET community
  */
-(function( $, window, document, wb ) {
+( function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -51,12 +51,12 @@ var componentName = "wb-menu",
 			// This is required for backwards compatibility. In previous versions, the menu was not integrated witht he data ajax plugin.
 			ajaxFetch = $elm.data( "ajax-fetch" );
 			if ( ajaxFetch ) {
-				$elm.trigger({
+				$elm.trigger( {
 					type: "ajax-fetch.wb",
 					fetch: {
 						url: ajaxFetch
 					}
-				});
+				} );
 			} else {
 
 				//Enhance menus that don't rely on the data-ajax plugin
@@ -82,21 +82,21 @@ var componentName = "wb-menu",
 			$elm = $elements.eq( i );
 			$subMenu = $elm.siblings( "ul" );
 
-			$elm.attr({
+			$elm.attr( {
 				"aria-posinset": ( i + 1 ),
 				"aria-setsize": length,
 				role: "menuitem"
-			});
+			} );
 
 			// if there is a submenu lets put in the aria for it
 			if ( $subMenu.length !== 0 ) {
 
 				$elm.attr( "aria-haspopup", "true" );
 
-				$subMenu.attr({
+				$subMenu.attr( {
 					"aria-expanded": "false",
 					"aria-hidden": "true"
-				});
+				} );
 
 				// recurse into submenu
 				drizzleAria( $subMenu.children( "li" ).find( menuItemSelector ) );
@@ -197,7 +197,7 @@ var componentName = "wb-menu",
 
 			// Create the panel section
 			panel += "<nav role='navigation' typeof='SiteNavigationElement' id='" +
-				properties[ 1 ] + "' class='" + properties[ 1 ] + " wb-menu'>" +
+				properties[ 1 ] + "' class='" + properties[ 1 ] + " wb-menu wb-menu-inited'>" +
 				"<h3>" + properties[ 2 ] + "</h3>" +
 				"<ul class='list-unstyled mb-menu' role='menu'>" +
 				sectionHtml + "</ul></nav>";
@@ -258,11 +258,11 @@ var componentName = "wb-menu",
 
 			// Add the secondary menu
 			if ( $secnav.length !== 0 ) {
-				allProperties.push([
+				allProperties.push( [
 					$secnav.find( "> ul > li > *:first-child" ).get(),
 					"sec-pnl",
 					$secnav.find( "h2" ).html()
-				]);
+				] );
 
 				if ( $secnav.find( ".wb-navcurr" ).length === 0 ) {
 
@@ -279,20 +279,20 @@ var componentName = "wb-menu",
 					$menubar.attr( "role", "menubar" );
 				}
 
-				allProperties.push([
+				allProperties.push( [
 					$menu.get(),
 					"sm-pnl",
 					$ajaxed.find( "h2" ).html()
-				]);
+				] );
 			}
 
 			// Add the site information
 			if ( $info.length !== 0 ) {
-				allProperties.push([
+				allProperties.push( [
 					$info.find( "h3, a" ).not( "section a" ),
 					"info-pnl",
 					$info.find( "h2" ).html()
-				]);
+				] );
 
 				if ( $info.find( ".wb-navcurr" ).length === 0 ) {
 
@@ -314,7 +314,6 @@ var componentName = "wb-menu",
 		$panel
 			.trigger( "wb-init.wb-overlay" )
 			.find( "summary" )
-				.trigger( "wb-init.wb-details" )
 				.attr( "tabindex", "-1" );
 		$panel
 			.find( ".mb-menu > li:first-child" )
@@ -340,7 +339,7 @@ var componentName = "wb-menu",
 		$elm.html( $ajaxed.html() );
 
 		// Trigger the navcurrent plugin
-		setTimeout(function() {
+		setTimeout( function() {
 			$elm.trigger( navCurrentEvent, breadcrumb );
 			$panel.find( "#sm-pnl" ).trigger( navCurrentEvent, breadcrumb );
 
@@ -400,10 +399,10 @@ var componentName = "wb-menu",
 			.removeClass( "sm-open" )
 			.children( ".open" )
 				.removeClass( "open" )
-				.attr({
+				.attr( {
 					"aria-hidden": "true",
 					"aria-expanded": "false"
-				});
+				} );
 
 		if ( removeActive ) {
 			$elm.removeClass( "active" );
@@ -428,10 +427,10 @@ var componentName = "wb-menu",
 				.addClass( "active sm-open" )
 				.children( ".sm" )
 					.addClass( "open" )
-					.attr({
+					.attr( {
 						"aria-hidden": "false",
 						"aria-expanded": "true"
-					});
+					} );
 		}
 	},
 
@@ -491,14 +490,15 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb ajax-failed.wb", s
 	 * so returning true allows for events to always continue
 	 */
 	return true;
-});
+} );
 
 $document.on( "mouseleave", selector + " .menu", function( event ) {
+
 	// Clear the timeout for open/closing menus
 	clearTimeout( globalTimeout );
 
 	menuClose( $( event.currentTarget ).find( ".active" ), true );
-});
+} );
 
 // Touchscreen "touches" on menubar items should close the submenu if it is open
 $document.on( "touchstart click", selector + " .item[aria-haspopup=true]", function( event ) {
@@ -521,7 +521,7 @@ $document.on( "touchstart click", selector + " .item[aria-haspopup=true]", funct
 			menuClose( $parent, true );
 		}
 	}
-});
+} );
 
 // Click on menu items with submenus should open and close those submenus
 $document.on( "click", selector + " [role=menu] [aria-haspopup=true]", function( event ) {
@@ -553,7 +553,7 @@ $document.on( "click", selector + " [role=menu] [aria-haspopup=true]", function(
 
 	submenu.setAttribute( "aria-expanded", !isOpen );
 	submenu.setAttribute( "aria-hidden", isOpen );
-});
+} );
 
 // Clicks and touches outside of menus should close any open menus
 $document.on( "click touchstart", function( event ) {
@@ -569,9 +569,9 @@ $document.on( "click touchstart", function( event ) {
 			menuClose( $openMenus, true );
 		}
 	}
-});
+} );
 
-$document.on( "mouseover focusin", selector + " .item", function(event) {
+$document.on( "mouseover focusin", selector + " .item", function( event ) {
 	var $elm = $( event.currentTarget ),
 		$parent = $elm.parent(),
 		$container = $parent.closest( selector );
@@ -584,7 +584,7 @@ $document.on( "mouseover focusin", selector + " .item", function(event) {
 	} else {
 		menuDisplay( $container, $parent );
 	}
-});
+} );
 
 /*
  * Keyboard bindings
@@ -698,10 +698,10 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 					// Update the WAI-ARIA states and move focus to
 					// the first submenu item
 					$parent.children( "ul" )
-						.attr({
+						.attr( {
 							"aria-expanded": "true",
 							"aria-hidden": "false"
-						})
+						} )
 						.find( "[role=menuitem]:first" )
 							.trigger( "setfocus.wb" );
 				}
@@ -724,9 +724,9 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 						$menuLink.trigger( focusEvent );
 
 						// Close the menu but keep the referring link active
-						setTimeout(function() {
+						setTimeout( function() {
 							menuClose( $menuLink.parent(), false );
-						}, 1 );
+						}, 100 );
 
 					// Left / right key = Next / previous menu bar item
 					} else if ( $parentMenu.attr( "role" ) === "menubar" ) {
@@ -780,7 +780,7 @@ $document.on( "keydown", selector + " [role=menuitem]", function( event ) {
 			}
 		}
 	}
-});
+} );
 
 // Close the mobile panel if switching to medium, large or extra large view
 $document.on( "mediumview.wb largeview.wb xlargeview.wb", function() {
@@ -788,9 +788,9 @@ $document.on( "mediumview.wb largeview.wb xlargeview.wb", function() {
 	if ( mobilePanel && mobilePanel.getAttribute( "aria-hidden" ) === "false" ) {
 		$( mobilePanel ).trigger( "close.wb-overlay" );
 	}
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, document, wb );
+} )( jQuery, window, document, wb );

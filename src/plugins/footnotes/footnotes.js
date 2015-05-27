@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @EricDunsworth
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -91,9 +91,9 @@ $document.on( "click vclick", selector + " dd p.fn-rtn a", function( event ) {
 		$document.find( refId + " a" ).trigger( setFocusEvent );
 		return false;
 	}
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

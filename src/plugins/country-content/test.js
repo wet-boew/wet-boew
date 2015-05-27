@@ -6,7 +6,7 @@
  */
 /* global jQuery, describe, it, expect, sinon, before, after */
 /* jshint unused:vars */
-(function( $, wb ) {
+( function( $, wb ) {
 
 /*
  * Create a suite of related test cases using `describe`. Test suites can also be
@@ -23,7 +23,7 @@ describe( "Country Content test suite", function() {
 			stubs = {},
 			sandbox = sinon.sandbox.create();
 
-		before(function() {
+		before( function() {
 
 			// Stub the $.ajax method to return data.country_code = "CA" on success.
 			// This must be used instead of Sinon's fakeServer because the plugin uses
@@ -38,17 +38,18 @@ describe( "Country Content test suite", function() {
 			$elm = $( "<div data-ctrycnt='ajax/country-content-{country}-en.html'>" )
 				.appendTo( wb.doc.find( "body" ) )
 				.trigger( "wb-init.wb-ctrycnt" );
-		});
+		} );
 
-		after(function() {
+		after( function() {
+
 			// Restore original behaviour of $.ajax
 			sandbox.restore();
 			$elm.remove();
-		});
+		} );
 
 		it( "should have added the wb-ctrycnt-inited CSS class", function() {
 			expect( $elm.hasClass( "wb-ctrycnt-inited" ) ).to.equal( true );
-		});
+		} );
 
 		it( "should have performed a geo IP lookup", function() {
 			var i = 0,
@@ -62,16 +63,16 @@ describe( "Country Content test suite", function() {
 				}
 			}
 			expect( isLookup ).to.equal( true );
-		});
+		} );
 
 		it( "should have loaded the country specific content", function() {
 			expect( stubs.load.calledWith( "ajax/country-content-ca-en.html" ) ).to.equal( true );
-		});
+		} );
 
 		it( "should have saved the country code", function() {
 			expect( localStorage.getItem( "countryCode" ) ).to.equal( "CA" );
-		});
-	});
+		} );
+	} );
 
 	/*
 	 * Test loading specific content
@@ -79,7 +80,8 @@ describe( "Country Content test suite", function() {
 	describe( "load specific country content from localStorage", function() {
 		var $elm;
 
-		before(function( done ) {
+		before( function( done ) {
+
 			// Load the US content
 			localStorage.setItem( "countryCode", "US" );
 
@@ -90,16 +92,16 @@ describe( "Country Content test suite", function() {
 
 			// Give the content time to load
 			setTimeout( done, 100 );
-		});
+		} );
 
-		after(function() {
+		after( function() {
 			$elm.remove();
-		});
+		} );
 
 		it( "should have saved the country code", function() {
 			expect( localStorage.getItem( "countryCode" ) ).to.equal( "US" );
-		});
-	});
-});
+		} );
+	} );
+} );
 
-}( jQuery, wb ));
+}( jQuery, wb ) );

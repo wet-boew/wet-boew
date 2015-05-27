@@ -141,6 +141,11 @@ $pagination-hover-border: darken($btn-default-border, 12%) !default;
 // WET Custom
 $pager-border-radius: 4px !default;
 
+//== Expand/collapse (Details/summary)
+//
+//##
+$details-identation: 1.1em !default;
+
 
 //
 // WET CUSTOM PLUGINS VARIABLES
@@ -221,7 +226,7 @@ $tablist-screen-sm-seperator-border-width: $tablist-screen-sm-border-width !defa
 $carousel-tablist-tabcount-color: #000 !default;
 
 $carousel-tabpanel-figcaption-color: #fff !default;
-$carousel-tabpanel-figcaption-link-color: $carousel-tabpanel-figcaption-color !default;
+$carousel-tabpanel-link-color: $carousel-tabpanel-figcaption-color !default;
 $carousel-tabpanel-figcaption-bg-color: $clrDarkBlue !default;
 
 // Carousel Style 2 with Thumbnails
@@ -236,3 +241,13 @@ $carousel-s2-tablist-controls-btn-radius: 999px !default;
 $carousel-s2-tablist-thumbnail-active-border-color: #666 !default;
 $carousel-s2-tablist-thumbnail-active-border-style: solid !default;
 $carousel-s2-tablist-thumbnail-active-border-width: 10px !default;
+
+
+//== Text Highlight
+//
+//##
+
+$txthl-bg-color: #ff0 !default;
+$txthl-color: #000 !default;
+$txthl-font-weight: 700 !default;
+

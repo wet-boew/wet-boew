@@ -50,7 +50,7 @@
 							padding: 0;
 						}
 					}
-					
+
 					&[role="presentation"] {
 						display: inline-block;
 
@@ -59,13 +59,13 @@
 							width: 140px;
 						}
 					}
-					
+
 					&[class="active"] {
 						img {
 							opacity: 1;
 						}
 					}
-					
+
 					&.prv,
 					&.tab-count,
 					&.nxt {
