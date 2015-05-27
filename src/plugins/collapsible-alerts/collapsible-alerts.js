@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET community
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -31,7 +31,7 @@ var componentName = "wb-collapsible",
 
 		if ( details ) {
 
-			key = "alert-collapsible-state-" + details.getAttribute("id");
+			key = "alert-collapsible-state-" + details.getAttribute( "id" );
 
 			try {
 				if ( localStorage.getItem( key ) ) {
@@ -104,12 +104,12 @@ $document.on( "timerpoke.wb", function() {
 			 * so returning true allows for events to always continue
 			 */
 			return true;
-		});
+		} );
 	}
 
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

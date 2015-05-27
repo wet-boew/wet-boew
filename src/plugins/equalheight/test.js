@@ -6,7 +6,7 @@
  */
 /* global jQuery, describe, it, expect, before, beforeEach, after */
 /* jshint unused:vars */
-(function( $, wb, undef ) {
+( function( $, wb, undef ) {
 
 /*
  * Create a suite of related test cases using `describe`. Test suites can also be
@@ -44,8 +44,9 @@ describe( "equalheights test suite", function() {
 			expect( $elm.height() ).to.equal( height );
 		},
 
-		defaultTest = function( $rows, done ) {
+		defaultTest = function( done ) {
 			$row.each( testHeight );
+			done();
 		},
 
 		addFixture = function( $elm, done ) {
@@ -65,164 +66,166 @@ describe( "equalheights test suite", function() {
 	/*
 	 * Before beginning the test suite, this function is executed once.
 	 */
-	before(function() {
+	before( function() {
 		$document.on( "wb-updated.wb-eqht", function( event ) {
 			var currentTest = test || defaultTest;
-			if ( $row !== undef ) {
-				currentTest();
-				callback();
+			if ( $row !== undef && callback ) {
+				currentTest( callback );
 			}
-		});
+		} );
 
 		$document.on( "wb-ready.wb-eqht", function() {
-			callback();
-		});
-	});
+			if ( callback ) {
+				callback();
+			}
+
+		} );
+	} );
 
 	// Before each test, reset the height and min-height values of the elements
-	beforeEach(function() {
+	beforeEach( function() {
 		$row.css( "min-height", "" );
 		height = -1;
 		minHeight = -1;
-	});
+	} );
 
 	/*
 	 * Test resizing with all children on same baseline
 	 */
 	describe( "resize float on same baseline", function() {
 
-		before(function( done ) {
+		before( function( done ) {
 			addFixture( $( "<div class='wb-eqht test'>" +
 				"<div style='width:49%; float:left;'>foo</div>" +
 				"<div style='width:49%; float:left;'>bar</div>" +
 			"</div>" ), done );
-		});
+		} );
 
-		after(function() {
+		after( function() {
 			removeFixture();
-		});
+		} );
 
 		it( "should resize on txt-rsz.wb event", function( done ) {
 			callback = done;
 
 			$document.trigger( "txt-rsz.wb" );
-		});
+		} );
 
 		it( "should resize on win-rsz-width.wb event", function( done ) {
 			callback = done;
 
 			$document.trigger( "win-rsz-width.wb" );
-		});
+		} );
 
 		it( "should resize on win-rsz-height.wb event", function( done ) {
 			callback = done;
 
 			$document.trigger( "win-rsz-height.wb" );
-		});
+		} );
 
 		it( "should resize on wb-updated.wb-tables event", function( done ) {
 			callback = done;
 
 			$document.trigger( "wb-updated.wb-tables" );
-		});
-	});
+		} );
+	} );
 
 	/*
 	 * Test resizing with children dropping to next baseline
 	 */
 	describe( "resize multiple floated baselines", function() {
 
-		before(function( done ) {
+		before( function( done ) {
 			addFixture( $( "<div class='wb-eqht test'>" +
 				"<div style='width:49%; float:left'>all</div>" +
 				"<div style='width:49%; float:left'>yours</div>" +
 				"<div style='width:49%; float:left'>bases</div>" +
 				"<div style='width:49%; float:left; height: 100px;'>are belong to us</div>" +
 			"</div>" ), done );
-		});
+		} );
 
-		after(function() {
+		after( function() {
 			removeFixture();
-		});
+		} );
 
 		it( "should resize on txt-rsz.wb event", function( done ) {
 			callback = done;
 
 			$document.trigger( "txt-rsz.wb" );
-		});
+		} );
 
 		it( "should resize on win-rsz-width.wb event", function( done ) {
 			callback = done;
 
 			$document.trigger( "win-rsz-width.wb" );
-		});
+		} );
 
 		it( "should resize on win-rsz-height.wb event", function( done ) {
 			callback = done;
 
 			$document.trigger( "win-rsz-height.wb" );
-		});
+		} );
 
 		it( "should resize on wb-updated.wb-tables event", function( done ) {
 			callback = done;
 
 			$document.trigger( "wb-updated.wb-tables" );
-		});
-	});
+		} );
+	} );
 
 	/*
 	 * Test resizing with children dropping to next baseline
 	 */
 	describe( "resize multiple inline-block baselines", function() {
 
-		before(function( done ) {
+		before( function( done ) {
 			addFixture( $( "<div class='wb-eqht test'>" +
 					"<div style='width:49%; display: inline-block; height: 25px'></div>" +
 					"<div style='width:49%; display: inline-block; height: 50px'></div>" +
 					"<div style='width:49%; display: inline-block; height: 75px'></div>" +
 				"</div>" ), done );
-		});
+		} );
 
-		after(function() {
+		after( function() {
 			removeFixture();
-		});
+		} );
 
 		it( "should resize on txt-rsz.wb event", function( done ) {
 			callback = done;
 
 			$document.trigger( "txt-rsz.wb" );
-		});
+		} );
 
 		it( "should resize on win-rsz-width.wb event", function( done ) {
 			callback = done;
 
 			$document.trigger( "win-rsz-width.wb" );
-		});
+		} );
 
 		it( "should resize on win-rsz-height.wb event", function( done ) {
 			callback = done;
 
 			$document.trigger( "win-rsz-height.wb" );
-		});
+		} );
 
 		it( "should resize on wb-updated.wb-tables event", function( done ) {
 			callback = done;
 
 			$document.trigger( "wb-updated.wb-tables" );
-		});
-	});
+		} );
+	} );
 
 	describe( "resize nested elements", function() {
 
-		before(function( done ) {
+		before( function( done ) {
 			addFixture( $( "<div class='wb-eqht test'>" +
 				"<div style='width:49%; float:left; height: 50px'><div class='hght-inhrt'>foo</div></div>" +
 				"<div style='width:49%; float:left;'><div>bar</div></div>" +
 			"</div>" ), done );
 
-			test = function() {
+			test = function( done ) {
 				var $nestedBlocks = $row.find( ".hght-inhrt" ),
-					$nestedNonEqBlocks = $row.find(":not(.hght-inhrt)"),
+					$nestedNonEqBlocks = $row.find( ":not(.hght-inhrt)" ),
 					nestedLength = $nestedBlocks.length,
 					nestedNonEqLength = $nestedNonEqBlocks.length,
 					$nested, n;
@@ -239,22 +242,61 @@ describe( "equalheights test suite", function() {
 					$nested = $nestedNonEqBlocks.eq( n );
 					expect( $nested.height() ).to.be.lessThan( $nested.parent().height() );
 				}
-			};
-		});
 
-		after(function() {
+				done();
+			};
+		} );
+
+		after( function() {
 			removeFixture();
 
-			test = null;
-		});
+			test = undef;
+		} );
 
 		it( "should resize nested elements with the 'hght-inhrt' class", function( done ) {
 			callback = done;
 
 			$document.trigger( "txt-rsz.wb" );
-		});
+		} );
 
-	});
-});
+	} );
 
-}( jQuery, wb ));
+	describe( "resize multiple equalheights", function() {
+		var $first = $( "<div class='wb-eqht test'>" +
+					"<div style='width:33%; display: inline-block; height: 25px'></div>" +
+					"<div style='width:33%; display: inline-block; height: 50px'></div>" +
+					"<div style='width:33%; display: inline-block; height: 75px'></div>" +
+				"</div>" ),
+			$second = $( "<div class='wb-eqht test'>" +
+					"<div style='width:33%; display: inline-block; height: 125px'></div>" +
+					"<div style='width:33%; display: inline-block; height: 150px'></div>" +
+					"<div style='width:33%; display: inline-block; height: 175px'></div>" +
+				"</div>" );
+
+		before( function( done ) {
+			test = function( done ) {
+				expect( $first.height() ).to.be( 75 );
+				expect( $second.height() ).to.be( 175 );
+
+				done();
+				callback = undef;
+			};
+
+			addFixture( $first.add( $second ), done );
+		} );
+
+		after( function() {
+			removeFixture();
+
+			test = undef;
+		} );
+
+		it( "should resize nested elements with the 'hght-inhrt' class", function( done ) {
+			callback = done;
+
+			$document.trigger( "txt-rsz.wb" );
+		} );
+	} );
+} );
+
+}( jQuery, wb ) );

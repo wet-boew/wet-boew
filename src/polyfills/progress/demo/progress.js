@@ -3,7 +3,7 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 /*jshint unused: false*/
-(function( $, wb ) {
+( function( $, wb ) {
 "use strict";
 
 wb.doc.on( "click vclick", "#updateProgress", function() {
@@ -18,6 +18,6 @@ wb.doc.on( "click vclick", "#updateProgress", function() {
 
 	// Update the visuals
 	$elm.trigger( "wb-update.wb-progress" );
-});
+} );
 
-})( jQuery, wb );
+} )( jQuery, wb );

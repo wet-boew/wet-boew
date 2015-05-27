@@ -6,7 +6,7 @@
  */
 /* global jQuery, describe, it, expect, before, beforeEach, after, afterEach, sinon */
 /* jshint unused:vars */
-(function( $, wb ) {
+( function( $, wb ) {
 
 /*
  * Create a suite of related test cases using `describe`. Test suites can also be
@@ -33,15 +33,15 @@ describe( "Text highlighting test suite", function() {
 			if ( callback ) {
 				callback();
 			}
-		});
-	});
+		} );
+	} );
 
 	/*
 	 * After finishing the test suite, this function is exectued once.
 	 */
 	after( function() {
 		sandbox.restore();
-	});
+	} );
 
 	beforeEach( function( done ) {
 		callback = done;
@@ -49,11 +49,11 @@ describe( "Text highlighting test suite", function() {
 		$elm = $( "<div class='wb-txthl'><p>This is a test. It's just some testing.</p></div>" )
 			.appendTo( $body )
 			.trigger( initEventObj );
-	});
+	} );
 
 	afterEach( function() {
 		$elm.remove();
-	});
+	} );
 
 	/*
 	 * Test initialization of the plugin
@@ -61,19 +61,19 @@ describe( "Text highlighting test suite", function() {
 	describe( "init plugin", function() {
 		before( function() {
 			initEventObj = defaultInitEventObj;
-		});
+		} );
 
 		it( "should have marked the element as initialized", function() {
 			expect( $elm.hasClass( "wb-txthl-inited" ) ).to.equal( true );
-		});
-	});
+		} );
+	} );
 
 	( wb.pageUrlParts.params.txthl ? describe : describe.skip )( "search query from the querystring", function() {
 		var $matches;
 
 		before( function() {
 			initEventObj = defaultInitEventObj;
-		});
+		} );
 
 		it( "should have highlighted words matching the query", function() {
 			var matchesLength;
@@ -86,8 +86,8 @@ describe( "Text highlighting test suite", function() {
 			expect( $matches.eq( 0 ).text() ).to.equal( "test" );
 			expect( $matches.eq( 1 ).text() ).to.equal( "just some" );
 			expect( $matches.eq( 2 ).text() ).to.equal( "test" );
-		});
-	});
+		} );
+	} );
 
 	describe( "dynamic search query", function() {
 		var $matches;
@@ -96,7 +96,7 @@ describe( "Text highlighting test suite", function() {
 			before( function() {
 				initEventObj = defaultInitEventObj;
 				initEventObj.txthl = "test";
-			});
+			} );
 
 			it( "should have highlighted words matching the query", function() {
 				var matchesLength, m;
@@ -109,14 +109,14 @@ describe( "Text highlighting test suite", function() {
 				for ( m = 0; m < matchesLength; m += 1 ) {
 					expect( $matches.eq( m ).text() ).to.equal( "test" );
 				}
-			});
-		});
+			} );
+		} );
 
 		describe( "complex query as a string", function() {
 			before( function() {
 				initEventObj = defaultInitEventObj;
 				initEventObj.txthl = "just some|test";
-			});
+			} );
 
 			it( "should have highlighted words matching the query", function() {
 				var matchesLength;
@@ -129,8 +129,8 @@ describe( "Text highlighting test suite", function() {
 				expect( $matches.eq( 0 ).text() ).to.equal( "test" );
 				expect( $matches.eq( 1 ).text() ).to.equal( "just some" );
 				expect( $matches.eq( 2 ).text() ).to.equal( "test" );
-			});
-		});
+			} );
+		} );
 
 		describe( "complex query as an array", function() {
 			before( function() {
@@ -139,7 +139,7 @@ describe( "Text highlighting test suite", function() {
 					"just some",
 					"test"
 				];
-			});
+			} );
 
 			it( "should have highlighted words matching the query", function() {
 				var matchesLength;
@@ -152,9 +152,9 @@ describe( "Text highlighting test suite", function() {
 				expect( $matches.eq( 0 ).text() ).to.equal( "test" );
 				expect( $matches.eq( 1 ).text() ).to.equal( "just some" );
 				expect( $matches.eq( 2 ).text() ).to.equal( "test" );
-			});
-		});
-	});
-});
+			} );
+		} );
+	} );
+} );
 
-}( jQuery, wb ));
+}( jQuery, wb ) );

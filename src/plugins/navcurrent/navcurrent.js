@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -134,4 +134,4 @@ var componentName = "wb-navcurr",
 // Bind the navcurrent event of the plugin
 $document.on( "navcurr.wb", init );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

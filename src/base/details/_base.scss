@@ -2,6 +2,7 @@
   WET-BOEW
   @title: Details/summary CSS
  */
+
 summary {
 	// Apply a pointer cursor upon hover to indicate it’s a clickable element.
 	// These styles can be applied regardless of whether the fallback is needed
@@ -25,32 +26,29 @@ summary {
 }
 
 details {
+	padding-left: $details-identation;
+
 	&[open] {
 		padding-bottom: 1em;
 	}
 
 	> {
-		* {
-			margin-left: 1.5em;
-			margin-right: auto;
-		}
-
 		summary {
-			margin-left: auto;
+			margin-left: -$details-identation;
 		}
 	}
 }
 
 [dir=rtl] {
 	details {
+		padding-left: 0;
+		padding-right: $details-identation;
+
 		> {
-			* {
-				margin-left: auto;
-				margin-right: 1.5em;
-			}
 
 			summary {
-				margin-right: auto;
+				margin-left: 0;
+				margin-right: -$details-identation;
 			}
 		}
 	}

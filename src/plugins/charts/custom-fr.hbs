@@ -7,23 +7,22 @@
 	"tag": "charts",
 	"parentdir": "charts",
 	"altLangPrefix": "custom",
-	"dateModified": "2014-02-19"
+	"dateModified": "2015-03-10"
 }
 ---
 
 <ul>
 	<li><a href="charts-fr.html">Graphiques - Simple</a></li>
 	<li><a href="labelsandreferencevalue-fr.html">Étiquettage et valeur de référence</a></li>
+	<li><a href="custom-fr.html">Personalisation, préréglages personnalisés et plusieurs types de graphique (actuelle)</a></li>
 	<li><a href="piecustom-fr.html">Personalisation de diagrame circulaire</a></li>
-	<li><a href="functionandnumbers-fr.html">Séparateur des milliers</a></li>
-	<li><a href="functionandnumbers-fr.html#functionpreset">Fonctions personalisés dans vos préréglages</a></li>
 	<li><a href="testing-fr.html">Scénarios d'essai spécifiques</a></li>
 </ul>
 
 <span class="wb-prettify all-pre"></span>
 <section>
 	<h2>Personalisation</h2>
-	<p>L'exemple suivant démontre comment l'attribute <code>data-flot</code> peut être utilisé pour créer des graphiques personalisés. La documentation de toutes les options se trouvent dans la <a href="https://github.com/flot/flot/blob/master/API.md">référence d'API de Flot (anglais seulement)</a>.</p>
+	<p>L'exemple suivant démontre comment l'attribute <code>data-flot</code> peut être utilisé pour créer des graphiques personalisés. La documentation de toutes les options se trouvent dans la <a href="https://github.com/flot/flot/blob/master/API.md">référence d'API de Flot (anglais seulement)</a>. Cet example aussi démontre l'utilisation i18n des séparateur de millier, l'espace en français et l'example équivalente en anglais utilise la virgule.</p>
 
 	<pre><code>&lt;table class="<strong>wb-charts wb-charts-bar</strong> table" <strong>data-flot</strong>='{ "yaxis": { "max": 150000} }'&gt;</code></pre>
 
@@ -46,14 +45,14 @@
 		<tbody>
 			<tr>
 				<th data-flot='{ "color":"#191970" }'>Requêtes</th>
-				<td>80189</td>
-				<td>65297</td>
-				<td>70387</td>
+				<td>80 189,56</td>
+				<td>65,297,98</td>
+				<td>70 387,33</td>
 			</tr>
 			<tr>
 				<th data-flot='{ "color":"#FF2222" }'>Seuil</th>
-				<td colspan="2">70000</td>
-				<td>75000</td>
+				<td colspan="2">70 000,24</td>
+				<td>75 000,09</td>
 			</tr>
 		</tbody>
 	</table>
@@ -73,14 +72,14 @@
 	&lt;tbody&gt;
 		&lt;tr&gt;
 			&lt;th <strong>data-flot='{ &quot;color&quot;:&quot;#191970&quot; }'</strong>&gt;Requêtes&lt;/th&gt;
-			&lt;td&gt;80189&lt;/td&gt;
-			&lt;td&gt;65297&lt;/td&gt;
-			&lt;td&gt;70387&lt;/td&gt;
+			&lt;td&gt;80 189,56&lt;/td&gt;
+			&lt;td&gt;65,297,98&lt;/td&gt;
+			&lt;td&gt;70 387,33&lt;/td&gt;
 		&lt;/tr&gt;
 		&lt;tr&gt;
 			&lt;th <strong>data-flot='{ &quot;color&quot;:&quot;#FF2222&quot; }'</strong>&gt;Seuil&lt;/th&gt;
-			&lt;td colspan=&quot;2&quot;&gt;70000&lt;/td&gt;
-			&lt;td&gt;75000&lt;/td&gt;
+			&lt;td colspan=&quot;2&quot;&gt;70 000,24&lt;/td&gt;
+			&lt;td&gt;75 000,09&lt;/td&gt;
 		&lt;/tr&gt;
 	&lt;/tbody&gt;
 &lt;/table&gt;</code></pre>

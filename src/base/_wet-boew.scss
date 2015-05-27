@@ -58,13 +58,13 @@
 %global_centered_overlay {
 	&:after {
 		@extend %global_centered_overlay_container;
+		z-index: 1;
 	}
 
 	&:before {
 		@extend %global_centered_overlay_container;
 		background: rgba(0, 0, 0, 0.7);
 		border-radius: 10px;
-		z-index: 1;
 	}
 }
 
@@ -78,17 +78,26 @@
 	}
 }
 
+/* TODO: Use bootstratp placeholder when nested extends are supproted */
 %global-loading {
 	@extend %global_centered_overlay;
 
 	&:after {
 		animation: {
-			duration: 1000ms;
+			duration: 500ms;
 			iteration-count: infinite;
 			name: spin;
 			timing-function: linear;
 		}
-		background: url("../assets/loading.png") center center no-repeat;
+		color: #fff;
+		content: "\e031";
+		font: {
+			family: "Glyphicons Halflings";
+			size: 3.5em;
+		}
+		height: 1em;
+		line-height: 1.03;
+		width: 1em;
 		z-index: 2;
 	}
 }
@@ -109,6 +118,8 @@
 @import "../plugins/calendar/base";
 @import "../plugins/calendar/base";
 @import "../plugins/charts/base";
+@import "../plugins/collapsible-alerts/base";
+@import "../plugins/dismissable-content/base";
 @import "../plugins/equalheight/base";
 @import "../plugins/footnotes/base";
 @import "../plugins/formvalid/base";

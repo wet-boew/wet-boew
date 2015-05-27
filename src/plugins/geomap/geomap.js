@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, wb ) {
+( function( $, wb ) {
 "use strict";
 
 var componentName = "wb-geomap",
@@ -21,14 +21,14 @@ var componentName = "wb-geomap",
 		// Start initialization
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
-		var elm = wb.init( event, componentName, selector, true ),
+		var elm = wb.init( event, componentName, selector ),
 			$elm, modeJS;
 
 		if ( elm ) {
 			$elm = $( elm );
 			modeJS = wb.getMode() + ".js";
 
-			Modernizr.load([ {
+			Modernizr.load( [ {
 
 				// For loading multiple dependencies
 				both: [
@@ -39,7 +39,7 @@ var componentName = "wb-geomap",
 				complete: function() {
 					$elm.trigger( "geomap.wb" );
 				}
-			} ]);
+			} ] );
 		}
 	};
 
@@ -49,4 +49,4 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, wb );
+} )( jQuery, wb );

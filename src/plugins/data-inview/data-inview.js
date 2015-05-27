@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -38,7 +38,7 @@ var componentName = "wb-inview",
 			$elms = $elms.add( $elm );
 
 			// Allow other plugins to run first
-			setTimeout(function() {
+			setTimeout( function() {
 				onInView( $elm );
 
 				// Identify that initialization has completed
@@ -89,11 +89,11 @@ var componentName = "wb-inview",
 						if ( !oldViewState ) {
 							$dataInView.addClass( "outside-off" );
 						}
-						$dataInView.trigger({
+						$dataInView.trigger( {
 							type: ( show ? "open" : "close" ),
 							namespace: "wb-overlay",
 							noFocus: true
-						});
+						} );
 					} else {
 						$dataInView
 							.attr( "aria-hidden", !show )
@@ -134,17 +134,17 @@ $document.on( "timerpoke.wb " + initEvent + " " + scrollEvent, selector, functio
 	 * so returning true allows for events to always continue
 	 */
 	return true;
-});
+} );
 
 $window.on( "scroll scrollstop", function() {
 	$elms.trigger( scrollEvent );
-});
+} );
 
 $document.on( "txt-rsz.wb win-rsz-width.wb win-rsz-height.wb", function() {
 	$elms.trigger( scrollEvent );
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

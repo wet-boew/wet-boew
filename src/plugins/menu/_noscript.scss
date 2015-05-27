@@ -6,28 +6,24 @@
 /*
  * Menu Sass (noscript)
  */
-%menu-noscript-display-block-important {
-	display: block !important;
-}
-
 #wb-glb-mn {
 	display: none !important;
 }
 
 #wb-srch {
-	@extend %menu-noscript-display-block-important;
+	@extend %noscript-display-block-important;
 }
 
 #wb-sm {
-	@extend %menu-noscript-display-block-important;
+	@extend %noscript-display-block-important;
 
 	.nvbar {
-		@extend %menu-noscript-display-block-important;
+		@extend %noscript-display-block-important;
 	}
 }
 
 #wb-sec {
-	@extend %menu-noscript-display-block-important;
+	@extend %noscript-display-block-important;
 }
 
 #wb-info {

@@ -4,13 +4,13 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
-(function( $, wb ) {
+( function( $, wb ) {
 "use strict";
 
-wb.doc.on( "all.wb-inview partial.wb-inview none.wb-inview", function( event) {
+wb.doc.on( "all.wb-inview partial.wb-inview none.wb-inview", function( event ) {
 	if ( event.namespace === "wb-inview" ) {
 		$( event.target ).find( ".view-state-status" ).html( event.type );
 	}
-});
+} );
 
-})( jQuery, wb );
+} )( jQuery, wb );
