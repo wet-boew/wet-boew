@@ -10,7 +10,7 @@
 	font-size: 0.7em;
 	margin: 0 -0.35em 0 0.7em;
 	transition-delay: 0.5s;
-	transition-property:visibility;
+	transition-property: visibility;
 }
 
 .wb-menu {
@@ -21,9 +21,9 @@
 		position: absolute;
 		text-transform: none;
 		top: auto;
-		transition-delay:0.5s;
-		transition-property:visibility;
-		visibility:hidden;
+		transition-delay: 0.5s;
+		transition-property: visibility;
+		visibility: hidden;
 		z-index: 500;
 
 		&.open {
