@@ -146,6 +146,10 @@
 	right: 5px;
 }
 
+.olControlAttribution p {
+	margin: 0;
+}
+
 .olHandlerBoxZoomBox {
 	@extend %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1;
 	border: 2px solid #f00;
