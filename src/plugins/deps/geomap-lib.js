@@ -1971,6 +1971,41 @@ var componentName = "wb-geomap",
 			role: "dialog",
 			"aria-label": i18nText.ariaMap
 		} );
+
+		// register the mouse events
+		geomap.map.events.register( "mouseout", geomap.map, function( event ) {
+			setMapStatus( this, event );
+		} );
+
+		geomap.map.events.register( "mouseover", geomap.map, function( event ) {
+			setMapStatus( this, event );
+		} );
+	},
+
+	// Enable the keyboard navigation when map div has focus. Disable when blur
+	// Enable the wheel zoom only on hover
+	setMapStatus = function( map, event ) {
+		var type = event.type,
+			target = event.currentTarget.className.indexOf( "wb-geomap-map" ) === -1 ?
+					event.currentTarget.parentElement : event.currentTarget,
+			keyboardDefaults = "OpenLayers.Control.KeyboardDefaults",
+			navigation = "OpenLayers.Control.Navigation",
+			isActive;
+
+		if ( map ) {
+			isActive = target.className.indexOf( "active" );
+			if ( type === "mouseover" || type === "focusin" ) {
+				if ( isActive ) {
+					map.getControlsByClass( keyboardDefaults )[ 0 ].activate();
+					map.getControlsByClass( navigation )[ 0 ].activate();
+					$( target ).addClass( "active" );
+				}
+			} else if ( isActive > 0 ) {
+				map.getControlsByClass( navigation )[ 0 ].deactivate();
+				map.getControlsByClass( keyboardDefaults )[ 0 ].deactivate();
+				$( target ).removeClass( "active" );
+			}
+		}
 	},
 
 	/*
@@ -2671,28 +2706,11 @@ $document.on( "change", ".geomap-lgnd-cbx", function( event ) {
 
 // Enable the keyboard navigation when map div has focus. Disable when blur
 // Enable the wheel zoom only on hover
-$document.on( "mouseenter mouseleave focusin focusout", ".wb-geomap-map", function( event ) {
-	var type = event.type,
-		target = event.currentTarget,
-		map = getMapById( target.getAttribute( "data-map" ) ),
-		keyboardDefaults = "OpenLayers.Control.KeyboardDefaults",
-		navigation = "OpenLayers.Control.Navigation",
-		isActive;
+$document.on( "focusin focusout", ".wb-geomap-map", function( event ) {
+	var target = event.currentTarget,
+		map = getMapById( target.getAttribute( "data-map" ) );
 
-	if ( map ) {
-		isActive = target.className.indexOf( "active" );
-		if ( type === "mouseenter" || type === "focusin" ) {
-			if ( isActive ) {
-				map.getControlsByClass( keyboardDefaults )[ 0 ].activate();
-				map.getControlsByClass( navigation )[ 0 ].activate();
-				$( target ).addClass( "active" );
-			}
-		} else if ( !isActive ) {
-			map.getControlsByClass( navigation )[ 0 ].deactivate();
-			map.getControlsByClass( keyboardDefaults )[ 0 ].deactivate();
-			$( target ).removeClass( "active" );
-		}
-	}
+	setMapStatus( map, event );
 } );
 
 $document.on( "keydown click", ".olPopupCloseBox span", function( event ) {
