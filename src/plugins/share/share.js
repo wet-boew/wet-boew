@@ -174,7 +174,7 @@ var componentName = "wb-share",
 			id = "shr-pg" + ( pnlId.length !== 0 ? "-" + pnlId : panelCount );
 			pageHref = encodeURIComponent( settings.url );
 
-			regex = /\'|&#39;|&apos;/;
+			regex = /\'|&#39;|&apos;/g;
 			pageTitle = encodeURIComponent( settings.title )
 							.replace( regex, "%27" );
 			pageImage = encodeURIComponent( settings.img );
