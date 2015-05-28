@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Facilitates sharing Web content on social media platforms.",
 	"altLangPrefix": "share",
-	"dateModified": "2014-10-28"
+	"dateModified": "2015-05-27"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -178,7 +178,29 @@
 			<tr>
 				<td><code>filter</code></td>
 				<td>Optional filter for the sites to display in the panel. Only the sites listed in the array will be displayed. If no sites are listed, then all sites will be displayed.</td>
-				<td>Add <code>"filter": ["site-1", "site-2", ... "site-n"]</code> to the <code>data-wb-share</code> attribute or <code>window[ "wb-share" ]</code>. Use the following JavaScript code instead to configure all instances of the plugin: <code>window[ "wb-share" ] = {"filter": ["site-1", "site-2", ... "site-n"]};</code>.</td>
+				<td>
+					<p>Add <code>"filter": ["site-1", "site-2", ... "site-n"]</code> to the <code>data-wb-share</code> attribute or <code>window[ "wb-share" ]</code>. Use the following JavaScript code instead to configure all instances of the plugin: <code>window[ "wb-share" ] = {"filter": ["site-1", "site-2", ... "site-n"]};</code>.</p>
+					<p>The following filtering options are available by default:</p>
+					<ul>
+						<li>bitly</li>
+						<li>blogger</li>
+						<li>delicious</li>
+						<li>digg</li>
+						<li>diigo</li>
+						<li>email (v4.0.15+)</li>
+						<li>facebook</li>
+						<li>gmail</li>
+						<li>googleplus</li>
+						<li>linkedin</li>
+						<li>myspace</li>
+						<li>pinterest</li>
+						<li>reddit</li>
+						<li>stumbleupon</li>
+						<li>tumblr</li>
+						<li>twitter</li>
+						<li>yahoomail</li>
+					</ul>
+				</td>
 				<td>
 					<dl>
 						<dt>None (default):</dt>
