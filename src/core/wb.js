@@ -7,7 +7,7 @@
 /*
  * Vapour Object that will store tombstone data for plugins to leverage
  */
-(function( $, window, document, undef ) {
+( function( $, window, document, undef ) {
 "use strict";
 
 /**
@@ -30,7 +30,7 @@ var getUrlParts = function( url ) {
 			search: a.search,
 
 			// A collection of the parameters of the query string part of the URL.
-			params: (function() {
+			params: ( function() {
 				var results = {},
 					queryString = a.search.replace( /^\?/, "" ).split( "&" ),
 					len = queryString.length,
@@ -43,9 +43,15 @@ var getUrlParts = function( url ) {
 					}
 				}
 				return results;
-			}())
+			}() )
 		};
 	},
+
+	/**
+	 * @variable seed
+	 * @return a unique number for auto-generating ids
+	 */
+	seed = 0,
 
 	/**
 	 * @variable $src
@@ -86,7 +92,7 @@ var getUrlParts = function( url ) {
 	 * @variable oldie
 	 * @return {integer} of IE version
 	 */
-	oldie = (function() {
+	oldie = ( function() {
 		var undef,
 			v = 3,
 			div = document.createElement( "div" ),
@@ -98,7 +104,7 @@ var getUrlParts = function( url ) {
 		) {}
 
 		return v > 4 ? v : undef;
-	}()),
+	}() ),
 
 	/**
 	 * @variable currentpage
@@ -110,10 +116,17 @@ var getUrlParts = function( url ) {
 	 * @variable disabled
 	 * @return {boolean} of state of disabled flag
 	 */
-	disabled = (function() {
-		var disabled = currentpage.params.wbdisable || ( !localStorage ? "false" : localStorage.getItem( "wbdisable" ) );
+	disabled = ( function() {
+		var disabledSaved = "false",
+			disabled;
+
+		try {
+			disabledSaved = localStorage.getItem( "wbdisable" ) || disabledSaved;
+		} catch ( e ) {}
+
+		disabled = currentpage.params.wbdisable || disabledSaved;
 		return ( typeof disabled === "string" ) ? ( disabled.toLowerCase() === "true" ) : Boolean( disabled );
-	}()),
+	}() ),
 
 	/*-----------------------------
 	 * Core Library Object
@@ -134,6 +147,7 @@ var getUrlParts = function( url ) {
 		isDisabled: disabled,
 		isStarted: false,
 		isReady: false,
+		ignoreHashChange: false,
 		initQueue: 0,
 
 		getPath: function( property ) {
@@ -144,7 +158,11 @@ var getUrlParts = function( url ) {
 			return this.mode;
 		},
 
-		init: function( event, componentName, selector ) {
+		getId: function() {
+			return "wb-auto-" + ( seed += 1 );
+		},
+
+		init: function( event, componentName, selector, noAutoId ) {
 			var	eventTarget = event.target,
 				isEvent = !!eventTarget,
 				node = isEvent ? eventTarget : event,
@@ -160,6 +178,10 @@ var getUrlParts = function( url ) {
 				this.remove( selector );
 				if ( !isDocumentNode ) {
 					node.className += " " + initedClass;
+
+					if ( !noAutoId && !node.id ) {
+						node.id = wb.getId();
+					}
 				}
 
 				return node;
@@ -170,10 +192,20 @@ var getUrlParts = function( url ) {
 
 		ready: function( $elm, componentName, context ) {
 			if ( $elm ) {
+
+				// Trigger any nested elements (excluding nested within nested)
+				$elm
+					.find( wb.allSelectors )
+						.addClass( "wb-init" )
+						.filter( ":not(#" + $elm.attr( "id" ) + " .wb-init .wb-init)" )
+							.trigger( "timerpoke.wb" );
+
+				// Identify that the component is ready
 				$elm.trigger( "wb-ready." + componentName, context );
 				this.initQueue -= 1;
 			}
 
+			// Identify that global initialization is complete
 			if ( !this.isReady && this.isStarted && this.initQueue < 1 ) {
 				this.isReady = true;
 				this.doc.trigger( "wb-ready.wb" );
@@ -253,42 +285,37 @@ var getUrlParts = function( url ) {
 		},
 
 		// Handles triggering of timerpoke events
-		timerpoke: function() {
+		timerpoke: function( initial ) {
 			var selectorsLocal = wb.selectors.slice( 0 ),
 				len = selectorsLocal.length,
-				selector, currentSelector, $elms, elmsLength, i;
+				selector, $elms, $foundElms, i;
 
-			for ( i = 0; i !== len; i += 1 ) {
-				selector = selectorsLocal[ i ];
-				currentSelector = selector;
-				$elms = $( selector );
+			if ( initial ) {
+				$foundElms = $();
+				for ( i = 0; i !== len; i += 1 ) {
+					selector = selectorsLocal[ i ];
+					$elms = $( selector );
+					if ( $elms.length !== 0 ) {
+						$foundElms = $foundElms.add( $elms );
 
-				// If the selector returns elements, trigger a timerpoke event
-				elmsLength = $elms.length;
-				if ( elmsLength !== 0 ) {
-					while ( elmsLength !== 0 ) {
-
-						currentSelector += " " + selector;
-
-						// Filter out nested elements
-						$elms = $elms.filter( ":not(" + currentSelector + ")" );
-						$elms.trigger( "timerpoke.wb" );
-
-						// Handle nested elements
-						elmsLength -= $elms.length;
-						if ( elmsLength !== 0 ) {
-							$elms = $( currentSelector );
-						}
+					// If the selector returns no elements, remove the selector
+					} else {
+						wb.remove( selector );
 					}
-
-				// If the selector returns no elements, remove the selector
-				} else {
-					this.remove( selector );
 				}
+
+				// Keep only the non-nested plugin/polyfill elements
+				$elms = $foundElms.filter( ":not(.wb-init .wb-init)" ).addClass( "wb-init" );
+			} else {
+				$elms = $( selectorsLocal.join( ", " ) );
 			}
+			$elms.trigger( "timerpoke.wb" );
 		},
 
 		start: function() {
+
+			// Save a copy of all the possible selectors
+			wb.allSelectors = wb.selectors.join( ", " );
 
 			// Initiate timerpoke events right way
 			wb.timerpoke( true );
@@ -330,6 +357,33 @@ var getUrlParts = function( url ) {
 				default:
 					return "";
 			}
+		},
+
+		hashString: function( str ) {
+
+			// Sources:
+			//	http://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
+			//	http://jsperf.com/hashing-strings
+			var hash = 0,
+				chr, i;
+
+			if ( str.length === 0 ) {
+				return hash;
+			}
+
+			for ( i = 0; i < str.length; i++ ) {
+				chr = str.charCodeAt( i );
+				hash = ( ( hash << 5 ) - hash ) + chr;
+
+				// Convert to 32bit integer
+				hash = hash & hash;
+			}
+
+			return hash;
+		},
+
+		stripWhitespace: function( str ) {
+			return str.replace( /\s+/g, "" );
 		}
 	};
 
@@ -354,30 +408,31 @@ window.wb = wb;
 yepnope.addPrefix( "site", function( resourceObj ) {
 	resourceObj.url = $homepath + "/" + resourceObj.url;
 	return resourceObj;
-});
+} );
 
 /**
  * @prefix: plyfll! - builds the path for the polyfill resource
  */
 yepnope.addPrefix( "plyfll", function( resourceObj ) {
-	var path;
+	var path,
+		url = resourceObj.url;
 
-	if ( disabled ) {
+	if ( disabled && url.indexOf( "svg" ) === -1 ) {
 		resourceObj.bypass = true;
 	} else if ( !$mode ) {
-		resourceObj.url = resourceObj.url.replace( ".min", "" );
+		url = url.replace( ".min", "" );
 	}
 
-	if ( resourceObj.url.indexOf( ".css" ) !== -1 ) {
+	if ( url.indexOf( ".css" ) !== -1 ) {
 		resourceObj.forceCSS = true;
 		path = $homecss;
 	} else {
 		path = $homepath;
 	}
-	resourceObj.url = path + "/polyfills/" + resourceObj.url;
+	resourceObj.url = path + "/polyfills/" + url;
 
 	return resourceObj;
-});
+} );
 
 /**
  * @prefix: i18n! - adds the correct document language for our i18n library
@@ -385,12 +440,12 @@ yepnope.addPrefix( "plyfll", function( resourceObj ) {
 yepnope.addPrefix( "i18n", function( resourceObj ) {
 	resourceObj.url = $homepath + "/" + resourceObj.url + lang + $mode + ".js";
 	return resourceObj;
-});
+} );
 
 /*-----------------------------
  * Modernizr Polyfill Loading
  *-----------------------------*/
-Modernizr.load([
+Modernizr.load( [
 	{
 		test: Modernizr.details,
 		nope: [
@@ -453,15 +508,15 @@ Modernizr.load([
 
 					// Load the MathML dependency. Since the polyfill is only loaded
 					// when !Modernizr.mathml, we can skip the test here.
-					Modernizr.load({
+					Modernizr.load( {
 						load: "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=Accessible",
 						complete: function() {
 
 							// Identify that initialization has completed
 							wb.ready( $document, componentName );
 						}
-					});
-				});
+					} );
+				} );
 
 				wb.add( selector );
 			}
@@ -484,6 +539,6 @@ Modernizr.load([
 			wb.start();
 		}
 	}
-]);
+] );
 
-})( jQuery, window, document );
+} )( jQuery, window, document );

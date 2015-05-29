@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, wb ) {
+( function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -61,10 +61,10 @@ var namespace = "wb-cal",
 				.attr( "id", calendarId );
 
 			if ( ariaLabelledBy ) {
-				$calendar.attr({
+				$calendar.attr( {
 					"aria-controls": ariaControls,
 					"aria-labelledby": ariaLabelledBy
-				});
+				} );
 			}
 
 			// Converts min and max date from string to date objects
@@ -101,8 +101,8 @@ var namespace = "wb-cal",
 			// Reset calendar if the calendar previously existed
 			$objCalendar = $( objCalendarId );
 			if ( $objCalendar.length !== 0 ) {
-				$objCalendar.find( "#cal-" + calendarId + "-wd, .cal-mnth, #cal-" + calendarId + "-days").remove();
-				$objCalendar = $calendar.children("#cal-" + calendarId + "-cnt");
+				$objCalendar.find( "#cal-" + calendarId + "-wd, .cal-mnth, #cal-" + calendarId + "-days" ).remove();
+				$objCalendar = $calendar.children( "#cal-" + calendarId + "-cnt" );
 			} else {
 				$objCalendar = $( "<table id='cal-" + calendarId + "-cnt' class='cal-cnt'></table>" );
 				$calendar.append( $objCalendar );
@@ -233,7 +233,7 @@ var namespace = "wb-cal",
 					true,
 					eventData.mindate,
 					eventData.maxdate
-				]);
+				] );
 			}
 
 			$container.find( classes.indexOf( "wb-inv" ) !== -1 ?
@@ -250,7 +250,7 @@ var namespace = "wb-cal",
 			eventData = event.data,
 			minDate = eventData.minDate,
 			maxDate = eventData.maxDate,
-			$monthField = eventData.$monthField,
+			$monthField = eventData.monthField,
 			value = $monthField.val(),
 			month = value ? value : eventData.month,
 			minMonth = 0,
@@ -276,56 +276,52 @@ var namespace = "wb-cal",
 	},
 
 	createGoToForm = function( calendarId, year, month, minDate, maxDate ) {
-		var $goToForm = $( "<div class='cal-goto'></div>" ),
-			$form = $( "<form id='cal-" + calendarId + "-goto' role='form' style='display:none;' action=''></form>" ),
-			$yearContainer, yearField, $yearField, y, ylen, $monthContainer, $monthField;
+		var formId = "cal-" + calendarId + "-goto",
+			monthFieldId = "cal-" + calendarId + "-goto-month",
+			yearFieldId = "cal-" + calendarId + "-goto-year",
+			form = "<div class='cal-goto'><div id='cal-" + calendarId + "-goto-lnk'>" +
+				"<a href='javascript:;' role='button' aria-controls='cal-" +
+				calendarId + "-goto' class='cal-goto-lnk' aria-expanded='false'>" +
+				i18nText.monthNames[ month ] + " " + year + "</a></div>" +
+				"<form id='" + formId + "' role='form' class='hide' action=''>",
+			yearField = "<select title='" + i18nText.goToYear + "' id='" + yearFieldId + "'>",
+			$form, y, ylen;
 
-		$form.on( "submit", function( event ) {
-			event.preventDefault();
-			onGoTo( calendarId, minDate, maxDate );
-			return false;
-		});
-
-		// Create the year field
-		$yearContainer = $( "<div class='cal-goto-yr'></div>" );
-		yearField = "<select title='" + i18nText.goToYear + "' id='cal-" + calendarId + "-goto-year'>";
+		// Create the year field entries
 		for ( y = minDate.getFullYear(), ylen = maxDate.getFullYear() + 1; y !== ylen; y += 1 ) {
 			yearField += "<option value='" + y + "'" + ( y === year ? " selected='selected'" : "" ) + ">" + y + "</option>";
 		}
-		$yearField = $( yearField + "</select>" );
 
-		// Create the month field
-		$monthContainer = $( "<div class='cal-goto-mnth'></div>" );
-		$monthField = $( "<select title='" + i18nText.goToMonth + "' id='cal-" + calendarId + "-goto-month'></select>" );
+		// Create the month and year fields and the buttons
+		form += "<div class='cal-goto-mnth'><select title='" + i18nText.goToMonth +
+				"' id='" + monthFieldId + "'></select></div>" +
+				"<div class='cal-goto-yr'>" + yearField + "</select></div>" +
+				"<div class='clearfix'></div>" + "<div class='cal-goto-btn'>" +
+				"<input type='submit' class='btn btn-primary' value='" +
+				i18nText.goToBtn + "' /></div>" + "<div class='cal-goto-btn'>" +
+				"<input type='button' class='btn btn-default cal-goto-cancel' value='" +
+				i18nText.cancelBtn + "' /></div>";
 
-		$monthContainer.append( $monthField );
-
-		// Create the year field
-		$yearContainer.append( $yearField );
-
-		// Update the list of available months when changing the year
-		$yearField.on( "change", { minDate: minDate, maxDate: maxDate, month: month, $monthField: $monthField }, yearChanged );
-
-		// Populate initial month list
-		$yearField.trigger( "change" );
-
+		$form = $( form + "</form></div>" );
 		$form
-			.append( $monthContainer )
-			.append( $yearContainer )
-			.append( "<div class='clearfix'></div>" +
-				"<div class='cal-goto-btn'><input type='submit' class='btn btn-primary' value='" +
-				i18nText.goToBtn + "' /></div>" +
-				"<div class='cal-goto-btn'><input type='button' class='btn btn-default cal-goto-cancel' value='" +
-				i18nText.cancelBtn + "' /></div>" );
+			.on( "submit", function( event ) {
+				event.preventDefault();
+				onGoTo( calendarId, minDate, maxDate );
+				return false;
+			} )
 
-		$goToForm
-			.append( "<div id='cal-" +
-				calendarId + "-goto-lnk'><a href='javascript:;' role='button' aria-controls='cal-" +
-				calendarId + "-goto' class='cal-goto-lnk' aria-expanded='false'>" +
-				i18nText.monthNames[ month ] + " " + year + "</a></div>" )
-			.append( $form );
+			// Update the list of available months when changing the year
+			// and populate the initial month list.
+			.find( "#" + yearFieldId )
+				.on( "change", {
+						minDate: minDate,
+						maxDate: maxDate,
+						month: month,
+						monthField: $form.find( "#" + monthFieldId )
+					}, yearChanged )
+				.trigger( "change" );
 
-		return $goToForm;
+		return $form;
 	},
 
 	createWeekdays = function( calendarId ) {
@@ -419,13 +415,14 @@ var namespace = "wb-cal",
 			.find( gotoId + "-lnk, .cal-prvmnth, .cal-nxtmnth" )
 				.addClass( "hide" )
 				.attr( "aria-hidden", "true" )
-				.filter( "a" )
-					.attr( "aria-expanded", "true" );
+				.filter( "div" )
+					.children()
+						.attr( "aria-expanded", "true" );
 
-		// TODO: Replace with CSS animation
-		$( gotoId ).stop().slideDown( 0 ).queue(function() {
-			$( this ).find( ":input:eq(0)" ).trigger( setFocusEvent );
-		});
+		$( gotoId )
+			.removeClass( "hide" )
+			.find( ":input:eq(0)" )
+				.trigger( setFocusEvent );
 	},
 
 	hideGoToFrm = function( event ) {
@@ -437,11 +434,11 @@ var namespace = "wb-cal",
 				.find( gotoId + "-lnk, .cal-prvmnth, .cal-nxtmnth" )
 					.removeClass( "hide" )
 					.attr( "aria-hidden", "false" )
-					.filter( "a" )
-						.attr( "aria-expanded", "false" );
+					.filter( "div" )
+						.children()
+							.attr( "aria-expanded", "false" );
 
-			// TODO: Replace with CSS animation
-			$( gotoId ).stop().slideUp( 0 );
+			$( gotoId ).addClass( "hide" );
 		}
 	},
 
@@ -459,7 +456,7 @@ var namespace = "wb-cal",
 				true,
 				minDate,
 				maxDate
-			]);
+			] );
 			$container.trigger( hideGoToFrmEvent );
 
 			// Go to the first day to avoid having to tab over the navigation again.
@@ -644,7 +641,7 @@ $document.on( "keydown", ".cal-days a", function( event ) {
 
 		return false;
 	}
-});
+} );
 
 $document.on( hideGoToFrmEvent, ".cal-cnt", hideGoToFrm );
 
@@ -659,7 +656,7 @@ $document.on( "click", ".cal-goto-lnk", function( event ) {
 	if ( !which || which === 1 ) {
 		showGoToForm( $( event.currentTarget ).closest( ".cal-cnt" ).attr( "id" ) );
 	}
-});
+} );
 
 $document.on( "click", ".cal-goto-cancel", function( event ) {
 	var which = event.which;
@@ -668,6 +665,6 @@ $document.on( "click", ".cal-goto-cancel", function( event ) {
 	if ( !which || which === 1 ) {
 		$( event.currentTarget ).closest( ".cal-cnt" ).trigger( hideGoToFrmEvent );
 	}
-});
+} );
 
-})( jQuery, window, document, wb );
+} )( jQuery, window, document, wb );

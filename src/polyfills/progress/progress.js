@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -44,7 +44,7 @@ var componentName = "wb-progress",
 	progress = function( elm ) {
 		var $elm = $( elm ),
 			$progress = $elm.children( ".progress, .undef" ),
-			$span = $elm.children(".wb-inv"),
+			$span = $elm.children( ".wb-inv" ),
 			ariaValueMax = 1.0,
 			ariaValueNow,
 			$progressbar;
@@ -68,11 +68,11 @@ var componentName = "wb-progress",
 			$progressbar = $progress.children( ".progress-bar" );
 
 			$progressbar.css( "width", ( ( ariaValueNow / ariaValueMax ) * 100 ) + "%" )
-				.attr({
+				.attr( {
 					"aria-valuemin": 0,
 					"aria-valuemax": ariaValueMax,
 					"aria-valuenow": ariaValueNow
-				});
+				} );
 
 			$span.detach();
 			$span.appendTo( $progressbar );
@@ -97,9 +97,9 @@ $document.on( "timerpoke.wb " + initEvent + " "  + updateEvent, selector, functi
 	} else {
 		init( event );
 	}
-});
+} );
 
 // Add the timer poke to initialize the polyfill
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

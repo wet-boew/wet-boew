@@ -4,18 +4,28 @@
  */
 .lt-ie9 {
 	details {
+		visibility: hidden;
+
 		> {
+			details,
 			* {
 				display: none;
 			}
 		}
 
 		&[open] {
+			visibility: visible;
+
 			> {
+				details,
 				* {
 					display: block !important;
 				}
 			}
+		}
+
+		&.alert {
+			visibility: visible;
 		}
 	}
 }

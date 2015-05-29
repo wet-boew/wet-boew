@@ -5,7 +5,7 @@
 /*
  * Web Accessibility Assessment Methodology
  */
-(function( $, document ) {
+( function( $, document ) {
 "use strict";
 
 /*
@@ -54,12 +54,12 @@ var componentName = "wb-wamethod",
 			$input.eq( 0 ).trigger( "change" );
 
 			// Apply WAI-ARIA
-			$summaryTd.attr({
+			$summaryTd.attr( {
 				"aria-live": "polite",
 				"aria-relevant": "text",
 				"aria-atomic": "true",
 				"aria-busy": "false"
-			});
+			} );
 
 			// Identify that initialization has completed
 			wb.ready( $( elm ), componentName );
@@ -96,9 +96,9 @@ $document.on( "change", selector + " input", function() {
 	percTotal.innerHTML = Math.round( ( aPassed + aaPassed + aaaPassed ) / successCriteriaDivideBy );
 	percNATotal.innerHTML = Math.round( naChecked / successCriteriaDivideBy );
 	$summaryTd.attr( "aria-busy", "false" );
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, document );
+} )( jQuery, document );

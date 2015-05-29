@@ -6,108 +6,138 @@
 	"categoryfile": "plugins",
 	"description": "Afficher des images et d'autres contenus dans une boîte de dialogue, individuellement ou dans le cadre d'une galerie.",
 	"altLangPrefix": "lightbox",
-	"dateModified": "2014-08-06"
+	"dateModified": "2015-03-09"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
 
-<div lang="en">
-<p><strong>Needs translation</strong></p>
+<div lang="fr">
 <section>
-	<h2>Purpose</h2>
-	<p>Display images and other content in a dialog box, either individually or as part of a gallery. Implements the <a href="http://www.w3.org/TR/wai-aria-practices/#dialog_modal">WAI-ARIA Dialog (Modal) design pattern</a>.</p>
+	<h2>But</h2>
+	<p>Afficher des images et d'autres contenus dans une boîte de dialogue, soit individuellement ou comme partie d'une galerie. Implémente le modèle de conception <a href="http://www.w3.org/TR/wai-aria-practices/#dialog_modal">WAI-ARIA Dialog (Modal)</a>.</p>
 </section>
 
 <section>
-	<h2>Working example</h2>
+	<h2>Exemples</h2>
 	<ul>
-		<li><a href="../../../demos/lightbox/lightbox-en.html">English example</a></li>
-		<li><a href="../../../demos/lightbox/lightbox-fr.html">French example</a></li>
+		<li><a href="../../../demos/lightbox/lightbox-en.html">Exemple anglais</a></li>
+		<li><a href="../../../demos/lightbox/lightbox-fr.html">Exemple français</a></li>
 	</ul>
 </section>
 
 <section>
-	<h2>How to implement</h2>
+	<h2>Comment implémenter</h2>
 	<section>
-		<h3>Single items</h3>
+		<h3>Items individuels</h3>
 		<ol>
-			<li>Add a link element to the page with the class <code>wb-lbx</code>.</li>
-			<li>Add an <code>href</code> attribute on the link element that points to the image (e.g., <code>href="demo/1_b.jpg"</code>), the file containing the content (e.g., <code>ajax/ajax.html</code>) or the id of the inline content (e.g., <code>href="#inline-content</code>).</li>
-			<li>Add a <code>title</code> attribute to the link element with the caption text.</li>
+			<li>Ajouter un élément lien à la page avec la classe <code>wb-lbx</code>.</li>
+			<li>Ajouter un attribut <code>href</code> sur l'élément lien qui pointe à l'image (e.g., <code>href="demo/1_b.jpg"</code>), au fichier content le contenu (e.g., <code>ajax/ajax.html</code>) ou à l'identifiant (id) du contenu en-ligne (e.g., <code>href="#inline-content</code>).</li>
+			<li>Ajouter un attribut <code>title</code> au lien avec le texte à mettre en légende.</li>
+			<li><strong>Facultatif :</strong> Filtrer le contenu avec le &#171;&#160;hash&#160;&#187; de l'URL (<code>ajax/ajax4-fr.html#filter-id</code>, v4.0.7+) ou avec un sélecteur (<code>href="ajax/ajax4-fr.html" data-wb-lbx='{"filter": ".filter-selector"}'</code>, v4.0.12+).</li>
 		</ol>
 	</section>
 	<section>
-		<h3>Galleries</h3>
+		<h3>Galeries</h3>
 		<ol>
-			<li>Add a <code>section</code> or other element to the page with the classes <code>wb-lbx</code> and <code>lbx-gal</code>.</li>
-			<li>Add within the <code>section</code> or other element a link element for each item in the gallery.</li>
-			<li>Add an <code>href</code> attribute on each link element that points to the image (e.g., <code>href="demo/1_b.jpg"</code>), the file containing the content (e.g., <code>ajax/ajax.html</code>) or the id of the inline content (e.g., <code>href="#inline-content</code>).</li>
-			<li>Add a <code>title</code> attribute to each link element with the caption text.</li>
+			<li>Ajouter un élément <code>section</code> ou un autre élément à la page avec les classes <code>wb-lbx</code> et <code>lbx-gal</code>.</li>
+			<li>Ajouter à l'intérieur de la <code>section</code> ou de l'autre élément un élément lien pour chaque item de la galerie.</li>
+			<li>Ajouter un attribut <code>href</code> sur chaque élément lien qui pointe vers l'image (e.g., <code>href="demo/1_b.jpg"</code>), le fichier contenant le contenu (e.g., <code>ajax/ajax.html</code>) ou l'identifiant (id) du contenu en-ligne (e.g., <code>href="#inline-content</code>).</li>
+			<li>Ajouter un attribut <code>title</code> à chaque élément lien avec le texte à mettre en légende.</li>
 		</ol>
 	</section>
 </section>
 
 <section>
-	<h2>Configuration options</h2>
+	<h2>Options de configuration</h2>
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Option</th>
 				<th>Description</th>
-				<th>How to configure</th>
-				<th>Values</th>
+				<th>Comment configurer</th>
+				<th>Valeurs</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td><code>lbx-hide-gal</code></td>
-				<td>Hides all but the first item in the gallery.</td>
-				<td>Add <code>lbx-hide-gal</code> to the <code>class</code> attribute of the <code>section</code> or other element of the gallery.</td>
+				<td>Cache tous les éléments d'une galerie sauf le premier.</td>
+				<td>Ajouter <code>lbx-hide-gal</code> à l'attribut <code>class</code> de la <code>section</code> ou de l'autre élément de la galerie.</td>
 				<td>n/a</td>
 			</tr>
 			<tr>
 				<td><code>lbx-modal</code></td>
-				<td>Make the lightbox behave like a modal dialog.</td>
-				<td>Add <code>lbx-modal</code> to the <code>class</code> attribute of the link element.</td>
+				<td>Obliger le lightbox à se comporter comme une boîte de dialogue modale.</td>
+				<td>Ajouter <code>lbx-modal</code> à l'attribut <code>class</code> de l'élément lien.</td>
 				<td>n/a</td>
 			</tr>
 			<tr>
-				<td><code>lbx-modal</code></td>
-				<td>Make the lightbox behave like a modal dialog.</td>
-				<td>Add <code>lbx-modal</code> to the <code>class</code> attribute of the link element.</td>
+				<td><code>lbx-ajax</code></td>
+				<td>Remplace le type de contenu par défaut par le type ajax.</td>
+				<td>Ajouter <code>lbx-ajax</code> à l'attribut <code>class</code> de l'élément lien.</td>
+				<td>n/a</td>
+			</tr>
+			<tr>
+				<td><code>lbx-image</code></td>
+				<td>Remplace le type de contenu par défaut par le type image.</td>
+				<td>Ajouter <code>lbx-image</code> à l'attribut <code>class</code> de l'élément lien.</td>
+				<td>n/a</td>
+			</tr>
+			<tr>
+				<td><code>lbx-inline</code></td>
+				<td>Remplace le type de contenu par défaut par le type en-ligne (inline).</td>
+				<td>Ajouter <code>lbx-inline</code> à l'attribut <code>class</code> de l'élément lien.</td>
+				<td>n/a</td>
+			</tr>
+			<tr>
+				<td><code>lbx-iframe</code></td>
+				<td>Remplace le type de contenu par défaut par le type iframe.</td>
+				<td>Ajouter <code>lbx-iframe</code> à l'attribut <code>class</code> de l'élément lien.</td>
 				<td>n/a</td>
 			</tr>
 			<tr>
 				<td><code>popup-modal-dismiss</code></td>
-				<td>Identifies the button that is to be use to close a lightbox behaving like a modal dialog.</td>
-				<td>Add <code>popup-modal-dismiss</code> to the link or button that will be used to close the lightbox behaving like a modal dialog.</td>
+				<td>Identifie le bouton qui doit être utilisé pour fermer un lightbox se comportant comme une boîte de dialogue modale.</td>
+				<td>Ajouter <code>popup-modal-dismiss</code> à l'attribut <code>class</code> du lien ou du bouton qui servira à fermer le lightbox se comportant comme une boîte de dialogue modale.</td>
 				<td>n/a</td>
+			</tr>
+			<tr>
+				<td><code>data-wb-lbx</code></td>
+				<td>Les paramètres de Magnific Popup peuvent être configurés par l'attribut <code>data-wb-lbx</code>. Voir la <a href="http://dimsemenov.com/plugins/magnific-popup/documentation.html#options">documentation Magnific Popup</a> pour les options disponibles.<br /><strong>À noter :</strong> BOEW utilise les callbacks open, change et parseAjax (voir <a href="http://dimsemenov.com/plugins/magnific-popup/documentation.html#events">Événements</a>).</td>
+				<td>Ajouter l'attribut <code>data-wb-lbx</code> à l'élément lien ou utiliser <code>window[ "wb-lbx" ]</code> avec les options souhaitées. </td>
+				<td>p.ex., <code>data-wb-lbx='{"type": "ajax"}'</code> permet d'identifier le type de contenu. Donne le même résultat que l'ajout de la classe <code>lbx-ajax</code>.</td>
+			</tr>
+			<tr>
+				<td><code>filter</code> (v4.0.12+)</td>
+				<td>Le content peut être filtré pa un selecteur par <code>filter</code> dans l'attribut <code>data-wb-lbx</code> ou <code>window[ "wb-lbx" ]</code>.</td>
+				<td>Ajouter <code>data-wb-lbx='{"filter": ".filter-selector"}'</code> à l'élément lien et remplacer <code>.filter-selector</code> avec un sélecteur.</td>
+				<td>p.ex.., <code>data-wb-lbx='{"filter": ".filter-selector"}'</code> va filtré le contenu par <code>.filter-selector</code>.</td>
 			</tr>
 		</tbody>
 	</table>
 </section>
 
 <section>
-	<h2>Events</h2>
-	<p>Document the public events that can be used by implementers or developers.</p>
+	<h2>Événements</h2>
+	<p>Documente les événements publics qui peuvent être utilisés par les développeurs.</p>
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Event</th>
-				<th>Trigger</th>
-				<th>What it does</th>
+				<th>Événement</th>
+				<th>Déclencheur</th>
+				<th>Ce qu'il fait</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td><code>wb-init.wb-lbx</code></td>
-				<td>Triggered manually (e.g., <code>$( ".wb-lbx" )trigger( "wb-init.wb-lbx" );</code>).</td>
-				<td>Used to manually initialize the Lightbox plugin. <strong>Note:</strong> The Lightbox plugin will be initialized automatically unless the Lightbox markup is added after the page has already loaded.</td>
+				<td>Déclenché manuellement (e.g., <code>$( ".wb-lbx" )trigger( "wb-init.wb-lbx" );</code>).</td>
+				<td>Utilisé pour initialiser manuellement le plugiciel Lightbox. <strong>Note:</strong> Le plugiciel Lightbox sera initialisé automatiquement à moins que le code du Lightbox soit ajouté après que la page ait déjà été chargée.</td>
 			</tr>
 			<tr>
 				<td><code>wb-ready.wb-lbx</code> (v4.0.5+)</td>
-				<td>Triggered automatically after a lightbox is initialized.</td>
-				<td>Used to identify when a lightbox has initialized (target of the event)
+				<td>Déclenché automatiquement après qu'un Lightbox ait été initialisé.</td>
+				<td>Utilisé pour identifier le moment où un Lightbox a été initialisé (cible de l'événement)
 					<pre><code>$( document ).on( "wb-ready.wb-lbx", ".wb-lbx", function( event ) {
 });</code></pre>
 					<pre><code>$( ".wb-lbx" ).on( "wb-ready.wb-lbx", function( event ) {
@@ -116,7 +146,7 @@
 			</tr>
 			<tr>
 				<td><code>wb-open.wb-lbx</code> (v4.0.4+)</td>
-				<td>Triggered manually:
+				<td>Déclenché manuellement :
 					<pre><code>$( document ).trigger( "open.wb-lbx", [
 	[
 		{
@@ -130,22 +160,22 @@
 	]
 ]);</code></pre>
 				</td>
-				<td>Used to manually open a Lightbox popup. Can be used to load single popups, galleries and modal popups. See <a href="../../../demos/lightbox/lightbox-en.html#examples5">Opening popups through JavaScript</a> for working examples.</td>
+				<td>Utilisé pour ouvrir un Lightbox manuellement. Peut être utilisé pour afficher des boîtes individuelles, des galeries et des boîtes modales. Voir <a href="../../../demos/lightbox/lightbox-fr.html#examples5">Ouvrir des popups par JavaScript</a> pour des exemples d'application.</td>
 			</tr>
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
-				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Déclenché automatiquement quand BOEW a terminé le chargement et l'exécution.</td>
+				<td>Utilisé pour identifier quand tous les plugiciels BOEW et les polyfills ont terminé leur chargement et leur exécution. 
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
 			</tr>
 			<tr>
-				<td><code>mfp*</code> events (e.g., <code>mfpClose</code></td>
-				<td>Events triggered automatically by Magnific Popup (<a rel="external" href="http://dimsemenov.com/plugins/magnific-popup/documentation.html#events">documentation on Magnific Popup events</a>.</td>
-				<td>Used by Magnific Popup to identify what events are occurring. <code>$.magnificPopup.instance</code> contains the properties of the popup in question.
+				<td>Événements <code>mfp*</code> (e.g., <code>mfpClose</code></td>
+				<td>Événements déclenchés automatiquement par Magnific Popup (<a rel="external" href="http://dimsemenov.com/plugins/magnific-popup/documentation.html#events">documentation sur les événements Magnific Popup</a>.</td>
+				<td>Utilisés par Magnific Popup pour identifier quels événements sont en cours. <code>$.magnificPopup.instance</code> contient les propriétés du popup en question.
 					<ul>
-						<li><strong>Opened with <code>.wb-lbx</code></strong>:
+						<li><strong>Ouvert avec <code>.wb-lbx</code></strong>:
 							<pre><code>$( ".wb-lbx" ).on( "mfpClose", function( event ) {
 	$.magnificPopup.instance.items[ 0 ].data.src;
 	
@@ -154,7 +184,7 @@
 	}
 });</code></pre>
 						</li>
-						<li><strong>Opened with JavaScript</strong>:
+						<li><strong>Ouvert avec JavaScript</strong>:
 							<pre><code>$( document ).on( "mfpClose", function( event ) {
 	$.magnificPopup.instance.items[ 0 ].data.src;
 	
@@ -171,7 +201,7 @@
 </section>
 
 <section>
-	<h2>Source code</h2>
-	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/lightbox">Lightbox source code on GitHub</a></p>
+	<h2>Code source</h2>
+	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/lightbox">Code source du Lightbox sur GitHub</a></p>
 </section>
 </div>

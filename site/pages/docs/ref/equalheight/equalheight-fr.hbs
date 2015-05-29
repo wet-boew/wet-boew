@@ -8,7 +8,7 @@
 	"altLangPrefix": "equalheight",
 	"dateModified": "2014-08-04"
 }
----	
+---
 <span class="wb-prettify all-pre hide"></span>
 
 <section>
@@ -37,6 +37,7 @@
 	<h2>Comment implémenter le plucigiel</h2>
 	<ol>
 		<li>Ajouter la classe <code lang="en">wb-eqht</code> à l'élément qui contient les éléments pour lequels vous voulez égaliser les hauteurs.</li>
+		<li>Ajouter la classe <code lang="en">hght-inhrt</code> à tout élément contenu pour lequel vous voulez égaliser les hauteurs.</li>
 	</ol>
 </section>
 
@@ -85,7 +86,7 @@
 			<tr>
 				<td><code>wb-ready.wb</code> (v4.0.5+)</td>
 				<td>Triggered automatically when WET has finished loading and executing.</td>
-				<td>Used to identify when all WET plugins and polyfills have finished loading and executing. 
+				<td>Used to identify when all WET plugins and polyfills have finished loading and executing.
 					<pre><code>$( document ).on( "wb-ready.wb", function( event ) {
 });</code></pre>
 				</td>
@@ -98,4 +99,3 @@
 	<h2>Code source</h2>
 	<p><a href="https://github.com/wet-boew/wet-boew/tree/master/src/plugins/equalheight">Code source du plugiciel d'égalisation des hauteurs sur <span lang="en">GitHub</span></a></p>
 </section>
-

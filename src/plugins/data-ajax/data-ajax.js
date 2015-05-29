@@ -5,7 +5,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -16,10 +16,19 @@
  * page.
  */
 var componentName = "wb-data-ajax",
-	selector = "[data-ajax-after], [data-ajax-append], [data-ajax-before], " +
-		"[data-ajax-prepend], [data-ajax-replace]",
+	selectors = [
+		"[data-ajax-after]",
+		"[data-ajax-append]",
+		"[data-ajax-before]",
+		"[data-ajax-prepend]",
+		"[data-ajax-replace]"
+	],
+	selectorsLength = selectors.length,
+	selector = selectors.join( "," ),
 	initEvent = "wb-init." + componentName,
+	updateEvent = "wb-update." + componentName,
 	$document = wb.doc,
+	s,
 
 	/**
 	 * @method init
@@ -31,23 +40,46 @@ var componentName = "wb-data-ajax",
 		// Start initialization
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
-		var elm = wb.init( event, componentName + "-" + ajaxType, selector ),
-			$elm;
+		var elm = wb.init( event, componentName + "-" + ajaxType, selector );
 
 		if ( elm ) {
-			$elm = $( elm );
 
-			$document.trigger({
-				type: "ajax-fetch.wb",
-				element: $( elm ),
-				fetch: {
-					url: $elm.data( "ajax-" + ajaxType )
-				}
-			});
+			ajax.apply( this, arguments );
+
+			// Identify that initialization has completed
+			wb.ready( $( elm ), componentName, [ ajaxType ] );
 		}
+	},
+
+	ajax = function( event, ajaxType ) {
+		var elm = event.target,
+			$elm = $( elm ),
+			settings = window[ componentName ],
+			url = elm.getAttribute( "data-ajax-" + ajaxType ),
+			fetchObj = {
+				url: url
+			},
+			urlParts;
+
+		// Detect CORS requests
+		if ( settings && ( url.substr( 0, 4 ) === "http" || url.substr( 0, 2 ) === "//" ) ) {
+			urlParts = wb.getUrlParts( url );
+			if ( ( wb.pageUrlParts.protocol !== urlParts.protocol || wb.pageUrlParts.host !== urlParts.host ) && ( !Modernizr.cors || settings.forceCorsFallback ) ) {
+				if ( typeof settings.corsFallback === "function" ) {
+					fetchObj.dataType = "jsonp";
+					fetchObj.jsonp = "callback";
+					fetchObj = settings.corsFallback( fetchObj );
+				}
+			}
+		}
+
+		$elm.trigger( {
+			type: "ajax-fetch.wb",
+			fetch: fetchObj
+		} );
 	};
 
-$document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, function( event ) {
+$document.on( "timerpoke.wb " + initEvent + " " + updateEvent + " ajax-fetched.wb", selector, function( event ) {
 	var eventTarget = event.target,
 		ajaxTypes = [
 			"before",
@@ -57,7 +89,7 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, functi
 			"prepend"
 		],
 		len = ajaxTypes.length,
-		$elm, ajaxType, i, content, pointer;
+		$elm, ajaxType, i, content, jQueryCaching;
 
 	for ( i = 0; i !== len; i += 1 ) {
 		ajaxType = ajaxTypes[ i ];
@@ -72,7 +104,9 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, functi
 	case "wb-init":
 		init( event, ajaxType );
 		break;
-
+	case "wb-update":
+		ajax( event, ajaxType );
+		break;
 	default:
 
 		// Filter out any events triggered by descendants
@@ -80,20 +114,23 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, functi
 			$elm = $( eventTarget );
 
 			// ajax-fetched event
-			pointer = event.fetch.pointer;
-			if ( pointer ) {
-				content = pointer.html();
+			content = event.fetch.response;
+			if ( content &&  content.length > 0 ) {
+
+				//Prevents the force caching of nested resources
+				jQueryCaching = jQuery.ajaxSettings.cache;
+				jQuery.ajaxSettings.cache = true;
 
 				// "replace" is the only event that doesn't map to a jQuery function
-				if ( ajaxType === "replace") {
+				if ( ajaxType === "replace" ) {
 					$elm.html( content );
 				} else {
 					$elm[ ajaxType ]( content );
 				}
-			}
 
-			// Identify that initialization has completed
-			wb.ready( $elm, componentName, [ ajaxType ] );
+				//Resets the initial jQuery caching setting
+				jQuery.ajaxSettings.cache = jQueryCaching;
+			}
 		}
 	}
 
@@ -105,7 +142,9 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb", selector, functi
 	return true;
 } );
 
-// Add the timer poke to initialize the plugin
-wb.add( selector );
+// Add the timerpoke to initialize the plugin
+for ( s = 0; s !== selectorsLength; s += 1 ) {
+	wb.add( selectors[ s ] );
+}
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

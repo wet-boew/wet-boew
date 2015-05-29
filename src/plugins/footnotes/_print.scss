@@ -30,6 +30,10 @@
 
 		a {
 			@extend %fnote-print-link-background-transparent-border-0-padding-0;
+
+			&:after {
+				content: none;
+			}
 		}
 	}
 }

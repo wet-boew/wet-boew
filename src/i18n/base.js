@@ -11,6 +11,7 @@
 wb.i18nDict = {
 	"lang-code": "@lang-code@",
 	"lang-native": "@lang-native@",
+	add: "@add@",
 	all: "@all@",
 	tphp: "@tphp@",
 	load: "@load@",
@@ -52,6 +53,7 @@ wb.i18nDict = {
 	"prv-l": "@prv-l@",
 	first: "@first@",
 	last: "@last@",
+	page: "@page@",
 	"srch-menus": "@srch-menus@",
 	email: "@email@",
 	"menu-close": "@menu-close@",
@@ -68,8 +70,9 @@ wb.i18nDict = {
 	"tab-pnl-end1": "@tab-pnl-end1@",
 	"tab-pnl-end2": "@tab-pnl-end2@",
 	"tab-pnl-end3": "@tab-pnl-end3@",
+	"tab-play": "@tab-play@",
 	/* Multimedia player */
-	play: "@play@",
+	"mmp-play": "@mmp-play@",
 	pause: "@pause@",
 	open: "@open@",
 	close: "@close@",
@@ -199,11 +202,14 @@ wb.i18nDict = {
 	"geo-geoloc-btn": "@geo-geoloc-btn@",
 	"geo-geoloc-fail": "@geo-geoloc-fail@",
 	"geo-geoloc-uncapable": "@geo-geoloc-uncapable@",
+	"geo-lgnd-grphc": "@geo-lgnd-grphc@",
 	/* Disable/enable WET plugins and polyfills */
 	"wb-disable": "@wb-disable@",
 	"wb-enable": "@wb-enable@",
+	/* Dismissable content */
+	"dismiss": "@dismiss@",
 	/* Template */
 	"tmpl-signin": "@tmpl-signin@"
 };
 
-})( wb );
+} )( wb );

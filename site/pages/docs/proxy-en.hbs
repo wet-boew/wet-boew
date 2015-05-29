@@ -32,6 +32,13 @@
 				<li><code>git config --global --add https.proxy http://USERNAME:PASSWORD@PROXY_ADDRESS:PROXY_PORT</code></li>
 			</ol>
 		</li>
+		<li>Run the following commands to prevent SSH problems:
+			<ol>
+				<li><code>git config --global url."https://".insteadOf git://</code></li>
+				<li><code>git config --global url."https://github.com/".insteadOf git@github.com:</code> (<em>don't</em> remove the final colon)</li>
+			</ol>
+		</li>
+		<li>If your computer is within a corporate network that uses personal network drives, ensure identical copies of your .gitconfig file exist on both the network drive and your local drive's user profile (e.g. <code>F:\</code> and <code>C:\Users\USERNAME</code>).</li>
 	</ol>
 </section>
 

@@ -2,30 +2,20 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
-@import "../../variables";
 
-/**
- * Shared variables
- */
-$drabBlue: #243850;
-$lightGray: #eee;
-$medGray: #ccc;
+$tab-margin-width: 10px;
 
 %tabs-position-relative {
 	position: relative;
-}
-
-%tab-position-relative {
-	position: absolute;
 }
 
 %tab-zindex-100 {
 	z-index: 100;
 }
 
-%tab-background-243850 {
-	background: $drabBlue;
-	background: transparentize($drabBlue, 0.1);
+%tab-background {
+	background: $carousel-tabpanel-figcaption-bg-color;
+	background: transparentize($carousel-tabpanel-figcaption-bg-color, 0.1);
 
 	img {
 		height: auto;
@@ -35,15 +25,17 @@ $medGray: #ccc;
 
 %tab-figure-captions {
 	bottom: 0;
-	color: #fff;
+	color: $carousel-tabpanel-figcaption-color;
 	left: 0;
 	padding: 0.5em 1em;
 	position: relative;
 	right: 0;
 	z-index: 101;
+}
 
+%carousel-link {
 	a {
-		color: #fff;
+		color: $carousel-tabpanel-link-color;
 	}
 }
 
@@ -60,13 +52,13 @@ $medGray: #ccc;
 }
 
 %carousel-s2-btn-common {
-	background: #fff;
-	border-radius: 999px;
-	box-shadow: 0 0 4px $drabBlue;
+	background: $carousel-s2-tablist-controls-btn-bg-color;
+	border-radius: $carousel-s2-tablist-controls-btn-radius;
+	box-shadow: $carousel-s2-tablist-controls-btn-shadow;
 }
 
-%carousel-color-drabblue {
-	color: $drabBlue;
+%carousel-s2-btn-color {
+	color: $carousel-s2-tablist-controls-color;
 }
 
 %carousel-s2-prv-nxt-glyphicon-common {
@@ -103,6 +95,13 @@ $medGray: #ccc;
 	> {
 		details {
 			padding: 6px 12px;
+
+			> {
+				summary {
+					margin: -6px -12px;
+					padding: 6px 12px;
+				}
+			}
 		}
 	}
 }
@@ -138,6 +137,8 @@ $medGray: #ccc;
 	}
 
 	[role="tablist"] {
+		border-spacing: $tab-margin-width 0;
+		display: table;
 		list-style: none;
 		margin: 0;
 		padding: 0;
@@ -145,17 +146,23 @@ $medGray: #ccc;
 
 		li {
 			@extend %tabs-display-inline-block;
-			background: #ebf2fc;
-			border: 1px solid $medGray;
-			color: #000;
+			background: $tablist-bg-color;
+			border: {
+				color: $tablist-border-color;
+				style: $tablist-border-style;
+				width: $tablist-border-width;
+			}
+			color: $carousel-tablist-tabcount-color;
 			cursor: pointer;
+			display: table-cell;
+			left: -$tab-margin-width;
 			margin: 0 10px 0 0;
 			position: relative;
 			text-align: center;
 
 			a {
 				@extend %tabs-display-inline-block;
-				color: #000;
+				color: $tablist-color;
 				// changed padding and margin from em to px to fix web-kit layout issue
 				padding: 10px;
 				text-decoration: none;
@@ -163,21 +170,25 @@ $medGray: #ccc;
 
 			&:focus,
 			&:hover {
-				background: $medGray;
-				background: transparentize($medGray, 0.1);
+				background: $tablist-hover-bg-color;
+				background: transparentize($tablist-hover-bg-color, 0.1);
 			}
 
 			&.active {
-				background: #fff;
+				background: $tablist-active-bg-color;
 				border-bottom: 0;
 				cursor: default;
 				padding-bottom: 1px;
 				z-index: 2;
 
 				a {
-					border-top: 4px solid #666;
 					cursor: default;
 					padding-top: 6px;
+					border: {
+						color: $tablist-active-link-border-color;
+						style: $tablist-active-link-border-style;
+						width: $tablist-active-link-border-width;
+					}
 				}
 			}
 
@@ -212,6 +223,7 @@ $medGray: #ccc;
 	}
 
 	[role="tabpanel"] {
+		overflow-x: auto;
 		position: relative;
 		z-index: 1;
 	}
@@ -221,6 +233,10 @@ $medGray: #ccc;
 	 */
 	&.carousel-s1 {
 		border-top: 0;
+
+		[role="tabpanel"] {
+			@extend %carousel-link;
+		}
 
 		[role="tablist"] {
 			bottom: 1em;
@@ -270,13 +286,15 @@ $medGray: #ccc;
 			}
 		}
 
+		// TODO: Simplify with extends when libsass fully supports @extends (https://github.com/wet-boew/wet-boew/pull/6419)
 		figure {
 			@extend %tabs-position-relative;
-			@extend %tab-background-243850;
+			@extend %tab-background;
 		}
 
 		figcaption {
 			@extend %tab-figure-captions;
+			@extend %carousel-link;
 
 			p {
 				@extend %tabs-margin-bottom-0;
@@ -288,12 +306,16 @@ $medGray: #ccc;
 	 * Style 2 - Slider-like carousel style
 	 */
 	&.carousel-s2 {
-		background: #eee;
+		background: $carousel-s2-tablist-controls-bg-color;
 		padding-bottom: 4.375em;
 
+		[role="tabpanel"] {
+			@extend %carousel-link;
+		}
+
 		[role="tablist"] {
-			@extend %tab-position-relative;
 			bottom: 0;
+			position: absolute;
 			width: 100%;
 
 			li {
@@ -311,7 +333,7 @@ $medGray: #ccc;
 
 					a {
 						@extend %carousel-s2-prv-nxt-a-common;
-						@extend %carousel-color-drabblue;
+						@extend %carousel-s2-btn-color;
 						padding-left: 1em;
 
 						.glyphicon {
@@ -335,7 +357,7 @@ $medGray: #ccc;
 
 					a {
 						@extend %carousel-s2-prv-nxt-a-common;
-						@extend %carousel-color-drabblue;
+						@extend %carousel-s2-btn-color;
 
 						.glyphicon {
 							@extend %carousel-s2-btn-common;
@@ -362,7 +384,7 @@ $medGray: #ccc;
 
 					a {
 						@extend %carousel-s2-btn-common;
-						@extend %carousel-color-drabblue;
+						@extend %carousel-s2-btn-color;
 						font-size: 1.5em;
 						margin-top: 0.4em;
 						margin-right: 0.65em;
@@ -377,9 +399,10 @@ $medGray: #ccc;
 			}
 		}
 
+		// TODO: Simplify with extends when libsass fully supports @extends
 		figure {
 			@extend %tabs-position-relative;
-			@extend %tab-background-243850;
+			@extend %tab-background;
 
 			img {
 				@extend %tab-width-100-height-auto;
@@ -388,10 +411,7 @@ $medGray: #ccc;
 
 		figcaption {
 			@extend %tab-figure-captions;
-
-			a {
-				@extend %tab-figure-captions-links;
-			}
+			@extend %carousel-link;
 
 			p {
 				@extend %tabs-margin-bottom-0;

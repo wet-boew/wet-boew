@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @thomasgohard, @pjackson28
  */
-(function( $, window, document, wb ) {
+( function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -19,6 +19,7 @@ var componentName = "wb-overlay",
 	closeClass = "overlay-close",
 	linkClass = "overlay-lnk",
 	ignoreOutsideClass = "outside-off",
+	initialized = false,
 	sourceLinks = {},
 	setFocusEvent = "setfocus.wb",
 	$document = wb.doc,
@@ -60,7 +61,7 @@ var componentName = "wb-overlay",
 				closeText = i18nText.closeOverlay;
 			}
 			closeText = closeText.replace( "'", "&#39;" );
-			overlayClose = "<button class='mfp-close " + closeClass +
+			overlayClose = "<button type='button' class='mfp-close " + closeClass +
 				"' title='" + closeText + "'>&#xd7;<span class='wb-inv'> " +
 				closeText + "</span></button>";
 
@@ -68,12 +69,13 @@ var componentName = "wb-overlay",
 			elm.setAttribute( "aria-hidden", "true" );
 
 			// Identify that initialization has completed
+			initialized = true;
 			wb.ready( $elm, componentName );
 		}
 	},
 
 	openOverlay = function( overlayId, noFocus ) {
-		var $overlay = $( "#" + overlayId );
+		var $overlay = $( "#" + wb.jqEscape( overlayId ) );
 
 		$overlay
 			.addClass( "open" )
@@ -88,7 +90,7 @@ var componentName = "wb-overlay",
 		// Register the overlay if it wasn't previously registered
 		// (only required when opening through an event)
 		if ( !sourceLinks[ overlayId ] ) {
-			setTimeout(function() {
+			setTimeout( function() {
 				sourceLinks[ overlayId ] = null;
 			}, 1 );
 		}
@@ -110,10 +112,10 @@ var componentName = "wb-overlay",
 
 			// Returns focus to the source link for the overlay
 			$( sourceLink ).trigger( setFocusEvent );
-
-			// Delete the source link reference
-			delete sourceLinks[ overlayId ];
 		}
+
+		// Delete the source link reference
+		delete sourceLinks[ overlayId ];
 	};
 
 $document.on( "timerpoke.wb " + initEvent + " keydown open" + selector +
@@ -174,21 +176,21 @@ $document.on( "timerpoke.wb " + initEvent + " keydown open" + selector +
 			break;
 		}
 	}
-});
+} );
 
 // Handler for clicking on the close button of the overlay
 $document.on( "click vclick", "." + closeClass, function( event ) {
 	var which = event.which;
 
-	// Ignore middle/right mouse buttons
-	if ( !which || which === 1 ) {
+	// Ignore if not initialized and middle/right mouse buttons
+	if ( initialized && ( !which || which === 1 ) ) {
 		closeOverlay(
 			$( event.currentTarget ).closest( selector ).attr( "id" ),
 			false,
 			true
 		);
 	}
-});
+} );
 
 // Handler for clicking on a source link for the overlay
 $document.on( "click vclick", "." + linkClass, function( event ) {
@@ -196,12 +198,12 @@ $document.on( "click vclick", "." + linkClass, function( event ) {
 		sourceLink = event.currentTarget,
 		overlayId = sourceLink.hash.substring( 1 );
 
-	// Ignore middle/right mouse buttons
-	if ( !which || which === 1 ) {
+	// Ignore if not initialized and middle/right mouse buttons
+	if ( initialized && ( !which || which === 1 ) ) {
 		event.preventDefault();
 
 		// Introduce a delay to prevent outside activity detection
-		setTimeout(function() {
+		setTimeout( function() {
 
 			// Stores the source link for the overlay
 			sourceLinks[ overlayId ] = sourceLink;
@@ -210,7 +212,7 @@ $document.on( "click vclick", "." + linkClass, function( event ) {
 			openOverlay( overlayId );
 		}, 1 );
 	}
-});
+} );
 
 // Handler for clicking on a same page link within the overlay to outside the overlay
 $document.on( "click vclick", selector + " a[href^='#']", function( event ) {
@@ -218,8 +220,8 @@ $document.on( "click vclick", selector + " a[href^='#']", function( event ) {
 		eventTarget = event.target,
 		href, overlay, linkTarget;
 
-	// Ignore middle/right mouse buttons
-	if ( !which || which === 1 ) {
+	// Ignore if not initialized and middle/right mouse buttons
+	if ( initialized && ( !which || which === 1 ) ) {
 		overlay = $( eventTarget ).closest( selector )[ 0 ];
 		href = eventTarget.getAttribute( "href" );
 		linkTarget = document.getElementById( href.substring( 1 ) );
@@ -239,7 +241,7 @@ $document.on( "click vclick", selector + " a[href^='#']", function( event ) {
 			$( linkTarget ).trigger( setFocusEvent );
 		}
 	}
-});
+} );
 
 // Outside activity detection
 $document.on( "click vclick touchstart focusin", "body", function( event ) {
@@ -247,13 +249,13 @@ $document.on( "click vclick touchstart focusin", "body", function( event ) {
 		which = event.which,
 		overlayId, overlay;
 
-	// Ignore middle/right mouse buttons
-	if ( !which || which === 1 ) {
+	// Ignore if not initialized and middle/right mouse buttons
+	if ( initialized && ( !which || which === 1 ) ) {
 
 		// Close any overlays with outside activity
 		for ( overlayId in sourceLinks ) {
 			overlay = document.getElementById( overlayId );
-			if ( overlay !== null && overlay.getAttribute( "aria-hidden" ) === "false" &&
+			if ( overlay && overlay.getAttribute( "aria-hidden" ) === "false" &&
 				eventTarget.id !== overlayId &&
 				overlay.className.indexOf( ignoreOutsideClass ) === -1 &&
 				!$.contains( overlay, eventTarget ) ) {
@@ -263,9 +265,55 @@ $document.on( "click vclick touchstart focusin", "body", function( event ) {
 			}
 		}
 	}
-});
+} );
+
+// Ensure any element in focus outside an overlay is visible
+$document.on( "keyup", function( ) {
+	var elmInFocus, elmInFocusRect, focusAreaBelow, focusAreaAbove,
+		overlayId, overlay, overlayRect;
+
+	// Ignore if not initialized
+	if ( initialized ) {
+		elmInFocus = document.activeElement;
+		elmInFocusRect = elmInFocus.getBoundingClientRect();
+		focusAreaBelow = 0;
+		focusAreaAbove = window.innerHeight;
+
+		// Ensure that at least one overlay is visible, and that the element in focus is not an overlay,
+		// a child of an overlay, or the body element
+		if ( $.isEmptyObject( sourceLinks ) || elmInFocus.className.indexOf( componentName ) !== -1 ||
+			$( elmInFocus ).parents( selector ).length !== 0 || elmInFocus === document.body ) {
+			return;
+		}
+
+		// Determine the vertical portion of the viewport that is not obscured by an overlay
+		for ( overlayId in sourceLinks ) {
+			overlay = document.getElementById( overlayId );
+			if ( overlay && overlay.getAttribute( "aria-hidden" ) === "false" ) {
+				overlayRect = overlay.getBoundingClientRect();
+				if ( overlay.className.indexOf( "wb-bar-t" ) !== -1 ) {
+					focusAreaBelow = Math.max( overlayRect.bottom, focusAreaBelow );
+				} else if ( overlay.className.indexOf( "wb-bar-b" ) !== -1 ) {
+					focusAreaAbove = Math.min( overlayRect.top, focusAreaAbove );
+				}
+			}
+		}
+
+		// Ensure the element in focus is visible
+		// TODO: Find a solution for when there isn't enough page to scoll up or down
+		if ( elmInFocusRect.top < focusAreaBelow ) {
+
+			// Scroll down till the top of the element is visible
+			window.scrollBy( 0, focusAreaBelow - elmInFocusRect.top );
+		} else if ( elmInFocusRect.bottom > focusAreaAbove ) {
+
+			// Scroll up till the bottom of the element is visible
+			window.scrollBy( 0, elmInFocusRect.bottom - focusAreaAbove );
+		}
+	}
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, document, wb );
+} )( jQuery, window, document, wb );

@@ -17,7 +17,7 @@
  *
  *     <link href="favion.ico" rel='icon' data-rel="apple-touch-icon-precomposed" data-filename="my-mobile-favicon.ico">
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -55,7 +55,7 @@ var componentName = "wb-favicon",
 		// Start initialization
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
-		var elm = wb.init( event, componentName, selector ),
+		var elm = wb.init( event, componentName, selector, true ),
 			$favicon, settings;
 
 		if ( elm ) {
@@ -151,9 +151,9 @@ $document.on( mobileEvent + " " + iconEvent, selector, function( event, data ) {
 	 * so returning true allows for events to always continue
 	 */
 	return true;
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

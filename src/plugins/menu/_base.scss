@@ -184,7 +184,6 @@
 		}
 
 		summary {
-			margin-left: -3px;
 			padding-left: 3px;
 
 			&.wb-navcurr {
@@ -219,29 +218,25 @@
 	}
 }
 
-%menu-noscript-display-block-important {
-	display: block !important;
-}
-
 .wb-disable {
 	#wb-glb-mn {
 		display: none !important;
 	}
 
 	#wb-srch {
-		@extend %menu-noscript-display-block-important;
+		@extend %global-display-block-important;
 	}
 
 	#wb-sm {
-		@extend %menu-noscript-display-block-important;
+		@extend %global-display-block-important;
 	}
 
 	#wb-sec {
-		@extend %menu-noscript-display-block-important;
+		@extend %global-display-block-important;
 	}
 
 	#wb-info {
-		@extend %menu-noscript-display-block-important;
+		@extend %global-display-block-important;
 	}
 }
 

@@ -7,7 +7,7 @@
  */
 /* global jQuery, describe, it, expect, before, after, sinon */
 /* jshint unused:vars */
-(function( $, wb ) {
+( function( $, wb ) {
 
 /*
  * Create a suite of related test cases using `describe`. Test suites can also be
@@ -21,14 +21,14 @@ describe( "Feeds test suite", function() {
 		$document = wb.doc,
 		ajaxCalls, callback;
 
-	before(function() {
+	before( function() {
 
 		//Replaces the ajax-fetch event handler with a simulated one
 		$document.off( ajaxEvent );
 
 		$document.on( ajaxEvent, function( event ) {
 			ajaxCalls.push( event.fetch );
-			$( event.element ).trigger({
+			$( event.target ).trigger( {
 				type: fetchedEvent,
 				fetch: {
 					response: {
@@ -60,12 +60,12 @@ describe( "Feeds test suite", function() {
 
 		$document.on( "wb-feed-ready.wb-feeds", ".wb-feeds .feeds-cont", function() {
 			callback();
-		});
-	});
+		} );
+	} );
 
-	after(function() {
+	after( function() {
 		sandbox.restore();
-	});
+	} );
 
 	/*
 	 * Test the initialization of the plugin
@@ -84,15 +84,15 @@ describe( "Feeds test suite", function() {
 				.appendTo( $document.find( "body" ) )
 				.trigger( "wb-init.wb-feeds" );
 
-		});
+		} );
 
-		after(function() {
+		after( function() {
 			$elm.remove();
-		});
+		} );
 
 		it( "should have added the plugin init class to the element", function() {
 			expect( $elm.hasClass( "wb-feeds-inited" ) ).to.equal( true );
-		});
+		} );
 
 		it( "should have made an ajax call to load the feed entries", function() {
 			var i = 0,
@@ -105,12 +105,12 @@ describe( "Feeds test suite", function() {
 				isLookup = ajaxCalls.length && ajaxCalls[ i ].url === feedurl;
 			}
 			expect( isLookup ).to.equal( true );
-		});
+		} );
 
 		it( "should have populated .feeds-cont with 3 feed links", function() {
 			expect( $elm.find( ".feeds-cont > li" ).length ).to.equal( 3 );
-		});
-	});
+		} );
+	} );
 
 	/*
 	 * Test limiting feed entries
@@ -128,16 +128,16 @@ describe( "Feeds test suite", function() {
 				"</ul></div>" )
 				.appendTo( $document.find( "body" ) )
 				.trigger( "wb-init.wb-feeds" );
-		});
+		} );
 
-		after(function() {
+		after( function() {
 			$elm.remove();
-		});
+		} );
 
 		it( "should have limited to 2 feed entries", function() {
 			expect( $elm.find( ".feeds-cont > li" ).length ).to.equal( 2 );
-		});
-	});
+		} );
+	} );
 
 	/*
 	 * Test loading multiple feeds
@@ -145,7 +145,7 @@ describe( "Feeds test suite", function() {
 	describe( "multiple feed links", function() {
 		var $elm;
 
-		before (function( done ) {
+		before ( function( done ) {
 			ajaxCalls = [];
 			callback = done;
 
@@ -156,11 +156,11 @@ describe( "Feeds test suite", function() {
 				"</ul></div>" )
 				.appendTo( $document.find( "body" ) )
 				.trigger( "wb-init.wb-feeds" );
-		});
+		} );
 
-		after(function() {
+		after( function() {
 			$elm.remove();
-		});
+		} );
 
 		it( "should have made two ajax calls to load the feed entries", function() {
 			var i = 0,
@@ -178,12 +178,12 @@ describe( "Feeds test suite", function() {
 			}
 			expect( isLookup1 ).to.equal( true );
 			expect( isLookup2 ).to.equal( true );
-		});
+		} );
 
 		it( "should have populated .feeds-cont with 6 feed links", function() {
 			expect( $elm.find( ".feeds-cont > li" ).length ).to.equal( 6 );
-		});
-	});
-});
+		} );
+	} );
+} );
 
-}( jQuery, wb ));
+}( jQuery, wb ) );

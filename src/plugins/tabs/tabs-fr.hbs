@@ -7,7 +7,7 @@
 	"tag": "tabs",
 	"parentdir": "tabs",
 	"altLangPrefix": "tabs",
-	"dateModified": "2014-08-01"
+	"dateModified": "2015-02-24"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -18,7 +18,8 @@
 </section>
 
 <section>
-	<h2>Exemple</h2>
+	<h2>Exemple 1</h2>
+	<p>Avec stockage de session pour se rappeler du dernier onglet consulté. (Comportement par défaut)</p>
 	<div class="wb-tabs">
 		<div class="tabpanels">
 			<details id="details-panel1">
@@ -85,6 +86,8 @@
 			</details>
 		</div>
 	</div>
+	
+	<p class="mrgn-tp-md"><a href="#details-panel3" class="wb-tabs-ext">Voir le troisième panneau</a></p>
 
 	<details class="mrgn-bttm-md">
 		<summary>Visualiser le code</summary>
@@ -97,6 +100,98 @@
 			&lt;/p&gt;
 		&lt;/details&gt;
 		&lt;details id=&quot;details-panel2&quot; open=&quot;open&quot;&gt;
+			&lt;summary&gt;Exemple 2&lt;/summary&gt;
+			&lt;p&gt;
+				...
+			&lt;/p&gt;
+		&lt;/details&gt;
+		...
+	&lt;/div&gt;
+
+	&lt;p class="mrgn-tp-md"&gt;&lt;a href="#details-panel3" class="wb-tabs-ext"&gt;Voir le troisième panneau&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+	</details>
+	
+	<h2>Exemple 2</h2>
+	<p>Avec classe ignore-session. Ceci annule le stockage de session qui permet de se rappeler du dernier onglet consulté. (Applicable avec la classe ou l'attribut <code>data-wb-tabs</code>)</p>
+	<div class="wb-tabs ignore-session">
+		<div class="tabpanels">
+			<details id="details-panel10">
+				<summary>Exemple 1</summary>
+				<p>
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent. <a href="#details-panel30">Exemple 3</a> Texte d'exemple. Autre texte d'exemple.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				</p>
+			</details>
+			<details id="details-panel20">
+				<summary>Exemple 2</summary>
+				<p>
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				</p>
+			</details>
+			<details id="details-panel30">
+				<summary>Exemple 3</summary>
+				<p>
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.Texte d'exemple. Autre texte d'exemple. Texte d'exemple différent.
+				</p>
+			</details>
+		</div>
+	</div>
+	
+	<details class="mrgn-bttm-md">
+		<summary>Visualiser le code</summary>
+		<pre><code>&lt;div class=&quot;wb-tabs ignore-session&quot;&gt;
+	&lt;div class=&quot;tabpanels&quot;&gt;
+		&lt;details id=&quot;details-panel10&quot;&gt;
+			&lt;summary&gt;Exemple 1&lt;/summary&gt;
+			&lt;p&gt;
+				...
+			&lt;/p&gt;
+		&lt;/details&gt;
+		&lt;details id=&quot;details-panel20&quot;&gt;
 			&lt;summary&gt;Exemple 2&lt;/summary&gt;
 			&lt;p&gt;
 				...

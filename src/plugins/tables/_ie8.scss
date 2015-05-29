@@ -2,6 +2,10 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
 */
+%ie8-font {
+	font-family: "Glyphicons Halflings";
+}
+
 .lt-ie9 {
 	table {
 		&.dataTable {
@@ -10,6 +14,10 @@
 				.sorting_asc,
 				.sorting_desc {
 					cursor: hand;
+				}
+
+				.sorting-icons {
+					@extend %ie8-font;
 				}
 			}
 		}
@@ -21,6 +29,20 @@
 		.dataTables_paginate {
 			.paginate_button {
 				cursor: hand;
+
+				&.previous {
+					&:before {
+						@extend %ie8-font;
+					}
+				}
+
+				&.next {
+					&:after {
+						@extend %ie8-font;
+						content: "\e092";
+						margin-left: 0.5em;
+					}
+				}
 			}
 		}
 
@@ -30,6 +52,30 @@
 			div {
 				&.dataTables_scrollBody {
 					margin-top: -1px;
+				}
+			}
+		}
+	}
+
+	&[dir=rtl] {
+		.dataTables_wrapper {
+			.dataTables_paginate {
+				.paginate_button {
+					cursor: hand;
+
+					&.previous {
+						&:after {
+							@extend %ie8-font;
+							content: "\e092";
+							margin-left: 0.5em;
+						}
+					}
+
+					&.next {
+						&:before {
+							@extend %ie8-font;
+						}
+					}
 				}
 			}
 		}

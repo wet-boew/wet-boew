@@ -3,126 +3,251 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 
-// Footnotes spacing
-$spacing: .375em;
-$ddRtnWidth: 3.375em;
+/*
+ * HOW TO USE THIS FILE
+ * Use this file to override Bootstrap variables and WET custom variables.
+ * If there is a Bootstrap variable not shown here that you want to override, go to "../lib/bootstrap-sass-official/assets/stylesheets/bootstrap/variables" to view the variables that you can override. Simply copy and paste the variable and its applicable section (if applicable) from the Bootstrap file into this override file and override the variables as applicable.
+ */
 
-// Colours
+
+//
+// BOOTSTRAP VARIABLES
+//
+
+//== Colours
+//
+//## Gray and brand colors for use across the application.
+
+// Bootstrap Overrides
+$gray-light: #767676;
+
+$brand-primary: #2572b4 !default;
+$brand-success: #1b6c1c !default;
+$brand-info: #4d4d4d !default;
+$brand-warning: #f2d40d !default;
+$brand-danger: #bc3331 !default;
+
+// WET Custom
 $clrWhite: #fff;
 $clrLight: #eee;
 $clrMedium: #ccc;
 $clrDark: #555;
-$gray-light: #767676;
+$clrDarkBlue: #243850;
 
-// Calendar colours
-$cal-text-head: #fff;
-$cal-text-body: #000;
-$cal-dark: #333;
-$cal-medium: #555;
-$cal-active: #ccc;
-$cal-days-link: #111;
 
-//Multimedia player colours
-$mm-progress-fg-color: #176ca7;
-$mm-progress-bg-color: #fff;
-$mm-cc-fg-color: #fff;
-$mm-cc-bg-color: #000;
-$mm-ctrl-fg-color: #fff;
-$mm-ctrl-bg-color: #3e3e3e;
-$mm-ctrl-outline-color: #4aafff;
-$mm-ctrl-cc-color: #4aafff;
-$mm-volume-bg-color: #aaa;
-$mm-volume-thumb-color: #fff;
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
 
-// Font scales
-$font-scale-xxxl: 2.125;
-$font-scale-xxl: 1.625;
-$font-scale-xl: 1.375;
-$font-scale-lg: 1.125;
-$font-scale-sm: 0.875;
+//** Global textual link color.
+// Boostrap Overrides
+$link-color: #295376 !default;
+$link-hover-color: #0535d2 !default;
 
-// Overrides for Bootstrap font sizes
+// WET Custom
+$link-visited-color: #7834bc !default;
+
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+// WET Custom font scales
+$font-scale-xxxl: 2.125 !default;
+$font-scale-xxl: 1.625 !default;
+$font-scale-xl: 1.375 !default;
+$font-scale-lg: 1.125 !default;
+$font-scale-sm: 0.875 !default;
+
+// Bootstrap Overrides
 $font-size-base: 16px;
-$font-size-large: ceil($font-size-base * $font-scale-lg);
-$font-size-small: ceil($font-size-base * $font-scale-sm);
+$font-size-large: ceil($font-size-base * $font-scale-lg) !default;
+$font-size-small: ceil($font-size-base * $font-scale-sm) !default;
 
-$font-size-h1: ceil($font-size-base * $font-scale-xxxl);
-$font-size-h2: ceil($font-size-base * $font-scale-xxl);
-$font-size-h3: ceil($font-size-base * $font-scale-xl);
-$font-size-h4: ceil($font-size-base * $font-scale-lg);
-$font-size-h6: ceil($font-size-base * $font-scale-sm);
+$font-size-h1: ceil($font-size-base * $font-scale-xxxl) !default;
+$font-size-h2: ceil($font-size-base * $font-scale-xxl) !default;
+$font-size-h3: ceil($font-size-base * $font-scale-xl) !default;
+$font-size-h4: ceil($font-size-base * $font-scale-lg) !default;
+$font-size-h6: ceil($font-size-base * $font-scale-sm) !default;
 
+//** Unit-less `line-height` for use in components like buttons.
 // 20/14 -> 23/16 on the basis of ceil((20/14)*16) = 23
-$line-height-base: 1.4375;
+$line-height-base: 1.4375 !default;
 
-$brand-primary: #2572b4;
-$brand-success: #1b6c1c;
-$brand-info: #4d4d4d;
-$brand-warning: #f2d40d;
-$brand-danger: #bc3331;
 
-$link-color: #295376;
-$link-hover-color: #0535d2;
-$link-visited-color: #7834bc;
+//== Tables
+//
+//## Customizes the `.table` component with basic values, each used across all table variations.
 
-$table-bg-accent: #f5f5f5;
-$table-bg-hover: #f0f0f0;
+// Bootstrap Overrides
+//** Background color used for `.table-striped`.
+$table-bg-accent: #f5f5f5 !default;
+//** Background color used for `.table-hover`.
+$table-bg-hover: #f0f0f0 !default;
 
-$btn-default-color: #335075;
-$btn-default-bg: #eaebed;
-$btn-default-border: darken($btn-default-bg, 5%);
 
-$btn-primary-bg: $brand-primary;
-$btn-primary-border: darken($btn-primary-bg, 20%);
+//== Buttons
+//
+//## For each of buttons, define text, background and border color.
 
-$btn-success-bg: $brand-success;
-$btn-success-border: darken($btn-success-bg, 20%);
+// Bootstrap Overrides
+$btn-default-color: #335075 !default;
+$btn-default-bg: #eaebed !default;
+$btn-default-border: darken($btn-default-bg, 5%) !default;
 
-$btn-info-bg: $brand-info;
-$btn-info-border: darken($btn-info-bg, 20%);
+$btn-primary-bg: $brand-primary !default;
+$btn-primary-border: darken($btn-primary-bg, 20%) !default;
 
-$btn-warning-color: #000;
-$btn-warning-bg: $brand-warning;
-$btn-warning-border: darken($btn-warning-bg, 20%);
+$btn-success-bg: $brand-success !default;
+$btn-success-border: darken($btn-success-bg, 20%) !default;
 
-$btn-danger-bg: $brand-danger;
-$btn-danger-border: darken($btn-danger-bg, 20%);
+$btn-info-bg: $brand-info !default;
+$btn-info-border: darken($btn-info-bg, 20%) !default;
 
-$pagination-color: $btn-default-color;
-$pagination-bg: $btn-default-bg;
-$pagination-border: $btn-default-border;
+$btn-warning-color: #000 !default;
+$btn-warning-bg: $brand-warning !default;
+$btn-warning-border: darken($btn-warning-bg, 20%) !default;
 
-$pagination-hover-color: $btn-default-color;
-$pagination-hover-bg: darken($btn-default-bg, 8%);
-$pagination-hover-border: darken($btn-default-border, 12%);
+$btn-danger-bg: $brand-danger !default;
+$btn-danger-border: darken($btn-danger-bg, 20%) !default;
 
-$pager-border-radius: 4px;
 
-// Hack for Bootstrap 3.1.1, since it doesn't convert the "fadein" LESS method.
-// Pending fix release in https://github.com/twbs/bootstrap-sass/commit/df7be4f0412497e22f1d271d94d6e9835f61113e
-@function fadein($colour, $pct) {
-	@return opacify($colour, $pct / 100);
-}
+//== Media queries breakpoints
+//
+//## These additional are additional breakpoints outside of and in addition to Bootstrap's definitions at which your layout will change, adapting to different screen sizes.
 
-// Override Bootstrap's expected font path.
-// This is a path relative to the final CSS destination and not the current file
-$icon-font-path: "../fonts/";
+// WET Custom
+// Extra extra small screen
+$screen-xxs-max: 479px !default;
+// Large screen
+$screen-lg-max: 1599px !default;
+// Extra large screen
+$screen-xl-min: 1600px !default;
 
-// Import Bootstrap variables for viewport sizes
-@import "../lib/bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
 
-// Additional Viewports outside of Bootstrap definitions
-// @TODO: Remove camel case variables once themes are patched
-$screen-xxs-max: 479px;
-$xxSmallViewMax: $screen-xxs-max;
-$xSmallViewMin: $screen-xs-min;
-$xSmallViewMax: $screen-xs-max;
-$smallViewMin: $screen-sm-min;
-$smallViewMax: $screen-sm-max;
-$mediumViewMin: $screen-md-min;
-$mediumViewMax: $screen-md-min;
-$largeViewMin: $screen-lg-min;
-$screen-lg-max: 1599px;
-$largeViewMax: $screen-lg-max;
-$screen-xl-min: 1600px;
-$xLargeViewMin: $screen-xl-min;
+//== Pagination
+//
+//##
+
+// Bootstrap Overrides
+$pagination-color: $btn-default-color !default;
+$pagination-bg: $btn-default-bg !default;
+$pagination-border: $btn-default-border !default;
+
+$pagination-hover-color: $btn-default-color !default;
+$pagination-hover-bg: darken($btn-default-bg, 8%) !default;
+$pagination-hover-border: darken($btn-default-border, 12%) !default;
+
+// WET Custom
+$pager-border-radius: 4px !default;
+
+//== Expand/collapse (Details/summary)
+//
+//##
+$details-identation: 1.1em !default;
+
+
+//
+// WET CUSTOM PLUGINS VARIABLES
+//
+
+//== Calendar
+//
+//##
+
+$cal-text-head-color: #fff !default;
+$cal-text-body-color: #000 !default;
+
+$cal-dark-color: #333 !default;
+$cal-medium-color: $clrDark !default;
+
+$cal-mnth-arrows-active-color: $clrMedium !default;
+
+//== Footnotes
+//
+//##
+
+$spacing: .375em !default;
+$ddRtnWidth: 3.375em !default;
+
+
+//== Multimedia player
+//
+//##
+
+$mm-progress-fg-color: #176ca7 !default;
+$mm-progress-bg-color: #fff !default;
+
+$mm-cc-fg-color: #fff !default;
+$mm-cc-bg-color: #000 !default;
+
+$mm-ctrl-fg-color: #fff !default;
+$mm-ctrl-bg-color: #3e3e3e !default;
+$mm-ctrl-outline-color: #4aafff !default;
+$mm-ctrl-cc-color: #4aafff !default;
+
+$mm-volume-bg-color: #aaa !default;
+$mm-volume-thumb-color: #fff !default;
+
+
+//== Tabs
+//
+//##
+
+// Tabbed Interface
+$tablist-color: #000 !default;
+
+$tablist-border-color: $clrMedium !default;
+$tablist-border-style: solid !default;
+$tablist-border-width: 1px !default;
+
+$tabpanel-border-color: $tablist-border-color !default;
+$tabpanel-border-style: solid !default;
+$tabpanel-border-width: 1px !default;
+
+$tablist-bg-color: #ebf2fc !default;
+$tablist-hover-bg-color: $clrMedium !default;
+$tablist-active-bg-color: #fff !default;
+
+$tablist-active-link-border-color: #666 !default;
+$tablist-active-link-border-style: solid !default;
+$tablist-active-link-border-width: 4px 0 0 0 !default;
+
+// Tablist in small and extra small view
+$tablist-screen-sm-border-color: $tablist-border-color !default;
+$tablist-screen-sm-border-style: solid !default;
+$tablist-screen-sm-border-width: 1px !default;
+$tablist-screen-sm-border-radius: 4px;
+$tablist-screen-sm-seperator-border-color: $tablist-screen-sm-border-color !default;
+$tablist-screen-sm-seperator-border-style: $tablist-screen-sm-border-style !default;
+$tablist-screen-sm-seperator-border-width: $tablist-screen-sm-border-width !default;
+
+// Carousel
+$carousel-tablist-tabcount-color: #000 !default;
+
+$carousel-tabpanel-figcaption-color: #fff !default;
+$carousel-tabpanel-link-color: $carousel-tabpanel-figcaption-color !default;
+$carousel-tabpanel-figcaption-bg-color: $clrDarkBlue !default;
+
+// Carousel Style 2 with Thumbnails
+$carousel-s2-tablist-controls-bg-color: $clrLight !default;
+
+$carousel-s2-tablist-controls-color: $clrDarkBlue !default;
+
+$carousel-s2-tablist-controls-btn-bg-color: #fff !default;
+$carousel-s2-tablist-controls-btn-shadow: 0 0 4px $clrDarkBlue !default;
+$carousel-s2-tablist-controls-btn-radius: 999px !default;
+
+$carousel-s2-tablist-thumbnail-active-border-color: #666 !default;
+$carousel-s2-tablist-thumbnail-active-border-style: solid !default;
+$carousel-s2-tablist-thumbnail-active-border-width: 10px !default;
+
+
+//== Text Highlight
+//
+//##
+
+$txthl-bg-color: #ff0 !default;
+$txthl-color: #000 !default;
+$txthl-font-weight: 700 !default;
+

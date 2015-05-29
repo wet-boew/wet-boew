@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Display images and other content in a dialog box, either individually or as part of a gallery.",
 	"altLangPrefix": "lightbox",
-	"dateModified": "2014-08-06"
+	"dateModified": "2015-03-09"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -30,8 +30,9 @@
 		<h3>Single items</h3>
 		<ol>
 			<li>Add a link element to the page with the class <code>wb-lbx</code>.</li>
-			<li>Add an <code>href</code> attribute on the link element that points to the image (e.g., <code>href="demo/1_b.jpg"</code>), the file containing the content (e.g., <code>ajax/ajax.html</code>) or the id of the inline content (e.g., <code>href="#inline-content</code>).</li>
+			<li>Add an <code>href</code> attribute on the link element that points to the image (e.g., <code>href="demo/1_b.jpg"</code>), the file containing the content (e.g., <code>ajax/ajax.html</code>), an element within the file containing the content (e.g., <code>ajax/ajax.html#element</code>) or the id of the inline content (e.g., <code>href="#inline-content</code>).</li>
 			<li>Add a <code>title</code> attribute to the link element with the caption text.</li>
+			<li><strong>Optional:</strong> Filter the content using the URL hash (<code>ajax/ajax4-en.html#filter-id</code>, v4.0.7+) or a selector (<code>href="ajax/ajax4-en.html" data-wb-lbx='{"filter": ".filter-selector"}'</code>, v4.0.12+).</li>
 		</ol>
 	</section>
 	<section>
@@ -39,7 +40,7 @@
 		<ol>
 			<li>Add a <code>section</code> or other element to the page with the classes <code>wb-lbx</code> and <code>lbx-gal</code>.</li>
 			<li>Add within the <code>section</code> or other element a link element for each item in the gallery.</li>
-			<li>Add an <code>href</code> attribute on each link element that points to the image (e.g., <code>href="demo/1_b.jpg"</code>), the file containing the content (e.g., <code>ajax/ajax.html</code>) or the id of the inline content (e.g., <code>href="#inline-content</code>).</li>
+			<li>Add an <code>href</code> attribute on each link element that points to the image (e.g., <code>href="demo/1_b.jpg"</code>), the file containing the content (e.g., <code>ajax/ajax.html</code>), an element within the file containing the content (e.g., <code>ajax/ajax.html#element</code>) or the id of the inline content (e.g., <code>href="#inline-content</code>).</li>
 			<li>Add a <code>title</code> attribute to each link element with the caption text.</li>
 		</ol>
 	</section>
@@ -70,16 +71,46 @@
 				<td>n/a</td>
 			</tr>
 			<tr>
-				<td><code>lbx-modal</code></td>
-				<td>Make the lightbox behave like a modal dialog.</td>
-				<td>Add <code>lbx-modal</code> to the <code>class</code> attribute of the link element.</td>
+				<td><code>lbx-ajax</code></td>
+				<td>Overrides the default content type with the ajax content type.</td>
+				<td>Add <code>lbx-ajax</code> to the <code>class</code> attribute of the link element.</td>
+				<td>n/a</td>
+			</tr>
+			<tr>
+				<td><code>lbx-image</code></td>
+				<td>Overrides default content type with the image content type.</td>
+				<td>Add <code>lbx-image</code> to the <code>class</code> attribute of the link element.</td>
+				<td>n/a</td>
+			</tr>
+			<tr>
+				<td><code>lbx-inline</code></td>
+				<td>Overrides default content type with the inline content type.</td>
+				<td>Add <code>lbx-inline</code> to the <code>class</code> attribute of the link element.</td>
+				<td>n/a</td>
+			</tr>
+			<tr>
+				<td><code>lbx-iframe</code></td>
+				<td>Overrides default content type with the iframe content type.</td>
+				<td>Add <code>lbx-iframe</code> to the <code>class</code> attribute of the link element.</td>
 				<td>n/a</td>
 			</tr>
 			<tr>
 				<td><code>popup-modal-dismiss</code></td>
-				<td>Identifies the button that is to be use to close a lightbox behaving like a modal dialog.</td>
+				<td>Identifies the button that is to be used to close a lightbox behaving like a modal dialog.</td>
 				<td>Add <code>popup-modal-dismiss</code> to the link or button that will be used to close the lightbox behaving like a modal dialog.</td>
 				<td>n/a</td>
+			</tr>
+			<tr>
+				<td><code>data-wb-lbx</code></td>
+				<td>Magnific Popup settings can be set through the <code>data-wb-lbx</code> attribute or <code>window[ "wb-lbx" ]</code>. See <a href="http://dimsemenov.com/plugins/magnific-popup/documentation.html#options">Magnific Popup documentation</a> for possible options.<br /><strong>Note:</strong> WET uses the open, change and parseAjax callbacks (See <a href="http://dimsemenov.com/plugins/magnific-popup/documentation.html#events">Events</a>).</td>
+				<td>Add <code>data-wb-lbx</code> attribute to the link element with the options. </td>
+				<td>e.g., <code>data-wb-lbx='{"type": "ajax"}'</code> will set the content type. Will have the same result as adding the <code>lbx-ajax</code> class.</td>
+			</tr>
+			<tr>
+				<td><code>filter</code> (v4.0.12+)</td>
+				<td>Content can be filtered by a selector through the <code>filter</code> property in the <code>data-wb-lbx</code> attribute or <code>window[ "wb-lbx" ]</code>.</td>
+				<td>Add <code>data-wb-lbx='{"filter": ".filter-selector"}'</code> to the link element, replacing <code>.filter-selector</code> by a selector.</td>
+				<td>e.g., <code>data-wb-lbx='{"filter": ".filter-selector"}'</code> will filter the content by <code>.filter-selector</code>.</td>
 			</tr>
 		</tbody>
 	</table>

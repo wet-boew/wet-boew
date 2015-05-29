@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Comprime plusieurs images et légendes superposées et fourni des controls qui permettent à l'utilisateur de choisi l'image à afficher.",
 	"altLangPrefix": "tabs",
-	"dateModified": "2014-08-28"
+	"dateModified": "2015-02-24"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -174,6 +174,9 @@
 &lt;/ul&gt;</code></pre>
 			</li>
 			<li><strong>Optional:</strong> Override the default settings using the <a href="#config">configuration options</a>.</li>
+			<li><strong>Optional:</strong> Add an external link that affects which tab is visible. The href attribute includes the id of the panel to make visible. (v4.0.8+)
+				<pre><code>&lt;p&gt;&lt;a href="#panel3" class="wb-tabs-ext"&gt;Show the third panel&lt;/a&gt;&lt;/p&gt;</code></pre>
+			</li>
 		</ol>
 
 		<section>
@@ -213,7 +216,83 @@
 </section>
 
 <section>
-	<h2 id="config">Configuration options (carousel only)</h2>
+	<h2 id="config">Configuration options - Tabbed interface and carousel</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Option</th>
+				<th>Description</th>
+				<th>How to configure</th>
+				<th>Values</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Update the URL hash (<code>data-wb-tabs</code>) (v4.0.9+)</td>
+				<td>Configure the tab interface or carousel to update the URL hash every time the tab panel changes through the <code>updateHash</code> property of the <code>data-wb-tabs</code> attribute.</td>
+				<td>Add the <code>data-wb-tabs</code> attribute to the element with <code>class="wb-tabs"</code> and include the <code>updateHash</code> property with a true or false value.
+					<pre><code>data-wb-tabs='{"updateHash": true}'</code></pre>
+				</td>
+				<td>
+					<dl>
+						<dt><code>false</code> (default):</dt>
+						<dd>URL hash is not updated every time the tab panel changes</dd>
+						<dt><code>true</code> (default):</dt>
+						<dd>URL hash is updated every time the tab panel changes</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>Update the URL hash (<code>update-hash</code>) (v4.0.9+)</td>
+				<td>Configure the tab interface or carousel to update the URL hash every time the tab panel changes through the <code>update-hash</code> class.</td>
+				<td>Add <code>update-hash</code> after the <code>wb-tabs</code> class.
+					<pre><code>class="wb-tabs update-hash"</code></pre>
+				</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>URL hash is not updated every time the tab panel changes</dd>
+						<dt><code>update-hash</code></dt>
+						<dd>URL hash is updated every time the tab panel changes</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>Ignore session storage (<code>data-wb-tabs</code>) (v4.0.12+)</td>
+				<td>Configure the tab interface to remain on the first or default selected tab on all page loads through the <code>ignoreSession</code> property of the <code>data-wb-tabs</code> attribute.</td>
+				<td>Add the <code>data-wb-tabs</code> attribute to the element with <code>class="wb-tabs"</code> and include the <code>ignoreSession</code> property with a true or false value.
+					<pre><code>data-wb-tabs='{"ignoreSession": true}'</code></pre>
+				</td>
+				<td>
+					<dl>
+						<dt><code>false</code> (default):</dt>
+						<dd>Last selected tab is displayed every time the page is loaded</dd>
+						<dt><code>true</code> (default):</dt>
+						<dd>First or default selected tab is displayed every time the page is loaded</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>Ignore session storage (<code>ignore-session</code>) (v4.0.12+)</td>
+				<td>Configure the tab interface to remain on the first or default selected tab on all page loads through the <code>ignore-session</code> class.</td>
+				<td>Add <code>ignore-session</code> after the <code>wb-tabs</code> class.
+					<pre><code>class="wb-tabs ignore-session"</code></pre>
+				</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>Last selected tab is displayed every time the page is loaded</dd>
+						<dt><code>ignore-session</code></dt>
+						<dd>First or default selected tab is displayed every time the page is loaded</dd>
+					</dl>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h2 id="config-carousel">Configuration options - Carousel only</h2>
 	<table class="table">
 		<thead>
 			<tr>
@@ -387,12 +466,22 @@
 				</td>
 			</tr>
 			<tr>
-				<td><code>wb-shift.wb-tabs</code> (carousel only)</td>
+				<td><code>wb-shift.wb-tabs</code></td>
 				<td>Triggered manually or automatically to change which tab panel is visible.</td>
 				<td>Changes which tab panel is visible. The value of <code>shiftto</code> is the number of tab panels to move forwards (positive number) or backwards (negative number).
 					<pre><code>$elm.trigger({
-    type: "wb-shift.wb-tabs",
-    shiftto: 1
+	type: "wb-shift.wb-tabs",
+	shiftto: 1
+});</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<td><code>wb-select.wb-tabs</code> (v4.0.8+)</td>
+				<td>Triggered manually or automatically to change which tab panel is visible.</td>
+				<td>Changes which tab panel is visible. The value of <code>id</code> is the id attribute of the tab panel to make visible.
+					<pre><code>$elm.trigger({
+	type: "wb-shift.wb-tabs",
+	id: "panel3"
 });</code></pre>
 				</td>
 			</tr>

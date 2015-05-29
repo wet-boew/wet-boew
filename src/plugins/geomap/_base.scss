@@ -2,15 +2,21 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-eng.html / wet-boew.github.io/wet-boew/Licence-fra.html
 */
+@import "sprites/sprites_geomap";
+
 %geomap-overflow-cursor-move {
 	cursor: move;
 }
 
 %geomap-position-absolute-bg-color-fff-opacity-05-font-size-1 {
 	background-color: #fff;
-	font-size: 1px;
+	font-size: 0.01em;
 	opacity: 0.5;
 	position: absolute;
+}
+
+%geomap-locate-bg-size {
+	background-size: 33px auto;
 }
 
 /**
@@ -58,15 +64,14 @@
 }
 
 .olButtonGeolocateItemActive {
-	background: url("../assets/locate-active.png") no-repeat;
-	background-position: 0 0;
-	background-size: 33px 33px;
+	@extend %_sprites_geomap_scss;
+	@extend %geomap-locate-bg-size;
 }
 
 .olButtonGeolocateItemInactive {
-	background: url("../assets/locate.png") no-repeat;
-	background-position: 0 0;
-	background-size: 33px 33px;
+	@extend %_sprites_geomap_scss;
+	@extend %geomap-locate-bg-size;
+	background-position: 0 -34px;
 }
 
 /*
@@ -76,7 +81,7 @@
 .olControlPanZoomBar {
 
 	div {
-		font-size: 1px;
+		font-size: 0.01em;
 	}
 }
 
@@ -101,7 +106,7 @@
 	bottom: 5px;
 	display: block;
 	font-family: Arial;
-	font-size: smaller;
+	font-size: 0.75em;
 	left: 100px;
 	position: absolute;
 }
@@ -109,7 +114,7 @@
 .olControlScale {
 	bottom: 3em;
 	display: block;
-	font-size: smaller;
+	font-size: 0.75em;
 	position: absolute;
 	right: 3px;
 }
@@ -117,7 +122,7 @@
 .olControlScaleLine {
 	bottom: 15px;
 	display: block;
-	font-size: xx-small;
+	font-size: 0.65em;
 	left: 10px;
 	position: absolute;
 }
@@ -137,6 +142,7 @@
 
 .olControlAttribution {
 	bottom: 5px;
+	font-size: 0.75em;
 	right: 5px;
 }
 
@@ -250,7 +256,6 @@
  * GeoMap
  */
 .wb-geomap-map {
-	margin: 0 15px 30px;
 	outline: 1px solid #ccc;
 	position: relative;
 
@@ -283,26 +288,18 @@
 }
 
 .geomap-lgnd-layer {
-	margin-top: 20px!important;	
+	margin-top: 20px!important;
 }
 
 .geomap-geoloc {
-	left: 60px;
+	left: 70px;
 	position: absolute;
-	right: 60px;
+	right: 70px;
 	top: 15px;
 	z-index: 10000;
 
 	input[type="text"] {
 		width: 80%;
-	}
-}
-
-.geomap-aoi {
-	legend {
-		border: 0;
-		font-size: 1em;
-		margin-bottom: 1em;
 	}
 }
 
@@ -317,5 +314,21 @@ button {
 		right: 15px;
 		top: 15px;
 		z-index: 10000;
+	}
+}
+
+.geomap-aoi {
+	legend {
+		border: 0;
+		font-size: 1em;
+		margin-bottom: 1em;
+	}
+
+	button {
+		&.geomap-geoloc-aoi-btn {
+			position: absolute;
+			right: 15px;
+			top: auto;
+		}
 	}
 }

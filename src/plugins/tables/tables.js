@@ -4,7 +4,8 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @jeresiv
  */
-(function( $, window, wb ) {
+ /*jshint scripturl:true*/
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -60,7 +61,8 @@ var componentName = "wb-tables",
 						first: i18n( "first" ),
 						last: i18n( "last" ),
 						next: i18n( "nxt" ),
-						previous: i18n( "prv" )
+						previous: i18n( "prv" ),
+						page: i18n( "page" )
 					},
 					processing: i18n( "process" ),
 					search: i18n( "filter" ),
@@ -75,7 +77,7 @@ var componentName = "wb-tables",
 				dom: "<'top'ilf>rt<'bottom'p><'clear'>"
 			};
 
-			Modernizr.load({
+			Modernizr.load( {
 				load: [ "site!deps/jquery.dataTables" + wb.getMode() + ".js" ],
 				complete: function() {
 					var $elm = $( "#" + elmId ),
@@ -112,6 +114,7 @@ var componentName = "wb-tables",
 					/*
 					 * Extend type detection
 					 */
+
 					// Formatted numbers detection
 					// Based on: http://datatables.net/plug-ins/type-detection#formatted_numbers
 					dataTableExt.aTypes.unshift(
@@ -137,7 +140,7 @@ var componentName = "wb-tables",
 					// Create the DataTable object
 					$elm.dataTable( $.extend( true, {}, defaults, window[ componentName ], wb.getData( $elm, componentName ) ) );
 				}
-			});
+			} );
 		}
 	};
 
@@ -150,10 +153,16 @@ $document.on( "init.dt draw.dt", selector, function( event, settings ) {
 
 	// Update the aria-pressed properties on the pagination buttons
 	// Should be pushed upstream to DataTables
-	$( ".dataTables_paginate a" )
-		.attr( "role", "button" )
+	$elm.next( ".bottom" ).find( ".paginate_button" )
+		.attr( {
+			"role": "button",
+			"href": "javascript:;"
+		} )
 		.not( ".previous, .next" )
 			.attr( "aria-pressed", "false" )
+			.html( function( index, oldHtml ) {
+				return "<span class='wb-inv'>" + i18nText.paginate.page + " </span>" + oldHtml;
+			} )
 			.filter( ".current" )
 				.attr( "aria-pressed", "true" );
 
@@ -165,9 +174,9 @@ $document.on( "init.dt draw.dt", selector, function( event, settings ) {
 
 	// Identify that the table has been updated
 	$elm.trigger( "wb-updated" + selector, [ settings ] );
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

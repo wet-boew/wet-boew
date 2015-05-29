@@ -9,7 +9,7 @@
 	"altLangPrefix": "lightbox",
 	"css": ["demo/lightbox"],
 	"js": ["demo/lightbox"],
-	"dateModified": "2014-07-30"
+	"dateModified": "2015-03-09"
 }
 ---
 <section>
@@ -57,6 +57,10 @@
 					<a class="wb-lbx" title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html">AJAX - Exemple 1</a>
 				</li>
 				<li>
+					AJAX - remplacer le comportement par defaut d'un lien sur une image avec lbx-ajax<br />
+					<a class="wb-lbx lbx-ajax" title="AJAX - Exemple 1 de contenu AJAX" href="ajax/ajax1-fr.html"><img src="demo/1_s.jpg" alt="Image 1" /></a>
+				</li>
+				<li>
 					<a class="wb-lbx" title="Exemple de contenu incorporé" href="#inline_content">Contenu incorporé</a>
 					<section id="inline_content" class="mfp-hide modal-dialog modal-content overlay-def">
 						<header class="modal-header">
@@ -102,9 +106,15 @@
 								</li>
 							</ol>
 							<p><a href="#">Lien - apparence par défaut</a></p>
-							<button class="btn btn-primary popup-modal-dismiss">Fermer le contenu superposé modal</button>
+							<button class="btn btn-primary popup-modal-dismiss" type="button">Fermer le contenu superposé modal</button>
 						</div>
 					</section>
+				</li>
+				<li>
+					<a class="wb-lbx" title="AJAX - Contenu filtrer par le « hash » de l'URL" href="ajax/ajax4-fr.html#filter-id">AJAX - Contenu filtrer par le &#171;&#160;hash&#160;&#187; de l'URL (v4.0.7+)</a>
+				</li>
+				<li>
+					<a class="wb-lbx" title="AJAX - Contenu filtrer par un sélecteur" href="ajax/ajax4-fr.html" data-wb-lbx='{"filter": ".filter-selector"}'>AJAX - Contenu filtrer par un sélecteur (v4.0.12+)</a>
 				</li>
 			</ul>
 
@@ -145,10 +155,16 @@
 				&lt;/header&gt;
 				&lt;div class="modal-body"&gt;
 					...
-					&lt;button class="btn btn-primary popup-modal-dismiss"&gt;Fermer le contenu superposé modal&lt;/button&gt;
+					&lt;button class="btn btn-primary popup-modal-dismiss" type="button"&gt;Fermer le contenu superposé modal&lt;/button&gt;
 				&lt;/div&gt;
 			&lt;/section&gt;
 		&lt;/div&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;a class="wb-lbx" title="AJAX - Contenu filtrer par le « hash » de l'URL" href="ajax/ajax4-fr.html#filter-id"&gt;AJAX - Contenu filtrer par le &#171;&#160;hash&#160;&#187; de l'URL (v4.0.7+)&lt;/a&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;a class="wb-lbx" title="AJAX - Contenu filtrer par un sélecteur" href="ajax/ajax4-fr.html" data-wb-lbx='{"filter": ".filter-selector"}'&gt;AJAX - Contenu filtrer par un sélecteur (v4.0.12+)&lt;/a&gt;
 	&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
 				</details>
@@ -308,7 +324,7 @@
 		&lt;/li&gt;
 	&lt;/ul&gt;
 &lt;/section&gt;</code></pre>
-					</details>						
+					</details>
 				</section>
 			</section>
 
@@ -417,7 +433,7 @@
 				<option value="4">Contenu superposé modal</option>
 				<option value="5">Galerie d'images</option>
 			</select>
-			<button id="lbx-open-btn">Ouvrir le contenu superposé &#171;&#160;Lightbox&#160;&#187;</button>
+			<button id="lbx-open-btn" type="button">Ouvrir le contenu superposé &#171;&#160;Lightbox&#160;&#187;</button>
 
 			<section>
 				<h4>Code</h4>
@@ -433,7 +449,7 @@
 	&lt;option value=&quot;4&quot;&gt;Contenu superposé modal&lt;/option&gt;
 	&lt;option value=&quot;5&quot;&gt;Galerie d'images&lt;/option&gt;
 &lt;/select&gt;
-&lt;button id=&quot;lbx-open-btn&quot;&gt;Ouvrir le contenu superposé &#171;&#160;Lightbox&#160;&#187;&lt;/button&gt;</code></pre>
+&lt;button id=&quot;lbx-open-btn&quot; type=&quot;button&quot;&gt;Ouvrir le contenu superposé &#171;&#160;Lightbox&#160;&#187;&lt;/button&gt;</code></pre>
 					</section>
 
 					<section>

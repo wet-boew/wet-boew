@@ -2,7 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
-(function( $, wb ) {
+( function( $, wb ) {
 "use strict";
 
 var $document = wb.doc,
@@ -12,18 +12,17 @@ var $document = wb.doc,
 $document.on( "change", pluginSelector, function( event ) {
 	var componentName = event.target.value;
 
-	$document.trigger({
+	$( this ).trigger( {
 		type: "ajax-fetch.wb",
-		element: this,
 		fetch: {
 			url: encodeURI( "https://api.github.com/repos/wet-boew/wet-boew/issues?labels=Plugin: " + componentName ),
 			dataType: wb.ielt10 ? "jsonp" : "json",
 			jsonp: wb.ielt10 ? "callback" : null
 		}
-	});
+	} );
 
 	issueInput.get( 0 ).value = "";
-});
+} );
 
 $document.on( "ajax-fetched.wb", pluginSelector, function( event ) {
 	var dataList = $( "#" + issueInput.attr( "list" ) ),
@@ -47,6 +46,6 @@ $document.on( "ajax-fetched.wb", pluginSelector, function( event ) {
 	dataList.append( options );
 
 	issueInput.trigger( "wb-update.wb-datalist" );
-});
+} );
 
-})( jQuery, wb );
+} )( jQuery, wb );

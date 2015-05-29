@@ -6,7 +6,7 @@
  */
 /* global jQuery, describe, it, expect, before, after, sinon */
 /* jshint unused:vars */
-(function( $, wb ) {
+( function( $, wb ) {
 
 /*
  * Create a suite of related test cases using `describe`. Test suites can also be
@@ -21,18 +21,20 @@ describe( "Toggle test suite", function() {
 	/*
 	 * Before begining the test suite, this function is exectued once.
 	 */
-	before(function() {
+	before( function() {
+
 		// Spy on jQuery's trigger method to see how it's called during the plugin's initialization
 		spy = sandbox.spy( $.prototype, "trigger" );
-	});
+	} );
 
 	/*
 	 * After finishing the test suite, this function is exectued once.
 	 */
-	after(function() {
+	after( function() {
+
 		// Restore the original behaviour of trigger once the tests are finished
 		sandbox.restore();
-	});
+	} );
 
 	/*
 	 * Test initialization of the plugin
@@ -40,7 +42,8 @@ describe( "Toggle test suite", function() {
 	describe( "initialization", function() {
 		var $test, $toggleSelf, $toggleOthers, $accordion, $toggleTabs;
 
-		before(function() {
+		before( function() {
+
 			// Create test element
 			$test = $( "<div class='toggle-test'>" )
 				.appendTo( $body );
@@ -63,36 +66,36 @@ describe( "Toggle test suite", function() {
 						"<summary class='wb-toggle tgl-tab' data-toggle='{\"parent\": \".toggle-test-accordion\", \"group\": \".toggle-test-acc\"}'></summary>" +
 						"<div class='tgl-panel'></div>" +
 					"</details>" +
-				"</div>")
+				"</div>" )
 				.appendTo( $body );
 			$toggleTabs = $accordion.find( ".wb-toggle" )
 				.trigger( "wb-init.wb-toggle" );
-		});
+		} );
 
-		after(function() {
+		after( function() {
 			$test.remove();
 			$toggleSelf.remove();
 			$toggleOthers.remove();
 			$accordion.remove();
-		});
+		} );
 
 		it( "should have been marked toggle elements as initialized", function() {
 			expect( $toggleSelf.hasClass( "wb-toggle-inited" ) ).to.equal( true );
 			expect( $toggleOthers.hasClass( "wb-toggle-inited" ) ).to.equal( true );
 			$toggleTabs.each( function() {
 				expect( $( this ).hasClass( "wb-toggle-inited" ) ).to.equal( true );
-			});
-		});
+			} );
+		} );
 
 		it( "should have merged default settings with toggle element's data", function() {
 			var data = $toggleSelf.data( "toggle" );
 			expect( data.stateOn ).to.equal( "on" );
 			expect( data.stateOff ).to.equal( "off" );
-		});
+		} );
 
 		it( "$toggleSelf should have aria-controls attribute set to own ID", function() {
 			expect( $toggleSelf.attr( "aria-controls" ) ).to.equal( $toggleSelf.attr( "id" ) );
-		});
+		} );
 
 		it( "$toggleOthers should have aria-controls attribute set to controlled elements", function() {
 			var ariaControls = "",
@@ -100,9 +103,9 @@ describe( "Toggle test suite", function() {
 
 				$( selector ).each( function() {
 					ariaControls += this.id + " ";
-				});
+				} );
 				expect( $toggleOthers.attr( "aria-controls" ) ).to.equal( $.trim( ariaControls ) );
-		});
+		} );
 
 		it( "should have aria tablist attributes if a tablist", function() {
 			var data, $panel, $parent;
@@ -114,17 +117,17 @@ describe( "Toggle test suite", function() {
 
 				$parent.find( ".tgl-tab" ).each( function() {
 					expect( this.getAttribute( "role" ) ).to.equal( "tab" );
-				});
+				} );
 				$parent.find( ".tgl-panel" ).each( function() {
 					expect( this.getAttribute( "role" ) ).to.equal( "tabpanel" );
-				});
+				} );
 				$parent.find( data.group ).each( function() {
 					$panel = $( this );
 					expect( $panel.find( ".tgl-panel" ).attr( "aria-labelledby" )  ).to.equal( $panel.find( ".tgl-tab" ).attr( "id" ) );
-				});
-			});
-		});
-	});
+				} );
+			} );
+		} );
+	} );
 
 	/*
 	 * Test plugin click event
@@ -132,7 +135,7 @@ describe( "Toggle test suite", function() {
 	describe( "click event", function() {
 		var $toggle;
 
-		before(function() {
+		before( function() {
 			spy.reset();
 
 			// Create toggle element and trigger plugin init
@@ -140,24 +143,24 @@ describe( "Toggle test suite", function() {
 				.appendTo( $body )
 				.trigger( "wb-init.wb-toggle" )
 				.trigger( "click" );
-		});
+		} );
 
-		after(function() {
+		after( function() {
 			$toggle.remove();
-		});
+		} );
 
 		it( "should trigger toggle.wb-toggle", function() {
 			expect( spy.calledWith( "toggle.wb-toggle" ) ).to.equal( true );
-		});
+		} );
 
 		it( "should trigger toggled.wb-toggle", function() {
 			expect( spy.calledWith( "toggled.wb-toggle" ) ).to.equal( true );
-		});
+		} );
 
 		it( "should trigger focus.wb", function() {
 			expect( spy.calledWith( "setfocus.wb" ) ).to.equal( true );
-		});
-	});
+		} );
+	} );
 
 	/*
 	 * Test specific toggle element
@@ -165,30 +168,31 @@ describe( "Toggle test suite", function() {
 	describe( "toggle on/off states of selector", function() {
 		var $toggler, $toggledElm;
 
-		before(function() {
+		before( function() {
+
 			// Create the toggle element and start testing once it has been initialized
 			$toggledElm = $( "<div id='foo' class='test'/>" ).appendTo( $body );
 			$toggler = $( "<button type='button' class='wb-toggle test' data-toggle='{\"selector\": \"#foo\"}'/>" ).appendTo( $body );
 			$toggler.trigger( "wb-init.wb-toggle" );
-		});
+		} );
 
-		after(function() {
+		after( function() {
 			$toggler.remove();
 			$toggledElm.remove();
-		});
+		} );
 
 		it( "should have been toggled on", function() {
 			$toggler.trigger( "click" );
 			expect( $toggledElm.hasClass( "on" ) ).to.equal( true );
 			expect( $toggledElm.data( "wb-toggle-state" ) ).to.equal( "on" );
-		});
+		} );
 
 		it( "should have been toggled off", function() {
 			$toggler.trigger( "click" );
 			expect( $toggledElm.hasClass( "off" ) ).to.equal( true );
 			expect( $toggledElm.data( "wb-toggle-state" ) ).to.equal( "off" );
-		});
-	});
+		} );
+	} );
 
 	/*
 	 * Test toggle of self
@@ -196,28 +200,29 @@ describe( "Toggle test suite", function() {
 	describe( "toggle on/off states of self", function() {
 		var $toggler;
 
-		before(function() {
+		before( function() {
+
 			// Create the toggle element and start testing once it has been initialized
 			$toggler = $( "<button type='button' class='wb-toggle test'/>" ).appendTo( $body );
 			$toggler.trigger( "wb-init.wb-toggle" );
-		});
+		} );
 
-		after(function() {
+		after( function() {
 			$toggler.remove();
-		});
+		} );
 
 		it( "should have been toggled on", function() {
 			$toggler.trigger( "click" );
 			expect( $toggler.hasClass( "on" ) ).to.equal( true );
 			expect( $toggler.data( "wb-toggle-state" ) ).to.equal( "on" );
-		});
+		} );
 
 		it( "should have been toggled off", function() {
 			$toggler.trigger( "click" );
 			expect( $toggler.hasClass( "off" ) ).to.equal( true );
 			expect( $toggler.data( "wb-toggle-state" ) ).to.equal( "off" );
-		});
-	});
+		} );
+	} );
 
 	/*
 	 * Test toggle type with custom on/off state CSS classes
@@ -225,44 +230,45 @@ describe( "Toggle test suite", function() {
 	describe( "toggle type togglers with custom states", function() {
 		var $togglerOn, $togglerOff;
 
-		before(function() {
+		before( function() {
+
 			// Create the toggle elements and start testing once it has been initialized
 			$togglerOn = $( "<button type='button' class='wb-toggle test' data-toggle='{\"type\": \"on\", \"stateOn\": \"open\"}'/>" ).appendTo( $body );
 			$togglerOn.trigger( "wb-init.wb-toggle" );
 
 			$togglerOff = $( "<button type='button' class='wb-toggle test' data-toggle='{\"type\": \"off\", \"stateOff\": \"close\"}'/>" ).appendTo( $body );
 			$togglerOff.trigger( "wb-init.wb-toggle" );
-		});
+		} );
 
-		after(function() {
+		after( function() {
 			$togglerOn.remove();
 			$togglerOff.remove();
-		});
+		} );
 
 		it( "should have been toggled on", function() {
 			$togglerOn.trigger( "click" );
 			expect( $togglerOn.hasClass( "open" ) ).to.equal( true );
 			expect( $togglerOn.data( "wb-toggle-state" ) ).to.equal( "open" );
-		});
+		} );
 
 		it( "should remain toggled on", function() {
 			$togglerOn.trigger( "click" );
 			expect( $togglerOn.hasClass( "open" ) ).to.equal( true );
 			expect( $togglerOn.data( "wb-toggle-state" ) ).to.equal( "open" );
-		});
+		} );
 
 		it( "should have been toggled off", function() {
 			$togglerOff.trigger( "click" );
 			expect( $togglerOff.hasClass( "close" ) ).to.equal( true );
 			expect( $togglerOff.data( "wb-toggle-state" ) ).to.equal( "close" );
-		});
+		} );
 
 		it( "should remain toggled off", function() {
 			$togglerOff.trigger( "click" );
 			expect( $togglerOff.hasClass( "close" ) ).to.equal( true );
 			expect( $togglerOff.data( "wb-toggle-state" ) ).to.equal( "close" );
-		});
-	});
+		} );
+	} );
 
 	/*
 	 * Grouped toggles
@@ -270,7 +276,8 @@ describe( "Toggle test suite", function() {
 	describe( "Group toggle elements", function() {
 		var $toggle1, $toggle2, $toggle3, $toggler1, $toggler2, $toggler3;
 
-		before(function() {
+		before( function() {
+
 			// Create the toggle elements and start testing once it has been initialized
 			$toggler1 = $( "<button type='button' class='wb-toggle' data-toggle='{\"selector\": \"#test-toggle1\", \"group\": \".grouped\", \"type\": \"on\"}'/>" ).appendTo( $body );
 			$toggler2 = $( "<button type='button' class='wb-toggle' data-toggle='{\"selector\": \"#test-toggle2\", \"group\": \".grouped\", \"type\": \"on\"}'/>" ).appendTo( $body );
@@ -283,9 +290,9 @@ describe( "Toggle test suite", function() {
 			$toggler1.trigger( "wb-init.wb-toggle" );
 			$toggler2.trigger( "wb-init.wb-toggle" );
 			$toggler3.trigger( "wb-init.wb-toggle" );
-		});
+		} );
 
-		after(function() {
+		after( function() {
 			$toggler1.remove();
 			$toggler2.remove();
 			$toggler3.remove();
@@ -293,29 +300,29 @@ describe( "Toggle test suite", function() {
 			$toggle1.remove();
 			$toggle2.remove();
 			$toggle3.remove();
-		});
+		} );
 
 		it( "should open the first example only", function() {
 			$toggler1.trigger( "click" );
 			expect( $toggle1.hasClass( "on" ) ).to.equal( true );
 			expect( $toggle2.hasClass( "on" ) ).to.equal( false );
 			expect( $toggle3.hasClass( "on" ) ).to.equal( false );
-		});
+		} );
 
 		it( "should open the second example only", function() {
 			$toggler2.trigger( "click" );
 			expect( $toggle1.hasClass( "on" ) ).to.equal( false );
 			expect( $toggle2.hasClass( "on" ) ).to.equal( true );
 			expect( $toggle3.hasClass( "on" ) ).to.equal( false );
-		});
+		} );
 
 		it( "should open the third example only", function() {
 			$toggler3.trigger( "click" );
 			expect( $toggle1.hasClass( "on" ) ).to.equal( false );
 			expect( $toggle2.hasClass( "on" ) ).to.equal( false );
 			expect( $toggle3.hasClass( "on" ) ).to.equal( true );
-		});
-	});
+		} );
+	} );
 
 	/*
 	 * Details elements
@@ -323,19 +330,19 @@ describe( "Toggle test suite", function() {
 	describe( "Toggle details elements", function() {
 		var $details, $toggler;
 
-		before(function() {
+		before( function() {
 			spy.reset();
 
 			// Create the toggle elements and start testing once it has been initialized
 			$toggler = $( "<button type='button' class='wb-toggle test' data-toggle='{\"selector\": \".test-details\"}'/>" ).appendTo( $body );
 			$details = $( "<details class=\"test test-details\"><summary></summary></details>" ).appendTo( $body );
 			$toggler.trigger( "wb-init.wb-toggle" );
-		});
+		} );
 
-		after(function() {
+		after( function() {
 			$toggler.remove();
 			$details.remove();
-		});
+		} );
 
 		it( "should open details element", function() {
 			$toggler.trigger( "click" );
@@ -348,7 +355,7 @@ describe( "Toggle test suite", function() {
 				expect( $details.attr( "open" ) ).to.equal( "open" );
 				expect( spy.calledWith( "toggle.wb-details" ) ).to.equal( true );
 			}
-		});
+		} );
 
 		it( "should close details element", function() {
 			$toggler.trigger( "click" );
@@ -361,8 +368,8 @@ describe( "Toggle test suite", function() {
 				expect( $details.attr( "open" ) ).to.equal( undefined );
 				expect( spy.calledWith( "toggle.wb-details" ) ).to.equal( true );
 			}
-		});
-	});
+		} );
+	} );
 
 	/*
 	 * Accordion
@@ -382,7 +389,7 @@ describe( "Toggle test suite", function() {
 				expect( $panels.eq( idx ).attr( "aria-hidden" ) ).to.equal( "false" );
 			};
 
-		before(function() {
+		before( function() {
 			$accordion = $( "<div class='test-accordion'>" +
 					"<details class='test-acc'>" +
 						"<summary class='wb-toggle tgl-tab' data-toggle='{\"parent\": \".test-accordion\", \"group\": \".test-acc\"}'></summary>" +
@@ -392,37 +399,37 @@ describe( "Toggle test suite", function() {
 						"<summary class='wb-toggle tgl-tab' data-toggle='{\"parent\": \".test-accordion\", \"group\": \".test-acc\"}'></summary>" +
 						"<div class='tgl-panel'></div>" +
 					"</details>" +
-				"</div>")
+				"</div>" )
 				.appendTo( $body );
 
 			$details = $accordion.find( "details" );
 			$panels = $accordion.find( ".tgl-panel" );
 			$tabs = $accordion.find( ".tgl-tab" )
 				.trigger( "wb-init.wb-toggle" );
-		});
+		} );
 
-		after(function() {
+		after( function() {
 			$accordion.remove();
-		});
+		} );
 
 		it( "should open the first accordion panel", function() {
 			$tabs.eq( 0 ).trigger( "click" );
 			testAccordionOpen( 0 );
 			testAccordionClosed( 1 );
-		});
+		} );
 
 		it( "should open the second accordion panel", function() {
 			$tabs.eq( 1 ).trigger( "click" );
 			testAccordionOpen( 1 );
 			testAccordionClosed( 0 );
-		});
+		} );
 
 		it( "should close the second accordion panel", function() {
 			$tabs.eq( 1 ).trigger( "click" );
 			testAccordionClosed( 0 );
 			testAccordionClosed( 1 );
-		});
-	});
+		} );
+	} );
 
 	/*
 	 * Test onbeforeprint behaviour
@@ -430,7 +437,7 @@ describe( "Toggle test suite", function() {
 	describe( "Printing toggle elements", function() {
 		var $detailsOn, $detailsOff;
 
-		before(function() {
+		before( function() {
 			spy.reset();
 
 			$detailsOn = $( "<details class=\"wb-toggle\" data-toggle='{\"print\": \"on\"}'><summary></summary></details>" )
@@ -441,25 +448,25 @@ describe( "Toggle test suite", function() {
 				.trigger( "wb-init.wb-toggle" );
 
 			wb.win.trigger( "beforeprint" );
-		});
+		} );
 
-		after(function() {
+		after( function() {
 			$detailsOn.remove();
 			$detailsOff.remove();
-		});
+		} );
 
 		it( "should trigger toggle.wb-toggle", function() {
 			expect( spy.calledWith( "toggle.wb-toggle" ) ).to.equal( true );
-		});
+		} );
 
 		it( "should toggle on the $detailsOn element", function() {
 			expect( $detailsOn.hasClass( "on" ) ).to.equal( true );
-		});
+		} );
 
 		it( "should toggle off the $detailsOff element", function() {
 			expect( $detailsOff.hasClass( "off" ) ).to.equal( true );
-		});
-	});
+		} );
+	} );
 
 	/*
 	 * Test persistence behaviour
@@ -469,7 +476,7 @@ describe( "Toggle test suite", function() {
 			keyLocal = "wb-toggletest-local",
 			keySession = "wb-toggletest-session";
 
-		before(function() {
+		before( function() {
 			spy.reset();
 			localStorage.removeItem( keyLocal );
 			sessionStorage.removeItem( keySession );
@@ -481,74 +488,74 @@ describe( "Toggle test suite", function() {
 			$detailsSession = $( "<details class=\"wb-toggle\" id=\"test-session\" data-toggle='{\"persist\": \"session\"}'><summary></summary></details>" )
 				.appendTo( $body )
 				.trigger( "wb-init.wb-toggle" );
-		});
+		} );
 
-		after(function() {
+		after( function() {
 			$detailsLocal.remove();
 			$detailsSession.remove();
-		});
+		} );
 
 		it( "should not trigger toggle.wb-toggle when initialized", function() {
 			expect( spy.calledWith( "toggle.wb-toggle" ) ).to.equal( false );
 			expect( localStorage.getItem( keyLocal ) ).to.equal( null );
 			expect( sessionStorage.getItem( keySession ) ).to.equal( null );
-		});
+		} );
 
 		it( "should save the toggle 'on' state in localStorage", function() {
 			$detailsLocal.trigger( "click" );
 			expect( localStorage.getItem( keyLocal ) ).to.equal( "on" );
-		});
+		} );
 
 		it( "should save the toggle 'off' state in localStorage", function() {
 			$detailsLocal.trigger( "click" );
 			expect( localStorage.getItem( keyLocal ) ).to.equal( "off" );
-		});
+		} );
 
 		it( "should save the toggle 'on' state in sessionStorage", function() {
 			$detailsSession.trigger( "click" );
 			expect( sessionStorage.getItem( keySession ) ).to.equal( "on" );
-		});
+		} );
 
 		it( "should save the toggle 'off' state in sessionStorage", function() {
 			$detailsSession.trigger( "click" );
 			expect( sessionStorage.getItem( keySession ) ).to.equal( "off" );
-		});
-	});
+		} );
+	} );
 
 	describe( "Persist toggle state: saved state", function() {
 		var $details,
 			key = "wb-toggletest-session";
 
-		before(function() {
+		before( function() {
 			spy.reset();
 			sessionStorage.setItem( key, "on" );
 
 			$details = $( "<details class=\"wb-toggle\" id=\"test-session\" data-toggle='{\"persist\": \"session\"}'><summary></summary></details>" )
 				.appendTo( $body )
 				.trigger( "wb-init.wb-toggle" );
-		});
+		} );
 
-		after(function() {
+		after( function() {
 			$details.remove();
-		});
+		} );
 
 		it( "should trigger toggle.wb-toggle when initialized", function() {
 			expect( spy.calledWith( "toggle.wb-toggle" ) ).to.equal( true );
 			expect( sessionStorage.getItem( key ) ).to.equal( "on" );
-		});
+		} );
 
 		it( "should save the toggle 'off' state in sessionStorage", function() {
 			$details.trigger( "click" );
 			expect( sessionStorage.getItem( key ) ).to.equal( "off" );
-		});
-	});
+		} );
+	} );
 
 	describe( "Persist toggle state: group toggle", function() {
 		var $details1, $details2,
 			key1 = "wb-toggle.test-grouptest-1",
 			key2 = "wb-toggle.test-grouptest-2";
 
-		before(function() {
+		before( function() {
 			spy.reset();
 			sessionStorage.removeItem( key1 );
 			sessionStorage.removeItem( key2 );
@@ -560,31 +567,31 @@ describe( "Toggle test suite", function() {
 
 			$details1.trigger( "wb-init.wb-toggle" );
 			$details2.trigger( "wb-init.wb-toggle" );
-		});
+		} );
 
-		after(function() {
+		after( function() {
 			$details1.remove();
 			$details2.remove();
-		});
+		} );
 
 		it( "should save the 'on' state for $details1 and clear the state for $details2", function() {
 			$details1.trigger( "click" );
 			expect( sessionStorage.getItem( key1 ) ).to.equal( "on" );
 			expect( sessionStorage.getItem( key2 ) ).to.equal( null );
-		});
+		} );
 
 		it( "should save the 'off' state for $details1 and clear the state for $details2", function() {
 			$details1.trigger( "click" );
 			expect( sessionStorage.getItem( key1 ) ).to.equal( "off" );
 			expect( sessionStorage.getItem( key2 ) ).to.equal( null );
-		});
+		} );
 
 		it( "should clear the state for $details1 and save the 'on' state for $details2", function() {
 			$details2.trigger( "click" );
 			expect( sessionStorage.getItem( key1 ) ).to.equal( null );
 			expect( sessionStorage.getItem( key2 ) ).to.equal( "on" );
-		});
-	});
-});
+		} );
+	} );
+} );
 
-}( jQuery, wb ));
+}( jQuery, wb ) );

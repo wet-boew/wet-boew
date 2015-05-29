@@ -6,7 +6,7 @@
  * @author @duboisp
  *
  */
-(function( $, window, document, wb ) {
+( function( $, window, document, wb ) {
 "use strict";
 
 /**
@@ -64,6 +64,7 @@
 		if ( tblparser.lstrowgroup ) {
 			for ( i = 0, iLength = tblparser.lstrowgroup.length; i !== iLength; i += 1 ) {
 				tblGroup = tblparser.lstrowgroup[ i ];
+
 				// Add a class to the row
 				if ( tblGroup.type === 3 || tblGroup.row[ 0 ].type === 3 ) {
 					$( tblGroup.elem ).addClass( "wb-group-summary" );
@@ -75,6 +76,7 @@
 		if ( tblparser.colgroup ) {
 			for ( i = 0, iLength = tblparser.colgroup.length; i !== iLength; i += 1 ) {
 				tblGroup = tblparser.colgroup[ i ];
+
 				// Add a class to the row
 				if ( tblGroup.type === 3 ) {
 					$( tblGroup.elem ).addClass( "wb-group-summary" );
@@ -121,7 +123,7 @@
 			}
 
 			// Load the required dependencies
-			Modernizr.load({
+			Modernizr.load( {
 
 				// For loading multiple dependencies
 				load: deps,
@@ -130,7 +132,7 @@
 					// Let's parse the table
 					$( "#" + elmId ).trigger( tableParsingEvent );
 				}
-			});
+			} );
 		}
 	};
 
@@ -163,7 +165,7 @@ $document.on( "timerpoke.wb " + initEvent + " " + tableParsingCompleteEvent, sel
 	 * so returning true allows for events to always continue
 	 */
 	return true;
-});
+} );
 
 // Applying the hover, Simulate Column Hovering Effect
 $document.on( "mouseenter focusin", selectorHoverCol, function( event ) {
@@ -172,7 +174,7 @@ $document.on( "mouseenter focusin", selectorHoverCol, function( event ) {
 	if ( tblparserCell.col && tblparserCell.col.elem ) {
 		$( tblparserCell.col.elem ).addClass( "table-hover" );
 	}
-});
+} );
 
 // Removing the hover, Simulate Column Hovering Effect
 $document.on( "mouseleave focusout", selectorHoverCol, function( event ) {
@@ -181,9 +183,9 @@ $document.on( "mouseleave focusout", selectorHoverCol, function( event ) {
 	if ( tblparserCell.col && tblparserCell.col.elem ) {
 		$( tblparserCell.col.elem ).removeClass( "table-hover" );
 	}
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, document, wb );
+} )( jQuery, window, document, wb );

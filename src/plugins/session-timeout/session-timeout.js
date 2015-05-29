@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-(function( $, window, document, wb ) {
+( function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -22,6 +22,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 	resetEvent = "reset" + selector,
 	keepaliveEvent = "keepalive" + selector,
 	inactivityEvent = "inactivity" + selector,
+	dataAttr = componentName,
 
 	/*
 	 * Plugin users can override these defaults by setting attributes on the html elements that the
@@ -29,13 +30,13 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 	 * For example, adding the attribute data-option1="false", will override option1 for that plugin instance.
 	 */
 	defaults = {
-		inactivity: 1200000,		// default inactivity period 20 minutes
-		reactionTime: 180000,		// default confirmation period of 3 minutes
-		sessionalive: 1200000,		// default keepalive period of 20 minutes
-		refreshCallbackUrl: null,	// refresh callback if using AJAX keepalive (no default)
-		logouturl: "./",			// logout URL once the session has expired
-		refreshOnClick: true,		// refresh session if user clicks on the page
-		refreshLimit: 200000		// default period of 2 minutes (ajax calls happen only once during this period)
+		inactivity: 1200000,		/* default inactivity period 20 minutes */
+		reactionTime: 180000,		/* default confirmation period of 3 minutes */
+		sessionalive: 1200000,		/* default keepalive period of 20 minutes */
+		refreshCallbackUrl: null,	/* refresh callback if using AJAX keepalive (no default) */
+		logouturl: "./",			/* logout URL once the session has expired */
+		refreshOnClick: true,		/* refresh session if user clicks on the page */
+		refreshLimit: 200000		/* default period of 2 minutes (ajax calls happen only once during this period) */
 	},
 
 	/**
@@ -48,15 +49,20 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var elm = wb.init( event, componentName, selector ),
-			$elm, settings;
+			$elm, settings, onReady;
 
 		if ( elm ) {
 			$elm = $( elm );
 
+			// For backwards compatibility where data-wet-boew was used instead of data-wb-sessto
+			if ( !$elm.attr( "data-" + componentName ) ) {
+				dataAttr = "wet-boew";
+			}
+
 			// Merge default settings with overrides from the plugin element
 			// and save back to the element for future reference
-			settings = $.extend( {}, defaults, $elm.data( "wet-boew" ) );
-			$elm.data( "wet-boew", settings );
+			settings = $.extend( {}, defaults, window[ componentName ], $elm.data( dataAttr ) );
+			$elm.data( dataAttr, settings );
 
 			// Only initialize the i18nText once
 			if ( !i18nText ) {
@@ -72,17 +78,20 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 				};
 			}
 
+			onReady = function() {
+
+				// Setup the refresh on click behaviour
+				initRefreshOnClick( $elm, settings );
+
+				// Initialize the keepalive and inactive timeouts of the plugin
+				$elm.trigger( resetEvent, settings );
+
+				// Identify that initialization has completed
+				wb.ready( $elm, componentName );
+			};
+
 			// Create the modal dialog
-			initModalDialog();
-
-			// Setup the refresh on click behaviour
-			initRefreshOnClick( $elm, settings );
-
-			// Initialize the keepalive and inactive timeouts of the plugin
-			$elm.trigger( resetEvent, settings );
-
-			// Identify that initialization has completed
-			wb.ready( $elm, componentName );
+			initModalDialog( onReady );
 		}
 	},
 
@@ -95,11 +104,12 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 	 * @param {Object} settings Key-value object
 	 */
 	initEventTimeout = function( $elm, eventName, time, settings ) {
+
 		// Clear any existing timeout for the event
 		clearTimeout( $elm.data( eventName ) );
 
 		// Create the new timeout that will trigger the event
-		$elm.data( eventName, setTimeout(function() {
+		$elm.data( eventName, setTimeout( function() {
 			$elm.trigger( eventName, settings );
 		}, parseTime( time ) ) );
 	},
@@ -109,28 +119,37 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 	 * that is used to create the dialog behaviour.
 	 * @function initModalDialog
 	 */
-	initModalDialog = function() {
-		var child,
-			modal = document.createDocumentFragment(),
-			temp = document.createElement( "div" );
+	initModalDialog = function( callback ) {
+		var modalID = "#" + componentName + "-modal",
+			child, modal, temp;
 
-		// Create the modal dialog.  A temp <div> element is used so that its innerHTML can be set as a string.
-		temp.innerHTML = "<a class='wb-lbx lbx-modal mfp-hide' href='#" + componentName + "-modal'></a>" +
-			"<section id='" + componentName + "-modal' class='mfp-hide modal-dialog modal-content overlay-def'>" +
-			"<header class='modal-header'><h2 class='modal-title'>" + i18nText.timeoutTitle + "</h2></header>" +
-			"<div class='modal-body'></div>" +
-			"<div class='modal-footer'></div>" +
-			"</section>";
+		if ( $document.find( modalID ).length === 0 ) {
+				modal = document.createDocumentFragment(),
+				temp = document.createElement( "div" );
 
-		// Get the temporary <div>'s top level children and append to the fragment
-		while ( child = temp.firstChild ) {
-			modal.appendChild( child );
+			// Create the modal dialog.  A temp <div> element is used so that its innerHTML can be set as a string.
+			temp.innerHTML = "<a class='wb-lbx lbx-modal mfp-hide' href='#" + componentName + "-modal'></a>" +
+				"<section id='" + componentName + "-modal' class='mfp-hide modal-dialog modal-content overlay-def'>" +
+				"<header class='modal-header'><h2 class='modal-title'>" + i18nText.timeoutTitle + "</h2></header>" +
+				"<div class='modal-body'></div>" +
+				"<div class='modal-footer'></div>" +
+				"</section>";
+
+			// Get the temporary <div>'s top level children and append to the fragment
+			while ( child = temp.firstChild ) {
+				modal.appendChild( child );
+			}
+			document.body.appendChild( modal );
+
+			$modal = $document.find( modalID );
+
+			// Get object references to the modal and its triggering link
+			$modalLink = $modal.prev()
+				.one( "wb-ready.wb-lbx", callback )
+				.trigger( "wb-init.wb-lbx" );
+		} else {
+			callback();
 		}
-		document.body.appendChild( modal );
-
-		// Get object references to the modal and its triggering link
-		$modal = $document.find( "#" + componentName + "-modal" );
-		$modalLink = $modal.prev().trigger( "wb-init.wb-lbx" );
 	},
 
 	/**
@@ -159,7 +178,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 					}
 					$elm.data( "lastActivity", currentTime );
 				}
-			});
+			} );
 		}
 	},
 
@@ -173,6 +192,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 		var $elm = $( event.target );
 		if ( settings.refreshCallbackUrl !== null ) {
 			$.post( settings.refreshCallbackUrl, function( response ) {
+
 				// Session is valid
 				if ( response && response.replace( /\s/g, "" ) === "true" ) {
 					$elm.trigger( resetEvent, settings );
@@ -184,14 +204,14 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 					clearTimeout( $elm.data( inactivityEvent ) );
 					clearTimeout( $elm.data( keepaliveEvent ) );
 
-					openModal({
+					openModal( {
 						body: "<p>" + i18nText.timeoutAlready + "</p>",
 						buttons: $( "<button type='button' class='" + confirmClass +
 							" btn btn-primary'>" + i18nText.buttonSignin + "</button>" )
 								.data( "logouturl", settings.logouturl )
-					});
+					} );
 				}
-			});
+			} );
 		}
 	},
 
@@ -221,13 +241,13 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 			i18nText.buttonEnd + buttonEnd )
 				.data( "logouturl", settings.logouturl );
 
-		openModal({
+		openModal( {
 			body: "<p>" + timeoutBegin + "<br />" + i18nText.timeoutEnd + "</p>",
 			buttons: [ $buttonContinue, $buttonEnd ],
 			open: function() {
 				var $minutes = $modal.find( ".min" ),
 					$seconds = $modal.find( ".sec" );
-				countdownInterval = setInterval(function() {
+				countdownInterval = setInterval( function() {
 					if ( countdown( $minutes, $seconds ) ) {
 						clearInterval( countdownInterval );
 
@@ -238,7 +258,7 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 					}
 				}, 1000 );
 			}
-		});
+		} );
 	},
 
 	/**
@@ -410,11 +430,11 @@ $document.on( "timerpoke.wb " + initEvent + " " + keepaliveEvent + " " +
 		reset( event, settings );
 		break;
 	}
-});
+} );
 
 $document.on( "click", "." + confirmClass, confirm );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, document, wb );
+} )( jQuery, window, document, wb );

@@ -77,8 +77,19 @@
 				<li>The current major version of each mobile browser that accounts for at least 5 per cent of mobile device visits<sup id="fn3-rf"><a class="fn-lnk" href="#fn1"><span class="wb-inv">Footnote </span>1</a></sup>.</li>
 			</ul>
 		</li>
-		<li>PR testing is done by <a rel="external" href="https://travis-ci.org/wet-boew/wet-boew">Travis-CI</a>, but the same set of tests can be run using "ant test" locally before you submit</li>
+		<li>PR testing is done by <a rel="external" href="https://travis-ci.org/wet-boew/wet-boew">Travis-CI</a>, but the same set of tests can be run using <code>grunt dist</code> locally before you submit</li>
 	</ul>
+</section>
+
+<section>
+	<h2>Commit Messages</h2>
+	<p>When committing changes for a pull request, your commit message should start off with the name of the affected plugin(s) or topic, followed by a colon and a short description of what's changed. A longer description can also optionally be included. If the commit resolves a pre-existing issue on GitHub, include "Fixes #issue-id." as a part of the long description.</p>
+	<dl>
+		<dt>Message example</dt>
+		<dd><code>Plugin name/topic: Short description of the change. <br />(Optional) Long description of the change. Fixes #1715.</code></dd>
+		<dt>Command line example</dt>
+		<dd><code>git commit -m "Plugin name/topic: Short description of the change." -m "(Optional) Long description of the change. Fixes #1715."</code></dd>
+	</dl>
 </section>
 
 <aside class="wb-fnote" role="note">

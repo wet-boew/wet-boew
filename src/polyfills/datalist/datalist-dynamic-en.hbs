@@ -79,9 +79,8 @@ var $document = wb.doc,
 $document.on( &quot;change&quot;, pluginSelector, function( event ) {
 	var pluginName = event.target.value;
 
-	$document.trigger({
+	$( this ).trigger({
 		type: &quot;ajax-fetch.wb&quot;,
-		element: this,
 		fetch: {
 			url: encodeURI( &quot;https://api.github.com/repos/wet-boew/wet-boew/issues?labels=Plugin: &quot; + pluginName ),
 			dataType: wb.ielt10 ? &quot;jsonp&quot; : &quot;json&quot;,

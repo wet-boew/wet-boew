@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author WET Community
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -51,7 +51,7 @@ var componentName = "wb-calevt",
 
 					// Identify that initialization has completed
 					wb.ready( $elm, componentName );
-				});
+				} );
 		}
 	},
 
@@ -71,9 +71,9 @@ var componentName = "wb-calevt",
 			promises.push( $.get( urls[ i ], appendData, "html" ) );
 		}
 
-		$.when.apply( $, promises ).always(function() {
+		$.when.apply( $, promises ).always( function() {
 			dfd.resolve();
-		});
+		} );
 
 		return dfd.promise();
 	},
@@ -152,139 +152,130 @@ var componentName = "wb-calevt",
 					}
 				]
 			},
-			objEventsList = null;
+			objEventsList = obj.find( "ol > li, ul > li" ),
+			iLen = objEventsList.length,
+			dateTimeRegExp = /datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/,
+			i, $event, event, $objTitle, title, link, href, target,
+			linkId, date, tCollection, tCollectionTemp,	strDate1,
+			strDate2, z, zLen, className, dateClass;
 
-		if ( obj.find( "ol" ).length > 0 ) {
-			objEventsList = obj.find( "ol" );
-		} else if ( obj.find( "ul" ).length > 0 ) {
-			objEventsList = obj.find( "ul" );
-		}
+		for ( i = 0; i !== iLen; i += 1 ) {
+			$event = objEventsList.eq( i );
+			event = $event[ 0 ];
+			$objTitle = $event.find( "*:header:first" ),
+			className = $objTitle.attr( "class" ),
+			title = $objTitle.text(),
+			link = $event.find( "a" )[ 0 ],
+			href = link.getAttribute( "href" );
+			target = link.getAttribute( "target" );
+			zLen = 1;
 
-		if ( objEventsList.length > 0 ) {
-			objEventsList.children( "li" ).each(function() {
-				var event = $( this ),
-					objTitle = event.find( "*:header:first" ),
-					title = objTitle.text(),
-					origLink = event.find( "a" ).first(),
-					link = origLink.attr( "href" ),
-					linkId, date, tCollection, $tCollection, tCollectionTemp,
-					strDate1, strDate2, strDate, z, zLen, className;
+			/*
+			 * Modification direct-linking or page-linking
+			 *	- added the ability  to have class set the behaviour of the links
+			 *	- default is to use the link of the item as the event link in the calendar
+			 *	- 'evt-anchor' class dynamically generates page anchors on the links it maps to the event
+			 */
+			if ( !directLinking ) {
+				linkId = event.id || wb.getId();
+				event.id = linkId;
 
 				/*
-				 * Modification direct-linking or page-linking
-				 *	- added the ability  to have class set the behaviour of the links
-				 *	- default is to use the link of the item as the event link in the calendar
-				 *	- 'evt-anchor' class dynamically generates page anchors on the links it maps to the event
+				 * Fixes IE tabbing error:
+				 * http://www.earthchronicle.com/ECv1point8/Accessibility01IEAnchoredKeyboardNavigation.aspx
 				 */
-				if ( !directLinking ) {
-					linkId = event.attr( "id" ) || wb.guid();
-					event.attr( "id", linkId );
 
-					/*
-					 * Fixes IE tabbing error:
-					 * http://www.earthchronicle.com/ECv1point8/Accessibility01IEAnchoredKeyboardNavigation.aspx
-					 */
-					if ( wb.ie ) {
-						event.attr( "tabindex", "-1" );
-					}
-					link = "#" + linkId;
+				// TODO: Which versions of IE should this fix be limited to?
+				if ( wb.ie ) {
+					event.tabIndex = "-1";
 				}
+				href = "#" + linkId;
+			}
 
-				date = new Date();
-				date.setHours( 0, 0, 0, 0 );
-				tCollection = event.find( "time" );
+			date = new Date();
+			date.setHours( 0, 0, 0, 0 );
+			tCollection = event.getElementsByTagName( "time" );
 
-				/*
-				 * Date spanning capability
-				 *   - since there maybe some dates that are capable of spanning over months we need to identify them
-				 *     the process is see how many time nodes are in the event. 2 nodes will trigger a span
-				 */
-				if ( tCollection.length > 1 ) {
+			/*
+			 * Date spanning capability
+			 *   - since there may be some dates that are capable of spanning over months we need to identify them
+			 *     the process is see how many time nodes are in the event. 2 nodes will trigger a span
+			 */
+			if ( tCollection.length !== 0 ) {
+				tCollectionTemp = tCollection[ 0 ];
+				strDate1 = tCollectionTemp.nodeName.toLowerCase() === "time" ?
+					tCollectionTemp.getAttribute( "datetime" ).substr( 0, 10 ).split( "-" ) :
+					tCollectionTemp.className.match( dateTimeRegExp )[ 1 ].substr( 0, 10 ).split( "-" );
+
+				// Convert to zero-based month
+				strDate1[ 1 ] = strDate1[ 1 ] - 1;
+
+				date.setFullYear( strDate1[ 0 ], strDate1[ 1 ], strDate1[ 2 ] );
+
+				if ( tCollection.length !== 1 ) {
 
 					// This is a spanning event
-					tCollectionTemp = tCollection[ 0 ];
-					strDate1 = tCollectionTemp.nodeName.toLowerCase() === "time" ?
-						$( tCollectionTemp ).attr( "datetime" ).substr( 0, 10 ).split( "-" ) :
-						$( tCollectionTemp ).attr( "class" ).match( /datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/ )[ 1 ].substr( 0, 10 ).split( "-" );
-
 					tCollectionTemp = tCollection[ 1 ];
 					strDate2 = tCollectionTemp.nodeName.toLowerCase() === "time" ?
-						$( tCollectionTemp ).attr( "datetime" ).substr( 0, 10 ).split( "-" ) :
-						$( tCollectionTemp ).attr( "class" ).match( /datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/ )[ 1 ].substr( 0, 10 ).split( "-" );
+						tCollectionTemp.getAttribute( "datetime" ).substr( 0, 10 ).split( "-" ) :
+						tCollectionTemp.className.match( dateTimeRegExp )[ 1 ].substr( 0, 10 ).split( "-" );
 
-					// Convert to zero-base month
-					strDate1[ 1 ] = strDate1[ 1 ] - 1;
+					// Convert to zero-based month
 					strDate2[ 1 ] = strDate2[ 1 ] - 1;
 
-					date.setFullYear( strDate1[ 0 ], strDate1[ 1 ], strDate1[ 2 ] );
+					zLen += daysBetween( strDate1, strDate2 );
+				}
 
-					// Now loop in events to load up all the days that it would be on tomorrow.setDate(tomorrow.getDate() + 1);
-					for ( z = 0, zLen = daysBetween( strDate1, strDate2 ); z <= zLen; z += 1 ) {
-						if ( events.minDate === null || date < events.minDate ) {
-							events.minDate = date;
-						}
-						if ( events.maxDate === null || date > events.maxDate ) {
-							events.maxDate = date;
-						}
-
-						events.list[ events.iCount ] = {
-							title: title,
-							date: new Date( date.getTime() ),
-							href: link
-						};
-
+				// Now loop in events to load up all the days that it would be on tomorrow.setDate(tomorrow.getDate() + 1);
+				for ( z = 0; z !== zLen; z += 1 ) {
+					if ( z !== 0 ) {
 						date = new Date( date.setDate( date.getDate() + 1 ) );
-
-						// Add a viewfilter
-						className = "filter-" + ( date.getFullYear() ) + "-" +
-							wb.string.pad( date.getMonth() + 1, 2 );
-						if ( !objTitle.hasClass( className ) ) {
-							objTitle.addClass( className );
-						}
-						events.iCount += 1;
 					}
-				} else if ( tCollection.length === 1 ) {
-					$tCollection = $( tCollection[ 0 ] );
-					strDate = ( $tCollection.get( 0 ).nodeName.toLowerCase() === "time" ) ?
-						$tCollection.attr( "datetime" ).substr( 0, 10 ).split( "-" ) :
-						$tCollection.attr( "class" ).match(/datetime\s+\{date\:\s*(\d+-\d+-\d+)\}/)[ 1 ].substr( 0, 10 ).split( "-" );
-
-					date.setFullYear( strDate[ 0 ], strDate[ 1 ] - 1, strDate[ 2 ] );
 
 					if ( events.minDate === null || date < events.minDate ) {
 						events.minDate = date;
 					}
+
 					if ( events.maxDate === null || date > events.maxDate ) {
 						events.maxDate = date;
 					}
+
 					events.list[ events.iCount ] = {
 						title: title,
 						date: date,
-						href: link
+						href: href,
+						target: target
 					};
 
 					// Add a viewfilter
-					className = "filter-" + ( date.getFullYear() ) + "-" + wb.string.pad( date.getMonth() + 1, 2 );
-					if ( !objTitle.hasClass( className ) ) {
-						objTitle.addClass( className );
+					dateClass = "filter-" + ( date.getFullYear() ) + "-" +
+						wb.string.pad( date.getMonth() + 1, 2 );
+					if ( !className ) {
+						className = dateClass;
+					} else if ( className.indexOf( dateClass ) === -1 ) {
+						className += " " + dateClass;
 					}
 					events.iCount += 1;
 				}
+				$objTitle.attr( "class", className );
+			}
 
-			// End of loop through objects/events
-			});
+		// End of loop through objects/events
 		}
 
 		window.events = events;
 		return events;
 	},
 
-	addEvents = function( year, month, days, containerId, eventsList ) {
-		var i, eLen, date, day, dayEvents, content;
+	addEvents = function( year, month, $days, containerId, eventsList ) {
+		var i, eLen, date, $day, $dayEvents, content, event, eventLink;
 
 		// Fix required to make up with the IE z-index behaviour mismatch
-		for ( i = 0, eLen = days.length; i !== eLen; i += 1 ) {
-			days.eq( i ).css( "z-index", 31 - i );
+		// TODO: Which versions of IE should this fix be limited to?
+		if ( wb.ie ) {
+			for ( i = 0, eLen = $days.length; i !== eLen; i += 1 ) {
+				$days.eq( i ).css( "z-index", 31 - i );
+			}
 		}
 
 		/*
@@ -295,22 +286,26 @@ var componentName = "wb-calevt",
 		 * to a for loop to ensure that all the elements are accounted for.
 		 */
 		for ( i = 0, eLen = eventsList.length; i !== eLen; i += 1 ) {
-			date = new Date( eventsList[ i ].date );
+			event = eventsList[ i ];
+			eventLink = "<li><a tabindex='-1' class='cal-evt-lnk' href='" +
+				event.href + ( event.target ? "' target='" + event.target : "" ) +
+				"'>" + event.title + "</a></li>";
+			date = new Date( event.date );
 
 			if ( date.getMonth() === month && date.getFullYear() === year ) {
-				day = $( days[ date.getDate() - 1 ] );
+				$day = $( $days[ date.getDate() - 1 ] );
 
 				// Lets see if the cell is empty. If so lets create the cell
-				if ( day.children( "a" ).length === 0 ) {
-					dayEvents = $( "<ul class='wb-inv'></ul>" );
-					content = day.children( "div" ).html();
-					day
+				if ( $day.children( "a" ).length === 0 ) {
+					$dayEvents = $( "<ul class='wb-inv'>" + eventLink + "</ul>" );
+					content = $day.children( "div" ).html();
+					$day
 						.empty()
 						.append(
-							"<a href='#ev-" + day.attr( "id" ) +
+							"<a href='#ev-" + $day.attr( "id" ) +
 								"' class='cal-evt' tabindex='-1'>" +
 								content + "</a>",
-							dayEvents
+							$dayEvents
 						);
 				} else {
 
@@ -319,16 +314,15 @@ var componentName = "wb-calevt",
 					 * event collisions not being handled. So the pointer was
 					 * getting lost.
 					 */
-					dayEvents = day.find( "ul.wb-inv" );
+					$dayEvents = $day.find( "ul.wb-inv" );
+					$dayEvents.append( eventLink );
 				}
 
-				dayEvents.append( "<li><a tabindex='-1' class='cal-evt-lnk' href='" +
-					eventsList[ i ].href + "'>" + eventsList[ i ].title + "</a></li>" );
-				day.data( "dayEvents", dayEvents );
+				$day.data( "dayEvents", $dayEvents );
 			}
 		}
 
-		days.find( ".cal-evt" ).first().attr( "tabindex", "0" );
+		$days.find( ".cal-evt" )[ 0 ].tabIndex = "0";
 	},
 
 	showOnlyEventsFor = function( year, month, calendarId ) {
@@ -355,9 +349,11 @@ $document.on( "displayed.wb-cal", selector + "-cal", function( event, year, mont
 		showOnlyEventsFor( year, month, containerId );
 		$target.find( ".cal-index-" + day + " .cal-evt" ).trigger( "setfocus.wb" );
 
-		$target.trigger( "wb-updated" + selector );
+		// Fire the wb-updated event on the wb-calevt element
+		$( selector ).filter( "[data-calevt-src='" + $target[ 0 ].id + "']" )
+				.trigger( "wb-updated" + selector );
 	}
-});
+} );
 
 $document.on( "focusin focusout", ".wb-calevt-cal .cal-days a", function( event ) {
 	var eventType = event.type,
@@ -378,7 +374,7 @@ $document.on( "focusin focusout", ".wb-calevt-cal .cal-days a", function( event 
 		break;
 
 	case "focusout":
-		setTimeout(function() {
+		setTimeout( function() {
 			if ( dayEvents.find( "a:focus" ).length === 0 ) {
 				dayEvents.removeClass( evDetails )
 					.addClass( "wb-inv" )
@@ -388,7 +384,7 @@ $document.on( "focusin focusout", ".wb-calevt-cal .cal-days a", function( event 
 		}, 5 );
 		break;
 	}
-});
+} );
 
 $document.on( "mouseover mouseout", ".wb-calevt-cal .cal-days td", function( event ) {
 	var target = event.currentTarget,
@@ -407,17 +403,17 @@ $document.on( "mouseover mouseout", ".wb-calevt-cal .cal-days td", function( eve
 			break;
 
 		case "mouseout":
-			dayEvents.delay( 100 ).queue(function() {
+			dayEvents.delay( 100 ).queue( function() {
 				$( this ).removeClass( evDetails )
 					.addClass( "wb-inv" )
 					.dequeue();
-			});
+			} );
 			break;
 		}
 	}
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

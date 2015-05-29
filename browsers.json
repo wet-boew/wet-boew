@@ -1,9 +1,24 @@
 [{
     "browserName": "firefox",
+    "platform": "Linux"
+},{
+    "browserName": "firefox",
+    "platform": "OS X 10.9"
+},{
+    "browserName": "firefox",
     "platform": "Windows 7"
 },{
     "browserName": "chrome",
+    "platform": "Linux"
+},{
+    "browserName": "chrome",
+    "platform": "Mac 10.9"
+},{
+    "browserName": "chrome",
     "platform": "Windows 7"
+},{
+    "browserName": "safari",
+    "platform": "OS X 10.9"
 },{
     "browserName": "internet explorer",
     "platform": "Windows 7",
@@ -16,19 +31,4 @@
     "browserName": "internet explorer",
     "platform": "Windows 8.1",
     "version": "11"
-},{
-    "browserName": "firefox",
-    "platform": "OS X 10.9"
-},{
-    "browserName": "safari",
-    "platform": "OS X 10.9"
-},{
-    "browserName": "chrome",
-    "platform": "Mac 10.9"
-},{
-    "browserName": "firefox",
-    "platform": "Linux"
-},{
-    "browserName": "chrome",
-    "platform": "Linux"
 }]

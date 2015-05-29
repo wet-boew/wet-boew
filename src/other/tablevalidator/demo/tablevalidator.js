@@ -77,39 +77,39 @@
 				"%tblparser35":  "Column, col element, are not correctly defined",
 				"%tblparser35Tech": 12 },
 		techniqueURL = [
-				"keycell-techniques.html", // 1
-				"rowgrouping-techniques.html", // 2
-				"summariesrowgroup-techniques.html", // 3
-				"headerrowgroupstructure-techniques.html", // 4
-				"rowheader-description-techniques.html", // 5
-				"rowgroupheader-description-techniques.html", // 6
-				"colgroupheader-techniques.html", // 7
-				"headercolgroupstructure-techniques.html", // 8
-				"datacolgroup-techniques.html", // 9
-				"colgroupsummary-techniques.html", // 10
-				"colheader-description-techniques.html", // 11
-				"layoutcell-techniques.html", // 12
-				"http://www.w3.org/TR/html5/spec.html" ], // 13
+				"keycell-techniques.html", /* 1 */
+				"rowgrouping-techniques.html", /* 2 */
+				"summariesrowgroup-techniques.html", /* 3 */
+				"headerrowgroupstructure-techniques.html", /* 4 */
+				"rowheader-description-techniques.html", /* 5 */
+				"rowgroupheader-description-techniques.html", /* 6 */
+				"colgroupheader-techniques.html", /* 7 */
+				"headercolgroupstructure-techniques.html", /* 8 */
+				"datacolgroup-techniques.html", /* 9 */
+				"colgroupsummary-techniques.html", /* 10 */
+				"colheader-description-techniques.html", /* 11 */
+				"layoutcell-techniques.html", /* 12 */
+				"http:/*www.w3.org/TR/html5/spec.html" ], /* 13 */
 			techniqueName = [
-				"Defining a Key Cell", // 1
-				"Defining a Data Row Group in a Data Table", // 2
-				"Summaries a Data Row Group in a Data Table", // 3
-				"Structuring the Header Row in a Data Table", // 4
-				"Describing a Row Header Cell in a Data Table", // 5
-				"Describing a Row Group Header Cell in a Data Table", // 6
-				"Defining Column Group Header in a Data Table", // 7
-				"Structuring the Header Column Cell in a Data Table", // 8
-				"Defining a Data Column Group in a Data Table", // 9
-				"Summaries a Data Column Group in a Data Table", // 10
-				"Describing a Column Header Cell in a Data Table", // 11
-				"Defining a Layout Cell in a Data Table", // 12
-				"HTML5 Specification" ] // 13;
+				"Defining a Key Cell", /* 1 */
+				"Defining a Data Row Group in a Data Table", /* 2 */
+				"Summaries a Data Row Group in a Data Table", /* 3 */
+				"Structuring the Header Row in a Data Table", /* 4 */
+				"Describing a Row Header Cell in a Data Table", /* 5 */
+				"Describing a Row Group Header Cell in a Data Table", /* 6 */
+				"Defining Column Group Header in a Data Table", /* 7 */
+				"Structuring the Header Column Cell in a Data Table", /* 8 */
+				"Defining a Data Column Group in a Data Table", /* 9 */
+				"Summaries a Data Column Group in a Data Table", /* 10 */
+				"Describing a Column Header Cell in a Data Table", /* 11 */
+				"Defining a Layout Cell in a Data Table", /* 12 */
+				"HTML5 Specification" ] /* 13 */
 		;
 
 // Prevent any form to submit
 $document.on( "submit", formSelector, function( ) {
 	return false;
-});
+} );
 
 // Take the source code of the HTML table to be encoded and displayed
 $document.on( showHTMLEvent, "#visualoutput > table:eq( 0 )", function( event ) {
@@ -123,7 +123,7 @@ $document.on( showHTMLEvent, "#visualoutput > table:eq( 0 )", function( event ) 
 	}
 	$elm = $( elm );
 
-	tableHTMLstring = ( "<table>" + $elm.html( ) + "</table>" ).replace( /<col>/g, "<col />" ).replace( /&/g, "&amp;" ).replace( /</g, "&lt;" ).replace( />/g, "&gt;" ).replace( /"/g, "&quot;" );
+	tableHTMLstring = ( "<table>" + $elm.html( ) + "</table>" ).replace( /<col>/g, "<col />" ).replace( /<br>/g, "<br />" ).replace( /&/g, "&amp;" ).replace( /</g, "&lt;" ).replace( />/g, "&gt;" ).replace( /"/g, "&quot;" );
 
 	// Show the result
 	$output.html( "<pre class='prettyprint'><code>" + tableHTMLstring  + "</code></pre>" );
@@ -204,8 +204,9 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 				// If there no id, add an uid
 				currCellId = $( currCell.elem ).attr( "id" );
 				if ( currCellId === undefined || currCellId === "" || resetIds ) {
+
 					// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
-					currCellId = idPrefix + currCell.uid; // Generate a new ID
+					currCellId = idPrefix + currCell.uid; /* Generate a new ID */
 					$( currCell.elem ).attr( "id", currCellId );
 				}
 
@@ -230,6 +231,7 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 					}
 					currCellDescId = $( currCell.descCell.elem ).attr( "id" );
 					if ( currCellDescId === undefined || currCellDescId === "" || resetIds ) {
+
 						// currCellDescId = idPrefix + new Date( ).getTime( ) + currCell.descCell.uid; // Generate a new ID
 						$( currCell.descCell.elem ).attr( "id", currCellDescId );
 					}
@@ -252,8 +254,9 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 			for ( j = 0; j < currRow.headerset.length; j += 1 ) {
 				currCellId = $( currRow.headerset[ j ].elem ).attr( "id" );
 				if ( currCellId === undefined || currCellId === "" || resetIds ) {
+
 					// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
-					currCellId = idPrefix + currRow.headerset[ j ].uid; // Generate a new ID
+					currCellId = idPrefix + currRow.headerset[ j ].uid; /* Generate a new ID */
 					$( currRow.headerset[ j ].elem ).attr( "id", currCellId );
 				}
 				rowheadersgroup = ( rowheadersgroup ? rowheadersgroup + " " + currCellId : currCellId );
@@ -265,8 +268,9 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 			for ( j = 0; j < currRow.header.length; j += 1 ) {
 				currCellId = $( currRow.header[ j ].elem ).attr( "id" );
 				if ( currCellId === undefined || currCellId === "" || resetIds ) {
+
 					// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
-					currCellId = idPrefix + currRow.header[ j ].uid; // Generate a new ID
+					currCellId = idPrefix + currRow.header[ j ].uid; /* Generate a new ID */
 					$( currRow.header[ j ].elem ).attr( "id", currCellId );
 				}
 				rowheaders = ( rowheaders ? rowheaders + " " + currCellId : currCellId );
@@ -287,8 +291,9 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 						for ( m = 0; m < currCol.headerLevel.length; m += 1 ) {
 							currCellId = $( currCol.headerLevel[ m ].elem ).attr( "id" );
 							if ( currCellId === undefined || currCellId === "" || resetIds ) {
+
 								// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
-								currCellId = idPrefix + currCol.headerLevel[ m ].uid; // Generate a new ID
+								currCellId = idPrefix + currCol.headerLevel[ m ].uid; /* Generate a new ID */
 								$( currCol.headerLevel[ m ].elem ).attr( "id", currCellId );
 							}
 							colheadersgroup = ( colheadersgroup ? colheadersgroup + " " + currCellId : currCellId );
@@ -298,8 +303,9 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 						for ( m = 0; m < currCol.header.length; m += 1 ) {
 							currCellId = $( currCol.header[ m ].elem ).attr( "id" );
 							if ( currCellId === undefined || currCellId === "" || resetIds ) {
+
 								// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
-								currCellId = idPrefix + currCol.header[ m ].uid; // Generate a new ID
+								currCellId = idPrefix + currCol.header[ m ].uid; /* Generate a new ID */
 								$( currCol.header[ m ].elem ).attr( "id", currCellId );
 							}
 							colheaders = ( colheaders ? colheaders + " " + currCellId : currCellId );
@@ -332,8 +338,9 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 
 					currCellId5 = $( currCell.elem ).attr( "id" );
 					if ( currCellId5 === undefined || currCellId5 === "" || resetIds ) {
+
 						// currCellId5 = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
-						currCellId5 = idPrefix + currCell.uid; // Generate a new ID
+						currCellId5 = idPrefix + currCell.uid; /* Generate a new ID */
 						$( currCell.elem ).attr( "id", currCellId5 );
 					}
 
@@ -349,8 +356,9 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 						for ( m = 0; m < currCell.addcolheaders.length; m += 1 ) {
 							currCellId = $( currCell.addcolheaders[ m ].elem ).attr( "id" );
 							if ( currCellId === undefined || currCellId === "" || resetIds ) {
+
 								// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
-								currCellId = idPrefix + currCell.addcolheaders[ m ].uid; // Generate a new ID
+								currCellId = idPrefix + currCell.addcolheaders[ m ].uid; /* Generate a new ID */
 								$( currCell.addcolheaders[ m ].elem ).attr( "id", currCellId );
 							}
 							coldataheader = ( coldataheader ? coldataheader + " " + currCellId : currCellId );
@@ -361,8 +369,9 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 						for ( m = 0; m < currCell.addrowheaders.length; m += 1 ) {
 							currCellId = $( currCell.addrowheaders[ m ].elem ).attr( "id" );
 							if ( currCellId === undefined || currCellId === "" || resetIds ) {
+
 								// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
-								currCellId = idPrefix + currCell.addrowheaders[ m ].uid; // Generate a new ID
+								currCellId = idPrefix + currCell.addrowheaders[ m ].uid; /* Generate a new ID */
 								$( currCell.addrowheaders[ m ].elem ).attr( "id", currCellId );
 							}
 							currrowheader = ( currrowheader ? currrowheader + " " + currCellId : currCellId );
@@ -382,16 +391,18 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 						for ( m = 0; m < currCell.describe.length; m += 1 ) {
 							currCellId = $( currCell.describe[ m ].elem ).attr( "id" );
 							if ( currCellId === undefined || currCellId === "" || resetIds ) {
+
 								// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
-								currCellId = idPrefix + currCell.describe[ m ].uid; // Generate a new ID
+								currCellId = idPrefix + currCell.describe[ m ].uid; /* Generate a new ID */
 								$( currCell.describe[ m ].elem ).attr( "id", currCellId );
 							}
 							descHeaders = ( descHeaders ? descHeaders + " " + currCellId : currCellId );
 							if ( currCell.type === 5 && !$( currCell.describe[ m ].elem ).attr( "aria-describedby" ) ) {
 								currCellId = $( currCell.elem ).attr( "id" );
 								if ( currCellId === undefined || currCellId === "" || resetIds ) {
+
 									// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
-									currCellId = idPrefix + currCell.uid; // Generate a new ID
+									currCellId = idPrefix + currCell.uid; /* Generate a new ID */
 									$( currCell.elem ).attr( "id", currCellId );
 								}
 								$( currCell.describe[ m ].elem ).attr( "aria-describedby", currCellId );
@@ -424,11 +435,13 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 			for ( j = 0; j < tblparser.lstrowgroup[ i ].headerlevel.length; j += 1 ) {
 
 				if ( tblparser.lstrowgroup[ i ].headerlevel[ j ].descCell ) {
+
 					// Set the aria-describedby
 					currDescCellId = $( tblparser.lstrowgroup[ i ].headerlevel[ j ].descCell.elem ).attr( "id" );
 					if ( currDescCellId === undefined || currDescCellId === "" || resetIds ) {
+
 						// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
-						currDescCellId = idPrefix + tblparser.lstrowgroup[ i ].headerlevel[ j ].descCell.uid; // Generate a new ID
+						currDescCellId = idPrefix + tblparser.lstrowgroup[ i ].headerlevel[ j ].descCell.uid; /* Generate a new ID */
 						$( tblparser.lstrowgroup[ i ].headerlevel[ j ].descCell.elem ).attr( "id", currDescCellId );
 					}
 					$( tblparser.lstrowgroup[ i ].headerlevel[ j ].elem ).attr( "aria-describedby", currDescCellId );
@@ -436,8 +449,9 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 					// Set the headers
 					currCellId = $( tblparser.lstrowgroup[ i ].headerlevel[ j ].elem ).attr( "id" );
 					if ( currCellId === undefined || currCellId === "" || resetIds ) {
+
 						// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
-						currCellId = idPrefix + tblparser.lstrowgroup[ i ].headerlevel[ j ].uid; // Generate a new ID
+						currCellId = idPrefix + tblparser.lstrowgroup[ i ].headerlevel[ j ].uid; /* Generate a new ID */
 						$( tblparser.lstrowgroup[ i ].headerlevel[ j ].elem ).attr( "id", currCellId );
 					}
 					$( tblparser.lstrowgroup[ i ].headerlevel[ j ].descCell.elem ).attr( "headers", currCellId );
@@ -453,6 +467,7 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 	// Add the missing tag if they are missing, "colgroup, col, thead, tbody", remove tfoot ????
 	for ( i = 0; i < tblparser.colgroup.length; i += 1 ) {
 		if ( tblparser.colgroup[ i ].elem === undefined ) {
+
 			// Create a colgroup element
 			colgroupelem = $( "<colgroup></colgroup>" );
 
@@ -478,6 +493,7 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 			tblparser.colgroup[ i ].elem = $( colgroupelem ).get( 0 );
 			$( colgroupelem ).data( ).tblparser = tblparser.colgroup[ i ];
 		} else {
+
 			// Remove the span attribute if exist
 			colgroupelem = tblparser.colgroup[ i ].elem;
 
@@ -601,6 +617,7 @@ $document.on( tableParsingCompleteEvent, "#visualoutput > table:eq( 0 )", functi
 	// Test each row group to test their complexity
 	for ( i = 0; i < tblparser.lstrowgroup.length; i += 1 ) {
 		if ( !( ( tblparser.lstrowgroup[ i ].type === 2 && tblparser.lstrowgroup[ i ].level <= 2 ) || ( tblparser.lstrowgroup[ i ].type === 3 && tblparser.lstrowgroup[ i ].level === 0 ) ) ) {
+
 			// Sorry, but this table are not qualify for simple row grouping
 			$elm.trigger( addidheadersEvent );
 			return;
@@ -614,10 +631,12 @@ $document.on( tableParsingCompleteEvent, "#visualoutput > table:eq( 0 )", functi
 	} else if ( tblparser.colgroup[ 0 ].type === 2 ) {
 		i = 0;
 	} else {
+
 		// This is a complex table.
 		$elm.trigger( addidheadersEvent );
 		return;
 	}
+
 	// - Test each header cell in the thead fit in the scope colgroup partern as per the HTML5 spec.
 	for ( i; i < tblparser.theadRowStack[ 0 ].cell.length; i += 1 ) {
 		if ( tblparser.theadRowStack[ 0 ].cell[ i ].colgroup &&
@@ -736,7 +755,7 @@ $document.on( "click", "#validatetable", function( ) {
 		$( "[ headers ]", $tbl ).each( function( ) {
 			$( this ).removeAttr( "headers" );
 		} );
-		$( "[ aria-describedby ]", $tbl ).each(function( ) {
+		$( "[ aria-describedby ]", $tbl ).each( function( ) {
 			$( this ).removeAttr( "aria-describedby" );
 		} );
 
@@ -758,6 +777,7 @@ $document.on( "click", "#validatetable", function( ) {
 
 	// 4. Load the table parser and trigger the table parsing
 	Modernizr.load( {
+
 		// For loading multiple dependencies
 		load: [ "site!deps/tableparser" + wb.getMode( ) + ".js" ],
 		complete: function( ) {
@@ -794,12 +814,15 @@ function detectValidationOptions( $tbl ) {
 
 	// Accessibility Options
 	if ( $( "#access-1" ).is( ":checked" ) ) {
+
 		// Auto ( default )
 		opts.accessibilty = "auto";
 	} else if ( $( "#access-2" ).is( ":checked" ) ) {
+
 		// Scope
 		opts.accessibilty = "scope";
 	} else {
+
 		// Ids/Headers
 		opts.accessibilty = "headers";
 	}

@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, wb, undef ) {
+( function( $, window, wb, undef ) {
 "use strict";
 
 /*
@@ -19,68 +19,6 @@ var componentName = "wb-feeds",
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
 	patt = /\\u([\d\w]{4})/g,
-
-    /**
-     * Helper function that returns the string representaion of a unicode character
-     * @method decode
-     * @param  {regex} match  unicode pattern
-     * @param  {string} code  string where unicode is needed to be converted
-     * @return {string}	unicode string character
-     */
-    decode = function( match, code ) {
-        return String.fromCharCode( parseInt( code, 16 ) );
-    },
-
-    /**
-     * Helper wrapper function that performs unicode decodes on a string
-     * @method fromCharCode
-     * @param  {string} s string to sanitize with escaped unicode characters
-     * @return {string}	sanitized string
-     */
-    fromCharCode = function(s) {
-        return s.replace( patt, decode );
-    },
-
-    /**
-     * Process Feed/JSON Entries
-     * @method processEntries
-     * @param  {data} JSON formatted data to process
-     * @return {string}	of HTML output
-     */
-     processEntries = function( data ) {
-		var items = data,
-			entries = [],
-			icon = this.fIcon,
-			$content = this._content,
-			toProcess = $content.data( "toProcess" ),
-			i, len;
-
-		len = items.length;
-		for ( i = 0; i !== len; i += 1 ) {
-			items[ i ].fIcon =  icon ;
-
-			if ( items[ i ].publishedDate === undef && items[ i ].published !== undef ) {
-				items[ i ].publishedDate = items[ i ].published;
-			}
-
-			entries.push( items[ i ] );
-		}
-		// lets merge with latest entries
-		entries = $.merge( entries, $content.data( "entries" ) );
-
-		if ( toProcess === 1 ) {
-			parseEntries( entries, $content.data( "feedLimit" ), $content, this.feedType );
-			return 0;
-		}
-
-		toProcess -= 1 ;
-		$content.data({
-			"toProcess": toProcess,
-			"entries": entries
-		});
-
-		return toProcess;
-	},
 
 	/**
 	 * @object Templates
@@ -100,18 +38,19 @@ var componentName = "wb-feeds",
 			// Facebook feeds does not really do titles in ATOM RSS. It simply truncates content at 150 characters. We are using a JS based sentence
 			// detection algorithm to better split content and titles
 			var content = fromCharCode( data.content ),
-				title = content.replace( /(<([^>]+)>)/ig, "" ).match( /\(?[^\.\?\!]+[\.!\?]\)?/g );
+				title = content.replace( /(<([^>]+)>)/ig, "" ).match( /\(?[^\.\?\!]+[\.!\?]\)?/g ),
+				author = data.author.replace( /&amp;/g, "&" );
 
 			// Sanitize the HTML from Facebook - extra 'br' tags
 			content = content.replace( /(<br>\n?)+/gi, "<br />" );
 
 			return "<li class='media'><a class='pull-left' href=''><img src='" +
-				data.fIcon + "' alt='" + data.author +
+				data.fIcon + "' alt='" + author +
 				"' height='64px' width='64px' class='media-object'/></a><div class='media-body'>" +
 				"<h4 class='media-heading'><a href='" + data.link + "'><span class='wb-inv'>" +
-				title[ 0 ] + " - </span>" + data.author + "</a>  " +
-				( data.publishedDate !== "" ? " <small class='feeds-date text-right'>[" +
-				wb.date.toDateISO( data.publishedDate, true ) + "]</small>" : "" ) +
+				title[ 0 ] + " - </span>" + author + "</a><br />" +
+				( data.publishedDate !== "" ? " <small class='feeds-date text-right'><time>" +
+				wb.date.toDateISO( data.publishedDate, true ) + "</time></small>" : "" ) +
 				"</h4><p>" + content + "</p></div></li>";
 		},
 
@@ -121,21 +60,16 @@ var componentName = "wb-feeds",
 		 * @return {string}	HTML string for creating a photowall effect
 		 */
 		flickr: function( data ) {
-
-			var seed = "id" + wb.guid(),
-				title = data.title,
-				media = data.media.m,
-				thumbnail = media.replace( "_m.", "_s." ),
-				image = media.replace("_m", ""),
-				description = data.description.replace( /^\s*<p>(.*?)<\/p>\s*<p>(.*?)<\/p>/i, "");
+			var media = data.media.m,
+				flickrData = {
+					title: data.title,
+					thumbnail: media.replace( "_m.", "_s." ),
+					image: media.replace( "_m", "" ),
+					description: data.description.replace( /^\s*<p>(.*?)<\/p>\s*<p>(.*?)<\/p>/i, "" )
+				};
 
 			// due to CORS we cannot default to simple ajax pulls of the image. We have to inline the content box
-			return "<li class='col-md-4 col-sm-6'><a class='wb-lbx' href='#" + seed + "'><img src='" + thumbnail + "' alt='" + title + "' title='" + title + "' class='img-responsive'/></a>" +
-					"<section id='" + seed + "' class='mfp-hide modal-dialog modal-content overlay-def'>" +
-					"<header class='modal-header'><h2 class='modal-title'>" + title + "</h2></header>" +
-					"<div class='modal-body'><img src='" + image + "' class='thumbnail center-block' alt='" + title + "' />" +
-					description + "</div></section>" +
-					"</li>";
+			return "<li><a class='feed-flickr' href='javascript:;' data-flickr='" + JSON.stringify( flickrData ) + "'><img src='" + flickrData.thumbnail + "' alt='" + flickrData.title + "' title='" + flickrData.title + "' class='img-responsive'/></a></li>";
 		},
 
 		/**
@@ -144,24 +78,24 @@ var componentName = "wb-feeds",
 		 * @return {string}	HTML string for creating a photowall effect
 		 */
 		youtube: function( data ) {
-			var seed = "id" + wb.guid(),
-				mediaGroup = data.media$group,
-				title = mediaGroup.media$title.$t,
-				thumbnail = mediaGroup.media$thumbnail[ 1 ].url,
-				description = mediaGroup.media$description.$t,
-				videoid = mediaGroup.yt$videoid.$t;
+			var youtubeDate = {
+				title: data.title,
+				videoId: data.id
+			};
 
 			// Due to CORS we cannot default to simple ajax pulls of the image. We have to inline the content box
-			return "<li class='col-md-4 col-sm-6' ><a class='wb-lbx' href='#" + seed + "'><img src='" + thumbnail + "' alt='" + title + "' title='" + title + "' class='img-responsive' /></a>" +
-					"<section id='" + seed + "' class='mfp-hide modal-dialog modal-content overlay-def'>" +
-					"<header class='modal-header'><h2 class='modal-title'>" + title + "</h2></header>" +
-					"<div class='modal-body'>" +
-					"<figure class='wb-mltmd'><video title='" + title + "'>" +
-					"<source type='video/youtube' src='http://www.youtube.com/watch?v=" + videoid + "' />" +
-					"</video><figcaption><p>" +  description + "</p>" +
-					"</figcaption></figure>" +
-					"</div></section>" +
-					"</li>";
+			return "<li class='col-md-4 col-sm-6 feed-youtube' data-youtube='" + JSON.stringify( youtubeDate ) + "'><a href='javascript:;'><img src='http://img.youtube.com/vi/" + youtubeDate.videoId + "/mqdefault.jpg' alt='" + youtubeDate.title + "' title='" + youtubeDate.title + "' class='img-responsive' /></a></li>";
+		},
+		/**
+		 * [pinterest template]
+		 * @param  {entry object}    data
+		 * @return {string}    HTML string of formatted using a simple list / anchor view
+		 */
+		pinterest: function( data ) {
+			var content = fromCharCode( data.content ).replace( /<a href="\/pin[^"]*"><img ([^>]*)><\/a>([^<]*)(<a .*)?/, "<a href='" + data.link + "'><img alt='' class='center-block' $1><br/>$2</a>$3" );
+			return "<li class='media'>" + content +
+			( data.publishedDate !== "" ? " <small class='small feeds-date'><time>" +
+			wb.date.toDateISO( data.publishedDate, true ) + "</time></small>" : "" ) + "</li>";
 		},
 		/**
 		 * [generic template]
@@ -170,10 +104,64 @@ var componentName = "wb-feeds",
 		 */
 		generic: function( data ) {
 
-			return "<li><a href='" + data.link + "'>" + data.title + "</a>" +
-				( data.publishedDate !== "" ? " <span class='feeds-date'>[" +
-				wb.date.toDateISO( data.publishedDate, true ) + "]</span>" : "" ) + "</li>";
+			return "<li><a href='" + data.link + "'>" + data.title + "</a><br />" +
+				( data.publishedDate !== "" ? " <small class='feeds-date'><time>" +
+				wb.date.toDateISO( data.publishedDate, true ) + "</time></small>" : "" ) + "</li>";
 		}
+	},
+
+	/**
+	 * Helper function that returns the string representaion of a unicode character
+	 * @method decode
+	 * @param  {regex} match  unicode pattern
+	 * @param  {string} code  string where unicode is needed to be converted
+	 * @return {string}	unicode string character
+	 */
+	decode = function( match, code ) {
+		return String.fromCharCode( parseInt( code, 16 ) );
+	},
+
+	/**
+	 * Helper wrapper function that performs unicode decodes on a string
+	 * @method fromCharCode
+	 * @param  {string} s string to sanitize with escaped unicode characters
+	 * @return {string}	sanitized string
+	 */
+	fromCharCode = function( s ) {
+		return s.replace( patt, decode );
+	},
+
+	/**
+	 * Helper function that returns a class-based set limit on plugin instances
+	 * @method getLimit
+	 * @param {DOM object} elm The element to search for a class of the form limit-5
+	 * @return {number} 0 if none found, which means the plugin default
+	 */
+	getLimit = function( elm ) {
+		var count = elm.className.match( /\blimit-\d+/ );
+		if ( !count ) {
+			return 0;
+		}
+		return Number( count[ 0 ].replace( /limit-/i, "" ) );
+	},
+
+	/**
+	 * Helper function that builds the URL for the JSON request
+	 * @method jsonRequest
+	 * http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q=https%3A%2F%2Fwww.facebook.com%2Ffeeds%2Fpage.php%3Fid%3D318424514044%26format%3Drss20&num=20
+	 * @param {url} url URL of the feed.
+	 * @param {integer} limit Limit on the number of results for the JSON request to return.
+	 * @return {url} The URL for the JSON request
+	 */
+	jsonRequest = function( url, limit ) {
+
+		var requestURL = wb.pageUrlParts.protocol + "//ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q=" + encodeURIComponent( decodeURIComponent( url ) );
+
+		// API returns a maximum of 4 entries by default so only override if more entries should be returned
+		if ( limit > 4 ) {
+			requestURL += "&num=" + limit;
+		}
+		return requestURL;
 	},
 
 	/**
@@ -186,7 +174,7 @@ var componentName = "wb-feeds",
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var elm = wb.init( event, componentName, selector ),
-			fetch, url, $content, limit, feeds, fType, last, i, callback, fElem, fIcon;
+			fetch, url, $content, limit, feeds, fType, last, i, callback, fElem, fIcon, youtubeData;
 
 		if ( elm ) {
 			$content = $( elm ).find( ".feeds-cont" );
@@ -194,7 +182,7 @@ var componentName = "wb-feeds",
 			feeds = $content.find( feedLinkSelector );
 			last = feeds.length - 1;
 
-			// Lets bind some varialbes to the node to ensure safe ajax thread counting
+			// Lets bind some variables to the node to ensure safe ajax thread counting
 
 			$content.data( "toProcess", feeds.length )
 					.data( "feedLimit", limit )
@@ -215,15 +203,27 @@ var componentName = "wb-feeds",
 						fType =  "flickr";
 						callback = "jsoncallback";
 						$content.data( componentName + "-postProcess", [ ".wb-lbx" ] );
-					} else {
-						fType = "youtube";
-						$content.data( componentName + "-postProcess", [ ".wb-lbx", ".wb-mltmd" ] );
 					}
 
 					// We need a Gallery so lets add another plugin
 					// #TODO: Lightbox review for more abstraction we should not have to add a wb.add() for overlaying
 					fetch.url = fElem.attr( "data-ajax" );
 					fetch.jsonp = callback;
+				} else if ( fElem.attr( "data-youtube" ) ) {
+					youtubeData = wb.getData( fElem, "youtube" );
+
+					$content.data( componentName + "-postProcess", [ ".wb-lbx", ".wb-mltmd" ] );
+
+					if ( youtubeData.playlist ) {
+						fElem.trigger( {
+							type: "data-ready.wb-feeds",
+							feedsData: youtubeData.playlist
+						}, {
+							feedType: "youtube",
+							_content: $content
+						} );
+					}
+
 				} else {
 					url = jsonRequest( fElem.attr( "href" ), limit );
 					fetch.url = url;
@@ -231,6 +231,8 @@ var componentName = "wb-feeds",
 					// Let's bind the template to the Entries
 					if ( url.indexOf( "facebook.com" ) !== -1 ) {
 						fType = "facebook";
+					} else if ( url.indexOf( "pinterest.com" ) > -1  ) {
+						fType = "pinterest";
 					} else {
 						fType = "generic";
 					}
@@ -244,27 +246,124 @@ var componentName = "wb-feeds",
 					_content: $content
 				};
 
-				$document.trigger({
+				fElem.trigger( {
 					type: "ajax-fetch.wb",
-					element: fElem,
 					fetch: fetch
-				});
+				} );
 			}
 		}
 	},
 
 	/**
-	 * Returns a class-based set limit on plugin instances
-	 * @method getLimit
-	 * @param {DOM object} elm The element to search for a class of the form limit-5
-	 * @return {number} 0 if none found, which means the plugin default
+	 * Process Feed/JSON Entries
+	 * @method processEntries
+	 * @param  {data} JSON formatted data to process
+	 * @return {string}	of HTML output
 	 */
-	getLimit = function( elm ) {
-		var count = elm.className.match( /\blimit-\d+/ );
-		if ( !count ) {
+	processEntries = function( data ) {
+		var items = data,
+			entries = [],
+			icon = this.fIcon,
+			$content = this._content,
+			toProcess = $content.data( "toProcess" ),
+			i, len;
+
+		len = items.length;
+		for ( i = 0; i !== len; i += 1 ) {
+			items[ i ].fIcon =  icon ;
+
+			if ( items[ i ].publishedDate === undef && items[ i ].published !== undef ) {
+				items[ i ].publishedDate = items[ i ].published;
+			}
+
+			entries.push( items[ i ] );
+		}
+
+		// lets merge with latest entries
+		entries = $.merge( entries, $content.data( "entries" ) );
+
+		if ( toProcess === 1 ) {
+			parseEntries( entries, $content.data( "feedLimit" ), $content, this.feedType );
 			return 0;
 		}
-		return Number( count[ 0 ].replace( /limit-/i, "" ) );
+
+		toProcess -= 1 ;
+		$content.data( {
+			"toProcess": toProcess,
+			"entries": entries
+		} );
+
+		return toProcess;
+	},
+
+	/**
+	 * Parses the results from a JSON request and appends to an element
+	 * @method parseEntries
+	 * @param {object} entries Results from a JSON request.
+	 * @param {integer} limit Limit on the number of results to append to the element.
+	 * @param {jQuery DOM element} $elm Element to which the elements will be appended.
+	 * @return {url} The URL for the JSON request
+	 */
+	parseEntries = function( entries, limit, $elm, feedtype ) {
+		var cap = ( limit > 0 && limit < entries.length ? limit : entries.length ),
+			result = "",
+			compare = wb.date.compare,
+			$details = $elm.closest( "details" ),
+			activate = true,
+			feedContSelector = ".feeds-cont",
+			hasVisibilityHandler = "vis-handler",
+			i, sorted, sortedEntry, $tabs;
+
+		if ( feedtype !== "youtube" ) {
+			sorted = entries.sort( function( a, b ) {
+				return compare( b.publishedDate, a.publishedDate );
+			} );
+		} else {
+			sorted = entries;
+		}
+
+		for ( i = 0; i !== cap; i += 1 ) {
+			sortedEntry = sorted[ i ];
+			result += Templates[ feedtype ]( sortedEntry );
+		}
+		$elm.data( componentName + "-result", result );
+
+		// Check to see if feed should be activated (only if visible)
+		// and add handler to determine visibility
+		if ( $details.length !== 0 ) {
+			if ( $details.attr( "role" ) === "tabpanel" ) {
+				if ( $details.attr( "aria-hidden" ) === "true" ) {
+					activate = false;
+					$elm.empty().addClass( "waiting" );
+					$tabs = $details.closest( ".wb-tabs" );
+					if ( !$tabs.hasClass( hasVisibilityHandler ) ) {
+						$tabs
+							.on( "wb-updated.wb-tabs", function( event, $newPanel ) {
+								var $feedCont = $newPanel.find( feedContSelector );
+								if ( !$feedCont.hasClass( "feed-active" ) ) {
+									activateFeed( $feedCont );
+								}
+							} )
+							.addClass( hasVisibilityHandler );
+					}
+				}
+			} else if ( !$details.attr( "open" ) ) {
+				activate = false;
+				$elm.empty().addClass( "waiting" );
+				$details
+					.children( "summary" )
+						.on( "click.wb-feeds", function( event ) {
+							var $summary = $( event.currentTarget ).off( "click.wb-feeds" );
+							activateFeed( $summary.parent().find( feedContSelector ) );
+						} );
+			}
+		}
+
+		if ( activate ) {
+			activateFeed( $elm );
+		}
+
+		return true;
 	},
 
 	/**
@@ -292,101 +391,22 @@ var componentName = "wb-feeds",
 
 		// Identify that the feed has now been displayed
 		$elm.trigger( "wb-feed-ready" + selector );
-	},
-
-	/**
-	 * Builds the URL for the JSON request
-	 * @method jsonRequest
-	 * http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q=https%3A%2F%2Fwww.facebook.com%2Ffeeds%2Fpage.php%3Fid%3D318424514044%26format%3Drss20&num=20
-	 * @param {url} url URL of the feed.
-	 * @param {integer} limit Limit on the number of results for the JSON request to return.
-	 * @return {url} The URL for the JSON request
-	 */
-	jsonRequest = function( url, limit ) {
-
-		var requestURL = wb.pageUrlParts.protocol + "//ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q=" + encodeURIComponent( decodeURIComponent( url ) );
-
-		// API returns a maximum of 4 entries by default so only override if more entries should be returned
-		if ( limit > 4 ) {
-			requestURL += "&num=" + limit;
-		}
-		return requestURL;
-	},
-
-	/**
-	 * Parses the results from a JSON request and appends to an element
-	 * @method parseEntries
-	 * @param {object} entries Results from a JSON request.
-	 * @param {integer} limit Limit on the number of results to append to the element.
-	 * @param {jQuery DOM element} $elm Element to which the elements will be appended.
-	 * @return {url} The URL for the JSON request
-	 */
-	parseEntries = function( entries, limit, $elm, feedtype ) {
-		var cap = ( limit > 0 && limit < entries.length ? limit : entries.length ),
-			result = "",
-			compare = wb.date.compare,
-			$details = $elm.closest( "details" ),
-			activate = true,
-			feedContSelector = ".feeds-cont",
-			hasVisibilityHandler = "vis-handler",
-			i, sorted, sortedEntry, $tabs;
-
-		sorted = entries.sort( function( a, b ) {
-			return compare( b.publishedDate, a.publishedDate );
-		});
-
-		for ( i = 0; i !== cap; i += 1 ) {
-			sortedEntry = sorted[ i ];
-			result += Templates[ feedtype ]( sortedEntry );
-		}
-		$elm.data( componentName + "-result", result );
-
-		// Check to see if feed should be activated (only if visible)
-		// and add handler to determine visibility
-		if ( $details.length !== 0 ) {
-			if ( $details.attr( "role" ) === "tabpanel" ) {
-				if ( $details.attr( "aria-hidden" ) === "true" ) {
-					activate = false;
-					$elm.empty().addClass( "waiting" );
-					$tabs = $details.closest( ".wb-tabs" );
-					if ( !$tabs.hasClass( hasVisibilityHandler ) ) {
-						$tabs
-							.on( "wb-updated.wb-tabs", function( event, $newPanel ) {
-								var $feedCont = $newPanel.find( feedContSelector );
-								if ( !$feedCont.hasClass( "feed-active" ) ) {
-									activateFeed( $feedCont );
-								}
-							})
-							.addClass( hasVisibilityHandler );
-					}
-				}
-			} else if ( !$details.attr( "open" ) ) {
-				activate = false;
-				$elm.empty().addClass( "waiting" );
-				$details
-					.children( "summary" )
-						.on( "click.wb-feeds", function( event ) {
-							var $summary = $( event.currentTarget ).off( "click.wb-feeds" );
-							activateFeed( $summary.parent().find( feedContSelector ) );
-						});
-			}
-		}
-
-		if ( activate ) {
-			activateFeed( $elm );
-		}
-
-		return true;
 	};
 
-$document.on( "ajax-fetched.wb", selector + " " + feedLinkSelector, function( event, context ) {
-	var response = event.fetch.response,
-		eventTarget = event.target,
-		data;
+$document.on( "ajax-fetched.wb data-ready.wb-feeds", selector + " " + feedLinkSelector, function( event, context ) {
+	var eventTarget = event.target,
+		data, response;
 
 	// Filter out any events triggered by descendants
 	if ( event.currentTarget === eventTarget ) {
-		data = ( response.responseData ) ? response.responseData.feed.entries : response.items || response.feed.entry;
+		switch ( event.type ) {
+			case "ajax-fetched":
+				response = event.fetch.response;
+				data = ( response.responseData ) ? response.responseData.feed.entries : response.items || response.feed.entry;
+				break;
+			default:
+				data = event.feedsData;
+		}
 
 		// Identify that initialization has completed
 		// if there are no entries left to process
@@ -394,7 +414,63 @@ $document.on( "ajax-fetched.wb", selector + " " + feedLinkSelector, function( ev
 			wb.ready( $( eventTarget ).closest( selector ), componentName );
 		}
 	}
-});
+} );
+
+$document.on( "click", selector + " .feed-youtube", function( event ) {
+	var youTubeOverlaySelector  = "#wb-feeds-youtube-lbx",
+		$youTubeOverlay = $( youTubeOverlaySelector ),
+		youtubeData = wb.getData( event.currentTarget, "youtube" ),
+		videoUrl = "http://www.youtube.com/watch?v=" + youtubeData.videoId,
+		videoSource = "<figure class='wb-mltmd'><video title='" + youtubeData.title + "'>" +
+			"<source type='video/youtube' src='" + videoUrl + "' />" +
+			"</video><figcaption><p>" +  youtubeData.title + "</p>" +
+			"</figcaption></figure>";
+
+	if ( $youTubeOverlay.length === 0 ) {
+		$youTubeOverlay = $( "<section id='wb-feeds-youtube-lbx' class='mfp-hide modal-dialog modal-content overlay-def'>" +
+			"<header class='modal-header'><h2 class='modal-title'>" + youtubeData.title + "</h2></header>" +
+			"<div class='modal-body'>" +
+			videoSource +
+			"</div></section>" ).insertAfter( "main" );
+	} else {
+
+		//Modify lightbox
+		$youTubeOverlay.find( ".modal-title" ).text( youtubeData.title );
+		$youTubeOverlay.find( ".modal-body" ).empty().append( videoSource );
+	}
+
+	//Temporary fix until lightbox auto initialize the multimedia player
+	$youTubeOverlay.find( ".wb-mltmd" ).trigger( "wb-init.wb-mltmd" );
+
+	$( document ).trigger( "open.wb-lbx", [ {
+		src: youTubeOverlaySelector,
+		type: "inline"
+	} ] );
+} );
+
+$document.on( "click", selector + " .feed-flickr", function( event ) {
+	var flickrOverlaySelector  = "#wb-feeds-flick-lbx",
+		$flickrOverlay = $( flickrOverlaySelector ),
+		flickrData = wb.getData( event.currentTarget, "flickr" ),
+		body = "<img src='" + flickrData.image + "' class='thumbnail center-block' alt='" + flickrData.title + "' /><span>" +
+			flickrData.description + "</span>";
+
+	if ( $flickrOverlay.length === 0 ) {
+		$flickrOverlay = $( "<section id='wb-feeds-flick-lbx' class='mfp-hide modal-dialog modal-content overlay-def'>" +
+			"<header class='modal-header'><h2 class='modal-title'>" + flickrData.title + "</h2></header>" +
+			"<div class='modal-body'>" + body + "</div></section>" ).insertAfter( "main" );
+	} else {
+
+		//Modify lightbox
+		$flickrOverlay.find( ".modal-title" ).text( flickrData.title );
+		$flickrOverlay.find( ".modal-body" ).empty().append( body );
+	}
+
+	$( document ).trigger( "open.wb-lbx", [ {
+		src: flickrOverlaySelector,
+		type: "inline"
+	} ] );
+} );
 
 // Bind the init event to the plugin
 $document.on( "timerpoke.wb " + initEvent, selector, init );
@@ -402,4 +478,4 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );

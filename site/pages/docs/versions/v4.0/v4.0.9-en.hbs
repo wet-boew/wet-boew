@@ -1,0 +1,74 @@
+---
+{
+	"title": "v4.0.9 release notes",
+	"language": "en",
+	"description": "v4.0.9 release notes - Version history - Web Experience Toolkit (WET)",
+	"altLangPrefix": "v4.0.9",
+	"dateModified": "2014-12-11"
+}
+---
+<ul>
+	<li><strong>Release date:</strong> <time>2014-12-11</time></li>
+	<li><a href="../dwnld-en.html#v409">Downloads</a></li>
+</ul>
+
+<span class="wb-prettify all-pre"></span>
+
+<section>
+	<h2>What's New</h2>
+	<ul>
+		<li><strong>Lightbox:</strong> Add ability to filter Ajax response to selector</li>
+		<li><strong>Carousel:</strong> Added an option to toggle thumbnail controls on medium-and-above screens</li>
+		<li><strong>Tabbed Interface:</strong> Fixed clipping issue when tab panel content overflows the tabbed interface container</li>
+		<li><strong>Tabbed Interface:</strong> Added option to update the URL hash on every tab panel change</li>
+		<li><strong>Tabbed Interface:</strong> Fixed play function of carousel</li>
+		<li><strong>Data Ajax:</strong> Prevents the caching of nested scripts</li>
+		<li><strong>Data Ajax:</strong> Added support for protocol-less CORS fallback</li>
+		<li><strong>Feeds:</strong> Fix french characters in the Facebook feeds</li>
+		<li><strong>Multimedia Player:</strong> Fixed inline captions not loading when the current URL has an empty hash</li>
+		<li><strong>Form Validation:</strong> Allow using the styles without using the Javascript part</li>
+		<li><strong>Data Table:</strong> Fixed the sorting icons in IE8</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Details</h2>
+	<p><strong>Number of commits:</strong> 23</p>
+	<ul>
+		<li><a href="https://github.com/LaurentGoderre">@LaurentGoderre</a>: 13 commits</li>
+		<li><a href="https://github.com/pjackson28">@pjackson28</a>: 6 commits</li>
+		<li><a href="https://github.com/Pacoup">@Pacoup</a>: 1 commits</li>
+		<li><a href="https://github.com/dubbs">@dubbs</a>: 1 commits</li>
+		<li><a href="https://github.com/thomasgohard">@thomasgohard</a>: 1 commits</li>
+		<li><a href="https://github.com/zachfalsetto">@zachfalsetto</a>: 1 commits</li>
+	</ul>
+
+	<section>
+		<h3>List of commits</h3>
+		<ul>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/3b803fb">Lightbox: Add ability to filter Ajax response to selector</a> - Kevin Warrington, 2014-10-28 08:47:57 -0600</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/fd4ad2a">Form validation: Dropped redundant aria-required attribute addition (duplicates jQuery Validation addition)</a> - Paul Jackson, 2014-11-19 14:33:48 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/67ee485">Build: Updated the post build grunt task</a> - Laurent Goderre, 2014-11-20 17:34:02 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/29b3548">[Carousel style 2] Added an option to toggle thumbnail controls on medium-and-above screens.</a> - Thomas Gohard, 2014-11-21 16:35:21 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/c8ebda1">changing the height of thumbnails</a> - Zach Falsetto, 2014-11-21 16:35:21 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f2a39e3">Tabs: Fixed clipping issue when tab panel content overflows the tabbed interface container</a> - Paul Jackson, 2014-11-21 16:48:24 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/dfb5730">Updated the build version to v4.0.9-development</a> - Laurent Goderre, 2014-11-21 17:52:13 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/159e454">Fixed the v4.0.8+1 release notes</a> - Laurent Goderre, 2014-11-24 09:59:55 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/9b56541">Added the v4.0.8+2 release notes</a> - Laurent Goderre, 2014-11-24 12:48:05 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/a3db871">Data Ajax: Prevents the caching of nested scripts</a> - Laurent Goderre, 2014-11-27 14:21:18 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/11ebdf8">Data Ajax: Added support for protocol-less CORS fallback Fixes #6316</a> - Laurent Goderre, 2014-11-28 15:54:51 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/0c888b1">Tabs: Fixed in panel links in the tabbed interface accordion</a> - Paul Jackson, 2014-12-02 14:49:30 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/7e6f13e">Tabs: Added option to update the URL hash on every tab panel change</a> - Paul Jackson, 2014-12-03 09:36:40 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/94f1c81">Tabs: Changed updateHash functionality into a function</a> - Paul Jackson, 2014-12-03 11:00:14 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/96545d9">Core: Added an ID on all plugin elements that don't already have one</a> - Laurent Goderre, 2014-12-08 16:37:23 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/866c15f">Ajax Fetch: Cache the caller ID instead of the caller If a DOM changes occurs which affects the cached element, the event listener stops working. On caching the ID instead, DOM change do not disrupt events</a> - Laurent Goderre, 2014-12-08 16:38:57 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f8197b2">Multimedia: Remove the ID generation logic</a> - Laurent Goderre, 2014-12-08 16:39:19 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/54593b3">Tabs: Fixed play function of carousel</a> - Paul Jackson, 2014-12-08 17:10:22 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/40f1893">Fix details background disappearing in collapsible alerts</a> - Etienne Levesque Guitard, 2014-12-08 18:07:40 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/c40f467">Feeds: Fix french characters in the Facebook feeds Fixes https://github.com/wet-boew/GCWeb/issues/809</a> - Laurent Goderre, 2014-12-09 16:15:51 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/80f94e8">Data Table: Fixed the sorting issues in IE8 Fixes #6257</a> - Laurent Goderre, 2014-12-09 17:20:25 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/eab6192">Fixed inline captions not loading when the current URL has an empty hash Fixes #6322</a> - Laurent Goderre, 2014-12-10 11:28:54 -0500</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/8abd9fa">Form Validation: Allow using the styles without using the Javascript part By using the `wb-frm` class you can now access the form validation styles without using the validation portion. Fixes #6292</a> - Laurent Goderre, 2014-12-10 11:32:48 -0500</li>
+		</ul>
+	</section>
+</section>

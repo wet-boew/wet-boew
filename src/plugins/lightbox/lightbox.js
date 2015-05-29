@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, wb ) {
+( function( $, window, document, wb, undef ) {
 "use strict";
 
 /*
@@ -20,7 +20,6 @@ var componentName = "wb-lbx",
 	dependenciesLoadedEvent = "deps-loaded" + selector,
 	extendedGlobal = false,
 	$document = wb.doc,
-	idCount = 0,
 	callbacks, i18n, i18nText,
 
 	/**
@@ -37,13 +36,6 @@ var componentName = "wb-lbx",
 
 		if ( elm ) {
 			elmId = elm.id;
-
-			// Ensure there is a unique id on the element
-			if ( !elmId ) {
-				elmId = componentName + "-id-" + idCount;
-				idCount += 1;
-				elm.id = elmId;
-			}
 
 			// Ensure the dependencies are loaded first
 			$document.one( dependenciesLoadedEvent, function() {
@@ -88,21 +80,31 @@ var componentName = "wb-lbx",
 					if ( elm.className.indexOf( "lbx-modal" ) !== -1 ) {
 						settings.modal = true;
 					}
+					if ( elm.className.indexOf( "lbx-ajax" ) !== -1 ) {
+						settings.type = "ajax";
+					}
+					if ( elm.className.indexOf( "lbx-image" ) !== -1 ) {
+						settings.type = "image";
+					}
+					if ( elm.className.indexOf( "lbx-inline" ) !== -1 ) {
+						settings.type = "inline";
+					}
 
 					// Extend the settings with window[ "wb-lbx" ] then data-wb-lbx
-					$elm.magnificPopup(
-						$.extend(
-							true,
-							settings,
-							window[ componentName ],
-							wb.getData( $elm, componentName )
-						)
+					settings = $.extend(
+						true,
+						settings,
+						window[ componentName ],
+						wb.getData( $elm, componentName )
 					);
+					$elm.magnificPopup(
+						settings
+					).data( "wbLbxFilter", settings.filter );
 				}
 
 				// Identify that initialization has completed
 				wb.ready( $elm, componentName );
-			});
+			} );
 
 			// Load dependencies as needed
 			setup();
@@ -155,7 +157,10 @@ var componentName = "wb-lbx",
 						$content.attr( "role", "document" );
 					}
 
-					$wrap.append( "<span tabindex='0' class='lbx-end wb-inv'></span>" );
+					$wrap.append( "<span tabindex='0' class='lbx-end wb-inv'></span>" )
+                        .find( ".activate-open" )
+                        .trigger( "wb-activate" );
+
 				},
 				change: function() {
 					var $item = this.currItem,
@@ -201,12 +206,38 @@ var componentName = "wb-lbx",
 							.first()
 							.attr( "id", "lbx-title" );
 					}
+
+					$content.attr( "aria-labelledby", "lbx-title" );
+				},
+				parseAjax: function( mfpResponse ) {
+					var currItem = this.currItem,
+						currEl = currItem.el,
+						urlHash = currItem.src.split( "#" )[ 1 ],
+						filter = currEl ? currEl.data( "wbLbxFilter" ) : undef,
+						selector = filter || ( urlHash ? "#" + urlHash : false ),
+						$response;
+
+					// Provide the ability to filter the AJAX response HTML
+					// by the URL hash or a selector
+					// TODO: Should be dealt with upstream by Magnific Popup
+					if ( selector ) {
+						$response = $( "<div>" + mfpResponse.data + "</div>" ).find( selector );
+					} else {
+						$response = $( mfpResponse.data );
+					}
+
+					$response
+						.find( ".modal-title, h1" )
+							.first()
+								.attr( "id", "lbx-title" );
+
+					mfpResponse.data = $response;
 				}
 			};
 		}
 
 		// Load Magnific Popup dependency and bind the init event handler
-		Modernizr.load({
+		Modernizr.load( {
 			load: "site!deps/jquery.magnific-popup" + wb.getMode() + ".js",
 			complete: function() {
 
@@ -216,7 +247,7 @@ var componentName = "wb-lbx",
 
 				$document.trigger( dependenciesLoadedEvent );
 			}
-		});
+		} );
 	};
 
 // Bind the init event of the plugin
@@ -245,7 +276,7 @@ $document.on( "keydown", ".mfp-wrap", function( event ) {
 	 * so returning true allows for events to always continue
 	 */
 	return true;
-});
+} );
 
 /*
  * Sends focus to the close button if focus moves beyond the Lightbox (Jaws fix)
@@ -263,7 +294,7 @@ $document.on( "focus", ".lbx-end", function( event ) {
 	 * so returning true allows for events to always continue
 	 */
 	return true;
-});
+} );
 
 // Outside focus detection (for screen readers that exit the lightbox
 // outside the normal means)
@@ -276,22 +307,21 @@ $document.on( "focusin", "body", function( event ) {
 		// Close the popup
 		$.magnificPopup.close();
 	}
-});
+} );
 
 // Handler for clicking on a same page link within the overlay to outside the overlay
 $document.on( "click vclick", ".mfp-wrap a[href^='#']", function( event ) {
 	var which = event.which,
 		eventTarget = event.target,
-		href, $lightbox, linkTarget;
+		$lightbox, linkTarget;
 
 	// Ignore middle/right mouse buttons
 	if ( !which || which === 1 ) {
 		$lightbox = $( eventTarget ).closest( ".mfp-wrap" );
-		href = eventTarget.getAttribute( "href" );
-		linkTarget = document.getElementById( href.substring( 1 ) );
+		linkTarget = document.getElementById( eventTarget.getAttribute( "href" ).substring( 1 ) );
 
 		// Ignore same page links to within the overlay and modal popups
-		if ( href.length > 1 && !$.contains( $lightbox[ 0 ], linkTarget ) ) {
+		if ( linkTarget && !$.contains( $lightbox[ 0 ], linkTarget ) ) {
 			if ( $lightbox.find( ".popup-modal-dismiss" ).length === 0 ) {
 
 				// Stop propagation of the click event
@@ -309,13 +339,13 @@ $document.on( "click vclick", ".mfp-wrap a[href^='#']", function( event ) {
 			}
 		}
 	}
-});
+} );
 
 // Event handler for closing a modal popup
 $( document ).on( "click", ".popup-modal-dismiss", function( event ) {
 	event.preventDefault();
 	$.magnificPopup.close();
-});
+} );
 
 // Event handler for opening a popup without a link
 $( document ).on( "open" + selector, function( event, items, modal, title ) {
@@ -330,7 +360,7 @@ $( document ).on( "open" + selector, function( event, items, modal, title ) {
 
 		// Ensure the dependencies are loaded first
 		$document.one( dependenciesLoadedEvent, function() {
-			$.magnificPopup.open({
+			$.magnificPopup.open( {
 				items: items,
 				modal: isModal,
 				gallery: {
@@ -340,15 +370,15 @@ $( document ).on( "open" + selector, function( event, items, modal, title ) {
 					titleSrc: titleSrc
 				},
 				callbacks: callbacks
-			});
-		});
+			} );
+		} );
 
 		// Load dependencies as needed
 		setup();
 	}
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, document, wb );
+} )( jQuery, window, document, wb );

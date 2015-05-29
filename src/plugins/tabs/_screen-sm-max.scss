@@ -6,32 +6,17 @@
 /**
  * Mobile-friendly styles
  */
-%tabs-screen-sm-max-details {
+%tabs-screen-sm-max-backwards-compat {
 	> {
 		details {
-			border: 1px solid #adadad;
-			border-top: 0;
-			padding: 6px 12px;
-
-			&:first-of-type {
-				border-top-left-radius: 4px;
-				border-top-right-radius: 4px;
-			}
+			border-bottom: $tablist-screen-sm-seperator-border-color $tablist-screen-sm-seperator-border-style $tablist-screen-sm-seperator-border-width;
 
 			&:last-of-type {
-				border-bottom-left-radius: 4px;
-				border-bottom-right-radius: 4px;
+				border-bottom: 0;
 			}
 
 			&[style] {
 				min-height: 0 !important;
-			}
-
-			> {
-				summary {
-					margin: -6px -12px;
-					padding: 6px 12px;
-				}
 			}
 
 			&[open] {
@@ -46,17 +31,22 @@
 }
 
 .wb-tabs {
-	@extend %tabs-screen-sm-max-details; /* Only for backwards compatibility. Should be removed in v4.1. */
-
-	border-radius: 4px;
-	border-top: 1px solid #adadad;
+	@extend %tabs-screen-sm-max-backwards-compat; /* Only for backwards compatibility. Should be removed in v4.1. */
+	border: {
+		color: $tablist-screen-sm-border-color;
+		style: $tablist-screen-sm-border-style;
+		width: $tablist-screen-sm-border-width;
+		radius: $tablist-screen-sm-border-radius;
+	}
 	margin-bottom: 15px;
-	padding-left: 0;
-	padding-right: 0;
+	padding: {
+		left: 0;
+		right: 0;
+	}
 
 	> {
 		.tabpanels {
-			@extend %tabs-screen-sm-max-details;
+			@extend %tabs-screen-sm-max-backwards-compat;
 		}
 	}
 

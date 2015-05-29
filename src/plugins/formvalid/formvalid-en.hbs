@@ -7,7 +7,7 @@
 	"tag": "formvalid",
 	"parentdir": "formvalid",
 	"altLangPrefix": "formvalid",
-	"dateModified": "2014-07-21"
+	"dateModified": "2015-03-06"
 }
 ---
 <section>
@@ -50,7 +50,7 @@
 				</details>
 
 				<div class="form-group">
-					<label for="fname1" class="required"><span class="field-name">First Name</span> <strong class="required">(required)</strong></label>
+					<label for="fname1" class="required"><span class="field-name">First name</span> <strong class="required">(required)</strong></label>
 					<input class="form-control" id="fname1" name="fname1" type="text" required="required" pattern=".{2,}" data-rule-minlength="2" />
 				</div>
 				<details class="mrgn-bttm-md">
@@ -59,13 +59,13 @@
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
 		&lt;div class="form-group"&gt;
-			&lt;label for="fname1" class="required"&gt;&lt;span class="field-name"&gt;First Name&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+			&lt;label for="fname1" class="required"&gt;&lt;span class="field-name"&gt;First name&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
 			&lt;input class="form-control" id="fname1" name="fname1" type="text" required="required" pattern=".{2,}" data-rule-minlength="2" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 
 				<div class="form-group">
-					<label for="lname1" class="required"><span class="field-name">Last Name</span> <strong class="required">(required)</strong></label>
+					<label for="lname1" class="required"><span class="field-name">Last name</span> <strong class="required">(required)</strong></label>
 					<input class="form-control" id="lname1" name="lname1" type="text" required="required" pattern=".{2,}" data-rule-minlength="2" />
 				</div>
 				<details class="mrgn-bttm-md">
@@ -74,13 +74,13 @@
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
 		&lt;div class="form-group"&gt;
-			&lt;label for="lname1" class="required"&gt;&lt;span class="field-name"&gt;Last Name&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+			&lt;label for="lname1" class="required"&gt;&lt;span class="field-name"&gt;Last name&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
 			&lt;input class="form-control" id="lname1" name="lname1" type="text" required="required" pattern=".{2,}" data-rule-minlength="2" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 
 				<div class="form-group">
-					<label for="tel1" class="required"><span class="field-name">Telephone Number</span> (999-999-9999) <strong class="required">(required)</strong></label>
+					<label for="tel1" class="required"><span class="field-name">Telephone number</span> (999-999-9999) <strong class="required">(required)</strong></label>
 					<input class="form-control" id="tel1" name="tel1" type="tel" required="required" data-rule-phoneUS="true" />
 				</div>
 				<details class="mrgn-bttm-md">
@@ -89,13 +89,13 @@
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
 		&lt;div class="form-group"&gt;
-			&lt;label for="tel1" class="required"&gt;&lt;span class="field-name"&gt;Telephone Number&lt;/span&gt; (999-999-9999) &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+			&lt;label for="tel1" class="required"&gt;&lt;span class="field-name"&gt;Telephone number&lt;/span&gt; (999-999-9999) &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
 			&lt;input class="form-control" id="tel1" name="tel1" type="tel" required="required" data-rule-phoneUS="true" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 
 				<div class="form-group">
-					<label for="email1"><span class="field-name">Email Address</span> (yourname@domain.com)</label>
+					<label for="email1"><span class="field-name">Email address</span> (yourname@domain.com)</label>
 					<input class="form-control" id="email1" name="email1" type="email" />
 				</div>
 				<details class="mrgn-bttm-md">
@@ -104,7 +104,7 @@
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
 		&lt;div class="form-group"&gt;
-			&lt;label for="email1"&gt;&lt;span class="field-name"&gt;Email Address&lt;/span&gt; (yourname@domain.com)&lt;/label&gt;
+			&lt;label for="email1"&gt;&lt;span class="field-name"&gt;Email address&lt;/span&gt; (yourname@domain.com)&lt;/label&gt;
 			&lt;input class="form-control" id="email1" name="email1" type="email" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
@@ -121,6 +121,21 @@
 		&lt;div class="form-group"&gt;
 			&lt;label for="url1"&gt;&lt;span class="field-name"&gt;Website URL (http://www.url.com)&lt;/span&gt;&lt;/label&gt;
 			&lt;input class="form-control" id="url1" name="url1" type="url" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="file1" class="required"><span class="field-name">File</span> <strong class="required">(required)</strong></label>
+					<input id="file1" name="file1" type="file" required="required" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="file1" class="required"&gt;&lt;span class="field-name"&gt;File&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+			&lt;input id="file1" name="file1" type="file" required="required" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 			</fieldset>
@@ -171,7 +186,7 @@
 			&lt;input class="form-control" id="number1" name="number1" type="number" min="5" max="40" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
-				
+
 				<div class="form-group">
 					<label for="an1"><span class="field-name">Alphanumeric</span> (at least 4 characters)</label>
 					<input class="form-control" id="an1" name="an1" type="text" pattern="[A-Za-z0-9\s]{4,}" data-rule-alphanumeric="true" data-rule-minlength="4" />
@@ -235,6 +250,8 @@
 				<div class="form-group">
 					<label for="password1"><span class="field-name">Password</span> (between 5 and 10 characters)</label>
 					<input class="form-control" id="password1" name="password1" type="password" maxlength="10" size="10" pattern=".{5,10}" data-rule-rangelength="[5,10]" />
+					<label for="passwordconfirm"><span class="field-name">Confirm your password</span></label>
+					<input class="form-control" id="passwordconfirm" name="passwordconfirm" type="password" maxlength="10" size="10" data-rule-equalTo="#password1" />
 				</div>
 				<details class="mrgn-bttm-md">
 					<summary>View code</summary>
@@ -244,6 +261,8 @@
 		&lt;div class="form-group"&gt;
 			&lt;label for="password1"&gt;&lt;span class="field-name"&gt;Password&lt;/span&gt; (between 5 and 10 characters)&lt;/label&gt;
 			&lt;input class="form-control" id="password1" name="password1" type="password" maxlength="10" size="10" pattern=".{5,10}" data-rule-rangelength="[5,10]" /&gt;
+			&lt;label for="passwordconfirm"&gt;&lt;span class="field-name"&gt;Confirm your password&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="passwordconfirm" name="passwordconfirm" type="password" maxlength="10" size="10" data-rule-equalTo="#password1" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 			</fieldset>

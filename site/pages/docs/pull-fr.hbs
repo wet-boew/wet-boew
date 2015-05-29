@@ -81,8 +81,20 @@ seulement aux fichiers que vous désirez modifier (pour éviter des conflits).</
 				<li>La version majeure courante de fureteur mobile qui compte pour au moins 5 pourcent des visites<sup id="fn3-rf"><a class="fn-lnk" href="#fn1"><span class="wb-inv">Footnote </span>1</a></sup> sur le site Web effecutées avec les appareils mobiles.</li>
 			</ul>
 		</li>
-		<li>Les tests sur les déploiements de correctifs sont exécutés par <a rel="external" href="https://travis-ci.org/wet-boew/wet-boew">Travis-CI</a>, mais la même batterie de tests peut être exécutée en utilisant "ant test" localement avant de soumettre.</li>
+		<li>Les tests sur les déploiements de correctifs sont exécutés par <a rel="external" href="https://travis-ci.org/wet-boew/wet-boew">Travis-CI</a>, mais la même batterie de tests peut être exécutée en utilisant <code>grunt dist</code> localement avant de soumettre.</li>
 	</ul>
+</section>
+
+<section lang="en">
+	<h2>Commit Messages</h2>
+	<p><strong>Needs translation</strong></p>
+	<p>When committing changes for a pull request, your commit message should start off with the name of the affected plugin(s) or topic, followed by a colon and a short description of what's changed. A longer description can also optionally be included. If the commit resolves a pre-existing issue on GitHub, include "Fixes #issue-id." as a part of the long description.</p>
+	<dl>
+		<dt>Message example</dt>
+		<dd><code>Plugin name/topic: Short description of the change. <br />(Optional) Long description of the change. Fixes #1715.</code></dd>
+		<dt>Command line example</dt>
+		<dd><code>git commit -m "Plugin name/topic: Short description of the change." -m "(Optional) Long description of the change. Fixes #1715."</code></dd>
+	</dl>
 </section>
 
 <aside class="wb-fnote" role="note">

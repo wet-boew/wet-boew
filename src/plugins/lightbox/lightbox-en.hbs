@@ -9,7 +9,7 @@
 	"altLangPrefix": "lightbox",
 	"css": ["demo/lightbox"],
 	"js": ["demo/lightbox"],
-	"dateModified": "2014-07-30"
+	"dateModified": "2015-05-12"
 }
 ---
 <section>
@@ -55,6 +55,10 @@
 				</li>
 				<li>
 					<a class="wb-lbx" title="AJAX - Example 1 of AJAX content" href="ajax/ajax1-en.html">AJAX - Example 1</a>
+				</li>
+				<li>
+					AJAX - override default behaviour of image link with lbx-ajax<br />
+					<a class="wb-lbx lbx-ajax" title="AJAX - Example 1 of AJAX content" href="ajax/ajax1-en.html"><img src="demo/1_s.jpg" alt="Image 1" /></a>
 				</li>
 				<li>
 					<a class="wb-lbx" title="Example of inline content" href="#inline_content">Inline content</a>
@@ -103,9 +107,15 @@
 									</ol>
 								</li>
 							</ol>
-							<button class="btn btn-primary popup-modal-dismiss">Close modal popup</button>
+							<button class="btn btn-primary popup-modal-dismiss" type="button">Close modal popup</button>
 						</div>
 					</section>
+				</li>
+				<li>
+					<a class="wb-lbx" title="AJAX - Content filtered by the URL hash" href="ajax/ajax4-en.html#filter-id">AJAX - Content filtered by URL hash (v4.0.7+)</a>
+				</li>
+				<li>
+					<a class="wb-lbx" title="AJAX - Content filtered by selector" href="ajax/ajax4-en.html" data-wb-lbx='{"filter": ".filter-selector"}'>AJAX - Content filtered by selector (v4.0.12+)</a>
 				</li>
 			</ul>
 
@@ -141,10 +151,16 @@
 			&lt;/header&gt;
 			&lt;div class="modal-body"&gt;
 				...
-				&lt;button class="btn btn-primary popup-modal-dismiss"&gt;Close modal popup&lt;/button&gt;
+				&lt;button class="btn btn-primary popup-modal-dismiss" type="button"&gt;Close modal popup&lt;/button&gt;
 			&lt;/div&gt;
 		&lt;/section&gt;
 	&lt;/li&gt;
+		&lt;li&gt;
+			&lt;a class="wb-lbx" title="AJAX - Content filtered by the URL hash" href="ajax/ajax4-en.html#filter-id"&gt;AJAX - Content filtered by URL hash (v4.0.7+)&lt;/a&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;a class="wb-lbx" title="AJAX - Content filtered by a selector" href="ajax/ajax4-en.html" data-wb-lbx='{"filter": ".filter-selector"}'&gt;AJAX - Content filtered by a selector (v4.0.12+)&lt;/a&gt;
+		&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
 				</details>
 			</section>
@@ -412,7 +428,7 @@
 				<option value="4">Modal popup</option>
 				<option value="5">Image gallery</option>
 			</select>
-			<button id="lbx-open-btn">Open lightbox</button>
+			<button id="lbx-open-btn" type="button">Open lightbox</button>
 
 			<section>
 				<h4>Code</h4>
@@ -428,7 +444,7 @@
 	&lt;option value=&quot;4&quot;&gt;Modal popup&lt;/option&gt;
 	&lt;option value=&quot;5&quot;&gt;Image gallery&lt;/option&gt;
 &lt;/select&gt;
-&lt;button id=&quot;lbx-open-btn&quot;&gt;Open lightbox&lt;/button&gt;</code></pre>
+&lt;button id=&quot;lbx-open-btn&quot; type=&quot;button&quot;&gt;Open lightbox&lt;/button&gt;</code></pre>
 						</section>
 
 					<section>

@@ -123,6 +123,21 @@
 			&lt;input class="form-control" id="url1" name="url1" type="url" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
+
+				<div class="form-group">
+					<label for="file1" class="required"><span class="field-name">Fichier</span> <strong class="required">(obligatoire)</strong></label>
+					<input id="file1" name="file1" type="file" required="required" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>Visualiser le code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="file1" class="required"&gt;&lt;span class="field-name"&gt;Fichier&lt;/span&gt; &lt;strong class="required"&gt;(obligatoire)&lt;/strong&gt;&lt;/label&gt;
+			&lt;input id="file1" name="file1" type="file" required="required" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
 			</fieldset>
 
 			<fieldset>
@@ -235,6 +250,8 @@
 				<div class="form-group">
 					<label for="password1"><span class="field-name">Mot de passe</span> (entre 5 et 10 caractères)</label>
 					<input class="form-control" id="password1" name="password1" type="password" maxlength="10" size="10" pattern=".{5,10}" data-rule-rangelength="[5,10]" />
+					<label for="passwordconfirm"><span class="field-name">Confirmez votre mot de passe</span></label>
+					<input class="form-control" id="passwordconfirm" name="passwordconfirm" type="password" maxlength="10" size="10" data-rule-equalTo="#password1" />
 				</div>
 				<details class="mrgn-bttm-md">
 					<summary>Visualiser le code</summary>
@@ -244,6 +261,8 @@
 		&lt;div class="form-group"&gt;
 			&lt;label for="password1"&gt;&lt;span class="field-name"&gt;Mot de passe&lt;/span&gt; (entre 5 et 10 caractères)&lt;/label&gt;
 			&lt;input class="form-control" id="password1" name="password1" type="password" maxlength="10" size="10" pattern=".{5,10}" data-rule-rangelength="[5,10]" /&gt;
+			&lt;label for="passwordconfirm"&gt;&lt;span class="field-name"&gt;Confirmez votre mot de passe&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="passwordconfirm" name="passwordconfirm" type="password" maxlength="10" size="10" data-rule-equalTo="#password1" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 			</fieldset>

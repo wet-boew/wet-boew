@@ -7,15 +7,15 @@ env:
     - TRAVIS_COMMIT_MSG="$(git log --format=%B --no-merges -n 1)"
 
 install:
+  - npm -g install npm@next
   - ./script/setup
-  - gem install scss-lint --no-ri --version '=0.26.2'
+  - bundle install
 
 script:
-  - travis_retry ./script/travis_script.sh
-  - ./script/travis_saucelabs.sh
+  - npm run-script travis_script
 
 after_success:
-  - ./script/travis_artifacts.sh
+  - npm run-script travis_after_success
 
 notifications:
   irc:

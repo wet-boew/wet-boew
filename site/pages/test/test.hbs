@@ -2,9 +2,10 @@
 {
 	"title": "Mocha Tests",
 	"language": "en",
-	"altLangPrefix": "test",
+	"altLangPrefix": "../index",
 	"dateModified": "2014-04-23",
-	"js": "<%= mochaUrls %>",
+	"js": ["mocha", "index", "sinon", "tests"],
+	"jsie9": ["sinon-ie"],
 	"css": ["mocha"]
 }
 ---
@@ -13,15 +14,11 @@
 
 {{!-- HACK so it doesn't float in the corner --}}
 <style>
-#mocha-stats{
-	position: relative;
-}
+	#mocha-stats{
+		position: relative;
+	}
+
+	#mocha-stats .progress {
+		height: auto;
+	}
 </style>
-<script src="mocha.js"></script>
-
-{{!-- Expect.js --}}
-<script src="index.js"></script>
-
-{{!-- Sinon --}}
-<script src="sinon.js"></script>
-<!--[if lt IE 9]><script src="sinon-ie.js"></script><![endif]-->

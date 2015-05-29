@@ -3,10 +3,6 @@
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
 
-%webfeeds-color-707070 {
-	color: #707070;
-}
-
 .wb-disable {
 	.wb-twitter {
 		.twitter-timeline {
@@ -17,64 +13,24 @@
 
 .wb-twitter {
 	.twitter-timeline {
-		a {
-			&:link,
-			&:visited {
-				color: #707070;
-			}
-		}
-
-		.stats {
-			span {
-				color: #707070;
-			}
-		}
-
-		.byline {
-			color: #707070;
-		}
-
-		.retweet-credit {
-			color: #707070;
-		}
-
-		.no-more-pane {
-			color: #707070;
-		}
-
-		.no-tweets-pane {
-			p {
-				color: #707070;
-			}
-		}
-
-		.p-geo {
-			color: #707070;
-		}
-
-		.cards-base {
-			.byline-user {
-				color: #707070;
-			}
-		}
-
-		.tweet-box-button {
-			color: #707070;
-		}
+		display: block;
+		text-indent: -9999px;
 	}
 
-	a {
-		&.twitter-timeline {
-			background: #fff;
-			border: 1px solid #ccc;
-			direction: ltr;
-			display: block;
-			font-size: 90%;
-			margin: 0 !important;
-			min-height: 50px;
-			overflow: auto;
-			padding: 5px !important;
-			text-indent: -9999px;
+	iframe {
+		&[style] {
+			width: 100% !important;
+		}
+	}
+}
+
+.wb-enable {
+	.wb-twitter {
+		.twitter-timeline {
+			@extend %global-loading;
+			min-height: 100px;
+			min-width: 100px;
+			position: relative;
 		}
 	}
 }
@@ -83,7 +39,6 @@
 [dir="rtl"] {
 	.wb-twitter {
 		.twitter-timeline {
-			direction: rtl;
 			text-indent: 9999px;
 		}
 	}

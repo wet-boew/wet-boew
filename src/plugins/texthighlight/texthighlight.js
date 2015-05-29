@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @pjackson28
  */
-(function( $, window, document, wb ) {
+( function( $, window, document, wb ) {
 "use strict";
 
 /*
@@ -28,28 +28,32 @@ var componentName = "wb-txthl",
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var elm = wb.init( event, componentName, selector ),
+			params = wb.pageUrlParts.params,
 			searchCriteria, newText;
 
 		if ( elm ) {
-
-			searchCriteria = wb.pageUrlParts.params.txthl;
+			if ( event.txthl ) {
+				searchCriteria = $.isArray( event.txthl ) ? event.txthl.join( "|" ) : event.txthl;
+			} else if ( params && params.txthl ) {
+				searchCriteria = decodeURIComponent(
+					wb.pageUrlParts.params.txthl
+						.replace( /^\s+|\s+$|\|+|\"|\(|\)/g, "" ).replace( /\++/g, "|" )
+				);
+			}
 
 			if ( searchCriteria ) {
-				// clean up the search criteria and OR each value
-				searchCriteria = searchCriteria.replace( /^\s+|\s+$|\|+|\"|\(|\)/g, "" ).replace( /\++/g, "|" );
-				searchCriteria = decodeURIComponent( searchCriteria );
 
 				// Make sure that we're not checking for text within a tag; only the text outside of tags.
 				searchCriteria = "(?=([^>]*<))([\\s'])?(" + searchCriteria + ")(?!>)";
 
 				newText = elm.innerHTML.replace( new RegExp( searchCriteria, "gi" ), function( match, group1, group2, group3 ) {
-					return ( !group2 ? "" : group2 ) + "<span class='txthl'><mark>" + group3 + "</mark></span>";
-				});
+					return ( !group2 ? "" : group2 ) + "<mark class='txthl'>" + group3 + "</mark>";
+				} );
 				elm.innerHTML = newText;
-
-				// Identify that initialization has completed
-				wb.ready( $( elm ), componentName );
 			}
+
+			// Identify that initialization has completed
+			wb.ready( $( elm ), componentName );
 		}
 	};
 
@@ -59,4 +63,4 @@ $document.on( "timerpoke.wb " + initEvent, selector, init );
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, document, wb );
+} )( jQuery, window, document, wb );

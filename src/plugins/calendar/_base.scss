@@ -12,19 +12,19 @@
 }
 
 %cal-text-head {
-	color: $cal-text-head;
+	color: $cal-text-head-color;
 }
 
 %cal-text-head-important {
-	color: $cal-text-head !important;
+	color: $cal-text-head-color !important;
 }
 
 %cal-text-body {
-	color: $cal-text-body;
+	color: $cal-text-body-color;
 }
 
 %cal-bg-dark {
-	background: $cal-dark;
+	background: $cal-dark-color;
 }
 
 .cal-cnt {
@@ -105,7 +105,7 @@
 	}
 
 	&.active {
-		color: $cal-active;
+		color: $cal-mnth-arrows-active-color;
 
 		&:hover,
 		&:focus {
@@ -115,8 +115,8 @@
 }
 
 .cal-wd {
-	background: $cal-medium;
-	border: 1px solid $cal-dark;
+	background: $cal-medium-color;
+	border: 1px solid $cal-dark-color;
 	color: #fff;
 	padding: 0.5em 0;
 	text-align: center;
@@ -132,7 +132,6 @@
 .cal-days {
 	a {
 		@extend %cal-days-a-div;
-		color: $cal-days-link;
 
 		&:hover,
 		&:focus {

@@ -6,7 +6,11 @@
 %tabs-screen-md-min-details {
 	> {
 		details {
-			border: 1px solid #ccc;
+			border: {
+				color: $tabpanel-border-color;
+				style: $tabpanel-border-style;
+				width: $tabpanel-border-width;
+			}
 			display: none;
 
 			&[open] {
@@ -28,6 +32,47 @@
 	> {
 		.tabpanels {
 			@extend %tabs-screen-md-min-details;
+		}
+	}
+
+	&.carousel-s2 {
+		&.show-thumbs {
+			[role="tablist"] {
+				li {
+					&.active {
+						a {
+							border: {
+								color: $carousel-s2-tablist-thumbnail-active-border-color;
+								style: $carousel-s2-tablist-thumbnail-active-border-style;
+								width: $carousel-s2-tablist-thumbnail-active-border-width;
+							}
+							margin-bottom: 1px;
+							padding: 0;
+						}
+					}
+
+					&[role="presentation"] {
+						display: inline-block;
+
+						img {
+							opacity: .5;
+							width: 140px;
+						}
+					}
+
+					&[class="active"] {
+						img {
+							opacity: 1;
+						}
+					}
+
+					&.prv,
+					&.tab-count,
+					&.nxt {
+						display: none;
+					}
+				}
+			}
 		}
 	}
 }

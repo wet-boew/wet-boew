@@ -4,7 +4,7 @@
  * @license wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  * @author @patheard
  */
-(function( $, window, wb ) {
+( function( $, window, wb ) {
 "use strict";
 
 /*
@@ -112,14 +112,14 @@ $document.on( "timerpoke.wb " + initEvent + " " + picturefillEvent, selector, fu
 		}
 		break;
 	}
-});
+} );
 
 // Handles window resize so images can be updated as new media queries match
 $document.on( "txt-rsz.wb win-rsz-width.wb win-rsz-height.wb", function() {
 	$( selector ).trigger( picturefillEvent );
-});
+} );
 
 // Add the timer poke to initialize the plugin
 wb.add( selector );
 
-})( jQuery, window, wb );
+} )( jQuery, window, wb );
