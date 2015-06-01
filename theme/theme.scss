@@ -13,6 +13,13 @@
 @import "variables";
 @import "defaults";
 
+/* WET Core */
+/*
+ * GLYPHICONS Halflings for Twitter Bootstrap by GLYPHICONS.com | Licensed under http://www.apache.org/licenses/LICENSE-2.0
+ */
+@import "../src/base/bootstrap";
+@import "../src/base/wet-boew";
+
 @import "banner/base";
 @import "breadcrumb/base";
 @import "footer/base";
