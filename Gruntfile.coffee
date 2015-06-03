@@ -47,7 +47,6 @@ module.exports = (grunt) ->
 		[
 			"js-min"
 			"css-min"
-			"assets-min"
 			"imagemin"
 		]
 	)
@@ -340,7 +339,7 @@ module.exports = (grunt) ->
 					"!src/plugins/**/demo/*.js"
 					"!src/plugins/**/deps/*.*"
 				]
-				dest: "dist/unmin/js/wet-boew.js"
+				dest: "dist/js/wet-boew.js"
 
 			coreIE8:
 				options:
@@ -357,7 +356,7 @@ module.exports = (grunt) ->
 					"!src/plugins/**/demo/*.js"
 					"!src/plugins/**/deps/*.*"
 				]
-				dest: "dist/unmin/js/ie8-wet-boew.js"
+				dest: "dist/js/ie8-wet-boew.js"
 
 			pluginsIE8:
 				options:
@@ -371,7 +370,7 @@ module.exports = (grunt) ->
 					"!src/plugins/**/demo/*.js"
 					"!src/plugins/**/deps/*.*"
 				]
-				dest: "dist/unmin/js/ie8-wet-boew2.js"
+				dest: "dist/js/ie8-wet-boew2.js"
 
 			test:
 				src: [
@@ -383,7 +382,7 @@ module.exports = (grunt) ->
 			i18n:
 				options:
 					process: ( src, filepath ) ->
-						lang = filepath.replace "dist/unmin/js/i18n/", ""
+						lang = filepath.replace "dist/js/i18n/", ""
 						# jQuery validation uses an underscore for locals
 						lang = lang.replace "_", "-"
 						validationPath = "lib/jquery-validation/src/localization/"
@@ -405,12 +404,12 @@ module.exports = (grunt) ->
 
 						return src
 
-				cwd: "dist/unmin/js/i18n"
+				cwd: "dist/js/i18n"
 				src: [
 					"*.js"
 					"!*.min.js"
 				]
-				dest: "dist/unmin/js/i18n"
+				dest: "dist/js/i18n"
 				expand: true
 
 		usebanner:
@@ -418,7 +417,7 @@ module.exports = (grunt) ->
 				options:
 					banner: "@charset \"utf-8\";\n<%= banner %>"
 				files:
-					src: "dist/unmin/css/*.*"
+					src: "dist/css/*.*"
 
 		# Builds the demos
 		assemble:
@@ -437,7 +436,7 @@ module.exports = (grunt) ->
 					root: "/v4.0-ci/unmin"
 					jqueryVersion: "<%= jqueryVersion.version %>"
 					jqueryOldIEVersion: "<%= jqueryOldIEVersion.version %>"
-				assets: "dist/unmin"
+				assets: "dist"
 
 			theme:
 				options:
@@ -549,7 +548,7 @@ module.exports = (grunt) ->
 						"**/*.scss"
 						"!**/demo/*.scss"
 					]
-					dest: "dist/unmin/css/"
+					dest: "dist/css/"
 					ext: ".css"
 				,
 					expand: true
@@ -557,7 +556,7 @@ module.exports = (grunt) ->
 					src: [
 						"**/*.scss"
 					]
-					dest: "dist/unmin/css/"
+					dest: "dist/css/"
 					ext: ".css"
 				,
 					expand: true
@@ -569,7 +568,7 @@ module.exports = (grunt) ->
 						"!**/*-noscript.scss"
 						"!**/demo/*.scss"
 					]
-					dest: "dist/unmin/css/polyfills/"
+					dest: "dist/css/polyfills/"
 					ext: ".css"
 					flatten: true
 				,
@@ -611,12 +610,12 @@ module.exports = (grunt) ->
 						"ios 5"
 						"opera 12.1"
 					]
-				cwd: "dist/unmin/css"
+				cwd: "dist/css"
 				src: [
 					"*.css"
 					"!ie8*.css"
 				]
-				dest: "dist/unmin/css"
+				dest: "dist/css"
 				expand: true
 
 			# Needs both IE8 and vendor prefixing
@@ -632,19 +631,19 @@ module.exports = (grunt) ->
 						"opera 12.1"
 					]
 				files: [
-					cwd: "dist/unmin/css/polyfills"
+					cwd: "dist/css/polyfills"
 					src: [
 						"**/*.css"
 					]
-					dest: "dist/unmin/css/polyfills/"
+					dest: "dist/css/polyfills/"
 					expand: true
 				,
-					cwd: "dist/unmin/"
+					cwd: "dist/"
 					src: [
 						"demos/**/*.css"
 						"docs/**/*.css"
 					]
-					dest: "dist/unmin/"
+					dest: "dist/"
 					expand: true
 				]
 
@@ -654,11 +653,11 @@ module.exports = (grunt) ->
 					browsers: [
 						"ie 8"
 					]
-				cwd: "dist/unmin/css"
+				cwd: "dist/css"
 				src: [
 					"ie8*.css"
 				]
-				dest: "dist/unmin/css"
+				dest: "dist/css"
 				expand: true
 				flatten: true
 
@@ -673,7 +672,10 @@ module.exports = (grunt) ->
 						id: "csslint-xml"
 						dest: "csslint-unmin.log"
 					]
-				src: "dist/unmin/css/**/*.css"
+				src: [
+					"dist/css/**/*.css"
+					"!dist/css/**/*.min.css"
+				]
 
 			demos:
 				options:
@@ -692,8 +694,8 @@ module.exports = (grunt) ->
 					preserveComments: (uglify,comment) ->
 						return comment.value.match(/^!/i)
 				expand: true
-				cwd: "dist/unmin/js/polyfills/"
-				src: ["*.js"]
+				cwd: "dist/js/polyfills/"
+				src: "*.js"
 				dest: "dist/js/polyfills/"
 				ext: ".min.js"
 
@@ -704,7 +706,7 @@ module.exports = (grunt) ->
 						return comment.value.match(/^!/i)
 				expand: true
 				cwd: "dist/unmin/demos/"
-				src: ["**/demo/*.js"]
+				src: "**/demo/*.js"
 				dest: "dist/demos/"
 				ext: ".min.js"
 
@@ -714,10 +716,11 @@ module.exports = (grunt) ->
 						quote_keys: true
 					preserveComments: (uglify,comment) ->
 						return comment.value.match(/^!/i)
-				cwd: "dist/unmin/js/"
+				cwd: "dist/js/"
 				src: [
 					"*wet-boew*.js"
 					"!ie*.js"
+					"!*.min.js"
 				]
 				dest: "dist/js/"
 				ext: ".min.js"
@@ -730,8 +733,11 @@ module.exports = (grunt) ->
 						ascii_only: true
 					preserveComments: (uglify,comment) ->
 						return comment.value.match(/^!/i)
-				cwd: "dist/unmin/js/"
-				src: [ "ie8*.js" ]
+				cwd: "dist/js/"
+				src: [
+					"ie8*.js"
+					"!*.min.js"
+				]
 				dest: "dist/js/"
 				ext: ".min.js"
 				expand: true
@@ -741,8 +747,11 @@ module.exports = (grunt) ->
 				options:
 					banner: "<%= banner %>"
 				expand: true
-				cwd: "dist/unmin/js/i18n"
-				src: ["**/*.js"]
+				cwd: "dist/js/i18n"
+				src: [
+					"**/*.js"
+					"!**/*.min.js"
+				]
 				dest: "dist/js/i18n"
 				ext: ".min.js"
 
@@ -750,8 +759,11 @@ module.exports = (grunt) ->
 				options:
 					preserveComments: "some"
 				expand: true
-				cwd: "dist/unmin/js/deps"
-				src: ["*.js"]
+				cwd: "dist/js/deps"
+				src: [
+					"*.js"
+					"!*.min.js"
+				]
 				dest: "dist/js/deps/"
 				rename: (destBase, destPath) ->
 					return destBase + destPath.replace(/\.js$/, ".min.js")
@@ -763,10 +775,11 @@ module.exports = (grunt) ->
 				options:
 					banner: ""
 				expand: true
-				cwd: "dist/unmin/css"
+				cwd: "dist/css"
 				src: [
 					"**/*.css"
 					"!**/ie8*.css"
+					"!**/*.min.css"
 				]
 				dest: "dist/css"
 				ext: ".min.css"
@@ -780,6 +793,7 @@ module.exports = (grunt) ->
 				cwd: "dist/unmin/css"
 				src: [
 					"**/ie8*.css"
+					"!**/*.min.css"
 				]
 				dest: "dist/css"
 				ext: ".min.css"
@@ -935,7 +949,7 @@ module.exports = (grunt) ->
 			bootstrap:
 				cwd: "lib/bootstrap-sass-official/assets/fonts/bootstrap"
 				src: "*.*"
-				dest: "dist/unmin/fonts"
+				dest: "dist/fonts"
 				expand: true
 				flatten: true
 
@@ -967,7 +981,7 @@ module.exports = (grunt) ->
 				files: [
 					cwd: "src/polyfills"
 					src: "**/*.js"
-					dest: "dist/unmin/js/polyfills"
+					dest: "dist/js/polyfills"
 					expand: true
 					flatten: true
 				,
@@ -986,7 +1000,7 @@ module.exports = (grunt) ->
 						"proj4/dist/proj4.js"
 						"openlayers/OpenLayers.debug.js"
 					]
-					dest: "dist/unmin/js/deps"
+					dest: "dist/js/deps"
 					rename: (dest, src) ->
 						return dest + "/" + src.replace( ".debug", "" )
 					expand: true
@@ -997,7 +1011,7 @@ module.exports = (grunt) ->
 						"plugins/**/assets/*"
 						"polyfills/**/assets/*"
 					]
-					dest: "dist/unmin/assets"
+					dest: "dist/assets"
 					expand: true
 					flatten: true
 				,
@@ -1005,7 +1019,7 @@ module.exports = (grunt) ->
 					src: [
 						"**/deps/*.js"
 					]
-					dest: "dist/unmin/js/deps"
+					dest: "dist/js/deps"
 					expand: true
 					flatten: true
 				]
@@ -1052,17 +1066,7 @@ module.exports = (grunt) ->
 			themeAssets:
 				cwd: "theme/"
 				src: "assets/*.*"
-				dest: "dist/unmin"
-				expand: true
-
-			assets_min:
-				cwd: "dist/unmin/"
-				src: [
-					"assets/*"
-					"fonts/*"
-					"js/assets/*"
-				]
-				dest: "dist"
+				dest: "dist/"
 				expand: true
 
 			demos_min:
@@ -1097,9 +1101,9 @@ module.exports = (grunt) ->
 
 		imagemin:
 			all:
-				cwd: "dist/unmin"
+				cwd: "dist/"
 				src: "**/*.png"
-				dest: "dist/unmin"
+				dest: "dist/"
 				expand: true
 
 		clean:
@@ -1193,7 +1197,7 @@ module.exports = (grunt) ->
 			js:
 				options:
 					template: "src/i18n/base.js"
-				dest: "dist/unmin/js/i18n/"
+				dest: "dist/js/i18n/"
 			assemble:
 				dest: 'site/data/i18n'
 
