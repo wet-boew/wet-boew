@@ -565,7 +565,7 @@ var componentName = "wb-tabs",
 			viewChange = isSmallView !== oldIsSmallView;
 			isInit = $currentElm.length ? true : false;
 
-			if ( viewChange ) {
+			if ( viewChange || isInit ) {
 				$elms = isInit ? $currentElm : $( selector );
 				len = $elms.length;
 
