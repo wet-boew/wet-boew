@@ -581,6 +581,21 @@ fieldset {
 			@extend %border-style-solid;
 		}
 	}
+
+	/*
+	 *	Fieldset/legend as a label for a group of checkboxes or radio buttons
+	 *	https://github.com/wet-boew/wet-boew/issues/5797
+	 */
+	&.chkbxrdio-grp {
+		border-top: 0;
+		padding-top: 0;
+
+		legend {
+			font-size: $font-size-base;
+			font-weight: bold;
+			margin-bottom: 5px;
+		}
+	}
 }
 
 /*
