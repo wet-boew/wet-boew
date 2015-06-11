@@ -7,17 +7,15 @@
  *
  */
 
-// Import Bootstrap variables for viewport sizes
-@import "../lib/bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
-
 @import "variables";
 @import "defaults";
 
-/* WET Core */
 /*
  * GLYPHICONS Halflings for Twitter Bootstrap by GLYPHICONS.com | Licensed under http://www.apache.org/licenses/LICENSE-2.0
  */
 @import "../src/base/bootstrap";
+
+/* WET Core */
 @import "../src/base/wet-boew";
 
 @import "banner/base";
