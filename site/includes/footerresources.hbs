@@ -1,17 +1,17 @@
 <!--[if gte IE 9 | !IE ]><!-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/{{environment.jqueryVersion}}/jquery{{environment.suffix}}.js"></script>
-<script src="{{assets}}/js/wet-boew{{environment.suffix}}.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/{{environment.jqueryVersion}}/jquery.js"></script>
+<script src="{{assets}}/../wet-boew/js/wet-boew.js"></script>
 <!--<![endif]-->
-{{#if page.js}}{{#each page.js}}<script src="{{this}}{{../environment.suffix}}.js"></script>{{/each}}{{/if}}
+{{#if page.js}}{{#each page.js}}<script src="{{this}}.js"></script>{{/each}}{{/if}}
 {{#if page.jsie9}}
 <!--[if lte IE 9]>
-{{#each page.jsie9}}<script src="{{this}}{{../environment.suffix}}.js"></script>{{/each}}
+{{#each page.jsie9}}<script src="{{this}}.js"></script>{{/each}}
 <![endif]-->
 {{/if}}
 <!--[if lt IE 9]>
-<script src="{{assets}}/js/ie8-wet-boew2{{environment.suffix}}.js"></script>
-{{#if page.jsie8}}{{#each page.jsie8}}<script src="{{this}}{{../environment.suffix}}.js"></script>{{/each}}{{/if}}
+<script src="{{assets}}/../wet-boew/js/ie8-wet-boew2.js"></script>
+{{#if page.jsie8}}{{#each page.jsie8}}<script src="{{this}}.js"></script>{{/each}}{{/if}}
 <![endif]-->
 {{#if site.themeJS}}
-<script src="{{assets}}/js/theme{{environment.suffix}}.js"></script>
+<script src="{{assets}}/../{{site.theme}}/js/theme.js"></script>
 {{/if}}

@@ -9,6 +9,8 @@
  * If there is a Bootstrap variable not shown here that you want to override, go to "../lib/bootstrap-sass-official/assets/stylesheets/bootstrap/variables" to view the variables that you can override. Simply copy and paste the variable and its applicable section (if applicable) from the Bootstrap file into this override file and override the variables as applicable.
  */
 
+$wb-core-path: "../../wet-boew" !default;
+$wb-assets-path: "#{$wb-core-path}/assets" !default;
 
 //
 // BOOTSTRAP VARIABLES
