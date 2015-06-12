@@ -7,11 +7,10 @@
  *
  */
 
-// Import Bootstrap variables for viewport sizes
-@import "../lib/bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
-
+// Import Bootstrap variables
 @import "variables";
 @import "defaults";
+@import "../lib/bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
 
 /* WET Core */
 /*
