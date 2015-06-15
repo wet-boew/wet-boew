@@ -220,6 +220,16 @@ $tab-margin-width: 10px;
 				top: 1px;
 			}
 		}
+
+		&.allow-wrap {
+			border-spacing: 0;
+			display: block;
+
+			li {
+				display: inline-block;
+				left: auto;
+			}
+		}
 	}
 
 	[role="tabpanel"] {
