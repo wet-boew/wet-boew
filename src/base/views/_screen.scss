@@ -6,6 +6,22 @@
 	display: none !important;
 }
 
+/* Hide MathML check */
+.mathml,
+.no-mathml {
+	body {
+		> {
+			div {
+				> {
+					math {
+						@extend %display-none-important;
+					}
+				}
+			}
+		}
+	}
+}
+
 #wb-dtmd {
 	margin: 2em 0 0;
 
