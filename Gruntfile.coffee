@@ -284,7 +284,7 @@ module.exports = (grunt) ->
 			htmlFiles.forEach(
 				( file ) ->
 					contents = grunt.file.read( file )
-					contents = contents.replace( /([\"'])\.\/\.\.\//g, "$1./" )
+					contents = contents.replace( /\.\.\/(wet\-boew|theme\-wet\-boew)/g, "$1" )
 					contents = contents.replace( /\"(?!https:)([^\"]*)?\.(js|css)\"/g, "\"$1.min.$2\"" )
 
 					grunt.file.write(file, contents);
