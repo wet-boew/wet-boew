@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Afficher des images et d'autres contenus dans une boîte de dialogue, individuellement ou dans le cadre d'une galerie.",
 	"altLangPrefix": "lightbox",
-	"dateModified": "2015-03-09"
+	"dateModified": "2015-05-28"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -177,7 +177,7 @@
 					<ul>
 						<li><strong>Ouvert avec <code>.wb-lbx</code></strong>:
 							<pre><code>$( ".wb-lbx" ).on( "mfpClose", function( event ) {
-	$.magnificPopup.instance.items[ 0 ].data.src;
+	var src = $.magnificPopup.instance.items[ 0 ].src;
 	
 	if ( src === "#inline_content" ) {
 	} else if ( src === "demo/1_b.jpg" ) {
@@ -186,7 +186,7 @@
 						</li>
 						<li><strong>Ouvert avec JavaScript</strong>:
 							<pre><code>$( document ).on( "mfpClose", function( event ) {
-	$.magnificPopup.instance.items[ 0 ].data.src;
+	var src = $.magnificPopup.instance.items[ 0 ].src;
 	
 	if ( src === "#inline_content" ) {
 	} else if ( src === "demo/1_b.jpg" ) {
