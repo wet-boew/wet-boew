@@ -274,22 +274,21 @@ var componentName = "wb-frmvld",
 
 					// Clear the form and remove error messages on reset
 					$document.on( "click vclick touchstart", selector + " input[type=reset]", function( event ) {
-						var $summaryContainer,
-							which = event.which,
+						var which = event.which,
 							ariaLive;
 
 						// Ignore middle/right mouse buttons
 						if ( !which || which === 1 ) {
 							validator.resetForm();
-							$summaryContainer = $form.find( "#" + errorFormId );
-							if ( $summaryContainer.length > 0 ) {
-								$summaryContainer.empty();
-							}
+							$( "#" + errorFormId ).detach();
 
 							ariaLive = $form.parent().find( ".arialive" )[ 0 ];
 							if ( ariaLive.innerHTML.length !== 0 ) {
 								ariaLive.innerHTML = "";
 							}
+
+							// Correct the colouring of fields that are no longer invalid
+							$form.find( ".has-error" ).removeClass( "has-error" );
 						}
 					} );
 
