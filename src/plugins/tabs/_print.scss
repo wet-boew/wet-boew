@@ -6,9 +6,14 @@
 /**
  * Print styles
  */
+
+%tabs-print-display-none-important {
+	display: none !important;
+}
+
 .wb-tabs {
 	[role="tablist"] {
-		display: none !important;
+		@extend %tabs-print-display-none-important;
 	}
 
 	[role="tabpanel"] {
@@ -23,6 +28,40 @@
 
 		summary {
 			display: block !important;
+		}
+	}
+
+	&.print-active {
+		> {
+			.tabpanels {
+				> {
+					div {
+						&.out {
+							@extend %tabs-print-display-none-important;
+						}
+					}
+
+					details {
+						&.out {
+							.tgl-panel {
+								@extend %tabs-print-display-none-important;
+							}
+						}
+
+						> {
+							summary {
+								&[aria-expanded="false"] {
+									+ {
+										.tgl-panel {
+											@extend %tabs-print-display-none-important;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }
