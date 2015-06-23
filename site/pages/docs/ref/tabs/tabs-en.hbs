@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Dynamically stacks multiple sections of content, transforming them into a tabbed interface.",
 	"altLangPrefix": "tabs",
-	"dateModified": "2015-02-24"
+	"dateModified": "2015-06-23"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -284,6 +284,21 @@
 						<dd>Last selected tab is displayed every time the page is loaded</dd>
 						<dt><code>ignore-session</code></dt>
 						<dd>First or default selected tab is displayed every time the page is loaded</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td>Print only the active (visible) panel (<code>print-active</code>) (v4.0.15+)</td>
+				<td>Configure the tab interface to print only the active (visible) panel through the <code>print-active</code> class.</td>
+				<td>Add <code>print-active</code> after the <code>wb-tabs</code> class.
+					<pre><code>class="wb-tabs print-active"</code></pre>
+				</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>All panels are printed</dd>
+						<dt><code>print-active</code></dt>
+						<dd>Only the active panel is printed</dd>
 					</dl>
 				</td>
 			</tr>
