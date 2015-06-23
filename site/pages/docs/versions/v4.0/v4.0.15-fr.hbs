@@ -1,0 +1,86 @@
+---
+{
+	"title": "v4.0.15 - Notes d'utilisation",
+	"language": "fr",
+	"description": "v4.0.15 - Notes d'utilisation - Historique des versions - Boîte à outils de l'expérience Web (BOEW)",
+	"altLangPrefix": "v4.0.15",
+	"dateModified": "2015-06-23"
+}
+---
+<ul>
+	<li><strong>Date de lancement&#160;:</strong> <time>2015-06-23</time></li>
+	<li><a href="../dwnld-fr.html#v4015">Téléchargements</a></li>
+</ul>
+
+<section>
+	<h2>Quoi de neuf?</h2>
+	<div lang="en">
+	<p><strong>Needs translation</strong></p>
+	<ul>
+		<li><strong>Form Validation:</strong> Added support for a single required checkbox.</li>
+		<li><strong>Dimissable content:</strong> Use ID attribute if present as content ID and strip whitespace before generating unique ID.</li>
+		<li><strong>Data-inview:</strong> Ensure that elements removed from the DOM don't trigger data-inview and tie the overlay close action to the dismiss close action when the data-inview element is dismissable. Fixed the bottom bar test failing in IE 10 & 11.</li>
+		<li><strong>Feeds:</strong> Added a way to manually specify a list of videos Also significantly optimize the YouTube feeds by only using one lightbox for the whole feed, on demand and Optimized the flickr feed Fixes #6219.</li>
+		<li><strong>Share widget:</strong> Added filtering option for email and fixed apostrophe filtering.</li>
+		<li><strong>Geomap:</strong> Now using native OpenLayers events to catch mouseover and mouseout on the map and Fixed i18n issues.</li>
+		<li><strong>Core:</strong> Implement refresh.wb event, combine the WET core CSS in the theme CSS ()Partially implements #6809), and merge the unmin resources with the minified resources ()Partially implements #6809).</li>
+		<li><strong>Tabbed interface:</strong> Fixed initialization of second or more tabbed interfaces on a page, added class to allow tabs to wrap, fixed display issue with nested lists within nested tabbed interfaces, and fixed WAI-ARIA attributes in mobile view and added print-active option.</li>
+		<li><strong>Tabbed interface - Carousel</strong> Added fallback for when active class is omitted from the tablist.</li>
+		<li><strong>MathML:</strong> Hides Modernizr MathML check with CSS after the check has completed.</li>
+		<li><strong>Form validation:</strong> Fixed colouring of errored fields and error summary on form reset.</li>
+	</ul>
+	</div>
+</section>
+
+<section>
+	<h2>Détails</h2>
+	<p><strong>Nombre des &#171;&#160;commits&#160;&#187;</strong> 36</p>
+	<ul>
+		<li><a href="https://github.com/LaurentGoderre">@LaurentGoderre</a>&#160;: &#171;&#160;15 commits&#160;&#187;</li>
+		<li><a href="https://github.com/pjackson28">@pjackson28</a>&#160;: &#171;&#160;11 commits&#160;&#187;</li>
+		<li><a href="https://github.com/thomasgohard">@thomasgohard</a>&#160;: &#171;&#160;7 commits&#160;&#187;</li>
+		<li><a href="https://github.com/jvanulde">@jvanulde</a>&#160;: &#171;&#160;2 commits&#160;&#187;</li>
+		<li><a href="https://github.com/vanjaveselinovic">@vanjaveselinovic</a>&#160;: &#171;&#160;1 commit&#160;&#187;</li>		
+	</ul>
+	<section>
+		<h3>Liste des &#171;&#160;commits&#160;&#187;</h3>
+		<ul lang="en">
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/c7d48fd">Form Validation: Added support for a single required checkbox Fixes #6638</a> - Laurent Goderre, 2015-03-26 16:59:34 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/09db0b2">Updated bower dependencies Fixes #6737</a> - Laurent Goderre, 2015-05-01 14:06:53 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/351a506">CSS: ensured minimum size for buttons</a> - vanjaveselinovic, 2015-05-08 17:05:38 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/fc261b6">Updated the build version to v4.0.15-development</a> - Laurent Goderre, 2015-05-19 09:55:15 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d94dde0">Core: Added function to strip whitespace.</a> - Thomas Gohard, 2015-05-22 11:56:47 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d7a4fc7">Dimissable content: Strip whitespace before generating unique ID.</a> - Thomas Gohard, 2015-05-22 11:56:54 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/fbe30ff">Dismissable content: Use ID attribute if present as content ID.</a> - Thomas Gohard, 2015-05-22 13:27:07 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/88bc8ce">Data-inview: Ensure that elements removed from the DOM don't trigger data-inview.</a> - Thomas Gohard, 2015-05-22 19:51:20 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/77fa5c0">Core: Implement refresh.wb event.</a> - Thomas Gohard, 2015-05-22 19:51:20 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/7b5a8e0">Data-inview: Tie the overlay close action to the dismiss close action when the data-inview element is dismissable.</a> - Thomas Gohard, 2015-05-22 19:51:20 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/bcf464b">Feeds: Added a way to manually specify a list of videos Also significantly optimize the YouTube feeds by only using one lightbox for the whole feed, on demand</a> - Laurent Goderre, 2015-05-26 11:09:31 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/100602b">Feeds: Optimized the flickr feed Fixes #6219</a> - Laurent Goderre, 2015-05-26 12:56:09 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/46f1d18">Share widget: Added filtering option for email.</a> - Paul Jackson, 2015-05-27 16:41:07 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/2c244e8">Addresses in part issue #6751. Now using native OpenLayers events to catch mouseover and mouseout on the map.</a> - Joost van Ulden, 2015-05-28 06:11:18 -0700</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d693bad">Share widget: Fixed apostrophe filtering</a> - Paul Jackson, 2015-05-28 10:45:48 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/a480960">Geomap: Fixed i18n issues.</a> - Paul Jackson, 2015-05-28 13:07:05 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/adb8b31">Lightbox: Fixed documentation examples for using Magnific Popup events</a> - Paul Jackson, 2015-05-28 14:56:56 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/597e948">Overlay + Dismissable content: Added type to the close button</a> - Paul Jackson, 2015-05-29 09:50:31 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/16a8175">Combine the WET core CSS in the theme CSS Partially implements #6809</a> - Laurent Goderre, 2015-06-01 13:30:52 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/893a318">Merge the unmin resources with the minified resources Partially implements #6809</a> - Laurent Goderre, 2015-06-01 14:54:08 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/170c6c5">Site: Added central include for server page head resources</a> - Laurent Goderre, 2015-06-01 15:56:01 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e6001c1">Theme: Fixed the theme in IE8</a> - Laurent Goderre, 2015-06-02 11:10:35 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/71bf850">Data Inview: Fixed the bottom bar test failing in IE 10 & 11</a> - Laurent Goderre, 2015-06-02 14:15:39 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/9b0a3b5">Build: Fixed the minified assets path Fixes #6835</a> - Laurent Goderre, 2015-06-03 14:31:43 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/3ecaed8">Tabbed interface: Fixed initialization of second or more tabbed interfaces on a page</a> - Paul Jackson, 2015-06-04 15:01:53 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/eea6ef7">Build: Moved core and themes resource in their own subfolders Partially implements #6809</a> - Laurent Goderre, 2015-06-11 10:03:33 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/15780b1">Theme: Fixed the variables in the WET theme</a> - Laurent Goderre, 2015-06-11 15:37:47 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/e2c0067">Tabbed interface: Added class to allow tabs to wrap.</a> - Thomas Gohard, 2015-06-15 13:05:27 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/a5252b2">Fixes issue #2743</a> - Joost van Ulden, 2015-06-16 05:57:06 -0700</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/c358f72">Tabbed interface: Fixed display issue with nested lists within nested tabbed interfaces</a> - Paul Jackson, 2015-06-17 10:24:04 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/4a9a654">Site: Fixed the links to resources inside the documentation</a> - Laurent Goderre, 2015-06-17 11:57:26 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/d3697a8">MathML: Hides Modernizr MathML check with CSS after the check has completed</a> - Paul Jackson, 2015-06-17 12:53:07 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/22b1562">Build: Fix the backwards compatibility copy of assets The grunt copy task was corrupting assets</a> - Laurent Goderre, 2015-06-18 10:29:29 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/f494fa7">Form validation: Fixed colouring of errored fields and error summary on form reset</a> - Paul Jackson, 2015-06-18 18:17:28 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/fa00eaf">Tabbed interface - Carousel: Added fallback for when active class is omitted from the tablist</a> - Paul Jackson, 2015-06-22 13:25:44 -0400</li>
+			<li><a href="https://github.com/wet-boew/wet-boew/commit/aec5eb6">Tabbed interface: Fixed WAI-ARIA attributes in mobile view and added print-active option</a> - Paul Jackson, 2015-06-23 14:11:54 -0400</li>
+		</ul>
+	</section>
+</section>
