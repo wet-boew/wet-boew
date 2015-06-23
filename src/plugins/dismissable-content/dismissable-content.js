@@ -72,7 +72,7 @@ var componentName = "wb-dismissable",
 				$( contentWrapper ).wrap( "<div class='" + containerClass + "'>" );
 				contentContainer = contentWrapper.parentNode;
 
-				dismissButton = "<button class='mfp-close " + dismissClass +
+				dismissButton = "<button type='button' class='mfp-close " + dismissClass +
 					"' title='" + i18nText.dismiss + "'>&#xd7;<span class='wb-inv'> " +
 					i18nText.dismiss + "</span></button>";
 				$( contentContainer ).append( dismissButton );
@@ -98,6 +98,7 @@ var componentName = "wb-dismissable",
 	dismissContent = function( elm ) {
 		localStorage.setItem( elm.getAttribute( "data-" + idKey ), true );
 		elm.parentNode.removeChild( elm );
+		$document.trigger( "refresh.wb" );
 	};
 
 // Bind the init event of the plugin

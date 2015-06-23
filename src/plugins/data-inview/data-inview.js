@@ -70,7 +70,35 @@ var componentName = "wb-inview",
 			// partial - part of the element is in the viewport
 			// none - no part of the element is in the viewport
 			viewState = ( scrollBottom > y2 && scrollTop < y1 ) ? "all" : inView ? "none" : "partial",
-			$dataInView, show;
+			$dataInView = $( "#" + $elm.attr( "data-inview" ) ),
+			show;
+
+		// Remove any element that no longer exists in the DOM
+		if ( elementWidth === 0 || elementHeight === 0 ) {
+			$elms = $elms.not( $elm );
+			$dataInView.addClass( "user-closed" );
+			$dataInView.trigger( {
+				type: ( "close" ),
+				namespace: "wb-overlay",
+				noFocus: true
+			} );
+
+			return;
+		}
+
+		// Link the overlay close button to the dismiss action if the inview content is dismissable
+		if ( $elm.hasClass( "wb-dismissable" ) ) {
+			if ( $dataInView.hasClass( "wb-overlay" ) ) {
+				$dataInView.children( ".overlay-close" ).on( "click vclick", function( event ) {
+					var which = event.which;
+
+					// Ignore middle/right mouse buttons
+					if ( !which || which === 1 ) {
+						$elm.parent().siblings( ".content-dismiss" ).trigger( "click" );
+					}
+				} );
+			}
+		}
 
 		// Only if the view state has changed
 		if ( viewState !== oldViewState ) {
@@ -79,7 +107,6 @@ var componentName = "wb-inview",
 			show = inView || ( $elm.hasClass( "show-none" ) ? false : viewState === "partial" );
 
 			$elm.attr( "data-inviewstate", viewState );
-			$dataInView = $( "#" + $elm.attr( "data-inview" ) );
 
 			if ( $dataInView.length !== 0 ) {
 
@@ -142,6 +169,12 @@ $window.on( "scroll scrollstop", function() {
 
 $document.on( "txt-rsz.wb win-rsz-width.wb win-rsz-height.wb", function() {
 	$elms.trigger( scrollEvent );
+} );
+
+$document.on( "refresh.wb", function() {
+	$elms.each( function() {
+		onInView( $( this ) );
+	} );
 } );
 
 // Add the timer poke to initialize the plugin

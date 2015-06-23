@@ -47,7 +47,6 @@ module.exports = (grunt) ->
 		[
 			"js-min"
 			"css-min"
-			"assets-min"
 			"imagemin"
 		]
 	)
@@ -285,7 +284,7 @@ module.exports = (grunt) ->
 			htmlFiles.forEach(
 				( file ) ->
 					contents = grunt.file.read( file )
-					contents = contents.replace( /\/unmin/g, "" )
+					contents = contents.replace( /\.\.\/(wet\-boew|theme\-wet\-boew)/g, "$1" )
 					contents = contents.replace( /\"(?!https:)([^\"]*)?\.(js|css)\"/g, "\"$1.min.$2\"" )
 
 					grunt.file.write(file, contents);
@@ -304,13 +303,15 @@ module.exports = (grunt) ->
 
 		# Metadata.
 		pkg: grunt.file.readJSON("package.json")
+		coreDist: "dist/wet-boew"
+		themeDist: "dist/theme-wet-boew"
 		jqueryVersion: grunt.file.readJSON("lib/jquery/bower.json")
 		jqueryOldIEVersion: grunt.file.readJSON("lib/jquery-oldIE/bower.json")
 		banner: "/*!\n * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)\n * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html\n" +
 				" * v<%= pkg.version %> - " + "<%= grunt.template.today('yyyy-mm-dd') %>\n *\n */"
 		modernizrBanner: "/*! Modernizr (Custom Build) | MIT & BSD */\n"
 		glyphiconsBanner: "/*!\n * GLYPHICONS Halflings for Twitter Bootstrap by GLYPHICONS.com | Licensed under http://www.apache.org/licenses/LICENSE-2.0\n */"
-		i18nGDocsID: "0AqLc8VEIumBwdDNud1M2Wi1tb0RUSXJxSGp4eXI0ZXc"
+		i18nGDocsID: "1BmMrKN6Rtx-dwgPNEZD6AIAQdI4nNlyVVVCml0U594o"
 		i18nGDocsSheet: 1
 
 		deployBranch: "v4.0-dist"
@@ -320,7 +321,7 @@ module.exports = (grunt) ->
 			i18n:
 				options:
 					overwrite: true
-				src: "https://docs.google.com/spreadsheet/pub?key=<%= i18nGDocsID %>&gid=<%= i18nGDocsSheet %>&output=csv"
+				src: "https://docs.google.com/spreadsheets/d/<%= i18nGDocsID %>/export?gid=<%= i18nGDocsSheet %>&format=csv"
 				dest: "src/i18n/i18n.csv"
 
 		concat:
@@ -340,7 +341,7 @@ module.exports = (grunt) ->
 					"!src/plugins/**/demo/*.js"
 					"!src/plugins/**/deps/*.*"
 				]
-				dest: "dist/unmin/js/wet-boew.js"
+				dest: "<%= coreDist %>/js/wet-boew.js"
 
 			coreIE8:
 				options:
@@ -357,7 +358,7 @@ module.exports = (grunt) ->
 					"!src/plugins/**/demo/*.js"
 					"!src/plugins/**/deps/*.*"
 				]
-				dest: "dist/unmin/js/ie8-wet-boew.js"
+				dest: "<%= coreDist %>/js/ie8-wet-boew.js"
 
 			pluginsIE8:
 				options:
@@ -371,7 +372,7 @@ module.exports = (grunt) ->
 					"!src/plugins/**/demo/*.js"
 					"!src/plugins/**/deps/*.*"
 				]
-				dest: "dist/unmin/js/ie8-wet-boew2.js"
+				dest: "<%= coreDist %>/js/ie8-wet-boew2.js"
 
 			test:
 				src: [
@@ -383,7 +384,7 @@ module.exports = (grunt) ->
 			i18n:
 				options:
 					process: ( src, filepath ) ->
-						lang = filepath.replace "dist/unmin/js/i18n/", ""
+						lang = filepath.replace "dist/js/i18n/", ""
 						# jQuery validation uses an underscore for locals
 						lang = lang.replace "_", "-"
 						validationPath = "lib/jquery-validation/src/localization/"
@@ -405,12 +406,12 @@ module.exports = (grunt) ->
 
 						return src
 
-				cwd: "dist/unmin/js/i18n"
+				cwd: "dist/js/i18n"
 				src: [
 					"*.js"
 					"!*.min.js"
 				]
-				dest: "dist/unmin/js/i18n"
+				dest: "<%= coreDist %>/js/i18n"
 				expand: true
 
 		usebanner:
@@ -418,7 +419,10 @@ module.exports = (grunt) ->
 				options:
 					banner: "@charset \"utf-8\";\n<%= banner %>"
 				files:
-					src: "dist/unmin/css/*.*"
+					src: [
+						"<%= coreDist %>/css/*.*"
+						"<%= themeDist %>/css/*.*"
+					]
 
 		# Builds the demos
 		assemble:
@@ -430,8 +434,8 @@ module.exports = (grunt) ->
 				production: false
 				data: "site/data/**/*.{yml,json}"
 				helpers: "site/helpers/helper{,s}-*.js"
-				layoutdir: "site/layouts"
 				partials: "site/includes/**/*.hbs"
+				layoutdir: "site/layouts"
 				layout: "default.hbs"
 				environment:
 					root: "/v4.0-ci/unmin"
@@ -530,6 +534,7 @@ module.exports = (grunt) ->
 				]
 				css: "src/plugins/share/sprites/_sprites_share.scss"
 				map: "src/plugins/share/assets/sprites_share.png"
+				staticImagePath: '#{$wb-assets-path}'
 				output: "scss"
 			geomap:
 				src: [
@@ -537,6 +542,7 @@ module.exports = (grunt) ->
 				]
 				css: "src/plugins/geomap/sprites/_sprites_geomap.scss"
 				map: "src/plugins/geomap/assets/sprites_geomap.png"
+				staticImagePath: '#{$wb-assets-path}'
 				output: "scss"
 
 		# Compiles the Sass files
@@ -549,7 +555,7 @@ module.exports = (grunt) ->
 						"**/*.scss"
 						"!**/demo/*.scss"
 					]
-					dest: "dist/unmin/css/"
+					dest: "<%= coreDist %>/css/"
 					ext: ".css"
 				,
 					expand: true
@@ -557,7 +563,7 @@ module.exports = (grunt) ->
 					src: [
 						"**/*.scss"
 					]
-					dest: "dist/unmin/css/"
+					dest: "<%= themeDist %>/css/"
 					ext: ".css"
 				,
 					expand: true
@@ -569,7 +575,7 @@ module.exports = (grunt) ->
 						"!**/*-noscript.scss"
 						"!**/demo/*.scss"
 					]
-					dest: "dist/unmin/css/polyfills/"
+					dest: "<%= coreDist %>/css/polyfills/"
 					ext: ".css"
 					flatten: true
 				,
@@ -611,13 +617,27 @@ module.exports = (grunt) ->
 						"ios 5"
 						"opera 12.1"
 					]
-				cwd: "dist/unmin/css"
-				src: [
-					"*.css"
-					"!ie8*.css"
+				files: [
+					{
+						cwd: "<%= coreDist %>/css"
+						src: [
+							"*.css"
+							"!ie8*.css"
+						]
+						dest: "<%= coreDist %>/css"
+						expand: true
+					}
+
+					{
+						cwd: "<%= themeDist %>/css"
+						src: [
+							"**/*.css"
+							"!ie8*.css"
+						]
+						dest: "<%= themeDist %>/css"
+						expand: true
+					}
 				]
-				dest: "dist/unmin/css"
-				expand: true
 
 			# Needs both IE8 and vendor prefixing
 			mixed:
@@ -632,19 +652,19 @@ module.exports = (grunt) ->
 						"opera 12.1"
 					]
 				files: [
-					cwd: "dist/unmin/css/polyfills"
+					cwd: "<%= coreDist %>/css/polyfills"
 					src: [
 						"**/*.css"
 					]
-					dest: "dist/unmin/css/polyfills/"
+					dest: "<%= coreDist %>/css/polyfills/"
 					expand: true
 				,
-					cwd: "dist/unmin/"
+					cwd: "dist"
 					src: [
 						"demos/**/*.css"
 						"docs/**/*.css"
 					]
-					dest: "dist/unmin/"
+					dest: "dist"
 					expand: true
 				]
 
@@ -654,13 +674,12 @@ module.exports = (grunt) ->
 					browsers: [
 						"ie 8"
 					]
-				cwd: "dist/unmin/css"
+				cwd: "dist"
 				src: [
-					"ie8*.css"
+					"**/ie8*.css"
 				]
-				dest: "dist/unmin/css"
+				dest: "dist/"
 				expand: true
-				flatten: true
 
 		csslint:
 			options:
@@ -673,7 +692,11 @@ module.exports = (grunt) ->
 						id: "csslint-xml"
 						dest: "csslint-unmin.log"
 					]
-				src: "dist/unmin/css/**/*.css"
+				src: [
+					"<%= coreDist %>/**/*.css"
+					"<%= themeDist %>/**/*.css"
+					"!dist/**/*.min.css"
+				]
 
 			demos:
 				options:
@@ -688,13 +711,14 @@ module.exports = (grunt) ->
 		uglify:
 			polyfills:
 				options:
+					report: "min"
 					banner: "<%= banner %>"
 					preserveComments: (uglify,comment) ->
 						return comment.value.match(/^!/i)
 				expand: true
-				cwd: "dist/unmin/js/polyfills/"
-				src: ["*.js"]
-				dest: "dist/js/polyfills/"
+				cwd: "<%= coreDist %>/js/polyfills/"
+				src: "*.js"
+				dest: "<%= coreDist %>/js/polyfills/"
 				ext: ".min.js"
 
 			demos:
@@ -704,7 +728,7 @@ module.exports = (grunt) ->
 						return comment.value.match(/^!/i)
 				expand: true
 				cwd: "dist/unmin/demos/"
-				src: ["**/demo/*.js"]
+				src: "**/demo/*.js"
 				dest: "dist/demos/"
 				ext: ".min.js"
 
@@ -714,12 +738,13 @@ module.exports = (grunt) ->
 						quote_keys: true
 					preserveComments: (uglify,comment) ->
 						return comment.value.match(/^!/i)
-				cwd: "dist/unmin/js/"
+				cwd: "<%= coreDist %>/js/"
 				src: [
 					"*wet-boew*.js"
 					"!ie*.js"
+					"!*.min.js"
 				]
-				dest: "dist/js/"
+				dest: "<%= coreDist %>/js/"
 				ext: ".min.js"
 				expand: true
 
@@ -730,9 +755,12 @@ module.exports = (grunt) ->
 						ascii_only: true
 					preserveComments: (uglify,comment) ->
 						return comment.value.match(/^!/i)
-				cwd: "dist/unmin/js/"
-				src: [ "ie8*.js" ]
-				dest: "dist/js/"
+				cwd: "<%= coreDist %>/js/"
+				src: [
+					"ie8*.js"
+					"!*.min.js"
+				]
+				dest: "<%= coreDist %>/js/"
 				ext: ".min.js"
 				expand: true
 
@@ -741,18 +769,24 @@ module.exports = (grunt) ->
 				options:
 					banner: "<%= banner %>"
 				expand: true
-				cwd: "dist/unmin/js/i18n"
-				src: ["**/*.js"]
-				dest: "dist/js/i18n"
+				cwd: "<%= coreDist %>/js/i18n"
+				src: [
+					"**/*.js"
+					"!**/*.min.js"
+				]
+				dest: "<%= coreDist %>/js/i18n"
 				ext: ".min.js"
 
 			deps:
 				options:
 					preserveComments: "some"
 				expand: true
-				cwd: "dist/unmin/js/deps"
-				src: ["*.js"]
-				dest: "dist/js/deps/"
+				cwd: "<%= coreDist %>/js/deps"
+				src: [
+					"*.js"
+					"!*.min.js"
+				]
+				dest: "<%= coreDist %>/js/deps/"
 				rename: (destBase, destPath) ->
 					return destBase + destPath.replace(/\.js$/, ".min.js")
 
@@ -763,12 +797,12 @@ module.exports = (grunt) ->
 				options:
 					banner: ""
 				expand: true
-				cwd: "dist/unmin/css"
 				src: [
-					"**/*.css"
+					"<%= coreDist %>/**/*.css"
+					"<%= themeDist %>/**/*.css"
 					"!**/ie8*.css"
+					"!**/*.min.css"
 				]
-				dest: "dist/css"
 				ext: ".min.css"
 
 			distIE8:
@@ -777,11 +811,11 @@ module.exports = (grunt) ->
 					compatibility: "ie8"
 					noAdvanced: true
 				expand: true
-				cwd: "dist/unmin/css"
 				src: [
-					"**/ie8*.css"
+					"<%= coreDist %>/**/ie8*.css"
+					"<%= themeDist %>/**/ie8*.css"
+					"!**/*.min.css"
 				]
-				dest: "dist/css"
 				ext: ".min.css"
 
 			demos_min:
@@ -858,6 +892,7 @@ module.exports = (grunt) ->
 						"The value of attribute “title” on element “a” from namespace “http://www.w3.org/1999/xhtml” is not in Unicode Normalization Form C." #required for vietnamese translations
 						"Text run is not in Unicode Normalization Form C." #required for vietnamese translations
 						"The “longdesc” attribute on the “img” element is obsolete. Use a regular “a” element to link to the description."
+						/Bad value “\.\/\.\.\/[^”]*” for attribute “[^”]*” on XHTML element “[^”]*”: Path component contains a segment “\/\.\.\/” not at the beginning of a relative reference, or it contains a “\/\.\/”. These should be removed./
 					]
 				src: [
 					"dist/unmin/**/*.html"
@@ -888,11 +923,10 @@ module.exports = (grunt) ->
 		cssmin_ie8_clean:
 			min:
 				expand: true
-				cwd: "dist/css"
 				src: [
-					"**/ie8*.min.css"
+					"<%= coreDist %>/**/ie8*.min.css"
+					"<%= themeDist %>/**/ie8*.min.css"
 				]
-				dest: "dist/css"
 
 		modernizr:
 			dist:
@@ -935,7 +969,7 @@ module.exports = (grunt) ->
 			bootstrap:
 				cwd: "lib/bootstrap-sass-official/assets/fonts/bootstrap"
 				src: "*.*"
-				dest: "dist/unmin/fonts"
+				dest: "<%= coreDist %>/fonts"
 				expand: true
 				flatten: true
 
@@ -967,7 +1001,7 @@ module.exports = (grunt) ->
 				files: [
 					cwd: "src/polyfills"
 					src: "**/*.js"
-					dest: "dist/unmin/js/polyfills"
+					dest: "<%= coreDist %>/js/polyfills"
 					expand: true
 					flatten: true
 				,
@@ -986,7 +1020,7 @@ module.exports = (grunt) ->
 						"proj4/dist/proj4.js"
 						"openlayers/OpenLayers.debug.js"
 					]
-					dest: "dist/unmin/js/deps"
+					dest: "<%= coreDist %>/js/deps"
 					rename: (dest, src) ->
 						return dest + "/" + src.replace( ".debug", "" )
 					expand: true
@@ -997,7 +1031,7 @@ module.exports = (grunt) ->
 						"plugins/**/assets/*"
 						"polyfills/**/assets/*"
 					]
-					dest: "dist/unmin/assets"
+					dest: "<%= coreDist %>/assets"
 					expand: true
 					flatten: true
 				,
@@ -1005,7 +1039,7 @@ module.exports = (grunt) ->
 					src: [
 						"**/deps/*.js"
 					]
-					dest: "dist/unmin/js/deps"
+					dest: "<%= coreDist %>/js/deps"
 					expand: true
 					flatten: true
 				]
@@ -1049,22 +1083,6 @@ module.exports = (grunt) ->
 				dest: "dist/unmin/docs"
 				expand: true
 
-			themeAssets:
-				cwd: "theme/"
-				src: "assets/*.*"
-				dest: "dist/unmin"
-				expand: true
-
-			assets_min:
-				cwd: "dist/unmin/"
-				src: [
-					"assets/*"
-					"fonts/*"
-					"js/assets/*"
-				]
-				dest: "dist"
-				expand: true
-
 			demos_min:
 				cwd: "dist/unmin/demos"
 				src: [
@@ -1086,20 +1104,62 @@ module.exports = (grunt) ->
 				dest: "dist/docs"
 				expand: true
 
-			deploy:
-				src: [
-					"*.txt"
-					"*.html"
-					"README.md"
-				]
-				dest: "dist"
+			themeAssets:
+				cwd: "theme/"
+				src: "assets/*.*"
+				dest: "<%= themeDist %>"
 				expand: true
+
+			deploy:
+				files: [
+					{
+						src: [
+							"*.txt"
+							"*.html"
+							"README.md"
+						]
+						dest: "dist"
+						expand: true
+					}
+
+					#Backwards compatibility.
+					#TODO: Remove in v4.1
+					{
+						cwd: "<%= coreDist %>"
+						src: [
+							"**/*.*"
+						]
+						dest: "dist"
+						expand: true
+					}
+
+					{
+						cwd: "<%= themeDist %>"
+						src: [
+							"**/*.*"
+						]
+						dest: "dist"
+
+						expand: true
+					}
+				]
+
+				#Backwards compatibility.
+				#TODO: Remove in v4.1
+				options:
+					noProcess: [
+						'**/*.{png,gif,jpg,ico,ttf,otf,woff,svg,swf}'
+					]
+					process: (content, filepath) ->
+						if filepath.match(/\.css/)
+							return content.replace(/\.\.\/\.\.\/wet-boew\/(assets|fonts)/g, '../$1')
+						content
 
 		imagemin:
 			all:
-				cwd: "dist/unmin"
+				cwd: "dist/"
 				src: "**/*.png"
-				dest: "dist/unmin"
+				dest: "dist/"
 				expand: true
 
 		clean:
@@ -1193,7 +1253,7 @@ module.exports = (grunt) ->
 			js:
 				options:
 					template: "src/i18n/base.js"
-				dest: "dist/unmin/js/i18n/"
+				dest: "<%= coreDist %>/js/i18n/"
 			assemble:
 				dest: 'site/data/i18n'
 

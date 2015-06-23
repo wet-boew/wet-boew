@@ -60,21 +60,16 @@ var componentName = "wb-feeds",
 		 * @return {string}	HTML string for creating a photowall effect
 		 */
 		flickr: function( data ) {
-
-			var seed = wb.getId(),
-				title = data.title,
-				media = data.media.m,
-				thumbnail = media.replace( "_m.", "_s." ),
-				image = media.replace( "_m", "" ),
-				description = data.description.replace( /^\s*<p>(.*?)<\/p>\s*<p>(.*?)<\/p>/i, "" );
+			var media = data.media.m,
+				flickrData = {
+					title: data.title,
+					thumbnail: media.replace( "_m.", "_s." ),
+					image: media.replace( "_m", "" ),
+					description: data.description.replace( /^\s*<p>(.*?)<\/p>\s*<p>(.*?)<\/p>/i, "" )
+				};
 
 			// due to CORS we cannot default to simple ajax pulls of the image. We have to inline the content box
-			return "<li><a class='wb-lbx' href='#" + seed + "'><img src='" + thumbnail + "' alt='" + title + "' title='" + title + "' class='img-responsive'/></a>" +
-					"<section id='" + seed + "' class='mfp-hide modal-dialog modal-content overlay-def'>" +
-					"<header class='modal-header'><h2 class='modal-title'>" + title + "</h2></header>" +
-					"<div class='modal-body'><img src='" + image + "' class='thumbnail center-block' alt='" + title + "' />" +
-					description + "</div></section>" +
-					"</li>";
+			return "<li><a class='feed-flickr' href='javascript:;' data-flickr='" + JSON.stringify( flickrData ) + "'><img src='" + flickrData.thumbnail + "' alt='" + flickrData.title + "' title='" + flickrData.title + "' class='img-responsive'/></a></li>";
 		},
 
 		/**
@@ -83,11 +78,13 @@ var componentName = "wb-feeds",
 		 * @return {string}	HTML string for creating a photowall effect
 		 */
 		youtube: function( data ) {
-			var title = data.title,
-				videoId = data.id;
+			var youtubeDate = {
+				title: data.title,
+				videoId: data.id
+			};
 
 			// Due to CORS we cannot default to simple ajax pulls of the image. We have to inline the content box
-			return "<li class='col-md-4 col-sm-6 feed-youtube' data-youtube='{\"videoId\":\"" + videoId + "\", \"title\":\"" + title + "\"}'><a href='javascript:;'><img src='http://img.youtube.com/vi/" + videoId + "/mqdefault.jpg' alt='" + title + "' title='" + title + "' class='img-responsive' /></a></li>";
+			return "<li class='col-md-4 col-sm-6 feed-youtube' data-youtube='" + JSON.stringify( youtubeDate ) + "'><a href='javascript:;'><img src='http://img.youtube.com/vi/" + youtubeDate.videoId + "/mqdefault.jpg' alt='" + youtubeDate.title + "' title='" + youtubeDate.title + "' class='img-responsive' /></a></li>";
 		},
 		/**
 		 * [pinterest template]
@@ -447,6 +444,30 @@ $document.on( "click", selector + " .feed-youtube", function( event ) {
 
 	$( document ).trigger( "open.wb-lbx", [ {
 		src: youTubeOverlaySelector,
+		type: "inline"
+	} ] );
+} );
+
+$document.on( "click", selector + " .feed-flickr", function( event ) {
+	var flickrOverlaySelector  = "#wb-feeds-flick-lbx",
+		$flickrOverlay = $( flickrOverlaySelector ),
+		flickrData = wb.getData( event.currentTarget, "flickr" ),
+		body = "<img src='" + flickrData.image + "' class='thumbnail center-block' alt='" + flickrData.title + "' /><span>" +
+			flickrData.description + "</span>";
+
+	if ( $flickrOverlay.length === 0 ) {
+		$flickrOverlay = $( "<section id='wb-feeds-flick-lbx' class='mfp-hide modal-dialog modal-content overlay-def'>" +
+			"<header class='modal-header'><h2 class='modal-title'>" + flickrData.title + "</h2></header>" +
+			"<div class='modal-body'>" + body + "</div></section>" ).insertAfter( "main" );
+	} else {
+
+		//Modify lightbox
+		$flickrOverlay.find( ".modal-title" ).text( flickrData.title );
+		$flickrOverlay.find( ".modal-body" ).empty().append( body );
+	}
+
+	$( document ).trigger( "open.wb-lbx", [ {
+		src: flickrOverlaySelector,
 		type: "inline"
 	} ] );
 } );

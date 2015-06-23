@@ -144,72 +144,74 @@ $tab-margin-width: 10px;
 		padding: 0;
 		position: relative;
 
-		li {
-			@extend %tabs-display-inline-block;
-			background: $tablist-bg-color;
-			border: {
-				color: $tablist-border-color;
-				style: $tablist-border-style;
-				width: $tablist-border-width;
-			}
-			color: $carousel-tablist-tabcount-color;
-			cursor: pointer;
-			display: table-cell;
-			left: -$tab-margin-width;
-			margin: 0 10px 0 0;
-			position: relative;
-			text-align: center;
-
-			a {
+		> {
+			li {
 				@extend %tabs-display-inline-block;
-				color: $tablist-color;
-				// changed padding and margin from em to px to fix web-kit layout issue
-				padding: 10px;
-				text-decoration: none;
-			}
-
-			&:focus,
-			&:hover {
-				background: $tablist-hover-bg-color;
-				background: transparentize($tablist-hover-bg-color, 0.1);
-			}
-
-			&.active {
-				background: $tablist-active-bg-color;
-				border-bottom: 0;
-				cursor: default;
-				padding-bottom: 1px;
-				z-index: 2;
+				background: $tablist-bg-color;
+				border: {
+					color: $tablist-border-color;
+					style: $tablist-border-style;
+					width: $tablist-border-width;
+				}
+				color: $carousel-tablist-tabcount-color;
+				cursor: pointer;
+				display: table-cell;
+				left: -$tab-margin-width;
+				margin: 0 10px 0 0;
+				position: relative;
+				text-align: center;
 
 				a {
-					cursor: default;
-					padding-top: 6px;
-					border: {
-						color: $tablist-active-link-border-color;
-						style: $tablist-active-link-border-style;
-						width: $tablist-active-link-border-width;
-					}
-				}
-			}
-
-			&.tab-count {
-				line-height: normal;
-
-				> {
-					div {
-						position: relative;
-						top: 0.4em;
-					}
-				}
-
-				.curr-count {
-					font-size: 1.5em;
+					@extend %tabs-display-inline-block;
+					color: $tablist-color;
+					// changed padding and margin from em to px to fix web-kit layout issue
+					padding: 10px;
+					text-decoration: none;
 				}
 
 				&:focus,
 				&:hover {
-					background: transparent;
+					background: $tablist-hover-bg-color;
+					background: transparentize($tablist-hover-bg-color, 0.1);
+				}
+
+				&.active {
+					background: $tablist-active-bg-color;
+					border-bottom: 0;
 					cursor: default;
+					padding-bottom: 1px;
+					z-index: 2;
+
+					a {
+						cursor: default;
+						padding-top: 6px;
+						border: {
+							color: $tablist-active-link-border-color;
+							style: $tablist-active-link-border-style;
+							width: $tablist-active-link-border-width;
+						}
+					}
+				}
+
+				&.tab-count {
+					line-height: normal;
+
+					> {
+						div {
+							position: relative;
+							top: 0.4em;
+						}
+					}
+
+					.curr-count {
+						font-size: 1.5em;
+					}
+
+					&:focus,
+					&:hover {
+						background: transparent;
+						cursor: default;
+					}
 				}
 			}
 		}
@@ -218,6 +220,16 @@ $tab-margin-width: 10px;
 			li {
 				border-bottom: 0;
 				top: 1px;
+			}
+		}
+
+		&.allow-wrap {
+			border-spacing: 0;
+			display: block;
+
+			li {
+				display: inline-block;
+				left: auto;
 			}
 		}
 	}
@@ -243,44 +255,46 @@ $tab-margin-width: 10px;
 			left: 1em;
 			position: static;
 
-			li {
-				@extend %global-display-none;
-				@extend %tab-zindex-100;
+			> {
+				li {
+					@extend %global-display-none;
+					@extend %tab-zindex-100;
 
-				&.control {
-					@extend %tabs-display-inline-block;
-				}
+					&.control {
+						@extend %tabs-display-inline-block;
+					}
 
-				&.prv {
-					margin-right: 5px;
-				}
+					&.prv {
+						margin-right: 5px;
+					}
 
-				&.tab-count {
-					background: none;
-					border: 0;
-					font-size: 0.9em;
+					&.tab-count {
+						background: none;
+						border: 0;
+						font-size: 0.9em;
 
-					> {
-						div {
-							top: 0.7em;
+						> {
+							div {
+								top: 0.7em;
+							}
+						}
+
+						&.active,
+						&:focus,
+						&:hover {
+							cursor: default;
+							top: 0;
 						}
 					}
 
 					&.active,
 					&:focus,
 					&:hover {
-						cursor: default;
-						top: 0;
-					}
-				}
+						top: 1px;
 
-				&.active,
-				&:focus,
-				&:hover {
-					top: 1px;
-
-					a {
-						@extend %tabs-carousel-border-top-none-padding-top-1;
+						a {
+							@extend %tabs-carousel-border-top-none-padding-top-1;
+						}
 					}
 				}
 			}
@@ -318,81 +332,83 @@ $tab-margin-width: 10px;
 			position: absolute;
 			width: 100%;
 
-			li {
-				@extend %global-display-none;
-				@extend %tab-zindex-100;
-				background: transparent;
-				border: 0;
-
-				&.control {
-					@extend %tabs-display-inline-block;
-				}
-
-				&.prv {
-					@extend %carousel-s2-prv-nxt-common;
-
-					a {
-						@extend %carousel-s2-prv-nxt-a-common;
-						@extend %carousel-s2-btn-color;
-						padding-left: 1em;
-
-						.glyphicon {
-							@extend %carousel-s2-btn-common;
-							@extend %carousel-s2-prv-nxt-glyphicon-common;
-						}
-
-						&:focus,
-						&:hover {
-							@extend %tabs-background-transparent;
-
-							.glyphicon {
-								@extend %tabs-box-shadow-none;
-							}
-						}
-					}
-				}
-
-				&.nxt {
-					@extend %carousel-s2-prv-nxt-common;
-
-					a {
-						@extend %carousel-s2-prv-nxt-a-common;
-						@extend %carousel-s2-btn-color;
-
-						.glyphicon {
-							@extend %carousel-s2-btn-common;
-							@extend %carousel-s2-prv-nxt-glyphicon-common;
-						}
-
-						&:focus,
-						&:hover {
-							@extend %tabs-background-transparent;
-
-							.glyphicon {
-								@extend %tabs-box-shadow-none;
-							}
-						}
-					}
-				}
-
-				&.plypause {
-					background: none;
+			> {
+				li {
+					@extend %global-display-none;
+					@extend %tab-zindex-100;
+					background: transparent;
 					border: 0;
-					float: right;
-					margin-right: 0;
-					padding: 2px 0;
 
-					a {
-						@extend %carousel-s2-btn-common;
-						@extend %carousel-s2-btn-color;
-						font-size: 1.5em;
-						margin-top: 0.4em;
-						margin-right: 0.65em;
-						padding: 8px 10px 4px;
+					&.control {
+						@extend %tabs-display-inline-block;
+					}
 
-						&:focus,
-						&:hover {
-							@extend %tabs-box-shadow-none;
+					&.prv {
+						@extend %carousel-s2-prv-nxt-common;
+
+						a {
+							@extend %carousel-s2-prv-nxt-a-common;
+							@extend %carousel-s2-btn-color;
+							padding-left: 1em;
+
+							.glyphicon {
+								@extend %carousel-s2-btn-common;
+								@extend %carousel-s2-prv-nxt-glyphicon-common;
+							}
+
+							&:focus,
+							&:hover {
+								@extend %tabs-background-transparent;
+
+								.glyphicon {
+									@extend %tabs-box-shadow-none;
+								}
+							}
+						}
+					}
+
+					&.nxt {
+						@extend %carousel-s2-prv-nxt-common;
+
+						a {
+							@extend %carousel-s2-prv-nxt-a-common;
+							@extend %carousel-s2-btn-color;
+
+							.glyphicon {
+								@extend %carousel-s2-btn-common;
+								@extend %carousel-s2-prv-nxt-glyphicon-common;
+							}
+
+							&:focus,
+							&:hover {
+								@extend %tabs-background-transparent;
+
+								.glyphicon {
+									@extend %tabs-box-shadow-none;
+								}
+							}
+						}
+					}
+
+					&.plypause {
+						background: none;
+						border: 0;
+						float: right;
+						margin-right: 0;
+						padding: 2px 0;
+
+						a {
+							@extend %carousel-s2-btn-common;
+							@extend %carousel-s2-btn-color;
+							font-size: 1.5em;
+							margin-top: 0.4em;
+							margin-right: 0.65em;
+							padding: 8px 10px 4px;
+
+							&:focus,
+							&:hover {
+								@extend %tabs-box-shadow-none;
+							}
 						}
 					}
 				}

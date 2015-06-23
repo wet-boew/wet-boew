@@ -150,7 +150,7 @@ var componentName = "wb-share",
 				};
 
 				// Add an email mailto option
-				defaults.sites[ i18nText.email ] = {
+				defaults.sites.email = {
 					name: i18nText.email,
 					url: "mailto:?to=&subject={t}&body={u}%0A{d}",
 					isMailto: true
@@ -174,7 +174,7 @@ var componentName = "wb-share",
 			id = "shr-pg" + ( pnlId.length !== 0 ? "-" + pnlId : panelCount );
 			pageHref = encodeURIComponent( settings.url );
 
-			regex = /\'|&#39;|&apos;/;
+			regex = /\'|&#39;|&apos;/g;
 			pageTitle = encodeURIComponent( settings.title )
 							.replace( regex, "%27" );
 			pageImage = encodeURIComponent( settings.img );

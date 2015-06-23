@@ -157,7 +157,7 @@ describe( "data-inview test suite", function() {
 
 			before( function( done ) {
 				callback = done;
-				$window.scrollTop( $content.offset().top + 50 );
+				$window.scrollTop( $content.offset().top + 40 );
 			} );
 
 			it( "should have an inview bottom bar visible", function() {
