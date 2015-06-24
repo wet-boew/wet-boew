@@ -155,6 +155,10 @@
 	cursor: pointer;
 }
 
+%tables-display-inline-block {
+	display: inline-block;
+}
+
 /*
  * Table styles
  */
@@ -194,7 +198,7 @@ table {
 			}
 
 			.sorting-icons {
-				display: inline-block;
+				@extend %global-display-none;
 				margin-top: 2px;
 
 				&:before {
@@ -209,11 +213,13 @@ table {
 					padding: 0 0.04em 0 0.06em;
 				}
 			}
-
+		
 			.sorting {
 				@extend %tables-cursor-pointer;
 
 				.sorting-icons {
+					@extend %tables-display-inline-block;
+
 					&:before,
 					&:after {
 						@extend %tables-inactive-sort-option;
@@ -226,6 +232,8 @@ table {
 				@extend %tables-bg-color-e7e7e7;
 
 				.sorting-icons {
+					@extend %tables-display-inline-block;
+
 					&:before {
 						@extend %tables-active-sort-option;
 					}
@@ -241,6 +249,8 @@ table {
 				@extend %tables-bg-color-e7e7e7;
 
 				.sorting-icons {
+					@extend %tables-display-inline-block;
+
 					&:before {
 						@extend %tables-inactive-sort-option;
 					}
@@ -251,14 +261,10 @@ table {
 				}
 			}
 
-			.sorting_disabled {
-				.sorting-cnt {
-					@extend %global-display-none;
-				}
-			}
-
 			.sorting_asc_disabled {
 				.sorting-icons {
+					@extend %tables-display-inline-block;
+
 					&:before {
 						@extend %global-display-none;
 					}
@@ -267,6 +273,8 @@ table {
 
 			.sorting_desc_disabled {
 				.sorting-icons {
+					@extend %tables-display-inline-block;
+
 					&:after {
 						@extend %global-display-none;
 					}
