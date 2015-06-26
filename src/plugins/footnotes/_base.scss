@@ -36,7 +36,7 @@
 	border-color: $clrMedium;
 	border-style: solid;
 	border-width: 1px 0;
-	margin: 2em 10px 0;
+	margin: 2em 0 0;
 
 	h2 {
 		@extend %fnote-margin-top-spacing;
@@ -85,6 +85,7 @@
 		padding: 0 $spacing $spacing;
 
 		&:first-child {
+			margin-top: .11em;
 			padding-top: $spacing;
 		}
 	}
@@ -114,6 +115,7 @@
 		a {
 			@extend %fnote-link-background-light-border-medium-padding-whitespace;
 			display: inline-block;
+			margin-top: 0;
 			padding-bottom: 0;
 
 			&:hover,
