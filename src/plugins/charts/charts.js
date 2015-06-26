@@ -710,13 +710,18 @@
 		 * @method wrapTableIntoDetails
 		 */
 		function wrapTableIntoDetails() {
+			var $summary;
+
 			if ( !captionHtml.length ) {
 				return;
 			}
 
+			$summary = $( "<summary>" + captionHtml + i18nText.tableMention + "</summary>" );
 			$elm
 				.wrap( "<details/>" )
-				.before( "<summary>" + captionHtml + i18nText.tableMention + "</summary>" );
+				.before( $summary );
+
+			$summary.trigger( "wb-init.wb-details" );
 		}
 
 		function createContainer( withDimension ) {
