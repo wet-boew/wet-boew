@@ -59,6 +59,7 @@ module.exports = (grunt) ->
 				grunt.task.run [
 					"copy:deploy"
 					"gh-pages:travis"
+					"gh-pages:travis_cdn"
 					"wb-update-examples"
 				]
 	)
@@ -1304,6 +1305,26 @@ module.exports = (grunt) ->
 					message: ((
 						if process.env.TRAVIS_TAG
 							"Production files for the " + process.env.TRAVIS_TAG + " maintenance release"
+						else
+							"Travis build " + process.env.TRAVIS_BUILD_NUMBER
+					))
+					silent: true,
+					tag: ((
+						if process.env.TRAVIS_TAG then process.env.TRAVIS_TAG else false
+					))
+				src: [
+					"**/*.*"
+				]
+
+			travis_cdn:
+				options:
+					repo: process.env.CDN_REPO
+					branch: "<%= deployBranch %>"
+					clone: "wet-boew-cdn"
+					base: "<%= coreDist %>"
+					message: ((
+						if process.env.TRAVIS_TAG
+							"Variant files for the " + process.env.TRAVIS_TAG + " maintenance release"
 						else
 							"Travis build " + process.env.TRAVIS_BUILD_NUMBER
 					))
