@@ -32,7 +32,7 @@ var getUrlParts = function( url ) {
 			// A collection of the parameters of the query string part of the URL.
 			params: ( function() {
 				var results = {},
-					queryString = a.search.replace( /^\?/, "" ).split( "&" ),
+					queryString = encodeURI( decodeURI( a.search.replace( /^\?/, "" ) ) ).replace( /'/g, "%27" ).split( "&" ),
 					len = queryString.length,
 					key, strings, i;
 
