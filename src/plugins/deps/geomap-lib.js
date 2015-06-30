@@ -24,12 +24,6 @@ var componentName = "wb-geomap",
 	 * For example, adding the attribute data-option1="false", will override option1 for that plugin instance.
 	 */
 	defaults = {
-		config: {
-			controls: [],
-			autoUpdateSize: true,
-			fractionalZoom: true,
-			theme: null
-		},
 		overlays: [],
 		features: [],
 		tables: [],
@@ -41,6 +35,12 @@ var componentName = "wb-geomap",
 		useGeocoder: false,
 		useGeolocation: false,
 		useAOI: false
+	},
+
+	filterMap = {
+		GREATER_THAN: ">",
+		LESS_THAN: "<",
+		EQUAL_TO: "="
 	},
 
 	/**
@@ -155,7 +155,6 @@ var componentName = "wb-geomap",
 						// Extend settings with data loaded from the
 						// configuration file (through wet_boew_geomap)
 						$.extend( settings, wet_boew_geomap );
-
 						createMap( geomap, settings );
 					}
 				} );
@@ -515,10 +514,9 @@ var componentName = "wb-geomap",
 	 */
 	symbolizeLegend = function( geomap ) {
 		var len = geomap.map.layers.length,
-			colon = i18nText.colon,
 			symbolItems = [],
 			ruleLen, $symbol, symbolList, symbolText, layer, style, styleDefault,
-			filter, filterType, symbolizer, i, j, rule, spanId;
+			filter, symbolizer, i, j, rule, spanId, title;
 
 		for ( i = 0; i !== len; i += 1 ) {
 			layer = geomap.map.layers[ i ];
@@ -538,22 +536,24 @@ var componentName = "wb-geomap",
 						for ( j = 0; j !== ruleLen; j += 1 ) {
 							rule = style.rules[ j ];
 							filter = rule.filter;
-							filterType = filter.type;
-							if ( filterType === "==" ) {
-								filterType = colon;
-							}
 							symbolizer = rule.symbolizer;
+							title = "";
 
 							spanId = "ls_" + layer.name + "_" + j;
 
+							if ( filter ) {
+								if ( filter.title ) {
+									title = filter.title;
+								}
+							} else if ( rule ) {
+								if ( rule.title ) {
+									title = rule.title;
+								}
+							}
+
 							symbolList += "<li><div class='row'>" +
-								"<div id='" + spanId + "' class='col-md-2 geomap-legend-symbol'></div>" +
-								"<div class='col-md-10'><small>" +
-								filter.property + " " + (
-									filter.value !== null ?
-										filterType + " " + filter.value :
-										filter.lowerBoundary + " " + filterType +
-											" " + filter.upperBoundary ) + "</small></div></div></li>";
+								"<div id='" + spanId + "' class='col-md-2 geomap-legend-symbol'></div><div class='col-md-10'><small>" +
+									title + "</small></div></div></li>";
 
 							symbolItems.push( { "id": spanId, "feature": layer.features[ 0 ], "symbolizer": symbolizer } );
 						}
@@ -570,7 +570,9 @@ var componentName = "wb-geomap",
 				}
 			}
 		}
+
 		createLegendSymbols( symbolItems );
+
 	},
 
 	/*
@@ -691,8 +693,8 @@ var componentName = "wb-geomap",
 	 * Generate StyleMap
 	 */
 	getStyleMap = function( elm ) {
-		var styleMap, filterPrefs, rules, rule, i, len, style, styleType,
-			stylePrefs, styleRule, styleSelect, ruleFilter,
+		var styleMap, rules, rule, i, j, len, len2, style, styleType,
+			stylePrefs, styleRule, styleSelect, ruleFilter, rl, filters,
 			strokeColor = wb.drawColours[ colourIndex ],
 			fillColor = strokeColor,
 			defaultStyle = {
@@ -725,6 +727,7 @@ var componentName = "wb-geomap",
 			stylePrefs = {
 				select: new OpenLayers.Style( styleSelect ? styleSelect : selectStyle )
 			};
+
 			if ( styleType === "rule" ) {
 
 				// set the rules and add to the style
@@ -737,27 +740,43 @@ var componentName = "wb-geomap",
 					// Set the filter
 					rule = styleRule[ i ];
 					ruleFilter = rule.filter;
-					filterPrefs = {
-						type: OpenLayers.Filter.Comparison[ ruleFilter ],
-						property: rule.field
-					};
 
-					if ( ruleFilter !== "BETWEEN" ) {
-						filterPrefs.value = rule.value[ 0 ];
-					} else {
-						filterPrefs.lowerBoundary = rule.value[ 0 ];
-						filterPrefs.upperBoundary = rule.value[ 1 ];
-					}
+					// Check to see if logical filter
+					if ( ruleFilter === "AND" || ruleFilter === "OR" || ruleFilter === "NOT" ) {
 
-					rules.push(
-						new OpenLayers.Rule( {
-							filter: new OpenLayers.Filter.Comparison( filterPrefs ),
+						filters = [];
+						len2 = rule.filters.length;
+						for ( j = 0; j !== len2; j += 1 ) {
+							rl = rule.filters[ j ];
+							filters.push( getRuleFilter( rl ) );
+						}
+
+						rules.push( new OpenLayers.Rule( {
+							filter: new OpenLayers.Filter.Logical( {
+								title: rule.title,
+								type: OpenLayers.Filter.Logical[ ruleFilter ],
+								filters: filters
+							} ),
 							symbolizer: rule.init
-						} )
-					);
+						} ) );
+
+					// Check to see if else filter included
+					} else if ( rule.elseFilter === true ) {
+
+						rules.push( new OpenLayers.Rule( {
+							title: rule.title,
+							elseFilter: true,
+							symbolizer: rule.init
+						} ) );
+
+					} else {
+						rules.push( getRuleFilter( rule ) );
+					}
 				}
+
 				style.addRules( rules );
 				stylePrefs[ "default" ] = style;
+
 			} else if ( styleType !== "unique" ) {
 				stylePrefs[ "default" ] = new OpenLayers.Style( elmStyle.init );
 			}
@@ -769,11 +788,40 @@ var componentName = "wb-geomap",
 		}
 
 		styleMap = new OpenLayers.StyleMap( stylePrefs );
+
 		if ( elmStyle && styleType === "unique" ) {
 			styleMap.addUniqueValueRules( "default", elmStyle.field, elmStyle.init );
 		}
 
 		return styleMap;
+	},
+
+	getRuleFilter = function( rule ) {
+
+		var filterPrefs = {
+				type: OpenLayers.Filter.Comparison[ rule.filter ],
+				property: rule.field,
+				symbolizer: rule.init
+			};
+
+		switch ( rule.filter ) {
+			case "BETWEEN":
+				filterPrefs.lowerBoundary = rule.value[ 0 ];
+				filterPrefs.upperBoundary = rule.value[ 1 ];
+
+				// for legacy support, write out the filter parameters
+				filterPrefs.title = typeof rule.title === "undefined" ?
+						rule.field + " " + rule.value[ 0 ] + "-" + rule.value[ 1 ] : rule.title;
+				break;
+			default:
+				filterPrefs.value = rule.value[ 0 ];
+				filterPrefs.title = typeof rule.title === "undefined" ? rule.field + " " +
+						filterMap[ rule.filter ] + " " + rule.value : rule.title;
+				break;
+		}
+
+		return new OpenLayers.Filter.Comparison( filterPrefs );
+
 	},
 
 	/*
@@ -1024,27 +1072,35 @@ var componentName = "wb-geomap",
 	 * Add baseMap data
 	 */
 	addBasemapData = function( geomap, opts ) {
+
 		var basemap = opts.basemap,
 			hasBasemap = basemap && basemap.length !== 0,
+			configOpts = {},
 			controls = opts.useMapControls ? [ new OpenLayers.Control.Navigation( { zoomWheelEnabled: true } ) ] : [],
-			mapOptions, mapOpts, aspectRatio, keys;
+			layerOptions, mapOptions, mapOpts, aspectRatio, keys, o, obj;
 
 		if ( hasBasemap ) {
 			mapOpts = basemap.mapOptions;
 			if ( mapOpts ) {
 				try {
-					mapOptions = {
-						maxExtent: new OpenLayers.Bounds( mapOpts.maxExtent.split( "," ) ),
-						restrictedExtent: new OpenLayers.Bounds( mapOpts.restrictedExtent.split( "," ) ),
-						maxResolution: mapOpts.maxResolution,
-						projection: new OpenLayers.Projection( mapOpts.projection ),
-						units: mapOpts.units,
-						displayProjection: new OpenLayers.Projection( mapOpts.displayProjection ),
-						numZoomLevels: mapOpts.numZoomLevels,
-						aspectRatio: mapOpts.aspectRatio,
-						fractionalZoom: mapOpts.fractionalZoom,
-						tileManager: null
-					};
+					obj = mapOpts;
+					for ( o in obj ) {
+						if ( obj.hasOwnProperty( o ) ) {
+							if ( obj[ o ] ) {
+								if ( o === "projection" || o === "displayProjection" ) {
+									configOpts[ o ] = new OpenLayers.Projection( obj[ o ] );
+								} else if ( o === "maxExtent" || o === "restrictedExtent" ) {
+									configOpts[ o ] = new OpenLayers.Bounds( obj[ o ].split( "," ) );
+								} else {
+									configOpts[ o ] = obj[ o ];
+								}
+							}
+						}
+					}
+
+					configOpts.tileManager = null;
+					mapOptions = configOpts;
+
 				} catch ( error ) {
 					mapOptions = {
 						projection: new OpenLayers.Projection( "EPSG:4326" )
@@ -1065,21 +1121,21 @@ var componentName = "wb-geomap",
 		aspectRatio = mapOptions.aspectRatio === undefined ? 0.8 : mapOptions.aspectRatio;
 		geomap.gmap.height( geomap.gmap.width() * mapOptions.aspectRatio );
 
-		geomap.map = new OpenLayers.Map( geomap.gmap.attr( "id" ), $.extend( opts.config, mapOptions, { controls: controls } ) );
+		geomap.map = new OpenLayers.Map( geomap.gmap.attr( "id" ), $.extend( opts.config, mapOptions, { theme: null, controls: controls } ) );
 
 		// Check to see if a base map has been configured. If not add the
 		// default base map (the Canada Transportation Base Map (CBMT))
 		if ( hasBasemap ) {
+			keys = getLayerKeys( basemap );
+			layerOptions = keys.options ? keys.options : {};
+			layerOptions.isBaseLayer = true;
 			if ( basemap.type === "wms" ) {
-				keys = getLayerKeys( basemap );
 				geomap.map.addLayer(
 					new OpenLayers.Layer.WMS(
 						basemap.title,
 						basemap.url,
 						keys,
-						{
-							isBaseLayer: true
-						}
+						layerOptions
 					)
 				);
 
@@ -1087,7 +1143,19 @@ var componentName = "wb-geomap",
 				geomap.map.addLayer(
 					new OpenLayers.Layer.ArcGIS93Rest(
 						basemap.title,
-						basemap.url
+						basemap.url,
+						keys,
+						layerOptions
+					)
+				);
+
+			} else if ( basemap.type === "xyz" ) {
+				geomap.map.addLayer(
+					new OpenLayers.Layer.XYZ(
+						basemap.title,
+						basemap.url,
+						keys,
+						layerOptions
 					)
 				);
 			}
@@ -1753,7 +1821,7 @@ var componentName = "wb-geomap",
 			layersLen = layers.length,
 			mousePositionDiv, scaleLineDiv,
 			table, tableId, layer, features, featuresLen,
-			zoom, i, j, k;
+			zoom, i, j, k, cntr, zm;
 
 		// TODO: Ensure WCAG compliance before enabling
 		geomap.selectControl = new OpenLayers.Control.SelectFeature(
@@ -1836,8 +1904,15 @@ var componentName = "wb-geomap",
 
 		}
 
-		// Zoom to the maximum extent specified
-		map.zoomToMaxExtent();
+		// Zoom to the maximum extent and zoom level specified
+		if ( map.zoomLevel || map.center ) {
+			cntr = map.center ? map.center.transform( new OpenLayers.Projection( "EPSG:4326" ), map.getProjectionObject() ) : new OpenLayers.LonLat( [ 0, 0 ] );
+			zm = map.zoomLevel ? map.zoomLevel : 5;
+			map.setCenter( cntr, zm );
+		} else {
+			map.zoomToMaxExtent();
+		}
+
 	},
 
 	// Construct a polygon and densify the latitudes to show the curvature

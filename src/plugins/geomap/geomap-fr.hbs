@@ -652,3 +652,74 @@
 		</details>
 	</section>
 </section>
+
+<section>
+	<h2>Exemple de carte de base OSM</h2>
+	<p>Geomap peut être configuré pour utiliser un service de tuiles OSM (ex : MapQuest) comme carte de base. La configuration peut être effectuée dans le paramètre <code>basemap</code> du fichier config.</p>
+
+	<!-- GeomapStart -->
+	<div id="osm_map"
+		class="wb-geomap"
+		data-wb-geomap='{
+			"layersFile": "demo/config-osm-en{{environment.suffix}}.js",
+			"attribution": { "text":"Les tuiles sont une courtoisies de &lt;a href=\"http://www.mapquest.com/\" target=\"_blank\"&gt;MapQuest&lt;/a&gt;", "href":"" }
+		}'>
+		<div class="row">
+			<div class="col-md-4">
+				<!-- Insert Map Start (mandatory) -->
+				<div class="wb-geomap-map"></div>
+				<!-- Insert Map End -->
+			</div>
+			<!-- Insert Layer Data Start (mandatory) -->
+			<div class="wb-geomap-layers col-md-4"></div>
+			<!-- Insert Layer Data End -->
+		</div>
+	</div>
+	<!-- GeomapEnd -->
+
+		<section>
+		<h3>Code</h3>
+		<details class="mrgn-tp-lg">
+			<summary>Visualiser le code</summary>
+			<pre><code>&lt;!-- GeomapStart --&gt;
+&lt;div id=&quot;osm_map&quot;
+	class=&quot;wb-geomap&quot;
+	data-wb-geomap='{
+		&quot;layersFile&quot;: &quot;demo/config-osm-fr.js&quot;
+	}'&gt;
+	&lt;div class=&quot;row&quot;&gt;
+		&lt;div class=&quot;col-md-4&quot;&gt;
+			&lt;!-- Insert Map Start (mandatory) --&gt;
+			&lt;div class=&quot;wb-geomap-map&quot;&gt;&lt;/div&gt;
+			&lt;!-- Insert Map End --&gt;
+		&lt;/div&gt;
+		&lt;!-- Insert Layer Data Start (mandatory) --&gt;
+		&lt;div class=&quot;wb-geomap-layers col-md-4&quot;&gt;&lt;/div&gt;
+		&lt;!-- Insert Layer Data End --&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- GeomapEnd --&gt;</code></pre>
+		</details>
+
+		<details class="mrgn-tp-lg">
+			<summary>Visualiser le fichier de configuration</summary>
+			<pre><code>
+			var wet_boew_geomap = {
+				title:"MapQuest OSM Map",
+				type:"xyz",
+				url:[
+					"http://otile1.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png",
+					"http://otile2.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png",
+					"http://otile3.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png",
+					"http://otile4.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png"
+				],
+				mapOptions: {
+					projection: "EPSG:900913",
+					center: [ -123,49 ],
+					zoomLevel: 5
+				}
+			};
+		</code></pre>
+		</details>
+	</section>
+</section>
