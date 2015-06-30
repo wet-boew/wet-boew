@@ -1122,6 +1122,18 @@ module.exports = (grunt) ->
 						dest: "dist"
 						expand: true
 					}
+					
+					{
+						src: "*.txt"
+						dest: "<%= coreDist %>"
+						expand: true
+					}
+					
+					{
+						src: "*.txt"
+						dest: "<%= themeDist %>"
+						expand: true
+					}
 
 					#Backwards compatibility.
 					#TODO: Remove in v4.1
