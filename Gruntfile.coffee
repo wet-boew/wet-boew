@@ -60,6 +60,7 @@ module.exports = (grunt) ->
 					"copy:deploy"
 					"gh-pages:travis"
 					"gh-pages:travis_cdn"
+					"gh-pages:travis_themes_cdn"
 					"wb-update-examples"
 				]
 	)
@@ -1122,6 +1123,18 @@ module.exports = (grunt) ->
 						dest: "dist"
 						expand: true
 					}
+					
+					{
+						src: "*.txt"
+						dest: "<%= coreDist %>"
+						expand: true
+					}
+					
+					{
+						src: "*.txt"
+						dest: "<%= themeDist %>"
+						expand: true
+					}
 
 					#Backwards compatibility.
 					#TODO: Remove in v4.1
@@ -1324,7 +1337,27 @@ module.exports = (grunt) ->
 					base: "<%= coreDist %>"
 					message: ((
 						if process.env.TRAVIS_TAG
-							"Variant files for the " + process.env.TRAVIS_TAG + " maintenance release"
+							"CDN files for the " + process.env.TRAVIS_TAG + " maintenance release"
+						else
+							"Travis build " + process.env.TRAVIS_BUILD_NUMBER
+					))
+					silent: true,
+					tag: ((
+						if process.env.TRAVIS_TAG then process.env.TRAVIS_TAG else false
+					))
+				src: [
+					"**/*.*"
+				]
+				
+			travis_theme_cdn:
+				options:
+					repo: process.env.THEME_CDN_REPO
+					branch: "theme-wet-boew"
+					clone: "wet-boew-theme-cdn"
+					base: "<%= themeDist %>"
+					message: ((
+						if process.env.TRAVIS_TAG
+							"CDN files for the " + process.env.TRAVIS_TAG + " maintenance release"
 						else
 							"Travis build " + process.env.TRAVIS_BUILD_NUMBER
 					))
