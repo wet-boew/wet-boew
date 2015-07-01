@@ -34,7 +34,8 @@ var componentName = "wb-geomap",
 		useMapControls: true,
 		useGeocoder: false,
 		useGeolocation: false,
-		useAOI: false
+		useAOI: false,
+		displayAOIButtonsBottom: false
 	},
 
 	filterMap = {
@@ -96,7 +97,10 @@ var componentName = "wb-geomap",
 					geolocBtn: i18n( "geo-geoloc-btn" ),
 					geolocFail: i18n( "geo-geoloc-fail" ),
 					geolocUncapable: i18n( "geo-geoloc-uncapable" ),
-					geoLgndGrphc: i18n( "geo-lgnd-grphc" )
+					geoLgndGrphc: i18n( "geo-lgnd-grphc" ),
+					aoiBtnDrawTip: i18n( "geo-aoi-btndraw-tip" ),
+					aoiBtnClearTip: i18n( "geo-aoi-btnclear-tip" ),
+					aoiBtnAddTip: i18n( "geo-aoi-btnadd-tip" )
 				};
 			}
 
@@ -109,7 +113,8 @@ var componentName = "wb-geomap",
 				useMapControls: className.indexOf( "static" ) !== -1 ? false : true,
 				useGeocoder: className.indexOf( "geocoder" ) !== -1 ? true : false,
 				useGeolocation: className.indexOf( "geolocation" ) !== -1 ? true : false,
-				useAOI: className.indexOf( "aoi" ) !== -1 ? true : false
+				useAOI: className.indexOf( "aoi" ) !== -1 ? true : false,
+				displayAOIButtonsBottom: className.indexOf( "aoi-buttons-bottom" ) !== -1 ? true : false
 			};
 
 			// Merge default settings with overrides from the selected plugin element.
@@ -143,6 +148,7 @@ var componentName = "wb-geomap",
 
 			geomap.aoiToggle = typeof settings.aoi !== "undefined" && typeof settings.aoi.toggle !== "undefined" ? settings.aoi.toggle : true;
 			geomap.aoiExtent = typeof settings.aoi !== "undefined" && typeof settings.aoi.extent !== "undefined" ? settings.aoi.extent : null;
+			geomap.aoiButtonsAtBottom = typeof settings.aoi !== "undefined" && typeof settings.aoi.buttonsAtBottom !== "undefined" ? settings.aoi.buttonsAtBottom : false;
 
 			// Load configuration file
 			if ( settings.layersFile ) {
@@ -2145,40 +2151,42 @@ var componentName = "wb-geomap",
 			top,
 			geomProj;
 
+		var classCoordName = (geomap.aoiButtonsAtBottom)?"'col-md-3'":"'col-md-2'";
+
 		aoiDiv.append( "<fieldset id='form-aoi-" + geomap.mapid + "'>" +
 				"<legend tabindex='-1'>" + i18nText.aoiInstructions + "</legend>" +
 				"<div class='row'>" +
-					"<div class='col-md-2'>" +
+					"<div class=" + classCoordName + ">" +
 						"<label for='geomap-aoi-maxy-" + geomap.mapid + "' class='wb-inv'>" + i18nText.aoiNorth + "</label>" +
 						"<div class='input-group input-group-sm'>" +
 							"<span class='input-group-addon'>" + i18nText.aoiNorth.charAt( 0 ) + "</span>" +
 							"<input type='number' id='geomap-aoi-maxy-" + geomap.mapid + "' placeholder='90' class='form-control input-sm' min='-90' max='90' step='0.000001'></input>" +
 						"</div>" +
 					"</div>" +
-					"<div class='col-md-2'>" +
+					"<div class=" + classCoordName + ">" +
 						"<label for='geomap-aoi-maxx-" + geomap.mapid + "' class='wb-inv'>" + i18nText.aoiEast + "</label>" +
 						"<div class='input-group input-group-sm'>" +
 							"<span class='input-group-addon'>" + i18nText.aoiEast.charAt( 0 ) + "</span>" +
 							"<input type='number' id='geomap-aoi-maxx-" + geomap.mapid + "' placeholder='180' class='form-control input-sm' min='-180' max='180' step='0.000001'></input> " +
 						"</div>" +
 					"</div>" +
-					"<div class='col-md-2'>" +
+					"<div class=" + classCoordName + ">" +
 						"<label for='geomap-aoi-miny-" + geomap.mapid + "' class='wb-inv'>" + i18nText.aoiSouth + "</label>" +
 						"<div class='input-group input-group-sm'>" +
 							"<span class='input-group-addon'>" + i18nText.aoiSouth.charAt( 0 ) + "</span>" +
 							"<input type='number' id='geomap-aoi-miny-" + geomap.mapid + "' placeholder='-90' class='form-control input-sm' min='-90' max='90' step='0.000001'></input> " +
 						"</div>" +
 					"</div>" +
-					"<div class='col-md-2'>" +
+					"<div class=" + classCoordName + ">" +
 						"<label for='geomap-aoi-minx-" + geomap.mapid + "' class='wb-inv'>" + i18nText.aoiWest + "</label>" +
 						"<div class='input-group input-group-sm'>" +
 							"<span class='input-group-addon'>" + i18nText.aoiWest.charAt( 0 ) + "</span>" +
 							"<input type='number' id='geomap-aoi-minx-" + geomap.mapid + "' placeholder='-180' class='form-control input-sm' min='-180' max='180' step='0.000001'></input> " +
 						"</div>" +
-					"</div>" +
-					"<div class='col-md-4'>" +
-						"<button class='btn btn-default btn-sm' id='geomap-aoi-btn-draw-" + geomap.mapid + "'>" + i18nText.add + "</button> " +
-						"<button class='btn btn-default btn-sm' id='geomap-aoi-btn-clear-" + geomap.mapid + "'>" + i18nText.aoiBtnClear + "</button> " +
+					"</div>" + (geomap.aoiButtonsAtBottom?"</div><div class='row'>":"") +
+					"<div class='" + (geomap.aoiButtonsAtBottom?"col-md-12":"col-md-4") + "'>" +
+						"<button class='btn btn-default btn-sm' title='" + i18nText.aoiBtnAddTip + "' id='geomap-aoi-btn-draw-" + geomap.mapid + "'>" + i18nText.add + "</button> " +
+						"<button class='btn btn-default btn-sm' title='" + i18nText.aoiBtnClearTip + "' id='geomap-aoi-btn-clear-" + geomap.mapid + "'>" + i18nText.aoiBtnClear + "</button> " +
 					"</div>" +
 				"</div>" +
 				"<input type='hidden' id='geomap-aoi-extent-" + geomap.mapid + "'></input>" +
@@ -2195,7 +2203,7 @@ var componentName = "wb-geomap",
 					i18nText.aoiBtnDraw + "</span></button>" );
 		} else {
 			$( "#geomap-aoi-btn-clear-" + geomap.mapid ).after( "<button id='geomap-aoi-toggle-mode-draw-" + geomap.mapid +
-					"' href='#' class='btn btn-sm geomap-geoloc-aoi-btn' title='" + i18nText.aoiBtnDraw +
+					"' href='#' class='btn btn-sm geomap-geoloc-aoi-btn' title='" + i18nText.aoiBtnDrawTip +
 					"'><i class='glyphicon glyphicon-edit'></i> " +
 					i18nText.aoiBtnDraw + "</button>" );
 		}
