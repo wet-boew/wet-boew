@@ -160,13 +160,48 @@
 	border: 2px solid #00f;
 }
 
+.popupHeader {
+	font-size: 0.9em;
+	font-weight: 500;
+	padding-bottom: 5px;
+	padding-right: 3px;
+	white-space: nowrap;
+
+	&:after {
+		background: linear-gradient(to right, #808080 , #fff);
+		background: -o-linear-gradient(right, #808080, #fff);
+		background: -moz-linear-gradient(right, #808080, #fff);
+		background: -webkit-linear-gradient(left, #808080 , #fff);
+		content: " ";
+		display: block;
+		height: 1px;
+		margin-top: 3px;
+	}
+}
+
 .olPopupCloseBox {
 	cursor: pointer;
 }
 
+%olFramedCloudPopupContentFontSize {
+	font-size: 0.9em;
+}
+
 .olFramedCloudPopupContent {
 	overflow: auto;
-	padding: 5px;
+
+	ol {
+		@extend %olFramedCloudPopupContentFontSize;
+	}
+
+	p {
+		@extend %olFramedCloudPopupContentFontSize;
+	}
+
+	ul {
+		@extend %olFramedCloudPopupContentFontSize;
+	}
+
 }
 
 %olPopupMargin {

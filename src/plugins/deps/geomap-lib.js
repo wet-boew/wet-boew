@@ -325,7 +325,7 @@ var componentName = "wb-geomap",
 			buttonText = i18nText.close,
 			colon = i18nText.colon,
 			mapSize = feature.layer.map.size,
-			content = "<h3>" + document.getElementById( feature.layer.name ).getAttribute( "aria-label" ) + "</h3>",
+			content = "<div class='popupHeader'>" + document.getElementById( feature.layer.name ).getAttribute( "aria-label" ) + "</div>",
 			id, height, width, close, name, popup, icon, regex,
 			popupsInfoId, popupsInfoWidth, popupsInfoHeight;
 
@@ -377,7 +377,7 @@ var componentName = "wb-geomap",
 
 		// add wb-icon class
 		icon = document.createElement( "span" );
-		icon.className = "glyphicon glyphicon-remove-circle close_" + featureid;
+		icon.className = "glyphicon glyphicon-remove close_" + featureid;
 		icon.setAttribute( "data-map", geomap.mapid );
 		icon.setAttribute( "data-layer", feature.layer.id );
 		icon.setAttribute( "data-feature", feature.id );
@@ -1315,45 +1315,47 @@ var componentName = "wb-geomap",
 											projLatLon = new OpenLayers.Projection( "EPSG:4326" ),
 											projMap = geomap.map.getProjectionObject();
 
-										for ( i = 0, len = items.length; i !== len; i += 1 ) {
-											row = items[ i ];
-											$row = $( row );
-											g = this.parseFeature( row );
-											feature = new OpenLayers.Feature.Vector();
-											firstComponent = g.geometry.components[ 0 ];
+										if ( layerAttributes || this.parseFeature( items[ 0 ] ).geometry.CLASS_NAME === "OpenLayers.Geometry.Polygon" ) {
+											for ( i = 0, len = items.length; i !== len; i += 1 ) {
+												row = items[ i ];
+												$row = $( row );
+												g = this.parseFeature( row );
+												feature = new OpenLayers.Feature.Vector();
+												firstComponent = g.geometry.components[ 0 ];
 
-											// if we have a bounding box polygon, densify the coordinates
-											if ( g.geometry.CLASS_NAME === "OpenLayers.Geometry.Polygon" &&
-												firstComponent.components.length === 5 ) {
+												// if we have a bounding box polygon, densify the coordinates
+												if ( firstComponent.components.length === 5 ) {
 
-												bnds = densifyBBox(
-													firstComponent.components[ 1 ].x,
-													firstComponent.components[ 1 ].y,
-													firstComponent.components[ 3 ].x,
-													firstComponent.components[ 3 ].y
-												);
+													bnds = densifyBBox(
+														firstComponent.components[ 1 ].x,
+														firstComponent.components[ 1 ].y,
+														firstComponent.components[ 3 ].x,
+														firstComponent.components[ 3 ].y
+													);
 
-												ring = new OpenLayers.Geometry.LinearRing( bnds );
-												geom = new OpenLayers.Geometry.Polygon( ring );
-												geomProj = geom.transform( projLatLon, projMap );
+													ring = new OpenLayers.Geometry.LinearRing( bnds );
+													geom = new OpenLayers.Geometry.Polygon( ring );
+													geomProj = geom.transform( projLatLon, projMap );
 
-												feature.geometry = geomProj;
-											} else {
-												feature.geometry = this.parseFeature( row ).geometry.transform( projLatLon, projMap );
-											}
-
-											// Parse and store the attributes
-											// TODO: test on nested attributes
-											atts = {};
-											for ( name in layerAttributes ) {
-												if ( layerAttributes.hasOwnProperty( name ) ) {
-													atts[ layerAttributes[ name ] ] = $row.find ( name ).text();
+													feature.geometry = geomProj;
+												} else {
+													feature.geometry = this.parseFeature( row ).geometry.transform( projLatLon, projMap );
 												}
+
+												// Parse and store the attributes
+												if ( layerAttributes ) {
+													atts = {};
+													for ( name in layerAttributes ) {
+														if ( layerAttributes.hasOwnProperty( name ) ) {
+															atts[ layerAttributes[ name ] ] = $row.find ( name ).text();
+														}
+													}
+													feature.attributes = atts;
+												}
+												features.push( feature );
 											}
-											feature.attributes = atts;
-											features.push( feature );
+											return features;
 										}
-										return features;
 									}
 								} )
 							} ),
@@ -1403,45 +1405,46 @@ var componentName = "wb-geomap",
 											layerAttributes = layer.attributes,
 											projLatLon = new OpenLayers.Projection( "EPSG:4326" ),
 											projMap = geomap.map.getProjectionObject();
+										if ( layerAttributes || this.parseFeature( items[ 0 ] ).geometry.CLASS_NAME === "OpenLayers.Geometry.Polygon" ) {
+											for ( i = 0, len = items.length; i !== len; i += 1 ) {
+												row = items[ i ];
+												$row = $( row );
+												g = this.createFeatureFromItem( row );
+												feature = new OpenLayers.Feature.Vector();
+												firstComponent = g.geometry.components[ 0 ];
 
-										for ( i = 0, len = items.length; i !== len; i += 1 ) {
-											row = items[ i ];
-											$row = $( row );
-											g = this.createFeatureFromItem( row );
-											feature = new OpenLayers.Feature.Vector();
-											firstComponent = g.geometry.components[ 0 ];
+												// if we have a bounding box polygon, densify the coordinates
+												if ( firstComponent.components.length === 5 ) {
 
-											// if we have a bounding box polygon, densify the coordinates
-											if ( g.geometry.CLASS_NAME === "OpenLayers.Geometry.Polygon" &&
-												firstComponent.components.length === 5 ) {
+													bnds = densifyBBox(
+														firstComponent.components[ 1 ].x,
+														firstComponent.components[ 1 ].y,
+														firstComponent.components[ 3 ].x,
+														firstComponent.components[ 3 ].y
+													);
 
-												bnds = densifyBBox(
-													firstComponent.components[ 1 ].x,
-													firstComponent.components[ 1 ].y,
-													firstComponent.components[ 3 ].x,
-													firstComponent.components[ 3 ].y
-												);
-
-												ring = new OpenLayers.Geometry.LinearRing( bnds );
-												geom = new OpenLayers.Geometry.Polygon( ring );
-												geomProj = geom.transform( projLatLon, projMap );
-												feature.geometry = geomProj;
-											} else {
-												feature.geometry = this.parseFeature( row ).geometry.transform( projLatLon, projMap );
-											}
-
-											// Parse and store the attributes
-											// TODO: test on nested attributes
-											atts = {};
-											for ( name in layerAttributes ) {
-												if ( layerAttributes.hasOwnProperty( name ) ) {
-													atts[ layerAttributes[ name ] ] = $row.find ( name ).text();
+													ring = new OpenLayers.Geometry.LinearRing( bnds );
+													geom = new OpenLayers.Geometry.Polygon( ring );
+													geomProj = geom.transform( projLatLon, projMap );
+													feature.geometry = geomProj;
+												} else {
+													feature.geometry = this.parseFeature( row ).geometry.transform( projLatLon, projMap );
 												}
+
+												// Parse and store the attributes
+												if ( layerAttributes ) {
+													atts = {};
+													for ( name in layerAttributes ) {
+														if ( layerAttributes.hasOwnProperty( name ) ) {
+															atts[ layerAttributes[ name ] ] = $row.find ( name ).text();
+														}
+													}
+													feature.attributes = atts;
+												}
+												features.push( feature );
 											}
-											feature.attributes = atts;
-											features.push( feature );
+											return features;
 										}
-										return features;
 									}
 								} )
 							} ),
@@ -1496,45 +1499,47 @@ var componentName = "wb-geomap",
 											projLatLon = new OpenLayers.Projection( "EPSG:4326" ),
 											projMap = geomap.map.getProjectionObject();
 
-										for ( i = 0, len = items.length; i !== len; i += 1 ) {
-											row = items[ i ];
-											feature = new OpenLayers.Feature.Vector();
-											firstComponent = row.geometry.coordinates[ 0 ];
+										if ( layerAttributes || this.parseFeature( items[ 0 ] ).geometry.type === "Polygon" ) {
+											for ( i = 0, len = items.length; i !== len; i += 1 ) {
+												row = items[ i ];
+												feature = new OpenLayers.Feature.Vector();
+												firstComponent = row.geometry.coordinates[ 0 ];
 
-											// if we have a bounding box polygon, densify the coordinates
-											if ( row.geometry.type === "Polygon" &&
-												firstComponent.length === 5 ) {
+												// if we have a bounding box polygon, densify the coordinates
+												if ( firstComponent.length === 5 ) {
 
-												bnds = densifyBBox(
-													firstComponent[ 1 ][ 0 ],
-													firstComponent[ 1 ][ 1 ],
-													firstComponent[ 3 ][ 0 ],
-													firstComponent[ 3 ][ 1 ]
-												);
-												ring = new OpenLayers.Geometry.LinearRing( bnds );
-												geom = new OpenLayers.Geometry.Polygon( ring );
-												geomProj = geom.transform( projLatLon, projMap );
-												feature.geometry = geomProj;
-											} else {
-												feature.geometry = this.parseGeometry( row.geometry );
-											}
+													bnds = densifyBBox(
+														firstComponent[ 1 ][ 0 ],
+														firstComponent[ 1 ][ 1 ],
+														firstComponent[ 3 ][ 0 ],
+														firstComponent[ 3 ][ 1 ]
+													);
+													ring = new OpenLayers.Geometry.LinearRing( bnds );
+													geom = new OpenLayers.Geometry.Polygon( ring );
+													geomProj = geom.transform( projLatLon, projMap );
+													feature.geometry = geomProj;
+												} else {
+													feature.geometry = this.parseGeometry( row.geometry );
+												}
 
-											// Parse and store the attributes
-											// TODO: test on nested attributes
-											atts = {};
-											for ( name in layerAttributes ) {
-												if ( layerAttributes.hasOwnProperty( name ) ) {
-													atts[ layerAttributes[ name ] ] = row[ name ];
+												// Parse and store the attributes
+												if ( layerAttributes ) {
+													atts = {};
+													for ( name in layerAttributes ) {
+														if ( layerAttributes.hasOwnProperty( name ) ) {
+															atts[ layerAttributes[ name ] ] = row[ name ];
+														}
+													}
+													feature.attributes = atts;
+												}
+
+												// If no geometry, don't add it
+												if ( feature.geometry ) {
+													features.push( feature );
 												}
 											}
-											feature.attributes = atts;
-
-											// If no geometry, don't add it
-											if ( feature.geometry ) {
-												features.push( feature );
-											}
+											return features;
 										}
-										return features;
 									}
 								} )
 							} ),
@@ -1568,6 +1573,64 @@ var componentName = "wb-geomap",
 					geomap.map.addLayer( olLayer );
 					addLayerData( geomap, $table, layerVisible, olLayer.id, layer.tab );
 					olLayer.visibility = layerVisible;
+				} else if ( layerType === "esrijson" ) {
+					olLayer = new OpenLayers.Layer.Vector(
+						layerTitle, {
+							strategies: [ new OpenLayers.Strategy.Fixed() ],
+							protocol: new OpenLayers.Protocol.Script( {
+								url: layerURL,
+								params: layer.params,
+								format: new OpenLayers.Format.EsriGeoJSON( {
+									internalProjection: geomap.map.getProjectionObject(),
+									externalProjection: new OpenLayers.Projection( "EPSG:4269" )
+								} )
+							} ),
+							eventListeners: {
+								featuresadded: function( evt ) {
+
+									if ( layer.attributes ) {
+										$.each( evt.features, function( index, feature ) {
+											var atts = {},
+												layerAttributes = layer.attributes,
+												name;
+											for ( name in layerAttributes ) {
+												if ( layerAttributes.hasOwnProperty( name ) ) {
+													atts[ layerAttributes[ name ] ] = feature.attributes[ name ];
+												}
+											}
+											feature.attributes = atts;
+										} );
+									}
+
+									onFeaturesAdded( geomap, $table, evt, layer.zoom, layer.datatable, opts.useMapControls );
+
+									if ( geomap.overlaysLoading[ layerTitle ] ) {
+										onLoadEnd( geomap );
+									}
+								},
+								loadstart: function() {
+									geomap.overlaysLoading[ layerTitle ] = true;
+									setTimeout( function() {
+										if ( geomap.overlaysLoading[ layerTitle ] ) {
+											onLoadEnd( geomap );
+										}
+									}, overlayTimeout );
+								}
+							},
+							styleMap: getStyleMap( overlayData[ index ] )
+						}
+					);
+					olLayer.name = "overlay_" + index;
+					olLayer.datatable = layer.datatable;
+					olLayer.popupsInfo = layer.popupsInfo;
+					olLayer.popups = layer.popups;
+
+					// to force featuresadded listener
+					olLayer.visibility = true;
+					geomap.queryLayers.push( olLayer );
+					geomap.map.addLayer( olLayer );
+					addLayerData( geomap, $table, layerVisible, olLayer.id, layer.tab );
+					olLayer.visibility = layerVisible;
 				} else if ( layerType === "geojson" ) {
 					olLayer = new OpenLayers.Layer.Vector(
 						layerTitle, {
@@ -1588,45 +1651,47 @@ var componentName = "wb-geomap",
 											bnds, geom, ring, geomProj,
 											firstComponent;
 
-										for ( i = 0, len = items.length; i !== len; i += 1 ) {
-											row = items[ i ];
-											feature = new OpenLayers.Feature.Vector();
-											firstComponent = row.geometry.coordinates[ 0 ];
+										if ( layerAttributes || this.parseFeature( items[ 0 ] ).geometry.type === "Polygon" ) {
+											for ( i = 0, len = items.length; i !== len; i += 1 ) {
+												row = items[ i ];
+												feature = new OpenLayers.Feature.Vector();
+												firstComponent = row.geometry.coordinates[ 0 ];
 
-											// if we have a bounding box polygon, densify the coordinates
-											if ( row.geometry.type === "Polygon" &&
-												firstComponent.length === 5 ) {
+												// if we have a bounding box polygon, densify the coordinates
+												if ( firstComponent.length === 5 ) {
 
-												bnds = densifyBBox(
-													firstComponent[ 1 ][ 0 ],
-													firstComponent[ 1 ][ 1 ],
-													firstComponent[ 3 ][ 0 ],
-													firstComponent[ 3 ][ 1 ]
-												);
-												ring = new OpenLayers.Geometry.LinearRing( bnds );
-												geom = new OpenLayers.Geometry.Polygon( ring );
-												geomProj = geom.transform( projLatLon, projMap );
-												feature.geometry = geomProj;
-											} else {
-												feature.geometry = this.parseGeometry( row.geometry );
-											}
+													bnds = densifyBBox(
+														firstComponent[ 1 ][ 0 ],
+														firstComponent[ 1 ][ 1 ],
+														firstComponent[ 3 ][ 0 ],
+														firstComponent[ 3 ][ 1 ]
+													);
+													ring = new OpenLayers.Geometry.LinearRing( bnds );
+													geom = new OpenLayers.Geometry.Polygon( ring );
+													geomProj = geom.transform( projLatLon, projMap );
+													feature.geometry = geomProj;
+												} else {
+													feature.geometry = this.parseGeometry( row.geometry );
+												}
 
-											// Parse and store the attributes
-											// TODO: test on nested attributes
-											atts = {};
-											for ( name in layerAttributes ) {
-												if ( layerAttributes.hasOwnProperty( name ) ) {
-													atts[ layerAttributes[ name ]] = row.properties[ name ];
+												// Parse and store the attributes
+												if ( layerAttributes ) {
+													atts = {};
+													for ( name in layerAttributes ) {
+														if ( layerAttributes.hasOwnProperty( name ) ) {
+															atts[ layerAttributes[ name ]] = row.properties[ name ];
+														}
+													}
+													feature.attributes = atts;
+												}
+
+												// if no geometry, don't add it
+												if ( feature.geometry ) {
+													features.push( feature );
 												}
 											}
-											feature.attributes = atts;
-
-											// if no geometry, don't add it
-											if ( feature.geometry ) {
-												features.push( feature );
-											}
+											return features;
 										}
-										return features;
 									}
 								} )
 							} ),
@@ -2792,6 +2857,313 @@ $document.on( "keydown click", ".olPopupCloseBox span", function( event ) {
 			.getControlsByClass( "OpenLayers.Control.SelectFeature" )[ 0 ]
 				.unselect( selectedFeature );
 	}
+} );
+
+/**
+ * Class: OpenLayers.Format.EsriGeoJSON
+ * Read EsriGeoJSON. Create a new parser with the
+ *     <OpenLayers.Format.EsriGeoJSON> constructor.
+ *
+ * Inherits from:
+ *     <OpenLayers.Format.GeoJSON>
+ *
+ * Source: http://trac.osgeo.org/openlayers/attachment/ticket/3661/EsriGeoJSON.js
+ */
+OpenLayers.Format.EsriGeoJSON = OpenLayers.Class( OpenLayers.Format.GeoJSON, {
+
+	/**
+	 * Constructor: OpenLayers.Format.EsriGeoJSON
+	 * Create a new parser for EsriGeoJSON.
+	 *
+	 * Parameters:
+	 * options - {Object} An optional object whose properties will be set on
+	 *     this instance.
+	 */
+	initialize: function( options ) {
+		OpenLayers.Format.GeoJSON.prototype.initialize.apply( this, [ options ] );
+	},
+
+	/**
+	 * APIMethod: read
+	 * Deserialize a EsriGeoJSON string.
+	 *
+	 * Parameters:
+	 * json - {String} A EsriGeoJSON string
+	 * Returns:
+	 * {Object} an array of <OpenLayers.Feature.Vector>
+	 */
+	read: function( json ) {
+		var results = null,
+			obj = null;
+		if ( typeof json === "string" ) {
+			obj = OpenLayers.Format.JSON.prototype.read.apply( this, [ json ] );
+		} else {
+			obj = json;
+		}
+		if ( obj ) {
+			results = this.parseEsriGeoJSON2OL( obj );
+		}
+		return results;
+	},
+
+	//parse Esri GeoJSON to the OpenLayers GeoJSON
+	parseEsriGeoJSON2OL: function( esri_geojson ) {
+		var geom_type = esri_geojson.geometryType,
+			epsg_code = esri_geojson.spatialReference.wkid,
+			result_feats = [],
+			coords, coordPair,
+			i, o, g, s,
+			feat, feature_property,
+			geojsonstart, geojsonend,
+			new_ol_feats,
+			prop, ring_count,
+			total_coords, path_count;
+
+		if ( geom_type === "esriGeometryPolygon" ) {
+			for ( i = 0; i < esri_geojson.features.length; i++ ) {
+				feat = esri_geojson.features[ i ];
+				feature_property = "{";
+				for ( prop in feat.attributes ) {
+					feature_property += '"' + prop + '":"' + feat.attributes[ prop ] + '",';
+				}
+				if ( feature_property.length > 1 ) {
+					feature_property = feature_property.substring( 0, feature_property.length - 1 );
+				}
+				feature_property += "}";
+
+				//get the geometry
+				o = feat.geometry;
+
+				//loop through all the rings
+				ring_count = o.rings.length;
+				if ( ring_count === 1 ) {
+
+					//create geojson start & end
+					geojsonstart = '{"type":"Feature", "properties":' + feature_property + ', "geometry":{"type":"Polygon", "coordinates":[[';
+					geojsonend = ']]}, "crs":{"type":"EPSG", "properties":{"code":' + epsg_code + "}}}";
+
+					//the coordinates for this ring
+					coords = o.rings[ 0 ];
+
+					//loop through each coordinate
+					coordPair = "";
+					for ( g = 0; g < coords.length; g++ ) {
+						if ( g === coords.length - 1 ) {
+							coordPair = coordPair + "[" + coords[ g ] + "]";
+						} else {
+							coordPair = coordPair + "[" + coords[ g ] + "],";
+						}
+					}
+
+					//combine to create geojson string
+					new_ol_feats = this.esriDeserialize( geojsonstart + coordPair + geojsonend );
+					if ( new_ol_feats ) {
+						result_feats = result_feats.concat( new_ol_feats );
+					}
+				} else if ( ring_count > 1 ) {
+
+					//create geojson start & end - i know i'm getting polygons
+					geojsonstart = '{"type":"Feature", "properties":' + feature_property + ', "geometry":{"type":"MultiPolygon", "coordinates":[[';
+					geojsonend = ']]}, "crs":{"type":"EPSG", "properties":{"code":' + epsg_code + "}}}";
+
+					total_coords = "";
+					for ( s = 0; s < ring_count; s++ ) {
+
+						//the coordinates for this ring
+						coords = o.rings[ s ];
+
+						//loop through each coordinate
+						coordPair = "[";
+						for ( g = 0; g < coords.length; g++ ) {
+							if ( g === coords.length - 1 ) {
+								coordPair = coordPair + "[" + coords[ g ] + "]";
+							} else {
+								coordPair = coordPair + "[" + coords[ g ] + "],";
+							}
+						}
+
+						if ( s === ring_count - 1 ) {
+							coordPair += "]";
+						} else {
+							coordPair += "],";
+						}
+
+						total_coords += coordPair;
+					}
+
+					//combine to create geojson string
+					new_ol_feats = this.esriDeserialize( geojsonstart + total_coords + geojsonend );
+					if ( new_ol_feats ) {
+						result_feats = result_feats.concat( new_ol_feats );
+					}
+				}
+			}
+		} else if ( geom_type === "esriGeometryPolyline" ) {
+			for ( i = 0; i < esri_geojson.features.length; i++ ) {
+				feat = esri_geojson.features[ i ];
+				feature_property = "{";
+				for ( prop in feat.attributes ) {
+					feature_property += '"' + prop + '":"' + feat.attributes[ prop ] + '",';
+				}
+				if ( feature_property.length > 1 ) {
+					feature_property = feature_property.substring( 0, feature_property.length - 1 );
+				}
+				feature_property += "}";
+
+				//get the geometry
+				o = feat.geometry;
+				path_count = o.paths.length;
+				if ( path_count === 1 ) {
+
+					//LineString
+					geojsonstart = '{"type":"Feature", "properties":' + feature_property + ', "geometry":{"type":"LineString", "coordinates":[';
+					geojsonend = ']}, "crs":{"type":"EPSG", "properties":{"code":' + epsg_code + "}}}";
+
+					coords = o.paths[ 0 ];
+					coordPair = "";
+					for ( g = 0; g < coords.length; g++ ) {
+						if ( g === coords.length - 1 ) {
+							coordPair = coordPair + "[" + coords[ g ] + "]";
+						} else {
+							coordPair = coordPair + "[" + coords[ g ] + "],";
+						}
+					}
+
+					//combine to create geojson string
+					new_ol_feats = this.esriDeserialize( geojsonstart + coordPair + geojsonend );
+					if ( new_ol_feats ) {
+						result_feats = result_feats.concat( new_ol_feats );
+					}
+				} else if ( path_count > 1 ) {
+
+					//MultiLineString
+					geojsonstart = '{"type":"Feature", "properties":' + feature_property + ', "geometry":{"type":"MultiLineString", "coordinates":[';
+					geojsonend = ']}, "crs":{"type":"EPSG", "properties":{"code":' + epsg_code + "}}}";
+
+					//loop through all the rings
+					total_coords = "";
+					for ( s = 0; s < path_count; s++ ) {
+
+						//the coordinates for this ring
+						coords = o.paths[ s ];
+
+						//loop through each coordinate
+						coordPair = "[";
+						for ( g = 0; g < coords.length; g++ ) {
+							if ( g === coords.length - 1 ) {
+								coordPair = coordPair + "[" + coords[ g ] + "]";
+							} else {
+								coordPair = coordPair + "[" + coords[ g ] + "],";
+							}
+						}
+
+						if ( s === path_count - 1 ) {
+							coordPair += "]";
+						} else {
+							coordPair += "],";
+						}
+
+						total_coords += coordPair;
+					}
+
+					//combine to create geojson string
+					new_ol_feats = this.esriDeserialize( geojsonstart + total_coords + geojsonend );
+					if ( new_ol_feats ) {
+						result_feats = result_feats.concat( new_ol_feats );
+					}
+				}
+
+			}
+		} else if ( geom_type === "esriGeometryMultipoint" ) {
+			for ( i = 0; i < esri_geojson.features.length; i++ ) {
+				feat = esri_geojson.features[ i ];
+				feature_property = "{";
+				for ( prop in feat.attributes ) {
+					feature_property += '"' + prop + '":"' + feat.attributes[ prop ] + '",';
+				}
+				if ( feature_property.length > 1 ) {
+					feature_property = feature_property.substring( 0, feature_property.length - 1 );
+				}
+				feature_property += "}";
+
+				//get the geometry
+				o = feat.geometry;
+				geojsonstart = '{ "type":"Feature", "properties":' + feature_property + ', "geometry":{ "type":"MultiPoint", "coordinates":[ ';
+				geojsonend = ' ] }, "crs":{ "type":"EPSG", "properties":{"code":' + epsg_code + "}}}";
+
+				//loop through all the rings
+				total_coords = "";
+				for ( s = 0; s < o.length; s++ ) {
+
+					//the coordinates for this ring
+					coords = o[ s ];
+
+					//loop through each coordinate
+					coordPair = "[" + coords.x + "," + coords.y;
+
+					if ( s === path_count - 1 ) {
+						coordPair += "]";
+					} else {
+						coordPair += "],";
+					}
+
+					total_coords += coordPair;
+				}
+
+				//combine to create geojson string
+				new_ol_feats = this.esriDeserialize( geojsonstart + total_coords + geojsonend );
+				if ( new_ol_feats ) {
+					result_feats = result_feats.concat( new_ol_feats );
+				}
+			}
+		} else if ( geom_type === "esriGeometryPoint" ) {
+			for ( i = 0; i < esri_geojson.features.length; i++ ) {
+				feat = esri_geojson.features[ i ];
+				feature_property = "{";
+				for ( prop in feat.attributes ) {
+					feature_property += '"' + prop + '":"' + feat.attributes[ prop ] + '",';
+				}
+				if ( feature_property.length > 1 ) {
+					feature_property = feature_property.substring( 0, feature_property.length - 1 );
+				}
+				feature_property += "}";
+
+				//get the geometry
+				o = feat.geometry;
+				geojsonstart = '{ "type":"Feature", "properties":' + feature_property + ', "geometry":{ "type":"Point", "coordinates":[ ';
+				geojsonend = ' ] }, "crs":{ "type":"EPSG", "properties":{ "code":' + epsg_code + "}}}";
+				coordPair = o.x + "," + o.y;
+
+				//combine to create geojson string
+				new_ol_feats = this.esriDeserialize( geojsonstart + coordPair + geojsonend );
+				if ( new_ol_feats ) {
+					result_feats = result_feats.concat( new_ol_feats );
+				}
+			}
+		}
+
+		if ( result_feats.length > 0 ) {
+			return result_feats;
+		} else {
+			return null;
+		}
+	},
+
+	esriDeserialize: function( geojson ) {
+		var features = OpenLayers.Format.GeoJSON.prototype.read.apply( this, [ geojson ] );
+		if ( features ) {
+			if ( features.constructor !== Array ) {
+				features = [ features ];
+			}
+
+			return features;
+		} else {
+			return null;
+		}
+	},
+
+	CLASS_NAME: "OpenLayers.Format.EsriGeoJSON"
+
 } );
 
 } )( jQuery, window, document, wb );

@@ -130,6 +130,31 @@ var wet_boew_geomap = {
 			}
 		},
 		{
+			title: "ESRI GeoJSON",
+			caption: "Ceci est un exemple d'un jeu de données ESRI GeoJSON chargé à partir d'un site externe.",
+			type: "esrijson",
+			url: "http://geoportal.gc.ca/arcgis/rest/services/tides_marees/allstations_toutestations/MapServer/0/query?where=STATUS='PERMANENT'&outFields=STATION_NAME%2CSTATION_NUMBER&f=pjson",
+			visible: false,
+			popups: true,
+			tab: true,
+			datatable: true,
+			zoom: true,
+			attributes: {
+				STATION_NUMBER: "ID",
+				STATION_NAME: "Nom"
+			},
+			style: {
+				type: "symbol",
+				init: {
+					graphicName: "triangle",
+					pointRadius: 6,
+					fillColor: "#FF66FF",
+					strokeColor: "#FF00FF",
+					strokeWidth: 1
+				}
+			}
+		},
+		{
 			title: "GeoJSON (CartoDB)",
 			caption: "Ceci est un exemple d'un jeu de données JSON chargé à partir d'un site externe, dans ce cas-ci les caméras de circulation de la ville d'Ottawa à partir du site Carto DB.",
 			type: "geojson",
