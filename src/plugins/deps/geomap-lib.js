@@ -2183,8 +2183,8 @@ var componentName = "wb-geomap",
 							"<span class='input-group-addon'>" + i18nText.aoiWest.charAt( 0 ) + "</span>" +
 							"<input type='number' id='geomap-aoi-minx-" + geomap.mapid + "' placeholder='-180' class='form-control input-sm' min='-180' max='180' step='0.000001'></input> " +
 						"</div>" +
-					"</div>" + (geomap.aoiButtonsAtBottom?"</div><div class='row'>":"") +
-					"<div class='" + (geomap.aoiButtonsAtBottom?"col-md-12":"col-md-4") + "'>" +
+					"</div>" + ( geomap.aoiButtonsAtBottom?"</div><div class='row'>":"" ) +
+					"<div class='" + ( geomap.aoiButtonsAtBottom?"col-md-12":"col-md-4" ) + "'>" +
 						"<button class='btn btn-default btn-sm' title='" + i18nText.aoiBtnAddTip + "' id='geomap-aoi-btn-draw-" + geomap.mapid + "'>" + i18nText.add + "</button> " +
 						"<button class='btn btn-default btn-sm' title='" + i18nText.aoiBtnClearTip + "' id='geomap-aoi-btn-clear-" + geomap.mapid + "'>" + i18nText.aoiBtnClear + "</button> " +
 					"</div>" +
