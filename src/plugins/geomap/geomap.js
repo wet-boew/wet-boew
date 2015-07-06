@@ -22,10 +22,15 @@ var componentName = "wb-geomap",
 		// returns DOM object = proceed with init
 		// returns undefined = do not proceed with init (e.g., already initialized)
 		var elm = wb.init( event, componentName, selector ),
-			$elm, modeJS;
+			$elm, $map, modeJS;
 
 		if ( elm ) {
 			$elm = $( elm );
+			$map = $elm.find( ".wb-geomap-map" );
+
+			// Initialize the map height for the loader
+			$map.height( $map.width() * 0.8 );
+			$map.append( "<div class='geomap-progress'><span class='wb-inv'>" + wb.i18n( "load" ) + "</span></div>" );
 			modeJS = wb.getMode() + ".js";
 
 			Modernizr.load( [ {

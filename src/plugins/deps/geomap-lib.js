@@ -2039,38 +2039,42 @@ var componentName = "wb-geomap",
 		geomap.map.events.register( "mouseover", geomap.map, function( event ) {
 			setMapStatus( this, event );
 		} );
+
+		$document.on( "wb-ready.wb-geomap", "#" + geomap.mapid, function() {
+			$( "#" + geomap.mapid ).find( ".geomap-progress" ).hide();
+		} );
 	},
 
 	// Enable the keyboard navigation when map div has focus. Disable when blur
 	// Enable the wheel zoom only on hover
 	setMapStatus = function( map, event ) {
 		var type = event.type,
-			target = event.currentTarget.className.indexOf( "wb-geomap-map" ) === -1 ?
-					event.currentTarget.parentElement : event.currentTarget,
+			target = event.currentTarget ? event.currentTarget : event.srcElement,
+			element = $( target ).hasClass( "wb-geomap-map" ) ? $( target ) : $( target ).parent(),
 			keyboardDefaults = map.getControlsByClass( "OpenLayers.Control.KeyboardDefaults" )[ 0 ],
 			navigation = map.getControlsByClass( "OpenLayers.Control.Navigation" )[ 0 ],
 			isActive;
 
 		if ( map ) {
-			isActive = target.className.indexOf( "active" );
+			isActive = $( element ).hasClass( "active" );
 			if ( type === "mouseover" || type === "focusin" ) {
-				if ( isActive ) {
+				if ( !isActive ) {
 					if ( keyboardDefaults ) {
 						keyboardDefaults.activate();
 					}
 					if ( navigation ) {
 						navigation.activate();
 					}
-					$( target ).addClass( "active" );
+					$( element ).addClass( "active" );
 				}
-			} else if ( isActive > 0 ) {
+			} else if ( isActive ) {
 				if ( navigation ) {
 					navigation.deactivate();
 				}
 				if ( keyboardDefaults ) {
 					keyboardDefaults.deactivate();
 				}
-				$( target ).removeClass( "active" );
+				$( element ).removeClass( "active" );
 			}
 		}
 	},
@@ -2545,7 +2549,6 @@ var componentName = "wb-geomap",
 
 		geomap.geolocate = new OpenLayers.Control.Geolocate(
 				{
-					type: OpenLayers.Control.TYPE_TOGGLE,
 					bind: true,
 					watch: true,
 					geolocationOptions: {
