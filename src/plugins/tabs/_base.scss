@@ -5,6 +5,10 @@
 
 $tab-margin-width: 10px;
 
+%tabs-tablist-li-margin {
+	margin: 0 $tab-margin-width 0 0;
+}
+
 %tabs-position-relative {
 	position: relative;
 }
@@ -157,7 +161,6 @@ $tab-margin-width: 10px;
 				cursor: pointer;
 				display: table-cell;
 				left: -$tab-margin-width;
-				margin: 0 10px 0 0;
 				position: relative;
 				text-align: center;
 
@@ -228,6 +231,7 @@ $tab-margin-width: 10px;
 			display: block;
 
 			li {
+				@extend %tabs-tablist-li-margin;
 				display: inline-block;
 				left: auto;
 			}
@@ -259,6 +263,7 @@ $tab-margin-width: 10px;
 				li {
 					@extend %global-display-none;
 					@extend %tab-zindex-100;
+					@extend %tabs-tablist-li-margin;
 
 					&.control {
 						@extend %tabs-display-inline-block;
@@ -336,6 +341,7 @@ $tab-margin-width: 10px;
 				li {
 					@extend %global-display-none;
 					@extend %tab-zindex-100;
+					@extend %tabs-tablist-li-margin;
 					background: transparent;
 					border: 0;
 
