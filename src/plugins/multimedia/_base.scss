@@ -86,23 +86,25 @@ $mm-volume-thumb-width: 10px;
 }
 
 .wb-mltmd {
-	@include multimedia_overlay_base;
-	@include multimedia_overlay_play;
-
 	// lets fight the FOUC
 	// base state
 	display: block;
 	position: relative;
 
-	video {
-		@extend %controls-offset;
-		height: auto;
-		width: 100%;
-	}
+	&.video {
+		@include multimedia_overlay_base;
+		@include multimedia_overlay_play;
 
-	object,
-	iframe {
-		@extend %controls-offset;
+		&.playing {
+
+			.errmsg {
+				display: none;
+			}
+		}
+
+		&.waiting {
+			@include multimedia_overlay_loading;
+		}
 	}
 
 	&.audio {
@@ -115,18 +117,16 @@ $mm-volume-thumb-width: 10px;
 		}
 	}
 
-	&.playing {
-		@include multimedia_overlay_hidden;
-
-		.errmsg {
-			display: none;
-		}
+	video {
+		@extend %controls-offset;
+		height: auto;
+		width: 100%;
 	}
 
-	&.waiting {
-		@include multimedia_overlay_loading;
+	object,
+	iframe {
+		@extend %controls-offset;
 	}
-
 
 	&.cc_on {
 		.wb-mm-cc {
@@ -147,8 +147,6 @@ $mm-volume-thumb-width: 10px;
 	}
 
 	&.youtube {
-		@include multimedia_overlay_hidden;
-
 		&.cc_on {
 			.wb-mm-cc {
 				@extend %multimedia-display-none;
