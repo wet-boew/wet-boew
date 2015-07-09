@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Afficher des images et d'autres contenus dans une boîte de dialogue, individuellement ou dans le cadre d'une galerie.",
 	"altLangPrefix": "lightbox",
-	"dateModified": "2015-05-28"
+	"dateModified": "2015-07-09"
 }
 ---	
 <span class="wb-prettify all-pre hide"></span>
@@ -147,6 +147,8 @@
 			<tr>
 				<td><code>wb-open.wb-lbx</code> (v4.0.4+)</td>
 				<td>Déclenché manuellement :
+					<pre><code>$( document ).trigger( "open.wb-lbx", items, modal, image, ajax (v4.0.16+) );</code></pre>
+					<p>Le paramètre <code lang="en">items</code> est obligatoire mais les paramètres <code>modal</code>, <code>image</code> et <code>ajax</code> sont facultatifs. Nota&#160;: Le paramètre <code>ajax</code> a été ajouté en v4.0.16. Voici un exemple d'usage&#160;:
 					<pre><code>$( document ).trigger( "open.wb-lbx", [
 	[
 		{
@@ -157,7 +159,15 @@
 	false,
 	[
 		"Image 1"
-	]
+	],
+	{
+		settings: {
+			type: 'POST',
+			data: { 
+				foo: 'bar'
+			}
+		}
+    }
 ]);</code></pre>
 				</td>
 				<td>Utilisé pour ouvrir un Lightbox manuellement. Peut être utilisé pour afficher des boîtes individuelles, des galeries et des boîtes modales. Voir <a href="../../../demos/lightbox/lightbox-fr.html#examples5">Ouvrir des popups par JavaScript</a> pour des exemples d'application.</td>
