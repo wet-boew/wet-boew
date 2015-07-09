@@ -386,7 +386,7 @@ module.exports = (grunt) ->
 			i18n:
 				options:
 					process: ( src, filepath ) ->
-						lang = filepath.replace "dist/js/i18n/", ""
+						lang = filepath.replace grunt.config( "coreDist" ) + "/js/i18n/", ""
 						# jQuery validation uses an underscore for locals
 						lang = lang.replace "_", "-"
 						validationPath = "lib/jquery-validation/src/localization/"
@@ -408,7 +408,7 @@ module.exports = (grunt) ->
 
 						return src
 
-				cwd: "dist/js/i18n"
+				cwd: "<%= coreDist %>/js/i18n"
 				src: [
 					"*.js"
 					"!*.min.js"
