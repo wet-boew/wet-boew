@@ -348,7 +348,7 @@ $( document ).on( "click", ".popup-modal-dismiss", function( event ) {
 } );
 
 // Event handler for opening a popup without a link
-$( document ).on( "open" + selector, function( event, items, modal, title ) {
+$( document ).on( "open" + selector, function( event, items, modal, title, ajax ) {
 	if ( event.namespace === componentName ) {
 		var isGallery = items.length > 1,
 			isModal = modal && !isGallery ? modal : false,
@@ -369,7 +369,8 @@ $( document ).on( "open" + selector, function( event, items, modal, title ) {
 				image: {
 					titleSrc: titleSrc
 				},
-				callbacks: callbacks
+				callbacks: callbacks,
+				ajax: ajax
 			} );
 
 			wb.ready( undef, componentName );
