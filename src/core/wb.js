@@ -203,6 +203,8 @@ var getUrlParts = function( url ) {
 				// Identify that the component is ready
 				$elm.trigger( "wb-ready." + componentName, context );
 				this.initQueue -= 1;
+			} else {
+				this.doc.trigger( "wb-ready." + componentName, context );
 			}
 
 			// Identify that global initialization is complete
