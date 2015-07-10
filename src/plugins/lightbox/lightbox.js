@@ -371,6 +371,8 @@ $( document ).on( "open" + selector, function( event, items, modal, title ) {
 				},
 				callbacks: callbacks
 			} );
+
+			wb.ready( undef, componentName );
 		} );
 
 		// Load dependencies as needed
