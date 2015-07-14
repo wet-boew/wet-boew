@@ -494,8 +494,8 @@ $document.on( "timerpoke.wb " + initEvent + " ajax-fetched.wb ajax-failed.wb", s
 } );
 
 $document.on( "mouseleave", selector + " .menu", function( event ) {
-    var $currentTarget = $(event.currentTarget);
-    
+    var $currentTarget = $( event.currentTarget );
+
 	// Clear the timeout for open/closing menus
 	clearTimeout( globalTimeout );
 
