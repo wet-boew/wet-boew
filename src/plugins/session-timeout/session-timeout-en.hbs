@@ -7,7 +7,7 @@
 	"tag": "session-timeout",
 	"parentdir": "session-timeout",
 	"altLangPrefix": "session-timeout",
-	"dateModified": "2014-11-14"
+	"dateModified": "2015-07-21"
 }
 ---
 
@@ -16,7 +16,7 @@
 <section class="wb-prettify all-pre">
 	<h2 id="overview" class="mrgn-tp-0">Overview</h2>
 	<p>This plugin helps web page owners by providing session timeout and inactivity timeout functionality. When a user requests a page with this plugin implemented their session will begin. After the specified session period, they will be notified that their session is about to timeout. At this point, they will have the option to remain logged in by clicking "Continue session", or signing out by clicking "End session now".</p>
-	<p>At anytime during the session, if the user remains idle for a specified amount of time, they will be notified that they're session is about to timeout. In either case, if the user does not respond to the timeout notification within a specified amount of time, once they click either "Continue session" or "End session now" they will be automatically redirected to the sign out page.</p>
+	<p>At any time during the session, if the user remains idle for a specified amount of time, they will be notified that they're session is about to timeout. In either case, if the user does not respond to the timeout notification within a specified amount of time, once they click either "Continue session" or "End session now" they will be automatically redirected to the sign out page.</p>
 	<p>The plugin is setup using the following HTML:</p>
 	
 	<pre><code>&lt;span class="wb-sessto" data-wb-sessto='{"inactivity": 1200000, "reactionTime": 30000, "sessionalive": 1200000, "logouturl": "./", "refreshCallbackUrl": "./"}'&gt;&lt;/span&gt;</code></pre>
@@ -27,12 +27,18 @@
 		<li><strong>reactionTime:</strong> period of time the user has to perform an action once the modal dialog is displayed (default 3 minutes).</li>
 		<li><strong>sessionalive:</strong> period of time for the session to stay alive until the modal dialog appears (default 20 minutes).</li>
 		<li><strong>logouturl:</strong> URL that users are sent to when the session has expired.</li>
-		<li><strong>refreshCallbackUrl:</strong> URL used to perform an ajax refresh. Must be a viewless page that returns "true" to indicate session is still valid.</li>
+		<li><strong>refreshCallback:</strong> The function used to check the response received from refreshCallbackUrl.</li>
+		<li><strong>refreshCallbackUrl:</strong> URL used to perform an ajax request to determine the validity of the session.</li>
+		<li><strong>refreshOnClick:</strong> Determines if clicking on the document should reset the inactivity timeout and perform an ajax request (if a refreshCallbackUrl has been specified).</li>
+		<li><strong>refreshLimit:</strong> Sets the amount of time that must pass before an ajax request can be made.</li>
+		<li><strong>method:</strong> Sets the request method used for ajax requests. Recommended: GET or POST.</li>
+		<li><strong>additionalData:</strong> Additional data to send with the request.</li>
 	</ul>
 	<p>The only required parameter is logouturl, all other fields are optional. The default plugin code is:</p>
 	<pre><code>&lt;span class="wb-sessto" data-wb-sessto='{logouturl: "./"}'&gt;&lt;/span&gt;</code></pre>
 	<p><strong>Note:</strong> The inactivity, reactionTime and sessionalive parameters are set in milliseconds. For help with the time values, use this <a href="http://www.calculateme.com/Time/Minutes/ToMilliseconds.htm" rel="external">time converter</a>.</p>
 	<p><strong>Note:</strong> Your sessionalive and inactivity parameters should be equal to your web server session alive time minus the reactionTime time. If you set your sessionalive time and inactivity time to the same as your web server without taking into consideration the reactionTime time then the session will have ended by the server as soon as the popup appears to extend the session.</p>
+	<p><strong>Note:</strong> The server response needs to contain a message body. Don't use a request method (e.g. HEAD) that disallows a message body in the response.</p>
 </section>
 
 <section>
