@@ -26,3 +26,4 @@ notifications:
 cache:
   directories:
   - node_modules
+  - lib
