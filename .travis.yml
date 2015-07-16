@@ -24,6 +24,8 @@ notifications:
   - "chat.freenode.net#wet-boew"
 
 cache:
+  bundler: true
   directories:
   - node_modules
   - lib
+  - vendor/cache
