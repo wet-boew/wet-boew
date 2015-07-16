@@ -1417,8 +1417,5 @@ module.exports = (grunt) ->
 	@loadNpmTasks "grunt-wget"
 	@loadNpmTasks "grunt-wet-boew-postbuild"
 
-	# Load custom grunt tasks form the tasks directory
-	@loadTasks "tasks"
-
 	require( "time-grunt" )( grunt )
 	@
