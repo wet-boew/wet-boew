@@ -1,0 +1,29 @@
+/*
+  WET-BOEW
+  @title: IE8-specific details/summary CSS
+ */
+.lt-ie9 {
+	details {
+		padding-left: $details-identation;
+
+		> {
+			summary {
+				margin-left: -$details-identation;
+			}
+		}
+	}
+
+	[dir=rtl] {
+		details {
+			padding-left: 0;
+			padding-right: $details-identation;
+
+			> {
+				summary {
+					margin-left: 0 !important;
+					margin-right: -$details-identation;
+				}
+			}
+		}
+	}
+}
