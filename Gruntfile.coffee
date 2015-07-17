@@ -60,7 +60,7 @@ module.exports = (grunt) ->
 					"copy:deploy"
 					"gh-pages:travis"
 					"gh-pages:travis_cdn"
-					"gh-pages:travis_themes_cdn"
+					"gh-pages:travis_theme_cdn"
 					"wb-update-examples"
 				]
 	)
