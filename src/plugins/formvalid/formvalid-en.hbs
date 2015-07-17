@@ -7,7 +7,7 @@
 	"tag": "formvalid",
 	"parentdir": "formvalid",
 	"altLangPrefix": "formvalid",
-	"dateModified": "2015-03-06"
+	"dateModified": "2015-07-17"
 }
 ---
 <section>
@@ -80,7 +80,7 @@
 				</details>
 
 				<div class="form-group">
-					<label for="tel1" class="required"><span class="field-name">Telephone number</span> (999-999-9999) <strong class="required">(required)</strong></label>
+					<label for="tel1" class="required"><span class="field-name">Telephone number (including area code)</span> <strong class="required">(required)</strong></label>
 					<input class="form-control" id="tel1" name="tel1" type="tel" required="required" data-rule-phoneUS="true" />
 				</div>
 				<details class="mrgn-bttm-md">
@@ -89,8 +89,38 @@
 	&lt;form action="#" method="get" id="validation-example"&gt;
 		...
 		&lt;div class="form-group"&gt;
-			&lt;label for="tel1" class="required"&gt;&lt;span class="field-name"&gt;Telephone number&lt;/span&gt; (999-999-9999) &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+			&lt;label for="tel1" class="required"&gt;&lt;span class="field-name"&gt;Telephone number&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
 			&lt;input class="form-control" id="tel1" name="tel1" type="tel" required="required" data-rule-phoneUS="true" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="ext1"><span class="field-name">Telephone extension</span></label>
+					<input class="form-control" id="ext1" name="ext1" type="number" data-rule-extension="true" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="ext1"&gt;&lt;span class="field-name"&gt;Telephone extension&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="ext1" name="ext1" type="number" required="required" data-rule-extension="true" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="pcodeca1" class="required"><span class="field-name">Postal code (Canada)</span> <strong class="required">(required)</strong></label>
+					<input class="form-control" id="pcodeca1" name="pcodeca1" type="text" size="7" maxlength="7" required="required" data-rule-postalCodeCA="true" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="pcodeca1" class="required"&gt;&lt;span class="field-name"&gt;Postal code&lt;/span&gt; &lt;strong class="required"&gt;(required)&lt;/strong&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="pcodeca1" name="pcodeca1" type="text" size="7" maxlength="7" required="required" data-rule-postalCodeCA="true" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 
@@ -244,6 +274,66 @@
 		&lt;div class="form-group"&gt;
 			&lt;label for="text1"&gt;&lt;span class="field-name"&gt;Letters and punctuation only&lt;/span&gt; (allowed punctuation: [. , ( ) "])&lt;/label&gt;
 			&lt;input class="form-control" id="text1" name="text1" type="text" pattern="[A-Za-z-.,()'&#34;\s]" data-rule-letterswithbasicpunc="true" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="word1"><span class="field-name">Maximum of 10 words</span></label>
+					<input class="form-control" id="word1" name="word1" type="text" data-rule-maxWords="10" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="word1"&gt;&lt;span class="field-name"&gt;Maximum of 10 words&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="word1" name="word1" type="text" data-rule-maxWords="10" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="word2"><span class="field-name">Maximum of 2 words</span></label>
+					<input class="form-control" id="word2" name="word2" type="text" data-rule-minWords="2" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="word2"&gt;&lt;span class="field-name"&gt;Minimum of 2 words&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="word2" name="word2" type="text" data-rule-minWords="2" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="word3"><span class="field-name">Between 2 and 10 words</span></label>
+					<input class="form-control" id="word3" name="word3" type="text" data-rule-rangeWords="[2,10]" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="word3"&gt;&lt;span class="field-name"&gt;Between 2 and 10 words&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="word3" name="word3" type="text" data-rule-rangeWords="[2,10]" /&gt;
+		&lt;/div&gt;</code></pre>
+				</details>
+
+				<div class="form-group">
+					<label for="nowhitespace1"><span class="field-name">No white space</span></label>
+					<input class="form-control" id="nowhitespace1" name="nowhitespace1" type="text" data-rule-nowhitespace="true" />
+				</div>
+				<details class="mrgn-bttm-md">
+					<summary>View code</summary>
+					<pre><code>&lt;div class="wb-frmvld"&gt;
+	&lt;form action="#" method="get" id="validation-example"&gt;
+		...
+		&lt;div class="form-group"&gt;
+			&lt;label for="nowhitespace1"&gt;&lt;span class="field-name"&gt;No white space&lt;/span&gt;&lt;/label&gt;
+			&lt;input class="form-control" id="nowhitespace1" name="nowhitespace1" type="text" pattern="[A-Za-z-.,()'&#34;\s]" data-rule-nowhitespace="true" /&gt;
 		&lt;/div&gt;</code></pre>
 				</details>
 
