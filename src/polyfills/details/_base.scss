@@ -18,6 +18,32 @@ summary {
 }
 
 details {
+	border: 1px solid #ddd;
+	border-radius: 4px;
+
+	summary {
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		color: #295376;
+		padding: 5px 15px;
+
+		&:focus,
+		&:hover {
+			background-color: transparent;
+			color: #0535d2;
+			text-decoration: underline;
+		}
+	}
+
+	&[open] {
+		summary {
+			border: 0;
+			border-bottom: 1px solid #ddd;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+	}
+
 	// Prevent FOUC
 	&:not([open]) {
 		@extend %details-nested-in-hidden-details;
