@@ -6,13 +6,17 @@
 	display: none !important;
 }
 
-#wb-bc {	
+#wb-bc {
 	.breadcrumb {
 		margin-bottom: 0;
 	}
-	
-	a[href]:after {
-		content: "";
+
+	a {
+		&[href] {
+			&:after {
+				content: "";
+			}
+		}
 	}
 }
 

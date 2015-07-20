@@ -37,7 +37,7 @@ $mm-volume-thumb-width: 10px;
 
 @mixin multimedia_overlay_base {
 	.display {
-		@extend %global_centered_overlay;
+		@extend %global-centered-overlay;
 		cursor: pointer;
 		position: relative;
 	}

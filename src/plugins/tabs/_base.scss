@@ -186,13 +186,13 @@ $tab-margin-width: 10px;
 					z-index: 2;
 
 					a {
-						cursor: default;
-						padding-top: 6px;
 						border: {
 							color: $tablist-active-link-border-color;
 							style: $tablist-active-link-border-style;
 							width: $tablist-active-link-border-width;
 						}
+						cursor: default;
+						padding-top: 6px;
 					}
 				}
 
@@ -407,8 +407,8 @@ $tab-margin-width: 10px;
 							@extend %carousel-s2-btn-common;
 							@extend %carousel-s2-btn-color;
 							font-size: 1.5em;
-							margin-top: 0.4em;
 							margin-right: 0.65em;
+							margin-top: 0.4em;
 							padding: 8px 10px 4px;
 
 							&:focus,

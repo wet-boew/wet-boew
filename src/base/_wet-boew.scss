@@ -43,7 +43,7 @@
 	text-decoration: none;
 }
 
-%global_centered_overlay_container {
+%global-centered-overlay-container {
 	bottom: 0;
 	content: " ";
 	height: 100px;
@@ -55,14 +55,14 @@
 	width: 100px;
 }
 
-%global_centered_overlay {
+%global-centered-overlay {
 	&:after {
-		@extend %global_centered_overlay_container;
+		@extend %global-centered-overlay-container;
 		z-index: 1;
 	}
 
 	&:before {
-		@extend %global_centered_overlay_container;
+		@extend %global-centered-overlay-container;
 		background: rgba(0, 0, 0, 0.7);
 		border-radius: 10px;
 	}
@@ -80,7 +80,7 @@
 
 /* TODO: Use bootstratp placeholder when nested extends are supproted */
 %global-loading {
-	@extend %global_centered_overlay;
+	@extend %global-centered-overlay;
 
 	&:after {
 		animation: {

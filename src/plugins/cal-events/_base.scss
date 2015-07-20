@@ -50,9 +50,18 @@
 	}
 }
 
+%wb-cal-evt-width-100 {
+	width: 100%;
+}
+
 .cal-cnt-fluid {
-	&.cal-cnt,
-	table.cal-cnt {
-		width: 100%;
+	&.cal-cnt {
+		@extend %wb-cal-evt-width-100;
+	}
+
+	table {
+		&.cal-cnt {
+			@extend %wb-cal-evt-width-100;
+		}
 	}
 }

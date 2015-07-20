@@ -6,7 +6,7 @@
 ( function( $, wb ) {
 "use strict";
 
-wb.doc.on( "click vclick", "#updateProgress", function() {
+wb.doc.on( "click vclick", "#update-progress", function() {
 	var $elm = $( "#updateTest" ),
 		valuenow = parseInt( $elm.attr( "value" ), 10 ),
 		newValue = valuenow === parseInt( $elm.attr( "max" ), 10 ) ? 0 : valuenow + 1;

@@ -11,8 +11,10 @@
 	#fbweb {
 		@extend %wb-fdbck-display-none;
 
-		label[for=fbop] {
-			display: inline;
+		label {
+			&[for=fbop] {
+				display: inline;
+			}
 		}
 	}
 

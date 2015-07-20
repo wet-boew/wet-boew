@@ -564,12 +564,22 @@ legend {
 	float: left;
 }
 
+%border-style-solid {
+	border-style: solid;
+}
+
 fieldset {
 	border-top: 1px solid $legend-border-color;
 	padding-top: 10px;
 
 	&:first-child {
 		border-top: 0;
+	}
+
+	&[disabled] {
+		.btn {
+			@extend %border-style-solid;
+		}
 	}
 }
 
@@ -693,9 +703,8 @@ fieldset {
 	white-space: normal;
 
 	&.disabled,
-	&[disabled],
-	fieldset[disabled] & {
-		border-style: solid;
+	&[disabled] {
+		@extend %border-style-solid;
 	}
 }
 

@@ -45,7 +45,7 @@
 				<td><progress value="500" max="500"><span class="wb-inv">100 %</span></progress></td>
 			</tr>
 			<tr>
-				<td colspan="2"><button class="btn btn-default" id="updateProgress" type="button">Réactualiser</button></td>
+				<td colspan="2"><button class="btn btn-default" id="update-progress" type="button">Réactualiser</button></td>
 				<td><progress id="updateTest" value="82" max="100"><span class="wb-inv">82%</span></progress></td>
 			</tr>
 		</tbody>
@@ -80,7 +80,7 @@
 				&lt;td&gt;&lt;progress value=&quot;500&quot; max=&quot;500&quot;&gt;&lt;span class=&quot;wb-inv&quot;&gt;100 %&lt;/span&gt;&lt;/progress&gt;&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
-				&lt;td colspan=&quot;2&quot;&gt;&lt;button class=&quot;btn btn-default&quot; id=&quot;updateProgress&quot; type=&quot;button&quot;&gt;Réactualiser&lt;/button&gt;&lt;/td&gt;
+				&lt;td colspan=&quot;2&quot;&gt;&lt;button class=&quot;btn btn-default&quot; id=&quot;update-progress&quot; type=&quot;button&quot;&gt;Réactualiser&lt;/button&gt;&lt;/td&gt;
 				&lt;td&gt;&lt;progress id=&quot;updateTest&quot; value=&quot;82&quot; max=&quot;100&quot;&gt;&lt;span class=&quot;wb-inv&quot;&gt;82%&lt;/span&gt;&lt;/progress&gt;&lt;/td&gt;
 			&lt;/tr&gt;
 		&lt;/tbody&gt;
@@ -92,7 +92,7 @@
 			<pre><code>(function( $, wb ) {
 &quot;use strict&quot;;
 
-$( document ).on( &quot;click vclick&quot;, &quot;#updateProgress&quot;, function() {
+$( document ).on( &quot;click vclick&quot;, &quot;#update-progress&quot;, function() {
 	var $elm = $( &quot;#updateTest&quot; ),
 		valuenow = parseInt( $elm.attr( &quot;value&quot; ), 10 ),
 		newValue = valuenow === parseInt( $elm.attr( &quot;max&quot; ), 10 ) ? 0 : valuenow + 1;
