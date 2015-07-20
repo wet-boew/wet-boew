@@ -21,10 +21,10 @@ GEM
     parallel (1.6.0)
     rainbow (2.0.0)
     rake (10.3.2)
-    sass (3.4.4)
-    scss-lint (0.28.0)
+    sass (3.4.16)
+    scss_lint (0.40.1)
       rainbow (~> 2.0)
-      sass (~> 3.4.0)
+      sass (~> 3.4.1)
     typhoeus (0.7.2)
       ethon (>= 0.7.4)
     yell (2.0.5)
@@ -35,7 +35,7 @@ PLATFORMS
 DEPENDENCIES
   html-proofer
   rake
-  scss-lint
+  scss_lint
 
 BUNDLED WITH
    1.10.5
