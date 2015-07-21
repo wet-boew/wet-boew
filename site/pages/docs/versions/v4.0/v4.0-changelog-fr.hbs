@@ -4,11 +4,68 @@
 	"language": "fr",
 	"description": "ChangeLog de la version 4.0 - Historique des versions - Boîte à outils de l'expérience Web (BOEW)",
 	"altLangPrefix": "v4.0-changelog",
-	"dateModified": "2015-05-15"
+	"dateModified": "2015-07-21"
 }
 ---
 <p>Voir <a href="../version-info-fr.html">Contrôle des versions</a> pour la signification de chaque numéro de version.</p>
 <span class="wb-prettify all-pre"></span>
+
+<section>
+	<h2>v4.0.16</h2>
+	<ul>
+		<li><strong>Date de lancement&#160;:</strong> <time>2015-07-21</time></li>
+		<li><a href="v4.0.16-fr.html">Notes d'utilisation<span class="wb-inv"> - v4.0.16</span></a></li>
+		<li><a href="../dwnld-fr.html#v4016">Téléchargements<span class="wb-inv"> - v4.0.16</span></a></li>
+	</ul>
+
+	<section>
+		<h3>Quoi de neuf?</h3>
+		<div lang="en">
+		<p><strong>Needs translation</strong></p>
+		<ul>
+		<li><strong>Footnotes:</strong> Added minor SCSS improvements. * Increased total width of the footnotes section by removing unnecessary left/right margins (old carry-overs from WET 3.x). * Slightly increased widths of return links to prevent right borders from disappearing in 2 column pages when 3 digit numbers are used. * Adjusted vertical positioning of return links and nearby paragraphs to make them appear exactly on the same line.</li>
+		<li><strong>Tables:</strong> Fixed incorrect display of sorting icons in multi-row table headers</li>
+		<li><strong>Core:</strong> Normalized encoding of the query string in Internet Explorer to prevent cross-site scripting issues</li>
+		<li><strong>Menu:</strong> Fixed HTML5 markup of the mobile panel section headers</li>
+		<li><strong>Lightbox:</strong> Added the ability to use the ajax option from Magnific Popup</li>
+		<li><strong>Lightbox:</strong> Fixed firing of the wb-ready.wb-lbx event when opening a Lightbox through JavaScript</li>
+		<li><strong>Details/summary:</strong> Fixed indenting of headings in the summary element</li>
+		<li><strong>Form validation:</strong> Added documentation and/or examples of all the jQuery validation methods with French translations and corrected the telephone number label</li>
+		<li><strong>CSS:</strong> Made details/summary look clickable.</li>
+		</ul>
+		</div>
+	</section>
+</section>
+
+<section>
+	<h2>v4.0.15</h2>
+	<ul>
+		<li><strong>Date de lancement&#160;:</strong> <time>2015-06-23</time></li>
+		<li><a href="v4.0.15-fr.html">Notes d'utilisation<span class="wb-inv"> - v4.0.15</span></a></li>
+		<li><a href="../dwnld-fr.html#v4015">Téléchargements<span class="wb-inv"> - v4.0.15</span></a></li>
+	</ul>
+
+	<section>
+		<h3>Quoi de neuf?</h3>
+		<div lang="en">
+		<p><strong>Needs translation</strong></p>
+		<ul>
+			<li><strong>Form Validation:</strong> Added support for a single required checkbox.</li>
+			<li><strong>Dimissable content:</strong> Use ID attribute if present as content ID and strip whitespace before generating unique ID.</li>
+			<li><strong>Data-inview:</strong> Ensure that elements removed from the DOM don't trigger data-inview and tie the overlay close action to the dismiss close action when the data-inview element is dismissable. Fixed the bottom bar test failing in IE 10 & 11.</li>
+			<li><strong>Feeds:</strong> Added a way to manually specify a list of videos Also significantly optimize the YouTube feeds by only using one lightbox for the whole feed, on demand and Optimized the flickr feed Fixes #6219.</li>
+			<li><strong>Share widget:</strong> Added filtering option for email and fixed apostrophe filtering.</li>
+			<li><strong>Geomap:</strong> Now using native OpenLayers events to catch mouseover and mouseout on the map and Fixed i18n issues.</li>
+			<li><strong>Core:</strong> Implement refresh.wb event, combine the WET core CSS in the theme CSS ()Partially implements #6809), and merge the unmin resources with the minified resources ()Partially implements #6809).</li>
+			<li><strong>Tabbed interface:</strong> Fixed initialization of second or more tabbed interfaces on a page, added class to allow tabs to wrap, fixed display issue with nested lists within nested tabbed interfaces, and fixed WAI-ARIA attributes in mobile view and added print-active option.</li>
+			<li><strong>Tabbed interface - Carousel</strong> Added fallback for when active class is omitted from the tablist.</li>
+			<li><strong>MathML:</strong> Hides Modernizr MathML check with CSS after the check has completed.</li>
+			<li><strong>Form validation:</strong> Fixed colouring of errored fields and error summary on form reset.</li>
+		</ul>
+		</div>
+	</section>
+</section>
+
 <section>
 	<h2>v4.0.14</h2>
 	<ul>
@@ -33,6 +90,34 @@
 		<li><strong>New plugin:</strong> Dismissable content.</li>
 		<li><strong>Lightbox:</strong> Fixed link text on demo page.</li>
 		<li><strong>CSS:</strong> Updated styling of fieldset and legend elements.</li>
+		</ul>
+		</div>
+	</section>
+</section>
+
+<section>
+	<h2>v4.0.13</h2>
+	<ul>
+		<li><strong>Date de lancement&#160;:</strong> <time>2015-04-21</time></li>
+		<li><a href="v4.0.13-fr.html">Notes d'utilisation<span class="wb-inv"> - v4.0.13</span></a></li>
+		<li><a href="../dwnld-fr.html#v4013">Téléchargements<span class="wb-inv"> - v4.0.13</span></a></li>
+	</ul>
+
+	<section>
+		<h3>Quoi de neuf?</h3>
+		<div lang="en">
+		<p><strong>Needs translation</strong></p>
+		<ul>
+			<li><strong>Multimedia:</strong> Fixed the controls not loading for the Flash fallback Fixes #6645.</li>
+			<li><strong>Geomap:</strong> Replaced deprecated table highlight class.</li>
+			<li><strong>Core:</strong> Improved handling of nested plugin/polyfill elements.</li>
+			<li><strong>Site:</strong> Link to jQuery using https Fix #6658.</li>
+			<li><strong>Plugins:</strong> Fix Pinterest share functionality.</li>
+			<li><strong>Core:</strong> Fixed firing of ready events with nested elements.</li>
+			<li><strong>Secondary menu:</strong> Fix hover issue for contrast ratio on base WET theme. Contrast ratio fails at 3.0:1, fixed to 60% and achieves 5.7:1.</li>
+			<li><strong>Site:</strong> Standardized the generation of footer resources.</li>
+			<li><strong>Site:</strong> Removed duplicate i18n data.</li>
+			<li><strong>Site:</strong> fixed the language demos links in the french pages.</li>
 		</ul>
 		</div>
 	</section>
