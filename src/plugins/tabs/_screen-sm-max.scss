@@ -34,9 +34,9 @@
 	@extend %tabs-screen-sm-max-backwards-compat; /* Only for backwards compatibility. Should be removed in v4.1. */
 	border: {
 		color: $tablist-screen-sm-border-color;
+		radius: $tablist-screen-sm-border-radius;
 		style: $tablist-screen-sm-border-style;
 		width: $tablist-screen-sm-border-width;
-		radius: $tablist-screen-sm-border-radius;
 	}
 	margin-bottom: 15px;
 	padding: {

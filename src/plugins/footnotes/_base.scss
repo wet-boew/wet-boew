@@ -72,7 +72,7 @@
 			ul,
 			ol {
 				margin: 0 $spacing $spacing (($spacing * 2) + $ddRtnWidth);
-				
+
 				&:first-child {
 					@extend %fnote-margin-top-spacing;
 				}
@@ -89,15 +89,15 @@
 			padding-top: $spacing;
 		}
 	}
-	
+
 	ul,
 	ol {
 		margin-bottom: $spacing;
 	}
-	
+
 	table {
 		margin: 0 $spacing $spacing (($spacing * 2) + $ddRtnWidth);
-		
+
 		&:first-child {
 			@extend %fnote-margin-top-spacing;
 		}

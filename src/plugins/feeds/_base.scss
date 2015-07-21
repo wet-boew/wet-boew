@@ -2,7 +2,7 @@
  * Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
  * wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html
  */
-%feeds_loading {
+%feeds-loading {
 	bottom: 0;
 	content: " ";
 	height: 50px;
@@ -20,7 +20,7 @@
 		min-width: 100px;
 
 		&:after {
-			@extend %feeds_loading;
+			@extend %feeds-loading;
 			animation: {
 				duration: 1000ms;
 				iteration-count: infinite;
@@ -33,7 +33,7 @@
 		}
 
 		&:before {
-			@extend %feeds_loading;
+			@extend %feeds-loading;
 			background: rgba(0, 0, 0, 0);
 			z-index: 1;
 		}

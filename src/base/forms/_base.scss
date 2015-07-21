@@ -10,6 +10,7 @@ $asterisk-width: 0.665em;
 	font-style: italic;
 }
 
+// scss-lint:disable QualifyingElement
 label,
 legend,
 .checkbox,
@@ -28,6 +29,7 @@ input[type="checkbox"] {
 		}
 	}
 }
+// scss-lint:enable QualifyingElement
 
 [dir=rtl] {
 	label,

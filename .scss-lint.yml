@@ -47,3 +47,21 @@ linters:
       - "src/plugins/tabs/_base.scss"
       - "src/polyfills/slider/slider.scss"
       - "theme/banner/_base.scss"
+  ColorVariable:
+    enabled: false
+  IdSelector:
+    enabled: false
+  ImportantRule:
+    enabled: false
+  NestingDepth:
+    enabled: false
+  SelectorFormat:
+    exclude:
+      - "src/plugins/geomap/*.scss"
+      - "src/plugins/tables/*.scss"
+      - "src/polyfills/meter/*.scss"
+      - "src/plugins/charts/_base.scss"
+      - "src/plugins/multimedia/_base.scss"
+  PropertySortOrder:
+    exclude:
+      - "src/polyfills/slider/slider.scss"
