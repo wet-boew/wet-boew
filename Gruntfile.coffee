@@ -385,6 +385,7 @@ module.exports = (grunt) ->
 
 			i18n:
 				options:
+					banner: ""
 					process: ( src, filepath ) ->
 						lang = filepath.replace grunt.config( "coreDist" ) + "/js/i18n/", ""
 						# jQuery validation uses an underscore for locals
@@ -711,12 +712,14 @@ module.exports = (grunt) ->
 
 		# Minify
 		uglify:
+			options:
+				preserveComments: (uglify,comment) ->
+					return comment.value.match(/^!/i)
+
 			polyfills:
 				options:
-					report: "min"
 					banner: "<%= banner %>"
-					preserveComments: (uglify,comment) ->
-						return comment.value.match(/^!/i)
+					sourceMap: true
 				expand: true
 				cwd: "<%= coreDist %>/js/polyfills/"
 				src: "*.js"
@@ -726,8 +729,6 @@ module.exports = (grunt) ->
 			demos:
 				options:
 					banner: "<%= banner %>"
-					preserveComments: (uglify,comment) ->
-						return comment.value.match(/^!/i)
 				expand: true
 				cwd: "dist/unmin/demos/"
 				src: "**/demo/*.js"
@@ -738,8 +739,7 @@ module.exports = (grunt) ->
 				options:
 					beautify:
 						quote_keys: true
-					preserveComments: (uglify,comment) ->
-						return comment.value.match(/^!/i)
+					sourceMap: true
 				cwd: "<%= coreDist %>/js/"
 				src: [
 					"*wet-boew*.js"
@@ -755,8 +755,6 @@ module.exports = (grunt) ->
 					beautify:
 						quote_keys: true
 						ascii_only: true
-					preserveComments: (uglify,comment) ->
-						return comment.value.match(/^!/i)
 				cwd: "<%= coreDist %>/js/"
 				src: [
 					"ie8*.js"
@@ -765,7 +763,6 @@ module.exports = (grunt) ->
 				dest: "<%= coreDist %>/js/"
 				ext: ".min.js"
 				expand: true
-
 
 			i18n:
 				options:
@@ -789,8 +786,8 @@ module.exports = (grunt) ->
 					"!*.min.js"
 				]
 				dest: "<%= coreDist %>/js/deps/"
-				rename: (destBase, destPath) ->
-					return destBase + destPath.replace(/\.js$/, ".min.js")
+				ext: ".min.js"
+				extDot: "last"
 
 		cssmin:
 			options:
