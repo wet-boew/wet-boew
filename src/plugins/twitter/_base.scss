@@ -14,7 +14,6 @@
 .wb-twitter {
 	.twitter-timeline {
 		display: block;
-		text-indent: -9999px;
 	}
 
 	iframe {
@@ -31,15 +30,6 @@
 			min-height: 100px;
 			min-width: 100px;
 			position: relative;
-		}
-	}
-}
-
-/* Right to left (RTL) CSS */
-[dir="rtl"] {
-	.wb-twitter {
-		.twitter-timeline {
-			text-indent: 9999px;
 		}
 	}
 }
