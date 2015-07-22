@@ -36,7 +36,12 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 		refreshCallbackUrl: null,	/* refresh callback if using AJAX keepalive (no default) */
 		logouturl: "./",			/* logout URL once the session has expired */
 		refreshOnClick: true,		/* refresh session if user clicks on the page */
-		refreshLimit: 200000		/* default period of 2 minutes (ajax calls happen only once during this period) */
+		refreshLimit: 200000,		/* default period of 2 minutes (ajax calls happen only once during this period) */
+		method: "POST",				/* the request method to use */
+		additionalData: null,		/* additional data to send with the request */
+		refreshCallback: function( response ) {	/* callback function used to check the server response */
+				return response.replace( /\s/g, "" ) === "true";
+			}
 	},
 
 	/**
@@ -191,25 +196,31 @@ var $modal, $modalLink, countdownInterval, i18n, i18nText,
 	keepalive = function( event, settings ) {
 		var $elm = $( event.target );
 		if ( settings.refreshCallbackUrl !== null ) {
-			$.post( settings.refreshCallbackUrl, function( response ) {
+			$.ajax( {
+				url: settings.refreshCallbackUrl,
+				data: settings.additionalData,
+				dataType: "text",
+				method: settings.method,
+				success: function( response ) {
 
-				// Session is valid
-				if ( response && response.replace( /\s/g, "" ) === "true" ) {
-					$elm.trigger( resetEvent, settings );
+					// Session is valid
+					if ( response && settings.refreshCallback( response ) ) {
+						$elm.trigger( resetEvent, settings );
 
-				// Session has timed out - let the user know they need to sign in again
-				} else {
+					// Session has timed out - let the user know they need to sign in again
+					} else {
 
-					// End the inactivity timeouts since the session is already kaput
-					clearTimeout( $elm.data( inactivityEvent ) );
-					clearTimeout( $elm.data( keepaliveEvent ) );
+						// End the inactivity timeouts since the session is already kaput
+						clearTimeout( $elm.data( inactivityEvent ) );
+						clearTimeout( $elm.data( keepaliveEvent ) );
 
-					openModal( {
-						body: "<p>" + i18nText.timeoutAlready + "</p>",
-						buttons: $( "<button type='button' class='" + confirmClass +
-							" btn btn-primary'>" + i18nText.buttonSignin + "</button>" )
-								.data( "logouturl", settings.logouturl )
-					} );
+						openModal( {
+							body: "<p>" + i18nText.timeoutAlready + "</p>",
+							buttons: $( "<button type='button' class='" + confirmClass +
+								" btn btn-primary'>" + i18nText.buttonSignin + "</button>" )
+									.data( "logouturl", settings.logouturl )
+						} );
+					}
 				}
 			} );
 		}

@@ -6,7 +6,7 @@
 	"categoryfile": "plugins",
 	"description": "Create a session inactivity timeout that warns users when their session is about to expire.",
 	"altLangPrefix": "session-timeout",
-	"dateModified": "2014-10-28"
+	"dateModified": "2015-07-21"
 }
 ---
 <span class="wb-prettify all-pre hide"></span>
@@ -15,7 +15,7 @@
 	<h2>Purpose</h2>
 	<p>Create a session inactivity timeout that warns users when their session is about to expire.</p>
 	<p>This plugin helps web page owners by providing session timeout and inactivity timeout functionality. When a user requests a page with this plugin implemented their session will begin. After the specified session period, they will be notified that their session is about to timeout. At this point, they will have the option to remain logged in by clicking "Continue session", or signing out by clicking "End session now".</p>
-	<p>At anytime during the session, if the user remains idle for a specified amount of time, they will be notified that they're session is about to timeout. In either case, if the user does not respond to the timeout notification within a specified amount of time, once they click either "Continue session" or "End session now" they will be automatically redirected to the sign out page.</p>	
+	<p>At any time during the session, if the user remains idle for a specified amount of time, they will be notified that they're session is about to timeout. In either case, if the user does not respond to the timeout notification within a specified amount of time, once they click either "Continue session" or "End session now" they will be automatically redirected to the sign out page.</p>	
 </section>
 
 <section>
@@ -47,7 +47,9 @@
 	"logouturl": "./", 
 	"refreshCallbackUrl": "./"
 	"refreshOnClick": true,
-	"refreshLimit": 200000}'&gt;&lt;/span&gt;</code></pre>
+	"refreshLimit": 200000,
+	"method": "POST",
+	"additionalData": null}'&gt;&lt;/span&gt;</code></pre>
 		</li>
 	</ol>
 </section>
@@ -97,7 +99,7 @@
 				<td>
 					<dl>
 						<dt>None (default):</dt>
-						<dd>Default reation time is 3 minutes.</dd>
+						<dd>Default reaction time is 3 minutes.</dd>
 						<dt>Numeric value:</dt>
 						<dd>Treated as a millisecond value.</dd>
 						<dt>String numeric value with time unit appended (e.g. "100 s"):</dt>
@@ -107,7 +109,7 @@
 			</tr>
 			<tr>
 				<td><code>sessionalive</code></td>
-				<td>Sets the period of time before an ajax request is made to the server to determine if the session is still alive. A refreshCallbackUrl must be specified for this to work.</td>
+				<td>Sets the period of time before an ajax request is made to the server to determine if the session is still alive. A <code>refreshCallbackUrl</code> must be specified for this to work.</td>
 				<td>Provide a numeric value, optionally with a time unit appended.</td>
 				<td>
 					<dl>
@@ -134,9 +136,22 @@
 				</td>
 			</tr>
 			<tr>
+				<td><code>refreshCallback</code></td>
+				<td>The function used to check the response received from <code>refreshCallbackUrl</code>. This parameter cannot be specified on the <code>data-wb-sessto</code> attribute.</td>
+				<td>Provide a function.</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>The response is matched exactly to the literal string "true".</dd>
+						<dt>Function:</dt>
+						<dd>The function needs to accept a single string parameter, which will be the response body text. It must return true if the session is alive, or false otherwise.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
 				<td><code>refreshCallbackUrl</code></td>
-				<td>URL used to perform an ajax request. Must be a viewless page that returns "true" to indicate session is still valid.</td>
-				<td>Provide a URL whose response to a POST request is "true" if the session is still valid. Any other characters in the response will mark the session as expired.</td>
+				<td>URL used to perform an ajax request to determine the validity of the session. See the <code>method</code> and <code>refreshCallback</code> parameters for more details.</td>
+				<td>Provide a URL.</td>
 				<td>
 					<dl>
 						<dt>None (default):</dt>
@@ -148,7 +163,7 @@
 			</tr>
 			<tr>
 				<td><code>refreshOnClick</code></td>
-				<td>Determines if clicking on the document should reset the inactivity timeout and perform an ajax request (if a refreshCallbackUrl has been specified).</td>
+				<td>Determines if clicking on the document should reset the inactivity timeout and perform an ajax request (if a <code>refreshCallbackUrl</code> has been specified).</td>
 				<td>Provide a boolean true/false value.</td>
 				<td>
 					<dl>
@@ -173,7 +188,35 @@
 						<dd>Treated as a time value in the provided unit.</dd>
 					</dl>
 				</td>
-			</tr>															
+			</tr>
+			<tr>
+				<td><code>method</code></td>
+				<td>Sets the request method used for ajax requests. While all methods are accepted, the response must contain a message body therefore methods that preclude this are not recommended. Recommended: GET, POST.</td>
+				<td>Provide a string value.</td>
+				<td>
+					<dl>
+						<dt>None (default):</dt>
+						<dd>The POST request method is used.</dd>
+						<dt>String:</dt>
+						<dd>Treated as the request method (HTTP verb). The method is used as entered.</dd>
+					</dl>
+				</td>
+			</tr>
+			<tr>
+				<td><code>additionalData</code></td>
+				<td>Additional data to send with the request.</td>
+				<td>Provide a string value, array, object or null.</td>
+				<td>
+					<dl>
+						<dt>None or null (default):</dt>
+						<dd>No additional data is sent with the request.</dd>
+						<dt>String:</dt>
+						<dd>Treated as a query string of the form <code>key1=value1&amp;key2=value2</code> and sent as-is.</dd>
+						<dt>Array or object:</dt>
+						<dd>Converted to query string form before being sent with the request.</dd>
+					</dl>
+				</td>
+			</tr>
 		</tbody>
 	</table>
 </section>
