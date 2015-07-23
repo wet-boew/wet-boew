@@ -1388,34 +1388,7 @@ module.exports = (grunt) ->
 					npmInstall: false
 
 	# These plugins provide necessary tasks.
-	@loadNpmTasks "assemble"
-	@loadNpmTasks "grunt-autoprefixer"
-	@loadNpmTasks "grunt-banner"
-	@loadNpmTasks "grunt-bootlint"
-	@loadNpmTasks "grunt-check-dependencies"
-	@loadNpmTasks "grunt-contrib-clean"
-	@loadNpmTasks "grunt-contrib-concat"
-	@loadNpmTasks "grunt-contrib-connect"
-	@loadNpmTasks "grunt-contrib-copy"
-	@loadNpmTasks "grunt-contrib-csslint"
-	@loadNpmTasks "grunt-contrib-cssmin"
-	@loadNpmTasks "grunt-contrib-htmlmin"
-	@loadNpmTasks "grunt-contrib-imagemin"
-	@loadNpmTasks "grunt-contrib-jshint"
-	@loadNpmTasks "grunt-contrib-uglify"
-	@loadNpmTasks "grunt-contrib-watch"
-	@loadNpmTasks "grunt-cssmin-ie8-clean"
-	@loadNpmTasks "grunt-gh-pages"
-	@loadNpmTasks "grunt-html"
-	@loadNpmTasks "grunt-i18n-csv"
-	@loadNpmTasks "grunt-imagine"
-	@loadNpmTasks "grunt-jscs"
-	@loadNpmTasks "grunt-mocha"
-	@loadNpmTasks "grunt-modernizr"
-	@loadNpmTasks "grunt-sass"
-	@loadNpmTasks "grunt-saucelabs"
-	@loadNpmTasks "grunt-wget"
-	@loadNpmTasks "grunt-wet-boew-postbuild"
+	require( "load-grunt-tasks")( grunt, { pattern: [ "grunt-*", "assemble" ] } )
 
 	require( "time-grunt" )( grunt )
 	@
