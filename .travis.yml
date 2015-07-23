@@ -1,13 +1,14 @@
 language: node_js
 node_js:
-  - "0.10"
+  - "0.12"
+
+sudo: false
 
 env:
   global:
     - TRAVIS_COMMIT_MSG="$(git log --format=%B --no-merges -n 1)"
 
 install:
-  - npm -g install npm@next
   - ./script/setup
   - bundle install
 
@@ -20,3 +21,10 @@ after_success:
 notifications:
   irc:
   - "chat.freenode.net#wet-boew"
+
+cache:
+  bundler: true
+  directories:
+  - node_modules
+  - lib
+  - vendor/cache
