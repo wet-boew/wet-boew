@@ -859,26 +859,21 @@ module.exports = (grunt) ->
 			ajax:
 				options:
 					ignore: [
-						"XHTML element “head” is missing a required instance of child element “title”."
-						"The “details” element is not supported properly by browsers yet. It would probably be better to wait for implementations."
-						"The value of attribute “title” on element “a” from namespace “http://www.w3.org/1999/xhtml” is not in Unicode Normalization Form C." #required for vietnamese translations
-						"Text run is not in Unicode Normalization Form C." #required for vietnamese translations
+						"Element “head” is missing a required instance of child element “title”."
 					]
 				src: [
 					"dist/unmin/ajax/**/*.html"
 					"dist/unmin/demos/menu/demo/*.html"
-
 				]
+
 			ajaxFragments:
 				options:
 					ignore: [
-						"XHTML element “head” is missing a required instance of child element “title”."
-						"XHTML element “li” not allowed as child of XHTML element “body” in this context. (Suppressing further errors from this subtree.)"
-						"The “aria-controls” attribute must point to an element in the same document."
+						"Element “head” is missing a required instance of child element “title”."
+						"Element “li” not allowed as child of element “body” in this context. (Suppressing further errors from this subtree.)"
 						"The “details” element is not supported properly by browsers yet. It would probably be better to wait for implementations."
-						"The value of attribute “title” on element “a” from namespace “http://www.w3.org/1999/xhtml” is not in Unicode Normalization Form C." #required for vietnamese translations
-						"Text run is not in Unicode Normalization Form C." #required for vietnamese translations
 						"Start tag seen without seeing a doctype first. Expected “<!DOCTYPE html>”."
+						"Section lacks heading. Consider using “h2”-“h6” elements to add identifying headings to all sections."
 					]
 				src: [
 					"dist/unmin/demos/**/ajax/**/*.html"
@@ -889,12 +884,8 @@ module.exports = (grunt) ->
 					ignore: [
 						"The “details” element is not supported properly by browsers yet. It would probably be better to wait for implementations."
 						"The “date” input type is not supported in all browsers. Please be sure to test, and consider using a polyfill."
-						"The “track” element is not supported by browsers yet. It would probably be better to wait for implementations."
 						"The “time” input type is not supported in all browsers. Please be sure to test, and consider using a polyfill."
-						"The value of attribute “title” on element “a” from namespace “http://www.w3.org/1999/xhtml” is not in Unicode Normalization Form C." #required for vietnamese translations
-						"Text run is not in Unicode Normalization Form C." #required for vietnamese translations
 						"The “longdesc” attribute on the “img” element is obsolete. Use a regular “a” element to link to the description."
-						/Bad value “\.\/\.\.\/[^”]*” for attribute “[^”]*” on XHTML element “[^”]*”: Path component contains a segment “\/\.\.\/” not at the beginning of a relative reference, or it contains a “\/\.\/”. These should be removed./
 					]
 				src: [
 					"dist/unmin/**/*.html"
