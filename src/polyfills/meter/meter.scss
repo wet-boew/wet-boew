@@ -12,7 +12,7 @@ meter {
 
 	div {
 		background: #b4e391;
-		background-image: linear-gradient(top, #b4e391 0, #4a0 35%, #b4e391 100%);
+		background-image: linear-gradient(to bottom, #b4e391 0, #4a0 35%, #b4e391 100%);
 		border-right: 1px solid #000;
 		display: block;
 		height: 20px;
@@ -22,7 +22,7 @@ meter {
 	&.meterValueTooLow {
 		div {
 			background: #ffd65e;
-			background-image: linear-gradient(top, #ffd65e 0, #fbff47 35%, #febf04 100%);
+			background-image: linear-gradient(to bottom, #ffd65e 0, #fbff47 35%, #febf04 100%);
 		}
 	}
 
