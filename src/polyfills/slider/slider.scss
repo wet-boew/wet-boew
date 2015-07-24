@@ -176,7 +176,7 @@
 	@extend %slider-padding-0;
 	@extend %slider-position-absolute;
 	@extend %slider-z-index-3;
-	background-image: linear-gradient(left, #89a5bd, #165c91);
+	background-image: linear-gradient(to right, #89a5bd, #165c91);
 	left: 11px;
 	line-height: 2px;
 	top: 9px;
@@ -260,7 +260,7 @@ body {
 
 	.fd-slider-bar {
 		background-color: #555;
-		background-image: linear-gradient(left, #666, #333);
+		background-image: linear-gradient(to right, #666, #333);
 		border: 1px solid #888;
 		border: 1px solid rgba(136, 136, 136, .8);
 		border-bottom: 1px solid #999;
@@ -272,7 +272,7 @@ body {
 
 	.fd-slider-range {
 		background-color: #222;
-		background-image: linear-gradient(left, #222, #000);
+		background-image: linear-gradient(to right, #222, #000);
 		cursor: auto !important;
 	}
 }
