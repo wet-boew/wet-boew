@@ -129,6 +129,31 @@ var wet_boew_geomap = {
 			}
 		},
 		{
+			title: "ESRI GeoJSON",
+			caption: "This is a sample dataset loaded from a remote ESRI GeoJSON resource.",
+			type: "esrijson",
+			url: "http://geoportal.gc.ca/arcgis/rest/services/tides_marees/allstations_toutestations/MapServer/0/query?where=STATUS='PERMANENT'&outFields=STATION_NAME%2CSTATION_NUMBER&f=pjson",
+			visible: false,
+			popups: true,
+			tab: true,
+			datatable: true,
+			zoom: true,
+			attributes: {
+				STATION_NUMBER: "ID",
+				STATION_NAME: "Name"
+			},
+			style: {
+				type: "symbol",
+				init: {
+					graphicName: "triangle",
+					pointRadius: 6,
+					fillColor: "#FF66FF",
+					strokeColor: "#FF00FF",
+					strokeWidth: 1
+				}
+			}
+		},
+		{
 			title: "GeoJSON (CartoDB)",
 			caption: "This is a sample dataset loaded from a remote GeoJSON resource, in this case traffic cameras in the city of Ottawa from the CartoDB API.",
 			type: "geojson",
@@ -158,10 +183,7 @@ var wet_boew_geomap = {
 					graphicOpacity: 1.0
 				},
 				select: {
-					graphicWidth: 20,
-					graphicHeight: 20,
-					externalGraphic: "demo/trafficcamera_active.png",
-					graphicOpacity: 0.5
+					externalGraphic: "demo/trafficcamera_active.png"
 				}
 			}
 
