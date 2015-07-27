@@ -329,36 +329,8 @@ var getUrlParts = function( url ) {
 		},
 
 		i18nDict: {},
-		i18n: function( key, state, mixin ) {
-			var dictionary = wb.i18nDict,
-
-				// eg. 000 or 001 ie. 0 or 1
-				truthiness = ( typeof key === "string" && key !== "" ) |
-
-					// eg. 000 or 010 ie. 0 or 2
-					( typeof state === "string" && state !== "" ) << 1 |
-
-					// eg. 000 or 100 ie. 0 or 4
-					( typeof mixin === "string" && mixin !== "" ) << 2;
-
-			switch ( truthiness ) {
-				case 1:
-
-					// only key was provided
-					return dictionary[ key ];
-
-				case 3:
-
-					// key and state were provided
-					return dictionary[ key ][ state ];
-
-				case 7:
-
-					// key, state, and mixin were provided
-					return dictionary[ key ][ state ].replace( "[MIXIN]", mixin );
-				default:
-					return "";
-			}
+		i18n: function( key ) {
+			return wb.i18nDict[ key ];
 		},
 
 		hashString: function( str ) {
