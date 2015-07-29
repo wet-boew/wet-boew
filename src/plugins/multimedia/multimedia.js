@@ -902,7 +902,7 @@ $document.on( multimediaEvents, selector, function( event, simulated ) {
 				.toggleClass( "glyphicon-volume-off", isMuted )
 				.html( invStart + buttonData + invEnd );
 		$slider = $this.find( "input[type='range']" );
-		$slider[0].value = isMuted ? 0 : volume;
+		$slider[ 0 ].value = isMuted ? 0 : volume;
 		$slider.trigger( "wb-update.wb-slider" );
 		break;
 

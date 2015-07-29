@@ -204,8 +204,6 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 				// If there no id, add an uid
 				currCellId = $( currCell.elem ).attr( "id" );
 				if ( currCellId === undefined || currCellId === "" || resetIds ) {
-
-					// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
 					currCellId = idPrefix + currCell.uid; /* Generate a new ID */
 					$( currCell.elem ).attr( "id", currCellId );
 				}
@@ -231,8 +229,6 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 					}
 					currCellDescId = $( currCell.descCell.elem ).attr( "id" );
 					if ( currCellDescId === undefined || currCellDescId === "" || resetIds ) {
-
-						// currCellDescId = idPrefix + new Date( ).getTime( ) + currCell.descCell.uid; // Generate a new ID
 						$( currCell.descCell.elem ).attr( "id", currCellDescId );
 					}
 					$( currCell.elem ).attr( "aria-describedby", currCellDescId );
@@ -254,8 +250,6 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 			for ( j = 0; j < currRow.headerset.length; j += 1 ) {
 				currCellId = $( currRow.headerset[ j ].elem ).attr( "id" );
 				if ( currCellId === undefined || currCellId === "" || resetIds ) {
-
-					// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
 					currCellId = idPrefix + currRow.headerset[ j ].uid; /* Generate a new ID */
 					$( currRow.headerset[ j ].elem ).attr( "id", currCellId );
 				}
@@ -268,8 +262,6 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 			for ( j = 0; j < currRow.header.length; j += 1 ) {
 				currCellId = $( currRow.header[ j ].elem ).attr( "id" );
 				if ( currCellId === undefined || currCellId === "" || resetIds ) {
-
-					// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
 					currCellId = idPrefix + currRow.header[ j ].uid; /* Generate a new ID */
 					$( currRow.header[ j ].elem ).attr( "id", currCellId );
 				}
@@ -291,8 +283,6 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 						for ( m = 0; m < currCol.headerLevel.length; m += 1 ) {
 							currCellId = $( currCol.headerLevel[ m ].elem ).attr( "id" );
 							if ( currCellId === undefined || currCellId === "" || resetIds ) {
-
-								// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
 								currCellId = idPrefix + currCol.headerLevel[ m ].uid; /* Generate a new ID */
 								$( currCol.headerLevel[ m ].elem ).attr( "id", currCellId );
 							}
@@ -303,8 +293,6 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 						for ( m = 0; m < currCol.header.length; m += 1 ) {
 							currCellId = $( currCol.header[ m ].elem ).attr( "id" );
 							if ( currCellId === undefined || currCellId === "" || resetIds ) {
-
-								// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
 								currCellId = idPrefix + currCol.header[ m ].uid; /* Generate a new ID */
 								$( currCol.header[ m ].elem ).attr( "id", currCellId );
 							}
@@ -338,8 +326,6 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 
 					currCellId5 = $( currCell.elem ).attr( "id" );
 					if ( currCellId5 === undefined || currCellId5 === "" || resetIds ) {
-
-						// currCellId5 = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
 						currCellId5 = idPrefix + currCell.uid; /* Generate a new ID */
 						$( currCell.elem ).attr( "id", currCellId5 );
 					}
@@ -356,8 +342,6 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 						for ( m = 0; m < currCell.addcolheaders.length; m += 1 ) {
 							currCellId = $( currCell.addcolheaders[ m ].elem ).attr( "id" );
 							if ( currCellId === undefined || currCellId === "" || resetIds ) {
-
-								// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
 								currCellId = idPrefix + currCell.addcolheaders[ m ].uid; /* Generate a new ID */
 								$( currCell.addcolheaders[ m ].elem ).attr( "id", currCellId );
 							}
@@ -369,8 +353,6 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 						for ( m = 0; m < currCell.addrowheaders.length; m += 1 ) {
 							currCellId = $( currCell.addrowheaders[ m ].elem ).attr( "id" );
 							if ( currCellId === undefined || currCellId === "" || resetIds ) {
-
-								// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
 								currCellId = idPrefix + currCell.addrowheaders[ m ].uid; /* Generate a new ID */
 								$( currCell.addrowheaders[ m ].elem ).attr( "id", currCellId );
 							}
@@ -391,8 +373,6 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 						for ( m = 0; m < currCell.describe.length; m += 1 ) {
 							currCellId = $( currCell.describe[ m ].elem ).attr( "id" );
 							if ( currCellId === undefined || currCellId === "" || resetIds ) {
-
-								// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
 								currCellId = idPrefix + currCell.describe[ m ].uid; /* Generate a new ID */
 								$( currCell.describe[ m ].elem ).attr( "id", currCellId );
 							}
@@ -400,8 +380,6 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 							if ( currCell.type === 5 && !$( currCell.describe[ m ].elem ).attr( "aria-describedby" ) ) {
 								currCellId = $( currCell.elem ).attr( "id" );
 								if ( currCellId === undefined || currCellId === "" || resetIds ) {
-
-									// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
 									currCellId = idPrefix + currCell.uid; /* Generate a new ID */
 									$( currCell.elem ).attr( "id", currCellId );
 								}
@@ -439,8 +417,6 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 					// Set the aria-describedby
 					currDescCellId = $( tblparser.lstrowgroup[ i ].headerlevel[ j ].descCell.elem ).attr( "id" );
 					if ( currDescCellId === undefined || currDescCellId === "" || resetIds ) {
-
-						// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
 						currDescCellId = idPrefix + tblparser.lstrowgroup[ i ].headerlevel[ j ].descCell.uid; /* Generate a new ID */
 						$( tblparser.lstrowgroup[ i ].headerlevel[ j ].descCell.elem ).attr( "id", currDescCellId );
 					}
@@ -449,8 +425,6 @@ $document.on( addidheadersEvent, "#visualoutput > table:eq( 0 )", function( even
 					// Set the headers
 					currCellId = $( tblparser.lstrowgroup[ i ].headerlevel[ j ].elem ).attr( "id" );
 					if ( currCellId === undefined || currCellId === "" || resetIds ) {
-
-						// currCellId = idPrefix + new Date( ).getTime( ) + currCell.uid; // Generate a new ID
 						currCellId = idPrefix + tblparser.lstrowgroup[ i ].headerlevel[ j ].uid; /* Generate a new ID */
 						$( tblparser.lstrowgroup[ i ].headerlevel[ j ].elem ).attr( "id", currCellId );
 					}
@@ -679,12 +653,12 @@ $document.on( "error" + tableParserSelector, "#visualoutput > table:eq( 0 )", fu
 		errorHTML = "",
 		techNum;
 
-	errorHTML = ErrorMessage[  "%tblparser" + numerr  ];
+	errorHTML = ErrorMessage[ "%tblparser" + numerr ];
 
 	// Check if a technique exist related to the error
-	if ( ErrorMessage[  "%tblparser" + numerr + "Tech"  ] !== undefined ) {
-		techNum = ErrorMessage[  "%tblparser" + numerr + "Tech"  ];
-		errorHTML = "<a href='" + techniqueURL[  techNum  ] + "' title='" + techniqueName[  techNum  ] + "'>" + errorHTML + "</a>";
+	if ( ErrorMessage[ "%tblparser" + numerr + "Tech" ] !== undefined ) {
+		techNum = ErrorMessage[ "%tblparser" + numerr + "Tech" ];
+		errorHTML = "<a href='" + techniqueURL[ techNum ] + "' title='" + techniqueName[ techNum ] + "'>" + errorHTML + "</a>";
 	}
 
 	html = html + errorHTML;
@@ -704,12 +678,12 @@ $document.on( "warning" + tableParserSelector, "#visualoutput > table:eq( 0 )", 
 	errorHTML = "",
 	techNum;
 
-	errorHTML = ErrorMessage[  "%tblparser" + numerr  ];
+	errorHTML = ErrorMessage[ "%tblparser" + numerr ];
 
 	// Check if a technique exist related to the error
-	if ( ErrorMessage[  "%tblparser" + numerr + "Tech"  ] !== undefined ) {
-		techNum = ErrorMessage[  "%tblparser" + numerr + "Tech"  ];
-		errorHTML = "<a href='" + techniqueURL[  techNum  ] + "' title='" + techniqueName[  techNum  ] + "'>" + errorHTML + "</a>";
+	if ( ErrorMessage[ "%tblparser" + numerr + "Tech" ] !== undefined ) {
+		techNum = ErrorMessage[ "%tblparser" + numerr + "Tech" ];
+		errorHTML = "<a href='" + techniqueURL[ techNum ] + "' title='" + techniqueName[ techNum ] + "'>" + errorHTML + "</a>";
 	}
 
 	html = html + errorHTML;

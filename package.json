@@ -54,7 +54,7 @@
     "grunt-html": "^4.0.3",
     "grunt-i18n-csv": "^0.1.0",
     "grunt-imagine": "^0.3.54",
-    "grunt-jscs": "^1.5.0",
+    "grunt-jscs": "^2.0.0",
     "grunt-mocha": "~0.4.12",
     "grunt-modernizr": "~0.5.2",
     "grunt-sass": "^1.0.0",
