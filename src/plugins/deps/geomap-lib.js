@@ -1616,7 +1616,7 @@ var componentName = "wb-geomap",
 											atts = {};
 											for ( name in layerAttributes ) {
 												if ( layerAttributes.hasOwnProperty( name ) ) {
-													atts[ layerAttributes[ name ]] = row.properties[ name ];
+													atts[ layerAttributes[ name ] ] = row.properties[ name ];
 												}
 											}
 											feature.attributes = atts;
@@ -2479,7 +2479,7 @@ var componentName = "wb-geomap",
 								.replace( />/g, "&gt;" );
 
 							bnd = res[ i ].bbox ? res[ i ].bbox[ 0 ] + ", " + res[ i ].bbox[ 1 ] + ", " + res[ i ].bbox[ 2 ] + ", " + res[ i ].bbox[ 3 ] : null;
-							ll = res[ i ].geometry && res[ i ].geometry.type === "Point" ? res[ i ].geometry.coordinates[ 0 ] + ", " + res[ i ].geometry.coordinates[ 1] : null;
+							ll = res[ i ].geometry && res[ i ].geometry.type === "Point" ? res[ i ].geometry.coordinates[ 0 ] + ", " + res[ i ].geometry.coordinates[ 1 ] : null;
 							options.push( "<option value='" + title + "' data-lat-lon='" + ll + "' data-bbox='" + bnd  + "' data-type='" + res[ i ].type + "'></option>" );
 
 							if ( i === len - 1 ) {

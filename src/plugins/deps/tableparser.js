@@ -618,7 +618,7 @@ var componentName = "wb-tableparser",
 
 					colFrmId += 1;
 
-					if ( bigTotalColgroupFound || groupZero.colgrp[ 0  ] ) {
+					if ( bigTotalColgroupFound || groupZero.colgrp[ 0 ] ) {
 						$obj.trigger( {
 							type: errorEvent,
 							pointer: curColgroupFrame,

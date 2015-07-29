@@ -3,6 +3,8 @@
 	// Preset overrides
 	"validateLineBreaks": null,
 	"requireCamelCaseOrUpperCaseIdentifiers": null,
+	"requireCapitalizedComments": null,
+	"es3": true,
 	"maximumLineLength": 500,
 	// Additional preset tightening
 	"requireBlocksOnNewline": true,
