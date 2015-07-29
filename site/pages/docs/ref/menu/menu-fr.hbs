@@ -32,7 +32,7 @@
 		<li>Add the following code to the <code>header</code> area of the page. <strong>Note:</strong> This step should already be done for most themes.
 			<ul>
 				<li><strong>English pages:</strong>
-					<pre><code>&lt;nav role="navigation" id="wb-sm" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement"&gt;
+					<pre><code>&lt;nav id="wb-sm" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement"&gt;
 	&lt;div class="container nvbar"&gt;
 		&lt;h2&gt;Topics menu&lt;/h2&gt;
 		&lt;div class="row"&gt;
@@ -46,7 +46,7 @@
 &lt;/nav&gt;</code></pre>
 				</li>
 				<li><strong>French pages:</strong>
-					<pre><code>&lt;nav role="navigation" id="wb-sm" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement"&gt;
+					<pre><code>&lt;nav id="wb-sm" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement"&gt;
 	&lt;div class="container nvbar"&gt;
 		&lt;h2&gt;Menu des sujets&lt;/h2&gt;
 		&lt;div class="row"&gt;
@@ -153,7 +153,7 @@
 &lt;/ul&gt;</code></pre>
 		</li>
 		<li><strong>Optional:</strong> Add <code>data-ajax-fetch="[url]"</code> to the element with <code>class="wb-menu"</code>, with <code>[url]</code> being the URL of the full menu to AJAX in.
-			<pre><code>&lt;nav role="navigation" id="wb-sm" data-ajax-fetch="ajax/menu-include-en.html" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement"&gt;</code></pre>
+			<pre><code>&lt;nav id="wb-sm" data-ajax-fetch="ajax/menu-include-en.html" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement"&gt;</code></pre>
 		</li>
 		<li><strong>Optional:</strong> Update <code>data-trgt</code> with the <code>id</code> of the target element for the mobile panel (in most cases this should not change).</li>
 	</ol>
