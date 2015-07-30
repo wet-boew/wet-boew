@@ -897,11 +897,12 @@ module.exports = (grunt) ->
 				options:
 					relaxerror: [
 						# We recommend handling this through the server headers so it never appears in the markup
-						"<head> is missing X-UA-Compatible <meta> tag that disables old IE compatibility modes"
+						"W002"
 						# TODO: The rules below should be resolved
-						"Only columns (.col-*-*) may be children of `.row`s"
-						"Unable to locate jQuery, which is required for Bootstrap's JavaScript plugins to work"
-						"Columns (.col-*-*) can only be children of `.row`s or `.form-group`s"
+						"E013"
+						"E014"
+						"E031"
+						"W005"
 					]
 				src: [
 					"dist/**/*.html"
