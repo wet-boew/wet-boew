@@ -12,7 +12,8 @@
 	"globals": {
 		"wb": true,
 		"Modernizr": true,
-		"yepnope": true
+		"yepnope": true,
+		"JSON": true
 	},
 	"jquery": true,
 	"browser": true,
