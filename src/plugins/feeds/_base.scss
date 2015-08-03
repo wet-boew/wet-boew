@@ -15,6 +15,9 @@
 }
 
 .feeds-cont {
+	.fb-wrapper {
+		text-align: center;
+	}
 	&.waiting {
 		min-height: 100px;
 		min-width: 100px;
