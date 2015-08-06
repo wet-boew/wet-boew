@@ -16,40 +16,40 @@
 
 describe( "Facebook test suite", function() {
 
-  /*
-   * Test the initialization and default behaviour of the plugin
-   */
-  var $elm,
-    $document = wb.doc,
-    $body = $document.find( "body" );
+	/*
+	 * Test the initialization and default behaviour of the plugin
+	 */
+	var $elm,
+		$document = wb.doc,
+		$body = $document.find( "body" );
 
-  before( function( done ) {
+	before( function( done ) {
 
-    // The facebook widget sometimes takes longer than two second to load
-    this.timeout( 5000 );
+		// The facebook widget sometimes takes longer than two second to load
+		this.timeout( 5000 );
 
-    // Trigger plugin init
-    $elm = $( '<div class="wb-facebook"><div class="fb-page" data-href="https://www.facebook.com/canada150th"></div></div>' )
-      .appendTo( $body )
-      .trigger( "wb-init.wb-facebook" );
+		// Trigger plugin init
+		$elm = $( "<div class='wb-facebook'><div class='fb-page' data-href='https://www.facebook.com/canada150th'></div></div>" )
+			.appendTo( $body )
+			.trigger( "wb-init.wb-facebook" );
 
-    $document.on( "wb-ready.wb-facebook", ".wb-facebook", function() {
-      done();
-    } );
-  } );
+		$document.on( "wb-ready.wb-facebook", ".wb-facebook", function() {
+			done();
+		} );
+	} );
 
-  after( function() {
-    $elm.remove();
-  } );
+	after( function() {
+		$elm.remove();
+	} );
 
-  /*
-   * Test the initialization events of the plugin
-   */
-  describe( "init event", function() {
-    it( "should have added the wb-facebook-inited CSS class", function() {
-      expect( $elm.hasClass( "wb-facebook-inited" ) ).to.equal( true );
-    } );
-  } );
+	/*
+	 * Test the initialization events of the plugin
+	 */
+	describe( "init event", function() {
+		it( "should have added the wb-facebook-inited CSS class", function() {
+			expect( $elm.hasClass( "wb-facebook-inited" ) ).to.equal( true );
+		} );
+	} );
 
 } );
 

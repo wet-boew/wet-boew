@@ -5,7 +5,7 @@
 * @author @pjackson28
 */
 ( function( $, window, wb ) {
-	"use strict";
+"use strict";
 
 	/*
 	* Variable and function definitions.
@@ -13,7 +13,7 @@
 	* not once per instance of plugin on the page. So, this is a good place to define
 	* variables that are common to all instances of the plugin on a page.
 	*/
-	var componentName = "wb-facebook",
+var componentName = "wb-facebook",
 	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
@@ -34,7 +34,7 @@
 		if ( ele ) {
 			Modernizr.load(
 				{
-					load: [ protocol.indexOf( "http" ) === -1 ? "http:" : protocol ) + "//connect.facebook.net/" + wb.lang + "_US/sdk.js" ],
+					load: [ ( protocol.indexOf( "http" ) === -1 ? "http:" : protocol ) + "//connect.facebook.net/" + wb.lang + "_US/sdk.js" ],
 					complete: function() {
 						if ( !fbinited ) {
 							window.FB.init( {
@@ -51,9 +51,9 @@
 		}
 	};
 
-	$document.on( "timerpoke.wb " + initEvent, selector, init );
+$document.on( "timerpoke.wb " + initEvent, selector, init );
 
-	// Add the timer poke to initialize the plugin
-	wb.add( selector );
+// Add the timer poke to initialize the plugin
+wb.add( selector );
 
 } )( jQuery, window, wb );
