@@ -34,7 +34,7 @@
 		if ( ele ) {
 			Modernizr.load(
 				{
-					load: [ protocol.indexOf( "http" ) === -1 ? "http:" : protocol ) + "//connect.facebook.net/" + wb.lang + "_US/sdk.js" ],
+					load: [ ( protocol.indexOf( "http" ) === -1 ? "http:" : protocol ) + "//connect.facebook.net/" + wb.lang + "_US/sdk.js" ],
 					complete: function() {
 						if ( !fbinited ) {
 							window.FB.init( {
