@@ -90,7 +90,7 @@ var componentName = "wb-datalist",
 				if ( value.length === 0 ) {
 					value = $this.find( "span.al-lbl" ).html();
 				}
-				return ( comparator.length === 0 || value.toLowerCase().indexOf( comparator ) !== -1 );
+				return ( comparator.length === 0 || value.toLowerCase().indexOf( comparator ) === 0 );
 			} );
 		}
 
