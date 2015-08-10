@@ -1101,6 +1101,10 @@
 		} );
 	};
 
+	wb.escapeAttribute = function( str ) {
+		return str.replace( /'/g, "&#39;" ).replace( /"/g, "&#34;" );
+	};
+
 } )( wb );
 
 ( function( $, undef ) {

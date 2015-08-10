@@ -69,7 +69,7 @@ var componentName = "wb-feeds",
 				};
 
 			// due to CORS we cannot default to simple ajax pulls of the image. We have to inline the content box
-			return "<li><a class='feed-flickr' href='javascript:;' data-flickr='" + JSON.stringify( flickrData ) + "'><img src='" + flickrData.thumbnail + "' alt='" + flickrData.title + "' title='" + flickrData.title + "' class='img-responsive'/></a></li>";
+			return "<li><a class='feed-flickr' href='javascript:;' data-flickr='" + wb.escapeAttribute( JSON.stringify( flickrData ) ) + "'><img src='" + flickrData.thumbnail + "' alt='" + wb.escapeAttribute( flickrData.title ) + "' title='" + wb.escapeAttribute( flickrData.title ) + "' class='img-responsive'/></a></li>";
 		},
 
 		/**
@@ -84,7 +84,7 @@ var componentName = "wb-feeds",
 			};
 
 			// Due to CORS we cannot default to simple ajax pulls of the image. We have to inline the content box
-			return "<li class='col-md-4 col-sm-6 feed-youtube' data-youtube='" + JSON.stringify( youtubeDate ) + "'><a href='javascript:;'><img src='http://img.youtube.com/vi/" + youtubeDate.videoId + "/mqdefault.jpg' alt='" + youtubeDate.title + "' title='" + youtubeDate.title + "' class='img-responsive' /></a></li>";
+			return "<li class='col-md-4 col-sm-6 feed-youtube' data-youtube='" + wb.escapeAttribute( JSON.stringify( youtubeDate ) ) + "'><a href='javascript:;'><img src='http://img.youtube.com/vi/" + youtubeDate.videoId + "/mqdefault.jpg' alt='" + wb.escapeAttribute( youtubeDate.title ) + "' title='" + wb.escapeAttribute( youtubeDate.title ) + "' class='img-responsive' /></a></li>";
 		},
 		/**
 		 * [pinterest template]
