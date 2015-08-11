@@ -3,21 +3,7 @@
 	"layout": "core.hbs"
 }
 ---
-<ul id="wb-tphp">
-	<li class="wb-slc">
-		<a class="wb-sl" href="#wb-cont">{{{i18n "tmpl-skip-cont"}}}</a>
-	</li>
-{{#isnt footer "false"}}
-	<li class="wb-slc visible-sm visible-md visible-lg">
-		<a class="wb-sl" href="#wb-info">{{{i18n "tmpl-skip-about-site"}}}</a>
-	</li>
-{{/isnt}}
-{{#is secondarymenu "true"}}
-	<li class="wb-slc visible-md visible-lg">
-		<a class="wb-sl" href="#wb-sec">{{{i18n "tmpl-skip-section"}}}</a>
-	</li>
-{{/is}}
-</ul>
+{{>skiplinks}}
 <header role="banner">
 	<div id="wb-bnr">
 		<div id="wb-bar">
@@ -35,10 +21,7 @@
 
 		<div class="container">
 			<div class="row">
-
-				<div id="wb-sttl" class="col-md-8">
-					{{>brand}}
-				</div>
+				{{>brand}}
 {{#isnt sitesearch "false"}}
 	{{>sitesearch}}
 {{/isnt}}
