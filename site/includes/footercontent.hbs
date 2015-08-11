@@ -1,0 +1,26 @@
+<section class="col-sm-3">
+	<h3>{{{i18n "tmpl-contact-us"}}}</h3>
+	<ul class="list-unstyled">
+		<li><a href="https://github.com/wet-boew/wet-boew/issues/new">{{{i18n "tmpl-questions-comments"}}}</a></li>
+	</ul>
+</section>
+<section class="col-sm-3">
+	<h3>{{{i18n "tmpl-about"}}}</h3>
+	<ul class="list-unstyled">
+		<li><a href="{{assets}}/index-{{#contains language "fr"}}{{language}}{{else}}en{{/contains}}.html#{{{i18n "tmpl-about-anchor"}}}">{{{i18n "tmpl-about-wet"}}}</a></li>
+		<li><a rel="external" href="http://www.tbs-sct.gc.ca/ws-nw/index-{{#isnt language "fr"}}eng{{else}}fra{{/isnt}}.asp">{{{i18n "tmpl-about-web-standards"}}}</a></li>
+	</ul>
+</section>
+<section class="col-sm-3">
+	<h3>{{{i18n "tmpl-news"}}}</h3>
+	<ul class="list-unstyled">
+		<li><a href="https://github.com/wet-boew/wet-boew/pulse">{{{i18n "tmpl-recent-project-activity"}}}</a></li>
+		<li><a href="https://github.com/wet-boew/wet-boew/graphs">{{{i18n "tmpl-project-stats"}}}</a></li>
+	</ul>
+</section>
+<section class="col-sm-3">
+	<h3>{{{i18n "tmpl-stay-connected"}}}</h3>
+	<ul class="list-unstyled">
+		<li><a rel="external" href="https://twitter.com/{{{i18n "tmpl-wet-twitter"}}}">Twitter</a></li>
+	</ul>
+</section>
