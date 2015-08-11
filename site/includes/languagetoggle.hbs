@@ -1,15 +1,18 @@
-<ul class="text-right">
-{{#isnt language "fr"}}
-	{{#isnt language "en"}}
+<section id="wb-lng" class="visible-md visible-lg">
+	<h2>{{{i18n "tmpl-lang-select"}}}</h2>
+	<ul class="text-right">
+	{{#isnt language "fr"}}
+		{{#isnt language "en"}}
+			<li class="curr">{{{i18n "lang-native"}}}{{{i18n "space"}}}<span>{{{i18n "current"}}}</span></li>
+		{{/isnt}}
+		<li><a lang="fr" hreflang="fr" href="{{altLangPrefix}}-fr.html">{{{i18n "lang-native" language="fr"}}}</a></li>
+	{{else}}
 		<li class="curr">{{{i18n "lang-native"}}}{{{i18n "space"}}}<span>{{{i18n "current"}}}</span></li>
 	{{/isnt}}
-	<li><a lang="fr" hreflang="fr" href="{{altLangPrefix}}-fr.html">{{{i18n "lang-native" language="fr"}}}</a></li>
-{{else}}
-	<li class="curr">{{{i18n "lang-native"}}}{{{i18n "space"}}}<span>{{{i18n "current"}}}</span></li>
-{{/isnt}}
-{{#isnt language "en"}}
-	<li><a lang="en" hreflang="en" href="{{altLangPrefix}}-en.html">{{{i18n "lang-native" language="en"}}}</a></li>
-{{else}}
-	<li class="curr">{{{i18n "lang-native"}}}{{{i18n "space"}}}<span>{{{i18n "current"}}}</span></li>
-{{/isnt}}
-</ul>
+	{{#isnt language "en"}}
+		<li><a lang="en" hreflang="en" href="{{altLangPrefix}}-en.html">{{{i18n "lang-native" language="en"}}}</a></li>
+	{{else}}
+		<li class="curr">{{{i18n "lang-native"}}}{{{i18n "space"}}}<span>{{{i18n "current"}}}</span></li>
+	{{/isnt}}
+	</ul>
+</section>
