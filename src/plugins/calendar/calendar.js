@@ -42,7 +42,8 @@ var namespace = "wb-cal",
 			if ( !i18nText ) {
 				i18n = wb.i18n;
 				i18nText = {
-					monthNames: i18n( "mnths" ),
+					monthNames: [],
+					dayNames: [],
 					prevMonth: i18n( "prvMnth" ),
 					nextMonth: i18n( "nxtMnth" ),
 					goToTitle: i18n( "cal-goToTtl" ),
@@ -51,9 +52,15 @@ var namespace = "wb-cal",
 					goToLink: i18n( "cal-goToLnk" ),
 					goToBtn: i18n( "cal-goToBtn" ),
 					cancelBtn: i18n( "cancel" ),
-					dayNames: i18n( "days" ),
 					currDay: i18n( "currDay" )
 				};
+
+				for ( var m = 0; m < 12; m += 1 ) {
+					i18nText.monthNames.push( i18n( "mnths-" + ( m + 1 ) ) );
+				}
+				for ( var d = 0; d < 7; d += 1 ) {
+					i18nText.dayNames.push( i18n( "days-" + ( d + 1 ) ) );
+				}
 			}
 
 			$calendar

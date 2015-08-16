@@ -18,9 +18,7 @@ wb.i18nDict = {
 	process: "@process@",
 	srch: "@srch@",
 	"no-match": "@no-match@",
-	matches: {
-		mixin: "@matches@"
-	},
+	"matches-mixin": "@matches@",
 	current: "@current@",
 	hide: "@hide@",
 	err: "@err@",
@@ -35,16 +33,10 @@ wb.i18nDict = {
 	cancel: "@cancel@",
 	"min-ago": "@min-ago@",
 	"coup-mins": "@coup-mins@",
-	"mins-ago": {
-		mixin: "@mins-ago@"
-	},
+	"mins-ago-mixin": "@mins-ago@",
 	"hour-ago": "@hour-ago@",
-	"hours-ago": {
-		mixin: "@hours-ago@"
-	},
-	"days-ago": {
-		mixin: "@days-ago@"
-	},
+	"hours-ago-mixin": "@hours-ago@",
+	"days-ago-mixin": "@days-ago@",
 	yesterday: "@yesterday@",
 
 	nxt: "@nxt@",
@@ -62,10 +54,9 @@ wb.i18nDict = {
 	show: "@show@",
 
 	/* Tabbed interface */
-	"tab-rot": {
-		off: "@tab-rot-off@",
-		on: "@tab-rot-on@"
-	},
+	"tab-rot-off": "@tab-rot-off@",
+	"tab-rot-on": "@tab-rot-on@",
+
 	"tab-list": "@tab-list@",
 	"tab-pnl-end1": "@tab-pnl-end1@",
 	"tab-pnl-end2": "@tab-pnl-end2@",
@@ -77,19 +68,13 @@ wb.i18nDict = {
 	open: "@open@",
 	close: "@close@",
 	volume: "@volume@",
-	mute: {
-		on: "@mute-on@",
-		off: "@mute-off@"
-	},
-	cc: {
-		off: "@cc-off@",
-		on: "@cc-on@"
-	},
+	"mute-on": "@mute-on@",
+	"mute-off": "@mute-off@",
+	"cc-off": "@cc-off@",
+	"cc-on": "@cc-on@",
 	"cc-err": "@cc-err@",
-	adesc: {
-		on: "@adesc-on@",
-		off: "@adesc-off@"
-	},
+	"adesc-on": "@adesc-on@",
+	"adesc-off": "@adesc-off@",
 	pos: "@pos@",
 	dur: "@dur@",
 	/* Share widget */
@@ -107,29 +92,25 @@ wb.i18nDict = {
 	"date-show": "@date-show@",
 	"date-sel": "@date-sel@",
 	/* Calendar */
-	days: [
-		"@days-1@",
-		"@days-2@",
-		"@days-3@",
-		"@days-4@",
-		"@days-5@",
-		"@days-6@",
-		"@days-7@"
-	],
-	mnths: [
-		"@mnths-1@",
-		"@mnths-2@",
-		"@mnths-3@",
-		"@mnths-4@",
-		"@mnths-5@",
-		"@mnths-6@",
-		"@mnths-7@",
-		"@mnths-8@",
-		"@mnths-9@",
-		"@mnths-10@",
-		"@mnths-11@",
-		"@mnths-12@"
-	],
+	"days-1": "@days-1@",
+	"days-2": "@days-2@",
+	"days-3": "@days-3@",
+	"days-4": "@days-4@",
+	"days-5": "@days-5@",
+	"days-6": "@days-6@",
+	"days-7": "@days-7@",
+	"mnths-1": "@mnths-1@",
+	"mnths-2":"@mnths-2@",
+	"mnths-3":"@mnths-3@",
+	"mnths-4":"@mnths-4@",
+	"mnths-5":"@mnths-5@",
+	"mnths-6":"@mnths-6@",
+	"mnths-7":"@mnths-7@",
+	"mnths-8":"@mnths-8@",
+	"mnths-9":"@mnths-9@",
+	"mnths-10":"@mnths-10@",
+	"mnths-11":"@mnths-11@",
+	"mnths-12":"@mnths-12@",
 	cal: "@cal@",
 	currDay: "@currDay@",
 	"cal-goToLnk": "@cal-goToLnk@",
